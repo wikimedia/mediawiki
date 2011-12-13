@@ -406,6 +406,8 @@ class EditPage {
 	 * @deprecated in 1.19; use displayPermissionsError() instead
 	 */
 	function readOnlyPage( $source = null, $protected = false, $reasons = array(), $action = null ) {
+		wfDeprecated( __METHOD__, '1.19' );
+		
 		global $wgRequest, $wgOut;
 		if ( $wgRequest->getBool( 'redlink' ) ) {
 			// The edit page was reached via a red link.
@@ -2752,6 +2754,7 @@ HTML
 	 * @deprecated in 1.19; throw an exception directly instead
 	 */
 	function blockedPage() {
+		wfDeprecated( __METHOD__, '1.19' );
 		global $wgUser;
 
 		throw new UserBlockedError( $wgUser->mBlock );
@@ -2763,6 +2766,7 @@ HTML
 	 * @deprecated in 1.19; throw an exception directly instead
 	 */
 	function userNotLoggedInPage() {
+		wfDeprecated( __METHOD__, '1.19' );
 		throw new PermissionsError( 'edit' );
 	}
 
@@ -2773,6 +2777,7 @@ HTML
 	 * @deprecated in 1.19; throw an exception directly instead
 	 */
 	function noCreatePermission() {
+		wfDeprecated( __METHOD__, '1.19' );
 		$permission = $this->mTitle->isTalkPage() ? 'createtalk' : 'createpage';
 		throw new PermissionsError( $permission );
 	}
@@ -2800,6 +2805,8 @@ HTML
 	 * @deprecated since 1.17 Use method spamPageWithContent() instead
 	 */
 	static function spamPage( $match = false ) {
+		wfDeprecated( __METHOD__, '1.17' );
+		
 		global $wgOut, $wgTitle;
 
 		$wgOut->prepareErrorPage( wfMessage( 'spamprotectiontitle' ) );

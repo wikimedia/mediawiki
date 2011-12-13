@@ -186,7 +186,7 @@ class HTMLForm extends ContextSource {
 	 * done already.
 	 * @deprecated since 1.18 load modules with ResourceLoader instead
 	 */
-	static function addJS() { }
+	static function addJS() { wfDeprecated( __METHOD__, '1.18' ); }
 
 	/**
 	 * Initialise a new Object for the field

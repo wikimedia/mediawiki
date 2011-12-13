@@ -159,6 +159,7 @@ class CategoryViewer extends ContextSource {
 	 * @deprecated since 1.17 kept for compatibility, please use addSubcategoryObject instead
 	 */
 	function addSubcategory( Title $title, $sortkey, $pageLength ) {
+		wfDeprecated( __METHOD__, '1.17' );
 		$this->addSubcategoryObject( Category::newFromTitle( $title ), $sortkey, $pageLength );
 	}
 

@@ -67,6 +67,7 @@ class SearchEngine {
 	 * @deprecated since 1.18 Call supports( 'list-redirects' );
 	 */
 	function acceptListRedirects() {
+		wfDeprecated( __METHOD__, '1.18' );
 		return $this->supports( 'list-redirects' );
 	}
 

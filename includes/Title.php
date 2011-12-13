@@ -973,6 +973,7 @@ class Title {
 	 * @deprecated since 1.17
 	 */
 	public function isValidCssJsSubpage() {
+		wfDeprecated( __METHOD__, '1.17' );
 		return $this->isCssJsSubpage();
 	}
 
@@ -1525,6 +1526,7 @@ class Title {
 	 * @todo fold these checks into userCan()
 	 */
 	public function userCanRead() {
+		wfDeprecated( __METHOD__, '1.19' );
 		return $this->userCan( 'read' );
 	}
 
@@ -2131,7 +2133,7 @@ class Title {
 	 */
 	public function userCanEditCssSubpage() {
 		global $wgUser;
-		wfDeprecated( __METHOD__ );
+		wfDeprecated( __METHOD__, '1.19' );
 		return ( ( $wgUser->isAllowedAll( 'editusercssjs', 'editusercss' ) )
 			|| preg_match( '/^' . preg_quote( $wgUser->getName(), '/' ) . '\//', $this->mTextform ) );
 	}
@@ -2145,7 +2147,7 @@ class Title {
 	 */
 	public function userCanEditJsSubpage() {
 		global $wgUser;
-		wfDeprecated( __METHOD__ );
+		wfDeprecated( __METHOD__, '1.19' );
 		return ( ( $wgUser->isAllowedAll( 'editusercssjs', 'edituserjs' ) )
 			   || preg_match( '/^' . preg_quote( $wgUser->getName(), '/' ) . '\//', $this->mTextform ) );
 	}

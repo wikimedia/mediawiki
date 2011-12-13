@@ -187,6 +187,7 @@ abstract class ApiBase extends ContextSource {
 	 * @return DerivativeContext
 	 */
 	public function createContext() {
+		wfDeprecated( __METHOD__, '1.19' );
 		return new DerivativeContext( $this->getContext() );
 	}
 
@@ -673,6 +674,7 @@ abstract class ApiBase extends ContextSource {
 	 * @return array
 	 */
 	public static function getValidNamespaces() {
+		wfDeprecated( __METHOD__, '1.17' );
 		return MWNamespace::getValidNamespaces();
 	}
 

@@ -131,7 +131,7 @@ class ImageGallery {
 	 * @deprecated since 1.18 Not used anymore
 	 */
 	function useSkin( $skin ) {
-		wfDeprecated( __METHOD__ );
+		wfDeprecated( __METHOD__, '1.18' );
 		/* no op */
 	}
 

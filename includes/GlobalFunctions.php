@@ -1153,6 +1153,7 @@ function wfGetLangObj( $langcode = false ) {
  * @return Language
  */
 function wfUILang() {
+	wfDeprecated( __METHOD__, '1.18' );
 	global $wgLang;
 	return $wgLang;
 }
@@ -1709,6 +1710,8 @@ function wfShowingResults( $offset, $limit ) {
  * @deprecated in 1.19; use Language::viewPrevNext() instead
  */
 function wfViewPrevNext( $offset, $limit, $link, $query = '', $atend = false ) {
+	wfDeprecated( __METHOD__, '1.19' );
+	
 	global $wgLang;
 
 	$query = wfCgiToArray( $query );
@@ -3024,6 +3027,7 @@ function wfRelativePath( $path, $from ) {
  * @param $commit string
  */
 function wfDoUpdates( $commit = '' ) {
+	wfDeprecated( __METHOD__, '1.19' );
 	DeferredUpdates::doUpdates( $commit );
 }
 
@@ -3123,7 +3127,7 @@ function wfBaseConvert( $input, $sourceBase, $destBase, $pad = 1, $lowercase = t
  * @deprecated since 1.18, warnings in 1.18, removal in 1.20
  */
 function wfCreateObject( $name, $p ) {
-	wfDeprecated( __FUNCTION__ );
+	wfDeprecated( __FUNCTION__, '1.18' );
 	return MWFunction::newObj( $name, $p );
 }
 
@@ -3356,6 +3360,7 @@ function wfLocalFile( $title ) {
  * @deprecated since 1.19
  */
 function wfStreamFile( $fname, $headers = array() ) {
+	wfDeprecated( __FUNCTION__, '1.19' );
 	StreamFile::stream( $fname, $headers );
 }
 
@@ -3426,7 +3431,7 @@ function wfBoolToStr( $value ) {
  * @codeCoverageIgnore
  */
 function wfLoadExtensionMessages() {
-	wfDeprecated( __FUNCTION__ );
+	wfDeprecated( __FUNCTION__, '1.16' );
 }
 
 /**
@@ -3544,7 +3549,7 @@ function wfWaitForSlaves( $maxLag = false, $wiki = false ) {
  * @deprecated since 1.18, warnings in 1.18, remove in 1.20
  */
 function wfOut( $s ) {
-	wfDeprecated( __METHOD__ );
+	wfDeprecated( __FUNCTION__, '1.18' );
 	global $wgCommandLineMode;
 	if ( $wgCommandLineMode ) {
 		echo $s;

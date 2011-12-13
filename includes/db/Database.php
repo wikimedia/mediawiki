@@ -631,7 +631,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @return DatabaseMysql
 	 */
 	static function newFromParams( $server, $user, $password, $dbName, $flags = 0 ) {
-		wfDeprecated( __METHOD__ );
+		wfDeprecated( __METHOD__, '1.17' );
 		return new DatabaseMysql( $server, $user, $password, $dbName, $flags );
 	}
 
@@ -641,7 +641,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @see Database::factory()
 	 */
 	public final static function newFromType( $dbType, $p = array() ) {
-		wfDeprecated( __METHOD__ );
+		wfDeprecated( __METHOD__, '1.18' );
 		if ( isset( $p['tableprefix'] ) ) {
 			$p['tablePrefix'] = $p['tableprefix'];
 		}
@@ -2204,7 +2204,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @return string
 	 */
 	function quote_ident( $s ) {
-		wfDeprecated( __METHOD__ );
+		wfDeprecated( __METHOD__, '1.18' );
 		return $this->addIdentifierQuotes( $s );
 	}
 
@@ -2219,7 +2219,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @return string
 	 */
 	public function escapeLike( $s ) {
-		wfDeprecated( __METHOD__ );
+		wfDeprecated( __METHOD__, '1.17' );
 		return $this->escapeLikeInternal( $s );
 	}
 
@@ -3056,6 +3056,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @deprecated since 1.19; use setSessionOptions()
 	 */
 	public function setTimeout( $timeout ) {
+		wfDeprecated( __METHOD__, '1.19' );
 		$this->setSessionOptions( array( 'connTimeout' => $timeout ) );
 	}
 

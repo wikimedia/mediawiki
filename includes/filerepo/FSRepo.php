@@ -368,7 +368,7 @@ class FSRepo extends FileRepo {
 	 * @return Status
 	 */
 	function append( $srcPath, $toAppendPath, $flags = 0 ) {
-		wfDeprecated(__METHOD__);
+		wfDeprecated( __METHOD__, '1.19' );
 		
 		$status = $this->newGood();
 
