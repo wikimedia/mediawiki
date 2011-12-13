@@ -187,10 +187,12 @@ class PageArchive {
 				'ar_flags',
 				'ar_text_id',
 				'ar_deleted',
-				'ar_len' ),
+				'ar_len',
+				'ar_sha1',
+			),
 			array( 'ar_namespace' => $this->title->getNamespace(),
-				   'ar_title' => $this->title->getDBkey(),
-				   'ar_timestamp' => $dbr->timestamp( $timestamp ) ),
+					'ar_title' => $this->title->getDBkey(),
+					'ar_timestamp' => $dbr->timestamp( $timestamp ) ),
 			__METHOD__ );
 		if( $row ) {
 			return Revision::newFromArchiveRow( $row, array( 'page' => $this->title->getArticleId() ) );
@@ -656,7 +658,7 @@ class SpecialUndelete extends SpecialPage {
 
 		if ( is_null( $this->mTargetObj ) ) {
 			$out->addWikiMsg( 'undelete-header' );
-	
+
 			# Not all users can just browse every deleted page from the list
 			if ( $user->isAllowed( 'browsearchive' ) ) {
 				$this->showSearchForm();
