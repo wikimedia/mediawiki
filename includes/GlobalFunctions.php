@@ -3460,10 +3460,10 @@ function wfDeprecated( $function, $version = false, $component = false ) {
 	if ( !isset( $functionsWarned[$function] ) ) {
 		$functionsWarned[$function] = true;
 		
-		if ( $version && $component === false ) {
+		if ( $version ) {
 			global $wgDeprecationReleaseLimit;
 			
-			if ( $wgDeprecationReleaseLimit ) {
+			if ( $wgDeprecationReleaseLimit && $component === false ) {
 				# Strip -* off the end of $version so that branches can use the
 				# format #.##-branchname to avoid issues if the branch is merged into
 				# a version of MediaWiki later than what it was branched from
