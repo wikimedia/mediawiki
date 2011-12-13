@@ -135,7 +135,10 @@ class Linker {
 	 *      name of the target).
 	 * link() replaces the old functions in the makeLink() family.
 	 *
-	 * @since 1.16
+	 * @since 1.18 Method exists since 1.16 as non-static, made static in 1.18.
+	 * You can call it using this if you want to keep compat with these:
+	 * $linker = class_exists( 'DummyLinker' ) ? new DummyLinker() : new Linker();
+	 * $linker->link( ... );
 	 *
 	 * @param $target        Title  Can currently only be a Title, but this may
 	 *   change to support Images, literal URLs, etc.
