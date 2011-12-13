@@ -3674,15 +3674,15 @@ Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri
 'logentry-newusers-autocreate'        => "L'utenza $1 {{GENDER:$2|è stata creata}} automaticamente",
 'newuserlog-byemail'                  => 'password inviata via mail',
 
-
 # Feedback
-'feedback-note' => 'Il tuo feedback sarà inviato a $1.',
+'feedback-note'    => 'Il tuo feedback sarà inviato a $1.',
 'feedback-subject' => 'Oggetto:',
 'feedback-message' => 'Messaggio:',
-'feedback-cancel' => 'Annulla',
-'feedback-submit' => 'Invia feedback',
-'feedback-adding' => 'Inserimento del feedback nella pagina...',
-'feedback-error1' => 'Errore: Dalla API è arrivato un risultato non riconosciuto',
-'feedback-error2' => 'Errore: Non è stato possibile eseguire la modifica',
-'feedback-error3' => 'Errore: Nessuna risposta dalla API',
+'feedback-cancel'  => 'Annulla',
+'feedback-submit'  => 'Invia feedback',
+'feedback-adding'  => 'Inserimento del feedback nella pagina...',
+'feedback-error1'  => 'Errore: Dalla API è arrivato un risultato non riconosciuto',
+'feedback-error2'  => 'Errore: Non è stato possibile eseguire la modifica',
+'feedback-error3'  => 'Errore: Nessuna risposta dalla API',
+
 );

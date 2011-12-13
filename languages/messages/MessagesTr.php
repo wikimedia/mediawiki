@@ -3707,13 +3707,13 @@ Resimler tam çözünürlükte görüntülenir, diğer dosya tipleri ilgili prog
 'revdelete-unrestricted'  => 'hizmetliler için kaldırılmış kısıtlamalar',
 'newuserlog-byemail'      => 'e-posta yoluyla şifre gönderilmiştir',
 
-
 # Feedback
 'feedback-subject' => 'Konu:',
 'feedback-message' => 'Mesaj:',
-'feedback-cancel' => 'İptal',
-'feedback-submit' => 'Geribildirimi Gönder',
-'feedback-adding' => 'Sayfaya geribildirim ekleniyor...',
-'feedback-error2' => 'Hata: Düzenleme başarısız oldu',
-'feedback-error3' => "Hata: API'den yanıt yok",
+'feedback-cancel'  => 'İptal',
+'feedback-submit'  => 'Geribildirimi Gönder',
+'feedback-adding'  => 'Sayfaya geribildirim ekleniyor...',
+'feedback-error2'  => 'Hata: Düzenleme başarısız oldu',
+'feedback-error3'  => "Hata: API'den yanıt yok",
+
 );

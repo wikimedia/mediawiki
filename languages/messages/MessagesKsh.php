@@ -3978,15 +3978,15 @@ die De häs han welle. Se künnt jet ällder un nit mieh aktoäll sin.',
 'logentry-newusers-autocreate'        => '{{GENDER:$2|Dä|Dat|Dä Metmaacher|De|Dat}} $1 wood automattesch {{GENDER:$2|als Metmaacher|als Metmaacher||als Metmaacher|als Metmaacher}} aanjelaat.',
 'newuserlog-byemail'                  => 'dat Passwood wood med de e-mail loßjescheck',
 
-
 # Feedback
-'feedback-note' => 'Ding Röckmäldong küdd op $1.',
+'feedback-note'    => 'Ding Röckmäldong küdd op $1.',
 'feedback-subject' => 'Theema:',
 'feedback-message' => 'Nohreesch:',
-'feedback-cancel' => 'Stopp! Avbreche!',
-'feedback-submit' => 'Lohß jonn!',
-'feedback-adding' => 'Ben di Röckmäldong op di Sigg aam donn&nbsp;…',
-'feedback-error1' => 'Fähler: dat <i lang="en">API</i> säät jät, wat mer nit kenne',
-'feedback-error2' => 'Fähler: de Sigg ze ändere es donävve jejange',
-'feedback-error3' => 'Fähler: dat <i lang="en">API</i> joov kein Antwoot',
+'feedback-cancel'  => 'Stopp! Avbreche!',
+'feedback-submit'  => 'Lohß jonn!',
+'feedback-adding'  => 'Ben di Röckmäldong op di Sigg aam donn&nbsp;…',
+'feedback-error1'  => 'Fähler: dat <i lang="en">API</i> säät jät, wat mer nit kenne',
+'feedback-error2'  => 'Fähler: de Sigg ze ändere es donävve jejange',
+'feedback-error3'  => 'Fähler: dat <i lang="en">API</i> joov kein Antwoot',
+
 );

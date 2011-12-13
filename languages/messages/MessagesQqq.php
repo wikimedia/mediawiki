@@ -3891,7 +3891,8 @@ See: http://www.awaresystems.be/imaging/tiff/tifftags/ycbcrpositioning.html',
 'exif-dc-contributor' => 'People who helped make the resource, but are secondary in contribution to the author.',
 'exif-dc-coverage'    => '"The extent or scope of the resource" see dc:coverage in http://www.adobe.com/content/dam/Adobe/en/devnet/xmp/pdfs/XMPSpecificationPart2.pdf',
 'exif-dc-date'        => 'One or more dates associated with the image. How they are associated is not really defined. From the dc:date XMP property.',
-'exif-dc-publisher'   => 'One or more publisher of resource',
+'exif-dc-publisher'   => 'One or more publisher of resource.
+{{Identical|Publisher}}',
 'exif-dc-relation'    => "Something related to this image. Often a list of url's to related images.",
 'exif-dc-rights'      => 'Copyright information about the image/media given in informal language.',
 'exif-dc-source'      => 'Source of the image. This is another image that this image is based on. This does not refer to the person who provided the image.',
@@ -4435,9 +4436,9 @@ $4 is the gender of the target user.',
 'feedback-subject' => 'Label for a text input
 {{Identical|Subject}}',
 'feedback-message' => 'Label for a textarea; signature referrs to a Wikitext signature.',
-'feedback-cancel' => 'Button label
+'feedback-cancel'  => 'Button label
 {{Identical|Cancel}}',
-'feedback-submit' => 'Button label',
-'feedback-adding' => 'Progress notice',
+'feedback-submit'  => 'Button label',
+'feedback-adding'  => 'Progress notice',
 
 );

@@ -3853,15 +3853,15 @@ Obrázky se zobrazí v plném rozlišení, jiné typy souborů se otevřenou v p
 'logentry-newusers-autocreate'        => 'Automaticky {{GENDER:$2|byl}} založen účet $1',
 'newuserlog-byemail'                  => 'heslo zasláno e-mailem',
 
-
 # Feedback
-'feedback-note' => 'Váš komentář bude zveřejněn na stránce „[$2 $1]“ spolu s vaším uživatelským jménem, verzí prohlížeče a operačního systému.',
+'feedback-note'    => 'Váš komentář bude zveřejněn na stránce „[$2 $1]“ spolu s vaším uživatelským jménem, verzí prohlížeče a operačního systému.',
 'feedback-subject' => 'Předmět:',
 'feedback-message' => 'Zpráva:',
-'feedback-cancel' => 'Storno',
-'feedback-submit' => 'Odeslat komentář',
-'feedback-adding' => 'Komentář se přidává na stránku…',
-'feedback-error1' => 'Chyba: Nerozpoznaný výsledek z API',
-'feedback-error2' => 'Chyba: Editace se nezdařila',
-'feedback-error3' => 'Chyba: API nevrátilo žádnou odpověď',
+'feedback-cancel'  => 'Storno',
+'feedback-submit'  => 'Odeslat komentář',
+'feedback-adding'  => 'Komentář se přidává na stránku…',
+'feedback-error1'  => 'Chyba: Nerozpoznaný výsledek z API',
+'feedback-error2'  => 'Chyba: Editace se nezdařila',
+'feedback-error3'  => 'Chyba: API nevrátilo žádnou odpověď',
+
 );

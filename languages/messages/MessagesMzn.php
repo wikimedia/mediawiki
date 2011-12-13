@@ -940,15 +940,15 @@ $5
 'specialpages'                   => 'شا صفحه‌ئون',
 'specialpages-group-maintenance' => 'چله‌بندی صفحه‌ئون',
 
-
 # Feedback
-'feedback-note' => 'شمه نظر به طور عمومی صفحهٔ «[$2 $1]» سر، همراه شمه نوم و نسخهٔ مرورگر و سیستم عامل جا ارسال وونه.',
+'feedback-note'    => 'شمه نظر به طور عمومی صفحهٔ «[$2 $1]» سر، همراه شمه نوم و نسخهٔ مرورگر و سیستم عامل جا ارسال وونه.',
 'feedback-subject' => 'موضوع:',
 'feedback-message' => 'پیغوم:',
-'feedback-cancel' => 'ول هاکردن',
-'feedback-submit' => 'ارسال پیشنهادات و انتقادات',
-'feedback-adding' => 'بی‌یشتن پیشنهادات و انتقادات...',
-'feedback-error1' => 'خطا: جواب‌ئون نشناسی‌یه API جه',
-'feedback-error2' => 'خطا: شکست دچی‌ین سر',
-'feedback-error3' => 'خطا: جواب ندائن API',
+'feedback-cancel'  => 'ول هاکردن',
+'feedback-submit'  => 'ارسال پیشنهادات و انتقادات',
+'feedback-adding'  => 'بی‌یشتن پیشنهادات و انتقادات...',
+'feedback-error1'  => 'خطا: جواب‌ئون نشناسی‌یه API جه',
+'feedback-error2'  => 'خطا: شکست دچی‌ین سر',
+'feedback-error3'  => 'خطا: جواب ندائن API',
+
 );

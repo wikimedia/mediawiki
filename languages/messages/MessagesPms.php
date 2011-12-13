@@ -3545,15 +3545,15 @@ Le figure a së smon-o a amzura pijn-a, j'àotre sòrt d'archivi a ven-o fàite 
 'logentry-newusers-autocreate'        => "Ël cont $1 a l'é stàit {{GENDER:$2|creà}} an automàtich",
 'newuserlog-byemail'                  => 'ciav spedìa për pòsta eletrònica',
 
-
 # Feedback
-'feedback-note' => 'Ij sò coment a saran smonù publicament ansima a la pàgina "[$2 $1]", ansema con sò stranòm, version dël navigador e sistema operativ.',
+'feedback-note'    => 'Ij sò coment a saran smonù publicament ansima a la pàgina "[$2 $1]", ansema con sò stranòm, version dël navigador e sistema operativ.',
 'feedback-subject' => 'Soget:',
 'feedback-message' => 'Mëssagi:',
-'feedback-cancel' => 'Scancela',
-'feedback-submit' => 'Spedì ij coment',
-'feedback-adding' => 'Gionta dij coment a la pàgina...',
-'feedback-error1' => 'Eror: Arzultà pa arconossù da API',
-'feedback-error2' => 'Eror: Modìfica falìa',
-'feedback-error3' => 'Eror: Pa gnun-e arspòste da API',
+'feedback-cancel'  => 'Scancela',
+'feedback-submit'  => 'Spedì ij coment',
+'feedback-adding'  => 'Gionta dij coment a la pàgina...',
+'feedback-error1'  => 'Eror: Arzultà pa arconossù da API',
+'feedback-error2'  => 'Eror: Modìfica falìa',
+'feedback-error3'  => 'Eror: Pa gnun-e arspòste da API',
+
 );

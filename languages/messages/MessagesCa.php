@@ -3629,15 +3629,15 @@ Les imatges es mostren en plena resolució; altres tipus de fitxer s'inicien dir
 'logentry-newusers-autocreate'        => "El compte d'usuari $1 {{GENDER:$2|ha estat creat}} de manera automàtica",
 'newuserlog-byemail'                  => 'contrasenya enviada per correu electrònic',
 
-
 # Feedback
-'feedback-note' => "Els vostres comentaris seran públics a la pàgina «[$2 $1]», juntament amb el vostre nom d'usuari, versió del navegador i sistema operatiu.",
+'feedback-note'    => "Els vostres comentaris seran públics a la pàgina «[$2 $1]», juntament amb el vostre nom d'usuari, versió del navegador i sistema operatiu.",
 'feedback-subject' => 'Assumpte:',
 'feedback-message' => 'Missatge:',
-'feedback-cancel' => 'Canceŀla',
-'feedback-submit' => 'Envieu la vostra opinió',
-'feedback-adding' => "S'està afegint el comentari a la pàgina...",
-'feedback-error1' => "Error: Resultat de l'API no reconegut",
-'feedback-error2' => 'Error: Edició fallida',
-'feedback-error3' => "Error: No hi ha resposta de l'API",
+'feedback-cancel'  => 'Canceŀla',
+'feedback-submit'  => 'Envieu la vostra opinió',
+'feedback-adding'  => "S'està afegint el comentari a la pàgina...",
+'feedback-error1'  => "Error: Resultat de l'API no reconegut",
+'feedback-error2'  => 'Error: Edició fallida',
+'feedback-error3'  => "Error: No hi ha resposta de l'API",
+
 );

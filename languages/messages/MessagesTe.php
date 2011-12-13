@@ -3437,10 +3437,10 @@ $5
 'logentry-newusers-create'   => '$1 ఒక వాడుకరి ఖాతాను {{GENDER:$2|సృష్టించారు}}',
 'newuserlog-byemail'         => 'ఈ-మెయిలులో సంకేతపదం పంపించాం',
 
-
 # Feedback
 'feedback-subject' => 'విషయం:',
 'feedback-message' => 'సందేశం:',
-'feedback-cancel' => 'రద్దుచేయి',
-'feedback-error2' => 'దోషము: సవరణ విఫలమైంది',
+'feedback-cancel'  => 'రద్దుచేయి',
+'feedback-error2'  => 'దోషము: సవరణ విఫలమైంది',
+
 );
