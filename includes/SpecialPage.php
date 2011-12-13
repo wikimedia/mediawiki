@@ -177,7 +177,7 @@ class SpecialPage {
 	 * @deprecated since 1.18 call SpecialPageFactory method directly
 	 */
 	static function getPage( $name ) {
-		wfDeprecated( __METHOD__, '1.18' );
+		# wfDeprecated( __METHOD__, '1.18' ); // r106070 but still used in some extensions
 		return SpecialPageFactory::getPage( $name );
 	}
 
