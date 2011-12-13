@@ -1903,7 +1903,7 @@ class Linker {
 	 * @param $prefix String: optional prefix. As trail, only before instead of after.
 	 */
 	static function makeLinkObj( $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
-		wfDeprecated( __METHOD__, '1.16' );
+		# wfDeprecated( __METHOD__, '1.16' ); // See r105985 and it's revert. Somewhere still used.
 		
 		wfProfileIn( __METHOD__ );
 		$query = wfCgiToArray( $query );
@@ -1937,7 +1937,7 @@ class Linker {
 	static function makeKnownLinkObj(
 		$title, $text = '', $query = '', $trail = '', $prefix = '' , $aprops = '', $style = ''
 	) {
-		wfDeprecated( __METHOD__, '1.16' );
+		# wfDeprecated( __METHOD__, '1.16' ); // See r105985 and it's revert. Somewhere still used.
 		
 		wfProfileIn( __METHOD__ );
 
