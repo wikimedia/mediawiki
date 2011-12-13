@@ -1149,7 +1149,7 @@ $3 указал следующую причину: ''$2''",
 'revdelete-nologid-title'     => 'Ошибочная запись журнала',
 'revdelete-nologid-text'      => 'Вы не указали целевую запись журнала для выполнения действия или указанной записи не существует.',
 'revdelete-no-file'           => 'Указанный файл не существует.',
-'revdelete-show-file-confirm' => 'Вы уверены, что вы хотите просмотреть удалённую версию файла «<nowiki>$1</nowiki>» от $2, $3 ?',
+'revdelete-show-file-confirm' => 'Вы уверены, что вы хотите просмотреть удалённую версию файла «<nowiki>$1</nowiki>» от $2, $3?',
 'revdelete-show-file-submit'  => 'Да',
 'revdelete-selected'          => "'''{{PLURAL:$2|Выбранная версия|Выбранные версии}} страницы [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Выбранная запись|Выбранные записи}} журнала:'''",
@@ -3863,15 +3863,15 @@ MediaWiki распространяется в надежде, что она бу
 'logentry-newusers-autocreate'        => 'Автоматически {{GENDER:$2|создана|создана}} учётная запись $1',
 'newuserlog-byemail'                  => 'пароль отправлен по эл. почте',
 
-
 # Feedback
-'feedback-note' => 'Ваш отзыв будет размещён в проекте $1.',
+'feedback-note'    => 'Ваш отзыв будет размещён в проекте $1.',
 'feedback-subject' => 'Тема:',
 'feedback-message' => 'Сообщение:',
-'feedback-cancel' => 'Отмена',
-'feedback-submit' => 'Отправить отзыв',
-'feedback-adding' => 'Добавление отзыва на страницу…',
-'feedback-error1' => 'Ошибка. Неизвестный результат из API',
-'feedback-error2' => 'Ошибка. Сбой редактирования',
-'feedback-error3' => 'Ошибка. Нет ответа от API',
+'feedback-cancel'  => 'Отмена',
+'feedback-submit'  => 'Отправить отзыв',
+'feedback-adding'  => 'Добавление отзыва на страницу…',
+'feedback-error1'  => 'Ошибка. Неизвестный результат из API',
+'feedback-error2'  => 'Ошибка. Сбой редактирования',
+'feedback-error3'  => 'Ошибка. Нет ответа от API',
+
 );

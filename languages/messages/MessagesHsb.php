@@ -3551,12 +3551,15 @@ Wobrazy so połnym rozeznaću pokazuja, druhe datajowe typy so ze zwjazanym prog
 'logentry-newusers-autocreate'        => 'Konto $1 je so awtomatisce {{GENDER:$2|załožiło}}',
 'newuserlog-byemail'                  => 'Hesło z e-mejlku pósłane',
 
-
 # Feedback
+'feedback-note'    => 'Twój komentar wozjewi so zjawnje k stronje "[$2 $1]", z twojim wužiwarskim mjenom, wersiju webhladowaka a dźěłowym systemom.',
+'feedback-subject' => 'Tema:',
 'feedback-message' => 'Powěsć:',
-'feedback-cancel' => 'Přetorhnyć',
-'feedback-submit' => 'Komentar wotpósłać',
-'feedback-error1' => 'Zmylk: Njepřipóznaty wuslědk wot API',
-'feedback-error2' => 'Zmylk: Wobdźěłanje je so njeporadźiło',
-'feedback-error3' => 'Zmylk: Žana wotmołwa wot API',
+'feedback-cancel'  => 'Přetorhnyć',
+'feedback-submit'  => 'Komentar wotpósłać',
+'feedback-adding'  => 'Komentar so stronje přidawa...',
+'feedback-error1'  => 'Zmylk: Njepřipóznaty wuslědk wot API',
+'feedback-error2'  => 'Zmylk: Wobdźěłanje je so njeporadźiło',
+'feedback-error3'  => 'Zmylk: Žana wotmołwa wot API',
+
 );

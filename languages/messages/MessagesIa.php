@@ -3713,15 +3713,15 @@ Le imagines se monstra in plen resolution, le altere typos de file se executa di
 'logentry-newusers-autocreate'        => 'Le conto $1 ha essite {{GENDER:$2|create}} automaticamente',
 'newuserlog-byemail'                  => 'contrasigno inviate per e-mail',
 
-
 # Feedback
-'feedback-note' => 'Tu responsa essera publicate in $1.',
+'feedback-note'    => 'Tu responsa essera publicate in $1.',
 'feedback-subject' => 'Subjecto:',
 'feedback-message' => 'Message:',
-'feedback-cancel' => 'Cancellar',
-'feedback-submit' => 'Submitter opinion',
-'feedback-adding' => 'Le responsa es addite al pagina...',
-'feedback-error1' => 'Error: Resultato del API non recognoscite',
-'feedback-error2' => 'Error: Modification fallite',
-'feedback-error3' => 'Error: Nulle responsa del API',
+'feedback-cancel'  => 'Cancellar',
+'feedback-submit'  => 'Submitter opinion',
+'feedback-adding'  => 'Le responsa es addite al pagina...',
+'feedback-error1'  => 'Error: Resultato del API non recognoscite',
+'feedback-error2'  => 'Error: Modification fallite',
+'feedback-error3'  => 'Error: Nulle responsa del API',
+
 );

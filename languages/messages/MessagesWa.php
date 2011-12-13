@@ -1609,13 +1609,13 @@ Acertinez s' i vs plait ki vos vloz vormint rifé cisse pådje ci.",
 'specialpages-group-highuse'     => 'Eployaedje timpesse des pådjes',
 'specialpages-group-redirects'   => 'Ridjiblaedjes di pådjes sipeciåles',
 
-
 # Feedback
-'feedback-note' => "Vos rmarkess seront-st håynêye sol pådje « [$2 $1] » avou vosse no d' uzeu, li modêye di vosse betchteu et vosse sistinme d' operance.",
+'feedback-note'    => "Vos rmarkess seront-st håynêye sol pådje « [$2 $1] » avou vosse no d' uzeu, li modêye di vosse betchteu et vosse sistinme d' operance.",
 'feedback-subject' => 'Sudjet',
 'feedback-message' => 'Messaedje',
-'feedback-cancel' => 'Rinoncî',
-'feedback-submit' => "Evoyî l' vosse",
-'feedback-adding' => 'Vosse messaedje a stî håyné sol pådje...',
-'feedback-error2' => "Aroke : Li candjaedje n' a nén stî",
+'feedback-cancel'  => 'Rinoncî',
+'feedback-submit'  => "Evoyî l' vosse",
+'feedback-adding'  => 'Vosse messaedje a stî håyné sol pådje...',
+'feedback-error2'  => "Aroke : Li candjaedje n' a nén stî",
+
 );

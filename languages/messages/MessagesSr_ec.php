@@ -4170,14 +4170,14 @@ $5
 'logentry-newusers-autocreate'        => 'Налог $1 је {{GENDER:$2|самостално отворен}}',
 'newuserlog-byemail'                  => 'лозинка је послата е-поштом',
 
-
 # Feedback
 'feedback-subject' => 'Наслов:',
 'feedback-message' => 'Порука:',
-'feedback-cancel' => 'Откажи',
-'feedback-submit' => 'Пошаљи повратну информацију',
-'feedback-adding' => 'Додајем исказано мишљење на страницу…',
-'feedback-error1' => 'Грешка: непрепознат резултат од АПИ-ја',
-'feedback-error2' => 'Грешка: уређивање није успело',
-'feedback-error3' => 'Грешка: нема одговора од АПИ-ја',
+'feedback-cancel'  => 'Откажи',
+'feedback-submit'  => 'Пошаљи повратну информацију',
+'feedback-adding'  => 'Додајем исказано мишљење на страницу…',
+'feedback-error1'  => 'Грешка: непрепознат резултат од АПИ-ја',
+'feedback-error2'  => 'Грешка: уређивање није успело',
+'feedback-error3'  => 'Грешка: нема одговора од АПИ-ја',
+
 );

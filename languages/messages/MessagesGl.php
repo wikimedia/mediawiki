@@ -3670,7 +3670,7 @@ As imaxes móstranse na súa resolución completa; outros tipos de ficheiros in�
 'specialpages-group-pagetools'   => 'Ferramentas das páxinas',
 'specialpages-group-wiki'        => 'Datos do wiki e ferramentas',
 'specialpages-group-redirects'   => 'Páxinas de redirección especiais',
-'specialpages-group-spam'        => "Ferramentas contra o ''spam''",
+'specialpages-group-spam'        => 'Ferramentas contra o spam',
 
 # Special:BlankPage
 'blankpage'              => 'Baleirar a páxina',
@@ -3768,15 +3768,15 @@ As imaxes móstranse na súa resolución completa; outros tipos de ficheiros in�
 'logentry-newusers-autocreate'        => 'A conta $1 {{GENDER:$2|creouse}} automaticamente',
 'newuserlog-byemail'                  => 'contrasinal enviado por correo electrónico',
 
-
 # Feedback
-'feedback-note' => 'Os seus comentarios publicaranse publicamente na páxina "[$2 $1]" xunto ao seu nome de usuario, a versión do seu navegador e o seu sistema operativo.',
+'feedback-note'    => 'Os seus comentarios publicaranse publicamente na páxina "[$2 $1]" xunto ao seu nome de usuario, a versión do seu navegador e o seu sistema operativo.',
 'feedback-subject' => 'Asunto:',
 'feedback-message' => 'Mensaxe:',
-'feedback-cancel' => 'Cancelar',
-'feedback-submit' => 'Enviar os comentarios',
-'feedback-adding' => 'Enviando os comentarios...',
-'feedback-error1' => 'Erro: Resultado da API non recoñecido',
-'feedback-error2' => 'Erro: Fallo de edición',
-'feedback-error3' => 'Error: Non hai resposta da API',
+'feedback-cancel'  => 'Cancelar',
+'feedback-submit'  => 'Enviar os comentarios',
+'feedback-adding'  => 'Enviando os comentarios...',
+'feedback-error1'  => 'Erro: Resultado da API non recoñecido',
+'feedback-error2'  => 'Erro: Fallo de edición',
+'feedback-error3'  => 'Erro: Non hai resposta da API',
+
 );

@@ -2148,9 +2148,9 @@ Xêra xwe zanibe ku tu bi rastî dixwazê vê rûpelê dîsa çêkê",
 'logentry-newusers-create'   => '$1 hesabekî bikarhêneriyê {{GENDER:$2|çêkir}}',
 'newuserlog-byemail'         => 'şîfre bi e-nameyê hate şandin',
 
-
 # Feedback
 'feedback-subject' => 'Mijar:',
 'feedback-message' => 'Peyam:',
-'feedback-cancel' => 'Betal bike',
+'feedback-cancel'  => 'Betal bike',
+
 );

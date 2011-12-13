@@ -3796,14 +3796,14 @@ Bilder vises med full oppløsning, mens andre filtyper startes direkte gjennom s
 'logentry-newusers-autocreate'        => 'Konto $1 ble {{GENDER:$2|opprettet}} automatisk',
 'newuserlog-byemail'                  => 'passord sendt på e-post',
 
-
 # Feedback
 'feedback-subject' => 'Emne:',
 'feedback-message' => 'Melding:',
-'feedback-cancel' => 'Avbryt',
-'feedback-submit' => 'Send tilbakemelding',
-'feedback-adding' => 'Tilføyer tilbakmelding til side ...',
-'feedback-error1' => 'Feil: Ukjent resultat fra API',
-'feedback-error2' => 'Feil: Redigering feilet',
-'feedback-error3' => 'Feil: Ingen respons fra API',
+'feedback-cancel'  => 'Avbryt',
+'feedback-submit'  => 'Send tilbakemelding',
+'feedback-adding'  => 'Tilføyer tilbakmelding til side ...',
+'feedback-error1'  => 'Feil: Ukjent resultat fra API',
+'feedback-error2'  => 'Feil: Redigering feilet',
+'feedback-error3'  => 'Feil: Ingen respons fra API',
+
 );

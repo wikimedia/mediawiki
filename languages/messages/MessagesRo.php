@@ -3783,15 +3783,15 @@ Imaginile sunt afișate la rezoluția lor maximă, în timp ce alte tipuri de fi
 'logentry-newusers-autocreate'        => 'Contul $1 a fost {{GENDER:$2|creat}} în mod automat',
 'newuserlog-byemail'                  => 'parola trimisă prin e-mail',
 
-
 # Feedback
-'feedback-note' => 'Impresiile dumneavoastră vor fi făcute publice pe pagina „[$2 $1]”, alături de numele dumneavoastră de utilizator, versiunea navigatorului și sistemul de operare.',
+'feedback-note'    => 'Impresiile dumneavoastră vor fi făcute publice pe pagina „[$2 $1]”, alături de numele dumneavoastră de utilizator, versiunea navigatorului și sistemul de operare.',
 'feedback-subject' => 'Subiect:',
 'feedback-message' => 'Mesaj:',
-'feedback-cancel' => 'Revocare',
-'feedback-submit' => 'Trimite părerea',
-'feedback-adding' => 'Se adaugă părerea pe pagină...',
-'feedback-error1' => 'Eroare: Rezultat necunoscut de la API',
-'feedback-error2' => 'Eroare: editarea nu a reușit',
-'feedback-error3' => 'Eroare: Niciun răspuns de la API',
+'feedback-cancel'  => 'Revocare',
+'feedback-submit'  => 'Trimite părerea',
+'feedback-adding'  => 'Se adaugă părerea pe pagină...',
+'feedback-error1'  => 'Eroare: Rezultat necunoscut de la API',
+'feedback-error2'  => 'Eroare: editarea nu a reușit',
+'feedback-error3'  => 'Eroare: Niciun răspuns de la API',
+
 );

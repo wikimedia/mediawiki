@@ -3815,15 +3815,15 @@ Slike su prikazane u punoj veličini, ostale vrste datoteka su prikazane direktn
 'logentry-move-move-noredirect' => '$1 {{GENDER:$2|je premjestio|je premjestila|premjesti}} stranicu $3 na $4 bez ostavljanja preusmjerenja',
 'newuserlog-byemail'            => 'šifra je poslana putem e-maila',
 
-
 # Feedback
-'feedback-note' => 'Vaša povratna informacija će biti objavljena na $1.',
+'feedback-note'    => 'Vaša povratna informacija će biti objavljena na $1.',
 'feedback-subject' => 'Tema:',
 'feedback-message' => 'Poruka:',
-'feedback-cancel' => 'Odustani',
-'feedback-submit' => 'Pošalji povratnu informaciju',
-'feedback-adding' => 'Dodajem povratne informacije na stranicu...',
-'feedback-error1' => 'Greška: Neprepoznati rezultat od API',
-'feedback-error2' => 'Greška: Uređivanje nije uspjelo',
-'feedback-error3' => 'Greška: Nema odgovora od API',
+'feedback-cancel'  => 'Odustani',
+'feedback-submit'  => 'Pošalji povratnu informaciju',
+'feedback-adding'  => 'Dodajem povratne informacije na stranicu...',
+'feedback-error1'  => 'Greška: Neprepoznati rezultat od API',
+'feedback-error2'  => 'Greška: Uređivanje nije uspjelo',
+'feedback-error3'  => 'Greška: Nema odgovora od API',
+
 );

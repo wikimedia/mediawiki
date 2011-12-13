@@ -3831,15 +3831,15 @@ Grafiki są pokazywane w pełnej rozdzielczości. Inne typy plików są otwieran
 'logentry-newusers-autocreate'        => 'Konto {{GENDER:$2|użytkownika|użytkowniczki}} $1 zostało utworzone automatycznie',
 'newuserlog-byemail'                  => 'hasło zostało wysłane e‐mailem',
 
-
 # Feedback
-'feedback-note' => 'Twoja opinia zostanie wysłana do $1.',
+'feedback-note'    => 'Twoja opinia zostanie wysłana do $1.',
 'feedback-subject' => 'Temat',
 'feedback-message' => 'Wiadomość:',
-'feedback-cancel' => 'Anuluj',
-'feedback-submit' => 'Prześlij opinię',
-'feedback-adding' => 'Dodawanie opinii do strony...',
-'feedback-error1' => 'Błąd – nierozpoznana odpowiedź API',
-'feedback-error2' => 'Błąd – edycja nieudana',
-'feedback-error3' => 'Błąd – brak odpowiedzi API',
+'feedback-cancel'  => 'Anuluj',
+'feedback-submit'  => 'Prześlij opinię',
+'feedback-adding'  => 'Dodawanie opinii do strony...',
+'feedback-error1'  => 'Błąd – nierozpoznana odpowiedź API',
+'feedback-error2'  => 'Błąd – edycja nieudana',
+'feedback-error3'  => 'Błąd – brak odpowiedzi API',
+
 );

@@ -3808,15 +3808,15 @@ Bilder visas i full upplösning, andra filtyper öppnas direkt i de program som 
 'logentry-newusers-autocreate'        => 'Kontot $1 {{GENDER:$2|skapades}} automatiskt',
 'newuserlog-byemail'                  => 'lösenord skickat med e-post',
 
-
 # Feedback
-'feedback-note' => 'Din feedback kommer att publiceras offentligt på sidan "[$2 $1]", tillsammans med ditt användarnamn, version av webbläsare och operativsystem.',
+'feedback-note'    => 'Din feedback kommer att publiceras offentligt på sidan "[$2 $1]", tillsammans med ditt användarnamn, version av webbläsare och operativsystem.',
 'feedback-subject' => 'Ämne:',
 'feedback-message' => 'Meddelande:',
-'feedback-cancel' => 'Avbryt',
-'feedback-submit' => 'Skicka in feedback',
-'feedback-adding' => 'Ge feedback till sida...',
-'feedback-error1' => 'Fel: Okänt resultat från API',
-'feedback-error2' => 'Fel: Redigeringen misslyckades',
-'feedback-error3' => 'Fel: Inget svar från API',
+'feedback-cancel'  => 'Avbryt',
+'feedback-submit'  => 'Skicka in feedback',
+'feedback-adding'  => 'Ge feedback till sida...',
+'feedback-error1'  => 'Fel: Okänt resultat från API',
+'feedback-error2'  => 'Fel: Redigeringen misslyckades',
+'feedback-error3'  => 'Fel: Inget svar från API',
+
 );

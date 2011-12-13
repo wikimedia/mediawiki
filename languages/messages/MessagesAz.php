@@ -2930,9 +2930,9 @@ Bu saytda texniki problemlər var.',
 'logentry-newusers-autocreate' => 'Hesab $1 {{GENDER:$2yaradıldı}} avtomatik',
 'newuserlog-byemail'           => 'parol e-maillə göndərildi',
 
-
 # Feedback
 'feedback-subject' => 'Mövzu:',
 'feedback-message' => 'Mesaj:',
-'feedback-cancel' => 'İmtina',
+'feedback-cancel'  => 'İmtina',
+
 );

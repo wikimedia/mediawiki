@@ -3704,15 +3704,15 @@ Bildoj montriĝas en plena distingivo, aliaj dosiertipoj estas malfermataj rekte
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|movis|movis}} paĝon $3 al $4 anstataŭigante alidirektilon sen lasante alidirektilon',
 'newuserlog-byemail'                  => 'pasvorto sendita retpoŝte',
 
-
 # Feedback
-'feedback-note' => 'Via opinio estos afiŝita publike al la paĝo "[$2 $1]", kune kun via salutnomo, versio de retumilo, kaj operaciuma sistemo.',
+'feedback-note'    => 'Via opinio estos afiŝita publike al la paĝo "[$2 $1]", kune kun via salutnomo, versio de retumilo, kaj operaciuma sistemo.',
 'feedback-subject' => 'Temo:',
 'feedback-message' => 'Mesaĝo:',
-'feedback-cancel' => 'Nuligi',
-'feedback-submit' => 'Sendi Mesaĝon',
-'feedback-adding' => 'Aldonanta respondon al la paĝo...',
-'feedback-error1' => 'Eraro: Nerekonita rezulto de API',
-'feedback-error2' => 'Eraro: La redakto malsukcesis',
-'feedback-error3' => 'Eraro: Neniu respondo de API',
+'feedback-cancel'  => 'Nuligi',
+'feedback-submit'  => 'Sendi Mesaĝon',
+'feedback-adding'  => 'Aldonanta respondon al la paĝo...',
+'feedback-error1'  => 'Eraro: Nerekonita rezulto de API',
+'feedback-error2'  => 'Eraro: La redakto malsukcesis',
+'feedback-error3'  => 'Eraro: Neniu respondo de API',
+
 );

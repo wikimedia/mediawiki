@@ -3566,15 +3566,15 @@ Aafbeildinge waere in häör vollejige resolutie getoeandj. Anger bestandjstypes
 'logentry-newusers-autocreate'        => 'De gebroeker $1 is autematis {{GENDER:$2|aangemaak}}',
 'newuserlog-byemail'                  => 'wachwaord is versjik per e-mail',
 
-
 # Feedback
-'feedback-note' => 'Diene feedback weurd publiekelik geplaats oppe pagina "[$2 $1]", mit diene gebroekersnaam, browserversie en DOS.',
+'feedback-note'    => 'Diene feedback weurd publiekelik geplaats oppe pagina "[$2 $1]", mit diene gebroekersnaam, browserversie en DOS.',
 'feedback-subject' => 'Óngerwerp:',
 'feedback-message' => 'Berich:',
-'feedback-cancel' => 'Braek aaf',
-'feedback-submit' => 'Slaon feedback óp',
-'feedback-adding' => 'Feedback weurt aan pagina toegevoeg...',
-'feedback-error1' => 'Fout: ónbekind rizzeltaot vanne API',
-'feedback-error2' => 'Fout: bewirking mislök',
-'feedback-error3' => 'Fout: gein reactie vanne API',
+'feedback-cancel'  => 'Braek aaf',
+'feedback-submit'  => 'Slaon feedback óp',
+'feedback-adding'  => 'Feedback weurt aan pagina toegevoeg...',
+'feedback-error1'  => 'Fout: ónbekind rizzeltaot vanne API',
+'feedback-error2'  => 'Fout: bewirking mislök',
+'feedback-error3'  => 'Fout: gein reactie vanne API',
+
 );

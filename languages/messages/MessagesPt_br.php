@@ -3773,15 +3773,15 @@ As imagens serão exibidas em sua resolução máxima, outros tipos de arquivos 
 'logentry-newusers-autocreate'        => 'A conta $1 foi {{GENDER:$2|criada}} automaticalmente',
 'newuserlog-byemail'                  => 'senha enviada por correio-eletrônico',
 
-
 # Feedback
-'feedback-note' => 'O seu comentário será publicado na página "[$2 $1]", tornando-se assim público, em conjunto com o seu nome de usuário, versão do navegador e sistema operacional.',
+'feedback-note'    => 'O seu comentário será publicado na página "[$2 $1]", tornando-se assim público, em conjunto com o seu nome de usuário, versão do navegador e sistema operacional.',
 'feedback-subject' => 'Assunto:',
 'feedback-message' => 'Mensagem:',
-'feedback-cancel' => 'Cancelar',
-'feedback-submit' => 'Enviar Comentários',
-'feedback-adding' => 'Adicionando os comentários na página...',
-'feedback-error1' => 'Erro: O resultado da API não foi reconhecido',
-'feedback-error2' => 'Erro: A edição falhou',
-'feedback-error3' => 'Erro: A API não responde',
+'feedback-cancel'  => 'Cancelar',
+'feedback-submit'  => 'Enviar Comentários',
+'feedback-adding'  => 'Adicionando os comentários na página...',
+'feedback-error1'  => 'Erro: O resultado da API não foi reconhecido',
+'feedback-error2'  => 'Erro: A edição falhou',
+'feedback-error3'  => 'Erro: A API não responde',
+
 );

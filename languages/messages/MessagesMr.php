@@ -3676,11 +3676,11 @@ $5
 'logentry-newusers-autocreate'        => '$1  खाते स्वयमेव {{GENDER:$2|निर्मित}} झाले आहे.',
 'newuserlog-byemail'                  => 'परवलीचा शब्द इमेलमार्फत पाठविलेला आहे',
 
-
 # Feedback
 'feedback-subject' => 'विषय:',
 'feedback-message' => 'संदेश:',
-'feedback-cancel' => 'रद्द करा',
-'feedback-submit' => 'प्रतिक्रिया द्या',
-'feedback-error2' => 'त्रुटी: संपादन रद्द',
+'feedback-cancel'  => 'रद्द करा',
+'feedback-submit'  => 'प्रतिक्रिया द्या',
+'feedback-error2'  => 'त्रुटी: संपादन रद्द',
+
 );

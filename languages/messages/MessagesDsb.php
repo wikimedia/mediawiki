@@ -3563,4 +3563,15 @@ Wobraze se w połnym wótgranicowanju pokazuju, druge datajowe typy se ze zwěza
 'logentry-newusers-autocreate'        => 'Konto $1 jo se awtomatiski {{GENDER:$2|załožyło}}',
 'newuserlog-byemail'                  => 'Pótajne słowo bu pśez e-mail pósłane.',
 
+# Feedback
+'feedback-note'    => 'Twój komentar wozjawijo se zjawnje k bokoju "[$2 $1]", z twójim wužywarskim mjenim, wersiju webglědowaka a źěłowym systemom.',
+'feedback-subject' => 'Tema:',
+'feedback-message' => 'Powěsć:',
+'feedback-cancel'  => 'Pśetergnuś',
+'feedback-submit'  => 'Komentar wótpósłaś',
+'feedback-adding'  => 'Komentar pśidawa se bokoju...',
+'feedback-error1'  => 'Zmólka: Njepóznaty wuslědk wót API',
+'feedback-error2'  => 'Zmólka: Wobźěłanje jo se njeraźiło',
+'feedback-error3'  => 'Zmólka: Žedne wótegrono wót API',
+
 );

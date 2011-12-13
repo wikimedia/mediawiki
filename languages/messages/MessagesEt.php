@@ -1544,6 +1544,7 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 'action-suppressionlog'       => 'seda eralogi vaadata',
 'action-block'                => 'selle kasutaja redigeerimisõigust blokeerida',
 'action-protect'              => 'selle lehekülje kaitsetasemeid muuta',
+'action-rollback'             => 'lehekülge viimati redigeeriund kasutaja muudatusi koheselt tühistada',
 'action-import'               => 'seda lehekülge teisest vikist importida',
 'action-importupload'         => 'seda lehekülge faili üleslaadimise abil importida',
 'action-patrol'               => 'teiste muudatusi kontrollituks märkida',
@@ -1612,15 +1613,14 @@ Sinu [[Special:Watchlist|jälgimisloendi]] leheküljed on  '''rasvaselt''' esile
 'upload-recreate-warning'     => "'''Hoiatus: Sellise nimega fail on kustutatud või teisaldatud.'''
 
 Selle lehe kustutamis- ja teisaldamislogi on kuvatud siin:",
-'uploadtext'                  => "Järgnevat vormi võid kasutada failide üleslaadimiseks.
-
-Et näha või leida eelnevalt üles laaditud faile vaata [[Special:FileList|failide nimekirja]].
+'uploadtext'                  => "Kasuta allpool olevat vormi failide üleslaadimiseks.
+Et näha või leida eelnevalt üles laaditud faile vaata [[Special:FileList|failide loendit]].
 Üleslaadimiste ajalugu saab uurida [[Special:Log/upload|üleslaadimislogist]], kustutamiste ajalugu [[Special:Log/delete|kustutamislogist]].
 
-Faili lisamiseks artiklile kasuta linki ühel kujul järgnevatest:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:fail.jpg]]</nowiki></tt>''' algupäraste mõõtmetega pildi lisamiseks
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:fail.png|200px|thumb|left|kirjeldus]]</nowiki></tt>''' raamiga pisipildi lisamiseks lehekülje vasakusse serva; ''kirjeldus'' kuvatakse pildiallkirjana
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:fail.ogg]]</nowiki></tt>''' helifaililingi lisamiseks",
+Faili lisamiseks artiklile kasuta linki ühel kujul järgnevatest.
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fail.jpg]]</nowiki></tt>''', et lisada täissuuruses pilt.
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fail.png|200px|thumb|left|kirjeldus]]</nowiki></tt>''', et lisada lehekülje vasakusse serva raamiga 200 piksli laiune pisipilt koos pildiallkirjaga (''kirjeldus'').
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fail.ogg]]</nowiki></tt>''', et linkida otse failile ilma seda kuvamata.",
 'upload-permitted'            => 'Lubatud failitüübid: $1.',
 'upload-preferred'            => 'Eelistatud failitüübid: $1.',
 'upload-prohibited'           => 'Keelatud failitüübid: $1.',
@@ -2024,8 +2024,8 @@ Pane tähele, et teised võrgukohad võivad viidata failile otselingiga ja seega
 'booksources-invalid-isbn'  => 'Antud ISBN-number ei ole korrektne; kontrolli algallikast kopeerides vigu.',
 
 # Special:Log
-'specialloguserlabel'  => 'Kasutaja:',
-'speciallogtitlelabel' => 'Pealkiri:',
+'specialloguserlabel'  => 'Täitja:',
+'speciallogtitlelabel' => 'Objekt (pealkiri või kasutaja):',
 'log'                  => 'Logid',
 'all-logs-page'        => 'Kõik avalikud logid',
 'alllogstext'          => 'See on {{GRAMMAR:genitive|{{SITENAME}}}} kõigi olemasolevate logide ühendkuva.
@@ -3674,19 +3674,20 @@ Pilt kuvatakse algupärases suuruses, muu fail avatakse koheselt seostuva progra
 'revdelete-restricted'              => 'kehtestati piirangud administraatoritele',
 'revdelete-unrestricted'            => 'eemaldati administraatoritelt piirangud',
 'logentry-move-move'                => '$1 {{GENDER:$2|teisaldas}} lehekülje $3 pealkirja $4 alla',
+'logentry-move-move-noredirect'     => '$1 {{GENDER:$2|teisaldas}} lehekülje $3 pealkirja $4 alla ümbersuunamist maha jätmata',
 'logentry-patrol-patrol'            => '$1 {{GENDER:$2|märkis}} lehekülje $3 redaktsiooni $4 kontrollituks',
 'logentry-patrol-patrol-auto'       => '$1 {{GENDER:$2|märkis}} automaatselt lehekülje $3 redaktsiooni $4 kontrollituks',
 'newuserlog-byemail'                => 'parool saadetud e-postiga',
 
-
 # Feedback
-'feedback-note' => 'Sinu tagasiside postitatakse avalikult sinu kasutajanime ning andmetega sinu võrgulehitseja versiooni ja operatsioonisüsteemi kohta leheküljele "[$2 $1]".',
+'feedback-note'    => 'Sinu tagasiside postitatakse avalikult sinu kasutajanime ning andmetega sinu võrgulehitseja versiooni ja operatsioonisüsteemi kohta leheküljele "[$2 $1]".',
 'feedback-subject' => 'Teema:',
 'feedback-message' => 'Sõnum:',
-'feedback-cancel' => 'Loobu',
-'feedback-submit' => 'Saada tagasiside',
-'feedback-adding' => 'Tagasiside lisamine leheküljele...',
-'feedback-error1' => 'Tõrge: Tundmatu API tulemus',
-'feedback-error2' => 'Tõrge: Redigeerimine ebaõnnestus',
-'feedback-error3' => 'Tõrge: API ei vasta',
+'feedback-cancel'  => 'Loobu',
+'feedback-submit'  => 'Saada tagasiside',
+'feedback-adding'  => 'Tagasiside lisamine leheküljele...',
+'feedback-error1'  => 'Tõrge: Tundmatu API tulemus',
+'feedback-error2'  => 'Tõrge: Redigeerimine ebaõnnestus',
+'feedback-error3'  => 'Tõrge: API ei vasta',
+
 );

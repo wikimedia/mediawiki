@@ -1364,7 +1364,7 @@ $1',
 'statistics-users-active'  => 'فعاله کارنان',
 'statistics-mostpopular'   => 'تر ټولو ډېر کتل شوي مخونه',
 
-'disambiguations'     => 'د څرګندونې مخونه',
+'disambiguations'     => 'د مبهمو مخونو سره تړلي مخونه',
 'disambiguationspage' => 'Template:ناجوت',
 
 'doubleredirects' => 'دوه ځلي ورګرځېدنې',
@@ -1437,8 +1437,8 @@ $1',
 'booksources-text'          => 'دا لاندې د هغه وېبځايونو د تړنو لړليک دی چېرته چې نوي او زاړه کتابونه پلورل کېږي، او يا هم کېدای شي چې د هغه کتاب په هکله مالومات ولري کوم چې تاسو ورپسې لټېږۍ:',
 
 # Special:Log
-'specialloguserlabel'  => 'کارن:',
-'speciallogtitlelabel' => 'سرليک:',
+'specialloguserlabel'  => 'ترسره کوونکی:',
+'speciallogtitlelabel' => 'موخه (سرليک يا کارن):',
 'log'                  => 'يادښتونه',
 'all-logs-page'        => 'ټول عام يادښتونه',
 'log-title-wildcard'   => 'هغه سرليکونه پلټل چې په دې متن پيلېږي',
@@ -1781,6 +1781,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'ipbotheroption'             => 'نور',
 'ipbotherreason'             => 'بل/اضافه سبب:',
 'ipbhidename'                => 'کارن-نوم له سمون او لړليکونو پټول',
+'ipb-confirm'                => 'د بنديز تاييد',
 'badipaddress'               => 'ناسمه IP پته',
 'blockipsuccesssub'          => 'بنديز په برياليتوب سره ولګېده',
 'blockipsuccesstext'         => 'د [[Special:Contributions/$1|$1]] مخه نيول شوې.
@@ -1796,6 +1797,9 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'blocklist'                  => 'بنديز لګېدلي کارنان',
 'ipblocklist'                => 'بنديز لګېدلي کارنان',
 'ipblocklist-legend'         => 'يو بنديز شوی کارن موندل',
+'blocklist-userblocks'       => 'ګڼون بنديزونه پټول',
+'blocklist-tempblocks'       => 'لنډمهاله بنديزونه پټول',
+'blocklist-addressblocks'    => 'يواځې آی پي بنديزونه پټول',
 'blocklist-timestamp'        => 'وخت ټاپه',
 'blocklist-target'           => 'موخه',
 'blocklist-expiry'           => 'پای نېټه',
@@ -2107,7 +2111,9 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'exif-usercomment'        => 'د کارونکي تبصرې',
 'exif-datetimedigitized'  => 'د ګڼياليز کېدنې وخت او نېټه',
 'exif-fnumber'            => 'F شمېره',
+'exif-lightsource'        => 'د رڼا سرچينه',
 'exif-flash'              => 'فلش',
+'exif-flashenergy'        => 'د فلش انرژي',
 'exif-filesource'         => 'د دوتنې سرچينه',
 'exif-gpsaltituderef'     => 'د لوړوالي سرچينه',
 'exif-gpsaltitude'        => 'لوړوالی',
@@ -2441,8 +2447,8 @@ $5
 'logentry-newusers-create'   => '$1 يو کارن ګڼون {{GENDER:$2|جوړ کړ}}',
 'newuserlog-byemail'         => 'پټنوم مو برېښليک ته درولېږه',
 
-
 # Feedback
 'feedback-message' => 'پيغام:',
-'feedback-cancel' => 'ناګارل',
+'feedback-cancel'  => 'ناګارل',
+
 );
