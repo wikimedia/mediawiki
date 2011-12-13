@@ -37,8 +37,7 @@ class SpecialVersion extends SpecialPage {
 	protected static $viewvcUrls = array(
 		'svn+ssh://svn.wikimedia.org/svnroot/mediawiki' => 'http://svn.wikimedia.org/viewvc/mediawiki',
 		'http://svn.wikimedia.org/svnroot/mediawiki' => 'http://svn.wikimedia.org/viewvc/mediawiki',
-		# Doesn't work at the time of writing but maybe some day:
-		'https://svn.wikimedia.org/viewvc/mediawiki' => 'http://svn.wikimedia.org/viewvc/mediawiki',
+		'https://svn.wikimedia.org/viewvc/mediawiki' => 'https://svn.wikimedia.org/viewvc/mediawiki',
 	);
 
 	public function __construct(){
@@ -127,7 +126,7 @@ class SpecialVersion extends SpecialPage {
 		// be loaded here, so feel free to use wfMsg*() in the 'name'. Raw HTML or wikimarkup
 		// can be used.
 		$software = array();
-		$software['[//www.mediawiki.org/ MediaWiki]'] = self::getVersionLinked();
+		$software['[https://www.mediawiki.org/ MediaWiki]'] = self::getVersionLinked();
 		$software['[http://www.php.net/ PHP]'] = phpversion() . " (" . php_sapi_name() . ")";
 		$software[$dbr->getSoftwareLink()] = $dbr->getServerInfo();
 
