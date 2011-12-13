@@ -3739,4 +3739,5 @@ Variants for Chinese language",
 	'html-forms'            => 'HTML forms',
 	'sqlite'                => 'SQLite database support',
 	'logging'               => 'New logging system',
+	'feedback'              => 'Feedback',
 );
