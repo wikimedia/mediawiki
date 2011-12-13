@@ -116,8 +116,8 @@ function wfImageAuthMain() {
 	}
 	
 	// Check user authorization for this title
-	// UserCanRead Checks Whitelist too
-	if ( !$title->userCanRead() ) {
+	// Checks Whitelist too
+	if ( !$title->userCan( 'read' ) ) {
 		wfForbidden( 'img-auth-accessdenied', 'img-auth-noread', $name );
 		return;
 	}

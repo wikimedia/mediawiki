@@ -1534,7 +1534,7 @@ class EditPage {
 	protected function showCustomIntro() {
 		if ( $this->editintro ) {
 			$title = Title::newFromText( $this->editintro );
-			if ( $title instanceof Title && $title->exists() && $title->userCanRead() ) {
+			if ( $title instanceof Title && $title->exists() && $title->userCan( 'read' ) ) {
 				global $wgOut;
 				// Added using template syntax, to take <noinclude>'s into account.
 				$wgOut->addWikiTextTitleTidy( '{{:' . $title->getFullText() . '}}', $this->mTitle );

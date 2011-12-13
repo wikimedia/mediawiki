@@ -326,7 +326,7 @@ class SpecialExport extends SpecialPage {
 			if( is_null( $title ) ) {
 				continue; #TODO: perhaps output an <error> tag or something.
 			}
-			if( !$title->userCanRead() ) {
+			if( !$title->userCan( 'read' ) ) {
 				continue; #TODO: perhaps output an <error> tag or something.
 			}
 
