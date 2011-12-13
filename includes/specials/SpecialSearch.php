@@ -546,7 +546,7 @@ class SpecialSearch extends SpecialPage {
 		//If page content is not readable, just return the title.
 		//This is not quite safe, but better than showing excerpts from non-readable pages
 		//Note that hiding the entry entirely would screw up paging.
-		if( !$t->userCanRead() ) {
+		if( !$t->userCan( 'read' ) ) {
 			wfProfileOut( __METHOD__ );
 			return "<li>{$link}</li>\n";
 		}
