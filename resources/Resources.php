@@ -533,7 +533,9 @@ return array(
 		'scripts' => 'resources/mediawiki/mediawiki.feedback.js',
 		'dependencies' => array( 
 			'mediawiki.api.edit', 
-			'mediawiki.Title' 
+			'mediawiki.Title',
+			'mediawiki.jqueryMsg',
+			'jquery.ui.dialog',
 		),
 		'messages' => array( 
 			'feedback-note',
@@ -671,6 +673,11 @@ return array(
 			'uk' => 'resources/mediawiki.language/languages/uk.js',
 			'wa' => 'resources/mediawiki.language/languages/wa.js',
 		),
+	),
+
+	'mediawiki.jqueryMsg' => array(
+		'dependencies' => array( 'mediawiki.language', 'mediawiki.util' ),
+		'scripts' => 'resources/mediawiki/mediawiki.jqueryMsg.js'
 	),
 
 	/* MediaWiki Libs */
