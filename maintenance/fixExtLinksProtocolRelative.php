@@ -37,7 +37,7 @@ class FixExtLinksProtocolRelative extends LoggedUpdateMaintenance {
 	protected function updateSkippedMessage() {
 		return 'protocol-relative URLs in externallinks table already fixed.';
 	}
-	
+
 	protected function doDBUpdates() {
 		$db = wfGetDB( DB_MASTER );
 		if ( !$db->tableExists( 'externallinks' ) ) {
@@ -53,7 +53,7 @@ class FixExtLinksProtocolRelative extends LoggedUpdateMaintenance {
 		foreach ( $res as $row ) {
 			$count++;
 			if ( $count % 100 == 0 ) {
-				$this->output( $count );
+				$this->output( $count . "\n" );
 				wfWaitForSlaves();
 			}
 			$db->insert( 'externallinks',
