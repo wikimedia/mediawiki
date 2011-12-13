@@ -56,7 +56,6 @@ class FakeTitle extends Title {
 	function getSubpages( $limit = -1 ) { $this->error(); }
 	function isCssJsSubpage() { $this->error(); }
 	function isCssOrJsPage() { $this->error(); }
-	function isValidCssJsSubpage() { $this->error(); }
 	function getSkinFromCssJsSubpage() { $this->error(); }
 	function isCssSubpage() { $this->error(); }
 	function isJsSubpage() { $this->error(); }

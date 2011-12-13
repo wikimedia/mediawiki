@@ -27,7 +27,7 @@ defined( 'MEDIAWIKI' ) || die( 1 );
  *
  * This can only be used for wiki pages in the MediaWiki and User namespaces,
  * because of its dependence on the functionality of
- * Title::isValidCssJsSubpage.
+ * Title::isCssJsSubpage.
  */
 abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 

@@ -967,17 +967,6 @@ class Title {
 	}
 
 	/**
-	 * Is this a *valid* .css or .js subpage of a user page?
-	 *
-	 * @return Bool
-	 * @deprecated since 1.17
-	 */
-	public function isValidCssJsSubpage() {
-		wfDeprecated( __METHOD__, '1.17' );
-		return $this->isCssJsSubpage();
-	}
-
-	/**
 	 * Trim down a .css or .js subpage title to get the corresponding skin name
 	 *
 	 * @return string containing skin name from .css or .js subpage title
