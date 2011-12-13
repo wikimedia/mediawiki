@@ -50,7 +50,6 @@ class ApiQueryTest extends ApiTestCase {
 			'action' => 'query',
 			'titles' => $title . '|Talk:' ) );
 
-
 		$this->assertArrayHasKey( 'query', $data[0] );
 		$this->assertArrayHasKey( 'pages', $data[0]['query'] );
 		$this->assertEquals( 2, count( $data[0]['query']['pages'] ) );
@@ -60,8 +59,6 @@ class ApiQueryTest extends ApiTestCase {
 
 		$this->assertArrayHasKey( 'missing', $data[0]['query']['pages'][-2] );
 		$this->assertArrayHasKey( 'invalid', $data[0]['query']['pages'][-1] );
-
-
 	}
 
 }
