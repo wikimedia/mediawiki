@@ -1153,7 +1153,7 @@ function wfGetLangObj( $langcode = false ) {
  * @return Language
  */
 function wfUILang() {
-	wfDeprecated( __METHOD__, '1.18' );
+	# wfDeprecated( __METHOD__, '1.18' ); // See r105985 and it's revert. Somewhere still used.
 	global $wgLang;
 	return $wgLang;
 }
