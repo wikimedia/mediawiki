@@ -52,8 +52,8 @@
 
 			// Set up buttons for dialog box. We have to do it the hard way since the json keys are localized
 			_this.buttons = {};
-			_this.buttons[ mw.msg( 'mwe-upwiz-feedback-cancel' ) ] = function() { _this.cancel(); };
-			_this.buttons[ mw.msg( 'mwe-upwiz-feedback-submit' ) ] = function() { _this.submit(); };
+			_this.buttons[ mw.msg( 'feedback-cancel' ) ] = function() { _this.cancel(); };
+			_this.buttons[ mw.msg( 'feedback-submit' ) ] = function() { _this.submit(); };
 				
 			var $feedbackPageLink = $j( '<a></a>' ).attr( { 'href': _this.feedbackTitle.getUrl(), 'target': '_blank' } );
 			this.$dialog = 
@@ -65,18 +65,18 @@
 										    $feedbackPageLink ) 
 						),
 						$( '<div style="margin-top:1em;"></div>' ).append( 
-							mw.msg( 'mwe-upwiz-feedback-subject' ), 
+							mw.msg( 'feedback-subject' ), 
 							$( '<br/>' ), 
 							$( '<input type="text" class="feedback-subject" name="subject" maxlength="60" style="width:99%;"/>' ) 
 						),
 						$( '<div style="margin-top:0.4em;"></div>' ).append( 
-							mw.msg( 'mwe-upwiz-feedback-message' ), 
+							mw.msg( 'feedback-message' ), 
 							$( '<br/>' ), 
 							$( '<textarea name="message" class="feedback-message" style="width:99%;" rows="5" cols="60"></textarea>' ) 
 						)
 					),
-					$( '<div class="mwe-upwiz-feedback-mode mwe-upwiz-feedback-submitting" style="text-align:center;margin:3em 0;"></div>' ).append( 
-						mw.msg( 'mwe-upwiz-feedback-adding' ), 
+					$( '<div class="feedback-mode feedback-submitting" style="text-align:center;margin:3em 0;"></div>' ).append( 
+						mw.msg( 'feedback-adding' ), 
 						$( '<br/>' ), 
 						$( '<img src="http://upload.wikimedia.org/wikipedia/commons/4/42/Loading.gif" />' ) 
 					),
@@ -87,7 +87,7 @@
 				).dialog({
 					width: 500,
 					autoOpen: false,
-					title: mw.msg( 'mwe-upwiz-feedback-title' ),
+					title: mw.msg( this.dialogTitleMessageKey ),
 					modal: true,
 					buttons: _this.buttons
 				}); 
