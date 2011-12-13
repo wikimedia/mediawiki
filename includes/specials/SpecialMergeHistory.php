@@ -226,7 +226,7 @@ class SpecialMergeHistory extends SpecialPage {
 		}
 
 		# Show relevant lines from the deletion log:
-		$out->addHTML( '<h2>' . htmlspecialchars( LogPage::getName( 'merge' ) ) . "</h2>\n" );
+		$out->addHTML( '<h2>' . htmlspecialchars( LogPage::logName( 'merge' ) ) . "</h2>\n" );
 		LogEventsList::showLogExtract( $out, 'merge', $this->mTargetObj );
 
 		# When we submit, go by page ID to avoid some nasty but unlikely collisions.
