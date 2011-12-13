@@ -195,7 +195,7 @@ class LogPage {
 	 * @deprecated in 1.19, warnings in 1.21. Use getDescription()
 	 */
 	public static function logHeader( $type ) {
-		wfDeprecated( __METHOD__, '1.19' );
+		# wfDeprecated( __METHOD__, '1.19' );
 		global $wgLogHeaders;
 		return wfMsgExt( $wgLogHeaders[$type], array( 'parseinline' ) );
 	}
@@ -398,7 +398,7 @@ class LogPage {
 
 					# Use the language name for log titles, rather than Log/X
 					if( $name == 'Log' ) {
-						$titleLink = '(' . Linker::link( $title, LogPage::getName( $par ) ) . ')';
+						$titleLink = '(' . Linker::link( $title, LogPage::logName( $par ) ) . ')';
 					} else {
 						$titleLink = Linker::link( $title );
 					}
