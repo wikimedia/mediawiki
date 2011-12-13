@@ -866,7 +866,7 @@ abstract class Skin extends ContextSource {
 
 		$mp = $this->msg( 'mainpage' )->escaped();
 		$mptitle = Title::newMainPage();
-		$url = ( is_object( $mptitle ) ? $mptitle->escapeLocalURL() : '' );
+		$url = ( is_object( $mptitle ) ? htmlspecialchars( $mptitle->getLocalURL() ) : '' );
 
 		$logourl = $this->getLogo();
 		$s = "<a href='{$url}'><img{$a} src='{$logourl}' alt='[{$mp}]' /></a>";
