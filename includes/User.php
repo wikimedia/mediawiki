@@ -730,6 +730,7 @@ class User {
 	 * @deprecated since 1.18 call Sanitizer::isValidEmail() directly
 	 */
 	public static function isValidEmailAddr( $addr ) {
+		wfDeprecated( __METHOD__, '1.18' );
 		return Sanitizer::validateEmail( $addr );
 	}
 
@@ -2593,6 +2594,7 @@ class User {
 	 * @deprecated since 1.18 Use ->getSkin() in the most relevant outputting context you have
 	 */
 	public function getSkin() {
+		wfDeprecated( __METHOD__, '1.18' );
 		return RequestContext::getMain()->getSkin();
 	}
 
@@ -2725,6 +2727,7 @@ class User {
 	 * @deprecated in 1.19 due to removal of user_options from the user table
 	 */
 	private function decodeOptions( $str ) {
+		wfDeprecated( __METHOD__, '1.19' );
 		if( !$str )
 			return;
 
@@ -3012,11 +3015,12 @@ class User {
 	 * @return String Page rendering hash
 	 */
 	public function getPageRenderingHash() {
+		wfDeprecated( __METHOD__, '1.17' );
+		
 		global $wgUseDynamicDates, $wgRenderHashAppend, $wgLang, $wgContLang;
 		if( $this->mHash ){
 			return $this->mHash;
 		}
-		wfDeprecated( __METHOD__ );
 
 		// stubthreshold is only included below for completeness,
 		// since it disables the parser cache, its value will always
@@ -3189,6 +3193,7 @@ class User {
 	 * @return String The new edit token
 	 */
 	public function editToken( $salt = '', $request = null ) {
+		wfDeprecated( __METHOD__, '1.19' );
 		return $this->getEditToken( $salt, $request );
 	}
 

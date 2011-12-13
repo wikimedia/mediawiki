@@ -289,6 +289,7 @@ class MediaWiki {
 	 * @return Article object
 	 */
 	public static function articleFromTitle( $title, IContextSource $context ) {
+		wfDeprecated( __METHOD__, '1.18' );
 		return Article::newFromTitle( $title, $context );
 	}
 

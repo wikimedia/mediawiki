@@ -728,7 +728,7 @@ class Revision {
 	 * @return String
 	 */
 	public function revText() {
-		wfDeprecated( __METHOD__ );
+		wfDeprecated( __METHOD__, '1.17' );
 		return $this->getText( self::FOR_THIS_USER );
 	}
 

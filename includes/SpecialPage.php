@@ -67,6 +67,7 @@ class SpecialPage {
 	 * @deprecated since 1.18
 	 */
 	static function initList() {
+		wfDeprecated( __METHOD__, '1.18' );
 		// Noop
 	}
 
@@ -74,6 +75,7 @@ class SpecialPage {
 	 * @deprecated since 1.18
 	 */
 	static function initAliasList() {
+		wfDeprecated( __METHOD__, '1.18' );
 		// Noop
 	}
 
@@ -86,6 +88,7 @@ class SpecialPage {
 	 * @deprecated since 1.18 call SpecialPageFactory method directly
 	 */
 	static function resolveAlias( $alias ) {
+		wfDeprecated( __METHOD__, '1.18' );
 		list( $name, /*...*/ ) = SpecialPageFactory::resolveAlias( $alias );
 		return $name;
 	}
@@ -112,7 +115,7 @@ class SpecialPage {
 	 * @deprecated since 1.7, warnings in 1.17, might be removed in 1.20
 	 */
 	static function addPage( &$page ) {
-		wfDeprecated( __METHOD__ );
+		wfDeprecated( __METHOD__, '1.7' );
 		SpecialPageFactory::getList()->{$page->mName} = $page;
 	}
 
@@ -125,6 +128,7 @@ class SpecialPage {
 	 * @deprecated since 1.18 call SpecialPageFactory method directly
 	 */
 	static function setGroup( $page, $group ) {
+		wfDeprecated( __METHOD__, '1.18' );
 		return SpecialPageFactory::setGroup( $page, $group );
 	}
 
@@ -136,6 +140,7 @@ class SpecialPage {
 	 * @deprecated since 1.18 call SpecialPageFactory method directly
 	 */
 	static function getGroup( &$page ) {
+		wfDeprecated( __METHOD__, '1.18' );
 		return SpecialPageFactory::getGroup( $page );
 	}
 
@@ -148,6 +153,7 @@ class SpecialPage {
 	 * @param $name String the page to remove
 	 */
 	static function removePage( $name ) {
+		wfDeprecated( __METHOD__, '1.18' );
 		unset( SpecialPageFactory::getList()->$name );
 	}
 
@@ -159,6 +165,7 @@ class SpecialPage {
 	 * @deprecated since 1.18 call SpecialPageFactory method directly
 	 */
 	static function exists( $name ) {
+		wfDeprecated( __METHOD__, '1.18' );
 		return SpecialPageFactory::exists( $name );
 	}
 
@@ -170,6 +177,7 @@ class SpecialPage {
 	 * @deprecated since 1.18 call SpecialPageFactory method directly
 	 */
 	static function getPage( $name ) {
+		wfDeprecated( __METHOD__, '1.18' );
 		return SpecialPageFactory::getPage( $name );
 	}
 
@@ -182,6 +190,7 @@ class SpecialPage {
 	 * @deprecated since 1.18 call SpecialPageFactory method directly
 	 */
 	static function getPageByAlias( $alias ) {
+		wfDeprecated( __METHOD__, '1.18' );
 		return SpecialPageFactory::getPage( $alias );
 	}
 
@@ -195,6 +204,7 @@ class SpecialPage {
 	 * @deprecated since 1.18 call SpecialPageFactory method directly
 	 */
 	static function getUsablePages( User $user = null ) {
+		wfDeprecated( __METHOD__, '1.18' );
 		return SpecialPageFactory::getUsablePages( $user );
 	}
 
@@ -205,6 +215,7 @@ class SpecialPage {
 	 * @deprecated since 1.18 call SpecialPageFactory method directly
 	 */
 	static function getRegularPages() {
+		wfDeprecated( __METHOD__, '1.18' );
 		return SpecialPageFactory::getRegularPages();
 	}
 
@@ -216,6 +227,7 @@ class SpecialPage {
 	 * @deprecated since 1.18 call SpecialPageFactory method directly
 	 */
 	static function getRestrictedPages() {
+		wfDeprecated( __METHOD__, '1.18' );
 		return SpecialPageFactory::getRestrictedPages();
 	}
 
@@ -234,6 +246,7 @@ class SpecialPage {
 	 * @deprecated since 1.18 call SpecialPageFactory method directly
 	 */
 	public static function executePath( &$title, IContextSource &$context, $including = false ) {
+		wfDeprecated( __METHOD__, '1.18' );
 		return SpecialPageFactory::executePath( $title, $context, $including );
 	}
 
@@ -247,6 +260,7 @@ class SpecialPage {
 	 * @deprecated since 1.18 call SpecialPageFactory method directly
 	 */
 	static function getLocalNameFor( $name, $subpage = false ) {
+		wfDeprecated( __METHOD__, '1.18' );
 		return SpecialPageFactory::getLocalNameFor( $name, $subpage );
 	}
 
@@ -290,6 +304,7 @@ class SpecialPage {
 	 * @deprecated since 1.18 call SpecialPageFactory method directly
 	 */
 	static function getTitleForAlias( $alias ) {
+		wfDeprecated( __METHOD__, '1.18' );
 		return SpecialPageFactory::getTitleForAlias( $alias );
 	}
 
@@ -353,11 +368,11 @@ class SpecialPage {
 	 * @deprecated since 1.17, call parent::__construct()
 	 */
 	public function __call( $fName, $a ) {
+		// Deprecated messages now, remove in 1.19 or 1.20?
+		wfDeprecated( __METHOD__, '1.17' );
+		
 		// Sometimes $fName is SpecialPage, sometimes it's specialpage. <3 PHP
 		if( strtolower( $fName ) == 'specialpage' ) {
-			// Deprecated messages now, remove in 1.19 or 1.20?
-			wfDeprecated( __METHOD__ );
-
 			$name = isset( $a[0] ) ? $a[0] : '';
 			$restriction = isset( $a[1] ) ? $a[1] : '';
 			$listed = isset( $a[2] ) ? $a[2] : true;
@@ -395,6 +410,7 @@ class SpecialPage {
 	 * @deprecated since 1.18
 	 */
 	function getFile() {
+		wfDeprecated( __METHOD__, '1.18' ); 
 		return $this->mFile;
 	}
 
@@ -441,11 +457,11 @@ class SpecialPage {
 	 * @return Mixed
 	 * @deprecated since 1.18
 	 */
-	function name( $x = null ) { return wfSetVar( $this->mName, $x ); }
-	function restriction( $x = null) { return wfSetVar( $this->mRestriction, $x ); }
-	function func( $x = null) { return wfSetVar( $this->mFunction, $x ); }
-	function file( $x = null) { return wfSetVar( $this->mFile, $x ); }
-	function includable( $x = null ) { return wfSetVar( $this->mIncludable, $x ); }
+	function name( $x = null ) { wfDeprecated( __METHOD__, '1.18' ); return wfSetVar( $this->mName, $x ); }
+	function restriction( $x = null) { wfDeprecated( __METHOD__, '1.18' ); return wfSetVar( $this->mRestriction, $x ); }
+	function func( $x = null) { wfDeprecated( __METHOD__, '1.18' ); return wfSetVar( $this->mFunction, $x ); }
+	function file( $x = null) { wfDeprecated( __METHOD__, '1.18' ); return wfSetVar( $this->mFile, $x ); }
+	function includable( $x = null ) { wfDeprecated( __METHOD__, '1.18' ); return wfSetVar( $this->mIncludable, $x ); }
 
 	/**
 	 * Whether the special page is being evaluated via transclusion
@@ -684,6 +700,7 @@ class SpecialPage {
 	 * @since 1.18
 	 */
 	public function getLang() {
+		wfDeprecated( __METHOD__, '1.19' );
 		return $this->getLanguage();
 	}
 
