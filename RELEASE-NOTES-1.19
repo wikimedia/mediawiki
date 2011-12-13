@@ -243,6 +243,8 @@ changes to languages because of Bugzilla reports.
   have been replaced with a secondary query argument.
 * The $variant argument in the hooks for the Title::get{Local,Full,Link,Canonical}URL
   methods have been removed, the variant is now part of the $query argument.
+* Removed Title::isValidCssJsSubpage(), deprecated since 1.17 in favor of
+  using Title::isCssJsSubpage() or checking Title::isWrongCaseCssJsPage()
 
 == Compatibility ==
 
