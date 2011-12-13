@@ -135,6 +135,8 @@ class Linker {
 	 *      name of the target).
 	 * link() replaces the old functions in the makeLink() family.
 	 *
+	 * @since 1.16
+	 *
 	 * @param $target        Title  Can currently only be a Title, but this may
 	 *   change to support Images, literal URLs, etc.
 	 * @param $html          string The HTML contents of the <a> element, i.e.,
