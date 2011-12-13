@@ -2669,7 +2669,7 @@ class Language {
 	  * @param $nocommafy Bool: set to true for special numbers like dates
 	  * @return string
 	  */
-	function formatNum( $number, $nocommafy = false ) {
+	public function formatNum( $number, $nocommafy = false ) {
 		global $wgTranslateNumerals;
 		if ( !$nocommafy ) {
 			$number = $this->commafy( $number );
@@ -2814,7 +2814,7 @@ class Language {
 	 * @return string
 	 */
 	function commaList( array $list ) {
-		return implode(			
+		return implode(
 			wfMsgExt(
 				'comma-separator',
 				array( 'parsemag', 'escapenoentities', 'language' => $this )
@@ -2830,7 +2830,7 @@ class Language {
 	 * @return string
 	 */
 	function semicolonList( array $list ) {
-		return implode(			
+		return implode(
 			wfMsgExt(
 				'semicolon-separator',
 				array( 'parsemag', 'escapenoentities', 'language' => $this )
@@ -2845,7 +2845,7 @@ class Language {
 	 * @return string
 	 */
 	function pipeList( array $list ) {
-		return implode(			
+		return implode(
 			wfMsgExt(
 				'pipe-separator',
 				array( 'escapenoentities', 'language' => $this )
@@ -3245,7 +3245,7 @@ class Language {
 	 * @param $text String
 	 * @return String
 	 */
-	function segmentForDiff( $text ) {
+	public function segmentForDiff( $text ) {
 		return $text;
 	}
 
@@ -3255,7 +3255,7 @@ class Language {
 	 * @param $text String
 	 * @return String
 	 */
-	function unsegmentForDiff( $text ) {
+	public function unsegmentForDiff( $text ) {
 		return $text;
 	}
 
@@ -3263,7 +3263,7 @@ class Language {
 	 * Return the LanguageConverter used in the Language
 	 * @return LanguageConverter
 	 */
-	function getConverter() {
+	public function getConverter() {
 		return $this->mConverter;
 	}
 
@@ -3273,7 +3273,7 @@ class Language {
 	 * @param $text string
 	 * @return array
 	 */
-	function autoConvertToAllVariants( $text ) {
+	public function autoConvertToAllVariants( $text ) {
 		return $this->mConverter->autoConvertToAllVariants( $text );
 	}
 
@@ -3283,10 +3283,9 @@ class Language {
 	 * @param $text string
 	 * @return string
 	 */
-	function convert( $text ) {
+	public function convert( $text ) {
 		return $this->mConverter->convert( $text );
 	}
-
 
 	/**
 	 * Convert a Title object to a string in the preferred variant
@@ -3294,7 +3293,7 @@ class Language {
 	 * @param $title Title
 	 * @return string
 	 */
-	function convertTitle( $title ) {
+	public function convertTitle( $title ) {
 		return $this->mConverter->convertTitle( $title );
 	}
 
@@ -3303,15 +3302,16 @@ class Language {
 	 *
 	 * @return bool
 	 */
-	function hasVariants() {
+	public function hasVariants() {
 		return sizeof( $this->getVariants() ) > 1;
 	}
 
 	/**
 	 * Check if the language has the specific variant
+	 * @param $variant string
 	 * @return bool
 	 */
-	function hasVariant( $variant ) {
+	public function hasVariant( $variant ) {
 		return (bool)$this->mConverter->validateVariant( $variant );
 	}
 
@@ -3321,7 +3321,7 @@ class Language {
 	 * @param $text string
 	 * @return string
 	 */
-	function armourMath( $text ) {
+	public function armourMath( $text ) {
 		return $this->mConverter->armourMath( $text );
 	}
 
@@ -3332,7 +3332,7 @@ class Language {
 	 * @return string
 	 * @todo this should get integrated somewhere sane
 	 */
-	function convertHtml( $text, $isTitle = false ) {
+	public function convertHtml( $text, $isTitle = false ) {
 		return htmlspecialchars( $this->convert( $text, $isTitle ) );
 	}
 
@@ -3340,7 +3340,7 @@ class Language {
 	 * @param $key string
 	 * @return string
 	 */
-	function convertCategoryKey( $key ) {
+	public function convertCategoryKey( $key ) {
 		return $this->mConverter->convertCategoryKey( $key );
 	}
 
@@ -3350,28 +3350,28 @@ class Language {
 	 *
 	 * @return array an array of language codes
 	 */
-	function getVariants() {
+	public function getVariants() {
 		return $this->mConverter->getVariants();
 	}
 
 	/**
 	 * @return string
 	 */
-	function getPreferredVariant() {
+	public function getPreferredVariant() {
 		return $this->mConverter->getPreferredVariant();
 	}
 
 	/**
 	 * @return string
 	 */
-	function getDefaultVariant() {
+	public function getDefaultVariant() {
 		return $this->mConverter->getDefaultVariant();
 	}
 
 	/**
 	 * @return string
 	 */
-	function getURLVariant() {
+	public function getURLVariant() {
 		return $this->mConverter->getURLVariant();
 	}
 
@@ -3387,7 +3387,7 @@ class Language {
 	 *      we need to transclude a template or update a category's link
 	 * @return null the input parameters may be modified upon return
 	 */
-	function findVariantLink( &$link, &$nt, $ignoreOtherCond = false ) {
+	public function findVariantLink( &$link, &$nt, $ignoreOtherCond = false ) {
 		$this->mConverter->findVariantLink( $link, $nt, $ignoreOtherCond );
 	}
 
@@ -3402,7 +3402,7 @@ class Language {
 	 *
 	 * @return string
 	 */
-	function convertLinkToAllVariants( $text ) {
+	public function convertLinkToAllVariants( $text ) {
 		return $this->mConverter->convertLinkToAllVariants( $text );
 	}
 
@@ -3423,7 +3423,7 @@ class Language {
 	 *
 	 * @return string
 	 */
-	function getParsedTitle() {
+	public function getParsedTitle() {
 		return $this->mConverter->getParsedTitle();
 	}
 
@@ -3435,7 +3435,7 @@ class Language {
 	 * @param $noParse bool
 	 * @return string the tagged text
 	 */
-	function markNoConversion( $text, $noParse = false ) {
+	public function markNoConversion( $text, $noParse = false ) {
 		return $this->mConverter->markNoConversion( $text, $noParse );
 	}
 
@@ -3445,7 +3445,7 @@ class Language {
 	 *
 	 * @return string
 	 */
-	function linkTrail() {
+	public function linkTrail() {
 		return self::$dataCache->getItem( $this->mCode, 'linkTrail' );
 	}
 
@@ -3461,7 +3461,7 @@ class Language {
 	 *
 	 * @return string
 	 */
-	function getCode() {
+	public function getCode() {
 		return $this->mCode;
 	}
 
@@ -3469,8 +3469,9 @@ class Language {
 	 * Get the code in Bcp47 format which we can use
 	 * inside of html lang="" tags.
 	 * @since 1.19
+	 * @return string
 	 */
-	function getHtmlCode() {
+	public function getHtmlCode() {
 		if ( is_null( $this->mHtmlCode ) ) {
 			$this->mHtmlCode = wfBCP47( $this->getCode() );
 		}
@@ -3480,7 +3481,7 @@ class Language {
 	/**
 	 * @param $code string
 	 */
-	function setCode( $code ) {
+	public function setCode( $code ) {
 		$this->mCode = $code;
 		// Ensure we don't leave an incorrect html code lying around
 		unset( $this->mHtmlCode );
@@ -3493,7 +3494,7 @@ class Language {
 	 * @param $suffix string Append this to the filename
 	 * @return string $prefix . $mangledCode . $suffix
 	 */
-	static function getFileName( $prefix = 'Language', $code, $suffix = '.php' ) {
+	public static function getFileName( $prefix = 'Language', $code, $suffix = '.php' ) {
 		// Protect against path traversal
 		if ( !Language::isValidCode( $code )
 			|| strcspn( $code, ":/\\\000" ) !== strlen( $code ) )
@@ -3511,7 +3512,7 @@ class Language {
 	 * @param $suffix string Suffix after the language code
 	 * @return string Language code, or false if $prefix or $suffix isn't found
 	 */
-	static function getCodeFromFileName( $filename, $prefix = 'Language', $suffix = '.php' ) {
+	public static function getCodeFromFileName( $filename, $prefix = 'Language', $suffix = '.php' ) {
 		$m = null;
 		preg_match( '/' . preg_quote( $prefix, '/' ) . '([A-Z][a-z_]+)' .
 			preg_quote( $suffix, '/' ) . '/', $filename, $m );
@@ -3525,7 +3526,7 @@ class Language {
 	 * @param $code string
 	 * @return string
 	 */
-	static function getMessagesFileName( $code ) {
+	public static function getMessagesFileName( $code ) {
 		global $IP;
 		$file = self::getFileName( "$IP/languages/messages/Messages", $code, '.php' );
 		wfRunHooks( 'Language::getMessagesFileName', array( $code, &$file ) );
@@ -3536,7 +3537,7 @@ class Language {
 	 * @param $code string
 	 * @return string
 	 */
-	static function getClassFileName( $code ) {
+	public static function getClassFileName( $code ) {
 		global $IP;
 		return self::getFileName( "$IP/languages/classes/Language", $code, '.php' );
 	}
@@ -3548,7 +3549,7 @@ class Language {
 	 *
 	 * @return false|string
 	 */
-	static function getFallbackFor( $code ) {
+	public static function getFallbackFor( $code ) {
 		if ( $code === 'en' || !Language::isValidBuiltInCode( $code ) ) {
 			return false;
 		} else {
@@ -3565,7 +3566,7 @@ class Language {
 	 * @param $code string Language code
 	 * @return array
 	 */
-	static function getFallbacksFor( $code ) {
+	public static function getFallbacksFor( $code ) {
 		if ( $code === 'en' || !Language::isValidBuiltInCode( $code ) ) {
 			return array();
 		} else {
@@ -3587,7 +3588,7 @@ class Language {
 	 *
 	 * @return array
 	 */
-	static function getMessagesFor( $code ) {
+	public static function getMessagesFor( $code ) {
 		return self::getLocalisationCache()->getItem( $code, 'messages' );
 	}
 
@@ -3599,7 +3600,7 @@ class Language {
 	 *
 	 * @return string
 	 */
-	static function getMessageFor( $key, $code ) {
+	public static function getMessageFor( $key, $code ) {
 		return self::getLocalisationCache()->getSubitem( $code, 'messages', $key );
 	}
 
@@ -3611,7 +3612,7 @@ class Language {
 	 * @param $code string Language code
 	 * @return array of message keys (strings)
 	 */
-	static function getMessageKeysFor( $code ) {
+	public static function getMessageKeysFor( $code ) {
 		return self::getLocalisationCache()->getSubItemList( $code, 'messages' );
 	}
 
@@ -3926,7 +3927,7 @@ class Language {
 	 *
 	 * @return string
 	 */
-	function getConvRuleTitle() {
+	public function getConvRuleTitle() {
 		return $this->mConverter->getConvRuleTitle();
 	}
 }
