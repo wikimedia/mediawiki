@@ -175,7 +175,7 @@ class LogPage {
 	 * @deprecated in 1.19, warnings in 1.21. Use getName()
 	 */
 	public static function logName( $type ) {
-		wfDeprecated( __METHOD__, '1.19' );
+		# wfDeprecated( __METHOD__, '1.19' );
 		global $wgLogNames;
 
 		if( isset( $wgLogNames[$type] ) ) {
