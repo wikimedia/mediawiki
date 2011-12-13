@@ -458,9 +458,41 @@ class SpecialPage {
 	 * @deprecated since 1.18
 	 */
 	function name( $x = null ) { wfDeprecated( __METHOD__, '1.18' ); return wfSetVar( $this->mName, $x ); }
+
+	/**
+	 * These mutators are very evil, as the relevant variables should not mutate.  So
+	 * don't use them.
+	 * @param $x Mixed
+	 * @return Mixed
+	 * @deprecated since 1.18
+	 */
 	function restriction( $x = null) { wfDeprecated( __METHOD__, '1.18' ); return wfSetVar( $this->mRestriction, $x ); }
+
+	/**
+	 * These mutators are very evil, as the relevant variables should not mutate.  So
+	 * don't use them.
+	 * @param $x Mixed
+	 * @return Mixed
+	 * @deprecated since 1.18
+	 */
 	function func( $x = null) { wfDeprecated( __METHOD__, '1.18' ); return wfSetVar( $this->mFunction, $x ); }
+
+	/**
+	 * These mutators are very evil, as the relevant variables should not mutate.  So
+	 * don't use them.
+	 * @param $x Mixed
+	 * @return Mixed
+	 * @deprecated since 1.18
+	 */
 	function file( $x = null) { wfDeprecated( __METHOD__, '1.18' ); return wfSetVar( $this->mFile, $x ); }
+
+	/**
+	 * These mutators are very evil, as the relevant variables should not mutate.  So
+	 * don't use them.
+	 * @param $x Mixed
+	 * @return Mixed
+	 * @deprecated since 1.18
+	 */
 	function includable( $x = null ) { wfDeprecated( __METHOD__, '1.18' ); return wfSetVar( $this->mIncludable, $x ); }
 
 	/**
