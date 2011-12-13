@@ -2034,14 +2034,9 @@ class Linker {
 	}
 
 	/**
-	 * @deprecated since 1.14
-	 * TODO: remove?!
-	 * 
 	 * Returns raw bits of HTML, use titleAttrib()
 	 */
 	public static function tooltip( $name, $options = null ) {
-		wfDeprecated( __METHOD__, '1.14' );
-		
 		# @todo FIXME: If Sanitizer::expandAttributes() treated "false" as "output
 		# no attribute" instead of "output '' as value for attribute", this
 		# would be two lines.
