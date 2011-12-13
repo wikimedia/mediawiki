@@ -398,7 +398,7 @@ class LogPage {
 
 					# Use the language name for log titles, rather than Log/X
 					if( $name == 'Log' ) {
-						$titleLink = '(' . Linker::link( $title, LogPage::logName( $par ) ) . ')';
+						$titleLink = '(' . Linker::link( $title, LogPage::getName( $par ) ) . ')';
 					} else {
 						$titleLink = Linker::link( $title );
 					}
