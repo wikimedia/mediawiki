@@ -1033,3 +1033,8 @@ table.floatleft {
 	zoom: 1; /* http://webaim.org/techniques/skipnav/#iequirk */
 }
 
+/* For developpers */
+.xdebug-error {
+	position: absolute;
+	z-index: 99;
+}
