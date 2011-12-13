@@ -654,7 +654,7 @@ class Article extends Page {
 
 		if ( $diff == 0 || $diff == $this->mPage->getLatest() ) {
 			# Run view updates for current revision only
-			$this->mPage->viewUpdates();
+			$this->mPage->doViewUpdates( $this->getContext()->getUser() );
 		}
 	}
 
