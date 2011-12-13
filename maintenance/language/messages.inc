@@ -3498,6 +3498,17 @@ $wgMessageStructure = array(
 		'logentry-newusers-autocreate',
 		'newuserlog-byemail',
 	),
+	'feedback' => array(
+		'feedback-note',
+		'feedback-subject',
+	 	'feedback-message',
+	 	'feedback-cancel',
+	 	'feedback-submit',
+	 	'feedback-adding',
+	 	'feedback-error1',
+	 	'feedback-error2',
+	 	'feedback-error3',
+	),
 );
 
 /** Comments for each block */
