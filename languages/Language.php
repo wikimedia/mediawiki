@@ -3484,7 +3484,7 @@ class Language {
 	public function setCode( $code ) {
 		$this->mCode = $code;
 		// Ensure we don't leave an incorrect html code lying around
-		unset( $this->mHtmlCode );
+		$this->mHtmlCode = null;
 	}
 
 	/**
