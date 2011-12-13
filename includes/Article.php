@@ -615,7 +615,7 @@ class Article extends Page {
 		$wgOut->setFollowPolicy( $policy['follow'] );
 
 		$this->showViewFooter();
-		$this->mPage->viewUpdates();
+		$this->mPage->doViewUpdates( $this->getContext()->getUser() );
 
 		wfProfileOut( __METHOD__ );
 	}
