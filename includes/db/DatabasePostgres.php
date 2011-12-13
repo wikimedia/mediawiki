@@ -624,15 +624,69 @@ class DatabasePostgres extends DatabaseBase {
 	}
 
 	function tableName( $name, $format = 'quoted' ) {
-		# Replace reserved words with better ones
-		switch( $name ) {
-			case 'user':
-				return 'mwuser';
-			case 'text':
-				return 'pagecontent';
-			default:
-				return parent::tableName( $name, $format );
+		global $wgSharedDB, $wgSharedTables, $wgDBmwSchema;
+		# Skip quoted tablenames.
+		if ( $this->isQuotedIdentifier( $name ) ) {
+			return $name;
 		}
+		# Lets test for any bits of text that should never show up in a table
+		# name. Basically anything like JOIN or ON which are actually part of
+		# SQL queries, but may end up inside of the table value to combine
+		# sql. Such as how the API is doing.
+		# Note that we use a whitespace test rather than a \b test to avoid
+		# any remote case where a word like on may be inside of a table name
+		# surrounded by symbols which may be considered word breaks.
+		if ( preg_match( '/(^|\s)(DISTINCT|JOIN|ON|AS)(\s|$)/i', $name ) !== 0 ) {
+			return $name;
+		}
+		# Split database and table into proper variables.
+		# We reverse the explode so that schema.table and table both output
+		# the correct table.
+		$dbDetails = array_reverse( explode( '.', $name, 2 ) );
+		if ( isset( $dbDetails[1] ) ) {
+			list( $table, $schema ) = $dbDetails;
+		} else {
+			list( $table ) = $dbDetails;
+		}
+		if ( $format != 'quoted' ) {
+			switch( $name ) {
+				case 'user':
+					return 'mwuser';
+				case 'text':
+					return 'pagecontent';
+				default:
+					return $table;
+			}
+		}
+		if ( !isset( $schema )) {
+			$schema = "\"{$wgDBmwSchema}\".";
+		} else {
+			# keep old schema, but quote it.
+			$schema = "\"{$schema}\".";
+		}
+		# during installation wgDBmwSchema is not set, so we would end up quering
+		# ""."table" => error. Erase the first part if wgDBmwSchema is empty
+		if ( $schema == "\"\"." ) {
+			$schema = "";
+		}
+		if ( isset( $wgSharedDB ) # We have a shared database (=> schema)
+		  && isset( $wgSharedTables )
+		  && is_array( $wgSharedTables )
+		  && in_array( $table, $wgSharedTables ) ) { # A shared table is selected
+			$schema = "\"{$wgSharedDB}\".";
+		}
+		switch ( $table ) {
+			case 'user':
+				$table = "{$schema}\"mwuser\"";
+				break;
+			case 'text':
+				$table = "{$schema}\"pagecontent\"";
+				break;
+			default:
+				$table = "{$schema}\"$table\"";
+				break;
+		}
+		return $table;
 	}
 
 	/**
