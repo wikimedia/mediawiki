@@ -140,9 +140,6 @@ $wgAutoloadLocalClasses = array(
 	'LinksUpdate' => 'includes/LinksUpdate.php',
 	'LocalisationCache' => 'includes/LocalisationCache.php',
 	'LocalisationCache_BulkLoad' => 'includes/LocalisationCache.php',
-	'LogEventsList' => 'includes/LogEventsList.php',
-	'LogPage' => 'includes/LogPage.php',
-	'LogPager' => 'includes/LogEventsList.php',
 	'MagicWord' => 'includes/MagicWord.php',
 	'MagicWordArray' => 'includes/MagicWord.php',
 	'MailAddress' => 'includes/UserMailer.php',
@@ -550,6 +547,9 @@ $wgAutoloadLocalClasses = array(
 	'JSParser' => 'includes/libs/jsminplus.php',
 
 	# includes/logging
+	'LogEventsList' => 'includes/logging/LogEventsList.php',
+	'LogPage' => 'includes/logging/LogPage.php',
+	'LogPager' => 'includes/logging/LogEventsList.php',
 	'DatabaseLogEntry' => 'includes/logging/LogEntry.php',
 	'DeleteLogFormatter' => 'includes/logging/LogFormatter.php',
 	'LegacyLogFormatter' => 'includes/logging/LogFormatter.php',
