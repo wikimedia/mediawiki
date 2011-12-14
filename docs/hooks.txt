@@ -567,6 +567,13 @@ $mediaWiki: Mediawiki object
 &$out: OutputPage object
 &$skin: Skin object
 
+'BeforePageRedirect': Prior to sending an HTTP redirect. Gives a chance to
+override how the redirect is output by modifying, or by returning false and
+taking over the output.
+$out: OutputPage object
+&$redirect: URL, modifiable
+&$code: HTTP code (eg '301' or '302'), modifiable
+
 'BeforeParserFetchFileAndTitle': before an image is rendered by Parser
 $parser: Parser object
 $nt: the image title
