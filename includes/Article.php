@@ -446,7 +446,7 @@ class Article extends Page {
 				wfDebug( __METHOD__ . ": done file cache\n" );
 				# tell wgOut that output is taken care of
 				$wgOut->disable();
-				$this->mPage->viewUpdates();
+				$this->mPage->doViewUpdates( $this->getContext()->getUser() );
 				wfProfileOut( __METHOD__ );
 
 				return;
