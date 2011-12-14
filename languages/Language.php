@@ -824,6 +824,7 @@ class Language {
 	 *    xij  j (day number) in Iranian calendar
 	 *    xiF  F (month name) in Iranian calendar
 	 *    xin  n (month number) in Iranian calendar
+	 *    xiy  y (two digit year) in Iranian calendar
 	 *    xiY  Y (full year) in Iranian calendar
 	 *
 	 *    xjj  j (day number) in Hebrew calendar
@@ -1085,6 +1086,12 @@ class Language {
 					break;
 				case 'y':
 					$num = substr( $ts, 2, 2 );
+					break;
+				case 'xiy':
+					if ( !$iranian ) {
+						$iranian = self::tsToIranian( $ts );
+					}
+					$num = substr( $iranian[0], -2 );
 					break;
 				case 'a':
 					$s .= intval( substr( $ts, 8, 2 ) ) < 12 ? 'am' : 'pm';

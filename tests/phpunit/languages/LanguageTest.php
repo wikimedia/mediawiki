@@ -192,4 +192,32 @@ class LanguageTest extends MediaWikiTestCase {
 			array( 'Be-x-old', 'With extension (two dashes)' ),
 		);
 	}
+
+	/**
+	 * @dataProvider provideSprintfDateSamples
+	 */
+	function testSprintfDate( $format, $ts, $expected, $msg ) {
+		$this->assertEquals(
+			$expected,
+			$this->lang->sprintfDate( $format, $ts ),
+			"sprintfDate('$format', '$ts'): $msg"
+		);
+	}
+
+	function provideSprintfDateSamples() {
+		return array(
+			array(
+				'xiY',
+				'20111212000000',
+				'1390', // note because we're testing English locale we get Latin-standard digits
+				'Iranian calendar full year'
+			),
+			array(
+				'xiy',
+				'20111212000000',
+				'90',
+				'Iranian calendar short year'
+			),
+		);
+	}
 }
