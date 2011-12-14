@@ -103,7 +103,7 @@ class ImagePage extends Article {
 				$wgOut->setPageTitle( $this->getTitle()->getPrefixedText() );
 				$wgOut->addHTML( $this->viewRedirect( Title::makeTitle( NS_FILE, $this->mPage->getFile()->getName() ),
 					/* $appendSubtitle */ true, /* $forceKnown */ true ) );
-				$this->mPage->doViewUpdates();
+				$this->mPage->doViewUpdates( $this->getContext()->getUser() );
 				return;
 			}
 		}
