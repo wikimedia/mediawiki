@@ -1966,6 +1966,8 @@ class OutputPage extends ContextSource {
 	 * Produce the stock "please login to use the wiki" page
 	 */
 	public function loginToUse() {
+		global $wgRequest;
+
 		if( $this->getUser()->isLoggedIn() ) {
 			throw new PermissionsError( 'read' );
 		}
@@ -1975,12 +1977,18 @@ class OutputPage extends ContextSource {
 		$this->setRobotPolicy( 'noindex,nofollow' );
 		$this->setArticleRelated( false );
 
+		$returnto = Title::newFromURL( $wgRequest->getVal( 'title', '' ) );
+		$returntoquery = array();
+		if( $returnto ) {
+			$returntoquery = array( 'returnto' => $returnto->getPrefixedText() );
+		}
+
 		$loginTitle = SpecialPage::getTitleFor( 'Userlogin' );
 		$loginLink = Linker::linkKnown(
 			$loginTitle,
 			wfMsgHtml( 'loginreqlink' ),
 			array(),
-			array( 'returnto' => $this->getTitle()->getPrefixedText() )
+			$returntoquery
 		);
 		$this->addHTML( wfMessage( 'loginreqpagetext' )->rawParams( $loginLink )->parse() .
 			"\n<!--" . $this->getTitle()->getPrefixedUrl() . '-->' );

@@ -19,6 +19,7 @@ setting since version 1.2.0. If you have it on, turn it '''off''' if you can.
 * (bug 32853) Fixed CACHE_DBA object cache type.
 * (bug 32786) Backward compatibility for extension using 1.17's Database::newFromType()
 * Fixed exception when using Special:WhatLinksHere on a Media: file
+* (32709) Private Wiki users were always taken to Special:Badtitle on login
 
 == MediaWiki 1.18 ==
 2011-11-24
