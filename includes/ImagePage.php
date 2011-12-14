@@ -103,7 +103,7 @@ class ImagePage extends Article {
 				$wgOut->setPageTitle( $this->getTitle()->getPrefixedText() );
 				$wgOut->addHTML( $this->viewRedirect( Title::makeTitle( NS_FILE, $this->mPage->getFile()->getName() ),
 					/* $appendSubtitle */ true, /* $forceKnown */ true ) );
-				$this->mPage->viewUpdates();
+				$this->mPage->doViewUpdates();
 				return;
 			}
 		}
@@ -140,7 +140,7 @@ class ImagePage extends Article {
 			# Just need to set the right headers
 			$wgOut->setArticleFlag( true );
 			$wgOut->setPageTitle( $this->getTitle()->getPrefixedText() );
-			$this->mPage->viewUpdates();
+			$this->mPage->doViewUpdates();
 		}
 
 		# Show shared description, if needed
