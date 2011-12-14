@@ -862,7 +862,7 @@ class RevDel_LogItem extends RevDel_Item {
 		if( !$this->canView() ) {
 			$action = '<span class="history-deleted">' . wfMsgHtml('rev-deleted-event') . '</span>';
 		} else {
-			$skin = $this->list->getUser()->getSkin();
+			$skin = $this->list->getSkin();
 			$action = LogPage::actionText( $this->row->log_type, $this->row->log_action,
 				$title, $skin, $paramArray, true, true );
 			if( $this->row->log_deleted & LogPage::DELETED_ACTION )
