@@ -1922,7 +1922,7 @@ class OutputPage extends ContextSource {
 			$redirect = $this->mRedirect;
 			$code = $this->mRedirectCode;
 
-			if( wfRunHooks( "BeforePageRedirect", $this, &$redirect, &$code ) ) {
+			if( wfRunHooks( "BeforePageRedirect", array( $this, &$redirect, &$code ) ) ) {
 				if( $code == '301' || $code == '303' ) {
 					if( !$wgDebugRedirects ) {
 						$message = HttpStatus::getMessage( $code );
