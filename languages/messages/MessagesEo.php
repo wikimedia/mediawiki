@@ -1118,8 +1118,8 @@ Eble estas detaloj en la [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAM
 'rev-deleted-text-unhide'     => "Ĉi tiu revizio de la paĝo estis '''forigita'''.
 Detaloj estas troveblaj en la [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} protokolo pri forigado].
 Vi ankoraŭ povas [$1 vidi ĉi tiun revizion] se vi volas kontinui.",
-'rev-suppressed-text-unhide'  => "Ĉi tiu paĝa revizio estis '''forigita'''.
-Detaloj estas troveblaj en la [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolo pri forigado].
+'rev-suppressed-text-unhide'  => "Ĉi tiu paĝa revizio estis '''kaŝita'''.
+Detaloj estas troveblaj en la [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolo pri kaŝado].
 Vi povas ankoraŭ [$1 rigardi ĉi tiun revizion] se vi volas daŭrigi.",
 'rev-deleted-text-view'       => "Ĉi tiu revizio de la paĝo estis '''forigita'''.
 Kiel administranto vi povas rigardi ĝin; eble estas detaloj en la [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolo pri forigado].",
@@ -1478,8 +1478,8 @@ Jen hazarde generita valoro por via uzo: $1',
 'group-autoconfirmed-member' => 'Aŭtomate konfirmita uzanto',
 'group-bot-member'           => '{{GENDER:$1|roboto}}',
 'group-sysop-member'         => '{{GENDER:$1|Administranto|Administrantino}}',
-'group-bureaucrat-member'    => 'Burokrato',
-'group-suppress-member'      => 'Superrigardo',
+'group-bureaucrat-member'    => '{{GENDER:$1|Burokrato|Burokratino}}',
+'group-suppress-member'      => '{{GENDER:$1|Superrigardanto|Superrigardantino}}',
 
 'grouppage-user'          => '{{ns:project}}:Uzantoj',
 'grouppage-autoconfirmed' => '{{ns:project}}:Aŭtomate konfirmitaj uzantoj',
@@ -1953,7 +1953,7 @@ Bonvolu kontroli aliajn ligilojn al la ŝablonoj antaŭ ol forigi ilin.',
 'statistics-users-active-desc' => 'Uzantoj kiuj faris agon en la {{PLURAL:$1|lasta tago|lastaj $1 tagoj}}',
 'statistics-mostpopular'       => 'Plej ofte montrataj paĝoj',
 
-'disambiguations'      => 'Misligitaj apartigiloj',
+'disambiguations'      => 'Paĝoj ligitaj al apartigiloj',
 'disambiguationspage'  => 'Template:Apartigilo',
 'disambiguations-text' => "La jenaj paĝoj alligas '''apartigilon'''.
 Ili devus anstataŭe alligi la ĝustan temon.<br />
@@ -2055,8 +2055,8 @@ komprenata kiel rekomendo aŭ reklamo.',
 'booksources-invalid-isbn'  => 'La donata ISBN verŝajne esats nevalida; kontroli por eraroj kopiitaj el la originala fonto.',
 
 # Special:Log
-'specialloguserlabel'  => 'Uzanto:',
-'speciallogtitlelabel' => 'Titolo:',
+'specialloguserlabel'  => 'Faranto:',
+'speciallogtitlelabel' => 'Celo (titolo aŭ uzanto):',
 'log'                  => 'Protokoloj',
 'all-logs-page'        => 'Ĉiuj publikaj protokoloj',
 'alllogstext'          => 'Suma kompilaĵo de ĉiuj protokoloj de {{SITENAME}}.
@@ -2096,7 +2096,7 @@ Vidu ankaŭ [[Special:WantedCategories|Dezirataj kategorioj]].',
 'sp-deletedcontributions-contribs' => 'kontribuoj',
 
 # Special:LinkSearch
-'linksearch'       => 'Eksteraj ligiloj',
+'linksearch'       => 'Serĉo per eksteraj ligiloj',
 'linksearch-pat'   => 'Serĉesprimo:',
 'linksearch-ns'    => 'Nomspaco:',
 'linksearch-ok'    => 'Serĉi',
@@ -2689,7 +2689,7 @@ Bonvolu permane kunigi ilin.',
 
 La celartikolo "[[:$1]]" jam ekzistas. Ĉu vi volas forigi ĝin por krei spacon por la movo?',
 'delete_and_move_confirm'      => 'Jes, forigu la paĝon',
-'delete_and_move_reason'       => 'Forigita por ebligi movon',
+'delete_and_move_reason'       => 'Forigita por ebligi movadon de "[[$1]]"',
 'selfmove'                     => 'Fonto- kaj celo-titoloj samas; ne povas movi paĝon sur ĝin mem.',
 'immobile-source-namespace'    => 'Ne povas movi paĝojn en nomspaco "$1"',
 'immobile-target-namespace'    => 'Ne povas movi paĝojn en nomspacon "$1"',

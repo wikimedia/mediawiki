@@ -1000,8 +1000,8 @@ Vermutlich wurde er verschoben oder gelöscht, nachdem du die Seite aufgerufen h
 Das Passwort für dieses neue Benutzerkonto kann auf der Spezialseite „[[Special:ChangePassword|Passwort ändern]]“ geändert werden.',
 'newarticle'                       => '(Neu)',
 'newarticletext'                   => "Du bist einem Link zu einer Seite gefolgt, die nicht vorhanden ist.
-Um die Seite anzulegen, trage deinen Text in die untenstehende Box ein (siehe die [[{{MediaWiki:Helppage}}|Hilfeseite]] für mehr Informationen).
-Bist du fälschlicherweise hier, klicke die '''Zurück'''-Schaltfläche deines Browsers.",
+Um diese Seite anzulegen, trage deinen Text in das untenstehende Bearbeitungsfeld ein (siehe die [[{{MediaWiki:Helppage}}|Hilfeseite]] für weitere Informationen).
+Sofern du fälschlicherweise hier bist, klicke auf die Schaltfläche '''Zurück''' deines Browsers.",
 'anontalkpagetext'                 => "----''Diese Seite dient dazu, einem nicht angemeldeten Benutzer Nachrichten zu hinterlassen. Es wird seine IP-Adresse zur Identifizierung verwendet. IP-Adressen können von mehreren Benutzern gemeinsam verwendet werden. Wenn du mit den Kommentaren auf dieser Seite nichts anfangen kannst, richten sie sich vermutlich an einen früheren Inhaber deiner IP-Adresse und du kannst sie ignorieren. Du kannst dir auch ein [[Special:UserLogin/signup|Benutzerkonto erstellen]] oder dich [[Special:UserLogin|anmelden]], um künftig Verwechslungen mit anderen anonymen Benutzern zu vermeiden.''",
 'noarticletext'                    => 'Diese Seite enthält momentan noch keinen Text.
 Du kannst sie <span class="plainlinks">[{{fullurl:{{FULLPAGENAME}}|action=edit}} bearbeiten]</span>,
@@ -2815,7 +2815,7 @@ Bitte besuche die Seiten [//www.mediawiki.org/wiki/Localisation MediaWiki-Lokali
 'allmessages-filter'            => 'Filter für angepassten Zustand:',
 'allmessages-filter-unmodified' => 'Unverändert',
 'allmessages-filter-all'        => 'Alle',
-'allmessages-filter-modified'   => 'Verändert',
+'allmessages-filter-modified'   => 'Geändert',
 'allmessages-prefix'            => 'Präfixfilter:',
 'allmessages-language'          => 'Sprache:',
 'allmessages-filter-submit'     => 'Los',
@@ -3868,14 +3868,19 @@ Eine [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie der ''GNU General Public License'']
 'newuserlog-byemail'                  => 'das Passwort wurde per E-Mail versandt',
 
 # Feedback
-'feedback-note'    => 'Die Rückmeldung wird auf der öffentlich einsehbaren Seite „[$2 $1]“ gespeichert, zusammen mit dem Benutzernamen, der verwendeten Webbrowser-Version und dem Betriebssystem.',
-'feedback-subject' => 'Betreff:',
-'feedback-message' => 'Nachricht:',
-'feedback-cancel'  => 'Abbrechen',
-'feedback-submit'  => 'Rückmeldung senden',
-'feedback-adding'  => 'Rückmeldung wird zur Seite hinzugefügt …',
-'feedback-error1'  => 'Fehler: Unbekanntes Ergebnis der API',
-'feedback-error2'  => 'Fehler: Bearbeitung gescheitert',
-'feedback-error3'  => 'Fehler: Keine Antwort von der API',
+'feedback-note'     => 'Dieses Formular speichert deinen Kommentar oder Vorschlag, zusammen mit deinem Benutzernamen und der Version des von dir verwendeten Webbrowsers sowie Betriebssystems, öffentlich einsehbar auf der Seite „[$2 $1]“.',
+'feedback-bugnote'  => 'Oder du kannst [$1 eine Meldung zu einem technischen Fehler] einreichen.',
+'feedback-subject'  => 'Betreff:',
+'feedback-message'  => 'Nachricht:',
+'feedback-cancel'   => 'Abbrechen',
+'feedback-submit'   => 'Rückmeldung senden',
+'feedback-adding'   => 'Rückmeldung wird zur Seite hinzugefügt …',
+'feedback-error1'   => 'Fehler: Unbekanntes Ergebnis der API',
+'feedback-error2'   => 'Fehler: Bearbeitung gescheitert',
+'feedback-error3'   => 'Fehler: Keine Antwort von der API',
+'feedback-thanks'   => 'Vielen Dank. Deine Rückmeldung wurde auf der Seite „[$2 $1]“ gespeichert.',
+'feedback-close'    => 'Erledigt',
+'feedback-bugcheck' => 'Super! Bitte überprüfe noch, ob es sich hierbei nicht um einen bereits [$1 bekannten Fehler] handelt.',
+'feedback-bugnew'   => 'Ich habe es überprüft. Den neuen Fehler melden.',
 
 );

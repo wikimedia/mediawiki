@@ -3932,14 +3932,19 @@ $5
 'newuserlog-byemail'                  => 'הסיסמה נשלחה בדוא"ל',
 
 # Feedback
-'feedback-note'    => 'התגובות שלכם תפורסמנה באופן לציבור בדף "[$2 $1]", יחד עם שם המשתמש שלכם, גרסת הדפדפן שלכם ומערכת ההפעלה שלכם.',
-'feedback-subject' => 'נושא',
-'feedback-message' => 'הודעה:',
-'feedback-cancel'  => 'ביטול',
-'feedback-submit'  => 'שליחת משוב',
-'feedback-adding'  => 'הוספת משוב לדף...',
-'feedback-error1'  => 'שגיאה: תוצאה לא מזוהה מה־API',
-'feedback-error2'  => 'שגיאה: העריכה נכשלה',
-'feedback-error3'  => 'שגיאה: אין תשובה מה־API',
+'feedback-note'     => 'טופס זה מאפשר לכתוב ולפרסם הערה או הצעה פשוטות לדף "[$2 $1]", יחד עם שם המשתמש שלכם, גרסת הדפדפן שלכם ומערכת ההפעלה שלכם.',
+'feedback-bugnote'  => 'לחלופין, באפשרותכם [$1 לשלוח דיווח באג טכני].',
+'feedback-subject'  => 'נושא',
+'feedback-message'  => 'הודעה:',
+'feedback-cancel'   => 'ביטול',
+'feedback-submit'   => 'שליחת משוב',
+'feedback-adding'   => 'הוספת משוב לדף...',
+'feedback-error1'   => 'שגיאה: תוצאה לא מזוהה מה־API',
+'feedback-error2'   => 'שגיאה: העריכה נכשלה',
+'feedback-error3'   => 'שגיאה: אין תשובה מה־API',
+'feedback-thanks'   => 'תודה! המשוב שלכם פורסם בדף "[$2 $1]".',
+'feedback-close'    => 'סיום',
+'feedback-bugcheck' => 'מצוין! נא לבדוק שזה לא אחד מה[$1 באגים הידועים].',
+'feedback-bugnew'   => 'בדקתי. נא לדווח כבאג חדש',
 
 );

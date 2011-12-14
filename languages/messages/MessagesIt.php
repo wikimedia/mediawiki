@@ -2511,7 +2511,7 @@ Il blocco dell\'utente $1 è stato imposto per il seguente motivo: "$2".',
 'proxyblocker'                    => 'Blocco dei proxy aperti',
 'proxyblocker-disabled'           => 'Questa funzione non è attiva.',
 'proxyblockreason'                => 'Questo indirizzo IP è stato bloccato perché risulta essere un proxy aperto. Si prega di contattare il proprio fornitore di accesso a Internet o il supporto tecnico e informarli di questo grave problema di sicurezza.',
-'proxyblocksuccess'               => 'Blocco eseguito.',
+'proxyblocksuccess'               => 'Fatto.',
 'sorbsreason'                     => 'Questo indirizzo IP è elencato come proxy aperto nella blacklist DNSBL utilizzata da {{SITENAME}}.',
 'sorbs_create_account_reason'     => 'Non è possibile creare nuovi accessi da questo indirizzo IP perché è elencato come proxy aperto nella blacklist DNSBL utilizzata da {{SITENAME}}.',
 'cant-block-while-blocked'        => 'Non è possibile bloccare altri utenti mentre si è bloccati.',
@@ -3684,5 +3684,6 @@ Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri
 'feedback-error1'  => 'Errore: Dalla API è arrivato un risultato non riconosciuto',
 'feedback-error2'  => 'Errore: Non è stato possibile eseguire la modifica',
 'feedback-error3'  => 'Errore: Nessuna risposta dalla API',
+'feedback-close'   => 'Fatto',
 
 );

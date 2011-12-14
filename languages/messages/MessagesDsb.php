@@ -3564,14 +3564,19 @@ Wobraze se w połnym wótgranicowanju pokazuju, druge datajowe typy se ze zwěza
 'newuserlog-byemail'                  => 'Pótajne słowo bu pśez e-mail pósłane.',
 
 # Feedback
-'feedback-note'    => 'Twój komentar wozjawijo se zjawnje k bokoju "[$2 $1]", z twójim wužywarskim mjenim, wersiju webglědowaka a źěłowym systemom.',
-'feedback-subject' => 'Tema:',
-'feedback-message' => 'Powěsć:',
-'feedback-cancel'  => 'Pśetergnuś',
-'feedback-submit'  => 'Komentar wótpósłaś',
-'feedback-adding'  => 'Komentar pśidawa se bokoju...',
-'feedback-error1'  => 'Zmólka: Njepóznaty wuslědk wót API',
-'feedback-error2'  => 'Zmólka: Wobźěłanje jo se njeraźiło',
-'feedback-error3'  => 'Zmólka: Žedne wótegrono wót API',
+'feedback-note'     => 'Toś ten formular sćelo jadnory komentar abo naraźenje k bokoju "[$2 $1]", z twójim wužywarskim mjenim, wersiju webglědowaka a źěłowym systemom.',
+'feedback-bugnote'  => 'Abo móžoš město togo [$1 techniske zmólkowe zdźělenje słaś].',
+'feedback-subject'  => 'Tema:',
+'feedback-message'  => 'Powěsć:',
+'feedback-cancel'   => 'Pśetergnuś',
+'feedback-submit'   => 'Komentar wótpósłaś',
+'feedback-adding'   => 'Komentar pśidawa se bokoju...',
+'feedback-error1'   => 'Zmólka: Njepóznaty wuslědk wót API',
+'feedback-error2'   => 'Zmólka: Wobźěłanje jo se njeraźiło',
+'feedback-error3'   => 'Zmólka: Žedne wótegrono wót API',
+'feedback-thanks'   => 'Źěkujomy se! Twój komentar jo se k bokoju "[$2 $1]" pósłał.',
+'feedback-close'    => 'Dokóńcony',
+'feedback-bugcheck' => 'Wjelicnje! Pśekontrolěruj jano, lěc to njejo jadna z [$1 znatych zmólkow].',
+'feedback-bugnew'   => 'Som pśekontrolěrował. Nowu zmólku k wěsći daś',
 
 );

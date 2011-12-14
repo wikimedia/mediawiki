@@ -3788,4 +3788,15 @@ Obrázky sa zobrazia v plnom rozlíšení, ostatné typy súborov sa spustia v p
 'logentry-newusers-autocreate'        => 'Automaticky {{GENDER:$2|bol}} založený účet $1',
 'newuserlog-byemail'                  => 'heslo poslané emailom',
 
+# Feedback
+'feedback-note'    => 'Váš komentár bude uverejnený na stránke „[$2 $1]“ spolu s vašim používateľským menom, verziou prehliadača a operačného systému.',
+'feedback-subject' => 'Predmet:',
+'feedback-message' => 'Správa:',
+'feedback-cancel'  => 'Zrušiť',
+'feedback-submit'  => 'Odoslať komentár',
+'feedback-adding'  => 'Pridávanie komentára na stránku...',
+'feedback-error1'  => 'Chyba: Nerozpoznaný výsledok z API',
+'feedback-error2'  => 'Chyba: Úprava sa nepodarila',
+'feedback-error3'  => 'Chyba: Žiadna odpoveď z API',
+
 );

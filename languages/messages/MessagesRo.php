@@ -3784,7 +3784,7 @@ Imaginile sunt afișate la rezoluția lor maximă, în timp ce alte tipuri de fi
 'newuserlog-byemail'                  => 'parola trimisă prin e-mail',
 
 # Feedback
-'feedback-note'    => 'Impresiile dumneavoastră vor fi făcute publice pe pagina „[$2 $1]”, alături de numele dumneavoastră de utilizator, versiunea navigatorului și sistemul de operare.',
+'feedback-note'    => 'Acest formular face public un simplu comentariu sau o simplă sugestie pe pagina „[$2 $1]”, alături de numele dumneavoastră de utilizator, versiunea navigatorului și sistemul de operare.',
 'feedback-subject' => 'Subiect:',
 'feedback-message' => 'Mesaj:',
 'feedback-cancel'  => 'Revocare',
