@@ -140,7 +140,7 @@ class ImagePage extends Article {
 			# Just need to set the right headers
 			$wgOut->setArticleFlag( true );
 			$wgOut->setPageTitle( $this->getTitle()->getPrefixedText() );
-			$this->mPage->doViewUpdates();
+			$this->mPage->doViewUpdates( $this->getContext()->getUser() );
 		}
 
 		# Show shared description, if needed
