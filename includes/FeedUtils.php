@@ -63,7 +63,7 @@ class FeedUtils {
 				$actiontext = wfMsgHtml('rev-deleted-event');
 			} else {
 				$actiontext = LogPage::actionText( $row->rc_log_type, $row->rc_log_action,
-					$titleObj, $wgUser->getSkin(), LogPage::extractParams($row->rc_params,true,true) );
+					$titleObj, RequestContext::getMain()->getSkin(), LogPage::extractParams($row->rc_params,true,true) );
 			}
 		}
 		return self::formatDiffRow( $titleObj,
@@ -88,13 +88,12 @@ class FeedUtils {
 		global $wgFeedDiffCutoff, $wgLang, $wgUser;
 		wfProfileIn( __METHOD__ );
 
-		$skin = $wgUser->getSkin();
 		# log enties
 		$completeText = '<p>' . implode( ' ',
 			array_filter(
 				array(
 					$actiontext,
-					$skin->formatComment( $comment ) ) ) ) . "</p>\n";
+					Linker::formatComment( $comment ) ) ) ) . "</p>\n";
 
 		//NOTE: Check permissions for anonymous users, not current user.
 		//      No "privileged" version should end up in the cache.
