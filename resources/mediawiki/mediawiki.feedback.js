@@ -19,9 +19,9 @@
  *
  * Not compatible with LiquidThreads.
  * 
- * How to use it:
+ * Minimal example in how to use it:
  * 
- *    var feedback = new mw.Feedback( api, myFeedbackPageTitle );
+ *    var feedback = new mw.Feedback();
  *    $( '#myButton' ).click( function() { feedback.launch(); } ); 
  * 
  * You can also launch the feedback form with a prefilled subject and body. 
@@ -35,6 +35,8 @@
 	 *		api: {mw.Api} if omitted, will just create a standard API
 	 * 		title: {mw.Title} the title of the page where you collect feedback. Defaults to "Feedback".
 	 * 		dialogTitleMessageKey: {String} message key for the title of the dialog box
+	 * 		bugsLink: {mw.Uri|String} url where bugs can be posted
+	 * 		bugsListLink: {mw.Uri|String} url where bugs can be listed
 	 */
 	mw.Feedback = function( options ) {
 
@@ -54,9 +56,15 @@
 			options.dialogTitleMessageKey = 'feedback-submit';
 		}
 
-		this.api = options.api;
-		this.feedbackTitle = options.title;
-		this.dialogTitleMessageKey = options.dialogTitleMessageKey;
+		if ( options.bugsLink === undefined ) {
+			options.bugsLink = '//bugzilla.wikimedia.org/enter_bug.cgi';
+		}
+
+		if ( options.bugsListLink === undefined ) {
+			options.bugsListLink = '//bugzilla.wikimedia.org/query.cgi';
+		}
+
+		$.extend( this, options );
 		this.setup();
 	};
 
@@ -64,19 +72,25 @@
 		setup: function() {
 			var _this = this;
 
-			// Set up buttons for dialog box. We have to do it the hard way since the json keys are localized
-			_this.buttons = {};
-			_this.buttons[ mw.msg( 'feedback-cancel' ) ] = function() { _this.cancel(); };
-			_this.buttons[ mw.msg( 'feedback-submit' ) ] = function() { _this.submit(); };
-				
-			var $feedbackPageLink = $j( '<a></a>' ).attr( { 'href': _this.feedbackTitle.getUrl(), 'target': '_blank' } );
+			
+			var $feedbackPageLink = $( '<a></a>' )
+				.attr( { 'href': _this.title.getUrl(), 'target': '_blank' } )
+				.css( { 'white-space': 'nowrap' } );
+
+			var $bugNoteLink = $( '<a></a>' ).attr( { 'href': '#', } ).click( function() { _this.displayBugs(); } );
+
+			var $bugsListLink = $( '<a></a>' ).attr( { 'href': _this.bugsListLink, 'target': '_blank' } );
+
 			this.$dialog = 
 				$( '<div style="position:relative;"></div>' ).append( 
-					$( '<div class="feedback-mode feedback-form"></div>' ).append( 
-						$( '<div style="margin-top:0.4em;"></div>' ).append( 
-							$( '<small></small>' ).msg( 'feedback-note', 
-										    _this.feedbackTitle.getNameText(), 
-										    $feedbackPageLink ) 
+					$( '<div class="feedback-mode feedback-form"></div>' ).append(
+						$( '<small></small>' ).append(  
+							$( '<p></p>' ).msg( 
+								'feedback-note', 
+								_this.title.getNameText(), 
+								$feedbackPageLink.clone() 
+							),
+							$( '<p></p>' ).msg( 'feedback-bugnote', $bugNoteLink )
 						),
 						$( '<div style="margin-top:1em;"></div>' ).append( 
 							mw.msg( 'feedback-subject' ), 
@@ -89,16 +103,26 @@
 							$( '<textarea name="message" class="feedback-message" style="width:99%;" rows="5" cols="60"></textarea>' ) 
 						)
 					),
+					$( '<div class="feedback-mode feedback-bugs"></div>' ).append( 
+						$( '<p>' ).msg( 'feedback-bugcheck', $bugsListLink )
+					),
 					$( '<div class="feedback-mode feedback-submitting" style="text-align:center;margin:3em 0;"></div>' ).append( 
 						mw.msg( 'feedback-adding' ), 
 						$( '<br/>' ), 
 						$( '<img src="http://upload.wikimedia.org/wikipedia/commons/4/42/Loading.gif" />' ) 
 					),
+					$( '<div class="feedback-mode feedback-thanks" style="text-align:center;margin:1em"></div>' ).msg(
+						'feedback-thanks', _this.title.getNameText(), $feedbackPageLink.clone() 
+					),
 					$( '<div class="feedback-mode feedback-error" style="position:relative;"></div>' ).append( 
 						$( '<div class="feedback-error-msg style="color:#990000;margin-top:0.4em;"></div>' )
-
 					)
-				).dialog({
+				);
+
+				// undo some damage from dialog css
+				this.$dialog.find( 'a' ).css( { 'color': '#0645ad' } );
+
+				this.$dialog.dialog({
 					width: 500,
 					autoOpen: false,
 					title: mw.msg( this.dialogTitleMessageKey ),
@@ -108,7 +132,7 @@
 
 			this.subjectInput = this.$dialog.find( 'input.feedback-subject' ).get(0);
 			this.messageInput = this.$dialog.find( 'textarea.feedback-message' ).get(0);
-			this.displayForm();		
+
 		},
 
 		display: function( s ) {
@@ -121,6 +145,23 @@
 			this.display( 'submitting' );
 		},
 
+		displayBugs: function() {
+			var _this = this;
+			this.display( 'bugs' );
+			var bugsButtons = {};
+			bugsButtons[ mw.msg( 'feedback-bugnew' ) ] = function() { window.open( _this.bugsLink, '_blank' ); };
+			bugsButtons[ mw.msg( 'feedback-cancel' ) ] = function() { _this.cancel(); };
+			this.$dialog.dialog( { buttons: bugsButtons } );
+		},
+
+		displayThanks: function() {
+			var _this = this;
+			this.display( 'thanks' );
+			var closeButton = {};
+			closeButton[ mw.msg( 'feedback-close' ) ] = function() { _this.$dialog.dialog( 'close' ); }; 
+			this.$dialog.dialog( { buttons: closeButton } );
+		},
+
 		/**
 		 * Display the feedback form
 		 * @param {Object} optional prefilled contents for the feedback form. Object with properties:
@@ -128,11 +169,17 @@
 		 *						message: {String}
 		 */
 		displayForm: function( contents ) {
+			var _this = this;
 			this.subjectInput.value = (contents && contents.subject) ? contents.subject : '';
 			this.messageInput.value = (contents && contents.message) ? contents.message : '';
 						
 			this.display( 'form' );	
-			this.$dialog.dialog( { buttons: this.buttons } ); // put the buttons back
+
+			// Set up buttons for dialog box. We have to do it the hard way since the json keys are localized
+			var formButtons = {};
+			formButtons[ mw.msg( 'feedback-submit' ) ] = function() { _this.submit(); };
+			formButtons[ mw.msg( 'feedback-cancel' ) ] = function() { _this.cancel(); };
+			this.$dialog.dialog( { buttons: formButtons } ); // put the buttons back
 		},
 
 		displayError: function( message ) {
@@ -161,7 +208,7 @@
 			var ok = function( result ) {
 				if ( result.edit !== undefined ) {
 					if ( result.edit.result === 'Success' ) {
-						_this.$dialog.dialog( 'close' ); // edit complete, close dialog box
+						_this.displayThanks();
 					} else {
 						_this.displayError( 'feedback-error1' ); // unknown API result
 					}
@@ -174,7 +221,7 @@
 				displayError( 'feedback-error3' ); // ajax request failed
 			};
 		
-			this.api.newSection( this.feedbackTitle, subject, message, ok, err );
+			this.api.newSection( this.title, subject, message, ok, err );
 
 		}, // close submit button function
 

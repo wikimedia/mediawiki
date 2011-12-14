@@ -539,6 +539,7 @@ return array(
 		),
 		'messages' => array( 
 			'feedback-note',
+			'feedback-bugnote',
 			'feedback-subject',
 			'feedback-message',
 			'feedback-cancel',
@@ -547,6 +548,10 @@ return array(
 			'feedback-error1',
 			'feedback-error2',
 			'feedback-error3',
+			'feedback-thanks',
+			'feedback-close',
+			'feedback-bugcheck',
+			'feedback-bugnew',
 		),
 	),
 	'mediawiki.htmlform' => array(
