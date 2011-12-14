@@ -1940,7 +1940,7 @@ class OutputPage {
 	 * Produce the stock "please login to use the wiki" page
 	 */
 	public function loginToUse() {
-		global $wgUser;
+		global $wgUser, $wgRequest;
 
 		if( $wgUser->isLoggedIn() ) {
 			$this->permissionRequired( 'read' );
@@ -1954,12 +1954,18 @@ class OutputPage {
 		$this->setRobotPolicy( 'noindex,nofollow' );
 		$this->setArticleFlag( false );
 
+		$returnto = Title::newFromURL( $wgRequest->getVal( 'title', '' ) );
+		$returntoquery = array();
+		if( $returnto ) {
+			$returntoquery = array( 'returnto' => $returnto->getPrefixedText() );
+		}
+
 		$loginTitle = SpecialPage::getTitleFor( 'Userlogin' );
 		$loginLink = $skin->link(
 			$loginTitle,
 			wfMsgHtml( 'loginreqlink' ),
 			array(),
-			array( 'returnto' => $this->getTitle()->getPrefixedText() ),
+			$returntoquery,
 			array( 'known', 'noclasses' )
 		);
 		$this->addHTML( wfMsgWikiHtml( 'loginreqpagetext', $loginLink ) );
