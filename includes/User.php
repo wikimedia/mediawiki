@@ -2594,7 +2594,7 @@ class User {
 	 * @deprecated since 1.18 Use ->getSkin() in the most relevant outputting context you have
 	 */
 	public function getSkin() {
-		wfDeprecated( __METHOD__, '1.18' );
+		//wfDeprecated( __METHOD__, '1.18' );
 		return RequestContext::getMain()->getSkin();
 	}
 
