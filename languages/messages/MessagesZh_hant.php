@@ -972,9 +972,9 @@ $2
 'previousrevision'       => '←上一修訂',
 'nextrevision'           => '下一修訂→',
 'currentrevisionlink'    => '最新修訂',
-'cur'                    => '現',
-'next'                   => '下',
-'last'                   => '上',
+'cur'                    => '目前',
+'next'                   => '後繼',
+'last'                   => '先前',
 'page_first'             => '最前',
 'page_last'              => '最後',
 'histlegend'             => "差異選擇：標記要比較修訂版本的單選按鈕並點擊底部的按鈕進行比較。<br />

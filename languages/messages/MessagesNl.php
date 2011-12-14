@@ -3948,14 +3948,19 @@ Andere bestandstypen worden direct in het met het MIME-type verbonden programma 
 'newuserlog-byemail'                  => 'wachtwoord is verzonden per e-mail',
 
 # Feedback
-'feedback-note'    => 'Uw terugkoppeling wordt geplaatst op $1.',
-'feedback-subject' => 'Onderwerp:',
-'feedback-message' => 'Bericht:',
-'feedback-cancel'  => 'Annuleren',
-'feedback-submit'  => 'Terugkoppeling opslaan',
-'feedback-adding'  => 'Uw terugkoppeling wordt aan de pagina toegevoegd...',
-'feedback-error1'  => 'Fout: onbekend resultaat uit de API',
-'feedback-error2'  => 'Fout: de bewerking is mislukt',
-'feedback-error3'  => 'Fout: geen reactie van de API',
+'feedback-note'     => 'Dit formulier plaatst publiekelijk een eenvoudige opmerking of suggestie op de pagina "[$2 $1]", samen met uw gebruikersnaam, browserversie en besturingssysteem.',
+'feedback-bugnote'  => 'Of u kunt in de plaats [$1 een technische bug] melden.',
+'feedback-subject'  => 'Onderwerp:',
+'feedback-message'  => 'Bericht:',
+'feedback-cancel'   => 'Annuleren',
+'feedback-submit'   => 'Terugkoppeling opslaan',
+'feedback-adding'   => 'Uw terugkoppeling wordt aan de pagina toegevoegd...',
+'feedback-error1'   => 'Fout: onbekend resultaat uit de API',
+'feedback-error2'   => 'Fout: de bewerking is mislukt',
+'feedback-error3'   => 'Fout: geen reactie van de API',
+'feedback-thanks'   => 'Bedankt! Uw terugkoppeling is op de pagina "[$2 $1]" geplaatst.',
+'feedback-close'    => 'Afgerond',
+'feedback-bugcheck' => 'Geweldig! Controleer even of het niet al één van de [$1 bekende bugs] is.',
+'feedback-bugnew'   => 'Heb ik gecontroleerd; nieuwe bug melden',
 
 );

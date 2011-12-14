@@ -3854,14 +3854,19 @@ Obrázky se zobrazí v plném rozlišení, jiné typy souborů se otevřenou v p
 'newuserlog-byemail'                  => 'heslo zasláno e-mailem',
 
 # Feedback
-'feedback-note'    => 'Váš komentář bude zveřejněn na stránce „[$2 $1]“ spolu s vaším uživatelským jménem, verzí prohlížeče a operačního systému.',
-'feedback-subject' => 'Předmět:',
-'feedback-message' => 'Zpráva:',
-'feedback-cancel'  => 'Storno',
-'feedback-submit'  => 'Odeslat komentář',
-'feedback-adding'  => 'Komentář se přidává na stránku…',
-'feedback-error1'  => 'Chyba: Nerozpoznaný výsledek z API',
-'feedback-error2'  => 'Chyba: Editace se nezdařila',
-'feedback-error3'  => 'Chyba: API nevrátilo žádnou odpověď',
+'feedback-note'     => 'Pomocí tohoto formuláře přidáte jednoduchý komentář nebo návrh na stránku „[$2 $1]“ spolu se svým uživatelským jménem, verzí prohlížeče a operačního systému.',
+'feedback-bugnote'  => 'Nebo místo toho můžete [$1 poslat technické hlášení chyby].',
+'feedback-subject'  => 'Předmět:',
+'feedback-message'  => 'Zpráva:',
+'feedback-cancel'   => 'Storno',
+'feedback-submit'   => 'Odeslat komentář',
+'feedback-adding'   => 'Komentář se přidává na stránku…',
+'feedback-error1'   => 'Chyba: Nerozpoznaný výsledek z API',
+'feedback-error2'   => 'Chyba: Editace se nezdařila',
+'feedback-error3'   => 'Chyba: API nevrátilo žádnou odpověď',
+'feedback-thanks'   => 'Děkujeme! Váš komentář byl přidat na stránku „[$2 $1]“.',
+'feedback-close'    => 'Hotovo',
+'feedback-bugcheck' => 'Skvělé! Jen zkontrolujte, zda se nejedná o jednu z [$1 už známých chyb].',
+'feedback-bugnew'   => 'Zkontroloval(a) jsem to. Chci ohlásit novou chybu.',
 
 );

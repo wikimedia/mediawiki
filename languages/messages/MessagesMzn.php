@@ -940,6 +940,10 @@ $5
 'specialpages'                   => 'شا صفحه‌ئون',
 'specialpages-group-maintenance' => 'چله‌بندی صفحه‌ئون',
 
+# New logging system
+'logentry-newusers-newusers' => '$1 {{GENDER:$2| بساتن}} اتا حساب کاروری',
+'logentry-newusers-create'   => '$1 {{GENDER:$2| بساتن}} اتا حساب کاروری',
+
 # Feedback
 'feedback-note'    => 'شمه نظر به طور عمومی صفحهٔ «[$2 $1]» سر، همراه شمه نوم و نسخهٔ مرورگر و سیستم عامل جا ارسال وونه.',
 'feedback-subject' => 'موضوع:',

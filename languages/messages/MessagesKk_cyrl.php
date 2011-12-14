@@ -519,7 +519,7 @@ $messages = array(
 # Vector skin
 'vector-action-addsection'       => 'Тақырып қосу',
 'vector-action-delete'           => 'Жою',
-'vector-action-move'             => 'Атын өзгерту',
+'vector-action-move'             => 'Жылжыту',
 'vector-action-protect'          => 'Қорғау',
 'vector-action-undelete'         => 'Жоймау',
 'vector-action-unprotect'        => 'Қорғанысты өзгерту',
@@ -535,7 +535,7 @@ $messages = array(
 
 'errorpagetitle'    => 'Қате',
 'returnto'          => '$1 дегенге қайта келу.',
-'tagline'           => '{{SITENAME}}дан алынған мәлімет, ашық энциклопедия',
+'tagline'           => '{{SITENAME}} жобасынан',
 'help'              => 'Анықтама',
 'search'            => 'Іздеу',
 'searchbutton'      => 'Іздеу',
@@ -586,7 +586,7 @@ $messages = array(
 'viewcount'         => 'Бұл бет $1 рет қатыналған.',
 'protectedpage'     => 'Қорғалған бет',
 'jumpto'            => 'Мында өту:',
-'jumptonavigation'  => 'навигация',
+'jumptonavigation'  => 'шарлау',
 'jumptosearch'      => 'іздеу',
 'view-pool-error'   => 'Кешіріңіз, қазір серверлер шектен тыс жүктеулі.
 Осы бетті қарауға өте көп сұраныс жасалды.
@@ -674,9 +674,9 @@ $1',
 Бәлкім, сіз URL теру барсында қате жібердіңіз немесе қате сілтеме бойынша өттіңіз.
 Бұл сондай-ақ {{SITENAME}} жобасында қателікті көрсетуі мүмкін.',
 'nosuchspecialpage' => 'Мынадай еш арнайы бет жоқ',
-'nospecialpagetext' => '<strong>Сіздің сұраған қызметтік беттіңіз жоқ.</strong>
+'nospecialpagetext' => '<strong>Сіздің сұраған арнайы бетіңіз жоқ.</strong>
 
-Бар қызметтік беттер тізімі: [[Special:SpecialPages|{{int:specialpages}}]].',
+Бар арнайы беттер тізімі: [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Қате',
@@ -1326,7 +1326,7 @@ $3 келтірілген себебі: ''$2''",
 'right-move'                 => 'Беттерді жылжыту',
 'right-move-subpages'        => 'Беттерді бұлардың бағынышты беттерімен жылжыту',
 'right-suppressredirect'     => 'Тиісті атауға бетті жылжытқанда айдағышты жасамау',
-'right-upload'               => 'Файлдарды жүктеп беру',
+'right-upload'               => 'Файлдарды жүктеу',
 'right-reupload'             => 'Бар файл үстіне жазу',
 'right-reupload-own'         => 'Өзі қотарып берген файл үстіне жазу',
 'right-reupload-shared'      => 'Таспа ортақ қоймасындағы файлдарды жергіліктілермен асыру',
@@ -1774,7 +1774,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listgrouprights-group'    => 'Топ',
 'listgrouprights-rights'   => 'Құқықтары',
 'listgrouprights-helppage' => '{{ns:help}}:Топ құқықтары',
-'listgrouprights-members'  => '(тізім)',
+'listgrouprights-members'  => '(мүше тізімі)',
 
 # E-mail user
 'mailnologin'     => 'Еш мекенжай жөнелтілген жоқ',

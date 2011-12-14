@@ -814,18 +814,18 @@ Možda ste već uspješno promijenili Vašu lozinku ili ste zatražili novu priv
 'resetpass-temp-password'   => 'Privremena lozinka:',
 
 # Special:PasswordReset
-'passwordreset'                => 'Ponovno postavi lozinku',
-'passwordreset-text'           => 'Ispunite ovaj obrazac da biste dobili e-mail podsjetnik o vašim detaljima računa.',
-'passwordreset-legend'         => 'Poništi lozinku',
-'passwordreset-disabled'       => 'Poništavanje lozinke je onemogućeno na ovom wikiju.',
-'passwordreset-pretext'        => '{{PLURAL:$1||Unesite jedan od dijelova podataka u nastavku}}',
-'passwordreset-username'       => 'Suradničko ime:',
-'passwordreset-domain'         => 'Domena:',
-'passwordreset-capture'        => 'Pogledati krajnju poruku?',
-'passwordreset-capture-help'   => 'Ako označite ovu kućicu, e-poruka s privremenom lozinkom će biti prikazana i poslana korisniku.',
-'passwordreset-email'          => 'E-mail adresa:',
-'passwordreset-emailtitle'     => 'Pojedinosti o računu na {{SITENAME}}',
-'passwordreset-emailtext-ip'   => 'Netko (vjerojatno Vi, s IP adrese $1) zatražio je podsjetnik za Vaše detalje računa
+'passwordreset'                    => 'Ponovno postavi lozinku',
+'passwordreset-text'               => 'Ispunite ovaj obrazac da biste dobili e-mail podsjetnik o vašim detaljima računa.',
+'passwordreset-legend'             => 'Poništi lozinku',
+'passwordreset-disabled'           => 'Poništavanje lozinke je onemogućeno na ovom wikiju.',
+'passwordreset-pretext'            => '{{PLURAL:$1||Unesite jedan od dijelova podataka u nastavku}}',
+'passwordreset-username'           => 'Suradničko ime:',
+'passwordreset-domain'             => 'Domena:',
+'passwordreset-capture'            => 'Pogledati krajnju poruku?',
+'passwordreset-capture-help'       => 'Ako označite ovu kućicu, e-poruka s privremenom lozinkom će biti prikazana i poslana korisniku.',
+'passwordreset-email'              => 'E-mail adresa:',
+'passwordreset-emailtitle'         => 'Pojedinosti o računu na {{SITENAME}}',
+'passwordreset-emailtext-ip'       => 'Netko (vjerojatno Vi, s IP adrese $1) zatražio je podsjetnik za Vaše detalje računa
 za {{SITENAME}} ($4). Sljedeći {{PLURAL:$3|račun suradnika je|računi suradnika su}}
 povezani s ovom e-mail adresom:
 
@@ -835,7 +835,7 @@ $2
 Trebate se prijaviti i odabrati novu lozinku. Ukoliko je netko drugi napravio ovaj
 zahtjev, ili ako ste sjeti Vaše izvorne lozinke, a vi je više ne želite promijeniti, 
 možete zanemariti ovu poruku i nastavite koristiti staru lozinku.',
-'passwordreset-emailtext-user' => 'Suradnik $1 na {{SITENAME}} zatražio podsjetnik o pojedinostima vašeg računa za {{SITENAME}}
+'passwordreset-emailtext-user'     => 'Suradnik $1 na {{SITENAME}} zatražio podsjetnik o pojedinostima vašeg računa za {{SITENAME}}
 ($4). Sljedeći {{PLURAL:$3|račun suradnika je|računi suradnika su}} povezani s ovom e-mail adresom:
 
 $2
@@ -844,9 +844,11 @@ $2
 Trebate se prijaviti i odabrati novu lozinku. Ukoliko je netko drugi napravio ovaj
 zahtjev, ili ako ste sjeti Vaše izvorne lozinke, a vi je više ne želite promijeniti, 
 možete zanemariti ovu poruku i nastavite koristiti staru lozinku.',
-'passwordreset-emailelement'   => 'Suradničko ime: $1
+'passwordreset-emailelement'       => 'Suradničko ime: $1
 Privremena lozinka: $2',
-'passwordreset-emailsent'      => 'E-mail podsjetnik je poslan.',
+'passwordreset-emailsent'          => 'E-mail podsjetnik je poslan.',
+'passwordreset-emailsent-capture'  => 'Poslan Vam je podsjetnik kao e-pošta (tekst je prikazan dolje).',
+'passwordreset-emailerror-capture' => 'Napravljen je podsjetnik za slanje e-pošte (prikazan dolje), ali njegovo slanje nije uspjelo: $1',
 
 # Special:ChangeEmail
 'changeemail'          => 'Promijeni e-mail adresu',
@@ -1397,6 +1399,7 @@ Primijetite da uporaba navigacijskih poveznica resetira Vaše izbore u stupcu.',
 'yourrealname'                  => 'Pravo ime (nije obvezno)*',
 'yourlanguage'                  => 'Jezik:',
 'yourvariant'                   => 'Inačica jezika:',
+'prefs-help-variant'            => 'Željena varijanta ili pravopis za prikaz stranica ovog wikija.',
 'yournick'                      => 'Vaš nadimak (za potpisivanje)',
 'prefs-help-signature'          => 'Komentari na stranicama za razgovor trebali bi biti potpisani s "<nowiki>~~~~</nowiki>" što će biti pretvoreno u Vaš potpis i datum.',
 'badsig'                        => 'Kôd Vašeg potpisa nije valjan; provjerite HTML tagove.',
@@ -1436,7 +1439,7 @@ Ne smije biti duži od $1 {{PLURAL:$1|znaka|znaka|znakova}}.',
 'userrights-lookup-user'       => 'Upravljaj suradničkim skupinama',
 'userrights-user-editname'     => 'Unesite suradničko ime:',
 'editusergroup'                => 'Uredi suradničke skupine',
-'editinguser'                  => "Promjena suradničkih prava za suradnika '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                  => "Promjena suradničkih prava za suradnika '''[[User:$1|$1]]''' $2",
 'userrights-editusergroup'     => 'Uredi suradničke skupine',
 'saveusergroups'               => 'Snimi suradničke skupine',
 'userrights-groupsmember'      => 'Član:',
@@ -1468,7 +1471,7 @@ Ne smije biti duži od $1 {{PLURAL:$1|znaka|znaka|znakova}}.',
 'group-bot-member'           => '{{GENDER:$1|bot}}',
 'group-sysop-member'         => '{{GENDER:$1|administrator|administratorica}}',
 'group-bureaucrat-member'    => '{{GENDER:$1|birokrat|birokratica}}',
-'group-suppress-member'      => 'Nadzornik',
+'group-suppress-member'      => '{{GENDER:$1|nadzornik|nadzornica}}',
 
 'grouppage-user'          => '{{ns:project}}:Suradnici',
 'grouppage-autoconfirmed' => '{{ns:project}}:Automatski potvrđeni suradnici',
@@ -1536,7 +1539,7 @@ Ne smije biti duži od $1 {{PLURAL:$1|znaka|znaka|znakova}}.',
 'right-siteadmin'             => 'Zaključavanje i otključavanje baze podataka',
 'right-override-export-depth' => 'Izvezi stranice uključujući i povezane stranice do dubine od 5',
 'right-sendemail'             => 'Slanje e-maila drugim korisnicima',
-'right-passwordreset'         => 'Ponovno postavljanje lozinke za suradnika ([[Special:PasswordReset|posebna stranica]])',
+'right-passwordreset'         => 'Vidi poruku e-pošte o ponovnom postavljanju lozinke',
 
 # User rights log
 'rightslog'                  => 'Evidencija suradničkih prava',
@@ -2189,7 +2192,7 @@ Promjene na toj stranici i njenoj stranici za razgovor bit će prikazane na popi
 'watchmethod-list'     => 'provjera praćanih stranica za nedavne promjene',
 'watchlistcontains'    => 'Vaš popis praćenja sadrži $1 {{PLURAL:$1|stranicu|stranice|stranica}}.',
 'iteminvalidname'      => "Problem s izborom '$1', ime nije valjano...",
-'wlnote'               => "Ovdje {{PLURAL:$1|je posljednja $1 promjena|su posljednje $1 promjene|je posljednjih $1 promjena}} u {{PLURAL:$2|posljednjem '''$2''' satu|posljednja '''$2''' sata|posljednjih '''$2''' sati}}.",
+'wlnote'               => "Ovdje {{PLURAL:$1|je posljednja $1 promjena|su posljednje $1 promjene|je posljednjih $1 promjena}} u {{PLURAL:$2|posljednjem '''$2''' satu|posljednja '''$2''' sata|posljednjih '''$2''' sati}}, od $3, $4.",
 'wlshowlast'           => 'Prikaži zadnjih $1 sati $2 dana $3',
 'watchlist-options'    => 'Izbornik popisa praćenja',
 
@@ -2669,7 +2672,7 @@ Molimo odaberite drugo ime.',
 
 Odredišni članak "[[:$1]]" već postoji. Želite li ga obrisati da biste napravili mjesto za premještaj?',
 'delete_and_move_confirm'      => 'Da, izbriši stranicu',
-'delete_and_move_reason'       => 'Obrisano kako bi se napravilo mjesta za premještaj.',
+'delete_and_move_reason'       => 'Obrisano kako bi se napravilo mjesta za premještaj, stari naziv "[[$1]]"',
 'selfmove'                     => 'Izvorni i odredišni naslov su isti; ne mogu premjestiti stranicu na nju samu.',
 'immobile-source-namespace'    => 'Ne mogu premjestiti stranice u imenski prostor "$1"',
 'immobile-target-namespace'    => 'Ne mogu premjestiti stranice u imenski prostor "$1"',
@@ -2949,7 +2952,7 @@ Njegovim izvršavanjem mogli biste oštetiti svoj sustav.",
 'svg-long-desc'          => 'SVG datoteka, nominalno $1 × $2 piksela, veličina datoteke: $3',
 'show-big-image'         => 'Vidi sliku u punoj veličini (rezoluciji)',
 'show-big-image-preview' => 'Veličina ovog prikaza: $1.',
-'show-big-image-other'   => 'Ostale rezolucije: $1.',
+'show-big-image-other'   => '{{PLURAL:$2|Druga rezolucija|Ostale rezolucije}}: $1.',
 'show-big-image-size'    => '$1 × $2 piksela',
 'file-info-gif-looped'   => 'animacija se ponavlja',
 'file-info-gif-frames'   => '$1 {{PLURAL:$1|okvir|okvira}}',
@@ -3646,7 +3649,7 @@ Slike se na taj način prikazuju u punoj rezoluciji, a drugi tipovi datoteka se 
 'specialpages'                   => 'Posebne stranice',
 'specialpages-note'              => '----
 * Normalne posebne stranice
-* <strong class="mw-specialpagerestricted">Posebne stranice s ograničenim pristupom.</strong>',
+* <span class="mw-specialpagerestricted">Posebne stranice s ograničenim pristupom.</span>',
 'specialpages-group-maintenance' => 'Izvještaji za održavanje',
 'specialpages-group-other'       => 'Ostale posebne stranice',
 'specialpages-group-login'       => 'Prijava / Otvaranje računa',
@@ -3730,7 +3733,17 @@ Slike se na taj način prikazuju u punoj rezoluciji, a drugi tipovi datoteka se 
 'newuserlog-byemail'     => 'lozinka poslana e-poštom',
 
 # Feedback
-'feedback-subject' => 'Tema:',
-'feedback-message' => 'Poruka:',
+'feedback-subject'  => 'Tema:',
+'feedback-message'  => 'Poruka:',
+'feedback-cancel'   => 'Odustani',
+'feedback-submit'   => 'Pošaljite povratnu informaciju',
+'feedback-adding'   => 'Dodajem povratne informacije na stranicu...',
+'feedback-error1'   => 'Pogreška: Neprepoznati rezultat od API funkcije',
+'feedback-error2'   => 'Pogreška: Uređivanje nije uspjelo',
+'feedback-error3'   => 'Pogreška: Nema odgovora od API funkcije',
+'feedback-thanks'   => 'Hvala! Vaš odgovor je snimljen na stranicu "[$2 $1]".',
+'feedback-close'    => 'Gotovo',
+'feedback-bugcheck' => 'Izvrsno! Molimo provjerite da se ne radi o nekom [$1 poznatom "bugu"].',
+'feedback-bugnew'   => 'Provjereno. Prijavi novi "bug"',
 
 );

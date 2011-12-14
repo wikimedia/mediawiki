@@ -3769,14 +3769,19 @@ As imaxes móstranse na súa resolución completa; outros tipos de ficheiros in�
 'newuserlog-byemail'                  => 'contrasinal enviado por correo electrónico',
 
 # Feedback
-'feedback-note'    => 'Os seus comentarios publicaranse publicamente na páxina "[$2 $1]" xunto ao seu nome de usuario, a versión do seu navegador e o seu sistema operativo.',
-'feedback-subject' => 'Asunto:',
-'feedback-message' => 'Mensaxe:',
-'feedback-cancel'  => 'Cancelar',
-'feedback-submit'  => 'Enviar os comentarios',
-'feedback-adding'  => 'Enviando os comentarios...',
-'feedback-error1'  => 'Erro: Resultado da API non recoñecido',
-'feedback-error2'  => 'Erro: Fallo de edición',
-'feedback-error3'  => 'Erro: Non hai resposta da API',
+'feedback-note'     => 'Este formulario deixa publicamente un comentario ou suxestión simple na páxina "[$2 $1]" xunto ao seu nome de usuario, a versión do seu navegador e o seu sistema operativo.',
+'feedback-bugnote'  => 'Ou tamén pode [$1 publicar un informe técnico sobre un erro].',
+'feedback-subject'  => 'Asunto:',
+'feedback-message'  => 'Mensaxe:',
+'feedback-cancel'   => 'Cancelar',
+'feedback-submit'   => 'Enviar os comentarios',
+'feedback-adding'   => 'Enviando os comentarios...',
+'feedback-error1'   => 'Erro: Resultado da API non recoñecido',
+'feedback-error2'   => 'Erro: Fallo de edición',
+'feedback-error3'   => 'Erro: Non hai resposta da API',
+'feedback-thanks'   => 'Grazas! Os seus comentarios publicáronse na páxina "[$2 $1]".',
+'feedback-close'    => 'Feito',
+'feedback-bugcheck' => 'Perfecto! Comprobe que aínda non está entre os [$1 erros coñecidos].',
+'feedback-bugnew'   => 'Comprobeino. Informar deste novo erro',
 
 );

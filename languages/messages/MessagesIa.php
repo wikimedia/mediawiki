@@ -3515,7 +3515,7 @@ Per favor confirma que tu realmente vole recrear iste pagina.",
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'Le modificationes plus nove que $1 {{PLURAL:$1|secunda|secundas}} possibilemente non se revela in iste lista.',
-'lag-warn-high'   => 'A causa de un alte latentia del servitor de base de datos, le modificationes plus nove que $1 {{PLURAL:$1|secunda|secundas}} possibilemente non se revela in iste lista.',
+'lag-warn-high'   => 'Le servitor del base de datos es in retardo; modificationes facite durante le ultime $1 {{PLURAL:$1|secunda|secundas}} possibilemente non appare in iste lista.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Tu observatorio contine {{PLURAL:$1|1 titulo|$1 titulos}}, excludente le paginas de discussion.',
@@ -3714,14 +3714,19 @@ Le imagines se monstra in plen resolution, le altere typos de file se executa di
 'newuserlog-byemail'                  => 'contrasigno inviate per e-mail',
 
 # Feedback
-'feedback-note'    => 'Tu responsa essera publicate in $1.',
-'feedback-subject' => 'Subjecto:',
-'feedback-message' => 'Message:',
-'feedback-cancel'  => 'Cancellar',
-'feedback-submit'  => 'Submitter opinion',
-'feedback-adding'  => 'Le responsa es addite al pagina...',
-'feedback-error1'  => 'Error: Resultato del API non recognoscite',
-'feedback-error2'  => 'Error: Modification fallite',
-'feedback-error3'  => 'Error: Nulle responsa del API',
+'feedback-note'     => 'Iste formulario face public un simple commento o suggestion sur le pagina "[$2 $1]", con tu nomine de usator, version de navigator web e systema de operation.',
+'feedback-bugnote'  => 'Alternativemente, tu pote [$1 inviar un reporto de falta technic].',
+'feedback-subject'  => 'Subjecto:',
+'feedback-message'  => 'Message:',
+'feedback-cancel'   => 'Cancellar',
+'feedback-submit'   => 'Submitter opinion',
+'feedback-adding'   => 'Le responsa es addite al pagina...',
+'feedback-error1'   => 'Error: Resultato del API non recognoscite',
+'feedback-error2'   => 'Error: Modification fallite',
+'feedback-error3'   => 'Error: Nulle responsa del API',
+'feedback-thanks'   => 'Gratias! Tu retroaction ha essite publicate in le pagina "[$2 $1]".',
+'feedback-close'    => 'Finite',
+'feedback-bugcheck' => 'Bon! Ma per favor verifica que iste falta non es [$1 jam cognoscite].',
+'feedback-bugnew'   => 'Si, io lo ha verificate; reportar un nove falta',
 
 );
