@@ -1610,7 +1610,6 @@ Acertinez s' i vs plait ki vos vloz vormint rifé cisse pådje ci.",
 'specialpages-group-redirects'   => 'Ridjiblaedjes di pådjes sipeciåles',
 
 # Feedback
-'feedback-note'    => "Vos rmarkess seront-st håynêye sol pådje « [$2 $1] » avou vosse no d' uzeu, li modêye di vosse betchteu et vosse sistinme d' operance.",
 'feedback-subject' => 'Sudjet',
 'feedback-message' => 'Messaedje',
 'feedback-cancel'  => 'Rinoncî',

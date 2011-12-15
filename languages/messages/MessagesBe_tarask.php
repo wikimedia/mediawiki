@@ -3716,14 +3716,17 @@ MediaWiki распаўсюджваецца з надзеяй, што будзе 
 'newuserlog-byemail'                  => 'Пароль адасланы па электроннай пошце',
 
 # Feedback
-'feedback-note'    => 'Ваш водгук будзе разьмешчаны ў праекце $1.',
-'feedback-subject' => 'Тэма:',
-'feedback-message' => 'Паведамленьне:',
-'feedback-cancel'  => 'Скасаваць',
-'feedback-submit'  => 'Даслаць водгук',
-'feedback-adding'  => 'Даданьне водгуку на старонку…',
-'feedback-error1'  => 'Памылка: невядомы вынік з API',
-'feedback-error2'  => 'Памылка рэдагаваньня',
-'feedback-error3'  => 'Памылка: няма адказу ад API',
+'feedback-subject'  => 'Тэма:',
+'feedback-message'  => 'Паведамленьне:',
+'feedback-cancel'   => 'Скасаваць',
+'feedback-submit'   => 'Даслаць водгук',
+'feedback-adding'   => 'Даданьне водгуку на старонку…',
+'feedback-error1'   => 'Памылка: невядомы вынік з API',
+'feedback-error2'   => 'Памылка рэдагаваньня',
+'feedback-error3'   => 'Памылка: няма адказу ад API',
+'feedback-thanks'   => 'Дзякуй! Ваш водгук быў разьмешчаны на старонцы «[$2 $1]».',
+'feedback-close'    => 'Выканана',
+'feedback-bugcheck' => 'Выдатна! Толькі праверце, магчыма гэтыя памылкі ўжо [$1 вядомыя].',
+'feedback-bugnew'   => 'Я праверыў. Гэта новая памылка',
 
 );

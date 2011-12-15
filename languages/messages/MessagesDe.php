@@ -3868,19 +3868,19 @@ Eine [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie der ''GNU General Public License'']
 'newuserlog-byemail'                  => 'das Passwort wurde per E-Mail versandt',
 
 # Feedback
-'feedback-note'     => 'Dieses Formular speichert deinen Kommentar oder Vorschlag, zusammen mit deinem Benutzernamen und der Version des von dir verwendeten Webbrowsers sowie Betriebssystems, öffentlich einsehbar auf der Seite „[$2 $1]“.',
-'feedback-bugnote'  => 'Oder du kannst [$1 eine Meldung zu einem technischen Fehler] einreichen.',
-'feedback-subject'  => 'Betreff:',
-'feedback-message'  => 'Nachricht:',
-'feedback-cancel'   => 'Abbrechen',
-'feedback-submit'   => 'Rückmeldung senden',
-'feedback-adding'   => 'Rückmeldung wird zur Seite hinzugefügt …',
-'feedback-error1'   => 'Fehler: Unbekanntes Ergebnis der API',
-'feedback-error2'   => 'Fehler: Bearbeitung gescheitert',
-'feedback-error3'   => 'Fehler: Keine Antwort von der API',
-'feedback-thanks'   => 'Vielen Dank. Deine Rückmeldung wurde auf der Seite „[$2 $1]“ gespeichert.',
-'feedback-close'    => 'Erledigt',
-'feedback-bugcheck' => 'Super! Bitte überprüfe noch, ob es sich hierbei nicht um einen bereits [$1 bekannten Fehler] handelt.',
-'feedback-bugnew'   => 'Ich habe es überprüft. Den neuen Fehler melden.',
+'feedback-bugornote' => 'Sofern Du detailliert ein technisches Problem beschreiben möchtest, melde bitte [$1 einen Fehler].
+Anderenfalls kannst du auch das untenstehende einfache Formular nutzen. Dein Kommentar wird, zusammen mit deinem Benutzernamen und der Version des von Dir verwendeten Webbrowsers sowie Betriebssystems, auf der Seite „[$3 $2]“ hinzugefügt.',
+'feedback-subject'   => 'Betreff:',
+'feedback-message'   => 'Nachricht:',
+'feedback-cancel'    => 'Abbrechen',
+'feedback-submit'    => 'Rückmeldung senden',
+'feedback-adding'    => 'Rückmeldung wird zur Seite hinzugefügt …',
+'feedback-error1'    => 'Fehler: Unbekanntes Ergebnis der API',
+'feedback-error2'    => 'Fehler: Bearbeitung gescheitert',
+'feedback-error3'    => 'Fehler: Keine Antwort von der API',
+'feedback-thanks'    => 'Vielen Dank. Deine Rückmeldung wurde auf der Seite „[$2 $1]“ gespeichert.',
+'feedback-close'     => 'Erledigt',
+'feedback-bugcheck'  => 'Super! Bitte überprüfe noch, ob es sich hierbei nicht um einen bereits [$1 bekannten Fehler] handelt.',
+'feedback-bugnew'    => 'Ich habe es überprüft. Den neuen Fehler melden.',
 
 );

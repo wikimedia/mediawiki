@@ -3546,7 +3546,6 @@ Le figure a së smon-o a amzura pijn-a, j'àotre sòrt d'archivi a ven-o fàite 
 'newuserlog-byemail'                  => 'ciav spedìa për pòsta eletrònica',
 
 # Feedback
-'feedback-note'    => 'Ij sò coment a saran smonù publicament ansima a la pàgina "[$2 $1]", ansema con sò stranòm, version dël navigador e sistema operativ.',
 'feedback-subject' => 'Soget:',
 'feedback-message' => 'Mëssagi:',
 'feedback-cancel'  => 'Scancela',

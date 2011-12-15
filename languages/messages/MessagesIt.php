@@ -1344,7 +1344,7 @@ L'operazione non può essere annullata.",
 'prefs-help-email'              => "L'inserimento del proprio indirizzo e-mail è facoltativo, ma permette di ricevere la propria password qualora venisse dimenticata.",
 'prefs-help-email-others'       => 'Puoi anche scegliere di lasciare che gli altri ti contattino via posta elettronica con un collegamento dalla tua pagina utente o di discussione.
 Il tuo indirizzo non viene rivelato quando gli altri utenti ti contattano.',
-'prefs-help-email-required'     => 'Indirizzo e-mail necessario.',
+'prefs-help-email-required'     => 'Indirizzo e-mail obbligatorio.',
 'prefs-info'                    => 'Informazioni di base',
 'prefs-i18n'                    => 'Internazionalizzazione',
 'prefs-signature'               => 'Firma',
@@ -3675,7 +3675,6 @@ Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri
 'newuserlog-byemail'                  => 'password inviata via mail',
 
 # Feedback
-'feedback-note'    => 'Il tuo feedback sarà inviato a $1.',
 'feedback-subject' => 'Oggetto:',
 'feedback-message' => 'Messaggio:',
 'feedback-cancel'  => 'Annulla',

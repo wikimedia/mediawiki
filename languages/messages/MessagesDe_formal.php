@@ -696,9 +696,9 @@ Sie können auch die [[Special:EditWatchlist|Standardseite]] zum Bearbeiten benu
 'dberr-outofdate' => 'Beachten Sie, dass der Suchindex unserer Inhalte bei Google veraltet sein kann.',
 
 # Feedback
-'feedback-note'     => 'Dieses Formular speichert Ihren Kommentar oder Vorschlag, zusammen mit Ihrem Benutzernamen und der Version des von Ihnen verwendeten Webbrowsers sowie Betriebssystems, öffentlich einsehbar auf der Seite „[$2 $1]“.',
-'feedback-bugnote'  => 'Oder Sie können [$1 eine Meldung zu einem technischen Fehler] einreichen.',
-'feedback-thanks'   => 'Vielen Dank. Ihre Rückmeldung wurde auf der Seite „[$2 $1]“ gespeichert.',
-'feedback-bugcheck' => 'Super! Bitte überprüfen Sie noch, ob es sich hierbei nicht um einen bereits [$1 bekannten Fehler] handelt.',
+'feedback-bugornote' => 'Sofern Sie detailliert ein technisches Problem beschreiben möchten, melden Sie bitte [$1 einen Fehler].
+Anderenfalls können Sie auch das untenstehende einfache Formular nutzen. Ihr Kommentar wird, zusammen mit Ihrem Benutzernamen und der Version des von Ihnen verwendeten Webbrowsers sowie Betriebssystems, auf der Seite „[$3 $2]“ hinzugefügt.',
+'feedback-thanks'    => 'Vielen Dank. Ihre Rückmeldung wurde auf der Seite „[$2 $1]“ gespeichert.',
+'feedback-bugcheck'  => 'Super! Bitte überprüfen Sie noch, ob es sich hierbei nicht um einen bereits [$1 bekannten Fehler] handelt.',
 
 );

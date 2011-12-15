@@ -3774,7 +3774,6 @@ As imagens serão exibidas em sua resolução máxima, outros tipos de arquivos 
 'newuserlog-byemail'                  => 'senha enviada por correio-eletrônico',
 
 # Feedback
-'feedback-note'    => 'O seu comentário será publicado na página "[$2 $1]", tornando-se assim público, em conjunto com o seu nome de usuário, versão do navegador e sistema operacional.',
 'feedback-subject' => 'Assunto:',
 'feedback-message' => 'Mensagem:',
 'feedback-cancel'  => 'Cancelar',

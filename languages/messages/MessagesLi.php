@@ -3567,7 +3567,6 @@ Aafbeildinge waere in häör vollejige resolutie getoeandj. Anger bestandjstypes
 'newuserlog-byemail'                  => 'wachwaord is versjik per e-mail',
 
 # Feedback
-'feedback-note'    => 'Diene feedback weurd publiekelik geplaats oppe pagina "[$2 $1]", mit diene gebroekersnaam, browserversie en DOS.',
 'feedback-subject' => 'Óngerwerp:',
 'feedback-message' => 'Berich:',
 'feedback-cancel'  => 'Braek aaf',

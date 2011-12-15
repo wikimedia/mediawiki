@@ -3784,14 +3784,19 @@ Imaginile sunt afișate la rezoluția lor maximă, în timp ce alte tipuri de fi
 'newuserlog-byemail'                  => 'parola trimisă prin e-mail',
 
 # Feedback
-'feedback-note'    => 'Acest formular face public un simplu comentariu sau o simplă sugestie pe pagina „[$2 $1]”, alături de numele dumneavoastră de utilizator, versiunea navigatorului și sistemul de operare.',
-'feedback-subject' => 'Subiect:',
-'feedback-message' => 'Mesaj:',
-'feedback-cancel'  => 'Revocare',
-'feedback-submit'  => 'Trimite părerea',
-'feedback-adding'  => 'Se adaugă părerea pe pagină...',
-'feedback-error1'  => 'Eroare: Rezultat necunoscut de la API',
-'feedback-error2'  => 'Eroare: editarea nu a reușit',
-'feedback-error3'  => 'Eroare: Niciun răspuns de la API',
+'feedback-bugornote' => 'Dacă sunteți pregătit să descrieți o problemă tehnică în detaliu vă rugăm să [ $1 raportați un bug].
+În caz contrar, puteți utiliza formularul de mai jos. Comentariul dumneavoastră va fi adăugat pe pagina „[ $3  $2 ]”, împreună cu numele de utilizator și numele navigatorului pe care îl folosiți.',
+'feedback-subject'   => 'Subiect:',
+'feedback-message'   => 'Mesaj:',
+'feedback-cancel'    => 'Revocare',
+'feedback-submit'    => 'Trimite părerea',
+'feedback-adding'    => 'Se adaugă părerea pe pagină...',
+'feedback-error1'    => 'Eroare: Rezultat necunoscut de la API',
+'feedback-error2'    => 'Eroare: editarea nu a reușit',
+'feedback-error3'    => 'Eroare: Niciun răspuns de la API',
+'feedback-thanks'    => 'Mulțumim! Comentariile dumneavoastră au fost publicate pe pagina „[ $2  $1 ]”.',
+'feedback-close'     => 'Gata',
+'feedback-bugcheck'  => 'Minunat! Trebuie doar să verificați dacă nu cumva problema a fost [$1 deja înregistrată].',
+'feedback-bugnew'    => 'Am verificat. O raportez drept o problemă nouă',
 
 );

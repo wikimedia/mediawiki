@@ -3714,8 +3714,6 @@ Le imagines se monstra in plen resolution, le altere typos de file se executa di
 'newuserlog-byemail'                  => 'contrasigno inviate per e-mail',
 
 # Feedback
-'feedback-note'     => 'Iste formulario face public un simple commento o suggestion sur le pagina "[$2 $1]", con tu nomine de usator, version de navigator web e systema de operation.',
-'feedback-bugnote'  => 'Alternativemente, tu pote [$1 inviar un reporto de falta technic].',
 'feedback-subject'  => 'Subjecto:',
 'feedback-message'  => 'Message:',
 'feedback-cancel'   => 'Cancellar',

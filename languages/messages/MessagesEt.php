@@ -3680,7 +3680,6 @@ Pilt kuvatakse algupärases suuruses, muu fail avatakse koheselt seostuva progra
 'newuserlog-byemail'                => 'parool saadetud e-postiga',
 
 # Feedback
-'feedback-note'    => 'Sinu tagasiside postitatakse avalikult sinu kasutajanime ning andmetega sinu võrgulehitseja versiooni ja operatsioonisüsteemi kohta leheküljele "[$2 $1]".',
 'feedback-subject' => 'Teema:',
 'feedback-message' => 'Sõnum:',
 'feedback-cancel'  => 'Loobu',

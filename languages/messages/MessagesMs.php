@@ -3676,8 +3676,6 @@ Imej ditunjuk dalam leraian penuh, jenis fail yang lain dibuka dengan atur cara 
 'newuserlog-byemail'                  => 'kata laluan dihantar melalui e-mel',
 
 # Feedback
-'feedback-note'     => 'Borang ini mencatatkan komen atau cadangan yang ringkas secara umum pada laman "[$2 $1]", di samping nama pengguna, versi pelayar dan sistem pengendalian anda.',
-'feedback-bugnote'  => 'Ataupun, anda boleh [$1 mencatatkan laporan pepijat teknikal] pula.',
 'feedback-subject'  => 'Perkara:',
 'feedback-message'  => 'Pesanan:',
 'feedback-cancel'   => 'Batalkan',

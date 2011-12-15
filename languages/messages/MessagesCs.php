@@ -3854,19 +3854,19 @@ Obrázky se zobrazí v plném rozlišení, jiné typy souborů se otevřenou v p
 'newuserlog-byemail'                  => 'heslo zasláno e-mailem',
 
 # Feedback
-'feedback-note'     => 'Pomocí tohoto formuláře přidáte jednoduchý komentář nebo návrh na stránku „[$2 $1]“ spolu se svým uživatelským jménem, verzí prohlížeče a operačního systému.',
-'feedback-bugnote'  => 'Nebo místo toho můžete [$1 poslat technické hlášení chyby].',
-'feedback-subject'  => 'Předmět:',
-'feedback-message'  => 'Zpráva:',
-'feedback-cancel'   => 'Storno',
-'feedback-submit'   => 'Odeslat komentář',
-'feedback-adding'   => 'Komentář se přidává na stránku…',
-'feedback-error1'   => 'Chyba: Nerozpoznaný výsledek z API',
-'feedback-error2'   => 'Chyba: Editace se nezdařila',
-'feedback-error3'   => 'Chyba: API nevrátilo žádnou odpověď',
-'feedback-thanks'   => 'Děkujeme! Váš komentář byl přidat na stránku „[$2 $1]“.',
-'feedback-close'    => 'Hotovo',
-'feedback-bugcheck' => 'Skvělé! Jen zkontrolujte, zda se nejedná o jednu z [$1 už známých chyb].',
-'feedback-bugnew'   => 'Zkontroloval(a) jsem to. Chci ohlásit novou chybu.',
+'feedback-bugornote' => 'Pokud dokážete podrobně popsat technický problém, můžete [$1 nahlásit chybu].
+Jinak můžete využít jednoduchý formulář níže. Váš komentář bude přidán na stránku „[$3 $2]“ spolu s vaším uživatelským jménem a informací o tom, jaký prohlížeč používáte.',
+'feedback-subject'   => 'Předmět:',
+'feedback-message'   => 'Zpráva:',
+'feedback-cancel'    => 'Storno',
+'feedback-submit'    => 'Odeslat komentář',
+'feedback-adding'    => 'Komentář se přidává na stránku…',
+'feedback-error1'    => 'Chyba: Nerozpoznaný výsledek z API',
+'feedback-error2'    => 'Chyba: Editace se nezdařila',
+'feedback-error3'    => 'Chyba: API nevrátilo žádnou odpověď',
+'feedback-thanks'    => 'Děkujeme! Váš komentář byl přidat na stránku „[$2 $1]“.',
+'feedback-close'     => 'Hotovo',
+'feedback-bugcheck'  => 'Skvělé! Jen zkontrolujte, zda se nejedná o jednu z [$1 už známých chyb].',
+'feedback-bugnew'    => 'Zkontroloval(a) jsem to. Chci ohlásit novou chybu.',
 
 );

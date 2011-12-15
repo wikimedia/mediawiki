@@ -267,18 +267,18 @@ $messages = array(
 'thu'           => 'Enj',
 'fri'           => 'Pr',
 'sat'           => 'Sht',
-'january'       => 'Janar',
-'february'      => 'Shkurt',
-'march'         => 'Mars',
-'april'         => 'Prill',
-'may_long'      => 'Maj',
-'june'          => 'Qershor',
-'july'          => 'Korrik',
-'august'        => 'Gusht',
-'september'     => 'Shtator',
-'october'       => 'Tetor',
-'november'      => 'Nëntor',
-'december'      => 'Dhjetor',
+'january'       => 'janar',
+'february'      => 'shkurt',
+'march'         => 'mars',
+'april'         => 'prill',
+'may_long'      => 'maj',
+'june'          => 'qershor',
+'july'          => 'korrik',
+'august'        => 'gusht',
+'september'     => 'shtator',
+'october'       => 'tetor',
+'november'      => 'nëntor',
+'december'      => 'dhjetor',
 'january-gen'   => 'Janar',
 'february-gen'  => 'Shkurt',
 'march-gen'     => 'Mars',
@@ -394,7 +394,7 @@ $messages = array(
 'talkpage'          => 'Diskuto rreth kësaj faqeje',
 'talkpagelinktext'  => 'Diskuto',
 'specialpage'       => 'Faqe speciale',
-'personaltools'     => 'Mjete e mia',
+'personaltools'     => 'Mjetet e mia',
 'postcomment'       => 'Seksion i ri',
 'articlepage'       => 'Shiko faqen me përmbajtje',
 'talk'              => 'Diskutimet',
@@ -418,12 +418,12 @@ $messages = array(
 'jumptonavigation'  => 'lundrim',
 'jumptosearch'      => 'kërko',
 'view-pool-error'   => "Ju kërkojmë ndjesë, serverët janë të mbingarkuar për momentin.
-Këtë faqe po përpiqen të shikojnë më shumë njerëz nga ç'është e mundur.
+Këtë faqe po përpiqen t'i shikojnë më shumë njerëz nga ç'është e mundur.
 Ju lutemi prisni pak para se ta hapni sërish këtë faqe.
 
 $1",
 'pool-timeout'      => 'Mbaroi koha duke pritur për kyçin',
-'pool-queuefull'    => 'Radha proceseve është plotë',
+'pool-queuefull'    => 'Radha e proceseve është mbushur',
 'pool-errorunknown' => 'Gabim i panjohur',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -701,6 +701,7 @@ Për të hyrë tërësisht duhet të vendosni një fjalëkalim të ri këtu:',
 'passwordreset-disabled'           => 'Rivendosja e fjalëkalimit është deaktivizuar në këtë wiki.',
 'passwordreset-pretext'            => '{{PLURAL:$1| | Shkruani një nga pjesët e të dhënave më poshtë}}',
 'passwordreset-username'           => 'Nofka:',
+'passwordreset-domain'             => 'Domain:',
 'passwordreset-capture'            => 'Dëshiron të shikosh e-mail-in që rezulton?',
 'passwordreset-capture-help'       => "Nëse shënoni këtë kuti, e-mail-i (dhe fjalekalimi i përkohshëm) që do t'i dërgohen përdoruesit, do të të tregohen edhe ty.",
 'passwordreset-email'              => 'Posta elektronike',
@@ -923,14 +924,14 @@ Ajo tanimë ekziston.',
 
 Duhet të ketë më pakë se $2, {{PLURAL:$2|kërkesë|kërkesa}}, kurse tani {{PLURAL:$1|është $1 kërkesë|janë $1 kërkesa}}.',
 'expensive-parserfunction-category'       => 'Faqe me shumë shprehje të kushtueshmë për analizë gramatikore',
-'post-expand-template-inclusion-warning'  => "Vini re: Stampa e përfshirë është shumë e madhe.
-Disa stampa s'do të përfshihen.",
+'post-expand-template-inclusion-warning'  => "'''Kujdes''': Numri i shablloneve që perfshihen është shumë i madh.
+Disa shabllone nuk do të përfshihen.",
 'post-expand-template-inclusion-category' => 'Faqe ku stampat e përfshira kalojnë kufirin',
 'post-expand-template-argument-warning'   => "Vini re: Kjo faqe ka të paktën një parametër stampe që është shumë i madh për t'u shpalosur.
 Këto parametra nuk janë përfshirë.",
 'post-expand-template-argument-category'  => 'Faqe që kanë parametra stampe të papërfshira',
-'parser-template-loop-warning'            => 'stampa u zbulua: [[$1]]',
-'parser-template-recursion-depth-warning' => 'Stampa ka kalur limitin e lejuar: $1',
+'parser-template-loop-warning'            => 'Shablloni nuk mund të therrasë vetveten: [[$1]]',
+'parser-template-recursion-depth-warning' => 'Ka kaluar kufiri i herëve që shablloni mund të thërrasë vetveten: ($1)',
 'language-converter-depth-warning'        => 'Konvertimi i gjuhës ka kaluar limitin e lejuar: ($1)',
 
 # "Undo" feature

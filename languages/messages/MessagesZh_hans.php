@@ -3644,7 +3644,6 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 'newuserlog-byemail'                  => '密码已由电子邮件发出',
 
 # Feedback
-'feedback-note'    => '您的反馈将随着您的用户名、 浏览器版本和操作系统公开张贴到页面"[$2 $1]"。',
 'feedback-subject' => '主题：',
 'feedback-message' => '内容：',
 'feedback-cancel'  => '取消',

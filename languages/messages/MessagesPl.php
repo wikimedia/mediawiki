@@ -3832,7 +3832,6 @@ Grafiki są pokazywane w pełnej rozdzielczości. Inne typy plików są otwieran
 'newuserlog-byemail'                  => 'hasło zostało wysłane e‐mailem',
 
 # Feedback
-'feedback-note'    => 'Twoja opinia zostanie wysłana do $1.',
 'feedback-subject' => 'Temat',
 'feedback-message' => 'Wiadomość:',
 'feedback-cancel'  => 'Anuluj',

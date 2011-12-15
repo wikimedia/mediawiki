@@ -1769,7 +1769,7 @@ Kad je poređano po korisniku, popis prikazuje samo one datoteke čije je posled
 'filehist-nothumb'          => 'Bez pregleda slika',
 'filehist-user'             => 'Korisnik',
 'filehist-dimensions'       => 'Dimenzije',
-'filehist-filesize'         => 'Veličina fajla',
+'filehist-filesize'         => 'Veličina datoteke',
 'filehist-comment'          => 'Komentar',
 'filehist-missing'          => 'Nema fajla',
 'imagelinks'                => 'Upotreba datoteke',
@@ -3677,5 +3677,19 @@ Slike su prikazane u punoj veličini, a druge vrste datoteka se pokreću pomoću
 'logentry-newusers-create2'           => '$1 {{GENDER:$2|je otvorio|je otvorila|otvori}} {{GENDER:$4|korisnički nalog}} $3',
 'logentry-newusers-autocreate'        => 'Nalog $1 je {{GENDER:$2|samostalno otvoren}}',
 'newuserlog-byemail'                  => 'lozinka poslata imejlom',
+
+# Feedback
+'feedback-subject'  => 'Naslov:',
+'feedback-message'  => 'Poruka:',
+'feedback-cancel'   => 'Otkaži',
+'feedback-submit'   => 'Pošalji povratnu informaciju',
+'feedback-adding'   => 'Dodajem povratnu informaciju na stranicu…',
+'feedback-error1'   => 'Greška: neprepoznat rezultat od API-ja',
+'feedback-error2'   => 'Greška: uređivanje nije uspelo',
+'feedback-error3'   => 'Greška: nema odgovora od API-ja',
+'feedback-thanks'   => 'Hvala! Vaša povratna informacija je postavljena na stranicu „[$2 $1]“.',
+'feedback-close'    => 'Urađeno',
+'feedback-bugcheck' => 'Odlično! Proverite da li je greška [$1 poznata od pre].',
+'feedback-bugnew'   => 'Provereno. Prijavi novu grešku',
 
 );

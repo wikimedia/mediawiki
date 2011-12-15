@@ -3889,7 +3889,6 @@ Các hình ảnh được hiển thị ở kích thước tối đa, còn các l
 'newuserlog-byemail'                  => 'gửi mật khẩu qua thư điện tử',
 
 # Feedback
-'feedback-note'    => 'Phản hồi của bạn sẽ được đăng lên $1.',
 'feedback-subject' => 'Tiêu đề:',
 'feedback-message' => 'Thông điệp:',
 'feedback-cancel'  => 'Hủy bỏ',

@@ -3517,7 +3517,6 @@ Tæknilegir örðugleikar eru á þessari síðu.',
 'newuserlog-byemail'                  => 'lykilorð sent með tölvupósti',
 
 # Feedback
-'feedback-note'    => 'Svörunin þín verður birt opinberlega á síðunni "[$2 $1]", ásamt notendanafni, útgáfu vafrans og stýrikerfi.',
 'feedback-subject' => 'Fyrirsögn:',
 'feedback-message' => 'Skilaboð:',
 'feedback-cancel'  => 'Hætta við',
