@@ -3499,8 +3499,7 @@ $wgMessageStructure = array(
 		'newuserlog-byemail',
 	),
 	'feedback' => array(
-		'feedback-note',
-		'feedback-bugnote',
+		'feedback-bugornote',
 		'feedback-subject',
 		'feedback-message',
 		'feedback-cancel',
