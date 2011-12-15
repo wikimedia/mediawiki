@@ -547,9 +547,9 @@ class SkinTemplate extends Skin {
 		/* set up the default links for the personal toolbar */
 		$personal_urls = array();
 
-		# Due to bug 32276, if a user does not have read permissions, 
-		# $this->getTitle() will just give Special:Badtitle, which is 
-		# not especially useful as a returnto parameter. Use the title 
+		# Due to bug 32276, if a user does not have read permissions,
+		# $this->getTitle() will just give Special:Badtitle, which is
+		# not especially useful as a returnto parameter. Use the title
 		# from the request instead, if there was one.
 		$page = Title::newFromURL( $request->getVal( 'title', '' ) );
 		$page = $request->getVal( 'returnto', $page );
