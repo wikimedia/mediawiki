@@ -492,7 +492,7 @@ var numbers = [
 	[ '13,000'],
 	[  '9'    ],
 	[ '14'    ],
-	[  '8.0'  ],
+	[  '8.0'  ]
 ];
 var numbersAsc = [
 	[  '7'    ],
@@ -500,7 +500,7 @@ var numbersAsc = [
 	[  '9'    ],
 	[ '12'    ],
 	[ '14'    ],
-	[ '13,000'],
+	[ '13,000']
 ];
 
 tableTest( 'bug 8115: sort numbers with commas (ascending)',
