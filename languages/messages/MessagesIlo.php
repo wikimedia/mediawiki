@@ -3508,7 +3508,6 @@ Daytoy a pagsaadan ket agdadama ti teknikal a pagrigrigatan.',
 'newuserlog-byemail'                  => 'naipatulod ti kontrasenias ti e-surat',
 
 # Feedback
-'feedback-note'    => 'Daytoy a kinabuklan ket agipablaak iti publiko ti nalaka a maawatan a komentario wenno singasing iti panid a "[$2 $1]" , a mairaman ti nagan ti agar-aramat, pagbasabasa a bersion ken pagpaandar ti sistema.',
 'feedback-subject' => 'Suheto:',
 'feedback-message' => 'Mensahe:',
 'feedback-cancel'  => 'Ukasen',

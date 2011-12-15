@@ -3711,8 +3711,6 @@ $5
 'newuserlog-byemail'                  => '이메일로 보낸 암호',
 
 # Feedback
-'feedback-note'     => '여기에 간단한 의견을 남겨 주시면, 계정 이름, 웹브라우저 버전, 운영체제 정보와 함께 ‘[$2 $1]’ 문서에 해당 의견을 올립니다.',
-'feedback-bugnote'  => '또는, 기술적인 사항에 대해 직접 [$1 버그 리포트]를 올릴 수 있습니다.',
 'feedback-subject'  => '제목:',
 'feedback-message'  => '내용:',
 'feedback-cancel'   => '취소',

@@ -3816,7 +3816,6 @@ Slike su prikazane u punoj veličini, ostale vrste datoteka su prikazane direktn
 'newuserlog-byemail'            => 'šifra je poslana putem e-maila',
 
 # Feedback
-'feedback-note'    => 'Vaša povratna informacija će biti objavljena na $1.',
 'feedback-subject' => 'Tema:',
 'feedback-message' => 'Poruka:',
 'feedback-cancel'  => 'Odustani',

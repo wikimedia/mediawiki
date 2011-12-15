@@ -3564,19 +3564,19 @@ Wobraze se w połnym wótgranicowanju pokazuju, druge datajowe typy se ze zwěza
 'newuserlog-byemail'                  => 'Pótajne słowo bu pśez e-mail pósłane.',
 
 # Feedback
-'feedback-note'     => 'Toś ten formular sćelo jadnory komentar abo naraźenje k bokoju "[$2 $1]", z twójim wužywarskim mjenim, wersiju webglědowaka a źěłowym systemom.',
-'feedback-bugnote'  => 'Abo móžoš město togo [$1 techniske zmólkowe zdźělenje słaś].',
-'feedback-subject'  => 'Tema:',
-'feedback-message'  => 'Powěsć:',
-'feedback-cancel'   => 'Pśetergnuś',
-'feedback-submit'   => 'Komentar wótpósłaś',
-'feedback-adding'   => 'Komentar pśidawa se bokoju...',
-'feedback-error1'   => 'Zmólka: Njepóznaty wuslědk wót API',
-'feedback-error2'   => 'Zmólka: Wobźěłanje jo se njeraźiło',
-'feedback-error3'   => 'Zmólka: Žedne wótegrono wót API',
-'feedback-thanks'   => 'Źěkujomy se! Twój komentar jo se k bokoju "[$2 $1]" pósłał.',
-'feedback-close'    => 'Dokóńcony',
-'feedback-bugcheck' => 'Wjelicnje! Pśekontrolěruj jano, lěc to njejo jadna z [$1 znatych zmólkow].',
-'feedback-bugnew'   => 'Som pśekontrolěrował. Nowu zmólku k wěsći daś',
+'feedback-bugornote' => 'Jolic sy zwólny, techniski problem nadrobnje wopisaś, [$1 daj pšosym zmólku k wěsći].
+Hować móžoš slědujucy jadnory formular wužywaś. Twój komentar pśidajo se bokoju "[$3 $2]", z twójim wužywarskim mjenim a z wobglědowakom, kótaryž wužywaš.',
+'feedback-subject'   => 'Tema:',
+'feedback-message'   => 'Powěsć:',
+'feedback-cancel'    => 'Pśetergnuś',
+'feedback-submit'    => 'Komentar wótpósłaś',
+'feedback-adding'    => 'Komentar pśidawa se bokoju...',
+'feedback-error1'    => 'Zmólka: Njepóznaty wuslědk wót API',
+'feedback-error2'    => 'Zmólka: Wobźěłanje jo se njeraźiło',
+'feedback-error3'    => 'Zmólka: Žedne wótegrono wót API',
+'feedback-thanks'    => 'Źěkujomy se! Twój komentar jo se k bokoju "[$2 $1]" pósłał.',
+'feedback-close'     => 'Dokóńcony',
+'feedback-bugcheck'  => 'Wjelicnje! Pśekontrolěruj jano, lěc to njejo jadna z [$1 znatych zmólkow].',
+'feedback-bugnew'    => 'Som pśekontrolěrował. Nowu zmólku k wěsći daś',
 
 );

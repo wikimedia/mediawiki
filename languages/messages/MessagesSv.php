@@ -3809,7 +3809,6 @@ Bilder visas i full upplösning, andra filtyper öppnas direkt i de program som 
 'newuserlog-byemail'                  => 'lösenord skickat med e-post',
 
 # Feedback
-'feedback-note'    => 'Din feedback kommer att publiceras offentligt på sidan "[$2 $1]", tillsammans med ditt användarnamn, version av webbläsare och operativsystem.',
 'feedback-subject' => 'Ämne:',
 'feedback-message' => 'Meddelande:',
 'feedback-cancel'  => 'Avbryt',

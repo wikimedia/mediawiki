@@ -3759,7 +3759,6 @@ Gambar ditampilkan dalam resolusi penuh dan tipe lain berkas akan dibuka langsun
 'newuserlog-byemail'      => 'kata sandi dikirim melalui surel',
 
 # Feedback
-'feedback-note'    => 'Umpan balik Anda akan dipublikasikan ke halaman "[$2 $1]", bersama dengan nama pengguna, versi peramban, dan sistem operasi.',
 'feedback-subject' => 'Perihal:',
 'feedback-message' => 'Pesan:',
 'feedback-cancel'  => 'Batal',

@@ -3705,7 +3705,6 @@ Bildoj montriĝas en plena distingivo, aliaj dosiertipoj estas malfermataj rekte
 'newuserlog-byemail'                  => 'pasvorto sendita retpoŝte',
 
 # Feedback
-'feedback-note'    => 'Via opinio estos afiŝita publike al la paĝo "[$2 $1]", kune kun via salutnomo, versio de retumilo, kaj operaciuma sistemo.',
 'feedback-subject' => 'Temo:',
 'feedback-message' => 'Mesaĝo:',
 'feedback-cancel'  => 'Nuligi',

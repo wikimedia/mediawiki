@@ -3849,7 +3849,6 @@ Imagens serão apresentadas pelo browser na resolução máxima; ficheiros de ou
 'newuserlog-byemail'                  => 'palavra-chave enviada por correio-electrónico',
 
 # Feedback
-'feedback-note'    => 'O seu comentário será publicado na página "[$2 $1]", tornando-se assim público, em conjunto com o seu nome de utilizador, versão do browser e sistema operativo.',
 'feedback-subject' => 'Assunto:',
 'feedback-message' => 'Mensagem:',
 'feedback-cancel'  => 'Cancelar',

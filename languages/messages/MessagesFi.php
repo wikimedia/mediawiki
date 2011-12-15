@@ -3674,7 +3674,6 @@ Kuvat näytetään täysikokoisina. Muut tiedostot avataan niille määritetyss�
 'newuserlog-byemail'                  => 'salasana lähetetty sähköpostitse',
 
 # Feedback
-'feedback-note'    => 'Palautteesi, käyttäjänimesi, selainversiosi ja käyttöjärjestelmäsi julkistetaan sivulla "[$2 $1]".',
 'feedback-subject' => 'Otsikko',
 'feedback-message' => 'Viesti',
 'feedback-cancel'  => 'Peruuta',

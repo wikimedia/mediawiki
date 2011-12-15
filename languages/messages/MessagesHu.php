@@ -3789,7 +3789,6 @@ A képek teljes méretben jelennek meg, más fájltípusok közvetlenül a hozz�
 'newuserlog-byemail'                  => 'a jelszót kiküldtük a megadott e-mail címre',
 
 # Feedback
-'feedback-note'    => 'A visszajelzés a(z) „[$2 $1]” lapon kerül közzétételre a felhasználóneveddel, böngésződ verziójával és az operációs rendszerrel együtt.',
 'feedback-subject' => 'Tárgy:',
 'feedback-message' => 'Üzenet:',
 'feedback-cancel'  => 'Mégse',

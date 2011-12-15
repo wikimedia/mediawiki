@@ -3630,7 +3630,6 @@ Les imatges es mostren en plena resolució; altres tipus de fitxer s'inicien dir
 'newuserlog-byemail'                  => 'contrasenya enviada per correu electrònic',
 
 # Feedback
-'feedback-note'    => "Els vostres comentaris seran públics a la pàgina «[$2 $1]», juntament amb el vostre nom d'usuari, versió del navegador i sistema operatiu.",
 'feedback-subject' => 'Assumpte:',
 'feedback-message' => 'Missatge:',
 'feedback-cancel'  => 'Canceŀla',

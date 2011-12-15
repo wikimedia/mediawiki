@@ -3588,7 +3588,6 @@ Den ugefrote Fichier gëtt direkt gewise respektiv mat enger verbonner Applikati
 'newuserlog-byemail'                  => "d'Passwuert gouf per E-Mail geschéckt",
 
 # Feedback
-'feedback-note'    => 'Äre Feedback gëtt ëffentlech op der Säit "[$2 $1]" gewisen, zesumme mat Ärem Benotzernumm, der Versioun vun Ärem Browser a Betribssystem.',
 'feedback-subject' => 'Sujet:',
 'feedback-message' => 'Message:',
 'feedback-cancel'  => 'Ofbriechen',
@@ -3597,5 +3596,6 @@ Den ugefrote Fichier gëtt direkt gewise respektiv mat enger verbonner Applikati
 'feedback-error1'  => 'Feeler: Resultat vum API gouf net erkannt',
 'feedback-error2'  => "Feeler: D'Ännerung gouf net gespäichert",
 'feedback-error3'  => 'Feeler: Keng Äntwert vum API',
+'feedback-close'   => 'Fäerdeg',
 
 );

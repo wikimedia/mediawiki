@@ -3979,7 +3979,6 @@ Les émâges sont montrâs dens lor plêna rèsolucion, los ôtros fichiérs son
 'newuserlog-byemail'                  => 'contresegno mandâ per mèssageria èlèctronica',
 
 # Feedback
-'feedback-note'    => 'Voutron avis serat postâ publicament sur la pâge « [$2 $1] », avouéc voutron nom d’usanciér, la vèrsion de voutron navigator et pués voutron sistèmo d’èxplouètacion.',
 'feedback-subject' => 'Sujèt :',
 'feedback-message' => 'Mèssâjo :',
 'feedback-cancel'  => 'Anular',

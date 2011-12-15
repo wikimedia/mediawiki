@@ -3677,7 +3677,6 @@ Diskouezet eo ar skeudennoù gant ur pizhder uhel, erounit a ra ar restroù all 
 'newuserlog-byemail'                  => 'ger-tremen kaset dre bostel',
 
 # Feedback
-'feedback-note'    => 'Embannet e vo ho soñj en doare foran er bajenn "[$2 $1]", asambles gant hoc\'h anv implijer, stumm ho merdeer hag ho reizhiad korvoiñ.',
 'feedback-subject' => 'Danvez :',
 'feedback-message' => 'Kemennadenn:',
 'feedback-cancel'  => 'Nullañ',

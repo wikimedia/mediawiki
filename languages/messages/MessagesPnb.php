@@ -3470,7 +3470,6 @@ the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 
 'newuserlog-byemail'                  => 'کنجی ای-میل راہ پیج دتی گئی۔',
 
 # Feedback
-'feedback-note'    => 'تساں دا مشورہ عام لوکاں لئی صفہ "[$2 $1]" تے رکھیا جاوے گا، تھواڈے ورتن والے ناں نال، براؤزر ورین تے اوپریٹنگ پربندھ نال۔',
 'feedback-subject' => 'آرٹیکل',
 'feedback-message' => 'سنیعہ:',
 'feedback-cancel'  => 'واپس',

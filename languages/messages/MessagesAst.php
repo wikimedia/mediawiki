@@ -3594,7 +3594,6 @@ Les imáxenes amuésense a resolución completa; les demás tribes d'archivu exe
 'newuserlog-byemail'                  => 'clave unviada per corréu electrónicu',
 
 # Feedback
-'feedback-note'    => 'Los comentarios s\'asoleyarán en públicu na páxina "[$2 $1]", xunto col to nome d\'usuariu, la versión del to restolador y sistema operativu.',
 'feedback-subject' => 'Asuntu:',
 'feedback-message' => 'Mensaxe:',
 'feedback-cancel'  => 'Encaboxar',

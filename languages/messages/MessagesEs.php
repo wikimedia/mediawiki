@@ -3817,7 +3817,6 @@ Este sitio está experimentando dificultades técnicas.',
 'newuserlog-byemail'                  => 'contraseña enviada por correo electrónico',
 
 # Feedback
-'feedback-note'    => 'Tus comentarios se publicarán en la página «[$2 $1]», junto a tu nombre de usuario, versión de tu navegador web y tu sistema operativo.',
 'feedback-subject' => 'Asunto:',
 'feedback-message' => 'Mensaje:',
 'feedback-cancel'  => 'Cancelar',

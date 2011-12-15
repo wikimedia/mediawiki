@@ -3948,8 +3948,6 @@ Andere bestandstypen worden direct in het met het MIME-type verbonden programma 
 'newuserlog-byemail'                  => 'wachtwoord is verzonden per e-mail',
 
 # Feedback
-'feedback-note'     => 'Dit formulier plaatst publiekelijk een eenvoudige opmerking of suggestie op de pagina "[$2 $1]", samen met uw gebruikersnaam, browserversie en besturingssysteem.',
-'feedback-bugnote'  => 'Of u kunt in de plaats [$1 een technische bug] melden.',
 'feedback-subject'  => 'Onderwerp:',
 'feedback-message'  => 'Bericht:',
 'feedback-cancel'   => 'Annuleren',

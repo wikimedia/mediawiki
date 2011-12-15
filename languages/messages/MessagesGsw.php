@@ -3507,7 +3507,6 @@ Di aagfrogt Datei wird diräkt dargstellt bzw. mit dr verchnipfte Aawändig gsta
 'newuserlog-byemail'                  => 's Passwort isch per E-Mail gschickt wore',
 
 # Feedback
-'feedback-note'    => 'Die Ruggmäldig wird uff de öffentliche Syte „[$2 $1]“ gspyycheret, zämme mit em Benutzername, de Webbrowser-Version un em Betriebssystem, wo du bruuchsch.',
 'feedback-subject' => 'Beträff:',
 'feedback-message' => 'Noochricht:',
 'feedback-cancel'  => 'Abbräche',

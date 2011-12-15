@@ -3979,7 +3979,6 @@ die De häs han welle. Se künnt jet ällder un nit mieh aktoäll sin.',
 'newuserlog-byemail'                  => 'dat Passwood wood med de e-mail loßjescheck',
 
 # Feedback
-'feedback-note'    => 'Ding Röckmäldong küdd op $1.',
 'feedback-subject' => 'Theema:',
 'feedback-message' => 'Nohreesch:',
 'feedback-cancel'  => 'Stopp! Avbreche!',

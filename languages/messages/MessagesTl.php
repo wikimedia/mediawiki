@@ -3578,7 +3578,6 @@ Ipasok ang pangalan ng talaksan na hindi kasama ang unlaping "{{ns:image}}:".',
 'newuserlog-byemail'     => 'Ipinadala ang hudyat sa pamamagitan ng e-liham',
 
 # Feedback
-'feedback-note'    => 'Ang iyong pakaing-tugon ay ipapaskil sa $1.',
 'feedback-subject' => 'Paksa:',
 'feedback-message' => 'Mensahe:',
 'feedback-cancel'  => 'Huwag ituloy',

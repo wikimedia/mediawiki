@@ -20,7 +20,7 @@ $messages = array(
 'tog-hideminor'               => 'Qari bedelada yar ee isbedelada dhow',
 'tog-hidepatrolled'           => 'Qari wax bedelkii ugu danbeeyay oo la waardiyeeyay',
 'tog-newpageshidepatrolled'   => 'Ka qari maqaalada la waardiyeeyay maqaalada kale ee cusub',
-'tog-extendwatchlist'         => "Balaari liiska waardiyeyska si loo arko isbedelada la'xiriira, ma ahan kaliya kuwa cusub",
+'tog-extendwatchlist'         => 'Balaari liiska waardiyaha si loo arko dhamaan isbedelada, ma ahan oo kaliya kuwa dhow',
 'tog-usenewrc'                => "Isticmaal isbdelada dhowdhow oo la'horumariyey (waxaa loo baahanyahay JavaScript)",
 'tog-numberheadings'          => 'Lambarada automaatik ahaan u tirinaayo Cinwaanada',
 'tog-showtoolbar'             => 'Itus bedelka qalabka shaqada (waxaa loo baahanyahay JavaScript)',
@@ -30,14 +30,14 @@ $messages = array(
 'tog-showtoc'                 => "I'tus jadwalka (boggaga leh in kabadan 3 qoraalada sare)",
 'tog-rememberpassword'        => 'Kumbuyuutarkaan ku xasuusnaaw gudagalkeyga (ilaa  $1 {{PLURAL:$1|maalin|maalmood}})',
 'tog-watchcreations'          => 'Ku dar boggaga aan aniga sameeyay liiskayga waardiyaha',
-'tog-watchdefault'            => 'Ku dar boggaga aan aniga wax ka bedelo liiskayga waardiyaha',
-'tog-watchmoves'              => 'Boggaga aan wareejiyo ku dar liiska-waardiyaha',
-'tog-watchdeletion'           => 'Boggaga aan tirtiro ku dar liiska-waardiyaha',
+'tog-watchdefault'            => 'Ku dar boggaga aan wax ka bedelo liiskayga waardiyaha',
+'tog-watchmoves'              => 'Ku dar boggaga aan wareejiyo liiskayga waardiyaha',
+'tog-watchdeletion'           => 'Ku dar boggaga aan tirtiro liiskayga waardiyaha',
 'tog-minordefault'            => 'Isbedelada yaryar marwalba calaamadey',
 'tog-previewontop'            => 'Itus horfiirinta kahor sanduuqa wax ka bedelida',
 'tog-previewonfirst'          => 'Horfiirinta itus marka ugu horeeyso oo aan wax ka bedelo',
 'tog-nocache'                 => 'Dami browsaha maqaalada duubo',
-'tog-enotifwatchlistpages'    => 'E-mail  ii soo dir markii oo isbedelo maqaalada ku jira liiska waardiyaheyga',
+'tog-enotifwatchlistpages'    => 'E-mail  ii soo dir markii  wax laga badalo maqaalada ku jira liiskayga waardiyaha',
 'tog-enotifusertalkpages'     => 'E-mail ii soo dir markii boggayga wadahadalka oo isbedelo',
 'tog-enotifminoredits'        => 'E-mail Ii soo dir xataa markii bedelo yar lagu sameeyo bogyada',
 'tog-enotifrevealaddr'        => 'Iigu soo bandhig cinwaankayga e-mailka ah fariimaha wargelinta',
@@ -175,7 +175,7 @@ $messages = array(
 'vector-view-view'               => 'Akhri',
 'vector-view-viewsource'         => 'Itusi xogta',
 'actions'                        => 'Waxa dhacaayo',
-'namespaces'                     => 'Qeybta Magacyada',
+'namespaces'                     => 'Xarun magaceedyada',
 
 'errorpagetitle'    => 'Qalad',
 'returnto'          => 'Ku noqo $1.',
@@ -255,11 +255,11 @@ $1',
 'helppage'             => 'Help:Caawinaad',
 'mainpage'             => 'Bogga Hore',
 'mainpage-description' => 'Bogga Hore',
-'policy-url'           => 'Project: Siyaasada',
+'policy-url'           => 'Project: Xeerka',
 'portal'               => 'Bortaalka jaaliyada',
 'portal-url'           => 'Project:Bortaalka jaaliyada',
-'privacy'              => 'Wixii adiga kugu saabsan',
-'privacypage'          => 'Project:siyaasada u gaarka ah',
+'privacy'              => 'Xeerka Wiki',
+'privacypage'          => 'Project:Xeerka Wiki',
 
 'badaccess'        => 'Qalad dhinaca ogolaashada',
 'badaccess-group0' => 'Laguuma ogolo in aad sameyso waxa aad rabtid',
@@ -294,7 +294,7 @@ fiiri [[Special:Version|nooca bogga]].',
 'site-atom-feed'          => '$1 Atom quudiye',
 'page-rss-feed'           => '"$1" RSS quudiye',
 'page-atom-feed'          => '"$1" Atom quudiye',
-'red-link-title'          => '$1 (Boggan wali lama qorin)',
+'red-link-title'          => '$1 (Bogga ma jiro)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Bog',
@@ -342,6 +342,7 @@ Fadlan u sheek [[Special:ListUsers/sysop|maamulaha]], kana digtooneesii URL-ka.'
 'badarticleerror'      => 'Shaqadaan ma lagu sameyn karo boggaan.',
 'cannotdelete'         => 'Boggaan ama file\'ka "$1" mala tirtiri karo.
 waxaa laga yaabaa in oo qof kale tirtiray .',
+'cannotdelete-title'   => 'Ma tirtiri karo bogga "$1"',
 'badtitle'             => 'Qoraal xun',
 'badtitletext'         => 'Bogga aad rabtay ciwaankiisa sax ma eheen, waa ebar, ama waa erayo qalad oo la xiriiro isdhaafka-luqadaha ama isdhaafka-ciwaanka wiki.
 Waxaa ku jiri kara xuruufo aanan loo isticmaalikarin cinwaan ahaan.',
@@ -353,7 +354,7 @@ fadlan waxyar kadib ku soo noqo.',
 'viewsourcetext'       => 'Waad fiirin kartaa waana koobi gareen kartaa xogta boggaan:',
 'cascadeprotected'     => 'Boggaan waxaa laga difaacay in wax laga bedelo, sababtoo ah wuxuu ka midyahay  {{PLURAL:$1|bog, oo ah |bogyaalo ah, waana}}  kuwa laga difaacay "qoraalada kaskadka ah" dooqyada woo u furanyahay:
 $2',
-'namespaceprotected'   => "Ma laguu ogolo in aad wax ka bedesho maqaalada ku jirto '''$1''' qolka magacyada.",
+'namespaceprotected'   => "Ma laguu ogolo in aad wax ka bedesho maqaalada ku jirto '''$1''' xarun magaceedka.",
 'customcssprotected'   => "Ma laguu ogolo in aad wax ka badashid boggaan, sababtoo ah waxaa ku qoran isticmaale'yaal kale waxyaabo u shaqsi ah.",
 'ns-specialprotected'  => 'Bogyaasha gaarka ah wax malaga bedeli karo.',
 'titleprotected'       => 'Qoraalkaan aad qortay waxaa difaacay  [[User:$1|$1]] si loo sameynin.
@@ -741,7 +742,7 @@ sababteeda neh waxaa laga heli kartaa  [{{fullurl:{{#Special:Log}}/delete|page={
 'search-nonefound'                 => 'Wax natiijo oo ka soo baxay ma jirto wixii aad raadisay',
 'powersearch'                      => 'Sidii aad wax uugu raadin laheed',
 'powersearch-legend'               => 'Sidii aad wax uugu raadin laheed',
-'powersearch-ns'                   => 'ka raadi qolka magacyada:',
+'powersearch-ns'                   => 'ka raadi xarun magaceedka:',
 'powersearch-redir'                => 'liiska inta la sii toosiyay',
 'powersearch-field'                => 'Raadi',
 'powersearch-togglelabel'          => 'Fiiri',
@@ -1021,7 +1022,7 @@ Tafaasiishiisa waxee ku qorantahay [$2 bogga tafaasiisha faylka] oo ka arki kart
 'special-categories-sort-count' => 'xisaabi marka aad tirisid',
 
 # Special:LinkSearch
-'linksearch-ns'   => 'Qolka magacyada:',
+'linksearch-ns'   => 'Xarun magaceedka:',
 'linksearch-ok'   => 'Raadi',
 'linksearch-line' => '$1 wuxuu ka socdaa $2',
 
@@ -1145,9 +1146,9 @@ Wuxuu ku badalay bedelkii ka danbeeyay oo sameeyay $2.',
 'undelete-search-submit'   => 'Raadi',
 
 # Namespace form on various pages
-'namespace'             => 'Qolka magacyada:',
+'namespace'             => 'Xarun magaceedka:',
 'invert'                => 'Dabagedi dalabka',
-'namespace_association' => 'La xiriira qolka magacyada',
+'namespace_association' => 'La xiriira xarun magaceedka',
 'blanknamespace'        => '(Bogga hore)',
 
 # Contributions
