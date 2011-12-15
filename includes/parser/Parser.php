@@ -5122,6 +5122,10 @@ class Parser {
 	 */
 	function disableCache() {
 		wfDebug( "Parser output marked as uncacheable.\n" );
+		if ( !$this->mOutput ) {
+			throw new MWException( __METHOD__ .
+				" can only be called when actually parsing something" );
+		}
 		$this->mOutput->setCacheTime( -1 ); // old style, for compatibility
 		$this->mOutput->updateCacheExpiry( 0 ); // new style, for consistency
 	}
