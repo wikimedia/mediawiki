@@ -547,15 +547,15 @@ $wgAutoloadLocalClasses = array(
 	'JSParser' => 'includes/libs/jsminplus.php',
 
 	# includes/logging
-	'LogEventsList' => 'includes/logging/LogEventsList.php',
-	'LogPage' => 'includes/logging/LogPage.php',
-	'LogPager' => 'includes/logging/LogEventsList.php',
 	'DatabaseLogEntry' => 'includes/logging/LogEntry.php',
 	'DeleteLogFormatter' => 'includes/logging/LogFormatter.php',
 	'LegacyLogFormatter' => 'includes/logging/LogFormatter.php',
 	'LogEntry' => 'includes/logging/LogEntry.php',
+	'LogEventsList' => 'includes/logging/LogEventsList.php',
 	'LogEntryBase' => 'includes/logging/LogEntry.php',
 	'LogFormatter' => 'includes/logging/LogFormatter.php',
+	'LogPage' => 'includes/logging/LogPage.php',
+	'LogPager' => 'includes/logging/LogEventsList.php',
 	'ManualLogEntry' => 'includes/logging/LogEntry.php',
 	'MoveLogFormatter' => 'includes/logging/LogFormatter.php',
 	'NewUsersLogFormatter' => 'includes/logging/LogFormatter.php',
