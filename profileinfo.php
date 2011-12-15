@@ -199,7 +199,7 @@ class profile_point {
 	}
 };
 
-function compare_point( $a, $b ) {
+function compare_point(profile_point $a, profile_point $b) {
 	global $sort;
 	switch ( $sort ) {
 	case "name":
