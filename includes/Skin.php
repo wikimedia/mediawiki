@@ -531,7 +531,7 @@ abstract class Skin extends ContextSource {
 	protected function generateDebugHTML() {
 		global $wgShowDebug;
 
-		$html = MWDebug::getDebugHTML();
+		$html = MWDebug::getDebugHTML( $this->getContext() );
 
 		if ( $wgShowDebug ) {
 			$listInternals = $this->formatDebugHTML( $this->getOutput()->mDebugtext );

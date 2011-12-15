@@ -72,93 +72,133 @@
 		 * Constructs the HTML for the debugging toolbar
 		 */
 		buildHtml: function() {
-			this.$container = $( '<div></div>' )
+			var $container = this.$container = $( '<div></div>' )
 				.attr({
 					id: 'mw-debug-container',
 					class: 'mw-debug'
 				});
 
-			var html = '';
+			/**
+			 * Returns a jQuery element for a debug-bit div
+			 *
+			 * @param id
+			 * @return {jQuery}
+			 */
+			var bitDiv = function( id ) {
+				return $( '<div></div>' ).attr({
+					id: 'mw-debug-' + id,
+					class: 'mw-debug-bit'
+				});
+			};
+			/**
+			 * Returns a jQuery element for a pane link
+			 *
+			 * @param id
+			 * @param text
+			 * @return {jQuery}
+			 */
+			var paneLink = function( id, text ) {
+				return $( '<a></a>' )
+					.attr({
+						href: '#',
+						class: 'mw-debug-panelink',
+						id: 'mw-debug-' + id + '-link'
+					})
+					.text( text );
+			}
 
-			html += '<div class="mw-debug-bit" id="mw-debug-mwversion">'
-				+ '<a href="//www.mediawiki.org/">MediaWiki</a>: '
-				+ this.data.mwVersion + '</div>';
+			bitDiv( 'mwversion' )
+				.append( $( '<a href="//www.mediawiki.org/">' ).text( 'MediaWiki' ) )
+				.append( ': ' + this.data.mwVersion )
+				.appendTo( $container );
 
-			html += '<div class="mw-debug-bit" id="mw-debug-phpversion">'
-				+ '<a href="//www.php.net/">PHP</a>: '
-				+ this.data.phpVersion + '</div>';
+			bitDiv( 'phpversion' )
+				.append( $( '<a href="//www.php.net/">' ).text( 'PHP' ) )
+				.append( ': ' + this.data.phpVersion )
+				.appendTo( $container );
 
-			html += '<div class="mw-debug-bit" id="mw-debug-time">'
-				+ 'Time: ' + this.data.time.toFixed( 5 ) + 's</div>';
-			html += '<div class="mw-debug-bit" id="mw-debug-memory">'
-				+ 'Memory: ' + this.data.memory + ' (<span title="Peak usage">'
-				+ this.data.memoryPeak + '</span>)</div>';
+			bitDiv( 'time' )
+				.text( 'Time: ' + this.data.time.toFixed( 5 ) )
+				.appendTo( $container );
+			bitDiv( 'memory' )
+				.text( 'Memory: ' + this.data.memory )
+				.append( $( '<span title="Peak usage"></span>' ).text( ' (' + this.data.memoryPeak + ')' ) )
+				.appendTo( $container );
 
-			var queryLink = '<a href="#" class="mw-debug-panelink" id="mw-debug-query-link">Queries: '
-				+ this.data.queries.length + '</a>';
-			html += '<div class="mw-debug-bit" id="mw-debug-querylist">'
-				+ queryLink + '</div>';
+			bitDiv( 'querylist' )
+				.append( paneLink( 'query', 'Queries: ' + this.data.queries.length ) )
+				.appendTo( $container );
 
-			var debugLink = '<a href="#" class="mw-debug-panelink" id="mw-debug-debuglog-link">Debug Log ('
-				+ this.data.debugLog.length + ' lines)</a>';
-			html += '<div class="mw-debug-bit" id="mw-debug-debuglog">'
-				+ debugLink + '</div>';
+			bitDiv( 'debuglog' )
+				.append( paneLink( 'debuglog', 'Debug Log (' + this.data.debugLog.length + ' lines)' ) )
+				.appendTo( $container );
 
-			var requestLink = '<a href="#" class="mw-debug-panelink" id="mw-debug-request-link">Request</a>';
-			html += '<div class="mw-debug-bit" id="mw-debug-request">'
-				+ requestLink + '</div>';
+			bitDiv( 'request' )
+				.append( paneLink( 'request', 'Request' ) )
+				.appendTo( $container );
 
-			var filesLink = '<a href="#" class="mw-debug-panelink" id="mw-debug-files-includes">'
-				+ this.data.includes.length + ' Files Included</a>';
-			html += '<div class="mw-debug-bit" id="mw-debug-includes">'
-				+ filesLink + '</div>';
+			bitDiv( 'includes' )
+				.append( paneLink( 'files-includes', this.data.includes.length + ' Files Included' ) )
+				.appendTo( $container );
 
-			html += '<div class="mw-debug-pane" id="mw-debug-pane-querylist">'
-				+ this.buildQueryTable() + '</div>';
-			html += '<div class="mw-debug-pane" id="mw-debug-pane-debuglog">'
-				+ this.buildDebugLogTable() + '</div>';
-			html += '<div class="mw-debug-pane" id="mw-debug-pane-request">'
-				+ this.buildRequestPane() + '</div>';
-			html += '<div class="mw-debug-pane" id="mw-debug-pane-includes">'
-				+ this.buildIncludesPane() + '</div>';
+			var panes = {
+				'querylist': this.buildQueryTable(),
+				'debuglog': this.buildDebugLogTable(),
+				'request': this.buildRequestPane(),
+				'includes': this.buildIncludesPane()
+			};
 
-			this.$container.html( html );
+			for ( var id in panes ) {
+				if ( !panes.hasOwnProperty( id ) ) {
+					continue;
+				}
+
+				$( '<div></div>' )
+					.attr({
+						class: 'mw-debug-pane',
+						id: 'mw-debug-pane-' + id
+					})
+					.append( panes[id] )
+					.appendTo( $container );
+			}
 		},
 
 		/**
 		 * Query list pane
 		 */
 		buildQueryTable: function() {
-			var html = '<table id="mw-debug-querylist">';
+			var $table = $( '<table id="mw-debug-querylist"></table>' );
 
 			for ( var i = 0, length = this.data.queries.length; i < length; i++ ) {
 				var query = this.data.queries[i];
 
-				html += '<tr><td>' + ( i + 1 ) + '</td>';
-
-				html += '<td>' + query.sql + '</td>';
-                html += '<td><span class="mw-debug-query-time">(' + query.time.toFixed( 4 ) + 'ms)</span> ' + query.function + '</td>';
-
-                html += '</tr>';
+				$( '<tr>' )
+					.append( $( '<td>' ).text( i + 1 ) )
+					.append( $( '<td>' ).text( query.sql ) )
+					.append( $( '<td>' )
+						.append( $( '<span class="mw-debug-query-time">' ).text( '(' + query.time.toFixed( 4 ) + 'ms) ' ) )
+						.append( query['function'] )
+					)
+					.appendTo( $table );
 			}
 
-			html += '</table>';
-
-			return html;
+			return $table;
 		},
 
 		/**
 		 * Legacy debug log pane
 		 */
 		buildDebugLogTable: function() {
-			var html = '<ul>';
+			var $list = $( '<ul>' );
 
 			for ( var i = 0, length = this.data.debugLog.length; i < length; i++ ) {
 				var line = this.data.debugLog[i];
-				html += '<li>' + line.replace( /\n/g, "<br />\n" ) +  '</li>';
+				$( '<li>' )
+					.html( mw.html.escape( line ).replace( /\n/g, "<br />\n" ) )
+					.appendTo( $list );
 			}
 
-			return html + '</ul>';
+			return $list;
 		},
 
 		/**
@@ -166,42 +206,51 @@
 		 */
 		buildRequestPane: function() {
 			var buildTable = function( title, data ) {
-				var t = '<h2>' + title + '</h2>'
-					+ '<table> <tr> <th>Key</th> <th>Value</th> </tr>';
+				var $unit = $( '<div></div>' )
+					.append( $( '<h2>' ).text( title ) );
+
+				var $table = $( '<table>' ).appendTo( $unit );
+
+				$( '<tr>' )
+					.html( '<th>Key</th> <th>Value</th>' )
+					.appendTo( $table );
 
 				for ( var key in data ) {
 					if ( !data.hasOwnProperty( key ) ) {
 						continue;
 					}
-					var value = data[key];
 
-					t += '<tr><th>' + key + '</th><td>' + value + '</td></tr>';
+					$( '<tr>' )
+						.append( $( '<th>' ).text( key ) )
+						.append( $( '<td>' ).text( data[key] ) )
+						.appendTo( $table );
 				}
 
-				t += '</table>';
-				return t;
+				return $unit;
 			};
 
-			var html = this.data.request.method + ' ' + this.data.request.url;
-			html += buildTable( 'Headers', this.data.request.headers );
-			html += buildTable( 'Parameters', this.data.request.params );
-
-			return html;
+			var $pane = $( '<div>' )
+				.text( this.data.request.method + ' ' + this.data.request.url )
+				.append( buildTable( 'Headers', this.data.request.headers ) )
+				.append( buildTable( 'Parameters', this.data.request.params ) );
+			return $pane;
 		},
 
 		/**
 		 * Included files pane
 		 */
 		buildIncludesPane: function() {
-			var html = '<ul>';
+			var $list = $( '<ul>' )
 
 			for ( var i = 0, l = this.data.includes.length; i < l; i++ ) {
 				var file = this.data.includes[i];
-				html += '<li><span class="mw-debug-right">' + file.size + '</span> ' + file.name + '</li>';
+				$( '<li>' )
+					.text( file.name )
+					.prepend( $( '<span class="mw-debug-right">' ).text( file.size ) )
+					.appendTo( $list );
 			}
 
-			html += '</ul>';
-			return html;
+			return $list;
 		}
 	};
 
