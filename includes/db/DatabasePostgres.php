@@ -624,7 +624,7 @@ class DatabasePostgres extends DatabaseBase {
 	}
 
 	function tableName( $name, $format = 'quoted' ) {
-		global $wgSharedDB, $wgSharedTables, $wgDBmwSchema;
+		global $wgSharedDB, $wgSharedTables, $wgDBmwschema;
 		# Skip quoted tablenames.
 		if ( $this->isQuotedIdentifier( $name ) ) {
 			return $name;
@@ -659,13 +659,13 @@ class DatabasePostgres extends DatabaseBase {
 			}
 		}
 		if ( !isset( $schema )) {
-			$schema = "\"{$wgDBmwSchema}\".";
+			$schema = "\"{$wgDBmwschema}\".";
 		} else {
 			# keep old schema, but quote it.
 			$schema = "\"{$schema}\".";
 		}
-		# during installation wgDBmwSchema is not set, so we would end up quering
-		# ""."table" => error. Erase the first part if wgDBmwSchema is empty
+		# during installation wgDBmwschema is not set, so we would end up quering
+		# ""."table" => error. Erase the first part if wgDBmwschema is empty
 		if ( $schema == "\"\"." ) {
 			$schema = "";
 		}
