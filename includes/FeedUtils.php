@@ -53,8 +53,6 @@ class FeedUtils {
 	 * @return String
 	 */
 	public static function formatDiff( $row ) {
-		global $wgUser;
-
 		$titleObj = Title::makeTitle( $row->rc_namespace, $row->rc_title );
 		$timestamp = wfTimestamp( TS_MW, $row->rc_timestamp );
 		$actiontext = '';
@@ -85,7 +83,7 @@ class FeedUtils {
 	 * @return String
 	 */
 	public static function formatDiffRow( $title, $oldid, $newid, $timestamp, $comment, $actiontext='' ) {
-		global $wgFeedDiffCutoff, $wgLang, $wgUser;
+		global $wgFeedDiffCutoff, $wgLang;
 		wfProfileIn( __METHOD__ );
 
 		# log enties
@@ -95,9 +93,9 @@ class FeedUtils {
 					$actiontext,
 					Linker::formatComment( $comment ) ) ) ) . "</p>\n";
 
-		//NOTE: Check permissions for anonymous users, not current user.
-		//      No "privileged" version should end up in the cache.
-		//      Most feed readers will not log in anway.
+		// NOTE: Check permissions for anonymous users, not current user.
+		//       No "privileged" version should end up in the cache.
+		//       Most feed readers will not log in anway.
 		$anon = new User();
 		$accErrors = $title->getUserPermissionsErrors( 'read', $anon, true );
 
