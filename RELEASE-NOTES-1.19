@@ -105,6 +105,7 @@ production.
 * jQuery UI upgraded to 1.8.17
 * Extensions can use the 'Language::getMessagesFileName' hook to define new
   languages using messages files outside of core.
+* (bug 32512) Include 'associated namespace' checkbox on Special:Contributions
 
 === Bug fixes in 1.19 ===
 * $wgUploadNavigationUrl should be used for file redlinks if.

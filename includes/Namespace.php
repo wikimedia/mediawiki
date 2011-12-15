@@ -126,7 +126,7 @@ class MWNamespace {
 	public static function getAssociated( $index ) {
 		self::isMethodValidFor( $index, __METHOD__ );
 
-		if( self::isMain( $index ) ) {
+		if( self::isSubject( $index ) ) {
 			return self::getTalk( $index );
 		} elseif( self::isTalk( $index ) ) {
 			return self::getSubject( $index );
@@ -139,7 +139,7 @@ class MWNamespace {
 	 * Returns whether the specified namespace exists
 	 *
 	 * @param $index
-	 * 
+	 *
 	 * @return bool
 	 * @since 1.19
 	 */

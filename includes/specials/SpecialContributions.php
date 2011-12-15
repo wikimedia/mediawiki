@@ -98,6 +98,8 @@ class SpecialContributions extends SpecialPage {
 			$this->opts['namespace'] = '';
 		}
 
+		$this->opts['associated'] = $request->getBool( 'associated' );
+
 		$this->opts['nsInvert'] = (bool) $request->getVal( 'nsInvert' );
 
 		$this->opts['tagfilter'] = (string) $request->getVal( 'tagfilter' );
@@ -168,6 +170,7 @@ class SpecialContributions extends SpecialPage {
 				'deletedOnly' => $this->opts['deletedOnly'],
 				'topOnly' => $this->opts['topOnly'],
 				'nsInvert' => $this->opts['nsInvert'],
+				'associated' => $this->opts['associated'],
 			) );
 			if( !$pager->getNumRows() ) {
 				$out->addWikiMsg( 'nocontribs', $target );
@@ -357,6 +360,10 @@ class SpecialContributions extends SpecialPage {
 			$this->opts['nsInvert'] = '';
 		}
 
+		if( !isset( $this->opts['associated'] ) ) {
+			$this->opts['associated'] = false;
+		}
+
 		if( !isset( $this->opts['contribs'] ) ) {
 			$this->opts['contribs'] = 'user';
 		}
@@ -381,49 +388,143 @@ class SpecialContributions extends SpecialPage {
 			$this->opts['topOnly'] = false;
 		}
 
-		$f = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript, 'class' => 'mw-contributions-form' ) );
+		$form = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript, 'class' => 'mw-contributions-form' ) );
 
 		# Add hidden params for tracking except for parameters in $skipParameters
-		$skipParameters = array( 'namespace', 'nsInvert', 'deletedOnly', 'target', 'contribs', 'year', 'month', 'topOnly' );
+		$skipParameters = array( 'namespace', 'nsInvert', 'deletedOnly', 'target', 'contribs', 'year', 'month', 'topOnly', 'associated' );
 		foreach ( $this->opts as $name => $value ) {
 			if( in_array( $name, $skipParameters ) ) {
 				continue;
 			}
-			$f .= "\t" . Html::hidden( $name, $value ) . "\n";
+			$form .= "\t" . Html::hidden( $name, $value ) . "\n";
 		}
 
 		$tagFilter = ChangeTags::buildTagFilterSelector( $this->opts['tagfilter'] );
 
-		$f .= 	Xml::fieldset( wfMsg( 'sp-contributions-search' ) ) .
-			Xml::radioLabel( wfMsgExt( 'sp-contributions-newbies', array( 'parsemag' ) ),
-				'contribs', 'newbie' , 'newbie', $this->opts['contribs'] == 'newbie' ) . '<br />' .
-			Xml::radioLabel( wfMsgExt( 'sp-contributions-username', array( 'parsemag' ) ),
-				'contribs' , 'user', 'user', $this->opts['contribs'] == 'user' ) . ' ' .
-			Html::input( 'target', $this->opts['target'], 'text', array(
-				'size' => '20',
-				'required' => ''
-			) + ( $this->opts['target'] ? array() : array( 'autofocus' ) ) ) . ' '.
-			Html::rawElement( 'span', array( 'style' => 'white-space: nowrap' ),
-				Xml::label( wfMsg( 'namespace' ), 'namespace' ) . ' ' .
-				Xml::namespaceSelector( $this->opts['namespace'], '' )
+		if ($tagFilter) {
+			$filterSelection =
+				Xml::tags( 'td', array( 'class' => 'mw-label' ), array_shift( $tagFilter ) ) .
+				Xml::tags( 'td', array( 'class' => 'mw-input' ), implode( '&#160', $tagFilter ) );
+		} else {
+			$filterSelection = Xml::tags( 'td', array( 'colspan' => 2 ), '' );
+		}
+
+		$targetSelection = Xml::tags( 'td', array( 'colspan' => 2 ),
+			Xml::radioLabel(
+				wfMsgExt( 'sp-contributions-newbies', array( 'parsemag' ) ),
+				'contribs',
+				'newbie' ,
+				'newbie',
+				$this->opts['contribs'] == 'newbie',
+				array( 'class' => 'mw-input' )
+			) . '<br />' .
+			Xml::radioLabel(
+				wfMsgExt( 'sp-contributions-username', array( 'parsemag' ) ),
+				'contribs',
+				'user',
+				'user',
+				$this->opts['contribs'] == 'user',
+				array( 'class' => 'mw-input' )
+			) . ' ' .
+			Html::input(
+				'target',
+				$this->opts['target'],
+				'text',
+				array( 'size' => '20', 'required' => '', 'class' => 'mw-input' ) +
+					( $this->opts['target'] ? array() : array( 'autofocus' )
+				)
+			) . ' '
+		) ;
+
+		$namespaceSelection =
+			Xml::tags( 'td', array( 'class' => 'mw-label' ),
+				Xml::label(
+					wfMsg( 'namespace' ),
+					'namespace',
+					''
+				)
 			) .
-			Xml::checkLabel( wfMsg('invert'), 'nsInvert', 'nsInvert', $this->opts['nsInvert'] ) . '&#160;' .
-			Xml::checkLabel( wfMsg( 'history-show-deleted' ),
-				'deletedOnly', 'mw-show-deleted-only', $this->opts['deletedOnly'] ) . '<br />' .
-			Xml::tags( 'p', null, Xml::checkLabel( wfMsg( 'sp-contributions-toponly' ),
-				'topOnly', 'mw-show-top-only', $this->opts['topOnly'] ) ) .
-			( $tagFilter ? Xml::tags( 'p', null, implode( '&#160;', $tagFilter ) ) : '' ) .
-			Html::rawElement( 'p', array( 'style' => 'white-space: nowrap' ),
-				Xml::dateMenu( $this->opts['year'], $this->opts['month'] ) . ' ' .
-				Xml::submitButton( wfMsg( 'sp-contributions-submit' ) )
-			) . ' ';
+			Xml::tags( 'td', null,
+				Xml::namespaceSelector( $this->opts['namespace'], '' ) . '&#160;' .
+				Html::rawElement( 'span', array( 'style' => 'white-space: nowrap' ),
+					Xml::checkLabel(
+						wfMsg('invert'),
+						'nsInvert',
+						'nsInvert',
+						$this->opts['nsInvert'],
+						array( 'title' => wfMsg( 'tooltip-invert' ), 'class' => 'mw-input' )
+					) . '&#160;'
+				) .
+				Html::rawElement( 'span', array( 'style' => 'white-space: nowrap' ),
+					Xml::checkLabel(
+						wfMsg('namespace_association'),
+						'associated',
+						'associated',
+						$this->opts['associated'],
+						array( 'title' => wfMsg( 'tooltip-namespace_association' ), 'class' => 'mw-input' )
+					) . '&#160;'
+				)
+			) ;
+
+		$extraOptions = Xml::tags( 'td', array( 'colspan' => 2 ),
+			Html::rawElement( 'span', array( 'style' => 'white-space: nowrap' ),
+				Xml::checkLabel(
+					wfMsg( 'history-show-deleted' ),
+					'deletedOnly',
+					'mw-show-deleted-only',
+					$this->opts['deletedOnly'],
+					array( 'class' => 'mw-input' )
+				)
+			) .
+			Html::rawElement( 'span', array( 'style' => 'white-space: nowrap' ),
+				Xml::checkLabel(
+					wfMsg( 'sp-contributions-toponly' ),
+					'topOnly',
+					'mw-show-top-only',
+					$this->opts['topOnly'],
+					array( 'class' => 'mw-input' )
+				)
+			)
+		) ;
+
+		$dateSelectionAndSubmit = Xml::tags( 'td', array( 'colspan' => 2 ),
+			Xml::dateMenu(
+				$this->opts['year'],
+				$this->opts['month']
+			) . ' ' .
+			Xml::submitButton(
+				wfMsg( 'sp-contributions-submit' ),
+				array( 'class' => 'mw-submit' )
+			)
+		) ;
+
+		$form .=
+			Xml::fieldset( wfMsg( 'sp-contributions-search' ) ) .
+			Xml::openElement( 'table', array( 'class' => 'mw-contributions-table' ) ) .
+				Xml::openElement( 'tr' ) .
+					$targetSelection .
+				Xml::closeElement( 'tr' ) .
+				Xml::openElement( 'tr' ) .
+					$namespaceSelection .
+				Xml::closeElement( 'tr' ) .
+				Xml::openElement( 'tr' ) .
+					$filterSelection .
+				Xml::closeElement( 'tr' ) .
+				Xml::openElement( 'tr' ) .
+ 					$extraOptions .
+ 				Xml::closeElement( 'tr' ) .
+ 				Xml::openElement( 'tr' ) .
+					$dateSelectionAndSubmit .
+				Xml::closeElement( 'tr' ) .
+			Xml::closeElement( 'table' );
+
 		$explain = wfMessage( 'sp-contributions-explain' );
 		if ( $explain->exists() ) {
-			$f .= "<p id='mw-sp-contributions-explain'>{$explain}</p>";
+			$form .= "<p id='mw-sp-contributions-explain'>{$explain}</p>";
 		}
-		$f .= Xml::closeElement('fieldset' ) .
+		$form .= Xml::closeElement('fieldset' ) .
 			Xml::closeElement( 'form' );
-		return $f;
+		return $form;
 	}
 }
 
@@ -451,6 +552,7 @@ class ContribsPager extends ReverseChronologicalPager {
 		$this->namespace = isset( $options['namespace'] ) ? $options['namespace'] : '';
 		$this->tagFilter = isset( $options['tagfilter'] ) ? $options['tagfilter'] : false;
 		$this->nsInvert = isset( $options['nsInvert'] ) ? $options['nsInvert'] : false;
+		$this->associated = isset( $options['associated'] ) ? $options['associated'] : false;
 
 		$this->deletedOnly = !empty( $options['deletedOnly'] );
 		$this->topOnly = !empty( $options['topOnly'] );
@@ -545,11 +647,23 @@ class ContribsPager extends ReverseChronologicalPager {
 
 	function getNamespaceCond() {
 		if( $this->namespace !== '' ) {
-			if ( $this->nsInvert ) {
-				return array( 'page_namespace != ' . (int)$this->namespace );
+			$selectedNS = $this->mDb->addQuotes( $this->namespace );
+			$eq_op = $this->nsInvert ? '!=' : '=';
+			$bool_op = $this->nsInvert ? 'AND' : 'OR';
+
+			if( !$this->associated ) {
+				return array( "page_namespace $eq_op $selectedNS" );
 			} else {
-				return array( 'page_namespace' => (int)$this->namespace );
+				$associatedNS = $this->mDb->addQuotes (
+					MWNamespace::getAssociated( $this->namespace )
+				);
+				return array(
+					"page_namespace $eq_op $selectedNS " .
+					$bool_op .
+					" page_namespace $eq_op $associatedNS"
+				);
 			}
+
 		} else {
 			return array();
 		}
