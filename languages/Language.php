@@ -658,7 +658,6 @@ class Language {
 			return $allNames;
 		}
 
-		global $IP;
 		$names = array();
 		// We do this using a foreach over the codes instead of a directory
 		// loop so that messages files in extensions will work correctly.
