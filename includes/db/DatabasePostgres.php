@@ -642,11 +642,13 @@ class DatabasePostgres extends DatabaseBase {
 		# Split database and table into proper variables.
 		# We reverse the explode so that schema.table and table both output
 		# the correct table.
-		$dbDetails = array_reverse( explode( '.', $name, 2 ) );
+		$dbDetails = explode( '.', $name, 2 );
 		if ( isset( $dbDetails[1] ) ) {
-			list( $table, $schema ) = $dbDetails;
+			$schema = '"' . $dbDetails[0] . '".';
+			$table  = $dbDetails [1];
 		} else {
-			list( $table ) = $dbDetails;
+			$schema = "\"{$wgDBmwschema}\"."; # keep old schema, but quote it.
+			$table = $dbDetails[0];
 		}
 		if ( $format != 'quoted' ) {
 			switch( $name ) {
@@ -658,12 +660,7 @@ class DatabasePostgres extends DatabaseBase {
 					return $table;
 			}
 		}
-		if ( !isset( $schema )) {
-			$schema = "\"{$wgDBmwschema}\".";
-		} else {
-			# keep old schema, but quote it.
-			$schema = "\"{$schema}\".";
-		}
+
 		# during installation wgDBmwschema is not set, so we would end up quering
 		# ""."table" => error. Erase the first part if wgDBmwschema is empty
 		if ( $schema == "\"\"." ) {
