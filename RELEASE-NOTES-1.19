@@ -183,6 +183,8 @@ production.
 * (bug 32960) Remove EmailAuthenticationTimestamp from database when a
   email address is removed.
 * (bug 32414) Empty page get a empty bytes attribute in Export/Dump.
+* (bug 33101) Viewing a User or User talk of username resembling IP ending
+  with .xxx causes Internal error
 
 === API changes in 1.19 ===
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.
