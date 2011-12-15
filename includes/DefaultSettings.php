@@ -4066,7 +4066,7 @@ $wgDevelopmentWarnings = false;
  * development warnings will not be generated for deprecations added in releases
  * after the limit.
  */
-$wgDeprecationReleaseLimit = false;
+$wgDeprecationReleaseLimit = '1.17';
 
 /** Only record profiling info for pages that took longer than this */
 $wgProfileLimit = 0.0;
