@@ -63,7 +63,7 @@ class ApiPurge extends ApiBase {
 			$page['missing'] = '';
 			$result[] = $page;
 		}
-		foreach( $pageSet->getMissingPageIDs() as $r ) {
+		foreach( $pageSet->getMissingRevisionIDs() as $r ) {
 			$rev = array();
 			$rev['revid'] = $r;
 			$rev['missing'] = '';
