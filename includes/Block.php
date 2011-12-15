@@ -430,7 +430,7 @@ class Block {
 
 		$row = $this->getDatabaseArray();
 		$row['ipb_id'] = $dbw->nextSequenceValue("ipblocks_ipb_id_seq");
-		
+
 		$dbw->insert(
 			'ipblocks',
 			$row,
@@ -969,7 +969,7 @@ class Block {
 	 */
 	public static function formatExpiry( $encoded_expiry ) {
 		wfDeprecated( __METHOD__, '1.18' );
-		
+
 		global $wgContLang;
 		static $msg = null;
 
@@ -1039,7 +1039,7 @@ class Block {
 			# passed by some callers (bug 29116)
 			return null;
 
-		} elseif( in_array( $type, array( Block::TYPE_USER, Block::TYPE_IP, Block::TYPE_RANGE, null ) ) ) {
+		} elseif( in_array( $type, array( Block::TYPE_USER, Block::TYPE_IP, Block::TYPE_RANGE ) ) ) {
 			$block = new Block();
 			$block->fromMaster( $fromMaster );
 
@@ -1049,12 +1049,9 @@ class Block {
 
 			if( $block->newLoad( $vagueTarget ) ){
 				return $block;
-			} else {
-				return null;
 			}
-		} else {
-			return null;
 		}
+		return null;
 	}
 
 	/**
