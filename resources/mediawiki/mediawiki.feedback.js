@@ -77,7 +77,7 @@
 				.attr( { 'href': _this.title.getUrl(), 'target': '_blank' } )
 				.css( { 'white-space': 'nowrap' } );
 
-			var $bugNoteLink = $( '<a></a>' ).attr( { 'href': '#', } ).click( function() { _this.displayBugs(); } );
+			var $bugNoteLink = $( '<a></a>' ).attr( { 'href': '#' } ).click( function() { _this.displayBugs(); } );
 
 			var $bugsListLink = $( '<a></a>' ).attr( { 'href': _this.bugsListLink, 'target': '_blank' } );
 
@@ -86,11 +86,11 @@
 					$( '<div class="feedback-mode feedback-form"></div>' ).append(
 						$( '<small></small>' ).append(  
 							$( '<p></p>' ).msg( 
-								'feedback-note', 
+								'feedback-bugornote', 
+								$bugNoteLink,
 								_this.title.getNameText(), 
 								$feedbackPageLink.clone() 
-							),
-							$( '<p></p>' ).msg( 'feedback-bugnote', $bugNoteLink )
+							)
 						),
 						$( '<div style="margin-top:1em;"></div>' ).append( 
 							mw.msg( 'feedback-subject' ), 

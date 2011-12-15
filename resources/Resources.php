@@ -538,8 +538,7 @@ return array(
 			'jquery.ui.dialog',
 		),
 		'messages' => array( 
-			'feedback-note',
-			'feedback-bugnote',
+			'feedback-bugornote',
 			'feedback-subject',
 			'feedback-message',
 			'feedback-cancel',
