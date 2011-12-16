@@ -114,8 +114,9 @@ class ApiParamInfo extends ApiBase {
 		$result = $this->getResult();
 		$retval['classname'] = get_class( $obj );
 		$retval['description'] = implode( "\n", (array)$obj->getFinalDescription() );
-		$examples = (array)$obj->getExamples();
-		$retval['examples'] = implode( "\n", $examples );
+
+		$retval['examples'] = '';
+
 		$retval['version'] = implode( "\n", (array)$obj->getVersion() );
 		$retval['prefix'] = $obj->getModulePrefix();
 
@@ -143,9 +144,28 @@ class ApiParamInfo extends ApiBase {
 		}
 		$result->setIndexedTagName( $retval['helpurls'], 'helpurl' );
 
-		$retval['allexamples'] = $examples;
-		if ( isset( $retval['allexamples'][0] ) && $retval['allexamples'][0] === false ) {
-			$retval['allexamples'] = array();
+		$examples = $obj->getExamples();
+		$retval['allexamples'] = array();
+		if ( $examples !== false ) {
+			foreach( $examples as $k => $v ) {
+				if ( strlen( $retval['examples'] ) ) {
+					$retval['examples'] .= ' ';
+				}
+				$item = array();
+				if ( is_numeric( $k ) ) {
+					$retval['examples'] .= $v;
+					$result->setContent( $item, $v );
+				} else {
+					if ( !is_array( $v ) ) {
+						$item['description'] = $v;
+					} else {
+						$item['description'] = implode( $v, "\n" );
+					}
+					$retval['examples'] .= $item['description'] . ' ' . $k;
+					$result->setContent( $item, $k );
+				}
+				$retval['allexamples'][] = $item;
+			}
 		}
 		$result->setIndexedTagName( $retval['allexamples'], 'example' );
 

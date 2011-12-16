@@ -212,6 +212,7 @@ production.
 * (bug 32415) Empty page get no size attribute in API output.
 * (bug 31759) Undefined property notice in querypages API.
 * (bug 32495) API should allow purge by pageids.
+* (bug 33147) API examples should explain what they do.
 
 === Languages updated in 1.19 ===
 
