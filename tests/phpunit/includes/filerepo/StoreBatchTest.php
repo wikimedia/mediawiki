@@ -95,7 +95,7 @@ class StoreBatchTest extends MediaWikiTestCase {
 	}
 
 	public function tearDown() {
-		$this->repo->cleanupBatch( $this->createdFile );
+		$this->repo->cleanupBatch( $this->createdFiles );
 		parent::tearDown();
 		
 	}
