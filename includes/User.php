@@ -2594,7 +2594,7 @@ class User {
 	 * @deprecated since 1.18 Use ->getSkin() in the most relevant outputting context you have
 	 */
 	public function getSkin() {
-		//wfDeprecated( __METHOD__, '1.18' );
+		wfDeprecated( __METHOD__, '1.18' );
 		return RequestContext::getMain()->getSkin();
 	}
 
@@ -3186,14 +3186,14 @@ class User {
 
 	/**
 	 * Alias for getEditToken.
-	 * @deprecated since 1.19, use getEditToken instead. Warnings in 1.21.
+	 * @deprecated since 1.19, use getEditToken instead.
 	 *
 	 * @param $salt String|Array of Strings Optional function-specific data for hashing
 	 * @param $request WebRequest object to use or null to use $wgRequest
 	 * @return String The new edit token
 	 */
 	public function editToken( $salt = '', $request = null ) {
-		# wfDeprecated( __METHOD__, '1.19' );
+		wfDeprecated( __METHOD__, '1.19' );
 		return $this->getEditToken( $salt, $request );
 	}
 
