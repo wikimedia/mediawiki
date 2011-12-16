@@ -36,7 +36,7 @@ class MWNamespace {
 	 * @return true
 	 */
 	private static function isMethodValidFor( $index, $method ) {
-		if( $index < NS_MAIN ) {
+		if ( $index < NS_MAIN ) {
 			throw new MWException( "$method does not make any sense for given namespace $index" );
 		}
 		return true;
@@ -50,7 +50,7 @@ class MWNamespace {
 	 */
 	public static function isMovable( $index ) {
 		global $wgAllowImageMoving;
-		return !( $index < NS_MAIN || ($index == NS_FILE && !$wgAllowImageMoving)  || $index == NS_CATEGORY );
+		return !( $index < NS_MAIN || ( $index == NS_FILE && !$wgAllowImageMoving )  || $index == NS_CATEGORY );
 	}
 
 	/**
@@ -106,7 +106,7 @@ class MWNamespace {
 	 */
 	public static function getSubject( $index ) {
 		# Handle special namespaces
-		if( $index < NS_MAIN ) {
+		if ( $index < NS_MAIN ) {
 			return $index;
 		}
 
@@ -126,9 +126,9 @@ class MWNamespace {
 	public static function getAssociated( $index ) {
 		self::isMethodValidFor( $index, __METHOD__ );
 
-		if( self::isSubject( $index ) ) {
+		if ( self::isSubject( $index ) ) {
 			return self::getTalk( $index );
-		} elseif( self::isTalk( $index ) ) {
+		} elseif ( self::isTalk( $index ) ) {
 			return self::getSubject( $index );
 		} else {
 			return null;
@@ -209,7 +209,7 @@ class MWNamespace {
 	 */
 	public static function getCanonicalName( $index ) {
 		$nslist = self::getCanonicalNamespaces();
-		if( isset( $nslist[$index] ) ) {
+		if ( isset( $nslist[$index] ) ) {
 			return $nslist[$index];
 		} else {
 			return false;
@@ -228,7 +228,7 @@ class MWNamespace {
 		if ( $xNamespaces === false ) {
 			$xNamespaces = array();
 			foreach ( self::getCanonicalNamespaces() as $i => $text ) {
-				$xNamespaces[strtolower($text)] = $i;
+				$xNamespaces[strtolower( $text )] = $i;
 			}
 		}
 		if ( array_key_exists( $name, $xNamespaces ) ) {
@@ -306,7 +306,7 @@ class MWNamespace {
 	 */
 	public static function getContentNamespaces() {
 		global $wgContentNamespaces;
-		if( !is_array( $wgContentNamespaces ) || $wgContentNamespaces === array() ) {
+		if ( !is_array( $wgContentNamespaces ) || $wgContentNamespaces === array() ) {
 			return NS_MAIN;
 		} elseif ( !in_array( NS_MAIN, $wgContentNamespaces ) ) {
 			// always force NS_MAIN to be part of array (to match the algorithm used by isContent)
