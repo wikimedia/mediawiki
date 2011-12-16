@@ -51,7 +51,7 @@ class Ibm_db2Updater extends DatabaseUpdater {
 			array( 'addTable', 'module_deps',                        'patch-module_deps.sql' ),
 			array( 'addIndex', 'module_deps',    'uq96_module_deps',  'patch-uq_96_module_deps.sql' ),
 			array( 'addField', 'interwiki',      'iw_api',            'patch-iw_api-field.sql' ),
-			array( 'addField', 'interwiki',      'iw_wikiid',         'patch-iw_wikiid-field.sql' )
+			array( 'addField', 'interwiki',      'iw_wikiid',         'patch-iw_wikiid-field.sql' ),
 			array( 'addField', 'categorylinks',  'cl_sortkey_prefix', 'patch-cl_sortkey_prefix-field.sql' ),
 			array( 'addField', 'categorylinks',  'cl_collation',      'patch-cl_collation-field.sql' ),
 			array( 'addField', 'categorylinks',  'cl_type',           'patch-cl_type-field.sql' ),
