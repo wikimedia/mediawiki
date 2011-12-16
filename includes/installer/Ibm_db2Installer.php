@@ -216,7 +216,7 @@ class Ibm_db2Installer extends DatabaseInstaller {
 		$this->db->selectDB( $this->getVar( 'wgDBname' ) );
 
 		try {
-			$result = $this->db->query( 'SELECT PAGESIZE FROM SYSCAT.TABLESPACES' );
+			$result = $this->db->query( 'SELECT PAGESIZE FROM SYSCAT.TABLESPACES FOR READ ONLY' );
 			if( $result == false ) {
 				$status->fatal( 'config-connection-error', '' );
 			} else {
@@ -249,7 +249,7 @@ class Ibm_db2Installer extends DatabaseInstaller {
 \$wgDBport             = \"{$port}\";";
 	}
 
-	public function __construct($parent) {
-		parent::__construct($parent);
+	public function __construct( $parent ) {
+		parent::__construct( $parent );
 	}
 }

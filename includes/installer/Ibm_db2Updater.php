@@ -45,25 +45,31 @@ class Ibm_db2Updater extends DatabaseUpdater {
 			array( 'addField', 'interwiki',     'iw_api',            'patch-iw_api_and_wikiid.sql' ),
 			array( 'addField', 'categorylinks', 'cl_collation',      'patch-categorylinks-better-collation.sql' ),
 			array( 'addTable', 'msg_resource',                       'patch-msg_resource.sql' ),
-			array( 'addTable', 'module_deps',                        'patch-module_deps.sql' ),
-
-			// Tables
-			array( 'addTable', 'iwlinks',                            'patch-iwlinks.sql' ),
 			array( 'addTable', 'msg_resource_links',                 'patch-msg_resource_links.sql' ),
-			array( 'addTable', 'msg_resource',                       'patch-msg_resource.sql' ),
-			array( 'addTable', 'module_deps',                        'patch-module_deps.sql' ),
-
-			// Indexes
 			array( 'addIndex', 'msg_resource_links', 'uq61_msg_resource_links', 'patch-uq_61_msg_resource_links.sql' ),
 			array( 'addIndex', 'msg_resource',   'uq81_msg_resource', 'patch-uq_81_msg_resource.sql' ),
+			array( 'addTable', 'module_deps',                        'patch-module_deps.sql' ),
 			array( 'addIndex', 'module_deps',    'uq96_module_deps',  'patch-uq_96_module_deps.sql' ),
-
-			// Fields
+			array( 'addField', 'interwiki',      'iw_api',            'patch-iw_api-field.sql' ),
+			array( 'addField', 'interwiki',      'iw_wikiid',         'patch-iw_wikiid-field.sql' )
 			array( 'addField', 'categorylinks',  'cl_sortkey_prefix', 'patch-cl_sortkey_prefix-field.sql' ),
 			array( 'addField', 'categorylinks',  'cl_collation',      'patch-cl_collation-field.sql' ),
 			array( 'addField', 'categorylinks',  'cl_type',           'patch-cl_type-field.sql' ),
-			array( 'addField', 'interwiki',      'iw_api',            'patch-iw_api-field.sql' ),
-			array( 'addField', 'interwiki',      'iw_wikiid',         'patch-iw_wikiid-field.sql' )
+			
+			//1.18
+			array( 'doUserNewTalkTimestampNotNull' ),
+			array( 'addIndex', 'user',          'user_email',       'patch-user_email_index.sql' ),
+			array( 'modifyField', 'user_properties', 'up_property', 'patch-up_property.sql' ),
+			array( 'addTable', 'uploadstash',                       'patch-uploadstash.sql' ),
+			array( 'addTable', 'user_former_groups',                'patch-user_former_groups.sql'),
+			array( 'doRebuildLocalisationCache' ), 
+			
+			// 1.19
+			array( 'addTable', 'config',                            'patch-config.sql' ),
+			array( 'addIndex', 'logging',       'type_action',      'patch-logging-type-action-index.sql'),
+			array( 'dropField', 'user',         'user_options', 'patch-drop-user_options.sql' ),
+			array( 'addField', 'revision',      'rev_sha1',         'patch-rev_sha1.sql' ),
+			array( 'addField', 'archive',       'ar_sha1',          'patch-ar_sha1.sql' )
 		);
 	}
 }

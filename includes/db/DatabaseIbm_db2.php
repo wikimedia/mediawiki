@@ -104,6 +104,147 @@ class IBM_DB2Blob {
 }
 
 /**
+ * Wrapper to address lack of certain operations in the DB2 driver
+ *  ( seek, num_rows )
+ * @ingroup Database
+ * @since 1.19
+ */
+class IBM_DB2Result{
+	private $db;
+	private $result;
+	private $num_rows;
+	private $current_pos;
+	private $columns = array();
+	private $sql;
+
+	private $resultSet = array();
+	private $loadedLines = 0;
+
+	/**
+	 * Construct and initialize a wrapper for DB2 query results
+	 * @param $db Database
+	 * @param $result Object
+	 * @param $num_rows Integer
+	 * @param $sql String
+	 * @param $columns Array
+	 */
+	public function __construct( $db, $result, $num_rows, $sql, $columns ){
+		$this->db = $db;
+		
+		if( $result instanceof ResultWrapper ){
+			$this->result = $result->result;
+		}
+		else{
+			$this->result = $result;
+		}
+		
+		$this->num_rows = $num_rows;
+		$this->current_pos = 0;
+		if ( $this->num_rows > 0 ) {
+			// Make a lower-case list of the column names
+			// By default, DB2 column names are capitalized
+			//  while MySQL column names are lowercase
+			
+			// Is there a reasonable maximum value for $i?
+			// Setting to 2048 to prevent an infinite loop
+			for( $i = 0; $i < 2048; $i++ ) {
+				$name = db2_field_name( $this->result, $i );
+				if ( $name != false ) {
+					continue;
+				}
+				else {
+					return false;
+				}
+				
+				$this->columns[$i] = strtolower( $name );
+			}
+		}
+		
+		$this->sql = $sql;
+	}
+
+	/**
+	 * Unwrap the DB2 query results
+	 * @return mixed Object on success, false on failure
+	 */
+	public function getResult() {
+		if ( $this->result ) {
+			return $this->result;
+		}
+		else return false;
+	}
+
+	/**
+	 * Get the number of rows in the result set
+	 * @return integer
+	 */
+	public function getNum_rows() {
+		return $this->num_rows;
+	}
+
+	/**
+	 * Return a row from the result set in object format
+	 * @return mixed Object on success, false on failure.
+	 */
+	public function fetchObject() {
+		if ( $this->result 
+				&& $this->num_rows > 0 
+				&& $this->current_pos >= 0 
+				&& $this->current_pos < $this->num_rows ) 
+		{
+			$row = $this->fetchRow();
+			$ret = new stdClass();
+			
+			foreach ( $row as $k => $v ) {
+				$lc = $this->columns[$k];
+				$ret->$lc = $v;
+			}
+			return $ret;
+		}
+		return false;
+	}
+
+	/**
+	 * Return a row form the result set in array format
+	 * @return mixed Array on success, false on failure
+	 * @throws DBUnexpectedError
+	 */
+	public function fetchRow(){
+		if ( $this->result 
+				&& $this->num_rows > 0 
+				&& $this->current_pos >= 0 
+				&& $this->current_pos < $this->num_rows )
+		{
+			if ( $this->loadedLines <= $this->current_pos ) {
+				$row = db2_fetch_array( $this->result );
+				$this->resultSet[$this->loadedLines++] = $row;
+				if ( $this->db->lastErrno() ) {
+					throw new DBUnexpectedError( $this->db, 'Error in fetchRow(): '
+						. htmlspecialchars( $this->db->lastError() ) );
+				}
+			}
+
+			if ( $this->loadedLines > $this->current_pos ){
+				return $this->resultSet[$this->current_pos++];
+			}
+			
+		}
+		return false;
+	}
+
+	/**
+	 * Free a DB2 result object
+	 * @throws DBUnexpectedError
+	 */
+	public function freeResult(){
+		unset( $this->resultSet );
+		if ( !@db2_free_result( $this->result ) ) {
+			throw new DBUnexpectedError( $this, "Unable to free DB2 result\n" );
+		}
+	}
+}
+
+/**
  * Primary database interface
  * @ingroup Database
  */
@@ -137,6 +278,8 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	protected $mAffectedRows = null;
 	/** Number of rows returned by last SELECT */
 	protected $mNumRows = null;
+	/** Current row number on the cursor of the last SELECT */
+	protected $currentRow = 0;
 
 	/** Connection config options - see constructor */
 	public $mConnOptions = array();
@@ -233,7 +376,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	/**
 	 * Returns a unique string representing the wiki on the server
 	 */
-	function getWikiID() {
+	public function getWikiID() {
 		if( $this->mSchema ) {
 			return "{$this->mDBname}-{$this->mSchema}";
 		} else {
@@ -241,8 +384,20 @@ class DatabaseIbm_db2 extends DatabaseBase {
 		}
 	}
 
-	function getType() {
+	/**
+	 * Returns the database software identifieir
+	 * @return string
+	 */
+	public function getType() {
 		return 'ibm_db2';
+	}
+
+	/** 
+	 * Returns the database connection object
+	 * @return Object
+	 */
+	public function getDb(){
+		return $this->mConn;
 	}
 
 	/**
@@ -268,17 +423,12 @@ class DatabaseIbm_db2 extends DatabaseBase {
 		}
 
 		// configure the connection and statement objects
-		/*
-		$this->setDB2Option( 'cursor', 'DB2_SCROLLABLE',
-			self::CONN_OPTION | self::STMT_OPTION );
-		*/
 		$this->setDB2Option( 'db2_attr_case', 'DB2_CASE_LOWER',
 			self::CONN_OPTION | self::STMT_OPTION );
 		$this->setDB2Option( 'deferred_prepare', 'DB2_DEFERRED_PREPARE_ON',
 			self::STMT_OPTION );
 		$this->setDB2Option( 'rowcount', 'DB2_ROWCOUNT_PREFETCH_ON',
 			self::STMT_OPTION );
-
 		parent::__construct( $server, $user, $password, $dbName, DBO_TRX | $flags );
 	}
 
@@ -361,8 +511,6 @@ class DatabaseIbm_db2 extends DatabaseBase {
 			throw new DBConnectionError( $this, $this->lastError() );
 		}
 
-		// Apply connection config
-		db2_set_option( $this->mConn, $this->mConnOptions, 1 );
 		// Some MediaWiki code is still transaction-less (?).
 		// The strategy is to keep AutoCommit on for that code
 		//  but switch it off whenever a transaction is begun.
@@ -391,7 +539,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	{
 		$dsn = "DRIVER={IBM DB2 ODBC DRIVER};DATABASE=$dbName;CHARSET=UTF-8;HOSTNAME=$server;PORT=$port;PROTOCOL=TCPIP;UID=$user;PWD=$password;";
 		wfSuppressWarnings();
-		$this->mConn = db2_pconnect($dsn, "", "", array());
+		$this->mConn = db2_pconnect( $dsn, "", "", array() );
 		wfRestoreWarnings();
 	}
 
@@ -464,7 +612,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 		// Needed to handle any UTF-8 encoding issues in the raw sql
 		// Note that we fully support prepared statements for DB2
 		// prepare() and execute() should be used instead of doQuery() whenever possible
-		$sql = utf8_decode($sql);
+		$sql = utf8_decode( $sql );
 
 		$ret = db2_exec( $this->mConn, $sql, $this->mStmtOptions );
 		if( $ret == false ) {
@@ -1062,9 +1210,13 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	 */
 	public function dataSeek( $res, $row ) {
 		if ( $res instanceof ResultWrapper ) {
-			$res = $res->result;
+			return $res = $res->result;
 		}
-		return db2_fetch_row( $res, $row );
+		if ( $res instanceof IBM_DB2Result ) {
+			return $res->dataSeek( $row );
+		}
+		wfDebug( "dataSeek operation in DB2 database\n" );
+		return false;
 	}
 
 	###
@@ -1097,6 +1249,9 @@ class DatabaseIbm_db2 extends DatabaseBase {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
+		if ( $res instanceof IBM_DB2Result ) {
+			$res = $res->getResult();
+		}
 		return db2_num_fields( $res );
 	}
 
@@ -1110,6 +1265,9 @@ class DatabaseIbm_db2 extends DatabaseBase {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
+		if ( $res instanceof IBM_DB2Result ) {
+			$res = $res->getResult();
+		}
 		return db2_field_name( $res, $n );
 	}
 
@@ -1122,7 +1280,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	 * @param $fname   String: calling function name (use __METHOD__)
 	 *                 for logs/profiling
 	 * @param $options Associative array of options
-	 *                 (e.g. array('GROUP BY' => 'page_title')),
+	 *                 (e.g. array( 'GROUP BY' => 'page_title' )),
 	 *                 see Database::makeSelectOptions code for list of
 	 *                 supported stuff
 	 * @param $join_conds Associative array of table join conditions (optional)
@@ -1135,6 +1293,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	{
 		$res = parent::select( $table, $vars, $conds, $fname, $options,
 			$join_conds );
+		$sql = $this->selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds );
 
 		// We must adjust for offset
 		if ( isset( $options['LIMIT'] ) && isset ( $options['OFFSET'] ) ) {
@@ -1161,10 +1320,11 @@ class DatabaseIbm_db2 extends DatabaseBase {
 
 		$res2 = parent::select( $table, $vars2, $conds, $fname, $options2,
 			$join_conds );
+		
 		$obj = $this->fetchObject( $res2 );
 		$this->mNumRows = $obj->num_rows;
-
-		return $res;
+		
+		return new ResultWrapper( $this, new IBM_DB2Result( $this, $res, $obj->num_rows, $vars, $sql ) );
 	}
 
 	/**
@@ -1331,6 +1491,9 @@ SQL;
 	public function fieldType( $res, $index ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
+		}
+		if ( $res instanceof IBM_DB2Result ) {
+			$res = $res->getResult();
 		}
 		return db2_field_type( $res, $index );
 	}
