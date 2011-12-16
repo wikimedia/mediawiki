@@ -499,8 +499,12 @@ class Article extends Page {
 							# the correct version information.
 							$wgOut->setRevisionId( $this->mPage->getLatest() );
 							# Preload timestamp to avoid a DB hit
-							$wgOut->setRevisionTimestamp( $this->mParserOutput->getTimestamp() );
-							$this->mPage->setTimestamp( $this->mParserOutput->getTimestamp() );
+							$cachedTimestamp = $this->mParserOutput->getTimestamp();
+							var_dump( $cachedTimestamp );
+							if ( $cachedTimestamp !== null ) {
+								$wgOut->setRevisionTimestamp( $cachedTimestamp );
+								$this->mPage->setTimestamp( $cachedTimestamp );
+							}
 							$outputDone = true;
 						}
 					}
