@@ -348,12 +348,12 @@ class SpecialPage {
 		$this->mListed = $listed;
 		$this->mIncludable = $includable;
 		if ( !$function ) {
-			$this->mFunction = 'wfSpecial'.$name;
+			$this->mFunction = 'wfSpecial' . $name;
 		} else {
 			$this->mFunction = $function;
 		}
 		if ( $file === 'default' ) {
-			$this->mFile = dirname(__FILE__) . "/specials/Special$name.php";
+			$this->mFile = dirname( __FILE__ ) . "/specials/Special$name.php";
 		} else {
 			$this->mFile = $file;
 		}
@@ -370,9 +370,9 @@ class SpecialPage {
 	public function __call( $fName, $a ) {
 		// Deprecated messages now, remove in 1.19 or 1.20?
 		wfDeprecated( __METHOD__, '1.17' );
-		
+
 		// Sometimes $fName is SpecialPage, sometimes it's specialpage. <3 PHP
-		if( strtolower( $fName ) == 'specialpage' ) {
+		if ( strtolower( $fName ) == 'specialpage' ) {
 			$name = isset( $a[0] ) ? $a[0] : '';
 			$restriction = isset( $a[1] ) ? $a[1] : '';
 			$listed = isset( $a[2] ) ? $a[2] : true;
@@ -410,7 +410,7 @@ class SpecialPage {
 	 * @deprecated since 1.18
 	 */
 	function getFile() {
-		wfDeprecated( __METHOD__, '1.18' ); 
+		wfDeprecated( __METHOD__, '1.18' );
 		return $this->mFile;
 	}
 
@@ -438,7 +438,7 @@ class SpecialPage {
 	 * @param $x Bool
 	 * @return Bool
 	 */
-	function listed( $x = null) {
+	function listed( $x = null ) {
 		return wfSetVar( $this->mListed, $x );
 	}
 
@@ -446,7 +446,7 @@ class SpecialPage {
 	 * Whether it's allowed to transclude the special page via {{Special:Foo/params}}
 	 * @return Bool
 	 */
-	public function isIncludable(){
+	public function isIncludable() {
 		return $this->mIncludable;
 	}
 
@@ -466,7 +466,7 @@ class SpecialPage {
 	 * @return Mixed
 	 * @deprecated since 1.18
 	 */
-	function restriction( $x = null) { wfDeprecated( __METHOD__, '1.18' ); return wfSetVar( $this->mRestriction, $x ); }
+	function restriction( $x = null ) { wfDeprecated( __METHOD__, '1.18' ); return wfSetVar( $this->mRestriction, $x ); }
 
 	/**
 	 * These mutators are very evil, as the relevant variables should not mutate.  So
@@ -475,7 +475,7 @@ class SpecialPage {
 	 * @return Mixed
 	 * @deprecated since 1.18
 	 */
-	function func( $x = null) { wfDeprecated( __METHOD__, '1.18' ); return wfSetVar( $this->mFunction, $x ); }
+	function func( $x = null ) { wfDeprecated( __METHOD__, '1.18' ); return wfSetVar( $this->mFunction, $x ); }
 
 	/**
 	 * These mutators are very evil, as the relevant variables should not mutate.  So
@@ -484,7 +484,7 @@ class SpecialPage {
 	 * @return Mixed
 	 * @deprecated since 1.18
 	 */
-	function file( $x = null) { wfDeprecated( __METHOD__, '1.18' ); return wfSetVar( $this->mFile, $x ); }
+	function file( $x = null ) { wfDeprecated( __METHOD__, '1.18' ); return wfSetVar( $this->mFile, $x ); }
 
 	/**
 	 * These mutators are very evil, as the relevant variables should not mutate.  So
@@ -536,7 +536,7 @@ class SpecialPage {
 	public function isRestricted() {
 		global $wgGroupPermissions;
 		// DWIM: If all anons can do something, then it is not restricted
-		return $this->mRestriction != '' && empty($wgGroupPermissions['*'][$this->mRestriction]);
+		return $this->mRestriction != '' && empty( $wgGroupPermissions['*'][$this->mRestriction] );
 	}
 
 	/**
@@ -605,7 +605,7 @@ class SpecialPage {
 
 		$func = $this->mFunction;
 		// only load file if the function does not exist
-		if( !is_callable($func) && $this->mFile ) {
+		if ( !is_callable( $func ) && $this->mFile ) {
 			require_once( $this->mFile );
 		}
 		$this->outputHeader();
@@ -623,7 +623,7 @@ class SpecialPage {
 	function outputHeader( $summaryMessageKey = '' ) {
 		global $wgContLang;
 
-		if( $summaryMessageKey == '' ) {
+		if ( $summaryMessageKey == '' ) {
 			$msg = $wgContLang->lc( $this->getName() ) . '-summary';
 		} else {
 			$msg = $summaryMessageKey;
@@ -781,7 +781,7 @@ class SpecialPage {
 
 		$feedTemplate = wfScript( 'api' ) . '?';
 
-		foreach( $wgFeedClasses as $format => $class ) {
+		foreach ( $wgFeedClasses as $format => $class ) {
 			$theseParams = $params + array( 'feedformat' => $format );
 			$url = $feedTemplate . wfArrayToCGI( $theseParams );
 			$this->getOutput()->addFeedLink( $format, $url );
@@ -878,7 +878,7 @@ abstract class FormSpecialPage extends SpecialPage {
 	 * Maybe do something interesting with the subpage parameter
 	 * @param $par String
 	 */
-	protected function setParameter( $par ){}
+	protected function setParameter( $par ) {}
 
 	/**
 	 * Called from execute() to check if the given user can perform this action.
@@ -928,7 +928,7 @@ class UnlistedSpecialPage extends SpecialPage {
 		parent::__construct( $name, $restriction, false, $function, $file );
 	}
 
-	public function isListed(){
+	public function isListed() {
 		return false;
 	}
 }
@@ -944,7 +944,7 @@ class IncludableSpecialPage extends SpecialPage {
 		parent::__construct( $name, $restriction, $listed, $function, $file, true );
 	}
 
-	public function isIncludable(){
+	public function isIncludable() {
 		return true;
 	}
 }
@@ -961,7 +961,7 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
 	// Query parameteres added by redirects
 	protected $mAddedRedirectParams = array();
 
-	public function execute( $par ){
+	public function execute( $par ) {
 		$redirect = $this->getRedirect( $par );
 		$query = $this->getRedirectQuery();
 		// Redirect to a page title with possible query parameters
@@ -1001,13 +1001,13 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
 	public function getRedirectQuery() {
 		$params = array();
 
-		foreach( $this->mAllowedRedirectParams as $arg ) {
-			if( $this->getRequest()->getVal( $arg, null ) !== null ){
+		foreach ( $this->mAllowedRedirectParams as $arg ) {
+			if ( $this->getRequest()->getVal( $arg, null ) !== null ) {
 				$params[$arg] = $this->getRequest()->getVal( $arg );
 			}
 		}
 
-		foreach( $this->mAddedRedirectParams as $arg => $val ) {
+		foreach ( $this->mAddedRedirectParams as $arg => $val ) {
 			$params[$arg] = $val;
 		}
 
@@ -1044,7 +1044,7 @@ abstract class SpecialRedirectToSpecial extends RedirectSpecialPage {
  * ListAdmins --> ListUsers/sysop
  */
 class SpecialListAdmins extends SpecialRedirectToSpecial {
-	function __construct(){
+	function __construct() {
 		parent::__construct( 'Listadmins', 'Listusers', 'sysop' );
 	}
 }
@@ -1053,7 +1053,7 @@ class SpecialListAdmins extends SpecialRedirectToSpecial {
  * ListBots --> ListUsers/bot
  */
 class SpecialListBots extends SpecialRedirectToSpecial {
-	function __construct(){
+	function __construct() {
 		parent::__construct( 'Listbots', 'Listusers', 'bot' );
 	}
 }
@@ -1063,7 +1063,7 @@ class SpecialListBots extends SpecialRedirectToSpecial {
  * @todo FIXME: This (and the rest of the login frontend) needs to die a horrible painful death
  */
 class SpecialCreateAccount extends SpecialRedirectToSpecial {
-	function __construct(){
+	function __construct() {
 		parent::__construct( 'CreateAccount', 'Userlogin', 'signup', array( 'uselang' ) );
 	}
 }
@@ -1158,7 +1158,7 @@ class SpecialPermanentLink extends RedirectSpecialPage {
 
 	function getRedirect( $subpage ) {
 		$subpage = intval( $subpage );
-		if( $subpage === 0 ) {
+		if ( $subpage === 0 ) {
 			# throw an error page when no subpage was given
 			throw new ErrorPageError( 'nopagetitle', 'nopagetext' );
 		}
