@@ -3457,7 +3457,7 @@ function wfGetNull() {
 function wfDeprecated( $function, $version = false, $component = false ) {
 	static $functionsWarned = array();
 	
-	if ( !isset( $functionsWarned[$function] ) ) {
+	if ( !in_array( $function, $GLOBALS['wgDeprecationWhitelist'] ) && !isset( $functionsWarned[$function] ) ) {
 		$functionsWarned[$function] = true;
 		
 		if ( $version ) {
