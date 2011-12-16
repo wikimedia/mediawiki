@@ -3937,7 +3937,7 @@ class User {
 	}
 
 	/**
-	 * Add a newuser log entry for this user
+	 * Add a newuser log entry for this user. Before 1.19 the return value was always true.
 	 *
 	 * @param $byEmail Boolean: account made by email?
 	 * @param $reason String: user supplied reason
