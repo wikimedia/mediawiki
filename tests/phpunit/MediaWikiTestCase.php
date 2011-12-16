@@ -128,12 +128,12 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 
 		//Make 1 page with 1 revision
-		$article = new Article( Title::newFromText( 'UTPage' ) );
-		$article->doEdit( 'UTContent',
-							'UTPageSummary',
-							EDIT_NEW,
-							false,
-							User::newFromName( 'UTSysop' ) );
+		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
+		$page->doEdit( 'UTContent',
+						'UTPageSummary',
+						EDIT_NEW,
+						false,
+						User::newFromName( 'UTSysop' ) );
 	}
 
 	private function initDB() {
