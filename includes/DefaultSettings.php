@@ -4068,6 +4068,12 @@ $wgDevelopmentWarnings = false;
  */
 $wgDeprecationReleaseLimit = '1.17';
 
+/**
+ * Function name whitelist for wfDeprecated warnings. You will not be warned
+ * for usage of deprecated functions in this list.
+ */
+$wgDeprecationWhitelist = array();
+
 /** Only record profiling info for pages that took longer than this */
 $wgProfileLimit = 0.0;
 
