@@ -9,6 +9,7 @@ class StoreBatchTest extends MediaWikiTestCase {
 		
 		$this->repo = RepoGroup::singleton()->getLocalRepo();
 		$this->date = gmdate( "YmdHis" );
+		$this->createdFiles = array();
 		$this->users = array(
 			'sysop' => new ApiTestUser(
 				'Uploadstashtestsysop',
@@ -39,6 +40,7 @@ class StoreBatchTest extends MediaWikiTestCase {
 
 		$result = $this->repo->store( $srcPath, 'temp', $dstRel, $flags );
 		$result->value = $this->repo->getVirtualUrl( 'temp' ) . '/' . $dstUrlRel;
+		$this->createdFiles[] = $result->value;
 		return $result;
 	}
 					
@@ -93,6 +95,7 @@ class StoreBatchTest extends MediaWikiTestCase {
 	}
 
 	public function tearDown() {
+		$this->repo->cleanupBatch( $this->createdFile );
 		parent::tearDown();
 		
 	}
