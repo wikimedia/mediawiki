@@ -500,7 +500,6 @@ class Article extends Page {
 							$wgOut->setRevisionId( $this->mPage->getLatest() );
 							# Preload timestamp to avoid a DB hit
 							$cachedTimestamp = $this->mParserOutput->getTimestamp();
-							var_dump( $cachedTimestamp );
 							if ( $cachedTimestamp !== null ) {
 								$wgOut->setRevisionTimestamp( $cachedTimestamp );
 								$this->mPage->setTimestamp( $cachedTimestamp );
