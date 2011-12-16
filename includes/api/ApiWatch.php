@@ -114,8 +114,8 @@ class ApiWatch extends ApiBase {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=watch&title=Main_Page',
-			'api.php?action=watch&title=Main_Page&unwatch=',
+			'api.php?action=watch&title=Main_Page' => 'Watch the page "Main Page"',
+			'api.php?action=watch&title=Main_Page&unwatch=' => 'Unwatch the page "Main Page"',
 		);
 	}
 

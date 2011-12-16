@@ -389,10 +389,8 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 
 	public function getExamples() {
 		return array(
-			'Get first 10 pages in [[Category:Physics]]:',
-			'  api.php?action=query&list=categorymembers&cmtitle=Category:Physics',
-			'Get page info about first 10 pages in [[Category:Physics]]:',
-			'  api.php?action=query&generator=categorymembers&gcmtitle=Category:Physics&prop=info',
+			'api.php?action=query&list=categorymembers&cmtitle=Category:Physics' => 'Get first 10 pages in [[Category:Physics]]:',
+			'api.php?action=query&generator=categorymembers&gcmtitle=Category:Physics&prop=info' => 'Get page info about first 10 pages in [[Category:Physics]]:',
 		);
 	}
 

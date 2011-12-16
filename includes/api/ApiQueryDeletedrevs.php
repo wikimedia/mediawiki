@@ -382,14 +382,14 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 
 	public function getExamples() {
 		return array(
-			'List the last deleted revisions of Main Page and Talk:Main Page, with content (mode 1):',
-			'  api.php?action=query&list=deletedrevs&titles=Main%20Page|Talk:Main%20Page&drprop=user|comment|content',
-			'List the last 50 deleted contributions by Bob (mode 2):',
-			'  api.php?action=query&list=deletedrevs&druser=Bob&drlimit=50',
-			'List the first 50 deleted revisions in the main namespace (mode 3):',
-			'  api.php?action=query&list=deletedrevs&drdir=newer&drlimit=50',
-			'List the first 50 deleted pages in the Talk namespace (mode 3):',
-			'  api.php?action=query&list=deletedrevs&drdir=newer&drlimit=50&drnamespace=1&drunique=',
+			'api.php?action=query&list=deletedrevs&titles=Main%20Page|Talk:Main%20Page&drprop=user|comment|content'
+				=> 'List the last deleted revisions of Main Page and Talk:Main Page, with content (mode 1):',
+			'api.php?action=query&list=deletedrevs&druser=Bob&drlimit=50'
+				=> 'List the last 50 deleted contributions by Bob (mode 2):',
+			'api.php?action=query&list=deletedrevs&drdir=newer&drlimit=50'
+				=> 'List the first 50 deleted revisions in the main namespace (mode 3):',
+			'api.php?action=query&list=deletedrevs&drdir=newer&drlimit=50&drnamespace=1&drunique='
+				=> 'List the first 50 deleted pages in the Talk namespace (mode 3):',
 		);
 	}
 
