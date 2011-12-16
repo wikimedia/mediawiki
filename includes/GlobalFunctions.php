@@ -3456,14 +3456,13 @@ function wfGetNull() {
  */
 function wfDeprecated( $function, $version = false, $component = false ) {
 	static $functionsWarned = array();
+	global $wgDeprecationWarnings;
 	
-	if ( !in_array( $function, $GLOBALS['wgDeprecationWhitelist'] ) && !isset( $functionsWarned[$function] ) ) {
+	if ( !in_array( $function, $wgDeprecationWarnings['whitelist'] ) && !isset( $functionsWarned[$function] ) ) {
 		$functionsWarned[$function] = true;
 		
 		if ( $version ) {
-			global $wgDeprecationReleaseLimit;
-			
-			if ( $wgDeprecationReleaseLimit && $component === false ) {
+			if ( $wgDeprecationWarnings['limit'] && $component === false ) {
 				# Strip -* off the end of $version so that branches can use the
 				# format #.##-branchname to avoid issues if the branch is merged into
 				# a version of MediaWiki later than what it was branched from
@@ -3471,7 +3470,7 @@ function wfDeprecated( $function, $version = false, $component = false ) {
 				
 				# If the comparableVersion is larger than our release limit then
 				# skip the warning message for the deprecation
-				if ( version_compare( $wgDeprecationReleaseLimit, $comparableVersion, '<' ) ) {
+				if ( version_compare( $wgDeprecationWarnings['limit'], $comparableVersion, '<' ) ) {
 					return;
 				}
 			}
