@@ -639,9 +639,7 @@ class DatabasePostgres extends DatabaseBase {
 		if ( preg_match( '/(^|\s)(DISTINCT|JOIN|ON|AS)(\s|$)/i', $name ) !== 0 ) {
 			return $name;
 		}
-		# Split database and table into proper variables.
-		# We reverse the explode so that schema.table and table both output
-		# the correct table.
+		# Extract the database prefix, if any and quote it
 		$dbDetails = explode( '.', $name, 2 );
 		if ( isset( $dbDetails[1] ) ) {
 			$schema = '"' . $dbDetails[0] . '".';
