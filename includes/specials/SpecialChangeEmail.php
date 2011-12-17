@@ -67,6 +67,7 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 
 		$out = $this->getOutput();
 		$out->disallowUserJs();
+		$out->addModules( 'mediawiki.special.changeemail' );
 
 		$this->mPassword = $request->getVal( 'wpPassword' );
 		$this->mNewEmail = $request->getVal( 'wpNewEmail' );

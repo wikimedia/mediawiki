@@ -720,6 +720,11 @@ return array(
 	'mediawiki.special.block' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.block.js',
 	),
+	'mediawiki.special.changeemail' => array(
+		'scripts' => 'resources/mediawiki.special/mediawiki.special.changeemail.js',
+		'styles' => 'resources/mediawiki.special/mediawiki.special.changeemail.css',
+		'messages' => array( 'email-address-validity-valid', 'email-address-validity-invalid' ),
+	),
 	'mediawiki.special.changeslist' => array(
 		'styles' => 'resources/mediawiki.special/mediawiki.special.changeslist.css',
 		'dependencies' => array( 'jquery.makeCollapsible' ),
@@ -730,8 +735,6 @@ return array(
 	),
 	'mediawiki.special.preferences' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.preferences.js',
-		'styles' => 'resources/mediawiki.special/mediawiki.special.preferences.css',
-		'messages' => array( 'email-address-validity-valid', 'email-address-validity-invalid' ),
 	),
 	'mediawiki.special.recentchanges' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.recentchanges.js',
