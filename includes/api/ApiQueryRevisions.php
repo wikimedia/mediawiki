@@ -414,11 +414,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 		}
 
 		if ( $this->fld_sha1 ) {
-			if ( !is_null( $revision->getSha1() ) ) {
-				$vals['sha1'] = $revision->getSha1();
-			} else {
-				$vals['sha1'] = '';
-			}
+			$vals['sha1'] = $revision->getSha1();
 		}
 
 		if ( $this->fld_comment || $this->fld_parsedcomment ) {
