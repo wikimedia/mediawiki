@@ -2004,7 +2004,7 @@ class Title {
 		# Time to check the whitelist
 		global $wgWhitelistRead;
 
-		# Only to these checks is there's something to check against
+		# Only do these checks is there's something to check against
 		if ( is_array( $wgWhitelistRead ) && count( $wgWhitelistRead ) ) {
 			# Check for explicit whitelisting
 			$name = $this->getPrefixedText();
