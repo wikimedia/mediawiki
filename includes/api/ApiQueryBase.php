@@ -304,7 +304,11 @@ abstract class ApiQueryBase extends ApiBase {
 	 */
 	public static function addTitleInfo( &$arr, $title, $prefix = '' ) {
 		$arr[$prefix . 'ns'] = intval( $title->getNamespace() );
-		$arr[$prefix . 'pageid'] = $title->getArticleID();
+		// TODO: This is a workaround for bug 28901, as the Article ID isn't always loaded
+		// Saves many DB queries, but does need cleaning up, so callers have always loaded the Article ID also
+		if ( $title->isArticleIDLoaded() ) {
+			$arr[$prefix . 'pageid'] = $title->getArticleID();
+		}
 		$arr[$prefix . 'title'] = $title->getPrefixedText();
 	}
 
