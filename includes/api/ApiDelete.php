@@ -268,8 +268,8 @@ class ApiDelete extends ApiBase {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=delete&title=Main%20Page&token=123ABC',
-			'api.php?action=delete&title=Main%20Page&token=123ABC&reason=Preparing%20for%20move'
+			'api.php?action=delete&title=Main%20Page&token=123ABC' => 'Deletes the Main Page',
+			'api.php?action=delete&title=Main%20Page&token=123ABC&reason=Preparing%20for%20move' => 'Deletes the Main Page with the reason "Preparing for move"',
 		);
 	}
 

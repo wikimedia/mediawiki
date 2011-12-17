@@ -149,7 +149,7 @@ class ApiPurge extends ApiBase {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=purge&titles=Main_Page|API'
+			'api.php?action=purge&titles=Main_Page|API' => 'Purges the "Main Page" and the "API" page',
 		);
 	}
 
