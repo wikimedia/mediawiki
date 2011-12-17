@@ -154,6 +154,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 		$this->fld_comment = isset ( $prop['comment'] );
 		$this->fld_parsedcomment = isset ( $prop['parsedcomment'] );
 		$this->fld_size = isset ( $prop['size'] );
+		$this->fld_sha1 = isset ( $prop['sha1'] );
 		$this->fld_userid = isset( $prop['userid'] );
 		$this->fld_user = isset ( $prop['user'] );
 		$this->token = $params['token'];
@@ -412,6 +413,14 @@ class ApiQueryRevisions extends ApiQueryBase {
 			}
 		}
 
+		if ( $this->fld_sha1 ) {
+			if ( !is_null( $revision->getSha1() ) ) {
+				$vals['sha1'] = $revision->getSha1();
+			} else {
+				$vals['sha1'] = '';
+			}
+		}
+
 		if ( $this->fld_comment || $this->fld_parsedcomment ) {
 			if ( $revision->isDeleted( Revision::DELETED_COMMENT ) ) {
 				$vals['commenthidden'] = '';
@@ -537,6 +546,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 					'user',
 					'userid',
 					'size',
+					'sha1',
 					'comment',
 					'parsedcomment',
 					'content',
@@ -599,7 +609,8 @@ class ApiQueryRevisions extends ApiQueryBase {
 				' timestamp      - The timestamp of the revision',
 				' user           - User that made the revision',
 				' userid         - User id of revision creator',
-				' size           - Length of the revision',
+				' size           - Length (bytes) of the revision',
+				' sha1           - SHA-1 (base 36) the revision',
 				' comment        - Comment by the user for revision',
 				' parsedcomment  - Parsed comment by the user for the revision',
 				' content        - Text of the revision',
