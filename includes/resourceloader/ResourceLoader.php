@@ -573,6 +573,11 @@ class ResourceLoader {
 				return false; // output handled (buffers cleared)
 			}
 			$response = $fileCache->fetchText();
+			// Capture any PHP warnings from the output buffer and append them to the
+			// response in a comment if we're in debug mode.
+			if ( $context->getDebug() && strlen( $warnings = ob_get_contents() ) ) {
+				$response = "/*\n$warnings\n*/\n" . $response;
+			}
 			// Remove the output buffer and output the response
 			ob_end_clean();
 			echo $response . "\n/* Cached {$ts} */";
