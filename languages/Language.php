@@ -682,8 +682,12 @@ class Language {
 		$names = array();
 		wfRunHooks( 'LanguageGetTranslatedLanguageNames', array( &$names, $code ) );
 
-		foreach ( self::getLanguageNames() as $code => $name ) {
-			if ( !isset( $names[$code] ) ) $names[$code] = $name;
+		foreach ( self::getLanguageNames() as $code2 => $name ) {
+			# Prefer own MediaWiki native name,
+			# for other names just add if not added through the hook
+			if ( $code === $code2 || !isset( $names[$code2] ) ) {
+				$names[$code2] = $name;
+			}
 		}
 
 		return $names;
