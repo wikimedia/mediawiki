@@ -1324,8 +1324,7 @@ class WikiPage extends Page {
 
 	/**
 	 * Update the article's restriction field, and leave a log entry.
-	 *
-	 * @todo: seperate the business/permission stuff out from backend code
+	 * This works for protection both existing and non-existing pages.
 	 *
 	 * @param $limit Array: set of restriction keys
 	 * @param $reason String
@@ -1334,30 +1333,16 @@ class WikiPage extends Page {
 	 * @param $user User The user updating the restrictions
 	 * @return bool true on success
 	 */
-	public function updateRestrictions(
-		$limit = array(), $reason = '', &$cascade = 0, $expiry = array(), User $user = null
-	) {
-		global $wgUser, $wgContLang;
-		$user = is_null( $user ) ? $wgUser : $user;
+	public function doUpdateRestrictions( array $limit, array $expiry, &$cascade, $reason, User $user ) {
+		global $wgContLang;
+
+		if ( wfReadOnly() ) {
+			return Status::newFatal( 'readonlytext', wfReadOnlyReason() );
+		}
 
 		$restrictionTypes = $this->mTitle->getRestrictionTypes();
 
 		$id = $this->mTitle->getArticleID();
-
-		if ( $id <= 0 ) {
-			wfDebug( "updateRestrictions failed: article id $id <= 0\n" );
-			return false;
-		}
-
-		if ( wfReadOnly() ) {
-			wfDebug( "updateRestrictions failed: read-only\n" );
-			return false;
-		}
-
-		if ( count( $this->mTitle->getUserPermissionsErrors( 'protect', $user ) ) ) {
-			wfDebug( "updateRestrictions failed: insufficient permissions\n" );
-			return false;
-		}
 
 		if ( !$cascade ) {
 			$cascade = false;
@@ -1368,151 +1353,182 @@ class WikiPage extends Page {
 
 		# @todo FIXME: Same limitations as described in ProtectionForm.php (line 37);
 		# we expect a single selection, but the schema allows otherwise.
-		$current = array();
-		$updated = self::flattenRestrictions( $limit );
+		$isProtected = false;
+		$protect = false;
 		$changed = false;
 
-		foreach ( $restrictionTypes as $action ) {
-			if ( isset( $expiry[$action] ) ) {
-				# Get current restrictions on $action
-				$aLimits = $this->mTitle->getRestrictions( $action );
-				$current[$action] = implode( '', $aLimits );
-				# Are any actual restrictions being dealt with here?
-				$aRChanged = count( $aLimits ) || !empty( $limit[$action] );
+		$dbw = wfGetDB( DB_MASTER );
 
-				# If something changed, we need to log it. Checking $aRChanged
-				# assures that "unprotecting" a page that is not protected does
-				# not log just because the expiry was "changed".
-				if ( $aRChanged &&
-					$this->mTitle->getRestrictionExpiry( $action ) != $expiry[$action] )
-				{
+		foreach ( $restrictionTypes as $action ) {
+			if ( !isset( $expiry[$action] ) ) {
+				$expiry[$action] = $dbw->getInfinity();
+			}
+			if ( !isset( $limit[$action] ) ) {
+				$limit[$action] = '';
+			} elseif ( $limit[$action] != '' ) {
+				$protect = true;
+			}
+
+			# Get current restrictions on $action
+			$current = implode( '', $this->mTitle->getRestrictions( $action ) );
+			if ( $current != '' ) {
+				$isProtected = true;
+			}
+
+			if ( $limit[$action] != $current ) {
+				$changed = true;
+			} elseif ( $limit[$action] != '' ) {
+				# Only check expiry change if the action is actually being
+				# protected, since expiry does nothing on an not-protected
+				# action.
+				if ( $this->mTitle->getRestrictionExpiry( $action ) != $expiry[$action] ) {
 					$changed = true;
 				}
 			}
 		}
 
-		$current = self::flattenRestrictions( $current );
-
-		$changed = ( $changed || $current != $updated );
-		$changed = $changed || ( $updated && $this->mTitle->areRestrictionsCascading() != $cascade );
-		$protect = ( $updated != '' );
+		if ( !$changed && $protect && $this->mTitle->areRestrictionsCascading() != $cascade ) {
+			$changed = true;
+		}
 
 		# If nothing's changed, do nothing
-		if ( $changed ) {
-			if ( wfRunHooks( 'ArticleProtect', array( &$this, &$user, $limit, $reason ) ) ) {
-				$dbw = wfGetDB( DB_MASTER );
+		if ( !$changed ) {
+			return Status::newGood();
+		}
 
-				# Prepare a null revision to be added to the history
-				$modified = $current != '' && $protect;
+		if ( !$protect ) { # No protection at all means unprotection
+			$revCommentMsg = 'unprotectedarticle';
+			$logAction = 'unprotect';
+		} elseif ( $isProtected ) {
+			$revCommentMsg = 'modifiedarticleprotection';
+			$logAction = 'modify';
+		} else {
+			$revCommentMsg = 'protectedarticle';
+			$logAction = 'protect';
+		}
 
-				if ( $protect ) {
-					$comment_type = $modified ? 'modifiedarticleprotection' : 'protectedarticle';
+		$encodedExpiry = array();
+		$protectDescription = '';
+		foreach ( $limit as $action => $restrictions ) {
+			$encodedExpiry[$action] = $dbw->encodeExpiry( $expiry[$action] );
+			if ( $restrictions != '' ) {
+				$protectDescription .= $wgContLang->getDirMark() . "[$action=$restrictions] (";
+				if ( $encodedExpiry[$action] != 'infinity' ) {
+					$protectDescription .= wfMsgForContent( 'protect-expiring',
+						$wgContLang->timeanddate( $expiry[$action], false, false ) ,
+						$wgContLang->date( $expiry[$action], false, false ) ,
+						$wgContLang->time( $expiry[$action], false, false ) );
 				} else {
-					$comment_type = 'unprotectedarticle';
+					$protectDescription .= wfMsgForContent( 'protect-expiry-indefinite' );
 				}
 
-				$comment = $wgContLang->ucfirst( wfMsgForContent( $comment_type, $this->mTitle->getPrefixedText() ) );
+				$protectDescription .= ') ';
+			}
+		}
+		$protectDescription = trim( $protectDescription );
 
-				# Only restrictions with the 'protect' right can cascade...
-				# Otherwise, people who cannot normally protect can "protect" pages via transclusion
-				$editrestriction = isset( $limit['edit'] ) ? array( $limit['edit'] ) : $this->mTitle->getRestrictions( 'edit' );
+		if ( $id ) { # Protection of existing page
+			if ( !wfRunHooks( 'ArticleProtect', array( &$this, &$user, $limit, $reason ) ) ) {
+				return Status::newGood();
+			}
 
-				# The schema allows multiple restrictions
-				if ( !in_array( 'protect', $editrestriction ) && !in_array( 'sysop', $editrestriction ) ) {
-					$cascade = false;
+			# Only restrictions with the 'protect' right can cascade...
+			# Otherwise, people who cannot normally protect can "protect" pages via transclusion
+			$editrestriction = isset( $limit['edit'] ) ? array( $limit['edit'] ) : $this->mTitle->getRestrictions( 'edit' );
+
+			# The schema allows multiple restrictions
+			if ( !in_array( 'protect', $editrestriction ) && !in_array( 'sysop', $editrestriction ) ) {
+				$cascade = false;
+			}
+
+			# Update restrictions table
+			foreach ( $limit as $action => $restrictions ) {
+				if ( $restrictions != '' ) {
+					$dbw->replace( 'page_restrictions', array( array( 'pr_page', 'pr_type' ) ),
+						array( 'pr_page' => $id,
+							'pr_type' => $action,
+							'pr_level' => $restrictions,
+							'pr_cascade' => ( $cascade && $action == 'edit' ) ? 1 : 0,
+							'pr_expiry' => $encodedExpiry[$action]
+						),
+						__METHOD__
+					);
+				} else {
+					$dbw->delete( 'page_restrictions', array( 'pr_page' => $id,
+						'pr_type' => $action ), __METHOD__ );
 				}
+			}
 
-				$cascade_description = '';
+			# Prepare a null revision to be added to the history
+			$editComment = $wgContLang->ucfirst( wfMsgForContent( $revCommentMsg, $this->mTitle->getPrefixedText() ) );
+			if ( $reason ) {
+				$editComment .= ": $reason";
+			}
+			if ( $protectDescription ) {
+				$editComment .= " ($protectDescription)";
+			}
+			if ( $cascade ) {
+				$editComment .= ' [' . wfMsgForContent( 'protect-summary-cascade' ) . ']';
+			}
 
-				if ( $cascade ) {
-					$cascade_description = ' [' . wfMsgForContent( 'protect-summary-cascade' ) . ']';
-				}
+			# Insert a null revision
+			$nullRevision = Revision::newNullRevision( $dbw, $id, $editComment, true );
+			$nullRevId = $nullRevision->insertOn( $dbw );
 
-				if ( $reason ) {
-					$comment .= ": $reason";
-				}
+			$latest = $this->getLatest();
+			# Update page record
+			$dbw->update( 'page',
+				array( /* SET */
+					'page_touched' => $dbw->timestamp(),
+					'page_restrictions' => '',
+					'page_latest' => $nullRevId
+				), array( /* WHERE */
+					'page_id' => $id
+				), __METHOD__
+			);
 
-				$editComment = $comment;
-				$encodedExpiry = array();
-				$protect_description = '';
-				foreach ( $limit as $action => $restrictions ) {
-					if ( !isset( $expiry[$action] ) )
-						$expiry[$action] = $dbw->getInfinity();
+			wfRunHooks( 'NewRevisionFromEditComplete', array( $this, $nullRevision, $latest, $user ) );
+			wfRunHooks( 'ArticleProtectComplete', array( &$this, &$user, $limit, $reason ) );
+		} else { # Protection of non-existing page (also known as "title protection")
+			# Cascade protection is meaningless in this case
+			$cascade = false;
 
-					$encodedExpiry[$action] = $dbw->encodeExpiry( $expiry[$action] );
-					if ( $restrictions != '' ) {
-						$protect_description .= $wgContLang->getDirMark() . "[$action=$restrictions] (";
-						if ( $encodedExpiry[$action] != 'infinity' ) {
-							$protect_description .= wfMsgForContent( 'protect-expiring',
-								$wgContLang->timeanddate( $expiry[$action], false, false ) ,
-								$wgContLang->date( $expiry[$action], false, false ) ,
-								$wgContLang->time( $expiry[$action], false, false ) );
-						} else {
-							$protect_description .= wfMsgForContent( 'protect-expiry-indefinite' );
-						}
-
-						$protect_description .= ') ';
-					}
-				}
-				$protect_description = trim( $protect_description );
-
-				if ( $protect_description && $protect ) {
-					$editComment .= " ($protect_description)";
-				}
-
-				if ( $cascade ) {
-					$editComment .= "$cascade_description";
-				}
-
-				# Update restrictions table
-				foreach ( $limit as $action => $restrictions ) {
-					if ( $restrictions != '' ) {
-						$dbw->replace( 'page_restrictions', array( array( 'pr_page', 'pr_type' ) ),
-							array( 'pr_page' => $id,
-								'pr_type' => $action,
-								'pr_level' => $restrictions,
-								'pr_cascade' => ( $cascade && $action == 'edit' ) ? 1 : 0,
-								'pr_expiry' => $encodedExpiry[$action]
-							),
-							__METHOD__
-						);
-					} else {
-						$dbw->delete( 'page_restrictions', array( 'pr_page' => $id,
-							'pr_type' => $action ), __METHOD__ );
-					}
-				}
-
-				# Insert a null revision
-				$nullRevision = Revision::newNullRevision( $dbw, $id, $editComment, true );
-				$nullRevId = $nullRevision->insertOn( $dbw );
-
-				$latest = $this->getLatest();
-				# Update page record
-				$dbw->update( 'page',
-					array( /* SET */
-						'page_touched' => $dbw->timestamp(),
-						'page_restrictions' => '',
-						'page_latest' => $nullRevId
-					), array( /* WHERE */
-						'page_id' => $id
+			if ( $limit['create'] != '' ) {
+				$dbw->replace( 'protected_titles',
+					array( array( 'pt_namespace', 'pt_title' ) ),
+					array(
+						'pt_namespace' => $this->mTitle->getNamespace(),
+						'pt_title' => $this->mTitle->getDBkey(),
+						'pt_create_perm' => $limit['create'],
+						'pt_timestamp' => $dbw->encodeExpiry( wfTimestampNow() ),
+						'pt_expiry' => $encodedExpiry['create'],
+						'pt_user' => $user->getId(),
+						'pt_reason' => $reason,
 					), __METHOD__
 				);
+			} else {
+				$dbw->delete( 'protected_titles',
+					array(
+						'pt_namespace' => $this->mTitle->getNamespace(),
+						'pt_title' => $this->mTitle->getDBkey()
+					), __METHOD__
+				);
+			}
+		}
 
-				wfRunHooks( 'NewRevisionFromEditComplete', array( $this, $nullRevision, $latest, $user ) );
-				wfRunHooks( 'ArticleProtectComplete', array( &$this, &$user, $limit, $reason ) );
+		$this->mTitle->flushRestrictions();
 
-				# Update the protection log
-				$log = new LogPage( 'protect' );
-				if ( $protect ) {
-					$params = array( $protect_description, $cascade ? 'cascade' : '' );
-					$log->addEntry( $modified ? 'modify' : 'protect', $this->mTitle, trim( $reason ), $params );
-				} else {
-					$log->addEntry( 'unprotect', $this->mTitle, $reason );
-				}
-			} # End hook
-		} # End "changed" check
+		if ( $logAction == 'unprotect' ) {
+			$logParams = array();
+		} else {
+			$logParams = array( $protectDescription, $cascade ? 'cascade' : '' );
+		}
 
-		return true;
+		# Update the protection log
+		$log = new LogPage( 'protect' );
+		$log->addEntry( $logAction, $this->mTitle, trim( $reason ), $logParams );
+
+		return Status::newGood();
 	}
 
 	/**
@@ -2681,6 +2697,27 @@ class WikiPage extends Page {
 			$u = new LinksUpdate( $this->mTitle, $parserOutput, false );
 			$u->doUpdate();
 		}
+	}
+
+	/**
+	 * Update the article's restriction field, and leave a log entry.
+	 *
+	 * @deprecated since 1.19
+	 * @param $limit Array: set of restriction keys
+	 * @param $reason String
+	 * @param &$cascade Integer. Set to false if cascading protection isn't allowed.
+	 * @param $expiry Array: per restriction type expiration
+	 * @param $user User The user updating the restrictions
+	 * @return bool true on success
+	 */
+	public function updateRestrictions(
+		$limit = array(), $reason = '', &$cascade = 0, $expiry = array(), User $user = null
+	) {
+		global $wgUser;
+
+		$user = is_null( $user ) ? $wgUser : $user;
+
+		return $this->doUpdateRestrictions( $limit, $expiry, $cascade, $reason, $user )->isOK();
 	}
 
 	/**

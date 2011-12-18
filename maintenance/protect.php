@@ -28,8 +28,9 @@ class Protect extends Maintenance {
 		$this->mDescription = "Protect or unprotect an article from the command line.";
 		$this->addOption( 'unprotect', 'Removes protection' );
 		$this->addOption( 'semiprotect', 'Adds semi-protection' );
-		$this->addOption( 'u', 'Username to protect with', false, true );
-		$this->addOption( 'r', 'Reason for un/protection', false, true );
+		$this->addOption( 'cascade', 'Add cascading protection' );
+		$this->addOption( 'user', 'Username to protect with', false, true, 'u' );
+		$this->addOption( 'reason', 'Reason for un/protection', false, true, 'r' );
 		$this->addArg( 'title', 'Title to protect', true );
 	}
 
@@ -39,6 +40,8 @@ class Protect extends Maintenance {
 		$userName = $this->getOption( 'u', 'Maintenance script' );
 		$reason = $this->getOption( 'r', '' );
 
+		$cascade = $this->hasOption( 'cascade' );
+
 		$protection = "sysop";
 		if ( $this->hasOption( 'semiprotect' ) ) {
 			$protection = "autoconfirmed";
@@ -46,11 +49,11 @@ class Protect extends Maintenance {
 			$protection = "";
 		}
 
-		$wgUser = User::newFromName( $userName );
-		if ( !$wgUser ) {
+		$user = User::newFromName( $userName );
+		if ( !$user ) {
 			$this->error( "Invalid username", true );
 		}
-		
+
 		$restrictions = array( 'edit' => $protection, 'move' => $protection );
 
 		$t = Title::newFromText( $this->getArg() );
@@ -58,12 +61,18 @@ class Protect extends Maintenance {
 			$this->error( "Invalid title", true );
 		}
 
-		$article = new Article( $t );
+		$restrictions = array();
+		foreach( $t->getRestrictionTypes() as $type ) {
+			$restrictions[$type] = $protection;
+		}
 
 		# un/protect the article
 		$this->output( "Updating protection status... " );
-		$success = $article->updateRestrictions( $restrictions, $reason );
-		if ( $success ) {
+
+		$page = WikiPage::factory( $t );
+		$status = $page->doUpdateRestrictions( $restrictions, array(), $cascade, $reason, $user );
+
+		if ( $status->isOK() ) {
 			$this->output( "done\n" );
 		} else {
 			$this->output( "failed\n" );

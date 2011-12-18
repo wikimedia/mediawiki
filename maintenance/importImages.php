@@ -231,44 +231,44 @@ if ( $count > 0 ) {
 			}
 		}
 
-		$doProtect = false;
-		$restrictions = array();
-
-		global $wgRestrictionLevels;
-
-		$protectLevel = isset( $options['protect'] ) ? $options['protect'] : null;
-
-		if ( $protectLevel && in_array( $protectLevel, $wgRestrictionLevels ) ) {
-				$restrictions['move'] = $protectLevel;
-				$restrictions['edit'] = $protectLevel;
-				$doProtect = true;
-		}
-		if ( isset( $options['unprotect'] ) ) {
-				$restrictions['move'] = '';
-				$restrictions['edit'] = '';
-				$doProtect = true;
-		}
-
-
 		if ( isset( $options['dry'] ) ) {
 			echo( "done.\n" );
 		} elseif ( $image->recordUpload( $archive->value, $commentText, $license ) ) {
 			# We're done!
 			echo( "done.\n" );
+
+			$doProtect = false;
+
+			global $wgRestrictionLevels;
+
+			$protectLevel = isset( $options['protect'] ) ? $options['protect'] : null;
+
+			if ( $protectLevel && in_array( $protectLevel, $wgRestrictionLevels ) ) {
+				$doProtect = true;
+			}
+			if ( isset( $options['unprotect'] ) ) {
+				$protectLevel = '';
+				$doProtect = true;
+			}
+
 			if ( $doProtect ) {
 					# Protect the file
-					$article = new Article( $title );
 					echo "\nWaiting for slaves...\n";
 					// Wait for slaves.
 					sleep( 2.0 ); # Why this sleep?
 					wfWaitForSlaves();
 
 					echo( "\nSetting image restrictions ... " );
-					if ( $article->updateRestrictions( $restrictions ) ) {
-						echo( "done.\n" );
-					} else {
-						echo( "failed.\n" );
+
+					$cascade = false;
+					$restrictions = array();
+					foreach( $title->getRestrictionTypes() as $type ) {
+						$restrictions[$type] = $protectLevel;
 					}
+
+					$page = WikiPage::factory( $title );
+					$status = $page->doUpdateRestrictions( $restrictions, array(), $cascade, '', $user );
+					echo( ( $status->isOK() ? 'done' : 'failed' ) . "\n" );
 			}
 
 		} else {

@@ -1784,6 +1784,18 @@ class Article extends Page {
 
 	/**
 	 * @param $limit array
+	 * @param $expiry array
+	 * @param $cascade bool
+	 * @param $reason string
+	 * @param $user User
+	 * @return Status
+	 */
+	public function doUpdateRestrictions( array $limit, array $expiry, &$cascade, $reason, User $user ) {
+		return $this->mPage->doUpdateRestrictions( $limit, $expiry, $cascade, $reason, $user );
+	}
+
+	/**
+	 * @param $limit array
 	 * @param $reason string
 	 * @param $cascade int
 	 * @param $expiry array
