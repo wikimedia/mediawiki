@@ -54,7 +54,7 @@ class wikiStatsOutput extends statsOutput {
 		echo 'English (en) is excluded because it is the default localization';
 		if( is_array( $wgDummyLanguageCodes ) ) {
 			$dummyCodes = array();
-			foreach( $wgDummyLanguageCodes as $dummyCode ) {
+			foreach( $wgDummyLanguageCodes as $dummyCode => $correctCode ) {
 				$dummyCodes[] = $wgContLang->getLanguageName( $dummyCode ) . ' (' . $dummyCode . ')';
 			}
 			echo ', as well as the following languages that are not intended for system message translations, usually because they redirect to other language codes: ' . implode( ', ', $dummyCodes );
