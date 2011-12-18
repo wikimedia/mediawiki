@@ -11,15 +11,16 @@ setting since version 1.2.0. If you have it on, turn it '''off''' if you can.
 
 === Changes since 1.18.0 ===
 
-* (bug 32712) Fix for search indexing of pages with certain unicode chars following URL
+* (bug 32712) Fix for search indexing of pages with certain unicode chars following URL.
 * (bug 3901) Lang, hreflang attribs added to sidebar interlanguage links for screen readers
 * (bug 30774) mediawiki.html: Add support for numbers and booleans in the
   attribute values and element contents.
 * (bug 32473) [[Special:PasswordReset]] can not be used on private wiki.
 * (bug 32853) Fixed CACHE_DBA object cache type.
-* (bug 32786) Backward compatibility for extension using 1.17's Database::newFromType()
-* Fixed exception when using Special:WhatLinksHere on a Media: file
-* (32709) Private Wiki users were always taken to Special:Badtitle on login
+* (bug 32786) Backward compatibility for extension using 1.17's Database::newFromType().
+* Fixed exception when using Special:WhatLinksHere on a Media: file.
+* (bug 32709) Private Wiki users were always taken to Special:Badtitle on login.
+* (bug 33240) Sort images are missing but references in css.
 
 == MediaWiki 1.18 ==
 2011-11-24
