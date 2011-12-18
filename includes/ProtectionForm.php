@@ -247,7 +247,7 @@ class ProtectionForm {
 	 * @return Boolean: success
 	 */
 	function save() {
-		global $wgRequest, $wgUser;
+		global $wgRequest, $wgUser, $wgOut;
 
 		# Permission check!
 		if ( $this->disabled ) {
@@ -294,14 +294,11 @@ class ProtectionForm {
 			!(isset($wgGroupPermissions[$edit_restriction]['protect']) && $wgGroupPermissions[$edit_restriction]['protect'] ) )
 			$this->mCascade = false;
 
-		if ($this->mTitle->exists()) {
-			$ok = $this->mArticle->updateRestrictions( $this->mRestrictions, $reasonstr, $this->mCascade, $expiry );
-		} else {
-			$ok = $this->mTitle->updateTitleProtection( $this->mRestrictions['create'], $reasonstr, $expiry['create'] );
-		}
+		$status = $this->mArticle->doUpdateRestrictions( $this->mRestrictions, $expiry, $this->mCascade, $reasonstr, $wgUser );
 
-		if( !$ok ) {
-			throw new FatalError( "Unknown error at restriction save time." );
+		if ( !$status->isOK() ) {
+			$this->show( $wgOut->parseInline( $status->getWikiText() ) );
+			return false;
 		}
 
 		/**
@@ -326,7 +323,7 @@ class ProtectionForm {
 		} elseif ( $this->mTitle->userIsWatching() ) {
 			WatchAction::doUnwatch( $this->mTitle, $wgUser );
 		}
-		return $ok;
+		return true;
 	}
 
 	/**
