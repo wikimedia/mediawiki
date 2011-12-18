@@ -956,13 +956,6 @@ ol:lang(or) li {
 	background-position: 0% 100%;
 }
 
-/* LTR content in RTL layout */
-.ltr {
-	/* @noflip */
-	direction: ltr;
-	unicode-bidi: embed;
-}
-
 #mw-clearyourcache,
 #mw-sitecsspreview,
 #mw-sitejspreview,
