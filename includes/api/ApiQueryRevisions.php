@@ -414,7 +414,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 		}
 
 		if ( $this->fld_sha1 ) {
-			$vals['sha1'] = $revision->getSha1();
+			$vals['sha1'] = wfBaseConvert( $revision->getSha1(), 36, 16, 40 );
 		}
 
 		if ( $this->fld_comment || $this->fld_parsedcomment ) {
@@ -606,7 +606,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 				' user           - User that made the revision',
 				' userid         - User id of revision creator',
 				' size           - Length (bytes) of the revision',
-				' sha1           - SHA-1 (base 36) the revision',
+				' sha1           - SHA-1 (base 16) the revision',
 				' comment        - Comment by the user for revision',
 				' parsedcomment  - Parsed comment by the user for the revision',
 				' content        - Text of the revision',
