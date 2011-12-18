@@ -3797,13 +3797,19 @@ Bilder vises med full oppløsning, mens andre filtyper startes direkte gjennom s
 'newuserlog-byemail'                  => 'passord sendt på e-post',
 
 # Feedback
-'feedback-subject' => 'Emne:',
-'feedback-message' => 'Melding:',
-'feedback-cancel'  => 'Avbryt',
-'feedback-submit'  => 'Send tilbakemelding',
-'feedback-adding'  => 'Tilføyer tilbakmelding til side ...',
-'feedback-error1'  => 'Feil: Ukjent resultat fra API',
-'feedback-error2'  => 'Feil: Redigering feilet',
-'feedback-error3'  => 'Feil: Ingen respons fra API',
+'feedback-bugornote' => 'Hvis du er klar til å sende inn en detaljert feilrapport, vennligst [$1 rapporter en feil].
+Om det ikke er tilfellet, kan du bruke det enkle skjemaet som du finner under. Kommentaren din vil bli lagt til siden "[$3 $2]", sammen med brukernavnet ditt og informasjon om hvilken nettleser du bruker.',
+'feedback-subject'   => 'Emne:',
+'feedback-message'   => 'Melding:',
+'feedback-cancel'    => 'Avbryt',
+'feedback-submit'    => 'Send tilbakemelding',
+'feedback-adding'    => 'Tilføyer tilbakmelding til side ...',
+'feedback-error1'    => 'Feil: Ukjent resultat fra API',
+'feedback-error2'    => 'Feil: Redigering feilet',
+'feedback-error3'    => 'Feil: Ingen respons fra API',
+'feedback-thanks'    => 'Din tilbakemelding til siden "[ $2  $1 ]" er sendt. Takk skal du ha!',
+'feedback-close'     => 'Utført',
+'feedback-bugcheck'  => 'Suprert! Bare sjekk at den ikke er en av de [$1 kjente feilene]',
+'feedback-bugnew'    => 'Jeg sjekket. Rapporter en ny bug.',
 
 );

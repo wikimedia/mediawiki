@@ -3567,13 +3567,17 @@ Aafbeildinge waere in häör vollejige resolutie getoeandj. Anger bestandjstypes
 'newuserlog-byemail'                  => 'wachwaord is versjik per e-mail',
 
 # Feedback
-'feedback-subject' => 'Óngerwerp:',
-'feedback-message' => 'Berich:',
-'feedback-cancel'  => 'Braek aaf',
-'feedback-submit'  => 'Slaon feedback óp',
-'feedback-adding'  => 'Feedback weurt aan pagina toegevoeg...',
-'feedback-error1'  => 'Fout: ónbekind rizzeltaot vanne API',
-'feedback-error2'  => 'Fout: bewirking mislök',
-'feedback-error3'  => 'Fout: gein reactie vanne API',
+'feedback-subject'  => 'Óngerwerp:',
+'feedback-message'  => 'Berich:',
+'feedback-cancel'   => 'Braek aaf',
+'feedback-submit'   => 'Slaon feedback óp',
+'feedback-adding'   => 'Feedback weurt aan pagina toegevoeg...',
+'feedback-error1'   => 'Fout: ónbekind rizzeltaot vanne API',
+'feedback-error2'   => 'Fout: bewirking mislök',
+'feedback-error3'   => 'Fout: gein reactie vanne API',
+'feedback-thanks'   => 'Danke! Diene feedback is oppe pagina "[$2 $1]" geplaats.',
+'feedback-close'    => 'Gedaon',
+'feedback-bugcheck' => "Good! Kónterleer ef of 't neet al ein vanne [$1 bekèndje bugs] is.",
+'feedback-bugnew'   => "Gekónterleerdj. Mèlj 'ne nuuj bug.",
 
 );

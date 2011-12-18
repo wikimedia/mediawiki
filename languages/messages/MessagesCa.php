@@ -1463,6 +1463,7 @@ Ha de tenir com a molt {{PLURAL:$1|un caràcter|$1 caràcters}}.',
 'action-userrights'           => "modificar tots els permisos d'usuari",
 'action-userrights-interwiki' => "modificar permisos d'usuari en altres wikis",
 'action-siteadmin'            => 'bloquejar o desbloquejar la base de dades',
+'action-sendemail'            => 'envia missatges de correu',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|canvi|canvis}}',
@@ -1919,8 +1920,8 @@ Tingueu en compte que altres llocs web poden enllaçar un fitxer amb un URL dire
 'booksources-invalid-isbn'  => "El codi ISBN donat no és vàlid. Comproveu si l'heu copiat correctament.",
 
 # Special:Log
-'specialloguserlabel'  => 'Usuari:',
-'speciallogtitlelabel' => 'Títol:',
+'specialloguserlabel'  => 'Realitzador:',
+'speciallogtitlelabel' => "L'objectiu (títol o usuari):",
 'log'                  => 'Registres',
 'all-logs-page'        => 'Tots els registres públics',
 'alllogstext'          => "Presentació combinada de tots els registres disponibles de {{SITENAME}}.
@@ -3630,13 +3631,19 @@ Les imatges es mostren en plena resolució; altres tipus de fitxer s'inicien dir
 'newuserlog-byemail'                  => 'contrasenya enviada per correu electrònic',
 
 # Feedback
-'feedback-subject' => 'Assumpte:',
-'feedback-message' => 'Missatge:',
-'feedback-cancel'  => 'Canceŀla',
-'feedback-submit'  => 'Envieu la vostra opinió',
-'feedback-adding'  => "S'està afegint el comentari a la pàgina...",
-'feedback-error1'  => "Error: Resultat de l'API no reconegut",
-'feedback-error2'  => 'Error: Edició fallida',
-'feedback-error3'  => "Error: No hi ha resposta de l'API",
+'feedback-bugornote' => "Si podeu descriure un problema tècnic en detall, [$1 informeu-ne].
+Altrament, podeu fer servir un senzill formulari a continuació. El vostre comentari s'afegirà a la pàgina «[$3 $2]», juntament amb el vostre nom d'usuari i el navegador que esteu emprant.",
+'feedback-subject'   => 'Assumpte:',
+'feedback-message'   => 'Missatge:',
+'feedback-cancel'    => 'Canceŀla',
+'feedback-submit'    => 'Envieu la vostra opinió',
+'feedback-adding'    => "S'està afegint el comentari a la pàgina...",
+'feedback-error1'    => "Error: Resultat de l'API no reconegut",
+'feedback-error2'    => 'Error: Edició fallida',
+'feedback-error3'    => "Error: No hi ha resposta de l'API",
+'feedback-thanks'    => "Gràcies! S'ha publicat la vostra opinió a la pàgina «[$2 $1]».",
+'feedback-close'     => 'Fet',
+'feedback-bugcheck'  => 'Fantàstic! Comproveu que no sigui un dels [$1 problemes ja coneguts].',
+'feedback-bugnew'    => "Ja ho he comprovat. Informeu d'un nou problema",
 
 );

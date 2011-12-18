@@ -3708,14 +3708,19 @@ Ta stran se sooča s tehničnimi težavami.',
 'newuserlog-byemail'                  => 'geslo je bilo poslano po e-pošti',
 
 # Feedback
-'feedback-subject' => 'Zadeva:',
-'feedback-message' => 'Sporočilo:',
-'feedback-cancel'  => 'Prekliči',
-'feedback-submit'  => 'Pošlji povratno informacijo',
-'feedback-adding'  => 'Dodajanje povratne informacije na stran ...',
-'feedback-error1'  => 'Napaka: Neznan rezultat iz API',
-'feedback-error2'  => 'Napaka: Urejanje je spodletelo',
-'feedback-error3'  => 'Napaka: Ni odgovora od API',
-'feedback-close'   => 'Končano',
+'feedback-bugornote' => 'Če ste pripravljeni podrobno opisati tehnično težavo, vložite [$1 poročilo o hrošču].
+V nasprotnem primeru lahko uporabite preprost obrazec spodaj. Vašo pripombo bomo dodali na stran »[$3 $2]«, skupaj z vašim uporabniškim imenom in podatkom o brskalniku, ki ga uporabljate.',
+'feedback-subject'   => 'Zadeva:',
+'feedback-message'   => 'Sporočilo:',
+'feedback-cancel'    => 'Prekliči',
+'feedback-submit'    => 'Pošlji povratno informacijo',
+'feedback-adding'    => 'Dodajanje povratne informacije na stran ...',
+'feedback-error1'    => 'Napaka: Neznan rezultat iz API',
+'feedback-error2'    => 'Napaka: Urejanje je spodletelo',
+'feedback-error3'    => 'Napaka: Ni odgovora od API',
+'feedback-thanks'    => 'Havala! Vaše povratne informacije smo objavili na strani »[$2 $1]«.',
+'feedback-close'     => 'Končano',
+'feedback-bugcheck'  => 'Izvrstno! Samo preverite, da ne gre za enega od [$1 že znanih hroščev].',
+'feedback-bugnew'    => 'Sem preveril. Prijavi nov hrošč',
 
 );

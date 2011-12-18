@@ -3677,7 +3677,7 @@ Die folgenden Datenbanksysteme werden unterstützt: $1
 Sofern ein gemeinschaftlich genutzter Server für das Hosting verwendet wird, muss der Hoster gefragt werden einen adäquaten Datenbanktreiber zu installieren.
 Sofern PHP selbst kompiliert wurde, muss es mit es neu konfiguriert werden, wobei der Datenbankclient zu aktivierten ist. Hierzu kann beispielsweise <code>./configure --with-mysql</code> ausgeführt werden.
 Sofern PHP über die Paketverwaltung einer Debian- oder Ubuntu-Installation installiert wurde, muss das „php5-mysql“-Paket nachinstalliert werden.',
-	'config-no-fts3' => "'''Warnung:''' SQLite wurde ohne das [//sqlite.org/fts3.html FTS3-Modul] kompiliert, so dass keine Suchfunktionen zur Verfügung stehen.",
+	'config-no-fts3' => "'''Warnung:''' SQLite wurde ohne das [//sqlite.org/fts3.html FTS3-Modul] kompiliert, so dass keine Suchfunktionen zur Verfügung stehen werden.",
 	'config-register-globals' => "'''Warnung: Der Parameter <code>[http://php.net/register_globals register_globals]</code> von PHP ist aktiviert.'''
 '''Sie sollte deaktiviert werden, sofern dies möglich ist.'''
 Die MediaWiki-Installation wird zwar laufen, wobei aber der Server für potentielle Sicherheitsprobleme anfällig ist.",
@@ -3711,7 +3711,7 @@ Der Installationsvorgang könnte daher scheitern!",
 	'config-apc' => '[http://www.php.net/apc APC] ist installiert',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] ist installiert',
 	'config-no-cache' => "'''Warnung:''' [http://www.php.net/apc APC], [http://xcache.lighttpd.net/ XCache] oder [http://www.iis.net/download/WinCacheForPhp WinCache] konnten nicht gefunden werden.
-Das Objektcaching ist daher nicht aktiviert.",
+Das Objektcaching kann daher nicht aktiviert werden.",
 	'config-mod-security' => "'''Warnung:''' Auf dem Webserver wurde [http://modsecurity.org/ ModSecurity] aktiviert. Sofern falsch konfiguriert, kann dies zu Problemen mit MediaWiki sowie anderer Software auf dem Server führen und es Benutzern ermöglichen beliebige Inhalte im Wiki einzustellen.
 Für weitere Informationen empfehlen wir die [http://modsecurity.org/documentation/ Dokumentation zu ModSecurity] oder den Kontakt zum Hoster, sofern Fehler auftreten.",
 	'config-diff3-bad' => 'GNU diff3 wurde nicht gefunden.',
@@ -4012,9 +4012,9 @@ Bei viele E-Mail-Servern muss der Teil der E-Mail-Adresse mit der Domainangabe k
 	'config-upload-settings' => 'Hochladen von Bildern und Dateien',
 	'config-upload-enable' => 'Das Hochladen von Dateien ermöglichen',
 	'config-upload-help' => 'Das Hochladen von Dateien macht den Server für potentielle Sicherheitsprobleme anfällig.
-Weitere Informationen hierzu sollen im [//www.mediawiki.org/wiki/Manual:Security Abschnitt Sicherheit] der Anleitung gelesen werden.
+Weitere Informationen hierzu können im [//www.mediawiki.org/wiki/Manual:Security Abschnitt Sicherheit] der Anleitung nachgelesen werden.
 
-Um das Hochladen von Dateien zu ermöglichen, muss der Zugriff auf das Unterverzeichnis <code>./images</code> so geändert werden, das es für den Webserver beschreibbar ist.
+Um das Hochladen von Dateien zu ermöglichen, muss der Zugriff auf das Unterverzeichnis <code>./images</code> so geändert werden, das dieses für den Webserver beschreibbar ist.
 Hernach kann diese Option aktiviert werden.',
 	'config-upload-deleted' => 'Verzeichnis für gelöschte Dateien:',
 	'config-upload-deleted-help' => 'Bitte ein Verzeichnis auswählen, in dem gelöschte Dateien archiviert werden sollen.
@@ -4070,10 +4070,10 @@ Es muss sichergestellt sein, dass der Benutzer „$1“ Schreibzugriff auf das D
 	'config-install-pg-plpgsql' => 'Suche nach der Datenbanksprache PL/pgSQL',
 	'config-pg-no-plpgsql' => 'Für Datenbank $1 muss die Datenbanksprache PL/pgSQL installiert werden',
 	'config-pg-no-create-privs' => 'Das für die Installation angegeben Konto verfügt nicht über ausreichende Berechtigungen, um ein Datenbanknutzerkonto zu erstellen.',
-	'config-pg-not-in-role' => 'Das für den Wikibenutzer angegebene Benutzerkonto ist bereits vorhanden.
-Das für den Installationsvorgang angegebene Benutzerkonto ist kein Supernutzer und nicht Mitglied der Benutzergruppe der Wikibenutzer, so dass keine dem Wikibenutzer zugeordneten Datenobjekte erstellt werden konnten.
+	'config-pg-not-in-role' => 'Das für den Webbenutzer angegebene Benutzerkonto ist bereits vorhanden.
+Das für den Installationsvorgang angegebene Benutzerkonto ist kein Superbenutzer und nicht Mitglied der Benutzergruppe der Webbenutzer, so dass keine dem Webbenutzer zugeordneten Datenobjekte erstellt werden können.
 
-Für MediaWiki ist es momentan erforderlich, dass die Tabellen dem Wikibenutzer zugeordnet sind. Bitte einen anderen Namen für den Wikibenutzer angeben oder „zurück“ anklicken, um einen ausreichend berechtigten Benutzer für den Installationsvorgang anzugeben.',
+Für MediaWiki ist es momentan erforderlich, dass die Tabellen dem Webbenutzer rechtemäßig zugeordnet sind. Bitte einen anderen Namen für den Wikibenutzer angeben oder „← Zurück“ anklicken, um einen ausreichend berechtigten Benutzer für den Installationsvorgang anzugeben.',
 	'config-install-user' => 'Datenbankbenutzer wird erstellt',
 	'config-install-user-alreadyexists' => 'Datenbankbenutzer „$1“ ist bereits vorhanden',
 	'config-install-user-create-failed' => 'Das Anlegen des Datenbankbenutzers „$1“ ist gescheitert: $2',
@@ -4086,7 +4086,7 @@ Bitte das Auswahlkästchen „Benutzerkonto erstellen“ anklicken, sofern diese
 Die Erstellung wurde übersprungen.",
 	'config-install-tables-failed' => "'''Fehler:''' Die Erstellung der Datentabellen ist aufgrund des folgenden Fehlers gescheitert: $1",
 	'config-install-interwiki' => 'Interwikitabellen werden eingerichtet',
-	'config-install-interwiki-list' => 'Die Datei <code>interwiki.list</code> konnte nicht gefunden werden.',
+	'config-install-interwiki-list' => 'Die Datei <code>interwiki.list</code> konnte nicht gelesen werden.',
 	'config-install-interwiki-exists' => "'''Warnung:'''  Es wurden Interwikitabellen mit Daten gefunden.
 Die Standardliste wird übersprungen.",
 	'config-install-stats' => 'Statistiken werden initialisiert',
@@ -9877,10 +9877,7 @@ Et Enreeschte kunnt doh draan kappott jon!",
 	'config-wincache' => 'Dä <code lang="en">[http://www.iis.net/download/WinCacheForPhp WinCache]</code> es ennjeresht.',
 	'config-no-cache' => '\'\'\'Opjepaß:\'\'\' Mer kunnte dä <code lang="en">[http://www.php.net/apc APC]</code>, dä <code lang="en">[http://xcache.lighttpd.net/ XCache]</code> un dä <code lang="en">[http://www.iis.net/download/WinCacheForPhp WinCache]</code> nit fenge.
 Et <i lang="en">object caching</i> es nit müjjelesh un ußjeschalldt.',
-	'config-mod-security' => "'''Opjepaß''': Dinge Webßööver hät <code lang=\"en\">[http://modsecurity.org/ mod_security]</code> enjeschalldt. If misconfigured, it can cause problems for MediaWiki or other software that allows users to post arbitrary content.
-Refer to <code lang=\"en\">[http://modsecurity.org/documentation/ mod_security documentation]</code> udder contact your host's support if you encounter zohfälleje Fähler.
-
-",
+	'config-mod-security' => "'''Opjepaß''': Dinge Webßööver hät <code lang=\"en\">[http://modsecurity.org/ mod_security]</code> enjeschalldt. Wann doh derbei en Enschtällong nit janz akeraat paßß, dann kann et goot sin, dat mer Probleme met MeedijaWiki un oc met ander Projramme kritt, die zohlööt, dat vun ußerhallef öhndsene Krohm op dä Webßööver jebraat wääde künnt.Beloor Der di Sigg <code lang=\"en\">[http://modsecurity.org/documentation/ mod_security documentation]</code> udder donn met dä Fachlück för Dinge Webßööver kalle, wann zohfälleje un koomijje Fähler bemerke deihß.",
 	'config-diff3-bad' => 'Mer han <i lang="en">GNU</i> <code lang="en">diff3</code> nit jefonge.',
 	'config-imagemagick' => 'Mer han <i lang="en">ImageMagick</i> jefonge: <code>$1</code>.
 Et Ömrääschne en Minni-Beldsche weed müjjelesch sin, wann De et Belder Huhlaade zohlöhß.',
@@ -9904,7 +9901,7 @@ Heh jeiht et nit wigger.',
 	'config-suhosin-max-value-length' => '<i lang="en">Suhosin</i> es enschtalleet. Dröm kann ene <code lang="en">GET</code>-Parrameeter nit övver {{PLURAL:$1|ei Byte|$q Bytes|noll Byte}} lang wääde. En MediaWiki singe <i lang="en"ResouceLoader</i> kütt doh zwa drömeröm, ävver dat brems. Wann müjelesch, doht <code lang="en">suhosin.get.max_value_length</code> en dä Dattei <code lang="en">php.ini</code> op 1024 Bytes udder drövver enschtälle. un dann moß <code lang="en">$wgResourceLoaderMaxQueryLength</code> en dä Dattei <code lang="en">LocalSettings.php</code> op däsälve Wäät jesaz wääde.',
 	'config-db-type' => 'De Zoot Daatebangk:',
 	'config-db-host' => 'Dä Name vun däm Rääschner met dä Daatebangk:',
-	'config-db-host-help' => 'Wann Dinge ẞööver för de Daatebangk ob enem andere Rääschner es, donn heh dämm singe Name udder <i lang="en">IP</i>-Addräß enjävve.
+	'config-db-host-help' => 'Wann Dinge ẞööver för de Daatebangk ob enem andere Rääschner es, donn heh dämm singe Name udder dämm sing <i lang="en">IP</i>-Addräß enjävve.
 
 Wann De ob enem Meetẞööver beß, weet Der Dinge Provaider odder däm sing Dokemäntazjuhn saare, wat De endraare moß.
 
@@ -10068,14 +10065,13 @@ Dä aanjejovve Zohjang för der Nomaalbedrief moß dröm schunn enjersht sen!',
 	'config-mysql-engine' => 'De Zoot udder et Fommaat vun de Tabälle:',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',
-	'config-mysql-myisam-dep' => '\'\'\'Opjepaß:\'\'\' <i lang="en">MyISAM</i> es als Speicher för <i lang="en">MySQL</i> nit joot för et Zosammeschpell met MediaWiki nit zo ämfähle:
-* sie unterstützt aufgrund von Tabellensperrungen kaum die nebenläufige Ausführung von Aktionen
+	'config-mysql-myisam-dep' => '\'\'\'Opjepaß:\'\'\' <i lang="en">MyISAM</i> es als Speicher för <i lang="en">MySQL</i> nit besönders joot för et Zosammeschpell met MediaWiki zo bruche:
+* Dorj_et kumplätte Sperre vun Tabälle, künne koum ens Saache parrallel en dä Daatebangk jedonn wääde.
 * Dat Fomaat es anfällesch för Probleme met de Daate.
-* Et weed vun MediaWiki nit immer passend ongerschtöz.
+* Et weed vun MediaWiki nit ėmmer zopaß ongerschtöz.
 
-Wann Ding <i lang="en">MySQL</i> et schpeischere en <i lang="en">InnoDB</i>-Datteije nit ongerschtöz, wird deren Verwendung eindringlich empfohlen.
-Sofern sie sie nicht unterstützt, sollte eine entsprechende Aktualisierung nunmehr Erwägung gezogen werden op dämm ẞööver.
-',
+Wann Ding <i lang="en">MySQL</i> et Schpeischere en <i lang="en">InnoDB</i>-Datteije ongerschtöze deiht, dom_mer dat nohdröcklesch ämfähle.
+Kann dä ẞööver dat nit, künnd et joode jelääjeheit sin, dä ens op der neuste Schtand ze bränge.',
 	'config-mysql-engine-help' => "'''InnoDB''' es fö jewöhnlesch et beß, weil vill Zohjreffe op eijmohl joot ongershtöz wääde.
 
 '''MyISAM''' es flöcker op Rääschnere met bloß einem Minsch draan, un bei Wikis, di mer bloß lässe un nit schrieeve kann.
@@ -10153,6 +10149,7 @@ Noch ander un un opwändijere Enshtellunge för de Rääschte sin müjjelesch, w
 	'config-license' => 'Urhävverrääsch un Lizänz:',
 	'config-license-none' => 'Kein Fooßreih övver de Lizänz',
 	'config-license-cc-by-sa' => '<i lang="en">Creative Commons</i> Der Name moß jenannt sin, et Wiggerjävve es zohjelohße onger dersellve Bedengunge',
+	'config-license-cc-by' => 'De <i lang="en">Creative Commons</i> ier Lizänz met Namensnännong',
 	'config-license-cc-by-nc-sa' => '<i lang="en">Creative Commons</i> Nit för e Jeschäff ze maache, et Wiggerjävve es zohjelohße unger dersellve Bedengunge',
 	'config-license-cc-0' => '<i lang="en">Creative Commons</i> „Noll“ (jemeinfrei udder Pablic Domain)',
 	'config-license-gfdl' => 'De <i lang="en">GNU</i>-Lizänz för frei Dokemäntazjuhne, Version 1.3 udder en späädere',
@@ -10244,12 +10241,17 @@ Donn doför sorrje, dat dä Daatebangk-Aanwänder „$1“ en dämm Daatebangksc
 	'config-install-pg-plpgsql' => 'Ben noh dä Daatebangkshprooch <code lang="en">PL/pgSQL</code> aam söhke.',
 	'config-pg-no-plpgsql' => 'Do moß de Daatebangkshprooch <code lang="en">PL/pgSQL</code> en dä Daatebangk $1 enreeschte.',
 	'config-pg-no-create-privs' => 'Dä Daatebangk-Aanwänder för et Enreeschte hät nit jenooch Rääschde, öm ene andere Daatebangk-Aanwänder en dä Daatebangk aanzelääje.',
+	'config-pg-not-in-role' => 'Dä aanjejovve Zohjang för et Web jiddet ald.
+Dä aanjejovve Zohjang för et Enschtalleere es keine <i lang="en">superuser<i> un es nit en de Web-Jropp, dröm kam_mer domet kein Dateije aanlääje, di däm Zohjang för et Web jehüüre.
+
+För MeedijaWiki mößße dämm ävver em Momang di Tabälle jehüüre.
+Dröm donn ene andere Name för dä Zohjang zom Wäb nämme, udder donn „retuur“ klicke, un jivv ene Zohjang för et Enschtalleere aan, dä jenooch Rääschte hät.',
 	'config-install-user' => 'Ben unse Daatebangk-Aanwänder en de Daatebangk am aanlääje.',
 	'config-install-user-alreadyexists' => 'Dä Aanwender „$1“ för dä Zohjref op de Daatebangk kann nit aanjelaat wääde, et jidd_en alld.',
 	'config-install-user-create-failed' => 'Dä Aanwender „$1“ för dä Zohjref op de Daatebangk kunnt nit aanjelaat wääde, wäje: <code lang="en">$2</code>',
 	'config-install-user-grant-failed' => 'Däm Daatebangk-Aanwänder sing Beräschtijunge ze säze däät nit fluppe wääje: $2',
 	'config-install-user-missing' => 'Dä aanjejovve Metmaacher „$1“ jidd_et nit.',
-	'config-install-user-missing-create' => '{{int:Config-install-user-missing}}
+	'config-install-user-missing-create' => '{{int:Config-install-user-missing}}<!-- $1 -->
 Donn e Höhksche en et Käßje „{{int:Createaccount}}“ onge, wann De dä aanlääje wells.',
 	'config-install-tables' => 'Ben de Daatebangk-Tabälle aam aanlääje.',
 	'config-install-tables-exist' => "'''Opjepaß''': Et schingk, dem MediaWiki sing Tabälle sin alt doh.

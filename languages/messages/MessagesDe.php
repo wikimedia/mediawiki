@@ -1112,9 +1112,9 @@ Sie wurde anscheinend gelöscht.',
 'edit-already-exists'              => 'Die neue Seite konnte nicht erstellt werden, da sie bereits vorhanden ist.',
 
 # Parser/template warnings
-'expensive-parserfunction-warning'        => 'Achtung: Diese Seite enthält zu viele Aufrufe aufwendiger Parserfunktionen.
+'expensive-parserfunction-warning'        => "'''Achtung''': Diese Seite enthält zu viele Aufrufe aufwändiger Parserfunktionen.
 
-Es {{PLURAL:$2|darf nicht mehr als 1 Aufruf|dürfen nicht mehr als $1 Aufrufe}} sein.',
+Sie darf nicht mehr als $2 {{PLURAL:$2|Aufruf|Aufrufe}} haben, es {{PLURAL:$1|ist aktuell $1 Aufruf|sind aktuell $1 Aufrufe}}.",
 'expensive-parserfunction-category'       => 'Seiten, die aufwändige Parserfunktionen zu oft aufrufen',
 'post-expand-template-inclusion-warning'  => 'Warnung: Die Größe eingebundener Vorlagen ist zu groß, einige Vorlagen können nicht eingebunden werden.',
 'post-expand-template-inclusion-category' => 'Seiten, in denen die maximale Größe eingebundener Vorlagen überschritten ist',

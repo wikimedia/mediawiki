@@ -28,6 +28,7 @@
  * @author Niels
  * @author Romaine
  * @author SPQRobin
+ * @author Saruman
  * @author Servien
  * @author Siebrand
  * @author Slomox
@@ -3948,17 +3949,19 @@ Andere bestandstypen worden direct in het met het MIME-type verbonden programma 
 'newuserlog-byemail'                  => 'wachtwoord is verzonden per e-mail',
 
 # Feedback
-'feedback-subject'  => 'Onderwerp:',
-'feedback-message'  => 'Bericht:',
-'feedback-cancel'   => 'Annuleren',
-'feedback-submit'   => 'Terugkoppeling opslaan',
-'feedback-adding'   => 'Uw terugkoppeling wordt aan de pagina toegevoegd...',
-'feedback-error1'   => 'Fout: onbekend resultaat uit de API',
-'feedback-error2'   => 'Fout: de bewerking is mislukt',
-'feedback-error3'   => 'Fout: geen reactie van de API',
-'feedback-thanks'   => 'Bedankt! Uw terugkoppeling is op de pagina "[$2 $1]" geplaatst.',
-'feedback-close'    => 'Afgerond',
-'feedback-bugcheck' => 'Geweldig! Controleer even of het niet al één van de [$1 bekende bugs] is.',
-'feedback-bugnew'   => 'Heb ik gecontroleerd; nieuwe bug melden',
+'feedback-bugornote' => 'Als u zover bent om een technisch probleem in detail beschrijven gelieve gebruik te maken van  [ $1  rapporteer een bug].
+Anders kunt u ook het eenvoudige formulier hieronder gebruiken. Uw commentaar zal worden toegevoegd aan de pagina "[ $3  $2 ]", samen met uw gebruikersnaam en de browser die u gebruikt.',
+'feedback-subject'   => 'Onderwerp:',
+'feedback-message'   => 'Bericht:',
+'feedback-cancel'    => 'Annuleren',
+'feedback-submit'    => 'Terugkoppeling opslaan',
+'feedback-adding'    => 'Uw terugkoppeling wordt aan de pagina toegevoegd...',
+'feedback-error1'    => 'Fout: onbekend resultaat uit de API',
+'feedback-error2'    => 'Fout: de bewerking is mislukt',
+'feedback-error3'    => 'Fout: geen reactie van de API',
+'feedback-thanks'    => 'Bedankt! Uw terugkoppeling is op de pagina "[$2 $1]" geplaatst.',
+'feedback-close'     => 'Afgerond',
+'feedback-bugcheck'  => 'Geweldig! Controleer even of het niet al één van de [$1 bekende bugs] is.',
+'feedback-bugnew'    => 'Heb ik gecontroleerd; nieuwe bug melden',
 
 );

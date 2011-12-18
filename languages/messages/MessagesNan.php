@@ -1231,6 +1231,7 @@ Tī pat-lâng liân-lo̍k lí ê sî-chūn bē kā e-mail tsū-tsí siá chhut--
 'right-noratelimit'           => '無受著頻率限制的影響',
 'right-import'                => '對別个Wiki匯入頁',
 'right-importupload'          => '對一个上載檔案匯入頁',
+'right-patrol'                => '共其它的編輯攏標示做已巡過',
 'right-autopatrol'            => '家己的編輯自動標示做巡過',
 'right-patrolmarks'           => '看最近巡查編輯的標記',
 'right-unwatchedpages'        => '看頁無人監視的清單',
@@ -1452,12 +1453,36 @@ $1',
 'upload-file-error'         => '內部的錯誤',
 'upload-file-error-text'    => '佇伺服器欲開一个臨時檔案的時陣，發生一个內部錯誤，
 請佮[[Special:ListUsers/sysop|管理員]]聯絡。',
+'upload-misc-error'         => '毋知原因的上載錯誤',
+'upload-misc-error-text'    => '佇上載的時陣發生錯誤，毋知啥原因。
+請確認網址(URL)是正確的，了才閣試。
+若猶閣有問題，請聯絡[[Special:ListUsers/sysop|管理員]]。',
 'upload-too-many-redirects' => '網址(URL)包傷濟个轉向',
 'upload-unknown-size'       => '大小毋知',
 'upload-http-error'         => '發生一个HTTP錯誤：$1',
 
 # img_auth script messages
-'img-auth-accessdenied' => '拒絕讀寫',
+'img-auth-accessdenied'     => '拒絕讀寫',
+'img-auth-notindir'         => '你欲用的路徑無佇事先設定的上載目錄當中。',
+'img-auth-badtitle'         => '無法度對"$1"產生一个有效的標題',
+'img-auth-nologinnWL'       => '你猶未登入，"$1"無佇白名單(whitelist)面頂。',
+'img-auth-nofile'           => '無"$1"這个檔案',
+'img-auth-isdir'            => '你想欲讀目錄"$1"，
+毋過只會當讀檔案。',
+'img-auth-streaming'        => '當咧串流(streaming)"$1"',
+'img-auth-public'           => 'img_auth.php的功能是予私用wiki通輸出檔案，
+這個wiki的設定是一个公共wiki，
+為著安全因素，img_auth.php已經停用。',
+'img-auth-noread'           => '用者無授權去讀"$1"',
+'img-auth-bad-query-string' => '網址(URL)有無效的查詢字串',
+
+# HTTP errors
+'http-invalid-url'    => '無效的網址(URL)：$1',
+'http-invalid-scheme' => '無支援有「$1」的網址(URL)',
+'http-request-error'  => 'HTTP請求失敗，毋知啥物原因的錯誤。',
+'http-read-error'     => 'HTTP讀了錯誤',
+'http-timed-out'      => 'HTTP請求已經超過時間',
+'http-curl-error'     => '取網址(URL)的時陣有錯誤：$1',
 
 'license'        => 'Siū-khoân:',
 'license-header' => 'Siū-khoân',
