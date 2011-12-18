@@ -638,7 +638,8 @@ class Language {
 	}
 
 	/**
-	 * Get language names, indexed by code.
+	 * Get native language names, indexed by code.
+	 * Only those defined in MediaWiki, no other data like CLDR.
 	 * If $customisedOnly is true, only returns codes with a messages file
 	 *
 	 * @param $customisedOnly bool
@@ -699,6 +700,8 @@ class Language {
 	}
 
 	/**
+	 * Get the native language name of $code.
+	 * Only if defined in MediaWiki, no other data like CLDR.
 	 * @param $code string
 	 * @return string
 	 */
