@@ -29,6 +29,7 @@
  * @author Odder
  * @author Przemub
  * @author Remember the dot
+ * @author Rzuwig
  * @author Saper
  * @author Sp5uhe
  * @author Stlmch
@@ -3840,5 +3841,6 @@ Grafiki są pokazywane w pełnej rozdzielczości. Inne typy plików są otwieran
 'feedback-error1'  => 'Błąd – nierozpoznana odpowiedź API',
 'feedback-error2'  => 'Błąd – edycja nieudana',
 'feedback-error3'  => 'Błąd – brak odpowiedzi API',
+'feedback-close'   => 'Gotowe',
 
 );

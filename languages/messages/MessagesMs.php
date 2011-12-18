@@ -3676,17 +3676,19 @@ Imej ditunjuk dalam leraian penuh, jenis fail yang lain dibuka dengan atur cara 
 'newuserlog-byemail'                  => 'kata laluan dihantar melalui e-mel',
 
 # Feedback
-'feedback-subject'  => 'Perkara:',
-'feedback-message'  => 'Pesanan:',
-'feedback-cancel'   => 'Batalkan',
-'feedback-submit'   => 'Hantar Maklum Balas',
-'feedback-adding'   => 'Maklum balas sedang diisikan ke dalam laman...',
-'feedback-error1'   => 'Perhatian: Hasil dari API tidak dikenali',
-'feedback-error2'   => 'Perhatian: Penyuntingan gagal',
-'feedback-error3'   => 'Perhatian: Tiada gerak balas dari API',
-'feedback-thanks'   => 'Terima kasih! Maklum balas anda telah dicatatkan pada laman "[$2 $1]".',
-'feedback-close'    => 'Siap',
-'feedback-bugcheck' => 'Bagus! Cuma pastikan itu bukan salah satu [$1 pepijat] yang sedia diketahui.',
-'feedback-bugnew'   => 'Saya dah semak. Laporkan pepijat baru',
+'feedback-bugornote' => 'Jika anda bersedia untuk menerangkan masalah teknikal secara terperinci, sila [$1 laporkan pepijat]. 
+Ataupun, anda boleh menggunakan borang yang mudah di bawah. Ulasan anda akan dicatatkan pada laman "[$3 $2]", beserta nama pengguna anda dan pelayar yang anda gunakan.',
+'feedback-subject'   => 'Perkara:',
+'feedback-message'   => 'Pesanan:',
+'feedback-cancel'    => 'Batalkan',
+'feedback-submit'    => 'Hantar Maklum Balas',
+'feedback-adding'    => 'Maklum balas sedang diisikan ke dalam laman...',
+'feedback-error1'    => 'Perhatian: Hasil dari API tidak dikenali',
+'feedback-error2'    => 'Perhatian: Penyuntingan gagal',
+'feedback-error3'    => 'Perhatian: Tiada gerak balas dari API',
+'feedback-thanks'    => 'Terima kasih! Maklum balas anda telah dicatatkan pada laman "[$2 $1]".',
+'feedback-close'     => 'Siap',
+'feedback-bugcheck'  => 'Bagus! Cuma pastikan itu bukan salah satu [$1 pepijat] yang sedia diketahui.',
+'feedback-bugnew'    => 'Saya dah semak. Laporkan pepijat baru',
 
 );

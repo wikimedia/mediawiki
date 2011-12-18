@@ -21,6 +21,7 @@
  * @author Karduelis
  * @author Katpatuka
  * @author Khutuck
+ * @author LuCKY
  * @author Mach
  * @author Manco Capac
  * @author Metal Militia
@@ -1391,7 +1392,7 @@ Kullanabileceğiniz rastgele-üretilmiş bir değer: $1',
 'yourrealname'                  => 'Gerçek adınız:',
 'yourlanguage'                  => 'Dil:',
 'yourvariant'                   => 'Sizce:',
-'prefs-help-variant'            => 'Bu wikinin içeriğini görüntülemek için tercih ettiğiniz varyant veya ortografi.',
+'prefs-help-variant'            => 'Bu vikinin içeriğini görüntülemek için tercih ettiğiniz varyant veya ortografi.',
 'yournick'                      => 'İmzalarda gözükmesini istediğiniz isim',
 'prefs-help-signature'          => 'Tartışma sayfalarındaki yorumlar "<nowiki>~~~~</nowiki>" ile imzalanmalıdır, bu imzanıza ve zaman damgasına dönüştürülür.',
 'badsig'                        => 'Geçersiz ham imza; HTML etiketlerini kontrol edin.',
@@ -1681,7 +1682,7 @@ Bir sayfaya dosya koymak için bağlantınızda aşağıdaki formlardan birini k
 bu dosyanın boyutu $2.',
 'largefileserver'             => 'Bu dosyanın uzunluğu sunucuda izin verilenden daha büyüktür.',
 'emptyfile'                   => 'Yüklediğiniz dosya boş görünüyor. Bunun sebebi dosya adındaki bir yazım hatası olabilir. Lütfen dosyayı gerçekten yüklemek isteyip istemediğinizden emin olun.',
-'windows-nonascii-filename'   => 'Bu wiki dosya isimlerinde özel karakter kullanımını desteklemiyor',
+'windows-nonascii-filename'   => 'Bu viki dosya isimlerinde özel karakter kullanımını desteklemiyor',
 'fileexists'                  => "Bu isimde bir dosya mevcut.
 Eğer değiştirmekten emin değilseniz ilk önce '''<tt>[[:$1]]</tt>''' dosyasına bir gözatın.
 [[$1|thumb]]",

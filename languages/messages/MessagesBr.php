@@ -3677,13 +3677,19 @@ Diskouezet eo ar skeudennoù gant ur pizhder uhel, erounit a ra ar restroù all 
 'newuserlog-byemail'                  => 'ger-tremen kaset dre bostel',
 
 # Feedback
-'feedback-subject' => 'Danvez :',
-'feedback-message' => 'Kemennadenn:',
-'feedback-cancel'  => 'Nullañ',
-'feedback-submit'  => 'Kas ho soñj',
-'feedback-adding'  => "Oc'h ouzhpennañ ho soñj war ar bajenn...",
-'feedback-error1'  => "Fazi : disoc'h dianav a-berzh an API",
-'feedback-error2'  => "Fazi : N'eus ket bet gallet degemer ar c'hemmoù",
-'feedback-error3'  => 'Fazi : respont ebet a-berzh an API',
+'feedback-bugornote' => "Ma'z oc'h prest da zeskrivañ ur gudenn deknikel dre ar munud e c'hallit [\$1 kemenn un draen].
+A-hend-all e c'hallit ober gant ar furmskrid eeunaet dindan. Ouzhpennet e vo hoc'h evezhiadenn d'ar bajenn \"[\$3 \$2]\", a-gevret gant hoc'h anv implijer hag anv ar merdeer a rit gantañ.",
+'feedback-subject'   => 'Danvez :',
+'feedback-message'   => 'Kemennadenn:',
+'feedback-cancel'    => 'Nullañ',
+'feedback-submit'    => 'Kas ho soñj',
+'feedback-adding'    => "Oc'h ouzhpennañ ho soñj war ar bajenn...",
+'feedback-error1'    => "Fazi : disoc'h dianav a-berzh an API",
+'feedback-error2'    => "Fazi : N'eus ket bet gallet degemer ar c'hemmoù",
+'feedback-error3'    => 'Fazi : respont ebet a-berzh an API',
+'feedback-thanks'    => 'Ho trugarekaat ! Postet eo bet hoc\'h evezhiadenn d\'ar bajenn "[$2 $1]".',
+'feedback-close'     => 'Graet',
+'feedback-bugcheck'  => "Eus ar c'hentañ ! Gwiriit mat n'emañ ket e-touez an [$1 draen diskoachet c'hoazh].",
+'feedback-bugnew'    => 'Gwiriet em eus. Kemenn un draen nevez',
 
 );

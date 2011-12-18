@@ -3714,17 +3714,19 @@ Le imagines se monstra in plen resolution, le altere typos de file se executa di
 'newuserlog-byemail'                  => 'contrasigno inviate per e-mail',
 
 # Feedback
-'feedback-subject'  => 'Subjecto:',
-'feedback-message'  => 'Message:',
-'feedback-cancel'   => 'Cancellar',
-'feedback-submit'   => 'Submitter opinion',
-'feedback-adding'   => 'Le responsa es addite al pagina...',
-'feedback-error1'   => 'Error: Resultato del API non recognoscite',
-'feedback-error2'   => 'Error: Modification fallite',
-'feedback-error3'   => 'Error: Nulle responsa del API',
-'feedback-thanks'   => 'Gratias! Tu retroaction ha essite publicate in le pagina "[$2 $1]".',
-'feedback-close'    => 'Finite',
-'feedback-bugcheck' => 'Bon! Ma per favor verifica que iste falta non es [$1 jam cognoscite].',
-'feedback-bugnew'   => 'Si, io lo ha verificate; reportar un nove falta',
+'feedback-bugornote' => 'Si tu es preste a describer un problema technic in detalio, per favor [$1 reporta un falta].
+Si non, tu pote usar le formulario facile hic infra. Tu commento essera addite al pagina "[$3 $2]", con tu nomine de usator e le navigator del web que tu usa.',
+'feedback-subject'   => 'Subjecto:',
+'feedback-message'   => 'Message:',
+'feedback-cancel'    => 'Cancellar',
+'feedback-submit'    => 'Submitter opinion',
+'feedback-adding'    => 'Le responsa es addite al pagina...',
+'feedback-error1'    => 'Error: Resultato del API non recognoscite',
+'feedback-error2'    => 'Error: Modification fallite',
+'feedback-error3'    => 'Error: Nulle responsa del API',
+'feedback-thanks'    => 'Gratias! Tu retroaction ha essite publicate in le pagina "[$2 $1]".',
+'feedback-close'     => 'Finite',
+'feedback-bugcheck'  => 'Bon! Ma per favor verifica que iste falta non es [$1 jam cognoscite].',
+'feedback-bugnew'    => 'Si, io lo ha verificate; reportar un nove falta',
 
 );

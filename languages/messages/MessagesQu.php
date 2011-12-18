@@ -3644,4 +3644,20 @@ Rikchakunatataq hunt'a ch'irkukupim rikunki. Huk willañiqi llayakunaqa tantapus
 'logentry-newusers-autocreate'        => '$1 {{GENDER:$2|}}sutiyuq rakiqunaqa kikinmanta kamarisqam',
 'newuserlog-byemail'                  => 'e-chaskiwan kachasqa yaykuna rima',
 
+# Feedback
+'feedback-bugornote' => "Allwiyapi sasachakuymanta imaymanachanta willayta munaspaykiqa, [\$1 pantasqamanta willay].
+Mana chayqa, kay qatiqpi kaq hunt'ana p'anqatam llamk'achiyta atinki. Willapuyniykiqa \"[\$3 \$2]\" sutiyuq p'anqamanmi yapasqa kanqa, hinallataqmi ruraqpa sutiykipas qampa llamk'achisqayki llika wamp'unapas.",
+'feedback-subject'   => 'Yuyancha:',
+'feedback-message'   => 'Willay:',
+'feedback-cancel'    => 'Ama niy',
+'feedback-submit'    => 'Willapuyniykita kachay',
+'feedback-adding'    => "Willapuyniykita kay p'anqaman yapay: ...",
+'feedback-error1'    => 'Pantasqa: API nisqamanta taripasqaqa manam riqsirisqachu',
+'feedback-error2'    => "Pantasqa: Manam llamk'apuyta atinchu",
+'feedback-error3'    => 'Pantasqa: API nisqaqa manam kutipanchu',
+'feedback-thanks'    => 'Añaychayki! Willapuyniykiqa "[$2 $1]" sutiyuq p\'anqaman yapasqañam.',
+'feedback-close'     => 'Rurasqañam',
+'feedback-bugcheck'  => 'Allillanmi! Llanchirillay [$1 riqsisqapura huk pantasqañachu] mana kanmanchu.',
+'feedback-bugnew'    => 'Llanchisqañam. Musuq pantasqamanta willay',
+
 );

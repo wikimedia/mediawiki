@@ -3551,13 +3551,17 @@ Dangosir delweddau ar eu maint llawn, dechreuir ffeiliau o fathau eraill yn unio
 'newuserlog-byemail'                  => 'anfonwyd y cyfrinair trwy e-bost',
 
 # Feedback
-'feedback-subject' => 'Gwrthrych:',
-'feedback-message' => 'Neges:',
-'feedback-cancel'  => 'Diddymer',
-'feedback-submit'  => 'Cyflwyner yr Adborth',
-'feedback-adding'  => "Wrthi'n ychwanegu adborth i'r dudalen...",
-'feedback-error1'  => "Gwall: Canlyniad anhysbys o'r API",
-'feedback-error2'  => 'Gwall: Methodd y golygu',
-'feedback-error3'  => 'Gwall: Dim ymateb gan yr API',
+'feedback-subject'  => 'Gwrthrych:',
+'feedback-message'  => 'Neges:',
+'feedback-cancel'   => 'Diddymer',
+'feedback-submit'   => 'Cyflwyner yr Adborth',
+'feedback-adding'   => "Wrthi'n ychwanegu adborth i'r dudalen...",
+'feedback-error1'   => "Gwall: Canlyniad anhysbys o'r API",
+'feedback-error2'   => 'Gwall: Methodd y golygu',
+'feedback-error3'   => 'Gwall: Dim ymateb gan yr API',
+'feedback-thanks'   => 'Diolch! Gosodwyd eich adborth ar y dudalen "[$2 $1]".',
+'feedback-close'    => 'Yn barod',
+'feedback-bugcheck' => "Iawn! Gwnewch yn siwr yn gyntaf nag ydy hwn yn un o'r [$1 bygiau hysbys].",
+'feedback-bugnew'   => "Edrychais ar y bygiau hysbys. Mae byg newydd gennyf i'w adrodd",
 
 );

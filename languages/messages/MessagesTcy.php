@@ -8,6 +8,7 @@
  * @file
  *
  * @author NamwikiTL
+ * @author VASANTH S.N.
  * @author VinodSBangera
  */
 
@@ -41,6 +42,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'ಎಲ್ಯೆಲ್ಯ ಬದಲಾವಣೆ ಆಂಡಲ ಎಂಕ್ ಇ-ಮೇಲ್ ಮಲ್ಪುಲೆ',
 'tog-enotifrevealaddr'        => 'ಪ್ರಕಟಣೆ ಇ-ಮೇಲ್’ಡ್ ಎನ್ನ ಇ-ಮೇಲ್ ವಿಳಾಸನ್ ತೊಜ್ಪಾಲೆ',
 'tog-shownumberswatching'     => 'ಪುಟೊನು ತೂವೊಂದುಪ್ಪುನಂಚಿನ ಸದಸ್ಯೆರ್’ನ ಸಂಖ್ಯೆನ್ ತೊಜ್ಪಾಲೆ',
+'tog-oldsig'                  => 'ಇತ್ತೆದ ಸಹಿ',
 'tog-fancysig'                => 'ಸರಳ ಸಹಿಗಳು (ಲಿಂಕ್ ಇಜ್ಜಂದಿಲೆಕ)',
 'tog-externaleditor'          => 'ಯಾಪಲ ಪಿದಯಿದ ಸಂಪಾದನೆ ಉಪಕರಣದ ಉಪಯೋಗ ಮನ್ಪುಲೆ (ಅನುಭವ ಉಪ್ಪುನಂಚಿನ ಸದಸ್ಯೆರೆಗ್ ಮಾತ್ರ, ನಿಕ್ಲೆನ ಕಂಪ್ಯೂಟರ್’ಡ್ ವಿಶೇಷವಾಯಿನ ಬದಲಾವಣೆಲು ಬೋಡಾಪುಂಡು)',
 'tog-externaldiff'            => 'ಬಾಹ್ಯ ಮುನ್ನೋಟನ್ ಯಾಪಲ ಉಪಯೋಗ ಮಲ್ಪುಲೆ (ಅನುಭವ ಉಪ್ಪುನಂಚಿನ ಸದಸ್ಯೆರೆಗ್ ಮಾತ್ರ, ನಿಕ್ಲೆನ ಕಂಪ್ಯೂಟರ್’ಡ್ ವಿಶೇಷ ಬದಲಾವಣೆಲು ಬೋಡಾಪುಂಡು)',
@@ -51,6 +53,7 @@ $messages = array(
 'tog-watchlisthideminor'      => 'ಎಲ್ಯ ಬದಲಾವಣೆಲೆನ್ ವೀಕ್ಷಣಾಪಟ್ಟಿರ್ದ್ ದೆಂಗಾಲೆ',
 'tog-watchlisthideliu'        => 'ಲಾಗಿನ್ ಆತಿನಂಚಿನ ಸದಸ್ಯೆರ್’ನ ಸಂಪಾದನೆಲೆನ್ ವೀಕ್ಷಣಾಪಟ್ಟಿರ್ದ್ ದೆಂಗಾಲೆ',
 'tog-watchlisthideanons'      => 'ಪುದರಿಜ್ಜಂದಿನ ಬಳಕೆದಾರನ ಸಂಪಾದನೆಲೆನ್ ವೀಕ್ಷಣಾಪಟ್ಟಿರ್ದ್ ದೆಂಗಾಲೆ',
+'tog-watchlisthidepatrolled'  => 'ವೀಕ್ಷಣಾಪಟ್ಟಿಡ್ ಬಾಟ್ ಸಂಪಾದನೆಲೆನ್ ದೆಂಗಾಲೆ',
 'tog-ccmeonemails'            => 'ಯಾನ್ ಬೇತೆ ಸದಸ್ಯೆರೆಗ್ ಕಡಪುಡ್ಪುನಂಚಿನ ಇ-ಮೇಲ್’ಲೆದ ಪ್ರತಿಲೆನ್(copy) ಎಂಕ್ ಕಡಪುಡ್ಲೆ',
 'tog-diffonly'                => 'ವ್ಯತ್ಯಾಸದ ತಿರ್ತುಪ್ಪುನಂಚಿನ ಪುಟೊತ ವಿವರೊಲೆನ್ ತೊಜ್’ಪಾವೊಚಿ',
 'tog-showhiddencats'          => 'ದೆಂಗಾದಿನ ವರ್ಗೊಲೆನ್ ತೊಜ್ಪಾಲೆ',
@@ -58,6 +61,11 @@ $messages = array(
 'underline-always'  => 'ಯಾಪಲ',
 'underline-never'   => 'ಯಾಪಗ್ಲಾ ಇಜ್ಜಿ',
 'underline-default' => 'ಬ್ರೌಸರ್’ದ ಯಥಾಸ್ಥಿತಿ',
+
+# Font style option in Special:Preferences
+'editfont-default'   => 'ಬ್ರೌಸರ್’ದ ಯಥಾಸ್ಥಿತಿ',
+'editfont-sansserif' => 'ಸಾನ್ಸ್-ಸೆರಿಫ್ ಲಿಪಿ',
+'editfont-serif'     => 'ಸೆರಿಫ್ ಲಿಪಿ',
 
 # Dates
 'sunday'        => 'ಐತಾರ',
@@ -126,6 +134,9 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|ಈ ವರ್ಗೊಡು ಈ ತಿರ್ತ್’ದ ಖಾಲಿ ಒಂಜಿ ಫೈಲ್ ಉಂಡು.|ಈ ವರ್ಗೊಡು ಈ ತಿರ್ತ್’ದ {{PLURAL:$1|ಫೈಲ್’ನ್|$1 ಫೈಲ್’ಲೆನ್}} ಸೇರ್ಪಾದ್, ಒಟ್ಟಿಗೆ $2 ಉಂಡು.}}',
 'category-file-count-limited'    => 'ಪ್ರಸಕ್ತ ವರ್ಗೊಡು ಈ ತಿರ್ತ್’ದ {{PLURAL:$1|ಫೈಲ್ ಉಂಡು|$1 ಫೈಲ್’ಲು ಉಂಡು}}.',
 'listingcontinuesabbrev'         => 'ಮುಂದು.',
+'index-category'                 => 'ವಿಷಯ ಸೂಚಿ ಪುಟಕ್‘ಲು',
+'noindex-category'               => 'ವಿಷಯಸೂಚಿ ಇಜ್ಜಾಂದಿನ ಪುಟಕ್‘ಲು',
+'broken-file-category'           => 'ಪುಟಡ್ ಇಜ್ಜಂದಿನ ಕಡತದ ಕೊಂಡಿಲು',
 
 'about'         => 'ಎಂಕ್ಲೆನ ಬಗ್ಗೆ',
 'article'       => 'ಲೇಖನ ಪುಟ',
@@ -150,14 +161,21 @@ $messages = array(
 'faqpage'        => 'Project:ಸಾಮಾನ್ಯವಾದ್ ಕೇನುನ ಪ್ರಶ್ನೆಲು',
 
 # Vector skin
-'vector-action-delete'  => 'ದೆತ್ತ್ ಪಾಡ್ಲೆ',
-'vector-action-protect' => 'ಸ೦ರಕ್ಷಿಸಾಲೆ',
-'vector-view-create'    => ' ಸುರು ಮಲ್ಪುಲೆ',
-'vector-view-edit'      => 'ಸಂಪಾದನೆ ಮಲ್ಪುಲೆ',
-'vector-view-history'   => 'ಇತಿಹಾಸೊನು ತೂಲೆ',
-'vector-view-view'      => 'ಓದ್ಲೇ',
-'actions'               => 'ಕ್ರಿಯೆಕ್ಕುಲು',
-'namespaces'            => 'ಪುದರ್ ದ ವರ್ಗೊಲು',
+'vector-action-addsection'       => 'ವಿಷಯ ಸೇರಾಲೆ',
+'vector-action-delete'           => 'ದೆತ್ತ್ ಪಾಡ್ಲೆ',
+'vector-action-move'             => 'ಸ್ಥಳಾಂತರ ಮಲ್ಪುಲೆ',
+'vector-action-protect'          => 'ಸ೦ರಕ್ಷಿಸಾಲೆ',
+'vector-action-undelete'         => 'ಮಾಜಾವಡೆ',
+'vector-action-unprotect'        => 'ಬದಲಾವಣೆನ್ ರಕ್ಷಿಸಾಲೆ',
+'vector-simplesearch-preference' => 'ಬಲಗೊಳಿಸಾನ ಹುಡುಕು ಸಲಹೆಲೆನ್ ಸಕ್ರಿಯಗೊಳಿಸಾಲೆ',
+'vector-view-create'             => ' ಸುರು ಮಲ್ಪುಲೆ',
+'vector-view-edit'               => 'ಸಂಪಾದನೆ ಮಲ್ಪುಲೆ',
+'vector-view-history'            => 'ಇತಿಹಾಸೊನು ತೂಲೆ',
+'vector-view-view'               => 'ಓದ್ಲೇ',
+'vector-view-viewsource'         => 'ಮೂಲೊನು ತೂಲೆ',
+'actions'                        => 'ಕ್ರಿಯೆಕ್ಕುಲು',
+'namespaces'                     => 'ಪುದರ್ ದ ವರ್ಗೊಲು',
+'variants'                       => 'ರೂಪಾಂತರ ಹೊಂದ್‘ನ',
 
 'errorpagetitle'    => 'ದೋಷ',
 'returnto'          => '$1 ಗ್ ಪಿರ ಪೋಲೆ.',
@@ -173,6 +191,7 @@ $messages = array(
 'printableversion'  => 'ಪ್ರಿಂಟ್ ಆವೃತ್ತಿ',
 'permalink'         => 'ಸ್ಥಿರ ಸಂಪರ್ಕ',
 'print'             => 'ಪ್ರಿ೦ಟ್ ಮನ್ಪುಲೆ',
+'view'              => 'ತೂಲೆ',
 'edit'              => 'ಸಂಪಾದನೆ ಮಲ್ಪುಲೆ(Edit this page)',
 'create'            => 'ಸೃಷ್ಟಿಸಾಲೆ',
 'editthispage'      => 'ಈ ಪುಟೊನು ಬದಲಾಯಿಸಾಲೆ',
@@ -180,6 +199,7 @@ $messages = array(
 'delete'            => 'ದೆತ್ತ್ ಪಾಡ್ಲೆ',
 'deletethispage'    => 'ಈ ಪುಟೊನು ದೆತ್ತ್ ಪಾಡ್ಲೆ',
 'undelete_short'    => 'ಪಿರ ಪಾಡ್ಲೆ {{PLURAL:$1|ಒ೦ಜಿ ಬದಲಾವಣೆ|$1 ಬದಲಾವಣೆಲು}}',
+'viewdeleted_short' => 'ನೋಟ{{PLURAL:$1|1 ಡಿಲೀಟ್ ಆತಿನ ಸಂಪಾದನೆ|$1 ಡಿಲೀಟ್ ಆತಿನ ಸಂಪಾದನೆಲು}}',
 'protect'           => 'ಸ೦ರಕ್ಷಿಸಾಲೆ',
 'protect_change'    => 'ಬದಲಾಲೆ',
 'protectthispage'   => 'ಈ ಪುಟೊನು ಸ೦ರಕ್ಷಿಸಾಲೆ',
@@ -212,6 +232,7 @@ $messages = array(
 'jumpto'            => 'ಇಡೆ ಪೋಲೆ:',
 'jumptonavigation'  => 'ಸಂಚಾರ',
 'jumptosearch'      => 'ನಾಡ್’ಲೆ',
+'pool-errorunknown' => 'ಗೊತ್ತಿಂಜಂದಿನ  ದೋಷ',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} ದ ಬಗ್ಗೆ',
@@ -257,6 +278,8 @@ $messages = array(
 'toc'                     => 'ಪರಿವಿಡಿ',
 'showtoc'                 => 'ತೊಜ್ಪಾವು',
 'hidetoc'                 => 'ದೆಂಗಾವು',
+'collapsible-collapse'    => 'ಕುಗ್ಗಿಸಾಲ',
+'collapsible-expand'      => 'ವಿಸ್ತಾರ ಮಲ್ಪುಲೆ',
 'thisisdeleted'           => '$1 ನ್ ತೂವೊಡೆ ಅತ್ತ್ ದುಂಬುದ ಲೆಕೆ ಮಲ್ಪೊಡೆ?',
 'viewdeleted'             => '$1 ನ್ ತೂವೊಡೆ?',
 'restorelink'             => '{{PLURAL:$1|1 ಡಿಲೀಟ್ ಆತಿನ ಸಂಪಾದನೆ|$1 ಡಿಲೀಟ್ ಆತಿನ ಸಂಪಾದನೆಲು}}',
@@ -270,6 +293,8 @@ $messages = array(
 'feed-atom'               => 'Atom',
 'feed-rss'                => 'RSS',
 'red-link-title'          => '$1 (ಈ ಪುಟ ನನಲ ಅಸ್ತಿತ್ವಡ್ ಇಜ್ಜಿ)',
+'sort-descending'         => 'ಇಳಿಕೆ ಕ್ರಮೊಟ್ಟು ಜೋಡಿಸಾಲ',
+'sort-ascending'          => 'ಏರಿಕೆ ಕ್ರಮೊಟ್ಟು ಜೋಡಿಸಾಲ',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'ಪುಟ',
@@ -312,19 +337,54 @@ $messages = array(
 'fileexistserror'      => '"$1" ಫೈಲ್ ಗ್ ಬರೆಯೆರೆ ಆವೊ೦ದಿಜ್ಜಿ: ಈ ಫೈಲ್ ದು೦ಬೇ ಉ೦ಡು.',
 'unexpected'           => 'ಅನಿರೀಕ್ಷಿತ ಮೌಲ್ಯ: "$1"="$2".',
 'formerror'            => 'ದೋಷ: ಅರ್ಜಿನ್ ಕಡಪುಡಿಯೆರ್ ಆಯಿಜಿ',
+'badarticleerror'      => 'ಈ ಪುಟಡ್ ಈರ್ ಪ್ರಯತ್ನಿಸಾನ ಕಾರ್ಯ ಸಾದ್ಯ ಇಜ್ಜಿ',
+'cannotdelete'         => 'ಪುಟ ಅಥವಾ ಹೊತ್ತಗೆ "$1" ನ್ ಮಾಜಾವರ ಆಪುಜ್ಜಿ.(ಬೇತೆ ಎರೋ ಮಾಜಾದಿಪ್ಪೆರ್)',
+'cannotdelete-title'   => '"$1" ಮಾಜಾವರೆ ಆಪುಜ್ಜಿ',
+'badtitle'             => 'ಸರಿ ಇಜ್ಜಾಂದಿನ ಪುದರ್',
+'badtitletext'         => 'ಈರ್ ಕೋರಿನ ಪುಟದ ಶೀರ್ಷಿಕೆ ಸಿಂಧು ಅತ್ತ್ ಅಥವಾ ಖಾಲಿ ಅಥವಾ ಸರಿಯಾತ್‘ನ ಕೊಂಡಿಯತ್ತಾಂದಿನ ಅಂತರ ಭಾಷೆ/ಅಂತರ ವಿಕಿ ಸಂಪರ್ಕ.
+ಐಟ್ ಒಂಜಿ ಅಥವಾ ಹೆಚ್ಚಿ ಶೀರ್ಷಿಕೆಡ್ ಬಳಕೆ ಮಲ್ಪರ ನಿಷಿದ್ದ್ಜವಾಯಿನ ಅಕ್ಷರಳು ಇಪ್ಪು.',
+'perfcached'           => 'ಈ ಮಾಹಿತಿಲು ಕಂಪ್ಯುಟರ್‘ದ ತಾತ್ಕಾಲಿಕ ನೆನೆಪುಡ್‘ದ್ ಬತ್ತ್‘ದ್‘ನ ಬೊಕ್ಕ ಸರಿಯಾನ ಸ್ಥಿತಿ ಆದಿಪ್ಪಾಂದ್',
+'perfcachedts'         => 'ಈ ತಿರ್ತ ಮಾಹಿತಿ ಕಂಪ್ಯೂಟರ್‘ದ ತಾತ್ಕಾಲಿಕ ನೆನಪುಡ್ ಉಂಡು. ದೆತ್ತ ಕಡೆತ ಬದಲಾವಣೆ $1.',
+'querypage-no-updates' => 'ಈ ಪುಟೊತ್ತ ಆಧುನಿಕ ಮಲ್ಪುನ ಕ್ರಿಯೆನ್ ಸದ್ಯಗ್ ಉಂತಾದ್ಂಡ್. ಮುಲ್ಪ ಉಪ್ಪುನ ಮಾಹಿತಿನ್ ನವೀಕರಣ ಮಲ್ಪರಾಪುಜಿ',
 'viewsource'           => 'ಮೂಲ ಬರಹೊನು ತೂಲೆ',
+'viewsource-title'     => ' $1 ಮೂಲ ಬರಹ ತೂಲೆ',
+'actionthrottled'      => 'ಕಾರ್ಯನ್ ದೆಂಗಾದುಂಡು',
+'protectedpagetext'    => 'ಈ ಪುಟನ್ ಸಂಪಾದನೆ ಮಲ್ಪಂದಿಲೆಕ್ಕ ಸಂರಕ್ಷಣೆ ಮಲ್ತ್‘ಂಡ್',
+'viewsourcetext'       => 'ಈರ್ ಈ ಪುಟದ ಮೂಲನ್ ತೂವೊಲಿ ಬೊಕ್ಕ ನಕಲ್ ಮಲ್ಪೊಲಿ',
+'viewyourtext'         => 'ಈರ್ ಈ ಪುಟದ ಮೂಲನ್ ತೂವೊಲಿ ಬೊಕ್ಕ ನಕಲ್ ಮಲ್ಪೊಲಿ',
+'protectedinterface'   => 'ಈ ಪುಟ ತಂತ್ರಾಂಶ ಉಪಯೋಗ ಮಲ್ಪುನ ಪಠ್ಯನ್ ಒದಗಿಸಾಪುಂಡ್. ದುರುಪಯೋಗ ಅವಂದಿಲೆಕ್ಕ ಇದೆನ್ ಸಂರಕ್ಷಣೆ ಮಲ್ತ್‘ಂಡ್.',
+'ns-specialprotected'  => 'ವಿಶೇಷ ಪುಟ‘ಕ್‘ಲೆನ್ ಸಂಪಾದನೆ ಮಲ್ಪರೆ ಆಪುಜಿ',
 
 # Login and logout pages
+'logouttext'              => 'ಈರ್ ಇತ್ತೆ ಲಾಗ್ ಔಟ್ ಆತರ್.
+ಈರ್ {{SITENAME}} ನ್ ಅನಾಮಧೇಯರಾತ್ ಉಪಯೋಗ ಮಲ್ಪೊಲಿ,ಅಥವಾ ಕೂಡ ಉಂದುವೇ ಪುದರ್‘ಡ್ ಯಾ ಬೇತೆ ಪುದರ್‘ಡ್ ಉಪಯೋಗ ಮಲ್ಪೊಲಿ.
+ಗಮನಿಸಾಲೆ: ಈರೆನ ಬ್ರೌಸರ್‘ಡ್ ಮಾಜುನಾಡೆ ಮುಟ್ಟ ಕೆಲವು ಪುಟಕ್‘ಲು ಈರ್ ಇತ್ತೆಲಾ ಲಾಗ್ ಇನ್ ಆಯಿಲೆಕ್ಕನೇ ತೋಜಾವು.',
+'welcomecreation'         => '== ಸುಸ್ವಾಗತೊ, $1! ==
+ಈರೆನೆ ಅಕೌಂಟ್‘ನ್  ಶುರು ಮಲ್ತ್‘ಂಡ್.
+ಈರೆನ [[Special:Preferences|{{SITENAME}} ಪ್ರಾಶಸ್ತ್ಯೊಲೆನ್]]  ಬದಲಾವಣೆ ಮಲ್ಪರೆ ಮರಪಡೆ',
 'yourname'                => 'ಸದಸ್ಯೆರ್ನ ಪುದರ್:',
 'yourpassword'            => 'ಪಾಸ್-ವರ್ಡ್:',
 'yourpasswordagain'       => 'ಪಾಸ್ವರ್ಡ್ ಪಿರ ಟೈಪ್ ಮಲ್ಪುಲೆ',
 'remembermypassword'      => 'ಈ ಕಂಪ್ಯೂಟರ್’ಡ್ ಎನ್ನ ಪ್ರವೇಶ ಪದೊನು ನೆನಪು ದೀಲ',
+'yourdomainname'          => 'ಈರೆನ ಕಾರ್ಯಕ್ಷೇತ್ರ',
 'login'                   => 'ಲಾಗ್ ಇನ್',
 'nav-login-createaccount' => 'ಲಾಗ್-ಇನ್ / ಅಕೌಂಟ್ ಸೃಷ್ಟಿ ಮಲ್ಪುಲೆ',
 'userlogin'               => 'ಲಾಗ್-ಇನ್ / ಅಕೌಂಟ್ ಸೃಷ್ಟಿ ಮಲ್ಪುಲೆ',
+'userloginnocreate'       => 'ಲಾಗಿನ್ ಆಲೆ',
 'logout'                  => 'ಲಾಗ್ ಔಟ್',
 'userlogout'              => 'ಲಾಗ್ ಔಟ್',
+'notloggedin'             => 'ಲಾಗಿನ್ ಆತ್‘ಜ್ಜರ್',
+'nologin'                 => "ಈರೆನ ಖಾತೆ ಇಜ್ಜೇ?'''$1'''",
+'nologinlink'             => 'ಪೊಸ ಖಾತೆ ಸುರು ಮಲ್ಪುಲೆ',
 'createaccount'           => 'ಪೊಸ ಅಕ್ಕೌಂಟ್ ಸುರು ಮಲ್ಪುಲೆ',
+'gotaccount'              => "ಈರೆನ ಖಾತೆ ಉಂಡೇ?'''$1'''",
+'gotaccountlink'          => 'ಲಾಗಿನ್ ಆಲೆ',
+'userlogin-resetlink'     => 'ಈರೆನ ಲಾಗಿನ್ ವಿವರ ಮರತ್ತ್ಂಡೇ?',
+'createaccountmail'       => 'ಇ ಮೈಲ್ ಮೂಲಕ',
+'createaccountreason'     => 'ಕಾರಣ',
+'badretype'               => 'ಈರ್ ಕೊರ್ನ ಪ್ರವೇಶ ಪದೆ ಬೇತೆ ಬೇತೆ ಅತ್ಂಡ್',
+'userexists'              => 'ಈರ್ ಕೊರ್ನ ಸದಸ್ಯರ ಪುದರ್ ಬಳಕೆಡ್ ಉಂಡು. ದಯದೀದ್ ಬೇತೆ ಪುದರ್ ಕೊರ್ಲೆ',
+'loginerror'              => 'ಲಾಗಿನ್ ದೋಷ',
 'mailmypassword'          => 'ಪೊಸ ಪಾಸ್-ವರ್ಡ್’ನ್ ಇ-ಮೇಲ್ ಮಲ್ಪುಲೆ',
 
 # Edit page toolbar

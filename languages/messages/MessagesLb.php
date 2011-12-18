@@ -3596,6 +3596,7 @@ Den ugefrote Fichier gëtt direkt gewise respektiv mat enger verbonner Applikati
 'feedback-error1'  => 'Feeler: Resultat vum API gouf net erkannt',
 'feedback-error2'  => "Feeler: D'Ännerung gouf net gespäichert",
 'feedback-error3'  => 'Feeler: Keng Äntwert vum API',
+'feedback-thanks'  => 'Merci! Äre Feedback gouf op der Säit "[$2 $1]" gespäichert.',
 'feedback-close'   => 'Fäerdeg',
 
 );

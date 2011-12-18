@@ -3042,4 +3042,8 @@ Tovuti hii inapata matatatizo wakati huu.',
 'logentry-newusers-create2'         => '$1 {{GENDER:$2|alianzisha}} {{GENDER:$4|akaunti ya mtumiaji}} $3',
 'newuserlog-byemail'                => 'neno la siri limetumwa kwa barua pepe',
 
+# Feedback
+'feedback-thanks' => 'Ahsante! Maoni yako yamewekwa kwenye ukurasa wa "[$2 $1]".',
+'feedback-close'  => 'Tayari',
+
 );

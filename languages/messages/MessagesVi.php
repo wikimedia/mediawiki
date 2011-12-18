@@ -3889,13 +3889,19 @@ Các hình ảnh được hiển thị ở kích thước tối đa, còn các l
 'newuserlog-byemail'                  => 'gửi mật khẩu qua thư điện tử',
 
 # Feedback
-'feedback-subject' => 'Tiêu đề:',
-'feedback-message' => 'Thông điệp:',
-'feedback-cancel'  => 'Hủy bỏ',
-'feedback-submit'  => 'Gửi phản hồi',
-'feedback-adding'  => 'Đang thêm thông tin phản hồi vào trang…',
-'feedback-error1'  => 'Hủy bỏ',
-'feedback-error2'  => 'Lỗi: Sửa đổi thất bại',
-'feedback-error3'  => 'Lỗi: API không có phản ứng',
+'feedback-bugornote' => 'Nếu bạn đã sẵn sàng để miêu tả các chi tiết của một vấn đề kỹ thuật, xin vui lòng [$1 báo cáo lỗi].
+Nếu không thì bạn có thể điền biểu mẫu đơn giản ở dưới. Lời ghi của bạn sẽ được đăng lên trang “[$3 $2]”, cùng với tên người dùng và trình duyệt của bạn.',
+'feedback-subject'   => 'Tiêu đề:',
+'feedback-message'   => 'Thông điệp:',
+'feedback-cancel'    => 'Hủy bỏ',
+'feedback-submit'    => 'Gửi phản hồi',
+'feedback-adding'    => 'Đang thêm thông tin phản hồi vào trang…',
+'feedback-error1'    => 'Hủy bỏ',
+'feedback-error2'    => 'Lỗi: Sửa đổi thất bại',
+'feedback-error3'    => 'Lỗi: API không có phản ứng',
+'feedback-thanks'    => 'Cám ơn! Phản hồi của bạn đã được đăng lên trang “[$2 $1]”.',
+'feedback-close'     => 'Xong',
+'feedback-bugcheck'  => 'Tuyệt! Chỉ cần kiểm tra nó chưa được [$1 báo cáo trước đây].',
+'feedback-bugnew'    => 'Tôi đã kiểm tra – báo cáo lỗi mới',
 
 );

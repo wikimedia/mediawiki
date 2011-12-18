@@ -2861,7 +2861,7 @@ Tallenna tiedot koneellesi ja tuo ne tällä sivulla.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Merkitse tarkastetuksi',
-'markaspatrolledtext'                 => 'Merkitse muokkaus tarkastetuksi',
+'markaspatrolledtext'                 => 'Merkitse muutos tarkastetuksi',
 'markedaspatrolled'                   => 'Muutos on tarkastettu',
 'markedaspatrolledtext'               => 'Valittu versio sivusta [[:$1]] on merkitty tarkastetuksi.',
 'rcpatroldisabled'                    => 'Tuoreiden muutosten tarkastustoiminto ei ole käytössä',
