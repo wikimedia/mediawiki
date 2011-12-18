@@ -146,9 +146,6 @@ class MediaWiki {
 			$output->setPrintable();
 		}
 
-		wfRunHooks( 'BeforeInitialize',
-			array( &$title, null, &$output, &$user, $request, $this ) );
-
 		// Invalid titles. Bug 21776: The interwikis must redirect even if the page name is empty.
 		if ( is_null( $title ) || ( $title->getDBkey() == '' && $title->getInterwiki() == '' ) ||
 			$title->isSpecial( 'Badtitle' ) )
@@ -270,6 +267,8 @@ class MediaWiki {
 				wfProfileOut( __METHOD__ );
 				throw new MWException( "Shouldn't happen: MediaWiki::initializeArticle() returned neither an object nor a URL" );
 			}
+			wfRunHooks( 'BeforeInitialize',
+				array( &$title, &$article, &$output, &$user, $request, $this ) );
 		}
 
 		if ( $pageView ) {
