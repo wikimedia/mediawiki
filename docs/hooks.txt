@@ -587,9 +587,9 @@ $name: Image name being checked
 Change $bad and return false to override. If an image is "bad", it is not
 rendered inline in wiki pages or galleries in category pages.
 
-'BeforeInitialize': before anything is initialized in performRequestForTitle()
+'BeforeInitialize': before anything is initialized in MediaWiki::performRequest()
 &$title: Title being used for request
-&$article: The associated Article object
+$unused: null
 &$output: OutputPage object
 &$user: User
 $request: WebRequest object
