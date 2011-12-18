@@ -48,7 +48,7 @@ class EmailConfirmation extends UnlistedSpecialPage {
 
 		$this->checkReadOnly();
 
-		if( empty( $code ) ) {
+		if( $code === null || $code === '' ) {
 			if( $this->getUser()->isLoggedIn() ) {
 				if( Sanitizer::validateEmail( $this->getUser()->getEmail() ) ) {
 					$this->showRequestForm();
@@ -58,11 +58,11 @@ class EmailConfirmation extends UnlistedSpecialPage {
 			} else {
 				$llink = Linker::linkKnown(
 					SpecialPage::getTitleFor( 'Userlogin' ),
-					wfMsgHtml( 'loginreqlink' ),
+					$this->msg( 'loginreqlink' )->escaped(),
 					array(),
 					array( 'returnto' => $this->getTitle()->getPrefixedText() )
 				);
-				$this->getOutput()->addHTML( wfMessage( 'confirmemail_needlogin' )->rawParams( $llink )->parse() );
+				$this->getOutput()->addHTML( $this->msg( 'confirmemail_needlogin' )->rawParams( $llink )->parse() );
 			}
 		} else {
 			$this->attemptConfirm( $code );
@@ -87,9 +87,10 @@ class EmailConfirmation extends UnlistedSpecialPage {
 				// date and time are separate parameters to facilitate localisation.
 				// $time is kept for backward compat reasons.
 				// 'emailauthenticated' is also used in SpecialPreferences.php
-				$time = $this->getLanguage()->timeAndDate( $user->mEmailAuthenticated, true );
-				$d = $this->getLanguage()->date( $user->mEmailAuthenticated, true );
-				$t = $this->getLanguage()->time( $user->mEmailAuthenticated, true );
+				$lang = $this->getLanguage();
+				$time = $lang->userTimeAndDate( $user->mEmailAuthenticated, $user );
+				$d = $lang->userDate( $user->mEmailAuthenticated, $user );
+				$t = $lang->userTime( $user->mEmailAuthenticated, $user );
 				$out->addWikiMsg( 'emailauthenticated', $time, $d, $t );
 			}
 			if( $user->isEmailConfirmationPending() ) {
@@ -98,7 +99,7 @@ class EmailConfirmation extends UnlistedSpecialPage {
 			$out->addWikiMsg( 'confirmemail_text' );
 			$form  = Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getTitle()->getLocalUrl() ) );
 			$form .= Html::hidden( 'token', $user->getEditToken() );
-			$form .= Xml::submitButton( wfMsg( 'confirmemail_send' ) );
+			$form .= Xml::submitButton( $this->msg( 'confirmemail_send' )->text() );
 			$form .= Xml::closeElement( 'form' );
 			$out->addHTML( $form );
 		}
