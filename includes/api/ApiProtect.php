@@ -106,16 +106,12 @@ class ApiProtect extends ApiBase {
 		$watch = $params['watch'] ? 'watch' : $params['watchlist'];
 		$this->setWatch( $watch, $titleObj );
 
-		if ( $titleObj->exists() ) {
-			$pageObj = WikiPage::factory( $titleObj );
-			$ok = $pageObj->updateRestrictions( $protections, $params['reason'], $cascade, $expiryarray );
-		} else {
-			$ok = $titleObj->updateTitleProtection( $protections['create'], $params['reason'], $expiryarray['create'] );
-		}
-		if ( !$ok ) {
-			// This is very weird. Maybe the article was deleted or the user was blocked/desysopped in the meantime?
-			// Just throw an unknown error in this case, as it's very likely to be a race condition
-			$this->dieUsageMsg( array() );
+		$pageObj = WikiPage::factory( $titleObj );
+		$status = $pageObj->doUpdateRestrictions( $protections, $expiryarray, $cascade, $params['reason'], $this->getUser() );
+
+		if ( !$status->isOK() ) {
+			$errors = $status->getErrorsArray();
+			$this->dieUsageMsg( $errors[0] );
 		}
 		$res = array(
 			'title' => $titleObj->getPrefixedText(),
