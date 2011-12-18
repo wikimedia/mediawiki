@@ -236,7 +236,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 				$rev['len'] = $row->ar_len;
 			}
 			if ( $fld_sha1 ) {
-				$rev['sha1'] = $row->ar_sha1;
+				$rev['sha1'] = wfBaseConvert( $row->ar_sha1, 36, 16, 40 );
 			}
 			if ( $fld_content ) {
 				ApiResult::setContent( $rev, Revision::getRevisionText( $row ) );
@@ -347,7 +347,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 				' parsedcomment  - Adds the parsed comment of the revision',
 				' minor          - Tags if the revision is minor',
 				' len            - Adds the length (bytes) of the revision',
-				' sha1           - Adds the SHA-1 (base 36) of the revision',
+				' sha1           - Adds the SHA-1 (base 16) of the revision',
 				' content        - Adds the content of the revision',
 				' token          - Gives the edit token',
 			),
