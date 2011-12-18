@@ -604,21 +604,28 @@ class CoreParserFunctions {
 	 * Gives language names.
 	 * @param $parser Parser
 	 * @param $code String  Language code
-	 * @param $language String  Language code
+	 * @param $inLanguage String  Language code
 	 * @return String
 	 */
-	static function language( $parser, $code = '', $language = '' ) {
-		global $wgContLang;
+	static function language( $parser, $code = '', $inLanguage = '' ) {
 		$code = strtolower( $code );
-		$language = strtolower( $language );
+		$inLanguage = strtolower( $inLanguage );
 
-		if ( $language !== '' ) {
-			$names = Language::getTranslatedLanguageNames( $language );
-			return isset( $names[$code] ) ? $names[$code] : wfBCP47( $code );
+		if( $inLanguage === $code || $inLanguage === '' ) {
+			# Make sure the output is the same when the second parameter
+			# is the same language
+			global $wgContLang;
+			$name = $wgContLang->getLanguageName( $code );
+			if( $name !== '' ) {
+				return $name;
+			} else {
+				# Try if there is a language name below
+				$inLanguage = $code;
+			}
 		}
 
-		$lang = $wgContLang->getLanguageName( $code );
-		return $lang !== '' ? $lang : wfBCP47( $code );
+		$names = Language::getTranslatedLanguageNames( $inLanguage );
+		return isset( $names[$code] ) ? $names[$code] : wfBCP47( $code );
 	}
 
 	/**
