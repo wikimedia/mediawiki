@@ -163,14 +163,14 @@ class MediaWiki {
 		// We will check again in Article::view().
 		$permErrors = $title->getUserPermissionsErrors( 'read', $user );
 		if ( count( $permErrors ) ) {
-			// Bug 32276: allowing the skin to generate output with $wgTitle or 
-			// $this->context->title set to the input title would allow anonymous users to 
-			// determine whether a page exists, potentially leaking private data. In fact, the 
-			// curid and oldid request  parameters would allow page titles to be enumerated even 
-			// when they are not guessable. So we reset the title to Special:Badtitle before the 
+			// Bug 32276: allowing the skin to generate output with $wgTitle or
+			// $this->context->title set to the input title would allow anonymous users to
+			// determine whether a page exists, potentially leaking private data. In fact, the
+			// curid and oldid request  parameters would allow page titles to be enumerated even
+			// when they are not guessable. So we reset the title to Special:Badtitle before the
 			// permissions error is displayed.
 			//
-			// The skin mostly uses $this->context->getTitle() these days, but some extensions 
+			// The skin mostly uses $this->context->getTitle() these days, but some extensions
 			// still use $wgTitle.
 
 			$badTitle = SpecialPage::getTitleFor( 'Badtitle' );
