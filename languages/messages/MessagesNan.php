@@ -1477,38 +1477,67 @@ $1',
 'img-auth-bad-query-string' => '網址(URL)有無效的查詢字串',
 
 # HTTP errors
-'http-invalid-url'    => '無效的網址(URL)：$1',
-'http-invalid-scheme' => '無支援有「$1」的網址(URL)',
-'http-request-error'  => 'HTTP請求失敗，毋知啥物原因的錯誤。',
-'http-read-error'     => 'HTTP讀了錯誤',
-'http-timed-out'      => 'HTTP請求已經超過時間',
-'http-curl-error'     => '取網址(URL)的時陣有錯誤：$1',
+'http-invalid-url'      => '無效的網址(URL)：$1',
+'http-invalid-scheme'   => '無支援有「$1」的網址(URL)',
+'http-request-error'    => 'HTTP請求失敗，毋知啥物原因的錯誤。',
+'http-read-error'       => 'HTTP讀了錯誤',
+'http-timed-out'        => 'HTTP請求已經超過時間',
+'http-curl-error'       => '取網址(URL)的時陣有錯誤：$1',
+'http-host-unreachable' => '連袂到網址(URL)',
+'http-bad-status'       => '欲做HTTP的時陣出現問題：$1 $2',
 
-'license'        => 'Siū-khoân:',
-'license-header' => 'Siū-khoân',
+# Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
+'upload-curl-error6'       => '連袂到網址(URL)',
+'upload-curl-error6-text'  => '提供的網址(URL)無法連結，
+請確定網址是正確的而且網站有開。',
+'upload-curl-error28'      => '上載已經超過時間',
+'upload-curl-error28-text' => '網站的回應傷久，
+請確定彼个網站有開，抑小等一下才閣試，
+你會使佇較閒的時陣才試。',
+
+'license'            => 'Siū-khoân:',
+'license-header'     => 'Siū-khoân',
+'nolicense'          => '無選半項',
+'license-nopreview'  => '（袂當先看覓）',
+'upload_source_url'  => ' （一个有效閣開放予大眾的網址(URL)）',
+'upload_source_file' => '（佇你電腦的一个檔案）',
 
 # Special:ListFiles
+'listfiles-summary'     => '這个特殊頁顯示所有上載的檔案，
+若有過濾用者，只有彼个用者上載閣上新的版本才顯示。',
+'listfiles_search_for'  => '照檔案名稱揣：',
+'imgfile'               => '檔案',
 'listfiles'             => 'Iáⁿ-siōng lia̍t-toaⁿ',
+'listfiles_thumb'       => '小圖',
 'listfiles_date'        => 'Ji̍t-kî',
 'listfiles_name'        => 'Miâ',
 'listfiles_user'        => 'Iōng-chiá',
 'listfiles_size'        => 'Toā-sè',
 'listfiles_description' => 'Soat-bêng',
+'listfiles_count'       => '版本',
 
 # File description page
 'file-anchor-link'       => 'Tóng-àn',
 'filehist'               => 'Tóng-àn ê le̍k-sú',
 'filehist-help'          => '揤日期／時間就通看彼時陣的檔案',
+'filehist-deleteall'     => '全部刣掉',
+'filehist-deleteone'     => '刣掉',
 'filehist-revert'        => '回轉',
 'filehist-current'       => 'hiān-chāi',
 'filehist-datetime'      => 'Ji̍t-kî/ Sî-kan',
 'filehist-thumb'         => '小圖',
 'filehist-thumbtext'     => '細張圖佇$1的版本',
+'filehist-nothumb'       => '無小圖',
 'filehist-user'          => 'Iōng-chiá',
 'filehist-dimensions'    => '長闊',
+'filehist-filesize'      => '檔案大細',
 'filehist-comment'       => '註釋',
+'filehist-missing'       => '檔案無看',
 'imagelinks'             => 'Ēng tio̍h ê  tóng-àn',
 'linkstoimage'           => 'Ē-bīn ê {{PLURAL:$1|ia̍h liân kàu|$1 ia̍h liân kàu}}  chit ê tóng-àn:',
+'linkstoimage-more'      => '超過$1{{PLURAL:$1|頁連接|頁連接}}到這个檔案，
+下跤只是連接到這个檔案的{{PLURAL:$1|頭頁連結|頭$1頁連結}}清單，
+有一个[[Special:WhatLinksHere/$2|全部的清單]]。',
 'nolinkstoimage'         => 'Bô poàⁿ ia̍h liân kàu chit tiuⁿ iáⁿ-siōng.',
 'sharedupload-desc-here' => '這个檔案是對$1遐來的，伊可能嘛用佇別的事工，
 伊[$2 檔案說明頁]的說明佇下跤。',
