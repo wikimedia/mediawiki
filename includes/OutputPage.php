@@ -2119,7 +2119,7 @@ class OutputPage extends ContextSource {
 
 			# Don't return to a page the user can't read otherwise
 			# we'll end up in a pointless loop
-			if ( $displayReturnto && $displayReturnto->userCan( 'read' ) ) {
+			if ( $displayReturnto && $displayReturnto->userCan( 'read', $this->getUser() ) ) {
 				$this->returnToMain( null, $displayReturnto );
 			}
 		} else {
