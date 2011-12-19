@@ -2230,7 +2230,7 @@ class Title {
 
 		global $wgUser;
 
-		$imit = array( 'create' => $create_perm );
+		$limit = array( 'create' => $create_perm );
 		$expiry = array( 'create' => $expiry );
 
 		$page = WikiPage::factory( $this );
