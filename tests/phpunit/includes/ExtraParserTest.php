@@ -140,6 +140,10 @@ class ExtraParserTest extends MediaWikiTestCase {
 			'finalTitle' => $title,
 			'deps' => $deps );
 	}
+
+	/**
+	 * @group Database
+	 */
 	function testTrackingCategory() {
 		$title = Title::newFromText( __FUNCTION__ );
 		$catName =  wfMsgForContent( 'broken-file-category' );
@@ -149,6 +153,10 @@ class ExtraParserTest extends MediaWikiTestCase {
 		$result = $parserOutput->getCategoryLinks();
 		$this->assertEquals( $expected, $result );
 	}
+
+	/**
+	 * @group Database
+	 */
 	function testTrackingCategorySpecial() {
 		// Special pages shouldn't have tracking cats.
 		$title = SpecialPage::getTitleFor( 'Contributions' );
