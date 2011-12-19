@@ -149,7 +149,7 @@ class RequestContext implements IContextSource {
 	 * @param $code string
 	 * @return string
 	 */
-	static function sanitizeLangCode( $code ) {
+	public static function sanitizeLangCode( $code ) {
 		global $wgLanguageCode;
 
 		// BCP 47 - letter case MUST NOT carry meaning
