@@ -193,14 +193,16 @@ class Preferences {
 		);
 
 		if ( $user->getRegistration() ) {
+			$displayUser = $context->getUser();
+			$userRegistration = $user->getRegistration();
 			$defaultPreferences['registrationdate'] = array(
 				'type' => 'info',
 				'label-message' => 'prefs-registration',
 				'default' => $context->msg(
 					'prefs-registration-date-time',
-					$lang->timeanddate( $user->getRegistration(), true ),
-					$lang->date( $user->getRegistration(), true ),
-					$lang->time( $user->getRegistration(), true )
+					$lang->userTimeAndDate( $userRegistration, $displayUser ),
+					$lang->userDate( $userRegistration, $displayUser ),
+					$lang->userTime( $userRegistration, $displayUser )
 				)->parse(),
 				'section' => 'personal/info',
 			);
@@ -368,9 +370,11 @@ class Preferences {
 						// date and time are separate parameters to facilitate localisation.
 						// $time is kept for backward compat reasons.
 						// 'emailauthenticated' is also used in SpecialConfirmemail.php
-						$time = $lang->timeAndDate( $user->getEmailAuthenticationTimestamp(), true );
-						$d = $lang->date( $user->getEmailAuthenticationTimestamp(), true );
-						$t = $lang->time( $user->getEmailAuthenticationTimestamp(), true );
+						$displayUser = $context->getUser();
+						$emailTimestamp = $user->getEmailAuthenticationTimestamp();
+						$time = $lang->userTimeAndDate( $emailTimestamp, $displayUser );
+						$d = $lang->userDate( $emailTimestamp, $displayUser );
+						$t = $lang->userTime( $emailTimestamp, $displayUser );
 						$emailauthenticated = $context->msg( 'emailauthenticated',
 							$time, $d, $t )->parse() . '<br />';
 						$disableEmailPrefs = false;
@@ -1094,7 +1098,8 @@ class Preferences {
 	 * @return array
 	 */
 	static function getDateOptions( IContextSource $context ) {
-		$dateopts = $context->getLanguage()->getDatePreferences();
+		$lang = $context->getLanguage();
+		$dateopts = $lang->getDatePreferences();
 
 		$ret = array();
 
@@ -1115,7 +1120,7 @@ class Preferences {
 				if ( $key == 'default' ) {
 					$formatted = $context->msg( 'datedefault' )->escaped();
 				} else {
-					$formatted = htmlspecialchars( $context->getLanguage()->timeanddate( $epoch, false, $key ) );
+					$formatted = htmlspecialchars( $lang->timeanddate( $epoch, false, $key ) );
 				}
 				$ret[$formatted] = $key;
 			}
