@@ -583,7 +583,6 @@ class MediaWiki {
 		# Set title from request parameters
 		$wgTitle = $this->getTitle();
 		$action = $this->getAction();
-		$user = $this->context->getUser();
 
 		# Send Ajax requests to the Ajax dispatcher.
 		if ( $wgUseAjax && $action == 'ajax' ) {
@@ -605,8 +604,8 @@ class MediaWiki {
 						$cache->loadFromFileCache( $this->context );
 					}
 					# Do any stats increment/watchlist stuff
-					$article = WikiPage::factory( $this->getTitle() );
-					$article->doViewUpdates( $user );
+					$page = WikiPage::factory( $this->getTitle() );
+					$page->doViewUpdates( $this->context->getUser() );
 					# Tell OutputPage that output is taken care of
 					$this->context->getOutput()->disable();
 					wfProfileOut( 'main-try-filecache' );
