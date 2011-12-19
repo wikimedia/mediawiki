@@ -33,7 +33,7 @@ class DeadendPagesPage extends PageQueryPage {
 	}
 
 	function getPageHeader() {
-		return wfMsgExt( 'deadendpagestext', array( 'parse' ) );
+		return $this->msg( 'deadendpagestext' )->parseAsBlock();
 	}
 
 	/**
