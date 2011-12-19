@@ -2357,7 +2357,7 @@ $1',
 
 # User Messenger
 'usermessage-summary' => 'گذاشتن پیغام سامانه.',
-'usermessage-editor'  => 'پیغامگیر سامانه',
+'usermessage-editor'  => 'پیغام رسان سامانه',
 
 # Watchlist
 'watchlist'            => 'فهرست پی‌گیری‌های من',
@@ -4019,13 +4019,16 @@ $5
 'newuserlog-byemail'                  => 'گذرواژه با پست الکترونیکی ارسال شد',
 
 # Feedback
-'feedback-subject' => 'موضوع:',
-'feedback-message' => 'پیغام:',
-'feedback-cancel'  => 'لغو',
-'feedback-submit'  => 'ارسال پیشنهادات و انتقادات',
-'feedback-adding'  => 'افزودن پیشنهادات و انتقادات به صفحه...',
-'feedback-error1'  => 'خطا: پاسخ‌های ناشناخته از API',
-'feedback-error2'  => 'خطا: شکست در ویرایش',
-'feedback-error3'  => 'خطا: عدم پاسخ از API',
+'feedback-subject'  => 'موضوع:',
+'feedback-message'  => 'پیغام:',
+'feedback-cancel'   => 'لغو',
+'feedback-submit'   => 'ارسال پیشنهادات و انتقادات',
+'feedback-adding'   => 'افزودن پیشنهادات و انتقادات به صفحه...',
+'feedback-error1'   => 'خطا: پاسخ‌های ناشناخته از API',
+'feedback-error2'   => 'خطا: شکست در ویرایش',
+'feedback-error3'   => 'خطا: عدم پاسخ از API',
+'feedback-close'    => 'انجام شد',
+'feedback-bugcheck' => 'عالی‌است! فقط بررسی کنید که از [$1 باگ‌های شناخته‌شده] نباشد.',
+'feedback-bugnew'   => 'بررسی کردم. باگی جدید را گزارش بده',
 
 );
