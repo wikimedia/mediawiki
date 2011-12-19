@@ -306,10 +306,10 @@ Selected changes since MediaWiki 1.17 that may be of interest:
   Same for signupend on the account creation page.
 * (bug 31233) New OutputPage::addJsConfigVars() method to make the output page specific
   mw.config map extendable.
+* mw.util.wikiScript has been implemented (like wfScript in GlobalFunctions.php).
 
 === Bug fixes in 1.18 ===
 * (bug 27860) Minor edit after clicking 'new section' tab.
-* mw.util.getScript has been implemented (like wfScript in GlobalFunctions.php).
 * (bug 23119) WikiError class and subclasses are now marked as deprecated.
 * (bug 10871) Javascript and CSS pages in MediaWiki namespace are no longer
   treated as wikitext on preview.
