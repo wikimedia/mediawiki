@@ -37,10 +37,7 @@ class ForeignAPIRepo extends FileRepo {
 	protected $mFileExists = array();
 
 	function __construct( $info ) {
-		global $wgLocalFileRepo, $wgUploadDirectory;
-		if ( !isset( $info['directory'] ) ) { // b/c
-			$info['directory'] = $wgUploadDirectory; // Local image directory
-		}
+		global $wgLocalFileRepo;
 		parent::__construct( $info );
 
 		// http://commons.wikimedia.org/w/api.php
