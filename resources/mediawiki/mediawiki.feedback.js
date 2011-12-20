@@ -180,8 +180,12 @@
 		},
 
 		displayError: function( message ) {
+			var _this = this;
 			this.display( 'error' );
 			this.$dialog.find( '.feedback-error-msg' ).msg( message );
+			var closeButton = {};
+			closeButton[ mw.msg( 'feedback-close' ) ] = function() { _this.$dialog.dialog( 'close' ); };
+			this.$dialog.dialog( { buttons: closeButton } );
 		},
 
 		cancel: function() {
@@ -210,12 +214,12 @@
 						_this.displayError( 'feedback-error1' ); // unknown API result
 					}
 				} else {
-					displayError( 'feedback-error2' ); // edit failed
+					_this.displayError( 'feedback-error2' ); // edit failed
 				}
 			};
 
 			var err = function( code, info ) {
-				displayError( 'feedback-error3' ); // ajax request failed
+				_this.displayError( 'feedback-error3' ); // ajax request failed
 			};
 
 			this.api.newSection( this.title, subject, message, ok, err );
