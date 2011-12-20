@@ -32,10 +32,6 @@ class NewParserTest extends MediaWikiTestCase {
 
 	protected $file = false;
 
-	/*function __construct($a = null,$b = array(),$c = null ) {
-		parent::__construct($a,$b,$c);
-	}*/
-
 	function setUp() {
 		global $wgContLang, $wgNamespaceProtection, $wgNamespaceAliases;
 		global $wgHooks, $IP;
@@ -60,15 +56,14 @@ class NewParserTest extends MediaWikiTestCase {
 		$tmpGlobals['wgStylePath'] = '/skins';
 		$tmpGlobals['wgThumbnailScriptPath'] = false;
 		$tmpGlobals['wgLocalFileRepo'] = array(
-			'class' => 'LocalRepo',
-			'name' => 'local',
-			'directory' => wfTempDir() . '/test-repo',
-			'url' => 'http://example.com/images',
-			'deletedDir' => wfTempDir() . '/test-repo/delete',
-			'hashLevels' => 2,
+			'class'           => 'LocalRepo',
+			'name'            => 'local',
+			'url'             => 'http://example.com/images',
+			'hashLevels'      => 2,
 			'transformVia404' => false,
+			'backend'         => 'local-backend'
 		);
-
+		$tmpGlobals['wgForeignFileRepos'] = array();
 		$tmpGlobals['wgEnableParserCache'] = false;
 		$tmpGlobals['wgHooks'] = $wgHooks;
 		$tmpGlobals['wgDeferredUpdateList'] = array();
@@ -104,7 +99,6 @@ class NewParserTest extends MediaWikiTestCase {
 		$wgNamespaceProtection[NS_MEDIAWIKI] = 'editinterface';
 		$wgNamespaceAliases['Image'] = NS_FILE;
 		$wgNamespaceAliases['Image_talk'] = NS_FILE_TALK;
-
 	}
 
 	public function tearDown() {
@@ -118,9 +112,15 @@ class NewParserTest extends MediaWikiTestCase {
 		$wgNamespaceProtection[NS_MEDIAWIKI] = $this->savedWeirdGlobals['mw_namespace_protection'];
 		$wgNamespaceAliases['Image'] = $this->savedWeirdGlobals['image_alias'];
 		$wgNamespaceAliases['Image_talk'] = $this->savedWeirdGlobals['image_talk_alias'];
+
+		// Restore backends
+		FileBackendGroup::destroySingleton();
+		FileBackendGroup::singleton()->register( $GLOBALS['wgFileBackends'] );
+		RepoGroup::destroySingleton();
 	}
 
 	function addDBData() {
+		$this->tablesUsed[] = 'image';
 		# Hack: insert a few Wikipedia in-project interwiki prefixes,
 		# for testing inter-language links
 		$this->db->insert( 'interwiki', array(
@@ -234,12 +234,12 @@ class NewParserTest extends MediaWikiTestCase {
 			'wgExtensionAssetsPath' => '/extensions',
 			'wgActionPaths' => array(),
 			'wgLocalFileRepo' => array(
-				'class' => 'LocalRepo',
-				'name' => 'local',
-				'directory' => $this->uploadDir,
-				'url' => 'http://example.com/images',
-				'hashLevels' => 2,
+				'class'           => 'LocalRepo',
+				'name'            => 'local',
+				'url'             => 'http://example.com/images',
+				'hashLevels'      => 2,
 				'transformVia404' => false,
+				'backend'         => 'local-backend'
 			),
 			'wgEnableUploads' => self::getOptionValue( 'wgEnableUploads', $opts, true ),
 			'wgStylePath' => '/skins',
@@ -315,12 +315,24 @@ class NewParserTest extends MediaWikiTestCase {
 		$GLOBALS['wgOut'] = $context->getOutput();
 		$GLOBALS['wgUser'] = $context->getUser();
 
+		FileBackendGroup::destroySingleton(); // reset
+		$backend = array(
+			'name'           => 'local-backend',
+			'class'          => 'FSFileBackend',
+			'lockManager'    => 'nullLockManager',
+			'containerPaths' => array(
+				'images-public' => $this->uploadDir,
+				'images-thumb'  => $this->uploadDir . '/thumb' )
+		);
+		FileBackendGroup::singleton()->register( array( $backend ) );
+
 		global $wgHooks;
 
 		$wgHooks['ParserTestParser'][] = 'ParserTestParserHook::setup';
 		$wgHooks['ParserGetVariableValueTs'][] = 'ParserTest::getFakeTimestamp';
 
 		MagicWord::clearCache();
+		RepoGroup::destroySingleton();
 
 		# Publish the articles after we have the final language set
 		$this->publishTestArticles();
@@ -370,12 +382,13 @@ class NewParserTest extends MediaWikiTestCase {
 	 * after each test runs.
 	 */
 	protected function teardownGlobals() {
-		RepoGroup::destroySingleton();
-		LinkCache::singleton()->clear();
-
 		foreach ( $this->savedGlobals as $var => $val ) {
 			$GLOBALS[$var] = $val;
 		}
+
+		RepoGroup::destroySingleton();
+		LinkCache::singleton()->clear();
+		FileBackendGroup::destroySingleton();
 
 		$this->teardownUploadDir( $this->uploadDir );
 	}

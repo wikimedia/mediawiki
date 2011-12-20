@@ -27,8 +27,8 @@ class UnregisteredLocalFile extends File {
 	var $handler;
 
 	/**
-	 * @param $path
-	 * @param $mime
+	 * @param $path string Storage path
+	 * @param $mime string
 	 * @return UnregisteredLocalFile
 	 */
 	static function newFromPath( $path, $mime ) {
@@ -69,6 +69,7 @@ class UnregisteredLocalFile extends File {
 		if ( $path ) {
 			$this->path = $path;
 		} else {
+			$this->assertRepoDefined();
 			$this->path = $repo->getRootDirectory() . '/' .
 				$repo->getHashPath( $this->name ) . $this->name;
 		}
@@ -101,7 +102,7 @@ class UnregisteredLocalFile extends File {
 	function getMimeType() {
 		if ( !isset( $this->mime ) ) {
 			$magic = MimeMagic::singleton();
-			$this->mime = $magic->guessMimeType( $this->getPath() );
+			$this->mime = $magic->guessMimeType( $this->getLocalRefPath() );
 		}
 		return $this->mime;
 	}
@@ -110,7 +111,7 @@ class UnregisteredLocalFile extends File {
 		if ( !$this->getHandler() ) {
 			return false;
 		}
-		return $this->handler->getImageSize( $this, $this->getPath() );
+		return $this->handler->getImageSize( $this, $this->getLocalRefPath() );
 	}
 
 	function getMetadata() {
@@ -118,7 +119,7 @@ class UnregisteredLocalFile extends File {
 			if ( !$this->getHandler() ) {
 				$this->metadata = false;
 			} else {
-				$this->metadata = $this->handler->getMetadata( $this, $this->getPath() );
+				$this->metadata = $this->handler->getMetadata( $this, $this->getLocalRefPath() );
 			}
 		}
 		return $this->metadata;
@@ -134,10 +135,11 @@ class UnregisteredLocalFile extends File {
 	}
 
 	function getSize() {
-		if ( file_exists( $this->path ) ) {
-			return filesize( $this->path );
-		} else {
-			return false;
+		$this->assertRepoDefined();
+		$props = $this->repo->getFileProps( $this->path );
+		if ( isset( $props['size'] ) ) {
+			return $props['size'];
 		}
+		return false; // doesn't exist
 	}
 }

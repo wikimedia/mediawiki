@@ -149,14 +149,23 @@ class ParserTest {
 		$wgStylePath = '/skins';
 		$wgExtensionAssetsPath = '/extensions';
 		$wgThumbnailScriptPath = false;
+		$backend = new FSFileBackend( array(
+			'name'        => 'local-backend',
+			'lockManager' => 'fsLockManager',
+			'containerPaths' => array(
+				'images-public'  => wfTempDir() . '/test-repo/public',
+				'images-thumb'   => wfTempDir() . '/test-repo/thumb',
+				'images-temp'    => wfTempDir() . '/test-repo/temp',
+				'images-deleted' => wfTempDir() . '/test-repo/delete',
+			)
+		) );
 		$wgLocalFileRepo = array(
-			'class' => 'LocalRepo',
-			'name' => 'local',
-			'directory' => wfTempDir() . '/test-repo',
-			'url' => 'http://example.com/images',
-			'deletedDir' => wfTempDir() . '/test-repo/delete',
-			'hashLevels' => 2,
+			'class'           => 'LocalRepo',
+			'name'            => 'local',
+			'url'             => 'http://example.com/images',
+			'hashLevels'      => 2,
 			'transformVia404' => false,
+			'backend'         => $backend
 		);
 		$wgNamespaceProtection[NS_MEDIAWIKI] = 'editinterface';
 		$wgNamespaceAliases['Image'] = NS_FILE;

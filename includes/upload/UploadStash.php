@@ -48,7 +48,7 @@ class UploadStash {
 	 *
 	 * @param $repo FileRepo
 	 */
-	public function __construct( $repo, $user = null ) {
+	public function __construct( FileRepo $repo, $user = null ) {
 		// this might change based on wiki's configuration.
 		$this->repo = $repo;
 
@@ -106,10 +106,7 @@ class UploadStash {
 
 			// fetch fileprops
 			$path = $this->fileMetadata[$key]['us_path'];
-			if ( $this->repo->isVirtualUrl( $path ) ) {
-				$path = $this->repo->resolveVirtualUrl( $path );
-			}
-			$this->fileProps[$key] = File::getPropsFromPath( $path );
+			$this->fileProps[$key] = $this->repo->getFileProps( $path );
 		}
 
 		if ( ! $this->files[$key]->exists() ) {
@@ -163,7 +160,7 @@ class UploadStash {
 			wfDebug( __METHOD__ . " tried to stash file at '$path', but it doesn't exist\n" );
 			throw new UploadStashBadPathException( "path doesn't exist" );
 		}
-		$fileProps = File::getPropsFromPath( $path );
+		$fileProps = FSFile::getPropsFromPath( $path );
 		wfDebug( __METHOD__ . " stashing file at '$path'\n" );
 
 		// we will be initializing from some tmpnam files that don't have extensions.
@@ -215,7 +212,7 @@ class UploadStash {
 					$error = array( 'unknown', 'no error recorded' );
 				}
 			}
-			throw new UploadStashFileException( "error storing file in '$path': " . implode( '; ', $error ) );
+			throw new UploadStashFileException( "Error storing file in '$path': " . implode( '; ', $error ) );
 		}
 		$stashPath = $storeStatus->value;
 
@@ -233,7 +230,7 @@ class UploadStash {
 			'us_user' => $this->userId,
 			'us_key' => $key,
 			'us_orig_path' => $path,
-			'us_path' => $stashPath,
+			'us_path' => $stashPath, // virtual URL
 			'us_size' => $fileProps['size'],
 			'us_sha1' => $fileProps['sha1'],
 			'us_mime' => $fileProps['mime'],

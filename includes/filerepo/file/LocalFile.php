@@ -234,7 +234,8 @@ class LocalFile extends File {
 	 * Load metadata from the file itself
 	 */
 	function loadFromFile() {
-		$this->setProps( self::getPropsFromPath( $this->getPath() ) );
+		$props = $this->repo->getFileProps( $this->getVirtualUrl() );
+		$this->setProps( $props );
 	}
 
 	function getCacheFields( $prefix = 'img_' ) {
@@ -582,8 +583,9 @@ class LocalFile extends File {
 	 */
 	function migrateThumbFile( $thumbName ) {
 		$thumbDir = $this->getThumbPath();
-		$thumbPath = "$thumbDir/$thumbName";
 
+		/* Old code for bug 2532
+		$thumbPath = "$thumbDir/$thumbName";
 		if ( is_dir( $thumbPath ) ) {
 			// Directory where file should be
 			// This happened occasionally due to broken migration code in 1.5
@@ -598,12 +600,12 @@ class LocalFile extends File {
 			// Doesn't exist anymore
 			clearstatcache();
 		}
+		*/
 
-		if ( is_file( $thumbDir ) ) {
+		if ( $this->repo->fileExists( $thumbDir, FileRepo::FILES_ONLY ) ) {
 			// File where directory should be
-			unlink( $thumbDir );
-			// Doesn't exist anymore
-			clearstatcache();
+			$op = array( 'op' => 'delete', 'src' => $thumbDir );
+			$this->repo->getBackend()->doOperation( $op );
 		}
 	}
 
@@ -624,21 +626,12 @@ class LocalFile extends File {
 		} else {
 			$dir = $this->getThumbPath();
 		}
-		$files = array();
-		$files[] = $dir;
 
-		if ( is_dir( $dir ) ) {
-			$handle = opendir( $dir );
-
-			if ( $handle ) {
-				while ( false !== ( $file = readdir( $handle ) ) ) {
-					if ( $file { 0 } != '.' ) {
-						$files[] = $file;
-					}
-				}
-
-				closedir( $handle );
-			}
+		$backend = $this->repo->getBackend();
+		$files = array( $dir );
+		$iterator = $backend->getFileList( array( 'dir' => $dir ) );
+		foreach ( $iterator as $file ) {
+			$files[] = $file;
 		}
 
 		return $files;
@@ -719,7 +712,6 @@ class LocalFile extends File {
 		}
 	}
 
-
 	/**
 	 * Delete cached transformed files for the current version only.
 	 */
@@ -728,7 +720,7 @@ class LocalFile extends File {
 
 		// Delete thumbnails
 		$files = $this->getThumbnails();
-		
+
 		// Give media handler a chance to filter the purge list
 		if ( !empty( $options['forRefresh'] ) ) {
 			$handler = $this->getHandler();
@@ -736,7 +728,7 @@ class LocalFile extends File {
 				$handler->filterThumbnailPurgeList( $files, $options );
 			}
 		}
-		
+
 		$dir = array_shift( $files );
 		$this->purgeThumbList( $dir, $files );
 
@@ -758,22 +750,24 @@ class LocalFile extends File {
 	 * @param $dir string base dir of the files.
 	 * @param $files array of strings: relative filenames (to $dir)
 	 */
-	protected function purgeThumbList($dir, $files) {
+	protected function purgeThumbList( $dir, $files ) {
 		$fileListDebug = strtr(
 			var_export( $files, true ),
 			array("\n"=>'')
 		);
 		wfDebug( __METHOD__ . ": $fileListDebug\n" );
 
+		$backend = $this->repo->getBackend();
 		foreach ( $files as $file ) {
 			# Check that the base file name is part of the thumb name
 			# This is a basic sanity check to avoid erasing unrelated directories
 			if ( strpos( $file, $this->getName() ) !== false ) {
-				wfSuppressWarnings();
-				unlink( "$dir/$file" );
-				wfRestoreWarnings();
+				$op = array( 'op' => 'delete', 'src' => "{$dir}/{$file}" );
+				$backend->doOperation( $op );
 			}
 		}
+		# Clear out directory if empty
+		$backend->clean( array( 'dir' => $dir ) );
 	}
 
 	/** purgeDescription inherited */
@@ -892,7 +886,7 @@ class LocalFile extends File {
 
 	/**
 	 * Upload a file and record it in the DB
-	 * @param $srcPath String: source path or virtual URL
+	 * @param $srcPath String: source storage path or virtual URL
 	 * @param $comment String: upload description
 	 * @param $pageText String: text to use for the new description page,
 	 *                  if a new description page is created
@@ -1012,8 +1006,10 @@ class LocalFile extends File {
 		);
 
 		if ( $dbw->affectedRows() == 0 ) {
+			if ( $oldver == '' ) {
+				throw new MWException( "Empty oi_archive_name. Database and storage out of sync?" );
+			}
 			$reupload = true;
-
 			# Collision, this is an update of a file
 			# Insert previous contents into oldimage
 			$dbw->insertSelect( 'oldimage', 'image',
@@ -1374,7 +1370,8 @@ class LocalFile extends File {
 		$this->load();
 		// Initialise now if necessary
 		if ( $this->sha1 == '' && $this->fileExists ) {
-			$this->sha1 = File::sha1Base36( $this->getPath() );
+			$tmpPath = $this->getLocalRefPath();
+			$this->sha1 = FSFile::sha1Base36( $tmpPath );
 			if ( !wfReadOnly() && strval( $this->sha1 ) != '' ) {
 				$dbw = $this->repo->getMasterDB();
 				$dbw->update( 'image',

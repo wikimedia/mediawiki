@@ -72,35 +72,25 @@ function wfImageAuthMain() {
 		return;
 	}
 
-	// Get the full file path
-	$filename = realpath( $wgUploadDirectory . $path );
-	$realUpload = realpath( $wgUploadDirectory );
+	// Get the local file repository
+	$repo = RepoGroup::singleton()->getRepo( 'local' );
 
-	// Basic directory traversal check
-	if ( substr( $filename, 0, strlen( $realUpload ) ) != $realUpload ) {
-		wfForbidden( 'img-auth-accessdenied', 'img-auth-notindir' );
-		return;
-	}
-
-	// Check to see if the file exists
-	if ( !file_exists( $filename ) ) {
-		wfForbidden( 'img-auth-accessdenied','img-auth-nofile', $filename );
-		return;
-	}
-	
-	// Check to see if tried to access a directory
-	if ( is_dir( $filename ) ) {
-		wfForbidden( 'img-auth-accessdenied','img-auth-isdir', $filename );
-		return;
-	}
-
-	// Extract the file name and chop off the size specifier.
+	// Get the full file storage path and extract the source file name.
 	// (e.g. 120px-Foo.png => Foo.png or page2-120px-Foo.png => Foo.png).
 	// This only applies to thumbnails, and all thumbnails should
 	// be under a folder that has the source file name.
-	$name = wfBaseName( $path );
 	if ( strpos( $path, '/thumb/' ) === 0 ) {
-		$name = wfBaseName( dirname( $path ) ); // this file is a thumbnail
+		$name = wfBaseName( dirname( $path ) ); // file is a thumbnail
+		$filename = $repo->getZonePath( 'thumb' ) . substr( $path, 6 ); // strip "/thumb"
+	} else {
+		$name = wfBaseName( $path ); // file is a source file
+		$filename = $repo->getZonePath( 'public' ) . $path;
+	}
+
+	// Check to see if the file exists
+	if ( !$repo->fileExists( $filename, FileRepo::FILES_ONLY ) ) {
+		wfForbidden( 'img-auth-accessdenied','img-auth-nofile', $filename );
+		return;
 	}
 
 	$title = Title::makeTitleSafe( NS_FILE, $name );
@@ -124,7 +114,7 @@ function wfImageAuthMain() {
 
 	// Stream the requested file
 	wfDebugLog( 'img_auth', "Streaming `".$filename."`." );
-	StreamFile::stream( $filename, array( 'Cache-Control: private', 'Vary: Cookie' ) );
+	$repo->streamFile( $filename, array( 'Cache-Control: private', 'Vary: Cookie' ) );
 }
 
 /**

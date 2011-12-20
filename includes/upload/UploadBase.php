@@ -163,6 +163,9 @@ abstract class UploadBase {
 	 */
 	public function initializePathInfo( $name, $tempPath, $fileSize, $removeTempFile = false ) {
 		$this->mDesiredDestName = $name;
+		if ( FileBackend::isStoragePath( $tempPath ) ) {
+			throw new MWException( __METHOD__ . " given storage path `$tempPath`." );
+		}
 		$this->mTempPath = $tempPath;
 		$this->mFileSize = $fileSize;
 		$this->mRemoveTempFile = $removeTempFile;
@@ -197,47 +200,17 @@ abstract class UploadBase {
 	}
 
 	/**
-	 * Append a file to the Repo file
-	 *
-	 * @deprecated since 1.19
-	 * 
-	 * @param $srcPath String: path to source file
-	 * @param $toAppendPath String: path to the Repo file that will be appended to.
-	 * @return Status Status
-	 */
-	protected function appendToUploadFile( $srcPath, $toAppendPath ) {
-		wfDeprecated( __METHOD__, '1.19' );
-		
-		$repo = RepoGroup::singleton()->getLocalRepo();
-		$status = $repo->append( $srcPath, $toAppendPath );
-		return $status;
-	}
-	
-	/**
-	 * Finish appending to the Repo file
-	 * 
-	 * @deprecated since 1.19
-	 * 
-	 * @param $toAppendPath String: path to the Repo file that will be appended to.
-	 * @return Status Status
-	 */
-	protected function appendFinish( $toAppendPath ) {
-		wfDeprecated( __METHOD__, '1.19' );
-		
-		$repo = RepoGroup::singleton()->getLocalRepo();
-		$status = $repo->appendFinish( $toAppendPath );
-		return $status;
-	}
-
-
-	/**
 	 * @param $srcPath String: the source path
 	 * @return the real path if it was a virtual URL
 	 */
 	function getRealPath( $srcPath ) {
 		$repo = RepoGroup::singleton()->getLocalRepo();
 		if ( $repo->isVirtualUrl( $srcPath ) ) {
-			return $repo->resolveVirtualUrl( $srcPath );
+			// @TODO: just make uploads work with storage paths
+			// UploadFromStash loads files via virtuals URLs
+			$tmpFile = $repo->getLocalCopy( $srcPath );
+			$tmpFile->bind( $this ); // keep alive with $thumb
+			return $tmpFile->getPath();
 		}
 		return $srcPath;
 	}
@@ -370,7 +343,7 @@ abstract class UploadBase {
 		# we need to populate mFinalExtension
 		$this->getTitle();
 
-		$this->mFileProps = File::getPropsFromPath( $this->mTempPath, $this->mFinalExtension );
+		$this->mFileProps = FSFile::getPropsFromPath( $this->mTempPath, $this->mFinalExtension );
 
 		# check mime type, if desired
 		$mime = $this->mFileProps[ 'file-mime' ];
@@ -556,7 +529,7 @@ abstract class UploadBase {
 		}
 
 		// Check dupes against existing files
-		$hash = File::sha1Base36( $this->mTempPath );
+		$hash = FSFile::getSha1Base36FromPath( $this->mTempPath );
 		$dupes = RepoGroup::singleton()->findBySha1( $hash );
 		$title = $this->getTitle();
 		// Remove all matches against self

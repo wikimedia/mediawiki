@@ -1346,6 +1346,38 @@ $wgMessageStructure = array(
 		'upload-http-error',
 	),
 
+	'filebackend-errors' => array(
+		'backend-fail-stream',
+		'backend-fail-backup',
+		'backend-fail-notexists',
+		'backend-fail-hashes',
+		'backend-fail-notsame',
+		'backend-fail-invalidpath',
+		'backend-fail-delete',
+		'backend-fail-alreadyexists',
+		'backend-fail-store',
+		'backend-fail-copy',
+		'backend-fail-move',
+		'backend-fail-opentemp',
+		'backend-fail-writetemp',
+		'backend-fail-closetemp',
+		'backend-fail-read',
+		'backend-fail-create',
+	),
+
+	'lockmanger-errors' => array(
+		'lockmanager-notlocked',
+		'lockmanager-fail-closelock',
+		'lockmanager-fail-deletelock',
+		'lockmanager-fail-acquirelock',
+		'lockmanager-fail-openlock',
+		'lockmanager-fail-releaselock',
+		'lockmanager-fail-acquirelocks',
+		'lockmanager-fail-db-bucket',
+		'lockmanager-fail-db-release',
+		'lockmanager-fail-svr-release'
+	),
+
 	'zip' => array(
 		'zip-file-open-error',
 		'zip-wrong-format',

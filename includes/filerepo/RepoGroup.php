@@ -366,7 +366,7 @@ class RepoGroup {
 			$repo = $this->getRepo( $repoName );
 			return $repo->getFileProps( $fileName );
 		} else {
-			return File::getPropsFromPath( $fileName );
+			return FSFile::getPropsFromPath( $fileName );
 		}
 	}
 

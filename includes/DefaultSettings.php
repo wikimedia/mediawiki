@@ -367,6 +367,27 @@ $wgForeignFileRepos = array();
 $wgUseInstantCommons = false;
 
 /**
+ * File backend structure configuration.
+ * This is an array of file backend configuration arrays.
+ * Each backend configuration has the following parameters:
+ *     'name'        : A unique name for the backend
+ *     'class'       : The file backend class to use
+ *     'wikiId'      : A unique string that identifies the wiki (container prefix)
+ *     'lockManager' : The name of a lock manager (see $wgFileLockManagers)
+ * Additional parameters are specific to the class used.
+ */
+$wgFileBackends = array();
+
+/**
+ * Array of configuration arrays for each lock manager.
+ * Each backend configuration has the following parameters:
+ *     'name'        : A unique name for the lock manger
+ *     'class'       : The lock manger class to use
+ * Additional parameters are specific to the class used.
+ */
+$wgFileLockManagers = array();
+
+/**
  * Show EXIF data, on by default if available.
  * Requires PHP's EXIF extension: http://www.php.net/manual/en/ref.exif.php
  *

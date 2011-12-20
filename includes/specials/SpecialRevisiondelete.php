@@ -313,7 +313,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 
 		$key = $oimage->getStorageKey();
 		$path = $repo->getZonePath( 'deleted' ) . '/' . $repo->getDeletedHashPath( $key ) . $key;
-		StreamFile::stream( $path );
+		$repo->streamFile( $path );
 	}
 
 	/**

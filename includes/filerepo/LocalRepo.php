@@ -10,9 +10,10 @@
 /**
  * A repository that stores files in the local filesystem and registers them
  * in the wiki's own database. This is the most commonly used repository class.
+ *
  * @ingroup FileRepo
  */
-class LocalRepo extends FSRepo {
+class LocalRepo extends FileRepo {
 	var $fileFactory = array( 'LocalFile', 'newFromTitle' );
 	var $fileFactoryKey = array( 'LocalFile', 'newFromKey' );
 	var $oldFileFactory = array( 'OldLocalFile', 'newFromTitle' );
@@ -22,7 +23,7 @@ class LocalRepo extends FSRepo {
 
 	/**
 	 * @throws MWException
-	 * @param  $row
+	 * @param $row
 	 * @return File
 	 */
 	function newFileFromRow( $row ) {
@@ -55,6 +56,7 @@ class LocalRepo extends FSRepo {
 	 * @return FileRepoStatus
 	 */
 	function cleanupDeletedBatch( $storageKeys ) {
+		$backend = $this->backend; // convenience
 		$root = $this->getZonePath( 'deleted' );
 		$dbw = $this->getMasterDB();
 		$status = $this->newGood();
@@ -69,10 +71,8 @@ class LocalRepo extends FSRepo {
 			$hidden = $this->hiddenFileHasKey( $key, 'lock' );
 			if ( !$deleted && !$hidden ) { // not in use now
 				wfDebug( __METHOD__ . ": deleting $key\n" );
-				wfSuppressWarnings();
-				$unlink = unlink( $path );
-				wfRestoreWarnings();
-				if ( !$unlink ) {
+				$op = array( 'op' => 'delete', 'src' => $path );
+				if ( !$backend->doOperation( $op )->isOK() ) {
 					$status->error( 'undelete-cleanup-error', $path );
 					$status->failCount++;
 				}
@@ -87,6 +87,7 @@ class LocalRepo extends FSRepo {
 
 	/**
 	 * Check if a deleted (filearchive) file has this sha1 key
+	 *
 	 * @param $key String File storage key (base-36 sha1 key with file extension)
 	 * @param $lock String|null Use "lock" to lock the row via FOR UPDATE
 	 * @return bool File with this key is in use
@@ -103,6 +104,7 @@ class LocalRepo extends FSRepo {
 
 	/**
 	 * Check if a hidden (revision delete) file has this sha1 key
+	 *
 	 * @param $key String File storage key (base-36 sha1 key with file extension)
 	 * @param $lock String|null Use "lock" to lock the row via FOR UPDATE
 	 * @return bool File with this key is in use
@@ -185,6 +187,7 @@ class LocalRepo extends FSRepo {
 	/**
 	 * Function link Title::getArticleID().
 	 * We can't say Title object, what database it should use, so we duplicate that function here.
+	 *
 	 * @param $title Title
 	 */
 	protected function getArticleID( $title ) {
@@ -193,13 +196,13 @@ class LocalRepo extends FSRepo {
 		}
 		$dbr = $this->getSlaveDB();
 		$id = $dbr->selectField(
-			'page',	// Table
-			'page_id',	//Field
-			array(	//Conditions
+			'page', // Table
+			'page_id',  //Field
+			array(  //Conditions
 				'page_namespace' => $title->getNamespace(),
 				'page_title' => $title->getDBkey(),
 			),
-			__METHOD__	//Function name
+			__METHOD__  //Function name
 		);
 		return $id;
 	}
@@ -207,6 +210,8 @@ class LocalRepo extends FSRepo {
 	/**
 	 * Get an array or iterator of file objects for files that have a given 
 	 * SHA-1 content hash.
+	 *
+	 * @param string
 	 * @return Array
 	 */
 	function findBySha1( $hash ) {
@@ -244,6 +249,7 @@ class LocalRepo extends FSRepo {
 	 * Get a key on the primary cache for this repository.
 	 * Returns false if the repository's cache is not accessible at this site. 
 	 * The parameters are the parts of the key, as for wfMemcKey().
+	 *
 	 * @return string
 	 */
 	function getSharedCacheKey( /*...*/ ) {

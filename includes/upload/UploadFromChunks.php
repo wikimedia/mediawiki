@@ -95,8 +95,8 @@ class UploadFromChunks extends UploadFromFile {
 			$fileList[] = $this->getVirtualChunkLocation( $i );
 		}
 
-		// Concatinate into the mVirtualTempPath location;
-		$status = $this->repo->concatenate( $fileList,  $this->mVirtualTempPath, FileRepo::DELETE_SOURCE );
+		// Concatenate into the mVirtualTempPath location;
+		$status = $this->repo->concatenate( $fileList, $this->mVirtualTempPath, FileRepo::DELETE_SOURCE );
 		if( !$status->isOk() ){
 			return $status; 
 		}
@@ -104,6 +104,21 @@ class UploadFromChunks extends UploadFromFile {
 		$this->mTempPath = $this->getRealPath( $this->mVirtualTempPath );
 		return $status;
 	}
+
+	/**
+	 * Perform the upload, then remove the temp copy afterward
+	 * @param $comment string
+	 * @param $pageText string
+	 * @param $watch bool
+	 * @param $user User
+	 * @return Status
+	 */
+	public function performUpload( $comment, $pageText, $watch, $user ) {
+		$rv = parent::performUpload( $comment, $pageText, $watch, $user );
+		$this->repo->freeTemp( $this->mVirtualTempPath );
+		return $rv;
+	}
+
 	/**
 	 * Returns the virtual chunk location: 	
 	 * @param unknown_type $index

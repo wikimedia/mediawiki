@@ -131,7 +131,7 @@ class DjVuHandler extends ImageHandler {
 		}
 		$width = $params['width'];
 		$height = $params['height'];
-		$srcPath = $image->getPath();
+		$srcPath = $image->getLocalRefPath();
 		$page = $params['page'];
 		if ( $page > $this->pageCount( $image ) ) {
 			return new MediaTransformError( 'thumbnail_error', $width, $height, wfMsg( 'djvu_page_error' ) );

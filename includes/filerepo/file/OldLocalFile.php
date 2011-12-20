@@ -262,7 +262,7 @@ class OldLocalFile extends LocalFile {
 		$dbw->begin();
 
 		$dstPath = $this->repo->getZonePath( 'public' ) . '/' . $this->getRel();
-		$props = self::getPropsFromPath( $dstPath );
+		$props = $this->repo->getFileProps( $dstPath );
 		if ( !$props['fileExists'] ) {
 			return false;
 		}

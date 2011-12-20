@@ -417,7 +417,7 @@ class ApiUploadTest extends ApiTestCaseUpload {
 		}
 		$this->assertTrue( isset( $result['upload'] ) );
 		$this->assertEquals( 'Success', $result['upload']['result'] );
-		$this->assertFalse( $exception );
+		$this->assertFalse( $exception, "No UsageException exception." );
 
 		// clean up
 		$this->deleteFileByFilename( $fileName );
