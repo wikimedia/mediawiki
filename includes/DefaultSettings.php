@@ -4084,16 +4084,11 @@ $wgShowHostnames = false;
 $wgDevelopmentWarnings = false;
 
 /**
- * $wgDeprecationWarnings['limit']
  * Release limitation to wfDeprecated warnings, if set to a release number
  * development warnings will not be generated for deprecations added in releases
  * after the limit.
- * 
- * $wgDeprecationWarnings['whitelist']
- * Function name whitelist for wfDeprecated warnings. You will not be warned
- * for usage of deprecated functions in this list.
  */
-$wgDeprecationWarnings = array( 'limit' => '1.17', 'whitelist' => array() ); 
+$wgDeprecationReleaseLimit = '1.17';
 
 /** Only record profiling info for pages that took longer than this */
 $wgProfileLimit = 0.0;
