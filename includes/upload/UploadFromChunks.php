@@ -187,8 +187,10 @@ class UploadFromChunks extends UploadFromFile {
 	 * Get the chunk db state and populate update relevant local values
 	 */
 	private function getChunkStatus(){
-		$dbr = $this->repo->getSlaveDb();
-		$row = $dbr->selectRow(
+		// get Master db to avoid race conditions. 
+		// Otherwise, if chunk upload time < replag there will be spurious errors
+		$dbw = $this->repo->getMasterDb();
+		$row = $dbw->selectRow(
 			'uploadstash', 
 			array( 
 				'us_chunk_inx',
