@@ -386,7 +386,7 @@ CREATE TABLE &mw_prefix.recentchanges (
 );
 ALTER TABLE &mw_prefix.recentchanges ADD CONSTRAINT &mw_prefix.recentchanges_pk PRIMARY KEY (rc_id);
 ALTER TABLE &mw_prefix.recentchanges ADD CONSTRAINT &mw_prefix.recentchanges_fk1 FOREIGN KEY (rc_user) REFERENCES &mw_prefix.mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED;
-ALTER TABLE &mw_prefix.recentchanges ADD CONSTRAINT &mw_prefix.recentchanges_fk2 FOREIGN KEY (rc_cur_id) REFERENCES &mw_prefix.page(page_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE &mw_prefix.recentchanges ADD CONSTRAINT &mw_prefix.recentchanges_fk2 FOREIGN KEY (rc_cur_id) REFERENCES &mw_prefix.page(page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
 CREATE INDEX &mw_prefix.recentchanges_i01 ON &mw_prefix.recentchanges (rc_timestamp);
 CREATE INDEX &mw_prefix.recentchanges_i02 ON &mw_prefix.recentchanges (rc_namespace, rc_title);
 CREATE INDEX &mw_prefix.recentchanges_i03 ON &mw_prefix.recentchanges (rc_cur_id);

@@ -36,6 +36,9 @@ class OracleUpdater extends DatabaseUpdater {
 			array( 'addIndex',	'user',          'i02',       'patch-user_email_index.sql' ),
 			array( 'modifyField', 'user_properties', 'up_property', 'patch-up_property.sql' ),
 			array( 'addTable', 'uploadstash', 'patch-uploadstash.sql' ),
+			array( 'doRecentchangesFK2Cascade' ),
+
+			// KEEP THIS AT THE BOTTOM!!
 			array( 'doRebuildDuplicateFunction' ),
 			
 		);
@@ -135,6 +138,24 @@ class OracleUpdater extends DatabaseUpdater {
 	}
 
 	/**
+	 * Removed forcing of invalid state on recentchanges_fk2.
+	 * cascading taken in account in the deleting function
+	 */
+	protected function doRecentchangesFK2Cascade() {
+		$this->output( "Altering RECENTCHANGES_FK2 ... " );
+
+		$meta = $this->db->query( 'SELECT 1 FROM all_constraints WHERE owner = \''.strtoupper($this->db->getDBname()).'\' AND constraint_name = \''.$this->db->tablePrefix().'RECENTCHANGES_FK2\' AND delete_rule = \'CASCADE\'' );
+		$row = $meta->fetchRow();
+		if ( $row ) {
+			$this->output( "FK up to date\n" );
+			return;
+		}
+
+		$this->applyPatch( 'patch_recentchanges_fk2_cascade.sql', false );
+		$this->output( "ok\n" );
+	}
+
+	/**
 	 * rebuilding of the function that duplicates tables for tests
 	 */
 	protected function doRebuildDuplicateFunction() {
@@ -152,6 +173,17 @@ class OracleUpdater extends DatabaseUpdater {
 		parent::doUpdates( $what );
 
 		$this->db->query( 'BEGIN fill_wiki_info; END;' );
+	}
+
+	/**
+	 * Overload: because of the DDL_MODE tablename escaping is a bit dodgy
+	 */
+	protected function purgeCache() {
+		# We can't guarantee that the user will be able to use TRUNCATE,
+		# but we know that DELETE is available to us
+		$this->output( "Purging caches..." );
+		$this->db->delete( '/*Q*/'.$this->db->tableName( 'objectcache' ), '*', __METHOD__ );
+		$this->output( "done.\n" );
 	}
 
 }

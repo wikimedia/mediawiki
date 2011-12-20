@@ -1175,9 +1175,7 @@ class DatabaseOracle extends DatabaseBase {
 		// a hack for deleting pages, users and images (which have non-nullable FKs)
 		// all deletions on these tables have transactions so final failure rollbacks these updates
 		$table = $this->tableName( $table );
-		if ( $table == $this->tableName( 'page' ) ) {
-				$this->update( 'recentchanges', array( 'rc_cur_id' => 0 ), array( 'rc_cur_id' => $conds['page_id'] ), $fname );
-		} elseif ( $table == $this->tableName( 'user' )  ) {
+		if ( $table == $this->tableName( 'user' )  ) {
 				$this->update( 'archive', array( 'ar_user' => 0 ), array( 'ar_user' => $conds['user_id'] ), $fname );
 				$this->update( 'ipblocks', array( 'ipb_user' => 0 ), array( 'ipb_user' => $conds['user_id'] ), $fname );
 				$this->update( 'image', array( 'img_user' => 0 ), array( 'img_user' => $conds['user_id'] ), $fname );
