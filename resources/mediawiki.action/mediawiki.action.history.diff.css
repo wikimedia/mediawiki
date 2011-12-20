@@ -22,17 +22,15 @@ td.diff-lineno {
 }
 
 td.diff-addedline {
-	background: #D8E4F6;
-	font-size: smaller;
+	background: #e0ecff;
 }
 
 td.diff-deletedline {
-	background: #E4F6D8;
-	font-size: smaller;
+	background: #ffffaa;
 }
 
 td.diff-context {
-	font-size: smaller;
+	background: #EEE;
 }
 
 .diffchange {
@@ -40,18 +38,17 @@ td.diff-context {
 	white-space: -moz-pre-wrap;
 	white-space: pre-wrap;
 	text-decoration: none;
-	outline: 1px dotted gray;
 }
 
 td.diff-addedline .diffchange {
-	background: #B0C0F0;
-	color: #001040;
+	background: #c4d3ff;
+	color: #222222;
 	font-weight: bold;
 }
 
 td.diff-deletedline .diffchange {
-	background: #B0E897;
-	color: #104000;
+	background: #ffd89d;
+	color: #000000;
 	font-weight: bold;
 }
 
