@@ -192,7 +192,6 @@ if ( $wgUseInstantCommons ) {
 	$wgForeignFileRepos[] = array(
 		'class'                   => 'ForeignAPIRepo',
 		'name'                    => 'wikimediacommons',
-		'directory'               => $wgUploadDirectory,
 		'apibase'                 => 'http://commons.wikimedia.org/w/api.php',
 		'hashLevels'              => 2,
 		'fetchDescription'        => true,
@@ -218,7 +217,11 @@ unset( $repo ); // no global pollution; destroy reference
  * Also updates the repo config to use the backend.
  */
 function wfBackendForLegacyRepoConf( &$info ) {
+	global $wgUploadDirectory;
 	// Local vars that used to be FSRepo members...
+	if ( !isset( $info['directory'] ) && $info['class'] === 'ForeignAPIRepo' ) {
+		$info['directory'] = $wgUploadDirectory; // b/c
+	}
 	$directory = $info['directory'];
 	$deletedDir = isset( $info['deletedDir'] )
 		? $info['deletedDir']
