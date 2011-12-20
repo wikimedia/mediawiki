@@ -826,12 +826,19 @@ class LogPager extends ReverseChronologicalPager {
 		// If $types is not an array, make it an array
 		$types = ($types === '') ? array() : (array)$types;
 		// Don't even show header for private logs; don't recognize it...
+		$needReindex = false;
 		foreach ( $types as $type ) {
 			if( isset( $wgLogRestrictions[$type] )
 				&& !$this->getUser()->isAllowed($wgLogRestrictions[$type])
 			) {
+				$needReindex = true;
 				$types = array_diff( $types, array( $type ) );
 			}
+		}
+		if ( $needReindex ) {
+			// Lots of this code makes assumptions that
+			// the first entry in the array is $types[0].
+			$types = array_values( $types );
 		}
 		$this->types = $types;
 		// Don't show private logs to unprivileged users.
