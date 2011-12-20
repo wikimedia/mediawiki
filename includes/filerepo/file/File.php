@@ -756,10 +756,12 @@ abstract class File {
 		global $wgIgnoreImageErrors, $wgThumbnailEpoch;
 
 		$thumbPath = $this->getThumbPath( $thumbName ); // final thumb path
-
 		if ( $this->repo && $this->repo->canTransformVia404() && !( $flags & self::RENDER_NOW ) ) {
 			wfDebug( __METHOD__ . " transformation deferred." );
-			return $this->handler->getTransform( $this, false, $thumbUrl, $params );
+			// XXX: Pass in the storage path even though we are not rendering anything
+			// and the path is supposed to be an FS path. This is due to getScalerType()
+			// getting called on the path and clobbering the $thumb->getUrl() if it's false.
+			return $this->handler->getTransform( $this, $thumbPath, $thumbUrl, $params );
 		}
 
 		wfDebug( __METHOD__.": Doing stat for $thumbPath\n" );
