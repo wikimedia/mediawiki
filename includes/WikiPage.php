@@ -978,11 +978,11 @@ class WikiPage extends Page {
 	/**
 	 * @param $section empty/null/false or a section number (0, 1, 2, T1, T2...)
 	 * @param $text String: new text of the section
-	 * @param $summary String: new section's subject, only if $section is 'new'
+	 * @param $sectionTitle String: new section's subject, only if $section is 'new'
 	 * @param $edittime String: revision timestamp or null to use the current revision
 	 * @return string Complete article text, or null if error
 	 */
-	public function replaceSection( $section, $text, $summary = '', $edittime = null ) {
+	public function replaceSection( $section, $text, $sectionTitle = '', $edittime = null ) {
 		wfProfileIn( __METHOD__ );
 
 		if ( strval( $section ) == '' ) {
@@ -1006,7 +1006,7 @@ class WikiPage extends Page {
 
 			if ( $section == 'new' ) {
 				# Inserting a new section
-				$subject = $summary ? wfMsgForContent( 'newsectionheaderdefaultlevel', $summary ) . "\n\n" : '';
+				$subject = $sectionTitle ? wfMsgForContent( 'newsectionheaderdefaultlevel', $sectionTitle ) . "\n\n" : '';
 				if ( wfRunHooks( 'PlaceNewSection', array( $this, $oldtext, $subject, &$text ) ) ) {
 					$text = strlen( trim( $oldtext ) ) > 0
 						? "{$oldtext}\n\n{$subject}{$text}"

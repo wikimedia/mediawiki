@@ -1132,7 +1132,7 @@ class EditPage {
 			$text = $this->textbox1;
 			$result['sectionanchor'] = '';
 			if ( $this->section == 'new' ) {
-				if ( $this->sectiontitle != '' ) {
+				if ( $this->sectiontitle !== '' ) {
 					// Insert the section title above the content.
 					$text = wfMsgForContent( 'newsectionheaderdefaultlevel', $this->sectiontitle ) . "\n\n" . $text;
 					
@@ -1142,11 +1142,11 @@ class EditPage {
 					// If no edit summary was specified, create one automatically from the section
 					// title and have it link to the new section. Otherwise, respect the summary as
 					// passed.
-					if ( $this->summary == '' ) {
+					if ( $this->summary === '' ) {
 						$cleanSectionTitle = $wgParser->stripSectionName( $this->sectiontitle );
 						$this->summary = wfMsgForContent( 'newsectionsummary', $cleanSectionTitle );
 					}
-				} elseif ( $this->summary != '' ) {
+				} elseif ( $this->summary !== '' ) {
 					// Insert the section title above the content.
 					$text = wfMsgForContent( 'newsectionheaderdefaultlevel', $this->summary ) . "\n\n" . $text;
 					
@@ -1189,14 +1189,22 @@ class EditPage {
 					$this->isConflict = false;
 				}
 			}
-
+			
+			// If sectiontitle is set, use it, otherwise use the summary as the section title (for
+			// backwards compatibility with old forms/bots).
+			if ( $this->sectiontitle !== '' ) {
+				$sectionTitle = $this->sectiontitle;
+			} else {
+				$sectionTitle = $this->summary;
+			}
+			
 			if ( $this->isConflict ) {
 				wfDebug( __METHOD__ . ": conflict! getting section '$this->section' for time '$this->edittime' (article time '" .
 					$this->mArticle->getTimestamp() . "')\n" );
-				$text = $this->mArticle->replaceSection( $this->section, $this->textbox1, $this->summary, $this->edittime );
+				$text = $this->mArticle->replaceSection( $this->section, $this->textbox1, $sectionTitle, $this->edittime );
 			} else {
 				wfDebug( __METHOD__ . ": getting section '$this->section'\n" );
-				$text = $this->mArticle->replaceSection( $this->section, $this->textbox1, $this->summary );
+				$text = $this->mArticle->replaceSection( $this->section, $this->textbox1, $sectionTitle );
 			}
 			if ( is_null( $text ) ) {
 				wfDebug( __METHOD__ . ": activating conflict; section replace failed.\n" );
@@ -1273,7 +1281,16 @@ class EditPage {
 					wfProfileOut( __METHOD__ );
 					return $status;
 				}
-				if ( $this->summary != '' ) {
+				if ( $this->sectiontitle !== '' ) {
+					$sectionanchor = $wgParser->guessLegacySectionNameFromWikiText( $this->sectiontitle );
+					// If no edit summary was specified, create one automatically from the section
+					// title and have it link to the new section. Otherwise, respect the summary as
+					// passed.
+					if ( $this->summary === '' ) {
+						$cleanSectionTitle = $wgParser->stripSectionName( $this->sectiontitle );
+						$this->summary = wfMsgForContent( 'newsectionsummary', $cleanSectionTitle );
+					}
+				} elseif ( $this->summary !== '' ) {
 					$sectionanchor = $wgParser->guessLegacySectionNameFromWikiText( $this->summary );
 					# This is a new section, so create a link to the new section
 					# in the revision summary.
