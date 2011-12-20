@@ -236,7 +236,11 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 				$rev['len'] = $row->ar_len;
 			}
 			if ( $fld_sha1 ) {
-				$rev['sha1'] = wfBaseConvert( $row->ar_sha1, 36, 16, 40 );
+				if ( $row->ar_sha1 != '' ) {
+					$rev['sha1'] = wfBaseConvert( $row->ar_sha1, 36, 16, 40 );
+				} else {
+					$rev['sha1'] = '';
+				}
 			}
 			if ( $fld_content ) {
 				ApiResult::setContent( $rev, Revision::getRevisionText( $row ) );
