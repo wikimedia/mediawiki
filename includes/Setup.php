@@ -240,7 +240,7 @@ function wfBackendForLegacyRepoConf( &$info ) {
 	// Disable "deleted" zone in repo config if deleted dir not set
 	if ( $deletedDir !== false ) {
 		$info['zones']['deleted'] = array(
-			'container' => 'images-deleted', 'directory' => '' );
+			'container' => 'media-deleted', 'directory' => '' );
 	}
 	// Get the FS backend configuration
 	return array(
@@ -248,10 +248,10 @@ function wfBackendForLegacyRepoConf( &$info ) {
 		'class'          => 'FSFileBackend',
 		'lockManager'    => 'fsLockManager',
 		'containerPaths' => array(
-			"images-public"  => "{$directory}",
-			"images-temp"    => "{$directory}/temp",
-			"images-thumb"   => $thumbDir,
-			"images-deleted" => $deletedDir
+			"media-public"  => "{$directory}",
+			"media-temp"    => "{$directory}/temp",
+			"media-thumb"   => $thumbDir,
+			"media-deleted" => $deletedDir
 		),
 		'fileMode'       => $fileMode,
 	);

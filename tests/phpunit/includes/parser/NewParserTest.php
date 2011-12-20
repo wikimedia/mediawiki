@@ -321,8 +321,8 @@ class NewParserTest extends MediaWikiTestCase {
 			'class'          => 'FSFileBackend',
 			'lockManager'    => 'nullLockManager',
 			'containerPaths' => array(
-				'images-public' => $this->uploadDir,
-				'images-thumb'  => $this->uploadDir . '/thumb' )
+				'media-public' => $this->uploadDir,
+				'media-thumb'  => $this->uploadDir . '/thumb' )
 		);
 		FileBackendGroup::singleton()->register( array( $backend ) );
 

@@ -54,17 +54,17 @@ class LocalFileTest extends MediaWikiTestCase {
 	}
 
 	function testGetArchivePath() {
-		$this->assertEquals( 'mwstore://local-backend/images-public/archive', $this->file_hl0->getArchivePath() );
-		$this->assertEquals( 'mwstore://local-backend/images-public/archive/a/a2', $this->file_hl2->getArchivePath() );
-		$this->assertEquals( 'mwstore://local-backend/images-public/archive/!', $this->file_hl0->getArchivePath( '!' ) );
-		$this->assertEquals( 'mwstore://local-backend/images-public/archive/a/a2/!', $this->file_hl2->getArchivePath( '!' ) );
+		$this->assertEquals( 'mwstore://local-backend/media-public/archive', $this->file_hl0->getArchivePath() );
+		$this->assertEquals( 'mwstore://local-backend/media-public/archive/a/a2', $this->file_hl2->getArchivePath() );
+		$this->assertEquals( 'mwstore://local-backend/media-public/archive/!', $this->file_hl0->getArchivePath( '!' ) );
+		$this->assertEquals( 'mwstore://local-backend/media-public/archive/a/a2/!', $this->file_hl2->getArchivePath( '!' ) );
 	}
 
 	function testGetThumbPath() {
-		$this->assertEquals( 'mwstore://local-backend/images-thumb/Test!', $this->file_hl0->getThumbPath() );
-		$this->assertEquals( 'mwstore://local-backend/images-thumb/a/a2/Test!', $this->file_hl2->getThumbPath() );
-		$this->assertEquals( 'mwstore://local-backend/images-thumb/Test!/x', $this->file_hl0->getThumbPath( 'x' ) );
-		$this->assertEquals( 'mwstore://local-backend/images-thumb/a/a2/Test!/x', $this->file_hl2->getThumbPath( 'x' ) );
+		$this->assertEquals( 'mwstore://local-backend/media-thumb/Test!', $this->file_hl0->getThumbPath() );
+		$this->assertEquals( 'mwstore://local-backend/media-thumb/a/a2/Test!', $this->file_hl2->getThumbPath() );
+		$this->assertEquals( 'mwstore://local-backend/media-thumb/Test!/x', $this->file_hl0->getThumbPath( 'x' ) );
+		$this->assertEquals( 'mwstore://local-backend/media-thumb/a/a2/Test!/x', $this->file_hl2->getThumbPath( 'x' ) );
 	}
 
 	function testGetArchiveUrl() {

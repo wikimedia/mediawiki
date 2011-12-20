@@ -153,10 +153,10 @@ class ParserTest {
 			'name'        => 'local-backend',
 			'lockManager' => 'fsLockManager',
 			'containerPaths' => array(
-				'images-public'  => wfTempDir() . '/test-repo/public',
-				'images-thumb'   => wfTempDir() . '/test-repo/thumb',
-				'images-temp'    => wfTempDir() . '/test-repo/temp',
-				'images-deleted' => wfTempDir() . '/test-repo/delete',
+				'media-public'  => wfTempDir() . '/test-repo/public',
+				'media-thumb'   => wfTempDir() . '/test-repo/thumb',
+				'media-temp'    => wfTempDir() . '/test-repo/temp',
+				'media-deleted' => wfTempDir() . '/test-repo/delete',
 			)
 		) );
 		$wgLocalFileRepo = array(
@@ -167,7 +167,7 @@ class ParserTest {
 			'transformVia404' => false,
 			'backend'         => $backend,
 			'zones'           => array( 'deleted' => array(
-				'container' => 'images-deleted', 'directory' => '' ) )
+				'container' => 'media-deleted', 'directory' => '' ) )
 		);
 		$wgNamespaceProtection[NS_MEDIAWIKI] = 'editinterface';
 		$wgNamespaceAliases['Image'] = NS_FILE;
