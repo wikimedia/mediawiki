@@ -4090,6 +4090,16 @@ $wgDevelopmentWarnings = false;
  */
 $wgDeprecationReleaseLimit = '1.17';
 
+/**
+ * Function name whitelist for wfDeprecated warnings. You will not be warned
+ * for usage of deprecated functions in this list. This is mainly usefull
+ * for extension developers unable to not use certain deprecated functions
+ * due to backward compatinility reasons.
+ * @since 1.19
+ * @var array
+ */
+$wgDeprecationWhitelist = array();
+
 /** Only record profiling info for pages that took longer than this */
 $wgProfileLimit = 0.0;
 
