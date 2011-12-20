@@ -1365,7 +1365,7 @@ $wgMessageStructure = array(
 		'backend-fail-create',
 	),
 
-	'lockmanger-errors' => array(
+	'lockmanager-errors' => array(
 		'lockmanager-notlocked',
 		'lockmanager-fail-closelock',
 		'lockmanager-fail-deletelock',
@@ -3610,7 +3610,7 @@ XHTML id names.",
 	'zip'                 => 'ZipDirectoryReader',
 	'upload-errors'       => '',
 	'filebackend-errors'  => 'File backend',
-	'lockmanger-errors'   => 'Lock manager',
+	'lockmanager-errors'  => 'Lock manager',
 	'uploadstash'         => 'Special:UploadStash',
 	'img-auth'            => 'img_auth script messages',
 	'http-errors'         => 'HTTP errors',
