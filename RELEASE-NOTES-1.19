@@ -187,6 +187,8 @@ production.
   with .xxx causes Internal error
 * Warning about undefined index in certain situations when $wgLogRestrictions
   causes the first log type requested to be removed but not the others
+* Use separate message ('prefixindex-namespace') for title of
+  Special:PrefixIndex rather then re-using Special:AllPages's allinnamespace
 
 === API changes in 1.19 ===
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.

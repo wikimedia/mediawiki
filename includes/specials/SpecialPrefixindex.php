@@ -56,7 +56,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 		$namespaces = $wgContLang->getNamespaces();
 		$out->setPageTitle(
 			( $namespace > 0 && in_array( $namespace, array_keys( $namespaces ) ) )
-				? $this->msg( 'allinnamespace', str_replace( '_', ' ', $namespaces[$namespace] ) )
+				? $this->msg( 'prefixindex-namespace', str_replace( '_', ' ', $namespaces[$namespace] ) )
 				: $this->msg( 'prefixindex' )
 		);
 

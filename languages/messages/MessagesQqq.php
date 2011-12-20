@@ -2177,6 +2177,7 @@ $1 is a page title",
 'mostimages'              => 'Name of special page displayed in [[Special:SpecialPages]]',
 'mostrevisions'           => 'Name of special page displayed in [[Special:SpecialPages]]',
 'prefixindex'             => 'The page title of [[Special:PrefixIndex]]. When the user limits the list to a certain namespace, {{msg-mw|allinnamespace}} is used instead.',
+'prefixindex-namespace'   => 'The page title of [[Special:PrefixIndex]] limited to a specific namespace. Similar to {{msg-mw|allinnamespace}}. $1 is the name of the namespace',
 'shortpages'              => 'Name of special page displayed in [[Special:SpecialPages]]',
 'longpages'               => 'Name of special page displayed in [[Special:SpecialPages]]',
 'deadendpages'            => 'Name of special page displayed in [[Special:SpecialPages]]',
@@ -2250,7 +2251,7 @@ The title is {{msg-mw|nopagetitle}}.',
 'allarticles'       => 'The page title of [[Special:Allpages]]. When the user limit the list to a certain namespace, {{msg-mw|allinnamespace}} is used instead.
 
 {{Identical|All pages}}',
-'allinnamespace'    => 'The page title of [[Special:Allpages]] and [[Special:PrefixIndex]], when the user limits the display to a certain namespace. When not limited, {{msg-mw|allarticles}} and {{msg-mw|prefixindex}} is used respectively.
+'allinnamespace'    => 'The page title of [[Special:Allpages]], when the user limits the display to a certain namespace. When not limited, {{msg-mw|allarticles}} is used respectively.
 
 {{Identical|All pages}}',
 'allnotinnamespace' => 'Presumably intended to be used as a page title of [[Special:Allpages]] and probably also in [[Special:PrefixIndex]] when the user limit the display to other than a certain namespace.
