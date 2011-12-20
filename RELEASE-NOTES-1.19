@@ -189,6 +189,8 @@ production.
   causes the first log type requested to be removed but not the others
 * Use separate message ('prefixindex-namespace') for title of
   Special:PrefixIndex rather then re-using Special:AllPages's allinnamespace
+* (bug 33156) Special:Block now allows you to confirm you want to block yourself
+  when using non-normalized username
 
 === API changes in 1.19 ===
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.
