@@ -42,7 +42,9 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 			'url'             => 'http://example.com/images',
 			'hashLevels'      => 2,
 			'transformVia404' => false,
-			'backend'         => $backend
+			'backend'         => $backend,
+			'zones'           => array( 'deleted' => array(
+				'container' => 'images-deleted', 'directory' => '' ) )
 		);
 		$wgNamespaceProtection[NS_MEDIAWIKI] = 'editinterface';
 		$wgNamespaceAliases['Image'] = NS_FILE;
@@ -69,6 +71,7 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 
 	}
 
+	// @FIXME: restore globals?
 	public function tearDown() {
 		$this->teardownUploadDir( $this->uploadDir );
 	}
