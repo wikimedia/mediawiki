@@ -1001,7 +1001,7 @@ class ImageHistoryList {
 		$row .= "<td $selected style='white-space: nowrap;'>";
 		if ( !$file->userCan( File::DELETED_FILE ) ) {
 			# Don't link to unviewable files
-			$row .= '<span class="history-deleted">' . $wgLang->timeAndDate( $timestamp, true ) . '</span>';
+			$row .= '<span class="history-deleted">' . $wgLang->timeanddate( $timestamp, true ) . '</span>';
 		} elseif ( $file->isDeleted( File::DELETED_FILE ) ) {
 			if ( $local ) {
 				$this->preventClickjacking();
@@ -1009,7 +1009,7 @@ class ImageHistoryList {
 				# Make a link to review the image
 				$url = Linker::link(
 					$revdel,
-					$wgLang->timeAndDate( $timestamp, true ),
+					$wgLang->timeanddate( $timestamp, true ),
 					array(),
 					array(
 						'target' => $this->title->getPrefixedText(),
@@ -1019,12 +1019,12 @@ class ImageHistoryList {
 					array( 'known', 'noclasses' )
 				);
 			} else {
-				$url = $wgLang->timeAndDate( $timestamp, true );
+				$url = $wgLang->timeanddate( $timestamp, true );
 			}
 			$row .= '<span class="history-deleted">' . $url . '</span>';
 		} else {
 			$url = $iscur ? $this->current->getUrl() : $this->current->getArchiveUrl( $img );
-			$row .= Xml::element( 'a', array( 'href' => $url ), $wgLang->timeAndDate( $timestamp, true ) );
+			$row .= Xml::element( 'a', array( 'href' => $url ), $wgLang->timeanddate( $timestamp, true ) );
 		}
 		$row .= "</td>";
 
@@ -1085,7 +1085,7 @@ class ImageHistoryList {
 			$thumbnail = $file->transform( $params );
 			$options = array(
 				'alt' => wfMsg( 'filehist-thumbtext',
-					$wgLang->timeAndDate( $timestamp, true ),
+					$wgLang->timeanddate( $timestamp, true ),
 					$wgLang->date( $timestamp, true ),
 					$wgLang->time( $timestamp, true ) ),
 				'file-link' => true,
