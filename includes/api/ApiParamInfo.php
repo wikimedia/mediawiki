@@ -260,21 +260,26 @@ class ApiParamInfo extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-
+		$modules = array_keys( $this->getMain()->getModules() );
+		sort( $modules );
+		$querymodules = array_keys( $this->queryObj->getModules() );
+		sort( $querymodules );
+		$formatmodules = array_keys( $this->getMain()->getFormats() );
+		sort( $formatmodules );
 		return array(
 			'modules' => array(
 				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => array_keys( $this->getMain()->getModules() ),
+				ApiBase::PARAM_TYPE => $modules,
 			),
 			'querymodules' => array(
 				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => array_keys( $this->queryObj->getModules() ),
+				ApiBase::PARAM_TYPE => $querymodules,
 			),
 			'mainmodule' => false,
 			'pagesetmodule' => false,
 			'formatmodules' => array(
 				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => array_keys( $this->getMain()->getFormats() ),
+				ApiBase::PARAM_TYPE => $formatmodules,
 			)
 		);
 	}
