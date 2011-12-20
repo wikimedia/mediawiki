@@ -35,10 +35,10 @@ class FSRepo extends FileRepo {
 				'name'           => $info['name'] . '-backend',
 				'lockManager'    => 'fsLockManager',
 				'containerPaths' => array(
-					"images-public"  => "{$directory}",
-					"images-temp"    => "{$directory}/temp",
-					"images-thumb"   => $thumbDir,
-					"images-deleted" => $deletedDir
+					"media-public"  => "{$directory}",
+					"media-temp"    => "{$directory}/temp",
+					"media-thumb"   => $thumbDir,
+					"media-deleted" => $deletedDir
 				),
 				'fileMode'       => $fileMode,
 			) );
@@ -47,7 +47,7 @@ class FSRepo extends FileRepo {
 			// Set "deleted" zone in repo if deletedDir is configured
 			if ( $deletedDir !== false ) {
 				$info['zones']['deleted'] = array(
-					'container' => 'images-deleted', 'directory' => '' );
+					'container' => 'media-deleted', 'directory' => '' );
 			}
 		}
 

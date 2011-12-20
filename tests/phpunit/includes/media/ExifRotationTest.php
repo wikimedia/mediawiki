@@ -13,7 +13,7 @@ class ExifRotationTest extends MediaWikiTestCase {
 		$this->backend = new FSFileBackend( array(
 			'name'           => 'localtesting',
 			'lockManager'    => 'nullLockManager',
-			'containerPaths' => array( 'images-thumb' => $tmpDir, 'data' => $filePath )
+			'containerPaths' => array( 'media-thumb' => $tmpDir, 'data' => $filePath )
 		) );
 		$this->repo = new FSRepo( array(
 			'name'            => 'temp',
