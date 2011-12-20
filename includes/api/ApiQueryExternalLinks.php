@@ -145,7 +145,8 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=query&prop=extlinks&titles=Main%20Page' => 'Get a list of external links on the [[Main Page]]:',
+			'Get a list of external links on the [[Main Page]]:',
+			'  api.php?action=query&prop=extlinks&titles=Main%20Page',
 		);
 	}
 
