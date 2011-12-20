@@ -181,6 +181,10 @@ class ApiEditPage extends ApiBase {
 		if ( !is_null( $params['summary'] ) ) {
 			$reqArr['wpSummary'] = $params['summary'];
 		}
+		
+		if ( !is_null( $params['sectiontitle'] ) ) {
+			$reqArr['wpSectionTitle'] = $params['sectiontitle'];
+		}
 
 		// Watch out for basetimestamp == ''
 		// wfTimestamp() treats it as NOW, almost certainly causing an edit conflict
@@ -404,6 +408,10 @@ class ApiEditPage extends ApiBase {
 				ApiBase::PARAM_REQUIRED => true
 			),
 			'section' => null,
+			'sectiontitle' => array(
+				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_REQUIRED => false,
+			),
 			'text' => null,
 			'token' => null,
 			'summary' => null,
@@ -453,6 +461,7 @@ class ApiEditPage extends ApiBase {
 		return array(
 			'title' => 'Page title',
 			'section' => 'Section number. 0 for the top section, \'new\' for a new section',
+			'sectiontitle' => 'The title for a new section',
 			'text' => 'Page content',
 			'token' => array( 'Edit token. You can get one of these through prop=info.',
 						'The token should always be sent as the last parameter, or at least, after the text parameter'
