@@ -83,9 +83,7 @@ class FSLockManager extends LockManager {
 			wfRestoreWarnings();
 			if ( !$handle ) { // lock dir missing?
 				wfMkdirParents( $this->lockDir );
-				wfSuppressWarnings();
 				$handle = fopen( $this->getLockPath( $key ), 'a+' ); // try again
-				wfRestoreWarnings();
 			}
 			if ( $handle ) {
 				// Either a shared or exclusive lock
