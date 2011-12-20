@@ -97,10 +97,8 @@ class VectorTemplate extends BaseTemplate {
 					unset( $nav[$section][$key]['class'] );
 				}
 				if ( isset( $link['tooltiponly'] ) && $link['tooltiponly'] ) {
-					$tooltip = Linker::titleAttrib( $xmlID );
-					$tooltip = $tooltip === false ? '' : Xml::expandAttributes( array( 'title' => $tooltip ) );
-					$nav[$section][$key]['key'] = $tooltip;
-						
+					$nav[$section][$key]['key'] =
+						Linker::tooltip( $xmlID );
 				} else {
 					$nav[$section][$key]['key'] =
 						Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs( $xmlID ) );
