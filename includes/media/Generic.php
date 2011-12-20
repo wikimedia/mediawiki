@@ -97,7 +97,7 @@ abstract class MediaHandler {
 	 * Get handler-specific metadata which will be saved in the img_metadata field.
 	 *
 	 * @param $image File: the image object, or false if there isn't one.
-	 *   Warning, File::getPropsFromPath might pass an (object)array() instead (!)
+	 *   Warning, FSFile::getPropsFromPath might pass an (object)array() instead (!)
 	 * @param $path String: the filename
 	 * @return String
 	 */
@@ -187,7 +187,7 @@ abstract class MediaHandler {
 	 * @param $dstUrl String: Destination URL to use in output HTML
 	 * @param $params Array: Arbitrary set of parameters validated by $this->validateParam()
 	 */
-	function getTransform( $image, $dstPath, $dstUrl, $params ) {
+	final function getTransform( $image, $dstPath, $dstUrl, $params ) {
 		return $this->doTransform( $image, $dstPath, $dstUrl, $params, self::TRANSFORM_LATER );
 	}
 
@@ -260,7 +260,7 @@ abstract class MediaHandler {
 	 * @param $image File
 	 */
 	function getPageDimensions( $image, $page ) {
-		$gis = $this->getImageSize( $image, $image->getPath() );
+		$gis = $this->getImageSize( $image, $image->getLocalRefPath() );
 		return array(
 			'width' => $gis[0],
 			'height' => $gis[1]
@@ -640,13 +640,6 @@ abstract class ImageHandler extends MediaHandler {
 			return false;
 		}
 		return true;
-	}
-
-	/**
-	 * Get a transform output object without actually doing the transform
-	 */
-	function getTransform( $image, $dstPath, $dstUrl, $params ) {
-		return $this->doTransform( $image, $dstPath, $dstUrl, $params, self::TRANSFORM_LATER );
 	}
 
 	/**

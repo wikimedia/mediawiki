@@ -13,7 +13,6 @@
  * @ingroup FileRepo
  */
 class ForeignAPIFile extends File {
-
 	private $mExists;
 
 	protected $repoClass = 'ForeignApiRepo';
@@ -149,16 +148,16 @@ class ForeignAPIFile extends File {
 	}
 
 	function getSha1() {
-		return isset( $this->mInfo['sha1'] ) ?
-			wfBaseConvert( strval( $this->mInfo['sha1'] ), 16, 36, 31 ) :
-			null;
+		return isset( $this->mInfo['sha1'] )
+			? wfBaseConvert( strval( $this->mInfo['sha1'] ), 16, 36, 31 )
+			: null;
 	}
 
 	function getTimestamp() {
 		return wfTimestamp( TS_MW,
-			isset( $this->mInfo['timestamp'] ) ?
-			strval( $this->mInfo['timestamp'] ) :
-			null
+			isset( $this->mInfo['timestamp'] )
+				? strval( $this->mInfo['timestamp'] )
+				: null
 		);
 	}
 
@@ -198,19 +197,14 @@ class ForeignAPIFile extends File {
 	}
 
 	function getThumbnails() {
-		$files = array();
 		$dir = $this->getThumbPath( $this->getName() );
-		if ( is_dir( $dir ) ) {
-			$handle = opendir( $dir );
-			if ( $handle ) {
-				while ( false !== ( $file = readdir($handle) ) ) {
-					if ( $file[0] != '.'  ) {
-						$files[] = $file;
-					}
-				}
-				closedir( $handle );
-			}
+		$iter = $this->repo->getBackend()->getFileList( array( 'dir' => $dir ) );
+
+		$files = array();
+		foreach ( $iter as $file ) {
+			$files[] = $file;
 		}
+
 		return $files;
 	}
 
@@ -224,15 +218,20 @@ class ForeignAPIFile extends File {
 
 	function purgeDescriptionPage() {
 		global $wgMemc, $wgContLang;
+
 		$url = $this->repo->getDescriptionRenderUrl( $this->getName(), $wgContLang->getCode() );
 		$key = $this->repo->getLocalCacheKey( 'RemoteFileDescription', 'url', md5($url) );
+
 		$wgMemc->delete( $key );
 	}
 
 	function purgeThumbnails( $options = array() ) {
 		global $wgMemc;
+
 		$key = $this->repo->getLocalCacheKey( 'ForeignAPIRepo', 'ThumbUrl', $this->getName() );
 		$wgMemc->delete( $key );
+
+		$backend = $this->repo->getBackend();
 		$files = $this->getThumbnails();
 		// Give media handler a chance to filter the purge list
 		$handler = $this->getHandler();
@@ -242,10 +241,9 @@ class ForeignAPIFile extends File {
 		
 		$dir = $this->getThumbPath( $this->getName() );
 		foreach ( $files as $file ) {
-			unlink( $dir . $file );
+			$op = array( 'op' => 'delete', 'src' => "{$dir}{$file}" );
+			$backend->doOperation( $op );
 		}
-		if ( is_dir( $dir ) ) {
-			rmdir( $dir ); // Might have already gone away, spews errors if we don't.
-		}
+		$backend->clean( array( 'dir' => $dir ) );
 	}
 }

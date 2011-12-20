@@ -2,12 +2,22 @@
 class PNGHandlerTest extends MediaWikiTestCase {
 
 	public function setUp() {
-		$this->filePath = dirname( __FILE__ ) . '/../../data/media/';
+		$this->filePath = dirname( __FILE__ ) .  '/../../data/media';
+		$this->backend = new FSFileBackend( array(
+			'name'           => 'localtesting',
+			'lockManager'    => 'nullLockManager',
+			'containerPaths' => array( 'data' => $this->filePath )
+		) );
+		$this->repo = new FSRepo( array(
+			'name'    => 'temp',
+			'url'     => 'http://localhost/thumbtest',
+			'backend' => $this->backend
+		) );
 		$this->handler = new PNGHandler();
 	}
 
 	public function testInvalidFile() {
-		$res = $this->handler->getMetadata( null, $this->filePath . 'README' );
+		$res = $this->handler->getMetadata( null, $this->filePath . '/README' );
 		$this->assertEquals( PNGHandler::BROKEN_FILE, $res );
 	}
 	/**
@@ -16,8 +26,7 @@ class PNGHandlerTest extends MediaWikiTestCase {
 	 * @dataProvider dataIsAnimated
 	 */
 	public function testIsAnimanted( $filename, $expected ) {
-		$file = UnregisteredLocalFile::newFromPath( $this->filePath . $filename,
-			'image/png' );
+		$file = $this->dataFile( $filename, 'image/png' );
 		$actual = $this->handler->isAnimatedImage( $file );
 		$this->assertEquals( $expected, $actual );
 	}
@@ -34,8 +43,7 @@ class PNGHandlerTest extends MediaWikiTestCase {
 	 * @dataProvider dataGetImageArea
 	 */
 	public function testGetImageArea( $filename, $expected ) {
-		$file = UnregisteredLocalFile::newFromPath( $this->filePath . $filename,
-			'image/png' );
+		$file = $this->dataFile($filename, 'image/png' );
 		$actual = $this->handler->getImageArea( $file, $file->getWidth(), $file->getHeight() );
 		$this->assertEquals( $expected, $actual );
 	}
@@ -73,9 +81,8 @@ class PNGHandlerTest extends MediaWikiTestCase {
 	 * @dataProvider dataGetMetadata
 	 */
 	public function testGetMetadata( $filename, $expected ) {
-		$file = UnregisteredLocalFile::newFromPath( $this->filePath . $filename,
-			'image/png' );
-		$actual = $this->handler->getMetadata( $file, $this->filePath . $filename );
+		$file = $this->dataFile( $filename, 'image/png' );
+		$actual = $this->handler->getMetadata( $file, "$this->filePath/$filename" );
 //		$this->assertEquals( unserialize( $expected ), unserialize( $actual ) );
 		$this->assertEquals( ( $expected ), ( $actual ) );
 	}
@@ -84,5 +91,10 @@ class PNGHandlerTest extends MediaWikiTestCase {
 			array( 'rgb-na-png.png', 'a:6:{s:10:"frameCount";i:0;s:9:"loopCount";i:1;s:8:"duration";d:0;s:8:"bitDepth";i:8;s:9:"colorType";s:10:"truecolour";s:8:"metadata";a:1:{s:15:"_MW_PNG_VERSION";i:1;}}' ),
 			array( 'xmp.png', 'a:6:{s:10:"frameCount";i:0;s:9:"loopCount";i:1;s:8:"duration";d:0;s:8:"bitDepth";i:1;s:9:"colorType";s:14:"index-coloured";s:8:"metadata";a:2:{s:12:"SerialNumber";s:9:"123456789";s:15:"_MW_PNG_VERSION";i:1;}}' ), 
 		);
+	}
+
+	private function dataFile( $name, $type ) {
+		return new UnregisteredLocalFile( false, $this->repo,
+			"mwstore://localtesting/data/$name", $type );
 	}
 }

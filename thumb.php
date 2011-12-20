@@ -128,6 +128,7 @@ function wfStreamThumb( array $params ) {
 		$headers[] = 'Vary: Cookie';
 	}
 
+	// Check the source file storage path
 	if ( !$img ) {
 		wfThumbError( 404, wfMsg( 'badtitletext' ) );
 		wfProfileOut( __METHOD__ );
@@ -153,9 +154,9 @@ function wfStreamThumb( array $params ) {
 		// Calculate time
 		wfSuppressWarnings();
 		$imsUnix = strtotime( $imsString );
-		$stat = stat( $sourcePath );
 		wfRestoreWarnings();
-		if ( $stat['mtime'] <= $imsUnix ) {
+		$sourceTsUnix = wfTimestamp( TS_UNIX, $img->getTimestamp() );
+		if ( $sourceTsUnix <= $imsUnix ) {
 			header( 'HTTP/1.1 304 Not Modified' );
 			wfProfileOut( __METHOD__ );
 			return;
@@ -165,10 +166,10 @@ function wfStreamThumb( array $params ) {
 	// Stream the file if it exists already...
 	try {
 		$thumbName = $img->thumbName( $params );
-		if ( $thumbName !== false ) { // valid params?
+		if ( strlen( $thumbName ) ) { // valid params?
 			$thumbPath = $img->getThumbPath( $thumbName );
-			if ( is_file( $thumbPath ) ) {
-				StreamFile::stream( $thumbPath, $headers );
+			if ( $img->getRepo()->fileExists( $thumbPath ) ) {
+				$img->getRepo()->streamFile( $thumbPath, $headers );
 				wfProfileOut( __METHOD__ );
 				return;
 			}
@@ -182,7 +183,7 @@ function wfStreamThumb( array $params ) {
 	// Thumbnail isn't already there, so create the new thumbnail...
 	try {
 		$thumb = $img->transform( $params, File::RENDER_NOW );
-	} catch( Exception $ex ) {
+	} catch ( Exception $ex ) {
 		// Tried to select a page on a non-paged file?
 		$thumb = false;
 	}
@@ -193,18 +194,18 @@ function wfStreamThumb( array $params ) {
 		$errorMsg = wfMsgHtml( 'thumbnail_error', 'File::transform() returned false' );
 	} elseif ( $thumb->isError() ) {
 		$errorMsg = $thumb->getHtmlMsg();
-	} elseif ( !$thumb->getPath() ) {
+	} elseif ( !$thumb->hasFile() ) {
 		$errorMsg = wfMsgHtml( 'thumbnail_error', 'No path supplied in thumbnail object' );
-	} elseif ( $thumb->getPath() == $img->getPath() ) {
-		$errorMsg = wfMsgHtml( 'thumbnail_error', 'Image was not scaled, ' .
-			'is the requested width bigger than the source?' );
+	} elseif ( $thumb->fileIsSource() ) {
+		$errorMsg = wfMsgHtml( 'thumbnail_error',
+			'Image was not scaled, is the requested width bigger than the source?' );
 	}
 
 	if ( $errorMsg !== false ) {
 		wfThumbError( 500, $errorMsg );
 	} else {
 		// Stream the file if there were no errors
-		StreamFile::stream( $thumb->getPath(), $headers );
+		$thumb->streamFile( $headers );
 	}
 
 	wfProfileOut( __METHOD__ );
@@ -298,4 +299,3 @@ $debug
 
 EOT;
 }
-

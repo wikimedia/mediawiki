@@ -60,7 +60,7 @@ abstract class ApiTestCaseUpload extends ApiTestCase {
 	 * @param $filePath String: path to file on the filesystem
 	 */
 	public function deleteFileByContent( $filePath ) {
-		$hash = File::sha1Base36( $filePath );
+		$hash = FSFile::getSha1Base36FromPath( $filePath );
 		$dupes = RepoGroup::singleton()->findBySha1( $hash );
 		$success = true;
 		foreach ( $dupes as $dupe ) {

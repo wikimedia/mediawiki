@@ -115,6 +115,19 @@ $wgNamespaceAliases['Image'] = NS_FILE;
 $wgNamespaceAliases['Image_talk'] = NS_FILE_TALK;
 
 /**
+ * Initialise $wgLockManagers to include basic FS version
+ */
+$wgLockManagers[] = array(
+	'name'          => 'fsLockManager',
+	'class'         => 'FSLockManager',
+	'lockDirectory' => "{$wgUploadDirectory}/lockdir",
+);
+$wgLockManagers[] = array(
+	'name'          => 'nullLockManager',
+	'class'         => 'NullLockManager',
+);
+
+/**
  * Initialise $wgLocalFileRepo from backwards-compatible settings
  */
 if ( !$wgLocalFileRepo ) {
@@ -179,11 +192,65 @@ if ( $wgUseInstantCommons ) {
 	$wgForeignFileRepos[] = array(
 		'class'                   => 'ForeignAPIRepo',
 		'name'                    => 'wikimediacommons',
+		'directory'               => $wgUploadDirectory,
 		'apibase'                 => 'http://commons.wikimedia.org/w/api.php',
 		'hashLevels'              => 2,
 		'fetchDescription'        => true,
 		'descriptionCacheExpiry'  => 43200,
 		'apiThumbCacheExpiry'     => 86400,
+	);
+}
+/*
+ * Add on default file backend config for repos to $wgFileBackends
+ */
+if ( !isset( $wgLocalFileRepo['backend'] ) ) {
+	$wgFileBackends[] = wfBackendForLegacyRepoConf( $wgLocalFileRepo );
+}
+foreach ( $wgForeignFileRepos as &$repo ) {
+	if ( !isset( $repo['backend'] ) ) {
+		$wgFileBackends[] = wfBackendForLegacyRepoConf( $repo );
+	}
+}
+unset( $repo ); // no global pollution; destroy reference
+/*
+ * Get file backend configuration for a given repo
+ * configuration that lacks a backend parameter.
+ * Also updates the repo config to use the backend.
+ */
+function wfBackendForLegacyRepoConf( &$info ) {
+	// Local vars that used to be FSRepo members...
+	$directory = $info['directory'];
+	$deletedDir = isset( $info['deletedDir'] )
+		? $info['deletedDir']
+		: false;
+	$thumbDir = isset( $info['thumbDir'] )
+		? $info['thumbDir']
+		: "{$directory}/thumb";
+	$fileMode = isset( $info['fileMode'] )
+		? $info['fileMode']
+		: 0644;
+
+	// Make a backend name (based on repo name)
+	$backendName = $info['name'] . '-backend';
+	// Update repo config to use this backend
+	$info['backend'] = $backendName;
+	// Disable "deleted" zone in repo config if deleted dir not set
+	if ( $deletedDir !== false ) {
+		$info['zones']['deleted'] = array(
+			'container' => 'images-deleted', 'directory' => '' );
+	}
+	// Get the FS backend configuration
+	return array(
+		'name'           => $backendName,
+		'class'          => 'FSFileBackend',
+		'lockManager'    => 'fsLockManager',
+		'containerPaths' => array(
+			"images-public"  => "{$directory}",
+			"images-temp"    => "{$directory}/temp",
+			"images-thumb"   => $thumbDir,
+			"images-deleted" => $deletedDir
+		),
+		'fileMode'       => $fileMode,
 	);
 }
 
@@ -461,6 +528,11 @@ if ( !is_object( $wgAuth ) ) {
 	$wgAuth = new StubObject( 'wgAuth', 'AuthPlugin' );
 	wfRunHooks( 'AuthPluginSetup', array( &$wgAuth ) );
 }
+
+# Register file lock managers
+LockManagerGroup::singleton()->register( $wgLockManagers );
+# Register file backends
+FileBackendGroup::singleton()->register( $wgFileBackends );
 
 # Placeholders in case of DB error
 $wgTitle = null;
