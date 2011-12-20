@@ -760,7 +760,7 @@ abstract class File {
 			wfDebug( __METHOD__ . " transformation deferred." );
 			// XXX: Pass in the storage path even though we are not rendering anything
 			// and the path is supposed to be an FS path. This is due to getScalerType()
-			// getting called on the path and clobbering the $thumb->getUrl() if it's false.
+			// getting called on the path and clobbering $thumb->getUrl() if it's false.
 			return $this->handler->getTransform( $this, $thumbPath, $thumbUrl, $params );
 		}
 

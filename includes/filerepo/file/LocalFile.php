@@ -1730,7 +1730,7 @@ class LocalFileDeleteBatch {
 			$files[$src] = $this->file->repo->getVirtualUrl( 'public' ) . '/' . rawurlencode( $src );
 		}
 
-		$result = $this->file->repo->fileExistsBatch( $files, FSRepo::FILES_ONLY );
+		$result = $this->file->repo->fileExistsBatch( $files, FileRepo::FILES_ONLY );
 
 		foreach ( $batch as $batchItem ) {
 			if ( $result[$batchItem[0]] ) {
@@ -2018,7 +2018,7 @@ class LocalFileRestoreBatch {
 		foreach ( $triplets as $file )
 			$files[$file[0]] = $file[0];
 
-		$result = $this->file->repo->fileExistsBatch( $files, FSRepo::FILES_ONLY );
+		$result = $this->file->repo->fileExistsBatch( $files, FileRepo::FILES_ONLY );
 
 		foreach ( $triplets as $file ) {
 			if ( $result[$file[0]] ) {
@@ -2041,7 +2041,7 @@ class LocalFileRestoreBatch {
 				rawurlencode( $repo->getDeletedHashPath( $file ) . $file );
 		}
 
-		$result = $repo->fileExistsBatch( $files, FSRepo::FILES_ONLY );
+		$result = $repo->fileExistsBatch( $files, FileRepo::FILES_ONLY );
 
 		foreach ( $batch as $file ) {
 			if ( $result[$file] ) {
@@ -2264,7 +2264,7 @@ class LocalFileMoveBatch {
 	}
 
 	/**
-	 * Generate triplets for FSRepo::storeBatch().
+	 * Generate triplets for FileRepo::storeBatch().
 	 */
 	function getMoveTriplets() {
 		$moves = array_merge( array( $this->cur ), $this->olds );
@@ -2290,7 +2290,7 @@ class LocalFileMoveBatch {
 			$files[$file[0]] = $file[0];
 		}
 
-		$result = $this->file->repo->fileExistsBatch( $files, FSRepo::FILES_ONLY );
+		$result = $this->file->repo->fileExistsBatch( $files, FileRepo::FILES_ONLY );
 		$filteredTriplets = array();
 
 		foreach ( $triplets as $file ) {
