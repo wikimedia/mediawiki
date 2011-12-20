@@ -923,7 +923,7 @@ abstract class File {
 	 * STUB
 	 * Overridden by LocalFile
 	 * @param $options Array Options, which include:
-	 *     'forRefresh' : The purging is only to refresh thumbnails
+	 *     'forThumbRefresh' : The purging is only to refresh thumbnails
 	 */
 	function purgeCache( $options = array() ) {}
 
