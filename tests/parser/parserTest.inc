@@ -165,7 +165,9 @@ class ParserTest {
 			'url'             => 'http://example.com/images',
 			'hashLevels'      => 2,
 			'transformVia404' => false,
-			'backend'         => $backend
+			'backend'         => $backend,
+			'zones'           => array( 'deleted' => array(
+				'container' => 'images-deleted', 'directory' => '' ) )
 		);
 		$wgNamespaceProtection[NS_MEDIAWIKI] = 'editinterface';
 		$wgNamespaceAliases['Image'] = NS_FILE;
