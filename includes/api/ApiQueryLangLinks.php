@@ -171,7 +171,8 @@ class ApiQueryLangLinks extends ApiQueryBase {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=query&prop=langlinks&titles=Main%20Page&redirects=' => 'Get interlanguage links from the [[Main Page]]:',
+			'Get interlanguage links from the [[Main Page]]:',
+			'  api.php?action=query&prop=langlinks&titles=Main%20Page&redirects=',
 		);
 	}
 

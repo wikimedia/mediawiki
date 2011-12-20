@@ -282,10 +282,9 @@ class ApiQueryFilearchive extends ApiQueryBase {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=query&list=filearchive' => array(
-				'Simple Use',
-				'Show a list of all deleted files',
-			),
+			'Simple Use',
+			' Show a list of all deleted files',
+			'  api.php?action=query&list=filearchive',
 		);
 	}
 

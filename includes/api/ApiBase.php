@@ -267,29 +267,7 @@ abstract class ApiBase extends ContextSource {
 				$msg .= "Parameters:\n$paramsMsg";
 			}
 
-			$examples = $this->getExamples();
-			if ( $examples !== false ) {
-				if ( !is_array( $examples ) ) {
-					$examples = array(
-						$examples
-					);
-				}
-				$msg .= "Example" . ( count( $examples ) > 1 ? 's' : '' ) . ":\n";
-				foreach( $examples as $k => $v ) {
-					if ( is_numeric( $k ) ) {
-						$msg .= "  $v\n";
-					} else {
-						if ( is_array( $v ) ) {
-							$msg .= implode( "\n", array_map( array( $this, 'indentExampleText' ), $v ) );
-						} else {
-							$msg .= "  $v";
-						}
-						$msg .= "\n    $k";
-					}
-				}
-			}
-
-			$msg .= "\n";
+			$msg .= $this->makeHelpArrayToString( $lnPrfx, "Example", $this->getExamples() );
 			$msg .= $this->makeHelpArrayToString( $lnPrfx, "Help page", $this->getHelpUrls() );
 
 			if ( $this->getMain()->getShowVersions() ) {
@@ -311,14 +289,6 @@ abstract class ApiBase extends ContextSource {
 		}
 
 		return $msg;
-	}
-
-	/**
-	 * @param $item string
-	 * @return string
-	 */
-	private function indentExampleText( $item ) {
-		return "  " . $item;
 	}
 
 	/**
