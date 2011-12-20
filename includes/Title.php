@@ -2775,15 +2775,6 @@ class Title {
 	}
 
 	/**
-	 * Returns a bool to say whether the Article ID for this title has already been loaded
-	 *
-	 * @return bool
-	 */
-	public function isArticleIDLoaded() {
-		return $this->mArticleID != -1;
-	}
-
-	/**
 	 * Get the article ID for this Title from the link cache,
 	 * adding it if necessary
 	 *
@@ -2801,8 +2792,10 @@ class Title {
 			$linkCache->clearLink( $this );
 			$this->mArticleID = $linkCache->addLinkObj( $this );
 			$linkCache->forUpdate( $oldUpdate );
-		} else if ( -1 == $this->mArticleID ) {
-			$this->mArticleID = $linkCache->addLinkObj( $this );
+		} else {
+			if ( -1 == $this->mArticleID ) {
+				$this->mArticleID = $linkCache->addLinkObj( $this );
+			}
 		}
 		return $this->mArticleID;
 	}
