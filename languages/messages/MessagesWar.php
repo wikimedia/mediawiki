@@ -314,7 +314,7 @@ $1',
 'nstab-main'      => 'Pakli',
 'nstab-user'      => 'Pakli hin gumaramit',
 'nstab-media'     => 'Pakli hin medya',
-'nstab-special'   => 'Nahiurog nga pakli',
+'nstab-special'   => 'Pinaurog nga pakli',
 'nstab-project'   => 'Pakli han proyekto',
 'nstab-image'     => 'Fayl',
 'nstab-mediawiki' => 'Mensahe',
@@ -330,7 +330,7 @@ Bangin liwat ini usa nga bug dida han software nga ginagamit han {{SITENAME}}.',
 'nosuchspecialpage' => 'Waray sugad nga nahiurog nga pakli',
 'nospecialpagetext' => '<strong>Naghangyo ka hin diri-puyde nga nahiurog nga pakli.</strong>
 
-In lista o talaan hin puyde nga mga nahiurog nga pakli mabibilngan ha [[Special:SpecialPages|{{int:specialpages}}]].',
+In lista o talaan hin puyde nga mga pinaurog nga pakli mabibilngan ha [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Sayop',
@@ -346,7 +346,7 @@ An kataposan nga ginsari nga kweri han database amo an:
 "$1"
 tikang ha sakob han funsyon nga "$2".
 Nagbalik hin sayop an database nga "$3: $4"',
-'laggedslavemode'      => 'Bantay: It pakli bangin waray mga kabag-ohan nga bag-o.',
+'laggedslavemode'      => 'Pahimatngon: It pakli bangin waray mga kabag-ohan nga bag-o.',
 'readonly'             => 'Gintrankahan an database',
 'enterlockreason'      => 'Pagbutang hin rason para han pagtrangka, upod hin banabana kon san-o kukuha-on an pagtrangka',
 'internalerror'        => 'Sayop ha sulod',
@@ -457,7 +457,7 @@ Nasaad ka liwat nga imo ini kalugaringon nga ginsurat, o ginkopya nimo ini tikan
 '''Ayaw igsumitir an mga buhat nga may ''copyright'' hin waray sarit!'''",
 'nocreate-loggedin'          => 'Diri ka gintutugotan paghimo hin mga bag-o nga pakli.',
 'permissionserrorstext'      => 'Diri ka gintutugotan pagbuhat hito, mahitungod han mga nasunod nga {{PLURAL:$1|katadungan|mga katadungan}}:',
-'recreate-moveddeleted-warn' => "'''Bantayi: Naghihimo ka hin pakli nga ginpara na.'''
+'recreate-moveddeleted-warn' => "'''Pahimatngon: Naghihimo ka hin pakli nga ginpara na.'''
 
 Angay mo hunahunaon kon naangay ba nga magpadayon hin pagliwat hini nga pakli.
 An talaan hin pagpara ngan pagbalhin hini nga pakli ginhahatag dinhi para hin masayon nga pagkita:",
@@ -774,7 +774,7 @@ Alayon pagkita han [$2 nga pakli hin pagpahayag mahitungod hini nga fayl] para h
 'listusers-submit' => 'Pakit-a',
 
 # Special:ActiveUsers
-'activeusers'          => 'Lista han nagios nga mga nagamit',
+'activeusers'          => 'Lista han mga nanggigios nga gumaramit',
 'activeusers-hidebots' => 'Igtago an mga bot',
 
 # Special:ListGroupRights
@@ -873,7 +873,7 @@ Kitaa an $2 para hin talaan han mga gibag-ohi nga mga ginpamara.',
 
 # Move page
 'movearticle'          => 'Balhina an pakli:',
-'moveuserpage-warning' => "'''Bantayi:''' Tibalhin ka hin pakli hin gumaramit. Alayon pagtigaman nga an pakli là an mababalhin ngan an gumaramit in ''diri'' mababalyoan hin ngaran.",
+'moveuserpage-warning' => "'''Pahimatngon:''' Tibalhin ka hin pakli hin gumaramit. Alayon pagtigaman nga an pakli là an mababalhin ngan an gumaramit in ''diri'' mababalyoan hin ngaran.",
 
 # Namespace 8 related
 'allmessagesname'           => 'Ngaran',
@@ -913,7 +913,7 @@ Kitaa an $2 para hin talaan han mga gibag-ohi nga mga ginpamara.',
 'tooltip-t-contributions'        => 'Kitaa an talaan hin mga amot hini nga nágámit',
 'tooltip-t-emailuser'            => 'Padad-i hin e-mail ini nga nágámit',
 'tooltip-t-upload'               => 'Pagkarga hin mga fayl',
-'tooltip-t-specialpages'         => 'Talaan hin mga ispisyal nga pakli',
+'tooltip-t-specialpages'         => 'Talaan hin mga pinaurog nga pakli',
 'tooltip-t-print'                => 'Maipapatik nga bersyon hini nga pakli',
 'tooltip-t-permalink'            => 'Sumpay nga unob ha hini nga pagliwat han pakli',
 'tooltip-ca-nstab-main'          => 'Kitaa an sulod nga pakli',

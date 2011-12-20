@@ -1732,6 +1732,26 @@ Se o problema persiste contacte cun [[Special:ListUsers/sysop|administrador]] do
 'upload-unknown-size'       => 'Tamaño descoñecido',
 'upload-http-error'         => 'Produciuse un erro HTTP: $1',
 
+# File backend
+'backend-fail-stream'        => 'Non se puido transmitir o ficheiro "$1".',
+'backend-fail-backup'        => 'Non se puido facer unha copia de seguridade do ficheiro "$1".',
+'backend-fail-notexists'     => 'Non existe o ficheiro "$1".',
+'backend-fail-hashes'        => 'Non se puideron obter os hashes do ficheiro por comparación.',
+'backend-fail-invalidpath'   => '"$1" non é unha ruta de almacenamento válida.',
+'backend-fail-delete'        => 'Non se deu borrado o ficheiro "$1".',
+'backend-fail-alreadyexists' => 'O ficheiro "$1" xa existe.',
+'backend-fail-store'         => 'Non se deu almacenado o ficheiro "$1" en "$2"',
+'backend-fail-copy'          => 'Non se deu copiado o ficheiro "$1" a "$2"',
+'backend-fail-move'          => 'Non se deu trasladado o ficheiro "$1" a "$2"',
+'backend-fail-opentemp'      => 'Non se puido abrir o ficheiro temporal.',
+'backend-fail-writetemp'     => 'Non se puido escribir no ficheiro temporal.',
+'backend-fail-closetemp'     => 'Non se puido pechar o ficheiro temporal.',
+'backend-fail-read'          => 'Non se puido ler o ficheiro "$1"',
+'backend-fail-create'        => 'Non se puido crear o ficheiro "$1"',
+
+# Lock manager
+'lockmanager-notlocked' => 'Non se puido desbloquear a clave "$1". Non está bloqueada.',
+
 # ZipDirectoryReader
 'zip-file-open-error' => 'Atopouse un erro ao abrir o ficheiro ZIP para realizar as comprobacións.',
 'zip-wrong-format'    => 'O ficheiro especificado non é ZIP.',
@@ -1981,6 +2001,7 @@ As entradas <del>riscadas</del> xa foron resoltas.',
 'mostimages'              => 'Ficheiros máis usados',
 'mostrevisions'           => 'Artigos con máis revisións',
 'prefixindex'             => 'Todas as páxinas coas iniciais',
+'prefixindex-namespace'   => 'Todas as páxinas con prefixo (espazo de nomes $1)',
 'shortpages'              => 'Páxinas curtas',
 'longpages'               => 'Páxinas longas',
 'deadendpages'            => 'Páxinas sen ligazóns cara a outras',
@@ -2734,12 +2755,14 @@ Por favor, visite a [//www.mediawiki.org/wiki/Localisation localización MediaWi
 'thumbnail-more'           => 'Ampliar',
 'filemissing'              => 'O ficheiro non se dá atopado',
 'thumbnail_error'          => 'Erro ao crear a miniatura: $1',
-'djvu_page_error'          => 'Páxina DjVu fóra de rango',
-'djvu_no_xml'              => 'Foi imposíbel obter o XML para o ficheiro DjVu',
+'djvu_page_error'          => 'A páxina DjVu está fóra do rango',
+'djvu_no_xml'              => 'Non se puido obter o XML para o ficheiro DjVu',
+'thumbnail-temp-create'    => 'Non se puido crear o ficheiro de miniatura temporal',
+'thumbnail-dest-create'    => 'Non se puido gardar a miniatura no destino',
 'thumbnail_invalid_params' => 'Parámetros de miniatura non válidos',
-'thumbnail_dest_directory' => 'Foi imposíbel crear un directorio de destino',
+'thumbnail_dest_directory' => 'Non se puido crear o directorio de destino',
 'thumbnail_image-type'     => 'Tipo de imaxe non soportado',
-'thumbnail_gd-library'     => 'Configuración da libraría GD incompleta: falta a función $1',
+'thumbnail_gd-library'     => 'Configuración da libraría GD incompleta: Falta a función $1',
 'thumbnail_image-missing'  => 'Parece que falta o ficheiro: $1',
 
 # Special:Import

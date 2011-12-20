@@ -2055,6 +2055,7 @@ Každý řádek obsahuje odkaz na první a druhé přesměrování a k tomu cíl
 'mostimages'              => 'Nejpoužívanější soubory',
 'mostrevisions'           => 'Stránky s nejvíce revizemi',
 'prefixindex'             => 'Seznam stránek dle začátku názvu',
+'prefixindex-namespace'   => 'Seznam stránek dle začátku názvu (jmenný prostor $1)',
 'shortpages'              => 'Nejkratší stránky',
 'longpages'               => 'Nejdelší stránky',
 'deadendpages'            => 'Slepé stránky',

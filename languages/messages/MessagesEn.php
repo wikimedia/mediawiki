@@ -2235,25 +2235,7 @@ If the problem persists, contact an [[Special:ListUsers/sysop|administrator]].',
 'upload-unknown-size'       => 'Unknown size',
 'upload-http-error'         => 'An HTTP error occured: $1',
 
-# ZipDirectoryReader
-'zip-file-open-error' => 'An error was encountered when opening the file for ZIP checks.',
-'zip-wrong-format'    => 'The specified file was not a ZIP file.',
-'zip-bad'             => 'The file is a corrupt or otherwise unreadable ZIP file.
-It cannot be properly checked for security.',
-'zip-unsupported'     => 'The file is a ZIP file which uses ZIP features not supported by MediaWiki.
-It cannot be properly checked for security.',
-
-# Special:UploadStash
-'uploadstash'          => 'Upload stash',
-'uploadstash-summary'  => 'This page provides access to files which are uploaded (or in the process of uploading) but are not yet published to the wiki. These files are not visible to anyone but the user who uploaded them.',
-'uploadstash-clear'    => 'Clear stashed files',
-'uploadstash-nofiles'  => 'You have no stashed files.',
-'uploadstash-badtoken' => 'Performing of that action was unsuccessful, perhaps because your editing credentials expired. Try again.',
-'uploadstash-errclear' => 'Clearing the files was unsuccessful.',
-'uploadstash-refresh'  => 'Refresh the list of files',
-'invalid-chunk-offset' => 'Invalid chunk offset',
-
-# file backend
+# File backend
 'backend-fail-stream'        => 'Could not stream file $1.',
 'backend-fail-backup'        => 'Could not backup file $1.',
 'backend-fail-notexists'     => 'The file $1 does not exist.',
@@ -2271,17 +2253,35 @@ It cannot be properly checked for security.',
 'backend-fail-read'          => 'Could not read file $1.',
 'backend-fail-create'        => 'Could not create file $1.',
 
-# lock manager
+# Lock manager
 'lockmanager-notlocked'         => 'Could not unlock key "$1"; it is not locked.',
 'lockmanager-fail-closelock'    => 'Could not close lock file for key "$1".',
 'lockmanager-fail-deletelock'   => 'Could not delete lock file for key "$1".',
-'lockmanager-fail-openlock'     => 'Could not open lock file for key "$1".',
 'lockmanager-fail-acquirelock'  => 'Could not acquire lock for key "$1".',
+'lockmanager-fail-openlock'     => 'Could not open lock file for key "$1".',
 'lockmanager-fail-releaselock'  => 'Could not release lock for key "$1".',
 'lockmanager-fail-acquirelocks' => 'Could not acquire locks for keys "$1".',
 'lockmanager-fail-db-bucket'    => 'Could not contact enough lock databases in bucket $1.',
 'lockmanager-fail-db-release'   => 'Could not release locks on database $1.',
 'lockmanager-fail-svr-release'  => 'Could not release locks on server $1.',
+
+# ZipDirectoryReader
+'zip-file-open-error' => 'An error was encountered when opening the file for ZIP checks.',
+'zip-wrong-format'    => 'The specified file was not a ZIP file.',
+'zip-bad'             => 'The file is a corrupt or otherwise unreadable ZIP file.
+It cannot be properly checked for security.',
+'zip-unsupported'     => 'The file is a ZIP file which uses ZIP features not supported by MediaWiki.
+It cannot be properly checked for security.',
+
+# Special:UploadStash
+'uploadstash'          => 'Upload stash',
+'uploadstash-summary'  => 'This page provides access to files which are uploaded (or in the process of uploading) but are not yet published to the wiki. These files are not visible to anyone but the user who uploaded them.',
+'uploadstash-clear'    => 'Clear stashed files',
+'uploadstash-nofiles'  => 'You have no stashed files.',
+'uploadstash-badtoken' => 'Performing of that action was unsuccessful, perhaps because your editing credentials expired. Try again.',
+'uploadstash-errclear' => 'Clearing the files was unsuccessful.',
+'uploadstash-refresh'  => 'Refresh the list of files',
+'invalid-chunk-offset' => 'Invalid chunk offset',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Access denied',

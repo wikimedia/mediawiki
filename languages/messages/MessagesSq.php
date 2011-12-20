@@ -431,22 +431,22 @@ $1",
 'aboutpage'            => 'Project:Rreth',
 'copyright'            => 'Përmbajtja është në disponim nëpërmjet licencës $1.',
 'copyrightpage'        => '{{ns:project}}:Të drejtat e autorit',
-'currentevents'        => 'Ngjarjet e tanishme',
-'currentevents-url'    => 'Project:Ngjarjet e tanishme',
+'currentevents'        => 'Ngjarjet aktuale',
+'currentevents-url'    => 'Project:Ngjarjet aktuale',
 'disclaimers'          => 'Shfajësimet',
 'disclaimerpage'       => 'Project:Shfajësimet e përgjithshme',
 'edithelp'             => 'Ndihmë për redaktim',
-'edithelppage'         => 'Help:Si redaktohet një faqe',
+'edithelppage'         => 'Help:Redaktimi',
 'helppage'             => 'Help:Përmbajtje',
 'mainpage'             => 'Faqja kryesore',
 'mainpage-description' => 'Faqja kryesore',
-'policy-url'           => 'Project:Rregullat',
+'policy-url'           => 'Project:Politika e rregullave',
 'portal'               => 'Portali i komunitetit',
 'portal-url'           => 'Project:Portali i komunitetit',
 'privacy'              => 'Politika e anonimitetit',
 'privacypage'          => 'Project:Politika e anonimitetit',
 
-'badaccess'        => 'Gabim leje',
+'badaccess'        => 'Leje: gabim',
 'badaccess-group0' => 'Nuk ju lejohet veprimi i kërkuar',
 'badaccess-groups' => 'Veprimi që kërkuat lejohet vetëm nga përdorues të {{PLURAL:$2|grupit|grupeve}}: $1.',
 
@@ -455,7 +455,7 @@ $1",
 
 'ok'                      => 'Ok',
 'retrievedfrom'           => 'Marrë nga "$1"',
-'youhavenewmessages'      => 'Keni $1 ($2).',
+'youhavenewmessages'      => 'Ju keni $1 ($2).',
 'newmessageslink'         => 'mesazhe të reja',
 'newmessagesdifflink'     => 'ndryshimi i fundit',
 'youhavenewmessagesmulti' => 'Ju keni mesazhe të reja në $1',
@@ -824,13 +824,13 @@ Ju lutemi përfshini këto detaje në të gjitha kërkesat që i bëni.',
 
 Fjalëkalimi për këtë llogari mundet me u ndryshue në faqen ''[[Special:ChangePassword|ndrysho fjalëkalimin]]'' mbas kyçjes.",
 'newarticle'                       => '(I Ri)',
-'newarticletext'                   => "Keni përcjellë nji vegëz te nji faqe që nuk ekziston.
-Për me krijue këtë faqe, shkrueni në kutinë mâ poshtë (shih [[{{MediaWiki:Helppage}}|faqja e ndihmës]] për mâ shumë informata).
-Nëse keni hy këtu gabimisht klikoni butonin '''mbrapa''' të shfletuesit.",
-'anontalkpagetext'                 => "----'' Kjo është një faqe diskutimi për një përdorues anonim i cili nuk ka krijuar akoma një account, ose të cilët nuk e përdorin atë. 
- Prandaj, ne duhet të përdorim adresën IP numerike për të identifikuar tij / saj. 
- Të tillë një adresë IP mund të ndahet nga disa përdorues. 
- Në qoftë se jeni një përdorues anonim dhe mendoni se komente të parëndësishme janë drejtuar ndaj jush, ju lutem [[Special:UserLogin/signup|krijoni një llogari]] ose [[Special:UserLogin|hyni brënda]] për të shmangur konfuzionin e ardhshme me përdorues të tjerë anonim .''",
+'newarticletext'                   => "Ju keni ndjekur nje lidhje drejt një faqeje që nuk ekziston.
+Për ta krijuar këtë faqe ju mund të shkruani në kutinë e mëposhtme (shih [[{{MediaWiki:Helppage}}|faqen e ndihmës]] për më shumë informacion).
+Nëse ju keni mbërritur këtu gabimisht, atëherë klikoni butonin '''pas''' të shfletuesit tuaj.",
+'anontalkpagetext'                 => "----'' Kjo është një faqe diskutimi për një përdorues anonim i cili nuk ka krijuar akoma një llogari, ose qe nuk e përdor atë. 
+ Prandaj, ne duhet të përdorim adresën IP numerike për identifikimin e tij. 
+Kjo adresë IP mund të përdoret nga disa përdorues.
+ Në qoftë se jeni një përdorues anonim dhe mendoni se ndaj jush janë bërë komente të parëndësishme, ju lutem [[Special:UserLogin/signup|krijoni një llogari]] ose [[Special:UserLogin|identifikohuni]] për të shmangur konfuzionin në të ardhmen me përdorues të tjerë anonim .''",
 'noarticletext'                    => 'Momentalisht nuk ka tekst në këtë faqe.
 Ju mundeni [[Special:Search/{{PAGENAME}}|me kërkue këtë titull]] në faqe tjera,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} me kërkue në regjistrat tematikisht të afërm],
@@ -841,8 +841,8 @@ Ju mundeni [[Special:Search/{{PAGENAME}}|me kërku këtë titull]] në faqe tjer
 apo [{{fullurl:{{FULLPAGENAME}}|action=edit}} me redaktu këtë faqe]</span>.',
 'userpage-userdoesnotexist'        => 'Llogaria e përdoruesit "<nowiki>$1</nowiki>" nuk është hapur. Ju lutem mendohuni mirë nëse dëshironi të krijoni/redaktoni këtë faqe.',
 'userpage-userdoesnotexist-view'   => 'Profili i përdoruesit "$1" nuk është i regjistruar.',
-'blocked-notice-logextract'        => 'Ky përdorues është bllokuar aktualisht.
-Regjistri i bllokuar hyrjen e fundit është më poshtë, për referencë:',
+'blocked-notice-logextract'        => "Ky përdorues është  aktualisht i bllokuar.
+Më poshtë mund t'i referoheni shënimit të regjistruar për bllokimin e fundit:",
 'clearyourcache'                   => "''Shënim:''' Pasi të ruani parapëlqimet ose pasi të kryeni ndryshimet, duhet të pastroni ''cache''-në e shfletuesit tuaj për të parë ndryshimet: për '''Mozilla/Safari/Konqueror''' shtypni ''Ctrl+Shift+Reload'' (ose ''ctrl+shift+r''), për '''IE''' ''Ctrl+f5'', '''Opera''': ''F5''.",
 'usercssyoucanpreview'             => "'''Këshillë:''' Përdorni butonin 'Trego parapamjen' për të provuar ndryshimet tuaja të faqeve css/js përpara se të kryeni ndryshimet.",
 'userjsyoucanpreview'              => "'''Këshillë:''' Përdorni butonin 'Trego parapamjen' për të provuar ndryshimet tuaja të faqeve css/js përpara se të kryeni ndryshimet.",

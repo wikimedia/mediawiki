@@ -186,7 +186,7 @@ $messages = array(
 
 # Categories related messages
 'pagecategories'                 => '{{PLURAL:$1|பகுப்பு|பகுப்புகள்}}',
-'category_header'                => '"$1" பகுப்பிலுள்ள கட்டுரைகள்',
+'category_header'                => '"$1" பகுப்பிலுள்ள பக்கங்கள்',
 'subcategories'                  => 'துணைப் பகுப்புகள்',
 'category-media-header'          => '"$1" பகுப்பில் உள்ள ஊடகங்கள்',
 'category-empty'                 => 'இப்பகுப்பில் தற்போது ஊடகங்கள் யாதும் இல்லை.',
@@ -236,7 +236,7 @@ $messages = array(
 'vector-view-create'             => 'உருவாக்கவும்',
 'vector-view-edit'               => 'தொகு',
 'vector-view-history'            => 'வரலாற்றைக் காட்டவும்',
-'vector-view-view'               => 'வாசிக்கவும்',
+'vector-view-view'               => 'படிக்கவும்',
 'vector-view-viewsource'         => 'மூலத்தைக் காட்டவும்',
 'actions'                        => 'செயல்கள்',
 'namespaces'                     => 'பெயர்வெளிகள்',
@@ -261,7 +261,7 @@ $messages = array(
 'view'              => 'பார்வையிடு',
 'edit'              => 'தொகு',
 'create'            => 'உருவாக்கு',
-'editthispage'      => 'இப்பக்கத்தை தொகு',
+'editthispage'      => 'இப்பக்கத்தைத் தொகு',
 'create-this-page'  => 'இப்பக்கத்தை உருவாக்கு',
 'delete'            => 'நீக்கவும்',
 'deletethispage'    => 'இப்பக்கத்தை நீக்கு',
@@ -276,7 +276,7 @@ $messages = array(
 'talkpagelinktext'  => 'பேச்சு',
 'specialpage'       => 'சிறப்புப் பக்கம்',
 'personaltools'     => 'தனிப்பட்ட பயன்பாட்டுக் கருவிகள்',
-'postcomment'       => 'புதிய கருத்து',
+'postcomment'       => 'புதிய பகுதி',
 'articlepage'       => 'உள்ளடக்கப் பக்கத்தைப் பார்',
 'talk'              => 'உரையாடல்',
 'views'             => 'பார்வைகள்',
@@ -290,7 +290,7 @@ $messages = array(
 'categorypage'      => 'பகுப்புப் பக்கத்தைப் பார்',
 'viewtalkpage'      => 'கலந்துரையாடல்களைப் பார்',
 'otherlanguages'    => 'ஏனைய மொழிகள்',
-'redirectedfrom'    => '($1 இலிருந்து மீள் வழிப்படுத்தப்பட்டது)',
+'redirectedfrom'    => '($1 இலிருந்து வழிமாற்றப்பட்டது)',
 'redirectpagesub'   => 'பக்கவழிமாற்றுப் பக்கம்',
 'lastmodifiedat'    => 'இப்பக்கம் கடைசியாக $1, $2 மணிக்குத் திருத்தப்பட்டது.',
 'viewcount'         => 'இப்பக்கம் {{PLURAL:$1|ஒரு முறை|$1 முறைகள்}} அணுகப்பட்டது.',
@@ -1456,6 +1456,10 @@ $1',
 'upload-unknown-size'       => 'தெரியாத அளவு',
 'upload-http-error'         => 'ஒரு HTTP பிழை ஏற்பட்டுள்ளது:$1',
 
+# Lock manager
+'lockmanager-fail-db-release'  => 'தரவுதளம் $1ஐ பூட்டியதை வெளியிட முடியவில்லை',
+'lockmanager-fail-svr-release' => 'சேவகன் $1ல் பூட்டியதை வெளியிட முடியவில்லை',
+
 # ZipDirectoryReader
 'zip-file-open-error' => 'இந்த கோப்பை zip சரிபார்க்க திறக்கும் போது பிழை எதிர்ப்பட்டுள்ளது.',
 'zip-wrong-format'    => 'குறிப்பிட்ட கோப்பு zip கோப்பு இல்லை.',
@@ -1486,6 +1490,7 @@ $1',
 'img-auth-nofile'       => 'கோப்பு " $1 " இல்லை.',
 'img-auth-isdir'        => 'நீங்கள் ஒரு கோப்புறையை அணுக முயற்சிக்கிறீர்கள் " $1 ".
 கோப்பு அணுகல் மட்டுமே அனுமதிக்கப்படும்.',
+'img-auth-streaming'    => 'தொடரோடி "$1".',
 
 # HTTP errors
 'http-invalid-url' => 'செல்லாத உரலி: $1',
@@ -1595,7 +1600,7 @@ $1',
 'unusedtemplateswlh'  => 'ஏனைய இணைப்புகள்',
 
 # Random page
-'randompage'         => 'குறிப்பில்வழிப் பக்கம்',
+'randompage'         => 'ஏதாவது ஒரு பக்கம்',
 'randompage-nopages' => 'இந்த {{PLURAL:$2|namespace|பெயர்வெளிகளில்}}: $1 பக்கங்கள் எதுவுமில்லை.',
 
 # Random redirect
