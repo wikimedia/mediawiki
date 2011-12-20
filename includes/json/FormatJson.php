@@ -54,10 +54,8 @@ class FormatJson {
 	 */
 	public static function decode( $value, $assoc = false ) {
 		if ( !function_exists( 'json_decode' ) ) {
-			if( $assoc )
-				$json = new Services_JSON( SERVICES_JSON_LOOSE_TYPE );
-			else
-				$json = new Services_JSON();
+			$json = $assoc ? new Services_JSON( SERVICES_JSON_LOOSE_TYPE ) :
+				new Services_JSON();
 			$jsonDec = $json->decode( $value );
 			return $jsonDec;
 		} else {
