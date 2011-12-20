@@ -91,7 +91,7 @@ class EditPage {
 	var $save = false, $preview = false, $diff = false;
 	var $minoredit = false, $watchthis = false, $recreate = false;
 	var $textbox1 = '', $textbox2 = '', $summary = '', $nosummary = false;
-	var $edittime = '', $section = '', $starttime = '';
+	var $edittime = '', $section = '', $sectiontitle = '', $starttime = '';
 	var $oldid = 0, $editintro = '', $scrolltop = null, $bot = true;
 
 	# Placeholders for text injection by hooks (must be HTML)
@@ -480,7 +480,7 @@ class EditPage {
 	}
 
 	/**
-	 * @todo document
+	 * This function collects the form data and uses it to populate various member variables.
 	 * @param $request WebRequest
 	 */
 	function importFormData( &$request ) {
@@ -510,15 +510,25 @@ class EditPage {
 			# Truncate for whole multibyte characters. +5 bytes for ellipsis
 			$this->summary = $wgLang->truncate( $request->getText( 'wpSummary' ), 250 );
 
-			# Remove extra headings from summaries and new sections.
-			$this->summary = preg_replace('/^\s*=+\s*(.*?)\s*=+\s*$/', '$1', $this->summary);
+			# If the summary consists of a heading, e.g. '==Foobar==', extract the title from the
+			# header syntax, e.g. 'Foobar'. This is mainly an issue when we are using wpSummary for
+			# section titles.
+			$this->summary = preg_replace( '/^\s*=+\s*(.*?)\s*=+\s*$/', '$1', $this->summary );
+			
+			# Treat sectiontitle the same way as summary.
+			# Note that wpSectionTitle is not yet a part of the actual edit form, as wpSummary is
+			# currently doing double duty as both edit summary and section title. Right now this
+			# is just to allow API edits to work around this limitation, but this should be
+			# incorporated into the actual edit form when EditPage is rewritten (Bugs 18654, 26312).
+			$this->sectiontitle = $wgLang->truncate( $request->getText( 'wpSectionTitle' ), 250 );
+			$this->sectiontitle = preg_replace( '/^\s*=+\s*(.*?)\s*=+\s*$/', '$1', $this->sectiontitle );
 
 			$this->edittime = $request->getVal( 'wpEdittime' );
 			$this->starttime = $request->getVal( 'wpStarttime' );
 
 			$this->scrolltop = $request->getIntOrNull( 'wpScrolltop' );
 
-			if ($this->textbox1 === '' && $request->getVal( 'wpTextbox1' ) === null) {
+			if ( $this->textbox1 === '' && $request->getVal( 'wpTextbox1' ) === null ) {
 				// wpTextbox1 field is missing, possibly due to being "too big"
 				// according to some filter rules such as Suhosin's setting for
 				// suhosin.request.max_value_length (d'oh)
@@ -585,19 +595,24 @@ class EditPage {
 		} else {
 			# Not a posted form? Start with nothing.
 			wfDebug( __METHOD__ . ": Not a posted form.\n" );
-			$this->textbox1  = '';
-			$this->summary   = '';
-			$this->edittime  = '';
-			$this->starttime = wfTimestampNow();
-			$this->edit      = false;
-			$this->preview   = false;
-			$this->save      = false;
-			$this->diff      = false;
-			$this->minoredit = false;
-			$this->watchthis = $request->getBool( 'watchthis', false ); // Watch may be overriden by request parameters
-			$this->recreate  = false;
-
+			$this->textbox1     = '';
+			$this->summary      = '';
+			$this->sectiontitle = '';
+			$this->edittime     = '';
+			$this->starttime    = wfTimestampNow();
+			$this->edit         = false;
+			$this->preview      = false;
+			$this->save         = false;
+			$this->diff         = false;
+			$this->minoredit    = false;
+			$this->watchthis    = $request->getBool( 'watchthis', false ); // Watch may be overriden by request parameters
+			$this->recreate     = false;
+			
+			// When creating a new section, we can preload a section title by passing it as the
+			// preloadtitle parameter in the URL (Bug 13100)
 			if ( $this->section == 'new' && $request->getVal( 'preloadtitle' ) ) {
+				$this->sectiontitle = $request->getVal( 'preloadtitle' );
+				// Once wpSummary isn't being use for setting section titles, we should delete this.
 				$this->summary = $request->getVal( 'preloadtitle' );
 			}
 			elseif ( $this->section != 'new' && $request->getVal( 'summary' ) ) {
@@ -1116,16 +1131,32 @@ class EditPage {
 
 			$text = $this->textbox1;
 			$result['sectionanchor'] == '';
-			if ( $this->section == 'new' && $this->summary != '' ) {
-				$text = wfMsgForContent( 'newsectionheaderdefaultlevel', $this->summary ) . "\n\n" . $text;
-			
-				# Jump to the new section
-				$result['sectionanchor'] = $wgParser->guessLegacySectionNameFromWikiText( $this->summary );
+			if ( $this->section == 'new' ) {
+				if ( $this->sectiontitle != '' ) {
+					// Insert the section title above the content.
+					$text = wfMsgForContent( 'newsectionheaderdefaultlevel', $this->sectiontitle ) . "\n\n" . $text;
+					
+					// Jump to the new section
+					$result['sectionanchor'] = $wgParser->guessLegacySectionNameFromWikiText( $this->sectiontitle );
+					
+					// If no edit summary was specified, create one automatically from the section
+					// title and have it link to the new section. Otherwise, respect the summary as
+					// passed.
+					if ( $this->summary == '' ) {
+						$cleanSectionTitle = $wgParser->stripSectionName( $this->sectiontitle );
+						$this->summary = wfMsgForContent( 'newsectionsummary', $cleanSectionTitle );
+					}
+				} elseif ( $this->summary != '' ) {
+					// Insert the section title above the content.
+					$text = wfMsgForContent( 'newsectionheaderdefaultlevel', $this->summary ) . "\n\n" . $text;
+					
+					// Jump to the new section
+					$result['sectionanchor'] = $wgParser->guessLegacySectionNameFromWikiText( $this->summary );
 
-				# This is a new section, so create a link to the new section
-				# in the revision summary.
-				$cleanSummary = $wgParser->stripSectionName( $this->summary );
-				$this->summary = wfMsgForContent( 'newsectionsummary', $cleanSummary );
+					// Create a link to the new section from the edit summary.
+					$cleanSummary = $wgParser->stripSectionName( $this->summary );
+					$this->summary = wfMsgForContent( 'newsectionsummary', $cleanSummary );
+				}
 			}
 
 			$status->value = self::AS_SUCCESS_NEW_ARTICLE;
