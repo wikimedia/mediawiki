@@ -565,9 +565,13 @@ class SpecialBlock extends FormSpecialPage {
 
 			# Give admins a heads-up before they go and block themselves.  Much messier
 			# to do this for IPs, but it's pretty unlikely they'd ever get the 'block'
-			# permission anyway, although the code does allow for it
+			# permission anyway, although the code does allow for it.
+			# Note: Important to use $target instead of $data['Target']
+			# since both $data['PreviousTarget'] and $target are normalized
+			# but $data['target'] gets overriden by (non-normalized) request variable
+			# from previous request.
 			if( $target === $performer->getName() &&
-				( $data['PreviousTarget'] !== $data['Target'] || !$data['Confirm'] ) )
+				( $data['PreviousTarget'] !== $target || !$data['Confirm'] ) )
 			{
 				return array( 'ipb-blockingself' );
 			}
