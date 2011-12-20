@@ -1873,6 +1873,57 @@ Extensions making use of it:
 
 {{Identical|Internal error}}',
 
+# File backend
+'backend-fail-stream'        => 'Parameters:
+* $1 is a filename.',
+'backend-fail-backup'        => 'Parameters:
+* $1 is a filename.',
+'backend-fail-notexists'     => 'Parameters:
+* $1 is a filename.',
+'backend-fail-notsame'       => 'Parameters:
+* $1 is a filename.',
+'backend-fail-invalidpath'   => 'Parameters:
+* $1 is a storage path.',
+'backend-fail-delete'        => 'Parameters:
+* $1 is a file path.',
+'backend-fail-alreadyexists' => 'Parameters:
+* $1 is a filename.',
+'backend-fail-store'         => 'Parameters:
+* $1 is a filename
+* $2 is a storage path.',
+'backend-fail-copy'          => 'Parameters:
+* $1 is a file path
+* $2 is a file path.',
+'backend-fail-move'          => 'Parameters:
+* $1 is a file path
+* $2 is a file path.',
+'backend-fail-read'          => 'Parameters:
+* $1 is a filename.',
+'backend-fail-create'        => 'Parameters:
+* $1 is a filename.',
+
+# Lock manager
+'lockmanager-notlocked'         => 'Parameters:
+* $1 is a key name.',
+'lockmanager-fail-closelock'    => 'Parameters:
+* $1 is a key name.',
+'lockmanager-fail-deletelock'   => 'Parameters:
+* $1 is a key name.',
+'lockmanager-fail-acquirelock'  => 'Parameters:
+* $1 is a key name.',
+'lockmanager-fail-openlock'     => 'Parameters:
+* $1 is a key name.',
+'lockmanager-fail-releaselock'  => 'Parameters:
+* $1 is a key name.',
+'lockmanager-fail-acquirelocks' => 'Parameters:
+* $1 is a list of key names.',
+'lockmanager-fail-db-bucket'    => 'Parameters:
+* $1 is a bucket name.',
+'lockmanager-fail-db-release'   => 'Parameters:
+* $1 is a database name.',
+'lockmanager-fail-svr-release'  => 'Parameters:
+* $1 is a server name.',
+
 # ZipDirectoryReader
 'zip-unsupported' => "Perhaps translations of 'software' can be used instead of 'features' and 'understood' or 'handled' instead of 'supported'.",
 

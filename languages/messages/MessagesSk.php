@@ -1858,7 +1858,7 @@ Pri filtrovaní podľa používateľa sa zobrazia iba súbory, ktorých najnovš
 'filehist-filesize'         => 'veľkosť súboru',
 'filehist-comment'          => 'komentár',
 'filehist-missing'          => 'Súbor chýba',
-'imagelinks'                => 'Využitie súboru',
+'imagelinks'                => 'Použitie súboru',
 'linkstoimage'              => 'Na tento obrázok {{PLURAL:$1|odkazuje nasledujúca stránka|odkazujú nasledujúce $1 stránky|odkazuje nasledujúcich $1 stránok}}:',
 'linkstoimage-more'         => 'Viac ako $1 {{PLURAL:$1|stránka odkazuje|stránky odkazujú|stránok odkazuje}} na tento súbor.
 Nasledovný zoznam zobrazuje {{PLURAL:$1|prvú stránku odkazujúcu|prvé $1 stránky odkazujúce|prvých $1 stránok odkazujúcich}} iba na tento súbor.
@@ -3789,14 +3789,19 @@ Obrázky sa zobrazia v plnom rozlíšení, ostatné typy súborov sa spustia v p
 'newuserlog-byemail'                  => 'heslo poslané emailom',
 
 # Feedback
-'feedback-subject' => 'Predmet:',
-'feedback-message' => 'Správa:',
-'feedback-cancel'  => 'Zrušiť',
-'feedback-submit'  => 'Odoslať komentár',
-'feedback-adding'  => 'Pridávanie komentára na stránku...',
-'feedback-error1'  => 'Chyba: Nerozpoznaný výsledok z API',
-'feedback-error2'  => 'Chyba: Úprava sa nepodarila',
-'feedback-error3'  => 'Chyba: Žiadna odpoveď z API',
-'feedback-close'   => 'Hotovo',
+'feedback-bugornote' => 'Ak ste pripravený podrobne popísať technický problém, prosím pošlite [$1 hlásenie o chybe]. 
+V opačnom prípade môžete použiť zjednodušený formulár nižšie. Váš komentár sa pridá na stránku „[$3 $2]“ spolu s vašim používateľským meno a prehliadačom, ktorý používate.',
+'feedback-subject'   => 'Predmet:',
+'feedback-message'   => 'Správa:',
+'feedback-cancel'    => 'Zrušiť',
+'feedback-submit'    => 'Odoslať komentár',
+'feedback-adding'    => 'Pridáva sa komentár na stránku...',
+'feedback-error1'    => 'Chyba: Nerozpoznaný výsledok z API',
+'feedback-error2'    => 'Chyba: Úprava sa nepodarila',
+'feedback-error3'    => 'Chyba: Žiadna odpoveď z API',
+'feedback-thanks'    => 'Ďakujeme. Váš komentár bol odoslaný na stránku „[$2 $1]“.',
+'feedback-close'     => 'Hotovo',
+'feedback-bugcheck'  => 'Skvelé! Teraz len skontrolujte, či to nie je jedna z už [$1 známych chýb].',
+'feedback-bugnew'    => 'Skontroloval som. Poslať nové hlásenie o chybe.',
 
 );

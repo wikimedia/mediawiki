@@ -671,9 +671,9 @@ $1',
 'dberrortext'          => 'אירעה שגיאת תחביר בשאילתה לבסיס הנתונים.
 שגיאה זו עלולה להעיד על באג בתוכנה.
 השאילתה האחרונה שבוצעה לבסיס הנתונים הייתה:
-<blockquote><tt dir="ltr">$1</tt></blockquote>
-מתוך הפונקציה "<tt dir="ltr">$2</tt>".
-בסיס הנתונים החזיר את השגיאה "<tt dir="ltr">$3: $4</tt>".',
+<blockquote><tt>$1</tt></blockquote>
+מתוך הפונקציה "<tt>$2</tt>".
+בסיס הנתונים החזיר את השגיאה "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'אירעה שגיאת תחביר בשאילתה לבסיס הנתונים.
 השאילתה האחרונה שבוצעה לבסיס הנתונים הייתה:
 "$1"
@@ -1851,6 +1851,36 @@ $1',
 'upload-unknown-size'       => 'גודל בלתי ידוע',
 'upload-http-error'         => 'התרחשה שגיאת HTTP‏: $1',
 
+# File backend
+'backend-fail-stream'        => 'לא הייתה אפשרות להזרים את הקובץ $1.',
+'backend-fail-backup'        => 'לא הייתה אפשרות לגבות את הקובץ $1.',
+'backend-fail-notexists'     => 'הקובץ $1 אינו קיים.',
+'backend-fail-hashes'        => 'לא הייתה אפשרות לקבל גיבובי קבצים עבור ההשוואה.',
+'backend-fail-notsame'       => 'כבר קיים קובץ לא זהה ב־$1.',
+'backend-fail-invalidpath'   => '$1 אינו נתיב אחסון חוקי.',
+'backend-fail-delete'        => 'לא הצליחה מחיקת הקובץ $1.',
+'backend-fail-alreadyexists' => 'הקובץ $1 כבר קיים.',
+'backend-fail-store'         => 'לא הייתה אפשרות לאחסן את הקובץ $1 ב־$2',
+'backend-fail-copy'          => 'לא הייתה אפשרות להעתיק את הקובץ $1 אל $2',
+'backend-fail-move'          => 'לא הייתה אפשרות להעביר את הקובץ $1 אל $2',
+'backend-fail-opentemp'      => 'לא הייתה אפשרות לפתוח את הקובץ הזמני.',
+'backend-fail-writetemp'     => 'לא הייתה אפשרות לכתוב אל הקובץ הזמני.',
+'backend-fail-closetemp'     => 'לא הייתה אפשרות לסגור את הקובץ הזמני.',
+'backend-fail-read'          => 'קריאת הקובץ $1 לא הצליחה',
+'backend-fail-create'        => 'יצירת הקובץ $1 לא הצליחה',
+
+# Lock manager
+'lockmanager-notlocked'         => 'פתיחת נעילת המפתח "$1" לא הצליחה; הוא לא נעול',
+'lockmanager-fail-closelock'    => 'לא הייתה אפשרות לסגור את קובץ הנעילה עבור המפתח "$1".',
+'lockmanager-fail-deletelock'   => 'לא הייתה אפשרות למחוק את קובץ הנעילה עבור המפתח "$1".',
+'lockmanager-fail-acquirelock'  => 'לא הייתה אפשרות לקבל נעילה עבור המפתח "$1".',
+'lockmanager-fail-openlock'     => 'לא הייתה אפשרות לפתוח את קובץ הנעילה עבור המפתח "$1".',
+'lockmanager-fail-releaselock'  => 'לא הייתה אפשרות לשחרר את הנעילה עבור המפתח "$1".',
+'lockmanager-fail-acquirelocks' => 'לא הייתה אפשרות לקבל נעילות עבור המפתחות "$1".',
+'lockmanager-fail-db-bucket'    => 'לא הייתה אפשרות לקבל מספיק מסדי נתונים של נעילות בדלי $1',
+'lockmanager-fail-db-release'   => 'לא הייתה אפשרות לשחרר נעילות על מסד הנתונים $1',
+'lockmanager-fail-svr-release'  => 'לא הייתה אפשרות לשחרר נעילות על השרת $1',
+
 # ZipDirectoryReader
 'zip-file-open-error' => 'אירעה שגיאה במהלך פתיחת הקובץ לבדיקות ZIP.',
 'zip-wrong-format'    => 'הקובץ שצוין אינו קובץ ZIP.',
@@ -2098,6 +2128,7 @@ $1',
 'mostimages'              => 'הקבצים המקושרים ביותר',
 'mostrevisions'           => 'הדפים בעלי מספר העריכות הגבוה ביותר',
 'prefixindex'             => 'רשימת הדפים המתחילים ב…',
+'prefixindex-namespace'   => 'כל הדפים שמתחילים במחרוזת מסומת (במרחב השמות $1)',
 'shortpages'              => 'דפים קצרים',
 'longpages'               => 'דפים ארוכים',
 'deadendpages'            => 'דפים ללא קישורים',
@@ -2849,6 +2880,8 @@ $1',
 'thumbnail_error'          => 'שגיאה ביצירת תמונה ממוזערת: $1',
 'djvu_page_error'          => 'דף ה־DjVu מחוץ לטווח',
 'djvu_no_xml'              => 'לא ניתן היה לקבל את ה־XML עבור קובץ ה־DjVu',
+'thumbnail-temp-create'    => 'לא הצליחה יצירת קובץ תמונה ממוזערת זמני',
+'thumbnail-dest-create'    => 'אין אפשרות לשמור תמונה ממוזערת אל יעדה',
 'thumbnail_invalid_params' => 'פרמטרים שגויים לתמונה הממוזערת',
 'thumbnail_dest_directory' => 'לא ניתן היה ליצור את תיקיית היעד',
 'thumbnail_image-type'     => 'סוג התמונה אינו נתמך',

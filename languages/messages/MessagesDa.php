@@ -1636,6 +1636,14 @@ Informer venligst en [[Special:ListUsers/sysop|systemadministrator]].',
 'upload-unknown-size'       => 'Ukendt størrelse',
 'upload-http-error'         => 'Der opstod en HTTP-fejl: $1',
 
+# File backend
+'backend-fail-notexists'     => 'Filen $1 findes ikke.',
+'backend-fail-delete'        => 'Kunne ikke slette filen $1.',
+'backend-fail-alreadyexists' => 'Filen $1 findes allerede.',
+'backend-fail-copy'          => 'Kunne ikke kopiere filen $1 til $2.',
+'backend-fail-read'          => 'Kunne ikke læse filen $1.',
+'backend-fail-create'        => 'Kunne ikke oprette filen $1.',
+
 # ZipDirectoryReader
 'zip-file-open-error' => 'En fejl opstod under åbning af filen til ZIP kontrol.',
 'zip-wrong-format'    => 'Den angivne fil var ikke en ZIP-fil.',
@@ -1652,6 +1660,7 @@ Den kan ikke kontrolleres rigtigt for sikkerhed.',
 'uploadstash-badtoken' => 'Udførelse af handlingen mislykkedes, måske fordi dine redigerings legitimationsoplysninger udløbet. Prøv igen.',
 'uploadstash-errclear' => 'Rydning af filerne mislykkedes.',
 'uploadstash-refresh'  => 'Opdatér filoversigten',
+'invalid-chunk-offset' => 'Ugyldig segmentstart',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Adgang nægtet',

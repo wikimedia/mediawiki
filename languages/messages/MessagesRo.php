@@ -1775,6 +1775,11 @@ Dacă problema persistă, contactați un [[Special:ListUsers/sysop|administrator
 'upload-unknown-size'       => 'Mărime necunoscută',
 'upload-http-error'         => 'A avut loc o eroare HTTP: $1',
 
+# File backend
+'backend-fail-notexists'     => 'Fișierul $1 nu există.',
+'backend-fail-invalidpath'   => '$1 nu este o cale validă de stocare.',
+'backend-fail-alreadyexists' => 'Fișierul $1 există deja.',
+
 # ZipDirectoryReader
 'zip-file-open-error' => 'A intervenit o eroare în momentul deschiderii fișierului ZIP pentru verificări.',
 'zip-wrong-format'    => 'Fișierul specificat nu era un fișier de tip ZIP.',
@@ -2034,6 +2039,7 @@ Intrările <del>tăiate</del> au fost rezolvate.',
 'mostimages'              => 'Cele mai căutate imagini',
 'mostrevisions'           => 'Articole cu cele mai multe revizuiri',
 'prefixindex'             => 'Toate paginile cu prefix',
+'prefixindex-namespace'   => 'Toate paginile cu prefix (spațiul de nume $1)',
 'shortpages'              => 'Pagini scurte',
 'longpages'               => 'Pagini lungi',
 'deadendpages'            => 'Pagini fără legături',

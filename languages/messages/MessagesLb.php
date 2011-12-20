@@ -1617,6 +1617,21 @@ Wann de Problem weider besteet, dann un de [[Special:ListUsers/sysop|Administrat
 'upload-unknown-size'       => 'Onbekannte Gréisst',
 'upload-http-error'         => 'Et ass en HTTP-Feeler geschitt: $1',
 
+# File backend
+'backend-fail-backup'        => 'De Fichier $1 konnt net geséchert ginn.',
+'backend-fail-notexists'     => 'De Fichier $1 gëtt et net.',
+'backend-fail-notsame'       => 'Et gëtt schonn en net-identesche Fichier op $1.',
+'backend-fail-delete'        => 'De Fichier $1 konnt net geläscht ginn.',
+'backend-fail-alreadyexists' => 'De Fichier $1 gëtt et schonn.',
+'backend-fail-store'         => 'De Fichier $1 konnt net op $2 gespäichert ginn.',
+'backend-fail-copy'          => 'De Fichier $1 konnt net op $2 kopéiert ginn.',
+'backend-fail-move'          => 'De Fichier $1 konnt net op $2 geréckelt ginn.',
+'backend-fail-opentemp'      => 'Den temporäre Fichier konnt net opgemaach ginn.',
+'backend-fail-writetemp'     => 'Den temporäre Fichier konnt net geännert ginn.',
+'backend-fail-closetemp'     => 'Den temporäre Fichier konnt net zougemaach ginn.',
+'backend-fail-read'          => 'De Fichier $1 konnt net geliest ginn.',
+'backend-fail-create'        => 'De Fichier $1 konnt net ugeluecht ginn.',
+
 # ZipDirectoryReader
 'zip-file-open-error' => 'Beim Opmaache vum ZIP-Fichier ass e Feeler geschitt.',
 'zip-wrong-format'    => 'De Fichier deen Dir uginn hutt war kee ZIP Fichier.',
@@ -1864,6 +1879,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi d\'Zil vun d
 'mostimages'              => 'Dacks benotzte Biller',
 'mostrevisions'           => 'Säite mat de meeschte Versiounen',
 'prefixindex'             => 'All Säite mat Prefix',
+'prefixindex-namespace'   => 'All Säite mat Prefix (Nummraum $1)',
 'shortpages'              => 'Kuerz Säiten',
 'longpages'               => 'Laang Säiten',
 'deadendpages'            => 'Sakgaasse-Säiten',
@@ -2614,6 +2630,8 @@ Besicht w.e.g. [//www.mediawiki.org/wiki/Localisation MediaWiki Localisatioun] a
 'thumbnail_error'          => 'Feeler beim Erstelle vun der Miniatur: $1',
 'djvu_page_error'          => 'DjVu-Säit baussent dem Säiteberäich',
 'djvu_no_xml'              => 'Den XML ka fir den DjVu-Fichier net ofgeruff ginn',
+'thumbnail-temp-create'    => "Den temporäre Fichier fir d'Minitaurbild konnt net ugeluecht ginn",
+'thumbnail-dest-create'    => "D'Miniatur bild konnt net do gespäichert gi wou dat virgesinn ass",
 'thumbnail_invalid_params' => 'Ongëlteg Miniatur-Parameter',
 'thumbnail_dest_directory' => 'Den Zilepertoire konnt net ugeluecht ginn.',
 'thumbnail_image-type'     => 'Bildtyp gëtt net ënnerstëtzt',
