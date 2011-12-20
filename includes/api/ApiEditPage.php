@@ -172,40 +172,40 @@ class ApiEditPage extends ApiBase {
 
 		// EditPage wants to parse its stuff from a WebRequest
 		// That interface kind of sucks, but it's workable
-		$reqArr = array(
+		$requestArray = array(
 			'wpTextbox1' => $params['text'],
 			'wpEditToken' => $params['token'],
 			'wpIgnoreBlankSummary' => ''
 		);
 
 		if ( !is_null( $params['summary'] ) ) {
-			$reqArr['wpSummary'] = $params['summary'];
+			$requestArray['wpSummary'] = $params['summary'];
 		}
 		
 		if ( !is_null( $params['sectiontitle'] ) ) {
-			$reqArr['wpSectionTitle'] = $params['sectiontitle'];
+			$requestArray['wpSectionTitle'] = $params['sectiontitle'];
 		}
 
 		// Watch out for basetimestamp == ''
 		// wfTimestamp() treats it as NOW, almost certainly causing an edit conflict
 		if ( !is_null( $params['basetimestamp'] ) && $params['basetimestamp'] != '' ) {
-			$reqArr['wpEdittime'] = wfTimestamp( TS_MW, $params['basetimestamp'] );
+			$requestArray['wpEdittime'] = wfTimestamp( TS_MW, $params['basetimestamp'] );
 		} else {
-			$reqArr['wpEdittime'] = $articleObj->getTimestamp();
+			$requestArray['wpEdittime'] = $articleObj->getTimestamp();
 		}
 
 		if ( !is_null( $params['starttimestamp'] ) && $params['starttimestamp'] != '' ) {
-			$reqArr['wpStarttime'] = wfTimestamp( TS_MW, $params['starttimestamp'] );
+			$requestArray['wpStarttime'] = wfTimestamp( TS_MW, $params['starttimestamp'] );
 		} else {
-			$reqArr['wpStarttime'] = wfTimestampNow();	// Fake wpStartime
+			$requestArray['wpStarttime'] = wfTimestampNow();	// Fake wpStartime
 		}
 
 		if ( $params['minor'] || ( !$params['notminor'] && $user->getOption( 'minordefault' ) ) )	{
-			$reqArr['wpMinoredit'] = '';
+			$requestArray['wpMinoredit'] = '';
 		}
 
 		if ( $params['recreate'] ) {
-			$reqArr['wpRecreate'] = '';
+			$requestArray['wpRecreate'] = '';
 		}
 
 		if ( !is_null( $params['section'] ) ) {
@@ -213,9 +213,9 @@ class ApiEditPage extends ApiBase {
 			if ( $section == 0 && $params['section'] != '0' && $params['section'] != 'new' ) {
 				$this->dieUsage( "The section parameter must be set to an integer or 'new'", "invalidsection" );
 			}
-			$reqArr['wpSection'] = $params['section'];
+			$requestArray['wpSection'] = $params['section'];
 		} else {
-			$reqArr['wpSection'] = '';
+			$requestArray['wpSection'] = '';
 		}
 
 		$watch = $this->getWatchlistValue( $params['watchlist'], $titleObj );
@@ -228,12 +228,12 @@ class ApiEditPage extends ApiBase {
 		}
 
 		if ( $watch ) {
-			$reqArr['wpWatchthis'] = '';
+			$requestArray['wpWatchthis'] = '';
 		}
 
 		global $wgTitle, $wgRequest;
 
-		$req = new DerivativeRequest( $this->getRequest(), $reqArr, true );
+		$req = new DerivativeRequest( $this->getRequest(), $requestArray, true );
 
 		// Some functions depend on $wgTitle == $ep->mTitle
 		// TODO: Make them not or check if they still do
