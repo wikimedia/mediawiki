@@ -1130,7 +1130,7 @@ class EditPage {
 			}
 
 			$text = $this->textbox1;
-			$result['sectionanchor'] == '';
+			$result['sectionanchor'] = '';
 			if ( $this->section == 'new' ) {
 				if ( $this->sectiontitle != '' ) {
 					// Insert the section title above the content.
