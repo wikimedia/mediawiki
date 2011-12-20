@@ -722,7 +722,7 @@ class LocalFile extends File {
 		$files = $this->getThumbnails();
 
 		// Give media handler a chance to filter the purge list
-		if ( !empty( $options['forRefresh'] ) ) {
+		if ( !empty( $options['forThumbRefresh'] ) ) {
 			$handler = $this->getHandler();
 			if ( $handler ) {
 				$handler->filterThumbnailPurgeList( $files, $options );

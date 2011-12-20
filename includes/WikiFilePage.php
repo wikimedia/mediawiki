@@ -156,12 +156,12 @@ class WikiFilePage extends WikiPage {
 			$update = new HTMLCacheUpdate( $this->mTitle, 'imagelinks' );
 			$update->doUpdate();
 			$this->mFile->upgradeRow();
-			$this->mFile->purgeCache( array( 'forRefresh' => true ) );
+			$this->mFile->purgeCache( array( 'forThumbRefresh' => true ) );
 		} else {
 			wfDebug( 'ImagePage::doPurge no image for ' . $this->mFile->getName() . "; limiting purge to cache only\n" );
 			// even if the file supposedly doesn't exist, force any cached information
 			// to be updated (in case the cached information is wrong)
-			$this->mFile->purgeCache( array( 'forRefresh' => true ) );
+			$this->mFile->purgeCache( array( 'forThumbRefresh' => true ) );
 		}
 		return parent::doPurge();
 	}
