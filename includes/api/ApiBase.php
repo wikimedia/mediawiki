@@ -280,11 +280,11 @@ abstract class ApiBase extends ContextSource {
 						$msg .= "  $v\n";
 					} else {
 						if ( is_array( $v ) ) {
-							$msgExample = implode( "\n", array_map( array( $this, 'indentExampleText' ), $v ) );
+							$msg .= implode( "\n", array_map( array( $this, 'indentExampleText' ), $v ) );
 						} else {
-							$msgExample = "  $v";
+							$msg .= "  $v";
 						}
-						$msg .= wordwrap( $msgExample, 100, "\n" ) . "\n    $k";
+						$msg .= "\n    $k";
 					}
 				}
 			}
