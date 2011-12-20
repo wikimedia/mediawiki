@@ -1645,6 +1645,7 @@ $wgMessageStructure = array(
 		'mostrevisions',
 		'mostrevisions-summary',
 		'prefixindex',
+		'prefixindex-namespace',
 		'prefixindex-summary',
 		'shortpages',
 		'shortpages-summary',
