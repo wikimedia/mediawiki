@@ -769,7 +769,10 @@ abstract class File {
 		if ( $this->repo->fileExists( $thumbPath ) && !( $flags & self::RENDER_FORCE ) ) {
 			$timestamp = $this->repo->getFileTimestamp( $thumbPath );
 			if ( $timestamp !== false && $timestamp >= $wgThumbnailEpoch ) {
-				return $this->handler->getTransform( $this, false, $thumbUrl, $params );
+				// XXX: Pass in the storage path even though we are not rendering anything
+				// and the path is supposed to be an FS path. This is due to getScalerType()
+				// getting called on the path and clobbering $thumb->getUrl() if it's false.
+				return $this->handler->getTransform( $this, $thumbPath, $thumbUrl, $params );
 			}
 		} elseif ( $flags & self::RENDER_FORCE ) {
 			wfDebug( __METHOD__ . " forcing rendering per flag File::RENDER_FORCE\n" ); 
