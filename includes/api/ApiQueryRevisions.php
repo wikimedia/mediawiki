@@ -606,7 +606,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 				' user           - User that made the revision',
 				' userid         - User id of revision creator',
 				' size           - Length (bytes) of the revision',
-				' sha1           - SHA-1 (base 16) the revision',
+				' sha1           - SHA-1 (base 16) of the revision',
 				' comment        - Comment by the user for revision',
 				' parsedcomment  - Parsed comment by the user for the revision',
 				' content        - Text of the revision',
