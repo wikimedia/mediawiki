@@ -176,7 +176,7 @@ if ( $wgUseSharedUploads ) {
 		);
 	} else {
 		$wgForeignFileRepos[] = array(
-			'class' => 'FSRepo',
+			'class' => 'FileRepo',
 			'name' => 'shared',
 			'directory' => $wgSharedUploadDirectory,
 			'url' => $wgSharedUploadPath,

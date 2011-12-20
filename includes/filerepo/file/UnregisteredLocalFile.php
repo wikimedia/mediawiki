@@ -8,7 +8,7 @@
 
 /**
  * A file object referring to either a standalone local file, or a file in a
- * local repository with no database, for example an FSRepo repository.
+ * local repository with no database, for example an FileRepo repository.
  *
  * Read-only.
  *
@@ -50,7 +50,7 @@ class UnregisteredLocalFile extends File {
 	 * 
 	 * @throws MWException
 	 * @param $title Title|false
-	 * @param $repo FSRepo
+	 * @param $repo FileRepo
 	 * @param $path string
 	 * @param $mime string
 	 */

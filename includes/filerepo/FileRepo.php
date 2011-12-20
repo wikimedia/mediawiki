@@ -1047,7 +1047,7 @@ class FileRepo {
 	 * If no valid deletion archive is configured, this may either delete the
 	 * file or throw an exception, depending on the preference of the repository.
 	 *
-	 * The overwrite policy is determined by the repository -- currently FSRepo
+	 * The overwrite policy is determined by the repository -- currently LocalRepo
 	 * assumes a naming scheme in the deleted zone based on content hash, as
 	 * opposed to the public zone which is assumed to be unique.
 	 *
