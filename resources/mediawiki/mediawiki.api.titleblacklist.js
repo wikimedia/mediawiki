@@ -1,48 +1,51 @@
-// library to assist with API calls on titleblacklist
+/**
+ * Additional mw.Api methods to assist with API calls to the API module of the TitleBlacklist extension.
+ */
 
-( function( mw, $ ) {
+( function( $, mw, undefined ) {
 
-	// cached token so we don't have to keep fetching new ones for every single post
-	var cachedToken = null;
-
-	$.extend( mw.Api.prototype, { 
+	$.extend( mw.Api.prototype, {
 		/**
-		 * @param {mw.Title} 
-		 * @param {Function} callback to pass false on Title not blacklisted, or error text when blacklisted
-		 * @param {Function} optional callback to run if api error
-		 * @return ajax call object
+		 * Convinience method for 'action=titleblacklist'.
+		 * Note: This action is not provided by MediaWiki core, but as part of the TitleBlacklist extension.
+		 *
+		 * @param title {mw.Title}
+		 * @param success {Function} Called on successfull request. First argument is false if title wasn't blacklisted,
+		 *  object with 'reason', 'line' and 'message' properties if title was blacklisted.
+		 * @param err {Function} optional callback to run if api error
+		 * @return {jqXHR}
 		 */
-		isBlacklisted: function( title, callback, err ) {
-			var params = {
-				'action': 'titleblacklist',
-				'tbaction': 'create',
-				'tbtitle': title.toString()
-			};
-
-			var ok = function( data ) {
-				// this fails open (if nothing valid is returned by the api, allows the title)
-				// also fails open when the API is not present, which will be most of the time.
-				if ( data.titleblacklist && data.titleblacklist.result && data.titleblacklist.result == 'blacklisted') {
+		isBlacklisted: function( title, success, err ) {
+			var	params = {
+					action: 'titleblacklist',
+					tbaction: 'create',
+					tbtitle: title.toString()
+				},
+				ok = function( data ) {
 					var result;
-					if ( data.titleblacklist.reason ) {
-						result = {
-							reason: data.titleblacklist.reason,
-							line: data.titleblacklist.line,
-							message: data.titleblacklist.message
-						};
+
+					// this fails open (if nothing valid is returned by the api, allows the title)
+					// also fails open when the API is not present, which will be most of the time
+					// as this API module is part of the TitleBlacklist extension.
+					if ( data.titleblacklist && data.titleblacklist.result && data.titleblacklist.result === 'blacklisted') {
+						if ( data.titleblacklist.reason ) {
+							result = {
+								reason: data.titleblacklist.reason,
+								line: data.titleblacklist.line,
+								message: data.titleblacklist.message
+							};
+						} else {
+							mw.log('mw.Api.titleblacklist::isBlacklisted> no reason data for blacklisted title', 'debug');
+							result = { reason: 'Blacklisted, but no reason supplied', line: 'Unknown', message: null };
+						}
+						success( result );
 					} else {
-						mw.log("mw.Api.titleblacklist::isBlacklisted> no reason data for blacklisted title", 'debug');
-						result = { reason: "Blacklisted, but no reason supplied", line: "Unknown" };
+						success ( false );
 					}
-					callback( result );
-				} else {
-					callback ( false );
-				}
-			};
+				};
 
 			return this.get( params, ok, err );
-
 		}
 
 	} );
-} )( window.mediaWiki, jQuery );
+} )( jQuery, mediaWiki );

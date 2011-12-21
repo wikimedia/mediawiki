@@ -1,22 +1,57 @@
-/* mw.Api objects represent the API of a particular MediaWiki server. */	
+/* mw.Api objects represent the API of a particular MediaWiki server. */
 
-( function( mw, $j, undefined ) {
-	
+( function( $, mw, undefined ) {
+
 	/**
-	 * Represents the API of a particular MediaWiki server.
+	 * @var defaultsOptions {Object}
+	 * We allow people to omit these default parameters from API requests
+	 * there is very customizable error handling here, on a per-call basis
+	 * wondering, would it be simpler to make it easy to clone the api object,
+	 * change error handling, and use that instead?
+	 */
+	var defaultsOptions = {
+
+			// Query parameters for API requests
+			parameters: {
+				action: 'query',
+				format: 'json'
+			},
+
+			// Ajax options for jQuery.ajax()
+			ajax: {
+				url: mw.util.wikiScript( 'api' ),
+
+				ok: function() {},
+
+				// caller can supply handlers for http transport error or api errors
+				err: function( code, result ) {
+					mw.log( 'mw.Api error: ' + code, 'debug' );
+				},
+
+				timeout: 30000, // 30 seconds
+
+				dataType: 'json'
+			}
+		};
+
+	/**
+	 * Constructor to create an object to interact with the API of a particular MediaWiki server.
 	 *
-	 * Required options: 
-	 *   url - complete URL to API endpoint. Usually equivalent to wgServer + wgScriptPath + '/api.php'
+	 * @todo Share API objects with exact same config.
+	 * @example
+	 * <code>
+	 * var api = new mw.Api();
+	 * api.get( {
+	 *     action: 'query',
+	 *     meta: 'userinfo'
+	 * }, {
+	 *     ok: function () { console.log( arguments ); }
+	 * } );
+	 * </code>
 	 *
-	 * Other options:
-	 *   can override the parameter defaults and ajax default options.
-	 *	XXX document!
-	 *  
-	 * TODO share api objects with exact same config.
-	 *
-	 * ajax options can also be overriden on every get() or post()
-	 * 
-	 * @param options {Mixed} can take many options, but must include at minimum the API url.
+	 * @constructor
+	 * @param options {Object} See defaultOptions documentation above. Ajax options can also be
+	 * overridden for each individual request to jQuery.ajax() later on.
 	 */
 	mw.Api = function( options ) {
 
@@ -24,156 +59,131 @@
 			options = {};
 		}
 
-		// make sure we at least have a URL endpoint for the API
-		if ( options.url === undefined ) {
-			options.url = mw.config.get( 'wgServer' ) + mw.config.get( 'wgScriptPath' ) + '/api' + mw.config.get( 'wgScriptExtension' );
+		// Force toString if we got a mw.Uri object
+		if ( options.ajax && options.ajax.url !== undefined ) {
+			options.ajax.url = String( options.ajax.url );
 		}
 
-		this.url = options.url;
+		options.parameters = $.extend( {}, defaultsOptions.parameters, options.parameters );
+		options.ajax = $.extend( {}, defaultsOptions.ajax, options.ajax );
 
-		/* We allow people to omit these default parameters from API requests */
-		// there is very customizable error handling here, on a per-call basis
-		// wondering, would it be simpler to make it easy to clone the api object, change error handling, and use that instead?
-		this.defaults = {
-			parameters: {
-				action: 'query',
-				format: 'json'
-			},
-
-			ajax: {
-				// force toString if we got a mw.Uri object
-				url: new String( this.url ),  
-
-				/* default function for success and no API error */
-				ok: function() {},
-
-				// caller can supply handlers for http transport error or api errors
-				err: function( code, result ) {
-					mw.log( "mw.Api error: " + code, 'debug' );
-				},
-
-				timeout: 30000, /* 30 seconds */
-
-				dataType: 'json'
-
-			}
-		};
-
-
-		if ( options.parameters ) {
-			$j.extend( this.defaults.parameters, options.parameters );
-		}
-
-		if ( options.ajax ) { 
-			$j.extend( this.defaults.ajax, options.ajax );
-		}
+		this.defaults = options;
 	};
 
 	mw.Api.prototype = {
 
 		/**
 		 * For api queries, in simple cases the caller just passes a success callback.
-		 * In complex cases they pass an object with a success property as callback and probably other options.
+		 * In complex cases they pass an object with a success property as callback and
+		 * probably other options.
 		 * Normalize the argument so that it's always the latter case.
-		 * 
-		 * @param {Object|Function} ajax properties, or just a success function
-		 * @return Function
+		 *
+		 * @param {Object|Function} An object contaning one or more of options.ajax,
+		 * or just a success function (options.ajax.ok).
+		 * @return {Object} Normalized ajax options.
 		 */
 		normalizeAjaxOptions: function( arg ) {
+			var opt = arg;
 			if ( typeof arg === 'function' ) {
-				var ok = arg;
-				arg = { 'ok': ok };
+				opt = { 'ok': arg };
 			}
-			if (! arg.ok ) {
-				throw Error( "ajax options must include ok callback" );
+			if ( !opt.ok ) {
+				throw new Error( 'ajax options must include ok callback' );
 			}
-			return arg;
+			return opt;
 		},
 
 		/**
 		 * Perform API get request
 		 *
-		 * @param {Object} request parameters 
-		 * @param {Object|Function} ajax properties, or just a success function
-		 */	
+		 * @param {Object} request parameters
+		 * @param {Object|Function} ajax options, or just a success function
+		 * @return {jqXHR}
+		 */
 		get: function( parameters, ajaxOptions ) {
 			ajaxOptions = this.normalizeAjaxOptions( ajaxOptions );
 			ajaxOptions.type = 'GET';
-			this.ajax( parameters, ajaxOptions );
+			return this.ajax( parameters, ajaxOptions );
 		},
 
 		/**
 		 * Perform API post request
-		 * TODO post actions for nonlocal will need proxy 
-		 * 
-		 * @param {Object} request parameters 
-		 * @param {Object|Function} ajax properties, or just a success function
+		 * @todo Post actions for nonlocal will need proxy
+		 *
+		 * @param {Object} request parameters
+		 * @param {Object|Function} ajax options, or just a success function
+		 * @return {jqXHR}
 		 */
 		post: function( parameters, ajaxOptions ) {
 			ajaxOptions = this.normalizeAjaxOptions( ajaxOptions );
 			ajaxOptions.type = 'POST';
-			this.ajax( parameters, ajaxOptions );
+			return this.ajax( parameters, ajaxOptions );
 		},
 
 		/**
-		 * Perform the API call. 
-		 * 
-		 * @param {Object} request parameters 
-		 * @param {Object} ajax properties
+		 * Perform the API call.
+		 *
+		 * @param {Object} request parameters
+		 * @param {Object} ajax options
+		 * @return {jqXHR}
 		 */
 		ajax: function( parameters, ajaxOptions ) {
-			parameters = $j.extend( {}, this.defaults.parameters, parameters );
-			ajaxOptions = $j.extend( {}, this.defaults.ajax, ajaxOptions );
+			parameters = $.extend( {}, this.defaults.parameters, parameters );
+			ajaxOptions = $.extend( {}, this.defaults.ajax, ajaxOptions );
 
 			// Some deployed MediaWiki >= 1.17 forbid periods in URLs, due to an IE XSS bug
 			// So let's escape them here. See bug #28235
 			// This works because jQuery accepts data as a query string or as an Object
-			ajaxOptions.data = $j.param( parameters ).replace( /\./g, '%2E' );
-		
+			ajaxOptions.data = $.param( parameters ).replace( /\./g, '%2E' );
+
 			ajaxOptions.error = function( xhr, textStatus, exception ) {
-				ajaxOptions.err( 'http', { xhr: xhr, textStatus: textStatus, exception: exception } );
+				ajaxOptions.err( 'http', {
+					xhr: xhr,
+					textStatus: textStatus,
+					exception: exception
+				} );
 			};
 
-			
-			/* success just means 200 OK; also check for output and API errors */
+			// Success just means 200 OK; also check for output and API errors
 			ajaxOptions.success = function( result ) {
 				if ( result === undefined || result === null || result === '' ) {
-					ajaxOptions.err( "ok-but-empty", "OK response but empty result (check HTTP headers?)" );
+					ajaxOptions.err( 'ok-but-empty',
+						'OK response but empty result (check HTTP headers?)' );
 				} else if ( result.error ) {
 					var code = result.error.code === undefined ? 'unknown' : result.error.code;
 					ajaxOptions.err( code, result );
-				} else { 
+				} else {
 					ajaxOptions.ok( result );
 				}
 			};
 
-			$j.ajax( ajaxOptions );
-
+			return $.ajax( ajaxOptions );
 		}
 
 	};
 
 	/**
-	 * This is a list of errors we might receive from the API.
+	 * @var {Array} List of errors we might receive from the API.
 	 * For now, this just documents our expectation that there should be similar messages
 	 * available.
 	 */
 	mw.Api.errors = [
-		/* occurs when POST aborted - jQuery 1.4 can't distinguish abort or lost connection from 200 OK + empty result */
+		// occurs when POST aborted
+		// jQuery 1.4 can't distinguish abort or lost connection from 200 OK + empty result
 		'ok-but-empty',
 
 		// timeout
 		'timeout',
 
-		/* really a warning, but we treat it like an error */
+		// really a warning, but we treat it like an error
 		'duplicate',
 		'duplicate-archive',
 
-		/* upload succeeded, but no image info. 
-		   this is probably impossible, but might as well check for it */
+		// upload succeeded, but no image info.
+		// this is probably impossible, but might as well check for it
 		'noimageinfo',
 
-		/* remote errors, defined in API */
+		// remote errors, defined in API
 		'uploaddisabled',
 		'nomodule',
 		'mustbeposted',
@@ -201,14 +211,13 @@
 	];
 
 	/**
-	 * This is a list of warnings we might receive from the API.
+	 * @var {Array} List of warnings we might receive from the API.
 	 * For now, this just documents our expectation that there should be similar messages
 	 * available.
 	 */
-
 	mw.Api.warnings = [
 		'duplicate',
 		'exists'
 	];
 
-}) ( window.mediaWiki, jQuery );
+})( jQuery, mediaWiki );
