@@ -91,8 +91,7 @@ class SearchEngineTest extends MediaWikiTestCase {
 		$comment = 'Search Test';
 
 		// avoid memory leak...?
-		$linkCache = LinkCache::singleton();
-		$linkCache->clear();
+		LinkCache::singleton()->clear();
 
 		$article = new Article( $title );
 		$article->doEdit( $text, $comment, 0, false, $user );
