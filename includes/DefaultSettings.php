@@ -4092,9 +4092,9 @@ $wgDeprecationReleaseLimit = '1.17';
 
 /**
  * Function name whitelist for wfDeprecated warnings. You will not be warned
- * for usage of deprecated functions in this list. This is mainly usefull
+ * for usage of deprecated functions in this list. This is mainly useful
  * for extension developers unable to not use certain deprecated functions
- * due to backward compatinility reasons.
+ * due to backward compatibility reasons.
  * @since 1.19
  * @var array
  */
