@@ -14,13 +14,13 @@ class StoreBatchTest extends MediaWikiTestCase {
 			'sysop' => new ApiTestUser(
 				'Uploadstashtestsysop',
 				'Upload Stash Test Sysop',
-				'upload_stash_test_sysop@sample.com',
+				'upload_stash_test_sysop@example.com',
 				array( 'sysop' )
 			),
 			'uploader' => new ApiTestUser(
 				'Uploadstashtestuser',
 				'Upload Stash Test User',
-				'upload_stash_test_user@sample.com',
+				'upload_stash_test_user@example.com',
 				array()
 			)
 		);

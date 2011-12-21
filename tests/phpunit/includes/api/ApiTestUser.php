@@ -8,7 +8,7 @@ class ApiTestUser {
 	public $groups;
 	public $user;
 
-	function __construct( $username, $realname = 'Real Name', $email = 'sample@sample.com', $groups = array() ) {
+	function __construct( $username, $realname = 'Real Name', $email = 'sample@example.com', $groups = array() ) {
 		$this->username = $username;
 		$this->realname = $realname;
 		$this->email = $email;

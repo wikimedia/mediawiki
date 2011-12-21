@@ -26,13 +26,13 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 			'sysop' => new ApiTestUser(
 				'Apitestsysop',
 				'Api Test Sysop',
-				'api_test_sysop@sample.com',
+				'api_test_sysop@example.com',
 				array( 'sysop' )
 			),
 			'uploader' => new ApiTestUser(
 				'Apitestuser',
 				'Api Test User',
-				'api_test_user@sample.com',
+				'api_test_user@example.com',
 				array()
 			)
 		);
