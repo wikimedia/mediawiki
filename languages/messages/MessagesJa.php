@@ -3348,7 +3348,7 @@ Variants for Chinese language
 'exif-imageuniqueid'               => '画像ユニークID',
 'exif-gpsversionid'                => 'GPSタグのバージョン',
 'exif-gpslatituderef'              => '北緯(N)または南緯(S)',
-'exif-gpslatitude'                 => '緯度(数値)',
+'exif-gpslatitude'                 => '緯度',
 'exif-gpslongituderef'             => '東経(E)または西経(W)',
 'exif-gpslongitude'                => '経度',
 'exif-gpsaltituderef'              => '高度の基準',
@@ -3592,7 +3592,7 @@ Variants for Chinese language
 'exif-gpsmeasuremode-3' => '3次元測位中',
 
 # Pseudotags used for GPSSpeedRef
-'exif-gpsspeed-k' => 'キロメーメータ/時',
+'exif-gpsspeed-k' => 'キロメール/時',
 'exif-gpsspeed-m' => 'マイル/時',
 'exif-gpsspeed-n' => 'ノット',
 
