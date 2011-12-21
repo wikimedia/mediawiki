@@ -9,8 +9,10 @@ class LinkCache {
 	// becomes incompatible with the new version.
 	private $mClassVer = 4;
 
-	private $mGoodLinks, $mBadLinks;
-	private $mForUpdate;
+	private $mGoodLinks = array();
+	private $mGoodLinkFields = array();
+	private $mBadLinks = array();
+	private $mForUpdate = false;
 
 	/**
 	 * Get an instance of this class
@@ -23,13 +25,6 @@ class LinkCache {
 			$instance = new LinkCache;
 		}
 		return $instance;
-	}
-
-	function __construct() {
-		$this->mForUpdate = false;
-		$this->mGoodLinks = array();
-		$this->mGoodLinkFields = array();
-		$this->mBadLinks = array();
 	}
 
 	/**
