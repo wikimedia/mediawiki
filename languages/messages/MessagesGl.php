@@ -1737,6 +1737,7 @@ Se o problema persiste contacte cun [[Special:ListUsers/sysop|administrador]] do
 'backend-fail-backup'        => 'Non se puido facer unha copia de seguridade do ficheiro "$1".',
 'backend-fail-notexists'     => 'Non existe o ficheiro "$1".',
 'backend-fail-hashes'        => 'Non se puideron obter os hashes do ficheiro por comparación.',
+'backend-fail-notsame'       => 'Xa existe un ficheiro chamado "$1", con contidos diferentes.',
 'backend-fail-invalidpath'   => '"$1" non é unha ruta de almacenamento válida.',
 'backend-fail-delete'        => 'Non se deu borrado o ficheiro "$1".',
 'backend-fail-alreadyexists' => 'O ficheiro "$1" xa existe.',

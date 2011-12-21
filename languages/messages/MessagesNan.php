@@ -1517,30 +1517,60 @@ $1',
 'listfiles_count'       => '版本',
 
 # File description page
-'file-anchor-link'       => 'Tóng-àn',
-'filehist'               => 'Tóng-àn ê le̍k-sú',
-'filehist-help'          => '揤日期／時間就通看彼時陣的檔案',
-'filehist-deleteall'     => '全部刣掉',
-'filehist-deleteone'     => '刣掉',
-'filehist-revert'        => '回轉',
-'filehist-current'       => 'hiān-chāi',
-'filehist-datetime'      => 'Ji̍t-kî/ Sî-kan',
-'filehist-thumb'         => '小圖',
-'filehist-thumbtext'     => '細張圖佇$1的版本',
-'filehist-nothumb'       => '無小圖',
-'filehist-user'          => 'Iōng-chiá',
-'filehist-dimensions'    => '長闊',
-'filehist-filesize'      => '檔案大細',
-'filehist-comment'       => '註釋',
-'filehist-missing'       => '檔案無看',
-'imagelinks'             => 'Ēng tio̍h ê  tóng-àn',
-'linkstoimage'           => 'Ē-bīn ê {{PLURAL:$1|ia̍h liân kàu|$1 ia̍h liân kàu}}  chit ê tóng-àn:',
-'linkstoimage-more'      => '超過$1{{PLURAL:$1|頁連接|頁連接}}到這个檔案，
+'file-anchor-link'          => 'Tóng-àn',
+'filehist'                  => 'Tóng-àn ê le̍k-sú',
+'filehist-help'             => '揤日期／時間就通看彼時陣的檔案',
+'filehist-deleteall'        => '全部刣掉',
+'filehist-deleteone'        => '刣掉',
+'filehist-revert'           => '回轉',
+'filehist-current'          => 'hiān-chāi',
+'filehist-datetime'         => 'Ji̍t-kî/ Sî-kan',
+'filehist-thumb'            => '小圖',
+'filehist-thumbtext'        => '細張圖佇$1的版本',
+'filehist-nothumb'          => '無小圖',
+'filehist-user'             => 'Iōng-chiá',
+'filehist-dimensions'       => '長闊',
+'filehist-filesize'         => '檔案大細',
+'filehist-comment'          => '註釋',
+'filehist-missing'          => '檔案無看',
+'imagelinks'                => 'Ēng tio̍h ê  tóng-àn',
+'linkstoimage'              => 'Ē-bīn ê {{PLURAL:$1|ia̍h liân kàu|$1 ia̍h liân kàu}}  chit ê tóng-àn:',
+'linkstoimage-more'         => '超過$1{{PLURAL:$1|頁連接|頁連接}}到這个檔案，
 下跤只是連接到這个檔案的{{PLURAL:$1|頭頁連結|頭$1頁連結}}清單，
 有一个[[Special:WhatLinksHere/$2|全部的清單]]。',
-'nolinkstoimage'         => 'Bô poàⁿ ia̍h liân kàu chit tiuⁿ iáⁿ-siōng.',
-'sharedupload-desc-here' => '這个檔案是對$1遐來的，伊可能嘛用佇別的事工，
+'nolinkstoimage'            => 'Bô poàⁿ ia̍h liân kàu chit tiuⁿ iáⁿ-siōng.',
+'morelinkstoimage'          => '看連接到這个檔案的[[Special:WhatLinksHere/$1|其他連結]]',
+'duplicatesoffile'          => '下跤$1个檔案佮這个仝款（[[Special:FileDuplicateSearch/$2|詳細]]）：',
+'sharedupload'              => '這个檔案是對$1遐來的，伊可能用佇別个事工。',
+'sharedupload-desc-there'   => '這个檔案對$1遐來的，伊可能用佇別个事工，
+請看[$2 檔案說明]以了解進一步訊息。',
+'sharedupload-desc-here'    => '這个檔案是對$1遐來的，伊可能嘛用佇別的事工，
 伊[$2 檔案說明頁]的說明佇下跤。',
+'filepage-nofile'           => '無這个名的檔案',
+'filepage-nofile-link'      => '無這个名的檔案，你會使 [$1上載]。',
+'uploadnewversion-linktext' => '上載這个檔案的新版本',
+'shared-repo-from'          => '來自 $1',
+'shared-repo'               => '一個共享的檔案庫',
+
+# File reversion
+'filerevert'                => '回轉$1',
+'filerevert-legend'         => '回轉檔案',
+'filerevert-intro'          => "你當咧回轉檔案'''[[Media:$1|$1]]'''到[$4佇$2 $3的版本]。",
+'filerevert-comment'        => '理由：',
+'filerevert-defaultcomment' => '已經回轉到$1 $2的版本',
+'filerevert-submit'         => '回轉',
+'filerevert-success'        => "'''[[Media:$1|$1]]'''已經回轉到[$4 佇$2 $3的版本]。",
+'filerevert-badversion'     => '這个檔案所提供的時間截記，無進前的本地版本。',
+
+# File deletion
+'filedelete'             => '刣掉$1',
+'filedelete-legend'      => '刣掉檔案',
+'filedelete-intro'       => "你當咧刣掉檔案'''[[Media:$1|$1]]'''，佮伊的歷史。",
+'filedelete-intro-old'   => "你當咧刣掉'''[[Media:$1|$1]]'''佇[$4 $2 $3]的版本",
+'filedelete-comment'     => '理由：',
+'filedelete-success'     => "'''$1'''已經刣掉",
+'filedelete-success-old' => "'''[[Media:$1|$1]]'''佇$2 $3 的版本已經刣掉",
+'filedelete-nofile'      => "無'''$1'''這个",
 
 # MIME search
 'mimesearch' => 'MIME chhiau-chhoē',
@@ -1736,14 +1766,25 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'protect-cascade'  => 'Cascading protection - pó-hō͘ jīm-hô pau-hâm tī chit ia̍h ê ia̍h.',
 
 # Restrictions (nouns)
-'restriction-edit' => 'Siu-kái',
-'restriction-move' => 'Sóa khì',
+'restriction-edit'   => 'Siu-kái',
+'restriction-move'   => 'Sóa khì',
+'restriction-create' => '開始寫',
+'restriction-upload' => '上載',
+
+# Restriction levels
+'restriction-level-sysop'         => '全保護',
+'restriction-level-autoconfirmed' => '半保護',
+'restriction-level-all'           => '任何一級',
 
 # Undelete
-'undelete'         => 'Kiù thâi tiāu ê ia̍h',
-'undeletepage'     => 'Khoàⁿ kap kiù thâi tiāu ê ia̍h',
-'undeletelink'     => '看／恢復',
-'undeleteviewlink' => 'Khoàⁿ',
+'undelete'          => 'Kiù thâi tiāu ê ia̍h',
+'undeletepage'      => 'Khoàⁿ kap kiù thâi tiāu ê ia̍h',
+'undeletepagetitle' => "'''下跤包括[[:$1]]的刣掉修訂本'''",
+'viewdeletedpage'   => '看刣掉的頁',
+'undeletepagetext'  => '下跤的$1个頁已經予人刣掉，毋過猶佇檔案，而且會使救倒轉來，
+檔案庫可能會定時清理。',
+'undeletelink'      => '看／恢復',
+'undeleteviewlink'  => 'Khoàⁿ',
 
 # Namespace form on various pages
 'namespace'      => 'Miâ-khong-kan:',
@@ -1926,11 +1967,21 @@ Lí ē-sái khoàⁿ i ê goân-sú-bé.',
 'siteusers'     => '{{SITENAME}} iōng-chiá $1',
 
 # Patrolling
-'markaspatrolleddiff'   => 'Phiau-sī sûn--kòe',
-'markedaspatrolledtext' => 'Í-keng phiau-sī chit ê siu-tēng-pún ū lâng sûn--kòe.',
+'markaspatrolleddiff'    => 'Phiau-sī sûn--kòe',
+'markaspatrolledtext'    => '共這頁記號做巡過',
+'markedaspatrolled'      => '記號做巡過',
+'markedaspatrolledtext'  => 'Soán-te̍k  ê siu-tēng-pún [[:$1]]  í-keng kì-hō chò sûn--kòe.',
+'rcpatroldisabled'       => '巡最近改的功能已經關掉',
+'markedaspatrollederror' => '袂使記號做巡查過',
+
+# Patrol log
+'patrol-log-page'      => '巡查記錄',
+'patrol-log-header'    => '這是一个已經巡查過的修訂本記錄',
+'log-show-hide-patrol' => '$1巡查記錄',
 
 # Image deletion
-'deletedrevision' => 'Kū siu-tēng-pún $1 thâi-tiāu ā.',
+'deletedrevision'       => 'Kū siu-tēng-pún $1 thâi-tiāu ā.',
+'filedeleteerror-short' => '欲刣掉檔案的時陣有錯誤：$1',
 
 # Browsing diffs
 'previousdiff' => '← Khì chêng 1 ê siu-kái',

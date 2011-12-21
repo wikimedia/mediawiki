@@ -1722,6 +1722,13 @@ $1',
 'upload-unknown-size'       => 'Невядомы памер',
 'upload-http-error'         => 'Узьнікла памылка HTTP: $1',
 
+# File backend
+'backend-fail-stream'    => 'Немагчыма накіраваць файл $1.',
+'backend-fail-backup'    => 'Немагчыма зрабіць рэзэрвовую копію файла $1.',
+'backend-fail-notexists' => 'Файл $1 не існуе.',
+'backend-fail-hashes'    => 'Немагчыма атрымаць хэшы файлаў для параўнаньня.',
+'backend-fail-notsame'   => 'Неідэнтыфікаваны файл ужо існуе $1.',
+
 # ZipDirectoryReader
 'zip-file-open-error' => 'Падчас адкрыцьця файла для праверкі архіву адбылася памылка.',
 'zip-wrong-format'    => 'Пазначаны файл не зьяўляецца ZIP-архівам.',

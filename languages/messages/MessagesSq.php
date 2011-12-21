@@ -832,19 +832,25 @@ Nëse ju keni mbërritur këtu gabimisht, atëherë klikoni butonin '''pas''' t�
 Kjo adresë IP mund të përdoret nga disa përdorues.
  Në qoftë se jeni një përdorues anonim dhe mendoni se ndaj jush janë bërë komente të parëndësishme, ju lutem [[Special:UserLogin/signup|krijoni një llogari]] ose [[Special:UserLogin|identifikohuni]] për të shmangur konfuzionin në të ardhmen me përdorues të tjerë anonim .''",
 'noarticletext'                    => 'Momentalisht nuk ka tekst në këtë faqe.
-Ju mundeni [[Special:Search/{{PAGENAME}}|me kërkue këtë titull]] në faqe tjera,
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} me kërkue në regjistrat tematikisht të afërm],
-apo [{{fullurl:{{FULLPAGENAME}}|action=edit}} me redaktue këtë faqe]</span>.',
+Ju mund [[Special:Search/{{PAGENAME}}|ta kërkoni këtë titull]] në faqe tjera,
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} të kërkoni ngjarjet e ngjashme në regjistër],
+ose [{{fullurl:{{FULLPAGENAME}}|action=edit}} të redaktoni këtë faqe]</span>.',
 'noarticletext-nopermission'       => 'Momentalisht nuk ka tekst në këtë faqe.
 Ju mundeni [[Special:Search/{{PAGENAME}}|me kërku këtë titull]] në faqe tjera,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} me kërku në regjistrat tematikisht të afërm],
 apo [{{fullurl:{{FULLPAGENAME}}|action=edit}} me redaktu këtë faqe]</span>.',
-'userpage-userdoesnotexist'        => 'Llogaria e përdoruesit "<nowiki>$1</nowiki>" nuk është hapur. Ju lutem mendohuni mirë nëse dëshironi të krijoni/redaktoni këtë faqe.',
+'userpage-userdoesnotexist'        => 'Llogaria e përdoruesit "<nowiki>$1</nowiki>" nuk është e regjistruar. 
+Ju lutem kontrolloni nëse dëshironi të krijoni/redaktoni këtë faqe.',
 'userpage-userdoesnotexist-view'   => 'Profili i përdoruesit "$1" nuk është i regjistruar.',
 'blocked-notice-logextract'        => "Ky përdorues është  aktualisht i bllokuar.
 Më poshtë mund t'i referoheni shënimit të regjistruar për bllokimin e fundit:",
-'clearyourcache'                   => "''Shënim:''' Pasi të ruani parapëlqimet ose pasi të kryeni ndryshimet, duhet të pastroni ''cache''-në e shfletuesit tuaj për të parë ndryshimet: për '''Mozilla/Safari/Konqueror''' shtypni ''Ctrl+Shift+Reload'' (ose ''ctrl+shift+r''), për '''IE''' ''Ctrl+f5'', '''Opera''': ''F5''.",
-'usercssyoucanpreview'             => "'''Këshillë:''' Përdorni butonin 'Trego parapamjen' për të provuar ndryshimet tuaja të faqeve css/js përpara se të kryeni ndryshimet.",
+'clearyourcache'                   => "''Shënim:''' Pas ruajtjes, juve mund t'iu duhet të anashkaloni \"cache-in\" e shfletuesit tuaj për të parë ndryshimet. 
+* '''Firefox / Safari:''' Mbaj të shtypur ''Shift'' ndërkohë që klikon ''Reload'', ose shtyp ''Ctrl-F5'' ose ''Ctrl-R'' (''Command-R'' në Mac)
+* '''Google Chrome:''' Shtyp ''Ctrl-Shift-R'' (''Command-Shift-R'' në Mac)
+* '''Internet Explorer:''' Mbaj të shtypur ''Ctrl''  ndërkohë që klikon ''Refresh'', ose shtyp ''Ctrl-F5''
+* '''Konqueror:''' Kliko ''Reload'' ose shtyp ''F5''
+* '''Opera:''' Zbrazni \"cache-in\" tek ''Tools → Preferences''",
+'usercssyoucanpreview'             => "'''Këshillë:''' Përdorni butonin '{{int:showpreview}}' për të testuar CSS-në e re para se të ruani ndryshimet e kryera.",
 'userjsyoucanpreview'              => "'''Këshillë:''' Përdorni butonin 'Trego parapamjen' për të provuar ndryshimet tuaja të faqeve css/js përpara se të kryeni ndryshimet.",
 'usercsspreview'                   => "'''Vini re! Kjo është vetëm një parapamje e faqes suaj CSS. Akoma nuk është ruajtur!'''",
 'userjspreview'                    => "'''Vini re se kjo është vetëm një provë ose parapamje e faqes tuaj JavaScript, ajo nuk është ruajtur akoma!'''",

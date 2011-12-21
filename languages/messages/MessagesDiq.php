@@ -19,7 +19,7 @@
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Bınê gırey de xete bance:',
-'tog-highlightbroken'         => 'Gıreyanê vengan <a href="" class="new">wına</a> (alternatif: wına<a href="" class="internal">?</a>) bımocne',
+'tog-highlightbroken'         => 'Gıreyanê vengan <a href="" class="new">wına</a> (alternatif: Wına<a href="" class="internal">?</a>) bımocne',
 'tog-justify'                 => 'Paragrafan eyar ke',
 'tog-hideminor'               => 'Vurnayışanê şenıkan pela vurnayışanê peyênan de bınımne',
 'tog-hidepatrolled'           => 'Vurnayışanê qontrolkerdeyan pela vurnayışê peyêni de bınımne',
@@ -44,9 +44,9 @@ $messages = array(
 'tog-enotifwatchlistpages'    => 'Pela ke ez seyr kenan eke vurnayê mı rê e-poste bırışe',
 'tog-enotifusertalkpages'     => 'Pela mına werênayışi ke vurnayê mı rê e-poste bırışe',
 'tog-enotifminoredits'        => 'Vurnayışanê qıckekan de zi mı rê e-poste bırışe',
-'tog-enotifrevealaddr'        => 'Adresa e-postey mı postey xeberan de bımocne',
+'tog-enotifrevealaddr'        => 'Adresa e-posteyê mı posteyê xeberan de bımocne',
 'tog-shownumberswatching'     => 'Amarê karberanê seyrkerdoğan bımocne',
-'tog-oldsig'                  => 'Verqaytê imza mewcude:',
+'tog-oldsig'                  => 'İmza mewcude:',
 'tog-fancysig'                => 'İmza rê mameley wikimeqaley bıke (bê gıreyo otomatik)',
 'tog-externaleditor'          => 'Editorê teberi standard bıxebetne (tenya seba ekspertano, komputerê şıma de eyarê xısusiy lazımê. [//www.mediawiki.org/wiki/Manual:External_editors Melumato vêşêr.])',
 'tog-externaldiff'            => 'Têverşanayışan pê programê teberi vıraze (tenya seba ekspertano, komputerê şıma de eyarê xısusiy lazımê. [//www.mediawiki.org/wiki/Manual:External_editors Melumato vêşêr.])',
@@ -416,7 +416,7 @@ Hesabê şıma biyo a.
 'yourname'                   => 'Namey karberi',
 'yourpassword'               => 'Parola',
 'yourpasswordagain'          => 'Parola reyna bınusne:',
-'remembermypassword'         => 'Parola mı biya xo viri (heta $1 {{PLURAL:$1|roc|roci}}).',
+'remembermypassword'         => 'Parola mı nê cıgeyraoği de biya xo viri (heta $1 {{PLURAL:$1|roc|roci}}).',
 'yourdomainname'             => 'Nameyê şıma yo meydani',
 'externaldberror'            => 'Ya database de xeta esta ya zi heqê şıma çino şıma no hesab bıvurni.',
 'login'                      => 'Cıkewe',
@@ -1879,9 +1879,9 @@ bı diqqet dewam kerê.',
 
 # Rollback
 'rollback'          => 'vurnayişan tepiya bıger',
-'rollback_short'    => 'Reyna biyare',
+'rollback_short'    => 'Peyser bia',
 'rollbacklink'      => 'peyser bia',
-'rollbackfailed'    => 'peyser ardış nıbı',
+'rollbackfailed'    => 'Peyserardış nêbi',
 'cantrollback'      => 'karbero peyin têna paşt dayo, no semedi ra vuriyayiş tepiya nêgeriyeni.',
 'alreadyrolled'     => '[[User:$2|$2]] ([[User talk:$2|Talk]]{{int:pipe-separator}} hetê [[Special:Contributions/$2|{{int:contribslink}}]]) ra pelê ıney[[:$1]] de vurnayiş biyo u no vurnayiş tepiya nêgeriyeno;
 yewna ten pel de vurnayiş kerdo u pel tepiya nêgeriyeno.

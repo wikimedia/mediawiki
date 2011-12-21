@@ -1784,6 +1784,23 @@ $1',
 'upload-unknown-size'       => 'Неизвестный размер',
 'upload-http-error'         => 'Произошла ошибка HTTP: $1',
 
+# File backend
+'backend-fail-backup'        => 'Невозможно сделать резервную копию файла $1.',
+'backend-fail-notexists'     => 'Файл $1 не существует.',
+'backend-fail-hashes'        => 'Не удалось получить хэши файлов для сравнения.',
+'backend-fail-notsame'       => 'Уже есть неидентичный файл $1.',
+'backend-fail-invalidpath'   => '$1 не является допустимым хранения путь.',
+'backend-fail-delete'        => 'Не удалось удалить файл  $1.',
+'backend-fail-alreadyexists' => 'Файл $1 уже существует.',
+'backend-fail-store'         => 'Не удалось сохранить файл $1 на $2 .',
+'backend-fail-copy'          => 'Не удалось скопировать файл $1 в $2 .',
+'backend-fail-move'          => 'Не удалось переместить файл $1 в $2.',
+'backend-fail-opentemp'      => 'Не удаётся открыть временный файл.',
+'backend-fail-writetemp'     => 'Не удалось записать во временный файл.',
+'backend-fail-closetemp'     => 'Не удаётся закрыть временный файл.',
+'backend-fail-read'          => 'Не удалось прочитать файл $1.',
+'backend-fail-create'        => 'Не удалось создать файл $1.',
+
 # ZipDirectoryReader
 'zip-file-open-error' => 'Произошла ошибка при открытии файла для проверки архива.',
 'zip-wrong-format'    => 'Указанный файл не является файлом ZIP.',
