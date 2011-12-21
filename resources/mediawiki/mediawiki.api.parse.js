@@ -1,29 +1,31 @@
-// library to assist with action=parse, that is, get rendered HTML of wikitext
+/**
+ * Additional mw.Api methods to assist with API calls related to parsing wikitext.
+ */
 
-( function( mw, $ ) {
+( function( $, mw ) {
 
-	$.extend( mw.Api.prototype, { 
+	$.extend( mw.Api.prototype, {
 		/**
-		 * Parse wikitext into HTML
-		 * @param {String} wikitext
-		 * @param {Function} callback to which to pass success HTML
-		 * @param {Function} callback if error (optional)
+		 * Convinience method for 'action=parse'. Parses wikitext into HTML.
+		 *
+		 * @param wikiText {String}
+		 * @param success {Function} callback to which to pass success HTML
+		 * @param error {Function} callback if error (optional)
+		 * @return {jqXHR}
 		 */
-		parse: function( wikiText, useHtml, error ) {
+		parse: function( wikiText, success, error ) {
 			var params = {
-				text: wikiText,
-				action: 'parse'
-			};
-			var ok = function( data ) {
-				if ( data && data.parse && data.parse.text && data.parse.text['*'] ) {
-					useHtml( data.parse.text['*'] );
-				} 
-			};
-			this.get( params, ok, error );
+					text: wikiText,
+					action: 'parse'
+				},
+				ok = function( data ) {
+					if ( data && data.parse && data.parse.text && data.parse.text['*'] ) {
+						success( data.parse.text['*'] );
+					}
+				};
+			return this.get( params, ok, error );
 		}
 
+	} );
 
-	} ); // end extend
-} )( window.mediaWiki, jQuery );
-
-
+} )( jQuery, mediaWiki );
