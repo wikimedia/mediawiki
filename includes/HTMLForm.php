@@ -1174,6 +1174,10 @@ class HTMLTextField extends HTMLFormField {
 			'value' => $value,
 		) + $this->getTooltipAndAccessKey();
 
+		if ( $this->mClass !== '' ) {
+			$attribs['class'] = $this->mClass;
+		}
+		
 		if ( isset( $this->mParams['maxlength'] ) ) {
 			$attribs['maxlength'] = $this->mParams['maxlength'];
 		}
@@ -1244,7 +1248,10 @@ class HTMLTextAreaField extends HTMLFormField {
 			'rows' => $this->getRows(),
 		) + $this->getTooltipAndAccessKey();
 
-
+		if ( $this->mClass !== '' ) {
+			$attribs['class'] = $this->mClass;
+		}
+		
 		if ( !empty( $this->mParams['disabled'] ) ) {
 			$attribs['disabled'] = 'disabled';
 		}
@@ -1351,6 +1358,10 @@ class HTMLCheckField extends HTMLFormField {
 		if ( !empty( $this->mParams['disabled'] ) ) {
 			$attr['disabled'] = 'disabled';
 		}
+		
+		if ( $this->mClass !== '' ) {
+			$attr['class'] = $this->mClass;
+		}
 
 		return Xml::check( $this->mName, $value, $attr ) . '&#160;' .
 			Html::rawElement( 'label', array( 'for' => $this->mID ), $this->mLabel );
@@ -1428,6 +1439,10 @@ class HTMLSelectField extends HTMLFormField {
 		if ( !empty( $this->mParams['disabled'] ) ) {
 			$select->setAttribute( 'disabled', 'disabled' );
 		}
+		
+		if ( $this->mClass !== '' ) {
+			$select->setAttribute( 'class', $this->mClass );
+		}
 
 		$select->addOptions( $this->mParams['options'] );
 
@@ -1488,6 +1503,10 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 
 		if ( isset( $this->mParams['maxlength'] ) ) {
 			$tbAttribs['maxlength'] = $this->mParams['maxlength'];
+		}
+		
+		if ( $this->mClass !== '' ) {
+			$tbAttribs['class'] = $this->mClass;
 		}
 
 		$textbox = Html::input(
@@ -1712,6 +1731,10 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 			'id' => $this->mID . '-other',
 			'size' => $this->getSize(),
 		);
+		
+		if ( $this->mClass !== '' ) {
+			$textAttribs['class'] = $this->mClass;
+		}
 
 		foreach ( array( 'required', 'autofocus', 'multiple', 'disabled' ) as $param ) {
 			if ( isset( $this->mParams[$param] ) ) {
@@ -1941,7 +1964,7 @@ class HTMLSubmitField extends HTMLFormField {
 		return Xml::submitButton(
 			$value,
 			array(
-				'class' => 'mw-htmlform-submit',
+				'class' => 'mw-htmlform-submit ' . $this->mClass,
 				'name' => $this->mName,
 				'id' => $this->mID,
 			)
