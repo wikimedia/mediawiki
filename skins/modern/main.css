@@ -424,7 +424,7 @@ h1, h2, h3, h4, h5, h6 {
 	background: url(mail_icon.gif) center right no-repeat;
 	padding-right: 18px;
 }
-#mw_content a.external[href ^="news://"] {
+#mw_content a.external[href ^="news:"] {
 	/* @embed */
 	background: url(news_icon.png) center right no-repeat;
 	padding-right: 18px;

@@ -239,7 +239,7 @@ h2 {
 	background: url(mail_icon.gif) center right no-repeat;
 	padding-right: 18px;
 }
-#bodyContent a.external[href ^="news://"] {
+#bodyContent a.external[href ^="news:"] {
 	background: url(news_icon.png) center right no-repeat;
 	padding-right: 18px;
 }
