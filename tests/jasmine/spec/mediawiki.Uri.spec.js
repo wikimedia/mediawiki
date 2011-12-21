@@ -93,7 +93,7 @@
 		} );
 
 		describe( "should handle multiple value query args (overrideKeys on)", function() {
-			var uri = new mw.Uri( 'http://www.sample.com/dir/?m=foo&m=bar&n=1', { overrideKeys: true } );
+			var uri = new mw.Uri( 'http://www.example.com/dir/?m=foo&m=bar&n=1', { overrideKeys: true } );
 			it ( "should parse with multiple values", function() {
 				expect( uri.query.m ).toEqual( 'bar' );
 				expect( uri.query.n ).toEqual( '1' );
@@ -102,12 +102,12 @@
 				uri.query.n = [ "x", "y", "z" ];
 				expect( uri.toString() ).toContain( 'm=bar' );
 				expect( uri.toString() ).toContain( 'n=x&n=y&n=z' );
-				expect( uri.toString().length ).toEqual( 'http://www.sample.com/dir/?m=bar&n=x&n=y&n=z'.length );
+				expect( uri.toString().length ).toEqual( 'http://www.example.com/dir/?m=bar&n=x&n=y&n=z'.length );
 			} );
 		} );
 
 		describe( "should handle multiple value query args (overrideKeys off)", function() {
-			var uri = new mw.Uri( 'http://www.sample.com/dir/?m=foo&m=bar&n=1', { overrideKeys: false } );
+			var uri = new mw.Uri( 'http://www.example.com/dir/?m=foo&m=bar&n=1', { overrideKeys: false } );
 			it ( "should parse with multiple values", function() {
 				expect( uri.query.m.length ).toEqual( 2 );
 				expect( uri.query.m[0] ).toEqual( 'foo' );
@@ -118,25 +118,25 @@
 				uri.query.n = [ "x", "y", "z" ];
 				expect( uri.toString() ).toContain( 'm=foo&m=bar' );
 				expect( uri.toString() ).toContain( 'n=x&n=y&n=z' );
-				expect( uri.toString().length ).toEqual( 'http://www.sample.com/dir/?m=foo&m=bar&n=x&n=y&n=z'.length );
+				expect( uri.toString().length ).toEqual( 'http://www.example.com/dir/?m=foo&m=bar&n=x&n=y&n=z'.length );
 			} );
 			it ( "should be okay with removing values", function() {
 				uri.query.m.splice( 0, 1 );
 				delete uri.query.n;
-				expect( uri.toString() ).toEqual( 'http://www.sample.com/dir/?m=bar' );
+				expect( uri.toString() ).toEqual( 'http://www.example.com/dir/?m=bar' );
 				uri.query.m.splice( 0, 1 );
-				expect( uri.toString() ).toEqual( 'http://www.sample.com/dir/' );
+				expect( uri.toString() ).toEqual( 'http://www.example.com/dir/' );
 			} );
 		} );
 
 		describe( "should deal with an all-dressed URI with everything", function() {
-			var uri = new mw.Uri( 'http://auth@www.sample.com:81/dir/dir.2/index.htm?q1=0&&test1&test2=value+%28escaped%29#top' );
+			var uri = new mw.Uri( 'http://auth@www.example.com:81/dir/dir.2/index.htm?q1=0&&test1&test2=value+%28escaped%29#top' );
 
 			it( "should have basic object properties", function() {
 				expect( uri.protocol ).toEqual( 'http' );
 				expect( uri.user ).toEqual( 'auth' );
 				expect( uri.password ).not.toBeDefined();
-				expect( uri.host ).toEqual( 'www.sample.com' );
+				expect( uri.host ).toEqual( 'www.example.com' );
 				expect( uri.port ).toEqual( '81' );
 				expect( uri.path ).toEqual( '/dir/dir.2/index.htm' );
 				expect( uri.query ).toEqual( { q1: '0', test1: null, test2: 'value (escaped)' } );
@@ -149,11 +149,11 @@
 				} );
 
 				it( "should have authority equal to auth@hostport", function() { 
-					expect( uri.getAuthority() ).toEqual( 'auth@www.sample.com:81' );
+					expect( uri.getAuthority() ).toEqual( 'auth@www.example.com:81' );
 				} );
 
 				it( "should have hostport equal to host:port", function() { 
-					expect( uri.getHostPort() ).toEqual( 'www.sample.com:81' );
+					expect( uri.getHostPort() ).toEqual( 'www.example.com:81' );
 				} );
 
 				it( "should have query string which contains all components", function() { 
