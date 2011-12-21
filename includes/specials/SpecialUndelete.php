@@ -1267,14 +1267,14 @@ class SpecialUndelete extends SpecialPage {
 	 */
 	function getPageLink( $rev, $titleObj, $ts ) {
 		$user = $this->getUser();
-		$time = htmlspecialchars( $this->getLanguage()->userTimeAndDate( $ts, $user ) );
+		$time = $this->getLanguage()->userTimeAndDate( $ts, $user );
 
 		if( !$rev->userCan( Revision::DELETED_TEXT, $user ) ) {
 			return '<span class="history-deleted">' . $time . '</span>';
 		} else {
 			$link = Linker::linkKnown(
 				$titleObj,
-				$time,
+				htmlspecialchars( $time ),
 				array(),
 				array(
 					'target' => $this->mTargetObj->getPrefixedText(),
@@ -1296,14 +1296,14 @@ class SpecialUndelete extends SpecialPage {
 	 */
 	function getFileLink( $file, $titleObj, $ts, $key ) {
 		$user = $this->getUser();
-		$time = htmlspecialchars( $this->getLanguage()->userTimeAndDate( $ts, $user ) );
+		$time = $this->getLanguage()->userTimeAndDate( $ts, $user );
 
 		if( !$file->userCan( File::DELETED_FILE, $user ) ) {
 			return '<span class="history-deleted">' . $time . '</span>';
 		} else {
 			$link = Linker::linkKnown(
 				$titleObj,
-				$time,
+				htmlspecialchars( $time ),
 				array(),
 				array(
 					'target' => $this->mTargetObj->getPrefixedText(),
