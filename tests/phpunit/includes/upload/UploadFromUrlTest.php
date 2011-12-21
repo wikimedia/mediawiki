@@ -277,7 +277,7 @@ class UploadFromUrlTest extends ApiTestCase {
 
 		return;
 
-		/**
+		/*
 		// Broken until using leavemessage with ignorewarnings is supported
 		$job->run();
 
