@@ -145,8 +145,7 @@ class TitleCleanup extends TableCleanup {
 				),
 				array( 'page_id' => $row->page_id ),
 				__METHOD__ );
-			$linkCache = LinkCache::singleton();
-			$linkCache->clear();
+			LinkCache::singleton()->clear();
 		}
 	}
 }
