@@ -13,10 +13,11 @@
  */
 class FileRepo {
 	const FILES_ONLY = 1;
+
 	const DELETE_SOURCE = 1;
 	const OVERWRITE = 2;
 	const OVERWRITE_SAME = 4;
-	const SKIP_VALIDATION = 8;
+	const SKIP_LOCKING = 8;
 
 	/** @var FileBackendBase */
 	protected $backend;
@@ -622,6 +623,7 @@ class FileRepo {
 	 *     self::OVERWRITE         Overwrite an existing destination file instead of failing
 	 *     self::OVERWRITE_SAME    Overwrite the file if the destination exists and has the
 	 *                             same contents as the source
+	 *     self::SKIP_LOCKING      Skip any file locking when doing the store
 	 * @return FileRepoStatus
 	 */
 	public function store( $srcPath, $dstZone, $dstRel, $flags = 0 ) {
@@ -641,16 +643,11 @@ class FileRepo {
 	 *     self::OVERWRITE         Overwrite an existing destination file instead of failing
 	 *     self::OVERWRITE_SAME    Overwrite the file if the destination exists and has the
 	 *                             same contents as the source
+	 *     self::SKIP_LOCKING      Skip any file locking when doing the store
 	 * @return FileRepoStatus
 	 */
 	public function storeBatch( $triplets, $flags = 0 ) {
 		$backend = $this->backend; // convenience
-
-		// Try creating directories
-		$status = $this->initZones();
-		if ( !$status->isOK() ) {
-			return $status;
-		}
 
 		$status = $this->newGood();
 
@@ -705,6 +702,9 @@ class FileRepo {
 
 		// Execute the store operation for each triplet
 		$opts = array( 'ignoreErrors' => true );
+		if ( $flags & self::SKIP_LOCKING ) {
+			$opts['nonLocking'] = true;
+		}
 		$status->merge( $backend->doOperations( $operations, $opts ) );
 		// Cleanup for disk source files...
 		foreach ( $sourceFSFilesToDelete as $file ) {
@@ -778,7 +778,7 @@ class FileRepo {
 		$dstRel = "{$hashPath}{$date}!{$originalName}";
 		$dstUrlRel = $hashPath . $date . '!' . rawurlencode( $originalName );
 
-		$result = $this->store( $srcPath, 'temp', $dstRel );
+		$result = $this->store( $srcPath, 'temp', $dstRel, self::SKIP_LOCKING );
 		$result->value = $this->getVirtualUrl( 'temp' ) . '/' . $dstUrlRel;
 		return $result;
 	}
@@ -1005,9 +1005,6 @@ class FileRepo {
 	 * @return Either array of files and existence flags, or false
 	 */
 	public function fileExistsBatch( $files, $flags = 0 ) {
-		if ( !$this->initZones() ) {
-			return false;
-		}
 		$result = array();
 		foreach ( $files as $key => $file ) {
 			if ( self::isVirtualUrl( $file ) ) {
