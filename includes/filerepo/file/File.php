@@ -1293,8 +1293,7 @@ abstract class File {
 	 * @return bool
 	 */
 	function isLocal() {
-		$repo = $this->getRepo();
-		return $repo && $repo->isLocal();
+		return $this->repo && $this->repo->isLocal();
 	}
 
 	/**
