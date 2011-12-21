@@ -570,7 +570,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->assertEquals( $expected, sort( $list ), "Correct file listing." );
 
 		foreach ( $files as $file ) {
-			$this->backend->delete( array( 'src' => "$base/$files" ) );
+			$this->backend->doOperation( array( 'op' => 'delete', 'src' => "$base/$file" ) );
 		}
 
 		$iter = $this->backend->getFileList( array( 'dir' => "$base/cont1/not/exists" ) );
