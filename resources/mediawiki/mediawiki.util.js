@@ -1,7 +1,8 @@
 /**
  * Utilities
  */
-( function( $ ) {
+( function ( $, mw ) {
+"use strict";
 
 	// Local cache and alias
 	var util = mw.util = {
@@ -11,6 +12,11 @@
 		 * (don't call before document ready)
 		 */
 		'init' : function() {
+			var	profile = $.client.profile(),
+				$tocContainer = $( '#toc' ),
+				$tocTitle = $( '#toctitle' ),
+				$tocToggleLink = $( '#togglelink' ),
+				hideTocCookie;
 
 			/* Set up $.messageBox */
 			$.messageBoxNew( {
@@ -18,37 +24,34 @@
 				'parent': '#content'
 			} );
 
-			// Shortcut to client profile return
-			var profile = $.client.profile();
-
 			/* Set tooltipAccessKeyPrefix */
 
 			// Opera on any platform
-			if ( profile.name == 'opera' ) {
+			if ( profile.name === 'opera' ) {
 				util.tooltipAccessKeyPrefix = 'shift-esc-';
 
 			// Chrome on any platform
-			} else if ( profile.name == 'chrome' ) {
+			} else if ( profile.name === 'chrome' ) {
 				// Chrome on Mac or Chrome on other platform ?
-				util.tooltipAccessKeyPrefix = ( profile.platform == 'mac'
+				util.tooltipAccessKeyPrefix = ( profile.platform === 'mac'
 					? 'ctrl-option-' : 'alt-' );
 
 			// Non-Windows Safari with webkit_version > 526
 			} else if ( profile.platform !== 'win'
-				&& profile.name == 'safari'
+				&& profile.name === 'safari'
 				&& profile.layoutVersion > 526 ) {
 				util.tooltipAccessKeyPrefix = 'ctrl-alt-';
 
 			// Safari/Konqueror on any platform, or any browser on Mac
 			// (but not Safari on Windows)
-			} else if ( !( profile.platform == 'win' && profile.name == 'safari' )
-							&& ( profile.name == 'safari'
-							|| profile.platform == 'mac'
-							|| profile.name == 'konqueror' ) ) {
+			} else if ( !( profile.platform === 'win' && profile.name === 'safari' )
+							&& ( profile.name === 'safari'
+							|| profile.platform === 'mac'
+							|| profile.name === 'konqueror' ) ) {
 				util.tooltipAccessKeyPrefix = 'ctrl-';
 
 			// Firefox 2.x and later
-			} else if ( profile.name == 'firefox' && profile.versionBase > '1' ) {
+			} else if ( profile.name === 'firefox' && profile.versionBase > '1' ) {
 				util.tooltipAccessKeyPrefix = 'alt-shift-';
 			}
 
@@ -73,20 +76,23 @@
 				util.$content = $( '#content' );
 			}
 
-			/* Table of Contents toggle */
-			var	$tocContainer = $( '#toc' ),
-				$tocTitle = $( '#toctitle' ),
-				$tocToggleLink = $( '#togglelink' );
+			// Table of contents toggle
 			// Only add it if there is a TOC and there is no toggle added already
 			if ( $tocContainer.length && $tocTitle.length && !$tocToggleLink.length ) {
-				var	hideTocCookie = $.cookie( 'mw_hidetoc' );
+				hideTocCookie = $.cookie( 'mw_hidetoc' );
 					$tocToggleLink = $( '<a href="#" class="internal" id="togglelink"></a>' )
 						.text( mw.msg( 'hidetoc' ) )
 						.click( function(e){
 							e.preventDefault();
 							util.toggleToc( $(this) );
 					} );
-				$tocTitle.append( $tocToggleLink.wrap( '<span class="toctoggle"></span>' ).parent().prepend( '&nbsp;[' ).append( ']&nbsp;' ) );
+				$tocTitle.append(
+					$tocToggleLink
+						.wrap( '<span class="toctoggle"></span>' )
+						.parent()
+							.prepend( '&nbsp;[' )
+							.append( ']&nbsp;' )
+				);
 
 				if ( hideTocCookie == '1' ) {
 					// Cookie says user want toc hidden
@@ -140,7 +146,8 @@
 		 * @return string Address to script (eg. '/w/api.php' )
 		 */
 		'wikiScript' : function( str ) {
-			return mw.config.get( 'wgScriptPath' ) + '/' + ( str || 'index' ) + mw.config.get( 'wgScriptExtension' );
+			return mw.config.get( 'wgScriptPath' ) + '/' + ( str || 'index' ) +
+				mw.config.get( 'wgScriptExtension' );
 		},
 
 		/**
@@ -156,7 +163,8 @@
 			if ( s.styleSheet ) {
 				s.styleSheet.cssText = text; // IE
 			} else {
-				s.appendChild( document.createTextNode( text + '' ) ); // Safari sometimes borks on null
+				// Safari sometimes borks on null
+				s.appendChild( document.createTextNode( text + '' ) );
 			}
 			document.getElementsByTagName('head')[0].appendChild( s );
 			return s.sheet || s;
@@ -210,10 +218,10 @@
 		 * @return mixed Parameter value or null.
 		 */
 		'getParamValue' : function( param, url ) {
-			url = url ? url : document.location.href;
+			url = url || document.location.href;
 			// Get last match, stop at hash
-			var re = new RegExp( '^[^#]*[&?]' + $.escapeRE( param ) + '=([^&#]*)' );
-			var m = re.exec( url );
+			var	re = new RegExp( '^[^#]*[&?]' + $.escapeRE( param ) + '=([^&#]*)' ),
+				m = re.exec( url );
 			if ( m && m.length > 1 ) {
 				// Beware that decodeURIComponent is not required to understand '+'
 				// by spec, as encodeURIComponent does not produce it.
@@ -241,7 +249,8 @@
 		 * otherwise, all the nodes that will probably have accesskeys by
 		 * default are updated.
 		 *
-		 * @param nodeList {Array|jQuery} (optional) A jQuery object, or array of elements to update.
+		 * @param nodeList {Array|jQuery} [optional] A jQuery object, or array
+		 * of elements to update.
 		 */
 		'updateTooltipAccessKeys' : function( nodeList ) {
 			var $nodes;
@@ -317,13 +326,14 @@
 		 * depending on the skin) or null if no element was added to the document.
 		 */
 		'addPortletLink' : function( portlet, href, text, id, tooltip, accesskey, nextnode ) {
+			var $item, $link, $portlet, $ul;
 
 			// Check if there's atleast 3 arguments to prevent a TypeError
 			if ( arguments.length < 3 ) {
 				return null;
 			}
 			// Setup the anchor tag
-			var $link = $( '<a></a>' ).attr( 'href', href ).text( text );
+			$link = $( '<a>' ).attr( 'href', href ).text( text );
 			if ( tooltip ) {
 				$link.attr( 'title', tooltip );
 			}
@@ -341,12 +351,12 @@
 			default : // Skins like chick, modern, monobook, myskin, simple, vector...
 
 				// Select the specified portlet
-				var $portlet = $( '#' + portlet );
+				$portlet = $( '#' + portlet );
 				if ( $portlet.length === 0 ) {
 					return null;
 				}
 				// Select the first (most likely only) unordered list inside the portlet
-				var $ul = $portlet.find( 'ul' );
+				$ul = $portlet.find( 'ul' );
 
 				// If it didn't have an unordered list yet, create it
 				if ( $ul.length === 0 ) {
@@ -371,7 +381,6 @@
 
 				// Wrap the anchor tag in a list item (and a span if $portlet is a Vector tab)
 				// and back up the selector to the list item
-				var $item;
 				if ( $portlet.hasClass( 'vectorTabs' ) ) {
 					$item = $link.wrap( '<li><span></span></li>' ).parent().parent();
 				} else {
@@ -392,12 +401,12 @@
 				}
 
 				// Where to put our node ?
-				// - nextnode is a DOM element (before MW 1.17, in wikibits.js, this was the only option)
-				if ( nextnode && nextnode.parentNode == $ul[0] ) {
+				// - nextnode is a DOM element (was the only option before MW 1.17, in wikibits.js)
+				if ( nextnode && nextnode.parentNode === $ul[0] ) {
 					$(nextnode).before( $item );
 
 				// - nextnode is a CSS selector for jQuery
-				} else if ( typeof nextnode == 'string' && $ul.find( nextnode ).length !== 0 ) {
+				} else if ( typeof nextnode === 'string' && $ul.find( nextnode ).length !== 0 ) {
 					$ul.find( nextnode ).eq( 0 ).before( $item );
 
 
@@ -436,7 +445,7 @@
 				// an mw-js-message div to start with.
 				var $messageDiv = $( '#mw-js-message' );
 				if ( !$messageDiv.length ) {
-					$messageDiv = $( '<div id="mw-js-message">' );
+					$messageDiv = $( '<div id="mw-js-message"></div>' );
 					if ( util.$content.parent().length ) {
 						util.$content.parent().prepend( $messageDiv );
 					} else {
@@ -549,11 +558,14 @@
 			if ( typeof address !== 'string' ) {
 				return false;
 			}
-			var block = allowBlock ? '(?:\\/(?:3[0-2]|[12]?\\d))?' : '';
-			var RE_IP_BYTE = '(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|0?[0-9]?[0-9])';
-			var RE_IP_ADD = '(?:' + RE_IP_BYTE + '\\.){3}' + RE_IP_BYTE;
-			return address.search( new RegExp( '^' + RE_IP_ADD + block + '$' ) ) != -1;
+
+			var	block = allowBlock ? '(?:\\/(?:3[0-2]|[12]?\\d))?' : '',
+				RE_IP_BYTE = '(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|0?[0-9]?[0-9])',
+				RE_IP_ADD = '(?:' + RE_IP_BYTE + '\\.){3}' + RE_IP_BYTE;
+
+			return address.search( new RegExp( '^' + RE_IP_ADD + block + '$' ) ) !== -1;
 		},
+
 		/**
 		 * Note: borrows from IP::isIPv6
 		 *
@@ -565,8 +577,9 @@
 			if ( typeof address !== 'string' ) {
 				return false;
 			}
-			var block = allowBlock ? '(?:\\/(?:12[0-8]|1[01][0-9]|[1-9]?\\d))?' : '';
-			var RE_IPV6_ADD =
+
+			var	block = allowBlock ? '(?:\\/(?:12[0-8]|1[01][0-9]|[1-9]?\\d))?' : '',
+				RE_IPV6_ADD =
 			'(?:' + // starts with "::" (including "::")
 			':(?::|(?::' + '[0-9A-Fa-f]{1,4}' + '){1,7})' +
 			'|' + // ends with "::" (except "::")
@@ -574,15 +587,18 @@
 			'|' + // contains no "::"
 			'[0-9A-Fa-f]{1,4}' + '(?::' + '[0-9A-Fa-f]{1,4}' + '){7}' +
 			')';
-			if ( address.search( new RegExp( '^' + RE_IPV6_ADD + block + '$' ) ) != -1 ) {
+
+			if ( address.search( new RegExp( '^' + RE_IPV6_ADD + block + '$' ) ) !== -1 ) {
 				return true;
 			}
+
 			RE_IPV6_ADD = // contains one "::" in the middle (single '::' check below)
 				'[0-9A-Fa-f]{1,4}' + '(?:::?' + '[0-9A-Fa-f]{1,4}' + '){1,6}';
-			return address.search( new RegExp( '^' + RE_IPV6_ADD + block + '$' ) ) != -1
-				&& address.search( /::/ ) != -1 && address.search( /::.*::/ ) == -1;
+
+			return address.search( new RegExp( '^' + RE_IPV6_ADD + block + '$' ) ) !== -1
+				&& address.search( /::/ ) !== -1 && address.search( /::.*::/ ) === -1;
 		}
 
 	};
 
-} )( jQuery );
+} )( jQuery, mediaWiki );
