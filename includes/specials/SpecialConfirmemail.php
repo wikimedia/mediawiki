@@ -88,9 +88,10 @@ class EmailConfirmation extends UnlistedSpecialPage {
 				// $time is kept for backward compat reasons.
 				// 'emailauthenticated' is also used in SpecialPreferences.php
 				$lang = $this->getLanguage();
-				$time = $lang->userTimeAndDate( $user->mEmailAuthenticated, $user );
-				$d = $lang->userDate( $user->mEmailAuthenticated, $user );
-				$t = $lang->userTime( $user->mEmailAuthenticated, $user );
+				$emailAuthenticated = $user->getEmailAuthenticationTimestamp();
+				$time = $lang->userTimeAndDate( $emailAuthenticated, $user );
+				$d = $lang->userDate( $emailAuthenticated, $user );
+				$t = $lang->userTime( $emailAuthenticated, $user );
 				$out->addWikiMsg( 'emailauthenticated', $time, $d, $t );
 			}
 			if( $user->isEmailConfirmationPending() ) {
