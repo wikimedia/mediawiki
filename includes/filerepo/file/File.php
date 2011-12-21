@@ -799,12 +799,11 @@ abstract class File {
 				$thumb = $this->handler->getTransform( $this, $tmpThumbPath, $thumbUrl, $params );
 			}
 		} elseif ( $thumb->hasFile() && !$thumb->fileIsSource() ) {
-			// @TODO: use a FileRepo store function
-			$op = array( 'op' => 'store',
-				'src' => $tmpThumbPath, 'dst' => $thumbPath, 'overwriteDest' => true );
 			// Copy any thumbnail from the FS into storage at $dstpath
-			$opts = array( 'ignoreErrors' => true, 'nonLocking' => true ); // performance
-			if ( !$this->getRepo()->getBackend()->doOperation( $op, $opts )->isOK() ) {
+			$status = $this->repo->store(
+				$tmpThumbPath, 'thumb', $this->getThumbRel( $thumbName ),
+				FileRepo::OVERWRITE | FileRepo::SKIP_LOCKING );
+			if ( !$status->isOK() ) {
 				return new MediaTransformError( 'thumbnail_error',
 					$params['width'], 0, wfMsg( 'thumbnail-dest-create' ) );
 			}
@@ -1013,7 +1012,8 @@ abstract class File {
 	}
 
 	/**
-	 * Get the path of the file relative to the public zone root
+	 * Get the path of the file relative to the public zone root.
+	 * This function is overriden in OldLocalFile to be like getArchiveRel().
 	 *
 	 * @return string
 	 */
@@ -1022,16 +1022,7 @@ abstract class File {
 	}
 
 	/**
-	 * Get urlencoded relative path of the file
-	 *
-	 * @return string
-	 */
-	function getUrlRel() {
-		return $this->getHashPath() . rawurlencode( $this->getName() );
-	}
-
-	/**
-	 * Get the relative path for an archived file
+	 * Get the path of an archived file relative to the public zone root
 	 *
 	 * @param $suffix bool|string if not false, the name of an archived thumbnail file
 	 *
@@ -1048,7 +1039,33 @@ abstract class File {
 	}
 
 	/**
-	 * Get the relative path for an archived file's thumbs directory
+	 * Get the path, relative to the thumbnail zone root, of the
+	 * thumbnail directory or a particular file if $suffix is specified
+	 *
+	 * @param $suffix bool|string if not false, the name of a thumbnail file
+	 *
+	 * @return string
+	 */
+	function getThumbRel( $suffix = false ) {
+		$path = $this->getRel();
+		if ( $suffix !== false ) {
+			$path .= '/' . $suffix;
+		}
+		return $path;
+	}
+
+	/**
+	 * Get urlencoded path of the file relative to the public zone root.
+	 * This function is overriden in OldLocalFile to be like getArchiveUrl().
+	 *
+	 * @return string
+	 */
+	function getUrlRel() {
+		return $this->getHashPath() . rawurlencode( $this->getName() );
+	}
+
+	/**
+	 * Get the path, relative to the thumbnail zone root, for an archived file's thumbs directory
 	 * or a specific thumb if the $suffix is given.
 	 *
 	 * @param $archiveName string the timestamped name of an archived image
@@ -1079,7 +1096,7 @@ abstract class File {
 	}
 
 	/**
-	 * Get the path of the archived file's thumbs, or a particular thumb if $suffix is specified
+	 * Get the path of an archived file's thumbs, or a particular thumb if $suffix is specified
 	 *
 	 * @param $archiveName string the timestamped name of an archived image
 	 * @param $suffix bool|string if not false, the name of a thumbnail file
@@ -1101,11 +1118,7 @@ abstract class File {
 	 */
 	function getThumbPath( $suffix = false ) {
 		$this->assertRepoDefined();
-		$path = $this->repo->getZonePath( 'thumb' ) . '/' . $this->getRel();
-		if ( $suffix !== false ) {
-			$path .= '/' . $suffix;
-		}
-		return $path;
+		return $this->repo->getZonePath( 'thumb' ) . '/' . $this->getThumbRel( $suffix );
 	}
 
 	/**
