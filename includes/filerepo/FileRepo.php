@@ -42,9 +42,6 @@ class FileRepo {
 	function __construct( $info ) {
 		// Required settings
 		$this->name = $info['name'];
-		$this->url = isset( $info['url'] )
-			? $info['url']
-			: false;  // a subclass will need to set the URL (e.g. ForeignAPIRepo)
 		if ( $info['backend'] instanceof FileBackendBase ) {
 			$this->backend = $info['backend']; // useful for testing
 		} else {
@@ -67,9 +64,14 @@ class FileRepo {
 		$this->initialCapital = isset( $info['initialCapital'] )
 			? $info['initialCapital']
 			: MWNamespace::isCapitalized( NS_FILE );
-		$this->thumbUrl = isset( $info['thumbUrl'] )
-			? $info['thumbUrl']
-			: "{$this->url}/thumb";
+		$this->url = isset( $info['url'] )
+			? $info['url']
+			: false; // a subclass may set the URL (e.g. ForeignAPIRepo)
+		if ( isset( $info['thumbUrl'] ) ) {
+			$this->thumbUrl = $info['thumbUrl'];
+		} else {
+			$this->thumbUrl = $this->url ? "{$this->url}/thumb" : false;
+		}
 		$this->hashLevels = isset( $info['hashLevels'] )
 			? $info['hashLevels']
 			: 2;
@@ -414,7 +416,7 @@ class FileRepo {
 	/**
 	 * Get the public root URL of the repository
 	 *
-	 * @return string
+	 * @return string|false
 	 */
 	public function getRootUrl() {
 		return $this->url;
@@ -526,11 +528,14 @@ class FileRepo {
 	 *
 	 * @param $query mixed Query string to append
 	 * @param $entry string Entry point; defaults to index
-	 * @return string
+	 * @return string|false
 	 */
 	public function makeUrl( $query = '', $entry = 'index' ) {
-		$ext = isset( $this->scriptExtension ) ? $this->scriptExtension : '.php';
-		return wfAppendQuery( "{$this->scriptDirUrl}/{$entry}{$ext}", $query );
+		if ( isset( $this->scriptDirUrl ) ) {
+			$ext = isset( $this->scriptExtension ) ? $this->scriptExtension : '.php';
+			return wfAppendQuery( "{$this->scriptDirUrl}/{$entry}{$ext}", $query );
+		}
+		return false;
 	}
 
 	/**
@@ -603,13 +608,14 @@ class FileRepo {
 	/**
 	 * Get the URL of the stylesheet to apply to description pages
 	 *
-	 * @return string
+	 * @return string|false
 	 */
 	public function getDescriptionStylesheetUrl() {
-		if ( $this->scriptDirUrl ) {
+		if ( isset( $this->scriptDirUrl ) ) {
 			return $this->makeUrl( 'title=MediaWiki:Filepage.css&' .
 				wfArrayToCGI( Skin::getDynamicStylesheetQuery() ) );
 		}
+		return false;
 	}
 
 	/**
