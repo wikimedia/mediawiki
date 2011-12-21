@@ -106,6 +106,8 @@ production.
 * Extensions can use the 'Language::getMessagesFileName' hook to define new
   languages using messages files outside of core.
 * (bug 32512) Include 'associated namespace' checkbox on Special:Contributions
+* Added $wgSend404Code, true by default, which can be set to false to send a 
+  200 status code instead of 404 for nonexistent articles.
 
 === Bug fixes in 1.19 ===
 * $wgUploadNavigationUrl should be used for file redlinks if.
