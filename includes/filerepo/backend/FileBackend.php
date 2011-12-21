@@ -743,6 +743,8 @@ abstract class FileBackend extends FileBackendBase {
 				$filesLockSh = array_merge( $filesLockSh, $fileOp->storagePathsRead() );
 				$filesLockEx = array_merge( $filesLockEx, $fileOp->storagePathsChanged() );
 			}
+			// Optimization: if doing an EX lock anyway, don't also set an SH one
+			$filesLockSh = array_diff( $filesLockSh, $filesLockEx );
 			// Try to lock those files for the scope of this function...
 			$scopeLockS = $this->getScopedFileLocks( $filesLockSh, LockManager::LOCK_UW, $status );
 			$scopeLockE = $this->getScopedFileLocks( $filesLockEx, LockManager::LOCK_EX, $status );

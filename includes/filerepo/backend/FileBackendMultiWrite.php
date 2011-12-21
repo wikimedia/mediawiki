@@ -82,6 +82,8 @@ class FileBackendMultiWrite extends FileBackendBase {
 					$filesLockSh = array_merge( $filesLockSh, $fileOp->storagePathsRead() );
 					$filesLockEx = array_merge( $filesLockEx, $fileOp->storagePathsChanged() );
 				}
+				// Optimization: if doing an EX lock anyway, don't also set an SH one
+				$filesLockSh = array_diff( $filesLockSh, $filesLockEx );
 				// Lock the paths under the proxy backend's name
 				$this->unsubstPaths( $filesLockSh );
 				$this->unsubstPaths( $filesLockEx );
