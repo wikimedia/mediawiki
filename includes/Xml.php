@@ -208,21 +208,39 @@ class Xml {
 	}
 
 	/**
-	 *
-	 * @param $selected string The language code of the selected language
-	 * @param $customisedOnly bool If true only languages which have some content are listed
-	 * @return array of label and select
+	 * Construct a language selector appropriate for use in a form or preferences
+	 * 
+	 * @param string $selected The language code of the selected language
+	 * @param boolean $customisedOnly If true only languages which have some content are listed
+	 * @param string $language The ISO code of the language to display the select list in (optional)
+	 * @return array containing 2 items: label HTML and select list HTML
 	 */
-	public static function languageSelector( $selected, $customisedOnly = true ) {
+	public static function languageSelector( $selected, $customisedOnly = true, $language = NULL ) {
 		global $wgLanguageCode;
-		/**
-		 * Make sure the site language is in the list; a custom language code
-		 * might not have a defined name...
-		 */
-		$languages = Language::getLanguageNames( $customisedOnly );
+
+		// If a specific language was requested and CLDR is installed, use it
+		if ( $language && is_callable( array( 'LanguageNames', 'getNames' ) ) ) {
+			if ( $customisedOnly ) {
+				$listType = LanguageNames::LIST_MW_SUPPORTED; // Only pull names that have localisation in MediaWiki
+			} else {
+				$listType = LanguageNames::LIST_MW; // Pull all languages that are in Names.php
+			}
+			// Retrieve the list of languages in the requested language (via CLDR)
+			$languages = LanguageNames::getNames(
+				$language, // Code of the requested language
+				LanguageNames::FALLBACK_NORMAL, // Use fallback chain
+				$listType
+			);
+		} else {
+			$languages = Language::getLanguageNames( $customisedOnly );
+		}
+		
+		// Make sure the site language is in the list; a custom language code might not have a
+		// defined name...
 		if( !array_key_exists( $wgLanguageCode, $languages ) ) {
 			$languages[$wgLanguageCode] = $wgLanguageCode;
 		}
+		
 		ksort( $languages );
 
 		/**
