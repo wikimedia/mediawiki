@@ -147,14 +147,108 @@ abstract class FileBackendBase {
 	abstract public function doOperations( array $ops, array $opts = array() );
 
 	/**
-	 * Same as doOperations() except it takes a single operation array
+	 * Same as doOperations() except it takes a single operation.
+	 * If you are doing a batch of operations that should either
+	 * all succeed or all fail, then use that function instead.
 	 *
-	 * @param $op Array
-	 * @param $opts Array
+	 * @see FileBackendBase::doOperations()
+	 *
+	 * @param $op Array Operation
+	 * @param $opts Array Operation options
 	 * @return Status
 	 */
 	final public function doOperation( array $op, array $opts = array() ) {
 		return $this->doOperations( array( $op ), $opts );
+	}
+
+	/**
+	 * Performs a single store operation.
+	 * This sets $params['op'] to 'store' and passes it to doOperation().
+	 *
+	 * @see FileBackendBase::doOperation()
+	 *
+	 * @param $params Array Operation parameters
+	 * @param $opts Array Operation options
+	 * @return Status
+	 */
+	final public function store( array $params, array $opts = array() ) {
+		$params['op'] = 'store';
+		return $this->doOperation( $params, $opts );
+	}
+
+	/**
+	 * Performs a single copy operation.
+	 * This sets $params['op'] to 'copy' and passes it to doOperation().
+	 *
+	 * @see FileBackendBase::doOperation()
+	 *
+	 * @param $params Array Operation parameters
+	 * @param $opts Array Operation options
+	 * @return Status
+	 */
+	final public function copy( array $params, array $opts = array() ) {
+		$params['op'] = 'copy';
+		return $this->doOperation( $params, $opts );
+	}
+
+	/**
+	 * Performs a single move operation.
+	 * This sets $params['op'] to 'move' and passes it to doOperation().
+	 *
+	 * @see FileBackendBase::doOperation()
+	 *
+	 * @param $params Array Operation parameters
+	 * @param $opts Array Operation options
+	 * @return Status
+	 */
+	final public function move( array $params, array $opts = array() ) {
+		$params['op'] = 'move';
+		return $this->doOperation( $params, $opts );
+	}
+
+	/**
+	 * Performs a single delete operation.
+	 * This sets $params['op'] to 'delete' and passes it to doOperation().
+	 *
+	 * @see FileBackendBase::doOperation()
+	 *
+	 * @param $params Array Operation parameters
+	 * @param $opts Array Operation options
+	 * @return Status
+	 */
+	final public function delete( array $params, array $opts = array() ) {
+		$params['op'] = 'delete';
+		return $this->doOperation( $params, $opts );
+	}
+
+	/**
+	 * Performs a single create operation.
+	 * This sets $params['op'] to 'create' and passes it to doOperation().
+	 *
+	 * @see FileBackendBase::doOperation()
+	 *
+	 * @param $params Array Operation parameters
+	 * @param $opts Array Operation options
+	 * @return Status
+	 */
+	final public function create( array $params, array $opts = array() ) {
+		$params['op'] = 'create';
+		return $this->doOperation( $params, $opts );
+	}
+
+	/**
+	 * Performs a single concatenate operation.
+	 * This sets $params['op'] to 'concatenate' and passes it to doOperation().
+	 *
+	 * @see FileBackendBase::doOperation()
+	 *
+	 * @param $params Array Operation parameters
+	 * @param $opts Array Operation options
+	 * @return Status
+	 */
+	final public function concatenate( array $params, array $opts = array() ) {
+		$params['op'] = 'concatenate';
+		return $this->doOperation( $params, $opts );
 	}
 
 	/**
@@ -371,16 +465,16 @@ abstract class FileBackend extends FileBackendBase {
 	 * @param $params Array
 	 * @return Status
 	 */
-	final public function store( array $params ) {
-		$status = $this->doStore( $params );
+	final public function storeInternal( array $params ) {
+		$status = $this->doStoreInternal( $params );
 		$this->clearCache( array( $params['dst'] ) );
 		return $status;
 	}
 
 	/**
-	 * @see FileBackend::store()
+	 * @see FileBackend::storeInternal()
 	 */
-	abstract protected function doStore( array $params );
+	abstract protected function doStoreInternal( array $params );
 
 	/**
 	 * Copy a file from one storage path to another in the backend.
@@ -393,16 +487,16 @@ abstract class FileBackend extends FileBackendBase {
 	 * @param $params Array
 	 * @return Status
 	 */
-	final public function copy( array $params ) {
-		$status = $this->doCopy( $params );
+	final public function copyInternal( array $params ) {
+		$status = $this->doCopyInternal( $params );
 		$this->clearCache( array( $params['dst'] ) );
 		return $status;
 	}
 
 	/**
-	 * @see FileBackend::copy()
+	 * @see FileBackend::copyInternal()
 	 */
-	abstract protected function doCopy( array $params );
+	abstract protected function doCopyInternal( array $params );
 
 	/**
 	 * Delete a file at the storage path.
@@ -413,8 +507,8 @@ abstract class FileBackend extends FileBackendBase {
 	 * @param $params Array
 	 * @return Status
 	 */
-	final public function delete( array $params ) {
-		$status = $this->doDelete( $params );
+	final public function deleteInternal( array $params ) {
+		$status = $this->doDeleteInternal( $params );
 		$this->clearCache( array( $params['src'] ) );
 		return $status;
 	}
@@ -422,7 +516,7 @@ abstract class FileBackend extends FileBackendBase {
 	/**
 	 * @see FileBackend::delete()
 	 */
-	abstract protected function doDelete( array $params );
+	abstract protected function doDeleteInternal( array $params );
 
 	/**
 	 * Move a file from one storage path to another in the backend.
@@ -435,8 +529,8 @@ abstract class FileBackend extends FileBackendBase {
 	 * @param $params Array
 	 * @return Status
 	 */
-	final public function move( array $params ) {
-		$status = $this->doMove( $params );
+	final public function moveInternal( array $params ) {
+		$status = $this->doMoveInternal( $params );
 		$this->clearCache( array( $params['src'], $params['dst'] ) );
 		return $status;
 	}
@@ -444,14 +538,14 @@ abstract class FileBackend extends FileBackendBase {
 	/**
 	 * @see FileBackend::move()
 	 */
-	protected function doMove( array $params ) {
+	protected function doMoveInternal( array $params ) {
 		// Copy source to dest
-		$status = $this->backend->copy( $params );
+		$status = $this->backend->copyInternal( $params );
 		if ( !$status->isOK() ) {
 			return $status;
 		}
 		// Delete source (only fails due to races or medium going down)
-		$status->merge( $this->backend->delete( array( 'src' => $params['src'] ) ) );
+		$status->merge( $this->backend->deleteInternal( array( 'src' => $params['src'] ) ) );
 		$status->setResult( true, $status->value ); // ignore delete() errors
 		return $status;
 	}
@@ -467,8 +561,8 @@ abstract class FileBackend extends FileBackendBase {
 	 * @param $params Array
 	 * @return Status
 	 */
-	final public function concatenate( array $params ) {
-		$status = $this->doConcatenate( $params );
+	final public function concatenateInternal( array $params ) {
+		$status = $this->doConcatenateInternal( $params );
 		$this->clearCache( array( $params['dst'] ) );
 		return $status;
 	}
@@ -476,7 +570,7 @@ abstract class FileBackend extends FileBackendBase {
 	/**
 	 * @see FileBackend::concatenate()
 	 */
-	abstract protected function doConcatenate( array $params );
+	abstract protected function doConcatenateInternal( array $params );
 
 	/**
 	 * Create a file in the backend with the given contents.
@@ -489,8 +583,8 @@ abstract class FileBackend extends FileBackendBase {
 	 * @param $params Array
 	 * @return Status
 	 */
-	final public function create( array $params ) {
-		$status = $this->doCreate( $params );
+	final public function createInternal( array $params ) {
+		$status = $this->doCreateInternal( $params );
 		$this->clearCache( array( $params['dst'] ) );
 		return $status;
 	}
@@ -498,7 +592,7 @@ abstract class FileBackend extends FileBackendBase {
 	/**
 	 * @see FileBackend::create()
 	 */
-	abstract protected function doCreate( array $params );
+	abstract protected function doCreateInternal( array $params );
 
 	/**
 	 * @see FileBackendBase::prepare()

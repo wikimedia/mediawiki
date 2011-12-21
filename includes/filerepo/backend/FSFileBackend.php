@@ -48,9 +48,9 @@ class FSFileBackend extends FileBackend {
 	}
 
 	/**
-	 * @see FileBackend::doStore()
+	 * @see FileBackend::doStoreInternal()
 	 */
-	protected function doStore( array $params ) {
+	protected function doStoreInternal( array $params ) {
 		$status = Status::newGood();
 
 		list( $c, $dest ) = $this->resolveStoragePath( $params['dst'] );
@@ -92,9 +92,9 @@ class FSFileBackend extends FileBackend {
 	}
 
 	/**
-	 * @see FileBackend::doCopy()
+	 * @see FileBackend::doCopyInternal()
 	 */
-	protected function doCopy( array $params ) {
+	protected function doCopyInternal( array $params ) {
 		$status = Status::newGood();
 
 		list( $c, $source ) = $this->resolveStoragePath( $params['src'] );
@@ -143,9 +143,9 @@ class FSFileBackend extends FileBackend {
 	}
 
 	/**
-	 * @see FileBackend::doMove()
+	 * @see FileBackend::doMoveInternal()
 	 */
-	protected function doMove( array $params ) {
+	protected function doMoveInternal( array $params ) {
 		$status = Status::newGood();
 
 		list( $c, $source ) = $this->resolveStoragePath( $params['src'] );
@@ -195,9 +195,9 @@ class FSFileBackend extends FileBackend {
 	}
 
 	/**
-	 * @see FileBackend::doDelete()
+	 * @see FileBackend::doDeleteInternal()
 	 */
-	protected function doDelete( array $params ) {
+	protected function doDeleteInternal( array $params ) {
 		$status = Status::newGood();
 
 		list( $c, $source ) = $this->resolveStoragePath( $params['src'] );
@@ -225,9 +225,9 @@ class FSFileBackend extends FileBackend {
 	}
 
 	/**
-	 * @see FileBackend::doConcatenate()
+	 * @see FileBackend::doConcatenateInternal()
 	 */
-	protected function doConcatenate( array $params ) {
+	protected function doConcatenateInternal( array $params ) {
 		$status = Status::newGood();
 
 		list( $c, $dest ) = $this->resolveStoragePath( $params['dst'] );
@@ -326,9 +326,9 @@ class FSFileBackend extends FileBackend {
 	}
 
 	/**
-	 * @see FileBackend::doCreate()
+	 * @see FileBackend::doCreateInternal()
 	 */
-	protected function doCreate( array $params ) {
+	protected function doCreateInternal( array $params ) {
 		$status = Status::newGood();
 
 		list( $c, $dest ) = $this->resolveStoragePath( $params['dst'] );
