@@ -42,7 +42,7 @@
 						err( code, result );
 					}
 				};
-				return api.post( params, { 'ok' : ok, 'err' : getTokenIfBad });
+				return api.post( params, { ok : ok, err : getTokenIfBad });
 			}
 		},
 

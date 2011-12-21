@@ -44,7 +44,7 @@
 					}
 				};
 
-			return this.get( params, ok, err );
+			return this.get( params, { ok: ok, err: err } );
 		}
 
 	} );
