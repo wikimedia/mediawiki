@@ -429,7 +429,7 @@ abstract class FileOp {
 				'dst'           => $this->params['src'],
 				'overwriteDest' => true
 			);
-			$status = $this->backend->store( $params );
+			$status = $this->backend->storeInternal( $params );
 			if ( !$status->isOK() ) {
 				return $status;
 			}
@@ -451,7 +451,7 @@ abstract class FileOp {
 				'dst'           => $this->params['dst'],
 				'overwriteDest' => true
 			);
-			$status = $this->backend->store( $params );
+			$status = $this->backend->storeInternal( $params );
 			if ( !$status->isOK() ) {
 				return $status;
 			}
@@ -503,7 +503,7 @@ abstract class FileOp {
 
 /**
  * Store a file into the backend from a file on the file system.
- * Parameters similar to FileBackend::store(), which include:
+ * Parameters similar to FileBackend::storeInternal(), which include:
  *     src           : source path on file system
  *     dst           : destination storage path
  *     overwriteDest : do nothing and pass if an identical file exists at destination
@@ -542,7 +542,7 @@ class StoreFileOp extends FileOp {
 		}
 		// Store the file at the destination
 		if ( !$this->destSameAsSource ) {
-			$status->merge( $this->backend->store( $this->params ) );
+			$status->merge( $this->backend->storeInternal( $this->params ) );
 		}
 		return $status;
 	}
@@ -602,7 +602,7 @@ class CreateFileOp extends FileOp {
 		}
 		// Create the file at the destination
 		if ( !$this->destSameAsSource ) {
-			$status->merge( $this->backend->create( $this->params ) );
+			$status->merge( $this->backend->createInternal( $this->params ) );
 		}
 		return $status;
 	}
@@ -667,7 +667,7 @@ class CopyFileOp extends FileOp {
 		}
 		// Copy the file into the destination
 		if ( !$this->destSameAsSource ) {
-			$status->merge( $this->backend->copy( $this->params ) );
+			$status->merge( $this->backend->copyInternal( $this->params ) );
 		}
 		return $status;
 	}
@@ -737,7 +737,7 @@ class MoveFileOp extends FileOp {
 		}
 		if ( !$this->destSameAsSource ) {
 			// Move the file into the destination
-			$status->merge( $this->backend->move( $this->params ) );
+			$status->merge( $this->backend->moveInternal( $this->params ) );
 		} else {
 			// Create a source backup copy as needed
 			$status->merge( $this->backupSource() );
@@ -746,7 +746,7 @@ class MoveFileOp extends FileOp {
 			}
 			// Just delete source as the destination needs no changes
 			$params = array( 'src' => $this->params['src'] );
-			$status->merge( $this->backend->delete( $params ) );
+			$status->merge( $this->backend->deleteInternal( $params ) );
 			if ( !$status->isOK() ) {
 				return $status;
 			}
@@ -762,7 +762,7 @@ class MoveFileOp extends FileOp {
 				'src' => $this->params['dst'],
 				'dst' => $this->params['src']
 			);
-			$status->merge( $this->backend->move( $params ) );
+			$status->merge( $this->backend->moveInternal( $params ) );
 			if ( !$status->isOK() ) {
 				return $status; // also can't restore any dest file
 			}
@@ -830,7 +830,7 @@ class ConcatenateFileOp extends FileOp {
 			}
 		}
 		// Concatenate the file at the destination
-		$status->merge( $this->backend->concatenate( $this->params ) );
+		$status->merge( $this->backend->concatenateInternal( $this->params ) );
 		return $status;
 	}
 
@@ -890,7 +890,7 @@ class DeleteFileOp extends FileOp {
 				return $status;
 			}
 			// Delete the source file
-			$status->merge( $this->backend->delete( $this->params ) );
+			$status->merge( $this->backend->deleteInternal( $this->params ) );
 			if ( !$status->isOK() ) {
 				return $status;
 			}
