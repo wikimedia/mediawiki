@@ -124,4 +124,49 @@ class HttpTest extends MediaWikiTestCase {
 		);
 	}
 
+	function testRelativeRedirections() {
+		$h = new MWHttpRequestTester( 'http://oldsite/file.ext' );
+		# Forge a Location header
+		$h->setRespHeaders( 'location', array(
+			'http://newsite/file.ext',
+			'/newfile.ext',
+			)
+		);
+		# Verify we correctly fix the Location
+		$this->assertEquals(
+			'http://newsite/newfile.ext',
+			$h->getFinalUrl(),
+			"Relative file path Location: interpreted as full URL"
+		);
+
+		$h->setRespHeaders( 'location', array(
+			'https://oldsite/file.ext'
+			)
+		);
+		$this->assertEquals(
+			'https://oldsite/file.ext',
+			$h->getFinalUrl(),
+			"Location to the HTTPS version of the site"
+		);
+
+		$h->setRespHeaders( 'location', array(
+			'/anotherfile.ext',
+			'http://anotherfile/hoster.ext',
+			'https://anotherfile/hoster.ext'
+			)
+		);
+		$this->assertEquals(
+			'https://anotherfile/hoster.ext',
+			$h->getFinalUrl( "Relative file path Location: should keep the latest host and scheme!")
+		);
+	}
+}
+
+/**
+ * Class to let us overwrite MWHttpREquest respHeaders variable
+ */
+class MWHttpRequestTester extends MWHttpRequest {
+	function setRespHeaders( $name, $value ) {
+		$this->respHeaders[$name] = $value ;
+	}
 }
