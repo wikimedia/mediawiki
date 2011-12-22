@@ -170,7 +170,7 @@ class MovePageForm extends UnlistedSpecialPage {
 
 		# We also want to be able to move assoc. subpage talk-pages even if base page
 		# has no associated talk page, so || with $oldTitleTalkSubpages.
-		$considerTalk = !$this->oldTitle->isTalkPage() && 
+		$considerTalk = !$this->oldTitle->isTalkPage() &&
 			( $oldTalk->exists()
 				|| ( $oldTitleTalkSubpages && $canMoveSubpage ) );
 
@@ -434,7 +434,7 @@ class MovePageForm extends UnlistedSpecialPage {
 			array(),
 			array( 'redirect' => 'no' )
 		);
-		$newLink = Linker::linkKnown( $nt );	
+		$newLink = Linker::linkKnown( $nt );
 		$oldText = $ot->getPrefixedText();
 		$newText = $nt->getPrefixedText();
 
@@ -618,4 +618,3 @@ class MovePageForm extends UnlistedSpecialPage {
 		$out->addHTML( "</ul>\n" );
 	}
 }
-
