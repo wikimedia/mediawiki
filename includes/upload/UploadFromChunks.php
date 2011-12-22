@@ -56,7 +56,7 @@ class UploadFromChunks extends UploadFromFile {
 		$this->mFileKey = $this->mLocalFile->getFileKey();
 
 		// Output a copy of this first to chunk 0 location:
-		$status = $this->outputChunk( $this->mLocalFile->getPath() );
+		$status = $this->outputChunk( $this->mLocalFile->getLocalRefPath() );
 		
 		// Update db table to reflect initial "chunk" state 
 		$this->updateChunkStatus();
