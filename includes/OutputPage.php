@@ -3187,7 +3187,7 @@ $templates
 					array( 'excludepage' => $this->getTitle()->getPrefixedDBkey() )
 				);
 				// Load the previewed CSS
-				$otherTags .= Html::inlineStyle( $this->getRequest()->getText( 'wpTextbox1' ) );
+				$this->addInlineStyle( $this->getRequest()->getText( 'wpTextbox1' ) );
 			} else {
 				// Load the user styles normally
 				$moduleStyles[] = 'user';
