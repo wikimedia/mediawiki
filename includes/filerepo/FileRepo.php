@@ -85,17 +85,10 @@ class FileRepo {
 		// Give defaults for the basic zones...
 		foreach ( array( 'public', 'thumb', 'temp', 'deleted' ) as $zone ) {
 			if ( !isset( $this->zones[$zone] ) ) {
-				if ( $zone === 'deleted' ) {
-					$this->zones[$zone] = array(
-						'container' => null, // user must set this up
-						'directory' => '' // container root
-					);
-				} else {
-					$this->zones[$zone] = array(
-						'container' => "media-$zone",
-						'directory' => '' // container root
-					);
-				}
+				$this->zones[$zone] = array(
+					'container' => "media-$zone",
+					'directory' => '' // container root
+				);
 			}
 		}
 	}
@@ -110,7 +103,7 @@ class FileRepo {
 	}
 
 	/**
-	 * Prepare all the zones for basic usage.
+	 * Prepare a single zone or list of zones for usage.
 	 * See initDeletedDir() for additional setup needed for the 'deleted' zone.
 	 * 
 	 * @param $doZones Array Only do a particular zones
@@ -118,13 +111,11 @@ class FileRepo {
 	 */
 	protected function initZones( $doZones = array() ) {
 		$status = $this->newGood();
-		$doZones = (array)$doZones; // string => array
-		foreach ( $this->zones as $zone => $info ) {
-			if ( $doZones && !in_array( $zone, $doZones ) ) {
-				continue;
-			}
+		foreach ( (array)$doZones as $zone ) {
 			$root = $this->getZonePath( $zone );
-			if ( $root !== null ) {
+			if ( $root === null ) {
+				throw new MWException( "No '$zone' zone defined in the $this->name repo." );
+			} else {
 				$params = array( 'dir' => $this->getZonePath( $zone ) );
 				$status->merge( $this->backend->prepare( $params ) );
 			}
@@ -1062,10 +1053,6 @@ class FileRepo {
 	 */
 	public function deleteBatch( $sourceDestPairs ) {
 		$backend = $this->backend; // convenience
-
-		if ( !isset( $this->zones['deleted']['container'] ) ) {
-			throw new MWException( __METHOD__.': no valid deletion archive directory' );
-		}
 
 		// Try creating directories
 		$status = $this->initZones( array( 'public', 'deleted' ) );

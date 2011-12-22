@@ -114,8 +114,6 @@ class NewParserTest extends MediaWikiTestCase {
 		$wgNamespaceAliases['Image_talk'] = $this->savedWeirdGlobals['image_talk_alias'];
 
 		// Restore backends
-		FileBackendGroup::destroySingleton();
-		FileBackendGroup::singleton()->register( $GLOBALS['wgFileBackends'] );
 		RepoGroup::destroySingleton();
 	}
 
@@ -239,7 +237,14 @@ class NewParserTest extends MediaWikiTestCase {
 				'url'             => 'http://example.com/images',
 				'hashLevels'      => 2,
 				'transformVia404' => false,
-				'backend'         => 'local-backend'
+				'backend'         => new FSFileBackend( array(
+					'name'        => 'local-backend',
+					'lockManager' => 'nullLockManager',
+					'containerPaths' => array(
+						'media-public'  => "$this->uploadDir",
+						'media-thumb'   => "$this->uploadDir/thumb",
+					)
+				) )
 			),
 			'wgEnableUploads' => self::getOptionValue( 'wgEnableUploads', $opts, true ),
 			'wgStylePath' => '/skins',
@@ -315,17 +320,6 @@ class NewParserTest extends MediaWikiTestCase {
 		$GLOBALS['wgOut'] = $context->getOutput();
 		$GLOBALS['wgUser'] = $context->getUser();
 
-		FileBackendGroup::destroySingleton(); // reset
-		$backend = array(
-			'name'           => 'local-backend',
-			'class'          => 'FSFileBackend',
-			'lockManager'    => 'nullLockManager',
-			'containerPaths' => array(
-				'media-public' => $this->uploadDir,
-				'media-thumb'  => $this->uploadDir . '/thumb' )
-		);
-		FileBackendGroup::singleton()->register( array( $backend ) );
-
 		global $wgHooks;
 
 		$wgHooks['ParserTestParser'][] = 'ParserTestParserHook::setup';
@@ -388,7 +382,6 @@ class NewParserTest extends MediaWikiTestCase {
 
 		RepoGroup::destroySingleton();
 		LinkCache::singleton()->clear();
-		FileBackendGroup::destroySingleton();
 
 		$this->teardownUploadDir( $this->uploadDir );
 	}
