@@ -966,7 +966,8 @@ CREATE TABLE /*_*/uploadstash (
 	us_timestamp varbinary(14) not null,
 
 	us_status varchar(50) not null,
-	
+
+	-- chunk counter starts at 0, current offset is stored in us_size
 	us_chunk_inx int unsigned NULL,
 
 	-- file properties from File::getPropsFromPath.  these may prove unnecessary.
