@@ -591,6 +591,10 @@ class MWHttpRequest {
 	 * Relative values of the "Location" header are incorrect as stated in RFC, however they do happen and modern browsers support them.
 	 * This function loops backwards through all locations in order to build the proper absolute URI - Marooned at wikia-inc.com
 	 *
+	 * Note that the multiple Location: headers are an artifact of CURL -- they
+	 * shouldn't actually get returned this way. Rewrite this when bug 29232 is
+	 * taken care of (high-level redirect handling rewrite).
+	 *
 	 * @return string
 	 */
 	public function getFinalUrl() {
