@@ -124,6 +124,14 @@ class HttpTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * Warning:
+	 * 
+	 * These tests are for code that makes use of an artifact of how CURL
+	 * handles header reporting on redirect pages, and will need to be
+	 * rewritten when bug 29232 is taken care of (high-level handling of
+	 * HTTP redirects).
+	 */
 	function testRelativeRedirections() {
 		$h = new MWHttpRequestTester( 'http://oldsite/file.ext' );
 		# Forge a Location header
