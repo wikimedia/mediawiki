@@ -75,7 +75,7 @@ while ( ( $line = Maintenance::readconsole() ) !== false ) {
 		readline_write_history( $historyFile );
 	}
 	if( false !== strpos($line, "<?php") ) {
-		# Someone send a .php file to STDIN so we do not want
+		# Someone sent a .php file to STDIN so we do not want
 		# to interprate the special '<?php'.
 		continue;
 	}
