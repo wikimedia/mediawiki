@@ -406,7 +406,7 @@ abstract class FileBackendBase {
 	 * Callers should consider using getScopedFileLocks() instead.
 	 * 
 	 * @param $paths Array Storage paths
-	 * @param $type integer LockManager::LOCK_EX, LockManager::LOCK_SH
+	 * @param $type integer LockManager::LOCK_* constant
 	 * @return Status
 	 */
 	final public function lockFiles( array $paths, $type ) {
@@ -417,7 +417,7 @@ abstract class FileBackendBase {
 	 * Unlock the files at the given storage paths in the backend.
 	 * 
 	 * @param $paths Array Storage paths
-	 * @param $type integer LockManager::LOCK_EX, LockManager::LOCK_SH
+	 * @param $type integer LockManager::LOCK_* constant
 	 * @return Status
 	 */
 	final public function unlockFiles( array $paths, $type ) {
@@ -433,7 +433,7 @@ abstract class FileBackendBase {
 	 * the status updated. Unlock fatals will not change the status "OK" value.
 	 * 
 	 * @param $paths Array Storage paths
-	 * @param $type integer LockManager::LOCK_EX, LockManager::LOCK_SH
+	 * @param $type integer LockManager::LOCK_* constant
 	 * @param $status Status Status to update on lock/unlock
 	 * @return ScopedLock|null Returns null on failure
 	 */
@@ -460,7 +460,7 @@ abstract class FileBackend extends FileBackendBase {
 	 * $params include:
 	 *     src           : source path on disk
 	 *     dst           : destination storage path
-	 *     overwriteDest : do nothing and pass if an identical file exists at destination
+	 *     overwriteDest : overwrite any file that exists at the destination
 	 * 
 	 * @param $params Array
 	 * @return Status
@@ -482,7 +482,7 @@ abstract class FileBackend extends FileBackendBase {
 	 * $params include:
 	 *     src           : source storage path
 	 *     dst           : destination storage path
-	 *     overwriteDest : do nothing and pass if an identical file exists at destination
+	 *     overwriteDest : overwrite any file that exists at the destination
 	 * 
 	 * @param $params Array
 	 * @return Status
@@ -502,7 +502,8 @@ abstract class FileBackend extends FileBackendBase {
 	 * Delete a file at the storage path.
 	 * Do not call this function from places outside FileBackend and FileOp.
 	 * $params include:
-	 *     src : source storage path
+	 *     src                 : source storage path
+	 *     ignoreMissingSource : do nothing if the source file does not exist
 	 * 
 	 * @param $params Array
 	 * @return Status
@@ -524,7 +525,7 @@ abstract class FileBackend extends FileBackendBase {
 	 * $params include:
 	 *     src           : source storage path
 	 *     dst           : destination storage path
-	 *     overwriteDest : do nothing and pass if an identical file exists at destination
+	 *     overwriteDest : overwrite any file that exists at the destination
 	 * 
 	 * @param $params Array
 	 * @return Status
@@ -556,7 +557,7 @@ abstract class FileBackend extends FileBackendBase {
 	 * $params include:
 	 *     srcs          : ordered source storage paths (e.g. chunk1, chunk2, ...)
 	 *     dst           : destination storage path
-	 *     overwriteDest : do nothing and pass if an identical file exists at destination
+	 *     overwriteDest : overwrite any file that exists at the destination
 	 * 
 	 * @param $params Array
 	 * @return Status
@@ -578,7 +579,7 @@ abstract class FileBackend extends FileBackendBase {
 	 * $params include:
 	 *     content       : the raw file contents
 	 *     dst           : destination storage path
-	 *     overwriteDest : do nothing and pass if an identical file exists at destination
+	 *     overwriteDest : overwrite any file that exists at the destination
 	 * 
 	 * @param $params Array
 	 * @return Status
