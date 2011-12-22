@@ -316,10 +316,10 @@ $digitGroupingPattern = "##,##,###";
 
 $messages = array(
 # User preference toggles
-'tog-underline'               => 'दुव्यांना अधोरेखित करा:',
-'tog-highlightbroken'         => 'चुकीचे दुवे <a href="" class="new">असे दाखवा</a> (किंवा: असे दाखवा<a href="" class="internal">?</a>).',
+'tog-underline'               => 'दुव्यांचे अधोरेखन:',
+'tog-highlightbroken'         => 'तुटके दुवे <a href="" class="new">असे दाखवा</a> (किंवा: असे दाखवा<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'परिच्छेद समान करा',
-'tog-hideminor'               => 'छोटे बदल लपवा',
+'tog-hideminor'               => 'अलिकडील बदलांत छोटी संपादने दाखवू नका',
 'tog-hidepatrolled'           => 'पहारा दिलेली संपादने अलीकडील बदलांमधून लपवा',
 'tog-newpageshidepatrolled'   => 'नवीन पृष्ठ यादीतून पहारा दिलेली पाने लपवा',
 'tog-extendwatchlist'         => 'पहार्‍याच्या सूचीत सर्व बदल दाखवा, फक्त अलीकडील बदल नकोत',
@@ -329,7 +329,7 @@ $messages = array(
 'tog-editondblclick'          => 'दोनवेळा क्लीक करुन पान संपादित करा (जावास्क्रीप्ट)',
 'tog-editsection'             => '[संपादन] दुव्याने संपादन करणे शक्य करा',
 'tog-editsectiononrightclick' => 'विभाग शीर्षकावर उजव्या क्लीकने संपादन करा(जावास्क्रीप्ट)',
-'tog-showtoc'                 => '३ पेक्षा जास्त शीर्षके असताना अनुक्रमणिका दाखवा',
+'tog-showtoc'                 => 'पानात ३ पेक्षा जास्त शीर्षके असल्यास अनुक्रमणिका दाखवा',
 'tog-rememberpassword'        => 'माझा प्रवेश या संगणकावर लक्षात ठेवा (जास्तीत जास्त $1 {{PLURAL:$1|दिवसांकरिता}})',
 'tog-watchcreations'          => 'मी तयार केलेली पाने माझ्या पहार्‍याच्या सूचीत टाका',
 'tog-watchdefault'            => 'मी संपादित केलेली पाने माझ्या पहार्‍याच्या सूचीत टाका',
@@ -598,7 +598,7 @@ $1',
 'site-atom-feed'          => '$1 ऍटम रसद (Atom Feed)',
 'page-rss-feed'           => '"$1" आर.एस.एस.रसद (RSS Feed)',
 'page-atom-feed'          => '"$1" ऍटम रसद (Atom Feed)',
-'feed-atom'               => 'ऍटम',
+'feed-atom'               => 'ॲटम',
 'feed-rss'                => 'आर.एस.ए‍स.',
 'red-link-title'          => '$1 (पान अस्तित्त्वात नाही)',
 'sort-descending'         => 'उतरत्या क्रमाने लावा',
@@ -1731,6 +1731,17 @@ $1',
 'upload-too-many-redirects' => 'या आंतरजालपत्त्यात खूप पुनर्निर्देशने आहेत',
 'upload-unknown-size'       => 'अज्ञात आकारमान',
 'upload-http-error'         => 'एक एचटीटीपी चूक उद्भवली: $1',
+
+# File backend
+'backend-fail-alreadyexists' => '$1 ही संचिका अगोदरच अस्तित्वात आहे.',
+'backend-fail-store'         => '$1 ही संचिका $2मधे साठवू शकत नाही.',
+'backend-fail-copy'          => '"$1" संचिकेची "$2" ही प्रत करता आली नाही.',
+'backend-fail-move'          => 'संचिका $1 पासून $2मधे हलवता आली नाही.',
+'backend-fail-opentemp'      => 'तात्पुरती संचिका उघडणे जमले नाही.',
+'backend-fail-writetemp'     => 'तात्पुरत्या संचिकेत लिहिणे जमले नाही.',
+'backend-fail-closetemp'     => 'तात्पुरती संचिका बंद करणे जमले नाही.',
+'backend-fail-read'          => '$1 ही संचिका वाचता आली नाही.',
+'backend-fail-create'        => '$1 ही संचिका बनवता आली नाही.',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'संचीका ZIP तपासणीसाठी उघडताना त्रुटी आली.',
@@ -2876,6 +2887,7 @@ $1',
 'skinname-chick'       => 'मस्त',
 'skinname-simple'      => 'साधी',
 'skinname-modern'      => 'आधुनिक',
+'skinname-vector'      => 'सदिश',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'टेहळणी केल्याची खूण करा',
@@ -2941,11 +2953,15 @@ $1',
 'sp-newimages-showfrom' => '$2, $1 पासूनच्या नवीन संचिका दाखवा',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
-'seconds' => '{{PLURAL:$1|$1 सेकंद|$1 सेकंद}}',
-'minutes' => '{{PLURAL:$1|$1 मिनिट|$1 मिनिट}}',
-'hours'   => '{{PLURAL:$1|$1 तास|$1 तास}}',
-'days'    => '{{PLURAL:$1|$1 दिवस|$1 दिवस}}',
-'ago'     => '$1 पूर्वी',
+'seconds-abbrev' => '$1से',
+'minutes-abbrev' => '$1मि',
+'hours-abbrev'   => '$1ता',
+'days-abbrev'    => '$1दि',
+'seconds'        => '{{PLURAL:$1|$1 सेकंद|$1 सेकंद}}',
+'minutes'        => '{{PLURAL:$1|$1 मिनिट|$1 मिनिट}}',
+'hours'          => '{{PLURAL:$1|$1 तास|$1 तास}}',
+'days'           => '{{PLURAL:$1|$1 दिवस|$1 दिवस}}',
+'ago'            => '$1 पूर्वी',
 
 # Bad image list
 'bad_image_list' => 'रूपरेषा खालील प्रमाणे आहे:
@@ -3032,6 +3048,7 @@ $1',
 'exif-lightsource'                 => 'प्रकाश स्रोत',
 'exif-flash'                       => "लख'''लखाट''' (फ्लॅश)",
 'exif-focallength'                 => 'भींगाची मध्यवर्ती लांबी (फोकल लांबी)',
+'exif-focallength-format'          => '$1 मि.मी.',
 'exif-subjectarea'                 => 'विषय विभाग',
 'exif-flashenergy'                 => 'लखाट उर्जा (फ्लॅश एनर्जी)',
 'exif-focalplanexresolution'       => 'फोकल प्लेन x रिझोल्यूशन',
@@ -3477,6 +3494,12 @@ $5
 'autoredircomment' => '[[$1]] कडे पुनर्निर्देशित',
 'autosumm-new'     => 'नवीन पान: $1',
 
+# Size units
+'size-bytes'     => '$1 बा.',
+'size-kilobytes' => '$1 कि.बा.',
+'size-megabytes' => '$1 मे.बा.',
+'size-gigabytes' => '$1 गि.बा.',
+
 # Live preview
 'livepreview-loading' => 'चढवत आहे…',
 'livepreview-ready'   => 'चढवत आहे… तयार!',
@@ -3677,10 +3700,12 @@ $5
 'newuserlog-byemail'                  => 'परवलीचा शब्द इमेलमार्फत पाठविलेला आहे',
 
 # Feedback
-'feedback-subject' => 'विषय:',
-'feedback-message' => 'संदेश:',
-'feedback-cancel'  => 'रद्द करा',
-'feedback-submit'  => 'प्रतिक्रिया द्या',
-'feedback-error2'  => 'त्रुटी: संपादन रद्द',
+'feedback-subject'  => 'विषय:',
+'feedback-message'  => 'संदेश:',
+'feedback-cancel'   => 'रद्द करा',
+'feedback-submit'   => 'प्रतिक्रिया द्या',
+'feedback-error2'   => 'त्रुटी: संपादन रद्द',
+'feedback-close'    => 'झाले',
+'feedback-bugcheck' => 'उत्तम! फक्त एकदा खात्री करा की हा [$1 अगोदरच माहिती असलेला बग] तर नाहीये.',
 
 );
