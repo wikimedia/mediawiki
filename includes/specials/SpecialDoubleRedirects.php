@@ -38,7 +38,7 @@ class DoubleRedirectsPage extends PageQueryPage {
 	function sortDescending() { return false; }
 
 	function getPageHeader() {
-		return wfMsgExt( 'doubleredirectstext', array( 'parse' ) );
+		return $this->msg( 'doubleredirectstext' )->parseAsBlock();
 	}
 
 	function reallyGetQueryInfo( $namespace = null, $title = null ) {
@@ -105,7 +105,7 @@ class DoubleRedirectsPage extends PageQueryPage {
 
 		$edit = Linker::linkKnown(
 			$titleA,
-			wfMsgExt( 'parentheses', array( 'escape' ), wfMsg( 'editlink' ) ),
+			$this->msg( 'parentheses', $this->msg( 'editlink' )->text() )->escaped(),
 			array(),
 			array(
 				'redirect' => 'no',
