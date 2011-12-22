@@ -233,6 +233,8 @@ function wfExtractThumbParams( $uri ) {
 	// Check if this is a valid looking thumbnail request...
 	if ( preg_match( $thumbUrlRegex, $uri, $matches ) ) {
 		list( /* all */, $archOrTemp, $filename, $thumbname ) = $matches;
+		$filename = urldecode( $filename );
+		$thumbname = urldecode( $thumbname );
 
 		$params = array( 'f' => $filename );
 		if ( $archOrTemp == '/archive' ) {
