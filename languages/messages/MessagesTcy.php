@@ -63,6 +63,7 @@ $messages = array(
 'underline-default' => 'ಬ್ರೌಸರ್’ದ ಯಥಾಸ್ಥಿತಿ',
 
 # Font style option in Special:Preferences
+'editfont-style'     => 'ಬರೆಪುನ ಜಾಗದ ಅಕ್ಷರದ ಶೈಲಿ',
 'editfont-default'   => 'ಬ್ರೌಸರ್’ದ ಯಥಾಸ್ಥಿತಿ',
 'editfont-sansserif' => 'ಸಾನ್ಸ್-ಸೆರಿಫ್ ಲಿಪಿ',
 'editfont-serif'     => 'ಸೆರಿಫ್ ಲಿಪಿ',
@@ -430,6 +431,7 @@ $messages = array(
 'resetpass-temp-password'   => 'ತಾತ್ಕಾಲಿಕ ಪ್ರವೇಶಪದ:',
 
 # Special:PasswordReset
+'passwordreset'          => 'ಪ್ರವೇಶ ಪದನ್ ರಿಸೆಟ್ ಮಲ್ಪುಲೆ',
 'passwordreset-username' => 'ಸದಸ್ಯೆರ್ನ ಪುದರ್:',
 'passwordreset-email'    => 'ಇ-ಅಂಚೆ ವಿಳಾಸೊ',
 
@@ -589,10 +591,18 @@ $messages = array(
 'powersearch-legend'               => 'ಅಡ್ವಾನ್ಸ್’ಡ್ ಸರ್ಚ್',
 'powersearch-ns'                   => 'ನೇಮ್-ಸ್ಪೇಸ್’ಲೆಡ್ ನಾಡ್ಲೆ',
 'powersearch-field'                => 'ನಾಡ್ಲೆ:',
+'powersearch-toggleall'            => 'ಮಾತಾ',
 
 # Preferences page
 'preferences'               => 'ಪ್ರಾಶಸ್ತ್ಯೊಲು',
 'mypreferences'             => 'ಎನ್ನ ಪ್ರಾಶಸ್ತ್ಯಲು',
+'changepassword'            => 'ಪ್ರವೇಶಪದೊನ್ ಬದಲಾವಣೆ ಮಲ್ಪುಲೆ',
+'prefs-datetime'            => 'ದಿನ ಬೊಕ್ಕ ಸಮಯ',
+'prefs-rc'                  => 'ಇಂಚಿಪದ ಬದಲಾವಣೆಲು',
+'prefs-resetpass'           => 'ಪ್ರವೇಶಪದೊನ್ ಬದಲಾವಣೆ ಮಲ್ಪುಲೆ',
+'prefs-changeemail'         => 'ಇ-ಅಂಚೆ ವಿಳಾಸೊನು ಬದಲಾವಣೆ ಮಲ್ಪುಲೆ',
+'saveprefs'                 => 'ಒರಿಪಾಲೆ',
+'localtime'                 => 'ಸ್ಥಳೀಯ ಸಮಯ:',
 'timezoneregion-africa'     => 'ಆಫ್ರಿಕ',
 'timezoneregion-america'    => 'ಅಮೇರಿಕ',
 'timezoneregion-antarctica' => 'ಅಂಟಾರ್ಟಿಕ',
@@ -603,11 +613,14 @@ $messages = array(
 'uid'                       => 'ಸದಸ್ಯೆರನ  ID',
 'yourrealname'              => 'ನಿಜವಾಯಿನ ಪುದರ್',
 'yourlanguage'              => 'ಭಾಷೆ:',
+'yourgender'                => 'ಲಿಂಗೊ',
 'gender-male'               => 'ಆಣ್',
 'gender-female'             => 'ಪೊಣ್ಣು',
 
 # Groups
+'group-user'  => 'ಬಳಕೆದಾರೆರ್',
 'group-sysop' => 'ನಿರ್ವಾಹಕೆರ್',
+'group-all'   => 'ಮಾತಾ',
 
 'grouppage-sysop' => '{{ns:project}}:ನಿರ್ವಾಹಕೆರ್',
 
@@ -677,14 +690,22 @@ $messages = array(
 'uploadlogpage' => 'ಅಪ್ಲೋಡ್ ದಾಖಲೆ',
 'filename'      => 'ಕಡತದ ಪುದರ್',
 'filedesc'      => 'ಸಾರಾಂಶ',
+'filesource'    => 'ಮೂಲ',
+'savefile'      => 'ಕಡತನ್ ಒರಿಪಾಲೆ',
 'uploadedimage' => '"[[$1]]" ಅಪ್ಲೋಡ್ ಆಂಡ್',
+'upload-source' => 'ಮೂಲ ಕಡತ',
 
 'license-header' => 'ಲೈಸೆನ್ಸಿಂಗ್',
+
+# Special:ListFiles
+'imgfile' => 'ಫೈಲ್',
 
 # File description page
 'file-anchor-link'    => 'ಫೈಲ್',
 'filehist'            => 'ಫೈಲ್’ದ ಇತಿಹಾಸ',
 'filehist-help'       => 'ಫೈಲ್ ಆ ದಿನೊಟು ಎಂಚ ಇತ್ತ್’ನ್ಡ್’ನ್ದ್ ತೂಯೆರೆ ಆ ದಿನ/ಪೊರ್ತುದ ಮಿತ್ತ್ ಕ್ಲಿಕ್ ಮಲ್ಪುಲೆ.',
+'filehist-deleteall'  => 'ಮಾತಾ ಮಾಜಾಲೆ',
+'filehist-deleteone'  => 'ಮಾಜಾಲೆ',
 'filehist-current'    => 'ಪ್ರಸಕ್ತ',
 'filehist-datetime'   => 'ದಿನ/ಪೊರ್ತು',
 'filehist-thumb'      => 'ಥಂಬ್-ನೈಲ್',
@@ -697,23 +718,31 @@ $messages = array(
 'linkstoimage'        => 'ಈ ಫೈಲ್’ಗ್ ತಿರ್ತ್’ದ ಈ {{PLURAL:$1|ಪುಟ|$1 ಪುಟೊಲು}} ಲಿಂಕ್ ಕೊರ್ಪುಂಡು.',
 'sharedupload'        => 'ಈ ಫೈಲ್’ನ್ ಮಸ್ತ್ ಜನ ಪಟ್ಟ್’ದುಲ್ಲೆರ್ ಅಂಚೆನೆ ಉಂದು ಮಸ್ತ್ ಪ್ರೊಜೆಕ್ಟ್’ಲೆಡ್ ಉಪಯೋಗಡುಪ್ಪು.',
 
+# File deletion
+'filedelete-comment' => 'ಕಾರಣ',
+'filedelete-submit'  => 'ಮಾಜಾಲೆ',
+
 # Random page
 'randompage' => 'ಯಾದೃಚ್ಛಿಕ ಪುಟ',
 
 # Statistics
-'statistics' => 'ಅಂಕಿ ಅಂಶೊಲು',
+'statistics'              => 'ಅಂಕಿ ಅಂಶೊಲು',
+'statistics-header-pages' => 'ಪುಟೊತ ಅಂಕಿ ಅಂಶಲು',
 
 'disambiguationspage' => 'ದ್ವಂದ್ವ ನಿವಾರಣೆ',
 
 # Miscellaneous special pages
-'nbytes'        => '$1 {{PLURAL:$1|ಬೈಟ್|ಬೈಟ್‍ಲು}}',
-'nmembers'      => '$1 {{PLURAL:$1|ಸದಸ್ಯೆ|ಸದಸ್ಯೆರ್}}',
-'prefixindex'   => 'ಪೂರ್ವನಾಮೊಲ್ದ ಸೂಚಿಕೆ',
-'newpages'      => 'ಪೊಸ ಪುಟೊಲು',
-'move'          => 'ಮೂವ್(ಸ್ಥಳಾಂತರ) ಮಲ್ಪುಲೆ',
-'movethispage'  => 'ಈ ಪುಟೊನು ಮೂವ್ ಮಲ್ಪುಲೆ',
-'pager-newer-n' => '{{PLURAL:$1|ಪೊಸ ೧|ಪೊಸ $1}}',
-'pager-older-n' => '{{PLURAL:$1|ಪರತ್ತ್ ೧|ಪರತ್ತ್ $1}}',
+'nbytes'            => '$1 {{PLURAL:$1|ಬೈಟ್|ಬೈಟ್‍ಲು}}',
+'nmembers'          => '$1 {{PLURAL:$1|ಸದಸ್ಯೆ|ಸದಸ್ಯೆರ್}}',
+'wantedfiles'       => 'ಬೋಡಾಯಿನ ಕಡತೊಲು',
+'prefixindex'       => 'ಪೂರ್ವನಾಮೊಲ್ದ ಸೂಚಿಕೆ',
+'listusers'         => 'ಬಳಕೆದಾರರೆನ ತಖ್ತೆ',
+'newpages'          => 'ಪೊಸ ಪುಟೊಲು',
+'newpages-username' => 'ಸದಸ್ಯೆರ್ನ ಪುದರ್:',
+'move'              => 'ಮೂವ್(ಸ್ಥಳಾಂತರ) ಮಲ್ಪುಲೆ',
+'movethispage'      => 'ಈ ಪುಟೊನು ಮೂವ್ ಮಲ್ಪುಲೆ',
+'pager-newer-n'     => '{{PLURAL:$1|ಪೊಸ ೧|ಪೊಸ $1}}',
+'pager-older-n'     => '{{PLURAL:$1|ಪರತ್ತ್ ೧|ಪರತ್ತ್ $1}}',
 
 # Book sources
 'booksources'               => 'ಪುಸ್ತಕೊಲ್ದ ಮೂಲ',
@@ -827,6 +856,9 @@ $messages = array(
 # Export
 'export' => 'ಪುಟಲೆನ್ ರಫ್ತು ಮಲ್ಪುಲೆ',
 
+# Namespace 8 related
+'allmessagesname' => 'ಪುದರ್',
+
 # Thumbnails
 'thumbnail-more'  => 'ಮಲ್ಲ ಮಲ್ಪುಲೆ',
 'thumbnail_error' => 'ಮುನ್ನೋಟ ಚಿತ್ರೊನು ಸೃಷ್ಟಿ ಮನ್ಪುನಗ ದೋಷ: $1',
@@ -938,6 +970,7 @@ $messages = array(
 'monthsall'     => 'ಪೂರಾ',
 
 # Watchlist editing tools
+'watchlisttools-view' => 'ಪ್ರಸ್ತುತ ಬದಲಾವಣೆಲ್ ತೋಜಾಲೆ',
 'watchlisttools-edit' => 'ವೀಕ್ಷಣಾಪಟ್ಟಿನ್ ತೂಲೆ ಬೊಕ್ಕ ಎಡಿಟ್ ಮಲ್ಪುಲೆ',
 
 # Special:SpecialPages

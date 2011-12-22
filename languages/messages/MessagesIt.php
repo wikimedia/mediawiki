@@ -1694,6 +1694,10 @@ $1',
 'upload-unknown-size'       => 'Dimensione sconosciuta',
 'upload-http-error'         => 'Si è verificato un errore HTTP: $1',
 
+# File backend
+'backend-fail-notexists'     => 'Il file $1 non esiste.',
+'backend-fail-alreadyexists' => 'Il file $1 esiste già.',
+
 # ZipDirectoryReader
 'zip-file-open-error' => "Si è verificato un errore durante l'apertura del file per i controlli ZIP.",
 'zip-wrong-format'    => 'Il file specificato non è un file ZIP.',

@@ -2189,8 +2189,8 @@ $1",
 'namespace'                     => 'Spassi nominal:',
 'invert'                        => 'Anvertì la selession',
 'tooltip-invert'                => "Ch'a selession-a sta casela për stërmé le modìfiche a le pàgine ant lë spassi nominal selessionà (e ant lë spassi nominal associà se selessionà)",
-'namespace_association'         => 'Spassi nominal assossià',
-'tooltip-namespace_association' => 'Selession-a sta casela për anserì ëdcò la discussion o lë spassi nominal dël soget associà con lë spassi nomina selessionà',
+'namespace_association'         => 'Spassi nominal associà',
+'tooltip-namespace_association' => "Ch'a selession-a sta casela për anserì ëdcò la discussion o lë spassi nominal dël soget associà a lë spassi nomina selessionà",
 'blanknamespace'                => '(Prinsipal)',
 
 # Contributions

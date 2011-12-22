@@ -1007,11 +1007,11 @@ ou <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}}
 'blocked-notice-logextract'        => 'Cet utilisateur est actuellement bloqué.
 La dernière entrée du registre des blocages est indiquée ci-dessous à titre d’information :',
 'clearyourcache'                   => "'''Note :''' après avoir enregistré vos préférences, vous devrez forcer le rechargement complet du cache de votre navigateur pour voir les changements.
-* '''Firefox / Safari :''' maintenez la touche ''Maj'' (''Shift'') en cliquant sur le bouton ''Actualiser'' ou pressez ''Ctrl-F5'' ou ''Ctrl-R'' (''Cmd-R'' sur un Mac) ;
-* '''Google Chrome :''' pressez ''Ctrl-Maj-R'' (''Cmd-Maj-R'' sur un Mac) ;
-* '''Internet Explorer :''' maintenez la touche ''Ctrl'' en cliquant sur le bouton ''Actualiser'' ou pressez ''Ctrl-F5'' ;
-* '''Konqueror :''' cliquez sur ''Actualiser'' ou pressez ''F5'' ;
-* '''Opera :''' videz le cache dans ''Outils → Préférences''.",
+* '''Firefox / Safari :''' Maintenez la touche ''Maj'' (''Shift'') en cliquant sur le bouton ''Actualiser'' ou pressez ''Ctrl-F5'' ou ''Ctrl-R'' (''⌘-R'' sur un Mac) ;
+* '''Google Chrome :''' Appuyez sur ''Ctrl-Maj-R'' (''⌘-Shift-R'' sur un Mac) ;
+* '''Internet Explorer :''' Maintenez la touche ''Ctrl'' en cliquant sur le bouton ''Actualiser'' ou pressez ''Ctrl-F5'' ;
+* '''Konqueror :''' Cliquez sur ''Actualiser'' ou pressez ''F5'' ;
+* '''Opera :''' Videz le cache dans ''Outils → Préférences''.",
 'usercssyoucanpreview'             => "'''Astuce :''' utilisez le bouton « {{int:showpreview}} » pour tester votre nouvelle feuille CSS avant de l’enregistrer.",
 'userjsyoucanpreview'              => "'''Astuce :''' utilisez le bouton « {{int:showpreview}} » pour tester votre nouvelle feuille JavaScript avant de l’enregistrer.",
 'usercsspreview'                   => "'''Rappelez-vous que vous n’êtes qu’en train de prévisualiser votre propre feuille CSS.'''
@@ -1832,6 +1832,36 @@ Si le problème persiste, contactez un [[Special:ListUsers/sysop|administrateur]
 'upload-unknown-size'       => 'Taille inconnue',
 'upload-http-error'         => 'Une erreur HTTP est intervenue : $1',
 
+# File backend
+'backend-fail-stream'        => 'Impossible de lire le fichier $1.',
+'backend-fail-backup'        => 'Impossible de sauvegarder le fichier $1.',
+'backend-fail-notexists'     => "Le fichier $1 n'existe pas.",
+'backend-fail-hashes'        => "Impossible d'obtenir les hachages du fichier pour comparaison.",
+'backend-fail-notsame'       => 'Un fichier différent existe déjà pour $1 .',
+'backend-fail-invalidpath'   => "$1n'est pas un chemin de stockage valide.",
+'backend-fail-delete'        => 'Impossible de supprimer le fichier $1.',
+'backend-fail-alreadyexists' => 'Le fichier $1 existe déjà.',
+'backend-fail-store'         => 'Impossible de stocker le fichier $1 en $2.',
+'backend-fail-copy'          => 'Impossible de copier le fichier $1 en $2.',
+'backend-fail-move'          => 'Impossible de déplacer le fichier $1 en $2.',
+'backend-fail-opentemp'      => "Impossible d'ouvrir le fichier temporaire.",
+'backend-fail-writetemp'     => "Impossible d'écrire dans le fichier temporaire.",
+'backend-fail-closetemp'     => 'Impossible de fermer le fichier temporaire.',
+'backend-fail-read'          => 'Impossible de lire le fichier $1.',
+'backend-fail-create'        => 'Impossible de créer le fichier $1.',
+
+# Lock manager
+'lockmanager-notlocked'         => 'Impossible de déverrouiller la clé "$1"; elle n\'est pas verrouillée.',
+'lockmanager-fail-closelock'    => 'Impossible de fermer le fichier de verrou pour la clé "$1".',
+'lockmanager-fail-deletelock'   => 'Impossible de supprimer le fichier de verrou pour la clé "$1".',
+'lockmanager-fail-acquirelock'  => 'Impossible d\'obtenir le verrou pour la clé "$1".',
+'lockmanager-fail-openlock'     => 'Impossible d\'ouvrir le fichier de verrou pour la clé "$1".',
+'lockmanager-fail-releaselock'  => 'Impossible de relâcher le verrou pour la clé "$1".',
+'lockmanager-fail-acquirelocks' => 'Impossible d\'obtenir les verrous pour les clés "$1".',
+'lockmanager-fail-db-bucket'    => 'Impossible de contacter suffisamment de bases de données de verrouillage dans le godet $1.',
+'lockmanager-fail-db-release'   => 'Impossible de relâcher les verrous sur la base de données $1.',
+'lockmanager-fail-svr-release'  => 'Impossible de relâcher les verrous sur le serveur $1.',
+
 # ZipDirectoryReader
 'zip-file-open-error' => "Une erreur s'est produite lors de l'ouverture du fichier ZIP pour contrôle.",
 'zip-wrong-format'    => "Le fichier spécifié n'est pas un fichier ZIP.",
@@ -2079,6 +2109,7 @@ Les entrées <del>barrées</del> ont été résolues.',
 'mostimages'              => 'Fichiers les plus utilisés',
 'mostrevisions'           => 'Pages les plus modifiées',
 'prefixindex'             => 'Toutes les pages commençant par…',
+'prefixindex-namespace'   => 'Toutes les pages avec préfixe (espace de noms $1)',
 'shortpages'              => 'Pages courtes',
 'longpages'               => 'Pages longues',
 'deadendpages'            => 'Pages en impasse',
@@ -2831,6 +2862,8 @@ Veuillez visiter la [//www.mediawiki.org/wiki/Localisation Localisation de Media
 'thumbnail_error'          => 'Erreur lors de la création de la miniature : $1',
 'djvu_page_error'          => 'Page DjVu hors limites',
 'djvu_no_xml'              => 'Impossible de récupérer le XML pour le fichier DjVu',
+'thumbnail-temp-create'    => 'Impossible de créer le fichier de vignette temporaire',
+'thumbnail-dest-create'    => "Impossible d'enregistrer la vignette sur la destination",
 'thumbnail_invalid_params' => 'Paramètres de la miniature incorrects',
 'thumbnail_dest_directory' => 'Impossible de créer le répertoire de destination',
 'thumbnail_image-type'     => 'Type d’image non supporté',

@@ -3048,6 +3048,8 @@ Déi aner sinn am Standard verstoppt.
 'exif-editstatus'                  => 'Redaktionnelle Statut vum Bild',
 'exif-urgency'                     => 'Urgence',
 'exif-fixtureidentifier'           => 'Numm vun der Rubrik',
+'exif-locationdest'                => 'Gewise Plaz',
+'exif-locationdestcode'            => 'Code fir déi gewise Plaz',
 'exif-objectcycle'                 => 'Zäit vum Dag fir deen dëse Fichier geduecht ass',
 'exif-contact'                     => 'Kontaktinformatioun',
 'exif-writer'                      => 'Auteur',

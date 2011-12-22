@@ -1723,11 +1723,16 @@ $1',
 'upload-http-error'         => 'Узьнікла памылка HTTP: $1',
 
 # File backend
-'backend-fail-stream'    => 'Немагчыма накіраваць файл $1.',
-'backend-fail-backup'    => 'Немагчыма зрабіць рэзэрвовую копію файла $1.',
-'backend-fail-notexists' => 'Файл $1 не існуе.',
-'backend-fail-hashes'    => 'Немагчыма атрымаць хэшы файлаў для параўнаньня.',
-'backend-fail-notsame'   => 'Неідэнтыфікаваны файл ужо існуе $1.',
+'backend-fail-stream'        => 'Немагчыма накіраваць файл $1.',
+'backend-fail-backup'        => 'Немагчыма зрабіць рэзэрвовую копію файла $1.',
+'backend-fail-notexists'     => 'Файл $1 не існуе.',
+'backend-fail-hashes'        => 'Немагчыма атрымаць хэшы файлаў для параўнаньня.',
+'backend-fail-notsame'       => 'Неідэнтыфікаваны файл ужо існуе $1.',
+'backend-fail-invalidpath'   => '$1 не зьяўляецца слушным шляхам да сховішча.',
+'backend-fail-delete'        => 'Немагчыма выдаліць файл $1.',
+'backend-fail-alreadyexists' => 'Файл $1 ужо існуе.',
+'backend-fail-store'         => 'Немагчыма захаваць файл $1 у $2.',
+'backend-fail-copy'          => 'Немагчыма скапіяваць файл $1 у $2.',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'Падчас адкрыцьця файла для праверкі архіву адбылася памылка.',
