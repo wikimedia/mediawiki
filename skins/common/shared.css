@@ -706,13 +706,13 @@ table.mw_metadata ul.metadata-langlist {
 .mw-content-ltr ul,
 .mw-content-rtl .mw-content-ltr ul {
 	/* @noflip */
-	margin: 0.3em 0 0 1.5em;
+	margin: 0.3em 0 0 1.6em;
 	padding: 0;
 }
 .mw-content-rtl ul,
 .mw-content-ltr .mw-content-rtl ul {
 	/* @noflip */
-	margin: 0.3em 1.5em 0 0;
+	margin: 0.3em 1.6em 0 0;
 	padding: 0;
 }
 .mw-content-ltr ol,
