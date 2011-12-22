@@ -136,7 +136,7 @@ class Message {
 	 * Factory function accepting multiple message keys and returning a message instance
 	 * for the first message which is non-empty. If all messages are empty then an
 	 * instance of the first message key is returned.
-	 * @param Varargs: message keys
+	 * @param Varargs: message keys (or first arg as an array of all the message keys)
 	 * @return Message: $this
 	 */
 	public static function newFallbackSequence( /*...*/ ) {
@@ -155,7 +155,7 @@ class Message {
 
 	/**
 	 * Adds parameters to the parameter list of this message.
-	 * @param Varargs: parameters as Strings
+	 * @param Varargs: parameters as Strings, or a single argument that is an array of Strings
 	 * @return Message: $this
 	 */
 	public function params( /*...*/ ) {
@@ -173,7 +173,7 @@ class Message {
 	 * In other words the parsing process cannot access the contents
 	 * of this type of parameter, and you need to make sure it is
 	 * sanitized beforehand.  The parser will see "$n", instead.
-	 * @param Varargs: raw parameters as Strings
+	 * @param Varargs: raw parameters as Strings (or single argument that is an array of raw parameters)
 	 * @return Message: $this
 	 */
 	public function rawParams( /*...*/ ) {
@@ -190,7 +190,7 @@ class Message {
 	/**
 	 * Add parameters that are numeric and will be passed through
 	 * Language::formatNum before substitution
-	 * @param Varargs: numeric parameters
+	 * @param Varargs: numeric parameters (or single argument that is array of numeric parameters)
 	 * @return Message: $this
 	 */
 	public function numParams( /*...*/ ) {
