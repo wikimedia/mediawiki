@@ -149,25 +149,22 @@ class ParserTest {
 		$wgStylePath = '/skins';
 		$wgExtensionAssetsPath = '/extensions';
 		$wgThumbnailScriptPath = false;
-		$backend = new FSFileBackend( array(
-			'name'        => 'local-backend',
-			'lockManager' => 'fsLockManager',
-			'containerPaths' => array(
-				'media-public'  => wfTempDir() . '/test-repo/public',
-				'media-thumb'   => wfTempDir() . '/test-repo/thumb',
-				'media-temp'    => wfTempDir() . '/test-repo/temp',
-				'media-deleted' => wfTempDir() . '/test-repo/delete',
-			)
-		) );
 		$wgLocalFileRepo = array(
 			'class'           => 'LocalRepo',
 			'name'            => 'local',
 			'url'             => 'http://example.com/images',
 			'hashLevels'      => 2,
 			'transformVia404' => false,
-			'backend'         => $backend,
-			'zones'           => array( 'deleted' => array(
-				'container' => 'media-deleted', 'directory' => '' ) )
+			'backend'         => new FSFileBackend( array(
+				'name'        => 'local-backend',
+				'lockManager' => 'fsLockManager',
+				'containerPaths' => array(
+					'media-public'  => wfTempDir() . '/test-repo/public',
+					'media-thumb'   => wfTempDir() . '/test-repo/thumb',
+					'media-temp'    => wfTempDir() . '/test-repo/temp',
+					'media-deleted' => wfTempDir() . '/test-repo/delete',
+				)
+			) )
 		);
 		$wgNamespaceProtection[NS_MEDIAWIKI] = 'editinterface';
 		$wgNamespaceAliases['Image'] = NS_FILE;

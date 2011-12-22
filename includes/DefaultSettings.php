@@ -303,6 +303,7 @@ $wgImgAuthPublicTest = true;
  *                      FSRepo is also supported for backwards compatibility.
  *
  *   - name             A unique name for the repository (but $wgLocalFileRepo should be 'local').
+ *   - backend          A file backend name (see $wgFileBackends).
  *
  * For most core repos:
  *   - url              Base public URL

@@ -200,62 +200,21 @@ if ( $wgUseInstantCommons ) {
 	);
 }
 /*
- * Add on default file backend config for repos to $wgFileBackends
+ * Add on default file backend config for file repos.
+ * FileBackendGroup will handle initializing the backends.
  */
 if ( !isset( $wgLocalFileRepo['backend'] ) ) {
-	$wgFileBackends[] = wfBackendForLegacyRepoConf( $wgLocalFileRepo );
+	$wgLocalFileRepo['backend'] = $wgLocalFileRepo['name'] . '-backend';
 }
 foreach ( $wgForeignFileRepos as &$repo ) {
+	if ( !isset( $repo['directory'] ) && $repo['class'] === 'ForeignAPIRepo' ) {
+		$repo['directory'] = $wgUploadDirectory; // b/c
+	}
 	if ( !isset( $repo['backend'] ) ) {
-		$wgFileBackends[] = wfBackendForLegacyRepoConf( $repo );
+		$repo['backend'] = $repo['name'] . '-backend';
 	}
 }
 unset( $repo ); // no global pollution; destroy reference
-/*
- * Get file backend configuration for a given repo
- * configuration that lacks a backend parameter.
- * Also updates the repo config to use the backend.
- */
-function wfBackendForLegacyRepoConf( &$info ) {
-	global $wgUploadDirectory;
-	// Local vars that used to be FSRepo members...
-	if ( !isset( $info['directory'] ) && $info['class'] === 'ForeignAPIRepo' ) {
-		$info['directory'] = $wgUploadDirectory; // b/c
-	}
-	$directory = $info['directory'];
-	$deletedDir = isset( $info['deletedDir'] )
-		? $info['deletedDir']
-		: false;
-	$thumbDir = isset( $info['thumbDir'] )
-		? $info['thumbDir']
-		: "{$directory}/thumb";
-	$fileMode = isset( $info['fileMode'] )
-		? $info['fileMode']
-		: 0644;
-
-	// Make a backend name (based on repo name)
-	$backendName = $info['name'] . '-backend';
-	// Update repo config to use this backend
-	$info['backend'] = $backendName;
-	// Disable "deleted" zone in repo config if deleted dir not set
-	if ( $deletedDir !== false ) {
-		$info['zones']['deleted'] = array(
-			'container' => 'media-deleted', 'directory' => '' );
-	}
-	// Get the FS backend configuration
-	return array(
-		'name'           => $backendName,
-		'class'          => 'FSFileBackend',
-		'lockManager'    => 'fsLockManager',
-		'containerPaths' => array(
-			"media-public"  => "{$directory}",
-			"media-temp"    => "{$directory}/temp",
-			"media-thumb"   => $thumbDir,
-			"media-deleted" => $deletedDir
-		),
-		'fileMode'       => $fileMode,
-	);
-}
 
 if ( is_null( $wgEnableAutoRotation ) ) {
 	// Only enable auto-rotation when the bitmap handler can rotate
@@ -531,11 +490,6 @@ if ( !is_object( $wgAuth ) ) {
 	$wgAuth = new StubObject( 'wgAuth', 'AuthPlugin' );
 	wfRunHooks( 'AuthPluginSetup', array( &$wgAuth ) );
 }
-
-# Register file lock managers
-LockManagerGroup::singleton()->register( $wgLockManagers );
-# Register file backends
-FileBackendGroup::singleton()->register( $wgFileBackends );
 
 # Placeholders in case of DB error
 $wgTitle = null;

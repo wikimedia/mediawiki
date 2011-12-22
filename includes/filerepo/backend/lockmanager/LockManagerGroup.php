@@ -3,6 +3,7 @@
  * Class to handle file lock manager registration
  * 
  * @ingroup LockManager
+ * @author Aaron Schulz
  */
 class LockManagerGroup {
 	protected static $instance = null;
@@ -13,11 +14,26 @@ class LockManagerGroup {
 	protected function __construct() {}
 	protected function __clone() {}
 
+	/**
+	 * @return LockManagerGroup
+	 */
 	public static function singleton() {
 		if ( self::$instance == null ) {
 			self::$instance = new self();
+			self::$instance->initFromGlobals();
 		}
 		return self::$instance;
+	}
+
+	/**
+	 * Register lock managers from the global variables
+	 * 
+	 * @return void
+	 */
+	protected function initFromGlobals() {
+		global $wgLockManagers;
+
+		$this->register( $wgLockManagers );
 	}
 
 	/**
@@ -27,7 +43,7 @@ class LockManagerGroup {
 	 * @return void
 	 * @throws MWException
 	 */
-	public function register( array $configs ) {
+	protected function register( array $configs ) {
 		foreach ( $configs as $config ) {
 			if ( !isset( $config['name'] ) ) {
 				throw new MWException( "Cannot register a lock manager with no name." );
