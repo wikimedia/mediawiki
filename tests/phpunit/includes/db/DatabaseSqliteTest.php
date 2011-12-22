@@ -256,8 +256,9 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 			$maint->loadParamsAndArgs( null, array( 'quiet' => 1 ) );
 		}
 
+		global $IP;
 		$db = new DatabaseSqliteStandalone( ':memory:' );
-		$db->sourceFile( dirname( __FILE__ ) . "/sqlite/tables-$version.sql" );
+		$db->sourceFile( "$IP/tests/phpunit/data/db/sqlite/tables-$version.sql" );
 		$updater = DatabaseUpdater::newForDB( $db, false, $maint );
 		$updater->doUpdates( array( 'core' ) );
 		return $db;
