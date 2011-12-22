@@ -880,7 +880,10 @@ $wgAutoloadLocalClasses = array(
 	'UploadStashFileNotFoundException' => 'includes/upload/UploadStash.php',
 	'UploadStashNotAvailableException' => 'includes/upload/UploadStash.php',
 	'UploadStashZeroLengthFileException' => 'includes/upload/UploadStash.php',
-
+	'UploadStashNotLoggedInException' => 'includes/upload/UploadStash.php',
+	'UploadStashWrongOwnerException' => 'includes/upload/UploadStash.php',
+	'UploadStashNoSuchKeyException' => 'includes/upload/UploadStash.php',
+	
 	# languages
 	'FakeConverter' => 'languages/Language.php',
 	'Language' => 'languages/Language.php',
