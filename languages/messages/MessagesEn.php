@@ -1337,8 +1337,8 @@ Please check if you want to create/edit this page.',
 'blocked-notice-logextract'        => 'This user is currently blocked.
 The latest block log entry is provided below for reference:',
 'clearyourcache'                   => "'''Note:''' After saving, you may have to bypass your browser's cache to see the changes.
-* '''Firefox / Safari:''' Hold ''Shift'' while clicking ''Reload'', or press either ''Ctrl-F5'' or ''Ctrl-R'' (''Command-R'' on a Mac)
-* '''Google Chrome:''' Press ''Ctrl-Shift-R'' (''Command-Shift-R'' on a Mac)
+* '''Firefox / Safari:''' Hold ''Shift'' while clicking ''Reload'', or press either ''Ctrl-F5'' or ''Ctrl-R'' (''⌘-R'' on a Mac)
+* '''Google Chrome:''' Press ''Ctrl-Shift-R'' (''⌘-Shift-R'' on a Mac)
 * '''Internet Explorer:''' Hold ''Ctrl'' while clicking ''Refresh'', or press ''Ctrl-F5''
 * '''Konqueror:''' Click ''Reload'' or press ''F5''
 * '''Opera:''' Clear the cache in ''Tools → Preferences''",
