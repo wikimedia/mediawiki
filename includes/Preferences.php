@@ -29,7 +29,6 @@ class Preferences {
 	static $defaultPreferences = null;
 	static $saveFilters = array(
 			'timecorrection' => array( 'Preferences', 'filterTimezoneInput' ),
-			'cols' => array( 'Preferences', 'filterIntval' ),
 			'rows' => array( 'Preferences', 'filterIntval' ),
 			'rclimit' => array( 'Preferences', 'filterIntval' ),
 			'wllimit' => array( 'Preferences', 'filterIntval' ),
@@ -689,13 +688,7 @@ class Preferences {
 		global $wgUseExternalEditor, $wgAllowUserCssPrefs;
 
 		## Editing #####################################
-		$defaultPreferences['cols'] = array(
-			'type' => 'int',
-			'label-message' => 'columns',
-			'section' => 'editing/textboxsize',
-			'min' => 4,
-			'max' => 1000,
-		);
+		
 		$defaultPreferences['rows'] = array(
 			'type' => 'int',
 			'label-message' => 'rows',
