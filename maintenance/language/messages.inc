@@ -952,7 +952,6 @@ $wgMessageStructure = array(
 		'prefs-editing',
 		'prefs-edit-boxsize',
 		'rows',
-		'columns',
 		'searchresultshead',
 		'resultsperpage',
 		'stub-threshold',
