@@ -74,10 +74,10 @@ class SpecialBlockList extends SpecialPage {
 			'Options' => array(
 				'type' => 'multiselect',
 				'options' => array(
-					wfMsg( 'blocklist-userblocks' ) => 'userblocks',
-					wfMsg( 'blocklist-tempblocks' ) => 'tempblocks',
-					wfMsg( 'blocklist-addressblocks' ) => 'addressblocks',
-					wfMsg( 'blocklist-rangeblocks' ) => 'rangeblocks',
+					$this->msg( 'blocklist-userblocks' )->text() => 'userblocks',
+					$this->msg( 'blocklist-tempblocks' )->text() => 'tempblocks',
+					$this->msg( 'blocklist-addressblocks' )->text() => 'addressblocks',
+					$this->msg( 'blocklist-rangeblocks' )->text() => 'rangeblocks',
 				),
 				'flatlist' => true,
 			),
@@ -97,8 +97,8 @@ class SpecialBlockList extends SpecialPage {
 		);
 		$form = new HTMLForm( $fields, $this->getContext() );
 		$form->setMethod( 'get' );
-		$form->setWrapperLegend( wfMsg( 'ipblocklist-legend' ) );
-		$form->setSubmitText( wfMsg( 'ipblocklist-submit' ) );
+		$form->setWrapperLegendMsg( 'ipblocklist-legend' );
+		$form->setSubmitTextMsg( 'ipblocklist-submit' );
 		$form->prepareForm();
 
 		$form->displayForm( '' );
@@ -171,7 +171,7 @@ class SpecialBlockList extends SpecialPage {
 		# Not necessary in a standard installation without such extensions enabled
 		if( count( $otherBlockLink ) ) {
 			$out->addHTML(
-				Html::rawElement( 'h2', array(), wfMsg( 'ipblocklist-localblock' ) ) . "\n"
+				Html::element( 'h2', array(), $this->msg( 'ipblocklist-localblock' )->text() ) . "\n"
 			);
 		}
 
@@ -195,11 +195,7 @@ class SpecialBlockList extends SpecialPage {
 				Html::rawElement(
 					'h2',
 					array(),
-					wfMsgExt(
-						'ipblocklist-otherblocks',
-						'parseinline',
-						count( $otherBlockLink )
-					)
+					$this->msg( 'ipblocklist-otherblocks', count( $otherBlockLink ) )->parse()
 				) . "\n"
 			);
 			$list = '';
@@ -238,7 +234,9 @@ class BlockListPager extends TablePager {
 				'ipb_params' => 'blocklist-params',
 				'ipb_reason' => 'blocklist-reason',
 			);
-			$headers = array_map( 'wfMsg', $headers );
+			foreach( $headers as $key => $val ) {
+				$headers[$key] = $this->msg( $val )->text();
+			}
 		}
 
 		return $headers;
@@ -257,7 +255,7 @@ class BlockListPager extends TablePager {
 				'change-blocklink',
 				'infiniteblock',
 			);
-			$msg = array_combine( $msg, array_map( 'wfMessage', $msg ) );
+			$msg = array_combine( $msg, array_map( array( $this, 'msg' ), $msg ) );
 		}
 
 		/** @var $row object */
@@ -267,12 +265,12 @@ class BlockListPager extends TablePager {
 
 		switch( $name ) {
 			case 'ipb_timestamp':
-				$formatted = $this->getLanguage()->timeanddate( $value, /* User preference timezone */ true );
+				$formatted = $this->getLanguage()->userTimeAndDate( $value, $this->getUser() );
 				break;
 
 			case 'ipb_target':
 				if( $row->ipb_auto ){
-					$formatted = wfMessage( 'autoblockid', $row->ipb_id )->parse();
+					$formatted = $this->msg( 'autoblockid', $row->ipb_id )->parse();
 				} else {
 					list( $target, $type ) = Block::parseTarget( $row->ipb_address );
 					switch( $type ){
@@ -315,7 +313,8 @@ class BlockListPager extends TablePager {
 					$formatted .= ' ' . Html::rawElement(
 						'span',
 						array( 'class' => 'mw-blocklist-actions' ),
-						wfMsg( 'parentheses', $this->getLanguage()->pipeList( $links ) )
+						$this->msg( 'parentheses' )->rawParams(
+							$this->getLanguage()->pipeList( $links ) )->escaped()
 					);
 				}
 				break;
