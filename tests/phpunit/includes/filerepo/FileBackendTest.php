@@ -349,10 +349,11 @@ class FileBackendTest extends MediaWikiTestCase {
 
 		$dest = $op['dst'];
 		if ( $alreadyExists ) {
-			$oldText = 'blah...blah...waahwaah';
-			$status = $this->backend->doOperation(
-				array( 'op' => 'create', 'content' => $oldText, 'dst' => $dest ) );
-			$this->assertEquals( true, $status->isOK(), "Creation of file at $dest succeeded." );
+			$ok = file_put_contents( $dest, 'blah...blah...waahwaah' ) !== false;
+			$this->assertEquals( true, $ok, "Creation of file at $dest succeeded." );
+		} else {
+			$ok = file_put_contents( $dest, '' ) !== false;
+			$this->assertEquals( true, $ok, "Creation of 0-byte file at $dest succeeded." );
 		}
 
 		// Combine them
@@ -364,18 +365,15 @@ class FileBackendTest extends MediaWikiTestCase {
 		}
 
 		if ( $okStatus ) {
-			$this->assertEquals( true, $this->backend->fileExists( array( 'src' => $dest ) ),
+			$this->assertEquals( true, is_file( $dest ),
 				"Dest concat file $dest exists after creation." );
 		} else {
-			$this->assertEquals( true, $this->backend->fileExists( array( 'src' => $dest ) ),
+			$this->assertEquals( true, is_file( $dest ),
 				"Dest concat file $dest exists after failed creation." );
 		}
 
-		$tmpFile = $this->backend->getLocalCopy( array( 'src' => $dest ) );
-		$this->assertNotNull( $tmpFile, "Creation of local copy of $dest succeeded." );
-
-		$contents = file_get_contents( $tmpFile->getPath() );
-		$this->assertNotEquals( false, $contents, "Local copy of $dest exists." );
+		$contents = file_get_contents( $dest );
+		$this->assertNotEquals( false, $contents, "File at $dest exists." );
 
 		if ( $okStatus ) {
 			$this->assertEquals( $expContent, $contents, "Concat file at $dest has correct contents." );
@@ -387,7 +385,8 @@ class FileBackendTest extends MediaWikiTestCase {
 	function provider_testConcatenate() {
 		$cases = array();
 
-		$dest = $this->singleBasePath() . '/cont1/full_file.txt';
+		$rand = mt_rand( 0, 2000000000 ) . time();
+		$dest = wfTempDir() . "/randomfile!$rand.txt";
 		$srcs = array(
 			$this->singleBasePath() . '/cont1/file1.txt',
 			$this->singleBasePath() . '/cont1/file2.txt',
@@ -428,15 +427,6 @@ class FileBackendTest extends MediaWikiTestCase {
 			$content, // content for each source
 			true, // no dest already exists
 			false, // succeeds
-		);
-
-		$op['overwriteDest'] = true;
-		$cases[] = array(
-			$op, // operation
-			$srcs, // sources
-			$content, // content for each source
-			true, // no dest already exists
-			true, // succeeds
 		);
 
 		return $cases;

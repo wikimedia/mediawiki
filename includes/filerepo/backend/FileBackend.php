@@ -112,8 +112,7 @@ abstract class FileBackendBase {
 	 *     array(
 	 *         'op'                  => 'concatenate',
 	 *         'srcs'                => <ordered array of storage paths>,
-	 *         'dst'                 => <storage path>,
-	 *         'overwriteDest'       => <boolean>
+	 *         'dst'                 => <file system path to 0-byte temp file>
 	 *     )
 	 * g) Do nothing (no-op)
 	 *     array(
@@ -477,6 +476,28 @@ abstract class FileBackend extends FileBackendBase {
 	protected $maxCacheSize = 50; // integer; max paths with entries
 
 	/**
+	 * Create a file in the backend with the given contents.
+	 * Do not call this function from places outside FileBackend and FileOp.
+	 * $params include:
+	 *     content       : the raw file contents
+	 *     dst           : destination storage path
+	 *     overwriteDest : overwrite any file that exists at the destination
+	 * 
+	 * @param $params Array
+	 * @return Status
+	 */
+	final public function createInternal( array $params ) {
+		$status = $this->doCreateInternal( $params );
+		$this->clearCache( array( $params['dst'] ) );
+		return $status;
+	}
+
+	/**
+	 * @see FileBackend::createInternal()
+	 */
+	abstract protected function doCreateInternal( array $params );
+
+	/**
 	 * Store a file into the backend from a file on disk.
 	 * Do not call this function from places outside FileBackend and FileOp.
 	 * $params include:
@@ -537,7 +558,7 @@ abstract class FileBackend extends FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackend::delete()
+	 * @see FileBackend::deleteInternal()
 	 */
 	abstract protected function doDeleteInternal( array $params );
 
@@ -559,7 +580,7 @@ abstract class FileBackend extends FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackend::move()
+	 * @see FileBackend::moveInternal()
 	 */
 	protected function doMoveInternal( array $params ) {
 		// Copy source to dest
@@ -591,31 +612,57 @@ abstract class FileBackend extends FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackend::concatenate()
+	 * @see FileBackend::concatenateInternal()
 	 */
-	abstract protected function doConcatenateInternal( array $params );
+	protected function doConcatenateInternal( array $params ) {
+		$status = Status::newGood();
+		$tmpPath = $params['dst']; // convenience
 
-	/**
-	 * Create a file in the backend with the given contents.
-	 * Do not call this function from places outside FileBackend and FileOp.
-	 * $params include:
-	 *     content       : the raw file contents
-	 *     dst           : destination storage path
-	 *     overwriteDest : overwrite any file that exists at the destination
-	 * 
-	 * @param $params Array
-	 * @return Status
-	 */
-	final public function createInternal( array $params ) {
-		$status = $this->doCreateInternal( $params );
-		$this->clearCache( array( $params['dst'] ) );
+		// Check that the specified temp file is valid...
+		wfSuppressWarnings();
+		$ok = ( is_file( $tmpPath ) && !filesize( $tmpPath ) );
+		wfRestoreWarnings();
+		if ( !$ok ) { // not present or not empty
+			$status->fatal( 'backend-fail-opentemp', $tmpPath );
+			return $status;
+		}
+
+		// Build up the temp file using the source chunks (in order)...
+		$tmpHandle = fopen( $tmpPath, 'a' );
+		if ( $tmpHandle === false ) {
+			$status->fatal( 'backend-fail-opentemp', $tmpPath );
+			return $status;
+		}
+		foreach ( $params['srcs'] as $virtualSource ) {
+			// Get a local FS version of the chunk
+			$tmpFile = $this->getLocalReference( array( 'src' => $virtualSource ) );
+			if ( !$tmpFile ) {
+				$status->fatal( 'backend-fail-read', $virtualSource );
+				return $status;
+			}
+			// Get a handle to the local FS version
+			$sourceHandle = fopen( $tmpFile->getPath(), 'r' );
+			if ( $sourceHandle === false ) {
+				fclose( $tmpHandle );
+				$status->fatal( 'backend-fail-read', $virtualSource );
+				return $status;
+			}
+			// Append chunk to file (pass chunk size to avoid magic quotes)
+			if ( !stream_copy_to_stream( $sourceHandle, $tmpHandle ) ) {
+				fclose( $sourceHandle );
+				fclose( $tmpHandle );
+				$status->fatal( 'backend-fail-writetemp', $tmpPath );
+				return $status;
+			}
+			fclose( $sourceHandle );
+		}
+		if ( !fclose( $tmpHandle ) ) {
+			$status->fatal( 'backend-fail-closetemp', $tmpPath );
+			return $status;
+		}
+
 		return $status;
 	}
-
-	/**
-	 * @see FileBackend::create()
-	 */
-	abstract protected function doCreateInternal( array $params );
 
 	/**
 	 * @see FileBackendBase::prepare()
@@ -953,5 +1000,16 @@ abstract class FileBackend extends FileBackendBase {
 	 */
 	protected function resolveContainerPath( $container, $relStoragePath ) {
 		return $relStoragePath;
+	}
+
+	/**
+	 * Get the final extension from a storage or FS path
+	 * 
+	 * @param $path string
+	 * @return string
+	 */
+	final public static function extensionFromPath( $path ) {
+		$i = strrpos( $path, '.' );
+		return strtolower( $i ? substr( $path, $i + 1 ) : '' );
 	}
 }

@@ -802,7 +802,7 @@ abstract class File {
 			// Copy any thumbnail from the FS into storage at $dstpath
 			$status = $this->repo->store(
 				$tmpThumbPath, 'thumb', $this->getThumbRel( $thumbName ),
-				FileRepo::OVERWRITE | FileRepo::SKIP_LOCKING );
+				FileRepo::OVERWRITE | FileRepo::SKIP_LOCKING | FileRepo::ALLOW_STALE );
 			if ( !$status->isOK() ) {
 				return new MediaTransformError( 'thumbnail_error',
 					$params['width'], 0, wfMsg( 'thumbnail-dest-create' ) );
