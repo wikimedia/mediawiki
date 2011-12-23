@@ -990,6 +990,10 @@ abstract class HTMLFormField {
 		if ( isset( $params['filter-callback'] ) ) {
 			$this->mFilterCallback = $params['filter-callback'];
 		}
+
+		if ( isset( $params['flatlist'] ) ){
+			$this->mClass .= ' mw-htmlform-flatlist';
+		}
 	}
 
 	/**
@@ -1543,13 +1547,6 @@ class HTMLSelectOrOtherField extends HTMLTextField {
  */
 class HTMLMultiSelectField extends HTMLFormField {
 
-	public function __construct( $params ){
-		parent::__construct( $params );
-		if( isset( $params['flatlist'] ) ){
-			$this->mClass .= ' mw-htmlform-multiselect-flatlist';
-		}
-	}
-
 	function validate( $value, $alldata ) {
 		$p = parent::validate( $value, $alldata );
 
@@ -1601,7 +1598,7 @@ class HTMLMultiSelectField extends HTMLFormField {
 					$attribs + $thisAttribs );
 				$checkbox .= '&#160;' . Html::rawElement( 'label', array( 'for' => "{$this->mID}-$info" ), $label );
 
-				$html .= ' ' . Html::rawElement( 'div', array( 'class' => 'mw-htmlform-multiselect-item' ), $checkbox );
+				$html .= ' ' . Html::rawElement( 'div', array( 'class' => 'mw-htmlform-flatlist-item' ), $checkbox );
 			}
 		}
 
@@ -1819,12 +1816,6 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
  * Radio checkbox fields.
  */
 class HTMLRadioField extends HTMLFormField {
-	function __construct( $params ) {
-		parent::__construct( $params );
-		if ( isset( $params['flatlist'] ) ) {
-			$this->mClass .= ' mw-htmlform-radio-flatlist';
-		}
-	}
 
 
 	function validate( $value, $alldata ) {
@@ -1883,7 +1874,7 @@ class HTMLRadioField extends HTMLFormField {
 				$radio .= '&#160;' .
 						Html::rawElement( 'label', array( 'for' => $id ), $label );
 
-				$html .= ' ' . Html::rawElement( 'div', array( 'class' => 'mw-htmlform-radio-item' ), $radio );
+				$html .= ' ' . Html::rawElement( 'div', array( 'class' => 'mw-htmlform-flatlist-item' ), $radio );
 			}
 		}
 
