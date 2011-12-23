@@ -128,11 +128,15 @@ abstract class FileBackendBase {
 	 *                         exists at the destination that has the same
 	 *                         contents as the new contents to be written there.
 	 * 
-	 * $opts is an associative of options, including:
+	 * $opts is an associative of boolean flags, including:
+	 * 'ignoreErrors'        : Errors that would normally cause a rollback do not.
+	 *                         The remaining operations are still attempted if any fail.
 	 * 'nonLocking'          : No locks are acquired for the operations.
 	 *                         This can increase performance for non-critical writes.
-	 * 'ignoreErrors'        : Serious errors that would normally cause a rollback
-	 *                         do not. The remaining operations are still attempted.
+	 *                         This has no effect unless the 'ignoreErrors' flag is set.
+	 * 'allowStale'          : Don't require the latest available data.
+	 *                         This can increase performance for non-critical writes.
+	 *                         This has no effect unless the 'ignoreErrors' flag is set.
 	 * 
 	 * Return value:
 	 * This returns a Status, which contains all warnings and fatals that occured
@@ -144,7 +148,18 @@ abstract class FileBackendBase {
 	 * @param $opts Array Batch operation options
 	 * @return Status
 	 */
-	abstract public function doOperations( array $ops, array $opts = array() );
+	final public function doOperations( array $ops, array $opts = array() ) {
+		if ( empty( $opts['ignoreErrors'] ) ) { // sanity
+			unset( $opts['nonLocking'] );
+			unset( $opts['allowStale'] );
+		}
+		return $this->doOperationsInternal( $ops, $opts );
+	}
+
+	/**
+	 * @see FileBackendBase::doOperations()
+	 */
+	abstract protected function doOperationsInternal( array $ops, array $opts );
 
 	/**
 	 * Same as doOperations() except it takes a single operation.
@@ -296,7 +311,8 @@ abstract class FileBackendBase {
 	 * Check if a file exists at a storage path in the backend.
 	 * 
 	 * $params include:
-	 *     src : source storage path
+	 *     src    : source storage path
+	 *     latest : use the latest available data
 	 * 
 	 * @param $params Array
 	 * @return bool
@@ -307,7 +323,8 @@ abstract class FileBackendBase {
 	 * Get a SHA-1 hash of the file at a storage path in the backend.
 	 * 
 	 * $params include:
-	 *     src : source storage path
+	 *     src    : source storage path
+	 *     latest : use the latest available data
 	 * 
 	 * @param $params Array
 	 * @return string|false Hash string or false on failure
@@ -318,7 +335,8 @@ abstract class FileBackendBase {
 	 * Get the last-modified timestamp of the file at a storage path.
 	 * 
 	 * $params include:
-	 *     src : source storage path
+	 *     src    : source storage path
+	 *     latest : use the latest available data
 	 * 
 	 * @param $params Array
 	 * @return string|false TS_MW timestamp or false on failure
@@ -330,7 +348,8 @@ abstract class FileBackendBase {
 	 * Returns FSFile::placeholderProps() on failure.
 	 * 
 	 * $params include:
-	 *     src : source storage path
+	 *     src    : source storage path
+	 *     latest : use the latest available data
 	 * 
 	 * @param $params Array
 	 * @return Array
@@ -346,25 +365,12 @@ abstract class FileBackendBase {
 	 * $params include:
 	 *     src     : source storage path
 	 *     headers : additional HTTP headers to send on success
+	 *     latest  : use the latest available data
 	 * 
 	 * @param $params Array
 	 * @return Status
 	 */
 	abstract public function streamFile( array $params );
-
-	/**
-	 * Get an iterator to list out all object files under a storage directory.
-	 * If the directory is of the form "mwstore://container", then all items in
-	 * the container should be listed. If of the form "mwstore://container/dir",
-	 * then all items under that container directory should be listed.
-	 * Results should be storage paths relative to the given directory.
-	 * 
-	 * $params include:
-	 *     dir : storage path directory
-	 *
-	 * @return Traversable|Array|null Returns null on failure
-	 */
-	abstract public function getFileList( array $params );
 
 	/**
 	 * Returns a file system file, identical to the file at a storage path.
@@ -379,7 +385,8 @@ abstract class FileBackendBase {
 	 * In that later case, there are copies of the file that must stay in sync.
 	 * 
 	 * $params include:
-	 *     src : source storage path
+	 *     src    : source storage path
+	 *     latest : use the latest available data
 	 * 
 	 * @param $params Array
 	 * @return FSFile|null Returns null on failure
@@ -392,12 +399,27 @@ abstract class FileBackendBase {
 	 * Temporary files may be purged when the file object falls out of scope.
 	 * 
 	 * $params include:
-	 *     src : source storage path
+	 *     src    : source storage path
+	 *     latest : use the latest available data
 	 * 
 	 * @param $params Array
 	 * @return TempFSFile|null Returns null on failure
 	 */
 	abstract public function getLocalCopy( array $params );
+
+	/**
+	 * Get an iterator to list out all object files under a storage directory.
+	 * If the directory is of the form "mwstore://container", then all items in
+	 * the container should be listed. If of the form "mwstore://container/dir",
+	 * then all items under that container directory should be listed.
+	 * Results should be storage paths relative to the given directory.
+	 * 
+	 * $params include:
+	 *     dir : storage path directory
+	 *
+	 * @return Traversable|Array|null Returns null on failure
+	 */
+	abstract public function getFileList( array $params );
 
 	/**
 	 * Lock the files at the given storage paths in the backend.
@@ -700,6 +722,8 @@ abstract class FileBackend extends FileBackendBase {
 
 	/**
 	 * Return a list of FileOp objects from a list of operations.
+	 * Do not call this function from places outside FileBackend.
+	 *
 	 * The result must have the same number of items as the input.
 	 * An exception is thrown if an unsupported operation is requested.
 	 * 
@@ -729,14 +753,15 @@ abstract class FileBackend extends FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackendBase::doOperations()
+	 * @see FileBackendBase::doOperationsInternal()
 	 */
-	final public function doOperations( array $ops, array $opts = array() ) {
+	protected function doOperationsInternal( array $ops, array $opts ) {
 		$status = Status::newGood();
 
 		// Build up a list of FileOps...
 		$performOps = $this->getOperations( $ops );
 
+		// Acquire any locks as needed...
 		if ( empty( $opts['nonLocking'] ) ) {
 			// Build up a list of files to lock...
 			$filesLockEx = $filesLockSh = array();
