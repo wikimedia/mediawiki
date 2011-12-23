@@ -781,10 +781,11 @@ Móžeš [[Special:Search/{{PAGENAME}}|tutón titul strony]] na druhich stronach
 'userpage-userdoesnotexist-view'   => 'Wužiwarske konto "$1" njeje zregistrowane.',
 'blocked-notice-logextract'        => 'Tutón wužiwar je tuchwilu zablokowany. Najnowši protokolowy zapisk so deleka jako referenca podawa:',
 'clearyourcache'                   => "'''Kedźbu: Po składowanju dyrbiš snano pufrowak swojeho wobhladowaka wuprózdnić, zo by změny widźał.''' 
-* '''Mozilla/Firefox/Safari:''' tłóč na ''Umsch'' kliknjo na ''Znowa'' abo tłóč ''Strg-F5'' abo ''Strg-R'' (''Cmd-Shift-R'' na Macintosh);
-* '''Konqueror: '''klikń na ''Znowa'' abo tłoč ''F5'';
-* '''Opera:''' wuprózdń pufrowak w 'Extras → Einstellungen'';
-* '''Internet Explorer:''' dźěrź ''Strg'' tłóčeny kliknjo ''Znowa,'' abo tłóč ''Strg-F5''.",
+* '''Firefox/Safari:''' Tłóč na ''Umsch'' kliknjo na ''Znowa'' abo tłóč ''Strg-F5'' abo ''Strg-R'' (''⌘-R'' na Macintosh);
+* '''Google Chrome:''' Tłóč na ''Strg-Umsch-R'' (''⌘-Umsch-R'' na Mac)
+* '''Internet Explorer:''' Dźěrź ''Strg'' tłóčeny kliknjo na ''Znowa,'' abo tłóč ''Strg-F5''.
+* '''Konqueror: '''Klikń na ''Znowa'' abo tłoč ''F5'';
+* '''Opera:''' Wuprózdń pufrowak w ''Extras → Einstellungen'';",
 'usercssyoucanpreview'             => "'''Pokiw:''' Wužij tłóčku '{{int:showpreview}}', zo by swój nowy css do składowanja testował.",
 'userjsyoucanpreview'              => "'''Pokiw:''' Wužij tłóčatko \"{{int:showpreview}}\", zo by swój nowy JavaScript do składowanja testował.",
 'usercsspreview'                   => "'''Wobkedźbujće, zo sej jenož přehlad swojeho wužiwarskeho CSS wobhladuješ. Hišće njeje składowany!'''",

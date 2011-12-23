@@ -11,6 +11,7 @@
  * @author Airon90
  * @author Amire80
  * @author Andria
+ * @author Aushulz
  * @author Beta16
  * @author Blaisorblade
  * @author Broc
@@ -1695,8 +1696,23 @@ $1',
 'upload-http-error'         => 'Si è verificato un errore HTTP: $1',
 
 # File backend
+'backend-fail-backup'        => 'Impossibile eseguire il backup del file $1 .',
 'backend-fail-notexists'     => 'Il file $1 non esiste.',
+'backend-fail-notsame'       => 'Esiste già un file non identico a  $1 .',
+'backend-fail-invalidpath'   => '$1 non è un percorso di archiviazione valido.',
+'backend-fail-delete'        => 'Impossibile eliminare il file  $1 .',
 'backend-fail-alreadyexists' => 'Il file $1 esiste già.',
+'backend-fail-store'         => 'Impossibilie memorizzare file  $1  in  $2 .',
+'backend-fail-copy'          => 'Impossibile copiare il file  $1  in  $2 .',
+'backend-fail-move'          => 'Impossibile spostare file  $1  in  $2 .',
+'backend-fail-opentemp'      => 'Impossibile aprire il file temporaneo.',
+'backend-fail-writetemp'     => 'Impossibile creare il file temporaneo.',
+'backend-fail-closetemp'     => 'Impossibile chiudere il file temporaneo.',
+'backend-fail-read'          => 'Impossibile leggere il file  $1 .',
+'backend-fail-create'        => 'Impossibile creare il file  $1 .',
+
+# Lock manager
+'lockmanager-notlocked' => 'Impossibile sbloccare la chiave " $1 "; non è bloccata.',
 
 # ZipDirectoryReader
 'zip-file-open-error' => "Si è verificato un errore durante l'apertura del file per i controlli ZIP.",
@@ -3688,5 +3704,6 @@ Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri
 'feedback-error2'  => 'Errore: Non è stato possibile eseguire la modifica',
 'feedback-error3'  => 'Errore: Nessuna risposta dalla API',
 'feedback-close'   => 'Fatto',
+'feedback-bugnew'  => 'Controllo effettuato. Segnala un nuovo bug',
 
 );

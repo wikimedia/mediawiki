@@ -1759,6 +1759,9 @@ $1',
 'upload-unknown-size'       => 'Невідомий розмір',
 'upload-http-error'         => 'Відбулася помилка HTTP: $1',
 
+# File backend
+'backend-fail-notexists' => 'Файл $1 не існує.',
+
 # ZipDirectoryReader
 'zip-file-open-error' => 'При відкритті ZIP-архіву для його перевірки виникла помилка.',
 'zip-wrong-format'    => 'Вказаний файл не є ZIP-файлом',

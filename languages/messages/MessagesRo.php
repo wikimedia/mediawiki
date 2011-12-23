@@ -951,8 +951,8 @@ Asigurați-vă că doriți să creați/modificați această pagină.',
 'blocked-notice-logextract'        => 'Acest utilizator este momentan blocat.
 Ultima intrare în jurnalul blocărilor este afișată mai jos pentru referință:',
 'clearyourcache'                   => "'''Notă:''' După salvare, trebuie să treceți peste memoria cache a navigatorului pentru a putea vedea modificările:
-* '''Firefox / Safari:''' țineți apăsat pe ''Shift'' în timp ce faceți clic pe ''Reîncărcare'', ori apăsați ''Ctrl-F5'' sau ''Ctrl-R'' (''Command-R'' pe un sistem Mac);
-* '''Google Chrome:''' apăsați ''Ctrl-Shift-R'' (''Command-Shift-R'' pe un sistem Mac);
+* '''Firefox / Safari:''' țineți apăsat pe ''Shift'' în timp ce faceți clic pe ''Reîncărcare'', ori apăsați ''Ctrl-F5'' sau ''Ctrl-R'' (''⌘-R'' pe un sistem Mac);
+* '''Google Chrome:''' apăsați ''Ctrl-Shift-R'' (''⌘-Shift-R'' pe un sistem Mac);
 * '''Internet Explorer:''' țineți apăsat pe ''Ctrl'' în timp ce faceți clic pe ''Reîmprospătare'' sau apăsați ''Ctrl-F5'';
 * '''Konqueror:''' faceți clic pe ''Reîncărcare'' sau apăsați ''F5'';
 * '''Opera:''' curățați memoria cache din ''Unelte → Preferințe''.",
@@ -1776,9 +1776,34 @@ Dacă problema persistă, contactați un [[Special:ListUsers/sysop|administrator
 'upload-http-error'         => 'A avut loc o eroare HTTP: $1',
 
 # File backend
+'backend-fail-stream'        => 'Imposibil de citit fișierul $1.',
+'backend-fail-backup'        => 'Imposibil de efectuat o copie de rezervă a fișierului $1.',
 'backend-fail-notexists'     => 'Fișierul $1 nu există.',
+'backend-fail-hashes'        => 'Imposibil de obținut valoarea de dispersie a fișierului pentru comparare.',
+'backend-fail-notsame'       => 'Un fișier diferit există deja pentru $1.',
 'backend-fail-invalidpath'   => '$1 nu este o cale validă de stocare.',
+'backend-fail-delete'        => 'Imposibil de șters fișierul $1.',
 'backend-fail-alreadyexists' => 'Fișierul $1 există deja.',
+'backend-fail-store'         => 'Imposibil de stocat fișierul $1 în $2.',
+'backend-fail-copy'          => 'Imposibil de copiat fișierul $1 în $2.',
+'backend-fail-move'          => 'Imposibil de mutat fișierul $1 în $2.',
+'backend-fail-opentemp'      => 'Imposibil de deschis fișierul temporar.',
+'backend-fail-writetemp'     => 'Imposibil de scris în fișierul temporar.',
+'backend-fail-closetemp'     => 'Imposibil de închis fișierul temporar.',
+'backend-fail-read'          => 'Imposibil de citit fișierul $1.',
+'backend-fail-create'        => 'Imposibil de creat fișierul $1.',
+
+# Lock manager
+'lockmanager-notlocked'         => 'Imposibil de deblocat cheia „$1”; aceasta nu este blocată.',
+'lockmanager-fail-closelock'    => 'Imposibil de închis fișierul de blocare pentru cheia „$1”.',
+'lockmanager-fail-deletelock'   => 'Imposibil de șters fișierul de blocare pentru cheia „$1”.',
+'lockmanager-fail-acquirelock'  => 'Imposibil de obținut blocarea pentru cheia „$1”.',
+'lockmanager-fail-openlock'     => 'Imposibil de deschis fișierul de blocare pentru cheia „$1”.',
+'lockmanager-fail-releaselock'  => 'Imposibil de eliberat blocarea pentru cheia „$1”.',
+'lockmanager-fail-acquirelocks' => 'Imposibil de obținut blocările pentru cheile „$1”.',
+'lockmanager-fail-db-bucket'    => 'Imposibil de contactat suficient baza de date cu blocări în găleata $1.',
+'lockmanager-fail-db-release'   => 'Imposibil de eliberat blocările din baza de date $1.',
+'lockmanager-fail-svr-release'  => 'Imposibil de eliberat blocările de pe serverul $1.',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'A intervenit o eroare în momentul deschiderii fișierului ZIP pentru verificări.',
@@ -1796,6 +1821,7 @@ Nu poate fi verificat în mod corespunzător în vederea securității.',
 'uploadstash-badtoken' => 'Execuția acestei acțiuni nu a reușit, probabil deoarece informațiile dumneavoastră de identificare au expirat. Încercați din nou.',
 'uploadstash-errclear' => 'Golirea fișierelor nu a reușit.',
 'uploadstash-refresh'  => 'Reîmprospătează lista de fișiere',
+'invalid-chunk-offset' => 'Decalaj de segment nevalid',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Acces interzis',
@@ -2799,6 +2825,8 @@ Vă rugăm să vizitați [//www.mediawiki.org/wiki/Localisation MediaWiki Locali
 'thumbnail_error'          => 'Eroare la generarea previzualizării: $1',
 'djvu_page_error'          => 'Numărul paginii DjVu eronat',
 'djvu_no_xml'              => 'Imposibil de obținut XML-ul pentru fișierul DjVu',
+'thumbnail-temp-create'    => 'Imposibil de creat miniatura temporară',
+'thumbnail-dest-create'    => 'Imposibil de salvat miniatura la destinație',
 'thumbnail_invalid_params' => 'Parametrii invalizi ai imaginii miniatură',
 'thumbnail_dest_directory' => 'Nu poate fi creat directorul destinație',
 'thumbnail_image-type'     => 'Acest tip de imagine nu este suportat',
@@ -3769,6 +3797,15 @@ Imaginile sunt afișate la rezoluția lor maximă, în timp ce alte tipuri de fi
 # New logging system
 'logentry-delete-delete'              => '$1 {{GENDER:$2|a șters}} pagina $3',
 'logentry-delete-restore'             => '$1 {{GENDER:$2|a restaurat}} pagina $3',
+'logentry-delete-event'               => '$1 {{GENDER:$2|a schimbat}} vizibilitatea {{PLURAL:$5|unui eveniment din jurnal|a $5 evenimente din jurnal|a $5 de evenimente din jurnal}} în $3: $4',
+'logentry-delete-revision'            => '$1 {{GENDER:$2|a schimbat}} vizibilitatea {{PLURAL:$5|unei modificări|a $5 modificări|a $5 de modificări}} din pagina $3: $4',
+'logentry-delete-event-legacy'        => '$1 {{GENDER:$2|a modificat}} vizibilitatea evenimentelor din jurnal în $3',
+'logentry-delete-revision-legacy'     => '$1 {{GENDER:$2|a modificat}} vizibilitatea modificărilor de pe pagina $3',
+'logentry-suppress-delete'            => '$1 {{GENDER:$2|a suprimat}} pagina $3',
+'logentry-suppress-event'             => '$1 {{GENDER:$2|a modificat}} în mod secret vizibilitatea {{PLURAL:$5|unui eveniment din jurnal|a $5 evenimente din jurnal|a $5 de evenimente din jurnal}} în $3: $4',
+'logentry-suppress-revision'          => '$1 {{GENDER:$2|a modificat}} în mod secret vizibilitatea {{PLURAL:$5|unei modificări|a $5 modificări|a $5 de modificări}} din pagina $3: $4',
+'logentry-suppress-event-legacy'      => '$1 {{GENDER:$2|a modificat}} în mod secret vizibilitatea evenimentelor din jurnal în $3',
+'logentry-suppress-revision-legacy'   => '$1 {{GENDER:$2|a modificat}} în mod secret vizibilitatea modificărilor de pe pagina $3',
 'revdelete-content-hid'               => 'conținut ascuns',
 'revdelete-summary-hid'               => 'descrierea modificării ascunsă',
 'revdelete-uname-hid'                 => 'nume de utilizator ascuns',

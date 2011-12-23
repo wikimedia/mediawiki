@@ -689,11 +689,11 @@ o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 
 'blocked-notice-logextract'        => "S'utent a l'é al moment blocà.
 'Me arferiment, sì-sota a-i é la dariera anotassion da l'argistr dij blocagi.",
 'clearyourcache'                   => "'''Nòta:''' na vira che a l'ha salvà, a peul esse che a-j fasa da manca ëd passé via la memorisassion ëd sò programa ëd navigassion për podèj ës-ciairé le modìfiche.
-* '''Firefox / Safari:''' che a ten-a sgnacà ''Majùscole'' antramentre che a sgnaca col rat ansima a ''Agiorné'', ò pura che a sgnaca tut ansema ''Ctrl-F5'' o ''Cmd-R'' (''Comand-R'' ansima ai Mac);
-* '''Google Chrome:''' che a sgnaca ''Ctrl-Shift-R'' (''Comand-Majùscole-R'' ansima ai Mac);
-* '''Internet Explorer:''' che a ten-a sgnacà ''Ctrl'' antramentre che a sgnaca col rat ansima a ''Agiorné'', ò pura che a sgnaca tut ansema ''Ctrl-F5'';
-* '''Konqueror:''': a basta mach sgnaché ël boton ''Agiorné'', ò pura sgnaché ''F5'';
-*'''Opera''' j'utent a peulo avèj da manca ëd dësvujdé 'd continuo soa memorisassion andrinta a ''Utiss → Gust''.",
+* '''Firefox / Safari:''' Che a ten-a sgnacà ''Majùscole'' antramentre che a sgnaca col rat ansima a ''Agiorné'', ò pura che a sgnaca tut ansema ''Ctrl-F5'' o ''Cmd-R'' (''*'' ansima ai Mac);
+* '''Google Chrome:''' Che a sgnaca ''Ctrl-Shift-R'' (''*-Majùscole-R'' ansima ai Mac);
+* '''Internet Explorer:''' Che a ten-a sgnacà ''Ctrl'' antramentre che a sgnaca col rat ansima a ''Agiorné'', ò pura che a sgnaca tut ansema ''Ctrl-F5'';
+* '''Konqueror:''': A basta mach sgnaché ël boton ''Agiorné'', ò pura sgnaché ''F5'';
+*'''Opera''' J'utent a peulo avèj da manca ëd dësvujdé 'd continuo soa memorisassion andrinta a ''Utiss → Gust''.",
 'usercssyoucanpreview'             => "'''Drita:''' che a deuvra ël boton \"{{int:showpreview}}\" për controlé l'efet ëd sò còdes CSS dnans ëd salvelo.",
 'userjsyoucanpreview'              => "'''Drita:''' che a deuvra ël boton «{{int:showpreview}}» për controlé l'efet ëd sò còdes JS dnans ëd salvelo.",
 'usercsspreview'                   => "'''Che a varda che lòn che a s-ciàira a l'é nomach na preuva ëd sò CSS.'''
@@ -1525,6 +1525,11 @@ Se a-i riva sossì n'àotra vira, ch'as buta an comunicassion con n'[[Special:Li
 'upload-too-many-redirects' => "L'adrëssa dl'aragnà a l'avìa tròpe ridiression",
 'upload-unknown-size'       => 'Dimension pa conossùa',
 'upload-http-error'         => "A l'é staje n'eror HTTP: $1.",
+
+# File backend
+'backend-fail-stream'    => "A peul pa sequensialisé l'archivi $1.",
+'backend-fail-backup'    => "A peul pa fé ël backup ëd l'archivi $1.",
+'backend-fail-notexists' => "L'archivi $1 a esist pa.",
 
 # ZipDirectoryReader
 'zip-file-open-error' => "N'eror a l'é capità an duvertand l'archivi për ij contròj ZIP.",

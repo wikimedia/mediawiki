@@ -813,11 +813,11 @@ o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 
 'blocked-notice-logextract'        => 'Iste usator es actualmente blocate.
 Le ultime entrata del registro de blocadas es reproducite ci infra pro information:',
 'clearyourcache'                   => "'''Nota:''' Post confirmar, il pote esser necessari refrescar le ''cache'' de tu navigator pro vider le cambiamentos.
-* '''Firefox / Safari:''' tenente ''Shift'' clicca ''Reload (Recargar)'', o preme ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' sur Mac)
-* '''Google Chrome:''' preme ''Ctrl-Shift-R'' (''Command-Shift-R'' sur Mac)
-* '''Internet Explorer:''' tenente ''Ctrl'' clicca ''Refresh (Refrescar)'', o preme ''Ctrl-F5'' 
-* '''Konqueror:''' clicca ''Reload (Recargar)'' o preme ''F5''
-* '''Opera:''' vacua le ''cache'' in ''Tools → Preferences (Utensiles → Preferentias)''",
+* '''Firefox / Safari:''' Tenente ''Shift'' clicca ''Reload (Recargar)'', o preme ''Ctrl-F5'' o ''Ctrl-R'' (''⌘-R'' sur Mac)
+* '''Google Chrome:''' Preme ''Ctrl-Shift-R'' (''⌘-Shift-R'' sur Mac)
+* '''Internet Explorer:''' Tenente ''Ctrl'' clicca ''Refresh (Refrescar)'', o preme ''Ctrl-F5'' 
+* '''Konqueror:''' Clicca ''Reload (Recargar)'' o preme ''F5''
+* '''Opera:''' Vacua le ''cache'' in ''Tools → Preferences (Utensiles → Preferentias)''",
 'usercssyoucanpreview'             => "'''Consilio:''' Usa le button \"{{int:showpreview}}\" pro testar tu nove CSS ante de salveguardar lo.",
 'userjsyoucanpreview'              => "'''Consilio:''' Usa le button \"{{int:showpreview}}\" pro testar tu nove JavaScript ante de salveguardar lo.",
 'usercsspreview'                   => "'''Non oblida que isto es solmente un previsualisation de tu CSS personalisate.'''

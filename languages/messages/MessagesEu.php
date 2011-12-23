@@ -735,8 +735,8 @@ edo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}
 'blocked-notice-logextract'        => 'Erabiltzaile hau blokeatuta dago une honetan.
 Azken blokeoaren erregistroa ageri da behean, erreferentzia gisa:',
 'clearyourcache'                   => "'''Oharra:''' Gorde ondoren zure nabigatzailearen katxea ekidin beharko duzu aldaketak ikusteko.
-* '''Firefox / Safari:''' ''Shift'' tekla sakatu birkargatzeko momentuan, edo ''Ctrl-Shift-R'' sakatu (''Cmd-Shift-R'' Mac baten)
-* '''Google Chrome:''' ''Ctrl-Shift-R'' sakatu (''Cmd-Shift-R'' Mac batean)
+* '''Firefox / Safari:''' ''Shift'' tekla sakatu birkargatzeko momentuan, edo ''Ctrl-Shift-R'' sakatu (''⌘-R''' Mac baten)
+* '''Google Chrome:''' ''Ctrl-Shift-R'' sakatu (''⌘-R'' Mac batean)
 * '''Internet Explorer:''' ''Ctrl'' tekla sakatu birkargatzeko momentuan, edo ''Ctrl-F5'' sakatu
 * '''Konqueror:''': Birkargatzeko klik egin, edo F5 sakatu, besterik ez
 * '''Opera''' erabiltzaileek ''Tresnak → Hobespenak'' atalera jo eta katxea garbitzeko aukera hautatu",

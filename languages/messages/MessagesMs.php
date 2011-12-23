@@ -201,7 +201,7 @@ $messages = array(
 'tog-usenewrc'                => 'Guna peningkatan perubahan terkini (perlukan JavaScript)',
 'tog-numberheadings'          => 'Nomborkan tajuk secara automatik',
 'tog-showtoolbar'             => 'Tunjukkan bar sunting (JavaScript)',
-'tog-editondblclick'          => 'Sunting laman ketika dwiklik (JavaScript)',
+'tog-editondblclick'          => 'Klik ganda untuk sunting halaman (JavaScript)',
 'tog-editsection'             => 'Bolehkan penyuntingan bahagian melalui pautan [sunting]',
 'tog-editsectiononrightclick' => 'Bolehkan penyuntingan bahagian dengan mengklik kanan pada tajuk bahagian (JavaScript)',
 'tog-showtoc'                 => 'Tunjukkan isi kandungan (bagi rencana yang melebihi 3 tajuk)',
@@ -837,11 +837,11 @@ atau <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}
 'blocked-notice-logextract'        => 'Pengguna ini sedang disekat.
 Masukan log sekatan terakhir disediakan di bawah sebagai rujukan:',
 'clearyourcache'                   => "'''Catatan: Selepas menyimpan laman ini, anda mungkin perlu membersihkan cache pelayar web anda terlebih dahulu untuk mengenakan perubahan.'''
-*'''Firefox/Safari:''' tahan ''Shift'' ketika mengklik ''Reload'' atau tekan ''Ctrl+F5'' atau tekan ''Ctrl+R''
-*'''Google Chrome:''' tekan ''Ctrl+Shift+R''  (''Command+Shift+R'' dalam komputer Mac)
-*'''Internet Explorer:''' tahan ''Ctrl'' ketika mengklik ''Refresh'' atau tekan ''Ctrl+F5''
-*'''Konqueror:''' klik butang ''Reload'' atau tekan ''F5''
-*'''Opera:''' bersihkan cache melalui menu ''Tools → Preferences''",
+*'''Firefox/Safari:''' Tekan terus ''Shift'' sambil klik ''Reload'', atau tekan ''Ctrl+F5'' atau tekan ''Ctrl+R''  (''⌘+R'' bagi Mac)
+*'''Google Chrome:''' Tekan ''Ctrl+Shift+R''  (''⌘+Shift+R'' bagi Mac)
+*'''Internet Explorer:''' Tekan terus ''Ctrl'' sambil klik ''Refresh'', atau tekan ''Ctrl+F5''
+*'''Konqueror:''' Klik butang ''Reload'', atau tekan ''F5''
+*'''Opera:''' Kosongkan cache di menu ''Tools → Preferences''",
 'usercssyoucanpreview'             => "'''Petua:''' Gunakan butang \"{{int:showpreview}}\" untuk menguji CSS baru anda sebelum menyimpan.",
 'userjsyoucanpreview'              => "'''Petua:''' Gunakan butang \"{{int:showpreview}}\" untuk menguji JavaScript baru anda sebelum menyimpan.",
 'usercsspreview'                   => "'''Ingat bahawa anda hanya sedang melihat pralihat CSS peribadi anda. Laman ini belum lagi disimpan!'''",
@@ -1314,11 +1314,11 @@ Tindakan ini tidak boleh dibatalkan.',
 'prefs-signature'               => 'Tandatangan',
 'prefs-dateformat'              => 'Format tarikh',
 'prefs-timeoffset'              => 'Imbangan masa',
-'prefs-advancedediting'         => 'Pilihan terperinci',
-'prefs-advancedrc'              => 'Pilihan maju',
-'prefs-advancedrendering'       => 'Pilihan maju',
-'prefs-advancedsearchoptions'   => 'Pilihan maju',
-'prefs-advancedwatchlist'       => 'Pilihan maju',
+'prefs-advancedediting'         => 'Pilihan lanjutan',
+'prefs-advancedrc'              => 'Pilihan lanjutan',
+'prefs-advancedrendering'       => 'Pilihan lanjutan',
+'prefs-advancedsearchoptions'   => 'Pilihan lanjutan',
+'prefs-advancedwatchlist'       => 'Pilihan lanjutan',
 'prefs-displayrc'               => 'Papar pilihan',
 'prefs-displaysearchoptions'    => 'Papar pilihan',
 'prefs-displaywatchlist'        => 'Papar pilihan',

@@ -936,8 +936,8 @@ tai <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}
 'blocked-notice-logextract'        => 'Tämä käyttäjä on tällä hetkellä estetty.
 Alla on viimeisin estolokin tapahtuma:',
 'clearyourcache'                   => "'''Huomautus:''' Selaimen välimuisti pitää tyhjentää asetusten tallentamisen jälkeen, jotta muutokset tulisivat voimaan.
-* '''Firefox ja Safari:''' Napsauta ''Shift''-näppäin pohjassa ''Päivitä'' tai paina ''Ctrl-F5'' tai ''Ctrl-R'' (''Command-R'' Macilla)
-* '''Google Chrome:''' Paina ''Ctrl-Shift-R'' (''Command-Shift-R'' Macilla)
+* '''Firefox ja Safari:''' Napsauta ''Shift''-näppäin pohjassa ''Päivitä'' tai paina ''Ctrl-F5'' tai ''Ctrl-R'' (''⌘-R'' Macilla)
+* '''Google Chrome:''' Paina ''Ctrl-Shift-R'' (''⌘-Shift-R'' Macilla)
 * '''Internet Explorer:''' Napsauta ''Ctrl''-näppäin pohjassa ''Päivitä'' tai paina ''Ctrl-F5''
 * '''Konqueror''': Napsauta ''Päivitä'' tai paina ''F5''
 * '''Opera:''' Tyhjennä välimuisti: ''Tools→Preferences''",
@@ -3682,5 +3682,6 @@ Kuvat näytetään täysikokoisina. Muut tiedostot avataan niille määritetyss�
 'feedback-error1'  => 'Virhe: ohjelmointirajapinnan vastausta ei tunnistettu',
 'feedback-error2'  => 'Virhe: muokkaus epäonnistui',
 'feedback-error3'  => 'Virhe: ohjelmointirajapinta ei vastaa',
+'feedback-close'   => 'Valmis',
 
 );

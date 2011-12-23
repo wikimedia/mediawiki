@@ -38,6 +38,7 @@
  * @author MetalBrasil
  * @author Pedroca cerebral
  * @author Ppena
+ * @author Rafael Vargas
  * @author Raylton P. Sousa
  * @author Rodrigo Calanca Nishino
  * @author Urhixidur
@@ -1781,6 +1782,14 @@ Por gentileza, entre em contato com um [[Special:ListUsers/sysop|administrador]]
 'upload-too-many-redirects' => 'A URL contém redirecionamentos demais',
 'upload-unknown-size'       => 'Tamanho desconhecido',
 'upload-http-error'         => 'Ocorreu um erro HTTP: $1',
+
+# File backend
+'backend-fail-stream'      => 'Não foi possível transmitir o arquivo  $1.',
+'backend-fail-backup'      => 'Não foi possível fazer backup do arquivo  $1 .',
+'backend-fail-notexists'   => 'O arquivo $1 não existe.',
+'backend-fail-hashes'      => 'Não foi possível obter os hashes do arquivo para comparação.',
+'backend-fail-notsame'     => 'Já existe um arquivo não idêntico em $1 .',
+'backend-fail-invalidpath' => '$1 não é um caminho válido de armazenamento.',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'Foi encontrado um erro ao abrir o arquivo ZIP para verificação.',
