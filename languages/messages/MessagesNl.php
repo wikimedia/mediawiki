@@ -1014,8 +1014,8 @@ Controleer of u deze pagina wel wilt aanmaken of bewerken.',
 'blocked-notice-logextract'        => 'Deze gebruiker is op het moment geblokkeerd.
 De laatste regel uit het blokkeerlogboek wordt hieronder ter referentie weergegeven:',
 'clearyourcache'                   => "'''Let op!''' Nadat u de wijzigingen hebt opgeslagen is het wellicht nodig uw browsercache te legen.
-* '''Firefox / Safari:''' houd ''Shift'' ingedrukt terwijl u op ''Vernieuwen'' klikt of druk op ''Ctrl-F5'' of ''Ctrl-R'' (''Command-R'' op een Mac)
-* '''Google Chrome:''' druk op ''Ctrl-Shift-R'' (''Command-Shift-R'' op een Mac)
+* '''Firefox / Safari:''' houd ''Shift'' ingedrukt terwijl u op ''Vernieuwen'' klikt of druk op ''Ctrl-F5'' of ''Ctrl-R'' (''⌘-Shift-R'' op een Mac)
+* '''Google Chrome:''' druk op ''Ctrl-Shift-R'' (''⌘-Shift-R'' op een Mac)
 * '''Internet Explorer:''' houd ''Ctrl'' ingedrukt terwijl u op ''Vernieuwen'' klikt of druk op ''Ctrl-F5''
 * '''Konqueror: '''klik op ''Reload'' of druk op ''F5''
 * '''Opera:''' leeg uw cache in ''Extra → Voorkeuren''",
@@ -1594,7 +1594,7 @@ Deze informatie is zichtbaar voor andere gebruikers.',
 'right-deleterevision'        => "Versies van pagina's verbergen",
 'right-deletedhistory'        => 'Verwijderde versies bekijken, zonder te kunnen zien wat verwijderd is',
 'right-deletedtext'           => 'Verwijderde tekst en wijzigingen tussen verwijderde versies bekijken',
-'right-browsearchive'         => "Verwijderde pagina's bekijken",
+'right-browsearchive'         => "Verwijderde pagina's zoeken",
 'right-undelete'              => "Verwijderde pagina's terugplaatsen",
 'right-suppressrevision'      => 'Verborgen versies bekijken en terugplaatsen',
 'right-suppressionlog'        => 'Niet-publieke logboeken bekijken',
@@ -1647,9 +1647,9 @@ Deze informatie is zichtbaar voor andere gebruikers.',
 'action-movefile'             => 'dit bestand te hernoemen',
 'action-upload'               => 'dit bestand te uploaden',
 'action-reupload'             => 'dit bestaande bestand te overschrijven',
-'action-reupload-shared'      => 'dit bestand te uploaden, terwijl er al een bestand met dezelfde naam in de gedeelde mediadatabank staat',
+'action-reupload-shared'      => 'dit bestand te uploaden, terwijl er al een bestand met dezelfde naam in de gedeelde mediadatabank staat,',
 'action-upload_by_url'        => 'dit bestand vanaf een URL te uploaden',
-'action-writeapi'             => 'de via de API te bewerken',
+'action-writeapi'             => 'via de API te bewerken',
 'action-delete'               => 'deze pagina te verwijderen',
 'action-deleterevision'       => 'deze versie te verwijderen',
 'action-deletedhistory'       => 'de verwijderde versies van deze pagina te bekijken',

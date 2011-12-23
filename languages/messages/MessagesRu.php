@@ -24,6 +24,7 @@
  * @author Don Alessandro
  * @author Eleferen
  * @author EugeneZelenko
+ * @author Eugrus
  * @author Ferrer
  * @author Flrn
  * @author G0rn
@@ -712,7 +713,7 @@ $2',
 'gotaccount'                 => "Вы уже зарегистрированы? '''$1'''.",
 'gotaccountlink'             => 'Представьтесь',
 'userlogin-resetlink'        => 'Забыли данные для входа?',
-'createaccountmail'          => 'по эл. почте',
+'createaccountmail'          => 'Выслать пароль по эл. почте',
 'createaccountreason'        => 'Причина:',
 'badretype'                  => 'Введённые вами пароли не совпадают.',
 'userexists'                 => 'Введённое имя участника уже используется.
@@ -952,8 +953,8 @@ $2
 'blocked-notice-logextract'        => 'Этот участник в данный момент заблокирован.
 Ниже приведена последняя запись из журнала блокировок:',
 'clearyourcache'                   => "'''Замечание.''' Возможно, после сохранения вам придётся очистить кеш своего браузера, чтобы увидеть изменения.
-* '''Firefox / Safari.''' Удерживая клавишу ''Shift'' нажмите на панели инструментов ''Обновить'', или нажмите ''Ctrl-F5'' или ''Ctrl-R'' (''Command-R'' на Mac)
-* '''Google Chrome.''' Нажмите ''Ctrl-Shift-R'' (''Command-Shift-R'' на Mac)
+* '''Firefox / Safari.''' Удерживая клавишу ''Shift'' нажмите на панели инструментов ''Обновить'', или нажмите ''Ctrl-F5'' или ''Ctrl-R'' (''⌘-R'' на Mac)
+* '''Google Chrome.''' Нажмите ''Ctrl-Shift-R'' (''⌘-Shift-R'' на Mac)
 * '''Internet Explorer.''' Удерживая ''Ctrl'' нажмите ''Обновить'', или нажмите ''Ctrl-F5''
 * '''Konqueror.''' Нажмите ''Обновить'' или ''F5''
 * '''Opera.''' Выберите очистку кеша в меню ''Инструменты → Настройки''",
@@ -1785,6 +1786,7 @@ $1',
 'upload-http-error'         => 'Произошла ошибка HTTP: $1',
 
 # File backend
+'backend-fail-stream'        => 'Не удалось транслировать файл $1.',
 'backend-fail-backup'        => 'Невозможно сделать резервную копию файла $1.',
 'backend-fail-notexists'     => 'Файл $1 не существует.',
 'backend-fail-hashes'        => 'Не удалось получить хэши файлов для сравнения.',
@@ -1800,6 +1802,18 @@ $1',
 'backend-fail-closetemp'     => 'Не удаётся закрыть временный файл.',
 'backend-fail-read'          => 'Не удалось прочитать файл $1.',
 'backend-fail-create'        => 'Не удалось создать файл $1.',
+
+# Lock manager
+'lockmanager-notlocked'         => 'Не удалось разблокировать ключ " $1 "; он не заблокирован.',
+'lockmanager-fail-closelock'    => 'Не удалось закрыть файл блокировки для ключа " $1 ".',
+'lockmanager-fail-deletelock'   => 'Не удалось удалить файл блокировки для ключа " $1 ".',
+'lockmanager-fail-acquirelock'  => 'Не удалось добиться блокировки ключа " $1 ".',
+'lockmanager-fail-openlock'     => 'Не удалось открыть файл блокировки для ключа " $1 ".',
+'lockmanager-fail-releaselock'  => 'Не удалось разблокировать ключ "$1".',
+'lockmanager-fail-acquirelocks' => 'Не удалось добиться блокировки ключей " $1 ".',
+'lockmanager-fail-db-bucket'    => 'Не удалось связаться с достаточным количеством баз блокировок в сегменте $1.',
+'lockmanager-fail-db-release'   => 'Не удалось снять блокировку базы данных  $1 .',
+'lockmanager-fail-svr-release'  => 'Не удалось снять блокировки на сервере $1 .',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'Произошла ошибка при открытии файла для проверки архива.',
@@ -2047,6 +2061,7 @@ $1',
 'mostimages'              => 'Самые используемые файлы',
 'mostrevisions'           => 'Наиболее часто редактировавшиеся страницы',
 'prefixindex'             => 'Указатель по началу названий страниц',
+'prefixindex-namespace'   => 'Все страницы с префиксом ( $1 пространство имён)',
 'shortpages'              => 'Короткие страницы',
 'longpages'               => 'Длинные страницы',
 'deadendpages'            => 'Тупиковые страницы',
@@ -2803,6 +2818,8 @@ $1',
 'thumbnail_error'          => 'Ошибка создания миниатюры: $1',
 'djvu_page_error'          => 'Номер страницы DjVu вне досягаемости',
 'djvu_no_xml'              => 'Невозможно получить XML для DjVu',
+'thumbnail-temp-create'    => 'Не удаётся создать временный файл эскиза',
+'thumbnail-dest-create'    => 'Не удаётся сохранить эскиз по месту назначения',
 'thumbnail_invalid_params' => 'Ошибочный параметр миниатюры',
 'thumbnail_dest_directory' => 'Невозможно создать целевую директорию',
 'thumbnail_image-type'     => 'Данный тип изображения не поддерживается',

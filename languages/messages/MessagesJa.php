@@ -1026,9 +1026,9 @@ IPアドレスは複数の利用者の間で共有されていることがあり
 'userpage-userdoesnotexist-view'   => '利用者アカウント「$1」は登録されていません。',
 'blocked-notice-logextract'        => 'この利用者は現在ブロックされています。
 参考のために最新のブロック記録を以下に表示します。',
-'clearyourcache'                   => "'''注意:''' 保存後、変更を確認するにはブラウザのキャッシュをクリアする必要がある場合があります。
-* '''Firefox / Safari:''' ''Shift'' を押しながら ''再読み込み'' をクリックする、もしくは ''Ctrl-F5'' か ''Ctrl-R'' を押してください (Macでは ''Command-R'' )
-* '''Google Chrome:''' ''Ctrl-Shift-R'' を押してください (Macでは ''Command-Shift-R'' )
+'clearyourcache'                   => "'''注意:''' 保存後、変更を確認するにはブラウザのキャッシュを消去する必要がある場合があります。
+* '''Firefox / Safari:''' ''Shift'' を押しながら ''再読み込み'' をクリックする、もしくは ''Ctrl-F5'' か ''Ctrl-R'' を押してください (Macでは ''⌘-R'' )
+* '''Google Chrome:''' ''Ctrl-Shift-R'' を押してください (Macでは ''⌘-Shift-R'' )
 * '''Internet Explorer:''' ''Ctrl'' を押しながら ''最新の情報に更新'' をクリックする、もしくは ''Ctrl-F5'' を押してください
 * '''Konqueror:''' ''再読み込み'' をクリックするか、 ''F5'' を押してください。
 * '''Opera:''' ''ツール → 設定'' からキャッシュをクリアしてください。",

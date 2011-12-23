@@ -1243,7 +1243,7 @@ U kan ook 'n naamruimte as voorvoegsel gebruik.",
 'prefs-rc'                      => 'Onlangse wysigings',
 'prefs-watchlist'               => 'Dophoulys',
 'prefs-watchlist-days'          => 'Aantal dae om in dophoulys te wys:',
-'prefs-watchlist-days-max'      => 'Maksimum 7 dae',
+'prefs-watchlist-days-max'      => 'Maksimum 7 {{PLURAL:$1|dag|dae}}',
 'prefs-watchlist-edits'         => 'Aantal wysigings om in uitgebreide dophoulys te wys:',
 'prefs-watchlist-edits-max'     => 'Maksimum aantal: 1000',
 'prefs-watchlist-token'         => 'Dophoulys-sleutel:',
@@ -3681,5 +3681,6 @@ Beelde word in hulle volle resolusie gewys. Ander lêertipes word direk met hull
 'feedback-error1'  => 'Fout: onbekende resultaat van die API',
 'feedback-error2'  => 'Fout: Wysiging het gefaal',
 'feedback-error3'  => 'Fout: Geen reaksie van API',
+'feedback-close'   => 'Gedoen',
 
 );

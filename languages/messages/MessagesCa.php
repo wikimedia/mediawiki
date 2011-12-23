@@ -8,6 +8,7 @@
  * @file
  *
  * @author Aleator
+ * @author Avm99963
  * @author BroOk
  * @author Cedric31
  * @author Davidpar
@@ -1635,6 +1636,9 @@ $1',
 'upload-too-many-redirects' => 'La URL conté massa redireccions',
 'upload-unknown-size'       => 'Mida desconeguda',
 'upload-http-error'         => 'Ha ocorregut un error HTTP: $1',
+
+# File backend
+'backend-fail-notexists' => 'El fitxer $1 no existeix.',
 
 # ZipDirectoryReader
 'zip-file-open-error' => "S'ha trobat un error en obrir l'arxiu ZIP per a fer-hi comprovacions.",

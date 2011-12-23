@@ -788,8 +788,8 @@ abo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}
 'blocked-notice-logextract'        => 'Toś ten wužywaŕ jo tuchylu blokěrowany.
 Nejnowšy zapisk blokěrowańskego protokola pódawa se dołojce ako referenca:',
 'clearyourcache'                   => "'''Pokazka:''' Pó składowanju dejš snaź wuprozniś cache wobglědowaka, aby změny wiźeł.
-* '''Firefox/Safari:''' Źarź ''Umsch'' tłocony, mjaztym až kliknjoš na ''Znowego'' abo tłoc pak ''Strg-F5'' pak ''Strg-R'' (''Command-R'' na Makintošu)
-* '''Google Chrome:''' Tłoc na ''Strg-Umsch-R'' (''command-Umsch-R'' na Makintošu)
+* '''Firefox/Safari:''' Źarź ''Umsch'' tłocony, mjaztym až kliknjoš na ''Znowego'' abo tłoc pak ''Strg-F5'' pak ''Strg-R'' (''⌘-R'' na Makintošu)
+* '''Google Chrome:''' Tłoc na ''Strg-Umsch-R'' ('⌘-Umsch-R'' na Makintošu)
 * '''Internet Explorer:''' Źarź ''Strg'' tłocony, mjaztym až kliknjoš na ''Aktualisieren'' abo tłoc ''Strg-F5''
 * '''Konqueror:''' Klikni na ''Aktualisieren'' abo tłoc ''F5''
 * '''Opera:''' Wuprozni cache w ''Extras → Einstellungen''",

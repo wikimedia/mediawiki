@@ -902,11 +902,11 @@ $2
 'blocked-notice-logextract'        => 'Гэты ўдзельнік у дадзены момант заблякаваны.
 Апошні запіс з журналу блякаваньняў пададзены ніжэй для даведкі:',
 'clearyourcache'                   => "'''Заўвага:''' Каб пабачыць зьмены пасьля захаваньня, Вам можа спатрэбіцца ачысьціць кэш Вашага браўзэра. 
-* '''Firefox / Safari:''' трымайце ''Shift'' і націсьніце ''Reload'', ці націсьніце ''Ctrl-F5'' ці ''Ctrl-R'' (''Command-R''' на Mac)
-* '''Google Chrome:''' націсьніце ''Ctrl-Shift-R'' (''Command-Shift-R'' на Mac)
-* '''Internet Explorer:''' трымайце ''Ctrl'' і націсьніце ''Refresh'', ці націсьніце ''Ctrl-F5''
-* '''Konqueror:''' націсьніце кнопку ''Reload'' ці ''F5''
-* '''Opera:''' ачысьціце кэш праз ''Tools → Preferences''",
+* '''Firefox / Safari:''' Трымайце ''Shift'' і націсьніце ''Reload'', ці націсьніце ''Ctrl-F5'' ці ''Ctrl-R'' (''⌘-R''' на Mac)
+* '''Google Chrome:''' Націсьніце ''Ctrl-Shift-R'' (''⌘-Shift-R'' на Mac)
+* '''Internet Explorer:''' Трымайце ''Ctrl'' і націсьніце ''Refresh'', ці націсьніце ''Ctrl-F5''
+* '''Konqueror:''' Націсьніце кнопку ''Reload'' ці ''F5''
+* '''Opera:''' Ачысьціце кэш праз ''Tools → Preferences''",
 'usercssyoucanpreview'             => "'''Падказка:''' выкарыстоўвайце кнопку «{{int:showpreview}}», каб паспрабаваць новы код CSS перад тым як яго запісаць.",
 'userjsyoucanpreview'              => "'''Падказка:''' выкарыстоўвайце кнопку «{{int:showpreview}}», каб паспрабаваць новы код JavaScript перад тым, як яго запісаць.",
 'usercsspreview'                   => "'''Памятайце, што гэта толькі папярэдні прагляд Вашага CSS. Ён яшчэ не запісаны!'''",
@@ -1733,6 +1733,10 @@ $1',
 'backend-fail-alreadyexists' => 'Файл $1 ужо існуе.',
 'backend-fail-store'         => 'Немагчыма захаваць файл $1 у $2.',
 'backend-fail-copy'          => 'Немагчыма скапіяваць файл $1 у $2.',
+'backend-fail-move'          => 'Немагчыма перанесьці файл $1 у $2.',
+'backend-fail-opentemp'      => 'Немагчыма адкрыць часовы файл.',
+'backend-fail-writetemp'     => 'Немагчыма запісаць часовы файл.',
+'backend-fail-closetemp'     => 'Немагчыма закрыць часовы файл.',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'Падчас адкрыцьця файла для праверкі архіву адбылася памылка.',

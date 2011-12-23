@@ -225,7 +225,7 @@ $messages = array(
 'go'                => 'Aiziet!',
 'searcharticle'     => 'Aiziet!',
 'history'           => 'hronoloģija',
-'history_short'     => 'Hronoloģija',
+'history_short'     => 'Vēsture',
 'updatedmarker'     => 'atjaunināti kopš pēdējā apmeklējuma',
 'printableversion'  => 'Drukājama versija',
 'permalink'         => 'Pastāvīgā saite',
@@ -535,6 +535,13 @@ Tu jau esi veiksmīgi nomainījis savu galveno paroli, vai arī esi pieprasījis
 'passwordreset-emailelement' => 'Lietotājvārds: $1
 Pagaidu parole: $2',
 'passwordreset-emailsent'    => 'Atgādinājuma e-pasts ir nosūtīts.',
+
+# Special:ChangeEmail
+'changeemail-oldemail' => 'Pašreizējā e-pasta adrese:',
+'changeemail-newemail' => 'Jaunā e-pasta adrese:',
+'changeemail-none'     => '(nav)',
+'changeemail-submit'   => 'Mainīt e-pastu',
+'changeemail-cancel'   => 'Atcelt',
 
 # Edit page toolbar
 'bold_sample'     => 'Teksts boldā',
@@ -1087,7 +1094,7 @@ Ja tu izvēlies to norādīt, tas tiks izmantots, lai identificētu tavu darbu (
 'group-suppress'      => 'Novērotāji',
 'group-all'           => '(visi)',
 
-'group-user-member'          => 'Lietotājs',
+'group-user-member'          => '{{GENDER:$1|lietotājs}}',
 'group-autoconfirmed-member' => 'automātiski apstiprinātais lietotājs',
 'group-bot-member'           => 'Bots',
 'group-sysop-member'         => 'Administrators',
@@ -1371,6 +1378,20 @@ Lūdzu, sazinieties ar [[Special:ListUsers/sysop|administratoru.]]',
 'upload-too-many-redirects' => 'URL sastāvēja pārāk daudz pāradresāciju',
 'upload-unknown-size'       => 'Nezināms izmērs',
 'upload-http-error'         => 'HTTP kļūda: $1',
+
+# File backend
+'backend-fail-stream'        => 'Nevar straumēt failu $1.',
+'backend-fail-backup'        => 'Nevar dublēt failu $1.',
+'backend-fail-notexists'     => 'Fails $1 nepastāv.',
+'backend-fail-delete'        => 'Nevar izdzēst failu $1.',
+'backend-fail-alreadyexists' => 'Fails $1 jau pastāv.',
+'backend-fail-copy'          => 'Nevar kopēt failu $1 uz $2.',
+'backend-fail-move'          => 'Nevar pārvietot failu $1 uz $2.',
+'backend-fail-opentemp'      => 'Nevar atvērt pagaidu failu.',
+'backend-fail-writetemp'     => 'Nevar ierakstīt pagaidu failu.',
+'backend-fail-closetemp'     => 'Nevar aizvērt pagaidu failu.',
+'backend-fail-read'          => 'Nevar lasīt failu $1.',
+'backend-fail-create'        => 'Nevar izveidot failu $1.',
 
 # ZipDirectoryReader
 'zip-wrong-format' => 'Norādītais fails nebija ZIP fails.',
@@ -1676,17 +1697,19 @@ Skatīt arī [[Special:WantedCategories|''sarkanās'' kategorijas]].",
 'newuserlogpagetext' => 'Jauno lietotājvārdu reģistrs.',
 
 # Special:ListGroupRights
-'listgrouprights'                 => 'Lietotāju grupu tiesības',
-'listgrouprights-summary'         => 'Šis ir šajā wiki definēto lietotāju grupu uskaitījums, kopā ar tām atbilstošajām piekļuves tiesībām.
+'listgrouprights'                      => 'Lietotāju grupu tiesības',
+'listgrouprights-summary'              => 'Šis ir šajā wiki definēto lietotāju grupu uskaitījums, kopā ar tām atbilstošajām piekļuves tiesībām.
 Papildu informāciju par katru individuālu piekļuves tiesību veidu, iespējams, var atrast [[{{MediaWiki:Listgrouprights-helppage}}|šeit]].',
-'listgrouprights-group'           => 'Grupa',
-'listgrouprights-rights'          => 'Tiesības',
-'listgrouprights-helppage'        => 'Help:Grupu tiesības',
-'listgrouprights-members'         => '(dalībnieku saraksts)',
-'listgrouprights-addgroup'        => 'Pievienot {{PLURAL:$2|grupu|grupas}}: $1',
-'listgrouprights-removegroup'     => 'Noņemt {{PLURAL:$2|grupu|grupas}}: $1',
-'listgrouprights-addgroup-all'    => 'Pievienot visas grupas',
-'listgrouprights-removegroup-all' => 'Noņemt visas grupas',
+'listgrouprights-group'                => 'Grupa',
+'listgrouprights-rights'               => 'Tiesības',
+'listgrouprights-helppage'             => 'Help:Grupu tiesības',
+'listgrouprights-members'              => '(dalībnieku saraksts)',
+'listgrouprights-addgroup'             => 'Pievienot {{PLURAL:$2|grupu|grupas}}: $1',
+'listgrouprights-removegroup'          => 'Noņemt {{PLURAL:$2|grupu|grupas}}: $1',
+'listgrouprights-addgroup-all'         => 'Pievienot visas grupas',
+'listgrouprights-removegroup-all'      => 'Noņemt visas grupas',
+'listgrouprights-addgroup-self-all'    => 'Pievienot visas grupas savam kontam',
+'listgrouprights-removegroup-self-all' => 'Noņemt visas grupas no sava konta',
 
 # E-mail user
 'mailnologin'          => 'Nav adreses, uz kuru sūtīt',
@@ -1849,6 +1872,7 @@ Lūdzu, spied \"''back''\" un atjaunini iepriekšējo lapu. Tad mēģini vēlrei
 'unprotectedarticle'          => 'atcēla aizsardzību "[[$1]]"',
 'movedarticleprotection'      => 'pārcēla aizsardzību no "[[$2]]" uz "[[$1]]"',
 'protect-title'               => 'Izmainīt "$1" aizsargāšanas līmeni?',
+'protect-title-notallowed'    => 'Apskatīt "$1" aizsrdzības līmeni',
 'prot_1movedto2'              => '"[[$1]]" pārdēvēju par "[[$2]]"',
 'protect-legend'              => 'Apstiprināt aizsargāšanu',
 'protectcomment'              => 'Iemesls:',
@@ -2554,6 +2578,9 @@ Pārējie lauki, pēc noklusējuma, būs paslēpti.
 'exif-gpsdatestamp'                => 'GPS datums',
 'exif-jpegfilecomment'             => 'JPEG faila komentārs',
 'exif-keywords'                    => 'Atslēgas vārdi',
+'exif-objectname'                  => 'Īsais nosaukums',
+'exif-specialinstructions'         => 'Īpašas norādes',
+'exif-headline'                    => 'Virsraksts',
 'exif-source'                      => 'Avots',
 'exif-languagecode'                => 'Valoda',
 'exif-iimversion'                  => 'IIM versija',
@@ -2566,11 +2593,15 @@ Pārējie lauki, pēc noklusējuma, būs paslēpti.
 'exif-copyrightowner'              => 'Autortiesību īpašnieks',
 'exif-usageterms'                  => 'Izmantošanas noteikumi',
 'exif-pngfilecomment'              => 'PNG faila komentārs',
+'exif-disclaimer'                  => 'Atruna',
 'exif-contentwarning'              => 'Brīdinājums par saturu',
 'exif-giffilecomment'              => 'GIF faila komentārs',
 
 # EXIF attributes
 'exif-compression-1' => 'Nekompresēts',
+
+'exif-copyrighted-true'  => 'Ar autortiesībām',
+'exif-copyrighted-false' => 'Publiski pieejams',
 
 'exif-unknowndate' => 'Nezināms datums',
 
@@ -2683,15 +2714,28 @@ Pārējie lauki, pēc noklusējuma, būs paslēpti.
 'exif-gpsdestdistance-m' => 'Jūdzes',
 'exif-gpsdestdistance-n' => 'Jūras jūdzes',
 
+'exif-gpsdop-excellent' => 'Lielisks ($1)',
+'exif-gpsdop-good'      => 'Labs ($1)',
+'exif-gpsdop-moderate'  => 'Mērens ($1)',
+'exif-gpsdop-fair'      => 'Pieņemams ($1)',
+'exif-gpsdop-poor'      => 'Slikts ($1)',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Patiesais virziens',
 'exif-gpsdirection-m' => 'Magnētiskais virziens',
 
-'exif-dc-date'   => 'Datums (-i)',
-'exif-dc-rights' => 'Tiesības',
+'exif-dc-date'      => 'Datums (-i)',
+'exif-dc-publisher' => 'Izdevējs',
+'exif-dc-rights'    => 'Tiesības',
+
+'exif-rating-rejected' => 'Noraidīts',
 
 'exif-isospeedratings-overflow' => 'Lielāks kā 65535',
 
+'exif-iimcategory-ace' => 'Māksla, kultūra un izklaide',
+'exif-iimcategory-clj' => 'Noziedzība un likums',
+'exif-iimcategory-dis' => 'Katastrofas un negadījumi',
+'exif-iimcategory-fin' => 'Ekonomika un komercdarbība',
 'exif-iimcategory-edu' => 'Izglītība',
 'exif-iimcategory-evn' => 'Vide',
 'exif-iimcategory-hth' => 'Veselība',
@@ -2802,7 +2846,7 @@ Lūdzu apstiprini, ka tiešām gribi izveidot šo lapu no jauna.",
 'autosumm-new'     => 'Jauna lapa: $1',
 
 # Live preview
-'livepreview-loading' => 'Cits pārlūks:',
+'livepreview-loading' => 'Ielādē…',
 'livepreview-ready'   => 'Ielādējas… Gatavs!',
 'livepreview-failed'  => 'Tūlītējais pirmskats nobruka! Pamēģini parasto pirmskatu.',
 'livepreview-error'   => 'Neizdevās pievienoties: $1 "$2". Pamēģini parasto pirmskatu.',
@@ -2947,5 +2991,18 @@ Var arī lietot [[Special:EditWatchlist|standarta izmainīšanas lapu]].',
 'revdelete-restricted'   => 'piemērot administratoriem ierobežojumus',
 'revdelete-unrestricted' => 'noņemt administratoriem ierobežojumus',
 'newuserlog-byemail'     => 'parole nosūtīta pa e-pastu',
+
+# Feedback
+'feedback-subject' => 'Temats:',
+'feedback-message' => 'Ziņojums:',
+'feedback-cancel'  => 'Atcelt',
+'feedback-submit'  => 'Iesniegt atsauksmes',
+'feedback-adding'  => 'Atsauksmes tiek pievienotas lapai...',
+'feedback-error1'  => 'Kļūda: API neatpazīts rezultāts',
+'feedback-error2'  => 'Kļūda: Labojums neizdevās',
+'feedback-error3'  => 'Kļūda: Nav atbildes no API',
+'feedback-thanks'  => 'Paldies! Jūsu atsauksmes ir ievietotas lapā "[$2  $1]".',
+'feedback-close'   => 'Gatavs',
+'feedback-bugnew'  => 'Es pārbaudīju. Ziņot par jaunu kļūdu',
 
 );

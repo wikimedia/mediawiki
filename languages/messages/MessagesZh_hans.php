@@ -11,6 +11,7 @@
  * @author Anakmalaysia
  * @author Bencmq
  * @author Biŋhai
+ * @author Breawycker
  * @author Chenxiaoqino
  * @author Chenzw
  * @author Chinalace
@@ -860,8 +861,8 @@ $2
 'userpage-userdoesnotexist-view'   => '用户账户“$1”未曾创建。',
 'blocked-notice-logextract'        => '这位用户目前已被封禁。以下提供最近的封禁日志以供参考：',
 'clearyourcache'                   => "'''注意：在保存以后，您必须绕过浏览器缓存才能看到所作出的改变。'''
-* '''火狐（Firefox）／Safari'''：按住“Shift”键再点击“刷新”，或按下“Ctrl-F5”或“Ctrl-R”（Mac上为“Command-R”）
-* '''谷歌浏览器（Google Chrome）'''：按下“Ctrl-Shift-R”（Mac上为“Command-Shift-R”）
+* '''火狐（Firefox）／Safari'''：按住“Shift”键再点击“刷新”，或按下“Ctrl-F5”或“Ctrl-R”（Mac上为“⌘-R”）
+* '''谷歌浏览器（Google Chrome）'''：按下“Ctrl-Shift-R”（Mac上为“⌘-Shift-R”）
 * '''Internet Explorer'''：按住“Ctrl”键再点击“刷新”，或按下“Ctrl-F5”
 * '''Konqueror'''：点击“刷新”或按下“F5”
 * '''Opera'''：在“工具→首选项”中清除缓存",
@@ -1470,6 +1471,7 @@ $1",
 'action-userrights'           => '编辑所有的权限',
 'action-userrights-interwiki' => '编辑在其它wiki上用户的权限',
 'action-siteadmin'            => '锁定和解除锁定数据库',
+'action-sendemail'            => '发送电邮',
 
 # Recent changes
 'nchanges'                          => '$1次更改',
@@ -1642,6 +1644,29 @@ $1',
 'upload-unknown-size'       => '未知大小',
 'upload-http-error'         => '发生HTTP错误：$1',
 
+# File backend
+'backend-fail-stream'        => '无法流传送文件$1。',
+'backend-fail-backup'        => '无法备份文件$1。',
+'backend-fail-notexists'     => '条目$1不存在。',
+'backend-fail-hashes'        => '比较无法获取文件hashes',
+'backend-fail-notsame'       => '$1已存在不同的文件。',
+'backend-fail-invalidpath'   => '$1不是有效的存储路径。',
+'backend-fail-delete'        => '无法删除文件“$1”。',
+'backend-fail-alreadyexists' => '“$1”页面已存在',
+'backend-fail-store'         => '无法在$2存储文件$1。',
+'backend-fail-copy'          => '无法复制文件$1到$2。',
+'backend-fail-move'          => '无法移动文件$1到$2。',
+'backend-fail-opentemp'      => '无法打开临时文件。',
+'backend-fail-writetemp'     => '无法写临时文件。',
+'backend-fail-closetemp'     => '无法创建临时文件。',
+'backend-fail-read'          => '找不到文件“$1”。',
+'backend-fail-create'        => '找不到文件“$1”。',
+
+# Lock manager
+'lockmanager-fail-db-bucket'   => '不能在$1池中联系到足够锁数据库。',
+'lockmanager-fail-db-release'  => '不能在数据库$1上释放锁。',
+'lockmanager-fail-svr-release' => '不能在服务器$1上释放锁。',
+
 # ZipDirectoryReader
 'zip-file-open-error' => '打开文件的 ZIP 检查时遇到一个错误。',
 'zip-wrong-format'    => '指定的文件不是一个 ZIP 文件。',
@@ -1658,10 +1683,11 @@ $1',
 'uploadstash-badtoken' => '进行这个动作不成功，或者你的编辑信息已经过期。请再试。',
 'uploadstash-errclear' => '清除文件不成功。',
 'uploadstash-refresh'  => '更新文件清单',
+'invalid-chunk-offset' => '无效区块偏移量',
 
 # img_auth script messages
 'img-auth-accessdenied'     => '拒绝访问',
-'img-auth-nopathinfo'       => 'PATH_INFO遗失。您的服务器尚未设置传送该信息。它可能是基于CGI的，因而不支持img_auth。参见http://www.mediawiki.org/wiki/Manual:Image_Authorization<nowiki></nowiki>。',
+'img-auth-nopathinfo'       => 'PATH_INFO缺失。您的服务器尚未设置传送该信息。它可能是基于CGI的，因而不支持img_auth。[//www.mediawiki.org/wiki/Manual:Image_Authorization 参见图片认证。]',
 'img-auth-notindir'         => '在已设置的上传目录中找不到请求的路径。',
 'img-auth-badtitle'         => '无法为“$1”创建合法的标题。',
 'img-auth-nologinnWL'       => '您尚未登录，且“$1”不在白名单上。',
@@ -1877,6 +1903,7 @@ $1',
 'mostimages'              => '最多链接文件',
 'mostrevisions'           => '最多修订页面',
 'prefixindex'             => '所有有前缀的页面',
+'prefixindex-namespace'   => '带有前缀的页面（属于$1名字空间）',
 'shortpages'              => '短页面',
 'longpages'               => '长页面',
 'deadendpages'            => '断链页面',
@@ -1920,8 +1947,8 @@ $1',
 'booksources-invalid-isbn'  => '提供的ISBN号码并不正确，请检查原始复制来源号码是否有误。',
 
 # Special:Log
-'specialloguserlabel'  => '用户：',
-'speciallogtitlelabel' => '标题：',
+'specialloguserlabel'  => '操作者：',
+'speciallogtitlelabel' => '目标（标题或用户）：',
 'log'                  => '日志',
 'all-logs-page'        => '所有公开日志',
 'alllogstext'          => '综合显示{{SITENAME}}所有的可用日志。
@@ -1965,8 +1992,8 @@ $1',
 'linksearch-pat'   => '搜索网址：',
 'linksearch-ns'    => '名字空间：',
 'linksearch-ok'    => '搜索',
-'linksearch-text'  => '可以使用类似"*.wikipedia.org"的通配符。<br />
-已支持：<tt>$1</tt>',
+'linksearch-text'  => '制作可以使用类似“*.wikipedia.org”的通配符。必须至少是顶级域名，例如“*.org”。<br />
+支持的协议：<tt>$1</tt>（不要包含在搜索中）。',
 'linksearch-line'  => '$1 链自 $2',
 'linksearch-error' => '通配符仅可在主机名称的开头使用。',
 
@@ -2582,6 +2609,7 @@ $1被封禁的理由是：“$2”',
 'exportcuronly'     => '仅包含当前的修订，而不是全部的历史。',
 'exportnohistory'   => "----
 '''注意：'''由于性能原因，从此表单导出页面的全部历史已被禁用。",
+'exportlistauthors' => '为每个页面包含贡献者的完整列表',
 'export-submit'     => '导出',
 'export-addcattext' => '由分类中添加页面：',
 'export-addcat'     => '添加',
@@ -2614,6 +2642,8 @@ $1被封禁的理由是：“$2”',
 'thumbnail_error'          => '创建缩略图错误：$1',
 'djvu_page_error'          => 'DjVu页面超出范围',
 'djvu_no_xml'              => '无法在DjVu文件中获取XML',
+'thumbnail-temp-create'    => '无法创建临时缩略图文件',
+'thumbnail-dest-create'    => '无法将缩略图保存到目标地点',
 'thumbnail_invalid_params' => '不正确的缩略图参数',
 'thumbnail_dest_directory' => '无法建立目标目录',
 'thumbnail_image-type'     => '图像类型不支持',
@@ -3644,13 +3674,18 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 'newuserlog-byemail'                  => '密码已由电子邮件发出',
 
 # Feedback
-'feedback-subject' => '主题：',
-'feedback-message' => '内容：',
-'feedback-cancel'  => '取消',
-'feedback-submit'  => '提交反馈',
-'feedback-adding'  => '正在提交反馈',
-'feedback-error1'  => '错误：从API返回无法识别的结果',
-'feedback-error2'  => '错误：编辑失败',
-'feedback-error3'  => '错误：API没有响应',
+'feedback-bugornote' => '如果您准备好了详细描述一个技术问题，请[$1 报告一个bug]。或者，您可以使用下面的简易表单。您的评论将被添加到页面“[$3 $2]”，并带有您的用户名和使用的浏览器。',
+'feedback-subject'   => '主题：',
+'feedback-message'   => '内容：',
+'feedback-cancel'    => '取消',
+'feedback-submit'    => '提交反馈',
+'feedback-adding'    => '正在提交反馈',
+'feedback-error1'    => '错误：从API返回无法识别的结果',
+'feedback-error2'    => '错误：编辑失败',
+'feedback-error3'    => '错误：API没有响应',
+'feedback-thanks'    => '谢谢！您的反馈已被发布到页面“[$2 $1]”。',
+'feedback-close'     => '完成',
+'feedback-bugcheck'  => '太棒了！现在还没有检查到此bug[$1 已被提交过]。',
+'feedback-bugnew'    => '我已经检查过。报告一个新的bug',
 
 );

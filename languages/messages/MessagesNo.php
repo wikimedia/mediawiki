@@ -958,11 +958,11 @@ Du kan [[Special:Search/{{PAGENAME}}|søke etter sidens tittel]] i andre sider, 
 'blocked-notice-logextract'        => 'Denne brukeren er for tiden blokkert.
 Siste blokkeringsloggelement kan sees nedenfor.',
 'clearyourcache'                   => "'''Merk:''' Etter lagring vil det kanskje være nødvendig at nettleseren sletter hurtiglageret sitt for at endringene skal tre i kraft.
-* '''Firefox / Safari:''' hold ''Shift'' mens du klikker på ''Oppdater'' eller trykk ''Ctrl-F5'' eller ''Ctrl-R'' (''Command-R'' på en Mac)
-* '''Google Chrome:''' trykk ''Ctrl-Shift-R'' (''Command-Shift-R'' på en Mac)
-* '''Internet Explorer:''' hold ''Ctrl'' mens du klikker på ''Oppdater'' eller trykk ''Ctrl-F5''
-* '''Konqueror:''' klikk ''Oppdater'' eller trykk ''F5''
-* '''Opera:''' tøm hurtiglageret i ''Verktøy → Innstillinger''",
+* '''Firefox / Safari:''' Hold ''Shift'' mens du klikker på ''Oppdater'' eller trykk ''Ctrl-F5'' eller ''Ctrl-R'' (''⌘-R'' på en Mac)
+* '''Google Chrome:''' Trykk ''Ctrl-Shift-R'' (''⌘-Shift-R'' på en Mac)
+* '''Internet Explorer:''' Hold ''Ctrl'' mens du klikker på ''Oppdater'' eller trykk ''Ctrl-F5''
+* '''Konqueror:''' Klikk ''Oppdater'' eller trykk ''F5''
+* '''Opera:''' Tøm hurtiglageret i ''Verktøy → Innstillinger''",
 'usercssyoucanpreview'             => "'''Tips:''' Bruk '{{int:showpreview}}'-knappen for å teste din nye CSS før du lagrer.",
 'userjsyoucanpreview'              => "'''Tips:''' Bruk '{{int:showpreview}}'-knappen for å teste ditt nye JS før du lagrer.",
 'usercsspreview'                   => "'''Husk at dette bare er en forhåndsvisning av din bruker-CSS og at den ikke er lagret!'''",
@@ -1779,6 +1779,36 @@ Om problemet fortsetter, kontakt en [[Special:ListUsers/sysop|administrator]].',
 'upload-unknown-size'       => 'Ukjent størrelse',
 'upload-http-error'         => 'En HTTP-feil oppstod: $1',
 
+# File backend
+'backend-fail-stream'        => 'Kunne ikke strømme filen $1.',
+'backend-fail-backup'        => 'Kunne ikke sikkerhetskopiere filen $1.',
+'backend-fail-notexists'     => 'Filen $1 finnes ikke.',
+'backend-fail-hashes'        => 'Kunne ikke hente filnumre for sammenligning.',
+'backend-fail-notsame'       => 'En ikke-identisk fil finnes allerede på $1.',
+'backend-fail-invalidpath'   => '$1 er ikke en gyldig lagringsbane.',
+'backend-fail-delete'        => 'Kunne ikke slette filen $1.',
+'backend-fail-alreadyexists' => 'Filen $1 finnes allerede.',
+'backend-fail-store'         => 'Kunne ikke lagre filen $1 på $2.',
+'backend-fail-copy'          => 'Kunne ikke kopiere filen $1 til $2.',
+'backend-fail-move'          => 'Kunne ikke flytte filen $1 til $2.',
+'backend-fail-opentemp'      => 'Kunne ikke åpne den midlertidige filen.',
+'backend-fail-writetemp'     => 'Kunne ikke skrive til den midlertidige filen.',
+'backend-fail-closetemp'     => 'Kunne ikke lukke den midlertidige filen.',
+'backend-fail-read'          => 'Kunne ikke lese filen $1.',
+'backend-fail-create'        => 'Kunne ikke opprette filen $1.',
+
+# Lock manager
+'lockmanager-notlocked'         => 'Kunne ikke låse opp nøkkelen «$1»; den er ikke låst.',
+'lockmanager-fail-closelock'    => 'Kunne ikke lukke låsefilen for nøkkelen «$1».',
+'lockmanager-fail-deletelock'   => 'Kunne ikke slette låsefilen for nøkkelen «$1».',
+'lockmanager-fail-acquirelock'  => 'Kunne ikke skaffe lås for nøkkelen «$1».',
+'lockmanager-fail-openlock'     => 'Kunne ikke åpne låsefilen for nøkkelen «$1».',
+'lockmanager-fail-releaselock'  => 'Kunne ikke frigi låsen for nøkkelen «$1».',
+'lockmanager-fail-acquirelocks' => 'Kunne ikke skaffe låser for nøklene «$1».',
+'lockmanager-fail-db-bucket'    => 'Kunne ikke kontakte nok låsedatabaser i bøtten $1.',
+'lockmanager-fail-db-release'   => 'Kunne ikke frigi låser på databasen $1.',
+'lockmanager-fail-svr-release'  => 'Kunne ikke frigi låser på tjeneren $1.',
+
 # ZipDirectoryReader
 'zip-file-open-error' => 'Det oppsto en feil under åpning av filen for ZIP-sjekking.',
 'zip-wrong-format'    => 'Den angitte filen var ikke en ZIP-fil.',
@@ -2023,6 +2053,7 @@ Hver rad inneholder lenker til første og andre omdirigering, samt målet for de
 'mostimages'              => 'Mest brukte filer',
 'mostrevisions'           => 'Artikler med flest revisjoner',
 'prefixindex'             => 'Alle sider med prefiks',
+'prefixindex-namespace'   => 'All sider med prefiks ($1 navnerom)',
 'shortpages'              => 'Korte sider',
 'longpages'               => 'Lange sider',
 'deadendpages'            => 'Blindveisider',
@@ -2766,6 +2797,8 @@ Besøk [//translatewiki.net translatewiki.net] om du ønsker å bidra med overse
 'thumbnail_error'          => 'Feil under oppretting av miniatyrbilde: $1',
 'djvu_page_error'          => 'DjVu-side ute av rekkevidde',
 'djvu_no_xml'              => 'Klarte ikke å hente XML for DjVu-fil',
+'thumbnail-temp-create'    => 'Kan ikke opprette midlertidig miniatyrbildefil',
+'thumbnail-dest-create'    => 'Kan ikke lagre miniatyrbilde til målbanen',
 'thumbnail_invalid_params' => 'Ugyldige miniatyrparametere, eller PNG-fil med flere piksler enn 12,5 millioner.',
 'thumbnail_dest_directory' => 'Klarte ikke å opprette målmappe',
 'thumbnail_image-type'     => 'Bildetypen støttes ikke',

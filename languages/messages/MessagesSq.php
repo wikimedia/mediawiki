@@ -851,19 +851,23 @@ Më poshtë mund t'i referoheni shënimit të regjistruar për bllokimin e fundi
 * '''Konqueror:''' Kliko ''Reload'' ose shtyp ''F5''
 * '''Opera:''' Zbrazni \"cache-in\" tek ''Tools → Preferences''",
 'usercssyoucanpreview'             => "'''Këshillë:''' Përdorni butonin '{{int:showpreview}}' për të testuar CSS-në e re para se të ruani ndryshimet e kryera.",
-'userjsyoucanpreview'              => "'''Këshillë:''' Përdorni butonin 'Trego parapamjen' për të provuar ndryshimet tuaja të faqeve css/js përpara se të kryeni ndryshimet.",
-'usercsspreview'                   => "'''Vini re! Kjo është vetëm një parapamje e faqes suaj CSS. Akoma nuk është ruajtur!'''",
+'userjsyoucanpreview'              => "'''Këshillë:''' Përdorni butonin '{{int:showpreview}}' për të testuar JavaScripting e ri para se të ruani ndryshimet e kryera.",
+'usercsspreview'                   => "'''Vini re! Ju jeni duke inspektuar CSS-në si përdorues!'''
+'''Nuk është ruajtur ende!'''",
 'userjspreview'                    => "'''Vini re se kjo është vetëm një provë ose parapamje e faqes tuaj JavaScript, ajo nuk është ruajtur akoma!'''",
-'sitecsspreview'                   => "'''Vini re! Kjo është vetëm një parapamje e faqes suaj CSS.'''
-'''Akoma nuk është ruajtur!'''",
-'sitejspreview'                    => "'''Vini re se kjo është vetëm një provë ose parapamje e faqes tuaj JavaScript.''' 
-'''Nuk është ruajtur akoma!'''",
+'sitecsspreview'                   => "'''Vini re! Ju jeni duke inspektuar CSS-në !'''
+'''Nuk është ruajtur ende!'''",
+'sitejspreview'                    => "'''Vini re! Ju jeni duke inspektuar këtë kod JavaScript.''' 
+'''Nuk është ruajtur ende!'''",
 'userinvalidcssjstitle'            => "'''Kujdes:''' Nuk ka pamje të quajtur \"\$1\". Vini re se faqet .css dhe .js përdorin titull me gërma të vogla, p.sh. {{ns:user}}:Foo/vector.css, jo {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(E ndryshuar)',
 'note'                             => "'''Shënim:'''",
-'previewnote'                      => "'''Kini kujdes se kjo është vetëm një parapamje, nuk është ruajtur akoma!'''",
+'previewnote'                      => "'''Vini re! Kjo është vetëm për inspektim'''
+Ndryshimet tuaja nuk janë ruajtur ende!",
 'previewconflict'                  => 'Kjo parapamje reflekton tekstin sipër kutisë së redaktimit siç do të duket kur të kryeni ndryshimin.',
-'session_fail_preview'             => "'''Ju kërkoj ndjesë. Nuk munda të kryej redaktimin tuaj sepse humba disa të dhëna. Provojeni përsëri dhe nëse nuk punon provoni të dilni dhe të hyni përsëri.'''",
+'session_fail_preview'             => "'''Ju kërkojmë ndjesë! Redaktimi juaj nuk mund të perpunohej për shkak të humbjes së të dhënave të seancës.'''
+Ju lutemi, provojeni përsëri.
+Nëse përsëri nuk punon, provoni të [[Special:UserLogout|dilni nga faqja]] dhe të identifikoheni serish.",
 'session_fail_preview_html'        => "'''Ju kërkoj ndjesë! Nuk munda të ruaj redaktimin tuaj për shkaqe teknike.'''
 
 ''{{SITENAME}} ka ndaluar përfshirjen e tekstit HTML të papërpunuar, parapamja s'është treguar për t'ju mbrojtur nga sulme të mundshme në JavaScript''
@@ -897,7 +901,8 @@ Ju ndoshta doni të kopjoni tekstin në një tekst dokument dhe të e ruani për
 
 Administruesi që ka bërë mbylljen ka dhënë këtë sqarim: $1.",
 'protectedpagewarning'             => "'''KUJDES: Kjo faqe është mbyllur ashtu që vetëm përdoruesit me titullin administrator mund ta redaktojnë.'''",
-'semiprotectedpagewarning'         => "'''Shënim:''' Redaktimi i kësaj faqeje mund të bëhet vetëm nga përdorues të regjistruar.",
+'semiprotectedpagewarning'         => "'''Shënim:''' Kjo faqe është e mbrojtur dhe mund të bëhet vetëm nga përdorues të regjistruar.
+Shënimi i fundit në regjistër është paraqitur më poshtë për reference:",
 'cascadeprotectedwarning'          => "'''Vini re:''' Kjo faqe është e mbrojtur dhe vetëm përdoruesit me privilegje administrative mund ta redaktojnë pasi është përfshirë në mbrotjen \"ujëvarë\" të {{PLURAL:\$1|faqes së|faqeve të}} mëposhtme:",
 'titleprotectedwarning'            => "'''Kujdes:  Kjo faqe është e mbrojtur dhe vetëm [[Special:ListGroupRights|disa përdorues]] mund ta krijojnë.'''
 Regjistri më i vonshëm i hyrjeve është poshtë për referncë:",

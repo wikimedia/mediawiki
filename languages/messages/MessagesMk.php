@@ -993,11 +993,11 @@ $2
 'blocked-notice-logextract'        => 'Овој корисник е моментално блокиран.
 Подолу е прикажан последниот дневнички запис:',
 'clearyourcache'                   => "'''Напомена: По зачувувањето морате да го исчистите кешот на прелистувачот за да можете ги видите промените.'''
-* '''Firefox / Safari:''' држете ''Shift'' и стиснете на ''Reload'' или притиснете ''Ctrl+F5'' или ''Ctrl+R'' (''Command+R'' на Mac);
-* '''Google Chrome:''' притиснете ''Ctrl-Shift-R'' (''Command-Shift-R'' на Mac)
-* '''Internet Explorer:''' држете ''Ctrl'' додека притискате на ''Refresh'' или притиснете ''Ctrl+F5''.
-* '''Konqueror:''' кликнете на ''Reload'' или притиснете ''F5'';
-* '''Opera:''' исчистете го кешот во ''Tools → Preferences'';",
+* '''Firefox / Safari:''' Држете ''Shift'' и стиснете на ''Reload'' или притиснете ''Ctrl-F5'' или ''Ctrl-R'' (''⌘-R'' на Mac);
+* '''Google Chrome:''' Притиснете ''Ctrl-Shift-R'' (''⌘-R'' на Mac)
+* '''Internet Explorer:''' Држете ''Ctrl'' додека притискате на ''Refresh'' или притиснете ''Ctrl-F5''.
+* '''Konqueror:''' Сликнете на „Превчитај“ или притиснете ''F5'';
+* '''Opera:''' Исчистете го кешот во ''Tools → Preferences'';",
 'usercssyoucanpreview'             => "'''Совет:''' Употребете го копчето „{{int:showpreview}}“ за да го испробате вашиот нов CSS пред да зачувате.",
 'userjsyoucanpreview'              => "'''Совет:''' Употребете го копчето „{{int:showpreview}}“ за да ја испробате вашата нова JavaScript  пред да зачувате.",
 'usercsspreview'                   => "'''Запомнете дека ова е само преглед на вашиот кориснички CSS код, страницата сè уште не е зачувана!'''",
