@@ -74,7 +74,7 @@ class UploadFromChunks extends UploadFromFile {
 		
 		$metadata = $this->stash->getMetadata( $key );
 		$this->initializePathInfo( $name,
-			$this->getRealPath ( $metadata['us_path'] ),
+			$this->getRealPath( $metadata['us_path'] ),
 			$metadata['us_size'],
 			false
 		);
@@ -86,8 +86,8 @@ class UploadFromChunks extends UploadFromFile {
 	 */
 	public function concatenateChunks() {
 		wfDebug( __METHOD__ . " concatenate {$this->mChunkIndex} chunks:" . 
-					$this->getOffset() . ' inx:' . $this->getChunkIndex() . "\n" );
-					
+			$this->getOffset() . ' inx:' . $this->getChunkIndex() . "\n" );
+
 		// Concatenate all the chunks to mVirtualTempPath
 		$fileList = Array();
 		// The first chunk is stored at the mVirtualTempPath path so we start on "chunk 1"
@@ -95,13 +95,20 @@ class UploadFromChunks extends UploadFromFile {
 			$fileList[] = $this->getVirtualChunkLocation( $i );
 		}
 
-		// Concatenate into the mVirtualTempPath location;
-		$status = $this->repo->concatenate( $fileList, $this->mVirtualTempPath, FileRepo::DELETE_SOURCE );
+		// Get the file extension from the last chunk
+		$ext = FileBackend::extensionFromPath( $this->mVirtualTempPath );
+		// Get a 0-byte temp file to perform the concatenation at
+		$tmpFile = TempFSFile::factory( 'chunkedupload_', $ext );
+		$tmpPath = $tmpFile
+			? $tmpFile->getPath()
+			: false; // fail in concatenate()
+		// Concatenate the chunks at the temp file
+		$status = $this->repo->concatenate( $fileList, $tmpPath, FileRepo::DELETE_SOURCE );
 		if( !$status->isOk() ){
 			return $status; 
 		}
 		// Update the mTempPath variable ( for FileUpload or normal Stash to take over )  
-		$this->mTempPath = $this->getRealPath( $this->mVirtualTempPath );
+		$this->mTempPath = $tmpPath; // file system path
 		return $status;
 	}
 
@@ -115,7 +122,6 @@ class UploadFromChunks extends UploadFromFile {
 	 */
 	public function performUpload( $comment, $pageText, $watch, $user ) {
 		$rv = parent::performUpload( $comment, $pageText, $watch, $user );
-		$this->repo->freeTemp( $this->mVirtualTempPath );
 		return $rv;
 	}
 

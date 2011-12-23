@@ -18,6 +18,7 @@ class FileRepo {
 	const OVERWRITE = 2;
 	const OVERWRITE_SAME = 4;
 	const SKIP_LOCKING = 8;
+	const ALLOW_STALE = 16;
 
 	/** @var FileBackendBase */
 	protected $backend;
@@ -621,6 +622,7 @@ class FileRepo {
 	 *     self::OVERWRITE_SAME    Overwrite the file if the destination exists and has the
 	 *                             same contents as the source
 	 *     self::SKIP_LOCKING      Skip any file locking when doing the store
+	 *     self::ALLOW_STALE       Don't require latest data for existence checks
 	 * @return FileRepoStatus
 	 */
 	public function store( $srcPath, $dstZone, $dstRel, $flags = 0 ) {
@@ -701,6 +703,9 @@ class FileRepo {
 		$opts = array( 'ignoreErrors' => true );
 		if ( $flags & self::SKIP_LOCKING ) {
 			$opts['nonLocking'] = true;
+		}
+		if ( $flags & self::ALLOW_STALE ) {
+			$opts['allowStale'] = true;
 		}
 		$status->merge( $backend->doOperations( $operations, $opts ) );
 		// Cleanup for disk source files...
@@ -784,7 +789,7 @@ class FileRepo {
 	 * Concatenate a list of files into a target file location. 
 	 * 
 	 * @param $srcPaths Array Ordered list of source virtual URLs/storage paths
-	 * @param $dstPath String Target virtual URL/storage path
+	 * @param $dstPath String Target file system path
 	 * @param $flags Integer: bitwise combination of the following flags:
 	 *     self::DELETE_SOURCE     Delete the source files
 	 * @return FileRepoStatus
@@ -806,8 +811,7 @@ class FileRepo {
 		}
 
 		// Concatenate the chunks into one file
-		$op = array( 'op' => 'concatenate',
-			'srcs' => $sources, 'dst' => $dest, 'overwriteDest' => true );
+		$op = array( 'op' => 'concatenate', 'srcs' => $sources, 'dst' => $dest );
 		$status->merge( $this->backend->doOperation( $op ) );
 		if ( !$status->isOK() ) {
 			return $status;

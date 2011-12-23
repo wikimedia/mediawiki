@@ -793,19 +793,21 @@ class MoveFileOp extends FileOp {
  * Combines files from severals storage paths into a new file in the backend.
  * Parameters similar to FileBackend::concatenate(), which include:
  *     srcs          : ordered source storage paths (e.g. chunk1, chunk2, ...)
- *     dst           : destination storage path
- *     overwriteDest : do nothing and pass if an identical file exists at destination
+ *     dst           : destination file system path to 0-byte temp file
  */
 class ConcatenateFileOp extends FileOp {
 	protected function allowedParams() {
-		return array( 'srcs', 'dst', 'overwriteDest' );
+		return array( 'srcs', 'dst' );
 	}
 
 	protected function doPrecheck( array &$predicates ) {
 		$status = Status::newGood();
-		// Check if destination file exists
-		$status->merge( $this->precheckDestExistence( $predicates ) );
-		if ( !$status->isOK() ) {
+		// Check destination temp file
+		wfSuppressWarnings();
+		$ok = ( is_file( $this->params['dst'] ) && !filesize( $this->params['dst'] ) );
+		wfRestoreWarnings();
+		if ( !$ok ) { // not present or not empty
+			$status->fatal( 'backend-fail-opentemp', $this->params['dst'] );
 			return $status;
 		}
 		// Check that source files exists
@@ -815,41 +817,30 @@ class ConcatenateFileOp extends FileOp {
 				return $status;
 			}
 		}
-		// Update file existence predicates
-		$predicates['exists'][$this->params['dst']] = true;
 		return $status;
 	}
 
 	protected function doAttempt() {
 		$status = Status::newGood();
-		// Create a destination backup copy as needed
-		if ( $this->destAlreadyExists ) {
-			$status->merge( $this->checkAndBackupDest() );
-			if ( !$status->isOK() ) {
-				return $status;
-			}
-		}
 		// Concatenate the file at the destination
 		$status->merge( $this->backend->concatenateInternal( $this->params ) );
 		return $status;
 	}
 
 	protected function doRevert() {
-		// Restore any file that was at the destination,
-		// overwritting what was put there in attempt()
-		return $this->restoreDest();
-	}
-
-	protected function getSourceSha1Base36() {
-		return null; // defer this until we finish building the new file
+		$status = Status::newGood();
+		// Clear out the temp file back to 0-bytes
+		wfSuppressWarnings();
+		$ok = file_put_contents( $this->params['dst'], '' );
+		wfRestoreWarnings();
+		if ( !$ok ) {
+			$status->fatal( 'backend-fail-writetemp', $this->params['dst'] );
+		}
+		return $status;
 	}
 
 	public function storagePathsRead() {
 		return $this->params['srcs'];
-	}
-
-	public function storagePathsChanged() {
-		return array( $this->params['dst'] );
 	}
 }
 
