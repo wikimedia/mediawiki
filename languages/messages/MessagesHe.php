@@ -152,6 +152,7 @@ $magicWords = array(
 	'localurl'              => array( '0', 'כתובת יחסית:', 'LOCALURL:' ),
 	'localurle'             => array( '0', 'כתובת יחסית מקודד:', 'LOCALURLE:' ),
 	'articlepath'           => array( '0', 'נתיב הדפים', 'ARTICLEPATH' ),
+	'pageid'                => array( '0', 'מזהה הדף', 'PAGEID' ),
 	'server'                => array( '0', 'כתובת השרת', 'שרת', 'SERVER' ),
 	'servername'            => array( '0', 'שם השרת', 'SERVERNAME' ),
 	'scriptpath'            => array( '0', 'נתיב הקבצים', 'SCRIPTPATH' ),
