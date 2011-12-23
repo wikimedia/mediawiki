@@ -10,6 +10,8 @@
  * registered to this proxy backend and it will act as a single backend.
  * Use this when all access to those backends is through this proxy backend.
  * At least one of the backends must be declared the "master" backend.
+ *
+ * Only use this class when transitioning from one storage system to another.
  * 
  * The order that the backends are defined sets the priority of which
  * backend is read from or written to first. Functions like fileExists()
@@ -62,7 +64,10 @@ class FileBackendMultiWrite extends FileBackendBase {
 		}
 	}
 
-	final public function doOperations( array $ops, array $opts = array() ) {
+	/**
+	 * @see FileBackendBase::doOperationsInternal()
+	 */
+	final protected function doOperationsInternal( array $ops, array $opts ) {
 		$status = Status::newGood();
 
 		$performOps = array(); // list of FileOp objects
@@ -145,6 +150,9 @@ class FileBackendMultiWrite extends FileBackendBase {
 		}
 	}
 
+	/**
+	 * @see FileBackendBase::prepare()
+	 */
 	function prepare( array $params ) {
 		$status = Status::newGood();
 		foreach ( $this->backends as $backend ) {
@@ -154,6 +162,9 @@ class FileBackendMultiWrite extends FileBackendBase {
 		return $status;
 	}
 
+	/**
+	 * @see FileBackendBase::secure()
+	 */
 	function secure( array $params ) {
 		$status = Status::newGood();
 		foreach ( $this->backends as $backend ) {
@@ -163,6 +174,9 @@ class FileBackendMultiWrite extends FileBackendBase {
 		return $status;
 	}
 
+	/**
+	 * @see FileBackendBase::clean()
+	 */
 	function clean( array $params ) {
 		$status = Status::newGood();
 		foreach ( $this->backends as $backend ) {
@@ -172,6 +186,9 @@ class FileBackendMultiWrite extends FileBackendBase {
 		return $status;
 	}
 
+	/**
+	 * @see FileBackendBase::fileExists()
+	 */
 	function fileExists( array $params ) {
 		# Hit all backends in case of failed operations (out of sync)
 		foreach ( $this->backends as $backend ) {
@@ -183,12 +200,18 @@ class FileBackendMultiWrite extends FileBackendBase {
 		return false;
 	}
 
+	/**
+	 * @see FileBackendBase::getFileTimestamp()
+	 */
 	function getFileTimestamp( array $params ) {
 		// Skip non-master for consistent timestamps
 		$realParams = $this->substOpPaths( $params, $backend );
 		return $this->backends[$this->masterIndex]->getFileTimestamp( $realParams );
 	}
 
+	/**
+	 * @see FileBackendBase::getFileSha1Base36()
+	 */
 	function getFileSha1Base36( array $params ) {
 		# Hit all backends in case of failed operations (out of sync)
 		foreach ( $this->backends as $backend ) {
@@ -201,6 +224,9 @@ class FileBackendMultiWrite extends FileBackendBase {
 		return false;
 	}
 
+	/**
+	 * @see FileBackendBase::getFileProps()
+	 */
 	function getFileProps( array $params ) {
 		# Hit all backends in case of failed operations (out of sync)
 		foreach ( $this->backends as $backend ) {
@@ -213,6 +239,9 @@ class FileBackendMultiWrite extends FileBackendBase {
 		return null;
 	}
 
+	/**
+	 * @see FileBackendBase::streamFile()
+	 */
 	function streamFile( array $params ) {
 		$status = Status::newGood();
 		foreach ( $this->backends as $backend ) {
@@ -234,6 +263,9 @@ class FileBackendMultiWrite extends FileBackendBase {
 		return $status;
 	}
 
+	/**
+	 * @see FileBackendBase::getLocalReference()
+	 */
 	function getLocalReference( array $params ) {
 		# Hit all backends in case of failed operations (out of sync)
 		foreach ( $this->backends as $backend ) {
@@ -246,6 +278,9 @@ class FileBackendMultiWrite extends FileBackendBase {
 		return null;
 	}
 
+	/**
+	 * @see FileBackendBase::getLocalCopy()
+	 */
 	function getLocalCopy( array $params ) {
 		# Hit all backends in case of failed operations (out of sync)
 		foreach ( $this->backends as $backend ) {
@@ -258,6 +293,9 @@ class FileBackendMultiWrite extends FileBackendBase {
 		return null;
 	}
 
+	/**
+	 * @see FileBackendBase::getFileList()
+	 */
 	function getFileList( array $params ) {
 		foreach ( $this->backends as $index => $backend ) {
 			# Get results from the first backend
