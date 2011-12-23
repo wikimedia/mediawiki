@@ -127,7 +127,11 @@ class LoginForm extends SpecialPage {
 		}
 
 		if( !$wgAuth->validDomain( $this->mDomain ) ) {
-			$this->mDomain = 'invaliddomain';
+			if ( isset( $_SESSION['wsDomain'] ) ) {
+				$this->mDomain = $_SESSION['wsDomain'];
+			} else {
+				$this->mDomain = 'invaliddomain';
+			}
 		}
 		$wgAuth->setDomain( $this->mDomain );
 
