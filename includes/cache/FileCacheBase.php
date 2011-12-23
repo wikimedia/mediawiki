@@ -210,7 +210,7 @@ abstract class FileCacheBase {
 				return;
 			}
 			$ip = IP::isIPv6( $ip )
-				? IP::sanitizeRange( "$ip/64" )
+				? IP::sanitizeRange( "$ip/32" )
 				: IP::sanitizeRange( "$ip/16" );
 
 			# Bail out if a request already came from this range...
