@@ -2248,7 +2248,6 @@ class OutputPage extends ContextSource {
 			$params = array(
 				'id'   => 'wpTextbox1',
 				'name' => 'wpTextbox1',
-				'cols' => $this->getUser()->getOption( 'cols' ),
 				'rows' => $this->getUser()->getOption( 'rows' ),
 				'readonly' => 'readonly',
 				'lang' => $pageLang->getHtmlCode(),
