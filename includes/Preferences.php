@@ -849,15 +849,18 @@ class Preferences {
 	 * @param $defaultPreferences
 	 */
 	static function watchlistPreferences( $user, IContextSource $context, &$defaultPreferences ) {
-		global $wgUseRCPatrol, $wgEnableAPI;
+		global $wgUseRCPatrol, $wgEnableAPI, $wgRCMaxAge;
 
+		$watchlistdaysMax = ceil( $wgRCMaxAge / ( 3600 * 24 ) );
+		
 		## Watchlist #####################################
 		$defaultPreferences['watchlistdays'] = array(
 			'type' => 'float',
 			'min' => 0,
-			'max' => 7,
+			'max' => $watchlistdaysMax,
 			'section' => 'watchlist/displaywatchlist',
-			'help' => $context->msg( 'prefs-watchlist-days-max' )->escaped(),
+			'help' => $context->msg( 'prefs-watchlist-days-max' )->numParams(
+				                 $watchlistdaysMax )->text(),
 			'label-message' => 'prefs-watchlist-days',
 		);
 		$defaultPreferences['wllimit'] = array(
