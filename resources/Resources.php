@@ -499,6 +499,7 @@ return array(
 	),
 	'mediawiki.api' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.api.js',
+		'dependencies' => 'mediawiki.util',
 	),
 	'mediawiki.api.category' => array( 
 		'scripts' => 'resources/mediawiki/mediawiki.api.category.js',
