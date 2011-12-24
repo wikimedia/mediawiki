@@ -371,7 +371,7 @@ class EditPage {
 		# Use the normal message if there's nothing to display
 		if ( $this->firsttime && $content === '' ) {
 			$action = $this->mTitle->exists() ? 'edit' :
-				( $permission = $this->mTitle->isTalkPage() ? 'createtalk' : 'createpage' );
+				( $this->mTitle->isTalkPage() ? 'createtalk' : 'createpage' );
 			throw new PermissionsError( $action, $permErrors );
 		}
 
