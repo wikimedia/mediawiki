@@ -1072,8 +1072,9 @@ class LoginForm extends SpecialPage {
 		# Prepare language selection links as needed
 		if( $wgLoginLanguageSelector ) {
 			$template->set( 'languages', $this->makeLanguageSelector() );
-			if( $this->mLanguage )
+			if( $this->mLanguage ) {
 				$template->set( 'uselang', $this->mLanguage );
+			}
 		}
 
 		// Use loginend-https for HTTPS requests if it's not blank, loginend otherwise

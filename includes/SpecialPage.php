@@ -672,7 +672,7 @@ class SpecialPage {
 	/**
 	 * Gets the context this SpecialPage is executed in
 	 *
-	 * @return IContextSource
+	 * @return IContextSource|RequestContext
 	 * @since 1.18
 	 */
 	public function getContext() {

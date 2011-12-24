@@ -268,6 +268,7 @@ class SpecialContributions extends SpecialPage {
 	 * @param $talkpage Title: Talk page
 	 * @param $target User: Target user object
 	 * @param $subject User: The viewing user ($wgUser might be still checked in some cases)
+	 * @return array
 	 */
 	public static function getUserLinks( Title $userpage, Title $talkpage, User $target, User $subject ) {
 
@@ -716,10 +717,16 @@ class ContribsPager extends ReverseChronologicalPager {
 		return $revLens;
 	}
 
+	/**
+	 * @return string
+	 */
 	function getStartBody() {
 		return "<ul>\n";
 	}
 
+	/**
+	 * @return string
+	 */
 	function getEndBody() {
 		return "</ul>\n";
 	}
