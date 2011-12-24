@@ -1371,7 +1371,6 @@ $wgMessageStructure = array(
 		'lockmanager-fail-acquirelock',
 		'lockmanager-fail-openlock',
 		'lockmanager-fail-releaselock',
-		'lockmanager-fail-acquirelocks',
 		'lockmanager-fail-db-bucket',
 		'lockmanager-fail-db-release',
 		'lockmanager-fail-svr-release'
