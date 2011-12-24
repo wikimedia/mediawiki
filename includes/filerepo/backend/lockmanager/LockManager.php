@@ -20,17 +20,20 @@
  * @since 1.19
  */
 abstract class LockManager {
-	/* Lock types; stronger locks have higher values */
-	const LOCK_SH = 1; // shared lock (for reads)
-	const LOCK_UW = 2; // shared lock (for reads used to write elsewhere)
-	const LOCK_EX = 3; // exclusive lock (for writes)
-
 	/** @var Array Mapping of lock types to the type actually used */
 	protected $lockTypeMap = array(
 		self::LOCK_SH => self::LOCK_SH,
 		self::LOCK_UW => self::LOCK_EX, // subclasses may use self::LOCK_SH
 		self::LOCK_EX => self::LOCK_EX
 	);
+
+	/** @var Array Map of (resource path => lock type => count) */
+	protected $locksHeld = array();
+
+	/* Lock types; stronger locks have higher values */
+	const LOCK_SH = 1; // shared lock (for reads)
+	const LOCK_UW = 2; // shared lock (for reads used to write elsewhere)
+	const LOCK_EX = 3; // exclusive lock (for writes)
 
 	/**
 	 * Construct a new instance from configuration
@@ -47,8 +50,7 @@ abstract class LockManager {
 	 * @return Status 
 	 */
 	final public function lock( array $paths, $type = self::LOCK_EX ) {
-		$keys = array_unique( array_map( 'LockManager::sha1Base36', $paths ) );
-		return $this->doLock( $keys, $this->lockTypeMap[$type] );
+		return $this->doLock( array_unique( $paths ), $this->lockTypeMap[$type] );
 	}
 
 	/**
@@ -59,8 +61,7 @@ abstract class LockManager {
 	 * @return Status 
 	 */
 	final public function unlock( array $paths, $type = self::LOCK_EX ) {
-		$keys = array_unique( array_map( 'LockManager::sha1Base36', $paths ) );
-		return $this->doUnlock( $keys, $this->lockTypeMap[$type] );
+		return $this->doUnlock( array_unique( $paths ), $this->lockTypeMap[$type] );
 	}
 
 	/**
@@ -76,20 +77,20 @@ abstract class LockManager {
 	/**
 	 * Lock resources with the given keys and lock type
 	 * 
-	 * @param $key Array List of keys to lock (40 char hex hashes)
+	 * @param $paths Array List of storage paths
 	 * @param $type integer LockManager::LOCK_* constant
 	 * @return string
 	 */
-	abstract protected function doLock( array $keys, $type );
+	abstract protected function doLock( array $paths, $type );
 
 	/**
 	 * Unlock resources with the given keys and lock type
 	 * 
-	 * @param $key Array List of keys to unlock (40 char hex hashes)
+	 * @param $paths Array List of storage paths
 	 * @param $type integer LockManager::LOCK_* constant
 	 * @return string
 	 */
-	abstract protected function doUnlock( array $keys, $type );
+	abstract protected function doUnlock( array $paths, $type );
 }
 
 /**
@@ -162,11 +163,11 @@ class ScopedLock {
  * Simple version of LockManager that does nothing
  */
 class NullLockManager extends LockManager {
-	protected function doLock( array $keys, $type ) {
+	protected function doLock( array $paths, $type ) {
 		return Status::newGood();
 	}
 
-	protected function doUnlock( array $keys, $type ) {
+	protected function doUnlock( array $paths, $type ) {
 		return Status::newGood();
 	}
 }
