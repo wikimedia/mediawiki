@@ -24,4 +24,4 @@ The following code snippet let you override the default path:
  if( $IP === false ) {
 	$IP = dirname( __FILE__ ) . '/../..';
  }
- require( "$IP/maintenance/Maintenance.php" ); // a MediaWiki core file
+ require_once( "$IP/maintenance/Maintenance.php" ); // a MediaWiki core file
