@@ -88,13 +88,17 @@ class LSLockManager extends LockManager {
 			if ( $res === 'cantacquire' ) {
 				// Resources already locked by another process.
 				// Abort and unlock everything we just locked.
-				$status->fatal( 'lockmanager-fail-acquirelocks', implode( ', ', $paths ) );
+				foreach ( $paths as $path ) {
+					$status->fatal( 'lockmanager-fail-acquirelock', $path );
+				}
 				$status->merge( $this->doUnlock( $lockedPaths, $type ) );
 				return $status;
 			} elseif ( $res !== true ) {
 				// Couldn't contact any servers for this bucket.
 				// Abort and unlock everything we just locked.
-				$status->fatal( 'lockmanager-fail-acquirelocks', implode( ', ', $paths ) );
+				foreach ( $paths as $path ) {
+					$status->fatal( 'lockmanager-fail-acquirelock', $path );
+				}
 				$status->merge( $this->doUnlock( $lockedPaths, $type ) );
 				return $status;
 			}
