@@ -998,7 +998,6 @@ Pe verbendi ''all:'', vaceyê xo bıvurni ki contenti hemi cıgeyro (pelanê mı
 'prefs-editing'                 => 'Ho vurnayeno',
 'prefs-edit-boxsize'            => 'Ebatê pencereyê vurnayîşî.',
 'rows'                          => 'Xeti:',
-'columns'                       => 'Estûni:',
 'searchresultshead'             => 'Cı geyre',
 'resultsperpage'                => 'Serê pele  amarê cıkewtoğan:',
 'stub-threshold'                => 'Baraj ke <a href="#" class="stub">stub link</a> ho şekil dano (bîtî):',

@@ -900,7 +900,6 @@ Conare praefixare tua inquisitionem cum ''all:'' ut quaeras contenta omnia (pagi
 'prefs-editing'             => 'Mensura capsae verbi',
 'prefs-edit-boxsize'        => 'Magnitudo capsae recensionis.',
 'rows'                      => 'Lineae:',
-'columns'                   => 'Columnae:',
 'searchresultshead'         => 'Figuratio eventorum investigationis',
 'resultsperpage'            => 'Eventus per paginam:',
 'recentchangesdays'         => 'Quot dies in nuper mutatis monstrandi:',

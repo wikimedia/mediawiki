@@ -1130,7 +1130,6 @@ Coba susud dimimitian ku ''all:'' pikeun nyusud sakabéh kandunganana (kaasup ka
 'prefs-editing'                 => 'Ukuran kotak téks',
 'prefs-edit-boxsize'            => 'Ukuran jandéla édit.',
 'rows'                          => 'Baris',
-'columns'                       => 'Kolom',
 'searchresultshead'             => 'Aturan hasil néang',
 'resultsperpage'                => 'Hasil nu ditémbongkeun per kaca',
 'stub-threshold'                => 'Wates ambang pikeun format <a href="#" class="stub">tumbu taratas</a> (bit):',

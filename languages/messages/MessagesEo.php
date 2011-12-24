@@ -1357,7 +1357,6 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'prefs-editing'                 => 'Redaktado',
 'prefs-edit-boxsize'            => 'Grandeco de la redakto-kesko.',
 'rows'                          => 'Linioj:',
-'columns'                       => 'Kolumnoj:',
 'searchresultshead'             => 'Serĉi',
 'resultsperpage'                => 'Montri trovitajn po',
 'stub-threshold'                => 'Ago-sojlo por formatigo de <a href="#" class="stub">ligil-ĝermo (anglalingve: "stub link")</a> (bitikoj):',

@@ -657,7 +657,6 @@ Feuch ri ''all:'' a chuir air beulaibh an iarrtais agad gus rannsachadh a dhèan
 'saveprefs'               => 'Sàbhail',
 'resetprefs'              => 'Falamhaich atharrachaidhean nach deach a shàbhaladh fhathast',
 'rows'                    => 'Sreathan',
-'columns'                 => 'Colbhan',
 'savedprefs'              => 'Tha na roghainnean agad air an sàbhaladh.',
 'default'                 => 'an roghainn bhunaiteach',
 'youremail'               => 'Post-dealain:',

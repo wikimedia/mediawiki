@@ -1113,7 +1113,6 @@ Prova a métarghe \"all:\" davanti al testo che te serchi par vardar in tuti i n
 'prefs-editing'                 => 'Dimension de la casela de modifica',
 'prefs-edit-boxsize'            => 'Dimension de la finestra de modìfega.',
 'rows'                          => 'Righe:',
-'columns'                       => 'Cołone:',
 'searchresultshead'             => 'Riserca',
 'resultsperpage'                => 'Nùmaro de risultati par pagina:',
 'stub-threshold'                => 'Valor minimo par i <a href="#" class="stub">colegamenti ai stub</a>:',

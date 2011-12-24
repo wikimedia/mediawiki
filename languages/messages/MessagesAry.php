@@ -1025,7 +1025,6 @@ Laḫed ana imken ikono l-indexaṫ dial {{SITENAME}} qdam o ma bqaoċ ṣalḫi
 'prefs-editing'                 => 'thrir',
 'prefs-edit-boxsize'            => 'hajm nafidat thrir',
 'rows'                          => 'sofof:',
-'columns'                       => 'aaamida:',
 'searchresultshead'             => 'Qelleb',
 'resultsperpage'                => 'adad nataij  f sfha',
 'stub-threshold'                => 'l-ḫadd l-aqṣa ṫaĝ <a href="#" class="stub">wṣlaṫ l-bidraṫ</a> (ḅayṫaṫ):',

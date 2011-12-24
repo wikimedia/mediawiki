@@ -765,7 +765,6 @@ Nwàné ótù okwu íshí na ihe Í nè tú jí ''háníle:'' Í tuó ihe nílé
 'saveprefs'                 => 'Domá',
 'prefs-editing'             => 'Írüwa',
 'rows'                      => 'Ǹdịlị:',
-'columns'                   => 'Ogìdì:',
 'searchresultshead'         => 'Chọwa',
 'resultsperpage'            => 'Nlé na ihü:',
 'stub-threshold-disabled'   => 'Ápụgị òkò',

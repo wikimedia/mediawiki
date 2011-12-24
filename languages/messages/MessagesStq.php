@@ -1022,7 +1022,6 @@ Staal deertruch sicher, dät ju Versionsgeskichte fon n Artikkel historisk akroa
 'prefs-editing'                 => 'Beoarbaidje',
 'prefs-edit-boxsize'            => 'Grööte fon dät Beoarbaidengsfinster:',
 'rows'                          => 'Riegen',
-'columns'                       => 'Spalten',
 'searchresultshead'             => 'Säike (010)',
 'resultsperpage'                => 'Träffere pro Siede:',
 'stub-threshold'                => '<a href="#" class="stub">Kuute Artikkele</a> markierje bi (in Byte):',

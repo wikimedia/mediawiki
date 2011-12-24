@@ -1298,7 +1298,6 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'prefs-editing'                 => 'Edición',
 'prefs-edit-boxsize'            => 'Tamaño da caixa de edición.',
 'rows'                          => 'Filas:',
-'columns'                       => 'Columnas:',
 'searchresultshead'             => 'Procurar',
 'resultsperpage'                => 'Número de resultados por páxina:',
 'stub-threshold'                => 'Límite superior para o formato de <a href="#" class="stub">ligazóns de bosquexo</a> (bytes):',

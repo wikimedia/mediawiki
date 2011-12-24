@@ -1080,7 +1080,6 @@ Ní báyìí ná ẹ le ṣàwárí lọ́dọ̀ Google.
 'prefs-editing'                 => 'Àtúnṣe ṣíṣẹ',
 'prefs-edit-boxsize'            => 'Ìtóbi fèrèsé àtúnṣe',
 'rows'                          => 'Àwọn ìtẹ̀lé gbọlọjọ:',
-'columns'                       => 'Àwọn ìtẹ̀lé gogoro:',
 'searchresultshead'             => 'Àwárí',
 'resultsperpage'                => 'Àwọn èsì ní ojúewé kọ̀ọ̀kan:',
 'stub-threshold-disabled'       => 'Dídálẹ́kun',

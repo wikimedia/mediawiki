@@ -743,7 +743,6 @@ Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la ve
 'prefs-editing'               => 'Cambiament',
 'prefs-edit-boxsize'          => 'Dimensions dal barcon pai cambiaments.',
 'rows'                        => 'Riis',
-'columns'                     => 'Colonis:',
 'searchresultshead'           => 'Ricercje',
 'resultsperpage'              => 'Risultâts par pagjine',
 'stub-threshold'              => 'Valôr minim pe formatazion dai <a href="#" class="stub">leams aboç</a> (bytes):',

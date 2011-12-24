@@ -991,7 +991,6 @@ Vini re se indeksat e tyne të përmbajtjes së {{SITENAME}} munden me qenë të
 'prefs-editing'                 => 'Tue redaktue',
 'prefs-edit-boxsize'            => 'Madhësia e dritares redaktuese.',
 'rows'                          => 'Rreshta:',
-'columns'                       => 'Kolona:',
 'searchresultshead'             => 'Kërkimi',
 'resultsperpage'                => 'Gjetje për faqe:',
 'stub-threshold'                => 'Pragu për formatimin e <a href="#" class="stub">vegzave të cungueme</a> në (byte):',

@@ -1197,7 +1197,6 @@ Subuking lagyan ng unlapi/paunang ''all:'' upang hanapin ang lahat ng mga nialal
 'prefs-editing'                 => 'May binabago',
 'prefs-edit-boxsize'            => 'Sukat ng dungawan ng ginagawang pagbabago.',
 'rows'                          => 'Mga pahalang na hanay:',
-'columns'                       => 'Mga pahabang hanay:',
 'searchresultshead'             => 'Hanapin',
 'resultsperpage'                => 'Bilang ng pagtama sa bawat pahina:',
 'stub-threshold'                => 'Kakayanan para sa pagpopormat ng <a href="#" class="usbong">kawing ng usbong</a> (mga \'\'byte\'\'):',

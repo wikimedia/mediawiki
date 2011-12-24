@@ -1290,7 +1290,6 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 'prefs-editing'                 => "Llamk'apusqa",
 'prefs-edit-boxsize'            => "Llamk'apuna wintanap chhikan.",
 'rows'                          => 'Sinrukuna:',
-'columns'                       => 'Wachukuna:',
 'searchresultshead'             => 'Maskay',
 'resultsperpage'                => "Huk p'anqapi hayk'a tarinakuna:",
 'stub-threshold'                => 'Kay hatun kaykamam <a href="#" class="stub">t\'una qillqasqa t\'inki</a> nisqa kachun (byte):',

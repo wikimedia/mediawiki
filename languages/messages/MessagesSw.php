@@ -1136,7 +1136,6 @@ Ujue lakini kwamba kumbukumbu za {{SITENAME}} kule Google labda zilipitwa na wak
 'prefs-editing'                 => 'Kuhariri',
 'prefs-edit-boxsize'            => 'Ukubwa wa dirisha la kuhariri.',
 'rows'                          => 'Mistari:',
-'columns'                       => 'Safu:',
 'searchresultshead'             => 'Kutafuta',
 'resultsperpage'                => 'Matokeo yanayoorodheshwa katika ukurasa mmoja:',
 'stub-threshold'                => 'Kiwango cha juu cha kuonyesha kiungo kama <a href="#" class="stub">kiungo kinachoelekea mbegu</a> (baiti):',

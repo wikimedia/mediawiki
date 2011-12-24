@@ -654,7 +654,6 @@ Les ôtes manaedjeus so ç' wiki ci pôront todi vey li contnou catchî eyet l' 
 'resetprefs'            => 'Rimete les prémetowès valixhances',
 'prefs-editing'         => 'Grandeu del boesse di tecse',
 'rows'                  => 'Royes',
-'columns'               => 'Colones',
 'searchresultshead'     => 'Håynaedje des rzultats di cweraedje',
 'resultsperpage'        => 'Nombe di responses a håyner so ene pådje',
 'recentchangesdays'     => 'Nombe di djoûs po les dierins candjmints:',

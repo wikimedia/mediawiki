@@ -1403,7 +1403,6 @@ Essayez en utilisant le préfixe ''all:'' pour rechercher dans tout le contenu (
 'prefs-editing'                 => 'Fenêtre de modification',
 'prefs-edit-boxsize'            => 'Taille de la fenêtre de modification.',
 'rows'                          => 'Rangées :',
-'columns'                       => 'Colonnes :',
 'searchresultshead'             => 'Recherches',
 'resultsperpage'                => 'Nombre de réponses par page :',
 'stub-threshold'                => 'Limite supérieure pour les <a href="#" class="stub">liens vers les ébauches</a> (octets) :',

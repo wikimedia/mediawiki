@@ -1229,7 +1229,6 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'prefs-editing'                 => "Caixa d'edició",
 'prefs-edit-boxsize'            => "Mida de la finestra d'edició.",
 'rows'                          => 'Files',
-'columns'                       => 'Columnes',
 'searchresultshead'             => 'Preferències de la cerca',
 'resultsperpage'                => 'Resultats a mostrar per pàgina',
 'stub-threshold'                => 'Límit per a formatar l\'enllaç com <a href="#" class="stub">esborrany</a> (en octets):',

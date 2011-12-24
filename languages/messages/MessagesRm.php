@@ -1033,7 +1033,6 @@ Considerescha che lur index da {{SITENAME}} po cuntegnair datas ch'èn betg pli 
 'prefs-editing'               => 'Modifitgar',
 'prefs-edit-boxsize'          => 'Grondezza da la fanestra da modifitgar',
 'rows'                        => 'Lingias:',
-'columns'                     => 'Colonnas:',
 'searchresultshead'           => 'Tschertga',
 'resultsperpage'              => 'resultats per pagina:',
 'stub-threshold-disabled'     => 'Deactivà',

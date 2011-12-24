@@ -1176,7 +1176,6 @@ Spytaj swoje naprašowanje z prefiksom ''all:'' wužiwać, zo by wšón wobsah (
 'prefs-editing'                 => 'Wobdźěłowanje',
 'prefs-edit-boxsize'            => 'Wulkosć wobdźěłowanskeho wokna.',
 'rows'                          => 'Rjadki:',
-'columns'                       => 'Stołpiki:',
 'searchresultshead'             => 'Pytać',
 'resultsperpage'                => 'Wuslědki za stronu:',
 'stub-threshold'                => 'Wotkazowe formatowanje <a href="#" class="stub">małych stronow</a> (w bajtach):',

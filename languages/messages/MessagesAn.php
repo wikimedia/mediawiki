@@ -1122,7 +1122,6 @@ Asegure-se que iste cambio no trencará a continidat de l'historial d'a pachina.
 'prefs-editing'                 => 'Edición',
 'prefs-edit-boxsize'            => "Grandaria d'a finestra d'edición.",
 'rows'                          => 'Ringleras:',
-'columns'                       => 'Columnas:',
 'searchresultshead'             => 'Mirar',
 'resultsperpage'                => "Resultaus que s'amostrarán por pachina:",
 'stub-threshold'                => 'Branquil superior ta o formateyo de <a href="#" class="stub">vinclos ta borradors</a> (en bytes):',

@@ -1147,7 +1147,6 @@ $2
 'restoreprefs'              => 'समग्राः व्यवस्थादय व्यवस्थानुसारं पुनः संरक्ष्यताम्',
 'prefs-editing'             => 'सम्पादनम्',
 'rows'                      => 'पंक्ति',
-'columns'                   => 'अध: पंक्त्याः',
 'searchresultshead'         => 'अन्वेषणम्',
 'resultsperpage'            => 'प्रति पृष्ट हिट्स:',
 'stub-threshold-disabled'   => 'निष्क्रियः',

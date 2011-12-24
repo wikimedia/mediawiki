@@ -560,7 +560,6 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'resetprefs'                  => 'ਰੀ-ਸੈੱਟ',
 'prefs-editing'               => 'ਸੰਪਾਦਨ',
 'rows'                        => 'ਕਤਾਰਾਂ:',
-'columns'                     => 'ਕਾਲਮ:',
 'searchresultshead'           => 'ਖੋਜ',
 'resultsperpage'              => 'ਪ੍ਰਤੀ ਪੇਜ ਹਿੱਟ:',
 'savedprefs'                  => 'ਤੁਹਾਡੀ ਪਸੰਦ ਸੰਭਾਲੀ ਗਈ ਹੈ।',

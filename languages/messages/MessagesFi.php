@@ -1319,7 +1319,6 @@ Kokeile lisätä haun alkuun ''all:'', niin haku kohdistuu kaikkeen sisältöön
 'prefs-editing'                 => 'Muokkaus',
 'prefs-edit-boxsize'            => 'Muokkauskentän koko.',
 'rows'                          => 'Rivejä',
-'columns'                       => 'Sarakkeita',
 'searchresultshead'             => 'Haku',
 'resultsperpage'                => 'Tuloksia sivua kohti',
 'stub-threshold'                => '<a href="#" class="stub">Tynkäsivun</a> osoituskynnys',

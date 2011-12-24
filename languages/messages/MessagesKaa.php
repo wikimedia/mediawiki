@@ -904,7 +904,6 @@ Barlıq mag'lıwmat tu'rin (sonın' ishinde sa'wbet betlerdi, shablonlardı h.t.
 'prefs-editing'             => "O'zgertiw",
 'prefs-edit-boxsize'        => "O'zgertiw aynasının' o'lshemi.",
 'rows'                      => 'Qatarlar:',
-'columns'                   => "Bag'analar:",
 'searchresultshead'         => 'İzlew',
 'recentchangesdays'         => "Aqırg'ı o'zgerislerde ko'rsetiletug'ın ku'nler:",
 'recentchangesdays-max'     => "(maksimum $1 {{PLURAL:$1|ku'n|ku'n}})",

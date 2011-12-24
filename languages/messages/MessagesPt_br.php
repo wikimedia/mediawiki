@@ -1357,7 +1357,6 @@ Note que os índices do sistema de busca externo poderão conter referências de
 'prefs-editing'                 => 'Opções de edição',
 'prefs-edit-boxsize'            => 'Tamanho da janela de edição.',
 'rows'                          => 'Linhas:',
-'columns'                       => 'Colunas:',
 'searchresultshead'             => 'Pesquisar',
 'resultsperpage'                => 'Resultados por página:',
 'stub-threshold'                => 'Links para páginas de conteúdo aparecerão <a href="#" class="stub">desta forma</a> se elas possuírem menos de (bytes):',

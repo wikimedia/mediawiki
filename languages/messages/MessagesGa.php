@@ -846,7 +846,6 @@ Bain triail as ''all:'' a chur roimh d'iarratas chun an t-inneachar ar fad (leat
 'restoreprefs'                => 'Cuir ar ais gach sainrogha réamhshocraithe',
 'prefs-editing'               => 'Eagarthóireacht',
 'rows'                        => 'Sraitheanna',
-'columns'                     => 'Colúin',
 'searchresultshead'           => 'Cuardaigh',
 'resultsperpage'              => 'Torthaí le taispeáint ó leathanach:',
 'stub-threshold-disabled'     => 'Díchumasaithe',

@@ -790,7 +790,6 @@ An ibang mga administrador sa ining wiki pwede pang maghiling kan mga nakatagong
 'resetprefs'                => 'Ipwesto giraray',
 'prefs-editing'             => 'Pighihira',
 'rows'                      => 'Mga hilera:',
-'columns'                   => 'Mga taytay:',
 'searchresultshead'         => 'Hanápon',
 'resultsperpage'            => 'Mga tamà kada pahina:',
 'stub-threshold'            => 'Kasagkoran kan <a href="#" class="stub">takod kan tambô</a> pigpopormato:',

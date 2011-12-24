@@ -791,7 +791,6 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'prefs-editing'             => 'የማዘጋጀት ምርጫዎች',
 'prefs-edit-boxsize'        => 'ይህ የማዘጋጀት ሳጥን ስፋት ለመወሰን ነው።',
 'rows'                      => 'በማዘጋጀቱ ሰንጠረዥ ስንት ተርታዎች?',
-'columns'                   => 'ስንት ዓምዶችስ?',
 'searchresultshead'         => 'ፍለጋ',
 'resultsperpage'            => 'ስንት ውጤቶች በየገጹ?',
 'recentchangesdays'         => 'በቅርቡ ለውጦች ዝርዝር ስንት ቀን ይታይ?',

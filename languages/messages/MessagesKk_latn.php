@@ -1150,7 +1150,6 @@ Añğartpa: {{SITENAME}} torabınıñ mağlumat tizbeleri eskirgen bolwı mümki
 'resetprefs'                => 'Saqtalmağan özgeristerdi tazart',
 'prefs-editing'             => 'Öñdew',
 'rows'                      => 'Joldar:',
-'columns'                   => 'Bağandar:',
 'searchresultshead'         => 'İzdew',
 'resultsperpage'            => 'Bet saýın nätïje sanı:',
 'stub-threshold'            => '<a href="#" class="stub">Biteme siltemesin</a> pişimdew tabaldırığı (baýt):',

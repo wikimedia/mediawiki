@@ -1091,7 +1091,6 @@ Ch'a preuva a gionté dnans a soa arserca ël prefiss ''all:'' për sërché an 
 'prefs-editing'                 => 'Quàder ëd modìfica dël test',
 'prefs-edit-boxsize'            => 'Dimension ëd la fnesta ëd modìfica.',
 'rows'                          => 'Righe:',
-'columns'                       => 'Colòne:',
 'searchresultshead'             => "Specifiché soe preferense d'arserca",
 'resultsperpage'                => 'Arzultà da mostré për vira pàgina:',
 'stub-threshold'                => 'Valor mìnim për j\'<a href="#" class="stub">anliure a jë sbòss</a>:',

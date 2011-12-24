@@ -674,7 +674,6 @@ A kan ben trowe efu dribi.
 'resetprefs'                => 'Bakadray na owru si',
 'prefs-editing'             => 'Kenki',
 'rows'                      => 'Rei:',
-'columns'                   => 'Kolum:',
 'searchresultshead'         => 'Suku',
 'resultsperpage'            => 'Ris ies papira:',
 'stub-threshold'            => 'Dupolo fu seti <a href="#" class="stub">stub</a>:',
