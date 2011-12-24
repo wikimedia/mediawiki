@@ -1305,7 +1305,6 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 'prefs-editing'                 => 'Modifiki',
 'prefs-edit-boxsize'            => 'Daqs tat-tieqa tal-immodifikar.',
 'rows'                          => 'Fillieri:',
-'columns'                       => 'Kolonni:',
 'searchresultshead'             => 'Fittex',
 'resultsperpage'                => "Numru ta' riżultati għal kull paġna:",
 'stub-threshold'                => 'Valur minimu għall-<a href="#" class="stub">ħoloq għall-abozzi</a>, f\'bytes:',

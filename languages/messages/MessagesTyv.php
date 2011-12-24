@@ -421,7 +421,6 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 'saveprefs'                 => 'Шыгжаар',
 'prefs-editing'             => 'Өскертир',
 'rows'                      => 'Одуруглар:',
-'columns'                   => 'Баганалар:',
 'searchresultshead'         => 'Дилээр',
 'servertime'                => 'Серверниң шагы:',
 'timezoneregion-africa'     => 'Африка',

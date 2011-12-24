@@ -1321,7 +1321,6 @@ Pane tähele, et Google'is talletatud {{GRAMMAR:genitive|{{SITENAME}}}} sisu võ
 'prefs-editing'                 => 'Toimetamine',
 'prefs-edit-boxsize'            => 'Toimetamise akna suurus.',
 'rows'                          => 'Ridu:',
-'columns'                       => 'Veerge:',
 'searchresultshead'             => 'Otsingutulemite sätted',
 'resultsperpage'                => 'Vasteid leheküljel:',
 'stub-threshold'                => '<a href="#" class="stub">Nii</a> lingitud lehekülje suuruse ülempiir (baitides):',

@@ -809,7 +809,6 @@ Kan ''all:'' laganeyal ta varafa exulera (gon keyaksexo is teza ikz-), oke wetce
 'prefs-editing'             => 'Sutelaxo',
 'prefs-edit-boxsize'        => 'Lum ke betaradilk.',
 'rows'                      => 'Emacekeem',
-'columns'                   => 'Brizeem',
 'searchresultshead'         => 'Nedira va aneyaratrasikseem',
 'resultsperpage'            => 'Fuxebuon trasiksota',
 'recentchangesdays'         => 'Gonedin viel se koe noeltaf betakseem :',

@@ -1399,7 +1399,6 @@ Mientras tanto puedes buscar mediante Google, pero ten en cuenta que sus índice
 'prefs-editing'                 => 'Edición',
 'prefs-edit-boxsize'            => 'Tamaño de la ventana de edición.',
 'rows'                          => 'Filas:',
-'columns'                       => 'Columnas:',
 'searchresultshead'             => 'Búsquedas',
 'resultsperpage'                => 'Resultados por página:',
 'stub-threshold'                => 'Límite para formato de <a href="#" class="stub">enlace a esbozo</a> (bytes):',

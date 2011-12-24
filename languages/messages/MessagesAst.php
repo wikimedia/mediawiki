@@ -1122,7 +1122,6 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'prefs-editing'                 => 'Edición',
 'prefs-edit-boxsize'            => "Tamañu de la ventana d'edición.",
 'rows'                          => 'Files:',
-'columns'                       => 'Columnes:',
 'searchresultshead'             => 'Guetar',
 'resultsperpage'                => "Resultaos p'amosar per páxina:",
 'stub-threshold'                => 'Llímite superior pa considerar como <a href="#" class="stub">enllaz a entamu</a> (bytes):',

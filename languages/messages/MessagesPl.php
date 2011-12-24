@@ -1319,7 +1319,6 @@ Jednak informacje o treści {{GRAMMAR:D.lp|{{SITENAME}}}} mogą być w Google ni
 'prefs-editing'                 => 'Edycja',
 'prefs-edit-boxsize'            => 'Rozmiar okna edycji.',
 'rows'                          => 'Wiersze',
-'columns'                       => 'Kolumny',
 'searchresultshead'             => 'Wyszukiwanie',
 'resultsperpage'                => 'Liczba wyników na stronie',
 'stub-threshold'                => 'Maksymalny (w bajtach) rozmiar strony oznaczanej jako <a href="#" class="stub">zalążek (stub)</a>',

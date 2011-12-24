@@ -1104,7 +1104,6 @@ Tandai nga ang ila nga palasulundan sang mga unod sang {{SITENAME}} mahimo nga m
 'prefs-editing'                 => 'Pag-ilis',
 'prefs-edit-boxsize'            => 'Ang kadakoon sang bintana sang pag-ilis.',
 'rows'                          => 'Mga linya:',
-'columns'                       => 'Mga kulumna:',
 'searchresultshead'             => 'Pangita-a',
 'resultsperpage'                => 'Mga pag-igu kada panid:',
 'stub-threshold'                => 'Suludlan sang <a href="#" class="stub">stub sang link</a> nga pagkay-o (bytes):',

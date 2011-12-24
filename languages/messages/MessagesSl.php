@@ -1258,7 +1258,6 @@ Upoštevajte, da so njihovi podatki vsebine {{GRAMMAR:rodilnik|{{SITENAME}}}} mo
 'prefs-editing'                 => 'Urejanje',
 'prefs-edit-boxsize'            => 'Velikost okna za urejanje.',
 'rows'                          => 'Vrstic:',
-'columns'                       => 'Stolpcev:',
 'searchresultshead'             => 'Nastavitve poizvedovanja',
 'resultsperpage'                => 'Prikazanih zadetkov na stran:',
 'stub-threshold'                => 'Prag označevanja <a href="#" class="stub">škrbin</a> (v bajtih):',

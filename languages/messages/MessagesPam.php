@@ -805,7 +805,6 @@ Pakitandanan mung maliaring e no makapanaun deng karelang index king kalamnan ni
 'resetprefs'                => 'Buran la retang miyalilan a e me-save',
 'prefs-editing'             => 'Mag-edit',
 'rows'                      => 'Dane (rows):',
-'columns'                   => 'Ding asias:',
 'searchresultshead'         => 'Maintun',
 'resultsperpage'            => 'Tinud (hits) balang bulung:',
 'stub-threshold'            => 'Angganan ning <a href="#" class="stub">stub link</a> formatting (byte):',

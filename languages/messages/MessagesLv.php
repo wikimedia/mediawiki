@@ -980,7 +980,6 @@ Pagaidām vari meklēt, izmantojot Google vai Yahoo.
 'prefs-editing'                 => 'Rediģēšana',
 'prefs-edit-boxsize'            => 'Labošanas loga izmērs.',
 'rows'                          => 'Rindiņu skaits:',
-'columns'                       => 'Simbolu skaits rindiņā:',
 'searchresultshead'             => 'Meklēšana',
 'resultsperpage'                => 'Lappusē parādāmo rezultātu skaits',
 'stub-threshold-disabled'       => 'Atslēgts',

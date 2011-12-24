@@ -705,7 +705,6 @@ Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 
 'prefs-editing'             => 'Beorweiten',
 'prefs-edit-boxsize'        => 'Gress vom Beorweitungsfenster',
 'rows'                      => 'Zeiln:',
-'columns'                   => 'Spoiten',
 'searchresultshead'         => 'Suachen',
 'resultsperpage'            => 'Treffer pro Saiten:',
 'savedprefs'                => 'Deine Eihstellungen san gspeicherd worn.',

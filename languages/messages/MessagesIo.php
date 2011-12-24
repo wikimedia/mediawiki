@@ -717,7 +717,6 @@ Probez prefixizar vua demando kun ''all:'' por serchar omna kontenajo (inkluzant
 'resetprefs'                    => 'Riestablisar preferaji',
 'prefs-editing'                 => 'Grandeso dil areo por texto',
 'rows'                          => 'Linei:',
-'columns'                       => 'Kolumni:',
 'searchresultshead'             => 'Preferaji di la rezultaji dil sercho',
 'resultsperpage'                => 'Trovaji po pagino:',
 'recentchangesdays'             => 'Dii montrota en la recenta chanji:',

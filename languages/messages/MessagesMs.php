@@ -1241,7 +1241,6 @@ Cuba berikan awalan ''all:'' untuk mencari semua kandungan (termasuk laman perbi
 'prefs-editing'                 => 'Menyunting',
 'prefs-edit-boxsize'            => 'Saiz kotak sunting.',
 'rows'                          => 'Baris:',
-'columns'                       => 'Lajur:',
 'searchresultshead'             => 'Cari',
 'resultsperpage'                => 'Jumlah padanan bagi setiap halaman:',
 'stub-threshold'                => 'Ambang bagi pemformatan <a href="#" class="stub">pautan ke rencana ringkas</a> (bait):',

@@ -1127,7 +1127,6 @@ Saia zaitez zure eskeraren aurretik ''all:'' jartzen eduki guztien artean bilatz
 'prefs-editing'                 => 'Aldatzen',
 'prefs-edit-boxsize'            => 'Edizio lehioaren tamaina.',
 'rows'                          => 'Lerroak:',
-'columns'                       => 'Zutabeak:',
 'searchresultshead'             => 'Bilaketa',
 'resultsperpage'                => 'Emaitza orrialdeko:',
 'stub-threshold'                => '<a href="#" class="stub">stub link</a> formaturako atalasea (byteak):',

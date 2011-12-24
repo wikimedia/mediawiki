@@ -1202,7 +1202,6 @@ Denkt w.e.g drunn datt d'Navigatiounslinken d'Wiel vun de Versiounen nees zréck
 'prefs-editing'                 => 'Änneren',
 'prefs-edit-boxsize'            => 'Gréisst vun der Ännerungsfënster:',
 'rows'                          => 'Zeilen',
-'columns'                       => 'Kolonnen',
 'searchresultshead'             => 'Sichen',
 'resultsperpage'                => 'Zuel vun de Resultater pro Säit:',
 'stub-threshold'                => 'Maximum (a Byte) bei deem e Link nach ëmmer am <a href="#" class="stub">Skizze-Format</a> gewise gëtt:',

@@ -767,7 +767,6 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 'prefs-editing'             => 'Redagavėms',
 'prefs-edit-boxsize'        => 'Redagavėma longa dėdoms.',
 'rows'                      => 'Eilotės:',
-'columns'                   => 'Štolpalē:',
 'searchresultshead'         => 'Paėiškuos nostatīmā',
 'resultsperpage'            => 'Rezoltatu poslapie:',
 'stub-threshold'            => 'Minimums <a href="#" class="stub">nabėngta poslapė</a> fuormatavėmō:',

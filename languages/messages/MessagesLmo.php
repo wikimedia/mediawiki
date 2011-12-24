@@ -659,7 +659,6 @@ Pröa a giuntagh denanz a la tò ricerca ''all:'' per cercà in tücc i namespac
 'restoreprefs'             => 'Ristabiliss i impustazión de default',
 'prefs-editing'            => 'Mudifich',
 'rows'                     => 'Riich:',
-'columns'                  => 'Culònn:',
 'searchresultshead'        => 'Cerca',
 'resultsperpage'           => 'Resültaa pər pagina:',
 'recentchangescount'       => "Nümer de mudifegh da mustrà per ''default'':",

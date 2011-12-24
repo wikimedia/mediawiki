@@ -1060,7 +1060,6 @@ or <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}}
 'prefs-editing'                 => 'தொகுத்தல்',
 'prefs-edit-boxsize'            => 'தொகுக்கும் சாளரத்தின் அளவு.',
 'rows'                          => 'நிரைகள் (கிடை வரிசைகள்):',
-'columns'                       => 'நிரல்கள்',
 'searchresultshead'             => 'தேடுக',
 'resultsperpage'                => 'ஒரு பக்கத்துக்குக் காட்டப்படவேண்டிய அடிகள்',
 'stub-threshold'                => '<a href="#" class="stub">stub link</a> சீர்படுத்தலுக்கான எல்லை (பைட்டுகள்):',

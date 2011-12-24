@@ -967,7 +967,6 @@ Jéemala bindaale ''all'' ngir seet ci biir ëmbit gépp (boolewaale ci xëti wa
 'prefs-editing'                 => 'Boyotu coppite',
 'prefs-edit-boxsize'            => 'Dayoo palanteeru coppite bi.',
 'rows'                          => 'Rëdd:',
-'columns'                       => 'Kenu :',
 'searchresultshead'             => 'Seet',
 'resultsperpage'                => 'Limu ngérte ci xët wu ne :',
 'recentchangesdays'             => 'Limu bes yi nga koy wone ci coppite yu mujj yi :',

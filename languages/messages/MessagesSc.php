@@ -696,7 +696,6 @@ Prova a seberare ''totu:'' pro chircare in totu su cuntènnidu (inclùdidas pàg
 'resetprefs'                  => 'Re-imposta is preferèntzias',
 'prefs-editing'               => 'Box de acontzadura',
 'rows'                        => 'Lìnias:',
-'columns'                     => 'Colunnas:',
 'searchresultshead'           => 'Settaggio delle preferenze per la ricerca',
 'resultsperpage'              => 'Risultati da visualizzare per pagina',
 'stub-threshold-disabled'     => 'Disativadu',

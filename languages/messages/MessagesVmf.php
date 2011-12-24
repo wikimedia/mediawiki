@@ -524,7 +524,6 @@ Hirmid sagsd, das Du den dhägsd '''selbâr gschriim''' hasd, das däär dhägsd
 'prefs-editing'             => 'Bearbajdungs-fenschdâr',
 'prefs-edit-boxsize'        => 'Grees fom bearbajdungs-fenschdâr:',
 'rows'                      => 'Soofiil dsajln:',
-'columns'                   => 'Soofiil schbaldn',
 'searchresultshead'         => 'Suuchn',
 'resultsperpage'            => 'Broo rudsch dsajchn:',
 'recentchangesdays'         => 'Wiifiil dääch dsrig baj  „Ledschdn ändrungn“',

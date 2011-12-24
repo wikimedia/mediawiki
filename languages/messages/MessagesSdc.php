@@ -838,7 +838,6 @@ Cunsulthà lu [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rigi
 'resetprefs'                => 'Rimpusthà li prifirènzi',
 'prefs-editing'             => 'Casella di mudìfigga',
 'rows'                      => 'Righi:',
-'columns'                   => 'Curonni:',
 'searchresultshead'         => 'Zercha',
 'resultsperpage'            => 'Nùmaru di risulthaddi pa pàgina:',
 'stub-threshold'            => 'Varori mìminu pa i <a href="#" class="stub">cullegamenti a li sàgumi</a>:',

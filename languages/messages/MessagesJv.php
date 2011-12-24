@@ -973,7 +973,6 @@ Gunakna tombol radio kanggo nggabungaké révisi-révisi sing digawé sadurungé
 'prefs-editing'                 => 'Panyuntingan',
 'prefs-edit-boxsize'            => 'Ukuran kothak panyuntingan.',
 'rows'                          => 'Larikan:',
-'columns'                       => 'Kolom:',
 'searchresultshead'             => 'Panggolèkan',
 'resultsperpage'                => 'Cacahing klik saben kaca:',
 'stub-threshold'                => 'Ambang wates kanggo format <a href="#" class="stub">pranala rintisan</a>:',

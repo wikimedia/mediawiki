@@ -987,7 +987,6 @@ Barlıq alannarda (bäxäs bitläre, ürnäklär, h.b.) ezläw öçen ''all'' s�
 'prefs-editing'                 => 'Üzgärtü',
 'prefs-edit-boxsize'            => 'Üzgärtü täräzäseneñ zurlığı',
 'rows'                          => 'Yullar:',
-'columns'                       => 'Bağanalar:',
 'searchresultshead'             => 'Ezläw',
 'resultsperpage'                => 'Ber bitkä turı kilgän tabıldıqlar:',
 'stub-threshold'                => '<a href="#" class="stub">Yasalma sıltamalarnıñ</a> bizäleşe buyınça çikläwlär (baytlarda):',

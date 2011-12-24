@@ -751,7 +751,6 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'prefs-editing'                 => 'တည်းဖြတ်ခြင်း',
 'prefs-edit-boxsize'            => 'တည်းဖြတ်သည့် သေတ္တာအရွယ်အစား။',
 'rows'                          => 'အလျားလိုက်တန်း -',
-'columns'                       => 'ဒေါင်လိုက်တန်း -',
 'searchresultshead'             => 'ရှာ​ဖွေ​ရန်​',
 'resultsperpage'                => 'စာတစ်မျက်နှာလျှင် ဝင်ကြည့်နှုန်း -',
 'stub-threshold-disabled'       => 'ပိတ်ထားသည်',
