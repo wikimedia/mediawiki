@@ -108,9 +108,9 @@ class FileDuplicateSearchPage extends QueryPage {
 			Xml::openElement( 'form', array( 'id' => 'fileduplicatesearch', 'method' => 'get', 'action' => $wgScript ) ) .
 			Html::hidden( 'title', $this->getTitle()->getPrefixedDbKey() ) .
 			Xml::openElement( 'fieldset' ) .
-			Xml::element( 'legend', null, wfMsg( 'fileduplicatesearch-legend' ) ) .
-			Xml::inputLabel( wfMsg( 'fileduplicatesearch-filename' ), 'filename', 'filename', 50, $this->filename ) . ' ' .
-			Xml::submitButton( wfMsg( 'fileduplicatesearch-submit' ) ) .
+			Xml::element( 'legend', null, $this->msg( 'fileduplicatesearch-legend' )->text() ) .
+			Xml::inputLabel( $this->msg( 'fileduplicatesearch-filename' )->text(), 'filename', 'filename', 50, $this->filename ) . ' ' .
+			Xml::submitButton( $this->msg( 'fileduplicatesearch-submit' )->text() ) .
 			Xml::closeElement( 'fieldset' ) .
 			Xml::closeElement( 'form' )
 		);
@@ -132,12 +132,10 @@ class FileDuplicateSearchPage extends QueryPage {
 				if( $thumb ) {
 					$out->addHTML( '<div id="mw-fileduplicatesearch-icon">' .
 						$thumb->toHtml( array( 'desc-link' => false ) ) . '<br />' .
-						wfMsgExt( 'fileduplicatesearch-info', array( 'parse' ),
-							$this->getLanguage()->formatNum( $img->getWidth() ),
-							$this->getLanguage()->formatNum( $img->getHeight() ),
+						$this->msg( 'fileduplicatesearch-info' )->numParams(
+							$img->getWidth(), $img->getHeight() )->params(
 							$this->getLanguage()->formatSize( $img->getSize() ),
-							$img->getMimeType()
-						) .
+							$img->getMimeType() )->parseAsBlock() .
 						'</div>' );
 				}
 			}
@@ -181,7 +179,7 @@ class FileDuplicateSearchPage extends QueryPage {
 
 		$userText = $result->getUser( 'text' );
 		$user = Linker::link( Title::makeTitle( NS_USER, $userText ), $userText );
-		$time = $this->getLanguage()->timeanddate( $result->getTimestamp() );
+		$time = $this->getLanguage()->userTimeAndDate( $result->getTimestamp(), $this->getUser() );
 
 		return "$plink . . $user . . $time";
 	}
