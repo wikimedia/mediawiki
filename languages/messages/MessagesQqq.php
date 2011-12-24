@@ -1903,19 +1903,17 @@ Extensions making use of it:
 
 # Lock manager
 'lockmanager-notlocked'         => 'Parameters:
-* $1 is a key name.',
+* $1 is a resource path (e.g. "mwstore://media-public/a/ab/file.jpg").',
 'lockmanager-fail-closelock'    => 'Parameters:
-* $1 is a key name.',
+* $1 is a resource path (e.g. "mwstore://media-public/a/ab/file.jpg").',
 'lockmanager-fail-deletelock'   => 'Parameters:
-* $1 is a key name.',
+* $1 is a resource path (e.g. "mwstore://media-public/a/ab/file.jpg").',
 'lockmanager-fail-acquirelock'  => 'Parameters:
-* $1 is a key name.',
+* $1 is a resource path (e.g. "mwstore://media-public/a/ab/file.jpg").',
 'lockmanager-fail-openlock'     => 'Parameters:
-* $1 is a key name.',
+* $1 is a resource path (e.g. "mwstore://media-public/a/ab/file.jpg").',
 'lockmanager-fail-releaselock'  => 'Parameters:
-* $1 is a key name.',
-'lockmanager-fail-acquirelocks' => 'Parameters:
-* $1 is a list of key names.',
+* $1 is a resource path (e.g. "mwstore://media-public/a/ab/file.jpg").',
 'lockmanager-fail-db-bucket'    => 'Parameters:
 * $1 is a bucket name.',
 'lockmanager-fail-db-release'   => 'Parameters:
