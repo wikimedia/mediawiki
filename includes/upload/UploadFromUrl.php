@@ -7,12 +7,11 @@
  * @author Bryan Tong Minh
  * @author Michael Dale
  */
-
 class UploadFromUrl extends UploadBase {
 	protected $mAsync, $mUrl;
 	protected $mIgnoreWarnings = true;
 
-	protected $mTempPath;
+	protected $mTempPath, $mTmpHandle;
 
 	/**
 	 * Checks if the user is allowed to use the upload-by-URL feature. If the
@@ -78,6 +77,7 @@ class UploadFromUrl extends UploadBase {
 
 	/**
 	 * @param $request WebRequest object
+	 * @return bool
 	 */
 	public static function isValidRequest( $request ) {
 		global $wgUser;
@@ -88,8 +88,14 @@ class UploadFromUrl extends UploadBase {
 			&& $wgUser->isAllowed( 'upload_by_url' );
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getSourceType() { return 'url'; }
 
+	/**
+	 * @return Status
+	 */
 	public function fetchFile() {
 		if ( !Http::isValidURI( $this->mUrl ) ) {
 			return Status::newFatal( 'http-invalid-url' );
@@ -133,6 +139,7 @@ class UploadFromUrl extends UploadBase {
 	/**
 	 * Download the file, save it to the temporary file and update the file
 	 * size and set $mRemoveTempFile to true.
+	 * @return Status
 	 */
 	protected function reallyFetchFile() {
 		if ( $this->mTempPath === false ) {
