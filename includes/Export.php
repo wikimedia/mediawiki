@@ -685,6 +685,7 @@ class XmlDumpWriter {
 	 *
 	 * @param Title $title
 	 * @return string
+	 * @since 1.18
 	 */
 	public static function canonicalTitle( Title $title ) {
 		if ( $title->getInterwiki() ) {
@@ -694,7 +695,7 @@ class XmlDumpWriter {
 		global $wgContLang;
 		$prefix = str_replace( '_', ' ', $wgContLang->getNsText( $title->getNamespace() ) );
 
-		if ($prefix !== '') {
+		if ( $prefix !== '' ) {
 			$prefix .= ':';
 		}
 
