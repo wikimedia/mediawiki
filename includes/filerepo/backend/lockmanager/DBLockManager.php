@@ -27,8 +27,6 @@ class DBLockManager extends LockManager {
 	protected $safeDelay; // integer number of seconds
 
 	protected $session = 0; // random integer
-	/** @var Array Map of (locked key => lock type => count) */
-	protected $locksHeld = array();
 	/** @var Array Map Database connections (DB name => Database) */
 	protected $conns = array();
 
@@ -86,66 +84,72 @@ class DBLockManager extends LockManager {
 		$this->session = wfBaseConvert( sha1( $this->session ), 16, 36, 31 );
 	}
 
-	protected function doLock( array $keys, $type ) {
+	/**
+	 * @see LockManager::doLock()
+	 */
+	protected function doLock( array $paths, $type ) {
 		$status = Status::newGood();
 
-		$keysToLock = array();
+		$pathsToLock = array();
 		// Get locks that need to be acquired (buckets => locks)...
-		foreach ( $keys as $key ) {
-			if ( isset( $this->locksHeld[$key][$type] ) ) {
-				++$this->locksHeld[$key][$type];
-			} elseif ( isset( $this->locksHeld[$key][self::LOCK_EX] ) ) {
-				$this->locksHeld[$key][$type] = 1;
+		foreach ( $paths as $path ) {
+			if ( isset( $this->locksHeld[$path][$type] ) ) {
+				++$this->locksHeld[$path][$type];
+			} elseif ( isset( $this->locksHeld[$path][self::LOCK_EX] ) ) {
+				$this->locksHeld[$path][$type] = 1;
 			} else {
-				$bucket = $this->getBucketFromKey( $key );
-				$keysToLock[$bucket][] = $key;
+				$bucket = $this->getBucketFromKey( $path );
+				$pathsToLock[$bucket][] = $path;
 			}
 		}
 
-		$lockedKeys = array(); // files locked in this attempt
+		$lockedPaths = array(); // files locked in this attempt
 		// Attempt to acquire these locks...
-		foreach ( $keysToLock as $bucket => $keys ) {
+		foreach ( $pathsToLock as $bucket => $paths ) {
 			// Try to acquire the locks for this bucket
-			$res = $this->doLockingQueryAll( $bucket, $keys, $type );
+			$res = $this->doLockingQueryAll( $bucket, $paths, $type );
 			if ( $res === 'cantacquire' ) {
 				// Resources already locked by another process.
 				// Abort and unlock everything we just locked.
-				$status->fatal( 'lockmanager-fail-acquirelocks', implode( ', ', $keys ) );
-				$status->merge( $this->doUnlock( $lockedKeys, $type ) );
+				$status->fatal( 'lockmanager-fail-acquirelocks', implode( ', ', $paths ) );
+				$status->merge( $this->doUnlock( $lockedPaths, $type ) );
 				return $status;
 			} elseif ( $res !== true ) {
 				// Couldn't contact any DBs for this bucket.
 				// Abort and unlock everything we just locked.
 				$status->fatal( 'lockmanager-fail-db-bucket', $bucket );
-				$status->merge( $this->doUnlock( $lockedKeys, $type ) );
+				$status->merge( $this->doUnlock( $lockedPaths, $type ) );
 				return $status;
 			}
 			// Record these locks as active
-			foreach ( $keys as $key ) {
-				$this->locksHeld[$key][$type] = 1; // locked
+			foreach ( $paths as $path ) {
+				$this->locksHeld[$path][$type] = 1; // locked
 			}
 			// Keep track of what locks were made in this attempt
-			$lockedKeys = array_merge( $lockedKeys, $keys );
+			$lockedPaths = array_merge( $lockedPaths, $paths );
 		}
 
 		return $status;
 	}
 
-	protected function doUnlock( array $keys, $type ) {
+	/**
+	 * @see LockManager::doUnlock()
+	 */
+	protected function doUnlock( array $paths, $type ) {
 		$status = Status::newGood();
 
-		foreach ( $keys as $key ) {
-			if ( !isset( $this->locksHeld[$key] ) ) {
-				$status->warning( 'lockmanager-notlocked', $key );
-			} elseif ( !isset( $this->locksHeld[$key][$type] ) ) {
-				$status->warning( 'lockmanager-notlocked', $key );
+		foreach ( $paths as $path ) {
+			if ( !isset( $this->locksHeld[$path] ) ) {
+				$status->warning( 'lockmanager-notlocked', $path );
+			} elseif ( !isset( $this->locksHeld[$path][$type] ) ) {
+				$status->warning( 'lockmanager-notlocked', $path );
 			} else {
-				--$this->locksHeld[$key][$type];
-				if ( $this->locksHeld[$key][$type] <= 0 ) {
-					unset( $this->locksHeld[$key][$type] );
+				--$this->locksHeld[$path][$type];
+				if ( $this->locksHeld[$path][$type] <= 0 ) {
+					unset( $this->locksHeld[$path][$type] );
 				}
-				if ( !count( $this->locksHeld[$key] ) ) {
-					unset( $this->locksHeld[$key] ); // no SH or EX locks left for key
+				if ( !count( $this->locksHeld[$path] ) ) {
+					unset( $this->locksHeld[$path] ); // no SH or EX locks left for key
 				}
 			}
 		}
@@ -159,21 +163,23 @@ class DBLockManager extends LockManager {
 	}
 
 	/**
-	 * Get a connection to a lock DB and acquire locks on $keys.
+	 * Get a connection to a lock DB and acquire locks on $paths.
 	 * This does not use GET_LOCK() per http://bugs.mysql.com/bug.php?id=1118.
 	 *
 	 * @param $lockDb string
-	 * @param $keys Array
+	 * @param $paths Array
 	 * @param $type integer LockManager::LOCK_EX or LockManager::LOCK_SH
 	 * @return bool Resources able to be locked
 	 * @throws DBError
 	 */
-	protected function doLockingQuery( $lockDb, array $keys, $type ) {
+	protected function doLockingQuery( $lockDb, array $paths, $type ) {
 		if ( $type == self::LOCK_EX ) { // writer locks
 			$db = $this->getConnection( $lockDb );
 			if ( !$db ) {
 				return false; // bad config
 			}
+			$keys = array_unique( array_map( 'LockManager::sha1Base36', $paths ) );
+			# Build up values for INSERT clause
 			$data = array();
 			foreach ( $keys as $key ) {
 				$data[] = array( 'fle_key' => $key );
@@ -189,11 +195,11 @@ class DBLockManager extends LockManager {
 	 * This should avoid throwing any exceptions.
 	 *
 	 * @param $bucket integer
-	 * @param $keys Array List of resource keys to lock
+	 * @param $paths Array List of resource keys to lock
 	 * @param $type integer LockManager::LOCK_EX or LockManager::LOCK_SH
 	 * @return bool|string One of (true, 'cantacquire', 'dberrors')
 	 */
-	protected function doLockingQueryAll( $bucket, array $keys, $type ) {
+	protected function doLockingQueryAll( $bucket, array $paths, $type ) {
 		$yesVotes = 0; // locks made on trustable DBs
 		$votesLeft = count( $this->dbsByBucket[$bucket] ); // remaining DBs
 		$quorum = floor( $votesLeft/2 + 1 ); // simple majority
@@ -203,7 +209,7 @@ class DBLockManager extends LockManager {
 			if ( $this->cacheCheckFailures( $lockDb ) ) {
 				try {
 					// Attempt to acquire the lock on this DB
-					if ( !$this->doLockingQuery( $lockDb, $keys, $type ) ) {
+					if ( !$this->doLockingQuery( $lockDb, $paths, $type ) ) {
 						return 'cantacquire'; // vetoed; resource locked
 					}
 					++$yesVotes; // success for this peer
@@ -218,7 +224,7 @@ class DBLockManager extends LockManager {
 					}
 				}
 			}
-			$votesLeft--;
+			--$votesLeft;
 			$votesNeeded = $quorum - $yesVotes;
 			if ( $votesNeeded > $votesLeft ) {
 				// In "trust cache" mode we don't have to meet the quorum
@@ -322,8 +328,8 @@ class DBLockManager extends LockManager {
 	 */
 	protected function cacheCheckFailures( $lockDb ) {
 		if ( $this->statusCache && $this->safeDelay > 0 ) {
-			$key = $this->getMissKey( $lockDb );
-			$misses = $this->statusCache->get( $key );
+			$path = $this->getMissKey( $lockDb );
+			$misses = $this->statusCache->get( $path );
 			return !$misses;
 		}
 		return true;
@@ -337,12 +343,12 @@ class DBLockManager extends LockManager {
 	 */
 	protected function cacheRecordFailure( $lockDb ) {
 		if ( $this->statusCache && $this->safeDelay > 0 ) {
-			$key = $this->getMissKey( $lockDb );
-			$misses = $this->statusCache->get( $key );
+			$path = $this->getMissKey( $lockDb );
+			$misses = $this->statusCache->get( $path );
 			if ( $misses ) {
-				return $this->statusCache->incr( $key );
+				return $this->statusCache->incr( $path );
 			} else {
-				return $this->statusCache->add( $key, 1, $this->safeDelay );
+				return $this->statusCache->add( $path, 1, $this->safeDelay );
 			}
 		}
 		return true;
@@ -359,14 +365,14 @@ class DBLockManager extends LockManager {
 	}
 
 	/**
-	 * Get the bucket for lock key.
+	 * Get the bucket for resource path.
 	 * This should avoid throwing any exceptions.
 	 *
-	 * @param $key string (31 char hex key)
+	 * @param $path string
 	 * @return integer
 	 */
-	protected function getBucketFromKey( $key ) {
-		$prefix = substr( $key, 0, 2 ); // first 2 hex chars (8 bits)
+	protected function getBucketFromKey( $path ) {
+		$prefix = substr( sha1( $path ), 0, 2 ); // first 2 hex chars (8 bits)
 		return intval( base_convert( $prefix, 16, 10 ) ) % count( $this->dbsByBucket );
 	}
 
@@ -406,11 +412,13 @@ class MySqlLockManager extends DBLockManager {
 		$db->query( "SET SESSION TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;" );
 	}
 
-	protected function doLockingQuery( $lockDb, array $keys, $type ) {
+	protected function doLockingQuery( $lockDb, array $paths, $type ) {
 		$db = $this->getConnection( $lockDb );
 		if ( !$db ) {
 			return false;
 		}
+		$keys = array_unique( array_map( 'LockManager::sha1Base36', $paths ) );
+		# Build up values for INSERT clause
 		$data = array();
 		foreach ( $keys as $key ) {
 			$data[] = array( 'fls_key' => $key, 'fls_session' => $this->session );
@@ -436,6 +444,7 @@ class MySqlLockManager extends DBLockManager {
 				__METHOD__
 			);
 			if ( !$blocked ) {
+				# Build up values for INSERT clause
 				$data = array();
 				foreach ( $keys as $key ) {
 					$data[] = array( 'fle_key' => $key );

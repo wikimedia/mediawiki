@@ -25,8 +25,6 @@ class LSLockManager extends LockManager {
 	/** @var Array Map of bucket indexes to peer server lists */
 	protected $srvsByBucket; // (bucket index => (lsrv1, lsrv2, ...))
 
-	/** @var Array Map of (locked key => lock type => count) */
-	protected $locksHeld = array();
 	/** @var Array Map Server connections (server name => resource) */
 	protected $conns = array();
 
@@ -66,66 +64,66 @@ class LSLockManager extends LockManager {
 		$this->session = wfBaseConvert( sha1( $this->session ), 16, 36, 31 );
 	}
 
-	protected function doLock( array $keys, $type ) {
+	protected function doLock( array $paths, $type ) {
 		$status = Status::newGood();
 
-		$keysToLock = array();
+		$pathsToLock = array();
 		// Get locks that need to be acquired (buckets => locks)...
-		foreach ( $keys as $key ) {
-			if ( isset( $this->locksHeld[$key][$type] ) ) {
-				++$this->locksHeld[$key][$type];
-			} elseif ( isset( $this->locksHeld[$key][self::LOCK_EX] ) ) {
-				$this->locksHeld[$key][$type] = 1;
+		foreach ( $paths as $path ) {
+			if ( isset( $this->locksHeld[$path][$type] ) ) {
+				++$this->locksHeld[$path][$type];
+			} elseif ( isset( $this->locksHeld[$path][self::LOCK_EX] ) ) {
+				$this->locksHeld[$path][$type] = 1;
 			} else {
-				$bucket = $this->getBucketFromKey( $key );
-				$keysToLock[$bucket][] = $key;
+				$bucket = $this->getBucketFromKey( $path );
+				$pathsToLock[$bucket][] = $path;
 			}
 		}
 
-		$lockedKeys = array(); // files locked in this attempt
+		$lockedPaths = array(); // files locked in this attempt
 		// Attempt to acquire these locks...
-		foreach ( $keysToLock as $bucket => $keys ) {
+		foreach ( $pathsToLock as $bucket => $paths ) {
 			// Try to acquire the locks for this bucket
-			$res = $this->doLockingRequestAll( $bucket, $keys, $type );
+			$res = $this->doLockingRequestAll( $bucket, $paths, $type );
 			if ( $res === 'cantacquire' ) {
 				// Resources already locked by another process.
 				// Abort and unlock everything we just locked.
-				$status->fatal( 'lockmanager-fail-acquirelocks', implode( ', ', $keys ) );
-				$status->merge( $this->doUnlock( $lockedKeys, $type ) );
+				$status->fatal( 'lockmanager-fail-acquirelocks', implode( ', ', $paths ) );
+				$status->merge( $this->doUnlock( $lockedPaths, $type ) );
 				return $status;
 			} elseif ( $res !== true ) {
 				// Couldn't contact any servers for this bucket.
 				// Abort and unlock everything we just locked.
-				$status->fatal( 'lockmanager-fail-acquirelocks', implode( ', ', $keys ) );
-				$status->merge( $this->doUnlock( $lockedKeys, $type ) );
+				$status->fatal( 'lockmanager-fail-acquirelocks', implode( ', ', $paths ) );
+				$status->merge( $this->doUnlock( $lockedPaths, $type ) );
 				return $status;
 			}
 			// Record these locks as active
-			foreach ( $keys as $key ) {
-				$this->locksHeld[$key][$type] = 1; // locked
+			foreach ( $paths as $path ) {
+				$this->locksHeld[$path][$type] = 1; // locked
 			}
 			// Keep track of what locks were made in this attempt
-			$lockedKeys = array_merge( $lockedKeys, $keys );
+			$lockedPaths = array_merge( $lockedPaths, $paths );
 		}
 
 		return $status;
 	}
 
-	protected function doUnlock( array $keys, $type ) {
+	protected function doUnlock( array $paths, $type ) {
 		$status = Status::newGood();
 
-		foreach ( $keys as $key ) {
-			if ( !isset( $this->locksHeld[$key] ) ) {
-				$status->warning( 'lockmanager-notlocked', $key );
-			} elseif ( !isset( $this->locksHeld[$key][$type] ) ) {
-				$status->warning( 'lockmanager-notlocked', $key );
+		foreach ( $paths as $path ) {
+			if ( !isset( $this->locksHeld[$path] ) ) {
+				$status->warning( 'lockmanager-notlocked', $path );
+			} elseif ( !isset( $this->locksHeld[$path][$type] ) ) {
+				$status->warning( 'lockmanager-notlocked', $path );
 			} else {
-				--$this->locksHeld[$key][$type];
-				if ( $this->locksHeld[$key][$type] <= 0 ) {
-					unset( $this->locksHeld[$key][$type] );
+				--$this->locksHeld[$path][$type];
+				if ( $this->locksHeld[$path][$type] <= 0 ) {
+					unset( $this->locksHeld[$path][$type] );
 				}
-				if ( !count( $this->locksHeld[$key] ) ) {
-					unset( $this->locksHeld[$key] ); // no SH or EX locks left for key
+				if ( !count( $this->locksHeld[$path] ) ) {
+					unset( $this->locksHeld[$path] ); // no SH or EX locks left for key
 				}
 			}
 		}
@@ -139,14 +137,14 @@ class LSLockManager extends LockManager {
 	}
 
 	/**
-	 * Get a connection to a lock server and acquire locks on $keys
+	 * Get a connection to a lock server and acquire locks on $paths
 	 *
 	 * @param $lockSrv string
-	 * @param $keys Array
+	 * @param $paths Array
 	 * @param $type integer LockManager::LOCK_EX or LockManager::LOCK_SH
 	 * @return bool Resources able to be locked
 	 */
-	protected function doLockingRequest( $lockSrv, array $keys, $type ) {
+	protected function doLockingRequest( $lockSrv, array $paths, $type ) {
 		if ( $type == self::LOCK_SH ) { // reader locks
 			$type = 'SH';
 		} elseif ( $type == self::LOCK_EX ) { // writer locks
@@ -156,6 +154,7 @@ class LSLockManager extends LockManager {
 		}
 
 		// Send out the command and get the response...
+		$keys = array_unique( array_map( 'LockManager::sha1Base36', $paths ) );
 		$response = $this->sendCommand( $lockSrv, 'ACQUIRE', $type, $keys );
 
 		return ( $response === 'ACQUIRED' );
@@ -195,25 +194,25 @@ class LSLockManager extends LockManager {
 	 * Attempt to acquire locks with the peers for a bucket
 	 *
 	 * @param $bucket integer
-	 * @param $keys Array List of resource keys to lock
+	 * @param $paths Array List of resource keys to lock
 	 * @param $type integer LockManager::LOCK_EX or LockManager::LOCK_SH
 	 * @return bool|string One of (true, 'cantacquire', 'srverrors')
 	 */
-	protected function doLockingRequestAll( $bucket, array $keys, $type ) {
+	protected function doLockingRequestAll( $bucket, array $paths, $type ) {
 		$yesVotes = 0; // locks made on trustable servers
 		$votesLeft = count( $this->srvsByBucket[$bucket] ); // remaining peers
 		$quorum = floor( $votesLeft/2 + 1 ); // simple majority
 		// Get votes for each peer, in order, until we have enough...
 		foreach ( $this->srvsByBucket[$bucket] as $index => $lockSrv ) {
 			// Attempt to acquire the lock on this peer
-			if ( !$this->doLockingRequest( $lockSrv, $keys, $type ) ) {
+			if ( !$this->doLockingRequest( $lockSrv, $paths, $type ) ) {
 				return 'cantacquire'; // vetoed; resource locked
 			}
 			++$yesVotes; // success for this peer
 			if ( $yesVotes >= $quorum ) {
 				return true; // lock obtained
 			}
-			$votesLeft--;
+			--$votesLeft;
 			$votesNeeded = $quorum - $yesVotes;
 			if ( $votesNeeded > $votesLeft ) {
 				// In "trust cache" mode we don't have to meet the quorum
@@ -265,14 +264,15 @@ class LSLockManager extends LockManager {
 	}
 
 	/**
-	 * Get the bucket for lock key
+	 * Get the bucket for resource path.
+	 * This should avoid throwing any exceptions.
 	 *
-	 * @param $key string (31 char hex key)
+	 * @param $path string
 	 * @return integer
 	 */
-	protected function getBucketFromKey( $key ) {
-		$prefix = substr( $key, 0, 2 ); // first 2 hex chars (8 bits)
-		return intval( base_convert( $prefix, 16, 10 ) ) % count( $this->srvsByBucket );
+	protected function getBucketFromKey( $path ) {
+		$prefix = substr( sha1( $path ), 0, 2 ); // first 2 hex chars (8 bits)
+		return intval( base_convert( $prefix, 16, 10 ) ) % count( $this->dbsByBucket );
 	}
 
 	/**
