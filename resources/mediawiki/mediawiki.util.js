@@ -1,5 +1,5 @@
 /**
- * Implementents
+ * Implements mediaWiki.util library
  */
 ( function ( $, mw ) {
 "use strict";
