@@ -114,16 +114,16 @@ class CleanupSpam extends Maintenance {
 		} else {
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->begin();
+			$page = WikiPage::factory( $title );
 			if ( !$rev ) {
 				// Didn't find a non-spammy revision, blank the page
 				$this->output( "blanking\n" );
-				$article = new Article( $title );
-				$article->doEdit( '', wfMsg( 'spam_blanking', $domain ) );
+				$page->doEdit( '', wfMsgForContent( 'spam_blanking', $domain ) );
 			} else {
 				// Revert to this revision
 				$this->output( "reverting\n" );
-				$article = new Article( $title );
-				$article->doEdit( $rev->getText(), wfMsg( 'spam_reverting', $domain ), EDIT_UPDATE );
+				$page->doEdit( $rev->getText(), wfMsgForContent( 'spam_reverting', $domain ),
+					EDIT_UPDATE, $rev->getId() );
 			}
 			$dbw->commit();
 		}
