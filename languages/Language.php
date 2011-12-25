@@ -1864,6 +1864,7 @@ class Language {
 	 *             - true: use user's preference
 	 *             - false: use default preference
 	 *             - string: format to use
+	 * @since 1.19
 	 * @return String
 	 */
 	private function internalUserTimeAndDate( $type, $ts, User $user, array $options ) {
@@ -1902,6 +1903,7 @@ class Language {
 	 *             - true: use user's preference
 	 *             - false: use default preference
 	 *             - string: format to use
+	 * @since 1.19
 	 * @return String
 	 */
 	public function userDate( $ts, User $user, array $options = array() ) {
@@ -1924,6 +1926,7 @@ class Language {
 	 *             - true: use user's preference
 	 *             - false: use default preference
 	 *             - string: format to use
+	 * @since 1.19
 	 * @return String
 	 */
 	public function userTime( $ts, User $user, array $options = array() ) {
@@ -1946,6 +1949,7 @@ class Language {
 	 *             - true: use user's preference
 	 *             - false: use default preference
 	 *             - string: format to use
+	 * @since 1.19
 	 * @return String
 	 */
 	public function userTimeAndDate( $ts, User $user, array $options = array() ) {
