@@ -1,27 +1,26 @@
 /**
- * Utilities
+ * Implementents
  */
 ( function ( $, mw ) {
 "use strict";
 
 	// Local cache and alias
-	var util = mw.util = {
+	var util = {
 
 		/**
 		 * Initialisation
 		 * (don't call before document ready)
 		 */
-		'init' : function() {
+		init: function() {
 			var	profile = $.client.profile(),
-				$tocContainer = $( '#toc' ),
 				$tocTitle = $( '#toctitle' ),
 				$tocToggleLink = $( '#togglelink' ),
 				hideTocCookie;
 
 			/* Set up $.messageBox */
 			$.messageBoxNew( {
-				'id': 'mw-js-message',
-				'parent': '#content'
+				id: 'mw-js-message',
+				parent: '#content'
 			} );
 
 			/* Set tooltipAccessKeyPrefix */
@@ -78,14 +77,14 @@
 
 			// Table of contents toggle
 			// Only add it if there is a TOC and there is no toggle added already
-			if ( $tocContainer.length && $tocTitle.length && !$tocToggleLink.length ) {
+			if ( $( '#toc' ).length && $tocTitle.length && !$tocToggleLink.length ) {
 				hideTocCookie = $.cookie( 'mw_hidetoc' );
 					$tocToggleLink = $( '<a href="#" class="internal" id="togglelink"></a>' )
 						.text( mw.msg( 'hidetoc' ) )
-						.click( function(e){
+						.click( function( e ) {
 							e.preventDefault();
 							util.toggleToc( $(this) );
-					} );
+						} );
 				$tocTitle.append(
 					$tocToggleLink
 						.wrap( '<span class="toctoggle"></span>' )
@@ -94,9 +93,8 @@
 							.append( ']&nbsp;' )
 				);
 
-				if ( hideTocCookie == '1' ) {
-					// Cookie says user want toc hidden
-					$tocToggleLink.click();
+				if ( hideTocCookie === '1' ) {
+					util.toggleToc( $tocToggleLink );
 				}
 			}
 		},
@@ -108,8 +106,8 @@
 		 *
 		 * @param str string String to be encoded
 		 */
-		'rawurlencode' : function( str ) {
-			str = ( str + '' ).toString();
+		rawurlencode: function( str ) {
+			str = String( str );
 			return encodeURIComponent( str )
 				.replace( /!/g, '%21' ).replace( /'/g, '%27' ).replace( /\(/g, '%28' )
 				.replace( /\)/g, '%29' ).replace( /\*/g, '%2A' ).replace( /~/g, '%7E' );
@@ -122,7 +120,7 @@
 		 *
 		 * @param str string String to be encoded
 		 */
-		'wikiUrlencode' : function( str ) {
+		wikiUrlencode: function( str ) {
 			return this.rawurlencode( str )
 				.replace( /%20/g, '_' ).replace( /%3A/g, ':' ).replace( /%2F/g, '/' );
 		},
@@ -133,7 +131,7 @@
 		 * @param str string Page name to get the link for.
 		 * @return string Location for a page with name of 'str' or boolean false on error.
 		 */
-		'wikiGetlink' : function( str ) {
+		wikiGetlink: function( str ) {
 			return mw.config.get( 'wgArticlePath' ).replace( '$1',
 				this.wikiUrlencode( str || mw.config.get( 'wgPageName' ) ) );
 		},
@@ -145,7 +143,7 @@
 		 * @param str string Name of script (eg. 'api'), defaults to 'index'
 		 * @return string Address to script (eg. '/w/api.php' )
 		 */
-		'wikiScript' : function( str ) {
+		wikiScript: function( str ) {
 			return mw.config.get( 'wgScriptPath' ) + '/' + ( str || 'index' ) +
 				mw.config.get( 'wgScriptExtension' );
 		},
@@ -156,7 +154,7 @@
 		 * @param text string CSS to be appended
 		 * @return CSSStyleSheet
 		 */
-		'addCSS' : function( text ) {
+		addCSS: function( text ) {
 			var s = document.createElement( 'style' );
 			s.type = 'text/css';
 			s.rel = 'stylesheet';
@@ -180,7 +178,7 @@
 		 * @return mixed Boolean visibility of the toc (true if it's visible)
 		 * or Null if there was no table of contents.
 		 */
-		'toggleToc' : function( $toggleLink, callback ) {
+		toggleToc: function( $toggleLink, callback ) {
 			var $tocList = $( '#toc ul:first' );
 
 			// This function shouldn't be called if there's no TOC,
@@ -218,7 +216,7 @@
 		 * @param url string URL to search through (optional)
 		 * @return mixed Parameter value or null.
 		 */
-		'getParamValue' : function( param, url ) {
+		getParamValue: function( param, url ) {
 			url = url || document.location.href;
 			// Get last match, stop at hash
 			var	re = new RegExp( '^[^#]*[&?]' + $.escapeRE( param ) + '=([^&#]*)' ),
@@ -236,13 +234,13 @@
 		 * Access key prefix. Will be re-defined based on browser/operating system
 		 * detection in mw.util.init().
 		 */
-		'tooltipAccessKeyPrefix' : 'alt-',
+		tooltipAccessKeyPrefix: 'alt-',
 
 		/**
 		 * @var RegExp
 		 * Regex to match accesskey tooltips.
 		 */
-		'tooltipAccessKeyRegexp': /\[(ctrl-)?(alt-)?(shift-)?(esc-)?(.)\]$/,
+		tooltipAccessKeyRegexp: /\[(ctrl-)?(alt-)?(shift-)?(esc-)?(.)\]$/,
 
 		/**
 		 * Add the appropriate prefix to the accesskey shown in the tooltip.
@@ -250,37 +248,25 @@
 		 * otherwise, all the nodes that will probably have accesskeys by
 		 * default are updated.
 		 *
-		 * @param nodeList {Array|jQuery} [optional] A jQuery object, or array
+		 * @param $nodes {Array|jQuery} [optional] A jQuery object, or array
 		 * of elements to update.
 		 */
-		'updateTooltipAccessKeys' : function( nodeList ) {
-			var $nodes;
-			if ( !nodeList ) {
-
-				// Rather than scanning all links, just the elements that
-				// contain the relevant links
-				this.updateTooltipAccessKeys(
-					$( '#column-one a, #mw-head a, #mw-panel a, #p-logo a' ) );
-
-				// these are rare enough that no such optimization is needed
-				this.updateTooltipAccessKeys( $( 'input' ) );
-				this.updateTooltipAccessKeys( $( 'label' ) );
-
-				return;
-
-			} else if ( nodeList instanceof $ ) {
-				$nodes = nodeList;
-			} else {
-				$nodes = $( nodeList );
+		updateTooltipAccessKeys: function( $nodes ) {
+			if ( !$nodes ) {
+				// Rather than going into a loop of all anchor tags, limit to few elements that
+				// contain the relevant anchor tags.
+				// Input and label are rare enough that no such optimization is needed
+				$nodes = $( '#column-one a, #mw-head a, #mw-panel a, #p-logo a, input, label' );
+			} else if ( !( $nodes instanceof $ ) ) {
+				$nodes = $( $nodes );
 			}
 
-			$nodes.each( function ( i ) {
-				var tip = $(this).attr( 'title' );
-				if ( !!tip && util.tooltipAccessKeyRegexp.exec( tip ) ) {
-					tip = tip.replace( util.tooltipAccessKeyRegexp,
-						'[' + util.tooltipAccessKeyPrefix + "$5]" );
-					$(this).attr( 'title', tip );
+			$nodes.attr( 'title', function( i, val ) {
+				if ( val && util.tooltipAccessKeyRegexp.exec( val ) ) {
+					return val.replace( util.tooltipAccessKeyRegexp,
+						'[' + util.tooltipAccessKeyPrefix + '$5]' );
 				}
+				return val;
 			} );
 		},
 
@@ -289,7 +275,7 @@
 		 * A jQuery object that refers to the page-content element
 		 * Populated by init().
 		 */
-		'$content' : null,
+		$content: null,
 
 		/**
 		 * Add a link to a portlet menu on the page, such as:
@@ -326,7 +312,7 @@
 		 * @return mixed The DOM Node of the added item (a ListItem or Anchor element,
 		 * depending on the skin) or null if no element was added to the document.
 		 */
-		'addPortletLink' : function( portlet, href, text, id, tooltip, accesskey, nextnode ) {
+		addPortletLink: function( portlet, href, text, id, tooltip, accesskey, nextnode ) {
 			var $item, $link, $portlet, $ul;
 
 			// Check if there's atleast 3 arguments to prevent a TypeError
@@ -347,7 +333,7 @@
 				$( '#quickbar' ).append( $link.after( '<br/>' ) );
 				return $link[0];
 			case 'nostalgia' :
-				$( '#searchform' ).before( $link).before( ' &#124; ' );
+				$( '#searchform' ).before( $link ).before( ' &#124; ' );
 				return $link[0];
 			default : // Skins like chick, modern, monobook, myskin, simple, vector...
 
@@ -410,7 +396,6 @@
 				} else if ( typeof nextnode === 'string' && $ul.find( nextnode ).length !== 0 ) {
 					$ul.find( nextnode ).eq( 0 ).before( $item );
 
-
 				// If the jQuery selector isn't found within the <ul>,
 				// or if nextnode was invalid or not passed at all,
 				// then just append it at the end of the <ul> (this is the default behaviour)
@@ -433,10 +418,8 @@
 		 * to allow CSS/JS to hide different boxes. null = no class used.
 		 * @return boolean True on success, false on failure.
 		 */
-		'jsMessage' : function( message, className ) {
-
+		jsMessage: function( message, className ) {
 			if ( !arguments.length || message === '' || message === null ) {
-
 				$( '#mw-js-message' ).empty().hide();
 				return true; // Emptying and hiding message is intended behaviour, return true
 
@@ -481,7 +464,7 @@
 		 * @return mixed Null if mailtxt was an empty string, otherwise true/false
 		 * is determined by validation.
 		 */
-		'validateEmail' : function( mailtxt ) {
+		validateEmail: function( mailtxt ) {
 			if( mailtxt === '' ) {
 				return null;
 			}
@@ -555,7 +538,7 @@
 		 * @param allowBlock boolean
 		 * @return boolean
 		 */
-		'isIPv4Address' : function( address, allowBlock ) {
+		isIPv4Address: function( address, allowBlock ) {
 			if ( typeof address !== 'string' ) {
 				return false;
 			}
@@ -574,7 +557,7 @@
 		 * @param allowBlock boolean
 		 * @return boolean
 		 */
-		'isIPv6Address' : function( address, allowBlock ) {
+		isIPv6Address: function( address, allowBlock ) {
 			if ( typeof address !== 'string' ) {
 				return false;
 			}
@@ -599,7 +582,8 @@
 			return address.search( new RegExp( '^' + RE_IPV6_ADD + block + '$' ) ) !== -1
 				&& address.search( /::/ ) !== -1 && address.search( /::.*::/ ) === -1;
 		}
-
 	};
+
+	mw.util = util;
 
 } )( jQuery, mediaWiki );
