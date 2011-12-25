@@ -205,7 +205,7 @@ class FileBackendMultiWrite extends FileBackendBase {
 	 */
 	function getFileTimestamp( array $params ) {
 		// Skip non-master for consistent timestamps
-		$realParams = $this->substOpPaths( $params, $backend );
+		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
 		return $this->backends[$this->masterIndex]->getFileTimestamp( $realParams );
 	}
 
