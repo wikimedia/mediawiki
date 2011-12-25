@@ -117,7 +117,7 @@ abstract class File {
 	 *
 	 * @param $old File Old file
 	 * @param $new string New name
-	 * 
+	 *
 	 * @return bool|null
 	 */
 	static function checkExtensionCompatibility( File $old, $new ) {
@@ -217,7 +217,7 @@ abstract class File {
 	public function getFullUrl() {
 		return wfExpandUrl( $this->getUrl(), PROTO_RELATIVE );
 	}
-	
+
 	public function getCanonicalUrl() {
 		return wfExpandUrl( $this->getUrl(), PROTO_CANONICAL );
 	}
@@ -475,7 +475,7 @@ abstract class File {
 
 	/**
 	 * Accessor for __get()
-	 * 
+	 *
 	 * @return bool
 	 */
 	protected function getIsSafeFile() {
@@ -891,10 +891,10 @@ abstract class File {
 
 	/**
 	 * Get the relative path for an archived file
-	 * 
+	 *
 	 * @param $suffix bool|string if not false, the name of an archived thumbnail file
 	 *
-	 * @return string 
+	 * @return string
 	 */
 	function getArchiveRel( $suffix = false ) {
 		$path = 'archive/' . $this->getHashPath();
@@ -909,7 +909,7 @@ abstract class File {
 	/**
 	 * Get the relative path for an archived file's thumbs directory
 	 * or a specific thumb if the $suffix is given.
-	 * 
+	 *
 	 * @param $archiveName string the timestamped name of an archived image
 	 * @param $suffix bool|string if not false, the name of a thumbnail file
 	 */

@@ -14,7 +14,7 @@
 class GIFHandler extends BitmapHandler {
 
 	const BROKEN_FILE = '0'; // value to store in img_metadata if error extracting metadata.
-	
+
 	function getMetadata( $image, $filename ) {
 		try {
 			$parsedGIFMetadata = BitmapMetadataHandler::GIF( $filename );
@@ -118,7 +118,7 @@ class GIFHandler extends BitmapHandler {
 		wfSuppressWarnings();
 		$metadata = unserialize($image->getMetadata());
 		wfRestoreWarnings();
-		
+
 		if (!$metadata || $metadata['frameCount'] <=  1) {
 			return $original;
 		}
@@ -126,19 +126,19 @@ class GIFHandler extends BitmapHandler {
 		/* Preserve original image info string, but strip the last char ')' so we can add even more */
 		$info = array();
 		$info[] = $original;
-		
+
 		if ( $metadata['looped'] ) {
 			$info[] = wfMsgExt( 'file-info-gif-looped', 'parseinline' );
 		}
-		
+
 		if ( $metadata['frameCount'] > 1 ) {
 			$info[] = wfMsgExt( 'file-info-gif-frames', 'parseinline', $metadata['frameCount'] );
 		}
-		
+
 		if ( $metadata['duration'] ) {
 			$info[] = $wgLang->formatTimePeriod( $metadata['duration'] );
 		}
-		
+
 		return $wgLang->commaList( $info );
 	}
 }
