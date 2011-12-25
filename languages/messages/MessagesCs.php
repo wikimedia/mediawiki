@@ -49,8 +49,6 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-    'Uživatelka'            => NS_USER,           # female complement
-    'Diskuse_s_uživatelkou' => NS_USER_TALK,      # female complement
     'Uživatel_diskuse'      => NS_USER_TALK,      # old literal translation backward compatibility
     'Uživatelka_diskuse'    => NS_USER_TALK,      # female complement to old literal translation style
     '$1_diskuse'            => NS_PROJECT_TALK,   # old literal translation backward compatibility
@@ -59,6 +57,11 @@ $namespaceAliases = array(
     'Šablona_diskuse'       => NS_TEMPLATE_TALK,  # old literal translation backward compatibility
     'Nápověda_diskuse'      => NS_HELP_TALK,      # old literal translation backward compatibility
     'Kategorie_diskuse'     => NS_CATEGORY_TALK,  # old literal translation backward compatibility
+);
+
+$namespaceGenderAliases = array(
+    NS_USER      => array( 'male' => 'Uživatel', 'female' => 'Uživatelka' ),
+    NS_USER_TALK => array( 'male' => 'Diskuse_s_uživatelem', 'female' => 'Diskuse_s_uživatelkou' ),
 );
 
 /**
