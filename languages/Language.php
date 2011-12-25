@@ -1660,7 +1660,7 @@ class Language {
 	 *            get user timecorrection setting)
 	 * @return int
 	 */
-	function userAdjust( $ts, $tz = false )	{
+	function userAdjust( $ts, $tz = false ) {
 		global $wgUser, $wgLocalTZoffset;
 
 		if ( $tz === false ) {
