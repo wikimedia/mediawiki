@@ -12232,7 +12232,7 @@ Berre bruk ASCII-bokstavar (a-z, A-Z), tal (0-9) og undestrekar (_).',
  * @author Jon Harald Søby
  * @author Nghtwlkr
  */
-$messages['no'] = array(
+$messages['nb'] = array(
 	'config-desc' => 'Installasjonsprogrammet for MediaWiki',
 	'config-title' => 'Installasjon av MediaWiki $1',
 	'config-information' => 'Informasjon',
