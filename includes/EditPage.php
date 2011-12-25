@@ -2447,7 +2447,7 @@ HTML
 				# If we're adding a comment, we need to show the
 				# summary as the headline
 				if ( $this->section == "new" && $this->summary != "" ) {
-					$toparse = "== {$this->summary} ==\n\n" . $toparse;
+					$toparse = wfMsgForContent( 'newsectionheaderdefaultlevel', $this->summary ) . "\n\n" . $toparse;
 				}
 
 				wfRunHooks( 'EditPageGetPreviewText', array( $this, &$toparse ) );
