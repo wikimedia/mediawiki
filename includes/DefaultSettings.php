@@ -4786,12 +4786,6 @@ $wgExtensionFunctions = array();
 $wgExtensionMessagesFiles = array();
 
 /**
- * Aliases for special pages provided by extensions.
- * @deprecated since 1.16 Use $specialPageAliases in a file referred to by $wgExtensionMessagesFiles
- */
-$wgExtensionAliasesFiles = array();
-
-/**
  * Parser output hooks.
  * This is an associative array where the key is an extension-defined tag
  * (typically the extension name), and the value is a PHP callback.
