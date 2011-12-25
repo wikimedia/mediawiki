@@ -1303,7 +1303,7 @@ Kokeile lisätä haun alkuun ''all:'', niin haku kohdistuu kaikkeen sisältöön
 'prefs-rc'                      => 'Tuoreet muutokset',
 'prefs-watchlist'               => 'Tarkkailulista',
 'prefs-watchlist-days'          => 'Tarkkailulistan ajanjakso',
-'prefs-watchlist-days-max'      => 'Enintään 7 päivää',
+'prefs-watchlist-days-max'      => 'Enintään $1 {{PLURAL:$1|päivä|päivää}}',
 'prefs-watchlist-edits'         => 'Tarkkailulistalla näytettävien muokkausten määrä',
 'prefs-watchlist-edits-max'     => 'Enintään 1000',
 'prefs-watchlist-token'         => 'Tarkkailulistan avain',
@@ -1719,6 +1719,35 @@ $1',
 'upload-unknown-size'       => 'Tuntematon koko',
 'upload-http-error'         => 'HTTP-virhe: $1',
 
+# File backend
+'backend-fail-stream'        => 'Tiedoston $1 virtauttaminen epäonnistui.',
+'backend-fail-backup'        => 'Tiedostoa $1 ei voitu varmuuskopioida.',
+'backend-fail-notexists'     => 'Tiedostoa $1 ei ole olemassa.',
+'backend-fail-hashes'        => 'Tiedostojen tarkisteita ei voitu käyttää.',
+'backend-fail-notsame'       => 'Epäidenttinen tiedosto on jo olemassa sijainnissa $1.',
+'backend-fail-invalidpath'   => '$1 ei ole sallittu tallennuspolku.',
+'backend-fail-delete'        => 'Tiedostoa $1 ei voitu poistaa.',
+'backend-fail-alreadyexists' => 'Tiedosto $1 on jo olemassa.',
+'backend-fail-store'         => 'Tiedostoa $1 ei voitu tallentaa polkuun $2.',
+'backend-fail-copy'          => 'Tiedostoa ei voitu kopioida kohteesta $1 kohteeseen $2.',
+'backend-fail-move'          => 'Tiedostoa ei voitu siirtää kohteesta $1 kohteeseen $2.',
+'backend-fail-opentemp'      => 'Väliaikaista tiedostoa ei voitu avata.',
+'backend-fail-writetemp'     => 'Väliaikaiseen tiedostoon ei voitu kirjoittaa.',
+'backend-fail-closetemp'     => 'Väliaikaista tiedostoa ei voitu sulkea.',
+'backend-fail-read'          => 'Tiedostoa $1 ei voitu lukea.',
+'backend-fail-create'        => 'Tiedostoa $1 ei voitu luoda.',
+
+# Lock manager
+'lockmanager-notlocked'        => 'Kohteen $1 lukitusta ei voitu poistaa, koska se ei ole lukittu.',
+'lockmanager-fail-closelock'   => 'Tiedoston $1 lukkotiedostoa ei voitu sulkea.',
+'lockmanager-fail-deletelock'  => 'Tiedoston $1 lukkotiedostoa ei voitu poistaa.',
+'lockmanager-fail-acquirelock' => 'Tiedostopolulle "$1" ei voitu luoda suojausta.',
+'lockmanager-fail-openlock'    => 'Tiedoston $1 lukkotiedostoa ei voitu avata.',
+'lockmanager-fail-releaselock' => 'Tiedoston $1 lukituksen avaaminen epäonnistui.',
+'lockmanager-fail-db-bucket'   => 'Ei voitu yhdistää riittävästi tietokantoja kohdassa $1.',
+'lockmanager-fail-db-release'  => 'Lukitusten vapauttaminen epäonnistui tietokannassa $1.',
+'lockmanager-fail-svr-release' => 'Lukitusten vapauttaminen epäonnistui palvelimella $1.',
+
 # ZipDirectoryReader
 'zip-file-open-error' => 'Tiedostossa havaittiin virhe, kun se avattiin ZIP-tarkastuksia varten.',
 'zip-wrong-format'    => 'Määritetty tiedosto ei ole ZIP-tiedosto.',
@@ -1735,6 +1764,7 @@ Sitä ei voida tarkistaa tietoturvan varalta kunnolla.',
 'uploadstash-badtoken' => 'Toiminnon suoritus epäonnistui. Tähän voi olla syynä muokkausvaltuuksien vanhentuminen. Yritä uudelleen.',
 'uploadstash-errclear' => 'Muistin tyhjennys epäonnistui.',
 'uploadstash-refresh'  => 'Päivitä tiedostoluettelo',
+'invalid-chunk-offset' => 'Kelpaamaton siirtymä lohkoissa',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Pääsy estetty',
@@ -1960,6 +1990,7 @@ Jokaisella rivillä on linkit ensimmäiseen ja toiseen ohjaukseen sekä toisen o
 'mostimages'              => 'Viitatuimmat tiedostot',
 'mostrevisions'           => 'Muokatuimmat sivut',
 'prefixindex'             => 'Kaikki sivut katkaisuhaulla',
+'prefixindex-namespace'   => 'Kaikki sivut etuliitteellä (nimiavaruus $1)',
 'shortpages'              => 'Lyhyet sivut',
 'longpages'               => 'Pitkät sivut',
 'deadendpages'            => 'Sivut, joilla ei ole linkkejä',
@@ -2048,9 +2079,9 @@ Katso myös [[Special:WantedCategories|halutut luokat]].',
 'linksearch-pat'   => 'Osoite',
 'linksearch-ns'    => 'Nimiavaruus',
 'linksearch-ok'    => 'Etsi',
-'linksearch-text'  => 'Asteriskia (*) voi käyttää jokerimerkkinä, esimerkiksi ”*.wikipedia.org”.
-
-Tuetut protokollat: <tt>$1</tt>.',
+'linksearch-text'  => 'Tähteä (*) voi käyttää jokerimerkkinä, esimerkiksi ”*.wikipedia.org”.
+Vähintään ylätason verkkotunnus, esimerkiksi "*.org", tarvitaan.<br />
+Tuetut protokollat: <tt>$1</tt> (älä lisää näitä hakuusi).',
 'linksearch-line'  => '$1 on linkitetty sivulta $2',
 'linksearch-error' => 'Jokerimerkkiä voi käyttää ainoastaan osoitteen alussa.',
 
@@ -2648,6 +2679,7 @@ Jälkimmäisessä tapauksessa voit myös käyttää linkkiä. Esimerkiksi sivun 
 'exportcuronly'     => 'Liitä mukaan ainoastaan uusin versio – ei koko historiaa.',
 'exportnohistory'   => '----
 Sivujen koko historian vienti on estetty suorituskykysyistä.',
+'exportlistauthors' => 'Lisää lista jokaisen sivun muokkaajista',
 'export-submit'     => 'Vie',
 'export-addcattext' => 'Lisää sivut luokasta',
 'export-addcat'     => 'Lisää',
@@ -2680,6 +2712,8 @@ Jos haluat muokata MediaWikin yleistä kotoistusta, käy [//www.mediawiki.org/wi
 'thumbnail_error'          => 'Pienoiskuvan luominen epäonnistui: $1',
 'djvu_page_error'          => 'DjVu-tiedostossa ei ole pyydettyä sivua',
 'djvu_no_xml'              => 'DjVu-tiedoston XML-vienti epäonnistui',
+'thumbnail-temp-create'    => 'Väliaikaisen esikatselukuvan luonti epäonnistui',
+'thumbnail-dest-create'    => 'Esikatselukuvaa ei voitu tallentaa kohteeseen',
 'thumbnail_invalid_params' => 'Virheelliset parametrit pienoiskuvalle',
 'thumbnail_dest_directory' => 'Kohdehakemiston luominen ei onnistunut',
 'thumbnail_image-type'     => 'Kuvamuoto ei ole tuettu',
@@ -3673,14 +3707,19 @@ Kuvat näytetään täysikokoisina. Muut tiedostot avataan niille määritetyss�
 'newuserlog-byemail'                  => 'salasana lähetetty sähköpostitse',
 
 # Feedback
-'feedback-subject' => 'Otsikko',
-'feedback-message' => 'Viesti',
-'feedback-cancel'  => 'Peruuta',
-'feedback-submit'  => 'Lähetä palaute',
-'feedback-adding'  => 'Lisätään palautetta sivulle...',
-'feedback-error1'  => 'Virhe: ohjelmointirajapinnan vastausta ei tunnistettu',
-'feedback-error2'  => 'Virhe: muokkaus epäonnistui',
-'feedback-error3'  => 'Virhe: ohjelmointirajapinta ei vastaa',
-'feedback-close'   => 'Valmis',
+'feedback-bugornote' => 'Jos voit kuvailla teknisen ongelman tarkasti, ole hyvä ja [$1 ilmoita ohjelmavirheestä].
+Muussa tapauksessa voit käyttää allaolevaa helpompaa lomaketta. Kommenttisi lisätään sivulle "[$3 $2]", ja siinä on mukana käyttäjätunnus ja käyttämäsi selain.',
+'feedback-subject'   => 'Otsikko',
+'feedback-message'   => 'Viesti',
+'feedback-cancel'    => 'Peruuta',
+'feedback-submit'    => 'Lähetä palaute',
+'feedback-adding'    => 'Lisätään palautetta sivulle...',
+'feedback-error1'    => 'Virhe: ohjelmointirajapinnan vastausta ei tunnistettu',
+'feedback-error2'    => 'Virhe: muokkaus epäonnistui',
+'feedback-error3'    => 'Virhe: ohjelmointirajapinta ei vastaa',
+'feedback-thanks'    => 'Kiitos, palautteesi on jätetty sivulle [$2 $1].',
+'feedback-close'     => 'Valmis',
+'feedback-bugcheck'  => 'Hyvä! Varmista vain, että ohjelmavirhe ei vielä löydy [$1 tästä listasta].',
+'feedback-bugnew'    => 'Varmistin. Ilmoitan uuden ohjelmavirheen',
 
 );

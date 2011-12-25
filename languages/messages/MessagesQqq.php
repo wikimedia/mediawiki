@@ -941,6 +941,7 @@ Parameters:
 {{doc-important|Do not translate \"<nowiki>[[User talk:\$1|\$1]]</nowiki>\" and ''Special:ChangePassword''.}}",
 'newarticle'                       => '{{Identical|New}}',
 'newarticletext'                   => "Text displayed above the edit box in editor when trying to create a new page.<br />'''Very important:''' leave <tt><nowiki>{{MediaWiki:Helppage}}</nowiki></tt> exactly as it is!",
+'anontalkpagetext'                 => 'Displayed at the bottom of talk pages of anonymous users.',
 'noarticletext'                    => 'This is the message that you get if you search for a term that has not yet got any entries on the wiki.
 
 See also {{msg-mw|Noarticletext-nopermission}}.',
@@ -1780,7 +1781,7 @@ Does not work under $wgMiserMode ([[mwr:48986|r48986]]).',
 'recentchangeslinked'         => 'Title of [[Special:RecentChangesLinked]] and display name of page on [[Special:SpecialPages]].',
 'recentchangeslinked-feed'    => 'Title of [[Special:RecentChangesLinked]] and display name of page on [[Special:SpecialPages]].',
 'recentchangeslinked-toolbox' => 'Title of [[Special:RecentChangesLinked]] and display name of page on [[Special:SpecialPages]].',
-'recentchangeslinked-title'   => 'Message used as title and page header on [[Special:RecentChangesLinked]] (needs an argument like "/Main Page"). Related changes are all recent change to pages that are linked from \'\'this page\'\'. "$1" is the name of the page for which related changes as show.',
+'recentchangeslinked-title'   => 'Message used as title and page header on [[Special:RecentChangesLinked]] (needs an argument like "/Main Page"). Related changes are all recent change to pages that are linked from \'\'this page\'\'. "$1" is the name of the page for which related changes are shown.',
 'recentchangeslinked-summary' => 'Summary of [[Special:RecentChangesLinked]].',
 'recentchangeslinked-page'    => '{{Identical|Page name}}',
 'recentchangeslinked-to'      => 'Checkbox in [[Special:RecentChangesLinked]].',
@@ -1902,23 +1903,23 @@ Extensions making use of it:
 * $1 is a filename.',
 
 # Lock manager
-'lockmanager-notlocked'         => 'Parameters:
+'lockmanager-notlocked'        => 'Parameters:
 * $1 is a resource path (e.g. "mwstore://media-public/a/ab/file.jpg").',
-'lockmanager-fail-closelock'    => 'Parameters:
+'lockmanager-fail-closelock'   => 'Parameters:
 * $1 is a resource path (e.g. "mwstore://media-public/a/ab/file.jpg").',
-'lockmanager-fail-deletelock'   => 'Parameters:
+'lockmanager-fail-deletelock'  => 'Parameters:
 * $1 is a resource path (e.g. "mwstore://media-public/a/ab/file.jpg").',
-'lockmanager-fail-acquirelock'  => 'Parameters:
+'lockmanager-fail-acquirelock' => 'Parameters:
 * $1 is a resource path (e.g. "mwstore://media-public/a/ab/file.jpg").',
-'lockmanager-fail-openlock'     => 'Parameters:
+'lockmanager-fail-openlock'    => 'Parameters:
 * $1 is a resource path (e.g. "mwstore://media-public/a/ab/file.jpg").',
-'lockmanager-fail-releaselock'  => 'Parameters:
+'lockmanager-fail-releaselock' => 'Parameters:
 * $1 is a resource path (e.g. "mwstore://media-public/a/ab/file.jpg").',
-'lockmanager-fail-db-bucket'    => 'Parameters:
+'lockmanager-fail-db-bucket'   => 'Parameters:
 * $1 is a bucket name.',
-'lockmanager-fail-db-release'   => 'Parameters:
+'lockmanager-fail-db-release'  => 'Parameters:
 * $1 is a database name.',
-'lockmanager-fail-svr-release'  => 'Parameters:
+'lockmanager-fail-svr-release' => 'Parameters:
 * $1 is a server name.',
 
 # ZipDirectoryReader

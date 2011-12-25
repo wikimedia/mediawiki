@@ -35,6 +35,7 @@
  * @author Szoszv
  * @author Tarikozket
  * @author Tarkovsky
+ * @author Universal Life
  * @author Urhixidur
  * @author Uğur Başak
  * @author Vito Genovese
@@ -675,11 +676,13 @@ Başka bir kullanıcı tarafından silinmiş olabilir.',
 Fonksiyon: $1<br />
 Sorgu: $2',
 'viewsource'           => 'Kaynağı gör',
+'viewsource-title'     => '$1 sayfasının kaynağını görüntüle',
 'actionthrottled'      => 'Eylem kısılmışdır',
 'actionthrottledtext'  => 'Anti-spam önlemleri nedeniyle, bir eylemi kısa bir zaman aralığında çok defa yapmanız kısıtlandı, ve siz sınırı aşmış bulunmaktasınız.
 Lütfen birkaç dakika sonra yeniden deneyin.',
 'protectedpagetext'    => 'Bu sayfa değişiklik yapılmaması için koruma altına alınmıştır.',
 'viewsourcetext'       => 'Bu sayfanın kaynağını görebilir ve kopyalayabilirsiniz:',
+'viewyourtext'         => "Bu sayfaya '''yaptığınız değişikliklerin''' kaynağını görünteleyip kopyalayabilirsiniz:",
 'protectedinterface'   => 'Bu sayfa yazılım için arayüz metni sağlamaktadır ve kötüye kullanımı önlemek için kilitlenmiştir.',
 'editinginterface'     => "'''UYARI:''' Yazılım için arayüz sağlamakta kullanılan bir sayfayı değiştirmektesiniz. Bu sayfadaki değişiklikler kullanıcı arayüzünü diğer kullanıcılar için de değiştirecektir. Çeviriler için, lütfen [//translatewiki.net/wiki/Main_Page?setlang=tr translatewiki.net]'yi kullanarak MediaWiki yerelleştirme projesini dikkate alınız.",
 'sqlhidden'            => '(SQL gizli sorgu)',
@@ -819,31 +822,40 @@ Girişi bitirmek için, burada yeni bir parola yazın:',
 'resetpass-temp-password'   => 'Geçici parola:',
 
 # Special:PasswordReset
-'passwordreset'              => 'Parola sıfırlama',
-'passwordreset-text'         => 'Hesap bilgilerinizin e-posta ile hatırlatılması için bu formu doldurunuz.',
-'passwordreset-legend'       => 'Şifreyi sıfırla',
-'passwordreset-disabled'     => 'Parola sıfırlamaları bu wiki üzerinde devre dışı bırakıldı.',
-'passwordreset-pretext'      => '{{PLURAL:$1||Aşağıdaki verilerden birini girin}}',
-'passwordreset-username'     => 'Kullanıcı adı:',
-'passwordreset-domain'       => 'Domain:',
-'passwordreset-capture'      => 'Sonuç e-postasını görüntüle?',
-'passwordreset-capture-help' => 'Bu kutuyu işaretlerseniz, e-posta (geçici şifre ile) size ve yanı sıra kullanıcıya gönderiliyor.',
-'passwordreset-email'        => 'E-posta adresi:',
-'passwordreset-emailtitle'   => '{{SITENAME}} hesap detayları',
-'passwordreset-emailtext-ip' => 'Birisi, (muhtemelen siz, $1 IP adresinden) {{SITENAME}} ($4) için hesap bilgilerinizin 
+'passwordreset'                    => 'Parola sıfırlama',
+'passwordreset-text'               => 'Hesap bilgilerinizin e-posta ile hatırlatılması için bu formu doldurunuz.',
+'passwordreset-legend'             => 'Şifreyi sıfırla',
+'passwordreset-disabled'           => 'Parola sıfırlamaları bu wiki üzerinde devre dışı bırakıldı.',
+'passwordreset-pretext'            => '{{PLURAL:$1||Aşağıdaki verilerden birini girin}}',
+'passwordreset-username'           => 'Kullanıcı adı:',
+'passwordreset-domain'             => 'Domain:',
+'passwordreset-capture'            => 'Sonuç e-postasını görüntüle?',
+'passwordreset-capture-help'       => 'Bu kutuyu işaretlerseniz, e-posta (geçici şifre ile) size ve yanı sıra kullanıcıya gönderiliyor.',
+'passwordreset-email'              => 'E-posta adresi:',
+'passwordreset-emailtitle'         => '{{SITENAME}} hesap detayları',
+'passwordreset-emailtext-ip'       => 'Birisi, (muhtemelen siz, $1 IP adresinden) {{SITENAME}} ($4) için hesap bilgilerinizin 
 hatırlatılmasını istedi. Aşağıdaki kullanıcı {{PLURAL:$3|hesabı|hesapları}} bu e-posta adresiyle ilişkili:
 
 $2
 
 {{PLURAL:$3|Bu geçici şifre|Bu geçici şifreler}} {{PLURAL:$5|bir gün|$5  gün}} geçerlidir.
 Bu geçici parola ile giriş yapın ve yeni bir şifre seçin. Şifre değişimini siz istemediyseniz veya şifrenizi hatırladıysanız ve artık şifrenizi değiştirmek istemiyorsanız; bu iletiyi önemsemeyerek eski şifrenizi kullanmaya devam edebilirsiniz.',
-'passwordreset-emailelement' => 'Kullanıcı adı: $1
+'passwordreset-emailtext-user'     => '$1 adlı kullanıcı, {{SITENAME}} ($4) için hesap bilgilerinizin hatırlatılmasını istedi. Aşağıdaki kullanıcı {{PLURAL:$3|hesabı|hesapları}} bu e-posta adresiyle ilişkili:
+
+$2
+
+{{PLURAL:$3|Bu geçici şifre|Bu geçici şifreler}} {{PLURAL:$5|bir gün|$5  gün}} geçerlidir.
+Bu geçici parola ile giriş yapın ve yeni bir şifre seçin. Bu talep bir başkasına aitse veya şifrenizi hatırladıysanız ve artık şifrenizi değiştirmek istemiyorsanız; bu iletiyi önemsemeyerek eski şifrenizi kullanmaya devam edebilirsiniz.',
+'passwordreset-emailelement'       => 'Kullanıcı adı: $1
 Geçici şifre: $2',
-'passwordreset-emailsent'    => 'Hatırlatma e-postası gönderildi.',
+'passwordreset-emailsent'          => 'Hatırlatma e-postası gönderildi.',
+'passwordreset-emailsent-capture'  => 'Aşağıda gözüktüğü gibi bir hatırlatma e-postası gönderilmiştir.',
+'passwordreset-emailerror-capture' => 'Aşağıda gözüktüğü gibi bir hatırlatma e-postası oluşturulmuştur ancak $1 adlı kullanıcıya gönderilememiştir.',
 
 # Special:ChangeEmail
 'changeemail'          => 'E-posta adresini değiştir',
 'changeemail-header'   => 'Hesabın e-posta adresini değiştirin',
+'changeemail-text'     => 'E-posta adresinizi değiştirmek için bu formu doldurun. Değişikliği onaylamak için parolanızı girmeniz gerekecektir.',
 'changeemail-no-info'  => 'Bu sayfaya doğrudan ulaşabilmek için oturum açmış olmalısınız.',
 'changeemail-oldemail' => 'Mevcut E-posta adresi:',
 'changeemail-newemail' => 'Yeni E-posta adresi:',
@@ -3708,12 +3720,16 @@ Resimler tam çözünürlükte görüntülenir, diğer dosya tipleri ilgili prog
 'newuserlog-byemail'      => 'e-posta yoluyla şifre gönderilmiştir',
 
 # Feedback
-'feedback-subject' => 'Konu:',
-'feedback-message' => 'Mesaj:',
-'feedback-cancel'  => 'İptal',
-'feedback-submit'  => 'Geribildirimi Gönder',
-'feedback-adding'  => 'Sayfaya geribildirim ekleniyor...',
-'feedback-error2'  => 'Hata: Düzenleme başarısız oldu',
-'feedback-error3'  => "Hata: API'den yanıt yok",
+'feedback-subject'  => 'Konu:',
+'feedback-message'  => 'Mesaj:',
+'feedback-cancel'   => 'İptal',
+'feedback-submit'   => 'Geribildirimi Gönder',
+'feedback-adding'   => 'Sayfaya geribildirim ekleniyor...',
+'feedback-error2'   => 'Hata: Düzenleme başarısız oldu',
+'feedback-error3'   => "Hata: API'den yanıt yok",
+'feedback-thanks'   => 'Teşekkürler! Görüşleriniz "[$2 $1]" sayfasında paylaşılmıştır.',
+'feedback-close'    => 'Tamamlandı',
+'feedback-bugcheck' => 'Harika! Sadece [bilinen $1 hatalarından] olmadığını kontrol et.',
+'feedback-bugnew'   => 'Kontrol ettim. Yeni hata bildir',
 
 );

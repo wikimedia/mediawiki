@@ -2746,6 +2746,8 @@ U potonjem slučaju možete koristiti i poveznicu, npr. [[{{#Special:Export}}/{{
 'thumbnail_error'          => 'Pogreška pri izradbi sličice: $1',
 'djvu_page_error'          => "DjVu stranica nije dohvatljiva (''out of range'')",
 'djvu_no_xml'              => 'Ne mogu dohvatiti XML za DjVu datoteku',
+'thumbnail-temp-create'    => 'Stvaranje privremene datoteke za smanjenu sliku ("mini") nije moguće.',
+'thumbnail-dest-create'    => 'Spremanje smanjene slike ("thumbnail") na ponuđenu mjesto nije moguće.',
 'thumbnail_invalid_params' => "Nevaljani parametri za smanjenu sliku (''thumbnail'')",
 'thumbnail_dest_directory' => 'Ne mogu stvoriti ciljni direktorij',
 'thumbnail_image-type'     => 'Tip slike nije podržan',

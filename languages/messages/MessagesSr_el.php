@@ -1764,16 +1764,15 @@ Ako se problem ne reši, kontaktirajte [[Special:ListUsers/sysop|administratora]
 'backend-fail-create'        => 'Ne mogu da napravim datoteku $1.',
 
 # Lock manager
-'lockmanager-notlocked'         => 'Ne mogu da otključam ključ „$1“ jer nije zaključan.',
-'lockmanager-fail-closelock'    => 'Ne mogu da zatvorim katanac za ključ „$1“.',
-'lockmanager-fail-deletelock'   => 'Ne mogu da obrišem katanac za ključ „$1“.',
-'lockmanager-fail-acquirelock'  => 'Ne mogu da dobijem katanac za ključ „$1“.',
-'lockmanager-fail-openlock'     => 'Ne mogu da otvorim katanac za ključ „$1“.',
-'lockmanager-fail-releaselock'  => 'Ne mogu da oslobodim katanac za ključ „$1“.',
-'lockmanager-fail-acquirelocks' => 'Ne mogu da dobijem katance za ključeve „$1“.',
-'lockmanager-fail-db-bucket'    => 'Ne mogu da kontaktiram s dovoljno katanaca u kanti $1.',
-'lockmanager-fail-db-release'   => 'Ne mogu da oslobodim katance u bazi $1.',
-'lockmanager-fail-svr-release'  => 'Ne mogu da oslobodim katance na serveru $1.',
+'lockmanager-notlocked'        => 'Ne mogu da otključam „$1“ jer nije zaključan.',
+'lockmanager-fail-closelock'   => 'Ne mogu da zatvorim katanac za „$1“.',
+'lockmanager-fail-deletelock'  => 'Ne mogu da obrišem katanac za „$1“.',
+'lockmanager-fail-acquirelock' => 'Ne mogu da dobijem katanac za „$1“.',
+'lockmanager-fail-openlock'    => 'Ne mogu da otvorim katanac za „$1“.',
+'lockmanager-fail-releaselock' => 'Ne mogu da oslobodim katanac za „$1“.',
+'lockmanager-fail-db-bucket'   => 'Ne mogu da kontaktiram s dovoljno katanaca u kanti $1.',
+'lockmanager-fail-db-release'  => 'Ne mogu da oslobodim katance u bazi $1.',
+'lockmanager-fail-svr-release' => 'Ne mogu da oslobodim katance na serveru $1.',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'Došlo je do greške pri otvaranju datoteke za proveru ZIP arhive.',

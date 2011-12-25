@@ -1186,7 +1186,7 @@ Denkt w.e.g drunn datt d'Navigatiounslinken d'Wiel vun de Versiounen nees zréck
 'prefs-rc'                      => 'Rezent Ännerungen',
 'prefs-watchlist'               => 'Iwwerwaachungslëscht',
 'prefs-watchlist-days'          => 'Zuel vun den Deeg, déi an der Iwwerwaachungslëscht ugewise solle ginn:',
-'prefs-watchlist-days-max'      => 'Maximal 7 Deeg',
+'prefs-watchlist-days-max'      => 'Maximal $1 {{PLURAL:$1|Dag|Deeg}}',
 'prefs-watchlist-edits'         => 'Maximal Zuel vun den Ännerungen déi an der erweiderter Iwwerwaachungslëscht ugewise solle ginn:',
 'prefs-watchlist-edits-max'     => 'Maximal Zuel: 1000',
 'prefs-watchlist-token'         => 'Iwwerwaachungslëscht-Token:',
@@ -1618,6 +1618,7 @@ Wann de Problem weider besteet, dann un de [[Special:ListUsers/sysop|Administrat
 'upload-http-error'         => 'Et ass en HTTP-Feeler geschitt: $1',
 
 # File backend
+'backend-fail-stream'        => 'De Fichier $1 konnt net iwwerdroe ginn.',
 'backend-fail-backup'        => 'De Fichier $1 konnt net geséchert ginn.',
 'backend-fail-notexists'     => 'De Fichier $1 gëtt et net.',
 'backend-fail-notsame'       => 'Et gëtt schonn en net-identesche Fichier op $1.',
@@ -1631,6 +1632,13 @@ Wann de Problem weider besteet, dann un de [[Special:ListUsers/sysop|Administrat
 'backend-fail-closetemp'     => 'Den temporäre Fichier konnt net zougemaach ginn.',
 'backend-fail-read'          => 'De Fichier $1 konnt net geliest ginn.',
 'backend-fail-create'        => 'De Fichier $1 konnt net ugeluecht ginn.',
+
+# Lock manager
+'lockmanager-notlocked'        => '"$1" konnt net fräigeschalt ginn; $1 ass net gespaart.',
+'lockmanager-fail-closelock'   => 'De Spärfichier fir "$1" konnt net zougemaach ginn.',
+'lockmanager-fail-deletelock'  => 'De Spärfichier fir "$1" konnt net geläscht ginn.',
+'lockmanager-fail-db-release'  => "D'Spären op der Datebank $1 konnten net fräigeschalt ginn.",
+'lockmanager-fail-svr-release' => "D'Spären um Server $1 konnten net fräigeschalt ginn.",
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'Beim Opmaache vum ZIP-Fichier ass e Feeler geschitt.',
@@ -3608,15 +3616,17 @@ Den ugefrote Fichier gëtt direkt gewise respektiv mat enger verbonner Applikati
 'newuserlog-byemail'                  => "d'Passwuert gouf per E-Mail geschéckt",
 
 # Feedback
-'feedback-subject' => 'Sujet:',
-'feedback-message' => 'Message:',
-'feedback-cancel'  => 'Ofbriechen',
-'feedback-submit'  => 'Feedback schécken',
-'feedback-adding'  => "Feedback gëtt bäi d'Säit derbäigesat...",
-'feedback-error1'  => 'Feeler: Resultat vum API gouf net erkannt',
-'feedback-error2'  => "Feeler: D'Ännerung gouf net gespäichert",
-'feedback-error3'  => 'Feeler: Keng Äntwert vum API',
-'feedback-thanks'  => 'Merci! Äre Feedback gouf op der Säit "[$2 $1]" gespäichert.',
-'feedback-close'   => 'Fäerdeg',
+'feedback-subject'  => 'Sujet:',
+'feedback-message'  => 'Message:',
+'feedback-cancel'   => 'Ofbriechen',
+'feedback-submit'   => 'Feedback schécken',
+'feedback-adding'   => "Feedback gëtt bäi d'Säit derbäigesat...",
+'feedback-error1'   => 'Feeler: Resultat vum API gouf net erkannt',
+'feedback-error2'   => "Feeler: D'Ännerung gouf net gespäichert",
+'feedback-error3'   => 'Feeler: Keng Äntwert vum API',
+'feedback-thanks'   => 'Merci! Äre Feedback gouf op der Säit "[$2 $1]" gespäichert.',
+'feedback-close'    => 'Fäerdeg',
+'feedback-bugcheck' => 'Super! Kuckt just no ob et net ee vun de schonns [$1 bekannte Feeler] ass.',
+'feedback-bugnew'   => 'Ech hunn et nogekuckt. Den neie Bug mellen',
 
 );

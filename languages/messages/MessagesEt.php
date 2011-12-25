@@ -651,6 +651,7 @@ Päring: $2',
 Palun proovi mõne minuti pärast uuesti.',
 'protectedpagetext'    => 'See lehekülg on lukustatud, et muudatusi ei tehtaks.',
 'viewsourcetext'       => 'Saad vaadata ja kopeerida lehekülje lähteteksti:',
+'viewyourtext'         => "Saad vaadata ja kopeerida sellel leheküljel tehtud '''enda muudatuste '''lähteteksti:",
 'protectedinterface'   => 'Sellel leheküljel on tarkvara kasutajaliidese tekst. Kuritahtliku muutmise vältimiseks on lehekülg lukustatud.',
 'editinginterface'     => "'''Hoiatus:''' Te redigeerite tarkvara kasutajaliidese tekstiga lehekülge. Muudatused siin mõjutavad kõikide kasutajate kasutajaliidest. Tõlkijad, palun kaaluge MediaWiki tõlkimisprojekti – [//translatewiki.net/wiki/Main_Page?setlang=et translatewiki.net] kasutamist.",
 'sqlhidden'            => '(SQL päring peidetud)',
@@ -916,11 +917,12 @@ Palun mõtle järele, kas soovid seda lehte luua või muuta.',
 'userpage-userdoesnotexist-view'   => 'Kasutajakonto "$1" pole registreeritud.',
 'blocked-notice-logextract'        => 'See kasutaja on praegu blokeeritud.
 Allpool on toodud viimane blokeerimislogi sissekanne:',
-'clearyourcache'                   => "'''Märkus: Võimalik, et pärast salvestamist tuleb muudatuste nägemiseks veebilehitseja puhver tühjendada.'''
-'''Mozilla / Firefox / Safari:''' Hoia all ''Shift''-klahvi ja klõpsa ''Laadi uuesti'' või vajuta kas ''Ctrl-F5'' või ''Ctrl-R'' (Macis ''Command-R'').
-'''Konqueror:''' Klõpsa ''Reload'' või vajuta ''F5'';
-'''Opera:''' Tühjenda puhver asukohas ''Seaded → Eelistused'';
-'''Internet Explorer:''' Hoia all ''Ctrl''-klahvi ja klõpsa ''Värskenda'' või vajuta ''Ctrl-F5''.",
+'clearyourcache'                   => "'''Märkus:''' Võimalik, et pärast salvestamist tuleb muudatuste nägemiseks veebilehitseja puhver tühjendada.
+* '''Firefox / Safari:''' Hoia all ''Shift''-klahvi ja klõpsa ''Laadi uuesti'' või vajuta kas ''Ctrl-F5'' või ''Ctrl-R'' (Macis ''⌘-R'').
+* '''Google Chrome:''' Vajuta ''Ctrl-Shift-R'' (Macis ''⌘-Shift-R'').
+* '''Internet Explorer:''' Hoia all ''Ctrl''-klahvi ja klõpsa ''Värskenda'' või vajuta ''Ctrl-F5''.
+* '''Konqueror:''' Klõpsa ''Reload'' või vajuta ''F5''.
+* '''Opera:''' Tühjenda puhver asukohas ''Seaded → Eelistused''.",
 'usercssyoucanpreview'             => "'''Vihje:''' Enne salvestamist kasuta oma uue CSSi proovimiseks nuppu \"{{int:showpreview}}\".",
 'userjsyoucanpreview'              => "'''Vihje:''' Enne salvestamist kasuta oma uue JavaScripti proovimiseks nuppu \"{{int:showpreview}}\".",
 'usercsspreview'                   => "'''Ära unusta, et seda versiooni sinu isiklikust stiililehest pole veel salvestatud!'''",
@@ -1305,7 +1307,7 @@ Pane tähele, et Google'is talletatud {{GRAMMAR:genitive|{{SITENAME}}}} sisu võ
 'prefs-rc'                      => 'Viimased muudatused',
 'prefs-watchlist'               => 'Jälgimisloend',
 'prefs-watchlist-days'          => 'Mitme päeva muudatusi näidata loendis:',
-'prefs-watchlist-days-max'      => 'Ülemmäär 7 päeva',
+'prefs-watchlist-days-max'      => 'Ülemmäär $1 {{PLURAL:$1|päev|päeva}}',
 'prefs-watchlist-edits'         => 'Mitu muudatust näidatakse laiendatud jälgimisloendis:',
 'prefs-watchlist-edits-max'     => 'Ülemmäär: 1000',
 'prefs-watchlist-token'         => 'Jälgimisloendi tunnus:',
@@ -1553,6 +1555,7 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 'action-userrights'           => 'kõiki kasutajaõigusi muuta',
 'action-userrights-interwiki' => 'teiste vikide kasutajate õigusi muuta',
 'action-siteadmin'            => 'andmebaasi lukustada või avada',
+'action-sendemail'            => 'e-kirju saata',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|muudatus|muudatust}}',
@@ -1735,6 +1738,26 @@ Kui probleem ei kao, võta ühendust [[Special:ListUsers/sysop|administraatoriga
 'upload-too-many-redirects' => 'URL sisaldas liiga palju ümbersuunamisi',
 'upload-unknown-size'       => 'Tundmatu suurus',
 'upload-http-error'         => 'HTTP-viga: $1',
+
+# File backend
+'backend-fail-notexists'     => 'Faili $1 pole olemas.',
+'backend-fail-invalidpath'   => '$1 pole sobiv talletustee.',
+'backend-fail-delete'        => 'Faili $1 ei saa kustutada.',
+'backend-fail-alreadyexists' => 'Fail $1 on juba olemas.',
+'backend-fail-store'         => 'Faili $1 ei saa talletada asukohas $2.',
+'backend-fail-copy'          => 'Faili $1 ei saa kopeerida asukohta $2.',
+'backend-fail-move'          => 'Faili $1 ei saa teisaldada asukohta $2.',
+'backend-fail-opentemp'      => 'Ajutist faili ei saa avada.',
+'backend-fail-writetemp'     => 'Ajutist faili ei saa kirjutada.',
+'backend-fail-closetemp'     => 'Ajutist faili ei saa sulgeda.',
+'backend-fail-read'          => 'Faili $1 ei saa lugeda.',
+'backend-fail-create'        => 'Faili $1 ei saa luua.',
+
+# Lock manager
+'lockmanager-notlocked'       => 'Rada "$1" ei saa lukust lahti teha, sest see pole lukus.',
+'lockmanager-fail-closelock'  => 'Raja "$1" lukustusfaili ei saa sulgeda.',
+'lockmanager-fail-deletelock' => 'Raja "$1" lukustusfaili ei saa kustutada.',
+'lockmanager-fail-openlock'   => 'Raja "$1" lukustusfaili ei saa avada.',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'Faili avamisel ZIP-kontrolliks tekkis tõrge.',
@@ -1981,6 +2004,7 @@ Igal real on ära toodud esimene ja teine ümbersuunamisleht ning samuti teise �
 'mostimages'              => 'Kõige kasutatumad failid',
 'mostrevisions'           => 'Kõige pikema redigeerimislooga leheküljed',
 'prefixindex'             => 'Kõik pealkirjad eesliitega',
+'prefixindex-namespace'   => 'Kõik pealkirjad eesliitega (nimeruumis $1)',
 'shortpages'              => 'Lühikesed leheküljed',
 'longpages'               => 'Pikad leheküljed',
 'deadendpages'            => 'Edasipääsuta leheküljed',
@@ -2732,6 +2756,7 @@ Kui soovid MediaWiki tarkvara tõlkimises osaleda siis vaata lehti [//www.mediaw
 'thumbnail_error'          => 'Viga pisipildi loomisel: $1',
 'djvu_page_error'          => 'DjVu-failis ei ole sellist lehekülge',
 'djvu_no_xml'              => 'DjVu failist XML-i lugemine ebaõnnestus.',
+'thumbnail-temp-create'    => 'Ajutist pisipildifaili ei õnnestu luua.',
 'thumbnail_invalid_params' => 'Vigased pisipildi parameetrid',
 'thumbnail_dest_directory' => 'Sihtkataloogi loomine ebaõnnestus.',
 'thumbnail_image-type'     => 'Selline pildi tüüp ei ole toetatav',
@@ -3676,16 +3701,26 @@ Pilt kuvatakse algupärases suuruses, muu fail avatakse koheselt seostuva progra
 'logentry-move-move-noredirect'     => '$1 {{GENDER:$2|teisaldas}} lehekülje $3 pealkirja $4 alla ümbersuunamist maha jätmata',
 'logentry-patrol-patrol'            => '$1 {{GENDER:$2|märkis}} lehekülje $3 redaktsiooni $4 kontrollituks',
 'logentry-patrol-patrol-auto'       => '$1 {{GENDER:$2|märkis}} automaatselt lehekülje $3 redaktsiooni $4 kontrollituks',
+'logentry-newusers-newusers'        => '$1 {{GENDER:$2|tegi}} kasutajakonto',
+'logentry-newusers-create'          => '$1 {{GENDER:$2|tegi}} kasutajakonto',
+'logentry-newusers-create2'         => '$1 {{GENDER:$2|tegi}} {{GENDER:$4|kasutajakonto}} $3',
+'logentry-newusers-autocreate'      => 'Konto $1 {{GENDER:$2|loodi}} automaatselt',
 'newuserlog-byemail'                => 'parool saadetud e-postiga',
 
 # Feedback
-'feedback-subject' => 'Teema:',
-'feedback-message' => 'Sõnum:',
-'feedback-cancel'  => 'Loobu',
-'feedback-submit'  => 'Saada tagasiside',
-'feedback-adding'  => 'Tagasiside lisamine leheküljele...',
-'feedback-error1'  => 'Tõrge: Tundmatu API tulemus',
-'feedback-error2'  => 'Tõrge: Redigeerimine ebaõnnestus',
-'feedback-error3'  => 'Tõrge: API ei vasta',
+'feedback-bugornote' => 'Kui arvad, et oskad tehnilist probleemi üksikasjalikult kirjeldada, [$1 teata veast].
+Kui ei, kasuta allolevat lihtsat vormi. Sinu kommentaar lisatakse koos kasutajanime ja teabega kasutatava võrgulehitsejaga kohta leheküljele "[$3 $2]".',
+'feedback-subject'   => 'Teema:',
+'feedback-message'   => 'Sõnum:',
+'feedback-cancel'    => 'Loobu',
+'feedback-submit'    => 'Saada tagasiside',
+'feedback-adding'    => 'Tagasiside lisamine leheküljele...',
+'feedback-error1'    => 'Tõrge: Tundmatu API tulemus',
+'feedback-error2'    => 'Tõrge: Redigeerimine ebaõnnestus',
+'feedback-error3'    => 'Tõrge: API ei vasta',
+'feedback-thanks'    => 'Aitäh! Sinu tagasiside on postitatud leheküljele "[$2 $1]".',
+'feedback-close'     => 'Valmis',
+'feedback-bugcheck'  => 'Hästi! Kontrolli vaid, ega tegu pole juba [$1 teada oleva veaga].',
+'feedback-bugnew'    => 'Kontrollisin. Teata uuest veast',
 
 );
