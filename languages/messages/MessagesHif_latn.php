@@ -379,11 +379,13 @@ Iske, URL ke likh ke, koi administrator ke report karo.',
 Function: $1<br />
 Query: $2',
 'viewsource'           => 'Source dekho',
+'viewsource-title'     => '"$1" ke source dekho',
 'actionthrottled'      => 'Kaam ke band kar dewa gais hai',
 'actionthrottledtext'  => 'Spam ke virod me, aap ke ii kaam thora deri me bahut time kare ke rukawat hai, aur aap time limit ke exceed kar diya hai.
 Kuch deri be baad fir se kosis karna.',
 'protectedpagetext'    => 'Ii panna ke badlao ke roke ke khatir band kar dewa gais hai.',
 'viewsourcetext'       => 'Aap ii panna ke source ke dekhe aur nakal utare kare sakta hai:',
+'viewyourtext'         => "Aap '''aapan badlao''' ke source ke dekhe aur copy kare saktaa hae",
 'protectedinterface'   => 'Ii panna software ke interface text dewe hai, aur iske barbaadi se roke ke khatir band kar dewa gais hai.',
 'editinginterface'     => "'''Chetawani:''' Aap ek panna ke badaltaa hai jon ki software ke interface text dewe hae.
 Ii panna me badlao ke asar duusra sadasya ke interface ke bhi hoi.
@@ -489,6 +491,7 @@ Ii sab feature khatir koi e-mail nai bheja jaai.',
 'emailconfirmlink'           => 'aapan e-mail address ke confirm karo',
 'invalidemailaddress'        => 'E-mail address ke nai lewa jae sake hai kahe ki iske format kharaab hai.
 Meharbaani kar ke achchha address ke enter karo nai to uu field ke khali kar do.',
+'cannotchangeemail'          => 'Ii wiki me account e-mail ke badla nai jaawe sake hae',
 'accountcreated'             => 'Account banae dewa gais hai',
 'accountcreatedtext'         => '$1 khatir user account banae dewa gais hai.',
 'createaccount-title'        => '{{SITENAME}} khatir account creation',
@@ -537,6 +540,12 @@ Sait aap password ke safalta se badal sia hoga nai to nawaa temporary password k
 'passwordreset-capture-help'       => 'Agar aap ii box ke tick karaa, tab e-mail (aur uske saathe temporary password)  ke aap ke ii rakam se dekhawa jaai jaise ki iske sadasya ke lage bhej dewa gais hae.',
 'passwordreset-email'              => 'E-mail ke address',
 'passwordreset-emailtitle'         => '{{SITENAME}} me account ke jaankari',
+'passwordreset-emailtext-ip'       => 'Koi (hoe sake aap, IP address $1 se) {{SITENAME}} ($4) pe aap ke account ke baare me jaankari maanga hae. Niche likha gias sadasya ii e-mail se associated hae.  {{PLURAL:$3|account hae|accounts hae}}
+
+$2
+
+{{PLURAL:$3|Ii temporary password|Ii sab temporary passwords}}  {{PLURAL:$5|ek din|$5 din}} me khalaas hoi.
+Aap ke chaahi ki aap login kar ke ek nawaa password banao.  Agar aur koi ii request karis hae, nai to agae aap aapan purana paasword ke yaad kar liya hae, tab ii sandes ke baare me bhuul jaao aur purana password use karte raho.',
 'passwordreset-emailelement'       => 'Sadasya ke naam: $1
 Kuchh din ke khatir password: $2',
 'passwordreset-emailsent'          => 'Aap ke yaad karae ke khatir ek e-mail ke bhej dewa gais hae.',
@@ -826,28 +835,29 @@ Try karo [[Special:Search|wiki me khije ke]] aur nawaa panna ke.',
 'rev-deleted-user-contribs'   => '[Sadasya ke naam nai to IP address ke hatae dewa gais hae- yogdaan se badlao ke lukae dewa gais hae]',
 'rev-deleted-text-permission' => "Panna ke ii badlao ke '''mitae''' dewa gais hae.
 Iske baare me aur jaankari [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log] me saait hoi.",
-'rev-deleted-text-unhide'     => "Ii panna ke badlao ke '''mitae''' dewa gais hai.
+'rev-deleted-text-unhide'     => "i panna ke badlao ke '''mitae''' dewa gais hai.
 Iske baare me aur jaankari saait [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log] me hoi.
-Ek administrator rahe se aap fir bhi [$1 ii badlao ke dekhe sakta hae] agar aap aage barrhe mangtaa hae tab.",
+Aap fir bhi [$1 ii badlao ke dekhe sakta hae] agar aap aage barrhe mangtaa hae tab.",
 'rev-suppressed-text-unhide'  => "Ii panna ke badlao ke '''dabae''' dewa gais hai.
 Iske baare me aur jaankari saait [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log] me hoi.
-Ek administrator rahe se aap fir bhi [$1 ii badlao ke dekhe sakta hae] agar aap aage barrhe mangtaa hae tab.",
+Aap fir bhi [$1 ii badlao ke dekhe sakta hae] agar aap aage barrhe mangtaa hae tab.",
 'rev-deleted-text-view'       => "Panna ke ii badlao ke '''mitae''' dewa gais hae.
-Aap ek administrator hoe ke kaaran iske dekhe sakta hai; iske baare me aur jaankari [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log] me saait hoi.",
+Aap iske dekhe sakta hai; iske baare me aur jaankari [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log] me saait hoi.",
 'rev-suppressed-text-view'    => "Ii panna ke badlao ke '''dabae''' dewa gais hai.
-Ek administrator rahe ke kaaran aap iske dekhe saktaa hae; Iske baare me aur jaankari saait [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log] me hoi.",
+Aap iske dekhe saktaa hae; Iske baare me aur jaankari saait [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log] me hoi.",
 'rev-deleted-no-diff'         => "Aap ii diff ke nai dekhe saktaa hai kahe ki ek badlao '''mitae''' dewa gais hae.
 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log] me sait kuch aur jaankari hoi.",
 'rev-suppressed-no-diff'      => "Aap ii antar ke nahi dekhe sakta hae, kahe ki ek badlao ke '''mitae''' dewa gais hae.",
 'rev-deleted-unhide-diff'     => "Ii diff me se ek badlao ke '''mitae''' dewa gais hae.
 Aur jaankari saait [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log] me hoi.
-Ek administrator hoe ke kaaran aap fir bhi [$1 ii diff ke dekhe sakta hae] agar aap aage barrhe mangtaa hai tab.",
-'rev-suppressed-unhide-diff'  => 'Ii antar me ke ek balao ke nai dekhawa jaae hae.
+Aap fir bhi [$1 ii diff ke dekhe sakta hae] agar aap aage barrhe mangtaa hai tab.",
+'rev-suppressed-unhide-diff'  => "Ii antar me ke ek balao ke '''dabae''' dewa gais hae.
 Iske baare me aur jaankari [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log] me milii.
-Ek administrator hoe ke kaaran aap [$1 view this diff] ke dekehe saktaa hae',
+Aap [$1 ke dekehe saktaa hae]  agar aap aage barrhae mantaa hae tab.",
 'rev-deleted-diff-view'       => "Ii antar ke ek badlao ke '''mitae''' dwa gais hae.
-Ek administrator hoe ke kaaran aap ii antar ke dekhe sakta hae; saait [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log] me saait aur jaankari hoe.",
-'rev-suppressed-diff-view'    => "Ii antar ke ek badlao ke '''lukae''' dewa gais hae.",
+Aap ii antar ke dekhe sakta hae; saait [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log] me saait aur jaankari hoe.",
+'rev-suppressed-diff-view'    => "Ii antar ke ek badlao ke '''dabae''' dewa gais hae.
+Aap ii diff ke dekhe saktaa hae: iske baare me aur jaan kaari [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log] me milii.",
 'rev-delundel'                => 'dekhao/lukao',
 'rev-showdeleted'             => 'dekhao',
 'revisiondelete'              => 'Badlao ke mitao/nai mitao',
@@ -915,7 +925,7 @@ Meharbani ka ke logs ke check karo.',
 # Suppression log
 'suppressionlog'     => 'Dabae waala log',
 'suppressionlogtext' => 'Niche ke suchi me administrators se lukawa gais deletions au rukawat hae.
-Abhi ke laabu rukawat ke suchi ke khatir [[Special:IPBlockList|IP block list]] ke dekho.',
+Abhi ke laabu rukawat ke suchi ke khatir [[Special:BlockList|IP block list]] ke dekho.',
 
 # History merging
 'mergehistory'                     => 'Panna ke itihass ke jorro',
@@ -1052,7 +1062,7 @@ Yaad rakhna ki uu log ke {{SITENAME}} ke index saait purana hoi.',
 'prefs-rc'                      => 'Nawaa badlao',
 'prefs-watchlist'               => 'Dhyan suchi',
 'prefs-watchlist-days'          => 'Dhyan suchi me ketna roj dekhawa jaae:',
-'prefs-watchlist-days-max'      => 'Jaada se jaada 7 din',
+'prefs-watchlist-days-max'      => 'Jaada se jaada $1 {{PLURAL:$1|din|din}}',
 'prefs-watchlist-edits'         => 'Barraa dhyan suchi me jaada se jaada ketna badlao dekhawa jaae:',
 'prefs-watchlist-edits-max'     => 'Jaada se jaada: 1000',
 'prefs-watchlist-token'         => 'Dhyan suchi ke nisani:',
@@ -1185,12 +1195,12 @@ Iske $1 {{PLURAL:$1|character|characters}} se kamti rahe ke chaahi.',
 'group-suppress'      => 'Oversights',
 'group-all'           => '(sab)',
 
-'group-user-member'          => 'Sadasya',
-'group-autoconfirmed-member' => 'Autoconfirmed sadasya',
-'group-bot-member'           => 'Bot',
-'group-sysop-member'         => 'Sysop',
-'group-bureaucrat-member'    => 'Bureaucrat',
-'group-suppress-member'      => 'Oversight',
+'group-user-member'          => '{{GENDER:$1|sadasya}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|autoconfirmed sadasya}}',
+'group-bot-member'           => '{{GENDER:$1|bot}}',
+'group-sysop-member'         => '{{GENDER:$1|administrator}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|bureaucrat}}',
+'group-suppress-member'      => '{{GENDER:$1|oversight}}',
 
 'grouppage-user'          => '{{ns:project}}:Sadasya',
 'grouppage-autoconfirmed' => '{{ns:project}}:Autoconfirmed sadasya',
@@ -1292,6 +1302,7 @@ Iske $1 {{PLURAL:$1|character|characters}} se kamti rahe ke chaahi.',
 'action-suppressionlog'       => 'ii private log ke dekho',
 'action-block'                => 'ii sadasya ke panna badle se roko',
 'action-protect'              => 'ii panna ke protection levels ke badlo',
+'action-rollback'             => 'jaldi se pichhla sadasya, jon ki koi panna ke badlis rahaa, ke badlao ke pahile jaise kar do',
 'action-import'               => 'duusra wiki me se ii panna ke import karo',
 'action-importupload'         => 'ek file upload se ii panna ke import karo',
 'action-patrol'               => 'duusra jan ke badlao pe pahraa do',

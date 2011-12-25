@@ -117,6 +117,8 @@ $messages = array(
 'tog-highlightbroken'         => 'Brúka reyða ávísing til tómar síður',
 'tog-justify'                 => 'Stilla greinpart',
 'tog-hideminor'               => 'Goym minni broytingar í seinast broytt listanum',
+'tog-hidepatrolled'           => 'Goym eftirkannaðar rættingar í seinastu broytingum',
+'tog-newpageshidepatrolled'   => 'Goym eftirkannaðar síður frá listanum yvir nýggjar síður',
 'tog-extendwatchlist'         => 'Víðka eftirlitslistan fyri at vísa allar broytingar, ikki bara tær seinastu',
 'tog-usenewrc'                => 'Nýt betraðar seinastu broytingar (krevur JavaScript)',
 'tog-numberheadings'          => 'Sjálvtalmerking av yvirskrift',
@@ -129,6 +131,7 @@ $messages = array(
 'tog-watchcreations'          => 'Legg síður, sum eg stovni, í mítt eftirlit',
 'tog-watchdefault'            => 'Vaka yvur nýggjum og broyttum greinum',
 'tog-watchmoves'              => 'Legg síður afturat, sum eg havi valt afturat mínum eftirkanningarlista.',
+'tog-watchdeletion'           => 'Legg síður sum eg sletti afturat mínum vaktarlista',
 'tog-minordefault'            => 'Merk sum standard allar broytingar sum smærri',
 'tog-previewontop'            => 'Vís forhondsvísning áðren rættingarkassan',
 'tog-previewonfirst'          => 'Sýn forskoðan við fyrstu broyting',
@@ -161,8 +164,10 @@ $messages = array(
 'underline-default' => 'Kagarastandard',
 
 # Font style option in Special:Preferences
-'editfont-style'   => 'Rættað økið typografi:',
-'editfont-default' => 'Kagi (brovsari) standard',
+'editfont-style'     => 'Rættað økið typografi:',
+'editfont-default'   => 'Kagi (brovsari) standard',
+'editfont-sansserif' => 'Sans-serif skrift',
+'editfont-serif'     => 'Serif skrift',
 
 # Dates
 'sunday'        => 'sunnudagur',
@@ -217,17 +222,19 @@ $messages = array(
 'dec'           => 'des',
 
 # Categories related messages
-'pagecategories'                => '{{PLURAL:$1|Bólkur|Bólkar}}',
-'category_header'               => 'Greinir í bólki "$1"',
-'subcategories'                 => 'Undirbólkur',
-'category-media-header'         => 'Media í bólkur "$1"',
-'category-empty'                => "''Hesin bólkur inniheldur ongar greinir ella miðlar í løtuni.''",
-'hidden-categories'             => '{{PLURAL:$1|Hidden category|Fjaldir bólkar}}',
-'hidden-category-category'      => 'Fjaldir bólkar',
-'category-subcat-count'         => '{{PLURAL:$2|Hesin bólkur hevur bert henda undirbólk.|Hesin bólkur hevur fylgjandi {{PLURAL:$1|undirbólk|$1 undirbólkar}}, av $2 í alt.}}',
-'category-subcat-count-limited' => 'Hesin bólkur hevur fylgjandi {{PLURAL:$1|undirbólk|$1 undirbólkar}}.',
-'listingcontinuesabbrev'        => 'frh.',
-'broken-file-category'          => 'Síður við brotnum fílu slóðum',
+'pagecategories'                 => '{{PLURAL:$1|Bólkur|Bólkar}}',
+'category_header'                => 'Greinir í bólki "$1"',
+'subcategories'                  => 'Undirbólkur',
+'category-media-header'          => 'Media í bólkur "$1"',
+'category-empty'                 => "''Hesin bólkur inniheldur ongar greinir ella miðlar í løtuni.''",
+'hidden-categories'              => '{{PLURAL:$1|Hidden category|Fjaldir bólkar}}',
+'hidden-category-category'       => 'Fjaldir bólkar',
+'category-subcat-count'          => '{{PLURAL:$2|Hesin bólkur hevur bert henda undirbólk.|Hesin bólkur hevur fylgjandi {{PLURAL:$1|undirbólk|$1 undirbólkar}}, av $2 í alt.}}',
+'category-subcat-count-limited'  => 'Hesin bólkur hevur fylgjandi {{PLURAL:$1|undirbólk|$1 undirbólkar}}.',
+'category-article-count'         => '{{PLURAL:$2|Hesin bólkur inniheldur bert komandi síðu.|Komandi {{PLURAL:$1|síða er|$1 síður eru}} í hesum bólkinum, av í alt $2.}}',
+'category-article-count-limited' => 'Fylgjandi {{PLURAL:$1|síða er|$1 síður eru}} í verandi bólki.',
+'listingcontinuesabbrev'         => 'frh.',
+'broken-file-category'           => 'Síður við brotnum fílu slóðum',
 
 'about'         => 'Um',
 'article'       => 'Innihaldssíða',
@@ -405,6 +412,9 @@ Hetta kann eisini benda á ein feil í software'ini sum {{SITENAME}} brúkar.",
 # General errors
 'error'               => 'Villa',
 'databaseerror'       => 'Villa í dátagrunni',
+'laggedslavemode'     => "'''Ávaring:''' Síðan inniheldur møguliga ikki nýggjar dagføringar.",
+'readonly'            => 'Dátubasan er stongd fyri skriving',
+'enterlockreason'     => 'Skriva eina orsøk fyri at stongja síðuna fyri skriving, saman við einari meting av, nær ið síðan verður lást upp aftur',
 'internalerror'       => 'Innvortis brek',
 'filecopyerror'       => 'Kundi ikki avrita fíluna "$1" til "$2".',
 'filerenameerror'     => 'Kundi ikki umdoypa fílu "$1" til "$2".',
@@ -428,6 +438,9 @@ Møguliga hevur onkur annar longu strikað hana.',
 'titleprotected'      => '[[User:$1|$1]] hevur vart hetta heitið frá skapan.
 Givin orsøk er "\'\'$2\'\'".',
 
+# Virus scanner
+'virus-unknownscanner' => 'ókent antivirus:',
+
 # Login and logout pages
 'logouttext'                 => "'''Tú hevur nú ritað út.'''
 Tú kanst halda fram at brúka {{SITENAME}} sum dulnevndur, ella kanst tú [[Special:UserLogin|logga á aftur]] sum sami ella sum annar brúkari. 
@@ -442,6 +455,7 @@ Gloym ikki at broyta tínar [[Special:Preferences|{{SITENAME}} innstillingar]].'
 'remembermypassword'         => 'Minst til logg inn hjá mær á hesum kaganum (í mesta lagi í $1 {{PLURAL:$1|dag|dagar}})',
 'securelogin-stick-https'    => 'Varðveit sambandið við HTTPS eftir logg inn',
 'yourdomainname'             => 'Títt domene:',
+'externaldberror'            => 'Antin var talan um ein atgongd dátubasu feil, ella hevur tú ikki loyvi til at dagføra tína eksternu kontu.',
 'login'                      => 'Rita inn',
 'nav-login-createaccount'    => 'Stovna kontu ella rita inn',
 'loginprompt'                => 'Cookies má verða sett til fyri at innrita á {{SITENAME}}.',
@@ -459,7 +473,19 @@ Gloym ikki at broyta tínar [[Special:Preferences|{{SITENAME}} innstillingar]].'
 'createaccountmail'          => 'eftur t-posti',
 'createaccountreason'        => 'Orsøk:',
 'badretype'                  => 'Loyniorðið tú hevur skriva er ikki rætt.',
+'userexists'                 => 'Brúkaranavnið sum tú valdi er longu í nýtslu.
+Vinarliga vel eitt annað navn.',
 'loginerror'                 => 'Innritanarbrek',
+'createaccounterror'         => 'Kundi ikki skapa kontu: $1',
+'nocookiesnew'               => 'Brúkarakontan er nú gjørd, men tú ert ikki loggaður inn. 
+{{SITENAME}} brúkar "cookies" fyri at innrita brúkarar.
+You hevur gjørt "cookies" óvirkið.
+Vinarliga ger "cookies" virkið á tínari teldu, rita síðan inn við tínum nýggja brúkaranavni og loyniorði.',
+'nocookieslogin'             => '{{SITENAME}} brúkar cookies fyri at innrita brúkarar. 
+Tú hevur gjørt cookies óvirkið.
+Vinarliga ger tað virkið og royn aftur.',
+'nocookiesfornew'            => 'Brúkarakontan var ikki upprættað, tí vit kundu ikki staðfesta kelduna.
+Tryggja tær, at cookies eru virknar á tínari teldu, dagfør (reload) hesa síðuna og royn aftur.',
 'noname'                     => 'Tú hevur ikki skrivað eitt gyldugt brúkaranavn.',
 'loginsuccesstitle'          => 'Innritan væleydnað',
 'loginsuccess'               => "'''Tú hevur nú ritað inn í {{SITENAME}} sum \"\$1\".'''",
@@ -476,9 +502,18 @@ Eftirkanna um tú hevur stavað rætt, ella [[Special:UserLogin/signup|stovna ei
 'password-login-forbidden'   => 'Tað er ikki loyvt at brúka hetta brúkaranavnið og loyniorðið.',
 'mailmypassword'             => 'Send mær eitt nýtt loyniorð við t-posti',
 'passwordremindertitle'      => 'Nýtt fyribils loyniorð fyri {{SITENAME}}',
+'passwordremindertext'       => 'Onkur (óivað tú, frá IP adressu $1) hevur umbiðið eitt nýtt loyniorð fyri {{SITENAME}}  $4. Eitt fyribils loyniorð fyri brúkara "$2" er nú gjørt og er sent til "$3". Um hetta var tað tú vildi, so mást tú rita inn og velja eitt nýtt loyniorð nú. 
+Títt fyribils loyniorð gongur út um {{PLURAL:$5|ein dag|$5 dagar}}.
+
+
+Um onkur annar hevur sent hesa umbønina, ella um tú nú minnist títt loyniorð, 
+og tú ikki longur ynskir at broyta tað, so skal tú síggja burtur frá hesum boðunum og halda fram við at brúka títt gamla loyniorð.',
+'noemail'                    => 'Tað er ongin t-post adressa skrásett fyri brúkara "$1".',
+'noemailcreate'              => 'Tú mást geva eina galdandi t-post adressu',
 'passwordsent'               => 'Eitt nýtt loyniorð er sent til t-postadressuna,
 sum er skrásett fyri "$1".
 Vinarliga rita inn eftir at tú hevur fingið hana.',
+'blocked-mailpassword'       => 'Tín IP adressa er stongd fyri at gera rættingar á síðum, og tí er tað ikki loyvt at brúka funkuna fyri endurskapan av loyniorði, hetta fyri at forða fyri misnýtslu.',
 'acct_creation_throttle_hit' => 'Vitjandi á hesi wiki, sum nýta tína IP addressu, hava stovnað {{PLURAL:$1|1 kontu|$1 kontur}} seinastu dagarnar, sum er mest loyvda hetta tíðarskeið.
 Sum eitt úrslit av hesum, kunnu vitjandi sum brúka hesa IP adressuna ikki stovna fleiri kontur í løtuni.',
 'emailauthenticated'         => 'Tín t-post adressa varð váttað hin $2 kl. $3.',
@@ -564,12 +599,20 @@ Ert tú komin higar av einum mistaki, kanst tú trýsta á '''aftur'''-knøttin 
 Tí noyðast vit at brúka nummerisku IP-adressuna hjá honum ella henni.
 Ein slík IP-adressa kann verða brúkt av fleiri brúkarum.
 Ert tú ein dulnevndur brúkari, og meinar, at óviðkomandi viðmerkingar eru vendar til tín, so er best fyri teg at [[Special:UserLogin/signup|stovna eina kontu]] ella [[Special:UserLogin|rita inn]] fyri at sleppa undan samanblanding við aðrar dulnevndar brúkarar í framtíðini.''",
-'clearyourcache'           => "'''Viðmerking:''' Eftir at hava goymt mást tú fara uttanum minnið á sneytara tínum fyri at síggja broytingarnar.
+'clearyourcache'           => "'''Legg til merkis:''' Eftir at hava goymt, mást tú fara uttanum minnið (cache) á sneytara (brovsara) tínum fyri at síggja broytingarnar.
 * '''Firefox / Safari:''' Halt ''Shift'' meðan tú klikkir á ''Reload'', ella trýst antin ''Ctrl-F5'' ella ''Ctrl-R'' (''Command-R'' á einari Mac)
-* '''Google Chrome:''' Trýst ''Ctrl-Shift-R'' (''Command-Shift-R'' á einari Mac)
+* '''Google Chrome:''' Trýst ''Ctrl-Shift-R'' (''⌘-Shift-R'' á einari Mac)
 * '''Internet Explorer:''' Halt ''Ctrl'' meðan tú trýstir á ''Refresh'', ella trýst á ''Ctrl-F5''
 * '''Konqueror:''' Trýst ''Reload'' ella trýst ''F5''
 * '''Opera:''' Reinsa cache í ''Tools → Preferences''",
+'usercssyoucanpreview'     => "'''Gott ráð:''' Brúka \"{{int:showpreview}}\" knappin fyri at royna tína nýggju CSS áðrenn tú goymir.",
+'userjsyoucanpreview'      => "'''Gott ráð:''' Brúka \"{{int:showpreview}}\" knappin fyri at royna títt nýggja JavaScript áðrenn tú goymir.",
+'usercsspreview'           => "'''Minst til at hetta bert er ein áðrenn vísing av tínum brúkara CSS.'''
+'''Tú hevur ikki goymt tað enn!'''",
+'userjspreview'            => "'''Minst til at hetta bert er ein royndarvísing av tínum brúkara JavaScript.'''
+'''Tú hevur ikki goymt tað enn!'''",
+'sitecsspreview'           => "'''Minst til at hetta bert er ein royndar vísing av hesum CSS.'''
+'''Tú hevur ikki goymt tað enn!'''",
 'note'                     => "'''Viðmerking:'''",
 'previewnote'              => "'''Minst til at hetta bara er ein forskoðan, sum enn ikki er goymd!'''",
 'previewconflict'          => 'Henda forskoðanin vísir tekstin í erva soleiðis sum hann sær út, um tú velur at goyma.',
@@ -613,10 +656,13 @@ Tann seinasta innritanin er víst niðanfyri sum ávísing:",
 'historyempty'        => '(tóm)',
 
 # Revision deletion
+'rev-deleted-comment'   => '(rættingar frágreiðingin er tikin burtur)',
+'rev-deleted-user'      => '(brúkaranavn tikið burtur)',
 'rev-delundel'          => 'skoða/fjal',
 'revdelete-radio-set'   => 'Ja',
 'revdelete-radio-unset' => 'Nei',
 'revdelete-suppress'    => 'Síggj burtur frá data frá administratorum líka væl sum frá øðrum',
+'pagehist'              => 'Síðu søgan',
 
 # History merging
 'mergehistory-from' => 'Keldusíða:',
@@ -671,13 +717,15 @@ Tann seinasta innritanin er víst niðanfyri sum ávísing:",
 'prefs-rc'                    => 'Nýkomnar broytingar og stubbaskoðan',
 'prefs-watchlist'             => 'Eftirlit',
 'prefs-watchlist-days'        => 'Tal av døgum, sum skula vísast í eftirliti:',
-'prefs-watchlist-days-max'    => 'Í mesta lagi 7 dagar',
+'prefs-watchlist-days-max'    => 'Í mesta lagi $1 {{PLURAL:$1|dagur|dagar}}',
 'prefs-watchlist-edits'       => 'Tal av rættingum, sum skula vísast í víðkaðum eftirliti:',
 'prefs-watchlist-edits-max'   => 'Í mesta lagi: 1000',
 'prefs-misc'                  => 'Ymiskar innstillingar',
 'prefs-resetpass'             => 'Broyt loyniorð',
 'prefs-changeemail'           => 'Broyt t-post adressu',
+'prefs-setemail'              => 'Skriva tína t-post adressu',
 'prefs-email'                 => 'T-post møguleikar',
+'prefs-rendering'             => 'Útsjónd',
 'saveprefs'                   => 'Goym innstillingar',
 'resetprefs'                  => 'Reinsa ikki goymdar broytingar',
 'restoreprefs'                => 'Endurset alt til standard innstillingar',
@@ -777,7 +825,12 @@ Tín t-post adressa verður ikki avdúkað, tá aðrir brúkarir seta seg í sam
 'right-movefile'      => 'Flyt fílur',
 
 # Associated actions - in the sentence "You do not have permission to X"
-'action-edit' => 'rætta hesa síðuna',
+'action-edit'           => 'rætta hesa síðuna',
+'action-delete'         => 'Strika hesa síðu',
+'action-deletedhistory' => 'hygg at strikingar søguni hjá hesi síðu',
+'action-browsearchive'  => 'leita eftir strikaðum síðum',
+'action-undelete'       => 'endurstovnað hesa síðu',
+'action-sendemail'      => 'send teldupostar',
 
 # Recent changes
 'nchanges'          => '$1 {{PLURAL:$1|broyting|broytingar}}',
@@ -835,7 +888,23 @@ fyri at leggja fílur upp.',
 Tú eigur at eftirkanna $1 áðrenn tú heldur á við at upplóta fíluna enn einaferð.',
 'upload-success-subj' => 'Upplegging væleydnað',
 
-'upload-file-error' => 'Innvortis brek',
+'upload-file-error'   => 'Innvortis brek',
+'upload-unknown-size' => 'Ókend stødd',
+
+# File backend
+'backend-fail-store'     => 'Kundi ikki goyma fílu $1 á $2.',
+'backend-fail-copy'      => 'Kundi ikki avrita fílu $1 til $2.',
+'backend-fail-move'      => 'Kundi ikki flyta fílu $1 til $2.',
+'backend-fail-opentemp'  => 'Kundi ikki lata upp fyribils fílu.',
+'backend-fail-writetemp' => 'Kundi ikki skriva til fyribils fílu.',
+'backend-fail-closetemp' => 'Kundi ikki aftur fyribils fílu.',
+'backend-fail-read'      => 'Kundi ikki lesa fílu $1.',
+'backend-fail-create'    => 'Kundi ikki skapa fílu $1.',
+
+# Lock manager
+'lockmanager-notlocked'       => 'Kundi ikki lata upp "$1"; hon er ikki stongd.',
+'lockmanager-fail-closelock'  => 'Kundi ikki lata aftur lás fílu fyri "$1".',
+'lockmanager-fail-deletelock' => 'Kundi ikki sletta lás fílu fyri "$1".',
 
 'license'           => 'Lisensur:',
 'license-header'    => 'Lisensur',
@@ -843,21 +912,29 @@ Tú eigur at eftirkanna $1 áðrenn tú heldur á við at upplóta fíluna enn e
 'license-nopreview' => '(Fyrr ikki tøkt)',
 
 # Special:ListFiles
-'listfiles'      => 'Myndalisti',
-'listfiles_name' => 'Navn',
-'listfiles_user' => 'Brúkari',
+'listfiles'             => 'Myndalisti',
+'listfiles_date'        => 'Dagur',
+'listfiles_name'        => 'Navn',
+'listfiles_user'        => 'Brúkari',
+'listfiles_size'        => 'Stødd',
+'listfiles_description' => 'Frágreiðing',
+'listfiles_count'       => 'Versjónir',
 
 # File description page
-'file-anchor-link'  => 'Mynd',
-'filehist'          => 'Søga fílu',
-'filehist-current'  => 'streymur',
-'filehist-datetime' => 'Dagur/Tíð',
-'filehist-user'     => 'Brúkari',
-'filehist-filesize' => 'Stødd fílu',
-'filehist-comment'  => 'Viðmerking',
-'imagelinks'        => 'Slóðir',
-'linkstoimage'      => 'Hesar síður slóða til hesa mynd:',
-'nolinkstoimage'    => 'Ongar síður slóða til hesa myndina.',
+'file-anchor-link'   => 'Mynd',
+'filehist'           => 'Søga fílu',
+'filehist-help'      => 'Trýst á dato/tíð fyri at síggja fíluna, sum hon sá út tá.',
+'filehist-deleteall' => 'strika alt',
+'filehist-deleteone' => 'strika',
+'filehist-revert'    => 'endurstovna',
+'filehist-current'   => 'streymur',
+'filehist-datetime'  => 'Dagur/Tíð',
+'filehist-user'      => 'Brúkari',
+'filehist-filesize'  => 'Stødd fílu',
+'filehist-comment'   => 'Viðmerking',
+'imagelinks'         => 'Nýtsla av fílu',
+'linkstoimage'       => 'Fylgjandi {{PLURAL:$1|síða slóðar|$1 síður slóða}} til hesa fílu:',
+'nolinkstoimage'     => 'Ongar síður slóða til hesa myndina.',
 
 # File deletion
 'filedelete'        => 'Strika $1',
@@ -893,7 +970,7 @@ Tú eigur at eftirkanna $1 áðrenn tú heldur á við at upplóta fíluna enn e
 'statistics-users-active'  => 'Virknir brúkarir',
 'statistics-mostpopular'   => 'Mest sæddu síður',
 
-'disambiguations'     => 'Síður við fleirfaldum týdningi',
+'disambiguations'     => 'Síður sum vísa til síður við fleirfaldum týdningi',
 'disambiguationspage' => 'Template:fleiri týdningar',
 
 'doubleredirects'            => 'Tvífaldað ávísing',
@@ -950,8 +1027,8 @@ Vinarliga legg merki til, at vevsíður kunnu slóða til eina fílu við beinle
 'booksources-go' => 'Far',
 
 # Special:Log
-'specialloguserlabel'  => 'Brúkari:',
-'speciallogtitlelabel' => 'Heitið:',
+'specialloguserlabel'  => 'Gjørt hevur:',
+'speciallogtitlelabel' => 'Mál (heiti ella brúkari):',
 'log'                  => 'Gerðabøkur',
 'all-logs-page'        => 'Allir almennir loggar',
 'alllogstext'          => 'Samansett sýning av øllum atkomuligum loggum hjá {{SITENAME}}.
@@ -970,9 +1047,9 @@ Tú kanst avmarka sýningina við at velja slag av loggi, brúkaranavn (sum er f
 
 # Special:Categories
 'categories'         => 'Bólkar',
-'categoriespagetext' => 'Eftirfylgjandi bólkar eru í hesu wiki.
-[[Special:UnusedCategories|Unused categories]] are not shown here.
-Also see [[Special:WantedCategories|wanted categories]].',
+'categoriespagetext' => 'Fylgjandi {{PLURAL:$1|bólkur inniheldur|bólkar innihalda}} síður ella miðlar (media).
+[[Special:UnusedCategories|Ikki brúktir bólkar]] eru ikki vístar her.
+Sí eisini [[Special:WantedCategories|ynsktir bólkar]].',
 
 # Special:LinkSearch
 'linksearch-ns' => 'Navnarúm:',
@@ -1027,8 +1104,9 @@ Vilt tú flyta síðuna undan tínum eftirliti, kanst tú trýsta á \"Strika ef
 'watchnochange'     => 'Ongin grein í tínum eftirliti er rætta innanfyri hetta tíðarskeiði.',
 'watchmethod-list'  => 'kannar síður undir eftirliti fyri feskar broytingar',
 'watchlistcontains' => 'Títt eftirlit inniheldur {{PLURAL:$1|eina síðu|$1 síður}}.',
-'wlnote'            => "Niðanfyri {{PLURAL:$1|stendur seinastu broytingina|standa seinastu '''$1''' broytingarnar}} {{PLURAL:$2|seinasta tíman|seinastu '''$2''' tímarnar}}.",
+'wlnote'            => "Niðanfyri {{PLURAL:$1|stendur seinasta broytingin|standa seinastu '''$1''' broytingarnar}} seinasta/u {{PLURAL:$2| tíman|'''$2''' tímarnar}} hin $3 kl. $4",
 'wlshowlast'        => 'Vís seinastu $1 tímar $2 dagar $3',
+'watchlist-options' => 'Møguleikar í ansingarlistanum',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Eftirlitir...',
@@ -1065,19 +1143,21 @@ Sí $2 fyri fulla skráseting av strikingum.',
 'rollbackfailed' => 'Afturrulling miseydnað',
 
 # Protect
-'protectlogpage'      => 'Friðingarbók',
-'protectedarticle'    => 'friðaði "[[$1]]"',
-'unprotectedarticle'  => 'strikaði friðing á "[[$1]]"',
-'protect-title'       => 'Friðar "$1"',
-'prot_1movedto2'      => '$1 flutt til $2',
-'protect-legend'      => 'Vátta friðing',
-'protectcomment'      => 'Orsøk:',
-'protectexpiry'       => 'Gongur út:',
-'protect-default'     => '(fyridømi)',
-'protect-level-sysop' => 'Bert umboðsstjórar',
-'protect-expiring'    => 'gongur út $1 (UTC)',
-'restriction-type'    => 'Verndstøða:',
-'pagesize'            => '(být)',
+'protectlogpage'              => 'Friðingarbók',
+'protectedarticle'            => 'friðaði "[[$1]]"',
+'unprotectedarticle'          => 'strikaði friðing á "[[$1]]"',
+'protect-title'               => 'Friðar "$1"',
+'prot_1movedto2'              => '$1 flutt til $2',
+'protect-legend'              => 'Vátta friðing',
+'protectcomment'              => 'Orsøk:',
+'protectexpiry'               => 'Gongur út:',
+'protect-default'             => 'Loyv øllum brúkarum',
+'protect-fallback'            => 'Krevur "$1" loyvi',
+'protect-level-autoconfirmed' => 'Sperra fyri nýggjum og ikki skrásettum brúkarum',
+'protect-level-sysop'         => 'Bert umboðsstjórar',
+'protect-expiring'            => 'gongur út $1 (UTC)',
+'restriction-type'            => 'Verndstøða:',
+'pagesize'                    => '(být)',
 
 # Undelete
 'undelete'               => 'Endurstovna strikaðar síður',

@@ -11583,6 +11583,454 @@ $messages['nan'] = array(
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki的公布列單]',
 );
 
+/** Norwegian (bokmål)‬ (‪Norsk (bokmål)‬)
+ * @author Event
+ * @author Jon Harald Søby
+ * @author Nghtwlkr
+ */
+$messages['nb'] = array(
+	'config-desc' => 'Installasjonsprogrammet for MediaWiki',
+	'config-title' => 'Installasjon av MediaWiki $1',
+	'config-information' => 'Informasjon',
+	'config-localsettings-upgrade' => 'En <code>LocalSettings.php</code>-fil har blitt oppdaget.
+For å oppgradere denne installasjonen, skriv inn verdien av <code>$wgUpgradeKey</code> i boksen nedenfor.
+Du finner denne i LocalSettings.php.',
+	'config-localsettings-cli-upgrade' => "Filen ''LocalSettings.php'' er funnet.
+For å oppgradere denne installasjonen, vennligst kjør ''update.php'' i stedet",
+	'config-localsettings-key' => 'Oppgraderingsnøkkel:',
+	'config-localsettings-badkey' => 'Nøkkelen du oppga er feil.',
+	'config-upgrade-key-missing' => "En eksisterende installasjon av MediaWiki er funnet.
+For å oppgradere denne installasjonen, vær vennlig å legge til følgende linje helt til slutt i din ''LocalSettings.php''-fil:
+
+$1",
+	'config-localsettings-incomplete' => "Den eksisterende ''LocalSettings.php'' ser ut til å være ufullstendig.
+Variabelen $1 har ingen verdi.
+Vær vennlig å endre ''LocalSettings.php'' slik at variabelen får en verdi, og klikk ''Fortsett''.",
+	'config-localsettings-connection-error' => "Det ble funnet en feil ved tilknytning av databasen med innstillingene i ''LocalSettings.php'' eller ''AdminSettings.php''. Vær vennlig å rette opp disse innstillingene og prøv igjen.
+
+$1",
+	'config-session-error' => 'Feil under oppstart av økt: $1',
+	'config-session-expired' => 'Dine øktdata ser ut til å ha utløpt.
+Økter er konfigurert for en levetid på $1.
+Du kan øke dette ved å sette <code>session.gc_maxlifetime</code> i php.ini.
+Start installasjonsprosessen på nytt.',
+	'config-no-session' => 'Dine øktdata ble tapt!
+Sjekk din php.ini og sørg for at <code>session.save_path</code> er satt til en passende mappe.',
+	'config-your-language' => 'Ditt språk:',
+	'config-your-language-help' => 'Velg et språk å bruke under installasjonsprosessen.',
+	'config-wiki-language' => 'Wikispråk:',
+	'config-wiki-language-help' => 'Velg språket som wikien hovedsakelig vil bli skrevet i.',
+	'config-back' => '← Tilbake',
+	'config-continue' => 'Fortsett →',
+	'config-page-language' => 'Språk',
+	'config-page-welcome' => 'Velkommen til MediaWiki!',
+	'config-page-dbconnect' => 'Koble til database',
+	'config-page-upgrade' => 'Oppgrader eksisterende innstallasjon',
+	'config-page-dbsettings' => 'Databaseinnstillinger',
+	'config-page-name' => 'Navn',
+	'config-page-options' => 'Valg',
+	'config-page-install' => 'Innstaller',
+	'config-page-complete' => 'Ferdig!',
+	'config-page-restart' => 'Start installasjonen på nytt',
+	'config-page-readme' => 'Les meg',
+	'config-page-releasenotes' => 'Utgivelsesnotat',
+	'config-page-copying' => 'Kopiering',
+	'config-page-upgradedoc' => 'Oppgradering',
+	'config-page-existingwiki' => 'Eksisterende wiki',
+	'config-help-restart' => 'Ønsker du å fjerne alle lagrede data som du har skrevet inn og starte installasjonsprosessen på nytt?',
+	'config-restart' => 'Ja, start på nytt',
+	'config-welcome' => '=== Miljøsjekker ===
+Grunnleggende sjekker utføres for å se om dette miljøet er egnet for en MediaWiki-installasjon.
+Du bør oppgi resultatene fra disse sjekkene om du trenger hjelp under installasjonen.',
+	'config-copyright' => "=== Opphavsrett og vilkår ===
+
+$1
+
+MediaWiki er fri programvare; du kan redistribuere det og/eller modifisere det under betingelsene i GNU General Public License som publisert av Free Software Foundation; enten versjon 2 av lisensen, eller (etter eget valg) enhver senere versjon.
+
+Dette programmet er distribuert i håp om at det vil være nyttig, men '''uten noen garanti'''; ikke engang implisitt garanti av '''salgbarhet''' eller '''egnethet for et bestemt formål'''.
+Se GNU General Public License for flere detaljer.
+
+Du skal ha mottatt <doclink href=Copying>en kopi av GNU General Public License</doclink> sammen med dette programmet; hvis ikke, skriv til Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA eller [http://www.gnu.org/copyleft/gpl.html les det på nettet].",
+	'config-sidebar' => '* [//www.mediawiki.org MediaWiki hjem]
+* [//www.mediawiki.org/wiki/Help:Contents Brukerguide]
+* [//www.mediawiki.org/wiki/Manual:Contents Administratorguide]
+* [//www.mediawiki.org/wiki/Manual:FAQ OSS]
+----
+* <doclink href=Readme>Les meg</doclink>
+* <doclink href=ReleaseNotes>Utgivelsesnotater</doclink>
+* <doclink href=Copying>Kopiering</doclink>
+* <doclink href=UpgradeDoc>Oppgradering</doclink>',
+	'config-env-good' => 'Miljøet har blitt sjekket.
+Du kan installere MediaWiki.',
+	'config-env-bad' => 'Miljøet har blitt sjekket.
+Du kan installere MediaWiki.',
+	'config-env-php' => 'PHP $1 er innstallert.',
+	'config-env-php-toolow' => 'PHP $1 er installert.
+MediaWiki krever imidlertid PHP $2 eller høyere.',
+	'config-unicode-using-utf8' => 'Bruker Brion Vibbers utf8_normalize.so for Unicode-normalisering.',
+	'config-unicode-using-intl' => 'Bruker [http://pecl.php.net/intl intl PECL-utvidelsen] for Unicode-normalisering.',
+	'config-unicode-pure-php-warning' => "'''Advarsel''': [http://pecl.php.net/intl intl PECL-utvidelsen] er ikke tilgjengelig for å håndtere Unicode-normaliseringen, faller tilbake til en langsommere ren-PHP-implementasjon.
+Om du kjører et nettsted med høy trafikk bør du lese litt om [//www.mediawiki.org/wiki/Unicode_normalization_considerations Unicode-normalisering].",
+	'config-unicode-update-warning' => "'''Advarsel''': Den installerte versjonen av Unicode-normalisereren bruker en eldre versjon av [http://site.icu-project.org/ ICU-prosjektets] bibliotek.
+Du bør [//www.mediawiki.org/wiki/Unicode_normalization_considerations oppgradere] om du er bekymret for å bruke Unicode.",
+	'config-no-db' => 'Fant ikke en passende databasedriver! Du må installere en databasedriver for PHP.
+Følgende databasetyper er støttet: $1
+
+Om du er på delt vertsskap, spør din vertsleverandør om å installere en passende databasedriver.
+Om du kompilerte PHP selv, rekonfigirer den med en aktivert databaseklient, for eksempel ved å bruke <code>./configure --with-mysql</code>.
+Om du installerte PHP fra en Debian- eller Ubuntu-pakke må du også installere modulen php5-mysql.',
+	'config-no-fts3' => "'''Advarsel''': SQLite er kompilert uten [//sqlite.org/fts3.html FTS3-modulen], søkefunksjoner vil ikke være tilgjengelig på dette bakstykket.",
+	'config-register-globals' => "'''Advarsel: PHPs <code>[http://php.net/register_globals register_globals]</code>-alternativ er aktivert.'''
+'''Deaktiver det om du kan.'''
+MediaWiki vil fungere, men tjeneren din er utsatt for potensielle sikkerhetssårbarheter.",
+	'config-magic-quotes-runtime' => "'''Kritisk: [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_runtime] er aktiv!'''
+Dette alternativet ødelegger inndata på en uforutsigbar måte.
+Du kan ikke installere eller bruke MediaWiki med mindre dette alternativet deaktiveres.",
+	'config-magic-quotes-sybase' => "'''Kritisk: [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-sybase magic_quotes_sybase] er aktiv!'''
+Dette alternativet ødelegger inndata på en uforutsigbar måte.
+Du kan ikke installere eller bruke MediaWiki med mindre dette alternativet deaktiveres.",
+	'config-mbstring' => "'''Kritisk: [http://www.php.net/manual/en/ref.mbstring.php#mbstring.overload mbstring.func_overload] er aktiv!'''
+Dette alternativet fører til feil og kan ødelegge data på en uforutsigbar måte.
+Du kan ikke installere eller bruke MediaWiki med mindre dette alternativet deaktiveres.",
+	'config-ze1' => "'''Kritisk: [http://www.php.net/manual/en/ini.core.php zend.ze1_compatibility_mode] er aktiv!'''
+Dette alternativet fører til horrible feil med MediaWiki.
+Du kan ikke installere eller bruke MediaWiki med mindre dette alternativet deaktiveres.",
+	'config-safe-mode' => "'''Advarsel:''' PHPs [http://www.php.net/features.safe-mode safe mode] er aktiv.
+Det kan føre til problem, spesielt hvis du bruker støtte for filopplastinger og <code>math</code>.",
+	'config-xml-bad' => 'PHPs XML-modul mangler.
+MediaWiki krever funksjonene i denne modulen og vil ikke virke i denne konfigurasjonen.
+Hvis du kjører Mandrak, installer pakken php-xml.',
+	'config-pcre' => 'PCRE-støttemodulen ser ut til å mangle.
+MediaWiki krever funksjonene for de Perl-kompatible regulære uttrykkene for å virke.',
+	'config-pcre-no-utf8' => "'''Fatal''': PHPs PCRE modul ser ut til å være kompilert uten PCRE_UTF8-støtte.
+MediaWiki krever UTF-8-støtte for å fungere riktig.",
+	'config-memory-raised' => 'PHPs <code>memory_limit</code> er $1, økt til $2.',
+	'config-memory-bad' => "'''Advarsel:''' PHPs <code>memory_limit</code> er $1.
+Dette er sannsynligvis for lavt.
+Installasjonen kan mislykkes!",
+	'config-xcache' => '[http://xcache.lighttpd.net/ XCache] er innstallert',
+	'config-apc' => '[http://www.php.net/apc APC] er innstallert',
+	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] er installert',
+	'config-no-cache' => "'''Advarsel:''' Kunne ikke finne [http://www.php.net/apc APC], [http://xcache.lighttpd.net/ XCache] eller [http://www.iis.net/download/WinCacheForPhp WinCache].
+Objekthurtiglagring er ikke aktivert.",
+	'config-mod-security' => "'''Advarsel''': Din web-tjener har [http://modsecurity.org/ mod_security] påslått. Hvis denne er feilinnstilt, kan det gi problemer for MediaWiki eller annen programvare som tillater brukere å poste vilkårlig innhold.
+Sjekk [http://modsecurity.org/documentation/ mod_security-dokumentasjonen] eller ta kontakt med din nettleverandør hvis du opplever tilfeldige feil.",
+	'config-diff3-bad' => 'GNU diff3 ikke funnet.',
+	'config-imagemagick' => 'Fant ImageMagick: <code>$1</code>.
+Bildeminiatyrisering vil aktiveres om du aktiverer opplastinger.',
+	'config-gd' => 'Fant innebygd GD-grafikkbibliotek.
+Bildeminiatyrisering vil aktiveres om du aktiverer opplastinger.',
+	'config-no-scaling' => 'Kunne ikke finne GD-bibliotek eller ImageMagick.
+Bildeminiatyrisering vil være deaktivert.',
+	'config-no-uri' => "'''Feil:''' Kunne ikke bestemme gjeldende URI.
+Installasjon avbrutt.",
+	'config-no-cli-uri' => "'''Advarsel''': Ingen --scriptpath er angitt; bruker standard: <code>$1</code>.",
+	'config-using-server' => 'Bruker servernavnet  "<nowiki>$1</nowiki>".',
+	'config-using-uri' => 'Bruker server-URL "<nowiki>$1$2</nowiki>".',
+	'config-uploads-not-safe' => "'''Advarsel:''' Din standardmappe for opplastinger <code>$1</code> er sårbar for kjøring av vilkårlige skript.
+Selv om MediaWiki sjekker alle opplastede filer for sikkerhetstrusler er det sterkt anbefalt å [//www.mediawiki.org/wiki/Manual:Security#Upload_security lukke denne sikkerhetssårbarheten] før du aktiverer opplastinger.",
+	'config-no-cli-uploads-check' => "'''Advarsel:''' Din standard-katalog for opplastinger (<code>$1</code>) er ikke kontrollert for sårbarhet overfor vilkårlig skript-kjøring under CLI-installasjonen.",
+	'config-brokenlibxml' => 'Ditt system har en kombinasjon av PHP- og libxml2-versjoner som er feilaktige og kan forårsake skjult dataødeleggelse i MediaWiki og andre web-applikasjoner.
+Oppgrader til PHP 5.2.9 eller nyere og libxml 2 2.7.3 eller nyere ([//bugs.php.net/bug.php?id=45996 Feil-liste for PHP]).
+Installasjon abortert.',
+	'config-using531' => 'MediaWiki kan ikke brukes med PHP $1 på grunn av en feil med referanseparametere til <code>__call()</code>.
+Oppgrader til PHP 5.3.2 eller høyere, eller nedgrader til PHP 5.3.0 for å løse dette.
+Installasjonen avbrutt.',
+	'config-suhosin-max-value-length' => 'Suhosin er installert og begrenser GET-parameterlengder til $1 bytes. MediaWiki\'s ResourceLoader-komponent klarer å komme rundt denne begrensningen, med med redusert ytelse. På mulig bør du sette suhosin.get.max_value_length til minst 1024 i php.ini, og sette $wgResourceLoaderMaxQueryLength til samme verdi i LocalSettings.php.',
+	'config-db-type' => 'Databasetype:',
+	'config-db-host' => 'Databasevert:',
+	'config-db-host-help' => 'Hvis databasetjeneren er på en annen tjener, skriv inn vertsnavnet eller IP-adressen her.
+
+Hvis du bruker en delt nettvert bør verten din oppgi det korrekte vertsnavnet i deres dokumentasjon.
+
+Hvis du installerer på en Windowstjener og bruker MySQL kan det hende at «localhost» ikke virker som tjenernavnet. Hvis ikke, prøv «127.0.0.1» for den lokale IP-adressen.',
+	'config-db-host-oracle' => 'Database TNS:',
+	'config-db-host-oracle-help' => 'Skriv inn et gyldig [http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm Local Connect Name]; en tnsnames.ora-fil må være synlig for installasjonsprosessen.<br />Hvis du bruker klientbibliotek 10g eller nyere kan du også bruke navngivingsmetoden [http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm Easy Connect].',
+	'config-db-wiki-settings' => 'Identifiser denne wikien',
+	'config-db-name' => 'Databasenavn:',
+	'config-db-name-help' => 'Velg et navn som identifiserer wikien din.
+Det bør ikke inneholde mellomrom.
+
+Hvis du bruker en delt nettvert vil verten din enten gi deg et spesifikt databasenavn å bruke, eller la deg opprette databaser via kontrollpanelet.',
+	'config-db-name-oracle' => 'Databaseskjema:',
+	'config-db-install-account' => 'Brukerkonto for installasjon',
+	'config-db-username' => 'Databasebrukernavn:',
+	'config-db-password' => 'Databasepassord:',
+	'config-db-password-empty' => 'Skriv inn et passord for den nye databasebrukeren: $1.
+Det er mulig å opprette brukere uten passord, men dette er ikke sikkert.',
+	'config-db-install-username' => 'Skriv inn brukernavnet som vil bli brukt til å koble til databasen under installasjonsprosessen.
+Dette er ikke brukernavnet på MediaWiki-kontoen; dette er brukernavnet for databasen din.',
+	'config-db-install-password' => 'Skriv inn passordet som vil bli brukt til å koble til databasen under installasjonsprosessen.
+Dette er ikke passordet på MediaWiki-kontoen; dette er passordet for databasen din.',
+	'config-db-install-help' => 'Skriv inn brukernavnet og passordet som vil bli brukt for å koble til databasen under installasjonsprosessen.',
+	'config-db-account-lock' => 'Bruk det samme brukernavnet og passordet under normal drift',
+	'config-db-wiki-account' => 'Brukerkonto for normal drift',
+	'config-db-wiki-help' => 'Skriv inn brukernavnet og passordet som vil bli brukt til å koble til databasen under normal wikidrift.
+Hvis kontoen ikke finnes, og installasjonskontoen har tilstrekkelige privilegier, vil denne brukerkontoen bli opprettet med et minimum av privilegier, tilstrekkelig for å operere wikien.',
+	'config-db-prefix' => 'Databasetabellprefiks:',
+	'config-db-prefix-help' => 'Hvis du trenger å dele en database mellom flere wikier, eller mellom MediaWiki og andre nettapplikasjoner, kan du velge å legge til et prefiks til alle tabellnavnene for å unngå konflikter.
+Ikke bruk mellomrom.
+
+Dette feltet er vanligvis tomt.',
+	'config-db-charset' => 'Databasetegnsett',
+	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 binær',
+	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
+	'config-charset-mysql4' => 'MySQL 4.0 bakoverkompatibel UTF-8',
+	'config-charset-help' => "'''Advarsel:''' Hvis du bruker '''bakoverkompatibel UTF-8''' på MySQL 4.1+, og deretter sikkerhetskopierer databasen med <code>mysqldump</code> kan det ødelegge alle ikke-ASCII tegn og irreversibelt ødelegge dine sikkerhetskopier!
+
+I '''binary mode''' lagrer MediaWiki UTF-8 tekst til databasen i binærfelt.
+Dette er mer effektivt enn MySQLs UTF-8 modus og tillater deg å bruke hele spekteret av Unicode-tegn.
+I '''UTF-8 mode''' vil MySQL vite hvilket tegnsett dataene dine er i og kan presentere og konvertere det på en riktig måte,
+men det vil ikke la deg lagre tegn over «[//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes the Basic Multilingual Plane]».",
+	'config-mysql-old' => 'MySQL $1 eller senere kreves, du har $2.',
+	'config-db-port' => 'Databaseport:',
+	'config-db-schema' => 'Skjema for MediaWiki',
+	'config-db-schema-help' => 'Dette skjemaet er som regel riktig.
+Bare endre det hvis du vet at du trenger det.',
+	'config-sqlite-dir' => 'SQLite datamappe:',
+	'config-sqlite-dir-help' => "SQLite lagrer alle data i en enkelt fil.
+
+Mappen du oppgir må være skrivbar for nettjeneren under installasjonen.
+
+Den bør '''ikke''' være tilgjengelig fra nettet, dette er grunnen til at vi ikke legger det der PHP-filene dine er.
+
+Installasjonsprogrammet vil skrive en <code>.htaccess</code>-fil sammen med det, men om det mislykkes kan noen få tilgang til din råe database. Dette inkluderer rå brukerdata (e-postadresser, hashede passord) samt slettede revisjoner og andre begrensede data på wikien.
+
+Vurder å plassere databasen et helt annet sted, for eksempel i <code>/var/lib/mediawiki/yourwiki</code>.",
+	'config-oracle-def-ts' => 'Standard tabellrom:',
+	'config-oracle-temp-ts' => 'Midlertidig tabellrom:',
+	'config-type-mysql' => 'MySQL',
+	'config-type-postgres' => 'PostgreSQL',
+	'config-type-sqlite' => 'SQLite',
+	'config-type-oracle' => 'Oracle',
+	'config-type-ibm_db2' => 'IBM DB2',
+	'config-support-info' => 'MediaWiki støtter følgende databasesystem:
+
+$1
+
+Hvis du ikke ser databasesystemet du prøver å bruke i listen nedenfor, følg instruksjonene det er lenket til over for å aktivere støtte.',
+	'config-support-mysql' => '* $1 er det primære målet for MediaWiki og er best støttet ([http://www.php.net/manual/en/mysql.installation.php hvordan kompilere PHP med MySQL-støtte])',
+	'config-support-postgres' => '* $1 er et populært åpen kildekode-databasesystem som er et alternativ til MySQL ([http://www.php.net/manual/en/pgsql.installation.php hvordan kompilere PHP med PostgreSQL-støtte]). Det kan være noen små utestående feil og det anbefales ikke for bruk i et produksjonsmiljø.',
+	'config-support-sqlite' => '* $1 er et lettvekts-databasesystem som er veldig godt støttet. ([http://www.php.net/manual/en/pdo.installation.php hvordan kompilere PHP med SQLite-støtte], bruker PDO)',
+	'config-support-oracle' => '* $1 er en kommersiell bedriftsdatabase. ([http://www.php.net/manual/en/oci8.installation.php Hvordan kompilere PHP med OCI8-støtte])',
+	'config-support-ibm_db2' => '* $1 er en kommersiell bedriftsdatabase.',
+	'config-header-mysql' => 'MySQL-innstillinger',
+	'config-header-postgres' => 'PostgreSQL-innstillinger',
+	'config-header-sqlite' => 'SQLite-innstillinger',
+	'config-header-oracle' => 'Oracle-innstillinger',
+	'config-header-ibm_db2' => 'IBM DB2-innstillinger',
+	'config-invalid-db-type' => 'Ugyldig databasetype',
+	'config-missing-db-name' => 'Du må skrive inn en verdi for «Databasenavn»',
+	'config-missing-db-host' => 'Du må skrive inn en verdi for «Databasevert»',
+	'config-missing-db-server-oracle' => 'Du må skrive inn en verdi for «Database TNS»',
+	'config-invalid-db-server-oracle' => 'Ugyldig database-TNS «$1».
+Bruk bare ASCII-bokstaver (a-z, A-Z), tall (0-9) og undestreker (_) og punktum (.).',
+	'config-invalid-db-name' => 'Ugyldig databasenavn «$1».
+Bruk bare ASCII-bokstaver (a-z, A-Z), tall (0-9), undestreker (_) og bindestreker (-).',
+	'config-invalid-db-prefix' => 'Ugyldig databaseprefiks «$1».
+Bruk bare ASCII-bokstaver (a-z, A-Z), tall (0-9), undestreker (_) og bindestreker (-).',
+	'config-connection-error' => '$1.
+
+Sjekk verten, brukernavnet og passordet nedenfor og prøv igjen.',
+	'config-invalid-schema' => 'Ugyldig skjema for MediaWiki «$1».
+Bruk bare ASCII-bokstaver (a-z, A-Z), tall (0-9) og undestreker (_).',
+	'config-db-sys-create-oracle' => 'Installasjonsprogrammet støtter kun bruk av en SYSDBA-konto for opprettelse av en ny konto.',
+	'config-db-sys-user-exists-oracle' => 'Brukerkontoen «$1» finnes allerede. SYSDBA kan kun brukes for oppretting av nye kontoer!',
+	'config-postgres-old' => 'PostgreSQL $1 eller senere kreves, du har $2.',
+	'config-sqlite-name-help' => 'Velg et navn som identifiserer wikien din.
+Ikke bruk mellomrom eller bindestreker.
+Dette vil bli brukt til SQLite-datafilnavnet.',
+	'config-sqlite-parent-unwritable-group' => 'Kan ikke opprette datamappen <code><nowiki>$1</nowiki></code> fordi foreldremappen <code><nowiki>$2</nowiki></code> ikke er skrivbar for nettjeneren.
+
+Installasjonsprogrammet har bestemt brukeren nettjeneren din kjører som.
+Gjør <code><nowiki>$3</nowiki></code>-mappen skrivbar for denne for å fortsette.
+På et Unix/Linux-system, gjør:
+
+<pre>cd $2
+mkdir $3
+chgrp $4 $3
+chmod g+w $3</pre>',
+	'config-sqlite-parent-unwritable-nogroup' => 'Kan ikke opprette datamappen <code><nowiki>$1</nowiki></code> fordi foreldremappen <code><nowiki>$2</nowiki></code> ikke er skrivbar for nettjeneren.
+
+Installasjonsprogrammet kunne ikke bestemme brukeren nettjeneren din kjører som.
+Gjør <code><nowiki>$3</nowiki></code>-mappen globalt skrivbar for denne (og andre!) for å fortsette.
+På et Unix/Linux-system, gjør:
+
+<pre>cd $2
+mkdir $3
+chmod a+w $3</pre>',
+	'config-sqlite-mkdir-error' => 'Feil under oppretting av datamappen «$1».
+Sjekk plasseringen og prøv igjen.',
+	'config-sqlite-dir-unwritable' => 'Kan ikke skrive til mappen «$1».
+Endre dens tilganger slik at nettjeneren kan skrive til den og prøv igjen.',
+	'config-sqlite-connection-error' => '$1.
+
+Sjekk datamappen og databasenavnet nedenfor og prøv igjen.',
+	'config-sqlite-readonly' => 'Filen <code>$1</code> er ikke skrivbar.',
+	'config-sqlite-cant-create-db' => 'Kunne ikke opprette databasefilen <code>$1</code>.',
+	'config-sqlite-fts3-downgrade' => 'PHP mangler FTS3-støtte, nedgraderer tabeller',
+	'config-can-upgrade' => "Det er MediaWiki-tabeller i denne databasen.
+For å oppgradere dem til MediaWiki $1, klikk '''Fortsett'''.",
+	'config-upgrade-done' => "Oppgradering fullført.
+
+Du kan nå [$1 begynne å bruke wikien din].
+
+Hvis du ønsker å regenerere <code>LocalSettings.php</code>-filen din, klikk på knappen nedenfor.
+Dette er '''ikke anbefalt''' med mindre du har problemer med wikien din.",
+	'config-upgrade-done-no-regenerate' => 'Oppgradering fullført.
+
+Du kan nå [$1 begynne å bruke wikien din].',
+	'config-regenerate' => 'Regenerer LocalSettings.php →',
+	'config-show-table-status' => 'SHOW TABLE STATUS etterspørselen mislyktes!',
+	'config-unknown-collation' => "'''Advarsel:''' Databasen bruker en ukjent sortering.",
+	'config-db-web-account' => 'Databasekonto for nettilgang',
+	'config-db-web-help' => 'Velg brukernavnet og passordet som nettjeneren skal bruke for å koble til databasetjeneren under ordinær drift av wikien.',
+	'config-db-web-account-same' => 'Bruk samme konto som for installasjonen',
+	'config-db-web-create' => 'Opprett kontoen om den ikke finnes allerede',
+	'config-db-web-no-create-privs' => 'Kontoen du oppga for installasjonen har ikke nok privilegier til å opprette en konto.
+Kontoen du oppgir her må finnes allerede.',
+	'config-mysql-engine' => 'Lagringsmotor:',
+	'config-mysql-innodb' => 'InnoDB',
+	'config-mysql-myisam' => 'MyISAM',
+	'config-mysql-engine-help' => "'''InnoDB''' er nesten alltid det beste alternativet siden den har god støtte for samtidighet («concurrency»).
+
+'''MyISAM''' kan være raskere i enbruker- eller les-bare-installasjoner.
+MyISAM-databaser har en tendens til å bli ødelagt oftere enn InnoDB-databaser.",
+	'config-mysql-charset' => 'Databasetegnsett:',
+	'config-mysql-binary' => 'Binær',
+	'config-mysql-utf8' => 'UTF-8',
+	'config-mysql-charset-help' => "I '''binary mode''' lagrer MediaWiki UTF-8 tekst til databasen i binærfelt.
+Dette er mer effektivt enn MySQLs UTF-8 modus og tillater deg å bruke hele spekteret av Unicode-tegn.
+
+I '''UTF-8 mode''' vil MySQL vite hvilket tegnsett dataene dine er i og kan presentere og konvertere det på en riktig måte,
+men det vil ikke la deg lagre tegn over «[//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes the Basic Multilingual Plane]».",
+	'config-ibm_db2-low-db-pagesize' => "DB2-databasen din har et standard tabellområde med en utilstrekkelig pagesize. Pagesize må være '''32K''' eller større.",
+	'config-site-name' => 'Navn på wiki:',
+	'config-site-name-help' => 'Dette vil vises i tittellinjen i nettleseren og diverse andre steder.',
+	'config-site-name-blank' => 'Skriv inn et nettstedsnavn.',
+	'config-project-namespace' => 'Prosjektnavnerom:',
+	'config-ns-generic' => 'Prosjekt',
+	'config-ns-site-name' => 'Samme som wikinavnet: $1',
+	'config-ns-other' => 'Annet (spesifiser)',
+	'config-ns-other-default' => 'MyWiki',
+	'config-project-namespace-help' => "Etter Wikipedias eksempel holder mange wikier deres sider med retningslinjer atskilt fra sine innholdssider, i et «'''prosjektnavnerom'''».
+Alle sidetitler i dette navnerommet starter med et gitt prefiks som du kan angi her.
+Tradisjonelt er dette prefikset avledet fra navnet på wikien, men det kan ikke innholde punkttegn som «#» eller «:».",
+	'config-ns-invalid' => 'Det angitte navnerommet «<nowiki>$1</nowiki>» er ugyldig.
+Angi et annet prosjektnavnerom.',
+	'config-ns-conflict' => 'Det angitte navnerommet «<nowiki>$1</nowiki>» er i konflikt med et standard MediaWiki-navnerom.
+Angi et annet prosjekt-navnerom.',
+	'config-admin-box' => 'Administratorkonto',
+	'config-admin-name' => 'Ditt navn:',
+	'config-admin-password' => 'Passord:',
+	'config-admin-password-confirm' => 'Passord igjen:',
+	'config-admin-help' => 'Skriv inn ditt ønskede brukernavn her, for eksempel «Joe Bloggs».
+Dette er navnet du vil bruke for å logge inn på denne wikien.',
+	'config-admin-name-blank' => 'Skriv inn et administratorbrukernavn.',
+	'config-admin-name-invalid' => 'Det angitte brukernavnet «<nowiki>$1</nowiki>» er ugyldig.
+Angi et annet brukernavn.',
+	'config-admin-password-blank' => 'Skriv inn et passord for administratorkontoen.',
+	'config-admin-password-same' => 'Passordet skal ikke være det samme som brukernavnet.',
+	'config-admin-password-mismatch' => 'De to passordene du skrev inn samsvarte ikke.',
+	'config-admin-email' => 'E-postadresse:',
+	'config-admin-email-help' => 'Skriv inn en e-postadresse her for at du skal kunne motta e-post fra andre brukere på wikien, tilbakestille passordet ditt, og bli varslet om endringer på sider på overvåkningslisten din. Du kan la dette feltet stå tomt.',
+	'config-admin-error-user' => 'Intern feil ved opprettelse av en admin med navnet «<nowiki>$1</nowiki>».',
+	'config-admin-error-password' => 'Intern feil ved opprettelse av passord for admin «<nowiki>$1</nowiki>»: <pre>$2</pre>',
+	'config-admin-error-bademail' => 'Du har skrevet inn en ugyldig e-postadresse.',
+	'config-subscribe' => 'Abonner på [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce e-postlisten for utgivelsesannonseringer].',
+	'config-subscribe-help' => 'Dette er en lav-volums e-postliste brukt til utgivelsesannonseringer, herunder viktige sikkerhetsannonseringer.
+Du bør abonnere på den og oppdatere MediaWikiinstallasjonen din når nye versjoner kommer ut.',
+	'config-almost-done' => 'Du er nesten ferdig!
+Du kan hoppe over de resterende konfigurasjonene og installere wikien nå.',
+	'config-optional-continue' => 'Spør meg flere spørsmål.',
+	'config-optional-skip' => 'Jeg er lei, bare installer wikien.',
+	'config-profile' => 'Brukerrettighetsprofil:',
+	'config-profile-wiki' => 'Tradisjonell wiki',
+	'config-profile-no-anon' => 'Kontoopprettelse påkrevd',
+	'config-profile-fishbowl' => 'Kun autoriserte bidragsytere',
+	'config-profile-private' => 'Privat wiki',
+	'config-profile-help' => "Wikier fungerer best når du lar så mange mennesker som mulig redigere den.
+I MediaWiki er det lett å revidere siste endringer og tilbakestille eventuell skade som er gjort av naive eller ondsinnede brukere.
+
+Imidlertid har mange funnet at MediaWiki er nyttig i mange roller, og av og til er det ikke lett å overbevise alle om fordelene med wikimåten.
+Så du har valget.
+
+En '''{{int:config-profile-wiki}}''' tillater alle å redigere, selv uten å logge inn.
+En wiki med '''{{int:config-profile-no-anon}}''' tilbyr ekstra ansvarlighet, men kan avskrekke tilfeldige bidragsytere.
+
+'''{{int:config-profile-fishbowl}}'''-scenariet tillater godkjente brukere å redigere, mens publikum kan se sider, og også historikken.
+En '''{{int:config-profile-private}}''' tillater kun godkjente brukere å se sider, den samme gruppen som får lov til å redigere dem.
+
+Mer komplekse konfigurasjoner av brukerrettigheter er tilgjengelig etter installasjon, se det [//www.mediawiki.org/wiki/Manual:User_rights relevante manualavsnittet].",
+	'config-license' => 'Opphavsrett og lisens:',
+	'config-license-cc-by-sa' => 'Creative Commons Navngivelse Del på samme vilkår',
+	'config-license-cc-by-nc-sa' => 'Creative Commons Navngivelse Ikke-kommersiell Del på samme vilkår',
+	'config-license-cc-0' => 'Creative Commons Zero',
+	'config-license-pd' => 'Offentlig rom',
+	'config-license-cc-choose' => 'Velg en egendefinert Creative Commons-lisens',
+	'config-email-settings' => 'E-postinnstillinger',
+	'config-enable-email' => 'Aktiver utgående e-post',
+	'config-enable-email-help' => 'Hvis du vil at e-post skal virke må [http://www.php.net/manual/en/mail.configuration.php PHPs e-postinnstillinger] bli konfigurert riktig.
+Hvis du ikke ønsker noen e-postfunksjoner kan du deaktivere dem her.',
+	'config-email-user' => 'Aktiver e-post mellom brukere',
+	'config-email-user-help' => 'Tillat alle brukere å sende hverandre e-post hvis de har aktivert det i deres innstillinger.',
+	'config-email-usertalk' => 'Aktiver brukerdiskusjonssidevarsler',
+	'config-email-usertalk-help' => 'Tillat brukere å motta varsler ved endringer på deres brukerdiskusjonsside hvis de har aktivert dette i deres innstillinger.',
+	'config-email-watchlist' => 'Aktiver overvåkningslistevarsler',
+	'config-email-watchlist-help' => 'Tillat brukere å motta varsler ved endringer på deres overvåkede sider hvis de har aktivert dette i deres innstillinger.',
+	'config-email-auth' => 'Aktiver e-postautentisering',
+	'config-email-auth-help' => "Om dette alternativet er aktivert må brukere bekrefte sin e-postadresse ved å bruke en lenke som blir sendt til dem når de setter eller endrer adressen sin.
+Kun autentiserte e-postadresser kan motta e-post fra andre brukere eller endringsvarsel.
+Å sette dette valget er '''anbefalt''' for offentlige wikier på grunn av potensiell misbruk av e-postfunksjonene.",
+	'config-email-sender' => 'Svar-e-postadresse:',
+	'config-email-sender-help' => 'Skriv inn e-postadressen som skal brukes som svar-adresse ved utgående e-post.
+Det er hit returmeldinger vil bli sendt.
+Mange e-posttjenere krever at minst domenenavnet må være gyldig.',
+	'config-upload-settings' => 'Bilde- og filopplastinger',
+	'config-upload-enable' => 'Aktiver filopplastinger',
+	'config-upload-help' => 'Filopplastinger kan potensielt utsette tjeneren din for sikkerhetsrisikoer.
+For mer informasjon, les [//www.mediawiki.org/wiki/Manual:Security sikkerhetsseksjonen] i manualen.
+
+For å aktivere filopplastinger, endre modusen i <code>images</code>-undermappen i MediaWikis rotmappe slik at nettjeneren kan skrive til den.
+Aktiver så dette alternativet.',
+	'config-upload-deleted' => 'Mappe for slettede filer:',
+	'config-upload-deleted-help' => 'Velg en mappe for å arkivere slettede filer.
+Ideelt burde ikke denne være tilgjengelig for nettet.',
+	'config-logo' => 'Logo-URL:',
+	'config-logo-help' => 'MediaWikis standarddrakt inkluderer plass til en 135x160 pikslers logo i øvre venstre hjørne.
+Last opp et bilde i passende størrelse og skriv inn nettadressen her.
+
+Hvis du ikke ønsker en logo, la denne boksen være tom.',
+	'config-instantcommons' => 'Aktiver Instant Commons',
+	'config-instantcommons-help' => '[//www.mediawiki.org/wiki/InstantCommons Instant Commons] er en funksjon som gjør det mulig for wikier å bruke bilder, lyder og andre media funnet på nettstedet [//commons.wikimedia.org/ Wikimedia Commons].
+For å gjøre dette krever MediaWiki tilgang til internett.
+
+For mer informasjon om denne funksjonen, inklusive instruksjoner om hvordan man setter opp dette for andre wikier enn Wikimedia Commons, konsulter [//mediawiki.org/wiki/Manual:$wgForeignFileRepos manualen].',
+	'config-cc-again' => 'Velg igjen...',
+	'config-cc-not-chosen' => 'Velg hvilken Creative Commons-lisens du ønsker og klikk «fortsett».',
+	'config-advanced-settings' => 'Avansert konfigurasjon',
+	'config-extensions' => 'Utvidelser',
+	'config-install-step-done' => 'ferdig',
+	'config-install-step-failed' => 'mislyktes',
+	'config-install-extensions' => 'Inkludert utvidelser',
+	'config-install-database' => 'Setter opp database',
+	'config-install-user' => 'Oppretter databasebruker',
+	'config-install-user-alreadyexists' => 'Brukeren «$1» finnes allerede',
+	'config-install-user-create-failed' => 'Opprettelse av brukeren «$1» mislyktes: $2',
+	'config-install-user-grant-failed' => 'Å gi tillatelse til brukeren «$1» mislyktes: $2',
+	'config-install-tables' => 'Oppretter tabeller',
+	'config-install-mainpage-failed' => 'Kunne ikke sette inn hovedside: $1',
+	'config-help' => 'hjelp',
+	'mainpagetext' => "'''MediaWiki-programvaren er nå installert.'''",
+	'mainpagedocfooter' => 'Se [//meta.wikimedia.org/wiki/Help:Contents brukerveiledningen] for informasjon om hvordan du bruker wiki-programvaren.
+
+==Å starte==
+*[//www.mediawiki.org/wiki/Manual:Configuration_settings Oppsettsliste]
+*[//www.mediawiki.org/wiki/Manual:FAQ Ofte stilte spørsmål]
+*[https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-postliste]',
+);
+
 /** Low German (Plattdüütsch) */
 $messages['nds'] = array(
 	'mainpagetext' => "'''De MediaWiki-Software is mit Spood installeert worrn.'''",
@@ -12225,454 +12673,6 @@ Berre bruk ASCII-bokstavar (a-z, A-Z), tal (0-9) og undestrekar (_).',
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Liste over oppsettsinnstillingar]
 * [//www.mediawiki.org/wiki/Manual:FAQ Spørsmål og svar om MediaWiki]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce E-postliste med informasjon om nye MediaWiki-versjonar]',
-);
-
-/** Norwegian (bokmål)‬ (‪Norsk (bokmål)‬)
- * @author Event
- * @author Jon Harald Søby
- * @author Nghtwlkr
- */
-$messages['nb'] = array(
-	'config-desc' => 'Installasjonsprogrammet for MediaWiki',
-	'config-title' => 'Installasjon av MediaWiki $1',
-	'config-information' => 'Informasjon',
-	'config-localsettings-upgrade' => 'En <code>LocalSettings.php</code>-fil har blitt oppdaget.
-For å oppgradere denne installasjonen, skriv inn verdien av <code>$wgUpgradeKey</code> i boksen nedenfor.
-Du finner denne i LocalSettings.php.',
-	'config-localsettings-cli-upgrade' => "Filen ''LocalSettings.php'' er funnet.
-For å oppgradere denne installasjonen, vennligst kjør ''update.php'' i stedet",
-	'config-localsettings-key' => 'Oppgraderingsnøkkel:',
-	'config-localsettings-badkey' => 'Nøkkelen du oppga er feil.',
-	'config-upgrade-key-missing' => "En eksisterende installasjon av MediaWiki er funnet.
-For å oppgradere denne installasjonen, vær vennlig å legge til følgende linje helt til slutt i din ''LocalSettings.php''-fil:
-
-$1",
-	'config-localsettings-incomplete' => "Den eksisterende ''LocalSettings.php'' ser ut til å være ufullstendig.
-Variabelen $1 har ingen verdi.
-Vær vennlig å endre ''LocalSettings.php'' slik at variabelen får en verdi, og klikk ''Fortsett''.",
-	'config-localsettings-connection-error' => "Det ble funnet en feil ved tilknytning av databasen med innstillingene i ''LocalSettings.php'' eller ''AdminSettings.php''. Vær vennlig å rette opp disse innstillingene og prøv igjen.
-
-$1",
-	'config-session-error' => 'Feil under oppstart av økt: $1',
-	'config-session-expired' => 'Dine øktdata ser ut til å ha utløpt.
-Økter er konfigurert for en levetid på $1.
-Du kan øke dette ved å sette <code>session.gc_maxlifetime</code> i php.ini.
-Start installasjonsprosessen på nytt.',
-	'config-no-session' => 'Dine øktdata ble tapt!
-Sjekk din php.ini og sørg for at <code>session.save_path</code> er satt til en passende mappe.',
-	'config-your-language' => 'Ditt språk:',
-	'config-your-language-help' => 'Velg et språk å bruke under installasjonsprosessen.',
-	'config-wiki-language' => 'Wikispråk:',
-	'config-wiki-language-help' => 'Velg språket som wikien hovedsakelig vil bli skrevet i.',
-	'config-back' => '← Tilbake',
-	'config-continue' => 'Fortsett →',
-	'config-page-language' => 'Språk',
-	'config-page-welcome' => 'Velkommen til MediaWiki!',
-	'config-page-dbconnect' => 'Koble til database',
-	'config-page-upgrade' => 'Oppgrader eksisterende innstallasjon',
-	'config-page-dbsettings' => 'Databaseinnstillinger',
-	'config-page-name' => 'Navn',
-	'config-page-options' => 'Valg',
-	'config-page-install' => 'Innstaller',
-	'config-page-complete' => 'Ferdig!',
-	'config-page-restart' => 'Start installasjonen på nytt',
-	'config-page-readme' => 'Les meg',
-	'config-page-releasenotes' => 'Utgivelsesnotat',
-	'config-page-copying' => 'Kopiering',
-	'config-page-upgradedoc' => 'Oppgradering',
-	'config-page-existingwiki' => 'Eksisterende wiki',
-	'config-help-restart' => 'Ønsker du å fjerne alle lagrede data som du har skrevet inn og starte installasjonsprosessen på nytt?',
-	'config-restart' => 'Ja, start på nytt',
-	'config-welcome' => '=== Miljøsjekker ===
-Grunnleggende sjekker utføres for å se om dette miljøet er egnet for en MediaWiki-installasjon.
-Du bør oppgi resultatene fra disse sjekkene om du trenger hjelp under installasjonen.',
-	'config-copyright' => "=== Opphavsrett og vilkår ===
-
-$1
-
-MediaWiki er fri programvare; du kan redistribuere det og/eller modifisere det under betingelsene i GNU General Public License som publisert av Free Software Foundation; enten versjon 2 av lisensen, eller (etter eget valg) enhver senere versjon.
-
-Dette programmet er distribuert i håp om at det vil være nyttig, men '''uten noen garanti'''; ikke engang implisitt garanti av '''salgbarhet''' eller '''egnethet for et bestemt formål'''.
-Se GNU General Public License for flere detaljer.
-
-Du skal ha mottatt <doclink href=Copying>en kopi av GNU General Public License</doclink> sammen med dette programmet; hvis ikke, skriv til Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA eller [http://www.gnu.org/copyleft/gpl.html les det på nettet].",
-	'config-sidebar' => '* [//www.mediawiki.org MediaWiki hjem]
-* [//www.mediawiki.org/wiki/Help:Contents Brukerguide]
-* [//www.mediawiki.org/wiki/Manual:Contents Administratorguide]
-* [//www.mediawiki.org/wiki/Manual:FAQ OSS]
-----
-* <doclink href=Readme>Les meg</doclink>
-* <doclink href=ReleaseNotes>Utgivelsesnotater</doclink>
-* <doclink href=Copying>Kopiering</doclink>
-* <doclink href=UpgradeDoc>Oppgradering</doclink>',
-	'config-env-good' => 'Miljøet har blitt sjekket.
-Du kan installere MediaWiki.',
-	'config-env-bad' => 'Miljøet har blitt sjekket.
-Du kan installere MediaWiki.',
-	'config-env-php' => 'PHP $1 er innstallert.',
-	'config-env-php-toolow' => 'PHP $1 er installert.
-MediaWiki krever imidlertid PHP $2 eller høyere.',
-	'config-unicode-using-utf8' => 'Bruker Brion Vibbers utf8_normalize.so for Unicode-normalisering.',
-	'config-unicode-using-intl' => 'Bruker [http://pecl.php.net/intl intl PECL-utvidelsen] for Unicode-normalisering.',
-	'config-unicode-pure-php-warning' => "'''Advarsel''': [http://pecl.php.net/intl intl PECL-utvidelsen] er ikke tilgjengelig for å håndtere Unicode-normaliseringen, faller tilbake til en langsommere ren-PHP-implementasjon.
-Om du kjører et nettsted med høy trafikk bør du lese litt om [//www.mediawiki.org/wiki/Unicode_normalization_considerations Unicode-normalisering].",
-	'config-unicode-update-warning' => "'''Advarsel''': Den installerte versjonen av Unicode-normalisereren bruker en eldre versjon av [http://site.icu-project.org/ ICU-prosjektets] bibliotek.
-Du bør [//www.mediawiki.org/wiki/Unicode_normalization_considerations oppgradere] om du er bekymret for å bruke Unicode.",
-	'config-no-db' => 'Fant ikke en passende databasedriver! Du må installere en databasedriver for PHP.
-Følgende databasetyper er støttet: $1
-
-Om du er på delt vertsskap, spør din vertsleverandør om å installere en passende databasedriver.
-Om du kompilerte PHP selv, rekonfigirer den med en aktivert databaseklient, for eksempel ved å bruke <code>./configure --with-mysql</code>.
-Om du installerte PHP fra en Debian- eller Ubuntu-pakke må du også installere modulen php5-mysql.',
-	'config-no-fts3' => "'''Advarsel''': SQLite er kompilert uten [//sqlite.org/fts3.html FTS3-modulen], søkefunksjoner vil ikke være tilgjengelig på dette bakstykket.",
-	'config-register-globals' => "'''Advarsel: PHPs <code>[http://php.net/register_globals register_globals]</code>-alternativ er aktivert.'''
-'''Deaktiver det om du kan.'''
-MediaWiki vil fungere, men tjeneren din er utsatt for potensielle sikkerhetssårbarheter.",
-	'config-magic-quotes-runtime' => "'''Kritisk: [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_runtime] er aktiv!'''
-Dette alternativet ødelegger inndata på en uforutsigbar måte.
-Du kan ikke installere eller bruke MediaWiki med mindre dette alternativet deaktiveres.",
-	'config-magic-quotes-sybase' => "'''Kritisk: [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-sybase magic_quotes_sybase] er aktiv!'''
-Dette alternativet ødelegger inndata på en uforutsigbar måte.
-Du kan ikke installere eller bruke MediaWiki med mindre dette alternativet deaktiveres.",
-	'config-mbstring' => "'''Kritisk: [http://www.php.net/manual/en/ref.mbstring.php#mbstring.overload mbstring.func_overload] er aktiv!'''
-Dette alternativet fører til feil og kan ødelegge data på en uforutsigbar måte.
-Du kan ikke installere eller bruke MediaWiki med mindre dette alternativet deaktiveres.",
-	'config-ze1' => "'''Kritisk: [http://www.php.net/manual/en/ini.core.php zend.ze1_compatibility_mode] er aktiv!'''
-Dette alternativet fører til horrible feil med MediaWiki.
-Du kan ikke installere eller bruke MediaWiki med mindre dette alternativet deaktiveres.",
-	'config-safe-mode' => "'''Advarsel:''' PHPs [http://www.php.net/features.safe-mode safe mode] er aktiv.
-Det kan føre til problem, spesielt hvis du bruker støtte for filopplastinger og <code>math</code>.",
-	'config-xml-bad' => 'PHPs XML-modul mangler.
-MediaWiki krever funksjonene i denne modulen og vil ikke virke i denne konfigurasjonen.
-Hvis du kjører Mandrak, installer pakken php-xml.',
-	'config-pcre' => 'PCRE-støttemodulen ser ut til å mangle.
-MediaWiki krever funksjonene for de Perl-kompatible regulære uttrykkene for å virke.',
-	'config-pcre-no-utf8' => "'''Fatal''': PHPs PCRE modul ser ut til å være kompilert uten PCRE_UTF8-støtte.
-MediaWiki krever UTF-8-støtte for å fungere riktig.",
-	'config-memory-raised' => 'PHPs <code>memory_limit</code> er $1, økt til $2.',
-	'config-memory-bad' => "'''Advarsel:''' PHPs <code>memory_limit</code> er $1.
-Dette er sannsynligvis for lavt.
-Installasjonen kan mislykkes!",
-	'config-xcache' => '[http://xcache.lighttpd.net/ XCache] er innstallert',
-	'config-apc' => '[http://www.php.net/apc APC] er innstallert',
-	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] er installert',
-	'config-no-cache' => "'''Advarsel:''' Kunne ikke finne [http://www.php.net/apc APC], [http://xcache.lighttpd.net/ XCache] eller [http://www.iis.net/download/WinCacheForPhp WinCache].
-Objekthurtiglagring er ikke aktivert.",
-	'config-mod-security' => "'''Advarsel''': Din web-tjener har [http://modsecurity.org/ mod_security] påslått. Hvis denne er feilinnstilt, kan det gi problemer for MediaWiki eller annen programvare som tillater brukere å poste vilkårlig innhold.
-Sjekk [http://modsecurity.org/documentation/ mod_security-dokumentasjonen] eller ta kontakt med din nettleverandør hvis du opplever tilfeldige feil.",
-	'config-diff3-bad' => 'GNU diff3 ikke funnet.',
-	'config-imagemagick' => 'Fant ImageMagick: <code>$1</code>.
-Bildeminiatyrisering vil aktiveres om du aktiverer opplastinger.',
-	'config-gd' => 'Fant innebygd GD-grafikkbibliotek.
-Bildeminiatyrisering vil aktiveres om du aktiverer opplastinger.',
-	'config-no-scaling' => 'Kunne ikke finne GD-bibliotek eller ImageMagick.
-Bildeminiatyrisering vil være deaktivert.',
-	'config-no-uri' => "'''Feil:''' Kunne ikke bestemme gjeldende URI.
-Installasjon avbrutt.",
-	'config-no-cli-uri' => "'''Advarsel''': Ingen --scriptpath er angitt; bruker standard: <code>$1</code>.",
-	'config-using-server' => 'Bruker servernavnet  "<nowiki>$1</nowiki>".',
-	'config-using-uri' => 'Bruker server-URL "<nowiki>$1$2</nowiki>".',
-	'config-uploads-not-safe' => "'''Advarsel:''' Din standardmappe for opplastinger <code>$1</code> er sårbar for kjøring av vilkårlige skript.
-Selv om MediaWiki sjekker alle opplastede filer for sikkerhetstrusler er det sterkt anbefalt å [//www.mediawiki.org/wiki/Manual:Security#Upload_security lukke denne sikkerhetssårbarheten] før du aktiverer opplastinger.",
-	'config-no-cli-uploads-check' => "'''Advarsel:''' Din standard-katalog for opplastinger (<code>$1</code>) er ikke kontrollert for sårbarhet overfor vilkårlig skript-kjøring under CLI-installasjonen.",
-	'config-brokenlibxml' => 'Ditt system har en kombinasjon av PHP- og libxml2-versjoner som er feilaktige og kan forårsake skjult dataødeleggelse i MediaWiki og andre web-applikasjoner.
-Oppgrader til PHP 5.2.9 eller nyere og libxml 2 2.7.3 eller nyere ([//bugs.php.net/bug.php?id=45996 Feil-liste for PHP]).
-Installasjon abortert.',
-	'config-using531' => 'MediaWiki kan ikke brukes med PHP $1 på grunn av en feil med referanseparametere til <code>__call()</code>.
-Oppgrader til PHP 5.3.2 eller høyere, eller nedgrader til PHP 5.3.0 for å løse dette.
-Installasjonen avbrutt.',
-	'config-suhosin-max-value-length' => 'Suhosin er installert og begrenser GET-parameterlengder til $1 bytes. MediaWiki\'s ResourceLoader-komponent klarer å komme rundt denne begrensningen, med med redusert ytelse. På mulig bør du sette suhosin.get.max_value_length til minst 1024 i php.ini, og sette $wgResourceLoaderMaxQueryLength til samme verdi i LocalSettings.php.',
-	'config-db-type' => 'Databasetype:',
-	'config-db-host' => 'Databasevert:',
-	'config-db-host-help' => 'Hvis databasetjeneren er på en annen tjener, skriv inn vertsnavnet eller IP-adressen her.
-
-Hvis du bruker en delt nettvert bør verten din oppgi det korrekte vertsnavnet i deres dokumentasjon.
-
-Hvis du installerer på en Windowstjener og bruker MySQL kan det hende at «localhost» ikke virker som tjenernavnet. Hvis ikke, prøv «127.0.0.1» for den lokale IP-adressen.',
-	'config-db-host-oracle' => 'Database TNS:',
-	'config-db-host-oracle-help' => 'Skriv inn et gyldig [http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm Local Connect Name]; en tnsnames.ora-fil må være synlig for installasjonsprosessen.<br />Hvis du bruker klientbibliotek 10g eller nyere kan du også bruke navngivingsmetoden [http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm Easy Connect].',
-	'config-db-wiki-settings' => 'Identifiser denne wikien',
-	'config-db-name' => 'Databasenavn:',
-	'config-db-name-help' => 'Velg et navn som identifiserer wikien din.
-Det bør ikke inneholde mellomrom.
-
-Hvis du bruker en delt nettvert vil verten din enten gi deg et spesifikt databasenavn å bruke, eller la deg opprette databaser via kontrollpanelet.',
-	'config-db-name-oracle' => 'Databaseskjema:',
-	'config-db-install-account' => 'Brukerkonto for installasjon',
-	'config-db-username' => 'Databasebrukernavn:',
-	'config-db-password' => 'Databasepassord:',
-	'config-db-password-empty' => 'Skriv inn et passord for den nye databasebrukeren: $1.
-Det er mulig å opprette brukere uten passord, men dette er ikke sikkert.',
-	'config-db-install-username' => 'Skriv inn brukernavnet som vil bli brukt til å koble til databasen under installasjonsprosessen.
-Dette er ikke brukernavnet på MediaWiki-kontoen; dette er brukernavnet for databasen din.',
-	'config-db-install-password' => 'Skriv inn passordet som vil bli brukt til å koble til databasen under installasjonsprosessen.
-Dette er ikke passordet på MediaWiki-kontoen; dette er passordet for databasen din.',
-	'config-db-install-help' => 'Skriv inn brukernavnet og passordet som vil bli brukt for å koble til databasen under installasjonsprosessen.',
-	'config-db-account-lock' => 'Bruk det samme brukernavnet og passordet under normal drift',
-	'config-db-wiki-account' => 'Brukerkonto for normal drift',
-	'config-db-wiki-help' => 'Skriv inn brukernavnet og passordet som vil bli brukt til å koble til databasen under normal wikidrift.
-Hvis kontoen ikke finnes, og installasjonskontoen har tilstrekkelige privilegier, vil denne brukerkontoen bli opprettet med et minimum av privilegier, tilstrekkelig for å operere wikien.',
-	'config-db-prefix' => 'Databasetabellprefiks:',
-	'config-db-prefix-help' => 'Hvis du trenger å dele en database mellom flere wikier, eller mellom MediaWiki og andre nettapplikasjoner, kan du velge å legge til et prefiks til alle tabellnavnene for å unngå konflikter.
-Ikke bruk mellomrom.
-
-Dette feltet er vanligvis tomt.',
-	'config-db-charset' => 'Databasetegnsett',
-	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 binær',
-	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
-	'config-charset-mysql4' => 'MySQL 4.0 bakoverkompatibel UTF-8',
-	'config-charset-help' => "'''Advarsel:''' Hvis du bruker '''bakoverkompatibel UTF-8''' på MySQL 4.1+, og deretter sikkerhetskopierer databasen med <code>mysqldump</code> kan det ødelegge alle ikke-ASCII tegn og irreversibelt ødelegge dine sikkerhetskopier!
-
-I '''binary mode''' lagrer MediaWiki UTF-8 tekst til databasen i binærfelt.
-Dette er mer effektivt enn MySQLs UTF-8 modus og tillater deg å bruke hele spekteret av Unicode-tegn.
-I '''UTF-8 mode''' vil MySQL vite hvilket tegnsett dataene dine er i og kan presentere og konvertere det på en riktig måte,
-men det vil ikke la deg lagre tegn over «[//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes the Basic Multilingual Plane]».",
-	'config-mysql-old' => 'MySQL $1 eller senere kreves, du har $2.',
-	'config-db-port' => 'Databaseport:',
-	'config-db-schema' => 'Skjema for MediaWiki',
-	'config-db-schema-help' => 'Dette skjemaet er som regel riktig.
-Bare endre det hvis du vet at du trenger det.',
-	'config-sqlite-dir' => 'SQLite datamappe:',
-	'config-sqlite-dir-help' => "SQLite lagrer alle data i en enkelt fil.
-
-Mappen du oppgir må være skrivbar for nettjeneren under installasjonen.
-
-Den bør '''ikke''' være tilgjengelig fra nettet, dette er grunnen til at vi ikke legger det der PHP-filene dine er.
-
-Installasjonsprogrammet vil skrive en <code>.htaccess</code>-fil sammen med det, men om det mislykkes kan noen få tilgang til din råe database. Dette inkluderer rå brukerdata (e-postadresser, hashede passord) samt slettede revisjoner og andre begrensede data på wikien.
-
-Vurder å plassere databasen et helt annet sted, for eksempel i <code>/var/lib/mediawiki/yourwiki</code>.",
-	'config-oracle-def-ts' => 'Standard tabellrom:',
-	'config-oracle-temp-ts' => 'Midlertidig tabellrom:',
-	'config-type-mysql' => 'MySQL',
-	'config-type-postgres' => 'PostgreSQL',
-	'config-type-sqlite' => 'SQLite',
-	'config-type-oracle' => 'Oracle',
-	'config-type-ibm_db2' => 'IBM DB2',
-	'config-support-info' => 'MediaWiki støtter følgende databasesystem:
-
-$1
-
-Hvis du ikke ser databasesystemet du prøver å bruke i listen nedenfor, følg instruksjonene det er lenket til over for å aktivere støtte.',
-	'config-support-mysql' => '* $1 er det primære målet for MediaWiki og er best støttet ([http://www.php.net/manual/en/mysql.installation.php hvordan kompilere PHP med MySQL-støtte])',
-	'config-support-postgres' => '* $1 er et populært åpen kildekode-databasesystem som er et alternativ til MySQL ([http://www.php.net/manual/en/pgsql.installation.php hvordan kompilere PHP med PostgreSQL-støtte]). Det kan være noen små utestående feil og det anbefales ikke for bruk i et produksjonsmiljø.',
-	'config-support-sqlite' => '* $1 er et lettvekts-databasesystem som er veldig godt støttet. ([http://www.php.net/manual/en/pdo.installation.php hvordan kompilere PHP med SQLite-støtte], bruker PDO)',
-	'config-support-oracle' => '* $1 er en kommersiell bedriftsdatabase. ([http://www.php.net/manual/en/oci8.installation.php Hvordan kompilere PHP med OCI8-støtte])',
-	'config-support-ibm_db2' => '* $1 er en kommersiell bedriftsdatabase.',
-	'config-header-mysql' => 'MySQL-innstillinger',
-	'config-header-postgres' => 'PostgreSQL-innstillinger',
-	'config-header-sqlite' => 'SQLite-innstillinger',
-	'config-header-oracle' => 'Oracle-innstillinger',
-	'config-header-ibm_db2' => 'IBM DB2-innstillinger',
-	'config-invalid-db-type' => 'Ugyldig databasetype',
-	'config-missing-db-name' => 'Du må skrive inn en verdi for «Databasenavn»',
-	'config-missing-db-host' => 'Du må skrive inn en verdi for «Databasevert»',
-	'config-missing-db-server-oracle' => 'Du må skrive inn en verdi for «Database TNS»',
-	'config-invalid-db-server-oracle' => 'Ugyldig database-TNS «$1».
-Bruk bare ASCII-bokstaver (a-z, A-Z), tall (0-9) og undestreker (_) og punktum (.).',
-	'config-invalid-db-name' => 'Ugyldig databasenavn «$1».
-Bruk bare ASCII-bokstaver (a-z, A-Z), tall (0-9), undestreker (_) og bindestreker (-).',
-	'config-invalid-db-prefix' => 'Ugyldig databaseprefiks «$1».
-Bruk bare ASCII-bokstaver (a-z, A-Z), tall (0-9), undestreker (_) og bindestreker (-).',
-	'config-connection-error' => '$1.
-
-Sjekk verten, brukernavnet og passordet nedenfor og prøv igjen.',
-	'config-invalid-schema' => 'Ugyldig skjema for MediaWiki «$1».
-Bruk bare ASCII-bokstaver (a-z, A-Z), tall (0-9) og undestreker (_).',
-	'config-db-sys-create-oracle' => 'Installasjonsprogrammet støtter kun bruk av en SYSDBA-konto for opprettelse av en ny konto.',
-	'config-db-sys-user-exists-oracle' => 'Brukerkontoen «$1» finnes allerede. SYSDBA kan kun brukes for oppretting av nye kontoer!',
-	'config-postgres-old' => 'PostgreSQL $1 eller senere kreves, du har $2.',
-	'config-sqlite-name-help' => 'Velg et navn som identifiserer wikien din.
-Ikke bruk mellomrom eller bindestreker.
-Dette vil bli brukt til SQLite-datafilnavnet.',
-	'config-sqlite-parent-unwritable-group' => 'Kan ikke opprette datamappen <code><nowiki>$1</nowiki></code> fordi foreldremappen <code><nowiki>$2</nowiki></code> ikke er skrivbar for nettjeneren.
-
-Installasjonsprogrammet har bestemt brukeren nettjeneren din kjører som.
-Gjør <code><nowiki>$3</nowiki></code>-mappen skrivbar for denne for å fortsette.
-På et Unix/Linux-system, gjør:
-
-<pre>cd $2
-mkdir $3
-chgrp $4 $3
-chmod g+w $3</pre>',
-	'config-sqlite-parent-unwritable-nogroup' => 'Kan ikke opprette datamappen <code><nowiki>$1</nowiki></code> fordi foreldremappen <code><nowiki>$2</nowiki></code> ikke er skrivbar for nettjeneren.
-
-Installasjonsprogrammet kunne ikke bestemme brukeren nettjeneren din kjører som.
-Gjør <code><nowiki>$3</nowiki></code>-mappen globalt skrivbar for denne (og andre!) for å fortsette.
-På et Unix/Linux-system, gjør:
-
-<pre>cd $2
-mkdir $3
-chmod a+w $3</pre>',
-	'config-sqlite-mkdir-error' => 'Feil under oppretting av datamappen «$1».
-Sjekk plasseringen og prøv igjen.',
-	'config-sqlite-dir-unwritable' => 'Kan ikke skrive til mappen «$1».
-Endre dens tilganger slik at nettjeneren kan skrive til den og prøv igjen.',
-	'config-sqlite-connection-error' => '$1.
-
-Sjekk datamappen og databasenavnet nedenfor og prøv igjen.',
-	'config-sqlite-readonly' => 'Filen <code>$1</code> er ikke skrivbar.',
-	'config-sqlite-cant-create-db' => 'Kunne ikke opprette databasefilen <code>$1</code>.',
-	'config-sqlite-fts3-downgrade' => 'PHP mangler FTS3-støtte, nedgraderer tabeller',
-	'config-can-upgrade' => "Det er MediaWiki-tabeller i denne databasen.
-For å oppgradere dem til MediaWiki $1, klikk '''Fortsett'''.",
-	'config-upgrade-done' => "Oppgradering fullført.
-
-Du kan nå [$1 begynne å bruke wikien din].
-
-Hvis du ønsker å regenerere <code>LocalSettings.php</code>-filen din, klikk på knappen nedenfor.
-Dette er '''ikke anbefalt''' med mindre du har problemer med wikien din.",
-	'config-upgrade-done-no-regenerate' => 'Oppgradering fullført.
-
-Du kan nå [$1 begynne å bruke wikien din].',
-	'config-regenerate' => 'Regenerer LocalSettings.php →',
-	'config-show-table-status' => 'SHOW TABLE STATUS etterspørselen mislyktes!',
-	'config-unknown-collation' => "'''Advarsel:''' Databasen bruker en ukjent sortering.",
-	'config-db-web-account' => 'Databasekonto for nettilgang',
-	'config-db-web-help' => 'Velg brukernavnet og passordet som nettjeneren skal bruke for å koble til databasetjeneren under ordinær drift av wikien.',
-	'config-db-web-account-same' => 'Bruk samme konto som for installasjonen',
-	'config-db-web-create' => 'Opprett kontoen om den ikke finnes allerede',
-	'config-db-web-no-create-privs' => 'Kontoen du oppga for installasjonen har ikke nok privilegier til å opprette en konto.
-Kontoen du oppgir her må finnes allerede.',
-	'config-mysql-engine' => 'Lagringsmotor:',
-	'config-mysql-innodb' => 'InnoDB',
-	'config-mysql-myisam' => 'MyISAM',
-	'config-mysql-engine-help' => "'''InnoDB''' er nesten alltid det beste alternativet siden den har god støtte for samtidighet («concurrency»).
-
-'''MyISAM''' kan være raskere i enbruker- eller les-bare-installasjoner.
-MyISAM-databaser har en tendens til å bli ødelagt oftere enn InnoDB-databaser.",
-	'config-mysql-charset' => 'Databasetegnsett:',
-	'config-mysql-binary' => 'Binær',
-	'config-mysql-utf8' => 'UTF-8',
-	'config-mysql-charset-help' => "I '''binary mode''' lagrer MediaWiki UTF-8 tekst til databasen i binærfelt.
-Dette er mer effektivt enn MySQLs UTF-8 modus og tillater deg å bruke hele spekteret av Unicode-tegn.
-
-I '''UTF-8 mode''' vil MySQL vite hvilket tegnsett dataene dine er i og kan presentere og konvertere det på en riktig måte,
-men det vil ikke la deg lagre tegn over «[//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes the Basic Multilingual Plane]».",
-	'config-ibm_db2-low-db-pagesize' => "DB2-databasen din har et standard tabellområde med en utilstrekkelig pagesize. Pagesize må være '''32K''' eller større.",
-	'config-site-name' => 'Navn på wiki:',
-	'config-site-name-help' => 'Dette vil vises i tittellinjen i nettleseren og diverse andre steder.',
-	'config-site-name-blank' => 'Skriv inn et nettstedsnavn.',
-	'config-project-namespace' => 'Prosjektnavnerom:',
-	'config-ns-generic' => 'Prosjekt',
-	'config-ns-site-name' => 'Samme som wikinavnet: $1',
-	'config-ns-other' => 'Annet (spesifiser)',
-	'config-ns-other-default' => 'MyWiki',
-	'config-project-namespace-help' => "Etter Wikipedias eksempel holder mange wikier deres sider med retningslinjer atskilt fra sine innholdssider, i et «'''prosjektnavnerom'''».
-Alle sidetitler i dette navnerommet starter med et gitt prefiks som du kan angi her.
-Tradisjonelt er dette prefikset avledet fra navnet på wikien, men det kan ikke innholde punkttegn som «#» eller «:».",
-	'config-ns-invalid' => 'Det angitte navnerommet «<nowiki>$1</nowiki>» er ugyldig.
-Angi et annet prosjektnavnerom.',
-	'config-ns-conflict' => 'Det angitte navnerommet «<nowiki>$1</nowiki>» er i konflikt med et standard MediaWiki-navnerom.
-Angi et annet prosjekt-navnerom.',
-	'config-admin-box' => 'Administratorkonto',
-	'config-admin-name' => 'Ditt navn:',
-	'config-admin-password' => 'Passord:',
-	'config-admin-password-confirm' => 'Passord igjen:',
-	'config-admin-help' => 'Skriv inn ditt ønskede brukernavn her, for eksempel «Joe Bloggs».
-Dette er navnet du vil bruke for å logge inn på denne wikien.',
-	'config-admin-name-blank' => 'Skriv inn et administratorbrukernavn.',
-	'config-admin-name-invalid' => 'Det angitte brukernavnet «<nowiki>$1</nowiki>» er ugyldig.
-Angi et annet brukernavn.',
-	'config-admin-password-blank' => 'Skriv inn et passord for administratorkontoen.',
-	'config-admin-password-same' => 'Passordet skal ikke være det samme som brukernavnet.',
-	'config-admin-password-mismatch' => 'De to passordene du skrev inn samsvarte ikke.',
-	'config-admin-email' => 'E-postadresse:',
-	'config-admin-email-help' => 'Skriv inn en e-postadresse her for at du skal kunne motta e-post fra andre brukere på wikien, tilbakestille passordet ditt, og bli varslet om endringer på sider på overvåkningslisten din. Du kan la dette feltet stå tomt.',
-	'config-admin-error-user' => 'Intern feil ved opprettelse av en admin med navnet «<nowiki>$1</nowiki>».',
-	'config-admin-error-password' => 'Intern feil ved opprettelse av passord for admin «<nowiki>$1</nowiki>»: <pre>$2</pre>',
-	'config-admin-error-bademail' => 'Du har skrevet inn en ugyldig e-postadresse.',
-	'config-subscribe' => 'Abonner på [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce e-postlisten for utgivelsesannonseringer].',
-	'config-subscribe-help' => 'Dette er en lav-volums e-postliste brukt til utgivelsesannonseringer, herunder viktige sikkerhetsannonseringer.
-Du bør abonnere på den og oppdatere MediaWikiinstallasjonen din når nye versjoner kommer ut.',
-	'config-almost-done' => 'Du er nesten ferdig!
-Du kan hoppe over de resterende konfigurasjonene og installere wikien nå.',
-	'config-optional-continue' => 'Spør meg flere spørsmål.',
-	'config-optional-skip' => 'Jeg er lei, bare installer wikien.',
-	'config-profile' => 'Brukerrettighetsprofil:',
-	'config-profile-wiki' => 'Tradisjonell wiki',
-	'config-profile-no-anon' => 'Kontoopprettelse påkrevd',
-	'config-profile-fishbowl' => 'Kun autoriserte bidragsytere',
-	'config-profile-private' => 'Privat wiki',
-	'config-profile-help' => "Wikier fungerer best når du lar så mange mennesker som mulig redigere den.
-I MediaWiki er det lett å revidere siste endringer og tilbakestille eventuell skade som er gjort av naive eller ondsinnede brukere.
-
-Imidlertid har mange funnet at MediaWiki er nyttig i mange roller, og av og til er det ikke lett å overbevise alle om fordelene med wikimåten.
-Så du har valget.
-
-En '''{{int:config-profile-wiki}}''' tillater alle å redigere, selv uten å logge inn.
-En wiki med '''{{int:config-profile-no-anon}}''' tilbyr ekstra ansvarlighet, men kan avskrekke tilfeldige bidragsytere.
-
-'''{{int:config-profile-fishbowl}}'''-scenariet tillater godkjente brukere å redigere, mens publikum kan se sider, og også historikken.
-En '''{{int:config-profile-private}}''' tillater kun godkjente brukere å se sider, den samme gruppen som får lov til å redigere dem.
-
-Mer komplekse konfigurasjoner av brukerrettigheter er tilgjengelig etter installasjon, se det [//www.mediawiki.org/wiki/Manual:User_rights relevante manualavsnittet].",
-	'config-license' => 'Opphavsrett og lisens:',
-	'config-license-cc-by-sa' => 'Creative Commons Navngivelse Del på samme vilkår',
-	'config-license-cc-by-nc-sa' => 'Creative Commons Navngivelse Ikke-kommersiell Del på samme vilkår',
-	'config-license-cc-0' => 'Creative Commons Zero',
-	'config-license-pd' => 'Offentlig rom',
-	'config-license-cc-choose' => 'Velg en egendefinert Creative Commons-lisens',
-	'config-email-settings' => 'E-postinnstillinger',
-	'config-enable-email' => 'Aktiver utgående e-post',
-	'config-enable-email-help' => 'Hvis du vil at e-post skal virke må [http://www.php.net/manual/en/mail.configuration.php PHPs e-postinnstillinger] bli konfigurert riktig.
-Hvis du ikke ønsker noen e-postfunksjoner kan du deaktivere dem her.',
-	'config-email-user' => 'Aktiver e-post mellom brukere',
-	'config-email-user-help' => 'Tillat alle brukere å sende hverandre e-post hvis de har aktivert det i deres innstillinger.',
-	'config-email-usertalk' => 'Aktiver brukerdiskusjonssidevarsler',
-	'config-email-usertalk-help' => 'Tillat brukere å motta varsler ved endringer på deres brukerdiskusjonsside hvis de har aktivert dette i deres innstillinger.',
-	'config-email-watchlist' => 'Aktiver overvåkningslistevarsler',
-	'config-email-watchlist-help' => 'Tillat brukere å motta varsler ved endringer på deres overvåkede sider hvis de har aktivert dette i deres innstillinger.',
-	'config-email-auth' => 'Aktiver e-postautentisering',
-	'config-email-auth-help' => "Om dette alternativet er aktivert må brukere bekrefte sin e-postadresse ved å bruke en lenke som blir sendt til dem når de setter eller endrer adressen sin.
-Kun autentiserte e-postadresser kan motta e-post fra andre brukere eller endringsvarsel.
-Å sette dette valget er '''anbefalt''' for offentlige wikier på grunn av potensiell misbruk av e-postfunksjonene.",
-	'config-email-sender' => 'Svar-e-postadresse:',
-	'config-email-sender-help' => 'Skriv inn e-postadressen som skal brukes som svar-adresse ved utgående e-post.
-Det er hit returmeldinger vil bli sendt.
-Mange e-posttjenere krever at minst domenenavnet må være gyldig.',
-	'config-upload-settings' => 'Bilde- og filopplastinger',
-	'config-upload-enable' => 'Aktiver filopplastinger',
-	'config-upload-help' => 'Filopplastinger kan potensielt utsette tjeneren din for sikkerhetsrisikoer.
-For mer informasjon, les [//www.mediawiki.org/wiki/Manual:Security sikkerhetsseksjonen] i manualen.
-
-For å aktivere filopplastinger, endre modusen i <code>images</code>-undermappen i MediaWikis rotmappe slik at nettjeneren kan skrive til den.
-Aktiver så dette alternativet.',
-	'config-upload-deleted' => 'Mappe for slettede filer:',
-	'config-upload-deleted-help' => 'Velg en mappe for å arkivere slettede filer.
-Ideelt burde ikke denne være tilgjengelig for nettet.',
-	'config-logo' => 'Logo-URL:',
-	'config-logo-help' => 'MediaWikis standarddrakt inkluderer plass til en 135x160 pikslers logo i øvre venstre hjørne.
-Last opp et bilde i passende størrelse og skriv inn nettadressen her.
-
-Hvis du ikke ønsker en logo, la denne boksen være tom.',
-	'config-instantcommons' => 'Aktiver Instant Commons',
-	'config-instantcommons-help' => '[//www.mediawiki.org/wiki/InstantCommons Instant Commons] er en funksjon som gjør det mulig for wikier å bruke bilder, lyder og andre media funnet på nettstedet [//commons.wikimedia.org/ Wikimedia Commons].
-For å gjøre dette krever MediaWiki tilgang til internett.
-
-For mer informasjon om denne funksjonen, inklusive instruksjoner om hvordan man setter opp dette for andre wikier enn Wikimedia Commons, konsulter [//mediawiki.org/wiki/Manual:$wgForeignFileRepos manualen].',
-	'config-cc-again' => 'Velg igjen...',
-	'config-cc-not-chosen' => 'Velg hvilken Creative Commons-lisens du ønsker og klikk «fortsett».',
-	'config-advanced-settings' => 'Avansert konfigurasjon',
-	'config-extensions' => 'Utvidelser',
-	'config-install-step-done' => 'ferdig',
-	'config-install-step-failed' => 'mislyktes',
-	'config-install-extensions' => 'Inkludert utvidelser',
-	'config-install-database' => 'Setter opp database',
-	'config-install-user' => 'Oppretter databasebruker',
-	'config-install-user-alreadyexists' => 'Brukeren «$1» finnes allerede',
-	'config-install-user-create-failed' => 'Opprettelse av brukeren «$1» mislyktes: $2',
-	'config-install-user-grant-failed' => 'Å gi tillatelse til brukeren «$1» mislyktes: $2',
-	'config-install-tables' => 'Oppretter tabeller',
-	'config-install-mainpage-failed' => 'Kunne ikke sette inn hovedside: $1',
-	'config-help' => 'hjelp',
-	'mainpagetext' => "'''MediaWiki-programvaren er nå installert.'''",
-	'mainpagedocfooter' => 'Se [//meta.wikimedia.org/wiki/Help:Contents brukerveiledningen] for informasjon om hvordan du bruker wiki-programvaren.
-
-==Å starte==
-*[//www.mediawiki.org/wiki/Manual:Configuration_settings Oppsettsliste]
-*[//www.mediawiki.org/wiki/Manual:FAQ Ofte stilte spørsmål]
-*[https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-postliste]',
 );
 
 /** Occitan (Occitan) */

@@ -598,6 +598,7 @@ $2
 'passwordreset-emailsent'      => 'Па электроннай пошце быў адпраўлены напамін.',
 
 # Special:ChangeEmail
+'changeemail-none'   => '(няма)',
 'changeemail-cancel' => 'Адмена',
 
 # Edit page toolbar

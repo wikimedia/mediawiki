@@ -24,6 +24,7 @@
  * @author KossuthRad
  * @author Misibacsi
  * @author Samat
+ * @author Sucy
  * @author Terik
  * @author Tgr
  * @author Xbspiro
@@ -955,7 +956,7 @@ Nézd meg, hogy valóban ezt a lapot szeretnéd-e létrehozni vagy szerkeszteni.
 'blocked-notice-logextract'        => 'A felhasználó jelenleg blokkolva van.
 A blokkolási napló legutóbbi ide vonatkozó bejegyzése a következő:',
 'clearyourcache'                   => "'''Megjegyzés:''' mentés után frissítened kell a böngésződ gyorsítótárát, hogy lásd a változásokat.
-'''Firefox / Safari:''' tartsd lenyomva a Shift gombot és kattints a ''Frissítés'' gombra az eszköztáron, vagy használd a ''Ctrl–F5'' vagy ''Ctrl–R'' billentyűkombinációt (Mac-en ''Command–R'');
+'''Firefox / Safari:''' tartsd lenyomva a Shift gombot és kattints a ''Frissítés'' gombra a címsorban, vagy használd a ''Ctrl–F5'' vagy ''Ctrl–R'' billentyűkombinációt (Mac-en ''Command–R'');
 '''Google Chrome:''' használd a ''Ctrl–Shift–R'' billentyűkombinációt (Mac-en ''Command–Shift–R'');
 '''Internet Explorer:''' tartsd nyomva a ''Ctrl''-t, és kattints a ''Frissítés'' gombra, vagy nyomj ''Ctrl–F5''-öt;
 '''Konqueror: '''kattints a ''Frissítés'' gombra vagy nyomj ''F5''-öt;
@@ -1335,7 +1336,7 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'prefs-rc'                      => 'Friss változtatások',
 'prefs-watchlist'               => 'Figyelőlista',
 'prefs-watchlist-days'          => 'A figyelőlistában mutatott napok száma:',
-'prefs-watchlist-days-max'      => 'Legfeljebb 7 nap',
+'prefs-watchlist-days-max'      => 'Legfeljebb $1 {{PLURAL:$1|nap|nap}}',
 'prefs-watchlist-edits'         => 'A kiterjesztett figyelőlistán mutatott szerkesztések száma:',
 'prefs-watchlist-edits-max'     => 'Legfeljebb 1000',
 'prefs-watchlist-token'         => 'A figyelőlista kulcsa:',
@@ -1774,6 +1775,16 @@ Kérjük, hogy lépj kapcsolatba egy  [[Special:ListUsers/sysop|adminisztrátorr
 'upload-too-many-redirects' => 'Az URL túl sokszor volt átirányítva',
 'upload-unknown-size'       => 'Ismeretlen méretű',
 'upload-http-error'         => 'HTTP-hiba történt: $1',
+
+# File backend
+'backend-fail-backup'        => 'Nem lehet elmenteni ezt a fájlt: $1.',
+'backend-fail-notexists'     => 'Ez a fájl nem létezik: $1 .',
+'backend-fail-delete'        => 'Nem sikerült törölni ezt a fájlt: $1 .',
+'backend-fail-alreadyexists' => 'Ez a fájl már létezik: $1 .',
+'backend-fail-opentemp'      => 'Nem lehet megnyitni az ideiglenes fájlt.',
+'backend-fail-writetemp'     => 'Nem lehet írni az ideiglenes fájlba.',
+'backend-fail-closetemp'     => 'Nem lehet lezárni az ideiglenes fájlt.',
+'backend-fail-read'          => 'Nem sikerült olvasni ebből a fájlból: $1 .',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'Hiba történt a ZIP fájlokon végzett ellenőrzés elindítása közben.',

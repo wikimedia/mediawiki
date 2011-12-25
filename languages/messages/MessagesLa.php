@@ -888,7 +888,7 @@ Conare praefixare tua inquisitionem cum ''all:'' ut quaeras contenta omnia (pagi
 'prefs-rc'                  => 'Nuper mutata',
 'prefs-watchlist'           => 'Paginae custoditae',
 'prefs-watchlist-days'      => 'Numerus dierum displicandus in paginis tuis custoditis:',
-'prefs-watchlist-days-max'  => 'Maximum 7 dies',
+'prefs-watchlist-days-max'  => 'Numerus maximus: $1 {{PLURAL:$1|dies|dies}}',
 'prefs-watchlist-edits'     => 'Numerus recensionum displicandus in paginis tuis custoditis extensis:',
 'prefs-watchlist-edits-max' => 'Numerus maximus: 1000',
 'prefs-misc'                => 'Misc',

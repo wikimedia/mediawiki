@@ -996,11 +996,12 @@ Můžete [[Special:Search/{{PAGENAME}}|zkusit tento název vyhledat]] na jiných
 'userpage-userdoesnotexist-view'   => 'Uživatelský účet „$1“ není zaregistrován.',
 'blocked-notice-logextract'        => 'Tento uživatel je momentálně zablokován.
 Zde je pro přehled zobrazen nejnovější záznam z knihy zablokování:',
-'clearyourcache'                   => "'''Poznámka: Po uložení musíte smazat cache vašeho prohlížeče, jinak změny neuvidíte.'''
-'''Mozilla / Firefox / Safari:''' při kliknutí na ''Aktualizovat'' držte ''Shift'', nebo stiskněte ''Ctrl-F5'' nebo ''Ctrl-R'' (na Macintoshi ''Command-R'');
-'''Konqueror''': klikněte na ''Aktualizovat'' nebo stiskněte ''F5'';
-'''Opera:''' smažte obsah cache v menu ''Nástroje → Nastavení'';
-'''Internet Explorer:''' při kliknutí na ''Aktualizovat'' držte ''Ctrl'', nebo stiskněte ''Ctrl-F5''.",
+'clearyourcache'                   => "'''Poznámka:''' Po uložení musíte smazat cache vašeho prohlížeče, jinak změny neuvidíte.
+* '''Firefox / Safari:''' Při kliknutí na ''Aktualizovat'' držte ''Shift'' nebo stiskněte ''Ctrl-F5'' nebo ''Ctrl-R'' (na Macu ''⌘-R'').
+* '''Google Chrome:''' Stiskněte ''Ctrl-Shift-R'' (na Macu ''⌘-Shift-R'').
+* '''Internet Explorer:''' Při kliknutí na ''Aktualizovat'' držte ''Ctrl'' nebo stiskněte ''Ctrl-F5''.
+* '''Konqueror:''' Klikněte na ''Aktualizovat'' nebo stiskněte ''F5''.
+* '''Opera:''' Smažte obsah cache v menu ''Nástroje → Nastavení''.",
 'usercssyoucanpreview'             => "'''Tip:''' Použijte tlačítko „{{int:showpreview}}“ k testování vašeho nového CSS před uložením.",
 'userjsyoucanpreview'              => "'''Tip:''' Použijte tlačítko „{{int:showpreview}}“ k testování vašeho nového JavaScriptu před uložením.",
 'usercsspreview'                   => "'''Pamatujte, že si prohlížíte jen náhled vašeho uživatelského CSS.'''
@@ -1379,7 +1380,7 @@ Pokud na začátek dotazu přidáte ''all:'', bude se hledat všude (včetně di
 'prefs-rc'                      => 'Poslední změny',
 'prefs-watchlist'               => 'Sledované stránky',
 'prefs-watchlist-days'          => 'Počet dní zobrazených ve sledovaných stránkách:',
-'prefs-watchlist-days-max'      => 'Maximálně 7 dní',
+'prefs-watchlist-days-max'      => 'Maximálně $1 {{PLURAL:$1|den|dny|dní}}',
 'prefs-watchlist-edits'         => 'Počet editací zobrazených ve zdokonalených sledovaných stránkách:',
 'prefs-watchlist-edits-max'     => 'Maximum: 1000',
 'prefs-watchlist-token'         => 'Klíč k seznamu sledovaných stránek:',
@@ -1813,6 +1814,35 @@ Kontaktuje prosím [[Special:ListUsers/sysop|správce]].',
 'upload-too-many-redirects' => 'URL obsahovalo příliš mnoho přesměrování',
 'upload-unknown-size'       => 'Neznámá velikost',
 'upload-http-error'         => 'Došlo k chybě HTTP: $1',
+
+# File backend
+'backend-fail-stream'        => 'Soubor $1 nelze streamovat.',
+'backend-fail-backup'        => 'Soubor $1 nelze zazálohovat.',
+'backend-fail-notexists'     => 'Soubor $1 neexistuje.',
+'backend-fail-hashes'        => 'Nelze získat hashe souborů pro porovnání.',
+'backend-fail-notsame'       => 'Odlišný soubor $1 už existuje.',
+'backend-fail-invalidpath'   => '$1 je neplatná cesta k místu uložení.',
+'backend-fail-delete'        => 'Soubor $1 nelze smazat.',
+'backend-fail-alreadyexists' => 'Soubor $1 už existuje.',
+'backend-fail-store'         => 'Soubor $1 nelze uložit v $2.',
+'backend-fail-copy'          => 'Soubor $1 nelze kopírovat do $2.',
+'backend-fail-move'          => 'Soubor $1 nelze přesunout do $2.',
+'backend-fail-opentemp'      => 'Dočasný soubor nelze otevřít.',
+'backend-fail-writetemp'     => 'Do dočasného souboru nelze zapisovat.',
+'backend-fail-closetemp'     => 'Dočasný soubor nelze zavřít.',
+'backend-fail-read'          => 'Soubor $1 nelze číst.',
+'backend-fail-create'        => 'Soubor $1 nelze vytvořit.',
+
+# Lock manager
+'lockmanager-notlocked'        => 'Soubor „$1“ nelze odemknout, neboť není zamčen.',
+'lockmanager-fail-closelock'   => 'Soubor se zámkem pro „$1“ nelze zavřít.',
+'lockmanager-fail-deletelock'  => 'Soubor se zámkem pro „$1“ nelze smazat.',
+'lockmanager-fail-acquirelock' => 'Zámek pro „$1“ nelze získat.',
+'lockmanager-fail-openlock'    => 'Soubor se zámkem pro „$1“ nelze otevřít.',
+'lockmanager-fail-releaselock' => 'Zámek pro „$1“ nelze uvolnit.',
+'lockmanager-fail-db-bucket'   => 'Nelze navázat spojení s dostatečným počtem databází zámků v bloku $1.',
+'lockmanager-fail-db-release'  => 'Uzamčení databáze $1 nelze uvolnit.',
+'lockmanager-fail-svr-release' => 'Uzamčení serveru $1 nelze uvolnit.',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'Při otevírání souboru ke kontrole ZIP došlo k chybě.',
@@ -2790,6 +2820,8 @@ Pokud si přejete přispívat k lokalizaci softwaru MediaWiki, navštivte [//www
 'thumbnail_error'          => 'Chyba při vytváření náhledu: $1',
 'djvu_page_error'          => 'Stránka DjVu mimo rozsah',
 'djvu_no_xml'              => 'Vytvoření XML pro soubor DjVu se nezdařilo.',
+'thumbnail-temp-create'    => 'Dočasný soubor náhledu nelze vytvořit.',
+'thumbnail-dest-create'    => 'Náhled nelze uložit na dané místo.',
 'thumbnail_invalid_params' => 'Neplatný parametr náhledu',
 'thumbnail_dest_directory' => 'Nelze vytvořit cílový adresář',
 'thumbnail_image-type'     => 'Nepodporovaný typ obrázku',

@@ -959,9 +959,9 @@ eller <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}
 'blocked-notice-logextract'        => 'Användaren är blockerad.
 Orsaken till senaste blockeringen kan ses nedan:',
 'clearyourcache'                   => "'''OBS:''' Sedan du sparat sidan kan du behöva tömma din webbläsares cache för att se ändringarna.
-*'''Firefox / Safari:''' Håll ner ''Skift'' och klicka på ''Uppdatera sidan'' eller tryck antingen ''Ctrl-F5'' eller ''Ctrl-R'' (''Command-R'' på Mac)
-*'''Google Chrome:''' Tryck ''Ctrl-Skift-R''  (''Command-R'' på Mac)
-*'''Internet Explorer:'''  Håll ner ''Ctrl'' och klicka på ''Uppdatera'' eller tryck ''Ctrl-F5''
+*'''Firefox / Safari:''' Håll ned ''Skift'' och klicka på ''Uppdatera sidan'' eller tryck antingen ''Ctrl-F5'' eller ''Ctrl-R'' (''⌘-R'' på Mac)
+*'''Google Chrome:''' Tryck ''Ctrl-Skift-R''  (''⌘-Shift-R'' på Mac)
+*'''Internet Explorer:'''  Håll ned ''Ctrl'' och klicka på ''Uppdatera'' eller tryck ''Ctrl-F5''
 *'''Konqueror:''' Klicka på ''Reload'' eller tryck på ''F5''
 *'''Opera:''' Rensa cachen i ''Verktyg → Inställningar''",
 'usercssyoucanpreview'             => "'''Tips:''' Använd \"{{int:showpreview}}\"-knappen för att testa din nya css innan du sparar.",
@@ -1351,7 +1351,7 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'prefs-rc'                      => 'Senaste ändringar',
 'prefs-watchlist'               => 'Bevakningslista',
 'prefs-watchlist-days'          => 'Antal dygn som skall visas i bevakningslistan:',
-'prefs-watchlist-days-max'      => 'Maximalt 7 dygn',
+'prefs-watchlist-days-max'      => 'Maximalt $1 {{PLURAL:$1|dag|dygn}}',
 'prefs-watchlist-edits'         => 'Maximalt antal redigeringar som visas i utökad bevakningslista:',
 'prefs-watchlist-edits-max'     => 'Maximalt antal: 1 000',
 'prefs-watchlist-token'         => 'Bevakningslistsnyckel:',
@@ -1795,6 +1795,35 @@ Om problemet kvarstår, kontakta en [[Special:ListUsers/sysop|administratör]].'
 'upload-unknown-size'       => 'Okänd storlek',
 'upload-http-error'         => 'Ett HTTP-fel uppstod: $1',
 
+# File backend
+'backend-fail-stream'        => 'Kunde inte strömma filen $1.',
+'backend-fail-backup'        => 'Kunde inte säkerhetskopiera filen $1.',
+'backend-fail-notexists'     => 'Filen $1 finns inte.',
+'backend-fail-hashes'        => 'Kunde inte att hämta filhash för jämförelse.',
+'backend-fail-notsame'       => 'En icke-identisk fil redan finns på $1.',
+'backend-fail-invalidpath'   => '$1 är inte en giltig sökväg för att spara.',
+'backend-fail-delete'        => 'Kunde inte radera filen $1.',
+'backend-fail-alreadyexists' => 'Filen $1 finns redan.',
+'backend-fail-store'         => 'Kunde inte spara filen $1 vid $2.',
+'backend-fail-copy'          => 'Det gick inte att kopiera filen $1 till $2.',
+'backend-fail-move'          => 'Kunde inte flytta filen $1 till $2.',
+'backend-fail-opentemp'      => 'Kunde inte öppna temporär fil.',
+'backend-fail-writetemp'     => 'Kunde inte skriva till temporär fil.',
+'backend-fail-closetemp'     => 'Kunde inte stänga temporär fil.',
+'backend-fail-read'          => 'Kunde inte läsa filen $1.',
+'backend-fail-create'        => 'Kunde inte skapa filen $1.',
+
+# Lock manager
+'lockmanager-notlocked'        => 'Kunde inte låsa upp "$1"; den är inte låst.',
+'lockmanager-fail-closelock'   => 'Kunde inte att stänga låsfilen för "$1".',
+'lockmanager-fail-deletelock'  => 'Kunde inte att radera låsfilen för "$1".',
+'lockmanager-fail-acquirelock' => 'Kunde inte skaffa låset för "$1".',
+'lockmanager-fail-openlock'    => 'Kunde inte att öppna låsfilen för "$1".',
+'lockmanager-fail-releaselock' => 'Kunde inte att frigöra låset för "$1".',
+'lockmanager-fail-db-bucket'   => 'Kunde inte kontakta tillräckligt många låsdatabaser i hinken $1.',
+'lockmanager-fail-db-release'  => 'Kunde inte frigöra låsen på databasen $1 .',
+'lockmanager-fail-svr-release' => 'Kunde inte frigöra låsen på servern $1.',
+
 # ZipDirectoryReader
 'zip-file-open-error' => 'Ett fel inträffade när filen öppnades för en ZIP-kontroll.',
 'zip-wrong-format'    => 'Den angivna filen var inte en ZIP-fil.',
@@ -2039,6 +2068,7 @@ En sida anses vara en förgreningssida om den inkluderar en mall som länkas til
 'mostimages'              => 'Filer med flest länkar till sig',
 'mostrevisions'           => 'Sidor med flest ändringar',
 'prefixindex'             => 'Alla sidor med prefix',
+'prefixindex-namespace'   => 'Alla sidor med prefix ($1 namnrymder)',
 'shortpages'              => 'Korta sidor',
 'longpages'               => 'Långa sidor',
 'deadendpages'            => 'Sidor utan länkar',
@@ -2788,6 +2818,8 @@ Besök [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] eller [//t
 'thumbnail_error'          => 'Fel vid skapande av miniatyrbild: $1',
 'djvu_page_error'          => 'DjVu-sida utanför gränserna',
 'djvu_no_xml'              => 'Kan inte hämta DjVu-filens XML',
+'thumbnail-temp-create'    => 'Kunde inte skapa temporär miniatyrfil',
+'thumbnail-dest-create'    => 'Kunde inte spara miniatyr till destinationen',
 'thumbnail_invalid_params' => 'Ogiltiga parametrar för miniatyrbilden',
 'thumbnail_dest_directory' => 'Kan inte skapa målkatalogen',
 'thumbnail_image-type'     => 'Bildtypen stöds inte',
@@ -3808,13 +3840,19 @@ Bilder visas i full upplösning, andra filtyper öppnas direkt i de program som 
 'newuserlog-byemail'                  => 'lösenord skickat med e-post',
 
 # Feedback
-'feedback-subject' => 'Ämne:',
-'feedback-message' => 'Meddelande:',
-'feedback-cancel'  => 'Avbryt',
-'feedback-submit'  => 'Skicka in feedback',
-'feedback-adding'  => 'Ge feedback till sida...',
-'feedback-error1'  => 'Fel: Okänt resultat från API',
-'feedback-error2'  => 'Fel: Redigeringen misslyckades',
-'feedback-error3'  => 'Fel: Inget svar från API',
+'feedback-bugornote' => 'Om du är redo att beskriva ett tekniskt problem detaljerat, var god [$1 rapporterar en bugg].
+Annars kan du använda det enkla formuläret nedan. Din kommentar kommer att läggas till på sidan "[$3 $2]", tillsammans med ditt användarnamn och vilken webbläsare du använder.',
+'feedback-subject'   => 'Ämne:',
+'feedback-message'   => 'Meddelande:',
+'feedback-cancel'    => 'Avbryt',
+'feedback-submit'    => 'Skicka in feedback',
+'feedback-adding'    => 'Ge feedback till sida...',
+'feedback-error1'    => 'Fel: Okänt resultat från API',
+'feedback-error2'    => 'Fel: Redigeringen misslyckades',
+'feedback-error3'    => 'Fel: Inget svar från API',
+'feedback-thanks'    => 'Tack! Din feedback har skickats till sidan "[$2 $1]".',
+'feedback-close'     => 'Färdig',
+'feedback-bugcheck'  => 'Jättebra! Bara kontrollera att det inte är en av de [$1 kända buggarna].',
+'feedback-bugnew'    => 'Jag kontrollerade. Rapportera ett nytt fel',
 
 );

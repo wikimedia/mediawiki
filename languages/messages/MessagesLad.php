@@ -237,20 +237,20 @@ $messages = array(
 'editfont-serif'     => 'Tipografía serif',
 
 # Dates
-'sunday'        => 'Aljhad',
+'sunday'        => 'Aljhadh',
 'monday'        => 'Lunes',
 'tuesday'       => 'Martes',
 'wednesday'     => 'Miércoles',
 'thursday'      => 'Juğeves',
 'friday'        => 'Viernes',
-'saturday'      => 'Xabat',
+'saturday'      => 'Shabbath',
 'sun'           => 'Alj',
 'mon'           => 'Lun',
 'tue'           => 'Mar',
 'wed'           => 'Mie',
 'thu'           => 'Jug',
 'fri'           => 'Vie',
-'sat'           => 'Xab',
+'sat'           => 'Sha',
 'january'       => 'Enero',
 'february'      => 'Fevrero',
 'march'         => 'Março',
@@ -291,7 +291,7 @@ $messages = array(
 # Categories related messages
 'pagecategories'                 => '{{PLURAL:$1|Katēggoría|Katēggorías}}',
 'category_header'                => 'Artícůlos en la katēggoría "$1"',
-'subcategories'                  => 'Baxo-katēggorías',
+'subcategories'                  => 'Sůkatēggorías',
 'category-media-header'          => 'Arxivos de multimedya en la katēggoría "$1"',
 'category-empty'                 => "''Esta katēggoría oy día, no contiene ni artícůlos ni arxivos de multimedya''",
 'hidden-categories'              => '{{PLURAL:$1|Katēggoría escondida|Katēggorías escondidas}}',
@@ -334,7 +334,7 @@ $messages = array(
 'vector-action-delete'           => 'Efassar',
 'vector-action-move'             => 'Taxirear',
 'vector-action-protect'          => 'Guardar',
-'vector-action-undelete'         => 'Traër atrás',
+'vector-action-undelete'         => 'Traer atrás',
 'vector-action-unprotect'        => 'No guardar',
 'vector-simplesearch-preference' => 'Aktivar consejos de búsqueda adelantada (sólo pelejo Vector)',
 'vector-view-create'             => 'Crîar',
@@ -359,7 +359,7 @@ $messages = array(
 'updatedmarker'     => 'trocado desde mi visita de alcavo',
 'printableversion'  => 'Vista apropiada para emprimir',
 'permalink'         => 'Atamiento mantenido',
-'print'             => 'Emprimir',
+'print'             => 'Imprimir',
 'view'              => 'Ver',
 'edit'              => 'Trocar',
 'create'            => 'Crîar',
@@ -367,13 +367,13 @@ $messages = array(
 'create-this-page'  => 'Crîar esta hoja',
 'delete'            => 'Efassar',
 'deletethispage'    => 'Efassar esta hoja',
-'undelete_short'    => 'Traër atrás $1 {{PLURAL:$1|trocamientos|trocamientos}}',
+'undelete_short'    => 'Traer atrás $1 {{PLURAL:$1|trocamientos|trocamientos}}',
 'viewdeleted_short' => 'Ver {{PLURAL:$1|un trocamiento efassado|$1 trocamientos efassados}}',
 'protect'           => 'Guardar',
 'protect_change'    => 'Trocar el guardadijo',
 'protectthispage'   => 'Guardar esta hoja',
-'unprotect'         => 'No guardar',
-'unprotectthispage' => 'No guardar esta hoja',
+'unprotect'         => 'Trocar guardadijo',
+'unprotectthispage' => 'Trocar el guardadijo desta hoja',
 'newpage'           => 'Hoja mueva',
 'talkpage'          => 'Diskutir la hoja',
 'talkpagelinktext'  => 'Messaje',
@@ -1091,8 +1091,18 @@ Los otros campos se van a guardar por defecto.
 'exif-lightsource-9'  => 'Bueno tiémpo',
 'exif-lightsource-10' => 'Tiémpo nuvlozo',
 
+'exif-saturation-0' => 'Normal',
+
 # Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kilometros por óra',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometros',
+
+'exif-dc-rights' => 'Derechos',
+
+'exif-iimcategory-hth' => 'Salud',
+'exif-iimcategory-lab' => 'Lavoro',
 
 # External editor support
 'edit-externally'      => 'Trocar esto arxivo usando una aplicación eksterna',
@@ -1132,6 +1142,10 @@ Los otros campos se van a guardar por defecto.
 'autoredircomment' => 'Redireksionado a [[$1]]',
 'autosumm-new'     => 'Pajina mueva: $1',
 
+# Live preview
+'livepreview-loading' => 'Cargando...',
+'livepreview-ready'   => 'Cargando… ¡Pronto!',
+
 # Watchlist editing tools
 'watchlisttools-view' => 'Ver los trocamientos',
 'watchlisttools-edit' => 'Ver i trocar tu lista de escogidas',
@@ -1142,15 +1156,42 @@ Los otros campos se van a guardar por defecto.
 'version-specialpages'     => 'Pajinas espesiales',
 'version-other'            => 'Otros',
 'version-version'          => '(Versión $1)',
+'version-poweredby-others' => 'otros',
 'version-software-version' => 'Versión',
+
+# Special:FilePath
+'filepath-page'   => 'Dosya:',
+'filepath-submit' => 'Yir',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-submit' => 'Buscar',
 
 # Special:SpecialPages
-'specialpages' => 'Hojas especiales',
+'specialpages'             => 'Hojas especiales',
+'specialpages-group-users' => 'Usadores y derechos',
 
 # Special:Tags
-'tag-filter' => 'Filtro de [[Special:Tags|etiquetas]]:',
+'tag-filter'        => 'Filtro de [[Special:Tags|etiquetas]]:',
+'tag-filter-submit' => 'Filtro',
+'tags-edit'         => 'trocar',
+
+# Special:ComparePages
+'compare-page1'  => 'Hoja 1',
+'compare-page2'  => 'Hoja 2',
+'compare-rev1'   => 'Enderechamiento 1',
+'compare-rev2'   => 'Enderechamiento 2',
+'compare-submit' => 'Comparar',
+
+# HTML forms
+'htmlform-selectorother-other' => 'Otro',
+
+# New logging system
+'logentry-newusers-autocreate' => 'El cuento $1 fue {{GENDER:$2|crîado}} otomatika mente',
+'newuserlog-byemail'           => 'kóddiche mandado con letral',
+
+# Feedback
+'feedback-subject' => 'Sujeto',
+'feedback-message' => 'Messaje',
+'feedback-cancel'  => 'Anular',
 
 );

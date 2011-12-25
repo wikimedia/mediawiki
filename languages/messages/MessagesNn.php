@@ -1279,7 +1279,7 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'prefs-rc'                      => 'Siste endringar',
 'prefs-watchlist'               => 'Overvakingsliste',
 'prefs-watchlist-days'          => 'Tal på dagar som viser i overvakingslista:',
-'prefs-watchlist-days-max'      => 'Høgst sju dagar',
+'prefs-watchlist-days-max'      => 'Høgst {{PLURAL:$1|éin dag|$1 dagar}}',
 'prefs-watchlist-edits'         => 'Talet på endringar som viser i den utvida overvakingslista:',
 'prefs-watchlist-edits-max'     => 'Høgst 1000',
 'prefs-watchlist-token'         => 'Emne på overvakingslista:',
@@ -1411,11 +1411,11 @@ Dette kan ikke tilbakestillast.',
 'group-all'           => '(alle)',
 
 'group-user-member'          => '{{GENDER:$1|brukar}}',
-'group-autoconfirmed-member' => 'Automatisk godkjend brukar',
-'group-bot-member'           => 'Robot',
-'group-sysop-member'         => 'Administrator',
-'group-bureaucrat-member'    => 'Byråkrat',
-'group-suppress-member'      => 'Historikkfjernar',
+'group-autoconfirmed-member' => '{{GENDER:$1|automatisk godkjend brukar}}',
+'group-bot-member'           => '{{GENDER:$1|robot}}',
+'group-sysop-member'         => '{{GENDER:$1|administrator}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|byråkrat}}',
+'group-suppress-member'      => '{{GENDER:$1|historikkfjernar}}',
 
 'grouppage-user'          => '{{ns:project}}:Brukarar',
 'grouppage-autoconfirmed' => '{{ns:project}}:Automatisk godkjende brukarar',
@@ -1526,6 +1526,7 @@ Dette kan ikke tilbakestillast.',
 'action-userrights'           => 'endre alle brukarrettar',
 'action-userrights-interwiki' => 'endre brukarrettar for brukarar på andre wikiar',
 'action-siteadmin'            => 'låse eller låse opp databasen',
+'action-sendemail'            => 'senda e-postar',
 
 # Recent changes
 'nchanges'                          => '{{PLURAL:$1|Éi endring|$1 endringar}}',
@@ -1659,6 +1660,7 @@ Om du framleis ønskjer å laste opp fila, gå tilbake og last ho opp med eit an
 'overwroteimage'              => 'lasta opp ein ny versjon av «[[$1]]»',
 'uploaddisabled'              => 'Beklagar, funksjonen for opplasting er deaktivert på denne nettenaren.',
 'copyuploaddisabled'          => 'Opplasting gjennom URL er slege av.',
+'uploadfromurl-queued'        => 'Opplastinga di er sett i kø.',
 'uploaddisabledtext'          => 'Filopplasting er slått av.',
 'php-uploaddisabledtext'      => 'PHP-filopplasting er deaktivert. Sjå innstillinga for file_uploads.',
 'uploadscripted'              => 'Fila inneheld HTML- eller skriptkode som feilaktig kan bli tolka og køyrd av nettlesarar.',
@@ -1872,7 +1874,7 @@ Skildringa frå [$2 filskildringssida] der er vist nedanfor.',
 'statistics-users-active-desc' => 'Brukarar som har utført handlingar {{PLURAL:$1|i dag|dei siste $1 dagane}}',
 'statistics-mostpopular'       => 'Mest viste sider',
 
-'disambiguations'      => 'Fleirtydingssider',
+'disambiguations'      => 'Sider som lenkjer til fleirtydingssider',
 'disambiguationspage'  => 'Template:Fleirtyding',
 'disambiguations-text' => "Sidene nedanfor har lenkje til ei '''fleirtydingsside'''. Dei bør ha lenkje til det rette oppslagsordet i staden for.<br />Sider vert handsama som fleirtydingssider dersom dei inneheld ein mal som har lenkje på [[MediaWiki:Disambiguationspage]].",
 
@@ -2596,6 +2598,7 @@ Dersom du berre vil ha noverande versjon, kan du også bruke ei lenkje, til døm
 'exportcuronly'     => 'Berre eksporter siste versjonen, ikkje med heile historikken.',
 'exportnohistory'   => "----
 '''Merk:''' Å eksportere heile sidehistorikkar gjennom dette skjemaet er slått av grunna problem med ytinga.",
+'exportlistauthors' => 'Tak med ei heil liste over bidragsytarar for kvar side',
 'export-submit'     => 'Eksporter',
 'export-addcattext' => 'Legg til sider frå kategori:',
 'export-addcat'     => 'Legg til',
@@ -2849,21 +2852,22 @@ $1',
 'nextdiff'     => 'Nyare endring →',
 
 # Media information
-'mediawarning'         => "'''Åtvaring''': Denne fila kan innehalda skadeleg programkode, ved å køyra programmet kan systemet ditt ta skade.",
-'imagemaxsize'         => "Avgrens storleiken for bilete:<br />''(for sider som skildrar filer)''",
-'thumbsize'            => 'Miniatyrstørrelse:',
-'widthheightpage'      => '$1×$2, {{PLURAL:$3|éi side|$3 sider}}',
-'file-info'            => 'filstorleik: $1, MIME-type: $2',
-'file-info-size'       => '$1 × $2 pikslar, filstorleik: $3, MIME-type: $4',
-'file-nohires'         => 'Høgare oppløysing er ikkje tilgjengeleg.',
-'svg-long-desc'        => 'SVG-fil, standardoppløysing: $1 × $2 pikslar, filstorleik: $3',
-'show-big-image'       => 'Full oppløysing',
-'show-big-image-other' => '{{PLURAL:$2|Anna oppløysing|Andre oppløysingar}}: $1.',
-'show-big-image-size'  => '$1 × $2 pikslar',
-'file-info-gif-looped' => 'gjentatt',
-'file-info-gif-frames' => '$1 {{PLURAL:$1|rame|ramer}}',
-'file-info-png-looped' => '↓oppatteke',
-'file-info-png-repeat' => 'spela av {{PLURAL:$1|éin gong|$1 gonger}}',
+'mediawarning'           => "'''Åtvaring''': Denne fila kan innehalda skadeleg programkode, ved å køyra programmet kan systemet ditt ta skade.",
+'imagemaxsize'           => "Avgrens storleiken for bilete:<br />''(for sider som skildrar filer)''",
+'thumbsize'              => 'Miniatyrstørrelse:',
+'widthheightpage'        => '$1×$2, {{PLURAL:$3|éi side|$3 sider}}',
+'file-info'              => 'filstorleik: $1, MIME-type: $2',
+'file-info-size'         => '$1 × $2 pikslar, filstorleik: $3, MIME-type: $4',
+'file-nohires'           => 'Høgare oppløysing er ikkje tilgjengeleg.',
+'svg-long-desc'          => 'SVG-fil, standardoppløysing: $1 × $2 pikslar, filstorleik: $3',
+'show-big-image'         => 'Full oppløysing',
+'show-big-image-preview' => 'Storleiken på førehandsvisinga: $1.',
+'show-big-image-other'   => '{{PLURAL:$2|Anna oppløysing|Andre oppløysingar}}: $1.',
+'show-big-image-size'    => '$1 × $2 pikslar',
+'file-info-gif-looped'   => 'gjentatt',
+'file-info-gif-frames'   => '$1 {{PLURAL:$1|rame|ramer}}',
+'file-info-png-looped'   => '↓oppatteke',
+'file-info-png-repeat'   => 'spela av {{PLURAL:$1|éin gong|$1 gonger}}',
 
 # Special:NewFiles
 'newimages'             => 'Filgalleri',
@@ -2890,8 +2894,8 @@ Alle andre lenkjer på same line vert sett på som unnatak, med andre ord sider 
 Dersom fila har vore endra sidan ho vart oppretta, kan nokre av opplysningane vere feil.',
 'metadata-expand'   => 'Vis utvida opplysningar',
 'metadata-collapse' => 'Gøym utvida opplysningar',
-'metadata-fields'   => 'EXIF-metadatafelta denne meldinga inneheld vert med på filskildringssida når dei utvida opplysningane er slått av.
-Dei andre felta er gøymde som standard.
+'metadata-fields'   => 'Biletmetadatafelta opplista i meldinga er med på filskildringssida når metadatatabellen er samanslegen.
+Andre er gøymde som standard.
 * make
 * model
 * datetimeoriginal

@@ -888,11 +888,11 @@ ou <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}}
 'blocked-notice-logextract'        => 'Este usuario está bloqueado.
 Velaquí está a última entrada do rexistro de bloqueos, por se quere consultala:',
 'clearyourcache'                   => "'''Nota:''' Despois de gardar, cómpre limpar a memoria caché do seu navegador para ver os cambios.
-* '''Firefox / Safari:''' prema ''Maiúsculas'' á vez que en ''Recargar'', ou prema en ''Ctrl-F5'' ou ''Ctrl-R'' (''Command-R'' nos Mac)
-* '''Google Chrome:''' prema en ''Ctrl-Shift-R'' (''Command-Shift-R'' nos Mac)
-* '''Internet Explorer:''' prema ''Ctrl'' ao tempo que fai clic en ''Refrescar'', ou prema en ''Ctrl-F5''
-* '''Konqueror:''' prema en ''Recargar'' ou prema en ''F5''
-* '''Opera:''' limpe a súa memoria caché en ''Ferramentas → Preferencias''",
+* '''Firefox / Safari:''' Prema ''Maiúsculas'' á vez que en ''Recargar'', ou prema en ''Ctrl-F5'' ou ''Ctrl-R'' (''⌘-R'' nos Mac)
+* '''Google Chrome:''' Prema en ''Ctrl-Shift-R'' (''⌘-Shift-R'' nos Mac)
+* '''Internet Explorer:''' Prema ''Ctrl'' ao tempo que fai clic en ''Refrescar'', ou prema en ''Ctrl-F5''
+* '''Konqueror:''' Prema en ''Recargar'' ou prema en ''F5''
+* '''Opera:''' Limpe a súa memoria caché en ''Ferramentas → Preferencias''",
 'usercssyoucanpreview'             => "'''Nota:''' Use o botón \"{{int:showpreview}}\" para verificar o novo CSS antes de gardalo.",
 'userjsyoucanpreview'              => "'''Nota:''' Use o botón \"{{int:showpreview}}\" para verificar o novo JS antes de gardalo.",
 'usercsspreview'                   => "'''Lembre que só está vendo a vista previa do seu CSS de usuario.'''
@@ -1282,7 +1282,7 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'prefs-rc'                      => 'Cambios recentes',
 'prefs-watchlist'               => 'Lista de vixilancia',
 'prefs-watchlist-days'          => 'Número de días que mostrar na lista de vixilancia:',
-'prefs-watchlist-days-max'      => 'Máximo 7 días',
+'prefs-watchlist-days-max'      => 'Máximo $1 {{PLURAL:$1|día|días}}',
 'prefs-watchlist-edits'         => 'Número máximo de edicións que mostrar na lista de vixilancia completa:',
 'prefs-watchlist-edits-max'     => 'Número máximo: 1000',
 'prefs-watchlist-token'         => 'Pase para a lista de vixilancia:',
@@ -1303,7 +1303,7 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'stub-threshold'                => 'Límite superior para o formato de <a href="#" class="stub">ligazóns de bosquexo</a> (bytes):',
 'stub-threshold-disabled'       => 'Desactivado',
 'recentchangesdays'             => 'Número de días a mostrar nos cambios recentes:',
-'recentchangesdays-max'         => '(máximo {{PLURAL:$1|un día|$1 días}})',
+'recentchangesdays-max'         => 'Máximo $1 {{PLURAL:$1|día|días}}',
 'recentchangescount'            => 'Número de edicións a mostrar por defecto:',
 'prefs-help-recentchangescount' => 'Isto inclúe os cambios recentes, os historiais e mais os rexistros.',
 'prefs-help-watchlist-token'    => 'Ao encher este campo cunha clave secreta xerarase unha fonte de novas RSS para a súa lista de vixilancia.
@@ -1735,22 +1735,30 @@ Se o problema persiste contacte cun [[Special:ListUsers/sysop|administrador]] do
 'backend-fail-stream'        => 'Non se puido transmitir o ficheiro "$1".',
 'backend-fail-backup'        => 'Non se puido facer unha copia de seguridade do ficheiro "$1".',
 'backend-fail-notexists'     => 'Non existe o ficheiro "$1".',
-'backend-fail-hashes'        => 'Non se puideron obter os hashes do ficheiro por comparación.',
+'backend-fail-hashes'        => 'Non se puideron obter os cardinais do ficheiro por comparación.',
 'backend-fail-notsame'       => 'Xa existe un ficheiro chamado "$1", con contidos diferentes.',
 'backend-fail-invalidpath'   => '"$1" non é unha ruta de almacenamento válida.',
 'backend-fail-delete'        => 'Non se deu borrado o ficheiro "$1".',
 'backend-fail-alreadyexists' => 'O ficheiro "$1" xa existe.',
-'backend-fail-store'         => 'Non se deu almacenado o ficheiro "$1" en "$2"',
-'backend-fail-copy'          => 'Non se deu copiado o ficheiro "$1" a "$2"',
-'backend-fail-move'          => 'Non se deu trasladado o ficheiro "$1" a "$2"',
+'backend-fail-store'         => 'Non se deu almacenado o ficheiro "$1" en "$2".',
+'backend-fail-copy'          => 'Non se deu copiado o ficheiro "$1" en "$2".',
+'backend-fail-move'          => 'Non se deu trasladado o ficheiro "$1" a "$2".',
 'backend-fail-opentemp'      => 'Non se puido abrir o ficheiro temporal.',
 'backend-fail-writetemp'     => 'Non se puido escribir no ficheiro temporal.',
 'backend-fail-closetemp'     => 'Non se puido pechar o ficheiro temporal.',
-'backend-fail-read'          => 'Non se puido ler o ficheiro "$1"',
-'backend-fail-create'        => 'Non se puido crear o ficheiro "$1"',
+'backend-fail-read'          => 'Non se puido ler o ficheiro "$1".',
+'backend-fail-create'        => 'Non se puido crear o ficheiro "$1".',
 
 # Lock manager
-'lockmanager-notlocked' => 'Non se puido desbloquear a clave "$1". Non está bloqueada.',
+'lockmanager-notlocked'        => 'Non se puido desbloquear "$1". Non está bloqueado.',
+'lockmanager-fail-closelock'   => 'Non se puido pechar o ficheiro de peche de "$1".',
+'lockmanager-fail-deletelock'  => 'Non se puido borrar o ficheiro de peche de "$1".',
+'lockmanager-fail-acquirelock' => 'Non se puido obter o peche de "$1".',
+'lockmanager-fail-openlock'    => 'Non se puido abrir o ficheiro de peche de "$1".',
+'lockmanager-fail-releaselock' => 'Non se puido liberar o peche de "$1".',
+'lockmanager-fail-db-bucket'   => 'Non se puido contactar cos peches de bases de datos suficientes no cubo $1.',
+'lockmanager-fail-db-release'  => 'Non se puideron liberar os peches na base de datos $1.',
+'lockmanager-fail-svr-release' => 'Non se puideron liberar os peches no servidor $1.',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'Atopouse un erro ao abrir o ficheiro ZIP para realizar as comprobacións.',
@@ -3634,7 +3642,7 @@ Tamén pode [[Special:EditWatchlist|empregar o editor normal]].',
 'version-extensions'            => 'Extensións instaladas',
 'version-specialpages'          => 'Páxinas especiais',
 'version-parserhooks'           => 'Asociadores analíticos',
-'version-variables'             => 'Variábeis',
+'version-variables'             => 'Variables',
 'version-antispam'              => 'Prevención contra spam',
 'version-skins'                 => 'Aparencias',
 'version-other'                 => 'Outros',

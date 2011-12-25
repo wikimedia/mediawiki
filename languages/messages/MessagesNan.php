@@ -1899,7 +1899,7 @@ Téng 1 ūi siu-kái-chiá sī [[User:$3|$3]] ([[User talk:$3|talk]]{{int:pipe-s
 'unlockbtn'           => '解除對資料庫的封鎖',
 'locknoconfirm'       => 'Lí bô kau "khak-tēng" ê keh-á.',
 'lockdbsuccesssub'    => '資料庫封鎖成功',
-'unlockdbsuccesssub'  => '已經解除對資料庫的封鎖',
+'unlockdbsuccesssub'  => '已經共資料庫的封鎖解除',
 'unlockdbsuccesstext' => '資料庫已經解除封鎖',
 
 # Move page

@@ -15,6 +15,7 @@
  * @author Stanqo
  * @author Turin
  * @author Urhixidur
+ * @author Vladimir Penov
  * @author Петър Петров
  * @author לערי ריינהארט
  */
@@ -263,7 +264,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Уведомяване по е-пощата даже при малки промени',
 'tog-enotifrevealaddr'        => 'Показване на електронния ми адрес в известяващите писма',
 'tog-shownumberswatching'     => 'Показване на броя на потребителите, наблюдаващи дадена страница',
-'tog-oldsig'                  => 'Преглед на съществуващия подпис:',
+'tog-oldsig'                  => 'Съществуващ подпис:',
 'tog-fancysig'                => 'Без превръщане на подписа в препратка към потребителската страница',
 'tog-externaleditor'          => 'Използване на външен редактор по подразбиране (само за експерти, необходими са специални настройки на компютъра.
 [//www.mediawiki.org/wiki/Manual:External_editors Повече информация.])',
@@ -608,6 +609,7 @@ $1',
 'actionthrottledtext'  => 'Като част от защитата против спам, многократното повтаряне на това действие за кратък период от време е ограничено и вие вече сте надвишили лимита си. Опитайте отново след няколко минути.',
 'protectedpagetext'    => 'Тази страница е заключена за редактиране.',
 'viewsourcetext'       => 'Можете да разгледате и да копирате кодa на страницата:',
+'viewyourtext'         => "Можете да преглеждате и копирате източника на '''вашите редакции''' на тази страница:",
 'protectedinterface'   => 'Тази страница съдържа текст, нужен за работата на системата. Тя е защитена против редактиране, за да се предотвратят възможни злоупотреби.',
 'editinginterface'     => "'''Внимание:''' Редактирате страница, която се използва за интерфейса на софтуера. Промяната й ще повлияе на външния вид на уикито.
 За превеждане обмислете използването на [//translatewiki.net/wiki/Main_Page?setlang=bg translatewiki.net], проектът за локализиране на MediaWiki.",
@@ -707,6 +709,7 @@ $2',
 'noemailprefs'               => 'За да работят тези функционалности, трябва да посочите адрес на електронна поща в своите настройки.',
 'emailconfirmlink'           => 'Потвърждаване на адреса за електронна поща',
 'invalidemailaddress'        => 'Въведеният адрес не може да бъде приет, тъй като не съответства на формата на адрес за електронна поща. Въведете коректен адрес или оставете полето празно.',
+'cannotchangeemail'          => 'Имейл адресите на акаунтa не може да бъдат променени в това уики.',
 'accountcreated'             => 'Потребителската сметка беше създадена',
 'accountcreatedtext'         => 'Потребителската сметка за $1 беше създадена.',
 'createaccount-title'        => 'Създаване на сметка за {{SITENAME}}',
@@ -743,14 +746,18 @@ $2',
 'resetpass-temp-password'   => 'Временна парола:',
 
 # Special:PasswordReset
-'passwordreset'                => 'Възстановяване на парола',
-'passwordreset-text'           => 'След попълването на формуляра ще получите писмо с напомняща информация за потребителската сметка.',
-'passwordreset-legend'         => 'Възстановяване на парола',
-'passwordreset-disabled'       => 'Възстановяването на паролата е изключено в това уики.',
-'passwordreset-username'       => 'Потребителско име:',
-'passwordreset-email'          => 'Електронна поща:',
-'passwordreset-emailtitle'     => 'Подробности за сметката в {{SITENAME}}',
-'passwordreset-emailtext-ip'   => 'Някой (вероятно вие, от IP адрес $1) поиска напомняне за
+'passwordreset'                    => 'Възстановяване на парола',
+'passwordreset-text'               => 'След попълването на формуляра ще получите писмо с напомняща информация за потребителската сметка.',
+'passwordreset-legend'             => 'Възстановяване на парола',
+'passwordreset-disabled'           => 'Възстановяването на паролата е изключено в това уики.',
+'passwordreset-pretext'            => '{{PLURAL:$1||Въведете една част от данните по-долу}}',
+'passwordreset-username'           => 'Потребителско име:',
+'passwordreset-domain'             => 'Домейн:',
+'passwordreset-capture'            => 'Преглед на получения имейл?',
+'passwordreset-capture-help'       => 'Ако поставите отметка в това поле, ще ви се покаже имейлът (с временната парола), който ще бъде изпратен и до потребителя.',
+'passwordreset-email'              => 'Електронна поща:',
+'passwordreset-emailtitle'         => 'Подробности за сметката в {{SITENAME}}',
+'passwordreset-emailtext-ip'       => 'Някой (вероятно вие, от IP адрес $1) поиска напомняне за
 данните от сметката в {{SITENAME}} ($4). За {{PLURAL:$3|следната сметка|следните сметки}}
 е посочен този адрес за електронна поща:
 
@@ -760,7 +767,7 @@ $2
 Сега би трябвало да влезете в системата и да си изберете нова парола. Ако заявката е направена от друг или пък сте си 
 спомнили паролата и не искате да я променяте, можете да пренебрегнете това съобщение и да продължите да използвате
 старата си парола.',
-'passwordreset-emailtext-user' => 'Потребител $1 от {{SITENAME}} поиска напомняне за данните от сметката в {{SITENAME}}
+'passwordreset-emailtext-user'     => 'Потребител $1 от {{SITENAME}} поиска напомняне за данните от сметката в {{SITENAME}}
 ($4). За {{PLURAL:$3|следната сметка|следните сметки}} е посочен този адрес за електронна поща:
 
 $2
@@ -769,9 +776,11 @@ $2
 Сега би трябвало да влезете в системата и да си изберете нова парола. Ако заявката е направена 
 от друг или пък сте си спомнили паролата и не искате да я променяте, можете да пренебрегнете 
 това съобщение и да продължите да използвате старата си парола.',
-'passwordreset-emailelement'   => 'Потребителско име: $1
+'passwordreset-emailelement'       => 'Потребителско име: $1
 Временна парола: $2',
-'passwordreset-emailsent'      => 'Беше изпратено напомнящо писмо на електронната поща.',
+'passwordreset-emailsent'          => 'Беше изпратено напомнящо писмо на електронната поща.',
+'passwordreset-emailsent-capture'  => 'Изпратен е имейл за напомняне, който може да видите по-долу.',
+'passwordreset-emailerror-capture' => 'Генериран е имейл за напомняне, който е показан по-долу, но изпращането му на потребителя е неуспешно: $1',
 
 # Special:ChangeEmail
 'changeemail'          => 'Промяна на адреса за е-поща',
@@ -1235,12 +1244,13 @@ $1",
 'searchdisabled'                   => 'Търсенето в {{SITENAME}} е временно изключено. Междувременно можете да търсите чрез Google. Обърнете внимание, че съхранените при тях страници най-вероятно са остарели.',
 
 # Quickbar
-'qbsettings'               => 'Лента за бърз избор',
-'qbsettings-none'          => 'Без меню',
-'qbsettings-fixedleft'     => 'Неподвижно вляво',
-'qbsettings-fixedright'    => 'Неподвижно вдясно',
-'qbsettings-floatingleft'  => 'Плаващо вляво',
-'qbsettings-floatingright' => 'Плаващо вдясно',
+'qbsettings'                => 'Лента за бърз избор',
+'qbsettings-none'           => 'Без меню',
+'qbsettings-fixedleft'      => 'Неподвижно вляво',
+'qbsettings-fixedright'     => 'Неподвижно вдясно',
+'qbsettings-floatingleft'   => 'Плаващо вляво',
+'qbsettings-floatingright'  => 'Плаващо вдясно',
+'qbsettings-directionality' => 'Фиксирана, в зависимост от посоката на скрипта от вашия език',
 
 # Preferences page
 'preferences'                   => 'Настройки',
@@ -1259,7 +1269,7 @@ $1",
 'prefs-rc'                      => 'Последни промени',
 'prefs-watchlist'               => 'Списък за наблюдение',
 'prefs-watchlist-days'          => 'Брой дни, които да се показват в списъка за наблюдение:',
-'prefs-watchlist-days-max'      => 'Най-много 7 дни',
+'prefs-watchlist-days-max'      => 'Максимум $1 {{PLURAL:$1|ден|дни}}',
 'prefs-watchlist-edits'         => 'Брой редакции, които се показват в разширения списък за наблюдение:',
 'prefs-watchlist-edits-max'     => 'Максимален брой: 1000',
 'prefs-watchlist-token'         => 'Уникален идентификатор на списъка за наблюдение:',
@@ -1324,7 +1334,7 @@ $1",
 'prefs-registration'            => 'Регистрация:',
 'yourrealname'                  => 'Истинско име:',
 'yourlanguage'                  => 'Език:',
-'yourvariant'                   => 'Вариант',
+'yourvariant'                   => 'Езиков вариант на съдържанието:',
 'yournick'                      => 'Подпис:',
 'prefs-help-signature'          => 'Коментарите в дискусионните страници трябва да се подписват с поредица от четири тилди "<nowiki>~~~~</nowiki>", която при съхранение на редакцията сървърът превръща в подпис с потребителско име, дата и час.',
 'badsig'                        => 'Избраният подпис не е валиден. Проверете HTML-етикетите!',
@@ -1378,7 +1388,7 @@ $1",
 'userrights-no-interwiki'      => 'Нямате права да редактирате потребителските групи на други уикита.',
 'userrights-nodatabase'        => 'Базата данни $1 не съществува или не е на локалния сървър.',
 'userrights-nologin'           => 'За управление на потребителските права е необходимо [[Special:UserLogin|влизане]] с администраторска сметка.',
-'userrights-notallowed'        => 'Не ви е позволено да променяте потребителски права.',
+'userrights-notallowed'        => 'С вашия акаунт нямате разрешение да добавяте или премахвате потребителски права.',
 'userrights-changeable-col'    => 'Групи, които можете да променяте',
 'userrights-unchangeable-col'  => 'Групи, които не можете да променяте',
 
@@ -1465,6 +1475,7 @@ $1",
 'right-siteadmin'             => 'заключване и отключване на базата от данни',
 'right-override-export-depth' => 'Изнасяне на страници, включително свързаните с тях в дълбочина до пето ниво',
 'right-sendemail'             => 'Изпращане на е-писма до другите потребители',
+'right-passwordreset'         => 'Преглед на имейли за възстановяване на паролата',
 
 # User rights log
 'rightslog'      => 'Дневник на потребителските права',
@@ -1506,6 +1517,7 @@ $1",
 'action-userrights'           => 'редактиране на всички потребителски права',
 'action-userrights-interwiki' => 'редактиране на потребителските права на потребители от други уикита',
 'action-siteadmin'            => 'заключване и отключване на базата от данни',
+'action-sendemail'            => 'изпращате имейли',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|промяна|промени}}',
@@ -1679,6 +1691,13 @@ $1',
 'upload-unknown-size'       => 'Неизвестен размер',
 'upload-http-error'         => 'Възникна HTTP грешка: $1',
 
+# File backend
+'backend-fail-delete'        => 'Файлът $1 не може да бъде изтрит.',
+'backend-fail-alreadyexists' => 'Файлът $1 вече съществува.',
+'backend-fail-opentemp'      => 'Временният файл не може да бъде отворен.',
+'backend-fail-read'          => 'Файлът $1 не може да бъде прочетен.',
+'backend-fail-create'        => 'Файлът $1 не може да бъде създаден.',
+
 # ZipDirectoryReader
 'zip-file-open-error' => 'Възникна грешка при отваряне на файла за проверка на ZIP.',
 'zip-wrong-format'    => 'Указаният файл не е ZIP файл.',
@@ -1796,23 +1815,24 @@ $1',
 'filerevert-badversion'     => 'Не съществува предишна локална версия на файла със зададения времеви отпечатък.',
 
 # File deletion
-'filedelete'                  => 'Изтриване на $1',
-'filedelete-legend'           => 'Изтриване на файл',
-'filedelete-intro'            => "На път сте да изтриете '''[[Media:$1|$1]]''' заедно с цялата му редакционна история.",
-'filedelete-intro-old'        => "Изтривате версията на '''[[Media:$1|$1]]''' към [$4 $3, $2].",
-'filedelete-comment'          => 'Причина:',
-'filedelete-submit'           => 'Изтриване',
-'filedelete-success'          => "Файлът '''$1''' беше изтрит.",
-'filedelete-success-old'      => "Версията на '''[[Media:$1|$1]]''' към $3, $2 е била изтрита.",
-'filedelete-nofile'           => "Файлът '''$1''' не съществува.",
-'filedelete-nofile-old'       => "Не съществува архивна версия на '''$1''' с указаните параметри.",
-'filedelete-otherreason'      => 'Друга/допълнителна причина:',
-'filedelete-reason-otherlist' => 'Друга причина',
-'filedelete-reason-dropdown'  => '*Общи причини за изтриване
+'filedelete'                   => 'Изтриване на $1',
+'filedelete-legend'            => 'Изтриване на файл',
+'filedelete-intro'             => "На път сте да изтриете '''[[Media:$1|$1]]''' заедно с цялата му редакционна история.",
+'filedelete-intro-old'         => "Изтривате версията на '''[[Media:$1|$1]]''' към [$4 $3, $2].",
+'filedelete-comment'           => 'Причина:',
+'filedelete-submit'            => 'Изтриване',
+'filedelete-success'           => "Файлът '''$1''' беше изтрит.",
+'filedelete-success-old'       => "Версията на '''[[Media:$1|$1]]''' към $3, $2 е била изтрита.",
+'filedelete-nofile'            => "Файлът '''$1''' не съществува.",
+'filedelete-nofile-old'        => "Не съществува архивна версия на '''$1''' с указаните параметри.",
+'filedelete-otherreason'       => 'Друга/допълнителна причина:',
+'filedelete-reason-otherlist'  => 'Друга причина',
+'filedelete-reason-dropdown'   => '*Общи причини за изтриване
 ** Нарушение на авторските права
 ** Файлът се повтаря',
-'filedelete-edit-reasonlist'  => 'Редактиране на причините за изтриване',
-'filedelete-maintenance'      => 'Поради поддръжка на сайта, изтриването и възстановяването на файлове е временно ограничено.',
+'filedelete-edit-reasonlist'   => 'Редактиране на причините за изтриване',
+'filedelete-maintenance'       => 'Поради поддръжка на сайта, изтриването и възстановяването на файлове е временно ограничено.',
+'filedelete-maintenance-title' => 'Файлът не може да бъде изтрит',
 
 # MIME search
 'mimesearch'         => 'MIME-търсене',
@@ -2294,6 +2314,7 @@ $UNWATCHURL
 
 Можете да видите последните изтрити и възстановени страници в [[Special:Log/delete|дневника на изтриванията]].",
 'undelete-header'              => 'Прегледайте [[Special:Log/delete|дневника на изтриванията]] за текущо изтритите страници.',
+'undelete-search-title'        => 'Търсене на изтрити страници',
 'undelete-search-box'          => 'Търсене на изтрити страници',
 'undelete-search-prefix'       => 'Показване на страници, започващи със:',
 'undelete-search-submit'       => 'Търсене',
@@ -3023,6 +3044,7 @@ $1',
 'exif-gpsareainformation'          => 'Име на GPS зоната',
 'exif-gpsdatestamp'                => 'GPS дата',
 'exif-gpsdifferential'             => 'Диференциална корекция на GPS',
+'exif-jpegfilecomment'             => 'Kоментар на JPEG файл',
 'exif-keywords'                    => 'Ключови думи',
 'exif-objectname'                  => 'Кратко заглавие',
 'exif-specialinstructions'         => 'Специални инструкции',
@@ -3030,15 +3052,26 @@ $1',
 'exif-languagecode'                => 'Език',
 'exif-iimversion'                  => 'IIM версия',
 'exif-iimcategory'                 => 'Категория',
+'exif-iimsupplementalcategory'     => 'Допълнителни категории',
 'exif-datetimeexpires'             => 'Да не се използва след',
 'exif-identifier'                  => 'Идентификатор',
+'exif-lens'                        => 'Използвана оптична леща',
 'exif-serialnumber'                => 'Сериен номер на фотоапарата',
 'exif-cameraownername'             => 'Собственик на фотоапарата',
+'exif-label'                       => 'Етикет',
 'exif-nickname'                    => 'Неформално име на изображението',
 'exif-rating'                      => 'Рейтинг (от 5)',
+'exif-rightscertificate'           => 'Сертификат за управление на правата',
+'exif-copyrightowner'              => 'Притежател на авторското право',
 'exif-usageterms'                  => 'Условия за използване',
 'exif-originaldocumentid'          => 'Уникален номер на оригиналния документ',
+'exif-licenseurl'                  => 'URL адрес за лиценз за авторски права',
 'exif-morepermissionsurl'          => 'Алтернативна информация за лиценза',
+'exif-pngfilecomment'              => 'Kоментар на PNG файл',
+'exif-disclaimer'                  => 'Отказ от отговорност',
+'exif-contentwarning'              => 'Предупреждение за съдържанието',
+'exif-giffilecomment'              => 'Kоментар на GIF файл',
+'exif-intellectualgenre'           => 'Тип елемент',
 'exif-event'                       => 'Изобразено събитие',
 'exif-organisationinimage'         => 'Изобразена организация',
 'exif-personinimage'               => 'Изобразена личност',
@@ -3048,6 +3081,7 @@ $1',
 # EXIF attributes
 'exif-compression-1' => 'Некомпресиран',
 
+'exif-copyrighted-true'  => 'С авторски права',
 'exif-copyrighted-false' => 'Обществено достояние',
 
 'exif-unknowndate' => 'Неизвестна дата',
@@ -3057,12 +3091,14 @@ $1',
 'exif-orientation-3' => 'Обърнато на 180°',
 'exif-orientation-4' => 'Отражение по вертикалата',
 'exif-orientation-5' => 'Обърнато на 90° срещу часовниковата стрелка и отразено по вертикалата',
-'exif-orientation-6' => 'Обърнато на 90° по часовниковата стрелка',
+'exif-orientation-6' => 'Обърнато на 90° срещу часовниковата стрелка',
 'exif-orientation-7' => 'Обърнато на 90° по часовниковата стрелка и отразено по вертикалата',
-'exif-orientation-8' => 'Обърнато на 90° срещу часовниковата стрелка',
+'exif-orientation-8' => 'Обърнато на 90° по часовниковата стрелка',
 
 'exif-planarconfiguration-1' => 'формат „chunky“',
 'exif-planarconfiguration-2' => 'формат „planar“',
+
+'exif-colorspace-65535' => 'Некалибрирана',
 
 'exif-componentsconfiguration-0' => 'не съществува',
 
@@ -3203,6 +3239,9 @@ $1',
 'exif-gpsdop-moderate'  => 'Умерено ($1)',
 'exif-gpsdop-fair'      => 'Горе-долу ($1)',
 'exif-gpsdop-poor'      => 'Лошо ($1)',
+
+'exif-objectcycle-a' => 'Само сутрин',
+'exif-objectcycle-p' => 'Само вечер',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'истинска',
