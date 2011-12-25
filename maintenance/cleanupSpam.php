@@ -94,20 +94,13 @@ class CleanupSpam extends Maintenance {
 
 		$this->output( $title->getPrefixedDBkey() . " ..." );
 		$rev = Revision::newFromTitle( $title );
-		$revId = $rev->getId();
-		$currentRevId = $revId;
+		$currentRevId = $rev->getId();
 
-		while ( $rev && LinkFilter::matchEntry( $rev->getText() , $domain ) ) {
-			# Revision::getPrevious can't be used in this way before MW 1.6 (Revision.php 1.26)
-			# $rev = $rev->getPrevious();
-			$revId = $title->getPreviousRevisionID( $revId );
-			if ( $revId ) {
-				$rev = Revision::newFromTitle( $title, $revId );
-			} else {
-				$rev = false;
-			}
+		while ( $rev && ( $rev->isDeleted( Revision::DELETED_TEXT ) || LinkFilter::matchEntry( $rev->getText() , $domain ) ) ) {
+			$rev = $rev->getPrevious();
 		}
-		if ( $revId == $currentRevId ) {
+
+		if ( $rev && $rev->getId() == $currentRevId ) {
 			// The regex didn't match the current article text
 			// This happens e.g. when a link comes from a template rather than the page itself
 			$this->output( "False match\n" );
