@@ -39,11 +39,11 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			$out->setPageTitle( $this->msg( 'watchnologin' ) );
 			$llink = Linker::linkKnown(
 				SpecialPage::getTitleFor( 'Userlogin' ),
-				wfMsgHtml( 'loginreqlink' ),
+				$this->msg( 'loginreqlink' )->escaped(),
 				array(),
 				array( 'returnto' => $this->getTitle()->getPrefixedText() )
 			);
-			$out->addHTML( wfMessage( 'watchlistanontext' )->rawParams( $llink )->parse() );
+			$out->addHTML( $this->msg( 'watchlistanontext' )->rawParams( $llink )->parse() );
 			return;
 		}
 
@@ -129,24 +129,20 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			$this->getUser()->invalidateCache();
 
 			if( count( $toWatch ) > 0 || count( $toUnwatch ) > 0 ){
-				$this->successMessage = wfMessage( 'watchlistedit-raw-done' )->parse();
+				$this->successMessage = $this->msg( 'watchlistedit-raw-done' )->parse();
 			} else {
 				return false;
 			}
 
 			if( count( $toWatch ) > 0 ) {
-				$this->successMessage .= ' ' . wfMessage(
-					'watchlistedit-raw-added',
-					$this->getLanguage()->formatNum( count( $toWatch ) )
-				);
+				$this->successMessage .= ' ' . $this->msg( 'watchlistedit-raw-added'
+					)->numParams( count( $toWatch ) )->parse();
 				$this->showTitles( $toWatch, $this->successMessage );
 			}
 
 			if( count( $toUnwatch ) > 0 ) {
-				$this->successMessage .= ' ' . wfMessage(
-					'watchlistedit-raw-removed',
-					$this->getLanguage()->formatNum( count( $toUnwatch ) )
-				);
+				$this->successMessage .= ' ' . $this->msg( 'watchlistedit-raw-removed'
+					)->numParams( count( $toUnwatch ) )->parse();
 				$this->showTitles( $toUnwatch, $this->successMessage );
 			}
 		} else {
@@ -154,15 +150,13 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			$this->getUser()->invalidateCache();
 
 			if( count( $current ) > 0 ){
-				$this->successMessage = wfMessage( 'watchlistedit-raw-done' )->parse();
+				$this->successMessage = $this->msg( 'watchlistedit-raw-done' )->parse();
 			} else {
 				return false;
 			}
 
-			$this->successMessage .= ' ' . wfMessage(
-				'watchlistedit-raw-removed',
-				$this->getLanguage()->formatNum( count( $current ) )
-			);
+			$this->successMessage .= ' ' . $this->msg( 'watchlistedit-raw-removed'
+				)->numParams( count( $current ) )->parse();
 			$this->showTitles( $current, $this->successMessage );
 		}
 		return true;
@@ -178,7 +172,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * @param $output String
 	 */
 	private function showTitles( $titles, &$output ) {
-		$talk = wfMsgHtml( 'talkpagelinktext' );
+		$talk = $this->msg( 'talkpagelinktext' )->escaped();
 		// Do a batch existence check
 		$batch = new LinkBatch();
 		foreach( $titles as $title ) {
@@ -358,10 +352,8 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		}
 
 		if( count( $removed ) > 0 ) {
-			$this->successMessage = wfMessage(
-				'watchlistedit-normal-done',
-				$this->getLanguage()->formatNum( count( $removed ) )
-			);
+			$this->successMessage = $this->msg( 'watchlistedit-normal-done'
+				)->numParams( count( $removed ) )->parse();
 			$this->showTitles( $removed, $this->successMessage );
 			return true;
 		} else {
@@ -414,7 +406,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				$ns = substr( $data['section'], 2 );
 
 				$nsText = ($ns == NS_MAIN)
-					? wfMsgHtml( 'blanknamespace' )
+					? $this->msg( 'blanknamespace' )->escaped()
 					: htmlspecialchars( $wgContLang->getFormattedNsText( $ns ) );
 				$this->toc .= Linker::tocLine( "editwatchlist-{$data['section']}", $nsText,
 					$this->getLanguage()->formatNum( ++$tocLength ), 1 ) . Linker::tocLineEnd();
@@ -426,9 +418,9 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 		$form = new EditWatchlistNormalHTMLForm( $fields, $this->getContext() );
 		$form->setTitle( $this->getTitle() );
-		$form->setSubmitText( wfMessage( 'watchlistedit-normal-submit' )->text() );
-		$form->setWrapperLegend( wfMessage( 'watchlistedit-normal-legend' )->text() );
-		$form->addHeaderText( wfMessage( 'watchlistedit-normal-explain' )->parse() );
+		$form->setSubmitTextMsg( 'watchlistedit-normal-submit' );
+		$form->setWrapperLegendMsg( 'watchlistedit-normal-legend' );
+		$form->addHeaderText( $this->msg( 'watchlistedit-normal-explain' )->parse() );
 		$form->setSubmitCallback( array( $this, 'submitNormal' ) );
 		return $form;
 	}
@@ -445,11 +437,11 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			// Linker already makes class mw-redirect, so this is redundant
 			$link = '<span class="watchlistredir">' . $link . '</span>';
 		}
-		$tools[] = Linker::link( $title->getTalkPage(), wfMsgHtml( 'talkpagelinktext' ) );
+		$tools[] = Linker::link( $title->getTalkPage(), $this->msg( 'talkpagelinktext' )->escaped() );
 		if( $title->exists() ) {
 			$tools[] = Linker::linkKnown(
 				$title,
-				wfMsgHtml( 'history_short' ),
+				$this->msg( 'history_short' )->escaped(),
 				array(),
 				array( 'action' => 'history' )
 			);
@@ -457,7 +449,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		if( $title->getNamespace() == NS_USER && !$title->isSubpage() ) {
 			$tools[] = Linker::linkKnown(
 				SpecialPage::getTitleFor( 'Contributions', $title->getText() ),
-				wfMsgHtml( 'contributions' )
+				$this->msg( 'contributions' )->escaped()
 			);
 		}
 
@@ -482,9 +474,9 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		);
 		$form = new HTMLForm( $fields, $this->getContext() );
 		$form->setTitle( $this->getTitle( 'raw' ) );
-		$form->setSubmitText( wfMessage( 'watchlistedit-raw-submit' )->text() );
-		$form->setWrapperLegend( wfMessage( 'watchlistedit-raw-legend' )->text() );
-		$form->addHeaderText( wfMessage( 'watchlistedit-raw-explain' )->parse() );
+		$form->setSubmitTextMsg( 'watchlistedit-raw-submit' );
+		$form->setWrapperLegendMsg( 'watchlistedit-raw-legend' );
+		$form->addHeaderText( $this->msg( 'watchlistedit-raw-explain' )->parse() );
 		$form->setSubmitCallback( array( $this, 'submitRaw' ) );
 		return $form;
 	}
@@ -556,7 +548,7 @@ class EditWatchlistNormalHTMLForm extends HTMLForm {
 	public function getLegend( $namespace ){
 		$namespace = substr( $namespace, 2 );
 		return $namespace == NS_MAIN
-			? wfMsgHtml( 'blanknamespace' )
+			? $this->msg( 'blanknamespace' )->escaped()
 			: htmlspecialchars( $this->getContext()->getLanguage()->getFormattedNsText( $namespace ) );
 	}
 	public function getBody() {
