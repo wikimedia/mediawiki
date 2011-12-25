@@ -548,7 +548,7 @@ class LocalisationCache {
 	 * @param $code
 	 */
 	public function recache( $code ) {
-		global $wgExtensionMessagesFiles, $wgExtensionAliasesFiles;
+		global $wgExtensionMessagesFiles;
 		wfProfileIn( __METHOD__ );
 
 		if ( !$code ) {
@@ -643,22 +643,6 @@ class LocalisationCache {
 			}
 		}
 
-		# Load deprecated $wgExtensionAliasesFiles
-		foreach ( $wgExtensionAliasesFiles as $fileName ) {
-			$data = $this->readPHPFile( $fileName, 'aliases' );
-
-			if ( !isset( $data['aliases'] ) ) {
-				continue;
-			}
-
-			$used = $this->mergeExtensionItem( $codeSequence, 'specialPageAliases',
-				$allData['specialPageAliases'], $data['aliases'] );
-
-			if ( $used ) {
-				$deps[] = new FileDependency( $fileName );
-			}
-		}
-
 		# Merge core data into extension data
 		foreach ( $coreData as $key => $item ) {
 			$this->mergeItem( $key, $allData[$key], $item );
@@ -666,7 +650,6 @@ class LocalisationCache {
 
 		# Add cache dependencies for any referenced globals
 		$deps['wgExtensionMessagesFiles'] = new GlobalDependency( 'wgExtensionMessagesFiles' );
-		$deps['wgExtensionAliasesFiles'] = new GlobalDependency( 'wgExtensionAliasesFiles' );
 		$deps['version'] = new ConstantDependency( 'MW_LC_VERSION' );
 
 		# Add dependencies to the cache entry
