@@ -988,21 +988,26 @@ class WikiPage extends Page {
 		if ( strval( $section ) == '' ) {
 			// Whole-page edit; let the whole text through
 		} else {
-			if ( is_null( $edittime ) ) {
-				$rev = Revision::newFromTitle( $this->mTitle );
+			// Bug 30711: always use current version when adding a new section
+			if ( is_null( $edittime ) || $section == 'new' ) {
+				$oldtext = $this->getRawText();
+				if ( $oldtext === false ) {
+					wfDebug( __METHOD__ . ": no page text\n" );
+					return null;
+				}
 			} else {
 				$dbw = wfGetDB( DB_MASTER );
 				$rev = Revision::loadFromTimestamp( $dbw, $this->mTitle, $edittime );
-			}
 
-			if ( !$rev ) {
-				wfDebug( "WikiPage::replaceSection asked for bogus section (page: " .
-					$this->getId() . "; section: $section; edittime: $edittime)\n" );
-				wfProfileOut( __METHOD__ );
-				return null;
-			}
+				if ( !$rev ) {
+					wfDebug( "WikiPage::replaceSection asked for bogus section (page: " .
+						$this->getId() . "; section: $section; edittime: $edittime)\n" );
+					wfProfileOut( __METHOD__ );
+					return null;
+				}
 
-			$oldtext = $rev->getText();
+				$oldtext = $rev->getText();
+			}
 
 			if ( $section == 'new' ) {
 				# Inserting a new section
