@@ -407,6 +407,7 @@ Silakan lapurakan ini ka saurang [[Special:ListUsers/sysop|pambakal]], ulah cata
 'formerror'            => 'Kasalahan: kada kawa mangirim purmulir',
 'badarticleerror'      => 'Palakuan ini kada kawa dicungulakan pada tungkaran ini.',
 'cannotdelete'         => "Tungkaran atawa barakas ''$1'' kada kawa dihapus. Pinanya sudah dihapus urang lain badahulu.",
+'cannotdelete-title'   => 'Kada kawa mahapus tungkaran "$1"',
 'badtitle'             => 'Judul buruk',
 'badtitletext'         => 'Judul tungkaran nang diminta kada sah, kada baisi, atawa kada pasnya tautan judul antar-bahasa atawa antar-wiki.
 Nangini bisa baisi satu atawa labih hurup nang saharusnya kadada di judul.',

@@ -12687,6 +12687,18 @@ $messages['oc'] = array(
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de discussions de las parucions de MediaWiki]",
 );
 
+/** Oriya (ଓଡ଼ିଆ)
+ * @author Jnanaranjan Sahu
+ */
+$messages['or'] = array(
+	'config-back' => '← ପଛକୁ',
+	'config-continue' => 'ଚାଲୁରଖିବେ →',
+	'config-page-language' => 'ଭାଷା',
+	'config-page-welcome' => 'ମେଡିଆଉଇକିକୁ ଆପଣଙ୍କୁ ସ୍ଵାଗତ',
+	'config-page-name' => 'ନାମ',
+	'config-page-options' => 'ପସନ୍ଦସମୂହ',
+);
+
 /** Ossetic (Ирон)
  * @author Amikeco
  */
@@ -16203,6 +16215,8 @@ $messages['xal'] = array(
  * @author פוילישער
  */
 $messages['yi'] = array(
+	'config-back' => '→ צוריק',
+	'config-page-language' => 'שפראַך',
 	'config-admin-name' => 'אײַער נאָמען:',
 	'mainpagetext' => "'''מעדיעוויקי אינסטאלירט מיט דערפאלג.'''",
 	'mainpagedocfooter' => "גיט זיך אן עצה מיט [//meta.wikimedia.org/wiki/Help:Contents באניצער'ס וועגווײַזער] פֿאר אינפֿארמאציע וויאזוי זיך באנוצן מיט וויקי ווייכוואַרג.

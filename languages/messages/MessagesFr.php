@@ -1851,12 +1851,12 @@ Si le problème persiste, contactez un [[Special:ListUsers/sysop|administrateur]
 'backend-fail-create'        => 'Impossible de créer le fichier $1.',
 
 # Lock manager
-'lockmanager-notlocked'        => 'Impossible de déverrouiller la clé "$1"; elle n\'est pas verrouillée.',
-'lockmanager-fail-closelock'   => 'Impossible de fermer le fichier de verrou pour la clé "$1".',
-'lockmanager-fail-deletelock'  => 'Impossible de supprimer le fichier de verrou pour la clé "$1".',
-'lockmanager-fail-acquirelock' => 'Impossible d\'obtenir le verrou pour la clé "$1".',
-'lockmanager-fail-openlock'    => 'Impossible d\'ouvrir le fichier de verrou pour la clé "$1".',
-'lockmanager-fail-releaselock' => 'Impossible de relâcher le verrou pour la clé "$1".',
+'lockmanager-notlocked'        => 'Impossible de déverrouiller "$1"; elle n\'est pas verrouillée.',
+'lockmanager-fail-closelock'   => 'Impossible de fermer le fichier de verrou pour "$1".',
+'lockmanager-fail-deletelock'  => 'Impossible de supprimer le fichier de verrou pour "$1".',
+'lockmanager-fail-acquirelock' => 'Impossible d\'obtenir le verrou pour "$1".',
+'lockmanager-fail-openlock'    => 'Impossible d\'ouvrir le fichier de verrou pour "$1".',
+'lockmanager-fail-releaselock' => 'Impossible de relâcher le verrou pour "$1".',
 'lockmanager-fail-db-bucket'   => 'Impossible de contacter suffisamment de bases de données de verrouillage dans le godet $1.',
 'lockmanager-fail-db-release'  => 'Impossible de relâcher les verrous sur la base de données $1.',
 'lockmanager-fail-svr-release' => 'Impossible de relâcher les verrous sur le serveur $1.',

@@ -833,9 +833,9 @@ eller <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}
 'blocked-notice-logextract'        => 'Denne bruger er i øjeblikket blokeret.
 Loggen over den seneste blokering ses nedenfor:',
 'clearyourcache'                   => "'''Bemærk:''' Efter at have gemt er du måske nødt til at tømme din browsers cache for at kunne se ændringerne.
-* '''Firefox / Safari:''' Hold ''shifttasten'' nede og klik på ''reload'', eller tryk enten ''Ctrl-F5'' eller ''Ctrl-Shift-r'' (''Cmd-R'' på en Mac).
-* '''Google Chrome:''' Tryk ''Ctrl-Shift-R'' (''Cmd-Shift-R'' på en Mac).
-* '''Internet Explorer:''' hold ''controltasten'' nede og klik på ''refresh'' eller tryk på ''Ctrl-F5''.
+* '''Firefox / Safari:''' Hold ''shifttasten'' nede og klik på ''reload'', eller tryk enten ''Ctrl-F5'' eller ''Ctrl-Shift-r'' (''⌘-R'' på en Mac).
+* '''Google Chrome:''' Tryk ''Ctrl-Shift-R'' (''⌘-Shift-R'' på en Mac).
+* '''Internet Explorer:''' Hold ''controltasten'' nede og klik på ''refresh'' eller tryk på ''Ctrl-F5''.
 * '''Konqueror:''' Klik på ''reload'' eller tryk på ''F5''.
 * '''Opera:''' Tøm cachen i ''Tools → Preferences''.",
 'usercssyoucanpreview'             => "'''Tip:''' Brug \"{{int:showpreview}}\"-knappen for at teste dit nye CSS inden du gemmer.",
@@ -1210,7 +1210,7 @@ Du kan prøve at bruge \"all:\" som præfiks for at søge i alt indhold (inkl. d
 'prefs-rc'                      => 'Seneste ændringer',
 'prefs-watchlist'               => 'Overvågningsliste',
 'prefs-watchlist-days'          => 'Antal dage, som overvågningslisten standardmæssigt skal omfatte:',
-'prefs-watchlist-days-max'      => 'Maks. 7 dage',
+'prefs-watchlist-days-max'      => 'Højst $1 {{PLURAL:$1|dag|dage}}',
 'prefs-watchlist-edits'         => 'Antal redigeringer der vises i udvidet overvågningsliste:',
 'prefs-watchlist-edits-max'     => 'Maks. 1000',
 'prefs-watchlist-token'         => 'Overvågningslistenøgle:',
