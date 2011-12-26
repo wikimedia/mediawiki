@@ -385,6 +385,8 @@ class LocalFile extends File {
 	function upgradeRow() {
 		wfProfileIn( __METHOD__ );
 
+		$this->lock(); // begin
+
 		$this->loadFromFile();
 
 		# Don't destroy file info of missing files
@@ -405,19 +407,23 @@ class LocalFile extends File {
 
 		$dbw->update( 'image',
 			array(
-				'img_width' => $this->width,
-				'img_height' => $this->height,
-				'img_bits' => $this->bits,
+				'img_width'      => $this->width,
+				'img_height'     => $this->height,
+				'img_bits'       => $this->bits,
 				'img_media_type' => $this->media_type,
 				'img_major_mime' => $major,
 				'img_minor_mime' => $minor,
-				'img_metadata' => $this->metadata,
-				'img_sha1' => $this->sha1,
-			), array( 'img_name' => $this->getName() ),
+				'img_metadata'   => $this->metadata,
+				'img_sha1'       => $this->sha1,
+			),
+			array( 'img_name' => $this->getName() ),
 			__METHOD__
 		);
 
 		$this->saveToCache();
+
+		$this->unlock(); // done
+
 		wfProfileOut( __METHOD__ );
 	}
 
@@ -458,7 +464,7 @@ class LocalFile extends File {
 
 	function isMissing() {
 		if ( $this->missing === null ) {
-			list( $fileExists ) = $this->repo->fileExistsBatch( array( $this->getVirtualUrl() ), FileRepo::FILES_ONLY );
+			list( $fileExists ) = $this->repo->fileExists( $this->getVirtualUrl(), FileRepo::FILES_ONLY );
 			$this->missing = !$fileExists;
 		}
 		return $this->missing;
@@ -603,9 +609,8 @@ class LocalFile extends File {
 		*/
 
 		if ( $this->repo->fileExists( $thumbDir, FileRepo::FILES_ONLY ) ) {
-			// File where directory should be
-			$op = array( 'op' => 'delete', 'src' => $thumbDir );
-			$this->repo->getBackend()->doOperation( $op );
+			// Delete file where directory should be
+			$this->repo->cleanupBatch( array( $thumbDir ) );
 		}
 	}
 
@@ -690,15 +695,6 @@ class LocalFile extends File {
 		$dir = array_shift( $files );
 		$this->purgeThumbList( $dir, $files );
 
-		// Directory should be empty, delete it too. This will probably suck on
-		// something like NFS or if the directory isn't actually empty, so hide
-		// the warnings :D
-		wfSuppressWarnings();
-		if( !rmdir( $dir ) ) {
-			wfDebug( __METHOD__ . ": unable to remove archive directory: $dir\n" );
-		}
-		wfRestoreWarnings();
-
 		// Purge any custom thumbnail caches
 		wfRunHooks( 'LocalFilePurgeThumbnails', array( $this, $archiveName ) );
 
@@ -757,17 +753,19 @@ class LocalFile extends File {
 		);
 		wfDebug( __METHOD__ . ": $fileListDebug\n" );
 
-		$backend = $this->repo->getBackend();
+		$purgeList = array();
 		foreach ( $files as $file ) {
 			# Check that the base file name is part of the thumb name
 			# This is a basic sanity check to avoid erasing unrelated directories
 			if ( strpos( $file, $this->getName() ) !== false ) {
-				$op = array( 'op' => 'delete', 'src' => "{$dir}/{$file}" );
-				$backend->doOperation( $op );
+				$purgeList[] = "{$dir}/{$file}";
 			}
 		}
-		# Clear out directory if empty
-		$backend->clean( array( 'dir' => $dir ) );
+
+		# Delete the thumbnails
+		$this->repo->cleanupBatch( $purgeList );
+		# Clear out the thumbnail directory if empty
+		$this->repo->getBackend()->clean( array( 'dir' => $dir ) );
 	}
 
 	/** purgeDescription inherited */
@@ -906,7 +904,7 @@ class LocalFile extends File {
 		// non-nicely (dangling multi-byte chars, non-truncated
 		// version in cache).
 		$comment = $wgContLang->truncate( $comment, 255 );
-		$this->lock();
+		$this->lock(); // begin
 		$status = $this->publish( $srcPath, $flags );
 
 		if ( $status->ok ) {
@@ -915,7 +913,7 @@ class LocalFile extends File {
 			}
 		}
 
-		$this->unlock();
+		$this->unlock(); // done
 
 		return $status;
 	}
@@ -986,20 +984,20 @@ class LocalFile extends File {
 		# doesn't deadlock. SELECT FOR UPDATE causes a deadlock for every race condition.
 		$dbw->insert( 'image',
 			array(
-				'img_name' => $this->getName(),
-				'img_size' => $this->size,
-				'img_width' => intval( $this->width ),
-				'img_height' => intval( $this->height ),
-				'img_bits' => $this->bits,
-				'img_media_type' => $this->media_type,
-				'img_major_mime' => $this->major_mime,
-				'img_minor_mime' => $this->minor_mime,
-				'img_timestamp' => $timestamp,
+				'img_name'        => $this->getName(),
+				'img_size'        => $this->size,
+				'img_width'       => intval( $this->width ),
+				'img_height'      => intval( $this->height ),
+				'img_bits'        => $this->bits,
+				'img_media_type'  => $this->media_type,
+				'img_major_mime'  => $this->major_mime,
+				'img_minor_mime'  => $this->minor_mime,
+				'img_timestamp'   => $timestamp,
 				'img_description' => $comment,
-				'img_user' => $user->getId(),
-				'img_user_text' => $user->getName(),
-				'img_metadata' => $this->metadata,
-				'img_sha1' => $this->sha1
+				'img_user'        => $user->getId(),
+				'img_user_text'   => $user->getName(),
+				'img_metadata'    => $this->metadata,
+				'img_sha1'        => $this->sha1
 			),
 			__METHOD__,
 			'IGNORE'
@@ -1014,43 +1012,45 @@ class LocalFile extends File {
 			# Insert previous contents into oldimage
 			$dbw->insertSelect( 'oldimage', 'image',
 				array(
-					'oi_name' => 'img_name',
+					'oi_name'         => 'img_name',
 					'oi_archive_name' => $dbw->addQuotes( $oldver ),
-					'oi_size' => 'img_size',
-					'oi_width' => 'img_width',
-					'oi_height' => 'img_height',
-					'oi_bits' => 'img_bits',
-					'oi_timestamp' => 'img_timestamp',
-					'oi_description' => 'img_description',
-					'oi_user' => 'img_user',
-					'oi_user_text' => 'img_user_text',
-					'oi_metadata' => 'img_metadata',
-					'oi_media_type' => 'img_media_type',
-					'oi_major_mime' => 'img_major_mime',
-					'oi_minor_mime' => 'img_minor_mime',
-					'oi_sha1' => 'img_sha1'
-				), array( 'img_name' => $this->getName() ), __METHOD__
+					'oi_size'         => 'img_size',
+					'oi_width'        => 'img_width',
+					'oi_height'       => 'img_height',
+					'oi_bits'         => 'img_bits',
+					'oi_timestamp'    => 'img_timestamp',
+					'oi_description'  => 'img_description',
+					'oi_user'         => 'img_user',
+					'oi_user_text'    => 'img_user_text',
+					'oi_metadata'     => 'img_metadata',
+					'oi_media_type'   => 'img_media_type',
+					'oi_major_mime'   => 'img_major_mime',
+					'oi_minor_mime'   => 'img_minor_mime',
+					'oi_sha1'         => 'img_sha1'
+				),
+				array( 'img_name' => $this->getName() ),
+				__METHOD__
 			);
 
 			# Update the current image row
 			$dbw->update( 'image',
 				array( /* SET */
-					'img_size' => $this->size,
-					'img_width' => intval( $this->width ),
-					'img_height' => intval( $this->height ),
-					'img_bits' => $this->bits,
-					'img_media_type' => $this->media_type,
-					'img_major_mime' => $this->major_mime,
-					'img_minor_mime' => $this->minor_mime,
-					'img_timestamp' => $timestamp,
+					'img_size'        => $this->size,
+					'img_width'       => intval( $this->width ),
+					'img_height'      => intval( $this->height ),
+					'img_bits'        => $this->bits,
+					'img_media_type'  => $this->media_type,
+					'img_major_mime'  => $this->major_mime,
+					'img_minor_mime'  => $this->minor_mime,
+					'img_timestamp'   => $timestamp,
 					'img_description' => $comment,
-					'img_user' => $user->getId(),
-					'img_user_text' => $user->getName(),
-					'img_metadata' => $this->metadata,
-					'img_sha1' => $this->sha1
-				), array( /* WHERE */
-					'img_name' => $this->getName()
-				), __METHOD__
+					'img_user'        => $user->getId(),
+					'img_user_text'   => $user->getName(),
+					'img_metadata'    => $this->metadata,
+					'img_sha1'        => $this->sha1
+				),
+				array( 'img_name' => $this->getName() ),
+				__METHOD__
 			);
 		} else {
 			# This is a new file
@@ -1160,7 +1160,7 @@ class LocalFile extends File {
 	 *     archive name, or an empty string if it was a new file.
 	 */
 	function publishTo( $srcPath, $dstRel, $flags = 0 ) {
-		$this->lock();
+		$this->lock(); // begin
 
 		$archiveName = wfTimestamp( TS_MW ) . '!'. $this->getName();
 		$archiveRel = 'archive/' . $this->getHashPath() . $archiveName;
@@ -1173,7 +1173,7 @@ class LocalFile extends File {
 			$status->value = $archiveName;
 		}
 
-		$this->unlock();
+		$this->unlock(); // done
 
 		return $status;
 	}
@@ -1197,7 +1197,7 @@ class LocalFile extends File {
 	 */
 	function move( $target ) {
 		wfDebugLog( 'imagemove', "Got request to move {$this->name} to " . $target->getText() );
-		$this->lock();
+		$this->lock(); // begin
 
 		$batch = new LocalFileMoveBatch( $this, $target );
 		$batch->addCurrent();
@@ -1207,7 +1207,7 @@ class LocalFile extends File {
 		wfDebugLog( 'imagemove', "Finished moving {$this->name}" );
 
 		$this->purgeEverything();
-		$this->unlock();
+		$this->unlock(); // done
 
 		if ( $status->isOk() ) {
 			// Now switch the object
@@ -1235,7 +1235,7 @@ class LocalFile extends File {
 	 * @return FileRepoStatus object.
 	 */
 	function delete( $reason, $suppress = false ) {
-		$this->lock();
+		$this->lock(); // begin
 
 		$batch = new LocalFileDeleteBatch( $this, $reason, $suppress );
 		$batch->addCurrent();
@@ -1258,7 +1258,7 @@ class LocalFile extends File {
 			$this->purgeEverything();
 		}
 
-		$this->unlock();
+		$this->unlock(); // done
 
 		return $status;
 	}
@@ -1278,14 +1278,14 @@ class LocalFile extends File {
 	 * @return FileRepoStatus object.
 	 */
 	function deleteOld( $archiveName, $reason, $suppress = false ) {
-		$this->lock();
+		$this->lock(); // begin
 
 		$batch = new LocalFileDeleteBatch( $this, $reason, $suppress );
 		$batch->addOld( $archiveName );
 		$this->purgeOldThumbnails( $archiveName );
 		$status = $batch->execute();
 
-		$this->unlock();
+		$this->unlock(); // done
 
 		if ( $status->ok ) {
 			$this->purgeDescription();
@@ -1370,8 +1370,9 @@ class LocalFile extends File {
 		$this->load();
 		// Initialise now if necessary
 		if ( $this->sha1 == '' && $this->fileExists ) {
-			$tmpPath = $this->getLocalRefPath();
-			$this->sha1 = FSFile::getSha1Base36FromPath( $tmpPath );
+			$this->lock(); // begin
+
+			$this->sha1 = $this->repo->getFileSha1( $this->getPath() );
 			if ( !wfReadOnly() && strval( $this->sha1 ) != '' ) {
 				$dbw = $this->repo->getMasterDB();
 				$dbw->update( 'image',
@@ -1380,6 +1381,8 @@ class LocalFile extends File {
 					__METHOD__ );
 				$this->saveToCache();
 			}
+
+			$this->unlock(); // done
 		}
 
 		return $this->sha1;

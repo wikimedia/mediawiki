@@ -108,7 +108,7 @@ abstract class FileBackendBase {
 	 *         'src'                 => <storage path>,
 	 *         'ignoreMissingSource' => <boolean>
 	 *     )
-	 * f) Concatenate a list of files into a single file within storage
+	 * f) Concatenate a list of files within storage into a single temp file
 	 *     array(
 	 *         'op'                  => 'concatenate',
 	 *         'srcs'                => <ordered array of storage paths>,
@@ -314,7 +314,7 @@ abstract class FileBackendBase {
 	 *     latest : use the latest available data
 	 * 
 	 * @param $params Array
-	 * @return bool
+	 * @return bool|null Returns null on failure
 	 */
 	abstract public function fileExists( array $params );
 
@@ -584,12 +584,12 @@ abstract class FileBackend extends FileBackendBase {
 	 */
 	protected function doMoveInternal( array $params ) {
 		// Copy source to dest
-		$status = $this->backend->copyInternal( $params );
+		$status = $this->backend->doCopyInternal( $params );
 		if ( !$status->isOK() ) {
 			return $status;
 		}
 		// Delete source (only fails due to races or medium going down)
-		$status->merge( $this->backend->deleteInternal( array( 'src' => $params['src'] ) ) );
+		$status->merge( $this->backend->doDeleteInternal( array( 'src' => $params['src'] ) ) );
 		$status->setResult( true, $status->value ); // ignore delete() errors
 		return $status;
 	}
@@ -693,7 +693,7 @@ abstract class FileBackend extends FileBackendBase {
 		if ( isset( $this->cache[$path]['sha1'] ) ) {
 			return $this->cache[$path]['sha1'];
 		}
-		$fsFile = $this->getLocalReference( array( 'src' => $path ) );
+		$fsFile = $this->getLocalReference( $params );
 		if ( !$fsFile ) {
 			return false;
 		} else {
@@ -710,7 +710,7 @@ abstract class FileBackend extends FileBackendBase {
 	 * @see FileBackendBase::getFileProps()
 	 */
 	public function getFileProps( array $params ) {
-		$fsFile = $this->getLocalReference( array( 'src' => $params['src'] ) );
+		$fsFile = $this->getLocalReference( $params );
 		if ( !$fsFile ) {
 			return FSFile::placeholderProps();
 		} else {
@@ -728,10 +728,10 @@ abstract class FileBackend extends FileBackendBase {
 	/**
 	 * @see FileBackendBase::streamFile()
 	 */
-	function streamFile( array $params ) {
+	public function streamFile( array $params ) {
 		$status = Status::newGood();
 
-		$fsFile = $this->getLocalReference( array( 'src' => $params['src'] ) );
+		$fsFile = $this->getLocalReference( $params );
 		if ( !$fsFile ) {
 			$status->fatal( 'backend-fail-stream', $params['src'] );
 			return $status;

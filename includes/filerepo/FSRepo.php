@@ -44,11 +44,6 @@ class FSRepo extends FileRepo {
 			) );
 			// Update repo config to use this backend
 			$info['backend'] = $backend;
-			// Set "deleted" zone in repo if deletedDir is configured
-			if ( $deletedDir !== false ) {
-				$info['zones']['deleted'] = array(
-					'container' => 'media-deleted', 'directory' => '' );
-			}
 		}
 
 		parent::__construct( $info );
