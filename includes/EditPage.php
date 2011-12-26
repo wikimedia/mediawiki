@@ -2163,7 +2163,7 @@ HTML
 	 * save and then make a comparison.
 	 */
 	function showDiff() {
-		global $wgUser, $wgContLang, $wgParser;
+		global $wgUser, $wgContLang, $wgParser, $wgOut;
 
 		if ( $this->section == 'new' ) {
 			$oldtext = $this->mArticle->getRawText();
@@ -2177,9 +2177,11 @@ HTML
 
 		$popts = ParserOptions::newFromUserAndLang( $wgUser, $wgContLang );
 		$newtext = $wgParser->preSaveTransform( $newtext, $this->mTitle, $wgUser, $popts );
-		$oldtitle = wfMsgExt( 'currentrev', array( 'parseinline' ) );
-		$newtitle = wfMsgExt( 'yourtext', array( 'parseinline' ) );
+
 		if ( $oldtext !== false  || $newtext != '' ) {
+			$oldtitle = wfMsgExt( 'currentrev', array( 'parseinline' ) );
+			$newtitle = wfMsgExt( 'yourtext', array( 'parseinline' ) );
+
 			$de = new DifferenceEngine( $this->mArticle->getContext() );
 			$de->setText( $oldtext, $newtext );
 			$difftext = $de->getDiff( $oldtitle, $newtitle );
@@ -2188,7 +2190,6 @@ HTML
 			$difftext = '';
 		}
 
-		global $wgOut;
 		$wgOut->addHTML( '<div id="wikiDiff">' . $difftext . '</div>' );
 	}
 
