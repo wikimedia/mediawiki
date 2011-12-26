@@ -233,7 +233,7 @@ regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
 
 * Canadian English (en-ca) (new).
-* Norwegian (bokmål)‬ (nb) (renamed from no).
+* Norwegian (bokmål) (nb) (renamed from no).
 * Uighur (Latin) (ug-latn) was incorrectly marked as right-to-left language.
 * (bug 30217) Make pt-br a fallback of pt.
 * (bug 31193) Set fallback language of Assamese from Bengali to English.
@@ -245,6 +245,8 @@ changes to languages because of Bugzilla reports.
 * (bug 33367) Gendered namespaces for Czech
 
 === Other changes in 1.19 ===
+* BREAKING CHANGE: Legacy global array 'ta' and global function 'akeytt' have
+  been removed from wikibits.js
 * jquery.mwPrototypes module was renamed to jquery.mwExtension.
 * The maintenance script populateSha1.php was renamed to the more concise
   populateImageSha1.php
@@ -283,6 +285,10 @@ The supported versions are:
 
 1.19 has several database changes since 1.18, and will not work without schema
 updates.
+
+As of 1.19 several JavaScript interfaces that were deprecated or superseeded in
+MediaWiki 1.17, MediaWiki 1.16 or even earlier have been removed. They are
+listed at the top of the "Other changes" list as a "BREAKING CHANGE".
 
 If upgrading from before 1.11, and you are using a wiki as a commons
 repository, make sure that it is updated as well. Otherwise, errors may arise
