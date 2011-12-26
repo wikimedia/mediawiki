@@ -51,6 +51,7 @@ $specialPageAliases = array(
 	'Allmessages'               => array( 'SvePoruke' ),
 	'Allpages'                  => array( 'SveStranice' ),
 	'Ancientpages'              => array( 'NajstarijeStranice' ),
+	'Badtitle'                  => array( 'Losnaslov' ),
 	'Blankpage'                 => array( 'PraznaStranica' ),
 	'Block'                     => array( 'BlokirajIP' ),
 	'Blockme'                   => array( 'BlokirajMe' ),

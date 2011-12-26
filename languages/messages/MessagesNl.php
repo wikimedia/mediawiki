@@ -235,6 +235,7 @@ $specialPageAliases = array(
 	'Allmessages'               => array( 'AlleBerichten', 'Systeemberichten' ),
 	'Allpages'                  => array( 'AllePaginas', 'AllePagina’s', 'AllePagina\'s' ),
 	'Ancientpages'              => array( 'OudstePaginas', 'OudstePagina’s', 'OudstePagina\'s' ),
+	'Badtitle'                  => array( 'OnjuistePaginanaam' ),
 	'Blankpage'                 => array( 'LegePagina' ),
 	'Block'                     => array( 'Blokkeren', 'IPblokkeren', 'BlokkeerIP', 'BlokkeerIp' ),
 	'Blockme'                   => array( 'BlokkeerMij', 'MijBlokkeren' ),

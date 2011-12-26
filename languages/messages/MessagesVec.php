@@ -57,6 +57,7 @@ $specialPageAliases = array(
 	'Allmessages'               => array( 'Messagi' ),
 	'Allpages'                  => array( 'TuteLePagine' ),
 	'Ancientpages'              => array( 'PagineMancoNove' ),
+	'Badtitle'                  => array( 'TitoloSbalià' ),
 	'Blankpage'                 => array( 'PaginaVoda' ),
 	'Block'                     => array( 'Bloca' ),
 	'Blockme'                   => array( 'BlocaProxy' ),

@@ -101,6 +101,7 @@ $specialPageAliases = array(
 	'Allmessages'               => array( 'СвеПоруке', 'Све_поруке' ),
 	'Allpages'                  => array( 'Све_странице' ),
 	'Ancientpages'              => array( 'НајстаријиЧланци' ),
+	'Badtitle'                  => array( 'Лош_наслов' ),
 	'Block'                     => array( 'Блокирај', 'БлокирајИП', 'БлокирајКорисника' ),
 	'Blockme'                   => array( 'БлокирајМе', 'Блокирај_ме' ),
 	'BrokenRedirects'           => array( 'Покварена_преусмерења', 'Неисправна_преусмерења' ),

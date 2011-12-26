@@ -45,6 +45,7 @@ $specialPageAliases = array(
 	'Allmessages'               => array( 'ToutMesaj' ),
 	'Allpages'                  => array( 'ToutPaj' ),
 	'Ancientpages'              => array( 'PajAnsyen' ),
+	'Badtitle'                  => array( 'MovèTit' ),
 	'Blankpage'                 => array( 'PajVid' ),
 	'Block'                     => array( 'Bloke', 'BlokeIP', 'BlokeItilizatè' ),
 	'Blockme'                   => array( 'BlokeM' ),

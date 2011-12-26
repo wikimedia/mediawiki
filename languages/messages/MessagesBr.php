@@ -47,6 +47,7 @@ $specialPageAliases = array(
 	'Allmessages'               => array( 'HollGemennadennoù' ),
 	'Allpages'                  => array( 'AnHollBajennoù' ),
 	'Ancientpages'              => array( 'PajennoùKozh' ),
+	'Badtitle'                  => array( 'TitlFall' ),
 	'Block'                     => array( 'Stankañ' ),
 	'Blockme'                   => array( 'MaStankañ' ),
 	'Booksources'               => array( 'MammennoùLevr' ),

@@ -59,6 +59,7 @@ $specialPageAliases = array(
 	'Allmessages'               => array( 'සියළු_පණිවුඩ' ),
 	'Allpages'                  => array( 'සියළු_පිටු' ),
 	'Ancientpages'              => array( 'පුරාතන_පිටු' ),
+	'Badtitle'                  => array( 'නුසුසුදු_මාතෘකාව' ),
 	'Blankpage'                 => array( 'හිස්_පිටුව' ),
 	'Block'                     => array( 'වාරණය_කරන්න', 'IP_වාරණය_කරන්න', 'පරිශීලක_වාරණය_කරන්න' ),
 	'Blockme'                   => array( 'මා_වාරණය_කරන්න' ),
