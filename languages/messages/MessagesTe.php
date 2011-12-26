@@ -509,6 +509,7 @@ $1',
 ఫంక్షను: $1<br />
 క్వీరీ: $2',
 'viewsource'           => 'మూలాన్ని చూపించు',
+'viewsource-title'     => '$1 యొక్క సోర్సు చూడండి',
 'actionthrottled'      => 'కార్యాన్ని ఆపేసారు',
 'actionthrottledtext'  => 'స్పామును తగ్గించటానికి తీసుకున్న నిర్ణయాల వల్ల, మీరు ఈ కార్యాన్ని అతి తక్కువ సమయంలో బోలెడన్ని సార్లు చేయకుండా అడ్డుకుంటున్నాము. కొన్ని నిమిషాలు ఆగి మరలా ప్రయత్నించండి.',
 'protectedpagetext'    => 'ఈ పేజీపై దిద్దుబాట్లు చెయ్యనివ్వకుండా లాకు చేసాం.',
@@ -1399,6 +1400,7 @@ $1",
 'action-userrights'           => 'అందరు వాడుకరుల హక్కులను మార్చే',
 'action-userrights-interwiki' => 'ఇతర వికీలలో వాడుకరుల యొక్క హక్కులను మార్చే',
 'action-siteadmin'            => 'డాటాబేసుకి తాళం వేసే లేదా తీసే',
+'action-sendemail'            => 'ఈ-మెయిల్స్ పంపించు',
 
 # Recent changes
 'nchanges'                          => '{{PLURAL:$1|ఒక మార్పు|$1 మార్పులు}}',
@@ -1570,6 +1572,11 @@ $1',
 'upload-too-many-redirects' => 'ఆ URLలో చాలా దారిమార్పులు ఉన్నాయి',
 'upload-unknown-size'       => 'సైజు తెలియదు',
 'upload-http-error'         => 'ఒక HTTP పొరపాటు జరిగింది: $1',
+
+# File backend
+'backend-fail-notexists' => '$1 ఫైలు అసలు లేనేలేదు.',
+'backend-fail-delete'    => '$1 ఫైలును తొలగించలేకున్నాం.',
+'backend-fail-opentemp'  => 'తాత్కాలిక దస్త్రాన్ని తెరవలేకపోతున్నాం.',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'ఈ ఫైలును ZIP పరీక్ష కోసం తెరవబోతే, ఏదో తెలియని లోపం ఎదురైంది.',
@@ -2685,6 +2692,7 @@ $UNWATCHURL కి వెళ్ళండి.
 'pageinfo-watchers'         => 'వీక్షకుల సంఖ్య',
 'pageinfo-edits'            => 'మార్పుల సంఖ్య',
 'pageinfo-views'            => 'వీక్షణల సంఖ్య',
+'pageinfo-viewsperedit'     => 'ఒక మార్పుకి వీక్షణలు',
 
 # Skin names
 'skinname-standard'    => 'సంప్రదాయ',
@@ -3136,6 +3144,7 @@ $1',
 'exif-iimcategory-edu' => 'విద్య',
 'exif-iimcategory-evn' => 'పర్యావరణం',
 'exif-iimcategory-hth' => 'ఆరోగ్యం',
+'exif-iimcategory-lab' => 'కృషి',
 'exif-iimcategory-lif' => 'జీవనశైలి మరియు కాలక్షేపం',
 'exif-iimcategory-pol' => 'రాజకీయాలు',
 'exif-iimcategory-rel' => 'మతం మరియు విశ్వాసం',
@@ -3430,6 +3439,7 @@ $5
 'sqlite-no-fts'  => '$1 పూర్తి-పాఠ్య అన్వేషణ తోడ్పాటు లేకుండా',
 
 # New logging system
+'revdelete-content-hid'      => 'కంటెంట్ దాచబడింది',
 'revdelete-restricted'       => 'నిర్వాహకులకు ఆంక్షలు విధించాను',
 'revdelete-unrestricted'     => 'నిర్వాహకులకున్న ఆంక్షలను ఎత్తేశాను',
 'logentry-newusers-newusers' => '$1 వాడుకరి ఖాతాను {{GENDER:$2|సృష్టించారు}}',

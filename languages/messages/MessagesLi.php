@@ -795,11 +795,11 @@ De kans [[Special:Search/{{PAGENAME}}|nao dees term zeuke]] in anger pagina\'s o
 'userpage-userdoesnotexist-view'   => 'Gebroeker "$1" is neet geregistreerd.',
 'blocked-notice-logextract'        => "Deze gebroeker is noe geblok.
 De leste bloklogregel wuuertj hiejónger t'r raodpleging gegaeve:",
-'clearyourcache'                   => "Lèt op:''' Nao 't opsjlaon mós te diene browserbuffer wisse óm de verangeringe te zeen:
-* '''Firefox / Safari:''' haoj ''Shift'' ingedrök terwielse op ''Vernuuj'' kliks of dröks op ''Ctrl-F5'' of ''Ctrl-R'' (''Command-R'' op 'ne Mac)
-* '''Google Chrome:''' drök op ''Ctrl-Shift-R'' (''Command-Shift-R'' op 'ne Mac)
-* '''Internet Explorer:''' haoj ''Ctrl'' ingedrök terwielse op ''Vernuuj'' kliks of dröks op ''Ctrl-F5''
-* '''Konqueror: '''klik op ''Reload'' of drök op ''F5''
+'clearyourcache'                   => "Lèt op:''' Nao 't opsjlaon mós te diene browsercache wisse óm de verangeringe te zeen:
+* '''Firefox / Safari:''' hauw ''Shift'' ingedrök terwiels te op ''Vernuuj'' kliks of duujs op ''Ctrl-F5'' of ''Ctrl-R'' (''Command-R'' op 'ne Mac)
+* '''Google Chrome:''' duuj op ''Ctrl-Shift-R'' (''Command-Shift-R'' op 'ne Mac)
+* '''Internet Explorer:''' hauw ''Ctrl'' ingeduujt terwiels te op ''Vernuuj'' kliks of duujs op ''Ctrl-F5''
+* '''Konqueror: '''klik op ''Reload'' of duuj op ''F5''
 * '''Opera:''' laeg diene cache in ''Extra → Veurkäöre''",
 'usercssyoucanpreview'             => "'''Tip:''' Gebroek de knóp '{{int:showpreview}}' om dien nuuj CSS te teste veurdets te opsjleis.",
 'userjsyoucanpreview'              => "'''Tip:''' Gebroek de knóp '{{int:showpreview}}' om dien nuuj JS te teste veurdets te opsjleis.",
@@ -1181,7 +1181,7 @@ Mèrk op dat hun indexe van {{SITENAME}} content e bietje gedatierd kint zien.',
 'prefs-rc'                      => 'Recènte verangeringe en weergaaf van sjtumpkes',
 'prefs-watchlist'               => 'Volglies',
 'prefs-watchlist-days'          => 'Te tuine daag in de volglies:',
-'prefs-watchlist-days-max'      => 'Maximaal 7 daag',
+'prefs-watchlist-days-max'      => 'Maximaal $1 {{PLURAL:$1|daag|daag}}',
 'prefs-watchlist-edits'         => 'Maximaal aantal bewirkinge in de oetgebreide volglies:',
 'prefs-watchlist-edits-max'     => 'Maximaal aantal: 1000',
 'prefs-watchlist-token'         => 'Volgliessläötel:',
@@ -1610,6 +1610,35 @@ Gank trök nao t [[Special:Upload/stash/$1|uploadformuleer]] om dit perbleem te 
 'upload-unknown-size'       => 'Ónbekèndje gruuedje',
 'upload-http-error'         => 'dr Is n HTTP-fout opgetraoje: $1',
 
+# File backend
+'backend-fail-stream'        => "'t Waes neet mäögelik  't besjtand $1 te streame.",
+'backend-fail-backup'        => "'t Waes neet mäögeljk 'n reservekopie van 't besjtand $1 te make.",
+'backend-fail-notexists'     => "'t Besjtand $1 besjteit neet.",
+'backend-fail-hashes'        => "'t Waes neet mäögelik de hashes veur 't besjtand op te haole um ze te vergelieke.",
+'backend-fail-notsame'       => "Dao besjteit al 'n neet-identiek besjtand op de plaats $1.",
+'backend-fail-invalidpath'   => '$1 is gein geljig opslaagpad.',
+'backend-fail-delete'        => 'Kós bestjand $1 neet ewegsjaffe.',
+'backend-fail-alreadyexists' => "'t Besjtand $1 besjteit al.",
+'backend-fail-store'         => "'t Waes neet mäögelik 't besjtand $1 op te sloon op lokasie $2.",
+'backend-fail-copy'          => 'Besjtand $1 kós neet nao $2 gekopieerd waere.',
+'backend-fail-move'          => 'Besjtand $1 kós neet nao $2 verplaats waere.',
+'backend-fail-opentemp'      => "'t Waes neet mäögelik 'n tiedelik besjtand te äöpene.",
+'backend-fail-writetemp'     => "'t Waes neet mäögelik nao 'n tiedelik besjtand te sjrieve.",
+'backend-fail-closetemp'     => "'t Waes neet mäögelik 'n tiedelik besjtand te sjlete.",
+'backend-fail-read'          => 'Kós bestjand $1 neet laeze.',
+'backend-fail-create'        => 'Kós bestjand $1 neet aanmake.',
+
+# Lock manager
+'lockmanager-notlocked'        => 'Kós "$1" neet vrijgaeve; \'t waes neet vergrendeld.',
+'lockmanager-fail-closelock'   => 'Kós \'t vergrendelingsbesjtand veur "$1" neet sjlete.',
+'lockmanager-fail-deletelock'  => 'Kós \'t vergrendelingsbesjtand veur "$1" neet ewegsjaffe.',
+'lockmanager-fail-acquirelock' => 'Kós "$1" neet vergrendele.',
+'lockmanager-fail-openlock'    => 'Kós \'t vergrendelingsbesjtand veur "$1" neet äöpene.',
+'lockmanager-fail-releaselock' => 'Kós de vergrendeling veur "$1" neet opheffe.',
+'lockmanager-fail-db-bucket'   => 'Kós neet in kontak kómme mit genóg vergrendelingsdatabases in de bucket $1.',
+'lockmanager-fail-db-release'  => "'t Waar neet meugelik ómme vergrendeling veure database $1 óp tö höffe.",
+'lockmanager-fail-svr-release' => "'t Waar neet meugelik ómme vergrendeling veure server $1 óp tö höffe.",
+
 # ZipDirectoryReader
 'zip-file-open-error' => "d'r Woor 'n fout bie 't äöpene van 't bestandj veur ZIP-controle.",
 'zip-wrong-format'    => "'t Opgegaeve bestandj waar gein ZIP-bestandj.",
@@ -1855,6 +1884,7 @@ De pafina's zeen ouk neet as sjabloon opgenome.",
 'mostimages'              => 'Meis gelinkde aafbeildinge',
 'mostrevisions'           => 'Artikele mit de meiste bewirkinge',
 'prefixindex'             => "Alle pagina's op veurvoegsel",
+'prefixindex-namespace'   => "Alle pagina's mit 't veurvoogsel (naomruumdje $1)",
 'shortpages'              => 'Korte artikele',
 'longpages'               => 'Lang artikele',
 'deadendpages'            => "Doedloupende pazjena's",
@@ -2588,6 +2618,8 @@ Bezeuk [//www.mediawiki.org/wiki/Localisation MediaWiki-lokalisatie] en [//trans
 'thumbnail_error'          => "Fout bie 't aanmake van thumbnail: $1",
 'djvu_page_error'          => 'DjVu-pagina boete bereik',
 'djvu_no_xml'              => "De XML veur 't DjVu-bestandj kos neet opgehaald waere",
+'thumbnail-temp-create'    => "'t Waar neet meugelik e tiejelik miniatuurbestandj aan te make.",
+'thumbnail-dest-create'    => "'t Waar neet meugelik 't miniatuurbestandj óp de doellocatie óp te slaon.",
 'thumbnail_invalid_params' => 'Onzjuste thumbnailparamaetere',
 'thumbnail_dest_directory' => 'Neet in staat doel directory aan te make',
 'thumbnail_image-type'     => 'Dit besjtandjstype waert neet ongersjteund',
@@ -3566,17 +3598,19 @@ Aafbeildinge waere in häör vollejige resolutie getoeandj. Anger bestandjstypes
 'newuserlog-byemail'                  => 'wachwaord is versjik per e-mail',
 
 # Feedback
-'feedback-subject'  => 'Óngerwerp:',
-'feedback-message'  => 'Berich:',
-'feedback-cancel'   => 'Braek aaf',
-'feedback-submit'   => 'Slaon feedback óp',
-'feedback-adding'   => 'Feedback weurt aan pagina toegevoeg...',
-'feedback-error1'   => 'Fout: ónbekind rizzeltaot vanne API',
-'feedback-error2'   => 'Fout: bewirking mislök',
-'feedback-error3'   => 'Fout: gein reactie vanne API',
-'feedback-thanks'   => 'Danke! Diene feedback is oppe pagina "[$2 $1]" geplaats.',
-'feedback-close'    => 'Gedaon',
-'feedback-bugcheck' => "Good! Kónterleer ef of 't neet al ein vanne [$1 bekèndje bugs] is.",
-'feedback-bugnew'   => "Gekónterleerdj. Mèlj 'ne nuuj bug.",
+'feedback-bugornote' => 'Es se zewied bös óm e technisch perbleem in détail te besjrieve, [$1 rapperteer \'ne bug]. 
+Anges kin se-n ouch \'t einvawdig formeleer hieónger gebroeke. Dien commentaar zal waere toegeveug ane pagina "[$3 $2]", same mit diene gebroekersnaam enne browser dae se gebruuks.',
+'feedback-subject'   => 'Óngerwerp:',
+'feedback-message'   => 'Berich:',
+'feedback-cancel'    => 'Braek aaf',
+'feedback-submit'    => 'Slaon feedback óp',
+'feedback-adding'    => 'Feedback weurt aan pagina toegevoeg...',
+'feedback-error1'    => 'Fout: ónbekind rizzeltaot vanne API',
+'feedback-error2'    => 'Fout: bewirking mislök',
+'feedback-error3'    => 'Fout: gein reactie vanne API',
+'feedback-thanks'    => 'Danke! Diene feedback is oppe pagina "[$2 $1]" geplaats.',
+'feedback-close'     => 'Gedaon',
+'feedback-bugcheck'  => "Good! Kónterleer ef of 't neet al ein vanne [$1 bekèndje bugs] is.",
+'feedback-bugnew'    => "Gekónterleerdj. Mèlj 'ne nuuj bug.",
 
 );

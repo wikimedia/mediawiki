@@ -1785,7 +1785,17 @@ Jeśli problem będzie się powtarzał, skontaktuj się z [[Special:ListUsers/sy
 'upload-http-error'         => 'Wystąpił błąd protokołu HTTP – $1',
 
 # File backend
+'backend-fail-delete'        => 'Nie można usunąć pliku $1.',
 'backend-fail-alreadyexists' => 'Plik „$1” już istnieje',
+'backend-fail-copy'          => 'Nie może skopiować pliku $1 do $2.',
+'backend-fail-move'          => 'Nie można przenieść pliku $1 do $2.',
+'backend-fail-opentemp'      => 'Nie można otworzyć pliku tymczasowego.',
+'backend-fail-closetemp'     => 'Nie można zamknąć pliku tymczasowego.',
+'backend-fail-read'          => 'Nie można odczytać pliku $1.',
+'backend-fail-create'        => 'Nie można utworzyć pliku $1.',
+
+# Lock manager
+'lockmanager-notlocked' => 'Nie można odblokować "$1", ponieważ nie jest on zablokowany.',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'Wystąpił błąd podczas otwierania pliku ZIP, aby go sprawdzić.',

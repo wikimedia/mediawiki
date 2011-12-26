@@ -1689,12 +1689,12 @@ Si le problema persiste, contacta un [[Special:ListUsers/sysop|administrator]].'
 'backend-fail-create'        => 'Non poteva crear le file $1',
 
 # Lock manager
-'lockmanager-notlocked'        => 'Impossibile disblocar le clave "$1"; iste clave non es blocate.',
-'lockmanager-fail-closelock'   => 'Non poteva clauder le file de serratura pro le clave "$1".',
-'lockmanager-fail-deletelock'  => 'Non poteva deler le file de serratura pro le clave "$1".',
-'lockmanager-fail-acquirelock' => 'Non poteva acquirer un serratura pro le clave "$1".',
-'lockmanager-fail-openlock'    => 'Non poteva aperir le file de serratura pro le clave "$1".',
-'lockmanager-fail-releaselock' => 'Non poteva liberar le file de serratura pro le clave "$1".',
+'lockmanager-notlocked'        => 'Impossibile disblocar "$1"; illo non es blocate.',
+'lockmanager-fail-closelock'   => 'Non poteva clauder le file de serratura pro "$1".',
+'lockmanager-fail-deletelock'  => 'Non poteva deler le file de serratura pro "$1".',
+'lockmanager-fail-acquirelock' => 'Non poteva acquirer un serratura pro "$1".',
+'lockmanager-fail-openlock'    => 'Non poteva aperir le file de serratura pro "$1".',
+'lockmanager-fail-releaselock' => 'Non poteva liberar le file de serratura pro "$1".',
 'lockmanager-fail-db-bucket'   => 'Non poteva contactar sufficiente bases de datos de serratura in situla $1.',
 'lockmanager-fail-db-release'  => 'Non poteva liberar le serraturas sur le base de datos $1.',
 'lockmanager-fail-svr-release' => 'Non poteva liberar le serraturas sur le servitor $1.',

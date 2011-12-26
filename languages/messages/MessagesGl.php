@@ -1494,7 +1494,7 @@ Ha de ter menos {{PLURAL:$1|dun carácter|de $1 caracteres}}.',
 
 # User rights log
 'rightslog'                  => 'Rexistro de dereitos de usuario',
-'rightslogtext'              => 'Este é un rexistro de permisos dos usuarios.',
+'rightslogtext'              => 'Este é un rexistro dos cambios nos permisos de usuario.',
 'rightslogentry'             => 'cambiou o grupo ao que pertence "$1" de $2 a $3',
 'rightslogentry-autopromote' => 'foi promovido automaticamente de $2 a $3',
 'rightsnone'                 => '(ningún)',
