@@ -196,6 +196,8 @@ production.
 * (bug 33246) News icon shown for news:// URLs but not for news: URLs
 * (bug 33305) Make mw.util.addCSS resistant to IE's @font-face bug by setting
   cssText after DOM insertion.
+* (bug 30711) When adding a new section to a page with section=new, the text is
+  now always added to the current version of the page
 
 === API changes in 1.19 ===
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.
