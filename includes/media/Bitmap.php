@@ -42,7 +42,7 @@ class BitmapHandler extends ImageHandler {
 				return true;
 			}
 		}
-		
+
 		# Don't thumbnail an image so big that it will fill hard drives and send servers into swap
 		# JPEG has the handy property of allowing thumbnailing without full decompression, so we make
 		# an exception for it.
@@ -55,10 +55,10 @@ class BitmapHandler extends ImageHandler {
 
 		return true;
 	}
-	
+
 	/**
 	 * Extracts the width/height if the image will be scaled before rotating
-	 * 
+	 *
 	 * This will match the physical size/aspect ratio of the original image
 	 * prior to application of the rotation -- so for a portrait image that's
 	 * stored as raw landscape with 90-degress rotation, the resulting size
@@ -305,7 +305,7 @@ class BitmapHandler extends ImageHandler {
 		if ( strval( $wgImageMagickTempDir ) !== '' ) {
 			$env['MAGICK_TMPDIR'] = $wgImageMagickTempDir;
 		}
-		
+
 		$rotation = $this->getRotation( $image );
 		list( $width, $height ) = $this->extractPreRotationDimensions( $params, $rotation );
 
