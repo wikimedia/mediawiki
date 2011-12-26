@@ -74,7 +74,7 @@ class ApiFeedContributions extends ApiBase {
 			$feedUrl
 		);
 
-		$pager = new ContribsPager( array(
+		$pager = new ContribsPager( $this->getContext(), array(
 			'target' => $target,
 			'namespace' => $params['namespace'],
 			'year' => $params['year'],

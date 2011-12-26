@@ -85,11 +85,11 @@ class SpecialContributions extends SpecialPage {
 		if ( $this->opts['contribs'] != 'newbie' ) {
 			$target = $nt->getText();
 			$out->addSubtitle( $this->contributionsSub( $userObj ) );
-			$out->setHTMLTitle( $this->msg( 'pagetitle', wfMsgExt( 'contributions-title', array( 'parsemag' ), $target ) ) );
+			$out->setHTMLTitle( $this->msg( 'pagetitle', $this->msg( 'contributions-title', $target )->plain() ) );
 			$this->getSkin()->setRelevantUser( $userObj );
 		} else {
 			$out->addSubtitle( $this->msg( 'sp-contributions-newbies-sub' ) );
-			$out->setHTMLTitle( $this->msg( 'pagetitle', wfMsg( 'sp-contributions-newbies-title' ) ) );
+			$out->setHTMLTitle( $this->msg( 'pagetitle', $this->msg( 'sp-contributions-newbies-title' )->plain() ) );
 		}
 
 		if ( ( $ns = $request->getVal( 'namespace', null ) ) !== null && $ns !== '' ) {
@@ -161,7 +161,7 @@ class SpecialContributions extends SpecialPage {
 
 			$out->addHTML( $this->getForm() );
 
-			$pager = new ContribsPager( array(
+			$pager = new ContribsPager( $this->getContext(), array(
 				'target' => $target,
 				'contribs' => $this->opts['contribs'],
 				'namespace' => $this->opts['namespace'],
@@ -200,7 +200,7 @@ class SpecialContributions extends SpecialPage {
 					}
 				}
 
-				if ( !wfMessage( $message, $target )->isDisabled() ) {
+				if ( !$this->msg( $message, $target )->isDisabled() ) {
 					$out->wrapWikiMsg(
 						"<div class='mw-contributions-footer'>\n$1\n</div>",
 						array( $message, $target ) );
@@ -275,30 +275,30 @@ class SpecialContributions extends SpecialPage {
 		$id = $target->getId();
 		$username = $target->getName();
 
-		$tools[] = Linker::link( $talkpage, wfMsgHtml( 'sp-contributions-talk' ) );
+		$tools[] = Linker::link( $talkpage, $this->msg( 'sp-contributions-talk' )->escaped() );
 
 		if ( ( $id !== null ) || ( $id === null && IP::isIPAddress( $username ) ) ) {
 			if ( $subject->isAllowed( 'block' ) ) { # Block / Change block / Unblock links
 				if ( $target->isBlocked() ) {
 					$tools[] = Linker::linkKnown( # Change block link
 						SpecialPage::getTitleFor( 'Block', $username ),
-						wfMsgHtml( 'change-blocklink' )
+						$this->msg( 'change-blocklink' )->escaped()
 					);
 					$tools[] = Linker::linkKnown( # Unblock link
 						SpecialPage::getTitleFor( 'Unblock', $username ),
-						wfMsgHtml( 'unblocklink' )
+						$this->msg( 'unblocklink' )->escaped()
 					);
 				} else { # User is not blocked
 					$tools[] = Linker::linkKnown( # Block link
 						SpecialPage::getTitleFor( 'Block', $username ),
-						wfMsgHtml( 'blocklink' )
+						$this->msg( 'blocklink' )->escaped()
 					);
 				}
 			}
 			# Block log link
 			$tools[] = Linker::linkKnown(
 				SpecialPage::getTitleFor( 'Log', 'block' ),
-				wfMsgHtml( 'sp-contributions-blocklog' ),
+				$this->msg( 'sp-contributions-blocklog' )->escaped(),
 				array(),
 				array(
 					'page' => $userpage->getPrefixedText()
@@ -308,20 +308,20 @@ class SpecialContributions extends SpecialPage {
 		# Uploads
 		$tools[] = Linker::linkKnown(
 			SpecialPage::getTitleFor( 'Listfiles', $username ),
-			wfMsgHtml( 'sp-contributions-uploads' )
+			$this->msg( 'sp-contributions-uploads' )->escaped()
 		);
 
 		# Other logs link
 		$tools[] = Linker::linkKnown(
 			SpecialPage::getTitleFor( 'Log', $username ),
-			wfMsgHtml( 'sp-contributions-logs' )
+			$this->msg( 'sp-contributions-logs' )->escaped()
 		);
 
 		# Add link to deleted user contributions for priviledged users
 		if ( $subject->isAllowed( 'deletedhistory' ) ) {
 			$tools[] = Linker::linkKnown(
 				SpecialPage::getTitleFor( 'DeletedContributions', $username ),
-				wfMsgHtml( 'sp-contributions-deleted' )
+				$this->msg( 'sp-contributions-deleted' )->escaped()
 			);
 		}
 
@@ -331,7 +331,7 @@ class SpecialContributions extends SpecialPage {
 		if ( $id !== null && $userrightsPage->userCanChangeRights( $target ) ) {
 			$tools[] = Linker::linkKnown(
 				SpecialPage::getTitleFor( 'Userrights', $username ),
-				wfMsgHtml( 'sp-contributions-userrights' )
+				$this->msg( 'sp-contributions-userrights' )->escaped()
 			);
 		}
 
@@ -412,7 +412,7 @@ class SpecialContributions extends SpecialPage {
 
 		$targetSelection = Xml::tags( 'td', array( 'colspan' => 2 ),
 			Xml::radioLabel(
-				wfMsgExt( 'sp-contributions-newbies', array( 'parsemag' ) ),
+				$this->msg( 'sp-contributions-newbies' )->text(),
 				'contribs',
 				'newbie' ,
 				'newbie',
@@ -420,7 +420,7 @@ class SpecialContributions extends SpecialPage {
 				array( 'class' => 'mw-input' )
 			) . '<br />' .
 			Xml::radioLabel(
-				wfMsgExt( 'sp-contributions-username', array( 'parsemag' ) ),
+				$this->msg( 'sp-contributions-username' )->text(),
 				'contribs',
 				'user',
 				'user',
@@ -440,7 +440,7 @@ class SpecialContributions extends SpecialPage {
 		$namespaceSelection =
 			Xml::tags( 'td', array( 'class' => 'mw-label' ),
 				Xml::label(
-					wfMsg( 'namespace' ),
+					$this->msg( 'namespace' )->text(),
 					'namespace',
 					''
 				)
@@ -449,20 +449,20 @@ class SpecialContributions extends SpecialPage {
 				Xml::namespaceSelector( $this->opts['namespace'], '' ) . '&#160;' .
 				Html::rawElement( 'span', array( 'style' => 'white-space: nowrap' ),
 					Xml::checkLabel(
-						wfMsg( 'invert' ),
+						$this->msg( 'invert' )->text(),
 						'nsInvert',
 						'nsInvert',
 						$this->opts['nsInvert'],
-						array( 'title' => wfMsg( 'tooltip-invert' ), 'class' => 'mw-input' )
+						array( 'title' => $this->msg( 'tooltip-invert' )->text(), 'class' => 'mw-input' )
 					) . '&#160;'
 				) .
 				Html::rawElement( 'span', array( 'style' => 'white-space: nowrap' ),
 					Xml::checkLabel(
-						wfMsg( 'namespace_association' ),
+						$this->msg( 'namespace_association' )->text(),
 						'associated',
 						'associated',
 						$this->opts['associated'],
-						array( 'title' => wfMsg( 'tooltip-namespace_association' ), 'class' => 'mw-input' )
+						array( 'title' => $this->msg( 'tooltip-namespace_association' )->text(), 'class' => 'mw-input' )
 					) . '&#160;'
 				)
 			) ;
@@ -470,7 +470,7 @@ class SpecialContributions extends SpecialPage {
 		$extraOptions = Xml::tags( 'td', array( 'colspan' => 2 ),
 			Html::rawElement( 'span', array( 'style' => 'white-space: nowrap' ),
 				Xml::checkLabel(
-					wfMsg( 'history-show-deleted' ),
+					$this->msg( 'history-show-deleted' )->text(),
 					'deletedOnly',
 					'mw-show-deleted-only',
 					$this->opts['deletedOnly'],
@@ -479,7 +479,7 @@ class SpecialContributions extends SpecialPage {
 			) .
 			Html::rawElement( 'span', array( 'style' => 'white-space: nowrap' ),
 				Xml::checkLabel(
-					wfMsg( 'sp-contributions-toponly' ),
+					$this->msg( 'sp-contributions-toponly' )->text(),
 					'topOnly',
 					'mw-show-top-only',
 					$this->opts['topOnly'],
@@ -494,13 +494,13 @@ class SpecialContributions extends SpecialPage {
 				$this->opts['month']
 			) . ' ' .
 			Xml::submitButton(
-				wfMsg( 'sp-contributions-submit' ),
+				$this->msg( 'sp-contributions-submit' )->text(),
 				array( 'class' => 'mw-submit' )
 			)
 		) ;
 
 		$form .=
-			Xml::fieldset( wfMsg( 'sp-contributions-search' ) ) .
+			Xml::fieldset( $this->msg( 'sp-contributions-search' )->text() ) .
 			Xml::openElement( 'table', array( 'class' => 'mw-contributions-table' ) ) .
 				Xml::openElement( 'tr' ) .
 					$targetSelection .
@@ -519,7 +519,7 @@ class SpecialContributions extends SpecialPage {
 				Xml::closeElement( 'tr' ) .
 			Xml::closeElement( 'table' );
 
-		$explain = wfMessage( 'sp-contributions-explain' );
+		$explain = $this->msg( 'sp-contributions-explain' );
 		if ( $explain->exists() ) {
 			$form .= "<p id='mw-sp-contributions-explain'>{$explain}</p>";
 		}
@@ -539,13 +539,13 @@ class ContribsPager extends ReverseChronologicalPager {
 	var $namespace = '', $mDb;
 	var $preventClickjacking = false;
 
-	function __construct( $options ) {
-		parent::__construct();
+	function __construct( IContextSource $context, array $options ) {
+		parent::__construct( $context );
 
 		$msgs = array( 'uctop', 'diff', 'newarticle', 'rollbacklink', 'diff', 'hist', 'rev-delundel', 'pipe-separator' );
 
 		foreach ( $msgs as $msg ) {
-			$this->messages[$msg] = wfMsgExt( $msg, array( 'escapenoentities' ) );
+			$this->messages[$msg] = $this->msg( $msg )->escaped();
 		}
 
 		$this->target = isset( $options['target'] ) ? $options['target'] : '';
@@ -795,8 +795,9 @@ class ContribsPager extends ReverseChronologicalPager {
 			$chardiff = ' ';
 		}
 
-		$comment = $this->getLanguage()->getDirMark() . Linker::revComment( $rev, false, true );
-		$date = $this->getLanguage()->timeanddate( wfTimestamp( TS_MW, $row->rev_timestamp ), true );
+		$lang = $this->getLanguage();
+		$comment = $lang->getDirMark() . Linker::revComment( $rev, false, true );
+		$date = $lang->userTimeAndDate( $row->rev_timestamp, $user );
 		if ( $rev->userCan( Revision::DELETED_TEXT, $user ) ) {
 			$d = Linker::linkKnown(
 				$page,
@@ -815,8 +816,8 @@ class ContribsPager extends ReverseChronologicalPager {
 		# Note that we already excluded rows with hidden user names.
 		if ( $this->contribs == 'newbie' ) {
 			$userlink = ' . . ' . Linker::userLink( $rev->getUser(), $rev->getUserText() );
-			$userlink .= ' ' . wfMsg( 'parentheses',
-				Linker::userTalkLink( $rev->getUser(), $rev->getUserText() ) ) . ' ';
+			$userlink .= ' ' . $this->msg( 'parentheses' )->rawParams(
+				Linker::userTalkLink( $rev->getUser(), $rev->getUserText() ) )->escaped() . ' ';
 		} else {
 			$userlink = '';
 		}
@@ -857,7 +858,7 @@ class ContribsPager extends ReverseChronologicalPager {
 
 		# Denote if username is redacted for this edit
 		if ( $rev->isDeleted( Revision::DELETED_USER ) ) {
-			$ret .= " <strong>" . wfMsgHtml( 'rev-deleted-user-contribs' ) . "</strong>";
+			$ret .= " <strong>" . $this->msg( 'rev-deleted-user-contribs' )->escaped() . "</strong>";
 		}
 
 		# Tags, if any.
