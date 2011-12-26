@@ -238,9 +238,6 @@ class VectorTemplate extends BaseTemplate {
 			<div style="clear:both"></div>
 		</div>
 		<!-- /footer -->
-		<!-- fixalpha -->
-		<script type="<?php $this->text( 'jsmimetype' ) ?>"> if ( window.isMSIE55 ) fixalpha(); </script>
-		<!-- /fixalpha -->
 		<?php $this->printTrail(); ?>
 
 	</body>

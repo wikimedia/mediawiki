@@ -63,6 +63,12 @@ window.fixalpha = function( logoId ) {
 	}
 };
 
+if( isMSIE55 ) {
+	// Legacy modules are loaded from the bottom
+	// No need to wait for DOMContentReady or window.onload
+	fixalpha();
+}
+
 // fix ie6 disappering float bug
 window.relativeforfloats = function() {
 	var bc = document.getElementById( 'bodyContent' );

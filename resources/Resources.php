@@ -833,6 +833,7 @@ return array(
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 		'dependencies' => 'mediawiki.language',
 		'messages' => array( 'showtoc', 'hidetoc' ),
+		'position' => 'bottom',
 	),
 	'mediawiki.legacy.wikiprintable' => array(
 		'styles' => array( 'common/wikiprintable.css' => array( 'media' => 'print' ) ),
