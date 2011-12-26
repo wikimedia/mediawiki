@@ -1,5 +1,5 @@
 /**
- * QUnit 1.2.0pre - A JavaScript Unit Testing Framework
+ * QUnit v1.2.0 - A JavaScript Unit Testing Framework
  *
  * http://docs.jquery.com/QUnit
  *
@@ -1065,6 +1065,10 @@ QUnit.equiv = function () {
 		}
 	}
 
+	var getProto = Object.getPrototypeOf || function (obj) {
+		return obj.__proto__;
+	};
+
 	var callbacks = function () {
 
 		// for string, boolean, number and null
@@ -1154,7 +1158,13 @@ QUnit.equiv = function () {
 				// comparing constructors is more strict than using
 				// instanceof
 				if (a.constructor !== b.constructor) {
-					return false;
+					// Allow objects with no prototype to be equivalent to
+					// objects with Object as their constructor.
+					if (!((getProto(a) === null && getProto(b) === Object.prototype) ||
+						  (getProto(b) === null && getProto(a) === Object.prototype)))
+					{
+						return false;
+					}
 				}
 
 				// stack constructor before traversing properties
