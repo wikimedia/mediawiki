@@ -54,7 +54,7 @@ class LockServerDaemon {
 	 * @params $config Array
 	 * @return LockServerDaemon
 	 */
-	public function init( array $config ) {
+	public static function init( array $config ) {
 		if ( self::$instance ) {
 			throw new Exception( 'LockServer already initialized.' );
 		}
