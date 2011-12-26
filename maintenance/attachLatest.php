@@ -65,8 +65,8 @@ class AttachLatest extends Maintenance {
 			$id = $revision->getId();
 			$this->output( wfWikiID() . " $pageId [[$name]] latest time $latestTime, rev id $id\n" );
 			if ( $this->hasOption( 'fix' ) ) {
-				$article = new Article( $title );
-				$article->updateRevisionOn( $dbw, $revision );
+				$page = WikiPage::factory( $title );
+				$page->updateRevisionOn( $dbw, $revision );
 			}
 			$n++;
 		}
