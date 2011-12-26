@@ -1823,7 +1823,7 @@ HTML
 				$wgOut->addWikiMsg( 'nonunicodebrowser' );
 			}
 
-			if ( isset( $this->mArticle ) && isset( $this->mArticle->mRevision ) ) {
+			if ( $this->section != 'new' && isset( $this->mArticle ) && isset( $this->mArticle->mRevision ) ) {
 			// Let sysop know that this will make private content public if saved
 
 				if ( !$this->mArticle->mRevision->userCan( Revision::DELETED_TEXT ) ) {
@@ -2165,7 +2165,11 @@ HTML
 	function showDiff() {
 		global $wgUser, $wgContLang, $wgParser;
 
-		$oldtext = $this->mArticle->fetchContent();
+		if ( $this->section == 'new' ) {
+			$oldtext = $this->mArticle->getRawText();
+		} else {
+			$oldtext = $this->mArticle->fetchContent();
+		}
 		$newtext = $this->mArticle->replaceSection(
 			$this->section, $this->textbox1, $this->summary, $this->edittime );
 
