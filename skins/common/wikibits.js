@@ -370,11 +370,6 @@ window.getInnerText = function( el ) {
 	return str;
 };
 
-/* Dummy for deprecated function */
-window.ta = [];
-window.akeytt = function( doId ) {
-};
-
 window.checkboxes = undefined;
 window.lastCheckbox = undefined;
 
