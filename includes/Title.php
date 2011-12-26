@@ -764,7 +764,7 @@ class Title {
 	 * @internal note -- uses hardcoded namespace index instead of constants
 	 */
 	public function canExist() {
-		return $this->mNamespace >= 0 && $this->mNamespace != NS_MEDIA;
+		return $this->mNamespace >= NS_MAIN;
 	}
 
 	/**
