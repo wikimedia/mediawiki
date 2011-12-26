@@ -1,4 +1,7 @@
-// MediaWiki JavaScript support functions
+/**
+ * MediaWiki legacy wikibits
+ */
+(function(){
 
 window.clientPC = navigator.userAgent.toLowerCase(); // Get client info
 window.is_gecko = /gecko/.test( clientPC ) &&
@@ -47,7 +50,7 @@ if ( /msie ([0-9]{1,}[\.0-9]{0,})/.exec( clientPC ) != null
 }
 
 // Global external objects used by this script.
-/*extern ta, stylepath, skin */
+/*extern ta */
 
 // add any onload functions in this hook (please don't hard-code any events in the xhtml source)
 window.doneOnloadHook = undefined;
@@ -116,20 +119,20 @@ window.appendCSS = function( text ) {
 };
 
 // Special stylesheet links for Monobook only (see bug 14717)
-if ( typeof stylepath != 'undefined' && skin == 'monobook' ) {
+var skinpath = mw.config.get( 'stylepath' ) + '/' + mw.config.get( 'skin' );
+if ( mw.config.get( 'skin' ) === 'monobook' ) {
 	if ( opera6_bugs ) {
-		importStylesheetURI( stylepath + '/' + skin + '/Opera6Fixes.css' );
+		importStylesheetURI( skinpath + '/Opera6Fixes.css' );
 	} else if ( opera7_bugs ) {
-		importStylesheetURI( stylepath + '/' + skin + '/Opera7Fixes.css' );
+		importStylesheetURI( skinpath + '/Opera7Fixes.css' );
 	} else if ( opera95_bugs ) {
-		importStylesheetURI( stylepath + '/' + skin + '/Opera9Fixes.css' );
+		importStylesheetURI( skinpath + '/Opera9Fixes.css' );
 	} else if ( ff2_bugs ) {
-		importStylesheetURI( stylepath + '/' + skin + '/FF2Fixes.css' );
+		importStylesheetURI( skinpath + '/FF2Fixes.css' );
 	}
 }
 
-
-if ( 'wgBreakFrames' in window && window.wgBreakFrames ) {
+if ( mw.config.get( 'wgBreakFrames' ) ) {
 	// Un-trap us from framesets
 	if ( window.top != window ) {
 		window.top.location = window.location;
@@ -581,7 +584,7 @@ window.jsMsg = function( message, className ) {
 window.injectSpinner = function( element, id ) {
 	var spinner = document.createElement( 'img' );
 	spinner.id = 'mw-spinner-' + id;
-	spinner.src = stylepath + '/common/images/spinner.gif';
+	spinner.src = mw.config.get( 'stylepath' ) + '/common/images/spinner.gif';
 	spinner.alt = spinner.title = '...';
 	if( element.nextSibling ) {
 		element.parentNode.insertBefore( spinner, element.nextSibling );
@@ -666,5 +669,7 @@ window.removeHandler = function( element, remove, handler ) {
 hookEvent( 'load', runOnloadHook );
 
 if ( ie6_bugs ) {
-	importScriptURI( stylepath + '/common/IEFixes.js' );
+	importScriptURI( mw.config.get( 'stylepath' ) + '/common/IEFixes.js' );
 }
+
+})();

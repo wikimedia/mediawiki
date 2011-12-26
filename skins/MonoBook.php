@@ -109,7 +109,6 @@ class MonoBookTemplate extends BaseTemplate {
 				+ Linker::tooltipAndAccesskeyAttribs('p-logo') ); ?>
 
 	</div>
-	<script type="<?php $this->text('jsmimetype') ?>"> if (window.isMSIE55) fixalpha(); </script>
 <?php
 	$this->renderPortals( $this->data['sidebar'] );
 ?>

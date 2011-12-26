@@ -232,7 +232,6 @@ class WebInstallerOutput {
 		href="http://www.mediawiki.org/"
 		title="Main Page"></a>
 	</div>
-	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
 	<div class="portal"><div class="body">
 <?php
 	echo $this->parent->parse( wfMsgNoTrans( 'config-sidebar' ), true );
