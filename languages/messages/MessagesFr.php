@@ -269,6 +269,7 @@ $specialPageAliases = array(
 	'Allmessages'               => array( 'Messages_système', 'Messages_systeme', 'Messagessystème', 'Messagessysteme' ),
 	'Allpages'                  => array( 'Toutes_les_pages', 'ToutesLesPages' ),
 	'Ancientpages'              => array( 'Pages_anciennes', 'PagesAnciennes', 'Anciennes_pages', 'AnciennesPages' ),
+	'Badtitle'                  => array( 'MauvaisTitre', 'Mauvais_titre' ),
 	'Blankpage'                 => array( 'Page_blanche', 'PageBlanche' ),
 	'Block'                     => array( 'Bloquer', 'Blocage' ),
 	'Blockme'                   => array( 'Bloquez-moi', 'Bloquezmoi' ),

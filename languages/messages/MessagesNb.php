@@ -92,6 +92,7 @@ $specialPageAliases = array(
 	'Allmessages'               => array( 'Alle_systembeskjeder' ),
 	'Allpages'                  => array( 'Alle_sider' ),
 	'Ancientpages'              => array( 'Gamle_sider' ),
+	'Badtitle'                  => array( 'Ugyldig_tittel' ),
 	'Blankpage'                 => array( 'Blank_side' ),
 	'Block'                     => array( 'Blokker', 'Blokker_IP', 'Blokker_bruker' ),
 	'Blockme'                   => array( 'Blokker_meg' ),

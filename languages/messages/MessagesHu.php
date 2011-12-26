@@ -69,6 +69,7 @@ $specialPageAliases = array(
 	'Allmessages'               => array( 'Rendszerüzenetek' ),
 	'Allpages'                  => array( 'Az_összes_lap_listája' ),
 	'Ancientpages'              => array( 'Régóta_nem_változott_szócikkek' ),
+	'Badtitle'                  => array( 'Hibás_címek' ),
 	'Blankpage'                 => array( 'Üres_lap' ),
 	'Block'                     => array( 'Blokkolás' ),
 	'Blockme'                   => array( 'Blokkolj' ),

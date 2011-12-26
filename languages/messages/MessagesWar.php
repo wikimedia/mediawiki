@@ -34,22 +34,25 @@ $namespaceNames = array(
 
 $specialPageAliases = array(
 	'Allpages'                  => array( 'NgatananngaPakli' ),
-	'Categories'                => array( 'Mga Kategorya' ),
-	'Contributions'             => array( 'Mga Ámot' ),
+	'Categories'                => array( 'Mga_kaarangay' ),
+	'Contributions'             => array( 'Mga_ámot' ),
+	'Disambiguations'           => array( 'Mga_pansayod' ),
 	'Longpages'                 => array( 'HaglabangamgaPakli' ),
 	'Mostlinked'                => array( 'Gidamo-iHinSumpay' ),
 	'Movepage'                  => array( 'BalhinaAnPakli' ),
 	'Mypage'                    => array( 'AkonPakli' ),
 	'Mytalk'                    => array( 'AkonHiruhimangraw' ),
 	'Newpages'                  => array( 'Bag-ongamgaPakli' ),
-	'Randompage'                => array( 'Bisan Ano', 'BisanAnongaPakli' ),
+	'Randompage'                => array( 'Bisan_Ano', 'BisanAnongaPakli' ),
 	'Search'                    => array( 'Bilnga' ),
 	'Shortpages'                => array( 'HaglipotngamgaPakli' ),
 	'Specialpages'              => array( 'MgaIspisyalngaPakli' ),
-	'Statistics'                => array( 'Mga Estadistika' ),
+	'Statistics'                => array( 'Mga_Estadistika' ),
 	'Upload'                    => array( 'Pagkarga' ),
 	'Version'                   => array( 'Bersyon' ),
-	'Watchlist'                 => array( 'Angay Timan-an' ),
+	'Watchlist'                 => array( 'Angay_Timan-an' ),
+	'Whatlinkshere'             => array( 'AnoAnNasumpayDinhi' ),
+	'Withoutinterwiki'          => array( 'Warayinterwiki' ),
 );
 
 $messages = array(
