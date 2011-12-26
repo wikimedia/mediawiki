@@ -123,16 +123,16 @@ $specialPageAliases = array(
 );
 
 $magicWords = array(
-	'redirect'              => array( '0', '#გადამისამართება', '#REDIRECT' ),
-	'nogallery'             => array( '0', '__უგალერეო__', '__NOGALLERY__' ),
-	'subst'                 => array( '0', 'მიდგმ:', 'SUBST:' ),
-	'img_thumbnail'         => array( '1', 'მინიატიურა', 'მინი', 'მინიასლი', 'ცეროდენა', 'thumbnail', 'thumb' ),
-	'img_right'             => array( '1', 'მარჯვნივ', 'right' ),
-	'img_left'              => array( '1', 'მარცხნივ', 'left' ),
-	'img_width'             => array( '1', '$1პქ', '$1px' ),
-	'img_center'            => array( '1', 'ცენტრი', 'center', 'centre' ),
-	'img_border'            => array( '1', 'საზღვარი', 'border' ),
-	'special'               => array( '0', 'სპეციალური', 'special' ),
+	'redirect'                => array( '0', '#გადამისამართება', '#REDIRECT' ),
+	'nogallery'               => array( '0', '__უგალერეო__', '__NOGALLERY__' ),
+	'subst'                   => array( '0', 'მიდგმ:', 'SUBST:' ),
+	'img_thumbnail'           => array( '1', 'მინიატიურა', 'მინი', 'მინიასლი', 'ცეროდენა', 'thumbnail', 'thumb' ),
+	'img_right'               => array( '1', 'მარჯვნივ', 'right' ),
+	'img_left'                => array( '1', 'მარცხნივ', 'left' ),
+	'img_width'               => array( '1', '$1პქ', '$1px' ),
+	'img_center'              => array( '1', 'ცენტრი', 'center', 'centre' ),
+	'img_border'              => array( '1', 'საზღვარი', 'border' ),
+	'special'                 => array( '0', 'სპეციალური', 'special' ),
 );
 
 $linkPrefixExtension = true;
