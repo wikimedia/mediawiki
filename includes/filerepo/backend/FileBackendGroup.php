@@ -13,7 +13,7 @@
 class FileBackendGroup {
 	protected static $instance = null;
 
-	/** @var Array of (name => ('class' =>, 'config' =>, 'instance' =>)) */
+	/** @var Array (name => ('class' => string, 'config' => array, 'instance' => object)) */
 	protected $backends = array();
 
 	protected function __construct() {}
@@ -75,10 +75,10 @@ class FileBackendGroup {
 				'class'          => 'FSFileBackend',
 				'lockManager'    => 'fsLockManager',
 				'containerPaths' => array(
-					"media-public"  => "{$directory}",
-					"media-thumb"   => $thumbDir,
-					"media-deleted" => $deletedDir,
-					"media-temp"    => "{$directory}/temp"
+					'media-public'  => "{$directory}",
+					'media-thumb'   => $thumbDir,
+					'media-deleted' => $deletedDir,
+					'media-temp'    => "{$directory}/temp"
 				),
 				'fileMode'       => $fileMode,
 			);
