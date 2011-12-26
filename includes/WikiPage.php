@@ -1526,7 +1526,7 @@ class WikiPage extends Page {
 
 		# Update the protection log
 		$log = new LogPage( 'protect' );
-		$log->addEntry( $logAction, $this->mTitle, trim( $reason ), $logParams );
+		$log->addEntry( $logAction, $this->mTitle, trim( $reason ), $logParams, $user );
 
 		return Status::newGood();
 	}
