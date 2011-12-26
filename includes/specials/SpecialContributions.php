@@ -224,7 +224,7 @@ class SpecialContributions extends SpecialPage {
 		$nt = $userObj->getUserPage();
 		$talk = $userObj->getTalkPage();
 		if ( $talk ) {
-			$tools = self::getUserLinks( $nt, $talk, $userObj, $this->getUser() );
+			$tools = $this->getUserLinks( $nt, $talk, $userObj, $this->getUser() );
 			$links = $this->getLanguage()->pipeList( $tools );
 
 			// Show a note if the user is blocked and display the last block log entry.
@@ -270,7 +270,7 @@ class SpecialContributions extends SpecialPage {
 	 * @param $subject User: The viewing user ($wgUser might be still checked in some cases)
 	 * @return array
 	 */
-	public static function getUserLinks( Title $userpage, Title $talkpage, User $target, User $subject ) {
+	public function getUserLinks( Title $userpage, Title $talkpage, User $target, User $subject ) {
 
 		$id = $target->getId();
 		$username = $target->getName();
