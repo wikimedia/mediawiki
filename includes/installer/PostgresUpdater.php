@@ -628,12 +628,14 @@ END;
 	protected function tsearchFixes() {
 		# Tweak the page_title tsearch2 trigger to filter out slashes
 		# This is create or replace, so harmless to call if not needed
+		$this->output( "Refreshing ts2_page_title()...\n" );
 		$this->applyPatch( 'patch-ts2pagetitle.sql' );
 
 		# If the server is 8.3 or higher, rewrite the tsearch2 triggers
 		# in case they have the old 'default' versions
 		# Gather version numbers in case we need them
 		if ( $this->db->getServerVersion() >= 8.3 ) {
+			$this->output( "Rewriting tsearch2 triggers...\n" );
 			$this->applyPatch( 'patch-tsearch2funcs.sql' );
 		}
 	}
