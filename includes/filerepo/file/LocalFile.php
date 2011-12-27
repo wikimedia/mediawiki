@@ -1096,7 +1096,7 @@ class LocalFile extends File {
 			# New file; create the description page.
 			# There's already a log entry, so don't make a second RC entry
 			# Squid and file cache for the description page are purged by doEdit.
-			$wikiPage->doEdit( $pageText, $comment, EDIT_NEW | EDIT_SUPPRESS_RC );
+			$wikiPage->doEdit( $pageText, $comment, EDIT_NEW | EDIT_SUPPRESS_RC, false, $user );
 		}
 
 		# Commit the transaction now, in case something goes wrong later
