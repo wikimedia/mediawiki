@@ -423,5 +423,143 @@ class ApiUploadTest extends ApiTestCaseUpload {
 		$this->deleteFileByFilename( $fileName );
 		unlink( $filePath );
 	}
-}
+	
+	
+	/**
+	 * @depends testLogin
+	 */
+	public function testUploadChunks( $session ) {
+		global $wgUser;
+		$wgUser = self::$users['uploader']->user; // @todo FIXME: still used somewhere
+		
+		$chunkSize = 1048576;
+		// Download a large image file
+		// ( using RandomImageGenerator for large files is not stable )
+		$mimeType = 'image/jpeg';
+		$url = 'http://upload.wikimedia.org/wikipedia/commons/e/ed/Oberaargletscher_from_Oberaar%2C_2010_07.JPG';
+		$filePath = wfTempDir() . '/Oberaargletscher_from_Oberaar.jpg';
+		try {
+			// Only download if the file is not avaliable in the temp location:
+			if( !is_file( $filePath ) ){
+				copy($url, $filePath); 
+			}
+		}
+		catch ( Exception $e ) {
+			$this->markTestIncomplete( $e->getMessage() );
+		}
 
+		$fileSize = filesize( $filePath );
+		$fileName = basename( $filePath );
+
+		$this->deleteFileByFileName( $fileName );
+		$this->deleteFileByContent( $filePath );
+
+		// Base upload params: 
+		$params = array(
+			'action' => 'upload',
+			'stash'	=> 1,
+			'filename' => $fileName,
+			'filesize' => $fileSize,
+			'offset' => 0,
+		);
+		
+		// Upload chunks
+		$chunkSessionKey = false;
+		$resultOffset = 0;
+		// Open the file: 
+		$handle = @fopen ($filePath, "r");
+		if( $handle === false ){
+			$this->markTestIncomplete( "could not open file: $filePath" );
+		}
+		while (!feof ($handle)) {
+			// Get the current chunk
+			$chunkData = @fread( $handle, $chunkSize );
+
+			// Upload the current chunk into the $_FILE object:
+			$this->fakeUploadChunk( 'chunk', 'blob', $mimeType, $chunkData );
+			
+			// Check for chunkSessionKey
+			if( !$chunkSessionKey ){
+				// Upload fist chunk ( and get the session key )
+				try {
+					list( $result, $request, $session ) = $this->doApiRequestWithToken( $params, $session,
+						self::$users['uploader']->user );
+				} catch ( UsageException $e ) {
+					$this->markTestIncomplete( $e->getMessage() );
+				}
+				// Make sure we got a valid chunk continue: 
+				$this->assertTrue( isset( $result['upload'] ) );
+				$this->assertTrue( isset( $result['upload']['filekey'] ) );
+				// If we don't get a session key mark test incomplete. 
+				if( ! isset( $result['upload']['filekey'] ) ){
+					$this->markTestIncomplete( "no filekey provided" );
+				}
+				$chunkSessionKey = $result['upload']['filekey'];
+				$this->assertEquals( 'Continue', $result['upload']['result'] );
+				// First chunk should have chunkSize == offset
+				$this->assertEquals( $chunkSize, $result['upload']['offset'] );
+				$resultOffset = $result['upload']['offset'];
+				continue;
+			}
+			// Filekey set to chunk session
+			$params['filekey'] = $chunkSessionKey;
+			// Update the offset ( always add chunkSize for subquent chunks should be in-sync with $result['upload']['offset'] )
+			$params['offset'] += $chunkSize;
+			// Make sure param offset is insync with resultOffset:
+			$this->assertEquals( $resultOffset, $params['offset'] );
+			// Upload current chunk
+			try {
+				list( $result, $request, $session ) = $this->doApiRequestWithToken( $params, $session,
+					self::$users['uploader']->user );
+			} catch ( UsageException $e ) {
+				$this->markTestIncomplete( $e->getMessage() );
+			}
+			// Make sure we got a valid chunk continue: 
+			$this->assertTrue( isset( $result['upload'] ) );
+			$this->assertTrue( isset( $result['upload']['filekey'] ) );
+			
+			// Check if we were on the last chunk: 
+			if( $params['offset'] + $chunkSize >=  $fileSize ){
+				$this->assertEquals( 'Success', $result['upload']['result'] );
+				break;
+			} else {
+				$this->assertEquals( 'Continue', $result['upload']['result'] );
+				// update $resultOffset
+				$resultOffset = $result['upload']['offset'];
+			}
+		} 
+		fclose ($handle); 
+        
+		// Check that we got a valid file result:
+		wfDebug( __METHOD__ . " hohoh filesize {$fileSize} info {$result['upload']['imageinfo']['size']}\n\n");
+		$this->assertEquals( $fileSize, $result['upload']['imageinfo']['size'] );
+		$this->assertEquals( $mimeType, $result['upload']['imageinfo']['mime'] );
+		$this->assertTrue( isset( $result['upload']['filekey'] ) );
+		$filekey = $result['upload']['filekey'];
+
+		// Now we should try to release the file from stash
+		$params = array(
+			'action' => 'upload',
+			'filekey' => $filekey,
+			'filename' => $fileName,
+			'comment' => 'dummy comment',
+			'text'	=> "This is the page text for $fileName, altered",
+		);
+		$this->clearFakeUploads();
+		$exception = false;
+		try {
+			list( $result, $request, $session ) = $this->doApiRequestWithToken( $params, $session,
+				self::$users['uploader']->user );
+		} catch ( UsageException $e ) {
+			$exception = true;
+		}
+		$this->assertTrue( isset( $result['upload'] ) );
+		$this->assertEquals( 'Success', $result['upload']['result'] );
+		$this->assertFalse( $exception );
+
+		// clean up
+		$this->deleteFileByFilename( $fileName );
+		// don't remove downloaded temporary file for fast subquent tests. 
+		//unlink( $filePath );
+	}
+}
