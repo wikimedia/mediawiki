@@ -64,6 +64,7 @@ class Title {
 	var $mArticleID = -1;             // /< Article ID, fetched from the link cache on demand
 	var $mLatestID = false;           // /< ID of most recent revision
 	var $mCounter = -1;               // /< Number of times this page has been viewed (-1 means "not loaded")
+	private $mEstimateRevisions;      // /< Estimated number of revisions; null of not loaded
 	var $mRestrictions = array();     // /< Array of groups allowed to edit this article
 	var $mOldRestrictions = false;
 	var $mCascadeRestriction;         ///< Cascade restrictions on this page to included templates and images?
@@ -1843,6 +1844,8 @@ class Title {
 	 * @return Array list of errors
 	 */
 	private function checkActionPermissions( $action, $user, $errors, $doExpensiveQueries, $short ) {
+		global $wgDeleteRevisionsLimit, $wgLang;
+
 		if ( $action == 'protect' ) {
 			if ( count( $this->getUserPermissionsErrorsInternal( 'edit', $user, $doExpensiveQueries, true ) ) ) {
 				// If they can't edit, they shouldn't protect.
@@ -1874,6 +1877,12 @@ class Title {
 				$errors[] = array( 'immobile-target-namespace', $this->getNsText() );
 			} elseif ( !$this->isMovable() ) {
 				$errors[] = array( 'immobile-target-page' );
+			}
+		} elseif ( $action == 'delete' ) {
+			if ( $doExpensiveQueries && $wgDeleteRevisionsLimit
+				&& !$this->userCan( 'bigdelete', $user ) && $this->isBigDeletion() )
+			{
+				$errors[] = array( 'delete-toobig', $wgLang->formatNum( $wgDeleteRevisionsLimit ) );
 			}
 		}
 		return $errors;
@@ -2887,6 +2896,7 @@ class Title {
 		$this->mLength = -1;
 		$this->mLatestID = false;
 		$this->mCounter = -1;
+		$this->mEstimateRevisions = null;
 	}
 
 	/**
@@ -3998,6 +4008,41 @@ class Title {
 	public function isNewPage() {
 		$dbr = wfGetDB( DB_SLAVE );
 		return (bool)$dbr->selectField( 'page', 'page_is_new', $this->pageCond(), __METHOD__ );
+	}
+
+	/**
+	 * Check whether the number of revisions of this page surpasses $wgDeleteRevisionsLimit
+	 *
+	 * @return bool
+	 */
+	public function isBigDeletion() {
+		global $wgDeleteRevisionsLimit;
+
+		if ( !$wgDeleteRevisionsLimit ) {
+			return false;
+		}
+
+		$revCount = $this->estimateRevisionCount();
+		return $revCount > $wgDeleteRevisionsLimit;
+	}
+
+	/**
+	 * Get the  approximate revision count of this page.
+	 *
+	 * @return int
+	 */
+	public function estimateRevisionCount() {
+		if ( !$this->exists() ) {
+			return 0;
+		}
+
+		if ( $this->mEstimateRevisions === null ) {
+			$dbr = wfGetDB( DB_SLAVE );
+			$this->mEstimateRevisions = $dbr->estimateRowCount( 'revision', '*',
+				array( 'rev_page' => $this->getArticleId() ), __METHOD__ );
+		}
+
+		return $this->mEstimateRevisions;
 	}
 
 	/**

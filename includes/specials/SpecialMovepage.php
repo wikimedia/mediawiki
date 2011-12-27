@@ -360,13 +360,11 @@ class MovePageForm extends UnlistedSpecialPage {
 		$nt = $this->newTitle;
 
 		# Delete to make way if requested
-		if ( !count( $nt->getUserPermissionsErrors( 'delete', $user ) ) && $this->deleteAndMove ) {
-			$page = WikiPage::factory( $nt );
-
-			# Disallow deletions of big articles
-			$bigHistory = $page->isBigDeletion();
-			if( $bigHistory && count( $nt->getUserPermissionsErrors( 'bigdelete', $user ) ) ) {
-				$this->showForm( array( 'delete-toobig', $this->getLanguage()->formatNum( $wgDeleteRevisionsLimit ) ) );
+		if ( $this->deleteAndMove ) {
+			$permErrors = $nt->getUserPermissionsErrors( 'delete', $user );
+			if ( count( $permErrors ) ) {
+				# Only show the first error
+				$this->showForm( $permErrors[0] );
 				return;
 			}
 
@@ -381,6 +379,7 @@ class MovePageForm extends UnlistedSpecialPage {
 			}
 
 			$error = ''; // passed by ref
+			$page = WikiPage::factory( $nt );
 			if ( !$page->doDeleteArticle( $reason, false, 0, true, $error, $user ) ) {
 				$this->showForm( array( 'cannotdelete', wfEscapeWikiText( $nt->getPrefixedText() ) ) );
 				return;

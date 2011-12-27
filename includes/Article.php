@@ -1289,18 +1289,6 @@ class Article extends Page {
 			return;
 		}
 
-		# Hack for big sites
-		$bigHistory = $this->mPage->isBigDeletion();
-		if ( $bigHistory && !$title->userCan( 'bigdelete' ) ) {
-			global $wgDeleteRevisionsLimit;
-
-			$wgOut->setPageTitle( wfMessage( 'cannotdelete-title', $title->getPrefixedText() ) );
-			$wgOut->wrapWikiMsg( "<div class='error'>\n$1\n</div>\n",
-				array( 'delete-toobig', $wgLang->formatNum( $wgDeleteRevisionsLimit ) ) );
-
-			return;
-		}
-
 		$deleteReasonList = $wgRequest->getText( 'wpDeleteReasonList', 'other' );
 		$deleteReason = $wgRequest->getText( 'wpReason' );
 
@@ -1338,7 +1326,7 @@ class Article extends Page {
 
 		// If the page has a history, insert a warning
 		if ( $hasHistory ) {
-			$revisions = $this->mPage->estimateRevisionCount();
+			$revisions = $this->mTitle->estimateRevisionCount();
 			// @todo FIXME: i18n issue/patchwork message
 			$wgOut->addHTML( '<strong class="mw-delete-warning-revisions">' .
 				wfMsgExt( 'historywarning', array( 'parseinline' ), $wgLang->formatNum( $revisions ) ) .
