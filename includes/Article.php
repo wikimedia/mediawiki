@@ -1337,7 +1337,7 @@ class Article extends Page {
 				'</strong>'
 			);
 
-			if ( $bigHistory ) {
+			if ( $this->mTitle->isBigDeletion() ) {
 				global $wgDeleteRevisionsLimit;
 				$wgOut->wrapWikiMsg( "<div class='error'>\n$1\n</div>\n",
 					array( 'delete-warning-toobig', $wgLang->formatNum( $wgDeleteRevisionsLimit ) ) );
