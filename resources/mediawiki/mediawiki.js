@@ -521,6 +521,109 @@ var mw = ( function ( $, undefined ) {
 			}
 	
 			/**
+			 * Automatically executes jobs and modules which are pending with satistifed dependencies.
+			 *
+			 * This is used when dependencies are satisfied, such as when a module is executed.
+			 */
+			function handlePending( module ) {
+				var j, r;
+	
+				try {
+					// Run jobs who's dependencies have just been met
+					for ( j = 0; j < jobs.length; j += 1 ) {
+						if ( compare(
+							filter( 'ready', jobs[j].dependencies ),
+							jobs[j].dependencies ) )
+						{
+							if ( $.isFunction( jobs[j].ready ) ) {
+								jobs[j].ready();
+							}
+							jobs.splice( j, 1 );
+							j -= 1;
+						}
+					}
+					// Execute modules who's dependencies have just been met
+					for ( r in registry ) {
+						if ( registry[r].state === 'loaded' ) {
+							if ( compare(
+								filter( ['ready'], registry[r].dependencies ),
+								registry[r].dependencies ) )
+							{
+								execute( r );
+							}
+						}
+					}
+				} catch ( e ) {
+					// Run error callbacks of jobs affected by this condition
+					for ( j = 0; j < jobs.length; j += 1 ) {
+						if ( $.inArray( module, jobs[j].dependencies ) !== -1 ) {
+							if ( $.isFunction( jobs[j].error ) ) {
+								jobs[j].error( e, module );
+							}
+							jobs.splice( j, 1 );
+							j -= 1;
+						}
+					}
+				}
+			}
+	
+			/**
+			 * Adds a script tag to the body, either using document.write or low-level DOM manipulation,
+			 * depending on whether document-ready has occured yet.
+			 *
+			 * @param src String: URL to script, will be used as the src attribute in the script tag
+			 * @param callback Function: Optional callback which will be run when the script is done
+			 */
+			function addScript( src, callback ) {
+				var done = false, script;
+				if ( ready ) {
+					// jQuery's getScript method is NOT better than doing this the old-fashioned way
+					// because jQuery will eval the script's code, and errors will not have sane
+					// line numbers.
+					script = document.createElement( 'script' );
+					script.setAttribute( 'src', src );
+					script.setAttribute( 'type', 'text/javascript' );
+					if ( $.isFunction( callback ) ) {
+						// Attach handlers for all browsers (based on jQuery.ajax)
+						script.onload = script.onreadystatechange = function() {
+	
+							if (
+								!done
+								&& (
+									!script.readyState
+									|| /loaded|complete/.test( script.readyState )
+								)
+							) {
+	
+								done = true;
+	
+								// Handle memory leak in IE
+								script.onload = script.onreadystatechange = null;
+	
+								callback();
+	
+								if ( script.parentNode ) {
+									script.parentNode.removeChild( script );
+								}
+	
+								// Dereference the script
+								script = undefined;
+							}
+						};
+					}
+					document.body.appendChild( script );
+				} else {
+					document.write( mw.html.element(
+						'script', { 'type': 'text/javascript', 'src': src }, ''
+					) );
+					if ( $.isFunction( callback ) ) {
+						// Document.write is synchronous, so this is called when it's done
+						callback();
+					}
+				}
+			}
+	
+			/**
 			 * Executes a loaded module, making it ready to use
 			 *
 			 * @param module string module name to execute
@@ -606,53 +709,6 @@ var mw = ( function ( $, undefined ) {
 			}
 	
 			/**
-			 * Automatically executes jobs and modules which are pending with satistifed dependencies.
-			 *
-			 * This is used when dependencies are satisfied, such as when a module is executed.
-			 */
-			function handlePending( module ) {
-				var j, r;
-	
-				try {
-					// Run jobs who's dependencies have just been met
-					for ( j = 0; j < jobs.length; j += 1 ) {
-						if ( compare(
-							filter( 'ready', jobs[j].dependencies ),
-							jobs[j].dependencies ) )
-						{
-							if ( $.isFunction( jobs[j].ready ) ) {
-								jobs[j].ready();
-							}
-							jobs.splice( j, 1 );
-							j -= 1;
-						}
-					}
-					// Execute modules who's dependencies have just been met
-					for ( r in registry ) {
-						if ( registry[r].state === 'loaded' ) {
-							if ( compare(
-								filter( ['ready'], registry[r].dependencies ),
-								registry[r].dependencies ) )
-							{
-								execute( r );
-							}
-						}
-					}
-				} catch ( e ) {
-					// Run error callbacks of jobs affected by this condition
-					for ( j = 0; j < jobs.length; j += 1 ) {
-						if ( $.inArray( module, jobs[j].dependencies ) !== -1 ) {
-							if ( $.isFunction( jobs[j].error ) ) {
-								jobs[j].error( e, module );
-							}
-							jobs.splice( j, 1 );
-							j -= 1;
-						}
-					}
-				}
-			}
-	
-			/**
 			 * Adds a dependencies to the queue with optional callbacks to be run
 			 * when the dependencies are ready or fail
 			 *
@@ -723,62 +779,6 @@ var mw = ( function ( $, undefined ) {
 					arr.push( p + moduleMap[prefix].join( ',' ) );
 				}
 				return arr.join( '|' );
-			}
-	
-			/**
-			 * Adds a script tag to the body, either using document.write or low-level DOM manipulation,
-			 * depending on whether document-ready has occured yet.
-			 *
-			 * @param src String: URL to script, will be used as the src attribute in the script tag
-			 * @param callback Function: Optional callback which will be run when the script is done
-			 */
-			function addScript( src, callback ) {
-				var done = false, script;
-				if ( ready ) {
-					// jQuery's getScript method is NOT better than doing this the old-fashioned way
-					// because jQuery will eval the script's code, and errors will not have sane
-					// line numbers.
-					script = document.createElement( 'script' );
-					script.setAttribute( 'src', src );
-					script.setAttribute( 'type', 'text/javascript' );
-					if ( $.isFunction( callback ) ) {
-						// Attach handlers for all browsers (based on jQuery.ajax)
-						script.onload = script.onreadystatechange = function() {
-	
-							if (
-								!done
-								&& (
-									!script.readyState
-									|| /loaded|complete/.test( script.readyState )
-								)
-							) {
-	
-								done = true;
-	
-								// Handle memory leak in IE
-								script.onload = script.onreadystatechange = null;
-	
-								callback();
-	
-								if ( script.parentNode ) {
-									script.parentNode.removeChild( script );
-								}
-	
-								// Dereference the script
-								script = undefined;
-							}
-						};
-					}
-					document.body.appendChild( script );
-				} else {
-					document.write( mw.html.element(
-						'script', { 'type': 'text/javascript', 'src': src }, ''
-					) );
-					if ( $.isFunction( callback ) ) {
-						// Document.write is synchronous, so this is called when it's done
-						callback();
-					}
-				}
 			}
 	
 			/**
