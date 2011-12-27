@@ -664,13 +664,13 @@ class ApiQueryRevisions extends ApiQueryBase {
 
 	public function getExamples() {
 		return array(
-			'Get data with content for the last revision of titles "API" and "Main Page":',
+			'Get data with content for the last revision of titles "API" and "Main Page"',
 			'  api.php?action=query&prop=revisions&titles=API|Main%20Page&rvprop=timestamp|user|comment|content',
-			'Get last 5 revisions of the "Main Page":',
+			'Get last 5 revisions of the "Main Page"',
 			'  api.php?action=query&prop=revisions&titles=Main%20Page&rvlimit=5&rvprop=timestamp|user|comment',
-			'Get first 5 revisions of the "Main Page":',
+			'Get first 5 revisions of the "Main Page"',
 			'  api.php?action=query&prop=revisions&titles=Main%20Page&rvlimit=5&rvprop=timestamp|user|comment&rvdir=newer',
-			'Get first 5 revisions of the "Main Page" made after 2006-05-01:',
+			'Get first 5 revisions of the "Main Page" made after 2006-05-01',
 			'  api.php?action=query&prop=revisions&titles=Main%20Page&rvlimit=5&rvprop=timestamp|user|comment&rvdir=newer&rvstart=20060501000000',
 			'Get first 5 revisions of the "Main Page" that were not made made by anonymous user "127.0.0.1"',
 			'  api.php?action=query&prop=revisions&titles=Main%20Page&rvlimit=5&rvprop=timestamp|user|comment&rvexcludeuser=127.0.0.1',

@@ -120,7 +120,7 @@ class ApiComparePages extends ApiBase {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=compare&fromrev=1&torev=2',
+			'api.php?action=compare&fromrev=1&torev=2' => 'Creates a diff between revision 1 and 2',
 		);
 	}
 

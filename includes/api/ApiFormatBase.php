@@ -286,7 +286,10 @@ See <a href='https://www.mediawiki.org/wiki/API'>complete documentation</a>, or
 	}
 
 	public function getExamples() {
-		return 'api.php?action=query&meta=siteinfo&siprop=namespaces&format=' . $this->getModuleName();
+		return array(
+			'api.php?action=query&meta=siteinfo&siprop=namespaces&format=' . $this->getModuleName()
+				=> "Formats the query result in the {$this->getModuleName()} format",
+		);
 	}
 
 	public function getHelpUrls() {

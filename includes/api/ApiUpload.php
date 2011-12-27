@@ -646,10 +646,10 @@ class ApiUpload extends ApiBase {
 
 	public function getExamples() {
 		return array(
-			'Upload from a URL:',
-			'    api.php?action=upload&filename=Wiki.png&url=http%3A//upload.wikimedia.org/wikipedia/en/b/bc/Wiki.png',
-			'Complete an upload that failed due to warnings:',
-			'    api.php?action=upload&filename=Wiki.png&filekey=filekey&ignorewarnings=1',
+			'api.php?action=upload&filename=Wiki.png&url=http%3A//upload.wikimedia.org/wikipedia/en/b/bc/Wiki.png'
+				=> 'Upload from a URL',
+			'api.php?action=upload&filename=Wiki.png&filekey=filekey&ignorewarnings=1'
+				=> 'Complete an upload that failed due to warnings',
 		);
 	}
 

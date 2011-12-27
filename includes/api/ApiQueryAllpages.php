@@ -309,14 +309,17 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 
 	public function getExamples() {
 		return array(
-			'Simple Use',
-			' Show a list of pages starting at the letter "B"',
-			'  api.php?action=query&list=allpages&apfrom=B',
-			'Using as Generator',
-			' Show info about 4 pages starting at the letter "T"',
-			'  api.php?action=query&generator=allpages&gaplimit=4&gapfrom=T&prop=info',
-			' Show content of first 2 non-redirect pages begining at "Re"',
-			'  api.php?action=query&generator=allpages&gaplimit=2&gapfilterredir=nonredirects&gapfrom=Re&prop=revisions&rvprop=content'
+			'api.php?action=query&list=allpages&apfrom=B' => array(
+				'Simple Use',
+				'Show a list of pages starting at the letter "B"',
+			),
+			'api.php?action=query&generator=allpages&gaplimit=4&gapfrom=T&prop=info' => array(
+				'Using as Generator',
+				'Show info about 4 pages starting at the letter "T"',
+			),
+			'api.php?action=query&generator=allpages&gaplimit=2&gapfilterredir=nonredirects&gapfrom=Re&prop=revisions&rvprop=content' => array(
+				'Show content of first 2 non-redirect pages begining at "Re"',
+			)
 		);
 	}
 

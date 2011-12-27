@@ -246,12 +246,14 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 
 	public function getExamples() {
 		return array(
-			'Simple Use',
-			' Show a list of images starting at the letter "B"',
-			'  api.php?action=query&list=allimages&aifrom=B',
-			'Using as Generator',
-			' Show info about 4 images starting at the letter "T"',
-			'  api.php?action=query&generator=allimages&gailimit=4&gaifrom=T&prop=imageinfo',
+			'api.php?action=query&list=allimages&aifrom=B' => array(
+				'Simple Use',
+				'Show a list of images starting at the letter "B"',
+			),
+			'api.php?action=query&generator=allimages&gailimit=4&gaifrom=T&prop=imageinfo' => array(
+				'Using as Generator',
+				'Show info about 4 images starting at the letter "T"',
+			),
 		);
 	}
 
