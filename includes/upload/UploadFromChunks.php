@@ -107,8 +107,11 @@ class UploadFromChunks extends UploadFromFile {
 		if( !$status->isOk() ){
 			return $status; 
 		}
-		// Update the mTempPath variable ( for FileUpload or normal Stash to take over )  
+		// Update the mTempPath and mLocalFile
+		// ( for FileUpload or normal Stash to take over )  
 		$this->mTempPath = $tmpPath; // file system path
+		$this->mLocalFile = parent::stashFile();
+
 		return $status;
 	}
 
