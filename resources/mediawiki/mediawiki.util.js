@@ -413,10 +413,10 @@
 		 * something, replacing any previous message.
 		 * Calling with no arguments, with an empty string or null will hide the message
 		 *
-		 * @param message mixed The DOM-element or HTML-string to be put inside the message box.
-		 * @param className	string Used in adding a class; should be different for each call
+		 * @param message {mixed} The DOM-element, jQuery object or HTML-string to be put inside the message box.
+		 * @param className {String} Used in adding a class; should be different for each call
 		 * to allow CSS/JS to hide different boxes. null = no class used.
-		 * @return boolean True on success, false on failure.
+		 * @return {Boolean} True on success, false on failure.
 		 */
 		jsMessage: function( message, className ) {
 			if ( !arguments.length || message === '' || message === null ) {
@@ -443,7 +443,7 @@
 
 				if ( typeof message === 'object' ) {
 					$messageDiv.empty();
-					$messageDiv.append( message ); // Append new content
+					$messageDiv.append( message );
 				} else {
 					$messageDiv.html( message );
 				}
