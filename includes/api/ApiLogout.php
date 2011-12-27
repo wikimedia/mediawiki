@@ -64,7 +64,7 @@ class ApiLogout extends ApiBase {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=logout'
+			'api.php?action=logout' => 'Logs the current user out',
 		);
 	}
 

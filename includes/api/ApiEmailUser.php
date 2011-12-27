@@ -133,7 +133,7 @@ class ApiEmailUser extends ApiBase {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=emailuser&target=WikiSysop&text=Content'
+			'api.php?action=emailuser&target=WikiSysop&text=Content' => 'Sends an email to the User "WikiSysop" with the text "Content"',
 		);
 	}
 

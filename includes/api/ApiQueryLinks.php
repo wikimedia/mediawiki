@@ -231,13 +231,12 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 	}
 
 	public function getExamples() {
+		$desc = $this->description;
+		$name = $this->getModuleName();
 		return array(
-			"Get {$this->description}s from the [[Main Page]]:",
-			"  api.php?action=query&prop={$this->getModuleName()}&titles=Main%20Page",
-			"Get information about the {$this->description} pages in the [[Main Page]]:",
-			"  api.php?action=query&generator={$this->getModuleName()}&titles=Main%20Page&prop=info",
-			"Get {$this->description}s from the Main Page in the User and Template namespaces:",
-			"  api.php?action=query&prop={$this->getModuleName()}&titles=Main%20Page&{$this->prefix}namespace=2|10"
+			"api.php?action=query&prop={$name}&titles=Main%20Page" => "Get {$desc}s from the [[Main Page]]:",
+			"api.php?action=query&generator={$name}&titles=Main%20Page&prop=info" => "Get information about the {$desc} pages in the [[Main Page]]:",
+			"api.php?action=query&prop={$name}&titles=Main%20Page&{$this->prefix}namespace=2|10" => "Get {$desc}s from the Main Page in the User and Template namespaces:",
 		);
 	}
 

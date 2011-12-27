@@ -267,7 +267,30 @@ abstract class ApiBase extends ContextSource {
 				$msg .= "Parameters:\n$paramsMsg";
 			}
 
-			$msg .= $this->makeHelpArrayToString( $lnPrfx, "Example", $this->getExamples() );
+			$examples = $this->getExamples();
+			if ( $examples !== false ) {
+				if ( !is_array( $examples ) ) {
+					$examples = array(
+						$examples
+					);
+				}
+				$msg .= "Example" . ( count( $examples ) > 1 ? 's' : '' ) . ":\n";
+				foreach( $examples as $k => $v ) {
+
+					if ( is_numeric( $k ) ) {
+						$msg .= "  $v\n";
+					} else {
+						$v .= ":";
+						if ( is_array( $v ) ) {
+							$msgExample = implode( "\n", array_map( array( $this, 'indentExampleText' ), $v ) );
+						} else {
+							$msgExample = "  $v";
+						}
+						$msg .= wordwrap( $msgExample, 100, "\n" ) . "\n    $k\n";
+					}
+				}
+			}
+
 			$msg .= $this->makeHelpArrayToString( $lnPrfx, "Help page", $this->getHelpUrls() );
 
 			if ( $this->getMain()->getShowVersions() ) {
@@ -289,6 +312,14 @@ abstract class ApiBase extends ContextSource {
 		}
 
 		return $msg;
+	}
+
+	/**
+	 * @param $item string
+	 * @return string
+	 */
+	private function indentExampleText( $item ) {
+		return "  " . $item;
 	}
 
 	/**
@@ -341,13 +372,13 @@ abstract class ApiBase extends ContextSource {
 				}
 
 				$deprecated = isset( $paramSettings[self::PARAM_DEPRECATED] ) ?
-					$paramSettings[self::PARAM_DEPRECATED] : false;
+						$paramSettings[self::PARAM_DEPRECATED] : false;
 				if ( $deprecated ) {
 					$desc = "DEPRECATED! $desc";
 				}
 
 				$required = isset( $paramSettings[self::PARAM_REQUIRED] ) ?
-					$paramSettings[self::PARAM_REQUIRED] : false;
+						$paramSettings[self::PARAM_REQUIRED] : false;
 				if ( $required ) {
 					$desc .= $paramPrefix . "This parameter is required";
 				}
@@ -411,7 +442,7 @@ abstract class ApiBase extends ContextSource {
 							if ( !$isArray
 									|| $isArray && count( $paramSettings[self::PARAM_TYPE] ) > self::LIMIT_SML1 ) {
 								$desc .= $paramPrefix . "Maximum number of values " .
-									self::LIMIT_SML1 . " (" . self::LIMIT_SML2 . " for bots)";
+										self::LIMIT_SML1 . " (" . self::LIMIT_SML2 . " for bots)";
 							}
 						}
 					}
@@ -465,8 +496,8 @@ abstract class ApiBase extends ContextSource {
 		// returning the version string for ApiBase work
 		if ( $path ) {
 			return "{$matches[0]}\n   https://svn.wikimedia.org/" .
-				"viewvc/mediawiki/trunk/" . dirname( $path ) .
-				"/{$matches[2]}";
+					"viewvc/mediawiki/trunk/" . dirname( $path ) .
+					"/{$matches[2]}";
 		}
 		return $matches[0];
 	}
@@ -601,7 +632,7 @@ abstract class ApiBase extends ContextSource {
 		array_shift( $required );
 
 		$intersection = array_intersect( array_keys( array_filter( $params,
-				array( $this, "parameterNotEmpty" ) ) ), $required );
+			array( $this, "parameterNotEmpty" ) ) ), $required );
 
 		if ( count( $intersection ) > 1 ) {
 			$this->dieUsage( 'The parameters ' . implode( ', ', $intersection ) . ' can not be used together', 'invalidparammix' );
@@ -636,7 +667,7 @@ abstract class ApiBase extends ContextSource {
 		array_shift( $required );
 
 		$intersection = array_intersect( array_keys( array_filter( $params,
-				array( $this, "parameterNotEmpty" ) ) ), $required );
+			array( $this, "parameterNotEmpty" ) ) ), $required );
 
 		if ( count( $intersection ) > 1 ) {
 			$this->dieUsage( 'The parameters ' . implode( ', ', $intersection ) . ' can not be used together', 'invalidparammix' );
@@ -705,7 +736,7 @@ abstract class ApiBase extends ContextSource {
 				# If no user option was passed, use watchdefault or watchcreation
 				if ( is_null( $userOption ) ) {
 					$userOption = $titleObj->exists()
-						? 'watchdefault' : 'watchcreations';
+							? 'watchdefault' : 'watchcreations';
 				}
 				# Watch the article based on the user preference
 				return (bool)$this->getUser()->getOption( $userOption );
@@ -921,7 +952,7 @@ abstract class ApiBase extends ContextSource {
 		// This is a bit awkward, but we want to avoid calling canApiHighLimits() because it unstubs $wgUser
 		$valuesList = explode( '|', $value, self::LIMIT_SML2 + 1 );
 		$sizeLimit = count( $valuesList ) > self::LIMIT_SML1 && $this->mMainModule->canApiHighLimits() ?
-			self::LIMIT_SML2 : self::LIMIT_SML1;
+				self::LIMIT_SML2 : self::LIMIT_SML1;
 
 		if ( self::truncateArray( $valuesList, $sizeLimit ) ) {
 			$this->setWarning( "Too many values supplied for parameter '$valueName': the limit is $sizeLimit" );
@@ -1242,8 +1273,8 @@ abstract class ApiBase extends ContextSource {
 
 		if ( isset( self::$messageMap[$key] ) ) {
 			return array( 'code' =>
-				wfMsgReplaceArgs( self::$messageMap[$key]['code'], $error ),
-					'info' =>
+			wfMsgReplaceArgs( self::$messageMap[$key]['code'], $error ),
+				'info' =>
 				wfMsgReplaceArgs( self::$messageMap[$key]['info'], $error )
 			);
 		}
