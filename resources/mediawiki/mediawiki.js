@@ -2,15 +2,12 @@
  * Core MediaWiki JavaScript Library
  */
 
-// Attach to window and globally alias
-window.mw = window.mediaWiki = new ( function( $, undefined ) {
+var mw = new ( function( $, undefined ) {
+"use strict";
 
 	/* Private Members */
 
-	/**
-	 * @var object List of messages that have been requested to be loaded.
-	 */
-	var messageQueue = {};
+	var hasOwn = Object.prototype.hasOwnProperty;
 
 	/* Object constructors */
 
@@ -25,7 +22,7 @@ window.mw = window.mediaWiki = new ( function( $, undefined ) {
 	 * @return Map
 	 */
 	function Map( global ) {
-		this.values = ( global === true ) ? window : {};
+		this.values = global === true ? window : {};
 		return this;
 	}
 
@@ -44,10 +41,12 @@ window.mw = window.mediaWiki = new ( function( $, undefined ) {
 		 * @return Values as a string or object, null if invalid/inexistant.
 		 */
 		get: function( selection, fallback ) {
+			var results, i;
+
 			if ( $.isArray( selection ) ) {
 				selection = $.makeArray( selection );
-				var results = {};
-				for ( var i = 0; i < selection.length; i++ ) {
+				results = {};
+				for ( i = 0; i < selection.length; i += 1 ) {
 					results[selection[i]] = this.get( selection[i], fallback );
 				}
 				return results;
@@ -70,13 +69,15 @@ window.mw = window.mediaWiki = new ( function( $, undefined ) {
 		/**
 		 * Sets one or multiple key/value pairs.
 		 *
-		 * @param selection mixed String key or array of keys to set values for.
-		 * @param value mixed Value to set (optional, only in use when key is a string)
-		 * @return bool This returns true on success, false on failure.
+		 * @param selection {mixed} String key or array of keys to set values for.
+		 * @param value {mixed} Value to set (optional, only in use when key is a string)
+		 * @return {Boolean} This returns true on success, false on failure.
 		 */
 		set: function( selection, value ) {
+			var s;
+
 			if ( $.isPlainObject( selection ) ) {
-				for ( var s in selection ) {
+				for ( s in selection ) {
 					this.values[s] = selection[s];
 				}
 				return true;
@@ -90,19 +91,21 @@ window.mw = window.mediaWiki = new ( function( $, undefined ) {
 		/**
 		 * Checks if one or multiple keys exist.
 		 *
-		 * @param selection mixed String key or array of keys to check
-		 * @return boolean Existence of key(s)
+		 * @param selection {mixed} String key or array of keys to check
+		 * @return {Boolean} Existence of key(s)
 		 */
 		exists: function( selection ) {
-			if ( typeof selection === 'object' ) {
-				for ( var s = 0; s < selection.length; s++ ) {
-					if ( !( selection[s] in this.values ) ) {
+			var s;
+
+			if ( $.isArray( selection ) ) {
+				for ( s = 0; s < selection.length; s += 1 ) {
+					if ( this.values[selection[s]] === undefined ) {
 						return false;
 					}
 				}
 				return true;
 			} else {
-				return selection in this.values;
+				return this.values[selection] !== undefined;
 			}
 		}
 	};
@@ -134,7 +137,8 @@ window.mw = window.mediaWiki = new ( function( $, undefined ) {
 		 * @return Message
 		 */
 		params: function( parameters ) {
-			for ( var i = 0; i < parameters.length; i++ ) {
+			var i;
+			for ( i = 0; i < parameters.length; i += 1 ) {
 				this.parameters.push( parameters[i] );
 			}
 			return this;
@@ -146,7 +150,6 @@ window.mw = window.mediaWiki = new ( function( $, undefined ) {
 		 * @return string Message as a string in the current form or <key> if key does not exist.
 		 */
 		toString: function() {
-
 			if ( !this.map.exists( this.key ) ) {
 				// Use <key> as text if key does not exist
 				if ( this.format !== 'plain' ) {
@@ -158,9 +161,9 @@ window.mw = window.mediaWiki = new ( function( $, undefined ) {
 			var	text = this.map.get( this.key ),
 				parameters = this.parameters;
 
-			text = text.replace( /\$(\d+)/g, function( string, match ) {
+			text = text.replace( /\$(\d+)/g, function( str, match ) {
 				var index = parseInt( match, 10 ) - 1;
-				return index in parameters ? parameters[index] : '$' + match;
+				return parameters[index] !== undefined ? parameters[index] : '$' + match;
 			} );
 
 			if ( this.format === 'plain' ) {
@@ -361,10 +364,11 @@ window.mw = window.mediaWiki = new ( function( $, undefined ) {
 		}
 
 		function compare( a, b ) {
+			var i;
 			if ( a.length !== b.length ) {
 				return false;
 			}
-			for ( var i = 0; i < b.length; i++ ) {
+			for ( i = 0; i < b.length; i += 1 ) {
 				if ( $.isArray( a[i] ) ) {
 					if ( !compare( a[i], b[i] ) ) {
 						return false;
@@ -396,6 +400,8 @@ window.mw = window.mediaWiki = new ( function( $, undefined ) {
 		 * Recursively resolves dependencies and detects circular references
 		 */
 		function recurse( module, resolved, unresolved ) {
+			var n, deps, len;
+
 			if ( registry[module] === undefined ) {
 				throw new Error( 'Unknown dependency: ' + module );
 			}
@@ -408,15 +414,17 @@ window.mw = window.mediaWiki = new ( function( $, undefined ) {
 				}
 			}
 			// Tracks down dependencies
-			for ( var n = 0; n < registry[module].dependencies.length; n++ ) {
-				if ( $.inArray( registry[module].dependencies[n], resolved ) === -1 ) {
-					if ( $.inArray( registry[module].dependencies[n], unresolved ) !== -1 ) {
+			deps = registry[module].dependencies;
+			len = deps.length;
+			for ( n = 0; n < len; n += 1 ) {
+				if ( $.inArray( deps[n], resolved ) === -1 ) {
+					if ( $.inArray( deps[n], unresolved ) !== -1 ) {
 						throw new Error(
 							'Circular reference detected: ' + module +
-							' -> ' + registry[module].dependencies[n]
+							' -> ' + deps[n]
 						);
 					}
-					recurse( registry[module].dependencies[n], resolved, unresolved );
+					recurse( deps[n], resolved, unresolved );
 				}
 			}
 			resolved[resolved.length] = module;
@@ -431,22 +439,24 @@ window.mw = window.mediaWiki = new ( function( $, undefined ) {
 		 * @throws Error if circular reference is detected
 		 */
 		function resolve( module ) {
+			var modules, m, deps, n, resolved;
+
 			// Allow calling with an array of module names
-			if ( typeof module === 'object' ) {
-				var modules = [];
-				for ( var m = 0; m < module.length; m++ ) {
-					var dependencies = resolve( module[m] );
-					for ( var n = 0; n < dependencies.length; n++ ) {
-						modules[modules.length] = dependencies[n];
+			if ( $.isArray( module ) ) {
+				modules = [];
+				for ( m = 0; m < module.length; m += 1 ) {
+					deps = resolve( module[m] );
+					for ( n = 0; n < deps.length; n += 1 ) {
+						modules[modules.length] = deps[n];
 					}
 				}
 				return modules;
 			} else if ( typeof module === 'string' ) {
 				// Undefined modules have no dependencies
-				if ( !( module in registry ) ) {
+				if ( registry[module] === undefined ) {
 					return [];
 				}
-				var resolved = [];
+				resolved = [];
 				recurse( module, resolved, [] );
 				return resolved;
 			}
@@ -464,12 +474,14 @@ window.mw = window.mediaWiki = new ( function( $, undefined ) {
 		 * @return array list of filtered module names
 		 */
 		function filter( states, modules ) {
+			var list, module, s, m;
+
 			// Allow states to be given as a string
 			if ( typeof states === 'string' ) {
 				states = [states];
 			}
 			// If called without a list of modules, build and use a list of all modules
-			var list = [], module;
+			list = [];
 			if ( modules === undefined ) {
 				modules = [];
 				for ( module in registry ) {
@@ -477,8 +489,8 @@ window.mw = window.mediaWiki = new ( function( $, undefined ) {
 				}
 			}
 			// Build a list of modules which are in one of the specified states
-			for ( var s = 0; s < states.length; s++ ) {
-				for ( var m = 0; m < modules.length; m++ ) {
+			for ( s = 0; s < states.length; s += 1 ) {
+				for ( m = 0; m < modules.length; m += 1 ) {
 					if ( registry[modules[m]] === undefined ) {
 						// Module does not exist
 						if ( states[s] === 'undefined' ) {
@@ -503,6 +515,8 @@ window.mw = window.mediaWiki = new ( function( $, undefined ) {
 		 * @param module string module name to execute
 		 */
 		function execute( module, callback ) {
+			var style, media, i, script, markModuleReady, nestedAddScript;
+
 			if ( registry[module] === undefined ) {
 				throw new Error( 'Module has not been registered yet: ' + module );
 			} else if ( registry[module].state === 'registered' ) {
@@ -512,13 +526,13 @@ window.mw = window.mediaWiki = new ( function( $, undefined ) {
 			} else if ( registry[module].state === 'ready' ) {
 				throw new Error( 'Module has already been loaded: ' + module );
 			}
+
 			// Add styles
-			var style;
 			if ( $.isPlainObject( registry[module].style ) ) {
-				for ( var media in registry[module].style ) {
+				for ( media in registry[module].style ) {
 					style = registry[module].style[media];
 					if ( $.isArray( style ) ) {
-						for ( var i = 0; i < style.length; i++ ) {
+						for ( i = 0; i < style.length; i += 1 ) {
 							getMarker().before( mw.html.element( 'link', {
 								'type': 'text/css',
 								'media': media,
@@ -540,27 +554,27 @@ window.mw = window.mediaWiki = new ( function( $, undefined ) {
 			}
 			// Execute script
 			try {
-				var	script = registry[module].script,
-					markModuleReady = function() {
-						registry[module].state = 'ready';
-						handlePending( module );
-						if ( $.isFunction( callback ) ) {
-							callback();
-						}
-					},
-					nestedAddScript = function( arr, callback, i ) {
-						// Recursively call addScript() in its own callback
-						// for each element of arr.
-						if ( i >= arr.length ) {
-							// We're at the end of the array
-							callback();
-							return;
-						}
+				script = registry[module].script;
+				markModuleReady = function() {
+					registry[module].state = 'ready';
+					handlePending( module );
+					if ( $.isFunction( callback ) ) {
+						callback();
+					}
+				};
+				nestedAddScript = function( arr, callback, i ) {
+					// Recursively call addScript() in its own callback
+					// for each element of arr.
+					if ( i >= arr.length ) {
+						// We're at the end of the array
+						callback();
+						return;
+					}
 
-						addScript( arr[i], function() {
-							nestedAddScript( arr, callback, i + 1 );
-						} );
-					};
+					addScript( arr[i], function() {
+						nestedAddScript( arr, callback, i + 1 );
+					} );
+				};
 
 				if ( $.isArray( script ) ) {
 					registry[module].state = 'loading';
@@ -586,9 +600,11 @@ window.mw = window.mediaWiki = new ( function( $, undefined ) {
 		 * This is used when dependencies are satisfied, such as when a module is executed.
 		 */
 		function handlePending( module ) {
+			var j, r;
+
 			try {
 				// Run jobs who's dependencies have just been met
-				for ( var j = 0; j < jobs.length; j++ ) {
+				for ( j = 0; j < jobs.length; j += 1 ) {
 					if ( compare(
 						filter( 'ready', jobs[j].dependencies ),
 						jobs[j].dependencies ) )
@@ -597,11 +613,11 @@ window.mw = window.mediaWiki = new ( function( $, undefined ) {
 							jobs[j].ready();
 						}
 						jobs.splice( j, 1 );
-						j--;
+						j -= 1;
 					}
 				}
 				// Execute modules who's dependencies have just been met
-				for ( var r in registry ) {
+				for ( r in registry ) {
 					if ( registry[r].state === 'loaded' ) {
 						if ( compare(
 							filter( ['ready'], registry[r].dependencies ),
@@ -613,13 +629,13 @@ window.mw = window.mediaWiki = new ( function( $, undefined ) {
 				}
 			} catch ( e ) {
 				// Run error callbacks of jobs affected by this condition
-				for ( var j = 0; j < jobs.length; j++ ) {
+				for ( j = 0; j < jobs.length; j += 1 ) {
 					if ( $.inArray( module, jobs[j].dependencies ) !== -1 ) {
 						if ( $.isFunction( jobs[j].error ) ) {
 							jobs[j].error( e, module );
 						}
 						jobs.splice( j, 1 );
-						j--;
+						j -= 1;
 					}
 				}
 			}
@@ -634,15 +650,17 @@ window.mw = window.mediaWiki = new ( function( $, undefined ) {
 		 * @param error function callback to execute when any dependency fails
 		 */
 		function request( dependencies, ready, error ) {
+			var regItemDeps, regItemDepLen, n;
+
 			// Allow calling by single module name
 			if ( typeof dependencies === 'string' ) {
 				dependencies = [dependencies];
-				if ( dependencies[0] in registry ) {
+				if ( registry[dependencies[0]] !== undefined ) {
 					// Cache repetitively accessed deep level object member
-					var	regItemDeps = registry[dependencies[0]].dependencies,
-						// Cache to avoid looped access to length property
-						regItemDepLen = regItemDeps.length;
-					for ( var n = 0; n < regItemDepLen; n++ ) {
+					regItemDeps = registry[dependencies[0]].dependencies;
+					// Cache to avoid looped access to length property
+					regItemDepLen = regItemDeps.length;
+					for ( n = 0; n < regItemDepLen; n += 1 ) {
 						dependencies[dependencies.length] = regItemDeps[n];
 					}
 				}
@@ -660,7 +678,7 @@ window.mw = window.mediaWiki = new ( function( $, undefined ) {
 			}
 			// Queue up any dependencies that are undefined or registered
 			dependencies = filter( ['undefined', 'registered'], dependencies );
-			for ( var n = 0; n < dependencies.length; n++ ) {
+			for ( n = 0; n < dependencies.length; n += 1 ) {
 				if ( $.inArray( dependencies[n], queue ) === -1 ) {
 					queue[queue.length] = dependencies[n];
 				}
@@ -672,12 +690,12 @@ window.mw = window.mediaWiki = new ( function( $, undefined ) {
 		function sortQuery(o) {
 			var sorted = {}, key, a = [];
 			for ( key in o ) {
-				if ( o.hasOwnProperty( key ) ) {
+				if ( hasOwn.call( o, key ) ) {
 					a.push( key );
 				}
 			}
 			a.sort();
-			for ( key = 0; key < a.length; key++ ) {
+			for ( key = 0; key < a.length; key += 1 ) {
 				sorted[a[key]] = o[a[key]];
 			}
 			return sorted;
@@ -688,8 +706,8 @@ window.mw = window.mediaWiki = new ( function( $, undefined ) {
 		 * to a query string of the form foo.bar,baz|bar.baz,quux
 		 */
 		function buildModulesString( moduleMap ) {
-			var arr = [], p;
-			for ( var prefix in moduleMap ) {
+			var arr = [], p, prefix;
+			for ( prefix in moduleMap ) {
 				p = prefix === '' ? '' : prefix + '.';
 				arr.push( p + moduleMap[prefix].join( ',' ) );
 			}
@@ -713,7 +731,7 @@ window.mw = window.mediaWiki = new ( function( $, undefined ) {
 				script.setAttribute( 'src', src );
 				script.setAttribute( 'type', 'text/javascript' );
 				if ( $.isFunction( callback ) ) {
-					// Attach handlers for all browsers -- this is based on jQuery.ajax
+					// Attach handlers for all browsers (based on jQuery.ajax)
 					script.onload = script.onreadystatechange = function() {
 
 						if (
@@ -776,25 +794,30 @@ window.mw = window.mediaWiki = new ( function( $, undefined ) {
 		 * Requests dependencies from server, loading and executing when things when ready.
 		 */
 		this.work = function() {
-				// Build a list of request parameters common to all requests.
-			var	reqBase = {
-					skin: mw.config.get( 'skin' ),
-					lang: mw.config.get( 'wgUserLanguage' ),
-					debug: mw.config.get( 'debug' )
-				},
-				// Split module batch by source and by group.
-				splits = {},
-				maxQueryLength = mw.config.get( 'wgResourceLoaderMaxQueryLength', -1 );
+			var	reqBase, splits, maxQueryLength, q, b, bSource, bGroup, bSourceGroup,
+				source, group, g, i, modules, maxVersion, sourceLoadScript,
+				currReqBase, currReqBaseLength, moduleMap, l,
+				lastDotIndex, prefix, suffix, bytesAdded;
+
+			// Build a list of request parameters common to all requests.
+			reqBase = {
+				skin: mw.config.get( 'skin' ),
+				lang: mw.config.get( 'wgUserLanguage' ),
+				debug: mw.config.get( 'debug' )
+			};
+			// Split module batch by source and by group.
+			splits = {};
+			maxQueryLength = mw.config.get( 'wgResourceLoaderMaxQueryLength', -1 );
 
 			// Appends a list of modules from the queue to the batch
-			for ( var q = 0; q < queue.length; q++ ) {
+			for ( q = 0; q < queue.length; q += 1 ) {
 				// Only request modules which are undefined or registered
-				if ( !( queue[q] in registry ) || registry[queue[q]].state === 'registered' ) {
+				if ( registry[queue[q]] === undefined || registry[queue[q]].state === 'registered' ) {
 					// Prevent duplicate entries
 					if ( $.inArray( queue[q], batch ) === -1 ) {
 						batch[batch.length] = queue[q];
 						// Mark registered modules as loading
-						if ( queue[q] in registry ) {
+						if ( registry[queue[q]] !== undefined ) {
 							registry[queue[q]].state = 'loading';
 						}
 					}
@@ -813,16 +836,16 @@ window.mw = window.mediaWiki = new ( function( $, undefined ) {
 			batch.sort();
 
 			// Split batch by source and by group.
-			for ( var b = 0; b < batch.length; b++ ) {
-				var	bSource = registry[batch[b]].source,
-					bGroup = registry[batch[b]].group;
-				if ( !( bSource in splits ) ) {
+			for ( b = 0; b < batch.length; b += 1 ) {
+				bSource = registry[batch[b]].source;
+				bGroup = registry[batch[b]].group;
+				if ( splits[bSource] === undefined ) {
 					splits[bSource] = {};
 				}
-				if ( !( bGroup in splits[bSource] ) ) {
+				if ( splits[bSource][bGroup] === undefined ) {
 					splits[bSource][bGroup] = [];
 				}
-				var bSourceGroup = splits[bSource][bGroup];
+				bSourceGroup = splits[bSource][bGroup];
 				bSourceGroup[bSourceGroup.length] = batch[b];
 			}
 
@@ -832,8 +855,6 @@ window.mw = window.mediaWiki = new ( function( $, undefined ) {
 			// again, all before we've cleared it causing each request to
 			// include modules which are already loaded.
 			batch = [];
-
-			var source, group, modules, maxVersion, sourceLoadScript;
 
 			for ( source in splits ) {
 
@@ -847,30 +868,30 @@ window.mw = window.mediaWiki = new ( function( $, undefined ) {
 
 					// Calculate the highest timestamp
 					maxVersion = 0;
-					for ( var g = 0; g < modules.length; g++ ) {
+					for ( g = 0; g < modules.length; g += 1 ) {
 						if ( registry[modules[g]].version > maxVersion ) {
 							maxVersion = registry[modules[g]].version;
 						}
 					}
 
-					var	currReqBase = $.extend( { 'version': formatVersionNumber( maxVersion ) }, reqBase ),
-						currReqBaseLength = $.param( currReqBase ).length,
-						moduleMap = {},
-						// We may need to split up the request to honor the query string length limit,
-						// so build it piece by piece.
-						l = currReqBaseLength + 9; // '&modules='.length == 9
+					currReqBase = $.extend( { 'version': formatVersionNumber( maxVersion ) }, reqBase );
+					currReqBaseLength = $.param( currReqBase ).length;
+					moduleMap = {};
+					// We may need to split up the request to honor the query string length limit,
+					// so build it piece by piece.
+					l = currReqBaseLength + 9; // '&modules='.length == 9
 
 					moduleMap = {}; // { prefix: [ suffixes ] }
 
-					for ( var i = 0; i < modules.length; i++ ) {
-							// Determine how many bytes this module would add to the query string
-						var	lastDotIndex = modules[i].lastIndexOf( '.' ),
-							// Note that these substr() calls work even if lastDotIndex == -1
-							prefix = modules[i].substr( 0, lastDotIndex ),
-							suffix = modules[i].substr( lastDotIndex + 1 ),
-							bytesAdded = prefix in moduleMap
-								? suffix.length + 3 // '%2C'.length == 3
-								: modules[i].length + 3; // '%7C'.length == 3
+					for ( i = 0; i < modules.length; i += 1 ) {
+						// Determine how many bytes this module would add to the query string
+						lastDotIndex = modules[i].lastIndexOf( '.' );
+						// Note that these substr() calls work even if lastDotIndex == -1
+						prefix = modules[i].substr( 0, lastDotIndex );
+						suffix = modules[i].substr( lastDotIndex + 1 );
+						bytesAdded = moduleMap[prefix] !== undefined
+							? suffix.length + 3 // '%2C'.length == 3
+							: modules[i].length + 3; // '%7C'.length == 3
 
 						// If the request would become too long, create a new one,
 						// but don't create empty requests
@@ -881,7 +902,7 @@ window.mw = window.mediaWiki = new ( function( $, undefined ) {
 							moduleMap = {};
 							l = currReqBaseLength + 9;
 						}
-						if ( !( prefix in moduleMap ) ) {
+						if ( moduleMap[prefix] === undefined ) {
 							moduleMap[prefix] = [];
 						}
 						moduleMap[prefix].push( suffix );
@@ -904,9 +925,10 @@ window.mw = window.mediaWiki = new ( function( $, undefined ) {
 		 * @return {Boolean}
 		 */
 		this.addSource = function( id, props ) {
+			var source;
 			// Allow multiple additions
 			if ( typeof id === 'object' ) {
-				for ( var source in id ) {
+				for ( source in id ) {
 					mw.loader.addSource( source, id[source] );
 				}
 				return true;
@@ -933,9 +955,10 @@ window.mw = window.mediaWiki = new ( function( $, undefined ) {
 		 * @param source {String}: Name of the source. Defaults to local.
 		 */
 		this.register = function( module, version, dependencies, group, source ) {
+			var m;
 			// Allow multiple registration
 			if ( typeof module === 'object' ) {
-				for ( var m = 0; m < module.length; m++ ) {
+				for ( m = 0; m < module.length; m += 1 ) {
 					// module is an array of module names
 					if ( typeof module[m] === 'string' ) {
 						mw.loader.register( module[m] );
@@ -1027,10 +1050,10 @@ window.mw = window.mediaWiki = new ( function( $, undefined ) {
 		/**
 		 * Executes a function as soon as one or more required modules are ready
 		 *
-		 * @param dependencies string or array of strings of modules names the callback
-		 *  dependencies to be ready before executing
-		 * @param ready function callback to execute when all dependencies are ready (optional)
-		 * @param error function callback to execute when if dependencies have a errors (optional)
+		 * @param dependencies {String|Array} Module name or array of modules names the callback
+		 *  dependends on to be ready before executing
+		 * @param ready {Function} callback to execute when all dependencies are ready (optional)
+		 * @param error {Function} callback to execute when if dependencies have a errors (optional)
 		 */
 		this.using = function( dependencies, ready, error ) {
 			var tod = typeof dependencies;
@@ -1066,9 +1089,9 @@ window.mw = window.mediaWiki = new ( function( $, undefined ) {
 		/**
 		 * Loads an external script or one or more modules for future use
 		 *
-		 * @param modules mixed either the name of a module, array of modules,
+		 * @param modules {mixed} Either the name of a module, array of modules,
 		 *  or a URL of an external script or style
-		 * @param type string mime-type to use if calling with a URL of an
+		 * @param type {String} mime-type to use if calling with a URL of an
 		 *  external script or style; acceptable values are "text/css" and
 		 *  "text/javascript"; if no type is provided, text/javascript is assumed.
 		 */
@@ -1118,17 +1141,18 @@ window.mw = window.mediaWiki = new ( function( $, undefined ) {
 		/**
 		 * Changes the state of a module
 		 *
-		 * @param module string module name or object of module name/state pairs
-		 * @param state string state name
+		 * @param module {String|Object} module name or object of module name/state pairs
+		 * @param state {String} state name
 		 */
 		this.state = function( module, state ) {
+			var m;
 			if ( typeof module === 'object' ) {
-				for ( var m in module ) {
+				for ( m in module ) {
 					mw.loader.state( m, module[m] );
 				}
 				return;
 			}
-			if ( !( module in registry ) ) {
+			if ( registry[module] === undefined ) {
 				mw.loader.register( module );
 			}
 			registry[module].state = state;
@@ -1140,14 +1164,14 @@ window.mw = window.mediaWiki = new ( function( $, undefined ) {
 		 * @param module string name of module to get version for
 		 */
 		this.getVersion = function( module ) {
-			if ( module in registry && 'version' in registry[module] ) {
+			if ( registry[module] !== undefined && registry[module].version !== undefined ) {
 				return formatVersionNumber( registry[module].version );
 			}
 			return null;
 		};
 
 		/**
-		* @deprecated use mw.loader.getVersion() instead
+		* @deprecated since 1.18 use mw.loader.getVersion() instead
 		*/
 		this.version = function() {
 			return mw.loader.getVersion.apply( mw.loader, arguments );
@@ -1159,7 +1183,7 @@ window.mw = window.mediaWiki = new ( function( $, undefined ) {
 		 * @param module string name of module to get state for
 		 */
 		this.getState = function( module ) {
-			if ( module in registry && 'state' in registry[module] ) {
+			if ( registry[module] !== undefined && registry[module].state !== undefined ) {
 				return registry[module].state;
 			}
 			return null;
@@ -1171,10 +1195,9 @@ window.mw = window.mediaWiki = new ( function( $, undefined ) {
 		 * @return {Array}
 		 */
 		this.getModuleNames = function() {
-			var names = $.map( registry, function( i, key ) {
+			return $.map( registry, function( i, key ) {
 				return key;
 			} );
-			return names;
 		};
 
 		/**
@@ -1246,8 +1269,9 @@ window.mw = window.mediaWiki = new ( function( $, undefined ) {
 		 * Returns <div><img src="&lt;"/></div>
 		 */
 		this.element = function( name, attrs, contents ) {
-			var v, s = '<' + name;
-			for ( var attrName in attrs ) {
+			var v, attrName, s = '<' + name;
+
+			for ( attrName in attrs ) {
 				v = attrs[attrName];
 				// Convert name=true, to name=name
 				if ( v === true ) {
@@ -1256,7 +1280,7 @@ window.mw = window.mediaWiki = new ( function( $, undefined ) {
 				} else if ( v === false ) {
 					continue;
 				}
-				s += ' ' + attrName + '="' + this.escape( '' + v ) + '"';
+				s += ' ' + attrName + '="' + this.escape( String( v ) ) + '"';
 			}
 			if ( contents === undefined || contents === null ) {
 				// Self close tag
@@ -1273,7 +1297,7 @@ window.mw = window.mediaWiki = new ( function( $, undefined ) {
 				case 'number':
 				case 'boolean':
 					// Convert to string
-					s += '' + contents;
+					s += String( contents );
 					break;
 				default:
 					if ( contents instanceof this.Raw ) {
@@ -1303,8 +1327,11 @@ window.mw = window.mediaWiki = new ( function( $, undefined ) {
 // Alias $j to jQuery for backwards compatibility
 window.$j = jQuery;
 
+// Attach to window and globally alias
+window.mw = window.mediaWiki = mw;
+
 // Auto-register from pre-loaded startup scripts
 if ( typeof startUp !== 'undefined' && jQuery.isFunction( startUp ) ) {
 	startUp();
-	delete startUp;
+	startUp = undefined;
 }
