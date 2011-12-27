@@ -49,9 +49,16 @@ class DeleteBatch extends Maintenance {
 		chdir( $oldCwd );
 
 		# Options processing
-		$user = $this->getOption( 'u', 'Delete page script' );
+		$username = $this->getOption( 'u', 'Delete page script' );
 		$reason = $this->getOption( 'r', '' );
 		$interval = $this->getOption( 'i', 0 );
+
+		$user = User::newFromName( $username );
+		if ( !$user ) {
+			$this->error( "Invalid username", true );
+		}
+		$wgUser = $user;
+
 		if ( $this->hasArg() ) {
 			$file = fopen( $this->getArg(), 'r' );
 		} else {
@@ -62,10 +69,7 @@ class DeleteBatch extends Maintenance {
 		if ( !$file ) {
 			$this->error( "Unable to read file, exiting", true );
 		}
-		$wgUser = User::newFromName( $user );
-		if ( !$wgUser ) {
-			$this->error( "Invalid username", true );
-		}
+
 		$dbw = wfGetDB( DB_MASTER );
 
 		# Handle each entry
@@ -74,30 +78,27 @@ class DeleteBatch extends Maintenance {
 			if ( $line == '' ) {
 				continue;
 			}
-			$page = Title::newFromText( $line );
-			if ( is_null( $page ) ) {
+			$title = Title::newFromText( $line );
+			if ( is_null( $title ) ) {
 				$this->output( "Invalid title '$line' on line $linenum\n" );
 				continue;
 			}
-			if ( !$page->exists() ) {
+			if ( !$title->exists() ) {
 				$this->output( "Skipping nonexistent page '$line'\n" );
 				continue;
 			}
 
-			$this->output( $page->getPrefixedText() );
+			$this->output( $title->getPrefixedText() );
 			$dbw->begin();
-			if ( $page->getNamespace() == NS_FILE ) {
-				$art = new ImagePage( $page );
-				$img = wfFindFile( $art->mTitle );
-				if ( !$img
-					|| !$img->isLocal()
-					|| !$img->delete( $reason ) ) {
-					$this->output( " FAILED to delete image file... " );
+			if ( $title->getNamespace() == NS_FILE ) {
+				$img = wfFindFile( $title );
+				if ( $img && $img->isLocal() && !$img->delete( $reason ) ) {
+					$this->output( " FAILED to delete associated file... " );
 				}
-			} else {
-				$art = new Article( $page );
 			}
-			$success = $art->doDeleteArticle( $reason );
+			$page = WikiPage::factory( $title );
+			$error = '';
+			$success = $page->doDeleteArticle( $reason, false, 0, true, $error, $user );
 			$dbw->commit();
 			if ( $success ) {
 				$this->output( " Deleted!\n" );
