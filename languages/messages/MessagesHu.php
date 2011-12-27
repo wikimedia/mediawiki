@@ -1778,14 +1778,27 @@ Kérjük, hogy lépj kapcsolatba egy  [[Special:ListUsers/sysop|adminisztrátorr
 'upload-http-error'         => 'HTTP-hiba történt: $1',
 
 # File backend
+'backend-fail-stream'        => 'Nem sikerült sugározni ezt a fájlt: $1.',
 'backend-fail-backup'        => 'Nem lehet elmenteni ezt a fájlt: $1.',
 'backend-fail-notexists'     => 'Ez a fájl nem létezik: $1 .',
+'backend-fail-hashes'        => 'Nem lehet lekérni a hash értéket az összehasonlításhoz.',
+'backend-fail-notsame'       => 'Egy nem azonos fájl már létezik $1 néven.',
+'backend-fail-invalidpath'   => '$1 nem érvényes tárolási útvonal.',
 'backend-fail-delete'        => 'Nem sikerült törölni ezt a fájlt: $1 .',
 'backend-fail-alreadyexists' => 'Ez a fájl már létezik: $1 .',
+'backend-fail-store'         => 'Nem sikerült a(z) $1 fájl tárolása $2 helyen.',
+'backend-fail-copy'          => 'Nem sikerült a(z) $1 fájl másolása $2 helyre.',
+'backend-fail-move'          => 'Nem sikerült a(z) $1 fájl mozgatása $2 helyre.',
 'backend-fail-opentemp'      => 'Nem lehet megnyitni az ideiglenes fájlt.',
 'backend-fail-writetemp'     => 'Nem lehet írni az ideiglenes fájlba.',
 'backend-fail-closetemp'     => 'Nem lehet lezárni az ideiglenes fájlt.',
-'backend-fail-read'          => 'Nem sikerült olvasni ebből a fájlból: $1 .',
+'backend-fail-read'          => 'Nem sikerült olvasni ebből a fájlból: $1.',
+'backend-fail-create'        => 'Nem sikerült létrehozni ezt a fájlt: $1.',
+
+# Lock manager
+'lockmanager-notlocked'       => 'Nem lehet a zárolást feloldani: „$1”; nincs zárolva.',
+'lockmanager-fail-closelock'  => 'Nem sikerült a „$1” zárolási fájljának bezárása.',
+'lockmanager-fail-deletelock' => 'Nem sikerült a(z) „$1” zárolási fájljának törlése.',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'Hiba történt a ZIP fájlokon végzett ellenőrzés elindítása közben.',

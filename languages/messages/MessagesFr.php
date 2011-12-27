@@ -3313,7 +3313,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-lens'                        => 'Lentille utilisée',
 'exif-serialnumber'                => 'Numéro de série de l’appareil photo',
 'exif-cameraownername'             => "Propriétaire de l'appareil photo",
-'exif-label'                       => 'Étiquette',
+'exif-label'                       => 'Libellé',
 'exif-datetimemetadata'            => 'Date de la dernière modification des métadonnées',
 'exif-nickname'                    => 'Nom informel de l’image',
 'exif-rating'                      => 'Note (sur 5)',

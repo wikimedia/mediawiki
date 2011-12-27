@@ -765,23 +765,23 @@ Fjalëkalimi i përkohshëm: $2',
 
 # Edit pages
 'summary'                          => 'Përmbledhje:',
-'subject'                          => 'Subjekt/Titull:',
+'subject'                          => 'Subjekt/titull:',
 'minoredit'                        => 'Ky është një redaktim i vogël',
 'watchthis'                        => 'Mbikqyre këtë faqe',
 'savearticle'                      => 'Kryej ndryshimet',
-'preview'                          => 'Parapamje',
-'showpreview'                      => 'Trego parapamjen',
-'showlivepreview'                  => 'Parapamje e menjëhershme',
+'preview'                          => 'Shqyrto',
+'showpreview'                      => 'Shfaq për shqyrtim',
+'showlivepreview'                  => 'Shqyrtim i menjëhershëm',
 'showdiff'                         => 'Trego ndryshimet',
-'anoneditwarning'                  => "Ju nuk jeni regjistruar. IP adresa juaj do të regjistrohet në historinë e redaktimeve të kësaj faqe.
-You are not logged in. Your IP address will be recorded in this page's edit history.",
-'anonpreviewwarning'               => 'Nuk jeni futur me emrin tuaj duke u inçizuar të dhënat IP adresën tuaj në këtë faqe dhe është ndryshuar historia.',
+'anoneditwarning'                  => "'''Kujdes:''' Ju nuk jeni identifikuar. 
+Adresa juaj IP do të regjistrohet në historinë e redaktimeve të kësaj faqe.",
+'anonpreviewwarning'               => '"Ju nuk jeni identifikuar. Ruajtja e ndryshimeve do të bëjë që adresa juaj IP të regjistrohet në historikun e redaktimeve të kësaj faqeje."',
 'missingsummary'                   => "'''Vërejtje:'''  Ju nuk keni shtuar një përmbledhje për redaktimet.",
 'missingcommenttext'               => 'Ju lutemi shtoni një koment në vazhdim.',
 'missingcommentheader'             => "'''Kujdes:''' Ju nuk keni dhënë një titull për këtë koment.
 Nëse kryeni ndryshimet redaktimi juaj do të ruhet pa titull.",
-'summary-preview'                  => 'Inspekto përmbledhjen:',
-'subject-preview'                  => 'Inspekto titullin/subjektin:',
+'summary-preview'                  => 'Shqyrto përmbledhjen:',
+'subject-preview'                  => 'Shqyrto titullin/subjektin:',
 'blockedtitle'                     => 'Përdoruesi është bllokuar',
 'blockedtext'                      => "'''Llogaria juaj ose adresa e IP është bllokuar'''
 
@@ -868,14 +868,14 @@ Ndryshimet tuaja nuk janë ruajtur ende!",
 'session_fail_preview'             => "'''Ju kërkojmë ndjesë! Redaktimi juaj nuk mund të perpunohej për shkak të humbjes së të dhënave të seancës.'''
 Ju lutemi, provojeni përsëri.
 Nëse përsëri nuk punon, provoni të [[Special:UserLogout|dilni nga faqja]] dhe të identifikoheni serish.",
-'session_fail_preview_html'        => "'''Ju kërkoj ndjesë! Nuk munda të ruaj redaktimin tuaj për shkaqe teknike.'''
-
-''{{SITENAME}} ka ndaluar përfshirjen e tekstit HTML të papërpunuar, parapamja s'është treguar për t'ju mbrojtur nga sulme të mundshme në JavaScript''
-
-'''Nëse ky është një redaktim i vlefshëm, ju lutem provojeni përsëri. Nëse s'punon përsëri atëherë provoni të dilni dhe të hyni përsëri nga llogaria juaj.'''",
-'token_suffix_mismatch'            => "'''Redaktimi s'është pranuar pasi shfletuesi juaj ka prishur përmbajtjen e shkronjave. Redaktimi është shpërfilluar për të ruajtur përmbajtjen e tekstit.
-Kjo ndodh ndonjëherë kur përdoren shërbime ndërjmetësash anonim.'''",
-'edit_form_incomplete'             => "'''Disa pjesë të formës së redaktimit nuk e arritit serverin; rikontrolloni që redaktimiet tuaja janë të paprekura dhe provoni përsëri.'''",
+'session_fail_preview_html'        => "'''Ju kërkojmë ndjesë! I pamundur përpunimi i redaktimeve tuaja për shkak të humbjes së të dhënave të seancës.'''
+'' Për shkak se {{SITENAME}} ka të aktivizuar përdorimin e HTML-së së papërpunuar, teksti për shqyrtim është fshehur si masë parandaluese kundër sulmeve JavaScript.''
+'''Nëse kjo është një përpjekje e sinqertë për redaktim, ju lutemi, provojeni përsëri.'''
+Nëse përsëri nuk funksiono, provoni [[Special:UserLogout|të dilni nga faqja]] dhe të identifikoheni sërish.",
+'token_suffix_mismatch'            => "'''Redaktimi juaj nuk u pranuar pasi shërbimi juaj server  ka keqinterpretuar shenjat e pikësimit të simbolikës së redaktimit.'''
+Redaktimi nuk u pranua për të parandaluar korruptimin e tekstit në faqe.
+Kjo ndodh ndonjëherë kur përdoret server anonim dytësor me gabime.",
+'edit_form_incomplete'             => "'''Disa pjesë të formularit të redaktimit nuk arritën në server; kontrolloni edhe një herë nëse redaktimet tuaja janë të paprekura dhe provojeni përsëri.'''",
 'editing'                          => 'Duke redaktuar $1',
 'editingsection'                   => 'Duke redaktuar $1 (seksion)',
 'editingcomment'                   => 'Duke redaktuar (sekcionin e ri) $1',

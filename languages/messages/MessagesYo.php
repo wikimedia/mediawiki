@@ -2380,6 +2380,7 @@ Ojúewé àdésí "[[:$1]]" wà tẹ́lẹ̀tẹ́lẹ̀.
 
 # Special:NewFiles
 'newimages'             => 'Ọ̀dẹ̀dẹ̀ àwòrán àwọn faili tuntun',
+'imagelisttext'         => "Nísàlẹ̀ ni àtòjọ {{PLURAL:$1|fáìlì|àwọn fáìlì}} '''$1''' ní títò $2.",
 'newimages-legend'      => 'Ajọ̀',
 'newimages-label'       => 'Orúkọ faili (tàbí apá kan rẹ̀):',
 'showhidebots'          => '(àwọn bot $1)',
@@ -2387,6 +2388,13 @@ Ojúewé àdésí "[[:$1]]" wà tẹ́lẹ̀tẹ́lẹ̀.
 'ilsubmit'              => 'Ṣàwárí',
 'bydate'                => 'bíi ọjọ́ọdún',
 'sp-newimages-showfrom' => 'Ìfihàn àwọn fáìlì tuntun nípa bíbẹ̀rẹ̀ láti ago $2, ọjọ́ $1',
+
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'seconds' => '{{PLURAL:$1| ìṣẹ́júàáyá $1}}',
+'minutes' => '{{PLURAL:$1|ìṣẹ́jú $1}}',
+'hours'   => '{{PLURAL:$1|wákàtí $1}}',
+'days'    => '{{PLURAL:$1|ọjọ́ $1}}',
+'ago'     => '$1 sẹ́yìn',
 
 # Bad image list
 'bad_image_list' => 'Onírú jẹ́ gẹ́gẹ́ bíi àtèlé yìí:
@@ -2417,17 +2425,38 @@ Tóbájẹ́pé fáìlì ọ̀hún ti jẹ́ títúnṣe sí bóṣewà ní bẹ
 * gpsaltitude",
 
 # EXIF tags
-'exif-imagewidth'          => 'Fífẹ̀sí',
-'exif-imagelength'         => 'Gígasí',
-'exif-imagedescription'    => 'Àkọlé àwòrán',
-'exif-make'                => 'Olùṣẹ̀rọ kámẹ́rà',
-'exif-model'               => 'Irú kámẹ́rà',
-'exif-artist'              => 'Olùdá',
-'exif-copyright'           => 'Ẹni tóni ẹ̀tọ́ àwòkọ',
-'exif-exposuretime-format' => '$1 ìṣẹ́j/kejì ($2)',
-'exif-fnumber'             => 'Nọ́mbà F',
-'exif-filesource'          => 'Orísun fáìlì',
-'exif-gpsdatestamp'        => 'Ọjọ́ọdún GPS',
+'exif-imagewidth'              => 'Fífẹ̀sí',
+'exif-imagelength'             => 'Gígasí',
+'exif-imagedescription'        => 'Àkọlé àwòrán',
+'exif-make'                    => 'Olùṣẹ̀rọ kámẹ́rà',
+'exif-model'                   => 'Irú kámẹ́rà',
+'exif-artist'                  => 'Olùdá',
+'exif-copyright'               => 'Ẹni tóni ẹ̀tọ́ àwòkọ',
+'exif-exposuretime-format'     => '$1 ìṣẹ́j/kejì ($2)',
+'exif-fnumber'                 => 'Nọ́mbà F',
+'exif-lightsource'             => 'Ìsun ìmọ́lẹ̀',
+'exif-filesource'              => 'Orísun fáìlì',
+'exif-gpstimestamp'            => 'Àsìkò GPS (ago átọ́mù)',
+'exif-gpsareainformation'      => 'Orúkọ agbègbè GPS',
+'exif-gpsdatestamp'            => 'Ọjọ́ọdún GPS',
+'exif-jpegfilecomment'         => 'Àwísọ fáìlì JPEG',
+'exif-keywords'                => 'Àwọn kókóọ̀rọ̀',
+'exif-worldregiondest'         => 'Agbègbè àgbáyé híhàn',
+'exif-countrydest'             => 'Orílẹ̀-èdè híhàn',
+'exif-countrycodedest'         => 'Àmìọ̀rọ̀ fún orílẹ̀-èdè híhàn',
+'exif-citydest'                => 'Ìlú híhàn',
+'exif-objectname'              => 'Àkọlé kúkúrú',
+'exif-headline'                => 'Àkọlé',
+'exif-source'                  => 'Orísun',
+'exif-writer'                  => 'Olùkọ̀wé',
+'exif-languagecode'            => 'Èdè',
+'exif-iimversion'              => 'Àtẹ̀jáde IIM',
+'exif-iimcategory'             => 'Ẹ̀ka',
+'exif-iimsupplementalcategory' => 'Àwọn ẹ̀ka aláfikún',
+'exif-label'                   => 'Àlẹ̀mọ́',
+'exif-giffilecomment'          => 'Àwísọ fáìlì GIF',
+
+'exif-unknowndate' => 'Ọjọ́ọdún àìmọ̀',
 
 'exif-orientation-1' => 'Déédé',
 
@@ -2439,8 +2468,11 @@ Tóbájẹ́pé fáìlì ọ̀hún ti jẹ́ títúnṣe sí bóṣewà ní bẹ
 'exif-meteringmode-1'   => 'Ìpínláàrin',
 'exif-meteringmode-255' => 'Òmíràn',
 
-'exif-lightsource-1'  => 'Ojúmọ́',
-'exif-lightsource-11' => 'Ìbòji',
+'exif-lightsource-1'   => 'Ojúmọ́',
+'exif-lightsource-11'  => 'Ìbòji',
+'exif-lightsource-255' => 'Orísun ìmọ́lẹ̀ míràn',
+
+'exif-gaincontrol-0' => 'Ìkankan',
 
 'exif-contrast-0' => 'Déédé',
 
@@ -2523,6 +2555,7 @@ Tóbájẹ́pé fáìlì ọ̀hún ti jẹ́ títúnṣe sí bóṣewà ní bẹ
 # Special:Version
 'version'                  => 'Àtẹ̀jáde',
 'version-specialpages'     => 'Àwọn ojúewé pàtàkì',
+'version-skins'            => 'Skin (Àwọ̀)',
 'version-other'            => 'Òmíràn',
 'version-version'          => '(Àtẹ̀jáde $1)',
 'version-license'          => 'Ìwé àṣẹ',
@@ -2589,6 +2622,7 @@ Tóbájẹ́pé fáìlì ọ̀hún ti jẹ́ títúnṣe sí bóṣewà ní bẹ
 'logentry-delete-delete'              => '$1 {{GENDER:$2|pa}} ojúewé $3 rẹ́',
 'logentry-delete-restore'             => '$1 {{GENDER:$2|dá}} ojúewé $3 padà',
 'logentry-suppress-delete'            => '$1 {{GENDER:$2|fi}} ojúewé $3 sílẹ̀',
+'revdelete-uname-hid'                 => 'ìbòmọ́lẹ̀ orúkọ oníṣe',
 'logentry-move-move'                  => '$1 {{GENDER:$2|ṣeyípòdà}} ojúewé $3 sí $4',
 'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|ṣeyípòdà}} ojúewé $3 sí $4 láìfi àtúnjúwe sílẹ̀',
 'logentry-move-move_redir'            => '$1 {{GENDER:$2|ṣeyípòdà}} ojúewé $3 sí $4 lórí àtúnjúwe',
@@ -2604,5 +2638,7 @@ Tóbájẹ́pé fáìlì ọ̀hún ti jẹ́ títúnṣe sí bóṣewà ní bẹ
 'feedback-subject' => 'Oríọ̀rọ̀:',
 'feedback-message' => 'Ìránṣẹ́:',
 'feedback-cancel'  => 'Fagilé',
+'feedback-error2'  => 'Àsìṣe: Àtúnṣe kùnà',
+'feedback-close'   => 'Ṣetán',
 
 );

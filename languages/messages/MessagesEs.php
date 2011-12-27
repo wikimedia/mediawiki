@@ -998,8 +998,8 @@ o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 
 'blocked-notice-logextract'        => 'Este usuario está actualmente bloqueado.
 La última entrada del registro de bloqueos se proporciona debajo para mayor referencia:',
 'clearyourcache'                   => "'''Nota:''' después de guardar, quizás necesites refrescar la caché de tu navegador para ver los cambios.
-* '''Firefox / Safari:''' Mantén presionada ''Mayús'' mientras pulsas el botón ''Actualizar'', o presiona ''Ctrl+F5'' o ''Ctrl+R'' (''Comando+R'' en Mac)
-* '''Google Chrome:''' presiona ''Ctrl+Shift+R'' (''Comando+Mayús+R'' en Mac)
+* '''Firefox / Safari:''' Mantén presionada ''Mayús'' mientras pulsas el botón ''Actualizar'', o presiona ''Ctrl+F5'' o ''Ctrl+R'' (''⌘+R'' en Mac)
+* '''Google Chrome:''' presiona ''Ctrl+Shift+R'' (''⌘+Mayús+R'' en Mac)
 * '''Internet Explorer:''' mantén presionada ''Ctrl'' mientras pulsas ''Actualizar'', o presiona ''Ctrl+F5''
 * '''Konqueror:''' pulsa ''Recargar'' o presiona ''F5''
 * '''Opera:''' vacía la caché en ''Herramientas → Preferencias''",
@@ -1388,7 +1388,7 @@ Mientras tanto puedes buscar mediante Google, pero ten en cuenta que sus índice
 'prefs-rc'                      => 'Cambios recientes',
 'prefs-watchlist'               => 'Seguimiento',
 'prefs-watchlist-days'          => 'Número de días a mostrar en la lista de seguimiento:',
-'prefs-watchlist-days-max'      => 'Máximo 7 días',
+'prefs-watchlist-days-max'      => 'Máximo $1 {{PLURAL:$1|día|días}}',
 'prefs-watchlist-edits'         => 'Número de ediciones a mostrar en la lista expandida:',
 'prefs-watchlist-edits-max'     => 'Máximo: 1000',
 'prefs-watchlist-token'         => 'Ficha de lista de seguimiento:',
@@ -1813,6 +1813,35 @@ $1',
 'upload-unknown-size'       => 'Tamaño desconocido',
 'upload-http-error'         => 'Ha ocurrido un error HTTP: $1',
 
+# File backend
+'backend-fail-stream'        => 'No se pudo transmitir el archivo «$1».',
+'backend-fail-backup'        => 'No pudo hacer copia de seguridad del archivo «$1».',
+'backend-fail-notexists'     => 'El archivo  $1  no existe.',
+'backend-fail-hashes'        => 'No se pudieron obtener los hashes de los ficheros para compararlos.',
+'backend-fail-notsame'       => 'Ya existe un fichero distinto en $1.',
+'backend-fail-invalidpath'   => '$1 no es una ruta de almacenamiento válida',
+'backend-fail-delete'        => 'No se pudo borrar el archivo «$1».',
+'backend-fail-alreadyexists' => 'El archivo  $1  ya existe.',
+'backend-fail-store'         => 'No se pudo almacenar el archivo $1 en $2.',
+'backend-fail-copy'          => 'No se pudo copiar el archivo $1 a $2.',
+'backend-fail-move'          => 'No se pudo mover el archivo $1 a $2.',
+'backend-fail-opentemp'      => 'No se pudo crear archivo temporal.',
+'backend-fail-writetemp'     => 'No se pudo escribir en el archivo temporal.',
+'backend-fail-closetemp'     => 'No se pudo cerrar el archivo temporal.',
+'backend-fail-read'          => 'No se pudo leer el archivo «$1».',
+'backend-fail-create'        => 'No se pudo crear el archivo «$1».',
+
+# Lock manager
+'lockmanager-notlocked'        => 'No se pudo desbloquear "$1": no se encontraba bloqueado.',
+'lockmanager-fail-closelock'   => 'No se pudo cerrar la referencia para el archivo de bloqueo de "$1".',
+'lockmanager-fail-deletelock'  => 'No se pudo eliminar el archivo de bloqueo para "$1".',
+'lockmanager-fail-acquirelock' => 'No pudo adquirir el bloqueo para "$1".',
+'lockmanager-fail-openlock'    => 'No se pudo abrir el archivo de bloqueo para "$1".',
+'lockmanager-fail-releaselock' => 'No se pudo liberar el bloqueo de "$1".',
+'lockmanager-fail-db-bucket'   => 'No se pudo contactar con las suficientes bases de datos del conjunto $1.',
+'lockmanager-fail-db-release'  => 'No se pudieron liberar los bloqueos registrados en la base de datos $1.',
+'lockmanager-fail-svr-release' => 'No se pudieron liberar los bloqueos registrados en el servidor $1.',
+
 # ZipDirectoryReader
 'zip-file-open-error' => 'Se encontró un error al abrir el archivo ZIP para su comprobación.',
 'zip-wrong-format'    => 'El archivo especificado no es un archivo ZIP.',
@@ -2060,6 +2089,7 @@ Las entradas <del>tachadas</del> han sido resueltas.',
 'mostimages'              => 'Imágenes más usadas',
 'mostrevisions'           => 'Artículos con más ediciones',
 'prefixindex'             => 'Todas las páginas con prefijo',
+'prefixindex-namespace'   => 'Todas las páginas con el prefijo (espacio de nombres $1)',
 'shortpages'              => 'Páginas cortas',
 'longpages'               => 'Páginas largas',
 'deadendpages'            => 'Páginas sin salida',
@@ -2119,7 +2149,7 @@ Puedes filtrar la vista seleccionando un tipo de registro, el nombre del usuario
 'allpagesfrom'      => 'Mostrar páginas que empiecen por:',
 'allpagesto'        => 'Mostrar páginas terminadas con:',
 'allarticles'       => 'Todos los artículos',
-'allinnamespace'    => 'Todas las páginas (espacio $1)',
+'allinnamespace'    => 'Todas las páginas (espacio de nombres $1)',
 'allnotinnamespace' => 'Todas las páginas que no están en el espacio de nombres $1',
 'allpagesprev'      => 'Anterior',
 'allpagesnext'      => 'Siguiente',
@@ -2804,6 +2834,8 @@ Por favor visita [//www.mediawiki.org/wiki/Localisation Localización MediaWiki]
 'thumbnail_error'          => 'Error al crear miniatura: $1',
 'djvu_page_error'          => 'Página DjVu fuera de rango',
 'djvu_no_xml'              => 'Imposible obtener XML para el archivo DjVu',
+'thumbnail-temp-create'    => 'No se ha podido crear el archivo temporal de la miniatura',
+'thumbnail-dest-create'    => 'No se ha podido guardar la miniatura',
 'thumbnail_invalid_params' => 'Parámetros del thumbnail no válidos',
 'thumbnail_dest_directory' => 'Incapaz de crear el directorio de destino',
 'thumbnail_image-type'     => 'Tipo de imagen no contemplado',
@@ -3821,13 +3853,20 @@ Este sitio está experimentando dificultades técnicas.',
 'newuserlog-byemail'                  => 'contraseña enviada por correo electrónico',
 
 # Feedback
-'feedback-subject' => 'Asunto:',
-'feedback-message' => 'Mensaje:',
-'feedback-cancel'  => 'Cancelar',
-'feedback-submit'  => 'Enviar comentarios',
-'feedback-adding'  => 'Añadiendo comentarios a la página...',
-'feedback-error1'  => 'Error: No se reconoce resultado de API',
-'feedback-error2'  => 'Error: Falló la edición',
-'feedback-error3'  => 'Error: No hay respuesta de la API',
+'feedback-bugornote' => 'Si estás preparado para describir en detalle un problema técnico, [$1 informa de un bug] por favor.
+
+En otro caso, puedes usar el siguiente formulario. Tu comentario será añadido a la página [$3 $2], junto con tu nombre de usuario y el navegador que usas.',
+'feedback-subject'   => 'Asunto:',
+'feedback-message'   => 'Mensaje:',
+'feedback-cancel'    => 'Cancelar',
+'feedback-submit'    => 'Enviar comentarios',
+'feedback-adding'    => 'Añadiendo comentarios a la página...',
+'feedback-error1'    => 'Error: No se reconoce resultado de API',
+'feedback-error2'    => 'Error: Falló la edición',
+'feedback-error3'    => 'Error: No hay respuesta de la API',
+'feedback-thanks'    => '¡Gracias! Su comentario ha sido anotado en la página [$2  $1].',
+'feedback-close'     => 'Hecho',
+'feedback-bugcheck'  => '¡Perfecto! Únicamente comprueba que no sea un [$1 fallo conocido].',
+'feedback-bugnew'    => 'Lo he comprobado. Informar de un nuevo fallo.',
 
 );

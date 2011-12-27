@@ -3199,7 +3199,7 @@ Variants for Chinese language
 'exif-subsectimeoriginal'          => 'Долі секунд оригінального часу',
 'exif-subsectimedigitized'         => 'Долі секунд часу оцифровки',
 'exif-exposuretime'                => 'Час експозиції',
-'exif-exposuretime-format'         => '$1 з ($2)',
+'exif-exposuretime-format'         => '$1 с ($2)',
 'exif-fnumber'                     => 'Число діафрагми',
 'exif-fnumber-format'              => 'f/$1',
 'exif-exposureprogram'             => 'Програма експозиції',

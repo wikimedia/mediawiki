@@ -2426,6 +2426,7 @@ $1',
 'filemissing'              => 'கோப்பைக் காணவில்லை',
 'thumbnail_error'          => 'சிறு முன்தோற்றத்தை உருவாக்கப்படுவதில் தவறு: $1',
 'thumbnail_dest_directory' => 'இலக்கு அடைவை உருவாக்க முடியவில்லை.',
+'thumbnail_image-type'     => 'பட வகை ஆதரிக்கப்படவில்லை',
 
 # Special:Import
 'import'                     => 'பக்கங்களை இறக்கு',

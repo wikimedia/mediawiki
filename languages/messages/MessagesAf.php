@@ -680,6 +680,7 @@ Om misbruik te voorkom, word slegs een wagwoordwenk per {{PLURAL:$1|uur|$1 ure}}
 'emailconfirmlink'           => 'Bevestig u e-posadres',
 'invalidemailaddress'        => "Die e-posadres is nie aanvaar nie, aangesien dit 'n ongeldige formaat blyk te hê.
 Voer asseblief 'n geldige e-posadres in, of laat die veld leeg.",
+'cannotchangeemail'          => "Die e-posadres vir 'n gebruiker kan nie op hierdie wiki gewysig word nie.",
 'accountcreated'             => 'Rekening geskep',
 'accountcreatedtext'         => 'Die rekening vir gebruiker $1 is geskep.',
 'createaccount-title'        => 'Rekeningskepping vir {{SITENAME}}',
@@ -718,33 +719,36 @@ U het moontlik reeds u wagwoord gewysig of 'n nuwe tydelike wagwoord aangevra.",
 'resetpass-temp-password'   => 'Tydelike wagwoord:',
 
 # Special:PasswordReset
-'passwordreset'                => 'Wagwoord herstel',
-'passwordreset-text'           => "Voltooi hierdie vorm om 'n e-pos herinnering van jou rekening besonderhede te ontvang.",
-'passwordreset-legend'         => 'Kry nuwe wagwoord',
-'passwordreset-disabled'       => 'Die herskik van U wagwoord is gedeaktiveer op hierdie wiki.',
-'passwordreset-pretext'        => '{{PLURAL:$1| | Voer een van die onderstaande velde in}}',
-'passwordreset-username'       => 'Gebruiker:',
-'passwordreset-domain'         => 'Domein:',
-'passwordreset-capture'        => 'Wys resulterende e-pos?',
-'passwordreset-email'          => 'E-posadres:',
-'passwordreset-emailtitle'     => 'Gebruiker se details op {{site name}}',
-'passwordreset-emailtext-ip'   => 'Iemand, waarskynlik u vanaf die IP-adres $1, het u gebruikersgegewens vir {{SITENAME}} ($4) opgevra.
+'passwordreset'                    => 'Wagwoord herstel',
+'passwordreset-text'               => "Voltooi hierdie vorm om 'n e-pos herinnering van jou rekening besonderhede te ontvang.",
+'passwordreset-legend'             => 'Kry nuwe wagwoord',
+'passwordreset-disabled'           => 'Die herskik van U wagwoord is gedeaktiveer op hierdie wiki.',
+'passwordreset-pretext'            => '{{PLURAL:$1| | Voer een van die onderstaande velde in}}',
+'passwordreset-username'           => 'Gebruiker:',
+'passwordreset-domain'             => 'Domein:',
+'passwordreset-capture'            => 'Wys resulterende e-pos?',
+'passwordreset-capture-help'       => 'As u die boks merk, word die e-pos (met die tydelike wagwoord) aan u getoon en aan die gebruiker gestuur.',
+'passwordreset-email'              => 'E-posadres:',
+'passwordreset-emailtitle'         => 'Gebruiker se details op {{site name}}',
+'passwordreset-emailtext-ip'       => 'Iemand, waarskynlik u vanaf die IP-adres $1, het u gebruikersgegewens vir {{SITENAME}} ($4) opgevra.
 Die volgende {{PLURAL:$3|gebruiker is|gebruikers is}} aan die e-posadres gekoppel:
 
 $2
 
 {{PLURAL:$3|Die tydelike wagwoord verval|Hierdie tydelike wagwoorde verval}} oor {{PLURAL:$5|een dag|$5 dae}}.
 Meld asseblief nou aan en wysig u wagwoord. As u dit nie versoek het nie, of as u die oorspronklike wagwoord nog ken en dit nie wil verander nie, ignoreer die berig en hou aan om u ou wagwoord te gebruik.',
-'passwordreset-emailtext-user' => 'Gebruiker $1 op die webtuiste {{SITENAME}} het u gebruikersgegewens vir {{SITENAME}} ($4) opgevra.
+'passwordreset-emailtext-user'     => 'Gebruiker $1 op die webtuiste {{SITENAME}} het u gebruikersgegewens vir {{SITENAME}} ($4) opgevra.
 Die volgende {{PLURAL:$3|gebruiker is|gebruikers is}} aan die e-posadres gekoppel:
 
 $2
 
 {{PLURAL:$3|Die tydelike wagwoord verval|Hierdie tydelike wagwoorde verval}} oor {{PLURAL:$5|een dag|$5 dae}}.
 Meld asseblief aan en verander u wagwoord nou. As u dit nie versoek het nie, of as u die oorspronklike wagwoord nog ken en dit nie wil verander nie, ignoreer die berig en hou aan om u ou wagwoord te gebruik.',
-'passwordreset-emailelement'   => 'Gebruikersnaam: $1
+'passwordreset-emailelement'       => 'Gebruikersnaam: $1
 Tydelike wagwoord: $2',
-'passwordreset-emailsent'      => "'n E-pos ter herhindering is gestuur.",
+'passwordreset-emailsent'          => "'n E-pos ter herhindering is gestuur.",
+'passwordreset-emailsent-capture'  => "'n E-pos ter herinnering is gestuur en word hieronder vertoon.",
+'passwordreset-emailerror-capture' => "'n E-pos ter herinnering is geskep en word hieronder vertoon. Die uitstuur daarvan het egter gefaal: $1",
 
 # Special:ChangeEmail
 'changeemail'          => 'Wysig E-posadres',
@@ -1309,6 +1313,7 @@ Die aksie kan nie ongedaan gemaak word nie.',
 'yourrealname'                  => 'Regte naam:',
 'yourlanguage'                  => 'Taal:',
 'yourvariant'                   => 'Taalvariant vir inhoud:',
+'prefs-help-variant'            => 'U voorkeursvariant of -spelling om die inhoudsbladsye van hierdie wiki in weer te gee.',
 'yournick'                      => 'Bynaam (vir handtekening)',
 'prefs-help-signature'          => 'Kommentaar op besprekingsbladsye moet met "<nowiki>~~~~</nowiki>" onderteken word.
 Die tildes word in u handtekening omgeskakel en die datum en tyd word insluit.',
@@ -1484,6 +1489,7 @@ Die inligting is vir ander gebruikers sigbaar.',
 'action-suppressionlog'       => 'na die privaat logboek te kyk nie',
 'action-block'                => 'blokkeer die gebruiker om wysigings te maak',
 'action-protect'              => 'verander veiligheidsvlak van die bladsy',
+'action-rollback'             => "rol die wysigings van die laatste gebruiker wat 'n bladsy gewysig het vinnig terug",
 'action-import'               => "hierdie bladsy van 'n ander wiki te importeer nie",
 'action-importupload'         => "die bladsy van 'n opgelaaide lêer te importeer nie",
 'action-patrol'               => 'wysigings van andere as gekontroleer te merk nie',
@@ -1493,6 +1499,7 @@ Die inligting is vir ander gebruikers sigbaar.',
 'action-userrights'           => 'Wysig alle gebruikersregte',
 'action-userrights-interwiki' => 'wysig gebruikersregte van gebruikers op ander wikis',
 'action-siteadmin'            => 'sluit of ontsluit die databasis',
+'action-sendemail'            => 'stuur e-posse',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|wysiging|wysigings}}',
@@ -1688,6 +1695,23 @@ As daar steeds probleme is, kontak 'n [[Special:ListUsers/sysop|administrateur]]
 'upload-unknown-size'       => 'Onbekende grootte',
 'upload-http-error'         => "'n HTTP-fout het voorgekom: $1",
 
+# File backend
+'backend-fail-stream'        => 'Kon nie die lêer $1 uitstroom nie.',
+'backend-fail-backup'        => "Kon nie 'n rugsteunkopie van die lêer $1 maak nie.",
+'backend-fail-notexists'     => 'Die lêer $1 bestaan nie.',
+'backend-fail-notsame'       => "'n Nie-identiese lêer bestaan al reeds by $1.",
+'backend-fail-invalidpath'   => "$1 is nie 'n geldige stoorplek nie.",
+'backend-fail-delete'        => 'Die lêer $1 kon nie geskrap word nie.',
+'backend-fail-alreadyexists' => 'Die lêer $1 bestaan al reeds.',
+'backend-fail-store'         => 'Kon nie lêer $1 in $2 stoor nie.',
+'backend-fail-copy'          => 'Kon nie lêer $1 na $2 kopieer nie.',
+'backend-fail-move'          => 'Kon nie lêer $1 na $2 skuif nie.',
+'backend-fail-opentemp'      => 'Kon nie tydelike lêer oopmaak nie.',
+'backend-fail-writetemp'     => 'Kon nie na tydelike lêer skryf nie.',
+'backend-fail-closetemp'     => 'Kon nie tydelike lêer sluit nie.',
+'backend-fail-read'          => 'Kon nie lêer $1 lees nie.',
+'backend-fail-create'        => 'Kon nie lêer $1 skep nie.',
+
 # ZipDirectoryReader
 'zip-file-open-error' => "'n Fout het voorgekom met die opening van die lêer vir ZIP toetsing.",
 'zip-wrong-format'    => "Die gespesifiseerde lêer was nie 'n zip-lêer nie.",
@@ -1704,6 +1728,7 @@ Dit kan nie behoorlik vir sekuriteit nagegaan word nie.",
 'uploadstash-badtoken' => 'Uitvoering van die aksie het misluk, moontlik omdat u "editing credentials" verstryk het. Probeer asseblief weer.',
 'uploadstash-errclear' => 'Die skoonmaak van lêers het misluk.',
 'uploadstash-refresh'  => 'Verfris die lys van lêers',
+'invalid-chunk-offset' => 'Ongeldige "chunk offset"',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Toegang geweier',
@@ -1813,23 +1838,24 @@ Die beskrywing op die [$2 lêer se inligtingsblad] word hieronder weergegee.',
 'filerevert-badversion'     => 'Daar is geen vorige plaaslike weergawe van die lêer vir die gespesifiseerde tydstip nie.',
 
 # File deletion
-'filedelete'                  => 'Skrap $1',
-'filedelete-legend'           => 'Skrap lêer',
-'filedelete-intro'            => "U is op die punt om die lêer '''[[Media:$1|$1]]''' te verwyder, inklusief alle ouer weergawes daarvan.",
-'filedelete-intro-old'        => "U is besig om die weergawe van '''[[Media:$1|$1]]''' van [$4 $3, $2] te verwyder.",
-'filedelete-comment'          => 'Rede:',
-'filedelete-submit'           => 'Skrap',
-'filedelete-success'          => "'''$1''' is geskrap.",
-'filedelete-success-old'      => "Die weergawe van '''[[Media:$1|$1]]''' op $3, $2 is geskrap.",
-'filedelete-nofile'           => "'''$1''' bestaan nie.",
-'filedelete-nofile-old'       => "Daar is geen weergawe van '''$1''' in die argief met die aangegewe eienskappe nie.",
-'filedelete-otherreason'      => 'Ander/ekstra rede:',
-'filedelete-reason-otherlist' => 'Andere rede',
-'filedelete-reason-dropdown'  => '*Algemene skrappingsredes:
+'filedelete'                   => 'Skrap $1',
+'filedelete-legend'            => 'Skrap lêer',
+'filedelete-intro'             => "U is op die punt om die lêer '''[[Media:$1|$1]]''' te verwyder, inklusief alle ouer weergawes daarvan.",
+'filedelete-intro-old'         => "U is besig om die weergawe van '''[[Media:$1|$1]]''' van [$4 $3, $2] te verwyder.",
+'filedelete-comment'           => 'Rede:',
+'filedelete-submit'            => 'Skrap',
+'filedelete-success'           => "'''$1''' is geskrap.",
+'filedelete-success-old'       => "Die weergawe van '''[[Media:$1|$1]]''' op $3, $2 is geskrap.",
+'filedelete-nofile'            => "'''$1''' bestaan nie.",
+'filedelete-nofile-old'        => "Daar is geen weergawe van '''$1''' in die argief met die aangegewe eienskappe nie.",
+'filedelete-otherreason'       => 'Ander/ekstra rede:',
+'filedelete-reason-otherlist'  => 'Andere rede',
+'filedelete-reason-dropdown'   => '*Algemene skrappingsredes:
 ** Kopieregskending
 ** Duplikaatlêer',
-'filedelete-edit-reasonlist'  => 'Wysig skrap redes',
-'filedelete-maintenance'      => 'Die verwydering en terugplasing van lêers is tydelik opgeskort weens onderhoud.',
+'filedelete-edit-reasonlist'   => 'Wysig skrap redes',
+'filedelete-maintenance'       => 'Die verwydering en terugplasing van lêers is tydelik opgeskort weens onderhoud.',
+'filedelete-maintenance-title' => 'Kan nie die lêer skrap nie.',
 
 # MIME search
 'mimesearch'         => 'MIME-soek',
@@ -1934,6 +1960,7 @@ Elke ry bevat skakels na die eerste en die tweede aanstuur, asook die eerste re�
 'mostimages'              => 'Beelde met meeste skakels daarheen',
 'mostrevisions'           => 'Artikels met meeste wysigings',
 'prefixindex'             => 'Alle bladsye (voorvoegselindeks)',
+'prefixindex-namespace'   => 'Alle bladsye met die voorvoegsel (naamruimte $1)',
 'shortpages'              => 'Kort bladsye',
 'longpages'               => 'Lang bladsye',
 'deadendpages'            => 'Doodloopbladsye',
@@ -1977,8 +2004,8 @@ Dit is dus moontlik dat 'n lêer hier gelys word terwyl dit tog in gebruik is.",
 'booksources-invalid-isbn'  => 'Die ingevoerde ISBN-kode blyk asof dit ongeldig is; maak asseblief seker dat u dit sonder fout oorgekopiëer het vanaf die oorspronklike bron.',
 
 # Special:Log
-'specialloguserlabel'  => 'Gebruiker:',
-'speciallogtitlelabel' => 'Titel:',
+'specialloguserlabel'  => 'Uitvoerende gebruiker:',
+'speciallogtitlelabel' => 'Doel (bladsynaam of gebruiker):',
 'log'                  => 'Logboeke',
 'all-logs-page'        => 'Alle openbare logboeke',
 'alllogstext'          => "Vertoon 'n samestelling van alle boekstawings van {{SITENAME}}.
@@ -3673,13 +3700,17 @@ Beelde word in hulle volle resolusie gewys. Ander lêertipes word direk met hull
 'newuserlog-byemail'                  => 'wagwoord is per e-pos versend',
 
 # Feedback
-'feedback-subject' => 'Onderwerp:',
-'feedback-message' => 'Boodskap:',
-'feedback-cancel'  => 'Kanselleer',
-'feedback-submit'  => 'Stuur terugvoer',
-'feedback-error1'  => 'Fout: onbekende resultaat van die API',
-'feedback-error2'  => 'Fout: Wysiging het gefaal',
-'feedback-error3'  => 'Fout: Geen reaksie van API',
-'feedback-close'   => 'Gedoen',
+'feedback-subject'  => 'Onderwerp:',
+'feedback-message'  => 'Boodskap:',
+'feedback-cancel'   => 'Kanselleer',
+'feedback-submit'   => 'Stuur terugvoer',
+'feedback-adding'   => 'U terugvoer word op die bladsy geplaas...',
+'feedback-error1'   => 'Fout: onbekende resultaat van die API',
+'feedback-error2'   => 'Fout: Wysiging het gefaal',
+'feedback-error3'   => 'Fout: Geen reaksie van API',
+'feedback-thanks'   => 'Dankie! U terugvoer is op die bladsy "[$2 $1]" geplaas.',
+'feedback-close'    => 'Gedoen',
+'feedback-bugcheck' => 'Gaaf! Kontroleer of dit nie dalk een van die [$1 bekende foute] is nie.',
+'feedback-bugnew'   => "Ek het gekontroleer. Rapporteer 'n nuwe fout.",
 
 );

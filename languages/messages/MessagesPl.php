@@ -27,6 +27,7 @@
  * @author Mikołka
  * @author Nux
  * @author Odder
+ * @author Olgak85
  * @author Przemub
  * @author Remember the dot
  * @author Rzuwig
@@ -945,12 +946,12 @@ Upewnij się, czy na pewno zamierza{{GENDER:|łeś|łaś|sz}} utworzyć lub zmod
 'userpage-userdoesnotexist-view'   => 'Konto użytkownika „$1” nie jest zarejestrowane.',
 'blocked-notice-logextract'        => '{{GENDER:$1|Ten użytkownik|Ta użytkowniczka}} jest obecnie {{GENDER:$1|zablokowany|zablokowana}}.
 Ostatni wpis rejestru blokad jest pokazany poniżej.',
-'clearyourcache'                   => "'''Uwaga:''' Należy wyczyścić zawartość pamięci podręcznej przeglądarki internetowej, w przeciwnym razie nie będzie można zobaczyć efektu działania nowych ustawień.
-*'''Mozilla, Firefox lub Safari''' – przytrzymaj wciśnięty ''Shift'' i kliknij na ''Odśwież'' lub wciśnij ''Ctrl‐F5'' lub ''Ctrl‐R'' (''Command‐R'' na Macu)
-*'''Google Chrome'''  – przytrzymaj wciśnięty ''Ctrl'', ''Shift'' i wciśnij ''R'' (''Command-Shift-R'' na Macu)
-*'''Internet Explorer''' – przytrzymaj ''Ctrl'' i kliknij na ''Odśwież'' lub wciśnij ''Ctrl‐F5''
-*'''Konqueror''' – naciśnij przycisk ''Odśwież'' lub wciśnij ''F5''
-*'''Opera''' – wyczyść pamięć podręczną w menu ''Narzędzia → Preferencje''",
+'clearyourcache'                   => "'''Uwaga:'''' aby zobaczyć zmiany po zapisaniu, może zajść potrzeba wyczyszczenia pamięci podręcznej przeglądarki .
+* '''Firefox / Safari:''' Przytrzymaj'' shift '' podczas klikania 'Odświerz bierzącą stronę', lub naciśnij klawisze 'Ctrl+F5'' lub '' Ctrl+R'' (\"⌘-R'' na komputerze Mac)
+ * '''Google Chrome:'' ' naciśnij '' Ctrl-Shift-R'' (\"⌘-Shift-R'' na komputerze Mac)
+ * ''' Internet Explorer:'' ' Przytrzymaj 'Ctrl '' jednocześnie klikając '' Odświerz '' lub naciśnij klawisze 'Ctrl+F5''
+ * ''' Konquerora:'' \"kliknij polecenie\"Odśwież\"lub naciśnij klawisz '' F5''
+ * '''Opera:'' ' Wyczyść pamięć podręczną w '' Narzędzia → Preferencje ''",
 'usercssyoucanpreview'             => "'''Podpowiedź:''' Użyj przycisku „Podgląd”, aby przetestować nowy arkusz stylów CSS przed jego zapisaniem.",
 'userjsyoucanpreview'              => "'''Podpowiedź:''' Użyj przycisku „Podgląd”, aby przetestować nowy kod JavaScript przed jego zapisaniem.",
 'usercsspreview'                   => "'''Pamiętaj, że to tylko podgląd arkusza stylów CSS – nic jeszcze nie zostało zapisane!'''",
@@ -1335,7 +1336,7 @@ Jednak informacje o treści {{GRAMMAR:D.lp|{{SITENAME}}}} mogą być w Google ni
 'prefs-rc'                      => 'Ostatnie zmiany',
 'prefs-watchlist'               => 'Obserwowane',
 'prefs-watchlist-days'          => 'Liczba dni widocznych na liście obserwowanych',
-'prefs-watchlist-days-max'      => 'Maksimum 7 dni',
+'prefs-watchlist-days-max'      => 'Maksimum $1 {{PLURAL:$1|dzień|dni}}',
 'prefs-watchlist-edits'         => 'Liczba edycji pokazywanych w rozszerzonej liście obserwowanych',
 'prefs-watchlist-edits-max'     => 'Maksymalnie 1000',
 'prefs-watchlist-token'         => 'Identyfikator listy obserwowanych',
@@ -1785,17 +1786,33 @@ Jeśli problem będzie się powtarzał, skontaktuj się z [[Special:ListUsers/sy
 'upload-http-error'         => 'Wystąpił błąd protokołu HTTP – $1',
 
 # File backend
+'backend-fail-stream'        => 'Nie można odczytać pliku $1.',
+'backend-fail-backup'        => 'Nie można utworzyć kopii zapasowej pliku  $1 .',
+'backend-fail-notexists'     => 'Plik  $1  nie istnieje.',
+'backend-fail-hashes'        => 'Nie można uzyskać sum kontrolnych do porównania.',
+'backend-fail-notsame'       => 'Plik o podobnej nazwie już istnieje w $1.',
+'backend-fail-invalidpath'   => '$1nie jest poprawną ścieżką zapisu.',
 'backend-fail-delete'        => 'Nie można usunąć pliku $1.',
 'backend-fail-alreadyexists' => 'Plik „$1” już istnieje',
+'backend-fail-store'         => 'Nie może zapisać pliku  $1  w  $2 .',
 'backend-fail-copy'          => 'Nie może skopiować pliku $1 do $2.',
 'backend-fail-move'          => 'Nie można przenieść pliku $1 do $2.',
 'backend-fail-opentemp'      => 'Nie można otworzyć pliku tymczasowego.',
+'backend-fail-writetemp'     => 'Nie można otworzyć pliku tymczasowego.',
 'backend-fail-closetemp'     => 'Nie można zamknąć pliku tymczasowego.',
 'backend-fail-read'          => 'Nie można odczytać pliku $1.',
 'backend-fail-create'        => 'Nie można utworzyć pliku $1.',
 
 # Lock manager
-'lockmanager-notlocked' => 'Nie można odblokować "$1", ponieważ nie jest on zablokowany.',
+'lockmanager-notlocked'        => 'Nie można odblokować "$1", ponieważ nie jest on zablokowany.',
+'lockmanager-fail-closelock'   => 'Nie można znieść blokady z pliku "$1".',
+'lockmanager-fail-deletelock'  => 'Nie można usunąć blokady z pliku "$1".',
+'lockmanager-fail-acquirelock' => 'Nie można ustawić blokady dla pliku "$1".',
+'lockmanager-fail-openlock'    => 'Nie można znieść blokady z pliku "$1".',
+'lockmanager-fail-releaselock' => 'Nie może zwolnić blokady dla " $1 ".',
+'lockmanager-fail-db-bucket'   => 'Nie można powiązać wystarczającej ilości zablokowanych baz danych w segmencie $1 .',
+'lockmanager-fail-db-release'  => 'Nie udało się zwolnić blokad w bazie danych $1.',
+'lockmanager-fail-svr-release' => 'Nie udało się zwolnić blokady na serwerze $1.',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'Wystąpił błąd podczas otwierania pliku ZIP, aby go sprawdzić.',
@@ -2044,6 +2061,7 @@ Każdy wiersz zawiera linki do pierwszego i drugiego przekierowania oraz link, d
 'mostimages'              => 'Najczęściej linkowane pliki',
 'mostrevisions'           => 'Strony o największej liczbie wersji',
 'prefixindex'             => 'Wszystkie strony o prefiksie',
+'prefixindex-namespace'   => 'Wszystkie strony z prefiksem ( $1 przestrzeń nazw)',
 'shortpages'              => 'Najkrótsze strony',
 'longpages'               => 'Najdłuższe strony',
 'deadendpages'            => 'Strony bez linków wewnętrznych',
@@ -2799,6 +2817,8 @@ Odwiedź [//www.mediawiki.org/wiki/Localisation Tłumaczenie MediaWiki] oraz [//
 'thumbnail_error'          => 'Błąd przy generowaniu miniatury $1',
 'djvu_page_error'          => 'Strona DjVu poza zakresem',
 'djvu_no_xml'              => 'Nie można pobrać danych w formacie XML dla pliku DjVu',
+'thumbnail-temp-create'    => 'Nie można utworzyć pliku tymczasowego miniatury',
+'thumbnail-dest-create'    => 'Nie można zapisać miniatury do miejsca docelowego',
 'thumbnail_invalid_params' => 'Nieprawidłowe parametry miniatury',
 'thumbnail_dest_directory' => 'Nie można utworzyć katalogu docelowego',
 'thumbnail_image-type'     => 'Grafika tego typu nie jest obsługiwana',
@@ -3877,14 +3897,19 @@ Grafiki są pokazywane w pełnej rozdzielczości. Inne typy plików są otwieran
 'newuserlog-byemail'                  => 'hasło zostało wysłane e‐mailem',
 
 # Feedback
-'feedback-subject' => 'Temat',
-'feedback-message' => 'Wiadomość:',
-'feedback-cancel'  => 'Anuluj',
-'feedback-submit'  => 'Prześlij opinię',
-'feedback-adding'  => 'Dodawanie opinii do strony...',
-'feedback-error1'  => 'Błąd – nierozpoznana odpowiedź API',
-'feedback-error2'  => 'Błąd – edycja nieudana',
-'feedback-error3'  => 'Błąd – brak odpowiedzi API',
-'feedback-close'   => 'Gotowe',
+'feedback-bugornote' => 'Jeśli jesteś gotów szczegółowo opisać problem techniczny proszę [ $1  Zgłoś].
+W przeciwnym wypadku można użyć prostego formularza poniżej. Komentarz zostanie dodany do strony "[ $3  $2 ]", wraz z nazwą użytkownika i nazwą  przeglądarki.',
+'feedback-subject'   => 'Temat',
+'feedback-message'   => 'Wiadomość:',
+'feedback-cancel'    => 'Anuluj',
+'feedback-submit'    => 'Prześlij opinię',
+'feedback-adding'    => 'Dodawanie opinii do strony...',
+'feedback-error1'    => 'Błąd – nierozpoznana odpowiedź API',
+'feedback-error2'    => 'Błąd – edycja nieudana',
+'feedback-error3'    => 'Błąd – brak odpowiedzi API',
+'feedback-thanks'    => 'Dziękujemy! Twoja opinia została opublikowana na stronie "[ $2  $1 ]".',
+'feedback-close'     => 'Gotowe',
+'feedback-bugcheck'  => 'Świetnie! Tylko sprawdzić, czy nie jest już jednym z [ $1  znanych błędów].',
+'feedback-bugnew'    => 'Sprawdziłem. Zgłoś nowy błąd',
 
 );

@@ -2157,8 +2157,8 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'usermessage-editor'  => 'प्रणाली संदेशवाहक',
 
 # Watchlist
-'watchlist'            => 'माझी पहार्‍याची सूची',
-'mywatchlist'          => 'माझी पहार्‍याची सूची',
+'watchlist'            => 'माझी नित्य पहाण्याची सूची',
+'mywatchlist'          => 'माझी नित्य पहाण्याची सूची',
 'watchlistfor2'        => '$1 $2 साठी',
 'nowatchlist'          => 'तुमची पहार्‍याची सूची रिकामी आहे.',
 'watchlistanontext'    => 'तुमच्या पहार्‍याच्या सूचीतील बाबी पाहण्याकरता किंवा संपादित करण्याकरता, कृपया $1.',

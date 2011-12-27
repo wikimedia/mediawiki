@@ -2248,6 +2248,9 @@ $UNWATCHURL  نه ليدنه وکړۍ
 
 'exif-rating-rejected' => 'رد شوی',
 
+'exif-isospeedratings-overflow' => 'له 65535 لوی',
+
+'exif-iimcategory-ace' => 'هنر، فرهنګ او تفريح',
 'exif-iimcategory-clj' => 'جنايت او قانون',
 'exif-iimcategory-dis' => 'غميزې او پېښې',
 'exif-iimcategory-fin' => 'وټپوهنه او سوداګري',
@@ -2255,6 +2258,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'exif-iimcategory-evn' => 'چاپېريال',
 'exif-iimcategory-hth' => 'روغتيا',
 'exif-iimcategory-hum' => 'بشري لېوالتيا',
+'exif-iimcategory-lab' => 'کار',
 'exif-iimcategory-lif' => 'ژوندتوګه او فارغ وختونه',
 'exif-iimcategory-pol' => 'سياست',
 'exif-iimcategory-rel' => 'دين او ګروهه',
@@ -2473,6 +2477,7 @@ $5
 'htmlform-selectorother-other' => 'بل',
 
 # New logging system
+'logentry-delete-delete'     => '$1 د $3 مخ {{GENDER:$2|ړنګ کړ}}',
 'revdelete-content-hid'      => 'مېنځپانګه پټېدلې',
 'revdelete-uname-hid'        => 'کارن نوم پټ شوی',
 'revdelete-content-unhid'    => 'مېنځپانګه ښکاره شوی',

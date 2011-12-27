@@ -5260,7 +5260,7 @@ Des configurations de droits d’utilisateurs plus complexes sont disponibles ap
 	'config-license-none' => 'Aucune licence en bas de page',
 	'config-license-cc-by-sa' => "Creative Commons attribution partage à l'identique",
 	'config-license-cc-by' => 'Creative Commons Attribution',
-	'config-license-cc-by-nc-sa' => "Creative Commons attribution non commercial partage à l'identique",
+	'config-license-cc-by-nc-sa' => 'Creative Commons paternité – non commercial – partage à l’identique',
 	'config-license-cc-0' => 'Creative Commons Zero (domaine public)',
 	'config-license-gfdl' => 'GNU Free Documentation License 1.3 ou ultérieure',
 	'config-license-pd' => 'Domaine public',
