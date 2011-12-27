@@ -33,7 +33,7 @@ abstract class FileCacheBase {
 	}
 
 	/**
-	 * Get the base cache directory (not speficic to this file)
+	 * Get the base cache directory (not specific to this file)
 	 * @return string
 	 */
 	abstract protected function cacheDirectory();
@@ -98,7 +98,7 @@ abstract class FileCacheBase {
 
 		$cachetime = $this->cacheTimestamp();
 		$good = ( $timestamp <= $cachetime && $wgCacheEpoch <= $cachetime );
-		wfDebug( __METHOD__ . ": cachetime $cachetime, touched '{$timestamp}' epoch {$wgCacheEpoch}, good $good\n");
+		wfDebug( __METHOD__ . ": cachetime $cachetime, touched '{$timestamp}' epoch {$wgCacheEpoch}, good $good\n" );
 
 		return $good;
 	}
@@ -203,8 +203,8 @@ abstract class FileCacheBase {
 	public function incrMissesRecent( WebRequest $request ) {
 		global $wgMemc;
 		if ( mt_rand( 0, self::MISS_FACTOR - 1 ) == 0 ) {
-			# Get an large IP range that should include the user
-			# even if that person's IP address changes...
+			# Get a large IP range that should include the user  even if that 
+			# person's IP address changes
 			$ip = $request->getIP();
 			if ( !IP::isValid( $ip ) ) {
 				return;
