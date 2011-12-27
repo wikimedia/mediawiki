@@ -104,6 +104,27 @@ abstract class ApiTestCaseUpload extends ApiTestCase {
 		return true;
 
 	}
+	function fakeUploadChunk(  $fieldName, $fileName, $type, & $chunkData ){
+		$tmpName = tempnam( wfTempDir(), "" );
+		// copy the chunk data to temp location: 
+		if ( !file_put_contents( $tmpName, $chunkData ) ) {
+			throw new Exception( "couldn't copy chunk data to $tmpName" );
+		}
+		
+		clearstatcache();
+		$size = filesize( $tmpName );
+		if ( $size === false ) {
+			throw new Exception( "couldn't stat $tmpName" );
+		}
+		
+		$_FILES[ $fieldName ] = array(
+			'name'		=> $fileName,
+			'type'		=> $type,
+			'tmp_name' 	=> $tmpName,
+			'size' 		=> $size,
+			'error'		=> null
+		);
+	}
 
 	function clearTempUpload() {
 		if( isset( $_FILES['file']['tmp_name'] ) ) {
