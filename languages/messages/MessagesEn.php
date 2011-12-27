@@ -4662,7 +4662,7 @@ This site is experiencing technical difficulties.',
 'newuserlog-byemail'                  => 'password sent by e-mail',
 
 # Feedback
-'feedback-bugornote' => 'If you are ready to describe a technical problem in detail please [$1 report a bug]. 
+'feedback-bugornote' => 'If you are ready to describe a technical problem in detail please [$1 report a bug].
 Otherwise, you can use the easy form below. Your comment will be added to the page "[$3 $2]", along with your username and what browser you are using.',
 'feedback-subject'   => 'Subject:',
 'feedback-message'   => 'Message:',
