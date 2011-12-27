@@ -620,6 +620,7 @@ $wgMediaHandlers = array(
 	'image/tiff' => 'TiffHandler',
 	'image/x-ms-bmp' => 'BmpHandler',
 	'image/x-bmp' => 'BmpHandler',
+	'image/x-xcf' => 'XCFHandler',
 	'image/svg+xml' => 'SvgHandler', // official
 	'image/svg' => 'SvgHandler', // compat
 	'image/vnd.djvu' => 'DjVuHandler', // official
@@ -638,6 +639,8 @@ $wgMediaHandlers = array(
 $wgUseImageMagick		= false;
 /** The convert command shipped with ImageMagick */
 $wgImageMagickConvertCommand    = '/usr/bin/convert';
+/** The identify command shipped with ImageMagick */
+$wgImageMagickIdentifyCommand   = '/usr/bin/identify';
 
 /** Sharpening parameter to ImageMagick */
 $wgSharpenParameter = '0x0.4';

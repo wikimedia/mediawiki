@@ -778,8 +778,11 @@ abstract class File {
 			wfDebug( __METHOD__ . " forcing rendering per flag File::RENDER_FORCE\n" );
 		}
 
-		// Create a temp FS file with the same extension
-		$tmpFile = TempFSFile::factory( 'transform_', $this->getExtension() );
+		// Create a temp FS file with the same extension and the thumbnail
+		$extension = $this->getExtension();
+		list( $thumbExt, $thumbMime ) = $this->handler->getThumbType(
+			$extension, $this->getMimeType(), $params );
+		$tmpFile = TempFSFile::factory( 'transform_', $this->getExtension() . '.' . $thumbExt );
 		if ( !$tmpFile ) {
 			return new MediaTransformError( 'thumbnail_error',
 				$params['width'], 0, wfMsg( 'thumbnail-temp-create' ) );

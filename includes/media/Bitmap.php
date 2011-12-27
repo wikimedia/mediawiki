@@ -302,6 +302,8 @@ class BitmapHandler extends ImageHandler {
 					$animation_post = '-fuzz 5% -layers optimizeTransparency';
 				}
 			}
+		} elseif ( $params['mimeType'] == 'image/x-xcf' ) {
+			$animation_post = '-layers merge';
 		}
 
 		// Use one thread only, to avoid deadlock bugs on OOM
