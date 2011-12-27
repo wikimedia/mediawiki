@@ -926,9 +926,8 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'blocked-notice-logextract'        => '이 사용자는 현재 차단되어 있습니다.
 해당 사용자의 최근 차단 기록을 참고하십시오:',
 'clearyourcache'                   => "'''참고:''' 설정을 저장한 후에 바뀐 점을 확인하기 위해서는 브라우저의 캐시를 갱신해야 합니다.
-
-* '''파이어폭스 / 사파리''': ''Shift'' 키를 누르면서 새로 고침을 클릭하거나, ''Ctrl-F5'' 또는 ''Ctrl-R'' 을 입력 (Mac에서는 ''Command-R'')
-* '''구글 크롬''': ''Ctrl-Shift-R''키를 입력 (Mac에서는 ''Command-Shift-R'')
+* '''파이어폭스 / 사파리''': ''Shift'' 키를 누르면서 새로 고침을 클릭하거나, ''Ctrl-F5'' 또는 ''Ctrl-R'' 을 입력 (Mac에서는 ''⌘-R'')
+* '''구글 크롬''': ''Ctrl-Shift-R''키를 입력 (Mac에서는 ''⌘-Shift-R'')
 * '''인터넷 익스플로러''': ''Ctrl'' 키를 누르면서 새로 고침을 클릭하거나, ''Ctrl-F5''를 입력.
 * '''컨커러''': ''새로고침''을 클릭하거나 ''F5''를 입력
 * '''오페라''': 도구→설정에서 캐시를 비움",
@@ -1309,7 +1308,7 @@ $1",
 'prefs-rc'                      => '최근 바뀜',
 'prefs-watchlist'               => '주시문서 목록',
 'prefs-watchlist-days'          => '주시문서 목록에서 볼 날짜 수:',
-'prefs-watchlist-days-max'      => '최대 7일',
+'prefs-watchlist-days-max'      => '최대 $1{{PLURAL:$1|일}}',
 'prefs-watchlist-edits'         => '주시문서 목록에서 볼 편집 수:',
 'prefs-watchlist-edits-max'     => '최대 개수: 1000',
 'prefs-watchlist-token'         => '주시문서 토큰:',
@@ -1996,6 +1995,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'mostimages'              => '가장 많이 사용된 파일 목록',
 'mostrevisions'           => '가장 많이 편집된 문서 목록',
 'prefixindex'             => '접두어에 따른 문서 목록',
+'prefixindex-namespace'   => '접두어가 있는 모든 문서 ($1 이름공간)',
 'shortpages'              => '짧은 문서 목록',
 'longpages'               => '긴 문서 목록',
 'deadendpages'            => '막다른 문서 목록',
@@ -2742,6 +2742,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'thumbnail_error'          => '섬네일을 만드는 중 오류 발생: $1',
 'djvu_page_error'          => 'DjVu 페이지 범위 벗어남',
 'djvu_no_xml'              => 'DjVu 파일의 XML 정보를 읽을 수 없음',
+'thumbnail-temp-create'    => '임시 섬네일 파일을 생성할 수 없습니다.',
 'thumbnail_invalid_params' => '섬네일 매개변수가 잘못되었습니다.',
 'thumbnail_dest_directory' => '새 목적 디렉토리를 생성할 수 없습니다.',
 'thumbnail_image-type'     => '해당 파일 형식은 지원하지 않습니다',
@@ -2877,6 +2878,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 # Scripts
 'common.js'   => '/* 이 자바스크립트 설정은 모든 문서, 모든 사용자에게 적용됩니다. */',
 'monobook.js' => '/* 이 자바스크립트 설정은 모노북 스킨을 사용하는 사용자에게 적용됩니다. */',
+'vector.js'   => '/* 이 자바스크립트 설정은 벡터 스킨을 사용하는 사용자에게 적용됩니다. */',
 
 # Metadata
 'notacceptable' => '클라이언트에서 인식 가능한 출력 포맷이 없습니다.',
@@ -3185,13 +3187,21 @@ Variants for Chinese language
 'exif-cameraownername'             => '카메라 소유자',
 'exif-label'                       => '라벨',
 'exif-datetimemetadata'            => '메타데이터 최종 변경일',
+'exif-nickname'                    => '이미지의 비공식적 이름',
+'exif-rating'                      => '평가 (5점 만점)',
+'exif-rightscertificate'           => '권리 관리 인증서',
 'exif-copyrighted'                 => '저작권 정보',
 'exif-copyrightowner'              => '저작권자',
 'exif-usageterms'                  => '이용 조건',
+'exif-webstatement'                => '온라인 저작권 선언',
+'exif-originaldocumentid'          => '원본 문서의 고유 ID',
 'exif-licenseurl'                  => '저작권 라이선스의 URL',
 'exif-morepermissionsurl'          => '다른 라이선스 정보',
+'exif-attributionurl'              => '이 저작물을 이용할 때 링크할 주소',
+'exif-preferredattributionname'    => '이 저작물을 이용할 때 표시할 저작자 이름',
 'exif-pngfilecomment'              => 'PNG 파일 주석',
 'exif-disclaimer'                  => '면책 조항',
+'exif-contentwarning'              => '콘텐츠 경고',
 'exif-giffilecomment'              => 'GIF 파일 주석',
 'exif-intellectualgenre'           => '컨텐츠 정보',
 'exif-scenecode'                   => 'IPTC 장면 코드',
@@ -3362,6 +3372,8 @@ Variants for Chinese language
 'exif-dc-date'      => '날짜',
 'exif-dc-publisher' => '출판사',
 'exif-dc-relation'  => '관련된 미디어',
+'exif-dc-rights'    => '권리',
+'exif-dc-source'    => '원본 출처 미디어',
 'exif-dc-type'      => '미디어 종류',
 
 'exif-isospeedratings-overflow' => '65535 이상',

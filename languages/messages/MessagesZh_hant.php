@@ -2891,7 +2891,7 @@ $1',
 'mediawarning'           => "'''警告''': 該檔案類型可能包含惡意代碼。
 執行它可能對您的系統帶來危險。",
 'imagemaxsize'           => "影像大小限制:<br />''（用在檔案描述頁面中）''",
-'thumbsize'              => '略圖大小:',
+'thumbsize'              => '縮略圖大小：',
 'widthheightpage'        => '$1×$2, $3頁',
 'file-info'              => '檔案大小: $1, MIME 類型: $2',
 'file-info-size'         => '$1 × $2 像素，檔案大小：$3，MIME類型：$4',

@@ -2933,5 +2933,6 @@ Bu saytda texniki problemlər var.',
 'feedback-subject' => 'Mövzu:',
 'feedback-message' => 'Mesaj:',
 'feedback-cancel'  => 'İmtina',
+'feedback-close'   => 'Oldu',
 
 );

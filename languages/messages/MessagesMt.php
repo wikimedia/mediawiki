@@ -637,6 +637,7 @@ Jista\' jkun li diġà ġie mħassar minn xi ħaddieħor.',
 Funżjoni: $1<br />
 Rikjesta: $2',
 'viewsource'           => 'Ara s-sors',
+'viewsource-title'     => "Ara s-sors ta' $1",
 'actionthrottled'      => 'Azzjoni miżmuma',
 'actionthrottledtext'  => "Bħala miżura għal kontra l-ispam, inti limitat li tagħmel din l-azzjoni għal ħafna drabi f'spazju ta' ħin żgħir, u inti qbiżt dan il-limitu.
 Jekk jogħġbok erġa' prova fi ftit minuti oħra.",
@@ -2356,6 +2357,7 @@ jista' jkun li xi ħadd ieħor irkupra l-paġna qabel.",
 
 Ikkonsulta r-[[Special:Log/delete|reġistru tat-tħassir]] biex tara t-tħassir u l-irkuprar ta' paġni l-aktar riċenti.",
 'undelete-header'              => 'Ara r-[[Special:Log/delete|reġistru tat-tħassir]] għal paġni mħassra riċentament.',
+'undelete-search-title'        => 'Fittex paġni mħassra',
 'undelete-search-box'          => 'Fittex paġni mħassra',
 'undelete-search-prefix'       => "Uri l-paġni li t-titlu jibda' bl-ittri:",
 'undelete-search-submit'       => 'Fittex',
@@ -2365,6 +2367,7 @@ Ikkonsulta r-[[Special:Log/delete|reġistru tat-tħassir]] biex tara t-tħassir 
 'undelete-cleanup-error'       => 'Problema fit-tħassir ta\' fajl "$1" tal-arkivju li mhux użat.',
 'undelete-missing-filearchive' => "Impossibli tirkupra l-fajl tal-arkivju b'ID $1 minħabba li mhux qiegħed fid-database.
 Jista' jkun li ġa ġie rkuprat.",
+'undelete-error'               => 'Żball fl-irkuprar tal-paġna',
 'undelete-error-short'         => 'Problema fl-irkuprar tal-fajl: $1',
 'undelete-error-long'          => 'Kien hemm problemi waqt il-fajl kien qiegħed jiġi rkuprat:
 
@@ -2954,6 +2957,11 @@ $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'hours-abbrev' => '$1S',
+'seconds'      => '{{PLURAL:$1|sekonda|$1 sekondi}}',
+'minutes'      => '{{PLURAL:$1|$1 minuta|$1 minuti}}',
+'hours'        => '{{PLURAL:$1|siegħa|$1 sigħat}}',
+'days'         => '{{PLURAL:$1|ġurnata|$1 ġranet}}',
+'ago'          => '$1 ilu',
 
 # Bad image list
 'bad_image_list' => "Il-format huwa kif imiss:
@@ -3175,9 +3183,9 @@ Oħrajn jiġu moħbija kif inhu definit oriġinarjament.
 'exif-orientation-3' => 'Imdawwar 180°',
 'exif-orientation-4' => 'Maqlub vertikali',
 'exif-orientation-5' => 'Imdawwar 90° fis-sens kontra l-arloġġ u maqlub vertikali',
-'exif-orientation-6' => 'Imdawwar 90° fis-sens tal-arloġġ',
+'exif-orientation-6' => 'Imdawwar 90° kontra l-arloġġ',
 'exif-orientation-7' => 'Imdawwar 90° fis-sens tal-arloġġ u maqlub vertikalment',
-'exif-orientation-8' => 'Imdawwar 90° fis-sens kontra l-arloġġ',
+'exif-orientation-8' => 'Imdawwar 90° fis-sens fis-sena tal-arloġġ',
 
 'exif-planarconfiguration-1' => 'format imbaċċaċ',
 'exif-planarconfiguration-2' => 'format tal-ippjanar',
