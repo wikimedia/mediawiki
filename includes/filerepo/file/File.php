@@ -782,7 +782,7 @@ abstract class File {
 		$extension = $this->getExtension();
 		list( $thumbExt, $thumbMime ) = $this->handler->getThumbType(
 			$extension, $this->getMimeType(), $params );
-		$tmpFile = TempFSFile::factory( 'transform_', $this->getExtension() . '.' . $thumbExt );
+		$tmpFile = TempFSFile::factory( 'transform_', FileBackend::extensionFromPath( $thumbPath ) );
 		if ( !$tmpFile ) {
 			return new MediaTransformError( 'thumbnail_error',
 				$params['width'], 0, wfMsg( 'thumbnail-temp-create' ) );
