@@ -1,5 +1,6 @@
 /**
  * Additional mw.Api methods to assist with (un)watching wiki pages.
+ * @since 1.19
  */
 ( function( $, mw ) {
 
