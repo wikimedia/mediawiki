@@ -16,7 +16,8 @@
  * 
  * FS-based backends are somewhat more restrictive due to the existence of real
  * directory files; a regular file cannot have the same name as a directory. Other
- * backends with virtual directories may not have this limitation.
+ * backends with virtual directories may not have this limitation. Callers should
+ * store files in such a way that no files and directories under the same path.
  * 
  * Methods should avoid throwing exceptions at all costs.
  * As a corollary, external dependencies should be kept to a minimum.
@@ -895,11 +896,11 @@ abstract class FileBackend extends FileBackendBase {
 	}
 
 	/**
-	 * Validate a container name.
-	 * Null is returned if the name has illegal characters.
+	 * Check if a container name is valid.
+	 * This checks for for length and illegal characters.
 	 * 
 	 * @param $container string
-	 * @return bool 
+	 * @return bool
 	 */
 	final protected static function isValidContainerName( $container ) {
 		// This accounts for Swift and S3 restrictions. Also note
@@ -991,8 +992,9 @@ abstract class FileBackend extends FileBackendBase {
 
 	/**
 	 * Resolve a relative storage path, checking if it's allowed by the backend.
-	 * This is intended for internal use, such as encoding illegal chars
-	 * or perhaps getting absolute paths (e.g. FS based backends).
+	 * This is intended for internal use, such as encoding illegal chars or perhaps
+	 * getting absolute paths (e.g. FS based backends). Note that the relative path
+	 * may be the empty string (e.g. the path is simply to the container).
 	 *
 	 * @param $container string Container the path is relative to
 	 * @param $relStoragePath string Relative storage path
