@@ -298,11 +298,12 @@ abstract class File {
 	 * @return string
 	 */
 	function getViewURL() {
-		if( $this->mustRender()) {
-			if( $this->canRender() ) {
+		if ( $this->mustRender() ) {
+			if ( $this->canRender() ) {
 				return $this->createThumb( $this->getWidth() );
 			} else {
-				wfDebug(__METHOD__.': supposed to render '.$this->getName().' ('.$this->getMimeType()."), but can't!\n");
+				wfDebug( __METHOD__.': supposed to render ' . $this->getName() .
+					' (' . $this->getMimeType() . "), but can't!\n" );
 				return $this->getURL(); #hm... return NULL?
 			}
 		} else {
@@ -779,10 +780,8 @@ abstract class File {
 		}
 
 		// Create a temp FS file with the same extension and the thumbnail
-		$extension = $this->getExtension();
-		list( $thumbExt, $thumbMime ) = $this->handler->getThumbType(
-			$extension, $this->getMimeType(), $params );
-		$tmpFile = TempFSFile::factory( 'transform_', FileBackend::extensionFromPath( $thumbPath ) );
+		$thumbExt = FileBackend::extensionFromPath( $thumbPath );
+		$tmpFile = TempFSFile::factory( 'transform_', $thumbExt );
 		if ( !$tmpFile ) {
 			return new MediaTransformError( 'thumbnail_error',
 				$params['width'], 0, wfMsg( 'thumbnail-temp-create' ) );
