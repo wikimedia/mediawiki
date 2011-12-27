@@ -36,6 +36,7 @@ class SVGReader {
 	const DEFAULT_WIDTH = 512;
 	const DEFAULT_HEIGHT = 512;
 	const NS_SVG = 'http://www.w3.org/2000/svg';
+	const ADOBE_SVG_ENTITY = '&ns_svg;';
 
 	private $reader = null;
 	private $mDebug = false;
@@ -102,7 +103,10 @@ class SVGReader {
 			$keepReading = $this->reader->read();
 		}
 
-		if ( $this->reader->localName != 'svg' || $this->reader->namespaceURI != self::NS_SVG ) {
+		# Note, entities not expanded in namespaceURI - bug 31719
+		if ( $this->reader->localName != 'svg' || 
+			( $this->reader->namespaceURI != self::NS_SVG &&
+			  $this->reader->namespaceURI != self::ADOBE_SVG_ENTITY ) ) {
 			throw new MWException( "Expected <svg> tag, got ".
 				$this->reader->localName . " in NS " . $this->reader->namespaceURI );
 		}
