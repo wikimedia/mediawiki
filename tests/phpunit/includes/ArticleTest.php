@@ -27,7 +27,6 @@ class ArticleTest extends MediaWikiTestCase {
 	 * @depends testImplementsGetMagic
 	 */
 	function testImplementsSetMagic() {
-
 		$this->article->mLatest = 2;
 		$this->assertEquals( 2, $this->article->mLatest, "Article __set magic" );
 	}
@@ -37,6 +36,7 @@ class ArticleTest extends MediaWikiTestCase {
 	 */
 	function testImplementsCallMagic() {
 		$this->article->mLatest = 33;
+		$this->article->mDataLoaded = true;
 		$this->assertEquals( 33, $this->article->getLatest(), "Article __call magic" );
 	}
 
