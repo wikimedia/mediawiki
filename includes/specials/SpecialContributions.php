@@ -224,7 +224,7 @@ class SpecialContributions extends SpecialPage {
 		$nt = $userObj->getUserPage();
 		$talk = $userObj->getTalkPage();
 		if ( $talk ) {
-			$tools = $this->getUserLinks( $nt, $talk, $userObj, $this->getUser() );
+			$tools = $this->getUserLinks( $nt, $talk, $userObj );
 			$links = $this->getLanguage()->pipeList( $tools );
 
 			// Show a note if the user is blocked and display the last block log entry.
@@ -267,10 +267,9 @@ class SpecialContributions extends SpecialPage {
 	 * @param $userpage Title: Target user page
 	 * @param $talkpage Title: Talk page
 	 * @param $target User: Target user object
-	 * @param $subject User: The viewing user ($wgUser might be still checked in some cases)
 	 * @return array
 	 */
-	public function getUserLinks( Title $userpage, Title $talkpage, User $target, User $subject ) {
+	public function getUserLinks( Title $userpage, Title $talkpage, User $target ) {
 
 		$id = $target->getId();
 		$username = $target->getName();
@@ -278,7 +277,7 @@ class SpecialContributions extends SpecialPage {
 		$tools[] = Linker::link( $talkpage, $this->msg( 'sp-contributions-talk' )->escaped() );
 
 		if ( ( $id !== null ) || ( $id === null && IP::isIPAddress( $username ) ) ) {
-			if ( $subject->isAllowed( 'block' ) ) { # Block / Change block / Unblock links
+			if ( $this->getUser()->isAllowed( 'block' ) ) { # Block / Change block / Unblock links
 				if ( $target->isBlocked() ) {
 					$tools[] = Linker::linkKnown( # Change block link
 						SpecialPage::getTitleFor( 'Block', $username ),
@@ -318,7 +317,7 @@ class SpecialContributions extends SpecialPage {
 		);
 
 		# Add link to deleted user contributions for priviledged users
-		if ( $subject->isAllowed( 'deletedhistory' ) ) {
+		if ( $this->getUser()->isAllowed( 'deletedhistory' ) ) {
 			$tools[] = Linker::linkKnown(
 				SpecialPage::getTitleFor( 'DeletedContributions', $username ),
 				$this->msg( 'sp-contributions-deleted' )->escaped()
@@ -327,7 +326,7 @@ class SpecialContributions extends SpecialPage {
 
 		# Add a link to change user rights for privileged users
 		$userrightsPage = new UserrightsPage();
-		$userrightsPage->getContext()->setUser( $subject );
+		$userrightsPage->setContext( $this->getContext() );
 		if ( $id !== null && $userrightsPage->userCanChangeRights( $target ) ) {
 			$tools[] = Linker::linkKnown(
 				SpecialPage::getTitleFor( 'Userrights', $username ),
