@@ -616,7 +616,7 @@ window.mw = window.mediaWiki = new ( function( $, undefined ) {
 				for ( var j = 0; j < jobs.length; j++ ) {
 					if ( $.inArray( module, jobs[j].dependencies ) !== -1 ) {
 						if ( $.isFunction( jobs[j].error ) ) {
-							jobs[j].error();
+							jobs[j].error( e, module );
 						}
 						jobs.splice( j, 1 );
 						j--;
@@ -1053,7 +1053,8 @@ window.mw = window.mediaWiki = new ( function( $, undefined ) {
 			// If any dependencies have errors execute error immediately
 			else if ( filter( ['error'], dependencies ).length ) {
 				if ( $.isFunction( error ) ) {
-					error();
+					error( new Error( 'one or more dependencies have state "error"' ),
+						dependencies );
 				}
 			}
 			// Since some dependencies are not yet ready, queue up a request
