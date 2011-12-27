@@ -45,9 +45,9 @@ class BitmapHandler extends ImageHandler {
 		wfRunHooks( 'BitmapHandlerCheckImageArea', array( $image, &$params, &$checkImageAreaHookResult ) );
 		if ( is_null( $checkImageAreaHookResult ) ) {
 			global $wgMaxImageArea;
-			
+
 			if ( $srcWidth * $srcHeight > $wgMaxImageArea &&
-					!( $image->getMimeType() == 'image/jpeg' && 
+					!( $image->getMimeType() == 'image/jpeg' &&
 						self::getScalerType( false, false ) == 'im' ) ) {
 				# Only ImageMagick can efficiently downsize jpg images without loading
 				# the entire file in memory
@@ -56,7 +56,7 @@ class BitmapHandler extends ImageHandler {
 		} else {
 			return $checkImageAreaHookResult;
 		}
-		
+
 		return true;
 	}
 
@@ -89,10 +89,10 @@ class BitmapHandler extends ImageHandler {
 	/**
 	 * Function that returns the number of pixels to be thumbnailed.
 	 * Intended for animated GIFs to multiply by the number of frames.
-	 * 
+	 *
 	 * @param File $image
 	 * @return int
-	 */ 
+	 */
 	function getImageArea( $image ) {
 		return $image->getWidth() * $image->getHeight();
 	}
@@ -132,7 +132,7 @@ class BitmapHandler extends ImageHandler {
 
 		# Determine scaler type
 		$scaler = self::getScalerType( $dstPath );
-		
+
 		wfDebug( __METHOD__ . ": creating {$scalerParams['physicalDimensions']} thumbnail at $dstPath using scaler $scaler\n" );
 
 		if ( !$image->mustRender() &&

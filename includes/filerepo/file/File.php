@@ -35,7 +35,7 @@ abstract class File {
 	const RENDER_NOW   = 1;
 	/**
 	 * Force rendering even if thumbnail already exist and using RENDER_NOW
-	 * I.e. you have to pass both flags: File::RENDER_NOW | File::RENDER_FORCE 
+	 * I.e. you have to pass both flags: File::RENDER_NOW | File::RENDER_FORCE
 	 */
 	const RENDER_FORCE = 2;
 
@@ -99,7 +99,7 @@ abstract class File {
 
 	/**
 	 * Call this constructor from child classes.
-	 * 
+	 *
 	 * Both $title and $repo are optional, though some functions
 	 * may return false or throw exceptions if they are not set.
 	 * Most subclasses will want to call assertRepoDefined() here.
@@ -335,7 +335,7 @@ abstract class File {
 	 * Get an FS copy or original of this file and return the path.
 	 * Returns false on failure. Callers must not alter the file.
 	 * Temporary files are cleared automatically.
-	 * 
+	 *
 	 * @return string|false
 	 */
 	public function getLocalRefPath() {
@@ -775,7 +775,7 @@ abstract class File {
 				return $this->handler->getTransform( $this, $thumbPath, $thumbUrl, $params );
 			}
 		} elseif ( $flags & self::RENDER_FORCE ) {
-			wfDebug( __METHOD__ . " forcing rendering per flag File::RENDER_FORCE\n" ); 
+			wfDebug( __METHOD__ . " forcing rendering per flag File::RENDER_FORCE\n" );
 		}
 
 		// Create a temp FS file with the same extension

@@ -1947,7 +1947,7 @@ Used on [[Special:UploadWizard]].',
 'http-invalid-scheme' => 'The message appears in the Mediawiki code as follows:
 
  if ( $this->parsedUrl[\'scheme\'] != \'http\' ) {
-    $this->status->fatal( \'http-invalid-scheme\', $this->parsedUrl[\'scheme\'] );
+	$this->status->fatal( \'http-invalid-scheme\', $this->parsedUrl[\'scheme\'] );
  }
 
 Siebrand think this has to do with allowing MediaWiki to fetch remote URLs, and in that not allowing anything but "http://" request. So if this for example is "irc://" or "https://", $1 would be "irc" or "https" respectively.
