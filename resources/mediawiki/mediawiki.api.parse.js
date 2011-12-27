@@ -19,7 +19,7 @@
 					action: 'parse'
 				},
 				ok = function( data ) {
-					if ( data && data.parse && data.parse.text && data.parse.text['*'] ) {
+					if ( data.parse && data.parse.text && data.parse.text['*'] ) {
 						success( data.parse.text['*'] );
 					}
 				};

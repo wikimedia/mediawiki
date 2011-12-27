@@ -182,7 +182,6 @@
 		// upload succeeded, but no image info.
 		// this is probably impossible, but might as well check for it
 		'noimageinfo',
-
 		// remote errors, defined in API
 		'uploaddisabled',
 		'nomodule',
@@ -207,7 +206,9 @@
 		'overwrite',
 		'badtoken',
 		'fetchfileerror',
-		'fileexists-shared-forbidden'
+		'fileexists-shared-forbidden',
+		'invalidtitle',
+		'notloggedin'
 	];
 
 	/**

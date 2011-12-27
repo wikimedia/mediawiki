@@ -526,6 +526,10 @@ return array(
 			'mediawiki.Title' 
 		),
 	),
+	'mediawiki.api.watch' => array( 
+		'scripts' => 'resources/mediawiki/mediawiki.api.watch.js',
+		'dependencies' => 'mediawiki.api',
+	),
 	'mediawiki.debug' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.debug.js',
 		'styles' => 'resources/mediawiki/mediawiki.debug.css',
@@ -614,6 +618,7 @@ return array(
 	),
 	'mediawiki.action.watch.ajax' => array(
 		'scripts' => 'resources/mediawiki.action/mediawiki.action.watch.ajax.js',
+		'dependencies' => 'mediawiki.api.watch',
 		'messages' => array(
 			'watch',
 			'unwatch',
