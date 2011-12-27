@@ -601,6 +601,7 @@ $wgAutoloadLocalClasses = array(
 	'FormatMetadata' => 'includes/media/FormatMetadata.php',
 	'GIFHandler' => 'includes/media/GIF.php',
 	'GIFMetadataExtractor' => 'includes/media/GIFMetadataExtractor.php',
+	'XCFHandler' => 'includes/media/XCF.php',
 	'ImageHandler' => 'includes/media/Generic.php',
 	'IPTC' => 'includes/media/IPTC.php',
 	'JpegHandler' => 'includes/media/Jpeg.php',
