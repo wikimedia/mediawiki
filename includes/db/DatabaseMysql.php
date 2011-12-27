@@ -670,6 +670,15 @@ class DatabaseMysql extends DatabaseBase {
 		}
 	}
 
+	protected function streamStatementEnd( &$sql, &$newLine ) {
+		if ( strtoupper( substr( $newLine, 0, 9 ) ) == 'DELIMITER' ) {
+			preg_match( '/^DELIMITER\s+(\S+)/' , $newLine, $m );
+			$this->delimiter = $m[1];
+			$newLine = '';
+		}
+		return parent::streamStatementEnd( $sql, $newLine );
+	}
+
 	/**
 	 * @param $lockName string
 	 * @param $method string

@@ -1050,4 +1050,17 @@ SQL;
 	public function getSearchEngine() {
 		return 'SearchPostgres';
 	}
+
+	protected function streamStatementEnd( &$sql, &$newLine ) {
+		# Allow dollar quoting for function declarations
+		if ( substr( $newLine, 0, 4 ) == '$mw$' ) {
+			if ( $this->delimiter ) {
+				$this->delimiter = false;
+			}
+			else {
+				$this->delimiter = ';';
+			}
+		}
+		return parent::streamStatementEnd( $sql, $newLine );
+	}
 } // end DatabasePostgres class

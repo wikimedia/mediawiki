@@ -228,6 +228,8 @@ abstract class DatabaseBase implements DatabaseType {
 
 	protected $htmlErrors;
 
+	protected $delimiter = ';';
+
 # ------------------------------------------------------------------------------
 # Accessors
 # ------------------------------------------------------------------------------
@@ -3156,19 +3158,17 @@ abstract class DatabaseBase implements DatabaseType {
 	function sourceStream( $fp, $lineCallback = false, $resultCallback = false,
 		$fname = 'DatabaseBase::sourceStream' )
 	{
-		$cmd = "";
+		$cmd = '';
 		$done = false;
-		$dollarquote = false;
 
-		while ( ! feof( $fp ) ) {
+		while ( !feof( $fp ) ) {
 			if ( $lineCallback ) {
 				call_user_func( $lineCallback );
 			}
 
 			$line = trim( fgets( $fp ) );
-			$sl = strlen( $line ) - 1;
 
-			if ( $sl < 0 ) {
+			if ( $line == '' ) {
 				continue;
 			}
 
@@ -3176,31 +3176,15 @@ abstract class DatabaseBase implements DatabaseType {
 				continue;
 			}
 
-			# # Allow dollar quoting for function declarations
-			if ( substr( $line, 0, 4 ) == '$mw$' ) {
-				if ( $dollarquote ) {
-					$dollarquote = false;
-					$done = true;
-				}
-				else {
-					$dollarquote = true;
-				}
-			}
-			elseif ( !$dollarquote ) {
-				if ( ';' == $line[$sl] && ( $sl < 2 || ';' != $line[$sl - 1] ) ) {
-					$done = true;
-					$line = substr( $line, 0, $sl );
-				}
-			}
-
 			if ( $cmd != '' ) {
 				$cmd .= ' ';
 			}
 
+			$done = $this->streamStatementEnd( $cmd, $line );
+
 			$cmd .= "$line\n";
 
-			if ( $done ) {
-				$cmd = str_replace( ';;', ";", $cmd );
+			if ( $done || feof( $fp ) ) {
 				$cmd = $this->replaceVars( $cmd );
 				$res = $this->query( $cmd, $fname );
 
@@ -3219,6 +3203,24 @@ abstract class DatabaseBase implements DatabaseType {
 		}
 
 		return true;
+	}
+
+	/**
+	 * Called by sourceStream() to check if we've reached a statement end
+	 * 
+	 * @param $sql String: SQL assembled so far
+	 * @param $newLine String: New line about to be added to $sql
+	 * @returns Bool: Whether $newLine contains end of the statement
+	 */
+	protected function streamStatementEnd( &$sql, &$newLine ) {
+		if ( $this->delimiter ) {
+			$prev = $newLine;
+			$newLine = preg_replace( '/' . preg_quote( $this->delimiter, '/' ) . '$/', '', $newLine );
+			if ( $newLine != $prev ) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**
