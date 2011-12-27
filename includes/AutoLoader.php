@@ -469,7 +469,7 @@ $wgAutoloadLocalClasses = array(
 	'LocalRepo' => 'includes/filerepo/LocalRepo.php',
 	'NullRepo' => 'includes/filerepo/NullRepo.php',
 	'RepoGroup' => 'includes/filerepo/RepoGroup.php',
-	
+
 	# includes/filerepo/file
 	'ArchivedFile' => 'includes/filerepo/file/ArchivedFile.php',
 	'File' => 'includes/filerepo/file/File.php',
@@ -594,19 +594,18 @@ $wgAutoloadLocalClasses = array(
 	'BitmapHandler_ClientOnly' => 'includes/media/Bitmap_ClientOnly.php',
 	'BitmapMetadataHandler' => 'includes/media/BitmapMetadataHandler.php',
 	'BmpHandler' => 'includes/media/BMP.php',
-	'DjVuImage' => 'includes/media/DjVuImage.php',
 	'DjVuHandler' => 'includes/media/DjVu.php',
+	'DjVuImage' => 'includes/media/DjVuImage.php',
 	'Exif' => 'includes/media/Exif.php',
+	'ExifBitmapHandler' => 'includes/media/ExifBitmap.php',
 	'FormatExif' => 'includes/media/FormatMetadata.php',
 	'FormatMetadata' => 'includes/media/FormatMetadata.php',
 	'GIFHandler' => 'includes/media/GIF.php',
 	'GIFMetadataExtractor' => 'includes/media/GIFMetadataExtractor.php',
-	'XCFHandler' => 'includes/media/XCF.php',
 	'ImageHandler' => 'includes/media/Generic.php',
 	'IPTC' => 'includes/media/IPTC.php',
 	'JpegHandler' => 'includes/media/Jpeg.php',
 	'JpegMetadataExtractor' => 'includes/media/JpegMetadataExtractor.php',
-	'ExifBitmapHandler' => 'includes/media/ExifBitmap.php',
 	'MediaHandler' => 'includes/media/Generic.php',
 	'MediaTransformError' => 'includes/media/MediaTransformOutput.php',
 	'MediaTransformOutput' => 'includes/media/MediaTransformOutput.php',
@@ -617,6 +616,7 @@ $wgAutoloadLocalClasses = array(
 	'ThumbnailImage' => 'includes/media/MediaTransformOutput.php',
 	'TiffHandler' => 'includes/media/Tiff.php',
 	'TransformParameterError' => 'includes/media/MediaTransformOutput.php',
+	'XCFHandler' => 'includes/media/XCF.php',
 	'XMPInfo' => 'includes/media/XMPInfo.php',
 	'XMPReader' => 'includes/media/XMP.php',
 	'XMPValidate' => 'includes/media/XMPValidate.php',
@@ -884,7 +884,7 @@ $wgAutoloadLocalClasses = array(
 	'UploadStashNotLoggedInException' => 'includes/upload/UploadStash.php',
 	'UploadStashWrongOwnerException' => 'includes/upload/UploadStash.php',
 	'UploadStashNoSuchKeyException' => 'includes/upload/UploadStash.php',
-	
+
 	# languages
 	'FakeConverter' => 'languages/Language.php',
 	'Language' => 'languages/Language.php',
