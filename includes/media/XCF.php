@@ -1,13 +1,13 @@
 <?php
 /**
- * Handler for Microsoft's bitmap format
+ * Handler for the Gimp's native file format
  *
  * @file
  * @ingroup Media
  */
 
 /**
- * Handler for Microsoft's bitmap format; getimagesize() doesn't
+ * Handler for the Gimp's native file format; getimagesize() doesn't
  * support these files
  *
  * @ingroup Media
