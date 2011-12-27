@@ -2875,9 +2875,9 @@ class Title {
 	 * This clears some fields in this object, and clears any associated
 	 * keys in the "bad links" section of the link cache.
 	 *
-	 * - This is called from Article::doEdit() and Article::insertOn() to allow
+	 * - This is called from WikiPage::doEdit() and WikiPage::insertOn() to allow
 	 * loading of the new page_id. It's also called from
-	 * Article::doDeleteArticle()
+	 * WikiPage::doDeleteArticle()
 	 *
 	 * @param $newid Int the new Article ID
 	 */
@@ -3689,7 +3689,7 @@ class Title {
 			$nt->purgeSquid();
 		} else {
 			# Purge caches as per article creation, including any pages that link to this title
-			Article::onArticleCreate( $nt );
+			WikiPage::onArticleCreate( $nt );
 		}
 		$this->purgeSquid();
 	}
