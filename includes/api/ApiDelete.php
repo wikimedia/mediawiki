@@ -112,11 +112,6 @@ class ApiDelete extends ApiBase {
 	 * @return Title::getUserPermissionsErrors()-like array
 	 */
 	public static function delete( Page $page, User $user, $token, &$reason = null ) {
-		if ( $page->isBigDeletion() && !$user->isAllowed( 'bigdelete' ) ) {
-			global $wgDeleteRevisionsLimit;
-			return array( array( 'delete-toobig', $wgDeleteRevisionsLimit ) );
-		}
-
 		$title = $page->getTitle();
 		$errors = self::getPermissionsError( $title, $user, $token );
 		if ( count( $errors ) ) {

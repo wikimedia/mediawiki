@@ -1560,27 +1560,25 @@ class WikiPage extends Page {
 	}
 
 	/**
-	 * @return bool whether or not the page surpasses $wgDeleteRevisionsLimit revisions
+	 * Check whether the number of revisions of this page surpasses $wgDeleteRevisionsLimit
+	 *
+	 * @deprecated in 1.19; use Title::isBigDeletion() instead.
+	 * @return bool
 	 */
 	public function isBigDeletion() {
-		global $wgDeleteRevisionsLimit;
-
-		if ( $wgDeleteRevisionsLimit ) {
-			$revCount = $this->estimateRevisionCount();
-
-			return $revCount > $wgDeleteRevisionsLimit;
-		}
-
-		return false;
+		wfDeprecated( __METHOD__, '1.19' );
+		return $this->mTitle->isBigDeletion();
 	}
 
 	/**
-	 * @return int approximate revision count
+	 * Get the  approximate revision count of this page.
+	 *
+	 * @deprecated in 1.19; use Title::estimateRevisionCount() instead.
+	 * @return int
 	 */
 	public function estimateRevisionCount() {
-		$dbr = wfGetDB( DB_SLAVE );
-		return $dbr->estimateRowCount( 'revision', '*',
-			array( 'rev_page' => $this->getId() ), __METHOD__ );
+		wfDeprecated( __METHOD__, '1.19' );
+		return $this->mTitle->estimateRevisionCount();
 	}
 
 	/**
