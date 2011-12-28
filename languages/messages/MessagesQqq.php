@@ -4489,4 +4489,23 @@ Parameter $4, the target page, is also not visible to parser functions.',
 
 $4 is the gender of the target user.',
 
+# Feedback
+'feedback-bugornote' => 'When feedback dialog box is opened, this introductory message in small print explains the options to report a bug or add simple feedback. We expect that people in a hurry will not read this.',
+'feedback-subject'   => 'Label for a text input
+{{Identical|Subject}}',
+'feedback-message'   => 'Label for a textarea; signature referrs to a Wikitext signature.',
+'feedback-cancel'    => 'Button label
+{{Identical|Cancel}}',
+'feedback-submit'    => 'Button label
+{{Identical|Submit}}',
+'feedback-adding'    => 'Progress notice',
+'feedback-error1'    => 'Error message, appears when an unknown error occurs submitting feedback',
+'feedback-error2'    => 'Error message, appears when we could not add feedback',
+'feedback-error3'    => 'Error message, appears when we lose our connection to the wiki',
+'feedback-thanks'    => 'Thanks message, appears if feedback was successful',
+'feedback-close'     => 'Button label
+{{Identical|Done}}',
+'feedback-bugcheck'  => 'Message that appears before the user submits a bug, reminding them to check for known bugs.',
+'feedback-bugnew'    => 'Button label - asserts that the user has checked for existing bugs. When clicked will launch a bugzilla form to add a new bug in a new tab or window',
+
 );
