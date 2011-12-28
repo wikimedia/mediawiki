@@ -811,19 +811,20 @@ Vini re : që nuk mund ta përdorni mundësinë "dërgo porosi elektronike" për
 
 IP adresa juaj e tanishme është $3 dhe ID e bllokimit është #$5.
 Ju lutemi përfshini këto detaje në të gjitha kërkesat që i bëni.',
-'blockednoreason'                  => 'nuk ka arsye',
-'whitelistedittext'                => 'Duhet të $1 për të redaktuar artikuj.',
+'blockednoreason'                  => 'nuk është dhënë ësnje arsye',
+'whitelistedittext'                => 'Ju duhet të $1 për të redaktuar faqet.',
 'confirmedittext'                  => 'Ju duhet së pari ta vërtetoni e-mail adresen para se të redaktoni. Ju lutem plotësoni dhe vërtetoni e-mailin tuaj  te [[Special:Preferences|parapëlqimet]] e juaja.',
-'nosuchsectiontitle'               => '!Asnjë seksion i tillë nuk ekziston',
-'nosuchsectiontext'                => "Keni provuar të redaktoni një seksion që s'ekziston.",
-'loginreqtitle'                    => 'Detyrohet hyrja',
-'loginreqlink'                     => 'hyni',
-'loginreqpagetext'                 => 'Ju duhet $1 për të parë faqe e tjera.',
+'nosuchsectiontitle'               => 'Paragrafi nuk mund të gjendet',
+'nosuchsectiontext'                => 'Ju po kërkoni të redaktoni një paragraf që nuk ekziston.
+Mund të jetë zhvendosur ose fshirë ndërkohë që ju ishit duke parë këtë faqe.',
+'loginreqtitle'                    => 'Kërkohet identifikim',
+'loginreqlink'                     => 'Identifikohuni',
+'loginreqpagetext'                 => 'Ju duhet $1 për të parë faqet e tjera.',
 'accmailtitle'                     => 'Fjalëkalimi u dërgua.',
-'accmailtext'                      => "Nji fjalëkalim i krijuem rastësisht për [[User talk:$1|$1]] u dërgue në $2.
+'accmailtext'                      => "Një fjalëkalim i krijuar në mënyrë të rastësishme për [[User talk:$1|$1]] u dërgua në $2.
 
-Fjalëkalimi për këtë llogari mundet me u ndryshue në faqen ''[[Special:ChangePassword|ndrysho fjalëkalimin]]'' mbas kyçjes.",
-'newarticle'                       => '(I Ri)',
+Fjalëkalimi për këtë llogari mund të ndryshohet në faqen ''[[Special:ChangePassword|ndrysho fjalëkalimin]]'' pasi të jeni identifikuar.",
+'newarticle'                       => '(I ri)',
 'newarticletext'                   => "Ju keni ndjekur nje lidhje drejt një faqeje që nuk ekziston.
 Për ta krijuar këtë faqe ju mund të shkruani në kutinë e mëposhtme (shih [[{{MediaWiki:Helppage}}|faqen e ndihmës]] për më shumë informacion).
 Nëse ju keni mbërritur këtu gabimisht, atëherë klikoni butonin '''pas''' të shfletuesit tuaj.",
@@ -841,7 +842,7 @@ Ju mundeni [[Special:Search/{{PAGENAME}}|me kërku këtë titull]] në faqe tjer
 apo [{{fullurl:{{FULLPAGENAME}}|action=edit}} me redaktu këtë faqe]</span>.',
 'userpage-userdoesnotexist'        => 'Llogaria e përdoruesit "<nowiki>$1</nowiki>" nuk është e regjistruar. 
 Ju lutem kontrolloni nëse dëshironi të krijoni/redaktoni këtë faqe.',
-'userpage-userdoesnotexist-view'   => 'Profili i përdoruesit "$1" nuk është i regjistruar.',
+'userpage-userdoesnotexist-view'   => 'Llogaria i përdoruesit "$1" nuk është e regjistruar.',
 'blocked-notice-logextract'        => "Ky përdorues është  aktualisht i bllokuar.
 Më poshtë mund t'i referoheni shënimit të regjistruar për bllokimin e fundit:",
 'clearyourcache'                   => "''Shënim:''' Pas ruajtjes, juve mund t'iu duhet të anashkaloni \"cache-in\" e shfletuesit tuaj për të parë ndryshimet. 
@@ -862,7 +863,7 @@ Më poshtë mund t'i referoheni shënimit të regjistruar për bllokimin e fundi
 'userinvalidcssjstitle'            => "'''Kujdes:''' Nuk ka pamje të quajtur \"\$1\". Vini re se faqet .css dhe .js përdorin titull me gërma të vogla, p.sh. {{ns:user}}:Foo/vector.css, jo {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(E ndryshuar)',
 'note'                             => "'''Shënim:'''",
-'previewnote'                      => "'''Vini re! Kjo është vetëm për inspektim'''
+'previewnote'                      => "'''Vini re! Kjo faqe është vetëm për inspektim'''
 Ndryshimet tuaja nuk janë ruajtur ende!",
 'previewconflict'                  => 'Kjo parapamje reflekton tekstin sipër kutisë së redaktimit siç do të duket kur të kryeni ndryshimin.',
 'session_fail_preview'             => "'''Ju kërkojmë ndjesë! Redaktimi juaj nuk mund të perpunohej për shkak të humbjes së të dhënave të seancës.'''
@@ -877,8 +878,8 @@ Redaktimi nuk u pranua për të parandaluar korruptimin e tekstit në faqe.
 Kjo ndodh ndonjëherë kur përdoret server anonim dytësor me gabime.",
 'edit_form_incomplete'             => "'''Disa pjesë të formularit të redaktimit nuk arritën në server; kontrolloni edhe një herë nëse redaktimet tuaja janë të paprekura dhe provojeni përsëri.'''",
 'editing'                          => 'Duke redaktuar $1',
-'editingsection'                   => 'Duke redaktuar $1 (seksion)',
-'editingcomment'                   => 'Duke redaktuar (sekcionin e ri) $1',
+'editingsection'                   => 'Duke redaktuar $1 (paragraf)',
+'editingcomment'                   => 'Duke redaktuar (paragraf i ri) $1',
 'editconflict'                     => 'Konflikt redaktimi: $1',
 'explainconflict'                  => "Dikush tjetër ka ndryshuar këtë faqe kur ju po e redaktonit.
 Kutiza e redaktimit mësipërme tregon tekstin e faqes siç ekziston tani.
@@ -886,7 +887,7 @@ Ndryshimet juaja janë treguar poshtë kutisë së redaktimit.
 Ju duhet të përputhni ndryshimet tuaja me tekstin ekzistues.
 '''Vetëm''' teksti në kutinë e sipërme të redaktimit do të ruhet kur të shtypni \"{{int:savearticle}}\".",
 'yourtext'                         => 'Teksti juaj',
-'storedversion'                    => 'Versioni i ruajtur',
+'storedversion'                    => 'Rishikim i ruajtur',
 'nonunicodebrowser'                => "'''KUJDES: Shfletuesi juaj nuk përdor dot unikode, ju lutem ndryshoni shfletues para se të redaktoni artikuj.'''",
 'editingold'                       => "'''KUJDES: Po redaktoni një version të vjetër të kësaj faqeje. Në qoftë se e ruani, çdo ndryshim i bërë deri tani do të humbet.'''",
 'yourdiff'                         => 'Ndryshimet',
@@ -900,8 +901,9 @@ Po na premtoni që ç'ka po jepni këtu e keni kontributin tuaj ose e keni kopju
 Ju ndoshta doni të kopjoni tekstin në një tekst dokument dhe të e ruani për më vonë.'''
 
 Administruesi që ka bërë mbylljen ka dhënë këtë sqarim: $1.",
-'protectedpagewarning'             => "'''KUJDES: Kjo faqe është mbyllur ashtu që vetëm përdoruesit me titullin administrator mund ta redaktojnë.'''",
-'semiprotectedpagewarning'         => "'''Shënim:''' Kjo faqe është e mbrojtur dhe mund të bëhet vetëm nga përdorues të regjistruar.
+'protectedpagewarning'             => "'''KUJDES: Kjo faqe është e mbrotjur dhe mund të redaktohet nga përdorues me të drejta administratori.'''
+Shënimi i fundit në regjistër është paraqitur më poshtë për reference:",
+'semiprotectedpagewarning'         => "'''Shënim:''' Kjo faqe është e mbrojtur dhe mund të redaktohet vetëm nga përdorues të regjistruar.
 Shënimi i fundit në regjistër është paraqitur më poshtë për reference:",
 'cascadeprotectedwarning'          => "'''Vini re:''' Kjo faqe është e mbrojtur dhe vetëm përdoruesit me privilegje administrative mund ta redaktojnë pasi është përfshirë në mbrotjen \"ujëvarë\" të {{PLURAL:\$1|faqes së|faqeve të}} mëposhtme:",
 'titleprotectedwarning'            => "'''Kujdes:  Kjo faqe është e mbrojtur dhe vetëm [[Special:ListGroupRights|disa përdorues]] mund ta krijojnë.'''
@@ -952,7 +954,8 @@ Këto parametra nuk janë përfshirë.",
 'language-converter-depth-warning'        => 'Konvertimi i gjuhës ka kaluar limitin e lejuar: ($1)',
 
 # "Undo" feature
-'undo-success' => 'Redaktimi nuk mund të kthehej. Ju lutem kontrolloni ndryshimet e mëposhtëme për të vërtetuar dëshirën e veprimit dhe pastaj kryeni ndryshimet për të plotësuar kthimin e redaktimit.',
+'undo-success' => 'Redaktimi nuk mund të zhbëhet. 
+Ju lutemi, kontrolloni krahasimin e mëposhtëm për të vërtetuar nëse kjo është ajo që dëshironi dhe pastaj kryeni ndryshimet për të plotësuar zhbërjen e redaktimit.',
 'undo-failure' => 'Redaktimi nuk mund të kthehej për shkak të përplasjeve të ndërmjetshme.',
 'undo-norev'   => "S'mund të zhbëja këtë redaktim pasi nuk ekziston ose është grisur.",
 'undo-summary' => 'U kthye versioni $1 i bërë nga [[Special:Contributions/$2]] ([[User talk:$2]])',
@@ -974,9 +977,9 @@ Arsyeja e dhënë nga $3 është ''$2''.",
 'nextrevision'           => 'Version më i ri →',
 'currentrevisionlink'    => 'shikoni versionin e tanishëm',
 'cur'                    => 'tani',
-'next'                   => 'mbas',
-'last'                   => 'fund',
-'page_first'             => 'Së pari',
+'next'                   => 'Vijo',
+'last'                   => 'mëparshme',
+'page_first'             => 'I parë',
 'page_last'              => 'Së fundmi',
 'histlegend'             => 'Legjenda: (tani) = ndryshimet me versionin e tanishëm,
 (fund) = ndryshimet me versionin e parardhshëm, V = redaktim i vogël',

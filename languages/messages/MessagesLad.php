@@ -501,6 +501,20 @@ Si puede ser, escoge un otro nombre.',
 'accountcreatedtext'      => 'El cuento del usuario para $1 fue creado.',
 'loginlanguagelabel'      => 'Lingua: $1',
 
+# Change password dialog
+'oldpassword'             => 'Kóddiche viejo:',
+'newpassword'             => 'Kóddiche muevo:',
+'resetpass-submit-cancel' => 'Anular',
+
+# Special:PasswordReset
+'passwordreset-username' => 'Nombre de usador:',
+'passwordreset-domain'   => 'Dominio:',
+'passwordreset-email'    => 'Adresso de letral:',
+
+# Special:ChangeEmail
+'changeemail-submit' => 'Trocar letral',
+'changeemail-cancel' => 'Anular',
+
 # Edit page toolbar
 'bold_sample'     => 'Teksto gordo',
 'bold_tip'        => 'Teksto gordo',
@@ -527,12 +541,16 @@ Si puede ser, escoge un otro nombre.',
 'savearticle'                      => 'Enrejistra la hoja',
 'preview'                          => 'Previsualizar',
 'showpreview'                      => 'Mostrar la previsualización',
+'showlivepreview'                  => 'Previsteo bivo',
 'showdiff'                         => 'Amostrar los trocamientos',
 'anoneditwarning'                  => "'''Noticia:''' La sesyón no empeçó con un cuento de usuario.
 Tu adresso de IP va ser enrejjistrado en la istoria de la hoja.",
 'summary-preview'                  => 'Previsualización del resumen:',
+'blockedtitle'                     => 'El usador está blokeado',
 'blockednoreason'                  => 'La razόn no se diό',
 'whitelistedittext'                => 'Tienes que $1 para pueder trocar artículos.',
+'loginreqtitle'                    => 'Entrar es menester',
+'loginreqlink'                     => 'entrar',
 'loginreqpagetext'                 => 'Tienes que $1 para pueder ver otras hojas.',
 'accmailtitle'                     => 'La kontrasenya ha sido embiada.',
 'accmailtext'                      => 'La kontrasenya para "$1" se ha embiado a $2.',
@@ -547,10 +565,12 @@ o [{{fullurl:{{FULLPAGENAME}}|action=edit}} trocar esta hoja]</span>.',
 'noarticletext-nopermission'       => 'No ay teksto oy día en esta hoja.
 Puedes [[Special:Search/{{PAGENAME}}|buscar este títůlo de hoja]] en otras hojas,
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} buscar en los rejistros relasyonados]</span>.',
+'userpage-userdoesnotexist-view'   => 'El cuento del usador $1 no está enrejistrado.',
 'note'                             => "'''Nota:'''",
 'previewnote'                      => "'¡Acórdate que esto es sólo una previsualización y daínda no se registró!'''",
 'editing'                          => 'Trocando $1',
 'editingsection'                   => 'Trocando $1 (sección)',
+'editingcomment'                   => 'Trocando $1 (kapítůlo)',
 'yourtext'                         => 'Tu teksto',
 'yourdiff'                         => 'Diferencias',
 'copyrightwarning'                 => "Si puede ser, observa que todas las contribuciones a {{SITENAME}} se consideran hechas públicas abaxo la $2 (ver detalyos en $1). Si no queres que la gente endereche tus tekstos escritos sin piadad i los esparta libberamente, alora no los metas aquí. También nos estás asegurando ansí que escribites este teksto tu mismo i sos el dueño de los derechos de autor, o lo copiates desde el dominio público u otra fuente libbero.'''¡QUE N0 USES TEKSTOS ESCRITOS CON COPYRIGHT SIN PERMISSIÓN!'''<br />",
@@ -569,12 +589,14 @@ Algunos xablones no serán incluidos.',
 
 # History pages
 'viewpagelogs'           => 'Ver los registros de esta hoja',
+'currentrev'             => "Enderechamiento d'al cavo",
 'currentrev-asof'        => 'Versión de alcabo de $1',
 'revisionasof'           => 'Rēvisión de $1',
 'previousrevision'       => '← Rēvisión de antes',
 'nextrevision'           => 'Rêvisión venidera →',
 'currentrevisionlink'    => 'Revisión actual',
 'cur'                    => 'act',
+'next'                   => 'venidero',
 'last'                   => 'de alcabo',
 'page_first'             => 'primeras',
 'page_last'              => 'de alcabo',
@@ -588,6 +610,9 @@ Leyenda: (act) = diferencias con la versión actual,
 'historysize'            => '({{PLURAL:$1|1 byte|$1 bytes}})',
 'historyempty'           => '(vazío)',
 
+# Revision feed
+'history-feed-title' => 'Îstoria de nderechamientos',
+
 # Revision deletion
 'rev-delundel'               => 'mostra/esconde',
 'rev-showdeleted'            => 'mostra',
@@ -599,6 +624,7 @@ Leyenda: (act) = diferencias con la versión actual,
 'revdel-restore'             => 'Troca la viźibbilidad',
 'revdel-restore-deleted'     => 'revisiones efassadas',
 'revdel-restore-visible'     => 'revisiones visibles',
+'pagehist'                   => 'La storia de la hoja',
 'revdelete-reasonotherlist'  => 'Otra razón',
 
 # History merging
@@ -667,32 +693,42 @@ Las búsquedas producen más o munco a buscar biervos comunes como «la» o «de
 # Preferences page
 'preferences'               => 'Preferencias',
 'mypreferences'             => 'Mis preferencias',
+'changepassword'            => 'Trocar el kóddiche',
 'prefs-skin'                => 'Vista',
+'skin-preview'              => 'Previstear',
 'prefs-rc'                  => 'Los Trocamientos de Alcabo',
 'prefs-watchlist'           => 'Lista de los Trocamientos Preferidos',
 'prefs-watchlist-days'      => 'El número de los días a mostrar en la lista de los trocamientos preferidos:',
 'prefs-watchlist-days-max'  => '7 días a lo más muncho',
 'prefs-resetpass'           => 'Trocar la parola',
 'prefs-rendering'           => 'Vista',
+'saveprefs'                 => 'Enrejistrar',
 'timezoneregion-africa'     => 'África',
 'timezoneregion-america'    => 'América',
 'timezoneregion-antarctica' => 'Antárctica',
 'timezoneregion-asia'       => 'Asia',
 'timezoneregion-australia'  => 'Ostralia',
 'timezoneregion-europe'     => 'Europa',
+'prefs-files'               => 'Dosyas',
 'youremail'                 => 'El adderesso de tu letra electrόnica:',
 'username'                  => 'Nombre de usuario:',
 'yourrealname'              => 'Nombre verdadero:',
 'yourlanguage'              => 'Lingua:',
-'email'                     => 'Letra electrónica',
+'yournick'                  => 'Firma mueva:',
+'email'                     => 'Letral',
+'prefs-signature'           => 'Firma',
 
 # Groups
+'group-user'  => 'Usadorers',
 'group-sysop' => 'Administradores',
+'group-all'   => '(todos)',
 
 'grouppage-sysop' => '{{ns:project}}:Administradores',
 
 # Rights
-'right-edit' => 'Trocar las hojas',
+'right-edit'      => 'Trocar las hojas',
+'right-minoredit' => 'Marcar trocamientos como "chiquiticos"',
+'right-delete'    => 'Efassar hojas',
 
 # User rights log
 'rightslog' => 'Trocamientos de profil de usuario',
@@ -747,6 +783,7 @@ Las hojas en tu [[Special:Watchlist|lista de escogidas]] son escritas '''gordas'
 # Special:ListFiles
 'listfiles_name' => 'Nombre',
 'listfiles_user' => 'Usuario',
+'listfiles_size' => 'Boy',
 
 # File description page
 'file-anchor-link'          => 'Archivo',
@@ -758,6 +795,7 @@ Las hojas en tu [[Special:Watchlist|lista de escogidas]] son escritas '''gordas'
 'filehist-thumbtext'        => 'Miniatura de la versión de $1',
 'filehist-user'             => 'Empleador',
 'filehist-dimensions'       => 'Dimensiones',
+'filehist-filesize'         => 'El boy de la dosya',
 'filehist-comment'          => 'Comentario',
 'imagelinks'                => 'Linkes al arxivo multimedia',
 'linkstoimage'              => '{{PLURAL:$1|La hoja venidera da link|Las hojas venideras dan link}} a este arxivo:',

@@ -924,6 +924,8 @@ Kò ṣe àlàyé kankan.',
 'revdelete-show-file-submit'  => 'Bẹ́ẹ̀ni',
 'revdelete-selected'          => "'''{{PLURAL:$2|Àtúnyẹ̀wò síṣàyàn|Àwọn àtúnyẹ̀wò síṣàyàn}} fún [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Àkọọ́lẹ̀ ìṣẹ̀lẹ̀ síṣàyàn|Àwọn àkọọ́lẹ̀ ìṣẹ̀lẹ̀ síṣàyàn}}:'''",
+'revdelete-text'              => "'''Àwọn àtúnyẹ̀wò onípíparẹ́ àti ìṣẹ̀lẹ̀ yíò sì tún hàn nínú ojúewé ìtàn àti àkọọ́lẹ̀, sùgbọ́n àwọn apá àkóónú wọn kò ní hàn jáde sí ìgboro'''
+Àwọn olùmójútó míràn lórí {{SITENAME}} yíò sí tún le wo àkóónú àbòmọ́lẹ̀ náà bẹ́ẹ̀sìni wọ́n le mú ìparẹ́ kúrò lórí ìfojúkojú yìí, àyàfi tí àwọn ìdíwọ́ míràn bá jẹ́ títòsílẹ̀.",
 'revdelete-confirm'           => 'Ẹ jọ̀wọ́ ẹ rídájú pé ohun tí ẹ fẹ́ ṣe nìyí, pé ohun tí yíò ṣẹlẹ̀ yé yín, bẹ́ẹ̀sìni pé ẹ̀ únṣe é lọ́nà tó bá  [[{{MediaWiki:Policy-url}}|àdéhùn]] mu.',
 'revdelete-legend'            => 'Ìtò àwọn àlà ìhàn',
 'revdelete-hide-text'         => 'Ìbòmọ́lẹ̀ ìkọ̀ àtúnyẹ̀wò',
@@ -983,6 +985,9 @@ Kò ṣe é bòmọ́lẹ̀.',
 'mergehistory-from'                => 'Ojúewé orísun:',
 'mergehistory-into'                => 'Ojúewé ìdópin:',
 'mergehistory-list'                => 'Ìtàn àtúnṣe tóṣeédàpọ̀',
+'mergehistory-merge'               => 'Àwọn àtúnyẹ̀wò ìsàlẹ̀ fún [[:$1]] ṣe é dàpọ̀ sínú [[:$2]].
+Ẹ lo àyè bọ́tìnì rédìò lati ṣèdàpọ̀ àwọn àtúnyẹ̀wò tó jẹ́ dídá lásìkò àtí kótó di àsìkò tí ẹ tọ́kasí níkan.
+Ẹ níyèsi pé lílo àwọn àjápọ̀ ìtọ́ka yíò ṣe ìtúntò àyè yìí.',
 'mergehistory-go'                  => 'Ìfihàn àwọn àtúnṣe tóṣeédàpọ̀',
 'mergehistory-submit'              => 'Ìdàpọ̀ àwọn àtúnyẹ̀wò',
 'mergehistory-empty'               => 'Àwọn àtúnyẹ̀wó kankan kò ṣeédàpọ̀.',
@@ -1394,116 +1399,150 @@ Tí ẹ bá fisílẹ̀ a ó lòó láti tóka iṣẹ́ yín fún yín.',
 'recentchangeslinked-to'       => 'Àfihàn àwọn àtúnṣe sí àwọn ojúewé tójápọ̀ mọ́ ojúewé ọ̀hún dípò',
 
 # Upload
-'upload'                     => 'Ìrùsókè fáìlì',
-'uploadbtn'                  => 'Ìrùsókè fáìlì',
-'reuploaddesc'               => 'Fagilé ìrùsókè kí ó tó padà sí fọ́ọ̀mù ìrùsókè',
-'uploadnologin'              => 'Ẹ kò tíì wọlé',
-'uploadnologintext'          => 'Ẹ gbọ́dọ̀ [[Special:UserLogin|wọlè]] láti rùsókè faili.',
-'upload_directory_missing'   => 'Àpò ìrùsókè ($1) kòsí bẹ́ẹ̀sìni kò le jẹ́ dídá látọwọ́ ẹ̀rọ-ìwọ̀fà.',
-'upload_directory_read_only' => 'Àpò ìrùsókè ($1) kò ṣeékọ sí nínú látọwọ́ ẹ̀rọ-ìwọ̀fà.',
-'uploaderror'                => 'Àsìse ìrùsókè',
-'upload-recreate-warning'    => "'''Ìkìlọ̀: Fáìlì kan pẹ̀lú orúkọ báun ti jẹ́ píparẹ́ tàbí yíyípódà.'''
+'upload'                      => 'Ìrùsókè fáìlì',
+'uploadbtn'                   => 'Ìrùsókè fáìlì',
+'reuploaddesc'                => 'Fagilé ìrùsókè kí ó tó padà sí fọ́ọ̀mù ìrùsókè',
+'uploadnologin'               => 'Ẹ kò tíì wọlé',
+'uploadnologintext'           => 'Ẹ gbọ́dọ̀ [[Special:UserLogin|wọlè]] láti rùsókè faili.',
+'upload_directory_missing'    => 'Àpò ìrùsókè ($1) kòsí bẹ́ẹ̀sìni kò le jẹ́ dídá látọwọ́ ẹ̀rọ-ìwọ̀fà.',
+'upload_directory_read_only'  => 'Àpò ìrùsókè ($1) kò ṣeékọ sí nínú látọwọ́ ẹ̀rọ-ìwọ̀fà.',
+'uploaderror'                 => 'Àsìse ìrùsókè',
+'upload-recreate-warning'     => "'''Ìkìlọ̀: Fáìlì kan pẹ̀lú orúkọ báun ti jẹ́ píparẹ́ tàbí yíyípódà.'''
 
 Àkọọ́lẹ̀ ìparẹ́ àti ìyípòdà fún ojúewé yìí nìyí fún ìrọ̀rùn:",
-'uploadtext'                 => "Ẹ lọ fọ́ọ̀mù ìsàlẹ̀ láti ṣèrùsókè àwọn fáìlì.
+'uploadtext'                  => "Ẹ lọ fọ́ọ̀mù ìsàlẹ̀ láti ṣèrùsókè àwọn fáìlì.
 Láti wò tàbí wá àwọn fáìlì àrùsókè tẹ́lẹ̀ ẹ lọ sí [[Special:FileList|àtòjọ àwọn fáìlì àrùsókè]], àwọn à(tùn)rùsókè náà jẹ́ kíkọọ́lẹ̀ nínú [[Special:Log/upload|àkọọ́lẹ̀ ìrùsókè]], àwọn ìparẹ́ nínú [[Special:Log/delete|àkọọ́lẹ̀ ìparẹ́]].
 
 Láti fí fáìlì pọ̀mọ́ sínú ojúewé kan, ẹ lo àjápọ̀ bíi ìkan nínù àwọn ti ìsàlẹ̀ yìí:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fáìlì.jpg]]</nowiki></tt>''' láti lo àtẹ̀jáde kíkún fáiø ọ̀hún
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fáìlì.png|200px|thumb|left|ìkọ̀rọ̀]]</nowiki></tt>''' láti lo ìgbéhàn fífẹ̀ tó 200 pixel nínú àpótí ní apá ọwọ́ òsì pẹ̀lú 'ìkọ̀rọ̀' bíi ìjúwe
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fáìlì.ogg]]</nowiki></tt>''' láti ṣèjápọ̀ tààrà sí fáìlì náà láì sàgbéhàn fáìlì ọ̀hún",
-'upload-permitted'           => 'Àwọn irú fáìlì yíyọ̀nda: $1',
-'upload-preferred'           => 'Àwọn irú fáìlì fífẹ́ràn: $1',
-'upload-prohibited'          => 'Àwọn irú fáìlì dídènà: $1',
-'uploadlog'                  => 'àkọọ́lẹ̀ ìrùsókè',
-'uploadlogpage'              => 'Àkọsílẹ̀ ìrùsókè',
-'uploadlogpagetext'          => 'Lábẹ́ yìí ni àkójọ àwọn ìrùsókè fáìlì áìpẹ́.
+'upload-permitted'            => 'Àwọn irú fáìlì yíyọ̀nda: $1',
+'upload-preferred'            => 'Àwọn irú fáìlì fífẹ́ràn: $1',
+'upload-prohibited'           => 'Àwọn irú fáìlì dídènà: $1',
+'uploadlog'                   => 'àkọọ́lẹ̀ ìrùsókè',
+'uploadlogpage'               => 'Àkọsílẹ̀ ìrùsókè',
+'uploadlogpagetext'           => 'Lábẹ́ yìí ni àkójọ àwọn ìrùsókè fáìlì áìpẹ́.
 Ẹ wo [[Special:NewFiles|ọ̀dẹ̀dẹ̀ àwọn fáìlì tuntun]] fún àgbéwò aláfojúrí',
-'filename'                   => 'Ọrúkọ fáìlì',
-'filedesc'                   => 'Àkótán',
-'fileuploadsummary'          => 'Àkótán:',
-'filereuploadsummary'        => 'Àwọn àtúnṣe fáìlì:',
-'filestatus'                 => 'Ipò ẹ̀tọ́àwòkọ:',
-'filesource'                 => 'Orísun:',
-'uploadedfiles'              => 'Àwọn fáìlì ajẹ́rírùsókè',
-'ignorewarning'              => 'Fojúfo ìkìlọ̀ sì fi faili pamọ́',
-'ignorewarnings'             => 'Fojúfo ìkìlọ̀ tó wù kó jẹ́',
-'minlength1'                 => 'Ó kéréjù àwọn orúkọ fáìlì gbọdọ̀ jẹ́ lẹ́tà kan.',
-'illegalfilename'            => 'Orúkọ fáìlì "$1" ní àwọn àmììkọ̀rọ̀ tí kò jẹ́ gbígbà láàyè nínú àkọlé ojúewé.
+'filename'                    => 'Ọrúkọ fáìlì',
+'filedesc'                    => 'Àkótán',
+'fileuploadsummary'           => 'Àkótán:',
+'filereuploadsummary'         => 'Àwọn àtúnṣe fáìlì:',
+'filestatus'                  => 'Ipò ẹ̀tọ́àwòkọ:',
+'filesource'                  => 'Orísun:',
+'uploadedfiles'               => 'Àwọn fáìlì ajẹ́rírùsókè',
+'ignorewarning'               => 'Fojúfo ìkìlọ̀ sì fi faili pamọ́',
+'ignorewarnings'              => 'Fojúfo ìkìlọ̀ tó wù kó jẹ́',
+'minlength1'                  => 'Ó kéréjù àwọn orúkọ fáìlì gbọdọ̀ jẹ́ lẹ́tà kan.',
+'illegalfilename'             => 'Orúkọ fáìlì "$1" ní àwọn àmììkọ̀rọ̀ tí kò jẹ́ gbígbà láàyè nínú àkọlé ojúewé.
 Ẹ jọ̀wọ́ ẹ tún fáìlì sọlórúkọ kì ẹ sì gbìyànjú láti tún rùúsókè.',
-'filename-toolong'           => 'Àwọn orúkọ fáìlì kò gbọdọ̀ gùnju 240 bytes lọ.',
-'badfilename'                => 'Orúkọ fáìlì ti yípadà sí "$1".',
-'filetype-mime-mismatch'     => 'Ìfàgùn fáìlì ".$1" kò ní ìbámu mọ́ irú MIME fáìlì náà ($2).',
-'filetype-badmime'           => 'Àwọn fáìlì MIME irú "$1" kò jẹ́ gbígbà láyè láti rù wọ́n sókè.',
-'filetype-bad-ie-mime'       => 'Ìrùsókè fáìlì yìí kò ṣeéṣe nítorípé Internet Explorer yíò ri bíi "$1", irú fáìlì ti kò gbà láàyè nítorípé ó léwu.',
-'filetype-unwanted-type'     => "'''\".\$1\"''' jẹ́ irú fáìlì àìfẹ́.
+'filename-toolong'            => 'Àwọn orúkọ fáìlì kò gbọdọ̀ gùnju 240 bytes lọ.',
+'badfilename'                 => 'Orúkọ fáìlì ti yípadà sí "$1".',
+'filetype-mime-mismatch'      => 'Ìfàgùn fáìlì ".$1" kò ní ìbámu mọ́ irú MIME fáìlì náà ($2).',
+'filetype-badmime'            => 'Àwọn fáìlì MIME irú "$1" kò jẹ́ gbígbà láyè láti rù wọ́n sókè.',
+'filetype-bad-ie-mime'        => 'Ìrùsókè fáìlì yìí kò ṣeéṣe nítorípé Internet Explorer yíò ri bíi "$1", irú fáìlì ti kò gbà láàyè nítorípé ó léwu.',
+'filetype-unwanted-type'      => "'''\".\$1\"''' jẹ́ irú fáìlì àìfẹ́.
 {{PLURAL:\$3|Irú fáìlì|Àwọn irú fáìlì}} tí à únfẹ́ ni \$2.",
-'filetype-banned-type'       => '\'\'\'".$1"\'\'\' {{PLURAL:$4|kìí ṣe|kìí ṣe àwọn}} irú fáìlì tí agbàláàyè.
+'filetype-banned-type'        => '\'\'\'".$1"\'\'\' {{PLURAL:$4|kìí ṣe|kìí ṣe àwọn}} irú fáìlì tí agbàláàyè.
 {{PLURAL:$3|Irú|Àwọn irú}} fáìlì tí agbàláàyè ni $2.',
-'filetype-missing'           => 'Fáìlì yìí kò ní ìfàgùn (fún àpẹrẹ ".jpg").',
-'empty-file'                 => 'Fáílì tí ẹ fúnsílẹ̀ jẹ́ òfo nínú.',
-'file-too-large'             => 'Fáílì tí ẹ fúnsílẹ̀ jẹ́ títóbijù',
-'filename-tooshort'          => 'Orúkọ fáílì jẹ́ kíkéréjú.',
-'filetype-banned'            => 'Irú fáílì yìí ti jẹ́ dídí lọ́nà.',
-'illegal-filename'           => 'Orúkọ fáílì yìí kò jẹ́ gbígbàláàyè.',
-'unknown-error'              => 'Àsìṣe aláìmọ̀ kan ti ṣẹlẹ̀.',
-'tmp-create-error'           => 'Kò le dá fáìlì onígbàdíẹ̀.',
-'tmp-write-error'            => 'Àsìṣe kíkọ fáìlí onígbàdíẹ̀.',
-'large-file'                 => 'O jẹ́ gbígbàníyànjú pé àwọn fáìlì ò gbọdọ̀ tóbi ju $1 lọ; 
+'filetype-missing'            => 'Fáìlì yìí kò ní ìfàgùn (fún àpẹrẹ ".jpg").',
+'empty-file'                  => 'Fáílì tí ẹ fúnsílẹ̀ jẹ́ òfo nínú.',
+'file-too-large'              => 'Fáílì tí ẹ fúnsílẹ̀ jẹ́ títóbijù',
+'filename-tooshort'           => 'Orúkọ fáílì jẹ́ kíkéréjú.',
+'filetype-banned'             => 'Irú fáílì yìí ti jẹ́ dídí lọ́nà.',
+'illegal-filename'            => 'Orúkọ fáílì yìí kò jẹ́ gbígbàláàyè.',
+'unknown-error'               => 'Àsìṣe aláìmọ̀ kan ti ṣẹlẹ̀.',
+'tmp-create-error'            => 'Kò le dá fáìlì onígbàdíẹ̀.',
+'tmp-write-error'             => 'Àsìṣe kíkọ fáìlí onígbàdíẹ̀.',
+'large-file'                  => 'O jẹ́ gbígbàníyànjú pé àwọn fáìlì ò gbọdọ̀ tóbi ju $1 lọ; 
 fáìlì yìí jẹ́ $2.',
-'windows-nonascii-filename'  => 'Wiki yìí kò ní àtìlẹ́yìn fún àwọn orúkọ fáìlì pẹ̀lú àwọn àmììkọ̀rọ̀ àkànṣe.',
-'fileexists'                 => "Fáìlì kan tilẹ̀ wà pẹ̀lú orúkọ yìí, ẹ jọ̀wọ́ ẹ yẹ '''<tt>[[:$1]]</tt>''' wò tí kò bá dá yín lójú pé ẹ fẹ́ yipadà.
+'windows-nonascii-filename'   => 'Wiki yìí kò ní àtìlẹ́yìn fún àwọn orúkọ fáìlì pẹ̀lú àwọn àmììkọ̀rọ̀ àkànṣe.',
+'fileexists'                  => "Fáìlì kan tilẹ̀ wà pẹ̀lú orúkọ yìí, ẹ jọ̀wọ́ ẹ yẹ '''<tt>[[:$1]]</tt>''' wò tí kò bá dá yín lójú pé ẹ fẹ́ yipadà.
 [[$1|thumb]]",
-'filepageexists'             => "Ojúewé ìjúwe fún fáìlì yìí tilẹ̀ ti wà ní '''<tt>[[:$1]]</tt>''', sùgbọ́n fáìlì kankan kò sí pẹ̀lú orúkọ yìí rárá. 
+'filepageexists'              => "Ojúewé ìjúwe fún fáìlì yìí tilẹ̀ ti wà ní '''<tt>[[:$1]]</tt>''', sùgbọ́n fáìlì kankan kò sí pẹ̀lú orúkọ yìí rárá. 
 Àkótán tí ẹ kọ kò ní hàn lórí ojúewé ìjúwe náà.
 Tí ẹ bá fẹ́ kí àkótán yín ó hàn níbẹ̀, ẹ gbọ́dọ̀ kọ ọ́ síbẹ̀ fún raara yín.
 [[$1|thumb]]",
-'fileexists-extension'       => "Fáìlì kan wà pẹ̀lú orúkọ tó jọra: [[$2|thumb]]
+'fileexists-extension'        => "Fáìlì kan wà pẹ̀lú orúkọ tó jọra: [[$2|thumb]]
 * Orúkọ fáìlì ìrùsókè: '''<tt>[[:$1]]</tt>'''
 * Orúkọ fáìlì tó wà: '''<tt>[[:$2]]</tt>'''
 Ẹ jọ̀wọ́ ẹ mú orúkọ tó yàtọ̀.",
-'file-exists-duplicate'      => 'Fáìlì yìí jẹ́ àwòkọ kan {{PLURAL:$1|fáìlì yìí|àwọn fáìlì wọ̀nyí}}:',
-'uploadwarning'              => 'Ìkìlọ̀ ìrùsókè',
-'uploadwarning-text'         => 'Ẹ jọ̀wọ́ ẹ tún ìjúwe fáìlì ìsàlẹ̀ náà ṣe kí ẹ tó gbìyànjú lẹ́ẹ̀kan síi.',
-'savefile'                   => 'Ìmúpamọ́ fáìlì',
-'uploadedimage'              => '"[[$1]]" ti jẹ́rírùsókè',
-'overwroteimage'             => 'ṣe ìrùsókè àtúnyẹ̀wò tuntun "[[$1]]"',
-'uploaddisabled'             => 'Dídálẹ́kun àwọn ìrùsókè.',
-'copyuploaddisabled'         => 'Ìdálẹ́kun ìrùsókè pẹ̀lú URL.',
-'uploadfromurl-queued'       => 'Ìrùsókè yín ti wà lóríìlà.',
-'uploaddisabledtext'         => 'Dídálẹ́kun àwọn ìrùsókè fáìlì.',
-'php-uploaddisabledtext'     => 'Ìrùsókè fáìlì jẹ́ dídálẹ́kun nínú PHP.
+'fileexists-thumbnail-yes'    => "Fáìlì náà dàbí pé ó jẹ́ àwòrán ìtóbi onírẹ̀sílẹ̀ ''(thumbnail)''.
+[[$1|thumb]]
+Ẹ jọ̀wọ́ ẹ yẹ fáìlì '''<tt>[[:$1]]</tt>''' wò.
+Tí fáìlì náà bá jẹ́ àwòrán kannáà kò pọndandan láti ṣe ìrùsókè thumbnail míràn.",
+'file-thumbnail-no'           => "Orúkọ fáìlì náà bẹ̀rẹ̀ pẹ̀lú '''<tt>$1</tt>'''.
+Ó dàbí pé ó jẹ́ àwòrán ìtóbi onírẹ̀sílẹ̀ ''(thumbnail)''.
+Tí ẹ bá ní àwòrán yìí ní ìgbéhàn kúnkún ẹ ṣe ìrùsókè èyí, bíbẹ́ẹ̀kọ́ ẹ jọ̀wọ́ ẹ yí orúkọ fáìlì náà padà sí òmíràn.",
+'fileexists-forbidden'        => 'Fáìlì kan wà tó ní orúkọ yìí, bẹ́ẹ̀sìni kò ṣe é kọ lélórí.
+Tí ẹ bá síbẹ̀ fẹ́ ṣe ìrùsókè fáìlì yín yìí, ẹ jọ̀wọ́ ẹ padà sẹ́yìn lọ fún un ní orúkọ tuntun.
+[[File:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'Fáìlì kan wà tó ní orúkọ yìí nínú ibi-àkójọ fáìlì àjọpín.
+Tí ẹ bá síbẹ̀ fẹ́ ṣe ìrùsókè fáìlì yín yìí, ẹ jọ̀wọ́ ẹ padà sẹ́yìn lọ fún un ní orúkọ tuntun.
+[[File:$1|thumb|center|$1]]',
+'file-exists-duplicate'       => 'Fáìlì yìí jẹ́ àwòkọ kan {{PLURAL:$1|fáìlì yìí|àwọn fáìlì wọ̀nyí}}:',
+'file-deleted-duplicate'      => 'Fáìlì kan tó jọ fáìlì yìí ([[:$1]]) ti jẹ́ píparẹ́ tẹ́lẹ̀.
+Ẹ gbọ́dọ̀ yẹ ìtàn ìparẹ́ fáìlì náà wò kí ẹ tó gbéra láti tún un rùsókè.',
+'uploadwarning'               => 'Ìkìlọ̀ ìrùsókè',
+'uploadwarning-text'          => 'Ẹ jọ̀wọ́ ẹ tún ìjúwe fáìlì ìsàlẹ̀ náà ṣe kí ẹ tó gbìyànjú lẹ́ẹ̀kan síi.',
+'savefile'                    => 'Ìmúpamọ́ fáìlì',
+'uploadedimage'               => '"[[$1]]" ti jẹ́rírùsókè',
+'overwroteimage'              => 'ṣe ìrùsókè àtúnyẹ̀wò tuntun "[[$1]]"',
+'uploaddisabled'              => 'Dídálẹ́kun àwọn ìrùsókè.',
+'copyuploaddisabled'          => 'Ìdálẹ́kun ìrùsókè pẹ̀lú URL.',
+'uploadfromurl-queued'        => 'Ìrùsókè yín ti wà lóríìlà.',
+'uploaddisabledtext'          => 'Dídálẹ́kun àwọn ìrùsókè fáìlì.',
+'php-uploaddisabledtext'      => 'Ìrùsókè fáìlì jẹ́ dídálẹ́kun nínú PHP.
 Ẹ jọ̀wọ́ bojúwo ìtò ìrùsókè fáìlì.',
-'uploadvirus'                => 'Fáìlì náà ní èràn nínú!
+'uploadscripted'              => 'Fáìlì yìí ní àmìọ̀rọ̀ HTML tàbí ìkọ̀rọ̀ tó le jẹ́ títúmọ̀ pẹ̀lú àsìṣe látọwọ́ àwòtakùn.',
+'uploadvirus'                 => 'Fáìlì náà ní èràn nínú!
 Ẹ̀kúnrẹ́rẹ́: $1',
-'upload-source'              => 'Fáìlì ìsun',
-'sourcefilename'             => 'Orúkọ fáìlì orísun:',
-'sourceurl'                  => 'Orísun URL:',
-'destfilename'               => 'Ìdópin orúkọ fáìlì:',
-'upload-maxfilesize'         => 'Púpọ̀jùlọ ìtóbi fáìlì: $1',
-'upload-description'         => 'Ìjúwe fáìlì',
-'upload-options'             => 'Àwọn àṣàyàn ìrùsókè',
-'watchthisupload'            => "M'ójútó fáilì yìí",
-'upload-success-subj'        => 'Ìjásírere ìrùsókè',
-'upload-success-msg'         => 'Ìrùsókè yín láti [$2] ti jásírere. Ó ṣeéwò níbí: [[:{{ns:file}}:$1]]',
-'upload-failure-subj'        => 'Ìṣòro ìrùsókè',
-'upload-failure-msg'         => 'Ìṣòro kan wà pẹ̀lú fọ́ọ̀mù ìrùsókè yín [$2]:
+'uploadjava'                  => 'Fáìlì náà jẹ́ fáìlì ZIP kan tó ní fáìlì .class ti Java kan.
+A kò fàyè gba ìrùsókè àwọn fáìlì Java, nítorípé wọ́n le fàá kí àbò kó mọ́ ṣiṣẹ́.',
+'upload-source'               => 'Fáìlì ìsun',
+'sourcefilename'              => 'Orúkọ fáìlì orísun:',
+'sourceurl'                   => 'Orísun URL:',
+'destfilename'                => 'Ìdópin orúkọ fáìlì:',
+'upload-maxfilesize'          => 'Púpọ̀jùlọ ìtóbi fáìlì: $1',
+'upload-description'          => 'Ìjúwe fáìlì',
+'upload-options'              => 'Àwọn àṣàyàn ìrùsókè',
+'watchthisupload'             => "M'ójútó fáilì yìí",
+'filewasdeleted'              => 'Fáìlì kan tó ní orúkọ yìí ti jẹ́ rírùsòkè tẹ́lẹ̀ tó sì ti jẹ́ píparẹ́ lẹ́yìn náà.
+Ẹ gbọ́dọ̀ yẹ $1 wò kí ẹ tó gbéra láti rù ú sókè lẹ́ẹ̀kan síi.',
+'filename-bad-prefix'         => "Orúkọ fáìlì tí ẹ̀ únrùsókè bẹ̀rẹ̀ pẹ̀lú '''\"\$1\"''', tó jẹ́ orúkọ aláì-júwe tí únsábà jẹ́ fífikún fúnrara rẹ̀ látọwọ́ àwọn kámẹ́rà ẹlẹ́yọìka.
+Ẹ jọ̀wọ́ ẹ mú orúkọ ìjúwe tódáa fún fáìlì yín.",
+'upload-success-subj'         => 'Ìjásírere ìrùsókè',
+'upload-success-msg'          => 'Ìrùsókè yín láti [$2] ti jásírere. Ó ṣeéwò níbí: [[:{{ns:file}}:$1]]',
+'upload-failure-subj'         => 'Ìṣòro ìrùsókè',
+'upload-failure-msg'          => 'Ìṣòro kan wà pẹ̀lú fọ́ọ̀mù ìrùsókè yín [$2]:
 
 $1',
-'upload-warning-subj'        => 'Ìkìlọ̀ ìrùsókè',
-'upload-warning-msg'         => 'Ìṣòro kan wà pẹ̀lú ìrùsókè yín láti [$2]. Ẹ le padà sí orí [[Special:Upload/stash/$1|fọ́ọ́mù ìrùsókè]] láti ṣàtúnṣe ìṣòro náà.',
+'upload-warning-subj'         => 'Ìkìlọ̀ ìrùsókè',
+'upload-warning-msg'          => 'Ìṣòro kan wà pẹ̀lú ìrùsókè yín láti [$2]. Ẹ le padà sí orí [[Special:Upload/stash/$1|fọ́ọ́mù ìrùsókè]] láti ṣàtúnṣe ìṣòro náà.',
 
 'upload-proto-error'        => 'Prótókólù àìtọ́',
+'upload-proto-error-text'   => 'Ìrùsókè ọ̀ọ́kán pọndandan pé kí àwọn URL ó bẹ̀rẹ̀ pẹ̀lú <code>http://</code> tàbí <code>ftp://</code>.',
 'upload-file-error'         => 'Àsiṣe ínú',
+'upload-file-error-text'    => 'Àsìṣe abẹ́inú wáyé nígbà ìgbéra láti dá fáìlì onígbàdíẹ̀ kan lórí ẹ̀rọ-ìwọ̀fà náà.
+Ẹ jọ̀wọ́ ẹ bẹ [[Special:ListUsers/sysop|olùmójútó]] kan wò fún ìrànlọ́wọ́.',
 'upload-misc-error'         => 'Àsìṣe àìmọ̀ ìrùsókè',
+'upload-misc-error-text'    => 'Àsìṣe àìmọ̀ kan ṣẹlẹ̀ lásìkò ìrùsókè.
+Ẹ jọ̀wọ́ ẹ ridájú pé URL náà jẹ́ oníbáámu, tó sí ṣe é bọ́sí, kí ẹ tó tún gbìyànjú.
+Tí ìṣòro náà ò bá jáwọ́, ẹ bẹ [[Special:ListUsers/sysop|olùmójútó]] kan wò fún ìrànlọ́wọ́.',
 'upload-too-many-redirects' => 'URL náà ní àwọn àtúnjúwe pípọ̀jùlọ',
 'upload-unknown-size'       => 'Iye ìtóbi kòsí',
 'upload-http-error'         => 'Àṣìṣe HTTP ti ṣẹlẹ̀: $1',
 
 # File backend
+'backend-fail-stream'        => 'Kò le ṣe ìgbéhànjáde fáìlì "$1".',
+'backend-fail-backup'        => 'Kò le ṣe àwòkọpamọ́ fáìlì "$1".',
 'backend-fail-notexists'     => 'Fáìlì $1 kò sí.',
+'backend-fail-hashes'        => 'Kò le gba àwọn àmí hash fáìlì fún ìfiwéra.',
+'backend-fail-notsame'       => 'Fáìlì aláìjọra kan pilẹ̀ ti wà ní $1.',
+'backend-fail-invalidpath'   => '$1 kìí ṣe ojúọ̀nà ibi-ìkópamọ́ oníìbámu.',
 'backend-fail-delete'        => 'Ìparẹ́ fáìlì $1 kò ṣe é ṣe.',
 'backend-fail-alreadyexists' => 'Fáìlì $1 pilẹ̀ ti wà.',
+'backend-fail-store'         => 'Kò le ṣe ìkópamọ́ fáìlì $1 sí $2.',
 'backend-fail-copy'          => 'Àwòkọ faili $1 sí $2 kò ṣe é ṣe.',
 'backend-fail-move'          => 'Ìyípòdà faili $1 sí $2 kò ṣe é ṣe.',
 'backend-fail-opentemp'      => 'Kò le sí fáìlì onígbàdíẹ̀.',
@@ -1513,6 +1552,7 @@ $1',
 'backend-fail-create'        => 'Kò le dá fáìlì "$1".',
 
 # Lock manager
+'lockmanager-notlocked'        => 'Kò le sí àgádágodo "$1" sílẹ̀; kò jẹ́ dídè.',
 'lockmanager-fail-closelock'   => 'Kò le pa àgádágodo fáìlì de fún "$1".',
 'lockmanager-fail-deletelock'  => 'Kò le pa àgádágodo fáìlì rẹ́ fún "$1".',
 'lockmanager-fail-acquirelock' => 'Kò le gba àgádágodo fáìlì lò fún "$1".',
@@ -1522,14 +1562,23 @@ $1',
 'lockmanager-fail-svr-release' => 'Kò le fi àwọn àgádágodo sílẹ̀ lórí ẹ̀rọ-ìwọ̀fà $1.',
 
 # ZipDirectoryReader
-'zip-wrong-format' => 'Fáìlì tí a tọ́kasí kì í ṣe fáìlì ZIP.',
+'zip-file-open-error' => 'Àsìṣe kan ṣẹlẹ̀ lásìkò ìsísílẹ̀ fáìlì náà fún ìyẹ̀wò ZIP.',
+'zip-wrong-format'    => 'Fáìlì tí a tọ́kasí kì í ṣe fáìlì ZIP.',
 
 # Special:UploadStash
 'uploadstash-refresh' => 'Àtúnraṣe àtòjọ àwọn fáìlì',
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Ìdínà igbàwọlé',
+'img-auth-nopathinfo'   => 'Kò sí PATH_INFO.
+Ẹ̀rọ-ìwọ̀fà yín kò létò láti mú dátà yìí kọjá.
+O ṣe é ṣe kó jẹ́ ti CGI tí kò ní ìtìlẹ́yìn fún img_auth.
+[//www.mediawiki.org/wiki/Manual:Image_Authorization Ẹ wo àṣẹ àwòrán.]',
+'img-auth-nologinnWL'   => 'Ẹ kò tíì wọlẹ́ bẹ́ẹ̀sìni "$1" kò sí nínú àtòjọ funfun.',
 'img-auth-nofile'       => 'Fáìlì "$1" kò sí.',
+'img-auth-isdir'        => 'Ẹ̀ úngbira láti bọ́sí àpò "$1".
+Ìbọ́sí fáìlì nìkan ló jẹ́ gbígbà láyè.',
+'img-auth-streaming'    => 'Ó únṣe ìgbéhànjáde "$1".',
 'img-auth-noread'       => 'Oníṣe kò ní ààyè láti wo "$1".',
 
 # HTTP errors
@@ -1549,12 +1598,14 @@ $1',
 'license-header'     => 'Ìwé àṣẹ',
 'nolicense'          => 'Ìkankan kò jẹ́ yíyàn',
 'license-nopreview'  => '(Àkọ́yẹ̀wò kò sí)',
+'upload_source_url'  => ' (URL oníìbámu kan tó ṣe é bọ́sí látigboro)',
 'upload_source_file' => '(fáìlì lórí kọ̀mpútà yín)',
 
 # Special:ListFiles
 'listfiles_search_for'  => 'Ṣàwàrí fún orúkọ amóhùnmáwòrán:',
 'imgfile'               => 'fáìlì',
 'listfiles'             => 'Àkójọ 	fáìlì',
+'listfiles_thumb'       => 'Àwòrán kékeré',
 'listfiles_date'        => 'Ọjọ́ọdún',
 'listfiles_name'        => 'Orúkọ',
 'listfiles_user'        => 'Oníṣe',
@@ -1594,6 +1645,7 @@ $1',
 'filepage-nofile-link'      => 'Kò sí fáìlì pẹ̀lú orúkọ yìí, sùgbọ́n ẹ le [$1 rùúsókè].',
 'uploadnewversion-linktext' => 'Ẹ ṣe ìrùsókè àtúnṣe tuntun fáìlì yìí',
 'shared-repo-from'          => 'láti $1',
+'shared-repo'               => 'ibi-àkójọ àjọpín kan',
 
 # File reversion
 'filerevert'                => 'Dá $1 padà',
@@ -1607,9 +1659,12 @@ $1',
 # File deletion
 'filedelete'                   => 'Ìparẹ́ $1',
 'filedelete-legend'            => 'Ìparẹ́ fáìlì',
+'filedelete-intro'             => "Ẹ ti fẹ́ pa fáìlì '''[[Media:$1|$1]]''' àti gbogbo ìtàn rẹ̀ rẹ́.",
+'filedelete-intro-old'         => "Ẹ̀ únpa àtúnyẹ̀wò  '''[[Media:$1|$1]]''' rẹ́ bó ṣe wà ní [$4 $3, $2].",
 'filedelete-comment'           => 'Ìdíẹ̀:',
 'filedelete-submit'            => 'Paarẹ́',
 'filedelete-success'           => "'''$1''' ti jẹ́ píparẹ́.",
+'filedelete-success-old'       => "Àtúnyẹ̀wò '''[[Media:$1|$1]]''' bó ṣe wà ní $3, $2 ti jẹ́ píparẹ́.",
 'filedelete-nofile'            => "'''$1''' kò sí.",
 'filedelete-otherreason'       => 'Ìdíẹ̀ míràn/àfikún:',
 'filedelete-reason-otherlist'  => 'Ìdí mìíràn',
@@ -1620,9 +1675,11 @@ $1',
 'filedelete-maintenance-title' => 'Fáìlì náà kò ṣeé parẹ́',
 
 # MIME search
-'mimesearch' => 'àwáàrí pẹ́lú MIME',
-'mimetype'   => 'irú MIME:',
-'download'   => 'ìrùsílẹ̀',
+'mimesearch'         => 'àwáàrí pẹ́lú MIME',
+'mimesearch-summary' => 'Ojúewé yìí únṣe ìgbàláàyè ajọ̀ àwọn fáìlì fún irú MIME wọn.
+Ìtìbọnú: contenttype/subtype, f.a. <tt>image/jpeg</tt>.',
+'mimetype'           => 'irú MIME:',
+'download'           => 'ìrùsílẹ̀',
 
 # Unwatched pages
 'unwatchedpages' => 'Àwọn ojúewé aláìṣọ́',
@@ -1631,14 +1688,18 @@ $1',
 'listredirects' => 'Àkójọ àwọn àtúnjúwe',
 
 # Unused templates
-'unusedtemplates'    => 'Àdàkọ àìlò',
-'unusedtemplateswlh' => 'àwọn ìjápọ̀ míràn',
+'unusedtemplates'     => 'Àdàkọ àìlò',
+'unusedtemplatestext' => 'Ojúewé yìí ṣe àtòjọ gbogbo àwọn ojúewé inú orúkọàyè {{ns:template}} tí wọn kò jẹ́ fífikún inú ojúewé míràn.
+Ẹ ṣe rántí láti yẹ ẹ́ wò bóyá o ní àjápọ̀ míràn sí àdàkọ kí ẹ tó pa á rẹ́.',
+'unusedtemplateswlh'  => 'àwọn ìjápọ̀ míràn',
 
 # Random page
-'randompage' => 'Ojúewé àrìnàkò',
+'randompage'         => 'Ojúewé àrìnàkò',
+'randompage-nopages' => 'Kò sí ojúewé kankan nínú {{PLURAL:$2|orúkọàyè|àwọn orúkọàyè}} ìsàlẹ̀ yìí: $1',
 
 # Random redirect
-'randomredirect' => 'Àtúndarí àrìnàkò',
+'randomredirect'         => 'Àtúndarí àrìnàkò',
+'randomredirect-nopages' => 'Kò sí àtúnjúwe kankan nínú orúkọàyè "$1".',
 
 # Statistics
 'statistics'                   => 'Àwọn statistiki',
@@ -1668,12 +1729,14 @@ $1',
 Ó ti ṣe àtúnjúwe sí [[$2]].',
 
 'brokenredirects'        => 'Àwọn àtúnjúwe tótigé',
+'brokenredirectstext'    => 'Àwọn ìsàlẹ̀ yìí ṣe àtúnjúwe àjápọ̀ sí àwọn ojúewé tí kò sí:',
 'brokenredirects-edit'   => 'àtúnṣe',
 'brokenredirects-delete' => 'ìparẹ́',
 
-'withoutinterwiki'        => 'Àwọn ojúewé tí kò ní ìjápọ̀ èdè',
-'withoutinterwiki-legend' => 'Àlẹ̀mọ́wájú',
-'withoutinterwiki-submit' => 'Ìfihàn',
+'withoutinterwiki'         => 'Àwọn ojúewé tí kò ní ìjápọ̀ èdè',
+'withoutinterwiki-summary' => 'Àwọn ojúewé ìsàlẹ̀ wọ̀nyì kò ṣe ìjápọ̀ mọ́ onírúirú èdè míràn.',
+'withoutinterwiki-legend'  => 'Àlẹ̀mọ́wájú',
+'withoutinterwiki-submit'  => 'Ìfihàn',
 
 'fewestrevisions' => 'Àwọn ojúewé pẹ̀lú àwọn àtúnyẹ̀wọ̀ tókéréjù',
 
@@ -1723,8 +1786,13 @@ $1',
 'ancientpages'            => 'Àwọn ojúewé tópẹ́jùlọ',
 'move'                    => 'Ìyípòdà',
 'movethispage'            => 'Yípò ojúewé yìí',
+'unusedcategoriestext'    => 'Àwọn ojúewé ẹ̀ka ìsàlẹ̀ wọ̀nyí wà, bótilẹ̀jẹ́pé kò sí ojúewé tàbí ẹ̀ka kankan tó ún lò wọ́n.',
+'notargettitle'           => 'Àfojúsùn kò sí',
+'nopagetitle'             => 'Kò sí irú ojúewé àfojúsùn báhun',
+'nopagetext'              => 'Ojúewé àfojúsùn tí ẹ tọ́kasí kò sí.',
 'pager-newer-n'           => '{{PLURAL:$1|tuntunjùlọ 1|tuntunjùlọ $1}}',
 'pager-older-n'           => '{{PLURAL:$1|pípẹ́jùlọ 1|pípẹ́jùlọ $1}}',
+'suppress'                => 'Alábẹ̀wò',
 
 # Book sources
 'booksources'               => 'Àwọn orísun ìwé',

@@ -409,7 +409,7 @@ $messages = array(
 'cancel'        => 'Annulla',
 'moredotdotdot' => 'Aktar...',
 'mypage'        => 'Il-paġna tiegħi',
-'mytalk'        => 'id-diskussjonijiet tiegħi',
+'mytalk'        => 'diskussjonijiet tiegħi',
 'anontalk'      => 'Diskussjoni għal dan l-IP',
 'navigation'    => 'Navigazzjoni',
 'and'           => '&#32;u',
@@ -1278,7 +1278,7 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 
 # Preferences page
 'preferences'                   => 'Preferenzi',
-'mypreferences'                 => 'il-preferenzi tiegħi',
+'mypreferences'                 => 'preferenzi',
 'prefs-edits'                   => "Numru ta' modifiki:",
 'prefsnologin'                  => 'Għadek ma dħaltx ġewwa',
 'prefsnologintext'              => 'Sabiex tkun tista\' tippersonalizza l-preferenzi huwa neċessarju li tidħol fil-<span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} kont]</span>.',
@@ -2386,7 +2386,7 @@ $1',
 # Contributions
 'contributions'       => 'Kontribuzzjonijiet tal-utent',
 'contributions-title' => 'Kontribuzzjonijiet tal-utent għal $1',
-'mycontris'           => 'il-kontribuzzjonijiet tiegħi',
+'mycontris'           => 'kontribuzzjonijiet',
 'contribsub2'         => 'Għal $1 ($2)',
 'nocontribs'          => 'L-Ebda modifiki li jisodisfa l-kriterji tat-tfittxija.',
 'uctop'               => '(l-aħħar fil-paġna)',

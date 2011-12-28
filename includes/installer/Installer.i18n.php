@@ -11527,6 +11527,7 @@ Bagaimanapun, MediaWiki memerlukan PHP $2 ke atas.',
  * @author Chrisportelli
  */
 $messages['mt'] = array(
+	'config-page-language' => 'Lingwa',
 	'mainpagetext' => "'''MediaWiki ġie installat b'suċċess.'''",
 	'mainpagedocfooter' => "Ikkonsulta l-[//meta.wikimedia.org/wiki/Help:Contents Gwida għall-utenti] sabiex tikseb iktar informazzjoni dwar kif tuża' s-softwer tal-wiki.
 

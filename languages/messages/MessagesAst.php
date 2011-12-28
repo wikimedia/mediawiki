@@ -403,11 +403,11 @@ Por favor informa d'esto a un [[Special:ListUsers/sysop|alministrador]], anotand
 'internalerror_info'   => 'Error internu: $1',
 'fileappenderrorread'  => 'Nun se pudo lleer "$1" mientres s\'amestaba.',
 'fileappenderror'      => 'Nun se pudo amestar "$1" a "$2".',
-'filecopyerror'        => 'Nun se pudo copiar l\'archivu "$1" como "$2".',
+'filecopyerror'        => 'Nun se pudo copiar el ficheru "$1" como "$2".',
 'filerenameerror'      => 'Nun se pudo renomar l\'archivu "$1" como "$2".',
-'filedeleteerror'      => 'Nun se pudo esborrar l\'archivu "$1".',
+'filedeleteerror'      => 'Nun se pudo desaniciar el ficheru "$1".',
 'directorycreateerror' => 'Nun se pudo crear el direutoriu "$1".',
-'filenotfound'         => 'Nun se pudo atopar l\'archivu "$1".',
+'filenotfound'         => 'Nun se pudo atopar el ficheru "$1".',
 'fileexistserror'      => 'Nun se pue escribir nel archivu "$1": yá esiste',
 'unexpected'           => 'Valor inesperáu: "$1"="$2".',
 'formerror'            => 'Error: nun se pudo unviar el formulariu',
@@ -719,12 +719,12 @@ o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 
 'userpage-userdoesnotexist-view'   => 'La cuenta d\'usuariu "$1" nun ta rexistrada.',
 'blocked-notice-logextract'        => "Esti usuariu anguaño ta bloquiáu.
 La cabera entrada del rexistru de bloqueos s'ufre darréu pa referencia:",
-'clearyourcache'                   => "'''Nota:''' Llueu de salvar, seique tengas que llimpiar la caché del navegador pa ver los cambeos.
-*'''Firefox / Safari:''' caltién ''Mayús'' mentes calques en ''Recargar'', o calca ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' nún Mac)
-* '''Google Chrome:''' calca ''Ctrl-Mayús-R'' (''Command-Mayús-R'' nún Mac)
-* '''Internet Explorer:''' caltién ''Ctrl'' mentes calques ''Refrescar'', o calca ''Ctrl-F5''
-* '''Konqueror:''' calca nel botón ''Recargar'', o calca ''F5''
-* '''Opera:''' desanicia la caché en ''Ferramientes→Preferencies''",
+'clearyourcache'                   => "'''Nota:''' Llueu de salvar, seique tengas que llimpiar la caché del navegador pa ver los cambios.
+*'''Firefox / Safari:''' Caltién ''Mayús'' mentanto calques en ''Recargar'', o calca ''Ctrl-F5'' o ''Ctrl-R'' (''⌘-R'' nún Mac)
+* '''Google Chrome:''' Calca ''Ctrl-Mayús-R'' (''⌘-Mayús-R'' nún Mac)
+* '''Internet Explorer:''' Caltién ''Ctrl'' mentanto calques ''Refrescar'', o calca ''Ctrl-F5''
+* '''Konqueror:''' Calca nel botón ''Recargar'', o calca ''F5''
+* '''Opera:''' Desanicia la caché en ''Ferramientes→Preferencies''",
 'usercssyoucanpreview'             => "'''Conseyu:''' Usa'l botón \"{{int:showpreview}}\" pa probar el to nuevu CSS enantes de guardalu.",
 'userjsyoucanpreview'              => "'''Conseyu:''' Usa'l botón \"{{int:showpreview}}\" pa probar el to nuevu JavaScript enantes de guardalu.",
 'usercsspreview'                   => "'''Recuerda que namái tas previsualizando'l to CSS d'usuariu.'''
@@ -1106,7 +1106,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'prefs-rc'                      => 'Cambeos recientes',
 'prefs-watchlist'               => 'Llista de vixilancia',
 'prefs-watchlist-days'          => "Númberu de díes qu'amosar na llista de vixilancia:",
-'prefs-watchlist-days-max'      => '7 díes máximo',
+'prefs-watchlist-days-max'      => 'Máximo $1 {{PLURAL:$1|día|díes}}',
 'prefs-watchlist-edits'         => "Númberu d'ediciones qu'amosar na llista de vixilancia espandida:",
 'prefs-watchlist-edits-max'     => 'Númberu máximu: 1000',
 'prefs-watchlist-token'         => 'Marca de la llista de vixilancia:',
@@ -1559,6 +1559,35 @@ Si'l problema persiste, contauta con un [[Special:ListUsers/sysop|alministrador]
 'upload-unknown-size'       => 'Tamañu desconocíu',
 'upload-http-error'         => 'Hebo un error HTTP: $1',
 
+# File backend
+'backend-fail-stream'        => 'Nun se pudo tresmitir el ficheru $1.',
+'backend-fail-backup'        => 'Nun se pudo facer copia de seguridá del ficheru $1.',
+'backend-fail-notexists'     => 'El ficheru $1 nun esiste.',
+'backend-fail-hashes'        => 'Nun se pudieron alcontrar los hashes del ficheru pa comparar.',
+'backend-fail-notsame'       => 'Yá esiste un ficheru non idénticu en $1.',
+'backend-fail-invalidpath'   => "$1 nun ye una ruta d'almacenamientu válida.",
+'backend-fail-delete'        => 'Nun se pudo desaniciar el ficheru $1.',
+'backend-fail-alreadyexists' => 'El ficheru $1 yá esiste.',
+'backend-fail-store'         => 'Nun se pudo guardar el ficheru $1 en $2.',
+'backend-fail-copy'          => 'Nun se pudo copiar el ficheru $1 como $2.',
+'backend-fail-move'          => 'Nun se pudo mover el ficheru $1 a $2.',
+'backend-fail-opentemp'      => 'Nun se pudo abrir el ficheru temporal.',
+'backend-fail-writetemp'     => 'Nun se pudo escribir nel ficheru temporal.',
+'backend-fail-closetemp'     => 'Nun se pudo zarrar el ficheru temporal.',
+'backend-fail-read'          => 'Nun se pudo lleer el ficheru $1.',
+'backend-fail-create'        => 'Nun se pudo crear el ficheru $1.',
+
+# Lock manager
+'lockmanager-notlocked'        => 'Nun se pudo desbloquiar "$1"; nun ta bloquiáu.',
+'lockmanager-fail-closelock'   => 'Nun se pudo zarrar el ficheru de bloquéu pa "$1".',
+'lockmanager-fail-deletelock'  => 'Non se pudo desaniciar el ficheru de bloquéu pa "$1".',
+'lockmanager-fail-acquirelock' => 'Nun se pudo adquirir el bloquéu pa "$1".',
+'lockmanager-fail-openlock'    => 'Nun se pudo abrir el ficheru de bloquéu pa "$1".',
+'lockmanager-fail-releaselock' => 'Nun se pudo lliberar el bloquéu pa "$1".',
+'lockmanager-fail-db-bucket'   => 'Nun se pudo contautar con bloqueos de bases de datos bastantes nel conxuntu $1.',
+'lockmanager-fail-db-release'  => 'Nun se pudieron lliberar los bloqueos na base de datos $1.',
+'lockmanager-fail-svr-release' => 'Nun se pudieron lliberar los bloqueos nel sirvidor $1.',
+
 # ZipDirectoryReader
 'zip-file-open-error' => "S'alcontró un fallu al abrir el ficheru pa les comprobaciones del ZIP.",
 'zip-wrong-format'    => 'El ficheru especificáu nun yera un ficheru ZIP.',
@@ -1647,7 +1676,7 @@ Al peñerar por usuariu, s'amuesa namái la cabera versión de los ficheros que 
 'filehist-nothumb'          => 'Ensin miniatura',
 'filehist-user'             => 'Usuariu',
 'filehist-dimensions'       => 'Dimensiones',
-'filehist-filesize'         => 'Tamañu del archivu',
+'filehist-filesize'         => 'Tamañu del ficheru',
 'filehist-comment'          => 'Comentariu',
 'filehist-missing'          => 'Falta ficheru',
 'imagelinks'                => 'Usu del ficheru',
@@ -1803,6 +1832,7 @@ Les entraes <del>tachaes</del> tan resueltes.',
 'mostimages'              => 'Archivos más enllaciaos',
 'mostrevisions'           => 'Páxines con más revisiones',
 'prefixindex'             => 'Toles páxines col prefixu',
+'prefixindex-namespace'   => 'Toles páxines col prefixu (espaciu de nomes $1)',
 'shortpages'              => 'Páxines curties',
 'longpages'               => 'Páxines llargues',
 'deadendpages'            => 'Páxines ensin salida',
@@ -2566,6 +2596,8 @@ Por favor visita [//www.mediawiki.org/wiki/Localisation Llocalización de MediaW
 'thumbnail_error'          => 'Error al crear la miniatura: $1',
 'djvu_page_error'          => 'Páxina DjVu fuera de llímites',
 'djvu_no_xml'              => 'Nun se pudo obtener el XML pal archivu DjVu',
+'thumbnail-temp-create'    => 'Nun se pudo crear el ficheru temporal de miniatura',
+'thumbnail-dest-create'    => 'Nun se pudo guardar la miniatura nel destín',
 'thumbnail_invalid_params' => 'Parámetros de miniatura non válidos',
 'thumbnail_dest_directory' => 'Nun se pue crear el direutoriu de destín',
 'thumbnail_image-type'     => "Triba d'imaxe ensin sofitu",
@@ -2593,7 +2625,7 @@ Guárdalu nel ordenador y xúbilu equí.",
 'imported-log-entries'       => 'Importao $1 {{PLURAL:$1|entrada del rexistru|entraes del rexistru}}.',
 'importfailed'               => 'Falló la importación: $1',
 'importunknownsource'        => "Triba d'orixe d'importación desconocida",
-'importcantopen'             => "Nun se pudo abrir l'archivu d'importación",
+'importcantopen'             => "Nun se pudo abrir el ficheru d'importación",
 'importbadinterwiki'         => 'Enllaz interwiki incorreutu',
 'importnotext'               => 'Vaciu o ensin testu',
 'importsuccess'              => '¡Importación finalizada!',

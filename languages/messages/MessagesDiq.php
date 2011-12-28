@@ -10,6 +10,7 @@
  * @author Asmen
  * @author Aspar
  * @author Belekvor
+ * @author Erdemaslancan
  * @author Mirzali
  * @author Reedy
  * @author Sahim
@@ -153,7 +154,7 @@ $messages = array(
 'cancel'        => 'Texelnayış',
 'moredotdotdot' => 'Vêşêri...',
 'mypage'        => 'Pela mı',
-'mytalk'        => 'Pela mına werênayışi',
+'mytalk'        => 'Meqtub',
 'anontalk'      => 'Pela werênayışê nê IPy',
 'navigation'    => 'Pusula',
 'and'           => '&#32;u',
@@ -297,7 +298,7 @@ $1',
 'showtoc'                 => 'bımocne',
 'hidetoc'                 => 'bınımne',
 'collapsible-collapse'    => 'Kılmever ke',
-'collapsible-expand'      => 'Verın ke',
+'collapsible-expand'      => 'Hera qı',
 'thisisdeleted'           => 'Bıvêne ya zi $1 peyser bia?',
 'viewdeleted'             => '$1 bıvêne?',
 'restorelink'             => '{{PLURAL:$1|yew vurnayışo esterıte|$1 vurnayışê esterıtey}}',
@@ -319,7 +320,7 @@ $1',
 'nstab-project'   => 'Pela Procey',
 'nstab-image'     => 'Dosya',
 'nstab-mediawiki' => 'Mesac',
-'nstab-template'  => 'Şablon',
+'nstab-template'  => 'Tewre',
 'nstab-help'      => 'Pela peşti',
 'nstab-category'  => 'Kategoriye',
 
@@ -374,6 +375,7 @@ Kerem kerê, naye be namey ''URL''i yew [[Special:ListUsers/sysop|karber]]i ra v
 'badarticleerror'      => 'Kar  ke şıma kenê, qebul nêbi.',
 'cannotdelete'         => 'Pel  "$1" o ke şıma nişane kerd hewn a neşı.
 Belka yewna ten kerdo hewn a.',
+'cannotdelete-title'   => 'şıma  "$1" nê şenê besternê.',
 'badtitle'             => 'Sernameo xırabın',
 'badtitletext'         => 'Sernamey pela ke şıma waşt, nêvêrd, thalo/vengo ya ki zıwano miyanêno ğelet gırêdae ya ki sernamey wiki.
 Beno ke, tede yew ya zi zêdê işareti estê ke sernaman de nêxebetiyenê.',
@@ -638,7 +640,7 @@ Vurnayışê tu hama qeyd nıbiyo!",
 'token_suffix_mismatch'            => "'''Vurnayişê şıma tepeya ameyo çunke qutiyê imla xerıbya.
 Vurnayişê şıma qey nêxerepyayişê peli tepeya geyra a.
 Eke şıma servisê proksi yo anonim şuxulneni sebebê ey noyo.'''",
-'editing'                          => '$1 vurneno',
+'editing'                          => 'Şımayê kenê "$1" bıvurnê',
 'editingsection'                   => '$1 vurneno (qısım)',
 'editingcomment'                   => '$1 vuryeno (qısmo newe)',
 'editconflict'                     => 'Vurnayişê ke yewbini nêtepışeni: $1',
@@ -969,7 +971,7 @@ Pe verbendi ''all:'', vaceyê xo bıvurni ki contenti hemi cıgeyro (pelanê mı
 
 # Preferences page
 'preferences'                   => 'Tercihi',
-'mypreferences'                 => 'Tercihê mı',
+'mypreferences'                 => 'Tercihi',
 'prefs-edits'                   => 'Amarê vurnayışan:',
 'prefsnologin'                  => 'Şıma cıkewtış nêvıraşto',
 'prefsnologintext'              => 'Şıma gani be <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} cikewte]</span> ke tercihanê karberi xo eyar bıkerê.',
@@ -995,7 +997,7 @@ Pe verbendi ''all:'', vaceyê xo bıvurni ki contenti hemi cıgeyro (pelanê mı
 'saveprefs'                     => 'Qeyd ke',
 'resetprefs'                    => 'Vurnayışê ke qeyd nêbiy, pak ke',
 'restoreprefs'                  => 'Eyaranê standardan pêroine peyser bia',
-'prefs-editing'                 => 'Ho vurnayeno',
+'prefs-editing'                 => 'Cay pela nustısi',
 'prefs-edit-boxsize'            => 'Ebatê pencereyê vurnayîşî.',
 'rows'                          => 'Xeti:',
 'searchresultshead'             => 'Cı geyre',
@@ -1756,7 +1758,9 @@ qey heqê şexsi de [[{{MediaWiki:Listgrouprights-helppage}}|hema malumato ziyed
 'noemailtext'          => 'no/na karber yew e-postayo meqbul nêdawa/o',
 'nowikiemailtitle'     => 'E-postayan re destur çino',
 'nowikiemailtext'      => 'no/na karber/e, karberanê binani ra gırewtışê e-postayi tercih nêkerd.',
+'emailtarget'          => 'Namey Qarqeri defiyê de.',
 'emailusername'        => 'Nameyê karberi:',
+'emailusernamesubmit'  => 'Stare dı',
 'email-legend'         => 'karberê {{SITENAME}} binan re e-posta bıerşaw',
 'emailfrom'            => 'Kam ra',
 'emailto'              => 'Kam rê',
@@ -1775,7 +1779,7 @@ qey heqê şexsi de [[{{MediaWiki:Listgrouprights-helppage}}|hema malumato ziyed
 
 # Watchlist
 'watchlist'            => 'lista mına seyr-kerdışi',
-'mywatchlist'          => 'Lista mına seyr-kerdışi',
+'mywatchlist'          => 'Liste ya temasi',
 'watchlistfor2'        => 'Semedê $1 ($2)',
 'nowatchlist'          => 'listeya temaşa kerdıişê şıma de yew madde zi çina.',
 'watchlistanontext'    => 'qey vurnayişê maddeya listeya temaşakerdişi $1.',
@@ -1929,6 +1933,7 @@ Tı eşkeno seviyeye kılit kerdışi bıvurno, feqat tı nıeşken "cascading p
 'protect-level-sysop'         => 'Tenya idarekeri',
 'protect-summary-cascade'     => 'çırrayış',
 'protect-expiring'            => 'qediyeno $1 (UTC)',
+'protect-expiring-local'      => '$1 do bı qedyo',
 'protect-expiry-indefinite'   => 'bê hed u hesab',
 'protect-cascade'             => 'Ena pela dı pelayan kılit-biya ca geno (cascading protection)',
 'protect-cantedit'            => 'Tı nêşenay sinorê kılit-biyayışê ena pele bıvurnê, çıke desturê to be vurnayışi çıniyo.',
@@ -2105,6 +2110,8 @@ Cıkewtışo tewr peyêno ke bloke biyo, cêr seba referansi belikerdeyo:',
 'unblocked-id'                    => 'Blokê $1î wedariyayo',
 'ipblocklist'                     => 'Karberê kılitbiyaey',
 'ipblocklist-legend'              => 'Yew karberê blok biyaye bivîne',
+'blocklist-expiry'                => 'Wahdey qedyayışi',
+'blocklist-by'                    => 'hizmetdarê blokê',
 'blocklist-reason'                => 'Sebeb:',
 'ipblocklist-submit'              => 'Bigêre',
 'ipblocklist-localblock'          => 'blokê mehelli',
@@ -2460,7 +2467,8 @@ Tı eşkeno yew sebeb bınus.',
 'spam_blanking'       => 'revizyonê hemeyi de ıney $1 re gıreyi estî, deverdiyeno',
 
 # Info page
-'pageinfo-subjectpage' => 'Pele',
+'pageinfo-header-edits' => 'Vurnayışi',
+'pageinfo-subjectpage'  => 'Pele',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Nişan bike ke devriye biyo',
@@ -3073,6 +3081,8 @@ satır ê ke pê ney # # destpêkenê zey mışore/mıjore muamele vineno.
 'htmlform-selectorother-other' => 'Bin',
 
 # New logging system
+'revdelete-content-hid'  => 'nusno nımte',
+'revdelete-summary-hid'  => 'Vurnayışi nımtey niyê',
 'revdelete-restricted'   => 'verger (vergırewtış) ê ke qey xızmkaran biye',
 'revdelete-unrestricted' => 'verger (ver gırewtış) ê ke qey xızmkaran diyê wera (wedariyê)',
 'newuserlog-byemail'     => 'pê e-mail ra paralo şiravt',
