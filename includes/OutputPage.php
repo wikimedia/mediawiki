@@ -2575,7 +2575,9 @@ $templates
 				continue;
 			}
 
-			// Support inlining of private modules if configured as such
+			// Support inlining of private modules if configured as such. Note that these
+			// modules should be loaded from getHeadScripts() before the first loader call.
+			// Otherwise other modules can't properly use them as dependencies (bug 30914)
 			if ( $group === 'private' && $wgResourceLoaderInlinePrivateModules ) {
 				if ( $only == ResourceLoaderModule::TYPE_STYLES ) {
 					$links .= Html::inlineStyle(
@@ -2661,6 +2663,10 @@ $templates
 			)
 		);
 
+		// Load embeddable private modules before any loader links
+		$embedScripts = array( 'user.options', 'user.tokens' );
+		$scripts .= $this->makeResourceLoaderLink( $embedScripts, ResourceLoaderModule::TYPE_COMBINED );
+
 		// Script and Messages "only" requests marked for top inclusion
 		// Messages should go first
 		$scripts .= $this->makeResourceLoaderLink( $this->getModuleMessages( true, 'top' ), ResourceLoaderModule::TYPE_MESSAGES );
@@ -2708,7 +2714,7 @@ $templates
 		// Legacy Scripts
 		$scripts .= "\n" . $this->mScripts;
 
-		$userScripts = array( 'user.options', 'user.tokens' );
+		$userScripts = array();
 
 		// Add site JS if enabled
 		if ( $wgUseSiteJs ) {

@@ -197,6 +197,8 @@ production.
 * (bug 30711) When adding a new section to a page with section=new, the text is
   now always added to the current version of the page
 * (bug 31719) Recognize &ns_svg; as the svg namespace when extracting width
+* (bug 30914) Embeddable ResourceLoader modules (user.options, user.tokens)
+  should be loaded in <head> for proper dependency resolution
 
 === API changes in 1.19 ===
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.
