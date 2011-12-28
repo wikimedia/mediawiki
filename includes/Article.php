@@ -1147,21 +1147,8 @@ class Article extends Page {
 				array( 'known', 'noclasses' )
 			);
 
-		$cdel = '';
-
-		// User can delete revisions or view deleted revisions...
-		$canHide = $wgUser->isAllowed( 'deleterevision' );
-		if ( $canHide || ( $revision->getVisibility() && $wgUser->isAllowed( 'deletedhistory' ) ) ) {
-			if ( !$revision->userCan( Revision::DELETED_RESTRICTED ) ) {
-				$cdel = Linker::revDeleteLinkDisabled( $canHide ); // rev was hidden from Sysops
-			} else {
-				$query = array(
-					'type'   => 'revision',
-					'target' => $this->getTitle()->getPrefixedDbkey(),
-					'ids'    => $oldid
-				);
-				$cdel = Linker::revDeleteLink( $query, $revision->isDeleted( File::DELETED_RESTRICTED ), $canHide );
-			}
+		$cdel = Linker::getRevDeleteLink( $wgUser, $revision, $this->getTitle() );
+		if ( $cdel !== '' ) {
 			$cdel .= ' ';
 		}
 
