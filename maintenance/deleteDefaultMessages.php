@@ -31,9 +31,7 @@ class DeleteDefaultMessages extends Maintenance {
 	}
 
 	public function execute() {
-
-		$user = 'MediaWiki default';
-		$reason = 'No longer required';
+		global $wgUser;
 
 		$this->output( "Checking existence of old default messages..." );
 		$dbr = wfGetDB( DB_SLAVE );
@@ -54,12 +52,12 @@ class DeleteDefaultMessages extends Maintenance {
 
 		# Deletions will be made by $user temporarly added to the bot group
 		# in order to hide it in RecentChanges.
-		global $wgUser;
-		$wgUser = User::newFromName( $user );
-		if ( !$wgUser ) {
+		$user = User::newFromName( 'MediaWiki default' );
+		if ( !$user ) {
 			$this->error( "Invalid username", true );
 		}
-		$wgUser->addGroup( 'bot' );
+		$user->addGroup( 'bot' );
+		$wgUser = $user;
 
 		# Handle deletion
 		$this->output( "\n...deleting old default messages (this may take a long time!)...", 'msg' );
@@ -69,9 +67,10 @@ class DeleteDefaultMessages extends Maintenance {
 			wfWaitForSlaves();
 			$dbw->ping();
 			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
-			$article = new Article( $title );
+			$page = WikiPage::factory( $title );
 			$dbw->begin();
-			$article->doDeleteArticle( $reason );
+			$error = ''; // Passed by ref
+			$page->doDeleteArticle( 'No longer required', false, 0, false, $error, $user );
 			$dbw->commit();
 		}
 
