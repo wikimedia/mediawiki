@@ -1803,32 +1803,33 @@ class Linker {
 	 */
 	public static function getRevDeleteLink( User $user, Revision $rev, Title $title ) {
 		$canHide = $user->isAllowed( 'deleterevision' );
-		if ( $canHide || ( $rev->getVisibility() && $user->isAllowed( 'deletedhistory' ) ) ) {
-			if( !$rev->userCan( Revision::DELETED_RESTRICTED ) ) {
-				$revdlink = Linker::revDeleteLinkDisabled( $canHide ); // revision was hidden from sysops
-			} else {
-				if ( $rev->getId() ) {
-					// RevDelete links using revision ID are stable across
-					// page deletion and undeletion; use when possible.
-					$query = array(
-						'type'   => 'revision',
-						'target' => $title->getPrefixedDBkey(),
-						'ids'    => $rev->getId()
-					);
-				} else {
-					// Older deleted entries didn't save a revision ID.
-					// We have to refer to these by timestamp, ick!
-					$query = array(
-						'type'   => 'archive',
-						'target' => $title->getPrefixedDBkey(),
-						'ids'    => $rev->getTimestamp()
-					);
-				}
-				return Linker::revDeleteLink( $query,
-					$rev->isDeleted( File::DELETED_RESTRICTED ), $canHide );
-			}
+		if ( !$canHide && !( $rev->getVisibility() && $user->isAllowed( 'deletedhistory' ) ) ) {
+			return '';
 		}
-		return '';
+
+		if ( !$rev->userCan( Revision::DELETED_RESTRICTED, $user ) ) {
+			return Linker::revDeleteLinkDisabled( $canHide ); // revision was hidden from sysops
+		} else {
+			if ( $rev->getId() ) {
+				// RevDelete links using revision ID are stable across
+				// page deletion and undeletion; use when possible.
+				$query = array(
+					'type'   => 'revision',
+					'target' => $title->getPrefixedDBkey(),
+					'ids'    => $rev->getId()
+				);
+			} else {
+				// Older deleted entries didn't save a revision ID.
+				// We have to refer to these by timestamp, ick!
+				$query = array(
+					'type'   => 'archive',
+					'target' => $title->getPrefixedDBkey(),
+					'ids'    => $rev->getTimestamp()
+				);
+			}
+			return Linker::revDeleteLink( $query,
+				$rev->isDeleted( Revision::DELETED_RESTRICTED ), $canHide );
+		}
 	}
 
 	/**

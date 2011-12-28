@@ -833,23 +833,9 @@ class ContribsPager extends ReverseChronologicalPager {
 			$mflag = '';
 		}
 
-		// Don't show useless link to people who cannot hide revisions
-		$canHide = $user->isAllowed( 'deleterevision' );
-		if ( $canHide || ( $rev->getVisibility() && $user->isAllowed( 'deletedhistory' ) ) ) {
-			if ( !$rev->userCan( Revision::DELETED_RESTRICTED, $user ) ) {
-				$del = Linker::revDeleteLinkDisabled( $canHide ); // revision was hidden from sysops
-			} else {
-				$query = array(
-					'type'   => 'revision',
-					'target' => $page->getPrefixedDbkey(),
-					'ids'    => $rev->getId()
-				);
-				$del = Linker::revDeleteLink( $query,
-					$rev->isDeleted( Revision::DELETED_RESTRICTED ), $canHide );
-			}
+		$del = Linker::getRevDeleteLink( $user, $rev, $page );
+		if ( $del !== '' ) {
 			$del .= ' ';
-		} else {
-			$del = '';
 		}
 
 		$diffHistLinks = '(' . $difftext . $this->messages['pipe-separator'] . $histlink . ')';

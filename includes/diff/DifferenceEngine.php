@@ -462,24 +462,8 @@ class DifferenceEngine extends ContextSource {
 	 * @return String
 	 */
 	protected function revisionDeleteLink( $rev ) {
-		$link = '';
-		$user = $this->getUser();
-		$canHide = $user->isAllowed( 'deleterevision' );
-		// Show del/undel link if:
-		// (a) the user can delete revisions, or
-		// (b) the user can view deleted revision *and* this one is deleted
-		if ( $canHide || ( $rev->getVisibility() && $user->isAllowed( 'deletedhistory' ) ) ) {
-			if ( !$rev->userCan( Revision::DELETED_RESTRICTED, $user ) ) {
-				$link = Linker::revDeleteLinkDisabled( $canHide ); // revision was hidden from sysops
-			} else {
-				$query = array(
-					'type' 	 => 'revision',
-					'target' => $rev->getTitle()->getPrefixedDBkey(),
-					'ids' 	 => $rev->getId()
-				);
-				$link = Linker::revDeleteLink( $query,
-					$rev->isDeleted( Revision::DELETED_RESTRICTED ), $canHide );
-			}
+		$link = Linker::getRevDeleteLink( $this->getUser(), $rev, $rev->getTitle() );
+		if ( $link !== '' ) {
 			$link = '&#160;&#160;&#160;' . $link . ' ';
 		}
 		return $link;
