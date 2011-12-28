@@ -1248,7 +1248,7 @@ $1",
 'group-suppress'      => 'ओवरसाईट्स',
 'group-all'           => '(सभी)',
 
-'group-user-member'          => '{{लिंग:$1|उपयोगकर्ता}}',
+'group-user-member'          => '{{GENDER:$1|सदस्य}}',
 'group-autoconfirmed-member' => '{{सदस्य:$1|स्वत:पुष्ट उपयोगकर्ता}}',
 'group-bot-member'           => '{{लिंग: $ 1 | बॉट}}',
 'group-sysop-member'         => '{{लिंग: $ 1 | व्यवस्थापक}}',
@@ -1332,7 +1332,7 @@ $1",
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'इस पन्ने को पढ़ना',
-'action-edit'                 => 'यह पन्ना संपादित करें',
+'action-edit'                 => 'यह पृष्ठ संपादन करें',
 'action-createpage'           => 'पन्ने बनाना',
 'action-createtalk'           => 'वार्ता पन्ने बनाना',
 'action-createaccount'        => 'इस सदस्य का खाता खोलना',

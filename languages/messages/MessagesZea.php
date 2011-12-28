@@ -186,6 +186,7 @@ $messages = array(
 'vector-view-edit'       => 'Bewerk',
 'vector-view-history'    => "Geschiedenisse bekiek'n",
 'vector-view-view'       => 'Lezen',
+'vector-view-viewsource' => 'Brontekst bekieken',
 'actions'                => 'Handeliengen',
 'namespaces'             => 'Naemruumtes',
 'variants'               => 'Varianten',
@@ -338,6 +339,12 @@ MySQL haf de volhende foutmeldieng: “$3: $4”",
 'readonlytext'         => 'De database is heblokkeerd voe bewerkiengen, warschijnlijk voe rehulier databaseonderoud. Nae afrondieng wor de functionaliteit hersteld.
 
 De beheêrder ei de volhende reeën opeheven: $1',
+'missing-article'      => "In de database is gin inhoud angetroff'n vò de pagina \"\$1\" die er wè zow moeë weez'n (\$2).
+
+Dit kan vòkomm'n as jie 'n veraoderde verwiezienge nir 't verschil tiss'n tweê versies von 'n pagina vogt of 'n versie opvraeg die is gewist.
+
+As dit nie 't geval bin, hebbe jie wèlicht 'n fout in de software gevond'n.
+Maek hiervon maldienge bie 'n [[Special:ListUsers/sysop|beheêrder]] von {{SITENAME}} en vermalt daerbie de URL von deze pagina.",
 'readonly_lag'         => 'De database is automaotisch verhrendeld terwijl an de onderheschikte databaseservers synhroniseren mie den oôdserver.',
 'internalerror'        => 'Interne fout',
 'internalerror_info'   => 'Interne fout: $1',
@@ -540,8 +547,8 @@ Gebruuk de knoppe '''vorige''' in je browser as je ier per ongeluk terecht bin e
 'anontalkpagetext'           => "----''Dit is de overlegbladzie vò 'n anonieme gebruker die-a gin inlognaem eit of 'm nie gebruukt.
 Zien/eur IP-adres kan deu meêr as eên gebruker gebruukt ore.
 A je 'n bericht gekrege è dat-a dudelik nie an joe gericht is, ka je 't beste [[Special:UserLogin|jen eige anmelde]] om zukke verwarrienge in 't vervolg te vòkommen.''",
-'noarticletext'              => 'Deêze pagina bevat hin tekst.
-Je kan [[Special:Search/{{PAGENAME}}|ni deêze term zoeken]] in aore pagina\'s of <span class="plainlinks">[{{fullurl:{{FULLPAGENAME}}|action=edit}} deêze pagina bewerken]</span>.',
+'noarticletext'              => "Deêze pagina bevat hin tekst.
+Je kan [[Special:Search/{{PAGENAME}}|ni deêze term zoeken]] in aore pagina's, <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} de logboek'n deurzoek'n] of [{{fullurl:{{FULLPAGENAME}}|action=edit}} deêze pagina bewerken]</span>.",
 'userpage-userdoesnotexist'  => 'Je bewerk een gebrukerspagina van een gebruker die a nie besti (gebruker "<nowiki>$1</nowiki>"). Controleer of a je deêze pagina wè wil anmaeken/bewerken.',
 'clearyourcache'             => '\'\'\'Let op!\'\'\' Leeg je cache naeda je de wiezigiengen ei opeslogen.
 
@@ -625,10 +632,13 @@ Je kan a bestaende pagina's wiezigen, of je kan [[Special:UserLogin|jen eihen an
 Overweeg of a 't terecht is dat je vadder werk an deêze pagina. Voe je hemak sti ieronder 't verwiederiengslogboek van deêze pagina:",
 
 # Parser/template warnings
-'expensive-parserfunction-warning'  => "Waerschuwieng: deêze pagina gebruuk te vee kosbaere parserfuncties.
+'expensive-parserfunction-warning'        => "Waerschuwieng: deêze pagina gebruuk te vee kosbaere parserfuncties.
 
 Noe zien 't et der $1, terwijl an 't der minder as $2 motten zien.",
-'expensive-parserfunction-category' => "Pagina's die an te vee kosbaere parserfuncties gebruken",
+'expensive-parserfunction-category'       => "Pagina's die an te vee kosbaere parserfuncties gebruken",
+'post-expand-template-inclusion-warning'  => "Waerschiewienge: de maximaole transclusiegroôtte vò sjabloon'n is overschreed'n.
+Sommige sjabloon'n worr'n nie getranscludeerd.",
+'post-expand-template-inclusion-category' => "Pagina's wirvòr de maximaole transclusiegroôtte is overschreed'n",
 
 # "Undo" feature
 'undo-success' => "Ieronder sti de tekst wirin a de wiezigieng onedaene is emikt. Controleer voe 't opslaene of a 't resultaot ewenst is.",
@@ -645,6 +655,7 @@ De deur $3 opeheven reeën is ''$2''",
 'viewpagelogs'        => 'Bekiek de logboeken vò deêze bladzie',
 'nohistory'           => 'Deêze pagina is nie bewerkt.',
 'currentrev'          => 'Udihe versie',
+'currentrev-asof'     => 'Hudige versie von $2 om $3',
 'revisionasof'        => 'Versie op $1',
 'revision-info'       => 'Versie op $1 van $2',
 'previousrevision'    => '←Ouwere versie',
@@ -748,6 +759,7 @@ Zurg da je bie deêze wiezigieng de heschiedenisdeurloôpendeid van de pagina be
 
 # Search results
 'searchresults'                    => 'Zoekresultaoten',
+'searchresults-title'              => 'Zuikresultaot\'n vò "$1"',
 'searchresulttext'                 => 'Voe meêr informaotie over zoeken op {{SITENAME}}, zie [[{{MediaWiki:Helppage}}|{{int:ulpe}}]].',
 'searchsubtitle'                   => "Je zoch ni '''[[:$1]]'''",
 'searchsubtitleinvalid'            => 'Voe zoekopdracht "$1"',
@@ -758,10 +770,14 @@ Zurg da je bie deêze wiezigieng de heschiedenisdeurloôpendeid van de pagina be
 'notextmatches'                    => "Hin pagina's evon'n",
 'prevn'                            => 'vorrege {{PLURAL:$1|$1}}',
 'nextn'                            => 'volhende {{PLURAL:$1|$1}}',
+'prevn-title'                      => "Veurige {{PLURAL:$1|resultaot|$1 resultaot'n}}",
 'nextn-title'                      => "Ouwere {{PLURAL:$1|resultaot|$1 resultaot'n}}",
+'shown-title'                      => "$1 {{PLURAL:$1|resultaot|resultaot'n}} per pagina weêrgeven",
 'viewprevnext'                     => 'Bekiek ($1 {{int:pipe-separator}} $2) ($3).',
+'searchmenu-new'                   => "'''De pagina \"[[:\$1]]\" anmaek'n op deêze wiki.'''",
 'searchhelp-url'                   => 'Help:Inoud',
 'searchprofile-articles'           => "Inhoudelike pagina's",
+'searchprofile-project'            => "Hilp- en projectpagina's",
 'searchprofile-images'             => 'Multimedia',
 'searchprofile-everything'         => 'Alles',
 'searchprofile-advanced'           => 'Uutebreid',
@@ -769,6 +785,7 @@ Zurg da je bie deêze wiezigieng de heschiedenisdeurloôpendeid van de pagina be
 'searchprofile-project-tooltip'    => "Zoek'n in $1",
 'searchprofile-images-tooltip'     => "Zoek nae bestand'n",
 'searchprofile-everything-tooltip' => "Aolle inhoud dòzoek'n (inclusief overlegbladzies)",
+'searchprofile-advanced-tooltip'   => "Zoek'n in angegeev'n naemruumtes",
 'search-result-size'               => '$1 ({{PLURAL:$2|1 woôrd|$2 woôrn}})',
 'search-result-score'              => 'Rillevantie: $1%',
 'search-redirect'                  => '(deurverwiezieng $1)',
@@ -777,6 +794,7 @@ Zurg da je bie deêze wiezigieng de heschiedenisdeurloôpendeid van de pagina be
 'searchall'                        => 'aolle',
 'showingresults'                   => "Ieronder {{PLURAL:$1|sti '''1''' resultaot|staen '''$1''' resultaoten}} vanof #'''$2'''.",
 'showingresultsnum'                => "Ieronder {{PLURAL:$3|sti '''1''' resultaot|staen '''$3''' resultaoten}} vanof #'''$2'''.",
+'showingresultsheader'             => "{{PLURAL:$5|Resultaot '''$1''' von '''$3'''|Resultaot'n '''$1 - $2''' von '''$3'''}} vò '''$4'''",
 'nonefound'                        => "'''Opmerkieng''': mislukte zoekopdrachten worn vaok veroôrzaekt deur zoekn ni vee voekomm'nde woôrn as \"van\" en \"de\", die an nie in de indexen worn openoom'n, of deur meêr dan eên zoekterm op te heven. Allin pagina's die an aolle zoektermen bevatt'n worn openoom'n in de resultaoten.",
 'search-nonefound'                 => "Er zin geen resultaot'n vò je zoekopdracht.",
 'powersearch'                      => 'Uutebreid zoeken',
@@ -966,15 +984,20 @@ De lèste lienk is bedoeld voe mediabestan'n die an hin plaetje zien.",
 'watchthisupload'            => 'Volg deêze bladzie',
 
 # File description page
-'file-anchor-link'    => 'Bestand',
-'filehist-help'       => "Klik op 'n datum/tied om 't bestand te zien zoas 't van d'r tied woas.",
-'filehist-current'    => 'hudige versie',
-'filehist-datetime'   => 'Datum/tied',
-'filehist-thumb'      => 'Miniatuur',
-'filehist-user'       => 'Gebruker',
-'filehist-dimensions' => 'Ofmetiengen',
-'filehist-comment'    => 'Opmerkienge',
-'linkstoimage'        => "Dit bestand òdt op de volgende {{PLURAL:$1|pagina|$1 pagina's}} gebruukt:",
+'file-anchor-link'       => 'Bestand',
+'filehist'               => 'Bestandsgeschiedenisse',
+'filehist-help'          => "Klik op 'n datum/tied om 't bestand te zien zoas 't van d'r tied woas.",
+'filehist-current'       => 'hudige versie',
+'filehist-datetime'      => 'Datum/tied',
+'filehist-thumb'         => 'Miniatuur',
+'filehist-thumbtext'     => 'Miniatuuraofbilding vò de versie von $2 om $3',
+'filehist-user'          => 'Gebruker',
+'filehist-dimensions'    => 'Ofmetiengen',
+'filehist-comment'       => 'Opmerkienge',
+'imagelinks'             => 'Bestandsgebruuk',
+'linkstoimage'           => "Dit bestand òdt op de volgende {{PLURAL:$1|pagina|$1 pagina's}} gebruukt:",
+'sharedupload-desc-here' => "Dit bestand kom von $1 en kan oôk in aorre project'n gebruukt worr'n.
+De [$2 pagina mè de bestandsbeschrievienge] wòdt hieronder weergegeev'n.",
 
 # Random page
 'randompage' => 'Bladzie op goed geluk',
@@ -1009,6 +1032,7 @@ Je kan 't overzicht bepaelen deu 'n soôrte logboek, 'n gebrukersnaem of eên bl
 'allinnamespace'    => 'Aolle bladzies uut de $1-naemruumte',
 'allnotinnamespace' => 'Aolle bladzies (nie in de $1-naemruumte)',
 'allpagesprev'      => 'Vorrege',
+'allpagessubmit'    => 'OK',
 'allpagesprefix'    => "Laet bladzies zieë mee 't vovoegsel:",
 'allpagesbadtitle'  => "D'n ingegeven bladzie-titel was ongeldeg of ao 'n interwiki-vòvoegsel. Meschien stae d'r eên of meer teêkens in die-an nie in titels gebruukt ore kunne.",
 
@@ -1066,7 +1090,7 @@ De lèste bewerkienge wier gedaen deu [[User:$3|$3]] ([[User talk:$3|Overleggien
 'contributions' => 'Biedraegen gebruker',
 'mycontris'     => 'Mien biedraegen',
 
-'sp-contributions-talk'       => 'Overleg',
+'sp-contributions-talk'       => 'overleg',
 'sp-contributions-userrights' => 'Gebrukersrechenbeheer',
 
 # What links here
@@ -1074,6 +1098,7 @@ De lèste bewerkienge wier gedaen deu [[User:$3|$3]] ([[User talk:$3|Overleggien
 
 # Block/unblock
 'blockip'                     => 'Blokkeer gebruker',
+'ipboptions'                  => '2 uur:2 hours,1 dag:1 day,3 daegen:3 days,1 week:1 week,2 weken:2 weeks,1 maend:1 month,3 maenden:3 months,6 maenden:6 months,1 jaer:1 year,onbepaeld:infinite',
 'badipaddress'                => 'Ongeldig IP-adres',
 'blockipsuccesssub'           => 'Blokkaode is gelukt.',
 'blockipsuccesstext'          => "[[Special:Contributions/$1|$1]] is geblokkeerd.<br />
@@ -1103,6 +1128,9 @@ die-a je gekozen is is ongeldeg.
 Kiest 'n aore naem.",
 'revertmove'       => 'terugdraejen',
 
+# Export
+'export' => 'Exporteren',
+
 # Namespace 8 related
 'allmessagesname'           => 'Naem',
 'allmessagesdefault'        => 'Standerttekst',
@@ -1121,8 +1149,11 @@ Kiest 'n aore naem.",
 'tooltip-pt-mycontris'           => 'Mien biedraegen',
 'tooltip-pt-login'               => "Je wod van harte uutgenoôdigd om j'eigen aen te melden as gebruker, maer dit is nie verplicht.",
 'tooltip-pt-logout'              => 'Ofmelden',
+'tooltip-ca-talk'                => 'Overleg over deze pagina',
+'tooltip-ca-edit'                => "Jie kunne deze pagina bewark'n. Hebruuk de vòbildweêrhaveknop vò te bewaer'n.",
 'tooltip-ca-addsection'          => "Nuuw kopje toevoeg'n",
 'tooltip-ca-viewsource'          => "Dizze pagina bin beveiligd. Je kunne wè de broncode bekiek'n.",
+'tooltip-ca-history'             => 'Eêdere versies von deze pahina',
 'tooltip-ca-delete'              => 'Wis deêze bladzie',
 'tooltip-ca-move'                => 'Verschuuf deêze bladzie',
 'tooltip-ca-watch'               => 'Voeg deêze bladzie an de volglieste toe',
@@ -1132,13 +1163,19 @@ Kiest 'n aore naem.",
 'tooltip-n-mainpage'             => "Bekiek 't vòblad",
 'tooltip-n-mainpage-description' => "Gae nae 't vòblad",
 'tooltip-n-portal'               => "Praet en overleg in't Durpsuus",
+'tooltip-n-currentevents'        => "Achtergrondinformaotie over actuele zaok'n",
 'tooltip-n-recentchanges'        => 'Bekiek wat-a juust veranderd is op deêze wiki',
 'tooltip-n-randompage'           => "'n Bladzie ap goed geluk bekieke",
 'tooltip-n-help'                 => 'Hulpinformaosie uvver deêze wiki',
+'tooltip-t-whatlinkshere'        => "Lieste von aolle pagina's die nir deze pagina verwiezen",
+'tooltip-t-recentchangeslinked'  => "Recente anpassiengen in pagina's wir deze pagina nir verwies",
 'tooltip-feed-atom'              => 'Atom-feed vò deze pagina',
 'tooltip-t-upload'               => "Bestand upload'n",
 'tooltip-t-specialpages'         => "Liest van aole speciaole pagina's",
 'tooltip-t-print'                => 'Printvrindelike versie van dizze pagina',
+'tooltip-t-permalink'            => 'Permanente verwiezienge nir deze versie von de pagina',
+'tooltip-ca-nstab-main'          => 'Bekiek inholdsbladzie',
+'tooltip-ca-nstab-image'         => 'Bekiek bestandspagina',
 'tooltip-ca-nstab-template'      => "Sjabloon bekiek'n",
 'tooltip-ca-nstab-category'      => "Categoriebladzie bekiek'n",
 'tooltip-save'                   => 'Je wiezigiengen opslaen',
@@ -1147,16 +1184,40 @@ Kiest 'n aore naem.",
 'tooltip-watch'                  => 'Voeg deêze bladzie toe an de volglieste',
 'tooltip-rollback'               => 'Mè "terugdraejen" draej ie mè eên klik de bewerkienge(n) terugge van de laetste gebruker die dizze pagina bewerkt ei.',
 'tooltip-undo'                   => "Mè \"onhedaen maek'n\" draej-ie deze bewerkienge terugge en kom 't in 't bewerkiengsvenster. Je kunne in de bewerkiengssaemevattienge 'n reêde opheven.",
+'tooltip-summary'                => "Voer 'n korte saem'nvattienge in",
 
 # Media information
 'file-info-size' => '$1 × $2 pixels, bestandsgroôtte: $3, MIME-type: $4',
 
+# Bad image list
+'bad_image_list' => "De opmaek is as vogt:
+
+Alleên regels in 'n lieste (regels die beginn'n mè *) worr'n verwarkt.
+De eêste verwiezienge op 'n regel moe 'n verwiezienge zin nir 'n ongewenst bestand.
+Aolle voggende verwieziengen die op dezelfde regel staen, worr'n behandeld as uutzonderienge, zoas bievòbild pagina's wirop 't bestand in de tekst is opgenaem'n.",
+
 # Metadata
-'metadata' => 'Metadata',
+'metadata'        => 'Metadata',
+'metadata-fields' => "De aofbildiengsmetadataveld'n in dit bericht worr'n oôk weergegeev'n op 'n aofbildiengspagina as de metadatatabel ingeklapt is.
+Aorre veld'n worr'n verborr'n.
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* isospeedratings
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude",
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'aol',
 'namespacesall' => 'aol',
+'monthsall'     => 'aolle',
 
 # Multipage image navigation
 'imgmultipageprev' => '← vorrege bladzie',
@@ -1175,6 +1236,9 @@ Kiest 'n aore naem.",
 
 # Special:SpecialPages
 'specialpages' => 'Speciaole bladzies',
+
+# Special:Tags
+'tag-filter' => '[[Special:Tags|Labelfilter]]:',
 
 # New logging system
 'revdelete-restricted'   => 'ei beperkiengen an beheêrders opeleid',

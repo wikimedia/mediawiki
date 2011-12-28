@@ -10,6 +10,7 @@
  * @author Alquen
  * @author Balasyum
  * @author Bdamokos
+ * @author Bean49
  * @author Bennó
  * @author BáthoryPéter
  * @author CERminator
@@ -1796,9 +1797,15 @@ Kérjük, hogy lépj kapcsolatba egy  [[Special:ListUsers/sysop|adminisztrátorr
 'backend-fail-create'        => 'Nem sikerült létrehozni ezt a fájlt: $1.',
 
 # Lock manager
-'lockmanager-notlocked'       => 'Nem lehet a zárolást feloldani: „$1”; nincs zárolva.',
-'lockmanager-fail-closelock'  => 'Nem sikerült a „$1” zárolási fájljának bezárása.',
-'lockmanager-fail-deletelock' => 'Nem sikerült a(z) „$1” zárolási fájljának törlése.',
+'lockmanager-notlocked'        => 'Nem lehet a zárolást feloldani: „$1”; nincs zárolva.',
+'lockmanager-fail-closelock'   => 'Nem sikerült a „$1” zárolási fájljának bezárása.',
+'lockmanager-fail-deletelock'  => 'Nem sikerült a(z) „$1” zárolási fájljának törlése.',
+'lockmanager-fail-acquirelock' => 'Nem sikerült zárolást igényelni a „$1” fájlhoz.',
+'lockmanager-fail-openlock'    => 'Nem sikerült a „$1” zárolási fájljának megnyitása.',
+'lockmanager-fail-releaselock' => 'Nem sikerült a(z) „$1” fájl zárolásának feloldása.',
+'lockmanager-fail-db-bucket'   => 'Nem sikerült kapcsolatot létesíteni elég adatbázis zároláshoz a $1 vödörben.',
+'lockmanager-fail-db-release'  => 'Nem lehet a $1 adatbázis zárolását feloldani.',
+'lockmanager-fail-svr-release' => 'Nem lehet a(z) $1 szerver zárolását feloldani.',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'Hiba történt a ZIP fájlokon végzett ellenőrzés elindítása közben.',
@@ -1909,6 +1916,7 @@ A [$2 fájl ottani leírólapjának] másolata alább látható.',
 'uploadnewversion-linktext' => 'Új változat feltöltése',
 'shared-repo-from'          => 'a(z) $1 megosztott tárhelyről',
 'shared-repo'               => 'megosztott tárhely',
+'filepage.css'              => '/* Az itt elhelyezett CSS a fájl leíró lapra kerül beillesztésre, a külföldi nyelvű kliens wikikbe is*/',
 
 # File reversion
 'filerevert'                => '$1 visszaállítása',
@@ -2044,6 +2052,7 @@ Az <del>áthúzott</del> sorok a lista elkészülése óta javítva lettek.',
 'mostimages'              => 'Legtöbbet hivatkozott fájlok',
 'mostrevisions'           => 'Legtöbbet szerkesztett lapok',
 'prefixindex'             => 'Keresés előtag szerint',
+'prefixindex-namespace'   => 'Összes lap adott előtaggal ($1 névtér)',
 'shortpages'              => 'Rövid lapok',
 'longpages'               => 'Hosszú lapok',
 'deadendpages'            => 'Zsákutcalapok',
@@ -2801,6 +2810,8 @@ Ha részt szeretnél venni a MediaWiki fordításában, látogass el a [//www.me
 'thumbnail_error'          => 'Hiba a bélyegkép létrehozásakor: $1',
 'djvu_page_error'          => 'A DjVu lap a tartományon kívülre esik',
 'djvu_no_xml'              => 'Nem olvasható ki a DjVu fájl XML-je',
+'thumbnail-temp-create'    => 'Nem lehet ideiglenes bélyegkép fájlt létrehozni',
+'thumbnail-dest-create'    => 'Nem lehet a bélyegképet a célhelyre menteni',
 'thumbnail_invalid_params' => 'Érvénytelen bélyegkép paraméterek',
 'thumbnail_dest_directory' => 'Nem hozható létre a célkönyvtár',
 'thumbnail_image-type'     => 'A képformátum nem támogatott',
@@ -2924,29 +2935,39 @@ Mentsd el a számítógépedre, majd töltsd fel ide.',
 'tooltip-summary'                 => 'Adj meg egy rövid összefoglalót',
 
 # Stylesheets
-'common.css'      => '/* Közös CSS az összes felületnek */',
-'standard.css'    => '/* Az ide elhelyezett CSS hatással lesz a Klasszikus felület használóira */',
-'nostalgia.css'   => '/* Az ide elhelyezett CSS hatással lesz a Nosztalgia felület használóira */',
-'cologneblue.css' => '/* Az ide elhelyezett CSS hatással lesz a Kölni kék felület használóira */',
-'monobook.css'    => '/* Az ide elhelyezett CSS hatással lesz a Monobook felület használóira */',
-'myskin.css'      => '/* Az ide elhelyezett CSS hatással lesz a MySkin felület használóira */',
-'chick.css'       => '/* Az ide elhelyezett CSS hatással lesz a Chick felület használóira */',
-'simple.css'      => '/* Az ide elhelyezett CSS hatással lesz a Egyszerű felület használóira */',
-'modern.css'      => '/* Az ide elhelyezett CSS hatással lesz a Modern felület használóira */',
-'vector.css'      => '/* Az ide elhelyezett CSS hatással lesz a Vector felület használóira */',
-'print.css'       => '/* Az ide elhelyezett CSS hatással lesz a nyomtatás kimenetelére */',
+'common.css'              => '/* Közös CSS az összes felületnek */',
+'standard.css'            => '/* Az ide elhelyezett CSS hatással lesz a Klasszikus felület használóira */',
+'nostalgia.css'           => '/* Az ide elhelyezett CSS hatással lesz a Nosztalgia felület használóira */',
+'cologneblue.css'         => '/* Az ide elhelyezett CSS hatással lesz a Kölni kék felület használóira */',
+'monobook.css'            => '/* Az ide elhelyezett CSS hatással lesz a Monobook felület használóira */',
+'myskin.css'              => '/* Az ide elhelyezett CSS hatással lesz a MySkin felület használóira */',
+'chick.css'               => '/* Az ide elhelyezett CSS hatással lesz a Chick felület használóira */',
+'simple.css'              => '/* Az ide elhelyezett CSS hatással lesz a Egyszerű felület használóira */',
+'modern.css'              => '/* Az ide elhelyezett CSS hatással lesz a Modern felület használóira */',
+'vector.css'              => '/* Az ide elhelyezett CSS hatással lesz a Vector felület használóira */',
+'print.css'               => '/* Az ide elhelyezett CSS hatással lesz a nyomtatás kimenetelére */',
+'handheld.css'            => '/* Az ide elhelyezett CSS hatással lesz azon kézi eszközökre, amelyek $wgHandheldStyle felülettel vannak konfigurálva */',
+'noscript.css'            => '/* Az ide elhelyezett CSS azon felhasználókra lesz hatással, ahol a JavaScript le van tiltva */',
+'group-autoconfirmed.css' => '/* Az ide elhelyezett CSS az automatikusan megerősített felhasználókra lesz hatással */',
+'group-bot.css'           => '/* Az ide elhelyezett CSS csak botokra lesz hatással */',
+'group-sysop.css'         => '/* Az ide elhelyezett CSS csak adminisztrátorokra lesz hatással */',
+'group-bureaucrat.css'    => '/* Az ide elhelyezett CSS csak bürokratákra lesz hatással */',
 
 # Scripts
-'common.js'      => '/* Az ide elhelyezett JavaScript kód minden felhasználó számára lefut az oldalak betöltésekor. */',
-'standard.js'    => '/* A Klasszikus felületet használó szerkesztők számára betöltendő JavaScriptek */',
-'nostalgia.js'   => '/* A Nosztalgia felületet használó szerkesztők számára betöltendő JavaScriptek */',
-'cologneblue.js' => '/* A Kölni kék felületet használó szerkesztők számára betöltendő JavaScriptek */',
-'monobook.js'    => '/* A Monobook felületet használó szerkesztők számára betöltendő JavaScriptek */',
-'myskin.js'      => '/* A MySkin felületet használó szerkesztők számára betöltendő JavaScriptek */',
-'chick.js'       => '/* A Chick felületet használó szerkesztők számára betöltendő JavaScriptek */',
-'simple.js'      => '/* Az Egyszerű felületet használó szerkesztők számára betöltendő JavaScriptek */',
-'modern.js'      => '/* A Modern felületet használó szerkesztők számára betöltendő JavaScriptek */',
-'vector.js'      => '/* A Vector felületet használó szerkesztők számára betöltendő JavaScriptek */',
+'common.js'              => '/* Az ide elhelyezett JavaScript kód minden felhasználó számára lefut az oldalak betöltésekor. */',
+'standard.js'            => '/* A Klasszikus felületet használó szerkesztők számára betöltendő JavaScriptek */',
+'nostalgia.js'           => '/* A Nosztalgia felületet használó szerkesztők számára betöltendő JavaScriptek */',
+'cologneblue.js'         => '/* A Kölni kék felületet használó szerkesztők számára betöltendő JavaScriptek */',
+'monobook.js'            => '/* A Monobook felületet használó szerkesztők számára betöltendő JavaScriptek */',
+'myskin.js'              => '/* A MySkin felületet használó szerkesztők számára betöltendő JavaScriptek */',
+'chick.js'               => '/* A Chick felületet használó szerkesztők számára betöltendő JavaScriptek */',
+'simple.js'              => '/* Az Egyszerű felületet használó szerkesztők számára betöltendő JavaScriptek */',
+'modern.js'              => '/* A Modern felületet használó szerkesztők számára betöltendő JavaScriptek */',
+'vector.js'              => '/* A Vector felületet használó szerkesztők számára betöltendő JavaScriptek */',
+'group-autoconfirmed.js' => '/* Az ide elhelyezett JavaScript csak automatikusan megerősített felhasználóknak töltődik be */',
+'group-bot.js'           => '/* Az ide elhelyezett JavaScript csak botoknak töltődik be */',
+'group-sysop.js'         => '/* Az ide elhelyezett JavaScript csak adminisztrátoroknak töltődik be */',
+'group-bureaucrat.js'    => '/* Az ide elhelyezett JavaScript csak bürokratáknak töltődik be */',
 
 # Metadata
 'notacceptable' => 'A wiki kiszolgálója nem tudja olyan formátumban biztosítani az adatokat, amit a kliens olvasni tud.',
@@ -3007,7 +3028,7 @@ Ez valószínűleg egy olyan link miatt van, ami egy feketelistán lévő oldalr
 'markedaspatrollederror-noautopatrol' => 'A saját változtatásaid megjelölése ellenőrzöttként nem engedélyezett.',
 
 # Patrol log
-'patrol-log-page'      => 'Ellenőrzési napló',
+'patrol-log-page'      => 'Ellenőrzési napló (patrol)',
 'patrol-log-header'    => 'Ez az ellenőrzött változatok naplója.',
 'log-show-hide-patrol' => 'járőrnapló $1',
 
@@ -3813,13 +3834,18 @@ A képek teljes méretben jelennek meg, más fájltípusok közvetlenül a hozz�
 'newuserlog-byemail'                  => 'a jelszót kiküldtük a megadott e-mail címre',
 
 # Feedback
-'feedback-subject' => 'Tárgy:',
-'feedback-message' => 'Üzenet:',
-'feedback-cancel'  => 'Mégse',
-'feedback-submit'  => 'Visszajelzés elküldése',
-'feedback-adding'  => 'Visszajelzés elmentése...',
-'feedback-error1'  => 'Hiba: az API ismeretlen eredménnyel tért vissza',
-'feedback-error2'  => 'Hiba: a szerkesztés nem sikerült',
-'feedback-error3'  => 'Hiba: nem érkezett válasz az API-tól',
+'feedback-bugornote' => 'Ha kész technikai problémát részletesen leírni, akkor kérjük [$1 jelents egy hibát]. Egyébként használd az alábbi űrlapot. A hozzászólásod a „[$3 $2]” laphoz kerül felvételre, a szerkesztő neveddel és böngésződ típusával együtt.',
+'feedback-subject'   => 'Tárgy:',
+'feedback-message'   => 'Üzenet:',
+'feedback-cancel'    => 'Mégse',
+'feedback-submit'    => 'Visszajelzés elküldése',
+'feedback-adding'    => 'Visszajelzés elmentése...',
+'feedback-error1'    => 'Hiba: az API ismeretlen eredménnyel tért vissza',
+'feedback-error2'    => 'Hiba: a szerkesztés nem sikerült',
+'feedback-error3'    => 'Hiba: nem érkezett válasz az API-tól',
+'feedback-thanks'    => 'Köszönjük. A visszajelzésed elküldve a „[$2 $1]” laphoz.',
+'feedback-close'     => 'Kész',
+'feedback-bugcheck'  => 'Nagyszerű! Ellenőrizd, hogy ez nem egy [$1 ismert hiba].',
+'feedback-bugnew'    => 'Ellenőriztem. Új hiba jelentése',
 
 );

@@ -1120,7 +1120,7 @@ Ujue lakini kwamba kumbukumbu za {{SITENAME}} kule Google labda zilipitwa na wak
 'prefs-rc'                      => 'Mabadiliko ya karibuni',
 'prefs-watchlist'               => 'Maangalizi',
 'prefs-watchlist-days'          => 'Ionyeshwe siku ngapi kwenye orodha ya maangalizi?',
-'prefs-watchlist-days-max'      => 'Isizidi siku 7',
+'prefs-watchlist-days-max'      => 'Isizidi {{PLURAL:$1|siku}} $1',
 'prefs-watchlist-edits'         => 'Upeo ya idadi ya mabadiliko yatakayoonyeshwa kwenye orodha ya maangalizi iliyotanuka:',
 'prefs-watchlist-edits-max'     => 'Idadi isiyopitishwa: 1000',
 'prefs-watchlist-token'         => 'Ufunguo wa orodha ya maangalizi:',

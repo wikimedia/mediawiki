@@ -1546,7 +1546,7 @@ Se a-i riva sossì n'àotra vira, ch'as buta an comunicassion con n'[[Special:Li
 # Lock manager
 'lockmanager-notlocked'        => "As peul pa dësblochesse «$1»; a l'é nen blocà.",
 'lockmanager-fail-closelock'   => "As peul pa saresse l'archivi ëd saradura për «$1».",
-'lockmanager-fail-deletelock'  => "As peul pa scanselesse l'archivi ëd saradura për «$1».",
+'lockmanager-fail-deletelock'  => "As peul pa scancelesse l'archivi ëd saradura për «$1».",
 'lockmanager-fail-acquirelock' => 'As peul pa oten-se la saradura për «$1».',
 'lockmanager-fail-openlock'    => "As peul pa durbisse l'archivi ëd saradura për «$1».",
 'lockmanager-fail-releaselock' => 'As peul pa gavé la saradura për «$1».',
@@ -2262,7 +2262,7 @@ L'ùltima intrada dël registr dij blocagi a l'é butà sì-sota për arferiment
 'whatlinkshere-prev'       => "{{PLURAL:$1|d'un andré|andré ëd $1}}",
 'whatlinkshere-next'       => "{{PLURAL:$1|d'un anans|anans ëd $1}}",
 'whatlinkshere-links'      => '← anliure',
-'whatlinkshere-hideredirs' => '$1 rediression',
+'whatlinkshere-hideredirs' => '$1 le ridiression',
 'whatlinkshere-hidetrans'  => '$1 anclusion',
 'whatlinkshere-hidelinks'  => '$1 anliura',
 'whatlinkshere-hideimages' => '$1 anliure ëd figure',
@@ -2271,8 +2271,8 @@ L'ùltima intrada dël registr dij blocagi a l'é butà sì-sota për arferiment
 # Block/unblock
 'autoblockid'                     => 'Blocagi automàtich #$1',
 'block'                           => "Bloché l'utent",
-'unblock'                         => "Dësblòca l'utent",
-'blockip'                         => "Blochè n'adrëssa IP",
+'unblock'                         => "Dësbloché l'utent",
+'blockip'                         => "Bloché l'utent",
 'blockip-title'                   => "Bloché l'utent",
 'blockip-legend'                  => "Bloché l'utent",
 'blockiptext'                     => "Che a dòvra ël mòdulo ëd domanda 'd blocagi ambelessì sota për bloché l'acess con drit dë scritura da na chèich adrëssa IP.<br />

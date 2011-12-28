@@ -273,6 +273,7 @@ $messages = array(
 'nstab-user'      => "Pájina uza-na'in",
 'nstab-special'   => 'Pájina espesiál',
 'nstab-project'   => 'Pájina projetu nian',
+'nstab-image'     => 'Fail',
 'nstab-mediawiki' => 'Mensajen',
 'nstab-help'      => 'Pájina ajuda',
 'nstab-category'  => 'Kategoria',
@@ -525,11 +526,13 @@ Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',
 'license-header' => 'Lisensa:',
 
 # Special:ListFiles
+'imgfile'        => 'fail',
 'listfiles_date' => 'Tempu',
 'listfiles_name' => 'Naran',
 'listfiles_user' => "Uza-na'in",
 
 # File description page
+'file-anchor-link'   => 'Fail',
 'filehist-deleteall' => 'halakon hotu',
 'filehist-deleteone' => 'halakon',
 'filehist-current'   => 'atuál',
@@ -925,6 +928,7 @@ Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',
 'version-software-version' => 'Versaun',
 
 # Special:FilePath
+'filepath-page'   => 'Fail:',
 'filepath-submit' => 'Bá',
 
 # Special:FileDuplicateSearch

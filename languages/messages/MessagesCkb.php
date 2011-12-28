@@ -2119,9 +2119,10 @@ $1',
 'undelete-show-file-submit'    => 'بەڵێ',
 
 # Namespace form on various pages
-'namespace'      => 'بۆشاییی ناو:',
-'invert'         => 'ھەڵبژاردەکان پێچەوانە بکە',
-'blanknamespace' => '(سەرەکی)',
+'namespace'             => 'بۆشاییی ناو:',
+'invert'                => 'ھەڵبژاردەکان پێچەوانە بکە',
+'namespace_association' => 'بۆشایی ناوی پەیوەندیدار',
+'blanknamespace'        => '(سەرەکی)',
 
 # Contributions
 'contributions'       => 'بەشدارییەکانی بەکارھێنەر',
