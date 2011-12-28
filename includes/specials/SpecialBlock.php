@@ -143,7 +143,7 @@ class SpecialBlock extends FormSpecialPage {
 				'required' => true,
 				'tabindex' => '2',
 				'options' => self::getSuggestedDurations(),
-				'other' => wfMsg( 'ipbother' ),
+				'other' => $this->msg( 'ipbother' )->text(),
 			),
 			'Reason' => array(
 				'type' => 'selectandother',
@@ -310,7 +310,7 @@ class SpecialBlock extends FormSpecialPage {
 				$s = Html::rawElement(
 					'h2',
 					array(),
-					wfMsgExt( 'ipb-otherblocks-header', 'parseinline', count( $otherBlockMessages ) )
+					$this->msg( 'ipb-otherblocks-header', count( $otherBlockMessages ) )->parse()
 				) . "\n";
 
 				$list = '';
@@ -342,16 +342,16 @@ class SpecialBlock extends FormSpecialPage {
 			$contribsPage = SpecialPage::getTitleFor( 'Contributions', $this->target->getName() );
 			$links[] = Linker::link(
 				$contribsPage,
-				wfMsgExt( 'ipb-blocklist-contribs', 'escape', $this->target->getName() )
+				$this->msg( 'ipb-blocklist-contribs', $this->target->getName() )->escaped()
 			);
 		}
 
 		# Link to unblock the specified user, or to a blank unblock form
 		if( $this->target instanceof User ) {
-			$message = wfMsgExt( 'ipb-unblock-addr', array( 'parseinline' ), $this->target->getName() );
+			$message = $this->msg( 'ipb-unblock-addr', $this->target->getName() )->parse();
 			$list = SpecialPage::getTitleFor( 'Unblock', $this->target->getName() );
 		} else {
-			$message = wfMsgExt( 'ipb-unblock', array( 'parseinline' ) );
+			$message = $this->msg( 'ipb-unblock' )->parse();
 			$list = SpecialPage::getTitleFor( 'Unblock' );
 		}
 		$links[] = Linker::linkKnown( $list, $message, array() );
@@ -359,7 +359,7 @@ class SpecialBlock extends FormSpecialPage {
 		# Link to the block list
 		$links[] = Linker::linkKnown(
 			SpecialPage::getTitleFor( 'BlockList' ),
-			wfMsg( 'ipb-blocklist' )
+			$this->msg( 'ipb-blocklist' )->escaped()
 		);
 
 		$user = $this->getUser();
@@ -368,7 +368,7 @@ class SpecialBlock extends FormSpecialPage {
 		if ( $user->isAllowed( 'editinterface' ) ) {
 			$links[] = Linker::link(
 				Title::makeTitle( NS_MEDIAWIKI, 'Ipbreason-dropdown' ),
-				wfMsgHtml( 'ipb-edit-dropdown' ),
+				$this->msg( 'ipb-edit-dropdown' )->escaped(),
 				array(),
 				array( 'action' => 'edit' )
 			);
