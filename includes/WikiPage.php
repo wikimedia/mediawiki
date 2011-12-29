@@ -2306,35 +2306,6 @@ class WikiPage extends Page {
 	/**#@-*/
 
 	/**
-	 * Return a list of templates used by this article.
-	 * Uses the templatelinks table
-	 *
-	 * @return Array of Title objects
-	 */
-	public function getUsedTemplates() {
-		$result = array();
-		$id = $this->mTitle->getArticleID();
-
-		if ( $id == 0 ) {
-			return array();
-		}
-
-		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select( array( 'templatelinks' ),
-			array( 'tl_namespace', 'tl_title' ),
-			array( 'tl_from' => $id ),
-			__METHOD__ );
-
-		if ( $res !== false ) {
-			foreach ( $res as $row ) {
-				$result[] = Title::makeTitle( $row->tl_namespace, $row->tl_title );
-			}
-		}
-
-		return $result;
-	}
-
-	/**
 	 * Returns a list of hidden categories this page is a member of.
 	 * Uses the page_props and categorylinks tables.
 	 *
@@ -2625,6 +2596,17 @@ class WikiPage extends Page {
 			$u = new LinksUpdate( $this->mTitle, $parserOutput, false );
 			$u->doUpdate();
 		}
+	}
+
+	/**
+	 * Return a list of templates used by this article.
+	 * Uses the templatelinks table
+	 *
+	 * @deprecated in 1.19; use Title::getTemplateLinksFrom()
+	 * @return Array of Title objects
+	 */
+	public function getUsedTemplates() {
+		return $this->mTitle->getTemplateLinksFrom();
 	}
 
 	/**

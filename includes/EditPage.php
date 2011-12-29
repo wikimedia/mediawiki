@@ -2507,7 +2507,7 @@ HTML
 			}
 			return $templates;
 		} else {
-			return $this->mArticle->getUsedTemplates();
+			return $this->mTitle->getTemplateLinksFrom();
 		}
 	}
 

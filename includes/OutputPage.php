@@ -2256,8 +2256,7 @@ class OutputPage extends ContextSource {
 			$this->addHTML( Html::element( 'textarea', $params, $source ) );
 
 			// Show templates used by this article
-			$page = WikiPage::factory( $this->getTitle() );
-			$templates = Linker::formatTemplates( $page->getUsedTemplates() );
+			$templates = Linker::formatTemplates( $this->getTitle()->getTemplateLinksFrom() );
 			$this->addHTML( "<div class='templatesUsed'>
 $templates
 </div>
