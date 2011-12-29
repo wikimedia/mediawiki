@@ -302,6 +302,21 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
+	 * Make a <script> tag containing global variables
+	 *
+	 * @deprecated in 1.19
+	 * @param $unused Unused
+	 * @return string HTML fragment
+	 */
+	public static function makeGlobalVariablesScript( $unused ) {
+		global $wgOut;
+
+		wfDeprecated( __METHOD__, '1.19' );
+
+		return self::makeVariablesScript( $wgOut->getJSVars() );
+	}
+
+	/**
 	 * Get the query to generate a dynamic stylesheet
 	 *
 	 * @return array
