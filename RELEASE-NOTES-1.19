@@ -110,6 +110,8 @@ production.
 * Added $wgSend404Code, true by default, which can be set to false to send a 
   200 status code instead of 404 for nonexistent articles.
 * (bug 23427) Introduced {{PAGEID}} variable to expose page.page_id
+* Use jqueryMsg wikitext parser to parse interface messages at client side.
+  Support for PLURAL in javascript.
 
 === Bug fixes in 1.19 ===
 * $wgUploadNavigationUrl should be used for file redlinks if.
