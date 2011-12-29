@@ -3126,8 +3126,6 @@ class Title {
 	 * @return Array of Title objects linking here
 	 */
 	public function getLinksTo( $options = array(), $table = 'pagelinks', $prefix = 'pl' ) {
-		$linkCache = LinkCache::singleton();
-
 		if ( count( $options ) > 0 ) {
 			$db = wfGetDB( DB_MASTER );
 		} else {
@@ -3146,7 +3144,8 @@ class Title {
 		);
 
 		$retVal = array();
-		if ( $db->numRows( $res ) ) {
+		if ( $res->numRows() ) {
+			$linkCache = LinkCache::singleton();
 			foreach ( $res as $row ) {
 				$titleObj = Title::makeTitle( $row->page_namespace, $row->page_title );
 				if ( $titleObj ) {
@@ -3170,6 +3169,76 @@ class Title {
 	 */
 	public function getTemplateLinksTo( $options = array() ) {
 		return $this->getLinksTo( $options, 'templatelinks', 'tl' );
+	}
+
+	/**
+	 * Get an array of Title objects linked from this Title
+	 * Also stores the IDs in the link cache.
+	 *
+	 * WARNING: do not use this function on arbitrary user-supplied titles!
+	 * On heavily-used templates it will max out the memory.
+	 *
+	 * @param $options Array: may be FOR UPDATE
+	 * @param $table String: table name
+	 * @param $prefix String: fields prefix
+	 * @return Array of Title objects linking here
+	 */
+	public function getLinksFrom( $options = array(), $table = 'pagelinks', $prefix = 'pl' ) {
+		$id = $this->getArticleId();
+
+		# If the page doesn't exist; there can't be any link from this page
+		if ( !$id ) {
+			return array();
+		}
+
+		if ( count( $options ) > 0 ) {
+			$db = wfGetDB( DB_MASTER );
+		} else {
+			$db = wfGetDB( DB_SLAVE );
+		}
+
+		$namespaceFiled = "{$prefix}_namespace";
+		$titleField = "{$prefix}_title";
+
+		$res = $db->select(
+			array( $table, 'page' ),
+			array( $namespaceFiled, $titleField, 'page_id', 'page_len', 'page_is_redirect', 'page_latest' ),
+			array( "{$prefix}_from" => $id ),
+			__METHOD__,
+			$options,
+			array( 'page' => array( 'LEFT JOIN', array( "page_namespace=$namespaceFiled", "page_title=$titleField" ) ) )
+		);
+
+		$retVal = array();
+		if ( $res->numRows() ) {
+			$linkCache = LinkCache::singleton();
+			foreach ( $res as $row ) {
+				$titleObj = Title::makeTitle( $row->$namespaceFiled, $row->$titleField );
+				if ( $titleObj ) {
+					if ( $row->page_id ) {
+						$linkCache->addGoodLinkObjFromRow( $titleObj, $row );
+					} else {
+						$linkCache->addBadLinkObj( $titleObj );
+					}
+					$retVal[] = $titleObj;
+				}
+			}
+		}
+		return $retVal;
+	}
+
+	/**
+	 * Get an array of Title objects used on this Title as a template
+	 * Also stores the IDs in the link cache.
+	 *
+	 * WARNING: do not use this function on arbitrary user-supplied titles!
+	 * On heavily-used templates it will max out the memory.
+	 *
+	 * @param $options Array: may be FOR UPDATE
+	 * @return Array of Title the Title objects used here
+	 */
+	public function getTemplateLinksFrom( $options = array() ) {
+		return $this->getLinksFrom( $options, 'templatelinks', 'tl' );
 	}
 
 	/**
