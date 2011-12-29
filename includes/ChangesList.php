@@ -665,23 +665,17 @@ class EnhancedChangesList extends ChangesList {
 		} elseif( $type == RC_LOG ) {
 			if( $logType ) {
 				$logtitle = SpecialPage::getTitleFor( 'Log', $logType );
-				$clink = '(' . Linker::linkKnown( $logtitle,
-					LogPage::logName( $logType ) ) . ')';
+				$logpage = new LogPage( $logType );
+				$logname = $logpage->getName()->escaped();
+				$clink = '(' . Linker::linkKnown( $logtitle, $logname ) . ')';
 			} else {
 				$clink = Linker::link( $rc->getTitle() );
 			}
 			$watched = false;
 		// Log entries (old format) and special pages
 		} elseif( $rc->mAttribs['rc_namespace'] == NS_SPECIAL ) {
-			list( $specialName, $logtype ) = SpecialPageFactory::resolveAlias( $rc->mAttribs['rc_title'] );
-			if ( $specialName == 'Log' ) {
-				# Log updates, etc
-				$logname = LogPage::logName( $logtype );
-				$clink = '(' . Linker::linkKnown( $rc->getTitle(), $logname ) . ')';
-			} else {
-				wfDebug( "Unexpected special page in recentchanges\n" );
-				$clink = '';
-			}
+			wfDebug( "Unexpected special page in recentchanges\n" );
+			$clink = '';
 		// Edits
 		} else {
 			$clink = Linker::linkKnown( $rc->getTitle() );
