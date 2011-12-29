@@ -706,6 +706,7 @@ return array(
 			'jquery.placeholder',
 			'jquery.mw-jump',
 			'mediawiki.util',
+			'mediawiki.jqueryMsg'
 		),
 	),
 	'mediawiki.page.startup' => array(
