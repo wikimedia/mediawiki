@@ -58,14 +58,14 @@ class EditCLI extends Maintenance {
 			$this->error( "Invalid title", true );
 		}
 
-		$article = new Article( $wgTitle );
+		$page = WikiPage::factory( $wgTitle );
 
 		# Read the text
 		$text = $this->getStdin( Maintenance::STDIN_ALL );
 
 		# Do the edit
 		$this->output( "Saving... " );
-		$status = $article->doEdit( $text, $summary,
+		$status = $page->doEdit( $text, $summary,
 			( $minor ? EDIT_MINOR : 0 ) |
 			( $bot ? EDIT_FORCE_BOT : 0 ) |
 			( $autoSummary ? EDIT_AUTOSUMMARY : 0 ) |
