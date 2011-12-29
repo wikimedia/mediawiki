@@ -31,11 +31,11 @@ class DeletedContribsPager extends IndexPager {
 	var $messages, $target;
 	var $namespace = '', $mDb;
 
-	function __construct( $target, $namespace = false ) {
-		parent::__construct();
+	function __construct( IContextSource $context, $target, $namespace = false ) {
+		parent::__construct( $context );
 		$msgs = array( 'deletionlog', 'undeleteviewlink', 'diff' );
 		foreach( $msgs as $msg ) {
-			$this->messages[$msg] = wfMsgExt( $msg, array( 'escapenoentities') );
+			$this->messages[$msg] = $this->msg( $msg )->escaped();
 		}
 		$this->target = $target;
 		$this->namespace = $namespace;
@@ -98,10 +98,10 @@ class DeletedContribsPager extends IndexPager {
 		$lang = $this->getLanguage();
 		$fmtLimit = $lang->formatNum( $this->mLimit );
 		$linkTexts = array(
-			'prev' => wfMsgExt( 'pager-newer-n', array( 'escape', 'parsemag' ), $fmtLimit ),
-			'next' => wfMsgExt( 'pager-older-n', array( 'escape', 'parsemag' ), $fmtLimit ),
-			'first' => wfMsgHtml( 'histlast' ),
-			'last' => wfMsgHtml( 'histfirst' )
+			'prev' => $this->msg( 'pager-newer-n', $fmtLimit )->escaped(),
+			'next' => $this->msg( 'pager-older-n', $fmtLimit )->escaped(),
+			'first' => $this->msg( 'histlast' )->escaped(),
+			'last' => $this->msg( 'histfirst' )->escaped()
 		);
 
 		$pagingLinks = $this->getPagingLinks( $linkTexts );
@@ -109,7 +109,7 @@ class DeletedContribsPager extends IndexPager {
 		$limits = $lang->pipeList( $limitLinks );
 
 		$this->mNavigationBar = "(" . $lang->pipeList( array( $pagingLinks['first'], $pagingLinks['last'] ) ) . ") " .
-			wfMsgExt( 'viewprevnext', array( 'parsemag', 'escape', 'replaceafter' ), $pagingLinks['prev'], $pagingLinks['next'], $limits );
+			$this->msg( 'viewprevnext' )->rawParams( $pagingLinks['prev'], $pagingLinks['next'], $limits )->escaped();
 		return $this->mNavigationBar;
 	}
 
@@ -217,14 +217,15 @@ class DeletedContribsPager extends IndexPager {
 		$tools = Html::rawElement(
 			'span',
 			array( 'class' => 'mw-deletedcontribs-tools' ),
-			wfMsg( 'parentheses', $this->getLanguage()->pipeList( array( $last, $dellog, $reviewlink ) ) )
+			$this->msg( 'parentheses' )->rawParams( $this->getLanguage()->pipeList(
+				array( $last, $dellog, $reviewlink ) ) )->escaped()
 		);
 
 		$ret = "{$del}{$link} {$tools} . . {$mflag} {$pagelink} {$comment}";
 
 		# Denote if username is redacted for this edit
 		if( $rev->isDeleted( Revision::DELETED_USER ) ) {
-			$ret .= " <strong>" . wfMsgHtml('rev-deleted-user-contribs') . "</strong>";
+			$ret .= " <strong>" . $this->msg( 'rev-deleted-user-contribs' )->escaped() . "</strong>";
 		}
 
 		$ret = Html::rawElement( 'li', array(), $ret ) . "\n";
@@ -306,7 +307,7 @@ class DeletedContributionsPage extends SpecialPage {
 
 		$out->addHTML( $this->getForm( $options ) );
 
-		$pager = new DeletedContribsPager( $target, $options['namespace'] );
+		$pager = new DeletedContribsPager( $this->getContext(), $target, $options['namespace'] );
 		if ( !$pager->getNumRows() ) {
 			$out->addWikiMsg( 'nocontribs' );
 			return;
@@ -329,7 +330,7 @@ class DeletedContributionsPage extends SpecialPage {
 				? 'sp-contributions-footer-anon'
 				: 'sp-contributions-footer';
 
-			if( !wfMessage( $message )->isDisabled() ) {
+			if( !$this->msg( $message )->isDisabled() ) {
 				$out->wrapWikiMsg( "<div class='mw-contributions-footer'>\n$1\n</div>", array( $message, $target ) );
 			}
 		}
@@ -352,17 +353,17 @@ class DeletedContributionsPage extends SpecialPage {
 		$talk = $nt->getTalkPage();
 		if( $talk ) {
 			# Talk page link
-			$tools[] = Linker::link( $talk, wfMsgHtml( 'sp-contributions-talk' ) );
+			$tools[] = Linker::link( $talk, $this->msg( 'sp-contributions-talk' )->escaped() );
 			if( ( $id !== null ) || ( $id === null && IP::isIPAddress( $nt->getText() ) ) ) {
 				if( $this->getUser()->isAllowed( 'block' ) ) { # Block / Change block / Unblock links
 					if ( $userObj->isBlocked() ) {
 						$tools[] = Linker::linkKnown( # Change block link
 							SpecialPage::getTitleFor( 'Block', $nt->getDBkey() ),
-							wfMsgHtml( 'change-blocklink' )
+							$this->msg( 'change-blocklink' )->escaped()
 						);
 						$tools[] = Linker::linkKnown( # Unblock link
 							SpecialPage::getTitleFor( 'BlockList' ),
-							wfMsgHtml( 'unblocklink' ),
+							$this->msg( 'unblocklink' )->escaped(),
 							array(),
 							array(
 								'action' => 'unblock',
@@ -373,14 +374,14 @@ class DeletedContributionsPage extends SpecialPage {
 					else { # User is not blocked
 						$tools[] = Linker::linkKnown( # Block link
 							SpecialPage::getTitleFor( 'Block', $nt->getDBkey() ),
-							wfMsgHtml( 'blocklink' )
+							$this->msg( 'blocklink' )->escaped()
 						);
 					}
 				}
 				# Block log link
 				$tools[] = Linker::linkKnown(
 					SpecialPage::getTitleFor( 'Log' ),
-					wfMsgHtml( 'sp-contributions-blocklog' ),
+					$this->msg( 'sp-contributions-blocklog' )->escaped(),
 					array(),
 					array(
 						'type' => 'block',
@@ -391,22 +392,23 @@ class DeletedContributionsPage extends SpecialPage {
 			# Other logs link
 			$tools[] = Linker::linkKnown(
 				SpecialPage::getTitleFor( 'Log' ),
-				wfMsgHtml( 'sp-contributions-logs' ),
+				$this->msg( 'sp-contributions-logs' )->escaped(),
 				array(),
 				array( 'user' => $nt->getText() )
 			);
 			# Link to contributions
 			$tools[] = Linker::linkKnown(
 				SpecialPage::getTitleFor( 'Contributions', $nt->getDBkey() ),
-				wfMsgHtml( 'sp-deletedcontributions-contribs' )
+				$this->msg( 'sp-deletedcontributions-contribs' )->escaped()
 			);
 
 			# Add a link to change user rights for privileged users
 			$userrightsPage = new UserrightsPage();
+			$userrightsPage->setContext( $this->getContext() );
 			if( $id !== null && $userrightsPage->userCanChangeRights( User::newFromId( $id ) ) ) {
 				$tools[] = Linker::linkKnown(
 					SpecialPage::getTitleFor( 'Userrights', $nt->getDBkey() ),
-					wfMsgHtml( 'sp-contributions-userrights' )
+					$this->msg( 'sp-contributions-userrights' )->escaped()
 				);
 			}
 
@@ -483,15 +485,15 @@ class DeletedContributionsPage extends SpecialPage {
 		}
 
 		$f .=  Xml::openElement( 'fieldset' ) .
-			Xml::element( 'legend', array(), wfMsg( 'sp-contributions-search' ) ) .
-			Xml::tags( 'label', array( 'for' => 'target' ), wfMsgExt( 'sp-contributions-username', 'parseinline' ) ) . ' ' .
+			Xml::element( 'legend', array(), $this->msg( 'sp-contributions-search' )->text() ) .
+			Xml::tags( 'label', array( 'for' => 'target' ), $this->msg( 'sp-contributions-username' )->parse() ) . ' ' .
 			Html::input( 'target', $options['target'], 'text', array(
 				'size' => '20',
 				'required' => ''
 			) + ( $options['target'] ? array() : array( 'autofocus' ) ) ) . ' '.
-			Xml::label( wfMsg( 'namespace' ), 'namespace' ) . ' ' .
+			Xml::label( $this->msg( 'namespace' )->text(), 'namespace' ) . ' ' .
 			Xml::namespaceSelector( $options['namespace'], '' ) . ' ' .
-			Xml::submitButton( wfMsg( 'sp-contributions-submit' ) ) .
+			Xml::submitButton( $this->msg( 'sp-contributions-submit' )->text() ) .
 			Xml::closeElement( 'fieldset' ) .
 			Xml::closeElement( 'form' );
 		return $f;
