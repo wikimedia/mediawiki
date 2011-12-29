@@ -2860,6 +2860,9 @@ Jį paleidus jūsų sistema gali būti pažeista.",
 'bydate'                => 'pagal datą',
 'sp-newimages-showfrom' => 'Rodyti naujus failus pradedant nuo $1 $2',
 
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'ago' => 'prieš $1',
+
 # Bad image list
 'bad_image_list' => 'Formatas yra toks:
 

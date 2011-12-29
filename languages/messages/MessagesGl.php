@@ -2455,7 +2455,7 @@ $1',
 'sp-contributions-uploads'             => 'cargas',
 'sp-contributions-logs'                => 'rexistros',
 'sp-contributions-talk'                => 'conversa',
-'sp-contributions-userrights'          => 'xestión dos dereitos de usuario',
+'sp-contributions-userrights'          => 'xestión dos dereitos do usuario',
 'sp-contributions-blocked-notice'      => 'Este usuario está bloqueado. Velaquí está a última entrada do rexistro de bloqueos, por se quere consultala:',
 'sp-contributions-blocked-notice-anon' => 'Este enderezo IP está bloqueado.
 Velaquí está a última entrada do rexistro de bloqueos, por se quere consultala:',

@@ -23,7 +23,13 @@ $messages = array(
 'thursday'      => 'Бейшемби',
 'friday'        => 'Жума',
 'saturday'      => 'Ишемби',
+'sun'           => 'Жкшмб',
+'mon'           => 'Дшмб',
+'tue'           => 'Шейшмб',
 'wed'           => 'Шарш.',
+'thu'           => 'Бшмб',
+'fri'           => 'Жм',
+'sat'           => 'Ишмб',
 'january'       => 'Январь (Үчтүн айы)',
 'february'      => 'Февраль (Бирдин айы)',
 'march'         => 'Март (Жалган куран)',
@@ -77,14 +83,17 @@ $messages = array(
 'qbpageoptions' => 'Бул барак',
 'qbpageinfo'    => 'Контекст',
 'qbmyoptions'   => 'Барактарым',
+'faq'           => 'КБС',
 
 # Vector skin
-'vector-view-edit'    => 'Оңдо',
-'vector-view-history' => 'Тарыхын кара',
-'vector-view-view'    => 'Оку',
-'actions'             => 'Аракеттер',
-'namespaces'          => 'Аталыш чөйрөлөрү',
-'variants'            => 'Варианттар',
+'vector-view-create'     => 'Жаса',
+'vector-view-edit'       => 'Оңдо',
+'vector-view-history'    => 'Тарыхын кара',
+'vector-view-view'       => 'Оку',
+'vector-view-viewsource' => 'Байкоо',
+'actions'                => 'Аракеттер',
+'namespaces'             => 'Аталыш чөйрөлөрү',
+'variants'               => 'Варианттар',
 
 'errorpagetitle'   => 'Жаңылыш',
 'tagline'          => '{{SITENAME}} дан',
@@ -138,6 +147,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Сизге $1 жаңы кат бар.',
 'editsection'             => 'оңдоо',
 'editold'                 => 'оңдоо',
+'editlink'                => 'оңдо',
 'viewsourcelink'          => 'булагын кара',
 'editsectionhint'         => '$1 бөлүмүн оңдоо',
 'toc'                     => 'Мазмуну',
@@ -209,15 +219,28 @@ $messages = array(
 'yourdiff'           => 'Айырмалар',
 'template-protected' => '(корголгон)',
 
+# Parser/template warnings
+'post-expand-template-inclusion-warning'  => "'''Эскертүү:''' Шаблондун өлчөмү ашырып жиберилген.
+Кээ бир шаблондор кошулбайт.",
+'post-expand-template-inclusion-category' => 'Өлчөмү ашырып жиберилген шаблон камтыган барактар',
+
 # History pages
-'revisionasof' => '$1 -деги абалы',
-'next'         => 'кийинки',
-'last'         => 'соңку',
-'histfirst'    => 'Эң эски',
-'histlast'     => 'Соңку',
+'currentrev-asof'  => '$1 -га соңку версиясы',
+'revisionasof'     => '$1 -деги абалы',
+'previousrevision' => 'Мурунку версиясы',
+'next'             => 'кийинки',
+'last'             => 'соңку',
+'histfirst'        => 'Эң эски',
+'histlast'         => 'Соңку',
 
 # Revision deletion
-'rev-delundel' => 'көрсөт/жашыр',
+'rev-delundel'           => 'көрсөт/жашыр',
+'revdel-restore'         => 'көрүнүшүн өзгөрт',
+'revdel-restore-deleted' => 'өчүрүлгөн версиялар',
+'revdel-restore-visible' => 'көрүнүүчү версиялары',
+
+# Merge log
+'revertmerge' => 'Бөл',
 
 # Diffs
 'difference' => '(Оңдоолордун айырмасы)',
@@ -227,8 +250,13 @@ $messages = array(
 # Search results
 'searchresults'                    => 'Издөө жыйынтыктары',
 'searchresults-title'              => '"$1" үчүн издөө жыйынтыктары',
+'prevn'                            => 'мурунку {{PLURAL:$1|$1}}',
+'nextn'                            => 'кийинки{{PLURAL:$1|$1}}',
+'prevn-title'                      => 'Мурунку $1 {{PLURAL:$1|жыйынтык|жыйынтыктар}}',
+'nextn-title'                      => 'Кийинки $1 {{PLURAL:$1|жыйынтык|жыйынтыктар}}',
 'shown-title'                      => 'Бир баракка $1 {{PLURAL:$1|жыйынтык|жыйынтык}} көрсөт',
 'viewprevnext'                     => '($1 {{int:pipe-separator}} $2) ($3) кара',
+'searchmenu-new'                   => "'''Бул Уикиде \"[[:\$1]]\" барагын түз!'''",
 'searchprofile-articles'           => 'Негизги барактар',
 'searchprofile-project'            => 'Жардам жана Долбоор барактары',
 'searchprofile-images'             => 'Мултимедиа',
@@ -240,14 +268,17 @@ $messages = array(
 'searchprofile-everything-tooltip' => 'Бардык барактарда (талкуу барактарды кошо) изде',
 'searchprofile-advanced-tooltip'   => 'Белгиленген аталыш чөйрөлөрдө изде',
 'search-result-size'               => '$1 ({{PLURAL:$2|1 сөз|$2 сөз}})',
+'search-redirect'                  => '($1 кайра багыттоо)',
 'search-section'                   => '($1 бөлүмү)',
 'search-mwsuggest-enabled'         => 'сунуштар менен',
 'search-mwsuggest-disabled'        => 'сунушсуз',
 'searchall'                        => 'баары',
+'showingresultsheader'             => "'''$4''' үчүн {{PLURAL:$5|'''$3''' жыйынтыктан '''$1'''-и|'''$1 - $2''' -дан '''$3''' жыйынтык}}",
 'powersearch'                      => 'Издөө',
 
 # Preferences page
 'preferences'       => 'Түзөө',
+'mypreferences'     => 'Ырастоолорум',
 'changepassword'    => 'Сырсөздү өзгөртүү',
 'prefs-datetime'    => 'Дата жана убакыт',
 'prefs-rc'          => 'Соңку өзгөрүүлөр',
@@ -283,6 +314,8 @@ $messages = array(
 'recentchangeslinked'         => 'Тиешелүү өзгөрүүлөр',
 'recentchangeslinked-feed'    => 'Тиешелүү өзгөрүүлөр',
 'recentchangeslinked-toolbox' => 'Тиешелүү өзгөрүүлөр',
+'recentchangeslinked-summary' => 'Бул көрсөтүлгөн (же көрсөтүлгөн категорияга кирген) барактан шилтемеленген барактардагы жакын арада жасалган өзгөрүүлөрдүн тизмеси.
+[[Special:Watchlist|Байкоо тизмеңиз]]деги барактар калын арип менен белгиленген.',
 
 # Upload
 'upload'            => 'Файл жүктөө',
@@ -299,11 +332,15 @@ $messages = array(
 'listfiles' => 'Файлдар тизмеси',
 
 # File description page
-'file-anchor-link'  => 'Файл',
-'filehist-datetime' => 'Күн/Убакыт',
-'filehist-user'     => 'Катышуучу',
-'filehist-comment'  => 'Эскертүү',
-'imagelinks'        => 'Файл шилтемелери',
+'file-anchor-link'       => 'Файл',
+'filehist'               => 'Файлдын тарыхы',
+'filehist-datetime'      => 'Күн/Убакыт',
+'filehist-thumbtext'     => '$1 -дагы версиясы үчүн кичирейтилген шилтеми',
+'filehist-user'          => 'Катышуучу',
+'filehist-comment'       => 'Эскертүү',
+'imagelinks'             => 'Файл пайдалануу',
+'sharedupload-desc-here' => 'Файл $1 -дан жана башка долбоорлордо пайдаланууга ала алышат.
+Ылдый жакта анын [$2 файлды сыпаттоо барагы]нан сыпаттосу көрсөтүлгөн.',
 
 # Unused templates
 'unusedtemplates'    => 'Колдонулбаган нускалар',
@@ -367,10 +404,13 @@ $messages = array(
 'restriction-edit' => 'Оңдоо',
 
 # Undelete
-'undeletebtn'     => 'Калыбына келтир',
-'undeletecomment' => 'Түшүндүрмө:',
+'undeletebtn'      => 'Калыбына келтир',
+'undeletelink'     => 'көрсөт/калыбына келтир',
+'undeleteviewlink' => 'көрсөт',
+'undeletecomment'  => 'Түшүндүрмө:',
 
 # Namespace form on various pages
+'namespace'      => 'Аталыш топтому',
 'blanknamespace' => '(Негизги)',
 
 # Contributions
@@ -381,14 +421,21 @@ $messages = array(
 'whatlinkshere' => 'Жетелеме шилтемелер',
 
 # Block/unblock
-'ipbreason'      => 'Себеп',
-'ipbotheroption' => 'башка',
-'blocklink'      => 'тосмоло',
-'contribslink'   => 'салымдары',
+'ipbreason'        => 'Себеп',
+'ipboptions'       => '2 саат:2 hours,1 күн:1 day,3 күн:3 days,1 жума:1 week,2 жума:2 weeks,1 ай:1 month,3 ай:3 months,6 ай:6 months,1 жыл:1 year,мөөнөтсүз:infinite',
+'ipbotheroption'   => 'башка',
+'blocklink'        => 'тосмоло',
+'unblocklink'      => 'Тосмолоону алып сал',
+'change-blocklink' => 'тосмолоону өзгөрт',
+'contribslink'     => 'салымдары',
 
 # Move page
 'movereason'              => 'Себеп',
+'revertmove'              => 'кайтарып ал',
 'delete_and_move_confirm' => 'Ооба, бул баракты өчүр',
+
+# Export
+'export' => 'Барактарды чыгар',
 
 # Namespace 8 related
 'allmessages'               => 'Система билдирүүлөрү',
@@ -402,13 +449,18 @@ $messages = array(
 'thumbnail-more' => 'Чоңойт',
 
 # Tooltip help for the actions
+'tooltip-pt-userpage'            => 'Колдонуучу барагыңыз',
 'tooltip-pt-mytalk'              => 'Сиздин талкуу барагыңыз',
+'tooltip-pt-preferences'         => 'Ырастооңуздар',
+'tooltip-pt-mycontris'           => 'Салымдарыңыздын тизмеси',
 'tooltip-pt-login'               => 'Сизге системада катталууга сунуш кылынат, бирок милдеттүү эмес',
+'tooltip-pt-logout'              => 'Чыгуу',
 'tooltip-ca-talk'                => 'Барактын мазмуну боюнча талкуу',
 'tooltip-ca-edit'                => 'Сиз бул баракты оңдой аласыз. Кичи пейилдикке, сактоодон мурда алдын ала көрсөтүү баскычын колдонуңуз.',
 'tooltip-ca-viewsource'          => 'Бул барак корголгон.
 Сиз булагын көрө аласыз.',
 'tooltip-ca-history'             => 'Бул барактын мурунку оңдоолору',
+'tooltip-ca-move'                => 'Барак аталышын өзгөрт',
 'tooltip-search'                 => '{{SITENAME}} изде',
 'tooltip-search-go'              => 'Ушул аталыш менен барак бар болсо, алга',
 'tooltip-search-fulltext'        => 'Ушул текст менен барактарды изде',
@@ -422,13 +474,17 @@ $messages = array(
 'tooltip-n-help'                 => 'Маалымат алуу үчүн жай',
 'tooltip-t-whatlinkshere'        => 'Ушул жерге шилтемеси бар бардык уики барактардын тизмеси',
 'tooltip-t-recentchangeslinked'  => 'Бул барактан шилтеме берилген барактардагы соңку өзгөрүүлөр',
+'tooltip-feed-atom'              => 'Бул барак үчүн Atom камсыздоосу',
 'tooltip-t-upload'               => 'Файлдарды жүктө',
 'tooltip-t-specialpages'         => 'Бардык атайын барактардын тизмеси',
 'tooltip-t-print'                => 'Бул барактын басып чыгарууга ылайыктуу түрү',
 'tooltip-t-permalink'            => 'Барактын бул версиясына туруктуу шилтеме',
 'tooltip-ca-nstab-main'          => 'Барактын мазмунун кара',
+'tooltip-ca-nstab-image'         => 'Файл барагын көрсөт',
+'tooltip-ca-nstab-category'      => 'Категория барагын көрсөт',
 'tooltip-rollback'               => '"Кайтар" бир баскыч менен бул барактын соңку оңдоочусунун өзгөртүүлөрүн алып салат',
 'tooltip-undo'                   => 'Киргизилген оңдоону алып салат жана жокко чыгаруунун себебин белгилөөгө мүмкүнчүлүк берип алдын ала көрсөтүүнү ачат',
+'tooltip-summary'                => 'Кыска корутунду киргиз',
 
 # Attribution
 'others' => 'башкалар',
@@ -447,6 +503,9 @@ $messages = array(
 Тизмедегилер гана окулат (* белги менен башталган саптар).
 Саптын биринчи шилтемеси койгонго тыюу салынган файлга шилтеме болуш керек.
 Ошол саптагы кийинки шилтемелер айрыкча каралып, же файл киргизиле бере турган макалалар.',
+
+# Metadata
+'metadata' => 'метамаалыматтар',
 
 # EXIF tags
 'exif-artist'   => 'Автор',

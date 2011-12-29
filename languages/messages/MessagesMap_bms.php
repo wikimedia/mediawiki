@@ -182,7 +182,8 @@ $messages = array(
 'randompage' => 'Kaca Liya',
 
 # Miscellaneous special pages
-'move' => 'Pindah',
+'nbytes' => '$1 {{PLURAL:$1|bita|bita}}',
+'move'   => 'Pindah',
 
 # Contributions
 'contributions' => 'Tulisan anggota',
@@ -195,12 +196,22 @@ $messages = array(
 'contribslink' => 'kontrib',
 
 # Tooltip help for the actions
+'tooltip-pt-login'        => 'Rika diajak kon mlebu log; senajan kuwe ora kudu.',
 'tooltip-search'          => 'Goleti {{SITENAME}}',
 'tooltip-search-fulltext' => 'Goleti kaca sing duwe teks kaya kiye',
 'tooltip-p-logo'          => 'Mampir ming kaca utama',
+'tooltip-n-portal'        => 'Perkara proyek kiye, apa sing teyeng rika lakokna, lan nang endi angger arep ngoleti apa-apa',
 'tooltip-n-recentchanges' => 'Daftar owahan anyar nang wiki',
+'tooltip-n-randompage'    => 'Tidokna sembarang kaca',
 'tooltip-n-help'          => 'Panggonan nggo ngoleti pitulung',
 'tooltip-t-specialpages'  => 'Daftar kabeh kaca astamiwa',
+
+# Bad image list
+'bad_image_list' => 'Formate kaya kiye:
+
+Mung butir daftar (baris sing diawali karo tanda*) sing melu diitung.
+Pranala disit dhewek nang baris kuwe kudu pranala maring berkas sing ala.
+Pranala seteruse nang baris sing padha dianggep dadi "pengecualian", yakuwe artikel sing bisa nampilna berkas kuwe mau.',
 
 # Special:SpecialPages
 'specialpages' => 'Kaca-kaca khusus',

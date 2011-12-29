@@ -881,26 +881,32 @@ Kjo ndodh ndonjëherë kur përdoret server anonim dytësor me gabime.",
 'editingsection'                   => 'Duke redaktuar $1 (paragraf)',
 'editingcomment'                   => 'Duke redaktuar (paragraf i ri) $1',
 'editconflict'                     => 'Konflikt redaktimi: $1',
-'explainconflict'                  => "Dikush tjetër ka ndryshuar këtë faqe kur ju po e redaktonit.
-Kutiza e redaktimit mësipërme tregon tekstin e faqes siç ekziston tani.
-Ndryshimet juaja janë treguar poshtë kutisë së redaktimit.
-Ju duhet të përputhni ndryshimet tuaja me tekstin ekzistues.
-'''Vetëm''' teksti në kutinë e sipërme të redaktimit do të ruhet kur të shtypni \"{{int:savearticle}}\".",
+'explainconflict'                  => "Dikush tjetër ka ndryshuar këtë faqe që kur ju filluat redaktimin.
+Hpasira e sipërme tregon tekstin e faqes siç është aktualisht.
+Ndryshimet tuaja janë shfaqur në hapsirën e poshtme.
+Ju duhet t'ia bashkangjisni ndryshimet tuaja teksit ekzistues.
+'''Vetëm''' teksti në hapsirën e sipërme do të ruhet kur të shtypni \"{{int:savearticle}}\".",
 'yourtext'                         => 'Teksti juaj',
 'storedversion'                    => 'Rishikim i ruajtur',
-'nonunicodebrowser'                => "'''KUJDES: Shfletuesi juaj nuk përdor dot unikode, ju lutem ndryshoni shfletues para se të redaktoni artikuj.'''",
-'editingold'                       => "'''KUJDES: Po redaktoni një version të vjetër të kësaj faqeje. Në qoftë se e ruani, çdo ndryshim i bërë deri tani do të humbet.'''",
+'nonunicodebrowser'                => "'''Kujdes: Shfletuesi juaj ka mospërputhje me standartin unicode.'''
+Ekziston një zgjidhje për redaktimin e sigurt të faqeve: Shkronjat jo-ASCII do të duken në kutinë e redaktimit si kod heksadecimal.",
+'editingold'                       => "'''Kujdes: Po redaktoni një version të vjetër të kësaj faqeje.'''
+Në qoftë se e ruani, çdo ndryshim i bërë deri tani do të humbasë.'''",
 'yourdiff'                         => 'Ndryshimet',
-'copyrightwarning'                 => "Kontributet tek {{SITENAME}} janë të konsideruara të dhëna nën licensën $2 (shikoni $1 për hollësirat).<br />
-'''NDALOHET DHËNIA E PUNIMEVE PA PASUR LEJE NGA AUTORI NË MOSPËRPUTHJE ME KËTË LICENSË!'''<br />",
-'copyrightwarning2'                => "Ju lutem vini re se të gjitha kontributet tek {{SITENAME}} mund të redaktohen, ndryshohen apo fshihen nga përdorues të tjerë. Në qoftë se nuk dëshironi që shkrimet tuaja të redaktohen pa mëshirë mos i jepni këtu.<br />
-Po na premtoni që ç'ka po jepni këtu e keni kontributin tuaj ose e keni kopjuar nga domeni publik apo nga burime të tjera të lira sipas ligjeve përkatëse (shikoni $1 për hollësirat).
-'''NDALOHET DHËNIA E PUNIMEVE PA PASUR LEJE NGA AUTORI NË MOSPËRPUTHJE ME KËTË LICENSË!'''",
-'longpageerror'                    => "'''GABIM: Tesksti që ju po e redaktoni është $1 KB i gjatë dhe është më i gjatë se maksimumi i lejuar prej $2 KB. Ndryshimet nuk mund të ruhen.'''",
-'readonlywarning'                  => "'''KUJDES: Baza e të dhënave është mbyllur për mirëmbajtje, pra ju nuk do të mund të ruani redaktimin tuaj për momentin.
-Ju ndoshta doni të kopjoni tekstin në një tekst dokument dhe të e ruani për më vonë.'''
+'copyrightwarning'                 => "Ju lutemi, vini re! Të gjitha kontributet në {{SITENAME}} jepen për publikim sipas $2 (shiko $1 për më shumë detaje).
+Nëse ju nuk dëshironi që shkrimet tuaja të redaktohen pa mëshirë dhe të shpërndahen sipas dëshirës, atëherë mos i vendosni këtu.<br />
+Gjithashtu, ju po na premtoni ne që gjithçka e keni shkruar vetë, ose e keni kopjuar nga një domain publik ose nga burime të tjera  te hapura.
+'''Mos vendosni material të mbrojtur nga e drejta e autorit pa leje!'''",
+'copyrightwarning2'                => "Ju lutemi, vini re! Të gjitha kontributet në {{SITENAME}} mund të redaktohen, ndryshohen ose hiqen nga përdorues të tjerë  (shiko $1 për më shumë detaje). 
+Nëse ju nuk dëshironi që shkrimet tuaja të redaktohen pa mëshirë dhe të shpërndahen sipas dëshirës, atëherë mos i vendosni këtu<br />
+Gjithashtu, ju po na premtoni ne që gjithçka e keni shkruar vetë, ose e keni kopjuar nga një domain publik ose nga burime të tjera  te hapura.
+'''Mos vendosni material të mbrojtur nga e drejta e autorit pa leje!'''",
+'longpageerror'                    => "'''Gabim: Teksti që shkruat është $1 kilobajt i gjatë, që është më i gjatë se maksimumi i lejuar prej $2 kilobajtësh.'''
+Nuk mund të ruhet.",
+'readonlywarning'                  => "'''Kujdes: Baza e të dhënave është mbyllur për mirëmbajtje, prandaj ju nuk do të mund të ruani redaktimin tuaj për momentin.'''
+Ju mund të kopjoni tekstin dhe ta ruani për më vonë në një dokument tjetër.'''
 
-Administruesi që ka bërë mbylljen ka dhënë këtë sqarim: $1.",
+Administruesi që e bllokoi ka dhënë këtë sqarim: $1.",
 'protectedpagewarning'             => "'''KUJDES: Kjo faqe është e mbrotjur dhe mund të redaktohet nga përdorues me të drejta administratori.'''
 Shënimi i fundit në regjistër është paraqitur më poshtë për reference:",
 'semiprotectedpagewarning'         => "'''Shënim:''' Kjo faqe është e mbrojtur dhe mund të redaktohet vetëm nga përdorues të regjistruar.
@@ -956,9 +962,9 @@ Këto parametra nuk janë përfshirë.",
 # "Undo" feature
 'undo-success' => 'Redaktimi nuk mund të zhbëhet. 
 Ju lutemi, kontrolloni krahasimin e mëposhtëm për të vërtetuar nëse kjo është ajo që dëshironi dhe pastaj kryeni ndryshimet për të plotësuar zhbërjen e redaktimit.',
-'undo-failure' => 'Redaktimi nuk mund të kthehej për shkak të përplasjeve të ndërmjetshme.',
-'undo-norev'   => "S'mund të zhbëja këtë redaktim pasi nuk ekziston ose është grisur.",
-'undo-summary' => 'U kthye versioni $1 i bërë nga [[Special:Contributions/$2]] ([[User talk:$2]])',
+'undo-failure' => 'Redaktimi nuk mund të zhbëhet për shkak të redaktimeve konfliktuese të ndërmjetshme.',
+'undo-norev'   => 'Redaktimi nuk mund të zhbëhet sepse nuk ekziston ose është fshirë.',
+'undo-summary' => 'Zhbëje versionin $1 i bërë nga [[Special:Contributions/$2|$2]] ([[User talk:$2|ligjëratë]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Nuk mundet të krijohet llogaria',
