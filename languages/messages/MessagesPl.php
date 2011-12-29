@@ -326,7 +326,7 @@ $messages = array(
 'tog-watchlisthideliu'        => 'Ukryj edycje zalogowanych użytkowników na liście obserwowanych',
 'tog-watchlisthideanons'      => 'Ukryj edycje anonimowych użytkowników na liście obserwowanych',
 'tog-watchlisthidepatrolled'  => 'Ukryj sprawdzone edycje na liście obserwowanych',
-'tog-nolangconversion'        => 'Wyłącz warianty rozmowy',
+'tog-nolangconversion'        => 'Wyłącz odmianę',
 'tog-ccmeonemails'            => 'Przesyłaj mi kopie wiadomości, które wysyłam do innych użytkowników',
 'tog-diffonly'                => 'Nie pokazuj treści stron pod porównaniami zmian',
 'tog-showhiddencats'          => 'Pokazuj ukryte kategorie',
@@ -946,12 +946,12 @@ Upewnij się, czy na pewno zamierza{{GENDER:|łeś|łaś|sz}} utworzyć lub zmod
 'userpage-userdoesnotexist-view'   => 'Konto użytkownika „$1” nie jest zarejestrowane.',
 'blocked-notice-logextract'        => '{{GENDER:$1|Ten użytkownik|Ta użytkowniczka}} jest obecnie {{GENDER:$1|zablokowany|zablokowana}}.
 Ostatni wpis rejestru blokad jest pokazany poniżej.',
-'clearyourcache'                   => "'''Uwaga:'''' aby zobaczyć zmiany po zapisaniu, może zajść potrzeba wyczyszczenia pamięci podręcznej przeglądarki .
-* '''Firefox / Safari:''' Przytrzymaj'' shift '' podczas klikania 'Odświerz bierzącą stronę', lub naciśnij klawisze 'Ctrl+F5'' lub '' Ctrl+R'' (\"⌘-R'' na komputerze Mac)
- * '''Google Chrome:'' ' naciśnij '' Ctrl-Shift-R'' (\"⌘-Shift-R'' na komputerze Mac)
- * ''' Internet Explorer:'' ' Przytrzymaj 'Ctrl '' jednocześnie klikając '' Odświerz '' lub naciśnij klawisze 'Ctrl+F5''
- * ''' Konquerora:'' \"kliknij polecenie\"Odśwież\"lub naciśnij klawisz '' F5''
- * '''Opera:'' ' Wyczyść pamięć podręczną w '' Narzędzia → Preferencje ''",
+'clearyourcache'                   => "'''Uwaga:''' aby zobaczyć zmiany po zapisaniu, może zajść potrzeba wyczyszczenia pamięci podręcznej przeglądarki.
+* '''Firefox / Safari:''' Przytrzymaj ''Shift'' podczas klikania ''Odśwież bieżącą stronę'', lub naciśnij klawisze ''Ctrl+F5'' lub ''Ctrl+R'' (''⌘-R'' na komputerze Mac)
+* '''Google Chrome:''' Naciśnij ''Ctrl-Shift-R'' (''⌘-Shift-R'' na komputerze Mac)
+* '''Internet Explorer:''' Przytrzymaj ''Ctrl'' jednocześnie klikając ''Odśwież'' lub naciśnij klawisze ''Ctrl+F5''
+* '''Konqueror:''' Kliknij polecenie ''Odśwież'' lub naciśnij klawisz ''F5''
+* '''Opera:''' Wyczyść pamięć podręczną w ''Narzędzia → Preferencje''",
 'usercssyoucanpreview'             => "'''Podpowiedź:''' Użyj przycisku „Podgląd”, aby przetestować nowy arkusz stylów CSS przed jego zapisaniem.",
 'userjsyoucanpreview'              => "'''Podpowiedź:''' Użyj przycisku „Podgląd”, aby przetestować nowy kod JavaScript przed jego zapisaniem.",
 'usercsspreview'                   => "'''Pamiętaj, że to tylko podgląd arkusza stylów CSS – nic jeszcze nie zostało zapisane!'''",

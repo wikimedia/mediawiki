@@ -897,8 +897,8 @@ icha payman kapuq <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{
 'blocked-notice-logextract'        => "Kay ruraqqa hark'asqam kachkan.
 Hark'ay hallch'api qhipaq hark'asqataqa kaypim rikunki willasunaykipaq:",
 'clearyourcache'                   => "'''Paqtataq''': Willañiqita waqaycharquspaykiqa, wamp'unaykip ''cache'' nisqa pakasqa waqaychananta ch'usaqchanaykichá tiyanman hukchasqaykikunata rikunaykipaq:
-* '''Firefox / Safari:''' ''Shift'' yatachkaspa ''Reload'' ñit'iy, ichataq ''Ctrl-F5'' icha ''Ctrl-R'' yatay (''Command-R'' Mac nisqapi)
-* '''Google Chrome:''' ''Ctrl-Shift-R'' yatay (''Command-Shift-R'' Mac nisqapi)
+* '''Firefox / Safari:''' ''Shift'' yatachkaspa ''Reload'' ñit'iy, ichataq ''Ctrl-F5'' icha ''Ctrl-R'' yatay (''⌘-R'' Mac nisqapi)
+* '''Google Chrome:''' ''Ctrl-Shift-R'' yatay (''⌘-Shift-R'' Mac nisqapi)
 * '''Internet Explorer:''' ''Ctrl'' yatachkaspa ''Refresh'' ñit'iy, icha ''Ctrl-F5'' yatay
 * '''Konqueror: '''''Reload'' ñit'iy icha ''F5'' yatay
 * '''Opera:''' ''cache'' nisqata ch'usaqchay kaypi: ''Tools → Preferences''",
@@ -1274,7 +1274,7 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 'prefs-rc'                      => 'Ñaqha hukchasqakuna',
 'prefs-watchlist'               => "Watiqasqa p'anqakuna",
 'prefs-watchlist-days'          => "Hayk'a p'unchawkunata watiqana sutisuyupi rikuchiy:",
-'prefs-watchlist-days-max'      => "Ama qanchismanta aswan p'unchaw kachunchu",
+'prefs-watchlist-days-max'      => "Ama {{PLURAL:$1|huk p'unchawmanta|$1 p'unchawmanta}} aswan p'unchaw kachunchu",
 'prefs-watchlist-edits'         => "Hayk'a hukchasqakunata hatunchasqa watiqana sutisuyupi rikuchiy:",
 'prefs-watchlist-edits-max'     => 'Ama waranqamanta aswan kachunchu',
 'prefs-watchlist-token'         => 'Watiqay sutisuyu sanancha:',
@@ -1690,6 +1690,21 @@ $1',
 'upload-unknown-size'       => 'Mana riqsisqa chhikan',
 'upload-http-error'         => 'HTTP pantasqam tukusqa: $1',
 
+# File backend
+'backend-fail-notexists'     => '$1 sutiyuq willañiqiqa manam kanchu.',
+'backend-fail-notsame'       => '$1 nisqapiqa mana kaqlla willañiqim kachkanña.',
+'backend-fail-invalidpath'   => '$1 nisqaqa manam allin pirwa ñanchu.',
+'backend-fail-delete'        => 'Manam atinichu $1 sutiyuq willañiqita qulluyta.',
+'backend-fail-alreadyexists' => '$1 sutiyuq willañiqiqa kachkanñam.',
+'backend-fail-store'         => 'Manam atinichu $1 sutiyuq willañiqita $2-pi pirwayta.',
+'backend-fail-copy'          => 'Manam atinichu willañiqita $1-manta $2-man iskaychayta.',
+'backend-fail-move'          => 'Manam atinichu willañiqita $1-manta $2-man astayta.',
+'backend-fail-opentemp'      => "Manam atinichu mit'alla willañiqita kichariyta.",
+'backend-fail-writetemp'     => "Manam atinichu mit'alla willañiqiman qillqayta.",
+'backend-fail-closetemp'     => "Manam atinichu mit'alla willañiqita wichq'ayta.",
+'backend-fail-read'          => 'Manam atinichu $1 sutiyuq willañiqita ñawiriyta.',
+'backend-fail-create'        => 'Manam atinichu $1 sutiyuq willañiqita kamariyta.',
+
 # ZipDirectoryReader
 'zip-file-open-error' => 'Willañiqita ZIP-kama llanchispa pantasqatam tarini.',
 'zip-wrong-format'    => 'Akllasqa willañiqiqa manam ZIP willañiqichu.',
@@ -1931,6 +1946,7 @@ Ama hina kaspa, [$2 willañiqi ch'uyanchana p'anqata] qhaway astawan willachikun
 'mostimages'              => "Lliwmanta astawan llamk'achisqa rikchakuna",
 'mostrevisions'           => 'Lliwmanta aswan hukchasqayuq qillqakuna',
 'prefixindex'             => "Tukuy p'anqakuna ñawpa k'askaqchayuq",
+'prefixindex-namespace'   => "Tukuy qallarina k'askaqniyuq p'anqakuna ($1 suti k'itipi)",
 'shortpages'              => "Uchuylla p'anqakuna",
 'longpages'               => "Hatun p'anqakuna",
 'deadendpages'            => "Lluqsinannaq p'anqakuna",
@@ -2660,6 +2676,8 @@ Ama hina kaspa, [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] n
 'thumbnail_error'          => 'Manam atinichu rikchachata kamayta: $1',
 'djvu_page_error'          => "DjVu nisqa p'anqaqa nisyum",
 'djvu_no_xml'              => 'Manam atinichu XML-ta apamuy DjVu willañiqipaq',
+'thumbnail-temp-create'    => "Manam atinichu mit'alla rikch'acha willañiqita kamariyta.",
+'thumbnail-dest-create'    => "Manam atinichu rikch'achata taripanaman waqaychayta.",
 'thumbnail_invalid_params' => 'Rikchachap kuskanachina tupunkunaqa manam allinchu',
 'thumbnail_dest_directory' => 'Manam atinichu taripana willañiqi churanata kamayta',
 'thumbnail_image-type'     => "Rikch'a layaqa manam llamk'achikusqachu",

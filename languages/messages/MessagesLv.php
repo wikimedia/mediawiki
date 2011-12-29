@@ -1314,7 +1314,7 @@ Pārskatāmāka versija ir pieejama [[Special:NewFiles|jauno attēlu galerijā]]
 'illegalfilename'            => 'Faila nosaukumā "$1" ir simboli, kas nav atļauti virsrakstos. Lūdzu, pārdēvē failu un mēģini to vēlreiz augšuplādēt.',
 'filename-toolong'           => 'Failu nosaukumi nedrīkst pārsniegt 240 baitus.',
 'badfilename'                => 'Attēla nosaukums ir nomainīts, tagad tas ir "$1".',
-'filetype-mime-mismatch'     => 'Faila paplašinājums neatbilst MIME tipam.',
+'filetype-mime-mismatch'     => 'Faila paplašinājums ".$1" neatbilst noteiktajam MIME tipam ($2).',
 'filetype-badmime'           => 'Šeit nav atļauts augšuplādēt failus ar MIME tipu "$1".',
 'filetype-bad-ie-mime'       => 'Nevar augšupielādēt šo failu, jo Internet Explorer to uzskatītu kā "$1", kas ir neatļauts un potenciāli bīstams faila tips.',
 'filetype-unwanted-type'     => "'''\".\$1\"''' ir nevēlams failu tips.  {{PLURAL:\$3|Ieteicamais faila tips|Ieteicamie failu tipi}} ir \$2.",

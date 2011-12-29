@@ -10339,6 +10339,8 @@ Dir fannt en am LocalSettings.php.",
 	'config-localsettings-key' => 'Aktualisatiounsschlëssel:',
 	'config-localsettings-badkey' => 'De Schlëssel deen Dir aginn hutt ass net korrekt',
 	'config-session-error' => 'Feeler beim Starte vun der Sessioun: $1',
+	'config-no-session' => "D'Donnéeë vun ärer Sessioun si verluergaangen!
+Kuckt Är php.ini no a vergewëssert Iech datt <code>session.save_path</code>  op adequate REpertoire agestallt ass.",
 	'config-your-language' => 'Är Sprooch',
 	'config-your-language-help' => 'Sicht déi Sprooch eraus déi Dir während der Installatioun benotze wëllt',
 	'config-wiki-language' => 'Sprooch vun der Wiki:',
@@ -10388,9 +10390,11 @@ Dës Datebank-Type ginn ënnerstëtzt: $1.
 Wann Dir op engem gesharte Server sidd, da frot Ären Hosting-Provider fir de passenden Datebank-Driver z'installéieren.
 Wann Dir PHP selwer compiléiert hutt, da reconfiguréiert en mat dem ageschalten Datebank-Client, zum Beispill an deem Dir <code>./configure --with-mysql</code> benotzt.
 Wann Dir PHP vun engem Debian oder Ubuntu Package aus installéiert hutt, da musst Dir och den php5-mysql Modul installéieren.",
+	'config-memory-bad' => "'''Opgepasst:''' De Parameter <code>memory_limit</code> vu PHP ass $1.
+Dat ass wahrscheinlech ze niddreg.
+D'Installatioun kéint net fonctionnéieren.",
 	'config-xcache' => '[http://xcache.lighttpd.net/ XCache] ass installéiert',
 	'config-apc' => '[http://www.php.net/apc APC] ass installéiert',
-	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] ass installéiert',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] ass installéiert',
 	'config-diff3-bad' => 'GNU diff3 gouf net fonnt.',
 	'config-no-uri' => "'''Feeler:''' Déi aktuell URI konnt net festgestallt ginn.
@@ -10417,7 +10421,10 @@ Wann et de Kont net gëtt, a wann den Installatiouns-Kont genuch Rechter huet, g
 	'config-db-schema' => 'Schema fir MediaWiki',
 	'config-db-schema-help' => "D'Schemaen hei driwwer si gewéinlech korrekt.
 Ännert se nëmme wann Dir wësst datt et néideg ass.",
+	'config-pg-test-error' => "Et ass net méiglech d'Datebank '''$1''' ze kontaktéieren: $2",
 	'config-sqlite-dir' => 'Repertoire vun den SQLite-Donnéeën',
+	'config-oracle-def-ts' => "Standard 'tablespace':",
+	'config-oracle-temp-ts' => "Temporären 'tablespace':",
 	'config-type-mysql' => 'MySQL',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
@@ -11528,6 +11535,17 @@ Bagaimanapun, MediaWiki memerlukan PHP $2 ke atas.',
  */
 $messages['mt'] = array(
 	'config-page-language' => 'Lingwa',
+	'config-page-welcome' => 'Merħba fuq MediaWiki!',
+	'config-page-dbconnect' => 'Aqbad mad-databażi',
+	'config-page-upgrade' => 'Aġġorna l-installazzjoni eżistenti',
+	'config-page-dbsettings' => 'Impostazzjonijiet tad-databażi',
+	'config-page-name' => 'Isem',
+	'config-page-options' => 'Għażliet',
+	'config-page-install' => 'Installa',
+	'config-page-complete' => 'Lesta!',
+	'config-page-restart' => "Erġa' ibda l-installazzjoni",
+	'config-page-readme' => 'Aqrani',
+	'config-page-releasenotes' => 'Noti tal-verżjoni',
 	'mainpagetext' => "'''MediaWiki ġie installat b'suċċess.'''",
 	'mainpagedocfooter' => "Ikkonsulta l-[//meta.wikimedia.org/wiki/Help:Contents Gwida għall-utenti] sabiex tikseb iktar informazzjoni dwar kif tuża' s-softwer tal-wiki.
 

@@ -634,7 +634,7 @@ $1',
 'versionrequiredtext' => 'Version $1 von MediaWiki ist erforderlich, um diese Seite zu nutzen.
 Siehe die [[Special:Version|Versionsseite]]',
 
-'ok'                      => 'OK',
+'ok'                      => 'Okay',
 'pagetitle'               => '$1 – {{SITENAME}}',
 'retrievedfrom'           => 'Von „$1“',
 'youhavenewmessages'      => 'Du hast $1 auf deiner Diskussionsseite ($2).',
