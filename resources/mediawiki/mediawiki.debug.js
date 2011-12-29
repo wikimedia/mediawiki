@@ -1,11 +1,12 @@
 /**
- * Javascript for the new debug toolbar, enabled with $wgDebugToolbar
+ * JavaScript for the new debug toolbar, enabled with $wgDebugToolbar
  *
  * @author John Du Hart
  * @since 1.19
  */
 
-( function( $ ) {
+( function ( $, mw, undefined ) {
+"use strict";
 
 	var debug = mw.Debug = {
 		/**
@@ -16,18 +17,18 @@
 		$container: null,
 
 		/**
-		 * Array containing data for the debug toolbar
+		 * Object containing data for the debug toolbar
 		 *
-		 * @var {Array}
+		 * @var {Object}
 		 */
 		data: {},
 
 		/**
 		 * Initializes the debugging pane
 		 *
-		 * @param {Array} data
+		 * @param {Object} data
 		 */
-		init: function( data ) {
+		init: function ( data ) {
 			this.data = data;
 			this.buildHtml();
 
@@ -44,7 +45,7 @@
 		 * @context {Element}
 		 * @param {jQuery.Event} e
 		 */
-		switchPane: function( e ) {
+		switchPane: function ( e ) {
 			var currentPaneId = debug.$container.data( 'currentPane' ),
 				requestedPaneId = $(this).parent().attr( 'id' ).substr( 9 ),
 				$currentPane = $( '#mw-debug-pane-' + currentPaneId ),
@@ -71,11 +72,13 @@
 		/**
 		 * Constructs the HTML for the debugging toolbar
 		 */
-		buildHtml: function() {
-			var $container = this.$container = $( '<div></div>' )
+		buildHtml: function () {
+			var $container, panes, id;
+
+			$container = $( '<div>' )
 				.attr({
 					id: 'mw-debug-container',
-					class: 'mw-debug'
+					'class': 'mw-debug'
 				});
 
 			/**
@@ -84,12 +87,13 @@
 			 * @param id
 			 * @return {jQuery}
 			 */
-			var bitDiv = function( id ) {
-				return $( '<div></div>' ).attr({
+			function bitDiv( id ) {
+				return $( '<div>' ).attr({
 					id: 'mw-debug-' + id,
-					class: 'mw-debug-bit'
+					'class': 'mw-debug-bit'
 				});
-			};
+			}
+
 			/**
 			 * Returns a jQuery element for a pane link
 			 *
@@ -97,23 +101,23 @@
 			 * @param text
 			 * @return {jQuery}
 			 */
-			var paneLink = function( id, text ) {
-				return $( '<a></a>' )
+			function paneLink( id, text ) {
+				return $( '<a>' )
 					.attr({
 						href: '#',
-						class: 'mw-debug-panelink',
+						'class': 'mw-debug-panelink',
 						id: 'mw-debug-' + id + '-link'
 					})
 					.text( text );
 			}
 
 			bitDiv( 'mwversion' )
-				.append( $( '<a href="//www.mediawiki.org/">' ).text( 'MediaWiki' ) )
+				.append( $( '<a href="//www.mediawiki.org/"></a>' ).text( 'MediaWiki' ) )
 				.append( ': ' + this.data.mwVersion )
 				.appendTo( $container );
 
 			bitDiv( 'phpversion' )
-				.append( $( '<a href="//www.php.net/">' ).text( 'PHP' ) )
+				.append( $( '<a href="//www.php.net/"></a>' ).text( 'PHP' ) )
 				.append( ': ' + this.data.phpVersion )
 				.appendTo( $container );
 
@@ -141,42 +145,46 @@
 				.append( paneLink( 'files-includes', this.data.includes.length + ' Files Included' ) )
 				.appendTo( $container );
 
-			var panes = {
-				'querylist': this.buildQueryTable(),
-				'debuglog': this.buildDebugLogTable(),
-				'request': this.buildRequestPane(),
-				'includes': this.buildIncludesPane()
+			panes = {
+				querylist: this.buildQueryTable(),
+				debuglog: this.buildDebugLogTable(),
+				request: this.buildRequestPane(),
+				includes: this.buildIncludesPane()
 			};
 
-			for ( var id in panes ) {
+			for ( id in panes ) {
 				if ( !panes.hasOwnProperty( id ) ) {
 					continue;
 				}
 
-				$( '<div></div>' )
+				$( '<div>' )
 					.attr({
-						class: 'mw-debug-pane',
+						'class': 'mw-debug-pane',
 						id: 'mw-debug-pane-' + id
 					})
 					.append( panes[id] )
 					.appendTo( $container );
 			}
+
+			this.$container = $container;
 		},
 
 		/**
 		 * Query list pane
 		 */
-		buildQueryTable: function() {
-			var $table = $( '<table id="mw-debug-querylist"></table>' );
+		buildQueryTable: function () {
+			var $table, i, length, query;
 
-			for ( var i = 0, length = this.data.queries.length; i < length; i++ ) {
-				var query = this.data.queries[i];
+			$table = $( '<table id="mw-debug-querylist"></table>' );
+
+			for ( i = 0, length = this.data.queries.length; i < length; i += 1 ) {
+				query = this.data.queries[i];
 
 				$( '<tr>' )
 					.append( $( '<td>' ).text( i + 1 ) )
 					.append( $( '<td>' ).text( query.sql ) )
 					.append( $( '<td>' )
-						.append( $( '<span class="mw-debug-query-time">' ).text( '(' + query.time.toFixed( 4 ) + 'ms) ' ) )
+						.append( $( '<span class="mw-debug-query-time"></span>' ).text( '(' + query.time.toFixed( 4 ) + 'ms) ' ) )
 						.append( query['function'] )
 					)
 					.appendTo( $table );
@@ -188,11 +196,12 @@
 		/**
 		 * Legacy debug log pane
 		 */
-		buildDebugLogTable: function() {
-			var $list = $( '<ul>' );
+		buildDebugLogTable: function () {
+			var $list, i, length, line;
+			$list = $( '<ul>' );
 
-			for ( var i = 0, length = this.data.debugLog.length; i < length; i++ ) {
-				var line = this.data.debugLog[i];
+			for ( i = 0, length = this.data.debugLog.length; i < length; i += 1 ) {
+				line = this.data.debugLog[i];
 				$( '<li>' )
 					.html( mw.html.escape( line ).replace( /\n/g, "<br />\n" ) )
 					.appendTo( $list );
@@ -204,18 +213,20 @@
 		/**
 		 * Request information pane
 		 */
-		buildRequestPane: function() {
-			var buildTable = function( title, data ) {
-				var $unit = $( '<div></div>' )
-					.append( $( '<h2>' ).text( title ) );
+		buildRequestPane: function () {
 
-				var $table = $( '<table>' ).appendTo( $unit );
+			function buildTable( title, data ) {
+				var $unit, $table, key;
+
+				$unit = $( '<div>' ).append( $( '<h2>' ).text( title ) );
+
+				$table = $( '<table>' ).appendTo( $unit );
 
 				$( '<tr>' )
-					.html( '<th>Key</th> <th>Value</th>' )
+					.html( '<th>Key</th><th>Value</th>' )
 					.appendTo( $table );
 
-				for ( var key in data ) {
+				for ( key in data ) {
 					if ( !data.hasOwnProperty( key ) ) {
 						continue;
 					}
@@ -227,26 +238,27 @@
 				}
 
 				return $unit;
-			};
+			}
 
-			var $pane = $( '<div>' )
+			return $( '<div>' )
 				.text( this.data.request.method + ' ' + this.data.request.url )
 				.append( buildTable( 'Headers', this.data.request.headers ) )
 				.append( buildTable( 'Parameters', this.data.request.params ) );
-			return $pane;
 		},
 
 		/**
 		 * Included files pane
 		 */
-		buildIncludesPane: function() {
-			var $list = $( '<ul>' )
+		buildIncludesPane: function () {
+			var $list, i, len, file;
 
-			for ( var i = 0, l = this.data.includes.length; i < l; i++ ) {
-				var file = this.data.includes[i];
+			$list = $( '<ul>' );
+
+			for ( i = 0, len = this.data.includes.length; i < len; i += 1 ) {
+				file = this.data.includes[i];
 				$( '<li>' )
 					.text( file.name )
-					.prepend( $( '<span class="mw-debug-right">' ).text( file.size ) )
+					.prepend( $( '<span class="mw-debug-right"></span>' ).text( file.size ) )
 					.appendTo( $list );
 			}
 
@@ -254,4 +266,4 @@
 		}
 	};
 
-} )( jQuery );
+} )( jQuery, mediaWiki );
