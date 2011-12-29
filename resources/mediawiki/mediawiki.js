@@ -158,9 +158,14 @@ var mw = ( function ( $, undefined ) {
 				}
 				return '<' + this.key + '>';
 			}
-			
-		 	var text = mw.jqueryMsg.getMessageFunction( )( this.key, this.parameters );
-		 	
+			var	text = this.map.get( this.key ),
+				parameters = this.parameters;
+
+			text = text.replace( /\$(\d+)/g, function ( str, match ) {
+				var index = parseInt( match, 10 ) - 1;
+				return parameters[index] !== undefined ? parameters[index] : '$' + match;
+			} );
+
 			if ( this.format === 'plain' ) {
 				return text;
 			}
