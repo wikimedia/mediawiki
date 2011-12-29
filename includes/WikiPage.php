@@ -487,6 +487,39 @@ class WikiPage extends Page {
 	}
 
 	/**
+	 * Loads page_touched and returns a value indicating if it should be used
+	 * @return boolean true if not a redirect
+	 */
+	public function checkTouched() {
+		if ( !$this->mDataLoaded ) {
+			$this->loadPageData();
+		}
+		return !$this->mIsRedirect;
+	}
+
+	/**
+	 * Get the page_touched field
+	 * @return string containing GMT timestamp
+	 */
+	public function getTouched() {
+		if ( !$this->mDataLoaded ) {
+			$this->loadPageData();
+		}
+		return $this->mTouched;
+	}
+
+	/**
+	 * Get the page_latest field
+	 * @return integer rev_id of current revision
+	 */
+	public function getLatest() {
+		if ( !$this->mDataLoaded ) {
+			$this->loadPageData();
+		}
+		return (int)$this->mLatest;
+	}
+
+	/**
 	 * Loads everything except the text
 	 * This isn't necessary for all uses, so it's only done if needed.
 	 */
@@ -639,6 +672,29 @@ class WikiPage extends Page {
 	}
 
 	/**
+	 * Get the cached timestamp for the last time the page changed.
+	 * This is only used to help handle slave lag by comparing to page_touched.
+	 * @return string MW timestamp
+	 */
+	protected function getCachedLastEditTime() {
+		global $wgMemc;
+		$key = wfMemcKey( 'page-lastedit', md5( $this->mTitle->getPrefixedDBkey() ) );
+		return $wgMemc->get( $key );
+	}
+
+	/**
+	 * Set the cached timestamp for the last time the page changed.
+	 * This is only used to help handle slave lag by comparing to page_touched.
+	 * @param $timestamp string
+	 * @return void
+	 */
+	public function setCachedLastEditTime( $timestamp ) {
+		global $wgMemc;
+		$key = wfMemcKey( 'page-lastedit', md5( $this->mTitle->getPrefixedDBkey() ) );
+		$wgMemc->set( $key, wfTimestamp( TS_MW, $timestamp ), 60*15 );
+	}
+
+	/**
 	 * Get a list of users who have edited this article, not including the user who made
 	 * the most recent revision, which you can get from $article->getUser() if you want it
 	 * @return UserArrayFromResult
@@ -687,6 +743,58 @@ class WikiPage extends Page {
 
 		$res = $dbr->select( $tables, $fields, $conds, __METHOD__, $options, $jconds );
 		return new UserArrayFromResult( $res );
+	}
+
+	/**
+	 * Get the last N authors
+	 * @param $num Integer: number of revisions to get
+	 * @param $revLatest String: the latest rev_id, selected from the master (optional)
+	 * @return array Array of authors, duplicates not removed
+	 */
+	public function getLastNAuthors( $num, $revLatest = 0 ) {
+		wfProfileIn( __METHOD__ );
+		// First try the slave
+		// If that doesn't have the latest revision, try the master
+		$continue = 2;
+		$db = wfGetDB( DB_SLAVE );
+
+		do {
+			$res = $db->select( array( 'page', 'revision' ),
+				array( 'rev_id', 'rev_user_text' ),
+				array(
+					'page_namespace' => $this->mTitle->getNamespace(),
+					'page_title' => $this->mTitle->getDBkey(),
+					'rev_page = page_id'
+				), __METHOD__,
+				array(
+					'ORDER BY' => 'rev_timestamp DESC',
+					'LIMIT' => $num
+				)
+			);
+
+			if ( !$res ) {
+				wfProfileOut( __METHOD__ );
+				return array();
+			}
+
+			$row = $db->fetchObject( $res );
+
+			if ( $continue == 2 && $revLatest && $row->rev_id != $revLatest ) {
+				$db = wfGetDB( DB_MASTER );
+				$continue--;
+			} else {
+				$continue = 0;
+			}
+		} while ( $continue );
+
+		$authors = array( $row->rev_user_text );
+
+		foreach ( $res as $row ) {
+			$authors[] = $row->rev_user_text;
+		}
+
+		wfProfileOut( __METHOD__ );
+		return $authors;
 	}
 
 	/**
@@ -743,6 +851,26 @@ class WikiPage extends Page {
 		wfProfileOut( __METHOD__ );
 
 		return $pool->getParserOutput();
+	}
+
+	/**
+	 * Do standard deferred updates after page view
+	 * @param $user User The relevant user
+	 */
+	public function doViewUpdates( User $user ) {
+		global $wgDisableCounters;
+		if ( wfReadOnly() ) {
+			return;
+		}
+
+		# Don't update page view counters on views from bot users (bug 14044)
+		if ( !$wgDisableCounters && !$user->isAllowed( 'bot' ) && $this->mTitle->exists() ) {
+			DeferredUpdates::addUpdate( new ViewCountUpdate( $this->getId() ) );
+			DeferredUpdates::addUpdate( new SiteStatsUpdate( 1, 0, 0 ) );
+		}
+
+		# Update newtalk / watchlist notification status
+		$user->clearNotification( $this->mTitle );
 	}
 
 	/**
@@ -874,29 +1002,6 @@ class WikiPage extends Page {
 
 		wfProfileOut( __METHOD__ );
 		return $result;
-	}
-
-	/**
-	 * Get the cached timestamp for the last time the page changed.
-	 * This is only used to help handle slave lag by comparing to page_touched.
-	 * @return string MW timestamp
-	 */
-	protected function getCachedLastEditTime() {
-		global $wgMemc;
-		$key = wfMemcKey( 'page-lastedit', md5( $this->mTitle->getPrefixedDBkey() ) );
-		return $wgMemc->get( $key );
-	}
-
-	/**
-	 * Set the cached timestamp for the last time the page changed.
-	 * This is only used to help handle slave lag by comparing to page_touched.
-	 * @param $timestamp string
-	 * @return void
-	 */
-	public function setCachedLastEditTime( $timestamp ) {
-		global $wgMemc;
-		$key = wfMemcKey( 'page-lastedit', md5( $this->mTitle->getPrefixedDBkey() ) );
-		$wgMemc->set( $key, wfTimestamp( TS_MW, $timestamp ), 60*15 );
 	}
 
 	/**
@@ -1328,6 +1433,208 @@ class WikiPage extends Page {
 	}
 
 	/**
+	 * Get parser options suitable for rendering the primary article wikitext
+	 * @param User|string $user User object or 'canonical'
+	 * @return ParserOptions
+	 */
+	public function makeParserOptions( $user ) {
+		global $wgContLang;
+		if ( $user instanceof User ) { // settings per user (even anons)
+			$options = ParserOptions::newFromUser( $user );
+		} else { // canonical settings
+			$options = ParserOptions::newFromUserAndLang( new User, $wgContLang );
+		}
+		$options->enableLimitReport(); // show inclusion/loop reports
+		$options->setTidy( true ); // fix bad HTML
+		return $options;
+	}
+
+	/**
+	 * Prepare text which is about to be saved.
+	 * Returns a stdclass with source, pst and output members
+	 */
+	public function prepareTextForEdit( $text, $revid = null, User $user = null ) {
+		global $wgParser, $wgContLang, $wgUser;
+		$user = is_null( $user ) ? $wgUser : $user;
+		// @TODO fixme: check $user->getId() here???
+		if ( $this->mPreparedEdit
+			&& $this->mPreparedEdit->newText == $text
+			&& $this->mPreparedEdit->revid == $revid
+		) {
+			// Already prepared
+			return $this->mPreparedEdit;
+		}
+
+		$popts = ParserOptions::newFromUserAndLang( $user, $wgContLang );
+		wfRunHooks( 'ArticlePrepareTextForEdit', array( $this, $popts ) );
+
+		$edit = (object)array();
+		$edit->revid = $revid;
+		$edit->newText = $text;
+		$edit->pst = $wgParser->preSaveTransform( $text, $this->mTitle, $user, $popts );
+		$edit->popts = $this->makeParserOptions( 'canonical' );
+		$edit->output = $wgParser->parse( $edit->pst, $this->mTitle, $edit->popts, true, true, $revid );
+		$edit->oldText = $this->getRawText();
+
+		$this->mPreparedEdit = $edit;
+
+		return $edit;
+	}
+
+	/**
+	 * Do standard deferred updates after page edit.
+	 * Update links tables, site stats, search index and message cache.
+	 * Purges pages that include this page if the text was changed here.
+	 * Every 100th edit, prune the recent changes table.
+	 *
+	 * @private
+	 * @param $revision Revision object
+	 * @param $user User object that did the revision
+	 * @param $options Array of options, following indexes are used:
+	 * - changed: boolean, whether the revision changed the content (default true)
+	 * - created: boolean, whether the revision created the page (default false)
+	 * - oldcountable: boolean or null (default null):
+	 *   - boolean: whether the page was counted as an article before that
+	 *     revision, only used in changed is true and created is false
+	 *   - null: don't change the article count
+	 */
+	public function doEditUpdates( Revision $revision, User $user, array $options = array() ) {
+		global $wgEnableParserCache;
+
+		wfProfileIn( __METHOD__ );
+
+		$options += array( 'changed' => true, 'created' => false, 'oldcountable' => null );
+		$text = $revision->getText();
+
+		# Parse the text
+		# Be careful not to double-PST: $text is usually already PST-ed once
+		if ( !$this->mPreparedEdit || $this->mPreparedEdit->output->getFlag( 'vary-revision' ) ) {
+			wfDebug( __METHOD__ . ": No prepared edit or vary-revision is set...\n" );
+			$editInfo = $this->prepareTextForEdit( $text, $revision->getId(), $user );
+		} else {
+			wfDebug( __METHOD__ . ": No vary-revision, using prepared edit...\n" );
+			$editInfo = $this->mPreparedEdit;
+		}
+
+		# Save it to the parser cache
+		if ( $wgEnableParserCache ) {
+			$parserCache = ParserCache::singleton();
+			$parserCache->save( $editInfo->output, $this, $editInfo->popts );
+		}
+
+		# Update the links tables
+		$u = new LinksUpdate( $this->mTitle, $editInfo->output );
+		$u->doUpdate();
+
+		wfRunHooks( 'ArticleEditUpdates', array( &$this, &$editInfo, $options['changed'] ) );
+
+		if ( wfRunHooks( 'ArticleEditUpdatesDeleteFromRecentchanges', array( &$this ) ) ) {
+			if ( 0 == mt_rand( 0, 99 ) ) {
+				// Flush old entries from the `recentchanges` table; we do this on
+				// random requests so as to avoid an increase in writes for no good reason
+				global $wgRCMaxAge;
+
+				$dbw = wfGetDB( DB_MASTER );
+				$cutoff = $dbw->timestamp( time() - $wgRCMaxAge );
+				$dbw->delete(
+					'recentchanges',
+					array( "rc_timestamp < '$cutoff'" ),
+					__METHOD__
+				);
+			}
+		}
+
+		if ( !$this->mTitle->exists() ) {
+			wfProfileOut( __METHOD__ );
+			return;
+		}
+
+		$id = $this->getId();
+		$title = $this->mTitle->getPrefixedDBkey();
+		$shortTitle = $this->mTitle->getDBkey();
+
+		if ( !$options['changed'] ) {
+			$good = 0;
+			$total = 0;
+		} elseif ( $options['created'] ) {
+			$good = (int)$this->isCountable( $editInfo );
+			$total = 1;
+		} elseif ( $options['oldcountable'] !== null ) {
+			$good = (int)$this->isCountable( $editInfo ) - (int)$options['oldcountable'];
+			$total = 0;
+		} else {
+			$good = 0;
+			$total = 0;
+		}
+
+		DeferredUpdates::addUpdate( new SiteStatsUpdate( 0, 1, $good, $total ) );
+		DeferredUpdates::addUpdate( new SearchUpdate( $id, $title, $text ) );
+
+		# If this is another user's talk page, update newtalk.
+		# Don't do this if $options['changed'] = false (null-edits) nor if
+		# it's a minor edit and the user doesn't want notifications for those.
+		if ( $options['changed']
+			&& $this->mTitle->getNamespace() == NS_USER_TALK
+			&& $shortTitle != $user->getTitleKey()
+			&& !( $revision->isMinor() && $user->isAllowed( 'nominornewtalk' ) )
+		) {
+			if ( wfRunHooks( 'ArticleEditUpdateNewTalk', array( &$this ) ) ) {
+				$other = User::newFromName( $shortTitle, false );
+				if ( !$other ) {
+					wfDebug( __METHOD__ . ": invalid username\n" );
+				} elseif ( User::isIP( $shortTitle ) ) {
+					// An anonymous user
+					$other->setNewtalk( true );
+				} elseif ( $other->isLoggedIn() ) {
+					$other->setNewtalk( true );
+				} else {
+					wfDebug( __METHOD__ . ": don't need to notify a nonexistent user\n" );
+				}
+			}
+		}
+
+		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
+			MessageCache::singleton()->replace( $shortTitle, $text );
+		}
+
+		if( $options['created'] ) {
+			self::onArticleCreate( $this->mTitle );
+		} else {
+			self::onArticleEdit( $this->mTitle );
+		}
+
+		wfProfileOut( __METHOD__ );
+	}
+
+	/**
+	 * Edit an article without doing all that other stuff
+	 * The article must already exist; link tables etc
+	 * are not updated, caches are not flushed.
+	 *
+	 * @param $text String: text submitted
+	 * @param $user User The relevant user
+	 * @param $comment String: comment submitted
+	 * @param $minor Boolean: whereas it's a minor modification
+	 */
+	public function doQuickEdit( $text, User $user, $comment = '', $minor = 0 ) {
+		wfProfileIn( __METHOD__ );
+
+		$dbw = wfGetDB( DB_MASTER );
+		$revision = new Revision( array(
+			'page'       => $this->getId(),
+			'text'       => $text,
+			'comment'    => $comment,
+			'minor_edit' => $minor ? 1 : 0,
+		) );
+		$revision->insertOn( $dbw );
+		$this->updateRevisionOn( $dbw, $revision );
+
+		wfRunHooks( 'NewRevisionFromEditComplete', array( $this, $revision, false, $user ) );
+
+		wfProfileOut( __METHOD__ );
+	}
+
+	/**
 	 * Update the article's restriction field, and leave a log entry.
 	 * This works for protection both existing and non-existing pages.
 	 *
@@ -1557,80 +1864,6 @@ class WikiPage extends Page {
 		}
 
 		return implode( ':', $bits );
-	}
-
-	/**
-	 * Check whether the number of revisions of this page surpasses $wgDeleteRevisionsLimit
-	 *
-	 * @deprecated in 1.19; use Title::isBigDeletion() instead.
-	 * @return bool
-	 */
-	public function isBigDeletion() {
-		wfDeprecated( __METHOD__, '1.19' );
-		return $this->mTitle->isBigDeletion();
-	}
-
-	/**
-	 * Get the  approximate revision count of this page.
-	 *
-	 * @deprecated in 1.19; use Title::estimateRevisionCount() instead.
-	 * @return int
-	 */
-	public function estimateRevisionCount() {
-		wfDeprecated( __METHOD__, '1.19' );
-		return $this->mTitle->estimateRevisionCount();
-	}
-
-	/**
-	 * Get the last N authors
-	 * @param $num Integer: number of revisions to get
-	 * @param $revLatest String: the latest rev_id, selected from the master (optional)
-	 * @return array Array of authors, duplicates not removed
-	 */
-	public function getLastNAuthors( $num, $revLatest = 0 ) {
-		wfProfileIn( __METHOD__ );
-		// First try the slave
-		// If that doesn't have the latest revision, try the master
-		$continue = 2;
-		$db = wfGetDB( DB_SLAVE );
-
-		do {
-			$res = $db->select( array( 'page', 'revision' ),
-				array( 'rev_id', 'rev_user_text' ),
-				array(
-					'page_namespace' => $this->mTitle->getNamespace(),
-					'page_title' => $this->mTitle->getDBkey(),
-					'rev_page = page_id'
-				), __METHOD__,
-				array(
-					'ORDER BY' => 'rev_timestamp DESC',
-					'LIMIT' => $num
-				)
-			);
-
-			if ( !$res ) {
-				wfProfileOut( __METHOD__ );
-				return array();
-			}
-
-			$row = $db->fetchObject( $res );
-
-			if ( $continue == 2 && $revLatest && $row->rev_id != $revLatest ) {
-				$db = wfGetDB( DB_MASTER );
-				$continue--;
-			} else {
-				$continue = 0;
-			}
-		} while ( $continue );
-
-		$authors = array( $row->rev_user_text );
-
-		foreach ( $res as $row ) {
-			$authors[] = $row->rev_user_text;
-		}
-
-		wfProfileOut( __METHOD__ );
-		return $authors;
 	}
 
 	/**
@@ -1978,286 +2211,6 @@ class WikiPage extends Page {
 	}
 
 	/**
-	 * Do standard deferred updates after page view
-	 * @param $user User The relevant user
-	 */
-	public function doViewUpdates( User $user ) {
-		global $wgDisableCounters;
-		if ( wfReadOnly() ) {
-			return;
-		}
-
-		# Don't update page view counters on views from bot users (bug 14044)
-		if ( !$wgDisableCounters && !$user->isAllowed( 'bot' ) && $this->mTitle->exists() ) {
-			DeferredUpdates::addUpdate( new ViewCountUpdate( $this->getId() ) );
-			DeferredUpdates::addUpdate( new SiteStatsUpdate( 1, 0, 0 ) );
-		}
-
-		# Update newtalk / watchlist notification status
-		$user->clearNotification( $this->mTitle );
-	}
-
-	/**
-	 * Prepare text which is about to be saved.
-	 * Returns a stdclass with source, pst and output members
-	 */
-	public function prepareTextForEdit( $text, $revid = null, User $user = null ) {
-		global $wgParser, $wgContLang, $wgUser;
-		$user = is_null( $user ) ? $wgUser : $user;
-		// @TODO fixme: check $user->getId() here???
-		if ( $this->mPreparedEdit
-			&& $this->mPreparedEdit->newText == $text
-			&& $this->mPreparedEdit->revid == $revid
-		) {
-			// Already prepared
-			return $this->mPreparedEdit;
-		}
-
-		$popts = ParserOptions::newFromUserAndLang( $user, $wgContLang );
-		wfRunHooks( 'ArticlePrepareTextForEdit', array( $this, $popts ) );
-
-		$edit = (object)array();
-		$edit->revid = $revid;
-		$edit->newText = $text;
-		$edit->pst = $wgParser->preSaveTransform( $text, $this->mTitle, $user, $popts );
-		$edit->popts = $this->makeParserOptions( 'canonical' );
-		$edit->output = $wgParser->parse( $edit->pst, $this->mTitle, $edit->popts, true, true, $revid );
-		$edit->oldText = $this->getRawText();
-
-		$this->mPreparedEdit = $edit;
-
-		return $edit;
-	}
-
-	/**
-	 * Do standard deferred updates after page edit.
-	 * Update links tables, site stats, search index and message cache.
-	 * Purges pages that include this page if the text was changed here.
-	 * Every 100th edit, prune the recent changes table.
-	 *
-	 * @private
-	 * @param $revision Revision object
-	 * @param $user User object that did the revision
-	 * @param $options Array of options, following indexes are used:
-	 * - changed: boolean, whether the revision changed the content (default true)
-	 * - created: boolean, whether the revision created the page (default false)
-	 * - oldcountable: boolean or null (default null):
-	 *   - boolean: whether the page was counted as an article before that
-	 *     revision, only used in changed is true and created is false
-	 *   - null: don't change the article count
-	 */
-	public function doEditUpdates( Revision $revision, User $user, array $options = array() ) {
-		global $wgEnableParserCache;
-
-		wfProfileIn( __METHOD__ );
-
-		$options += array( 'changed' => true, 'created' => false, 'oldcountable' => null );
-		$text = $revision->getText();
-
-		# Parse the text
-		# Be careful not to double-PST: $text is usually already PST-ed once
-		if ( !$this->mPreparedEdit || $this->mPreparedEdit->output->getFlag( 'vary-revision' ) ) {
-			wfDebug( __METHOD__ . ": No prepared edit or vary-revision is set...\n" );
-			$editInfo = $this->prepareTextForEdit( $text, $revision->getId(), $user );
-		} else {
-			wfDebug( __METHOD__ . ": No vary-revision, using prepared edit...\n" );
-			$editInfo = $this->mPreparedEdit;
-		}
-
-		# Save it to the parser cache
-		if ( $wgEnableParserCache ) {
-			$parserCache = ParserCache::singleton();
-			$parserCache->save( $editInfo->output, $this, $editInfo->popts );
-		}
-
-		# Update the links tables
-		$u = new LinksUpdate( $this->mTitle, $editInfo->output );
-		$u->doUpdate();
-
-		wfRunHooks( 'ArticleEditUpdates', array( &$this, &$editInfo, $options['changed'] ) );
-
-		if ( wfRunHooks( 'ArticleEditUpdatesDeleteFromRecentchanges', array( &$this ) ) ) {
-			if ( 0 == mt_rand( 0, 99 ) ) {
-				// Flush old entries from the `recentchanges` table; we do this on
-				// random requests so as to avoid an increase in writes for no good reason
-				global $wgRCMaxAge;
-
-				$dbw = wfGetDB( DB_MASTER );
-				$cutoff = $dbw->timestamp( time() - $wgRCMaxAge );
-				$dbw->delete(
-					'recentchanges',
-					array( "rc_timestamp < '$cutoff'" ),
-					__METHOD__
-				);
-			}
-		}
-
-		if ( !$this->mTitle->exists() ) {
-			wfProfileOut( __METHOD__ );
-			return;
-		}
-
-		$id = $this->getId();
-		$title = $this->mTitle->getPrefixedDBkey();
-		$shortTitle = $this->mTitle->getDBkey();
-
-		if ( !$options['changed'] ) {
-			$good = 0;
-			$total = 0;
-		} elseif ( $options['created'] ) {
-			$good = (int)$this->isCountable( $editInfo );
-			$total = 1;
-		} elseif ( $options['oldcountable'] !== null ) {
-			$good = (int)$this->isCountable( $editInfo ) - (int)$options['oldcountable'];
-			$total = 0;
-		} else {
-			$good = 0;
-			$total = 0;
-		}
-
-		DeferredUpdates::addUpdate( new SiteStatsUpdate( 0, 1, $good, $total ) );
-		DeferredUpdates::addUpdate( new SearchUpdate( $id, $title, $text ) );
-
-		# If this is another user's talk page, update newtalk.
-		# Don't do this if $options['changed'] = false (null-edits) nor if
-		# it's a minor edit and the user doesn't want notifications for those.
-		if ( $options['changed']
-			&& $this->mTitle->getNamespace() == NS_USER_TALK
-			&& $shortTitle != $user->getTitleKey()
-			&& !( $revision->isMinor() && $user->isAllowed( 'nominornewtalk' ) )
-		) {
-			if ( wfRunHooks( 'ArticleEditUpdateNewTalk', array( &$this ) ) ) {
-				$other = User::newFromName( $shortTitle, false );
-				if ( !$other ) {
-					wfDebug( __METHOD__ . ": invalid username\n" );
-				} elseif ( User::isIP( $shortTitle ) ) {
-					// An anonymous user
-					$other->setNewtalk( true );
-				} elseif ( $other->isLoggedIn() ) {
-					$other->setNewtalk( true );
-				} else {
-					wfDebug( __METHOD__ . ": don't need to notify a nonexistent user\n" );
-				}
-			}
-		}
-
-		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
-			MessageCache::singleton()->replace( $shortTitle, $text );
-		}
-
-		if( $options['created'] ) {
-			self::onArticleCreate( $this->mTitle );
-		} else {
-			self::onArticleEdit( $this->mTitle );
-		}
-
-		wfProfileOut( __METHOD__ );
-	}
-
-	/**
-	 * Perform article updates on a special page creation.
-	 *
-	 * @param $rev Revision object
-	 *
-	 * @todo This is a shitty interface function. Kill it and replace the
-	 * other shitty functions like doEditUpdates and such so it's not needed
-	 * anymore.
-	 * @deprecated since 1.18, use doEditUpdates()
-	 */
-	public function createUpdates( $rev ) {
-		wfDeprecated( __METHOD__, '1.18' );
-		global $wgUser;
-		$this->doEditUpdates( $rev, $wgUser, array( 'created' => true ) );
-	}
-
-	/**
-	 * This function is called right before saving the wikitext,
-	 * so we can do things like signatures and links-in-context.
-	 *
-	 * @deprecated in 1.19; use Parser::preSaveTransform() instead
-	 * @param $text String article contents
-	 * @param $user User object: user doing the edit
-	 * @param $popts ParserOptions object: parser options, default options for
-	 *               the user loaded if null given
-	 * @return string article contents with altered wikitext markup (signatures
-	 * 	converted, {{subst:}}, templates, etc.)
-	 */
-	public function preSaveTransform( $text, User $user = null, ParserOptions $popts = null ) {
-		global $wgParser, $wgUser;
-
-		wfDeprecated( __METHOD__, '1.19' );
-
-		$user = is_null( $user ) ? $wgUser : $user;
-
-		if ( $popts === null ) {
-			$popts = ParserOptions::newFromUser( $user );
-		}
-
-		return $wgParser->preSaveTransform( $text, $this->mTitle, $user, $popts );
-	}
-
-	/**
-	 * Loads page_touched and returns a value indicating if it should be used
-	 * @return boolean true if not a redirect
-	 */
-	public function checkTouched() {
-		if ( !$this->mDataLoaded ) {
-			$this->loadPageData();
-		}
-		return !$this->mIsRedirect;
-	}
-
-	/**
-	 * Get the page_touched field
-	 * @return string containing GMT timestamp
-	 */
-	public function getTouched() {
-		if ( !$this->mDataLoaded ) {
-			$this->loadPageData();
-		}
-		return $this->mTouched;
-	}
-
-	/**
-	 * Get the page_latest field
-	 * @return integer rev_id of current revision
-	 */
-	public function getLatest() {
-		if ( !$this->mDataLoaded ) {
-			$this->loadPageData();
-		}
-		return (int)$this->mLatest;
-	}
-
-	/**
-	 * Edit an article without doing all that other stuff
-	 * The article must already exist; link tables etc
-	 * are not updated, caches are not flushed.
-	 *
-	 * @param $text String: text submitted
-	 * @param $user User The relevant user
-	 * @param $comment String: comment submitted
-	 * @param $minor Boolean: whereas it's a minor modification
-	 */
-	public function doQuickEdit( $text, User $user, $comment = '', $minor = 0 ) {
-		wfProfileIn( __METHOD__ );
-
-		$dbw = wfGetDB( DB_MASTER );
-		$revision = new Revision( array(
-			'page'       => $this->getId(),
-			'text'       => $text,
-			'comment'    => $comment,
-			'minor_edit' => $minor ? 1 : 0,
-		) );
-		$revision->insertOn( $dbw );
-		$this->updateRevisionOn( $dbw, $revision );
-
-		wfRunHooks( 'NewRevisionFromEditComplete', array( $this, $revision, false, $user ) );
-
-		wfProfileOut( __METHOD__ );
-	}
-
-	/**
 	 * The onArticle*() functions are supposed to be a kind of hooks
 	 * which should be called whenever any of the specified actions
 	 * are done.
@@ -2561,23 +2514,6 @@ class WikiPage extends Page {
 	}
 
 	/**
-	* Get parser options suitable for rendering the primary article wikitext
-	* @param User|string $user User object or 'canonical'
-	* @return ParserOptions
-	*/
-	public function makeParserOptions( $user ) {
-		global $wgContLang;
-		if ( $user instanceof User ) { // settings per user (even anons)
-			$options = ParserOptions::newFromUser( $user );
-		} else { // canonical settings
-			$options = ParserOptions::newFromUserAndLang( new User, $wgContLang );
-		}
-		$options->enableLimitReport(); // show inclusion/loop reports
-		$options->setTidy( true ); // fix bad HTML
-		return $options;
-	}
-
-	/**
 	 * Update all the appropriate counts in the category table, given that
 	 * we've added the categories $added and deleted the categories $deleted.
 	 *
@@ -2689,6 +2625,70 @@ class WikiPage extends Page {
 			$u = new LinksUpdate( $this->mTitle, $parserOutput, false );
 			$u->doUpdate();
 		}
+	}
+
+	/**
+	 * Perform article updates on a special page creation.
+	 *
+	 * @param $rev Revision object
+	 *
+	 * @todo This is a shitty interface function. Kill it and replace the
+	 * other shitty functions like doEditUpdates and such so it's not needed
+	 * anymore.
+	 * @deprecated since 1.18, use doEditUpdates()
+	 */
+	public function createUpdates( $rev ) {
+		wfDeprecated( __METHOD__, '1.18' );
+		global $wgUser;
+		$this->doEditUpdates( $rev, $wgUser, array( 'created' => true ) );
+	}
+
+	/**
+	 * This function is called right before saving the wikitext,
+	 * so we can do things like signatures and links-in-context.
+	 *
+	 * @deprecated in 1.19; use Parser::preSaveTransform() instead
+	 * @param $text String article contents
+	 * @param $user User object: user doing the edit
+	 * @param $popts ParserOptions object: parser options, default options for
+	 *               the user loaded if null given
+	 * @return string article contents with altered wikitext markup (signatures
+	 * 	converted, {{subst:}}, templates, etc.)
+	 */
+	public function preSaveTransform( $text, User $user = null, ParserOptions $popts = null ) {
+		global $wgParser, $wgUser;
+
+		wfDeprecated( __METHOD__, '1.19' );
+
+		$user = is_null( $user ) ? $wgUser : $user;
+
+		if ( $popts === null ) {
+			$popts = ParserOptions::newFromUser( $user );
+		}
+
+		return $wgParser->preSaveTransform( $text, $this->mTitle, $user, $popts );
+	}
+
+	/**
+	 * Check whether the number of revisions of this page surpasses $wgDeleteRevisionsLimit
+	 *
+	 * @deprecated in 1.19; use Title::isBigDeletion() instead.
+	 * @return bool
+	 */
+	public function isBigDeletion() {
+		wfDeprecated( __METHOD__, '1.19' );
+		return $this->mTitle->isBigDeletion();
+	}
+
+	/**
+	 * Get the  approximate revision count of this page.
+	 *
+	 * @deprecated in 1.19; use Title::estimateRevisionCount() instead.
+	 * @return int
+	 */
+	public function estimateRevisionCount() {
+		wfDeprecated( __METHOD__, '1.19' );
+		return $this->mTitle->estimateRevisionCount();
 	}
 
 	/**
