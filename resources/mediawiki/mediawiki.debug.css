@@ -19,6 +19,7 @@
 .mw-debug table {
 	border-spacing: 0;
 	width: 100%;
+	table-layout: fixed;
 }
 
 .mw-debug table tr {
@@ -32,6 +33,7 @@
 .mw-debug table td {
 	padding: 4px 10px;
 	border-bottom: 1px solid #eee;
+	word-wrap: break-word;
 }
 
 .mw-debug table td.nr {
