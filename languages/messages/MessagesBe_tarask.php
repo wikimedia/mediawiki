@@ -895,7 +895,7 @@ $2
 'noarticletext'                    => 'Цяпер тэкст на гэтай старонцы адсутнічае.
 Вы можаце [[Special:Search/{{PAGENAME}}|пашукаць гэтую назву]] ў іншых старонках, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} пашукаць у адпаведных журналах падзеяў]
 альбо [{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} рэдагаваць гэтую старонку]</span>.',
-'noarticletext-nopermission'       => 'Зараз на гэтай старонцы тэкст адсутнічае.
+'noarticletext-nopermission'       => 'Цяпер на гэтай старонцы тэкст адсутнічае.
 Вы можаце [[Special:Search/{{PAGENAME}}|пашукаць назву гэтай старонкі]] на іншых старонках, альбо <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} пашукаць зьвязаныя запісы ў журналах]</span>.',
 'userpage-userdoesnotexist'        => 'Рахунак удзельніка «<nowiki>$1</nowiki>» не зарэгістраваны. Калі ласка, удакладніце, ці жадаеце Вы стварыць/рэдагаваць гэтую старонку.',
 'userpage-userdoesnotexist-view'   => 'Рахунак «$1» ня створаны.',

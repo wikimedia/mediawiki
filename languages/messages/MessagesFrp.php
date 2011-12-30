@@ -337,7 +337,7 @@ $messages = array(
 'tog-enotifusertalkpages'     => 'M’avèrtir per mèssageria èlèctronica quand ma pâge de discussion est changiê',
 'tog-enotifminoredits'        => 'M’avèrtir per mèssageria èlèctronica mémo en câs de petiôts changements',
 'tog-enotifrevealaddr'        => 'Fâre vêre mon adrèce èlèctronica dens los mèssâjos d’avèrtissement',
-'tog-shownumberswatching'     => 'Fâre vêre lo nombro d’utilisators que siuvont les pâges',
+'tog-shownumberswatching'     => 'Fâre vêre lo nombro d’usanciérs que siuvont les pâges',
 'tog-oldsig'                  => 'Signatura ègzistenta :',
 'tog-fancysig'                => 'Trètar la signatura coment de vouiquitèxto (sen lim ôtomatico)',
 'tog-externaleditor'          => 'Utilisar per dèfôt un èditor de tèxto de defôr (solament por los usanciérs avanciês, at fôta d’una configuracion spèciâla sur voutron ordenator. [//www.mediawiki.org/wiki/Manual:External_editors Més d’enformacions.])',
@@ -535,7 +535,7 @@ $messages = array(
 'jumptonavigation'  => 'Navigacion',
 'jumptosearch'      => 'Rechèrche',
 'view-pool-error'   => 'Dèsolâ, los sèrvors sont surchargiês por lo moment.
-Trop d’utilisators chèrchont a arrevar a ceta pâge.
+Trop d’usanciérs chèrchont a arrevar a ceta pâge.
 Volyéd atendre un moment devant que vos tâchiéd de tornar arrevar a ceta pâge.
 
 $1',
@@ -641,9 +641,9 @@ La bâsa de balyês at retornâ l’èrror « $3 : $4 ».',
 'laggedslavemode'      => "'''Atencion :''' cela pâge pôt pas contegnir tôs los dèrriérs changements fêts.",
 'readonly'             => 'Bâsa de balyês vèrrolyê',
 'enterlockreason'      => 'Balyéd la rêson du vèrrolyâjo et pués una èstimacion de son temps',
-'readonlytext'         => 'Ora, les aponses et les mises a jorn de la bâsa de balyês sont blocâs, probâblament por pèrmetre la mantegnence de la bâsa, aprés què, tot rentrerat dedens l’ôrdre.
+'readonlytext'         => 'Ora, la bâsa de balyês est vèrrolyê por d’entrâs novèles et d’ôtros changements, probâblament por pèrmetre la mantegnence de la bâsa de balyês, aprés què tot tornerat a la normala.
 
-L’administrator qu’at vèrrolyê la bâsa de balyês at balyê ceta èxplicacion : $1',
+L’administrator que l’at vèrrolyê at balyê ceta èxplicacion : $1',
 'missing-article'      => 'La bâsa de balyês at pas trovâ lo tèxto d’una pâge qu’el arêt diu trovar, avouéc lo titro « $1 » $2.
 
 En g·ènèral, cen arreve en siuvent un lim de vers un dif dèpassâ ou ben de vers l’historico d’una pâge suprimâ.
@@ -988,8 +988,8 @@ Volyéd controlar que vos voléd fâre ou ben changiér cela pâge.',
 'blocked-notice-logextract'        => 'Ceti usanciér est ora blocâ.
 La dèrriére entrâ du jornal des blocâjos est disponibla ce-desot :',
 'clearyourcache'                   => "'''Nota :''' aprés avêr encartâ, vos devréd forciér lo rechargement complèt du cache de voutron navigator por vêre los changements.
-* '''Firefox / Safari :''' mantegnéd la toche ''Granta Lètra'' (''Shift'') en cliquent sur lo boton ''Rechargiér'' (''Reload'') ou ben prèssâd ''Ctrl-F5'' ou ''Ctrl-R'' (''Command-R'' dessus Mac)
-* '''Google Chrome :''' prèssâd ''Ctrl-Shift-R'' (''Command-Shift-R'' dessus Mac)
+* '''Firefox / Safari :''' mantegnéd la toche ''Granta Lètra'' (''Shift'') en cliquent sur lo boton ''Rechargiér'' (''Reload'') ou ben prèssâd ''Ctrl-F5'' ou ''Ctrl-R'' (''⌘-R'' sur un Mac)
+* '''Google Chrome :''' prèssâd ''Ctrl-Shift-R'' (''⌘-Shift-R'' sur un Mac)
 * '''Internet Explorer :''' mantegnéd la toche ''Ctrl'' en cliquent sur lo boton ''Rafrèchir'' (''Refresh'') ou ben prèssâd ''Ctrl-F5''
 * '''Konqueror :''' clicâd sur lo boton ''Rechargiér'' ou ben prèssâd ''F5''
 * '''Opera :''' èfaciéd lo cache dens ''Outils → Prèferences''",
@@ -1389,7 +1389,7 @@ Atencion, lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
 'prefs-rc'                      => 'Dèrriérs changements',
 'prefs-watchlist'               => 'Lista de survelyence',
 'prefs-watchlist-days'          => 'Nombro de jorns a fâre vêre dens la lista de survelyence :',
-'prefs-watchlist-days-max'      => '7 jorns u més',
+'prefs-watchlist-days-max'      => '$1 jorn{{PLURAL:$1||s}} u més',
 'prefs-watchlist-edits'         => 'Nombro de changements a fâre vêre dens la lista de survelyence ètendua :',
 'prefs-watchlist-edits-max'     => 'Nombro lo ples grant : 1000',
 'prefs-watchlist-token'         => 'Jeton por la lista de survelyence :',
@@ -1494,7 +1494,7 @@ Ceta enformacion serat publica.',
 
 # User rights
 'userrights'                   => 'Administracion des drêts d’usanciér',
-'userrights-lookup-user'       => 'Administracion a les tropes d’utilisators',
+'userrights-lookup-user'       => 'Administracion a les tropes d’usanciérs',
 'userrights-user-editname'     => 'Buchiéd un nom d’usanciér :',
 'editusergroup'                => 'Changiér les tropes a l’usanciér',
 'editinguser'                  => "Changement des drêts d’usanciér a l’usanciér '''[[User:$1|$1]]''' $2",
@@ -1846,6 +1846,35 @@ Se lo problèmo continue, veriéd-vos vers un [[Special:ListUsers/sysop|administ
 'upload-unknown-size'       => 'Talye encognua',
 'upload-http-error'         => 'Una èrror HTTP est arrevâ : $1',
 
+# File backend
+'backend-fail-stream'        => 'Empossiblo de liére lo fichiér $1.',
+'backend-fail-backup'        => 'Empossiblo de sôvar lo fichiér $1.',
+'backend-fail-notexists'     => 'Lo fichiér $1 ègziste pas.',
+'backend-fail-hashes'        => 'Empossiblo d’avêr los chaplâjos du fichiér por comparèson.',
+'backend-fail-notsame'       => 'Un fichiér difèrent ègziste ja por $1 .',
+'backend-fail-invalidpath'   => '$1 est pas un chemin de stocâjo valido.',
+'backend-fail-delete'        => 'Empossiblo de suprimar lo fichiér $1.',
+'backend-fail-alreadyexists' => 'Lo fichiér $1 ègziste ja.',
+'backend-fail-store'         => 'Empossiblo de stocar lo fichiér $1 en $2.',
+'backend-fail-copy'          => 'Empossiblo de copiyér lo fichiér $1 vers $2.',
+'backend-fail-move'          => 'Empossiblo de dèplaciér lo fichiér $1 vers $2.',
+'backend-fail-opentemp'      => 'Empossiblo d’uvrir lo fichiér temporèro.',
+'backend-fail-writetemp'     => 'Empossiblo d’ècrire dedens lo fichiér temporèro.',
+'backend-fail-closetemp'     => 'Empossiblo de cllôre lo fichiér temporèro.',
+'backend-fail-read'          => 'Empossiblo de liére lo fichiér $1.',
+'backend-fail-create'        => 'Empossiblo de fâre lo fichiér $1.',
+
+# Lock manager
+'lockmanager-notlocked'        => 'Empossiblo de dèvèrrolyér « $1 » ; el est pas vèrrolyê.',
+'lockmanager-fail-closelock'   => 'Empossiblo de cllôre lo fichiér de vèrroly por « $1 ».',
+'lockmanager-fail-deletelock'  => 'Empossiblo de suprimar lo fichiér de vèrroly por « $1 ».',
+'lockmanager-fail-acquirelock' => 'Empossiblo d’avêr lo vèrroly por « $1 ».',
+'lockmanager-fail-openlock'    => 'Empossiblo d’uvrir lo fichiér de vèrroly por « $1 ».',
+'lockmanager-fail-releaselock' => 'Empossiblo de relâchiér lo vèrroly por « $1 ».',
+'lockmanager-fail-db-bucket'   => 'Empossiblo de sè veriér vers prod de bâses de balyês de vèrrolyâjo dedens lo godèt $1.',
+'lockmanager-fail-db-release'  => 'Empossiblo de relâchiér los vèrrolys sur la bâsa de balyês $1.',
+'lockmanager-fail-svr-release' => 'Empossiblo de relâchiér los vèrrolys sur lo sèrvor $1.',
+
 # ZipDirectoryReader
 'zip-file-open-error' => 'Una èrror est arrevâ pendent l’uvèrtura du fichiér ZIP por contrôlo.',
 'zip-wrong-format'    => 'Lo fichiér spècefiâ est pas un fichiér ZIP.',
@@ -1862,6 +1891,7 @@ Pôt pas étre controlâ tot drêt por la sècuritât.',
 'uploadstash-badtoken' => 'L’ègzécucion de cela accion at pas reussia, pôt-étre perce que voutres enformacions de branchement ont èxpirâs. Tornâd èprovar.',
 'uploadstash-errclear' => 'L’èfacement des fichiérs at pas reussi.',
 'uploadstash-refresh'  => 'Rafrèchir la lista des fichiérs',
+'invalid-chunk-offset' => 'Comencement de bocon envalido',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Accès refusâ',
@@ -2095,6 +2125,7 @@ Les entrâs <del>barrâs</del> ont étâ solucionâs.',
 'mostimages'              => 'Fichiérs los ples utilisâs',
 'mostrevisions'           => 'Pâges les ples changiês',
 'prefixindex'             => 'Totes les pâges que començont per...',
+'prefixindex-namespace'   => 'Totes les pâges avouéc prèfixo (èspâço de noms $1)',
 'shortpages'              => 'Pâges côrtes',
 'longpages'               => 'Pâges longes',
 'deadendpages'            => 'Pâges en cul-de-sac',
@@ -2210,7 +2241,7 @@ Protocolos recognus : <tt>$1</tt> (apondéd gins de cetos dedens voutra rechèrc
 'newuserlogpagetext' => 'O est un jornal de les crèacions de comptos usanciér.',
 
 # Special:ListGroupRights
-'listgrouprights'                      => 'Drêts a les tropes d’utilisators',
+'listgrouprights'                      => 'Drêts a les tropes d’usanciérs',
 'listgrouprights-summary'              => 'Ceta pâge contint una lista a les tropes dèfenies sur ceti vouiqui et pués los drêts d’accès que lor sont associyês.
 Y pôt avêr [[{{MediaWiki:Listgrouprights-helppage}}|més d’enformacions]] sur los drêts particuliérs.',
 'listgrouprights-key'                  => '* <span class="listgrouprights-granted">Drêt balyê</span>
@@ -2540,7 +2571,7 @@ $1',
 
 'sp-contributions-newbies'             => 'Fâre vêre ren que les contribucions ux novéls usanciérs',
 'sp-contributions-newbies-sub'         => 'Permié los comptos novéls',
-'sp-contributions-newbies-title'       => 'Contribucions d’utilisators permié los comptos novéls',
+'sp-contributions-newbies-title'       => 'Contribucions d’usanciérs permié los comptos novéls',
 'sp-contributions-blocklog'            => 'jornal des blocâjos',
 'sp-contributions-deleted'             => 'contribucions suprimâs',
 'sp-contributions-uploads'             => 'tèlèchargements',
@@ -2767,7 +2798,7 @@ Dens celos câs, vos devréd renomar ou ben fusionar la pâge a la man se vos lo
 'movenologintext'              => 'Por povêr renomar una pâge, vos dête étre [[Special:UserLogin|branchiê]] coment usanciér encartâ.',
 'movenotallowed'               => 'Vos avéd pas la pèrmission de renomar les pâges.',
 'movenotallowedfile'           => 'Vos avéd pas la pèrmission de renomar los fichiérs.',
-'cant-move-user-page'          => 'Vos avéd pas la pèrmission de renomar les pâges principâles d’utilisators (en defôr de lors sot-pâges).',
+'cant-move-user-page'          => 'Vos avéd pas la pèrmission de renomar les pâges principâles d’usanciérs (en defôr de lors sot-pâges).',
 'cant-move-to-user-page'       => 'Vos avéd pas la pèrmission de renomar una pâge vers una pâge usanciér (a l’èxcèpcion d’una sot-pâge).',
 'newtitle'                     => 'De vers lo titro novél :',
 'move-watch'                   => 'Siuvre les pâges sôrsa et ciba',
@@ -2868,6 +2899,8 @@ Volyéd visitar la [//www.mediawiki.org/wiki/Localisation localisacion de MediaW
 'thumbnail_error'          => 'Èrror pendent la crèacion de la figura : $1',
 'djvu_page_error'          => 'Pâge DjVu en defôr de les limites',
 'djvu_no_xml'              => 'Empossiblo de rècupèrar lo XML por lo fichiér DjVu',
+'thumbnail-temp-create'    => 'Empossiblo de fâre lo fichiér de figura temporèra',
+'thumbnail-dest-create'    => 'Empossiblo d’encartar la figura sur la dèstinacion',
 'thumbnail_invalid_params' => 'Paramètres de la figura fôx',
 'thumbnail_dest_directory' => 'Empossiblo de fâre lo rèpèrtouèro de dèstinacion',
 'thumbnail_image-type'     => 'Tipo d’émâge pas recognu',
@@ -3984,13 +4017,19 @@ Les émâges sont montrâs dens lor plêna rèsolucion, los ôtros fichiérs son
 'newuserlog-byemail'                  => 'contresegno mandâ per mèssageria èlèctronica',
 
 # Feedback
-'feedback-subject' => 'Sujèt :',
-'feedback-message' => 'Mèssâjo :',
-'feedback-cancel'  => 'Anular',
-'feedback-submit'  => 'Mandar voutron avis',
-'feedback-adding'  => 'Aponsa de voutros avis a la pâge...',
-'feedback-error1'  => 'Èrror : rèsultat de l’API pas recognu',
-'feedback-error2'  => 'Èrror : lo changement at pas reussi',
-'feedback-error3'  => 'Èrror : gins de rèponsa de l’API',
+'feedback-bugornote' => 'Se vos éte prèst a dècrire un problèmo tècnico en dètaly, volyéd [$1 signalar una cofierie].
+Ôtrament, vos pouede utilisar lo formulèro simplifiâ ce-desot. Voutron comentèro serat apondu a la pâge « [$3 $2] », avouéc voutron nom d’usanciér et lo navigator que vos utilisâd.',
+'feedback-subject'   => 'Sujèt :',
+'feedback-message'   => 'Mèssâjo :',
+'feedback-cancel'    => 'Anular',
+'feedback-submit'    => 'Mandar voutron avis',
+'feedback-adding'    => 'Aponsa de voutros avis a la pâge...',
+'feedback-error1'    => 'Èrror : rèsultat de l’API pas recognu',
+'feedback-error2'    => 'Èrror : lo changement at pas reussi',
+'feedback-error3'    => 'Èrror : gins de rèponsa de l’API',
+'feedback-thanks'    => 'Grant-marci ! Voutron avis at étâ postâ sur la pâge « [$2 $1] ».',
+'feedback-close'     => 'Fêt',
+'feedback-bugcheck'  => 'Formidâblo ! Controlâd simplament qu’o est pas yona de les [$1 cofieries ja cognues].',
+'feedback-bugnew'    => 'J’é controlâ. Signalar una cofierie novèla',
 
 );

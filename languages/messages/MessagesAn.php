@@ -156,7 +156,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Ninviar-me un correu tamién quan bi haiga edicions menors de pachinas',
 'tog-enotifrevealaddr'        => 'Fer veyer a mía adreza de correu-e en os correus de notificación',
 'tog-shownumberswatching'     => "Amostrar o numero d'usuarios que cosiran un articlo",
-'tog-oldsig'                  => "Vista previa d'a sinyadura:",
+'tog-oldsig'                  => 'Sinyadura actual',
 'tog-fancysig'                => 'Tratar as sinyaduras como wikitexto (sin de vinclo automatico)',
 'tog-externaleditor'          => "Fer servir l'editor externo por defecto (nomás ta espiertos, cal que faiga achustes especials en o suyo ordenador.  [//www.mediawiki.org/wiki/Manual:External_editors Mas información.])",
 'tog-externaldiff'            => 'Fer servir o visualizador de diferencias externo por defecto (nomás ta expertos, cal que faiga achustes especials en o suyo ordenador.  [//www.mediawiki.org/wiki/Manual:External_editors Mas información.])',
@@ -543,8 +543,8 @@ No xublide de presonalizar [[Special:Preferences|as suyas preferencias en {{SITE
 'createaccountmail'          => 'por correu electronico',
 'createaccountreason'        => 'Razón:',
 'badretype'                  => 'As contrasenyas que ha escrito no son iguals.',
-'userexists'                 => "Ixe nombre d'usuario ya ye en uso.
-Por favor, meta-ne uno diferent.",
+'userexists'                 => "O nombre d'usuario que ha escrito ya ye en uso.
+Por favor, trigue-ne uno de diferent.",
 'loginerror'                 => 'Error en encetar a sesión',
 'createaccounterror'         => "No s'ha puesto creyar a cuenta: $1",
 'nocookiesnew'               => "A cuenta d'usuario s'ha creyata, pero encara no ye indentificato. {{SITENAME}} fa servir <em>cookies</em> ta identificar a os usuario rechistratos, pero pareix que las tiene desactivatas. Por favor, active-las e identifique-se con o suyo nombre d'usuario y contrasenya.",
@@ -735,11 +735,11 @@ u bien <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE
 'blocked-notice-logextract'        => "Ista cuenta d'usuario ye actualment bloqueyata.
 A zaguera dentrada d'o rechistro de bloqueyos s'amuestra contino:",
 'clearyourcache'                   => "'''Pare cuenta:''' Dimpués d'alzar, puede estar que haiga d'esviellar a caché d'o suyo navegador ta veyer os cambios.
-*'''Mozilla / Firefox / Safari:''' prete a tecla de ''Mayusclas'' mientras puncha ''Reload,'' u prete '''Ctrl-F5''' u '''Ctrl-R''' (''Command-R'' en un Mac);
-*'''Google Chrome:''' prete ''Ctrl-Shift-R'' (''Command-Shift-R'' on a Mac)
-*'''Internet Explorer:''' prete ''Ctrl'' entre que puncha ''Refresh,'' u prete ''Ctrl-F5.''
-*'''Konqueror: ''' punche ''Reload'' u prete ''F5;''
-*'''Opera:''' limpiar a caché en ''Tools → Preferences;''",
+*'''Mozilla / Firefox / Safari:''' Prete a tecla de ''Mayusclas'' mientras puncha ''Reload,'' u prete '''Ctrl-F5''' u '''Ctrl-R''' (''⌘-R'' en un Mac);
+*'''Google Chrome:''' Prete ''Ctrl-Shift-R'' (''⌘-Shift-R'' on a Mac)
+*'''Internet Explorer:''' Prete ''Ctrl'' entre que puncha ''Refresh,'' u prete ''Ctrl-F5.''
+*'''Konqueror: ''' Punche ''Reload'' u prete ''F5;''
+*'''Opera:''' Limpiar a caché en ''Tools → Preferences;''",
 'usercssyoucanpreview'             => "'''Consello:''' Faiga servir o botón «{{int:showpreview}}» ta fer una prebatina con o nuevo CSS antes de no grabar-lo.",
 'userjsyoucanpreview'              => "'''Consello:''' Faiga servir o botón «{{int:showpreview}}» ta fer una prebatina con o nuevo css/js antes de no grabar-lo.",
 'usercsspreview'                   => "'''Remere que isto no ye que una previsualización d'o suyo CSS d'usuario.'''
@@ -2506,7 +2506,7 @@ Todas as importacions interwiki se rechistran en o [[Special:Log/import|rechistr
 Puede veyer-ne, manimenos, o codigo fuent.',
 'tooltip-ca-history'              => "Versions anteriors d'ista pachina.",
 'tooltip-ca-protect'              => 'Protecher ista pachina',
-'tooltip-ca-unprotect'            => 'Desproteger ista pagina',
+'tooltip-ca-unprotect'            => "Cambiar a protección d'ista pachina",
 'tooltip-ca-delete'               => 'Borrar ista pachina',
 'tooltip-ca-undelete'             => 'Restaurar as edicions feitas a ista pachina antis que no estase borrata',
 'tooltip-ca-move'                 => 'Tresladar (renombrar) ista pachina',
@@ -2710,8 +2710,8 @@ Os campos de metadatos d'a imachen que amaneixen en iste mensache s'amostrarán 
 'exif-colorspace'                  => 'Espacio de colors',
 'exif-componentsconfiguration'     => 'Significación de cada component',
 'exif-compressedbitsperpixel'      => "Modo de compresión d'a imachen",
-'exif-pixelydimension'             => "Amplaria conforme d'a imachen",
-'exif-pixelxdimension'             => "Altaria conforme d'a imachen",
+'exif-pixelydimension'             => "Amplaria d'a imachen",
+'exif-pixelxdimension'             => "Altaria d'a imachen",
 'exif-usercomment'                 => "Comentarios de l'usuario",
 'exif-relatedsoundfile'            => "Fichero d'audio relacionato",
 'exif-datetimeoriginal'            => "Calendata y hora de cheneración d'os datos",
@@ -2725,9 +2725,9 @@ Os campos de metadatos d'a imachen que amaneixen en iste mensache s'amostrarán 
 'exif-exposureprogram'             => "Programa d'exposición",
 'exif-spectralsensitivity'         => 'Sensibilidat espectral',
 'exif-isospeedratings'             => 'Sensibilidat ISO',
-'exif-shutterspeedvalue'           => "Velocidat de l'obturador",
-'exif-aperturevalue'               => 'Obredura',
-'exif-brightnessvalue'             => 'Brilor',
+'exif-shutterspeedvalue'           => "Velocidat de l'obturador APEX",
+'exif-aperturevalue'               => 'Obredura APEX',
+'exif-brightnessvalue'             => 'Brilor APEX',
 'exif-exposurebiasvalue'           => "Siesco d'exposición",
 'exif-maxaperturevalue'            => 'Obredura maxima',
 'exif-subjectdistance'             => 'Distancia a o sucheto',
@@ -2801,9 +2801,9 @@ Os campos de metadatos d'a imachen que amaneixen en iste mensache s'amostrarán 
 'exif-orientation-3' => 'Chirata 180º',
 'exif-orientation-4' => 'Contornata verticalment',
 'exif-orientation-5' => "Chirata 90° en contra d'as agullas d'o reloch y contornata verticalment",
-'exif-orientation-6' => "Chirata 90° como as agullas d'o reloch",
+'exif-orientation-6' => "Chirata 90° en contra d'o sentiu d'as agullas d'o reloch",
 'exif-orientation-7' => "Chirata 90° como as agullas d'o reloch y contornata verticalment",
-'exif-orientation-8' => "Chirata 90° en contra d'as agullas d'o reloch",
+'exif-orientation-8' => "Chirata 90° en o sentiu d'as agullas d'o reloch",
 
 'exif-planarconfiguration-1' => 'formato de paquetz de píxels',
 'exif-planarconfiguration-2' => 'formato plano',

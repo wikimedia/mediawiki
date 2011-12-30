@@ -735,9 +735,9 @@ $1',
 
 # Main script and global functions
 'nosuchaction'      => 'چنین عملی وجود ندارد',
-'nosuchactiontext'  => 'عمل مشخص شده در نشانی اینترنتی غیرمجاز است.
-شما ممکن است نشانی اینترنتی را اشتباه وارد کرده باشید یا یک پیوند نادرست را دنبال کرده باشید.
-هم‌چنین ممکن است ایرادی در {{SITENAME}} وجود داشته باشد.',
+'nosuchactiontext'  => 'عمل مشخص‌شده در نشانی اینترنتی غیرمجاز است.
+ممکن است نشانی اینترنتی را اشتباه وارد کرده باشید یا پیوند مشکل‌داری را دنبال کرده باشید.
+همچنین ممکن است ایرادی در نرم‌افزار استفاده‌شده در {{SITENAME}} وجود داشته باشد.',
 'nosuchspecialpage' => 'چنین صفحهٔ ویژه‌ای وجود ندارد',
 'nospecialpagetext' => '<strong>شما صفحهٔ ویژهٔ غیرمجازی را درخواست کرده‌اید.</strong>
 
@@ -2158,7 +2158,7 @@ $1',
 'statistics-users-active-desc' => 'کاربرانی که در {{PLURAL:$1|روز|$1 روز}} قبل فعالیتی انجام داده‌اند',
 'statistics-mostpopular'       => 'صفحه‌هایی که بیشترین تعداد بازدیدکننده را داشته‌اند',
 
-'disambiguations'      => 'صفحات مرتبط با صفحات ابهام‌زدایی',
+'disambiguations'      => 'صفحه‌های دارای پیوند به صفحه‌های ابهام‌زدایی',
 'disambiguationspage'  => 'Template:ابهام‌زدایی',
 'disambiguations-text' => "صفحه‌های زیر پیوندی به یک '''صفحهٔ ابهام‌زدایی''' هستند.
 این صفحه‌ها باید در عوض به موضوعات مرتبط پیوند داده شوند.<br />
@@ -2196,12 +2196,12 @@ $1',
 'specialpage-empty'       => 'نتیجه‌ای برای این گزارش وجود ندارد.',
 'lonelypages'             => 'صفحه‌های یتیم',
 'lonelypagestext'         => 'به صفحه‌های زیر از هیچ صفحهٔ دیگری در {{SITENAME}} پیوند داده نشده‌است و در هیچ صفحهٔ دیگری گنجانده نشده‌اند.',
-'uncategorizedpages'      => 'صفحه‌های رده‌بندی نشده',
-'uncategorizedcategories' => 'رده‌های رده‌بندی نشده',
-'uncategorizedimages'     => 'پرونده‌های رده‌بندی نشده',
-'uncategorizedtemplates'  => 'الگوهای رده‌بندی نشده',
-'unusedcategories'        => 'رده‌های استفاده نشده',
-'unusedimages'            => 'پرونده‌های استفاده نشده',
+'uncategorizedpages'      => 'صفحه‌های رده‌بندی‌نشده',
+'uncategorizedcategories' => 'رده‌های رده‌بندی‌نشده',
+'uncategorizedimages'     => 'پرونده‌های رده‌بندی‌نشده',
+'uncategorizedtemplates'  => 'الگوهای رده‌بندی‌نشده',
+'unusedcategories'        => 'رده‌های استفاده‌نشده',
+'unusedimages'            => 'پرونده‌های استفاده‌نشده',
 'popularpages'            => 'صفحه‌های محبوب',
 'wantedcategories'        => 'رده‌های مورد نیاز',
 'wantedpages'             => 'صفحه‌های مورد نیاز',
@@ -2209,10 +2209,10 @@ $1',
 'wantedfiles'             => 'پرونده‌های مورد نیاز',
 'wantedtemplates'         => 'الگوهای مورد نیاز',
 'mostlinked'              => 'صفحه‌هایی که بیشتر از همه به آن‌ها پیوند داده شده‌است',
-'mostlinkedcategories'    => 'رده‌هایی که بیشتر از همه به آنها پیوند شده است',
-'mostlinkedtemplates'     => 'الگوهایی که بیشتر از همه به آنها پیوند شده است',
-'mostcategories'          => 'مقاله‌هایی که بیشترین تعداد رده را دارند',
-'mostimages'              => 'پرونده‌هایی که بیشتر از همه به آنها پیوند شده است',
+'mostlinkedcategories'    => 'رده‌هایی که بیشتر از همه به آن‌ها پیوند داده شده‌است',
+'mostlinkedtemplates'     => 'الگوهایی که بیشتر از همه به آن‌ها پیوند داده شده‌است',
+'mostcategories'          => 'صفحه‌های دارای بیشترین رده',
+'mostimages'              => 'پرونده‌هایی که بیشتر از همه به آن‌ها پیوند داده شده‌است',
 'mostrevisions'           => 'صفحه‌های دارای بیشترین نسخه',
 'prefixindex'             => 'تمام صفحه‌ها با پیشوند',
 'prefixindex-namespace'   => 'همهٔ صفحه‌های دارای پیشوند (فضای‌نام $1)',
@@ -2225,7 +2225,7 @@ $1',
 'protectedpages-cascade'  => 'فقط محافظت‌های آبشاری',
 'protectedpagestext'      => 'صفحه‌های زیر در برابر ویرایش یا انتقال محافظت شده‌اند:',
 'protectedpagesempty'     => 'در حال حاضر هیچ‌صفحه‌ای محافظت نشده‌است.',
-'protectedtitles'         => 'عنوان‌های محافظت شده',
+'protectedtitles'         => 'عنوان‌های محافظت‌شده',
 'protectedtitlestext'     => 'عنوان‌های زیر از ایجاد محافظت شده‌اند',
 'protectedtitlesempty'    => 'در حال حاضر هیچ عنوانی با این پارامترها محافظت نشده‌است.',
 'listusers'               => 'فهرست کاربران',
@@ -2287,16 +2287,16 @@ $1',
 
 # Special:Categories
 'categories'                    => 'رده‌ها',
-'categoriespagetext'            => '{{PLURAL:$1|ردهٔ|رده‌های}} زیر حاوی صفحه یا پرونده {{PLURAL:$1|است|هستند}}.
-[[Special:UnusedCategories|رده‌های استفاده نشده]] در اینجا نمایش داده نشده‌اند.
-هم‌چنین [[Special:WantedCategories|رده‌های مورد نیاز]] را ببینید.',
+'categoriespagetext'            => '{{PLURAL:$1|ردهٔ|رده‌های}} زیر دارای صفحه‌ها یا پرونده‌هایی {{PLURAL:$1|است|هستند}}.
+[[Special:UnusedCategories|رده‌های استفاده‌نشده]] در اینجا نمایش داده نشده‌اند.
+همچنین [[Special:WantedCategories|رده‌های مورد نیاز]] را ببینید.',
 'categoriesfrom'                => 'نمایش رده‌ها با شروع از:',
 'special-categories-sort-count' => 'مرتب کردن بر اساس تعداد',
 'special-categories-sort-abc'   => 'مرتب کردن الفبایی',
 
 # Special:DeletedContributions
-'deletedcontributions'             => 'مشارکت‌های حذف شده',
-'deletedcontributions-title'       => 'مشارکت‌های حذف شده',
+'deletedcontributions'             => 'مشارکت‌های حذف‌شده',
+'deletedcontributions-title'       => 'مشارکت‌های حذف‌شده',
 'sp-deletedcontributions-contribs' => 'مشارکت‌ها',
 
 # Special:LinkSearch
@@ -3796,8 +3796,8 @@ $5
 'watchlistedit-normal-title'   => 'ویرایش فهرست پی‌گیری‌ها',
 'watchlistedit-normal-legend'  => 'حذف عنوان‌ها از فهرست پی‌گیری‌ها',
 'watchlistedit-normal-explain' => 'عنوان‌های موجود در فهرست پیگیری شما در زیر نشان داده شده‌اند.
-برای حذف یک عنوان جعبهٔ کنار آن را علامت بزنید و دکمهٔ «{{int:Watchlistedit-normal-submit}}» را بزنید.
-شما هم‌چنین می‌توانید [[Special:EditWatchlist/raw|فهرست خام را ویرایش کنید]].',
+برای حذف هر عنوان جعبهٔ کنار آن را علامت بزنید و دکمهٔ «{{int:Watchlistedit-normal-submit}}» را بفشارید.
+شما همچنین می‌توانید [[Special:EditWatchlist/raw|فهرست خام را ویرایش کنید]].',
 'watchlistedit-normal-submit'  => 'حذف عنوان‌ها',
 'watchlistedit-normal-done'    => '$1 عنوان از فهرست پی‌گیری‌های شما حذف {{PLURAL:$1|شد|شدند}}:',
 'watchlistedit-raw-title'      => 'ویرایش فهرست خام پی‌گیری‌ها',
@@ -3932,8 +3932,7 @@ $5
 'specialpages'                   => 'صفحه‌های ویژه',
 'specialpages-note'              => '----
 * صفحه‌های ویژهٔ عادی.
-* <strong class="mw-specialpagerestricted">صفحات ویژهٔ محدود شده.</strong>
-* <strong class="mw-specialpagerestricted">صفحات ویژهٔ دارای میانگیر (ممکن است منسوخ باشند).</strong>',
+* <strong class="mw-specialpagerestricted">صفحات ویژهٔ محدودشده.</strong>',
 'specialpages-group-maintenance' => 'گزارش‌های نگهداری',
 'specialpages-group-other'       => 'صفحه‌های ویژهٔ دیگر',
 'specialpages-group-login'       => 'ورود / ثبت نام',

@@ -1367,11 +1367,15 @@ Tī pat-lâng liân-lo̍k lí ê sî-chūn bē kā e-mail tsū-tsí siá chhut--
 'minlength1'                  => '檔案的名上少愛有一字',
 'illegalfilename'             => '檔案名“$1”有袂用得用佇標題的字，
 請改名了後重新上載。',
+'filename-toolong'            => '檔案的名長度袂使超過240位元組',
 'badfilename'                 => 'Iáⁿ-siōng ê miâ í-keng kái chò "$1".',
+'filetype-mime-mismatch'      => '副檔名 ".$1" 佮 ($2)的MIME類型無合。',
 'filetype-badmime'            => 'MIME類別"$1"的檔案袂當上載',
 'filetype-bad-ie-mime'        => '袂當上載這个檔案，因為 Internet Explorer 會共伊偵測做 "$1"，彼種袂使，可能是有所危害的檔案類型。',
 'filetype-unwanted-type'      => "'''\".\$1\"'''是袂當上載的檔案類型，
 適當的{{PLURAL:\$3|檔案類型|檔案類型}}是\$2。",
+'filetype-banned-type'        => "	'''「.$1」'''{{PLURAL:$4|毋是會用得的檔案類型|毋是會用得的檔案類型}}。 
+會用得的{{PLURAL:$3|檔案類型|檔案類型}} $2。",
 'filetype-missing'            => '彼个檔案名稱無副檔名 （親像 ".jpg"）。',
 'empty-file'                  => '你送出來的檔案是空的',
 'file-too-large'              => '你送出來的檔案傷過大',
@@ -1389,6 +1393,7 @@ Tī pat-lâng liân-lo̍k lí ê sî-chūn bē kā e-mail tsū-tsí siá chhut--
 'emptyfile'                   => '你欲上載的檔案敢若是空的，
 這有可能是拍毋著檔案名稱，
 請檢查你確定是欲上載這个檔案。',
+'windows-nonascii-filename'   => '本維基的檔案名稱袂當有特殊的字',
 'fileexists'                  => "已經有一个仝名的檔案，你若無確定你欲要共改，請檢查'''<tt>[[:$1]]</tt>'''。 [[$1|thumb]]",
 'filepageexists'              => "這个檔案的描述頁已經佇'''<tt>[[:$1]]</tt>'''建立，毋過這个名稱的檔案猶未有，
 你所輸入的概要袂顯示佇彼个描述頁當中，若欲概要佇遐看會著，你愛手動編輯。
@@ -1426,6 +1431,8 @@ Tī pat-lâng liân-lo̍k lí ê sî-chūn bē kā e-mail tsū-tsí siá chhut--
 'uploadscripted'              => '這个檔案內底有HTML抑是腳本代碼，網路瀏覽器可能會錯誤翻譯。',
 'uploadvirus'                 => '彼个檔案有一个病毒！
 細情：$1',
+'uploadjava'                  => '彼个檔案是有 Java  .class 的 ZIP 檔案，
+袂當上載 Java 檔案，是因為怹可能會閃過系統安全關卡。',
 'upload-source'               => '來源檔案',
 'sourcefilename'              => 'Tóng-àn goân miâ:',
 'sourceurl'                   => '來源網址(URL)：',
@@ -1459,6 +1466,12 @@ $1',
 'upload-too-many-redirects' => '網址(URL)包傷濟个轉向',
 'upload-unknown-size'       => '大小毋知',
 'upload-http-error'         => '發生一个HTTP錯誤：$1',
+
+# File backend
+'backend-fail-stream'    => '無法度串流檔案$1',
+'backend-fail-backup'    => '無法度備份檔案$1',
+'backend-fail-notexists' => '無$1這个檔案',
+'backend-fail-hashes'    => '無法度讀著檔案散列值(hashe)通比並',
 
 # img_auth script messages
 'img-auth-accessdenied'     => '拒絕讀寫',
@@ -1903,9 +1916,9 @@ Téng 1 ūi siu-kái-chiá sī [[User:$3|$3]] ([[User talk:$3|talk]]{{int:pipe-s
 'unlockdbsuccesstext' => '資料庫已經解除封鎖',
 
 # Move page
-'move-page'        => '徙$1',
-'move-page-legend' => 'Sóa ia̍h',
-'movepagetext'     => "Ē-kha chit ê form> iōng lâi kái 1 ê ia̍h ê piau-tê (miâ-chheng); só·-ū siong-koan ê le̍k-sú ē tòe leh sóa khì sin piau-tê.
+'move-page'              => '徙$1',
+'move-page-legend'       => 'Sóa ia̍h',
+'movepagetext'           => "Ē-kha chit ê form> iōng lâi kái 1 ê ia̍h ê piau-tê (miâ-chheng); só·-ū siong-koan ê le̍k-sú ē tòe leh sóa khì sin piau-tê.
 Kū piau-tê ē chiâⁿ-chò 1 ia̍h choán khì sin piau-tê ê choán-ia̍h.
 Liân khì kū piau-tê ê liân-kiat (link) bē khì tāng--tio̍h; ē-kì-tit chhiau-chhōe siang-thâu (double) ê a̍h-sī kò·-chiòng ê choán-ia̍h.
 Lí ū chek-jīm khak-tēng liân-kiat kè-sio̍k liân tio̍h ūi.
@@ -1916,23 +1929,30 @@ Che piaú-sī nā ū têng-tâⁿ, ē-sái kā sin ia̍h soà tńg-khì goân-l�
 '''SÈ-JĪ!'''
 Tùi chē lâng tha̍k ê ia̍h lâi kóng, soá-ūi sī toā tiâu tāi-chì.
 Liâu--lo̍h-khì chìn-chêng, chhiáⁿ seng khak-tēng lí ū liáu-kái chiah-ê hiō-kó.",
-'movepagetalktext' => "Siong-koan ê thó-lūn-ia̍h (chún ū) oân-nâ ē chū-tōng tòe leh sóa-ūi. Í-hā ê chêng-hêng '''bô chún-sǹg''': *Beh kā chit ia̍h tùi 1 ê miâ-khong-kan (namespace) soá khì lēng-gōa 1 ê miâ-khong-kan, *Sin piau-tê í-keng ū iōng--kòe ê thó-lūn-ia̍h, he̍k-chiá *Ē-kha ê sió-keh-á bô phah-kau. Í-siōng ê chêng-hêng nā-chún tī leh, lí chí-hó iōng jîn-kang ê hong-sek sóa ia̍h a̍h-sī kā ha̍p-pèng (nā ū su-iàu).",
-'movearticle'      => 'Sóa ia̍h:',
-'movenologin'      => 'Bô teng-ji̍p',
-'movenologintext'  => 'Lí it-tēng ài sī chù-chheh ê iōng-chiá jī-chhiáⁿ ū [[Special:UserLogin|teng-ji̍p]] chiah ē-tàng sóa ia̍h.',
-'newtitle'         => 'Khì sin piau-tê:',
-'move-watch'       => 'Kàm-sī chit ia̍h',
-'movepagebtn'      => 'Sóa ia̍h',
-'pagemovedsub'     => 'Sóa-ūi sêng-kong',
-'articleexists'    => 'Kāng miâ ê ia̍h í-keng tī leh, a̍h-sī lí kéng ê miâ bô-hāu. Chhiáⁿ kéng pa̍t ê miâ.',
-'talkexists'       => "'''Ia̍h ê loē-bûn ū soá cháu, m̄-koh siong-koan ê thó-lūn-ia̍h bô toè leh soá, in-ūi sin piau-tê pun-té tō ū hit ia̍h. Chhiáⁿ iōng jîn-kang ê hoat-tō· kā ha̍p-pèng.'''",
-'movedto'          => 'sóa khì tī',
-'movetalk'         => 'Sūn-sòa sóa thó-lūn-ia̍h',
-'movelogpage'      => '徙位記錄',
-'movelogpagetext'  => 'Ē-kha lia̍t-chhut hông soá-ūi ê ia̍h.',
-'movereason'       => 'Lí-iû:',
-'revertmove'       => '回轉',
-'selfmove'         => 'Goân piau-tê kap sin piau-tê sio-siâng; bô hoat-tō· sóa.',
+'movepagetalktext'       => "Siong-koan ê thó-lūn-ia̍h (chún ū) oân-nâ ē chū-tōng tòe leh sóa-ūi. Í-hā ê chêng-hêng '''bô chún-sǹg''': *Beh kā chit ia̍h tùi 1 ê miâ-khong-kan (namespace) soá khì lēng-gōa 1 ê miâ-khong-kan, *Sin piau-tê í-keng ū iōng--kòe ê thó-lūn-ia̍h, he̍k-chiá *Ē-kha ê sió-keh-á bô phah-kau. Í-siōng ê chêng-hêng nā-chún tī leh, lí chí-hó iōng jîn-kang ê hong-sek sóa ia̍h a̍h-sī kā ha̍p-pèng (nā ū su-iàu).",
+'movearticle'            => 'Sóa ia̍h:',
+'movenologin'            => 'Bô teng-ji̍p',
+'movenologintext'        => 'Lí it-tēng ài sī chù-chheh ê iōng-chiá jī-chhiáⁿ ū [[Special:UserLogin|teng-ji̍p]] chiah ē-tàng sóa ia̍h.',
+'movenotallowed'         => '你無授權通去徙頁',
+'movenotallowedfile'     => '你無授權通去徙檔案',
+'cant-move-user-page'    => '你無授權通去徙用者頁（無包括伊的下頁）',
+'cant-move-to-user-page' => '你無授權通去徙用者頁（下頁例外）',
+'newtitle'               => 'Khì sin piau-tê:',
+'move-watch'             => 'Kàm-sī chit ia̍h',
+'movepagebtn'            => 'Sóa ia̍h',
+'pagemovedsub'           => 'Sóa-ūi sêng-kong',
+'articleexists'          => 'Kāng miâ ê ia̍h í-keng tī leh, a̍h-sī lí kéng ê miâ bô-hāu. Chhiáⁿ kéng pa̍t ê miâ.',
+'talkexists'             => "'''Ia̍h ê loē-bûn ū soá cháu, m̄-koh siong-koan ê thó-lūn-ia̍h bô toè leh soá, in-ūi sin piau-tê pun-té tō ū hit ia̍h. Chhiáⁿ iōng jîn-kang ê hoat-tō· kā ha̍p-pèng.'''",
+'movedto'                => 'sóa khì tī',
+'movetalk'               => 'Sūn-sòa sóa thó-lūn-ia̍h',
+'movepage-page-moved'    => '$1 í-keng sóa khì tī $2.',
+'movepage-page-unmoved'  => '$1這頁袂當徙去$2',
+'movelogpage'            => '徙位記錄',
+'movelogpagetext'        => 'Ē-kha lia̍t-chhut hông soá-ūi ê ia̍h.',
+'movenosubpage'          => '這頁無下頁',
+'movereason'             => 'Lí-iû:',
+'revertmove'             => '回轉',
+'selfmove'               => 'Goân piau-tê kap sin piau-tê sio-siâng; bô hoat-tō· sóa.',
 
 # Export
 'export'        => 'Su-chhut ia̍h',
@@ -1944,6 +1964,7 @@ Liâu--lo̍h-khì chìn-chêng, chhiáⁿ seng khak-tēng lí ū liáu-kái chia
 'allmessagesdefault'        => 'Siat piān ê bûn-jī',
 'allmessagescurrent'        => 'Bo̍k-chêng ê bûn-jī',
 'allmessagestext'           => 'Chia lia̍t chhut só·-ū tī MediaWiki: miâ-khong-kan ê hē-thóng sìn-sit.',
+'allmessages-filter-all'    => '全部',
 'allmessages-language'      => '話語：',
 'allmessages-filter-submit' => '來去',
 

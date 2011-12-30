@@ -3275,6 +3275,17 @@ Tautan-tautan abis tu pada baris sama dipartimbangkan sabagai pangacualian, nang
 'autoredircomment' => 'Paugahan tungkaran ka [[$1]]',
 'autosumm-new'     => "Ma-ulah tungkaran nang isinya ''$1''",
 
+# Live preview
+'livepreview-loading' => "Ma'unggah...",
+'livepreview-ready'   => "Ma'unggah...Tuntung!",
+'livepreview-failed'  => 'Titilikan langsung gagal!
+Cubai titilikan nurmal.',
+'livepreview-error'   => 'Gagal tasambung: $1 "$2".
+Cubai titilikan nurmal.',
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => 'Parubahan tahanyar pada $1 {{PLURAL:$1|ditik|diditik}} pinanya kada cungul di daptar ngini.',
+
 # Watchlist editor
 'watchlistedit-normal-title' => 'Babak daptar itihan',
 'watchlistedit-raw-title'    => 'Babak daptar itihan mantah',
@@ -3286,6 +3297,7 @@ Tautan-tautan abis tu pada baris sama dipartimbangkan sabagai pangacualian, nang
 'watchlisttools-raw'  => 'Babak daptar itihan mantah',
 
 # Special:Version
+'version'              => 'Virsi',
 'version-specialpages' => 'Tungkaran istimiwa',
 'version-other'        => 'Lain-lain',
 'version-hook-name'    => 'Ngaran kait',
@@ -3378,9 +3390,25 @@ Situs ngini mangalami kangalihan teknik.',
 'sqlite-no-fts'  => '$1 kada-awan sukungan panggagaian naskah-hibak',
 
 # New logging system
-'revdelete-restricted'   => 'Talamar pambatasan hagan pambakal-pambakal',
-'revdelete-unrestricted' => 'Buang pambatasan gasan pambakal-pambakal',
-'newuserlog-byemail'     => 'Katasunduk dikirimakan lung suril.',
+'revdelete-content-hid'               => 'Isi disungkupakan',
+'revdelete-summary-hid'               => 'babak kasimpulan tasungkup',
+'revdelete-uname-hid'                 => 'ngaran-pamuruk tasungkup',
+'revdelete-content-unhid'             => 'Isi kada disungkupakan',
+'revdelete-summary-unhid'             => 'babak kasimpulan kada tasungkup',
+'revdelete-uname-unhid'               => 'ngaran-pamuruk kada tasungkup',
+'revdelete-restricted'                => 'Talamar pambatasan hagan pambakal-pambakal',
+'revdelete-unrestricted'              => 'Buang pambatasan gasan pambakal-pambakal',
+'logentry-move-move'                  => '$1 {{GENDER:$2|diugah}} ptungkaran $3 ka $4',
+'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|diugah}} tungkaran $3 ka $4 awan-kada maninggalakan sabuah paugahan',
+'logentry-move-move_redir'            => '$1 {{GENDER:$2|diugah}} tungkaran $3 ka $4 lung paugahan',
+'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|diugah}} tungkaran $3 ka $4 lung sabuah paugahan awan-kada maninggalakan sabuah paugahan',
+'logentry-patrol-patrol'              => "$1 {{GENDER:$2|diciri'i}} ralatan $4 matan tungkaran $3 taawasi",
+'logentry-patrol-patrol-auto'         => "$1 utumatis {{GENDER:$2|diciri'i}} ralatan $4 matan tungkaran $3 taawasi",
+'logentry-newusers-newusers'          => '$1 {{GENDER:$2|diulah}} sabuah akun pamuruk',
+'logentry-newusers-create'            => '$1 {{GENDER:$2|diulah}} sabuah akun pamuruk',
+'logentry-newusers-create2'           => '$1 {{GENDER:$2|diulah}} {{GENDER:$4|sabuah akun pamuruk}} $3',
+'logentry-newusers-autocreate'        => 'Akun $1 utumatis {{GENDER:$2|diulah}}',
+'newuserlog-byemail'                  => 'Katasunduk dikirimakan lung suril.',
 
 # Feedback
 'feedback-subject' => 'Parihal:',
@@ -3388,6 +3416,7 @@ Situs ngini mangalami kangalihan teknik.',
 'feedback-cancel'  => 'Walangi',
 'feedback-submit'  => 'Kirimi Kitihanbalik',
 'feedback-adding'  => 'Manambahi kitihanbalik ka tungkaran...',
+'feedback-error1'  => 'Kasalahan: kulihan matan API kada-dipinandui',
 'feedback-close'   => 'Sudah',
 
 );
