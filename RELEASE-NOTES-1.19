@@ -201,6 +201,9 @@ production.
   should be loaded in <head> for proper dependency resolution
 * (bug 32702) Removed method Skin::makeGlobalVariablesScript() has been readded
   for backward compatibility
+* (bug 31469) Make sure tracking category messages expand variables like
+  {{NAMESPACE}} relative to correct title.
+  
 
 === API changes in 1.19 ===
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.
