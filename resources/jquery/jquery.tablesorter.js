@@ -605,7 +605,7 @@
 								if ( $tfoot.length ) {
 									$tfoot.eq(0).prepend( $sortbottoms );
 								} else {
-									$table.append( $( '<tfoot>' ).append( $sortbottoms ) )
+									$table.append( $( '<tfoot>' ).append( $sortbottoms ) );
 								}
 							}
 
