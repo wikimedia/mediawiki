@@ -47,10 +47,13 @@
 		 */
 		switchPane: function ( e ) {
 			var currentPaneId = debug.$container.data( 'currentPane' ),
-				requestedPaneId = $(this).parent().attr( 'id' ).substr( 9 ),
+				requestedPaneId = $(this).prop( 'id' ).substr( 9 ),
 				$currentPane = $( '#mw-debug-pane-' + currentPaneId ),
 				$requestedPane = $( '#mw-debug-pane-' + requestedPaneId );
-			e.preventDefault();
+
+			$( this ).addClass( 'current ')
+			$( '.mw-debug-panelink' ).not( this ).removeClass( 'current ');
+
 
 			// Hide the current pane
 			if ( requestedPaneId === currentPaneId ) {
@@ -73,13 +76,11 @@
 		 * Constructs the HTML for the debugging toolbar
 		 */
 		buildHtml: function () {
-			var $container, panes, id;
+			var $container, $bits, panes, id;
 
-			$container = $( '<div>' )
-				.attr({
-					id: 'mw-debug-container',
-					'class': 'mw-debug'
-				});
+			$container = $( '<div id="mw-debug-container" class="mw-debug"></div>' );
+
+			$bits = $( '<div class="mw-debug-bits"></div>' );
 
 			/**
 			 * Returns a jQuery element for a debug-bit div
@@ -91,7 +92,8 @@
 				return $( '<div>' ).attr({
 					id: 'mw-debug-' + id,
 					'class': 'mw-debug-bit'
-				});
+				})
+				.appendTo( $bits );
 			}
 
 			/**
@@ -101,49 +103,55 @@
 			 * @param text
 			 * @return {jQuery}
 			 */
-			function paneLink( id, text ) {
+			function paneLabel( id, text ) {
 				return $( '<a>' )
 					.attr({
-						href: '#',
-						'class': 'mw-debug-panelink',
-						id: 'mw-debug-' + id + '-link'
+						'class': 'mw-debug-panelabel',
+						href: '#mw-debug-pane-' + id
 					})
 					.text( text );
 			}
 
+			/**
+			 * Returns a jQuery element for a debug-bit div with a for a pane link
+			 *
+			 * @param id
+			 * @return {jQuery}
+			 */
+			function paneTriggerBitDiv( id, text ) {
+				return $( '<div>' ).attr({
+					id: 'mw-debug-' + id,
+					'class': 'mw-debug-bit mw-debug-panelink'
+				})
+				.append( paneLabel( id, text ) )
+				.appendTo( $bits );
+			}
+
+			paneTriggerBitDiv( 'querylist', 'Queries: ' + this.data.queries.length );
+
+			paneTriggerBitDiv( 'debuglog', 'Debug Log (' + this.data.debugLog.length + ' lines)' );
+
+			paneTriggerBitDiv( 'request', 'Request' );
+
+			paneTriggerBitDiv( 'includes', this.data.includes.length + ' Files Included' );
+
 			bitDiv( 'mwversion' )
 				.append( $( '<a href="//www.mediawiki.org/"></a>' ).text( 'MediaWiki' ) )
-				.append( ': ' + this.data.mwVersion )
-				.appendTo( $container );
+				.append( ': ' + this.data.mwVersion );
 
 			bitDiv( 'phpversion' )
 				.append( $( '<a href="//www.php.net/"></a>' ).text( 'PHP' ) )
-				.append( ': ' + this.data.phpVersion )
-				.appendTo( $container );
+				.append( ': ' + this.data.phpVersion );
 
 			bitDiv( 'time' )
-				.text( 'Time: ' + this.data.time.toFixed( 5 ) )
-				.appendTo( $container );
+				.text( 'Time: ' + this.data.time.toFixed( 5 ) );
+
 			bitDiv( 'memory' )
 				.text( 'Memory: ' + this.data.memory )
-				.append( $( '<span title="Peak usage"></span>' ).text( ' (' + this.data.memoryPeak + ')' ) )
-				.appendTo( $container );
+				.append( $( '<span title="Peak usage"></span>' ).text( ' (' + this.data.memoryPeak + ')' ) );
+				
 
-			bitDiv( 'querylist' )
-				.append( paneLink( 'query', 'Queries: ' + this.data.queries.length ) )
-				.appendTo( $container );
-
-			bitDiv( 'debuglog' )
-				.append( paneLink( 'debuglog', 'Debug Log (' + this.data.debugLog.length + ' lines)' ) )
-				.appendTo( $container );
-
-			bitDiv( 'request' )
-				.append( paneLink( 'request', 'Request' ) )
-				.appendTo( $container );
-
-			bitDiv( 'includes' )
-				.append( paneLink( 'files-includes', this.data.includes.length + ' Files Included' ) )
-				.appendTo( $container );
+			$bits.appendTo( $container );
 
 			panes = {
 				querylist: this.buildQueryTable(),
@@ -184,7 +192,7 @@
 					.append( $( '<td>' ).text( i + 1 ) )
 					.append( $( '<td>' ).text( query.sql ) )
 					.append( $( '<td>' )
-						.append( $( '<span class="mw-debug-query-time"></span>' ).text( '(' + query.time.toFixed( 4 ) + 'ms) ' ) )
+						.append( $( '<span class="stats"></span>' ).text( '(' + query.time.toFixed( 4 ) + 'ms) ' ) )
 						.append( query['function'] )
 					)
 					.appendTo( $table );
@@ -250,19 +258,19 @@
 		 * Included files pane
 		 */
 		buildIncludesPane: function () {
-			var $list, i, len, file;
+			var $table, i, length, file;
 
-			$list = $( '<ul>' );
+			$table = $( '<table>' );
 
-			for ( i = 0, len = this.data.includes.length; i < len; i += 1 ) {
+			for ( i = 0, length = this.data.includes.length; i < length; i += 1 ) {
 				file = this.data.includes[i];
-				$( '<li>' )
-					.text( file.name )
-					.prepend( $( '<span class="mw-debug-right"></span>' ).text( file.size ) )
-					.appendTo( $list );
+				$( '<tr>' )
+					.append( $( '<td>' ).text( file.name ) )
+					.append( $( '<td class="nr">' ).text( file.size ) )
+					.appendTo( $table );
 			}
 
-			return $list;
+			return $table;
 		}
 	};
 
