@@ -694,97 +694,132 @@ class EditPage {
 		global $wgOut, $wgRequest, $wgParser;
 
 		wfProfileIn( __METHOD__ );
-		# Get variables from query string :P
-		$section = $wgRequest->getVal( 'section' );
 
-		$preload = $wgRequest->getVal( 'preload',
-			// Custom preload text for new sections
-			$section === 'new' ? 'MediaWiki:addsection-preload' : '' );
-		$undoafter = $wgRequest->getVal( 'undoafter' );
-		$undo = $wgRequest->getVal( 'undo' );
+		$text = false;
 
 		// For message page not locally set, use the i18n message.
 		// For other non-existent articles, use preload text if any.
-		if ( !$this->mTitle->exists() ) {
-			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
+		if ( !$this->mTitle->exists() || $section == 'new' ) {
+			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI && $section != 'new' ) {
 				# If this is a system message, get the default text.
 				$text = $this->mTitle->getDefaultMessageText();
-				if( $text === false ) {
-					$text = $this->getPreloadedText( $preload );
-				}
-			} else {
+			}
+			if ( $text === false ) {
 				# If requested, preload some text.
+				$preload = $wgRequest->getVal( 'preload',
+					// Custom preload text for new sections
+					$this->section === 'new' ? 'MediaWiki:addsection-preload' : '' );
 				$text = $this->getPreloadedText( $preload );
 			}
 		// For existing pages, get text based on "undo" or section parameters.
 		} else {
-			$text = $this->mArticle->getContent();
-			if ( $undo > 0 && $undoafter > 0 && $undo < $undoafter ) {
-				# If they got undoafter and undo round the wrong way, switch them
-				list( $undo, $undoafter ) = array( $undoafter, $undo );
-			}
-			if ( $undo > 0 && $undo > $undoafter ) {
-				# Undoing a specific edit overrides section editing; section-editing
-				# doesn't work with undoing.
-				if ( $undoafter ) {
+			if ( $this->section != '' ) {
+				// Get section edit text (returns $def_text for invalid sections)
+				$text = $wgParser->getSection( $this->getOriginalContent(), $this->section, $def_text );
+			} else {
+				$undoafter = $wgRequest->getInt( 'undoafter' );
+				$undo = $wgRequest->getInt( 'undo' );
+
+				if ( $undo > 0 && $undoafter > 0 ) {
+					if ( $undo < $undoafter ) {
+						# If they got undoafter and undo round the wrong way, switch them
+						list( $undo, $undoafter ) = array( $undoafter, $undo );
+					}
+
 					$undorev = Revision::newFromId( $undo );
 					$oldrev = Revision::newFromId( $undoafter );
-				} else {
-					$undorev = Revision::newFromId( $undo );
-					$oldrev = $undorev ? $undorev->getPrevious() : null;
-				}
 
-				# Sanity check, make sure it's the right page,
-				# the revisions exist and they were not deleted.
-				# Otherwise, $text will be left as-is.
-				if ( !is_null( $undorev ) && !is_null( $oldrev ) &&
-					$undorev->getPage() == $oldrev->getPage() &&
-					$undorev->getPage() == $this->mTitle->getArticleId() &&
-					!$undorev->isDeleted( Revision::DELETED_TEXT ) &&
-					!$oldrev->isDeleted( Revision::DELETED_TEXT ) ) {
+					# Sanity check, make sure it's the right page,
+					# the revisions exist and they were not deleted.
+					# Otherwise, $text will be left as-is.
+					if ( !is_null( $undorev ) && !is_null( $oldrev ) &&
+						$undorev->getPage() == $oldrev->getPage() &&
+						$undorev->getPage() == $this->mTitle->getArticleId() &&
+						!$undorev->isDeleted( Revision::DELETED_TEXT ) &&
+						!$oldrev->isDeleted( Revision::DELETED_TEXT ) ) {
 
-					$undotext = $this->mArticle->getUndoText( $undorev, $oldrev );
-					if ( $undotext === false ) {
-						# Warn the user that something went wrong
-						$this->editFormPageTop .= $wgOut->parse( '<div class="error mw-undo-failure">' .
-							wfMsgNoTrans( 'undo-failure' ) . '</div>', true, /* interface */true );
-					} else {
-						$text = $undotext;
-						# Inform the user of our success and set an automatic edit summary
-						$this->editFormPageTop .= $wgOut->parse( '<div class="mw-undo-success">' .
-							wfMsgNoTrans( 'undo-success' ) . '</div>', true, /* interface */true );
-						$firstrev = $oldrev->getNext();
-						# If we just undid one rev, use an autosummary
-						if ( $firstrev->getId() == $undo ) {
-							$undoSummary = wfMsgForContent( 'undo-summary', $undo, $undorev->getUserText() );
-							if ( $this->summary === '' ) {
-								$this->summary = $undoSummary;
-							} else {
-								$this->summary = $undoSummary . wfMsgForContent( 'colon-separator' ) . $this->summary;
+						$text = $this->mArticle->getUndoText( $undorev, $oldrev );
+						if ( $text === false ) {
+							# Warn the user that something went wrong
+							$undoMsg = 'failure';
+						} else {
+							# Inform the user of our success and set an automatic edit summary
+							$undoMsg = 'success';
+
+							# If we just undid one rev, use an autosummary
+							$firstrev = $oldrev->getNext();
+							if ( $firstrev->getId() == $undo ) {
+								$undoSummary = wfMsgForContent( 'undo-summary', $undo, $undorev->getUserText() );
+								if ( $this->summary === '' ) {
+									$this->summary = $undoSummary;
+								} else {
+									$this->summary = $undoSummary . wfMsgForContent( 'colon-separator' ) . $this->summary;
+								}
+								$this->undidRev = $undo;
 							}
-							$this->undidRev = $undo;
+							$this->formtype = 'diff';
 						}
-						$this->formtype = 'diff';
+					} else {
+						// Failed basic sanity checks.
+						// Older revisions may have been removed since the link
+						// was created, or we may simply have got bogus input.
+						$undoMsg = 'norev';
 					}
-				} else {
-					// Failed basic sanity checks.
-					// Older revisions may have been removed since the link
-					// was created, or we may simply have got bogus input.
-					$this->editFormPageTop .= $wgOut->parse( '<div class="error mw-undo-norev">' .
-						wfMsgNoTrans( 'undo-norev' ) . '</div>', true, /* interface */true );
+
+					$this->editFormPageTop .= $wgOut->parse( "<div class=\"error mw-undo-{$undoMsg}\">" .
+						wfMsgNoTrans( 'undo-' . $undoMsg ) . '</div>', true, /* interface */true );
 				}
-			} elseif ( $section != '' ) {
-				if ( $section == 'new' ) {
-					$text = $this->getPreloadedText( $preload );
-				} else {
-					// Get section edit text (returns $def_text for invalid sections)
-					$text = $wgParser->getSection( $text, $section, $def_text );
+
+				if ( $text === false ) {
+					$text = $this->getOriginalContent();
 				}
 			}
 		}
 
 		wfProfileOut( __METHOD__ );
 		return $text;
+	}
+
+	/**
+	 * Get the content of the wanted revision, without section extraction.
+	 *
+	 * The result of this function can be used to compare user's input with
+	 * section replaced in its context (using WikiPage::replaceSection())
+	 * to the original text of the edit.
+	 *
+	 * This difers from Article::getContent() that when a missing revision is
+	 * encountered the result will be an empty string and not the
+	 * 'missing-article' message.
+	 *
+	 * @since 1.19
+	 * @return string
+	 */
+	private function getOriginalContent() {
+		if ( $this->section == 'new' ) {
+			return $this->getCurrentText();
+		}
+		$revision = $this->mArticle->getRevisionFetched();
+		if ( $revision === null ) {
+			return '';
+		}
+		return $this->mArticle->getContent();
+	}
+
+	/**
+	 * Get the actual text of the page. This is basically similar to
+	 * WikiPage::getRawText() except that when the page doesn't exist an empty
+	 * string is returned instead of false.
+	 *
+	 * @since 1.19
+	 * @return string
+	 */
+	private function getCurrentText() {
+		$text = $this->mArticle->getRawText();
+		if ( $text === false ) {
+			return '';
+		} else {
+			return $text;
+		}
 	}
 
 	/**
@@ -1245,7 +1280,7 @@ class EditPage {
 
 			# Handle the user preference to force summaries here, but not for null edits
 			if ( $this->section != 'new' && !$this->allowBlankSummary
-				&& 0 != strcmp( $this->mArticle->getContent(), $text )
+				&& $this->getOriginalContent() != $text
 				&& !Title::newFromRedirect( $text ) ) # check if it's not a redirect
 			{
 				if ( md5( $this->summary ) == $this->autoSumm ) {
@@ -1721,7 +1756,10 @@ HTML
 			// and fallback to the raw wpTextbox1 since editconflicts can't be
 			// resolved between page source edits and custom ui edits using the
 			// custom edit ui.
-			$this->showTextbox1( null, $this->getContent() );
+			$this->textbox2 = $this->textbox1;
+			$this->textbox1 = $this->getCurrentText();
+
+			$this->showTextbox1();
 		} else {
 			$this->showContentForm();
 		}
@@ -1750,8 +1788,9 @@ HTML
 HTML
 );
 
-		if ( $this->isConflict )
+		if ( $this->isConflict ) {
 			$this->showConflict();
+		}
 
 		$wgOut->addHTML( $this->editFormTextBottom );
 		$wgOut->addHTML( "</form>\n" );
@@ -1837,6 +1876,12 @@ HTML
 						$this->mArticle->setOldSubtitle( $revision->getId() );
 						$wgOut->addWikiMsg( 'editingold' );
 					}
+				} else {
+					// Something went wrong
+
+					$wgOut->wrapWikiMsg( "<div class='errorbox'>\n$1\n</div>\n",
+						array( 'missing-article', $this->mTitle->getPrefixedText(),
+						wfMsgNoTrans( 'missingarticle-rev', $this->oldid ) ) );
 				}
 			}
 		}
@@ -2167,11 +2212,7 @@ HTML
 	function showDiff() {
 		global $wgUser, $wgContLang, $wgParser, $wgOut;
 
-		if ( $this->section == 'new' ) {
-			$oldtext = $this->mArticle->getRawText();
-		} else {
-			$oldtext = $this->mArticle->fetchContent();
-		}
+		$oldtext = $this->getOriginalContent();
 		$newtext = $this->mArticle->replaceSection(
 			$this->section, $this->textbox1, $this->summary, $this->edittime );
 
@@ -2271,8 +2312,7 @@ HTML
 	 */
 	protected function showConflict() {
 		global $wgOut;
-		$this->textbox2 = $this->textbox1;
-		$this->textbox1 = $this->getContent();
+
 		if ( wfRunHooks( 'EditPageBeforeConflictDiff', array( &$this, &$wgOut ) ) ) {
 			$wgOut->wrapWikiMsg( '<h2>$1</h2>', "yourdiff" );
 
@@ -2895,7 +2935,7 @@ HTML
 
 		$wgOut->wrapWikiMsg( '<h2>$1</h2>', "yourdiff" );
 		$de = new DifferenceEngine( $this->mArticle->getContext() );
-		$de->setText( $this->getContent(), $this->textbox2 );
+		$de->setText( $this->getCurrentText(), $this->textbox2 );
 		$de->showDiff( wfMsg( "storedversion" ), wfMsgExt( 'yourtext', 'parseinline' ) );
 
 		$wgOut->wrapWikiMsg( '<h2>$1</h2>', "yourtext" );
