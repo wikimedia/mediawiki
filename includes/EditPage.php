@@ -699,8 +699,8 @@ class EditPage {
 
 		// For message page not locally set, use the i18n message.
 		// For other non-existent articles, use preload text if any.
-		if ( !$this->mTitle->exists() || $section == 'new' ) {
-			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI && $section != 'new' ) {
+		if ( !$this->mTitle->exists() || $this->section == 'new' ) {
+			if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI && $this->section != 'new' ) {
 				# If this is a system message, get the default text.
 				$text = $this->mTitle->getDefaultMessageText();
 			}
