@@ -203,6 +203,8 @@ production.
   for backward compatibility
 * (bug 31469) Make sure tracking category messages expand variables like
   {{NAMESPACE}} relative to correct title.
+* (bug 30485 and bug 33434) Style rules for wikitable are now more specific and
+  prevent inheritance to nested tables which caused various issues
   
 
 === API changes in 1.19 ===
