@@ -101,8 +101,8 @@ $namespaceAliases = array(
 );
 
 $namespaceGenderAliases = array(
-	NS_USER      => array( 'female' => 'Участница' ),
-	NS_USER_TALK => array( 'female' => 'Обсуждение_участницы' ),
+	NS_USER      => array( 'male' => 'Участник', 'female' => 'Участник' ),
+	NS_USER_TALK => array( 'male' => 'Участник', 'female' => 'Обсуждение_участникa' ),
 );
 
 $dateFormats = array(

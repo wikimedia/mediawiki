@@ -345,8 +345,8 @@ $namespaceAliases = array(
 	'שיחת_תמונה' => NS_FILE_TALK,
 );
 $namespaceGenderAliases = array(
-	NS_USER      => array( 'female' => 'משתמשת' ),
-	NS_USER_TALK => array( 'female' => 'שיחת_משתמשת' ),
+	NS_USER      => array( 'male' => 'משתמש', 'female' => 'משתמשת' ),
+	NS_USER_TALK => array( 'male' => 'שיחת_משתמש', 'female' => 'שיחת_משתמשת' ),
 );
 
 $messages = array(
