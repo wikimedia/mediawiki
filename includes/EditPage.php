@@ -1660,16 +1660,6 @@ class EditPage {
 			return;
 		}
 
-		$action = htmlspecialchars( $this->getActionURL( $this->getContextTitle() ) );
-
-		if ( $wgUser->getOption( 'showtoolbar' ) and !$this->isCssJsSubpage ) {
-			# prepare toolbar for edit buttons
-			$toolbar = EditPage::getEditToolbar();
-		} else {
-			$toolbar = '';
-		}
-
-
 		$wgOut->addHTML( $this->editFormPageTop );
 
 		if ( $wgUser->getOption( 'previewontop' ) ) {
@@ -1678,26 +1668,21 @@ class EditPage {
 
 		$wgOut->addHTML( $this->editFormTextTop );
 
-		$templates = $this->getTemplates();
-		$formattedtemplates = Linker::formatTemplates( $templates, $this->preview, $this->section != '');
-
-		$hiddencats = $this->mArticle->getHiddenCategories();
-		$formattedhiddencats = Linker::formatHiddenCategories( $hiddencats );
-
-		if ( $this->wasDeletedSinceLastEdit() && 'save' != $this->formtype ) {
-			$wgOut->wrapWikiMsg(
-				"<div class='error mw-deleted-while-editing'>\n$1\n</div>",
-				'deletedwhileediting' );
-		} elseif ( $this->wasDeletedSinceLastEdit() ) {
-			// Hide the toolbar and edit area, user can click preview to get it back
-			// Add an confirmation checkbox and explanation.
-			$toolbar = '';
-			// @todo move this to a cleaner conditional instead of blanking a variable
+		$showToolbar = true;
+		if ( $this->wasDeletedSinceLastEdit() ) {
+			if ( $this->formtype == 'save' ) {
+				// Hide the toolbar and edit area, user can click preview to get it back
+				// Add an confirmation checkbox and explanation.
+				$showToolbar = false;
+			} else {
+				$wgOut->wrapWikiMsg( "<div class='error mw-deleted-while-editing'>\n$1\n</div>",
+					'deletedwhileediting' );
+			}
 		}
-		$wgOut->addHTML( <<<HTML
-<form id="editform" name="editform" method="post" action="$action" enctype="multipart/form-data">
-HTML
-);
+
+		$wgOut->addHTML( Html::openElement( 'form', array( 'id' => 'editform', 'name' => 'editform',
+			'method' => 'post', 'action' => $this->getActionURL( $this->getContextTitle() ),
+			'enctype' => 'multipart/form-data' ) ) );
 
 		if ( is_callable( $formCallback ) ) {
 			call_user_func_array( $formCallback, array( &$wgOut ) );
@@ -1734,9 +1719,10 @@ HTML
 		#####
 		# For a bit more sophisticated detection of blank summaries, hash the
 		# automatic one and pass that in the hidden field wpAutoSummary.
-		if ( $this->missingSummary ||
-			( $this->section == 'new' && $this->nosummary ) )
-				$wgOut->addHTML( Html::hidden( 'wpIgnoreBlankSummary', true ) );
+		if ( $this->missingSummary || ( $this->section == 'new' && $this->nosummary ) ) {
+			$wgOut->addHTML( Html::hidden( 'wpIgnoreBlankSummary', true ) );
+		}
+
 		$autosumm = $this->autoSumm ? $this->autoSumm : md5( $this->summary );
 		$wgOut->addHTML( Html::hidden( 'wpAutoSummary', $autosumm ) );
 
@@ -1749,7 +1735,9 @@ HTML
 
 		$wgOut->addHTML( $this->editFormTextBeforeContent );
 
-		$wgOut->addHTML( $toolbar );
+		if ( !$this->isCssJsSubpage && $showToolbar && $wgUser->getOption( 'showtoolbar' ) ) {
+			$wgOut->addHTML( EditPage::getEditToolbar() );
+		}
 
 		if ( $this->isConflict ) {
 			// In an edit conflict bypass the overrideable content form method
@@ -1767,33 +1755,31 @@ HTML
 		$wgOut->addHTML( $this->editFormTextAfterContent );
 
 		$wgOut->addWikiText( $this->getCopywarn() );
-		if ( isset($this->editFormTextAfterWarn) && $this->editFormTextAfterWarn !== '' )
-			$wgOut->addHTML( $this->editFormTextAfterWarn );
+
+		$wgOut->addHTML( $this->editFormTextAfterWarn );
 
 		$this->showStandardInputs();
 
 		$this->showFormAfterText();
 
 		$this->showTosSummary();
+
 		$this->showEditTools();
 
-		$wgOut->addHTML( <<<HTML
-{$this->editFormTextAfterTools}
-<div class='templatesUsed'>
-{$formattedtemplates}
-</div>
-<div class='hiddencats'>
-{$formattedhiddencats}
-</div>
-HTML
-);
+		$wgOut->addHTML( $this->editFormTextAfterTools . "\n" );
+
+		$wgOut->addHTML( Html::rawElement( 'div', array( 'class' => 'templatesUsed' ),
+			Linker::formatTemplates( $this->getTemplates(), $this->preview, $this->section != '' ) ) );
+
+		$wgOut->addHTML( Html::rawElement( 'div', array( 'class' => 'hiddencats' ),
+			Linker::formatHiddenCategories( $this->mArticle->getHiddenCategories() ) ) );
 
 		if ( $this->isConflict ) {
 			$this->showConflict();
 		}
 
-		$wgOut->addHTML( $this->editFormTextBottom );
-		$wgOut->addHTML( "</form>\n" );
+		$wgOut->addHTML( $this->editFormTextBottom . "\n</form>\n" );
+
 		if ( !$wgUser->getOption( 'previewontop' ) ) {
 			$this->displayPreviewArea( $previewOutput, false );
 		}
@@ -2098,34 +2084,40 @@ HTML
 	 * @param $customAttribs An array of html attributes to use in the textarea
 	 * @param $textoverride String: optional text to override $this->textarea1 with
 	 */
-	protected function showTextbox1($customAttribs = null, $textoverride = null) {
-		$classes = array(); // Textarea CSS
-		if ( $this->mTitle->getNamespace() != NS_MEDIAWIKI && $this->mTitle->isProtected( 'edit' ) ) {
-			# Is the title semi-protected?
-			if ( $this->mTitle->isSemiProtected() ) {
-				$classes[] = 'mw-textarea-sprotected';
-			} else {
-				# Then it must be protected based on static groups (regular)
-				$classes[] = 'mw-textarea-protected';
+	protected function showTextbox1( $customAttribs = null, $textoverride = null ) {
+		if ( $this->wasDeletedSinceLastEdit() && $this->formtype == 'save' ) {
+			$attribs = array( 'style' => 'display:none;' );
+		} else {
+			$classes = array(); // Textarea CSS
+			if ( $this->mTitle->getNamespace() != NS_MEDIAWIKI && $this->mTitle->isProtected( 'edit' ) ) {
+				# Is the title semi-protected?
+				if ( $this->mTitle->isSemiProtected() ) {
+					$classes[] = 'mw-textarea-sprotected';
+				} else {
+					# Then it must be protected based on static groups (regular)
+					$classes[] = 'mw-textarea-protected';
+				}
+				# Is the title cascade-protected?
+				if ( $this->mTitle->isCascadeProtected() ) {
+					$classes[] = 'mw-textarea-cprotected';
+				}
 			}
-			# Is the title cascade-protected?
-			if ( $this->mTitle->isCascadeProtected() ) {
-				$classes[] = 'mw-textarea-cprotected';
+
+			$attribs = array( 'tabindex' => 1 );
+
+			if ( is_array( $customAttribs ) ) {
+				$attribs += $customAttribs;
+			}
+
+			if ( count( $classes ) ) {
+				if ( isset( $attribs['class'] ) ) {
+					$classes[] = $attribs['class'];
+				}
+				$attribs['class'] = implode( ' ', $classes );
 			}
 		}
-		$attribs = array( 'tabindex' => 1 );
-		if ( is_array($customAttribs) )
-			$attribs += $customAttribs;
 
-		if ( $this->wasDeletedSinceLastEdit() )
-			$attribs['type'] = 'hidden';
-		if ( !empty( $classes ) ) {
-			if ( isset($attribs['class']) )
-				$classes[] = $attribs['class'];
-			$attribs['class'] = implode( ' ', $classes );
-		}
-
-		$this->showTextbox( isset($textoverride) ? $textoverride : $this->textbox1, 'wpTextbox1', $attribs );
+		$this->showTextbox( $textoverride !== null ? $textoverride : $this->textbox1, 'wpTextbox1', $attribs );
 	}
 
 	protected function showTextbox2() {
