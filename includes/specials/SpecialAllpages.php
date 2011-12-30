@@ -82,7 +82,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 
 		if( $par !== null ) {
 			$this->showChunk( $namespace, $par, $to );
-		} elseif( $from !== null && $to == null ) {
+		} elseif( $from !== null && $to === null ) {
 			$this->showChunk( $namespace, $from, $to );
 		} else {
 			$this->showToplevel( $namespace, $from, $to );
