@@ -1901,10 +1901,6 @@ class WikiPage extends Page {
 			return false;
 		}
 
-		DeferredUpdates::addUpdate(
-			new SiteStatsUpdate( 0, 1, - (int)$this->isCountable(), -1 )
-		);
-
 		// Bitfields to further suppress the content
 		if ( $suppress ) {
 			$bitfield = 0;
@@ -1952,9 +1948,6 @@ class WikiPage extends Page {
 			), __METHOD__
 		);
 
-		# Delete restrictions for it
-		$dbw->delete( 'page_restrictions', array ( 'pr_page' => $id ), __METHOD__ );
-
 		# Now that it's safely backed up, delete it
 		$dbw->delete( 'page', array( 'page_id' => $id ), __METHOD__ );
 		$ok = ( $dbw->affectedRows() > 0 ); // getArticleId() uses slave, could be laggy
@@ -1963,6 +1956,39 @@ class WikiPage extends Page {
 			$dbw->rollback();
 			return false;
 		}
+
+		$this->doDeleteUpdates( $id );
+
+		# Log the deletion, if the page was suppressed, log it at Oversight instead
+		$logtype = $suppress ? 'suppress' : 'delete';
+
+		$logEntry = new ManualLogEntry( $logtype, 'delete' );
+		$logEntry->setPerformer( $user );
+		$logEntry->setTarget( $this->mTitle );
+		$logEntry->setComment( $reason );
+		$logid = $logEntry->insert();
+		$logEntry->publish( $logid );
+
+		if ( $commit ) {
+			$dbw->commit();
+		}
+
+		wfRunHooks( 'ArticleDeleteComplete', array( &$this, &$user, $reason, $id ) );
+		return true;
+	}
+
+	/**
+	 * Do some database updates after deletion
+	 *
+	 * @param $id Int: page_id value of the page being deleted
+	 */
+	public function doDeleteUpdates( $id ) {
+		DeferredUpdates::addUpdate( new SiteStatsUpdate( 0, 1, - (int)$this->isCountable(), -1 ) );
+
+		$dbw = wfGetDB( DB_MASTER );
+
+		# Delete restrictions for it
+		$dbw->delete( 'page_restrictions', array ( 'pr_page' => $id ), __METHOD__ );
 
 		# Fix category table counts
 		$cats = array();
@@ -2008,23 +2034,6 @@ class WikiPage extends Page {
 
 		# Clear the cached article id so the interface doesn't act like we exist
 		$this->mTitle->resetArticleID( 0 );
-
-		# Log the deletion, if the page was suppressed, log it at Oversight instead
-		$logtype = $suppress ? 'suppress' : 'delete';
-
-		$logEntry = new ManualLogEntry( $logtype, 'delete' );
-		$logEntry->setPerformer( $user );
-		$logEntry->setTarget( $this->mTitle );
-		$logEntry->setComment( $reason );
-		$logid = $logEntry->insert();
-		$logEntry->publish( $logid );
-
-		if ( $commit ) {
-			$dbw->commit();
-		}
-
-		wfRunHooks( 'ArticleDeleteComplete', array( &$this, &$user, $reason, $id ) );
-		return true;
 	}
 
 	/**
