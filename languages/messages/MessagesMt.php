@@ -1074,8 +1074,9 @@ Ikkonsulta r-[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} reġi
 'rev-deleted-text-unhide'     => "Din ir-reviżjoni ta' din il-paġna ġiet '''imħassra'''.
 Ikkonsulta r-[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} reġistru tat-tħassir] għal aktar dettalji.
 Bħala amministratur inti tista' [$1 tara din ir-reviżjoni] jekk huwa neċessarju.",
-'rev-suppressed-text-unhide'  => "Ir-reviżjoni ta' din il-paġna ġiet '''imħassra'''.
-Dettalji jistgħu jinstabu fuq ir-[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} reġistru tat-tħassir]. Bħala amministratur inti xorta waħda tista' [$1 tara din ir-reviżjoni] jekk huwa neċessarju.",
+'rev-suppressed-text-unhide'  => "Din ir-reviżjoni tal-paġna ġiet '''imħassra'''.
+Id-dettalji jistgħu jinstabu fuq ir-[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} reġistru tat-tħassir].
+Bħala amministratur inti xorta waħda tista' [$1 tara din ir-reviżjoni] jekk huwa neċessarju.",
 'rev-deleted-text-view'       => "Ir-reviżjoni ta' din il-paġna ġiet '''imħassra'''.
 Bħala amministratur inti tista' taraha; jista' jkun li hemm dettalji fir-[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} reġistru tat-tħassir].",
 'rev-suppressed-text-view'    => "Ir-reviżjoni ta' din il-paġna ġiet '''imħassra'''.
@@ -1819,7 +1820,7 @@ Meta r-riżultati huma ffiltrati, jintwerew biss dawk il-fajls li l-utent tella'
 'filehist-filesize'         => 'Daqs tal-fajl',
 'filehist-comment'          => 'Kumment',
 'filehist-missing'          => 'Fajl nieqes',
-'imagelinks'                => 'Ħoloq għall-fajl',
+'imagelinks'                => 'Użu tal-fajl',
 'linkstoimage'              => '{{PLURAL:$1|Il-Paġna segwenti għandha|Il-$1 paġni segwenti għandhom}} links għal-fajl:',
 'linkstoimage-more'         => 'Iktar minn {{PLURAL:$1|paġna torbot|$1paġni jorbtu}} lejn dan il-fajl.
 Il-lista segwenti turi {{PLURAL:$1|l-ewwel paġna li tipponta|l-ewwel $1 paġni li jippuntaw}} lejn dan il-fajl.
@@ -1986,7 +1987,7 @@ Kull filliera għandha ħolqa għall-ewwel u t-tieni riindirizz, kif ukoll fejn 
 'listusers-editsonly'     => 'Uri biss utenti li għamlu xi modifika',
 'listusers-creationsort'  => 'Irranġa l-lista skont id-data tal-ħolqien tal-kont',
 'usereditcount'           => '$1 {{PLURAL:$1|kontribuzzjonijiet|kontribuzzjoni}}',
-'usercreated'             => 'Maħluq nhar il-$1 fil-$2',
+'usercreated'             => '{{GENDER:$3|Maħluq}} nhar il-$1 fil-$2',
 'newpages'                => 'Paġni ġodda',
 'newpages-username'       => 'Isem tal-utent:',
 'ancientpages'            => 'L-iktar paġni qodma',

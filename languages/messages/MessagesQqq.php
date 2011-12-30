@@ -80,6 +80,7 @@
  * @author Onecountry
  * @author OsamaK
  * @author PhiLiP
+ * @author Piangpha
  * @author Platonides
  * @author Prima klasy4na
  * @author Prometheus.pyrphoros
@@ -1280,7 +1281,7 @@ $1 is the relevance of this result in per cent.
 
 {{Identical|Relevance: $1%}}',
 'search-redirect'                => "\$1 is a link to the redirect to the page (so, \$1 is the page that the search result is redirected '''from'''). \"Redirect\" is a noun here, not a verb.",
-'search-section'                 => 'This text will be shown on the search result listing after the page title of a result if the search algorithm thinks that section is more relevant than the rest of the page. $1 is a section title.',
+'search-section'                 => 'တွၼ်ႈ $1',
 'search-interwiki-default'       => '* $1 is the hostname of the remote wiki from where the additional results listed below are returned',
 'search-interwiki-more'          => '{{Identical|More}}',
 'search-relatedarticle'          => '{{Identical|Related}}
@@ -1947,7 +1948,7 @@ Used on [[Special:UploadWizard]].',
 'http-invalid-scheme' => 'The message appears in the Mediawiki code as follows:
 
  if ( $this->parsedUrl[\'scheme\'] != \'http\' ) {
-	$this->status->fatal( \'http-invalid-scheme\', $this->parsedUrl[\'scheme\'] );
+    $this->status->fatal( \'http-invalid-scheme\', $this->parsedUrl[\'scheme\'] );
  }
 
 Siebrand think this has to do with allowing MediaWiki to fetch remote URLs, and in that not allowing anything but "http://" request. So if this for example is "irc://" or "https://", $1 would be "irc" or "https" respectively.

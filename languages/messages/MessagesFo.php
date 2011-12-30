@@ -166,6 +166,7 @@ $messages = array(
 # Font style option in Special:Preferences
 'editfont-style'     => 'Rættað økið typografi:',
 'editfont-default'   => 'Kagi (brovsari) standard',
+'editfont-monospace' => 'Føst breidd (monospaced font)',
 'editfont-sansserif' => 'Sans-serif skrift',
 'editfont-serif'     => 'Serif skrift',
 
@@ -263,20 +264,21 @@ $messages = array(
 'faqpage'        => 'Project:OSS',
 
 # Vector skin
-'vector-action-addsection' => 'Nýtt evni',
-'vector-action-delete'     => 'Strika',
-'vector-action-move'       => 'Flyt',
-'vector-action-protect'    => 'Friða',
-'vector-action-undelete'   => 'Endurstovna',
-'vector-action-unprotect'  => 'Broyt friðing',
-'vector-view-create'       => 'Stovna',
-'vector-view-edit'         => 'Rætta',
-'vector-view-history'      => 'Søga',
-'vector-view-view'         => 'Les',
-'vector-view-viewsource'   => 'Vís keldu',
-'actions'                  => 'Gerningar',
-'namespaces'               => 'Navnarúm',
-'variants'                 => 'Ymisk sløg',
+'vector-action-addsection'       => 'Nýtt evni',
+'vector-action-delete'           => 'Strika',
+'vector-action-move'             => 'Flyt',
+'vector-action-protect'          => 'Friða',
+'vector-action-undelete'         => 'Endurstovna',
+'vector-action-unprotect'        => 'Broyt friðing',
+'vector-simplesearch-preference' => 'Ger virkið betraði leiti uppskot (bert Vector útsjónd)',
+'vector-view-create'             => 'Stovna',
+'vector-view-edit'               => 'Rætta',
+'vector-view-history'            => 'Søga',
+'vector-view-view'               => 'Les',
+'vector-view-viewsource'         => 'Vís keldu',
+'actions'                        => 'Gerningar',
+'namespaces'                     => 'Navnarúm',
+'variants'                       => 'Ymisk sløg',
 
 'errorpagetitle'    => 'Villa',
 'returnto'          => 'Vend aftur til $1.',
@@ -391,6 +393,8 @@ Sí [[Special:Version|versjón síða]].',
 'viewdeleted'             => 'Vís $1?',
 'restorelink'             => '{{PLURAL:$1|strikaða rætting|$1 strikaðar rættingar}}',
 'feedlinks'               => 'Føðing:',
+'feed-invalid'            => 'Ógyldugt slag av haldi.',
+'feed-unavailable'        => '↓ Syndikatións fóður (feeds) er ikki atkomuligt',
 'site-rss-feed'           => '$1 RSS Fóðurið',
 'site-atom-feed'          => '$1 Atom Fóðurið',
 'page-rss-feed'           => '"$1" RSS Feed',
@@ -424,12 +428,36 @@ Hetta kann eisini benda á ein feil í software'ini sum {{SITENAME}} brúkar.",
 # General errors
 'error'                => 'Villa',
 'databaseerror'        => 'Villa í dátagrunni',
+'dberrortext'          => '↓ Tað er hend ein syntaks villa í fyrispurninginum til dátugrunnin.
+Hetta kann merkja, at tað er feilur í ritbúnaðinum (software).
+Seinasta royndin at spyrja dátugrunnin var:
+<blockquote><tt>$1</tt></blockquote>
+frá funktiónini "<tt>$2</tt>".
+Dátugrunnurin sendi feilin aftur "<tt>$3: $4</tt>".',
+'dberrortextcl'        => '↓ Ein syntaks feilur hendi í fyrispurningi til dátugrunnin.
+Seinasta royndin at leita í dátugrunninum var:
+ "$1"
+frá funktiónini "$2".
+Dátugrunnurin sendi aftur feilmeldingina: "$3: $4"',
 'laggedslavemode'      => "'''Ávaring:''' Síðan inniheldur møguliga ikki nýggjar dagføringar.",
 'readonly'             => 'Dátubasan er stongd fyri skriving',
 'enterlockreason'      => 'Skriva eina orsøk fyri at stongja síðuna fyri skriving, saman við einari meting av, nær ið síðan verður lást upp aftur',
+'readonlytext'         => '↓ Dátugrunnurin er í løtuni stongdur fyri nýggjum rættingum, óiva orsakað av vanligum viðlíkahaldi av dátugrunninum, eftir hetta verður alt vanligt aftur.
+
+Umboðsstjórin (administratorurin) sum stongdi dátugrunnin gav hesa frágreiðingina: $1',
+'missing-article'      => 'Dátugrunnurin fann ikki tekstin á eini síðu sum hann átti at havt funnið, við heitinum "$1" $2.
+
+Hetta skyldast oftast at ein fylgir einum gomlum "diff" ella søgu slóð til eina síðu sum er blivin strikað.
+
+Um hetta ikki er støðan, so kann tað vera at tú hevur funnið ein feil í ritbúnaðinum (software).
+Vinarliga fortel hetta fyri einum [[Special:ListUsers/sysop|administrator]], og ger vart við URL\'in.',
 'missingarticle-rev'   => '(versjón#: $1)',
+'missingarticle-diff'  => '(Munur: $1, $2)',
+'readonly_lag'         => '↓ Dátugrunnurin er blivin stongdur sjálvvirkandi meðan træla dátugrunna servararnir synkronisera við høvuðs dátugrunnin (master)',
 'internalerror'        => 'Innvortis brek',
 'internalerror_info'   => 'Innanhýsis villa: $1',
+'fileappenderrorread'  => 'Tað bar ikki til at lesa "$1" meðan endingin var sett til.',
+'fileappenderror'      => 'Kundi ikki seta endingina "$1" á "$2".',
 'filecopyerror'        => 'Kundi ikki avrita fíluna "$1" til "$2".',
 'filerenameerror'      => 'Kundi ikki umdoypa fílu "$1" til "$2".',
 'filedeleteerror'      => 'Kundi ikki strika fíluna "$1".',
@@ -448,10 +476,24 @@ Møguliga hevur onkur annar longu strikað hana.',
 'perfcachedts'         => 'Fylgjandi dáta er goymt, og var seinast goymt $1.',
 'querypage-no-updates' => 'Tað ber í løtuni ikki til at dagføra hesa síðuna.
 Dáta higani verður í løtuni ikki endurnýggjað.',
+'wrong_wfQuery_params' => '↓ Skeiv parametir til wfQuery()<br />
+Funktión: $1<br />
+Fyrispurningur: $2',
 'viewsource'           => 'Vís keldu',
 'viewsource-title'     => 'Sí keldu fyri $1',
+'actionthrottled'      => 'Hendingin kvaldist',
+'actionthrottledtext'  => '↓ Fyri at mótvirka spam, er tað ikki møguligt at gera hetta alt ov nógvar ferðir uppá stutta tíð, og tú ert farin yvir tað markið.
+Vinarliga royn aftur um fáir minuttir.',
 'protectedpagetext'    => 'Hendan síða er læst fyri at steðga rættingum.',
 'viewsourcetext'       => 'Tú kanst síggja og avrita kelduna til hesa grein:',
+'protectedinterface'   => '↓ Henda síðan gevur markamóts tekst til ritbúnaðin (software), og er vard fyri at fyribyrgja misnýtslu.',
+'editinginterface'     => "↓ '''Ávaring:''' Tú rættar eina síðu sum verður brúkt til at geva markamóts tekst til ritbúnaðin (software).
+Broytingar á hesi síðu fara at ávirka útsjóndina á brúkara markamótinum (interface) fyri aðrir brúkarar.
+Fyri at gera týðingar verður tú vinarliga biðin um at umhugsa at brúka [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], sum er verkætlan fyri týðingum av MediaWiki.",
+'sqlhidden'            => '↓ (SQL fyrispurningur fjaldur)',
+'cascadeprotected'     => 'Henda síðan er vard fyri rættingum, tí hon er í fylgjandi {{PLURAL:$1|síðu, sum er|síðum, sum eru}}
+vardar við "arvaðari síðuverjing"
+$2',
 'namespaceprotected'   => 'Tú hevur ikki loyvi til at rætta síður í $1 navnateiginum.',
 'customcssprotected'   => 'Tú hevur ikki loyvi til at rætta hesa CSS síðuna, tí hon inniheldur persónligar innstillingar hjá øðrum brúkara.',
 'customjsprotected'    => 'Tú hevur ikki loyvir til at rætta hesa JavaScript síðuna, tí hon inniheldur persónligar innstillingar hjá øðrum brúkara.',
@@ -460,6 +502,8 @@ Dáta higani verður í løtuni ikki endurnýggjað.',
 Givin orsøk er "\'\'$2\'\'".',
 
 # Virus scanner
+'virus-badscanner'     => "Konfiguratións villa: Ókendur virus skannari: ''$1''",
+'virus-scanfailed'     => '↓  skanning virkaði ikki (kota $1)',
 'virus-unknownscanner' => 'ókent antivirus:',
 
 # Login and logout pages
@@ -535,6 +579,11 @@ og tú ikki longur ynskir at broyta tað, so skal tú síggja burtur frá hesum 
 sum er skrásett fyri "$1".
 Vinarliga rita inn eftir at tú hevur fingið hana.',
 'blocked-mailpassword'       => 'Tín IP adressa er stongd fyri at gera rættingar á síðum, og tí er tað ikki loyvt at brúka funkuna fyri endurskapan av loyniorði, hetta fyri at forða fyri misnýtslu.',
+'eauthentsent'               => '↓ Ein váttanar t-postur er sendur til givna t-post bústaðin.
+Áðrenn aðrir teldupostar verða sendir til kontuna, mást tú fylgja leiðbeiningunum í t-postinum, fyri at vátta at kontoin veruliga er tín.',
+'throttled-mailpassword'     => 'Ein teldupost við áminning um loyniorði er longu sendur fyri bert {{PLURAL:$1|tíma|$1 tímum}}.
+Fyri at fyribyrja misnýtslu, verður bert ein teldupostur við áminning um loyniorði sendur fyri hvønn/hvørjir {{PLURAL:$1|tíma|$1 tímar}}.',
+'mailerror'                  => 'Villa tá t-postur var sendur: $1',
 'acct_creation_throttle_hit' => 'Vitjandi á hesi wiki, sum nýta tína IP addressu, hava stovnað {{PLURAL:$1|1 kontu|$1 kontur}} seinastu dagarnar, sum er mest loyvda hetta tíðarskeið.
 Sum eitt úrslit av hesum, kunnu vitjandi sum brúka hesa IP adressuna ikki stovna fleiri kontur í løtuni.',
 'emailauthenticated'         => 'Tín t-post adressa varð váttað hin $2 kl. $3.',
@@ -712,6 +761,9 @@ Síðan er longu til.',
 'post-expand-template-inclusion-warning'  => "'''Ávaring:''' Tað eru ov nógvar skabilónir á hesi síðu. 
 Nakrar skabilónir vera ikki vístar.",
 'post-expand-template-inclusion-category' => 'Síður sum innihalda ov nógvar skabilónir',
+'post-expand-template-argument-warning'   => "'''Ávaring:''' Henda síðan inniheldur í minsta lagi eitt skabilón parametur (template argument), sum fyllir meira enn loyvdu støddina. 
+Hetta parametur er tí ikki tikið við.",
+'post-expand-template-argument-category'  => 'Síður har skabilón parametur (template arguments) ikki eru tikin við',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Tað ber ikki til at upprætta konto',
@@ -1278,6 +1330,7 @@ Víðaristilling verður nú gjørd til [[$2]].',
 'mostlinkedcategories'    => 'Bólkar við flestum ávísandi slóðum',
 'mostcategories'          => 'Greinir við flest bólkum',
 'mostrevisions'           => 'Greinir við flestum útgávum',
+'prefixindex'             => 'Allar síður við forskoyti (prefiks)',
 'shortpages'              => 'Stuttar síður',
 'longpages'               => 'Langar síður',
 'deadendpages'            => 'Gøtubotnssíður',
@@ -1478,11 +1531,13 @@ Sí $2 fyri fulla skráseting av strikingum.',
 'linkshere'                => "Hesar síður slóða til '''[[:$1]]''':",
 'nolinkshere'              => "Ongar síður slóða til '''[[:$1]]'''.",
 'isredirect'               => 'ávísingarsíða',
+'istemplate'               => 'leggjast innan í',
 'isimage'                  => 'fílu slóð',
 'whatlinkshere-prev'       => '{{PLURAL:$1|fyrrverandi|fyrrverandi $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|næst|næstu $1}}',
 'whatlinkshere-links'      => '← slóðir',
 'whatlinkshere-hideredirs' => '$1 umdirigeringar',
+'whatlinkshere-hidetrans'  => '$1 innkluderingar (transclusions)',
 'whatlinkshere-hidelinks'  => '$1 slóðir',
 'whatlinkshere-hideimages' => '$1 mynda slóðir',
 'whatlinkshere-filters'    => 'Filtur',
@@ -1695,7 +1750,7 @@ Vinarliga vitja [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] o
 # Bad image list
 'bad_image_list' => 'Støddin er soleiðis: 
 
-Bert innihaldið av listum (linjur sum byrja við * verða brúkt.
+Bert innihaldið av listum (linjur sum byrja við *) verða brúkt.
 Fyrsta slóðin á linjuni má vera ein leinkja til eina óynskta mynd.
 Fylgjandi slóðir á somu linju eru undantøk, tvs. síður har fílan kann fyrikoma innline.',
 
@@ -1788,6 +1843,9 @@ Hendan váttanarkoda fer úr gildi tann $4.',
 'watchlisttools-edit' => 'Vís og rætta eftirlit',
 'watchlisttools-raw'  => 'Rætta rátt eftirlit',
 
+# Core parser functions
+'duplicate-defaultsort' => '\'\'\'Ávaring:\'\'\' Standard sorteringslykilin "$2" yvirtekur fyrrverandi standard sorteringslykilin "$1".',
+
 # Special:Version
 'version'                  => 'Útgáva',
 'version-hooks'            => 'Krókur',
@@ -1800,6 +1858,16 @@ Hendan váttanarkoda fer úr gildi tann $4.',
 
 # Special:SpecialPages
 'specialpages' => 'Serligar síður',
+
+# External image whitelist
+'external_image_whitelist' => "↓  #Lat hesa linjuna vera júst sum hon er<pre>
+#Skriva partar av vanligum orðingum (bert partin sum er ímillum //) niðanfyri
+#Hesar verða samanbornar við URL'ar á eksternum (hotlinkaðum) myndum
+#Tey sum passa saman verða víst sum myndir, í øðrum lagi verður bert ein slóð til myndina víst
+#Linjur sum byrja við # verða viðfarin sum viðmerkingar
+#Hetta er ikki følsamt fyri stórir og lítlir bókstavir
+
+#Skriva allar vanligar málberingar omanfyri hesa linju. Lat hesa linjuna verða júst sum hon er</pre>",
 
 # Special:Tags
 'tag-filter' => '[[Special:Tags|Tag]] filtur:',

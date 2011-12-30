@@ -649,6 +649,7 @@ See võib sisaldada ühte või enamat märki, mida ei saa pealkirjades kasutada.
 Funktsioon: $1<br />
 Päring: $2',
 'viewsource'           => 'Vaata lähteteksti',
+'viewsource-title'     => 'Lehekülje $1 lähteteksti vaatamine',
 'actionthrottled'      => 'Toiming nurjus',
 'actionthrottledtext'  => 'Rämpsmuudatuste vastase meetmena pole sul lühikse aja jooksul seda toimingut liiga palju kordi lubatud sooritada. Sa oled lühikse aja jooskul seda toimingut liiga palju kordi sooritanud.
 Palun proovi mõne minuti pärast uuesti.',
@@ -2760,6 +2761,7 @@ Kui soovid MediaWiki tarkvara tõlkimises osaleda siis vaata lehti [//www.mediaw
 'djvu_page_error'          => 'DjVu-failis ei ole sellist lehekülge',
 'djvu_no_xml'              => 'DjVu failist XML-i lugemine ebaõnnestus.',
 'thumbnail-temp-create'    => 'Ajutist pisipildifaili ei õnnestu luua.',
+'thumbnail-dest-create'    => 'Pisipilti ei õnnestu sihtkohas salvestada',
 'thumbnail_invalid_params' => 'Vigased pisipildi parameetrid',
 'thumbnail_dest_directory' => 'Sihtkataloogi loomine ebaõnnestus.',
 'thumbnail_image-type'     => 'Selline pildi tüüp ei ole toetatav',
@@ -3116,6 +3118,7 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-whitebalance'                => 'Valge tasakaal',
 'exif-digitalzoomratio'            => 'Digisuumi tegur',
 'exif-focallengthin35mmfilm'       => '35 mm-se filmi fookuskaugus',
+'exif-gaincontrol'                 => 'Tundlikkus',
 'exif-contrast'                    => 'Kontrastsus',
 'exif-saturation'                  => 'Küllastus',
 'exif-sharpness'                   => 'Teravus',
@@ -3233,7 +3236,7 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-exposureprogram-3' => 'Ava prioriteet',
 'exif-exposureprogram-4' => 'Katiku prioriteet',
 'exif-exposureprogram-7' => 'Portree töörežiim (lähifotode jaoks, taust fookusest väljas)',
-'exif-exposureprogram-8' => 'Maastiku töörežiim (maastikupiltide jaoks, taust on fokuseeritud)',
+'exif-exposureprogram-8' => 'Maastiku töörežiim (maastikupiltide jaoks, taust on teravdatud)',
 
 'exif-subjectdistance-value' => '$1 meetrit',
 
@@ -3284,6 +3287,8 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-sensingmethod-4' => 'Kolme-kiibiga värvisensor',
 'exif-sensingmethod-7' => 'Kolmerealine sensor',
 
+'exif-filesource-3' => 'Digitaalne fotokaamera',
+
 'exif-customrendered-0' => 'Normaalne protsess',
 'exif-customrendered-1' => 'Kohandatud protsess',
 
@@ -3291,16 +3296,18 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-exposuremode-1' => 'Manuaalne säritus',
 
 'exif-whitebalance-0' => 'Automaatne valge tasakaal',
-'exif-whitebalance-1' => 'Manuaalne valgusbalanss',
+'exif-whitebalance-1' => 'Manuaalne valge tasakaal',
 
 'exif-scenecapturetype-0' => 'Standardne',
 'exif-scenecapturetype-1' => 'Maastik',
 'exif-scenecapturetype-2' => 'Portree',
 'exif-scenecapturetype-3' => 'Ööpilt',
 
-'exif-gaincontrol-0' => 'Ei ole',
-'exif-gaincontrol-1' => 'Aeglane tõus',
-'exif-gaincontrol-2' => 'Kiire tõus',
+'exif-gaincontrol-0' => 'Puudub',
+'exif-gaincontrol-1' => 'Natuke tõstetud',
+'exif-gaincontrol-2' => 'Suur',
+'exif-gaincontrol-3' => 'Natuke vähendatud',
+'exif-gaincontrol-4' => 'Vähene',
 
 'exif-contrast-0' => 'Normaalne',
 'exif-contrast-1' => 'Pehme',

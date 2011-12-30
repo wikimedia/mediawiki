@@ -976,7 +976,7 @@ version, (forrige) = forskel til den forrige version, M = mindre ændring',
 'history-feed-title'          => 'Versionshistorie',
 'history-feed-description'    => 'Versionshistorie for denne side i {{SITENAME}}',
 'history-feed-item-nocomment' => '$1 med $2',
-'history-feed-empty'          => 'Den ønskede side findes ikke. Måske er den slettet eller flyttet. [[Special:Search|Gennesøg]] {{SITENAME}} efter passende nye sider.',
+'history-feed-empty'          => 'Den ønskede side findes ikke. Måske er den slettet eller flyttet. [[Special:Search|Gennemsøg]] {{SITENAME}} efter passende nye sider.',
 
 # Revision deletion
 'rev-deleted-comment'         => '(redigeringsbeskrivelsen er fjernet)',
@@ -1910,7 +1910,7 @@ Hver linje indeholder henvisninger til den første og den anden omdirigering, s�
 'move'                    => 'Flyt',
 'movethispage'            => 'Flyt side',
 'unusedimagestext'        => 'De følgende filer findes, men bruges ikke på nogen sider.
-Læg mærke til at andre hjemmesider kan henvise til filen med et direkte URL, og kan stadig være listet her, selvom den faktisk er i brug.',
+Læg mærke til at andre hjemmesider kan henvise til filen med en direkte URL, og dermed kan filen stadig være listet her, selvom den faktisk er i brug.',
 'unusedcategoriestext'    => 'Denne specialside viser alle kategorier, som ikke selv er henført til en kategori.',
 'notargettitle'           => 'Sideangivelse mangler',
 'notargettext'            => 'Du har ikke angivet en side eller bruger at udføre denne funktion på.',
@@ -3494,8 +3494,7 @@ Billeder vises i fuld opløsning, og andre mediatyper vil blive aktiveret med de
 'specialpages'                   => 'Specialsider',
 'specialpages-note'              => '----
 * Normale specialsider.
-* <span class="mw-specialpagerestricted">Specialsider med begrænset adgang.</span>
-* <span class="mw-specialpagecached">Specialsider der opdateres med jævne mellemrum (kan være forældede).</span>',
+* <span class="mw-specialpagerestricted">Specialsider med begrænset adgang.</span>',
 'specialpages-group-maintenance' => 'Vedligeholdelsesside',
 'specialpages-group-other'       => 'Andre specialsider',
 'specialpages-group-login'       => 'Opret bruger / logon',
