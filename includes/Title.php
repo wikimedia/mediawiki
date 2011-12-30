@@ -3488,15 +3488,14 @@ class Title {
 					return $status->getErrorsArray();
 				}
 			}
+			// Clear RepoGroup process cache
+			RepoGroup::singleton()->clearCache( $this );
+			RepoGroup::singleton()->clearCache( $nt ); # clear false negative cache
 		}
-		// Clear RepoGroup process cache
-		RepoGroup::singleton()->clearCache( $this );
-		RepoGroup::singleton()->clearCache( $nt ); # clear false negative cache
 
 		$dbw->begin(); # If $file was a LocalFile, its transaction would have closed our own.
 		$pageid = $this->getArticleID( self::GAID_FOR_UPDATE );
 		$protected = $this->isProtected();
-		$pageCountChange = ( $createRedirect ? 1 : 0 ) - ( $nt->exists() ? 1 : 0 );
 
 		// Do the actual move
 		$err = $this->moveToInternal( $nt, $reason, $createRedirect );
@@ -3505,8 +3504,6 @@ class Title {
 			$dbw->rollback();
 			return $err;
 		}
-
-		$redirid = $this->getArticleID();
 
 		// Refresh the sortkey for this row.  Be careful to avoid resetting
 		// cl_timestamp, which may disturb time-based lists on some sites.
@@ -3530,6 +3527,8 @@ class Title {
 				__METHOD__
 			);
 		}
+
+		$redirid = $this->getArticleID();
 
 		if ( $protected ) {
 			# Protect the redirect title as the title used to be...
@@ -3566,49 +3565,7 @@ class Title {
 			WatchedItem::duplicateEntries( $this, $nt );
 		}
 
-		# Update search engine
-		$u = new SearchUpdate( $pageid, $nt->getPrefixedDBkey() );
-		$u->doUpdate();
-		$u = new SearchUpdate( $redirid, $this->getPrefixedDBkey(), '' );
-		$u->doUpdate();
-
 		$dbw->commit();
-
-		# Update site_stats
-		if ( $this->isContentPage() && !$nt->isContentPage() ) {
-			# No longer a content page
-			# Not viewed, edited, removing
-			$u = new SiteStatsUpdate( 0, 1, -1, $pageCountChange );
-		} elseif ( !$this->isContentPage() && $nt->isContentPage() ) {
-			# Now a content page
-			# Not viewed, edited, adding
-			$u = new SiteStatsUpdate( 0, 1, + 1, $pageCountChange );
-		} elseif ( $pageCountChange ) {
-			# Redirect added
-			$u = new SiteStatsUpdate( 0, 0, 0, 1 );
-		} else {
-			# Nothing special
-			$u = false;
-		}
-		if ( $u ) {
-			$u->doUpdate();
-		}
-
-		# Update message cache for interface messages
-		if ( $this->getNamespace() == NS_MEDIAWIKI ) {
-			# @bug 17860: old article can be deleted, if this the case,
-			# delete it from message cache
-			if ( $this->getArticleID() === 0 ) {
-				MessageCache::singleton()->replace( $this->getDBkey(), false );
-			} else {
-				$rev = Revision::newFromTitle( $this );
-				MessageCache::singleton()->replace( $this->getDBkey(), $rev->getText() );
-			}
-		}
-		if ( $nt->getNamespace() == NS_MEDIAWIKI ) {
-			$rev = Revision::newFromTitle( $nt );
-			MessageCache::singleton()->replace( $nt->getDBkey(), $rev->getText() );
-		}
 
 		wfRunHooks( 'TitleMoveComplete', array( &$this, &$nt, &$wgUser, $pageid, $redirid ) );
 		return true;
@@ -3659,36 +3616,18 @@ class Title {
 
 		$dbw = wfGetDB( DB_MASTER );
 
-		if ( $moveOverRedirect ) {
-			$rcts = $dbw->timestamp( $nt->getEarliestRevTime() );
+		$newpage = WikiPage::factory( $nt );
 
+		if ( $moveOverRedirect ) {
 			$newid = $nt->getArticleID();
-			$newns = $nt->getNamespace();
-			$newdbk = $nt->getDBkey();
 
 			# Delete the old redirect. We don't save it to history since
 			# by definition if we've got here it's rather uninteresting.
 			# We have to remove it so that the next step doesn't trigger
 			# a conflict on the unique namespace+title index...
 			$dbw->delete( 'page', array( 'page_id' => $newid ), __METHOD__ );
-			if ( !$dbw->cascadingDeletes() ) {
-				$dbw->delete( 'revision', array( 'rev_page' => $newid ), __METHOD__ );
 
-				$dbw->delete( 'pagelinks', array( 'pl_from' => $newid ), __METHOD__ );
-				$dbw->delete( 'imagelinks', array( 'il_from' => $newid ), __METHOD__ );
-				$dbw->delete( 'categorylinks', array( 'cl_from' => $newid ), __METHOD__ );
-				$dbw->delete( 'templatelinks', array( 'tl_from' => $newid ), __METHOD__ );
-				$dbw->delete( 'externallinks', array( 'el_from' => $newid ), __METHOD__ );
-				$dbw->delete( 'langlinks', array( 'll_from' => $newid ), __METHOD__ );
-				$dbw->delete( 'iwlinks', array( 'iwl_from' => $newid ), __METHOD__ );
-				$dbw->delete( 'redirect', array( 'rd_from' => $newid ), __METHOD__ );
-				$dbw->delete( 'page_props', array( 'pp_page' => $newid ), __METHOD__ );
-			}
-			// If the target page was recently created, it may have an entry in recentchanges still
-			$dbw->delete( 'recentchanges',
-				array( 'rc_timestamp' => $rcts, 'rc_namespace' => $newns, 'rc_title' => $newdbk, 'rc_new' => 1 ),
-				__METHOD__
-			);
+			$newpage->doDeleteUpdates( $newid );
 		}
 
 		# Save a null revision in the page's history notifying of the move
@@ -3698,27 +3637,30 @@ class Title {
 		}
 		$nullRevId = $nullRevision->insertOn( $dbw );
 
-		$now = wfTimestampNow();
 		# Change the name of the target page:
 		$dbw->update( 'page',
 			/* SET */ array(
-				'page_touched'   => $dbw->timestamp( $now ),
 				'page_namespace' => $nt->getNamespace(),
 				'page_title'     => $nt->getDBkey(),
-				'page_latest'    => $nullRevId,
 			),
 			/* WHERE */ array( 'page_id' => $oldid ),
 			__METHOD__
 		);
+
+		$this->resetArticleID( 0 );
 		$nt->resetArticleID( $oldid );
 
-		$article = WikiPage::factory( $nt );
+		$newpage->updateRevisionOn( $dbw, $nullRevision );
+
 		wfRunHooks( 'NewRevisionFromEditComplete',
-			array( $article, $nullRevision, $latest, $wgUser ) );
-		$article->setCachedLastEditTime( $now );
+			array( $newpage, $nullRevision, $latest, $wgUser ) );
+
+		$newpage->doEditUpdates( $nullRevision, $wgUser, array( 'changed' => false ) );
 
 		# Recreate the redirect, this time in the other direction.
-		if ( $createRedirect || !$wgUser->isAllowed( 'suppressredirect' ) ) {
+		if ( $redirectSuppressed ) {
+			WikiPage::onArticleDelete( $this );
+		} else {
 			$mwRedir = MagicWord::get( 'redirect' );
 			$redirectText = $mwRedir->getSynonym( 0 ) . ' [[' . $nt->getPrefixedText() . "]]\n";
 			$redirectArticle = WikiPage::factory( $this );
@@ -3734,33 +3676,13 @@ class Title {
 				wfRunHooks( 'NewRevisionFromEditComplete',
 					array( $redirectArticle, $redirectRevision, false, $wgUser ) );
 
-				# Now, we record the link from the redirect to the new title.
-				# It should have no other outgoing links...
-				$dbw->delete( 'pagelinks', array( 'pl_from' => $newid ), __METHOD__ );
-				$dbw->insert( 'pagelinks',
-					array(
-						'pl_from'      => $newid,
-						'pl_namespace' => $nt->getNamespace(),
-						'pl_title'     => $nt->getDBkey() ),
-					__METHOD__ );
+				$redirectArticle->doEditUpdates( $redirectRevision, $wgUser, array( 'created' => true ) );
 			}
-		} else {
-			$this->resetArticleID( 0 );
 		}
 
 		# Log the move
 		$logid = $logEntry->insert();
 		$logEntry->publish( $logid );
-
-		# Purge caches for old and new titles
-		if ( $moveOverRedirect ) {
-			# A simple purge is enough when moving over a redirect
-			$nt->purgeSquid();
-		} else {
-			# Purge caches as per article creation, including any pages that link to this title
-			WikiPage::onArticleCreate( $nt );
-		}
-		$this->purgeSquid();
 	}
 
 	/**
