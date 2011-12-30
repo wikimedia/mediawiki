@@ -4,7 +4,7 @@
 	position: fixed;
 	bottom: 0;
 	background-color: #eee;
-	border-top: 1px solid #ccc;
+	border-top: 1px solid #aaa;
 }
 
 .mw-debug pre {
@@ -16,49 +16,85 @@
 	border: none;
 }
 
+.mw-debug table {
+	border-spacing: 0;
+	width: 100%;
+}
+
+.mw-debug table tr {
+	background-color: #fff;
+}
+
+.mw-debug table tr:nth-child(even) {
+	background-color: #f9f9f9;
+}
+
+.mw-debug table td {
+	padding: 4px 10px;
+	border-bottom: 1px solid #eee;
+}
+
+.mw-debug table td.nr {
+	text-align: right;
+}
+
+.mw-debug table td span.stats {
+	color: #808080;
+}
+
 .mw-debug ul {
 	margin: 0;
 	list-style: none;
-	box-sizing: border-box;
 }
 
 .mw-debug li {
-	padding: 2px 5px;
+	padding: 4px 0;
 	width: 100%;
-	display: table;
+}
+
+.mw-debug-bits {
+	text-align: center;
+	border-bottom: 1px solid #aaa;
 }
 
 .mw-debug-bit {
-	min-height: 25px;
 	display: inline-block;
-	padding: 5px;
-	border-right: 1px solid #ccc;
+	padding: 10px 5px;
 	font-size: 13px;
+}
+
+.mw-debug-panelink {
+	background-color: #eee;
+	border-right: 1px solid #ccc;
+}
+
+.mw-debug-panelink:first-child {
+	border-left: 1px solid #ccc;
+}
+
+.mw-debug-panelink:hover {
+	background-color: #fefefe;
+	cursor: pointer;
+}
+.mw-debug-panelink.current {
+	background-color: #dedede;
+
+}
+a.mw-debug-panelabel,
+a.mw-debug-panelabel:visited {
+	color: #000;
 }
 
 .mw-debug-pane {
 	max-height: 300px;
 	overflow: scroll;
-	border-top: 2px solid #ccc;
 	display: none;
 	font-size: 11px;
 	background-color: #e1eff2;
 	box-sizing: border-box;
 }
 
-.mw-debug-right {
-	float: right;
-}
-
-#mw-debug-querylist td {
-	padding: 2px 5px;
-	border-bottom: 1px solid #ccc;
-}
-
-.mw-debug-query-time {
-	color: #808080;
-}
-
+#mw-debug-pane-debuglog,
 #mw-debug-pane-request {
 	padding: 20px;
 }
@@ -90,18 +126,4 @@
 
 #mw-debug-pane-request td {
 	background-color: white;
-}
-
-#mw-debug-pane-querylist table {
-	border-spacing: 0;
-}
-
-#mw-debug-pane-includes li,
-#mw-debug-pane-querylist tr td {
-	background-color: #ccc;
-}
-
-#mw-debug-pane-includes li:nth-child(odd),
-#mw-debug-pane-querylist tr:nth-child(odd) td {
-	background-color: #ddd;
 }
