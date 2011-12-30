@@ -357,6 +357,18 @@ class Article extends Page {
 	}
 
 	/**
+	 * Get the fetched Revision object depending on request parameters or null
+	 * on failure.
+	 *
+	 * @return Revision|null
+	 */
+	public function getRevisionFetched() {
+		$this->fetchContent();
+
+		return $this->mRevision;
+	}
+
+	/**
 	 * Use this to fetch the rev ID used on page views
 	 *
 	 * @return int revision ID of last article revision

@@ -627,7 +627,6 @@ class EditPage {
 		$this->bot = $request->getBool( 'bot', true );
 		$this->nosummary = $request->getBool( 'nosummary' );
 
-		// @todo FIXME: Unused variable?
 		$this->oldid = $request->getInt( 'oldid' );
 
 		$this->live = $request->getCheck( 'live' );
@@ -740,7 +739,7 @@ class EditPage {
 				# Otherwise, $text will be left as-is.
 				if ( !is_null( $undorev ) && !is_null( $oldrev ) &&
 					$undorev->getPage() == $oldrev->getPage() &&
-					$undorev->getPage() == $this->mArticle->getID() &&
+					$undorev->getPage() == $this->mTitle->getArticleId() &&
 					!$undorev->isDeleted( Revision::DELETED_TEXT ) &&
 					!$oldrev->isDeleted( Revision::DELETED_TEXT ) ) {
 
@@ -1166,10 +1165,11 @@ class EditPage {
 			# Article exists. Check for edit conflict.
 
 			$this->mArticle->clear(); # Force reload of dates, etc.
+			$timestamp = $this->mArticle->getTimestamp();
 
-			wfDebug( "timestamp: {$this->mArticle->getTimestamp()}, edittime: {$this->edittime}\n" );
+			wfDebug( "timestamp: {$timestamp}, edittime: {$this->edittime}\n" );
 
-			if ( $this->mArticle->getTimestamp() != $this->edittime ) {
+			if ( $timestamp != $this->edittime ) {
 				$this->isConflict = true;
 				if ( $this->section == 'new' ) {
 					if ( $this->mArticle->getUserText() == $wgUser->getName() &&
@@ -1199,8 +1199,7 @@ class EditPage {
 			}
 			
 			if ( $this->isConflict ) {
-				wfDebug( __METHOD__ . ": conflict! getting section '$this->section' for time '$this->edittime' (article time '" .
-					$this->mArticle->getTimestamp() . "')\n" );
+				wfDebug( __METHOD__ . ": conflict! getting section '$this->section' for time '$this->edittime' (article time '{$timestamp}')\n" );
 				$text = $this->mArticle->replaceSection( $this->section, $this->textbox1, $sectionTitle, $this->edittime );
 			} else {
 				wfDebug( __METHOD__ . ": getting section '$this->section'\n" );
@@ -1383,7 +1382,7 @@ class EditPage {
 		$res = $dbw->select( 'revision',
 			'rev_user',
 			array(
-				'rev_page' => $this->mArticle->getId(),
+				'rev_page' => $this->mTitle->getArticleId(),
 				'rev_timestamp > '.$dbw->addQuotes( $dbw->timestamp($edittime) )
 			),
 			__METHOD__,
@@ -1706,7 +1705,7 @@ HTML
 		$autosumm = $this->autoSumm ? $this->autoSumm : md5( $this->summary );
 		$wgOut->addHTML( Html::hidden( 'wpAutoSummary', $autosumm ) );
 
-		$wgOut->addHTML( Html::hidden( 'oldid', $this->mArticle->getOldID() ) );
+		$wgOut->addHTML( Html::hidden( 'oldid', $this->oldid ) );
 
 		if ( $this->section == 'new' ) {
 			$this->showSummaryInput( true, $this->summary );
@@ -1823,18 +1822,21 @@ HTML
 				$wgOut->addWikiMsg( 'nonunicodebrowser' );
 			}
 
-			if ( $this->section != 'new' && isset( $this->mArticle ) && isset( $this->mArticle->mRevision ) ) {
-			// Let sysop know that this will make private content public if saved
+			if ( $this->section != 'new' ) {
+				$revision = $this->mArticle->getRevisionFetched();
+				if ( $revision ) {
+					// Let sysop know that this will make private content public if saved
 
-				if ( !$this->mArticle->mRevision->userCan( Revision::DELETED_TEXT ) ) {
-					$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n", 'rev-deleted-text-permission' );
-				} elseif ( $this->mArticle->mRevision->isDeleted( Revision::DELETED_TEXT ) ) {
-					$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n", 'rev-deleted-text-view' );
-				}
+					if ( !$revision->userCan( Revision::DELETED_TEXT ) ) {
+						$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n", 'rev-deleted-text-permission' );
+					} elseif ( $revision->isDeleted( Revision::DELETED_TEXT ) ) {
+						$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n", 'rev-deleted-text-view' );
+					}
 
-				if ( !$this->mArticle->mRevision->isCurrent() ) {
-					$this->mArticle->setOldSubtitle( $this->mArticle->mRevision->getId() );
-					$wgOut->addWikiMsg( 'editingold' );
+					if ( !$revision->isCurrent() ) {
+						$this->mArticle->setOldSubtitle( $revision->getId() );
+						$wgOut->addWikiMsg( 'editingold' );
+					}
 				}
 			}
 		}
@@ -2288,8 +2290,8 @@ HTML
 	 */
 	public function getCancelLink() {
 		$cancelParams = array();
-		if ( !$this->isConflict && $this->mArticle->getOldID() > 0 ) {
-			$cancelParams['oldid'] = $this->mArticle->getOldID();
+		if ( !$this->isConflict && $this->oldid > 0 ) {
+			$cancelParams['oldid'] = $this->oldid;
 		}
 
 		return Linker::linkKnown(
