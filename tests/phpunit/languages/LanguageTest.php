@@ -1,6 +1,10 @@
 <?php
 
 class LanguageTest extends MediaWikiTestCase {
+
+	/**
+	 * @var Language
+	 */
 	private $lang;
 
 	function setUp() {
@@ -217,6 +221,62 @@ class LanguageTest extends MediaWikiTestCase {
 				'20111212000000',
 				'90',
 				'Iranian calendar short year'
+			),
+		);
+	}
+
+	/**
+	 * @dataProvider provideFormatSizes
+	 */
+	function testFormatSize( $size, $expected, $msg ) {
+		$this->assertEquals(
+			$expected,
+			$this->lang->formatSize( $size ),
+			"formatSize('$size'): $msg"
+		);
+	}
+
+	function provideFormatSizes() {
+		return array(
+			array(
+				0,
+				"0 B",
+				"Zero bytes"
+			),
+			array(
+				1024,
+				"1,024 B",
+				"1,024 bytes"
+			),
+			array(
+				1024 + 1,
+				"1 KB",
+				"1 kilobyte"
+			),
+			array(
+				1024 * 1024,
+				"1,024 KB",
+				"1,024 kilobyte"
+			),
+			array(
+				( 1024 * 1024 ) + 1,
+				"1 MB",
+				"1 megabyte"
+			),
+			array(
+				1024 * 1024 * 1024,
+				"1,024 MB",
+				"1,024 megabyte"
+			),
+			array(
+				( 1024 * 1024 * 1024 ) + 1,
+				"1 GB",
+				"1 gigabyte"
+			),
+			array(
+				( 1024 * 1024 * 1024 * 1024 ) + 1,
+				"1,024 GB",
+				"1,024 gigabyte"
 			),
 		);
 	}
