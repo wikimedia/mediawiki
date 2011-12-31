@@ -245,39 +245,45 @@ class LanguageTest extends MediaWikiTestCase {
 			),
 			array(
 				1024,
-				"1,024 B",
-				"1,024 bytes"
-			),
-			array(
-				1024 + 1,
 				"1 KB",
 				"1 kilobyte"
 			),
 			array(
 				1024 * 1024,
-				"1,024 KB",
-				"1,024 kilobyte"
-			),
-			array(
-				( 1024 * 1024 ) + 1,
 				"1 MB",
-				"1 megabyte"
+				"1,024 megabytes"
 			),
 			array(
 				1024 * 1024 * 1024,
-				"1,024 MB",
-				"1,024 megabyte"
-			),
-			array(
-				( 1024 * 1024 * 1024 ) + 1,
 				"1 GB",
-				"1 gigabyte"
+				"1 gigabytes"
 			),
 			array(
-				( 1024 * 1024 * 1024 * 1024 ) + 1,
-				"1,024 GB",
-				"1,024 gigabyte"
+				pow( 1024, 4 ),
+				"1 TB",
+				"1 terabyte"
 			),
+			array(
+				pow( 1024, 5 ),
+				"1 PB",
+				"1 petabyte"
+			),
+			array(
+				pow( 1024, 6 ),
+				"1 EB",
+				"1,024 exabyte"
+			),
+			array(
+				pow( 1024, 7 ),
+				"1 ZB",
+				"1 zetabyte"
+			),
+			array(
+				pow( 1024, 8 ),
+				"1 YB",
+				"1 yottabyte"
+			),
+			// How big!? THIS BIG!
 		);
 	}
 }
