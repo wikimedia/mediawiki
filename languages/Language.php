@@ -3826,32 +3826,29 @@ class Language {
 
 	/**
 	 * Format a size in bytes for output, using an appropriate
-	 * unit (B, KB, MB or GB) according to the magnitude in question
+	 * unit (B, KB, MB, GB, TB, PB, EB, ZB or YB) according to the magnitude in question
 	 *
 	 * @param $size int Size to format
 	 * @return string Plain text (not HTML)
 	 */
 	function formatSize( $size ) {
+		$sizes = array( '', 'kilo', 'mega', 'giga', 'tera', 'peta', 'exa', 'zeta', 'yotta' );
+		$index = 0;
+
+		$maxIndex = count( $sizes ) - 1;
+		while ( $size >= 1024 && $index < $maxIndex ) {
+			$index++;
+			$size /= 1024;
+		}
+
 		// For small sizes no decimal places necessary
 		$round = 0;
-		if ( $size > 1024 ) {
-			$size = $size / 1024;
-			if ( $size > 1024 ) {
-				$size = $size / 1024;
-				// For MB and bigger two decimal places are smarter
-				$round = 2;
-				if ( $size > 1024 ) {
-					$size = $size / 1024;
-					$msg = 'size-gigabytes';
-				} else {
-					$msg = 'size-megabytes';
-				}
-			} else {
-				$msg = 'size-kilobytes';
-			}
-		} else {
-			$msg = 'size-bytes';
+		if ( $index > 1 ) {
+			// For MB and bigger two decimal places are smarter
+			$round = 2;
 		}
+		$msg = "size-{$sizes[$index]}bytes";
+
 		$size = round( $size, $round );
 		$text = $this->getMessageFromDB( $msg );
 		return str_replace( '$1', $this->formatNum( $size ), $text );
