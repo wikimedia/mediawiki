@@ -3810,7 +3810,7 @@ class Language {
 	 * @return string
 	 */
 	function formatBitrate( $bps ) {
-		$units = array( 'bps', 'kbps', 'Mbps', 'Gbps', 'Tbps', 'Pbps', 'Ebps', 'Zbps', 'Ypbs' );
+		$units = array( 'bps', 'kbps', 'Mbps', 'Gbps', 'Tbps', 'Pbps', 'Ebps', 'Zbps', 'Ybps' );
 		if ( $bps <= 0 ) {
 			return $this->formatNum( $bps ) . $units[0];
 		}
