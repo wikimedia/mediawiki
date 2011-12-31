@@ -345,6 +345,11 @@ class LanguageTest extends MediaWikiTestCase {
 				"1Ybps",
 				"1 yottabit per second"
 			),
+			array(
+				pow( 10, 27 ),
+				"1,000Ybps",
+				"1,000 yottabits per second"
+			),
 		);
 	}
 }
