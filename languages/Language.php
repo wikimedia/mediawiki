@@ -3806,11 +3806,14 @@ class Language {
 	}
 
 	/**
+	 * Format a bitrate for output, using an appropriate
+	 * unit (bps, kbps, Mbps, Gbps, Tbps, Pbps, Ebps, Zbps or Ybps) according to the magnitude in question
+	 *
 	 * @param $bps int
 	 * @return string
 	 */
 	function formatBitrate( $bps ) {
-		$units = array( 'bps', 'kbps', 'Mbps', 'Gbps', 'Tbps', 'Pbps', 'Ebps', 'Zbps', 'Ybps' );
+		$units = array( '', 'kibi', 'mebi', 'gibi', 'tebi', 'pebi', 'exbi', 'zebi', 'yobi' );
 		if ( $bps <= 0 ) {
 			return $this->formatNum( $bps ) . $units[0];
 		}
@@ -3821,7 +3824,9 @@ class Language {
 		} else {
 			$mantissa = round( $mantissa );
 		}
-		return $this->formatNum( $mantissa ) . $units[$unitIndex];
+		$msg = "bitrate-{$units[$unitIndex]}bits";
+		$text = $this->getMessageFromDB( $msg );
+		return str_replace( '$1', $this->formatNum( $mantissa ), $text );
 	}
 
 	/**
