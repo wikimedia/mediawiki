@@ -1084,7 +1084,7 @@ class UploadForm extends HTMLForm {
 		);
 
 		$out = $this->getOutput();
-		$out->addScript( Skin::makeVariablesScript( $scriptVars ) );
+		$out->addJsConfigVars( $scriptVars );
 
 
 		$out->addModules( array(

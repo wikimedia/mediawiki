@@ -69,9 +69,8 @@ window.addOnloadHook = function( hookFunct ) {
 };
 
 window.importScript = function( page ) {
-	// TODO: might want to introduce a utility function to match wfUrlencode() in PHP
-	var uri = wgScript + '?title=' +
-		encodeURIComponent(page.replace(/ /g,'_')).replace(/%2F/ig,'/').replace(/%3A/ig,':') +
+	var uri = mw.config.get( 'wgScript' ) + '?title=' +
+		mw.util.wikiUrlencode( page ) +
 		'&action=raw&ctype=text/javascript';
 	return importScriptURI( uri );
 };
@@ -90,7 +89,7 @@ window.importScriptURI = function( url ) {
 };
 
 window.importStylesheet = function( page ) {
-	return importStylesheetURI( wgScript + '?action=raw&ctype=text/css&title=' + encodeURIComponent( page.replace(/ /g,'_') ) );
+	return importStylesheetURI( mw.config.get( 'wgScript' ) + '?action=raw&ctype=text/css&title=' + mw.util.wikiUrlencode( page ) );
 };
 
 window.importStylesheetURI = function( url, media ) {

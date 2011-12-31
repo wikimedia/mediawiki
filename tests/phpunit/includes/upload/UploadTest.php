@@ -100,7 +100,7 @@ class UploadTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * test uploading a 100 bytes file with wgMaxUploadSize = 100
+	 * test uploading a 100 bytes file with $wgMaxUploadSize = 100
 	 *
 	 * This method should be abstracted so we can test different settings.
 	 */
