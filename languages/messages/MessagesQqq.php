@@ -4123,22 +4123,22 @@ Size (of a file, typically) in yobibytes (1 yobibytes = 1024×1024×1024×1024×
 # Bitrate units
 'bitrate-bits'     => '{{optional}}
 Bitrate (of a file, typically) in bits.',
-'bitrate-kibibits' => '{{optional}}
-Bitrate (of a file, typically) in kibibits (1 kibibyte = 1000 bits).',
-'bitrate-mebibits' => '{{optional}}
-Bitrate (of a file, typically) in mebibits (1 mebibyte = 1000×1000 bits).',
-'bitrate-gibibits' => '{{optional}}
-Bitrate (of a file, typically) in gibibits (1 gibibyte = 1000×1000×1000 bits).',
-'bitrate-tebibits' => '{{optional}}
-Bitrate (of a file, typically) in tebibits (1 tebibits = 1000×1000×1000×1000 bits).',
-'bitrate-pebibits' => '{{optional}}
-Bitrate (of a file, typically) in pebibits (1 pebibits = 1000×1000×1000×1000×1000 bits).',
-'bitrate-exbibits' => '{{optional}}
-Bitrate (of a file, typically) in exbibits (1 exbibits = 1000×1000×1000×1000×1000×1000 bits).',
-'bitrate-zebibits' => '{{optional}}
-Bitrate (of a file, typically) in zebibits (1 zebibits = 1000×1000×1000×1000×1000×1000×1000 bits).',
-'bitrate-yobibits' => '{{optional}}
-Bitrate (of a file, typically) in yobibits (1 yobibits = 1000×1000×1000×1000×1000×1000×1000×1000 bits).',
+'bitrate-kilobits' => '{{optional}}
+Bitrate (of a file, typically) in kilobits (1 kilobit = 1000 bits).',
+'bitrate-megabits' => '{{optional}}
+Bitrate (of a file, typically) in megabits (1 megabits = 1000×1000 bits).',
+'bitrate-gigabits' => '{{optional}}
+Bitrate (of a file, typically) in gibibits (1 gigabits = 1000×1000×1000 bits).',
+'bitrate-terabits' => '{{optional}}
+Bitrate (of a file, typically) in terabits (1 terabits = 1000×1000×1000×1000 bits).',
+'bitrate-petabits' => '{{optional}}
+Bitrate (of a file, typically) in petabits (1 petabits = 1000×1000×1000×1000×1000 bits).',
+'bitrate-exabits' => '{{optional}}
+Bitrate (of a file, typically) in exabits (1 exabits = 1000×1000×1000×1000×1000×1000 bits).',
+'bitrate-zetabits' => '{{optional}}
+Bitrate (of a file, typically) in zetabits (1 zetabits = 1000×1000×1000×1000×1000×1000×1000 bits).',
+'bitrate-yottabits' => '{{optional}}
+Bitrate (of a file, typically) in yottabits (1 yottabits = 1000×1000×1000×1000×1000×1000×1000×1000 bits).',
 
 # Live preview
 'livepreview-loading' => '{{Identical|Loading}}',
