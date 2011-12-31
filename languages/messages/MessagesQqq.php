@@ -4120,6 +4120,26 @@ Size (of a file, typically) in zebibytes (1 zebibytes = 1024×1024×1024×1024×
 'size-yottabytes' => '{{optional}}
 Size (of a file, typically) in yobibytes (1 yobibytes = 1024×1024×1024×1024×1024×1024×1024×1024 bytes).',
 
+# Bitrate units
+'bitrate-bits'     => '{{optional}}
+Bitrate (of a file, typically) in bits.',
+'bitrate-kibibits' => '{{optional}}
+Bitrate (of a file, typically) in kibibits (1 kibibyte = 1000 bits).',
+'bitrate-mebibits' => '{{optional}}
+Bitrate (of a file, typically) in mebibits (1 mebibyte = 1000×1000 bits).',
+'bitrate-gibibits' => '{{optional}}
+Bitrate (of a file, typically) in gibibits (1 gibibyte = 1000×1000×1000 bits).',
+'bitrate-tebibits' => '{{optional}}
+Bitrate (of a file, typically) in tebibits (1 tebibits = 1000×1000×1000×1000 bits).',
+'bitrate-pebibits' => '{{optional}}
+Bitrate (of a file, typically) in pebibits (1 pebibits = 1000×1000×1000×1000×1000 bits).',
+'bitrate-exbibits' => '{{optional}}
+Bitrate (of a file, typically) in exbibits (1 exbibits = 1000×1000×1000×1000×1000×1000 bits).',
+'bitrate-zebibits' => '{{optional}}
+Bitrate (of a file, typically) in zebibits (1 zebibits = 1000×1000×1000×1000×1000×1000×1000 bits).',
+'bitrate-yobibits' => '{{optional}}
+Bitrate (of a file, typically) in yobibits (1 yobibits = 1000×1000×1000×1000×1000×1000×1000×1000 bits).',
+
 # Live preview
 'livepreview-loading' => '{{Identical|Loading}}',
 

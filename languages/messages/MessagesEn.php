@@ -4395,6 +4395,17 @@ Please confirm that you really want to recreate this page.",
 'size-zetabytes' => '$1 ZB', # only translate this message to other languages if you have to change it
 'size-yottabytes' => '$1 YB', # only translate this message to other languages if you have to change it
 
+# Bitrate units
+'bitrate-bits'     => '$1bps', # only translate this message to other languages if you have to change it
+'bitrate-kibibits' => '$1kbps', # only translate this message to other languages if you have to change it
+'bitrate-mebibits' => '$1Mbps', # only translate this message to other languages if you have to change it
+'bitrate-gibibits' => '$1Gbps', # only translate this message to other languages if you have to change it
+'bitrate-tebibits' => '$1Tbps', # only translate this message to other languages if you have to change it
+'bitrate-pebibits' => '$1Pbps', # only translate this message to other languages if you have to change it
+'bitrate-exbibits' => '$1Ebps', # only translate this message to other languages if you have to change it
+'bitrate-zebibits' => '$1Zbps', # only translate this message to other languages if you have to change it
+'bitrate-yobibits' => '$1Ybps', # only translate this message to other languages if you have to change it
+
 # Live preview
 'livepreview-loading' => 'Loading...',
 'livepreview-ready'   => 'Loading... Ready!',
