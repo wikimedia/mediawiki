@@ -268,7 +268,7 @@ abstract class ApiBase extends ContextSource {
 			}
 
 			$examples = $this->getExamples();
-			if ( $examples !== false ) {
+			if ( $examples !== false && $examples !== '' ) {
 				if ( !is_array( $examples ) ) {
 					$examples = array(
 						$examples
