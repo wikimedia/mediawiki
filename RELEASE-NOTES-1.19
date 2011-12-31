@@ -251,7 +251,9 @@ changes to languages because of Bugzilla reports.
 * (bug 29405, bug 30809) Lower diacritics are invisible in titles in Indic
   languages Assamese, Bengali, Hindi, Malyalam and Odiya.
 * (bug 32826) Titles in indic languages are partially cut.
-* (bug 33367) Gendered namespaces for Czech
+* (bug 33367) Gendered namespaces for Czech.
+* (bug 33014) Language::formatSize()/formatBitrate() should be able to deal
+  with larger numbers (tera-yotta).
 
 === Other changes in 1.19 ===
 * BREAKING CHANGE: Legacy global array 'ta' and global function 'akeytt' have
