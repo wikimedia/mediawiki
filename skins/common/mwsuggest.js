@@ -478,7 +478,7 @@ window.os_delayedFetch = function() {
 	var query = os_timer.query;
 	os_timer = null;
 	var path = mw.config.get( 'wgMWSuggestTemplate' ).replace( "{namespaces}", os_getNamespaces( r ) )
-									.replace( "{dbname}", wgDBname )
+									.replace( "{dbname}", mw.config.get( 'wgDBname' ) )
 									.replace( "{searchTerms}", os_encodeQuery( query ) );
 
 	// try to get from cache, if not fetch using ajax

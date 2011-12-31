@@ -136,7 +136,7 @@ class SideBarTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * Test wgNoFollowLinks in sidebar
+	 * Test $wgNoFollowLinks in sidebar
 	 */
 	function testRespectWgnofollowlinks() {
 		global $wgNoFollowLinks;
@@ -145,7 +145,7 @@ class SideBarTest extends MediaWikiLangTestCase {
 
 		$attribs = $this->getAttribs();
 		$this->assertArrayNotHasKey( 'rel', $attribs,
-			'External URL in sidebar do not have rel=nofollow when wgNoFollowLinks = false'
+			'External URL in sidebar do not have rel=nofollow when $wgNoFollowLinks = false'
 		);
 
 		// Restore global
@@ -153,7 +153,7 @@ class SideBarTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * Test wgExternaLinkTarget in sidebar
+	 * Test $wgExternaLinkTarget in sidebar
 	 */
 	function testRespectExternallinktarget() {
 		global $wgExternalLinkTarget;

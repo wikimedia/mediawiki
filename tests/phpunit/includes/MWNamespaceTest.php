@@ -422,7 +422,7 @@ class MWNamespaceTest extends MediaWikiTestCase {
 		$this->assertEquals(
 			array( NS_MAIN, NS_USER, NS_CATEGORY ),
 			MWNamespace::getcontentNamespaces(),
-			'NS_MAIN is forced in wgContentNamespaces even if unwanted'
+			'NS_MAIN is forced in $wgContentNamespaces even if unwanted'
 		);
 
 		# test other cases, return $wgcontentNamespaces as is

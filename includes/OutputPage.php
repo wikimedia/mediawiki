@@ -2750,9 +2750,9 @@ $templates
 	 * Add one or more variables to be set in mw.config in JavaScript.
 	 *
 	 * @param $key {String|Array} Key or array of key/value pars.
-	 * @param $value {Mixed} Value of the configuration variable.
+	 * @param $value {Mixed} [optional] Value of the configuration variable.
 	 */
-	public function addJsConfigVars( $keys, $value ) {
+	public function addJsConfigVars( $keys, $value = null ) {
 		if ( is_array( $keys ) ) {
 			foreach ( $keys as $key => $value ) {
 				$this->mJsConfigVars[$key] = $value;

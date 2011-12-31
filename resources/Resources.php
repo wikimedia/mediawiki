@@ -765,7 +765,7 @@ return array(
 			'size-gigabytes',
 			'largefileserver',
 		),
-		'dependencies' => array( 'mediawiki.libs.jpegmeta' ),
+		'dependencies' => array( 'mediawiki.libs.jpegmeta', 'mediawiki.util' ),
 	),
 
 	/* MediaWiki Legacy */
@@ -774,7 +774,7 @@ return array(
 		'scripts' => 'common/ajax.js',
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
-		'dependencies' => 'mediawiki.legacy.wikibits',
+		'dependencies' => array( 'mediawiki.util', 'mediawiki.legacy.wikibits' ),
 	),
 	'mediawiki.legacy.commonPrint' => array(
 		'styles' => array( 'common/commonPrint.css' => array( 'media' => 'print' ) ),

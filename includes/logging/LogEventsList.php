@@ -614,7 +614,7 @@ class LogEventsList {
 	 *   if set to true (default), "No matching items in log" is displayed if loglist is empty
 	 * - msgKey Array If you want a nice box with a message, set this to the key of the message.
 	 *   First element is the message key, additional optional elements are parameters for the key
-	 *   that are processed with wgMsgExt and option 'parse'
+	 *   that are processed with wfMsgExt and option 'parse'
 	 * - offset Set to overwrite offset parameter in $wgRequest
 	 *   set to '' to unset offset
 	 * - wrap String Wrap the message in html (usually something like "<div ...>$1</div>").

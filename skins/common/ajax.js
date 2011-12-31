@@ -84,9 +84,7 @@ window.sajax_do_call = function(func_name, args, target) {
 	var i, x, n;
 	var uri;
 	var post_data;
-	uri = wgServer +
-		( ( wgScript == null ) ? ( wgScriptPath + '/index.php' ) : wgScript ) +
-		'?action=ajax';
+	uri = mw.util.wikiScript() + '?action=ajax';
 	if ( sajax_request_type == 'GET' ) {
 		if ( uri.indexOf( '?' ) == -1 ) {
 			uri = uri + '?rs=' + encodeURIComponent( func_name );

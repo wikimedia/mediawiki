@@ -423,7 +423,7 @@ class HTMLForm extends ContextSource {
 	}
 
 	/**
-	 * Display the form (sending to wgOut), with an appropriate error
+	 * Display the form (sending to $wgOut), with an appropriate error
 	 * message or stack of messages, and any validation errors, etc.
 	 * @param $submitResult Mixed output from HTMLForm::trySubmit()
 	 */
