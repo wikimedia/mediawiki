@@ -4389,6 +4389,11 @@ Please confirm that you really want to recreate this page.",
 'size-kilobytes' => '$1 KB', # only translate this message to other languages if you have to change it
 'size-megabytes' => '$1 MB', # only translate this message to other languages if you have to change it
 'size-gigabytes' => '$1 GB', # only translate this message to other languages if you have to change it
+'size-terabytes' => '$1 TB', # only translate this message to other languages if you have to change it
+'size-petabytes' => '$1 PB', # only translate this message to other languages if you have to change it
+'size-exabytes' => '$1 EB', # only translate this message to other languages if you have to change it
+'size-zetabytes' => '$1 ZB', # only translate this message to other languages if you have to change it
+'size-yottabytes' => '$1 YB', # only translate this message to other languages if you have to change it
 
 # Live preview
 'livepreview-loading' => 'Loading...',
