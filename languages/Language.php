@@ -3815,7 +3815,7 @@ class Language {
 	function formatBitrate( $bps ) {
 		$units = array( '', 'kilo', 'mega', 'giga', 'tera', 'peta', 'exa', 'zeta', 'yotta' );
 		if ( $bps <= 0 ) {
-			return $this->formatNum( $bps ) . $units[0];
+			return str_replace( '$1', $this->formatNum( $bps ), $this->getMessageFromDB( 'bitrate-bits' ) );
 		}
 		$unitIndex = (int)floor( log10( $bps ) / 3 );
 		$mantissa = $bps / pow( 1000, $unitIndex );
