@@ -4109,6 +4109,16 @@ Size (of a page, typically) in kibibytes (1 kibibyte = 1024 bytes).',
 Size (of a file, typically) in mebibytes (1 mebibyte = 1024×1024 bytes).',
 'size-gigabytes' => '{{optional}}
 Size (of a file, typically) in gibibytes (1 gibibyte = 1024×1024×1024 bytes).',
+'size-terabytes' => '{{optional}}
+Size (of a file, typically) in tebibytes (1 tebibytes = 1024×1024×1024×1024 bytes).',
+'size-petabytes' => '{{optional}}
+Size (of a file, typically) in pebibytes (1 pebibytes = 1024×1024×1024×1024×1024 bytes).',
+'size-exabytes' => '{{optional}}
+Size (of a file, typically) in exbibytes (1 exbibytes = 1024×1024×1024×1024×1024×1024 bytes).',
+'size-zetabytes' => '{{optional}}
+Size (of a file, typically) in zebibytes (1 zebibytes = 1024×1024×1024×1024×1024×1024×1024 bytes).',
+'size-yottabytes' => '{{optional}}
+Size (of a file, typically) in yobibytes (1 yobibytes = 1024×1024×1024×1024×1024×1024×1024×1024 bytes).',
 
 # Live preview
 'livepreview-loading' => '{{Identical|Loading}}',
