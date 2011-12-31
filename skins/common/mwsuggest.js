@@ -436,7 +436,7 @@ window.os_setupDatalist = function( r, results ) {
 };
 
 /** Fetch namespaces from checkboxes or hidden fields in the search form,
-    if none defined use wgSearchNamespaces global */
+    if none defined use wgSearchNamespaces */
 window.os_getNamespaces = function( r ) {
 	var namespaces = '';
 	var elements = document.forms[r.searchform].elements;
@@ -455,7 +455,7 @@ window.os_getNamespaces = function( r ) {
 		}
 	}
 	if( namespaces == '' ) {
-		namespaces = wgSearchNamespaces.join('|');
+		namespaces = mw.config.get( 'wgSearchNamespaces' ).join('|');
 	}
 	return namespaces;
 };
