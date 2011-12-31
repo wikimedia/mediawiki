@@ -101,9 +101,9 @@ class FileDeleteForm {
 				$wgOut->addReturnTo( $this->oldimage ? $this->title : Title::newMainPage() );
 
 				if ( $wgRequest->getCheck( 'wpWatch' ) && $wgUser->isLoggedIn() ) {
-					WatchAction::doWatch( $title, $wgUser );
+					WatchAction::doWatch( $this->title, $wgUser );
 				} elseif ( $this->title->userIsWatching() ) {
-					WatchAction::doUnwatch( $title, $wgUser );
+					WatchAction::doUnwatch( $this->title, $wgUser );
 				}
 			}
 			return;
