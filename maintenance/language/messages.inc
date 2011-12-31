@@ -3275,6 +3275,11 @@ $wgMessageStructure = array(
 		'size-kilobytes',
 		'size-megabytes',
 		'size-gigabytes',
+		'size-terabytes',
+		'size-petabytes',
+		'size-exabytes',
+		'size-zetabytes',
+		'size-yottabytes',
 	),
 	'livepreview' => array(
 		'livepreview-loading',
