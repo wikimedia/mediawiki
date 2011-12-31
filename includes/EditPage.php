@@ -1862,7 +1862,7 @@ class EditPage {
 						$this->mArticle->setOldSubtitle( $revision->getId() );
 						$wgOut->addWikiMsg( 'editingold' );
 					}
-				} else {
+				} elseif ( $this->mTitle->exists() ) {
 					// Something went wrong
 
 					$wgOut->wrapWikiMsg( "<div class='errorbox'>\n$1\n</div>\n",
