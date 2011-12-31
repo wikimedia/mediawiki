@@ -3813,7 +3813,7 @@ class Language {
 	 * @return string
 	 */
 	function formatBitrate( $bps ) {
-		$units = array( '', 'kibi', 'mebi', 'gibi', 'tebi', 'pebi', 'exbi', 'zebi', 'yobi' );
+		$units = array( '', 'kilo', 'mega', 'giga', 'tera', 'peta', 'exa', 'zeta', 'yotta' );
 		if ( $bps <= 0 ) {
 			return $this->formatNum( $bps ) . $units[0];
 		}
