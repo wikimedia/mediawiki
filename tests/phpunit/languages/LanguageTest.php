@@ -303,29 +303,48 @@ class LanguageTest extends MediaWikiTestCase {
 			array(
 				0,
 				"0bps",
-				"0 bytes per second"
+				"0 bits per second"
 			),
 			array(
-				1024,
+				1000,
 				"1kbps",
-				"1 kilobyte per second"
+				"1 kilobit per second"
 			),
 			array(
-				1024 * 1024,
+				1000 * 1000,
 				"1Mbps",
-				"1 megabyte per second"
+				"1 megabit per second"
 			),
-			// Test commented out as currently resulting in 1.1Gbps
-//			array(
-//				1024 * 1024 * 1024,
-//				"1Gbps",
-//				"1 gigabyte per second"
-//			),
-//			array(
-//				1024 * 1024 * 1024 * 1024,
-//				"1,024Gbps",
-//				"1,024 gigabytes per second"
-//			),
+			array(
+				pow( 10, 9 ),
+				"1Gbps",
+				"1 gigabit per second"
+			),
+			array(
+				pow( 10, 12 ),
+				"1Tbps",
+				"1 terabit per second"
+			),
+			array(
+				pow( 10, 15 ),
+				"1Pbps",
+				"1 petabit per second"
+			),
+			array(
+				pow( 10, 18 ),
+				"1Ebps",
+				"1 exabit per second"
+			),
+			array(
+				pow( 10, 21 ),
+				"1Zbps",
+				"1 zetabit per second"
+			),
+			array(
+				pow( 10, 24 ),
+				"1Ybps",
+				"1 yottabit per second"
+			),
 		);
 	}
 }
