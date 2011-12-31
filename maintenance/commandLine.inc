@@ -41,8 +41,9 @@ class CommandLineInc extends Maintenance {
 	 * No help, it would just be misleading since it misses custom options
 	 */
 	protected function maybeHelp( $force = false ) {
-		if ( !$force )
+		if ( !$force ) {
 			return;
+		}
 		parent::maybeHelp( true );
 	}
 

@@ -206,7 +206,7 @@ class DBLockManager extends LockManager {
 		$votesLeft = count( $this->dbsByBucket[$bucket] ); // remaining DBs
 		$quorum = floor( $votesLeft/2 + 1 ); // simple majority
 		// Get votes for each DB, in order, until we have enough...
-		foreach ( $this->dbsByBucket[$bucket] as $index => $lockDb ) {
+		foreach ( $this->dbsByBucket[$bucket] as $lockDb ) {
 			// Check that DB is not *known* to be down
 			if ( $this->cacheCheckFailures( $lockDb ) ) {
 				try {

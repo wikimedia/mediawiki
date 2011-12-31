@@ -446,7 +446,7 @@ class ChangesList extends ContextSource {
 
 	/** Inserts a rollback link
 	 *
-	 * @param $s
+	 * @param $s string
 	 * @param $rc RecentChange
 	 */
 	public function insertRollback( &$s, &$rc ) {
@@ -469,10 +469,9 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
-	 * @param $s
+	 * @param $s string
 	 * @param $rc RecentChange
 	 * @param $classes
-	 * @return
 	 */
 	public function insertTags( &$s, &$rc, &$classes ) {
 		if ( empty($rc->mAttribs['ts_tags']) )
