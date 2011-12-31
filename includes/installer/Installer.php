@@ -1228,7 +1228,7 @@ abstract class Installer {
 
 	/**
 	 * Overridden by WebInstaller to provide lastPage parameters.
-	 * @param $page stirng
+	 * @param $page string
 	 * @return string
 	 */
 	protected function getDocUrl( $page ) {

@@ -61,16 +61,18 @@ class RunJobs extends Maintenance {
 		$dbw = wfGetDB( DB_MASTER );
 		$n = 0;
 		$conds = '';
-		if ( $type !== false )
+		if ( $type !== false ) {
 			$conds = "job_cmd = " . $dbw->addQuotes( $type );
+		}
 
 		while ( $dbw->selectField( 'job', 'job_id', $conds, 'runJobs.php' ) ) {
 			$offset = 0;
 			for ( ; ; ) {
 				$job = !$type ? Job::pop( $offset ) : Job::pop_type( $type );
 
-				if ( !$job )
+				if ( !$job ) {
 					break;
+				}
 
 				wfWaitForSlaves();
 				$t = microtime( true );
