@@ -3281,6 +3281,17 @@ $wgMessageStructure = array(
 		'size-zetabytes',
 		'size-yottabytes',
 	),
+	'bitrateunits' => array(
+		'bitrate-bits',
+		'bitrate-kibibits',
+		'bitrate-mebibits',
+		'bitrate-gibibits',
+		'bitrate-tebibits',
+		'bitrate-pebibits',
+		'bitrate-exbibits',
+		'bitrate-zebibits',
+		'bitrate-yobibits',
+	),
 	'livepreview' => array(
 		'livepreview-loading',
 		'livepreview-ready',
