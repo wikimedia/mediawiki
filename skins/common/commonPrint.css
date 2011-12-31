@@ -326,11 +326,13 @@ table.mw_metadata {
 	border-collapse: collapse;
 }
 table.wikitable > tr > th, table.wikitable > tr > td,
+table.wikitable > tbody > tr > th, table.wikitable > tbody > tr > td,
 .mw_metadata th, .mw_metadata td {
 	border: 1px #aaa solid;
 	padding: 0.2em;
 }
 table.wikitable > tr > th,
+table.wikitable > tbody > tr > th,
 .mw_metadata th {
 	text-align: center;
 	background: white;

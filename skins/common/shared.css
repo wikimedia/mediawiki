@@ -476,11 +476,14 @@ table.wikitable {
 	color: black;
 }
 table.wikitable > tr > th,
-table.wikitable > tr > td {
+table.wikitable > tr > td,
+table.wikitable > tbody > tr > th,
+table.wikitable > tbody > tr > td {
 	border: 1px #aaa solid;
 	padding: 0.2em;
 }
-table.wikitable > tr > th {
+table.wikitable > tr > th,
+table.wikitable > tbody > tr > th {
 	background-color: #f2f2f2;
 	text-align: center;
 }
