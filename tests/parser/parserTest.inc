@@ -630,10 +630,19 @@ class ParserTest {
 			'wgLocalFileRepo' => array(
 				'class' => 'LocalRepo',
 				'name' => 'local',
-				'directory' => $this->uploadDir,
 				'url' => 'http://example.com/images',
 				'hashLevels' => 2,
 				'transformVia404' => false,
+				'backend'         => new FSFileBackend( array(
+					'name'        => 'local-backend',
+					'lockManager' => 'fsLockManager',
+					'containerPaths' => array(
+						'media-public'  => $this->uploadDir,
+						'media-thumb'   => $this->uploadDir . '/thumb',
+						'media-temp'    => $this->uploadDir . '/temp',
+						'media-deleted' => $this->uploadDir . '/delete',
+					)
+				) )
 			),
 			'wgEnableUploads' => self::getOptionValue( 'wgEnableUploads', $opts, true ),
 			'wgStylePath' => '/skins',
