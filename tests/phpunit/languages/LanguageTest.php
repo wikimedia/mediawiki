@@ -321,11 +321,11 @@ class LanguageTest extends MediaWikiTestCase {
 //				"1Gbps",
 //				"1 gigabyte per second"
 //			),
-			array(
-				1024 * 1024 * 1024 * 1024,
-				"1,024Gbps",
-				"1,024 gigabytes per second"
-			),
+//			array(
+//				1024 * 1024 * 1024 * 1024,
+//				"1,024Gbps",
+//				"1,024 gigabytes per second"
+//			),
 		);
 	}
 }
