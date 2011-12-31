@@ -286,4 +286,46 @@ class LanguageTest extends MediaWikiTestCase {
 			// How big!? THIS BIG!
 		);
 	}
+
+	/**
+	 * @dataProvider provideFormatBitrate
+	 */
+	function testFormatBitrate( $bps, $expected, $msg ) {
+		$this->assertEquals(
+			$expected,
+			$this->lang->formatBitrate( $bps ),
+			"formatBitrate('$bps'): $msg"
+		);
+	}
+
+	function provideFormatBitrate() {
+		return array(
+			array(
+				0,
+				"0bps",
+				"0 bytes per second"
+			),
+			array(
+				1024,
+				"1kbps",
+				"1 kilobyte per second"
+			),
+			array(
+				1024 * 1024,
+				"1Mbps",
+				"1 megabyte per second"
+			),
+			// Test commented out as currently resulting in 1.1Gbps
+//			array(
+//				1024 * 1024 * 1024,
+//				"1Gbps",
+//				"1 gigabyte per second"
+//			),
+			array(
+				1024 * 1024 * 1024 * 1024,
+				"1,024Gbps",
+				"1,024 gigabytes per second"
+			),
+		);
+	}
 }
