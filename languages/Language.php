@@ -3819,6 +3819,14 @@ class Language {
 		}
 		$unitIndex = (int)floor( log10( $bps ) / 3 );
 		$mantissa = $bps / pow( 1000, $unitIndex );
+
+		$maxIndex = count( $units ) - 1;
+
+		if ( $unitIndex  > $maxIndex ) {
+			// Prevent code falling off end of $units array
+			$mantissa *= ( $unitIndex - $maxIndex ) * 1000;
+			$unitIndex = $maxIndex;
+		}
 		if ( $mantissa < 10 ) {
 			$mantissa = round( $mantissa, 1 );
 		} else {
