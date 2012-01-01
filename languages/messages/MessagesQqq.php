@@ -2219,6 +2219,8 @@ Possible alternatives to the word 'content' are 'subject matter' or 'wiki subjec
 
 $1 is a page title",
 'wantedfiles'             => 'Name of special page displayed in [[Special:SpecialPages]] and title of [[Special:WantedFiles]].',
+'wantedfiletext-cat'      => 'Message displayed at top of [[special:WantedFiles]]. $1 contains the name of the tracking category for broken files (Including Category prefix). {{msg-mw|wantedfiletext-nocat}} is used if the tracking category is disabled.',
+'wantedfiletext-nocat'      => 'Message displayed at top of [[special:WantedFiles]] when broken file tracking category is disabled. See {{msg-mw|wantedfiletext-cat}}.',
 'wantedtemplates'         => 'The page name of [[Special:WantedTemplates]].',
 'mostlinked'              => 'Name of special page displayed in [[Special:SpecialPages]]',
 'mostlinkedcategories'    => 'Name of special page displayed in [[Special:SpecialPages]]',

@@ -1628,6 +1628,8 @@ $wgMessageStructure = array(
 		'wantedpages-badtitle',
 		'wantedfiles',
 		'wantedfiles-summary',
+		'wantedfiletext-cat',
+		'wantedfiletext-nocat',
 		'wantedtemplates',
 		'wantedtemplates-summary',
 		'mostlinked',
