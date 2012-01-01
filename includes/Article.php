@@ -1460,10 +1460,8 @@ class Article extends Page {
 	public function doDelete( $reason, $suppress = false ) {
 		global $wgOut;
 
-		$id = $this->getTitle()->getArticleID( Title::GAID_FOR_UPDATE );
-
 		$error = '';
-		if ( $this->mPage->doDeleteArticle( $reason, $suppress, $id, true, $error ) ) {
+		if ( $this->mPage->doDeleteArticle( $reason, $suppress, 0, true, $error ) ) {
 			$deleted = $this->getTitle()->getPrefixedText();
 
 			$wgOut->setPageTitle( wfMessage( 'actioncomplete' ) );
