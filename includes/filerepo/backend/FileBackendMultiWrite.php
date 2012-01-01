@@ -83,7 +83,7 @@ class FileBackendMultiWrite extends FileBackendBase {
 				// Set "files to lock" from the first batch so we don't try to set all
 				// locks two or three times over (depending on the number of backends).
 				// A lock on one storage path is a lock on all the backends.
-				foreach ( $performOps as $index => $fileOp ) {
+				foreach ( $performOps as $fileOp ) {
 					$filesLockSh = array_merge( $filesLockSh, $fileOp->storagePathsRead() );
 					$filesLockEx = array_merge( $filesLockEx, $fileOp->storagePathsChanged() );
 				}
@@ -297,7 +297,7 @@ class FileBackendMultiWrite extends FileBackendBase {
 	 * @see FileBackendBase::getFileList()
 	 */
 	function getFileList( array $params ) {
-		foreach ( $this->backends as $index => $backend ) {
+		foreach ( $this->backends as $backend ) {
 			# Get results from the first backend
 			$realParams = $this->substOpPaths( $params, $backend );
 			return $backend->getFileList( $realParams );

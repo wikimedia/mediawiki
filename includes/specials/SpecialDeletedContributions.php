@@ -293,8 +293,6 @@ class DeletedContributionsPage extends SpecialPage {
 			$out->addHTML( $this->getForm( '' ) );
 			return;
 		}
-		$nt = $userObj->getUserPage();
-		$id = $userObj->getID();
 
 		$target = $userObj->getName();
 		$out->addSubtitle( $this->getSubTitle( $userObj ) );

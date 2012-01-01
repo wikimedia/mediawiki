@@ -207,7 +207,7 @@ class LSLockManager extends LockManager {
 		$votesLeft = count( $this->srvsByBucket[$bucket] ); // remaining peers
 		$quorum = floor( $votesLeft/2 + 1 ); // simple majority
 		// Get votes for each peer, in order, until we have enough...
-		foreach ( $this->srvsByBucket[$bucket] as $index => $lockSrv ) {
+		foreach ( $this->srvsByBucket[$bucket] as $lockSrv ) {
 			// Attempt to acquire the lock on this peer
 			if ( !$this->doLockingRequest( $lockSrv, $paths, $type ) ) {
 				return 'cantacquire'; // vetoed; resource locked
@@ -284,7 +284,7 @@ class LSLockManager extends LockManager {
 	 */
 	function __destruct() {
 		$this->releaseLocks();
-		foreach ( $this->conns as $lockSrv => $conn ) {
+		foreach ( $this->conns as $conn ) {
 			fclose( $conn );
 		}
 	}
