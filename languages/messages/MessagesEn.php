@@ -2529,8 +2529,8 @@ It now redirects to [[$2]].',
 'wantedpages-badtitle'            => 'Invalid title in result set: $1',
 'wantedfiles'                     => 'Wanted files',
 'wantedfiles-summary'             => '', # do not translate or duplicate this message to other languages
-'wantedfiletext-cat'              => 'The following images are used but do not exist. Images from foreign repositories may be listed despite existing. Any such false positives will be <del>struck out</del>. Additionally, pages that embed images that do not exist are listed in [[:$1]].',
-'wantedfiletext-nocat'              => 'The following images are used but do not exist. Images from foreign repositories may be listed despite existing. Any such false positives will be <del>struck out</del>.',
+'wantedfiletext-cat'              => 'The following files are used but do not exist. Files from foreign repositories may be listed despite existing. Any such false positives will be <del>struck out</del>. Additionally, pages that embed files that do not exist are listed in [[:$1]].',
+'wantedfiletext-nocat'            => 'The following files are used but do not exist. Files from foreign repositories may be listed despite existing. Any such false positives will be <del>struck out</del>.',
 'wantedtemplates'                 => 'Wanted templates',
 'wantedtemplates-summary'         => '', # do not translate or duplicate this message to other languages
 'mostlinked'                      => 'Most linked-to pages',
