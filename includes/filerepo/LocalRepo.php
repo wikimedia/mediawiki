@@ -120,7 +120,7 @@ class LocalRepo extends FileRepo {
 			array( 'oi_sha1' => $sha1,
 				'oi_archive_name ' . $dbw->buildLike( $dbw->anyString(), ".$ext" ),
 				$dbw->bitAnd( 'oi_deleted', File::DELETED_FILE ) => File::DELETED_FILE ),
-			__METHOD__, array( 'FOR UPDATE' )
+			__METHOD__, $options
 		);
 	}
 
