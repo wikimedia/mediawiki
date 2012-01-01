@@ -64,6 +64,7 @@ class Title {
 	var $mArticleID = -1;             // /< Article ID, fetched from the link cache on demand
 	var $mLatestID = false;           // /< ID of most recent revision
 	var $mCounter = -1;               // /< Number of times this page has been viewed (-1 means "not loaded")
+	private $mIsNew;                  // /< Whether this is a "new page" (i.e. it has only one revision)
 	private $mEstimateRevisions;      // /< Estimated number of revisions; null of not loaded
 	var $mRestrictions = array();     // /< Array of groups allowed to edit this article
 	var $mOldRestrictions = false;
@@ -276,6 +277,8 @@ class Title {
 				$this->mLatestID = (int)$row->page_latest;
 			if ( isset( $row->page_counter ) )
 				$this->mCounter = (int)$row->page_counter;
+			if ( isset( $row->page_is_new ) )
+				$this->mIsNew = (bool)$row->page_is_new;
 		} else { // page not found
 			$this->mArticleID = 0;
 			$this->mLength = 0;
@@ -2784,6 +2787,27 @@ class Title {
 	}
 
 	/**
+	 * Check if this is a new page (i.e. it has only one revision)
+	 *
+	 * @return bool
+	 */
+	public function isNewPage() {
+		if ( $this->mIsNew === null ) {
+			if ( $this->exists() ) {
+				$dbr = wfGetDB( DB_SLAVE );
+				$this->mIsNew = (bool)$dbr->selectField( 'page',
+					'page_is_new',
+					array( 'page_id' => $this->getArticleID() ),
+					__METHOD__
+				);
+			} else {
+				$this->mIsNew = false;
+			}
+		}
+		return $this->mIsNew;
+	}
+
+	/**
 	 * Get the article ID for this Title from the link cache,
 	 * adding it if necessary
 	 *
@@ -3989,16 +4013,6 @@ class Title {
 	public function getEarliestRevTime( $flags = 0 ) {
 		$rev = $this->getFirstRevision( $flags );
 		return $rev ? $rev->getTimestamp() : null;
-	}
-
-	/**
-	 * Check if this is a new page
-	 *
-	 * @return bool
-	 */
-	public function isNewPage() {
-		$dbr = wfGetDB( DB_SLAVE );
-		return (bool)$dbr->selectField( 'page', 'page_is_new', $this->pageCond(), __METHOD__ );
 	}
 
 	/**
