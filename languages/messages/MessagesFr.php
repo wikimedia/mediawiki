@@ -741,7 +741,7 @@ Essayez à nouveau dans quelques minutes.',
 'cascadeprotected'     => 'Cette page est protégée car elle est incluse par {{PLURAL:$1|la page suivante, qui a été protégée|les pages suivantes, qui ont été protégées}} avec l’option « protection en cascade » activée :
 $2',
 'namespaceprotected'   => "Vous n’avez pas la permission de modifier les pages de l’espace de noms « '''$1''' ».",
-'customcssprotected'   => "Vous n'avez pas la permission de modifier cette page de CSS, car elle contient les paramètres personnels d'un autre utilisateur.",
+'customcssprotected'   => 'Vous n’avez pas la permission de modifier cette page de CSS, car elle contient les paramètres personnels d’un autre utilisateur.',
 'customjsprotected'    => "Vous n'avez pas la permission de modifier cette page de JavaScript, car elle contient les paramètres personnels d'un autre utilisateur.",
 'ns-specialprotected'  => 'Les pages dans l’espace de noms « {{ns:special}} » ne peuvent pas être modifiées.',
 'titleprotected'       => "Ce titre a été protégé à la création par [[User:$1|$1]].
@@ -791,8 +791,8 @@ Veuillez choisir un nom différent.',
 'createaccounterror'         => 'Impossible de créer le compte : $1',
 'nocookiesnew'               => "Le compte utilisateur a été créé, mais vous n’êtes pas connecté{{GENDER:||e|(e)}}. {{SITENAME}} utilise des témoins (''cookies'') pour la connexion mais vous les avez désactivés. Veuillez les activer et vous reconnecter avec le même nom et le même mot de passe.",
 'nocookieslogin'             => "{{SITENAME}} utilise des témoins (''cookies'') pour la connexion mais vous les avez désactivés. Veuillez les activer et vous reconnecter.",
-'nocookiesfornew'            => "Le compte utilisateur n'a pas été créé, car nous n'avons pas pu identifier son origine.
-Vérifiez que vous avez activé les cookies, rechargez la page et rééssayez.",
+'nocookiesfornew'            => 'Le compte utilisateur n’a pas été créé, car nous n’avons pas pu identifier son origine.
+Vérifiez que vous avez activé les cookies, rechargez la page et rééssayez.',
 'noname'                     => 'Vous n’avez pas saisi un nom d’utilisateur valide.',
 'loginsuccesstitle'          => 'Connexion réussie',
 'loginsuccess'               => 'Vous êtes maintenant connecté{{GENDER:$1||e|(e)}} à {{SITENAME}} en tant que « $1 ».',
@@ -806,7 +806,7 @@ Vérifiez l’orthographe, ou [[Special:UserLogin/signup|créez un nouveau compt
 'wrongpasswordempty'         => 'Vous n’avez pas entré de mot de passe. Veuillez essayer à nouveau.',
 'passwordtooshort'           => 'Votre mot de passe doit contenir au moins $1 caractère{{PLURAL:$1||s}}.',
 'password-name-match'        => 'Votre mot de passe doit être différent de votre nom d’utilisateur.',
-'password-login-forbidden'   => "L'utilisation de ce nom d'utilisateur et de ce mot de passe a été interdite.",
+'password-login-forbidden'   => 'L’utilisation de ce nom d’utilisateur et de ce mot de passe a été interdite.',
 'mailmypassword'             => 'Recevoir un nouveau mot de passe par courriel',
 'passwordremindertitle'      => 'Nouveau mot de passe temporaire pour {{SITENAME}}',
 'passwordremindertext'       => 'Quelqu’un (probablement vous, ayant l’adresse IP $1) a demandé un nouveau mot de
@@ -880,7 +880,7 @@ Vous avez peut-être déjà changé votre mot de passe ou demandé un nouveau mo
 'passwordreset-username'           => 'Nom d’utilisateur :',
 'passwordreset-domain'             => 'Domaine :',
 'passwordreset-capture'            => 'Voir le courriel résultant?',
-'passwordreset-capture-help'       => "Si vous cochez cette case, le courriel (avec le mot de passe temporaire) vous sera affiché en même temps qu'il sera envoyé à l'utilisateur.",
+'passwordreset-capture-help'       => 'Si vous cochez cette case, le courriel (avec le mot de passe temporaire) vous sera affiché en même temps qu’il sera envoyé à l’utilisateur.',
 'passwordreset-email'              => 'Adresse de courriel :',
 'passwordreset-emailtitle'         => 'Détails du compte sur {{SITENAME}}',
 'passwordreset-emailtext-ip'       => 'Quelqu’un (probablement vous, depuis l’adresse IP $1) a demandé un rappel des informations de votre compte pour {{SITENAME}} ($4). {{PLURAL:$3|Le compte utilisateur suivant est associé|Les comptes utilisateurs suivants sont associés}} à cette adresse de courriel :
@@ -893,11 +893,11 @@ $2
 $2
 
 {{PLURAL:$3|Ce mot de passe temporaire expirera|Ces mots de passe temporaires expireront}} dans {{PLURAL:$5|un jour|$5 jours}}. Vous devez maintenant vous connecter et choisir un nouveau mot de passe. Si cette demande ne provient pas de vous, ou que vous vous êtes souvenu de votre mot de passe initial, et ne souhaitez plus le modifier, vous pouvez ignorer ce message et continuer à utiliser votre ancien mot de passe.',
-'passwordreset-emailelement'       => "Nom d'utilisateur :       $1
-Mot de passe temporaire : $2",
+'passwordreset-emailelement'       => 'Nom d’utilisateur : $1
+Mot de passe temporaire : $2',
 'passwordreset-emailsent'          => 'Un courriel de rappel a été envoyé.',
 'passwordreset-emailsent-capture'  => 'Un courriel de rappel a été envoyé, qui est affiché ci-dessous.',
-'passwordreset-emailerror-capture' => "Un courriel de rappel a été généré, qui est affiché ci-dessous, mais l'envoi à l'utilisateur a échoué: $1",
+'passwordreset-emailerror-capture' => 'Un courriel de rappel a été généré, qui est affiché ci-dessous, mais l’envoi à l’utilisateur a échoué : $1',
 
 # Special:ChangeEmail
 'changeemail'          => 'Changer l’adresse de courriel',
@@ -1369,7 +1369,7 @@ Essayez en utilisant le préfixe ''all:'' pour rechercher dans tout le contenu (
 'qbsettings-fixedright'     => 'Droite',
 'qbsettings-floatingleft'   => 'Flottante à gauche',
 'qbsettings-floatingright'  => 'Flottante à droite',
-'qbsettings-directionality' => "Fixe, en fonction de la directivité d'écriture de votre langue",
+'qbsettings-directionality' => 'Fixe, en fonction de la directivité d’écriture de votre langue',
 
 # Preferences page
 'preferences'                   => 'Préférences',
@@ -1851,12 +1851,12 @@ Si le problème persiste, contactez un [[Special:ListUsers/sysop|administrateur]
 'backend-fail-create'        => 'Impossible de créer le fichier $1.',
 
 # Lock manager
-'lockmanager-notlocked'        => 'Impossible de déverrouiller "$1"; elle n\'est pas verrouillée.',
-'lockmanager-fail-closelock'   => 'Impossible de fermer le fichier de verrou pour "$1".',
-'lockmanager-fail-deletelock'  => 'Impossible de supprimer le fichier de verrou pour "$1".',
-'lockmanager-fail-acquirelock' => 'Impossible d\'obtenir le verrou pour "$1".',
-'lockmanager-fail-openlock'    => 'Impossible d\'ouvrir le fichier de verrou pour "$1".',
-'lockmanager-fail-releaselock' => 'Impossible de relâcher le verrou pour "$1".',
+'lockmanager-notlocked'        => 'Impossible de déverrouiller « $1 » ; elle n’est pas verrouillée.',
+'lockmanager-fail-closelock'   => 'Impossible de fermer le fichier de verrou pour « $1 ».',
+'lockmanager-fail-deletelock'  => 'Impossible de supprimer le fichier de verrou pour « $1 ».',
+'lockmanager-fail-acquirelock' => 'Impossible d’obtenir le verrou pour « $1 ».',
+'lockmanager-fail-openlock'    => 'Impossible d’ouvrir le fichier de verrou pour « $1» .',
+'lockmanager-fail-releaselock' => 'Impossible de relâcher le verrou pour « $1 ».',
 'lockmanager-fail-db-bucket'   => 'Impossible de contacter suffisamment de bases de données de verrouillage dans le godet $1.',
 'lockmanager-fail-db-release'  => 'Impossible de relâcher les verrous sur la base de données $1.',
 'lockmanager-fail-svr-release' => 'Impossible de relâcher les verrous sur le serveur $1.',
@@ -2100,6 +2100,8 @@ Les entrées <del>barrées</del> ont été résolues.',
 'wantedpages'             => 'Pages les plus demandées',
 'wantedpages-badtitle'    => 'Titre invalide dans les résultats : $1',
 'wantedfiles'             => 'Fichiers les plus demandés',
+'wantedfiletext-cat'      => "Les fichiers suivants sont utilisés, mais il n'existent pas. Les fichiers de dépôts à distance peuvent être listés malgré qu'ils existent. Tout ces faux positifs seront <del>barrés</del>. En outre, les pages qui intègrent des fichiers qui n'existent pas sont répertoriés dans [[:$1]].",
+'wantedfiletext-nocat'    => "Les fichiers suivants sont utilisés, mais n'existent pas. Les fichiers de dépôts à distance peuvent être listés malgré qu'ils existent. Tout ces faux positifs seront <del>barrés</del>.",
 'wantedtemplates'         => 'Modèles demandés',
 'mostlinked'              => 'Pages les plus liées',
 'mostlinkedcategories'    => 'Catégories les plus utilisées',
@@ -2197,9 +2199,9 @@ Voyez aussi [[Special:WantedCategories|les catégories demandées]].',
 'linksearch-pat'   => 'Expression recherchée :',
 'linksearch-ns'    => 'Espace de noms :',
 'linksearch-ok'    => 'Rechercher',
-'linksearch-text'  => 'Des caractères jokers comme "*.wikipedia.org" peuvent être utilisés.
-Ils nécessitent au moins un domaine de niveau supérieur, par exemple "*.org".<br />
-Protocoles reconnus : <tt>$1</tt> (n\'ajoutez aucun de ceux-ci dans votre recherche).',
+'linksearch-text'  => 'Des caractères jokers comme « *.wikipedia.org » peuvent être utilisés.
+Ils nécessitent au moins un domaine de niveau supérieur, par exemple « *.org ».<br />
+Protocoles reconnus : <tt>$1</tt> (n’ajoutez aucun de ceux-ci dans votre recherche).',
 'linksearch-line'  => '$1 est lié depuis $2',
 'linksearch-error' => 'Les caractères jokers ne peuvent être utilisés qu’au début du nom de domaine de l’hôte.',
 
@@ -2249,7 +2251,7 @@ Des [[{{MediaWiki:Listgrouprights-helppage}}|informations additionnelles]] peuve
 'emailpagetext'        => 'Vous pouvez utiliser le formulaire ci-dessous pour envoyer un courriel à cet utilisateur.
 L’adresse électronique que vous avez indiquée dans [[Special:Preferences|vos préférences]] apparaîtra dans le champ « Expéditeur » de votre message ; ainsi, le destinataire pourra vous répondre directement.',
 'usermailererror'      => 'Erreur dans l’objet du courriel :',
-'defemailsubject'      => '{{SITENAME}} Courriel de l\'utilisateur "$1"',
+'defemailsubject'      => '{{SITENAME}} Courriel de l’utilisateur « $1 »',
 'usermaildisabled'     => 'L’envoi de courriels entre utilisateurs est désactivé',
 'usermaildisabledtext' => 'Vous ne pouvez pas envoyer de courriels à d’autres utilisateurs sur ce wiki',
 'noemailtitle'         => 'Aucune adresse de courriel',
@@ -2910,8 +2912,8 @@ Un dossier temporaire est manquant.",
 'import-upload'              => 'Import de données XML',
 'import-token-mismatch'      => 'Perte des données de session. Veuillez réessayez.',
 'import-invalid-interwiki'   => 'Impossible d’importer depuis le wiki spécifié.',
-'import-error-edit'          => 'La page "$1" n\'a pas été importée parce que vous n\'êtes pas autorisés à la modifier.',
-'import-error-create'        => 'La page "$1" n\'a pas été importée parce que vous n\'êtes pas autorisés à la créer.',
+'import-error-edit'          => 'La page « $1 » n’a pas été importée parce que vous n’êtes pas autorisés à la modifier.',
+'import-error-create'        => 'La page « $1 » n’a pas été importée parce que vous n’êtes pas autorisés à la créer.',
 
 # Import log
 'importlogpage'                    => 'Journal des importations',
@@ -3910,7 +3912,7 @@ Les images sont montrées dans leur pleine résolution, les autres fichiers sont
 
 # Feedback
 'feedback-bugornote' => 'Si vous êtes prêt à décrire un problème technique en détail, veuillez [$1 signaler un bogue].
-Sinon, vous pouvez utiliser le formulaire simplifié ci-dessous. Votre commentaire sera ajouté à la page "[$3 $2]", avec votre nom d\'utilisateur et le navigateur que vous utilisez.',
+Sinon, vous pouvez utiliser le formulaire simplifié ci-dessous. Votre commentaire sera ajouté à la page « [$3 $2] », avec votre nom d’utilisateur et le navigateur que vous utilisez.',
 'feedback-subject'   => 'Objet :',
 'feedback-message'   => 'Message :',
 'feedback-cancel'    => 'Annuler',

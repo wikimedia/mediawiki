@@ -2041,7 +2041,7 @@ wiki: $PAGEEDITOR_WIKI
 Kò ní sí ìfitọ́nilétí míràn mọ́ fún àyípadà ọjọ́ọwájú àyàfi tí ẹ bá ṣàbẹ̀wò ojúewé yìí.
 Ẹ sì tún le ṣe àtúntò àwọn àmì ìfitọ́nilétí fún gbogbo àwọn ojúewé mímójútó nínú ìmójútó yín.
 
- Sístẹ́mù ìfitọ́nilétí {{SITENAME}} yín 
+Sístẹ́mù ìfitọ́nilétí {{SITENAME}} yín 
 
 ---
 

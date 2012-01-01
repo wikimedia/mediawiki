@@ -732,7 +732,7 @@ Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la ve
 'prefs-rc'                    => 'Ultins cambiaments & stubs',
 'prefs-watchlist'             => 'Tignudis di voli',
 'prefs-watchlist-days'        => 'Numar di zornadis di mostrâ inte liste des pagjinis tignudis di voli:',
-'prefs-watchlist-days-max'    => 'Massim 7 zornadis',
+'prefs-watchlist-days-max'    => 'Massim $1 {{PLURAL:$1|zornade|zornadis}}',
 'prefs-watchlist-edits'       => 'Numar di modifichis di mostrâ inte liste slargjade:',
 'prefs-watchlist-edits-max'   => 'Numar massim: 1000',
 'prefs-misc'                  => 'Variis',

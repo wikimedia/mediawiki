@@ -1887,6 +1887,7 @@ Hver linje indeholder henvisninger til den første og den anden omdirigering, s�
 'mostimages'              => 'Mest brugte filer',
 'mostrevisions'           => 'Sider med de fleste ændringer',
 'prefixindex'             => 'Alle sider med præfiks',
+'prefixindex-namespace'   => 'Alle sider med præfiks (navnerummet $1)',
 'shortpages'              => 'Korte sider',
 'longpages'               => 'Lange sider',
 'deadendpages'            => 'Blindgydesider',

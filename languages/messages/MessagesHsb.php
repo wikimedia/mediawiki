@@ -488,7 +488,7 @@ Administrator, kiž je datowu banku zawrěł, je jako přičinu podał: $1',
 
 To so zwjetša zawinuje, hdyž so njepłaćiwa změna abo zapisk stawiznow na stronu wotkazuje, kotraž bu wušmórnjena.
 
-Jeli to njetrjechi, sy najskerje programowu zmólku w softwarje namakał.
+Jeli to njetrjechi, sy najskerje programowy zmylk w softwarje namakał.
 Zdźěl to prošu [[Special:ListUsers/sysop|admininistratorej]] podawajo wotpowědny URL.',
 'missingarticle-rev'   => '(Wersijowe čisło: $1)',
 'missingarticle-diff'  => '(Rozdźěl: $1, $2)',
@@ -1863,6 +1863,8 @@ Kóžda rjadka wobsahuje wotkazy k prěnjemu a druhemu daleposrědkowanju kaž t
 'wantedpages'             => 'Požadane strony',
 'wantedpages-badtitle'    => 'Njepłaćiwy titul we wuslědku: $1',
 'wantedfiles'             => 'Požadane dataje',
+'wantedfiletext-cat'      => 'Slědowace dataje so wužiwaja, ale njeeksistuju. Dataje z cuzych repozitorijow hodźa so nalistować, byrnjež eksistowali. Tajke wopačne pozitiwy su <del>přešmórnjene</del>. Nimo toho so strony w [[:$1]] nalistuja, kotrež dataje zasadźuja, kotrež njeeksistuja.',
+'wantedfiletext-nocat'    => 'Slědowace dataje so wužiwaja, ale njeeksistuja. Dataje z cuzych repozitorijow hodźa so nalistować, byrnjež eksistowali. Tajke wopačne pozitiwy su <del>přešmórnjene</del>.',
 'wantedtemplates'         => 'Falowace předłohi',
 'mostlinked'              => 'Z najwjace stronami zwjazane strony',
 'mostlinkedcategories'    => 'Z najwjace stronami zwjazane kategorije',
@@ -2598,7 +2600,7 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 'djvu_page_error'          => 'Strona DjVU zwonka wobłuka strony',
 'djvu_no_xml'              => 'Daty XML njemóža so za dataju DjVU wotwołać',
 'thumbnail-temp-create'    => 'Temporerna dataja za miniaturny wobrazk njeda so wutworić',
-'thumbnail-dest-create'    => 'Miniaturny wobrazk njeda so na cilowej městnje składować',
+'thumbnail-dest-create'    => 'Miniaturny wobrazk njeda so na cilowym městnje składować',
 'thumbnail_invalid_params' => 'Njepłaćiwe parametry miniaturki',
 'thumbnail_dest_directory' => 'Njemóžno cilowy zapis wutworić.',
 'thumbnail_image-type'     => 'Wobrazowy typ so njepodpěruje',

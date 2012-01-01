@@ -490,6 +490,7 @@ $messages = array(
 'editing'                          => '$1 ಲೇಖನೊನು ಈರ್ ಸಂಪಾದನೆ ಮಲ್ತೊಂದುಲ್ಲರ್',
 'editingsection'                   => '$1 (ವಿಭಾಗೊನು) ಸಂಪಾದನೆ ಮಲ್ತೊಂದುಲ್ಲರ್',
 'yourtext'                         => 'ಇರೆನ ಸಂಪಾದನೆ',
+'yourdiff'                         => 'ವ್ಯತ್ಯಾಸೊಲು',
 'copyrightwarning'                 => "ದಯಮಲ್ತ್’ದ್ ಗಮನಿಸ್’ಲೆ: {{SITENAME}} ಸೈಟ್’ಡ್ ಇರೆನ ಪೂರಾ ಕಾಣಿಕೆಲುಲಾ $2 ಅಡಿಟ್ ಬಿಡುಗಡೆ ಆಪುಂಡು (ಮಾಹಿತಿಗ್ $1 ನ್ ತೂಲೆ). ಇರೆನ ಸಂಪಾದನೆಲೆನ್ ಬೇತೆಕುಲು ನಿರ್ಧಾಕ್ಷಿಣ್ಯವಾದ್ ಬದಲ್ ಮಲ್ತ್’ದ್ ಬೇತೆ ಕಡೆಲೆಡ್ ಪಟ್ಟೆರ್. ಇಂದೆಕ್ ಇರೆನ ಒಪ್ಪಿಗೆ ಇತ್ತ್’ನ್ಡ ಮಾತ್ರ ಮುಲ್ಪ ಸಂಪಾದನೆ ಮಲ್ಪುಲೆ.<br />
 ಅತ್ತಂದೆ ಇರೆನ ಸಂಪಾದನೆಲೆನ್ ಈರ್ ಸ್ವತಃ ಬರೆತರ್, ಅತ್ತ್’ನ್ಡ ಕೃತಿಸ್ವಾಮ್ಯತೆ ಇಜ್ಜಂದಿನ ಕಡೆರ್ದ್ ದೆತೊನ್ದರ್ ಪಂಡ್’ದ್ ಪ್ರಮಾಣಿಸೊಂದುಲ್ಲರ್.
 '''ಕೃತಿಸ್ವಾಮ್ಯತೆದ ಅಡಿಟುಪ್ಪುನಂಚಿನ ಕೃತಿಲೆನ್ ಒಪ್ಪಿಗೆ ಇಜ್ಜಂದೆ ಮುಲ್ಪ ಪಾಡೊಚಿ!'''",
@@ -602,20 +603,27 @@ $messages = array(
 'prefs-resetpass'           => 'ಪ್ರವೇಶಪದೊನ್ ಬದಲಾವಣೆ ಮಲ್ಪುಲೆ',
 'prefs-changeemail'         => 'ಇ-ಅಂಚೆ ವಿಳಾಸೊನು ಬದಲಾವಣೆ ಮಲ್ಪುಲೆ',
 'saveprefs'                 => 'ಒರಿಪಾಲೆ',
+'rows'                      => 'ಸಾಲ್‘ಲು',
 'localtime'                 => 'ಸ್ಥಳೀಯ ಸಮಯ:',
 'timezoneregion-africa'     => 'ಆಫ್ರಿಕ',
 'timezoneregion-america'    => 'ಅಮೇರಿಕ',
 'timezoneregion-antarctica' => 'ಅಂಟಾರ್ಟಿಕ',
 'timezoneregion-arctic'     => 'ಆರ್ಕ್ಟಿಕ್',
 'timezoneregion-asia'       => 'ಏಷ್ಯಾ',
+'timezoneregion-australia'  => 'ಆಸ್ಟ್ರೇಲಿಯಾ',
+'prefs-files'               => 'ಕಡತೊಲು',
 'youremail'                 => 'ಇ-ಅಂಚೆ',
 'username'                  => 'ಸದಸ್ಯೆರ್ನ ಪುದರ್:',
 'uid'                       => 'ಸದಸ್ಯೆರನ  ID',
 'yourrealname'              => 'ನಿಜವಾಯಿನ ಪುದರ್',
 'yourlanguage'              => 'ಭಾಷೆ:',
+'yournick'                  => 'ಪೊಸ ಸಹಿ',
+'badsiglength'              => 'ಇರೆನ ಸಹಿ ಭಾರೀ ಉದ್ದ ಆಂಡ್',
 'yourgender'                => 'ಲಿಂಗೊ',
 'gender-male'               => 'ಆಣ್',
 'gender-female'             => 'ಪೊಣ್ಣು',
+'email'                     => 'ಇ-ಅಂಚೆ',
+'prefs-signature'           => 'ಸಹಿ',
 
 # Groups
 'group-user'  => 'ಬಳಕೆದಾರೆರ್',
@@ -623,6 +631,9 @@ $messages = array(
 'group-all'   => 'ಮಾತಾ',
 
 'grouppage-sysop' => '{{ns:project}}:ನಿರ್ವಾಹಕೆರ್',
+
+# Rights
+'right-delete' => 'ಪುಟೊಕುಲೆನ್ ಮಾಜಾಲೆ',
 
 # User rights log
 'rightslog' => 'ಸದಸ್ಯೆರ್ನ ಹಕ್ಕು ದಾಖಲೆ',

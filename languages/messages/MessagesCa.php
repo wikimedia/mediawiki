@@ -826,12 +826,12 @@ Podeu [[Special:Search/{{PAGENAME}}|cercar aquest títol]] en altres pàgines o 
 'userpage-userdoesnotexist-view'   => 'El compte d\'usuari "$1" no està registrat.',
 'blocked-notice-logextract'        => "En aquests moments aquest compte d'usuari es troba blocat.
 Per més detalls, la darrera entrada del registre es mostra a continuació:",
-'clearyourcache'                   => "'''Nota:''' Després de desar, heu de posar al dia la memòria cau del vostre navegador per veure els canvis.
-* '''Firefox / Safari:''' premeu ''Shift'' mentre cliqueu ''Actualitza'' (Reload), o premeu ''Ctrl+F5'' o ''Ctrl+R'' (''Cmd+R'' en un Mac)
-* '''Google Chrome:''' premeu ''Ctrl+Shift+R'' (''Cmd+Shift+R'' en un Mac)
-* '''Internet Explorer:''' premeu ''Ctrl'' mentre cliqueu ''Actualitza'' (Refresh), o premeu ''Ctrl+F5''
-* '''Konqueror:''' cliqueu el botó ''Recarregar'' (Reload), o premeu ''F5''
-* '''Opera:''' esborreu la vostra memòria cau a ''Tools → Preferences''",
+'clearyourcache'                   => "'''Nota:''' Després de desar, podeu haver d'ometre la memòria cau del vostre navegador per a veure'n els canvis.
+* '''Firefox / Safari:''' Premeu ''Maj'' mentre cliqueu a ''Actualitza'' (Reload), o premeu ''Ctrl+F5'' o ''Ctrl+R'' (''⌘+R'' en un Mac)
+* '''Google Chrome:''' Premeu ''Ctrl+Maj+R'' (''⌘+Maj+R'' en un Mac)
+* '''Internet Explorer:''' Premeu ''Ctrl'' mentre cliqueu a ''Actualitza'' (Refresh), o premeu ''Ctrl+F5''
+* '''Konqueror:''' Cliqueu al botó ''Recarrega'' (Reload), o premeu ''F5''
+* '''Opera:''' Netegeu la vostra memòria cau a ''Tools → Preferences''",
 'usercssyoucanpreview'             => "'''Consell:''' Utilitzeu el botó \"{{int:showpreview}}\" per provar el vostre nou CSS abans de desar-lo.",
 'userjsyoucanpreview'              => "'''Consell:''' Utilitzeu el botó \"{{int:showpreview}}\" per provar el vostre nou JavaScript abans de desar-lo.",
 'usercsspreview'                   => "'''Recordeu que esteu previsualitzant el vostre CSS d'usuari.'''
@@ -1213,7 +1213,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'prefs-rc'                      => 'Canvis recents',
 'prefs-watchlist'               => 'Llista de seguiment',
 'prefs-watchlist-days'          => 'Nombre de dies per mostrar en la llista de seguiment:',
-'prefs-watchlist-days-max'      => 'Màxim set dies',
+'prefs-watchlist-days-max'      => 'Màxim $1 {{PLURAL:$1|dia|dies}}',
 'prefs-watchlist-edits'         => 'Nombre de modificacions a mostrar en una llista estesa de seguiment:',
 'prefs-watchlist-edits-max'     => 'Nombre màxim: 1000',
 'prefs-watchlist-token'         => 'Fitxa de llista de seguiment:',
@@ -1637,7 +1637,23 @@ $1',
 'upload-http-error'         => 'Ha ocorregut un error HTTP: $1',
 
 # File backend
-'backend-fail-notexists' => 'El fitxer $1 no existeix.',
+'backend-fail-notexists'     => 'El fitxer $1 no existeix.',
+'backend-fail-delete'        => "No s'ha pogut suprimir el fitxer $1.",
+'backend-fail-alreadyexists' => 'El fitxer $1 ja existeix.',
+'backend-fail-store'         => "No s'ha pogut emmagatzemar el fitxer $1 a $2.",
+'backend-fail-copy'          => "No s'ha pogut copiar el fitxer $1 a $2.",
+'backend-fail-move'          => "No s'ha pogut moure el fitxer $1 a $2.",
+'backend-fail-opentemp'      => "No s'ha pogut obrir el fitxer temporal.",
+'backend-fail-writetemp'     => "No s'ha pogut escriure el fitxer temporal.",
+'backend-fail-closetemp'     => "No s'ha pogut tancar el fitxer temporal.",
+'backend-fail-read'          => "No s'ha pogut llegir el fitxer $1.",
+'backend-fail-create'        => "No s'ha pogut crear el fitxer $1.",
+
+# Lock manager
+'lockmanager-notlocked'        => "No s'ha pogut desbloquejar «$1»; no és bloquejat.",
+'lockmanager-fail-closelock'   => "No s'ha pogut bloquejar el fitxer per «$1».",
+'lockmanager-fail-deletelock'  => "No s'ha pogut suprimir el fitxer de bloqueig per «$1».",
+'lockmanager-fail-releaselock' => "No s'ha pogut alliberar el bloqueig de «$1».",
 
 # ZipDirectoryReader
 'zip-file-open-error' => "S'ha trobat un error en obrir l'arxiu ZIP per a fer-hi comprovacions.",
@@ -1824,7 +1840,7 @@ La descripció de la seva [$2 pàgina de descripció] es mostra a continuació.'
 'statistics-users-active-desc' => "Usuaris que han dut a terme alguna acció en {{PLURAL:$1|l'últim dia|els últims $1 dies}}",
 'statistics-mostpopular'       => 'Pàgines més visualitzades',
 
-'disambiguations'      => 'Pàgines amb enllaços a pàgines de desambiguació',
+'disambiguations'      => 'Pàgines que enllacen a pàgines de desambiguació',
 'disambiguationspage'  => 'Template:Desambiguació',
 'disambiguations-text' => "Les següents pàgines enllacen a una '''pàgina de desambiguació'''.
 Per això, caldria que enllacessin al tema apropiat.<br />
@@ -1881,6 +1897,7 @@ Les entrades <del>ratllades</del> s\'han resolt.',
 'mostimages'              => 'Fitxers més enllaçats',
 'mostrevisions'           => 'Pàgines més modificades',
 'prefixindex'             => 'Totes les pàgines per prefix',
+'prefixindex-namespace'   => 'Totes les pàgines amb prefix (espai de noms $1)',
 'shortpages'              => 'Pàgines curtes',
 'longpages'               => 'Pàgines llargues',
 'deadendpages'            => 'Pàgines atzucac',
@@ -1968,9 +1985,9 @@ Vegeu també [[Special:WantedCategories|les categories soŀlicitades]].",
 'linksearch-pat'   => 'Patró de cerca:',
 'linksearch-ns'    => 'Espai de noms:',
 'linksearch-ok'    => 'Cerca',
-'linksearch-text'  => 'Comodins com "*. wikipedia.org" es pot utilitzar.
+'linksearch-text'  => 'Podeu fer servir caràcters comodí com "*.wikipedia.org".
 Necessita com a mínim un domini de primer nivell, per exemple "*.org".<br />
-Dóna suport a protocols: <tt> $1 </tt> (no afegir algun d\'aquests en la seva recerca).',
+Protocols admesos: <tt> $1 </tt> (no els afegiu en la vostra recerca).',
 'linksearch-line'  => '$1 enllaçat a $2',
 'linksearch-error' => "Els caràcters comodí només poden aparèixer a l'inici de l'url.",
 
@@ -2077,7 +2094,7 @@ S'hi mostraran els canvis futurs que tinguin lloc en aquesta pàgina i la corres
 'watchmethod-list'     => "s'està comprovant si hi ha edicions recents en les pàgines vigilades",
 'watchlistcontains'    => 'La vostra llista de seguiment conté {{PLURAL:$1|una única pàgina|$1 pàgines}}.',
 'iteminvalidname'      => "Hi ha un problema amb l'element '$1': el nom no és vàlid...",
-'wlnote'               => "Per sota de  {{PLURAL:$1| és l'últim change|are l'últim ' ' $1 ' ' canvis}} en l'últim  {{PLURAL:$2| hour| ' '$2''' hours}}, as of $3, $4.",
+'wlnote'               => "A sota hi ha {{PLURAL:$1|el darrer canvi|els darrers '''$1''' canvis}} en {{PLURAL:$2|la darrera hora|les  '''$2''' darreres hores}}, a $4 del $3.",
 'wlshowlast'           => '<small>- Mostra les darreres $1 hores, els darrers $2 dies o $3</small>',
 'watchlist-options'    => 'Opcions de la llista de seguiment',
 
@@ -2287,7 +2304,7 @@ Consulteu el [[Special:Log/delete|registre d'esborraments]] per a veure els esbo
 'undelete-bad-store-key'       => 'No es pot revertir la revisió de fitxer amb marca horària $1: el fitxer no hi era abans i tot de ser eliminat.',
 'undelete-cleanup-error'       => "S'ha produït un error en eliminar el fitxer d'arxiu sense utilitzar «$1».",
 'undelete-missing-filearchive' => "No s'ha pogut restaurar l'identificador $1 d'arxiu de fitxers perquè no es troba a la base de dades. Podria ser que ja s'hagués revertit l'eliminació.",
-'undelete-error'               => "Pàgina d'error undeleting",
+'undelete-error'               => 'Error recuperant pàgina',
 'undelete-error-short'         => "S'ha produït un error en revertir l'eliminació del fitxer: $1",
 'undelete-error-long'          => "S'han produït errors en revertir la supressió del fitxer:
 
@@ -2637,6 +2654,7 @@ En el darrer cas, podeu fer servir un enllaç com ara [[{{#Special:Export}}/{{Me
 'thumbnail_error'          => "S'ha produït un error en crear la miniatura: $1",
 'djvu_page_error'          => "La pàgina DjVu està fora de l'abast",
 'djvu_no_xml'              => "No s'ha pogut recollir l'XML per al fitxer DjVu",
+'thumbnail-dest-create'    => 'No es pot desar la miniatura a la destinació',
 'thumbnail_invalid_params' => 'Els paràmetres de les miniatures no són vàlids',
 'thumbnail_dest_directory' => "No s'ha pogut crear el directori de destinació",
 'thumbnail_image-type'     => "Tipus d'imatge no contemplat",

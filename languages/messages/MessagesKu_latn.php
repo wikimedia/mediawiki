@@ -13,6 +13,7 @@
  * @author Ferhengvan
  * @author George Animal
  * @author Gomada
+ * @author Krinkle
  * @author Liangent
  * @author The Evil IP address
  * @author Welathêja
@@ -1809,60 +1810,10 @@ Rûpela "[[:$1]]" berê heye. Tu rast dixazê wê jêbibê ji bo navguherandinê
 'tooltip-upload'                  => 'Barkirinê destpêke',
 
 # Stylesheets
-'monobook.css' => '*.rtl
- {
-  dir:rtl;
-  text-align:right;
-  font-family: "DejaVu Sans", "Tahoma", "Unikurd Web", "Arial Unicode MS", "Lateef", "Scheherazade", "ae_Rasheeq", sans-serif, sans;
- }
-
- /*Make the site more suitable for Soranî users */
- h1 {font-family: "Tahoma", "DejaVu Sans", "Arial Unicode MS", sans-serif, sans, "Unikurd Web", "Scheherazade";}
- h2 {font-family: "Tahoma", "DejaVu Sans", "Arial Unicode MS", sans-serif, sans, "Unikurd Web",  "Scheherazade";}
- h3 {font-family: "Tahoma", "DejaVu Sans", "Arial Unicode MS", sans-serif, sans, "Unikurd Web", "Scheherazade";}
- body {font-family: "Tahoma", "DejaVu Sans", "Arial Unicode MS", sans-serif, sans, "Unikurd Web", "Scheherazade";}
- textarea {font-family: Lucida Console, Tahoma;}
- pre {font-family: Lucida Console, Tahoma;}',
+'monobook.css' => '/* CSS placed here will affect users of the Monobook skin */',
 
 # Scripts
-'common.js' => '/* JavaScript */
-
-/* Workaround for language variants */
-
-// Set user-defined "lang" attributes for the document element (from zh)
-var htmlE=document.documentElement;
-if (wgUserLanguage == "ku"){ variant = "ku"; }
-if (wgUserLanguage == "ku-latn"){ variant = "ku-Latn"; }
-if (wgUserLanguage == "ku-arab"){ variant = "ku-Arab"; htmlE.setAttribute("dir","rtl"); }
-htmlE.setAttribute("lang",variant);
-htmlE.setAttribute("xml:lang",variant);
-
-// Switch language variants of messages (from zh)
-function wgULS(latn,arab){
-        //
-        ku=latn||arab;
-        ku=ku;
-        latn=latn;
-        arab=arab;
-        switch(wgUserLanguage){
-                case "ku": return ku;
-                case "ku-arab": return arab;
-                case "ku-latn": return latn;
-                default: return "";
-        }
-}
-
-// workaround for RTL ([[bugzilla:6756]])  and for [[bugzilla:02020]] & [[bugzilla:04295]]
-if (wgUserLanguage == "ku-arab")
-{
-  document.direction="rtl";
-  document.write(\'<link rel="stylesheet" type="text/css" href="\'+stylepath+\'/common/common_rtl.css">\');
-  document.write(\'<style type="text/css">html {direction:rtl;} body {direction:rtl; unicode-bidi:embed; lang:ku-Arab; font-family: "DejaVu Sans", Tahoma, "Unikurd Web", "Arial Unicode MS", Lateef, Scheherazade, "ae_Rasheeq", "sans-serif", sans; font-size: 75%; letter-spacing: 0.001em;} html > body div#content ol {clear: left;} ol {margin-left:2.4em; margin-right:2.4em;} ul {margin-left:1.5em; margin-right:1.5em;} h1.firstHeading {background-position: bottom right; background-repeat: no-repeat;} h3 {font-size:110%;} h4 {font-size:100%;} h5 {font-size:90%;} #catlinks {width:100%;} #userloginForm {float: right !important;}</style>\');
-
-  if (skin == "monobook"){
-     document.write(\'<link rel="stylesheet" type="text/css" href="\'+stylepath+\'/monobook/rtl.css">\');
-  }
-}',
+'common.js' => '/* Any JavaScript here will be loaded for all users on every page load. */',
 
 # Attribution
 'anonymous' => 'Bikarhênera/ê nediyarkirî ya/yê {{SITENAME}}',

@@ -3625,13 +3625,19 @@ Les imáxenes amuésense a resolución completa; les demás tribes d'archivu exe
 'newuserlog-byemail'                  => 'clave unviada per corréu electrónicu',
 
 # Feedback
-'feedback-subject' => 'Asuntu:',
-'feedback-message' => 'Mensaxe:',
-'feedback-cancel'  => 'Encaboxar',
-'feedback-submit'  => 'Unviar comentarios',
-'feedback-adding'  => 'Amestando el comentariu a la páxina...',
-'feedback-error1'  => 'Fallu: Resultáu de la API non reconocíu',
-'feedback-error2'  => 'Fallu: Falló la edición',
-'feedback-error3'  => 'Fallu: Ensin respuesta de la API',
+'feedback-bugornote' => 'Si tas preparáu pa describir un problema técnicu en detalle, [$1 informa del fallu].
+D\'otra miente, pues usar el formulariu cenciellu d\'abaxo. El to comentariu apaecerá na páxina "[$3 $2]" xunto col to nome d\'usuariu y el restolador qu\'uses.',
+'feedback-subject'   => 'Asuntu:',
+'feedback-message'   => 'Mensaxe:',
+'feedback-cancel'    => 'Encaboxar',
+'feedback-submit'    => 'Unviar comentarios',
+'feedback-adding'    => 'Amestando el comentariu a la páxina...',
+'feedback-error1'    => 'Fallu: Resultáu de la API non reconocíu',
+'feedback-error2'    => 'Fallu: Falló la edición',
+'feedback-error3'    => 'Fallu: Ensin respuesta de la API',
+'feedback-thanks'    => "¡Gracies! La to opinión s'espublizó na páxina «[$2  $1]».",
+'feedback-close'     => 'Fecho',
+'feedback-bugcheck'  => '¡Perfeuto! Comprueba que nun tea yá ente los [$1 fallos conocíos].',
+'feedback-bugnew'    => "Yá lo comprobé. Informar d'esti fallu nuevu",
 
 );
