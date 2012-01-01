@@ -139,7 +139,7 @@ class SkinTemplate extends Skin {
 		global $wgDisableCounters, $wgSitename, $wgLogo, $wgHideInterlanguageLinks;
 		global $wgMaxCredits, $wgShowCreditsIfMax;
 		global $wgPageShowWatchingUsers;
-		global $wgUseSiteJs, $wgDebugComments;
+		global $wgDebugComments;
 		global $wgArticlePath, $wgScriptPath, $wgServer;
 
 		wfProfileIn( __METHOD__ );
@@ -201,15 +201,7 @@ class SkinTemplate extends Skin {
 			$tpl->setRef( 'userjs', $this->userjs );
 			$tpl->setRef( 'userjsprev', $this->userjsprev );
 
-			if( $wgUseSiteJs ) {
-				$jsCache = $this->loggedin ? '&smaxage=0' : '';
-				$tpl->set( 'jsvarurl',
-						  self::makeUrl( '-',
-										"action=raw$jsCache&gen=js&useskin=" .
-										urlencode( $this->getSkinName() ) ) );
-			} else {
-				$tpl->set( 'jsvarurl', false );
-			}
+			$tpl->set( 'jsvarurl', false );
 
 			$tpl->setRef( 'xhtmldefaultnamespace', $wgXhtmlDefaultNamespace );
 			$tpl->set( 'xhtmlnamespaces', $wgXhtmlNamespaces );
