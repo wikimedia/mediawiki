@@ -653,7 +653,7 @@ class FileRepo {
 		$operations = array();
 		$sourceFSFilesToDelete = array(); // cleanup for disk source files
 		// Validate each triplet and get the store operation...
-		foreach ( $triplets as $i => $triplet ) {
+		foreach ( $triplets as $triplet ) {
 			list( $srcPath, $dstZone, $dstRel ) = $triplet;
 
 			// Resolve destination path
@@ -760,7 +760,7 @@ class FileRepo {
 		// Cleanup for disk source files...
 		foreach ( $sourceFSFilesToDelete as $file ) {
 			wfSuppressWarnings();
-			unlink( $path ); // FS cleanup
+			unlink( $file ); // FS cleanup
 			wfRestoreWarnings();
 		}
 	}
