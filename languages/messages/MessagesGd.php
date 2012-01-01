@@ -373,6 +373,7 @@ An dèan thu aithris air seo do [[Special:ListUsers/sysop|rianadair]], ag innse 
 'badarticleerror'      => 'Cha ghabh an gnìomh seo a dhèanamh air an duilleag seo.',
 'cannotdelete'         => 'Cha do ghabh an duilleag no am faidhle "$1" a sguabadh às.
 Faodaidh gun deach a sguabadh às le cuideigin eile mu thràth.',
+'cannotdelete-title'   => 'Cha ghabh an duilleag "$1" a sguabadh às',
 'badtitle'             => 'Droch thiotal',
 'badtitletext'         => "Bha an duilleag a dh'iarr thu mì-dhligheach, falamh no le tiotal eadar-chànanach no eadar-uici air a dhroch cheangal.
 Faodaidh gu bheil aon no barrachd charactairean ann nach urrainn dhut a chleachdadh ann an tiotalan.",
@@ -384,11 +385,13 @@ Cha dèid an dàta an-seo ùrachadh aig an àm seo.',
 Foincsean: $1<br />
 Iarrtas: $2',
 'viewsource'           => 'Seall an tùs',
+'viewsource-title'     => 'Seall an tùs aig $1',
 'actionthrottled'      => 'Gnìomh air a mhùchadh',
 'actionthrottledtext'  => "Gus casg a chur air spama, chan urrainn dhut an gnìomh seo a dhèanamh ro thric am broinn ùine ghoirid agus chaidh thu thairis air a' chrìoch seo.
 Feuch ris a-rithist às a dhèidh seo.",
 'protectedpagetext'    => 'Chaidh an duilleag seo a ghlasadh gus casg a chur air deasachadh.',
 'viewsourcetext'       => "'S urrainn dhut coimhead air tùs na duilleige seo 's lethbhreac a dhèanamh dheth:",
+'viewyourtext'         => "'S urrainn dhut coimhead air '''na mhùthaich thu''' 's lethbhreac a dhèanamh dheth air an duilleag seo:",
 'protectedinterface'   => "Tha an duilleag seo a' solar teacsa eadar-aghaidh airson a' bhathar-bhog is chaidh a ghlaadh gus casg a chur air mì-chleachdadh.",
 'editinginterface'     => "'''Rabhadh:''' Tha thu a' deasachadh duilleag a tha 'ga chleachdadh a chum teacsa eadar-aghaidh a sholar airson a' bhathar-bhog.
 Ma dh'atharraicheas tu an duilleag seo, bidh buaidh ann air coltas na h-eadar-aghaidh mar a chì càch i.
@@ -725,7 +728,7 @@ Tha duilleagan air [[Special:Watchlist|do chlàr-faire]] ann an litrichean '''tr
 'recentchangeslinked-to'       => "Seall mùthaidhean nan duilleagan a tha a' ceangal ris an duilleag sin 'na àite",
 
 # Upload
-'upload'        => 'Luchdaich a-nuas faidhle',
+'upload'        => 'Luchdaich suas faidhle',
 'uploadlogpage' => 'Loga an luchdaidh suas',
 'filename'      => 'Ainm-faidhle',
 'filedesc'      => 'Gearr-chunntas',

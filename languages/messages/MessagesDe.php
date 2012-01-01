@@ -2112,6 +2112,8 @@ Jede Zeile enthält Links zur ersten und zweiten Weiterleitung sowie dem Ziel de
 'wantedpages'             => 'Gewünschte Seiten',
 'wantedpages-badtitle'    => 'Ungültiger Titel im Ergebnis: $1',
 'wantedfiles'             => 'Gewünschte Dateien',
+'wantedfiletext-cat'      => 'Die folgenden Dateien werden verwendet, existieren jedoch nicht. Existierende Dateien aus fremden Repositorien können aufgelistet sein. Falsche Positive sind <del>durchgestrichen</del>. Zusätzlich werden Seiten mit nicht existierenden Dateien auf [[:$1]] gelistet.',
+'wantedfiletext-nocat'    => 'Die folgenden Dateien werden verwendet, existieren jedoch nicht. Existierende Dateien aus fremden Repositorien können aufgelistet sein. Falsche Positive sind <del>durchgestrichen</del>.',
 'wantedtemplates'         => 'Gewünschte Vorlagen',
 'mostlinked'              => 'Meistverlinkte Seiten',
 'mostlinkedcategories'    => 'Meistbenutzte Kategorien',

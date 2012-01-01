@@ -2549,19 +2549,19 @@ $1ৰ অৱৰোধৰ কাৰণ: "$2"',
 'moveuserpage-warning'         => "'''সতৰ্কবাণী:''' আপুনি এখন সদস্যপৃষ্ঠা স্থানান্তৰ কৰিবলৈ বিছাৰিছে । অনুগ্ৰহ কৰি মন কৰক যে কেৱল সদস্যপৃষ্ঠাখনহে স্থানান্তৰ হ’ব আৰু সদস্যজনৰ পুনঃনামাকৰণ নহ’ব ।",
 'movenologin'                  => 'প্ৰৱেশ কৰা নাই',
 'movenologintext'              => 'পৃষ্ঠা স্থানান্তৰ কৰিবলৈ আপুনি ভুক্ত সদস্য হৈ [[Special:UserLogin|পৱেশ]] কৰিব লাগিব ।',
-'movenotallowed'               => 'পৃষ্ঠা স্থানান্তৰ কৰিবলৈ আপুনাৰ অনুমতি নাই ।',
+'movenotallowed'               => 'পৃষ্ঠা স্থানান্তৰ কৰিবলৈ আপোনাৰ অনুমতি নাই ।',
 'movenotallowedfile'           => 'ফাইল স্থানান্তৰ কৰিবলৈ আপোনাৰ অনুমতি নাই ।',
 'cant-move-user-page'          => 'সদস্য পৃষ্ঠা স্থানান্তৰ কৰিবলৈ আপুনাৰ অনুমতি নাই (উপ-পৃষ্ঠাৰ বাহিৰে)।',
 'cant-move-to-user-page'       => 'সদস্যপৃষ্ঠালৈ কোনো পৃষ্ঠা স্থানান্তৰ কৰাৰ অনুমতি আপোনাৰ নাই (কেৱল সদস্য উপপৃষ্ঠাৰ বাহিৰে ) ।',
-'newtitle'                     => 'নতুন শিৰোণামালৈ:',
-'move-watch'                   => 'এই পৃষ্ঠাটো লক্ষ্য কৰক',
-'movepagebtn'                  => 'পৃষ্ঠাটো স্থানান্তৰ কৰক',
+'newtitle'                     => 'নতুন শিৰোনামালৈ:',
+'move-watch'                   => 'এই পৃষ্ঠাখন লক্ষ্য কৰক',
+'movepagebtn'                  => 'পৃষ্ঠাখন স্থানান্তৰ কৰক',
 'pagemovedsub'                 => 'স্থানান্তৰ সফল হল',
 'movepage-moved'               => "'''“$1” ক “$2” লৈ স্থানান্তৰ কৰা হৈছে'''",
 'movepage-moved-redirect'      => 'এটি পুনৰ্নিদেশনা সৃষ্টি কৰা হৈছে',
 'movepage-moved-noredirect'    => 'পুনৰ্নিৰ্দেশনা সৃষ্টি কৰা নিবাৰণ কৰা হৈছে ।',
 'articleexists'                => 'সেই নামৰ পৃষ্ঠা এটা আগৰ পৰাই আছে, বা সেই নামতো অযোগ্য।
-বেলেগ নাম এটা বাছি লওঁক।',
+বেলেগ নাম এটা বাছি লওক।',
 'cantmove-titleprotected'      => 'আপুনি ইয়ালৈ কোনো পৃষ্ঠা স্থানান্তৰ কৰিব নোৱাৰে, কাৰণ এই নতুন শিৰোনামা সৃষ্টিৰ পৰা সুৰক্ষিত ।',
 'talkexists'                   => "'''পৃষ্ঠাখন স্থানান্তৰ কৰা হৈছে, কিন্তু ইয়াৰ লগত জড়িত বাৰ্তা পৃষ্ঠাখন স্থানান্তৰ কৰা নহ'ল, কাৰণ নতুন ঠাইত বাৰ্তা পৃষ্ঠা এখন আগৰ পৰাই আছে।
 অনুগ্ৰহ কৰি আপুনি নিজৰ হাতেৰে স্থানান্তৰ কৰক ।'''",
@@ -2579,9 +2579,9 @@ $1ৰ অৱৰোধৰ কাৰণ: "$2"',
 'movesubpagetext'              => 'এই পৃষ্ঠাখনৰ তলত দিয়া {{PLURAL:$1|খন উপপৃষ্ঠা|খন উপপৃষ্ঠা}} আছে ।',
 'movenosubpage'                => 'এই পৃষ্ঠাৰ কোনো উপপৃষ্ঠা নাই ।',
 'movereason'                   => 'কাৰণ:',
-'revertmove'                   => 'আগৰ অৱস্থালৈ ঘূৰি যাওঁক',
+'revertmove'                   => 'আগৰ অৱস্থালৈ ঘূৰি যাওক',
 'delete_and_move'              => 'বিলোপ আৰু স্থানান্তৰ কৰক',
-'delete_and_move_text'         => '== বিলোপণ আৱশ্যক ==
+'delete_and_move_text'         => '== বিলোপন আৱশ্যক ==
 লক্ষ্য পৃষ্ঠা "[[:$1]]" ইতিমেধ্যে আছেই ।
 আপুনি স্থানান্তৰ কৰিবলৈ এইখন বিলোপ কৰিব খুজিছে নেকি ?',
 'delete_and_move_confirm'      => 'হয়, পৃষ্ঠাখন বিলোপ কৰক',
@@ -2598,7 +2598,7 @@ $1ৰ অৱৰোধৰ কাৰণ: "$2"',
 'imagetypemismatch'            => 'নতুন ফাইলৰ এক্সটেনছনটো ইয়াৰ প্ৰকাৰৰ লগত মিলা নাই',
 'imageinvalidfilename'         => 'লক্ষ্য ফাইল নামটো অবৈধ',
 'fix-double-redirects'         => 'প্ৰাথমিক প্ৰৱন্ধলৈ আঙুলিয়াই দিয়া যিকোনো পুনৰ্নিৰ্দেশ নবীকৰণ কৰক',
-'move-leave-redirect'          => 'এটা পুনঃনিৰ্দেশনা এৰি যাওঁক',
+'move-leave-redirect'          => 'এটা পুনঃনিৰ্দেশনা এৰি যাওক',
 'protectedpagemovewarning'     => "'''সতৰ্কবাণী: এই পৃষ্ঠা সুৰক্ষিত কৰা হৈছে; কেৱল প্ৰশাসকৰৰ মৰ্যদাৰ সদস্যইহে ইয়াক স্থানান্তৰ কৰিব পাৰিব ।'''
 আপোনাৰ সুবিধাৰ বাবে পৃষ্ঠাৰ সাম্প্ৰতিক ল'গ সংৰক্ষণ তলত দিয়া হ’ল:",
 'semiprotectedpagemovewarning' => "'''টোকা:''' এই পৃষ্ঠা সুৰক্ষিত কৰা হৈছে; কেৱল পঞ্জীভূত সদস্যইহে ইয়াক স্থানান্তৰ কৰিব পাৰিব ।'''
@@ -2622,12 +2622,12 @@ $1ৰ অৱৰোধৰ কাৰণ: "$2"',
 '''টোকা:''' কৰ্মদক্ষতা-সম্পৰ্কীয় কাৰণত এই প্ৰপত্ৰৰ মাধ্যমেৰে কোনো পৃষ্ঠাৰ সম্পূৰ্ণ ইতিহাস ৰপ্তানি কৰাটো নিষ্ক্ৰিয় কৰা হৈছে।",
 'exportlistauthors' => 'প্ৰত্যেক পৃষ্ঠাৰ অৱদানকাৰীৰ সম্পূৰ্ণ তালিকা অন্তৰ্ভুক্ত কৰক',
 'export-submit'     => 'ৰপ্তানি কৰক',
-'export-addcattext' => 'এই শ্ৰেণীকেইতাৰ পৰা পৃষ্ঠা যোগ কৰক:',
+'export-addcattext' => 'এই শ্ৰেণীকেইটাৰ পৰা পৃষ্ঠা যোগ কৰক:',
 'export-addcat'     => 'যোগ কৰক',
 'export-addnstext'  => 'এই নামস্থানৰ পৰা পৃষ্ঠা যোগ কৰক',
 'export-addns'      => 'যোগ কৰক',
 'export-download'   => 'ফাইল হিচাবে সংৰক্ষণ কৰক',
-'export-templates'  => 'চানেকীসমূহ অন্তৰ্ভুক্ত কৰক',
+'export-templates'  => 'সাঁচসমূহ অন্তৰ্ভুক্ত কৰক',
 'export-pagelinks'  => 'এই স্তৰলৈকে পৃষ্ঠা সংযোগ অন্তৰ্ভুক্ত কৰক:',
 
 # Namespace 8 related
@@ -2645,10 +2645,10 @@ $1ৰ অৱৰোধৰ কাৰণ: "$2"',
 'allmessages-filter-modified'   => 'পৰিৱৰ্তিত',
 'allmessages-prefix'            => 'উপসৰ্গ দি চেকক',
 'allmessages-language'          => 'ভাষা:',
-'allmessages-filter-submit'     => 'যাওঁক',
+'allmessages-filter-submit'     => 'যাওক',
 
 # Thumbnails
-'thumbnail-more'           => 'ডাঙৰকৈ চাওঁক',
+'thumbnail-more'           => 'ডাঙৰকৈ চাওক',
 'filemissing'              => 'ফাইল বিচাৰি পোৱা নগ’ল',
 'thumbnail_error'          => 'ক্ষুদ্ৰ প্ৰতিকৃতি সৃষ্টি কৰাত অসুবিধা হৈছে: $1',
 'djvu_page_error'          => 'DjVu পৃষ্ঠা পৰিসীমাৰ বাহিৰত',
@@ -2736,7 +2736,7 @@ $1ৰ অৱৰোধৰ কাৰণ: "$2"',
 'tooltip-ca-undelete'             => 'বিলোপ কৰাৰ আগেয়ে কৰা পৃষ্ঠাখনৰ সালসলনিসমূহ পুনঃসংস্থাপন কৰক',
 'tooltip-ca-move'                 => 'এই পৃষ্ঠাখন স্থানান্তৰিত কৰক',
 'tooltip-ca-watch'                => 'এই পৃষ্ঠাখন আপোনাৰ লক্ষ্য-তালিকাত যোগ কৰক',
-'tooltip-ca-unwatch'              => 'এই পৃষ্ঠাখন আপোনাৰ লক্ষ্য-তালিকাৰ পৰা আঁতৰাওঁক',
+'tooltip-ca-unwatch'              => 'এই পৃষ্ঠাখন আপোনাৰ লক্ষ্য-তালিকাৰ পৰা আঁতৰাওক',
 'tooltip-search'                  => '{{SITENAME}} -ত সন্ধানাৰ্থে',
 'tooltip-search-go'               => 'যদি আছে, তেহে ঠিক সেই নামৰ পৃষ্ঠালৈ যাওঁক',
 'tooltip-search-fulltext'         => 'এই পাঠ পৃষ্ঠাসমূহত বিচাৰক',
@@ -2752,33 +2752,33 @@ $1ৰ অৱৰোধৰ কাৰণ: "$2"',
 'tooltip-t-recentchangeslinked'   => 'সংযুক্ত পৃষ্ঠাসমূহৰ শেহতীয়া সালসলনিসমূহ',
 'tooltip-feed-rss'                => 'এই পৃষ্ঠাৰ বাবে আৰ-এচ-এচ ফিড',
 'tooltip-feed-atom'               => 'এই পৃষ্ঠাৰ বাবে এটম ফিড',
-'tooltip-t-contributions'         => 'এই সদস্যজনৰ অৰিহনাসমূহৰ সূচী চাওঁক ।',
+'tooltip-t-contributions'         => 'এই সদস্যজনৰ অৰিহনাসমূহৰ সূচী চাওক',
 'tooltip-t-emailuser'             => 'এই সদস্যজনলৈ ই-মেইল পঠাওঁক',
 'tooltip-t-upload'                => "ফাইল আপল'ডৰ বাবে",
 'tooltip-t-specialpages'          => 'বিশেষ পৃষ্ঠাসমূহৰ সূচী',
 'tooltip-t-print'                 => 'এই পৃষ্ঠাৰ ছপা উপযোগী সংস্কৰণ',
 'tooltip-t-permalink'             => 'পৃষ্ঠাৰ এই সংস্কৰণৰ স্থায়ী সংযোগ',
-'tooltip-ca-nstab-main'           => 'এই ৱিকিৰ সূচী চাওঁক',
+'tooltip-ca-nstab-main'           => 'এই ৱিকিৰ সূচী চাওক',
 'tooltip-ca-nstab-user'           => 'সভ্যৰ ব্যক্তিগত পৃষ্ঠালৈ',
-'tooltip-ca-nstab-media'          => 'মিডিয়া পৃষ্ঠাখন চাওঁক',
+'tooltip-ca-nstab-media'          => 'মিডিয়া পৃষ্ঠাখন চাওক',
 'tooltip-ca-nstab-special'        => 'এইখন এখন বিশেষ পৃষ্ঠা, আপুনি সম্পাদনা কৰিব নোৱাৰে',
-'tooltip-ca-nstab-project'        => 'প্ৰকল্প পৃষ্ঠা চাওঁক',
-'tooltip-ca-nstab-image'          => 'ফাইল পৃষ্ঠা চাওঁক',
-'tooltip-ca-nstab-mediawiki'      => 'প্ৰণালী বাৰ্তা চাওঁক',
-'tooltip-ca-nstab-template'       => 'সাঁচ চাওঁক',
-'tooltip-ca-nstab-help'           => 'সহায় পৃষ্ঠা চাওঁক',
-'tooltip-ca-nstab-category'       => 'শ্ৰেণী পৃষ্ঠা চাওঁক',
+'tooltip-ca-nstab-project'        => 'প্ৰকল্প পৃষ্ঠা চাওক',
+'tooltip-ca-nstab-image'          => 'ফাইল পৃষ্ঠা চাওক',
+'tooltip-ca-nstab-mediawiki'      => 'প্ৰণালী বাৰ্তা চাওক',
+'tooltip-ca-nstab-template'       => 'সাঁচ চাওক',
+'tooltip-ca-nstab-help'           => 'সহায় পৃষ্ঠা চাওক',
+'tooltip-ca-nstab-category'       => 'শ্ৰেণী পৃষ্ঠা চাওক',
 'tooltip-minoredit'               => 'ইয়াক অগুৰুত্বপূৰ্ণ সম্পাদনা ৰূপে চিহ্নিত কৰক।',
-'tooltip-save'                    => 'আপুনি কৰা সালসলনি সাঁচি থওঁক',
-'tooltip-preview'                 => 'আপুনি কৰা সালসলনিবোৰৰ খচৰা চাওঁক, অনুগ্ৰহ কৰি সালসলনি সাঁচি থোৱাৰ আগতে ব্যৱহাৰ কৰক!',
-'tooltip-diff'                    => 'ইয়াত আপুনি কৰা সালসলনিবোৰ দেখুৱাওঁক',
-'tooltip-compareselectedversions' => 'এই পৃষ্ঠাত নিৰ্বাচিত দুটা সংশোধনৰ মাজত পাৰ্থক্য দেখুৱাওঁক ।',
+'tooltip-save'                    => 'আপুনি কৰা সালসলনি সাঁচি থওক',
+'tooltip-preview'                 => 'আপুনি কৰা সালসলনিবোৰৰ খচৰা চাওক, অনুগ্ৰহ কৰি সালসলনি সাঁচি থোৱাৰ আগতে ব্যৱহাৰ কৰক!',
+'tooltip-diff'                    => 'ইয়াত আপুনি কৰা সালসলনিবোৰ দেখুৱাওক',
+'tooltip-compareselectedversions' => 'এই পৃষ্ঠাত নিৰ্বাচিত দুটা সংশোধনৰ মাজত পাৰ্থক্য দেখুৱাওক',
 'tooltip-watch'                   => 'এই পৃষ্ঠাখন আপোনাৰ লক্ষ্য-তালিকাভুক্ত কৰক',
 'tooltip-recreate'                => 'বিলোপ কৰা সত্বেও পৃষ্ঠাখন পুনৰ সৃষ্টি কৰক',
 'tooltip-upload'                  => "আপল'ড আৰম্ভ কৰক",
 'tooltip-rollback'                => '"ৰ\'লবেক"এ এটা ক্লিকত এই পৃষ্ঠাৰ শেষ অৱদানকাৰীৰ সম্পাদনা বাতিল কৰি ইয়াক পূৰ্বাৱস্থালৈ ঘূৰাই নিব।',
 'tooltip-undo'                    => '"বাতিল"এ এই সম্পাদনাক পূৰ্বাৱস্থালৈ ঘূৰাই নিব আৰু প্ৰাক্‌দৰ্শনৰ বাবে সম্পাদনাটো খুলিব। ই সম্পাদনা সাৰাংশত কাৰণ এটা লিখিবলৈ সুযোগ দিব।',
-'tooltip-preferences-save'        => 'পছন্দসমূহ সাঁচি থওঁক',
+'tooltip-preferences-save'        => 'পছন্দসমূহ সাঁচি থওক',
 'tooltip-summary'                 => 'চমু সাৰাংশ লিখক',
 
 # Metadata
@@ -2826,7 +2826,7 @@ $1ৰ অৱৰোধৰ কাৰণ: "$2"',
 'rcpatroldisabled'                    => 'শেহতীয়া সালসলনিৰ নিৰীক্ষণ নিষ্ক্ৰিয় কৰা হৈছে',
 'rcpatroldisabledtext'                => 'শেহতীয়া সালসলনিৰ নিৰীক্ষণ কাৰ্য বৰ্তমান নিষ্ক্ৰিয় হৈ আছে ।',
 'markedaspatrollederror'              => 'নিৰীক্ষিত বুলি চিহ্নিত কৰিব নোৱাৰি',
-'markedaspatrollederrortext'          => 'নীৰিক্ষণ কৰা বুলি চিহ্নিত কৰিবলে আপুনি এটা পুনৰীক্ষন ধাৰ্য্য কৰিব লাগিব।',
+'markedaspatrollederrortext'          => 'নিৰীক্ষণ কৰা বুলি চিহ্নিত কৰিবলৈ আপুনি এটা পুনৰীক্ষণ ধাৰ্য্য কৰিব লাগিব।',
 'markedaspatrollederror-noautopatrol' => 'আপোনাক নিজৰ পৰিৱৰ্তনসমূহ নীৰিক্ষিত বুলি চিহ্নিত কৰাৰ অনুমতি নাই।',
 
 # Patrol log
@@ -2836,7 +2836,7 @@ $1ৰ অৱৰোধৰ কাৰণ: "$2"',
 
 # Image deletion
 'deletedrevision'                 => 'পুৰণি সংশোধনী $1 বিলোপ কৰা হ’ল',
-'filedeleteerror-short'           => 'ফাইল বিলোপ কৰাত ক্ৰুটি: $1',
+'filedeleteerror-short'           => 'ফাইল বিলোপ কৰাত ত্ৰুটি: $1',
 'filedeleteerror-long'            => 'এই ফাইলটো বিলোপ কৰাত সমস্যা হৈছে :
 
 $1',
@@ -2850,8 +2850,8 @@ $1',
 'nextdiff'     => 'নতুনতৰ সম্পাদনা →',
 
 # Media information
-'mediawarning'           => "'''সতৰ্কবাৰ্তা''': এই নথিপত্ৰয় দ্বেষপূৰ্ণ ক'ড অন্তৰ্ভুক্ত কৰিব পাৰে।
-ইয়াক প্ৰেৰণ কৰি, আপোনাৰ চিস্টেমৰ ক্ষতি হব পাৰে।",
+'mediawarning'           => "'''সতৰ্কবাৰ্তা''': এই নথিপত্ৰত ত্ৰুটিপূৰ্ণ ক'ড অন্তৰ্ভুক্ত থাকিব পাৰে।
+ইয়াক প্ৰেৰণ কৰিলে আপোনাৰ চিষ্টেমৰ ক্ষতি হব পাৰে।",
 'imagemaxsize'           => "ছবিৰ আকাৰৰ সীমা: <br />''(নথিপত্ৰ বিৱৰণ পৃষ্ঠাসমূহৰ বাবে)''",
 'thumbsize'              => 'ক্ষুদ্ৰ প্ৰতিকৃতিৰ আকাৰ:',
 'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|পৃষ্ঠা|পৃষ্ঠাসমূহ}}',
@@ -2900,7 +2900,7 @@ Any subsequent links on the same line are considered to be exceptions, i.e. page
 'metadata'          => 'মেটাডাটা',
 'metadata-help'     => 'এই ফাইলত অতিৰিক্ত খবৰ আছে, হয়তো ডিজিটেল কেমেৰা বা স্কেনাৰ ব্যৱহাৰ কৰি সৃষ্টি বা পৰিৱৰ্তন কৰা হৈছে ।
 এই ফাইলটো আচলৰ পৰা পৰিৱৰ্তন  কৰা হৈছে, সেয়েহে পৰিৱৰ্তিত ফাইলটোৰ সৈতে নিমিলিব পাৰে ।',
-'metadata-expand'   => 'বহলাই ইয়াৰ বিষয়ে জনাওঁক',
+'metadata-expand'   => 'বহলাই ইয়াৰ বিষয়ে জনাওক',
 'metadata-collapse' => 'বিষয় বৰ্ণনা নেদেখুৱাবলৈ',
 'metadata-fields'   => 'এই সূচীত থকা বিষয়বোৰ চিত্ৰৰ পৃষ্ঠাৰ তলত দেখা যাব ।
 বাকী বিষয়বোৰ গুপ্ত থাকিব ।
@@ -2932,7 +2932,7 @@ Any subsequent links on the same line are considered to be exceptions, i.e. page
 'exif-xresolution'                 => 'আনুভূমিক ৰিজলিউচন',
 'exif-yresolution'                 => "উলম্ব ৰিজ'লিউচন",
 'exif-stripoffsets'                => 'ছবিৰ ডেটা অৱস্থান',
-'exif-rowsperstrip'                => 'প্ৰতি স্ট্ৰিপ শাৰীসমূহৰ সংখ্যা',
+'exif-rowsperstrip'                => 'প্ৰতি ষ্ট্ৰিপত শাৰীসমূহৰ সংখ্যা',
 'exif-stripbytecounts'             => 'প্ৰতি সংকোচিত স্ট্ৰিপ বাইটসমূহ',
 'exif-jpeginterchangeformat'       => 'JPEG SOI -লে অফচেট',
 'exif-jpeginterchangeformatlength' => 'JPEG তথ্যৰ বাইটসমূহ',
@@ -2975,24 +2975,24 @@ Any subsequent links on the same line are considered to be exceptions, i.e. page
 'exif-subjectdistance'             => 'বিষয়বস্তুৰ দূৰত্ব',
 'exif-meteringmode'                => 'জোখা অৱস্থা',
 'exif-lightsource'                 => 'পোহৰৰ উৎস',
-'exif-flash'                       => 'ফ্লাছ',
+'exif-flash'                       => 'ফ্লেছ',
 'exif-focallength'                 => "লেন্‌ছৰ ফ'কেল দৈৰ্ঘ্য",
 'exif-subjectarea'                 => 'বিষয়বস্তুৰ ক্ষেত্ৰফল',
-'exif-flashenergy'                 => 'ফ্লেশ শক্তি',
+'exif-flashenergy'                 => 'ফ্লেছ শক্তি',
 'exif-focalplanexresolution'       => 'X ফোকাচ তলৰ ৰিজোলোচন',
 'exif-focalplaneyresolution'       => 'Y ফোকাচ তলৰ ৰিজোলোচন',
-'exif-focalplaneresolutionunit'    => 'ফোকাচ তল ৰিজোলোচন একক',
+'exif-focalplaneresolutionunit'    => "ফ'কেল তল ৰিজ'লিউচন একক",
 'exif-subjectlocation'             => 'বিষয়বস্তুৰ স্থান',
 'exif-exposureindex'               => 'উন্মুক্ত সূচী',
 'exif-sensingmethod'               => 'সংবেদ পদ্ধতি',
 'exif-filesource'                  => 'ফাইলৰ উৎস',
 'exif-scenetype'                   => 'দৃশ্যৰ প্ৰকাৰ',
-'exif-customrendered'              => 'স্বনিৰ্বাচিত ছবি প্ৰক্ৰিয়কৰণ',
+'exif-customrendered'              => 'স্বনিৰ্বাচিত ছবি প্ৰক্ৰিয়াকৰণ',
 'exif-exposuremode'                => 'উন্মুক্ত অৱস্থা',
 'exif-whitebalance'                => 'বগা ভাৰসাম্য',
 'exif-digitalzoomratio'            => 'ডিজিটেল জুম অনুপাত',
 'exif-focallengthin35mmfilm'       => '৩৫ মিমি ফ্লিমত ফোকাচ দৈৰ্ঘ্য',
-'exif-scenecapturetype'            => 'দৃশ্য গ্ৰহণ ধৰণ',
+'exif-scenecapturetype'            => 'দৃশ্যগ্ৰহণ ধৰণ',
 'exif-gaincontrol'                 => 'দৃশ্য নিয়ন্ত্ৰণ',
 'exif-contrast'                    => 'কন্‌ট্ৰাষ্ট',
 'exif-saturation'                  => 'সংপৃক্ততা',
@@ -3025,26 +3025,26 @@ Any subsequent links on the same line are considered to be exceptions, i.e. page
 'exif-gpsdestlongitude'            => 'লক্ষ্যস্থানৰ দ্ৰাঘিমা',
 'exif-gpsdestbearingref'           => 'গন্তব্য ধাৰণৰ বাবে প্ৰসংগ',
 'exif-gpsdestbearing'              => 'গন্তব্য ধাৰণ',
-'exif-gpsdestdistanceref'          => 'গন্তব্যলে দুৰত্বৰ প্ৰসংগ',
+'exif-gpsdestdistanceref'          => 'গন্তব্যলৈ দূৰত্বৰ প্ৰসংগ',
 'exif-gpsdestdistance'             => 'লক্ষ্যস্থানলৈ দূৰত্ব',
 'exif-gpsprocessingmethod'         => 'GPS প্ৰক্ৰিয়কৰণ পদ্ধতিৰ নাম',
 'exif-gpsareainformation'          => 'GPS স্থানৰ নাম',
 'exif-gpsdatestamp'                => 'GPS তাৰিখ',
 'exif-gpsdifferential'             => 'GPS অৱকলন শুদ্ধ কৰা',
 'exif-jpegfilecomment'             => 'JPEG নথিপত্ৰ মন্তব্য',
-'exif-keywords'                    => 'কিৱাৰ্ডসমূহ',
-'exif-worldregioncreated'          => "বিশ্বৰ অঞ্চল য'ত ছবিটো তোলা হৈছিল",
+'exif-keywords'                    => 'কীৱৰ্ডসমূহ',
+'exif-worldregioncreated'          => "বিশ্বৰ অঞ্চল য'ত ছবিখন তোলা হৈছিল",
 'exif-countrycreated'              => 'যি দেশত চিত্ৰখন গ্ৰহণ কৰা হৈছে',
-'exif-countrycodecreated'          => "দেশৰ ক'ড য'ত ছবিটো তোলা হৈছিল",
+'exif-countrycodecreated'          => "দেশৰ ক'ড য'ত ছবিখন তোলা হৈছিল",
 'exif-provinceorstatecreated'      => "প্ৰদেশ অথবা ৰাজ্য য'ত ছবিটো তোলা হৈছিল",
 'exif-citycreated'                 => 'যি চহৰত চিত্ৰখন গ্ৰহণ কৰা হৈছে',
-'exif-sublocationcreated'          => "শহৰৰ উপঅৱস্থান য'ত ছবিটো তোলা হৈছিল",
-'exif-worldregiondest'             => 'বিশ্বৰ অঞ্চল দেখুৱা হল',
-'exif-countrydest'                 => 'দেশ দেখুৱা হল',
+'exif-sublocationcreated'          => "নগৰৰ উপঅৱস্থান য'ত ছবিখন তোলা হৈছিল",
+'exif-worldregiondest'             => 'বিশ্বৰ অঞ্চল দেখুওৱা হল',
+'exif-countrydest'                 => 'দেশ দেখুওৱা হল',
 'exif-countrycodedest'             => 'দেশৰ ক’ড প্ৰদৰ্শিত',
 'exif-provinceorstatedest'         => 'প্ৰদেশ অথবা ৰাজ্য দেখুৱা হল',
 'exif-citydest'                    => 'চহৰ প্ৰদৰ্শিত',
-'exif-sublocationdest'             => 'শহৰৰ উপঅৱস্থান দেখুৱা হল',
+'exif-sublocationdest'             => "নগৰৰ উপঅৱস্থান দেখুৱা হ'ল",
 'exif-objectname'                  => 'চমু শীৰ্ষক',
 'exif-specialinstructions'         => 'বিশেষ নিৰ্দেশনাসমূহ',
 'exif-headline'                    => 'শিৰোনাম',
@@ -3055,7 +3055,7 @@ Any subsequent links on the same line are considered to be exceptions, i.e. page
 'exif-fixtureidentifier'           => 'ফিকশ্চাৰৰ নাম',
 'exif-locationdest'                => 'অৱস্থান বৰ্ণিত',
 'exif-locationdestcode'            => "অৱস্থানৰ ক'ড বৰ্ণিত",
-'exif-objectcycle'                 => 'দিনৰ সময় যেতিয়ালে মাধ্যম ধাৰ্য্যত',
+'exif-objectcycle'                 => 'দিনৰ সময় যেতিয়ালৈ মাধ্যম ধাৰ্য্যত',
 'exif-contact'                     => 'যোগাযোগৰ তথ্য',
 'exif-writer'                      => 'লেখক',
 'exif-languagecode'                => 'ভাষা',
@@ -3093,8 +3093,8 @@ Any subsequent links on the same line are considered to be exceptions, i.e. page
 'exif-event'                       => 'ঘটনা বৰ্ণিত',
 'exif-organisationinimage'         => 'সংঘঠন বৰ্ণিত',
 'exif-personinimage'               => 'ব্যক্তি বর্ণিত',
-'exif-originalimageheight'         => 'ক্ৰপ কৰাৰ আগত ছবিৰ উচ্চতা',
-'exif-originalimagewidth'          => 'ক্ৰপ কৰাৰ আগত ছবিৰ প্ৰস্থ',
+'exif-originalimageheight'         => "ক্ৰ'প কৰাৰ আগত ছবিৰ উচ্চতা",
+'exif-originalimagewidth'          => "ক্ৰ'প কৰাৰ আগত ছবিৰ প্ৰস্থতা",
 
 # EXIF attributes
 'exif-compression-1' => 'অসংকুচিত',
@@ -3127,9 +3127,9 @@ Any subsequent links on the same line are considered to be exceptions, i.e. page
 'exif-exposureprogram-1' => 'হস্তচালিত',
 'exif-exposureprogram-2' => 'সাধাৰণ প্ৰ’গ্ৰেম',
 'exif-exposureprogram-3' => 'বিন্ধাৰ প্ৰাথমিকতা',
-'exif-exposureprogram-4' => 'শাটাৰ প্ৰাথমিকতা',
+'exif-exposureprogram-4' => 'শ্বাটাৰ প্ৰাথমিকতা',
 'exif-exposureprogram-5' => 'সৃষ্টিমূলক প্ৰগ্ৰাম (ক্ষেত্ৰৰ গভীৰতাৰ প্ৰতি পক্ষপাতি)',
-'exif-exposureprogram-6' => 'কাৰ্য্যত প্ৰগ্ৰাম (দ্ৰুত শাটাৰ গতিৰ প্ৰতি পক্ষপাতি)',
+'exif-exposureprogram-6' => "কাৰ্য্যত প্ৰ'গ্ৰাম (দ্ৰুত শ্বাটাৰ গতিৰ প্ৰতি পক্ষপাতি)",
 'exif-exposureprogram-7' => 'প্ৰতিকৃতি অৱস্থা (পটভূমি ফকাচৰ বাহিৰ থকাকে ক্লৌজআপ ফটোসমূহ)',
 'exif-exposureprogram-8' => 'লেণ্ডস্কেইপ অৱস্থা (পটভূমি ফকাচত থকাকৈ লেণ্ডস্কেইপ ফটোসমূহৰ বাবে)',
 
@@ -3147,11 +3147,11 @@ Any subsequent links on the same line are considered to be exceptions, i.e. page
 'exif-lightsource-0'   => 'অজ্ঞাত',
 'exif-lightsource-1'   => 'দিনৰ পোহৰ',
 'exif-lightsource-2'   => 'প্রতিপ্রভ',
-'exif-lightsource-3'   => 'টাংস্টেন (ভাস্বৰ পোহৰ)',
-'exif-lightsource-4'   => 'ফ্ল্যাশ',
-'exif-lightsource-9'   => 'ফট্ফটীয়া বতৰ',
+'exif-lightsource-3'   => 'টাংষ্টেন (ভাস্বৰ পোহৰ)',
+'exif-lightsource-4'   => 'ফ্লাছ',
+'exif-lightsource-9'   => 'ফটফটীয়া বতৰ',
 'exif-lightsource-10'  => 'ডাৱৰীয়া বতৰ',
-'exif-lightsource-11'  => 'ছায়া',
+'exif-lightsource-11'  => 'ছাঁয়া',
 'exif-lightsource-12'  => 'দিনপোহৰৰ প্ৰতিপ্ৰভ (D 5700 – 7100K)',
 'exif-lightsource-13'  => 'দিন বগা প্ৰতিপ্ৰভ (N 4600 – 5400K)',
 'exif-lightsource-14'  => 'শীতল বগা প্ৰতিপ্ৰভ (W 3900 – 4500K)',
@@ -3163,13 +3163,13 @@ Any subsequent links on the same line are considered to be exceptions, i.e. page
 'exif-lightsource-255' => 'অন্য পোহৰ উৎস',
 
 # Flash modes
-'exif-flash-fired-0'    => 'ফ্লেশ নজ্বলিলে',
-'exif-flash-fired-1'    => 'ফ্লেশ জ্বলিল',
+'exif-flash-fired-0'    => 'ফ্লেছ নজ্বলিলে',
+'exif-flash-fired-1'    => 'ফ্লেছ জ্বলিল',
 'exif-flash-return-0'   => 'কোনো স্ট্ৰৌব ঘুৰা চিনাক্ত কৰা ফলন নাই',
 'exif-flash-return-2'   => 'স্ট্ৰৌব ঘুৰা পোহৰ চিনাক্ত কৰা নগল',
 'exif-flash-return-3'   => 'স্ট্ৰৌব ঘুৰা পোহৰ চিনাক্ত কৰা হল',
-'exif-flash-mode-1'     => 'বাধ্যতামূলক ফ্লেশ জ্বলন',
-'exif-flash-mode-2'     => 'বাধ্যতামূলক ফ্লেশ সংকোচন',
+'exif-flash-mode-1'     => 'বাধ্যতামূলক ফ্লেছ জ্বলন',
+'exif-flash-mode-2'     => 'বাধ্যতামূলক ফ্লেছ সংকোচন',
 'exif-flash-mode-3'     => 'স্বচালিত অৱস্থা',
 'exif-flash-function-1' => 'কোনো ফ্লেশ ফলন নাই',
 'exif-flash-redeye-1'   => 'ৰঙা-চকু ত্ৰাস অৱস্থা',
@@ -3309,7 +3309,7 @@ Any subsequent links on the same line are considered to be exceptions, i.e. page
 
 # External editor support
 'edit-externally'      => 'বাহিৰা আহিলা ব্যৱহাৰ কৰি এই ফাইলটো সম্পাদনা কৰক ।',
-'edit-externally-help' => 'অধিক তথ্যৰ কাৰণে [//www.mediawiki.org/wiki/Manual:External_editors প্ৰস্তুত কৰা নিৰ্দেশনা] চাওঁক ।',
+'edit-externally-help' => 'অধিক তথ্যৰ কাৰণে [//www.mediawiki.org/wiki/Manual:External_editors প্ৰস্তুত কৰা নিৰ্দেশনা] চাওক ।',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'সকলো',
@@ -3320,7 +3320,7 @@ Any subsequent links on the same line are considered to be exceptions, i.e. page
 # E-mail address confirmation
 'confirmemail'              => 'ই-মেইল ঠিকনা নিশ্চিত কৰক',
 'confirmemail_noemail'      => 'আপোনাৰ [[Special:Preferences|সদস্য পছন্দসমূহ]]ত কোনো বৈধ ই-মেইল ঠিকনা নাই ।',
-'confirmemail_text'         => '{{SITENAME}}ত ই-মেইল ভিত্তিক সেৱা ব্যৱহাৰ কৰাৰ পূৰ্বে আপুনি আপোনাৰ ই-মেইল ঠিকনা নিশ্চিত কৰিব লাগিব । তলৰ বুটামটো টিপি আপোনাৰ ই-মেইল ঠিকনালৈ এখন নিশ্চিতকৰণ মেইল পঠিয়াওঁক ।
+'confirmemail_text'         => '{{SITENAME}}ত ই-মেইল ভিত্তিক সেৱা ব্যৱহাৰ কৰাৰ পূৰ্বে আপুনি আপোনাৰ ই-মেইল ঠিকনা নিশ্চিত কৰিব লাগিব । তলৰ বুটামটো টিপি আপোনাৰ ই-মেইল ঠিকনালৈ এখন নিশ্চিতকৰণ মেইল পঠিয়াওক ।
 মেইলখনত সংকেতসহ এটা সংযোগ থাকিব;
 আপোনাৰ ব্ৰাউজাৰত সংযোগটো ল’ড কৰি ই-মেইল ঠিকনা নিশ্চিত কৰক ।',
 'confirmemail_pending'      => 'এটা নিশ্চিতকৰণ সংকেত ইতিমধ্যেই আপোনাই ই-মেইল কৰা হৈছে;
@@ -3350,7 +3350,7 @@ Any subsequent links on the same line are considered to be exceptions, i.e. page
 $3
 
 যদি আপুনি একাউণ্টটো পঞ্জীয়ন কৰা *নাই*, তেন্তে ই-মেইল ঠিকনা নিশ্চিতকৰণ বাতিলৰ বাবে
-এই সংযোগটো চাওঁক:
+এই সংযোগটো চাওক:
 
 $5
 
@@ -3387,7 +3387,7 @@ $5
 'invalidateemail'           => 'ই-মেইল নিশ্চিতকৰণ বাতিল কৰক',
 
 # Scary transclusion
-'scarytranscludedisabled' => '[আন্তঃউইকি আন্তঃভুক্তি অসামৰ্থবান কৰা আছে]',
+'scarytranscludedisabled' => '[আন্তঃৱিকি আন্তঃভুক্তি অসামৰ্থবান কৰা আছে]',
 'scarytranscludefailed'   => '[$1ৰ বাবে সাঁচ অনা অসফল হৈছে]',
 'scarytranscludetoolong'  => '[URL অত্যাধিক দীঘল]',
 
@@ -3401,20 +3401,20 @@ $5
 
 # action=purge
 'confirm_purge_button' => "অ'কে",
-'confirm-purge-top'    => 'এই পৃষ্ঠাৰ কেশ্বে খালী কৰা হওঁক ?',
-'confirm-purge-bottom' => 'এটা পৃষ্ঠাক শোধিত কৰিলে ক্যাশ আতৰি যায় আৰু সকলোতকৈ শেহতীয়া পুনৰীক্ষনক উপস্থিত হবলে বাধ্য কৰে।',
+'confirm-purge-top'    => 'এই পৃষ্ঠাৰ কেশ্বে খালী কৰা হওক ?',
+'confirm-purge-bottom' => "এখন পৃষ্ঠাক শোধিত কৰিলে কেশ্বে আতৰি যায় আৰু সকলোতকৈ শেহতীয়া সংশোধন প্ৰদৰ্শিত হ'বলৈ বাধ্য কৰে।",
 
 # action=watch/unwatch
 'confirm-watch-button'   => 'অ’কে',
-'confirm-watch-top'      => 'এই পৃষ্ঠাখন আপোনাৰ লক্ষ্য-তালিকাত যোগ কৰা যাওঁক ?',
+'confirm-watch-top'      => 'এই পৃষ্ঠাখন আপোনাৰ লক্ষ্য-তালিকাত যোগ কৰা যাওক ?',
 'confirm-unwatch-button' => 'অ’কে',
-'confirm-unwatch-top'    => 'এই পৃষ্ঠাখন আপোনাৰ লক্ষ্য-তালিকাৰ পৰা আঁতৰ কৰা হওঁক ?',
+'confirm-unwatch-top'    => 'এই পৃষ্ঠাখন আপোনাৰ লক্ষ্য-তালিকাৰ পৰা আঁতৰ কৰা হওক ?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← পূৰ্ববৰ্তী পৃষ্ঠা',
 'imgmultipagenext' => 'পৰবৰ্তী পৃষ্ঠা →',
-'imgmultigo'       => 'যাওঁক',
-'imgmultigoto'     => '$1 পৃষ্ঠালৈ যাওঁক',
+'imgmultigo'       => 'যাওক',
+'imgmultigoto'     => '$1 পৃষ্ঠালৈ যাওক',
 
 # Table pager
 'ascending_abbrev'         => 'আৰোহণ',
@@ -3423,9 +3423,9 @@ $5
 'table_pager_prev'         => 'পূৰ্ববৰ্তী পৃষ্ঠা',
 'table_pager_first'        => 'প্ৰথম পৃষ্ঠা',
 'table_pager_last'         => 'শেষ পৃষ্ঠা',
-'table_pager_limit'        => 'প্ৰতি পৃষ্ঠাত $1 টা বিষয়বস্তু দেখুৱাওঁক',
+'table_pager_limit'        => 'প্ৰতি পৃষ্ঠাত $1 টা বিষয়বস্তু দেখুৱাওক',
 'table_pager_limit_label'  => 'প্ৰতি পৃষ্ঠাৰ আইটেম:',
-'table_pager_limit_submit' => 'যাওঁক',
+'table_pager_limit_submit' => 'যাওক',
 'table_pager_empty'        => 'ফলাফল নাই',
 
 # Auto-summaries
@@ -3435,10 +3435,10 @@ $5
 'autosumm-new'     => '"$1" দি পৃষ্ঠা সৃষ্টি কৰা হ\'ল',
 
 # Live preview
-'livepreview-loading' => 'লোডিং…',
-'livepreview-ready'   => 'লোডিং… প্ৰস্তুত!',
-'livepreview-failed'  => 'জীৱন্ত পূৰ্বদৰ্শন ব্যৰ্থ হল!
-সাধাৰণ পুৰ্বদৰ্শন চেষ্টা কৰি চাওঁক।',
+'livepreview-loading' => "ল'ড হৈ আছে…",
+'livepreview-ready'   => "ল'ড হৈ আছে… প্ৰস্তুত!",
+'livepreview-failed'  => "জীৱন্ত পূৰ্বদৰ্শন ব্যৰ্থ হ'ল!
+সাধাৰণ পূৰ্বদৰ্শন চেষ্টা কৰি চাওক।",
 'livepreview-error'   => 'সংযোগ কৰিবলে ব্যৰ্থ হল: $1 "$2"।
 সাধাৰণ পূৰ্বদৰ্শন চেষ্টা কৰি চাওঁক।',
 
@@ -3450,7 +3450,7 @@ $5
 'watchlistedit-numitems'       => 'কথাবতৰা পৃষ্ঠাসমূহ বাদ দি আপোনাৰ লক্ষ্য-তালিকাত {{PLURAL:$1|এটা শিৰোনামা|$1 টা শিৰোনামা}} আছে ।',
 'watchlistedit-noitems'        => 'আপোনাৰ লক্ষ্য-তালিকাত এখনো ঘাই পৃষ্ঠা নাই ।',
 'watchlistedit-normal-title'   => 'লক্ষ্য-তালিকা সম্পাদন কৰক',
-'watchlistedit-normal-legend'  => 'লক্ষ্য-তালিকাৰ পৰা শিৰোনামা আঁতৰাওঁক',
+'watchlistedit-normal-legend'  => 'লক্ষ্য-তালিকাৰ পৰা শিৰোনামা আঁতৰাওক',
 'watchlistedit-normal-explain' => 'Titles on your watchlist are shown below.
 To remove a title, check the box next to it, and click "{{int:Watchlistedit-normal-submit}}".
 You can also [[Special:EditWatchlist/raw|edit the raw list]].',
@@ -3469,8 +3469,8 @@ You can also [[Special:EditWatchlist/raw|edit the raw list]].',
 'watchlistedit-raw-removed'    => "{{PLURAL:$1|এটা শিৰোনামা|$1-টা শিৰোনামা}} আঁতৰোৱা হ'ল:",
 
 # Watchlist editing tools
-'watchlisttools-view' => 'সংগতি থকা সাল-সলনিবোৰ চাওঁক',
-'watchlisttools-edit' => 'লক্ষ্য-তালিকা চাওঁক আৰু সম্পাদনা কৰক',
+'watchlisttools-view' => 'সংগতি থকা সাল-সলনিবোৰ চাওক',
+'watchlisttools-edit' => 'লক্ষ্য-তালিকা চাওক আৰু সম্পাদনা কৰক',
 'watchlisttools-raw'  => 'অশোধিত লক্ষ্য-তালিকা সম্পাদনা কৰক',
 
 # Signatures
@@ -3478,7 +3478,7 @@ You can also [[Special:EditWatchlist/raw|edit the raw list]].',
 
 # Core parser functions
 'unknown_extension_tag' => 'অজ্ঞাত এক্সটেনচন টেগ "$1"',
-'duplicate-defaultsort' => '\'\'\'সাবধান!\'\'\' পূৰ্বনিৰ্ধাৰিত ক্ৰমসূচক "$2"-এ আগৰ ক্ৰমসূচক "$1"-অক বিস্থাপিত কৰিছে।',
+'duplicate-defaultsort' => '\'\'\'সাৱধান!\'\'\' পূৰ্বনিৰ্ধাৰিত ক্ৰমসূচক "$2"-এ আগৰ ক্ৰমসূচক "$1"-অক বিস্থাপিত কৰিছে।',
 
 # Special:Version
 'version'                       => 'সংস্কৰণ',
@@ -3495,7 +3495,7 @@ You can also [[Special:EditWatchlist/raw|edit the raw list]].',
 'version-parser-extensiontags'  => 'পাৰ্চাৰ এক্সটেনচন টেগসমূহ',
 'version-parser-function-hooks' => 'পাৰ্চাৰ ফাংচন হুকসমূহ',
 'version-hook-name'             => 'হুক নাম',
-'version-hook-subscribedby'     => 'দ্বাৰা স্বাক্ষৰীত',
+'version-hook-subscribedby'     => 'চাবস্ক্ৰাইব কৰিছে',
 'version-version'               => '(সংস্কৰণ $1)',
 'version-license'               => 'অনুজ্ঞাপত্ৰ',
 'version-poweredby-credits'     => "এই ৱিকি '''[//www.mediawiki.org/ মিডিয়াৱিকিৰ]''' দ্বাৰা প্ৰচলিত , কপিৰাইট © ২০০১-$1 $2.",
@@ -3503,8 +3503,8 @@ You can also [[Special:EditWatchlist/raw|edit the raw list]].',
 'version-license-info'          => "মিডিয়াৱিকি এটা বিনামূলীয়া চফ্টৱেৰ; আপুনি Free Software Foundation -ৰ দ্বাৰা প্ৰকাশিত GNU General Public License -ৰ চুক্তিসমূহৰ অন্তৰ্গত ইয়াক পুনৰ বিলাব পাৰিব অথবা সলনি  কৰিব পাৰিব; হয়তো লাইচেঞ্চৰ সংস্কৰণ ২ 
 অথবা (আপুনাৰ বিকল্পত) যিকোনো পৰৱৰ্তী সংস্কৰণ।
 
-মিডিয়াৱিকি এইটো আশাত বিলোৱা হৈছে যে ই ব্যৱহাৰযোগ্য হ'ব, কিন্তু কোনো ৱাৰেন্টি নথকাকৈ; ব্যৱসায়ীক অথবা কোনো এটা বিশেষ কাৰণৰ যোগ্যতাৰ বাবে বুজুৱা ৱাৰেন্টি নথকাকৈ। 
-অধিক যানিবলৈ GNU General Public License চাওঁক।
+মিডিয়াৱিকি এইটো আশাত বিলোৱা হৈছে যে ই ব্যৱহাৰযোগ্য হ'ব, কিন্তু কোনো ৱাৰেন্টি নথকাকৈ; ব্যৱসায়ীক অথবা কোনো এটা বিশেষ কাৰণৰ যোগ্যতাৰ বাবে বুজোৱা ৱাৰেন্টি নথকাকৈ। 
+অধিক জানিবলৈ GNU General Public License চাওক।
 
 আপুনি এই প্ৰগ্ৰামৰ সৈতে [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU General Public License -ৰ এটা কপি] পাব লাগে; যদি নাই পোৱা, Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA অথবা [//www.gnu.org/licenses/old-licenses/gpl-2.0.html ইয়াক অনলাইন পঢ়ক] -লে লিখক।",
 'version-software'              => 'ইনষ্টল কৰা ছফ্টৱেৰ',
@@ -3520,7 +3520,7 @@ You can also [[Special:EditWatchlist/raw|edit the raw list]].',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'প্ৰতিলিপি পৃষ্ঠাসমূহ অনুসন্ধান কৰক',
-'fileduplicatesearch-summary'   => 'হেশ মানসমূহৰ উপৰত নিৰ্ভৰ কৰি প্ৰতিলিপিত নথিপত্ৰসমূহৰ বাবে সন্ধান কৰক।',
+'fileduplicatesearch-summary'   => 'হেছ্‌ মানসমূহৰ উপৰত নিৰ্ভৰ কৰি প্ৰতিলিপিত নথিপত্ৰসমূহৰ বাবে সন্ধান কৰক।',
 'fileduplicatesearch-legend'    => 'প্ৰতিলিপিৰ বাবে অনুসন্ধান কৰক',
 'fileduplicatesearch-filename'  => 'ফাইলনাম:',
 'fileduplicatesearch-submit'    => 'সন্ধান কৰক',
@@ -3553,14 +3553,14 @@ You can also [[Special:EditWatchlist/raw|edit the raw list]].',
 'intentionallyblankpage' => 'এই পৃষ্ঠা ইচ্ছাকৃতভাৱে খালী ৰখা হৈছে ।',
 
 # External image whitelist
-'external_image_whitelist' => ' #এই শাৰী যেনেকুৱা আছে তেনেকুৱায় ৰাখক<pre>
+'external_image_whitelist' => " #এই শাৰী যেনেকৈ আছে তেনেকৈয়ে ৰাখক<pre>
 #স্বাভাৱিক অভিব্যক্তি অংশসমূহ (কেৱল সেই অংশ যি // মাজেৰে যায়) তলত দিয়ক
-#ইহতক বহিৰ্তম (hotlinked) ছবিসমূহৰ URLসমূহৰ সৈতে মিলাই চোৱা হব
-#যিসমূহ মিল খায় সেইসমূহক ছবি হিচাপে প্ৰদৰ্শন কৰা হব, নহলে কেৱল ছবিটোলে এটা সংযোগ দেখুৱা হব
+#ইহঁতক বহিৰ্তম (hotlinked) ছবিসমূহৰ URLসমূহৰ সৈতে মিলাই চোৱা হ'ব
+#যিসমূহ মিল খায় সেইসমূহক ছবি হিচাপে প্ৰদৰ্শন কৰা হব, নহলে কেৱল ছবিখনলৈ এটা সংযোগ দেখুওৱা হ'ব
 # # -ৰ সৈতে আৰম্ভ হোৱা শাৰীসমূহক মন্তব্য বুলি ধৰা হয়
 #ই ফলা-সংবেদ্য
 
-#সকলো regex অংশক এই শাৰীৰ উপৰত দিব। এই শাৰী যেনেকুৱা আছে তেনেকুৱা ৰাখক</pre>',
+#সকলো regex অংশক এই শাৰীৰ ওপৰত দিব। এই শাৰী যেনেকৈ আছে তেনেকৈয়ে ৰাখক</pre>",
 
 # Special:Tags
 'tags'                    => 'সালসলনি টেগ চাওঁক',
@@ -3634,15 +3634,15 @@ You can also [[Special:EditWatchlist/raw|edit the raw list]].',
 'revdelete-restricted'                => 'এই সীমাবদ্ধতা প্ৰশাসকৰ ক্ষেত্ৰত প্ৰযোজ্য',
 'revdelete-unrestricted'              => 'প্ৰশাসকৰ সীমাবদ্ধতা বাতিল কৰা হ’ল',
 'logentry-move-move'                  => 'পৃষ্ঠা $3 -ৰ পৰা $4 -লে $1 {{GENDER:$2|স্থানান্তৰ কৰা হল}}',
-'logentry-move-move-noredirect'       => 'এটা পুনৰনিৰ্দেশ নেৰাকৈ $1 {{GENDER:$2|স্থানান্তৰ কৰা হল}} পৃষ্ঠা $3 -ৰ পৰা $4',
-'logentry-move-move_redir'            => 'পুনৰনিৰ্দেশৰে পৃষ্ঠা $3 -ৰ পৰা $4 $1 {{GENDER:$2|স্থানান্তৰ কৰা হল}}',
-'logentry-move-move_redir-noredirect' => 'এটা পুনৰনিৰ্দেশ নেৰাকৈ এটা ইন্টাৰনেটৰে পৃষ্ঠা $3 -ৰ পৰা $4 $1 {{GENDER:$2|স্থানান্তৰ কৰা হল}}',
-'logentry-patrol-patrol'              => 'পৃষ্ঠা $3 -ৰ $1 {{GENDER:$2|চিহ্নিত}} পুনৰীক্ষন $4 নীৰিক্ষণ কৰা হল',
-'logentry-patrol-patrol-auto'         => 'পৃষ্ঠা $3 -ৰ $1 {{GENDER:$2|চিহ্নিত}} পুনৰীক্ষন $4 স্বচালিতভাৱে নীৰিক্ষণ কৰা হল',
-'logentry-newusers-newusers'          => '$1 {{GENDER:$2| -এ সৃষ্টি কৰিলে}} এটা ব্যৱহাৰকাৰী একাওন্ট',
-'logentry-newusers-create'            => '$1 {{GENDER:$2|-এ সৃষ্টি কৰিলে}} এটা ব্যৱহাৰকাৰী একাওন্ট',
-'logentry-newusers-create2'           => '$1 {{GENDER:$2|সৃষ্টি কৰিলে}} {{GENDER:$4|এটা ব্যৱহাৰকাৰী একাওন্ট}} $3',
-'logentry-newusers-autocreate'        => 'একাওন্ট $1 -ক স্বচালিতভাৱে {{GENDER:$2|সৃষ্টি কৰা হৈছিল}}',
+'logentry-move-move-noredirect'       => 'পুনৰ্নিৰ্দেশ নেৰাকৈ $1 {{GENDER:$2|স্থানান্তৰ কৰা হল}} পৃষ্ঠা $3 -ৰ পৰা $4',
+'logentry-move-move_redir'            => 'পুনৰ্নিৰ্দেশৰে পৃষ্ঠা $3 -ৰ পৰা $4 $1 {{GENDER:$2|স্থানান্তৰ কৰা হল}}',
+'logentry-move-move_redir-noredirect' => 'পুনৰ্নিৰ্দেশ নেৰাকৈ এটা পুনৰ্নিৰ্দেশৰ ওপৰেৰে পৃষ্ঠা $3 -ৰ পৰা $4 $1 {{GENDER:$2|স্থানান্তৰ কৰা হল}}',
+'logentry-patrol-patrol'              => "পৃষ্ঠা $3 -ৰ $1 {{GENDER:$2|চিহ্নিত}} সংশোধন $4 নিৰীক্ষণ কৰা হ'ল",
+'logentry-patrol-patrol-auto'         => "পৃষ্ঠা $3 -ৰ $1 {{GENDER:$2|চিহ্নিত}} সংশোধন $4 স্বচালিতভাৱে নিৰীক্ষণ কৰা হ'ল",
+'logentry-newusers-newusers'          => '$1 {{GENDER:$2| -এ সৃষ্টি কৰিলে}} এটা ব্যৱহাৰকাৰী একাউন্ট',
+'logentry-newusers-create'            => '$1 {{GENDER:$2|-এ সৃষ্টি কৰিলে}} এটা ব্যৱহাৰকাৰী একাউন্ট',
+'logentry-newusers-create2'           => '$1 {{GENDER:$2|সৃষ্টি কৰিলে}} {{GENDER:$4|এটা ব্যৱহাৰকাৰী একাউন্ট}} $3',
+'logentry-newusers-autocreate'        => 'একাউন্ট $1 -ক স্বচালিতভাৱে {{GENDER:$2|সৃষ্টি কৰা হৈছিল}}',
 'newuserlog-byemail'                  => 'গুপ্তশব্দ ই-মেইল কৰি পঠোৱা হৈছে',
 
 # Feedback
@@ -3658,7 +3658,7 @@ You can also [[Special:EditWatchlist/raw|edit the raw list]].',
 'feedback-error3'    => 'ত্ৰুটি: এ.পি.আই.ৰ কোনো সঁহাৰি নাই',
 'feedback-thanks'    => 'ধন্যবাদ ! আপোনাৰ প্ৰতিক্ৰিয়া "[$2 $1]" পৃষ্ঠাত প্ৰকাশ কৰা হৈছে।',
 'feedback-close'     => 'কৰা হ’ল',
-'feedback-bugcheck'  => 'অতি উত্তম! কেৱল নীৰিক্ষণ কৰক ই ইতিমধ্যে [$1 জ্ঞাত বাগসমূহ]ৰ এটা নহয়।',
-'feedback-bugnew'    => 'মই নীৰিক্ষণ কৰিলো। এটা নতুন বাগ সংবাদন কৰক',
+'feedback-bugcheck'  => 'অতি উত্তম! কেৱল পৰীক্ষা কৰক যে ই ইতিমধ্যে [$1 জ্ঞাত বাগসমূহ]ৰ এটা নহয়।',
+'feedback-bugnew'    => 'মই পৰীক্ষা কৰিলো। এটা নতুন বাগ সংবাদন কৰক',
 
 );

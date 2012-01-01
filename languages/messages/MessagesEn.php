@@ -4387,25 +4387,25 @@ Please confirm that you really want to recreate this page.",
 *207.200.112.0/21', # do not translate or duplicate this message to other languages
 
 # Size units
-'size-bytes'     => '$1 B', # only translate this message to other languages if you have to change it
-'size-kilobytes' => '$1 KB', # only translate this message to other languages if you have to change it
-'size-megabytes' => '$1 MB', # only translate this message to other languages if you have to change it
-'size-gigabytes' => '$1 GB', # only translate this message to other languages if you have to change it
-'size-terabytes' => '$1 TB', # only translate this message to other languages if you have to change it
-'size-petabytes' => '$1 PB', # only translate this message to other languages if you have to change it
-'size-exabytes' => '$1 EB', # only translate this message to other languages if you have to change it
-'size-zetabytes' => '$1 ZB', # only translate this message to other languages if you have to change it
+'size-bytes'      => '$1 B', # only translate this message to other languages if you have to change it
+'size-kilobytes'  => '$1 KB', # only translate this message to other languages if you have to change it
+'size-megabytes'  => '$1 MB', # only translate this message to other languages if you have to change it
+'size-gigabytes'  => '$1 GB', # only translate this message to other languages if you have to change it
+'size-terabytes'  => '$1 TB', # only translate this message to other languages if you have to change it
+'size-petabytes'  => '$1 PB', # only translate this message to other languages if you have to change it
+'size-exabytes'   => '$1 EB', # only translate this message to other languages if you have to change it
+'size-zetabytes'  => '$1 ZB', # only translate this message to other languages if you have to change it
 'size-yottabytes' => '$1 YB', # only translate this message to other languages if you have to change it
 
 # Bitrate units
-'bitrate-bits'     => '$1bps', # only translate this message to other languages if you have to change it
-'bitrate-kilobits' => '$1kbps', # only translate this message to other languages if you have to change it
-'bitrate-megabits' => '$1Mbps', # only translate this message to other languages if you have to change it
-'bitrate-gigabits' => '$1Gbps', # only translate this message to other languages if you have to change it
-'bitrate-terabits' => '$1Tbps', # only translate this message to other languages if you have to change it
-'bitrate-petabits' => '$1Pbps', # only translate this message to other languages if you have to change it
-'bitrate-exabits' => '$1Ebps', # only translate this message to other languages if you have to change it
-'bitrate-zetabits' => '$1Zbps', # only translate this message to other languages if you have to change it
+'bitrate-bits'      => '$1bps', # only translate this message to other languages if you have to change it
+'bitrate-kilobits'  => '$1kbps', # only translate this message to other languages if you have to change it
+'bitrate-megabits'  => '$1Mbps', # only translate this message to other languages if you have to change it
+'bitrate-gigabits'  => '$1Gbps', # only translate this message to other languages if you have to change it
+'bitrate-terabits'  => '$1Tbps', # only translate this message to other languages if you have to change it
+'bitrate-petabits'  => '$1Pbps', # only translate this message to other languages if you have to change it
+'bitrate-exabits'   => '$1Ebps', # only translate this message to other languages if you have to change it
+'bitrate-zetabits'  => '$1Zbps', # only translate this message to other languages if you have to change it
 'bitrate-yottabits' => '$1Ybps', # only translate this message to other languages if you have to change it
 
 # Live preview

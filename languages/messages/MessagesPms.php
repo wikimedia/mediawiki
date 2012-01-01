@@ -1792,6 +1792,8 @@ Adess a l'é na ridiression a [[$2]].",
 'wantedpages'             => 'Artìcoj pì ciamà',
 'wantedpages-badtitle'    => "Tìtol nen vàlid ant l'ansema dj'arzultà: $1",
 'wantedfiles'             => 'Archivi pì ciamà',
+'wantedfiletext-cat'      => "J'archivi ch'a ven-o a son dovrà ma a esisto pa. J'archivi dai sò depòsit estern a peulo esse listà sensa vardé l'esistensa. Quaich fàuss positiv a saran <del>struck out</del>. An pi, pagine ch'a conten-o archivi ch'a esisto pa a son listà an [[:$1]].",
+'wantedfiletext-nocat'    => "J'archivi ch'a ven-o a son dovrà ma a esisto pa. J'archivi da depòsit estern a peulo esse listà sensa vardé l'esistensa. Tùit cost fàuss positiv a saran <del>struck out</del>.",
 'wantedtemplates'         => 'Stamp ciamà',
 'mostlinked'              => "Pàgine che a l'han pì d'anliure che a-i men-o la gent ansima",
 'mostlinkedcategories'    => "Categorìe che a l'han pì d'anliure che a-i men-o la gent ansima",
@@ -2275,34 +2277,34 @@ L'ùltima intrada dël registr dij blocagi a l'é butà sì-sota për arferiment
 'blockip'                         => "Bloché l'utent",
 'blockip-title'                   => "Bloché l'utent",
 'blockip-legend'                  => "Bloché l'utent",
-'blockiptext'                     => "Che a dòvra ël mòdulo ëd domanda 'd blocagi ambelessì sota për bloché l'acess con drit dë scritura da na chèich adrëssa IP.<br />
-Ës blocagi-sì as dev dovresse MACH për evité dij comportament vandàlich, ën strèita osservansa ëd tùit ij prinsipi dla [[{{MediaWiki:Policy-url}}|polìtica ëd {{SITENAME}}]].<br />
-Ël blocagi a peul nen ën gnun-a manera esse dovrà për dle question d'ideologìa.
+'blockiptext'                     => "Che a deuvra ël mòdulo ëd domanda 'd blocagi ambelessì sota për bloché l'acess con drit dë scritura da chèich adrëssa IP o stranòm.<br />
+Ës blocagi-sì as dev dovresse MACH për evité dij comportament vandàlich, ën strèita osservansa ëd tùit ij prinsipi dle [[{{MediaWiki:Policy-url}}|régole ëd {{SITENAME}}]].<br />
+Ël blocagi a peul ën gnun-a manera esse dovrà për dle question d'ideologìa.
 
-Che a scriva codì che st'adrëssa IP-sì a dev second chiel (chila) esse blocà (pr'esempi, che a buta ij tìtoj ëd pàgine che a l'abio già patì dj'at vandàlich da cost'adrëssa IP-sì).",
+Che a scriva codì che st'adrëssa IP o së stranòm a dev second chiel esse blocà (pr'esempi, che a buta ij tìtoj ëd pàgine che a l'abio già patì dj'at vandàlich da cost'adrëssa IP o së stranòm).",
 'ipadressorusername'              => 'Adrëssa IP ò stranòm',
 'ipbexpiry'                       => 'Fin-a al',
 'ipbreason'                       => 'Rason:',
 'ipbreasonotherlist'              => 'Àotr motiv',
-'ipbreason-dropdown'              => "*Motiv sòlit për ij blòch
+'ipbreason-dropdown'              => "*Motiv sòlit për ij blocagi
 ** Avej butà d'anformassion fàosse
-** Avej gavà contnù da 'nt le pàgine
-** Buté porcherìa coma anliure ëd reclam
-** Avej butà test sensa sust ant le pàgine
-** Avej un deuit da bërsach con la gent
-** Avej dovrà vàire cont fòra dij deuit
+** Avej gavà dël contnù da 'nt le pàgine
+** Avèj butà dla rumenta porcherìa coma anliure d'areclam
+** Avèj butà test sensa sust ant le pàgine
+** Avèj un deuit da bërsach con la gent
+** Avèj dovrà vàire cont fòra dij deuit
 ** Stranòm ch'as peul nen acetesse",
-'ipb-hardblock'                   => "Proibiss a j'utent intrà ant ël sistema ëd modifiché da cost'adrëssa IP",
-'ipbcreateaccount'                => 'Lassa pa pi creé dij cont neuv',
-'ipbemailban'                     => "Nen lassé che l'utent a peula mandé ëd messagi ëd pòsta eletrònica",
-'ipbenableautoblock'              => "Blòca an automàtich la dariera adrëssa IP dovrà da l'utent e tute cole dont peuj cheidun as preuva a fé dle modìfiche",
-'ipbsubmit'                       => "Bloca st'adrëssa IP-sì",
+'ipb-hardblock'                   => "Proibì a j'utent intrà ant ël sistema ëd modifiché da cost'adrëssa IP",
+'ipbcreateaccount'                => 'Lassé pa pi creé dij cont neuv',
+'ipbemailban'                     => "Nen lassé che l'utent a peula mandé ëd mëssagi ëd pòsta eletrònica",
+'ipbenableautoblock'              => "Bloché an automàtich la dariera adrëssa IP dovrà da l'utent e tute cole dont peuj cheidun as preuva a fé dle modìfiche",
+'ipbsubmit'                       => "Bloché st'utent-sì",
 'ipbother'                        => "N'àutra durà",
 'ipboptions'                      => "2 ore:2 hours,1 di:1 day,3 di:3 days,na sman-a:1 week,2 sman-e:2 weeks,1 mèis:1 month,3 mèis:3 months,6 mèis:6 months,n'ann:1 year,për sempe:infinite",
 'ipbotheroption'                  => "d'àutr",
 'ipbotherreason'                  => 'Àotri motiv/spiegon',
-'ipbhidename'                     => "Stërma lë stranòm da 'nt le modìfiche e da 'nt j'elench.",
-'ipbwatchuser'                    => "Ten d'euj le pàgine utent e ëd discussion dë st'utent-sì",
+'ipbhidename'                     => "Stërmé lë stranòm da 'nt le modìfiche e da 'nt j'elench",
+'ipbwatchuser'                    => "Ten-e d'euj le pàgine utent e ëd discussion dë st'utent-sì",
 'ipb-disableusertalk'             => "Proibiss a st'utent ëd modifiché soa pàgina ëd discussion quand a l'é blocà",
 'ipb-change-block'                => "Torna bloché l'utent con ste ampostassion-sì",
 'ipb-confirm'                     => 'Confermé ël blocagi',

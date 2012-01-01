@@ -8,6 +8,7 @@
  * @file
  *
  * @author Abdul Kadir
+ * @author Bihari
  * @author Girmitya
  * @author Malafaya
  * @author Thakurji
@@ -1502,22 +1503,23 @@ Ii sab panna khaali uu sadasya ke dekhae hae jon ki iske uplaod karis hae.',
 'uploadstash-refresh'  => 'File ke suchi ke fir se dekhao',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'ijajat nai hae',
-'img-auth-nopathinfo'   => 'PATH_INFO nai hae
+'img-auth-accessdenied'     => 'ijajat nai hae',
+'img-auth-nopathinfo'       => 'PATH_INFO nai hae
 Aap ke server ke ii jankari de khatir set up nai karaa gais hae
 Saait ii CGI-based hoi aur img_auth ke nai support karat hoi.
 http://www.mediawiki.org/wiki/Manual:Image_Authorization ke dekho.',
-'img-auth-notindir'     => 'Maanga gais path configured upload directory me me nai hae.',
-'img-auth-badtitle'     => '"$1" se kanuni title ke nai banae sakaa hae.',
-'img-auth-nologinnWL'   => 'Aap logged in nai hae aur "$1" whitelist me nai hae.',
-'img-auth-nofile'       => 'File "$1" nai hae.',
-'img-auth-isdir'        => 'Aap directory "$1" me jaae mangtaa hae.
+'img-auth-notindir'         => 'Maanga gais path configured upload directory me me nai hae.',
+'img-auth-badtitle'         => '"$1" se kanuni title ke nai banae sakaa hae.',
+'img-auth-nologinnWL'       => 'Aap logged in nai hae aur "$1" whitelist me nai hae.',
+'img-auth-nofile'           => 'File "$1" nai hae.',
+'img-auth-isdir'            => 'Aap directory "$1" me jaae mangtaa hae.
 Khaali file me jaawe ke ijajat hae',
-'img-auth-streaming'    => '"$1" ke stream karaa jaawe hae.',
-'img-auth-public'       => 'img_auth.php ke function private wiki se file nikale ke hae.
+'img-auth-streaming'        => '"$1" ke stream karaa jaawe hae.',
+'img-auth-public'           => 'img_auth.php ke function private wiki se file nikale ke hae.
 Ii wiki ek public wiki hae.
 Puura surakchha ke khatir, img_auth.php ke band kar dewa gais hae.',
-'img-auth-noread'       => 'Sadasya ke "$1" parrhe ke ijajat nai hae.',
+'img-auth-noread'           => 'Sadasya ke "$1" parrhe ke ijajat nai hae.',
+'img-auth-bad-query-string' => 'Ii URL me ek kharaab query string hae.',
 
 # HTTP errors
 'http-invalid-url'      => 'URL kharaab hae: $1',
@@ -1672,7 +1674,7 @@ Templates ke delete kare se pahile duusra links ke bhi check kare ke nai bhulna.
 'statistics-users-active-desc' => 'Sadasya jon ki pichhle {{PLURAL:$1|din|$1 din}} me kuchh karin hai.',
 'statistics-mostpopular'       => 'Sab se jaada dekha gae panna',
 
-'disambiguations'      => 'Disambiguation panna',
+'disambiguations'      => 'Garrbarri ke sudhare waala panna',
 'disambiguationspage'  => 'Template:disambig',
 'disambiguations-text' => "Niche ke panna '''disambiguation panna''' se link hoe hai.
 They should link to the appropriate topic instead.<br />
@@ -1744,7 +1746,7 @@ Sab row me pahila aur duusra redirect ke jorr hae, aur isme duusra redirect ke n
 'listusers-editsonly'     => 'Khaali uu sadasya ke dekhao jon ki koi badlao karis hai',
 'listusers-creationsort'  => 'Banawa gais tarik se sort karo',
 'usereditcount'           => '$1 {{PLURAL:$1|badlao|badlao}}',
-'usercreated'             => '$1 ke roj $2 baje iske banawa gais hai',
+'usercreated'             => '{{GENDER:$3|Banawa gais hae}}  $1 pe $2 me',
 'newpages'                => 'Nawaa panna',
 'newpages-username'       => 'Username:',
 'ancientpages'            => 'Sab se purana panna',
@@ -1770,7 +1772,7 @@ Yaad rakhna ki duusra web site bhi direct URL se ek file se link hoe sake hae, a
 
 # Special:Log
 'specialloguserlabel'  => 'Sadasya:',
-'speciallogtitlelabel' => 'Title:',
+'speciallogtitlelabel' => 'Padwi:',
 'log'                  => 'Suchi',
 'all-logs-page'        => 'Sab janta waala suchi',
 'alllogstext'          => '{{SITENAME}} ke sab log ke ek saathe dekhawa jjawe hae.
@@ -2760,8 +2762,12 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'exif-subjectarea'                 => 'Vishay ke jagha',
 'exif-flashenergy'                 => 'Chamak ke taagat',
 'exif-focalplanexresolution'       => 'Focal plane X resolution',
+'exif-filesource'                  => 'File ke source',
+'exif-scenetype'                   => 'Kon rakam ke scene hae',
 'exif-gpsaltitude'                 => 'Uunchai',
 'exif-gpsspeedref'                 => 'Raftar ke unit',
+'exif-gpsdestdistance'             => 'Manjil se duuri',
+'exif-gpsareainformation'          => 'GPS ilaka ke naam',
 'exif-gpsdatestamp'                => 'GPS ke taarik',
 
 'exif-orientation-2' => 'Baraabar ultawa gais hae',
@@ -2849,6 +2855,9 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'watchlisttools-edit' => 'Dhyan suchi ke dekho aur badlo',
 'watchlisttools-raw'  => 'Dhyan suchi ke apne sampadan karo',
 
+# Core parser functions
+'duplicate-defaultsort' => '\'\'\'Chetauni:\'\'\' Default sort key "$2" pahile ke default sort key "$1" ke override kare hae.',
+
 # Special:Version
 'version'                  => 'Badlao',
 'version-specialpages'     => 'Khaas panna',
@@ -2874,7 +2883,20 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'blankpage'              => 'Khaali panna',
 'intentionallyblankpage' => 'Ii panna ke jaan ke khaliya chhorraa gais hae.',
 
+# External image whitelist
+'external_image_whitelist' => '#Leave this line exactly as it is<pre>
+#Put regular expression fragments (just the part that goes between the //) below
+#These will be matched with the URLs of external (hotlinked) images
+#Those that match will be displayed as images, otherwise only a link to the image will be shown
+#Lines beginning with # are treated as comments
+#This is case-insensitive
+
+# Ii line ke yahii rakam chhorr do<pre>
+#Sab regular expression fragments (wahii hissa jon ki // ke biich me jaawe hae) ke niche rakkho
+#Iske bahaari URLs  (hotlinked) chapa se link karaa jaai',
+
 # Special:Tags
+'tag-filter'    => '[[Special:Tags|Tag]] filter karo:',
 'tags-edit'     => 'badlo',
 'tags-hitcount' => '$1 {{PLURAL:$1|badlao|badlao}}',
 

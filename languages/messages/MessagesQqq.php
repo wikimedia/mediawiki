@@ -282,7 +282,7 @@ In user preferences.',
 'category-media-header'          => 'In category description page',
 'category-empty'                 => 'The text displayed in category page when that category is empty',
 'hidden-categories'              => 'Used in the categories section of pages. Is followed by a colon and a list of categories.',
-'hidden-category-category'       => 'Name of the category where hidden categories will be listed.',
+'hidden-category-category'       => 'Name of the [[mw:Help:Tracking categories|tracking category]] where hidden categories will be listed.',
 'category-subcat-count'          => 'This message is displayed at the top of a category page showing the number of pages in the category. Parameters:
 * $1: number of subcategories shown
 * $2: total number of subcategories in category',
@@ -300,9 +300,9 @@ In user preferences.',
 * $1: number of files shown',
 'listingcontinuesabbrev'         => 'Shown in contiuation of each first letter group.
 See http://test.wikipedia.org/wiki/Category:Test_ko?uselang={{SUBPAGENAME}}, for example.',
-'index-category'                 => 'Name of the category where pages with the <nowiki>__INDEX__</nowiki> behaviour switch are listed. For description of this behaviour switch see [//www.mediawiki.org/wiki/Help:Magic_words#Behavior_switches mediawiki].',
-'noindex-category'               => 'Name of the category where pages with the <nowiki>__NOINDEX__</nowiki> behaviour switch are listed. For description of this behaviour switch see [//www.mediawiki.org/wiki/Help:Magic_words#Behavior_switches mediawiki].',
-'broken-file-category'           => 'Name of category where pages that embed files that do not exist ("broken images") are listed.',
+'index-category'                 => 'Name of the [[mw:Help:Tracking categories|tracking category]] where pages with the <nowiki>__INDEX__</nowiki> behaviour switch are listed. For description of this behaviour switch see [//www.mediawiki.org/wiki/Help:Magic_words#Behavior_switches mediawiki].',
+'noindex-category'               => 'Name of the [[mw:Help:Tracking categories|tracking category]] where pages with the <nowiki>__NOINDEX__</nowiki> behaviour switch are listed. For description of this behaviour switch see [//www.mediawiki.org/wiki/Help:Magic_words#Behavior_switches mediawiki].',
+'broken-file-category'           => 'Name of [[mw:Help:Tracking categories|tracking category]] where pages that embed files that do not exist ("broken images") are listed.',
 
 'linkprefix' => '{{optional}}',
 
@@ -997,9 +997,10 @@ Please report at [[Support]] if you are unable to properly translate this messag
 
 * $1 is the current number of parser function calls.
 * $2 is the allowed number of parser function calls.',
-'expensive-parserfunction-category'       => 'This message is used as a category name for a category where pages are placed automatically if they contain too many calls to expensive parser functions.',
+'expensive-parserfunction-category'       => 'This message is used as a category name for a [[mw:Help:Tracking categories|tracking category]] where pages are placed automatically if they contain too many calls to expensive parser functions.',
 'post-expand-template-inclusion-warning'  => 'When templates are expanded, there is a size limit for the number of bytes yielded. Usually that occurs from excessively nested templates, recursive templates, or ones having x-zillion of #if #case or similar contructs in them. When the wikicode parser detects this, it outputs a red warning message to the page.',
-'post-expand-template-inclusion-category' => 'When templates are expanded, there is a size limit for the number of bytes yielded. Usually that occurs from excessively nested templates, recursive templates, or ones having x-zillion of #if #case or similar contructs in them. When the wikicode parser detects this, it outputs a red warning message to the page.',
+'post-expand-template-inclusion-category' => 'This message is used as a category name for a [[mw:Help:Tracking categories|tracking category]] where pages are placed automatically if the expanded size of the templates they contain exceeds the limit.
+When templates are expanded, there is a size limit for the number of bytes yielded. Usually that occurs from excessively nested templates, recursive templates, or ones having x-zillion of #if #case or similar contructs in them. When the wikicode parser detects this, it outputs a red warning message to the page.',
 'language-converter-depth-warning'        => 'Error message shown when a page uses too deeply nested language conversion syntax
 
 * <tt>$1</tt> is the value of the depth limit',
@@ -1281,7 +1282,7 @@ $1 is the relevance of this result in per cent.
 
 {{Identical|Relevance: $1%}}',
 'search-redirect'                => "\$1 is a link to the redirect to the page (so, \$1 is the page that the search result is redirected '''from'''). \"Redirect\" is a noun here, not a verb.",
-'search-section'                 => 'တွၼ်ႈ $1',
+'search-section'                 => 'This text will be shown on the search result listing after the page title of a result if the search algorithm thinks that section is more relevant than the rest of the page. $1 is a section title.',
 'search-interwiki-default'       => '* $1 is the hostname of the remote wiki from where the additional results listed below are returned',
 'search-interwiki-more'          => '{{Identical|More}}',
 'search-relatedarticle'          => '{{Identical|Related}}
@@ -2220,7 +2221,7 @@ Possible alternatives to the word 'content' are 'subject matter' or 'wiki subjec
 $1 is a page title",
 'wantedfiles'             => 'Name of special page displayed in [[Special:SpecialPages]] and title of [[Special:WantedFiles]].',
 'wantedfiletext-cat'      => 'Message displayed at top of [[special:WantedFiles]]. $1 contains the name of the tracking category for broken files (Including Category prefix). {{msg-mw|wantedfiletext-nocat}} is used if the tracking category is disabled.',
-'wantedfiletext-nocat'      => 'Message displayed at top of [[special:WantedFiles]] when broken file tracking category is disabled. See {{msg-mw|wantedfiletext-cat}}.',
+'wantedfiletext-nocat'    => 'Message displayed at top of [[special:WantedFiles]] when broken file tracking category is disabled. See {{msg-mw|wantedfiletext-cat}}.',
 'wantedtemplates'         => 'The page name of [[Special:WantedTemplates]].',
 'mostlinked'              => 'Name of special page displayed in [[Special:SpecialPages]]',
 'mostlinkedcategories'    => 'Name of special page displayed in [[Special:SpecialPages]]',
@@ -4103,41 +4104,41 @@ Most languages use a space, but some Asian languages, such as Thai and Chinese, 
 'autosumm-new'     => 'The auto summary when creating a new page. $1 are the first X number of characters of the new page.',
 
 # Size units
-'size-bytes'     => '{{optional}}
+'size-bytes'      => '{{optional}}
 Size (of a page, typically) in bytes.',
-'size-kilobytes' => '{{optional}}
+'size-kilobytes'  => '{{optional}}
 Size (of a page, typically) in kibibytes (1 kibibyte = 1024 bytes).',
-'size-megabytes' => '{{optional}}
+'size-megabytes'  => '{{optional}}
 Size (of a file, typically) in mebibytes (1 mebibyte = 1024×1024 bytes).',
-'size-gigabytes' => '{{optional}}
+'size-gigabytes'  => '{{optional}}
 Size (of a file, typically) in gibibytes (1 gibibyte = 1024×1024×1024 bytes).',
-'size-terabytes' => '{{optional}}
+'size-terabytes'  => '{{optional}}
 Size (of a file, typically) in tebibytes (1 tebibytes = 1024×1024×1024×1024 bytes).',
-'size-petabytes' => '{{optional}}
+'size-petabytes'  => '{{optional}}
 Size (of a file, typically) in pebibytes (1 pebibytes = 1024×1024×1024×1024×1024 bytes).',
-'size-exabytes' => '{{optional}}
+'size-exabytes'   => '{{optional}}
 Size (of a file, typically) in exbibytes (1 exbibytes = 1024×1024×1024×1024×1024×1024 bytes).',
-'size-zetabytes' => '{{optional}}
+'size-zetabytes'  => '{{optional}}
 Size (of a file, typically) in zebibytes (1 zebibytes = 1024×1024×1024×1024×1024×1024×1024 bytes).',
 'size-yottabytes' => '{{optional}}
 Size (of a file, typically) in yobibytes (1 yobibytes = 1024×1024×1024×1024×1024×1024×1024×1024 bytes).',
 
 # Bitrate units
-'bitrate-bits'     => '{{optional}}
+'bitrate-bits'      => '{{optional}}
 Bitrate (of a file, typically) in bits.',
-'bitrate-kilobits' => '{{optional}}
+'bitrate-kilobits'  => '{{optional}}
 Bitrate (of a file, typically) in kilobits (1 kilobit = 1000 bits).',
-'bitrate-megabits' => '{{optional}}
+'bitrate-megabits'  => '{{optional}}
 Bitrate (of a file, typically) in megabits (1 megabits = 1000×1000 bits).',
-'bitrate-gigabits' => '{{optional}}
+'bitrate-gigabits'  => '{{optional}}
 Bitrate (of a file, typically) in gibibits (1 gigabits = 1000×1000×1000 bits).',
-'bitrate-terabits' => '{{optional}}
+'bitrate-terabits'  => '{{optional}}
 Bitrate (of a file, typically) in terabits (1 terabits = 1000×1000×1000×1000 bits).',
-'bitrate-petabits' => '{{optional}}
+'bitrate-petabits'  => '{{optional}}
 Bitrate (of a file, typically) in petabits (1 petabits = 1000×1000×1000×1000×1000 bits).',
-'bitrate-exabits' => '{{optional}}
+'bitrate-exabits'   => '{{optional}}
 Bitrate (of a file, typically) in exabits (1 exabits = 1000×1000×1000×1000×1000×1000 bits).',
-'bitrate-zetabits' => '{{optional}}
+'bitrate-zetabits'  => '{{optional}}
 Bitrate (of a file, typically) in zetabits (1 zetabits = 1000×1000×1000×1000×1000×1000×1000 bits).',
 'bitrate-yottabits' => '{{optional}}
 Bitrate (of a file, typically) in yottabits (1 yottabits = 1000×1000×1000×1000×1000×1000×1000×1000 bits).',
