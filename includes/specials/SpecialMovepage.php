@@ -68,7 +68,7 @@ class MovePageForm extends UnlistedSpecialPage {
 
 		# Check rights
 		$permErrors = $this->oldTitle->getUserPermissionsErrors( 'move', $user );
-		if( !empty( $permErrors ) ) {
+		if ( count( $permErrors ) ) {
 			// Auto-block user's IP if the account was "hard" blocked
 			$user->spreadAnyEditBlock();
 			throw new PermissionsError( 'move', $permErrors );
@@ -89,16 +89,16 @@ class MovePageForm extends UnlistedSpecialPage {
 			&& $user->matchEditToken( $request->getVal( 'wpEditToken' ) ) ) {
 			$this->doSubmit();
 		} else {
-			$this->showForm( '' );
+			$this->showForm( array() );
 		}
 	}
 
 	/**
 	 * Show the form
 	 *
-	 * @param $err Mixed: error message. May either be a string message name or
-	 *    array message name and parameters, like the second argument to
-	 *    OutputPage::wrapWikiMsg().
+	 * @param $err Array: error messages. Each item is an error message.
+	 *    It may either be a string message name or array message name and
+	 *    parameters, like the second argument to OutputPage::wrapWikiMsg().
 	 */
 	function showForm( $err ) {
 		global $wgContLang, $wgFixDoubleRedirects, $wgMaximumMovedPages;
@@ -117,22 +117,21 @@ class MovePageForm extends UnlistedSpecialPage {
 			# Show the current title as a default
 			# when the form is first opened.
 			$newTitle = $this->oldTitle;
-		}
-		else {
-			if( empty($err) ) {
-				# If a title was supplied, probably from the move log revert
-				# link, check for validity. We can then show some diagnostic
-				# information and save a click.
-				$newerr = $this->oldTitle->isValidMoveOperation( $newTitle );
-				if( $newerr ) {
-					$err = $newerr[0];
-				}
+		} elseif ( !count( $err ) ) {
+			# If a title was supplied, probably from the move log revert
+			# link, check for validity. We can then show some diagnostic
+			# information and save a click.
+			$newerr = $this->oldTitle->isValidMoveOperation( $newTitle );
+			if( is_array( $newerr ) ) {
+				$err = $newerr;
 			}
 		}
 
 		$user = $this->getUser();
 
-		if ( !empty($err) && $err[0] == 'articleexists' && $user->isAllowed( 'delete' ) ) {
+		if ( count( $err ) == 1 && isset( $err[0][0] ) && $err[0][0] == 'articleexists'
+			&& $newTitle->quickUserCan( 'delete', $user )
+		) {
 			$out->addWikiMsg( 'delete_and_move_text', $newTitle->getPrefixedText() );
 			$movepagebtn = wfMsg( 'delete_and_move' );
 			$submitVar = 'wpDeleteAndMove';
@@ -143,7 +142,7 @@ class MovePageForm extends UnlistedSpecialPage {
 						Xml::checkLabel( wfMsg( 'delete_and_move_confirm' ), 'wpConfirm', 'wpConfirm' ) .
 					"</td>
 				</tr>";
-			$err = '';
+			$err = array();
 		} else {
 			if ($this->oldTitle->getNamespace() == NS_USER && !$this->oldTitle->isSubpage() ) {
 				$out->wrapWikiMsg( "<div class=\"error mw-moveuserpage-warning\">\n$1\n</div>", 'moveuserpage-warning' );
@@ -155,10 +154,12 @@ class MovePageForm extends UnlistedSpecialPage {
 			$confirm = false;
 		}
 
-		if ( !empty($err) && $err[0] == 'file-exists-sharedrepo' && $user->isAllowed( 'reupload-shared' ) ) {
+		if ( count( $err ) == 1 && isset( $err[0][0] ) && $err[0][0] == 'file-exists-sharedrepo'
+			&& $user->isAllowed( 'reupload-shared' )
+		) {
 			$out->addWikiMsg( 'move-over-sharedrepo', $newTitle->getPrefixedText() );
 			$submitVar = 'wpMoveOverSharedFile';
-			$err = '';
+			$err = array();
 		}
 
 		$oldTalk = $this->oldTitle->getTalkPage();
@@ -189,17 +190,33 @@ class MovePageForm extends UnlistedSpecialPage {
 			$out->addWikiMsg( 'movepagetalktext' );
 		}
 
-		$token = htmlspecialchars( $user->getEditToken() );
+		if ( count( $err ) ) {
+			$out->addHTML( "<div class='error'>\n" );
+			$action_desc = $this->msg( 'action-move' )->plain();
+			$out->addWikiMsg( 'permissionserrorstext-withaction', count( $err ), $action_desc );
 
-		if ( !empty($err) ) {
-			$out->addSubtitle( $this->msg( 'formerror' ) );
-			if( $err[0] == 'hookaborted' ) {
-				$hookErr = $err[1];
-				$errMsg = "<p><strong class=\"error\">$hookErr</strong></p>\n";
-				$out->addHTML( $errMsg );
+			if ( count( $err ) ) {
+				$errMsg = $err[0];
+				$errMsgName = array_shift( $errMsg );
+				if ( $errMsgName == 'hookaborted' ) {
+					$out->addHTML( "<p>{$errMsg[0]}</p>\n" );
+				} else {
+					$out->addWikiMsgArray( $errMsg, $errMsgName );
+				}
 			} else {
-				$out->wrapWikiMsg( "<p><strong class=\"error\">\n$1\n</strong></p>", $err );
+				$errStr = array();
+				foreach( $err as $errMsg ) {
+					if( $errMsg[0] == 'hookaborted' ) {
+						$errStr[] = $errMsg[1];
+					} else {
+						$errMsgName = array_shift( $errMsg );
+						$errStr[] = $this->msg( $errMsgName, $errMsg )->parse();
+					}
+				}
+
+				$out->addHTML( '<ul><li>' . implode( "</li>\n<li>", $errStr ) . "</li></ul>\n" );
 			}
+			$out->addHTML( "</div>\n" );
 		}
 
 		if ( $this->oldTitle->isProtected( 'move' ) ) {
@@ -336,7 +353,7 @@ class MovePageForm extends UnlistedSpecialPage {
 				"</td>
 			</tr>" .
 			Xml::closeElement( 'table' ) .
-			Html::hidden( 'wpEditToken', $token ) .
+			Html::hidden( 'wpEditToken', $user->getEditToken() ) .
 			Xml::closeElement( 'fieldset' ) .
 			Xml::closeElement( 'form' ) .
 			"\n"
@@ -359,12 +376,29 @@ class MovePageForm extends UnlistedSpecialPage {
 		$ot = $this->oldTitle;
 		$nt = $this->newTitle;
 
+		# don't allow moving to pages with # in
+		if ( !$nt || $nt->getFragment() != '' ) {
+			$this->showForm( array( array( 'badtitletext' ) ) );
+			return;
+		}
+
+		# Show a warning if the target file exists on a shared repo
+		if ( $nt->getNamespace() == NS_FILE
+			&& !( $this->moveOverShared && $user->isAllowed( 'reupload-shared' ) )
+			&& !RepoGroup::singleton()->getLocalRepo()->findFile( $nt )
+			&& wfFindFile( $nt ) )
+		{
+			$this->showForm( array( array( 'file-exists-sharedrepo' ) ) );
+			return;
+
+		}
+
 		# Delete to make way if requested
 		if ( $this->deleteAndMove ) {
 			$permErrors = $nt->getUserPermissionsErrors( 'delete', $user );
 			if ( count( $permErrors ) ) {
 				# Only show the first error
-				$this->showForm( $permErrors[0] );
+				$this->showForm( $permErrors );
 				return;
 			}
 
@@ -381,27 +415,9 @@ class MovePageForm extends UnlistedSpecialPage {
 			$error = ''; // passed by ref
 			$page = WikiPage::factory( $nt );
 			if ( !$page->doDeleteArticle( $reason, false, 0, true, $error, $user ) ) {
-				$this->showForm( array( 'cannotdelete', wfEscapeWikiText( $nt->getPrefixedText() ) ) );
+				$this->showForm( array( array( 'cannotdelete', wfEscapeWikiText( $nt->getPrefixedText() ) ) ) );
 				return;
 			}
-
-		}
-
-		# don't allow moving to pages with # in
-		if ( !$nt || $nt->getFragment() != '' ) {
-			$this->showForm( 'badtitletext' );
-			return;
-		}
-
-		# Show a warning if the target file exists on a shared repo
-		if ( $nt->getNamespace() == NS_FILE
-			&& !( $this->moveOverShared && $user->isAllowed( 'reupload-shared' ) )
-			&& !RepoGroup::singleton()->getLocalRepo()->findFile( $nt )
-			&& wfFindFile( $nt ) )
-		{
-			$this->showForm( array('file-exists-sharedrepo') );
-			return;
-
 		}
 
 		if ( $user->isAllowed( 'suppressredirect' ) ) {
@@ -413,8 +429,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		# Do the actual move.
 		$error = $ot->moveTo( $nt, true, $this->reason, $createRedirect );
 		if ( $error !== true ) {
-			# @todo FIXME: Show all the errors in a list, not just the first one
-			$this->showForm( reset( $error ) );
+			$this->showForm( $error );
 			return;
 		}
 
