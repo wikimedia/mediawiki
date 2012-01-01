@@ -206,7 +206,8 @@ production.
   {{NAMESPACE}} relative to correct title.
 * (bug 30485 and bug 33434) Style rules for wikitable are now more specific and
   prevent inheritance to nested tables which caused various issues
-  
+* (bug 32686) Tooltip on links to non-existing pages are now always in user's
+  language
 
 === API changes in 1.19 ===
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.
