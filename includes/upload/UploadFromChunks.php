@@ -241,15 +241,14 @@ class UploadFromChunks extends UploadFromFile {
 	/**
 	 * Output the chunk to disk
 	 * 
-	 * @param $chunk 
-	 * @param unknown_type $path
+	 * @param $chunkPath string
 	 */
 	private function outputChunk( $chunkPath ){
 		// Key is fileKey + chunk index
 		$fileKey = $this->getChunkFileKey();
 		
 		// Store the chunk per its indexed fileKey: 
-		$hashPath = $this->repo->getHashPath( $fileKey );		
+		$hashPath = $this->repo->getHashPath( $fileKey );
 		$storeStatus = $this->repo->store( $chunkPath, 'temp', "$hashPath$fileKey" );
 		
 		// Check for error in stashing the chunk:
@@ -263,7 +262,7 @@ class UploadFromChunks extends UploadFromFile {
 					$error = array( 'unknown', 'no error recorded' );
 				}
 			}
-			throw new UploadChunkFileException( "error storing file in '$path': " . implode( '; ', $error ) );
+			throw new UploadChunkFileException( "error storing file in '$chunkPath': " . implode( '; ', $error ) );
 		}
 		return $storeStatus;
 	}
