@@ -3,13 +3,13 @@
 ( function( $, mw, undefined ) {
 
 	/**
-	 * @var defaultsOptions {Object}
+	 * @var defaultOptions {Object}
 	 * We allow people to omit these default parameters from API requests
 	 * there is very customizable error handling here, on a per-call basis
 	 * wondering, would it be simpler to make it easy to clone the api object,
 	 * change error handling, and use that instead?
 	 */
-	var defaultsOptions = {
+	var defaultOptions = {
 
 			// Query parameters for API requests
 			parameters: {
@@ -64,8 +64,8 @@
 			options.ajax.url = String( options.ajax.url );
 		}
 
-		options.parameters = $.extend( {}, defaultsOptions.parameters, options.parameters );
-		options.ajax = $.extend( {}, defaultsOptions.ajax, options.ajax );
+		options.parameters = $.extend( {}, defaultOptions.parameters, options.parameters );
+		options.ajax = $.extend( {}, defaultOptions.ajax, options.ajax );
 
 		this.defaults = options;
 	};
