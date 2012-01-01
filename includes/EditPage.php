@@ -1818,7 +1818,6 @@ class EditPage {
 			}
 
 			if ( $this->section != '' && $this->section != 'new' ) {
-				$matches = array();
 				if ( !$this->summary && !$this->preview && !$this->diff ) {
 					$sectionTitle = self::extractSectionTitle( $this->textbox1 );
 					if ( $sectionTitle !== false ) {

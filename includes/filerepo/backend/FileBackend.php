@@ -813,7 +813,7 @@ abstract class FileBackend extends FileBackendBase {
 		if ( empty( $opts['nonLocking'] ) ) {
 			// Build up a list of files to lock...
 			$filesLockEx = $filesLockSh = array();
-			foreach ( $performOps as $index => $fileOp ) {
+			foreach ( $performOps as $fileOp ) {
 				$filesLockSh = array_merge( $filesLockSh, $fileOp->storagePathsRead() );
 				$filesLockEx = array_merge( $filesLockEx, $fileOp->storagePathsChanged() );
 			}
