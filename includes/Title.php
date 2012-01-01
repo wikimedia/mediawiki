@@ -64,6 +64,7 @@ class Title {
 	var $mArticleID = -1;             // /< Article ID, fetched from the link cache on demand
 	var $mLatestID = false;           // /< ID of most recent revision
 	var $mCounter = -1;               // /< Number of times this page has been viewed (-1 means "not loaded")
+	private $mTouched;                // /< Timestamp of the last time this page was touched
 	private $mIsNew;                  // /< Whether this is a "new page" (i.e. it has only one revision)
 	private $mEstimateRevisions;      // /< Estimated number of revisions; null of not loaded
 	var $mRestrictions = array();     // /< Array of groups allowed to edit this article
@@ -234,6 +235,7 @@ class Title {
 			array(
 				'page_namespace', 'page_title', 'page_id',
 				'page_len', 'page_is_redirect', 'page_latest',
+				'page_counter', 'page_touched', 'page_is_new',
 			),
 			array( 'page_id' => $ids ),
 			__METHOD__
@@ -277,6 +279,8 @@ class Title {
 				$this->mLatestID = (int)$row->page_latest;
 			if ( isset( $row->page_counter ) )
 				$this->mCounter = (int)$row->page_counter;
+			if ( isset( $row->page_touched ) )
+				$this->mTouched = $row->page_touched;
 			if ( isset( $row->page_is_new ) )
 				$this->mIsNew = (bool)$row->page_is_new;
 		} else { // page not found
@@ -285,6 +289,8 @@ class Title {
 			$this->mRedirect = false;
 			$this->mLatestID = 0;
 			$this->mCounter = 0;
+			$this->mTouched = '19700101000000';
+			$this->mIsNew = false;
 		}
 	}
 
@@ -2787,6 +2793,28 @@ class Title {
 	}
 
 	/**
+	 * Get the last touched timestamp
+	 *
+	 * @return String last-touched timestamp
+	 */
+	public function getTouched() {
+		if ( $this->mTouched == null ) {
+			if ( $this->exists() ) {
+				$dbr = wfGetDB( DB_SLAVE );
+				$this->mTouched = $dbr->selectField( 'page',
+					'page_touched',
+					array( 'page_id' => $this->getArticleID() ),
+					__METHOD__
+				);
+			} else {
+				$this->mTouched = '19700101000000';
+			}
+		}
+
+		return $this->mTouched;
+	}
+
+	/**
 	 * Check if this is a new page (i.e. it has only one revision)
 	 *
 	 * @return bool
@@ -4278,18 +4306,6 @@ class Title {
 			$u = new HTMLCacheUpdate( $this, 'categorylinks' );
 			$u->doUpdate();
 		}
-	}
-
-	/**
-	 * Get the last touched timestamp
-	 *
-	 * @param $db DatabaseBase: optional db
-	 * @return String last-touched timestamp
-	 */
-	public function getTouched( $db = null ) {
-		$db = isset( $db ) ? $db : wfGetDB( DB_SLAVE );
-		$touched = $db->selectField( 'page', 'page_touched', $this->pageCond(), __METHOD__ );
-		return $touched;
 	}
 
 	/**
