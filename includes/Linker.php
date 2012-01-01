@@ -154,15 +154,20 @@ class Linker {
 	 * @param $query         array  The query string to append to the URL
 	 *   you're linking to, in key => value array form.  Query keys and values
 	 *   will be URL-encoded.
-	 * @param $options string|array  String or array of strings:
-	 *     'known': Page is known to exist, so don't check if it does.
-	 *     'broken': Page is known not to exist, so don't check if it does.
-	 *     'noclasses': Don't add any classes automatically (includes "new",
+	 * @param $options string|array  String or array:
+	 *   - Either with numerical index and following values:
+	 *     - 'known': Page is known to exist, so don't check if it does.
+	 *     - 'broken': Page is known not to exist, so don't check if it does.
+	 *     - 'noclasses': Don't add any classes automatically (includes "new",
 	 *       "stub", "mw-redirect", "extiw").  Only use the class attribute
 	 *       provided, if any, so you get a simple blue link with no funny i-
 	 *       cons.
-	 *     'forcearticlepath': Use the article path always, even with a querystring.
+	 *     - 'forcearticlepath': Use the article path always, even with a querystring.
 	 *       Has compatibility issues on some setups, so avoid wherever possible.
+	 *   - Or with following indexes:
+	 *     - 'language': the value of that index is the language to use; currently
+	 *       only used for the tooltip when linking to a page that doesn't exist
+	 *       (since 1.19)
 	 * @return string HTML <a> attribute
 	 */
 	public static function link(
@@ -189,7 +194,7 @@ class Linker {
 
 		# If we don't know whether the page exists, let's find out.
 		wfProfileIn( __METHOD__ . '-checkPageExistence' );
-		if ( !in_array( 'known', $options ) and !in_array( 'broken', $options ) ) {
+		if ( !in_array( 'known', $options, true ) && !in_array( 'broken', $options, true ) ) {
 			if ( $target->isKnown() ) {
 				$options[] = 'known';
 			} else {
@@ -199,14 +204,14 @@ class Linker {
 		wfProfileOut( __METHOD__ . '-checkPageExistence' );
 
 		$oldquery = array();
-		if ( in_array( "forcearticlepath", $options ) && $query ) {
+		if ( in_array( 'forcearticlepath', $options, true ) && $query ) {
 			$oldquery = $query;
 			$query = array();
 		}
 
 		# Note: we want the href attribute first, for prettiness.
 		$attribs = array( 'href' => self::linkUrl( $target, $query, $options ) );
-		if ( in_array( 'forcearticlepath', $options ) && $oldquery ) {
+		if ( in_array( 'forcearticlepath', $options, true ) && $oldquery ) {
 			$attribs['href'] = wfAppendQuery( $attribs['href'], wfArrayToCgi( $oldquery ) );
 		}
 
@@ -246,7 +251,7 @@ class Linker {
 		wfProfileIn( __METHOD__ );
 		# We don't want to include fragments for broken links, because they
 		# generally make no sense.
-		if ( in_array( 'broken', $options ) && $target->mFragment !== '' ) {
+		if ( in_array( 'broken', $options, true ) && $target->mFragment !== '' ) {
 			$target = clone $target;
 			$target->mFragment = '';
 		}
@@ -254,7 +259,7 @@ class Linker {
 		# If it's a broken link, add the appropriate query pieces, unless
 		# there's already an action specified, or unless 'edit' makes no sense
 		# (i.e., for a nonexistent special page).
-		if ( in_array( 'broken', $options ) && empty( $query['action'] )
+		if ( in_array( 'broken', $options, true ) && empty( $query['action'] )
 			&& !$target->isSpecialPage() ) {
 			$query['action'] = 'edit';
 			$query['redlink'] = '1';
@@ -274,24 +279,22 @@ class Linker {
 	 * @return array
 	 */
 	private static function linkAttribs( $target, $attribs, $options ) {
-		wfProfileIn( __METHOD__ );
 		global $wgUser;
+
+		wfProfileIn( __METHOD__ );
+
 		$defaults = array();
 
-		if ( !in_array( 'noclasses', $options ) ) {
+		if ( !in_array( 'noclasses', $options, true ) ) {
 			wfProfileIn( __METHOD__ . '-getClasses' );
 			# Now build the classes.
 			$classes = array();
 
-			if ( in_array( 'broken', $options ) ) {
-				$classes[] = 'new';
-			}
-
 			if ( $target->isExternal() ) {
 				$classes[] = 'extiw';
-			}
-
-			if ( !in_array( 'broken', $options ) ) { # Avoid useless calls to LinkCache (see r50387)
+			} elseif ( in_array( 'broken', $options, true ) ) {
+				$classes[] = 'new';
+			} else { # Avoid useless calls to LinkCache (see r50387)
 				$colour = self::getLinkColour( $target, $wgUser->getStubThreshold() );
 				if ( $colour !== '' ) {
 					$classes[] = $colour; # mw-redirect or stub
@@ -307,10 +310,14 @@ class Linker {
 		if ( $target->getPrefixedText() == '' ) {
 			# A link like [[#Foo]].  This used to mean an empty title
 			# attribute, but that's silly.  Just don't output a title.
-		} elseif ( in_array( 'known', $options ) ) {
+		} elseif ( in_array( 'known', $options, true ) ) {
 			$defaults['title'] = $target->getPrefixedText();
 		} else {
-			$defaults['title'] = wfMsg( 'red-link-title', $target->getPrefixedText() );
+			$msg = wfMessage( 'red-link-title', $target->getPrefixedText() );
+			if ( isset( $options['language'] ) ) {
+				$msg->inLanguage( $options['language'] );
+			}
+			$defaults['title'] = $msg->text();
 		}
 
 		# Finally, merge the custom attribs with the default ones, and iterate
