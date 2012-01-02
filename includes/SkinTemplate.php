@@ -165,6 +165,7 @@ class SkinTemplate extends Skin {
 
 		wfProfileIn( __METHOD__ . '-stuff' );
 		$this->thispage = $title->getPrefixedDBkey();
+		$this->titletxt = $title->getPrefixedText();
 		$this->userpage = $user->getUserPage()->getPrefixedText();
 		$query = array();
 		if ( !$request->wasPosted() ) {
@@ -178,7 +179,7 @@ class SkinTemplate extends Skin {
 		$this->username = $user->getName();
 		$this->userdisplayname = $user->getDisplayName();
 
-		if ( $user->isLoggedIn() || $this->showIPinHeader() ) {
+		if ( $this->loggedin || $this->showIPinHeader() ) {
 			$this->userpageUrlDetails = self::makeUrlDetails( $this->userpage );
 		} else {
 			# This won't be used in the standard skins, but we define it to preserve the interface
@@ -186,7 +187,6 @@ class SkinTemplate extends Skin {
 			$this->userpageUrlDetails = self::makeKnownUrlDetails( $this->userpage );
 		}
 
-		$this->titletxt = $title->getPrefixedText();
 		wfProfileOut( __METHOD__ . '-stuff' );
 
 		wfProfileIn( __METHOD__ . '-stuff-head' );
@@ -218,25 +218,25 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'pagetitle', $out->getHTMLTitle() );
 		$tpl->set( 'displaytitle', $out->mPageLinkTitle );
 
-		$tpl->set( 'titleprefixeddbkey', $title->getPrefixedDBKey() );
+		$tpl->setRef( 'thispage', $this->thispage );
+		$tpl->setRef( 'titleprefixeddbkey', $this->thispage );
 		$tpl->set( 'titletext', $title->getText() );
 		$tpl->set( 'articleid', $title->getArticleId() );
 
 		$tpl->set( 'isarticle', $out->isArticle() );
 
-		$tpl->setRef( 'thispage', $this->thispage );
 		$subpagestr = $this->subPageSubtitle();
-		$tpl->set(
-			'subtitle', !empty( $subpagestr ) ?
-			'<span class="subpages">' . $subpagestr . '</span>' . $out->getSubtitle() :
-			$out->getSubtitle()
-		);
+		if ( $subpagestr !== '' ) {
+			$subpagestr = '<span class="subpages">' . $subpagestr . '</span>';
+		}
+		$tpl->set( 'subtitle',  $subpagestr . $out->getSubtitle() );
+
 		$undelete = $this->getUndeleteLink();
-		$tpl->set(
-			'undelete', !empty( $undelete ) ?
-			'<span class="subpages">' . $undelete . '</span>' :
-			''
-		);
+		if ( $undelete === '' ) {
+			$tpl->set( 'undelete', '' );
+		} else {
+			$tpl->set( 'undelete', '<span class="subpages">' . $undelete . '</span>' );
+		}
 
 		$tpl->set( 'catlinks', $this->getCategories() );
 		if( $out->isSyndicated() ) {
@@ -258,6 +258,7 @@ class SkinTemplate extends Skin {
 		$tpl->setRef( 'wgScript', $wgScript );
 		$tpl->setRef( 'skinname', $this->skinname );
 		$tpl->set( 'skinclass', get_class( $this ) );
+		$tpl->setRef( 'skin', $this );
 		$tpl->setRef( 'stylename', $this->stylename );
 		$tpl->set( 'printable', $out->isPrintable() );
 		$tpl->set( 'handheld', $request->getBool( 'handheld' ) );
@@ -280,19 +281,18 @@ class SkinTemplate extends Skin {
 		$tpl->setRef( 'logopath', $wgLogo );
 		$tpl->setRef( 'sitename', $wgSitename );
 
-		$contentlang = $wgContLang->getHtmlCode();
-		$contentdir  = $wgContLang->getDir();
-		$userlang = $this->getLanguage()->getHtmlCode();
-		$userdir  = $this->getLanguage()->getDir();
+		$lang = $this->getLanguage();
+		$userlang = $lang->getHtmlCode();
+		$userdir  = $lang->getDir();
 
 		$tpl->set( 'lang', $userlang );
 		$tpl->set( 'dir', $userdir );
-		$tpl->set( 'rtl', $this->getLanguage()->isRTL() );
+		$tpl->set( 'rtl', $lang->isRTL() );
 
-		$tpl->set( 'capitalizeallnouns', $this->getLanguage()->capitalizeAllNouns() ? ' capitalize-all-nouns' : '' );
+		$tpl->set( 'capitalizeallnouns', $lang->capitalizeAllNouns() ? ' capitalize-all-nouns' : '' );
 		$tpl->set( 'showjumplinks', $user->getOption( 'showjumplinks' ) );
-		$tpl->set( 'username', $user->isAnon() ? null : $this->username );
-		$tpl->set( 'userdisplayname', $user->isAnon() ? null : $this->userdisplayname );
+		$tpl->set( 'username', $this->loggedin ? $this->username : null );
+		$tpl->set( 'userdisplayname', $this->loggedin ? $this->userdisplayname : null );
 		$tpl->setRef( 'userpage', $this->userpage );
 		$tpl->setRef( 'userpageurl', $this->userpageUrlDetails['href'] );
 		$tpl->set( 'userlang', $userlang );
@@ -303,7 +303,7 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'userlangattributes', '' );
 		$tpl->set( 'specialpageattributes', '' ); # obsolete
 
-		if ( $userlang !== $contentlang || $userdir !== $contentdir ) {
+		if ( $userlang !== $wgContLang->getHtmlCode() || $userdir !== $wgContLang->getDir() ) {
 			$attrs = " lang='$userlang' dir='$userdir'";
 			$tpl->set( 'userlangattributes', $attrs );
 		}
@@ -312,7 +312,6 @@ class SkinTemplate extends Skin {
 
 		wfProfileIn( __METHOD__ . '-stuff3' );
 		$tpl->set( 'newtalk', $this->getNewtalks() );
-		$tpl->setRef( 'skin', $this );
 		$tpl->set( 'logo', $this->logoText() );
 
 		$tpl->set( 'copyright', false );
@@ -400,7 +399,6 @@ class SkinTemplate extends Skin {
 			$tpl->set( 'debug', '' );
 		}
 
-		$tpl->set( 'reporttime', wfReportTime() );
 		$tpl->set( 'sitenotice', $this->getSiteNotice() );
 		$tpl->set( 'bottomscripts', $this->bottomScripts() );
 		$tpl->set( 'printfooter', $this->printSource() );
@@ -467,6 +465,7 @@ class SkinTemplate extends Skin {
 		}
 
 		$tpl->set( 'debughtml', $this->generateDebugHTML() );
+		$tpl->set( 'reporttime', wfReportTime() );
 
 		// original version by hansm
 		if( !wfRunHooks( 'SkinTemplateOutputPageBeforeExec', array( &$this, &$tpl ) ) ) {
