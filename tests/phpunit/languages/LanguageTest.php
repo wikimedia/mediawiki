@@ -207,6 +207,25 @@ class LanguageTest extends MediaWikiTestCase {
 			"sprintfDate('$format', '$ts'): $msg"
 		);
 	}
+	/**
+	 * bug 33454. sprintfDate should always use UTC.
+	 * @dataProvider provideSprintfDateSamples
+	 */
+	function testSprintfDateTZ( $format, $ts, $expected, $msg ) {
+		$oldTZ = date_default_timezone_get();
+		$res = date_default_timezone_set( 'Asia/Seoul' );
+		if ( !$res ) {
+			$this->markTestSkipped( "Error setting Timezone" );
+		}
+
+		$this->assertEquals(
+			$expected,
+			$this->lang->sprintfDate( $format, $ts ),
+			"sprintfDate('$format', '$ts'): $msg"
+		);
+
+		date_default_timezone_set( $oldTZ );		
+	}
 
 	function provideSprintfDateSamples() {
 		return array(
@@ -222,6 +241,284 @@ class LanguageTest extends MediaWikiTestCase {
 				'90',
 				'Iranian calendar short year'
 			),
+			array(
+				'o',
+				'20120101235000',
+				'2011',
+				'ISO 8601 (week) year'
+			),
+			array(
+				'W',
+				'20120101235000',
+				'52',
+				'Week number'
+			),
+			array(
+				'W',
+				'20120102235000',
+				'1',
+				'Week number'
+			),
+			array(
+				'o-\\WW-N',
+				'20091231235000',
+				'2009-W53-4',
+				'leap week'
+			),
+			// What follows is mostly copied from http://www.mediawiki.org/wiki/Help:Extension:ParserFunctions#.23time
+			array(
+				'Y',
+				'20120102090705',
+				'2012',
+				'Full year'
+			),
+			array(
+				'y',
+				'20120102090705',
+				'12',
+				'2 digit year'
+			),
+			array(
+				'L',
+				'20120102090705',
+				'1',
+				'Leap year'
+			),
+			array(
+				'n',
+				'20120102090705',
+				'1',
+				'Month index, not zero pad'
+			),
+			array(
+				'N',
+				'20120102090705',
+				'01',
+				'Month index. Zero pad'
+			),
+			array(
+				'M',
+				'20120102090705',
+				'Jan',
+				'Month abbrev'
+			),
+			array(
+				'F',
+				'20120102090705',
+				'January',
+				'Full month'
+			),
+			array(
+				'xg',
+				'20120102090705',
+				'January',
+				'Genitive month name (same in EN)'
+			),
+			array(
+				'j',
+				'20120102090705',
+				'2',
+				'Day of month (not zero pad)'
+			),
+			array(
+				'd',
+				'20120102090705',
+				'02',
+				'Day of month (zero-pad)'
+			),
+			array(
+				'z',
+				'20120102090705',
+				'1',
+				'Day of year (zero-indexed)'
+			),
+			array(
+				'D',
+				'20120102090705',
+				'Mon',
+				'Day of week (abbrev)'
+			),
+			array(
+				'l',
+				'20120102090705',
+				'Monday',
+				'Full day of week'
+			),
+			array(
+				'N',
+				'20120101090705',
+				'7',
+				'Day of week (Mon=1, Sun=7)'
+			),
+			array(
+				'w',
+				'20120101090705',
+				'0',
+				'Day of week (Sun=0, Sat=6)'
+			),
+			array(
+				'N',
+				'20120102090705',
+				'1',
+				'Day of week'
+			),
+			array(
+				'a',
+				'20120102090705',
+				'am',
+				'am vs pm'
+			),
+			array(
+				'A',
+				'20120102120000',
+				'PM',
+				'AM vs PM'
+			),
+			array(
+				'a',
+				'20120102000000',
+				'am',
+				'AM vs PM'
+			),
+			array(
+				'g',
+				'20120102090705',
+				'9',
+				'12 hour, not Zero'
+			),
+			array(
+				'h',
+				'20120102090705',
+				'09',
+				'12 hour, zero padded'
+			),
+			array(
+				'G',
+				'20120102090705',
+				'9',
+				'24 hour, not zero'
+			),
+			array(
+				'H',
+				'20120102090705',
+				'09',
+				'24 hour, zero'
+			),
+			array(
+				'H',
+				'20120102110705',
+				'11',
+				'24 hour, zero'
+			),
+			array(
+				'i',
+				'20120102090705',
+				'07',
+				'Minutes'
+			),
+			array(
+				's',
+				'20120102090705',
+				'05',
+				'seconds'
+			),
+			array(
+				'U',
+				'20120102090705',
+				'1325495225',
+				'unix time'
+			),
+			array(
+				't',
+				'20120102090705',
+				'31',
+				'Days in current month'
+			),
+			array(
+				'c',
+				'20120102090705',
+				'2012-01-02T09:07:05+00:00',
+				'ISO 8601 timestamp'
+			),
+			array(
+				'r',
+				'20120102090705',
+				'Mon, 02 Jan 2012 09:07:05 +0000',
+				'RFC 5322'
+			),
+			array(
+				'xmj xmF xmn xmY',
+				'20120102090705',
+				'7 Safar 2 1433',
+				'Islamic'
+			),
+			array(
+				'xij xiF xin xiY',
+				'20120102090705',
+				'12 Dey 10 1390',
+				'Iranian'
+			),
+			array(
+				'xjj xjF xjn xjY',
+				'20120102090705',
+				'7 Tevet 4 5772',
+				'Hebrew'
+			),
+			array(
+				'xjt',
+				'20120102090705',
+				'29',
+				'Hebrew number of days in month'
+			),
+			array(
+				'xjx',
+				'20120102090705',
+				'Tevet',
+				'Hebrew genitive month name (No difference in EN)'
+			),
+			array(
+				'xkY',
+				'20120102090705',
+				'2555',
+				'Thai year'
+			),
+			array(
+				'xoY',
+				'20120102090705',
+				'101',
+				'Minguo'
+			),
+			array(
+				'xtY',
+				'20120102090705',
+				'平成24',
+				'nengo'
+			),
+			array(
+				'xrxkYY',
+				'20120102090705',
+				'MMDLV2012',
+				'Roman numerals'
+			),
+			array(
+				'xhxjYY',
+				'20120102090705',
+				'ה\'תשע"ב2012',
+				'Hebrew numberals'
+			),
+			array(
+				'xnY',
+				'20120102090705',
+				'2012',
+				'Raw numerals (doesn\'t mean much in EN)'
+			),
+			array(
+				'[[Y "(yea"\\r)]] \\"xx\\"',
+				'20120102090705',
+				'[[2012 (year)]] "x"',
+				'Various escaping'
+			),
+
 		);
 	}
 
