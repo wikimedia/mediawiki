@@ -59,6 +59,9 @@ $namespaceAliases = array(
 	'Категорийын_каҥашымаш'     => NS_CATEGORY_TALK,
 );
 
+// Remove Russian aliases
+$namespaceGenderAliases = array();
+
 $specialPageAliases = array(
 	'Preferences'               => array( 'Келыштарымаш' ),
 	'Recentchanges'             => array( 'Пытартыш_тӧрлатымаш-влак' ),

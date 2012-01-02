@@ -35,6 +35,9 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Категория_сярысь_вераськон',
 );
 
+// Remove Russian aliases
+$namespaceGenderAliases = array();
+
 $linkTrail = '/^([a-zа-яёӝӟӥӧӵ“»]+)(.*)$/sDu';
 $fallback8bitEncoding = 'windows-1251';
 $separatorTransformTable = array( ',' => ' ', '.' => ',' );

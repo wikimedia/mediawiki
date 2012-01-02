@@ -37,6 +37,9 @@ $namespaceAliases = array(
 	'Ойуу_ырытыыта' => NS_FILE_TALK,
 );
 
+// Remove Russian aliases
+$namespaceGenderAliases = array();
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Ыйынньыктары аннынан тардыы:',

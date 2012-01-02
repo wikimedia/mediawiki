@@ -56,6 +56,9 @@ $namespaceAliases = array(
 	'Обсуждение_категории' => NS_CATEGORY_TALK
 );
 
+// Remove Russian aliases
+$namespaceGenderAliases = array();
+
 $specialPageAliases = array(
 	'Categories'                => array( 'Акатегориақәа' ),
 	'Mycontributions'           => array( 'Архиарақәа' ),

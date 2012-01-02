@@ -49,6 +49,9 @@ $namespaceAliases = array(
 	'Категорийы_тыххæй_дискусси'  => NS_CATEGORY_TALK,
 );
 
+// Remove Russian aliases
+$namespaceGenderAliases = array();
+
 $magicWords = array(
 	'redirect'                => array( '0', '#РАРВЫСТ', '#перенаправление', '#перенапр', '#REDIRECT' ),
 	'img_right'               => array( '1', 'рахиз', 'справа', 'right' ),

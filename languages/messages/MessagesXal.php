@@ -52,6 +52,9 @@ $namespaceAliases = array(
 	'Янзин_тускар_ухалвр'     => NS_CATEGORY_TALK,
 );
 
+// Remove Russian aliases
+$namespaceGenderAliases = array();
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Заалһиг татас татх:',

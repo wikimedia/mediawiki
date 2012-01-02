@@ -37,6 +37,9 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Категорине_сӳтсе_явмалли',
 );
 
+// Remove Russian aliases
+$namespaceGenderAliases = array();
+
 $linkTrail = '/^([a-zа-яĕçăӳ"»]+)(.*)$/sDu';
 
 $messages = array(
