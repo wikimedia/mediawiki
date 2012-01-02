@@ -1716,7 +1716,7 @@ $1',
 'backend-fail-create'        => 'Impossibile creare il file  $1 .',
 
 # Lock manager
-'lockmanager-notlocked' => 'Impossibile sbloccare la chiave " $1 "; non è bloccata.',
+'lockmanager-notlocked' => 'Impossibile sbloccare "$1"; non è bloccato.',
 
 # ZipDirectoryReader
 'zip-file-open-error' => "Si è verificato un errore durante l'apertura del file per i controlli ZIP.",

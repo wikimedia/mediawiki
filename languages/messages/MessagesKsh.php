@@ -950,8 +950,8 @@ Heh kütt der neuste Enndraach drövver uss_em Logbooch övver et Metmaacher_Spe
 \'\'\'Opjepass:\'\'\'
 Noh em Speichere künnd et sin, datt De Dingem Brauser singe Cache Speicher
 övverlisste muss, ih datt De de Änderunge och ze sinn kreß.
-* Beim \'\'\'<i lang="en">Mozilla</i>\'\'\' un \'\'\'<i lang="en">Firefox</i>\'\'\' un \'\'\'<i lang="en">Safari</i>\'\'\', dröck dä Jrußschreffknopp eronger un kleck dann op <i lang="en">Reload</i> / <i lang="de">Aktualisieren</i>, udder dröck <i lang="de">Ctrl+F5</i> / <i lang="de">Strg+F5</i>, udder dröck <i lang="en">Ctrl+R</i> / <i lang="de">Strg+R</i>, obb enem <i lang="en">Macintosh</i> dröck <i lang="de">Command+R</i>.
-* Beim \'\'\'<i lang="en">Google Chrome</i>\'\'\', dröck <i lang="en">Ctrl+Jrußschreffknopp+R</i> / <i lang="de">Strg+Jrußschreffknopp+R</i>, obb enem <i lang="en">Macintosh</i> dröck <i lang="de">Command+Jrußschreffknopp+R</i>.
+* Beim \'\'\'<i lang="en">Mozilla</i>\'\'\' un \'\'\'<i lang="en">Firefox</i>\'\'\' un \'\'\'<i lang="en">Safari</i>\'\'\', dröck dä Jrußschreffknopp eronger un kleck dann op <i lang="en">Reload</i> / <i lang="de">Aktualisieren</i>, udder dröck <i lang="de">Ctrl+F5</i> / <i lang="de">Strg+F5</i>, udder dröck <i lang="en">Ctrl+R</i> / <i lang="de">Strg+R</i>, obb enem <i lang="en">Macintosh</i> dröck <i lang="de">⌘+R</i>.
+* Beim \'\'\'<i lang="en">Google Chrome</i>\'\'\', dröck <i lang="en">Ctrl+Jrußschreffknopp+R</i> / <i lang="de">Strg+Jrußschreffknopp+R</i>, obb enem <i lang="en">Macintosh</i> dröck <i lang="de">⌘+Jrußschreffknopp+R</i>.
 * Beim \'\'\'<i lang="en">Internet Explorer</i>\'\'\', dröck dä Jrußschreffknopp eronger un kleck dann op <i lang="en">Refresh</i> / <i lang="de">Aktualisieren</i>, udder dröck <i lang="de">Ctrl+F5</i> / <i lang="de">Strg+F5</i>,
 * Beim \'\'\'<i lang="en">Konqueror</i>\'\'\' kleck op <i lang="en">Reload</i> / <i lang="de">Aktualisieren</i>, udder dröck op <i>F5</i>.
 * Beim  \'\'\'<i lang="en">Opera</i>\'\'\' kanns De övver et Menue jonn un däm janze Zwescheschpeischer singe Enhald övver <i lang="en">Tools → Preferences</i> / <i lang="de">Werkzeug → Einstellungen</i> fottschmieße, neuerdings jeiht et och met <i>Alt+F5</i>.',
@@ -1373,7 +1373,7 @@ dat dänne ihr Daate topaktuell sin,
 'prefs-rc'                      => 'Neuste Änderunge',
 'prefs-watchlist'               => 'De Oppassliss',
 'prefs-watchlist-days'          => 'Aanzahl Daare för en ming Oppassliss aanzezeije:',
-'prefs-watchlist-days-max'      => 'Nit mieh wie 7 Dääch',
+'prefs-watchlist-days-max'      => 'Nit mieh wie {{PLURAL:$1|eine Daach|$1 Dääch|keine Daach}}',
 'prefs-watchlist-edits'         => 'Aanzahl Änderunge för en ming verjrößerte Oppassliss aanzezeije:',
 'prefs-watchlist-edits-max'     => 'Nit mieh wie 1000',
 'prefs-watchlist-token'         => 'Oppassleß-Kennzeishe:',
@@ -1839,6 +1839,32 @@ Wann et nit flupp, verzäll et enem [[Special:ListUsers/sysop|Wiki-Köbes]].',
 'upload-unknown-size'       => 'Mer weße nit, wi jruuß',
 'upload-http-error'         => 'Ene <i lang="en">HTTP</i>-Fäähler es opjetrodde: $1',
 
+# File backend
+'backend-fail-backup'        => 'Mer kunnte kein Sescherongskopih vun dä Dattei $1 maache.',
+'backend-fail-notexists'     => 'En Dattei $1 jidd et nit.',
+'backend-fail-hashes'        => 'Mer kunnte kein Pröfsomme vun dä Datteje träcke zom verjliesche.',
+'backend-fail-notsame'       => 'En Dattei mem Name $1 jidd et ald, di es ävver ongerscheidlesch.',
+'backend-fail-delete'        => 'Mer kunnte di Dattei $1 nit fottschmiiße.',
+'backend-fail-alreadyexists' => 'En Dattei $1 jidd et ald.',
+'backend-fail-store'         => 'Mer kunnte di Dattei $1 nit onger $2 affschpeischere.',
+'backend-fail-copy'          => 'Mer kunnte di Dattei $1 nit noh $2 koppėėere.',
+'backend-fail-move'          => 'Mer kunnte di Dattei $1 nit op $2 ömdäufe.',
+'backend-fail-opentemp'      => 'Mer kunnte de Zweschedattei no opmaache.',
+'backend-fail-writetemp'     => 'Mer kunnte nit en de Zweschedattei schriive.',
+'backend-fail-closetemp'     => 'Mer kunnte de Zweschedattei no zohmaache.',
+'backend-fail-read'          => 'Mer kunnte di Dattei $1 nit lässe.',
+'backend-fail-create'        => 'Mer kunnte di Dattei $1 nit aanlääje.',
+
+# Lock manager
+'lockmanager-notlocked'        => 'Mer kunnte „$1“ nit freijävve. Ed es nit jeschpächt.',
+'lockmanager-fail-closelock'   => 'Mer kunnte di Schpärdatei för „$1“ nit zohmaache.',
+'lockmanager-fail-deletelock'  => 'Mer kunnte di Schpärdatei för „$1“ nit fottschmiiße.',
+'lockmanager-fail-acquirelock' => 'Mer kunnte kein Schpärr för „$1“ krijje.',
+'lockmanager-fail-openlock'    => 'Mer kunnte di Schpärdatei för „$1“ nit opmaache.',
+'lockmanager-fail-releaselock' => 'Mer kunnte di Schpärr för „$1“ nit ophävve.',
+'lockmanager-fail-db-release'  => 'Mer kunnte di Schpärre för de Daatebangk „$1“ nit ophävve.',
+'lockmanager-fail-svr-release' => 'Mer kunnte di Schpärre för dä ẞööver „$1“ nit ophävve.',
+
 # ZipDirectoryReader
 'zip-file-open-error' => 'Ene Fähler es opjetrodde, wi me di ZIP-Sammel_Dattei ußpacke wullte för der Enhallt ze proofe.',
 'zip-wrong-format'    => 'De aanjejovve Dattei es kein ZIP-Sammel_Dattei.',
@@ -2097,6 +2123,7 @@ Tipp: Merk Der dä Tittel vun dä Sigg dovör.',
 'mostimages'              => 'Dateie met de miehste Links drop',
 'mostrevisions'           => 'Atikkele met de miehste Änderunge',
 'prefixindex'             => 'All Sigge, dänne ehr Name met enem bestemmte Wood oder Tex aanfängk',
+'prefixindex-namespace'   => 'All Sigge med enem beschtemmpte Aanfang (Appachtemang $1 )',
 'shortpages'              => 'Atikele zoteet vun koot noh lang',
 'longpages'               => 'Atikele zoteet vun lang noh koot',
 'deadendpages'            => 'Atikele ohne Links dren',
@@ -2887,6 +2914,8 @@ Wenn De jenerell aan [//www.mediawiki.org/wiki/Localisation MediaWiki singe Öve
 'thumbnail_error'          => 'Ene Fähler es opjetauch beim Maache vun enem Breefmarke/Thumbnail-Beldche: „$1“',
 'djvu_page_error'          => 'De DjVu-Sgg es ußerhallef',
 'djvu_no_xml'              => 'De XML-Date för di DjVu-Datei kunnte mer nit afrofe',
+'thumbnail-temp-create'    => 'Mer kunnte kein Zweschedattei für Minnibeldscher aanlääje.',
+'thumbnail-dest-create'    => 'Mer kunnte kein Minnibeldscher faßhallde, woh se hen sulle.',
 'thumbnail_invalid_params' => 'Ene Parameter för et Breefmarke-Belldsche (<i lang="en">thumbnail</i>) Maache wohr nit en Odenung',
 'thumbnail_dest_directory' => 'Dat Verzeichnis för dat erin ze donn kunte mer nit aanlääje.',
 'thumbnail_image-type'     => 'Di Zoot Beld künne mer nit met ömjonn',

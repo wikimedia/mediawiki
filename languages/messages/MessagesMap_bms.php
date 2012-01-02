@@ -396,68 +396,103 @@ Alesane yakuwe "\'\'$2\'\'".',
 'virus-unknownscanner' => 'Antivirus ora ditepungi:',
 
 # Login and logout pages
-'logouttext'               => "'''Rika uwis metu log sekang sistem.'''
+'logouttext'                 => "'''Rika uwis metu log sekang sistem.'''
 
 Rika teyeng terus nggunakna {{SITENAME}} kanthi anonim, utawa Rika teyeng [[Special:UserLogin|mlebu log maning]] nganggo jeneng panganggo sing padha utawa sejene.
 Digatekna ya, nek ana kaca sing esih terus nidokna nek rika esih mlebu log nnganti Rika mbusak singgahan nang panjelajah web-e Rika.",
-'welcomecreation'          => '== Sugeng rawuh, $1! ==
+'welcomecreation'            => '== Sugeng rawuh, $1! ==
 
 Akun Rika uwis digawe. Aja kelalen nata konfigurasi [[Special:Preferences|preferensi {{SITENAME}}]] Rika.',
-'yourname'                 => 'Jeneng panganggo:',
-'yourpassword'             => 'Tembung sandhi:',
-'yourpasswordagain'        => 'Balèni tembung sandhi:',
-'remembermypassword'       => 'Emutna data login-ne inyong nang peramban kiye (kanggo paling suwe $1 {{PLURAL:$1|dina|dina}})',
-'securelogin-stick-https'  => 'Tetep kahubung maring HTTPS seuwise mlebu log',
-'yourdomainname'           => 'Domain Rika:',
-'login'                    => 'Melebu',
-'nav-login-createaccount'  => 'Mlebu / gawe kaca anggota (akun)',
-'loginprompt'              => "Rika kudu ngaktifna ''cookies'' ben teyeng mlebu log maring {{SITENAME}}.",
-'userlogin'                => 'Melebu / gawe kaca anggota (account)',
-'userloginnocreate'        => 'Mlebu log',
-'logout'                   => 'Metu Log',
-'userlogout'               => 'Metu Log',
-'notloggedin'              => 'Durung mlebu log',
-'nologin'                  => 'Durung duwe akun? $1.',
-'nologinlink'              => 'Gawe akun anyar',
-'createaccount'            => 'Gawe akun anyar',
-'gotaccount'               => 'Wis duwe akun? $1.',
-'gotaccountlink'           => 'Mlebu log',
-'userlogin-resetlink'      => 'Apa Rika kelalen info detil nggo mlebune?',
-'createaccountmail'        => 'Liwat imel',
-'createaccountreason'      => 'Alesan:',
-'badretype'                => 'Tembung sandhi sing Rika lebokna ora gathuk.',
-'userexists'               => 'Jeneng panganggo sing dilebokna uwis ana sing nganggo.
+'yourname'                   => 'Jeneng panganggo:',
+'yourpassword'               => 'Tembung sandhi:',
+'yourpasswordagain'          => 'Balèni tembung sandhi:',
+'remembermypassword'         => 'Emutna data login-ne inyong nang peramban kiye (kanggo paling suwe $1 {{PLURAL:$1|dina|dina}})',
+'securelogin-stick-https'    => 'Tetep kahubung maring HTTPS seuwise mlebu log',
+'yourdomainname'             => 'Domain Rika:',
+'login'                      => 'Melebu',
+'nav-login-createaccount'    => 'Mlebu / gawe kaca anggota (akun)',
+'loginprompt'                => "Rika kudu ngaktifna ''cookies'' ben teyeng mlebu log maring {{SITENAME}}.",
+'userlogin'                  => 'Melebu / gawe kaca anggota (account)',
+'userloginnocreate'          => 'Mlebu log',
+'logout'                     => 'Metu Log',
+'userlogout'                 => 'Metu Log',
+'notloggedin'                => 'Durung mlebu log',
+'nologin'                    => 'Durung duwe akun? $1.',
+'nologinlink'                => 'Gawe akun anyar',
+'createaccount'              => 'Gawe akun anyar',
+'gotaccount'                 => 'Wis duwe akun? $1.',
+'gotaccountlink'             => 'Mlebu log',
+'userlogin-resetlink'        => 'Apa Rika kelalen info detil nggo mlebune?',
+'createaccountmail'          => 'Liwat imel',
+'createaccountreason'        => 'Alesan:',
+'badretype'                  => 'Tembung sandhi sing Rika lebokna ora gathuk.',
+'userexists'                 => 'Jeneng panganggo sing dilebokna uwis ana sing nganggo.
 Monggo pilih jeneng liyane.',
-'loginerror'               => 'Kasalahan mlebu log',
-'createaccounterror'       => 'Ora teyeng gawe akun:$1',
-'nocookiesnew'             => "Akunpanganggo wis digawe, tapi Rika durung mlebu log.
+'loginerror'                 => 'Kasalahan mlebu log',
+'createaccounterror'         => 'Ora teyeng gawe akun:$1',
+'nocookiesnew'               => "Akunpanganggo wis digawe, tapi Rika durung mlebu log.
 {{SITENAME}} nggunakna ''cookies'' kanggo log panganggo.
 ''Cookies'' nang panjlajah web Rika dipateni.
 Monggo diaktifna, lan jajal mlebu log maning nganggo jeneng panganggo lan tembung sandhine Rika.",
-'nocookieslogin'           => "{{SITENAME}} nggunakna ''cookies'' nggo log panganggone.
+'nocookieslogin'             => "{{SITENAME}} nggunakna ''cookies'' nggo log panganggone.
 ''Cookies'' nang panjlajah web Rika dipateni.
 Monggo diaktfna lan jajal maning.",
-'nocookiesfornew'          => "Akun panganggo ora digawe, jalaran inyong ora teyeng mastikna sumbere.
+'nocookiesfornew'            => "Akun panganggo ora digawe, jalaran inyong ora teyeng mastikna sumbere.
 Pastekna Rika uwis ngaktifna ''cookies'', trus baleni muat kaca kiye maning lan jajal sepisan maning.",
-'noname'                   => 'Jeneng panganggo sing Rika lebokna ora sah.',
-'loginsuccesstitle'        => 'Sukses mlebu log',
-'loginsuccess'             => "'''Rika sekiye mlebu log nang {{SITENAME}} nganggo jeneng \"\$1\".'''",
-'nosuchuser'               => 'Ora ana panganggo sing jenenge "$1".
+'noname'                     => 'Jeneng panganggo sing Rika lebokna ora sah.',
+'loginsuccesstitle'          => 'Sukses mlebu log',
+'loginsuccess'               => "'''Rika sekiye mlebu log nang {{SITENAME}} nganggo jeneng \"\$1\".'''",
+'nosuchuser'                 => 'Ora ana panganggo sing jenenge "$1".
 Jeneng panganggo kuwe mbedakna kapitalisasi.
 Priksa maning ejaane Rika, utawa [[Special:UserLogin/signup|gawe akun anyar]]',
-'nosuchusershort'          => 'Ora ana panganggo sing jenenge "$1".
+'nosuchusershort'            => 'Ora ana panganggo sing jenenge "$1".
 Jajal dipriksa maning ejaane Rika.',
-'nouserspecified'          => 'Rika kudu nglebokna jeneng panganggo.',
-'login-userblocked'        => 'Panganggo kiye diblok. Ora olih mlebu log.',
-'wrongpassword'            => 'Tembung sandhi sing dilebokna salah.
+'nouserspecified'            => 'Rika kudu nglebokna jeneng panganggo.',
+'login-userblocked'          => 'Panganggo kiye diblok. Ora olih mlebu log.',
+'wrongpassword'              => 'Tembung sandhi sing dilebokna salah.
 Monggo dijajal sepisan maning.',
-'wrongpasswordempty'       => 'Rika ora nglebokna tembung sandhi.
+'wrongpasswordempty'         => 'Rika ora nglebokna tembung sandhi.
 Monggo dijajal sepisan maning.',
-'passwordtooshort'         => 'Tembung sandhi kuwe paling ora cacahe {{PLURAL:$1|1 karakter|$1 karakter}}.',
-'password-name-match'      => 'Tembung sandhi Rika kudu sejen karo jeneng panganggone Rika.',
-'password-login-forbidden' => 'Jeneng panganggo lan tembung sandhi kiye ora olih dienggo.',
-'mailmypassword'           => 'Imelna tembung sandhi anyar',
-'passwordremindertitle'    => 'Tembung sandi anyar temporer kanggo {{SITENAME}}',
+'passwordtooshort'           => 'Tembung sandhi kuwe paling ora cacahe {{PLURAL:$1|1 karakter|$1 karakter}}.',
+'password-name-match'        => 'Tembung sandhi Rika kudu sejen karo jeneng panganggone Rika.',
+'password-login-forbidden'   => 'Jeneng panganggo lan tembung sandhi kiye ora olih dienggo.',
+'mailmypassword'             => 'Imelna tembung sandhi anyar',
+'passwordremindertitle'      => 'Tembung sandi anyar temporer kanggo {{SITENAME}}',
+'noemail'                    => 'Ora ana alamat imel sing kecathet kanggo panganggo "$1".',
+'noemailcreate'              => 'Rika kudu nyediakna alamat imel sing sah',
+'passwordsent'               => 'Tembung sandhi anyar wis dikirim maring alamat imelsing didaftarna nggo "$1".
+Monggoo mlebu log maning seuwise Rika nampa imel kuwe.',
+'blocked-mailpassword'       => "Alamat IP-ne Rika diblokir sekang panyuntingan, mulane kuwe Rika ora olih nganggo fungsi pèngetan tembung sandhi kanggo ''mencegah penyalahgunaan''.",
+'throttled-mailpassword'     => 'Sawijining pènget tembung sandhi wis dikirim, jroning {{PLURAL:$1|jam|$1 jam}} pungkasan kiye.
+Kanggo nyegah salah-guna, mung siji pènget tembung sandi thok sing teyeng dikirim saben {{PLURAL:$1|jam|$1 jam}}.',
+'mailerror'                  => 'Kasalahan dong ngirim imel: $1',
+'acct_creation_throttle_hit' => 'Tamu nang wiki kiye sing nganggo alamat IP padha karo Rika kiye uwis gawe {{PLURAL:$1|1 akun|$1 akun}} nang sadina pungkasan, gutul jumlah maksimum sing diidinaken.
+Mulane kuwe, tamu sing nganggo alamat IP kiye ora teyeng maning gawe akun sejen sauntara kiye.',
+'emailauthenticated'         => 'Alamat imel rika wis dikonfirmasi dong tanggal $2 jam $3.',
+'emailnotauthenticated'      => 'Alamat imel Rika durung dikonfirmasi.
+Sedurunge dikonfirmasi Rika ora teyeng nggunakna fitur imel.',
+'noemailprefs'               => 'Rika kudu nglebokna alamat imel nang preferensine Rika ben teyeng nggunakna fitur-fitur kiye.',
+'emailconfirmlink'           => 'Konfirmasikna alamat imel-e Rika',
+'invalidemailaddress'        => 'Alamat imel ora teyeng ditampa jalaran formate ora bener.
+Monggo lebokna alamat imel nganggo format sing bener utawa dikosongna baen isian kuwe mau.',
+'cannotchangeemail'          => 'Alamat imel akun ora teyeng diganti nang wiki kiye.',
+'accountcreated'             => 'Akun wis digawe',
+'accountcreatedtext'         => 'Akun panganggo nggo $1 wis digawe.',
+'createaccount-title'        => 'Gawe akun kanggo {{SITENAME}}',
+'createaccount-text'         => 'Ana wong sing gawe akun nggo alamat imel-e Rika nang {{SITENAME}} ($4) nganggo jeneng "$2", lan tembung sandhi "$3".
+Rika mendingan mlebu log disit lan ganti tembung sandine sekiye.
+
+Rika teyeng nglirwakna pesen kiye anggere akun kiye kuwe jebule anu salah gawe.',
+'usernamehasherror'          => 'Jeneng panganggo ora teyeng nganggo tanda pager',
+'login-throttled'            => 'Rika wis kakehan gole njajal mlebu log.
+Tulung ngenteni sedela sedurunge njajal maning.',
+'login-abort-generic'        => 'Proses mlebu log Rika ora gagal - Dibatalna',
+'loginlanguagelabel'         => 'Basa: $1',
+'suspicious-userlogout'      => "Panjalukan Rika nggo metu log ditolak jalarak ketone dikirim nang panjlajah sing rusak utawa proksi panyinggah (''caching proxy'').",
+
+# E-mail sending
+'php-mail-error-unknown' => 'Kasalahan sing ora genah nang fungsi mail() PHP.',
+'user-mail-no-addy'      => 'Njajal ngirimna imel tanpa nganggo alamat imel.',
 
 # Change password dialog
 'resetpass'                 => 'Ganti tembung sandhi',
@@ -573,10 +608,47 @@ Monggo dipriksa angger Rika kepengin gawe/nyunting kaca kiye.",
 'userpage-userdoesnotexist-view' => 'Panganggo "$1" ora kedaftar.',
 'blocked-notice-logextract'      => 'Pangganggo kiye sekiye lagi diblokir.
 Log pamblokiran pungkasan ditidokna nang ngisor kiye kanggo bahan rujukan:',
+'usercssyoucanpreview'           => "'''Tips:''' Gunakna tombol \"{{int:showpreview}}\" kanggo ngetès CSS anyare Rika sadurungé disimpen.",
+'userjsyoucanpreview'            => "'''Tips:''' Gunakna tombol \"{{int:showpreview}}\" kanggo ngetès JavaScript anyare Rika sadurungé disimpen.",
+'usercsspreview'                 => "'''Eling ya Rika kuwe mung lagi nampilna pratayang sekang CSS Rika.'''
+'''Pratayang kiye anu durung disimpen!'''",
+'userjspreview'                  => "'''Eling ya Rika kuwe mung lagi nampilna pratayang sekang JavaScript-e Rika.'''
+'''Pratayang kiye anu durung disimpen!'''",
+'sitecsspreview'                 => "'''Eling ya Rika kuwe mung lagi nampilna pratayang sekang CSS kiye.'''
+'''Pratayang kiye anu durung disimpen!'''",
+'sitejspreview'                  => "'''Eling ya Rika kuwe mung lagi nampilna pratayang sekang kode JavaScript kiye.'''
+'''Pratayang kiye anu durung disimpen!'''",
+'userinvalidcssjstitle'          => "'''Pènget:''' Kulit \"\$1\" ora ditemokna. Eling ya nek kaca .css lan .js kuwe nggunakna aksara cilik, conto {{ns:user}}:Foo/vector.css lan dudu {{ns:user}}:Foo/Vector.css.",
+'updated'                        => '(Dianyari)',
+'note'                           => "'''Cathetan:'''",
 'previewnote'                    => "'''Eling ya kiye tembe pratayang thok.'''
 Owahane Rika durung disimpen!",
+'previewconflict'                => 'Pratayang kiye nidokna teks nang bagiyan dhuwur kotak suntingan teks kaya sing bakal katon nek Rika nyimpen.',
+'session_fail_preview'           => "'''Nuwun sèwu, suntingan Rika ora teyeng diolah jalaran dhata sèsi kabusak.
+Monggo dijajal sepisan maning. 
+Angger tetep ora teyeng, jajal [[Special:UserLogout|metu log]] disit lan mlebu log maning.",
+'session_fail_preview_html'      => "'''Nuwun sèwu! Kita ora teyeng mrosès suntingan Rika jalaran data sési ilang.'''
+
+''Jalaran {{SITENAME}} ngidina panrapan HTML mentah, pratayang diumpetna minangka penggakan marang serangan Javascript.''
+
+'''Angger kiye kuwe upaya suntingan sing sah, monggo dijajal maning.'''
+Nek esih tetep ora kasil, jajalen [[Special:UserLogout|metu log]] lan mlebu log maning.",
 'editing'                        => 'Nyunting $1',
+'protectedpagewarning'           => "'''Pénget:  Kaca kiye wis dikunci dadi mung panganggo sing nduwé hak aksès pangurus baé sing teyeng nyunting.'''
+Entri cathetan pungkasan disadiakna nang ngisor kanggo referensi:",
+'semiprotectedpagewarning'       => "'''Cathetan:''' Kaca kiye lagi pinuju direksa, dadi mung panganggo kadaftar sing teyeng nyunting.
+Entri cathetan pungkasan disadiakna nang ngisor kanggo referensi:",
+'templatesused'                  => '{{PLURAL:$1|Cithakan|Cithakan}} sing dienggo nang kaca kiye:',
+'templatesusedpreview'           => '{{PLURAL:$1|Cithakan|Cithakan-cithakan}} sing dienggo nang pratayang kiye:',
+'templatesusedsection'           => '{{PLURAL:$1|Cithakan|Cithakan-cithakan}} sing dienggo nang bagiyan kiye:',
 'template-protected'             => '(direksa)',
+'template-semiprotected'         => '(semi-pangreksan)',
+'hiddencategories'               => 'Kaca kiye kuwe anggota sekang {{PLURAL:$1|1 kategori sing diumpetna|$1 kategori-kategori sing diumpetna}}:',
+'nocreatetitle'                  => 'Panggawéan kaca anyar diwatesi',
+'nocreatetext'                   => '{{SITENAME}} wis mbatesi panggawean kaca anyar.
+Rika teyeng mbalik lan nyunting kaca sing wis ana, utawa [[Special:UserLogin|mlebu utawa gawe akun]]',
+'nocreate-loggedin'              => 'Rika ora duwe hak akses nggo gawe kaca anyar.',
+'sectioneditnotsupported-title'  => 'Panyuntingan bagiya ora didukung',
 
 # "Undo" feature
 'undo-success' => 'Suntingan kiye teyeng dibatalna.
@@ -584,8 +656,16 @@ Monggo priksa perbandingan nang ngisor kiye ngo mastekna nek kiye pancen sing Ri
 'undo-failure' => 'Suntingan kiye ora teyeng dibatalna jalaran ana konflik panyuntingan antara.',
 'undo-norev'   => 'Suntingan kiye ora teyeng dibatalna jalaran wis ora ana utawa anu wis dibusek.',
 
+# Account creation failure
+'cantcreateaccounttitle' => 'Ora teyeng gawe akun',
+'cantcreateaccount-text' => "Ngawe akun sekang alamat IP kiye ('''$1''') wis diblokir nang [[User:$3|$3]].
+
+Alesane miturut $3 yakuwe ''$2''",
+
 # History pages
 'viewpagelogs'           => 'Deleng log-e kaca kiye',
+'nohistory'              => 'Ora ana sajarah panyuntingan kanggo kaca kiye.',
+'currentrev'             => 'Revisi sekiye',
 'currentrev-asof'        => 'Revisi paling anyar nang tanggal $1',
 'revisionasof'           => 'Revisi per $1',
 'revision-info'          => 'Revisi per $1; $2',
@@ -593,35 +673,120 @@ Monggo priksa perbandingan nang ngisor kiye ngo mastekna nek kiye pancen sing Ri
 'nextrevision'           => 'Revisi lewih anyar',
 'currentrevisionlink'    => 'Revisi sekiye',
 'cur'                    => 'sekiye',
+'next'                   => 'Lanjutane',
 'last'                   => 'sedurunge',
+'page_first'             => 'kapisan',
+'page_last'              => 'pungkasan',
+'histlegend'             => "Pilihen rong tombol radhio banjur pencèt tombol ''bandhingna'' kanggo mbandhingna versi. Klik sawijining tanggal kanggo ndeleng versi kaca nang tanggal kuwe.<br />(sky) = prabédan karo vèrsi sekiye, (akir) = prabédan karo vèrsi sadurungé, '''c''' = suntingan cilik, '''b''' = suntingan bot, → = suntingan bagiyan, ← = ringkesan otomatis.",
 'history-fieldset-title' => 'Njlajah sajarah vèrsi sadhurungé',
 'history-show-deleted'   => 'Sing dibusak thok',
+'histfirst'              => 'Paling suwe',
+'histlast'               => 'Paling anyar',
+'historysize'            => '($1 {{PLURAL:$1|bita|bita}})',
+'historyempty'           => '(kosong)',
+
+# Revision feed
+'history-feed-title'          => 'Riwayat revisi',
+'history-feed-description'    => 'Riwayat revisi kaca kiye nang wiki',
+'history-feed-item-nocomment' => '$1 dong $2',
+'history-feed-empty'          => 'Kaca sing dijaluk ora ketemu.
+Kuwe ndeyan anu wis dibusak sekang wiki, utawa diganti jenenge.
+Jajal [[Special:Search|goleti nang wiki]] kanggo kaca anyar sing relevan.',
 
 # Revision deletion
-'rev-delundel'           => 'tidokna/umpetna',
-'revdel-restore'         => 'Ngowahi visiblitas (pangatonan)',
-'revdel-restore-deleted' => 'suntingan sing wis dibusak',
-'revdel-restore-visible' => 'tampilan revisi',
+'rev-deleted-comment'         => '(ringkasan suntingan dibusak)',
+'rev-deleted-user'            => '(jeneng panganggo dibusak)',
+'rev-deleted-event'           => '(isi dibusak)',
+'rev-deleted-user-contribs'   => '[Jeneng panganggo utawa alamat IP dibusak - suntingan diumpetna sekang daftar kontribusi]',
+'rev-deleted-text-permission' => "Revisi kaca kiye uwis '''dibusak'''.
+Rinciane ndeyan esih teyeng ditemokna nang [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log pambusakan].",
+'rev-deleted-text-unhide'     => "Revisi kaca kiye uwis '''dibusak'''.
+Rinciane ndeyan esih teyeng ditemokna nang [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log pambusakan].
+Minangka pangurus Rika esih teyeng [$1 ndeleng revisi kiye] anggere Rika gelem.",
+'rev-suppressed-text-unhide'  => 'Révisi kaca kiye uwis "dipenet".
+Rinciane ndeyan esih teyeng ditemokna nang [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log penetan].
+Minangka pangurus, Rika esih teyeng [$1 ndeleng révisi kiye] angger gelem.',
+'rev-deleted-text-view'       => "Revisi kaca kiye uwis '''dibusak'''.
+Minangka pangurus, Rika teyeng ndeleng; rinciane ndeyan esih teyeng ditemokna nang [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log pambusakan].",
+'rev-delundel'                => 'tidokna/umpetna',
+'revdelete-legend'            => 'Atur watesan',
+'revdelete-hide-text'         => 'Umpetna tèks revisi',
+'revdelete-hide-image'        => 'Umpetna isi berkas',
+'revdelete-hide-name'         => 'Umpetna tindakan lan target',
+'revdelete-hide-comment'      => 'Umpetna ringkesan suntingan',
+'revdelete-hide-user'         => 'Umpetna jeneng panganggo/alamat IP penyunting',
+'revdelete-hide-restricted'   => 'Uga umpetna data sekang pangurus lan panganggo liyané',
+'revdelete-radio-same'        => '(aja diowahi)',
+'revdelete-radio-set'         => 'Ya',
+'revdelete-radio-unset'       => 'Ora',
+'revdelete-suppress'          => 'Uga umpetna data sekang pangurus lan panganggo liyané',
+'revdelete-unsuppress'        => 'Busak watesan nang revisi sing dibalèkna',
+'revdelete-log'               => 'Alesan:',
+'revdelete-submit'            => 'Trapna maring {{PLURAL:$1|révisi|révisi}} kapilih',
+'revdelete-failure'           => "'''Tampilan revisi ora teyeng dianyari:'''
+$1",
+'revdel-restore'              => 'Ngowahi visiblitas (pangatonan)',
+'revdel-restore-deleted'      => 'suntingan sing wis dibusak',
+'revdel-restore-visible'      => 'tampilan revisi',
+'pagehist'                    => 'Sajarah kaca',
+'deletedhist'                 => 'Sajarah sing dibusak',
+'revdelete-hide-current'      => 'Gagal ngumpetna revisi tanggal $1, jam $2: kiye kuwe revisi paling anyar.
+Kiye ora teyeng diumpetna.',
+'revdelete-show-no-access'    => 'Gagal nampilna revisi tanggal $1, jam $2: revisi kiye wis ditandani "kawates".
+Rika ora duwe hak akses maring revisi kiye.',
+
+# History merging
+'mergehistory-go'                  => 'Tidokna suntingan-suntingan sing teyeng digabung',
+'mergehistory-submit'              => 'Gabung revisi',
+'mergehistory-empty'               => 'Ora ana revisi sing teyeng digabung.',
+'mergehistory-success'             => '$3 {{PLURAL:$1|révisi|révisi}} sekang [[:$1]] bisa suksès digabung maring [[:$2]].',
+'mergehistory-fail'                => 'Ora teyeng nggabung sajarah, jajal dipriksa maning kacane lan parameter wektune.',
+'mergehistory-no-source'           => 'Kaca sumber $1 ora ana.',
+'mergehistory-no-destination'      => 'Kaca tujuan $1 ora ana.',
+'mergehistory-invalid-source'      => 'Judul kaca sumber kudu judul sing valid.',
+'mergehistory-invalid-destination' => 'Kaca tujuan kudu nganggo judul sing valid.',
+'mergehistory-autocomment'         => 'Nggabung [[:$1]] maring [[:$2]]',
+'mergehistory-comment'             => 'Nggabung [[:$1]] maring [[:$2]]: $3',
+'mergehistory-same-destination'    => 'Jeneng kaca sumber lan tujuan ora kena padha',
+'mergehistory-reason'              => 'Alesan:',
 
 # Merge log
-'revertmerge' => 'Batalna panggabungan',
+'mergelog'           => 'Gabung log',
+'pagemerge-logentry' => 'nggabungna [[$1]] maring [[$2]] (révisi nganti tekan $3)',
+'revertmerge'        => 'Batalna panggabungan',
+'mergelogpagetext'   => 'Nang ngisor kiye isine daftar panggabungan sajarah kaca maring kaca liyane.',
 
 # Diffs
-'history-title' => 'Sajarah revisi sekang "$1"',
-'lineno'        => 'Baris $1:',
-'editundo'      => 'batalna',
+'history-title'            => 'Sajarah revisi sekang "$1"',
+'difference'               => '(Prabédan antarrevisi)',
+'difference-multipage'     => '(Prabedan antarkaca)',
+'lineno'                   => 'Baris $1:',
+'compareselectedversions'  => 'Bandingna revisi kapilih',
+'showhideselectedversions' => 'Tidokna/umpetna revisi kapilih',
+'editundo'                 => 'batalna',
+'diff-multi'               => 'Ana ({{PLURAL:$1|Siji|$1}} revisi antara sekang {{PLURAL:$2|siji|$2}} panganggo sing ora ditidokna)',
+'diff-multi-manyusers'     => 'Ana ({{PLURAL:$1|Siji|$1}} revisi antara gaweane lewih sekang {{PLURAL:$2|siji|$2}} panganggo sing ora ditidokna)',
 
 # Search results
 'searchresults'                    => 'Hasile penggoletan',
 'searchresults-title'              => 'Hasile penggoletan sekang "$1"',
+'searchresulttext'                 => 'Kanggo informasi sabanjuré ngenani panggolètan nang {{SITENAME}}, monggo ndeleng [[{{MediaWiki:Helppage}}|kaca pitulung]].',
+'searchsubtitleinvalid'            => "Rika nggoleti '''$1'''",
+'titlematches'                     => 'Judul kaca sing cocog',
+'notitlematches'                   => 'Ora ana judul kaca sing cocog',
+'textmatches'                      => 'Teks kaca sing cocog',
+'notextmatches'                    => 'Ora ana teks kaca sing cocog',
 'prevn'                            => '{{PLURAL:$1|$1}} sadurungé',
 'nextn'                            => '{{PLURAL:$1|$1}} terusane',
 'prevn-title'                      => '$1 {{PLURAL:$1|asil|asil}} sadurungé',
 'nextn-title'                      => '$1 {{PLURAL:$1|asil|asil}} sabanjuré',
 'shown-title'                      => 'Tidokna $1 {{PLURAL:$1|asil|asil}} saben kaca',
 'viewprevnext'                     => 'Deleng ($1 {{int:pipe-separator}} $2) ($3)',
+'searchmenu-legend'                => 'Pilihan panggoletan',
 'searchmenu-exists'                => "''' Ana kaca nganggo jeneng \"[[:\$1]]\" nang wiki kiye.'''",
 'searchmenu-new'                   => "'''Gawe kaca \"[[:\$1]]\" nang wiki kiye!'''",
+'searchhelp-url'                   => 'Help:Isi',
+'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Deleng daftar kaca sing nganggo tembung-wiwitan kiye]]',
 'searchprofile-articles'           => 'Isine kaca',
 'searchprofile-project'            => 'Kaca pitulung lan proyèk',
 'searchprofile-images'             => 'Multimedia',
@@ -633,16 +798,100 @@ Monggo priksa perbandingan nang ngisor kiye ngo mastekna nek kiye pancen sing Ri
 'searchprofile-everything-tooltip' => 'Goleti kabeh isi (termasuke kaca dhiskusi)',
 'searchprofile-advanced-tooltip'   => 'Goleti nang bilik jeneng biasa',
 'search-result-size'               => '$1 ({{PLURAL:$2|1 tembung|$2 tembung}})',
+'search-result-category-size'      => '{{PLURAL:$1|1 anggota|$1 anggota}} ({{PLURAL:$2|1 subkategori|$2 subkategori}}, {{PLURAL:$3|1 berkas|$3 berkas}})',
+'search-result-score'              => 'Relevansi: $1%',
 'search-redirect'                  => '(pangalihan $1)',
 'search-section'                   => '(bagiyan $1)',
 'search-suggest'                   => 'Apa maksude Rika kuwe: $1',
+'search-interwiki-caption'         => 'Proyek liyane',
+'search-interwiki-default'         => 'Hasil $1:',
+'search-interwiki-more'            => '(terusane)',
+'search-mwsuggest-enabled'         => 'nganggo saran',
+'search-mwsuggest-disabled'        => 'ora ana saran',
+'search-relatedarticle'            => 'Kagandhèng',
+'mwsuggest-disable'                => 'Non-aktifna saran AJAX',
+'searcheverything-enable'          => 'Goleti nang kabeh bilik jeneng',
 'searchrelated'                    => 'kagandhèng',
 'searchall'                        => 'kabèh',
+'showingresults'                   => "Nang ngisor kiye ditidokna ana {{PLURAL:$1|'''1''' kasil|'''$1''' kasil}}, dimulai sekang #'''$2'''.",
+'showingresultsnum'                => "Nang ngisor kiye ditidokna ana {{PLURAL:$3'''1''' kasil|'''$3''' kasil}}, dimulai sekang #'''$2'''.",
 'showingresultsheader'             => "{{PLURAL:$5|Asil '''$1''' sekang '''$3'''|Asil '''$1 - $2''' sekang '''$3'''}} kanggo '''$4'''",
 'search-nonefound'                 => "Ora ana kasil sing cocog karo pitakonan (''query'').",
+'powersearch'                      => 'Panggoletan lanjut',
+'powersearch-legend'               => 'Panggoletan lanjut',
+'powersearch-ns'                   => 'Goleti nang bilik jeneng:',
+'powersearch-redir'                => 'Daftar pangalihan',
+'powersearch-field'                => 'Sing digoleti',
+'powersearch-togglelabel'          => 'Pilih:',
+'powersearch-toggleall'            => 'Kabeh',
+'powersearch-togglenone'           => 'Ora ana',
+'search-external'                  => 'Panggolètan èkstèrnal',
+
+# Quickbar
+'qbsettings-none'          => 'Ora ana',
+'qbsettings-fixedleft'     => 'Tetep sisih kiwa',
+'qbsettings-fixedright'    => 'Tetep sisih tengen',
+'qbsettings-floatingleft'  => 'Ngambang sisih kiwa',
+'qbsettings-floatingright' => 'Ngambang sisih tengen',
 
 # Preferences page
-'mypreferences' => 'Preferensine Inyong',
+'preferences'               => 'Preferensi',
+'mypreferences'             => 'Preferensine Inyong',
+'prefs-edits'               => 'Jumlah suntingan:',
+'prefsnologin'              => 'Durung mlebu log',
+'prefsnologintext'          => 'Rika kudu <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}}| mlebu log disit]</span> kanggo ngowahi préferènsine Rika.',
+'changepassword'            => 'Ganti tembung sandhi',
+'prefs-skin'                => 'Kulit',
+'skin-preview'              => 'Pratayang',
+'datedefault'               => 'Ora ana préferènsi',
+'prefs-beta'                => 'Fitur Beta',
+'prefs-datetime'            => 'Tanggal lan wektu',
+'prefs-labs'                => 'Fitur Labs',
+'prefs-personal'            => 'Profil panganggo',
+'prefs-rc'                  => 'Owah-owahan pungkasan',
+'prefs-watchlist'           => 'Daftar pangawasan',
+'prefs-watchlist-days'      => 'Cacahé dina sing ditidokna nang daftar pangawasan:',
+'prefs-watchlist-days-max'  => 'Maksimum $1 {{PLURAL:$1|dina|dina}}',
+'prefs-watchlist-edits'     => 'Jumlah suntingan maksimum sing ditidokna nang daftar pangawasan sing luwih jangkep:',
+'prefs-watchlist-edits-max' => 'Gunggung maksimum: 1000',
+'prefs-watchlist-token'     => 'Token pantauan:',
+'prefs-misc'                => 'Liya-liya',
+'prefs-resetpass'           => 'Ganti tembung sandhi',
+'prefs-changeemail'         => 'Ganti alamat imel',
+'prefs-setemail'            => 'Atur alamat imel',
+'prefs-email'               => 'Opsi imel',
+'prefs-rendering'           => 'Tampilan',
+'saveprefs'                 => 'Simpen',
+'resetprefs'                => 'Bersihna owah-owahan sing ora disimpen',
+'restoreprefs'              => 'Balekna kabeh setelan gawane',
+'prefs-editing'             => 'Panyuntingan',
+'prefs-edit-boxsize'        => 'Ukuran kotak panyuntingan.',
+'rows'                      => 'Baris:',
+'searchresultshead'         => 'Goleti',
+'resultsperpage'            => 'Hasil saben kaca:',
+'stub-threshold'            => 'Ambang wates kanggo format <a href="#" class="stub">pranala rintisan</a> (bita):',
+'stub-threshold-disabled'   => 'Dinonaktifna',
+'recentchangesdays'         => 'Jumlah dina sing ditidokna nang Owahan anyar:',
+'recentchangesdays-max'     => 'Maksimum $1 {{PLURAL:$1|dina|dina}}',
+
+# Groups
+'group-bureaucrat' => 'Birokrat',
+'group-suppress'   => 'Pangawas',
+'group-all'        => '(kabèh)',
+
+'group-user-member'          => '{{GENDER:$1|panganggo}}',
+'group-autoconfirmed-member' => '{{GENDER:$1| panganggo}} wis dikonfimasi otomatis',
+'group-bot-member'           => '{{GENDER:$1|bot}}',
+'group-sysop-member'         => '{{GENDER:$1|pangurus}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|birokrat}}',
+'group-suppress-member'      => '{{GENDER:$1|pangawas}}',
+
+'grouppage-user'          => '{{ns:project}}:Panganggo',
+'grouppage-autoconfirmed' => '{{ns:project}}:Panganggo sing dikonfirmasi otomatis',
+'grouppage-bot'           => '{{ns:project}}:Bot',
+'grouppage-sysop'         => '{{ns:project}}:Pangurus',
+'grouppage-bureaucrat'    => '{{ns:project}}:Birokrat',
+'grouppage-suppress'      => '{{ns:project}}:Pangawas',
 
 # Recent changes
 'nchanges'                        => '$1 {{PLURAL:$1|pangowahan|owah-owahan}}',
