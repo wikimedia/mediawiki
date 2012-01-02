@@ -458,7 +458,7 @@ class Article extends Page {
 				wfDebug( __METHOD__ . ": done file cache\n" );
 				# tell wgOut that output is taken care of
 				$wgOut->disable();
-				$this->mPage->doViewUpdates( $this->getContext()->getUser() );
+				$this->mPage->doViewUpdates( $wgUser );
 				wfProfileOut( __METHOD__ );
 
 				return;
@@ -630,7 +630,7 @@ class Article extends Page {
 		$wgOut->setFollowPolicy( $policy['follow'] );
 
 		$this->showViewFooter();
-		$this->mPage->doViewUpdates( $this->getContext()->getUser() );
+		$this->mPage->doViewUpdates( $wgUser );
 
 		wfProfileOut( __METHOD__ );
 	}
@@ -669,7 +669,7 @@ class Article extends Page {
 
 		if ( $diff == 0 || $diff == $this->mPage->getLatest() ) {
 			# Run view updates for current revision only
-			$this->mPage->doViewUpdates( $this->getContext()->getUser() );
+			$this->mPage->doViewUpdates( $wgUser );
 		}
 	}
 
