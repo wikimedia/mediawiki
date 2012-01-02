@@ -17,13 +17,18 @@ test( 'mw.jqueryMsg Plural', function() {
 
 
 test( 'mw.jqueryMsg Gender', function() {
-	expect( 14 );
+	expect( 16 );
 	//TODO: These tests should be for mw.msg once mw.msg integrated with mw.jqueryMsg
+	var user = mw.user;
+	user.options.set( 'gender', 'male' );
 	var parser = mw.jqueryMsg.getMessageFunction();
 	ok( parser, 'Parser Function initialized' );
 	//TODO: English may not be the best language for these tests. Use a language like Arabic or Russian
 	ok( mw.messages.set( 'gender-msg', '$1 reverted {{GENDER:$2|his|her|their}} last edit' ), 'mw.messages.set: Register' );
 	equal( parser( 'gender-msg', 'Bob', 'male' ) , 'Bob reverted his last edit', 'Gender masculine' );
+	equal( parser( 'gender-msg', 'Bob', user ) , 'Bob reverted his last edit', 'Gender masculine' );
+	user.options.set( 'gender', 'unknown' );
+	equal( parser( 'gender-msg', 'They', user ) , 'They reverted their last edit', 'Gender masculine' );
 	equal( parser( 'gender-msg', 'Alice', 'female' ) , 'Alice reverted her last edit', 'Gender feminine' );
 	equal( parser( 'gender-msg', 'User' ) , 'User reverted their last edit', 'Gender neutral' );
 	equal( parser( 'gender-msg', 'User', 'unknown' ) , 'User reverted their last edit', 'Gender neutral' );

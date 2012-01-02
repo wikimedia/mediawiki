@@ -98,12 +98,12 @@ mw.language = {
 	},
 	/**
 	 * Provides an alternative text depending on specified gender.
-	 * Usage {{gender:username|masculine|feminine|neutral}}.
+	 * Usage {{gender:[gender|user object]|masculine|feminine|neutral}}.
 	 * If second or third parameter are not specified, masculine is used.
 	 * 
 	 * These details may be overriden per language.
 	 *
-	 * @param gender string
+	 * @param gender string male, female, or anything else for neutral.
 	 * @param forms array List of gender forms
 	 *
 	 * @return string

@@ -635,11 +635,17 @@
 
 		/**
 		 * Transform parsed structure into gender
-		 * @param {Array} of nodes, [ {String}, {String}, {String} ... ] 
+		 * Usage {{gender:[gender| mw.user object ] | masculine|feminine|neutral}}.
+		 * @param {Array} of nodes, [ {String|mw.User}, {String}, {String} , {String} ] 
 		 * @return {String} selected gender form according to current language
 		 */
 		gender: function( nodes ) { 
-			var gender = nodes[0];
+			var gender;
+			if  ( nodes[0] && nodes[0].options instanceof mw.Map ){
+				gender = nodes[0].options.get( 'gender' )
+			} else {
+				gender = nodes[0];
+			}
 			var forms = nodes.slice(1);
 			return this.language.gender( gender, forms );
 		}
