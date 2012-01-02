@@ -39,6 +39,9 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Категориядо кортамось',
 );
 
+// Remove Russian aliases
+$namespaceGenderAliases = array();
+
 $specialPageAliases = array(
 	'Allmessages'               => array( 'ВесеПачтямнэть' ),
 	'Allpages'                  => array( 'ВесеЛопат' ),

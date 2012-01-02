@@ -108,6 +108,9 @@ $namespaceAliases = array(
 	'Törkem_bäxäse'    => NS_CATEGORY_TALK,
 );
 
+// Remove Russian aliases
+$namespaceGenderAliases = array();
+
 $specialPageAliases = array(
 	'Activeusers'               => array( 'Актив_кулланучылар' ),
 	'Allmessages'               => array( 'Барлык_хатлар' ),

@@ -35,6 +35,9 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Категорияны_сюзюу',
 );
 
+// Remove Russian aliases
+$namespaceGenderAliases = array();
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Джибериулени черт:',

@@ -81,6 +81,9 @@ $namespaceAliases = array(
 	'Обговорення_шаблона' => NS_TEMPLATE_TALK,
 );
 
+// Remove Russian aliases
+$namespaceGenderAliases = array();
+
 $dateFormats = array(
 	'mdy time' => 'H:i',
 	'mdy date' => 'xg j, Y',

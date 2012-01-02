@@ -62,6 +62,8 @@ $namespaceAliases = array(
 	'Kategoriya_muzakeresi' => NS_CATEGORY_TALK
 );
 
+// Remove Russian aliases
+$namespaceGenderAliases = array();
 
 $datePreferences = array(
     'default',

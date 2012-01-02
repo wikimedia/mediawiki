@@ -58,6 +58,9 @@ $namespaceAliases = array(
 	'Тобан_дийца'      => NS_CATEGORY_TALK
 );
 
+// Remove Russian aliases
+$namespaceGenderAliases = array();
+
 $magicWords = array(
 	'redirect'                => array( '0', '#дlасахьажайар\'', '\'#хьажайо\'', '\'#REDIRECT', '#перенаправление', '#перенапр', '#REDIRECT' ),
 	'notoc'                   => array( '0', '__БАЦ_ЧУЛАЦАМ__', '__БАЦ_ЧУЛ__', '__БЕЗ_ОГЛАВЛЕНИЯ__', '__БЕЗ_ОГЛ__', '__NOTOC__' ),
