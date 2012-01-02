@@ -190,13 +190,13 @@ if ( $wgUseSharedUploads ) {
 }
 if ( $wgUseInstantCommons ) {
 	$wgForeignFileRepos[] = array(
-		'class'                   => 'ForeignAPIRepo',
-		'name'                    => 'wikimediacommons',
-		'apibase'                 => wfExpandUrl( '//commons.wikimedia.org/w/api.php' ),
-		'hashLevels'              => 2,
-		'fetchDescription'        => true,
-		'descriptionCacheExpiry'  => 43200,
-		'apiThumbCacheExpiry'     => 86400,
+		'class'                  => 'ForeignAPIRepo',
+		'name'                   => 'wikimediacommons',
+		'apibase'                => wfExpandUrl( '//commons.wikimedia.org/w/api.php' ),
+		'hashLevels'             => 2,
+		'fetchDescription'       => true,
+		'descriptionCacheExpiry' => 43200,
+		'apiThumbCacheExpiry'    => 86400,
 	);
 }
 /*
