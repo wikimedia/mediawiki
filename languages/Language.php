@@ -1045,7 +1045,7 @@ class Language {
 					if ( !$unix ) {
 						$unix = wfTimestamp( TS_UNIX, $ts );
 					}
-					$num = date( 'o', $unix );
+					$num = gmdate( 'o', $unix );
 					break;
 				case 'Y':
 					$num = substr( $ts, 0, 4 );
