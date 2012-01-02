@@ -209,6 +209,8 @@ production.
   prevent inheritance to nested tables which caused various issues
 * (bug 32686) Tooltip on links to non-existing pages are now always in user's
   language
+* (bug 33454) ISO-8601 week-based year number (format character 'o') is now
+  calculated correctly with respect to timezone
 
 === API changes in 1.19 ===
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.
