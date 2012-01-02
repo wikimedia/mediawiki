@@ -38,7 +38,7 @@ class WikiPage extends Page {
 	protected $mLastRevision = null;
 
 	/**
-	 * @var string; timestamp of the current revision or empty string of not loaded
+	 * @var string; timestamp of the current revision or empty string if not loaded
 	 */
 	protected $mTimestamp = '';
 
