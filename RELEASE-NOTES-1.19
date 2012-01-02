@@ -211,6 +211,8 @@ production.
   language
 * (bug 33454) ISO-8601 week-based year number (format character 'o') is now
   calculated correctly with respect to timezone
+* (bug 32219) InstantCommons now fetches content from Wikimedia Commons using
+  HTTPS when the local wiki is served over HTTPS
 
 === API changes in 1.19 ===
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.
