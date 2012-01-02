@@ -2545,7 +2545,7 @@ class Title {
 		}
 
 		if ( $this->mOldRestrictions !== false && $this->mOldRestrictions !== '' ) {
-			foreach ( explode( ':', trim( $oldFashionedRestrictions ) ) as $restrict ) {
+			foreach ( explode( ':', trim( $this->mOldRestrictions ) ) as $restrict ) {
 				$temp = explode( '=', trim( $restrict ) );
 				if ( count( $temp ) == 1 ) {
 					// old old format should be treated as edit/move restriction
