@@ -192,7 +192,9 @@ if ( $wgUseInstantCommons ) {
 	$wgForeignFileRepos[] = array(
 		'class'                   => 'ForeignAPIRepo',
 		'name'                    => 'wikimediacommons',
-		'apibase'                 => '//commons.wikimedia.org/w/api.php',
+		'apibase'                 => WebRequest::detectProtocol() === 'https' ?
+			'https://commons.wikimedia.org/w/api.php' :
+			'http://commons.wikimedia.org/w/api.php',
 		'hashLevels'              => 2,
 		'fetchDescription'        => true,
 		'descriptionCacheExpiry'  => 43200,
