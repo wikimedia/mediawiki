@@ -36,7 +36,6 @@ class SVGReader {
 	const DEFAULT_WIDTH = 512;
 	const DEFAULT_HEIGHT = 512;
 	const NS_SVG = 'http://www.w3.org/2000/svg';
-	const ADOBE_SVG_ENTITY = '&ns_svg;';
 
 	private $reader = null;
 	private $mDebug = false;
@@ -68,6 +67,12 @@ class SVGReader {
 		} else {
 			$this->reader->open( $source, null, LIBXML_NOERROR | LIBXML_NOWARNING );
 		}
+
+		// Expand entities, since Adobe Illustrator uses them for xmlns 
+		// attributes (bug 31719). Note that libxml2 has some protection 
+		// against large recursive entity expansions so this is not as 
+		// insecure as it might appear to be.
+		$this->reader->setParserProperty( XMLReader::SUBST_ENTITIES, true );
 
 		$this->metadata['width'] = self::DEFAULT_WIDTH;
 		$this->metadata['height'] = self::DEFAULT_HEIGHT;
@@ -103,10 +108,7 @@ class SVGReader {
 			$keepReading = $this->reader->read();
 		}
 
-		# Note, entities not expanded in namespaceURI - bug 31719
-		if ( $this->reader->localName != 'svg' || 
-			( $this->reader->namespaceURI != self::NS_SVG &&
-			  $this->reader->namespaceURI != self::ADOBE_SVG_ENTITY ) ) {
+		if ( $this->reader->localName != 'svg' || $this->reader->namespaceURI != self::NS_SVG ) {
 			throw new MWException( "Expected <svg> tag, got ".
 				$this->reader->localName . " in NS " . $this->reader->namespaceURI );
 		}

@@ -197,7 +197,8 @@ production.
   cssText after DOM insertion.
 * (bug 30711) When adding a new section to a page with section=new, the text is
   now always added to the current version of the page
-* (bug 31719) Recognize &ns_svg; as the svg namespace when extracting width
+* (bug 31719) Fix uploads of SVGs exported by Adobe Illustrator by expanding 
+  XML entities correctly.
 * (bug 30914) Embeddable ResourceLoader modules (user.options, user.tokens)
   should be loaded in <head> for proper dependency resolution
 * (bug 32702) Removed method Skin::makeGlobalVariablesScript() has been readded
