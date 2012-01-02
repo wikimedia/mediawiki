@@ -256,8 +256,8 @@ class MediaWiki {
 			if ( is_object( $article ) ) {
 				$pageView = true;
 				/**
-				 * $wgArticle is deprecated, do not use it. This will possibly be removed
-				 * entirely in 1.20 or 1.21
+				 * $wgArticle is deprecated, do not use it.
+				 * This will be removed entirely in 1.20.
 				 * @deprecated since 1.18
 				 */
 				global $wgArticle;
