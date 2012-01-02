@@ -4692,7 +4692,7 @@ $messages['fi'] = array(
 	'config-title' => 'MediaWikin version $1 asennus',
 	'config-information' => 'Tiedot',
 	'config-localsettings-upgrade' => '<code>LocalSettings.php</code>-tiedosto on havaittu.
-Syötä kohdan <code>$wgUpgradeKey</code> arvo alla olevaan kenttään päivittääksesi asennuksen.
+Kirjoita kohdan <code>$wgUpgradeKey</code> arvo alla olevaan kenttään päivittääksesi asennuksen.
 Löydät sen LocalSettings.php-tiedostosta.',
 	'config-localsettings-key' => 'Päivitysavain',
 	'config-localsettings-badkey' => 'Antamasi avain on virheellinen.',
@@ -4741,6 +4741,8 @@ Voit asentaa MediaWikin.',
 	'config-env-bad' => 'Asennusympäristö on tarkastettu.
 Et voi asentaa MediaWikiä.',
 	'config-env-php' => 'PHP $1 on asennettu.',
+	'config-env-php-toolow' => 'PHP $1 on asennettu.
+MediaWiki vaatii PHP:n version $2 tai uudemman.',
 	'config-no-db' => 'Sopivaa tietokanta-ajuria ei löytynyt! Sinun täytyy asentaa tietokanta-ajurit PHP:lle.
 Seuraavat tietokantatyypit ovat tuettuja: $1.',
 	'config-safe-mode' => "'''Varoitus:''' PHP:n [http://www.php.net/features.safe-mode safe mode] -tila on aktiivinen.
@@ -4787,7 +4789,7 @@ Käytä ainoastaan kirjaimia (a-z, A-Z), numeroita (0-9), alaviivoja (_) ja tavu
 Älä käytä välilyöntejä tai viivoja.
 Nimeä käytetään SQLite-tietokannan tiedostonimessä.',
 	'config-sqlite-dir-unwritable' => 'Hakemistoon ”$1” kirjoittaminen epäonnistui.
-Muuta hakemiston käyttöoikeuksia siten, että palvelinohjelmisto voi kirjoittaa siihen ja koita uudelleen.',
+Muuta hakemiston käyttöoikeuksia siten, että palvelinohjelmisto voi kirjoittaa siihen ja yritä uudelleen.',
 	'config-sqlite-readonly' => 'Tiedostoon <code>$1</code> ei voi kirjoittaa.',
 	'config-sqlite-fts3-downgrade' => 'PHP:stä puuttuu FTS3-tuki. Poistetaan ominaisuus käytöstä tietokantatauluista.',
 	'config-upgrade-done' => "Päivitys valmis.
@@ -4807,6 +4809,7 @@ Voit [$1 aloittaa wikin käytön].',
 	'config-mysql-binary' => 'Binääri',
 	'config-mysql-utf8' => 'UTF-8',
 	'config-site-name' => 'Wikin nimi',
+	'config-site-name-blank' => 'Kirjoita sivuston nimi.',
 	'config-project-namespace' => 'Projektinimiavaruus',
 	'config-ns-generic' => 'Projekti',
 	'config-ns-site-name' => 'Sama kuin wikin nimi: $1',
@@ -4828,6 +4831,7 @@ Voit ohittaa jäljellä olevat määritykset ja asentaa wikin juuri nyt.',
 	'config-extensions' => 'Laajennukset',
 	'config-install-step-done' => 'tehty',
 	'config-install-step-failed' => 'epäonnistui',
+	'config-install-user-alreadyexists' => 'Käyttäjä $1 on jo olemassa',
 	'config-install-interwiki-list' => 'Tiedostoa <code>interwiki.list</code> ei voitu lukea.',
 	'config-download-localsettings' => 'Lataa LocalSettings.php',
 	'config-help' => 'ohje',

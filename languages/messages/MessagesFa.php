@@ -579,7 +579,7 @@ $messages = array(
 'faqpage'        => 'Project:پرسش‌های متداول',
 
 # Vector skin
-'vector-action-addsection'       => 'افزودن عنوان',
+'vector-action-addsection'       => 'ایجاد بخش جدید',
 'vector-action-delete'           => 'حذف',
 'vector-action-move'             => 'انتقال',
 'vector-action-protect'          => 'محافظت',

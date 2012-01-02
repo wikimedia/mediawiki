@@ -1571,6 +1571,10 @@ Os yw'r broblem yn parhau, cysylltwch â [[Special:ListUsers/sysop|gweinyddwr]].
 'upload-unknown-size'       => 'Maint anhysbys',
 'upload-http-error'         => 'Digwyddodd gwall HTTP: $1',
 
+# File backend
+'backend-fail-notexists'     => "Nid yw'r ffeil $1 ar gael.",
+'backend-fail-alreadyexists' => "Mae'r ffeil $1 ar gael yn barod.",
+
 # ZipDirectoryReader
 'zip-file-open-error' => 'Cafwyd gwall wrth agor y ffeil er mwyn gwneud gwiriadau ZIP.',
 'zip-wrong-format'    => "Nid ffeil ZIP yw'r ffeil a enwyd.",
