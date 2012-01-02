@@ -22,7 +22,7 @@ mw.language = {
 	'procPLURAL': function( template ) {
 		if ( template.title && template.parameters && mw.language.convertPlural ) {
 			// Check if we have forms to replace
-			if ( template.parameters.length == 0 ) {
+			if ( template.parameters.length === 0 ) {
 				return '';
 			}
 			// Restore the count into a Number ( if it got converted earlier )
@@ -44,7 +44,7 @@ mw.language = {
 	 * @return string Correct form for quantifier in this language
 	 */
 	'convertPlural': function( count, forms ){
-		if ( !forms || forms.length == 0 ) {
+		if ( !forms || forms.length === 0 ) {
 			return '';
 		}
 		return ( parseInt( count, 10 ) == 1 ) ? forms[0] : forms[1];
@@ -109,7 +109,7 @@ mw.language = {
 	 * @return string
 	 */
 	'gender': function( gender, forms ) {
-		if ( !forms || forms.length == 0 ) {
+		if ( !forms || forms.length === 0 ) {
 			return '';
 		}
 		forms = mw.language.preConvertPlural( forms, 2 );
@@ -119,7 +119,7 @@ mw.language = {
 		if ( gender === 'female' ) {
 			return forms[1];
 		}
-		return ( forms.length == 3 ) ? forms[2] : forms[0];
+		return ( forms.length === 3 ) ? forms[2] : forms[0];
 	},
 
 	// Digit Transform Table, populated by language classes where applicable
