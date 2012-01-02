@@ -24,7 +24,8 @@ class WikiPage extends Page {
 	public $mDataLoaded = false;         // !< Boolean
 	public $mIsRedirect = false;         // !< Boolean
 	public $mLatest = false;             // !< Integer (false means "not loaded")
-	public $mPreparedEdit = false;		 // !< Array
+	public $mPreparedEdit = false;       // !< Array
+	/**@}}*/
 
 	/**
 	 * @var Title
@@ -36,9 +37,10 @@ class WikiPage extends Page {
 	 */
 	protected $mLastRevision = null;
 
-	protected $mTimestamp = '';             // !< String
-	protected $mTouched = '19700101000000'; // !< String
-	/**@}}*/
+	/**
+	 * @var string; timestamp of the current revision or empty string of not loaded
+	 */
+	protected $mTimestamp = '';
 
 	/**
 	 * Constructor and clear the article
@@ -242,7 +244,6 @@ class WikiPage extends Page {
 		$this->mRedirectTarget = null; # Title object if set
 		$this->mLastRevision = null; # Latest revision
 		$this->mTimestamp = '';
-		$this->mTouched = '19700101000000';
 		$this->mIsRedirect = false;
 		$this->mLatest = false;
 		$this->mPreparedEdit = false;
@@ -375,7 +376,6 @@ class WikiPage extends Page {
 
 			$this->mTitle->loadFromRow( $data );
 
-			$this->mTouched     = wfTimestamp( TS_MW, $data->page_touched );
 			$this->mIsRedirect  = intval( $data->page_is_redirect );
 			$this->mLatest      = intval( $data->page_latest );
 		} else {
@@ -502,7 +502,7 @@ class WikiPage extends Page {
 		if ( !$this->mDataLoaded ) {
 			$this->loadPageData();
 		}
-		return $this->mTouched;
+		return $this->mTitle->getTouched();
 	}
 
 	/**
