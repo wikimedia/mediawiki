@@ -631,8 +631,19 @@
 			var count = parseInt( this.language.convertNumber( nodes[0], true ), 10 );
 			var forms = nodes.slice(1);
 			return forms.length ? this.language.convertPlural( count, forms ) : '';
+		},
+
+		/**
+		 * Transform parsed structure into gender
+		 * @param {Array} of nodes, [ {String}, {String}, {String} ... ] 
+		 * @return {String} selected gender form according to current language
+		 */
+		gender: function( nodes ) { 
+			var gender = nodes[0];
+			var forms = nodes.slice(1);
+			return this.language.gender( gender, forms );
 		}
-		
+
 	};
 
 	// TODO figure out a way to make magic work with common globals like wgSiteName, without requiring init from library users...
