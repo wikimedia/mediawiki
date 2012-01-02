@@ -194,12 +194,8 @@ class SkinTemplate extends Skin {
 			$tpl->set( 'pagecss', false );
 			$tpl->set( 'usercss', false );
 
-			$this->userjs = $this->userjsprev = false;
-			# @todo FIXME: This is the only use of OutputPage::isUserJsAllowed() anywhere; can we
-			# get rid of it?  For that matter, why is any of this here at all?
-			$this->setupUserJs( $out->isUserJsAllowed() );
-			$tpl->setRef( 'userjs', $this->userjs );
-			$tpl->setRef( 'userjsprev', $this->userjsprev );
+			$tpl->set( 'userjs', false );
+			$tpl->set( 'userjsprev', false );
 
 			$tpl->set( 'jsvarurl', false );
 
@@ -1217,25 +1213,6 @@ class SkinTemplate extends Skin {
 	 */
 	function getNameSpaceKey() {
 		return $this->getTitle()->getNamespaceKey();
-	}
-
-	/**
-	 * @private
-	 * @todo FIXME: Why is this duplicated in/from OutputPage::getHeadScripts()??
-	 */
-	function setupUserJs( $allowUserJs ) {
-		global $wgJsMimeType;
-		wfProfileIn( __METHOD__ );
-
-		if( $allowUserJs && $this->loggedin ) {
-			if( $this->getTitle()->isJsSubpage() and $this->getOutput()->userCanPreview() ) {
-				# XXX: additional security check/prompt?
-				$this->userjsprev = '/*<![CDATA[*/ ' . $this->getRequest()->getText( 'wpTextbox1' ) . ' /*]]>*/';
-			} else {
-				$this->userjs = self::makeUrl( $this->userpage . '/' . $this->skinname . '.js', 'action=raw&ctype=' . $wgJsMimeType );
-			}
-		}
-		wfProfileOut( __METHOD__ );
 	}
 
 	public function commonPrintStylesheet() {
