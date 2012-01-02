@@ -96,6 +96,32 @@ mw.language = {
 		}
 		return integer ? parseInt( convertedNumber, 10 ) : convertedNumber;
 	},
+	/**
+	 * Provides an alternative text depending on specified gender.
+	 * Usage {{gender:username|masculine|feminine|neutral}}.
+	 * If second or third parameter are not specified, masculine is used.
+	 * 
+	 * These details may be overriden per language.
+	 *
+	 * @param gender string
+	 * @param forms array List of gender forms
+	 *
+	 * @return string
+	 */
+	'gender': function( gender, forms ) {
+		if ( !forms || forms.length == 0 ) {
+			return '';
+		}
+		forms = mw.language.preConvertPlural( forms, 2 );
+		if ( gender === 'male' ) {
+			return forms[0];
+		}
+		if ( gender === 'female' ) {
+			return forms[1];
+		}
+		return ( forms.length == 3 ) ? forms[2] : forms[0];
+	},
+
 	// Digit Transform Table, populated by language classes where applicable
 	'digitTransformTable': null
 };
