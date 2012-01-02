@@ -68,7 +68,7 @@ class Title {
 	private $mIsNew;                  // /< Whether this is a "new page" (i.e. it has only one revision)
 	private $mEstimateRevisions;      // /< Estimated number of revisions; null of not loaded
 	var $mRestrictions = array();     // /< Array of groups allowed to edit this article
-	var $mOldRestrictions = false;
+	var $mOldRestrictions;
 	var $mCascadeRestriction;         ///< Cascade restrictions on this page to included templates and images?
 	var $mCascadingRestrictions;      // Caching the results of getCascadeProtectionSources
 	var $mRestrictionsExpiry = array(); ///< When do the restrictions on this page expire?
@@ -236,6 +236,7 @@ class Title {
 				'page_namespace', 'page_title', 'page_id',
 				'page_len', 'page_is_redirect', 'page_latest',
 				'page_counter', 'page_touched', 'page_is_new',
+				'page_restrictions',
 			),
 			array( 'page_id' => $ids ),
 			__METHOD__
@@ -283,6 +284,8 @@ class Title {
 				$this->mTouched = $row->page_touched;
 			if ( isset( $row->page_is_new ) )
 				$this->mIsNew = (bool)$row->page_is_new;
+			if ( isset( $row->page_restrictions ) )
+				$this->mOldRestrictions = $row->page_restrictions;
 		} else { // page not found
 			$this->mArticleID = 0;
 			$this->mLength = 0;
@@ -291,6 +294,7 @@ class Title {
 			$this->mCounter = 0;
 			$this->mTouched = '19700101000000';
 			$this->mIsNew = false;
+			$this->mOldRestrictions = false;
 		}
 	}
 
@@ -2502,17 +2506,15 @@ class Title {
 	 * Loads a string into mRestrictions array
 	 *
 	 * @param $res Resource restrictions as an SQL result.
-	 * @param $oldFashionedRestrictions String comma-separated list of page
-	 *        restrictions from page table (pre 1.10)
 	 */
-	private function loadRestrictionsFromResultWrapper( $res, $oldFashionedRestrictions = null ) {
+	private function loadRestrictionsFromResultWrapper( $res ) {
 		$rows = array();
 
 		foreach ( $res as $row ) {
 			$rows[] = $row;
 		}
 
-		$this->loadRestrictionsFromRows( $rows, $oldFashionedRestrictions );
+		$this->loadRestrictionsFromRows( $rows );
 	}
 
 	/**
@@ -2521,10 +2523,8 @@ class Title {
 	 * Public for usage by LiquidThreads.
 	 *
 	 * @param $rows array of db result objects
-	 * @param $oldFashionedRestrictions string comma-separated list of page
-	 *        restrictions from page table (pre 1.10)
 	 */
-	public function loadRestrictionsFromRows( $rows, $oldFashionedRestrictions = null ) {
+	public function loadRestrictionsFromRows( $rows ) {
 		global $wgContLang;
 		$dbr = wfGetDB( DB_SLAVE );
 
@@ -2539,13 +2539,12 @@ class Title {
 
 		# Backwards-compatibility: also load the restrictions from the page record (old format).
 
-		if ( $oldFashionedRestrictions === null ) {
-			$oldFashionedRestrictions = $dbr->selectField( 'page', 'page_restrictions',
+		if ( $this->mOldRestrictions === null ) {
+			$this->mOldRestrictions = $dbr->selectField( 'page', 'page_restrictions',
 				array( 'page_id' => $this->getArticleId() ), __METHOD__ );
 		}
 
-		if ( $oldFashionedRestrictions != '' ) {
-
+		if ( $this->mOldRestrictions !== false && $this->mOldRestrictions !== '' ) {
 			foreach ( explode( ':', trim( $oldFashionedRestrictions ) ) as $restrict ) {
 				$temp = explode( '=', trim( $restrict ) );
 				if ( count( $temp ) == 1 ) {
@@ -2556,9 +2555,6 @@ class Title {
 					$this->mRestrictions[$temp[0]] = explode( ',', trim( $temp[1] ) );
 				}
 			}
-
-			$this->mOldRestrictions = true;
-
 		}
 
 		if ( count( $rows ) ) {
@@ -2599,11 +2595,8 @@ class Title {
 
 	/**
 	 * Load restrictions from the page_restrictions table
-	 *
-	 * @param $oldFashionedRestrictions String comma-separated list of page
-	 *        restrictions from page table (pre 1.10)
 	 */
-	public function loadRestrictions( $oldFashionedRestrictions = null ) {
+	public function loadRestrictions() {
 		global $wgContLang;
 		if ( !$this->mRestrictionsLoaded ) {
 			if ( $this->exists() ) {
@@ -2616,7 +2609,7 @@ class Title {
 					__METHOD__
 				);
 
-				$this->loadRestrictionsFromResultWrapper( $res, $oldFashionedRestrictions );
+				$this->loadRestrictionsFromResultWrapper( $res );
 			} else {
 				$title_protection = $this->getTitleProtection();
 
@@ -2944,10 +2937,13 @@ class Title {
 		}
 		$this->mRestrictionsLoaded = false;
 		$this->mRestrictions = array();
+		$this->mOldRestrictions = null;
 		$this->mRedirect = null;
 		$this->mLength = -1;
 		$this->mLatestID = false;
 		$this->mCounter = -1;
+		$this->mTouched = '19700101000000';
+		$this->mIsNew = null;
 		$this->mEstimateRevisions = null;
 	}
 
