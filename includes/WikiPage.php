@@ -375,9 +375,6 @@ class WikiPage extends Page {
 
 			$this->mTitle->loadFromRow( $data );
 
-			# Old-fashioned restrictions
-			$this->mTitle->loadRestrictions( $data->page_restrictions );
-
 			$this->mTouched     = wfTimestamp( TS_MW, $data->page_touched );
 			$this->mIsRedirect  = intval( $data->page_is_redirect );
 			$this->mLatest      = intval( $data->page_latest );

@@ -65,8 +65,8 @@ class FakeTitle extends Title {
 	function isCascadeProtected() { $this->error(); }
 	function getCascadeProtectionSources( $get_pages = true ) { $this->error(); }
 	function areRestrictionsCascading() { $this->error(); }
-	function loadRestrictionsFromRows( $rows, $oldFashionedRestrictions = null ) { $this->error(); }
-	function loadRestrictions( $res = null ) { $this->error(); }
+	function loadRestrictionsFromRows( $rows ) { $this->error(); }
+	function loadRestrictions() { $this->error(); }
 	function getRestrictions( $action ) { $this->error(); }
 	function getRestrictionExpiry( $action ) { $this->error(); }
 	function isDeleted() { $this->error(); }
@@ -109,7 +109,7 @@ class FakeTitle extends Title {
 	function isKnown() { $this->error(); }
 	function canExist() { $this->error(); }
 	function touchLinks() { $this->error(); }
-	function getTouched( $db = null ) { $this->error(); }
+	function getTouched() { $this->error(); }
 	function getNotificationTimestamp( $user = null ) { $this->error(); }
 	function getNamespaceKey( $prepend = 'nstab-' ) { $this->error(); }
 	function isSpecialPage() { $this->error(); }
