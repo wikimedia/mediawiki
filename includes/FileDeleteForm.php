@@ -143,13 +143,12 @@ class FileDeleteForm {
 			}
 		} else {
 			$status = Status::newFatal( 'error' );
-			$id = $title->getArticleID( Title::GAID_FOR_UPDATE );
 			$page = WikiPage::factory( $title );
 			$dbw = wfGetDB( DB_MASTER );
 			try {
 				// delete the associated article first
 				$error = '';
-				if ( $page->doDeleteArticle( $reason, $suppress, $id, false, $error, $user ) ) {
+				if ( $page->doDeleteArticle( $reason, $suppress, 0, false, $error, $user ) ) {
 					$status = $file->delete( $reason, $suppress );
 					if( $status->ok ) {
 						$dbw->commit();
