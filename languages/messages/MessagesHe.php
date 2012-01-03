@@ -250,6 +250,7 @@ $specialPageAliases = array(
 	'Filepath'                  => array( 'נתיב_לקובץ' ),
 	'Import'                    => array( 'ייבוא', 'ייבוא_דפים' ),
 	'Invalidateemail'           => array( 'ביטול_דואר' ),
+	'JavaScriptTest'            => array( 'בדיקת_JavaScript' ),
 	'BlockList'                 => array( 'רשימת_חסומים', 'רשימת_משתמשים_חסומים', 'משתמשים_חסומים' ),
 	'LinkSearch'                => array( 'חיפוש_קישורים_חיצוניים' ),
 	'Listadmins'                => array( 'רשימת_מפעילים' ),
