@@ -352,7 +352,7 @@ abstract class Job {
 			'job_cmd' => $this->command,
 			'job_namespace' => $this->title->getNamespace(),
 			'job_title' => $this->title->getDBkey(),
-			'job_insert_timestamp' => wfTimestampNow(),
+			'job_timestamp' => $dbw->timestamp(),
 			'job_params' => Job::makeBlob( $this->params )
 		);
 	}

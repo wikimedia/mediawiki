@@ -1273,7 +1273,7 @@ CREATE TABLE /*_*/job (
 ) /*$wgDBTableOptions*/;
 
 CREATE INDEX /*i*/job_cmd ON /*_*/job (job_cmd, job_namespace, job_title, job_params(128));
-CREATE INDEX /*i*/job_insert_timestamp ON /*_*/job(job_insert_timestamp);
+CREATE INDEX /*i*/job_timestamp ON /*_*/job(job_timestamp);
 
 
 -- Details of updates to cached special pages
