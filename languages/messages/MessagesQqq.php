@@ -1480,7 +1480,9 @@ Used in [[Special:Preferences]], tab "Watchlist". The display options refer to:
 'editinguser'                    => 'Appears on [[Special:UserRights]]. Parameters:
 * $1 is a username
 * $2 are user tool links. Example: "(Talk | contribs | block | send e-mail)".',
-'userrights-editusergroup'       => '{{Identical|Edit user groups}}',
+'userrights-editusergroup'       => '{{Identical|Edit user groups}}. Parameter:
+* $1 is a username - optional, can be used for GENDER
+',
 'saveusergroups'                 => 'Button text when editing user groups',
 'userrights-groupsmember'        => 'Used when editing user groups in [[Special:Userrights]]. The messsage is followed by a list of group names.
 
@@ -1491,7 +1493,9 @@ Parameters:
 
 Parameters:
 * $1 - optional, for PLURAL use, the number of items in the list following the message. Please avoid PLURAL, if your language can do without.',
-'userrights-groups-help'         => 'Instructions displayed on [[Special:UserRights]].',
+'userrights-groups-help'         => 'Instructions displayed on [[Special:UserRights]]. Parameters:
+* $1 is a username - optional, can be used for GENDER
+',
 'userrights-reason'              => 'Text beside log field when editing user groups
 
 {{Identical|Reason}}',

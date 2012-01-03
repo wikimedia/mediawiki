@@ -1494,14 +1494,14 @@ Elle ne doit pas dépasser $1 caractère{{PLURAL:$1||s}}.',
 'userrights-lookup-user'       => 'Gestion des groupes d’utilisateurs',
 'userrights-user-editname'     => 'Entrez un nom d’utilisateur :',
 'editusergroup'                => 'Modification des groupes d’utilisateurs',
-'editinguser'                  => "Modification des droits de l’utilisateur '''[[User:$1|$1]]''' $2",
-'userrights-editusergroup'     => 'Modifier les groupes de l’utilisateur',
+'editinguser'                  => "Modification des droits de l’{{GENDER:$1|utilisateur|utilisatrice}} '''[[User:$1|$1]]''' $2",
+'userrights-editusergroup'     => 'Modifier les groupes de l’{{GENDER:$1|utilisateur|utilisatrice}}',
 'saveusergroups'               => 'Enregistrer les groupes de l’utilisateur',
 'userrights-groupsmember'      => 'Membre de :',
 'userrights-groupsmember-auto' => 'Membre implicite de :',
-'userrights-groups-help'       => 'Vous pouvez modifier les groupes auxquels appartient cet utilisateur.
-* Une case cochée signifie que l’utilisateur se trouve dans ce groupe.
-* Une case non cochée signifie qu’il ne s’y trouve pas.
+'userrights-groups-help'       => 'Vous pouvez modifier les groupes auxquels appartient cet {{GENDER:$1|utilisateur|utilisatrice}}.
+* Une case cochée signifie que l’{{GENDER:$1|utilisateur|utilisatrice}} se trouve dans ce groupe.
+* Une case non cochée signifie qu’{{GENDER:$1|il|elle}} ne s’y trouve pas.
 * Un astérisque (*) indique que vous ne pouvez pas retirer ce groupe une fois que vous l’avez ajouté.',
 'userrights-reason'            => 'Motif :',
 'userrights-no-interwiki'      => 'Vous n’avez pas la permission de modifier des droits d’utilisateurs sur d’autres wikis.',
