@@ -363,8 +363,7 @@ class LinkHolderArray {
 				if ( $colours[$pdbk] == 'new' ) {
 					$linkCache->addBadLinkObj( $title );
 					$output->addLink( $title, 0 );
-					$type = array( 'broken',
-						'language' => $this->parent->getOptions()->getUserLangObj() );
+					$type = array( 'broken' );
 				} else {
 					if ( $colours[$pdbk] != '' ) {
 						$attribs['class'] = $colours[$pdbk];

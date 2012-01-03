@@ -211,8 +211,6 @@ production.
   {{NAMESPACE}} relative to correct title.
 * (bug 30485 and bug 33434) Style rules for wikitable are now more specific and
   prevent inheritance to nested tables which caused various issues
-* (bug 32686) Tooltip on links to non-existing pages are now always in user's
-  language
 * (bug 33454) ISO-8601 week-based year number (format character 'o') is now
   calculated correctly with respect to timezone
 * (bug 32219) InstantCommons now fetches content from Wikimedia Commons using
