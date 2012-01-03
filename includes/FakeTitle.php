@@ -32,8 +32,8 @@ class FakeTitle extends Title {
 	function getFullURL( $query = '', $variant = false ) { $this->error(); }
 	function getLocalURL( $query = '', $variant = false ) { $this->error(); }
 	function getLinkURL( $query = array(), $variant = false ) { $this->error(); }
-	function escapeLocalURL( $query = '' ) { $this->error(); }
-	function escapeFullURL( $query = '' ) { $this->error(); }
+	function escapeLocalURL( $query = '', $query2 = false ) { $this->error(); }
+	function escapeFullURL( $query = '', $query2 = false ) { $this->error(); }
 	function getInternalURL( $query = '', $variant = false ) { $this->error(); }
 	function getEditURL() { $this->error(); }
 	function getEscapedText() { $this->error(); }
@@ -42,9 +42,9 @@ class FakeTitle extends Title {
 	function isProtected( $action = '' ) { $this->error(); }
 	function isConversionTable() { $this->error(); }
 	function userIsWatching() { $this->error(); }
-	function quickUserCan( $action ) { $this->error(); }
-	function isNamespaceProtected() { $this->error(); }
-	function userCan( $action, $doExpensiveQueries = true ) { $this->error(); }
+	function quickUserCan( $action, $user = null ) { $this->error(); }
+	function isNamespaceProtected( User $user ) { $this->error(); }
+	function userCan( $action, $user = null, $doExpensiveQueries = true ) { $this->error(); }
 	function getUserPermissionsErrors( $action, $user, $doExpensiveQueries = true, $ignoreErrors = array() ) { $this->error(); }
 	function updateTitleProtection( $create_perm, $reason, $expiry ) { $this->error(); }
 	function deleteTitleProtection() { $this->error(); }
@@ -101,7 +101,7 @@ class FakeTitle extends Title {
 	function getNextRevisionID( $revId, $flags=0 ) { $this->error(); }
 	function getFirstRevision( $flags=0 ) { $this->error(); }
 	function isNewPage() { $this->error(); }
-	function getEarliestRevTime() { $this->error(); }
+	function getEarliestRevTime( $flags = 0 ) { $this->error(); }
 	function countRevisionsBetween( $old, $new ) { $this->error(); }
 	function equals( Title $title ) { $this->error(); }
 	function exists() { $this->error(); }
