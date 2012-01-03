@@ -38,6 +38,7 @@
 		var scriptPath = pathParts.join( '/' );
 		
 		mw.config.set({
+			"wgServer": location.protocol + '//' + location.host,
 			"wgScriptPath": scriptPath,
 			"wgLoadScript": scriptPath + '/load.php',
 			"stylepath": scriptPath + '/skins',
