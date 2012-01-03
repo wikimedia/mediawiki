@@ -585,12 +585,12 @@ abstract class FileBackend extends FileBackendBase {
 	 */
 	protected function doMoveInternal( array $params ) {
 		// Copy source to dest
-		$status = $this->copy( $params );
+		$status = $this->copyInternal( $params );
 		if ( !$status->isOK() ) {
 			return $status;
 		}
 		// Delete source (only fails due to races or medium going down)
-		$status->merge( $this->delete( array( 'src' => $params['src'] ) ) );
+		$status->merge( $this->deleteInternal( array( 'src' => $params['src'] ) ) );
 		$status->setResult( true, $status->value ); // ignore delete() errors
 		return $status;
 	}
