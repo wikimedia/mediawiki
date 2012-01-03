@@ -108,7 +108,7 @@ class MWDebug {
 			'function' => $function,
 			'master' => (bool) $isMaster,
 			'time' > 0.0,
-			'_start' => microtime( true ),
+			'_start' => wfTime(),
 		);
 
 		return count( self::$query ) - 1;
@@ -124,7 +124,7 @@ class MWDebug {
 			return;
 		}
 
-		self::$query[$id]['time'] = microtime( true ) - self::$query[$id]['_start'];
+		self::$query[$id]['time'] = wfTime() - self::$query[$id]['_start'];
 		unset( self::$query[$id]['_start'] );
 	}
 
@@ -181,7 +181,7 @@ class MWDebug {
 		$debugInfo = array(
 			'mwVersion' => $wgVersion,
 			'phpVersion' => PHP_VERSION,
-			'time' => microtime( true ) - $wgRequestTime,
+			'time' => wfTime() - $wgRequestTime,
 			'log' => self::$log,
 			'debugLog' => self::$debug,
 			'queries' => self::$query,
