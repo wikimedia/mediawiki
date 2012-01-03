@@ -213,6 +213,8 @@ production.
   calculated correctly with respect to timezone
 * (bug 32219) InstantCommons now fetches content from Wikimedia Commons using
   HTTPS when the local wiki is served over HTTPS
+* (bug 33482) - Api incorrectly calls ApiBase::parseMultiValue if allowed
+  values is given as an array
 
 === API changes in 1.19 ===
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.

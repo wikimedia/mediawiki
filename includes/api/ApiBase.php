@@ -959,6 +959,11 @@ abstract class ApiBase extends ContextSource {
 		}
 
 		if ( !$allowMultiple && count( $valuesList ) != 1 ) {
+			// Bug 33482 - Allow entries with | in them for non-multiple values
+			if ( in_array( $value, $allowedValues ) ) {
+				return $value;
+			}
+
 			$possibleValues = is_array( $allowedValues ) ? "of '" . implode( "', '", $allowedValues ) . "'" : '';
 			$this->dieUsage( "Only one $possibleValues is allowed for parameter '$valueName'", "multival_$valueName" );
 		}
