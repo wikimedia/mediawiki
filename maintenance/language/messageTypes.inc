@@ -187,6 +187,7 @@ $wgIgnoredMessages = array(
 	'addsection-preload',
 	'addsection-editintro',
 	'longpage-hint',
+	'javascripttest-backlink',
 	'javascripttest-qunit-name',
 );
 
