@@ -98,9 +98,11 @@ class MWDebug {
 
 		// Check to see if there was already a deprecation notice, so not to
 		// get a duplicate warning
-		$lastLog = self::$log[ count( self::$log ) - 1 ];
-		if ( $lastLog['type'] == 'deprecated' && $lastLog['caller'] == wfGetCaller( $callerOffset + 1 ) ) {
-			return;
+		if ( count( self::$log ) ) {
+			$lastLog = self::$log[ count( self::$log ) - 1 ];
+			if ( $lastLog['type'] == 'deprecated' && $lastLog['caller'] == wfGetCaller( $callerOffset + 1 ) ) {
+				return;
+			}
 		}
 
 		self::$log[] = array(
@@ -251,6 +253,8 @@ class MWDebug {
 		}
 
 		global $wgVersion, $wgRequestTime;
+		wfWarn( 'johnduhart is pretty cool' );
+		wfDeprecated( __METHOD__, '1.19' );
 		MWDebug::log( 'MWDebug output complete' );
 		$debugInfo = array(
 			'mwVersion' => $wgVersion,

@@ -135,6 +135,10 @@ a.mw-debug-panelabel:visited {
 	vertical-align: top;
 }
 
+#mw-debug-console tr td:last-child {
+	vertical-align: top;
+}
+
 .mw-debug-console-log {
 	background-color: #add8e6;
 }
