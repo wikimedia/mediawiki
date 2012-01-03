@@ -43,25 +43,9 @@ class Title {
 
 	/**
 	 * Used to be GAID_FOR_UPDATE define. Used with getArticleID() and friends
-	 * to SELECT FOR UPDATE
+	 * to use the master DB
 	 */
 	const GAID_FOR_UPDATE = 1;
-
-	/**
-	 * Used with getArticleID() and friends to load the object from the master
-	 * database
-	 */
-	const GAID_USE_MASTER = 2;
-
-	/**
-	 * For use in load(). Field is available in LinkCache.
-	 */
-	const FIELD_IN_LINKCACHE = 1;
-
-	/**
-	 * For use in load(). Field is not available in LinkCache.
-	 */
-	const FIELD_NOT_IN_LINKCACHE = 2;
 
 	/**
 	 * @name Private member variables
@@ -77,16 +61,12 @@ class Title {
 	var $mNamespace = NS_MAIN;        // /< Namespace index, i.e. one of the NS_xxxx constants
 	var $mInterwiki = '';             // /< Interwiki prefix (or null string)
 	var $mFragment;                   // /< Title fragment (i.e. the bit after the #)
-	private $mLoadedLevel = 0;        // /<
-	private $mLoadedFromMaster = false;
 	var $mArticleID = -1;             // /< Article ID, fetched from the link cache on demand
 	var $mLatestID = false;           // /< ID of most recent revision
-	private $mCounter = false;        // /< Number of times this page has been viewed (-1 means "not loaded")
-	private $mTouched;                // /< Timestamp of the last time this page was touched
-	private $mIsNew;                  // /< Whether this is a "new page" (i.e. it has only one revision)
+	var $mCounter = -1;               // /< Number of times this page has been viewed (-1 means "not loaded")
 	private $mEstimateRevisions;      // /< Estimated number of revisions; null of not loaded
 	var $mRestrictions = array();     // /< Array of groups allowed to edit this article
-	var $mOldRestrictions;
+	var $mOldRestrictions = false;
 	var $mCascadeRestriction;         ///< Cascade restrictions on this page to included templates and images?
 	var $mCascadingRestrictions;      // Caching the results of getCascadeProtectionSources
 	var $mRestrictionsExpiry = array(); ///< When do the restrictions on this page expire?
@@ -222,11 +202,11 @@ class Title {
 	 * Create a new Title from an article ID
 	 *
 	 * @param $id Int the page_id corresponding to the Title to create
-	 * @param $flags Int use Title::GAID_USE_MASTER to use master
+	 * @param $flags Int use Title::GAID_FOR_UPDATE to use master
 	 * @return Title the new object, or NULL on an error
 	 */
 	public static function newFromID( $id, $flags = 0 ) {
-		$db = $flags ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
+		$db = ( $flags & self::GAID_FOR_UPDATE ) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
 		$row = $db->selectRow( 'page', '*', array( 'page_id' => $id ), __METHOD__ );
 		if ( $row !== false ) {
 			$title = Title::newFromRow( $row );
@@ -248,8 +228,15 @@ class Title {
 		}
 		$dbr = wfGetDB( DB_SLAVE );
 
-		$res = $dbr->select( 'page', self::selectFields(),
-			array( 'page_id' => $ids ), __METHOD__ );
+		$res = $dbr->select(
+			'page',
+			array(
+				'page_namespace', 'page_title', 'page_id',
+				'page_len', 'page_is_redirect', 'page_latest',
+			),
+			array( 'page_id' => $ids ),
+			__METHOD__
+		);
 
 		$titles = array();
 		foreach ( $res as $row ) {
@@ -275,80 +262,27 @@ class Title {
 	 * If false is given, the title will be treated as non-existing.
 	 *
 	 * @param $row Object|false database row
-	 * @param $wasFromMaster bool: whether the row was loaded from the master
-	 *        database
 	 * @return void
 	 */
-	public function loadFromRow( $row, $wasFromMaster = false ) {
+	public function loadFromRow( $row ) {
 		if ( $row ) { // page found
-			$cacheLevel = self::FIELD_NOT_IN_LINKCACHE;
-
-			# Items that cannot be stored in LinkCache
-			# If one (or more) of these field is missing, the row can still
-			# be stored in LinkCache
-			if ( isset( $row->page_counter ) ) {
-				$this->mCounter = (int)$row->page_counter;
-			} else {
-				$cacheLevel = self::FIELD_IN_LINKCACHE;
-			}
-			if ( isset( $row->page_touched ) ) {
-				$this->mTouched = $row->page_touched;
-			} else {
-				$cacheLevel = self::FIELD_IN_LINKCACHE;
-			}
-			if ( isset( $row->page_is_new ) ) {
-				$this->mIsNew = (bool)$row->page_is_new;
-			} else {
-				$cacheLevel = self::FIELD_IN_LINKCACHE;
-			}
-			if ( isset( $row->page_restrictions ) ) {
-				$this->mOldRestrictions = $row->page_restrictions;
-			} else {
-				$cacheLevel = self::FIELD_IN_LINKCACHE;
-			}
-
-			# Items that can be stored in LinkCache
-			# If one (or more) of these field is missing, the row cannot
-			# be stored in LinkCache
-			if ( isset( $row->page_id ) ) {
+			if ( isset( $row->page_id ) )
 				$this->mArticleID = (int)$row->page_id;
-			} else {
-				$cacheLevel = 0;
-			}
-			if ( isset( $row->page_len ) ) {
+			if ( isset( $row->page_len ) )
 				$this->mLength = (int)$row->page_len;
-			} else {
-				$cacheLevel = 0;
-			}
-			if ( isset( $row->page_is_redirect ) ) {
+			if ( isset( $row->page_is_redirect ) )
 				$this->mRedirect = (bool)$row->page_is_redirect;
-			} else {
-				$cacheLevel = 0;
-			}
-			if ( isset( $row->page_latest ) ) {
+			if ( isset( $row->page_latest ) )
 				$this->mLatestID = (int)$row->page_latest;
-			} else {
-				$cacheLevel = 0;
-			}
-
-			$this->mLoadedLevel = $cacheLevel;
-			if ( $cacheLevel > 0 ) {
-				# We have all fields required by LinkCache
-				LinkCache::singleton()->addGoodLinkObjFromRow( $this, $row );
-			}
+			if ( isset( $row->page_counter ) )
+				$this->mCounter = (int)$row->page_counter;
 		} else { // page not found
 			$this->mArticleID = 0;
 			$this->mLength = 0;
 			$this->mRedirect = false;
 			$this->mLatestID = 0;
 			$this->mCounter = 0;
-			$this->mTouched = false;
-			$this->mIsNew = false;
-			$this->mOldRestrictions = false;
-			$this->mLoadedLevel = 2;
-			LinkCache::singleton()->addBadLinkObj( $this );
 		}
-		$this->mLoadedFromMaster = $wasFromMaster;
 	}
 
 	/**
@@ -534,27 +468,6 @@ class Title {
 
 		$n = self::makeName( $s->page_namespace, $s->page_title );
 		return $n;
-	}
-
-	/**
-	 * Get the fields of the `page` table that have to be select if you want
-	 * to give a complete row to loadFromRow()
-	 *
-	 * @return array
-	 */
-	public static function selectFields() {
-		return array(
-			'page_namespace',
-			'page_title',
-			'page_id',
-			'page_len',
-			'page_is_redirect',
-			'page_latest',
-			'page_counter',
-			'page_touched',
-			'page_is_new',
-			'page_restrictions',
-		);
 	}
 
 	/**
@@ -1578,82 +1491,6 @@ class Title {
 	}
 
 	/**
-	 * Load field from database into this object
-	 *
-	 * @param $level int, may be on of the following values:
-	 *   - self::FIELD_IN_LINKCACHE: the field can be retrived from the LinkCache
-	 *   - self::FIELD_NOT_IN_LINKCACHE: the field is not stored in LinkCache and
-	 *     must be loaded from the database
-	 * @param $flags int, may be on of the following values:
-	 *   - 0: to use a slave connection
-	 *   - self::GAID_USE_MASTER to use a master connection
-	 *   - self::GAID_FOR_UPDATE to SELECT FROM UPDATE from a master connection
-	 */
-	private function load( $level, $flags = 0 ) {
-		global $wgAntiLockFlags;
-
-		if ( !$this->canExist() ) {
-			return;
-		}
-
-		// Check whether the wanted item is already loaded
-		// and from where it is requested.
-		// If $flags is self::GAID_FOR_UPDATE, it will always be reloaded.
-		if ( $level <= $this->mLoadedLevel && ( $flags === 0 ||
-			( $flags === self::GAID_USE_MASTER && $this->mLoadedFromMaster ) ) )
-		{
-			return;
-		}
-
-		$linkCache = LinkCache::singleton();
-
-		# Only use the LinkCache if we can load from a slave database
-		if ( $flags === 0 ) {
-
-			# If the LinkCache says the page doesn't exist; we can load all fields
-			if ( $linkCache->isBadLink( $this->getPrefixedDBkey() ) ) {
-				$this->loadFromRow( false );
-				return;
-			}
-
-			# For existing pages we can only load some fields
-			if ( $level === self::FIELD_IN_LINKCACHE ) {
-				$id = $linkCache->getGoodLinkID( $this->getPrefixedDBkey() );
-				if ( $id ) {
-					$this->mArticleID = $id;
-					$this->mRedirect = (bool)$linkCache->getGoodLinkFieldObj( $this, 'redirect' );
-					$this->mLength = (int)$linkCache->getGoodLinkFieldObj( $this, 'length' );
-					$this->mLatestID = (int)$linkCache->getGoodLinkFieldObj( $this, 'revision' );
-					$this->mLoadedLevel = 1;
-					$this->mLoadedFromMaster = false;
-					return;
-				}
-			}
-		}
-
-		# Just in case it's already loaded from a slave database
-		$linkCache->clearLink( $this );
-
-		# No success using LinkCache, we need to use the database
-		# In this case we load the complete row regardless of $level
-		$options = array();
-		if ( $flags === 0 ) {
-			$db = wfGetDB( DB_SLAVE );
-			$this->mLoadedFromMaster = false;
-		} else {
-			$db = wfGetDB( DB_MASTER );
-			if ( $flags == self::GAID_FOR_UPDATE && !( $wgAntiLockFlags & ALF_NO_LINK_LOCK ) ) {
-				$options[] = 'FOR UPDATE';
-			}
-			$this->mLoadedFromMaster = true;
-		}
-
-		$row = $db->selectRow( 'page', self::selectFields(),
-			$this->pageCond(), __METHOD__, $options );
-		$this->loadFromRow( $row );
-	}
-
-	/**
 	 * Is $wgUser watching this page?
 	 *
 	 * @return Bool
@@ -2656,15 +2493,17 @@ class Title {
 	 * Loads a string into mRestrictions array
 	 *
 	 * @param $res Resource restrictions as an SQL result.
+	 * @param $oldFashionedRestrictions String comma-separated list of page
+	 *        restrictions from page table (pre 1.10)
 	 */
-	private function loadRestrictionsFromResultWrapper( $res ) {
+	private function loadRestrictionsFromResultWrapper( $res, $oldFashionedRestrictions = null ) {
 		$rows = array();
 
 		foreach ( $res as $row ) {
 			$rows[] = $row;
 		}
 
-		$this->loadRestrictionsFromRows( $rows );
+		$this->loadRestrictionsFromRows( $rows, $oldFashionedRestrictions );
 	}
 
 	/**
@@ -2673,8 +2512,10 @@ class Title {
 	 * Public for usage by LiquidThreads.
 	 *
 	 * @param $rows array of db result objects
+	 * @param $oldFashionedRestrictions string comma-separated list of page
+	 *        restrictions from page table (pre 1.10)
 	 */
-	public function loadRestrictionsFromRows( $rows ) {
+	public function loadRestrictionsFromRows( $rows, $oldFashionedRestrictions = null ) {
 		global $wgContLang;
 		$dbr = wfGetDB( DB_SLAVE );
 
@@ -2689,13 +2530,14 @@ class Title {
 
 		# Backwards-compatibility: also load the restrictions from the page record (old format).
 
-		if ( $this->mOldRestrictions === null ) {
-			$this->mOldRestrictions = $dbr->selectField( 'page', 'page_restrictions',
+		if ( $oldFashionedRestrictions === null ) {
+			$oldFashionedRestrictions = $dbr->selectField( 'page', 'page_restrictions',
 				array( 'page_id' => $this->getArticleId() ), __METHOD__ );
 		}
 
-		if ( $this->mOldRestrictions !== false && $this->mOldRestrictions !== '' ) {
-			foreach ( explode( ':', trim( $this->mOldRestrictions ) ) as $restrict ) {
+		if ( $oldFashionedRestrictions != '' ) {
+
+			foreach ( explode( ':', trim( $oldFashionedRestrictions ) ) as $restrict ) {
 				$temp = explode( '=', trim( $restrict ) );
 				if ( count( $temp ) == 1 ) {
 					// old old format should be treated as edit/move restriction
@@ -2705,6 +2547,9 @@ class Title {
 					$this->mRestrictions[$temp[0]] = explode( ',', trim( $temp[1] ) );
 				}
 			}
+
+			$this->mOldRestrictions = true;
+
 		}
 
 		if ( count( $rows ) ) {
@@ -2745,8 +2590,11 @@ class Title {
 
 	/**
 	 * Load restrictions from the page_restrictions table
+	 *
+	 * @param $oldFashionedRestrictions String comma-separated list of page
+	 *        restrictions from page table (pre 1.10)
 	 */
-	public function loadRestrictions() {
+	public function loadRestrictions( $oldFashionedRestrictions = null ) {
 		global $wgContLang;
 		if ( !$this->mRestrictionsLoaded ) {
 			if ( $this->exists() ) {
@@ -2759,7 +2607,7 @@ class Title {
 					__METHOD__
 				);
 
-				$this->loadRestrictionsFromResultWrapper( $res );
+				$this->loadRestrictionsFromResultWrapper( $res, $oldFashionedRestrictions );
 			} else {
 				$title_protection = $this->getTitleProtection();
 
@@ -2919,83 +2767,86 @@ class Title {
 	 * @return int The view count for the page
 	 */
 	public function getCount() {
-		if ( $this->mCounter == false ) {
-			$this->load( self::FIELD_NOT_IN_LINKCACHE );
+		if ( $this->mCounter == -1 ) {
+			if ( $this->exists() ) {
+				$dbr = wfGetDB( DB_SLAVE );
+				$this->mCounter = $dbr->selectField( 'page',
+					'page_counter',
+					array( 'page_id' => $this->getArticleID() ),
+					__METHOD__
+				);
+			} else {
+				$this->mCounter = 0;
+			}
 		}
 
 		return $this->mCounter;
 	}
 
 	/**
-	 * Get the last touched timestamp
+	 * Get the article ID for this Title from the link cache,
+	 * adding it if necessary
 	 *
-	 * @return String last-touched timestamp
-	 */
-	public function getTouched() {
-		if ( $this->mTouched == null ) {
-			$this->load( self::FIELD_NOT_IN_LINKCACHE );
-		}
-
-		return $this->mTouched;
-	}
-
-	/**
-	 * Check if this is a new page (i.e. it has only one revision)
-	 *
-	 * @return bool
-	 */
-	public function isNewPage() {
-		if ( $this->mIsNew === null ) {
-			$this->load( self::FIELD_NOT_IN_LINKCACHE );
-		}
-
-		return $this->mIsNew;
-	}
-
-	/**
-	 * Get the article ID for this page.
-	 * Uses link cache, adding it if necessary.
-	 *
-	 * @param $flags Int a bit field; may be Title::GAID_USE_MASTER to select
-	 *  from the master database or Title::GAID_FOR_UPDATE to select for update.
+	 * @param $flags Int a bit field; may be Title::GAID_FOR_UPDATE to select
+	 *  for update
 	 * @return Int the ID
 	 */
 	public function getArticleID( $flags = 0 ) {
-		if ( $this->mArticleID === -1 || $flags ) {
-			$this->load( self::FIELD_IN_LINKCACHE, $flags );
+		if ( $this->getNamespace() < 0 ) {
+			return $this->mArticleID = 0;
 		}
-
+		$linkCache = LinkCache::singleton();
+		if ( $flags & self::GAID_FOR_UPDATE ) {
+			$oldUpdate = $linkCache->forUpdate( true );
+			$linkCache->clearLink( $this );
+			$this->mArticleID = $linkCache->addLinkObj( $this );
+			$linkCache->forUpdate( $oldUpdate );
+		} else {
+			if ( -1 == $this->mArticleID ) {
+				$this->mArticleID = $linkCache->addLinkObj( $this );
+			}
+		}
 		return $this->mArticleID;
 	}
 
 	/**
 	 * Is this an article that is a redirect page?
-	 * Uses link cache, adding it if necessary.
+	 * Uses link cache, adding it if necessary
 	 *
-	 * @param $flags Int a bit field; may be Title::GAID_USE_MASTER to select
-	 *  from the master database or Title::GAID_FOR_UPDATE to select for update.
+	 * @param $flags Int a bit field; may be Title::GAID_FOR_UPDATE to select for update
 	 * @return Bool
 	 */
 	public function isRedirect( $flags = 0 ) {
-		if ( $this->mRedirect === null || $flags ) {
-			$this->load( self::FIELD_IN_LINKCACHE, $flags );
+		if ( !is_null( $this->mRedirect ) ) {
+			return $this->mRedirect;
 		}
+		# Calling getArticleID() loads the field from cache as needed
+		if ( !$this->getArticleID( $flags ) ) {
+			return $this->mRedirect = false;
+		}
+		$linkCache = LinkCache::singleton();
+		$this->mRedirect = (bool)$linkCache->getGoodLinkFieldObj( $this, 'redirect' );
 
 		return $this->mRedirect;
 	}
 
 	/**
 	 * What is the length of this page?
-	 * Uses link cache, adding it if necessary.
+	 * Uses link cache, adding it if necessary
 	 *
-	 * @param $flags Int a bit field; may be Title::GAID_USE_MASTER to select
-	 *  from the master database or Title::GAID_FOR_UPDATE to select for update.
+	 * @param $flags Int a bit field; may be Title::GAID_FOR_UPDATE to select for update
 	 * @return Int
 	 */
 	public function getLength( $flags = 0 ) {
-		if ( $this->mLength === -1 || $flags ) {
-			$this->load( self::FIELD_IN_LINKCACHE, $flags );
+		if ( $this->mLength != -1 ) {
+			return $this->mLength;
 		}
+		# Calling getArticleID() loads the field from cache as needed
+		if ( !$this->getArticleID( $flags ) ) {
+			return $this->mLength = 0;
+		}
+		$linkCache = LinkCache::singleton();
+		$this->mLength = intval( $linkCache->getGoodLinkFieldObj( $this, 'length' ) );
 
 		return $this->mLength;
 	}
@@ -3003,14 +2854,19 @@ class Title {
 	/**
 	 * What is the page_latest field for this page?
 	 *
-	 * @param $flags Int a bit field; may be Title::GAID_USE_MASTER to select
-	 *  from the master database or Title::GAID_FOR_UPDATE to select for update.
+	 * @param $flags Int a bit field; may be Title::GAID_FOR_UPDATE to select for update
 	 * @return Int or 0 if the page doesn't exist
 	 */
 	public function getLatestRevID( $flags = 0 ) {
-		if ( $this->mLatestID === false || $flags ) {
-			$this->load( self::FIELD_IN_LINKCACHE, $flags );
+		if ( $this->mLatestID !== false ) {
+			return intval( $this->mLatestID );
 		}
+		# Calling getArticleID() loads the field from cache as needed
+		if ( !$this->getArticleID( $flags ) ) {
+			return $this->mLatestID = 0;
+		}
+		$linkCache = LinkCache::singleton();
+		$this->mLatestID = intval( $linkCache->getGoodLinkFieldObj( $this, 'revision' ) );
 
 		return $this->mLatestID;
 	}
@@ -3026,29 +2882,21 @@ class Title {
 	 * @param $newid Int the new Article ID
 	 */
 	public function resetArticleID( $newid ) {
-		LinkCache::singleton()->clearLink( $this );
+		$linkCache = LinkCache::singleton();
+		$linkCache->clearLink( $this );
 
-		if ( $newid === 0 ) {
-			$this->loadFromRow( false );
+		if ( $newid === false ) {
+			$this->mArticleID = -1;
 		} else {
-			if ( $newid === false ) {
-				$this->mArticleID = -1;
-			} else {
-				$this->mArticleID = intval( $newid );
-			}
-			$this->mRestrictionsLoaded = false;
-			$this->mRestrictions = array();
-			$this->mOldRestrictions = null;
-			$this->mRedirect = null;
-			$this->mLength = -1;
-			$this->mLatestID = false;
-			$this->mCounter = false;
-			$this->mTouched = null;
-			$this->mIsNew = null;
-			$this->mEstimateRevisions = null;
-			$this->mLoadedLevel = 0;
-			$this->mLoadedFromMaster = false;
+			$this->mArticleID = intval( $newid );
 		}
+		$this->mRestrictionsLoaded = false;
+		$this->mRestrictions = array();
+		$this->mRedirect = null;
+		$this->mLength = -1;
+		$this->mLatestID = false;
+		$this->mCounter = -1;
+		$this->mEstimateRevisions = null;
 	}
 
 	/**
@@ -4144,6 +3992,16 @@ class Title {
 	}
 
 	/**
+	 * Check if this is a new page
+	 *
+	 * @return bool
+	 */
+	public function isNewPage() {
+		$dbr = wfGetDB( DB_SLAVE );
+		return (bool)$dbr->selectField( 'page', 'page_is_new', $this->pageCond(), __METHOD__ );
+	}
+
+	/**
 	 * Check whether the number of revisions of this page surpasses $wgDeleteRevisionsLimit
 	 *
 	 * @return bool
@@ -4406,6 +4264,18 @@ class Title {
 			$u = new HTMLCacheUpdate( $this, 'categorylinks' );
 			$u->doUpdate();
 		}
+	}
+
+	/**
+	 * Get the last touched timestamp
+	 *
+	 * @param $db DatabaseBase: optional db
+	 * @return String last-touched timestamp
+	 */
+	public function getTouched( $db = null ) {
+		$db = isset( $db ) ? $db : wfGetDB( DB_SLAVE );
+		$touched = $db->selectField( 'page', 'page_touched', $this->pageCond(), __METHOD__ );
+		return $touched;
 	}
 
 	/**

@@ -355,12 +355,8 @@ class WikiPage extends Page {
 	 * @return void
 	 */
 	public function loadPageData( $data = 'fromdb' ) {
-		# If we get a DB row, God knows from where it comes
-		$fromMaster = false;
-
 		if ( $data === 'fromdbmaster' ) {
 			$data = $this->pageDataFromTitle( wfGetDB( DB_MASTER ), $this->mTitle );
-			$fromMaster = true;
 		} elseif ( $data === 'fromdb' ) { // slave
 			$data = $this->pageDataFromTitle( wfGetDB( DB_SLAVE ), $this->mTitle );
 			# Use a "last rev inserted" timestamp key to dimish the issue of slave lag.
@@ -369,16 +365,26 @@ class WikiPage extends Page {
 			if ( $touched ) { // key set
 				if ( !$data || $touched > wfTimestamp( TS_MW, $data->page_touched ) ) {
 					$data = $this->pageDataFromTitle( wfGetDB( DB_MASTER ), $this->mTitle );
-					$fromMaster = true;
 				}
 			}
 		}
 
-		$this->mTitle->loadFromRow( $data, $fromMaster );
+		$lc = LinkCache::singleton();
 
 		if ( $data ) {
+			$lc->addGoodLinkObjFromRow( $this->mTitle, $data );
+
+			$this->mTitle->loadFromRow( $data );
+
+			# Old-fashioned restrictions
+			$this->mTitle->loadRestrictions( $data->page_restrictions );
+
 			$this->mIsRedirect  = intval( $data->page_is_redirect );
 			$this->mLatest      = intval( $data->page_latest );
+		} else {
+			$lc->addBadLinkObj( $this->mTitle );
+
+			$this->mTitle->loadFromRow( false );
 		}
 
 		$this->mDataLoaded = true;
@@ -499,11 +505,7 @@ class WikiPage extends Page {
 		if ( !$this->mDataLoaded ) {
 			$this->loadPageData();
 		}
-		$timestamp = $this->mTitle->getTouched();
-		if ( $timestamp === false ) {
-			$timestamp = '19700101000000';
-		}
-		return $timestamp;
+		return $this->mTitle->getTouched();
 	}
 
 	/**
