@@ -49,6 +49,7 @@
  * @author Iwan Novirion
  * @author Jon Harald Søby
  * @author Karduelis
+ * @author Kghbln
  * @author Kizito
  * @author Klenje
  * @author Klutzy
@@ -1481,8 +1482,7 @@ Used in [[Special:Preferences]], tab "Watchlist". The display options refer to:
 * $1 is a username
 * $2 are user tool links. Example: "(Talk | contribs | block | send e-mail)".',
 'userrights-editusergroup'       => '{{Identical|Edit user groups}}. Parameter:
-* $1 is a username - optional, can be used for GENDER
-',
+* $1 is a username - optional, can be used for GENDER',
 'saveusergroups'                 => 'Button text when editing user groups',
 'userrights-groupsmember'        => 'Used when editing user groups in [[Special:Userrights]]. The messsage is followed by a list of group names.
 
@@ -1494,8 +1494,7 @@ Parameters:
 Parameters:
 * $1 - optional, for PLURAL use, the number of items in the list following the message. Please avoid PLURAL, if your language can do without.',
 'userrights-groups-help'         => 'Instructions displayed on [[Special:UserRights]]. Parameters:
-* $1 is a username - optional, can be used for GENDER
-',
+* $1 is a username - optional, can be used for GENDER',
 'userrights-reason'              => 'Text beside log field when editing user groups
 
 {{Identical|Reason}}',
@@ -3064,9 +3063,8 @@ See also:
 'javascripttest-backlink'                  => '{{optional}}',
 'javascripttest-disabled'                  => '{{Identical|Function disabled}}.',
 'javascripttest-title'                     => 'Title of the special page when running a test suite. $1 is the name of the framework.',
-'javascripttest-pagetext-unknownframework' => 'Error message when given framework id is not found. $1 is the if of the framework.',
-'javascripttest-pagetext-frameworks'       => '$1 is the if of the framework.',
-'javascripttest-qunit-name'                => '{{Ignore}}',
+'javascripttest-pagetext-unknownframework' => 'Error message when given framework id is not found. $1 is the id of the framework.',
+'javascripttest-pagetext-frameworks'       => '$1 is the id of the framework.',
 'javascripttest-qunit-intro'               => '$1 is the configured url to the documentation.',
 'javascripttest-qunit-heading'             => '{{Optional}}',
 

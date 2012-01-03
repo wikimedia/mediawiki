@@ -2139,6 +2139,7 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 'mostimages'              => '被リンク数の多いファイル',
 'mostrevisions'           => '版の多いページ',
 'prefixindex'             => '先頭が同じ全ページ',
+'prefixindex-namespace'   => '先頭が同じ全ページ（$1名前空間）',
 'shortpages'              => '短いページ',
 'longpages'               => '長いページ',
 'deadendpages'            => '行き止まりページ',

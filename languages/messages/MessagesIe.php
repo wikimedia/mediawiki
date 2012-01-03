@@ -915,6 +915,7 @@ Li descrition es in li [$2 págine de descrition del file] ta e es monstrat in i
 'ncategories'             => '$1 {{PLURAL:$1|categorie|categories}}',
 'nlinks'                  => '$1 {{PLURAL:$1|catenun|catenunes}}',
 'nmembers'                => '$1 {{PLURAL:$1|usator|usatores}}',
+'specialpage-empty'       => 'Hay nequant resultates por ti raporte.',
 'lonelypages'             => 'Orfani págines',
 'uncategorizedpages'      => 'Págines íncategorizet',
 'uncategorizedcategories' => 'Categories íncategorizet',
@@ -950,8 +951,8 @@ Li descrition es in li [$2 págine de descrition del file] ta e es monstrat in i
 'booksources-go'            => 'Ear',
 
 # Special:Log
-'specialloguserlabel'  => 'Usator:',
-'speciallogtitlelabel' => 'Titul:',
+'specialloguserlabel'  => 'Executor:',
+'speciallogtitlelabel' => 'Cible (titul o usator):',
 'log'                  => 'Diariumes',
 'all-logs-page'        => 'Omni li diariumes public',
 
@@ -964,7 +965,9 @@ Li descrition es in li [$2 págine de descrition del file] ta e es monstrat in i
 'allpagessubmit' => 'Ear',
 
 # Special:Categories
-'categories' => 'Categories',
+'categories'                    => 'Categories',
+'special-categories-sort-count' => 'Sorte per contar',
+'special-categories-sort-abc'   => 'Sorte alfabeticmen',
 
 # Special:LinkSearch
 'linksearch'      => 'Catenunes extern',
@@ -1381,7 +1384,19 @@ Vu posse anc [[Special:EditWatchlist|usar li redactor uniform]].',
 'filepath-page' => 'Figura:',
 
 # Special:SpecialPages
-'specialpages' => 'Págines special',
+'specialpages'                   => 'Págines special',
+'specialpages-group-maintenance' => 'Raportes de conservation',
+'specialpages-group-other'       => 'Altri págines special',
+'specialpages-group-login'       => 'Intrar / crear conto',
+'specialpages-group-changes'     => 'Nov changes e diariumes',
+'specialpages-group-media'       => 'Raportes de media e cargamentes de files',
+'specialpages-group-users'       => 'Usatores e jures',
+'specialpages-group-highuse'     => 'Págines de alt usu',
+'specialpages-group-pages'       => 'Listes de págines',
+'specialpages-group-pagetools'   => 'Utensiles de págine',
+'specialpages-group-wiki'        => 'Data wiki e utensiles',
+'specialpages-group-redirects'   => 'Redirectionant págines special',
+'specialpages-group-spam'        => 'Utensiles de spam',
 
 # External image whitelist
 'external_image_whitelist' => '#Abandonar ti linea exactmen quam it es<pre>

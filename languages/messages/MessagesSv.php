@@ -2060,6 +2060,8 @@ En sida anses vara en förgreningssida om den inkluderar en mall som länkas til
 'wantedpages'             => 'Önskade sidor',
 'wantedpages-badtitle'    => 'Ogiltig titel bland resultaten: $1',
 'wantedfiles'             => 'Önskade filer',
+'wantedfiletext-cat'      => 'Följande filer används men finns inte. Filer från utländska databaser kan vara listade trots att de inte finns. Sådana falska realiteter kommer att <del>tas bort</del>. Sidor som bäddar in filer som inte finns listas upp på [[:$1]].',
+'wantedfiletext-nocat'    => 'Följande filer används men finns inte. Filer från utländska databaser kan vara listade trots att de inte finns. Sådana falska realiteter kommer att <del>tas bort</del>.',
 'wantedtemplates'         => 'Önskade mallar',
 'mostlinked'              => 'Sidor med flest länkar till sig',
 'mostlinkedcategories'    => 'Kategorier med flest länkar till sig',

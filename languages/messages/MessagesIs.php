@@ -887,8 +887,8 @@ Gjörðu svo vel og athugaðu hvort að þú viljir skapa/breyta þessari síðu
 'blocked-notice-logextract'        => 'Þessi notandi er í banni.
 Síðasta færsla notandans úr bönnunarskrá er sýnd hér fyrir neðan til skýringar:',
 'clearyourcache'                   => "Athugaðu - Eftir vistun, má vera að þú þurfir að komast hjá skyndiminni vafrans til að sjá breytingarnar.'''
-'''Mozilla / Firefox / Safari:''' haltu ''Shift'' og smelltu á ''Reload'', eða ýttu á annaðhvort ''Ctrl-F5'' eða ''Ctrl-R'' (''Command-R'' á Mac)
-'''Google Chrome: '''smelltu á ''Ctrl-Shift-R'' (''Command-Shift-R'' á Mac)
+'''Mozilla / Firefox / Safari:''' haltu ''Shift'' og smelltu á ''Reload'', eða ýttu á annaðhvort ''Ctrl-F5'' eða ''Ctrl-R'' (''⌘-R'' á Mac)
+'''Google Chrome: '''smelltu á ''Ctrl-Shift-R'' (''⌘-Shift-R'' á Mac)
 '''Konqueror: '''smelltu á ''Reload'' eða ýttu á ''F5'' 
 '''Opera:''' hreinsaðu skyndiminnið í ''Tools → Prefernces'';
 '''Internet Explorer:''' haltu ''Ctrl'' og smelltu á ''Refresh'', eða ýttu á ''Ctrl-F5''.",

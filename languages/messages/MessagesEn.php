@@ -1909,8 +1909,6 @@ Your e-mail address is not revealed when other users contact you.',
 'group-suppress'      => 'Oversights',
 'group-all'           => '(all)',
 
-# group names can use {{GENDER}} for language that make a distinction
-# between male and female forms.
 'group-user-member'          => 'user',
 'group-autoconfirmed-member' => 'autoconfirmed user',
 'group-bot-member'           => 'bot',
@@ -3407,7 +3405,7 @@ Please try again.',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|revision|revisions}}',
 'import-logentry-interwiki'        => 'transwikied $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revision|revisions}} from $2',
- 
+
 # JavaScriptTest
 'javascripttest'                           => 'JavaScript Test',
 'javascripttest-backlink'                  => '< $1',
@@ -3417,9 +3415,9 @@ Please try again.',
 'javascripttest-pagetext-unknownframework' => 'Unknown framework "$1".',
 'javascripttest-pagetext-frameworks'       => 'Please choose one of the following frameworks: $1',
 'javascripttest-pagetext-skins'            => 'Available skins',
-'javascripttest-qunit-name'                => 'QUnit', // Ignore, do not translate
+'javascripttest-qunit-name'                => 'QUnit', # do not translate or duplicate this message to other languages
 'javascripttest-qunit-intro'               => 'See [$1 testing documentation] on mediawiki.org.',
-'javascripttest-qunit-heading'             => 'MediaWiki JavaScript QUnit Test Suite', // Optional, only translate if needed
+'javascripttest-qunit-heading'             => 'MediaWiki JavaScript QUnit Test Suite',
 
 # Keyboard access keys for power users
 'accesskey-pt-userpage'             => '.', # do not translate or duplicate this message to other languages

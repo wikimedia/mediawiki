@@ -1054,7 +1054,7 @@ Probe a [[Special:Search|buscar no wiki]] para atopar as páxinas relacionadas.'
 # Revision deletion
 'rev-deleted-comment'         => '(resumo de edición eliminado)',
 'rev-deleted-user'            => '(nome de usuario eliminado)',
-'rev-deleted-event'           => '(rexistro de evento eliminado)',
+'rev-deleted-event'           => '(entrada eliminada)',
 'rev-deleted-user-contribs'   => '[nome de usuario ou enderezo IP eliminado; edición agochada das contribucións]',
 'rev-deleted-text-permission' => "Esta revisión da páxina foi '''borrada'''.
 Pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados].",

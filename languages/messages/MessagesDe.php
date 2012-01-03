@@ -811,7 +811,7 @@ Es muss sichergestellt sein, dass Cookies aktiviert sind. Danach diese Seite ern
 'loginsuccess'               => 'Du bist jetzt als „$1“ bei {{SITENAME}} angemeldet.',
 'nosuchuser'                 => 'Der Benutzername „$1“ existiert nicht.
 Überprüfe die Schreibweise (Groß-/Kleinschreibung beachten) oder [[Special:UserLogin/signup|melde dich als neuer Benutzer an]].',
-'nosuchusershort'            => 'Der Benutzername „$1“ existiert nicht. Bitte überprüfe die Schreibweise.',
+'nosuchusershort'            => 'Der Benutzername „$1“ ist nicht vorhanden. Bitte überprüfe die Schreibweise.',
 'nouserspecified'            => 'Bitte gib einen Benutzernamen an.',
 'login-userblocked'          => '{{GENDER:$1|Dieser Benutzer|Dieser Benutzerin|Dieser Benutzer}} ist gesperrt. Anmeldung nicht erlaubt.',
 'wrongpassword'              => 'Das Passwort ist falsch. Bitte versuche es erneut.',
@@ -2917,6 +2917,18 @@ Diese auf dem lokalen Rechner speichern und danach hier hochladen.',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|Version|Versionen}}',
 'import-logentry-interwiki'        => 'importierte „$1“ (Transwiki)',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|Version|Versionen}} von $2',
+
+# JavaScriptTest
+'javascripttest'                           => 'JavaScript-Test',
+'javascripttest-backlink'                  => '< $1',
+'javascripttest-disabled'                  => 'Diese Funktion ist deaktiviert.',
+'javascripttest-title'                     => '$1-Tests werden durchgeführt',
+'javascripttest-pagetext-noframework'      => 'Diese Seite ist JavaSkript-Tests vorbehalten.',
+'javascripttest-pagetext-unknownframework' => 'Unbekanntes Framework „$1“.',
+'javascripttest-pagetext-frameworks'       => 'Bitte eines der folgenden Frameworks auswählen: $1',
+'javascripttest-pagetext-skins'            => 'Verfügbare Benutzeroberflächen',
+'javascripttest-qunit-intro'               => 'Siehe die [$1 Dokumentation zu Tests] auf mediawiki.org',
+'javascripttest-qunit-heading'             => 'MediaWiki-JavaSkript-QUnit-Tester',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Deine Benutzerseite',

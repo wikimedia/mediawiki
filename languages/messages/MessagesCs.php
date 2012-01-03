@@ -2079,6 +2079,8 @@ Každý řádek obsahuje odkaz na první a druhé přesměrování a k tomu cíl
 'wantedpages'             => 'Chybějící stránky',
 'wantedpages-badtitle'    => 'Výsledky obsahují neplatný název: $1',
 'wantedfiles'             => 'Chybějící soubory',
+'wantedfiletext-cat'      => 'Následující soubory se používají, ale neexistují. Soubory ze vzdálených úložišť zde mohou být uvedeny, přestože existují. Taková falešná pozitiva budou zobrazena <del>přeškrtnutě</del>. Stránky, které vkládají neexistující soubory, jsou navíc uvedeny v [[:$1]].',
+'wantedfiletext-nocat'    => 'Následující soubory se používají, ale neexistují. Soubory ze vzdálených úložišť zde mohou být uvedeny, přestože existují. Taková falešná pozitiva budou zobrazena <del>přeškrtnutě</del>.',
 'wantedtemplates'         => 'Chybějící šablony',
 'mostlinked'              => 'Nejodkazovanější stránky',
 'mostlinkedcategories'    => 'Nejpoužívanější kategorie',
