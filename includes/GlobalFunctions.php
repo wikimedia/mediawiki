@@ -3460,7 +3460,9 @@ function wfGetNull() {
  */
 function wfDeprecated( $function, $version = false, $component = false ) {
 	static $functionsWarned = array();
-	
+
+	MWDebug::deprecated( $function, $version, $component );
+
 	if ( !in_array( $function, $GLOBALS['wgDeprecationWhitelist'] ) && !isset( $functionsWarned[$function] ) ) {
 		$functionsWarned[$function] = true;
 		
@@ -3500,6 +3502,8 @@ function wfDeprecated( $function, $version = false, $component = false ) {
  */
 function wfWarn( $msg, $callerOffset = 1, $level = E_USER_NOTICE ) {
 	global $wgDevelopmentWarnings;
+
+	MWDebug::warning( $msg, $callerOffset + 2 );
 
 	$callers = wfDebugBacktrace();
 	if ( isset( $callers[$callerOffset + 1] ) ) {

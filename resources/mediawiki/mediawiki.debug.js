@@ -127,6 +127,8 @@
 				.appendTo( $bits );
 			}
 
+			paneTriggerBitDiv( 'console', 'Console (' + this.data.log.length + ')' );
+
 			paneTriggerBitDiv( 'querylist', 'Queries: ' + this.data.queries.length );
 
 			paneTriggerBitDiv( 'debuglog', 'Debug Log (' + this.data.debugLog.length + ' lines)' );
@@ -154,6 +156,7 @@
 			$bits.appendTo( $container );
 
 			panes = {
+				console: this.buildConsoleTable(),
 				querylist: this.buildQueryTable(),
 				debuglog: this.buildDebugLogTable(),
 				request: this.buildRequestPane(),
@@ -175,6 +178,49 @@
 			}
 
 			this.$container = $container;
+		},
+
+		/**
+		 * Builds the console panel
+		 */
+		buildConsoleTable: function () {
+			var $table, entryTypeText, i, length, entry;
+
+			$table = $( '<table id="mw-debug-console">' );
+
+			$('<colgroup>').css( 'width', /*padding=*/20 + ( 10*/*fontSize*/11 ) ).appendTo( $table );
+			$('<colgroup>').appendTo( $table );
+			$('<colgroup>').css( 'width', 350 ).appendTo( $table );
+
+
+			entryTypeText = function( entryType ) {
+				switch ( entryType ) {
+					case 'log':
+						return 'Log';
+					case 'warn':
+						return 'Warning';
+					case 'deprecated':
+						return 'Deprecated';
+					default:
+						return 'Unknown';
+				}
+			};
+
+			for ( i = 0, length = this.data.log.length; i < length; i += 1 ) {
+				entry = this.data.log[i];
+				entry.typeText = entryTypeText( entry.type );
+
+				$( '<tr>' )
+					.append( $( '<td>' )
+						.text( entry.typeText )
+						.attr( 'class', 'mw-debug-console-' + entry.type )
+					)
+					.append( $( '<td>' ).html( entry.msg ) )
+					.append( $( '<td>' ).text( entry.caller ) )
+					.appendTo( $table );
+			}
+
+			return $table;
 		},
 
 		/**
