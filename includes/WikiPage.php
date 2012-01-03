@@ -499,7 +499,11 @@ class WikiPage extends Page {
 		if ( !$this->mDataLoaded ) {
 			$this->loadPageData();
 		}
-		return $this->mTitle->getTouched();
+		$timestamp = $this->mTitle->getTouched();
+		if ( $timestamp === false ) {
+			$timestamp = '19700101000000';
+		}
+		return $timestamp;
 	}
 
 	/**
