@@ -82,7 +82,7 @@ class UploadFromChunks extends UploadFromFile {
 	
 	/**
 	 * Append the final chunk and ready file for parent::performUpload()
-	 * @return void
+	 * @return FileRepoStatus
 	 */
 	public function concatenateChunks() {
 		wfDebug( __METHOD__ . " concatenate {$this->mChunkIndex} chunks:" . 

@@ -334,7 +334,7 @@ class SpecialBlock extends FormSpecialPage {
 
 	/**
 	 * Add footer elements to the form
-	 * @return void
+	 * @return string
 	 */
 	protected function postText(){
 		# Link to the user's contributions, if applicable
