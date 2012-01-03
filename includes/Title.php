@@ -342,7 +342,7 @@ class Title {
 			$this->mRedirect = false;
 			$this->mLatestID = 0;
 			$this->mCounter = 0;
-			$this->mTouched = '19700101000000';
+			$this->mTouched = false;
 			$this->mIsNew = false;
 			$this->mOldRestrictions = false;
 			$this->mLoadedLevel = 2;
@@ -3043,7 +3043,7 @@ class Title {
 			$this->mLength = -1;
 			$this->mLatestID = false;
 			$this->mCounter = false;
-			$this->mTouched = '19700101000000';
+			$this->mTouched = null;
 			$this->mIsNew = null;
 			$this->mEstimateRevisions = null;
 			$this->mLoadedLevel = 0;
