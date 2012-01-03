@@ -1527,12 +1527,12 @@ This is an optional (disabled by default) user group, meant for the [[mw:Revisio
 
 {{Identical|All}}',
 
-'group-user-member'          => '{{doc-group|user|member}}',
-'group-autoconfirmed-member' => '{{doc-group|autoconfirmed|member}}',
-'group-bot-member'           => '{{doc-group|bot|member}}',
-'group-sysop-member'         => '{{doc-group|sysop|member}}',
-'group-bureaucrat-member'    => '{{doc-group|bureaucrat|member}}',
-'group-suppress-member'      => '{{doc-group|suppress|member}}
+'group-user-member'          => '{{doc-group|user|member}}, can use <nowiki>{{GENDER}}</nowiki>',
+'group-autoconfirmed-member' => '{{doc-group|autoconfirmed|member}}, can use <nowiki>{{GENDER}}</nowiki>',
+'group-bot-member'           => '{{doc-group|bot|member}}, can use <nowiki>{{GENDER}}</nowiki>',
+'group-sysop-member'         => '{{doc-group|sysop|member}}, can use <nowiki>{{GENDER}}</nowiki>',
+'group-bureaucrat-member'    => '{{doc-group|bureaucrat|member}}, can use <nowiki>{{GENDER}}</nowiki>',
+'group-suppress-member'      => '{{doc-group|suppress|member}}, can use <nowiki>{{GENDER}}</nowiki>
 This is a member of the optional (disabled by default) user group, meant for the [[mw:RevisionDelete|RevisionDelete]] feature, to change the visibility of revisions through [[Special:RevisionDelete]].
 
 {{Identical|Oversight}}',
