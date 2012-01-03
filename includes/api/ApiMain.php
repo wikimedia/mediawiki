@@ -815,7 +815,7 @@ class ApiMain extends ApiBase {
 			'**                      This is an auto-generated MediaWiki API documentation page                      **',
 			'**                                                                                                      **',
 			'**                                    Documentation and Examples:                                       **',
-			'**                                 https://www.mediawiki.org/wiki/API                                    **',
+			'**                                 https://www.mediawiki.org/wiki/API                                   **',
 			'**                                                                                                      **',
 			'**********************************************************************************************************',
 			'',
