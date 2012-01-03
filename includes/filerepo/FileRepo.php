@@ -115,10 +115,7 @@ class FileRepo {
 		foreach ( (array)$doZones as $zone ) {
 			$root = $this->getZonePath( $zone );
 			if ( $root === null ) {
-				throw new MWException( "No '$zone' zone defined in the $this->name repo." );
-			} else {
-				$params = array( 'dir' => $this->getZonePath( $zone ) );
-				$status->merge( $this->backend->prepare( $params ) );
+				throw new MWException( "No '$zone' zone defined in the {$this->name} repo." );
 			}
 		}
 		return $status;
@@ -128,14 +125,12 @@ class FileRepo {
 	 * Take all available measures to prevent web accessibility of new deleted
 	 * directories, in case the user has not configured offline storage
 	 *
+	 * @param $dir string
 	 * @return void
 	 */
 	protected function initDeletedDir( $dir ) {
-		// Add a .htaccess file to the root of the deleted zone
-		$root = $this->getZonePath( 'deleted' );
-		$this->backend->secure( array( 'dir' => $root, 'noAccess' => true ) );
-		// Seed new directories with a blank index.html, to prevent crawling
-		$this->backend->secure( array( 'dir' => $dir, 'noListing' => true ) );
+		$this->backend->secure( // prevent web access & dir listings
+			array( 'dir' => $dir, 'noAccess' => true, 'noListing' => true ) );
 	}
 
 	/**
@@ -1223,6 +1218,7 @@ class FileRepo {
 	 * May use either the database or the filesystem.
 	 *
 	 * @param $callback Array|string
+	 * @return void
 	 */
 	public function enumFiles( $callback ) {
 		$this->enumFilesInStorage( $callback );
@@ -1233,6 +1229,7 @@ class FileRepo {
 	 * May use either the database or the filesystem.
 	 *
 	 * @param $callback Array|string
+	 * @return void
 	 */
 	protected function enumFilesInStorage( $callback ) {
 		$publicRoot = $this->getZonePath( 'public' );
