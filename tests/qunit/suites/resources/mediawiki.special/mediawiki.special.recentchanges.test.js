@@ -1,4 +1,4 @@
-module( 'mediawiki.special.recentchanges' );
+module( 'mediawiki.special.recentchanges', QUnit.newMwEnvironment() );
 
 test( '-- Initial check', function() {
 	expect( 2 );

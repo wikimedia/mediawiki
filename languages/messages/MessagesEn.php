@@ -393,6 +393,7 @@ $specialPageAliases = array(
 	'Filepath'                  => array( 'FilePath' ),
 	'Import'                    => array( 'Import' ),
 	'Invalidateemail'           => array( 'InvalidateEmail' ),
+	'JavaScriptTest'            => array( 'JavaScriptTest' ),
 	'BlockList'                 => array( 'BlockList', 'ListBlocks', 'IPBlockList' ),
 	'LinkSearch'                => array( 'LinkSearch' ),
 	'Listadmins'                => array( 'ListAdmins' ),
@@ -3405,6 +3406,19 @@ Please try again.',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|revision|revisions}}',
 'import-logentry-interwiki'        => 'transwikied $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revision|revisions}} from $2',
+ 
+# JavaScriptTest
+'javascripttest'                           => 'JavaScript Test',
+'javascripttest-backlink'                  => '< $1',
+'javascripttest-disabled'                  => 'This function is disabled.',
+'javascripttest-title'                     => 'Running $1 tests',
+'javascripttest-pagetext-noframework'      => 'This page is reserved for running javascript tests.',
+'javascripttest-pagetext-unknownframework' => 'Unknown framework "$1".',
+'javascripttest-pagetext-frameworks'       => 'Please choose one of the following frameworks: $1',
+'javascripttest-pagetext-skins'            => 'Available skins',
+'javascripttest-qunit-name'                => 'QUnit', // Ignore, do not translate
+'javascripttest-qunit-intro'               => 'See [$1 testing documentation] on mediawiki.org.',
+'javascripttest-qunit-heading'             => 'MediaWiki JavaScript QUnit Test Suite', // Optional, only translate if needed
 
 # Keyboard access keys for power users
 'accesskey-pt-userpage'             => '.', # do not translate or duplicate this message to other languages

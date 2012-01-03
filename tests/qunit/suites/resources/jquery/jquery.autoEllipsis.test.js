@@ -1,4 +1,4 @@
-module( 'jquery.autoEllipsis' );
+module( 'jquery.autoEllipsis', QUnit.newMwEnvironment() );
 
 test( '-- Initial check', function() {
 	expect(1);

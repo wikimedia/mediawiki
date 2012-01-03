@@ -1,4 +1,4 @@
-module( 'jquery.textSelection' );
+module( 'jquery.textSelection', QUnit.newMwEnvironment() );
 
 test( '-- Initial check', function() {
 	expect(1);

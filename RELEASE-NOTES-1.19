@@ -112,6 +112,9 @@ production.
 * (bug 23427) Introduced {{PAGEID}} variable to expose page.page_id.
 * (bug 33447) Link to the broken image tracking category from Special:Wantedfiles.
 * (bug 27724) Add timestamp to job queue.
+* (bug 30339) Implement SpecialPage for running javascript tests. Disabled by default, due to
+  tests potentially being harmful, not to be run on a production wiki.
+  Enable by setting $wgEnableJavaScriptTest to true.
 
 === Bug fixes in 1.19 ===
 * $wgUploadNavigationUrl should be used for file redlinks if.

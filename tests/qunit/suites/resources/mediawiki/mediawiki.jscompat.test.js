@@ -1,6 +1,6 @@
 /* Some misc JavaScript compatibility tests, just to make sure the environments we run in are consistent */
 
-module( 'mediawiki.jscompat' );
+module( 'mediawiki.jscompat', QUnit.newMwEnvironment() );
 
 test( 'Variable with Unicode letter in name', function() {
 	expect(3);

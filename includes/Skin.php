@@ -22,7 +22,7 @@ abstract class Skin extends ContextSource {
 
 	/**
 	 * Fetch the set of available skins.
-	 * @return array of strings
+	 * @return associative array of strings
 	 */
 	static function getSkinNames() {
 		global $wgValidSkinNames;
@@ -54,6 +54,18 @@ abstract class Skin extends ContextSource {
 			wfProfileOut( __METHOD__ . '-init' );
 		}
 		return $wgValidSkinNames;
+	}
+ 
+ 	/**
+	 * Fetch the skinname messages for available skins.
+	 * @return array of strings
+	 */
+	static function getSkinNameMessages() {
+		$messages = array();
+		foreach( self::getSkinNames() as $skinKey => $skinName ) {
+			$messages[] = "skinname-$skinKey";
+		}
+		return $messages;
 	}
 
 	/**

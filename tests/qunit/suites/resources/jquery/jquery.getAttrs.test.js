@@ -1,4 +1,4 @@
-module( 'jquery.getAttrs' );
+module( 'jquery.getAttrs', QUnit.newMwEnvironment() );
 
 test( '-- Initial check', function() {
 	expect(1);

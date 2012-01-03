@@ -1,4 +1,4 @@
-module( 'jquery.localize' );
+module( 'jquery.localize', QUnit.newMwEnvironment() );
 
 test( '-- Initial check', function() {
 	expect(1);

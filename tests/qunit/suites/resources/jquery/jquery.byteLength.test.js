@@ -1,4 +1,4 @@
-module( 'jquery.byteLength' );
+module( 'jquery.byteLength', QUnit.newMwEnvironment() );
 
 test( '-- Initial check', function() {
 	expect(1);

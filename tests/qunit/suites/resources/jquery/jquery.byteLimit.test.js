@@ -1,4 +1,6 @@
-module( 'jquery.byteLimit' );
+( function () {
+
+module( 'jquery.byteLimit', QUnit.newMwEnvironment() );
 
 test( '-- Initial check', function() {
 	expect(1);
@@ -150,8 +152,6 @@ byteLimitTest({
 	$input: $( '<input>' )
 		.attr( 'type', 'text' )
 		.byteLimit( 6, function( val ) {
-			_titleConfig();
-
 			// Invalid title
 			if ( val == '' ) {
 				return '';
@@ -172,8 +172,6 @@ byteLimitTest({
 		.attr( 'type', 'text' )
 		.prop( 'maxLength', '6' )
 		.byteLimit( function( val ) {
-			_titleConfig();
-
 			// Invalid title
 			if ( val === '' ) {
 				return '';
@@ -187,3 +185,5 @@ byteLimitTest({
 	limit: 6, // 'Sample' length
 	expected: 'User:Sample'
 });
+
+}() );

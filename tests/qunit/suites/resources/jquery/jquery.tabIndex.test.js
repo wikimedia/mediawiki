@@ -1,4 +1,4 @@
-module( 'jquery.tabIndex' );
+module( 'jquery.tabIndex', QUnit.newMwEnvironment() );
 
 test( '-- Initial check', function() {
 	expect(2);

@@ -138,6 +138,7 @@ class SpecialPageFactory {
 		'Blankpage'                 => 'SpecialBlankpage',
 		'Blockme'                   => 'SpecialBlockme',
 		'Emailuser'                 => 'SpecialEmailUser',
+		'JavaScriptTest'            => 'SpecialJavaScriptTest',
 		'Movepage'                  => 'MovePageForm',
 		'Mycontributions'           => 'SpecialMycontributions',
 		'Mypage'                    => 'SpecialMypage',
