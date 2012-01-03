@@ -25,6 +25,8 @@ setting since version 1.2.0. If you have it on, turn it '''off''' if you can.
   not showing their values on preview.
 * (bug 32702) Removed method Skin::makeGlobalVariablesScript() has been readded
   for backward compatibility.
+* (bug 30172) The check for posix_isatty() in maintenance scripts did not detect
+  when the function exists but is disabled. Introduced Maintenance::posix_isatty().
 
 == MediaWiki 1.18 ==
 2011-11-24

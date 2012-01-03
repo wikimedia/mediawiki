@@ -58,7 +58,7 @@ if ( isset( $options['d'] ) ) {
 }
 
 if ( function_exists( 'readline_add_history' )
-	&& posix_isatty( 0 /*STDIN*/ ) )
+	&& Maintenance::posix_isatty( 0 /*STDIN*/ ) )
 {
 	$useReadline = true;
 } else {

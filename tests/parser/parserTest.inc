@@ -78,7 +78,7 @@ class ParserTest {
 	 */
 	public function __construct( $options = array() ) {
 		# Only colorize output if stdout is a terminal.
-		$this->color = !wfIsWindows() && posix_isatty( 1 );
+		$this->color = !wfIsWindows() && Maintenance::posix_isatty( 1 );
 
 		if ( isset( $options['color'] ) ) {
 			switch( $options['color'] ) {
