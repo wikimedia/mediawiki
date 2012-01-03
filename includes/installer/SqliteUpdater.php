@@ -70,7 +70,7 @@ class SqliteUpdater extends DatabaseUpdater {
 			array( 'addIndex', 'page', 'page_redirect_namespace_len', 'patch-page_redirect_namespace_len.sql' ),
 			array( 'modifyField', 'user', 'ug_group', 'patch-ug_group-length-increase.sql' ),
 			array( 'addField',	'uploadstash',	'us_chunk_inx',		'patch-uploadstash_chunk.sql' ),
-
+			array( 'addfield', 'job',           'job_timestamp',    'patch-jobs-add-timestamp.sql' ),
 		);
 	}
 
