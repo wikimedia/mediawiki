@@ -1410,6 +1410,8 @@ $wgQueryCacheLimit = 1000;
 $wgWantedPagesThreshold = 1;
 /** Enable slow parser functions */
 $wgAllowSlowParserFunctions = false;
+/** Allow schema updates */
+$wgAllowSchemaUpdates = true;
 
 /**
  * Do DELETE/INSERT for link updates instead of incremental
