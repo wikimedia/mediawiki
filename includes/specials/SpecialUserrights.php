@@ -441,9 +441,9 @@ class UserrightsPage extends SpecialPage {
 			Html::hidden( 'user', $this->mTarget ) .
 			Html::hidden( 'wpEditToken', $this->getUser()->getEditToken( $this->mTarget ) ) .
 			Xml::openElement( 'fieldset' ) .
-			Xml::element( 'legend', array(), wfMessage( 'userrights-editusergroup', $user->getName() ) ) .
+			Xml::element( 'legend', array(), wfMessage( 'userrights-editusergroup', $user->getName() )->text() ) .
 			wfMessage( 'editinguser' )->params( wfEscapeWikiText( $user->getName() ) )->rawParams( $userToolLinks )->parse() .
-			wfMessage( 'userrights-groups-help', $user->getName() ) .
+			wfMessage( 'userrights-groups-help', $user->getName() )->parse() .
 			$grouplist .
 			Xml::tags( 'p', null, $this->groupCheckboxes( $groups, $user ) ) .
 			Xml::openElement( 'table', array( 'border' => '0', 'id' => 'mw-userrights-table-outer' ) ) .
