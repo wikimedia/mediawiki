@@ -248,18 +248,34 @@ class RequestContext implements IContextSource {
 		if ( $this->skin === null ) {
 			wfProfileIn( __METHOD__ . '-createskin' );
 			
-			global $wgHiddenPrefs;
-			if( !in_array( 'skin', $wgHiddenPrefs ) ) {
-				# get the user skin
-				$userSkin = $this->getUser()->getOption( 'skin' );
-				$userSkin = $this->getRequest()->getVal( 'useskin', $userSkin );
-			} else {
-				# if we're not allowing users to override, then use the default
-				global $wgDefaultSkin;
-				$userSkin = $wgDefaultSkin;
+			$skin = null;
+			wfRunHooks( 'RequestContextCreateSkin', array( $this, &$skin ) );
+
+			// If the hook worked try to set a skin from it
+			if ( $skin instanceof Skin ) {
+				$this->skin = $skin;
+			} elseif ( is_string($skin) ) {
+				$this->skin = Skin::newFromKey( $skin );
 			}
 
-			$this->skin = Skin::newFromKey( $userSkin );
+			// If this is still null (the hook didn't run or didn't work)
+			// then go through the normal processing to load a skin
+			if ( $this->skin === null ) {
+				global $wgHiddenPrefs;
+				if( !in_array( 'skin', $wgHiddenPrefs ) ) {
+					# get the user skin
+					$userSkin = $this->getUser()->getOption( 'skin' );
+					$userSkin = $this->getRequest()->getVal( 'useskin', $userSkin );
+				} else {
+					# if we're not allowing users to override, then use the default
+					global $wgDefaultSkin;
+					$userSkin = $wgDefaultSkin;
+				}
+
+				$this->skin = Skin::newFromKey( $userSkin );
+			}
+
+			// After all that set a context on whatever skin got created
 			$this->skin->setContext( $this );
 			wfProfileOut( __METHOD__ . '-createskin' );
 		}
