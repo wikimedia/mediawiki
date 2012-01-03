@@ -31,6 +31,7 @@ class CliInstaller extends Installer {
 		'dbpass' => 'wgDBpassword',
 		'dbschema' => 'wgDBmwschema',
 		'dbpath' => 'wgSQLiteDataDir',
+		'server' => 'wgServer',
 		'scriptpath' => 'wgScriptPath',
 	);
 
@@ -181,6 +182,13 @@ class CliInstaller extends Installer {
 			$this->showMessage( 'config-no-cli-uri', $this->getVar("wgScriptPath") );
 		}
 		return parent::envCheckPath();
+	}
+
+	protected function envCheckServer( $srv = null ) {
+		if ( $this->getVar( 'wgServer' ) ) {
+			$srv = $this->getVar( 'wgServer' );
+		}
+		return parent::envCheckServer( $srv );
 	}
 
 	public function dirIsExecutable( $dir, $url ) {
