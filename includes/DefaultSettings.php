@@ -4773,6 +4773,11 @@ $wgExportMaxLinkDepth = 0;
 */
 $wgExportFromNamespaces = false;
 
+/**
+* Whether to allow exporting the entire wiki into a single file
+*/
+$wgExportAllowAll = false;
+
 /** @} */ # end of import/export }
 
 /*************************************************************************//**
