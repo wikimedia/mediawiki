@@ -8,6 +8,7 @@
  * @file
  *
  * @author Abhirama
+ * @author Ansumang
  * @author Bharata
  * @author Bhawani Gautam
  * @author Hemant wikikosh1
@@ -672,7 +673,7 @@ $2',
 'welcomecreation'            => '==स्वागतम्‌, $1!==
 भवता सदस्यता प्राप्ता अस्ति।
 भवतः [[Special:Preferences|{{SITENAME}} इष्टतमानि]]  इत्यस्य परिवर्तनं न विस्मर्यताम्।',
-'yourname'                   => 'योजकनाम :',
+'yourname'                   => 'योजकनामन्:',
 'yourpassword'               => 'कूटशब्दः',
 'yourpasswordagain'          => 'कूटशब्दः पुनः लिख्यताम् ।',
 'remembermypassword'         => 'अस्मिन् सङ्गणके मम प्रवेशः स्मर्यताम् (अधिकतमम् $1 {{PLURAL:$1|दिनम्|दिनानि}})',
@@ -815,7 +816,8 @@ $2
 'passwordreset-emailsent'    => 'एकः स्मारकः विद्युत्सन्देशः प्रेषितोऽस्ति।',
 
 # Special:ChangeEmail
-'changeemail' => 'विद्युन्मानपत्रादेशं परिवर्तयतु',
+'changeemail'        => 'विद्युन्मानपत्रादेशं परिवर्तयतु',
+'changeemail-cancel' => 'निवर्तयते',
 
 # Edit page toolbar
 'bold_sample'     => 'स्थूलाक्षरैः युक्तः भागः',
@@ -1110,6 +1112,7 @@ $2
 'powersearch-ns'                   => 'नामाकाशेषु अन्विष्यताम्:',
 'powersearch-redir'                => 'अनुप्रेषणानां सूचिका दर्श्यताम्',
 'powersearch-field'                => 'इत्यस्मै अन्विष्यताम्',
+'powersearch-togglelabel'          => 'आयीका:',
 'powersearch-toggleall'            => 'सर्वम्',
 'powersearch-togglenone'           => 'नास्ति',
 'search-external'                  => 'बाह्यान्वेषणम्',
@@ -1154,7 +1157,22 @@ $2
 'recentchangesdays'         => 'दिवसानि पर्यन्तो सद्यावधि-परिवर्तनानि दृश्यतु:',
 'recentchangesdays-max'     => 'अधिकतम $1 {{PLURAL:$1|दिवसः|दिवसानि}}',
 'recentchangescount'        => 'सम्पादन संख्यकानि व्यवस्थानुसारेण दृश्यतु:',
+'timezonelegend'            => 'समय मण्डल:',
+'localtime'                 => 'स्थानीय समय:',
+'timezoneregion-africa'     => 'कालद्वीप',
+'timezoneregion-america'    => 'अमेरिका',
+'timezoneregion-antarctica' => 'अंटार्कटिका',
+'timezoneregion-arctic'     => 'आर्कटिक',
+'timezoneregion-asia'       => 'जम्बुमहाद्वीप',
+'timezoneregion-atlantic'   => 'एटलांटिक महासागर',
+'timezoneregion-australia'  => 'ऑस्ट्रेलिया',
+'timezoneregion-europe'     => 'यूरोप',
+'timezoneregion-indian'     => 'हिंद महासागर',
+'timezoneregion-pacific'    => 'प्रशांत महासागर',
+'default'                   => 'यदभावे',
+'prefs-files'               => 'सञ्चिका',
 'youremail'                 => 'ईपत्रसङ्केतः',
+'username'                  => 'योजकनामन्:',
 'uid'                       => 'प्रयोक्तृ-क्रमांकः :',
 'prefs-memberingroups'      => '{{PLURAL:$1|समूहस्य|समूहानां}}  सदस्यः:',
 'prefs-registration'        => 'पंजीकरण कालः:',
@@ -1168,18 +1186,30 @@ $2
 एते $1 {{PLURAL:$1|अक्षरात्|अक्षरेभ्यः}} दीर्घाः न भवितव्याः।',
 'yourgender'                => 'लिंगम् (Gender):',
 'gender-unknown'            => 'अनिर्दिष्टम्',
+'gender-male'               => 'पुरुष',
+'gender-female'             => 'स्त्री',
 'email'                     => 'विद्युत्पत्रव्यवस्था',
 'prefs-help-email'          => 'ईपत्रसङ्केतः अनिवार्यः नास्ति । किन्तु कूटशब्दः विस्मर्यते चेत् तस्य परिवर्तनाय अवश्यकः भवति ।',
 'prefs-help-email-others'   => 'अन्ये योजकाः ईपत्रमाध्यमेन भवतः सम्पर्कं यथा कुर्युः तथा भवदीये योजकपृष्ठे सम्भाषणपृष्ठे वा सम्पर्कतन्तुः योजयितुं शक्यः ।
 भवतः सम्पर्कं कृतवद्भिः योजकैः भवदीयः ईपत्रसङ्केतः अभिज्ञातः न भवति ।',
+'prefs-signature'           => 'हस्ताक्षर',
+
+# User rights
+'userrights-reason' => 'कारणम् :',
 
 # Groups
+'group-user'  => 'योजकः',
 'group-sysop' => 'प्रबंधकाः',
+'group-all'   => '(सर्वे)',
 
+'group-user-member' => '{{GENDER:$1|योजक}}',
+
+'grouppage-user'  => '{{ns:project}}:योजक',
 'grouppage-sysop' => '{{ns:project}}:प्रचालकाः',
 
 # User rights log
-'rightslog' => 'प्रयोक्तृ-अधिकार-सूचिका',
+'rightslog'  => 'प्रयोक्तृ-अधिकार-सूचिका',
+'rightsnone' => '(कतम)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'इदं पृष्ठं सम्पाद्यताम्',
@@ -1211,6 +1241,7 @@ $2
 'minoreditletter'                 => '(लघु)',
 'newpageletter'                   => '(नवीनम्)',
 'boteditletter'                   => '(बोट्)',
+'rc_categories_any'               => 'कश्चित्',
 'newsectionsummary'               => '/* $1 */ नवीन विभागः',
 'rc-enhanced-expand'              => 'विवरणानि दर्श्यन्ताम् (जावालिपिः अपेक्ष्यते)',
 'rc-enhanced-hide'                => 'विवरणानि गोप्यन्ताम्',
@@ -1230,16 +1261,26 @@ $2
 'upload'            => 'सञ्चिका आरोप्यताम्',
 'uploadbtn'         => 'सञ्चिका आरोप्यताम्',
 'uploadlogpage'     => 'आरोपितानां सूची',
+'filename'          => 'सञ्चिकानाम',
 'filedesc'          => 'सारांशः :',
 'fileuploadsummary' => 'संग्रहः :',
+'filesource'        => 'मूल:',
 'uploadedfiles'     => 'आरोपिताः सञ्चिकाः',
 'uploadedimage'     => '"[[$1]]" इत्येतद् आरोपितमस्ति',
+
+'upload-unknown-size' => 'अज्ञात आकार',
 
 'license'        => 'अनुमतिदानम्',
 'license-header' => 'अनुमतिदानम्',
 
 # Special:ListFiles
-'imgfile' => 'संचिका',
+'imgfile'               => 'संचिका',
+'listfiles_date'        => 'दिनाङ्क',
+'listfiles_name'        => 'नामन्',
+'listfiles_user'        => 'योजक',
+'listfiles_size'        => 'आकार',
+'listfiles_description' => 'वर्णन',
+'listfiles_count'       => 'आवृत्ति',
 
 # File description page
 'file-anchor-link'          => 'सञ्चिका',
@@ -1265,6 +1306,14 @@ $2
 # File reversion
 'filerevert-comment' => 'कारणम् :',
 
+# File deletion
+'filedelete-comment'          => 'कारणम् :',
+'filedelete-submit'           => 'विलुप्यताम्',
+'filedelete-reason-otherlist' => 'अन्य कारणम्',
+
+# MIME search
+'download' => 'डाउनलोड',
+
 # Random page
 'randompage' => 'यादृच्छिकपृष्ठम्',
 
@@ -1278,22 +1327,26 @@ $2
 
 'doubleredirects' => 'दुगुनी-अनुप्रेषिते',
 
-'brokenredirects-edit' => 'सम्पाद्यताम्',
+'brokenredirects-edit'   => 'सम्पाद्यताम्',
+'brokenredirects-delete' => 'विलुप्यताम्',
 
 'withoutinterwiki-legend' => 'पूर्वोऽपपदम्',
+'withoutinterwiki-submit' => 'दर्श्यताम्',
 
 # Miscellaneous special pages
-'nbytes'        => '$1 {{PLURAL:$1|बैट्|बैट्स्}}',
-'nmembers'      => '$1 {{PLURAL:$1|सदस्यः|सदस्याः}}',
-'prefixindex'   => 'उपसर्गयुक्तानि सर्वाणि पृष्ठानि',
-'longpages'     => 'दीर्घाणि पृष्ठानि',
-'usercreated'   => '$1 दिने $2 समये रचितम्',
-'newpages'      => 'नवीनपृष्ठम्',
-'ancientpages'  => 'प्राचीनतमानि पृष्ठानि',
-'move'          => 'चाल्यताम्',
-'movethispage'  => 'इदं पृष्ठं चाल्यताम्',
-'pager-newer-n' => '{{PLURAL:$1|नूतनतरम् 1|नूतनतराणि $1}}',
-'pager-older-n' => '{{PLURAL:$1|पुरातनतरम् 1|पुरातनतराणि $1}}',
+'nbytes'            => '$1 {{PLURAL:$1|बैट्|बैट्स्}}',
+'nmembers'          => '$1 {{PLURAL:$1|सदस्यः|सदस्याः}}',
+'prefixindex'       => 'उपसर्गयुक्तानि सर्वाणि पृष्ठानि',
+'longpages'         => 'दीर्घाणि पृष्ठानि',
+'listusers'         => 'योजक सूचि',
+'usercreated'       => '$1 दिने $2 समये रचितम्',
+'newpages'          => 'नवीनपृष्ठम्',
+'newpages-username' => 'योजकनामन्:',
+'ancientpages'      => 'प्राचीनतमानि पृष्ठानि',
+'move'              => 'चाल्यताम्',
+'movethispage'      => 'इदं पृष्ठं चाल्यताम्',
+'pager-newer-n'     => '{{PLURAL:$1|नूतनतरम् 1|नूतनतराणि $1}}',
+'pager-older-n'     => '{{PLURAL:$1|पुरातनतरम् 1|पुरातनतराणि $1}}',
 
 # Book sources
 'booksources'               => 'ग्रन्थानां स्रोतः',
@@ -1310,6 +1363,8 @@ $2
 'allpagesfrom'   => 'इत्यस्मात् आरभ्यमाणानि पृष्ठानि दर्श्यन्ताम्:',
 'allpagesto'     => 'तानि पृष्ठानि दर्श्यन्तां येषाम् अन्त्यम् एवम् :',
 'allarticles'    => 'सर्वाणि पृष्ठानि',
+'allpagesprev'   => 'पूर्वतन',
+'allpagesnext'   => 'अग्रिम',
 'allpagessubmit' => 'गम्यताम्',
 
 # Special:Categories
@@ -1317,20 +1372,28 @@ $2
 
 # Special:LinkSearch
 'linksearch'      => 'बाह्यसम्पर्कतन्तूनाम् अन्वेषणम्',
+'linksearch-ok'   => 'अन्वेषणम्',
 'linksearch-line' => '$2 पृष्ठं $1 तः सम्पृक्तम् अस्ति।',
+
+# Special:ListUsers
+'listusers-submit' => 'दर्श्यताम्',
 
 # Special:Log/newusers
 'newuserlogpage' => 'प्रयोक्तृ-सृजन-सूचिका',
 
 # Special:ListGroupRights
+'listgrouprights-group'   => 'वर्ग',
 'listgrouprights-members' => '(सदस्यानां सूची)',
 
 # E-mail user
-'emailuser'    => 'एतस्मै योजकाय ईपत्रं प्रेष्यताम्',
-'emailfrom'    => 'सकाशात्',
-'emailto'      => 'सविधे:',
-'emailsubject' => 'विषयः',
-'emailmessage' => 'सन्देशः :',
+'emailuser'     => 'एतस्मै योजकाय ईपत्रं प्रेष्यताम्',
+'emailpage'     => 'ई-मेल योजक',
+'emailusername' => 'योजकनामन्:',
+'emailfrom'     => 'सकाशात्',
+'emailto'       => 'सविधे:',
+'emailsubject'  => 'विषयः',
+'emailmessage'  => 'सन्देशः :',
+'emailsend'     => 'प्रेषति',
 
 # Watchlist
 'watchlist'         => 'मम अवेक्षणसूची',
@@ -1350,11 +1413,14 @@ $2
 'watching'   => 'निरीक्षते...',
 'unwatching' => 'निरीक्षाम् अपाकरोति...',
 
-'enotif_newpagetext' => 'इदम् एकं नवीनपृष्ठम्',
+'enotif_newpagetext'           => 'इदम् एकं नवीनपृष्ठम्',
+'enotif_impersonal_salutation' => '{{SITENAME}} योजक',
 
 # Delete
 'deletepage'            => 'पृष्ठं निराकरोतु।',
 'confirm'               => 'स्थिरीकरोतु',
+'delete-confirm'        => 'विलुप्यताम् "$1"',
+'delete-legend'         => 'विलुप्यताम्',
 'confirmdeletetext'     => 'भवान् एकं पृष्ठं तस्य अखिलेन इतिहासेन सहितं अपाकर्तुं प्रवृत्तोऽस्ति। कृपया सुपुष्टीकरोतु यत् भवतः एतदेव आशयः, यद् भवता अस्य परिणामाः सुविज्ञाताः सन्ति तथा च भवता क्रियैषा [[{{MediaWiki:Policy-url}}| यथानीति]] सम्पाद्यते।',
 'actioncomplete'        => 'कार्यं सम्पन्नम्',
 'actionfailed'          => 'कर्मन् रिष्ट',
@@ -1393,6 +1459,7 @@ $2
 'restriction-level'           => 'सुरक्षा-स्तरः :',
 
 # Restrictions (nouns)
+'restriction-edit'   => 'सम्पाद्यताम्',
 'restriction-create' => 'सृज्यताम्',
 'restriction-upload' => 'आरोप्यताम्',
 
@@ -1401,9 +1468,11 @@ $2
 'restriction-level-autoconfirmed' => 'अर्धसंरक्षितम्',
 
 # Undelete
-'undeletelink'           => 'दृश्यताम्/प्रत्यानीयताम्',
-'undeleteviewlink'       => 'दृश्यताम्',
-'undelete-search-submit' => 'अन्वेषणम्',
+'undeletelink'              => 'दृश्यताम्/प्रत्यानीयताम्',
+'undeleteviewlink'          => 'दृश्यताम्',
+'undeletecomment'           => 'कारणम् :',
+'undelete-search-submit'    => 'अन्वेषणम्',
+'undelete-show-file-submit' => 'आम्',
 
 # Namespace form on various pages
 'namespace'      => 'नामाकाशः :',
@@ -1449,8 +1518,12 @@ $2
 
 # Block/unblock
 'blockip'                  => 'प्रयोक्तारं निरुध्नातु',
+'ipbreason'                => 'कारणम् :',
 'ipboptions'               => '२ होराः:2 hours,१ दिनम्:1 day,३ दिनानि:3 days,१ सप्ताहः:1 week,२ सप्ताहौ:2 weeks,१ मासः:1 month,३ मासाः:3 months,६ मासाः:6 months,१ वर्षः:1 year,अनन्तम्:infinite',
+'ipbotheroption'           => 'अन्य',
 'ipblocklist'              => 'अवरुद्धाः योजकाः',
+'blocklist-reason'         => 'कारणम्',
+'ipblocklist-submit'       => 'अन्वेषणम्',
 'blocklink'                => 'अवरोधः क्रियताम्',
 'unblocklink'              => 'निरोधः अपास्यताम्',
 'change-blocklink'         => 'विभागः परिवर्त्यताम्',
@@ -1459,6 +1532,7 @@ $2
 'blocklogentry'            => '[[$1]] इत्येतद् अवरुद्धम्, $2 $3 इति अवसान-समयेन सह',
 'unblocklogentry'          => 'अनिरुद्धम् $1',
 'block-log-flags-nocreate' => 'सदस्यता प्राप्तिः अवरुद्धा अस्ति',
+'proxyblocksuccess'        => 'समापित ।',
 
 # Move page
 'move-page-legend' => 'पृष्ठं रक्ष्यताम्',
@@ -1477,7 +1551,10 @@ $2
 'revertmove'       => 'प्रतिनिवर्त्यताम्',
 
 # Export
-'export' => 'पृष्ठानां निर्यातं करोतु',
+'export'        => 'पृष्ठानां निर्यातं करोतु',
+'export-submit' => 'निर्हरति',
+'export-addcat' => 'संयोजयति',
+'export-addns'  => 'संयोजयति',
 
 # Namespace 8 related
 'allmessages'                 => 'व्यवस्था सन्देशाः',
@@ -1553,6 +1630,18 @@ $2
 अस्य सारांशे कारणमपि लेखितुं शक्यते।',
 'tooltip-summary'                 => 'संक्षिप्तः सारांशः योज्यताम्',
 
+# Attribution
+'siteuser'  => '{{SITENAME}} योजक $1',
+'anonuser'  => '{{SITENAME}} अज्ञात योजक $1',
+'others'    => 'अन्य',
+'siteusers' => '{{SITENAME}} {{PLURAL:$2|योजक|योजक}} $1',
+'anonusers' => '{{SITENAME}} अज्ञात {{PLURAL:$2|योजक|योजक}} $1',
+
+# Info page
+'pageinfo-header-edits' => 'सम्पादयति',
+'pageinfo-subjectpage'  => 'पृष्ठम्',
+'pageinfo-talkpage'     => 'कथा पृष्ठम्',
+
 # Skin names
 'skinname-standard'    => 'पूर्व',
 'skinname-nostalgia'   => 'पुराण',
@@ -1608,13 +1697,30 @@ $2
 # EXIF tags
 'exif-imagewidth'  => 'विस्तारः',
 'exif-imagelength' => 'औन्नत्यम्',
+'exif-artist'      => 'लेखक',
 'exif-flash'       => 'स्फुरणम्',
 'exif-gpsspeedref' => 'गती एकक',
+'exif-source'      => 'मूल',
+'exif-iimcategory' => 'वर्ग',
+
+'exif-orientation-1' => 'सामान्य',
+
+'exif-meteringmode-0' => 'अज्ञात',
+'exif-meteringmode-1' => 'माध्य',
+
+'exif-lightsource-0' => 'अज्ञात',
+
+'exif-contrast-0' => 'सामान्य',
+
+'exif-sharpness-0' => 'सामान्य',
+
+'exif-subjectdistancerange-0' => 'अज्ञात',
 
 'exif-iimcategory-edu' => 'विद्याभ्यासः',
 'exif-iimcategory-evn' => 'परिसरः',
 'exif-iimcategory-hth' => 'स्वास्थ्यम्',
 'exif-iimcategory-spo' => 'क्रीडाः',
+'exif-iimcategory-wea' => 'वातावरण',
 
 # External editor support
 'edit-externally'      => 'बाह्यां प्रणालीम् उपयुज्य इयं सञ्चिका सम्पाद्यताम् ।',
@@ -1663,7 +1769,12 @@ $2
 'duplicate-defaultsort' => '\'\'\'प्रबोधः\'\'\' पुरानी मूल क्रमांकन कुंजी "$1" के बजाय अब मूल क्रमांकन कुंजी "$2" होगी।',
 
 # Special:Version
-'version' => 'आवृत्तिः',
+'version'                  => 'आवृत्तिः',
+'version-skins'            => 'छादन',
+'version-other'            => 'अन्यत्',
+'version-poweredby-others' => 'अन्य',
+'version-software-product' => 'उत्पाद',
+'version-software-version' => 'आवृत्ति',
 
 # Special:FilePath
 'filepath-page'   => 'सञ्चिका:',
@@ -1715,9 +1826,16 @@ $2
 'dberr-problems' => 'क्षम्यताम् ! अस्मिन् जालपुटे तान्त्रिकसमस्याः अनुभूयमानाः सन्ति ।',
 
 # HTML forms
-'htmlform-invalid-input'    => 'भवता आरोपितेषु अंशेषु काचन समस्या विद्यते ।',
-'htmlform-select-badoption' => 'भवता निर्दिष्टं मौल्यं युक्तविकल्पः न ।',
-'htmlform-int-invalid'      => 'भवता निर्दिष्टं मौल्यं पूर्णाङ्कः न ।',
-'htmlform-float-invalid'    => 'भवता निर्दिष्टं मौल्यं संख्या न ।',
+'htmlform-invalid-input'       => 'भवता आरोपितेषु अंशेषु काचन समस्या विद्यते ।',
+'htmlform-select-badoption'    => 'भवता निर्दिष्टं मौल्यं युक्तविकल्पः न ।',
+'htmlform-int-invalid'         => 'भवता निर्दिष्टं मौल्यं पूर्णाङ्कः न ।',
+'htmlform-float-invalid'       => 'भवता निर्दिष्टं मौल्यं संख्या न ।',
+'htmlform-selectorother-other' => 'अन्य',
+
+# Feedback
+'feedback-subject' => 'विषय:',
+'feedback-message' => 'संदेश:',
+'feedback-cancel'  => 'निवर्तयते',
+'feedback-close'   => 'समापित',
 
 );

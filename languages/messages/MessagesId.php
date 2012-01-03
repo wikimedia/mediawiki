@@ -696,10 +696,12 @@ Mungkin telah dihapus oleh orang lain.',
 'querypage-no-updates' => 'Pemutakhiran dari halaman ini sedang dimatikan. Data yang ada di sini saat ini tidak akan dimuat ulang.',
 'wrong_wfQuery_params' => 'Parameter salah ke wfQuery()<br />Fungsi: $1<br />Permintaan: $2',
 'viewsource'           => 'Lihat sumber',
+'viewsource-title'     => 'Lihat sumber $1',
 'actionthrottled'      => 'Tindakan dibatasi',
 'actionthrottledtext'  => 'Anda dibatasi untuk melakukan tindakan ini terlalu banyak dalam waktu pendek. Silakan mencoba lagi setelah beberapa menit.',
 'protectedpagetext'    => 'Halaman ini telah dikunci untuk menghindari penyuntingan.',
 'viewsourcetext'       => 'Anda dapat melihat atau menyalin sumber halaman ini:',
+'viewyourtext'         => "Anda dapat melihat atau menyalin sumber dari '''suntingan Anda''' ke halaman ini:",
 'protectedinterface'   => 'Halaman ini berisi teks antarmuka untuk digunakan oleh perangkat lunak dan telah dikunci untuk menghindari kesalahan.',
 'editinginterface'     => "'''Peringatan:''' Anda menyunting suatu halaman yang digunakan untuk menyediakan teks antarmuka untuk perangkat lunak situs ini. Perubahan teks ini akan mempengaruhi tampilan pada antarmuka pengguna untuk pengguna lain.
 Untuk terjemahan, harap gunakan [//translatewiki.net/wiki/Main_Page?setlang=id translatewiki.net], proyek pelokalan MediaWiki.",
@@ -796,6 +798,7 @@ Karenanya, pengunjung dengan alamat IP ini tidak dapat lagi membuat akun lain un
 'emailconfirmlink'           => 'Konfirmasikan alamat surel Anda',
 'invalidemailaddress'        => 'Alamat surel ini tidak dapat diterima karena formatnya tidak sesuai.
 Harap masukkan alamat surel dalam format yang benar atau kosongkan isian tersebut.',
+'cannotchangeemail'          => 'Alamat surel akun tidak dapat diubah di wiki ini.',
 'accountcreated'             => 'Akun dibuat',
 'accountcreatedtext'         => 'Akun pengguna untuk $1 telah dibuat.',
 'createaccount-title'        => 'Pembuatan akun untuk {{SITENAME}}',
@@ -832,16 +835,18 @@ Anda mungkin telah berhasil mengganti kata sandi Anda atau telah meminta kata sa
 'resetpass-temp-password'   => 'Kata sandi sementara:',
 
 # Special:PasswordReset
-'passwordreset'                => 'Setel ulang sandi',
-'passwordreset-text'           => 'Lengkapi formulir ini untuk menerima surel pengingat detail akun Anda.',
-'passwordreset-legend'         => 'Setel ulang sandi',
-'passwordreset-disabled'       => 'Penyetelan ulang sandi telah dimatikan di wiki ini.',
-'passwordreset-pretext'        => '{{PLURAL:$1||Masukkan salah satu data di bawah ini}}',
-'passwordreset-username'       => 'Nama pengguna:',
-'passwordreset-domain'         => 'Domain:',
-'passwordreset-email'          => 'Alamat surel:',
-'passwordreset-emailtitle'     => 'Detail akun di {{SITENAME}}',
-'passwordreset-emailtext-ip'   => 'Seseorang (mungkin Anda, dari alamat IP $1) meminta pengingat
+'passwordreset'                    => 'Setel ulang sandi',
+'passwordreset-text'               => 'Lengkapi formulir ini untuk menerima surel pengingat detail akun Anda.',
+'passwordreset-legend'             => 'Setel ulang sandi',
+'passwordreset-disabled'           => 'Penyetelan ulang sandi telah dimatikan di wiki ini.',
+'passwordreset-pretext'            => '{{PLURAL:$1||Masukkan salah satu data di bawah ini}}',
+'passwordreset-username'           => 'Nama pengguna:',
+'passwordreset-domain'             => 'Domain:',
+'passwordreset-capture'            => 'Lihat surel yang dihasilkan?',
+'passwordreset-capture-help'       => 'Jika Anda mencentang kotak ini, surel (dengan kata sandi sementara) akan ditampilkan ke Anda dan juga dikirim ke pengguna.',
+'passwordreset-email'              => 'Alamat surel:',
+'passwordreset-emailtitle'         => 'Detail akun di {{SITENAME}}',
+'passwordreset-emailtext-ip'       => 'Seseorang (mungkin Anda, dari alamat IP $1) meminta pengingat
 detail akun untuk {{SITENAME}} ($4). {{PLURAL:$3|Akun|Akun-akun}} berikut
 terkait dengan alamat surel ini:
 
@@ -851,7 +856,7 @@ $2
 Anda harus masuk dan memilih sandi baru sekarang. Jika orang lain membuat
 permintaan ini atau jika Anda ingat sandi asli dan tidak lagi
 ingin mengubahnya, Anda dapat mengabaikan pesan ini dan terus menggunakan sandi lama.',
-'passwordreset-emailtext-user' => 'Seseorang (mungkin Anda, dari alamat IP $1) meminta pengingat detail akun untuk {{SITENAME}} ($4).
+'passwordreset-emailtext-user'     => 'Seseorang (mungkin Anda, dari alamat IP $1) meminta pengingat detail akun untuk {{SITENAME}} ($4).
 {{PLURAL:$3|Akun|Akun-akun}} berikut terkait dengan alamat surel ini:
 
 $2
@@ -860,9 +865,11 @@ $2
 Anda harus masuk dan memilih sandi baru sekarang. Jika orang lain membuat
 permintaan ini atau jika Anda ingat sandi asli dan tidak lagi
 ingin mengubahnya, Anda dapat mengabaikan pesan ini dan terus menggunakan sandi lama.',
-'passwordreset-emailelement'   => 'Nama pengguna: $1
+'passwordreset-emailelement'       => 'Nama pengguna: $1
 Sandi sementara: $2',
-'passwordreset-emailsent'      => 'Surel pengingat telah dikirimkan.',
+'passwordreset-emailsent'          => 'Surel pengingat telah dikirimkan.',
+'passwordreset-emailsent-capture'  => 'Surel pengingat, yang ditampilkan di bawah, telah dikirim.',
+'passwordreset-emailerror-capture' => 'Surel pengingat, yang ditampilkan di bawah, telah dihasilkan, tetapi gagal mengirimkannya ke pengguna: $1',
 
 # Special:ChangeEmail
 'changeemail'          => 'Ubah alamat surel',
@@ -970,12 +977,12 @@ Anda dapat [[Special:Search/{{PAGENAME}}|melakukan pencarian untuk judul halaman
 'userpage-userdoesnotexist-view'   => 'Pengguna "$1" tidak terdaftar.',
 'blocked-notice-logextract'        => 'Pengguna ini sedang diblokir.
 Entri log pemblokiran terakhir tersedia di bawah ini sebagai rujukan.',
-'clearyourcache'                   => "'''Catatan:''' Setelah menyimpan, Anda mungkin harus memotong singgahan peramban Anda untuk melihat perubahan.
-* '''Firefox / Safari:''' tahan ''Shift'' sambil mengklik ''Reload'', atau tekan ''Ctrl-F5'' atau ''Ctrl-R'' (''Command-R'' di Mac)
-* '''Google Chrome:''' tekan ''Ctrl-Shift-R'' (''Command-Shift-R'' di Mac)
-* '''Internet Explorer:''' tahan ''Ctrl'' sambl mengklik ''Refresh'', atau tekan ''Ctrl-F5''
-* '''Konqueror:''' klik ''Reload'' atau tekan ''F5''
-* '''Opera:''' bersihkan singgahan di ''Tools → Preferences''",
+'clearyourcache'                   => "'''Catatan:''' Setelah menyimpan, Anda mungkin harus memotong tembolok peramban Anda untuk melihat perubahan.
+* '''Firefox / Safari:''' Tahan ''Shift'' sambil mengeklik ''Reload'', atau tekan ''Ctrl-F5'' atau ''Ctrl-R'' (''⌘-R'' di Mac)
+* '''Google Chrome:''' Tekan ''Ctrl-Shift-R'' (''⌘-Shift-R'' di Mac)
+* '''Internet Explorer:''' Tahan ''Ctrl'' sambl mengeklik ''Refresh'', atau tekan ''Ctrl-F5''
+* '''Konqueror:''' Klik ''Reload'' atau tekan ''F5''
+* '''Opera:''' Bersihkan tembolok di ''Tools → Preferences''",
 'usercssyoucanpreview'             => "'''Tips:''' Gunakan tombol \"{{int:showpreview}}\" untuk menguji CSS baru Anda sebelum menyimpannya.",
 'userjsyoucanpreview'              => "'''Tips:''' Gunakan tombol \"{{int:showpreview}}\" untuk menguji JS baru Anda sebelum menyimpannya.",
 'usercsspreview'                   => "'''Ingatlah bahwa Anda sedang menampilkan pratayang dari CSS Anda.
@@ -1355,7 +1362,7 @@ Perlu diingat bahwa indeks Google untuk konten {{SITENAME}} mungkin belum mencak
 'prefs-rc'                      => 'Perubahan terbaru',
 'prefs-watchlist'               => 'Pemantauan',
 'prefs-watchlist-days'          => 'Jumlah hari maksimum yang ditampilkan di daftar pantauan:',
-'prefs-watchlist-days-max'      => 'Maksimum 7 hari',
+'prefs-watchlist-days-max'      => 'Maksimum $1 {{PLURAL:$1|hari|hari}}',
 'prefs-watchlist-edits'         => 'Jumlah suntingan maksimum yang ditampilkan di daftar pantauan yang lebih lengkap:',
 'prefs-watchlist-edits-max'     => 'Nilai maksimum: 1000',
 'prefs-watchlist-token'         => 'Token pantauan:',
@@ -1420,6 +1427,7 @@ Pengembalian preferensi tidak dapat dibatalkan.',
 'yourrealname'                  => 'Nama asli:',
 'yourlanguage'                  => 'Bahasa:',
 'yourvariant'                   => 'Varian bahasa isi:',
+'prefs-help-variant'            => 'Varian atau ortografi pilihan Anda untuk menampilkan isi halaman wiki ini.',
 'yournick'                      => 'Tanda tangan:',
 'prefs-help-signature'          => 'Komentar pada halaman pembicaraan perlu ditandatangani dengan "<nowiki>~~~~</nowiki>" yang akan diubah menjadi tanda tangan Anda dan waktu saat ini.',
 'badsig'                        => 'Tanda tangan mentah tak sah; periksa tag HTML.',
@@ -1560,7 +1568,7 @@ Jika Anda memberikannya, nama asli Anda akan digunakan untuk memberi pengenalan 
 'right-siteadmin'             => 'Mengunci dan membuka kunci basis data',
 'right-override-export-depth' => 'Ekspor halaman termasuk halaman-halaman terkait hingga kedalaman 5',
 'right-sendemail'             => 'Mengirim surel ke pengguna lain',
-'right-passwordreset'         => 'Aturulang kunci untuk pengguna ([[Special:PasswordReset|special page]])',
+'right-passwordreset'         => 'Lihat surel pengaturulangan kata sandi',
 
 # User rights log
 'rightslog'                  => 'Log perubahan hak akses',
@@ -1594,6 +1602,7 @@ Jika Anda memberikannya, nama asli Anda akan digunakan untuk memberi pengenalan 
 'action-suppressionlog'       => 'melihat log privat ini',
 'action-block'                => 'memblokir pengguna ini dari menyunting',
 'action-protect'              => 'mengganti tingkat pelindungan halaman ini',
+'action-rollback'             => 'mengembalikan dengan cepat suntingan-suntingan pengguna terakhir yang menyunting halaman tertentu',
 'action-import'               => 'mengimpor halaman ini dari wiki lain',
 'action-importupload'         => 'mengimpor halaman ini dari pemuatan berkas',
 'action-patrol'               => 'menandai suntingan pengguna lain sebagai terpatroli',
@@ -1603,6 +1612,7 @@ Jika Anda memberikannya, nama asli Anda akan digunakan untuk memberi pengenalan 
 'action-userrights'           => 'menyunting semua hak pengguna',
 'action-userrights-interwiki' => 'menyunting hak akses dari pengguna di wiki lain',
 'action-siteadmin'            => 'mengunci atau membuka kunci basis data',
+'action-sendemail'            => 'kirim surel',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|perubahan|perubahan}}',
@@ -1687,6 +1697,7 @@ Lihat [[Special:NewFiles|galeri berkas baru]] untuk tampilan visual.',
 'ignorewarnings'              => 'Abaikan peringatan apa pun',
 'minlength1'                  => 'Nama berkas paling tidak harus terdiri dari satu huruf.',
 'illegalfilename'             => 'Nama berkas "$1" mengandung aksara yang tidak diperbolehkan ada dalam judul halaman. Silakan ubah nama berkas tersebut dan cobalah memuatkannya kembali.',
+'filename-toolong'            => 'Nama berkas tidak boleh lebih panjang dari 240 bita.',
 'badfilename'                 => 'Nama berkas telah diubah menjadi "$1".',
 'filetype-mime-mismatch'      => 'Ekstensi berkas ".$1" tidak cocok dengan jenis MIME yang terdeteksi dari berkas ($2).',
 'filetype-badmime'            => 'Berkas dengan tipe MIME "$1" tidak diperkenankan untuk dimuat.',
@@ -1774,6 +1785,17 @@ Silakan hubungi salah seorang [[Special:ListUsers/sysop|pengurus]].',
 'upload-too-many-redirects' => 'URL mengandung terlalu banyak pengalihan',
 'upload-unknown-size'       => 'Ukuran tidak diketahui',
 'upload-http-error'         => 'Kesalahan HTTP terjadi: $1',
+
+# File backend
+'backend-fail-stream'        => 'Tidak bisa mengalikan berkas $1.',
+'backend-fail-backup'        => 'Tidak dapat mencadangkan berkas $1.',
+'backend-fail-notexists'     => 'Berkas $1 tidak ada.',
+'backend-fail-hashes'        => 'Tidak bisa mendapatkan hash berkas sebagai perbandingan.',
+'backend-fail-notsame'       => 'Berkas nonidentik telah ada di $1.',
+'backend-fail-invalidpath'   => '$1 bukanlah lintasan penyimpanan yang valid.',
+'backend-fail-delete'        => 'Tidak dapat menghapus berkas $1.',
+'backend-fail-alreadyexists' => 'Berkas $1 sudah ada.',
+'backend-fail-store'         => 'Tidak dapat menyimpan berkas $1 di $2.',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'Timbul galat saat membuka berkas untuk pengecekan ZIP.',

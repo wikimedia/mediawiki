@@ -73,6 +73,7 @@ $messages = array(
 'hidden-categories'      => '{{PLURAL:$1|Жашырылган категория|Жашырылган категориялар}}',
 'category-subcat-count'  => '{{PLURAL:$2|Бул категория төмөнкү көмөк категорияны камтыйт.|Бул категорияда жалпы $2, {{PLURAL:$1|көмөк категория|$1 көмөк категория}} бар.}}',
 'category-article-count' => '{{PLURAL:$2|Бул категория төмөнкү баракты камтыйт.|Бул категорияда жалпы $2, төмөнкү {{PLURAL:$1|барак|$1 барак}} бар.}}',
+'listingcontinuesabbrev' => 'уланд.',
 
 'about'      => 'Тууралуу',
 'newwindow'  => '(жаңы терезеде ачылат)',
@@ -156,6 +157,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Сизге $1 жаңы кат бар.',
 'editsection'             => 'оңдоо',
 'editold'                 => 'оңдоо',
+'viewsourceold'           => 'булагын кара',
 'editlink'                => 'оңдо',
 'viewsourcelink'          => 'булагын кара',
 'editsectionhint'         => '$1 бөлүмүн оңдоо',
@@ -185,6 +187,8 @@ $messages = array(
 Бул сыяктуу абал өчүрүлгөн барактын өзгөрүүлөрдүн тарыхына эски шилтеме менен өткөндө учурайт.
 
 Эгерде башка себеби бар болсо, анда Сиз программалык жабдууда ката таптыңыз. Кичи пейилдикке, ушул URL көрсөтүп [[Special:ListUsers/sysop|администраторлордун]] бирине кабарлап коюңуз.',
+'badtitletext'    => 'Талап кылынган барак аталышы туура эмес, бош, же тилдер-аралык же уики-аралык аталышы туура эмес шилтемеленген.
+Балким аталышы колдонулбай турган бир же андан көп белги камтыйт.',
 'viewsource'      => 'Байкоо',
 
 # Login and logout pages
@@ -241,6 +245,9 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'accmailtitle'               => 'Сырсөз жөнөтүлдү.',
 'accmailtext'                => '"$1" үчүн сырсөз $2 ге жөнөтүлдү.',
 'newarticle'                 => '(Жаңы)',
+'newarticletext'             => "Сиз ачыла элек баракка шилтемени бастыңыз.
+Бул баракты ачуу үчүн, ылдый жактагы терезечеге жаза баштаңыз (кошумча маалымат алуу үчүн [[{{MediaWiki:Helppage}}|жардам барагы]] караңыз).
+Эгерде Сиз бул жерге жаңылыштык менен кирип калсаңыз, анда браузериңизде '''артка''' баскычын басыңыз.",
 'noarticletext'              => "Азыр бул баракта текст жок.
 Сиз [[Special:Search/{{PAGENAME}}|ушул аталыш менен баракты изде]] башка барактарда 
 <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} тийиштүү жазууларды таба аласыз],
@@ -252,6 +259,7 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'yourtext'                   => 'Текстиңиз',
 'yourdiff'                   => 'Айырмалар',
 'template-protected'         => '(корголгон)',
+'template-semiprotected'     => '(жарым-жартылай корголгон)',
 
 # Parser/template warnings
 'post-expand-template-inclusion-warning'  => "'''Эскертүү:''' Шаблондун өлчөмү ашырып жиберилген.
@@ -259,14 +267,15 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'post-expand-template-inclusion-category' => 'Өлчөмү ашырып жиберилген шаблон камтыган барактар',
 
 # History pages
-'currentrev-asof'  => '$1 -га соңку версиясы',
-'revisionasof'     => '$1 -деги абалы',
-'previousrevision' => 'Мурунку версиясы',
-'cur'              => 'учрдг.',
-'next'             => 'кийинки',
-'last'             => 'соңку',
-'histfirst'        => 'Эң эски',
-'histlast'         => 'Соңку',
+'currentrev-asof'      => '$1 -га соңку версиясы',
+'revisionasof'         => '$1 -деги абалы',
+'previousrevision'     => 'Мурунку версиясы',
+'cur'                  => 'учрдг.',
+'next'                 => 'кийинки',
+'last'                 => 'соңку',
+'history-show-deleted' => 'Өчүрүлгөндөрдү гана',
+'histfirst'            => 'Эң эски',
+'histlast'             => 'Соңку',
 
 # Revision deletion
 'rev-delundel'           => 'көрсөт/жашыр',
@@ -292,6 +301,7 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'nextn-title'                      => 'Кийинки $1 {{PLURAL:$1|жыйынтык|жыйынтыктар}}',
 'shown-title'                      => 'Бир баракка $1 {{PLURAL:$1|жыйынтык|жыйынтык}} көрсөт',
 'viewprevnext'                     => '($1 {{int:pipe-separator}} $2) ($3) кара',
+'searchmenu-exists'                => "'''Бул Уикиде \"[[:\$1]]\" деп атлаган барак бар.'''",
 'searchmenu-new'                   => "'''Бул Уикиде \"[[:\$1]]\" барагын түз!'''",
 'searchprofile-articles'           => 'Негизги барактар',
 'searchprofile-project'            => 'Жардам жана Долбоор барактары',
@@ -444,6 +454,9 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 # Special:Categories
 'categories' => 'Категориялар',
 
+# Special:LinkSearch
+'linksearch-line' => '$1-га $2-дан шилтеме берилди',
+
 # E-mail user
 'emailfrom'    => '- дан',
 'emailmessage' => 'Кат',
@@ -462,6 +475,7 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'deletepage'     => 'Баракты өчүрүп кой',
 'confirm'        => 'Ырастоо',
 'actioncomplete' => 'Иш-аракет жыйынтыкталды',
+'dellogpage'     => 'Өчүрүлгөндөрдүн тизмеси',
 'deletecomment'  => 'Себеп',
 
 # Rollback
@@ -484,11 +498,20 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 # Contributions
 'contributions' => 'Колдонуучунун салымдары',
 'mycontris'     => 'Салымдарым',
+'month'         => 'Айынан (же андан мурун):',
+'year'          => 'Жылынан (жана андан мурун):',
 
 # What links here
 'whatlinkshere'            => 'Жетелеме шилтемелер',
 'whatlinkshere-title'      => '"$1" -га шилтеме берген барактар',
 'whatlinkshere-page'       => 'Барак:',
+'linkshere'                => "'''[[:$1]]''' -га шилтеме берген барактар:",
+'isredirect'               => 'кайра багыттоо барагы',
+'istemplate'               => 'кошкуч',
+'isimage'                  => 'файл шилтемеси',
+'whatlinkshere-prev'       => '{{PLURAL:$1|мурунку|мурунку $1}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|кийинки|кийинки $1}}',
+'whatlinkshere-links'      => '← шилтемелер',
 'whatlinkshere-hideredirs' => 'Багыттоолорду $1',
 'whatlinkshere-hidetrans'  => 'Кошкучтарды $1',
 'whatlinkshere-hidelinks'  => 'Шилтемелерди $1',
@@ -557,9 +580,11 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'tooltip-t-permalink'             => 'Барактын бул версиясына туруктуу шилтеме',
 'tooltip-ca-nstab-main'           => 'Барактын мазмунун кара',
 'tooltip-ca-nstab-user'           => 'Колдонуучунун жеке барагын көрсөт',
+'tooltip-ca-nstab-project'        => 'Долбоор барагын кара',
 'tooltip-ca-nstab-image'          => 'Файл барагын көрсөт',
 'tooltip-ca-nstab-template'       => 'Шаблонду көрсөт',
 'tooltip-ca-nstab-category'       => 'Категория барагын көрсөт',
+'tooltip-minoredit'               => 'Муну майда оңдоо деп белгиле',
 'tooltip-save'                    => 'Өзгөртүүлөрдү сактап кой',
 'tooltip-preview'                 => 'Кичи пейлдикке, өзгөртүүлөрдү алдын ала көрсөтүүнү сактоодон мурун колдонуңуз!',
 'tooltip-diff'                    => 'Тексттке киргизген озгөртүүлөрдү көрсөт',
@@ -620,9 +645,14 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 
 'exif-focalplaneresolutionunit-2' => 'дюйм',
 
+# External editor support
+'edit-externally'      => 'Бул файлды сырткы программа колдонуу аркылуу оңдо',
+'edit-externally-help' => '(Толук маалымат алуу үчүн [//www.mediawiki.org/wiki/Manual:External_editors setup instructions] барагына кайрылсаңыз болот)',
+
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'баары',
 'namespacesall' => 'баары',
+'monthsall'     => 'баары',
 
 # E-mail address confirmation
 'confirmemail'          => 'Электрондук даректи ырастоо',

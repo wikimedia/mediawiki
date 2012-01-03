@@ -27,6 +27,7 @@
  * @author Kumar
  * @author Odisha1
  * @author Omprakash
+ * @author Pulkitsingh01
  * @author Purodha
  * @author Rajesh
  * @author Rajivkurjee
@@ -2261,6 +2262,7 @@ $1',
 # Namespace form on various pages
 'namespace'                     => 'नामस्थान:',
 'invert'                        => 'विपरीत प्रवरण',
+'tooltip-invert'                => 'चयनित नामस्थान (और संबद्ध नामस्थान यदि जाँच) के भीतर पृष्ठों में किए गए परिवर्तन छुपाने के लिए इस बक्से को चिह्नित करें',
 'namespace_association'         => 'सम्बद्ध नामस्थान',
 'tooltip-namespace_association' => 'भी बात या विषय नाम स्थान चयनित नाम स्थान के साथ जुड़े को शामिल करने के लिए इस बक्से को चिह्नित करें।',
 'blanknamespace'                => '(मुख्य)',

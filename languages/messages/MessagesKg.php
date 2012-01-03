@@ -12,6 +12,9 @@
  */
 
 $messages = array(
+'underline-always' => 'Bambala nyonso',
+'underline-never'  => 'Ata mbala mosi ve',
+
 # Dates
 'sunday'        => 'Lumîngu',
 'monday'        => 'Kimosi',
@@ -35,22 +38,22 @@ $messages = array(
 'june'          => 'ngônda ya sambânu',
 'july'          => 'ngônda ya nsambwâdi',
 'august'        => 'ngônda ya nâna',
-'september'     => 'ngonda ya uvwa',
-'october'       => 'ngonda ya kumi',
-'november'      => 'ngonda ya kumi na mosi',
-'december'      => 'ngonda ya kumi na zole',
-'january-gen'   => 'ngonda ya ntete',
-'february-gen'  => 'ngonda ya zôle',
-'march-gen'     => 'ngonda ya tatu',
-'april-gen'     => 'ngonda ya iya',
-'may-gen'       => 'ngonda ya tânu',
-'june-gen'      => 'ngonda ya sambanu',
-'july-gen'      => 'ngonda ya nsambwadi',
-'august-gen'    => 'ngonda ya nâna',
-'september-gen' => 'ngonda ya uvwa',
-'october-gen'   => 'ngonda ya kûmi',
-'november-gen'  => 'ngonda ya kûmi na mosi',
-'december-gen'  => 'ngonda ya kûmi na zôle',
+'september'     => 'ngônda ya yivwa',
+'october'       => 'ngônda ya kûmi',
+'november'      => 'ngônda ya kûmi na mosi',
+'december'      => 'ngôida ya kûmi na zôle',
+'january-gen'   => 'ngônda ya ntete',
+'february-gen'  => 'ngônda ya zôle',
+'march-gen'     => 'ngônda ya tatu',
+'april-gen'     => 'ngônda ya yiya',
+'may-gen'       => 'ngônda ya tânu',
+'june-gen'      => 'ngônda ya sambânu',
+'july-gen'      => 'ngônda ya nsambwâdi',
+'august-gen'    => 'ngônda ya nâna',
+'september-gen' => 'ngônda ya yivwa',
+'october-gen'   => 'ngônda ya kûmi',
+'november-gen'  => 'ngônda ya kûmi na mosi',
+'december-gen'  => 'ngônda ya kûmi na zôle',
 
 # Categories related messages
 'pagecategories'  => '{{PLURAL:$1|Kalasi|Bakalasi}}',
@@ -58,19 +61,37 @@ $messages = array(
 
 'article' => 'Pagina contenta continens',
 'cancel'  => 'Katula',
+'mypage'  => 'Lukaya ya munu',
 'mytalk'  => 'Disolo ya munu',
+'and'     => '&#32;mpe',
+
+# Cologne Blue skin
+'qbfind'   => 'Sosa',
+'qbbrowse' => 'Tala',
+'qbedit'   => 'Soba',
+
+# Vector skin
+'vector-action-delete' => 'Kufwa',
+'vector-action-move'   => 'Nata',
 
 'errorpagetitle'   => 'Foti',
+'returnto'         => 'Vutukila $1',
 'help'             => 'Nsadisa',
 'search'           => 'Sosa',
 'searchbutton'     => 'Sosa',
 'searcharticle'    => 'Kwenda',
-'history'          => 'Bampaluka ya lukaya',
-'history_short'    => 'Bampaluka',
+'history'          => 'Bansoba ya mukanda',
+'history_short'    => 'Bansoba',
+'view'             => 'Tala',
 'edit'             => 'Sonika',
+'editthispage'     => 'Soba mukanda yayi',
+'delete'           => 'Kufwa',
+'deletethispage'   => 'Kufwa mukanda yayi',
 'talkpagelinktext' => 'Disolo',
 'talk'             => 'Disolo',
+'views'            => 'Bantadilu',
 'toolbox'          => 'Bisadilu',
+'viewtalkpage'     => 'Tala disolo',
 'otherlanguages'   => 'Bandinga ya nkaka',
 'redirectedfrom'   => '(Balulama tuka $1)',
 'jumpto'           => 'Pamuka na:',
@@ -82,11 +103,14 @@ $messages = array(
 'mainpage'             => 'Lukaya ya mfumu',
 'mainpage-description' => 'Lukaya ya mfumu',
 
-'retrievedfrom' => 'Receptum de "$1"',
+'retrievedfrom'           => 'Receptum de "$1"',
+'newmessageslink'         => 'bansangu ya yimpa',
+'youhavenewmessagesmulti' => 'Nge kele na bansangu ya yimpa kuna $1',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'     => 'Mukanda',
-'nstab-category' => 'Kalasi',
+'nstab-main'      => 'Mukanda',
+'nstab-mediawiki' => 'Nsangu',
+'nstab-category'  => 'Kalasi',
 
 # Login and logout pages
 'logout'             => 'Basika',
@@ -111,7 +135,7 @@ $messages = array(
 'yourlanguage'  => 'Ndinga:',
 
 # Recent changes
-'recentchanges' => 'Bampaluka ya mpa',
+'recentchanges' => 'Bansoba ya yimpa',
 
 # Random page
 'randompage' => 'Lukaya na kintulumukini',
@@ -135,12 +159,12 @@ $messages = array(
 
 # Move page
 'movearticle'    => 'Nata lukaya:',
-'newtitle'       => 'Zina ya nkaka:',
+'newtitle'       => 'Nkûmbu ya nkaka:',
 'movepagebtn'    => 'Nata lukaya',
 'pagemovedsub'   => 'Kunata me nunga',
 'movepage-moved' => '\'\'\'"$1" me natama na "$2"\'\'\'',
-'articleexists'  => 'Lukaya ya nkaka kele na zina yango, to zina yango kele ya mbote ve.
-Sola zina ya nkaka.',
+'articleexists'  => 'Lukaya ya nkaka kele na nkûmbu yango, to nkûmbu yango kele ya mbote ve.
+Sôla nkûmbu ya nkaka.',
 'movereason'     => 'Samu:',
 
 # Tooltip help for the actions

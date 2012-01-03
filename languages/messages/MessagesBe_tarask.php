@@ -8,6 +8,7 @@
  * @file
  *
  * @author Cesco
+ * @author Crt
  * @author EugeneZelenko
  * @author Jim-by
  * @author Red Winged Duck
@@ -297,6 +298,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Дасылаць мне копіі лістоў, якія я дасылаю іншым удзельнікам і ўдзельніцам',
 'tog-diffonly'                => 'Не паказваць зьмест старонкі пад параўнаньнем зьменаў',
 'tog-showhiddencats'          => 'Паказваць схаваныя катэгорыі',
+'tog-noconvertlink'           => 'Выключыць канвэртацыю назваў спасылак',
 'tog-norollbackdiff'          => 'Не паказваць зьмены пасьля выкарыстаньня функцыі адкату',
 
 'underline-always'  => 'Заўсёды',
@@ -545,7 +547,7 @@ $1',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Старонка',
-'nstab-user'      => 'Старонка ўдзельніка/ўдзельніцы',
+'nstab-user'      => 'Старонка {{GENDER:{{BASEPAGENAME}}|ўдзельніка|ўдзельніцы}}',
 'nstab-media'     => 'Мэдыя',
 'nstab-special'   => 'Спэцыяльная старонка',
 'nstab-project'   => 'Старонка праекту',
@@ -902,7 +904,7 @@ $2
 'blocked-notice-logextract'        => 'Гэты ўдзельнік у дадзены момант заблякаваны.
 Апошні запіс з журналу блякаваньняў пададзены ніжэй для даведкі:',
 'clearyourcache'                   => "'''Заўвага:''' Каб пабачыць зьмены пасьля захаваньня, Вам можа спатрэбіцца ачысьціць кэш Вашага браўзэра. 
-* '''Firefox / Safari:''' Трымайце ''Shift'' і націсьніце ''Reload'', ці націсьніце ''Ctrl-F5'' ці ''Ctrl-R'' (''⌘-R''' на Mac)
+* '''Firefox / Safari:''' Трымайце ''Shift'' і націсьніце ''Reload'', ці націсьніце ''Ctrl-F5'' ці ''Ctrl-R'' (''⌘-R'' на Mac)
 * '''Google Chrome:''' Націсьніце ''Ctrl-Shift-R'' (''⌘-Shift-R'' на Mac)
 * '''Internet Explorer:''' Трымайце ''Ctrl'' і націсьніце ''Refresh'', ці націсьніце ''Ctrl-F5''
 * '''Konqueror:''' Націсьніце кнопку ''Reload'' ці ''F5''
@@ -1990,6 +1992,8 @@ $1',
 'wantedpages'             => 'Запатрабаваныя старонкі',
 'wantedpages-badtitle'    => 'Няслушная назва сярод вынікаў: $1',
 'wantedfiles'             => 'Запатрабаваныя файлы',
+'wantedfiletext-cat'      => 'Наступныя файлы выкарыстоўваюцца, але іх няма. Файлы са зьнешніх сховішчаў могуць знаходзіцца ў сьпісе без уліку іх існаваньня. Любыя такія няслушныя ўваходжаньні будуць <del>выкрасьленыя</del>. Дадаткова, старонкі, якія ўбудоўваюць неіснуючыя файлы прыведзеныя на [[:$1]].',
+'wantedfiletext-nocat'    => 'Наступныя файлы выкарыстоўваюцца, але іх няма. Файлы са зьнешніх сховішчаў могуць знаходзіцца ў сьпісе без уліку іх існаваньня. Любыя такія няслушныя ўваходжаньні будуць <del>выкрасьленыя</del>.',
 'wantedtemplates'         => 'Запатрабаваныя шаблёны',
 'mostlinked'              => 'Старонкі, на якія найчасьцей спасылаюцца',
 'mostlinkedcategories'    => 'Катэгорыі з найбольшай колькасьцю старонак',
@@ -2036,6 +2040,7 @@ $1',
 # Book sources
 'booksources'               => 'Пошук кніг',
 'booksources-search-legend' => 'Пошук кніг',
+'booksources-isbn'          => 'ISBN:',
 'booksources-go'            => 'Паказаць',
 'booksources-text'          => 'Ніжэй знаходзіцца сьпіс спасылак на іншыя сайты, якія прадаюць новыя і патрыманыя кнігі, і могуць таксама мець інфармацыю пра кнігі, якія Вы шукаеце:',
 'booksources-invalid-isbn'  => 'Пададзены няслушны ISBN; праверце, магчыма ўзьніклі памылкі пры пераносе нумару з арыгінальнай крыніцы.',
@@ -2812,6 +2817,16 @@ $1',
 'import-logentry-interwiki'        => 'імпартавана зь іншай вікі $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|вэрсія|вэрсіі|вэрсій}} з $2',
 
+# JavaScriptTest
+'javascripttest-backlink'                  => '< $1',
+'javascripttest-disabled'                  => 'Гэта функцыя выключаная.',
+'javascripttest-pagetext-noframework'      => 'Гэтая старонка трымаецца для правядзеньня тэстаў javascript.',
+'javascripttest-pagetext-unknownframework' => 'Невядомы фрэймворк «$1».',
+'javascripttest-pagetext-frameworks'       => 'Выберыце, каліласка, адзін з прапанаваных фрэймворкаў: $1',
+'javascripttest-pagetext-skins'            => 'Даступныя афармленьні',
+'javascripttest-qunit-intro'               => 'Глядзіце [$1 дакумэнтацыю па тэставаньні] на mediawiki.org.',
+'javascripttest-qunit-heading'             => 'Набор QUnit-тэстаў для MediaWiki JavaScript',
+
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Ваша старонка ўдзельніка',
 'tooltip-pt-anonuserpage'         => 'Старонка ўдзельніка для IP-адрасу, зь якога Вы рэдагуеце',
@@ -2995,6 +3010,7 @@ $1',
 'seconds-abbrev' => '$1 с',
 'minutes-abbrev' => '$1 хв',
 'hours-abbrev'   => '$1 г',
+'days-abbrev'    => '$1 дз',
 'seconds'        => '$1 {{PLURAL:$1|сэкунда|сэкунды|сэкундаў}}',
 'minutes'        => '$1 {{PLURAL:$1|хвіліна|хвіліны|хвілінаў}}',
 'hours'          => '$1 {{PLURAL:$1|гадзіна|гадзіны|гадзінаў}}',
@@ -3228,6 +3244,9 @@ $1',
 
 'exif-planarconfiguration-1' => 'фармат «chunky»',
 'exif-planarconfiguration-2' => 'фармат «planar»',
+
+'exif-xyresolution-i' => '$1 пунктаў на цалю',
+'exif-xyresolution-c' => '$1 пунктаў на сантымэтар',
 
 'exif-colorspace-65535' => 'Некалібраванае',
 
@@ -3578,7 +3597,8 @@ $5
 'watchlisttools-raw'  => 'Рэдагаваць як тэкст',
 
 # Signatures
-'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|гутаркі]])',
+'signature'    => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|гутаркі]])',
+'timezone-utc' => 'UTC',
 
 # Core parser functions
 'unknown_extension_tag' => 'Невядомы тэг пашырэньня «$1»',
@@ -3592,6 +3612,7 @@ $5
 'version-variables'             => 'Зьменныя',
 'version-antispam'              => 'Абарона ад спаму',
 'version-skins'                 => 'Афармленьні',
+'version-api'                   => 'API',
 'version-other'                 => 'Іншыя',
 'version-mediahandlers'         => 'Апрацоўшчыкі мэдыя',
 'version-hooks'                 => 'Працэдуры-перахопнікі',
@@ -3601,6 +3622,7 @@ $5
 'version-hook-name'             => 'Назва працэдуры-перахопніка',
 'version-hook-subscribedby'     => 'Падпісаны на',
 'version-version'               => '(Вэрсія $1)',
+'version-svn-revision'          => '(r$2)',
 'version-license'               => 'Ліцэнзія',
 'version-poweredby-credits'     => "{{SITENAME}} працуе на праграмным забесьпячэньні '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'      => 'іншыя',

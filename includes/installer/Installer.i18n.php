@@ -4691,11 +4691,16 @@ $messages['fi'] = array(
 	'config-desc' => 'MediaWiki-asennin',
 	'config-title' => 'MediaWikin version $1 asennus',
 	'config-information' => 'Tiedot',
-	'config-localsettings-upgrade' => '<code>LocalSettings.php</code>-tiedosto on havaittu.
-Kirjoita kohdan <code>$wgUpgradeKey</code> arvo alla olevaan kenttään päivittääksesi asennuksen.
+	'config-localsettings-upgrade' => '<code>LocalSettings.php</code>-tiedosto havaittiin.
+Kirjoita muuttujan <code>$wgUpgradeKey</code> arvo alla olevaan kenttään päivittääksesi asennuksen.
 Löydät sen LocalSettings.php-tiedostosta.',
+	'config-localsettings-cli-upgrade' => 'LocalSettings.php-tiedosto havaittiin.
+Suorita update.php päivittääksesi tämän asennuksen.',
 	'config-localsettings-key' => 'Päivitysavain',
 	'config-localsettings-badkey' => 'Antamasi avain on virheellinen.',
+	'config-localsettings-incomplete' => 'Nykyinen LocalSettings.php-tiedosto näyttää olevan puutteellinen.
+Muuttujaa $1 ei ole asetettu.
+Muuta LocalSettings.php-tiedostoa siten, että muuttuja on asetettu ja napsauta Jatka.',
 	'config-session-error' => 'Istunnon aloittaminen epäonnistui: $1',
 	'config-session-expired' => 'Istuntotietosi näyttävät olevan vanhentuneita.
 Istuntojen elinajaksi on määritelty $1.
@@ -4829,7 +4834,7 @@ Voit ohittaa jäljellä olevat määritykset ja asentaa wikin juuri nyt.',
 	'config-logo' => 'Logon URL-osoite',
 	'config-cc-again' => 'Valitse uudelleen...',
 	'config-extensions' => 'Laajennukset',
-	'config-install-step-done' => 'tehty',
+	'config-install-step-done' => 'valmis',
 	'config-install-step-failed' => 'epäonnistui',
 	'config-install-user-alreadyexists' => 'Käyttäjä $1 on jo olemassa',
 	'config-install-interwiki-list' => 'Tiedostoa <code>interwiki.list</code> ei voitu lukea.',
@@ -4846,13 +4851,13 @@ Voit ohittaa jäljellä olevat määritykset ja asentaa wikin juuri nyt.',
 
 === Asetukset ===
 
-Tarkista, että alla olevat taivutusmuodot ovat oikein. Jos eivät, tee tarvittavat muutokset LocalSettings.php:hen seuraavasti:
+Tarkista, että alla olevat taivutusmuodot ovat oikein. Jos eivät, tee tarvittavat muutokset tiedostoon LocalSettings.php seuraavasti:
  \$wgGrammarForms['fi']['genitive']['{{SITENAME}}'] = '...';
  \$wgGrammarForms['fi']['partitive']['{{SITENAME}}'] = '...';
  \$wgGrammarForms['fi']['elative']['{{SITENAME}}'] = '...';
  \$wgGrammarForms['fi']['inessive']['{{SITENAME}}'] = '...';
  \$wgGrammarForms['fi']['illative']['{{SITENAME}}'] = '...';
-Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive|{{SITENAME}}}} (yötä) — {{GRAMMAR:elative|{{SITENAME}}}} (yöstä) — {{GRAMMAR:inessive|{{SITENAME}}}} (yössä) — {{GRAMMAR:illative|{{SITENAME}}}} (yöhön).",
+Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) – {{GRAMMAR:partitive|{{SITENAME}}}} (yötä) – {{GRAMMAR:elative|{{SITENAME}}}} (yöstä) – {{GRAMMAR:inessive|{{SITENAME}}}} (yössä) – {{GRAMMAR:illative|{{SITENAME}}}} (yöhön).",
 );
 
 /** Faroese (Føroyskt) */

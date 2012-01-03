@@ -87,7 +87,7 @@ Sie haben Cookies deaktiviert, bitte aktivieren Sie diese und versuchen Sie es e
 'loginsuccess'               => 'Sie sind jetzt als „$1“ bei {{SITENAME}} angemeldet.',
 'nosuchuser'                 => 'Der Benutzername „$1“ existiert nicht.
 Überprüfen Sie die Schreibweise (Groß-/Kleinschreibung beachten) oder [[Special:UserLogin/signup|melden Sie sich als neuer Benutzer an]].',
-'nosuchusershort'            => 'Der Benutzername „$1“ existiert nicht. Bitte überprüfen Sie die Schreibweise.',
+'nosuchusershort'            => 'Der Benutzername „$1“ ist nicht vorhanden. Bitte überprüfen Sie die Schreibweise.',
 'nouserspecified'            => 'Bitte geben Sie einen Benutzernamen an.',
 'wrongpassword'              => 'Das Passwort ist falsch. Bitte versuchen Sie es erneut.',
 'wrongpasswordempty'         => 'Es wurde kein Passwort eingegeben. Bitte versuchen Sie es erneut.',
