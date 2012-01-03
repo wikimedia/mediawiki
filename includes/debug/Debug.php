@@ -253,8 +253,6 @@ class MWDebug {
 		}
 
 		global $wgVersion, $wgRequestTime;
-		wfWarn( 'johnduhart is pretty cool' );
-		wfDeprecated( __METHOD__, '1.19' );
 		MWDebug::log( 'MWDebug output complete' );
 		$debugInfo = array(
 			'mwVersion' => $wgVersion,
