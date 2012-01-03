@@ -1,0 +1,17 @@
+.svn
+*~
+.classpath
+.idea
+.metadata*
+.project
+.settings
+AdminSettings.php
+LocalSettings.php
+StartProfiler.php
+cscope.files
+cscope.out
+favicon.ico
+nbproject*
+project.index
+static*
+tags
