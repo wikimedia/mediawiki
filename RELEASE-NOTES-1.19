@@ -241,6 +241,8 @@ production.
 * (bug 31759) Undefined property notice in querypages API.
 * (bug 32495) API should allow purge by pageids.
 * (bug 33147) API examples should explain what they do.
+* Extensions can use the RequestContextCreateSkin hook to override what skin is
+  loaded in some contexts.
 
 === Languages updated in 1.19 ===
 

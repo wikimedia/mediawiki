@@ -1559,6 +1559,11 @@ $out: OutputPage object
 'RecentChange_save': called at the end of RecentChange::save()
 $recentChange: RecentChange object
 
+'RequestContextCreateSkin': Called when RequestContext::getSkin creates a skin instance.
+Can be used by an extension override what skin is used in certain contexts.
+IContextSource $context: The RequestContext the skin is being created for.
+&$skin: A variable reference you may set a Skin instance or string key on to override the skin that will be used for the context.
+
 'ResourceLoaderGetConfigVars': called at the end of
 ResourceLoaderStartUpModule::getConfig(). Use this to export static
 configuration variables to JavaScript. Things that depend on the current
