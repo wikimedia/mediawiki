@@ -1,4 +1,4 @@
-module( 'mediawiki' );
+module( 'mediawiki', QUnit.newMwEnvironment() );
 
 test( '-- Initial check', function() {
 	expect(8);
@@ -173,12 +173,29 @@ test( 'mw.loader.bug30825', function() {
 	// This bug was actually already fixed in 1.18 and later when discovered in 1.17.
 	// Test is for regressions!
 
-	expect(1);
+	expect(2);
+
+	var server = mw.config.get( 'wgServer' ),
+	    basePath = mw.config.get( 'wgScriptPath' );
+
+	// From [[Special:JavaScriptTest]] we need to preprend the script path
+	// with the actual server (http://localhost/).
+	// Running from file tests/qunit/index.html, wgScriptPath is already
+	// including the wgServer part
+	if( server !== null ) {
+		basePath = server + basePath;
+	}
+	// Forge an URL to the test callback script
+	var target = QUnit.fixurl(
+		basePath + '/tests/qunit/data/qunitOkCall.js'
+	);
 
 	// Confirm that mw.loader.load() works with protocol-relative URLs
-	var loc = window.location,
-		base = ('//' + loc.hostname + loc.pathname).replace(/\/[^\/]*$/, ''),
-		target = base + '/data/qunitOkCall.js?' + (new Date()).getTime();
+	target = target.replace( /https?:/, '' );
+
+	equal( target.substr( 0, 2 ), '//',
+		'URL must be relative to test relative URLs!'
+	);
 
 	// Async!
 	stop();

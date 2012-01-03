@@ -4194,6 +4194,20 @@ $wgParserTestFiles = array(
  * );
  */
 $wgParserTestRemote = false;
+ 
+/**
+ * Allow running of javascript test suites via [[Special:JavaScriptTest]] (such as QUnit).
+ */
+$wgEnableJavaScriptTest = false;
+
+/**
+ * Configuration for javascript testing.
+ */
+$wgJavaScriptTestConfig = array(
+	'qunit' => array(
+		'documentation' => '//www.mediawiki.org/wiki/Manual:JavaScript_unit_testing',
+	),
+);
 
 
 /**
@@ -5248,6 +5262,7 @@ $wgSpecialPageGroups = array(
 	'Specialpages'              => 'other',
 	'Blockme'                   => 'other',
 	'Booksources'               => 'other',
+	'JavaScriptTest'            => 'other',
 );
 
 /** Whether or not to sort special pages in Special:Specialpages */

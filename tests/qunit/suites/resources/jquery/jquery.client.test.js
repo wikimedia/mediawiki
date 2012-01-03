@@ -1,4 +1,4 @@
-module( 'jquery.client' );
+module( 'jquery.client', QUnit.newMwEnvironment() );
 
 test( '-- Initial check', function() {
 	expect(1);

@@ -1,4 +1,4 @@
-module( 'mediawiki.user' );
+module( 'mediawiki.user', QUnit.newMwEnvironment() );
 
 test( '-- Initial check', function() {
 	expect(1);
@@ -15,6 +15,16 @@ test( 'options', function() {
 
 test( 'User login status', function() {
 	expect(5);
+
+	/**
+	 * Tests can be run under three different conditions:
+	 *   1) From tests/qunit/index.html, user will be anonymous.
+	 *   2) Logged in on [[Special:JavaScriptTest/qunit]]
+	 *   3) Anonymously at the same special page.
+	 */
+
+	// Forge an anonymous user:
+	mw.config.set( 'wgUserName', null);
 
 	strictEqual( mw.user.name(), null, 'user.name should return null when anonymous' );
 	ok( mw.user.anonymous(), 'user.anonymous should reutrn true when anonymous' );

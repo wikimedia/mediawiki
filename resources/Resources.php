@@ -166,14 +166,14 @@ return array(
 	'jquery.placeholder' => array(
 		'scripts' => 'resources/jquery/jquery.placeholder.js',
 	),
-	'jquery.qunit.completenessTest' => array(
-		'scripts' => 'resources/jquery/jquery.qunit.completenessTest.js',
-		'dependencies' => 'jquery.qunit',
-	),
 	'jquery.qunit' => array(
 		'scripts' => 'resources/jquery/jquery.qunit.js',
 		'styles' => 'resources/jquery/jquery.qunit.css',
 		'position' => 'top',
+	),
+	'jquery.qunit.completenessTest' => array(
+		'scripts' => 'resources/jquery/jquery.qunit.completenessTest.js',
+		'dependencies' => 'jquery.qunit',
 	),
 	'jquery.spinner' => array(
 		'scripts' => 'resources/jquery/jquery.spinner.js',
@@ -766,6 +766,28 @@ return array(
 			'largefileserver',
 		),
 		'dependencies' => array( 'mediawiki.libs.jpegmeta', 'mediawiki.util' ),
+	),
+	'mediawiki.special.javaScriptTest' => array(
+		'scripts' => 'resources/mediawiki.special/mediawiki.special.javaScriptTest.js',
+		'messages' => array_merge( Skin::getSkinNameMessages(), array(
+			'colon-separator',
+			'javascripttest-pagetext-skins',
+		) ),
+		'dependencies' => array( 'jquery.qunit' ),
+		'position' => 'top',
+	),
+
+	/* MediaWiki Tests */
+
+	'mediawiki.tests.qunit.testrunner' => array(
+		'scripts' => 'tests/qunit/data/testrunner.js',
+		'dependencies' => array(
+			'jquery.qunit',
+			'jquery.qunit.completenessTest',
+			'mediawiki.page.startup',
+			'mediawiki.page.ready',
+		),
+		'position' => 'top',
 	),
 
 	/* MediaWiki Legacy */

@@ -1,4 +1,4 @@
-module( 'jquery.mwExtension' );
+module( 'jquery.mwExtension', QUnit.newMwEnvironment() );
 
 test( 'String functions', function() {
 

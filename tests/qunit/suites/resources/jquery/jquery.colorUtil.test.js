@@ -1,4 +1,4 @@
-module( 'jquery.colorUtil' );
+module( 'jquery.colorUtil', QUnit.newMwEnvironment() );
 
 test( '-- Initial check', function() {
 	expect(1);

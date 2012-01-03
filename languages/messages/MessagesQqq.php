@@ -3059,6 +3059,17 @@ See also:
 'import-logentry-upload' => 'This is the text of an entry in the Import log (and Recent Changes), after hour (and date, only in the Import log) and sysop name:
 * $1 is the name of the imported file',
 
+# JavaScriptTest
+'javascripttest'                           => 'Title of the special page',
+'javascripttest-backlink'                  => '{{optional}}',
+'javascripttest-disabled'                  => '{{Identical|Function disabled}}.',
+'javascripttest-title'                     => 'Title of the special page when running a test suite. $1 is the name of the framework.',
+'javascripttest-pagetext-unknownframework' => 'Error message when given framework id is not found. $1 is the if of the framework.',
+'javascripttest-pagetext-frameworks'       => '$1 is the if of the framework.',
+'javascripttest-qunit-name'                => '{{Ignore}}',
+'javascripttest-qunit-intro'               => '$1 is the configured url to the documentation.',
+'javascripttest-qunit-heading'             => '{{Optional}}',
+
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Tooltip shown when hovering the mouse over the link to your own User page in the upper-side personal toolbox.',
 'tooltip-pt-mytalk'               => 'Tooltip shown when hovering over the "my talk" link in your personal toolbox (upper right side).',

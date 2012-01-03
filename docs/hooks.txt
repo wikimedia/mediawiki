@@ -1579,6 +1579,16 @@ scripts.
 loader request or generating HTML output.
 &$resourceLoader: ResourceLoader object
 
+'ResourceLoaderTestModules': let you add new javascript testing modules. This is called after the addition of 'qunit' and MediaWiki testing ressources.
+&testModules: array of javascript testing modules. 'qunit' is feed using tests/qunit/QUnitTestResources.php.
+&RessourceLoader object
+To add a new qunit module named 'myext.tests':
+testModules['qunit']['myext.tests'] = array(
+	'script' => 'extension/myext/tests.js',
+	'dependencies' => <any module dependency you might have>
+);
+For qunit framework, the mediawiki.tests.qunit.testrunner dependency will be added to any module.
+
 'RevisionInsertComplete': called after a revision is inserted into the DB
 &$revision: the Revision
 $data: the data stored in old_text.  The meaning depends on $flags: if external
