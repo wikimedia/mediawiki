@@ -187,6 +187,7 @@ $wgIgnoredMessages = array(
 	'addsection-preload',
 	'addsection-editintro',
 	'longpage-hint',
+	'javascripttest-qunit-name',
 );
 
 /** Optional messages, which may be translated only if changed in the target language. */
