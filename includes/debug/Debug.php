@@ -43,6 +43,14 @@ class MWDebug {
 	protected static $enabled = true;
 
 	/**
+	 * Array of functions that have already been warned, formatted
+	 * function-caller to prevent a buttload of warnings
+	 *
+	 * @var array
+	 */
+	protected static $deprecationWarnings = array();
+
+	/**
 	 * Called in Setup.php, initializes the debugger if it is enabled with
 	 * $wgDebugToolbar
 	 */
@@ -60,9 +68,6 @@ class MWDebug {
 	/**
 	 * Adds a line to the log
 	 *
-	 * This does nothing atm, there's not frontend for it
-	 *
-	 * @todo Add error and warning log type
 	 * @todo Add support for passing objects
 	 *
 	 * @param $str string
@@ -72,7 +77,75 @@ class MWDebug {
 			return;
 		}
 
-		self::$log[] = $str;
+		self::$log[] = array(
+			'msg' => htmlspecialchars( $str ),
+			'type' => 'log',
+			'caller' => wfGetCaller(),
+		);
+	}
+
+	/**
+	 * Adds a warning entry to the log
+	 *
+	 * @param $msg
+	 * @param int $callerOffset
+	 * @return mixed
+	 */
+	public static function warning( $msg, $callerOffset = 1 ) {
+		if ( !self::$enabled ) {
+			return;
+		}
+
+		// Check to see if there was already a deprecation notice, so not to
+		// get a duplicate warning
+		$lastLog = self::$log[ count( self::$log ) - 1 ];
+		if ( $lastLog['type'] == 'deprecated' && $lastLog['caller'] == wfGetCaller( $callerOffset + 1 ) ) {
+			return;
+		}
+
+		self::$log[] = array(
+			'msg' => htmlspecialchars( $msg ),
+			'type' => 'warn',
+			'caller' => wfGetCaller( $callerOffset ),
+		);
+	}
+
+	/**
+	 * Adds a depreciation entry to the log, along with a backtrace
+	 *
+	 * @param $function
+	 * @param $version
+	 * @param $component
+	 * @return mixed
+	 */
+	public static function deprecated( $function, $version, $component ) {
+		if ( !self::$enabled ) {
+			return;
+		}
+
+		// Chain: This function -> wfDeprecated -> deprecatedFunction -> caller
+		$caller = wfGetCaller( 4 );
+
+		// Check to see if there already was a warning about this function
+		$functionString = "$function-$caller";
+		if ( in_array( $functionString, self::$deprecationWarnings ) ) {
+			return;
+		}
+
+		$version = $version === false ? '(unknown version)' : $version;
+		$component = $component === false ? 'MediaWiki' : $component;
+		$msg = htmlspecialchars( "Use of function $function was deprecated in $component $version" );
+		$msg .= Html::rawElement( 'div', array( 'class' => 'mw-debug-backtrace' ),
+			Html::element( 'span', array(), 'Backtrace:' )
+			 . wfBacktrace()
+		);
+
+		self::$deprecationWarnings[] = $functionString;
+		self::$log[] = array(
+			'msg' => $msg,
+			'type' => 'deprecated',
+			'caller' => $caller,
+		);
 	}
 
 	/**
@@ -178,6 +251,7 @@ class MWDebug {
 		}
 
 		global $wgVersion, $wgRequestTime;
+		MWDebug::log( 'MWDebug output complete' );
 		$debugInfo = array(
 			'mwVersion' => $wgVersion,
 			'phpVersion' => PHP_VERSION,
