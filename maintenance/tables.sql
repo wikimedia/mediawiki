@@ -1263,12 +1263,17 @@ CREATE TABLE /*_*/job (
   job_namespace int NOT NULL,
   job_title varchar(255) binary NOT NULL,
 
+  -- Timestamp of when the job was inserted
+  -- NULL for jobs added before addition of the timestamp
+  job_timestamp varbinary(14) NULL default NULL,
+
   -- Any other parameters to the command
   -- Stored as a PHP serialized array, or an empty string if there are no parameters
   job_params blob NOT NULL
 ) /*$wgDBTableOptions*/;
 
 CREATE INDEX /*i*/job_cmd ON /*_*/job (job_cmd, job_namespace, job_title, job_params(128));
+CREATE INDEX /*i*/job_insert_timestamp ON /*_*/job(job_insert_timestamp);
 
 
 -- Details of updates to cached special pages

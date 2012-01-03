@@ -252,6 +252,10 @@ abstract class Job {
 		}
 		$dbw = wfGetDB( DB_MASTER );
 		$rows = array();
+
+		/**
+		 * @var $job Job
+		 */
 		foreach ( $jobs as $job ) {
 			$rows[] = $job->insertFields();
 			if ( count( $rows ) >= 50 ) {
@@ -348,6 +352,7 @@ abstract class Job {
 			'job_cmd' => $this->command,
 			'job_namespace' => $this->title->getNamespace(),
 			'job_title' => $this->title->getDBkey(),
+			'job_insert_timestamp' => wfTimestampNow(),
 			'job_params' => Job::makeBlob( $this->params )
 		);
 	}
