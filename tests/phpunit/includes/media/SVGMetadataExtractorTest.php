@@ -62,6 +62,14 @@ class SVGMetadataExtractorTest extends MediaWikiTestCase {
 					'height' => 60
 				)
 			),
+			array(
+				"$base/Toll_Texas_1.svg",
+				// This file triggered bug 31719, needs entity expansion in the xmlns checks
+				array(
+					'width' => 385,
+					'height' => 385
+				)
+			)
 		);
 	}
 
