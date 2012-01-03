@@ -40,6 +40,7 @@ class SpecialExport extends SpecialPage {
 	public function execute( $par ) {
 		global $wgSitename, $wgExportAllowListContributors, $wgExportFromNamespaces;
 		global $wgExportAllowHistory, $wgExportMaxHistory, $wgExportMaxLinkDepth;
+		global $wgExportAllowAll;
 
 		$this->setHeaders();
 		$this->outputHeader();
@@ -87,6 +88,10 @@ class SpecialExport extends SpecialPage {
 					$page .= "\n" . implode( "\n", $nspages );
 				}
 			}
+		}
+		elseif( $request->getCheck( 'exportall' ) && $wgExportAllowAll ) {
+			$this->doExport = true;
+			$exportall = true;
 		}
 		elseif( $request->wasPosted() && $par == '' ) {
 			$page = $request->getText( 'pages' );
@@ -165,7 +170,7 @@ class SpecialExport extends SpecialPage {
 				$request->response()->header( "Content-disposition: attachment;filename={$filename}" );
 			}
 
-			$this->doExport( $page, $history, $list_authors );
+			$this->doExport( $page, $history, $list_authors, $exportall );
 
 			return;
 		}
@@ -181,6 +186,15 @@ class SpecialExport extends SpecialPage {
 		if ( $wgExportFromNamespaces ) {
 			$form .= Xml::namespaceSelector( $nsindex, null, 'nsindex', wfMsg( 'export-addnstext' ) ) . '&#160;';
 			$form .= Xml::submitButton( wfMsg( 'export-addns' ), array( 'name' => 'addns' ) ) . '<br />';
+		}
+
+		if ( $wgExportAllowAll ) {
+			$form .= Xml::checkLabel(
+				wfMsg( 'exportall' ),
+				'exportall',
+				'exportall',
+				$request->wasPosted() ? $request->getCheck( 'exportall' ) : false
+			) . '<br />';
 		}
 
 		$form .= Xml::element( 'textarea', array( 'name' => 'pages', 'cols' => 40, 'rows' => 10 ), $page, false );
@@ -245,50 +259,58 @@ class SpecialExport extends SpecialPage {
 	 * @param $history Mixed: one of the WikiExporter history export constants
 	 * @param $list_authors Boolean: Whether to add distinct author list (when
 	 *                      not returning full history)
+	 * @param $exportall Boolean: Whether to export everything
 	 */
-	private function doExport( $page, $history, $list_authors ) {
-		$pageSet = array(); // Inverted index of all pages to look up
+	private function doExport( $page, $history, $list_authors, $exportall ) {
 
-		// Split up and normalize input
-		foreach( explode( "\n", $page ) as $pageName ) {
-			$pageName = trim( $pageName );
-			$title = Title::newFromText( $pageName );
-			if( $title && $title->getInterwiki() == '' && $title->getText() !== '' ) {
-				// Only record each page once!
-				$pageSet[$title->getPrefixedText()] = true;
+		// If we are grabbing everything, enable full history and ignore the rest
+		if ($exportall) {
+			$history = WikiExporter::FULL;
+		} else {
+
+			$pageSet = array(); // Inverted index of all pages to look up
+		
+			// Split up and normalize input
+			foreach( explode( "\n", $page ) as $pageName ) {
+				$pageName = trim( $pageName );
+				$title = Title::newFromText( $pageName );
+				if( $title && $title->getInterwiki() == '' && $title->getText() !== '' ) {
+					// Only record each page once!
+					$pageSet[$title->getPrefixedText()] = true;
+				}
 			}
+
+			// Set of original pages to pass on to further manipulation...
+			$inputPages = array_keys( $pageSet );
+
+			// Look up any linked pages if asked...
+			if( $this->templates ) {
+				$pageSet = $this->getTemplates( $inputPages, $pageSet );
+			}
+			$linkDepth = $this->pageLinkDepth;
+			if( $linkDepth ) {
+				$pageSet = $this->getPageLinks( $inputPages, $pageSet, $linkDepth );
+			}
+
+			/*
+			 // Enable this when we can do something useful exporting/importing image information. :)
+			 if( $this->images ) ) {
+			 $pageSet = $this->getImages( $inputPages, $pageSet );
+			 }
+			*/
+
+			$pages = array_keys( $pageSet );
+
+			// Normalize titles to the same format and remove dupes, see bug 17374
+			foreach( $pages as $k => $v ) {
+				$pages[$k] = str_replace( " ", "_", $v );
+			}
+
+			$pages = array_unique( $pages );
 		}
-
-		// Set of original pages to pass on to further manipulation...
-		$inputPages = array_keys( $pageSet );
-
-		// Look up any linked pages if asked...
-		if( $this->templates ) {
-			$pageSet = $this->getTemplates( $inputPages, $pageSet );
-		}
-		$linkDepth = $this->pageLinkDepth;
-		if( $linkDepth ) {
-			$pageSet = $this->getPageLinks( $inputPages, $pageSet, $linkDepth );
-		}
-
-		/*
-		 // Enable this when we can do something useful exporting/importing image information. :)
-		 if( $this->images ) ) {
-		 $pageSet = $this->getImages( $inputPages, $pageSet );
-		 }
-		 */
-
-		$pages = array_keys( $pageSet );
-
-		// Normalize titles to the same format and remove dupes, see bug 17374
-		foreach( $pages as $k => $v ) {
-			$pages[$k] = str_replace( " ", "_", $v );
-		}
-
-		$pages = array_unique( $pages );
 
 		/* Ok, let's get to it... */
-		if( $history == WikiExporter::CURRENT ) {
+		if( $history == WikiExporter::CURRENT && ! $exportall ) {
 			$lb = false;
 			$db = wfGetDB( DB_SLAVE );
 			$buffer = WikiExporter::BUFFER;
@@ -308,7 +330,10 @@ class SpecialExport extends SpecialPage {
 		$exporter->list_authors = $list_authors;
 		$exporter->openStream();
 
-		foreach( $pages as $page ) {
+		if ( $exportall ) {
+			$exporter->allPages();
+		} else {
+			foreach( $pages as $page ) {
 			/*
 			 if( $wgExportMaxHistory && !$this->curonly ) {
 			 $title = Title::newFromText( $page );
@@ -322,15 +347,16 @@ class SpecialExport extends SpecialPage {
 			 }
 			 }*/
 			#Bug 8824: Only export pages the user can read
-			$title = Title::newFromText( $page );
-			if( is_null( $title ) ) {
-				continue; #TODO: perhaps output an <error> tag or something.
-			}
-			if( !$title->userCan( 'read', $this->getUser() ) ) {
-				continue; #TODO: perhaps output an <error> tag or something.
-			}
+				$title = Title::newFromText( $page );
+				if( is_null( $title ) ) {
+					continue; #TODO: perhaps output an <error> tag or something.
+				}
+				if( !$title->userCan( 'read', $this->getUser() ) ) {
+					continue; #TODO: perhaps output an <error> tag or something.
+				}
 
-			$exporter->pageByTitle( $title );
+				$exporter->pageByTitle( $title );
+			}
 		}
 
 		$exporter->closeStream();
