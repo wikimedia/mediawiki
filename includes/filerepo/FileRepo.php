@@ -1223,10 +1223,9 @@ class FileRepo {
 	 * May use either the database or the filesystem.
 	 *
 	 * @param $callback Array|string
-	 * @return void
 	 */
 	public function enumFiles( $callback ) {
-		return $this->enumFilesInStorage( $callback );
+		$this->enumFilesInStorage( $callback );
 	}
 
 	/**
@@ -1234,7 +1233,6 @@ class FileRepo {
 	 * May use either the database or the filesystem.
 	 *
 	 * @param $callback Array|string
-	 * @return void
 	 */
 	protected function enumFilesInStorage( $callback ) {
 		$publicRoot = $this->getZonePath( 'public' );
