@@ -164,12 +164,13 @@
 			var s = document.createElement( 'style' );
 			s.type = 'text/css';
 			s.rel = 'stylesheet';
+			// Insert into document before setting cssText (bug 33305)
+			document.getElementsByTagName('head')[0].appendChild( s );
 			if ( s.styleSheet ) {
 				s.styleSheet.cssText = text; // IE
 			} else {
 				s.appendChild( document.createTextNode( text + '' ) ); // Safari sometimes borks on null
 			}
-			document.getElementsByTagName('head')[0].appendChild( s );
 			return s.sheet || s;
 		},
 
