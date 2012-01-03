@@ -23,6 +23,8 @@ setting since version 1.2.0. If you have it on, turn it '''off''' if you can.
 * (bug 33240) Sort images are missing but referenced in css.
 * (bug 31921) Magic words REVISIONDAY, REVISIONMONTH and REVISIONYEAR were
   not showing their values on preview.
+* (bug 32702) Removed method Skin::makeGlobalVariablesScript() has been readded
+  for backward compatibility.
 
 == MediaWiki 1.18 ==
 2011-11-24
