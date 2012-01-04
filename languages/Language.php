@@ -2742,7 +2742,7 @@ class Language {
 			if ( intval( $_ ) < 0 ) {
 				// For negative numbers apply the algorithm like positive number and add sign.
 				$sign =  "-";
-				$_ = substr( $_,1 );
+				$_ = substr( $_, 1 );
 			}
 			$numberpart = array();
 			$decimalpart = array();
@@ -3902,7 +3902,7 @@ class Language {
 
 		# Make 'previous' link
 		$prev = wfMessage( 'prevn' )->inLanguage( $this )->title( $title )->numParams( $limit )->text();
-		if( $offset > 0 ) {
+		if ( $offset > 0 ) {
 			$plink = $this->numLink( $title, max( $offset - $limit, 0 ), $limit,
 				$query, $prev, 'prevn-title', 'mw-prevlink' );
 		} else {
@@ -3911,7 +3911,7 @@ class Language {
 
 		# Make 'next' link
 		$next = wfMessage( 'nextn' )->inLanguage( $this )->title( $title )->numParams( $limit )->text();
-		if( $atend ) {
+		if ( $atend ) {
 			$nlink = htmlspecialchars( $next );
 		} else {
 			$nlink = $this->numLink( $title, $offset + $limit, $limit,
@@ -3920,7 +3920,7 @@ class Language {
 
 		# Make links to set number of items per page
 		$numLinks = array();
-		foreach( array( 20, 50, 100, 250, 500 ) as $num ) {
+		foreach ( array( 20, 50, 100, 250, 500 ) as $num ) {
 			$numLinks[] = $this->numLink( $title, $offset, $num,
 				$query, $this->formatNum( $num ), 'shown-title', 'mw-numlink' );
 		}
