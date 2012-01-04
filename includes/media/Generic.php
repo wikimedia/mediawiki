@@ -89,7 +89,7 @@ abstract class MediaHandler {
 	 *
 	 * @param $image File: the image object, or false if there isn't one
 	 * @param $path String: the filename
-	 * @return Array
+	 * @return Array Follow the format of PHP getimagesize() internal function. See http://www.php.net/getimagesize
 	 */
 	abstract function getImageSize( $image, $path );
 
