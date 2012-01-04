@@ -37,16 +37,16 @@ class SpecialJavaScriptTest extends SpecialPage {
 
 		// No framework specified
 		if ( $par == '' ) {
-			$out->setPagetitle( wfMsg( 'javascripttest' ) );
+			$out->setPagetitle( wfMsgHtml( 'javascripttest' ) );
 			$summary = $this->wrapSummaryHtml(
-				wfMsg( 'javascripttest-pagetext-noframework' ) . $this->getFrameworkListHtml(),
+				wfMsgHtml( 'javascripttest-pagetext-noframework' ) . $this->getFrameworkListHtml(),
 				'noframework'
 			);
 			$out->addHtml( $summary );
 
 		// Matched! Display proper title and initialize the framework
 		} elseif ( isset( self::$frameworks[$framework] ) ) {
-			$out->setPagetitle( wfMsg( 'javascripttest-title', wfMsg( "javascripttest-$framework-name" ) ) );
+			$out->setPagetitle( wfMsgHtml( 'javascripttest-title', wfMsgHtml( "javascripttest-$framework-name" ) ) );
 			$out->setSubtitle(
 				wfMessage( 'javascripttest-backlink' )->rawParams( Linker::linkKnown( $this->getTitle() ) )->escaped()
 			);
@@ -54,9 +54,9 @@ class SpecialJavaScriptTest extends SpecialPage {
 
 		// Framework not found, display error
 		} else {
-			$out->setPagetitle( wfMsg( 'javascripttest' ) );
+			$out->setPagetitle( wfMsgHtml( 'javascripttest' ) );
 			$summary = $this->wrapSummaryHtml( '<p class="error">'
-				. wfMsg( 'javascripttest-pagetext-unknownframework', $par )
+				. wfMsgHtml( 'javascripttest-pagetext-unknownframework', $par )
 				. '</p>'
 				. $this->getFrameworkListHtml(),
 				'unknownframework'
@@ -75,7 +75,7 @@ class SpecialJavaScriptTest extends SpecialPage {
 			$list .= Html::rawElement(
 				'li',
 				array(),
-				Linker::link( $this->getTitle( $framework ), wfMsg( "javascripttest-$framework-name" ) )
+				Linker::link( $this->getTitle( $framework ), wfMsgHtml( "javascripttest-$framework-name" ) )
 			);
 		}
 		$list .= '</ul>';
