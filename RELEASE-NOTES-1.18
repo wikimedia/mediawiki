@@ -29,6 +29,7 @@ setting since version 1.2.0. If you have it on, turn it '''off''' if you can.
   when the function exists but is disabled. Introduced Maintenance::posix_isatty().
 * (bug 33305) Make mw.util.addCSS resistant to IE's @font-face bug by setting
   cssText after DOM insertion.
+* (bug 29102) Upgrade fails "Unknown character set: 'mysql4'.
 
 == MediaWiki 1.18 ==
 2011-11-24

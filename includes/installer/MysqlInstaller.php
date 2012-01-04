@@ -168,7 +168,7 @@ class MysqlInstaller extends DatabaseInstaller {
 				$existingEngine = false;
 			} else {
 				if ( preg_match( '/^latin1/', $row->Collation ) ) {
-					$existingSchema = 'mysql4';
+					$existingSchema = 'latin1';
 				} elseif ( preg_match( '/^utf8/', $row->Collation ) ) {
 					$existingSchema = 'utf8';
 				} elseif ( preg_match( '/^binary/', $row->Collation ) ) {
