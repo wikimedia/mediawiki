@@ -3166,7 +3166,8 @@ $templates
 	 * @return string
 	 */
 	public function buildCssLinks() {
-		global $wgUseSiteCss, $wgAllowUserCss, $wgAllowUserCssPrefs;
+		global $wgUseSiteCss, $wgAllowUserCss, $wgAllowUserCssPrefs,
+			$wgLang, $wgContLang;
 
 		$this->getSkin()->setupSkinUserCss( $this );
 
@@ -3195,8 +3196,15 @@ $templates
 				$otherTags .= $this->makeResourceLoaderLink( 'user', ResourceLoaderModule::TYPE_STYLES, false,
 					array( 'excludepage' => $this->getTitle()->getPrefixedDBkey() )
 				);
+				
 				// Load the previewed CSS
-				$otherTags .= Html::inlineStyle( $this->getRequest()->getText( 'wpTextbox1' ) );
+				// If needed, Janus it first. This is user-supplied CSS, so it's
+				// assumed to be right for the content language directionality.
+				$previewedCSS = $this->getRequest()->getText( 'wpTextbox1' );
+				if ( $wgLang->getDir() !== $wgContLang->getDir() ) {
+					$previewedCSS = CSSJanus::transform( $previewedCSS, true, false );
+				}
+				$otherTags .= Html::inlineStyle( $previewedCSS );
 			} else {
 				// Load the user styles normally
 				$moduleStyles[] = 'user';
