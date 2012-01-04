@@ -3408,17 +3408,17 @@ Please try again.',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revision|revisions}} from $2',
 
 # JavaScriptTest
-'javascripttest'                           => 'JavaScript Test',
+'javascripttest'                           => 'JavaScript testing',
 'javascripttest-backlink'                  => '< $1', # do not translate or duplicate this message to other languages
 'javascripttest-disabled'                  => 'This function is disabled.',
 'javascripttest-title'                     => 'Running $1 tests',
-'javascripttest-pagetext-noframework'      => 'This page is reserved for running javascript tests.',
-'javascripttest-pagetext-unknownframework' => 'Unknown framework "$1".',
-'javascripttest-pagetext-frameworks'       => 'Please choose one of the following frameworks: $1',
+'javascripttest-pagetext-noframework'      => 'This page is reserved for running JavaScript tests.',
+'javascripttest-pagetext-unknownframework' => 'Unknown testing framework "$1".',
+'javascripttest-pagetext-frameworks'       => 'Please choose one of the following testing frameworks: $1',
 'javascripttest-pagetext-skins'            => 'Available skins',
 'javascripttest-qunit-name'                => 'QUnit', # do not translate or duplicate this message to other languages
 'javascripttest-qunit-intro'               => 'See [$1 testing documentation] on mediawiki.org.',
-'javascripttest-qunit-heading'             => 'MediaWiki JavaScript QUnit Test Suite',
+'javascripttest-qunit-heading'             => 'MediaWiki JavaScript QUnit test suite',
 
 # Keyboard access keys for power users
 'accesskey-pt-userpage'             => '.', # do not translate or duplicate this message to other languages
