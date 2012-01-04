@@ -29,6 +29,7 @@ application/ogg ogx ogg ogm ogv oga spx
 application/pdf pdf
 application/vnd.oasis.opendocument.chart odc
 application/vnd.oasis.opendocument.chart-template otc
+application/vnd.oasis.opendocument.database odb
 application/vnd.oasis.opendocument.formula odf
 application/vnd.oasis.opendocument.formula-template otf
 application/vnd.oasis.opendocument.graphics odg
@@ -40,8 +41,8 @@ application/vnd.oasis.opendocument.presentation-template otp
 application/vnd.oasis.opendocument.spreadsheet ods
 application/vnd.oasis.opendocument.spreadsheet-template ots
 application/vnd.oasis.opendocument.text odt
-application/vnd.oasis.opendocument.text-template ott
 application/vnd.oasis.opendocument.text-master otm
+application/vnd.oasis.opendocument.text-template ott
 application/vnd.oasis.opendocument.text-web oth
 application/x-javascript js
 application/x-shockwave-flash swf
@@ -79,6 +80,7 @@ define('MM_WELL_KNOWN_MIME_INFO', <<<END_STRING
 application/pdf [OFFICE]
 application/vnd.oasis.opendocument.chart [OFFICE]
 application/vnd.oasis.opendocument.chart-template [OFFICE]
+application/vnd.oasis.opendocument.database [OFFICE]
 application/vnd.oasis.opendocument.formula [OFFICE]
 application/vnd.oasis.opendocument.formula-template [OFFICE]
 application/vnd.oasis.opendocument.graphics [OFFICE]
