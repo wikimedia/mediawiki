@@ -6,7 +6,7 @@
  * @author Trevor Parscal <tparscal@wikimedia.org>
  */
 
-(function( $ ) {
+( function ( $ ) {
 
 	/**
 	 * Logs a message to the console.
@@ -31,6 +31,7 @@
 		}
 
 		// If there is no console, use our own log box
+		mw.loader.using( 'jquery.footHovzer', function () {
 
 			var	d = new Date(),
 				// Create HH:MM:SS.MIL timestamp
@@ -42,21 +43,14 @@
 	
 			if ( !$log.length ) {
 				$log = $( '<div id="mw-log-console"></div>' ).css( {
-						position: 'fixed',
 						overflow: 'auto',
-						zIndex: 500,
-						bottom: '0px',
-						left: '0px',
-						right: '0px',
 						height: '150px',
 						backgroundColor: 'white',
 						borderTop: 'solid 2px #ADADAD'
 					} );
-				$( 'body' )
-					// Since the position is fixed, make sure we don't hide any actual content.
-					// Increase padding to account for #mw-log-console.
-					.css( 'paddingBottom', '+=150px' )
-					.append( $log );
+				var hovzer = $.getFootHovzer();
+				hovzer.$.append( $log );
+				hovzer.update();
 			}
 			$log.append(
 				$( '<div></div>' )
@@ -69,7 +63,8 @@
 					} )
 					.text( prefix + args.join( ', ' ) )
 					.prepend( '<span style="float: right;">[' + time + ']</span>' )
-		);
+			);
+		} );
 	};
 
 })( jQuery );

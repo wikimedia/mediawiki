@@ -1,8 +1,6 @@
 .mw-debug {
 	width: 100%;
 	text-align: left;
-	position: fixed;
-	bottom: 0;
 	background-color: #eee;
 	border-top: 1px solid #aaa;
 }
