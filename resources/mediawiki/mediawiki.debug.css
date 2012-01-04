@@ -61,6 +61,9 @@
 	display: inline-block;
 	padding: 10px 5px;
 	font-size: 13px;
+	/* IE-hack for display: inline-block */
+	zoom: 1;
+	*display:inline;
 }
 
 .mw-debug-panelink {
