@@ -98,6 +98,9 @@ class DatabaseTest extends MediaWikiTestCase {
 			$sql );
 	}
 
+	/**
+	 * @group Broken
+	 */
 	function testStoredFunctions() {
 		if ( !in_array( wfGetDB( DB_MASTER )->getType(), array( 'mysql', 'postgres' ) ) ) {
 			$this->markTestSkipped( 'MySQL or Postgres required' );
