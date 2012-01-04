@@ -63,7 +63,7 @@
 				}
 			}
 
-			$( this ).addClass( 'current ')
+			$( this ).addClass( 'current ');
 			$( '.mw-debug-panelink' ).not( this ).removeClass( 'current ');
 
 			// Hide the current pane
