@@ -1503,6 +1503,7 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'number_of_watching_users_pageview' => '[observate per $1 {{PLURAL:$1|usator|usatores}}]',
 'rc_categories'                     => 'Limite a categorias (separar con "|")',
 'rc_categories_any'                 => 'Qualcunque',
+'rc-change-size-new'                => '$1 {{PLURAL:$1|byte|bytes}} post cambio',
 'newsectionsummary'                 => '/* $1 */ nove section',
 'rc-enhanced-expand'                => 'Revelar detalios (require JavaScript)',
 'rc-enhanced-hide'                  => 'Celar detalios',
@@ -1687,6 +1688,7 @@ Si le problema persiste, contacta un [[Special:ListUsers/sysop|administrator]].'
 'backend-fail-closetemp'     => 'Non poteva clauder file temporari.',
 'backend-fail-read'          => 'Non poteva leger le file $1',
 'backend-fail-create'        => 'Non poteva crear le file $1',
+'backend-fail-readonly'      => 'Le back-end "$1" es actualmente in lectura sol. Le motivo date es: "$2"',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Impossibile disblocar "$1"; illo non es blocate.',
@@ -2556,7 +2558,7 @@ Illo es, nonobstante, blocate como parte del intervallo $2, le qual pote esser d
 'ip_range_toolarge'               => 'Non es permittite blocar un gamma de adresses IP plus grande que /$1.',
 'blockme'                         => 'Blocar me',
 'proxyblocker'                    => 'Blocator de proxy',
-'proxyblocker-disabled'           => 'Iste function is disactivate.',
+'proxyblocker-disabled'           => 'Iste function es disactivate.',
 'proxyblockreason'                => 'Tu adresse IP ha essite blocate proque illo es un proxy aperte.
 Per favor contacta tu providitor de servicio internet o supporto technic e informa les de iste problema grave de securitate.',
 'proxyblocksuccess'               => 'Succedite.',
@@ -2695,6 +2697,7 @@ Isto pote esser importate in un altere wiki que usa MediaWiki via le [[Special:I
 Pro exportar paginas, entra le titulos in le quadro de texto infra, un titulo per linea, e indica si tu vole haber le version currente con tote le versiones ancian, con le lineas de historia de paginas, o simplemente le version actual con le informationes super le ultime modification.
 
 In le secunde caso tu pote etiam usar un ligamine, p.ex. [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] pro le pagina "[[{{MediaWiki:Mainpage}}]]".',
+'exportall'         => 'Exportar tote le paginas',
 'exportcuronly'     => 'Includer solmente le version actual, non le historia complete',
 'exportnohistory'   => "----
 '''Nota:''' Le exportation del historia de paginas complete per medio de iste formulario ha essite disactivate pro motivos concernente le prestationes del servitor.",
@@ -2787,6 +2790,17 @@ Salveguarda lo in tu computator e incarga lo hic.',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|version|versiones}}',
 'import-logentry-interwiki'        => 'importava $1 transwiki',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|version|versiones}} desde $2',
+
+# JavaScriptTest
+'javascripttest'                           => 'Test de JavaScript',
+'javascripttest-disabled'                  => 'Iste function es disactivate.',
+'javascripttest-title'                     => 'Execution de $1 tests',
+'javascripttest-pagetext-noframework'      => 'Iste pagina es reservate pro le execution de tests de JavaScript.',
+'javascripttest-pagetext-unknownframework' => 'Structura de test "$1" incognite.',
+'javascripttest-pagetext-frameworks'       => 'Per favor selige un del sequente structuras de test: $1',
+'javascripttest-pagetext-skins'            => 'Apparentias disponibile',
+'javascripttest-qunit-intro'               => 'Vide [$1 documentation de tests] sur mediawiki.org.',
+'javascripttest-qunit-heading'             => 'Programmas de test QUnit de JavaScript de MediaWiki',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Tu pagina de usator',

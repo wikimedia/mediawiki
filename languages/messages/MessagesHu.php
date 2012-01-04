@@ -1619,6 +1619,7 @@ A műveletet nem lehet visszavonni.',
 'number_of_watching_users_pageview' => '[Jelenleg {{PLURAL:$1|egy|$1}} felhasználó figyeli]',
 'rc_categories'                     => 'Szűkítés kategóriákra („|” jellel válaszd el őket)',
 'rc_categories_any'                 => 'Bármelyik',
+'rc-change-size-new'                => '{{PLURAL:$1| egy bájt|$1 bájt}} módosítás után',
 'newsectionsummary'                 => '/* $1 */ (új szakasz)',
 'rc-enhanced-expand'                => 'Részletek megjelenítése (JavaScript szükséges)',
 'rc-enhanced-hide'                  => 'Részletek elrejtése',
@@ -1795,6 +1796,7 @@ Kérjük, hogy lépj kapcsolatba egy  [[Special:ListUsers/sysop|adminisztrátorr
 'backend-fail-closetemp'     => 'Nem lehet lezárni az ideiglenes fájlt.',
 'backend-fail-read'          => 'Nem sikerült olvasni ebből a fájlból: $1.',
 'backend-fail-create'        => 'Nem sikerült létrehozni ezt a fájlt: $1.',
+'backend-fail-readonly'      => 'A „$1” háttér rendszer csak olvasható. Ennek az ok: „$2”',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Nem lehet a zárolást feloldani: „$1”; nincs zárolva.',
@@ -2044,6 +2046,8 @@ Az <del>áthúzott</del> sorok a lista elkészülése óta javítva lettek.',
 'wantedpages'             => 'Keresett lapok',
 'wantedpages-badtitle'    => 'Érvénytelen cím található az eredményhalmazban: $1',
 'wantedfiles'             => 'Keresett fájlok',
+'wantedfiletext-cat'      => 'A következő fájlok használatban vannak, de nem léteznek. Külső tárhelyről származó fájlok akkor is a listára kerülhetnek, ha léteznek. Az ilyen hamis riasztások <del>áthúzva</del> jelennek meg. Ezen felül az olyan beágyazott fájlok, amelyek nem léteznek a  [[:$1]] kategóriában jelennek meg.',
+'wantedfiletext-nocat'    => 'A következő fájlok használatban vannak, de nem léteznek. Külső tárhelyről származó fájlok akkor is a listára kerülhetnek, ha léteznek. Az ilyen hamis riasztások <del>áthúzva</del> jelennek meg.',
 'wantedtemplates'         => 'Keresett sablonok',
 'mostlinked'              => 'Legtöbbet hivatkozott lapok',
 'mostlinkedcategories'    => 'Legtöbbet hivatkozott kategóriák',
@@ -2774,6 +2778,7 @@ hogy az összes korábbi változatra és a teljes laptörténetekre szükséged 
 változatok és a legutolsó változtatásokra vonatkozó információk kellenek.
 
 Az utóbbi esetben közvetlen hivatkozást is használhatsz, például a [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] a "[[{{MediaWiki:Mainpage}}]]" nevű lapot exportálja.',
+'exportall'         => 'Összes lap exportálása',
 'exportcuronly'     => 'Csak a legfrissebb állapot, teljes laptörténet nélkül',
 'exportnohistory'   => "----
 '''Megjegyzés:''' A lapok teljes előzményeinek ezen az űrlapon keresztül történő exportálása teljesítményporlbémák miatt letiltott.",
@@ -2866,6 +2871,17 @@ Mentsd el a számítógépedre, majd töltsd fel ide.',
 'import-logentry-upload-detail'    => '{{PLURAL:$1|egy|$1}} változat',
 'import-logentry-interwiki'        => '$1 más wikiből áthozva',
 'import-logentry-interwiki-detail' => '{{PLURAL:$1|egy|$1}} változat innen: $2',
+
+# JavaScriptTest
+'javascripttest'                           => 'JavaScript tesztelés',
+'javascripttest-disabled'                  => 'Ez a funkció le van tiltva.',
+'javascripttest-title'                     => '$1 tesztek futtatása',
+'javascripttest-pagetext-noframework'      => 'Ez az oldal JavaStript tesztek futtatására van fenntartva.',
+'javascripttest-pagetext-unknownframework' => 'Ismeretlen teszt keretrendszer: $1.',
+'javascripttest-pagetext-frameworks'       => 'Kérlek válaszd valamelyik teszt keretrendszert az alábbiak közül: $1',
+'javascripttest-pagetext-skins'            => 'Elérhető megjelenítések',
+'javascripttest-qunit-intro'               => 'Lásd a [$1 tesztelési dokumentációt]  a mediawiki.org helyen.',
+'javascripttest-qunit-heading'             => 'MediaWiki JavaScript QUnit tesztcsomag',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'A szerkesztőlapod',

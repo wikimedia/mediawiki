@@ -11,6 +11,7 @@
  * @author Abanima
  * @author AhmadSherif
  * @author Alexknight12
+ * @author Ali1
  * @author Alnokta
  * @author Antime
  * @author Bassem JARKAS
@@ -2095,23 +2096,24 @@ $1',
 'filerevert-badversion'     => 'لا توجد نسخة محلية سابقة لهذا الملف بالتاريخ المعطى.',
 
 # File deletion
-'filedelete'                  => 'احذف $1',
-'filedelete-legend'           => 'احذف الملف',
-'filedelete-intro'            => "أنت على وشك حذف الملف '''[[Media:$1|$1]]''' مع كل تاريخه.",
-'filedelete-intro-old'        => "أنت تحذف نسخة '''[[Media:$1|$1]]''' بتاريخ [$4 $3، $2].",
-'filedelete-comment'          => 'السبب:',
-'filedelete-submit'           => 'احذف',
-'filedelete-success'          => "'''$1''' تم حذفه.",
-'filedelete-success-old'      => "نسخة '''[[Media:$1|$1]]''' بتاريخ $3، $2 تم حذفها.",
-'filedelete-nofile'           => "'''$1''' غير موجود.",
-'filedelete-nofile-old'       => "لا توجد نسخة مؤرشفة من '''$1''' بالعناصر المحددة.",
-'filedelete-otherreason'      => 'سبب إضافي/آخر:',
-'filedelete-reason-otherlist' => 'سبب آخر',
-'filedelete-reason-dropdown'  => '*أسباب الحذف الشائعة
+'filedelete'                   => 'احذف $1',
+'filedelete-legend'            => 'احذف الملف',
+'filedelete-intro'             => "أنت على وشك حذف الملف '''[[Media:$1|$1]]''' مع كل تاريخه.",
+'filedelete-intro-old'         => "أنت تحذف نسخة '''[[Media:$1|$1]]''' بتاريخ [$4 $3، $2].",
+'filedelete-comment'           => 'السبب:',
+'filedelete-submit'            => 'احذف',
+'filedelete-success'           => "'''$1''' تم حذفه.",
+'filedelete-success-old'       => "نسخة '''[[Media:$1|$1]]''' بتاريخ $3، $2 تم حذفها.",
+'filedelete-nofile'            => "'''$1''' غير موجود.",
+'filedelete-nofile-old'        => "لا توجد نسخة مؤرشفة من '''$1''' بالعناصر المحددة.",
+'filedelete-otherreason'       => 'سبب إضافي/آخر:',
+'filedelete-reason-otherlist'  => 'سبب آخر',
+'filedelete-reason-dropdown'   => '*أسباب الحذف الشائعة
 ** خرق حقوق النشر
 ** ملف مكرر',
-'filedelete-edit-reasonlist'  => 'عدل أسباب الحذف',
-'filedelete-maintenance'      => 'حذف واسترجاع الملفات معطل مؤقتا خلال الصيانة.',
+'filedelete-edit-reasonlist'   => 'عدل أسباب الحذف',
+'filedelete-maintenance'       => 'حذف واسترجاع الملفات معطل مؤقتا خلال الصيانة.',
+'filedelete-maintenance-title' => 'لا يمكن حذف الملف',
 
 # MIME search
 'mimesearch'         => 'بحث MIME',
@@ -2943,6 +2945,7 @@ $1',
 لتصدير صفحات، أدخل العناوين في الصندوق أسفله، عنوان واحد في كل سطر، مع اختيار ما إذا كنت ترغب في النسخة الحالية بالإضافة إلى النسخ القديمة كاملة، أو مع معلومات تاريخ الصفحة عنها، أو فقط النسخة الحالية مع معلومات عن التعديل الأخير.
 
 في الحالة الأخيرة يمكنك أيضا استخدام وصلة، على سبيل المثال [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] للصفحة "[[{{MediaWiki:Mainpage}}]]".',
+'exportall'         => 'صدّر كل الصفحات',
 'exportcuronly'     => 'ضمن المراجعة الحالية فقط، وليس التاريخ الكامل',
 'exportnohistory'   => "----
 ملاحظة:''' تصدير التاريخ الكامل للصفحات من خلال هذه الاستمارة تم تعطيله لأسباب تتعلق بالأداء'''",
@@ -3034,6 +3037,9 @@ $1',
 'import-logentry-upload-detail'    => '{{PLURAL:$1|لا مراجعات|مراجعة واحدة|مراجعتان|$1 مراجعات|$1 مراجعة}}',
 'import-logentry-interwiki'        => 'استورد عبر الويكي $1',
 'import-logentry-interwiki-detail' => '{{PLURAL:$1||مراجعة واحدة|مراجعتان|$1 مراجعات|$1 مراجعة}} من $2',
+
+# JavaScriptTest
+'javascripttest' => 'اختبار جافاسكربت',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'صفحة المستخدم الخاصة بك',
@@ -4114,13 +4120,17 @@ $5
 'newuserlog-byemail'                  => 'كلمة السر تم إرسالها بواسطة البريد الإلكتروني',
 
 # Feedback
-'feedback-subject' => 'الموضوع:',
-'feedback-message' => 'الرسالة:',
-'feedback-cancel'  => 'ألغِ',
-'feedback-submit'  => 'أرسل الملاحظات',
-'feedback-adding'  => 'إضافة تعليقات إلى الصفحة...',
-'feedback-error1'  => 'خطأ: لا يمكن التعرف عليها من API',
-'feedback-error2'  => 'خطأ: فشل في تحرير',
-'feedback-error3'  => 'خطأ : لا توجد استجابة من API',
+'feedback-subject'  => 'الموضوع:',
+'feedback-message'  => 'الرسالة:',
+'feedback-cancel'   => 'ألغِ',
+'feedback-submit'   => 'أرسل الملاحظات',
+'feedback-adding'   => 'إضافة تعليقات إلى الصفحة...',
+'feedback-error1'   => 'خطأ: لا يمكن التعرف عليها من API',
+'feedback-error2'   => 'خطأ: فشل في تحرير',
+'feedback-error3'   => 'خطأ : لا توجد استجابة من API',
+'feedback-thanks'   => 'شكرا! أُرسلت ملاحظاتك لصفحة "[$2 $1]".',
+'feedback-close'    => 'تم',
+'feedback-bugcheck' => 'رائع! تحقق من أن هذه ليست إحدى [$1 العلل المعروفة].',
+'feedback-bugnew'   => 'لقد تحققت. بلّغ عن علة جديدة.',
 
 );

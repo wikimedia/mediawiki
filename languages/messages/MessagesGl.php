@@ -8,6 +8,7 @@
  * @file
  *
  * @author Alma
+ * @author Elisardojm
  * @author Gallaecio
  * @author Gustronico
  * @author Lameiro
@@ -456,7 +457,7 @@ $1',
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Acerca de {{SITENAME}}',
 'aboutpage'            => 'Project:Acerca de',
-'copyright'            => 'Todo o texto está dispoñíbel baixo $1.',
+'copyright'            => 'Todo o texto está dispoñible baixo $1.',
 'copyrightpage'        => '{{ns:project}}:Dereitos de autor',
 'currentevents'        => 'Actualidade',
 'currentevents-url'    => 'Project:Actualidade',
@@ -1566,6 +1567,7 @@ Ha de ter menos {{PLURAL:$1|dun carácter|de $1 caracteres}}.',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|usuario|usuarios}} vixiando]',
 'rc_categories'                     => 'Límite para categorías (separado con "|")',
 'rc_categories_any'                 => 'Calquera',
+'rc-change-size-new'                => '$1 {{PLURAL:$1|byte|bytes}} despois da modificación',
 'newsectionsummary'                 => 'Nova sección: /* $1 */',
 'rc-enhanced-expand'                => 'Mostrar os detalles (cómpre JavaScript)',
 'rc-enhanced-hide'                  => 'Agochar os detalles',
@@ -1727,8 +1729,8 @@ $1',
 Por favor, contacte cun [[Special:ListUsers/sysop|administrador]] do sistema.',
 'upload-misc-error'         => 'Erro de carga descoñecido',
 'upload-misc-error-text'    => 'Ocorreu un erro descoñecido durante a carga.
-Por favor, comprobe que o enderezo URL é válido e está dispoñíbel e, despois, inténteo de novo.
-Se o problema persiste contacte cun [[Special:ListUsers/sysop|administrador]] do sistema.',
+Comprobe que o enderezo URL é válido e accesible e, despois, inténteo de novo.
+Se o problema persiste, póñase en contacto cun [[Special:ListUsers/sysop|administrador]] do sistema.',
 'upload-too-many-redirects' => 'O enderezo URL contiña moitas redireccións',
 'upload-unknown-size'       => 'Tamaño descoñecido',
 'upload-http-error'         => 'Produciuse un erro HTTP: $1',
@@ -1750,6 +1752,7 @@ Se o problema persiste contacte cun [[Special:ListUsers/sysop|administrador]] do
 'backend-fail-closetemp'     => 'Non se puido pechar o ficheiro temporal.',
 'backend-fail-read'          => 'Non se puido ler o ficheiro "$1".',
 'backend-fail-create'        => 'Non se puido crear o ficheiro "$1".',
+'backend-fail-readonly'      => 'Nestes intres, a instalación "$1" está en modo de só lectura. A razón dada é: "$2"',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Non se puido desbloquear "$1". Non está bloqueado.',
@@ -1820,7 +1823,7 @@ Tamén pode reintentalo cando haxa menos actividade.',
 'license'            => 'Licenza:',
 'license-header'     => 'Licenza',
 'nolicense'          => 'Ningunha (os ficheiros sen licenza serán eliminados)',
-'license-nopreview'  => '(A vista previa non está dispoñíbel)',
+'license-nopreview'  => '(A vista previa non está dispoñible)',
 'upload_source_url'  => '  (un URL válido e accesible publicamente)',
 'upload_source_file' => '  (un ficheiro no seu ordenador)',
 
@@ -2733,6 +2736,7 @@ Por favor, escolla outro nome.',
 Para exportar páxinas, insira os títulos na caixa de texto que está máis abaixo, poñendo un título por liña, e se quere seleccione a versión actual e todas as versións vellas, coas liñas do historial da páxina, ou só a versión actual con información sobre a última edición.
 
 No último caso, pode usar tamén unha ligazón, por exemplo [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]], para a páxina "[[{{MediaWiki:Mainpage}}]]".',
+'exportall'         => 'Exportar toda as páxinas',
 'exportcuronly'     => 'Incluír só a revisión actual, non o historial completo',
 'exportnohistory'   => "----
 '''Aviso:''' Foi desactivada a exportación do historial completo das páxinas mediante este formulario debido a razóns relacionadas co rendemento do servidor.",
@@ -2742,7 +2746,7 @@ No último caso, pode usar tamén unha ligazón, por exemplo [[{{#Special:Export
 'export-addcat'     => 'Engadir',
 'export-addnstext'  => 'Engadir as páxinas do espazo de nomes:',
 'export-addns'      => 'Engadir',
-'export-download'   => 'Ofrecer gardar como un ficheiro',
+'export-download'   => 'Gardar como un ficheiro',
 'export-templates'  => 'Incluír os modelos',
 'export-pagelinks'  => 'Engadir as páxinas ligadas a unha profundidade de:',
 
@@ -2753,7 +2757,7 @@ No último caso, pode usar tamén unha ligazón, por exemplo [[{{#Special:Export
 'allmessagescurrent'            => 'Texto actual',
 'allmessagestext'               => 'Esta é unha lista de todas as mensaxes dispoñibles no espazo de nomes MediaWiki.
 Por favor, visite a [//www.mediawiki.org/wiki/Localisation localización MediaWiki] e [//translatewiki.net translatewiki.net] se quere contribuír á localización xenérica de MediaWiki.',
-'allmessagesnotsupportedDB'     => "Esta páxina non está dispoñíbel porque '''\$wgUseDatabaseMessages''' está desactivado.",
+'allmessagesnotsupportedDB'     => "Esta páxina non está dispoñible porque '''\$wgUseDatabaseMessages''' está desactivado.",
 'allmessages-filter-legend'     => 'Filtrar',
 'allmessages-filter'            => 'Filtrar por estado de personalización:',
 'allmessages-filter-unmodified' => 'Inalteradas',
@@ -2825,6 +2829,17 @@ Gárdeo no seu disco duro e cárgueo aquí.',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|revisión|revisións}}',
 'import-logentry-interwiki'        => 'importou "$1"',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revisión|revisións}} de $2',
+
+# JavaScriptTest
+'javascripttest'                           => 'Proba de JavaScript',
+'javascripttest-disabled'                  => 'Esta función está desactivada.',
+'javascripttest-title'                     => 'Executando probas de $1',
+'javascripttest-pagetext-noframework'      => 'Esta páxina está reservada para executar probas do JavaScript.',
+'javascripttest-pagetext-unknownframework' => 'Descoñécese a infraestrutura dixital "$1" de probas.',
+'javascripttest-pagetext-frameworks'       => 'Seleccione unha das seguintes infraestruturas dixitais de probas: $1',
+'javascripttest-pagetext-skins'            => 'Aparencias dispoñibles',
+'javascripttest-qunit-intro'               => 'Bótelle unha ollada á [$1 documentación das probas] en mediawiki.org.',
+'javascripttest-qunit-heading'             => 'Conxunto de probas QUnit para o JavaScript de MediaWiki',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'A súa páxina de {{GENDER:|usuario|usuaria}}',
@@ -2941,7 +2956,7 @@ Gárdeo no seu disco duro e cárgueo aquí.',
 'siteusers'        => '{{PLURAL:$2|$1}} de {{SITENAME}}',
 'anonusers'        => '{{PLURAL:$2|o usuario anónimo|os usuarios anónimos}} $1 de {{SITENAME}}',
 'creditspage'      => 'Páxina de créditos',
-'nocredits'        => 'Non hai información de créditos dispoñíbel para esta páxina.',
+'nocredits'        => 'Esta páxina non ten dispoñible información de créditos.',
 
 # Spam protection
 'spamprotectiontitle' => 'Filtro de protección de spam',
@@ -3692,8 +3707,7 @@ As imaxes móstranse na súa resolución completa; outros tipos de ficheiros in�
 'specialpages'                   => 'Páxinas especiais',
 'specialpages-note'              => '----
 * Páxinas especiais normais.
-* <span class="mw-specialpagerestricted">Páxinas especiais restrinxidas.</span>
-* <span class="mw-specialpagecached">Páxinas especiais só con caché (poden estar desactualizadas).</span>',
+* <span class="mw-specialpagerestricted">Páxinas especiais restrinxidas.</span>',
 'specialpages-group-maintenance' => 'Informes de mantemento',
 'specialpages-group-other'       => 'Outras páxinas especiais',
 'specialpages-group-login'       => 'Rexistro',

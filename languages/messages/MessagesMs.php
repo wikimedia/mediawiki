@@ -1511,6 +1511,7 @@ Tindakan ini tidak boleh dibatalkan.',
 'rc_categories'                     => 'Hadkan kepada kategori (asingkan dengan "|")',
 'rc_categories_any'                 => 'Semua',
 'rc-change-size'                    => '$1',
+'rc-change-size-new'                => '$1 bait selepas perubahan',
 'newsectionsummary'                 => '/* $1 */ bahagian baru',
 'rc-enhanced-expand'                => 'Papar butiran (JavaScript diperlukan)',
 'rc-enhanced-hide'                  => 'Sorokkan butiran',
@@ -1681,6 +1682,7 @@ Sila hubungi [[Special:ListUsers/sysop|pentadbir sistem]].',
 'backend-fail-closetemp'     => 'Fail sementara tidak dapat ditutup.',
 'backend-fail-read'          => 'Fail $1 tidak dapat dibaca.',
 'backend-fail-create'        => 'Fail $1 tidak dapat diwujudkan.',
+'backend-fail-readonly'      => 'Bahagian belakang "$1" kini hanya boleh dibaca. Sebab yang diberikan: "$2"',
 
 # Lock manager
 'lockmanager-notlocked'        => '"$1" tidak dapat dibuka; ia tidak terkunci.',
@@ -2661,6 +2663,7 @@ Fail ini boleh diimport ke dalam wiki lain yang menggunakan perisian MediaWiki m
 Untuk mengeksport laman, masukkan tajuk dalam kotak teks di bawah (satu tajuk bagi setiap baris) dan pilih sama ada anda mahukan semua versi dan catatan sejarah atau hanya versi semasa berserta maklumat mengenai suntingan terakhir.
 
 Dalam pilihan kedua tadi, anda juga boleh menggunakan pautan, umpamanya [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] untuk laman "[[{{MediaWiki:Mainpage}}]]".',
+'exportall'         => 'Eksport semua laman',
 'exportcuronly'     => 'Hanya eksport semakan semasa, bukan keseluruhan sejarah.',
 'exportnohistory'   => "----
 '''Catatan:''' Ciri eksport sejarah penuh laman melalui borang ini telah dimatikan atas sebab-sebab prestasi.",
@@ -2753,6 +2756,17 @@ Simpan dalam komputer anda dan muat naiknya di sini.',
 'import-logentry-upload-detail'    => '$1 semakan',
 'import-logentry-interwiki'        => '$1 dipindahkan ke wiki lain',
 'import-logentry-interwiki-detail' => '$1 semakan daripada $2',
+
+# JavaScriptTest
+'javascripttest'                           => 'Ujian JavaScript',
+'javascripttest-disabled'                  => 'Fungsi ini dimatikan.',
+'javascripttest-title'                     => 'Ujian $1 sedang dijalankan',
+'javascripttest-pagetext-noframework'      => 'Laman ini ditempah untuk menjalankan ujian JavaScript.',
+'javascripttest-pagetext-unknownframework' => 'Kerangka "$1" tidak dikenali.',
+'javascripttest-pagetext-frameworks'       => 'Sila pilih salah satu kerangka yang berikut: $1',
+'javascripttest-pagetext-skins'            => 'Kulit yang sedia ada',
+'javascripttest-qunit-intro'               => 'Rujuk [$1 dokumentasi ujian] di mediawiki.org.',
+'javascripttest-qunit-heading'             => 'Suit ujian MediaWiki JavaScript QUnit',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Laman pengguna anda',

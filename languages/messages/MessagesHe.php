@@ -1689,6 +1689,7 @@ $1",
 'number_of_watching_users_pageview' => '[{{PLURAL:$1|משתמש אחד עוקב|$1 משתמשים עוקבים}} אחרי הדף]',
 'rc_categories'                     => 'הגבלה לקטגוריות (יש להפריד עם "|")',
 'rc_categories_any'                 => 'הכול',
+'rc-change-size-new'                => '{{PLURAL:$1|בית אחד|$1 בתים}} לאחר השינוי',
 'newsectionsummary'                 => '/* $1 */ פסקה חדשה',
 'rc-enhanced-expand'                => 'הצגת הפרטים (נדרש JavaScript)',
 'rc-enhanced-hide'                  => 'הסתרת הפרטים',
@@ -1869,6 +1870,7 @@ $1',
 'backend-fail-closetemp'     => 'לא הייתה אפשרות לסגור את הקובץ הזמני.',
 'backend-fail-read'          => 'קריאת הקובץ $1 לא הצליחה',
 'backend-fail-create'        => 'יצירת הקובץ $1 לא הצליחה',
+'backend-fail-readonly'      => 'מאגר האחסון לקבצים "$1" הוא כרגע במצב קריאה בלבד. הסיבה שניתנה לכך היא: "$2"',
 
 # Lock manager
 'lockmanager-notlocked'        => 'פתיחת הנעילה של "$1" לא הצליחה; הוא לא נעול.',
@@ -2845,6 +2847,7 @@ $1',
 כדי לייצא דפים, הקישו את שמותיהם בתיבת הטקסט שלהלן, כל שם בשורה נפרדת, ובחרו האם לייצא גם את הגרסה הנוכחית וגם את היסטוריית השינויים של הדפים, או רק את הגרסה הנוכחית עם מידע על העריכה האחרונה.
 
 בנוסף, ניתן להשתמש בקישור, כגון [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] לדף [[{{MediaWiki:Mainpage}}]] ללא היסטוריית השינויים שלו.',
+'exportall'         => 'ייצוא כל הדפים',
 'exportcuronly'     => 'לכלול רק את הגרסה הנוכחית, ללא כל ההיסטוריה',
 'exportnohistory'   => "----
 '''הערה:''' ייצוא ההיסטוריה המלאה של דפים דרך טופס זה הופסקה עקב בעיות ביצועים.",
@@ -2939,6 +2942,17 @@ $1',
 'import-logentry-upload-detail'    => '{{PLURAL:$1|גרסה אחת|$1 גרסאות}}',
 'import-logentry-interwiki'        => 'ייבא את $1 בייבוא בין־אתרי',
 'import-logentry-interwiki-detail' => '{{PLURAL:$1|גרסה אחת|$1 גרסאות}} של הדף $2',
+
+# JavaScriptTest
+'javascripttest'                           => 'בדיקת JavaScript',
+'javascripttest-disabled'                  => 'אפשרות זו מבוטלת.',
+'javascripttest-title'                     => 'הרצת $1 בדיקות',
+'javascripttest-pagetext-noframework'      => 'דף זה שמור להרצת בדיקות JavaScript.',
+'javascripttest-pagetext-unknownframework' => 'סביבת הבדיקה "$1" אינה ידועה.',
+'javascripttest-pagetext-frameworks'       => 'אנא בחרו אחת מסביבות הבדיקה הבאות: $1',
+'javascripttest-pagetext-skins'            => 'בחירת עיצוב שאיתו יורצו הבדיקות:',
+'javascripttest-qunit-intro'               => 'ראו את [$1 תיעוד הבדיקה] באתר mediawiki.org.',
+'javascripttest-qunit-heading'             => 'מערך בדיקות QUnit ל־JavaScript של  מדיה־ויקי',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'דף המשתמש שלכם',
@@ -3704,7 +3718,7 @@ $5
 'size-gigabytes'  => "$1 ג'יגה־בייט",
 'size-terabytes'  => '$1 טרה־בייט',
 'size-petabytes'  => '$1 פטה־בייט',
-'size-exabytes'   => '$1 אסקה־בייט',
+'size-exabytes'   => '$1 אקסה־בייט',
 'size-zetabytes'  => '$1 זטה־בייט',
 'size-yottabytes' => '$1 יוטה־בייט',
 

@@ -3060,10 +3060,10 @@ See also:
 * $1 is the name of the imported file',
 
 # JavaScriptTest
-'javascripttest'                           => 'Title of the special page',
-'javascripttest-backlink'                  => '{{optional}}',
+'javascripttest'                           => 'Title of [[Special:JavaScriptTest|the special page]]',
 'javascripttest-disabled'                  => '{{Identical|Function disabled}}.',
-'javascripttest-title'                     => 'Title of the special page when running a test suite. $1 is the name of the framework.',
+'javascripttest-title'                     => 'Title of the special page when running a test suite. Parameters:
+* $1 is the name of the framework, for example QUnit.',
 'javascripttest-pagetext-unknownframework' => 'Error message when given framework id is not found. $1 is the id of the framework.',
 'javascripttest-pagetext-frameworks'       => '$1 is the id of the framework.',
 'javascripttest-qunit-intro'               => '$1 is the configured url to the documentation.',

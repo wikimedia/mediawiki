@@ -2613,6 +2613,7 @@ $1被封禁的理由是：“$2”',
 或是只选择导出带有最后一次编辑信息的当前修订版本。
 
 此外你还可以利用链接导出文件，例如你可以使用[[{{#Special:Export}}/{{MediaWiki:Mainpage}}]]导出“[[{{MediaWiki:Mainpage}}]]”页面。',
+'exportall'         => '汇出所有页面',
 'exportcuronly'     => '仅包含当前的修订，而不是全部的历史。',
 'exportnohistory'   => "----
 '''注意：'''由于性能原因，从此表单导出页面的全部历史已被禁用。",
@@ -2703,6 +2704,17 @@ $1被封禁的理由是：“$2”',
 'import-logentry-upload-detail'    => '$1个修订',
 'import-logentry-interwiki'        => '跨 wiki $1',
 'import-logentry-interwiki-detail' => '来自$2的$1个修订',
+
+# JavaScriptTest
+'javascripttest'                           => 'JavaScript测试',
+'javascripttest-disabled'                  => '此功能已禁用。',
+'javascripttest-title'                     => '运行$1测试',
+'javascripttest-pagetext-noframework'      => '此页面被保留用于运行JavaScript测试。',
+'javascripttest-pagetext-unknownframework' => '未知的框架“$1”。',
+'javascripttest-pagetext-frameworks'       => '请选择以下的框架之一：$1',
+'javascripttest-pagetext-skins'            => '可用外观',
+'javascripttest-qunit-intro'               => '请浏览mediawiki.org参阅[$1 测试文档]。',
+'javascripttest-qunit-heading'             => 'MediaWiki JavaScript QUnit 测试套件',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => '你的用户页面',

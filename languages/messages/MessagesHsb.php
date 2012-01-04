@@ -1445,6 +1445,7 @@ Smě mjenje hač $1 {{PLURAL:$1|znamješko|znamješce|znamješka|znamješkow}} d
 'rc_categories'                     => 'Jenož kategorije (dźělene z "|")',
 'rc_categories_any'                 => 'wšě',
 'rc-change-size'                    => '$1 {{PLURAL:$1|bajt|bajtaj|bajty|bajtow}}',
+'rc-change-size-new'                => '$1 {{PLURAL:$1|bajt|bajtaj|bajty|bajtow}} po změnje',
 'newsectionsummary'                 => 'Nowy wotrězk: /* $1 */',
 'rc-enhanced-expand'                => 'Podrobnosće pokazać (wužaduje JavaScript)',
 'rc-enhanced-hide'                  => 'Podrobnosće schować',
@@ -1620,6 +1621,7 @@ $1',
 'backend-fail-closetemp'     => 'Temporerna dataja njeda so začinić.',
 'backend-fail-read'          => 'Dataja $1 njeda so čitać',
 'backend-fail-create'        => 'Dataja $1 njeda so wutworić',
+'backend-fail-readonly'      => 'Backend "$1" da so tuchwilu jenož čitać. Přičina je: "$2"',
 
 # Lock manager
 'lockmanager-notlocked'        => '"$1" njeda so wotewrić; njeje zawrjeny.',
@@ -2564,6 +2566,7 @@ Prošu wubjer druhe mjeno.',
 Zo by strony eksportował, zapodaj title deleka do tekstoweho pola, jedyn titul na linku, a wubjer, hač chceš aktualnu wersiju kaž tež stare wersije z linkami stawiznow strony abo jenož aktualnu wersiju z informacijemi wo poslednjej změnje eksportować.
 
 W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Export}}/{{MediaWiki:Mainpage}}]]” za stronu „[[{{MediaWiki:Mainpage}}]]”.',
+'exportall'         => 'Wšě strony eksportować',
 'exportcuronly'     => 'Jenož aktualnu wersiju zapřijeć, nic dospołne stawizny',
 'exportnohistory'   => '----
 <b>Kedźbu:</b> Eksport cyłych stawiznow přez tutón formular bu z přičin wukonitosće serwera znjemóžnjeny.',
@@ -2652,6 +2655,17 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|wersija|wersiji|wersije|wersijow}}',
 'import-logentry-interwiki'        => 'je stronu $1 z druheho wikija přenjesł',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|wersija|wersiji|wersije|wersijow}} z $2 {{PLURAL:$1|importowana|importowanej|importowane|importowane}}',
+
+# JavaScriptTest
+'javascripttest'                           => 'JavaScriptowy test',
+'javascripttest-disabled'                  => 'Tuta funkcija je znjemóžnjena.',
+'javascripttest-title'                     => 'Testy $1 so přewjedu',
+'javascripttest-pagetext-noframework'      => 'Tuta strona je za přewjedźenje javascriptowych testow přewostajena.',
+'javascripttest-pagetext-unknownframework' => 'Njeznaty wobłuk "$1".',
+'javascripttest-pagetext-frameworks'       => 'Prošu wubjer jedyn ze slědowacych testowanskich wobłukow: $1',
+'javascripttest-pagetext-skins'            => 'K dispoziciji stejace drasty',
+'javascripttest-qunit-intro'               => 'Hlej [$1 testowansku dokumentaciju] na mediawiki.org.',
+'javascripttest-qunit-heading'             => 'MediaWiki JavaScript QUnit Test Suite',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Twoja wužiwarska strona',

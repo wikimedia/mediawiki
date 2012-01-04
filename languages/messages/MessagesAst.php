@@ -2423,7 +2423,7 @@ Pa ver los bloqueos qu'hai agora mesmo, mira na [[Special:BlockList|llista d'IP 
 'ip_range_toolarge'               => 'Nun se permiten bloqueos mayores de /$1.',
 'blockme'                         => 'Blóquiame',
 'proxyblocker'                    => 'Bloquiador de proxys',
-'proxyblocker-disabled'           => 'Esta función ta deshabilitada.',
+'proxyblocker-disabled'           => 'Esta función ta desactivada.',
 'proxyblockreason'                => "La to direición IP foi bloquiada porque ye un proxy abiertu. Por favor contauta col to proveedor de serviciones d'Internet o col to servicio d'asistencia téunica y infórmalos d'esti seriu problema de seguridá.",
 'proxyblocksuccess'               => 'Fecho.',
 'sorbsreason'                     => 'La to direición IP sal na llista de proxys abiertos en DNSBL usada por {{SITENAME}}.',
@@ -2562,6 +2562,7 @@ y seleiciona si quies la versión actual xunto con toles versiones antigües, xu
 so historial, o namái la versión actual cola información de la postrer edición.
 
 Por último, tamién pues usar un enllaz: p.e. [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] pa la páxina \"[[{{MediaWiki:Mainpage}}]]\".",
+'exportall'         => 'Esportar toles páxines',
 'exportcuronly'     => 'Amestar namái la revisión actual, non tol historial',
 'exportnohistory'   => "----
 '''Nota:''' Desactivóse la esportación del historial completu de páxines al traviés d'esti formulariu por motivos de rendimientu.",
@@ -2654,6 +2655,14 @@ Guárdalu nel ordenador y xúbilu equí.",
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|revisión|revisiones}}',
 'import-logentry-interwiki'        => 'treswikificada $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revisión|revisiones}} dende $2',
+
+# JavaScriptTest
+'javascripttest'                      => 'Prueba de JavaScript',
+'javascripttest-disabled'             => 'Esta función ta desactivada.',
+'javascripttest-title'                => 'Executando pruebes de $1',
+'javascripttest-pagetext-noframework' => 'Esta páxina ta acutada pa executar pruebes de javascript.',
+'javascripttest-pagetext-skins'       => 'Pieles disponibles',
+'javascripttest-qunit-intro'          => 'Ver la [$1 documentación de les pruebes] en mediawiki.org.',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => "La to páxina d'usuariu",

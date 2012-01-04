@@ -2865,6 +2865,7 @@ Ovo onda može biti uvezeno u drugi viki koji koristi Medijaviki softver preko [
 Da biste izvezli stranice, unesite nazive u okviru ispod, s jednim naslovom po redu, i izaberite da li želite tekuću izmenu i sve ostale, ili samo tekuću izmenu s podacima o poslednjoj izmeni.
 
 U drugom slučaju, možete koristiti i vezu, na primer [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] za stranicu [[{{MediaWiki:Mainpage}}]].',
+'exportall'         => 'Izvezi sve stranice',
 'exportcuronly'     => 'Uključi samo tekuću izmenu, ne celu istoriju',
 'exportnohistory'   => "----
 '''Napomena:''' Izvoženje pune istorije stranica preko ovog formulara je onemogućeno zbog serverskih razloga.",
@@ -2962,7 +2963,6 @@ Pokušajte ponovo.',
 
 # JavaScriptTest
 'javascripttest'                           => 'Javaskript test',
-'javascripttest-backlink'                  => '< $1',
 'javascripttest-disabled'                  => 'Ova funkcija je onemogućena.',
 'javascripttest-title'                     => 'Izvršavanje testova za $1',
 'javascripttest-pagetext-noframework'      => 'Ova stranica je rezervisana za izvršavanje javaskript testova.',
