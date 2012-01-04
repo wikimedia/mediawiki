@@ -30,5 +30,7 @@ class LanguageMlTest extends MediaWikiTestCase {
 		$this->assertEquals( '-98', $this->lang->formatNum( '-98' ) );
 		$this->assertEquals( '-98', $this->lang->formatNum( -98 ) );
 		$this->assertEquals( '-1,23,45,678', $this->lang->formatNum( -12345678 ) );
+		$this->assertEquals( '', $this->lang->formatNum( '' ) );
+		$this->assertEquals( '', $this->lang->formatNum( null ) );
 	}
 }
