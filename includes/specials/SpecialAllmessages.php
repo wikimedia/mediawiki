@@ -115,7 +115,7 @@ class AllmessagesTablePager extends TablePager {
 		$this->langcode = $this->lang->getCode();
 		$this->foreign  = $this->langcode != $wgContLang->getCode();
 
-		$request = $this->getRequest();
+		$request = $wgRequest;
 
 		$this->filter = $request->getVal( 'filter', 'all' );
 		if( $this->filter === 'all' ){
