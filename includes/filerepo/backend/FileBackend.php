@@ -475,6 +475,8 @@ abstract class FileBackend extends FileBackendBase {
 	/** @var Array */
 	protected $cache = array(); // (storage path => key => value)
 	protected $maxCacheSize = 50; // integer; max paths with entries
+	/** @var Array */
+	protected $shardViaHashLevels = array(); // (container name => integer)
 
 	/**
 	 * Create a file in the backend with the given contents.
@@ -600,7 +602,7 @@ abstract class FileBackend extends FileBackendBase {
 	 * Do not call this function from places outside FileBackend and FileOp.
 	 * $params include:
 	 *     srcs          : ordered source storage paths (e.g. chunk1, chunk2, ...)
-	 *     dst           : destination storage path
+	 *     dst           : file system path to 0-byte temp file
 	 *     overwriteDest : overwrite any file that exists at the destination
 	 * 
 	 * @param $params Array
@@ -608,7 +610,6 @@ abstract class FileBackend extends FileBackendBase {
 	 */
 	final public function concatenateInternal( array $params ) {
 		$status = $this->doConcatenateInternal( $params );
-		$this->clearCache( array( $params['dst'] ) );
 		return $status;
 	}
 
@@ -668,21 +669,87 @@ abstract class FileBackend extends FileBackendBase {
 	/**
 	 * @see FileBackendBase::prepare()
 	 */
-	public function prepare( array $params ) {
+	final public function prepare( array $params ) {
+		$status = Status::newGood();
+		list( $fullCont, $dir, $shard ) = $this->resolveStoragePath( $params['dir'] );
+		if ( $dir === null ) {
+			$status->fatal( 'backend-fail-invalidpath', $params['dir'] );
+			return $status; // invalid storage path
+		}
+		if ( $shard !== null ) { // confined to a single container/shard
+			$status->merge( $this->doPrepare( $fullCont, $dir, $params ) );
+		} else { // directory is on several shards
+			wfDebug( __METHOD__ . ": iterating over all container shards.\n" );
+			list( $b, $shortCont, $r ) = self::splitStoragePath( $params['dir'] );
+			foreach ( $this->getContainerSuffixes( $shortCont ) as $suffix ) {
+				$status->merge( $this->doPrepare( "{$fullCont}{$suffix}", $dir, $params ) );
+			}
+		}
+		return $status;
+	}
+
+	/**
+	 * @see FileBackend::prepare()
+	 */
+	protected function doPrepare( $container, $dir, array $params ) {
 		return Status::newGood();
 	}
 
 	/**
 	 * @see FileBackendBase::secure()
 	 */
-	public function secure( array $params ) {
+	final public function secure( array $params ) {
+		$status = Status::newGood();
+		list( $fullCont, $dir, $shard ) = $this->resolveStoragePath( $params['dir'] );
+		if ( $dir === null ) {
+			$status->fatal( 'backend-fail-invalidpath', $params['dir'] );
+			return $status; // invalid storage path
+		}
+		if ( $shard !== null ) { // confined to a single container/shard
+			$status->merge( $this->doSecure( $fullCont, $dir, $params ) );
+		} else { // directory is on several shards
+			wfDebug( __METHOD__ . ": iterating over all container shards.\n" );
+			list( $b, $shortCont, $r ) = self::splitStoragePath( $params['dir'] );
+			foreach ( $this->getContainerSuffixes( $shortCont ) as $suffix ) {
+				$status->merge( $this->doSecure( "{$fullCont}{$suffix}", $dir, $params ) );
+			}
+		}
+		return $status;
+	}
+
+	/**
+	 * @see FileBackend::secure()
+	 */
+	protected function doSecure( $container, $dir, array $params ) {
 		return Status::newGood();
 	}
 
 	/**
 	 * @see FileBackendBase::clean()
 	 */
-	public function clean( array $params ) {
+	final public function clean( array $params ) {
+		$status = Status::newGood();
+		list( $fullCont, $dir, $shard ) = $this->resolveStoragePath( $params['dir'] );
+		if ( $dir === null ) {
+			$status->fatal( 'backend-fail-invalidpath', $params['dir'] );
+			return $status; // invalid storage path
+		}
+		if ( $shard !== null ) { // confined to a single container/shard
+			$status->merge( $this->doClean( $fullCont, $dir, $params ) );
+		} else { // directory is on several shards
+			wfDebug( __METHOD__ . ": iterating over all container shards.\n" );
+			list( $b, $shortCont, $r ) = self::splitStoragePath( $params['dir'] );
+			foreach ( $this->getContainerSuffixes( $shortCont ) as $suffix ) {
+				$status->merge( $this->doClean( "{$fullCont}{$suffix}", $dir, $params ) );
+			}
+		}
+		return $status;
+	}
+
+	/**
+	 * @see FileBackend::clean()
+	 */
+	protected function doClean( $container, $dir, array $params ) {
 		return Status::newGood();
 	}
 
@@ -750,6 +817,36 @@ abstract class FileBackend extends FileBackendBase {
 
 		return $status;
 	}
+
+	/**
+	 * @see FileBackendBase::getFileList()
+	 */
+	final public function getFileList( array $params ) {
+		list( $fullCont, $dir, $shard ) = $this->resolveStoragePath( $params['dir'] );
+		if ( $dir === null ) { // invalid storage path
+			return null;
+		}
+		if ( $shard !== null ) {
+			// File listing is confined to a single container/shard
+			return $this->getFileListInternal( $fullCont, $dir, $params );
+		} else {
+			wfDebug( __METHOD__ . ": iterating over all container shards.\n" );
+			// File listing spans multiple containers/shards
+			list( $b, $shortCont, $r ) = self::splitStoragePath( $params['dir'] );
+			return new ContainerShardListIterator( $this,
+				$fullCont, $this->getContainerSuffixes( $shortCont ), $params );
+		}
+	}
+
+	/**
+	 * Do not call this function from places outside FileBackend and ContainerFileListIterator
+	 *
+	 * @param $container string Resolved container name
+	 * @param $dir string Resolved path relative to container
+	 * @param $params Array
+	 * @see FileBackend::getFileList()
+	 */
+	abstract public function getFileListInternal( $container, $dir, array $params );
 
 	/**
 	 * Get the list of supported operations and their corresponding FileOp classes.
@@ -906,7 +1003,8 @@ abstract class FileBackend extends FileBackendBase {
 		// This accounts for Swift and S3 restrictions. Also note
 		// that these urlencode to the same string, which is useful
 		// since the Swift size limit is *after* URL encoding.
-		return preg_match( '/^[a-zA-Z0-9._-]{1,256}$/u', $container );
+		// Limit to 200 to leave room for '.shard-XX' or '.segment'.
+		return preg_match( '/^[a-zA-Z0-9._-]{1,200}$/u', $container );
 	}
 
 	/**
@@ -937,31 +1035,120 @@ abstract class FileBackend extends FileBackendBase {
 	}
 
 	/**
-	 * Split a storage path (e.g. "mwstore://backend/container/path/to/object")
-	 * into an internal container name and an internal relative object name.
-	 * This also checks that the storage path is valid and is within this backend.
+	 * Splits a storage path into an internal container name,
+	 * an internal relative object name, and a container shard suffix.
+	 * Any shard suffix is already appended to the internal container name.
+	 * This also checks that the storage path is valid and within this backend.
+	 *
+	 * If the container is sharded but a suffix could not be determined,
+	 * this means that the path can only refer to a directory and can only
+	 * be scanned by looking in all the container shards.
 	 *
 	 * @param $storagePath string
-	 * @return Array (container, object name) or (null, null) if path is invalid
+	 * @return Array (container, path, container suffix) or (null, null, null) if invalid
 	 */
 	final protected function resolveStoragePath( $storagePath ) {
 		list( $backend, $container, $relPath ) = self::splitStoragePath( $storagePath );
 		if ( $backend === $this->name ) { // must be for this backend
 			$relPath = self::normalizeStoragePath( $relPath );
 			if ( $relPath !== null ) {
+				// Get shard for the normalized path if this container is sharded
+				$cShard = $this->getContainerShard( $container, $relPath );
+				// Validate and sanitize the relative path (backend-specific)
 				$relPath = $this->resolveContainerPath( $container, $relPath );
 				if ( $relPath !== null ) {
+					// Prepend any wiki ID prefix to the container name
 					$container = $this->fullContainerName( $container );
 					if ( self::isValidContainerName( $container ) ) {
-						$container = $this->resolveContainerName( $container );
+						// Validate and sanitize the container name (backend-specific)
+						$container = $this->resolveContainerName( "{$container}{$cShard}" );
 						if ( $container !== null ) {
-							return array( $container, $relPath );
+							return array( $container, $relPath, $cShard );
 						}
 					}
 				}
 			}
 		}
+		return array( null, null, null );
+	}
+
+	/**
+	 * Like resolveStoragePath() except null values are returned if
+	 * the container is sharded and the shard could not be determined.
+	 *
+	 * @see FileBackend::resolveStoragePath()
+	 *
+	 * @param $storagePath string
+	 * @return Array (container, path) or (null, null) if invalid
+	 */
+	final protected function resolveStoragePathReal( $storagePath ) {
+		list( $container, $relPath, $cShard ) = $this->resolveStoragePath( $storagePath );
+		if ( $cShard !== null ) {
+			return array( $container, $relPath );
+		}
 		return array( null, null );
+	}
+
+	/**
+	 * Get the container name shard suffix for a given path.
+	 * Any empty suffix means the container is not sharded.
+	 *
+	 * @param $container string Container name
+	 * @param $relStoragePath string Storage path relative to the container
+	 * @return string|null Returns null if shard could not be determined
+	 */
+	final protected function getContainerShard( $container, $relPath ) {
+		$hashLevels = $this->getContainerHashLevels( $container );
+		if ( $hashLevels === 1 ) { // 16 shards per container
+			$hashDirRegex = '(?P<shard>[0-9a-f])';
+		} elseif ( $hashLevels === 2 ) { // 256 shards per container
+			$hashDirRegex = '[0-9a-f]/(?P<shard>[0-9a-f]{2})';
+		} else {
+			return ''; // no sharding
+		}
+		// Allow certain directories to be above the hash dirs so as
+		// to work with FileRepo (e.g. "archive/a/ab" or "temp/a/ab").
+		// They must be 2+ chars to avoid any hash directory ambiguity.
+		if ( preg_match( "!^(?:[^/]{2,}/)*$hashDirRegex(?:/|$)!", $relPath, $m ) ) {
+			return '.shard-' . str_pad( $m['shard'], $hashLevels, '0', STR_PAD_LEFT );
+		}
+		return null; // failed to match
+	}
+
+	/**
+	 * Get the number of hash levels for a container.
+	 * If greater than 0, then all file storage paths within
+	 * the container are required to be hashed accordingly.
+	 *
+	 * @param $container string
+	 * @return integer
+	 */
+	final protected function getContainerHashLevels( $container ) {
+		if ( isset( $this->shardViaHashLevels[$container] ) ) {
+			$hashLevels = (int)$this->shardViaHashLevels[$container];
+			if ( $hashLevels >= 0 && $hashLevels <= 2 ) {
+				return $hashLevels;
+			}
+		}
+		return 0; // no sharding
+	}
+
+	/**
+	 * Get a list of full container shard suffixes for a container
+	 * 
+	 * @param $container string
+	 * @return Array 
+	 */
+	final protected function getContainerSuffixes( $container ) {
+		$shards = array();
+		$digits = $this->getContainerHashLevels( $container );
+		if ( $digits > 0 ) {
+			$numShards = 1 << ( $digits * 4 );
+			for ( $index = 0; $index < $numShards; $index++ ) {
+				$shards[] = '.shard-' . str_pad( dechex( $index ), $digits, '0', STR_PAD_LEFT );
+			}
+		}
+		return $shards;
 	}
 
 	/**
@@ -996,8 +1183,8 @@ abstract class FileBackend extends FileBackendBase {
 	 * getting absolute paths (e.g. FS based backends). Note that the relative path
 	 * may be the empty string (e.g. the path is simply to the container).
 	 *
-	 * @param $container string Container the path is relative to
-	 * @param $relStoragePath string Relative storage path
+	 * @param $container string Container name
+	 * @param $relStoragePath string Storage path relative to the container
 	 * @return string|null Path or null if not valid
 	 */
 	protected function resolveContainerPath( $container, $relStoragePath ) {
@@ -1013,5 +1200,104 @@ abstract class FileBackend extends FileBackendBase {
 	final public static function extensionFromPath( $path ) {
 		$i = strrpos( $path, '.' );
 		return strtolower( $i ? substr( $path, $i + 1 ) : '' );
+	}
+}
+
+/**
+ * FileBackend helper function to handle file listings that span container shards.
+ * Do not use this class from places outside of FileBackend.
+ *
+ * @ingroup FileBackend
+ */
+class ContainerShardListIterator implements Iterator {
+	/* @var FileBackend */
+	protected $backend;
+	/* @var Array */
+	protected $params;
+	/* @var Array */
+	protected $shardSuffixes;
+	protected $container; // string
+	protected $directory; // string
+
+	/* @var Traversable */
+	protected $iter;
+	protected $curShard = 0; // integer
+	protected $pos = 0; // integer
+
+	/**
+	 * @param $backend FileBackend
+	 * @param $container string Full storage container name
+	 * @param $dir string Storage directory relative to container
+	 * @param $suffixes Array List of container shard suffixes
+	 * @param $params Array
+	 */
+	public function __construct(
+		FileBackend $backend, $container, $dir, array $suffixes, array $params
+	) {
+		$this->backend = $backend;
+		$this->container = $container;
+		$this->directory = $dir;
+		$this->shardSuffixes = $suffixes;
+		$this->params = $params;
+	}
+
+	public function current() {
+		if ( is_array( $this->iter ) ) {
+			return current( $this->iter );
+		} else {
+			return $this->iter->current();
+		}
+	}
+
+	public function key() {
+		return $this->pos;
+	}
+
+	public function next() {
+		++$this->pos;
+		if ( is_array( $this->iter ) ) {
+			next( $this->iter );
+		} else {
+			$this->iter->next();
+		}
+		// Find the next non-empty shard if no elements are left
+		$this->nextShardIteratorIfNotValid();
+	}
+
+	/**
+	 * If the iterator for this container shard is out of items,
+	 * then move on to the next container that has items.
+	 */
+	protected function nextShardIteratorIfNotValid() {
+		while ( !$this->valid() ) {
+			if ( ++$this->curShard >= count( $this->shardSuffixes ) ) {
+				break; // no more container shards
+			}
+			$this->setIteratorFromCurrentShard();
+		}
+	}
+
+	protected function setIteratorFromCurrentShard() {
+		$suffix = $this->shardSuffixes[$this->curShard];
+		$this->iter = $this->backend->getFileListInternal(
+			"{$this->container}{$suffix}", $this->directory, $this->params );
+	}
+
+	public function rewind() {
+		$this->pos = 0;
+		$this->curShard = 0;
+		$this->setIteratorFromCurrentShard();
+		// Find the next non-empty shard if this one has no elements
+		$this->nextShardIteratorIfNotValid();
+	}
+
+	public function valid() {
+		if ( $this->iter == null ) {
+			return false; // some failure?
+		} elseif ( is_array( $this->iter ) ) {
+			return ( current( $this->iter ) !== false ); // no paths can have this value
+		} else {
+			return $this->iter->valid();
+		}
 	}
 }

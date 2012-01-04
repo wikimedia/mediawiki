@@ -7,6 +7,10 @@
 
 /**
  * Class for a file system based file backend.
+ * Containers are just directories and container sharding is not supported.
+ * Also, for backwards-compatibility, the wiki ID prefix is not used.
+ * Users of this class should set wiki-specific container paths as needed.
+ *
  * Status messages should avoid mentioning the internal FS paths.
  * Likewise, error suppression should be used to avoid path disclosure.
  *
@@ -23,7 +27,7 @@ class FSFileBackend extends FileBackend {
 	 *    containerPaths : Map of container names to absolute file system paths
 	 *    fileMode       : Octal UNIX file permissions to use on files stored
 	 */
-	function __construct( array $config ) {
+	public function __construct( array $config ) {
 		parent::__construct( $config );
 		$this->containerPaths = (array)$config['containerPaths'];
 		foreach ( $this->containerPaths as &$path ) {
@@ -53,7 +57,7 @@ class FSFileBackend extends FileBackend {
 	protected function doStoreInternal( array $params ) {
 		$status = Status::newGood();
 
-		list( $c, $dest ) = $this->resolveStoragePath( $params['dst'] );
+		list( $c, $dest ) = $this->resolveStoragePathReal( $params['dst'] );
 		if ( $dest === null ) {
 			$status->fatal( 'backend-fail-invalidpath', $params['dst'] );
 			return $status;
@@ -97,13 +101,13 @@ class FSFileBackend extends FileBackend {
 	protected function doCopyInternal( array $params ) {
 		$status = Status::newGood();
 
-		list( $c, $source ) = $this->resolveStoragePath( $params['src'] );
+		list( $c, $source ) = $this->resolveStoragePathReal( $params['src'] );
 		if ( $source === null ) {
 			$status->fatal( 'backend-fail-invalidpath', $params['src'] );
 			return $status;
 		}
 
-		list( $c, $dest ) = $this->resolveStoragePath( $params['dst'] );
+		list( $c, $dest ) = $this->resolveStoragePathReal( $params['dst'] );
 		if ( $dest === null ) {
 			$status->fatal( 'backend-fail-invalidpath', $params['dst'] );
 			return $status;
@@ -148,12 +152,12 @@ class FSFileBackend extends FileBackend {
 	protected function doMoveInternal( array $params ) {
 		$status = Status::newGood();
 
-		list( $c, $source ) = $this->resolveStoragePath( $params['src'] );
+		list( $c, $source ) = $this->resolveStoragePathReal( $params['src'] );
 		if ( $source === null ) {
 			$status->fatal( 'backend-fail-invalidpath', $params['src'] );
 			return $status;
 		}
-		list( $c, $dest ) = $this->resolveStoragePath( $params['dst'] );
+		list( $c, $dest ) = $this->resolveStoragePathReal( $params['dst'] );
 		if ( $dest === null ) {
 			$status->fatal( 'backend-fail-invalidpath', $params['dst'] );
 			return $status;
@@ -200,7 +204,7 @@ class FSFileBackend extends FileBackend {
 	protected function doDeleteInternal( array $params ) {
 		$status = Status::newGood();
 
-		list( $c, $source ) = $this->resolveStoragePath( $params['src'] );
+		list( $c, $source ) = $this->resolveStoragePathReal( $params['src'] );
 		if ( $source === null ) {
 			$status->fatal( 'backend-fail-invalidpath', $params['src'] );
 			return $status;
@@ -230,7 +234,7 @@ class FSFileBackend extends FileBackend {
 	protected function doCreateInternal( array $params ) {
 		$status = Status::newGood();
 
-		list( $c, $dest ) = $this->resolveStoragePath( $params['dst'] );
+		list( $c, $dest ) = $this->resolveStoragePathReal( $params['dst'] );
 		if ( $dest === null ) {
 			$status->fatal( 'backend-fail-invalidpath', $params['dst'] );
 			return $status;
@@ -270,53 +274,30 @@ class FSFileBackend extends FileBackend {
 	}
 
 	/**
-	 * @see FileBackend::prepare()
+	 * @see FileBackend::doPrepare()
 	 */
-	function prepare( array $params ) {
+	protected function doPrepare( $container, $dir, array $params ) {
 		$status = Status::newGood();
-		list( $c, $dir ) = $this->resolveStoragePath( $params['dir'] );
-		if ( $dir === null ) {
-			$status->fatal( 'backend-fail-invalidpath', $params['dir'] );
-			return $status; // invalid storage path
-		}
 		if ( !wfMkdirParents( $dir ) ) {
 			$status->fatal( 'directorycreateerror', $params['dir'] );
-			return $status;
 		} elseif ( !is_writable( $dir ) ) {
 			$status->fatal( 'directoryreadonlyerror', $params['dir'] );
-			return $status;
 		} elseif ( !is_readable( $dir ) ) {
 			$status->fatal( 'directorynotreadableerror', $params['dir'] );
-			return $status;
 		}
 		return $status;
 	}
 
 	/**
-	 * @see FileBackend::secure()
+	 * @see FileBackend::doSecure()
 	 */
-	function secure( array $params ) {
+	protected function doSecure( $container, $dir, array $params ) {
 		$status = Status::newGood();
-		list( $c, $dir ) = $this->resolveStoragePath( $params['dir'] );
-		if ( $dir === null ) {
-			$status->fatal( 'backend-fail-invalidpath', $params['dir'] );
-			return $status; // invalid storage path
-		}
 		if ( !wfMkdirParents( $dir ) ) {
 			$status->fatal( 'directorycreateerror', $params['dir'] );
 			return $status;
 		}
-		// Add a .htaccess file to the root of the deleted zone
-		if ( !empty( $params['noAccess'] ) && !file_exists( "{$dir}/.htaccess" ) ) {
-			wfSuppressWarnings();
-			$ok = file_put_contents( "{$dir}/.htaccess", "Deny from all\n" );
-			wfRestoreWarnings();
-			if ( !$ok ) {
-				$status->fatal( 'backend-fail-create', $params['dir'] . '/.htaccess' );
-				return $status;
-			}
-		}
-		// Seed new directories with a blank index.html, to prevent crawling
+		// Seed new directories with a blank index.html, to prevent crawling...
 		if ( !empty( $params['noListing'] ) && !file_exists( "{$dir}/index.html" ) ) {
 			wfSuppressWarnings();
 			$ok = file_put_contents( "{$dir}/index.html", '' );
@@ -326,19 +307,27 @@ class FSFileBackend extends FileBackend {
 				return $status;
 			}
 		}
+		// Add a .htaccess file to the root of the container...
+		list( $b, $container, $r ) = FileBackend::splitStoragePath( $params['dir'] );
+		$dirRoot = $this->containerPaths[$container]; // real path
+		if ( !empty( $params['noAccess'] ) && !file_exists( "{$dirRoot}/.htaccess" ) ) {
+			wfSuppressWarnings();
+			$ok = file_put_contents( "{$dirRoot}/.htaccess", "Deny from all\n" );
+			wfRestoreWarnings();
+			if ( !$ok ) {
+				$storeDir = "mwstore://{$this->name}/{$container}";
+				$status->fatal( 'backend-fail-create', "$storeDir/.htaccess" );
+				return $status;
+			}
+		}
 		return $status;
 	}
 
 	/**
-	 * @see FileBackend::clean()
+	 * @see FileBackend::doClean()
 	 */
-	function clean( array $params ) {
+	protected function doClean( $container, $dir, array $params ) {
 		$status = Status::newGood();
-		list( $c, $dir ) = $this->resolveStoragePath( $params['dir'] );
-		if ( $dir === null ) {
-			$status->fatal( 'backend-fail-invalidpath', $params['dir'] );
-			return $status; // invalid storage path
-		}
 		wfSuppressWarnings();
 		if ( is_dir( $dir ) ) {
 			rmdir( $dir ); // remove directory if empty
@@ -350,8 +339,8 @@ class FSFileBackend extends FileBackend {
 	/**
 	 * @see FileBackend::fileExists()
 	 */
-	function fileExists( array $params ) {
-		list( $c, $source ) = $this->resolveStoragePath( $params['src'] );
+	public function fileExists( array $params ) {
+		list( $c, $source ) = $this->resolveStoragePathReal( $params['src'] );
 		if ( $source === null ) {
 			return false; // invalid storage path
 		}
@@ -364,8 +353,8 @@ class FSFileBackend extends FileBackend {
 	/**
 	 * @see FileBackend::getFileTimestamp()
 	 */
-	function getFileTimestamp( array $params ) {
-		list( $c, $source ) = $this->resolveStoragePath( $params['src'] );
+	public function getFileTimestamp( array $params ) {
+		list( $c, $source ) = $this->resolveStoragePathReal( $params['src'] );
 		if ( $source === null ) {
 			return false; // invalid storage path
 		}
@@ -374,13 +363,9 @@ class FSFileBackend extends FileBackend {
 	}
 
 	/**
-	 * @see FileBackend::getFileList()
+	 * @see FileBackend::getFileListInternal()
 	 */
-	function getFileList( array $params ) {
-		list( $c, $dir ) = $this->resolveStoragePath( $params['dir'] );
-		if ( $dir === null ) { // invalid storage path
-			return null;
-		}
+	public function getFileListInternal( $container, $dir, array $params ) {
 		wfSuppressWarnings();
 		$exists = is_dir( $dir );
 		wfRestoreWarnings();
@@ -399,8 +384,8 @@ class FSFileBackend extends FileBackend {
 	/**
 	 * @see FileBackend::getLocalReference()
 	 */
-	function getLocalReference( array $params ) {
-		list( $c, $source ) = $this->resolveStoragePath( $params['src'] );
+	public function getLocalReference( array $params ) {
+		list( $c, $source ) = $this->resolveStoragePathReal( $params['src'] );
 		if ( $source === null ) {
 			return null;
 		}
@@ -410,16 +395,14 @@ class FSFileBackend extends FileBackend {
 	/**
 	 * @see FileBackend::getLocalCopy()
 	 */
-	function getLocalCopy( array $params ) {
-		list( $c, $source ) = $this->resolveStoragePath( $params['src'] );
+	public function getLocalCopy( array $params ) {
+		list( $c, $source ) = $this->resolveStoragePathReal( $params['src'] );
 		if ( $source === null ) {
 			return null;
 		}
 
-		// Get source file extension
-		$i = strrpos( $source, '.' );
-		$ext = strtolower( $i ? substr( $source, $i + 1 ) : '' );
-		// Create a new temporary file...
+		// Create a new temporary file with the same extension...
+		$ext = FileBackend::extensionFromPath( $params['src'] );
 		$tmpFile = TempFSFile::factory( wfBaseName( $source ) . '_', $ext );
 		if ( !$tmpFile ) {
 			return null;
