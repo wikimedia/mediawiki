@@ -129,6 +129,7 @@ video/x-sgi-movie movie
 x-conference/x-cooltalk ice
 application/vnd.oasis.opendocument.chart odc
 application/vnd.oasis.opendocument.chart-template otc
+application/vnd.oasis.opendocument.database odb
 application/vnd.oasis.opendocument.formula odf
 application/vnd.oasis.opendocument.formula-template otf
 application/vnd.oasis.opendocument.graphics odg
