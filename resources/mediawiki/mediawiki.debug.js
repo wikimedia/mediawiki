@@ -8,6 +8,8 @@
 ( function ( $, mw, undefined ) {
 "use strict";
 
+	var hovzer = $.getFootHovzer();
+
 	var debug = mw.Debug = {
 		/**
 		 * Toolbar container element
@@ -29,11 +31,13 @@
 		 * @param {Object} data
 		 */
 		init: function ( data ) {
+
 			this.data = data;
 			this.buildHtml();
 
 			// Insert the container into the DOM
-			$( 'body' ).append( this.$container );
+			hovzer.$.append( this.$container );
+			hovzer.update();
 
 			$( '.mw-debug-panelink' ).click( this.switchPane );
 		},
@@ -49,15 +53,22 @@
 			var currentPaneId = debug.$container.data( 'currentPane' ),
 				requestedPaneId = $(this).prop( 'id' ).substr( 9 ),
 				$currentPane = $( '#mw-debug-pane-' + currentPaneId ),
-				$requestedPane = $( '#mw-debug-pane-' + requestedPaneId );
+				$requestedPane = $( '#mw-debug-pane-' + requestedPaneId ),
+				hovDone = false;
+
+			function updateHov() {
+				if ( !hovDone ) {
+					hovzer.update();
+					hovDone = true;
+				}
+			}
 
 			$( this ).addClass( 'current ')
 			$( '.mw-debug-panelink' ).not( this ).removeClass( 'current ');
 
-
 			// Hide the current pane
 			if ( requestedPaneId === currentPaneId ) {
-				$currentPane.slideUp();
+				$currentPane.slideUp( updateHov );
 				debug.$container.data( 'currentPane', null );
 				return;
 			}
@@ -65,10 +76,11 @@
 			debug.$container.data( 'currentPane', requestedPaneId );
 
 			if ( currentPaneId === undefined || currentPaneId === null ) {
-				$requestedPane.slideDown();
+				$requestedPane.slideDown( updateHov );
 			} else {
 				$currentPane.hide();
 				$requestedPane.show();
+				updateHov();
 			}
 		},
 
@@ -78,7 +90,7 @@
 		buildHtml: function () {
 			var $container, $bits, panes, id;
 
-			$container = $( '<div id="mw-debug-container" class="mw-debug"></div>' );
+			$container = $( '<div id="mw-debug-toolbar" class="mw-debug"></div>' );
 
 			$bits = $( '<div class="mw-debug-bits"></div>' );
 

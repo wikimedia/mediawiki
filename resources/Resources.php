@@ -127,6 +127,10 @@ return array(
 		'styles' => 'resources/jquery/jquery.farbtastic.css',
 		'dependencies' => 'jquery.colorUtil',
 	),
+	'jquery.footHovzer' => array(
+		'scripts' => 'resources/jquery/jquery.footHovzer.js',
+		'styles' => 'resources/jquery/jquery.footHovzer.css',
+	),
 	'jquery.form' => array(
 		'scripts' => 'resources/jquery/jquery.form.js',
 	),
@@ -533,6 +537,7 @@ return array(
 	'mediawiki.debug' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.debug.js',
 		'styles' => 'resources/mediawiki/mediawiki.debug.css',
+		'dependencies' => 'jquery.footHovzer',
 	),
 	'mediawiki.feedback' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.feedback.js',
