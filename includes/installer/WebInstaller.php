@@ -677,12 +677,10 @@ class WebInstaller extends Installer {
 	 * @param $status Status
 	 */
 	public function showStatusMessage( Status $status ) {
-		$text = $status->getWikiText();
-		$this->output->addWikiText(
-			"<div class=\"config-message\">\n" .
-			$text .
-			"</div>"
-		);
+		$errors = array_merge( $status->getErrorsArray(), $status->getWarningsArray() );
+		foreach ( $errors as $error ) {
+			call_user_func_array( array( $this, 'showMessage' ), $error );
+		}
 	}
 
 	/**
