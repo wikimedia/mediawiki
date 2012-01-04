@@ -43,6 +43,11 @@ class WikiPage extends Page {
 	protected $mTimestamp = '';
 
 	/**
+	 * @var string
+	 */
+	protected $mTouched = '19700101000000';
+
+	/**
 	 * Constructor and clear the article
 	 * @param $title Title Reference to a Title object.
 	 */
@@ -243,6 +248,7 @@ class WikiPage extends Page {
 
 		$this->mRedirectTarget = null; # Title object if set
 		$this->mLastRevision = null; # Latest revision
+		$this->mTouched = '19700101000000';
 		$this->mTimestamp = '';
 		$this->mIsRedirect = false;
 		$this->mLatest = false;
@@ -379,6 +385,7 @@ class WikiPage extends Page {
 			# Old-fashioned restrictions
 			$this->mTitle->loadRestrictions( $data->page_restrictions );
 
+			$this->mTouched     = wfTimestamp( TS_MW, $data->page_touched );
 			$this->mIsRedirect  = intval( $data->page_is_redirect );
 			$this->mLatest      = intval( $data->page_latest );
 		} else {
@@ -505,7 +512,7 @@ class WikiPage extends Page {
 		if ( !$this->mDataLoaded ) {
 			$this->loadPageData();
 		}
-		return $this->mTitle->getTouched();
+		return $this->mTouched;
 	}
 
 	/**
