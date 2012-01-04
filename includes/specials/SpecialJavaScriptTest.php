@@ -58,8 +58,10 @@ class SpecialJavaScriptTest extends SpecialPage {
 			$summary = $this->wrapSummaryHtml( '<p class="error">'
 				. wfMsg( 'javascripttest-pagetext-unknownframework', $par )
 				. '</p>'
-				. $this->getFrameworkListHtml() );
-			$out->addHtml( $summary, 'unknownframework' );
+				. $this->getFrameworkListHtml(),
+				'unknownframework'
+			);
+			$out->addHtml( $summary );
 		}
 	}
 
@@ -84,10 +86,19 @@ class SpecialJavaScriptTest extends SpecialPage {
 
 	/**
 	 * Function to wrap the summary.
+	 * It must be given a valid state as a second parameter or an exception will
+	 * be thrown.
 	 * @param $html String: The raw HTML.
 	 * @param $state String: State, one of 'noframework', 'unknownframework' or 'frameworkfound'
 	 */
-	private function wrapSummaryHtml( $html = '', $state ) {
+	private function wrapSummaryHtml( $html, $state ) {
+		$validStates = array( 'noframework', 'unknownframework', 'frameworkfound' );
+		if( !in_array( $state, $validStates ) ) {
+			throw new MWException( __METHOD__
+				. ' given an invalid state. Must be one of "'
+				. join( '", "', $validStates) . '".'
+			);
+		}
 		return "<div id=\"mw-javascripttest-summary\" class=\"mw-javascripttest-$state\">$html</div>";
 	}
 
