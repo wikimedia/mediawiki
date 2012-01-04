@@ -671,19 +671,18 @@ class SpecialPage {
 	 * Shortcut to get user's language
 	 *
 	 * @return Language
-	 * @since 1.18.1
+	 * @since 1.18
 	 */
-	public function getLanguage() {
-		return $this->getContext()->getLanguage();
+	public function getLang() {
+		return $this->getContext()->getLang();
 	}
 
 	/**
 	 * Shortcut to get user's language
 	 *
 	 * @return Language
-	 * @since 1.18
 	 */
-	public function getLang() {
+	public function getLanguage() {
 		return $this->getContext()->getLang();
 	}
 
