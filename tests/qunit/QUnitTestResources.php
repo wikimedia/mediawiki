@@ -20,7 +20,7 @@ return array(
 			'tests/qunit/suites/resources/jquery/jquery.textSelection.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.jscompat.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.test.js',
-			'tests/qunit/suites/resources/mediawiki/mediawiki.title.test.js',
+			'tests/qunit/suites/resources/mediawiki/mediawiki.Title.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.user.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.util.test.js',
 			'tests/qunit/suites/resources/mediawiki.special/mediawiki.special.recentchanges.test.js',
