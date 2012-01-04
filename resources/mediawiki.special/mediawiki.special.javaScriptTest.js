@@ -9,7 +9,7 @@ jQuery( document ).ready( function( $ ) {
 
 		var	$html = $( '<p><label for="useskin">'
 				+ mw.message( 'javascripttest-pagetext-skins' ).escaped()
-				+ mw.message( 'colon-separator' ).plain()
+				+ ' '
 				+ '</label></p>' ),
 			select = '<select name="useskin" id="useskin">';
 
