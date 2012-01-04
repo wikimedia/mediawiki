@@ -3414,7 +3414,7 @@ Please try again.',
 'javascripttest-pagetext-noframework'      => 'This page is reserved for running JavaScript tests.',
 'javascripttest-pagetext-unknownframework' => 'Unknown testing framework "$1".',
 'javascripttest-pagetext-frameworks'       => 'Please choose one of the following testing frameworks: $1',
-'javascripttest-pagetext-skins'            => 'Available skins',
+'javascripttest-pagetext-skins'            => 'Choose a skin to run the tests with:',
 'javascripttest-qunit-name'                => 'QUnit', # do not translate or duplicate this message to other languages
 'javascripttest-qunit-intro'               => 'See [$1 testing documentation] on mediawiki.org.',
 'javascripttest-qunit-heading'             => 'MediaWiki JavaScript QUnit test suite',
