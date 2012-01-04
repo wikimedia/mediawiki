@@ -103,6 +103,7 @@ The following database types are supported: $1.
 If you are on shared hosting, ask your hosting provider to install a suitable database driver.
 If you compiled PHP yourself, reconfigure it with a database client enabled, for example using <code>./configure --with-mysql</code>.
 If you installed PHP from a Debian or Ubuntu package, then you also need install the php5-mysql module.',
+	'config-outdated-sqlite'          => "'''Warning''': you have SQLite $1, which is lower than minimum required version $2. SQLite will be unavailable.",
 	'config-no-fts3'                  => "'''Warning''': SQLite is compiled without the [//sqlite.org/fts3.html FTS3 module], search features will be unavailable on this backend.",
 	'config-register-globals'         => "'''Warning: PHP's <code>[http://php.net/register_globals register_globals]</code> option is enabled.'''
 '''Disable it if you can.'''
