@@ -13,11 +13,9 @@
 		 * watch object contains 'title' (full page name), 'watched' (boolean) and
 		 * 'message' (parsed HTML of the 'addedwatchtext' message).
 		 * @param err {Function} callback if error (optional)
-		 * @param unwatch {Boolean} Internal variable, do not use. Used by unwatch() to
-		 * reuse this function.
 		 * @return {jqXHR}
 		 */
-		watch: function( page, success, err, unwatch ) {
+		watch: function( page, success, err ) {
 			var params, ok;
 			params = {
 				action: 'watch',
@@ -40,7 +38,7 @@
 		 * @param err {Function} callback if error (optional)
 		 * @return {jqXHR}
 		 */
-		unwatch: function( page, success, err, unwatch ) {
+		unwatch: function( page, success, err ) {
 			var params, ok;
 			params = {
 				action: 'watch',
