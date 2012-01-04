@@ -2729,6 +2729,9 @@ class Language {
 	 */
 	function commafy( $_ ) {
 		$digitGroupingPattern = $this->digitGroupingPattern();
+		if ( $_ === null ) {
+			return '';
+		}
 
 		if ( !$digitGroupingPattern || $digitGroupingPattern === "###,###,###" ) {
 			// default grouping is at thousands,  use the same for ###,###,### pattern too.
