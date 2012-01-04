@@ -645,7 +645,7 @@ class DatabasePostgres extends DatabaseBase {
 			$schema = '"' . $dbDetails[0] . '".';
 			$table  = $dbDetails [1];
 		} else {
-			$schema = "\"{$wgDBmwschema}\"."; # keep old schema, but quote it.
+			$schema = ""; # do NOT force the schema (due to temporary tables)
 			$table = $dbDetails[0];
 		}
 		if ( $format != 'quoted' ) {
@@ -659,11 +659,6 @@ class DatabasePostgres extends DatabaseBase {
 			}
 		}
 
-		# during installation wgDBmwschema is not set, so we would end up quering
-		# ""."table" => error. Erase the first part if wgDBmwschema is empty
-		if ( $schema == "\"\"." ) {
-			$schema = "";
-		}
 		if ( isset( $wgSharedDB ) # We have a shared database (=> schema)
 		  && isset( $wgSharedTables )
 		  && is_array( $wgSharedTables )
