@@ -1580,7 +1580,7 @@ loader request or generating HTML output.
 &$resourceLoader: ResourceLoader object
 
 'ResourceLoaderTestModules': let you add new JavaScript testing modules. This is called after the addition of 'qunit' and MediaWiki testing resources.
-&testModules: array of JavaScript testing modules. 'qunit' is feed using tests/qunit/QUnitTestResources.php.
+&testModules: array of JavaScript testing modules. The 'qunit' framework, included in core, is feed using tests/qunit/QUnitTestResources.php.
 &ResourceLoader object
 To add a new qunit module named 'myext.tests':
 testModules['qunit']['myext.tests'] = array(
