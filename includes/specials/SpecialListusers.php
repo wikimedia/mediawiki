@@ -40,7 +40,8 @@ class UsersPager extends AlphabeticPager {
 		}
 
 		$request = $this->getRequest();
-		$parms = explode( '/', ($par = ( $par !== null ) ? $par : '' ) );
+		$par = ( $par !== null ) ? $par : '';
+		$parms = explode( '/', $par );
 		$symsForAll = array( '*', 'user' );
 		if ( $parms[0] != '' && ( in_array( $par, User::getAllGroups() ) || in_array( $par, $symsForAll ) ) ) {
 			$this->requestedGroup = $par;
