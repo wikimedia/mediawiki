@@ -4613,6 +4613,7 @@ class Parser {
 	 */
 	function clearTagHooks() {
 		$this->mTagHooks = array();
+		$this->mFunctionTagHooks = array();
 		$this->mStripList = $this->mDefaultStripList;
 	}
 
@@ -5154,7 +5155,7 @@ class Parser {
 	 * @return array
 	 */
 	function getTags() {
-		return array_merge( array_keys( $this->mTransparentTagHooks ), array_keys( $this->mTagHooks ) );
+		return array_merge( array_keys( $this->mTransparentTagHooks ), array_keys( $this->mTagHooks ), array_keys( $this->mFunctionTagHooks ) );
 	}
 
 	/**
