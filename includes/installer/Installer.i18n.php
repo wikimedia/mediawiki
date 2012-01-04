@@ -139,7 +139,7 @@ The installation may fail!",
 	'config-wincache'                 => '[http://www.iis.net/download/WinCacheForPhp WinCache] is installed',
 	'config-no-cache'                 => "'''Warning:''' Could not find [http://www.php.net/apc APC], [http://xcache.lighttpd.net/ XCache] or [http://www.iis.net/download/WinCacheForPhp WinCache].
 Object caching is not enabled.",
-	'config-mod-security'             => "'''Warning''': your web server has [http://modsecurity.org/ mod_security] enabled. If misconfigured, it can cause problems for MediaWiki or other software that allows users to post arbitrary content.
+	'config-mod-security'             => "'''Warning''': Your web server has [http://modsecurity.org/ mod_security] enabled. If misconfigured, it can cause problems for MediaWiki or other software that allows users to post arbitrary content.
 Refer to [http://modsecurity.org/documentation/ mod_security documentation] or contact your host's support if you encounter random errors.",
 	'config-diff3-bad'                => 'GNU diff3 not found.',
 	'config-imagemagick'              => 'Found ImageMagick: <code>$1</code>.
