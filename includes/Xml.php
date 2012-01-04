@@ -215,7 +215,7 @@ class Xml {
 	 * @param string $language The ISO code of the language to display the select list in (optional)
 	 * @return array containing 2 items: label HTML and select list HTML
 	 */
-	public static function languageSelector( $selected, $customisedOnly = true, $language = NULL ) {
+	public static function languageSelector( $selected, $customisedOnly = true, $language = null ) {
 		global $wgLanguageCode;
 
 		// If a specific language was requested and CLDR is installed, use it
