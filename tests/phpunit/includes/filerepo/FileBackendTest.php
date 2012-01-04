@@ -433,6 +433,32 @@ class FileBackendTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @dataProvider provider_testGetFileContents
+	 */
+	public function testGetFileContents( $src, $content ) {
+		$this->pathsToPrune[] = $src;
+
+		$status = $this->backend->doOperation(
+			array( 'op' => 'create', 'content' => $content, 'dst' => $src ) );
+		$this->assertEquals( true, $status->isOK(), "Creation of file at $src succeeded." );
+
+		$newContents = $this->backend->getFileContents( array( 'src' => $src ) );
+		$this->assertNotEquals( false, $newContents, "Read of file at $src succeeded." );
+
+		$this->assertEquals( $content, $newContents, "Contents read match data at $src." );
+	}
+
+	function provider_testGetFileContents() {
+		$cases = array();
+
+		$base = $this->singleBasePath();
+		$cases[] = array( "$base/cont1/b/z/some_file.txt", "some file contents" );
+		$cases[] = array( "$base/cont1/b/some-other_file.txt", "more file contents" );
+
+		return $cases;
+	}
+
+	/**
 	 * @dataProvider provider_testGetLocalCopy
 	 */
 	public function testGetLocalCopy( $src, $content ) {
@@ -460,7 +486,7 @@ class FileBackendTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider provider_testGetReference
+	 * @dataProvider provider_testGetLocalReference
 	 */
 	public function testGetLocalReference( $src, $content ) {
 		$this->pathsToPrune[] = $src;
@@ -476,7 +502,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->assertNotEquals( false, $contents, "Local copy of $src exists." );
 	}
 
-	function provider_testGetReference() {
+	function provider_testGetLocalReference() {
 		$cases = array();
 
 		$base = $this->singleBasePath();
