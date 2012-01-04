@@ -1780,6 +1780,7 @@ I guess that this should appear before an input box where you can specify that r
 'rc-change-size'                  => '{{optional}}
 
 Does not work under $wgMiserMode ([[mwr:48986|r48986]]).',
+'rc-change-size-new'              => 'Tooltip when overing a change list diff size. The tooltip show the resulting new size in bytes.',
 'newsectionsummary'               => 'Default summary when adding a new section to a page.',
 
 # Recent changes linked

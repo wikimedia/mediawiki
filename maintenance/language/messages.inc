@@ -1225,6 +1225,7 @@ $wgMessageStructure = array(
 		'rc_categories',
 		'rc_categories_any',
 		'rc-change-size',
+		'rc-change-size-new',
 		'newsectionsummary',
 		'rc-enhanced-expand',
 		'rc-enhanced-hide',
