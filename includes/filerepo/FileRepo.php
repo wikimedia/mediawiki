@@ -1214,7 +1214,8 @@ class FileRepo {
 	}
 
 	/**
-	 * Call a callback function for every public file in the repository.
+	 * Call a callback function for every public regular file in the repository.
+	 * This only acts on the current version of files, not any old versions.
 	 * May use either the database or the filesystem.
 	 *
 	 * @param $callback Array|string

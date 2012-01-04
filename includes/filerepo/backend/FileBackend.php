@@ -318,6 +318,7 @@ abstract class FileBackendBase {
 
 	/**
 	 * Check if a file exists at a storage path in the backend.
+	 * This returns false if only a directory exists at the path.
 	 * 
 	 * $params include:
 	 *     src    : source storage path
@@ -489,6 +490,12 @@ abstract class FileBackendBase {
 /**
  * Base class for all single-write backends.
  * This class defines the methods as abstract that subclasses must implement.
+ * Callers outside of FileBackend and its helper classes, such as FileOp,
+ * should only call functions that are present in FileBackendBase.
+ *
+ * The FileBackendBase operations are implemented using primitive functions
+ * such as storeInternal(), copyInternal(), deleteInternal() and the like.
+ * This class is also responsible for path resolution and sanitization.
  *
  * @ingroup FileBackend
  * @since 1.19

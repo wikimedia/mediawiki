@@ -148,8 +148,7 @@ class ImageBuilder extends Maintenance {
 	}
 
 	function buildOldImage() {
-		$this->buildTable( 'oldimage', 'oi_archive_name',
-			array( $this, 'oldimageCallback' ) );
+		$this->buildTable( 'oldimage', 'oi_archive_name', array( $this, 'oldimageCallback' ) );
 	}
 
 	function oldimageCallback( $row, $copy ) {
@@ -164,42 +163,33 @@ class ImageBuilder extends Maintenance {
 	}
 
 	function crawlMissing() {
-		$repo = RepoGroup::singleton()->getLocalRepo();
-		$repo->enumFilesInFS( array( $this, 'checkMissingImage' ) );
+		$this->getRepo()->enumFiles( array( $this, 'checkMissingImage' ) );
 	}
 
 	function checkMissingImage( $fullpath ) {
 		$filename = wfBaseName( $fullpath );
-		if ( is_dir( $fullpath ) ) {
-			return;
-		}
-		if ( is_link( $fullpath ) ) {
-			$this->output( "skipping symlink at $fullpath\n" );
-			return;
-		}
 		$row = $this->dbw->selectRow( 'image',
 			array( 'img_name' ),
 			array( 'img_name' => $filename ),
 			__METHOD__ );
 
-		if ( $row ) {
-			// already known, move on
-			return;
-		} else {
+		if ( !$row ) { // file not registered
 			$this->addMissingImage( $filename, $fullpath );
 		}
 	}
 
 	function addMissingImage( $filename, $fullpath ) {
-		$timestamp = $this->dbw->timestamp( filemtime( $fullpath ) );
-
 		global $wgContLang;
+
+		$timestamp = $this->dbw->timestamp( $this->getRepo()->getFileTimestamp( $fullpath ) );
+
 		$altname = $wgContLang->checkTitleEncoding( $filename );
 		if ( $altname != $filename ) {
 			if ( $this->dryrun ) {
 				$filename = $altname;
 				$this->output( "Estimating transcoding... $altname\n" );
 			} else {
+				# @FIXME: create renameFile()
 				$filename = $this->renameFile( $filename );
 			}
 		}
