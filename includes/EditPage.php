@@ -113,10 +113,9 @@ class EditPage {
 	public $suppressIntro = false;
 
 	/**
-	 * @todo document
 	 * @param $article Article
 	 */
-	public function __construct( $article ) {
+	public function __construct( Article $article ) {
 		$this->mArticle = $article;
 		$this->mTitle = $article->getTitle();
 	}
@@ -235,7 +234,7 @@ class EditPage {
 			return;
 		}
 
-		$wgOut->addModules( array( 'mediawiki.action.edit' ) );
+		$wgOut->addModules( 'mediawiki.action.edit' );
 
 		if ( $wgUser->getOption( 'uselivepreview', false ) ) {
 			$wgOut->addModules( 'mediawiki.legacy.preview' );
@@ -346,7 +345,7 @@ class EditPage {
 	/**
 	 * Display a permissions error page, like OutputPage::showPermissionsErrorPage(),
 	 * but with the following differences:
-	 * - If redlink=1, the user will be redirect to the page
+	 * - If redlink=1, the user will be redirected to the page
 	 * - If there is content to display or the error occurs while either saving,
 	 *   previewing or showing the difference, it will be a
 	 *   "View source for ..." page displaying the source code after the error message.
