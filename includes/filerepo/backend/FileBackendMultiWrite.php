@@ -210,6 +210,21 @@ class FileBackendMultiWrite extends FileBackendBase {
 	}
 
 	/**
+	 * @see FileBackendBase::getFileContents()
+	 */
+	function getFileContents( array $params ) {
+		# Hit all backends in case of failed operations (out of sync)
+		foreach ( $this->backends as $backend ) {
+			$realParams = $this->substOpPaths( $params, $backend );
+			$data = $backend->getFileContents( $realParams );
+			if ( $data !== false ) {
+				return $data;
+			}
+		}
+		return false;
+	}
+
+	/**
 	 * @see FileBackendBase::getFileSha1Base36()
 	 */
 	function getFileSha1Base36( array $params ) {

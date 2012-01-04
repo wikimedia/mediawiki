@@ -28,6 +28,7 @@
 abstract class FileBackendBase {
 	protected $name; // unique backend name
 	protected $wikiId; // unique wiki name
+	protected $readOnly; // string
 	/** @var LockManager */
 	protected $lockManager;
 
@@ -36,9 +37,11 @@ abstract class FileBackendBase {
 	 * This should only be called from within FileBackendGroup.
 	 * 
 	 * $config includes:
-	 *     'name'        : The name of this backend
+	 *     'name'        : The unique name of this backend
 	 *     'wikiId'      : Prefix to container names that is unique to this wiki
-	 *     'lockManager' : Registered name of the file lock manager to use
+	 *     'lockManager' : Registered name of a file lock manager to use
+	 *     'readOnly'    : Write operations are disallowed if this is a non-empty string.
+	 *                     It should be an explanation for the backend being read-only.
 	 * 
 	 * @param $config Array
 	 */
@@ -48,6 +51,9 @@ abstract class FileBackendBase {
 			? $config['wikiId']
 			: wfWikiID();
 		$this->lockManager = LockManagerGroup::singleton()->get( $config['lockManager'] );
+		$this->readOnly = isset( $config['readOnly'] )
+			? (string)$config['readOnly']
+			: '';
 	}
 
 	/**
@@ -149,6 +155,9 @@ abstract class FileBackendBase {
 	 * @return Status
 	 */
 	final public function doOperations( array $ops, array $opts = array() ) {
+		if ( $this->readOnly != '' ) {
+			return Status::newFatal( 'backend-fail-readonly', $this->name, $this->readOnly );
+		}
 		if ( empty( $opts['ignoreErrors'] ) ) { // sanity
 			unset( $opts['nonLocking'] );
 			unset( $opts['allowStale'] );
@@ -320,18 +329,6 @@ abstract class FileBackendBase {
 	abstract public function fileExists( array $params );
 
 	/**
-	 * Get a SHA-1 hash of the file at a storage path in the backend.
-	 * 
-	 * $params include:
-	 *     src    : source storage path
-	 *     latest : use the latest available data
-	 * 
-	 * @param $params Array
-	 * @return string|false Hash string or false on failure
-	 */
-	abstract public function getFileSha1Base36( array $params );
-
-	/**
 	 * Get the last-modified timestamp of the file at a storage path.
 	 * 
 	 * $params include:
@@ -342,6 +339,31 @@ abstract class FileBackendBase {
 	 * @return string|false TS_MW timestamp or false on failure
 	 */
 	abstract public function getFileTimestamp( array $params );
+
+	/**
+	 * Get the contents of a file at a storage path in the backend.
+	 * This should be avoided for potentially large files.
+	 * 
+	 * $params include:
+	 *     src    : source storage path
+	 *     latest : use the latest available data
+	 * 
+	 * @param $params Array
+	 * @return string|false Returns false on failure
+	 */
+	abstract public function getFileContents( array $params );
+
+	/**
+	 * Get a SHA-1 hash of the file at a storage path in the backend.
+	 * 
+	 * $params include:
+	 *     src    : source storage path
+	 *     latest : use the latest available data
+	 * 
+	 * @param $params Array
+	 * @return string|false Hash string or false on failure
+	 */
+	abstract public function getFileSha1Base36( array $params );
 
 	/**
 	 * Get the properties of the file at a storage path in the backend.
@@ -751,6 +773,20 @@ abstract class FileBackend extends FileBackendBase {
 	 */
 	protected function doClean( $container, $dir, array $params ) {
 		return Status::newGood();
+	}
+
+	/**
+	 * @see FileBackendBase::getFileContents()
+	 */
+	public function getFileContents( array $params ) {
+		$tmpFile = $this->getLocalReference( $params );
+		if ( !$tmpFile ) {
+			return false;
+		}
+		wfSuppressWarnings();
+		$data = file_get_contents( $tmpFile->getPath() );
+		wfRestoreWarnings();
+		return $data;
 	}
 
 	/**
