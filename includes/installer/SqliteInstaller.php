@@ -13,6 +13,7 @@
  * @since 1.17
  */
 class SqliteInstaller extends DatabaseInstaller {
+	const MINIMUM_VERSION = '3.3.7';
 
 	/**
 	 * @var DatabaseSqlite
@@ -30,6 +31,24 @@ class SqliteInstaller extends DatabaseInstaller {
 
 	public function isCompiled() {
 		return self::checkExtension( 'pdo_sqlite' );
+	}
+
+	/**
+	 *
+	 * @return Status:
+	 */
+	public function checkPrerequisites() {
+		$result = Status::newGood();
+		// Bail out if SQLite is too old
+		$db = new DatabaseSqliteStandalone( ':memory:' );
+		if ( version_compare( $db->getServerVersion(), self::MINIMUM_VERSION, '<' ) ) {
+			$result->fatal( 'config-outdated-sqlite', $db->getServerVersion(), self::MINIMUM_VERSION );
+		}
+		// Check for FTS3 full-text search module
+		if( DatabaseSqlite::getFulltextSearchModule() != 'FTS3' ) {
+			$result->warning( 'config-no-fts3' );
+		}
+		return $result;
 	}
 
 	public function getGlobalDefaults() {

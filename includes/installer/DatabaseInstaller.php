@@ -55,6 +55,15 @@ abstract class DatabaseInstaller {
 	public abstract function isCompiled();
 
 	/**
+	 * Checks for installation prerequisites other than those checked by isCompiled()
+	 * @since 1.19
+	 * @return Status
+	 */
+	public function checkPrerequisites() {
+		return Status::newGood();
+	}
+
+	/**
 	 * Get HTML for a web form that configures this database. Configuration
 	 * at this time should be the minimum needed to connect and test
 	 * whether install or upgrade is required.

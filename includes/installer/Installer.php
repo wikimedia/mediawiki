@@ -634,19 +634,32 @@ abstract class Installer {
 			$allNames[] = wfMsg( "config-type-$name" );
 		}
 
-		if ( !$this->getVar( '_CompiledDBs' ) ) {
+		// cache initially available databases to make sure that everything will be displayed correctly
+		// after a refresh on env checks page
+		$databases = $this->getVar( '_CompiledDBs-preFilter' );
+		if ( !$databases ) {
+			$databases = $this->getVar( '_CompiledDBs' );
+			$this->setVar( '_CompiledDBs-preFilter', $databases );
+		}
+
+		$databases = array_flip ( $databases );
+		foreach ( array_keys( $databases ) as $db ) {
+			$installer = $this->getDBInstaller( $db );
+			$status = $installer->checkPrerequisites();
+			if ( !$status->isGood() ) {
+				$this->showStatusMessage( $status );
+			}
+			if ( !$status->isOK() ) {
+				unset( $databases[$db] );
+			}
+		}
+		$databases = array_flip( $databases );
+		if ( !$databases ) {
 			$this->showError( 'config-no-db', $wgLang->commaList( $allNames ) );
 			// @todo FIXME: This only works for the web installer!
 			return false;
 		}
-
-		// Check for FTS3 full-text search module
-		$sqlite = $this->getDBInstaller( 'sqlite' );
-		if ( $sqlite->isCompiled() ) {
-			if( DatabaseSqlite::getFulltextSearchModule() != 'FTS3' ) {
-				$this->showMessage( 'config-no-fts3' );
-			}
-		}
+		$this->setVar( '_CompiledDBs', $databases );
 	}
 
 	/**
