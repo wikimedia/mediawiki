@@ -23,10 +23,6 @@ a.new,
 a.new:visited,
 #p-personal a.new:visited { color:#a55858; }
 
-img {
-	border: none;
-	vertical-align: middle;
-}
 p {
 	margin: 0.4em 0em 0.5em 0em;
 	line-height: 1.5em;
@@ -34,91 +30,10 @@ p {
 
 p img { margin: 0; }
 
-hr {
-	height: 1px;
-	color: #aaaaaa;
-	background-color: #aaaaaa;
-	border: 0;
-	margin: 0.2em 0 0.2em 0;
-}
-
-h1, h2, h3, h4, h5, h6 {
-	color: black;
-	background: none;
-	font-weight: normal;
-	margin: 0;
-	overflow: hidden;
-	padding-top: 0.5em;
-	padding-bottom: 0.17em;
-	border-bottom: 1px solid #aaaaaa;
-}
-.editsection {
-	font-weight: normal;
-}
-h1 { font-size: 188%; }
-h1 .editsection { font-size: 53.2%; }
-h2 { font-size: 150%; }
-h2 .editsection { font-size: 66.7%; }
-h3, h4, h5, h6 {
-	border-bottom: none;
-	font-weight: bold;
-}
-h3 { font-size: 132%; }
-h3 .editsection { font-size: 75.8%; }
-h4 { font-size: 116%; }
-h4 .editsection { font-size: 86.2%; }
-h5 { font-size: 100%; }
-h6 { font-size: 80%;  }
-h6 .editsection { font-size: 125%; }
-
-ul {
-	line-height: 1.5em;
-	margin: 0.3em 0 0 1.5em;
-	padding:0;
-}
-ol {
-	line-height: 1.5em;
-	margin: 0.3em 0 0 3.2em;
-	padding:0;
-	list-style-image: none;
-}
-li { margin-bottom: 0.1em; }
-dt {
-	font-weight: bold;
-	margin-bottom: 0.1em;
-}
-dl{
-	margin-top: 0.2em;
-	margin-bottom: 0.5em;
-}
-dd {
-	line-height: 1.5em;
-	margin-left: 2em;
-	margin-bottom: 0.1em;
-}
-
-fieldset {
-	border: 1px solid #2f6fab;
-	margin: 1em 0em 1em 0em;
-	padding: 0em 1em 1em 1em;
-	line-height: 1.5em;
-}
-legend {
-	background: white;
-	padding: 0.5em;
-	font-size: 95%;
-}
-form {
-	border: none;
-	margin: 0;
-}
-
 textarea {
 	border: 1px solid #2f6fab;
 	color: black;
 	background-color: white;
-	width: 100%;
-	padding: 0.1em;
 	overflow: auto;
 }
 /* hide this from ie/mac and konq2.2 */
@@ -146,18 +61,9 @@ select {
 	color: black;
 	vertical-align: top;
 }
-q {
-	font-family: Times, "Times New Roman", serif;
-	font-style: italic;
-}
+
 code { background-color: #f9f9f9; }
-pre {
-	padding: 1em;
-	border: 1px dashed #2f6fab;
-	color: black;
-	background-color: #f9f9f9;
-	line-height: 1.1em;
-}
+pre { line-height: 1.1em; }
 
 /*
 ** the main content area
