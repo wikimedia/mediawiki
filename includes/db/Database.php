@@ -686,8 +686,8 @@ abstract class DatabaseBase implements DatabaseType {
 				isset( $p['flags'] ) ? $p['flags'] : 0,
 				isset( $p['tablePrefix'] ) ? $p['tablePrefix'] : 'get from global'
 			);
-		} elseif (class_exists($class)) {
-			return new $class($p);
+		} elseif ( class_exists( $class ) ) {
+			return new $class( $p );
 		} else {
 			return null;
 		}
@@ -3209,7 +3209,7 @@ abstract class DatabaseBase implements DatabaseType {
 
 	/**
 	 * Called by sourceStream() to check if we've reached a statement end
-	 * 
+	 *
 	 * @param $sql String: SQL assembled so far
 	 * @param $newLine String: New line about to be added to $sql
 	 * @returns Bool: Whether $newLine contains end of the statement
