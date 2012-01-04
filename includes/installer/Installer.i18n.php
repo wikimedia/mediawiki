@@ -1343,12 +1343,13 @@ MediaWiki патрэбныя функцыі з гэтага модулю, там
 Калі Вы выкарыстоўваеце Mandrake, усталюйце пакет php-xml.',
 	'config-pcre' => 'Ня знойдзены модуль падтрымкі PCRE.
 MediaWiki для працы патрабуюцца функцыі рэгулярных выразаў у стылі Perl.',
-	'config-pcre-no-utf8' => "'''Крытычная памылка''': модуль PCRE для PHP скампіляваны без падтрымкі PCRE_UTF8.
+	'config-pcre-no-utf8' => "'''Фатальная памылка''': модуль PCRE для PHP скампіляваны без падтрымкі PCRE_UTF8.
 MediaWiki патрабуе падтрымкі UTF-8 для слушнай працы.",
 	'config-memory-raised' => 'Абмежаваньне на даступную для PHP памяць <code>memory_limit</code> было падвышанае з $1 да $2.',
 	'config-memory-bad' => "'''Папярэджаньне:''' памер PHP <code>memory_limit</code> складае $1.
 Верагодна, гэта вельмі мала.
 Усталяваньне можа быць няўдалым!",
+	'config-ctype' => "'''Фатальная памылка''': PHP мусіць быць скампіляваны з падтрымкай [http://www.php.net/manual/en/ctype.installation.php пашырэньня Ctype].",
 	'config-xcache' => '[http://xcache.lighttpd.net/ XCache] усталяваны',
 	'config-apc' => '[http://www.php.net/apc APC] усталяваны',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] усталяваны',
@@ -1383,9 +1384,11 @@ MediaWiki патрабуе падтрымкі UTF-8 для слушнай пра
 	'config-db-host' => 'Хост базы зьвестак:',
 	'config-db-host-help' => 'Калі сэрвэр Вашай базы зьвестак знаходзіцца на іншым сэрвэры, увядзіце тут імя хоста ці IP-адрас.
 
-Калі Вы набываеце shared-хостынг, Ваш хостынг-правайдэр мусіць даць Вам слушнае імя хоста базы зьвестак у сваёй дакумэнтацыі.
+Калі Вы карыстаецеся shared-хостынгам, Ваш хостынг-правайдэр мусіць даць Вам слушнае імя хоста базы зьвестак у сваёй дакумэнтацыі.
 
-Калі Вы усталёўваеце сэрвэр Windows з выкарыстаньнем MySQL, выкарыстаньне «localhost» можа не працаваць для назвы сэрвэра. У гэтым выпадку паспрабуйце пазначыць «127.0.0.1»  для лякальнага IP-адраса.',
+Калі Вы усталёўваеце сэрвэр Windows з выкарыстаньнем MySQL, выкарыстаньне «localhost» можа не працаваць для назвы сэрвэра. У гэтым выпадку паспрабуйце пазначыць «127.0.0.1»  для лякальнага IP-адраса.
+
+Калі вы выкарыстоўваеце PostgreSQL, пакіньце поле пустым, каб падлучыцца праз Unix-сокет.',
 	'config-db-host-oracle' => 'TNS базы зьвестак:',
 	'config-db-host-oracle-help' => 'Увядзіце слушнае [http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm лякальнае імя злучэньня]; файл tnsnames.ora павінен быць бачным для гэтага ўсталяваньня.<br />Калі Вы выкарыстоўваеце кліенцкія бібліятэкі 10g ці больш новыя, Вы можаце таксама выкарыстоўваць мэтад наданьня назваў [http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm лёгкае злучэньне].',
 	'config-db-wiki-settings' => 'Ідэнтыфікацыя гэтай вікі',
@@ -4696,12 +4699,12 @@ $messages['fi'] = array(
 Kirjoita muuttujan <code>$wgUpgradeKey</code> arvo alla olevaan kenttään päivittääksesi asennuksen.
 Löydät sen LocalSettings.php-tiedostosta.',
 	'config-localsettings-cli-upgrade' => 'LocalSettings.php-tiedosto havaittiin.
-Suorita update.php päivittääksesi tämän asennuksen.',
+Päivitä asennus suorittamalla update.php.',
 	'config-localsettings-key' => 'Päivitysavain',
 	'config-localsettings-badkey' => 'Antamasi avain on virheellinen.',
 	'config-localsettings-incomplete' => 'Nykyinen LocalSettings.php-tiedosto näyttää olevan puutteellinen.
 Muuttujaa $1 ei ole asetettu.
-Muuta LocalSettings.php-tiedostoa siten, että muuttuja on asetettu ja napsauta Jatka.',
+Muuta LocalSettings.php-tiedostoa siten, että muuttuja on asetettu ja napsauta »Jatka».',
 	'config-session-error' => 'Istunnon aloittaminen epäonnistui: $1',
 	'config-session-expired' => 'Istuntotietosi näyttävät olevan vanhentuneita.
 Istuntojen elinajaksi on määritelty $1.
@@ -4973,6 +4976,7 @@ Vous devriez faire une [//www.mediawiki.org/wiki/Unicode_normalization_considera
 Si vous êtes sur un site partagé, demandez à votre hébergeur d'installer un pilote de base de données approprié. Si vous avez compilé PHP, le configurer avec client de base de données activé, par exemple en insérant la directive <code>./configure --with-mysql</code>.
 
 Si vous avez installé PHP d'une distribution Debian ou Ubuntu, vous devez aussi installer le module <code>php5-mysql</code>.",
+	'config-outdated-sqlite' => "'''Attention''': vous avez SQLite $1, qui est inférieur à la version minimale requise $2. SQLite sera indisponible.",
 	'config-no-fts3' => "'''Attention :''' SQLite est compilé sans le module [//sqlite.org/fts3.html FTS3] ; les fonctions de recherche ne seront pas disponibles sur ce moteur.",
 	'config-register-globals' => "'''Attention : l'option <code>[http://php.net/register_globals register_globals]</code> de PHP est activée.'''
 '''Désactivez-la si vous le pouvez.'''
@@ -5768,6 +5772,7 @@ Os tipos de base de datos admitidos son os seguintes: $1.
 Se está nun aloxamento compartido, pregunte ao seu provedor de hospedaxe para instalar un controlador de base de datos axeitado.
 Se compilou o PHP vostede mesmo, reconfigúreo activando un cliente de base de datos, por exemplo, usando <code>./configure --with-mysql</code>.
 Se instalou o PHP desde un paquete Debian ou Ubuntu, entón tamén necesita instalar o módulo php5-mysql.',
+	'config-outdated-sqlite' => "'''Atención:''' Ten o SQLite $1, que é inferior á versión mínima necesaria: $2. O SQLite non estará dispoñible.",
 	'config-no-fts3' => "'''Atención:''' O SQLite está compilado sen o [//sqlite.org/fts3.html módulo FTS3]; as características de procura non estarán dispoñibles nesta instalación.",
 	'config-register-globals' => "'''Atención: A opción PHP <code>[http://php.net/register_globals register_globals]</code> está activada.'''
 '''Desactívea se pode.'''
@@ -12206,6 +12211,7 @@ De volgende databases worden ondersteund: $1.
 Als u op een gedeelde omgeving zit, vraag dan aan uw hostingprovider een geschikte databasedriver te installeren.
 Als u PHP zelf hebt gecompileerd, wijzig dan uw instellingen zodat een databasedriver wordt geactiveerd, bijvoorbeeld via <code>./configure --with-mysql</code>.
 Als u PHP hebt geïnstalleerd via een Debian- of Ubuntu-package, installeer dan ook de module php5-mysql.',
+	'config-outdated-sqlite' => "''' Waarschuwing:''' u gebruikt SQLite $1. SQLite is niet beschikbaar omdat de minimaal vereiste versie $2 is.",
 	'config-no-fts3' => "'''Waarschuwing''': SQLite is gecompileerd zonder de module [//sqlite.org/fts3.html FTS3]; er zijn geen zoekfuncties niet beschikbaar.",
 	'config-register-globals' => "'''Waarschuwing: De PHP-optie <code>[http://php.net/register_globals register_globals]</code> is ingeschakeld.'''
 '''Schakel deze uit als dat mogelijk is.'''

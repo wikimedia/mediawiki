@@ -298,7 +298,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Дасылаць мне копіі лістоў, якія я дасылаю іншым удзельнікам і ўдзельніцам',
 'tog-diffonly'                => 'Не паказваць зьмест старонкі пад параўнаньнем зьменаў',
 'tog-showhiddencats'          => 'Паказваць схаваныя катэгорыі',
-'tog-noconvertlink'           => 'Выключыць канвэртацыю назваў спасылак',
+'tog-noconvertlink'           => 'Забараніць канвэртацыю назваў спасылак',
 'tog-norollbackdiff'          => 'Не паказваць зьмены пасьля выкарыстаньня функцыі адкату',
 
 'underline-always'  => 'Заўсёды',
@@ -2721,6 +2721,7 @@ $1',
 Каб экспартаваць старонкі, увядзіце назвы старонак у тэкставае поле ніжэй, адну назву ў адзін радок, і абярыце жадаеце Вы цяперашнюю вэрсію разам з усімі папярэднімі вэрсіямі і гісторыяй рэдагаваньняў, ці толькі цяперашнюю вэрсію з інфармацыяй пра апошняе рэдагаваньне.
 
 У апошнім выпадку Вы можаце таксама скарыстацца спасылкай, напрыклад, [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] для «[[{{MediaWiki:Mainpage}}]]».',
+'exportall'         => 'Экспартаваць усе старонкі',
 'exportcuronly'     => 'Экспартаваць толькі цяперашнюю вэрсію, бяз поўнай гісторыі',
 'exportnohistory'   => "----
 '''Заўвага:''' экспартаваньне поўнай гісторыі старонак з дапамогай гэтай формы было адключанае праз прычыны прадукцыйнасьці сыстэмы.",
@@ -2818,12 +2819,13 @@ $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|вэрсія|вэрсіі|вэрсій}} з $2',
 
 # JavaScriptTest
-'javascripttest-backlink'                  => '< $1',
+'javascripttest'                           => 'JavaScript-тэсты',
 'javascripttest-disabled'                  => 'Гэта функцыя выключаная.',
-'javascripttest-pagetext-noframework'      => 'Гэтая старонка трымаецца для правядзеньня тэстаў javascript.',
-'javascripttest-pagetext-unknownframework' => 'Невядомы фрэймворк «$1».',
-'javascripttest-pagetext-frameworks'       => 'Выберыце, каліласка, адзін з прапанаваных фрэймворкаў: $1',
-'javascripttest-pagetext-skins'            => 'Даступныя афармленьні',
+'javascripttest-title'                     => 'Праводзіцца тэставаньне $1',
+'javascripttest-pagetext-noframework'      => 'Гэтая старонка трымаецца для правядзеньня тэстаў JavaScript.',
+'javascripttest-pagetext-unknownframework' => 'Невядомая бібліятэка тэставаньня «$1».',
+'javascripttest-pagetext-frameworks'       => 'Калі ласка, выберыце адну з прапанаваных бібліятэка тэставаньня: $1',
+'javascripttest-pagetext-skins'            => 'Выберыце афармленьне для запуску тэстаў:',
 'javascripttest-qunit-intro'               => 'Глядзіце [$1 дакумэнтацыю па тэставаньні] на mediawiki.org.',
 'javascripttest-qunit-heading'             => 'Набор QUnit-тэстаў для MediaWiki JavaScript',
 

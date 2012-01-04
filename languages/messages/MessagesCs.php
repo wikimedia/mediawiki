@@ -1662,6 +1662,7 @@ $3',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|sledující uživatel|sledující uživatelé|sledujících uživatelů}}]',
 'rc_categories'                     => 'Omezit na kategorie (oddělené „|“)',
 'rc_categories_any'                 => 'Všechny',
+'rc-change-size-new'                => '$1 {{PLURAL:$1|bajt|bajty|bajtů}} po změně',
 'newsectionsummary'                 => 'Nová sekce /* $1 */',
 'rc-enhanced-expand'                => 'Zobrazit detaily (vyžaduje JavaScript)',
 'rc-enhanced-hide'                  => 'Skrýt detaily',
@@ -1832,6 +1833,7 @@ Kontaktuje prosím [[Special:ListUsers/sysop|správce]].',
 'backend-fail-closetemp'     => 'Dočasný soubor nelze zavřít.',
 'backend-fail-read'          => 'Soubor $1 nelze číst.',
 'backend-fail-create'        => 'Soubor $1 nelze vytvořit.',
+'backend-fail-readonly'      => 'Koncový systém „$1“ je momentálně pouze pro čtení. Udaným důvodem je: „$2“',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Soubor „$1“ nelze odemknout, neboť není zamčen.',
@@ -2786,6 +2788,7 @@ Prosíme, vyberte jiné jméno.',
 Do níže uvedeného editačního pole zadejte názvy stránek, které chcete exportovat; každý řádek jeden název. Zvolte také, zda se mají exportovat i starší verze stránky včetně informací v historii editací, nebo jen aktuální verze s informací o poslední editaci.
 
 V druhém případě můžete také používat přímý odkaz, např. pomocí [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] se vyexportuje „[[{{MediaWiki:Mainpage}}]]“.',
+'exportall'         => 'Exportovat všechny stránky',
 'exportcuronly'     => 'Zahrnout jen současnou verzi, ne plnou historii',
 'exportnohistory'   => "----
 '''Poznámka:''' export plných historií prostřednictvím tohoto formuláře byl z výkonnostních důvodů zakázán.",
@@ -2876,6 +2879,17 @@ Uložte jej na svůj disk a nahrajte ho sem.',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|revizi|revize|revizí}}',
 'import-logentry-interwiki'        => 'přenesl $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revizi|revize|revizí}} z $2',
+
+# JavaScriptTest
+'javascripttest'                           => 'Testování JavaScriptu',
+'javascripttest-disabled'                  => 'Tato funkce je vypnuta.',
+'javascripttest-title'                     => 'Spouštějí se testy v $1',
+'javascripttest-pagetext-noframework'      => 'Tato stránka je vyhrazena pro spouštění testů JavaScriptu.',
+'javascripttest-pagetext-unknownframework' => 'Neznámá testovací knihovna „$1“.',
+'javascripttest-pagetext-frameworks'       => 'Zvolte jednu z následujících testovacích knihoven: $1',
+'javascripttest-pagetext-skins'            => 'Zvolte vzhled, pod kterým se mají testy spustit:',
+'javascripttest-qunit-intro'               => 'Vizte [$1 dokumentaci testování] na mediawiki.org',
+'javascripttest-qunit-heading'             => 'Sada testů JavaScriptu v MediaWiki pomocí QUnit',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Vaše uživatelská stránka',

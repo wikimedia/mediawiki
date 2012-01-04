@@ -1632,6 +1632,7 @@ Wann de Problem weider besteet, dann un de [[Special:ListUsers/sysop|Administrat
 'backend-fail-closetemp'     => 'Den temporäre Fichier konnt net zougemaach ginn.',
 'backend-fail-read'          => 'De Fichier $1 konnt net geliest ginn.',
 'backend-fail-create'        => 'De Fichier $1 konnt net ugeluecht ginn.',
+'backend-fail-readonly'      => 'De Backend "$1" kann elo nëmme geliest ginn (read-only). De Grond deen ugi gouf ass: "$2"',
 
 # Lock manager
 'lockmanager-notlocked'        => '"$1" konnt net fräigeschalt ginn; $1 ass net gespaart.',
@@ -3079,6 +3080,7 @@ Déi aner sinn am Standard verstoppt.
 'exif-copyrighted'                 => 'Copyright Status',
 'exif-copyrightowner'              => "Titulaire vun den Droits d'auteur",
 'exif-usageterms'                  => 'Benotzungsbedingungen',
+'exif-webstatement'                => 'Omline Copyright Deklaratioun',
 'exif-licenseurl'                  => 'URL vum Copyright (Lizenz)',
 'exif-morepermissionsurl'          => 'Alternativ Lizenzinformatiounen',
 'exif-attributionurl'              => 'Wann dëst Wierk weiderbenotzt gëtt, da linkt w.e.g. op',

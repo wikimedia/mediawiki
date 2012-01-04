@@ -1588,6 +1588,7 @@ Tässä satunnaisesti tuotettu arvo, jota voit käyttää: $1',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|tarkkaileva käyttäjä|tarkkailevaa käyttäjää}}]',
 'rc_categories'                     => 'Vain luokista (erotin on ”|”)',
 'rc_categories_any'                 => 'Mikä tahansa',
+'rc-change-size-new'                => '$1 {{PLURAL:$1|tavu|tavua}} muutosten jälkeen',
 'newsectionsummary'                 => '/* $1 */ uusi osio',
 'rc-enhanced-expand'                => 'Näytä yksityiskohdat (JavaScript)',
 'rc-enhanced-hide'                  => 'Piilota yksityiskohdat',
@@ -2695,6 +2696,7 @@ Syötä sivujen otsikoita jokainen omalle rivilleen alla olevaan laatikkoon.
 Valitse myös, haluatko kaikki versiot sivuista, vai ainoastaan nykyisen version.
 
 Jälkimmäisessä tapauksessa voit myös käyttää linkkiä. Esimerkiksi sivun [[{{MediaWiki:Mainpage}}]] saa vietyä linkistä [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]].',
+'exportall'         => 'Vie kaikki sivut',
 'exportcuronly'     => 'Liitä mukaan ainoastaan uusin versio – ei koko historiaa.',
 'exportnohistory'   => '----
 Sivujen koko historian vienti on estetty suorituskykysyistä.',
@@ -2785,6 +2787,17 @@ Tallenna tiedot koneellesi ja tuo ne tällä sivulla.',
 'import-logentry-upload-detail'    => '{{PLURAL:$1|yksi versio|$1 versiota}}',
 'import-logentry-interwiki'        => 'toi toisesta wikistä sivun $1',
 'import-logentry-interwiki-detail' => '{{PLURAL:$1|yksi versio|$1 versiota}} wikistä $2',
+
+# JavaScriptTest
+'javascripttest'                           => 'JavaScriptin testaus',
+'javascripttest-disabled'                  => 'Tämä toiminto ei ole käytössä.',
+'javascripttest-title'                     => 'Suoritetaan $1-testejä.',
+'javascripttest-pagetext-noframework'      => 'Tämä sivu on varattu JavaScript-testien suorittamiseen.',
+'javascripttest-pagetext-unknownframework' => 'Tuntematon testausalusta $1.',
+'javascripttest-pagetext-frameworks'       => 'Valitse yksi seuraavista testausalustoista: $1',
+'javascripttest-pagetext-skins'            => 'Käytettävät olevat ulkoasut',
+'javascripttest-qunit-intro'               => 'Katso [$1 testausohjeet] mediawiki.orgissa.',
+'javascripttest-qunit-heading'             => 'MediaWikin JavaScriptin QUnit-testikokoelma',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Oma käyttäjäsivu',

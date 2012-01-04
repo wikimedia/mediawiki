@@ -73,6 +73,9 @@ $messages = array(
 # Vector skin
 'vector-action-delete' => 'Kufwa',
 'vector-action-move'   => 'Nata',
+'vector-view-edit'     => 'Sonika',
+'vector-view-history'  => 'Tala bansoba',
+'vector-view-view'     => 'Tânga',
 
 'errorpagetitle'   => 'Foti',
 'returnto'         => 'Vutukila $1',
@@ -94,6 +97,7 @@ $messages = array(
 'viewtalkpage'     => 'Tala disolo',
 'otherlanguages'   => 'Bandinga ya nkaka',
 'redirectedfrom'   => '(Balulama tuka $1)',
+'lastmodifiedat'   => 'Mukânda yayi me sobama na kilumbu $1 na ngûnga $2',
 'jumpto'           => 'Pamuka na:',
 'jumptosearch'     => 'nsosa',
 
@@ -106,6 +110,9 @@ $messages = array(
 'retrievedfrom'           => 'Receptum de "$1"',
 'newmessageslink'         => 'bansangu ya yimpa',
 'youhavenewmessagesmulti' => 'Nge kele na bansangu ya yimpa kuna $1',
+'editsection'             => 'soba',
+'editold'                 => 'soba',
+'red-link-title'          => '$1 (mukanda kele ve)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Mukanda',
@@ -113,8 +120,10 @@ $messages = array(
 'nstab-category'  => 'Kalasi',
 
 # Login and logout pages
+'login'              => 'Kota',
 'logout'             => 'Basika',
 'userlogout'         => 'Basika',
+'gotaccountlink'     => 'Kota',
 'loginlanguagelabel' => 'Ndinga: $1',
 
 # History pages
@@ -136,12 +145,14 @@ $messages = array(
 
 # Recent changes
 'recentchanges' => 'Bansoba ya yimpa',
+'hist'          => 'nsoba',
 
 # Random page
 'randompage' => 'Lukaya na kintulumukini',
 
 # Miscellaneous special pages
 'ncategories' => '{{PLURAL:$1|kalasi|bakalasi}} $1',
+'newpages'    => 'Mikanda ya yimpa',
 
 # Special:AllPages
 'alphaindexline' => '$1 tî $2',
@@ -168,7 +179,8 @@ Sôla nkûmbu ya nkaka.',
 'movereason'     => 'Samu:',
 
 # Tooltip help for the actions
-'tooltip-search' => 'Sosa na {{SITENAME}}',
+'tooltip-pt-logout' => 'Basika',
+'tooltip-search'    => 'Sosa na {{SITENAME}}',
 
 # Table pager
 'table_pager_next'  => 'Lukaya ya kulanda',

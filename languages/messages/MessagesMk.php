@@ -1860,6 +1860,7 @@ $1',
 'backend-fail-closetemp'     => 'Не можев да ја затворам привремената податотека.',
 'backend-fail-read'          => 'Не можев да ја прочитам податотеката $1',
 'backend-fail-create'        => 'Не можев да ја создадам податотеката $1',
+'backend-fail-readonly'      => 'Основата „$1“ моментално не може да се запишува. Наведената причина гласи: „$2“',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Не можев да го отклучам „$1“ бидејќи не е заклучен.',
@@ -2858,6 +2859,7 @@ $1',
 За извезување на страници, внесете ги насловите во полето прикажано подолу, еден наслов на статија во ред, потоа изберете дали сакате да ја извезете само последната ревизија или и сите постари ревизии.
 
 Ако ја сакате само тековната верзија, би можеле да искористите врска од видот [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] за страницата „[[{{MediaWiki:Mainpage}}]]“.',
+'exportall'         => 'Извези ги сите страници',
 'exportcuronly'     => 'Вклучи ја само тековната ревизија, а не сета историја',
 'exportnohistory'   => "----
 '''Напомена:''' извезувањето на целата историја на страниците преку овој образец е оневозможено од перформансни причини.",
@@ -2953,6 +2955,17 @@ $1',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|ревизија|ревизии}}',
 'import-logentry-interwiki'        => 'трансвикифиран $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|ревизија|ревизии}} од $2',
+
+# JavaScriptTest
+'javascripttest'                           => 'Проба на JavaScript',
+'javascripttest-disabled'                  => 'Оваа функција е оневозможена.',
+'javascripttest-title'                     => 'Вршам $1 проби',
+'javascripttest-pagetext-noframework'      => 'Оваа страница е резервирана за вршење на проби со JavaScript.',
+'javascripttest-pagetext-unknownframework' => 'Непозната рамка „$1“.',
+'javascripttest-pagetext-frameworks'       => 'Изберете една од следниве рамки: $1',
+'javascripttest-pagetext-skins'            => 'Рува на располагање',
+'javascripttest-qunit-intro'               => 'Вид. [$1 документација на испробувањето] на mediawiki.org.',
+'javascripttest-qunit-heading'             => 'JavaScript-програм за испробување на МедијаВики „QUnit“',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Вашата корисничка страница',

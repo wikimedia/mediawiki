@@ -1443,6 +1443,7 @@ Móžoš toś ten bok wužywaś, aby slědk stajił swóje nastajenja na standar
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|wobglědowaŕ|wobglědowarja|wobglědowarje}}]',
 'rc_categories'                     => 'Jano boki z kategorijow (źělone z pomocu „|“):',
 'rc_categories_any'                 => 'wše',
+'rc-change-size-new'                => '$1 {{PLURAL:$1|byte|byta|byty|bytow}} pó změnje',
 'newsectionsummary'                 => 'Nowy wótrězk /* $1 */',
 'rc-enhanced-expand'                => 'Drobnosći pokazaś (pomina se JavaScript)',
 'rc-enhanced-hide'                  => 'Drobnosći schowaś',
@@ -1613,6 +1614,7 @@ $1',
 'backend-fail-closetemp'     => 'Temporerna dataja njedajo se zacyniś.',
 'backend-fail-read'          => 'Dataja $1 njedajo se cytaś.',
 'backend-fail-create'        => 'Dataja $1 njedajo se napóraś.',
+'backend-fail-readonly'      => 'Backend "$1" dajo se tuchylu jano cytaś. Pśicyna je: "$2"',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'Pśi wocynjenju dataja za ZIP-pśekontrolěrowanje jo zmólka nastała.',
@@ -2552,6 +2554,7 @@ Pšosym wubjeŕ druge mě.',
 Za eksportěrowanje bokow zapódaj nadpisma do dołojcnego tekstowogo póla, jadno nadpismo na smužku, a wuzwól nowe a stare wersije z wótkazami stawiznow boka abo jano aktualnu wersiju z informacijami wó slědnjej změnje.
 
 W slědnem padźe móžoš teke wótkaz wužywaś, na pś. [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] za bok "[[{{MediaWiki:Mainpage}}]]".',
+'exportall'         => 'Wšykne boki eksportěrowaś',
 'exportcuronly'     => 'Jano aktualne wersije, bźez stawiznow',
 'exportnohistory'   => "----
 '''Pokazka:''' Eksportěrowanje cełych stawiznow bokow pśez toś ten formular njejo dla performancowych pśicyn tuchylu móžne.",
@@ -2643,6 +2646,17 @@ Wšykne transwiki-importowe akcije protokolěruju se w [[Special:Log/import|log-
 'import-logentry-upload-detail'    => '{{PLURAL:$1|$1 wersija|$1 wersiji|$1 wersije}}',
 'import-logentry-interwiki'        => 'Dataja $1 jo se importěrowała (transwiki).',
 'import-logentry-interwiki-detail' => '{{PLURAL:$1|$1 wersija|$1 wersiji|$1 wersije}} wót $2',
+
+# JavaScriptTest
+'javascripttest'                           => 'JavaScriptowy test',
+'javascripttest-disabled'                  => 'Toś ta funkcija jo znjemóžnjona.',
+'javascripttest-title'                     => 'Testy $1 se pśewjeduju',
+'javascripttest-pagetext-noframework'      => 'Toś ten bok jo pśewjedowanjeju javascriptowych testow pśewóstajony.',
+'javascripttest-pagetext-unknownframework' => 'Njeznaty wobłuk "$1".',
+'javascripttest-pagetext-frameworks'       => 'Pšosym wubjeŕ jaden ze slědujucych testowańskich wobłukow: $1',
+'javascripttest-pagetext-skins'            => 'K dispoziciji stojece drastwy',
+'javascripttest-qunit-intro'               => 'Glědaj [$1 testowańsku dokumentaciju] na mediawiki.org.',
+'javascripttest-qunit-heading'             => 'MediaWiki JavaScript QUnit test suite',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Twój wužywarski bok',

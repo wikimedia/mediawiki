@@ -1495,14 +1495,14 @@ Elle ne doit pas dépasser $1 caractère{{PLURAL:$1||s}}.',
 'userrights-user-editname'     => 'Entrez un nom d’utilisateur :',
 'editusergroup'                => 'Modification des groupes d’utilisateurs',
 'editinguser'                  => "Modification des droits de l’{{GENDER:$1|utilisateur|utilisatrice}} '''[[User:$1|$1]]''' $2",
-'userrights-editusergroup'     => 'Modifier les groupes de l’{{GENDER:$1|utilisateur|utilisatrice}}',
+'userrights-editusergroup'     => 'Modifier les groupes de l’utilisateur',
 'saveusergroups'               => 'Enregistrer les groupes de l’utilisateur',
 'userrights-groupsmember'      => 'Membre de :',
 'userrights-groupsmember-auto' => 'Membre implicite de :',
-'userrights-groups-help'       => 'Vous pouvez modifier les groupes auxquels appartient cet {{GENDER:$1|utilisateur|utilisatrice}}.
-* Une case cochée signifie que l’{{GENDER:$1|utilisateur|utilisatrice}} se trouve dans ce groupe.
-* Une case non cochée signifie qu’{{GENDER:$1|il|elle}} ne s’y trouve pas.
-* Un astérisque (*) indique que vous ne pouvez pas retirer ce groupe une fois que vous l’avez ajouté.',
+'userrights-groups-help'       => 'Vous pouvez modifier les groupes auxquels appartient cet utilisateur:
+* Une case cochée signifie que l’utilisateur se trouve dans ce groupe.
+* Une case non cochée signifie qu’il ne s’y trouve pas.
+* Un astérisque (*) indique que vous ne pouvez pas retirer ce groupe une fois que vous l’avez ajouté, ou vice-versa.',
 'userrights-reason'            => 'Motif :',
 'userrights-no-interwiki'      => 'Vous n’avez pas la permission de modifier des droits d’utilisateurs sur d’autres wikis.',
 'userrights-nodatabase'        => 'La base de donnée « $1 » n’existe pas ou n’est pas locale.',
@@ -1670,6 +1670,7 @@ Elle ne doit pas dépasser $1 caractère{{PLURAL:$1||s}}.',
 'number_of_watching_users_pageview' => '[$1 utilisateur{{PLURAL:$1||s}} en train de suivre]',
 'rc_categories'                     => 'Limite des catégories (séparation avec « | »)',
 'rc_categories_any'                 => 'Toutes',
+'rc-change-size-new'                => '$1 {{PLURAL:$1|octet|octets}} après changement',
 'newsectionsummary'                 => '/* $1 */ nouvelle section',
 'rc-enhanced-expand'                => 'Voir les détails (nécessite JavaScript)',
 'rc-enhanced-hide'                  => 'Masquer les détails',
@@ -1784,7 +1785,7 @@ Si vous voulez toujours importer votre fichier, veuillez revenir en arrière et 
 'uploadscripted'              => 'Ce fichier contient du code HTML ou un script qui pourrait être interprété de façon incorrecte par un navigateur web.',
 'uploadvirus'                 => 'Ce fichier contient un virus ! Pour plus de détails, consultez : $1',
 'uploadjava'                  => "C'est un fichier ZIP qui contient un fichier Java .class.
-Le téléchargement de fichiers Java n'est pas autorisé, car ils peuvent entraîner des restrictions de sécurité.",
+Le téléchargement de fichiers Java n'est pas autorisé, car ils peuvent contourner des restrictions de sécurité.",
 'upload-source'               => 'Fichier source',
 'sourcefilename'              => 'Nom du fichier source :',
 'sourceurl'                   => 'URL source :',
@@ -1830,7 +1831,7 @@ Veuillez vérifier que l’URL est valide et accessible, puis essayer à nouveau
 Si le problème persiste, contactez un [[Special:ListUsers/sysop|administrateur]].",
 'upload-too-many-redirects' => 'L’URL contient trop de redirections.',
 'upload-unknown-size'       => 'Taille inconnue',
-'upload-http-error'         => 'Une erreur HTTP est intervenue : $1',
+'upload-http-error'         => 'Une erreur HTTP est survenue : $1',
 
 # File backend
 'backend-fail-stream'        => 'Impossible de lire le fichier $1.',
@@ -1838,7 +1839,7 @@ Si le problème persiste, contactez un [[Special:ListUsers/sysop|administrateur]
 'backend-fail-notexists'     => "Le fichier $1 n'existe pas.",
 'backend-fail-hashes'        => "Impossible d'obtenir les hachages du fichier pour comparaison.",
 'backend-fail-notsame'       => 'Un fichier différent existe déjà pour $1 .',
-'backend-fail-invalidpath'   => "$1n'est pas un chemin de stockage valide.",
+'backend-fail-invalidpath'   => '$1 n’est pas un chemin de stockage valide.',
 'backend-fail-delete'        => 'Impossible de supprimer le fichier $1.',
 'backend-fail-alreadyexists' => 'Le fichier $1 existe déjà.',
 'backend-fail-store'         => 'Impossible de stocker le fichier $1 en $2.',
@@ -1849,6 +1850,7 @@ Si le problème persiste, contactez un [[Special:ListUsers/sysop|administrateur]
 'backend-fail-closetemp'     => 'Impossible de fermer le fichier temporaire.',
 'backend-fail-read'          => 'Impossible de lire le fichier $1.',
 'backend-fail-create'        => 'Impossible de créer le fichier $1.',
+'backend-fail-readonly'      => 'Le terminal "$1" est actuellement en lecture seule. La raison indiquée est: "$2"',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Impossible de déverrouiller « $1 » ; elle n’est pas verrouillée.',
@@ -2827,6 +2829,7 @@ le résultat peut alors être importé dans un autre wiki utilisant le logiciel 
 Pour exporter des pages, entrez leurs titres dans la boîte de texte ci-dessous, à raison d’un titre par ligne. Sélectionnez si vous désirez ou non la version actuelle avec toutes les anciennes versions, avec les lignes de l’historique de la page, ou simplement la page actuelle avec des informations sur la dernière modification.
 
 Dans ce dernier cas vous pouvez aussi utiliser un lien, tel que [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] pour la page [[{{MediaWiki:Mainpage}}]].',
+'exportall'         => 'Exporter toutes les pages',
 'exportcuronly'     => 'Exporter uniquement la version courante, sans l’historique complet',
 'exportnohistory'   => "----
 '''Note :''' l’exportation de l’historique complet des pages à l’aide de ce formulaire a été désactivée pour des raisons de performance.",
@@ -2922,6 +2925,17 @@ Un dossier temporaire est manquant.",
 'import-logentry-upload-detail'    => '$1 version{{PLURAL:$1||s}}',
 'import-logentry-interwiki'        => 'a importé $1 d’un wiki à l’autre',
 'import-logentry-interwiki-detail' => '$1 version{{PLURAL:$1||s}} depuis $2',
+
+# JavaScriptTest
+'javascripttest'                           => 'Test de JavaScript',
+'javascripttest-disabled'                  => 'Cette fonction est désactivée.',
+'javascripttest-title'                     => 'Exécution des tests $1',
+'javascripttest-pagetext-noframework'      => "Cette page est réservée pour l'exécution des tests javascript.",
+'javascripttest-pagetext-unknownframework' => 'Structure "$1" inconnue.',
+'javascripttest-pagetext-frameworks'       => "Veuillez choisir l'une des structures suivantes: $1",
+'javascripttest-pagetext-skins'            => 'Habillages disponibles',
+'javascripttest-qunit-intro'               => 'Voir [$1 la documentation de test] sur mediawiki.org.',
+'javascripttest-qunit-heading'             => 'Suite de test QUnit de JavaScript sur MediaWiki',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Votre page utilisateur',
@@ -3921,9 +3935,9 @@ Sinon, vous pouvez utiliser le formulaire simplifié ci-dessous. Votre commentai
 'feedback-error1'    => "Erreur : Résultat de l'API non reconnu",
 'feedback-error2'    => 'Erreur : la modification a échoué',
 'feedback-error3'    => "Erreur : aucune réponse de l'API",
-'feedback-thanks'    => 'Merci! Votre commentaire a été publié sur la page "[$2 $1]".',
+'feedback-thanks'    => 'Merci ! Votre commentaire a été publié sur la page "[$2 $1]".',
 'feedback-close'     => 'Fait',
-'feedback-bugcheck'  => "Formidable! Vérifiez simplement que ce n'est pas un des [$1 bogues déjà connus].",
+'feedback-bugcheck'  => 'Formidable ! Vérifiez simplement que ce n’est pas un des [$1 bogues déjà connus].',
 'feedback-bugnew'    => "J'ai vérifié. Signaler un nouveau bogue",
 
 );

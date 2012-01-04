@@ -1686,6 +1686,7 @@ Stand: $4, $5 Uhr.",
 'rc_categories'                     => 'Nur Seiten aus den Kategorien (getrennt mit „|“):',
 'rc_categories_any'                 => 'Alle',
 'rc-change-size'                    => '$1 {{PLURAL:$1|Byte|Bytes}}',
+'rc-change-size-new'                => '$1 {{PLURAL:$1|Byte|Byte}} nach der Änderung',
 'newsectionsummary'                 => 'Neuer Abschnitt /* $1 */',
 'rc-enhanced-expand'                => 'Details anzeigen (benötigt JavaScript)',
 'rc-enhanced-hide'                  => 'Details verstecken',
@@ -1863,6 +1864,7 @@ Wenn das Problem weiter besteht, informiere einen [[Special:ListUsers/sysop|Syst
 'backend-fail-closetemp'     => 'Die temporäre Datei konnte nicht geschlossen werden.',
 'backend-fail-read'          => 'Die Datei $1 konnte nicht gelesen werden.',
 'backend-fail-create'        => 'Die Datei $1 konnte nicht erstellt werden.',
+'backend-fail-readonly'      => 'Das Backend „$1“ ist derzeit im Lesemodus. Die Begründung ist: „$2“',
 
 # Lock manager
 'lockmanager-notlocked'        => '„$1“ konnte nicht entsperrt werden, da keine Sperrung besteht.',
@@ -2825,6 +2827,7 @@ Die Datei kann in ein anderes MediaWiki-Wiki über die [[Special:Import|Importfu
 Trage den oder die entsprechenden Seitentitel in das folgende Textfeld ein (pro Zeile jeweils nur eine Seite).
 
 Alternativ ist der Export auch mit der Syntax [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] möglich, beispielsweise für die [[{{MediaWiki:Mainpage}}]].',
+'exportall'         => 'Alle Seiten exportieren',
 'exportcuronly'     => 'Nur die aktuelle Version der Seite exportieren',
 'exportnohistory'   => "----
 '''Hinweis:''' Der Export kompletter Versionsgeschichten ist aus Performancegründen bis auf weiteres nicht möglich.",
@@ -2920,7 +2923,6 @@ Diese auf dem lokalen Rechner speichern und danach hier hochladen.',
 
 # JavaScriptTest
 'javascripttest'                           => 'JavaScript-Test',
-'javascripttest-backlink'                  => '< $1',
 'javascripttest-disabled'                  => 'Diese Funktion ist deaktiviert.',
 'javascripttest-title'                     => '$1-Tests werden durchgeführt',
 'javascripttest-pagetext-noframework'      => 'Diese Seite ist JavaSkript-Tests vorbehalten.',

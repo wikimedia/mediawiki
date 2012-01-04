@@ -1226,7 +1226,7 @@ $1",
 'uid'                           => 'সদস্য চিহ্ন:',
 'prefs-memberingroups'          => 'এই {{PLURAL:$1|গোটৰ|গোটবোৰৰ}} সদস্য:',
 'prefs-registration'            => 'পঞ্জীয়ন কৰাৰ সময়:',
-'yourrealname'                  => 'আপোনাৰ আচল নাম*',
+'yourrealname'                  => 'আপোনাৰ আচল নাম:',
 'yourlanguage'                  => 'ভাষা:',
 'yourvariant'                   => 'বিষয়-বস্তুৰ ভাষা বিকল্প',
 'prefs-help-variant'            => 'এই ৱিকিৰ সমল পৃষ্ঠাসমূহ প্ৰদৰ্শন কৰিবলে আপোনাৰ পছন্দৰ অপৰ অথবা বৰ্ণবিন্যাস।',
@@ -2166,7 +2166,7 @@ $UNWATCHURL
 # Rollback
 'rollback'          => 'সম্পাদনা পূৰ্ববৎ কৰক',
 'rollback_short'    => 'পূৰ্ববৎ কৰক',
-'rollbacklink'      => 'পূৰ্ববৎ কৰিবলৈ',
+'rollbacklink'      => 'পূৰ্ববৎ কৰক',
 'rollbackfailed'    => 'পূৰ্ববৎ ব্যৰ্থ',
 'cantrollback'      => 'পূৰ্বৰ অৱস্থালৈ ঘূৰাই নিব নোৱাৰি;
 শেষৰ সম্পাদকজন এই পৃষ্ঠাৰ একমাত্ৰ লেখক ।',

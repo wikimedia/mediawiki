@@ -8,6 +8,7 @@
  * @file
  *
  * @author Annabel
+ * @author B4bol4t
  * @author DasRakel
  * @author Effeietsanders
  * @author Erwin
@@ -1706,6 +1707,7 @@ Deze informatie is zichtbaar voor andere gebruikers.',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|keer|keer}} op een volglijst]',
 'rc_categories'                     => 'Beperken tot categorieën (scheiden met een "|")',
 'rc_categories_any'                 => 'Elke',
+'rc-change-size-new'                => '$1 {{PLURAL:$1|byte|bytes}} na de wijziging',
 'newsectionsummary'                 => '/* $1 */ nieuwe subkop',
 'rc-enhanced-expand'                => 'Details weergeven (JavaScript verplicht)',
 'rc-enhanced-hide'                  => 'Details verbergen',
@@ -1898,6 +1900,7 @@ Als het probleem aanhoudt, neem dan contact op met een [[Special:ListUsers/sysop
 'backend-fail-closetemp'     => 'Het was niet mogelijk een tijdelijk bestand te sluiten.',
 'backend-fail-read'          => 'Het was niet mogelijk het bestand $1 te lezen.',
 'backend-fail-create'        => 'Het was niet mogelijk het bestand $1 aan te maken.',
+'backend-fail-readonly'      => 'Van de opslag "$1" kan op dit moment alleen gelezen worden. De opgegeven reden is: "$2"',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Het was niet mogelijk "$1" vrij te geven; dit object is niet vergrendeld.',
@@ -2900,6 +2903,7 @@ Dit exportbestand is daarna te importeren in een andere MediaWiki via de [[Speci
 Geef in het onderstaande veld de namen van de te exporteren pagina\'s op, één pagina per regel, en geef aan of u alle versies met de bewerkingssamenvatting of alleen de huidige versies met de bewerkingssamenvatting wilt exporteren.
 
 In het laatste geval kunt u ook een verwijzing gebruiken, bijvoorbeeld [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] voor de pagina "[[{{MediaWiki:Mainpage}}]]".',
+'exportall'         => "Alle pagina's exporteren",
 'exportcuronly'     => 'Alleen de laatste versie, niet de volledige geschiedenis',
 'exportnohistory'   => "----
 '''Let op:''' het exporteren van de gehele geschiedenis is uitgeschakeld wegens prestatieredenen.",
@@ -2995,6 +2999,17 @@ De tijdelijke map is niet aanwezig.',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|versie|versies}}',
 'import-logentry-interwiki'        => 'importeerde $1 via transwiki',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|versie|versies}} van $2',
+
+# JavaScriptTest
+'javascripttest'                           => 'JavaScript testen',
+'javascripttest-disabled'                  => 'Deze functie is uitgeschakeld.',
+'javascripttest-title'                     => 'Tests uitvoeren voor $1',
+'javascripttest-pagetext-noframework'      => 'Deze pagina is gereserveerd voor het uitvoeren van JavaScripttesten.',
+'javascripttest-pagetext-unknownframework' => 'Onbekend testframework "$1".',
+'javascripttest-pagetext-frameworks'       => 'Kies een van de volgende testframeworks: $1',
+'javascripttest-pagetext-skins'            => 'Beschikbare vormgevingen',
+'javascripttest-qunit-intro'               => 'Zie de [$1 testdocumentatie] op mediawiki.org.',
+'javascripttest-qunit-heading'             => 'QUnit testsuite voor MediaWiki JavaScript',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Uw gebruikerspagina',
