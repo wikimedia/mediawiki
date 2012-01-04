@@ -2817,8 +2817,6 @@ class Parser {
 				break;
 			case 'articlepath':
 				return $wgArticlePath;
-			case 'pageid':
-				return $this->getTitle()->getArticleId();
 			case 'sitename':
 				return $wgSitename;
 			case 'server':
