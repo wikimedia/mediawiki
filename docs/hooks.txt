@@ -1579,9 +1579,9 @@ scripts.
 loader request or generating HTML output.
 &$resourceLoader: ResourceLoader object
 
-'ResourceLoaderTestModules': let you add new javascript testing modules. This is called after the addition of 'qunit' and MediaWiki testing ressources.
-&testModules: array of javascript testing modules. 'qunit' is feed using tests/qunit/QUnitTestResources.php.
-&RessourceLoader object
+'ResourceLoaderTestModules': let you add new JavaScript testing modules. This is called after the addition of 'qunit' and MediaWiki testing resources.
+&testModules: array of JavaScript testing modules. 'qunit' is feed using tests/qunit/QUnitTestResources.php.
+&ResourceLoader object
 To add a new qunit module named 'myext.tests':
 testModules['qunit']['myext.tests'] = array(
 	'script' => 'extension/myext/tests.js',
