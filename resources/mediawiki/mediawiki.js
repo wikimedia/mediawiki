@@ -322,7 +322,7 @@ var mw = ( function ( $, undefined ) {
 			 *			'dependencies': ['required.foo', 'bar.also', ...], (or) function() {}
 			 *			'group': 'somegroup', (or) null,
 			 *			'source': 'local', 'someforeignwiki', (or) null
-			 *			'state': 'registered', 'loading', 'loaded', 'ready', or 'error'
+			 *			'state': 'registered', 'loading', 'loaded', 'ready', 'error' or 'missing'
 			 *			'script': ...,
 			 *			'style': ...,
 			 *			'messages': { 'key': 'value' },
@@ -435,18 +435,22 @@ var mw = ( function ( $, undefined ) {
 								' -> ' + deps[n]
 							);
 						}
+
+						// Add to unresolved
+						unresolved[unresolved.length] = module;
 						recurse( deps[n], resolved, unresolved );
+						// module is at the end of unresolved
+						unresolved.pop();
 					}
 				}
 				resolved[resolved.length] = module;
-				unresolved.splice( $.inArray( module, unresolved ), 1 );
 			}
 	
 			/**
 			 * Gets a list of module names that a module depends on in their proper dependency order
 			 *
 			 * @param module string module name or array of string module names
-			 * @return list of dependencies
+			 * @return list of dependencies, including 'module'.
 			 * @throws Error if circular reference is detected
 			 */
 			function resolve( module ) {
@@ -463,10 +467,6 @@ var mw = ( function ( $, undefined ) {
 					}
 					return modules;
 				} else if ( typeof module === 'string' ) {
-					// Undefined modules have no dependencies
-					if ( registry[module] === undefined ) {
-						return [];
-					}
 					resolved = [];
 					recurse( module, resolved, [] );
 					return resolved;
@@ -476,12 +476,13 @@ var mw = ( function ( $, undefined ) {
 	
 			/**
 			 * Narrows a list of module names down to those matching a specific
-			 * state. Possible states are 'undefined', 'registered', 'loading',
-			 * 'loaded', or 'ready'
+			 * state (see comment on top of this scope for a list of valid states).
+			 * One can also filter for 'unregistered', which will return the
+			 * modules names that don't have a registry entry.
 			 *
 			 * @param states string or array of strings of module states to filter by
-			 * @param modules array list of module names to filter (optional, all modules
-			 *  will be used by default)
+			 * @param modules array list of module names to filter (optional, by default the entire
+			 * registry is used)
 			 * @return array list of filtered module names
 			 */
 			function filter( states, modules ) {
@@ -504,7 +505,7 @@ var mw = ( function ( $, undefined ) {
 					for ( m = 0; m < modules.length; m += 1 ) {
 						if ( registry[modules[m]] === undefined ) {
 							// Module does not exist
-							if ( states[s] === 'undefined' ) {
+							if ( states[s] === 'unregistered' ) {
 								// OK, undefined
 								list[list.length] = modules[m];
 							}
@@ -736,15 +737,15 @@ var mw = ( function ( $, undefined ) {
 				if ( arguments.length > 1 ) {
 					jobs[jobs.length] = {
 						'dependencies': filter(
-							['undefined', 'registered', 'loading', 'loaded'],
+							['registered', 'loading', 'loaded'],
 							dependencies
 						),
 						'ready': ready,
 						'error': error
 					};
 				}
-				// Queue up any dependencies that are undefined or registered
-				dependencies = filter( ['undefined', 'registered'], dependencies );
+				// Queue up any dependencies that are registered
+				dependencies = filter( ['registered'], dependencies );
 				for ( n = 0; n < dependencies.length; n += 1 ) {
 					if ( $.inArray( dependencies[n], queue ) === -1 ) {
 						queue[queue.length] = dependencies[n];
@@ -822,15 +823,13 @@ var mw = ( function ( $, undefined ) {
 		
 					// Appends a list of modules from the queue to the batch
 					for ( q = 0; q < queue.length; q += 1 ) {
-						// Only request modules which are undefined or registered
-						if ( registry[queue[q]] === undefined || registry[queue[q]].state === 'registered' ) {
+						// Only request modules which are registered
+						if ( registry[queue[q]] !== undefined && registry[queue[q]].state === 'registered' ) {
 							// Prevent duplicate entries
 							if ( $.inArray( queue[q], batch ) === -1 ) {
 								batch[batch.length] = queue[q];
 								// Mark registered modules as loading
-								if ( registry[queue[q]] !== undefined ) {
-									registry[queue[q]].state = 'loading';
-								}
+								registry[queue[q]].state = 'loading';
 							}
 						}
 					}
@@ -985,7 +984,7 @@ var mw = ( function ( $, undefined ) {
 						throw new Error( 'module must be a string, not a ' + typeof module );
 					}
 					if ( registry[module] !== undefined ) {
-						throw new Error( 'module already implemented: ' + module );
+						throw new Error( 'module already registered: ' + module );
 					}
 					// List the module as registered
 					registry[module] = {
@@ -1053,8 +1052,6 @@ var mw = ( function ( $, undefined ) {
 						registry[module].dependencies ) )
 					{
 						execute( module );
-					} else {
-						request( module );
 					}
 				},
 		
@@ -1107,45 +1104,59 @@ var mw = ( function ( $, undefined ) {
 				 *  "text/javascript"; if no type is provided, text/javascript is assumed.
 				 */
 				load: function ( modules, type ) {
+					var filtered, m;
+
 					// Validate input
 					if ( typeof modules !== 'object' && typeof modules !== 'string' ) {
 						throw new Error( 'modules must be a string or an array, not a ' + typeof modules );
 					}
-					// Allow calling with an external script or single dependency as a string
+					// Allow calling with an external url or single dependency as a string
 					if ( typeof modules === 'string' ) {
 						// Support adding arbitrary external scripts
 						if ( /^(https?:)?\/\//.test( modules ) ) {
 							if ( type === 'text/css' ) {
-								$( 'head' ).append( $( '<link/>', {
+								$( 'head' ).append( $( '<link>', {
 									rel: 'stylesheet',
 									type: 'text/css',
 									href: modules
 								} ) );
-								return true;
+								return;
 							} else if ( type === 'text/javascript' || type === undefined ) {
 								addScript( modules );
-								return true;
+								return;
 							}
 							// Unknown type
-							return false;
+							throw new Error( 'invalid type for external url, must be text/css or text/javascript. not ' + type );
 						}
 						// Called with single module
 						modules = [modules];
 					}
-					// Resolve entire dependency map
-					modules = resolve( modules );
-					// If all modules are ready, nothing dependency be done
-					if ( compare( filter( ['ready'], modules ), modules ) ) {
-						return true;
+
+					// Filter out undefined modules, otherwise resolve() will throw
+					// an exception for trying to load an undefined module.
+					// Undefined modules are acceptable here in load(), because load() takes
+					// an array of unrelated modules, whereas the modules passed to
+					// using() are related and must all be loaded.
+					for ( filtered = [], m = 0; m < modules.length; m += 1 ) {
+						if ( registry[modules[m]] !== undefined ) {
+							filtered[filtered.length] = modules[m];
+						}
 					}
-					// If any modules have errors return false
-					else if ( filter( ['error'], modules ).length ) {
-						return false;
+
+					// Resolve entire dependency map
+					filtered = resolve( filtered );
+					// If all modules are ready, nothing dependency be done
+					if ( compare( filter( ['ready'], filtered ), filtered ) ) {
+						return;
+					}
+					// If any modules have errors
+					else if ( filter( ['error'], filtered ).length ) {
+						return;
 					}
 					// Since some modules are not yet ready, queue up a request
 					else {
-						request( modules );
-						return true;
+						request( filtered );
+						return;
 					}
 				},
 		
