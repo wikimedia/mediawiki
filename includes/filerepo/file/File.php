@@ -807,9 +807,12 @@ abstract class File {
 			}
 		} elseif ( $thumb->hasFile() && !$thumb->fileIsSource() ) {
 			// Copy the thumbnail from the file system into storage
-			$status = $this->repo->store(
-				$tmpThumbPath, 'thumb', $this->getThumbRel( $thumbName ),
-				FileRepo::OVERWRITE | FileRepo::SKIP_LOCKING | FileRepo::ALLOW_STALE );
+			// We don't use FileRepo::store() because of hacky suclasses
+			// overriding File::getThumbPath() to use a different zone (e.g. 'temp').
+			$status = $this->repo->getBackend()->store(
+				array( 'src' => $tmpThumbPath, 'dst' => $thumbPath ),
+				array( 'ignoreErrors' => 1, 'nonLocking' => 1, 'allowStale' => 1 )
+			);
 			if ( $status->isOK() ) {
 				$thumb->setStoragePath( $thumbPath );
 			} else {
