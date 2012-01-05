@@ -94,25 +94,80 @@ class GlobalTest extends MediaWikiTestCase {
 		$this->assertTrue( $end > $start, "Time is running backwards!" );
 	}
 
-	function testArrayToCGI() {
-		$this->assertEquals(
-			"baz=AT%26T&empty=&true=1&foo=bar",
-			wfArrayToCGI(
-				array( 'baz' => 'AT&T', 'empty' => '', 'ignored' => null, 'ignored2' => false, 'true' => true ),
-				array( 'foo' => 'bar', 'baz' => 'overridden value' ) ) );
-		$this->assertEquals(
-			"path%5B0%5D=wiki&path%5B1%5D=test&cfg%5Bservers%5D%5Bhttp%5D=localhost",
-			wfArrayToCGI( array(
-				'path' => array( 'wiki', 'test' ),
-				'cfg' => array( 'servers' => array( 'http' => 'localhost' ) ) ) ) );
+	function dataArrayToCGI() {
+		return array(
+			array( array(), '' ), // empty
+			array( array( 'foo' => 'bar' ), 'foo=bar' ), // string test
+			array( array( 'foo' => '' ), 'foo=' ), // empty string test
+			array( array( 'foo' => 1 ), 'foo=1' ), // number test
+			array( array( 'foo' => true ), 'foo=1' ), // true test
+			array( array( 'foo' => false ), '' ), // false test
+			array( array( 'foo' => null ), '' ), // null test
+			array( array( 'foo' => 'A&B=5+6@!"\'' ), 'foo=A%26B%3D5%2B6%40%21%22%27' ), // urlencoding test
+			array( array( 'foo' => 'bar', 'baz' => 'is', 'asdf' => 'qwerty' ), 'foo=bar&baz=is&asdf=qwerty' ), // multi-item test
+			array( array( 'foo' => array( 'bar' => 'baz' ) ), 'foo%5Bbar%5D=baz' ),
+			array( array( 'foo' => array( 'bar' => 'baz', 'qwerty' => 'asdf' ) ), 'foo%5Bbar%5D=baz&foo%5Bqwerty%5D=asdf' ),
+			array( array( 'foo' => array( 'bar', 'baz' ) ), 'foo%5B0%5D=bar&foo%5B1%5D=baz' ),
+			array( array( 'foo' => array( 'bar' => array( 'bar' => 'baz' ) ) ), 'foo%5Bbar%5D%5Bbar%5D=baz' ),
+		);
 	}
 
-	function testCgiToArray() {
+	/**
+	 * @dataProvider dataArrayToCGI
+	 */
+	function testArrayToCGI( $array, $result ) {
+		$this->assertEquals( $result, wfArrayToCGI( $array ) );
+	}
+
+
+	function testArrayToCGI2() {
 		$this->assertEquals(
-			array( 'path' => array( 'wiki', 'test' ),
-			'cfg' => array( 'servers' => array( 'http' => 'localhost' ) ),
-			'qwerty' => '' ),
-			wfCgiToArray( 'path%5B0%5D=wiki&path%5B1%5D=test&cfg%5Bservers%5D%5Bhttp%5D=localhost&qwerty' ) );
+			"baz=bar&foo=bar",
+			wfArrayToCGI(
+				array( 'baz' => 'bar' ),
+				array( 'foo' => 'bar', 'baz' => 'overridden value' ) ) );
+	}
+
+	function dataCgiToArray() {
+		return array(
+			array( '', array() ), // empty
+			array( 'foo=bar', array( 'foo' => 'bar' ) ), // string
+			array( 'foo=', array( 'foo' => '' ) ), // empty string
+			array( 'foo', array( 'foo' => '' ) ), // missing =
+			array( 'foo=bar&qwerty=asdf', array( 'foo' => 'bar', 'qwerty' => 'asdf' ) ), // multiple value
+			array( 'foo=A%26B%3D5%2B6%40%21%22%27', array( 'foo' => 'A&B=5+6@!"\'' ) ), // urldecoding test
+			array( 'foo%5Bbar%5D=baz', array( 'foo' => array( 'bar' => 'baz' ) ) ),
+			array( 'foo%5Bbar%5D=baz&foo%5Bqwerty%5D=asdf', array( 'foo' => array( 'bar' => 'baz', 'qwerty' => 'asdf' ) ) ),
+			array( 'foo%5B0%5D=bar&foo%5B1%5D=baz', array( 'foo' => array( 0 => 'bar', 1 => 'baz' ) ) ),
+			array( 'foo%5Bbar%5D%5Bbar%5D=baz', array( 'foo' => array( 'bar' => array( 'bar' => 'baz' ) ) ) ),
+		);
+	}
+
+	/**
+	 * @dataProvider dataCgiToArray
+	 */
+	function testCgiToArray( $cgi, $result ) {
+		$this->assertEquals( $result, wfCgiToArray( $cgi ) );
+	}
+
+	function dataCgiRoundTrip() {
+		return array(
+			array( '' ),
+			array( 'foo=bar' ),
+			array( 'foo=' ),
+			array( 'foo=bar&baz=biz' ),
+			array( 'foo=A%26B%3D5%2B6%40%21%22%27' ),
+			array( 'foo%5Bbar%5D=baz' ),
+			array( 'foo%5B0%5D=bar&foo%5B1%5D=baz' ),
+			array( 'foo%5Bbar%5D%5Bbar%5D=baz' ),
+		);
+	}
+
+	/**
+	 * @dataProvider dataCgiRoundTrip
+	 */
+	function testCgiRoundTrip( $cgi ) {
+		$this->assertEquals( $cgi, wfArrayToCGI( wfCgiToArray( $cgi ) ) );
 	}
 
 	function testMimeTypeMatch() {
