@@ -918,16 +918,23 @@ class Linker {
 	/**
 	 * Make user link (or user contributions for unregistered users)
 	 * @param $userId   Integer: user id in database.
-	 * @param $userText String: user name in database
+	 * @param $userName String: user name in database.
+	 * @param $altUserName String: text to display instead of the user name (optional)
 	 * @return String: HTML fragment
+	 * @since 1.19 Method exists for a long time. $displayText was added in 1.19.
 	 */
-	public static function userLink( $userId, $userText ) {
+	public static function userLink( $userId, $userName, $altUserName = false ) {
 		if ( $userId == 0 ) {
-			$page = SpecialPage::getTitleFor( 'Contributions', $userText );
+			$page = SpecialPage::getTitleFor( 'Contributions', $userName );
 		} else {
-			$page = Title::makeTitle( NS_USER, $userText );
+			$page = Title::makeTitle( NS_USER, $userName );
 		}
-		return self::link( $page, htmlspecialchars( $userText ), array( 'class' => 'mw-userlink' ) );
+
+		return self::link(
+			$page,
+			htmlspecialchars( $altUserName !== false ? $altUserName : $userName ),
+			array( 'class' => 'mw-userlink' )
+		);
 	}
 
 	/**
