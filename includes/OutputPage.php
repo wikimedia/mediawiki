@@ -2494,9 +2494,10 @@ $templates
 	 * @param $only String ResourceLoaderModule TYPE_ class constant
 	 * @param $useESI boolean
 	 * @param $extraQuery Array with extra query parameters to add to each request. array( param => value )
+	 * @param $loadCall boolean If true, output a mw.loader.load() call rather than a <script src="..."> tag
 	 * @return string html <script> and <style> tags
 	 */
-	protected function makeResourceLoaderLink( $modules, $only, $useESI = false, array $extraQuery = array() ) {
+	protected function makeResourceLoaderLink( $modules, $only, $useESI = false, array $extraQuery = array(), $loadCall = false ) {
 		global $wgResourceLoaderUseESI, $wgResourceLoaderInlinePrivateModules;
 
 		if ( !count( $modules ) ) {
@@ -2633,6 +2634,12 @@ $templates
 				// Automatically select style/script elements
 				if ( $only === ResourceLoaderModule::TYPE_STYLES ) {
 					$link = Html::linkedStyle( $url );
+				} else if ( $loadCall ) { 
+					$link = Html::inlineScript(
+						ResourceLoader::makeLoaderConditionalScript(
+							Xml::encodeJsCall( 'mw.loader.load', array( $url ) )
+						)
+					);
 				} else {
 					$link = Html::linkedScript( $url );
 				}
@@ -2654,6 +2661,8 @@ $templates
 	 * @return String: HTML fragment
 	 */
 	function getHeadScripts() {
+		global $wgResourceLoaderExperimentalAsyncLoading;
+		
 		// Startup - this will immediately load jquery and mediawiki modules
 		$scripts = $this->makeResourceLoaderLink( 'startup', ResourceLoaderModule::TYPE_SCRIPTS, true );
 
@@ -2679,27 +2688,43 @@ $templates
 		if ( $modules ) {
 			$scripts .= Html::inlineScript(
 				ResourceLoader::makeLoaderConditionalScript(
-					Xml::encodeJsCall( 'mw.loader.load', array( $modules ) )
+					"mw.loader.setBlocking( true );\n" .
+					Xml::encodeJsCall( 'mw.loader.load', array( $modules ) ) .
+					"\nmw.loader.setBlocking( false );"
 				)
 			);
+		}
+		
+		if ( $wgResourceLoaderExperimentalAsyncLoading ) {
+			$scripts .= $this->getScriptsForBottomQueue( true );
 		}
 
 		return $scripts;
 	}
 
 	/**
-	 * JS stuff to put at the bottom of the <body>: modules marked with position 'bottom',
-	 * legacy scripts ($this->mScripts), user preferences, site JS and user JS
+	 * JS stuff to put at the 'bottom', which can either be the bottom of the <body>
+	 * or the bottom of the <head> depending on $wgResourceLoaderExperimentalAsyncLoading:
+	 * modules marked with position 'bottom', legacy scripts ($this->mScripts),
+	 * user preferences, site JS and user JS
 	 *
+	 * @param $inHead boolean If true, this HTML goes into the <head>, if false it goes into the <body>
 	 * @return string
 	 */
-	function getBottomScripts() {
+	function getScriptsForBottomQueue( $inHead ) {
 		global $wgUseSiteJs, $wgAllowUserJs;
 
 		// Script and Messages "only" requests marked for bottom inclusion
+		// If we're in the <head>, use load() calls rather than <script src="..."> tags
 		// Messages should go first
-		$scripts = $this->makeResourceLoaderLink( $this->getModuleMessages( true, 'bottom' ), ResourceLoaderModule::TYPE_MESSAGES );
-		$scripts .= $this->makeResourceLoaderLink( $this->getModuleScripts( true, 'bottom' ), ResourceLoaderModule::TYPE_SCRIPTS );
+		$scripts = $this->makeResourceLoaderLink( $this->getModuleMessages( true, 'bottom' ),
+			ResourceLoaderModule::TYPE_MESSAGES, /* $useESI = */ false, /* $extraQuery = */ array(),
+			/* $loadCall = */ $inHead
+		);
+		$scripts .= $this->makeResourceLoaderLink( $this->getModuleScripts( true, 'bottom' ),
+			ResourceLoaderModule::TYPE_SCRIPTS, /* $useESI = */ false, /* $extraQuery = */ array(),
+			/* $loadCall = */ $inHead
+		);
 
 		// Modules requests - let the client calculate dependencies and batch requests as it likes
 		// Only load modules that have marked themselves for loading at the bottom
@@ -2719,7 +2744,9 @@ $templates
 
 		// Add site JS if enabled
 		if ( $wgUseSiteJs ) {
-			$scripts .= $this->makeResourceLoaderLink( 'site', ResourceLoaderModule::TYPE_SCRIPTS );
+			$scripts .= $this->makeResourceLoaderLink( 'site', ResourceLoaderModule::TYPE_SCRIPTS,
+				/* $useESI = */ false, /* $extraQuery = */ array(), /* $loadCall = */ $inHead
+			);
 			if( $this->getUser()->isLoggedIn() ){
 				$userScripts[] = 'user.groups';
 			}
@@ -2732,7 +2759,7 @@ $templates
 				// We're on a preview of a JS subpage
 				// Exclude this page from the user module in case it's in there (bug 26283)
 				$scripts .= $this->makeResourceLoaderLink( 'user', ResourceLoaderModule::TYPE_SCRIPTS, false,
-					array( 'excludepage' => $this->getTitle()->getPrefixedDBkey() )
+					array( 'excludepage' => $this->getTitle()->getPrefixedDBkey() ), $inHead
 				);
 				// Load the previewed JS
 				$scripts .= Html::inlineScript( "\n" . $this->getRequest()->getText( 'wpTextbox1' ) . "\n" ) . "\n";
@@ -2740,12 +2767,28 @@ $templates
 				// Include the user module normally
 				// We can't do $userScripts[] = 'user'; because the user module would end up
 				// being wrapped in a closure, so load it raw like 'site'
-				$scripts .= $this->makeResourceLoaderLink( 'user', ResourceLoaderModule::TYPE_SCRIPTS );
+				$scripts .= $this->makeResourceLoaderLink( 'user', ResourceLoaderModule::TYPE_SCRIPTS,
+					/* $useESI = */ false, /* $extraQuery = */ array(), /* $loadCall = */ $inHead
+				);
 			}
 		}
-		$scripts .= $this->makeResourceLoaderLink( $userScripts, ResourceLoaderModule::TYPE_COMBINED );
+		$scripts .= $this->makeResourceLoaderLink( $userScripts, ResourceLoaderModule::TYPE_COMBINED,
+			/* $useESI = */ false, /* $extraQuery = */ array(), /* $loadCall = */ $inHead
+		);
 
 		return $scripts;
+	}
+
+	/**
+	 * JS stuff to put at the bottom of the <body>
+	 */
+	function getBottomScripts() {
+		global $wgResourceLoaderExperimentalAsyncLoading;
+		if ( !$wgResourceLoaderExperimentalAsyncLoading ) {
+			return $this->getScriptsForBottomQueue( false );
+		} else {
+			return '';
+		}
 	}
 
 	/**
