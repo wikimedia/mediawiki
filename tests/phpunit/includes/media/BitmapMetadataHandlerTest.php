@@ -56,6 +56,16 @@ class BitmapMetadataHandlerTest extends MediaWikiTestCase {
 			$meta['JPEGFileComment'][0] );
 	}
 
+	/**
+	 * Make sure a bad iptc block doesn't stop the other metadata
+	 * from being extracted.
+	 */
+	public function testBadIPTC() {
+		$meta = BitmapMetadataHandler::Jpeg( $this->filePath .
+			'iptc-invalid-psir.jpg' );
+		$this->assertEquals( 'Created with GIMP', $meta['JPEGFileComment'][0] );
+	}
+
 	public function testIPTCDates() {
 		$meta = BitmapMetadataHandler::Jpeg( $this->filePath .
 			'iptc-timetest.jpg' );

@@ -59,7 +59,7 @@ class JpegMetadataExtractorTest extends MediaWikiTestCase {
 	public function testPSIRExtraction() {
 		$res = JpegMetadataExtractor::segmentSplitter( $this->filePath . 'jpeg-xmp-psir.jpg' );
 		$expected = '50686f746f73686f7020332e30003842494d04040000000000181c02190004746573741c02190003666f6f1c020000020004';
-		$this->assertEquals( $expected, bin2hex( $res['PSIR'] ) );
+		$this->assertEquals( $expected, bin2hex( $res['PSIR'][0] ) );
 	}
 	public function testXMPExtractionAltAppId() {
 		$res = JpegMetadataExtractor::segmentSplitter( $this->filePath . 'jpeg-xmp-alt.jpg' );
@@ -70,19 +70,19 @@ class JpegMetadataExtractorTest extends MediaWikiTestCase {
 
 	public function testIPTCHashComparisionNoHash() {
 		$segments = JpegMetadataExtractor::segmentSplitter( $this->filePath . 'jpeg-xmp-psir.jpg' );
-		$res = JpegMetadataExtractor::doPSIR( $segments['PSIR'] );
+		$res = JpegMetadataExtractor::doPSIR( $segments['PSIR'][0] );
 
 		$this->assertEquals( 'iptc-no-hash', $res );
 	}
 	public function testIPTCHashComparisionBadHash() {
 		$segments = JpegMetadataExtractor::segmentSplitter( $this->filePath . 'jpeg-iptc-bad-hash.jpg' );
-		$res = JpegMetadataExtractor::doPSIR( $segments['PSIR'] );
+		$res = JpegMetadataExtractor::doPSIR( $segments['PSIR'][0] );
 
 		$this->assertEquals( 'iptc-bad-hash', $res );
 	}
 	public function testIPTCHashComparisionGoodHash() {
 		$segments = JpegMetadataExtractor::segmentSplitter( $this->filePath . 'jpeg-iptc-good-hash.jpg' );
-		$res = JpegMetadataExtractor::doPSIR( $segments['PSIR'] );
+		$res = JpegMetadataExtractor::doPSIR( $segments['PSIR'][0] );
 
 		$this->assertEquals( 'iptc-good-hash', $res );
 	}
