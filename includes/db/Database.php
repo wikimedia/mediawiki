@@ -686,7 +686,7 @@ abstract class DatabaseBase implements DatabaseType {
 				isset( $p['flags'] ) ? $p['flags'] : 0,
 				isset( $p['tablePrefix'] ) ? $p['tablePrefix'] : 'get from global'
 			);
-		} elseif ( class_exists( $class ) ) {
+		} elseif ( class_exists( $class ) && is_subclass_of( $class, 'DatabaseBase' ) ) {
 			return new $class( $p );
 		} else {
 			return null;
