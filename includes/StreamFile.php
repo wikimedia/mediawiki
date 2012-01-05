@@ -6,7 +6,10 @@
  */
 class StreamFile {
 	/**
-	 * Stream a file to the browser, adding all the headings and fun stuff
+	 * Stream a file to the browser, adding all the headings and fun stuff.
+	 * Headers sent include: Content-type, Content-Length, Last-Modified,
+	 * and Content-Disposition.
+	 * 
 	 * @param $fname string Full name and path of the file to stream
 	 * @param $headers array Any additional headers to send
 	 * @param $sendErrors bool Send error messages if errors occur (like 404)
