@@ -42,55 +42,75 @@ class XCFHandler extends BitmapHandler {
 		return self::getXCFMetaData( $filename );
 	}
 
+	/**
+	 * Metadata for a given XCF file
+	 *
+	 * Will return false if file magic signature is not recognized
+	 * @author Hexmode
+	 * @author Hashar
+	 *
+	 * @param $filename String Full path to a XCF file
+	 * @return false|metadata array just like PHP getimagesize()
+	 */
 	static function getXCFMetaData( $filename ) {
-		global $wgImageMagickIdentifyCommand;
-
-		$cmd = wfEscapeShellArg( $wgImageMagickIdentifyCommand ) . ' -verbose ' . wfEscapeShellArg( $filename );
-		wfDebug( __METHOD__ . ": Running $cmd \n" );
-
-		$retval = null;
-		$return = wfShellExec( $cmd, $retval );
-		if( $retval !== 0 ) {
-			wfDebug( __METHOD__ . ": error encountered while running $cmd\n" );
+		# Decode master structure
+		$f = fopen( $filename, 'rb' );
+		if( !$f ) {
 			return false;
 		}
+		# The image structure always starts at offset 0 in the XCF file.
+		# So we just read it :-)
+		$binaryHeader = fread( $f, 26 );
+		fclose($f);
 
-		$colorspace = preg_match_all( '/ *Colorspace: RGB/', $return, $match );
-		$frameCount = preg_match_all( '/ *Geometry: ([0-9]+x[0-9]+)\+[+0-9]*/', $return, $match );
-		wfDebug( __METHOD__ . ": Got $frameCount matches\n" );
+		# Master image structure:
+		#
+		# byte[9] "gimp xcf "  File type magic
+		# byte[4] version      XCF version
+		#                        "file" - version 0
+		#                        "v001" - version 1
+		#                        "v002" - version 2
+		# byte    0            Zero-terminator for version tag
+		# uint32  width        With of canvas
+		# uint32  height       Height of canvas
+		# uint32  base_type    Color mode of the image; one of
+		#                         0: RGB color
+		#                         1: Grayscale
+		#                         2: Indexed color
+		#        (enum GimpImageBaseType in libgimpbase/gimpbaseenums.h)
+		$header = unpack(
+			  "A9magic"     # A: space padded
+			. "/a5version"  # a: zero padded
+			. "/Nwidth"     # \
+			. "/Nheight"    # N: unsigned long 32bit big endian
+			. "/Nbase_type" # /
+		, $binaryHeader
+		);
 
-		/* if( $frameCount == 1 ) { */
-		/* 	preg_match( '/([0-9]+)x([0-9]+)/sm', $match[1][0], $m ); */
-		/* 	$sizeX = $m[1]; */
-		/* 	$sizeY = $m[2]; */
-		/* } else { */
-			$sizeX = 0;
-			$sizeY = 0;
+		# Check values
+		if( $header['magic'] !== 'gimp xcf' ) {
+			var_dump( $header );
+			wfDebug( __METHOD__ . " '$filename' has invalid magic signature.\n" );
+			return false;
+		}
+		# TODO: we might want to check for sane values of width and height
 
-			# Find out the largest width and height used in any frame
-			foreach( $match[1] as $res ) {
-				preg_match( '/([0-9]+)x([0-9]+)/sm', $res, $m );
-				if( $m[1] > $sizeX ) {
-					$sizeX = $m[1];
-				}
-				if( $m[2] > $sizeY ) {
-					$sizeY = $m[2];
-				}
-			}
-		/* } */
-
-		wfDebug( __METHOD__ . ": Found $sizeX x $sizeY x $frameCount \n" );
+		wfDebug( __METHOD__ . ": canvas size of '$filename' is {$header['width']} x {$header['height']} px\n" );
 
 		# Forge a return array containing metadata information just like getimagesize()
 		# See PHP documentation at: http://www.php.net/getimagesize
 		$metadata = array();
-		$metadata['frameCount'] = $frameCount;
-		$metadata[0] = $sizeX;
-		$metadata[1] = $sizeY;
-		$metadata[2] = null;
-		$metadata[3] = "height=\"$sizeY\" width=\"$sizeX\"";
+		$metadata[0] = $header['width'];
+		$metadata[1] = $header['height'];
+		$metadata[2] = null;   # IMAGETYPE constant, none exist for XCF.
+		$metadata[3] = sprintf(
+			'height="%s" width="%s"', $header['height'], $header['width']
+		);
 		$metadata['mime'] = 'image/x-xcf';
-		$metadata['channels'] = $colorspace == 1 ? 3 : 4;
+		$metadata['channels'] = null;
+		$metadata['bits'] = 8;  # Always 8-bits per color
+
+		assert( '7 == count($metadata); # return array must contains 7 elements just like getimagesize() return' );
 
 		return $metadata;
 	}
