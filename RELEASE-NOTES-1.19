@@ -117,6 +117,7 @@ production.
 * Extensions can use the RequestContextCreateSkin hook to override what skin is
   loaded in some contexts.
 * (bug 33456) Show $wgQueryCacheLimit on cached query pages.
+* (bug 10574) Add an option to allow all pages to be exported by Special:Export.
 
 === Bug fixes in 1.19 ===
 * $wgUploadNavigationUrl should be used for file redlinks if.
