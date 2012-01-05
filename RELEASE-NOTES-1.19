@@ -116,6 +116,7 @@ production.
   Enable by setting $wgEnableJavaScriptTest to true.
 * Extensions can use the RequestContextCreateSkin hook to override what skin is
   loaded in some contexts.
+* (bug 33456) Show $wgQueryCacheLimit on cached query pages.
 
 === Bug fixes in 1.19 ===
 * $wgUploadNavigationUrl should be used for file redlinks if.
