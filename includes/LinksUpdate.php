@@ -26,6 +26,7 @@ class LinksUpdate {
 	 */
 	var $mId,            //!< Page ID of the article linked from
 		$mTitle,         //!< Title object of the article linked from
+		$mParserOutput,  //!< Parser output
 		$mLinks,         //!< Map of title strings to IDs for the links in the document
 		$mImages,        //!< DB keys of the images used, in the array key only
 		$mTemplates,     //!< Map of title strings to IDs for the template references, including broken ones
@@ -808,6 +809,14 @@ class LinksUpdate {
 	 */
 	public function getTitle() {
 		return $this->mTitle;
+	}
+
+	/**
+	 * Returns parser output
+	 * @return ParserOutput
+	 */
+	public function getParserOutput() {
+		return $this->mParserOutput;
 	}
 
 	/**
