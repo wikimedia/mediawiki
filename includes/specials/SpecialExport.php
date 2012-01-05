@@ -264,7 +264,7 @@ class SpecialExport extends SpecialPage {
 	private function doExport( $page, $history, $list_authors, $exportall ) {
 
 		// If we are grabbing everything, enable full history and ignore the rest
-		if ($exportall) {
+		if ( $exportall ) {
 			$history = WikiExporter::FULL;
 		} else {
 
@@ -310,7 +310,7 @@ class SpecialExport extends SpecialPage {
 		}
 
 		/* Ok, let's get to it... */
-		if( $history == WikiExporter::CURRENT && ! $exportall ) {
+		if( $history == WikiExporter::CURRENT ) {
 			$lb = false;
 			$db = wfGetDB( DB_SLAVE );
 			$buffer = WikiExporter::BUFFER;

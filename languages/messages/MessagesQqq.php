@@ -2983,6 +2983,7 @@ Parameters:
 # Export
 'export'           => 'Page title of [[Special:Export]], a page where a user can export pages from a wiki to a file.',
 'exporttext'       => 'Main text on [[Special:Export]]. Leave the line <tt><nowiki>[[{{#Special:Export}}/{{MediaWiki:Mainpage}}]]</nowiki></tt> exactly as it is!',
+'exportall'        => 'A label of checkbox option in [[Special:Export]]',
 'exportcuronly'    => 'A label of checkbox option in [[Special:Export]]',
 'export-submit'    => 'Button name in [[Special:Export]].
 
