@@ -360,6 +360,7 @@ class Article extends Page {
 	 * Get the fetched Revision object depending on request parameters or null
 	 * on failure.
 	 *
+	 * @since 1.19
 	 * @return Revision|null
 	 */
 	public function getRevisionFetched() {
