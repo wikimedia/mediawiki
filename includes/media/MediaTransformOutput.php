@@ -18,6 +18,7 @@ abstract class MediaTransformOutput {
 	var $file;
 
 	var $width, $height, $url, $page, $path;
+	protected $storagePath = false;
 
 	/**
 	 * Get the width of the output box
@@ -38,6 +39,21 @@ abstract class MediaTransformOutput {
 	 */
 	public function getUrl() {
 		return $this->url;
+	}
+
+	/**
+	 * @return string|false The permanent thumbnail storage path
+	 */
+	public function getStoragePath() {
+		return $this->storagePath;
+	}
+
+	/**
+	 * @param $storagePath string The permanent storage path
+	 * @return void
+	 */
+	public function setStoragePath( $storagePath ) {
+		$this->storagePath = $storagePath;
 	}
 
 	/**

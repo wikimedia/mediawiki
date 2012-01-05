@@ -166,14 +166,15 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		}
 
 		// we should have just generated it locally
-		if ( ! $thumbnailImage->getPath() ) {
+		if ( !$thumbnailImage->getStoragePath() ) {
 			throw new UploadStashFileNotFoundException( "no local path for scaled item" );
 		}
 
 		// now we should construct a File, so we can get mime and other such info in a standard way
 		// n.b. mimetype may be different from original (ogx original -> jpeg thumb)
-		$thumbFile = new UnregisteredLocalFile( false, $this->stash->repo, $thumbnailImage->getPath(), false );
-		if ( ! $thumbFile ) {
+		$thumbFile = new UnregisteredLocalFile( false, 
+			$this->stash->repo, $thumbnailImage->getStoragePath(), false );
+		if ( !$thumbFile ) {
 			throw new UploadStashFileNotFoundException( "couldn't create local file object for thumbnail" );
 		}
 
@@ -238,18 +239,17 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	/**
 	 * Output HTTP response for file
 	 * Side effect: writes HTTP response to STDOUT.
-	 * XXX could use wfStreamfile (in includes/Streamfile.php), but for consistency with outputContents() doing it this way.
-	 * XXX is mimeType really enough, or do we need encoding for full Content-Type header?
 	 *
 	 * @param $file File object with a local path (e.g. UnregisteredLocalFile, LocalFile. Oddly these don't share an ancestor!)
 	 */
-	private function outputLocalFile( $file ) {
+	private function outputLocalFile( File $file ) {
 		if ( $file->getSize() > self::MAX_SERVE_BYTES ) {
 			throw new SpecialUploadStashTooLargeException();
 		}
-		self::outputFileHeaders( $file->getMimeType(), $file->getSize() );
-		readfile( $file->getPath() );
-		return true;
+		return $file->getRepo()->streamFile( $file->getPath(),
+			array( 'Content-Transfer-Encoding: binary',
+				'Expires: Sun, 17-Jan-2038 19:14:07 GMT' )
+		);
 	}
 
 	/**
