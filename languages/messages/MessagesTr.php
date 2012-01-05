@@ -708,7 +708,7 @@ Verilen sebep: ''$2''.",
 
 Şimdi kimliğinizi belirtmeksizin {{SITENAME}} sitesini kullanmaya devam edebilirsiniz, ya da [[Special:UserLogin|yeniden oturum açabilirsiniz]] (ister aynı kullanıcı adıyla, ister başka bir kullanıcı adıyla).
 Web tarayıcınızın önbelleğini temizleyene kadar bazı sayfalar sanki hala oturumunuz açıkmış gibi görünebilir.",
-'welcomecreation'            => '== Hoşgeldiniz, $1! ==
+'welcomecreation'            => '== Hoş geldin, $1! ==
 
 Hesabınız açıldı.
 [[Special:Preferences|{{SITENAME}} tercihlerinizi]] değiştirmeyi unutmayın.',
@@ -717,7 +717,7 @@ Hesabınız açıldı.
 'yourpasswordagain'          => 'Parolayı yeniden yaz:',
 'remembermypassword'         => 'Girişimi bu bilgisayarda hatırla (en fazla $1 {{PLURAL:$1|gün|gün}} için)',
 'securelogin-stick-https'    => "Giriş yaptıktan sonra HTTPS'e bağlı kal",
-'yourdomainname'             => 'Alan adınız',
+'yourdomainname'             => 'Alan adınız:',
 'externaldberror'            => 'Ya doğrulama veritabanı hatası var ya da kullanıcı hesabınızı güncellemeye yetkiniz yok.',
 'login'                      => 'Oturum aç',
 'nav-login-createaccount'    => 'Oturum aç / hesap oluştur',

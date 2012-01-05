@@ -12,6 +12,7 @@
  * @author Bdamokos
  * @author Bean49
  * @author Bennó
+ * @author Bináris
  * @author BáthoryPéter
  * @author CERminator
  * @author Cerasus
@@ -1018,7 +1019,7 @@ A lap szöveget kimásolhatod egy szövegfájlba, amit elmenthetsz későbbre.''
 Az adatbázist lezáró adminisztrátor az alábbi magyarázatot adta: $1",
 'protectedpagewarning'             => "'''Figyelem: Ez a lap le van védve, így csak adminisztrátori jogosultságokkal rendelkező szerkesztők módosíthatják.'''
 A legutolsó ide vonatkozó naplóbejegyzés alább látható:",
-'semiprotectedpagewarning'         => "'''Megjegyzés:''' ez a lap védett, így regisztrálatlan, vagy újonnan regisztrált szerkesztők nem módosíthatják.",
+'semiprotectedpagewarning'         => "'''Megjegyzés:''' ez a lap védett, így regisztrálatlan vagy újonnan regisztrált szerkesztők nem módosíthatják.",
 'cascadeprotectedwarning'          => "'''Figyelem:''' ez a lap le van zárva, csak adminisztrátorok szerkeszthetik, mert a következő kaszkádvédelemmel ellátott {{PLURAL:$1|lapon|lapokon}} szerepel beillesztve:",
 'titleprotectedwarning'            => "'''Figyelem: Ez a lap le van védve, így csak a [[Special:ListGroupRights|megfelelő jogosultságokkal]] rendelkező szerkesztők hozhatják létre.'''
 A legutolsó ide vonatkozó naplóbejegyzés alább látható:",
@@ -2879,7 +2880,7 @@ Mentsd el a számítógépedre, majd töltsd fel ide.',
 'javascripttest-pagetext-noframework'      => 'Ez az oldal JavaStript tesztek futtatására van fenntartva.',
 'javascripttest-pagetext-unknownframework' => 'Ismeretlen teszt keretrendszer: $1.',
 'javascripttest-pagetext-frameworks'       => 'Kérlek válaszd valamelyik teszt keretrendszert az alábbiak közül: $1',
-'javascripttest-pagetext-skins'            => 'Elérhető megjelenítések',
+'javascripttest-pagetext-skins'            => 'Válassz egy megjelenítő felületet, amin a tesztet futtatod:',
 'javascripttest-qunit-intro'               => 'Lásd a [$1 tesztelési dokumentációt]  a mediawiki.org helyen.',
 'javascripttest-qunit-heading'             => 'MediaWiki JavaScript QUnit tesztcsomag',
 

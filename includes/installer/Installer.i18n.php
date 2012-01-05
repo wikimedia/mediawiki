@@ -3681,6 +3681,7 @@ Die folgenden Datenbanksysteme werden unterstützt: $1
 Sofern ein gemeinschaftlich genutzter Server für das Hosting verwendet wird, muss der Hoster gefragt werden einen adäquaten Datenbanktreiber zu installieren.
 Sofern PHP selbst kompiliert wurde, muss es mit es neu konfiguriert werden, wobei der Datenbankclient zu aktivierten ist. Hierzu kann beispielsweise <code>./configure --with-mysql</code> ausgeführt werden.
 Sofern PHP über die Paketverwaltung einer Debian- oder Ubuntu-Installation installiert wurde, muss das „php5-mysql“-Paket nachinstalliert werden.',
+	'config-outdated-sqlite' => "'''Warnung:''' SQLite $1 ist installiert. Allerdings benötigt MediaWiki SQLite $2 oder höher. SQLite wird daher nicht verfügbar sein.",
 	'config-no-fts3' => "'''Warnung:''' SQLite wurde ohne das [//sqlite.org/fts3.html FTS3-Modul] kompiliert, so dass keine Suchfunktionen zur Verfügung stehen werden.",
 	'config-register-globals' => "'''Warnung: Der Parameter <code>[http://php.net/register_globals register_globals]</code> von PHP ist aktiviert.'''
 '''Sie sollte deaktiviert werden, sofern dies möglich ist.'''
@@ -7947,6 +7948,7 @@ Le sequente typos de base de datos es supportate: $1.
 Si tu sito usa un servitor dividite (shared hosting), demanda a tu providitor de installar un driver de base de datos appropriate.
 Si tu compilava PHP tu mesme, reconfigura lo con un cliente de base de datos activate, per exemplo usante <code>./configure --with-mysql</code>.
 Si tu installava PHP ex un pacchetto Debian o Ubuntu, tu debe installar equalmente le modulo php5-mysql.',
+	'config-outdated-sqlite' => "'''Attention''': tu ha SQLite $1, que es inferior al version minimal requirite, $2. SQLite essera indisponibile.",
 	'config-no-fts3' => "'''Attention''': SQLite es compilate sin [//sqlite.org/fts3.html modulo FTS3]; functionalitate de recerca non essera disponibile in iste back-end.",
 	'config-register-globals' => "'''Attention: le option <code>[http://php.net/register_globals register_globals]</code> de PHP es activate.'''
 '''Disactiva lo si tu pote.'''
@@ -10866,6 +10868,7 @@ $1
 Ако сте на заедничко (споделено) вдомување, побарајте му на вдомителот да инсталира соодветен двигател за базата.
 Ако вие самите го составивте ова PHP, сменете ги поставките така што ќе овозможите клиент на базата - на пр. со кодот <code>./configure --with-mysql</code>.
 Ако инсталиравте PHP од пакет на Debian или Ubuntu, тогаш ќе треба да го инсталирате и модулот php5-mysql.',
+	'config-outdated-sqlite' => "'''Предупредување''': имате SQLite $1. Најстарата допуштена верзија е $2. Затоа, SQLite ќе биде недостапен.",
 	'config-no-fts3' => "'''Предупредување''': SQLite iе составен без модулот [//sqlite.org/fts3.html FTS3] - за оваа база нема да има можност за пребарување.",
 	'config-register-globals' => "'''Предупредување: Можноста <code>[http://php.net/register_globals register_globals]</code> за PHP е овозможена.'''
 '''Оневозможете ја ако е можно.'''

@@ -54,6 +54,18 @@ $messages = array(
 'october-gen'   => 'ngônda ya kûmi',
 'november-gen'  => 'ngônda ya kûmi na mosi',
 'december-gen'  => 'ngônda ya kûmi na zôle',
+'jan'           => 'ng1',
+'feb'           => 'ng2',
+'mar'           => 'ng3',
+'apr'           => 'ng4',
+'may'           => 'ng5',
+'jun'           => 'ng6',
+'jul'           => 'ng7',
+'aug'           => 'ng8',
+'sep'           => 'ng9',
+'oct'           => 'ng10',
+'nov'           => 'ng11',
+'dec'           => 'ng12',
 
 # Categories related messages
 'pagecategories'  => '{{PLURAL:$1|Kalasi|Bakalasi}}',
@@ -108,10 +120,13 @@ $messages = array(
 'mainpage-description' => 'Lukaya ya mfumu',
 
 'retrievedfrom'           => 'Receptum de "$1"',
+'youhavenewmessages'      => 'Nge kele na $1 ($2).',
 'newmessageslink'         => 'bansangu ya yimpa',
 'youhavenewmessagesmulti' => 'Nge kele na bansangu ya yimpa kuna $1',
 'editsection'             => 'soba',
 'editold'                 => 'soba',
+'editlink'                => 'soba',
+'editsectionhint'         => 'Soba kibuku: $1',
 'red-link-title'          => '$1 (mukanda kele ve)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -120,32 +135,62 @@ $messages = array(
 'nstab-category'  => 'Kalasi',
 
 # Login and logout pages
+'yourname'           => 'Nkûmbu ya nsoniki:',
+'yourpassword'       => 'Mpovo ya kuluta:',
 'login'              => 'Kota',
+'userlogin'          => 'Kota / sala konti',
 'logout'             => 'Basika',
 'userlogout'         => 'Basika',
+'nologin'            => 'Nge kele na konti ve? $1.',
+'nologinlink'        => 'Sala konti',
+'createaccount'      => 'Sala konti',
 'gotaccountlink'     => 'Kota',
 'loginlanguagelabel' => 'Ndinga: $1',
 
+# Edit pages
+'newarticle'     => '(Yimpa)',
+'editing'        => 'Na kusonika $1',
+'editingsection' => 'Na kusonika $1 (kibuku)',
+
 # History pages
-'histfirst' => 'Ya ntete',
-'histlast'  => 'Ya nsuka',
+'history-fieldset-title' => 'Monisa bansoba',
+'histfirst'              => 'Ya ntete',
+'histlast'               => 'Ya nsuka',
 
 # Diffs
-'lineno' => 'Nzila ya $1:',
+'lineno'   => 'Nzila ya $1:',
+'editundo' => 'vutula',
 
 # Search results
-'prevn'        => 'biyita {{PLURAL:$1|$1}}',
-'nextn'        => 'bilandi {{PLURAL:$1|$1}}',
-'viewprevnext' => 'Mona ($1 {{int:pipe-separator}} $2) ($3).',
-'powersearch'  => 'Sosa',
+'prevn'                          => 'biyita {{PLURAL:$1|$1}}',
+'nextn'                          => 'bilandi {{PLURAL:$1|$1}}',
+'viewprevnext'                   => 'Mona ($1 {{int:pipe-separator}} $2) ($3).',
+'searchprofile-everything'       => 'Nyonso',
+'searchprofile-articles-tooltip' => 'Sosa na $1',
+'searchprofile-project-tooltip'  => 'Sosa na $1',
+'search-result-size'             => '$1 ({{PLURAL:$2|mpovo 1|bampovo $2}})',
+'search-section'                 => '(kibuku $1)',
+'searchall'                      => 'nyonso',
+'powersearch'                    => 'Sosa',
 
 # Preferences page
 'mypreferences' => 'Konte ya munu',
 'yourlanguage'  => 'Ndinga:',
 
 # Recent changes
-'recentchanges' => 'Bansoba ya yimpa',
-'hist'          => 'nsoba',
+'recentchanges'             => 'Bansoba ya yimpa',
+'recentchanges-label-minor' => 'Nsoba yayi kele ya fyoti-fyoti',
+'recentchanges-label-bot'   => 'Nsoba yayi me salama na robo',
+'rcshowhideminor'           => '$1 bansoba ya fyoti-fyoti',
+'rcshowhidemine'            => '$1 bansoba na munu',
+'diff'                      => 'nsoba',
+'hist'                      => 'nsoba',
+'show'                      => 'Monisa',
+'minoreditletter'           => 'f',
+
+# File description page
+'filehist-datetime' => 'Kilumbu/Ngûnga',
+'filehist-user'     => 'Nsoniki',
 
 # Random page
 'randompage' => 'Lukaya na kintulumukini',
@@ -162,8 +207,10 @@ $messages = array(
 
 # Contributions
 'mycontris' => 'Makabu ya munu',
+'month'     => 'Katuka ngônda:',
+'year'      => 'Katuka mvula:',
 
-'sp-contributions-talk' => 'Disolo',
+'sp-contributions-talk' => 'disolo',
 
 # What links here
 'whatlinkshere' => 'Balukaya ke songa awa',
@@ -179,8 +226,15 @@ Sôla nkûmbu ya nkaka.',
 'movereason'     => 'Samu:',
 
 # Tooltip help for the actions
-'tooltip-pt-logout' => 'Basika',
-'tooltip-search'    => 'Sosa na {{SITENAME}}',
+'tooltip-pt-userpage' => 'Mukanda ya munu',
+'tooltip-pt-mytalk'   => 'Disolo ya munu',
+'tooltip-pt-logout'   => 'Basika',
+'tooltip-search'      => 'Sosa na {{SITENAME}}',
+'tooltip-undo'        => '"Vutula" ke vutula nsoba yayi mpe yawu ke monisa lumoni ya kusoba. Nge lênda sonika kikuma ya mvutula.',
+
+# 'all' in various places, this might be different for inflected languages
+'namespacesall' => 'nyonso',
+'monthsall'     => 'nyonso',
 
 # Table pager
 'table_pager_next'  => 'Lukaya ya kulanda',

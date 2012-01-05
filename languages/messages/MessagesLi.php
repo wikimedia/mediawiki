@@ -1465,6 +1465,7 @@ Deze informatie is zichbaar veur angere gebroekers.',
 'number_of_watching_users_pageview' => "[$1 {{PLURAL:$1|keer|keer}} op 'ne volglies]",
 'rc_categories'                     => 'Beperk tot allein categorieë (sjeij mit \'n "|")',
 'rc_categories_any'                 => 'Iddere',
+'rc-change-size-new'                => '$1 {{PLURAL:$1|byte|bytes}} nao verangering',
 'newsectionsummary'                 => '/* $1 */ nuje subkop',
 'rc-enhanced-expand'                => 'Details weergaeve (JavaScript verplich)',
 'rc-enhanced-hide'                  => 'Details verberge',
@@ -1627,6 +1628,7 @@ Gank trök nao t [[Special:Upload/stash/$1|uploadformuleer]] om dit perbleem te 
 'backend-fail-closetemp'     => "'t Waes neet mäögelik 'n tiedelik besjtand te sjlete.",
 'backend-fail-read'          => 'Kós bestjand $1 neet laeze.',
 'backend-fail-create'        => 'Kós bestjand $1 neet aanmake.',
+'backend-fail-readonly'      => 'Vannen opslaag "$1" kin op dit memènt allein gelaeze waere. De opgegaeve raeje is: "$2"',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Kós "$1" neet vrijgaeve; \'t waes neet vergrendeld.',
@@ -2584,6 +2586,7 @@ Kees 'nen angere bestandjsnaam.",
 Gaef in 't óngersjtaonde veldj de name van de te exportere pazjena's op, ein pazjena per regel, en gaef aan ofs te alle versies mit de bewerkingssamevatting of allein de hujige versies mit de bewirkingssamevatting wils exportere.
 
 In 't letste geval kèns te ouch 'ne link gebroeken, bieveurbild [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] veur de pazjena \"[[{{MediaWiki:Mainpage}}]]\".",
+'exportall'         => "Exporteer alle pagina's",
 'exportcuronly'     => 'Allein de letste versie, neet de volledige gesjiedenis',
 'exportnohistory'   => "----
 '''Let op:''' 't exportere van de ganse gesjiedenis is oetgezat waeges prestatieree.",
@@ -2676,6 +2679,17 @@ Slaon de oetveur op dien eige systeem op, en voeg dae dao nao hiej toe.',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|versie|versies}}',
 'import-logentry-interwiki'        => 'transwiki veur $1 geslaag',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|versie|versies}} van $2',
+
+# JavaScriptTest
+'javascripttest'                           => 'Tes JavaScript',
+'javascripttest-disabled'                  => 'Dees funksje steit oet.',
+'javascripttest-title'                     => 'Veur tes oet veur $1',
+'javascripttest-pagetext-noframework'      => "Dees pagina is gerizzerveerd veur 't oetveure van JavaScriptteste.",
+'javascripttest-pagetext-unknownframework' => 'Ónbekèndje testframework "$1".',
+'javascripttest-pagetext-frameworks'       => 'Kees ein vanne volgende tesframeworks: $1',
+'javascripttest-pagetext-skins'            => "Kees 'n oeterlik óm de teste op te laote loupe:",
+'javascripttest-qunit-intro'               => 'Zuuch de [$1 tesdocumentatie] op mediawiki.org.',
+'javascripttest-qunit-heading'             => 'QUnit tessuite veur MediaWiki JavaScript',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Dien gebroekerspagina',

@@ -2654,7 +2654,7 @@ Wšykne transwiki-importowe akcije protokolěruju se w [[Special:Log/import|log-
 'javascripttest-pagetext-noframework'      => 'Toś ten bok jo pśewjedowanjeju javascriptowych testow pśewóstajony.',
 'javascripttest-pagetext-unknownframework' => 'Njeznaty wobłuk "$1".',
 'javascripttest-pagetext-frameworks'       => 'Pšosym wubjeŕ jaden ze slědujucych testowańskich wobłukow: $1',
-'javascripttest-pagetext-skins'            => 'K dispoziciji stojece drastwy',
+'javascripttest-pagetext-skins'            => 'Wubjeŕ drastwu za pśewjeźenje testow:',
 'javascripttest-qunit-intro'               => 'Glědaj [$1 testowańsku dokumentaciju] na mediawiki.org.',
 'javascripttest-qunit-heading'             => 'MediaWiki JavaScript QUnit test suite',
 

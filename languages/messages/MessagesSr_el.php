@@ -1665,6 +1665,7 @@ Ako izaberete da ga unesete, ono će biti korišćeno za pripisivanje vašeg rad
 'rc_categories'                     => 'Ograniči na kategorije (razdvoji s uspravnom crtom)',
 'rc_categories_any'                 => 'Sve',
 'rc-change-size'                    => '$1',
+'rc-change-size-new'                => '$1 {{PLURAL:$1|bajt|bajta|bajtova}} posle izmene',
 'newsectionsummary'                 => '/* $1 */ novi odeljak',
 'rc-enhanced-expand'                => 'Prikaži detalje (javaskript)',
 'rc-enhanced-hide'                  => 'Sakrij detalje',
@@ -1853,6 +1854,7 @@ Ako se problem ne reši, kontaktirajte [[Special:ListUsers/sysop|administratora]
 'backend-fail-closetemp'     => 'Ne mogu da zatvorim privremenu datoteku.',
 'backend-fail-read'          => 'Ne mogu da pročitam datoteku $1.',
 'backend-fail-create'        => 'Ne mogu da napravim datoteku $1.',
+'backend-fail-readonly'      => 'Na osnovu „$1“ trenutno ne može da se piše. Navedeni razlog glasi: „$2“',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Ne mogu da otključam „$1“ jer nije zaključan.',
@@ -2968,7 +2970,7 @@ Pokušajte ponovo.',
 'javascripttest-pagetext-noframework'      => 'Ova stranica je rezervisana za izvršavanje javaskript testova.',
 'javascripttest-pagetext-unknownframework' => 'Nepoznati radni okvir „$1“.',
 'javascripttest-pagetext-frameworks'       => 'Izaberite jedan od sledećih radnih okvira: $1',
-'javascripttest-pagetext-skins'            => 'Dostupne teme',
+'javascripttest-pagetext-skins'            => 'Izaberite s kojom temom želite da pokrenete probu:',
 'javascripttest-qunit-intro'               => 'Pogledajte [$1 dokumentaciju za testiranje] na mediawiki.org.',
 'javascripttest-qunit-heading'             => 'Medijavikijin paket za testiranje – QUnit',
 

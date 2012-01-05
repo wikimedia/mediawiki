@@ -1864,7 +1864,7 @@ Wenn das Problem weiter besteht, informiere einen [[Special:ListUsers/sysop|Syst
 'backend-fail-closetemp'     => 'Die temporäre Datei konnte nicht geschlossen werden.',
 'backend-fail-read'          => 'Die Datei $1 konnte nicht gelesen werden.',
 'backend-fail-create'        => 'Die Datei $1 konnte nicht erstellt werden.',
-'backend-fail-readonly'      => 'Das Backend „$1“ ist derzeit im Lesemodus. Die Begründung ist: „$2“',
+'backend-fail-readonly'      => 'Das Backend „$1“ befindet sich derzeit im Lesemodus. Der angegebene Grund lautet: „$2“',
 
 # Lock manager
 'lockmanager-notlocked'        => '„$1“ konnte nicht entsperrt werden, da keine Sperrung besteht.',
@@ -2928,7 +2928,7 @@ Diese auf dem lokalen Rechner speichern und danach hier hochladen.',
 'javascripttest-pagetext-noframework'      => 'Diese Seite ist JavaSkript-Tests vorbehalten.',
 'javascripttest-pagetext-unknownframework' => 'Unbekanntes Framework „$1“.',
 'javascripttest-pagetext-frameworks'       => 'Bitte eines der folgenden Frameworks auswählen: $1',
-'javascripttest-pagetext-skins'            => 'Verfügbare Benutzeroberflächen',
+'javascripttest-pagetext-skins'            => 'Wähle eine Benutzeroberfläche zur Durchführung der Tests aus:',
 'javascripttest-qunit-intro'               => 'Siehe die [$1 Dokumentation zu Tests] auf mediawiki.org',
 'javascripttest-qunit-heading'             => 'MediaWiki-JavaSkript-QUnit-Tester',
 

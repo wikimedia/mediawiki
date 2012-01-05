@@ -642,6 +642,13 @@ $2
 Parola de paso temporal: $2',
 'passwordreset-emailsent'      => "S'ha ninviau un recordatorio por correu-e.",
 
+# Special:ChangeEmail
+'changeemail'          => "Cambiar l'adreza de correu-e",
+'changeemail-no-info'  => 'Debe identificar-se como usuario ta poder acceder dreitament ta ista pachina.',
+'changeemail-newemail' => 'No bi ha garra adreza de correu electronico',
+'changeemail-none'     => '(garra)',
+'changeemail-cancel'   => 'Cancelar',
+
 # Edit page toolbar
 'bold_sample'     => 'Texto en negreta',
 'bold_tip'        => 'Texto en negreta',
@@ -1346,6 +1353,7 @@ Habría de tener menos de $1 {{PLURAL:$1|carácter|carácters}}.',
 'action-suppressionlog'       => 'veyer iste rechistro privato',
 'action-block'                => 'bloqueyar iste usuario ta que no pueda editar',
 'action-protect'              => "cambiar os livels de protección d'ista pachina",
+'action-rollback'             => "Desfer a escape as edicions d'o zaguer usuario que cambió una pachina determinada",
 'action-import'               => 'importar ista pachina dende atro wiki',
 'action-importupload'         => 'importar ista pachina dende un fichero cargato',
 'action-patrol'               => "sinyalar as edicions d'atros como patrulladas",

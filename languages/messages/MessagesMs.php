@@ -2764,7 +2764,7 @@ Simpan dalam komputer anda dan muat naiknya di sini.',
 'javascripttest-pagetext-noframework'      => 'Laman ini ditempah untuk menjalankan ujian JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Kerangka "$1" tidak dikenali.',
 'javascripttest-pagetext-frameworks'       => 'Sila pilih salah satu kerangka yang berikut: $1',
-'javascripttest-pagetext-skins'            => 'Kulit yang sedia ada',
+'javascripttest-pagetext-skins'            => 'Sila pilih satu kulit untuk menjalankan ujian:',
 'javascripttest-qunit-intro'               => 'Rujuk [$1 dokumentasi ujian] di mediawiki.org.',
 'javascripttest-qunit-heading'             => 'Suit ujian MediaWiki JavaScript QUnit',
 
