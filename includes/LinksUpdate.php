@@ -813,6 +813,7 @@ class LinksUpdate {
 
 	/**
 	 * Returns parser output
+	 * @since 1.19
 	 * @return ParserOutput
 	 */
 	public function getParserOutput() {
