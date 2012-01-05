@@ -2646,6 +2646,13 @@ $wgResourceLoaderValidateJS = true;
  */
 $wgResourceLoaderValidateStaticJS = false;
 
+/**
+ * If set to true, asynchronous loading of bottom-queue scripts in the <head>
+ * will be enabled. This is an experimental feature that's supposed to make
+ * JavaScript load faster.
+ */
+$wgResourceLoaderExperimentalAsyncLoading = false;
+
 /** @} */ # End of resource loader settings }
 
 

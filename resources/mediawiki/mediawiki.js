@@ -346,8 +346,11 @@ var mw = ( function ( $, undefined ) {
 				queue = [],
 				// List of callback functions waiting for modules to be ready to be called
 				jobs = [],
-				// Flag inidicating that document ready has occured
+				// Flag indicating that document ready has occured
 				ready = false,
+				// Whether we should try to load scripts in a blocking way 
+				// Set with setBlocking()
+				blocking = false,
 				// Selector cache for the marker element. Use getMarker() to get/use the marker!
 				$marker = null;
 	
@@ -569,15 +572,15 @@ var mw = ( function ( $, undefined ) {
 			}
 	
 			/**
-			 * Adds a script tag to the body, either using document.write or low-level DOM manipulation,
-			 * depending on whether document-ready has occured yet.
+			 * Adds a script tag to the DOM, either using document.write or low-level DOM manipulation,
+			 * depending on whether document-ready has occured yet and whether we are in blocking mode.
 			 *
 			 * @param src String: URL to script, will be used as the src attribute in the script tag
 			 * @param callback Function: Optional callback which will be run when the script is done
 			 */
 			function addScript( src, callback ) {
-				var done = false, script;
-				if ( ready ) {
+				var done = false, script, head;
+				if ( ready || !blocking ) {
 					// jQuery's getScript method is NOT better than doing this the old-fashioned way
 					// because jQuery will eval the script's code, and errors will not have sane
 					// line numbers.
@@ -612,13 +615,18 @@ var mw = ( function ( $, undefined ) {
 							}
 						};
 					}
-					document.body.appendChild( script );
+					// IE-safe way of getting the <head> . document.documentElement.head doesn't
+					// work in scripts that run in the <head>
+					head = document.getElementsByTagName( 'head' )[0];
+					// Append to the <body> if available, to the <head> otherwise
+					(document.body || head).appendChild( script );
 				} else {
 					document.write( mw.html.element(
 						'script', { 'type': 'text/javascript', 'src': src }, ''
 					) );
 					if ( $.isFunction( callback ) ) {
 						// Document.write is synchronous, so this is called when it's done
+						// FIXME: that's a lie. doc.write isn't actually synchronous
 						callback();
 					}
 				}
@@ -1220,6 +1228,18 @@ var mw = ( function ( $, undefined ) {
 					return $.map( registry, function ( i, key ) {
 						return key;
 					} );
+				},
+
+				/**
+				 * Enable or disable blocking. If blocking is enabled and
+				 * document ready has not yet occurred, scripts will be loaded
+				 * in a blocking way (using document.write) rather than
+				 * asynchronously using DOM manipulation
+				 * 
+				 * @param b {Boolean} True to enable blocking, false to disable it
+				 */
+				setBlocking: function( b ) {
+					blocking = b;
 				},
 		
 				/**
