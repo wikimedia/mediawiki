@@ -154,7 +154,7 @@ class BitmapHandler extends ImageHandler {
 		if ( $flags & self::TRANSFORM_LATER ) {
 			wfDebug( __METHOD__ . ": Transforming later per flags.\n" );
 			return new ThumbnailImage( $image, $dstUrl, $scalerParams['clientWidth'],
-				$scalerParams['clientHeight'], $dstPath );
+				$scalerParams['clientHeight'], false );
 		}
 
 		# Try to make a target path for the thumbnail
