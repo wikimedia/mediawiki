@@ -999,8 +999,8 @@ It may have already been deleted by someone else.',
 'badtitle'             => 'Bad title',
 'badtitletext'         => 'The requested page title was invalid, empty, or an incorrectly linked inter-language or inter-wiki title.
 It may contain one or more characters which cannot be used in titles.',
-'perfcached'           => 'The following data is cached and may not be up to date.',
-'perfcachedts'         => 'The following data is cached, and was last updated $1.',
+'perfcached'           => 'The following data is cached and may not be up to date. A maximum of $1 results are available in the cache.',
+'perfcachedts'         => 'The following data is cached, and was last updated $1. A maximum of $4 results are available in the cache.',
 'querypage-no-updates' => 'Updates for this page are currently disabled.
 Data here will not presently be refreshed.',
 'wrong_wfQuery_params' => 'Incorrect parameters to wfQuery()<br />

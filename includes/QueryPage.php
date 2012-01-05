@@ -437,6 +437,7 @@ abstract class QueryPage extends SpecialPage {
 	 * real, honest-to-gosh query page.
 	 */
 	function execute( $par ) {
+		global $wgQueryCacheLimit;
 		if ( !$this->userCanExecute( $this->getUser() ) ) {
 			$this->displayRestrictionError();
 			return;
@@ -468,17 +469,18 @@ abstract class QueryPage extends SpecialPage {
 
 				# Fetch the timestamp of this update
 				$ts = $this->getCachedTimestamp();
+				$lang = $this->getLanguage();
+				$maxResults = $lang->formatNum( $wgQueryCacheLimit );
 
 				if ( $ts ) {
-					$lang = $this->getLanguage();
 					$updated = $lang->timeanddate( $ts, true, true );
 					$updateddate = $lang->date( $ts, true, true );
 					$updatedtime = $lang->time( $ts, true, true );
 					$out->addMeta( 'Data-Cache-Time', $ts );
 					$out->addInlineScript( "var dataCacheTime = '$ts';" );
-					$out->addWikiMsg( 'perfcachedts', $updated, $updateddate, $updatedtime );
+					$out->addWikiMsg( 'perfcachedts', $updated, $updateddate, $updatedtime, $maxResults );
 				} else {
-					$out->addWikiMsg( 'perfcached' );
+					$out->addWikiMsg( 'perfcached', $maxResults );
 				}
 
 				# If updates on this page have been disabled, let the user know

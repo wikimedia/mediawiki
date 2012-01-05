@@ -655,10 +655,12 @@ $1 is a filename, I think.',
 * $1 is the page name',
 'badtitle'             => 'The page title when a user requested a page with invalid page name. The content will be {{msg-mw|badtitletext}}.',
 'badtitletext'         => 'The message shown when a user requested a page with invalid page name. The page title will be {{msg-mw|badtitle}}.',
+'perfcached'           => 'Like {{msg-mw|perfcachedts}} but used when we do not know how long ago page was cached (unlikely to happen). $1 is the max result cut off ($wgQueryCacheLimit)',
 'perfcachedts'         => 'Used on pages that list page lists for which the displayed data is cached. Parameters:
 * $1 is a time stamp (date and time combined)
 * $2 is a date (optional)
-* $3 is a time (optional)',
+* $3 is a time (optional)
+* $4 is the cut off limit for cached results ($wgQueryCacheLimit). If there are more then this many results for the query, only the first $4 of those will be listed on the page. Usually $4 is about 1000.',
 'querypage-no-updates' => 'Text on some special pages, e.g. [[Special:FewestRevisions]].',
 'viewsource'           => 'The text displayed in place of the "edit" tab when the user has no permission to edit the page.
 
