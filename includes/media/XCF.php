@@ -89,7 +89,6 @@ class XCFHandler extends BitmapHandler {
 
 		# Check values
 		if( $header['magic'] !== 'gimp xcf' ) {
-			var_dump( $header );
 			wfDebug( __METHOD__ . " '$filename' has invalid magic signature.\n" );
 			return false;
 		}
