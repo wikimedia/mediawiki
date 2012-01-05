@@ -32,7 +32,15 @@ class BitmapMetadataHandler {
 	* @param String $app13 String containing app13 block from jpeg file
 	*/
 	private function doApp13 ( $app13 ) {
-		$this->iptcType = JpegMetadataExtractor::doPSIR( $app13 );
+		try {
+			$this->iptcType = JpegMetadataExtractor::doPSIR( $app13 );
+		} catch ( MWException $e ) {
+			// Error reading the iptc hash information.
+			// This probably means the App13 segment is something other than what we expect.
+			// However, still try to read it, and treat it as if the hash didn't exist.
+			wfDebug( "Error parsing iptc data of file: " . $e->getMessage() . "\n" );
+			$this->iptcType = 'iptc-no-hash';
+		}
 
 		$iptc = IPTC::parse( $app13 );
 		$this->addMetadata( $iptc, $this->iptcType );
@@ -122,8 +130,10 @@ class BitmapMetadataHandler {
 		if ( isset( $seg['COM'] ) && isset( $seg['COM'][0] ) ) {
 			$meta->addMetadata( Array( 'JPEGFileComment' => $seg['COM'] ), 'native' );
 		}
-		if ( isset( $seg['PSIR'] ) ) {
-			$meta->doApp13( $seg['PSIR'] );
+		if ( isset( $seg['PSIR'] ) && count( $seg['PSIR'] ) > 0 ) {
+			foreach( $seg['PSIR'] as $curPSIRValue ) {
+				$meta->doApp13( $curPSIRValue );
+			}
 		}
 		if ( isset( $seg['XMP'] ) && $showXMP ) {
 			$xmp = new XMPReader();

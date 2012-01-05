@@ -223,6 +223,8 @@ production.
 * (bug 33321) Adding a line to MediaWiki:Sidebar that contains a pipe, but doesn't
   have any pipes after being transformed by MessageCache, causes exception on
   all pages.
+* Files with IPTC blocks we can't read no longer prevent extraction of exif
+  or other metadata.
 
 === API changes in 1.19 ===
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.

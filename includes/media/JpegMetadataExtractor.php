@@ -31,6 +31,7 @@ class JpegMetadataExtractor {
 		$segments = array(
 			'XMP_ext' => array(),
 			'COM' => array(),
+			'PSIR' => array(),
 		);
 
 		if ( !$filename ) {
@@ -122,7 +123,7 @@ class JpegMetadataExtractor {
 				// APP13 - PSIR. IPTC and some photoshop stuff
 				$temp = self::jpegExtractMarker( $fh );
 				if ( substr( $temp, 0, 14 ) === "Photoshop 3.0\x00" ) {
-					$segments["PSIR"] = $temp;
+					$segments["PSIR"][] = $temp;
 				}
 			} elseif ( $buffer === "\xD9" || $buffer === "\xDA" ) {
 				// EOI - end of image or SOS - start of scan. either way we're past any interesting segments
@@ -162,11 +163,12 @@ class JpegMetadataExtractor {
 	* This should generally be called by BitmapMetadataHandler::doApp13()
 	*
 	* @param String $app13 photoshop psir app13 block from jpg.
+	* @throws MWException (It gets caught next level up though)
 	* @return String if the iptc hash is good or not.
 	*/
 	public static function doPSIR ( $app13 ) {
 		if ( !$app13 ) {
-			return;
+			throw new MWException( "No App13 segment given" );
 		}
 		// First compare hash with real thing
 		// 0x404 contains IPTC, 0x425 has hash
@@ -218,8 +220,8 @@ class JpegMetadataExtractor {
 
 			// this should not happen, but check.
 			if ( $lenData['len'] + $offset > $appLen ) {
-				wfDebug( __METHOD__ . " PSIR data too long.\n" );
-				return 'iptc-no-hash';
+				throw new MWException( "PSIR data too long. (item length=" . $lenData['len']
+					. "; offset=$offset; total length=$appLen)" );
 			}
 
 			if ( $valid ) {
