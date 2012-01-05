@@ -26,6 +26,7 @@ abstract class FileOp {
 	protected $state = self::STATE_NEW; // integer
 	protected $failed = false; // boolean
 	protected $useBackups = true; // boolean
+	protected $useLatest = true; // boolean
 	protected $destSameAsSource = false; // boolean
 	protected $destAlreadyExists = false; // boolean
 
@@ -61,6 +62,17 @@ abstract class FileOp {
 	}
 
 	/**
+	 * Allow stale data for file reads and existence checks.
+	 * If this is called, then disableBackups() should also be called
+	 * unless the affected files are known to have not changed recently.
+	 *
+	 * @return void
+	 */
+	final protected function allowStaleReads() {
+		$this->useLatest = false;
+	}
+
+	/**
 	 * Attempt a series of file operations.
 	 * Callers are responsible for handling file locking.
 	 * 
@@ -71,10 +83,14 @@ abstract class FileOp {
 	final public static function attemptBatch( array $performOps, array $opts ) {
 		$status = Status::newGood();
 
+		$allowStale = isset( $opts['allowStale'] ) && $opts['allowStale'];
 		$ignoreErrors = isset( $opts['ignoreErrors'] ) && $opts['ignoreErrors'];
 		$predicates = FileOp::newPredicates(); // account for previous op in prechecks
 		// Do pre-checks for each operation; abort on failure...
 		foreach ( $performOps as $index => $fileOp ) {
+			if ( $allowStale ) {
+				$fileOp->allowStaleReads(); // allow potentially stale reads
+			}
 			$status->merge( $fileOp->precheck( $predicates ) );
 			if ( !$status->isOK() ) { // operation failed?
 				if ( $ignoreErrors ) {
@@ -320,7 +336,7 @@ abstract class FileOp {
 		$status = Status::newGood();
 		if ( $this->useBackups ) {
 			// Check if a file already exists at the source...
-			$params = array( 'src' => $this->params['src'] );
+			$params = array( 'src' => $this->params['src'], 'latest' => $this->useLatest );
 			if ( $this->backend->fileExists( $params ) ) {
 				// Create a temporary backup copy...
 				$this->tmpSourcePath = $this->backend->getLocalCopy( $params );
@@ -350,7 +366,7 @@ abstract class FileOp {
 		if ( $this->getParam( 'overwriteDest' ) ) {
 			if ( $this->useBackups ) {
 				// Create a temporary backup copy...
-				$params = array( 'src' => $this->params['dst'] );
+				$params = array( 'src' => $this->params['dst'], 'latest' => $this->useLatest );
 				$this->tmpDestFile = $this->backend->getLocalCopy( $params );
 				if ( !$this->tmpDestFile ) {
 					$status->fatal( 'backend-fail-backup', $this->params['dst'] );
@@ -402,7 +418,8 @@ abstract class FileOp {
 		if ( FileBackend::isStoragePath( $path ) ) {
 			// For some backends (e.g. Swift, Azure) we can get
 			// standard hashes to use for this types of comparisons.
-			$hash = $this->backend->getFileSha1Base36( array( 'src' => $path ) );
+			$params = array( 'src' => $path, 'latest' => $this->useLatest );
+			$hash = $this->backend->getFileSha1Base36( $params );
 		// Source file is on file system
 		} else {
 			wfSuppressWarnings();
@@ -470,7 +487,8 @@ abstract class FileOp {
 		if ( isset( $predicates['exists'][$source] ) ) {
 			return $predicates['exists'][$source]; // previous op assures this
 		} else {
-			return $this->backend->fileExists( array( 'src' => $source ) );
+			$params = array( 'src' => $source, 'latest' => $this->useLatest );
+			return $this->backend->fileExists( $params );
 		}
 	}
 
