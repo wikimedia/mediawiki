@@ -218,6 +218,9 @@ production.
   HTTPS when the local wiki is served over HTTPS.
 * (bug 33525) clearTagHooks doesn't clear function hooks.
 * (bug 33523) Function tag hooks don't appear on Special:Version.
+* (bug 33321) Adding a line to MediaWiki:Sidebar that contains a pipe, but doesn't
+  have any pipes after being transformed by MessageCache, causes exception on
+  all pages.
 
 === API changes in 1.19 ===
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.
