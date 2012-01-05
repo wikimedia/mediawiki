@@ -337,9 +337,9 @@ class FSFileBackend extends FileBackend {
 	}
 
 	/**
-	 * @see FileBackend::fileExists()
+	 * @see FileBackend::doFileExists()
 	 */
-	public function fileExists( array $params ) {
+	protected function doFileExists( array $params ) {
 		list( $c, $source ) = $this->resolveStoragePathReal( $params['src'] );
 		if ( $source === null ) {
 			return false; // invalid storage path
@@ -351,9 +351,9 @@ class FSFileBackend extends FileBackend {
 	}
 
 	/**
-	 * @see FileBackend::getFileTimestamp()
+	 * @see FileBackend::doGetFileTimestamp()
 	 */
-	public function getFileTimestamp( array $params ) {
+	public function doGetFileTimestamp( array $params ) {
 		list( $c, $source ) = $this->resolveStoragePathReal( $params['src'] );
 		if ( $source === null ) {
 			return false; // invalid storage path

@@ -37,9 +37,9 @@ abstract class FileBackendBase {
 	 * This should only be called from within FileBackendGroup.
 	 * 
 	 * $config includes:
-	 *     'name'        : The unique name of this backend
-	 *     'wikiId'      : Prefix to container names that is unique to this wiki
-	 *     'lockManager' : Registered name of a file lock manager to use
+	 *     'name'        : The unique name of this backend.
+	 *     'wikiId'      : Prefix to container names that is unique to this wiki.
+	 *     'lockManager' : Registered name of a file lock manager to use.
 	 *     'readOnly'    : Write operations are disallowed if this is a non-empty string.
 	 *                     It should be an explanation for the backend being read-only.
 	 * 
@@ -783,6 +783,48 @@ abstract class FileBackend extends FileBackendBase {
 	}
 
 	/**
+	 * @see FileBackendBase::fileExists()
+	 */
+	final public function fileExists( array $params ) {
+		$path = $params['src'];
+		if ( isset( $this->cache[$path]['exists'] ) ) {
+			return $this->cache[$path]['exists'];
+		}
+		$exists = $this->doFileExists( $params );
+		if ( $exists ) { // don't cache negatives
+			$this->trimCache(); // limit memory
+			$this->cache[$path]['exists'] = $exists;
+		}
+		return $exists;
+	}
+
+	/**
+	 * @see FileBackend::fileExists()
+	 */
+	abstract protected function doFileExists( array $params );
+
+	/**
+	 * @see FileBackendBase::getFileTimestamp()
+	 */
+	final public function getFileTimestamp( array $params ) {
+		$path = $params['src'];
+		if ( isset( $this->cache[$path]['timestamp'] ) ) {
+			return $this->cache[$path]['timestamp'];
+		}
+		$timestamp = $this->doGetFileTimestamp( $params );
+		if ( $timestamp ) { // don't cache negatives
+			$this->trimCache(); // limit memory
+			$this->cache[$path]['timestamp'] = $timestamp;
+		}
+		return $timestamp;
+	}
+
+	/**
+	 * @see FileBackend::getFileTimestamp()
+	 */
+	abstract protected function doGetFileTimestamp( array $params );
+
+	/**
 	 * @see FileBackendBase::getFileContents()
 	 */
 	public function getFileContents( array $params ) {
@@ -804,16 +846,23 @@ abstract class FileBackend extends FileBackendBase {
 		if ( isset( $this->cache[$path]['sha1'] ) ) {
 			return $this->cache[$path]['sha1'];
 		}
+		$hash = $this->doGetFileSha1Base36( $params );
+		if ( $hash ) { // don't cache negatives
+			$this->trimCache(); // limit memory
+			$this->cache[$path]['sha1'] = $hash;
+		}
+		return $hash;
+	}
+
+	/**
+	 * @see FileBackend::getFileSha1Base36()
+	 */
+	protected function doGetFileSha1Base36( array $params ) {
 		$fsFile = $this->getLocalReference( $params );
 		if ( !$fsFile ) {
 			return false;
 		} else {
-			$sha1 = $fsFile->getSha1Base36();
-			if ( $sha1 !== false ) { // don't cache negatives
-				$this->trimCache(); // limit memory
-				$this->cache[$path]['sha1'] = $sha1;
-			}
-			return $sha1;
+			return $fsFile->getSha1Base36();
 		}
 	}
 
@@ -833,7 +882,16 @@ abstract class FileBackend extends FileBackendBase {
 	 * @see FileBackendBase::getLocalReference()
 	 */
 	public function getLocalReference( array $params ) {
-		return $this->getLocalCopy( $params );
+		$path = $params['src'];
+		if ( isset( $this->cache[$path]['localRef'] ) ) {
+			return $this->cache[$path]['localRef'];
+		}
+		$tmpFile = $this->getLocalCopy( $params );
+		if ( $tmpFile ) { // don't cache negatives
+			$this->trimCache(); // limit memory
+			$this->cache[$path]['localRef'] = $tmpFile;
+		}
+		return $tmpFile;
 	}
 
 	/**
