@@ -69,6 +69,15 @@ class FSFile {
 	}
 
 	/**
+	 * Guess the MIME type from the file contents alone
+	 * 
+	 * @return string 
+	 */
+	public function getMimeType() {
+		return MimeMagic::singleton()->guessMimeType( $this->path, false );
+	}
+
+	/**
 	 * Get an associative array containing information about
 	 * a file with the given storage path.
 	 *
@@ -89,12 +98,11 @@ class FSFile {
 
 			# get the file extension
 			if ( $ext === true ) {
-				$i = strrpos( $this->path, '.' );
-				$ext = strtolower( $i ? substr( $this->path, $i + 1 ) : '' );
+				$ext = self::extensionFromPath( $this->path );
 			}
 
 			# mime type according to file contents
-			$info['file-mime'] = $magic->guessMimeType( $this->path, false );
+			$info['file-mime'] = $this->getMimeType();
 			# logical mime type
 			$info['mime'] = $magic->improveTypeFromExtension( $info['file-mime'], $ext );
 
@@ -143,6 +151,11 @@ class FSFile {
 		return $info;
 	}
 
+	/**
+	 * Exract image size information
+	 *
+	 * @return Array
+	 */
 	protected function extractImageSizeInfo( array $gis ) {
 		$info = array();
 		# NOTE: $gis[2] contains a code for the image type. This is no longer used.
@@ -180,6 +193,17 @@ class FSFile {
 	}
 
 	/**
+	 * Get the final file extension from a file system path
+	 * 
+	 * @param $path string
+	 * @returns string
+	 */
+	public static function extensionFromPath( $path ) {
+		$i = strrpos( $path, '.' );
+		return strtolower( $i ? substr( $path, $i + 1 ) : '' );
+	}
+
+	/**
 	 * Get an associative array containing information about a file in the local filesystem.
 	 *
 	 * @param $path String: absolute local filesystem path
@@ -188,7 +212,7 @@ class FSFile {
 	 *
 	 * @return array
 	 */
-	static function getPropsFromPath( $path, $ext = true ) {
+	public static function getPropsFromPath( $path, $ext = true ) {
 		$fsFile = new self( $path );
 		return $fsFile->getProps( $ext );
 	}
@@ -204,7 +228,7 @@ class FSFile {
 	 *
 	 * @return false|string False on failure
 	 */
-	static function getSha1Base36FromPath( $path ) {
+	public static function getSha1Base36FromPath( $path ) {
 		$fsFile = new self( $path );
 		return $fsFile->getSha1Base36();
 	}
