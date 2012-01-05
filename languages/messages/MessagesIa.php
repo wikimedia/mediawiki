@@ -322,7 +322,7 @@ $messages = array(
 'history'           => 'Historia del pagina',
 'history_short'     => 'Historia',
 'updatedmarker'     => 'actualisate post mi ultime visita',
-'printableversion'  => 'Version imprimibile',
+'printableversion'  => 'Version pro imprimer',
 'permalink'         => 'Ligamine permanente',
 'print'             => 'Imprimer',
 'view'              => 'Leger',
@@ -611,9 +611,8 @@ le contrasigno e non plus vole cambiar lo, tu pote ignorar iste message
 e continuar a usar le contrasigno original.',
 'noemail'                    => 'Il non ha un adresse de e-mail registrate pro le usator "$1".',
 'noemailcreate'              => 'Es necessari fornir un adresse de e-mail valide',
-'passwordsent'               => 'Un nove contrasigno esseva inviate al adresse de e-mail
-registrate pro "$1".
-Per favor initia un session post reciper lo.',
+'passwordsent'               => 'Un nove contrasigno ha essite inviate al adresse de e-mail registrate pro "$1".
+Per favor aperi session de novo post reciper lo.',
 'blocked-mailpassword'       => 'Tu adresse IP es blocate de facer modificationes, e pro impedir le abuso, le uso del function pro recuperar contrasignos es equalmente blocate.',
 'eauthentsent'               => 'Un e-mail de confirmation ha essite inviate al adresse de e-mail nominate.
 Ante que alcun altere e-mail se invia al conto, tu debera sequer le instructiones in le e-mail, pro confirmar que le conto es de facto tue.',
@@ -625,7 +624,7 @@ A causa de isto, le visitatores usante iste adresse IP non pote crear nove conto
 'emailauthenticated'         => 'Tu adresse de e-mail esseva authentificate le $2 a $3.',
 'emailnotauthenticated'      => 'Tu adresse de e-mail non ha essite authentificate ancora.
 Nos non inviara e-mail pro alcun del sequente functiones.',
-'noemailprefs'               => 'Specifica un adresse de e-mail pro poter executar iste functiones.',
+'noemailprefs'               => 'Es necessari specificar un adresse de e-mail in tu preferentias pro poter executar iste functiones.',
 'emailconfirmlink'           => 'Confirmar tu adresse de e-mail',
 'invalidemailaddress'        => 'Le adresse de e-mail ha un formato invalide e non pote esser acceptate.
 Entra un adresse ben formatate, o vacua ille campo.',
@@ -2798,7 +2797,7 @@ Salveguarda lo in tu computator e incarga lo hic.',
 'javascripttest-pagetext-noframework'      => 'Iste pagina es reservate pro le execution de tests de JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Structura de test "$1" incognite.',
 'javascripttest-pagetext-frameworks'       => 'Per favor selige un del sequente structuras de test: $1',
-'javascripttest-pagetext-skins'            => 'Apparentias disponibile',
+'javascripttest-pagetext-skins'            => 'Selige un apparentia con le qual executar le tests:',
 'javascripttest-qunit-intro'               => 'Vide [$1 documentation de tests] sur mediawiki.org.',
 'javascripttest-qunit-heading'             => 'Programmas de test QUnit de JavaScript de MediaWiki',
 

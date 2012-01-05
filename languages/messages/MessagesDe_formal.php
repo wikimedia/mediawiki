@@ -601,6 +601,9 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'import-error-edit'     => 'Die Seite „$1“ wurde nicht importiert, da Sie nicht berechtigt sind, sie zu bearbeiten.',
 'import-error-create'   => 'Die Seite „$1“ wurde nicht importiert, da Sie nicht berechtigt sind, sie zu erstellen.',
 
+# JavaScriptTest
+'javascripttest-pagetext-skins' => 'Wählen Sie eine Benutzeroberfläche zur Durchführung der Tests aus:',
+
 # Tooltip help for the actions
 'tooltip-pt-userpage'            => 'Ihre Benutzerseite',
 'tooltip-pt-anonuserpage'        => 'Benutzerseite der IP-Adresse, von der aus Sie Änderungen durchführen',

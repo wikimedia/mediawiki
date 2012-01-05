@@ -544,6 +544,7 @@ Ye ia.',
 'page_first'             => 'achto',
 'page_last'              => 'xōcoyōc',
 'history-fieldset-title' => 'Tictēmōz īpan tlahcuilōlloh',
+'history-show-deleted'   => 'Zan tlapolōlli',
 'histfirst'              => 'Achto',
 'histlast'               => 'Yancuīc',
 'historysize'            => '({{PLURAL:$1|1 byte|$1 byte}})',
@@ -904,7 +905,8 @@ Timitztlātlauhtiah, xitlahcuiloa occē tōcāitl.",
 'statistics-files'         => 'Tlahcuilōlli ōmoquetz',
 'statistics-views-peredit' => 'Tlahpololiztli ic tlapatlaliztli',
 
-'disambiguations' => 'Āmatl tlein motzonhuiliah īca tlahtōlmelāhuacātlāliztli āmatl',
+'disambiguations'     => 'Āmatl tlein motzonhuiliah īca tlahtōlmelāhuacātlāliztli āmatl',
+'disambiguationspage' => 'Template:Tlahtōlmelāhuacātlāliztli',
 
 'doubleredirects' => 'Ōntetl tlacuepaliztli',
 

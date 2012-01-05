@@ -2795,7 +2795,7 @@ Tallenna tiedot koneellesi ja tuo ne tällä sivulla.',
 'javascripttest-pagetext-noframework'      => 'Tämä sivu on varattu JavaScript-testien suorittamiseen.',
 'javascripttest-pagetext-unknownframework' => 'Tuntematon testausalusta $1.',
 'javascripttest-pagetext-frameworks'       => 'Valitse yksi seuraavista testausalustoista: $1',
-'javascripttest-pagetext-skins'            => 'Käytettävät olevat ulkoasut',
+'javascripttest-pagetext-skins'            => 'Käytettävissä ulkoasut',
 'javascripttest-qunit-intro'               => 'Katso [$1 testausohjeet] mediawiki.orgissa.',
 'javascripttest-qunit-heading'             => 'MediaWikin JavaScriptin QUnit-testikokoelma',
 
@@ -3762,19 +3762,19 @@ Kuvat näytetään täysikokoisina. Muut tiedostot avataan niille määritetyss�
 'newuserlog-byemail'                  => 'salasana lähetetty sähköpostitse',
 
 # Feedback
-'feedback-bugornote' => 'Jos voit kuvailla teknisen ongelman tarkasti, ole hyvä ja [$1 ilmoita ohjelmavirheestä].
-Muussa tapauksessa voit käyttää allaolevaa helpompaa lomaketta. Kommenttisi lisätään sivulle "[$3 $2]", ja siinä on mukana käyttäjätunnus ja käyttämäsi selain.',
+'feedback-bugornote' => 'Jos voit kuvailla teknisen ongelman tarkasti – [$1 ilmoita ohjelmointivirheestä].
+Muussa tapauksessa voit käyttää alla olevaa helpompaa lomaketta. Kommenttisi lisätään sivulle [$3 $2], ja siinä on mukana käyttäjätunnus ja käyttämäsi selain.',
 'feedback-subject'   => 'Otsikko',
 'feedback-message'   => 'Viesti',
 'feedback-cancel'    => 'Peruuta',
 'feedback-submit'    => 'Lähetä palaute',
 'feedback-adding'    => 'Lisätään palautetta sivulle...',
-'feedback-error1'    => 'Virhe: ohjelmointirajapinnan vastausta ei tunnistettu',
-'feedback-error2'    => 'Virhe: muokkaus epäonnistui',
-'feedback-error3'    => 'Virhe: ohjelmointirajapinta ei vastaa',
-'feedback-thanks'    => 'Kiitos, palautteesi on jätetty sivulle [$2 $1].',
+'feedback-error1'    => 'Virhe: Ohjelmointirajapinnan vastausta ei tunnistettu',
+'feedback-error2'    => 'Virhe: Muokkaus epäonnistui',
+'feedback-error3'    => 'Virhe: Ohjelmointirajapinta ei vastaa',
+'feedback-thanks'    => 'Kiitos. Palautteesi on jätetty sivulle [$2 $1].',
 'feedback-close'     => 'Valmis',
-'feedback-bugcheck'  => 'Hyvä! Varmista vain, että ohjelmavirhe ei vielä löydy [$1 tästä listasta].',
-'feedback-bugnew'    => 'Varmistin. Ilmoitan uuden ohjelmavirheen',
+'feedback-bugcheck'  => 'Hyvä! Varmista, että ohjelmointivirhe ei vielä löydy [$1 tästä listasta].',
+'feedback-bugnew'    => 'Varmistin. Ilmoitan uuden ohjelmointivirheen',
 
 );

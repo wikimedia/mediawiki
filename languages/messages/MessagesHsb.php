@@ -2663,7 +2663,7 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 'javascripttest-pagetext-noframework'      => 'Tuta strona je za přewjedźenje javascriptowych testow přewostajena.',
 'javascripttest-pagetext-unknownframework' => 'Njeznaty wobłuk "$1".',
 'javascripttest-pagetext-frameworks'       => 'Prošu wubjer jedyn ze slědowacych testowanskich wobłukow: $1',
-'javascripttest-pagetext-skins'            => 'K dispoziciji stejace drasty',
+'javascripttest-pagetext-skins'            => 'Wubjer drastu za přewjedźenje testow:',
 'javascripttest-qunit-intro'               => 'Hlej [$1 testowansku dokumentaciju] na mediawiki.org.',
 'javascripttest-qunit-heading'             => 'MediaWiki JavaScript QUnit Test Suite',
 

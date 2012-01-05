@@ -2837,7 +2837,7 @@ Gárdeo no seu disco duro e cárgueo aquí.',
 'javascripttest-pagetext-noframework'      => 'Esta páxina está reservada para executar probas do JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Descoñécese a infraestrutura dixital "$1" de probas.',
 'javascripttest-pagetext-frameworks'       => 'Seleccione unha das seguintes infraestruturas dixitais de probas: $1',
-'javascripttest-pagetext-skins'            => 'Aparencias dispoñibles',
+'javascripttest-pagetext-skins'            => 'Escolla a aparencia na que executar as probas:',
 'javascripttest-qunit-intro'               => 'Bótelle unha ollada á [$1 documentación das probas] en mediawiki.org.',
 'javascripttest-qunit-heading'             => 'Conxunto de probas QUnit para o JavaScript de MediaWiki',
 
