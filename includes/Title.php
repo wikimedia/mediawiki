@@ -1965,6 +1965,7 @@ class Title {
 	 * @return Array list of errors
 	 */
 	private function checkReadPermissions( $action, $user, $errors, $doExpensiveQueries, $short ) {
+		global $wgWhitelistRead;
 		static $useShortcut = null;
 
 		# Initialize the $useShortcut boolean, to determine if we can skip quite a bit of code below
@@ -1991,61 +1992,57 @@ class Title {
 			}
 		}
 
-		# Shortcut for public wikis, allows skipping quite a bit of code
+		$whitelisted = false;
+
 		if ( $useShortcut ) {
-			return $errors;
-		}
-
-		# If the user is allowed to read pages, he is allowed to read all pages
-		if ( $user->isAllowed( 'read' ) ) {
-			return $errors;
-		}
-
-		# Always grant access to the login page.
-		# Even anons need to be able to log in.
-		if ( $this->isSpecial( 'Userlogin' )
+			# Shortcut for public wikis, allows skipping quite a bit of code
+			$whitelisted = true;
+		} elseif ( $user->isAllowed( 'read' ) ) {
+			# If the user is allowed to read pages, he is allowed to read all pages
+			$whitelisted = true;
+		} elseif ( $this->isSpecial( 'Userlogin' )
 			|| $this->isSpecial( 'ChangePassword' )
 			|| $this->isSpecial( 'PasswordReset' )
 		) {
-			return $errors;
-		}
-
-		# Time to check the whitelist
-		global $wgWhitelistRead;
-
-		# Only do these checks is there's something to check against
-		if ( is_array( $wgWhitelistRead ) && count( $wgWhitelistRead ) ) {
-			# Check for explicit whitelisting
+			# Always grant access to the login page.
+			# Even anons need to be able to log in.
+			$whitelisted = true;
+		} elseif ( is_array( $wgWhitelistRead ) && count( $wgWhitelistRead ) ) {
+			# Time to check the whitelist
+			# Only do these checks is there's something to check against
 			$name = $this->getPrefixedText();
 			$dbName = $this->getPrefixedDBKey();
 
 			// Check with and without underscores
 			if ( in_array( $name, $wgWhitelistRead, true ) || in_array( $dbName, $wgWhitelistRead, true ) ) {
-				return $errors;
-			}
-
-			# Old settings might have the title prefixed with
-			# a colon for main-namespace pages
-			if ( $this->getNamespace() == NS_MAIN ) {
+				# Check for explicit whitelisting
+				$whitelisted = true;
+			} elseif ( $this->getNamespace() == NS_MAIN ) {
+				# Old settings might have the title prefixed with
+				# a colon for main-namespace pages
 				if ( in_array( ':' . $name, $wgWhitelistRead ) ) {
-					return $errors;
+					$whitelisted = true;
 				}
-			}
-
-			# If it's a special page, ditch the subpage bit and check again
-			if ( $this->isSpecialPage() ) {
+			} elseif ( $this->isSpecialPage() ) {
+				# If it's a special page, ditch the subpage bit and check again
 				$name = $this->getDBkey();
 				list( $name, /* $subpage */ ) = SpecialPageFactory::resolveAlias( $name );
 				if ( $name !== false ) {
 					$pure = SpecialPage::getTitleFor( $name )->getPrefixedText();
 					if ( in_array( $pure, $wgWhitelistRead, true ) ) {
-						return $errors;
+						$whitelisted = true;
 					}
 				}
 			}
 		}
 
-		$errors[] = $this->missingPermissionError( $action, $short );
+		# If the user is allowed to read tge page; don't call the hook
+		if ( $whitelisted && !count( $errors ) ) {
+			return array();
+		} elseif ( wfRunHooks( 'TitleReadWhitelist', array( $this, $user, &$errors ) ) && !$whitelisted ) {
+			$errors[] = $this->missingPermissionError( $action, $short );
+		}
+
 		return $errors;
 	}
 
