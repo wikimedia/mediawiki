@@ -1926,6 +1926,14 @@ $user: user who did the move
 $pageid: database ID of the page that's been moved
 $redirid: database ID of the created redirect
 
+'TitleReadWhitelist': called at the end of read permissions checks, just before
+	adding the default error message if nothing allows the user to read the page.
+	Return false will prevent core from adding its error message, but you need
+	to removed extensions' error messages from $errors yourself.
+$title: Title object being checked against
+$user: Current user object
+&$errors: errors 
+
 'UndeleteForm::showHistory': called in UndeleteForm::showHistory, after a
 PageArchive object has been created but before any further processing is done.
 &$archive: PageArchive object
