@@ -2508,6 +2508,8 @@ $wgMessageStructure = array(
 		'tooltip-diff',
 		'tooltip-compareselectedversions',
 		'tooltip-watch',
+		'tooltip-watchlistedit-normal-submit',
+		'tooltip-watchlistedit-raw-submit',
 		'tooltip-recreate',
 		'tooltip-upload',
 		'tooltip-rollback',
