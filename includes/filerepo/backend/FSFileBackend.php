@@ -446,6 +446,7 @@ class FSFileBackend extends FileBackend {
 class FSFileIterator implements Iterator {
 	/** @var RecursiveIteratorIterator */
 	protected $iter;
+	protected $suffixStart; // integer
 
 	/**
 	 * Get an FSFileIterator from a file system directory
@@ -453,6 +454,7 @@ class FSFileIterator implements Iterator {
 	 * @param $dir string
 	 */
 	public function __construct( $dir ) {
+		$this->suffixStart = strlen( realpath( $dir ) ) + 1; // size of "path/to/dir/"
 		try {
 			$this->iter = new RecursiveIteratorIterator( new RecursiveDirectoryIterator( $dir ) );
 		} catch ( UnexpectedValueException $e ) {
@@ -461,7 +463,8 @@ class FSFileIterator implements Iterator {
 	}
 
 	public function current() {
-		return $this->iter->current();
+		// Return only the relative path and normalize slashes to FileBackend-style
+		return str_replace( '\\', '/', substr( $this->iter->current(), $this->suffixStart ) );
 	}
 
 	public function key() {
