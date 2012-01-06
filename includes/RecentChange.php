@@ -158,7 +158,7 @@ class RecentChange {
 
 	/**
 	 * Writes the data in this object to the database
-	 * @param $noudp bool 
+	 * @param $noudp bool
 	 */
 	public function save( $noudp = false ) {
 		global $wgLocalInterwiki, $wgPutIPinRC;
@@ -214,10 +214,11 @@ class RecentChange {
 				$editor = ($wgUser->getName() == $this->mAttribs['rc_user_text']) ?
 					$wgUser : User::newFromName( $this->mAttribs['rc_user_text'], false );
 			}
+			$title = Title::makeTitle( $this->mAttribs['rc_namespace'], $this->mAttribs['rc_title'] );
+
 			# @todo FIXME: This would be better as an extension hook
 			$enotif = new EmailNotification();
-			$title = Title::makeTitle( $this->mAttribs['rc_namespace'], $this->mAttribs['rc_title'] );
-			$enotif->notifyOnPageChange( $editor, $title,
+			$status = $enotif->notifyOnPageChange( $editor, $title,
 				$this->mAttribs['rc_timestamp'],
 				$this->mAttribs['rc_comment'],
 				$this->mAttribs['rc_minor'],
@@ -731,7 +732,7 @@ class RecentChange {
 		# see http://www.irssi.org/documentation/formats for some colour codes. prefix is \003,
 		# no colour (\003) switches back to the term default
 		$fullString = "$titleString\0034 $flag\00310 " .
-		              "\00302$url\003 \0035*\003 \00303$user\003 \0035*\003 $szdiff \00310$comment\003\n";
+					  "\00302$url\003 \0035*\003 \00303$user\003 \0035*\003 $szdiff \00310$comment\003\n";
 
 		return $fullString;
 	}
