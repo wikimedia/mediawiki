@@ -48,6 +48,11 @@ class WikiPage extends Page {
 	protected $mTouched = '19700101000000';
 
 	/**
+	 * @var int|null
+	 */
+	protected $mCounter = null;
+
+	/**
 	 * Constructor and clear the article
 	 * @param $title Title Reference to a Title object.
 	 */
@@ -246,6 +251,7 @@ class WikiPage extends Page {
 	public function clear() {
 		$this->mDataLoaded = false;
 
+		$this->mCounter = null;
 		$this->mRedirectTarget = null; # Title object if set
 		$this->mLastRevision = null; # Latest revision
 		$this->mTouched = '19700101000000';
@@ -385,6 +391,7 @@ class WikiPage extends Page {
 			# Old-fashioned restrictions
 			$this->mTitle->loadRestrictions( $data->page_restrictions );
 
+			$this->mCounter     = intval( $data->page_counter );
 			$this->mTouched     = wfTimestamp( TS_MW, $data->page_touched );
 			$this->mIsRedirect  = intval( $data->page_is_redirect );
 			$this->mLatest      = intval( $data->page_latest );
@@ -424,12 +431,14 @@ class WikiPage extends Page {
 	}
 
 	/**
-	 * Get the number of views of this page
-	 *
 	 * @return int The view count for the page
 	 */
 	public function getCount() {
-		return $this->mTitle->getCount();
+		if ( !$this->mDataLoaded ) {
+			$this->loadPageData();
+		}
+
+		return $this->mCounter;
 	}
 
 	/**
