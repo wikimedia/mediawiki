@@ -631,11 +631,20 @@ var mw = ( function ( $, undefined ) {
 							}
 						};
 					}
-					// IE-safe way of getting the <head> . document.documentElement.head doesn't
-					// work in scripts that run in the <head>
-					head = document.getElementsByTagName( 'head' )[0];
-					// Append to the <body> if available, to the <head> otherwise
-					(document.body || head).appendChild( script );
+					
+					if ( window.opera ) {
+						// Appending to the <head> blocks rendering completely in Opera,
+						// so append to the <body> after document ready. This means the
+						// scripts only start loading after  the document has been rendered,
+						// but so be it. Opera users don't deserve faster web pages if their
+						// browser makes it impossible
+						$( function() { document.body.appendChild( script ); } );
+					} else {
+						// IE-safe way of getting the <head> . document.documentElement.head doesn't
+						// work in scripts that run in the <head>
+						head = document.getElementsByTagName( 'head' )[0];
+						( document.body || head ).appendChild( script );
+					}
 				} else {
 					document.write( mw.html.element(
 						'script', { 'type': 'text/javascript', 'src': src }, ''
