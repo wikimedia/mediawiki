@@ -347,7 +347,7 @@ class UserMailer {
  *
  */
 class EmailNotification {
-	protected $to, $subject, $body, $replyto, $from;
+	protected $subject, $body, $replyto, $from;
 	protected $timestamp, $summary, $minorEdit, $oldid, $composed_common;
 	protected $mailTargets = array();
 
@@ -359,7 +359,7 @@ class EmailNotification {
 	/**
 	 * @var User
 	 */
-	protected $user, $editor;
+	protected $editor;
 
 	/**
 	 * Send emails corresponding to the user $editor editing the page $title.
@@ -550,7 +550,7 @@ class EmailNotification {
 				wfDebug( __METHOD__ . ": talk page owner doesn't want notifications\n" );
 			}
 		}
-	    return false;
+		return false;
 	}
 
 	/**
