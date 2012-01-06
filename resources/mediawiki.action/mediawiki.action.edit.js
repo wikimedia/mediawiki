@@ -82,9 +82,6 @@
 		};
 		scrollEditBox();
 
-		// Create button bar
-		mw.toolbar.init();
-
 		$( 'textarea, input:text' ).focus( function() {
 			currentFocused = $(this);
 		});
