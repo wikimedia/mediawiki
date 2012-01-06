@@ -79,6 +79,16 @@ abstract class ContextSource implements IContextSource {
 	}
 
 	/**
+	 * Get the WikiPage object
+	 *
+	 * @since 1.19
+	 * @return WikiPage
+	 */
+	public function getWikiPage() {
+		return $this->getContext()->getWikiPage();
+	}
+
+	/**
 	 * Get the OutputPage object
 	 *
 	 * @since 1.18

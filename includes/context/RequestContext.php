@@ -40,6 +40,11 @@ class RequestContext implements IContextSource {
 	private $title;
 
 	/**
+	 * @var WikiPage
+	 */
+	private $wikipage;
+
+	/**
 	 * @var OutputPage
 	 */
 	private $output;
@@ -101,6 +106,33 @@ class RequestContext implements IContextSource {
 			$this->title = $wgTitle;
 		}
 		return $this->title;
+	}
+
+	/**
+	 * Set the WikiPage object
+	 *
+	 * @since 1.19
+	 * @param $p WikiPage object
+	 */
+	public function setWikiPage( WikiPage $p ) {
+		$this->wikipage = $p;
+	}
+
+	/**
+	 * Get the WikiPage object
+	 *
+	 * @since 1.19
+	 * @return WikiPage
+	 */
+	public function getWikiPage() {
+		if ( $this->wikipage === null ) {
+			$title = $this->getTitle();
+			if ( $title === null ) {
+				throw new MWException( __METHOD__ . ' called without Title object set' );
+			}
+			$this->wikipage = WikiPage::factory( $title );
+		}
+		return $this->wikipage;
 	}
 
 	/**

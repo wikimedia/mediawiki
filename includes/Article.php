@@ -150,10 +150,21 @@ class Article extends Page {
 
 	/**
 	 * Get the title object of the article
+	 *
 	 * @return Title object of this page
 	 */
 	public function getTitle() {
 		return $this->mPage->getTitle();
+	}
+
+	/**
+	 * Get the WikiPage object of this instance
+	 *
+	 * @since 1.19
+	 * @return WikiPage
+	 */
+	public function getPage() {
+		return $this->mPage;
 	}
 
 	/**
