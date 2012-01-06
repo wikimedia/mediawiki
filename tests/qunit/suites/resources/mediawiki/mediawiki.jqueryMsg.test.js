@@ -28,7 +28,7 @@ test( 'mw.jqueryMsg Gender', function() {
 	equal( parser( 'gender-msg', 'Bob', 'male' ) , 'Bob reverted his last edit', 'Gender masculine' );
 	equal( parser( 'gender-msg', 'Bob', user ) , 'Bob reverted his last edit', 'Gender masculine' );
 	user.options.set( 'gender', 'unknown' );
-	equal( parser( 'gender-msg', 'They', user ) , 'They reverted their last edit', 'Gender masculine' );
+	equal( parser( 'gender-msg', 'They', user ) , 'They reverted their last edit', 'Gender neutral or unknown' );
 	equal( parser( 'gender-msg', 'Alice', 'female' ) , 'Alice reverted her last edit', 'Gender feminine' );
 	equal( parser( 'gender-msg', 'User' ) , 'User reverted their last edit', 'Gender neutral' );
 	equal( parser( 'gender-msg', 'User', 'unknown' ) , 'User reverted their last edit', 'Gender neutral' );
