@@ -3400,6 +3400,7 @@ Please try again.',
 'import-error-create'        => 'Page "$1" is not imported because you are not allowed to create it.',
 'import-error-interwiki'     => 'Page "$1" is not imported because its name is reserved for external linking (interwiki).',
 'import-error-special'       => 'Page "$1" is not imported because it belongs to a special namespace that does not allow pages.',
+'import-error-invalid' => 'Page "$1" is not imported because its name is invalid.',
 
 # Import log
 'importlogpage'                    => 'Import log',

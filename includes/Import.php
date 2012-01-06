@@ -34,7 +34,7 @@ class WikiImporter {
 	private $reader = null;
 	private $mLogItemCallback, $mUploadCallback, $mRevisionCallback, $mPageCallback;
 	private $mSiteInfoCallback, $mTargetNamespace, $mPageOutCallback;
-	private $mDebug;
+	private $mNoticeCallback, $mDebug;
 	private $mImportUploads, $mImageBasePath;
 	private $mNoUpdates = false;
 
@@ -75,13 +75,14 @@ class WikiImporter {
 		wfDebug( "IMPORT: $data\n" );
 	}
 
-	private function notice( $data ) {
-		global $wgCommandLineMode;
-		if( $wgCommandLineMode ) {
-			print "$data\n";
-		} else {
-			global $wgOut;
-			$wgOut->addHTML( "<li>" . htmlspecialchars( $data ) . "</li>\n" );
+	private function notice( $msg /*, $param, ...*/ ) {
+		$params = func_get_args();
+		array_shift( $params );
+
+		if ( is_callable( $this->mNoticeCallback ) ) {
+			call_user_func( $this->mNoticeCallback, $msg, $params );
+		} else { # No ImportReporter -> CLI
+			echo wfMessage( $msg, $params )->text() . "\n";
 		}
 	}
 
@@ -99,6 +100,16 @@ class WikiImporter {
 	 */
 	function setNoUpdates( $noupdates ) {
 		$this->mNoUpdates = $noupdates;
+	}
+
+	/**
+	 * Set a callback that displays notice messages
+	 *
+	 * @param $callback callback
+	 * @return callback
+	 */
+	public function setNoticeCallback( $callback ) {
+		return wfSetVar( $this->mNoticeCallback, $callback );
 	}
 
 	/**
@@ -780,21 +791,21 @@ class WikiImporter {
 
 		if( is_null( $title ) ) {
 			# Invalid page title? Ignore the page
-			$this->notice( "Skipping invalid page title '$workTitle'" );
+			$this->notice( 'import-error-invalid', $workTitle );
 			return false;
 		} elseif( $title->isExternal() ) {
-			$this->notice( wfMessage( 'import-error-interwiki', $title->getText() )->text() );
+			$this->notice( 'import-error-interwiki', $title->getPrefixedText() );
 			return false;
 		} elseif( !$title->canExist() ) {
-			$this->notice( wfMessage( 'import-error-special', $title->getText() )->text() );
+			$this->notice( 'import-error-special', $title->getPrefixedText() );
 			return false;
 		} elseif( !$title->userCan( 'edit' ) && !$wgCommandLineMode ) {
 			# Do not import if the importing wiki user cannot edit this page
-			$this->notice( wfMessage( 'import-error-edit', $title->getText() )->text() );
+			$this->notice( 'import-error-edit', $title->getPrefixedText() );
 			return false;
 		} elseif( !$title->exists() && !$title->userCan( 'create' ) && !$wgCommandLineMode ) {
 			# Do not import if the importing wiki user cannot create this page
-			$this->notice( wfMessage( 'import-error-create', $title->getText() )->text() );
+			$this->notice( 'import-error-create', $title->getPrefixedText() );
 			return false;
 		}
 

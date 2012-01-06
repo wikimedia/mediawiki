@@ -321,6 +321,7 @@ class ImportReporter extends ContextSource {
 				$importer->setPageOutCallback( array( $this, 'reportPage' ) );
 		$this->mOriginalLogCallback =
 			$importer->setLogItemCallback( array( $this, 'reportLogItem' ) );
+		$importer->setNoticeCallback( array( $this, 'reportNotice' ) );
 		$this->mPageCount = 0;
 		$this->mIsUpload = $upload;
 		$this->mInterwiki = $interwiki;
@@ -329,6 +330,10 @@ class ImportReporter extends ContextSource {
 
 	function open() {
 		$this->getOutput()->addHTML( "<ul>\n" );
+	}
+
+	function reportNotice( $msg, array $params ) {
+		$this->getOutput()->addHTML( Html::element( 'li', array(), $this->msg( $msg, $params )->text() ) );
 	}
 
 	function reportLogItem( /* ... */ ) {
@@ -351,6 +356,11 @@ class ImportReporter extends ContextSource {
 
 		$args = func_get_args();
 		call_user_func_array( $this->mOriginalPageOutCallback, $args );
+
+		if ( $title === null ) {
+			# Invalid or non-importable title; a notice is already displayed
+			return;
+		}
 
 		$this->mPageCount++;
 

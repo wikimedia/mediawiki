@@ -2355,6 +2355,7 @@ $wgMessageStructure = array(
 		'import-error-create',
 		'import-error-interwiki',
 		'import-error-special',
+		'import-error-invalid',
 	),
 	'importlog' => array(
 		'importlogpage',
