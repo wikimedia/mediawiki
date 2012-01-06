@@ -1965,12 +1965,11 @@ class Title {
 	 * @return Array list of errors
 	 */
 	private function checkReadPermissions( $action, $user, $errors, $doExpensiveQueries, $short ) {
-		global $wgWhitelistRead;
+		global $wgWhitelistRead, $wgGroupPermissions, $wgRevokePermissions;;
 		static $useShortcut = null;
 
 		# Initialize the $useShortcut boolean, to determine if we can skip quite a bit of code below
 		if ( is_null( $useShortcut ) ) {
-			global $wgGroupPermissions, $wgRevokePermissions;
 			$useShortcut = true;
 			if ( empty( $wgGroupPermissions['*']['read'] ) ) {
 				# Not a public wiki, so no shortcut
@@ -1993,7 +1992,6 @@ class Title {
 		}
 
 		$whitelisted = false;
-
 		if ( $useShortcut ) {
 			# Shortcut for public wikis, allows skipping quite a bit of code
 			$whitelisted = true;
@@ -2036,11 +2034,12 @@ class Title {
 			}
 		}
 
-		# If the user is allowed to read tge page; don't call the hook
-		if ( $whitelisted && !count( $errors ) ) {
-			return array();
-		} elseif ( wfRunHooks( 'TitleReadWhitelist', array( $this, $user, &$errors ) ) && !$whitelisted ) {
-			$errors[] = $this->missingPermissionError( $action, $short );
+		if ( !$whitelisted ) {
+			# If the title is not whitelisted, give extensions a chance to do so...
+			wfRunHooks( 'TitleReadWhitelist', array( $this, $user, &$whitelisted ) );
+			if ( !$whitelisted ) {
+				$errors[] = $this->missingPermissionError( $action, $short );
+			}
 		}
 
 		return $errors;
