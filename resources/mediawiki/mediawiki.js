@@ -8,7 +8,6 @@ var mw = ( function ( $, undefined ) {
 	/* Private Members */
 
 	var hasOwn = Object.prototype.hasOwnProperty;
-	var parser;
 	/* Object constructors */
 
 	/**
@@ -125,12 +124,25 @@ var mw = ( function ( $, undefined ) {
 		this.format = 'plain';
 		this.map = map;
 		this.key = key;
-		parser = parser || mw.jqueryMsg.getMessageFunction( );
 		this.parameters = parameters === undefined ? [] : $.makeArray( parameters );
 		return this;
 	}
 
 	Message.prototype = {
+		/**
+		 * Simple message parser, does $N replacement and nothing else.
+		 * This may be overridden to provide a more complex message parser.
+		 * 
+		 * This function will not be called for nonexistent messages.
+		 */
+		parser: function() {
+			var parameters = this.parameters;
+			return this.map.get( this.key ).replace( /\$(\d+)/g, function ( str, match ) {
+				var index = parseInt( match, 10 ) - 1;
+				return parameters[index] !== undefined ? parameters[index] : '$' + match;
+			} );
+		},
+		
 		/**
 		 * Appends (does not replace) parameters for replacement to the .parameters property.
 		 *
@@ -159,29 +171,24 @@ var mw = ( function ( $, undefined ) {
 				}
 				return '<' + this.key + '>';
 			}
-			var	text = this.map.get( this.key ),
-				parameters = this.parameters;
 
+			var text;
 			if ( this.format === 'plain' ) {
-				// Do not use parser unless required.
-				if ( text.indexOf( '{{' ) < 0 ) {
-					text = text.replace( /\$(\d+)/g, function ( str, match ) {
-						var index = parseInt( match, 10 ) - 1;
-						return parameters[index] !== undefined ? parameters[index] : '$' + match;
-					} );
-				}
-				else{
-					text = parser( this.key, this.parameters );
-				}
+				// FIXME this is wrong. There should be a way
+				// to tell parser() whether we're looking for
+				// plain text or HTML, but I don't know jQueryMsg
+				// well enough to implement this.
+				// Currently it always outputs HTML
+				text = this.parser();
 			}
 
 			if ( this.format === 'escaped' ) {
-				text = parser( this.key, this.parameters );
+				text = this.parser();
 				text = mw.html.escape( text );
 			}
 			
 			if ( this.format === 'parse' ) {
-				text = parser( this.key, this.parameters );
+				text = this.parser();
 			}
 
 			return text;
@@ -240,6 +247,11 @@ var mw = ( function ( $, undefined ) {
 		 * @var constructor Make the Map constructor publicly available.
 		 */
 		Map: Map,
+
+		/**
+		 * @var constructor Make the Message constructor publicly available.
+		 */
+		Message: Message,
 	
 		/**
 		 * List of configuration values
