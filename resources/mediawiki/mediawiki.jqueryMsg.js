@@ -670,9 +670,10 @@
 		// we'd have to cache the parser as a member of this.map, which sounds a bit ugly.
 		
 		// Do not use mw.jqueryMsg unless required
+		var _this = this;
 		if ( this.map.get( this.key ).indexOf( '{{' ) < 0 ) {
 			// Fall back to mw.msg's simple parser
-			return oldParser( this.key, this.parameters );
+			return oldParser.apply( _this );
 		}
 		
 		var messageFunction = mw.jqueryMsg.getMessageFunction( { 'messages': this.map } );
