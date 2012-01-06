@@ -782,8 +782,11 @@ class WikiImporter {
 			# Invalid page title? Ignore the page
 			$this->notice( "Skipping invalid page title '$workTitle'" );
 			return false;
-		} elseif( $title->getInterwiki() != '' ) {
-			$this->notice( "Skipping interwiki page title '$workTitle'" );
+		} elseif( $title->isExternal() ) {
+			$this->notice( wfMessage( 'import-error-interwiki', $title->getText() )->text() );
+			return false;
+		} elseif( !$title->canExist() ) {
+			$this->notice( wfMessage( 'import-error-special', $title->getText() )->text() );
 			return false;
 		} elseif( !$title->userCan( 'edit' ) && !$wgCommandLineMode ) {
 			# Do not import if the importing wiki user cannot edit this page

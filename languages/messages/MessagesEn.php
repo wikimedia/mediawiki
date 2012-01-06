@@ -3398,6 +3398,8 @@ Please try again.',
 'import-invalid-interwiki'   => 'Cannot import from the specified wiki.',
 'import-error-edit'          => 'Page "$1" is not imported because you are not allowed to edit it.',
 'import-error-create'        => 'Page "$1" is not imported because you are not allowed to create it.',
+'import-error-interwiki'     => 'Page "$1" is not imported because its name is reserved for external linking (interwiki).',
+'import-error-special'       => 'Page "$1" is not imported because it belongs to a special namespace that does not allow pages.',
 
 # Import log
 'importlogpage'                    => 'Import log',
