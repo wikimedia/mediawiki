@@ -90,6 +90,8 @@ $wgIgnoredMessages = array(
 	'accesskey-blockip-block',
 	'accesskey-export',
 	'accesskey-import',
+	'accesskey-watchlistedit-normal-submit',
+	'accesskey-watchlistedit-raw-submit',
 	'addsection',
 	'talkpageheader',
 	'anonnotice',
