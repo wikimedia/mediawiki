@@ -824,7 +824,7 @@ h1:lang(pa),
 h1:lang(sa),
 h1:lang(ta),
 h1:lang(te) {
-	line-height: 1.5em;
+	line-height: 1.5em !important;
 }
 h2:lang(as), h3:lang(as), h4:lang(as), h5:lang(as), h6:lang(as),
 h2:lang(bn), h3:lang(bn), h4:lang(bn), h5:lang(bn), h6:lang(bn),
