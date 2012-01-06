@@ -337,8 +337,8 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 					),
 					__METHOD__
 				);
-				$article = new Article( $title, 0 );
-				wfRunHooks( 'UnwatchArticleComplete', array( $this->getUser(), &$article ) );
+				$page = WikiPage::factory( $title );
+				wfRunHooks( 'UnwatchArticleComplete', array( $this->getUser(), &$page ) );
 			}
 		}
 	}

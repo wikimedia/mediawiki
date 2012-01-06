@@ -83,7 +83,7 @@ class WatchAction extends FormAction {
 	}
 
 	public static function doWatch( Title $title, User $user  ) {
-		$page = new Article( $title, 0 );
+		$page = WikiPage::factory( $title );
 
 		if ( wfRunHooks( 'WatchArticle', array( &$user, &$page ) ) ) {
 			$user->addWatch( $title );
@@ -93,7 +93,7 @@ class WatchAction extends FormAction {
 	}
 
 	public static function doUnwatch( Title $title, User $user  ) {
-		$page = new Article( $title, 0 );
+		$page = WikiPage::factory( $title );
 
 		if ( wfRunHooks( 'UnwatchArticle', array( &$user, &$page ) ) ) {
 			$user->removeWatch( $title );
