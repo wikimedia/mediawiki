@@ -661,5 +661,22 @@
 	window.gM = mw.jqueryMsg.getMessageFunction(); 
 
 	$.fn.msg = mw.jqueryMsg.getPlugin();
+	
+	// Replace the default message parser with jqueryMsg
+	var oldParser = mw.Message.prototype.parser;
+	mw.Message.prototype.parser = function() {
+		// TODO: should we cache the message function so we don't create a new one every time? Benchmark this maybe?
+		// Caching is somewhat problematic, because we do need different message functions for different maps, so
+		// we'd have to cache the parser as a member of this.map, which sounds a bit ugly.
+		
+		// Do not use mw.jqueryMsg unless required
+		if ( this.map.get( this.key ).indexOf( '{{' ) < 0 ) {
+			// Fall back to mw.msg's simple parser
+			return oldParser( this.key, this.parameters );
+		}
+		
+		var messageFunction = mw.jqueryMsg.getMessageFunction( { 'messages': this.map } );
+		return messageFunction( this.key, this.parameters );
+	};
 
 } )( mediaWiki, jQuery );
