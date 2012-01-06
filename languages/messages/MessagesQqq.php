@@ -3138,6 +3138,8 @@ If the length of the translated message is over 60 characters (including spaces)
 'tooltip-diff'                    => 'This is the text (tooltip) that appears when you hover the mouse over the "Show changes" button ({{msg|showdiff}}) on the edit page.',
 'tooltip-compareselectedversions' => 'Tooltip of {{msg|compareselectedversions}} (which is used as button in history pages).',
 'tooltip-watch'                   => '{{Identical|Add this page to your watchlist}}',
+'tooltip-watchlistedit-normal-submit' => 'Tooltip for {{msg|watchlistedit-normal-submit}} (used as button on [[Special:EditWatchlist]]).',
+'tooltip-watchlistedit-raw-submit' => 'Tooltip for {{msg|watchlistedit-raw-submit}} (used as button on [[Special:EditWatchlist/raw]]).',
 'tooltip-rollback'                => 'Tooltip of the rollback link on the history page and the diff view
 {{Identical|Rollback}}
 {{Identical|Revert}}',

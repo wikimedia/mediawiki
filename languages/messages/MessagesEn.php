@@ -3490,6 +3490,8 @@ Please try again.',
 'accesskey-blockip-block'           => 's', # do not translate or duplicate this message to other languages
 'accesskey-export'                  => 's', # do not translate or duplicate this message to other languages
 'accesskey-import'                  => 's', # do not translate or duplicate this message to other languages
+'accesskey-watchlistedit-normal-submit'=> 's', # do not translate or duplicate this message to other languages
+'accesskey-watchlistedit-raw-submit'=> 's', # do not translate or duplicate this message to other languages
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Your user page',
@@ -3558,6 +3560,8 @@ You can view its source',
 'tooltip-undo'                    => '"Undo" reverts this edit and opens the edit form in preview mode. It allows adding a reason in the summary.',
 'tooltip-preferences-save'        => 'Save preferences',
 'tooltip-summary'                 => 'Enter a short summary',
+'tooltip-watchlistedit-normal-submit' => 'Remove titles',
+'tooltip-watchlistedit-raw-submit' => 'Update watchlist',
 
 # Stylesheets
 'common.css'              => '/* CSS placed here will be applied to all skins */', # only translate this message to other languages if you have to change it
