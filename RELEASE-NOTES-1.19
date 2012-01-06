@@ -118,6 +118,7 @@ production.
   loaded in some contexts.
 * (bug 33456) Show $wgQueryCacheLimit on cached query pages.
 * (bug 10574) Add an option to allow all pages to be exported by Special:Export.
+* Use mw.jqueryMsg parser for message parsing to support PLURAL and GENDER
 
 === Bug fixes in 1.19 ===
 * $wgUploadNavigationUrl should be used for file redlinks if.

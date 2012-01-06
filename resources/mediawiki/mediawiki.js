@@ -8,7 +8,7 @@ var mw = ( function ( $, undefined ) {
 	/* Private Members */
 
 	var hasOwn = Object.prototype.hasOwnProperty;
-
+	var parser;
 	/* Object constructors */
 
 	/**
@@ -125,6 +125,7 @@ var mw = ( function ( $, undefined ) {
 		this.format = 'plain';
 		this.map = map;
 		this.key = key;
+		parser = parser || mw.jqueryMsg.getMessageFunction( );
 		this.parameters = parameters === undefined ? [] : $.makeArray( parameters );
 		return this;
 	}
@@ -150,7 +151,7 @@ var mw = ( function ( $, undefined ) {
 		 * @return string Message as a string in the current form or <key> if key does not exist.
 		 */
 		toString: function() {
-			if ( !this.map.exists( this.key ) ) {
+			if ( !this.exists( ) ) {
 				// Use <key> as text if key does not exist
 				if ( this.format !== 'plain' ) {
 					// format 'escape' and 'parse' need to have the brackets and key html escaped
@@ -161,25 +162,28 @@ var mw = ( function ( $, undefined ) {
 			var	text = this.map.get( this.key ),
 				parameters = this.parameters;
 
-			text = text.replace( /\$(\d+)/g, function ( str, match ) {
-				var index = parseInt( match, 10 ) - 1;
-				return parameters[index] !== undefined ? parameters[index] : '$' + match;
-			} );
-
 			if ( this.format === 'plain' ) {
-				return text;
-			}
-			if ( this.format === 'escaped' ) {
-				// According to Message.php this needs {{-transformation, which is
-				// still todo
-				return mw.html.escape( text );
+				// Do not use parser unless required.
+				if ( text.indexOf( '{{' ) < 0 ) {
+					text = text.replace( /\$(\d+)/g, function ( str, match ) {
+						var index = parseInt( match, 10 ) - 1;
+						return parameters[index] !== undefined ? parameters[index] : '$' + match;
+					} );
+				}
+				else{
+					text = parser( this.key, this.parameters );
+				}
 			}
 
-			/* This should be fixed up when we have a parser
-			if ( this.format === 'parse' && 'language' in mw ) {
-				text = mw.language.parse( text );
+			if ( this.format === 'escaped' ) {
+				text = parser( this.key, this.parameters );
+				text = mw.html.escape( text );
 			}
-			*/
+			
+			if ( this.format === 'parse' ) {
+				text = parser( this.key, this.parameters );
+			}
+
 			return text;
 		},
 

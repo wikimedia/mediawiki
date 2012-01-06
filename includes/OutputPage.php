@@ -2446,6 +2446,7 @@ $templates
 			'mediawiki.util',
 			'mediawiki.page.startup',
 			'mediawiki.page.ready',
+			'mediawiki.jqueryMsg',
 		) );
 		if ( $wgIncludeLegacyJavaScript ){
 			$this->addModules( 'mediawiki.legacy.wikibits' );

@@ -80,7 +80,7 @@ test( 'mw.config', function() {
 });
 
 test( 'mw.message & mw.messages', function() {
-	expect(17);
+	expect(20);
 
 	ok( mw.messages, 'messages defined' );
 	ok( mw.messages instanceof mw.Map, 'mw.messages instance of mw.Map' );
@@ -116,15 +116,31 @@ test( 'mw.message & mw.messages', function() {
 	equal( goodbye.plain(), '<goodbye>', 'Message.toString returns plain <key> if format is "plain" and key does not exist' );
 	// bug 30684
 	equal( goodbye.escaped(), '&lt;goodbye&gt;', 'Message.toString returns properly escaped &lt;key&gt; if format is "escaped" and key does not exist' );
+
+	ok( mw.messages.set( 'pluraltestmsg', 'There {{PLURAL:$1|is|are}} $1 {{PLURAL:$1|result|results}}' ), 'mw.messages.set: Register' );
+	var pluralMessage = mw.message( 'pluraltestmsg' , 6 );
+	equal( pluralMessage.plain(), 'There are 6 results', 'plural get resolved when format is plain' );
+	equal( pluralMessage.parse(), 'There are 6 results', 'plural get resolved when format is parse' );
+
 });
 
 test( 'mw.msg', function() {
-	expect(3);
+	expect(11);
 
 	ok( mw.messages.set( 'hello', 'Hello <b>awesome</b> world' ), 'mw.messages.set: Register' );
-
 	equal( mw.msg( 'hello' ), 'Hello <b>awesome</b> world', 'Gets message with default options (existing message)' );
 	equal( mw.msg( 'goodbye' ), '<goodbye>', 'Gets message with default options (nonexistent message)' );
+
+	ok( mw.messages.set( 'plural-item' , 'Found $1 {{PLURAL:$1|item|items}}' ) );
+	equal( mw.msg( 'plural-item', 5 ), 'Found 5 items', 'Apply plural for count 5' );
+	equal( mw.msg( 'plural-item', 0 ), 'Found 0 items', 'Apply plural for count 0' );
+	equal( mw.msg( 'plural-item', 1 ), 'Found 1 item', 'Apply plural for count 1' );
+
+	ok( mw.messages.set('gender-plural-msg' , '{{GENDER:$1|he|she|they}} {{PLURAL:$2|is|are}} awesome' ) );
+	equal( mw.msg( 'gender-plural-msg', 'male', 1 ), 'he is awesome', 'Gender test for male, plural count 1' );
+	equal( mw.msg( 'gender-plural-msg', 'female', '1' ), 'she is awesome', 'Gender test for female, plural count 1' );
+	equal( mw.msg( 'gender-plural-msg', 'unknown', 10 ), 'they are awesome', 'Gender test for neutral, plural count 10' );
+
 });
 
 test( 'mw.loader', function() {
