@@ -1368,6 +1368,7 @@ class ContainerShardListIterator implements Iterator {
 	/**
 	 * If the iterator for this container shard is out of items,
 	 * then move on to the next container that has items.
+	 * If there are none, then it advances to the last container.
 	 */
 	protected function nextShardIteratorIfNotValid() {
 		while ( !$this->valid() ) {

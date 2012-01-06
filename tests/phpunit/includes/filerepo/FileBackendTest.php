@@ -556,7 +556,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			"subdir1/test1.txt",
 			"subdir1/test2.txt",
 			"subdir2/test3.txt",
-			"subdir2/test1.txt",
+			"subdir2/test4.txt",
 			"subdir2/subdir/test1.txt",
 			"subdir2/subdir/test2.txt",
 			"subdir2/subdir/test3.txt",
@@ -565,7 +565,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			"subdir2/subdir/sub/test0.txt",
 			"subdir2/subdir/sub/120-px-file.txt",
 		);
-		$expected = sort( $expected );
+		sort( $expected );
 
 		// Actual listing (no trailing slash)
 		$list = array();
@@ -573,8 +573,9 @@ class FileBackendTest extends MediaWikiTestCase {
 		foreach ( $iter as $file ) {
 			$list[] = $file;
 		}
+		sort( $list );
 
-		$this->assertEquals( $expected, sort( $list ), "Correct file listing." );
+		$this->assertEquals( $expected, $list, "Correct file listing." );
 
 		// Actual listing (with trailing slash)
 		$list = array();
@@ -582,8 +583,9 @@ class FileBackendTest extends MediaWikiTestCase {
 		foreach ( $iter as $file ) {
 			$list[] = $file;
 		}
+		sort( $list );
 
-		$this->assertEquals( $expected, sort( $list ), "Correct file listing." );
+		$this->assertEquals( $expected, $list, "Correct file listing." );
 
 		foreach ( $files as $file ) {
 			$this->backend->doOperation( array( 'op' => 'delete', 'src' => "$base/$file" ) );
