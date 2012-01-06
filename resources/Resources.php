@@ -864,7 +864,7 @@ return array(
 		'scripts' => 'common/wikibits.js',
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
-		'position' => 'bottom',
+		'position' => 'top',
 	),
 	'mediawiki.legacy.wikiprintable' => array(
 		'styles' => array( 'common/wikiprintable.css' => array( 'media' => 'print' ) ),
