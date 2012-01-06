@@ -1928,11 +1928,10 @@ $redirid: database ID of the created redirect
 
 'TitleReadWhitelist': called at the end of read permissions checks, just before
 	adding the default error message if nothing allows the user to read the page.
-	Return false will prevent core from adding its error message, but you need
-	to removed extensions' error messages from $errors yourself.
+	If a handler wants a title to *not* be whitelisted, it should also return false.
 $title: Title object being checked against
 $user: Current user object
-&$errors: errors 
+&$whitelisted: Boolean value of whether this title is whitelisted
 
 'UndeleteForm::showHistory': called in UndeleteForm::showHistory, after a
 PageArchive object has been created but before any further processing is done.
