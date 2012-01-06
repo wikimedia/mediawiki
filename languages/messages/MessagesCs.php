@@ -711,8 +711,8 @@ Možná už byl(a) smazán(a) někým jiným.',
 'cannotdelete-title'   => 'Stránku „$1“ nelze smazat',
 'badtitle'             => 'Neplatný název',
 'badtitletext'         => 'Požadovaný název stránky byl neplatný, prázdný nebo obsahoval nesprávnou předponu mezijazykového či interwiki odkazu. Možná obsahoval znaky, které v názvu nejsou dovoleny.',
-'perfcached'           => 'Následující data jsou z cache a nemusí být plně aktuální:',
-'perfcachedts'         => 'Následující data jsou z cache, která byla naposledy aktualizována $1.',
+'perfcached'           => 'Následující data jsou z cache a nemusí být plně aktuální. Cache může obsahovat maximálně {{PLURAL:$1|jeden výsledek|$1 výsledky|$1 výsledků}}.',
+'perfcachedts'         => 'Následující data jsou z cache, která byla naposledy aktualizována $1. Cache může obsahovat maximálně {{PLURAL:$4|jeden výsledek|$4 výsledky|$4 výsledků}}.',
 'querypage-no-updates' => 'Aktualizace této stránky je vypnuta. Data nyní nebudou obnovována.',
 'wrong_wfQuery_params' => 'Nesprávné parametry do wfQuery()<br />
 Funkce: $1<br />
@@ -2871,6 +2871,9 @@ Uložte jej na svůj disk a nahrajte ho sem.',
 'import-invalid-interwiki'   => 'Ze zadané wiki nelze importovat.',
 'import-error-edit'          => 'Stránka „$1“ se nenaimportovala, protože nemáte oprávnění ji editovat.',
 'import-error-create'        => 'Stránka „$1“ se nenaimportovala, protože nemáte oprávnění ji založit.',
+'import-error-interwiki'     => 'Stránka „$1“ se neimportuje, protože její název je vyhrazen pro externí odkazy (interwiki).',
+'import-error-special'       => 'Stránka „$1“ se neimportuje, protože patří do speciálního jmenného prostoru, do kterého stránky nepatří.',
+'import-error-invalid'       => 'Stránka „$1“ se neimportuje, protože její název je neplatný.',
 
 # Import log
 'importlogpage'                    => 'Kniha importů',

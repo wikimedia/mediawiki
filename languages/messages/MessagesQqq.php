@@ -655,7 +655,8 @@ $1 is a filename, I think.',
 * $1 is the page name',
 'badtitle'             => 'The page title when a user requested a page with invalid page name. The content will be {{msg-mw|badtitletext}}.',
 'badtitletext'         => 'The message shown when a user requested a page with invalid page name. The page title will be {{msg-mw|badtitle}}.',
-'perfcached'           => 'Like {{msg-mw|perfcachedts}} but used when we do not know how long ago page was cached (unlikely to happen). $1 is the max result cut off ($wgQueryCacheLimit)',
+'perfcached'           => 'Like {{msg-mw|perfcachedts}} but used when we do not know how long ago page was cached (unlikely to happen). Parameters:
+* $1 is the max result cut off ($wgQueryCacheLimit)',
 'perfcachedts'         => 'Used on pages that list page lists for which the displayed data is cached. Parameters:
 * $1 is a time stamp (date and time combined)
 * $2 is a date (optional)
@@ -3073,77 +3074,77 @@ See also:
 'javascripttest-qunit-heading'             => '{{Optional}}',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'             => 'Tooltip shown when hovering the mouse over the link to your own User page in the upper-side personal toolbox.',
-'tooltip-pt-mytalk'               => 'Tooltip shown when hovering over the "my talk" link in your personal toolbox (upper right side).',
-'tooltip-pt-preferences'          => 'Tooltip shown when hovering over the "my preferences" ([[MediaWiki:Mypreferences]]) link in your personal toolbox (upper right side).
+'tooltip-pt-userpage'                 => 'Tooltip shown when hovering the mouse over the link to your own User page in the upper-side personal toolbox.',
+'tooltip-pt-mytalk'                   => 'Tooltip shown when hovering over the "my talk" link in your personal toolbox (upper right side).',
+'tooltip-pt-preferences'              => 'Tooltip shown when hovering over the "my preferences" ([[MediaWiki:Mypreferences]]) link in your personal toolbox (upper right side).
 
 {{Identical|My preferences}}',
-'tooltip-pt-watchlist'            => 'Tooltip shown when hovering over the "my watchlist" link in your personal toolbox (upper right side).',
-'tooltip-pt-mycontris'            => 'Tooltip shown when hovering over the "my contributions" link in your personal toolbox (upper right side).',
-'tooltip-pt-login'                => "Tooltip shown when hovering over the link 'Log in / create account' in the upper right corner show on all pages while not logged in.",
-'tooltip-pt-logout'               => 'Tooltip shown when hovering over the "Log out" link in your personal toolbox (upper right side).
+'tooltip-pt-watchlist'                => 'Tooltip shown when hovering over the "my watchlist" link in your personal toolbox (upper right side).',
+'tooltip-pt-mycontris'                => 'Tooltip shown when hovering over the "my contributions" link in your personal toolbox (upper right side).',
+'tooltip-pt-login'                    => "Tooltip shown when hovering over the link 'Log in / create account' in the upper right corner show on all pages while not logged in.",
+'tooltip-pt-logout'                   => 'Tooltip shown when hovering over the "Log out" link in your personal toolbox (upper right side).
 
 {{Identical|Log out}}',
-'tooltip-ca-talk'                 => "Tooltip shown when hovering over the \"[[MediaWiki:Talk/{{SUBPAGENAME}}|{{int:talk}}]]\" tab.
+'tooltip-ca-talk'                     => "Tooltip shown when hovering over the \"[[MediaWiki:Talk/{{SUBPAGENAME}}|{{int:talk}}]]\" tab.
 
 A 'content page' is a page that forms part of the purpose of the wiki. It includes the main page and pages in the main namespace and any other namespaces that are included when the wiki is customised. For example on Wikimedia Commons 'content pages' include pages in the file and category namespaces. On Wikinews 'content pages' include pages in the Portal namespace. For a technical definition of 'content namespaces' see [//www.mediawiki.org/wiki/Manual:Using_custom_namespaces#Content_namespaces Mediawiki].
 
 Possible alternatives to the word 'content' are 'subject matter' or 'wiki subject' or 'wiki purpose'.
 
 {{Identical|Content page}}",
-'tooltip-ca-edit'                 => 'The tooltip when hovering over the "[[MediaWiki:Edit/{{SUBPAGENAME}}|{{int:edit}}]]" tab.',
-'tooltip-ca-addsection'           => 'Tooltip shown when hovering over the "addsection" tab (shown on talk pages).',
-'tooltip-ca-viewsource'           => 'Tooltip displayed when hovering over the {{msg|viewsource}} tab.',
-'tooltip-ca-protect'              => '{{Identical|Protect this page}}',
-'tooltip-ca-unprotect'            => '{{Identical|Unprotect this page}}',
-'tooltip-ca-delete'               => 'Tooltip shown when hovering over the "[[MediaWiki:Delete/{{SUBPAGENAME}}|{{int:delete}}]]" tab.
+'tooltip-ca-edit'                     => 'The tooltip when hovering over the "[[MediaWiki:Edit/{{SUBPAGENAME}}|{{int:edit}}]]" tab.',
+'tooltip-ca-addsection'               => 'Tooltip shown when hovering over the "addsection" tab (shown on talk pages).',
+'tooltip-ca-viewsource'               => 'Tooltip displayed when hovering over the {{msg|viewsource}} tab.',
+'tooltip-ca-protect'                  => '{{Identical|Protect this page}}',
+'tooltip-ca-unprotect'                => '{{Identical|Unprotect this page}}',
+'tooltip-ca-delete'                   => 'Tooltip shown when hovering over the "[[MediaWiki:Delete/{{SUBPAGENAME}}|{{int:delete}}]]" tab.
 
 {{Identical|Delete this page}}',
-'tooltip-ca-move'                 => '{{Identical|Move this page}}',
-'tooltip-ca-watch'                => '{{Identical|Add this page to your watchlist}}',
-'tooltip-ca-unwatch'              => 'Tooltip shown when hovering over the {{msg|unwatch}} tab.',
-'tooltip-search'                  => 'The tooltip when hovering over the search menu.',
-'tooltip-search-go'               => 'This is the text of the tooltip displayed when hovering the mouse over the “[[MediaWiki:Go|Go]]” button next to the search box.',
-'tooltip-search-fulltext'         => 'This is the text of the tooltip displayed when hovering the mouse over the “[[MediaWiki:Search|Search]]” button under the search box.',
-'tooltip-p-logo'                  => 'Tool tip shown when hovering the mouse over the logo that links to [[Main Page]].
+'tooltip-ca-move'                     => '{{Identical|Move this page}}',
+'tooltip-ca-watch'                    => '{{Identical|Add this page to your watchlist}}',
+'tooltip-ca-unwatch'                  => 'Tooltip shown when hovering over the {{msg|unwatch}} tab.',
+'tooltip-search'                      => 'The tooltip when hovering over the search menu.',
+'tooltip-search-go'                   => 'This is the text of the tooltip displayed when hovering the mouse over the “[[MediaWiki:Go|Go]]” button next to the search box.',
+'tooltip-search-fulltext'             => 'This is the text of the tooltip displayed when hovering the mouse over the “[[MediaWiki:Search|Search]]” button under the search box.',
+'tooltip-p-logo'                      => 'Tool tip shown when hovering the mouse over the logo that links to [[Main Page]].
 {{Identical|Visit the main page}}',
-'tooltip-n-mainpage'              => 'Tool tip shown when hovering the mouse over the link to [[{{MediaWiki:Mainpage}}]].
+'tooltip-n-mainpage'                  => 'Tool tip shown when hovering the mouse over the link to [[{{MediaWiki:Mainpage}}]].
 {{Identical|Visit the main page}}',
-'tooltip-n-mainpage-description'  => '{{Identical|Visit the main page}}',
-'tooltip-n-portal'                => "Tooltip shown when hovering over the link to 'Community portal' shown in the side bar menu on all pages.",
-'tooltip-n-currentevents'         => 'Tooltip shown when hovering over {{msg|currentevents}} in the sidebar.',
-'tooltip-n-recentchanges'         => 'The tooltip when hovering over the "[[MediaWiki:Recentchanges/{{SUBPAGENAME}}|{{int:recentchanges}}]]" link in the sidebar going to the special page [[Special:RecentChanges]].',
-'tooltip-n-randompage'            => "Tooltip shown when hovering over the link to 'Random page' shown in the side bar menu on all pages. Clicking the link will show a random page in from the wiki's main namespace.",
-'tooltip-n-help'                  => "Tooltip shown when hovering over the link 'help' shown in the side bar menu on all pages.",
-'tooltip-t-whatlinkshere'         => 'Tooltip shown when hovering over the {{msg|whatlinkshere}} message in the toolbox.',
-'tooltip-t-contributions'         => 'Tooltip shown when hovering over {{msg|contributions}} in the toolbox.',
-'tooltip-t-emailuser'             => 'Tooltip shown when hovering over the {{msg|emailuser}} link in the toolbox (sidebar, below).',
-'tooltip-t-upload'                => 'Tooltip shown when hovering over the link to upload files shown in the side bar menu on all pages.',
-'tooltip-t-specialpages'          => 'The tooltip when hovering over the link "[[MediaWiki:Specialpages/{{SUBPAGENAME}}|{{int:specialpages}}]]" going to a list of all special pages available in the wiki.',
-'tooltip-ca-nstab-main'           => "A 'content page' is a page that forms part of the purpose of the wiki. It includes the main page and pages in the main namespace and any other namespaces that are included when the wiki is customised. For example on Wikimedia Commons 'content pages' include pages in the file and category namespaces. On Wikinews 'content pages' include pages in the Portal namespace. For technical definition of 'content namespaces' see [//www.mediawiki.org/wiki/Manual:Using_custom_namespaces#Content_namespaces Mediawiki].
+'tooltip-n-mainpage-description'      => '{{Identical|Visit the main page}}',
+'tooltip-n-portal'                    => "Tooltip shown when hovering over the link to 'Community portal' shown in the side bar menu on all pages.",
+'tooltip-n-currentevents'             => 'Tooltip shown when hovering over {{msg|currentevents}} in the sidebar.',
+'tooltip-n-recentchanges'             => 'The tooltip when hovering over the "[[MediaWiki:Recentchanges/{{SUBPAGENAME}}|{{int:recentchanges}}]]" link in the sidebar going to the special page [[Special:RecentChanges]].',
+'tooltip-n-randompage'                => "Tooltip shown when hovering over the link to 'Random page' shown in the side bar menu on all pages. Clicking the link will show a random page in from the wiki's main namespace.",
+'tooltip-n-help'                      => "Tooltip shown when hovering over the link 'help' shown in the side bar menu on all pages.",
+'tooltip-t-whatlinkshere'             => 'Tooltip shown when hovering over the {{msg|whatlinkshere}} message in the toolbox.',
+'tooltip-t-contributions'             => 'Tooltip shown when hovering over {{msg|contributions}} in the toolbox.',
+'tooltip-t-emailuser'                 => 'Tooltip shown when hovering over the {{msg|emailuser}} link in the toolbox (sidebar, below).',
+'tooltip-t-upload'                    => 'Tooltip shown when hovering over the link to upload files shown in the side bar menu on all pages.',
+'tooltip-t-specialpages'              => 'The tooltip when hovering over the link "[[MediaWiki:Specialpages/{{SUBPAGENAME}}|{{int:specialpages}}]]" going to a list of all special pages available in the wiki.',
+'tooltip-ca-nstab-main'               => "A 'content page' is a page that forms part of the purpose of the wiki. It includes the main page and pages in the main namespace and any other namespaces that are included when the wiki is customised. For example on Wikimedia Commons 'content pages' include pages in the file and category namespaces. On Wikinews 'content pages' include pages in the Portal namespace. For technical definition of 'content namespaces' see [//www.mediawiki.org/wiki/Manual:Using_custom_namespaces#Content_namespaces Mediawiki].
 
 Possible alternatives to the word 'content' are 'subject matter' or 'wiki subject' or 'wiki purpose'.
 
 {{Identical|Content page}}",
-'tooltip-ca-nstab-user'           => 'Tooltip shown when hovering over {{msg|nstab-user}} (User namespace tab).',
-'tooltip-ca-nstab-image'          => 'Tooltip shown when hovering over {{msg|nstab-image}} (Image namespace tab).',
-'tooltip-ca-nstab-template'       => 'Tooltip shown when hovering over the {{msg|nstab-template}} tab.',
-'tooltip-ca-nstab-help'           => 'Tootip shown when hovering over the {{msg|nstab-help}} tab in the Help namespace.',
-'tooltip-ca-nstab-category'       => 'Tooltip shown when hovering over the {{msg|nstab-category}} tab.',
-'tooltip-minoredit'               => 'Tooltip shown when hovering over the "[[MediaWiki:Minoredit/{{SUBPAGENAME}}|{{int:minoredit}}]]" link below the edit form.',
-'tooltip-save'                    => "This is the text that appears when you hover the mouse over the 'Save page' button on the edit page",
-'tooltip-preview'                 => 'Tooltip shown when hovering over the "Show preview" button.
+'tooltip-ca-nstab-user'               => 'Tooltip shown when hovering over {{msg|nstab-user}} (User namespace tab).',
+'tooltip-ca-nstab-image'              => 'Tooltip shown when hovering over {{msg|nstab-image}} (Image namespace tab).',
+'tooltip-ca-nstab-template'           => 'Tooltip shown when hovering over the {{msg|nstab-template}} tab.',
+'tooltip-ca-nstab-help'               => 'Tootip shown when hovering over the {{msg|nstab-help}} tab in the Help namespace.',
+'tooltip-ca-nstab-category'           => 'Tooltip shown when hovering over the {{msg|nstab-category}} tab.',
+'tooltip-minoredit'                   => 'Tooltip shown when hovering over the "[[MediaWiki:Minoredit/{{SUBPAGENAME}}|{{int:minoredit}}]]" link below the edit form.',
+'tooltip-save'                        => "This is the text that appears when you hover the mouse over the 'Save page' button on the edit page",
+'tooltip-preview'                     => 'Tooltip shown when hovering over the "Show preview" button.
 
 If the length of the translated message is over 60 characters (including spaces) then the end of the message will be cut off when using Firefox 2.0.0.7 browser, Linux operating system and the Monobook skin.',
-'tooltip-diff'                    => 'This is the text (tooltip) that appears when you hover the mouse over the "Show changes" button ({{msg|showdiff}}) on the edit page.',
-'tooltip-compareselectedversions' => 'Tooltip of {{msg|compareselectedversions}} (which is used as button in history pages).',
-'tooltip-watch'                   => '{{Identical|Add this page to your watchlist}}',
+'tooltip-diff'                        => 'This is the text (tooltip) that appears when you hover the mouse over the "Show changes" button ({{msg|showdiff}}) on the edit page.',
+'tooltip-compareselectedversions'     => 'Tooltip of {{msg|compareselectedversions}} (which is used as button in history pages).',
+'tooltip-watch'                       => '{{Identical|Add this page to your watchlist}}',
 'tooltip-watchlistedit-normal-submit' => 'Tooltip for {{msg|watchlistedit-normal-submit}} (used as button on [[Special:EditWatchlist]]).',
-'tooltip-watchlistedit-raw-submit' => 'Tooltip for {{msg|watchlistedit-raw-submit}} (used as button on [[Special:EditWatchlist/raw]]).',
-'tooltip-rollback'                => 'Tooltip of the rollback link on the history page and the diff view
+'tooltip-watchlistedit-raw-submit'    => 'Tooltip for {{msg|watchlistedit-raw-submit}} (used as button on [[Special:EditWatchlist/raw]]).',
+'tooltip-rollback'                    => 'Tooltip of the rollback link on the history page and the diff view
 {{Identical|Rollback}}
 {{Identical|Revert}}',
-'tooltip-undo'                    => 'Tooltip of the undo link on the history page and the diff view
+'tooltip-undo'                        => 'Tooltip of the undo link on the history page and the diff view
 {{Identical|Undo}}{{Identical|Revert}}',
 
 # Stylesheets

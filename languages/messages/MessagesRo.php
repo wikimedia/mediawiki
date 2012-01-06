@@ -12,6 +12,7 @@
  * @author Danutz
  * @author Emily
  * @author Firilacroco
+ * @author Gutza
  * @author KlaudiuMihaila
  * @author Laurap
  * @author Malafaya
@@ -662,8 +663,8 @@ S-ar putea ca acesta să fi fost deja șters de altcineva.',
 'badtitletext'         => 'Titlul căutat a fost invalid, gol sau o legătură invalidă inter-linguală sau inter-wiki.
 
 Poate conține unul sau mai multe caractere ce nu poate fi folosit în titluri.',
-'perfcached'           => 'Datele următoare au fost păstrate în cache și s-ar putea să nu fie la zi.',
-'perfcachedts'         => "Informațiile de mai jos provin din ''cache''; ultima actualizare s-a efectuat la $1.",
+'perfcached'           => 'Datele următoare au fost păstrate în cache și s-ar putea să nu fie actualizate. Un maxim de {{PLURAL:$1|un rezultat este disponibil|$1 rezultate sunt disponibile}} în cache.',
+'perfcachedts'         => 'Informațiile de mai jos provin din cache, ultima actualizare efectuându-se la $1. Un maxim de {{PLURAL:$1|un rezultat este disponibil|$1 rezultate sunt disponibile}} în cache.',
 'querypage-no-updates' => 'Actualizările acestei pagini sunt momentan dezactivate. Informațiile de aici nu sunt împrospătate.',
 'wrong_wfQuery_params' => 'Număr incorect de parametri pentru wfQuery()<br />
 Funcția: $1<br />
@@ -2401,9 +2402,9 @@ Puteți schimba nivelul de protejare al acestei pagini, dar asta nu va afecta pr
 'protect-existing-expiry'     => 'Data expirării: $3, $2',
 'protect-otherreason'         => 'Motiv diferit/adițional:',
 'protect-otherreason-op'      => 'Alt motiv',
-'protect-dropdown'            => '*Motive comune de protejare
+'protect-dropdown'            => '*Motive uzuale de protejare
 ** Vandalism excesiv
-** Spam excesiv
+** SPAM excesiv
 ** Modificări neproductive
 ** Pagină cu trafic mare',
 'protect-edit-reasonlist'     => 'Modifică motivele protejării',
