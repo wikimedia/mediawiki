@@ -587,6 +587,7 @@ return array(
 			'jquery.messageBox',
 			'jquery.mwExtension',
 		),
+		'messages' => array( 'showtoc', 'hidetoc' ),
 	),
 
 	/* MediaWiki Action */
@@ -863,8 +864,6 @@ return array(
 		'scripts' => 'common/wikibits.js',
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
-		'dependencies' => 'mediawiki.language',
-		'messages' => array( 'showtoc', 'hidetoc' ),
 		'position' => 'bottom',
 	),
 	'mediawiki.legacy.wikiprintable' => array(
