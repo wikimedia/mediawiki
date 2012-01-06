@@ -582,8 +582,8 @@ Se cadra, xa a borrou alguén.',
 'badtitle'             => 'Título incorrecto',
 'badtitletext'         => 'O título da páxina pedida non era válido, estaba baleiro ou proviña dunha ligazón interlingua ou interwiki incorrecta.
 Pode conter un ou máis caracteres dos que non se poden empregar nos títulos.',
-'perfcached'           => 'Esta información é da memoria caché e pode ser que non estea completamente actualizada.',
-'perfcachedts'         => 'Esta información é da memoria caché. Última actualización: $2 ás $3.',
+'perfcached'           => 'Esta información é da memoria caché e pode ser que non estea completamente actualizada. Hai un máximo de {{PLURAL:$1|$1 resultado dispoñible|$1 resultados dispoñibles}} na caché.',
+'perfcachedts'         => 'Esta información é da memoria caché. Última actualización: $2 ás $3. Hai un máximo de {{PLURAL:$4|$4 resultado dispoñible|$4 resultados dispoñibles}} na caché.',
 'querypage-no-updates' => 'Neste momento están desactivadas as actualizacións nesta páxina. O seu contido non se modificará.',
 'wrong_wfQuery_params' => 'Parámetros incorrectos para wfQuery()<br />
 Función: $1<br />

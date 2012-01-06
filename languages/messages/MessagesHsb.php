@@ -511,8 +511,8 @@ Móže być, zo je hižo wot někoho druheho wušmórnjena.',
 'cannotdelete-title'   => 'Strona "$1" njehodźi so zhašeć',
 'badtitle'             => 'Wopačny titul',
 'badtitletext'         => 'Požadane mjeno strony běše njepłaćiwy, prózdny abo njekorektny titul z mjezyrěcneho abo interwikijoweho wotkaza. Snano wobsahuje jedne znamješko abo wjacore znamješka, kotrež w titulach dowolene njejsu.',
-'perfcached'           => 'Sćěhowace daty z pufrowaka pochadźeja a snano cyle aktualne njejsu.',
-'perfcachedts'         => 'Sćěhowace daty su z pufrowaka a buchu $1 posledni raz zaktualizowane.',
+'perfcached'           => 'Slědowace daty pochadźeja z pufrowaka a njejsu snano cyle aktualne. Maksimalnje {{PLURAL:$1|jedyn wuslědk|$1 wuslědkaj|$1 wuslědki|$1 wuslědkow}} w pufrowaku k dispoziciji {{PLURAL:$1|steji|stejitej|steja|steji}}.',
+'perfcachedts'         => 'Slědowace daty su z pufrowaka a buchu $1 posledni raz zaktualizowane. Maksimalnje {{PLURAL:$4|jedyn wuslědk|$4 wuslědkaj|$4 wuslědki|$4 wuslědkow}} w pufrowaku k dispoziciji {{PLURAL:$4|steji|stejitej|steja|steji}}.',
 'querypage-no-updates' => "'''Aktualizacija za tutu stronu je tuchwilu znjemóžnjena. Daty so hač na dalše njewobnowjeja.'''",
 'wrong_wfQuery_params' => 'Njeprawe parametry za wfQuery()
 
@@ -2647,6 +2647,9 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 'import-invalid-interwiki'   => 'Njeje móžno z podateho wikija importować.',
 'import-error-edit'          => 'Strona "$1" so njeimportuje, dokelž nimaš prawo ju wobdźěłać.',
 'import-error-create'        => 'Strona "$1" so njeimportuje, dokelž nimaš prawo ju wutworić.',
+'import-error-interwiki'     => 'Strona "$1" so njeimportuje, dokelž jeje mjeno je za eksterne wotkazowanje (interwiki) wuměnjene.',
+'import-error-special'       => 'Strona "$1" so njeimportuje, dokelž k wosebitemu mjenowemu rumej słuša, kotryž strony njedowola.',
+'import-error-invalid'       => 'Strona "$1" so njeimportuje, dokelž jeje mjeno je njepłaćiwe.',
 
 # Import log
 'importlogpage'                    => 'Protokol importow',

@@ -395,8 +395,8 @@ Pò essere ca ggià ha state scangellete da quacche otre.',
 'badtitle'             => 'Titele sbagliete',
 'badtitletext'         => "'A pàgene ca è cerchete tène 'nu titele errete, vacande, o jè 'nu collegamende inter-lènghe o inter-uicchi errete.
 Pò essere ca tène une o cchiù carattere ca non ge ponne essere ausete jndr'à le titele.",
-'perfcached'           => "'U date segeunde stè jndr'à cache e non ge pò essere aggiornete.",
-'perfcachedts'         => "'U date segeunde stè jndr'à cache e l'urteme aggiornamente ha state $1.",
+'perfcached'           => "'U date seguende stè jndr'à cache e non ge pò essere aggiornate.",
+'perfcachedts'         => "'U date seguende stè jndr'à cache e, l'urteme aggiornamende ha state $1.",
 'querypage-no-updates' => "L'aggiornaminde pe sta pàgene sonde, pe mò, disabbilitete.
 Le date ca stonne aqquà jndre non ge sonde aggiornete.",
 'wrong_wfQuery_params' => "Parametre incorrette sus 'a wfQuery()<br />
@@ -2582,6 +2582,7 @@ Quiste po essere 'mbortate jndr'à 'n'otra uicchi ausanne [[Special:Import|'mbor
 Pe esportà pàggene, mitte le titele jndr'à scatele de sotte, 'nu titele pe linèe e scacchie ce tu vuè 'a revisiona corrende o tutte le revisiune, ce le linèe d'a storie d'a pàgene, e 'a revisione corrende cu le 'mbormaziune sus a l'urteme cangiamende.
 
 Cumme urteme case, tu puè pure ausà 'nu collegamende, pe esembie [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] pa pàgene \"[[{{MediaWiki:Mainpage}}]]\".",
+'exportall'         => 'Esporte tutte le pàggene',
 'exportcuronly'     => "'Nglude sulamende 'a revisiona corrende, non totte 'a storie",
 'exportnohistory'   => "----
 '''Vide Bbuène:''' L'esportazione da storia comblete de le pàggene, ausanne sta maschere, ha state disabbilitate pe mutive de prestaziune.",
@@ -2677,6 +2678,9 @@ Reggistrele sus a 'u combiuter tune e carechele aqquà.",
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|revisione|revisiune}}',
 'import-logentry-interwiki'        => 'transuicchied $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revisione|revisiune}} da $2',
+
+# JavaScriptTest
+'javascripttest-title' => 'Stoche a esegue $1 test',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => "'A pàgene utende meje",

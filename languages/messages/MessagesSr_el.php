@@ -673,8 +673,8 @@ Verovatno ju je neko drugi obrisao.',
 'badtitle'             => 'Neispravan naslov',
 'badtitletext'         => 'Naslov stranice je neispravan, prazan ili je međujezički ili međuviki naslov pogrešno povezan.
 Možda sadrži znakove koji se ne mogu koristiti u naslovima.',
-'perfcached'           => 'Sledeći podaci su privremeno memorisani i mogu biti zastareli.',
-'perfcachedts'         => 'Sledeći podaci su privremeno memorisani i poslednji put su ažurirani $2 u $3.',
+'perfcached'           => 'Sledeći podaci su keširani i mogu biti zastareli. Keš sadrži najviše {{PLURAL:$1|jedan rezultat|$1 rezultata|$1 rezultata}}.',
+'perfcachedts'         => 'Sledeći podaci su keširani, a poslednji put su ažurirani $2 u $3. Keš sadrži najviše {{PLURAL:$4|jedan rezultat|$4 rezultata|$4 rezultata}}.',
 'querypage-no-updates' => 'Ažuriranje ove stranice je trenutno onemogućeno.
 Podaci koji se ovde nalaze mogu biti zastareli.',
 'wrong_wfQuery_params' => 'Neispravni parametri za wfQuery()<br />
@@ -2954,6 +2954,9 @@ Pokušajte ponovo.',
 'import-invalid-interwiki'   => 'Ne mogu da uvozim s navedenog vikija.',
 'import-error-edit'          => 'Stranica „$1“ nije uvezena jer vam nije dozvoljeno da je uređujete.',
 'import-error-create'        => 'Stranica „$1“ nije uvezena jer vam nije dozvoljeno da je napravite.',
+'import-error-interwiki'     => 'Ne mogu da uvezem stranicu „$1“ jer je njen naziv rezervisan za spoljno povezivanje (međuviki).',
+'import-error-special'       => 'Ne mogu da uvezem stranicu „$1“ jer ona pripada posebnom imenskom prostoru koje ne prihvata stranice.',
+'import-error-invalid'       => 'Ne mogu da uvezem stranicu „$1“ jer je njen naziv neispravan.',
 
 # Import log
 'importlogpage'                    => 'Istorija uvoza',

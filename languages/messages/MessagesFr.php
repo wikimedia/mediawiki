@@ -721,8 +721,8 @@ La suppression a peut-être déjà été effectuée par quelqu’un d’autre.',
 'cannotdelete-title'   => 'Impossible de supprimer la page « $1 »',
 'badtitle'             => 'Mauvais titre',
 'badtitletext'         => 'Le titre de la page demandée est invalide, vide, ou il s’agit d’un titre inter-langue ou inter-projet mal lié. Il contient peut-être un ou plusieurs caractères qui ne peuvent pas être utilisés dans les titres.',
-'perfcached'           => 'Les données suivantes sont en cache et peuvent ne pas être à jour.',
-'perfcachedts'         => 'Les données suivantes sont en cache, elles ne sont donc pas obligatoirement à jour. La dernière actualisation date du $1.',
+'perfcached'           => 'Les données suivantes sont en cache et peuvent ne pas être à jour. Un maximum de {{PLURAL:$1|un résultat|$1 résultats}} est disponible dans le cache.',
+'perfcachedts'         => 'Les données suivantes sont en cache et ont été mises à jour pour la dernière fois à $1. Un maximum de {{PLURAL:$4|un résultat|$4 résultats}} est disponible dans le cache.',
 'querypage-no-updates' => 'Les mises à jour pour cette page sont actuellement désactivées. Les données ci-dessous ne sont pas mises à jour.',
 'wrong_wfQuery_params' => 'Paramètres incorrects sur wfQuery()<br />
 Fonction : $1<br />
@@ -2917,6 +2917,7 @@ Un dossier temporaire est manquant.",
 'import-invalid-interwiki'   => 'Impossible d’importer depuis le wiki spécifié.',
 'import-error-edit'          => 'La page « $1 » n’a pas été importée parce que vous n’êtes pas autorisés à la modifier.',
 'import-error-create'        => 'La page « $1 » n’a pas été importée parce que vous n’êtes pas autorisés à la créer.',
+'import-error-invalid'       => 'Page « $1 » n’est pas importée parce que son nom n’est pas valide.',
 
 # Import log
 'importlogpage'                    => 'Journal des importations',

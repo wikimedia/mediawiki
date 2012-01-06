@@ -402,8 +402,8 @@ Peul desse ch'a l'é già stàit ëscancelà da cheidun d'àutr.",
 'cannotdelete-title'   => 'A peul pa scancelesse la pàgina «$1»',
 'badtitle'             => 'Tìtol nen giust',
 'badtitletext'         => "La pàgina che a l'ha ciamà a peul pa esse mostrà. A podrìa tratesse ëd na pàgina nen bon-a, veujda, ò pura a podrìa ëdcò esse n'eror ant n'anliura antra lenghe diferente ò tra diferente version ëd {{SITENAME}}.",
-'perfcached'           => "Sòn a l'é stait memorisà an local e podrìa ëdcò nen esse agiornà:",
-'perfcachedts'         => "Lòn che a-j ven dapress a sossì a l'é pijàit da 'nt na còpia local \"cache\" dla base dat. L'ùltim agiornament a l'é dël: \$1.",
+'perfcached'           => "Ij dat ch'a ven-o d'apress a sòn stait memorisà an local e a peulo esse nen agiornà. Al pi {{PLURAL:$1|n'arzultà a l'é|$1 arzultà a son}} disponibil ant la memòria local.",
+'perfcachedts'         => "Ij dat ch'a ven-o dapress a son stait memorisà an local, e a son stait agiornà l'ùltima vira ël $1. Al pi {{PLURAL:$4|n'arzultà a l'é|$4 arzultà a son}} disponibil ant la memòria local.",
 'querypage-no-updates' => "J'agiornament për sta pàgina-sì për adess a travajo nen. Ij dat ambelessì a saran nen rinfrescà.",
 'wrong_wfQuery_params' => 'Paràmetro nen giust për wfQuery()<br />
 Funsion: $1<br />

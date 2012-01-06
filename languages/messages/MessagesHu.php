@@ -669,8 +669,8 @@ Talán már valaki más törölte.',
 'cannotdelete-title'   => 'Nem lehet törölni a(z) „$1” lapot',
 'badtitle'             => 'Hibás cím',
 'badtitletext'         => 'A kért oldal címe érvénytelen, üres, vagy rosszul hivatkozott nyelvközi vagy wikiközi cím volt. Olyan karaktereket is tartalmazhatott, melyek a címekben nem használhatóak.',
-'perfcached'           => "Az alábbi adatok gyorsítótárból (''cache''-ből) származnak, és ezért lehetséges, hogy nem a legfrissebb változatot mutatják:",
-'perfcachedts'         => "Az alábbi adatok gyorsítótárból (''cache''-ből) származnak, legutóbbi frissítésük ideje $1.",
+'perfcached'           => "Az alábbi adatok gyorsítótárból (''cache''-ből) származnak, és ezért lehetséges, hogy nem a legfrissebb változatot mutatják. Legfeljebb {{PLURAL:$1|egy|$1 }} eredmény áll rendelkezésre a gyorsítótárban.",
+'perfcachedts'         => "Az alábbi adatok gyorsítótárból (''cache''-ből) származnak, legutóbbi frissítésük ideje $1. Legfeljebb {{PLURAL:$4|egy|$4 }} eredmény áll rendelkezésre a gyorsítótárban.",
 'querypage-no-updates' => 'Az oldal frissítése jelenleg le van tiltva. Az itt szereplő adatok nem frissülnek azonnal.',
 'wrong_wfQuery_params' => 'A wfQuery() függvény paraméterei hibásak<br />
 Függvény: $1<br />

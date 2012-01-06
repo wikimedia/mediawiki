@@ -732,8 +732,8 @@ Möglicherweise wurde sie bereits von jemand anderem gelöscht.',
 'cannotdelete-title'   => 'Seite „$1“ kann nicht gelöscht werden',
 'badtitle'             => 'Ungültiger Titel',
 'badtitletext'         => 'Der Titel der angeforderten Seite ist ungültig, leer oder ein ungültiger Sprachlink von einem anderen Wiki.',
-'perfcached'           => 'Die folgenden Daten stammen aus dem Cache und sind möglicherweise nicht aktuell:',
-'perfcachedts'         => 'Diese Daten stammen aus dem Cache, letzte Aktualisierung: $2, $3 Uhr',
+'perfcached'           => 'Die folgenden Daten stammen aus dem Cache und sind möglicherweise nicht aktuell. Maximal {{PLURAL:$1|ein Ergebnis ist|$1 Ergebnisse sind}} im Cache verfügbar.',
+'perfcachedts'         => 'Diese Daten stammen aus dem Cache. Der Zeitpunkt der letzten Aktualisierung: $1. Maximal {{PLURAL:$4|ein Ergebnis ist|$4 Ergebnisse sind}} im Cache verfügbar.',
 'querypage-no-updates' => "'''Die Aktualisierungsfunktion dieser Seite ist zurzeit deaktiviert. Die Daten werden bis auf Weiteres nicht erneuert.'''",
 'wrong_wfQuery_params' => 'Falsche Parameter für wfQuery()<br />
 Funktion: $1<br />
@@ -2912,6 +2912,9 @@ Diese auf dem lokalen Rechner speichern und danach hier hochladen.',
 'import-invalid-interwiki'   => 'Aus dem angegebenen Wiki ist kein Import möglich.',
 'import-error-edit'          => 'Die Seite „$1“ wurde nicht importiert, da du nicht berechtigt bist, sie zu bearbeiten.',
 'import-error-create'        => 'Die Seite „$1“ wurde nicht importiert, da du nicht berechtigt bist, sie zu erstellen.',
+'import-error-interwiki'     => 'Die Seite „$1“ wurde nicht importiert, da deren Name für externe Links (Interwiki) reserviert ist.',
+'import-error-special'       => 'Die Seite „$1“ wurde nicht importiert, da sie zu einem besonderen Namensraum gehört, in dem keine Seiten möglich sind.',
+'import-error-invalid'       => 'Seite „$1“ wurde nicht importiert, da deren Name ungültig ist.',
 
 # Import log
 'importlogpage'                    => 'Import-Logbuch',

@@ -516,8 +516,8 @@ Pšosym daj to a pśisłušny URL [[Special:ListUsers/sysop|administratoroju]] k
 'cannotdelete-title'   => 'Bok "$1" njedajo se lašowaś',
 'badtitle'             => 'Njepłaśecy nadpis',
 'badtitletext'         => 'Nadpis pominanego boka jo był njepłaśecy, prozny abo njekorektny nadpis, póchadajucy z mjazyrěcnego abo interwikijowego wótkaza. Snaź wopśimjejo jadno abo wěcej znamuškow, kótarež njejsu w nadpisach dowólone.',
-'perfcached'           => 'Toś te daty póchadaju z pufrowaka a mógu toś njeaktualne byś.',
-'perfcachedts'         => 'Toś te daty póchadaju z pufrowaka, slědna aktualizacija: $1',
+'perfcached'           => 'Toś te daty póchadaju z pufrowaka a mógu snaź njeaktualne byś. Maksimalnje {{PLURAL:$1|jaden wuslědk stoj|$1 wuslědka stojtej|$1 wuslědki stoje|$1 wuslědkow stoj}} w pufrowaku k dispoziciji.',
+'perfcachedts'         => 'Toś te daty póchadaju z pufrowaka a su se $1 slědny raz aktualizěrowali. Maksimalnje {{PLURAL:$4|jaden wuslědk stoj|$4 wuslědka stojtej|$4 wuslědki stoje|$4 wuslědkow stoj}} w pufrowaku k dispoziciji.',
 'querypage-no-updates' => 'Aktualizěrowanje toś togo boka jo se znjemóžniło. Daty how se nejžpjerwjej raz njeaktualizěruju.',
 'wrong_wfQuery_params' => 'Njedobre parametery za wfQuery()<br />
 Funkcija: $1<br />
@@ -2638,6 +2638,9 @@ Wšykne transwiki-importowe akcije protokolěruju se w [[Special:Log/import|log-
 'import-invalid-interwiki'   => 'Njejo móžno importěrowaś z pódanego wikija.',
 'import-error-edit'          => 'Bok "$1" se njeimportěrujo, dokulaž njesmějoš jen wobźěłaś.',
 'import-error-create'        => 'Bok "$1" se njeimportěrujo, dokulaž njesmějoš jen napóraś.',
+'import-error-interwiki'     => 'Bok "$1" se njeimportěrujo, dokulaž jogo mě jo za eksterne wótkazowanje (interwiki) wuměnjone.',
+'import-error-special'       => 'Bok "$1" se njeimportěrujo, dokulaž słuša k wósebnemu mjenjowemu rumoju, kótaryž njedowólujo boki.',
+'import-error-invalid'       => 'Bok "$1" se njeimportěrujo, dokulaž jogo mě jo njepłaśiwe.',
 
 # Import log
 'importlogpage'                    => 'Log-lisćinu importěrowaś',

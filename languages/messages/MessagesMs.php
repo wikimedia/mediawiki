@@ -557,8 +557,8 @@ Ia mungkin telah pun dihapuskan oleh orang lain.',
 'cannotdelete-title'   => 'Laman "$1" tidak dapat dihapuskan',
 'badtitle'             => 'Tajuk tidak sah',
 'badtitletext'         => 'Tajuk laman yang diminta tidak sah, kosong, ataupun tajuk antara bahasa atau tajuk antara wiki yang salah dipaut. Ia mungkin mengandungi aksara yang tidak dibenarkan.',
-'perfcached'           => 'Data berikut adalah teragregat dan mungkin bukan yang terkini.',
-'perfcachedts'         => 'Data berikut adalah teragregat dan dikemaskinikan buat kali terakhir pada $1.',
+'perfcached'           => 'Data yang berikut disimpan dalam cache dan mungkin tidak terkemas kini. Semaksimum {{PLURAL:$1|satu hasil|$1 hasil}} terdapat dalam cache.',
+'perfcachedts'         => 'Data yang berikut disimpan dalam cache dan kali terakhir dikemaskinikan pada $1. Semaksimum {{PLURAL:$4|satu hasil|$4 hasil}} terdapat dalam cache.',
 'querypage-no-updates' => 'Buat masa ini, pengkemaskinian laman ini telah dilumpuhkan.
 Data yang ada di sini tidak akan disegarkan semula sekarang.',
 'wrong_wfQuery_params' => 'Parameter salah bagi wfQuery()<br />
@@ -2748,6 +2748,9 @@ Simpan dalam komputer anda dan muat naiknya di sini.',
 'import-invalid-interwiki'   => 'Wiki yang dinyatakan tidak boleh diimport.',
 'import-error-edit'          => 'Laman "$1" tidak diimport kerana anda tidak dibenarkan untuk menyuntingnya.',
 'import-error-create'        => 'Laman "$1" tidak diimport kerana anda tidak dibenarkan untuk menciptanya.',
+'import-error-interwiki'     => 'Laman "$1" tidak diimport kerana namanya ditempah untuk pemautan luaran (antara wiki).',
+'import-error-special'       => 'Laman "$1" tidak diimport kerana ia tergolong dalam ruang nama khas yang tidak membenarkan laman.',
+'import-error-invalid'       => 'Laman "$1" tidak diimport kerana namanya tidak sah.',
 
 # Import log
 'importlogpage'                    => 'Log import',

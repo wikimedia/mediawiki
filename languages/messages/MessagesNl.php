@@ -703,8 +703,8 @@ Mogelijk is deze al door iemand anders verwijderd.',
 'badtitle'             => 'Ongeldige paginanaam',
 'badtitletext'         => 'De naam van de opgevraagde pagina was ongeldig, leeg of bevatte een verkeerde intertaal- of interwikinaamverwijzing.
 Wellicht bevat de paginanaam niet toegestane karakters.',
-'perfcached'           => 'De gegevens komen uit een cache en zijn mogelijk niet actueel.',
-'perfcachedts'         => 'De gegevens komen uit een cache en zijn voor het laatst bijgewerkt op $1.',
+'perfcached'           => 'Deze gegevens komen uit een cache en zijn mogelijk niet actueel. Er {{PLURAL:$1|is maximaal één resultaat|zijn maximaal $1 resultaten}} beschikbaar in de cache.',
+'perfcachedts'         => 'Deze gegevens komen uit een cache die voor het laatst is bijgewerkt op $2 om $3. Er {{PLURAL:$4|is maximaal één resultaat|zijn maximaal $4 resultaten}} beschikbaar in de cache.',
 'querypage-no-updates' => 'Deze pagina wordt niet bijgewerkt.
 Gegevens op deze pagina worden niet ververst.',
 'wrong_wfQuery_params' => 'Verkeerde parameters voor wfQuery()<br />
@@ -3007,7 +3007,7 @@ De tijdelijke map is niet aanwezig.',
 'javascripttest-pagetext-noframework'      => 'Deze pagina is gereserveerd voor het uitvoeren van JavaScripttesten.',
 'javascripttest-pagetext-unknownframework' => 'Onbekend testframework "$1".',
 'javascripttest-pagetext-frameworks'       => 'Kies een van de volgende testframeworks: $1',
-'javascripttest-pagetext-skins'            => 'Beschikbare vormgevingen',
+'javascripttest-pagetext-skins'            => 'Kies een vormgeving om de tests mee uit te voeren:',
 'javascripttest-qunit-intro'               => 'Zie de [$1 testdocumentatie] op mediawiki.org.',
 'javascripttest-qunit-heading'             => 'QUnit testsuite voor MediaWiki JavaScript',
 

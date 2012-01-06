@@ -504,8 +504,8 @@ Es possibile que un altere persona lo ha ja delite.',
 'badtitle'             => 'Titulo invalide',
 'badtitletext'         => 'Le titulo de pagina requestate es invalide, vacue, o un titulo interlingual o interwiki incorrectemente ligate.
 Es possibile que illo contine un o plure characteres que non pote esser usate in titulos.',
-'perfcached'           => 'Le sequente datos se recuperava del cache e possibilemente non es actual.',
-'perfcachedts'         => 'Le sequente datos se recuperava del cache. Ultime actualisation: le $1.',
+'perfcached'           => 'Le sequente datos esseva recuperate del cache e possibilemente non es actual. Un maximo de {{PLURAL:$1|un resultato|$1 resultatos}} es disponibile in le cache.',
+'perfcachedts'         => 'Le sequente datos esseva recuperate del cache e ha essite actualisate le $3 a $4. Un maximo de {{PLURAL:$4|un resultato|$4 resultatos}} es disponibile in le cache.',
 'querypage-no-updates' => 'Le actualisationes pro iste pagina es disactivate. Pro le momento, le datos hic non se cambiara.',
 'wrong_wfQuery_params' => 'Parametros incorrecte a wfQuery()<br />
 Function: $1<br />
@@ -2781,6 +2781,9 @@ Salveguarda lo in tu computator e incarga lo hic.',
 'import-invalid-interwiki'   => 'Non pote importar ab le wiki specificate.',
 'import-error-edit'          => 'Le pagina "$1" non es importate proque tu non ha le permission de modificar lo.',
 'import-error-create'        => 'Le pagina "$1" non es importate proque tu non ha le permission de crear lo.',
+'import-error-interwiki'     => 'Le pagina "$1" non es importate perque su nomine es reservate pro ligation externe (interwiki).',
+'import-error-special'       => 'Le pagina "$1" non es importate perque illo pertine a un spatio de nomines special que non permitte paginas.',
+'import-error-invalid'       => 'Le pagina "$1" non es importate perque su nomine es invalide.',
 
 # Import log
 'importlogpage'                    => 'Registro de importationes',
