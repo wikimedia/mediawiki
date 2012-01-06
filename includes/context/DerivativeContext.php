@@ -42,6 +42,11 @@ class DerivativeContext extends ContextSource {
 	private $title;
 
 	/**
+	 * @var WikiPage
+	 */
+	private $wikipage;
+
+	/**
 	 * @var OutputPage
 	 */
 	private $output;
@@ -114,6 +119,32 @@ class DerivativeContext extends ContextSource {
 	}
 
 	/**
+	 * Set the WikiPage object
+	 *
+	 * @since 1.19
+	 * @param $p WikiPage object
+	 */
+	public function setWikiPage( WikiPage $p ) {
+		$this->wikipage = $p;
+	}
+
+	/**
+	 * Get the WikiPage object
+	 *
+	 * @since 1.19
+	 * @return WikiPage
+	 */
+	public function getWikiPage() {
+		if ( !is_null( $this->wikipage ) ) {
+			return $this->wikipage;
+		} else {
+			return $this->getContext()->getWikiPage();
+		}
+	}
+
+	/**
+	 * Set the OutputPage object
+	 *
 	 * @param $o OutputPage
 	 */
 	public function setOutput( OutputPage $o ) {

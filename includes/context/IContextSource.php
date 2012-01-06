@@ -43,6 +43,14 @@ interface IContextSource {
 	public function getTitle();
 
 	/**
+	 * Get the WikiPage object
+	 *
+	 * @since 1.19
+	 * @return WikiPage
+	 */
+	public function getWikiPage();
+
+	/**
 	 * Get the OutputPage object
 	 *
 	 * @return OutputPage object

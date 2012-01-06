@@ -337,19 +337,21 @@ class MediaWiki {
 
 		wfProfileIn( __METHOD__ );
 
-		$request = $this->context->getRequest();
 		$title = $this->context->getTitle();
-
-		$action = $request->getVal( 'action', 'view' );
 		$article = Article::newFromTitle( $title, $this->context );
+		$this->context->setWikiPage( $article->getPage() );
 		// NS_MEDIAWIKI has no redirects.
 		// It is also used for CSS/JS, so performance matters here...
 		if ( $title->getNamespace() == NS_MEDIAWIKI ) {
 			wfProfileOut( __METHOD__ );
 			return $article;
 		}
+
+		$request = $this->context->getRequest();
+
 		// Namespace might change when using redirects
 		// Check for redirects ...
+		$action = $request->getVal( 'action', 'view' );
 		$file = ( $title->getNamespace() == NS_FILE ) ? $article->getFile() : null;
 		if ( ( $action == 'view' || $action == 'render' ) 	// ... for actions that show content
 			&& !$request->getVal( 'oldid' ) &&    // ... and are not old revisions
@@ -384,10 +386,12 @@ class MediaWiki {
 						$rarticle->setRedirectedFrom( $title );
 						$article = $rarticle;
 						$this->context->setTitle( $target );
+						$this->context->setWikiPage( $article->getPage() );
 					}
 				}
 			} else {
 				$this->context->setTitle( $article->getTitle() );
+				$this->context->setWikiPage( $article->getPage() );
 			}
 		}
 
@@ -604,8 +608,7 @@ class MediaWiki {
 						$cache->loadFromFileCache( $this->context );
 					}
 					# Do any stats increment/watchlist stuff
-					$page = WikiPage::factory( $this->getTitle() );
-					$page->doViewUpdates( $this->context->getUser() );
+					$this->context->getWikiPage()->doViewUpdates( $this->context->getUser() );
 					# Tell OutputPage that output is taken care of
 					$this->context->getOutput()->disable();
 					wfProfileOut( 'main-try-filecache' );
