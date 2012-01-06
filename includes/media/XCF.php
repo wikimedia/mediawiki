@@ -78,18 +78,16 @@ class XCFHandler extends BitmapHandler {
 		#                         1: Grayscale
 		#                         2: Indexed color
 		#        (enum GimpImageBaseType in libgimpbase/gimpbaseenums.h)
-		wfSuppressWarnings();
-		$header = unpack(
-			  "A9magic"     # A: space padded
-			. "/a5version"  # a: zero padded
-			. "/Nwidth"     # \
-			. "/Nheight"    # N: unsigned long 32bit big endian
-			. "/Nbase_type" # /
-		, $binaryHeader
-		);
-		wfRestoreWarnings();
-
-		if( $header === false ) {
+		try {
+			$header = wfUnpack(
+				  "A9magic"     # A: space padded
+				. "/a5version"  # a: zero padded
+				. "/Nwidth"     # \
+				. "/Nheight"    # N: unsigned long 32bit big endian
+				. "/Nbase_type" # /
+			, $binaryHeader
+			);
+		} catch( MWException $mwe ) {
 			return false;
 		}
 
