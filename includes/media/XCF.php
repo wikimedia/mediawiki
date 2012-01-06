@@ -78,6 +78,7 @@ class XCFHandler extends BitmapHandler {
 		#                         1: Grayscale
 		#                         2: Indexed color
 		#        (enum GimpImageBaseType in libgimpbase/gimpbaseenums.h)
+		wfSuppressWarnings();
 		$header = unpack(
 			  "A9magic"     # A: space padded
 			. "/a5version"  # a: zero padded
@@ -86,6 +87,11 @@ class XCFHandler extends BitmapHandler {
 			. "/Nbase_type" # /
 		, $binaryHeader
 		);
+		wfRestoreWarnings();
+
+		if( $header === false ) {
+			return false;
+		}
 
 		# Check values
 		if( $header['magic'] !== 'gimp xcf' ) {
