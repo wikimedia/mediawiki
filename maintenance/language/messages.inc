@@ -2446,6 +2446,8 @@ $wgMessageStructure = array(
 		'accesskey-blockip-block',
 		'accesskey-export',
 		'accesskey-import',
+		'accesskey-watchlistedit-normal-submit',
+		'accesskey-watchlistedit-raw-submit',
 	),
 	'tooltips' => array(
 		'tooltip-pt-userpage',
