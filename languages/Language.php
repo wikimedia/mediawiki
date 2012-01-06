@@ -3820,7 +3820,7 @@ class Language {
 		if ( $bps <= 0 ) {
 			return str_replace( '$1', $this->formatNum( $bps ), $this->getMessageFromDB( 'bitrate-bits' ) );
 		}
-		$unitIndex = (int)floor( log( $bps, 10 ) / 3 );
+		$unitIndex = (int)floor( log10( $bps ) / 3 );
 		$mantissa = $bps / pow( 1000, $unitIndex );
 
 		$maxIndex = count( $units ) - 1;
