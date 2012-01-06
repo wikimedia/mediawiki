@@ -2742,7 +2742,6 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @return bool
 	 */
 	function deadlockLoop() {
-		$myFname = 'DatabaseBase::deadlockLoop';
 
 		$this->begin();
 		$args = func_get_args();
@@ -2775,11 +2774,11 @@ abstract class DatabaseBase implements DatabaseType {
 		$this->ignoreErrors( $oldIgnore );
 
 		if ( $tries <= 0 ) {
-			$this->rollback( $myFname );
+			$this->rollback( __METHOD__ );
 			$this->reportQueryError( $error, $errno, $sql, $fname );
 			return false;
 		} else {
-			$this->commit( $myFname );
+			$this->commit( __METHOD__ );
 			return $retVal;
 		}
 	}
@@ -2796,29 +2795,28 @@ abstract class DatabaseBase implements DatabaseType {
 	 *   zero if we timed out.
 	 */
 	function masterPosWait( DBMasterPos $pos, $timeout ) {
-		$fname = 'DatabaseBase::masterPosWait';
-		wfProfileIn( $fname );
+		wfProfileIn( __METHOD__ );
 
 		if ( !is_null( $this->mFakeSlaveLag ) ) {
 			$wait = intval( ( $pos->pos - microtime( true ) + $this->mFakeSlaveLag ) * 1e6 );
 
 			if ( $wait > $timeout * 1e6 ) {
 				wfDebug( "Fake slave timed out waiting for $pos ($wait us)\n" );
-				wfProfileOut( $fname );
+				wfProfileOut( __METHOD__ );
 				return -1;
 			} elseif ( $wait > 0 ) {
 				wfDebug( "Fake slave waiting $wait us\n" );
 				usleep( $wait );
-				wfProfileOut( $fname );
+				wfProfileOut( __METHOD__ );
 				return 1;
 			} else {
 				wfDebug( "Fake slave up to date ($wait us)\n" );
-				wfProfileOut( $fname );
+				wfProfileOut( __METHOD__ );
 				return 0;
 			}
 		}
 
-		wfProfileOut( $fname );
+		wfProfileOut( __METHOD__ );
 
 		# Real waits are implemented in the subclass.
 		return 0;
