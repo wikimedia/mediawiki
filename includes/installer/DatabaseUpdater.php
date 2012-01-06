@@ -153,6 +153,8 @@ abstract class DatabaseUpdater {
 	 * Add a new update coming from an extension. This should be called by
 	 * extensions while executing the LoadExtensionSchemaUpdates hook.
 	 *
+	 * @since 1.17
+	 *
 	 * @param $update Array: the update to run. Format is the following:
 	 *                first item is the callback function, it also can be a
 	 *                simple string with the name of a function in this class,
@@ -167,6 +169,9 @@ abstract class DatabaseUpdater {
 	/**
 	 * Convenience wrapper for addExtensionUpdate() when adding a new table (which
 	 * is the most common usage of updaters in an extension)
+	 *
+	 * @since 1.18
+	 *
 	 * @param $tableName String Name of table to create
 	 * @param $sqlPath String Full path to the schema file
 	 */
@@ -175,6 +180,8 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
+	 * @since 1.19
+	 *
 	 * @param $tableName string
 	 * @param $indexName string
 	 * @param $sqlPath string
@@ -184,6 +191,9 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
+	 *
+	 * @since 1.19
+	 *
 	 * @param $tableName string
 	 * @param $columnName string
 	 * @param $sqlPath string
