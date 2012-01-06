@@ -4,7 +4,11 @@
 // releated under the MIT license
 
 (function($) {
-    
+
+	function maybeCall(thing, ctx) {
+		return (typeof thing == 'function') ? (thing.call(ctx)) : thing;
+	};
+	
     function fixTitle($ele) {
         if ($ele.attr('title') || typeof($ele.attr('original-title')) != 'string') {
             $ele.attr('original-title', $ele.attr('title') || '').removeAttr('title');
@@ -71,6 +75,9 @@
                 }
                 
                 $tip.css(tp).addClass('tipsy-' + gravity);
+                if (this.options.className) {
+                    $tip.addClass(maybeCall(this.options.className, this.$element[0]));
+                }
                 
                 if (this.options.fade) {
                     $tip.stop().css({opacity: 0, display: 'block', visibility: 'visible'}).animate({opacity: this.options.opacity}, 100);
@@ -174,6 +181,7 @@
     };
     
     $.fn.tipsy.defaults = {
+        className: null,
         delayIn: 0,
         delayOut: 0,
         fade: true,
