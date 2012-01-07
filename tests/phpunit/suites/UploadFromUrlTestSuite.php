@@ -3,6 +3,8 @@
 require_once( dirname( dirname( __FILE__ ) ) . '/includes/upload/UploadFromUrlTest.php' );
 
 class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
+	public $savedGlobals = array();
+
 	public static function addTables( &$tables ) {
 		$tables[] = 'user_properties';
 		$tables[] = 'filearchive';
@@ -15,37 +17,41 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 
 	function setUp() {
 		global $wgParser, $wgParserConf, $IP, $messageMemc, $wgMemc,
-				  $wgUser, $wgLang, $wgOut, $wgRequest, $wgStyleDirectory, $wgEnableParserCache,
-				  $wgNamespaceAliases, $wgNamespaceProtection, $wgLocalFileRepo,
-				  $parserMemc, $wgThumbnailScriptPath, $wgScriptPath,
-				  $wgArticlePath, $wgStyleSheetPath, $wgScript, $wgStylePath;
+			  $wgUser, $wgLang, $wgOut, $wgRequest, $wgStyleDirectory, $wgEnableParserCache,
+			  $wgNamespaceAliases, $wgNamespaceProtection, $parserMemc;
 
-		$wgScript = '/index.php';
-		$wgScriptPath = '/';
-		$wgArticlePath = '/wiki/$1';
-		$wgStyleSheetPath = '/skins';
-		$wgStylePath = '/skins';
-		$wgThumbnailScriptPath = false;
-		$backend = new FSFileBackend( array(
-			'name'        => 'local-backend',
-			'lockManager' => 'fsLockManager',
-			'containerPaths' => array(
-				'media-public'  => wfTempDir() . '/test-repo/public',
-				'media-thumb'   => wfTempDir() . '/test-repo/thumb',
-				'media-temp'    => wfTempDir() . '/test-repo/temp',
-				'media-deleted' => wfTempDir() . '/test-repo/delete',
-			)
-		) );
-		$wgLocalFileRepo = array(
+		$tmpGlobals = array();
+
+		$tmpGlobals['$wgScript'] = '/index.php';
+		$tmpGlobals['$wgScriptPath'] = '/';
+		$tmpGlobals['$wgArticlePath'] = '/wiki/$1';
+		$tmpGlobals['$wgStyleSheetPath'] = '/skins';
+		$tmpGlobals['$wgStylePath'] = '/skins';
+		$tmpGlobals['$wgThumbnailScriptPath'] = false;
+		$tmpGlobals['$wgLocalFileRepo'] = array(
 			'class'           => 'LocalRepo',
 			'name'            => 'local',
 			'url'             => 'http://example.com/images',
 			'hashLevels'      => 2,
 			'transformVia404' => false,
-			'backend'         => $backend,
-			'zones'           => array( 'deleted' => array(
-				'container' => 'media-deleted', 'directory' => '' ) )
+			'backend'         => new FSFileBackend( array(
+				'name'        => 'local-backend',
+				'lockManager' => 'fsLockManager',
+				'containerPaths' => array(
+					'local-public'  => wfTempDir() . '/test-repo/public',
+					'local-thumb'   => wfTempDir() . '/test-repo/thumb',
+					'local-temp'    => wfTempDir() . '/test-repo/temp',
+					'local-deleted' => wfTempDir() . '/test-repo/delete',
+				)
+			) ),
 		);
+		foreach ( $tmpGlobals as $var => $val ) {
+			if ( array_key_exists( $var, $GLOBALS ) ) {
+				$this->savedGlobals[$var] = $GLOBALS[$var];
+			}
+			$GLOBALS[$var] = $val;
+		}
+
 		$wgNamespaceProtection[NS_MEDIAWIKI] = 'editinterface';
 		$wgNamespaceAliases['Image'] = NS_FILE;
 		$wgNamespaceAliases['Image_talk'] = NS_FILE_TALK;
@@ -71,8 +77,10 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 
 	}
 
-	// @FIXME: restore globals?
 	public function tearDown() {
+		foreach ( $this->savedGlobals as $var => $val ) {
+			$GLOBALS[$var] = $val;
+		}
 		$this->teardownUploadDir( $this->uploadDir );
 	}
 

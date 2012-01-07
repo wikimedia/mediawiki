@@ -58,6 +58,7 @@ class FileBackendGroup {
 			if ( is_object( $backendName ) || isset( $this->backends[$backendName] ) ) {
 				continue; // already defined (or set to the object for some reason)
 			}
+			$repoName = $info['name'];
 			// Local vars that used to be FSRepo members...
 			$directory = $info['directory'];
 			$deletedDir = isset( $info['deletedDir'] )
@@ -75,10 +76,10 @@ class FileBackendGroup {
 				'class'          => 'FSFileBackend',
 				'lockManager'    => 'fsLockManager',
 				'containerPaths' => array(
-					'media-public'  => "{$directory}",
-					'media-thumb'   => $thumbDir,
-					'media-deleted' => $deletedDir,
-					'media-temp'    => "{$directory}/temp"
+					"{$repoName}-public"  => "{$directory}",
+					"{$repoName}-thumb"   => $thumbDir,
+					"{$repoName}-deleted" => $deletedDir,
+					"{$repoName}-temp"    => "{$directory}/temp"
 				),
 				'fileMode'       => $fileMode,
 			);

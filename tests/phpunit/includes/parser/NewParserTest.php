@@ -102,7 +102,6 @@ class NewParserTest extends MediaWikiTestCase {
 	}
 
 	public function tearDown() {
-
 		foreach ( $this->savedInitialGlobals as $var => $val ) {
 			$GLOBALS[$var] = $val;
 		}
@@ -115,6 +114,7 @@ class NewParserTest extends MediaWikiTestCase {
 
 		// Restore backends
 		RepoGroup::destroySingleton();
+		FileBackendGroup::destroySingleton();
 	}
 
 	function addDBData() {
@@ -241,8 +241,9 @@ class NewParserTest extends MediaWikiTestCase {
 					'name'        => 'local-backend',
 					'lockManager' => 'nullLockManager',
 					'containerPaths' => array(
-						'media-public'  => "$this->uploadDir",
-						'media-thumb'   => "$this->uploadDir/thumb",
+						'local-public' => "$this->uploadDir",
+						'local-thumb'  => "$this->uploadDir/thumb",
+						'local-temp'   => "$this->uploadDir/temp",
 					)
 				) )
 			),
@@ -327,12 +328,14 @@ class NewParserTest extends MediaWikiTestCase {
 
 		MagicWord::clearCache();
 		RepoGroup::destroySingleton();
+		FileBackendGroup::destroySingleton();
 
 		# Publish the articles after we have the final language set
 		$this->publishTestArticles();
 
 		# The entries saved into RepoGroup cache with previous globals will be wrong.
 		RepoGroup::destroySingleton();
+		FileBackendGroup::destroySingleton();
 		MessageCache::singleton()->destroyInstance();
 
 		return $context;

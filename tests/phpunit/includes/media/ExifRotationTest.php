@@ -10,15 +10,14 @@ class ExifRotationTest extends MediaWikiTestCase {
 		$this->handler = new BitmapHandler();
 		$filePath = dirname( __FILE__ ) . '/../../data/media';
 		$tmpDir = wfTempDir() . '/exif-test-' . time() . '-' . mt_rand();
-		$this->backend = new FSFileBackend( array(
-			'name'           => 'localtesting',
-			'lockManager'    => 'nullLockManager',
-			'containerPaths' => array( 'media-thumb' => $tmpDir, 'data' => $filePath )
-		) );
 		$this->repo = new FSRepo( array(
 			'name'            => 'temp',
 			'url'             => 'http://localhost/thumbtest',
-			'backend'         => $this->backend
+			'backend'         => new FSFileBackend( array(
+				'name'           => 'localtesting',
+				'lockManager'    => 'nullLockManager',
+				'containerPaths' => array( 'temp-thumb' => $tmpDir, 'data' => $filePath )
+			) )
 		) );
 		if ( !wfDl( 'exif' ) ) {
 			$this->markTestSkipped( "This test needs the exif extension." );
