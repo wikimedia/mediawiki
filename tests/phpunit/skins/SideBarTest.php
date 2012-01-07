@@ -106,7 +106,10 @@ class SideBarTest extends MediaWikiLangTestCase {
 		);
 
 	}
-	/** bug 33321 */
+	/**
+	 * bug 33321 - Make sure there's a | after transforming.
+	 * @group Database
+	 */
 	function testTrickyPipe() {
 		$this->assertSidebar(
 		array( 'Title' => array(
