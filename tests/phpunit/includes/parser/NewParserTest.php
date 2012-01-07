@@ -698,7 +698,7 @@ class NewParserTest extends MediaWikiTestCase {
 	//Various action functions
 
 	public function addArticle( $name, $text, $line ) {
-		self::$articles[$name] = $text;
+		self::$articles[$name] = array( $text, $line );
 	}
 
 	public function publishTestArticles() {
@@ -706,12 +706,9 @@ class NewParserTest extends MediaWikiTestCase {
 			return;
 		}
 
-		foreach ( self::$articles as $name => $text ) {
-			$title = Title::newFromText( $name );
-
-			if ( $title->getArticleID( Title::GAID_FOR_UPDATE ) == 0 ) {
-				ParserTest::addArticle( $name, $text );
-			}
+		foreach ( self::$articles as $name => $info ) {
+			list( $text, $line ) = $info;
+			ParserTest::addArticle( $name, $text, $line, 'ignoreduplicate' );
 		}
 	}
 
