@@ -1040,7 +1040,7 @@ class WikiPage extends Page {
 		// Delete if changing from redirect to non-redirect
 		$isRedirect = !is_null( $redirectTitle );
 
-		if ( !$isRedirect && !is_null( $lastRevIsRedirect ) && $lastRevIsRedirect === $isRedirect ) {
+		if ( !$isRedirect && $lastRevIsRedirect === false ) {
 			return true;
 		}
 
