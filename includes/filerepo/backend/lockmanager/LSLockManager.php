@@ -33,6 +33,7 @@ class LSLockManager extends LockManager {
 
 	/**
 	 * Construct a new instance from configuration.
+	 * 
 	 * $config paramaters include:
 	 *     'lockServers'  : Associative array of server names to configuration.
 	 *                      Configuration is an associative array that includes:

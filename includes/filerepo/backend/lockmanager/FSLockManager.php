@@ -5,7 +5,7 @@
  * All locks are non-blocking, which avoids deadlocks.
  *
  * This should work fine for small sites running off one server.
- * Do not use this with 'lockDir' set to an NFS mount unless the
+ * Do not use this with 'lockDirectory' set to an NFS mount unless the
  * NFS client is at least version 2.6.12. Otherwise, the BSD flock()
  * locks will be ignored; see http://nfs.sourceforge.net/#section_d.
  *
@@ -24,7 +24,16 @@ class FSLockManager extends LockManager {
 	/** @var Array Map of (locked key => lock type => lock file handle) */
 	protected $handles = array();
 
+	/**
+	 * Construct a new instance from configuration.
+	 * 
+	 * $config includes:
+	 *     'lockDirectory' : Directory containing the lock files
+	 *
+	 * @param array $config
+	 */
 	function __construct( array $config ) {
+		parent::__construct( $config );
 		$this->lockDir = $config['lockDirectory'];
 	}
 
