@@ -1246,7 +1246,7 @@ abstract class Skin extends ContextSource {
 					$line = array_map( 'trim', explode( '|', $line, 2 ) );
 					if ( count( $line ) !== 2 ) {
 						// Second sanity check, could be hit by people doing
-						// funky stuff with parserfuncs... (bug 3321)
+						// funky stuff with parserfuncs... (bug 33321)
 						continue;
 					}
 
