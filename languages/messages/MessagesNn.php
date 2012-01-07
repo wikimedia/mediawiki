@@ -2171,7 +2171,7 @@ Tilbakemeldingar og anna hjelp:
 'confirmdeletetext'      => 'Du held på å varig slette ei side eller eit bilete saman med heile den tilhøyrande historikken frå databasen. Stadfest at du verkeleg vil gjere dette, at du skjønar konsekvensane, og at du gjer dette i tråd med [[{{MediaWiki:Policy-url}}|retningslinene]].',
 'actioncomplete'         => 'Ferdig',
 'actionfailed'           => 'Handlinga kunne ikkje verta utførd',
-'deletedtext'            => '«$1» er sletta. Sjå $2 for eit oversyn over dei siste slettingane.',
+'deletedtext'            => '«$1» er sletta. Sjå $2en for eit oversyn over dei siste slettingane.',
 'dellogpage'             => 'Slettelogg',
 'dellogpagetext'         => 'Her er ei liste over dei siste slettingane.',
 'deletionlog'            => 'slettelogg',

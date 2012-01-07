@@ -1539,7 +1539,7 @@ Tatizo likiendelea, uwasiliane na [[Special:ListUsers/sysop|mkabidhi]].',
 'upload-http-error'         => 'Imetokea hitilafu ya HTTP: $1',
 
 # File backend
-'backend-fail-alreadyexists' => 'Faili la $1 inapatikana tayari.',
+'backend-fail-alreadyexists' => 'Faili $1 linapatikana tayari.',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'Ilitokea hitilafu wakati wa kufungua faili kwa ajili ya ukaguzi wa ZIP.',
