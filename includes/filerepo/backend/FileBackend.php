@@ -43,6 +43,7 @@ abstract class FileBackendBase {
 	 * $config includes:
 	 *     'name'        : The unique name of this backend.
 	 *     'wikiId'      : Prefix to container names that is unique to this wiki.
+	 *                     This should consist of alphanumberic, '-', and '_' chars.
 	 *     'lockManager' : Registered name of a file lock manager to use.
 	 *     'readOnly'    : Write operations are disallowed if this is a non-empty string.
 	 *                     It should be an explanation for the backend being read-only.
@@ -53,11 +54,23 @@ abstract class FileBackendBase {
 		$this->name = $config['name'];
 		$this->wikiId = isset( $config['wikiId'] )
 			? $config['wikiId']
-			: rtrim( wfWikiID(), '_' ); // "mywiki-en_" => "mywiki-en"
+			: wfWikiID(); // e.g. "my_wiki-en_"
+		$this->wikiId = $this->resolveWikiId( $this->wikiId );
 		$this->lockManager = LockManagerGroup::singleton()->get( $config['lockManager'] );
 		$this->readOnly = isset( $config['readOnly'] )
 			? (string)$config['readOnly']
 			: '';
+	}
+
+	/**
+	 * Normalize a wiki ID by replacing characters that are
+	 * not supported by the backend as part of container names.
+	 * 
+	 * @param $wikiId string
+	 * @return string 
+	 */
+	protected function resolveWikiId( $wikiId ) {
+		return $wikiId;
 	}
 
 	/**
@@ -1104,10 +1117,11 @@ abstract class FileBackend extends FileBackendBase {
 	 * @return bool
 	 */
 	final protected static function isValidContainerName( $container ) {
-		// This accounts for Swift, S3, and Azure restrictions while
-		// leaving room for '.xxx' (hex shard chars) or '.seg' (segments).
-		// Note that matching strings URL encode to the same string.
-		return preg_match( '/^[a-z0-9][a-z0-9-]{2,55}$/i', $container );
+		// This accounts for Swift and S3 restrictions while leaving room 
+		// for things like '.xxx' (hex shard chars) or '.seg' (segments).
+		// Note that matching strings URL encode to the same string;
+		// in Swift, the length resriction is *after* URL encoding.
+		return preg_match( '/^[a-z0-9][a-z0-9-_]{0,199}$/i', $container );
 	}
 
 	/**
