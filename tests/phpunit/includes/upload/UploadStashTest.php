@@ -10,11 +10,11 @@ class UploadStashTest extends MediaWikiTestCase {
 
 	public function setUp() {
 		parent::setUp();
-		
+
 		// Setup a file for bug 29408
 		$this->bug29408File = dirname( __FILE__ ) . '/bug29408';
-		file_put_contents( $this->bug29408File, "\x00" );		
-		
+		file_put_contents( $this->bug29408File, "\x00" );
+
 		self::$users = array(
 			'sysop' => new ApiTestUser(
 				'Uploadstashtestsysop',
@@ -30,21 +30,19 @@ class UploadStashTest extends MediaWikiTestCase {
 			)
 		);
 	}
-	
+
 	public function testBug29408() {
 		global $wgUser;
 		$wgUser = self::$users['uploader']->user;
-		
+
 		$repo = RepoGroup::singleton()->getLocalRepo();
 		$stash = new UploadStash( $repo );
-
-        $this->markTestIncomplete( 'Broken' );
 
 		// Throws exception caught by PHPUnit on failure
 		$file = $stash->stashFile( $this->bug29408File );
 		// We'll never reach this point if we hit bug 29408
 		$this->assertTrue( true, 'Unrecognized file without extension' );
-		
+
 		$stash->removeFile( $file->getFileKey() );
 	}
 
@@ -65,11 +63,9 @@ class UploadStashTest extends MediaWikiTestCase {
 		$this->assertTrue( UploadFromStash::isValidRequest($request), 'Check key precedence' );
 	}
 
-
-	
 	public function tearDown() {
 		parent::tearDown();
-		
+
 		if( file_exists( $this->bug29408File . "." ) ) {
 			unlink( $this->bug29408File . "." );
 		}
