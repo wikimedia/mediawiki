@@ -184,17 +184,15 @@ class RefreshLinks extends Maintenance {
 				__METHOD__ );
 			return;
 		}
-		$article = new Article( $title );
 
-		$rt = $article->followRedirect();
+		$page = WikiPage::factory( $title );
+		$rt = $page->getRedirectTarget();
 
-		if ( !$rt || !is_object( $rt ) ) {
+		if ( $rt === null ) {
 			// $title is not a redirect
 			// Delete any redirect table entry for it
 			$dbw->delete( 'redirect', array( 'rd_from' => $id ),
 				__METHOD__ );
-		} else {
-			$article->updateRedirectOn( $dbw, $rt );
 		}
 	}
 
