@@ -1117,6 +1117,7 @@ class WikiPage extends Page {
 				$oldtext = $this->getRawText();
 				if ( $oldtext === false ) {
 					wfDebug( __METHOD__ . ": no page text\n" );
+					wfProfileOut( __METHOD__ );
 					return null;
 				}
 			} else {
