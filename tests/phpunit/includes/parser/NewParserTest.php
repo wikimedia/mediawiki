@@ -243,7 +243,6 @@ class NewParserTest extends MediaWikiTestCase {
 					'containerPaths' => array(
 						'local-public' => "$this->uploadDir",
 						'local-thumb'  => "$this->uploadDir/thumb",
-						'local-temp'   => "$this->uploadDir/temp",
 					)
 				) )
 			),

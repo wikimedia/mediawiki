@@ -32,6 +32,7 @@ class DBLockManager extends LockManager {
 
 	/**
 	 * Construct a new instance from configuration.
+	 * 
 	 * $config paramaters include:
 	 *     'dbServers'   : Associative array of DB names to server configuration.
 	 *                     Configuration is an associative array that includes:

@@ -22,13 +22,13 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 
 		$tmpGlobals = array();
 
-		$tmpGlobals['$wgScript'] = '/index.php';
-		$tmpGlobals['$wgScriptPath'] = '/';
-		$tmpGlobals['$wgArticlePath'] = '/wiki/$1';
-		$tmpGlobals['$wgStyleSheetPath'] = '/skins';
-		$tmpGlobals['$wgStylePath'] = '/skins';
-		$tmpGlobals['$wgThumbnailScriptPath'] = false;
-		$tmpGlobals['$wgLocalFileRepo'] = array(
+		$tmpGlobals['wgScript'] = '/index.php';
+		$tmpGlobals['wgScriptPath'] = '/';
+		$tmpGlobals['wgArticlePath'] = '/wiki/$1';
+		$tmpGlobals['wgStyleSheetPath'] = '/skins';
+		$tmpGlobals['wgStylePath'] = '/skins';
+		$tmpGlobals['wgThumbnailScriptPath'] = false;
+		$tmpGlobals['wgLocalFileRepo'] = array(
 			'class'           => 'LocalRepo',
 			'name'            => 'local',
 			'url'             => 'http://example.com/images',
