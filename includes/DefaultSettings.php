@@ -381,7 +381,7 @@ $wgUseInstantCommons = false;
  *     'name'        : A unique name for the backend
  *     'class'       : The file backend class to use
  *     'wikiId'      : A unique string that identifies the wiki (container prefix)
- *     'lockManager' : The name of a lock manager (see $wgFileLockManagers)
+ *     'lockManager' : The name of a lock manager (see $wgLockManagers)
  * Additional parameters are specific to the class used.
  */
 $wgFileBackends = array();
@@ -393,7 +393,7 @@ $wgFileBackends = array();
  *     'class'       : The lock manger class to use
  * Additional parameters are specific to the class used.
  */
-$wgFileLockManagers = array();
+$wgLockManagers = array();
 
 /**
  * Show EXIF data, on by default if available.
