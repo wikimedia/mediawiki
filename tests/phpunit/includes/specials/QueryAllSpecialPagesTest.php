@@ -7,8 +7,14 @@
  * @author Antoine Musso
  * @group Database
  */
+
+if ( !defined( 'MEDIAWIKI' ) ) {
+	die( 1 );
+}
+
 global $IP;
-require_once("$IP/includes/QueryPage.php");
+require_once "$IP/includes/QueryPage.php"; // Needed to populate $wgQueryPages
+
 class QueryAllSpecialPagesTest extends MediaWikiTestCase {
 
 	/** List query pages that can not be tested automatically */
