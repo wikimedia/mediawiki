@@ -205,36 +205,39 @@ class WikiPage extends Page {
 	 * @return mixed false, Title object of local target, or string with URL
 	 */
 	public function getRedirectURL( $rt ) {
-		if ( $rt ) {
-			if ( $rt->getInterwiki() != '' ) {
-				if ( $rt->isLocal() ) {
-					// Offsite wikis need an HTTP redirect.
-					//
-					// This can be hard to reverse and may produce loops,
-					// so they may be disabled in the site configuration.
-					$source = $this->mTitle->getFullURL( 'redirect=no' );
-					return $rt->getFullURL( 'rdfrom=' . urlencode( $source ) );
-				}
-			} else {
-				if ( $rt->isSpecialPage() ) {
-					// Gotta handle redirects to special pages differently:
-					// Fill the HTTP response "Location" header and ignore
-					// the rest of the page we're on.
-					//
-					// This can be hard to reverse, so they may be disabled.
-					if ( $rt->isSpecial( 'Userlogout' ) ) {
-						// rolleyes
-					} else {
-						return $rt->getFullURL();
-					}
-				}
+		if ( !$rt ) {
+			return false;
+		}
 
-				return $rt;
+		if ( $rt->isExternal() ) {
+			if ( $rt->isLocal() ) {
+				// Offsite wikis need an HTTP redirect.
+				//
+				// This can be hard to reverse and may produce loops,
+				// so they may be disabled in the site configuration.
+				$source = $this->mTitle->getFullURL( 'redirect=no' );
+				return $rt->getFullURL( 'rdfrom=' . urlencode( $source ) );
+			} else {
+				// External pages pages without "local" bit set are not valid
+				// redirect targets
+				return false;
 			}
 		}
 
-		// No or invalid redirect
-		return false;
+		if ( $rt->isSpecialPage() ) {
+			// Gotta handle redirects to special pages differently:
+			// Fill the HTTP response "Location" header and ignore
+			// the rest of the page we're on.
+			//
+			// Some pages are not valid targets
+			if ( $rt->isValidRedirectTarget() ) {
+				return $rt->getFullURL();
+			} else {
+				return false;
+			}
+		}
+
+		return $rt;
 	}
 
 	/**
