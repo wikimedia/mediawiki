@@ -624,7 +624,7 @@ class DatabasePostgres extends DatabaseBase {
 	}
 
 	function tableName( $name, $format = 'quoted' ) {
-		global $wgSharedDB, $wgSharedTables, $wgDBmwschema;
+		global $wgSharedDB, $wgSharedTables;
 		# Skip quoted tablenames.
 		if ( $this->isQuotedIdentifier( $name ) ) {
 			return $name;
@@ -643,7 +643,7 @@ class DatabasePostgres extends DatabaseBase {
 		$dbDetails = explode( '.', $name, 2 );
 		if ( isset( $dbDetails[1] ) ) {
 			$schema = '"' . $dbDetails[0] . '".';
-			$table  = $dbDetails [1];
+			$table  = $dbDetails[1];
 		} else {
 			$schema = ""; # do NOT force the schema (due to temporary tables)
 			$table = $dbDetails[0];
