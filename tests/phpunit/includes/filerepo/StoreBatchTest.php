@@ -6,8 +6,20 @@ class StoreBatchTest extends MediaWikiTestCase {
 
 	public function setUp() {
 		parent::setUp();
-		
-		$this->repo = RepoGroup::singleton()->getLocalRepo();
+		$tmpDir = wfTempDir() . '/' . time() . '-' . mt_rand();
+		$this->repo = new FSRepo( array(
+			'name'    => 'test',
+			'backend' => new FSFileBackend( array(
+				'name'        => 'local-backend',
+				'lockManager' => 'nullLockManager',
+				'containerPaths' => array(
+					'test-public'  => "$tmpDir/public",
+					'test-thumb'   => "$tmpDir/thumb",
+					'test-temp'    => "$tmpDir/temp",
+					'test-deleted' => "$tmpDir/deleted",
+				)
+			) )
+		) );
 		$this->date = gmdate( "YmdHis" );
 		$this->createdFiles = array();
 		$this->users = array(
@@ -43,8 +55,7 @@ class StoreBatchTest extends MediaWikiTestCase {
 		$this->createdFiles[] = $result->value;
 		return $result;
 	}
-					
-	
+
 	/**
 	 * Test storing a file using different flags.
 	 *
@@ -97,6 +108,5 @@ class StoreBatchTest extends MediaWikiTestCase {
 	public function tearDown() {
 		$this->repo->cleanupBatch( $this->createdFiles );
 		parent::tearDown();
-		
 	}
 }
