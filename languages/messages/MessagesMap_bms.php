@@ -649,12 +649,34 @@ Entri cathetan pungkasan disadiakna nang ngisor kanggo referensi:",
 Rika teyeng mbalik lan nyunting kaca sing wis ana, utawa [[Special:UserLogin|mlebu utawa gawe akun]]',
 'nocreate-loggedin'              => 'Rika ora duwe hak akses nggo gawe kaca anyar.',
 'sectioneditnotsupported-title'  => 'Panyuntingan bagiya ora didukung',
+'moveddeleted-notice'            => 'Kaca kiye uwis dibusak.
+Log pambusakan lan pamindahan kanggo kaca kiye ana nang ngisor kiye nggo referensi.',
+'log-fulllog'                    => 'Deleng kabeh log',
+'edit-hook-aborted'              => 'Suntingan dibatalna nang kait parser
+Kiye ora ana katrangane.',
+'edit-gone-missing'              => 'Ora teyeng nganyari kaca.
+Ketone kiye anu kaca sing wis dibusak.',
+'edit-conflict'                  => 'Konflik panyuntingan.',
+'edit-no-change'                 => 'Suntingane Rika dijorna, jalaran Rika ora gawe owahan apa-apa nang teks.',
+'edit-already-exists'            => 'Ora teyeng gawe kaca anyar.
+Kiye anu wis ana.',
+
+# Parser/template warnings
+'expensive-parserfunction-warning'        => "'''Pènget:''' Kaca kiye isine kakehan gole nggunakna panggilan fungsi parser.
+
+Kudune kuwe kurang sekang $2 {{PLURAL:$2|panggilan|panggilan}}, ningen sekiye wis ana {{PLURAL:$1|$1 panggilan|$1 panggilan}}.",
+'expensive-parserfunction-category'       => 'Kaca sing nduwe panggilan fungsi parser sing kakehan',
+'post-expand-template-inclusion-warning'  => "'''Pènget:''' Ukurane cithakan sing dienggo kegedhèn.
+Sawetara cithakan bakal ora dipelokna.",
+'post-expand-template-inclusion-category' => 'Kaca-kaca sing ukuran cithakane nglewihi bates',
+'post-expand-template-argument-category'  => 'Kaca-kaca sing duwe argumen cithakan sing dilirwakna',
 
 # "Undo" feature
 'undo-success' => 'Suntingan kiye teyeng dibatalna.
 Monggo priksa perbandingan nang ngisor kiye ngo mastekna nek kiye pancen sing Rika arep lakoni, lan banjur simpen pangowahan kuwe nggo ngrampungna pambatalan suntingan.',
 'undo-failure' => 'Suntingan kiye ora teyeng dibatalna jalaran ana konflik panyuntingan antara.',
 'undo-norev'   => 'Suntingan kiye ora teyeng dibatalna jalaran wis ora ana utawa anu wis dibusek.',
+'undo-summary' => 'Mbatalna revisi $1 sekang [[Special:Contributions/$2|$2]] ([[User talk:$2|dopokan]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Ora teyeng gawe akun',
@@ -703,9 +725,9 @@ Rinciane ndeyan esih teyeng ditemokna nang [{{fullurl:{{#Special:Log}}/delete|pa
 'rev-deleted-text-unhide'     => "Revisi kaca kiye uwis '''dibusak'''.
 Rinciane ndeyan esih teyeng ditemokna nang [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log pambusakan].
 Minangka pangurus Rika esih teyeng [$1 ndeleng revisi kiye] anggere Rika gelem.",
-'rev-suppressed-text-unhide'  => 'Révisi kaca kiye uwis "dipenet".
-Rinciane ndeyan esih teyeng ditemokna nang [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log penetan].
-Minangka pangurus, Rika esih teyeng [$1 ndeleng révisi kiye] angger gelem.',
+'rev-suppressed-text-unhide'  => "Revisi kaca kiye uwis '''disupresi'''.
+Rinciane ndeyan esih teyeng ditemokna nang [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log supresi].
+Minangka pangurus Rika esih teyeng [$1 ndeleng revisi kiye] anggere Rika gelem.",
 'rev-deleted-text-view'       => "Revisi kaca kiye uwis '''dibusak'''.
 Minangka pangurus, Rika teyeng ndeleng; rinciane ndeyan esih teyeng ditemokna nang [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log pambusakan].",
 'rev-delundel'                => 'tidokna/umpetna',
@@ -1093,6 +1115,7 @@ Aja kuatir, alamat imele Rika ora ditidokna dong pangganggo sejen ngontak Rika.'
 'action-suppressrevision'   => 'ndeleng lan mbalekna revisi sing diumpetna kiye',
 'action-suppressionlog'     => 'deleng log privat kiye',
 'action-block'              => 'mblokir panganggo kiye ben ora teyeng nyunting',
+'action-mergehistory'       => 'Ngabungna sajarah kaca kiye',
 
 # Recent changes
 'nchanges'                        => '$1 {{PLURAL:$1|pangowahan|owah-owahan}}',
