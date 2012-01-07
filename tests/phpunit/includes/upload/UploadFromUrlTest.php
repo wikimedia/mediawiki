@@ -76,7 +76,7 @@ class UploadFromUrlTest extends ApiTestCase {
 	 * @depends testClearQueue
 	 */
 	public function testSetupUrlDownload( $data ) {
-		$token = $this->user->editToken();
+		$token = $this->user->getEditToken();
 		$exception = false;
 
 		try {
@@ -150,7 +150,7 @@ class UploadFromUrlTest extends ApiTestCase {
 	 * @depends testClearQueue
 	 */
 	public function testAsyncUpload( $data ) {
-		$token = $this->user->editToken();
+		$token = $this->user->getEditToken();
 
 		$this->user->addGroup( 'users' );
 
@@ -169,7 +169,7 @@ class UploadFromUrlTest extends ApiTestCase {
 	 * @depends testClearQueue
 	 */
 	public function testAsyncUploadWarning( $data ) {
-		$token = $this->user->editToken();
+		$token = $this->user->getEditToken();
 
 		$this->user->addGroup( 'users' );
 
@@ -200,7 +200,7 @@ class UploadFromUrlTest extends ApiTestCase {
 	 * @depends testClearQueue
 	 */
 	public function testSyncDownload( $data ) {
-		$token = $this->user->editToken();
+		$token = $this->user->getEditToken();
 
 		$job = Job::pop();
 		$this->assertFalse( $job, 'Starting with an empty jobqueue' );
@@ -224,7 +224,7 @@ class UploadFromUrlTest extends ApiTestCase {
 	}
 
 	public function testLeaveMessage() {
-		$token = $this->user->user->editToken();
+		$token = $this->user->user->getEditToken();
 
 		$talk = $this->user->user->getTalkPage();
 		if ( $talk->exists() ) {
