@@ -75,12 +75,18 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 			$wgStyleDirectory   = "$IP/skins";
 		}
 
+		RepoGroup::destroySingleton();
+		FileBackendGroup::destroySingleton();
 	}
 
 	public function tearDown() {
 		foreach ( $this->savedGlobals as $var => $val ) {
 			$GLOBALS[$var] = $val;
 		}
+		// Restore backends
+		RepoGroup::destroySingleton();
+		FileBackendGroup::destroySingleton();
+
 		$this->teardownUploadDir( $this->uploadDir );
 	}
 
