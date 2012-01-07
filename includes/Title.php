@@ -1961,7 +1961,7 @@ class Title {
 	 * @return Array list of errors
 	 */
 	private function checkReadPermissions( $action, $user, $errors, $doExpensiveQueries, $short ) {
-		global $wgWhitelistRead, $wgGroupPermissions, $wgRevokePermissions;;
+		global $wgWhitelistRead, $wgGroupPermissions, $wgRevokePermissions;
 		static $useShortcut = null;
 
 		# Initialize the $useShortcut boolean, to determine if we can skip quite a bit of code below
