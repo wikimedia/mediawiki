@@ -159,10 +159,10 @@ class ParserTest {
 				'name'        => 'local-backend',
 				'lockManager' => 'fsLockManager',
 				'containerPaths' => array(
-					'media-public'  => wfTempDir() . '/test-repo/public',
-					'media-thumb'   => wfTempDir() . '/test-repo/thumb',
-					'media-temp'    => wfTempDir() . '/test-repo/temp',
-					'media-deleted' => wfTempDir() . '/test-repo/delete',
+					'local-public'  => wfTempDir() . '/test-repo/public',
+					'local-thumb'   => wfTempDir() . '/test-repo/thumb',
+					'local-temp'    => wfTempDir() . '/test-repo/temp',
+					'local-deleted' => wfTempDir() . '/test-repo/deleted',
 				)
 			) )
 		);
@@ -637,10 +637,10 @@ class ParserTest {
 					'name'        => 'local-backend',
 					'lockManager' => 'fsLockManager',
 					'containerPaths' => array(
-						'media-public'  => $this->uploadDir,
-						'media-thumb'   => $this->uploadDir . '/thumb',
-						'media-temp'    => $this->uploadDir . '/temp',
-						'media-deleted' => $this->uploadDir . '/delete',
+						'local-public'  => $this->uploadDir,
+						'local-thumb'   => $this->uploadDir . '/thumb',
+						'local-temp'    => $this->uploadDir . '/temp',
+						'local-deleted' => $this->uploadDir . '/delete',
 					)
 				) )
 			),
