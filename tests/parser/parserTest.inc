@@ -1162,29 +1162,34 @@ class ParserTest {
 	 * @param $name String: the title, including any prefix
 	 * @param $text String: the article text
 	 * @param $line Integer: the input line number, for reporting errors
+	 * @param $ignoreDuplicate Boolean: whether to silently ignore duplicate pages
 	 */
-	static public function addArticle( $name, $text, $line = 'unknown' ) {
+	static public function addArticle( $name, $text, $line = 'unknown', $ignoreDuplicate = '' ) {
 		global $wgCapitalLinks;
-
-		$text = self::chomp($text);
 
 		$oldCapitalLinks = $wgCapitalLinks;
 		$wgCapitalLinks = true; // We only need this from SetupGlobals() See r70917#c8637
 
+		$text = self::chomp( $text );
 		$name = self::chomp( $name );
+
 		$title = Title::newFromText( $name );
 
 		if ( is_null( $title ) ) {
-			throw new MWException( "invalid title ('$name' => '$title') at line $line\n" );
-		}
-
-		$aid = $title->getArticleID( Title::GAID_FOR_UPDATE );
-
-		if ( $aid != 0 ) {
-			throw new MWException( "duplicate article '$name' at line $line\n" );
+			throw new MWException( "invalid title '$name' at line $line\n" );
 		}
 
 		$page = WikiPage::factory( $title );
+		$page->loadPageData( 'fromdbmaster' );
+
+		if ( $page->exists() ) {
+			if ( $ignoreDuplicate == 'ignoreduplicate' ) {
+				return;
+			} else {
+				throw new MWException( "duplicate article '$name' at line $line\n" );
+			}
+		}
+
 		$page->doEdit( $text, '', EDIT_NEW );
 
 		$wgCapitalLinks = $oldCapitalLinks;
