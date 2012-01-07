@@ -30,15 +30,16 @@ class FSRepo extends FileRepo {
 				? $info['fileMode']
 				: 0644;
 
+			$repoName = $info['name'];
 			// Get the FS backend configuration
 			$backend = new FSFileBackend( array(
 				'name'           => $info['name'] . '-backend',
 				'lockManager'    => 'fsLockManager',
 				'containerPaths' => array(
-					"media-public"  => "{$directory}",
-					"media-temp"    => "{$directory}/temp",
-					"media-thumb"   => $thumbDir,
-					"media-deleted" => $deletedDir
+					"{$repoName}-public"  => "{$directory}",
+					"{$repoName}-temp"    => "{$directory}/temp",
+					"{$repoName}-thumb"   => $thumbDir,
+					"{$repoName}-deleted" => $deletedDir
 				),
 				'fileMode'       => $fileMode,
 			) );

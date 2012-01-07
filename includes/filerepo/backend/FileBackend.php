@@ -11,13 +11,17 @@
  * Outside callers can assume that all backends will have these functions.
  * 
  * All "storage paths" are of the format "mwstore://backend/container/path".
- * The paths use typical file system (FS) notation, though any particular backend may
+ * The paths use UNIX file system (FS) notation, though any particular backend may
  * not actually be using a local filesystem. Therefore, the paths are only virtual.
+ * 
+ * Backend contents are stored under wiki-specific container names by default.
+ * For legacy reasons, this has no effect for the FS backend class, and per-wiki
+ * segregation must be done by setting the container paths appropriately.
  * 
  * FS-based backends are somewhat more restrictive due to the existence of real
  * directory files; a regular file cannot have the same name as a directory. Other
  * backends with virtual directories may not have this limitation. Callers should
- * store files in such a way that no files and directories under the same path.
+ * store files in such a way that no files and directories are under the same path.
  * 
  * Methods should avoid throwing exceptions at all costs.
  * As a corollary, external dependencies should be kept to a minimum.
@@ -33,7 +37,7 @@ abstract class FileBackendBase {
 	protected $lockManager;
 
 	/**
-	 * Build a new object from configuration.
+	 * Create a new backend instance from configuration.
 	 * This should only be called from within FileBackendGroup.
 	 * 
 	 * $config includes:
@@ -49,7 +53,7 @@ abstract class FileBackendBase {
 		$this->name = $config['name'];
 		$this->wikiId = isset( $config['wikiId'] )
 			? $config['wikiId']
-			: wfWikiID();
+			: rtrim( wfWikiID(), '_' ); // "mywiki-en_" => "mywiki-en"
 		$this->lockManager = LockManagerGroup::singleton()->get( $config['lockManager'] );
 		$this->readOnly = isset( $config['readOnly'] )
 			? (string)$config['readOnly']
@@ -431,7 +435,7 @@ abstract class FileBackendBase {
 	abstract public function getLocalCopy( array $params );
 
 	/**
-	 * Get an iterator to list out all object files under a storage directory.
+	 * Get an iterator to list out all stored files under a storage directory.
 	 * If the directory is of the form "mwstore://container", then all items in
 	 * the container should be listed. If of the form "mwstore://container/dir",
 	 * then all items under that container directory should be listed.
@@ -503,7 +507,7 @@ abstract class FileBackendBase {
 abstract class FileBackend extends FileBackendBase {
 	/** @var Array */
 	protected $cache = array(); // (storage path => key => value)
-	protected $maxCacheSize = 50; // integer; max paths with entries
+	protected $maxCacheSize = 75; // integer; max paths with entries
 	/** @var Array */
 	protected $shardViaHashLevels = array(); // (container name => integer)
 
@@ -632,7 +636,6 @@ abstract class FileBackend extends FileBackendBase {
 	 * $params include:
 	 *     srcs          : ordered source storage paths (e.g. chunk1, chunk2, ...)
 	 *     dst           : file system path to 0-byte temp file
-	 *     overwriteDest : overwrite any file that exists at the destination
 	 * 
 	 * @param $params Array
 	 * @return Status
@@ -1101,11 +1104,10 @@ abstract class FileBackend extends FileBackendBase {
 	 * @return bool
 	 */
 	final protected static function isValidContainerName( $container ) {
-		// This accounts for Swift and S3 restrictions. Also note
-		// that these urlencode to the same string, which is useful
-		// since the Swift size limit is *after* URL encoding.
-		// Limit to 200 to leave room for '.shard-XX' or '.segment'.
-		return preg_match( '/^[a-zA-Z0-9._-]{1,200}$/u', $container );
+		// This accounts for Swift, S3, and Azure restrictions while
+		// leaving room for '.xxx' (hex shard chars) or '.seg' (segments).
+		// Note that matching strings URL encode to the same string.
+		return preg_match( '/^[a-z0-9][a-z0-9-]{2,55}$/i', $container );
 	}
 
 	/**
@@ -1137,7 +1139,7 @@ abstract class FileBackend extends FileBackendBase {
 
 	/**
 	 * Splits a storage path into an internal container name,
-	 * an internal relative object name, and a container shard suffix.
+	 * an internal relative file name, and a container shard suffix.
 	 * Any shard suffix is already appended to the internal container name.
 	 * This also checks that the storage path is valid and within this backend.
 	 *
@@ -1211,7 +1213,7 @@ abstract class FileBackend extends FileBackendBase {
 		// to work with FileRepo (e.g. "archive/a/ab" or "temp/a/ab").
 		// They must be 2+ chars to avoid any hash directory ambiguity.
 		if ( preg_match( "!^(?:[^/]{2,}/)*$hashDirRegex(?:/|$)!", $relPath, $m ) ) {
-			return '.shard-' . str_pad( $m['shard'], $hashLevels, '0', STR_PAD_LEFT );
+			return '.' . str_pad( $m['shard'], $hashLevels, '0', STR_PAD_LEFT );
 		}
 		return null; // failed to match
 	}
@@ -1246,7 +1248,7 @@ abstract class FileBackend extends FileBackendBase {
 		if ( $digits > 0 ) {
 			$numShards = 1 << ( $digits * 4 );
 			for ( $index = 0; $index < $numShards; $index++ ) {
-				$shards[] = '.shard-' . str_pad( dechex( $index ), $digits, '0', STR_PAD_LEFT );
+				$shards[] = '.' . str_pad( dechex( $index ), $digits, '0', STR_PAD_LEFT );
 			}
 		}
 		return $shards;

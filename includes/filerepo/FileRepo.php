@@ -87,7 +87,7 @@ class FileRepo {
 		foreach ( array( 'public', 'thumb', 'temp', 'deleted' ) as $zone ) {
 			if ( !isset( $this->zones[$zone] ) ) {
 				$this->zones[$zone] = array(
-					'container' => "media-$zone",
+					'container' => "{$this->name}-{$zone}",
 					'directory' => '' // container root
 				);
 			}

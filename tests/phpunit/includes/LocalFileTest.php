@@ -11,21 +11,20 @@ class LocalFileTest extends MediaWikiTestCase {
 
 		$wgCapitalLinks = true;
 
-		$backend = new FSFileBackend( array(
-			'name'        => 'local-backend',
-			'lockManager' => 'fsLockManager',
-			'containerPaths' => array(
-				'cont1' => "/testdir/local-backend/tempimages/cont1",
-				'cont2' => "/testdir/local-backend/tempimages/cont2"
-			)
-		) );
 		$info = array(
 			'name'            => 'test',
 			'directory'       => '/testdir',
 			'url'             => '/testurl',
 			'hashLevels'      => 2,
 			'transformVia404' => false,
-			'backend'         => $backend
+			'backend'         => new FSFileBackend( array(
+				'name'        => 'local-backend',
+				'lockManager' => 'fsLockManager',
+				'containerPaths' => array(
+					'cont1' => "/testdir/local-backend/tempimages/cont1",
+					'cont2' => "/testdir/local-backend/tempimages/cont2"
+				)
+			) )
 		);
 		$this->repo_hl0 = new LocalRepo( array( 'hashLevels' => 0 ) + $info );
 		$this->repo_hl2 = new LocalRepo( array( 'hashLevels' => 2 ) + $info );
@@ -54,17 +53,17 @@ class LocalFileTest extends MediaWikiTestCase {
 	}
 
 	function testGetArchivePath() {
-		$this->assertEquals( 'mwstore://local-backend/media-public/archive', $this->file_hl0->getArchivePath() );
-		$this->assertEquals( 'mwstore://local-backend/media-public/archive/a/a2', $this->file_hl2->getArchivePath() );
-		$this->assertEquals( 'mwstore://local-backend/media-public/archive/!', $this->file_hl0->getArchivePath( '!' ) );
-		$this->assertEquals( 'mwstore://local-backend/media-public/archive/a/a2/!', $this->file_hl2->getArchivePath( '!' ) );
+		$this->assertEquals( 'mwstore://local-backend/test-public/archive', $this->file_hl0->getArchivePath() );
+		$this->assertEquals( 'mwstore://local-backend/test-public/archive/a/a2', $this->file_hl2->getArchivePath() );
+		$this->assertEquals( 'mwstore://local-backend/test-public/archive/!', $this->file_hl0->getArchivePath( '!' ) );
+		$this->assertEquals( 'mwstore://local-backend/test-public/archive/a/a2/!', $this->file_hl2->getArchivePath( '!' ) );
 	}
 
 	function testGetThumbPath() {
-		$this->assertEquals( 'mwstore://local-backend/media-thumb/Test!', $this->file_hl0->getThumbPath() );
-		$this->assertEquals( 'mwstore://local-backend/media-thumb/a/a2/Test!', $this->file_hl2->getThumbPath() );
-		$this->assertEquals( 'mwstore://local-backend/media-thumb/Test!/x', $this->file_hl0->getThumbPath( 'x' ) );
-		$this->assertEquals( 'mwstore://local-backend/media-thumb/a/a2/Test!/x', $this->file_hl2->getThumbPath( 'x' ) );
+		$this->assertEquals( 'mwstore://local-backend/test-thumb/Test!', $this->file_hl0->getThumbPath() );
+		$this->assertEquals( 'mwstore://local-backend/test-thumb/a/a2/Test!', $this->file_hl2->getThumbPath() );
+		$this->assertEquals( 'mwstore://local-backend/test-thumb/Test!/x', $this->file_hl0->getThumbPath( 'x' ) );
+		$this->assertEquals( 'mwstore://local-backend/test-thumb/a/a2/Test!/x', $this->file_hl2->getThumbPath( 'x' ) );
 	}
 
 	function testGetArchiveUrl() {

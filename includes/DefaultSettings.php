@@ -303,9 +303,15 @@ $wgImgAuthPublicTest = true;
  *                      FSRepo is also supported for backwards compatibility.
  *
  *   - name             A unique name for the repository (but $wgLocalFileRepo should be 'local').
+ *                      The name should consist of alpha-numberic characters.
  *   - backend          A file backend name (see $wgFileBackends).
  *
  * For most core repos:
+ *   - zones            Associative array of zone names that each map to an array with:
+ *                          container : backend container name the zone is in
+ *                          directory : root path within container for the zone
+ *                      Zones default to using <repo name>-<zone> as the
+ *                      container name and the container root as the zone directory.
  *   - url              Base public URL
  *   - hashLevels       The number of directory levels for hash-based division of files
  *   - thumbScriptUrl   The URL for thumb.php (optional, not recommended)
