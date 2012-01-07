@@ -8,8 +8,8 @@ RELEASE-NOTES, INSTALL, and UPGRADE.
 MediaWiki is the software used for Wikipedia [http://www.wikipedia.org/] and the
 other Wikimedia Foundation websites. Compared to other wikis, it has an
 excellent range of features and support for high-traffic websites using
-multiple servers (Wikimedia sites peak in the 60000+ requests per second range
-as of November 2008).
+multiple servers (Wikimedia sites peak in the 100K+ requests per second range
+as of January 2012).
 
 While quite usable on smaller sites, you may find you have to "roll your own"
 local documentation, and some aspects of configuration may seem overcomplicated
