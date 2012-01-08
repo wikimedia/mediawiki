@@ -624,7 +624,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		$this->getOutput()->addWikiText(
 		Html::rawElement( 'p',
 			array( 'lang' => $wgContLang->getCode(), 'dir' => $wgContLang->getDir() ),
-			wfMsgForContentNoTrans( 'recentchangestext' )
+			"\n" . wfMsgForContentNoTrans( 'recentchangestext' ) . "\n"
 		), false );
 	}
 
