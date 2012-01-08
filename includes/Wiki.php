@@ -36,7 +36,7 @@ class MediaWiki {
 	/**
 	 * @var string
 	 */
-	private $peformedAction = 'nosuchaction';
+	private $performedAction = 'nosuchaction';
 
 	public function request( WebRequest $x = null ){
 		$old = $this->context->getRequest();
