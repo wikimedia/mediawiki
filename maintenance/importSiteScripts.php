@@ -16,22 +16,29 @@ class ImportSiteScripts extends Maintenance {
 	
 	public function execute() {
 		global $wgUser;
-		$wgUser = User::newFromName( $this->getOption( 'username', 'ScriptImporter' ) );
+
+		$user = User::newFromName( $this->getOption( 'username', 'ScriptImporter' ) );
+		$wgUser = $user;
 		
 		$baseUrl = $this->getArg( 1 );
 		$pageList = $this->fetchScriptList();
 		$this->output( 'Importing ' . count( $pageList ) . " pages\n" );
 		
 		foreach ( $pageList as $page ) {
+			$title = Title::makeTitleSafe( NS_MEDIAWIKI, $page );
+			if ( !$title ) {
+				$this->error( "$page is an invalid title; it will not be imported\n" );
+				continue;
+			}
+
 			$this->output( "Importing $page\n" );
 			$url = wfAppendQuery( $baseUrl, array( 
 				'action' => 'raw', 
 				'title' => "MediaWiki:{$page}" ) );
 			$text = Http::get( $url );
-			
-			$title = Title::makeTitleSafe( NS_MEDIAWIKI, $page );
-			$article = new Article( $title );
-			$article->doEdit( $text, "Importing from $url", 0 );
+
+			$wikiPage = WikiPage::factory( $title );
+			$wikiPage->doEdit( $text, "Importing from $url", 0, false, $user );
 		}
 		
 	}
