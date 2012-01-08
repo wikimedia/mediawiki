@@ -2822,7 +2822,7 @@ $templates
 	 * @return array
 	 */
 	public function getJSVars() {
-		global $wgUseAjax, $wgEnableMWSuggest;
+		global $wgUseAjax, $wgEnableMWSuggest, $mediaWiki;
 
 		$title = $this->getTitle();
 		$ns = $title->getNamespace();
@@ -2858,7 +2858,7 @@ $templates
 			'wgCurRevisionId' => $title->getLatestRevID(),
 			'wgArticleId' => $title->getArticleId(),
 			'wgIsArticle' => $this->isArticle(),
-			'wgAction' => $this->getRequest()->getText( 'action', 'view' ),
+			'wgAction' => $mediaWiki->getPerformedAction(),
 			'wgUserName' => $this->getUser()->isAnon() ? null : $this->getUser()->getName(),
 			'wgUserGroups' => $this->getUser()->getEffectiveGroups(),
 			'wgCategories' => $this->getCategories(),
