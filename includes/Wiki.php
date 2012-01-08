@@ -33,6 +33,11 @@ class MediaWiki {
 	 */
 	private $context;
 
+	/**
+	 * @var string
+	 */
+	private $peformedAction = 'nosuchaction';
+
 	public function request( WebRequest $x = null ){
 		$old = $this->context->getRequest();
 		$this->context->setRequest( $x );
@@ -296,9 +301,14 @@ class MediaWiki {
 	/**
 	 * Returns the action that will be executed, not necessarily the one passed
 	 * passed through the "action" parameter. Actions disabled in
-	 * $wgDisabledActions will be replaced by "nosuchaction"
+	 * $wgDisabledActions will be replaced by "nosuchaction".
 	 *
-	 * @return String: action
+	 * The return value is merely a suggestion, not the actually performed action,
+	 * which may be different. The actually performed action is determined by performAction().
+	 * Requests like action=nonsense will make this function return "nonsense".
+	 * Use getPerformedAction() to get the performed action.
+	 *
+	 * @return string: action
 	 */
 	public function getAction() {
 		global $wgDisabledActions;
@@ -489,6 +499,7 @@ class MediaWiki {
 
 		$action = Action::factory( $act, $article );
 		if ( $action instanceof Action ) {
+			$this->performedAction = $act;
 			$action->show();
 			wfProfileOut( __METHOD__ );
 			return;
@@ -497,12 +508,14 @@ class MediaWiki {
 		switch( $act ) {
 			case 'view':
 				$output->setSquidMaxage( $wgSquidMaxage );
+				$this->performedAction = $act;
 				$article->view();
 				break;
 			case 'delete':
 			case 'protect':
 			case 'unprotect':
 			case 'render':
+				$this->performedAction = $act;
 				$article->$act();
 				break;
 			case 'submit':
@@ -513,6 +526,7 @@ class MediaWiki {
 				// Continue...
 			case 'edit':
 				if ( wfRunHooks( 'CustomEditor', array( $article, $user ) ) ) {
+					$this->performedAction = 'edit';
 					if ( ExternalEdit::useExternalEngine( $this->context, 'edit' )
 						&& $act == 'edit' && !$request->getVal( 'section' )
 						&& !$request->getVal( 'oldid' ) )
@@ -527,10 +541,21 @@ class MediaWiki {
 				break;
 			default:
 				if ( wfRunHooks( 'UnknownAction', array( $act, $article ) ) ) {
+					$this->performedAction = 'nosuchaction';
 					$output->showErrorPage( 'nosuchaction', 'nosuchactiontext' );
 				}
 		}
 		wfProfileOut( __METHOD__ );
+	}
+
+	/**
+	 * Returns the real action as determined by performAction.
+	 * Do not use internally in this class as it depends on the actions by this class.
+	 *
+	 * @return string: action
+	 */
+	public function getPerformedAction(){
+		return $this->performedAction;
 	}
 
 	/**
