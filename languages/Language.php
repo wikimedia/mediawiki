@@ -3816,28 +3816,29 @@ class Language {
 	 * @return string
 	 */
 	function formatBitrate( $bps ) {
-		$units = array( '', 'kilo', 'mega', 'giga', 'tera', 'peta', 'exa', 'zeta', 'yotta' );
 		if ( $bps <= 0 ) {
 			return str_replace( '$1', $this->formatNum( $bps ), $this->getMessageFromDB( 'bitrate-bits' ) );
 		}
-		$unitIndex = (int)floor( log10( $bps ) / 3 );
-		$mantissa = $bps / pow( 1000, $unitIndex );
+		$units = array( '', 'kilo', 'mega', 'giga', 'tera', 'peta', 'exa', 'zeta', 'yotta' );
+		$index = 0;
 
 		$maxIndex = count( $units ) - 1;
+		while ( $bps >= 1000 && $index < $maxIndex ) {
+			$index++;
+			$bps /= 1000;
+		}
 
-		if ( $unitIndex  > $maxIndex ) {
-			// Prevent code falling off end of $units array
-			$mantissa *= ( $unitIndex - $maxIndex ) * 1000;
-			$unitIndex = $maxIndex;
+		// For small units no decimal places necessary
+		$round = 0;
+		if ( $index > 1 ) {
+			// For MB and bigger two decimal places are smarter
+			$round = 2;
 		}
-		if ( $mantissa < 10 ) {
-			$mantissa = round( $mantissa, 1 );
-		} else {
-			$mantissa = round( $mantissa );
-		}
-		$msg = "bitrate-{$units[$unitIndex]}bits";
+		$msg = "bitrate-{$units[$index]}bits";
+
+		$bps = round( $bps, $round );
 		$text = $this->getMessageFromDB( $msg );
-		return str_replace( '$1', $this->formatNum( $mantissa ), $text );
+		return str_replace( '$1', $this->formatNum( $bps ), $text );
 	}
 
 	/**
