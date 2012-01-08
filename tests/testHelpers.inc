@@ -226,3 +226,72 @@ class TestFileIterator implements Iterator {
 		return true;
 	}
 }
+
+/**
+ * A class to delay execution of a parser test hooks. 
+ */
+class DelayedParserTest {
+
+	/** Initialized on construction */
+	private $hooks;
+	private $fnHooks;
+
+	public function __construct() {
+		$this->reset();
+	}
+
+	/**
+	 * Init/reset or forgot about the current delayed test.
+	 * Call to this will erase any hooks function that were pending.
+	 */
+	public function reset() {
+		$this->hooks   = array();
+		$this->fnHooks = array();
+	}
+
+	/**
+	 * Called whenever we actually want to run the hook.
+	 * Should be the case if we found the parserTest is not disabled 
+	 */
+	public function unleash( &$parserTest ) {
+		if( !($parserTest instanceof ParserTest || $parserTest instanceof NewParserTest
+		) ) {
+			throw new MWException( __METHOD__ . " must be passed an instance of ParserTest or NewParserTest classes\n" );
+		}
+
+		# Trigger delayed hooks. Any failure will make us abort
+		foreach( $this->hooks as $hook ) {
+			$ret = $parserTest->requireHook( $hook );
+			if( !$ret ) {
+				return false;
+			}
+		}
+
+		# Trigger delayed function hooks. Any failure will make us abort
+		foreach( $this->fnHooks as $fnHook ) {
+			$ret = $parserTest->requireFunctionHook( $fnHook );
+			if( !$ret ) {
+				return false;
+			}
+		}
+
+		# Delayed execution was successful.
+		return true;
+	}
+
+	/**
+	 * Similar to ParserTest object but does not run anything
+	 * Use unleash() to really execute the hook
+	 */
+	public function requireHook( $hook ) {
+		$this->hooks[] = $hook;
+	}
+	/**
+	 * Similar to ParserTest object but does not run anything
+	 * Use unleash() to really execute the hook function
+	 */
+	public function requireFunctionHook( $fnHook ) {
+		$this->fnHooks[] = $fnHook;
+	}
+
+}
