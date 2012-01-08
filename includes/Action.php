@@ -146,7 +146,7 @@ abstract class Action {
 	/**
 	 * Shortcut to get the user Language being used for this instance
 	 *
-	 * @return Skin
+	 * @return Language
 	 */
 	public final function getLanguage() {
 		return $this->getContext()->getLanguage();
@@ -156,7 +156,7 @@ abstract class Action {
 	 * Shortcut to get the user Language being used for this instance
 	 *
 	 * @deprecated 1.19 Use getLanguage instead
-	 * @return Skin
+	 * @return Language
 	 */
 	public final function getLang() {
 		wfDeprecated( __METHOD__, '1.19' );
@@ -294,8 +294,6 @@ abstract class Action {
 
 	/**
 	 * Execute the action in a silent fashion: do not display anything or release any errors.
-	 * @param $data Array values that would normally be in the POST request
-	 * @param $captureErrors Bool whether to catch exceptions and just return false
 	 * @return Bool whether execution was successful
 	 */
 	public abstract function execute();
