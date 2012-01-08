@@ -409,20 +409,20 @@ class HistoryPager extends ReverseChronologicalPager {
 		$s .= Html::hidden( 'title', $this->getTitle()->getPrefixedDbKey() ) . "\n";
 		$s .= Html::hidden( 'action', 'historysubmit' ) . "\n";
 
-		$s .= '<div>' . $this->submitButton( $this->msg( 'compareselectedversions' )->text(),
-			array( 'class' => 'historysubmit' ) ) . "\n";
-
+		// Button container stored in $this->buttons for re-use in getEndBody()
 		$this->buttons = '<div>';
 		$this->buttons .= $this->submitButton( $this->msg( 'compareselectedversions' )->text(),
-			array( 'class' => 'historysubmit' )
+			array( 'class' => 'historysubmit mw-history-compareselectedversions-button' )
 				+ Linker::tooltipAndAccesskeyAttribs( 'compareselectedversions' )
 		) . "\n";
 
 		if ( $this->getUser()->isAllowed( 'deleterevision' ) ) {
-			$s .= $this->getRevisionButton( 'revisiondelete', 'showhideselectedversions' );
+			$this->buttons .= $this->getRevisionButton( 'revisiondelete', 'showhideselectedversions' );
 		}
 		$this->buttons .= '</div>';
-		$s .= '</div><ul id="pagehistory">' . "\n";
+
+		$s .= $this->buttons;
+		$s .= '<ul id="pagehistory">' . "\n";
 		return $s;
 	}
 
@@ -438,7 +438,6 @@ class HistoryPager extends ReverseChronologicalPager {
 			),
 			$this->msg( $msg )->text()
 		) . "\n";
-		$this->buttons .= $element;
 		return $element;
 	}
 
