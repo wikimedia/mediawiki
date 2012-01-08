@@ -3816,29 +3816,41 @@ class Language {
 	 * @return string
 	 */
 	function formatBitrate( $bps ) {
-		if ( $bps <= 0 ) {
-			return str_replace( '$1', $this->formatNum( $bps ), $this->getMessageFromDB( 'bitrate-bits' ) );
+		return $this->formatComputingNumbers( $bps, 1000, "bitrate-$1bits" );
+	}
+
+	/**
+	 * @param $size int Size of the unit
+	 * @param $boundary int Size boundary (1000, or 1024 in most cases)
+	 * @param $messageKey string Message key to be uesd
+	 * @return string
+	 */
+	function formatComputingNumbers( $size, $boundary, $messageKey ) {
+		if ( $size <= 0 ) {
+			return str_replace( '$1', $this->formatNum( $size ),
+				$this->getMessageFromDB( str_replace( '$1', '', $messageKey ) )
+			);
 		}
-		$units = array( '', 'kilo', 'mega', 'giga', 'tera', 'peta', 'exa', 'zeta', 'yotta' );
+		$sizes = array( '', 'kilo', 'mega', 'giga', 'tera', 'peta', 'exa', 'zeta', 'yotta' );
 		$index = 0;
 
-		$maxIndex = count( $units ) - 1;
-		while ( $bps >= 1000 && $index < $maxIndex ) {
+		$maxIndex = count( $sizes ) - 1;
+		while ( $size >= $boundary && $index < $maxIndex ) {
 			$index++;
-			$bps /= 1000;
+			$size /= $boundary;
 		}
 
-		// For small units no decimal places necessary
+		// For small sizes no decimal places necessary
 		$round = 0;
 		if ( $index > 1 ) {
 			// For MB and bigger two decimal places are smarter
 			$round = 2;
 		}
-		$msg = "bitrate-{$units[$index]}bits";
+		$msg = str_replace( '$1', $messageKey, $sizes[$index] );
 
-		$bps = round( $bps, $round );
+		$size = round( $size, $round );
 		$text = $this->getMessageFromDB( $msg );
-		return str_replace( '$1', $this->formatNum( $bps ), $text );
+		return str_replace( '$1', $this->formatNum( $size ), $text );
 	}
 
 	/**
@@ -3849,26 +3861,7 @@ class Language {
 	 * @return string Plain text (not HTML)
 	 */
 	function formatSize( $size ) {
-		$sizes = array( '', 'kilo', 'mega', 'giga', 'tera', 'peta', 'exa', 'zeta', 'yotta' );
-		$index = 0;
-
-		$maxIndex = count( $sizes ) - 1;
-		while ( $size >= 1024 && $index < $maxIndex ) {
-			$index++;
-			$size /= 1024;
-		}
-
-		// For small sizes no decimal places necessary
-		$round = 0;
-		if ( $index > 1 ) {
-			// For MB and bigger two decimal places are smarter
-			$round = 2;
-		}
-		$msg = "size-{$sizes[$index]}bytes";
-
-		$size = round( $size, $round );
-		$text = $this->getMessageFromDB( $msg );
-		return str_replace( '$1', $this->formatNum( $size ), $text );
+		return $this->formatComputingNumbers( $size, 1024, "size-$1bytes" );
 	}
 
 	/**
