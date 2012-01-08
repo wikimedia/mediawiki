@@ -407,6 +407,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		$s = Html::openElement( 'form', array( 'action' => $wgScript,
 			'id' => 'mw-history-compare' ) ) . "\n";
 		$s .= Html::hidden( 'title', $this->getTitle()->getPrefixedDbKey() ) . "\n";
+		$s .= Html::hidden( 'action', 'historysubmit' ) . "\n";
 
 		$s .= '<div>' . $this->submitButton( $this->msg( 'compareselectedversions' )->text(),
 			array( 'class' => 'historysubmit' ) ) . "\n";
