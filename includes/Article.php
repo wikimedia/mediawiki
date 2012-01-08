@@ -183,7 +183,7 @@ class Article extends Page {
 	/**
 	 * Note that getContent/loadContent do not follow redirects anymore.
 	 * If you need to fetch redirectable content easily, try
-	 * the shortcut in Article::followRedirect()
+	 * the shortcut in WikiPage::getRedirectTarget()
 	 *
 	 * This function has side effects! Do not use this function if you
 	 * only want the real revision text if any.
