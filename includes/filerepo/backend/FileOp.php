@@ -808,61 +808,6 @@ class MoveFileOp extends FileOp {
 }
 
 /**
- * Combines files from severals storage paths into a new file in the backend.
- * Parameters similar to FileBackend::concatenate(), which include:
- *     srcs          : ordered source storage paths (e.g. chunk1, chunk2, ...)
- *     dst           : destination file system path to 0-byte temp file
- */
-class ConcatenateFileOp extends FileOp {
-	protected function allowedParams() {
-		return array( 'srcs', 'dst' );
-	}
-
-	protected function doPrecheck( array &$predicates ) {
-		$status = Status::newGood();
-		// Check destination temp file
-		wfSuppressWarnings();
-		$ok = ( is_file( $this->params['dst'] ) && !filesize( $this->params['dst'] ) );
-		wfRestoreWarnings();
-		if ( !$ok ) { // not present or not empty
-			$status->fatal( 'backend-fail-opentemp', $this->params['dst'] );
-			return $status;
-		}
-		// Check that source files exists
-		foreach ( $this->params['srcs'] as $source ) {
-			if ( !$this->fileExists( $source, $predicates ) ) {
-				$status->fatal( 'backend-fail-notexists', $source );
-				return $status;
-			}
-		}
-		return $status;
-	}
-
-	protected function doAttempt() {
-		$status = Status::newGood();
-		// Concatenate the file at the destination
-		$status->merge( $this->backend->concatenateInternal( $this->params ) );
-		return $status;
-	}
-
-	protected function doRevert() {
-		$status = Status::newGood();
-		// Clear out the temp file back to 0-bytes
-		wfSuppressWarnings();
-		$ok = file_put_contents( $this->params['dst'], '' );
-		wfRestoreWarnings();
-		if ( !$ok ) {
-			$status->fatal( 'backend-fail-writetemp', $this->params['dst'] );
-		}
-		return $status;
-	}
-
-	public function storagePathsRead() {
-		return $this->params['srcs'];
-	}
-}
-
-/**
  * Delete a file at the storage path.
  * Parameters similar to FileBackend::delete(), which include:
  *     src                 : source storage path

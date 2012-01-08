@@ -36,9 +36,15 @@ class FileBackendMultiWrite extends FileBackendBase {
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );
+		$namesUsed = array();
 		// Construct backends here rather than via registration
 		// to keep these backends hidden from outside the proxy.
 		foreach ( $config['backends'] as $index => $config ) {
+			$name = $config['name'];
+			if ( isset( $namesUsed[$name] ) ) { // don't break FileOp predicates
+				throw new MWException( "Two or more backends defined with the name $name." );
+			}
+			$namesUsed[$name] = 1;
 			if ( !isset( $config['class'] ) ) {
 				throw new MWException( 'No class given for a backend config.' );
 			}
@@ -242,6 +248,15 @@ class FileBackendMultiWrite extends FileBackendBase {
 			$status->merge( $backend->clean( $realParams ) );
 		}
 		return $status;
+	}
+
+	/**
+	 * @see FileBackendBase::getFileList()
+	 */
+	public function concatenate( array $params ) {
+		// We are writing to an FS file, so we don't need to do this per-backend
+		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
+		return $this->backends[$this->masterIndex]->concatenate( $realParams );
 	}
 
 	/**

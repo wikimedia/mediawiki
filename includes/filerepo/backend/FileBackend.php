@@ -132,13 +132,7 @@ abstract class FileBackendBase {
 	 *         'src'                 => <storage path>,
 	 *         'ignoreMissingSource' => <boolean>
 	 *     )
-	 * f) Concatenate a list of files within storage into a single temp file
-	 *     array(
-	 *         'op'                  => 'concatenate',
-	 *         'srcs'                => <ordered array of storage paths>,
-	 *         'dst'                 => <file system path to 0-byte temp file>
-	 *     )
-	 * g) Do nothing (no-op)
+	 * f) Do nothing (no-op)
 	 *     array(
 	 *         'op'                  => 'null',
 	 *     )
@@ -203,6 +197,21 @@ abstract class FileBackendBase {
 	}
 
 	/**
+	 * Performs a single create operation.
+	 * This sets $params['op'] to 'create' and passes it to doOperation().
+	 *
+	 * @see FileBackendBase::doOperation()
+	 *
+	 * @param $params Array Operation parameters
+	 * @param $opts Array Operation options
+	 * @return Status
+	 */
+	final public function create( array $params, array $opts = array() ) {
+		$params['op'] = 'create';
+		return $this->doOperation( $params, $opts );
+	}
+
+	/**
 	 * Performs a single store operation.
 	 * This sets $params['op'] to 'store' and passes it to doOperation().
 	 *
@@ -263,34 +272,15 @@ abstract class FileBackendBase {
 	}
 
 	/**
-	 * Performs a single create operation.
-	 * This sets $params['op'] to 'create' and passes it to doOperation().
-	 *
-	 * @see FileBackendBase::doOperation()
-	 *
-	 * @param $params Array Operation parameters
-	 * @param $opts Array Operation options
-	 * @return Status
-	 */
-	final public function create( array $params, array $opts = array() ) {
-		$params['op'] = 'create';
-		return $this->doOperation( $params, $opts );
-	}
-
-	/**
-	 * Performs a single concatenate operation.
-	 * This sets $params['op'] to 'concatenate' and passes it to doOperation().
-	 *
-	 * @see FileBackendBase::doOperation()
+	 * Concatenate a list of storage files into a single file on the file system
+	 * $params include:
+	 *     srcs          : ordered source storage paths (e.g. chunk1, chunk2, ...)
+	 *     dst           : file system path to 0-byte temp file
 	 *
 	 * @param $params Array Operation parameters
-	 * @param $opts Array Operation options
 	 * @return Status
 	 */
-	final public function concatenate( array $params, array $opts = array() ) {
-		$params['op'] = 'concatenate';
-		return $this->doOperation( $params, $opts );
-	}
+	abstract public function concatenate( array $params );
 
 	/**
 	 * Prepare a storage path for usage. This will create containers
@@ -677,24 +667,27 @@ abstract class FileBackend extends FileBackendBase {
 	}
 
 	/**
-	 * Combines files from several storage paths into a new file in the backend.
-	 * Do not call this function from places outside FileBackend and FileOp.
-	 * $params include:
-	 *     srcs          : ordered source storage paths (e.g. chunk1, chunk2, ...)
-	 *     dst           : file system path to 0-byte temp file
-	 * 
-	 * @param $params Array
-	 * @return Status
+	 * @see FileBackendBase::concatenate()
 	 */
-	final public function concatenateInternal( array $params ) {
-		$status = $this->doConcatenateInternal( $params );
+	final public function concatenate( array $params ) {
+		$status = Status::newGood();
+
+		// Try to lock the source files for the scope of this function
+		$scopeLockS = $this->getScopedFileLocks( $params['srcs'], LockManager::LOCK_UW, $status );
+		if ( !$status->isOK() ) {
+			return $status; // abort
+		}
+
+		// Actually do the concatenation
+		$status->merge( $this->doConcatenate( $params ) );
+
 		return $status;
 	}
 
 	/**
-	 * @see FileBackend::concatenateInternal()
+	 * @see FileBackend::concatenate()
 	 */
-	protected function doConcatenateInternal( array $params ) {
+	protected function doConcatenate( array $params ) {
 		$status = Status::newGood();
 		$tmpPath = $params['dst']; // convenience
 
@@ -1035,7 +1028,6 @@ abstract class FileBackend extends FileBackendBase {
 			'copy'        => 'CopyFileOp',
 			'move'        => 'MoveFileOp',
 			'delete'      => 'DeleteFileOp',
-			'concatenate' => 'ConcatenateFileOp',
 			'create'      => 'CreateFileOp',
 			'null'        => 'NullFileOp'
 		);
