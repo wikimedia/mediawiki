@@ -3846,7 +3846,7 @@ class Language {
 			// For MB and bigger two decimal places are smarter
 			$round = 2;
 		}
-		$msg = str_replace( '$1', $messageKey, $sizes[$index] );
+		$msg = str_replace( '$1', $sizes[$index], $messageKey );
 
 		$size = round( $size, $round );
 		$text = $this->getMessageFromDB( $msg );
