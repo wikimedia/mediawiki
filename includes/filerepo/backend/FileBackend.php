@@ -152,20 +152,20 @@ abstract class FileBackendBase {
 	 *                         contents as the new contents to be written there.
 	 * 
 	 * $opts is an associative of boolean flags, including:
-	 * 'ignoreErrors'        : Errors that would normally cause a rollback do not.
+	 * 'force'               : Errors that would normally cause a rollback do not.
 	 *                         The remaining operations are still attempted if any fail.
 	 * 'nonLocking'          : No locks are acquired for the operations.
 	 *                         This can increase performance for non-critical writes.
-	 *                         This has no effect unless the 'ignoreErrors' flag is set.
+	 *                         This has no effect unless the 'force' flag is set.
 	 * 'allowStale'          : Don't require the latest available data.
 	 *                         This can increase performance for non-critical writes.
-	 *                         This has no effect unless the 'ignoreErrors' flag is set.
+	 *                         This has no effect unless the 'force' flag is set.
 	 * 
 	 * Return value:
 	 * This returns a Status, which contains all warnings and fatals that occured
 	 * during the operation. The 'failCount', 'successCount', and 'success' members
 	 * will reflect each operation attempted. The status will be "OK" unless any
-	 * of the operations failed and the 'ignoreErrors' parameter was not set.
+	 * of the operations failed and the 'force' parameter was not set.
 	 * 
 	 * @param $ops Array List of operations to execute in order
 	 * @param $opts Array Batch operation options
@@ -175,7 +175,7 @@ abstract class FileBackendBase {
 		if ( $this->readOnly != '' ) {
 			return Status::newFatal( 'backend-fail-readonly', $this->name, $this->readOnly );
 		}
-		if ( empty( $opts['ignoreErrors'] ) ) { // sanity
+		if ( empty( $opts['force'] ) ) { // sanity
 			unset( $opts['nonLocking'] );
 			unset( $opts['allowStale'] );
 		}
@@ -372,6 +372,33 @@ abstract class FileBackendBase {
 	abstract public function getFileContents( array $params );
 
 	/**
+	 * Get the size (bytes) of a file at a storage path in the backend.
+	 * 
+	 * $params include:
+	 *     src    : source storage path
+	 *     latest : use the latest available data
+	 * 
+	 * @param $params Array
+	 * @return integer|false Returns false on failure
+	 */
+	abstract public function getFileSize( array $params );
+
+	/**
+	 * Get quick information about a file at a storage path in the backend.
+	 * The result is an associative array that includes:
+	 *     mtime  : the last-modified timestamp (TS_MW) or false
+	 *     size   : the file size (bytes) or false
+	 * 
+	 * $params include:
+	 *     src    : source storage path
+	 *     latest : use the latest available data
+	 * 
+	 * @param $params Array
+	 * @return Array|false Returns false on failure
+	 */
+	abstract public function getFileStat( array $params );
+
+	/**
 	 * Get a SHA-1 hash of the file at a storage path in the backend.
 	 * 
 	 * $params include:
@@ -398,6 +425,7 @@ abstract class FileBackendBase {
 
 	/**
 	 * Stream the file at a storage path in the backend.
+	 * If the file does not exists, a 404 error will be given.
 	 * Appropriate HTTP headers (Status, Content-Type, Content-Length)
 	 * must be sent if streaming began, while none should be sent otherwise.
 	 * Implementations should flush the output buffer before sending data.
@@ -807,43 +835,53 @@ abstract class FileBackend extends FileBackendBase {
 	 * @see FileBackendBase::fileExists()
 	 */
 	final public function fileExists( array $params ) {
-		$path = $params['src'];
-		if ( isset( $this->cache[$path]['exists'] ) ) {
-			return $this->cache[$path]['exists'];
-		}
-		$exists = $this->doFileExists( $params );
-		if ( $exists ) { // don't cache negatives
-			$this->trimCache(); // limit memory
-			$this->cache[$path]['exists'] = $exists;
-		}
-		return $exists;
+		return (bool)$this->getFileStat( $params );
 	}
-
-	/**
-	 * @see FileBackend::fileExists()
-	 */
-	abstract protected function doFileExists( array $params );
 
 	/**
 	 * @see FileBackendBase::getFileTimestamp()
 	 */
 	final public function getFileTimestamp( array $params ) {
-		$path = $params['src'];
-		if ( isset( $this->cache[$path]['timestamp'] ) ) {
-			return $this->cache[$path]['timestamp'];
+		$stat = $this->getFileStat( $params );
+		if ( $stat ) {
+			return $stat['mtime'];
+		} else {
+			return false;
 		}
-		$timestamp = $this->doGetFileTimestamp( $params );
-		if ( $timestamp ) { // don't cache negatives
-			$this->trimCache(); // limit memory
-			$this->cache[$path]['timestamp'] = $timestamp;
-		}
-		return $timestamp;
 	}
 
 	/**
-	 * @see FileBackend::getFileTimestamp()
+	 * @see FileBackendBase::getFileSize()
 	 */
-	abstract protected function doGetFileTimestamp( array $params );
+	final public function getFileSize( array $params ) {
+		$stat = $this->getFileStat( $params );
+		if ( $stat ) {
+			return $stat['size'];
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	 * @see FileBackendBase::getFileStat()
+	 */
+	final public function getFileStat( array $params ) {
+		$path = $params['src'];
+		if ( isset( $this->cache[$path]['stat'] ) ) {
+			return $this->cache[$path]['stat'];
+		}
+		$stat = $this->doGetFileStat( $params );
+		if ( is_array( $stat ) ) { // don't cache negatives
+			$this->trimCache(); // limit memory
+			$this->cache[$path]['stat'] = $stat;
+		}
+		return $stat;
+	}
+
+	/**
+	 * @see FileBackend::getFileStat()
+	 */
+	abstract protected function doGetFileStat( array $params );
 
 	/**
 	 * @see FileBackendBase::getFileContents()
@@ -862,7 +900,7 @@ abstract class FileBackend extends FileBackendBase {
 	/**
 	 * @see FileBackendBase::getFileSha1Base36()
 	 */
-	public function getFileSha1Base36( array $params ) {
+	final public function getFileSha1Base36( array $params ) {
 		$path = $params['src'];
 		if ( isset( $this->cache[$path]['sha1'] ) ) {
 			return $this->cache[$path]['sha1'];
@@ -918,23 +956,39 @@ abstract class FileBackend extends FileBackendBase {
 	/**
 	 * @see FileBackendBase::streamFile()
 	 */
-	public function streamFile( array $params ) {
+	final public function streamFile( array $params ) {
+		$status = Status::newGood();
+
+		$info = $this->getFileStat( $params );
+		if ( !$info ) { // let StreamFile handle the 404
+			$status->fatal( 'backend-fail-notexists', $params['src'] );
+		}
+
+		// Set output buffer and HTTP headers for stream
+		$extraHeaders = $params['headers'] ? $params['headers'] : array();
+		$res = StreamFile::prepareForStream( $params['src'], $info, $extraHeaders );
+		if ( $res == StreamFile::NOT_MODIFIED ) {
+			// do nothing; client cache is up to date
+		} elseif ( $res == StreamFile::READY_STREAM ) {
+			$status = $this->doStreamFile( $params );
+		} else {
+			$status->fatal( 'backend-fail-stream', $params['src'] );
+		}
+
+		return $status;
+	}
+
+	/**
+	 * @see FileBackend::streamFile()
+	 */
+	protected function doStreamFile( array $params ) {
 		$status = Status::newGood();
 
 		$fsFile = $this->getLocalReference( $params );
 		if ( !$fsFile ) {
 			$status->fatal( 'backend-fail-stream', $params['src'] );
-			return $status;
-		}
-
-		$extraHeaders = isset( $params['headers'] )
-			? $params['headers']
-			: array();
-
-		$ok = StreamFile::stream( $fsFile->getPath(), $extraHeaders, false );
-		if ( !$ok ) {
+		} elseif ( !readfile( $fsFile->getPath() ) ) {
 			$status->fatal( 'backend-fail-stream', $params['src'] );
-			return $status;
 		}
 
 		return $status;

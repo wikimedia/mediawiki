@@ -84,7 +84,7 @@ abstract class FileOp {
 		$status = Status::newGood();
 
 		$allowStale = isset( $opts['allowStale'] ) && $opts['allowStale'];
-		$ignoreErrors = isset( $opts['ignoreErrors'] ) && $opts['ignoreErrors'];
+		$ignoreErrors = isset( $opts['force'] ) && $opts['force'];
 		$predicates = FileOp::newPredicates(); // account for previous op in prechecks
 		// Do pre-checks for each operation; abort on failure...
 		foreach ( $performOps as $index => $fileOp ) {

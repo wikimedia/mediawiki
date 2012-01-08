@@ -2254,6 +2254,7 @@ If the problem persists, contact an [[Special:ListUsers/sysop|administrator]].',
 'backend-fail-read'          => 'Could not read file $1.',
 'backend-fail-create'        => 'Could not create file $1.',
 'backend-fail-readonly'      => 'The backend "$1" is currently read-only. The reason given is: "$2"',
+'backend-fail-synced'        => 'The file "$1" is in an inconsistent state within the internal backends',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Could not unlock "$1"; it is not locked.',

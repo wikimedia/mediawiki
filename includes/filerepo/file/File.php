@@ -811,7 +811,7 @@ abstract class File {
 			// overriding File::getThumbPath() to use a different zone (e.g. 'temp').
 			$status = $this->repo->getBackend()->store(
 				array( 'src' => $tmpThumbPath, 'dst' => $thumbPath ),
-				array( 'ignoreErrors' => 1, 'nonLocking' => 1, 'allowStale' => 1 )
+				array( 'force' => 1, 'nonLocking' => 1, 'allowStale' => 1 )
 			);
 			if ( $status->isOK() ) {
 				$thumb->setStoragePath( $thumbPath );
