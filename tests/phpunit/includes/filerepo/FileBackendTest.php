@@ -76,6 +76,8 @@ class FileBackendTest extends MediaWikiTestCase {
 			"Store from $source to $dest succeeded without warnings ($backendName)." );
 		$this->assertEquals( true, $status->isOK(),
 			"Store from $source to $dest succeeded ($backendName)." );
+		$this->assertEquals( array( 0 => true ), $status->success,
+			"Store from $source to $dest has proper 'success' field in Status ($backendName)." );
 		$this->assertEquals( true, file_exists( $source ),
 			"Source file $source still exists ($backendName)." );
 		$this->assertEquals( true, $this->backend->fileExists( array( 'src' => $dest ) ),
@@ -142,6 +144,8 @@ class FileBackendTest extends MediaWikiTestCase {
 			"Copy from $source to $dest succeeded without warnings ($backendName)." );
 		$this->assertEquals( true, $status->isOK(),
 			"Copy from $source to $dest succeeded ($backendName)." );
+		$this->assertEquals( array( 0 => true ), $status->success,
+			"Copy from $source to $dest has proper 'success' field in Status ($backendName)." );
 		$this->assertEquals( true, $this->backend->fileExists( array( 'src' => $source ) ),
 			"Source file $source still exists ($backendName)." );
 		$this->assertEquals( true, $this->backend->fileExists( array( 'src' => $dest ) ),
@@ -210,6 +214,8 @@ class FileBackendTest extends MediaWikiTestCase {
 			"Move from $source to $dest succeeded without warnings ($backendName)." );
 		$this->assertEquals( true, $status->isOK(),
 			"Move from $source to $dest succeeded ($backendName)." );
+		$this->assertEquals( array( 0 => true ), $status->success,
+			"Move from $source to $dest has proper 'success' field in Status ($backendName)." );
 		$this->assertEquals( false, $this->backend->fileExists( array( 'src' => $source ) ),
 			"Source file $source does not still exists ($backendName)." );
 		$this->assertEquals( true, $this->backend->fileExists( array( 'src' => $dest ) ),
@@ -282,6 +288,8 @@ class FileBackendTest extends MediaWikiTestCase {
 				"Deletion of file at $source succeeded without warnings ($backendName)." );
 			$this->assertEquals( true, $status->isOK(),
 				"Deletion of file at $source succeeded ($backendName)." );
+			$this->assertEquals( array( 0 => true ), $status->success,
+				"Deletion of file at $source has proper 'success' field in Status ($backendName)." );
 		} else {
 			$this->assertEquals( false, $status->isOK(),
 				"Deletion of file at $source failed ($backendName)." );
@@ -362,6 +370,8 @@ class FileBackendTest extends MediaWikiTestCase {
 				"Creation of file at $dest succeeded without warnings ($backendName)." );
 			$this->assertEquals( true, $status->isOK(),
 				"Creation of file at $dest succeeded ($backendName)." );
+			$this->assertEquals( array( 0 => true ), $status->success,
+				"Creation of file at $dest has proper 'success' field in Status ($backendName)." );
 		} else {
 			$this->assertEquals( false, $status->isOK(),
 				"Creation of file at $dest failed ($backendName)." );

@@ -14,7 +14,7 @@
  * Only use this class when transitioning from one storage system to another.
  *
  * Read operations are only done on the 'master' backend for consistency.
- * All write operations are performed on all backends, in the order defined.
+ * Write operations are performed on all backends, in the order defined.
  * If an operation fails on one backend it will be rolled back from the others.
  *
  * @ingroup FileBackend
@@ -86,8 +86,8 @@ class FileBackendMultiWrite extends FileBackendBase {
 					$filesChanged = array_merge( $filesChanged, $fileOp->storagePathsChanged() );
 				}
 				// Get the paths under the proxy backend's name
-				$this->unsubstPaths( $filesRead );
-				$this->unsubstPaths( $filesChanged );
+				$filesRead = $this->unsubstPaths( $filesRead );
+				$filesChanged = $this->unsubstPaths( $filesChanged );
 			}
 		}
 
@@ -103,9 +103,7 @@ class FileBackendMultiWrite extends FileBackendBase {
 		}
 
 		// Clear any cache entries (after locks acquired)
-		foreach ( $this->backends as $backend ) {
-			$backend->clearCache();
-		}
+		$this->clearCache();
 
 		// Do a consistency check to see if the backends agree
 		if ( count( $this->backends ) > 1 ) {
@@ -116,7 +114,32 @@ class FileBackendMultiWrite extends FileBackendBase {
 		}
 
 		// Actually attempt the operation batch...
-		$status->merge( FileOp::attemptBatch( $performOps, $opts ) );
+		$subStatus = FileOp::attemptBatch( $performOps, $opts );
+
+		$success = array();
+		$failCount = $successCount = 0;
+		// Make 'success', 'successCount', and 'failCount' fields reflect
+		// the overall operation, rather than all the batches for each backend.
+		// Do this by only using success values from the master backend's batch.
+		$batchStart = $this->masterIndex * count( $ops );
+		$batchEnd = $batchStart + count( $ops ) - 1;
+		for ( $i = $batchStart; $i <= $batchEnd; $i++ ) {
+			if ( !isset( $subStatus->success[$i] ) ) {
+				break; // failed out before trying this op
+			} elseif ( $subStatus->success[$i] ) {
+				++$successCount;
+			} else {
+				++$failCount;
+			}
+			$success[] = $subStatus->success[$i];
+		}
+		$subStatus->success = $success;
+		$subStatus->successCount = $successCount;
+		$subStatus->failCount = $failCount;
+
+		// Merge errors into status fields
+		$status->merge( $subStatus );
+		$status->success = $subStatus->success; // not done in merge()
 
 		return $status;
 	}
@@ -166,7 +189,7 @@ class FileBackendMultiWrite extends FileBackendBase {
 
 	/**
 	 * Substitute the backend name in storage path parameters
-	 * for a set of operations with that of a given backend.
+	 * for a set of operations with that of a given internal backend.
 	 * 
 	 * @param $ops Array List of file operation arrays
 	 * @param $backend FileBackend
@@ -177,12 +200,8 @@ class FileBackendMultiWrite extends FileBackendBase {
 		foreach ( $ops as $op ) {
 			$newOp = $op; // operation
 			foreach ( array( 'src', 'srcs', 'dst', 'dir' ) as $par ) {
-				if ( isset( $newOp[$par] ) ) {
-					$newOp[$par] = preg_replace(
-						'!^mwstore://' . preg_quote( $this->name ) . '/!',
-						'mwstore://' . $backend->getName() . '/',
-						$newOp[$par] // string or array
-					);
+				if ( isset( $newOp[$par] ) ) { // string or array
+					$newOp[$par] = $this->substPaths( $newOp[$par], $backend );
 				}
 			}
 			$newOps[] = $newOp;
@@ -203,15 +222,32 @@ class FileBackendMultiWrite extends FileBackendBase {
 	}
 
 	/**
-	 * Replace the backend part of storage paths with this backend's name
+	 * Substitute the backend of storage paths with an internal backend's name
 	 * 
-	 * @param &$paths Array
-	 * @return void 
+	 * @param $paths Array|string List of paths or single string path
+	 * @param $backend FileBackend
+	 * @return Array|string
 	 */
-	protected function unsubstPaths( array &$paths ) {
-		foreach ( $paths as &$path ) {
-			$path = preg_replace( '!^mwstore://([^/]+)!', "mwstore://{$this->name}", $path );
-		}
+	protected function substPaths( $paths, FileBackend $backend ) {
+		return preg_replace(
+			'!^mwstore://' . preg_quote( $this->name ) . '/!',
+			'mwstore://' . $backend->getName() . '/',
+			$paths // string or array
+		);
+	}
+
+	/**
+	 * Substitute the backend of internal storage paths with the proxy backend's name
+	 * 
+	 * @param $paths Array|string List of paths or single string path
+	 * @return Array|string
+	 */
+	protected function unsubstPaths( $paths ) {
+		return preg_replace(
+			'!^mwstore://([^/]+)!',
+			"mwstore://{$this->name}",
+			$paths // string or array
+		);
 	}
 
 	/**
@@ -345,5 +381,15 @@ class FileBackendMultiWrite extends FileBackendBase {
 	public function getFileList( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
 		return $this->backends[$this->masterIndex]->getFileList( $realParams );
+	}
+
+	/**
+	 * @see FileBackendBase::clearCache()
+	 */
+	public function clearCache( array $paths = null ) {
+		foreach ( $this->backends as $backend ) {
+			$realPaths = is_array( $paths ) ? $this->substPaths( $paths ) : null;
+			$backend->clearCache( $realPaths );
+		}
 	}
 }
