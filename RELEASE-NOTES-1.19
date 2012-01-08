@@ -228,6 +228,7 @@ production.
   all pages.
 * Files with IPTC blocks we can't read no longer prevent extraction of exif
   or other metadata.
+* (bug 33587) Remove action "historysubmit" from history pages.
 
 === API changes in 1.19 ===
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.
