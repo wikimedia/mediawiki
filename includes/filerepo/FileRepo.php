@@ -695,7 +695,7 @@ class FileRepo {
 		}
 
 		// Execute the store operation for each triplet
-		$opts = array( 'ignoreErrors' => true );
+		$opts = array( 'force' => true );
 		if ( $flags & self::SKIP_LOCKING ) {
 			$opts['nonLocking'] = true;
 		}
@@ -750,7 +750,7 @@ class FileRepo {
 			}
 		}
 		// Actually delete files from storage...
-		$opts = array( 'ignoreErrors' => true );
+		$opts = array( 'force' => true );
 		$this->backend->doOperations( $operations, $opts );
 		// Cleanup for disk source files...
 		foreach ( $sourceFSFilesToDelete as $file ) {
@@ -814,7 +814,7 @@ class FileRepo {
 
 		// Delete the sources if required
 		if ( $deleteOperations ) {
-			$opts = array( 'ignoreErrors' => true );
+			$opts = array( 'force' => true );
 			$status->merge( $this->backend->doOperations( $deleteOperations, $opts ) );
 		}
 
@@ -967,7 +967,7 @@ class FileRepo {
 		}
 
 		// Execute the operations for each triplet
-		$opts = array( 'ignoreErrors' => true );
+		$opts = array( 'force' => true );
 		$status->merge( $backend->doOperations( $operations, $opts ) );
 		// Cleanup for disk source files...
 		foreach ( $sourceFSFilesToDelete as $file ) {
@@ -1102,7 +1102,7 @@ class FileRepo {
 		// Move the files by execute the operations for each pair.
 		// We're now committed to returning an OK result, which will
 		// lead to the files being moved in the DB also.
-		$opts = array( 'ignoreErrors' => true );
+		$opts = array( 'force' => true );
 		$status->merge( $backend->doOperations( $operations, $opts ) );
 
 		return $status;

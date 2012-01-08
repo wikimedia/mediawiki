@@ -339,27 +339,28 @@ class FSFileBackend extends FileBackend {
 	/**
 	 * @see FileBackend::doFileExists()
 	 */
-	protected function doFileExists( array $params ) {
+	protected function doGetFileStat( array $params ) {
 		list( $c, $source ) = $this->resolveStoragePathReal( $params['src'] );
 		if ( $source === null ) {
 			return false; // invalid storage path
 		}
-		wfSuppressWarnings();
-		$exists = is_file( $source );
-		wfRestoreWarnings();
-		return $exists;
-	}
 
-	/**
-	 * @see FileBackend::doGetFileTimestamp()
-	 */
-	public function doGetFileTimestamp( array $params ) {
-		list( $c, $source ) = $this->resolveStoragePathReal( $params['src'] );
-		if ( $source === null ) {
-			return false; // invalid storage path
+		wfSuppressWarnings();
+		if ( is_file( $source ) ) { // regular file?
+			$stat = stat( $source );
+		} else {
+			$stat = false;
 		}
-		$fsFile = new FSFile( $source );
-		return $fsFile->getTimestamp();
+		wfRestoreWarnings();
+
+		if ( $stat ) {
+			return array(
+				'mtime' => wfTimestamp( TS_MW, $stat['mtime'] ),
+				'size'  => $stat['size']
+			);
+		} else {
+			return false;
+		}
 	}
 
 	/**

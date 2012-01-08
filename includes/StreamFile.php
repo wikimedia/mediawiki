@@ -5,6 +5,9 @@
  * @file
  */
 class StreamFile {
+	const READY_STREAM = 1;
+	const NOT_MODIFIED = 2;
+
 	/**
 	 * Stream a file to the browser, adding all the headings and fun stuff.
 	 * Headers sent include: Content-type, Content-Length, Last-Modified,
@@ -16,17 +19,44 @@ class StreamFile {
 	 * @return bool Success
 	 */
 	public static function stream( $fname, $headers = array(), $sendErrors = true ) {
-		global $wgLanguageCode;
-
 		wfSuppressWarnings();
 		$stat = stat( $fname );
 		wfRestoreWarnings();
-		if ( !$stat ) {
+
+		$res = self::prepareForStream( $fname, $stat, $headers, $sendErrors );
+		if ( $res == self::NOT_MODIFIED ) {
+			return true; // use client cache
+		} elseif ( $res == self::READY_STREAM ) {
+			return readfile( $fname );
+		} else {
+			return false; // failed
+		}
+	}
+
+	/**
+	 * Call this function used in preparation before streaming a file.
+	 * This function does the following:
+	 * (a) sends Last-Modified, Content-type, and Content-Disposition headers
+	 * (b) cancels any PHP output buffering and automatic gzipping of output
+	 * (c) sends Content-Length header based on HTTP_IF_MODIFIED_SINCE check
+	 *
+	 * @param $path string Storage path or file system path
+	 * @param $info Array File stat info with 'mtime' and 'size' fields
+	 * @param $headers Array Additional headers to send
+	 * @param $sendErrors bool Send error messages if errors occur (like 404)
+	 * @return int|false READY_STREAM, NOT_MODIFIED, or false on failure
+	 */
+	public static function prepareForStream(
+		$path, array $info, $headers = array(), $sendErrors = true
+	) {
+		global $wgLanguageCode;
+
+		if ( !$info ) {
 			if ( $sendErrors ) {
 				header( 'HTTP/1.0 404 Not Found' );
 				header( 'Cache-Control: no-cache' );
 				header( 'Content-Type: text/html; charset=utf-8' );
-				$encFile = htmlspecialchars( $fname );
+				$encFile = htmlspecialchars( $path );
 				$encScript = htmlspecialchars( $_SERVER['SCRIPT_NAME'] );
 				echo "<html><body>
 					<h1>File not found</h1>
@@ -38,12 +68,13 @@ class StreamFile {
 			return false;
 		}
 
-		header( 'Last-Modified: ' . gmdate( 'D, d M Y H:i:s', $stat['mtime'] ) . ' GMT' );
+		// Sent Last-Modified HTTP header for client-side caching
+		header( 'Last-Modified: ' . wfTimestamp( TS_RFC2822, $info['mtime'] ) );
 
 		// Cancel output buffering and gzipping if set
 		wfResetOutputBuffers();
 
-		$type = self::getType( $fname );
+		$type = self::getType( $path );
 		if ( $type && $type != 'unknown/unknown' ) {
 			header( "Content-type: $type" );
 		} else {
@@ -57,7 +88,7 @@ class StreamFile {
 		}
 
 		header( "Content-Disposition: inline;filename*=utf-8'$wgLanguageCode'" .
-			urlencode( basename( $fname ) ) );
+			urlencode( basename( $path ) ) );
 
 		// Send additional headers
 		foreach ( $headers as $header ) {
@@ -67,26 +98,25 @@ class StreamFile {
 		// Don't send if client has up to date cache
 		if ( !empty( $_SERVER['HTTP_IF_MODIFIED_SINCE'] ) ) {
 			$modsince = preg_replace( '/;.*$/', '', $_SERVER['HTTP_IF_MODIFIED_SINCE'] );
-			$sinceTime = strtotime( $modsince );
-			if ( $stat['mtime'] <= $sinceTime ) {
+			if ( wfTimestamp( TS_UNIX, $info['mtime'] ) <= strtotime( $modsince ) ) {
 				ini_set( 'zlib.output_compression', 0 );
 				header( "HTTP/1.0 304 Not Modified" );
-				return true; // ok
+				return self::NOT_MODIFIED; // ok
 			}
 		}
 
-		header( 'Content-Length: ' . $stat['size'] );
+		header( 'Content-Length: ' . $info['size'] );
 
-		return readfile( $fname );
+		return self::READY_STREAM; // ok
 	}
 
 	/**
 	 * Determine the filetype we're dealing with
-	 * @param $filename string
-	 * @param $safe bool
+	 * @param $filename string Storage path or file system path
+	 * @param $safe bool Whether to do retroactive upload blacklist checks
 	 * @return null|string
 	 */
-	private static function getType( $filename, $safe = true ) {
+	protected static function getType( $filename, $safe = true ) {
 		global $wgTrivialMimeDetection;
 
 		$ext = strrchr( $filename, '.' );
