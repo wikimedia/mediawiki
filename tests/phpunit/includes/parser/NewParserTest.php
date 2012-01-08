@@ -323,7 +323,7 @@ class NewParserTest extends MediaWikiTestCase {
 		global $wgHooks;
 
 		$wgHooks['ParserTestParser'][] = 'ParserTestParserHook::setup';
-		$wgHooks['ParserGetVariableValueTs'][] = 'ParserTest::getFakeTimestamp';
+		$wgHooks['ParserGetVariableValueTs'][] = 'NewParserTest::getFakeTimestamp';
 
 		MagicWord::clearCache();
 		RepoGroup::destroySingleton();
@@ -708,9 +708,48 @@ class NewParserTest extends MediaWikiTestCase {
 
 		foreach ( self::$articles as $name => $info ) {
 			list( $text, $line ) = $info;
-			ParserTest::addArticle( $name, $text, $line, 'ignoreduplicate' );
+			self::injectArticle( $name, $text, $line, 'ignoreduplicate' );
 		}
 	}
+	
+	/**
+	 * Insert a temporary test article
+	 * @param $name String: the title, including any prefix
+	 * @param $text String: the article text
+	 * @param $line Integer: the input line number, for reporting errors
+	 * @param $ignoreDuplicate Boolean: whether to silently ignore duplicate pages
+	 */
+	private static function injectArticle( $name, $text, $line = 'unknown', $ignoreDuplicate = '' ) {
+		global $wgCapitalLinks;
+
+		$oldCapitalLinks = $wgCapitalLinks;
+		$wgCapitalLinks = true; // We only need this from SetupGlobals() See r70917#c8637
+
+		$text = TestFileIterator::chomp( $text );
+		$name = TestFileIterator::chomp( $name );
+
+		$title = Title::newFromText( $name );
+
+		if ( is_null( $title ) ) {
+			throw new MWException( "invalid title '$name' at line $line\n" );
+		}
+
+		$page = WikiPage::factory( $title );
+		$page->loadPageData( 'fromdbmaster' );
+
+		if ( $page->exists() ) {
+			if ( $ignoreDuplicate == 'ignoreduplicate' ) {
+				return;
+			} else {
+				throw new MWException( "duplicate article '$name' at line $line\n" );
+			}
+		}
+
+		$page->doEdit( $text, '', EDIT_NEW );
+
+		$wgCapitalLinks = $oldCapitalLinks;
+	}
+
 
 	/**
 	 * Steal a callback function from the primary parser, save it for
@@ -848,5 +887,10 @@ class NewParserTest extends MediaWikiTestCase {
 		} else {
 			return $default;
 		}
+	}
+
+	public static function getFakeTimestamp( &$parser, &$ts ) {
+		$ts = 123;
+		return true;
 	}
 }
