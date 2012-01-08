@@ -480,6 +480,15 @@ abstract class FileBackendBase {
 	abstract public function getFileList( array $params );
 
 	/**
+	 * Invalidate any in-process file existence and property cache.
+	 * If $paths is given, then only the cache for those files will be cleared.
+	 *
+	 * @param $paths Array Storage paths
+	 * @return void
+	 */
+	abstract public function clearCache( array $paths = null );
+
+	/**
 	 * Lock the files at the given storage paths in the backend.
 	 * This will either lock all the files or none (on failure).
 	 * 
@@ -1094,17 +1103,19 @@ abstract class FileBackend extends FileBackendBase {
 
 		// Clear any cache entries (after locks acquired)
 		$this->clearCache();
+
 		// Actually attempt the operation batch...
-		$status->merge( FileOp::attemptBatch( $performOps, $opts ) );
+		$subStatus = FileOp::attemptBatch( $performOps, $opts );
+
+		// Merge errors into status fields
+		$status->merge( $subStatus );
+		$status->success = $subStatus->success; // not done in merge()
 
 		return $status;
 	}
 
 	/**
-	 * Invalidate the file existence and property cache
-	 *
-	 * @param $paths Array Clear cache for specific files
-	 * @return void
+	 * @see FileBackendBase::clearCache()
 	 */
 	final public function clearCache( array $paths = null ) {
 		if ( $paths === null ) {
