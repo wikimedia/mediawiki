@@ -58,6 +58,15 @@ class LockServerDaemon {
 		if ( self::$instance ) {
 			throw new Exception( 'LockServer already initialized.' );
 		}
+		foreach ( array( 'address', 'port', 'authKey' ) as $par ) {
+			if ( !isset( $config[$par] ) ) {
+				die( "Usage: php LockServerDaemon.php " .
+					"--address <address> --port <port> --authkey <key> " .
+					"[--connTimeout <seconds>] [--lockTimeout <seconds>] " .
+					"[--maxLocks <integer>] [--maxClients <integer>] [--maxBacklog <integer>]"
+				);
+			}
+		}
 		self::$instance = new self( $config );
 		return self::$instance;
 	}
@@ -66,17 +75,11 @@ class LockServerDaemon {
 	 * @params $config Array
 	 */
 	protected function __construct( array $config ) {
-		$required = array( 'address', 'port', 'authKey' );
-		foreach ( $required as $par ) {
-			if ( !isset( $config[$par] ) ) {
-				throw new Exception( "Parameter '$par' must be specified." );
-			} 
-		}
-
+		// Required parameters...
 		$this->address = $config['address'];
 		$this->port = $config['port'];
 		$this->authKey = $config['authKey'];
-
+		// Parameters with defaults...
 		$connTimeout = isset( $config['connTimeout'] )
 			? $config['connTimeout']
 			: 1.5;
@@ -92,7 +95,7 @@ class LockServerDaemon {
 			: 5000;
 		$this->maxClients = isset( $config['maxClients'] )
 			? $config['maxClients']
-			: 100;
+			: 1000; // less than default FD_SETSIZE
 		$this->maxBacklog = isset( $config['maxBacklog'] )
 			? $config['maxBacklog']
 			: 10;
