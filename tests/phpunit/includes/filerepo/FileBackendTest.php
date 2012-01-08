@@ -437,13 +437,12 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->doTestConcatenate( $op, $srcs, $srcsContent, $alreadyExists, $okStatus );
 		$this->tearDownFiles();
 
-		# FIXME
-		#$this->backend = $this->multiBackend;
-		#$this->doTestConcatenate( $op, $srcs, $srcsContent, $alreadyExists, $okStatus );
-		#$this->tearDownFiles();
+		$this->backend = $this->multiBackend;
+		$this->doTestConcatenate( $op, $srcs, $srcsContent, $alreadyExists, $okStatus );
+		$this->tearDownFiles();
 	}
 
-	public function doTestConcatenate( $op, $srcs, $srcsContent, $alreadyExists, $okStatus ) {
+	public function doTestConcatenate( $params, $srcs, $srcsContent, $alreadyExists, $okStatus ) {
 		$backendName = $this->backendClass();
 
 		$expContent = '';
@@ -462,7 +461,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->assertEquals( true, $status->isOK(),
 			"Creation of source files succeeded ($backendName)." );
 
-		$dest = $op['dst'];
+		$dest = $params['dst'];
 		if ( $alreadyExists ) {
 			$ok = file_put_contents( $dest, 'blah...blah...waahwaah' ) !== false;
 			$this->assertEquals( true, $ok,
@@ -473,8 +472,8 @@ class FileBackendTest extends MediaWikiTestCase {
 				"Creation of 0-byte file at $dest succeeded ($backendName)." );
 		}
 
-		// Combine them
-		$status = $this->backend->doOperation( $op );
+		// Combine the files into one
+		$status = $this->backend->concatenate( $params );
 		if ( $okStatus ) {
 			$this->assertEquals( array(), $status->errors,
 				"Creation of concat file at $dest succeeded without warnings ($backendName)." );
@@ -534,10 +533,10 @@ class FileBackendTest extends MediaWikiTestCase {
 			'lkaem;a',
 			'legma'
 		);
-		$op = array( 'op' => 'concatenate', 'srcs' => $srcs, 'dst' => $dest );
+		$params = array( 'srcs' => $srcs, 'dst' => $dest );
 
 		$cases[] = array(
-			$op, // operation
+			$params, // operation
 			$srcs, // sources
 			$content, // content for each source
 			false, // no dest already exists
@@ -545,7 +544,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		);
 
 		$cases[] = array(
-			$op, // operation
+			$params, // operation
 			$srcs, // sources
 			$content, // content for each source
 			true, // dest already exists

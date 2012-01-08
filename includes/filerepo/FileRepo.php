@@ -791,8 +791,6 @@ class FileRepo {
 	 */
 	function concatenate( $srcPaths, $dstPath, $flags = 0 ) {
 		$status = $this->newGood();
-		// Resolve target to a storage path if virtual
-		$dest = $this->resolveToStoragePath( $dstPath );
 
 		$sources = array();
 		$deleteOperations = array(); // post-concatenate ops
@@ -805,9 +803,9 @@ class FileRepo {
 			}
 		}
 
-		// Concatenate the chunks into one file
-		$op = array( 'op' => 'concatenate', 'srcs' => $sources, 'dst' => $dest );
-		$status->merge( $this->backend->doOperation( $op ) );
+		// Concatenate the chunks into one FS file
+		$params = array( 'srcs' => $sources, 'dst' => $dstPath );
+		$status->merge( $this->backend->concatenate( $params ) );
 		if ( !$status->isOK() ) {
 			return $status;
 		}
