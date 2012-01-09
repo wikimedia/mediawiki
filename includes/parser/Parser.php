@@ -516,6 +516,7 @@ class Parser {
 	 * @param $text String: text to be expanded
 	 * @param $frame PPFrame: The frame to use for expanding any template variables
 	 * @return String
+	 * @since 1.19
 	 */
 	public function recursivePreprocess( $text, $frame = false ) {
 		wfProfileIn( __METHOD__ );
