@@ -274,9 +274,9 @@ class FSFileBackend extends FileBackend {
 	}
 
 	/**
-	 * @see FileBackend::doPrepare()
+	 * @see FileBackend::doPrepareInternal()
 	 */
-	protected function doPrepare( $container, $dir, array $params ) {
+	protected function doPrepareInternal( $container, $dir, array $params ) {
 		$status = Status::newGood();
 		if ( !wfMkdirParents( $dir ) ) {
 			$status->fatal( 'directorycreateerror', $params['dir'] );
@@ -289,9 +289,9 @@ class FSFileBackend extends FileBackend {
 	}
 
 	/**
-	 * @see FileBackend::doSecure()
+	 * @see FileBackend::doSecureInternal()
 	 */
-	protected function doSecure( $container, $dir, array $params ) {
+	protected function doSecureInternal( $container, $dir, array $params ) {
 		$status = Status::newGood();
 		if ( !wfMkdirParents( $dir ) ) {
 			$status->fatal( 'directorycreateerror', $params['dir'] );
@@ -308,25 +308,27 @@ class FSFileBackend extends FileBackend {
 			}
 		}
 		// Add a .htaccess file to the root of the container...
-		list( $b, $container, $r ) = FileBackend::splitStoragePath( $params['dir'] );
-		$dirRoot = $this->containerPaths[$container]; // real path
-		if ( !empty( $params['noAccess'] ) && !file_exists( "{$dirRoot}/.htaccess" ) ) {
-			wfSuppressWarnings();
-			$ok = file_put_contents( "{$dirRoot}/.htaccess", "Deny from all\n" );
-			wfRestoreWarnings();
-			if ( !$ok ) {
-				$storeDir = "mwstore://{$this->name}/{$container}";
-				$status->fatal( 'backend-fail-create', "$storeDir/.htaccess" );
-				return $status;
+		if ( !empty( $params['noAccess'] ) ) {
+			list( $b, $container, $r ) = FileBackend::splitStoragePath( $params['dir'] );
+			$dirRoot = $this->containerPaths[$container]; // real path
+			if ( !file_exists( "{$dirRoot}/.htaccess" ) ) {
+				wfSuppressWarnings();
+				$ok = file_put_contents( "{$dirRoot}/.htaccess", "Deny from all\n" );
+				wfRestoreWarnings();
+				if ( !$ok ) {
+					$storeDir = "mwstore://{$this->name}/{$container}";
+					$status->fatal( 'backend-fail-create', "$storeDir/.htaccess" );
+					return $status;
+				}
 			}
 		}
 		return $status;
 	}
 
 	/**
-	 * @see FileBackend::doClean()
+	 * @see FileBackend::doCleanInternal()
 	 */
-	protected function doClean( $container, $dir, array $params ) {
+	protected function doCleanInternal( $container, $dir, array $params ) {
 		$status = Status::newGood();
 		wfSuppressWarnings();
 		if ( is_dir( $dir ) ) {

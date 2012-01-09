@@ -251,37 +251,37 @@ class FileBackendMultiWrite extends FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackendBase::prepare()
+	 * @see FileBackendBase::doPrepare()
 	 */
-	public function prepare( array $params ) {
+	public function doPrepare( array $params ) {
 		$status = Status::newGood();
 		foreach ( $this->backends as $backend ) {
 			$realParams = $this->substOpPaths( $params, $backend );
-			$status->merge( $backend->prepare( $realParams ) );
+			$status->merge( $backend->doPrepare( $realParams ) );
 		}
 		return $status;
 	}
 
 	/**
-	 * @see FileBackendBase::secure()
+	 * @see FileBackendBase::doSecure()
 	 */
-	public function secure( array $params ) {
+	public function doSecure( array $params ) {
 		$status = Status::newGood();
 		foreach ( $this->backends as $backend ) {
 			$realParams = $this->substOpPaths( $params, $backend );
-			$status->merge( $backend->secure( $realParams ) );
+			$status->merge( $backend->doSecure( $realParams ) );
 		}
 		return $status;
 	}
 
 	/**
-	 * @see FileBackendBase::clean()
+	 * @see FileBackendBase::doClean()
 	 */
-	public function clean( array $params ) {
+	public function doClean( array $params ) {
 		$status = Status::newGood();
 		foreach ( $this->backends as $backend ) {
 			$realParams = $this->substOpPaths( $params, $backend );
-			$status->merge( $backend->clean( $realParams ) );
+			$status->merge( $backend->doClean( $realParams ) );
 		}
 		return $status;
 	}
