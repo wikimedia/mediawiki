@@ -1,4 +1,4 @@
- <?php
+<?php
 /**
  * This is the default English localisation file
  *
