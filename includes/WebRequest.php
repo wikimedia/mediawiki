@@ -1199,7 +1199,7 @@ class FauxRequest extends WebRequest {
 	 * @param $wasPosted Bool: whether to treat the data as POST
 	 * @param $session Mixed: session array or null
 	 */
-	public function __construct( $data, $wasPosted = false, $session = null ) {
+	public function __construct( $data = array(), $wasPosted = false, $session = null ) {
 		if( is_array( $data ) ) {
 			$this->data = $data;
 		} else {
