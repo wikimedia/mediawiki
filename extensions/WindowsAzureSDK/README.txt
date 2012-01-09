@@ -1,0 +1,1 @@
+This extension contains the Microsoft "Windows Azure SDK for PHP v4.1.0" (http://phpazure.codeplex.com/) by REALDOLMEN.
