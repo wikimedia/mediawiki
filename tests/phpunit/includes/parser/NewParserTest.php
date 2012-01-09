@@ -801,10 +801,6 @@ class NewParserTest extends MediaWikiTestCase {
 		}
 	}
 
-	public function showRunFile( $file ) {
-		/* NOP */
-	}
-
 	//Test options parser functions
 
 	protected function parseOptions( $instring ) {
