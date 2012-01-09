@@ -806,10 +806,11 @@ abstract class File {
 				$thumb = $this->handler->getTransform( $this, $tmpThumbPath, $thumbUrl, $params );
 			}
 		} elseif ( $thumb->hasFile() && !$thumb->fileIsSource() ) {
-			// Copy the thumbnail from the file system into storage
-			// We don't use FileRepo::store() because of hacky suclasses
-			// overriding File::getThumbPath() to use a different zone (e.g. 'temp').
-			$status = $this->repo->getBackend()->store(
+			$backend = $this->repo->getBackend();
+			// Copy the thumbnail from the file system into storage. This avoids using
+			// FileRepo::store(); getThumbPath() uses a different zone in some subclasses.
+			$backend->prepare( array( 'dir' => dirname( $thumbPath ) ) );
+			$status = $backend->store(
 				array( 'src' => $tmpThumbPath, 'dst' => $thumbPath ),
 				array( 'force' => 1, 'nonLocking' => 1, 'allowStale' => 1 )
 			);

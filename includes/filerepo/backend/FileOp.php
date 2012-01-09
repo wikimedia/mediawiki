@@ -76,6 +76,13 @@ abstract class FileOp {
 	 * Attempt a series of file operations.
 	 * Callers are responsible for handling file locking.
 	 * 
+	 * $opts is an array of options, including:
+	 * 'force'               : Errors that would normally cause a rollback do not.
+	 *                         The remaining operations are still attempted if any fail.
+	 * 'allowStale'          : Don't require the latest available data.
+	 *                         This can increase performance for non-critical writes.
+	 *                         This has no effect unless the 'force' flag is set.
+	 * 
 	 * @param $performOps Array List of FileOp operations
 	 * @param $opts Array Batch operation options
 	 * @return Status 
@@ -129,6 +136,7 @@ abstract class FileOp {
 			}
 		}
 
+		$wasOk = $status->isOK();
 		// Finish each operation...
 		foreach ( $performOps as $index => $fileOp ) {
 			if ( $fileOp->failed() ) {
@@ -146,7 +154,7 @@ abstract class FileOp {
 		}
 
 		// Make sure status is OK, despite any finish() fatals
-		$status->setResult( true, $status->value );
+		$status->setResult( $wasOk, $status->value );
 
 		return $status;
 	}
