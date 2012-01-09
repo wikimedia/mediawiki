@@ -25,6 +25,7 @@
  * @author ToePeu
  * @author Yknok29
  * @author לערי ריינהארט
+ * @author 관인생략
  */
 
 $namespaceNames = array(
@@ -3763,5 +3764,41 @@ $5
 'feedback-close'    => '완료',
 'feedback-bugcheck' => '감사합니다! 혹시 해당 사항이 [$1 기존의 버그 리포트]에 올라와 있는지 확인해주세요.',
 'feedback-bugnew'   => '확인했습니다. 새로운 버그 리포트를 작성합니다.',
+
+# API errors
+'api-error-badaccess-groups'              => '당신은 이 위키에 파일을 올릴 권한이 없습니다.',
+'api-error-badtoken'                      => '내부 오류: 토큰이 잘못되었습니다.',
+'api-error-copyuploaddisabled'            => '이 서버에서 URL을 통해 파일 올리기가 비활성화되어 있습니다.',
+'api-error-duplicate'                     => '이 위키에 내용이 똑같은 {{PLURAL:$1|[$2 다른 파일]}}이 있습니다.',
+'api-error-duplicate-archive'             => '같은 내용을 담고 있던 {{PLURAL:$1|[$2 다른 파일]}}이 있었지만 이 {{PLURAL:$1|파일|파일들}}은 삭제되었습니다.',
+'api-error-duplicate-archive-popup-title' => '중복된 {{PLURAL:$1|파일}}이 이미 삭제되었습니다.',
+'api-error-duplicate-popup-title'         => '중복된 {{PLURAL:$1|파일}}',
+'api-error-empty-file'                    => '당신이 올리려는 파일이 비어 있습니다.',
+'api-error-fetchfileerror'                => '내부 오류: 파일을 불러오는 중 문제가 발생했습니다.',
+'api-error-file-too-large'                => '당신이 올리려는 파일이 너무 큽니다.',
+'api-error-filename-tooshort'             => '파일 이름이 너무 짧습니다.',
+'api-error-filetype-banned'               => '이런 형식의 파일은 올릴 수 없습니다.',
+'api-error-filetype-missing'              => '파일 이름에 확장자가 없습니다.',
+'api-error-hookaborted'                   => '당신이 시도한 수정이 확장 기능 훅에 의해 중단되었습니다.',
+'api-error-http'                          => '내부 오류: 서버에 연결할 수 없습니다.',
+'api-error-illegal-filename'              => '이 파일 이름을 사용할 수 없습니다.',
+'api-error-internal-error'                => '내부 오류: 당신이 올린 파일을 위키에서 처리하는 중 문제가 발생했습니다.',
+'api-error-invalid-file-key'              => '내부 오류: 임시 저장소에서 파일을 찾지 못했습니다.',
+'api-error-missingparam'                  => '내부 오류: 요청 중 매개변수가 누락되었습니다.',
+'api-error-missingresult'                 => '내부 오류: 파일의 복제가 성공했는지 판단할 수 없습니다.',
+'api-error-mustbeloggedin'                => '파일을 올리기 위해서는 로그인해야 합니다.',
+'api-error-mustbeposted'                  => '이 소프트웨어에 버그가 있습니다; 올바른 HTTP 전송 방식을 사용하지 않았습니다.',
+'api-error-noimageinfo'                   => '파일 올리기는 성공했지만 서버가 파일에 대해 어떠한 정보도 주지 않았습니다.',
+'api-error-nomodule'                      => '내부 오류: 올리기 모듈이 설정되지 않았습니다.',
+'api-error-ok-but-empty'                  => '내부 오류: 서버에서 응답이 없습니다.',
+'api-error-overwrite'                     => '이미 있는 파일을 덮어쓸 수 없습니다.',
+'api-error-stashfailed'                   => '내부 오류: 서버가 임시 파일을 저장하지 못했습니다.',
+'api-error-timeout'                       => '서버가 제 시간 내에 응답하지 않았습니다.',
+'api-error-unclassified'                  => '알 수 없는 오류가 발생했습니다.',
+'api-error-unknown-code'                  => '알 수 없는 오류: "$1"',
+'api-error-unknown-error'                 => '내부 오류: 파일을 올리려 하는 도중에 무엇인가가 잘못되었습니다.',
+'api-error-unknown-warning'               => '원인 불명의 경고: $1',
+'api-error-uploaddisabled'                => '이 위키에서 파일 올리기가 비활성화되어 있습니다.',
+'api-error-verification-error'            => '파일이 손상되었거나 잘못된 확장자를 사용하고 있습니다.',
 
 );

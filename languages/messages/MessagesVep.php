@@ -2964,4 +2964,10 @@ Kävutagat normaline ezikacund.',
 'revdelete-unrestricted' => 'kaidendused heittud administratoriden täht',
 'newuserlog-byemail'     => 'peisana om oigetud e-počtadme',
 
+# API errors
+'api-error-filename-tooshort' => 'Lühudahk failannimi.',
+'api-error-filetype-banned'   => "Nece failtip om kel'tud.",
+'api-error-illegal-filename'  => "Kel'tud failannimi.",
+'api-error-unknown-code'      => 'Tundmatoi petuz: "$1"',
+
 );

@@ -1615,6 +1615,7 @@ $1',
 'backend-fail-read'          => 'Dataja $1 njedajo se cytaś.',
 'backend-fail-create'        => 'Dataja $1 njedajo se napóraś.',
 'backend-fail-readonly'      => 'Backend "$1" dajo se tuchylu jano cytaś. Pśicyna je: "$2"',
+'backend-fail-synced'        => 'Dataja "$1" jo  w internem backenźe w inkonsistentnem stawje',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'Pśi wocynjenju dataja za ZIP-pśekontrolěrowanje jo zmólka nastała.',
@@ -3616,5 +3617,8 @@ Hować móžoš slědujucy jadnory formular wužywaś. Twój komentar pśidajo s
 'feedback-close'     => 'Dokóńcony',
 'feedback-bugcheck'  => 'Wjelicnje! Pśekontrolěruj jano, lěc to njejo jadna z [$1 znatych zmólkow].',
 'feedback-bugnew'    => 'Som pśekontrolěrował. Nowu zmólku k wěsći daś',
+
+# API errors
+'api-error-unknown-code' => 'Njeznata zmólka: "$1"',
 
 );

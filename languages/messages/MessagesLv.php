@@ -3084,4 +3084,14 @@ Var arī lietot [[Special:EditWatchlist|standarta izmainīšanas lapu]].',
 'feedback-close'   => 'Gatavs',
 'feedback-bugnew'  => 'Es pārbaudīju. Ziņot par jaunu kļūdu',
 
+# API errors
+'api-error-filename-tooshort' => 'Faila nosaukums ir pārāk īss.',
+'api-error-http'              => 'Iekšēja kļūda: Nevar izveidot savienojumu ar serveri.',
+'api-error-ok-but-empty'      => 'Iekšēja kļūda: Nav atbildes no servera.',
+'api-error-timeout'           => 'Serveris neatbildēja paredzētajā laikā.',
+'api-error-unclassified'      => 'Nezināma kļūda.',
+'api-error-unknown-code'      => 'Nezināma kļūda: " $1 "',
+'api-error-unknown-warning'   => 'Nezināms brīdinājums: $1',
+'api-error-uploaddisabled'    => 'Augšupielāde šajā wiki  ir atslēgta.',
+
 );

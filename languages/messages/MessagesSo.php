@@ -1388,4 +1388,17 @@ Hadii faylka wax laga badalay sida oo markiisa hore ahaa, waxaa laga yaabaa in e
 'htmlform-reset'               => 'Ka noqo wax bedelka',
 'htmlform-selectorother-other' => 'kuwa kale',
 
+# API errors
+'api-error-copyuploaddisabled' => 'Soo gelinta dhinaca URL-ka waa laga damiyay kombiyuutarkaan',
+'api-error-filename-tooshort'  => 'Magaca faylka aad oo u gaabanyahay',
+'api-error-filetype-banned'    => 'Faylka nuucaan waa laga mamnuucay',
+'api-error-http'               => 'Qalad gudaha ah: Ma ku xiro karo kombiyutarka',
+'api-error-illegal-filename'   => 'Magaca faylkaan lama ogola.',
+'api-error-mustbeloggedin'     => 'Waa in aad gudaha u soo gashaa hadii aad rabtid in aad fayl soo geliso.',
+'api-error-ok-but-empty'       => 'Qalad gudaha ah : kombiyutarka maka soo jawaabin',
+'api-error-unclassified'       => 'Qalad la aqoon aa dhacay',
+'api-error-unknown-code'       => 'Qalad la aqoon: "$1"',
+'api-error-unknown-warning'    => 'Digniin la aqoon: $1',
+'api-error-uploaddisabled'     => 'Soo gelinta waa laga xiray wikigaan.',
+
 );

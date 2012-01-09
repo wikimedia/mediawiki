@@ -19,6 +19,7 @@
  * @author SPQRobin
  * @author Spacebirdy
  * @author Xethron
+ * @author පසිඳු කාවින්ද
  */
 
 $namespaceNames = array(
@@ -3723,5 +3724,32 @@ Beelde word in hulle volle resolusie gewys. Ander lêertipes word direk met hull
 'feedback-close'    => 'Gedoen',
 'feedback-bugcheck' => 'Gaaf! Kontroleer of dit nie dalk een van die [$1 bekende foute] is nie.',
 'feedback-bugnew'   => "Ek het gekontroleer. Rapporteer 'n nuwe fout.",
+
+# API errors
+'api-error-badaccess-groups'   => 'U word nie toegelaat om lêers te laai op hierdie wiki.',
+'api-error-badtoken'           => 'Interne fout: slegte teken.',
+'api-error-empty-file'         => 'Die lêer wat u probeer oplaai is leeg.',
+'api-error-file-too-large'     => 'Die lêer wat u probeer oplaai is te groot.',
+'api-error-filename-tooshort'  => 'Die lêernaam is te kort.',
+'api-error-filetype-banned'    => 'Hierdie tipe lêer is verban en word nie toegelaat nie.',
+'api-error-filetype-missing'   => "Die lêer het nie 'n uitbreiding nie.",
+'api-error-hookaborted'        => "Die wysiging wat jy probeer maak, is deur 'n uitbreiding haak geaborteer.",
+'api-error-http'               => "Interne fout: Kan nie 'n verbinding met die bediener maak nie.",
+'api-error-illegal-filename'   => 'Die lêernaam word nie toegelaat nie.',
+'api-error-internal-error'     => 'Interne fout: daar is iets verkeerd gegaan het met die verwerking van die oplaai van die lêer op die wiki.',
+'api-error-missingparam'       => 'Interne fout: ontbrekende parameters op aanvraag.',
+'api-error-missingresult'      => 'Interne fout: Kon nie bepaal of die kopie daarin geslaag.',
+'api-error-mustbeloggedin'     => 'U moet ingeteken wees om lêers te kan laai.',
+'api-error-noimageinfo'        => 'Die oplaai daarin geslaag, maar die bediener het ons nie enige inligting oor die lêer.',
+'api-error-ok-but-empty'       => 'Interne fout: geen reaksie van die bediener.',
+'api-error-overwrite'          => "'N bestaande lêer vervang word nie toegelaat nie.",
+'api-error-stashfailed'        => 'Interne fout: Server nie tydelike lêer te stoor.',
+'api-error-timeout'            => 'Die bediener het nie reageer binne die verwagte tyd.',
+'api-error-unclassified'       => "'n Onbekende fout het voorgekom.",
+'api-error-unknown-code'       => 'Onbekende fout: "$1"',
+'api-error-unknown-error'      => 'Interne fout: daar is iets verkeerd geloop het toe probeer om jou lêer te laai.',
+'api-error-unknown-warning'    => 'Onbekende waarskuwing: $1',
+'api-error-uploaddisabled'     => 'Oplaai is afgeskakel op hierdie wiki.',
+'api-error-verification-error' => 'Hierdie lêer kan beskadig of het die verkeerde uitbreiding.',
 
 );

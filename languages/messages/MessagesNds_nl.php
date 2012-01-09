@@ -668,8 +668,8 @@ t Kan ween dat n aander t al vortedaon hef.',
 'cannotdelete-title'   => 'Pagina "$1" kan niet vortedaon wörden',
 'badtitle'             => 'Ongeldige naam',
 'badtitletext'         => 'De naam van de op-evreugen pagina is niet geldig, leeg, of n interwiki-verwiezing naor n onbekende of ongeldige wiki.',
-'perfcached'           => 'Disse gegevens kwammen uut t tussengeheugen en bin warschienlik niet aktueel:',
-'perfcachedts'         => 'De informasie die hieronder steet, is op-esleugen, en is van $1.',
+'perfcached'           => 'Disse gegevens koemen uut t tussengeheugen en bin misschien niet aktueel. Der {{PLURAL:$1|is maximaal een resultaot|bin maximaal $1 resultaoten}} beschikbaor in t tussengeheugen.',
+'perfcachedts'         => 'Disse gegevens koemen uut t tussengeheugen die veur t lest bie-ewörken is op $2 um $3. Der {{PLURAL:$4|is maximaal een resultaot|bin maximaal $4 resultaoten}} beschikbaor in t tussengeheugen.',
 'querypage-no-updates' => "'''Disse pagina wörden niet meer bie-ewörken.'''",
 'wrong_wfQuery_params' => 'Parameters veur wfQuery() waren verkeerd<br />
 Funksie: $1<br />
@@ -961,8 +961,8 @@ Je kunnen [[Special:Search/{{PAGENAME}}|zeuken naor disse term]] in aandere pagi
 'blocked-notice-logextract'        => 'Disse gebruker is op t moment eblokkeerd.
 De leste regel uut t blokkeerlogboek steet hieronder as referensie:',
 'clearyourcache'                   => "'''Waort je:''' naodat de wiezigingen op-esleugen bin, mut t tussengeheugen van de webkieker nog eleegd wörden um t te kunnen zien. 
-*'''Firefox / Safari:''' drok op ''Shift'' terwiel je op ''verniejen'' klikken, of gebruuk ''Ctrl-F5'' of ''Ctrl-R'' (''Command-R'' op n knipperkiste van Mac)
-* '''Google Chrome:''' drok op ''Ctrl-Shift-R'' (''Command-Shift-R'' op n knipperkiste van Mac)
+*'''Firefox / Safari:''' drok op ''Shift'' terwiel je op ''verniejen'' klikken, of gebruuk ''Ctrl-F5'' of ''Ctrl-R'' (''⌘-R'' op n knipperkiste van Mac)
+* '''Google Chrome:''' drok op ''Ctrl-Shift-R'' (''⌘-Shift-R'' op n knipperkiste van Mac)
 *'''Internet Explorer:''' drok op ''Ctrl'' terwiel je op ''verniejen'' klikken of drok op ''Ctrl-F5''
 *'''Konqueror: '''klik op ''verniejen'' of drok op ''F5''
 *'''Opera:''' leeg t tussengeheugen in ''Extra → Voorkeuren\"",
@@ -1339,7 +1339,7 @@ Kiek de logboeken nao.',
 'prefs-rc'                      => 'Leste wiezigingen',
 'prefs-watchlist'               => 'Volglieste',
 'prefs-watchlist-days'          => 'Antal dagen in de volglieste bekieken:',
-'prefs-watchlist-days-max'      => 'Maximaal 7 dagen',
+'prefs-watchlist-days-max'      => 'Maximaal $1 {{PLURAL:$1|dag|dagen}}',
 'prefs-watchlist-edits'         => 'Antal wiezigingen in de uutebreiden volglieste:',
 'prefs-watchlist-edits-max'     => 'Maximale antal: 1.000',
 'prefs-watchlist-token'         => 'Volgliestesleutel',
@@ -1623,6 +1623,7 @@ Disse informasie is zichtbaor veur aandere gebrukers.',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|keer|keer}} op n volglieste]',
 'rc_categories'                     => 'Beparking tot kategorieën (scheien mit "|")',
 'rc_categories_any'                 => 'alles',
+'rc-change-size-new'                => '$1 {{PLURAL:$1|byte|bytes}} nao de wieziging',
 'newsectionsummary'                 => 'Niej onderwarp: /* $1 */',
 'rc-enhanced-expand'                => "Details bekieken (hier he'j JavaScript veur neudig)",
 'rc-enhanced-hide'                  => 'Details verbargen',
@@ -1770,6 +1771,15 @@ As t probleem zo blif, neem dan kontakt op mit één van de [[Special:ListUsers/
 'upload-too-many-redirects' => 'Der zatten te veule deurverwiezingen in de URL.',
 'upload-unknown-size'       => 'Onbekende grootte',
 'upload-http-error'         => 'Der is n HTTP-fout op-etrejen: $1',
+
+# File backend
+'backend-fail-stream'        => 't Was niet meugelik t bestaand $1 te streumen.',
+'backend-fail-backup'        => 't Was niet meugelik n reservekopie van t bestaand $1 te maken.',
+'backend-fail-notexists'     => 't Bestaand $1 besteet niet.',
+'backend-fail-notsame'       => 'Der steet al n niet-geliek bestaand op de plaotse $1.',
+'backend-fail-invalidpath'   => '$1 is gien geldig opslagpad.',
+'backend-fail-delete'        => 't Bestaand $1 kon niet vortedaon wörden.',
+'backend-fail-alreadyexists' => 't Bestaand $1 besteet al.',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'Der is wat fout egaon bie t los doon van t bestaand veur de ZIP-kontrole.',
@@ -3744,5 +3754,11 @@ Aandere bestaandstypen wörden gelieke in t mit t MIME-type verbunnen programma 
 'logentry-newusers-create2'           => '$1 {{GENDER:$2|hef}} n {{GENDER:$4|gebruker}} $3 an-emaakt',
 'logentry-newusers-autocreate'        => 'De gebruker $1 is automaties {{GENDER:$2|an-emaakt}}',
 'newuserlog-byemail'                  => 'wachtwoord is verstuurd via de netpost',
+
+# Feedback
+'feedback-subject' => 'Onderwarp:',
+'feedback-message' => 'Bericht:',
+'feedback-cancel'  => 'Aofbreken',
+'feedback-close'   => 'Ree',
 
 );

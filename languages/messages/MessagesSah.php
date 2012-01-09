@@ -3491,4 +3491,25 @@ MediaWiki туһалаах буоллун диэн тарҕатыллар, ол 
 'revdelete-unrestricted'          => 'хааччахтааһын админстраатардартан уһулунна',
 'newuserlog-byemail'              => 'киирии тыл эл. почтаннан ыытылынна',
 
+# API errors
+'api-error-badaccess-groups'   => 'Эн бу биикигэ билэ киллэрэриҥ хааччахтаммыт.',
+'api-error-copyuploaddisabled' => 'URL көмөтүнэн киллэрии бу сиэрбэргэ араарыллыбыт.',
+'api-error-empty-file'         => 'Ыыппыт билэҥ кураанах.',
+'api-error-file-too-large'     => 'Ыыппыт билэҥ наһаа улахан эбит.',
+'api-error-filename-tooshort'  => 'Билэҥ аата наһаа кылгас.',
+'api-error-filetype-banned'    => 'Маннык көрүҥнээх билэлэр бобуулаахтар.',
+'api-error-filetype-missing'   => 'Бу билэ тэнитиитэ (расширение) суох эбит.',
+'api-error-http'               => 'Ис алҕас: Сиэрбэргэ холбонор табыллыбата.',
+'api-error-illegal-filename'   => 'Билэ маннык ааттанара сатаммат.',
+'api-error-invalid-file-key'   => 'Ис алҕас: Быстах уурар сиргэ билэ көстүбэтэ.',
+'api-error-missingparam'       => 'Ис алҕас: Көрдөбүл туруоруулара суохтар эбит.',
+'api-error-missingresult'      => 'Ис алҕас: Хатылааһын сатаммыта-сатамматаҕа биллибэтэ.',
+'api-error-mustbeloggedin'     => 'Билэни киллэрэргэ бастаан ааккын этиэхтээххин.',
+'api-error-mustbeposted'       => 'Ис алҕас: HTTP POST алҕастаах.',
+'api-error-nomodule'           => 'Ис алҕас: хачайдыыр муодул туруоруута суох.',
+'api-error-ok-but-empty'       => 'Ис алҕас: сиэрбэртэн хоруй кэлбэтэ.',
+'api-error-stashfailed'        => 'Ис алҕас: сиэрбэр быстах кэмҥэ оҥоһуллубут билэни кыайан бигэргэппэтэх.',
+'api-error-unknown-code'       => 'Биллибэт алҕас: «$1»',
+'api-error-uploaddisabled'     => 'Бу биикигэ хачайдыыр араарыллыбыт эбит.',
+
 );

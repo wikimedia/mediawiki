@@ -24,7 +24,9 @@
  * @author Str4nd
  * @author Tarmo
  * @author Tofu II
+ * @author Veikk0.ma
  * @author Wix
+ * @author Yaamboo
  * @author ZeiP
  * @author לערי ריינהארט
  */
@@ -3777,5 +3779,41 @@ Muussa tapauksessa voit käyttää alla olevaa helpompaa lomaketta. Kommenttisi 
 'feedback-close'     => 'Valmis',
 'feedback-bugcheck'  => 'Hyvä! Varmista, että ohjelmointivirhe ei vielä löydy [$1 tästä listasta].',
 'feedback-bugnew'    => 'Varmistin. Ilmoitan uuden ohjelmointivirheen',
+
+# API errors
+'api-error-badaccess-groups'              => 'Sinulla ei ole oikeutta tallentaa tiedostoja tähän wikiin.',
+'api-error-badtoken'                      => 'Sisäinen virhe: virheellinen tarkistussumma.',
+'api-error-copyuploaddisabled'            => 'Tallentaminen URL-osoitteesta ei ole käytössä.',
+'api-error-duplicate'                     => 'Samansisältöisiä tiedostoja löytyi {{PLURAL:$1|[$2 yksi kappale]|[$2 useampia kappaleita]}}.',
+'api-error-duplicate-archive'             => 'Sivustolla oli aiemmin {{PLURAL:$1|[$2 toinen samansisältöinen tiedosto]|[$2 toisia samansisältöisiä tiedostoja]}}, mutta {{PLURAL:$1|se|ne}} poistettiin.',
+'api-error-duplicate-archive-popup-title' => 'Tiedostolla on {{PLURAL:$1|poistettu kaksoiskappale|poistettuja kaksoiskappaleita}}',
+'api-error-duplicate-popup-title'         => 'Tiedoston {{PLURAL:$1|kaksoiskappale|kaksoiskappaleet}}',
+'api-error-empty-file'                    => 'Määrittämäsi tiedosto on tyhjä.',
+'api-error-fetchfileerror'                => 'Sisäinen virhe: jotakin meni pieleen tiedoston haussa.',
+'api-error-file-too-large'                => 'Määrittämäsi tiedosto on liian iso.',
+'api-error-filename-tooshort'             => 'Tiedoston nimi on liian lyhyt.',
+'api-error-filetype-banned'               => 'Tämän tyyppisiä tiedosta ei voi tallentaa.',
+'api-error-filetype-missing'              => 'Tiedostolta puuttuu tiedostopääte.',
+'api-error-hookaborted'                   => 'Laajennuskoodi esti yrittämäsi muutoksen.',
+'api-error-http'                          => 'Sisäinen virhe: palvelimeen ei saatu yhteyttä.',
+'api-error-illegal-filename'              => 'Tiedoston nimi ei kelpaa.',
+'api-error-internal-error'                => 'Sisäinen virhe: jotain meni vikaan tallennuksesi käsittelyssä.',
+'api-error-invalid-file-key'              => 'Sisäinen virhe: tiedostoa ei löytynyt välikaisvarastosta.',
+'api-error-missingparam'                  => 'Sisäinen virhe: pyynnöstä puutuu parametrejä.',
+'api-error-missingresult'                 => 'Sisäinen virhe: ei voitu varmistaa, että tallennus onnistui.',
+'api-error-mustbeloggedin'                => 'Sinun pitää olla kirjautunut sisään, jotta voisit tallentaa tiedostoja.',
+'api-error-mustbeposted'                  => 'Sisäinen virhe: HTTP POST-pyyntö edellytetty.',
+'api-error-noimageinfo'                   => 'Tallennus onnistui, mutta palvelin ei antanut meille tietoja tiedostosta.',
+'api-error-nomodule'                      => 'Sisäinen virhe: tallennusmoduulia ei ole asetettu.',
+'api-error-ok-but-empty'                  => 'Sisäinen virhe: palvelimelta ei saatu vastausta.',
+'api-error-overwrite'                     => 'Olemassa olevan tiedoston korvaaminen ei ole sallittua.',
+'api-error-stashfailed'                   => 'Sisäinen virhe: välikaikaisen tiedoston tallentaminen epäonnistui.',
+'api-error-timeout'                       => 'Palvelin ei vastannut odotetun ajan kuluessa.',
+'api-error-unclassified'                  => 'Tapahtui tuntematon virhe.',
+'api-error-unknown-code'                  => 'Tuntematon virhe: $1',
+'api-error-unknown-error'                 => 'Sisäinen virhe: jotain meni vikaan tiedoston siirrossa.',
+'api-error-unknown-warning'               => 'Tuntematon varoitus: $1',
+'api-error-uploaddisabled'                => 'Tiedostojen tallentaminen ei ole käytössä.',
+'api-error-verification-error'            => 'Tiedosto voi olla vioittunut, tai sillä saattaa olla väärä tiedostopääte.',
 
 );

@@ -2268,4 +2268,31 @@ $3
 # New logging system
 'newuserlog-byemail' => 'ማለፊያ-ቃል በኤ-መልዕክት ተልኳል',
 
+# API errors
+'api-error-badaccess-groups'      => 'እርስዎ በዚህ ውኪ ላይ ፋይል እንድሊኩ አልተፈቀደም።',
+'api-error-badtoken'              => 'የውስጥ ስህተት: መጥፎ ጥቅል።',
+'api-error-copyuploaddisabled'    => 'በሰነድ አድራሻ መላክ በዚህ አቅራቢ ላይ አልተፈቀደም።',
+'api-error-duplicate'             => 'በዚህ ድረ ገጽ ላይ የዚህ ዓይነት ይዞታ {{PLURAL:$1| [$2 ያለው ፋይል አለ።] | [$2 ያላቸው ፍይሎች አሉ።]}}',
+'api-error-duplicate-popup-title' => 'አንድ አይነት {{PLURAL:$1|ፋይል|ፋይሎች}}',
+'api-error-empty-file'            => 'የላኩት ፋይል ባዶ ነበር።',
+'api-error-fetchfileerror'        => 'የውስጥ ስህተት: ፍይሉ ሲመጣ ችግር ተፈጠረ።',
+'api-error-file-too-large'        => 'የላኩት ፋይል በጣም ትልቅ ነበር።',
+'api-error-filename-tooshort'     => 'የፋይሉ ስም በጣም ትንሽ ነው።',
+'api-error-filetype-banned'       => 'የዚህ ዓይነት ፋይል ተከልክሏል።',
+'api-error-filetype-missing'      => 'ፋይሉ ቅጥያ ይጎለዋል።',
+'api-error-illegal-filename'      => 'የፋይሉ ስም የተፈቀደ አይደለም።',
+'api-error-invalid-file-key'      => 'የውስጥ ስህተት: ፍይሉ የጊዜያዊ ማስቀመጫ ውስጥ አልተገኘም።',
+'api-error-missingparam'          => 'የውስጥ ስህተት: ጥያቄው ግቤቶች ይጎሉታል።',
+'api-error-missingresult'         => 'የውስጥ ስህተት: መቅዳቱ እንደተሳካ ማረጋገጥ አልተቻለም።',
+'api-error-mustbeloggedin'        => 'ፋይል ለመላክ ተዘግቦ መግባት ያስፈልጋል።',
+'api-error-noimageinfo'           => 'ፋይል መላኩ ተሳክቷል ግን አቅራቢው ምንም ዓይነት መረጃ ስለ ፋይሉ አልሰጠም።',
+'api-error-overwrite'             => 'እንድን ፋይል ደምስሶ መጻፍ አልተፈቀደም።',
+'api-error-stashfailed'           => 'የውስጥ ስህተት: አቅራቢው ጊዜያዊ ፍይሉን አላስቀመጠም።',
+'api-error-timeout'               => 'በሚገባ ጊዜ ውስጥ አቅራቢው መልስ አልሰጠም።',
+'api-error-unknown-code'          => 'ያልታወቀ ስህተት: "$1"',
+'api-error-unknown-error'         => 'የውስጥ ስህተት: የእርስዎን ፋይል ለመላክ ሲሞከር ችግር ተፈጠረ።',
+'api-error-unknown-warning'       => 'ያልታወቀ ማስጠንቀቂያ $1',
+'api-error-uploaddisabled'        => 'ፋይል መላክ በዚህ ውኪ ላይ አልተፈቀደም።',
+'api-error-verification-error'    => 'ይህ ፋይል የተበላሸ ወይም ትክክል ያልሆነ ቅጥያ ያለው ሊሆን ይችላል።',
+
 );

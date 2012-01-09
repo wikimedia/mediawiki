@@ -25,6 +25,7 @@
  * @author Kiranmayee
  * @author Krinkle
  * @author Kumar
+ * @author Mayur
  * @author Odisha1
  * @author Omprakash
  * @author Pulkitsingh01
@@ -3619,5 +3620,41 @@ $5
 'feedback-close'    => 'हो गया',
 'feedback-bugcheck' => 'शानदार! जांच ले कहीं ये [ $1 known bugs] पहले से ही न हो ।',
 'feedback-bugnew'   => 'मैं जाँच कीया। एक नया बग रिपोर्ट करें',
+
+# API errors
+'api-error-badaccess-groups'              => 'आपको इस विकि के लिए फ़ाइलें अपलोड करने की अनुमति नहीं है.',
+'api-error-badtoken'                      => 'आंतरिक त्रुटि: बुरी टोकन।',
+'api-error-copyuploaddisabled'            => 'URL द्वारा इस सर्वर पर अपलोड अक्षम है।',
+'api-error-duplicate'                     => 'वहाँ {{PLURAL:$1| [ $2 अन्य फ़ाइल] | रहे हैं [ $2 कुछ अन्य फ़ाइलों]}} एक ही सामग्री के साथ साइट पर पहले से ही है.',
+'api-error-duplicate-archive'             => 'वहाँ {{PLURAL:$1|था [$2 कुछ अन्य फ़ाइल] |were [$2 कुछ अन्य फ़ाइलें]}}, पहले से ही {{PLURAL:$1|यह was|they थे}} परन्तु  हटा दिये गये',
+'api-error-duplicate-archive-popup-title' => 'डुप्लिकेट {{PLURAL:$1| फ़ाइल | फ़ाइलें}} है कि पहले से ही हटा दिया गया है',
+'api-error-duplicate-popup-title'         => 'डुप्लिकेट {{PLURAL:$1| फ़ाइल | फ़ाइलें}}',
+'api-error-empty-file'                    => 'प्रस्तुत फ़ाइल खाली था।',
+'api-error-fetchfileerror'                => 'आंतरिक त्रुटि: जब फ़ाइल लाया जा रहा तो कुछ गलत हो गया था।',
+'api-error-file-too-large'                => 'प्रस्तुत फ़ाइल बहुत बड़ी थी।',
+'api-error-filename-tooshort'             => 'फ़ाइल का नाम बहुत छोटा है।',
+'api-error-filetype-banned'               => 'इस प्रकार की फ़ाइल पर प्रतिबंध लगा दिया है।',
+'api-error-filetype-missing'              => 'फाईल की एक्सटेंशन लापता है.',
+'api-error-hookaborted'                   => 'आपके द्वारा प्रयासरत संशोधन विस्तार हूक द्वारा निरस्त किया गया।',
+'api-error-http'                          => 'आंतरिक त्रुटि: सर्वर से कनेक्ट करने में असमर्थ।',
+'api-error-illegal-filename'              => 'फ़ाइल नाम की अनुमति नहीं है।',
+'api-error-internal-error'                => 'आंतरिक त्रुटि: विकि पर अपने अपलोड प्रसंस्करण के साथ कुछ गलत हो गया था.',
+'api-error-invalid-file-key'              => 'आंतरिक त्रुटि: फ़ाइल अस्थायी भंडारण में नहीं पाया गया.',
+'api-error-missingparam'                  => 'आंतरिक त्रुटि: अनुरोध पर  पैरामीटर लापता',
+'api-error-missingresult'                 => 'आन्तरिक त्रुटि: यह प्रतिलिपि सफल निर्धारित नहीं हो सकी',
+'api-error-mustbeloggedin'                => 'आप फ़ाइलों को अपलोड करने के लिये आपको लॉग इन होना चाहिए.',
+'api-error-mustbeposted'                  => 'आंतरिक त्रुटि: HTTP POST अनुरोध की आवश्यकता है.',
+'api-error-noimageinfo'                   => 'अपलोड सफल, लेकिन सर्वर ने फ़ाइल के बारे में हमें कोई जानकारी नहीं दी.',
+'api-error-nomodule'                      => 'आंतरिक त्रुटि: कोई अपलोड मॉड्यूल सेट नहीं',
+'api-error-ok-but-empty'                  => 'आंतरिक त्रुटि: सर्वर से कोई जवाब नहीं.',
+'api-error-overwrite'                     => 'मौजूदा फ़ाइल को अधिलेखित करने की अनुमति नहीं है',
+'api-error-stashfailed'                   => 'आंतरिक त्रुटि: सर्वर अस्थाई फ़ाइल को संग्रहीत करने में विफल।',
+'api-error-timeout'                       => 'सर्वर ने अपेक्षित समय के भीतर जवाब नहीं दिया',
+'api-error-unclassified'                  => 'एक अज्ञात त्रुटि उत्पन्न हुई',
+'api-error-unknown-code'                  => 'अज्ञात त्रुटि: " $1 "',
+'api-error-unknown-error'                 => 'आंतरिक त्रुटि: आपकी फ़ाइल अपलोड करने का प्रयास करते समय कुछ गलत हो गया था।',
+'api-error-unknown-warning'               => 'अज्ञात चेतावनी: $1',
+'api-error-uploaddisabled'                => 'इस विकि पर अपलोड अक्षम है.',
+'api-error-verification-error'            => 'यह फ़ाइल दूषित हो सकती है, या गलत एक्सटेंशन है।',
 
 );

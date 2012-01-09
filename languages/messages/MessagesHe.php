@@ -18,6 +18,7 @@
  * @author YaronSh
  * @author ערן
  * @author שומבלע
+ * @author תומר ט
  */
 
 $rtl = true;
@@ -1127,8 +1128,7 @@ $2
 'language-converter-depth-warning'        => 'עומק ממיר השפה עבר את המגבלה ($1)',
 
 # "Undo" feature
-'undo-success' => 'ניתן לבטל את העריכה.
-אנא בִדקו את השוואת הגרסאות למטה כדי לוודא שזה מה שאתם רוצים לעשות, ואז שמרו את השינויים למטה כדי לבצע את ביטול העריכה.',
+'undo-success' => 'ניתן לבטל את העריכה. אנא בִדקו את השוואת הגרסאות למטה כדי לוודא שזה מה שאתם רוצים לעשות, ואז שמרו את השינויים למטה כדי לבצע את ביטול העריכה.',
 'undo-failure' => 'לא ניתן היה לבטל את העריכה עקב התנגשות עם עריכות מאוחרות יותר.',
 'undo-norev'   => 'לא ניתן היה לבטל את העריכה כי היא אינה קיימת או כי היא נמחקה.',
 'undo-summary' => 'ביטול גרסה $1 של [[Special:Contributions/$2|$2]] ([[User talk:$2|שיחה]])',
@@ -1871,6 +1871,7 @@ $1',
 'backend-fail-read'          => 'קריאת הקובץ $1 לא הצליחה',
 'backend-fail-create'        => 'יצירת הקובץ $1 לא הצליחה',
 'backend-fail-readonly'      => 'מאגר האחסון לקבצים "$1" הוא כרגע במצב קריאה בלבד. הסיבה שניתנה לכך היא: "$2"',
+'backend-fail-synced'        => 'הקובץ "$1" נמצא במצב לא עקבי בתוך מאגרי האחסון הפנימיים לקבצים',
 
 # Lock manager
 'lockmanager-notlocked'        => 'פתיחת הנעילה של "$1" לא הצליחה; הוא לא נעול.',
@@ -4005,5 +4006,41 @@ $5
 'feedback-close'     => 'סיום',
 'feedback-bugcheck'  => 'מצוין! נא לבדוק שזה לא אחד מה[$1 באגים הידועים].',
 'feedback-bugnew'    => 'בדקתי. נא לדווח כבאג חדש',
+
+# API errors
+'api-error-badaccess-groups'              => 'אינכם מורשים להעלות קבצים לוויקי הזה.',
+'api-error-badtoken'                      => 'שגיאה פנימית: אסימון רע.',
+'api-error-copyuploaddisabled'            => 'העלאה לפי כתובת כובתה בשרת זה.',
+'api-error-duplicate'                     => 'כבר יש בוויקי {{PLURAL:$1|[$2 קובץ אחר] בעל|[$2 קבצים אחרים] בעלי}} אותו תוכן',
+'api-error-duplicate-archive'             => 'באתר כבר {{PLURAL:$1|היה [$2 קובץ אחר]|היו [$2 קבצים אחרים]}} עם אותו תוכן, אבל {{PLURAL:$1|הוא נמחק|הם נמחקו}}.',
+'api-error-duplicate-archive-popup-title' => '{{PLURAL:$1|קובץ כפול שכבר נמחק|קבצים כפולים שכבר נמחקו}}',
+'api-error-duplicate-popup-title'         => '{{PLURAL:$1|קובץ כפול|קבצים כפולים}}',
+'api-error-empty-file'                    => 'קובץ ששלחתם היה ריק.',
+'api-error-fetchfileerror'                => 'שגיאה פנימית: משהו השתבש בזמן אחזור הקובץ.',
+'api-error-file-too-large'                => 'הקובץ ששלחתם גדול מדי.',
+'api-error-filename-tooshort'             => 'שם הקובץ קצר מדי.',
+'api-error-filetype-banned'               => 'סוג קובץ זה חסום.',
+'api-error-filetype-missing'              => 'חסרה סיומת לשם הקובץ.',
+'api-error-hookaborted'                   => 'השינוי שניסיתם לעשות בוטל על ידי תוסף.',
+'api-error-http'                          => 'שגיאה פנימית: לא ניתן להתחבר לשרת.',
+'api-error-illegal-filename'              => 'שם הקובץ הזה אינו מורשה.',
+'api-error-internal-error'                => 'שגיאה פנימית: משהו השתבש בעת עיבוד ההעלאה שלכם בוויקי.',
+'api-error-invalid-file-key'              => 'שגיאה פנימית: הקובץ לא נמצא במאגר הזמני.',
+'api-error-missingparam'                  => 'שגיאה פנימית: פרמטרים חסרים בַּבַּקָּשָה.',
+'api-error-missingresult'                 => 'שגיאה פנימית: לא יכולנו לקבוע אם ההעתקה הצליחה.',
+'api-error-mustbeloggedin'                => 'אתם צריכים להיות מחוברים כדי להעלות קבצים.',
+'api-error-mustbeposted'                  => 'יש באג בתוכנה הזאת; היא אינה משתמשת בשיטה נכונה של HTTP.',
+'api-error-noimageinfo'                   => 'ההעלאה הצליחה, אבל השרת לא הביא לנו שום מידע על הקובץ.',
+'api-error-nomodule'                      => 'שגיאה פנימית: מודול ההעלאה אינו מוגדר.',
+'api-error-ok-but-empty'                  => 'שגיאה פנימית: אין תשובה מהשרת.',
+'api-error-overwrite'                     => 'לא מותרת החלפת קובץ קיים.',
+'api-error-stashfailed'                   => 'שגיאה פנימית: השרת נכשל באחסון הקובץ הזמני.',
+'api-error-timeout'                       => 'השרת לא השיב בזמן מצופה.',
+'api-error-unclassified'                  => 'אירעה שגיאה לא ידועה',
+'api-error-unknown-code'                  => 'שגיאה לא יודעה: "$1"',
+'api-error-unknown-error'                 => 'שגיאה פנימית: משהו השתבש בעת ניסיון להעלות את הקובץ שלכם.',
+'api-error-unknown-warning'               => 'אזהרה לא ידועה: $1',
+'api-error-uploaddisabled'                => 'ההעלאה מושבתת בוויקי הזה.',
+'api-error-verification-error'            => 'קובץ זה עשוי להיות פגום או בעל סיומת שגויה.',
 
 );

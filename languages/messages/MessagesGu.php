@@ -3524,4 +3524,8 @@ $5
 'logentry-newusers-autocreate'        => 'એકાઉન્ટ $1 {{GENDER: $2 | બનાવનાર}} આપોઆપ',
 'newuserlog-byemail'                  => 'ગુપ્ત સંજ્ઞા ઇ-મેલ દ્વારા મોકલાઇ છે.',
 
+# API errors
+'api-error-unclassified'   => 'અજ્ઞાત ચૂક થઈ.',
+'api-error-uploaddisabled' => 'આ વીકી પર અપલોડ નિષ્ક્રિય કરવામાં આવેલ છે',
+
 );

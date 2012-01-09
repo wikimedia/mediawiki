@@ -3476,4 +3476,20 @@ $5
 'feedback-bugcheck' => 'అద్భుతం! ఇది ఇప్పటికే [$1 తెలిసిన బగ్గుల]లో లేదని సరిచూసుకోండి.',
 'feedback-bugnew'   => 'చూసాను. కొత్త బగ్గును నివేదించు',
 
+# API errors
+'api-error-empty-file'         => 'మీరు దాఖలుచేసిన ఫైల్ ఖాళీది.',
+'api-error-filename-tooshort'  => 'దస్త్రపు పేరు మరీ చిన్నగా ఉంది.',
+'api-error-filetype-banned'    => 'ఈ రకపు దస్త్రాలని నిషేధించారు.',
+'api-error-http'               => 'అంతర్గత దోషము: సేవకానికి అనుసంధానమవలేకపోతున్నది.',
+'api-error-illegal-filename'   => 'ఆ పైల్ పేరు అనుమతించబడదు.',
+'api-error-invalid-file-key'   => 'అంతర్గత దోషము: తాత్కాలిక నిల్వలో ఫైల్ కనపడలేదు.',
+'api-error-mustbeloggedin'     => 'దస్త్రాలను ఎక్కించడానికి మీరు ప్రవేశించివుండాలి.',
+'api-error-nomodule'           => 'అంతర్గత దోషము: ఎక్కింపు పర్వికము అమర్చబడలేదు.',
+'api-error-ok-but-empty'       => 'అంతర్గత దోషము: సేవకము నుండి ఎటువంటి స్పందనా లేదు.',
+'api-error-unclassified'       => 'ఒక తెలియని దోషము సంభవించినది',
+'api-error-unknown-code'       => 'తెలియని దోషము: $1',
+'api-error-unknown-warning'    => 'తెలియని హెచ్చరిక: $1',
+'api-error-uploaddisabled'     => 'ఈ వికీలో ఎక్కింపులని అచేతనం చేసారు.',
+'api-error-verification-error' => 'ఈ ఫైల్ పాడైవుండవచ్చు, లేదా తప్పుడు పొడిగింతను కలిగివుండవచ్చు.',
+
 );

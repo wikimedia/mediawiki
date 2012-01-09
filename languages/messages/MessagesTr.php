@@ -16,6 +16,7 @@
  * @author Emperyan
  * @author Erkan Yilmaz
  * @author Fryed-peach
+ * @author Goktr001
  * @author Hanberke
  * @author Joseph
  * @author Karduelis
@@ -1069,7 +1070,7 @@ Bu değişkenler atlandı.",
 'undo-success' => 'Bu değişiklik geri alınabilir. Lütfen aşağıdaki karşılaştırmayı kontrol edin, gerçekten bu değişikliği yapmak istediğinizden emin olun ve sayfayı kaydederek bir önceki değişikliği geriye alın.',
 'undo-failure' => 'Değişikliklerin çakışması nedeniyle geri alma işlemi başarısız oldu.',
 'undo-norev'   => 'Değişiklik geri alınamaz çünkü ya silinmiş ya da varolmamaktadır.',
-'undo-summary' => '$1 değişikliği [[Special:Contributions/$2|$2]] ([[User talk:$2|İleti]]) tarafından geri alındı.',
+'undo-summary' => '$1 değişikliği [[Special:Contributions/$2|$2]] ([[User talk:$2|mesaj]]) tarafından geri alındı.',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Hesap açılamıyor',
@@ -3734,5 +3735,26 @@ Resimler tam çözünürlükte görüntülenir, diğer dosya tipleri ilgili prog
 'feedback-close'    => 'Tamamlandı',
 'feedback-bugcheck' => 'Harika! Sadece [bilinen $1 hatalarından] olmadığını kontrol et.',
 'feedback-bugnew'   => 'Kontrol ettim. Yeni hata bildir',
+
+# API errors
+'api-error-badaccess-groups'      => 'Bu wiki için dosya yüklemenize izin verilmiyor.',
+'api-error-duplicate-popup-title' => 'Çift {{PLURAL:$1|dosya|dosya}}',
+'api-error-empty-file'            => 'Gönderdiğiniz dosya boş.',
+'api-error-file-too-large'        => 'Gönderdiğiniz dosya çok büyük.',
+'api-error-filename-tooshort'     => 'Dosya adı çok kısa.',
+'api-error-filetype-banned'       => 'Bu dosya biçimi yasaklanmıştır.',
+'api-error-filetype-missing'      => 'Dosya uzantısı eksik.',
+'api-error-http'                  => 'İç hata: sunucu ile bağlantı kurulamıyor.',
+'api-error-illegal-filename'      => 'Bu dosya adına izin verilmiyor.',
+'api-error-invalid-file-key'      => 'İç hata: geçici depolama dosyası bulunamadı.',
+'api-error-mustbeloggedin'        => 'Dosya yükleyebilmek için oturum açmanız gereklidir.',
+'api-error-mustbeposted'          => 'İç hata: İstek HTTP POST gerektiriyor.',
+'api-error-nomodule'              => 'İç hata: Yükleme modülü ayarı yapılmadı.',
+'api-error-ok-but-empty'          => 'İç hata: Sunucu yanıt vermiyor.',
+'api-error-stashfailed'           => 'İç hata: Sunucu, geçici dosyaları kaybetti.',
+'api-error-unclassified'          => 'Bilinmeyen bir hata oluştu.',
+'api-error-unknown-code'          => 'Bilinmeyen hata: "$1"',
+'api-error-unknown-warning'       => 'Bilinmeyen uyarı: $1',
+'api-error-uploaddisabled'        => 'Yükleme bu vikide devre dışı bırakılmıştır.',
 
 );

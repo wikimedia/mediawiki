@@ -1700,4 +1700,7 @@ Se il file al è stât cambiât rispiet al so stât origjinâl, cualchi informaz
 # New logging system
 'newuserlog-byemail' => 'peraule clâf mandade par pueste eletroniche',
 
+# API errors
+'api-error-unclassified' => 'Al è capitât un erôr no cognossût',
+
 );
