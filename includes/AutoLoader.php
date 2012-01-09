@@ -928,10 +928,15 @@ $wgAutoloadLocalClasses = array(
 	'DummyTermColorer' => 'maintenance/term/MWTerm.php',
 
 	# tests
+	'DbTestPreviewer' => 'tests/testHelpers.inc',
+	'DbTestRecorder' => 'tests/testHelpers.inc',
 	'TestFileIterator' => 'tests/testHelpers.inc',
+	'TestRecorder' => 'tests/testHelpers.inc',
 
 	# tests/parser
+	'ParserTest' => 'tests/parser/parserTest.inc',
 	'ParserTestParserHook' => 'tests/parser/parserTestsParserHook.php',
+	'ParserTestStaticParserHook' => 'tests/parser/parserTestsStaticParserHook.php',
 
 	# tests/selenium
 	'Selenium' => 'tests/selenium/Selenium.php',
