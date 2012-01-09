@@ -469,7 +469,8 @@ class FSFileIterator implements Iterator {
 
 	public function current() {
 		// Return only the relative path and normalize slashes to FileBackend-style
-		return str_replace( '\\', '/', substr( $this->iter->current(), $this->suffixStart ) );
+		// Make sure to use the realpath since the suffix is based upon that
+		return str_replace( '\\', '/', substr( realpath($this->iter->current()), $this->suffixStart ) );
 	}
 
 	public function key() {
