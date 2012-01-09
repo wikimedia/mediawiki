@@ -284,9 +284,9 @@ $messages = array(
 'jul'           => 'Jull',
 'aug'           => 'Ago',
 'sep'           => 'Set',
-'oct'           => 'Oct',
+'oct'           => 'Ochů',
 'nov'           => 'Nov',
-'dec'           => 'Dez',
+'dec'           => 'Diz',
 
 # Categories related messages
 'pagecategories'                 => '{{PLURAL:$1|Katēggoría|Katēggorías}}',
@@ -339,12 +339,12 @@ $messages = array(
 'vector-simplesearch-preference' => 'Aktivar consejos de búsqueda adelantada (sólo pelejo Vector)',
 'vector-view-create'             => 'Crîar',
 'vector-view-edit'               => 'Trocar',
-'vector-view-history'            => 'Ver la îstoria',
+'vector-view-history'            => 'Ver la storia',
 'vector-view-view'               => 'Meldar',
 'vector-view-viewsource'         => 'Ver su manadero',
 'actions'                        => 'Acciones',
 'namespaces'                     => 'Espacios de nombres',
-'variants'                       => 'Variantes',
+'variants'                       => 'Varyantes',
 
 'errorpagetitle'    => 'Yerro',
 'returnto'          => 'Tornar a $1.',
@@ -358,7 +358,7 @@ $messages = array(
 'history_short'     => 'Îstoria',
 'updatedmarker'     => 'trocado desde mi visita de alcavo',
 'printableversion'  => 'Versión apropiada para imprimir',
-'permalink'         => 'Atamiento mantenido',
+'permalink'         => 'Atamiento permanente',
 'print'             => 'Imprimir',
 'view'              => 'Ver',
 'edit'              => 'Trocar',
@@ -395,10 +395,10 @@ $messages = array(
 'otherlanguages'    => 'En otras lînguas',
 'redirectedfrom'    => '(Redirigido desde $1)',
 'redirectpagesub'   => 'Hoja redirigida',
-'lastmodifiedat'    => 'Esta hoja fue trocada por la última vez en $2, a las $1.',
+'lastmodifiedat'    => 'Esta hoja fue trocada por la última vez el $1, a las $2.',
 'protectedpage'     => 'Hoja guardada',
-'jumpto'            => 'Salta a:',
-'jumptonavigation'  => 'passeo',
+'jumpto'            => 'Salta á:',
+'jumptonavigation'  => 'navigación',
 'jumptosearch'      => 'búsqueda',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -450,7 +450,7 @@ $messages = array(
 'nstab-main'      => 'Hoja',
 'nstab-user'      => 'Hoja de empleador',
 'nstab-media'     => 'Hoja de Meddia',
-'nstab-special'   => 'Hoja Especial',
+'nstab-special'   => 'Hoja special',
 'nstab-project'   => 'Hoja del proyecto',
 'nstab-image'     => 'Arxivo',
 'nstab-mediawiki' => 'Messaj',
@@ -464,12 +464,12 @@ $messages = array(
 # General errors
 'error'               => 'Yerro',
 'databaseerror'       => 'Yerro de la Databasa',
-'missing-article'     => 'La databasa no topó el teksto de una hoja que debería topar, llamada "$1" $2.
+'missing-article'     => 'La basa de dados no topó el teksto de una hoja llamada "$1" $2.
 
-Esto es generalmente cabsado por un "diff" anacrónico o un link a la istoria de una hoja que era efassado.
+En lo más muńcho, esto se cavza de un "diff" anakróniko ou de un atamiento á la storia de una hoja que s\'efassó.
 
-Si esto no es el cabso, puede ser que topates un escarabajo en el software.
-Si puede ser, enfórmaselo a un [[Special:ListUsers/sysop|administrator]], anotando la URL.',
+Si esto no es el cavso, puede ser que topates una chincha en el lojikal.
+Si puede ser mete un [[Special:ListUsers/sysop|administrador]] en corriente y también ànota la URL.',
 'missingarticle-rev'  => '(nº. de revisión: $1)',
 'missingarticle-diff' => '(Dif.: $1, $2)',
 'filecopyerror'       => 'No se pudo copiar el arxiv "$1" a "$2".',
@@ -482,7 +482,7 @@ Puede ser que contiene uno o más caracteres que no se pueden usar en los títul
 'yourpassword'            => 'Parola',
 'remembermypassword'      => 'Acórdate de mi entrada de usador en este bilgisayar/orddênador (por un maksimum de {{PLURAL:$1|día|días}})',
 'login'                   => 'Entrar',
-'nav-login-createaccount' => 'Entrar / Enrejjistrar',
+'nav-login-createaccount' => 'Entrar / Crîar un cuento',
 'userlogin'               => 'Entrar / Registrarse',
 'logout'                  => 'Salir',
 'userlogout'              => 'Salir',
@@ -652,7 +652,7 @@ Leyenda: (act) = diferencias con la versión actual,
 'nextn'                            => '{{PLURAL:$1|$1}} venideras',
 'prevn-title'                      => '$1 {{PLURAL:$1|resultado|resultados}} de antes',
 'nextn-title'                      => 'Venideros $1 {{PLURAL:$1|resultado|resultados}}',
-'shown-title'                      => 'Mostra $1 {{PLURAL:$1|resultado|resultados}} por hoja',
+'shown-title'                      => 'Àmostrar $1 {{PLURAL:$1|resultado|resultados}} por hoja',
 'viewprevnext'                     => 'Ver ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-new'                   => "'''Crîar la hoja «[[:$1]]» en esta viki!'''",
 'searchhelp-url'                   => 'Help:Ayudo',
@@ -767,7 +767,7 @@ Las búsquedas producen más o munco a buscar biervos comunes como «la» o «de
 # Recent changes linked
 'recentchangeslinked'         => 'Trocamientos conectados',
 'recentchangeslinked-feed'    => 'Trocamientos conectados',
-'recentchangeslinked-toolbox' => 'Trocamientos conectados',
+'recentchangeslinked-toolbox' => 'Trocamientos relatados',
 'recentchangeslinked-title'   => 'Los trocamientos relacionados con "$1"',
 'recentchangeslinked-summary' => "La lista dêbbaxo, es la lista de los trocamientos de alcabo, por las hojas que dan link a la hoja siñalada (o por los miembros de la kateggoría siñalada).
 Las hojas en tu [[Special:Watchlist|lista de escogidas]] son escritas '''gordas'''.",
@@ -775,7 +775,7 @@ Las hojas en tu [[Special:Watchlist|lista de escogidas]] son escritas '''gordas'
 'recentchangeslinked-to'      => 'Mostra los trocamientos freskos en lugar de la hoja indicada',
 
 # Upload
-'upload'        => 'Cargar una dosya',
+'upload'        => 'Suvir una dosya',
 'uploadlogpage' => 'Subidas de arxivos',
 'filedesc'      => 'Somario',
 'uploadedimage' => 'subió «[[$1]]»',
@@ -805,7 +805,7 @@ La descripción en su [$2 hoja de descripción del arxivo] está amostrada debax
 'uploadnewversion-linktext' => 'Subir una nueva versión de este arxivo',
 
 # Random page
-'randompage' => 'Kualunke hoja',
+'randompage' => 'Hoja por azardo',
 
 # Statistics
 'statistics' => 'Estatísticas',
@@ -946,7 +946,7 @@ A continuación se mostran las opciones actuales de la hoja '''$1''':",
 'sp-contributions-submit'   => 'Buscar',
 
 # What links here
-'whatlinkshere'            => 'Lo que se ata con aquí',
+'whatlinkshere'            => 'Atamientos á esta hoja',
 'whatlinkshere-title'      => 'Hojas que dan link a "$1"',
 'whatlinkshere-page'       => 'Hoja:',
 'linkshere'                => "Las hojas venideras dan link a '''[[:$1]]''':",
@@ -1042,12 +1042,12 @@ Si puede ser, escoge otro nombre.',
 'tooltip-search-go'               => 'Si ay una hoja con este nombre egzakto, vate allá.',
 'tooltip-search-fulltext'         => 'Busca este teksto en las hojas',
 'tooltip-p-logo'                  => 'Visita la primera hoja',
-'tooltip-n-mainpage'              => 'Torna a la Hoja Primera',
+'tooltip-n-mainpage'              => 'Visita la primera hoja',
 'tooltip-n-mainpage-description'  => 'Visita la primera hoja',
 'tooltip-n-portal'                => 'Encima del projeto, lo que puedes hazer y ánde topar todo',
 'tooltip-n-currentevents'         => 'Información encima de los acontècimientos de oy día',
 'tooltip-n-recentchanges'         => 'La lista de los trocamientos freskos en el viki',
-'tooltip-n-randompage'            => 'Carga una hoja asegún viene',
+'tooltip-n-randompage'            => 'Carga una kualunke hoja asegún viene',
 'tooltip-n-help'                  => 'El lugar para âmbezarse',
 'tooltip-t-whatlinkshere'         => 'Una lista de todas las hojas del viki que tienen atamientos con esta hoja',
 'tooltip-t-recentchangeslinked'   => 'Los trocamientos freskos de las hojas que tienen atamiento con esta hoja',
@@ -1057,8 +1057,8 @@ Si puede ser, escoge otro nombre.',
 'tooltip-t-emailuser'             => 'A este usuario, mándale una letra electrόnica (ímey)',
 'tooltip-t-upload'                => 'Suve dosyas por aquí',
 'tooltip-t-specialpages'          => 'La lista de todas las hojas especiales',
-'tooltip-t-print'                 => 'Versión imprimible de la hoja',
-'tooltip-t-permalink'             => 'Link permanente a esta versión de la hoja',
+'tooltip-t-print'                 => "Versión apropiada para imprimir d'esta hoja",
+'tooltip-t-permalink'             => "Atamiento permanente á est'enderechamiento de la hoja",
 'tooltip-ca-nstab-main'           => 'Ve el artícůlo de contènido',
 'tooltip-ca-nstab-user'           => 'Ve la hoja de usuario',
 'tooltip-ca-nstab-special'        => 'Esta es una hoja especial, la hoja ya no se puede trocar',

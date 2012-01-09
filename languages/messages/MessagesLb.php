@@ -2705,6 +2705,7 @@ Späichert en op Ärem Computer of a luet en hei nees erop.',
 'javascripttest-title'                     => '$1-Tester ginn elo gemaach',
 'javascripttest-pagetext-noframework'      => 'Dës Säit ass fir Java-Script-Tester reservéiert.',
 'javascripttest-pagetext-unknownframework' => 'Onbekannten Test-Framework "$1".',
+'javascripttest-qunit-intro'               => "Kuckt d'[$1 Dokumentatioun vun den Tester] op mediawiki.org",
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'                 => 'Är Benotzersäit',
