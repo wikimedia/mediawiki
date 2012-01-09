@@ -817,7 +817,6 @@ abstract class File {
 			if ( $status->isOK() ) {
 				$thumb->setStoragePath( $thumbPath );
 			} else {
-				var_dump($status->errors);
 				$thumb = $this->transformErrorOutput( $thumbPath, $thumbUrl, $params, $flags );
 			}
 		}
