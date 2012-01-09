@@ -3812,6 +3812,9 @@ class Language {
 	 * Format a bitrate for output, using an appropriate
 	 * unit (bps, kbps, Mbps, Gbps, Tbps, Pbps, Ebps, Zbps or Ybps) according to the magnitude in question
 	 *
+	 * This use base 1000. For base 1024 use formatSize(), for another base
+	 * see formatComputingNumbers()
+	 *
 	 * @param $bps int
 	 * @return string
 	 */
@@ -3856,6 +3859,9 @@ class Language {
 	/**
 	 * Format a size in bytes for output, using an appropriate
 	 * unit (B, KB, MB, GB, TB, PB, EB, ZB or YB) according to the magnitude in question
+	 *
+	 * This method use base 1024. For base 1000 use formatBitrate(), for
+	 * another base see formatComputingNumbers()
 	 *
 	 * @param $size int Size to format
 	 * @return string Plain text (not HTML)
