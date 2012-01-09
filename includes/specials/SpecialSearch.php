@@ -37,6 +37,7 @@ class SpecialSearch extends SpecialPage {
 	 * null|string
 	 */
 	protected $profile;
+	function getProfile() { return $this->profile; }
 
 	/// Search engine
 	protected $searchEngine;
@@ -56,6 +57,7 @@ class SpecialSearch extends SpecialPage {
 	 * @var array
 	 */
 	protected $namespaces;
+	function getNamespaces() { return $this->namespaces; }
 
 	/**
 	 * @var bool
