@@ -16,21 +16,38 @@ class LanguageLtTest extends MediaWikiTestCase {
 		unset( $this->lang );
 	}
 
-	function testPlural() {
+	/** @dataProvider provideOneFewOtherCases */
+	function testOneFewOtherPlural( $result, $value ) {
 		$forms =  array( 'one', 'few', 'other' );
-		$this->assertEquals( 'other', $this->lang->convertPlural( 0, $forms ) );
-		$this->assertEquals( 'one', $this->lang->convertPlural( 1, $forms ) );
-		$this->assertEquals( 'few', $this->lang->convertPlural( 2, $forms ) );
-		$this->assertEquals( 'few', $this->lang->convertPlural( 9, $forms ) );
-		$this->assertEquals( 'other', $this->lang->convertPlural( 10, $forms ) );
-		$this->assertEquals( 'other', $this->lang->convertPlural( 11, $forms ) );
-		$this->assertEquals( 'other', $this->lang->convertPlural( 20, $forms ) );
-		$this->assertEquals( 'one', $this->lang->convertPlural( 21, $forms ) );
-		$this->assertEquals( 'few', $this->lang->convertPlural( 32, $forms ) );
-		$this->assertEquals( 'one', $this->lang->convertPlural( 41, $forms ) );
-		$this->assertEquals( 'one', $this->lang->convertPlural( 40001, $forms ) );
+		$this->assertEquals( $result, $this->lang->convertPlural( $value, $forms ) );
+	}
+	
+	/** @dataProvider provideOneFewCases */
+	function testOneFewPlural( $result, $value ) {
 		$forms =  array( 'one', 'few' );
-		$this->assertEquals( 'one', $this->lang->convertPlural( 1, $forms ) );
-		$this->assertEquals( 'few', $this->lang->convertPlural( 15, $forms ) );
+		$this->assertEquals( $result, $this->lang->convertPlural( $value, $forms ) );
+	}
+
+	function provideOneFewOtherCases() {
+		return array (
+			array( 'other', 0 ),
+			array( 'one', 1 ),
+			array( 'few', 2 ),
+			array( 'few', 9 ),
+			array( 'other', 10 ),
+			array( 'other', 11 ),
+			array( 'other', 20 ),
+			array( 'one', 21 ),
+			array( 'few', 32 ),
+			array( 'one', 41 ),
+			array( 'one', 40001 ),
+		);
+	}
+	
+	function provideOneFewCases() {
+		return array (
+			array( 'one', 1 ),
+			array( 'few', 15 ),
+		);
 	}
 }
