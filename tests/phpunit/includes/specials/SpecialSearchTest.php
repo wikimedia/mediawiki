@@ -25,7 +25,7 @@ class SpecialSearchTest extends MediaWikiTestCase {
 		$context = new RequestContext;
 		$context->setUser(
 			$this->newUserWithSearchNS( $userOptions )
-	   	);
+		);
 		/*
 		$context->setRequest( new FauxRequest( array(
 			'ns5'=>true,
@@ -57,28 +57,28 @@ class SpecialSearchTest extends MediaWikiTestCase {
 	}
 
 	function provideSearchOptionsTests() {
-	$defaultNS = SearchEngine::defaultNamespaces();
-	$EMPTY_REQUEST = array();
-	$NO_USER_PREF  = null;
+		$defaultNS = SearchEngine::defaultNamespaces();
+		$EMPTY_REQUEST = array();
+		$NO_USER_PREF  = null;
 
-	return array(
-		/**
-		 * Parameters:
-		 * 	<Web Request>, <User options>
-		 * Followed by expected values:
-		 * 	<ProfileName>, <NSList>
-		 * Then an optional message.
-		 */
-		array(
-			$EMPTY_REQUEST, $NO_USER_PREF,
-			'default', $defaultNS,
-			'Bug 33270: No request nor user preferences should give default profile'
-		),
-		array(
-			array( 'ns5' => 1 ), $NO_USER_PREF,
-			'advanced', array(  5),
-			'Web request with specific NS should override user preference'
-		),
+		return array(
+			/**
+			 * Parameters:
+			 * 	<Web Request>, <User options>
+			 * Followed by expected values:
+			 * 	<ProfileName>, <NSList>
+			 * Then an optional message.
+			 */
+			array(
+				$EMPTY_REQUEST, $NO_USER_PREF,
+				'default', $defaultNS,
+				'Bug 33270: No request nor user preferences should give default profile'
+			),
+			array(
+				array( 'ns5' => 1 ), $NO_USER_PREF,
+				'advanced', array(  5),
+				'Web request with specific NS should override user preference'
+			),
 		/* FIXME this test is for bug 33583
 		array(
 			$EMPTY_REQUEST, array( 'searchNs2' ),
@@ -87,7 +87,7 @@ class SpecialSearchTest extends MediaWikiTestCase {
 		),
 		 */
 
-	);
+		);
 	}
 
 	/**
