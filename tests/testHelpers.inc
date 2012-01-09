@@ -12,8 +12,6 @@ class TestFileIterator implements Iterator {
 	private $eof;
 
 	function __construct( $file, $parserTest ) {
-		global $IP;
-
 		$this->file = $file;
 		$this->fh = fopen( $this->file, "rt" );
 
@@ -22,7 +20,6 @@ class TestFileIterator implements Iterator {
 		}
 
 		$this->parserTest = $parserTest;
-		$this->parserTest->showRunFile( wfRelativePath( $this->file, $IP ) );
 
 		$this->lineNum = $this->index = 0;
 	}
