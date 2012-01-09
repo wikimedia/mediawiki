@@ -292,7 +292,17 @@ abstract class FileBackendBase {
 	 * @param $params Array
 	 * @return Status
 	 */
-	abstract public function prepare( array $params );
+	final public function prepare( array $params ) {
+		if ( $this->readOnly != '' ) {
+			return Status::newFatal( 'backend-fail-readonly', $this->name, $this->readOnly );
+		}
+		return $this->doPrepare( $params );
+	}
+
+	/**
+	 * @see FileBackendBase::prepare()
+	 */
+	abstract protected function doPrepare( array $params );
 
 	/**
 	 * Take measures to block web access to a directory and
@@ -309,7 +319,17 @@ abstract class FileBackendBase {
 	 * @param $params Array
 	 * @return Status
 	 */
-	abstract public function secure( array $params );
+	final public function secure( array $params ) {
+		if ( $this->readOnly != '' ) {
+			return Status::newFatal( 'backend-fail-readonly', $this->name, $this->readOnly );
+		}
+		return $this->doSecure( $params );
+	}
+
+	/**
+	 * @see FileBackendBase::secure()
+	 */
+	abstract protected function doSecure( array $params );
 
 	/**
 	 * Clean up an empty storage directory.
@@ -321,7 +341,17 @@ abstract class FileBackendBase {
 	 * @param $params Array
 	 * @return Status
 	 */
-	abstract public function clean( array $params );
+	final public function clean( array $params ) {
+		if ( $this->readOnly != '' ) {
+			return Status::newFatal( 'backend-fail-readonly', $this->name, $this->readOnly );
+		}
+		return $this->doClean( $params );
+	}
+
+	/**
+	 * @see FileBackendBase::clean()
+	 */
+	abstract protected function doClean( array $params );
 
 	/**
 	 * Check if a file exists at a storage path in the backend.
@@ -747,9 +777,9 @@ abstract class FileBackend extends FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackendBase::prepare()
+	 * @see FileBackendBase::doPrepare()
 	 */
-	final public function prepare( array $params ) {
+	final protected function doPrepare( array $params ) {
 		$status = Status::newGood();
 		list( $fullCont, $dir, $shard ) = $this->resolveStoragePath( $params['dir'] );
 		if ( $dir === null ) {
@@ -757,28 +787,28 @@ abstract class FileBackend extends FileBackendBase {
 			return $status; // invalid storage path
 		}
 		if ( $shard !== null ) { // confined to a single container/shard
-			$status->merge( $this->doPrepare( $fullCont, $dir, $params ) );
+			$status->merge( $this->doPrepareInternal( $fullCont, $dir, $params ) );
 		} else { // directory is on several shards
 			wfDebug( __METHOD__ . ": iterating over all container shards.\n" );
 			list( $b, $shortCont, $r ) = self::splitStoragePath( $params['dir'] );
 			foreach ( $this->getContainerSuffixes( $shortCont ) as $suffix ) {
-				$status->merge( $this->doPrepare( "{$fullCont}{$suffix}", $dir, $params ) );
+				$status->merge( $this->doPrepareInternal( "{$fullCont}{$suffix}", $dir, $params ) );
 			}
 		}
 		return $status;
 	}
 
 	/**
-	 * @see FileBackend::prepare()
+	 * @see FileBackend::doPrepare()
 	 */
-	protected function doPrepare( $container, $dir, array $params ) {
+	protected function doPrepareInternal( $container, $dir, array $params ) {
 		return Status::newGood();
 	}
 
 	/**
-	 * @see FileBackendBase::secure()
+	 * @see FileBackendBase::doSecure()
 	 */
-	final public function secure( array $params ) {
+	final protected function doSecure( array $params ) {
 		$status = Status::newGood();
 		list( $fullCont, $dir, $shard ) = $this->resolveStoragePath( $params['dir'] );
 		if ( $dir === null ) {
@@ -786,28 +816,28 @@ abstract class FileBackend extends FileBackendBase {
 			return $status; // invalid storage path
 		}
 		if ( $shard !== null ) { // confined to a single container/shard
-			$status->merge( $this->doSecure( $fullCont, $dir, $params ) );
+			$status->merge( $this->doSecureInternal( $fullCont, $dir, $params ) );
 		} else { // directory is on several shards
 			wfDebug( __METHOD__ . ": iterating over all container shards.\n" );
 			list( $b, $shortCont, $r ) = self::splitStoragePath( $params['dir'] );
 			foreach ( $this->getContainerSuffixes( $shortCont ) as $suffix ) {
-				$status->merge( $this->doSecure( "{$fullCont}{$suffix}", $dir, $params ) );
+				$status->merge( $this->doSecureInternal( "{$fullCont}{$suffix}", $dir, $params ) );
 			}
 		}
 		return $status;
 	}
 
 	/**
-	 * @see FileBackend::secure()
+	 * @see FileBackend::doSecure()
 	 */
-	protected function doSecure( $container, $dir, array $params ) {
+	protected function doSecureInternal( $container, $dir, array $params ) {
 		return Status::newGood();
 	}
 
 	/**
-	 * @see FileBackendBase::clean()
+	 * @see FileBackendBase::doClean()
 	 */
-	final public function clean( array $params ) {
+	final protected function doClean( array $params ) {
 		$status = Status::newGood();
 		list( $fullCont, $dir, $shard ) = $this->resolveStoragePath( $params['dir'] );
 		if ( $dir === null ) {
@@ -815,21 +845,21 @@ abstract class FileBackend extends FileBackendBase {
 			return $status; // invalid storage path
 		}
 		if ( $shard !== null ) { // confined to a single container/shard
-			$status->merge( $this->doClean( $fullCont, $dir, $params ) );
+			$status->merge( $this->doCleanInternal( $fullCont, $dir, $params ) );
 		} else { // directory is on several shards
 			wfDebug( __METHOD__ . ": iterating over all container shards.\n" );
 			list( $b, $shortCont, $r ) = self::splitStoragePath( $params['dir'] );
 			foreach ( $this->getContainerSuffixes( $shortCont ) as $suffix ) {
-				$status->merge( $this->doClean( "{$fullCont}{$suffix}", $dir, $params ) );
+				$status->merge( $this->doCleanInternal( "{$fullCont}{$suffix}", $dir, $params ) );
 			}
 		}
 		return $status;
 	}
 
 	/**
-	 * @see FileBackend::clean()
+	 * @see FileBackend::doClean()
 	 */
-	protected function doClean( $container, $dir, array $params ) {
+	protected function doCleanInternal( $container, $dir, array $params ) {
 		return Status::newGood();
 	}
 

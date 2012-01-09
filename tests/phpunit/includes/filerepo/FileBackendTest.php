@@ -690,11 +690,53 @@ class FileBackendTest extends MediaWikiTestCase {
 		return $cases;
 	}
 
-	// @TODO: testPrepare
+	/**
+	 * @dataProvider provider_testPrepareAndClean
+	 */
+	public function testPrepareAndClean( $path, $isOK ) {
+		$this->backend = $this->singleBackend;
+		$this->doTestPrepareAndClean( $path, $isOK );
+
+		$this->backend = $this->multiBackend;
+		$this->doTestPrepareAndClean( $path, $isOK );
+	}
+
+	function provider_testPrepareAndClean() {
+		$base = $this->baseStorePath();
+		return array(
+			array( "$base/cont1/a/z/some_file1.txt", true ),
+			array( "$base/cont2/a/z/some_file2.txt", true ),
+			array( "$base/cont3/a/z/some_file3.txt", false ),
+		);
+	}
+
+	function doTestPrepareAndClean( $path, $isOK ) {
+		$backendName = $this->backendClass();
+
+		$status = $this->backend->prepare( array( 'dir' => $path ) );
+		if ( $isOK ) {
+			$this->assertEquals( array(), $status->errors,
+				"Preparing dir $path succeeded without warnings ($backendName)." );
+			$this->assertEquals( true, $status->isOK(),
+				"Preparing dir $path succeeded ($backendName)." );
+		} else {
+			$this->assertEquals( false, $status->isOK(),
+				"Preparing dir $path failed ($backendName)." );
+		}
+
+		$status = $this->backend->clean( array( 'dir' => $path ) );
+		if ( $isOK ) {
+			$this->assertEquals( array(), $status->errors,
+				"Cleaning dir $path succeeded without warnings ($backendName)." );
+			$this->assertEquals( true, $status->isOK(),
+				"Cleaning dir $path succeeded ($backendName)." );
+		} else {
+			$this->assertEquals( false, $status->isOK(),
+				"Cleaning dir $path failed ($backendName)." );
+		}
+	}
 
 	// @TODO: testSecure
-
-	// @TODO: testClean
 
 	// @TODO: testDoOperations
 
