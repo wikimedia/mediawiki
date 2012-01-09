@@ -32,6 +32,7 @@
  * @author Likibp
  * @author Lovekhmer
  * @author Marine-Blue
+ * @author Miya
  * @author Mizusumashi
  * @author Muttley
  * @author Mzm5zbC3
@@ -4072,5 +4073,41 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'feedback-error2'  => 'エラー：編集に失敗しました',
 'feedback-error3'  => 'エラー：APIからの応答がありません',
 'feedback-close'   => '完了',
+
+# API errors
+'api-error-badaccess-groups'              => 'このウィキへのファイルのアップロードが許可されていません。',
+'api-error-badtoken'                      => '内部エラー：トークンが不正です。',
+'api-error-copyuploaddisabled'            => 'URLによるアップロードはこのサーバーでは無効になっています。',
+'api-error-duplicate'                     => '当ウェブサイト上には、既に同じ内容の[$2 別ファイル]が存在しています{{PLURAL:$1|}}。',
+'api-error-duplicate-archive'             => '同じ内容で既に削除済みの{{PLURAL:$1|[$2 別のファイルが]|[$2 別のファイルがいくつか]}}サイト上にあります。',
+'api-error-duplicate-archive-popup-title' => 'すでに削除された重複{{PLURAL:$1|ファイル|ファイル}}',
+'api-error-duplicate-popup-title'         => '重複ファイル{{PLURAL:$1|}}',
+'api-error-empty-file'                    => '送信されたファイルは空でした。',
+'api-error-fetchfileerror'                => '内部エラー：ファイルの取得中に問題が発生しました。',
+'api-error-file-too-large'                => '送信されたファイルは大きすぎます。',
+'api-error-filename-tooshort'             => 'ファイル名が短すぎます。',
+'api-error-filetype-banned'               => 'この形式のファイルは禁止されています。',
+'api-error-filetype-missing'              => 'ファイルに拡張子がありません。',
+'api-error-hookaborted'                   => '拡張機能のフックによって、修正が中断されました。',
+'api-error-http'                          => '内部エラー：サービスへの接続で問題が発生しました。',
+'api-error-illegal-filename'              => 'ファイル名が許可されていません。',
+'api-error-internal-error'                => '内部エラー：ウィキ上でアップロードを処理する際に問題が発生しました。',
+'api-error-invalid-file-key'              => '内部エラー：一時格納場所にファイルが見つかりませんでした。',
+'api-error-missingparam'                  => '内部エラー：リクエストのパラメータが足りません。',
+'api-error-missingresult'                 => '内部エラー：複製に成功したか判断できませんでした。',
+'api-error-mustbeloggedin'                => 'ファイルをアップロードするにはログインする必要があります。',
+'api-error-mustbeposted'                  => 'このソフトウェアにバグがありました。適切なHTTPメソッドを使用していません。',
+'api-error-noimageinfo'                   => 'アップロードには成功しましたが、サーバーはファイルに関する情報を返しませんでした。',
+'api-error-nomodule'                      => '内部エラー：アップロードを処理するモジュールが設定されていません。',
+'api-error-ok-but-empty'                  => '内部エラー：サーバーからの応答がありません。',
+'api-error-overwrite'                     => '既存のファイルへ上書きすることは許可されていません。',
+'api-error-stashfailed'                   => '内部エラー：サーバーは一時ファイルを格納できませんでした。',
+'api-error-timeout'                       => 'サーバーが決められた時間内に応答しませんでした。',
+'api-error-unclassified'                  => '不明なエラーが発生しました。',
+'api-error-unknown-code'                  => '不明なエラー：「$1」',
+'api-error-unknown-error'                 => '内部エラー：ファイルのアップロードの途中で問題が発生しました。',
+'api-error-unknown-warning'               => '原因不明の警告:$1',
+'api-error-uploaddisabled'                => 'このウィキではアップロードは無効になっています。',
+'api-error-verification-error'            => 'このファイルは壊れているか、間違った拡張子になっています。',
 
 );

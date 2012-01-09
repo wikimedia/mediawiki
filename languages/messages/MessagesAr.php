@@ -10,6 +10,7 @@
  * @author ;Hiba;1
  * @author Abanima
  * @author AhmadSherif
+ * @author Aiman titi
  * @author Alexknight12
  * @author Ali1
  * @author Alnokta
@@ -4132,5 +4133,41 @@ $5
 'feedback-close'    => 'تم',
 'feedback-bugcheck' => 'رائع! تحقق من أن هذه ليست إحدى [$1 العلل المعروفة].',
 'feedback-bugnew'   => 'لقد تحققت. بلّغ عن علة جديدة.',
+
+# API errors
+'api-error-badaccess-groups'              => 'لا يسمح لك بتحميل الملفات إلى هذه الويكي.',
+'api-error-badtoken'                      => 'خطأ داخلي: رمز مميز غير صحيح.',
+'api-error-copyuploaddisabled'            => 'تم تعطيل تحميل من رابط على هذا الخادم.',
+'api-error-duplicate'                     => 'هناك {{PLURAL:$1|هو [$2 ملف آخر [|كذلك]$2 بعض الملفات الأخرى]}} مسبقاً على الموقع بنفس المضمون.',
+'api-error-duplicate-archive'             => 'هناك {{PLURAL:$1|كان [$2 ملف آخر] |كذلك [$2 بعض الملفات الأخرى]}} مسبقاً على الموقع بنفس المضمون، ولكن {{PLURAL:$1|أنه تم | إجراء}} الحذف لها.',
+'api-error-duplicate-archive-popup-title' => 'تكرار {{PLURAL:$1|ملف|ملفات}} قد تم حذفه مسبقاً',
+'api-error-duplicate-popup-title'         => 'ارفع {{PLURAL:$1|الملف|الملف|الملفين|الملفات|الملفات|الملفات}}',
+'api-error-empty-file'                    => 'كان ملف الذي قمت بإرسال فارغة.',
+'api-error-fetchfileerror'                => 'خطأ داخلي: قد حدث خطأ أثناء إحضار الملف.',
+'api-error-file-too-large'                => 'الملف الذي أرسلته كان كبيرا جدا.',
+'api-error-filename-tooshort'             => 'اسم الملف قصير جدا.',
+'api-error-filetype-banned'               => 'نوع الملف هذا ممنوع.',
+'api-error-filetype-missing'              => 'يفتقد الملفّ ملحق نوعيّته.',
+'api-error-hookaborted'                   => 'التعديل الذي تحاول أن تقوم به تم إحباطه',
+'api-error-http'                          => 'خطأ داخلي: تعذر الاتصال بالخادوم.',
+'api-error-illegal-filename'              => 'اسم الملف غير مسموح به.',
+'api-error-internal-error'                => 'خطأ داخلي: حدث خطأ عند معالجة التحميل الخاص بك على الويكي.',
+'api-error-invalid-file-key'              => 'خطأ داخلي: لم يتم العثور على الملف في التخزين المؤقت.',
+'api-error-missingparam'                  => 'خطأ داخلي : متغيرات مفقودة ضمن الطلب.',
+'api-error-missingresult'                 => 'خطأ داخلي : لا يمكن التحديد ما إذا كان النسخ ناجحاً.',
+'api-error-mustbeloggedin'                => 'يجب أن تكون مسجلا في لتحميل الملفات.',
+'api-error-mustbeposted'                  => 'خطأ داخلي: يتطلب طلب HTTP POST.',
+'api-error-noimageinfo'                   => 'نجح التحميل، ولكن الخادم لم يقدم لنا أي معلومات حول الملف.',
+'api-error-nomodule'                      => 'خطأ داخلي: لم يتم تعيين تحميل الوحدة النمطية.',
+'api-error-ok-but-empty'                  => 'خطأ داخلي : لم يكن هناك استجابة من الملقم.',
+'api-error-overwrite'                     => 'لا يسمح بالكتابة فوق ملف موجود.',
+'api-error-stashfailed'                   => 'خطأ داخلي: فشل الملقم في تخزين الملفات المؤقتة.',
+'api-error-timeout'                       => 'لم يستجب الملقم في الوقت المتوقع.',
+'api-error-unclassified'                  => 'حدث خطأ غير معروف',
+'api-error-unknown-code'                  => 'خطأ غير معروف : " $1 "',
+'api-error-unknown-error'                 => 'خطأ داخلي: قد حدث خطأ عند محاولة تحميل الملف الخاص بك.',
+'api-error-unknown-warning'               => 'تحذير غير معروف:$1',
+'api-error-uploaddisabled'                => 'تم تعطيل تحميل على هذا الويكي.',
+'api-error-verification-error'            => 'هذا الملف قد يكون معطوباً أو يحتوي على ملحق غير صحيح.',
 
 );

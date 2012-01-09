@@ -4563,14 +4563,9 @@ $4 is the gender of the target user.',
 'feedback-bugnew'    => 'Button label - asserts that the user has checked for existing bugs. When clicked will launch a bugzilla form to add a new bug in a new tab or window',
 
 # API errors
-'api-error-filetype-missing' => 'The word "file" here is synonymous to "file name".
-The word "extension" refers to the part behind the last dot in a file name, that by convention gives a hint about the kind of data format which a files contents are in.',
-'api-error-verification-error' => 'The word "extension" refers to the part behind the last dot in a file name, that by convention gives a hint about the kind of data format which a files contents are in.',
-'api-error-hookaborted' => 'The word "extension" here refers to a [[:mw:Manual:Extensions|MediaWiki Extension]] which extends the functionality of the basic wiki by adding something to its capabilities.
-
-An "[[:mw:Manual:Hooks|extension hook]]" is both a way to plug extended capabilities into the basic program, or vice versa, and the process of using or calling it. A specific task or service is associated with a hook and accessed by calling the hook.
-
-"… aborted by an extension hook" implies, that from a hook call, a negative response was received, indicating that the intended operation could not be performed successfully or was not allowed to continue to its intended end.',
-	'api-error-duplicate-popup-title' => 'This message is a pop-up title shown in case one or more files exactly equal to the one just uploaded are already present. The word "duplicate" is an adjective.',
+'api-error-duplicate-popup-title' => 'This message is a pop-up title shown in case one or more files exactly equal to the one just uploaded are already present. The word "duplicate" is an adjective.',
+'api-error-filetype-missing'      => 'The word "extension" refers to the part behind the last dot in a file name, that by convention gives a hint about the kind of data format which a files contents are in.',
+'api-error-hookaborted'           => 'The word "extension" here refers to a [[:mw:Manual:Extensions|MediaWiki Extension]] which extends the functionality of the basic wiki by adding something to its capabilities. "… aborted by an extension" implies that an operation could not be performed successfully or was not allowed to continue to its intended end.',
+'api-error-verification-error'    => 'The word "extension" refers to the part behind the last dot in a file name, that by convention gives a hint about the kind of data format which a files contents are in.',
 
 );

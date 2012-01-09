@@ -1918,4 +1918,16 @@ Your e-mail address is not revealed when other users contact you.
 'revdelete-unrestricted' => 'အက်ဒမင်များအတွက် ကန့်သတ်ချက်များကို ဖယ်ရှားရန်',
 'newuserlog-byemail'     => 'စကားဝှက်ကို အီးမေးဖြင့် ပို့လိုက်ပါပြီ။',
 
+# API errors
+'api-error-filename-tooshort'  => 'ဖိုင်အမည်သည် တိုလွန်းသည်။',
+'api-error-filetype-banned'    => 'ဤဖိုင်အမျိုးအစားကို တားမြစ်ထားသည်။',
+'api-error-http'               => 'အတွင်းပိုင်းအမှား - ဆာဗာကို မဆက်သွယ်နိုင်ပါ။',
+'api-error-illegal-filename'   => 'ဖိုင်အမည်ကို ခွင့်မပြုပါ။',
+'api-error-mustbeloggedin'     => 'ဖိုင်တင်ရန် login ဝင်ထားရမည်။',
+'api-error-ok-but-empty'       => 'အတွင်းပိုင်းအမှား - ဆာဗာထံမှ တုံ့ပြန်မှု မရပါ။',
+'api-error-unknown-code'       => 'အမည်မသိ အမှား - "$1"',
+'api-error-unknown-warning'    => 'အမည်မသိ သတိပေးချက် - $1',
+'api-error-uploaddisabled'     => 'ဤဝီကီတွင် ဖိုင်တင်ခြင်း ပိတ်ထားသည်။',
+'api-error-verification-error' => 'ဖိုင်ပျက်နေသည် (သို့) ဖိုင်နောက်ဆက် extension မှားနေသည်။',
+
 );

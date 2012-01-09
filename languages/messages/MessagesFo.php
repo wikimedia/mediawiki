@@ -2074,4 +2074,13 @@ Hendan váttanarkoda fer úr gildi tann $4.',
 'compare-page1' => 'Síða 1',
 'compare-page2' => 'Síða 2',
 
+# API errors
+'api-error-empty-file'     => 'Fílan sum tú sendi inn var tóm.',
+'api-error-file-too-large' => 'Fílan sum tú sendi inn var óv stór.',
+'api-error-http'           => 'Internur feilur: Kann ikki fáa samband við servaran.',
+'api-error-mustbeloggedin' => 'Tú mást vera innritað/ur fyri at tú kanst leggja fílur upp.',
+'api-error-ok-but-empty'   => 'Internur feilur: Onki svar frá servara.',
+'api-error-unclassified'   => 'Ein ókendur feilur hendi.',
+'api-error-unknown-code'   => 'Ókendur feilur: "$1"',
+
 );

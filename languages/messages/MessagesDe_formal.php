@@ -704,4 +704,9 @@ Anderenfalls können Sie auch das untenstehende einfache Formular nutzen. Ihr Ko
 'feedback-thanks'    => 'Vielen Dank. Ihre Rückmeldung wurde auf der Seite „[$2 $1]“ gespeichert.',
 'feedback-bugcheck'  => 'Super! Bitte überprüfen Sie noch, ob es sich hierbei nicht um einen bereits [$1 bekannten Fehler] handelt.',
 
+# API errors
+'api-error-badaccess-groups' => 'Sie haben nicht die Berechtigung Dateien in dieses Wiki hochzuladen.',
+'api-error-hookaborted'      => 'Die von Ihnen vorgesehene Anpassung kann nicht durchgeführt werden (Unterbrechung durch eine Programmschnittstelle).',
+'api-error-mustbeloggedin'   => 'Um Dateien hochladen zu können, müssen Sie angemeldet sein.',
+
 );

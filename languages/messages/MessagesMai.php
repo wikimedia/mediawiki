@@ -3544,4 +3544,17 @@ $5
 'logentry-newusers-autocreate'        => 'खाता $1 छल {{लिंग:$2|बनाएल}} स्वतः',
 'newuserlog-byemail'                  => 'कूटशब्द ई-पत्र द्वारा पठाएल गेल',
 
+# API errors
+'api-error-badaccess-groups'  => 'अहि विकी सें अहां कोनो प्रारूप लोड नहि क सकब.',
+'api-error-filename-tooshort' => 'ई संचिका नाम बड छोट अछि |',
+'api-error-filetype-banned'   => 'ऐ तरहक संचिका नाम प्रतिबंधित  अछि।',
+'api-error-http'              => 'आन्तरिक भ्रम: वितरकसँ सम्पर्क करबामे असफल',
+'api-error-illegal-filename'  => 'ऐ तरहक संचिका नाम अमान्य अछि।',
+'api-error-mustbeposted'      => 'आन्तरिक भ्रम: आग्रहक लेल परिपाठ्य संचार संविद पाठ चाही।',
+'api-error-nomodule'          => 'आन्तरिक भ्रम: कोनो उपारोपण तरीका निर्धारित नै अछि।',
+'api-error-ok-but-empty'      => 'आन्तरिक भ्रम: वितरकसँ कोनो सम्पर्क नै',
+'api-error-unclassified'      => 'एकटा अबूझ भ्रम आएल',
+'api-error-unknown-code'      => 'अबूझ भ्रम:"$1"',
+'api-error-uploaddisabled'    => 'ऐ विकीपर उपारोपण अशक्त कएल गेल अछि।',
+
 );

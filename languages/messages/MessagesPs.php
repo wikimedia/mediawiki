@@ -1251,7 +1251,7 @@ $1',
 'upload-source'         => 'سرچينيزه دوتنه',
 'sourcefilename'        => 'د سرچينيزې دوتنې نوم:',
 'sourceurl'             => 'د URL سرچينه:',
-'destfilename'          => 'د موخنيزې دوتنې نوم:',
+'destfilename'          => 'د موخيزې دوتنې نوم:',
 'upload-maxfilesize'    => 'د دوتنې تر ټولو لويه کچه: $1',
 'upload-description'    => 'د دوتنې څرګندونې',
 'upload-options'        => 'د پورته کولو خوښنې',
@@ -2492,5 +2492,13 @@ $5
 'feedback-message' => 'پيغام:',
 'feedback-cancel'  => 'ناګارل',
 'feedback-close'   => 'ترسره شو',
+
+# API errors
+'api-error-empty-file'        => 'کومه دوتنه چې تاسې دلته سپارلې هغه تشه ده.',
+'api-error-file-too-large'    => 'کومه دوتنه چې تاسې دلته سپارلې ډېره لويه ده.',
+'api-error-filename-tooshort' => 'د دوتنې نوم ډېر لنډ دی.',
+'api-error-filetype-banned'   => 'په دې ډول دوتنې بنديز دی.',
+'api-error-illegal-filename'  => 'د دوتنې نوم نه دی پرېښل شوی.',
+'api-error-unknown-code'      => 'ناڅرګنده تېروتنه: "$1"',
 
 );

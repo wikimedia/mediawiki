@@ -3594,4 +3594,25 @@ Paveikslėliai yra rodomi pilna raiška, kiti failų tipai paleidžiami tiesiogi
 'feedback-adding'  => 'Pridedamas atsiliepimas į puslapį ...',
 'feedback-error2'  => 'Klaida: Redagavimas nepavyko',
 
+# API errors
+'api-error-badaccess-groups'      => 'Jums neleidžiama įkelti failus į šią wiki.',
+'api-error-copyuploaddisabled'    => 'Siuntimas pagal URL yra išjungtas šiame serveryje.',
+'api-error-duplicate-popup-title' => 'Dubliuoti  {{PLURAL:$1|failą|failus}}',
+'api-error-empty-file'            => 'Pateikta failas buvo tuščias.',
+'api-error-file-too-large'        => 'Failą, kurį pateikėte buvo per didelis.',
+'api-error-filename-tooshort'     => 'Failo vardas yra per trumpas.',
+'api-error-filetype-banned'       => 'Šis failų tipas yra uždraustas.',
+'api-error-http'                  => 'Vidinė klaida: nepavyko prisijungti prie serverio.',
+'api-error-illegal-filename'      => 'Failo vardas neleidžiamas.',
+'api-error-invalid-file-key'      => 'Vidinė klaida: failas nerastas saugykloje.',
+'api-error-mustbeloggedin'        => 'Jūs turite būti prisijungęs kad galėtumėte įkelti failus.',
+'api-error-mustbeposted'          => 'Vidinė klaida: prašymas reikalauja HTTP POST.',
+'api-error-ok-but-empty'          => 'Vidinė klaida: nėra atsakymo iš serverio.',
+'api-error-overwrite'             => 'Perrašymas esamą failą neleidžiamas.',
+'api-error-unclassified'          => 'Įvyko nežinoma klaida',
+'api-error-unknown-code'          => 'Nežinoma klaida: " $1 "',
+'api-error-unknown-error'         => 'Vidinė klaida: kažkas nutiko bandant įkelti failą.',
+'api-error-unknown-warning'       => 'Nežinomas įspėjimas: $1',
+'api-error-uploaddisabled'        => 'Įkėlimas išjungtas šioje wiki.',
+
 );
