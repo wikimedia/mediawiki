@@ -434,7 +434,7 @@ class HistoryPager extends ReverseChronologicalPager {
 				'type' => 'submit',
 				'name' => $name,
 				'value' => '1',
-				'class' => "mw-history-$name-button",
+				'class' => "historysubmit mw-history-$name-button",
 			),
 			$this->msg( $msg )->text()
 		) . "\n";

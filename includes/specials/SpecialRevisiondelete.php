@@ -134,7 +134,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		// $this->ids = array_map( 'intval', $this->ids );
 		$this->ids = array_unique( array_filter( $this->ids ) );
 
-		if ( $request->getVal( 'action' ) == 'historysubmit' ) {
+		if ( $request->getVal( 'action' ) == 'historysubmit' || $request->getVal( 'action' ) == 'revisiondelete' ) {
 			// For show/hide form submission from history page
 			// Since we are access through index.php?title=XXX&action=historysubmit
 			// getFullTitle() will contain the target title and not our title
