@@ -1,0 +1,8 @@
+Parser tests are run using our PHPUnit test suite in tests/phpunit:
+
+ $ cd tests/phpunit
+ ./phpunit.php --group Parser
+
+You can optionally filter by title using --regex. I.e. :
+
+ ./phpunit.php --group Parser --regex="Bug 6200"
