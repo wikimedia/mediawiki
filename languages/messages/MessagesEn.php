@@ -2115,11 +2115,11 @@ See the [[Special:NewFiles|gallery of new files]] for a more visual overview.',
 'uploadedfiles'               => 'Uploaded files',
 'ignorewarning'               => 'Ignore warning and save file anyway',
 'ignorewarnings'              => 'Ignore any warnings',
-'minlength1'                  => 'File names must be at least one letter.',
+'minlength1'                  => 'Filenames must be at least one letter.',
 'illegalfilename'             => 'The filename "$1" contains characters that are not allowed in page titles.
 Please rename the file and try uploading it again.',
-'filename-toolong'            => 'File names may not be longer than 240 bytes.',
-'badfilename'                 => 'File name has been changed to "$1".',
+'filename-toolong'            => 'Filenames may not be longer than 240 bytes.',
+'badfilename'                 => 'Filename has been changed to "$1".',
 'filetype-mime-mismatch'      => 'File extension ".$1" does not match the detected MIME type of the file ($2).',
 'filetype-badmime'            => 'Files of the MIME type "$1" are not allowed to be uploaded.',
 'filetype-bad-ie-mime'        => 'Cannot upload this file because Internet Explorer would detect it as "$1", which is a disallowed and potentially dangerous file type.',
@@ -2143,7 +2143,7 @@ Permitted {{PLURAL:$3|file type is|file types are}} $2.',
 this file is $2.',
 'largefileserver'             => 'This file is bigger than the server is configured to allow.',
 'emptyfile'                   => 'The file you uploaded seems to be empty.
-This might be due to a typo in the file name.
+This might be due to a typo in the filename.
 Please check whether you really want to upload this file.',
 'windows-nonascii-filename'   => 'This wiki does not support filenames with special characters.',
 'fileexists'                  => "A file with this name exists already, please check '''<tt>[[:$1]]</tt>''' if you are not sure if you want to change it.
@@ -2162,7 +2162,7 @@ Please check the file '''<tt>[[:$1]]</tt>'''.
 If the checked file is the same image of original size it is not necessary to upload an extra thumbnail.",
 'file-thumbnail-no'           => "The filename begins with '''<tt>$1</tt>'''.
 It seems to be an image of reduced size ''(thumbnail)''.
-If you have this image in full resolution upload this one, otherwise change the file name please.",
+If you have this image in full resolution upload this one, otherwise change the filename please.",
 'fileexists-forbidden'        => 'A file with this name already exists, and cannot be overwritten.
 If you still want to upload your file, please go back and use a new name.
 [[File:$1|thumb|center|$1]]',
@@ -2203,7 +2203,7 @@ Please choose a more descriptive name for your file.",
 'filename-prefix-blacklist'   => ' #<!-- leave this line exactly as it is --> <pre>
 # Syntax is as follows:
 #   * Everything from a "#" character to the end of the line is a comment
-#   * Every non-blank line is a prefix for typical file names assigned automatically by digital cameras
+#   * Every non-blank line is a prefix for typical filenames assigned automatically by digital cameras
 CIMG # Casio
 DSC_ # Nikon
 DSCF # Fuji
@@ -3290,7 +3290,7 @@ cannot move a page over itself.',
 'imagenocrossnamespace'        => 'Cannot move file to non-file namespace',
 'nonfile-cannot-move-to-file'  => 'Cannot move non-file to file namespace',
 'imagetypemismatch'            => 'The new file extension does not match its type',
-'imageinvalidfilename'         => 'The target file name is invalid',
+'imageinvalidfilename'         => 'The target filename is invalid',
 'fix-double-redirects'         => 'Update any redirects that point to the original title',
 'move-leave-redirect'          => 'Leave a redirect behind',
 'protectedpagemovewarning'     => "'''Warning:''' This page has been protected so that only users with administrator privileges can move it.
@@ -3299,7 +3299,7 @@ The latest log entry is provided below for reference:",
 The latest log entry is provided below for reference:",
 'move-over-sharedrepo'         => '== File exists ==
 [[:$1]] exists on a shared repository. Moving a file to this title will override the shared file.',
-'file-exists-sharedrepo'       => 'The file name chosen is already in use on a shared repository.
+'file-exists-sharedrepo'       => 'The filename chosen is already in use on a shared repository.
 Please choose another name.',
 
 # Export
@@ -4736,7 +4736,7 @@ Otherwise, you can use the easy form below. Your comment will be added to the pa
 'api-error-mustbeloggedin' => 'You must be logged in to upload files.',
 'api-error-empty-file' => 'The file you submitted was empty.',
 'api-error-file-too-large' => 'The file you submitted was too large.',
-'api-error-filetype-missing' => 'The file is missing an extension.',
+'api-error-filetype-missing' => 'The filename is missing an extension.',
 'api-error-filetype-banned' => 'This type of file is banned.',
 'api-error-filename-tooshort' => 'The filename is too short.',
 'api-error-illegal-filename' => 'The filename is not allowed.',
