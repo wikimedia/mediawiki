@@ -153,6 +153,27 @@ class MWInit {
 	}
 
 	/**
+	 * Determine wether a method exists within a class, using a method which works
+	 * under HipHop.
+	 *
+	 * Note that under HipHop when method_exists is given a string for it's class
+	 * such as to test for a static method has the same issues as class_exists does.
+	 *
+	 * @param $class string
+	 * @param $method string
+	 *
+	 * @return bool
+	 */
+	static function methodExists( $class, $method ) {
+		try {
+			$r = new ReflectionMethod( $class, $method );
+		} catch( ReflectionException $r ) {
+			$r = false;
+		}
+		return $r !== false;
+	}
+
+	/**
 	 * Determine whether a function exists, using a method which works under
 	 * HipHop.
 	 *
