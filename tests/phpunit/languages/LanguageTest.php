@@ -603,6 +603,11 @@ class LanguageTest extends MediaWikiTestCase {
 				"0 bits per second"
 			),
 			array(
+				999,
+				"999bps",
+				"1 bits per second"
+			),
+			array(
 				1000,
 				"1kbps",
 				"1 kilobit per second"
