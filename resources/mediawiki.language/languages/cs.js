@@ -7,12 +7,10 @@ mediaWiki.language.convertPlural = function( count, forms ) {
 	switch ( count ) {
 		case 1:
 			return forms[0];
-			break;
 		case 2:
 		case 3:
 		case 4:
 			return forms[1];
-			break;
 		default:
 			return forms[2];
 	}
