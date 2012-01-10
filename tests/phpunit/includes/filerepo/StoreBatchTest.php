@@ -6,6 +6,8 @@ class StoreBatchTest extends MediaWikiTestCase {
 
 	public function setUp() {
 		parent::setUp();
+
+		# Forge a FSRepo object to not have to rely on local wiki settings
 		$tmpDir = wfTempDir() . '/' . time() . '-' . mt_rand();
 		$this->repo = new FSRepo( array(
 			'name'    => 'test',
@@ -20,8 +22,10 @@ class StoreBatchTest extends MediaWikiTestCase {
 				)
 			) )
 		) );
+
 		$this->date = gmdate( "YmdHis" );
 		$this->createdFiles = array();
+
 		$this->users = array(
 			'sysop' => new ApiTestUser(
 				'Uploadstashtestsysop',
