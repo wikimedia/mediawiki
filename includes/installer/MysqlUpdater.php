@@ -193,6 +193,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'addField',	'uploadstash',	'us_chunk_inx',		'patch-uploadstash_chunk.sql' ),
 			array( 'addfield', 'job',           'job_timestamp',    'patch-jobs-add-timestamp.sql' ),
 			array( 'dropAncientTables' ),
+			array( 'cleanupTextTable' ),
 		);
 	}
 
@@ -864,6 +865,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			'links', // 1.4
 			'linkscc', // 1.4
 			'old', // 1.4
+			'oldwatchlist', // pre 1.1?
 			'trackback', // 1.19
 			'user_rights', // 1.5
 			'validate', // 1.6
@@ -875,4 +877,30 @@ class MysqlUpdater extends DatabaseUpdater {
 			}
 		}
 	}
+
+	protected function cleanupTextTable() {
+		$this->output( "Cleaning up text table\n" );
+
+		/*$oldIndexes = array(
+			'old_namespace',
+			'old_timestamp',
+			'name_title_timestamp',
+			'user_timestamp',
+			'usertext_timestamp',
+		);*/
+		$this->dropIndex( 'text', 'old_namespace', 'patch-drop_old_text_indexes.sql' );
+
+		/*$oldFields = array(
+			'old_namespace',
+			'old_title',
+			'old_comment',
+			'old_user',
+			'old_user_text',
+			'old_timestamp',
+			'old_minor_edit',
+			'inverse_timestamp',
+		);*/
+		$this->dropField( 'text', 'old_namespace', 'patch-drop_old_text_fields.sql' );
+	}
+
 }
