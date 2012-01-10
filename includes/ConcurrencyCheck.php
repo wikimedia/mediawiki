@@ -18,6 +18,14 @@
  * @author Ian Baker <ian@wikimedia.org>
  */
 class ConcurrencyCheck {
+
+	protected $expirationTime;
+
+	/**
+	 * @var User
+	 */
+	protected $user;
+
 	/**
 	 * Constructor
 	 * 
@@ -75,7 +83,7 @@ class ConcurrencyCheck {
 				'cc_expiration' => time() + $this->expirationTime,
 			),
 			__METHOD__,
-			array('IGNORE')				
+			array( 'IGNORE' )
 		);
 
 		// if the insert succeeded, checkout is done.
@@ -143,7 +151,7 @@ class ConcurrencyCheck {
 		$dbw = $this->dbw;
 		$userId = $this->user->getId();
 		$cacheKey = wfMemcKey( $this->resourceType, $record );
-		
+
 		$dbw->delete(
 			'concurrencycheck',
 			array(
@@ -154,14 +162,14 @@ class ConcurrencyCheck {
 			__METHOD__,
 			array()
 		);
-		
+
 		// check row count (this is atomic, select would not be)
 		if( $dbw->affectedRows() === 1 ) {
 			$memc->delete( $cacheKey );
 			return true;
 		}
-		
-		return false;		
+
+		return false;
 	}
 
 	/**
@@ -171,9 +179,9 @@ class ConcurrencyCheck {
 	 */
 	public function expire() {
 		$memc = wfGetMainCache();
-		$dbw = $this->dbw;		
+		$dbw = $this->dbw;
 		$now = time();
-		
+
 		// get the rows to remove from cache.
 		$res = $dbw->select(
 			'concurrencycheck',
@@ -184,13 +192,13 @@ class ConcurrencyCheck {
 			__METHOD__,
 			array()
 		);
-		
+
 		// build a list of rows to delete.
 		$toExpire = array();
 		while( $res && $record = $res->fetchRow() ) {
 			$toExpire[] = $record['cc_record'];
 		}
-			
+
 		// remove the rows from the db
 		$dbw->delete(
 			'concurrencycheck',
@@ -200,7 +208,7 @@ class ConcurrencyCheck {
 			__METHOD__,
 			array()
 		);
-		
+
 		// delete all those rows from cache
 		// outside a transaction because deletes don't require atomicity.
 		foreach( $toExpire as $expire ) {
@@ -210,7 +218,7 @@ class ConcurrencyCheck {
 		// return the number of rows removed.
 		return $dbw->affectedRows();
 	}
-	
+
 	public function status( $keys ) {
 		$memc = wfGetMainCache();
 		$dbw = $this->dbw;
@@ -218,11 +226,11 @@ class ConcurrencyCheck {
 
 		$checkouts = array();
 		$toSelect = array();
-		
+
 		// validate keys, attempt to retrieve from cache.
 		foreach( $keys as $key ) {
 			$this->validateId( $key );
-			
+
 			$cached = $memc->get( wfMemcKey( $this->resourceType, $key ) );
 			if( $cached && $cached['expiration'] > $now ) {
 				$checkouts[$key] = array(
@@ -256,11 +264,11 @@ class ConcurrencyCheck {
 				__METHOD__,
 				array()
 			);
-		
+
 			while( $res && $record = $res->fetchRow() ) {
 				$record['status'] = 'valid';
 				$checkouts[ $record['cc_record'] ] = $record;
-				
+
 				// safe to store values since this is inside the transaction
 				$memc->set(
 					wfMemcKey( $this->resourceType, $record['cc_record'] ),
@@ -272,7 +280,7 @@ class ConcurrencyCheck {
 			// end the transaction.
 			$dbw->rollback();
 		}
-		
+
 		// if a key was passed in but has no (unexpired) checkout, include it in the
 		// result set to make things easier and more consistent on the client-side.
 		foreach( $keys as $key ) {
@@ -280,19 +288,22 @@ class ConcurrencyCheck {
 				$checkouts[$key]['status'] = 'invalid';
 			}
 		}
-		
+
 		return $checkouts;
 	}
-	
+
 	public function listCheckouts() {
 		// TODO: fill in the function that lets you get the complete set of checkouts for a given application.
 	}
-	
-	public function setUser ( $user ) {
+
+	/**
+	 * @param $user user
+	 */
+	public function setUser( $user ) {
 		$this->user = $user;
 	}
-	
-	public function setExpirationTime ( $expirationTime = null ) {
+
+	public function setExpirationTime( $expirationTime = null ) {
 		global $wgConcurrencyExpirationDefault, $wgConcurrencyExpirationMax, $wgConcurrencyExpirationMin;
 
 		// check to make sure the time is digits only, so it can be used in queries
@@ -321,10 +332,10 @@ class ConcurrencyCheck {
 		if( ! preg_match('/^\d+$/', $record) ) {
 			throw new ConcurrencyCheckBadRecordIdException( 'Record ID ' . $record . ' must be a positive integer' );
 		}
-		
+
 		// TODO: add a hook here for client-side validation.
 		return true;
 	}
 }
 
-class ConcurrencyCheckBadRecordIdException extends MWException {};
+class ConcurrencyCheckBadRecordIdException extends MWException {}

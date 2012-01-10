@@ -4,7 +4,6 @@
  * API module that handles cooperative locking of web resources
  */
 class ApiConcurrency extends ApiBase {
-	
 	public function __construct( $main, $action ) {
 		parent::__construct( $main, $action );
 	}
@@ -24,10 +23,9 @@ class ApiConcurrency extends ApiBase {
 			case 'checkout':
 			case 'checkin':
 				if ( $concurrencyCheck->$params['ccaction']( $params['record'] ) ) {
-					$res['result'] = 'success';	
-				}
-				else {
-					$res['result'] = 'failure';	
+					$res['result'] = 'success';
+				} else {
+					$res['result'] = 'failure';
 				}
 				break;
 
@@ -92,7 +90,7 @@ class ApiConcurrency extends ApiBase {
 	}
 
 	public function getVersion() {
-		return __CLASS__ . ': $Id: ApiConcurrency.php $';
+		return __CLASS__ . ': $Id$';
 	}
 	
 	private function checkPermission( $user ) {

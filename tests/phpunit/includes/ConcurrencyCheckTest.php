@@ -5,9 +5,9 @@ class ConcurrencyCheckTest extends MediaWikiTestCase {
 	 * @var Array of test users
 	 */
 	public static $users;
-	
+
 	// Prepare test environment
-	
+
 	public function setUp() {
 		parent::setUp();
 	
@@ -25,22 +25,22 @@ class ConcurrencyCheckTest extends MediaWikiTestCase {
 				array()
 			),
 		);
-		
+
 		// turn on memcached for this test.
 		// if no memcached is present, this still works fine.
 		global $wgMainCacheType;
 		$this->oldcache = $wgMainCacheType;
 		$wgMainCacheType = CACHE_MEMCACHED;
 	}
-	
+
 	public function tearDown() {
 		// turn off caching again.
 		global $wgMainCacheType;
 		$wgMainCacheType = $this->oldcache;
-		
-		parent::tearDown();		
+
+		parent::tearDown();
 	}
-	
+
 	// Actual tests from here down
 	
 	public function testCheckoutCheckin() {
@@ -51,7 +51,7 @@ class ConcurrencyCheckTest extends MediaWikiTestCase {
 		// clean up after any previously failed tests
 		$first->checkin($testKey);
 		$second->checkin($testKey);
-		
+
 		// tests
 		$this->assertTrue( $first->checkout($testKey), "Initial checkout" );
 		$this->assertTrue( $first->checkout($testKey), "Cache hit" );
@@ -77,7 +77,7 @@ class ConcurrencyCheckTest extends MediaWikiTestCase {
 		$cc->checkout( 1339 );
 		$cc->setExpirationTime();
 		$cc->checkout( 13310 );
-		
+
 		// tests
 		$this->assertEquals( 2, $cc->expire(), "Resource expiration" );
 		$this->assertTrue( $cc->checkin( 13310 ), "Checkin succeeds after expiration" );		

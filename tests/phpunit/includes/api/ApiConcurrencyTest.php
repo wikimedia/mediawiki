@@ -106,7 +106,6 @@ class ApiConcurrencyTest extends ApiTestCase {
 
 	}
 
-	
 	/**
 	 * @depends testLogin
 	 */
