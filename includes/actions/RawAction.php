@@ -42,6 +42,10 @@ class RawAction extends FormlessAction {
 			return;
 		}
 
+		if ( $this->getOutput()->checkLastModified( $this->page->getTouched() ) ) {
+			return; // Client cache fresh and headers sent, nothing more to do.
+		}
+
 		# special case for 'generated' raw things: user css/js
 		# This is deprecated and will only return empty content
 		$gen = $request->getVal( 'gen' );
