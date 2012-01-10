@@ -49,9 +49,6 @@ if ( /msie ([0-9]{1,}[\.0-9]{0,})/.exec( clientPC ) != null
 	ie6_bugs = true;
 }
 
-// Global external objects used by this script.
-/*extern ta */
-
 // add any onload functions in this hook (please don't hard-code any events in the xhtml source)
 window.doneOnloadHook = undefined;
 
