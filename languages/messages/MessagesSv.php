@@ -1813,6 +1813,8 @@ Om problemet kvarstår, kontakta en [[Special:ListUsers/sysop|administratör]].'
 'backend-fail-closetemp'     => 'Kunde inte stänga temporär fil.',
 'backend-fail-read'          => 'Kunde inte läsa filen $1.',
 'backend-fail-create'        => 'Kunde inte skapa filen $1.',
+'backend-fail-readonly'      => 'Backend "$1" är för närvarande skrivskyddad. Den angivna anledningen är: "$2"',
+'backend-fail-synced'        => 'Filen "$1" är i ett inkonsekvent tillstånd inom de interna backends',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Kunde inte låsa upp "$1"; den är inte låst.',
@@ -2883,12 +2885,15 @@ Spara den på din dator och ladda upp den här.',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|version|versioner}} från $2',
 
 # JavaScriptTest
-'javascripttest'                      => 'JavaScript-testning',
-'javascripttest-disabled'             => 'Denna funktion är avaktiverad.',
-'javascripttest-title'                => 'Kör $1 tester',
-'javascripttest-pagetext-noframework' => 'Denna sida är reserverat för att köra JavaScript-tester.',
-'javascripttest-pagetext-skins'       => 'Välj ett utseende att köra tester med:',
-'javascripttest-qunit-intro'          => 'Se [$1 testningsdokumentationen] på mediawiki.org.',
+'javascripttest'                           => 'JavaScript-testning',
+'javascripttest-disabled'                  => 'Denna funktion är avaktiverad.',
+'javascripttest-title'                     => 'Kör $1 tester',
+'javascripttest-pagetext-noframework'      => 'Denna sida är reserverat för att köra JavaScript-tester.',
+'javascripttest-pagetext-unknownframework' => 'Okänd testmiljö "$1".',
+'javascripttest-pagetext-frameworks'       => 'Välj en av följande testmiljöer: $1',
+'javascripttest-pagetext-skins'            => 'Välj ett utseende att köra tester med:',
+'javascripttest-qunit-intro'               => 'Se [$1 testningsdokumentationen] på mediawiki.org.',
+'javascripttest-qunit-heading'             => 'MediaWiki JavaScript QUnit testsvit',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'                 => 'Din användarsida',

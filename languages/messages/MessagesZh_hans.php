@@ -782,7 +782,7 @@ $2
 'changeemail-oldemail' => '当前的电子邮件地址：',
 'changeemail-newemail' => '新的电子邮件地址：',
 'changeemail-none'     => '（无）',
-'changeemail-submit'   => '更改电子邮件',
+'changeemail-submit'   => '更改电子邮箱',
 'changeemail-cancel'   => '取消',
 
 # Edit page toolbar

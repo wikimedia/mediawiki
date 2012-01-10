@@ -1855,6 +1855,7 @@ Ako se problem ne reši, kontaktirajte [[Special:ListUsers/sysop|administratora]
 'backend-fail-read'          => 'Ne mogu da pročitam datoteku $1.',
 'backend-fail-create'        => 'Ne mogu da napravim datoteku $1.',
 'backend-fail-readonly'      => 'Na osnovu „$1“ trenutno ne može da se piše. Navedeni razlog glasi: „$2“',
+'backend-fail-synced'        => 'Datoteka „$1“ je u nedoslednom stanju između unutrašnjih delova',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Ne mogu da otključam „$1“ jer nije zaključan.',
