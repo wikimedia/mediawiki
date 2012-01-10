@@ -553,7 +553,7 @@ class NewParserTest extends MediaWikiTestCase {
 	 *
 	 * @todo @fixme Needs some work to not eat memory until the world explodes
 	 *
-	 * @group Broken
+	 * @group ParserFuzz
 	 */
 	function testFuzzTests() {
 		global $wgParserTestFiles;
