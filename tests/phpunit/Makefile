@@ -46,17 +46,26 @@ coverage:
 
 parser:
 	${PU} --group Parser
+parserfuzz:
+	@echo "******************************************************************"
+	@echo "* This WILL kill your computer by eating all memory AND all swap *"
+	@echo "*                                                                *"
+	@echo "* If you are on a production machine. ABORT NOW!!                *"
+	@echo "*  Press control+C to stop                                       *"
+	@echo "*                                                                *"
+	@echo "******************************************************************"
+	${PU} --group Parser,ParserFuzz
 noparser:
-	${PU} --exclude-group Parser,Broken,Stub
+	${PU} --exclude-group Parser,Broken,ParserFuzz,Stub
 
 safe:
-	${PU} --exclude-group Broken,Destructive,Stub
+	${PU} --exclude-group Broken,ParserFuzz,Destructive,Stub
 
 databaseless:
-	${PU} --exclude-group Broken,Destructive,Database,Stub
+	${PU} --exclude-group Broken,ParserFuzz,Destructive,Database,Stub
 
 database:
-	${PU} --exclude-group Broken,Destructive,Stub --group Database
+	${PU} --exclude-group Broken,ParserFuzz,Destructive,Stub --group Database
 
 list-groups:
 	${PU} --list-groups

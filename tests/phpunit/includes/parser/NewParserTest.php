@@ -548,6 +548,10 @@ class NewParserTest extends MediaWikiTestCase {
 	/**
 	 * Run a fuzz test series
 	 * Draw input from a set of test files
+	 *
+	 * @todo @fixme Needs some work to not eat memory until the world explodes
+	 *
+	 * @group ParserFuzz
 	 */
 	function testFuzzTests() {
 		
