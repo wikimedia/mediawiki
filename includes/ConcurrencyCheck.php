@@ -80,7 +80,7 @@ class ConcurrencyCheck {
 				'cc_resource_type' => $this->resourceType,
 				'cc_record' => $record,
 				'cc_user' => $userId,
-				'cc_expiration' => time() + $this->expirationTime,
+				'cc_expiration' => wfTimestamp( TS_MW, time() + $this->expirationTime ),
 			),
 			__METHOD__,
 			array( 'IGNORE' )
@@ -108,11 +108,11 @@ class ConcurrencyCheck {
 		);
 		
 		// not checked out by current user, checkout is unexpired, override is unset
-		if( ! ( $override || $row->cc_user == $userId || $row->cc_expiration <= time() ) ) {
+		if( ! ( $override || $row->cc_user == $userId || wfTimestamp( TS_UNIX, $row->cc_expiration ) <= time() ) ) {
 			// this was a cache miss.  populate the cache with data from the db.
 			// cache is set to expire at the same time as the checkout, since it'll become invalid then anyway.
 			// inside this transaction, a row-level lock is established which ensures cache concurrency
-			$memc->set( $cacheKey, array( 'userId' => $row->cc_user, 'expiration' => $row->cc_expiration ), $row->cc_expiration - time() );
+			$memc->set( $cacheKey, array( 'userId' => $row->cc_user, 'expiration' => $row->cc_expiration ), wfTimestamp( TS_UNIX, $row->cc_expiration ) - time() );
 			$dbw->rollback();
 			return false;
 		}
@@ -127,7 +127,7 @@ class ConcurrencyCheck {
 				'cc_resource_type' => $this->resourceType,
 				'cc_record' => $record,
 				'cc_user' => $userId,
-				'cc_expiration' => $expiration,
+				'cc_expiration' => wfTimestamp( TS_MW, $expiration ),
 			),
 			__METHOD__
 		);
@@ -187,7 +187,7 @@ class ConcurrencyCheck {
 			'concurrencycheck',
 			array( '*' ),
 			array(
-				'cc_expiration <= ' . $now,
+				'cc_expiration <= ' . $dbw->addQuotes( wfTimestamp( TS_MW, $now ) ),
 			),
 			__METHOD__,
 			array()
@@ -203,7 +203,7 @@ class ConcurrencyCheck {
 		$dbw->delete(
 			'concurrencycheck',
 			array(
-				'cc_expiration <= ' . $now,
+				'cc_expiration <= ' . $dbw->addQuotes( wfTimestamp( TS_MW, $now ) ),
 			),
 			__METHOD__,
 			array()
@@ -238,7 +238,7 @@ class ConcurrencyCheck {
 					'cc_resource_type' => $this->resourceType,
 					'cc_record' => $key,
 					'cc_user' => $cached['userId'],
-					'cc_expiration' => $cached['expiration'],
+					'cc_expiration' => wfTimestamp( TS_MW, $cached['expiration'] ),
 					'cache' => 'cached',
 				);
 			} else {
@@ -259,7 +259,7 @@ class ConcurrencyCheck {
 				array(
 					'cc_resource_type' => $this->resourceType,
 					'cc_record IN (' . implode( ',', $toSelect ) . ')',
-					'cc_expiration > unix_timestamp(now())'
+					'cc_expiration > ' . $dbw->addQuotes( wfTimestamp( TS_MW ) ),
 				),
 				__METHOD__,
 				array()
