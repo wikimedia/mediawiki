@@ -405,16 +405,17 @@ abstract class FileBackendBase {
 
 	/**
 	 * Get quick information about a file at a storage path in the backend.
-	 * The result is an associative array that includes:
-	 *     mtime  : the last-modified timestamp (TS_MW) or false
-	 *     size   : the file size (bytes) or false
+	 * If the file does not exist, then this returns false.
+	 * Otherwise, the result is an associative array that includes:
+	 *     mtime  : the last-modified timestamp (TS_MW)
+	 *     size   : the file size (bytes)
 	 * 
 	 * $params include:
 	 *     src    : source storage path
 	 *     latest : use the latest available data
 	 * 
 	 * @param $params Array
-	 * @return Array|false Returns false on failure
+	 * @return Array|false|null Returns null on failure
 	 */
 	abstract public function getFileStat( array $params );
 
@@ -867,7 +868,11 @@ abstract class FileBackend extends FileBackendBase {
 	 * @see FileBackendBase::fileExists()
 	 */
 	final public function fileExists( array $params ) {
-		return (bool)$this->getFileStat( $params );
+		$stat = $this->getFileStat( $params );
+		if ( $stat === null ) {
+			return null; // failure
+		}
+		return (bool)$stat;
 	}
 
 	/**
