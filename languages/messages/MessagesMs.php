@@ -1682,7 +1682,8 @@ Sila hubungi [[Special:ListUsers/sysop|pentadbir sistem]].',
 'backend-fail-closetemp'     => 'Fail sementara tidak dapat ditutup.',
 'backend-fail-read'          => 'Fail $1 tidak dapat dibaca.',
 'backend-fail-create'        => 'Fail $1 tidak dapat diwujudkan.',
-'backend-fail-readonly'      => 'Bahagian belakang "$1" kini hanya boleh dibaca. Sebab yang diberikan: "$2"',
+'backend-fail-readonly'      => 'Backend "$1" kini hanya boleh dibaca. Sebab yang diberikan: "$2"',
+'backend-fail-synced'        => 'Fail "$1" berada dalam keadaan yang tidak sejajar dalam backend dalaman',
 
 # Lock manager
 'lockmanager-notlocked'        => '"$1" tidak dapat dibuka; ia tidak terkunci.',

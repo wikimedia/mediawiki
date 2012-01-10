@@ -272,7 +272,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'ચાલુ..',
 'index-category'                 => 'અનુક્રમણિકા બનાવેલા પાનાં',
 'noindex-category'               => 'અનુક્રમણિકા નહી બનાવેલા પાનાં',
-'broken-file-category'           => 'તૂટી ફાઈલ કડીઓને સાથે પાના',
+'broken-file-category'           => 'ફાઇલોની ત્રૂટક કડીઓવાળાં પાનાં',
 
 'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
 

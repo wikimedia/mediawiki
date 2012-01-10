@@ -6387,6 +6387,7 @@ $messages['haw'] = array(
 /** Hebrew (עברית)
  * @author Amire80
  * @author YaronSh
+ * @author ערן
  */
 $messages['he'] = array(
 	'config-desc' => 'תכנית ההתקנה של מדיה־ויקי',
@@ -6479,6 +6480,7 @@ $1
 אם אתם משתמשים באירוח משותף, בקשו מספק האירוח שלכם להתקין דרייבר מסד נתונים מתאים.
 אם קִמפלתם את PHP בעצמכם, הגדירו אותו מחדש והפעילו את לקוח מסד נתונים, למשל באמצעות <code dir="ltr">./configure --with-mysql</code>.
 אם התקנתם את PHP כחבילה של דביאן או של אובונטו, יש להתקין את המודול php5-mysql.',
+	'config-outdated-sqlite' => "'''אזהרה''': במערכת מתוקן SQLite $1. גרסה זו לא נתמכת ולשימוש ב SQLite נדרשת גרסה $2 ומעלה. מסיבה זו האפשרות SQLite לא מאופשרת.",
 	'config-no-fts3' => "'''אזהרה''': SQLite מקומפל ללא [//sqlite.org/fts3.html מודול FTS]. יכולות חיפוש לא יהיו זמינות בהתקנה הזאת.",
 	'config-register-globals' => "'''אזהרה: האפשרות <code>[http://php.net/register_globals register_globals]</code> של PHP מופעלת.'''
 '''כבו אותה אם אתם יכולים.'''
