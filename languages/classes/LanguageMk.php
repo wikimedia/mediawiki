@@ -17,7 +17,7 @@ class LanguageMk extends Language {
 	function convertPlural( $count, $forms ) {
 		if ( !count( $forms ) ) { return ''; }
 		$forms = $this->preConvertPlural( $forms, 2 );
-
+		// TODO CLDR defines forms[0] for n != 11 and not for n%100 !== 11
 		if ( $count % 10 === 1 && $count % 100 !== 11 ) {
 			return $forms[0];
 		} else {
