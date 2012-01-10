@@ -192,6 +192,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'modifyField', 'user', 'ug_group', 'patch-ug_group-length-increase.sql' ),
 			array( 'addField',	'uploadstash',	'us_chunk_inx',		'patch-uploadstash_chunk.sql' ),
 			array( 'addfield', 'job',           'job_timestamp',    'patch-jobs-add-timestamp.sql' ),
+			array( 'dropAncientTables' ),
 		);
 	}
 
@@ -852,5 +853,26 @@ class MysqlUpdater extends DatabaseUpdater {
 		$this->output( "Making user_last_timestamp nullable... " );
 		$this->applyPatch( 'patch-user-newtalk-timestamp-null.sql' );
 		$this->output( "done.\n" );
+	}
+
+	protected function dropAncientTables() {
+		$ancientTables = array(
+			'blobs', // 1.4
+			'brokenlinks', // 1.4
+			'cur', // 1.4
+			'ip_blocks_old', // Temporary in 1.6
+			'links', // 1.4
+			'linkscc', // 1.4
+			'old', // 1.4
+			'trackback', // 1.19
+			'user_rights', // 1.5
+			'validate', // 1.6
+		);
+
+		foreach( $ancientTables as $table ) {
+			if ( $this->db->tableExists( $table, __METHOD__ ) ) {
+				$this->db->dropTable( $table, __METHOD__ );
+			}
+		}
 	}
 }
