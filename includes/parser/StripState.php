@@ -11,6 +11,9 @@ class StripState {
 
 	protected $tempType, $tempMergePrefix;
 
+	/**
+	 * @param $prefix string
+	 */
 	function __construct( $prefix ) {
 		$this->prefix = $prefix;
 		$this->data = array(
@@ -170,6 +173,10 @@ class StripState {
 		return $texts;
 	}
 
+	/**
+	 * @param $m
+	 * @return string
+	 */
 	protected function mergeCallback( $m ) {
 		$key = $m[1];
 		return "{$this->prefix}{$this->tempMergePrefix}-$key" . Parser::MARKER_SUFFIX;
