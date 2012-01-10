@@ -34,6 +34,7 @@
 		<exclude>
 			<group>Utility</group>
 			<group>Broken</group>
+			<group>ParserFuzz</group>
 			<group>Stub</group>
 		</exclude>
 	</groups>
