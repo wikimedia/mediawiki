@@ -31,6 +31,9 @@ setting since version 1.2.0. If you have it on, turn it '''off''' if you can.
   cssText after DOM insertion.
 * (bug 29102) Upgrades no longer fail with the error "Unknown character set: 'mysql4'.
 * (bug 25355) Parser generates edit section links for special pages.
+* (bug 33321) Adding a line to MediaWiki:Sidebar that contains a pipe, but doesn't
+  have any pipes after being transformed by MessageCache, causes exception on
+  all pages.
 
 == MediaWiki 1.18 ==
 2011-11-24
