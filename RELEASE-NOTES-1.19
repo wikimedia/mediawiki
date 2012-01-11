@@ -124,7 +124,6 @@ production.
 * $wgUploadNavigationUrl should be used for file redlinks if.
   $wgUploadMissingFileUrl is not set. The first was used for this
   until the second was introduced in 1.17.
-* (bug 25355) Parser generates edit section links for special pages.
 * (bug 27894) Move 'editondblclick' event listener down from body to
   div#bodyContent.
 * (bug 30172) The check for posix_isatty() in maintenance scripts did not detect
