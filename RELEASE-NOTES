@@ -9,13 +9,8 @@ setting since version 1.2.0. If you have it on, turn it '''off''' if you can.
 
 This is a maintenance release of the MediaWiki 1.17 branch.
 
-* Hardcoded NLS_NUMERIC_CHARACTERS for Oracle DB to prevent type conversion errors.
-* Fixed recentchanges FK violation on page delete and cache purge error in updater for Oracle DB.
-
 === Changes since 1.17.1 ===
-
-* (32709) Private Wiki users were always taken to Special:Badtitle on login
-
+* (bug 32709) Private Wiki users were always taken to Special:Badtitle on login.
 
 == MediaWiki 1.17.1 ==
 
@@ -89,6 +84,7 @@ Selected changes since MediaWiki 1.16 that may be of interest:
 * (bug 30907) Special:Unusedcategories should sort ascendingly.
 * (bug 30219) The page shown when LocalSettings.php does not exist was broken on
   Windows servers.
+* Hardcoded NLS_NUMERIC_CHARACTERS for Oracle DB to prevent type conversion errors.
 
 === Changes since 1.17.0rc1 ===
 
