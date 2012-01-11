@@ -234,14 +234,6 @@ class EditPage {
 			return;
 		}
 
-		$wgOut->addModules( 'mediawiki.action.edit' );
-
-		if ( $wgUser->getOption( 'uselivepreview', false ) ) {
-			$wgOut->addModules( 'mediawiki.legacy.preview' );
-		}
-		// Bug #19334: textarea jumps when editing articles in IE8
-		$wgOut->addStyle( 'common/IE80Fixes.css', 'screen', 'IE 8' );
-
 		wfProfileIn( __METHOD__."-business-end" );
 
 		$this->isConflict = false;
@@ -253,36 +245,8 @@ class EditPage {
 		$this->isNew                = !$this->mTitle->exists() || $this->section == 'new';
 
 		# Show applicable editing introductions
-		if ( $this->formtype == 'initial' || $this->firsttime )
+		if ( $this->formtype == 'initial' || $this->firsttime ) {
 			$this->showIntro();
-
-		if ( $this->mTitle->isTalkPage() ) {
-			$wgOut->addWikiMsg( 'talkpagetext' );
-		}
-
-		# Optional notices on a per-namespace and per-page basis
-		$editnotice_ns   = 'editnotice-'.$this->mTitle->getNamespace();
-		$editnotice_ns_message = wfMessage( $editnotice_ns )->inContentLanguage();
-		if ( $editnotice_ns_message->exists() ) {
-			$wgOut->addWikiText( $editnotice_ns_message->plain() );
-		}
-		if ( MWNamespace::hasSubpages( $this->mTitle->getNamespace() ) ) {
-			$parts = explode( '/', $this->mTitle->getDBkey() );
-			$editnotice_base = $editnotice_ns;
-			while ( count( $parts ) > 0 ) {
-				$editnotice_base .= '-'.array_shift( $parts );
-				$editnotice_base_msg = wfMessage( $editnotice_base )->inContentLanguage();
-				if ( $editnotice_base_msg->exists() ) {
-					$wgOut->addWikiText( $editnotice_base_msg->plain()  );
-				}
-			}
-		} else {
-			# Even if there are no subpages in namespace, we still don't want / in MW ns.
-			$editnoticeText = $editnotice_ns . '-' . str_replace( '/', '-', $this->mTitle->getDBkey() );
-			$editnoticeMsg = wfMessage( $editnoticeText )->inContentLanguage();
-			if ( $editnoticeMsg->exists() ) {
-				$wgOut->addWikiText( $editnoticeMsg->plain() );
-			}
 		}
 
 		# Attempt submission here.  This will check for edit conflicts,
@@ -1526,8 +1490,21 @@ class EditPage {
 	}
 
 	function setHeaders() {
-		global $wgOut;
+		global $wgOut, $wgUser;
+
+		$wgOut->addModules( 'mediawiki.action.edit' );
+
+		if ( $wgUser->getOption( 'uselivepreview', false ) ) {
+			$wgOut->addModules( 'mediawiki.legacy.preview' );
+		}
+		// Bug #19334: textarea jumps when editing articles in IE8
+		$wgOut->addStyle( 'common/IE80Fixes.css', 'screen', 'IE 8' );
+
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
+
+		# Enabled article-related sidebar, toplinks, etc.
+		$wgOut->setArticleRelated( true );
+
 		if ( $this->isConflict ) {
 			$wgOut->setPageTitle( wfMessage( 'editconflict', $this->getContextTitle()->getPrefixedText() ) );
 		} elseif ( $this->section != '' ) {
@@ -1650,9 +1627,6 @@ class EditPage {
 		wfRunHooks( 'EditPage::showEditForm:initial', array( &$this ) );
 
 		$this->setHeaders();
-
-		# Enabled article-related sidebar, toplinks, etc.
-		$wgOut->setArticleRelated( true );
 
 		if ( $this->showHeader() === false ) {
 			wfProfileOut( __METHOD__ );
@@ -1804,6 +1778,36 @@ class EditPage {
 
 	protected function showHeader() {
 		global $wgOut, $wgUser, $wgMaxArticleSize, $wgLang;
+
+		if ( $this->mTitle->isTalkPage() ) {
+			$wgOut->addWikiMsg( 'talkpagetext' );
+		}
+
+		# Optional notices on a per-namespace and per-page basis
+		$editnotice_ns   = 'editnotice-'.$this->mTitle->getNamespace();
+		$editnotice_ns_message = wfMessage( $editnotice_ns )->inContentLanguage();
+		if ( $editnotice_ns_message->exists() ) {
+			$wgOut->addWikiText( $editnotice_ns_message->plain() );
+		}
+		if ( MWNamespace::hasSubpages( $this->mTitle->getNamespace() ) ) {
+			$parts = explode( '/', $this->mTitle->getDBkey() );
+			$editnotice_base = $editnotice_ns;
+			while ( count( $parts ) > 0 ) {
+				$editnotice_base .= '-'.array_shift( $parts );
+				$editnotice_base_msg = wfMessage( $editnotice_base )->inContentLanguage();
+				if ( $editnotice_base_msg->exists() ) {
+					$wgOut->addWikiText( $editnotice_base_msg->plain()  );
+				}
+			}
+		} else {
+			# Even if there are no subpages in namespace, we still don't want / in MW ns.
+			$editnoticeText = $editnotice_ns . '-' . str_replace( '/', '-', $this->mTitle->getDBkey() );
+			$editnoticeMsg = wfMessage( $editnoticeText )->inContentLanguage();
+			if ( $editnoticeMsg->exists() ) {
+				$wgOut->addWikiText( $editnoticeMsg->plain() );
+			}
+		}
+
 		if ( $this->isConflict ) {
 			$wgOut->wrapWikiMsg( "<div class='mw-explainconflict'>\n$1\n</div>", 'explainconflict' );
 			$this->edittime = $this->mArticle->getTimestamp();
