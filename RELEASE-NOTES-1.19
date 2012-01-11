@@ -82,8 +82,6 @@ production.
 * The default user signature now contains a talk link in addition to the user link.
 * (bug 25306) Add link of old page title to MediaWiki:Delete_and_move_reason.
 * Added hook BitmapHandlerCheckImageArea.
-* (experimental) $wgRealNameInInterface can be enabled to display a user's
-  real name in some parts of the interface instead of a username.
 * (bug 30062) Add $wgDBprefix option to cli installer.
 * getUserPermissionsErrors and getUserPermissionsErrorsExpensive hooks are now
   also called when checking for 'read' permission.
