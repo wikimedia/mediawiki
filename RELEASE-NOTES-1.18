@@ -4,10 +4,12 @@ Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it '''off''' if you can.
 
 == MediaWiki 1.18.1 ==
+2012-01-11
 
-????-??-??
+This a maintenance and security release of the MediaWiki 1.18 branch.
 
-????????????????????????????????????????????????????????????
+=== Security changes ===
+* (bug 33117) prop=revisions allows deleted text to be exposed through cache pollution.
 
 === Changes since 1.18.0 ===
 * (bug 32712) Fix for search indexing of pages with certain unicode chars following URL.
@@ -742,8 +744,8 @@ changes to languages because of Bugzilla reports.
 * (bug 27681) Set $namespaceGenderAliases for Portuguese (pt and pt-br).
 * (bug 27785) Fallback language for Kabardian (kbd) is English now.
 * (bug 27825) Raw watchlist edit message now uses formatted numbers.
-* (bug 28040) Turkish: properly lower case 'I' to 'ı' (dotless i) and
-  uppercase 'i' to 'İ' (dotted i).
+* (bug 28040) Turkish: properly lower case 'I' to 'i' (dotless i) and
+  uppercase 'i' to 'I' (dotted i).
 * Conversion script between Syllabics and Latin for the Inuktitut language.
 * Date formats for Indonesian (id) updated.
 * Bhojpuri (bho) (renamed from "bh").
