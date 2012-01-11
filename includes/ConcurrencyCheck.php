@@ -103,7 +103,7 @@ class ConcurrencyCheck {
 			array(
 				'cc_resource_type' => $this->resourceType,
 				'cc_record' => $record,
-				'(cc_user = ' . $userId . ' OR cc_expiration <= ' . wfTimestamp( TS_MW ) . ')',  // only the owner can perform a checkin
+				'(cc_user = ' . $userId . ' OR cc_expiration <= ' . $dbw->addQuotes(wfTimestamp( TS_MW )) . ')',  // only the owner can perform a checkin
 			),
 			__METHOD__,
 			array()
@@ -126,7 +126,7 @@ class ConcurrencyCheck {
 			// this was a cache miss.  populate the cache with data from the db.
 			// cache is set to expire at the same time as the checkout, since it'll become invalid then anyway.
 			// inside this transaction, a row-level lock is established which ensures cache concurrency
-			$wgMemc->set( $cacheKey, array( 'userId' => $row->cc_user, 'expiration' => $row->cc_expiration ), wfTimestamp( TS_UNIX, $row->cc_expiration ) - time() );
+			$wgMemc->set( $cacheKey, array( 'userId' => $row->cc_user, 'expiration' => wfTimestamp( TS_UNIX, $row->cc_expiration ) ), wfTimestamp( TS_UNIX, $row->cc_expiration ) - time() );
 			$dbw->rollback();
 			return false;
 		}
@@ -286,8 +286,8 @@ class ConcurrencyCheck {
 					// safe to store values since this is inside the transaction
 					$wgMemc->set(
 						wfMemcKey( 'concurrencycheck', $this->resourceType, $record['cc_record'] ),
-						array( 'userId' => $record['cc_user'], 'expiration' => $record['cc_expiration'] ),
-						$record['cc_expiration'] - time()
+						array( 'userId' => $record['cc_user'], 'expiration' => wfTimestamp( TS_UNIX, $record['cc_expiration'] ) ),
+						wfTimestamp( TS_UNIX, $record['cc_expiration'] ) - time()
 					);
 				}
 			}
