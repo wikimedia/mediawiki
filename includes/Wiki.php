@@ -38,13 +38,13 @@ class MediaWiki {
 	 */
 	private $performedAction = 'nosuchaction';
 
-	public function request( WebRequest $x = null ){
+	public function request( WebRequest $x = null ) {
 		$old = $this->context->getRequest();
 		$this->context->setRequest( $x );
 		return $old;
 	}
 
-	public function output( OutputPage $x = null ){
+	public function output( OutputPage $x = null ) {
 		$old = $this->context->getOutput();
 		$this->context->setOutput( $x );
 		return $old;
@@ -119,7 +119,7 @@ class MediaWiki {
 	 * Get the Title object that we'll be acting on, as specified in the WebRequest
 	 * @return Title
 	 */
-	public function getTitle(){
+	public function getTitle() {
 		if( $this->context->getTitle() === null ){
 			$this->context->setTitle( $this->parseTitle() );
 		}
@@ -556,7 +556,7 @@ class MediaWiki {
 	 *
 	 * @return string: action
 	 */
-	public function getPerformedAction(){
+	public function getPerformedAction() {
 		return $this->performedAction;
 	}
 
