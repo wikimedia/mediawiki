@@ -552,6 +552,8 @@ class MediaWiki {
 	 * Returns the real action as determined by performAction.
 	 * Do not use internally in this class as it depends on the actions by this class.
 	 *
+	 * @since 1.19
+	 *
 	 * @return string: action
 	 */
 	public function getPerformedAction(){
