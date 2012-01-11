@@ -2,12 +2,20 @@
 
 /**
  * @group Database
+ * @group DatabaseBase
  */
 class DatabaseTest extends MediaWikiTestCase {
-	var $db;
+	var $db, $functionTest = false;
 
 	function setUp() {
-		$this->db = wfGetDB( DB_SLAVE );
+		$this->db = wfGetDB( DB_MASTER );
+	}
+
+	function tearDown() {
+		if ( $this->functionTest ) {
+			$this->dropFunctions();
+			$this->functionTest = false;
+		}
 	}
 
 	function testAddQuotesNull() {
@@ -90,6 +98,26 @@ class DatabaseTest extends MediaWikiTestCase {
 			$sql );
 	}
 
+	/**
+	 * @group Broken
+	 */
+	function testStoredFunctions() {
+		if ( !in_array( wfGetDB( DB_MASTER )->getType(), array( 'mysql', 'postgres' ) ) ) {
+			$this->markTestSkipped( 'MySQL or Postgres required' );
+		}
+		global $IP;
+		$this->dropFunctions();
+		$this->functionTest = true;
+		$this->assertTrue( $this->db->sourceFile( "$IP/tests/phpunit/data/db/{$this->db->getType()}/functions.sql" ) );
+		$res = $this->db->query( 'SELECT mw_test_function() AS test', __METHOD__ );
+		$this->assertEquals( 42, $res->fetchObject()->test );
+	}
+
+	private function dropFunctions() {
+		$this->db->query( 'DROP FUNCTION IF EXISTS mw_test_function'
+			. ( $this->db->getType() == 'postgres'  ? '()' : '' )
+		);
+	}
 }
 
 
