@@ -50,6 +50,7 @@ $messages = array(
 'tog-minordefault'           => 'Myr roie-hoieaghey, cowree dagh arraghey myr myn-arraghey',
 'tog-previewontop'           => 'Taishbyn y roie-haishbynys roish y chishtey reaghee',
 'tog-previewonfirst'         => 'Taishbyn roie-haishbynys lurg y chied reaghey',
+'tog-nocache'                => 'Ny sauail duillagyn ayns tasht y jeeagheyder',
 'tog-enotifusertalkpages'    => 'Cur post-l dou my vees y duillag ymmydeyr aym caghlaa',
 'tog-enotifminoredits'       => 'Cur dou post-l er myn-arraghey duillagyn chammah',
 'tog-shownumberswatching'    => 'Taishbyn earroo ny h-ymmydeyryn ta freill arrey',
@@ -179,6 +180,7 @@ $messages = array(
 'vector-view-viewsource'   => 'Jeeagh er bun',
 'actions'                  => 'Obbraghyn',
 'namespaces'               => 'Reamyssyn',
+'variants'                 => 'Cummaghyn elley',
 
 'errorpagetitle'    => 'Marranys',
 'returnto'          => 'Gow er ash gys $1.',
@@ -311,6 +313,7 @@ Cur coontey jeh da [[Special:ListUsers/sysop|reireyder]], as gow notey jeh\'n UR
 'badtitle'            => 'Drogh-ennym',
 'badtitletext'        => "Va marranys ayn bentyn rish ennym ny duillag v'ou shirrey. Foddee dy row eh follym ny gyn vree, ny kianglt dy moal myr kiangley eddyr-wiki. Foddee dy vel cowraghyn 'syn ennym nagh nod oo jannoo ymmyd jeu ayns enmyn.",
 'viewsource'          => 'Jeeagh er bun',
+'viewsource-title'    => 'Jeeagh er bun $1',
 'actionthrottled'     => 'Obbyr er ny phlooghey',
 'actionthrottledtext' => "Myr saase noi-spam, cha nod oo jannoo yn obbyr shoh rouyr keayrtyn ayns tammylt beg, as t'ou er roshtyn yn earroo smoo.  Jean eab noa dy gerrid, my saillt.",
 'protectedpagetext'   => "Ta'n duillag shoh fo ghlass, as cha nod oo eshyn y reaghey.",
@@ -763,7 +766,7 @@ Ta duillagyn er [[Special:Watchlist|dty rolley arrey]] ayns '''clou trome'''.",
 'filehist-dimensions'       => 'Mooadyssyn',
 'filehist-filesize'         => 'Mooadys y choadan',
 'filehist-comment'          => 'Cohaggloo',
-'imagelinks'                => 'Kianglaghyn y choadan',
+'imagelinks'                => 'Ymmyd y choadan',
 'linkstoimage'              => 'Ta {{PLURAL:$1|ny $1 duillag|yn $1 duillag|ny $1 ghuillag|ny $1 duillagyn}} eiyrtyssagh kianglt rish y choadan shoh:',
 'nolinkstoimage'            => 'Cha nel duillag erbee kianglt rish y choadan shoh.',
 'sharedupload'              => "Ta'n coadan shoh çheet ass $1, as foddee dy beagh eh ymmydit ayns shaleeyn elley.",
@@ -809,7 +812,7 @@ Ta duillagyn er [[Special:Watchlist|dty rolley arrey]] ayns '''clou trome'''.",
 'statistics-header-users' => 'Staydraa ymmydeyr',
 'statistics-pages'        => 'Duillagyn',
 
-'disambiguations' => 'Duillagyn reddaghyn',
+'disambiguations' => 'Duillagyn ta kianglt rish duillagyn reddaghey',
 
 'doubleredirects' => 'Aa-enmyssyn dooblagh',
 
@@ -855,7 +858,7 @@ Ta duillagyn er [[Special:Watchlist|dty rolley arrey]] ayns '''clou trome'''.",
 'protectedpages-cascade'  => 'Cha nel agh coadey eiraghtagh',
 'protectedtitles'         => 'Enmyn coadit',
 'listusers'               => 'Rolley ymmydeyryn',
-'usercreated'             => 'Crooit er $1 ec $2',
+'usercreated'             => 'Crooit liorish {{GENDER:$3|}} er $1 ec $2',
 'newpages'                => 'Duillagyn noa',
 'newpages-username'       => 'Ennym ymmydeyr:',
 'ancientpages'            => 'Duillagyn by hinney',
@@ -872,7 +875,7 @@ Ta duillagyn er [[Special:Watchlist|dty rolley arrey]] ayns '''clou trome'''.",
 
 # Special:Log
 'specialloguserlabel'  => 'Ymmydeyr:',
-'speciallogtitlelabel' => 'Ennym:',
+'speciallogtitlelabel' => 'Ennym (duillag ny ymmydeyr):',
 'log'                  => 'Lioaryn cooishyn',
 'all-logs-page'        => 'Dagh ooilley lioar chooishyn',
 
@@ -893,7 +896,7 @@ Ta duillagyn er [[Special:Watchlist|dty rolley arrey]] ayns '''clou trome'''.",
 'special-categories-sort-abc'   => 'sorçhaghey rere lettyr',
 
 # Special:LinkSearch
-'linksearch'      => 'Kianglaghyn çheumooie',
+'linksearch'      => 'Ronsaghey kianglaghyn çheumooie',
 'linksearch-ok'   => 'Ronsee',
 'linksearch-line' => 'Ta kiangley ayn veih $2 gys $1',
 

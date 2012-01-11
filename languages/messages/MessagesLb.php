@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Hercule
  * @author Kaffi
  * @author Les Meloures
  * @author Purodha
@@ -416,7 +417,7 @@ $1",
 'mainpage-description' => 'Haaptsäit',
 'policy-url'           => 'Project:Richtlinnen',
 'portal'               => '{{SITENAME}}-Portal',
-'portal-url'           => 'Project:Kommunautéit',
+'portal-url'           => 'Project:Communautéitssäit',
 'privacy'              => 'Dateschutz',
 'privacypage'          => 'Project:Dateschutz',
 
