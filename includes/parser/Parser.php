@@ -3853,7 +3853,7 @@ class Parser {
 	 * @param $msg String: message key
 	 * @return Boolean: whether the addition was successful
 	 */
-	protected function addTrackingCategory( $msg ) {
+	public function addTrackingCategory( $msg ) {
 		if ( $this->mTitle->getNamespace() === NS_SPECIAL ) {
 			wfDebug( __METHOD__.": Not adding tracking category $msg to special page!\n" );
 			return false;
