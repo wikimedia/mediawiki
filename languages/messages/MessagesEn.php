@@ -4259,7 +4259,7 @@ You should have received [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU Gen
 'filepath-page'    => 'File:',
 'filepath-submit'  => 'Go',
 'filepath-summary' => 'This special page returns the complete path for a file.
-Images are shown in full resolution, other file types are started with their associated program directly.',
+Images are shown in full resolution, other file types are started with their associated program directly.
 
 Enter the filename without the "{{ns:file}}:" prefix.',
 
