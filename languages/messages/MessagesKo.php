@@ -23,6 +23,7 @@
  * @author ToePeu
  * @author Yknok29
  * @author לערי ריינהארט
+ * @author 관인생략
  */
 
 $namespaceNames = array(
@@ -294,7 +295,7 @@ $dateFormats = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline'               => '링크 걸기:',
+'tog-underline'               => '링크에 밑줄 표시하기:',
 'tog-highlightbroken'         => '없는 문서로 연결된 링크를 <a href="" class="new">이렇게</a> 보이기 (선택하지 않으면 이렇게<a href="" class="internal">?</a> 보임)',
 'tog-justify'                 => '문단 정렬하기',
 'tog-hideminor'               => '사소한 편집을 최근 바뀜에서 숨기기',
@@ -879,9 +880,8 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'blocked-notice-logextract'        => '이 사용자는 현재 차단되어 있습니다.
 해당 사용자의 최근 차단 기록을 참고하십시오:',
 'clearyourcache'                   => "'''참고:''' 설정을 저장한 후에 바뀐 점을 확인하기 위해서는 브라우저의 캐시를 갱신해야 합니다.
-
-* '''파이어폭스 / 사파리''': ''Shift'' 키를 누르면서 새로 고침을 클릭하거나, ''Ctrl-F5'' 또는 ''Ctrl-R'' 을 입력 (Mac에서는 ''Command-R'')
-* '''구글 크롬''': ''Ctrl-Shift-R''키를 입력 (Mac에서는 ''Command-Shift-R'')
+* '''파이어폭스 / 사파리''': ''Shift'' 키를 누르면서 새로 고침을 클릭하거나, ''Ctrl-F5'' 또는 ''Ctrl-R'' 을 입력 (Mac에서는 ''⌘-R'')
+* '''구글 크롬''': ''Ctrl-Shift-R''키를 입력 (Mac에서는 ''⌘-Shift-R'')
 * '''인터넷 익스플로러''': ''Ctrl'' 키를 누르면서 새로 고침을 클릭하거나, ''Ctrl-F5''를 입력.
 * '''컨커러''': ''새로고침''을 클릭하거나 ''F5''를 입력
 * '''오페라''': 도구→설정에서 캐시를 비움",
@@ -1336,6 +1336,7 @@ $1",
 'prefs-registration'            => '등록 일시:',
 'yourrealname'                  => '실명:',
 'yourlanguage'                  => '언어:',
+'yourvariant'                   => '언어 변종:',
 'yournick'                      => '서명:',
 'prefs-help-signature'          => '토론 문서에 글을 남기실 때는 서명을 해 주세요. “<nowiki>~~~~</nowiki>”를 입력하시면 서명과 시간이 자동으로 입력됩니다.',
 'badsig'                        => '서명이 잘못되었습니다. HTML 태그를 확인해주세요.',
@@ -1467,7 +1468,7 @@ $1",
 'right-patrol'                => '다른 사용자의 편집을 검토',
 'right-autopatrol'            => '자신의 편집을 자동으로 검토',
 'right-patrolmarks'           => '최근 바뀜에서 검토 표시를 보기',
-'right-unwatchedpages'        => '주시되지 않은 문서의 목록을 보기',
+'right-unwatchedpages'        => '주시되지 않는 문서 목록 보기',
 'right-trackback'             => '트랙백 보내기',
 'right-mergehistory'          => '문서의 역사를 합침',
 'right-userrights'            => '모든 사용자의 권한 조정',
@@ -1502,7 +1503,7 @@ $1",
 'action-delete'               => '이 문서 삭제하기',
 'action-deleterevision'       => '이 판을 삭제',
 'action-deletedhistory'       => '이 문서의 삭제된 기여의 역사 보기',
-'action-browsearchive'        => '삭제된 문서 찾기',
+'action-browsearchive'        => '삭제된 문서 검색',
 'action-undelete'             => '이 문서를 복구하기',
 'action-suppressrevision'     => '이 숨겨진 판을 검토하고 복구할',
 'action-suppressionlog'       => '비공개 로그를 볼',
@@ -1512,7 +1513,7 @@ $1",
 'action-importupload'         => '파일 올리기를 통해 문서를 가져올',
 'action-patrol'               => '다른 사용자의 편집을 검토된 것으로 표시하기',
 'action-autopatrol'           => '자신의 편집을 검토된 것으로 표시할',
-'action-unwatchedpages'       => '주시되지 않은 문서의 목록을 볼',
+'action-unwatchedpages'       => '주시되지 않는 문서 목록 보기',
 'action-trackback'            => '트랙백 보내기',
 'action-mergehistory'         => '이 문서의 역사 합치기',
 'action-userrights'           => '모든 사용자의 권한을 조정',
@@ -1879,7 +1880,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'statistics-users-active-desc' => '최근 $1일 동안 활동한 사용자',
 'statistics-mostpopular'       => '가장 많이 읽힌 문서',
 
-'disambiguations'      => '동음이의 문서 목록',
+'disambiguations'      => '동음이의 문서를 가리키는 문서 목록',
 'disambiguationspage'  => 'Template:Disambig',
 'disambiguations-text' => "다음의 문서들은 '''동음이의 문서'''를 가리키고 있습니다.
 그 링크를 다른 적절한 문서로 연결해 주어야 합니다.<br />
@@ -1910,7 +1911,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'nlinks'                  => '링크 $1개',
 'nmembers'                => '문서 $1개',
 'nrevisions'              => '편집 $1개',
-'nviews'                  => '$1 번 읽음',
+'nviews'                  => '$1회 읽음',
 'nimagelinks'             => '{{PLURAL:$1}}개 문서에서 사용 중',
 'ntransclusions'          => '{{PLURAL:$1}}개 문서에서 사용 중',
 'specialpage-empty'       => '명령에 대한 결과가 없습니다.',
@@ -1976,8 +1977,8 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'booksources-invalid-isbn'  => '입력한 ISBN이 잘못된 것으로 보입니다; 원본과 대조해 보십시오.',
 
 # Special:Log
-'specialloguserlabel'  => '이름:',
-'speciallogtitlelabel' => '제목:',
+'specialloguserlabel'  => '작업 수행자:',
+'speciallogtitlelabel' => '대상 (제목 또는 사용자):',
 'log'                  => '기록 목록',
 'all-logs-page'        => '모든 공개 기록',
 'alllogstext'          => '{{SITENAME}}에서의 기록이 모두 나와 있습니다.
@@ -2017,12 +2018,13 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'sp-deletedcontributions-contribs' => '기여',
 
 # Special:LinkSearch
-'linksearch'       => '웹 링크 검색',
+'linksearch'       => '외부 링크 검색',
 'linksearch-pat'   => '검색 패턴:',
 'linksearch-ns'    => '이름공간:',
 'linksearch-ok'    => '검색',
-'linksearch-text'  => '"*.wikipedia.org"와 같이 와일드카드를 사용할 수 있습니다.<br />
-지원하는 프로토콜 목록: <tt>$1</tt>',
+'linksearch-text'  => '"*.wikipedia.org"와 같이 와일드카드를 사용할 수 있습니다.
+적어도 "*.org"와 같이 최상위 도메인을 입력해야 합니다.<br />
+지원하는 프로토콜 목록: <tt>$1</tt> (검색할 때 이것을 추가하지 마세요)',
 'linksearch-line'  => '$2에서 $1 을 링크하고 있습니다.',
 'linksearch-error' => '와일드카드는 주소의 처음 부분에만 사용될 수 있습니다.',
 
@@ -2131,8 +2133,8 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'watchlist-options'    => '주시문서 목록 설정',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => '주시목록에 추가 중...',
-'unwatching' => '주시 해제하는 중...',
+'watching'   => '주시 추가 중…',
+'unwatching' => '주시 해제 중…',
 
 'enotif_mailer'                => '{{SITENAME}} 자동 알림 메일',
 'enotif_reset'                 => '모든 문서를 방문한 것으로 표시하기',
@@ -2233,8 +2235,8 @@ $UNWATCHURL
 'modifiedarticleprotection'   => '‘[[$1]]’ 문서의 보호 설정을 변경함',
 'unprotectedarticle'          => '‘[[$1]]’ 문서를 보호 해제함',
 'movedarticleprotection'      => '문서의 보호 설정을 "[[$2]]"에서 "[[$1]]"으로 옮김',
-'protect-title'               => '"$1" 보호하기',
-'prot_1movedto2'              => '[[$1]]을(를) [[$2]](으)로 옮김',
+'protect-title'               => '‘$1’ 보호하기',
+'prot_1movedto2'              => '[[$1]] 문서를 [[$2]] 문서로 이동함',
 'protect-legend'              => '보호 확인',
 'protectcomment'              => '이유:',
 'protectexpiry'               => '보호 기간:',
@@ -2558,16 +2560,16 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'movearticle'                  => '문서 이동하기',
 'moveuserpage-warning'         => "'''경고:''' 당신은 사용자 문서를 옮기려 하고 있습니다. 사용자 문서만 이동되며 계정 이름이 바뀌지 않는다는 점을 명심해주시기 바랍니다.",
 'movenologin'                  => '로그인하지 않음',
-'movenologintext'              => '[[Special:UserLogin|로그인]]해야만 문서를 이동할 수 있습니다.',
+'movenologintext'              => '문서를 이동하려면 [[Special:UserLogin|로그인]]해야 합니다.',
 'movenotallowed'               => '문서를 이동할 권한이 없습니다.',
-'movenotallowedfile'           => '파일을 옮길 권한이 없습니다.',
-'cant-move-user-page'          => '사용자 문서를 옮길 권한이 없습니다 (하위 문서는 제외).',
-'cant-move-to-user-page'       => '문서를 사용자 문서로 옮길 권한이 없습니다 (하위 문서는 제외).',
+'movenotallowedfile'           => '파일을 이동할 권한이 없습니다.',
+'cant-move-user-page'          => '사용자 문서를 이동할 권한이 없습니다(하위 문서는 예외).',
+'cant-move-to-user-page'       => '문서를 사용자 문서로 이동할 권한이 없습니다(하위 문서는 예외).',
 'newtitle'                     => '새 문서 이름',
-'move-watch'                   => '이 문서 주시하기',
+'move-watch'                   => '문서 주시하기',
 'movepagebtn'                  => '이동',
 'pagemovedsub'                 => '문서 이동함',
-'movepage-moved'               => '\'\'\'"$1" 문서를 "$2" 문서로 이동했습니다.\'\'\'',
+'movepage-moved'               => "'''‘$1’ 문서를 ‘$2’ 문서로 이동했습니다.'''",
 'movepage-moved-redirect'      => '넘겨주기 문서를 만들었습니다.',
 'movepage-moved-noredirect'    => '넘겨주기 문서를 남기지 않았습니다.',
 'articleexists'                => '문서가 이미 존재하거나 이름이 올바르지 않습니다.
@@ -2579,9 +2581,9 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'move-subpages'                => '하위 문서도 함께 ($1개 이하) 이동합니다.',
 'move-talk-subpages'           => '토론 문서의 하위 문서도 ($1개까지) 함께 이동합니다.',
 'movepage-page-exists'         => '이동할 수 없습니다. ‘$1’ 문서가 이미 존재합니다.',
-'movepage-page-moved'          => '$1 문서를 $2 (으)로 옮겼습니다',
-'movepage-page-unmoved'        => '$1 문서를 $2 (으)로 옮길 수 없습니다.',
-'movepage-max-pages'           => '문서를 최대 $1개 옮겼고 나머지는 자동으로 옮기지 않습니다.',
+'movepage-page-moved'          => '‘$1’ 문서를 ‘$2’ 문서로 이동했습니다.',
+'movepage-page-unmoved'        => '‘$1’ 문서를 ‘$2’ 문서로 이동할 수 없습니다.',
+'movepage-max-pages'           => '문서를 최대 $1개 이동했습니다. 나머지 문서는 자동 이동하지 않습니다.',
 '1movedto2'                    => '[[$1]] 문서를 [[$2]](으)로 옮김',
 '1movedto2_redir'              => '[[$1]] 문서를 [[$2]](으)로 옮기면서 넘겨주기를 덮어 씀',
 'move-redirect-suppressed'     => '넘겨주기가 생성되지 않음',
@@ -2595,7 +2597,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'delete_and_move'              => '삭제하고 이동',
 'delete_and_move_text'         => '== 삭제 필요 ==
 
-이동하려는 제목으로 된 [[:$1]] 문서가 이미 존재합니다.
+이동하려는 제목으로 된 ‘[[:$1]]’ 문서가 이미 존재합니다.
 삭제하고 이동할까요?',
 'delete_and_move_confirm'      => '네. 문서를 삭제합니다',
 'delete_and_move_reason'       => '문서를 이동하기 위해 삭제함',
@@ -2794,6 +2796,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 # Scripts
 'common.js'   => '/* 이 자바스크립트 설정은 모든 문서, 모든 사용자에게 적용됩니다. */',
 'monobook.js' => '/* 이 자바스크립트 설정은 모노북 스킨을 사용하는 사용자에게 적용됩니다. */',
+'vector.js'   => '/* 이 자바스크립트 설정은 벡터 스킨을 사용하는 사용자에게 적용됩니다. */',
 
 # Metadata
 'nodublincore'      => '더블린 코어 RDF 메타데이터 기능은 비활성되어 있습니다.',
@@ -2872,7 +2875,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 
 # Patrol log
 'patrol-log-page'      => '검토 기록',
-'patrol-log-header'    => '이 기록은 검토된 문서에 대한 기록입니다.',
+'patrol-log-header'    => '문서 검토에 대한 기록입니다.',
 'patrol-log-line'      => '$2 문서의 $1을 검토함 $3',
 'patrol-log-auto'      => '(자동)',
 'patrol-log-diff'      => '제$1번 판',
@@ -2884,7 +2887,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'filedeleteerror-long'            => '파일을 삭제하는 도중 오류가 발생했습니다:
 
 $1',
-'filedelete-missing'              => '"$1" 파일을 삭제할 수 없습니다. 없는 파일입니다.',
+'filedelete-missing'              => '‘$1’ 파일을 삭제할 수 없습니다. 파일이 존재하지 않습니다.',
 'filedelete-old-unregistered'     => '입력한 파일의 "$1" 버전이 데이터베이스에 존재하지 않습니다.',
 'filedelete-current-unregistered' => '"$1" 이라는 이름을 가진 파일이 데이터베이스에 존재하지 않습니다.',
 'filedelete-archive-read-only'    => '웹 서버의 파일 저장 위치 ‘$1’에 쓰기 권한이 없습니다.',
@@ -2980,7 +2983,7 @@ Variants for Chinese language
 'exif-imagedescription'            => '그림 제목',
 'exif-make'                        => '카메라 제조사',
 'exif-model'                       => '카메라 모델',
-'exif-software'                    => '사용된 소프트웨어',
+'exif-software'                    => '사용한 소프트웨어',
 'exif-artist'                      => '저작자',
 'exif-copyright'                   => '저작권자',
 'exif-exifversion'                 => 'Exif 버전',
@@ -2994,8 +2997,8 @@ Variants for Chinese language
 'exif-usercomment'                 => '사용자 주',
 'exif-relatedsoundfile'            => '관련된 오디오 파일',
 'exif-datetimeoriginal'            => '날짜와 시간',
-'exif-datetimedigitized'           => '디지털화된 날짜와 시간',
-'exif-subsectime'                  => '파일이 변경된 날짜와 시간 (초 단위 미만)',
+'exif-datetimedigitized'           => '날짜와 시간(디지털 데이터)',
+'exif-subsectime'                  => '파일이 변경된 날짜와 시간 (초단위 미만)',
 'exif-subsectimeoriginal'          => '파일 생성시 날짜와 시간 (초단위 미만)',
 'exif-subsectimedigitized'         => '디지털화된 날짜와 시간 (초단위 미만)',
 'exif-exposuretime'                => '노출 시간',
@@ -3152,6 +3155,8 @@ Variants for Chinese language
 'exif-sensingmethod-5' => '순차적 색 공간 센서',
 'exif-sensingmethod-7' => '3선 센서',
 'exif-sensingmethod-8' => '순차적 색 공간 선형 센서',
+
+'exif-filesource-3' => '디지털 스틸 카메라',
 
 'exif-scenetype-1' => '직접 촬영된 이미지',
 
@@ -3428,7 +3433,7 @@ $1',
 * 일반 특수 문서.
 * <strong class="mw-specialpagerestricted">제한된 특수 문서.</strong>',
 'specialpages-group-maintenance' => '관리용 목록',
-'specialpages-group-other'       => '다른 특수문서',
+'specialpages-group-other'       => '다른 특수 문서',
 'specialpages-group-login'       => '로그인 / 등록',
 'specialpages-group-changes'     => '최근 바뀜과 기록',
 'specialpages-group-media'       => '파일 관리',

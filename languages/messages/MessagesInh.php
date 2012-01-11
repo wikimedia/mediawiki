@@ -557,14 +557,14 @@ $messages = array(
 'searchresultshead'         => 'Лахаp',
 'timezonelegend'            => 'Сахьати юкъ:',
 'localtime'                 => 'Вола/Йола моттиги ха:',
-'timezoneregion-africa'     => 'Эпарке',
-'timezoneregion-america'    => 'Iамрике',
+'timezoneregion-africa'     => 'Эприк',
+'timezoneregion-america'    => 'Iаьмрик',
 'timezoneregion-antarctica' => 'Энтарцит',
 'timezoneregion-arctic'     => 'Эрцит',
-'timezoneregion-asia'       => 'Iазике',
+'timezoneregion-asia'       => 'Iаьзик',
 'timezoneregion-atlantic'   => 'Iатлантицфорд',
-'timezoneregion-australia'  => 'Устралике',
-'timezoneregion-europe'     => 'Эврофаьге',
+'timezoneregion-australia'  => 'Устралик',
+'timezoneregion-europe'     => 'Аьроп',
 'timezoneregion-indian'     => 'ХIинда форд',
 'timezoneregion-pacific'    => 'Тийна форд',
 'prefs-searchoptions'       => 'Тахкама оттамаш',
@@ -718,7 +718,7 @@ $messages = array(
 
 # Statistics
 'statistics'       => 'Дагара куц',
-'statistics-pages' => 'ОагIувний',
+'statistics-pages' => 'ОагIувнаш',
 
 'disambiguationspage' => 'Template: ЦаI маIандоацар',
 

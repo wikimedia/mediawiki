@@ -152,7 +152,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Ninviar-me un correu tamién quan bi haiga edicions menors de pachinas',
 'tog-enotifrevealaddr'        => 'Fer veyer a mía adreza de correu-e en os correus de notificación',
 'tog-shownumberswatching'     => "Amostrar o numero d'usuarios que cosiran un articlo",
-'tog-oldsig'                  => "Vista previa d'a sinyadura:",
+'tog-oldsig'                  => 'Sinyadura actual',
 'tog-fancysig'                => 'Tratar as sinyaduras como wikitexto (sin de vinclo automatico)',
 'tog-externaleditor'          => "Fer servir l'editor externo por defecto (nomás ta espiertos, cal que faiga achustes especials en o suyo ordenador.  [http://www.mediawiki.org/wiki/Manual:External_editors Mas información.])",
 'tog-externaldiff'            => 'Fer servir o visualizador de diferencias externo por defecto (nomás ta expertos, cal que faiga achustes especials en o suyo ordenador.  [http://www.mediawiki.org/wiki/Manual:External_editors Mas información.])',
@@ -169,6 +169,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Recibir copias de os correus que ninvío ta atros usuarios',
 'tog-diffonly'                => "No amostrar o conteniu d'a pachina debaixo d'as esferencias",
 'tog-showhiddencats'          => 'Amostrar categorías amagatas',
+'tog-noconvertlink'           => 'Desactivar a conversión de titol de vinclo',
 'tog-norollbackdiff'          => 'No amostrar as diferencias dimpués de revertir',
 
 'underline-always'  => 'Siempre',
@@ -391,6 +392,7 @@ $1",
 'versionrequiredtext' => 'Ye precisa a versión $1 de MediaWiki ta fer servir ista pachina. Ta más información, consulte [[Special:Version]]',
 
 'ok'                      => "D'alcuerdo",
+'pagetitle'               => '$1 - {{SITENAME}}',
 'retrievedfrom'           => 'Obtenito de "$1"',
 'youhavenewmessages'      => 'Tiene $1 ($2).',
 'newmessageslink'         => 'mensaches nuevos',
@@ -541,8 +543,8 @@ No xublide de presonalizar [[Special:Preferences|as suyas preferencias en {{SITE
 'createaccountmail'          => 'por correu electronico',
 'createaccountreason'        => 'Razón:',
 'badretype'                  => 'As contrasenyas que ha escrito no son iguals.',
-'userexists'                 => "Ixe nombre d'usuario ya ye en uso.
-Por favor, meta-ne uno diferent.",
+'userexists'                 => "O nombre d'usuario que ha escrito ya ye en uso.
+Por favor, trigue-ne uno de diferent.",
 'loginerror'                 => 'Error en encetar a sesión',
 'createaccounterror'         => "No s'ha puesto creyar a cuenta: $1",
 'nocookiesnew'               => "A cuenta d'usuario s'ha creyata, pero encara no ye indentificato. {{SITENAME}} fa servir <em>cookies</em> ta identificar a os usuario rechistratos, pero pareix que las tiene desactivatas. Por favor, active-las e identifique-se con o suyo nombre d'usuario y contrasenya.",
@@ -713,11 +715,11 @@ u bien <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE
 'blocked-notice-logextract'        => "Ista cuenta d'usuario ye actualment bloqueyata.
 A zaguera dentrada d'o rechistro de bloqueyos s'amuestra contino:",
 'clearyourcache'                   => "'''Pare cuenta:''' Dimpués d'alzar, puede estar que haiga d'esviellar a caché d'o suyo navegador ta veyer os cambios.
-*'''Mozilla / Firefox / Safari:''' prete a tecla de ''Mayusclas'' mientras puncha ''Reload,'' u prete '''Ctrl-F5''' u '''Ctrl-R''' (''Command-R'' en un Mac);
-*'''Google Chrome:''' prete ''Ctrl-Shift-R'' (''Command-Shift-R'' on a Mac)
-*'''Internet Explorer:''' prete ''Ctrl'' entre que puncha ''Refresh,'' u prete ''Ctrl-F5.''
-*'''Konqueror: ''' punche ''Reload'' u prete ''F5;''
-*'''Opera:''' limpiar a caché en ''Tools → Preferences;''",
+*'''Mozilla / Firefox / Safari:''' Prete a tecla de ''Mayusclas'' mientras puncha ''Reload,'' u prete '''Ctrl-F5''' u '''Ctrl-R''' (''⌘-R'' en un Mac);
+*'''Google Chrome:''' Prete ''Ctrl-Shift-R'' (''⌘-Shift-R'' on a Mac)
+*'''Internet Explorer:''' Prete ''Ctrl'' entre que puncha ''Refresh,'' u prete ''Ctrl-F5.''
+*'''Konqueror: ''' Punche ''Reload'' u prete ''F5;''
+*'''Opera:''' Limpiar a caché en ''Tools → Preferences;''",
 'usercssyoucanpreview'             => "'''Consello:''' Faiga servir o botón «{{int:showpreview}}» ta fer una prebatina con o nuevo CSS antes de no grabar-lo.",
 'userjsyoucanpreview'              => "'''Consello:''' Faiga servir o botón «{{int:showpreview}}» ta fer una prebatina con o nuevo css/js antes de no grabar-lo.",
 'usercsspreview'                   => "'''Remere que isto no ye que una previsualización d'o suyo CSS d'usuario.'''
@@ -863,29 +865,29 @@ Prebe de [[Special:Search|mirar en o wiki]] atras pachinas relevants.",
 'rev-deleted-user-contribs'   => "[nombre d'usuario u adreza IP elminada - edición amagada d'as contribucions]",
 'rev-deleted-text-permission' => "Ista versión d'a pachina s'ha '''borrato'''.
 Talment pueda trobe más detalles en o [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rechistro de borraus].",
-'rev-deleted-text-unhide'     => "Ista versión d'a pachina ha estau '''borrada'''.
-Puede trobar más detalles en o [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rechistro de borraus].
-Como administrador encara puet [$1 veyer ista versión ] si lo deseya.",
+'rev-deleted-text-unhide'     => "Ista versión d'a pachina s'ha '''borrato''.
+Puet trobar más detalles en o [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rechistro de borraus].
+Encara puet [$1 veyer ista versión ] si lo deseya.",
 'rev-suppressed-text-unhide'  => "Ista versión d'a pachina ha estau '''borrada'''.
 Puet trobar más detalles en o [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rechistro de borraus].
-Como administrador encara puet [$1 veyer ista versión ] si lo deseya.",
+Encara puet [$1 veyer ista versión ] si lo deseya.",
 'rev-deleted-text-view'       => "Ista versión d'a pachina s'ha '''borrato'''.
-Como admenistrador, la puet veyer; talment trobe más detalles en o [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rechistro de borraus].",
+La puet veyer; en trobará mas detalles en o [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rechistro de borraus].",
 'rev-suppressed-text-view'    => "Ista versión d'a pachina s'ha '''borrato'''.
-Como administrador, la puet veyer; puet trobar más detalles en o [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rechistro de borraus].",
+La puet veyer; en trobará mas detalles en o [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rechistro de borraus].",
 'rev-deleted-no-diff'         => "No puede veyer ista comparanza de pachinas porque una d'as versions s'ha '''borrato'''.
 Puet trobar más detalles en o [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rechistro de borraus].",
 'rev-suppressed-no-diff'      => "Nop puet veyer ista diferencia porque una d'as versions ha estau '''borrata'''.",
 'rev-deleted-unhide-diff'     => "Una d'as versions d'ista comparanza s'ha '''borrato'''.
-Puet trobar más detalles en o [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rechistro de borraus].
-Como administrador podrá seguir [$1 veyendo ista comparanza] si lo deseya.",
+En trobará mas detalles en o [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rechistro de borraus].
+Si lo deseya, encara puet seguir [$1 veyendo ista comparanza].",
 'rev-suppressed-unhide-diff'  => "Una d'as versions d'ista comparanza s'ha '''borrato'''.
-Puet trobar más detalles en o [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rechistro de borraus].
-Como administrador encara puet seguir [$1 veyendo ista comparanza] si lo deseya.",
+En trobará mas detalles en o [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rechistro de borraus].
+Si lo deseya, encara puet seguir [$1 veyendo ista comparanza].",
 'rev-deleted-diff-view'       => "Una d'as versions d'ista comparanza s'ha '''borrato'''.
-Como administrador puede veyer o conteniu; puet trobar más detalles en o [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rechistro de borraus].",
+Puede veyer a comparanza; en trobará mas detalles en o [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rechistro de borraus].",
 'rev-suppressed-diff-view'    => "Una d'as versions d'ista comparanza s'ha '''borrato'''.
-Como administrador encara puet veyer o conteniu; puet trobar más detalles en o [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rechistro de borraus].",
+Encara puet veyer a comparanza; en trobará mas detalles en o [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rechistro de borraus].",
 'rev-delundel'                => 'amostrar/amagar',
 'rev-showdeleted'             => 'amostrar',
 'revisiondelete'              => 'Borrar/restaurar versions',
@@ -937,8 +939,8 @@ $1",
 'revdelete-content'           => 'conteniu',
 'revdelete-summary'           => 'editar resumen',
 'revdelete-uname'             => "nombre d'usuario",
-'revdelete-restricted'        => "S'han aplicato as restriccions ta almenistradors",
-'revdelete-unrestricted'      => "S'han borrato as restriccions ta almenistradors",
+'revdelete-restricted'        => "S'han aplicato as restriccions ta administradors",
+'revdelete-unrestricted'      => "S'han borrato as restriccions ta administradors",
 'revdelete-hid'               => 'amagar $1',
 'revdelete-unhid'             => 'amostrar $1',
 'revdelete-log-message'       => '$1 ta $2 {{PLURAL:$2|versión|versions}}',
@@ -1157,10 +1159,12 @@ No se podrá desfer iste cambio.",
 'username'                      => "Nombre d'usuario:",
 'uid'                           => "ID d'usuario:",
 'prefs-memberingroups'          => "Miembro {{PLURAL:$1|d'a colla|d'as collas}}:",
+'prefs-memberingroups-type'     => '$1',
 'prefs-registration'            => 'Tiempo de rechistro:',
+'prefs-registration-date-time'  => '$1',
 'yourrealname'                  => 'Nombre reyal:',
 'yourlanguage'                  => 'Luenga:',
-'yourvariant'                   => 'Modalidat linguistica:',
+'yourvariant'                   => "Variant linguistica d'o conteniu:",
 'yournick'                      => 'Sinyatura:',
 'prefs-help-signature'          => 'Os comentarios en pachina de discusión s\'han de sinyar con "<nowiki>~~~~</nowiki>", que se tornará en a suya sinyatura y calendata.',
 'badsig'                        => 'A suya sinyadura no ye conforme; comprebe as etiquetas HTML.',
@@ -1212,7 +1216,7 @@ Habría de tener menos de $1 {{PLURAL:$1|carácter|carácters}}.',
 'userrights-no-interwiki'      => "No tiene premiso ta editar os dreitos d'usuario en atras wikis.",
 'userrights-nodatabase'        => 'A base de datos $1 no existe u no ye local.',
 'userrights-nologin'           => "Ha d'[[Special:UserLogin|encetar una sesión]] con una cuenta d'almenistrador ta poder dar dreitos d'usuario.",
-'userrights-notallowed'        => "A suya cuenta no tiene premisos ta dar dreitos d'usuario.",
+'userrights-notallowed'        => "A suya cuenta no tien permisos ta asignar u desasignar permisos d'usuario.",
 'userrights-changeable-col'    => 'Grupos que puede cambiar',
 'userrights-unchangeable-col'  => 'Collas que no puede cambiar',
 
@@ -1372,7 +1376,7 @@ Habría de tener menos de $1 {{PLURAL:$1|carácter|carácters}}.',
 'newpageletter'                     => 'N',
 'boteditletter'                     => 'b',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|usuario|usuarios}} cosirando]',
-'rc_categories'                     => 'Limite d\'as categorías (deseparatas por "|")',
+'rc_categories'                     => 'Limite ta las categorías (deseparatas por "|")',
 'rc_categories_any'                 => 'Todas',
 'newsectionsummary'                 => 'Nueva sección: /* $1 */',
 'rc-enhanced-expand'                => 'Amostrar detalles (cal JavaScript)',
@@ -1526,22 +1530,23 @@ $1',
 'upload-http-error'         => 'Ha ocorriu una error HTTP: $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Acceso refusau',
-'img-auth-nopathinfo'   => 'Falta PATH_INFO.
+'img-auth-accessdenied'     => 'Acceso refusau',
+'img-auth-nopathinfo'       => 'Falta PATH_INFO.
 O suyo servidor no ye configurau ta pasar ista información.
 Puet que siga basau en CGI y no siga compatible con img_auth.
 Se veiga http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'A rota solicitada no ye en o directorio de cargas configurau',
-'img-auth-badtitle'     => 'No s\'ha puesto construyir un títol valito dende "$1".',
-'img-auth-nologinnWL'   => 'No ha encetau sesión y "$1" no ye en a lista blanca.',
-'img-auth-nofile'       => 'No existe l\'archivo "$1".',
-'img-auth-isdir'        => 'Ye mirando d\'acceder ta un directorio "$1".
+'img-auth-notindir'         => 'A rota solicitada no ye en o directorio de cargas configurau',
+'img-auth-badtitle'         => 'No s\'ha puesto construyir un títol valito dende "$1".',
+'img-auth-nologinnWL'       => 'No ha encetau sesión y "$1" no ye en a lista blanca.',
+'img-auth-nofile'           => 'No existe l\'archivo "$1".',
+'img-auth-isdir'            => 'Ye mirando d\'acceder ta un directorio "$1".
 Nomás ye premitito l\'acceso ta os fichers.',
-'img-auth-streaming'    => 'Streaming (lectura contina) "$1".',
-'img-auth-public'       => "A función de img_auth.php ye amostrar archivos dende una wiki privada.
+'img-auth-streaming'        => 'Streaming (lectura contina) "$1".',
+'img-auth-public'           => "A función de img_auth.php ye amostrar archivos dende una wiki privada.
 Ista wiki ye configurada como wiki publica.
 Por seguridat, s'ha desactivau img_auth.php.",
-'img-auth-noread'       => 'L\'usuario no tien acceso de lectura ta "$1".',
+'img-auth-noread'           => 'L\'usuario no tien acceso de lectura ta "$1".',
+'img-auth-bad-query-string' => "L'adreza URL tiene una cadena de consulta no valida.",
 
 # HTTP errors
 'http-invalid-url'      => 'URL incorrecta: $1',
@@ -1568,8 +1573,7 @@ Por seguridat, s'ha desactivau img_auth.php.",
 
 # Special:ListFiles
 'listfiles-summary'     => "Ista pachina especial amuestra totz os fichers cargatos.
-Por defecto os zaguers fichers cargatos s'amuestran en o cobalto d'a lista.
-Fendo click en un encabezau de columna se cambia o criterio d'ordenación.",
+Quan se filtran por usuario, nomás s'amuestran os fichers en os que ixe usuario cargó a versión mas recient d'o fichero.",
 'listfiles_search_for'  => "Mirar por nombre d'o fichero:",
 'imgfile'               => 'fichero',
 'listfiles'             => 'Lista de imachens',
@@ -1598,7 +1602,7 @@ Fendo click en un encabezau de columna se cambia o criterio d'ordenación.",
 'filehist-filesize'         => "Grandaria d'o fichero",
 'filehist-comment'          => 'Comentario',
 'filehist-missing'          => 'No se troba o fichero',
-'imagelinks'                => 'Vinclos ta o fichero',
+'imagelinks'                => "Uso d'o fichero",
 'linkstoimage'              => "{{PLURAL:$1|A pachina siguient tiene|Contino s'amuestran $1 pachinas que tienen}} vinclos ta iste fichero:",
 'linkstoimage-more'         => 'Bi ha más de {{PLURAL:$1|una pachina con vinclos|$1 pachinas con vinclos}} enta iste fichero.
 
@@ -1652,7 +1656,7 @@ Debaixo s'amuestra a descripción d'a suya [$2 pachina de descripción].",
 'mimesearch'         => 'Mirar por tipo MIME',
 'mimesearch-summary' => 'Ista pachina premite filtrar fichers seguntes o suyo tipo MIME. Escribir: tipodeconteniu/subtipo, por exemplo <tt>image/jpeg</tt>.',
 'mimetype'           => 'Tipo MIME:',
-'download'           => 'escargar',
+'download'           => 'descargar',
 
 # Unwatched pages
 'unwatchedpages' => 'Pachinas no cosiratas',
@@ -1694,7 +1698,7 @@ Debaixo s'amuestra a descripción d'a suya [$2 pachina de descripción].",
 'statistics-users-active-desc' => 'Usuarios que han feito qualsiquier acción en {{PLURAL:$1|o zaguer día|os zaguers $1 días}}',
 'statistics-mostpopular'       => 'Pachinas más vistas',
 
-'disambiguations'      => 'Pachinas de desambigación',
+'disambiguations'      => 'Pachinas con vinclos enta pachinas de desambigación',
 'disambiguationspage'  => 'Template:Desambigación',
 'disambiguations-text' => "As siguients pachinas tienen vinclos ta una '''pachina de desambigación'''.
 Ixos vinclos habrían de ir millor t'a pachina especifica apropiada.<br />
@@ -1790,8 +1794,8 @@ Por favor, pare cuenta que atros puestos web pueden tener vinclos ta fichers con
 'booksources-invalid-isbn'  => "O numero d'ISBN dato pareix que no ye conforme; comprebe si no bi ha garra error en copiar d'a fuent orichinal.",
 
 # Special:Log
-'specialloguserlabel'  => 'Usuario:',
-'speciallogtitlelabel' => 'Títol:',
+'specialloguserlabel'  => 'Fedor:',
+'speciallogtitlelabel' => 'Obchectivo (titol u usuario):',
 'log'                  => 'Rechistros',
 'all-logs-page'        => 'Totz os rechistros publicos',
 'alllogstext'          => "Presentación conchunta de totz os rechistros de  {{SITENAME}}.
@@ -1831,12 +1835,13 @@ Se veigan tamién as [[Special:WantedCategories|categorías requiestas]].",
 'sp-deletedcontributions-contribs' => 'contrebucions',
 
 # Special:LinkSearch
-'linksearch'       => 'vinclos externos',
+'linksearch'       => 'Busca de vinclos externos',
 'linksearch-pat'   => 'Mirar patrón:',
 'linksearch-ns'    => 'Espacio de nombres:',
 'linksearch-ok'    => 'Mirar',
-'linksearch-text'  => 'Pueden usar-se carácters comodín como "*.wikipedia.org".<br />
-Protocolos suportados: <tt>$1</tt>',
+'linksearch-text'  => 'Pueden usar-se carácters comodín como "*.wikipedia.org".
+A lo menos aprecisa un dominio de maximo libel, como "*.org".<br />
+Protocolos suportados: <tt>$1</tt> (no los adhiba en a suya busca).',
 'linksearch-line'  => '$1 tiene un vinclo dende $2',
 'linksearch-error' => "Os carácters comodín nomás pueden apareixer en o prencipio d'o nombre d'o sitio.",
 
@@ -2039,10 +2044,11 @@ Torne t'a pachina anterior, recargue a pachina y torne a prebar alavez.",
 
 # Protect
 'protectlogpage'              => 'Rechistro de proteccions de pachinas',
-'protectlogtext'              => 'Contino se i amuestra una lista de proteccions y desproteccions de pachinas. Se veiga [[Special:ProtectedPages|lista de pachinas protechitas]] ta más información.',
+'protectlogtext'              => "Contino s'amuestra una lista de cambios en a protección d'as pachinas. 
+Se veiga a [[Special:ProtectedPages|lista de pachinas protechitas]] ta conoixer a lista de proteccions de pachinas actualment operacional.",
 'protectedarticle'            => "s'ha protechito [[$1]]",
 'modifiedarticleprotection'   => 's\'ha cambiato o livel de protección de "[[$1]]"',
-'unprotectedarticle'          => "s'ha esprotechito [[$1]]",
+'unprotectedarticle'          => 'Ha desprotechito [[$1]]',
 'movedarticleprotection'      => 'camiatos os parametros de protección de "[[$2]]" a "[[$1]]"',
 'protect-title'               => 'Protechendo "$1"',
 'prot_1movedto2'              => '[[$1]] tresladada a [[$2]]',
@@ -2339,6 +2345,17 @@ Isto significa que podrá tresladar una pachina ta o suyo títol orichinal si ha
 '''¡PARE CUENTA!'''
 Iste puede estar un cambio drastico e inasperato ta una pachina popular;
 por favor, asegure-se d'entender as conseqüencias que tendrá ista acción antes de seguir enta debant.",
+'movepagetext-noredirectfixer' => "Fendo servir o formulario siguient se cambiará o nombre d'a pachina, tresladando tot o suyo historial t'o nuevo nombre.
+O títol anterior se tornará en una reendrecera ta o nuevo títol.
+Asegure-se de no deixar [[Special:DoubleRedirects|reendreceras doples]] u [[Special:BrokenRedirects|trencatas]].
+Ye a suya responsabilidat d'asegurar-se que os vinclos continan endrezando ent'a on que habrían de fer-lo.
+
+Remere que a pachina '''no''' se renombrará si ya existe una pachina con o nuevo títol, de no estar que fuese una pachina vueda u una ''reendrecera'' sin historial.
+Isto significa que podrá tresladar una pachina ta o suyo titol orichinal si ha feito una error, pero no podrá escribir dencima d'una pachina ya existent.
+
+'''¡PARE CUENTA!'''
+Iste puede estar un cambio drastico e inasperato ta una pachina popular;
+por favor, asegure-se d'entender as conseqüencias que tendrá ista acción antes de seguir enta debant.",
 'movepagetalktext'             => "A pachina de descusión asociata será tresladata automaticament '''de no estar que:'''
 
 *Ya exista una pachina de descusión no vueda con o nombre nuevo, u
@@ -2466,7 +2483,8 @@ Todas as importacions interwiki se rechistran en o [[Special:Log/import|rechistr
 'import-interwiki-namespace' => 'Espacio de nombres de destín:',
 'import-upload-filename'     => 'Nombre de fichero:',
 'import-comment'             => 'Comentario:',
-'importtext'                 => "Por favor, exporte o fichero dende o wiki d'orichen fendo servir a [[Special:Export|ferramienta d'exportación]]. Alce-lo en o suyo ordenador y cargue-lo aquí.",
+'importtext'                 => "Por favor, exporte o fichero dende o wiki d'orichen fendo servir a [[Special:Export|ferramienta d'exportación]].
+Alce-lo en o suyo ordenador y cargue-lo aquí.",
 'importstart'                => 'Importando pachinas...',
 'import-revision-count'      => '$1 {{PLURAL:$1|versión|versions}}',
 'importnopages'              => 'No bi ha garra pachina ta importar.',
@@ -2517,7 +2535,7 @@ Todas as importacions interwiki se rechistran en o [[Special:Log/import|rechistr
 Puede veyer-ne, manimenos, o codigo fuent.',
 'tooltip-ca-history'              => "Versions anteriors d'ista pachina.",
 'tooltip-ca-protect'              => 'Protecher ista pachina',
-'tooltip-ca-unprotect'            => 'Desproteger ista pagina',
+'tooltip-ca-unprotect'            => "Cambiar a protección d'ista pachina",
 'tooltip-ca-delete'               => 'Borrar ista pachina',
 'tooltip-ca-undelete'             => 'Restaurar as edicions feitas a ista pachina antis que no estase borrata',
 'tooltip-ca-move'                 => 'Tresladar (renombrar) ista pachina',
@@ -2567,6 +2585,32 @@ Puede veyer-ne, manimenos, o codigo fuent.',
 'tooltip-preferences-save'        => 'Alzar as preferencias',
 'tooltip-summary'                 => 'Escribir un breu resumen',
 
+# Stylesheets
+'common.css'      => '/* Os estilos CSS definius aquí aplicarán a todas as apariencias (skins) */',
+'standard.css'    => "/* Os estilos CSS colocaus aquí s'aplicarán ta totz os usuarios que faigan servir l'apariencia Standard */",
+'nostalgia.css'   => "/* Os estilos CSS colocaus aquí s'aplicarán ta totz os usuarios que faigan servir l'apariencia Nostalgia */",
+'cologneblue.css' => "/* Os estilos CSS colocaus aquí s'aplicarán ta totz os usuarios que faigan servir l'apariencia Cologne Blue */",
+'monobook.css'    => "/* Os estilos CSS colocaus aquí s'aplicarán ta totz os usuarios que faigan servir l'apariencia Monobook */",
+'myskin.css'      => "/* Os estilos CSS colocaus aquí s'aplicarán ta totz os usuarios que que faigan servir l'apariencia MySkin */",
+'chick.css'       => "/* Os estilos CSS colocaus aquí s'aplicarán ta totz os usuarios que faigan servir l'apariencia Chick */",
+'simple.css'      => "/* Os estilos CSS colocaus aquí s'aplicarán ta totz os usuarios que faigan servir l'apariencia Simpla */",
+'modern.css'      => "/* Os estilos CSS colocaus aquí s'aplicarán ta totz os usuarios que faigan servir l'apariencia Modern */",
+'vector.css'      => "/* Os estilos CSS colocaus aquí s'aplicarán ta totz os usuarios que faigan servir l'apariencia Vector */",
+'print.css'       => '/* Os estilos CSS colocaus aquí afectarán a la impresión */',
+'handheld.css'    => '/* Os estilos CSS colocaus aquí afectarán a os dispositivos mobils basaus en as apariencias configuradas en $wgHandheldStyle */',
+
+# Scripts
+'common.js'      => '/* Qualsiquier codigo Javascript escrito aquí se cargará ta totz os usuarios en cada carga de pachina */',
+'standard.js'    => "/* Qualsiquier codigo Javascript escrito aquí se cargará ta totz os usuarios que faigan servir l'apariencia Estandar */",
+'nostalgia.js'   => "/* Qualsiquier codigo Javascript escrito aquí se cargará ta totz os usuarios que faigan servir l'apariencia Nostalgia. */",
+'cologneblue.js' => "/* Qualsiquier codigo Javascript escrito aquí se cargará ta totz os usuarios que faigan servir l'apariencia Colonia azul */",
+'monobook.js'    => "/* O codigo Javascript que se meta aquí será cargau por os usuarios faigan servir l'apariencia MonoBook */",
+'myskin.js'      => "/* Qualsiquier codigo Javascript escrito aquí se cargará ta totz os usuarios que faigan servir l'apariencia MySkin */",
+'chick.js'       => "/* Qualsiquier codigo Javascript escrito aquí se cargará ta totz os usuarios que faigan servir l'apariencia Chick */",
+'simple.js'      => "/* Qualsiquier codigo Javascript escrito aquí se cargará ta totz os usuarios que faigan servir l'apariencia Simple */",
+'modern.js'      => "/* O codigo Javascript que se meta aquí será cargau por os usuarios faigan servir l'apariencia Modern */",
+'vector.js'      => '/* Qualsiquier codigo Javascript escrito aquí se cargará ta totz os usuarios que usen a piel Vector */',
+
 # Metadata
 'nodublincore'      => 'Metadatos Dublin Core RDF desactivatos en iste servidor.',
 'nocreativecommons' => 'Metadatos Creative Commons RDF desactivatos en iste servidor.',
@@ -2604,8 +2648,12 @@ Puede veyer-ne, manimenos, o codigo fuent.',
 'skinname-standard'    => 'Clasica (Classic)',
 'skinname-nostalgia'   => 'Recosiros (Nostalgia)',
 'skinname-cologneblue' => 'Colonia Azul (Cologne Blue)',
-'skinname-myskin'      => 'A mía aparenzia (MySkin)',
+'skinname-monobook'    => 'MonoBook',
+'skinname-myskin'      => 'A mía aparencia (MySkin)',
+'skinname-chick'       => 'Chick',
 'skinname-simple'      => 'Simpla (Simple)',
+'skinname-modern'      => 'Moderna',
+'skinname-vector'      => 'Vector',
 
 # Math options
 'mw_math_png'    => 'Producir siempre PNG',
@@ -2746,8 +2794,8 @@ Nomás se consideran os elementos de lista (ringleras que escomienzan por *). O 
 'exif-colorspace'                  => 'Espacio de colors',
 'exif-componentsconfiguration'     => 'Significación de cada component',
 'exif-compressedbitsperpixel'      => "Modo de compresión d'a imachen",
-'exif-pixelydimension'             => "Amplaria conforme d'a imachen",
-'exif-pixelxdimension'             => "Altaria conforme d'a imachen",
+'exif-pixelydimension'             => "Amplaria d'a imachen",
+'exif-pixelxdimension'             => "Altaria d'a imachen",
 'exif-makernote'                   => "Notas d'o fabriquero",
 'exif-usercomment'                 => "Comentarios de l'usuario",
 'exif-relatedsoundfile'            => "Fichero d'audio relacionato",
@@ -2763,9 +2811,9 @@ Nomás se consideran os elementos de lista (ringleras que escomienzan por *). O 
 'exif-spectralsensitivity'         => 'Sensibilidat espectral',
 'exif-isospeedratings'             => 'Sensibilidat ISO',
 'exif-oecf'                        => 'Factor de conversión optoelectronica',
-'exif-shutterspeedvalue'           => "Velocidat de l'obturador",
-'exif-aperturevalue'               => 'Obredura',
-'exif-brightnessvalue'             => 'Brilor',
+'exif-shutterspeedvalue'           => "Velocidat de l'obturador APEX",
+'exif-aperturevalue'               => 'Obredura APEX',
+'exif-brightnessvalue'             => 'Brilor APEX',
 'exif-exposurebiasvalue'           => "Siesco d'exposición",
 'exif-maxaperturevalue'            => 'Obredura maxima',
 'exif-subjectdistance'             => 'Distancia a o sucheto',
@@ -2829,6 +2877,7 @@ Nomás se consideran os elementos de lista (ringleras que escomienzan por *). O 
 'exif-gpsareainformation'          => "Nombre d'aria GPS",
 'exif-gpsdatestamp'                => 'Calendata GPS',
 'exif-gpsdifferential'             => 'Corrección diferencial de GPS',
+'exif-objectname'                  => 'Titol breu',
 
 # EXIF attributes
 'exif-compression-1' => 'Sin de compresión',
@@ -2840,9 +2889,9 @@ Nomás se consideran os elementos de lista (ringleras que escomienzan por *). O 
 'exif-orientation-3' => 'Chirata 180º',
 'exif-orientation-4' => 'Contornata verticalment',
 'exif-orientation-5' => "Chirata 90° en contra d'as agullas d'o reloch y contornata verticalment",
-'exif-orientation-6' => "Chirata 90° como as agullas d'o reloch",
+'exif-orientation-6' => "Chirata 90° en contra d'o sentiu d'as agullas d'o reloch",
 'exif-orientation-7' => "Chirata 90° como as agullas d'o reloch y contornata verticalment",
-'exif-orientation-8' => "Chirata 90° en contra d'as agullas d'o reloch",
+'exif-orientation-8' => "Chirata 90° en o sentiu d'as agullas d'o reloch",
 
 'exif-planarconfiguration-1' => 'formato de paquetz de píxels',
 'exif-planarconfiguration-2' => 'formato plano',
@@ -2909,6 +2958,8 @@ Nomás se consideran os elementos de lista (ringleras que escomienzan por *). O 
 'exif-sensingmethod-5' => "Sensor d'aria de color seqüencial",
 'exif-sensingmethod-7' => 'Sensor trilinial',
 'exif-sensingmethod-8' => 'Sensor linial de color seqüencial',
+
+'exif-filesource-3' => 'Camera dichital',
 
 'exif-scenetype-1' => 'Una imachen fotiata dreitament',
 
@@ -3025,6 +3076,20 @@ Si a cuenta *no* ye suya, siga iste atro vinclo ta anular a confirmación d\'adr
 $5
 
 Iste codigo de confirmación circumducirá en $4.',
+'confirmemail_body_set'     => "Belún, probablement vusté dende l'adreza IP $1,
+ha cambiau l'adreza de correu electronico d'a cuenta $2 ta ista adreza en {{SITENAME}}.
+
+Ta confirmar que ista cuenta realment li perteneixe y reactivar
+as capacidatz d'o correu electronico en {{SITENAME}}, ubra iste vinclo en o suyo navegador:
+
+$3
+
+Si a cuenta *no* li perteneixe siga alavez iste atro enlace
+ta cancelar a confirmación d'o correu electronico:
+
+$5
+
+Iste codigo de confirmación circumducirá o $4.",
 'confirmemail_invalidated'  => "Anular a confirmación d'adreza de correu-e",
 'invalidateemail'           => 'Anular a confirmación de correu-e',
 
@@ -3051,6 +3116,9 @@ Por favor, confirme que reyalment deseya tornar a creyar l'articlo.",
 'confirm_purge_button' => 'Confirmar',
 'confirm-purge-top'    => "Limpiar a caché d'ista pachina?",
 'confirm-purge-bottom' => 'En porgar una pachina, se limpia a memoria caché y afuerza que amaneixca a versión más actual.',
+
+# Separators for various lists, etc.
+'comma-separator' => ',&#32;',
 
 # Multipage image navigation
 'imgmultipageprev' => '← pachina anterior',
@@ -3103,7 +3171,7 @@ Tamién puede [[Special:Watchlist/raw|editar dreitament a lista]].",
 Quan remate, punche \"{{int:Watchlistedit-raw-submit}}\".
 Tamién puede fer servir o [[Special:Watchlist/edit|editor estándar]].",
 'watchlistedit-raw-titles'     => 'Pachinas:',
-'watchlistedit-raw-submit'     => 'Esviellar lista de seguimiento',
+'watchlistedit-raw-submit'     => 'Esviellar a lista de seguimiento',
 'watchlistedit-raw-done'       => "S'ha esviellato a suya lista de seguimiento.",
 'watchlistedit-raw-added'      => "{{PLURAL:$1|S'ha esviellato una pachina|S'ha esviellato $1 pachinas}}:",
 'watchlistedit-raw-removed'    => "{{PLURAL:$1|S'ha borrato una pachina|S'ha borrato $1 pachinas}}:",
@@ -3123,6 +3191,7 @@ Tamién puede fer servir o [[Special:Watchlist/edit|editor estándar]].",
 'version-specialpages'             => 'Pachinas especials',
 'version-parserhooks'              => "Grifios d'o parser (parser hooks)",
 'version-variables'                => 'Variables',
+'version-skins'                    => 'Aparencias',
 'version-other'                    => 'Atros',
 'version-mediahandlers'            => 'Maneyador de fichers multimedia',
 'version-hooks'                    => 'Grifios (Hooks)',

@@ -902,8 +902,8 @@ Je kunnen [[Special:Search/{{PAGENAME}}|zeuken naor disse term]] in aandere pagi
 'blocked-notice-logextract'        => 'Disse gebruker is op t moment eblokkeerd.
 De leste regel uut t blokkeerlogboek steet hieronder as referensie:',
 'clearyourcache'                   => "'''Waort je:''' naodat de wiezigingen op-esleugen bin, mut t tussengeheugen van de webkieker nog eleegd wörden um t te kunnen zien. 
-*'''Firefox / Safari:''' drok op ''Shift'' terwiel je op ''verniejen'' klikken, of gebruuk ''Ctrl-F5'' of ''Ctrl-R'' (''Command-R'' op n knipperkiste van Mac)
-* '''Google Chrome:''' drok op ''Ctrl-Shift-R'' (''Command-Shift-R'' op n knipperkiste van Mac)
+*'''Firefox / Safari:''' drok op ''Shift'' terwiel je op ''verniejen'' klikken, of gebruuk ''Ctrl-F5'' of ''Ctrl-R'' (''⌘-R'' op n knipperkiste van Mac)
+* '''Google Chrome:''' drok op ''Ctrl-Shift-R'' (''⌘-Shift-R'' op n knipperkiste van Mac)
 *'''Internet Explorer:''' drok op ''Ctrl'' terwiel je op ''verniejen'' klikken of drok op ''Ctrl-F5''
 *'''Konqueror: '''klik op ''verniejen'' of drok op ''F5''
 *'''Opera:''' leeg t tussengeheugen in ''Extra → Voorkeuren\"",
@@ -1886,7 +1886,7 @@ Vergeet niet de verwiezingen nao te kieken veurda\'j de mal vortdoon.',
 'statistics-users-active-desc' => 'Gebrukers die de veurbieje {{PLURAL:$1|dag|$1 dagen}} n haandeling uutevoerd hebben',
 'statistics-mostpopular'       => "Meestbekeken pagina's",
 
-'disambiguations'      => "Deurverwiespagina's",
+'disambiguations'      => "Pagina's die verwiezen naor deurverwiespagina's",
 'disambiguationspage'  => 'Template:Dv',
 'disambiguations-text' => "De onderstaonde pagina's verwiezen naor n '''deurverwiespagina'''. Disse verwiezingen mutten eigenliks rechtstreeks verwiezen naor t juuste onderwarp.
 
@@ -1986,8 +1986,8 @@ n Bestaand kan hier dus verkeerd op-eneumen ween.",
 'booksources-invalid-isbn'  => "De op-egeven ISBN klop niet; kiek effen nao o'j gien fout emaakt hebben bie de invoer.",
 
 # Special:Log
-'specialloguserlabel'  => 'Gebruker:',
-'speciallogtitlelabel' => 'Naam:',
+'specialloguserlabel'  => 'Uutvoerende gebruker:',
+'speciallogtitlelabel' => 'Doel (paginanaam of gebruker):',
 'log'                  => 'Logboeken',
 'all-logs-page'        => 'Alle publieke logboeken',
 'alllogstext'          => 'Dit is t kombinasielogboek van {{SITENAME}}.
@@ -2027,12 +2027,13 @@ Zie oek [[Special:WantedCategories|gewunste kategorieën]].",
 'sp-deletedcontributions-contribs' => 'biedragen',
 
 # Special:LinkSearch
-'linksearch'       => 'Uutgaonde verwiezingen',
+'linksearch'       => 'Uutgaonde verwiezingen zeuken',
 'linksearch-pat'   => 'Zeukpetroon:',
 'linksearch-ns'    => 'Naamruumte:',
 'linksearch-ok'    => 'Zeuken',
-'linksearch-text'  => 'Jokers zo as "*.wikipedia.org" of "*.org" bin toe-estaon.<br />
-Ondersteunde protokollen: <tt>$1</tt>',
+'linksearch-text'  => 'Jokers zo as "*.wikipedia.org" of "*.org" bin toe-estaon.
+Hef tenminsten n topdomein, zo as "*.org".<br />
+Ondersteunde protokollen: <tt>$1</tt> (zet t niet in joew zeukopdrachte).',
 'linksearch-line'  => '$1 hef n verwiezing in $2',
 'linksearch-error' => 'Jokers bin allinnig toe-estaon an t begin van n webadres.',
 

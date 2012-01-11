@@ -568,21 +568,21 @@ $2',
 'blockedoriginalsource'            => "底下係'''$1'''嗰原始碼:",
 'blockededitsource'                => "底下係倷對'''$1'''嗰'''編輯'''內容:",
 'whitelistedittitle'               => '登入後才編得正',
-'whitelistedittext'                => '起先倷要$1才編得正箇頁。',
+'whitelistedittext'                => '起先汝要$1才編得正箇頁。',
 'confirmedittext'                  => '確認嘞email才能編寫箇頁。麻煩用[[Special:Preferences|參數設置]]設置同確認倷嗰email。',
 'nosuchsectiontitle'               => '冇箇隻段落',
 'nosuchsectiontext'                => '汝試得編寫嗰段落伓存在。',
 'loginreqtitle'                    => '需要登入',
 'loginreqlink'                     => '登入',
-'loginreqpagetext'                 => '倷要$1才眵得正別嗰頁面。',
-'accmailtitle'                     => '密碼寄出嘞',
+'loginreqpagetext'                 => '汝要$1才眵得正別嗰頁面。',
+'accmailtitle'                     => '密碼寄出哩',
 'accmailtext'                      => "'$1'嗰密碼發到$2嘞。",
 'newarticle'                       => '（新）',
 'newarticletext'                   => '箇係隻冇拕建立嗰頁面。
-要新開箇隻頁面，請到下頭嗰方框裡頭編寫內容（望吖[[{{MediaWiki:Helppage}}|説明]]嗰細節）。
-要係倷伓係特試來到箇首，捺吖瀏覽器嗰「返回」鍵即可去還。',
+要新開箇隻頁面，請到下首嗰方框裡頭編寫內容（望吖[[{{MediaWiki:Helppage}}|説明]]嗰細節）。
+若係汝伓係特事來到箇首，捺吖瀏覽器嗰「去還」鍵即得去還。',
 'anontalkpagetext'                 => "---- ''箇係匿名用戶嗰討論頁，話伓定佢哈冇開隻帳戶。別人單用得正IP地址同佢聯繫。箇隻IP地址可能有好幾隻用戶共用。如果倷係匿名用戶，覺得箇頁嗰內容同倷冇關，歡迎去[[Special:UserLogin|開隻新帳戶或登入]]，省得同別嗰匿名用戶扤混來。''",
-'noarticletext'                    => '眼下箇頁哈冇內容，倷可以到別嗰頁面[[Special:Search/{{PAGENAME}}|尋吖箇頁嗰標題]]，
+'noarticletext'                    => '眼下箇頁哈冇內容，汝到別嗰頁面[[Special:Search/{{PAGENAME}}|尋得正箇頁嗰標題]]，
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 尋吖有關日誌]或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 編寫箇頁]</span>。',
 'noarticletext-nopermission'       => '眼下箇頁哈冇內容，汝可以到別嗰頁面[[Special:Search/{{PAGENAME}}|尋吖箇頁嗰標題]]，
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 尋吖有關日誌]或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 編寫箇頁]</span>。',
@@ -785,7 +785,7 @@ $2',
 'shown-title'                      => '每頁顯示$1隻{{PLURAL:$1|結果}}',
 'viewprevnext'                     => '望吖（$1 {{int:pipe-separator}} $2） （$3）',
 'searchmenu-exists'                => "'''箇隻wiki已有一隻叫「[[:$1]]」嗰頁。'''",
-'searchmenu-new'                   => "'''嘚箇隻wiki上建立「[[:$1]]」頁！''",
+'searchmenu-new'                   => "'''嘚箇隻wiki上建立「[[:$1]]」頁！'''",
 'searchhelp-url'                   => 'Help:説明',
 'searchprofile-articles'           => '內容頁',
 'searchprofile-project'            => '幫助同得計劃頁',
@@ -860,7 +860,7 @@ $2',
 'recentchangesdays'         => '最近更改中嗰顯示日數:',
 'recentchangescount'        => '最近更改中嗰編輯數:',
 'savedprefs'                => '倷嗰個人參數設置保存正嘞。',
-'timezonelegend'            => '時區',
+'timezonelegend'            => '時區：',
 'localtime'                 => '當地時區',
 'timezoneoffset'            => '時差¹',
 'servertime'                => '服務器時間',
@@ -874,7 +874,7 @@ $2',
 'uid'                       => '用戶ID：',
 'yourrealname'              => '真名：',
 'yourlanguage'              => '語言：',
-'yourvariant'               => '轉換字體',
+'yourvariant'               => '多款內容語言：',
 'yournick'                  => '簽名：',
 'badsig'                    => '原始簽名錯誤，請檢查HTML。',
 'badsiglength'              => '花名咁長？佢嗰長度要少過$1隻字符。',
@@ -1376,7 +1376,7 @@ $NEWPAGE
 'delete-legend'         => '刪卟去',
 'historywarning'        => "'''警告''': 倷要刪卟嗰頁面含到$1到{{PLURAL:$1|修訂|修訂}}嗰歷史",
 'confirmdeletetext'     => '仰上倷就要永久刪卟資料庫嗰一隻頁面或圖像同佢嗰歷史。請確定倷要噉做，哈要曉得佢嗰後果，更加伓能違反[[{{MediaWiki:Policy-url}}]]。',
-'actioncomplete'        => '扤正嘞',
+'actioncomplete'        => '舞正哩',
 'actionfailed'          => '操作冇舞正',
 'deletedtext'           => '"<nowiki>$1</nowiki>"刪卟嘞。最晏嗰刪除記錄請望$2。',
 'deletedarticle'        => '"[[$1]]"刪卟嘞',
@@ -1638,18 +1638,18 @@ $1',
 
 # Move page
 'move-page-legend'        => '換動頁面',
-'movepagetext'            => "用下底嗰表格拿一隻頁面改名，跟到搦佢嗰歷史一齊搬到新頁面。
-舊嗰頁面就係新頁嗰重定向頁。
-連到舊頁面嗰連結伓會自動更改；
-勞煩檢查吖雙重或壞嗰重定向連結。
-倷有責任確保全部連結會連到指正嗰頁面。
+'movepagetext'            => "用下底嗰表格拿一隻頁面改名，跟到拿佢嗰歷史一齊般到新頁面。
+舊嗰頁面就系新頁嗰重定向頁。
+連到舊頁面嗰鏈接伓會自動更改；
+勞煩檢查吖雙重或壞嗰重定向鏈接。
+倷有責任確保全部鏈接會連到指正嗰頁面。
 
-注意如果新頁面早就有嗰話，頁面'''伓會'''搬過去，要不新頁面就係冇內容或係重定向頁，也冇修訂歷史。
-噉就係話必要時倷能等換到新頁面之後再又去歸舊嗰頁面，跟到倷也覆蓋不正目前頁面。
+注意如果新頁面早就有嗰話，頁面'''伓會'''搬過去，要不新頁面就系冇內容或系重定向頁，也冇修訂歷史。
+啖就系話必要時倷能等換到新頁面之後再又回到舊嗰頁面，跟到倷也覆蓋不正目前頁面。
 
 '''警告！'''
-對一隻訪問得多嗰頁面噉會係一隻重要同關鍵嗰改動；
-請扤之前了解正佢噉可能嗰後果。",
+對一隻訪問得多嗰頁面啖會系一隻重要同關鍵嗰改動；
+請扤之前了解正佢啖可能嗰後果。",
 'movepagetalktext'        => "相關嗰討論頁會自動同箇頁一齊搬走，'''除非''':
 *新頁面有嘞隻有內容嗰討論頁，或
 *倷伓選下底嗰選擇方塊。
@@ -1784,7 +1784,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'tooltip-n-currentevents'         => '提供目前嗰事嗰背景',
 'tooltip-n-recentchanges'         => '列出箇隻網站該朝子嗰改動',
 'tooltip-n-randompage'            => '隨機載進一隻頁面',
-'tooltip-n-help'                  => '求人幫',
+'tooltip-n-help'                  => '尋人幫',
 'tooltip-t-whatlinkshere'         => '列出全部同箇頁連到嗰頁面',
 'tooltip-t-recentchangeslinked'   => '從箇頁連出嗰全部頁面嗰改動',
 'tooltip-feed-rss'                => '箇頁嗰RSS訂閱',

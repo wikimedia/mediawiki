@@ -546,6 +546,7 @@ Ye ia.',
 'page_first'             => 'achto',
 'page_last'              => 'xōcoyōc',
 'history-fieldset-title' => 'Tictēmōz īpan tlahcuilōlloh',
+'history-show-deleted'   => 'Zan tlapolōlli',
 'histfirst'              => 'Achto',
 'histlast'               => 'Yancuīc',
 'historysize'            => '({{PLURAL:$1|1 byte|$1 byte}})',
@@ -915,7 +916,8 @@ Timitztlātlauhtiah, xitlahcuiloa occē tōcāitl.",
 'statistics-files'         => 'Tlahcuilōlli ōmoquetz',
 'statistics-views-peredit' => 'Tlahpololiztli ic tlapatlaliztli',
 
-'disambiguations' => 'Ōmetōcāitl zāzaniltin',
+'disambiguations'     => 'Āmatl tlein motzonhuiliah īca tlahtōlmelāhuacātlāliztli āmatl',
+'disambiguationspage' => 'Template:Tlahtōlmelāhuacātlāliztli',
 
 'doubleredirects' => 'Ōntetl tlacuepaliztli',
 
@@ -999,7 +1001,7 @@ Nò mà mỏta in tlèn [[Special:WantedCategories|ìpan kineki tlaìxmatkàtlà
 'special-categories-sort-abc'   => 'tlahtōlcopa',
 
 # Special:LinkSearch
-'linksearch'    => 'Calān tzonhuiliztli',
+'linksearch'    => 'Calān tzonhuiliztli tlatemoliztli',
 'linksearch-ns' => 'Tōcātzin:',
 'linksearch-ok' => 'Tictēmōz',
 

@@ -1653,7 +1653,7 @@ $1',
 'statistics-users-active-desc' => 'Ааспыт {{PLURAL:$1|биир хонук иһигэр|$1 хонукка}} тугу эмэ оҥорбут кыттааччылар',
 'statistics-mostpopular'       => 'Саамай элбэхтик көрүллэр ыстатыйалар',
 
-'disambiguations'      => 'Элбэх суолталаах өйдөбүллэр сирэйдэрэ',
+'disambiguations'      => 'Элбэх суолталаах өйдөбүллэргэ сигэнэр сирэйдэр',
 'disambiguationspage'  => 'Template:элбэх суолталаах өйдөбүллэр',
 'disambiguations-text' => "Маннык сирэйдэр '''омонимнар сирэйдэрин''' кытта сибээстээхтэр. Ол оннугар чуолаан теманы кытта сибээстэһиэхтээхтэр.<br />Өскө бу халыыбы [[MediaWiki:Disambiguationspage]] туттубут буоллахтарына, сирэй омонимнары суох оҥоруу курдук обработкаламмыт.",
 
@@ -1748,8 +1748,8 @@ $1',
 'booksources-invalid-isbn'  => 'ISBN, арааһа, сыыһалаах. Нүөмэр көһөрөргө алҕас тахсыбатаҕын хат көр эрэ.',
 
 # Special:Log
-'specialloguserlabel'  => 'Кыттааччы:',
-'speciallogtitlelabel' => 'Баһа:',
+'specialloguserlabel'  => 'Толорооччу:',
+'speciallogtitlelabel' => 'Сорук (тиэкис эбэтэр киһи аата)',
 'log'                  => 'Сурунааллар',
 'all-logs-page'        => 'Көстөр сурунааллар барыта',
 'alllogstext'          => '{{SITENAME}} сурунаалларын уопсай испииһэгэ.
@@ -1789,7 +1789,7 @@ $1',
 'sp-deletedcontributions-contribs' => 'киллэриитэ (суруйуута)',
 
 # Special:LinkSearch
-'linksearch'       => 'Тас сигэлэр',
+'linksearch'       => 'Тас сигэлэри көрдөөһүн',
 'linksearch-pat'   => 'Көрдөөһүн халыыба:',
 'linksearch-ns'    => 'Аат хочото (namespace):',
 'linksearch-ok'    => 'Бул',

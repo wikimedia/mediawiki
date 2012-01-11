@@ -16,32 +16,51 @@ $rtl = true;
 
 $messages = array(
 # Dates
-'sunday'    => 'Yekshenbe',
-'monday'    => 'Düshenbe',
-'tuesday'   => 'Seyshenbe',
-'wednesday' => 'Charshenbe',
-'thursday'  => 'Peyshenbe',
-'friday'    => 'Jüme',
-'saturday'  => 'Shenbe',
-'january'   => 'Yanwar',
-'february'  => 'Féwral',
-'march'     => 'Mart',
-'april'     => 'Aprél',
-'june'      => 'Iyun',
-'july'      => 'Iyul',
-'august'    => 'Awghust',
-'september' => 'Séntebr',
-'october'   => 'Öktebir',
-'november'  => 'Noyabr',
-'december'  => 'Dékabr',
-'may'       => 'May',
+'sunday'        => 'Yekshenbe',
+'monday'        => 'Düshenbe',
+'tuesday'       => 'Seyshenbe',
+'wednesday'     => 'Charshenbe',
+'thursday'      => 'Peyshenbe',
+'friday'        => 'Jüme',
+'saturday'      => 'Shenbe',
+'january'       => 'Yanwar',
+'february'      => 'Féwral',
+'march'         => 'Mart',
+'april'         => 'Aprél',
+'may_long'      => 'May',
+'june'          => 'Iyun',
+'july'          => 'Iyul',
+'august'        => 'Awghust',
+'september'     => 'Séntebr',
+'october'       => 'Öktebir',
+'november'      => 'Noyabr',
+'december'      => 'Dékabr',
+'may-gen'       => 'May',
+'september-gen' => 'Séntebr',
+'october-gen'   => 'Öktebir',
+'november-gen'  => 'Noyabr',
+'december-gen'  => 'Dékabr',
+'jan'           => '1-Ay',
+'feb'           => '2-Ay',
+'mar'           => '3-Ay',
+'apr'           => '4-Ay',
+'may'           => 'May',
+'jun'           => '6-Ay',
+'jul'           => '7-Ay',
+'aug'           => '8-Ay',
+'sep'           => '9-Ay',
+'oct'           => '10-Ay',
+'nov'           => '11-Ay',
+'dec'           => '12-Ay',
 
 'mypage'     => 'Mening beti',
 'navigation' => 'Körüsh',
 
 # Cologne Blue skin
-'qbedit' => 'Uzgartish',
+'qbedit'         => 'Uzgartish',
+'qbspecialpages' => 'Alahida tor batleri',
 
+'help'             => 'Yardem',
 'search'           => 'Izdash',
 'searchbutton'     => 'Izdash',
 'go'               => 'Kuchush',
@@ -102,6 +121,7 @@ $messages = array(
 'powersearch' => 'Izdash',
 
 # Preferences page
+'prefs-rc'              => 'Yengi uzgurush',
 'searchresultshead'     => 'Izdash',
 'timezoneregion-asia'   => 'Asiya',
 'timezoneregion-europe' => 'Yawropa',
@@ -141,6 +161,7 @@ $messages = array(
 'newpages'          => 'Yéngi betler',
 'newpages-username' => 'Ishletkuqi ismi:',
 'move'              => 'Yotkash',
+'movethispage'      => 'Bu batni yotkang',
 
 # Book sources
 'booksources-go' => 'Kuchush',
@@ -149,6 +170,9 @@ $messages = array(
 'nextpage'       => 'Kéyinki bet ($1)',
 'prevpage'       => 'Aldinqi bet ($1)',
 'allpagessubmit' => 'Kuchush',
+
+# Special:LinkSearch
+'linksearch-ok' => 'Izdash',
 
 # Watchlist
 'watchlist'     => 'Men kharawatkhan tor betleri',
@@ -173,7 +197,9 @@ $messages = array(
 'ipblocklist-submit' => 'Izdash',
 
 # Move page
-'move-watch' => 'Bu Batka Kharang',
+'movearticle' => 'Yotkigen beti:',
+'move-watch'  => 'Bu Batka Kharang',
+'movepagebtn' => 'Yotkigen beti',
 
 # Namespace 8 related
 'allmessages' => 'System havarleri',

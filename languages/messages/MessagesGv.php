@@ -50,6 +50,7 @@ $messages = array(
 'tog-minordefault'           => 'Myr roie-hoieaghey, cowree dagh arraghey myr myn-arraghey',
 'tog-previewontop'           => 'Taishbyn y roie-haishbynys roish y chishtey reaghee',
 'tog-previewonfirst'         => 'Taishbyn roie-haishbynys lurg y chied reaghey',
+'tog-nocache'                => 'Ny sauail duillagyn ayns tasht y jeeagheyder',
 'tog-enotifusertalkpages'    => 'Cur post-l dou my vees y duillag ymmydeyr aym caghlaa',
 'tog-enotifminoredits'       => 'Cur dou post-l er myn-arraghey duillagyn chammah',
 'tog-shownumberswatching'    => 'Taishbyn earroo ny h-ymmydeyryn ta freill arrey',
@@ -180,6 +181,7 @@ $messages = array(
 'vector-view-viewsource'   => 'Jeeagh er bun',
 'actions'                  => 'Obbraghyn',
 'namespaces'               => 'Reamyssyn',
+'variants'                 => 'Cummaghyn elley',
 
 'errorpagetitle'    => 'Marranys',
 'returnto'          => 'Gow er ash gys $1.',
@@ -636,13 +638,14 @@ My bailliu eh y chiarail, bee eh ymmydit son cur gys lieh y chur dhyt er son yn 
 'userrights-reason'        => 'Fa:',
 
 # Groups
-'group'            => 'Possan:',
-'group-user'       => 'Ymmydeyryn',
-'group-bot'        => 'Botyn',
-'group-sysop'      => 'Reireyderyn',
-'group-bureaucrat' => 'Oikreilleyderyn',
-'group-suppress'   => 'Meehastidyn',
-'group-all'        => '(yn clane)',
+'group'               => 'Possan:',
+'group-user'          => 'Ymmydeyryn',
+'group-autoconfirmed' => 'Ymmydeyryn er nyn shickyraghey gyn thort',
+'group-bot'           => 'Botyn',
+'group-sysop'         => 'Reireyderyn',
+'group-bureaucrat'    => 'Oikreilleyderyn',
+'group-suppress'      => 'Oaseiryn',
+'group-all'           => '(yn clane)',
 
 'group-user-member'       => 'Ymmydeyr',
 'group-bot-member'        => 'Robot',
@@ -653,6 +656,16 @@ My bailliu eh y chiarail, bee eh ymmydit son cur gys lieh y chur dhyt er son yn 
 'grouppage-user'  => '{{ns:project}}:Ymmydeyryn',
 'grouppage-bot'   => '{{ns:project}}:Robotyn',
 'grouppage-sysop' => '{{ns:project}}:Reireyderyn',
+
+# Rights
+'right-read'       => 'Duillag y lhaih',
+'right-edit'       => 'Duillag y reaghey',
+'right-createpage' => 'Duillag y chroo (nagh vel ny ghuillag resoonaght)',
+'right-createtalk' => 'Duillag resoonaght y chroo',
+'right-move'       => 'Duillag y scughey',
+'right-movefile'   => 'Coadan y scughey',
+'right-upload'     => 'Laadey neese coadanyn',
+'right-delete'     => 'Duillag y scryssey',
 
 # User rights log
 'rightslog'  => 'Lioar chooishyn kiartyn ymmydeyr',
@@ -668,6 +681,7 @@ My bailliu eh y chiarail, bee eh ymmydit son cur gys lieh y chur dhyt er son yn 
 'recentchangestext'              => "Shirr ny caghlaaghyn s'noa da'n wiki er y duillag shoh.",
 'recentchanges-feed-description' => "Shirr ny caghlaaghyn jeianagh er y wiki 'sy scoltey shoh.",
 'recentchanges-label-newpage'    => 'Ren y reaghey shoh croo duillag noa',
+'recentchanges-label-minor'      => "She myn-arraghey t'ayn",
 'recentchanges-label-bot'        => 'Ren bot y reaghey shoh',
 'rcnote'                         => "Ny ta heese, she {{PLURAL:$1|ny '''$1''' caghlaa|yn '''$1''' chaghlaa|ny '''$1''' chaghlaa|ny '''$1''' caghlaaghyn}} s'jerree ayns {{PLURAL:$2|ny '''$2''' laa|yn '''$2''' laa|ny '''$2''' laa|ny '''$2''' laaghyn}} s'jerree, kiart ec $4, $5.",
 'rcnotefrom'                     => "Shoh heese ny caghlaaghyn veih '''$2''' (gys '''$1''' taishbynit).",
@@ -686,6 +700,7 @@ My bailliu eh y chiarail, bee eh ymmydit son cur gys lieh y chur dhyt er son yn 
 'minoreditletter'                => 'm',
 'newpageletter'                  => 'N',
 'boteditletter'                  => 'r',
+'rc_categories_any'              => 'Ronney erbee',
 'rc-enhanced-expand'             => 'Taishbyn sonreeaghtyn (ta JavaScript er shirrey)',
 'rc-enhanced-hide'               => 'Follee sonreeaghtyn',
 
@@ -748,7 +763,7 @@ Ta duillagyn er [[Special:Watchlist|dty rolley arrey]] ayns '''clou trome'''.",
 'filehist-dimensions'       => 'Mooadyssyn',
 'filehist-filesize'         => 'Mooadys y choadan',
 'filehist-comment'          => 'Cohaggloo',
-'imagelinks'                => 'Kianglaghyn y choadan',
+'imagelinks'                => 'Ymmyd y choadan',
 'linkstoimage'              => 'Ta {{PLURAL:$1|ny $1 duillag|yn $1 duillag|ny $1 ghuillag|ny $1 duillagyn}} eiyrtyssagh kianglt rish y choadan shoh:',
 'nolinkstoimage'            => 'Cha nel duillag erbee kianglt rish y choadan shoh.',
 'sharedupload'              => "Ta'n coadan shoh çheet ass $1, as foddee dy beagh eh ymmydit ayns shaleeyn elley.",
@@ -794,7 +809,7 @@ Ta duillagyn er [[Special:Watchlist|dty rolley arrey]] ayns '''clou trome'''.",
 'statistics-header-users' => 'Staydraa ymmydeyr',
 'statistics-pages'        => 'Duillagyn',
 
-'disambiguations' => 'Duillagyn reddaghyn',
+'disambiguations' => 'Duillagyn ta kianglt rish duillagyn reddaghey',
 
 'doubleredirects' => 'Aa-enmyssyn dooblagh',
 
@@ -848,7 +863,7 @@ Ta duillagyn er [[Special:Watchlist|dty rolley arrey]] ayns '''clou trome'''.",
 'movethispage'            => 'Yn duillag shoh y scughey',
 'pager-newer-n'           => "{{PLURAL:$1|1 ny s'noa|$1 ny s'noa}}",
 'pager-older-n'           => '{{PLURAL:$1|1 ny shinney|$1 ny shinney}}',
-'suppress'                => 'Meehastid',
+'suppress'                => 'Oaseirys',
 
 # Book sources
 'booksources'               => 'Bun-gheillyn lioar',
@@ -857,7 +872,7 @@ Ta duillagyn er [[Special:Watchlist|dty rolley arrey]] ayns '''clou trome'''.",
 
 # Special:Log
 'specialloguserlabel'  => 'Ymmydeyr:',
-'speciallogtitlelabel' => 'Ennym:',
+'speciallogtitlelabel' => 'Ennym (duillag ny ymmydeyr):',
 'log'                  => 'Lioaryn cooishyn',
 'all-logs-page'        => 'Dagh ooilley lioar chooishyn',
 
@@ -878,7 +893,7 @@ Ta duillagyn er [[Special:Watchlist|dty rolley arrey]] ayns '''clou trome'''.",
 'special-categories-sort-abc'   => 'sorçhaghey rere lettyr',
 
 # Special:LinkSearch
-'linksearch'      => 'Kianglaghyn çheumooie',
+'linksearch'      => 'Ronsaghey kianglaghyn çheumooie',
 'linksearch-ok'   => 'Ronsee',
 'linksearch-line' => 'Ta kiangley ayn veih $2 gys $1',
 

@@ -969,11 +969,13 @@ Sıma ke ney bıgurenê, karê sıma de no namdarêni dano.',
 # Special:ListFiles
 'imgfile'               => 'dosya',
 'listfiles'             => 'Lista dosya',
+'listfiles_thumb'       => 'Resmo qızkek',
 'listfiles_date'        => 'Tarix',
 'listfiles_name'        => 'Name',
 'listfiles_user'        => 'Karber',
 'listfiles_size'        => 'Ebad',
 'listfiles_description' => 'Terif',
+'listfiles_count'       => 'Verziyoni',
 
 # File description page
 'file-anchor-link'          => 'Dosya',
@@ -986,6 +988,7 @@ Sıma ke ney bıgurenê, karê sıma de no namdarêni dano.',
 'filehist-datetime'         => 'Tarix/Dem',
 'filehist-thumb'            => 'Resmo qızkek',
 'filehist-thumbtext'        => 'Halo qızkek be versiyonê roza $1ine',
+'filehist-nothumb'          => 'Resmo qızkek çino',
 'filehist-user'             => 'Karber',
 'filehist-dimensions'       => 'Budi',
 'filehist-filesize'         => 'Gırşênia dosya',
@@ -1010,7 +1013,9 @@ Cêr [$2 pela arezekerdena dosya de] arezekerdene asnina.',
 'filedelete-legend'           => 'Dosya bıestere',
 'filedelete-comment'          => 'Sebeb:',
 'filedelete-submit'           => 'Bıestere',
+'filedelete-otherreason'      => 'Sebebo bin/ilaweki:',
 'filedelete-reason-otherlist' => 'Sebebo bin',
+'filedelete-edit-reasonlist'  => 'Sebebunê esterıtene bıvurne',
 
 # MIME search
 'download' => 'bar ke',
@@ -1019,8 +1024,14 @@ Cêr [$2 pela arezekerdena dosya de] arezekerdene asnina.',
 'randompage' => 'Pela rastamaiye',
 
 # Statistics
-'statistics'       => 'İstatistiki',
-'statistics-pages' => 'Peli',
+'statistics'              => 'İstatistiki',
+'statistics-header-pages' => 'İstatistikê pele',
+'statistics-header-edits' => 'İstatistikê vurnaene',
+'statistics-header-views' => 'İstatistikê asaene',
+'statistics-header-users' => 'İstatistikê karberi',
+'statistics-header-hooks' => 'İstatistikê bini',
+'statistics-articles'     => 'Pelê tedeesteu',
+'statistics-pages'        => 'Peli',
 
 'disambiguationspage' => 'Template:vuriyaisê maney',
 
@@ -1083,16 +1094,26 @@ Cêr [$2 pela arezekerdena dosya de] arezekerdene asnina.',
 'linksearch-line' => '$1rê $2ra gırê diyo',
 
 # Special:ListUsers
-'listusers-submit' => 'Bıasne',
+'listusers-submit'   => 'Bıasne',
+'listusers-noresult' => 'Karber nêdiya.',
+'listusers-blocked'  => '(kilıt biyo)',
+
+# Special:ActiveUsers
+'activeusers' => 'Lista karberunê fealu',
 
 # Special:Log/newusers
 'newuserlogpage'          => 'Qeydê karberiê newey',
 'newuserlog-create-entry' => 'Hesabê karberê newey',
 
 # Special:ListGroupRights
-'listgrouprights-group'   => 'Kome',
-'listgrouprights-rights'  => 'Heqi',
-'listgrouprights-members' => '(lista azau)',
+'listgrouprights-group'           => 'Kome',
+'listgrouprights-rights'          => 'Heqi',
+'listgrouprights-helppage'        => 'Hewar:Heqê grube',
+'listgrouprights-members'         => '(lista azau)',
+'listgrouprights-addgroup'        => '{{PLURAL:$2|Grube|Grubi}} şikinê ilawe bê: $1',
+'listgrouprights-removegroup'     => '{{PLURAL:$2|Grube|Grubi}} şikinê wedariyê: $1',
+'listgrouprights-addgroup-all'    => 'Heme grubu ilawe ke',
+'listgrouprights-removegroup-all' => 'Heme grubu wedare',
 
 # E-mail user
 'emailuser'    => 'Nê karberi rê e-poste bırusne',
@@ -1162,17 +1183,46 @@ Tı şikina sewiya sevekiyaena na pele bıvurnê, hema yê nae sevekiyaena qedem
 'protect-level-sysop'         => 'Teyna idarekeri',
 'protect-summary-cascade'     => 'qedemein',
 'protect-expiring'            => 'tarixê qediyaene $1 (UTC)',
+'protect-expiry-indefinite'   => 'bêmıdet',
 'protect-cascade'             => 'Pelê ke na pele derê bısevekne (seveknaena qedemeine)',
 'protect-cantedit'            => 'Tı nêşikina sinorê kilıtbiyaena na pele bıvurnê, çıke desturê to be vurnaene çino.',
+'protect-othertime'           => 'Waxto bin:',
+'protect-othertime-op'        => 'waxto bin',
+'protect-existing-expiry'     => 'Waxtê qediyaeneo mewcıd: $3, $2',
+'protect-otherreason'         => 'Sebebo bin/ilaweki:',
+'protect-otherreason-op'      => 'Sebebo bin',
+'protect-expiry-options'      => '2 saeti:2 hours,1 roze:1 day,3 roji:3 days,1 hefte:1 week,2 heftey:2 weeks,1 asme:1 month,3 asmi:3 months,6 asmi:6 months,1 serre:1 year,bêmıdet:infinite',
 'restriction-type'            => 'Destur:',
 'restriction-level'           => 'Sinorê desturi:',
+'minimum-size'                => 'ebado tewr qızkek',
+'maximum-size'                => 'Ebado tewr gırs:',
+'pagesize'                    => '(bayti)',
+
+# Restrictions (nouns)
+'restriction-edit'   => 'Bıvurne',
+'restriction-move'   => 'Bere',
+'restriction-create' => 'Vıraze',
+'restriction-upload' => 'Bar ke',
+
+# Restriction levels
+'restriction-level-sysop'         => 'tam sevekiyo',
+'restriction-level-autoconfirmed' => 'nêm sevekiyo',
+'restriction-level-all'           => 'heme jü sewiya',
 
 # Undelete
+'undelete'                  => 'Pelunê esteriyau basna',
+'undeletepage'              => 'Pelunê esteriyau bıvine u peyser biya',
+'undeletepagetitle'         => "'''Ni, [[:$1|$1]] be çımraviarnaunê pele ra yenê pêra'''.",
+'viewdeletedpage'           => 'Pelunê esteriyau bıvine',
+'undelete-fieldset-title'   => 'Çımraviarnau peyser biya',
 'undeletebtn'               => 'Peyser bia',
 'undeletelink'              => 'bıvêne/peyser bia',
 'undeleteviewlink'          => 'bıvêne',
+'undeletereset'             => 'Vaz be',
+'undeleteinvert'            => 'Weçinıtey ters bıçarne',
 'undeletecomment'           => 'Sebeb:',
 'undeletedarticle'          => 'peyser ard "[[$1]]"',
+'undelete-search-submit'    => 'Cıfeteliye',
 'undelete-show-file-submit' => 'Heya',
 
 # Namespace form on various pages
@@ -1221,6 +1271,15 @@ Tı şikina sewiya sevekiyaena na pele bıvurnê, hema yê nae sevekiyaena qedem
 'blockip'                         => 'Karberi kilıt ke',
 'ipboptions'                      => '2 saeti:2 hours,1 roze:1 day,3 roji:3 days,1 hefte:1 week,2 heftey:2 weeks,1 asme:1 month,3 asmi:3 months,6 asmi:6 months,1 serre:1 year,bêmıdet:infinite',
 'ipblocklist'                     => 'Karberê kilıtbiyaey',
+'ipblocklist-submit'              => 'Cıfeteliye',
+'infiniteblock'                   => 'bêmıdet',
+'expiringblock'                   => '$1 $2 de qedino',
+'anononlyblock'                   => 'teyna anonim',
+'noautoblockblock'                => 'kilıto otomatik qapan bi',
+'createaccountblock'              => 'afernaena hesabi qapan biye',
+'emailblock'                      => 'e-poste kilıt bi',
+'blocklist-nousertalk'            => 'pela hurênaişi ho nêşikina bıvurnê',
+'ipblocklist-empty'               => 'Lista kilıtkerdişi thala.',
 'blocklink'                       => 'kilıt ke',
 'unblocklink'                     => 'ra ke',
 'change-blocklink'                => 'mani bıvurne',

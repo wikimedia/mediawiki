@@ -21,6 +21,7 @@
  * @author Marinsb
  * @author Najami
  * @author Nghtwlkr
+ * @author Njardarlogar
  * @author Olve Utne
  * @author Ranveig
  * @author Shauni
@@ -558,7 +559,7 @@ $1',
 'youhavenewmessagesmulti' => 'Du har nye meldingar på $1',
 'editsection'             => 'endre',
 'editold'                 => 'endre',
-'viewsourceold'           => 'vis kjeldetekst',
+'viewsourceold'           => 'sjå kjelda',
 'editlink'                => 'endre',
 'viewsourcelink'          => 'vis kjelde',
 'editsectionhint'         => 'Endre bolk: $1',
@@ -640,7 +641,7 @@ Ho kan allereie vere sletta av andre.',
 'perfcachedts'         => 'Desse data er mellomlagra, og vart sist oppdaterte $1.',
 'querypage-no-updates' => 'Oppdatering av denne sida er slått av, og data her vil ikkje verte fornya.',
 'wrong_wfQuery_params' => 'Feil parameter gjevne til wfQuery()<br />Funksjon: $1<br />Førespurnad: $2',
-'viewsource'           => 'Vis kjeldetekst',
+'viewsource'           => 'Sjå kjelda',
 'viewsourcefor'        => 'for $1',
 'actionthrottled'      => 'Handlinga vart stoppa',
 'actionthrottledtext'  => 'For å hindre spamming kan du ikkje utføre denne handlinga for mange gonger på kort tid. Ver venleg og prøv igjen litt seinare.',
@@ -1216,7 +1217,7 @@ For å søkja i alle, bruk prefikset ''all:'' (det inkluderer diskusjonssider, m
 'powersearch-ns'                   => 'Søk i namnerom:',
 'powersearch-redir'                => 'Vis omdirigeringar',
 'powersearch-field'                => 'Søk etter',
-'powersearch-togglelabel'          => 'Merk:',
+'powersearch-togglelabel'          => 'Haka av:',
 'powersearch-toggleall'            => 'Alle',
 'powersearch-togglenone'           => 'Ingen',
 'search-external'                  => 'Eksternt søk',
@@ -1508,7 +1509,7 @@ Du kan òg velje å la andre brukarar kontakte deg på e-post via brukarsida di 
 'recentchanges-label-minor'         => 'Dette er ei mindre endring',
 'recentchanges-label-bot'           => 'Denne endringa vart gjort av ein bot',
 'recentchanges-label-unpatrolled'   => 'Denne endringa er ikkje patruljert enno',
-'rcnote'                            => "Nedanfor er {{PLURAL:$1|den siste endringa|dei siste '''$1''' endringane}} gjort {{PLURAL:$2|den siste dagen|dei siste '''$2''' dagane}}, sidan $4, kl. $5.",
+'rcnote'                            => "Nedanfor er {{PLURAL:$1|den siste endringa|dei siste '''$1''' endringane}} gjort {{PLURAL:$2|den siste dagen|dei siste '''$2''' dagane}}, for $4, kl. $5.",
 'rcnotefrom'                        => "Nedanfor vert opp til '''$1''' endringar sidan  ''' $2''' viste.",
 'rclistfrom'                        => 'Vis nye endringar sidan $1',
 'rcshowhideminor'                   => '$1 småplukk',
@@ -1630,6 +1631,7 @@ Om du framleis ønskjer å laste opp fila, gå tilbake og last ho opp med eit an
 'overwroteimage'              => 'lasta opp ein ny versjon av «[[$1]]»',
 'uploaddisabled'              => 'Beklagar, funksjonen for opplasting er deaktivert på denne nettenaren.',
 'copyuploaddisabled'          => 'Opplasting gjennom URL er slege av.',
+'uploadfromurl-queued'        => 'Opplastinga di er sett i kø.',
 'uploaddisabledtext'          => 'Filopplasting er slått av.',
 'php-uploaddisabledtext'      => 'PHP-filopplasting er deaktivert. Sjå innstillinga for file_uploads.',
 'uploadscripted'              => 'Fila inneheld HTML- eller skriptkode som feilaktig kan bli tolka og køyrd av nettlesarar.',
@@ -1846,7 +1848,7 @@ Skildringa frå [$2 filskildringssida] der er vist nedanfor.',
 'statistics-users-active-desc' => 'Brukarar som har utført handlingar {{PLURAL:$1|i dag|dei siste $1 dagane}}',
 'statistics-mostpopular'       => 'Mest viste sider',
 
-'disambiguations'      => 'Fleirtydingssider',
+'disambiguations'      => 'Sider som lenkjer til fleirtydingssider',
 'disambiguationspage'  => 'Template:Fleirtyding',
 'disambiguations-text' => "Sidene nedanfor har lenkje til ei '''fleirtydingsside'''. Dei bør ha lenkje til det rette oppslagsordet i staden for.<br />Sider vert handsama som fleirtydingssider dersom dei inneheld ein mal som har lenkje på [[MediaWiki:Disambiguationspage]].",
 

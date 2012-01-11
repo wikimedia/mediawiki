@@ -83,6 +83,7 @@ $messages = array(
 'category_header'                => 'Bledder in Abdeeling „$1“',
 'subcategories'                  => 'Unnerabdeeling',
 'category-media-header'          => 'Media in Abdeeling „$1“',
+'category-empty'                 => "''Die Abdeeling hot zu daere Zeit kene Bledder oder Feils.''",
 'category-article-count-limited' => '{{PLURAL:$1|Sell Blatt iss|Selle $1 Bledder sin}} in daer Abdeeling drin:',
 'category-file-count-limited'    => '{{PLURAL:$1|Sell Feil iss|Selle $1 Feils sin}} in daer Abdeeling drin:',
 'listingcontinuesabbrev'         => '(weider)',
@@ -117,7 +118,7 @@ $messages = array(
 'faqpage'        => 'Project:FAQ',
 
 # Vector skin
-'vector-action-delete'  => 'Lösche',
+'vector-action-delete'  => 'Lesche',
 'vector-action-move'    => 'Ziehe',
 'vector-action-protect' => 'Schitze',
 'vector-view-create'    => 'Schtaerte',
@@ -144,7 +145,7 @@ $messages = array(
 'create'           => 'Schtaerte',
 'editthispage'     => 'Des Blatt ennere',
 'create-this-page' => 'Blatt schtaerte',
-'delete'           => 'Lösche',
+'delete'           => 'Lesche',
 'deletethispage'   => 'Des Blatt lösche',
 'protect'          => 'Schitze',
 'protect_change'   => 'tscheensche',
@@ -159,6 +160,7 @@ $messages = array(
 'views'            => 'Aasichte',
 'toolbox'          => 'Gscharr',
 'userpage'         => 'Yuuserblatt zeige',
+'projectpage'      => 'Projekt-Blatt aagucke',
 'imagepage'        => 'Feils zeige',
 'templatepage'     => 'Moddle zeige',
 'categorypage'     => 'Abeelingsblatt zeige',
@@ -215,15 +217,16 @@ Guck aa [[Special:Version|Versionsblatt]]',
 'red-link-title'          => '$1 (Blatt gebt es net)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'     => 'Blatt',
-'nstab-user'     => 'Yuuser-Blatt',
-'nstab-media'    => 'Media-Blatt',
-'nstab-special'  => 'Besunneres Blatt',
-'nstab-project'  => 'Project-Blatt',
-'nstab-image'    => 'Feil',
-'nstab-template' => 'Moddel',
-'nstab-help'     => 'Hilf',
-'nstab-category' => 'Abdeeling',
+'nstab-main'      => 'Blatt',
+'nstab-user'      => 'Yuuser-Blatt',
+'nstab-media'     => 'Media-Blatt',
+'nstab-special'   => 'Besunneres Blatt',
+'nstab-project'   => 'Project-Blatt',
+'nstab-image'     => 'Feil',
+'nstab-mediawiki' => 'Melding vum System',
+'nstab-template'  => 'Moddel',
+'nstab-help'      => 'Hilf',
+'nstab-category'  => 'Abdeeling',
 
 # General errors
 'error'               => 'Mischteek',
@@ -433,7 +436,7 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 'right-movefile' => 'Feils ziehe',
 'right-upload'   => 'Feils ufflaade',
 'right-writeapi' => 'Yuus vun write API',
-'right-delete'   => 'Bledder lösche',
+'right-delete'   => 'Bledder lesche',
 
 # User rights log
 'rightsnone' => '(ken)',
@@ -493,6 +496,7 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 # Special:ListFiles
 'imgfile'         => 'Feil',
 'listfiles'       => 'Lischt vun Feils',
+'listfiles_date'  => 'Datum',
 'listfiles_name'  => 'Naame',
 'listfiles_user'  => 'Yuuser',
 'listfiles_size'  => 'Grees',
@@ -510,7 +514,7 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 'filehist-dimensions' => 'Grees',
 'filehist-filesize'   => 'Grees vum Feil',
 'filehist-comment'    => 'Aamaericking',
-'imagelinks'          => 'Gleecher fer es Feil',
+'imagelinks'          => 'Yuus vun dem Feil',
 'shared-repo-from'    => 'vun $1',
 
 # File reversion
@@ -520,7 +524,7 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 # File deletion
 'filedelete'                  => 'Lösche „$1“',
 'filedelete-comment'          => 'Grund:',
-'filedelete-submit'           => 'Lösche',
+'filedelete-submit'           => 'Lesche',
 'filedelete-nofile'           => "'''„$1“''' gebt es net.",
 'filedelete-otherreason'      => 'Annere Grind dezu:',
 'filedelete-reason-otherlist' => 'Annerer Gund',
@@ -558,6 +562,8 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 'nbytes'            => '$1 {{PLURAL:$1|Byte|Bytes}}',
 'ncategories'       => '$1 {{PLURAL:$1|Abdeeling|Abdeelinge}}',
 'nlinks'            => '{{PLURAL:$1|1 Gleecher|$1 Gleecher}}',
+'nimagelinks'       => 'Gyuust uff $1 {{PLURAL:$1|Blatt|Bledder}}',
+'ntransclusions'    => 'gyuust uff $1 {{PLURAL:$1|Blatt|Bledder}}',
 'shortpages'        => 'Glee Bledder',
 'longpages'         => 'Grosse Bledder',
 'listusers'         => 'Lischt vun Yuuser',
@@ -595,7 +601,7 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 'categories' => 'Abdeelinge',
 
 # Special:LinkSearch
-'linksearch'    => 'Gewebbgleecher',
+'linksearch'    => 'Gewebbgleecher uffgucke',
 'linksearch-ns' => 'Blatznaame:',
 'linksearch-ok' => 'Uffgucke',
 
@@ -630,6 +636,7 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 # Watchlist
 'watchlist'         => 'Mei Watsch-Lischt',
 'mywatchlist'       => 'Mei Watsch-Lischt',
+'watchlistfor2'     => 'Vun $1 $2',
 'addedwatch'        => 'Zu de Watsch-Lischt dezu geduh',
 'watch'             => 'watsche',
 'watchthispage'     => 'watsch des Blatt',
@@ -649,10 +656,10 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 'changed'                      => 'gennert',
 
 # Delete
-'deletepage'             => 'Blatt lösche',
+'deletepage'             => 'Blatt lesche',
 'exblank'                => 'Blatt war leer',
-'delete-confirm'         => 'Lösche vun „$1“',
-'delete-legend'          => 'Lösche',
+'delete-confirm'         => 'Lesche vun „$1“',
+'delete-legend'          => 'Lesche',
 'deletedtext'            => '"<nowiki>$1</nowiki>" iss gelescht warre.
 Guck $2 fer e Lischt vun de letscht Leschunge.',
 'deletedarticle'         => 'hot „[[$1]]“ gelöscht',
@@ -663,6 +670,7 @@ Guck $2 fer e Lischt vun de letscht Leschunge.',
 'delete-edit-reasonlist' => "Grind fer's Lesche ennere",
 
 # Protect
+'prot_1movedto2'            => 'hot „[[$1]]“ nooch „[[$2]]“ gezoge',
 'protectcomment'            => 'Grund:',
 'protect-default'           => 'All Yuuser',
 'protect-level-sysop'       => 'Nur Verwalter',
@@ -684,6 +692,7 @@ Guck $2 fer e Lischt vun de letscht Leschunge.',
 'restriction-upload' => 'Ufflaade',
 
 # Undelete
+'undeleteviewlink'          => 'aagucke',
 'undeletecomment'           => 'Grund:',
 'undelete-search-submit'    => 'Guck uff',
 'undelete-show-file-submit' => 'Ya',
@@ -710,24 +719,31 @@ Guck $2 fer e Lischt vun de letscht Leschunge.',
 'whatlinkshere'            => 'Was doher zeigt',
 'whatlinkshere-page'       => 'Blatt:',
 'isredirect'               => 'Weiderleidingsblatt',
-'isimage'                  => 'Feilgleecher',
+'isimage'                  => 'Gleecher fer Feil',
 'whatlinkshere-prev'       => '{{PLURAL:$1|letscht|letscht $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|neegschter|neegschte $1}}',
 'whatlinkshere-links'      => '← Gleecher',
 'whatlinkshere-hideredirs' => 'Weiderleidinge $1',
 'whatlinkshere-hidelinks'  => 'Gleecher $1',
+'whatlinkshere-hideimages' => 'Feil Gleecher $1',
 
 # Block/unblock
+'blockip'            => 'Yuuser aabinne',
+'blockip-title'      => 'Yuuser aabinne',
+'blockip-legend'     => 'Yuuser aabinne',
 'ipadressorusername' => 'IP-Adress odder Yuusernaame:',
 'ipbreason'          => 'Grund:',
 'ipbreasonotherlist' => 'Annerer Grund',
+'ipbsubmit'          => 'Daen Yuuser aabinne',
 'ipbother'           => 'Annere Zeit (englisch):',
 'ipboptions'         => '2 Schtund:2 hours,1 Daag:1 day,3 Daag:3 days,1 Woch:1 week,2 Woche:2 weeks,1 Munet:1 month,3 Munede:3 months,6 Monate:6 months,1 Yaar:1 year,Fer immer:infinite',
 'ipbotheroption'     => 'Anneres',
+'ipbotherreason'     => 'Annerer Grund:',
 'ipblocklist-submit' => 'Guck uff',
 'infiniteblock'      => 'fer immer',
 'blocklink'          => 'Aabinne',
 'contribslink'       => 'Ardickele',
+'proxyblocksuccess'  => 'Geduh.',
 
 # Move page
 'move-page'               => '„$1“ ziehe',
@@ -762,7 +778,7 @@ Guck $2 fer e Lischt vun de letscht Leschunge.',
 
 # Special:Import
 'import-upload-filename' => 'Feilnaame:',
-'import-comment'         => 'Anmaerricking:',
+'import-comment'         => 'Aamaerricking:',
 'import-revision-count'  => '– {{PLURAL:$1|1 Version|$1 Versione}}',
 
 # Import log
@@ -901,7 +917,8 @@ Guck $2 fer e Lischt vun de letscht Leschunge.',
 'filepath-submit' => 'Geh',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch-submit' => 'Uffgucke',
+'fileduplicatesearch-filename' => 'Feilnaame:',
+'fileduplicatesearch-submit'   => 'Uffgucke',
 
 # Special:SpecialPages
 'specialpages'                 => 'Besunnere Bledder',

@@ -406,11 +406,11 @@ Por favor informa d'esto a un [[Special:ListUsers/sysop|alministrador]], anotand
 'internalerror_info'   => 'Error internu: $1',
 'fileappenderrorread'  => 'Nun se pudo lleer "$1" mientres s\'amestaba.',
 'fileappenderror'      => 'Nun se pudo amestar "$1" a "$2".',
-'filecopyerror'        => 'Nun se pudo copiar l\'archivu "$1" como "$2".',
+'filecopyerror'        => 'Nun se pudo copiar el ficheru "$1" como "$2".',
 'filerenameerror'      => 'Nun se pudo renomar l\'archivu "$1" como "$2".',
-'filedeleteerror'      => 'Nun se pudo esborrar l\'archivu "$1".',
+'filedeleteerror'      => 'Nun se pudo desaniciar el ficheru "$1".',
 'directorycreateerror' => 'Nun se pudo crear el direutoriu "$1".',
-'filenotfound'         => 'Nun se pudo atopar l\'archivu "$1".',
+'filenotfound'         => 'Nun se pudo atopar el ficheru "$1".',
 'fileexistserror'      => 'Nun se pue escribir nel archivu "$1": yá esiste',
 'unexpected'           => 'Valor inesperáu: "$1"="$2".',
 'formerror'            => 'Error: nun se pudo unviar el formulariu',
@@ -670,12 +670,12 @@ o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 
 'userpage-userdoesnotexist-view'   => 'La cuenta d\'usuariu "$1" nun ta rexistrada.',
 'blocked-notice-logextract'        => "Esti usuariu anguaño ta bloquiáu.
 La cabera entrada del rexistru de bloqueos s'ufre darréu pa referencia:",
-'clearyourcache'                   => "'''Nota:''' Llueu de salvar, seique tengas que llimpiar la caché del navegador pa ver los cambeos.
-*'''Firefox / Safari:''' caltién ''Mayús'' mentes calques en ''Recargar'', o calca ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' nún Mac)
-* '''Google Chrome:''' calca ''Ctrl-Mayús-R'' (''Command-Mayús-R'' nún Mac)
-* '''Internet Explorer:''' caltién ''Ctrl'' mentes calques ''Refrescar'', o calca ''Ctrl-F5''
-* '''Konqueror:''' calca nel botón ''Recargar'', o calca ''F5''
-* '''Opera:''' desanicia la caché en ''Ferramientes→Preferencies''",
+'clearyourcache'                   => "'''Nota:''' Llueu de salvar, seique tengas que llimpiar la caché del navegador pa ver los cambios.
+*'''Firefox / Safari:''' Caltién ''Mayús'' mentanto calques en ''Recargar'', o calca ''Ctrl-F5'' o ''Ctrl-R'' (''⌘-R'' nún Mac)
+* '''Google Chrome:''' Calca ''Ctrl-Mayús-R'' (''⌘-Mayús-R'' nún Mac)
+* '''Internet Explorer:''' Caltién ''Ctrl'' mentanto calques ''Refrescar'', o calca ''Ctrl-F5''
+* '''Konqueror:''' Calca nel botón ''Recargar'', o calca ''F5''
+* '''Opera:''' Desanicia la caché en ''Ferramientes→Preferencies''",
 'usercssyoucanpreview'             => "'''Conseyu:''' Usa'l botón \"{{int:showpreview}}\" pa probar el to nuevu CSS enantes de guardalu.",
 'userjsyoucanpreview'              => "'''Conseyu:''' Usa'l botón \"{{int:showpreview}}\" pa probar el to nuevu JavaScript enantes de guardalu.",
 'usercsspreview'                   => "'''Recuerda que namái tas previsualizando'l to CSS d'usuariu.'''
@@ -1130,7 +1130,7 @@ Esto nun se pue desfacer.',
 'prefs-memberingroups'          => 'Miembru {{PLURAL:$1|del grupu|de los grupos}}:',
 'prefs-registration'            => 'Hora del rexistru:',
 'yourrealname'                  => 'Nome real:',
-'yourlanguage'                  => 'Idioma de los menús:',
+'yourlanguage'                  => 'Llingua:',
 'yourvariant'                   => 'Variante llingüística del conteníu:',
 'yournick'                      => 'Firma:',
 'prefs-help-signature'          => 'Los comentarios nes páxines d\'alderique habría que roblales con "<nowiki>~~~~</nowiki>" que se convertirán na to robla y una marca de tiempu.',
@@ -1241,7 +1241,7 @@ Tamién pues escoyer permitir a los demás contautar contigo al traviés de la t
 'right-deleterevision'        => 'Eliminar y restaurar revisiones específiques de les páxines',
 'right-deletedhistory'        => 'Ver entraes eliminaes del historial ensin testu asociáu',
 'right-deletedtext'           => 'Ver el testu desaniciáu y los cambeos ente versiones desaniciaes',
-'right-browsearchive'         => 'Buscar páxines esborraes',
+'right-browsearchive'         => 'Buscar páxines desaniciaes',
 'right-undelete'              => 'Restaurar una páxina',
 'right-suppressrevision'      => 'Revisar y restaurar revisiones ocultes a los alministradores',
 'right-suppressionlog'        => 'Ver rexistros privaos',
@@ -1300,7 +1300,7 @@ Tamién pues escoyer permitir a los demás contautar contigo al traviés de la t
 'action-delete'               => 'eliminar esta páxina',
 'action-deleterevision'       => 'eliminar esta revisión',
 'action-deletedhistory'       => "ver l'historial elimináu d'esta páxina",
-'action-browsearchive'        => 'buscar páxines esborraes',
+'action-browsearchive'        => 'buscar páxines desaniciaes',
 'action-undelete'             => 'restaurar esta páxina',
 'action-suppressrevision'     => 'revisar y restaurar esta revisión oculta',
 'action-suppressionlog'       => 'ver esti rexistru priváu',
@@ -1566,7 +1566,7 @@ Al peñerar por usuariu, s'amuesa namái la cabera versión de los ficheros que 
 'imgfile'               => 'archivu',
 'listfiles'             => "Llista d'imáxenes",
 'listfiles_thumb'       => 'Miniatura',
-'listfiles_date'        => 'Fecha',
+'listfiles_date'        => 'Data',
 'listfiles_name'        => 'Nome',
 'listfiles_user'        => 'Usuariu',
 'listfiles_size'        => 'Tamañu',
@@ -1587,7 +1587,7 @@ Al peñerar por usuariu, s'amuesa namái la cabera versión de los ficheros que 
 'filehist-nothumb'          => 'Ensin miniatura',
 'filehist-user'             => 'Usuariu',
 'filehist-dimensions'       => 'Dimensiones',
-'filehist-filesize'         => 'Tamañu del archivu',
+'filehist-filesize'         => 'Tamañu del ficheru',
 'filehist-comment'          => 'Comentariu',
 'filehist-missing'          => 'Falta ficheru',
 'imagelinks'                => 'Usu del ficheru',
@@ -1622,7 +1622,7 @@ La descripción de la [páxina de descripción del ficheru $2] s'amuesa darréu.
 'filerevert-badversion'     => "Nun hai nenguna versión llocal previa d'esti archivu cola fecha conseñada.",
 
 # File deletion
-'filedelete'                  => 'Esborrar $1',
+'filedelete'                  => 'Desaniciar $1',
 'filedelete-legend'           => 'Esborrar archivu',
 'filedelete-intro'            => "Tas a piques d'esborrar el ficheru '''[[Media:$1|$1]]''' xunto con tol so historial.",
 'filedelete-intro-old'        => "Tas esborrando la versión de '''[[Media:$1|$1]]''' del [$4 $3 a les $2].",
@@ -1687,7 +1687,7 @@ Alcuérdate de comprobar otros enllaces a les plantíes enantes d'esborrales.",
 'statistics-users-active-desc' => 'Usuarios que realizaron una aición {{PLURAL:$1|nel caberu día|nos caberos $1 díes}}',
 'statistics-mostpopular'       => 'Páxines más vistes',
 
-'disambiguations'      => 'Páxines de dixebra',
+'disambiguations'      => "Páxines qu'enllacen con páxines de dixebra",
 'disambiguationspage'  => 'Template:dixebra',
 'disambiguations-text' => "Les siguientes páxines enllacien a una '''páxina de dixebra'''. En cuenta d'ello habríen enllaciar al artículu apropiáu.<br />Una páxina considérase de dixebra si usa una plantía que tea enllaciada dende [[MediaWiki:Disambiguationspage]]",
 
@@ -1782,8 +1782,8 @@ Date cuenta de qu'otros sitios web puen enllazar a un ficheru con una URL direut
 'booksources-invalid-isbn'  => 'El códigu ISBN que puxisti nun paez que valga; mira que te vien copiáu de la fonte orixinal.',
 
 # Special:Log
-'specialloguserlabel'  => 'Usuariu:',
-'speciallogtitlelabel' => 'Títulu:',
+'specialloguserlabel'  => 'Pol usuariu:',
+'speciallogtitlelabel' => 'Col títulu:',
 'log'                  => 'Rexistros',
 'all-logs-page'        => 'Tolos rexistros públicos',
 'alllogstext'          => "Visualización combinada de tolos rexistros disponibles de {{SITENAME}}.
@@ -1823,11 +1823,13 @@ Ver tamién les [[Special:WantedCategories|categoríes más buscaes]].",
 'sp-deletedcontributions-contribs' => 'contribuciones',
 
 # Special:LinkSearch
-'linksearch'       => 'Enllaces esternos',
+'linksearch'       => "Gueta d'enllaces esternos",
 'linksearch-pat'   => 'Patrón de busca:',
 'linksearch-ns'    => 'Espaciu de nomes:',
 'linksearch-ok'    => 'Guetar',
-'linksearch-text'  => 'Puen usase comodinos como "*.wikipedia.org".<br />Protocolos almitíos: <tt>$1</tt>',
+'linksearch-text'  => 'Se puen usar comodinos como "*.wikipedia.org".
+Necesita polo menos un dominiu de primer nivel, como "*.org".<br />
+Protocolos almitíos: <tt>$1</tt> (nun amiestes dengún d\'estos na to gueta).',
 'linksearch-line'  => '$1 enllaciáu dende $2',
 'linksearch-error' => 'Los comodinos namái puen apaecer al entamu del nome del güéspede.',
 
@@ -1986,7 +1988,7 @@ Más ayuda y sofitu:
 'excontentauthor'        => "el conteníu yera: '$1' (y l'únicu autor yera '[[Special:Contributions/$2|$2]]')",
 'exbeforeblank'          => "el conteníu enantes de dexar en blanco yera: '$1'",
 'exblank'                => 'la páxina taba vacia',
-'delete-confirm'         => 'Esborrar "$1"',
+'delete-confirm'         => 'Desaniciar «$1»',
 'delete-legend'          => 'Desaniciar',
 'historywarning'         => "'''Avisu:'''' La páxina que vas desaniciar tien un historial con aproximadamente $1 {{PLURAL:$1|revisión|revisiones}}:",
 'confirmdeletetext'      => "Tas a piques d'esborrar una páxina xunto con tol so historial.
@@ -2135,7 +2137,7 @@ revisión fuera restaurada o eliminada del archivu.",
 
 Consulta'l [[Special:Log/delete|rexistru d'esborraos]] pa ver los esborraos y restauraciones de recién.",
 'undelete-header'              => "Mira nel [[Special:Log/delete|rexistru d'esborraos]] les páxines esborraes recién.",
-'undelete-search-box'          => 'Buscar páxines esborraes',
+'undelete-search-box'          => 'Buscar páxines desaniciaes',
 'undelete-search-prefix'       => "Amosar páxines qu'empecipien por:",
 'undelete-search-submit'       => 'Guetar',
 'undelete-no-results'          => "Nun s'atoparon páxines afechisques a la busca nel archivu d'esborraos.",
@@ -2304,7 +2306,7 @@ $1 yá ta bloquiáu. ¿Quies camudar los parámetros?',
 'ip_range_toolarge'               => 'Nun se permiten bloqueos mayores de /$1.',
 'blockme'                         => 'Blóquiame',
 'proxyblocker'                    => 'Bloquiador de proxys',
-'proxyblocker-disabled'           => 'Esta función ta deshabilitada.',
+'proxyblocker-disabled'           => 'Esta función ta desactivada.',
 'proxyblockreason'                => "La to direición IP foi bloquiada porque ye un proxy abiertu. Por favor contauta col to proveedor de serviciones d'Internet o col to servicio d'asistencia téunica y infórmalos d'esti seriu problema de seguridá.",
 'proxyblocksuccess'               => 'Fecho.',
 'sorbsreason'                     => 'La to direición IP sal na llista de proxys abiertos en DNSBL usada por {{SITENAME}}.',
@@ -2507,7 +2509,7 @@ Guárdalu nel ordenador y xúbilu equí.",
 'imported-log-entries'       => 'Importao $1 {{PLURAL:$1|entrada del rexistru|entraes del rexistru}}.',
 'importfailed'               => 'Falló la importación: $1',
 'importunknownsource'        => "Triba d'orixe d'importación desconocida",
-'importcantopen'             => "Nun se pudo abrir l'archivu d'importación",
+'importcantopen'             => "Nun se pudo abrir el ficheru d'importación",
 'importbadinterwiki'         => 'Enllaz interwiki incorreutu',
 'importnotext'               => 'Vaciu o ensin testu',
 'importsuccess'              => '¡Importación finalizada!',
@@ -3189,7 +3191,7 @@ Por favor confirma que daveres quies volver a crear esta páxina.",
 'watchlistedit-normal-legend'  => 'Eliminar títulos de la llista de vixilancia',
 'watchlistedit-normal-explain' => "Abaxo amuésense los títulos de la to llista de vixilancia. Pa eliminar un títulu,
 activa la caxa d'al llau d'él, y calca n'Eliminar Títulos. Tamién pues [[Special:Watchlist/raw|editar la llista en bruto]].",
-'watchlistedit-normal-submit'  => 'Eliminar títulos',
+'watchlistedit-normal-submit'  => 'Desaniciar títulos',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|Eliminóse un títulu|Elimináronse $1 títulos}} de la to llista de vixilancia:',
 'watchlistedit-raw-title'      => 'Editar la llista de vixilancia en bruto',
 'watchlistedit-raw-legend'     => 'Editar la llista de vixilancia en bruto',
@@ -3197,7 +3199,7 @@ activa la caxa d'al llau d'él, y calca n'Eliminar Títulos. Tamién pues [[Spec
 editaos añadiéndolos o eliminandolos de la llista; un títulu per llinia. N'acabando, calca n'Actualizar Llista de Vixilancia.
 Tamién pues [[Special:Watchlist/edit|usar l'editor estándar]].",
 'watchlistedit-raw-titles'     => 'Títulos:',
-'watchlistedit-raw-submit'     => 'Actualizar llista de vixilancia',
+'watchlistedit-raw-submit'     => 'Anovar llista de vixilancia',
 'watchlistedit-raw-done'       => 'La to llista de vixilancia foi actualizada.',
 'watchlistedit-raw-added'      => '{{PLURAL:$1|Añadióse un títulu|Añadiéronse $1 títulos}}:',
 'watchlistedit-raw-removed'    => '{{PLURAL:$1|Eliminóse ún títulu|Elimináronse $1 títulos}}:',

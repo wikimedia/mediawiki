@@ -13,6 +13,7 @@
  * @author Ferhengvan
  * @author George Animal
  * @author Gomada
+ * @author Krinkle
  * @author Liangent
  * @author The Evil IP address
  * @author Welathêja
@@ -53,7 +54,7 @@ $messages = array(
 'tog-editsection'             => 'Girêdanan ji bo guherandina beşan biweşîne',
 'tog-editsectiononrightclick' => 'Beşekê bi rast-klîkekê biguherîne (JavaScript gireke)',
 'tog-showtoc'                 => 'Tabloya naverokê nîşan bide (ji bo rûpelan zêdetirî sê sernavan)',
-'tog-rememberpassword'        => 'Qeyda min di vê kompûterê de biparêze (herî zÊde bo $1 {{PLURAL:$1|rojekê|rojan}})',
+'tog-rememberpassword'        => 'Qeyda min di vê komputerê de biparêze (herî zêde ji bo $1 {{PLURAL:$1|rojekê|rojan}})',
 'tog-watchcreations'          => 'Rûpelên min çêkirin, têxe nav lîsteya min a şopandinê',
 'tog-watchdefault'            => 'Rûpelên min guhertin, têxe nav lîsteya min a şopandinê',
 'tog-watchmoves'              => 'Rûpelên min navê wan guhertin, têxe nav lîsteya min a şopandinê',
@@ -63,12 +64,12 @@ $messages = array(
 'tog-previewonfirst'          => 'Li cem guherandinê hertim yekemîn pêşdîtinê nîşan bide',
 'tog-nocache'                 => 'Vegirtina rûpelan bisekinîne',
 'tog-enotifwatchlistpages'    => 'Heke rûpeleke ez dişopînim hate guhertin ji min re E-nameyekê bişîne',
-'tog-enotifusertalkpages'     => 'E-nameyekê ji min ra bişîne eger guftûgoyê min hate guhartin',
+'tog-enotifusertalkpages'     => 'Dema rûpela min a Guftûgoyê hate guhertin e-nameyekê ji min re bişîne',
 'tog-enotifminoredits'        => 'Ji bo guhertinên biçûk jî E-nameyekê ji min re bişîne',
 'tog-enotifrevealaddr'        => 'Navnîşana e-nameya min di agahdariyên e-nameyan de nîşan bide',
 'tog-shownumberswatching'     => 'Nîşan bide, çiqas bikarhêner dişopînin',
 'tog-oldsig'                  => 'Pêşdîtina îmzeya heyî',
-'tog-fancysig'                => 'Îmzeya vê lînkkirinê otomatîk berve rûpela bikarhêner',
+'tog-fancysig'                => 'Di îmzeyê de girêdana otomatîk a bikarhêner betal bike',
 'tog-externaleditor'          => 'Edîtorekî derve bike "standard" (ji yên bi ezmûn re, tercîhên taybet di komputerê de hewce ne)',
 'tog-externaldiff'            => 'Birnemijekî derve biguherîne "standard" (ji yên bi ezmûn re, tercîhên taybet di komputerê de hewce ne)',
 'tog-showjumplinks'           => 'Girêdanên "Here-berve" qebûlbike',
@@ -83,7 +84,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Kopiyên e-nameyên min ji bikarhênerên din re şandî, ji min re bişîne.',
 'tog-diffonly'                => 'Li cem guhertinan, naveroka rûpelê nîşan nede',
 'tog-showhiddencats'          => 'Kategoriyên veşartî bibîne',
-'tog-norollbackdiff'          => 'Ciyawazîyê piştî şondakirinê veşêre',
+'tog-norollbackdiff'          => 'Ciyawaziyê piştî şûndekirinê veşêre',
 
 'underline-always'  => 'Hertim',
 'underline-never'   => 'Qet',
@@ -430,7 +431,7 @@ Hesabê te hate afirandin. Tu dikarî niha [[Special:Preferences|tercîhên xwe 
 'badretype'                  => 'Her du şîfreyên ku te nivîsîn li hevdu nayên.',
 'userexists'                 => 'Ev navî bikarhênerî berê tê bikaranîn. Xêra xwe navekî din bibe.',
 'loginerror'                 => 'Çewtiya têketinê',
-'nocookiesnew'               => "Account'î bikarhêner hatibû çêkirin, lê te xwe qeyd nekirîye. {{SITENAME}} cookie'yan bikartîne ji bo qeydkirinê bikarhêneran. Te cookie'yan girtîye. Xêra xwe cookie'yan qebûlbike, manê tu kanibê bi navî bikarhêner û şîfreya xwe qeydbikê.",
+'nocookiesnew'               => "Hesabê bikarhêner hatibû çêkirin, lê te xwe qeyd nekiriye. {{SITENAME}} ji bo qeydkirina bikarhêneran cookie'yan bikartîne. Te bikaranîna cookie'yan girtiye. Xêra xwe cookie'yan qebûl bike, piştre bi navê bikarhêner û şîfreya xwe têkeve.",
 'nocookieslogin'             => 'Ji bo qeydkirina bikarhêneran {{SITENAME}} "cookies" bikartîne. Te fonksîyona "cookies" girtîye. Xêra xwe kerema xwe "cookies" gengaz bike û careke din biceribîne.',
 'noname'                     => 'Navê ku te nivîsand derbas nabe.',
 'loginsuccesstitle'          => 'Têketin serkeftî!',
@@ -829,7 +830,7 @@ Sedema qedexekirina $3 ev e: ''$2''",
 'timezoneregion-europe'       => 'Ewropa',
 'timezoneregion-indian'       => 'Okyanûsa Hindî',
 'timezoneregion-pacific'      => 'Okyanûsa Mezin',
-'allowemail'                  => 'Qebûlbike ku bikarhênerên di e-nameyan ji te ra bişînin',
+'allowemail'                  => 'Ji bikarhênerên dî e-nameyan qebûl bike',
 'prefs-searchoptions'         => 'Tercihên lêgerînê',
 'prefs-namespaces'            => 'Valahiyên nav',
 'default'                     => 'asayî',
@@ -988,28 +989,28 @@ Sedema qedexekirina $3 ev e: ''$2''",
 'reuploaddesc'            => 'Barkirinê biskîne û dîsa here rûpela barkirinê.',
 'uploadnologin'           => 'Xwe qeyd nekir',
 'uploadnologintext'       => 'Ji bo barkirina wêneyan divê ku tu [[Special:UserLogin|têkevî]].',
-'uploaderror'             => 'Şaşbûn bo barkirinê',
-'upload-recreate-warning' => 'Agadarî: dosyeyek bi vî navî hatiye jêbirin yan raguhastin.',
+'uploaderror'             => 'Çewtiya barkirinê',
+'upload-recreate-warning' => "'''Agahdarî: Peleke bi vî navî hatiye jêbirin an jî raguhestin.'''",
 'uploadtext'              => "Berê tu wêneyên nû bar bikî, ji bo dîtin an vedîtina wêneyên ku ji xwe hene binêre: [[Special:FileList|lîsteya wêneyên barkirî]]. Herwisa wêneyên ku hatine barkirin an jî jê birin li vir dikarî bibînî: [[Special:Log/upload|reşahîya barkirîyan]].
 
 Yek ji lînkên jêr ji bo bikarhînana wêne an file'ê di gotarê de bikar bihîne:
 '''<nowiki>[[</nowiki>{{ns:file}}:File.jpg<nowiki>]]</nowiki>''',
 '''<nowiki>[[</nowiki>{{ns:file}}:File.png|alt text<nowiki>]]</nowiki>''',
 anjî ji bo file'ên dengî '''<nowiki>[[</nowiki>{{ns:media}}:File.ogg<nowiki>]]</nowiki>'''",
-'upload-permitted'        => "Formatên data'yan, yên tên qebûlkirin: $1.",
-'upload-preferred'        => "Formatên data'yan, yên tên xastin: $1.",
-'upload-prohibited'       => "Formatên data'yan, yên ne tên qebûlkirin: $1.",
-'uploadlog'               => 'Reşahîya barkirinê',
-'uploadlogpage'           => 'Reşahîya barkirinê',
-'filename'                => 'Navê dosyayê',
+'upload-permitted'        => 'Cureyên pelan yên tên qebûlkirin: $1.',
+'upload-preferred'        => 'Cureyên pelan yên tên xwestin: $1.',
+'upload-prohibited'       => 'Cureyên pelan yên qedexekirî: $1.',
+'uploadlog'               => 'Têketina barkirinê',
+'uploadlogpage'           => 'Têketina barkirinê',
+'filename'                => 'Navê pelê',
 'filedesc'                => 'Kurte',
 'fileuploadsummary'       => 'Kurte:',
 'filereuploadsummary'     => 'Guhertinên pelê:',
 'filestatus'              => 'Rewşa telîfê:',
 'filesource'              => 'Çavkanî:',
-'uploadedfiles'           => 'Dosyayên bar kirî',
+'uploadedfiles'           => 'Pelên barkirî',
 'ignorewarning'           => 'Hişyarê qebûl neke û dosyayê qeyd bike.',
-'ignorewarnings'          => 'Guh nede hîşyaran',
+'ignorewarnings'          => 'Guh nede hişyariyan',
 'minlength1'              => "Navên data'yan bi kêmani gireke tîpek be.",
 'illegalfilename'         => 'Navî datayê "$1" ne tê qebûlkirin ji ber ku tişt tê da hatine nivîsandin yê qedexe ne. Xêra xwe navî datayê biguherîne û carekî din barbike.',
 'badfilename'             => 'Navê vî wêneyî hat guherandin û bû "$1".',
@@ -1018,9 +1019,9 @@ anjî ji bo file'ên dengî '''<nowiki>[[</nowiki>{{ns:media}}:File.ogg<nowiki>]
 Format {{PLURAL:$3|yê tê|yên tên}} qebûlkirin {{PLURAL:$3|ev e|ev in}}: $2.',
 'filetype-banned-type'    => '\'\'\'".$1"\'\'\' formatekî qedexe ye.
 Format {{PLURAL:$3|yê tê|yên tên}} xastin {{PLURAL:$3|ev e|ev in}}: $2.',
-'filetype-missing'        => 'Piştnavî datayê tune (wek ".jpg").',
+'filetype-missing'        => 'Piştnavê pelê tune (wek ".jpg").',
 'unknown-error'           => 'Çewtiyeke nenas pêk hat.',
-'large-file'              => "Mezinbûna data'yan bila ne ji $1 mezintir bin; ev data'ya $2 mezin e.",
+'large-file'              => 'Mezinbûna pelê bila ji $1 ne mezintir be; ev pel $2 e.',
 'emptyfile'               => "Data'ya barkirî vala ye. Sedemê valabûnê belkî şaşnivîsek di navê data'yê da ye. Xêra xwe seke, ku tu rast dixazê vê data'yê barbikê.",
 'fileexists'              => "Datayek bi vê navê berê heye.
 Eger tu niha li „Tomarbike“ xê, ew wêneyê kevin ê here û wêneyê te ê were barkirin di bin wê navê.
@@ -1042,10 +1043,10 @@ Xêra xwe navekî din bibîne.",
 'uploaddisabledtext'      => "Barkirinê data'yan  hatiye qedexekirin.",
 'uploadvirus'             => "Di vê data'yê da vîrûsek heye! Înformasyon: $1",
 'upload-source'           => 'Pela çavkaniyê',
-'sourcefilename'          => 'Navî wêneyê (ya tiştekî din ya mêdya):',
+'sourcefilename'          => 'Navê pelê:',
 'sourceurl'               => 'URL ya çavkaniyê:',
-'destfilename'            => 'Navî wêneyê (ya tiştekî din ya mêdya) yê xastî:',
-'upload-maxfilesize'      => "Mezinbûna data'yê ya herî mezin: $1",
+'destfilename'            => 'Navê pela xwestî:',
+'upload-maxfilesize'      => 'Mezinbûna pelê ya herî mezin: $1',
 'upload-description'      => 'Danasîna pelê',
 'upload-options'          => 'Vebijarkên barkirinê',
 'watchthisupload'         => 'Vê rûpelê bişopîne',
@@ -1482,20 +1483,20 @@ Ji bo jêbirinan û çêkirinên nuh ra, xêra xwe di [[Special:Log/delete|reşa
 'undelete-show-file-submit' => 'Erê',
 
 # Namespace form on various pages
-'namespace'      => 'Boşahîya nav:',
+'namespace'      => 'Valahiya nav:',
 'invert'         => 'Hilbijardinê pêçewane bike',
 'blanknamespace' => '(Sereke)',
 
 # Contributions
-'contributions'       => 'Beşdariyên vê bikarhêner',
-'contributions-title' => 'Tevkarîyên ji bo $1',
+'contributions'       => 'Beşdariyên bikarhêner',
+'contributions-title' => 'Beşdariyên ji bo $1',
 'mycontris'           => 'Beşdariyên min',
 'contribsub2'         => 'Ji bo $1 ($2)',
 'uctop'               => '(ser)',
-'month'               => 'Ji mihê (û zûtir):',
+'month'               => 'Ji mehê (û zûtir):',
 'year'                => 'Ji salê (û zûtir):',
 
-'sp-contributions-newbies'       => 'Bes beşdarîyên bikarhênerê nû pêşêkê',
+'sp-contributions-newbies'       => 'Tenê beşdariyên bikarhênerên nû nîşan bide',
 'sp-contributions-newbies-sub'   => 'Ji bikarhênerên nû re',
 'sp-contributions-newbies-title' => 'Tevkariyên bikarhêner ji bo hesabên nû',
 'sp-contributions-blocklog'      => 'Astengkirina bikarhêner',
@@ -1764,60 +1765,10 @@ Rûpela "[[:$1]]" berê heye. Tu rast dixazê wê jêbibê ji bo navguherandinê
 'tooltip-upload'                  => 'Barkirinê destpêke',
 
 # Stylesheets
-'monobook.css' => '*.rtl
- {
-  dir:rtl;
-  text-align:right;
-  font-family: "DejaVu Sans", "Tahoma", "Unikurd Web", "Arial Unicode MS", "Lateef", "Scheherazade", "ae_Rasheeq", sans-serif, sans;
- }
-
- /*Make the site more suitable for Soranî users */
- h1 {font-family: "Tahoma", "DejaVu Sans", "Arial Unicode MS", sans-serif, sans, "Unikurd Web", "Scheherazade";}
- h2 {font-family: "Tahoma", "DejaVu Sans", "Arial Unicode MS", sans-serif, sans, "Unikurd Web",  "Scheherazade";}
- h3 {font-family: "Tahoma", "DejaVu Sans", "Arial Unicode MS", sans-serif, sans, "Unikurd Web", "Scheherazade";}
- body {font-family: "Tahoma", "DejaVu Sans", "Arial Unicode MS", sans-serif, sans, "Unikurd Web", "Scheherazade";}
- textarea {font-family: Lucida Console, Tahoma;}
- pre {font-family: Lucida Console, Tahoma;}',
+'monobook.css' => '/* CSS placed here will affect users of the Monobook skin */',
 
 # Scripts
-'common.js' => '/* JavaScript */
-
-/* Workaround for language variants */
-
-// Set user-defined "lang" attributes for the document element (from zh)
-var htmlE=document.documentElement;
-if (wgUserLanguage == "ku"){ variant = "ku"; }
-if (wgUserLanguage == "ku-latn"){ variant = "ku-Latn"; }
-if (wgUserLanguage == "ku-arab"){ variant = "ku-Arab"; htmlE.setAttribute("dir","rtl"); }
-htmlE.setAttribute("lang",variant);
-htmlE.setAttribute("xml:lang",variant);
-
-// Switch language variants of messages (from zh)
-function wgULS(latn,arab){
-        //
-        ku=latn||arab;
-        ku=ku;
-        latn=latn;
-        arab=arab;
-        switch(wgUserLanguage){
-                case "ku": return ku;
-                case "ku-arab": return arab;
-                case "ku-latn": return latn;
-                default: return "";
-        }
-}
-
-// workaround for RTL ([[bugzilla:6756]])  and for [[bugzilla:02020]] & [[bugzilla:04295]]
-if (wgUserLanguage == "ku-arab")
-{
-  document.direction="rtl";
-  document.write(\'<link rel="stylesheet" type="text/css" href="\'+stylepath+\'/common/common_rtl.css">\');
-  document.write(\'<style type="text/css">html {direction:rtl;} body {direction:rtl; unicode-bidi:embed; lang:ku-Arab; font-family: "DejaVu Sans", Tahoma, "Unikurd Web", "Arial Unicode MS", Lateef, Scheherazade, "ae_Rasheeq", "sans-serif", sans; font-size: 75%; letter-spacing: 0.001em;} html > body div#content ol {clear: left;} ol {margin-left:2.4em; margin-right:2.4em;} ul {margin-left:1.5em; margin-right:1.5em;} h1.firstHeading {background-position: bottom right; background-repeat: no-repeat;} h3 {font-size:110%;} h4 {font-size:100%;} h5 {font-size:90%;} #catlinks {width:100%;} #userloginForm {float: right !important;}</style>\');
-
-  if (skin == "monobook"){
-     document.write(\'<link rel="stylesheet" type="text/css" href="\'+stylepath+\'/monobook/rtl.css">\');
-  }
-}',
+'common.js' => '/* Any JavaScript here will be loaded for all users on every page load. */',
 
 # Attribution
 'anonymous' => 'Bikarhênera/ê nediyarkirî ya/yê {{SITENAME}}',

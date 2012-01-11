@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Liangent
  * @author PhiLiP
  * @author Shizhao
  * @author Wong128hk
@@ -19,6 +20,8 @@ $fallback = 'zh-hans';
 $messages = array(
 # User preference toggles
 'tog-norollbackdiff' => '进行回退后略过差异比较',
+
+'mytalk' => '我的讨论页',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'portal' => '社区专页',

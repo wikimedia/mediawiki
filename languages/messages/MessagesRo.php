@@ -12,6 +12,7 @@
  * @author Danutz
  * @author Emily
  * @author Firilacroco
+ * @author Gutza
  * @author KlaudiuMihaila
  * @author Laurap
  * @author Malafaya
@@ -342,7 +343,7 @@ pe titlul secțiunii (JavaScript)',
 'tog-ccmeonemails'            => 'Doresc să primesc o copie a mesajelor e-mail pe care le trimit',
 'tog-diffonly'                => 'Nu arăta conținutul paginii sub dif',
 'tog-showhiddencats'          => 'Arată categoriile ascunse',
-'tog-noconvertlink'           => 'Dezactivați conversia titlurilor',
+'tog-noconvertlink'           => 'Dezactivează conversia titlurilor',
 'tog-norollbackdiff'          => 'Nu arăta diferența după efectuarea unei reveniri',
 
 'underline-always'  => 'Întotdeauna',
@@ -898,8 +899,8 @@ sau puteți <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGE
 'blocked-notice-logextract'        => 'Acest utilizator este momentan blocat.
 Ultima intrare în jurnalul blocărilor este afișată mai jos pentru referință:',
 'clearyourcache'                   => "'''Notă:''' După salvare, trebuie să treceți peste memoria cache a navigatorului pentru a putea vedea modificările:
-* '''Firefox / Safari:''' țineți apăsat pe ''Shift'' în timp ce faceți clic pe ''Reîncărcare'', ori apăsați ''Ctrl-F5'' sau ''Ctrl-R'' (''Command-R'' pe un sistem Mac);
-* '''Google Chrome:''' apăsați ''Ctrl-Shift-R'' (''Command-Shift-R'' pe un sistem Mac);
+* '''Firefox / Safari:''' țineți apăsat pe ''Shift'' în timp ce faceți clic pe ''Reîncărcare'', ori apăsați ''Ctrl-F5'' sau ''Ctrl-R'' (''⌘-R'' pe un sistem Mac);
+* '''Google Chrome:''' apăsați ''Ctrl-Shift-R'' (''⌘-Shift-R'' pe un sistem Mac);
 * '''Internet Explorer:''' țineți apăsat pe ''Ctrl'' în timp ce faceți clic pe ''Reîmprospătare'' sau apăsați ''Ctrl-F5'';
 * '''Konqueror:''' faceți clic pe ''Reîncărcare'' sau apăsați ''F5'';
 * '''Opera:''' curățați memoria cache din ''Unelte → Preferințe''.",
@@ -1354,7 +1355,7 @@ Aici se află o combinație generată întâmplător pe care o puteți folosi: $
 'prefs-reset-intro'             => 'Poți folosi această pagină pentru a reseta preferințele la valorile implicite.
 Acțiunea nu este reversibilă.',
 'prefs-emailconfirm-label'      => 'Confirmare e-mail:',
-'prefs-textboxsize'             => 'Mărimea căsuței de modificare',
+'prefs-textboxsize'             => 'Mărime căsuță de modificare',
 'youremail'                     => 'Adresa de e-mail:',
 'username'                      => 'Nume de utilizator:',
 'uid'                           => 'ID utilizator:',
@@ -1488,7 +1489,7 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'right-editusercssjs'         => 'Modifică fișierele CSS și JS ale altor utilizatori',
 'right-editusercss'           => 'Modifică fișierele CSS ale altor utilizatori',
 'right-edituserjs'            => 'Modifică fișierele JS ale altor utilizatori',
-'right-rollback'              => 'Revocarea rapidă a editărilor ultimului utilizator care a modificat o pagină particulară',
+'right-rollback'              => 'Revocarea rapidă a modificărilor ultimului utilizator care a modificat o pagină particulară',
 'right-markbotedits'          => 'Marchează revenirea ca modificare efectuată de robot',
 'right-noratelimit'           => 'Neafectat de limitele raportului',
 'right-import'                => 'Importă pagini de la alte wiki',
@@ -1913,7 +1914,7 @@ Lista tipurilor MIME recunoscute de MediaWiki poate fi găsită la [http://svn.w
 'statistics-users-active-desc' => 'Utilizatori care au efectuat o acțiune în {{PLURAL:$1|ultima zi|ultimele $1 zile}}',
 'statistics-mostpopular'       => 'Paginile cele mai vizualizate',
 
-'disambiguations'      => 'Pagini de dezambiguizare',
+'disambiguations'      => 'Pagini care trimit către pagini de dezambiguizare',
 'disambiguationspage'  => 'Template:Dezambiguizare',
 'disambiguations-text' => "Paginile următoare conțin legături către o '''pagină de dezambiguizare'''.
 În locul acesteia ar trebui să conțină legături către un articol.<br />
@@ -2010,8 +2011,8 @@ Vă rugăm să aveți în vedere faptul că alte saituri web pot avea o legătur
 'booksources-invalid-isbn'  => 'Codul ISBN oferit nu este valid; verificați dacă a fost copiat corect de la sursa originală.',
 
 # Special:Log
-'specialloguserlabel'  => 'Utilizator:',
-'speciallogtitlelabel' => 'Titlu:',
+'specialloguserlabel'  => 'Executant:',
+'speciallogtitlelabel' => 'Destinație (titlu sau utilizator):',
 'log'                  => 'Jurnale',
 'all-logs-page'        => 'Toate jurnalele publice',
 'alllogstext'          => 'Afișare combinată a tuturor jurnalelor {{SITENAME}}.
@@ -2051,12 +2052,13 @@ Vedeți și [[Special:WantedCategories|categoriile dorite]].',
 'sp-deletedcontributions-contribs' => 'contribuții',
 
 # Special:LinkSearch
-'linksearch'       => 'Legături externe',
-'linksearch-pat'   => 'Model de căutare:',
+'linksearch'       => 'Căutare legături externe',
+'linksearch-pat'   => 'De căutat:',
 'linksearch-ns'    => 'Spațiu de nume:',
 'linksearch-ok'    => 'Caută',
-'linksearch-text'  => 'Pot fi folosite metacaractere precum "*.wikipedia.org".<br />
-Protocoale suportate: <tt>$1</tt>',
+'linksearch-text'  => 'Pot fi folosite metacaractere precum „*.wikipedia.org”.
+Necesită cel puțin un domeniu de nivel superior, cum ar fi „*.org”.<br />
+Protocoale suportate: <tt>$1</tt> (nu adăugați niciunul dintre acestea în câmpul de căutare).',
 'linksearch-line'  => '$1 este legat de $2',
 'linksearch-error' => 'Metacaracterele pot să apară doar la începutul hostname-ului.',
 
@@ -2300,9 +2302,9 @@ Puteți schimba nivelul de protejare al acestei pagini, dar asta nu va afecta pr
 'protect-existing-expiry'     => 'Data expirării: $3, $2',
 'protect-otherreason'         => 'Motiv diferit/adițional:',
 'protect-otherreason-op'      => 'Alt motiv',
-'protect-dropdown'            => '*Motive comune de protejare
+'protect-dropdown'            => '*Motive uzuale de protejare
 ** Vandalism excesiv
-** Spam excesiv
+** SPAM excesiv
 ** Modificări neproductive
 ** Pagină cu trafic mare',
 'protect-edit-reasonlist'     => 'Modifică motivele protejării',
@@ -2898,7 +2900,7 @@ Permite adăugarea unui motiv în descrierea modificărilor',
 'math_unknown_function' => 'funcție necunoscută',
 'math_lexing_error'     => 'eroare lexicală',
 'math_syntax_error'     => 'eroare de sintaxă',
-'math_image_error'      => 'Conversiune în PNG eșuată; verificați corectitudinea instalării sistemelor LaTex sau dvipng (sau dvips + gs + convert)',
+'math_image_error'      => 'Conversie în PNG eșuată; verificați corectitudinea instalării sistemelor LaTex sau dvipng (sau dvips + gs + convert)',
 'math_bad_tmpdir'       => 'Nu se poate crea sau nu se poate scrie în directorul temporar pentru formule matematice',
 'math_bad_output'       => 'Nu se poate crea sau nu se poate scrie în directorul de ieșire pentru formule matematice',
 'math_notexvc'          => 'Lipsește executabilul texvc; vezi math/README pentru configurare.',

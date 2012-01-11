@@ -413,7 +413,7 @@ $messages = array(
 'cancel'        => 'Annulla',
 'moredotdotdot' => 'Aktar...',
 'mypage'        => 'Il-paġna tiegħi',
-'mytalk'        => 'id-diskussjonijiet tiegħi',
+'mytalk'        => 'diskussjonijiet tiegħi',
 'anontalk'      => 'Diskussjoni għal dan l-IP',
 'navigation'    => 'Navigazzjoni',
 'and'           => '&#32;u',
@@ -875,8 +875,8 @@ Jekk jogħġbok, ara jekk verament tridx toħloq/timodifika din il-paġna.',
 'blocked-notice-logextract'        => 'L-utent attwalment jinsab imblukkat.
 L-aħħar daħla fir-reġistru tal-imblokki hi mogħtiha hawn taħt għal referenza:',
 'clearyourcache'                   => "'''Nota:''' Wara li salvajt il-modifiki tiegħek, jista' jkun li jkun hemm bżonn li tħassar il-cache tal-browżer tiegħek sabiex tara t-tibdil li sar.
-* '''Firefox / Safari:''' żomm il-buttuna ''Shift'' waqt li tagħfas fuq ''Reload'', jew agħfas ''Ctrl-F5'' jew ''Ctrl-R'' (''Command-R'' fuq Mac)
-* '''Google Chrome:''' agħfas ''Ctrl-Shift-R'' (''Command-Shift-R'' fuq Mac)
+* '''Firefox / Safari:''' żomm il-buttuna ''Shift'' waqt li tagħfas fuq ''Reload'', jew agħfas ''Ctrl-F5'' jew ''Ctrl-R'' (''⌘-R'' fuq Mac)
+* '''Google Chrome:''' agħfas ''Ctrl-Shift-R'' (''⌘-Shift-R'' fuq Mac)
 * '''Internet Explorer:''' żomm il-buttuna ''Ctrl'' waqt li tagħfas ''Refresh'', jew agħfas ''Ctrl-F5''
 * '''Konqueror:''' agħfas ''Reload'' jew ''F5''
 * '''Opera:''' ħassar il-cache fuq ''Tools → Preferences''",
@@ -1035,11 +1035,12 @@ Prova [[Special:Search|fittex fuq il-wiki]] għal paġni relevanti ġodda.",
 'rev-deleted-user-contribs'   => '[isem tal-utent jew indirizz IP imneħħi - il-modifika ġie moħbiha mill-kronoloġija]',
 'rev-deleted-text-permission' => "Din ir-reviżjoni ta' din il-paġna ġiet '''imħassra'''.
 Ikkonsulta r-[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} reġistru tat-tħassir] għal aktar dettalji.",
-'rev-deleted-text-unhide'     => "Din ir-reviżjoni ta' din il-paġna ġiet '''imħassra'''.
-Ikkonsulta r-[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} reġistru tat-tħassir] għal aktar dettalji.
+'rev-deleted-text-unhide'     => "Din ir-reviżjoni tal-paġna ġiet '''imħassra'''.
+Ikkonsulta r-[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} reġistru tat-tħassir] għal aktar dettalji.
 Bħala amministratur inti tista' [$1 tara din ir-reviżjoni] jekk huwa neċessarju.",
-'rev-suppressed-text-unhide'  => "Ir-reviżjoni ta' din il-paġna ġiet '''imħassra'''.
-Dettalji jistgħu jinstabu fuq ir-[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} reġistru tat-tħassir]. Bħala amministratur inti xorta waħda tista' [$1 tara din ir-reviżjoni] jekk huwa neċessarju.",
+'rev-suppressed-text-unhide'  => "Din ir-reviżjoni tal-paġna ġiet '''imħassra'''.
+Id-dettalji jistgħu jinstabu fuq ir-[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} reġistru tat-tħassir].
+Bħala amministratur inti xorta waħda tista' [$1 tara din ir-reviżjoni] jekk huwa neċessarju.",
 'rev-deleted-text-view'       => "Ir-reviżjoni ta' din il-paġna ġiet '''imħassra'''.
 Bħala amministratur inti tista' taraha; jista' jkun li hemm dettalji fir-[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} reġistru tat-tħassir].",
 'rev-suppressed-text-view'    => "Ir-reviżjoni ta' din il-paġna ġiet '''imħassra'''.
@@ -1252,7 +1253,7 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 
 # Preferences page
 'preferences'                   => 'Preferenzi',
-'mypreferences'                 => 'il-preferenzi tiegħi',
+'mypreferences'                 => 'preferenzi',
 'prefs-edits'                   => "Numru ta' modifiki:",
 'prefsnologin'                  => 'Għadek ma dħaltx ġewwa',
 'prefsnologintext'              => 'Sabiex tkun tista\' tippersonalizza l-preferenzi huwa neċessarju li tidħol fil-<span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} kont]</span>.',
@@ -1331,7 +1332,7 @@ Hawnhekk hawn valur iġġenerat b'mod każwali li inti tista' tuża: $1",
 'prefs-registration'            => "Ħin ta' reġistrazzjoni:",
 'yourrealname'                  => 'Isem proprju:',
 'yourlanguage'                  => 'Lingwa:',
-'yourvariant'                   => 'Varjant:',
+'yourvariant'                   => 'Varjant tal-lingwa:',
 'yournick'                      => 'Firma:',
 'prefs-help-signature'          => "Kummenti fuq il-paġni ta' diskussjoni jridu jiġu ffirmati b'permezz ta' \"<nowiki>~~~~</nowiki>\" li jiġu maqluba għall-firma tiegħek u d-data.",
 'badsig'                        => 'Il-firma mhux standard, hija invalida; iċċekkja t-tags tal-HTML.',
@@ -1776,7 +1777,7 @@ Meta r-riżultati huma ffiltrati, jintwerew biss dawk il-fajls li l-utent tella'
 'filehist-filesize'         => 'Daqs tal-fajl',
 'filehist-comment'          => 'Kumment',
 'filehist-missing'          => 'Fajl nieqes',
-'imagelinks'                => 'Ħoloq għall-fajl',
+'imagelinks'                => 'Użu tal-fajl',
 'linkstoimage'              => '{{PLURAL:$1|Il-Paġna segwenti għandha|Il-$1 paġni segwenti għandhom}} links għal-fajl:',
 'linkstoimage-more'         => 'Iktar minn {{PLURAL:$1|paġna torbot|$1paġni jorbtu}} lejn dan il-fajl.
 Il-lista segwenti turi {{PLURAL:$1|l-ewwel paġna li tipponta|l-ewwel $1 paġni li jippuntaw}} lejn dan il-fajl.
@@ -1968,7 +1969,7 @@ Kun af li siti elettroniċi oħra jistgħu jorbtu b'ħolqa diretta lejn il-fajl,
 'booksources-invalid-isbn'  => 'L-ISBN li ngħata jidher li mhuwiex validu; iċċekkja għal xi żbalji mis-sors oriġinali.',
 
 # Special:Log
-'specialloguserlabel'  => 'Utent:',
+'specialloguserlabel'  => 'Azzjoni effettwata minn:',
 'speciallogtitlelabel' => 'Titlu:',
 'log'                  => 'Reġistri',
 'all-logs-page'        => 'Ir-reġistri pubbliċi kollha',
@@ -2334,7 +2335,7 @@ $1',
 # Contributions
 'contributions'       => 'Kontribuzzjonijiet tal-utent',
 'contributions-title' => 'Kontribuzzjonijiet tal-utent għal $1',
-'mycontris'           => 'il-kontribuzzjonijiet tiegħi',
+'mycontris'           => 'kontribuzzjonijiet',
 'contribsub2'         => 'Għal $1 ($2)',
 'nocontribs'          => 'L-Ebda modifiki li jisodisfa l-kriterji tat-tfittxija.',
 'uctop'               => '(l-aħħar fil-paġna)',
@@ -2838,7 +2839,7 @@ Kull azzjonijiet ta' importazzjoni tal-transwiki jiġu reġistrati fil-[[Special
 'math_unknown_function' => 'funżjoni mhux magħrufa',
 'math_lexing_error'     => 'żball lessikali',
 'math_syntax_error'     => 'żball fis-sintassi',
-'math_image_error'      => "Konverżjoni għal PNG bla suċċess; verifika li huma installati tajjeb il-programmi segwenti: ''latex, dvips, gs, u convert''",
+'math_image_error'      => "Konverżjoni għal PNG falliet; iċċekkja għall-installazzjoni tajba ta' latex jew dvipng (jew dvips, gs u convert).",
 'math_bad_tmpdir'       => "Impossibli tikteb jew toħloq direttorju temporanju għal ''math''",
 'math_bad_output'       => "Impossibli tikteb jew toħloq direttorju tal-''output'' tal-''math''",
 'math_notexvc'          => "Esekuzzjoni ''texvc'' nieqes; jekk jogħġbok konsultà ''math/README'' għal konfigurazzjoni.",
@@ -3063,9 +3064,9 @@ Minħabba veduta predefinita ,l-oħrajn se jiġu moħbija.
 'exif-orientation-3' => 'Imdawwar 180°',
 'exif-orientation-4' => 'Maqlub vertikali',
 'exif-orientation-5' => 'Imdawwar 90° fis-sens kontra l-arloġġ u maqlub vertikali',
-'exif-orientation-6' => 'Imdawwar 90° fis-sens tal-arloġġ',
+'exif-orientation-6' => 'Imdawwar 90° kontra l-arloġġ',
 'exif-orientation-7' => 'Imdawwar 90° fis-sens tal-arloġġ u maqlub vertikalment',
-'exif-orientation-8' => 'Imdawwar 90° fis-sens kontra l-arloġġ',
+'exif-orientation-8' => 'Imdawwar 90° fis-sens fis-sena tal-arloġġ',
 
 'exif-planarconfiguration-1' => 'format imbaċċaċ',
 'exif-planarconfiguration-2' => 'format tal-ippjanar',

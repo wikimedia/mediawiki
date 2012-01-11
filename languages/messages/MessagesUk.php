@@ -19,6 +19,7 @@
  * @author DixonD
  * @author Dubyk
  * @author EugeneZelenko
+ * @author Gucci Mane Burrr
  * @author Gutsul (Gutsul.ua at Google Mail)
  * @author Ickis
  * @author Ilyaroz
@@ -868,7 +869,12 @@ $1',
 'userpage-userdoesnotexist-view'   => 'Обліковий запис користувача „$1“ не зареєстровано.',
 'blocked-notice-logextract'        => 'Цей користувач наразі заблокований.
 Останній запис у журналі блокувань такий:',
-'clearyourcache'                   => "'''Зауваження:''' після збереження Ви маєте відновити кеш вашого браузера, щоб побачити зміни. '''Mozilla / Firefox / Safari:''' тримайте ''Shift'', коли натискаєте ''Reload'', або натисніть ''Ctrl-Shift-R'' (''Cmd-Shift-R'' на Apple Mac); '''IE:''' тримайте ''Ctrl'', коли натискаєте ''Refresh'', або натисніть ''Ctrl-F5''; '''Konqueror:''' натисніть кнопку ''Reload'', або натисніть ''F5''; '''Opera:''' користувачам може знадобитись повністю очистити кеш у ''Tools→Preferences''.",
+'clearyourcache'                   => "'''Зауваження:''' після збереження Ви маєте уникнути завантаження з кешу вашого браузера, щоб побачити зміни.
+* '''Firefox / Safari:''' тримайте ''Shift'', коли натискаєте ''Reload'' або натисніть ''Ctrl-F5'' або ''Ctrl-R'' (''⌘-R'' на Apple Mac)
+* '''Google Chrome:''' натисніть ''Ctrl-Shift-R'' (''⌘-Shift-R'' на Apple Mac)
+* '''Internet Explorer:''' тримайте ''Ctrl'', коли натискаєте ''Refresh'' або натисніть ''Ctrl-F5''
+* '''Konqueror:''' натисніть кнопку ''Reload'' або клавішу ''F5''
+* '''Opera:''' очистіть кеш за допомогою ''Tools → Preferences''",
 'usercssyoucanpreview'             => "'''Підказка:''' використовуйте кнопку «{{int:showpreview}}», щоб протестувати ваш новий css-файл перед збереженням.",
 'userjsyoucanpreview'              => "'''Підказка:''' використовуйте кнопку «{{int:showpreview}}», щоб протестувати ваш новий код JavaScript перед збереженням.",
 'usercsspreview'                   => "'''Пам'ятайте, що це лише попередній перегляд вашого css-файлу.'''
@@ -1029,29 +1035,29 @@ $3 зазначив таку причину: ''$2''",
 'rev-deleted-user-contribs'   => "[ім'я користувача або IP-адреса вилучені — редагування приховане у внеску]",
 'rev-deleted-text-permission' => "Ця версія сторінки '''вилучена'''.
 Можливо є пояснення в [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} журналі вилучень].",
-'rev-deleted-text-unhide'     => "Ця версія сторінки '''вилучена'''.
-Можливо є пояснення в [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} журналі вилучень].
-Як адміністратор ви можете [$1 переглянути цю версію].",
+'rev-deleted-text-unhide'     => "Ця версія сторінки була '''вилучена'''.
+Подробиці наведені у [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} журналі вилучень].
+Ви все ще можете [$1 переглянути цю версію], якщо забажаєте.",
 'rev-suppressed-text-unhide'  => "Ця версія сторінки була '''прихована'''.
-Можливо, є пояснення в [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} журналі приховань].
-Як адміністратор ви можете [$1 переглянути цю версію].",
+Подробиці наведені у [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} журналі приховань].
+Ви все ще можете [$1 переглянути цю версію], якщо забажаєте.",
 'rev-deleted-text-view'       => "Ця версія сторінки '''вилучена'''.
 Ви можете переглянути її; пояснення дивіться в [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} журналі вилучень].",
-'rev-suppressed-text-view'    => "Ця версія сторінки '''прихована'''.
-Як адміністратор ви можете переглянути її. Докладніші дані можуть знаходитися в [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} журналі приховань].",
+'rev-suppressed-text-view'    => "Ця версія сторінки була '''прихована'''.
+Ви можете її переглядати; подробиці наведені у [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} журналі приховань].",
 'rev-deleted-no-diff'         => "Ви не можете переглянути цю різницю версій, оскільки одна з версій сторінки '''вилучена'''.
 Можливо, деталі можна знайти в [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} журналі вилучень].",
 'rev-suppressed-no-diff'      => "Ви не можете переглянути це порівняння версій, оскільки одна з версій була '''вилучена'''.",
-'rev-deleted-unhide-diff'     => "Одна з версій сторінки '''вилучена'''.
-Можливо, деталі можна знайти в [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} журналі вилучень].
-Ви можете [$1 переглянути цю версію], оскільки є адміністратором.",
+'rev-deleted-unhide-diff'     => "Одна з версій сторінки була '''вилучена'''.
+Подробиці наведені у [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} журналі вилучень].
+Ви все ще можете [$1 переглянути цю версію], якщо забажаєте.",
 'rev-suppressed-unhide-diff'  => 'Ця версія сторінки була прихована.
-Можливо, є пояснення в [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} журналі приховань].
-Як адміністратор ви можете [$1 переглянути цю різницю версій]',
+Подробиці наведені у [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} журналі приховань].
+Ви все ще можете [$1 переглянути цю різницю версій], якщо забажаєте.',
 'rev-deleted-diff-view'       => "Одна з версій цього порівняння версій була '''вилучена'''.
-Як адміністратор ви можете переглянути це порівняння, докладніші дані можуть знаходитися в [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} журналі вилучень].",
+Ви можете його переглянути; подробиці наведені у [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} журналі вилучень].",
 'rev-suppressed-diff-view'    => "Одна з версій цього порівняння версій була '''прихована'''.
-Як адміністратор ви можете переглянути це порівняння, докладніші дані можуть знаходитися в [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} журналі приховань].",
+Ви можете переглянути його; подробиці наведені у [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} журналі приховань].",
 'rev-delundel'                => 'показати/сховати',
 'rev-showdeleted'             => 'показати',
 'revisiondelete'              => 'Вилучити / відновити версії сторінки',
@@ -1893,7 +1899,7 @@ $1',
 'statistics-users-active-desc' => 'Користувачі, які здійснили якусь дію протягом {{PLURAL:$1|минулого дня|минулих $1 днів}}',
 'statistics-mostpopular'       => 'Сторінки, які найчастіше переглядають',
 
-'disambiguations'      => 'Багатозначні статті',
+'disambiguations'      => 'Сторінки, що посилаються на сторінки неоднозначності.',
 'disambiguationspage'  => 'Template:disambig',
 'disambiguations-text' => "Наступні сторінки посилаються на '''багатозначні сторінки'''. Однак вони, ймовірно, повинні вказувати на відповідну конкретну статтю.<br />Сторінка вважається багатозначною, якщо на ній розміщений шаблон, назва якого є на сторінці [[MediaWiki:Disambiguationspage]].",
 
@@ -1989,8 +1995,8 @@ $1',
 'booksources-invalid-isbn'  => 'Вказаний номер ISBN, судячи з усього, містить помилку. Будь ласка, перевірте, що при перенесенні номера з першоджерела не виникло спотворень.',
 
 # Special:Log
-'specialloguserlabel'  => 'Користувач:',
-'speciallogtitlelabel' => 'Назва:',
+'specialloguserlabel'  => 'Виконавець:',
+'speciallogtitlelabel' => 'Ціль (назва або користувач):',
 'log'                  => 'Журнали',
 'all-logs-page'        => 'Усі публічні журнали',
 'alllogstext'          => 'Комбінований показ журналів {{grammar:genitive|{{SITENAME}}}}.
@@ -2030,11 +2036,13 @@ $1',
 'sp-deletedcontributions-contribs' => 'внесок',
 
 # Special:LinkSearch
-'linksearch'       => 'Зовнішні посилання',
+'linksearch'       => 'Пошук зовнішних посилань',
 'linksearch-pat'   => 'Шаблон для пошуку:',
 'linksearch-ns'    => 'Простір назв:',
 'linksearch-ok'    => 'Знайти',
-'linksearch-text'  => 'Можна використовувати підстановочні символи, наприклад, <code>*.wikipedia.org</code>.<br />Підтримувані протоколи: <tt>$1</tt>',
+'linksearch-text'  => 'Можна використовувати підстановочні символи (шаблони), наприклад, "*.wikipedia.org".
+Необхідний домен якнайменше верхнього рівня, наприклад "*.org"<br />
+Підтримувані протоколи: <tt>$1</tt> (не додавайте жоден з них у вашому пошуку)',
 'linksearch-line'  => 'Посилання на $1 із $2',
 'linksearch-error' => 'Підстановочні знаки можуть використовуватися лише на початку адрес.',
 
@@ -3083,7 +3091,7 @@ Variants for Chinese language
 'exif-subsectimeoriginal'          => 'Долі секунд оригінального часу',
 'exif-subsectimedigitized'         => 'Долі секунд часу оцифровки',
 'exif-exposuretime'                => 'Час експозиції',
-'exif-exposuretime-format'         => '$1 з ($2)',
+'exif-exposuretime-format'         => '$1 с ($2)',
 'exif-fnumber'                     => 'Число діафрагми',
 'exif-fnumber-format'              => 'f/$1',
 'exif-exposureprogram'             => 'Програма експозиції',

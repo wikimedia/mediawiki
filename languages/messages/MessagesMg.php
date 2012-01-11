@@ -243,7 +243,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Andefaso imailaka aho na dia fanovana madinika ihany aza',
 'tog-enotifrevealaddr'        => "Asehoy ny adiresy imailako any amin'ny imailaka fampilazana",
 'tog-shownumberswatching'     => "Asehoy ny isan'ny mpikambana manara-maso ny pejy",
-'tog-oldsig'                  => 'Topi-maso ny sonia :',
+'tog-oldsig'                  => "Topi-mason'ny sonia :",
 'tog-fancysig'                => 'Sonia tsotra (tsy misy rohy)',
 'tog-externaleditor'          => "Hampiasa mpanova soratra ivelany (ho an'ny mpikambana havanana ihany, mila fampifanarahana manokana eo amin'ny mpikajinao [http://www.mediawiki.org/wiki/Manual:External_editors Fampahalalana fanampiny.])",
 'tog-externaldiff'            => "Hampiasa mpampitaha ivelany (ho an'ny mpikambana havanana ihany, mila fampifanarahana manokana eo amin'ny mpikajinao [http://www.mediawiki.org/wiki/Manual:External_editors Fampahalalana fanampiny.])",
@@ -639,7 +639,8 @@ Mila manaiky cookies ianao raha te hiditra amin'ny {{SITENAME}}.",
 'createaccountmail'          => "amin'ny imailaka",
 'createaccountreason'        => 'Antony :',
 'badretype'                  => 'Tsy mitovy ny tenimiafina nampidirinao.',
-'userexists'                 => 'Efa misy mampiasa io solonanarana io. Mifidiana solonanarana hafa azafady.',
+'userexists'                 => 'Efa miasa io anaram-pikambana natsofokao io.
+Anarana hafa safidiana.',
 'loginerror'                 => "Tsy fetezana teo amin'ny fidirana",
 'createaccounterror'         => 'Tsy afaka mamorona kaonty : $1',
 'nocookiesnew'               => "Voasikatra ny kaontim-pikambana, fa tsy tafiditra amin'ny kaontinao ianao.
@@ -987,28 +988,28 @@ Mitadiava amin'ny '''[[Special:Search|fiasàna fitadiavina]]''' mba hitady ny pe
 Mety misy ny antsipirihany angamba ny [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAME}}}} laogy momban'ny famafàna pejy].",
 'rev-deleted-text-unhide'     => "Ity santiônan'ity pejy ity dia '''voafafa'''.
 Hita ao amin'ny [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} laogim-pamafana] ny antsipirihany.
-Noho ianao mpandrindra mbola afaka [$1 mijery ilay santiôna] ianao raha tianao.",
+Afaka [$1 mijery ilay santiôna] ianao raha tianao.",
 'rev-suppressed-text-unhide'  => "'''Nofafana''' ity santiônam-pejy ity.
 Azo jerena ao amin'ny [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} laogim-pamafana] ny antsipirihany.
-Noho ianao mpandrindra, azonao [$1 jerena foana ilay santiôna] raha tianao.",
+Azonao [$1 jerena foana ilay santiôna] raha tianao.",
 'rev-deleted-text-view'       => "'''Nofafana''' ity santiônam-pejy ity.
-Noho ianao mpandrindra, dia azonao jerena ity santiôna voafafa ity ; misy antsipirihany ao amin'ny [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} laogim-pamafana].",
+Azonao jerena ity santiôna voafafa ity ; misy antsipirihany ao amin'ny [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} laogim-pamafana].",
 'rev-suppressed-text-view'    => "'''Nofafana''' ity santiônam-pejy ity.
-Noho ianao mpandrindra, azonao jerena ilay santiôna voafafa ; ny antsipirihany dia ao amin'ny [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} laogim-pamafana].",
+Azonao jerena ilay santiôna voafafa ; ny antsipirihany dia ao amin'ny [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} laogim-pamafana].",
 'rev-deleted-no-diff'         => "Tsy afaka mijery anio diff io ianao satria misy santôna '''voafafa''' ao aminy.
 Mety any amin'ny [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAME}}}} laogy momban'ny famafàna pejy] ny antsipirihany.",
 'rev-suppressed-no-diff'      => "Tsy azo jerenao io diff io satria '''voafafa''' ny iraika amin'ny reviziônany.",
 'rev-deleted-unhide-diff'     => "Nisy '''voafafa''' ny iraika amin'ny reviziôna an'ity diff ity.
 Ny antsipirihany dia mety hita ao amin'ny [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} laogin'ny famafana].
-Noho ianao mpandrindra,  [$1 azonao jerena foana ilay diff] raha tianao.",
+[$1 Azonao jerena foana ilay diff] raha tianao.",
 'rev-suppressed-unhide-diff'  => "Nisy '''voafafa''' ny iraika amin'ny santiôna an'ity diff ity.
 Ny antsipirihany dia mety hita ao amin'ny [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} laogin'ny famafana].
-Noho ianao mpandrindra,  [$1 azonao jerena foana ilay diff] raha tianao.",
+[$1 Azonao jerena foana ilay diff] raha tianao.",
 'rev-deleted-diff-view'       => "Nisy '''voafafa''' ny iraika amin'ny reviziôna an'ity diff ity.
 Ny antsipirihany dia mety hita ao amin'ny
-Noho ianao mpandrindra, azonao jerena foana ny mijery ny [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} laogim-pamafana] raha tianao.",
+Azonao jerena foana ny mijery ny [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} laogim-pamafana] raha tianao.",
 'rev-suppressed-diff-view'    => "Nisy santiônan'ity diff ity '''voafafa'''.
-Noho ianao mpandrindra, azonao jerena ilay diff ; ao amin'ny [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} tatitry ny famafana] ny antsipirihany.",
+Azonao jerena ilay diff ; ao amin'ny [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} tatitry ny famafana] ny antsipirihany.",
 'rev-delundel'                => 'aseho/asitrika',
 'rev-showdeleted'             => 'aseho',
 'revisiondelete'              => 'Hamafa na hamerina santiôna',
@@ -1163,6 +1164,7 @@ $3 santiôna{{PLURAL:}} natsonika tamin'ny [[:$2]]",
 'searchprofile-everything-tooltip' => "Hitady eraky ny tranonkala (miaraka amin'ny pejin-dresaka)",
 'searchprofile-advanced-tooltip'   => "Hitady ny anaran-tsehatra ho an'ny fikarohana",
 'search-result-size'               => '$1 ({{PLURAL:$2|teny|teny}} $2)',
+'search-result-category-size'      => 'Mpiray sokajy $1{{PLURAL:$1}} (zana-tsokajy $2{{PLURAL:}}, rakitra $3{{PLURAL:}})',
 'search-result-score'              => 'Fifanarahana : $1%',
 'search-redirect'                  => "(redirect avy amin'ny/amin'i $1)",
 'search-section'                   => '(fizaràna $1)',
@@ -1209,7 +1211,7 @@ ihany no miseho amin'ny vokatry ny karoka).",
 'mypreferences'                 => 'Ny safidiko',
 'prefs-edits'                   => 'isa ny fanovàna :',
 'prefsnologin'                  => 'Tsy tafiditra',
-'prefsnologintext'              => '[[Special:UserLogin|Midira]] aloha izay vao manova ny mombamomba anao.',
+'prefsnologintext'              => 'Mila <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} misoratra ary tafiditra]</span> amin\'ny kaontinao ianao vao afaka manova ny safidinao.',
 'changepassword'                => 'Hanova tenimiafina',
 'prefs-skin'                    => 'Endrika',
 'skin-preview'                  => 'Tsipalotra',
@@ -1286,7 +1288,9 @@ Fenoy araka ny datin'ny solosainan'ny mpitsidika",
 'prefs-registration'            => 'Daty fidirana :',
 'yourrealname'                  => 'Tena anarana marina:',
 'yourlanguage'                  => 'Tenim-pirenena:',
+'yourvariant'                   => 'fitenim-paritry ny fitenim-botoatiny :',
 'yournick'                      => 'Anaram-bositra:',
+'prefs-help-signature'          => 'Ilaina soniavina amin\'ny "<nowiki>~~~~</nowiki>" ny resaka eo amin\'ny pejin-dresaka izay hametraka ny sonianao ary ny daty nanoratanao.',
 'badsig'                        => 'Tsy mety io sonia io; hamarino ny kialo HTML.',
 'badsiglength'                  => "Lava loatra ny sonianao. {{PLURAL:$1||}}
 Tokony mba manana lohavy ambanimbany kokoa non'ny $1",
@@ -1319,20 +1323,21 @@ Tokony mba manana lohavy ambanimbany kokoa non'ny $1",
 'email-address-validity-invalid' => 'Ilaina ny mametraka adiresy imailaka mameno fepetra',
 
 # User rights
-'userrights'                  => "Fandrindràna ny fahefahan'ny mpikambana",
-'userrights-lookup-user'      => 'Handrindra vondrom-pikambana',
-'userrights-user-editname'    => 'Manomeza solonanarana:',
-'editusergroup'               => "Hanova satan'ny mpikambana",
-'userrights-editusergroup'    => 'Hanova vondrom-pikambana',
-'saveusergroups'              => 'Tehirizo ny vondrom-pikambana',
-'userrights-groupsmember'     => "Mpikambana amin'ny vondrona:",
-'userrights-reason'           => 'Antony :',
-'userrights-no-interwiki'     => "Tsy manana alalana manova ny alalan'ny mpikambana eny amin'ny wiki hafa ianao.",
-'userrights-nodatabase'       => 'Tsy eto akaiky na tsy misy ny banky angona « $1 ».',
-'userrights-nologin'          => "Tsy maintsy [[Special:UserLogin|miditra]] ary manana kaontim-pandrindra ianao raha hanova ny alalan'ny mpikambana.",
-'userrights-notallowed'       => "Tsy manana alalana manova ny alalan'ny mpikambana ny kaontinao.",
-'userrights-changeable-col'   => 'Ny gropy azonao ovaina',
-'userrights-unchangeable-col' => 'Ny gropy tsy azonao ovaina',
+'userrights'                   => "Fandrindràna ny fahefahan'ny mpikambana",
+'userrights-lookup-user'       => 'Handrindra vondrom-pikambana',
+'userrights-user-editname'     => 'Manomeza solonanarana:',
+'editusergroup'                => "Hanova satan'ny mpikambana",
+'userrights-editusergroup'     => 'Hanova vondrom-pikambana',
+'saveusergroups'               => 'Tehirizo ny vondrom-pikambana',
+'userrights-groupsmember'      => "Mpikambana amin'ny vondrona:",
+'userrights-groupsmember-auto' => "Mpikambana tsy dia voalazan'i :",
+'userrights-reason'            => 'Antony :',
+'userrights-no-interwiki'      => "Tsy manana alalana manova ny alalan'ny mpikambana eny amin'ny wiki hafa ianao.",
+'userrights-nodatabase'        => 'Tsy eto akaiky na tsy misy ny banky angona « $1 ».',
+'userrights-nologin'           => "Tsy maintsy [[Special:UserLogin|miditra]] ary manana kaontim-pandrindra ianao raha hanova ny alalan'ny mpikambana.",
+'userrights-notallowed'        => "Tsy afaka manova ny fahafahan'ny mpikambana ny kaontinao.",
+'userrights-changeable-col'    => 'Ny gropy azonao ovaina',
+'userrights-unchangeable-col'  => 'Ny gropy tsy azonao ovaina',
 
 # Groups
 'group'               => 'Gropy :',
@@ -1709,7 +1714,7 @@ Tsindrio eo amin'ny lohan-tsanganana raha hanova ny laharam-pisehoana.",
 'filehist-filesize'         => "Hangezan'ilay rakitra",
 'filehist-comment'          => 'resaka',
 'filehist-missing'          => 'Tsy ampy rakitra',
-'imagelinks'                => "Fampiasan'io rakitra io",
+'imagelinks'                => "Fampiasana an'io rakitra io",
 'linkstoimage'              => "Ireto avy no {{PLURAL:$1|pejy mirohy|pejy mirohy}} ($1) amin'io rakitra io:",
 'nolinkstoimage'            => "Tsy misy pejy mirohy amin'ity sary ity.",
 'morelinkstoimage'          => "Hijery [[Special:WhatLinksHere/$1|rohy fanampiny]] makany amin'io rakitra io.",
@@ -2146,7 +2151,7 @@ Ho ann'y fanazavana fanampiny, jereo [[Special:ProtectedPages|ny lisitry ny pejy
 'modifiedarticleprotection'   => "nanova ny haabo ny fiarovana ho an'ny « [[$1]] »",
 'unprotectedarticle'          => "nanala ny fiarovana an'i « [[$1]] »",
 'movedarticleprotection'      => 'nanova ny safidim-piarovana : « [[$2]] » lasa « [[$1]] »',
-'protect-title'               => "Hanova ny lentam-piarovana ho an'i « [[$1]] »",
+'protect-title'               => "Hanova ny lentam-piarovana ho an'i « $1 »",
 'prot_1movedto2'              => '[[$1]] voaova anarana ho [[$2]]',
 'protect-legend'              => 'Fanekena ny fiarovana pejy',
 'protectcomment'              => 'Antony :',
@@ -2216,6 +2221,8 @@ noforonina taorian'ny namafana azy, dia hitambatra amin'ny tantaran'io
 pejy vaovao io ny tantaran'ity pejy voafafa ity, fa tsy ho voafafa akory.",
 'undeletehistorynoadmin'     => "Efa voafafa io lahatsoratra io. Ny antony namafana azy dia io miseho ambangovangony eo ambany eo io, miaraka amin'ny fampahalalana antsipirihany momba ny mpikambana nikitika io pejy io talohan'ny namafana azy. Ny votoatin'ny pejy izay efa nofafana ireo dia ny mpitantana ihany no afaka mahita azy ankehitriny.",
 'undelete-revision'          => "Santiôna voafafa an'i $1 (santiôna tamin'ny $4 tamin'ny $5) nataon'i $3 :",
+'undeleterevision-missing'   => "Santiôna diso na tsy misy.
+Mety rohy tsy izy no anananao, na mety voafafa na naverina tamin'ny tahiry ilay santiôna.",
 'undelete-nodiff'            => 'Tsy nahitana santiôna nialoha.',
 'undeletebtn'                => 'Avereno!',
 'undeletelink'               => 'Topi-maso/averina',
@@ -2547,6 +2554,7 @@ Etsy amin'ny toerana farany dia afaka mampiasa rohy ihany koa ianao, ohatra [[{{
 'allmessagestext'               => "Ity no lisitry ny system messages misy eto amin'ity MediaWiki: namespace ity.",
 'allmessagesnotsupportedDB'     => "Tsy mbola mandeha ny '''{{ns:special}}:Allmessages''' satria tsy mandeha koa ny '''\$wgUseDatabaseMessages'''.",
 'allmessages-filter-legend'     => 'Tantavanina',
+'allmessages-filter'            => 'Hanasivana araka ny satam-panovana :',
 'allmessages-filter-unmodified' => 'Mbola tsy voaova',
 'allmessages-filter-all'        => 'Rehetra',
 'allmessages-filter-modified'   => 'Voaova',
@@ -2782,6 +2790,9 @@ Raha alefanao ilay izy, mety ho simban'io renifango io ny solosainao.",
 'show-big-image'       => "Hijery ny tena haben'ny sary",
 'show-big-image-thumb' => "<small>Hangezan'ity topi-maso ity : $1 × $2 piksely</small>",
 'file-info-gif-looped' => 'miverimberina',
+'file-info-gif-frames' => 'sary{{PLURAL:$1}} $1',
+'file-info-png-looped' => 'miverimberina',
+'file-info-png-repeat' => 'nalefa in-$1{{PLURAL:$1}}',
 
 # Special:NewFiles
 'newimages'             => 'Tahala misy ny rakitra vaovao',
@@ -3087,6 +3098,16 @@ Aseho amin'ny tena habeny ny sary aseho, ny hafa dia alefa miaraka amin'ny rindr
 # Special:BlankPage
 'blankpage'              => 'Pejy fotsy',
 'intentionallyblankpage' => 'Avela fananiana ho fotsy ity pejy ity.',
+
+# External image whitelist
+'external_image_whitelist' => "#Avelao tahaka izao ity andalana ity.<pre>
+#Lazao ny singana REGEX (ny singa voalaza eo anelanelan'ny //) eo ambany.
+#Miady amin'ny URL ny sary ivelany izy ireo.
+#Hiseho sahala sary izay miady, raha tsy izany dia rohy mankany amin'ilay sary ihany no haseho.
+#Ho resaka ny andalana manomboka amin'ny #.
+#Tsy miraharaha ny zanatsoratra sy ny renisoratra ity lisitra ity.
+
+#Ataovy eo ambonin'ity andalana ity ny singana REGEX. Avelao tahaka izao ity andalana farany ity.</pre>",
 
 # Special:Tags
 'tags'                    => "Balizin'ny fanovana mety",

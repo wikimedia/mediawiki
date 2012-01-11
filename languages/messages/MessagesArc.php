@@ -10,6 +10,7 @@
  * @author 334a
  * @author A2raya07
  * @author Basharh
+ * @author Man2fly2002
  * @author Michaelovic
  * @author The Thadman
  */
@@ -104,6 +105,8 @@ $messages = array(
 'tog-underline'          => 'ܪܫܘܡ ܣܪܛܐ ܬܚܝܬ ܐܣܘܪܐ:',
 'tog-justify'            => 'ܫܘܐ ܦܬܓܡ̈ܐ',
 'tog-hideminor'          => 'ܛܫܝ ܫܘܚܠܦ̈ܐ ܙܥܘܪ̈ܐ ܒܫܘܚܠܦ̈ܐ ܚܕ̈ܬܐ',
+'tog-editondblclick'     => 'ܫܚܠܦ ܦܐܬ̈ܐ ܬܪ ܢܩܪܐ ܙܘܓܢܝܐ (ܣܢܝܩ ܠ JavaScript)',
+'tog-editsection'        => 'ܡܫܟܚ ܫܘܚܠܦܐ ܕܦܘܣܩ̈ܐ ܒܐܘܪܚܐ ܕܐܝܨܘܪ̈ܐ  [ܫܚܠܦ]',
 'tog-rememberpassword'   => 'ܕܟܘܪ ܥܠܠܬܝ ܥܠ ܡܦܐܬܢܐ ܗܢܐ (ܠܡܬܚܐ ܥܠܝܐ ܕ $1 {{PLURAL:$1|ܝܘܡܐ|ܝܘܡܬ̈ܐ}})',
 'tog-watchcreations'     => 'ܐܘܣܦ ܦܐܬܬ̈ܐ ܕܒܪܐ ܐܢܐ ܠܪ̈ܗܝܬܝ',
 'tog-watchdefault'       => 'ܐܘܣܦ ܦܐܬܬ̈ܐ ܕܫܚܠܦ ܐܢܐ ܠܪ̈ܗܝܬܝ',
@@ -232,6 +235,7 @@ $messages = array(
 'searcharticle'     => 'ܙܠ',
 'history'           => 'ܬܫܥܝܬܐ ܕܦܐܬܐ',
 'history_short'     => 'ܬܫܥܝܬܐ',
+'updatedmarker'     => 'ܐܬܚܕܬ ܗܐ ܡܢ ܙܒܢܐ ܕܣܘܥܪܢܝ ܐܚܪܝܐ',
 'info_short'        => 'ܝܕ̈ܥܬܐ',
 'printableversion'  => 'ܨܚܚܐ ܡܬܛܒܥܢܐ',
 'permalink'         => 'ܐܣܘܪܐ ܦܝܘܫܐ',
@@ -275,6 +279,13 @@ $messages = array(
 'jumpto'            => 'ܫܘܪ ܠ:',
 'jumptonavigation'  => 'ܐܠܦܪܘܬܐ',
 'jumptosearch'      => 'ܒܨܝܐ',
+'view-pool-error'   => 'ܬܘܝܚܐ، ܚܕܡ̈ܐ ܗܘܐ ܓܗ̈ܝܐ ܗܫܐܝܬ
+ܣܓܝ ܡܦܠܚܢ̈ܐ ܩܫܕܘܪܐ ܠܡܛܐ ܠܗܢܐ ܦܐܬܐ
+ܦܝܣܐ ܡܢܟ ܣܟܝ ܩܠܝܠ ܡܢ ܩܕܡ ܕܓܪܒܬ ܠܡܛܝܐ ܠܐܗܐ ܦܐܬܐ ܬܢܝܢܘܬ.
+
+$1',
+'pool-timeout'      => 'ܫܠܡ ܥܕܢܐ ܣܒܪܬܐ ܠܚܠܩܐ',
+'pool-queuefull'    => 'ܣܕܪܐ ܕܦܘܣܣܐ ܡܠܝܐ',
 'pool-errorunknown' => 'ܦܘܕܐ ܠܐ ܝܕܝܥܐ',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -297,7 +308,8 @@ $messages = array(
 'privacy'              => 'ܦܘܪܢܣܐ ܕܕܝܠܢܝܘܬܐ',
 'privacypage'          => 'Project:ܦܘܪܢܣܐ ܕܕܝܠܢܝܘܬܐ',
 
-'badaccess' => 'ܦܘܕܐ ܒܦܣܣܐ',
+'badaccess'        => 'ܦܘܕܐ ܒܦܣܣܐ',
+'badaccess-group0' => 'ܠܬ ܠܟ ܦܣܣܐ ܠܚܘܩܩܐ ܕܥܒܕܐ ܕܐܢܬ ܫܐܠܬܝ.',
 
 'ok'                      => 'ܛܒ',
 'youhavenewmessages'      => 'ܐܝܬ ܠܟ $1 ($2).',
@@ -345,6 +357,10 @@ $messages = array(
 'badtitle'            => 'ܟܘܢܝܐ ܠܐ ܛܒܐ',
 'viewsource'          => 'ܚܙܝ ܡܒܘܥܐ',
 'viewsourcefor'       => 'ܕ $1',
+'actionthrottled'     => 'ܠܐ ܘܪܕ ܠܡܥܒܕ ܝܬܝܪ ܡܢ ܐܗܐ ܥܒܕܐ',
+'viewsourcetext'      => 'ܡܨܐ ܐܢܬ ܠܚܙܝܐ ܘܢܣܚܐ ܠܡܒܘܥ̈ܐ ܕܐܗܐ ܦܐܬܐ:',
+'protectedinterface'  => 'ܐܗܐ ܦܐܬܐ ܡܘܬܪܐ ܟܬܝܒܬܐ ܕܦܐܬܐ ܠܚܘܪܙܐ, ܘܐܝܠܗ ܢܛܪܬܐ ܠܡܘܢܥܐ ܚܪܒܐ.',
+'sqlhidden'           => '(ܒܘܬܬܐ SQL ܛܫܝܐ)',
 'namespaceprotected'  => "ܠܝܬ ܠܟ ܦܣܣܐ ܠܫܚܠܦܬܐ ܕܦܐܬܬ̈ܐ ܒܚܩܠܐ ܕ'''$1'''.",
 
 # Login and logout pages
@@ -379,6 +395,7 @@ $messages = array(
 'userexists'              => 'ܫܡܐ ܕܡܦܠܚܢܐ ܕܐܥܠܬ ܫܩܝܠܐ ܐܝܬܘܗܝ.
 ܫܦܝܪܐܝܬ ܓܒܝ ܫܡܐ ܐܚܪܢܐ.',
 'loginerror'              => 'ܦܘܕܐ ܒܥܠܠܐ',
+'createaccounterror'      => 'ܠܐ ܡܫܟܚ ܠܒܪܝܐ ܚܘܫܒܢܐ: $1',
 'noname'                  => 'ܠܐ ܦܪܫ ܐܢܬ ܫܡܐ ܕܡܦܠܚܢܐ ܬܪܝܨܐ',
 'loginsuccesstitle'       => 'ܥܠܠܐ ܓܡܪ',
 'loginsuccess'            => "'''ܗܫܐ ܥܠܝܠܐ ܐܢܬ ܒ{{SITENAME}} ܒܫܡ \"\$1\".'''",
@@ -572,8 +589,8 @@ $messages = array(
 'searchprofile-images'           => 'ܡܝܕ̈ܝܐ ܣܓܝܐ̈ܐ (Multimedia)',
 'searchprofile-everything'       => 'ܟܠ ܡܕܡ',
 'searchprofile-advanced'         => 'ܡܬܩܕܡܢܐ',
-'searchprofile-articles-tooltip' => 'Search in $1',
-'searchprofile-project-tooltip'  => '',
+'searchprofile-articles-tooltip' => 'ܒܨܝ ܒ $1',
+'searchprofile-project-tooltip'  => 'ܒܨܝ ܒ $1',
 'search-result-size'             => '$1 ({{PLURAL:$2|1 ܡܠܬܐ|$2 ܡܠ̈ܐ}})',
 'search-redirect'                => '(ܨܝܒ $1)',
 'search-section'                 => '(ܡܢܬܐ $1)',
@@ -906,7 +923,7 @@ $1',
 'statistics-pages'        => 'ܦܐܬܬ̈ܐ',
 'statistics-users-active' => 'ܡܦܠܚܢ̈ܐ ܟܫܝܪ̈ܐ',
 
-'disambiguations'     => 'ܦܐܬܬ̈ܐ ܕܬܘܚܡܐ ܐܚܪܢܐ',
+'disambiguations'     => 'ܦܐܬܬ̈ܐ ܐܣܝܪ̈ܬܐ ܒܦܐܬܬ̈ܐ ܕܬܘܚܡܐ ܐܚܪܢܐ',
 'disambiguationspage' => 'Template:ܬܘܚܡܐ ܐܚܪܢܐ',
 
 'doubleredirects'            => 'ܨܘܝܒ̈ܐ ܥܦܝܦ̈ܐ',
@@ -971,8 +988,8 @@ $1',
 'booksources-go'            => 'ܙܠ',
 
 # Special:Log
-'specialloguserlabel'  => 'ܡܦܠܚܢܐ:',
-'speciallogtitlelabel' => 'ܟܘܢܝܐ:',
+'specialloguserlabel'  => 'ܡܦܩܢܐ:',
+'speciallogtitlelabel' => 'ܢܘܦܐ (ܟܘܢܝܐ ܐܘ ܡܦܠܚܢܐ):',
 'log'                  => 'ܣܓܠ̈ܐ',
 'all-logs-page'        => 'ܟܠ ܣܓܠ̈ܐ ܓܘܢܝ̈ܐ',
 'log-title-wildcard'   => 'ܒܨܝ ܥܠ ܟܘܢܝ̈ܐ ܕܫܪܝܢ ܥܡ ܟܬܒܬܐ ܗܕܐ',
@@ -1005,7 +1022,7 @@ $1',
 'sp-deletedcontributions-contribs' => 'ܫܘܬܦܘܝܬ̈ܐ',
 
 # Special:LinkSearch
-'linksearch'    => 'ܐܣܘܪܐ ܒܪܝܐ',
+'linksearch'    => 'ܐܣܘܪ̈ܐ ܒܪ̈ܝܐ ܒܨܝܐ',
 'linksearch-ns' => 'ܚܩܠܐ:',
 'linksearch-ok' => 'ܒܨܝ',
 
@@ -1117,16 +1134,18 @@ $1',
 
 # Protect
 'protectlogpage'              => 'ܣܓܠܐ ܕܢܛܪܐ',
-'protectedarticle'            => 'ܢܛܝܪܐ "[[$1]]"',
+'protectedarticle'            => 'ܢܛܪ "[[$1]]"',
 'unprotectedarticle'          => 'ܫܩܘܠ ܢܛܝܪܘܬܐ ܡܢ "[[$1]]"',
 'movedarticleprotection'      => 'ܫܢܐ ܛܘܝܒ̈ܐ ܕܢܛܪܐ ܡܢ "[[$2]]" ܠ "[[$1]]"',
 'prot_1movedto2'              => '[[$1]] ܐܬܫܢܝܬ ܠ [[$2]]',
 'protect-legend'              => 'ܚܬܬ ܢܘܛܪܐ',
 'protectcomment'              => 'ܥܠܬܐ:',
+'protect-text'                => "ܡܨܐ ܐܢܬ ܕܬܚܙܝ ܘܬܫܚܠܦ ܫܘܝܐ ܕܢܛܝܪܘܬܐ ܗܪܟܐ ܠܦܐܬܐ ܕ '''<nowiki>$1</nowiki>'''.",
 'protect-default'             => 'ܦܣܣܐ ܠܟܠ ܡܦܠܚܢ̈ܐ',
 'protect-fallback'            => 'ܒܥܝ "$1" ܦܣܣܐ',
 'protect-level-autoconfirmed' => 'ܚܪܘܡ ܡܦܠܚܢ̈ܐ ܚܕ̈ܬܐ ܘܠܐ ܥܠܝܠ̈ܐ',
 'protect-level-sysop'         => 'ܡܕܒܪ̈ܢܐ ܒܠܚܘܕ',
+'protect-expiring'            => 'ܦܪܩ ܒ $1 (UTC)',
 'protect-expiry-indefinite'   => 'ܕܠܐ ܣܟ',
 'protect-othertime'           => 'ܥܕܢܐ ܐܚܪܬܐ:',
 'protect-othertime-op'        => 'ܥܕܢܐ ܐܚܪܬܐ',

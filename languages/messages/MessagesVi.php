@@ -476,7 +476,7 @@ $messages = array(
 'print'             => 'In',
 'edit'              => 'Sửa đổi',
 'create'            => 'Tạo',
-'editthispage'      => 'Sửa trang này',
+'editthispage'      => 'Sửa đổi trang này',
 'create-this-page'  => 'Tạo trang này',
 'delete'            => 'Xóa',
 'deletethispage'    => 'Xóa trang này',
@@ -748,7 +748,7 @@ Hãy nhập một địa chỉ có định dạng đúng hoặc bỏ trống ô 
 
 Xin hãy bỏ qua thông báo này nếu tài khoản này không phải do bạn tạo ra.',
 'usernamehasherror'          => 'Tên người dùng không thể chứa dấu rào',
-'login-throttled'            => 'Bạn đã thử quá nhiều mật khẩu của tài khoản này
+'login-throttled'            => 'Bạn đã thử quá nhiều mật khẩu của tài khoản này.
 Xin hãy đợi chốc lát rồi thử lại.',
 'loginlanguagelabel'         => 'Ngôn ngữ: $1',
 'suspicious-userlogout'      => 'Đã bỏ qua yêu cầu đăng xuất bạn, hình như được gửi từ trình duyệt hoặc máy proxy nhớ đệm hư.',
@@ -875,12 +875,12 @@ hoặc <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE
 'userpage-userdoesnotexist'        => 'Tài khoản mang tên “$1” chưa được đăng ký. Xin hãy kiểm tra lại nếu bạn muốn tạo/sửa trang này.',
 'userpage-userdoesnotexist-view'   => 'Tài khoản “$1” chưa được đăng ký.',
 'blocked-notice-logextract'        => 'Người dùng này hiện đang bị cấm sửa đổi. Nhật trình cấm gần nhất được ghi ở dưới để tiện theo dõi:',
-'clearyourcache'                   => "'''Ghi chú:''' Sau khi lưu trang, có thể bạn sẽ phải xóa bộ nhớ đệm của trình duyệt để xem các thay đổi.
-* '''Firefox / Safari:''' giữ phím ''Shift'' trong khi nhấn ''Reload'' (''Tải lại''), hoặc nhấn tổ hợp ''Ctrl-F5'' hay ''Ctrl-R'' (<span title=\"Command\">⌘</span>R trên Mac)
-* '''Google Chrome:''' nhấn tổ hợp ''Ctrl-Shift-R'' (<span title=\"Shift\">⇧</span><span title=\"Command\">⌘</span>R trên Mac)
-* '''Internet Explorer:''' giữ phím ''Ctrl'' trong khi nhấn ''Refresh'', hoặc nhấn tổ hợp ''Ctrl-F5''
-* '''Konqueror:''' nhấn nút ''Reload'' hoặc nhấn ''F5''
-* '''Opera:''' xóa bộ nhớ đệm trong ''Tools → Preferences''",
+'clearyourcache'                   => "'''Chú ý:''' Sau khi lưu trang, có thể bạn sẽ phải xóa bộ nhớ đệm của trình duyệt để xem các thay đổi.
+* '''Firefox / Safari:''' Giữ phím ''Shift'' trong khi nhấn ''Reload'' (''Tải lại''), hoặc nhấn tổ hợp ''Ctrl-F5'' hay ''Ctrl-R'' (⌘R trên Mac)
+* '''Google Chrome:''' Nhấn tổ hợp ''Ctrl-Shift-R'' (⇧⌘R trên Mac)
+* '''Internet Explorer:''' Giữ phím ''Ctrl'' trong khi nhấn ''Refresh'', hoặc nhấn tổ hợp ''Ctrl-F5''
+* '''Konqueror:''' Nhấn nút ''Reload'' hoặc nhấn ''F5''
+* '''Opera:''' Xóa bộ nhớ đệm trong ''Tools → Preferences''",
 'usercssyoucanpreview'             => "'''Mẹo:''' Sử dụng nút “{{int:showpreview}}” để kiểm thử bản CSS của bạn trước khi lưu trang.",
 'userjsyoucanpreview'              => "'''Mẹo:''' Sử dụng nút “{{int:showpreview}}” để kiểm thử bản JS của bạn trước khi lưu trang.",
 'usercsspreview'                   => "'''Hãy nhớ rằng bạn chỉ đang xem thử trang CSS cá nhân của bạn.
@@ -1446,7 +1446,7 @@ Bạn cũng có thể lựa chọn cho phép người khác liên lạc với b�
 'right-deleterevision'        => 'Xóa và phục hồi phiên bản nào đó của trang',
 'right-deletedhistory'        => 'Xem phần lịch sử đã xóa, mà không xem nội dung đi kèm',
 'right-deletedtext'           => 'Xem văn bản đã xóa và các thay đổi giữa phiên bản đã xóa',
-'right-browsearchive'         => 'Tìm những trang đã xóa',
+'right-browsearchive'         => 'Tìm kiếm trang đã bị xóa',
 'right-undelete'              => 'Phục hồi trang',
 'right-suppressrevision'      => 'Xem lại và phục hồi phiên bản mà Sysop không thấy',
 'right-suppressionlog'        => 'Xem nhật trình riêng tư',
@@ -1462,7 +1462,7 @@ Bạn cũng có thể lựa chọn cho phép người khác liên lạc với b�
 'right-editusercssjs'         => 'Sửa tập tin CSS và JS của người dùng khác',
 'right-editusercss'           => 'Sửa tập tin CSS của người dùng khác',
 'right-edituserjs'            => 'Sửa tập tin JS của người dùng khác',
-'right-rollback'              => 'Nhanh chóng lùi tất cả sửa đổi của thành viên cuối cùng sửa đổi tại trang nào đó',
+'right-rollback'              => 'Nhanh chóng lùi tất cả sửa đổi của người dùng cuối cùng sửa đổi trang nào đó',
 'right-markbotedits'          => 'Đánh dấu sửa đổi phục hồi là sửa đổi bot',
 'right-noratelimit'           => 'Không bị ảnh hưởng bởi mức giới hạn tần suất sử dụng',
 'right-import'                => 'Nhập trang từ wiki khác',
@@ -1505,7 +1505,7 @@ Bạn cũng có thể lựa chọn cho phép người khác liên lạc với b�
 'action-delete'               => 'xóa trang này',
 'action-deleterevision'       => 'xóa phiên bản này',
 'action-deletedhistory'       => 'xem các phiên bản đã bị xóa của trang này',
-'action-browsearchive'        => 'tìm trong các trang đã bị xóa',
+'action-browsearchive'        => 'tìm kiếm trang đã bị xóa',
 'action-undelete'             => 'phục hồi trang này',
 'action-suppressrevision'     => 'duyệt và phục hồi phiên bản bị giấu này',
 'action-suppressionlog'       => 'xem nhật trình ẩn giấu này',
@@ -1532,7 +1532,7 @@ Bạn cũng có thể lựa chọn cho phép người khác liên lạc với b�
 'recentchanges-label-minor'         => 'Đây là một sửa đổi nhỏ',
 'recentchanges-label-bot'           => 'Sửa đổi này do bot thực hiện',
 'recentchanges-label-unpatrolled'   => 'Sửa đổi này chưa được tuần tra',
-'rcnote'                            => "Dưới đây là {{PLURAL:$1|'''1''' thay đổi|'''$1''' thay đổi gần nhất}} trong {{PLURAL:$2|ngày qua|'''$2''' ngày qua}}, tính tới $5, $4.",
+'rcnote'                            => "Dưới đây là {{PLURAL:$1|thay đổi '''duy nhất'''|'''$1''' thay đổi gần nhất}} trong {{PLURAL:$2|ngày qua|'''$2''' ngày qua}}, tính tới $5 lúc $4.",
 'rcnotefrom'                        => "Thay đổi từ '''$2''' (hiển thị tối đa '''$1''' thay đổi).",
 'rclistfrom'                        => 'Hiển thị các thay đổi từ $1.',
 'rcshowhideminor'                   => '$1 sửa đổi nhỏ',
@@ -1883,7 +1883,7 @@ Hãy nhớ kiểm tra các liên kết khác đến bản mẫu trước khi xó
 'statistics-users-active-desc' => 'Những thành viên đã hoạt động trong {{PLURAL:$1|ngày|$1 ngày}} qua',
 'statistics-mostpopular'       => 'Các trang được xem nhiều nhất',
 
-'disambiguations'      => 'Trang định hướng',
+'disambiguations'      => 'Trang liên kết đến trang định hướng',
 'disambiguationspage'  => 'Template:disambig',
 'disambiguations-text' => "Các trang này có liên kết đến một '''trang định hướng'''. Nên sửa các liên kết này để chỉ đến một trang đúng nghĩa hơn.<br />Các trang định hướng là trang sử dụng những bản mẫu được liệt kê ở [[MediaWiki:Disambiguationspage]].",
 
@@ -1978,8 +1978,8 @@ Xin lưu ý là các trang Web bên ngoài có thể liên kết đến một t�
 'booksources-invalid-isbn'  => 'ISBN mà bạn cung cấp dường như không đúng; xin hãy kiểm tra lại xem có lỗi gì khi sao chép từ nội dung gốc hay không.',
 
 # Special:Log
-'specialloguserlabel'  => 'Thành viên:',
-'speciallogtitlelabel' => 'Tên trang:',
+'specialloguserlabel'  => 'Người thực hiện:',
+'speciallogtitlelabel' => 'Mục tiêu (tiêu đề hoặc người dùng):',
 'log'                  => 'Nhật trình',
 'all-logs-page'        => 'Tất cả các nhật trình công khai',
 'alllogstext'          => 'Hiển thị tất cả các nhật trình đang có của {{SITENAME}} chung với nhau.
@@ -2019,11 +2019,11 @@ Xem thêm [[Special:WantedCategories|thể loại cần thiết]].',
 'sp-deletedcontributions-contribs' => 'đóng góp',
 
 # Special:LinkSearch
-'linksearch'       => 'Liên kết ngoài',
+'linksearch'       => 'Tìm kiếm liên kết ngoài',
 'linksearch-pat'   => 'Mẫu liên kết:',
 'linksearch-ns'    => 'Không gian tên:',
 'linksearch-ok'    => 'Tìm kiếm',
-'linksearch-text'  => "Có thể sử dụng ký tự đại diện (''wildcard'') ở đầu tiên, ví dụ “*.wikipedia.org”.<br />Hiện hỗ trợ các giao thức: <tt>$1</tt>",
+'linksearch-text'  => "Bạn có thể sử dụng ký tự đại diện (''wildcard''), ví dụ “*.wikipedia.org”; ít nhất phải có tên miền cấp cao nhất, thí dụ “*.org”.<br />Các giao thức này được hỗ trợ: <tt>$1</tt>; vui lòng không đưa giao thức vào truy vấn.",
 'linksearch-line'  => '$1 được liên kết từ $2',
 'linksearch-error' => "Chỉ được sử dụng ký tự đại diện (''wildcard'') vào đầu tên miền (''hostname'').",
 
@@ -2109,9 +2109,8 @@ Có [[{{MediaWiki:Listgrouprights-helppage}}|thông tin thêm]] về từng nhó
 'watchnologin'         => 'Chưa đăng nhập',
 'watchnologintext'     => 'Bạn phải [[Special:UserLogin|đăng nhập]] mới sửa đổi được danh sách theo dõi.',
 'addedwatch'           => 'Đã thêm vào danh sách theo dõi',
-'addedwatchtext'       => 'Trang “<nowiki>$1</nowiki>” đã được cho vào [[Special:Watchlist|danh sách theo dõi]]. Những sửa đổi đối với trang này và trang thảo luận của nó sẽ được liệt kê, và được <b>tô đậm</b> trong [[Special:RecentChanges|danh sách các thay đổi mới]].
-
-Nếu bạn muốn cho trang này ra khỏi danh sách theo dõi, nhấn vào "Ngừng theo dõi" ở trên.',
+'addedwatchtext'       => "Trang “[[:$1]]” đã vào [[Special:Watchlist|danh sách theo dõi]] của bạn.
+Những sửa đổi đối với trang này và trang thảo luận của nó sẽ được liệt kê và '''tô đậm''' trong [[Special:RecentChanges|danh sách các “Thay đổi gần đây”]] để dễ nhận ra.",
 'removedwatch'         => 'Đã gỡ khỏi danh sách theo dõi',
 'removedwatchtext'     => 'Trang “[[:$1]]” đã được đưa ra khỏi [[Special:Watchlist|danh sách theo dõi]] của bạn.',
 'watch'                => 'Theo dõi',
@@ -3008,7 +3007,7 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 'exif-orientation'                 => 'Hướng',
 'exif-samplesperpixel'             => 'Số mẫu trên điểm ảnh',
 'exif-planarconfiguration'         => 'Cách xếp dữ liệu',
-'exif-ycbcrsubsampling'            => 'Tỉ lệ lấy mẫu con của Y so với C',
+'exif-ycbcrsubsampling'            => 'Tỷ lệ lấy mẫu con của Y so với C',
 'exif-ycbcrpositioning'            => 'Định vị Y và C',
 'exif-xresolution'                 => 'Phân giải theo chiều ngang',
 'exif-yresolution'                 => 'Phân giải theo chiều cao',
@@ -3079,7 +3078,7 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 'exif-customrendered'              => 'Sửa hình thủ công',
 'exif-exposuremode'                => 'Chế độ phơi sáng',
 'exif-whitebalance'                => 'Độ sáng trắng',
-'exif-digitalzoomratio'            => 'Tỉ lệ phóng lớn kỹ thuật số',
+'exif-digitalzoomratio'            => 'Tỷ lệ phóng lớn kỹ thuật số',
 'exif-focallengthin35mmfilm'       => 'Tiêu cự trong phim 35 mm',
 'exif-scenecapturetype'            => 'Kiểu chụp cảnh',
 'exif-gaincontrol'                 => 'Điều khiển cảnh',
@@ -3173,10 +3172,10 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 'exif-lightsource-9'   => 'Trời đẹp',
 'exif-lightsource-10'  => 'Trời mây',
 'exif-lightsource-11'  => 'Che nắng',
-'exif-lightsource-12'  => 'Nắng huỳnh quang (D 5700 – 7100K)',
-'exif-lightsource-13'  => 'Màu trắng huỳnh quang ban ngày (N 4600 – 5400K)',
-'exif-lightsource-14'  => 'Màu trắng mát huỳnh quang (W 3900 – 4500K)',
-'exif-lightsource-15'  => 'Màu trắng huỳnh quang (WW 3200 – 3700K)',
+'exif-lightsource-12'  => 'Nắng huỳnh quang (D 5700–7100 K)',
+'exif-lightsource-13'  => 'Màu trắng huỳnh quang ban ngày (N 4600–5400 K)',
+'exif-lightsource-14'  => 'Màu trắng mát huỳnh quang (W 3900–4500 K)',
+'exif-lightsource-15'  => 'Màu trắng huỳnh quang (WW 3200–3700 K)',
 'exif-lightsource-17'  => 'Ánh chuẩn A',
 'exif-lightsource-18'  => 'Ánh chuẩn B',
 'exif-lightsource-19'  => 'Ánh chuẩn C',
@@ -3399,7 +3398,7 @@ Xin hãy xác nhận bạn thực sự muốn tạo lại trang này.",
 'autosumm-blank'   => 'Tẩy trống trang',
 'autosumm-replace' => 'Thay cả nội dung bằng “$1”',
 'autoredircomment' => 'Đổi hướng đến [[$1]]',
-'autosumm-new'     => 'Tạo trang mới với nội dung ‘$1’',
+'autosumm-new'     => 'Tạo trang mới với nội dung “$1”',
 
 # Size units
 'size-kilobytes' => '$1 kB',

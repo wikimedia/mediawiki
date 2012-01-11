@@ -8,9 +8,14 @@
  * @file
  *
  * @author Aksi great
+ * @author Aritra
  * @author Ashok modhvadia
  * @author Dineshjk
  * @author Dsvyas
+ * @author Jay
+ * @author Mohit.dalal
+ * @author Ramesh
+ * @author Rangilo Gujarati
  * @author RaviC
  * @author Sushant savla
  * @author לערי ריינהארט
@@ -163,7 +168,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'પાનામાં નાનાં ફેરફાર થાય ત્યારે પણ મને ઇ-મેલ મોકલો',
 'tog-enotifrevealaddr'        => 'નોટીફીકેશનના ઇમેલમાં મારૂ ઇમેલ એડ્રેસ બતાવો',
 'tog-shownumberswatching'     => 'ધ્યાનમાં રાખતા સભ્યોની સંખ્યા બતાવો',
-'tog-oldsig'                  => 'વિદ્યમાન હસ્તાક્ષરનું પૂર્વદર્શન:',
+'tog-oldsig'                  => 'હાલના હસ્તાક્ષર',
 'tog-fancysig'                => 'સ્વાચાલિત કડી વગરની (કાચી) સહી',
 'tog-externaleditor'          => 'બીજું એડીટર વાપરો. (ફક્ત એકસપર્ટ માટે, તમારા કમ્પ્યુટરમાં સેટીંગ્સ બદલવા પડશે. [http://www.mediawiki.org/wiki/Manual:External_editors More information.])',
 'tog-externaldiff'            => 'Use external diff by default (for experts only, needs special settings on your computer. [http://www.mediawiki.org/wiki/Manual:External_editors More information.])',
@@ -302,7 +307,7 @@ $messages = array(
 'vector-action-move'             => 'ખસેડો',
 'vector-action-protect'          => 'સુરક્ષિત કરો',
 'vector-action-undelete'         => 'રદ કરેલું પાછું વાળો',
-'vector-action-unprotect'        => 'અસુરક્ષિત',
+'vector-action-unprotect'        => 'સુરક્ષા બદલો',
 'vector-simplesearch-preference' => 'શોધ સંબંધી વિશિષ્ઠ સુઝાવના પર્યાયને સક્રીય  કરો (Vector skin only)',
 'vector-view-create'             => 'બનાવો',
 'vector-view-edit'               => 'ફેરફાર કરો',
@@ -338,8 +343,8 @@ $messages = array(
 'protect'           => 'સુરક્ષિત કરો',
 'protect_change'    => 'ફેરફાર કરો',
 'protectthispage'   => 'આ પાનું સુરક્ષિત કરો.',
-'unprotect'         => 'સુરક્ષા હટાવો',
-'unprotectthispage' => 'આ પાનાની સુરક્ષા હટાવો.',
+'unprotect'         => 'સુરક્ષા બદલો',
+'unprotectthispage' => 'આ પાનાનું સુરક્ષા  બદલો',
 'newpage'           => 'નવું પાનું',
 'talkpage'          => 'આ પાના વિષે ચર્ચા કરો',
 'talkpagelinktext'  => 'ચર્ચા',
@@ -358,7 +363,7 @@ $messages = array(
 'viewhelppage'      => 'મદદનું પાનું જુઓ',
 'categorypage'      => 'શ્રેણીનું પાનુ જુઓ',
 'viewtalkpage'      => 'ચર્ચા જુઓ',
-'otherlanguages'    => 'બીજી ભાષાઓમાં',
+'otherlanguages'    => 'અન્ય ભાષાઓમાં',
 'redirectedfrom'    => '($1 થી અહીં વાળેલું)',
 'redirectpagesub'   => 'પાનું અન્યત્ર વાળો',
 'lastmodifiedat'    => 'આ પાનામાં છેલ્લો ફેરફાર $1ના રોજ $2 વાગ્યે થયો.',
@@ -550,11 +555,11 @@ $2',
 'securelogin-stick-https'    => 'લોગ-ઈન કર્યા પછી  HTTPS સાથે જોડાયેલા રહો.',
 'yourdomainname'             => 'તમારૂં ડોમેઇન:',
 'externaldberror'            => 'પ્રમાણભૂતતાની ત્રુટી આવી અથવા તમારૂ બહારનુ ખાતું અપડેટ કરવાનો અધિકાર તમને નથી.',
-'login'                      => 'પ્રવેશ કરો (લૉગ ઇન કરીને)',
+'login'                      => 'પ્રવેશ કરો',
 'nav-login-createaccount'    => 'પ્રવેશ કરો / નવું ખાતું ખોલો',
 'loginprompt'                => '{{SITENAME}}માં પ્રવેશ કરવા માટે તમારા બ્રાઉઝરમાં કુકીઝ એનેબલ કરેલી હોવી જોઇશે.',
 'userlogin'                  => 'પ્રવેશ કરો / નવું ખાતું ખોલો',
-'userloginnocreate'          => 'પ્રવેશ કરો (લૉગ ઇન કરીને)',
+'userloginnocreate'          => 'પ્રવેશ કરો',
 'logout'                     => 'બહાર નીકળો',
 'userlogout'                 => 'બહાર નીકળો/લૉગ આઉટ',
 'notloggedin'                => 'પ્રવેશ કરેલ નથી',
@@ -562,11 +567,11 @@ $2',
 'nologinlink'                => 'ખાતું ખોલો',
 'createaccount'              => 'નવું ખાતું ખોલો',
 'gotaccount'                 => "પહેલેથી ખાતું ખોલેલું છે? '''$1'''.",
-'gotaccountlink'             => 'પ્રવેશો (લૉગ ઇન કરો)',
+'gotaccountlink'             => 'પ્રવેશ કરો',
 'createaccountmail'          => 'ઇ-મેઇલ દ્વારા',
 'createaccountreason'        => 'કારણ:',
 'badretype'                  => 'તમે દાખલ કરેલ ગુપ્તસંજ્ઞા મળતી આવતી નથી.',
-'userexists'                 => 'દાખલ કરેલું સભ્ય નામ વપરાશમાં છે.</br>
+'userexists'                 => 'દાખલ કરેલું સભ્ય નુ નામ વપરાશમાં છે.</br>
 કૃપયા અન્ય નામ પસંદ કરો.',
 'loginerror'                 => 'પ્રવેશ ત્રુટિ',
 'createaccounterror'         => 'ખાતું ખોલી શકાયું નથી: $1',
@@ -739,7 +744,7 @@ Please log in again after you receive it.
 'nosuchsectiontext'                => 'તમે અસ્તિત્વ ન ધરાવtaa વિભાગમાં ફેરફાર કરવાની કોશિશ કરી છે.
 શક્ય છે કે જ્યારે તમે પાનું જોતા હતા ત્યારે તેને દૂર કરવામાં કે ખસેડવામાં આવ્યો હોય.',
 'loginreqtitle'                    => 'પ્રવેશ (લોગ ઇન) જરૂરી',
-'loginreqlink'                     => 'લોગીન',
+'loginreqlink'                     => 'પ્રવેશ કરો',
 'loginreqpagetext'                 => 'બીજા પાનાં જોવા માટે જરૂરી છે કે તમે $1.',
 'accmailtitle'                     => 'ગુપ્તસંજ્ઞા મોકલવામાં આવી છે.',
 'accmailtext'                      => "[[User talk:$1|$1]] માટે રચેલ ગુપ્તસંજ્ઞા $2 ને મોકલાવી દેવાઇ છે 
@@ -764,11 +769,12 @@ Please log in again after you receive it.
 'userpage-userdoesnotexist-view'   => 'સભ્યના ખાતા $1 ની નોંધણી નથી થઈ',
 'blocked-notice-logextract'        => 'આ સભ્ય હાલમાં પ્રતિબંધિત છે.
 તમારા નીરીક્ષણ માટે તાજેતરમાં પ્રતિબંધિત થયેલા સભ્યોની યાદિ આપી છે.',
-'clearyourcache'                   => "'''નોંધ : સાચવ્યા પછી, તમારે તમારા બ્રાઉઝરની હંગામી યાદદાશ્તને અદ્યતન કરવી પડશે જેથી તમે સાચવેલા ફેરફાર જોઇ શકો.'''
-'''મોઝીલા / ફાયરફોક્સ / સફારી:'''  ''Shift'' કળ દાબી રાખી  ''Reload'' પર ક્લીક કરો, અથવા યા તો   ''Ctrl-F5'' કળ દબાવો યાતો  ''Ctrl-R'' (''Command-R'' મેકીંટોશ પર);
-'''કોંકરર : '''  ''Reload'' પર ક્લિક કરો અથવા ''F5'' કળ દબાવો;
-'''ઑપેરા:''' clear the cache in ''Tools → Preferences'' માં જઈ હંગામી યાદદાશ્ત સાફ કરો;
-'''ઈંટરનેટ એક્સપ્લોરર:'''  ''Refresh,'' પર ક્લિક કરવા સાથે ''Ctrl'' પણ દબાવી રાખો અથવા  ''Ctrl-F5'' કળ દબાવો.",
+'clearyourcache'                   => "'''નોંધ:''' બચત કર્યા પછી, તમે તમારા બ્રાઉઝરની કેશ બાયપાસ ફેરફારો જોવા હોઈ શકે છે.
+*'''ફાયરફોક્સ / સફારી:'''''શીફ્ટ હોલ્ડ''જ્યારે''ફરિથી લોડ કરો પર ક્લિક'', અથવા''ને Ctrl-F5''અથવા''ને Ctrl-આર''(''આર-આદેશ 'દબાવો 'એક મેક પર)
+*'''Google Chrome ને:''' પ્રેસ''ને Ctrl-Alt-આર''(''આદેશ-Alt-આર''પર મેક)
+*'''ઈન્ટરનેટ એક્સપ્લોરર:''' હોલ્ડ''Ctrl-''જ્યારે ક્લિક''પુનઃતાજું'', અથવા દબાવો''ને Ctrl-F5''
+*'''કોન્કરર:''' બટન પર ક્લિક કરો''''અથવા''દબાવો F5 લોડ''
+*'''ઓપેરા:''' સાફ માં કેશ''સાધનો પસંદગીઓ →''",
 'usercssyoucanpreview'             => "'''ટીપ:''' તમારા નવા CSSને સાચવતા પહેલા  \"{{int:showpreview}}\" બટન વાપરી ચકાસણી કરો.",
 'userjsyoucanpreview'              => "'''ટીપ:''' Use the તમારી નવી JavaScript ને સાચવતા પહેલા   \"{{int:showpreview}}\" બટન વાપરી ચકાસો.",
 'usercsspreview'                   => "'''યાદ રહે કે તમે તમારા સભ્ય CSS નું અવલોકન કરો છે.'''
@@ -934,25 +940,25 @@ $3 દ્વારા અપાયેલ કારણ છે ''$2''",
 'rev-deleted-user-contribs'   => '[સભ્યનામ કે IP સરનામું  હટાવી દેવાયું છે - યોગદાનામાં આ ફેરફાર અદ્રશ્ય છે]',
 'rev-deleted-text-permission' => 'આ પુનરાવર્તન હટાવી દેવાયું છે
 આની વિસ્તરીત માહિતી અહીં મળશે [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].',
-'rev-deleted-text-unhide'     => 'આ ફરકમાંનો કોઇ  એક ફેરફાર હટાવી દેવાયો છે.
-આની માહિતી અહીંથી [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log] પરથી મળી જશે.
-પ્રબંધક તરીકે તમે ઇચ્છોતો [$1 આ ફેરફારો ] જોઇ શકો છો.',
-'rev-suppressed-text-unhide'  => 'આ ફરકમાંનો કોઇ  એક ફેરફાર સંતાડી દેવાયો છે.
-આની માહિતી અહીંથી [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log]  પરથી મળી જશે.
-પ્રબંધક તરીકે તમે ઇચ્છોતો [$1 આ ફેરફારો ] જોઇ શકો છો.',
-'rev-deleted-text-view'       => 'આ પુનરાવર્તન હટાવી દેવાયું છે
-પ્રબંધક તરીકે તમે આની લાહિતી મેળવી શકો છો. આની વિસ્તરીત માહિતી અહીં મળશે [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].',
-'rev-suppressed-text-view'    => 'આ પુનરાવર્તન સંતાડી દેવાયું છે
-પ્રબંધક તરીકે તમે આની લાહિતી મેળવી શકો છો. આની વિસ્તરીત માહિતી અહીં મળશે [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log].',
+'rev-deleted-text-unhide'     => "આ પાનું આવૃત્તિ''ગયેલ છે '''કાઢી.
+વિગતો શોધી શકાય છે [{{fullurl: {{# વિશેષ:}} લોગ / કાઢી | પાનું = {{FULLPAGENAMEE}}}} કાઢી નાંખવાનું લોગ].
+તમે હજુ પણ [આ આવૃત્તિ જોવા] શકો છો જો તમે પ્રક્રિયા કરવા માંગો છો.",
+'rev-suppressed-text-unhide'  => "આ પાનું આવૃત્તિ કરવામાં આવી છે'''''દબાવી.
+વિગતો શોધી શકાય છે [{{fullurl: {{# વિશેષ: લોગ}} / દબાવવા | પાનું = {{FULLPAGENAMEE}}}} દમન લોગ].
+તમે હજુ પણ [આ આવૃત્તિ જોવા] શકો છો જો તમે પ્રક્રિયા કરવા માંગો છો.",
+'rev-deleted-text-view'       => "આ પાનું આવૃત્તિ''ગયેલ છે '''કાઢી.
+તમે તેને જોઈ શકે છે; વિગતો શોધી શકાય છે [{{fullurl: {{# વિશેષ:}} લોગ / કાઢી | પાનું = {{FULLPAGENAMEE}}}} કાઢી નાંખવાનું લોગ].",
+'rev-suppressed-text-view'    => "આ પાનું આવૃત્તિ કરવામાં આવી છે'''''દબાવી.
+તમે તેને જોઈ શકે છે; વિગતો શોધી શકાય છે [{{fullurl: {{# વિશેષ: લોગ}} / દબાવવા | પાનું = {{FULLPAGENAMEE}}}} દમન લોગ].",
 'rev-deleted-no-diff'         => 'તમને આ ફરક નહીં દેખાય કેમકે કોઇ એક ફેરફાર હટાવી દેવાયો છે.
 આની માહિતી અહીં મળશે [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].',
 'rev-suppressed-no-diff'      => "તમને ફરક નહીં દેખાય કેમકે કોઈ એક પુનરાવર્તન '''હટાવાયું છે'''.",
-'rev-deleted-unhide-diff'     => 'આ ફરકમાંનો કોઇ  એક ફેરફાર હટાવી દેવાયો છે.
-આની માહિતી અહીંથી [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log] પરથી મળી જશે.
-પ્રબંધક તરીકે તમે ઇચ્છોતો [$1 આ ફેરફારો ] જોઇ શકો છો.',
+'rev-deleted-unhide-diff'     => "આ ભેદ આવૃત્તિઓની'''કાઢી''' કરવામાં આવી છે.
+વિગતો શોધી શકાય છે [{{fullurl: {{# વિશેષ:}} લોગ / કાઢી | પાનું = {{FULLPAGENAMEE}}}} કાઢી નાંખવાનું લોગ].
+તમે હજુ પણ [આ ભેદ જોવા] શકો છો જો તમે પ્રક્રિયા કરવા માંગો છો.",
 'rev-suppressed-unhide-diff'  => 'આ ફરકમાંનો કોઇ  એક ફેરફાર સંતાડી દેવાયો છે.
 આની માહિતી અહીંથી [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log] પરથી મળી જશે.
-પ્રબંધક તરીકે તમે ઇચ્છોતો [$1 આ ફેરફારો ] જોઇ શકો છો.',
+પ્રબંધક તરીકે તમે ઇચ્છોતો [આ ફેરફારો ] જોઇ શકો છો.',
 'rev-deleted-diff-view'       => 'આ પુનરાવર્તન હટાવી દેવાયું છે
 પ્રબંધક તરીકે તમે આની લાહિતી મેળવી શકો છો. આની વિસ્તરીત માહિતી અહીં મળશે [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log]..',
 'rev-suppressed-diff-view'    => 'આ પુનરાવર્તન સંતાડી દેવાયું છે
@@ -1107,7 +1113,7 @@ $1",
 'searchprofile-everything'         => 'દરેકમાં શોધો',
 'searchprofile-advanced'           => 'સુધારિત',
 'searchprofile-articles-tooltip'   => '$1 માં શોધો',
-'searchprofile-project-tooltip'    => '$1 માં શોધો',
+'searchprofile-project-tooltip'    => '$1માં શોધો',
 'searchprofile-images-tooltip'     => 'ફાઇલ શોધો',
 'searchprofile-everything-tooltip' => 'બધે જ શોધો (ચર્ચાનાં પાના સહિત)',
 'searchprofile-advanced-tooltip'   => 'સ્થાનીય નામસ્થળોમાં શોધો:',
@@ -1236,6 +1242,7 @@ $1",
 'prefs-registration'            => 'નોંધણી સમય',
 'yourrealname'                  => 'સાચું નામ:',
 'yourlanguage'                  => 'ભાષા',
+'yourvariant'                   => 'સામગ્રી ભાષા વિવિધતા:',
 'yournick'                      => 'સહી:',
 'prefs-help-signature'          => 'ચર્ચા પાના પરની ટિપ્પણી "<nowiki>~~~~</nowiki>" દ્વારા હસ્તાક્ષરીત હોવા જોઇએ તેમાં તમારા હસ્તાક્ષર અને સમય શામિલ થશે.',
 'badsig'                        => 'અવૈધ કાચી સહી
@@ -1291,7 +1298,7 @@ HTML નાકું ચકાસો',
 'userrights-no-interwiki'      => 'અન્ય વિકિ પર અન્ય સભ્યો ના અધિકારો માં પરિવર્તન કરવાની તમને પરવાનગી નથી',
 'userrights-nodatabase'        => 'માહિતીસંચ $1 અસ્તિત્વમાં નથી કે તે સ્થાનીય નથી.',
 'userrights-nologin'           => 'સભ્યના અધિકારો આપવા તમે પ્રબંધક તરીકે પ્રવેશ  [[Special:UserLogin|log in]] કરેલ હોવો જરૂરી છે.',
-'userrights-notallowed'        => 'તમારા ખાતને અન્ય સભ્યોને હક્કો પ્રદાન કરવાનો અધિકાર નથી',
+'userrights-notallowed'        => 'તમારું એકાઉન્ટ ઉમેરો કરવા અથવા વપરાશકર્તા અધિકારો દૂર કરવાની પરવાનગી નથી.',
 'userrights-changeable-col'    => 'તમે બદલી શકો તેવા જૂથ',
 'userrights-unchangeable-col'  => 'તમે બદલી ન શકો તેવા જૂથ',
 
@@ -1507,6 +1514,7 @@ HTML નાકું ચકાસો',
 'illegalfilename'             => 'ફાઇલનામ "$1" એવા ચિન્હો ધરાવે છે જેનો પ્રયોગ શીર્ષકોમાં વર્જિત  છે.
 કૃપયા ફાઇઅલ નું નામ બદલીને ફરી ચઢાવો.',
 'badfilename'                 => 'ફાઇલ નામ  "$1" નામે બદલાયું છે.',
+'filetype-mime-mismatch'      => 'ફાઈલ એક્સટેન્સન માઇમપ્રકાર બંધબેસે નહિં',
 'filetype-badmime'            => 'MIME પ્રકારની "$1"  ફાઇલ ચડાવવાની પરવાનગી નથી',
 'filetype-bad-ie-mime'        => 'આ ફાઈલ ચડાવી નહીં શકાય કેમ કે ઇંટરનેટ એક્સપ્લોરર  આને  "$1" તરીકે ઓળખશે, જેની પરવાનગી નથે અને આ ખતરનાક પ્રકારની ફાઇલ હોઇ શકે.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' એ એક બિન જરૂરી ફાઇલ પ્રકાર છે. 
@@ -1607,22 +1615,23 @@ $1',
 'upload-http-error'         => ' HTTP ત્રુટિ : $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'પ્રવેશ વર્જીત',
-'img-auth-nopathinfo'   => 'પથ માહિતી ગાયબ.
+'img-auth-accessdenied'     => 'પ્રવેશ વર્જીત',
+'img-auth-nopathinfo'       => 'પથ માહિતી ગાયબ.
 આ માહિતી પસાર કરવા તમારું સર્વર સજ્જ નથી.
 તે કદાચ CGI-આધારિત હોય અને img_authને આધાર ન આપે.
 જુઓ http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'અર્જીત પથ ચડાવેલ ફાઈલની ડીરેક્ટરીમાં નથી',
-'img-auth-badtitle'     => '"$1" માટે વૈધ શીર્ષક ન શોધી શકાયું',
-'img-auth-nologinnWL'   => 'તમે પ્રવેશ કર્યો નથી અને અને : $1 ધવલ યાદિમાં નથી.',
-'img-auth-nofile'       => ' ફાઇલ "$1" અસ્તિત્વમાં નથી',
-'img-auth-isdir'        => 'તમે ડયરેક્ટરી "$1" ને પહોંચવાનો પ્રયાસ કરો છો.
+'img-auth-notindir'         => 'અર્જીત પથ ચડાવેલ ફાઈલની ડીરેક્ટરીમાં નથી',
+'img-auth-badtitle'         => '"$1" માટે વૈધ શીર્ષક ન શોધી શકાયું',
+'img-auth-nologinnWL'       => 'તમે પ્રવેશ કર્યો નથી અને અને : $1 ધવલ યાદિમાં નથી.',
+'img-auth-nofile'           => ' ફાઇલ "$1" અસ્તિત્વમાં નથી',
+'img-auth-isdir'            => 'તમે ડયરેક્ટરી "$1" ને પહોંચવાનો પ્રયાસ કરો છો.
 માત્ર ફાઇલ સુધે પહોંચવાની પરવાનગી છે.',
-'img-auth-streaming'    => 'ચિત્ર માહીતી  "$1" ઉતરી રહી છે.',
-'img-auth-public'       => ' img_auth.php દ્વારા કાર્યાન્વીત થતી ક્રિયા નીજી વિકિ માંથી ફાઇલ કાઢવા વપરાય છે. 
+'img-auth-streaming'        => 'ચિત્ર માહીતી  "$1" ઉતરી રહી છે.',
+'img-auth-public'           => ' img_auth.php દ્વારા કાર્યાન્વીત થતી ક્રિયા નીજી વિકિ માંથી ફાઇલ કાઢવા વપરાય છે. 
 આ વિકિ ની ગોઠવણ જન વિકી તરીકે થયેલી છે.
 મહત્તમ સુરક્ષા માટે, img_auth.php ને નિષ્ક્રિય કરાઇ છે.',
-'img-auth-noread'       => '"$1" વાંચવાને સભ્યને પરવાનગી નથી.',
+'img-auth-noread'           => '"$1" વાંચવાને સભ્યને પરવાનગી નથી.',
+'img-auth-bad-query-string' => 'આ URL માં અમાન્ય ક્વેરી શબ્દમાળા છે',
 
 # HTTP errors
 'http-invalid-url'      => 'અવૈધ URL: $1',
@@ -1651,9 +1660,8 @@ $1',
 'upload_source_file' => '(તમારા કોમ્પ્યુટર પરની એક ફાઇલ)',
 
 # Special:ListFiles
-'listfiles-summary'     => 'આ ખાસ પાનું બધી ચડાવેલે ફાઇલ બતાવે છે.
-સૌથી છેલ્લે ચડાવેલ ફાઇલ સૌથી ઉપર બતાવી છે. 
-સ્તંભના શીર્ષક પર ક્લીક કરતા અનુક્રમ બદલાશે .',
+'listfiles-summary'     => 'આ વિશિષ્ટ પાનું બધા અપલોડ કરાયેલ ફાઈલો બતાવે છે.
+જ્યારે વપરાશકર્તા દ્વારા ફિલ્ટર, માત્ર ફાઈલો જ્યાં તે વપરાશકર્તા ફાઈલ સૌથી તાજેતરનું વર્ઝન અપલોડ બતાવવામાં આવે છે.',
 'listfiles_search_for'  => 'મિડિયા નામ શોધો:',
 'imgfile'               => 'ફાઇલ',
 'listfiles'             => 'ફાઇલોની યાદી',
@@ -1682,7 +1690,7 @@ $1',
 'filehist-filesize'         => 'ફાઇલનું કદ',
 'filehist-comment'          => 'ટિપ્પણી',
 'filehist-missing'          => 'ફાઇલ ગાયબ',
-'imagelinks'                => 'ફાઇલની કડીઓ',
+'imagelinks'                => 'ફાઇલન્ઑ વ્અપ્ર્અસ્',
 'linkstoimage'              => 'આ ફાઇલ સાથે {{PLURAL:$1|નીચેનું પાનું જોડાયેલું|$1 નીચેનાં પાનાઓ જોડાયેલાં}} છે',
 'linkstoimage-more'         => '$1 કરતાં વધુ {{PLURAL:$1|પાનું|પાનાં}} આ ફાઇલ સાથે જોડાય છે.
 નીચે જણાવેલ યાદી ફક્ત આ ફાઇલ સાથે જોડાયેલ {{PLURAL:$1|પ્રથમ પાનાની કડી|પ્રથમ $1 પાનાંની કડીઓ}} બતાવે છે.
@@ -1781,7 +1789,7 @@ $1',
 'statistics-users-active-desc' => 'સભ્ય કે જેમણે છેલ્લા {{PLURAL:$1|દિવસ|$1 દિવસો}}માં ફેરફારો કર્યાં છે',
 'statistics-mostpopular'       => 'સૌથી વધુ જોવાયેલા પાના',
 
-'disambiguations'      => 'અસંદિગ્ધ શબ્દોવાળા પાના',
+'disambiguations'      => 'સ્પષ્ટતા પાનાંઓ કડી પાના',
 'disambiguationspage'  => 'Template:અસંદિગ્ધ',
 'disambiguations-text' => "નીચેના પાના  '''સંદિગ્ધ વાક્યો વાળા પાના''' સાથે કડી દ્વારા જોડાયેલા છે.
 તેના કરતા તેને યોગ્ય તે વિષ્ય સાથે જોડાયેલા હોવા જોઇએ.<br />
@@ -1879,8 +1887,8 @@ $1',
 'booksources-invalid-isbn'  => 'આપેલ ISBN વૈધ નથી લાગતો. મૂળ સ્ત્રોત થે ચકાસીને ભૂલ શોધી ખરી માહિતી આપો.',
 
 # Special:Log
-'specialloguserlabel'  => 'સભ્ય:',
-'speciallogtitlelabel' => 'શિર્ષક:',
+'specialloguserlabel'  => 'અભિનય:',
+'speciallogtitlelabel' => 'લક્ષ્યાંક (શીર્ષક અથવા વપરાશકર્તા)',
 'log'                  => 'લૉગ',
 'all-logs-page'        => 'બધાં જાહેર માહિતીપત્રકો',
 'alllogstext'          => '{{SITENAME}} ના લોગનો સંયુક્ત વર્ણન.
@@ -1921,7 +1929,7 @@ $1',
 'sp-deletedcontributions-contribs' => 'યોગદાન',
 
 # Special:LinkSearch
-'linksearch'       => 'બાહ્ય કડીઓ',
+'linksearch'       => 'બાહ્ય કડીઓ શોધ',
 'linksearch-pat'   => 'શોધા આલેખ',
 'linksearch-ns'    => 'નામાવકાશ:',
 'linksearch-ok'    => 'શોધ',
@@ -1994,10 +2002,10 @@ $1',
 'emailmessage'         => 'સંદેશો:',
 'emailsend'            => 'મોકલો',
 'emailccme'            => 'મારા ઈ-મેલની પ્રત મને મોકલો',
-'emailccsubject'       => 'તમારો સંદેશની પ્રત  $1: $2 માઁ',
+'emailccsubject'       => '$1ને તમે મોકલેલા સંદેશાની પ્રત: $2',
 'emailsent'            => 'ઈ-મેલ મોકલી દેવાયો',
 'emailsenttext'        => 'તમારો ઈ-મેલ મોકલી દેવાયો છે',
-'emailuserfooter'      => 'આ ઈ-મેલ $1 દ્વારા $2ને  "E-mail user" સૂત્ર  {{SITENAME}} પર મોકલાવાયું છે.',
+'emailuserfooter'      => 'આ પત્ર $1 દ્વારા $2ને  {{SITENAME}} પરની "સભ્યને ઇ-મેલ કરો" કડી મારફતે મોકલવામાં આવ્યો છે.',
 
 # User Messenger
 'usermessage-summary' => 'પ્રણાલી સંદેશા મૂકાયો',
@@ -2139,11 +2147,11 @@ Deleting it may disrupt database operations of {{SITENAME}};',
 
 # Protect
 'protectlogpage'              => 'સુરક્ષા માહિતિ પત્રક',
-'protectlogtext'              => 'પાનાના સંરક્ષણ લગાવવાના અને હટાવવાની યાદિ આપી છે 
-હાલમાં સક્રીય પાના સુરક્ષાની યાદિ [[Special:ProtectedPages|protected pages list]] આ પ્રમાણે છે',
+'protectlogtext'              => 'નીચે પૃષ્ઠ રક્ષણ માટે ફેરફારોની યાદી છે.
+જુઓ [[વિશેષ: Protected Pages | સુરક્ષિત પાનાંઓ યાદી]] વર્તમાનમાં ઓપરેશનલ પાનું સુરક્ષા યાદી માટે.',
 'protectedarticle'            => 'સુરક્ષિત "[[$1]]"',
 'modifiedarticleprotection'   => '"[[$1]]"નું સુરક્ષાસ્તર બદલ્યું',
-'unprotectedarticle'          => 'અસુરક્ષિત "[[$1]]"',
+'unprotectedarticle'          => 'દૂર રક્ષણ',
 'movedarticleprotection'      => 'સંરક્ષણ વિકલ્પ  "[[$2]]" થી "[[$1]]" પર હટાવયા.',
 'protect-title'               => '"$1"નું સુરક્ષાસ્તર બદલ્યું',
 'prot_1movedto2'              => '[[$1]]નું નામ બદલીને [[$2]] કરવામાં આવ્યું છે.',
@@ -2296,7 +2304,7 @@ Clicking '''''{{int:undeletereset}}''''' will clear the comment field and all ch
 'nolinkshere-ns'           => "પસંદ કરેલ નામ સ્થળમાં કોઇ પાના '''[[:$1]]'''  સાથે જોડાયેલ નથી.",
 'isredirect'               => 'પાનું અહીં વાળો',
 'istemplate'               => 'સમાવેશ',
-'isimage'                  => 'તસવીરની કડી',
+'isimage'                  => 'ફાઇલની કડી',
 'whatlinkshere-prev'       => '{{PLURAL:$1|પહેલાનું|પહેલાનાં $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|પછીનું|પછીનાં $1}}',
 'whatlinkshere-links'      => '←  કડીઓ',
@@ -2353,7 +2361,7 @@ Clicking '''''{{int:undeletereset}}''''' will clear the comment field and all ch
 'ipusubmit'                       => 'આપ્રતિબંધન હટાવો',
 'unblocked'                       => '[[User:$1|$1]] પ્રતિબંધિત કરાયા',
 'unblocked-id'                    => ' $1 નો પ્રતિબંધ હટાવાયો',
-'ipblocklist'                     => 'પ્રતિબંધિત IP સરનામા અને સભ્યોની યાદી',
+'ipblocklist'                     => 'અવરોધિત વપરાશકર્તાઓ',
 'ipblocklist-legend'              => 'પ્રતિબંધિત સભ્ય શોધો',
 'ipblocklist-username'            => 'સભ્યનામ કે IP સરનામું:',
 'ipblocklist-sh-userblocks'       => '$1 ખાતા પર પ્રતિબંધ',
@@ -2661,7 +2669,7 @@ $1 પહેલેથી પ્રતિબંધિત છે.
 'tooltip-ca-viewsource'           => 'આ પાનુ સંરક્ષિત છે, તમે તેનો સ્ત્રોત જોઇ શકો છો',
 'tooltip-ca-history'              => 'આ પાનાનાં અગાઉનાં ફેરફારો',
 'tooltip-ca-protect'              => 'આ પાનું સુરક્ષિત કરો',
-'tooltip-ca-unprotect'            => 'આ પાનાની સુરક્ષા હટાવો.',
+'tooltip-ca-unprotect'            => 'આ પાનું રક્ષણ બદલો',
 'tooltip-ca-delete'               => 'આ પાનું હટાવો',
 'tooltip-ca-undelete'             => 'આ પાનું હટાવાયું તે પહેલાના ફેરફારો હટાવો.',
 'tooltip-ca-move'                 => 'આ પાનું ખસેડો',
@@ -2706,7 +2714,7 @@ $1 પહેલેથી પ્રતિબંધિત છે.
 'tooltip-watch'                   => 'આ પાનાને તમારી ધ્યાનસૂચિમાં ઉમેરો',
 'tooltip-recreate'                => 'આપાનું ફરીથી રચો ભલેને તે પહેલાં ભૂસાડી દેવાયું હોય',
 'tooltip-upload'                  => 'ફાઇલ ચડાવવાનું શરૂ કરો',
-'tooltip-rollback'                => '"પાછું વાળો" એક જ ક્લિકમાં છેલ્લા સભ્યએ આ પાનામાં કરેલા બધા ફેરફારો પાછા વાળશે',
+'tooltip-rollback'                => '"પાછું વાળો" એક જ ક્લિકમાં આ પાનામાં છેલ્લા સભ્યએ કરેલા બધા ફેરફારો પાછા વાળશે',
 'tooltip-undo'                    => '"રદ કરો" આ ફેરફારને પાછો વાળશે અને ફેરફાર પછીનું પૂર્વાવલોકન ફોર્મ નવા પાના તરીકે ખુલશે.
 તે તમને \'સારાંશ\'માં કારણ જણાવવા દેશે.',
 'tooltip-preferences-save'        => 'પસંદ સાચવો',
@@ -2747,22 +2755,22 @@ $1 પહેલેથી પ્રતિબંધિત છે.
 'numtalkauthors' => 'લેખકોની સંખ્યા (ચર્ચા પાનું): $1',
 
 # Math options
-'mw_math_png'    => 'PNGને હમેંશા પરત કરો',
-'mw_math_simple' => ' જો સરળ હોય તો  HTML અન્યથા PNG',
+'mw_math_png'    => 'PNG હંમેશા હાજર કરો',
+'mw_math_simple' => 'ખૂબ સરળ, PNG અથવા અન્ય જો એચટીએમએલ',
 'mw_math_html'   => 'જો સરળ હોય તો  HTML અન્યથા PNG',
-'mw_math_source' => 'આને શબ્દ રહેવા દો (ટેક્સ્ટ બ્રાઉઝર)',
+'mw_math_source' => 'આને TeX તરીકે રહેવા દો (ટેક્સ્ટ બ્રાઉઝરો માટે)',
 'mw_math_modern' => 'અત્યાધુનિક બ્રાઉઝરો માટે ભલામણ યોગ્ય',
 'mw_math_mathml' => ' MathML શક્ય હોય તો  (પ્રયોગાત્મક)',
 
 # Math errors
 'math_failure'          => 'પદચ્છેદ અસફળ',
 'math_unknown_error'    => 'અજ્ઞાત ત્રુટિ',
-'math_unknown_function' => 'અજ્ઞાત ફંક્શન',
-'math_lexing_error'     => 'લેખન ક્ર્મ / વિધી ત્રુટિ',
-'math_syntax_error'     => 'સૂત્ર લેખન ત્રુટિ',
-'math_image_error'      => 'PNG રૂપાંતરણ નિષ્ફળ;  latex અને dvipng (or dvips + gs + convert) બરાબર ચડાવાયું છે કે કેમ તે ચકાસો',
-'math_bad_tmpdir'       => 'હંગામી ગણિત ડીરેક્ટરી લખી કે રચી નહીં શકાય.',
-'math_bad_output'       => 'ઉત્તરીય ગણિત ડીરેક્ટરી લખી કે રચી નહીં શકાય.',
+'math_unknown_function' => 'અજ્ઞાત કાર્ય',
+'math_lexing_error'     => 'નિયમ ભંગ',
+'math_syntax_error'     => 'સૂત્રલેખન ત્રુટિ',
+'math_image_error'      => 'PNG રૂપાંતરણ નિષ્ફળ;  latex અને dvipng (or dvips + gs + convert)નું પ્રતિષ્ઠાપન બરાબર થયું છે કે નહી તે ચકાસો',
+'math_bad_tmpdir'       => 'હંગામી ગણિત ડીરેક્ટરીમાં લખવું કે નવી બનાવવી શક્ય નથી',
+'math_bad_output'       => 'ગણિત પરિણામ ડીરેક્ટરીમાં લખવું કે નવી બનાવવી શક્ય નથી',
 'math_notexvc'          => 'ચલાવી શકાય તેવી texvc ગાયબ ; આને ચડાવવા math/README  જુઓ.',
 
 # Patrolling
@@ -2886,8 +2894,8 @@ $1 પહેલેથી પ્રતિબંધિત છે.
 'exif-colorspace'                  => 'રંગ માટે જગ્યા',
 'exif-componentsconfiguration'     => 'દરેક ભાગનો અર્થ',
 'exif-compressedbitsperpixel'      => 'ચિત્ર સરખામણી મોડ',
-'exif-pixelydimension'             => 'ચિત્ર માટે વૈધ પહોળાઇ',
-'exif-pixelxdimension'             => 'ચિત્રની વૈધ ઊઁચાઈ',
+'exif-pixelydimension'             => 'ચિત્ર પહોળાઇ',
+'exif-pixelxdimension'             => 'ચિત્રની ઊઁચાઈ',
 'exif-makernote'                   => 'ઉત્પાદકની નોંધ',
 'exif-usercomment'                 => 'સભ્યની ટિપ્પણી',
 'exif-relatedsoundfile'            => 'સંબંધિત શ્રાવ્ય ફાઈલો',
@@ -2903,9 +2911,9 @@ $1 પહેલેથી પ્રતિબંધિત છે.
 'exif-spectralsensitivity'         => 'રંગપટલ સંવેદના',
 'exif-isospeedratings'             => 'ISO ઝડપ ક્ર્માંક',
 'exif-oecf'                        => 'દ્રસ્ટિ ઇલેક્ટ્રોનીક રૂપાંતરણ અચળાંક',
-'exif-shutterspeedvalue'           => 'દ્વારની ઝડપ',
+'exif-shutterspeedvalue'           => 'સર્વોચ્ચ શટર ઝડપ',
 'exif-aperturevalue'               => 'છીદ્ર માપ',
-'exif-brightnessvalue'             => 'તેજસ્વીતા',
+'exif-brightnessvalue'             => 'સર્વોચ્ચ તેજ',
 'exif-exposurebiasvalue'           => 'પ્રકાશાગમ ફરક્',
 'exif-maxaperturevalue'            => 'મહત્તમ ભૂમિ છીદ્ર',
 'exif-subjectdistance'             => 'વસ્તુનું અંતર',
@@ -2981,9 +2989,9 @@ $1 પહેલેથી પ્રતિબંધિત છે.
 'exif-orientation-3' => '૧૮૦° ફેરવો',
 'exif-orientation-4' => 'ઊભી દિશામાં પ્રતિબિંબિત કરો.',
 'exif-orientation-5' => ' ઘડિયાળની વિરુદ્ધ દિશામાં ૯૦° ફેરવો અને ઊભી દિશામાં પ્રતિબિંબિત કરો',
-'exif-orientation-6' => 'ઘડિયાળની દિશામાં ૯૦° ફેરવો',
+'exif-orientation-6' => '૯૦° કક્ષામાં ફરવું',
 'exif-orientation-7' => ' ઘડિયાળની દિશામાં ૯૦° ફેરવો અને ઊભી દિશામાં પ્રતિબિંબિત કરો',
-'exif-orientation-8' => '૯૦° ઉલટ ઘડિયાળ દિશામાં ફેરવો',
+'exif-orientation-8' => 'ઘડિયાળની દિશામાં ૯૦° ફેરવો',
 
 'exif-planarconfiguration-1' => 'ખરબચડું',
 'exif-planarconfiguration-2' => 'સપાટ',
