@@ -30,6 +30,7 @@ setting since version 1.2.0. If you have it on, turn it '''off''' if you can.
 * (bug 33305) Make mw.util.addCSS resistant to IE's @font-face bug by setting
   cssText after DOM insertion.
 * (bug 29102) Upgrades no longer fail with the error "Unknown character set: 'mysql4'.
+* (bug 25355) Parser generates edit section links for special pages.
 
 == MediaWiki 1.18 ==
 2011-11-24
