@@ -71,7 +71,6 @@ class SqliteUpdater extends DatabaseUpdater {
 			array( 'modifyField', 'user', 'ug_group', 'patch-ug_group-length-increase.sql' ),
 			array( 'addField',	'uploadstash',	'us_chunk_inx',		'patch-uploadstash_chunk.sql' ),
 			array( 'addfield', 'job',           'job_timestamp',    'patch-jobs-add-timestamp.sql' ),
-			array( 'addTable', 'concurrencycheck',					'patch-concurrencycheck.sql'),
 		);
 	}
 

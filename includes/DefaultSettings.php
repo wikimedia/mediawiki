@@ -5717,16 +5717,6 @@ $wgDBtestuser = ''; //db user that has permission to create and drop the test da
 $wgDBtestpassword = '';
 
 /**
- * ConcurrencyCheck keeps track of which web resources are in use, for producing higher-quality UI
- */
-$wgConcurrency = array();
-$wgConcurrency['ExpirationDefault'] = 60 * 15; // Default checkout duration. 15 minutes.
-$wgConcurrency['ExpirationMax'] = 60 * 30; // Maximum possible checkout duration. 30 minutes.
-$wgConcurrency['ExpirationMin'] = 1; // Minimum possible checkout duration.  Negative is possible for testing if you want.
-$wgConcurrency['TrustMemc'] = true; // If running in an environment with multiple discrete caches, set to false.
-
-
-/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}
