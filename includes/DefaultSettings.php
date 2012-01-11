@@ -5719,10 +5719,11 @@ $wgDBtestpassword = '';
 /**
  * ConcurrencyCheck keeps track of which web resources are in use, for producing higher-quality UI
  */
-$wgConcurrencyExpirationDefault = 60 * 15; // Default checkout duration. 15 minutes.
-$wgConcurrencyExpirationMax = 60 * 30; // Maximum possible checkout duration. 30 minutes.
-$wgConcurrencyExpirationMin = 60 * -1; // Minimum possible checkout duration.  Negative is possible (but barely) for testing.
-$wgConcurrencyTrustMemc = true; // If running in an environment with multiple discrete caches, set to false.
+$wgConcurrency = array();
+$wgConcurrency['ExpirationDefault'] = 60 * 15; // Default checkout duration. 15 minutes.
+$wgConcurrency['ExpirationMax'] = 60 * 30; // Maximum possible checkout duration. 30 minutes.
+$wgConcurrency['ExpirationMin'] = 1; // Minimum possible checkout duration.  Negative is possible for testing if you want.
+$wgConcurrency['TrustMemc'] = true; // If running in an environment with multiple discrete caches, set to false.
 
 
 /**

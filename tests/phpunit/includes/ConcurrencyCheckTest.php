@@ -28,9 +28,10 @@ class ConcurrencyCheckTest extends MediaWikiTestCase {
 
 		// turn on memcached for this test.
 		// if no memcached is present, this still works fine.
-		global $wgMainCacheType;
+		global $wgMainCacheType, $wgConcurrency;
 		$this->oldcache = $wgMainCacheType;
 		$wgMainCacheType = CACHE_MEMCACHED;
+		$wgConcurrency['ExpirationMin'] = -60;  // negative numbers are needed for testing
 	}
 
 	public function tearDown() {
