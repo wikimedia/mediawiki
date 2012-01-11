@@ -112,6 +112,9 @@ return array(
 	'jquery.colorUtil' => array(
 		'scripts' => 'resources/jquery/jquery.colorUtil.js',
 	),
+	'jquery.concurrency' => array(
+		'scripts' => 'resources/jquery/jquery.concurrency.js',
+	),
 	'jquery.cookie' => array(
 		'scripts' => 'resources/jquery/jquery.cookie.js',
 	),
