@@ -212,7 +212,7 @@ class ConcurrencyCheck {
 	}
 
 	public function status( $keys ) {
-		global $wgMemc;
+		global $wgMemc, $wgDBtype;
 		$dbw = $this->dbw;
 		$now = time();
 
@@ -243,8 +243,6 @@ class ConcurrencyCheck {
 			// If it's time to go to the database, go ahead and expire old rows.
 			$this->expire();
 			
-			// the transaction seems incongruous, I know, but it's to keep the cache update atomic.
-			$dbw->begin();
 			
 			// Why LOCK IN SHARE MODE, you might ask?  To avoid a race condition: Otherwise, it's possible for
 			// a checkin and/or checkout to occur between this select and the value being stored in cache, which
@@ -258,6 +256,14 @@ class ConcurrencyCheck {
 			//
 			// It appears all the DBMSes we use support LOCK IN SHARE MODE, but if that's not the case, the second
 			// solution above could be implemented instead.
+			$queryParams = array();
+			if( $wgDBtype === 'mysql' ) {
+				$queryParamsp[] = 'LOCK IN SHARE MODE';
+
+				// the transaction seems incongruous, I know, but it's to keep the cache update atomic.
+				$dbw->begin();
+			}
+			
 			$res = $dbw->select(
 				'concurrencycheck',
 				array( '*' ),
@@ -267,23 +273,29 @@ class ConcurrencyCheck {
 					'cc_expiration > ' . $dbw->addQuotes( wfTimestamp( TS_MW ) ),
 				),
 				__METHOD__,
-				array('LOCK IN SHARE MODE')
+				$queryParams
 			);
 
 			while( $res && $record = $res->fetchRow() ) {
 				$record['status'] = 'valid';
 				$checkouts[ $record['cc_record'] ] = $record;
 
-				// safe to store values since this is inside the transaction
-				$wgMemc->set(
-					wfMemcKey( 'concurrencycheck', $this->resourceType, $record['cc_record'] ),
-					array( 'userId' => $record['cc_user'], 'expiration' => $record['cc_expiration'] ),
-					$record['cc_expiration'] - time()
-				);
+				// TODO: implement strategy #2 above, determine which DBMSes need which method.
+				// for now, disable adding to cache here for databases that don't support read locking
+				if( $wgDBtype !== 'mysql' ) {
+					// safe to store values since this is inside the transaction
+					$wgMemc->set(
+						wfMemcKey( 'concurrencycheck', $this->resourceType, $record['cc_record'] ),
+						array( 'userId' => $record['cc_user'], 'expiration' => $record['cc_expiration'] ),
+						$record['cc_expiration'] - time()
+					);
+				}
 			}
 
-			// end the transaction.
-			$dbw->rollback();
+			if( $wgDBtype === 'mysql' ) {
+				// end the transaction.
+				$dbw->rollback();
+			}
 		}
 
 		// if a key was passed in but has no (unexpired) checkout, include it in the
