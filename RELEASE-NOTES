@@ -4,10 +4,12 @@ Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it '''off''' if you can.
 
 == MediaWiki 1.17.2 ==
+2012-01-11
 
-????-??-??
+This a maintenance and security release of the MediaWiki 1.17 branch.
 
-This is a maintenance release of the MediaWiki 1.17 branch.
+=== Security changes ===
+* (bug 33117) prop=revisions allows deleted text to be exposed through cache pollution.
 
 === Changes since 1.17.1 ===
 * (bug 32709) Private Wiki users were always taken to Special:Badtitle on login.
@@ -85,6 +87,8 @@ Selected changes since MediaWiki 1.16 that may be of interest:
 * (bug 30219) The page shown when LocalSettings.php does not exist was broken on
   Windows servers.
 * Hardcoded NLS_NUMERIC_CHARACTERS for Oracle DB to prevent type conversion errors.
+* Fixed recentchanges FK violation on page delete and cache purge error in updater
+  for Oracle DB.
 
 === Changes since 1.17.0rc1 ===
 
