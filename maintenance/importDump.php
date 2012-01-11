@@ -203,7 +203,7 @@ TEXT;
 	}
 
 	function showReport() {
-		if ( $this->mQuiet ) {
+		if ( !$this->mQuiet ) {
 			$delta = wfTime() - $this->startTime;
 			if ( $delta ) {
 				$rate = sprintf( "%.2f", $this->pageCount / $delta );
