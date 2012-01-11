@@ -346,6 +346,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Lähetä minulle kopio MediaWikin kautta lähetetyistä sähköposteista',
 'tog-diffonly'                => 'Älä näytä sivun sisältöä versioita vertailtaessa',
 'tog-showhiddencats'          => 'Näytä piilotetut luokat',
+'tog-noconvertlink'           => 'Älä muunna linkkien otsikoita toiseen kirjoitusjärjestelmään',
 'tog-norollbackdiff'          => 'Älä näytä eroavaisuuksia palauttamisen jälkeen',
 
 'underline-always'  => 'Aina',
@@ -920,8 +921,8 @@ tai <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}
 'blocked-notice-logextract'        => 'Tämä käyttäjä on tällä hetkellä estetty.
 Alla on viimeisin estolokin tapahtuma:',
 'clearyourcache'                   => "'''Huomautus:''' Selaimen välimuisti pitää tyhjentää asetusten tallentamisen jälkeen, jotta muutokset tulisivat voimaan.
-* '''Firefox ja Safari:''' Napsauta ''Shift''-näppäin pohjassa ''Päivitä'' tai paina ''Ctrl-F5'' tai ''Ctrl-R'' (''Command-R'' Macilla)
-* '''Google Chrome:''' Paina ''Ctrl-Shift-R'' (''Command-Shift-R'' Macilla)
+* '''Firefox ja Safari:''' Napsauta ''Shift''-näppäin pohjassa ''Päivitä'' tai paina ''Ctrl-F5'' tai ''Ctrl-R'' (''⌘-R'' Macilla)
+* '''Google Chrome:''' Paina ''Ctrl-Shift-R'' (''⌘-Shift-R'' Macilla)
 * '''Internet Explorer:''' Napsauta ''Ctrl''-näppäin pohjassa ''Päivitä'' tai paina ''Ctrl-F5''
 * '''Konqueror''': Napsauta ''Päivitä'' tai paina ''F5''
 * '''Opera:''' Tyhjennä välimuisti: ''Tools→Preferences''",
@@ -1427,12 +1428,12 @@ Tässä satunnaisesti tuotettu arvo, jota voit käyttää: $1',
 'group-suppress'      => 'häivytysoikeuden käyttäjät',
 'group-all'           => '(kaikki)',
 
-'group-user-member'          => 'käyttäjä',
-'group-autoconfirmed-member' => 'automaattisesti hyväksytty käyttäjä',
-'group-bot-member'           => 'botti',
-'group-sysop-member'         => 'ylläpitäjä',
-'group-bureaucrat-member'    => 'byrokraatti',
-'group-suppress-member'      => 'häivytysoikeuden käyttäjä',
+'group-user-member'          => '{{GENDER:$1|käyttäjä}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|automaattisesti hyväksytty käyttäjä}}',
+'group-bot-member'           => '{{GENDER:$1|botti}}',
+'group-sysop-member'         => '{{GENDER:$1|ylläpitäjä}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|byrokraatti}}',
+'group-suppress-member'      => '{{GENDER:$1|häivytysoikeuden käyttäjä}}',
 
 'grouppage-user'          => '{{ns:project}}:Käyttäjät',
 'grouppage-autoconfirmed' => '{{ns:project}}:Automaattisesti hyväksytyt käyttäjät',
@@ -1691,6 +1692,20 @@ Java-tiedostojen tallentaminen ei ole sallittua, sillä ne saattavat aiheuttaa t
 'watchthisupload'             => 'Tarkkaile tätä tiedostoa',
 'filewasdeleted'              => 'Tämän niminen tiedosto on lisätty ja poistettu aikaisemmin. Tarkista $1 ennen jatkamista.',
 'filename-bad-prefix'         => "Tallentamasi tiedoston nimi alkaa merkkijonolla '''$1''', joka on yleensä digitaalikameroiden automaattisesti antama nimi, joka ei kuvaa tiedoston sisältöä. Anna tiedostolle kuvaavampi nimi.",
+'filename-prefix-blacklist'   => ' #<!-- älä muokkaa tätä riviä --> <pre>
+# Syntaksi on seuraava:
+#   * #-merkki aloittaa kommentin, joka jatkuu rivin loppuun
+#   * Jokainen epätyhjä rivi on tiedostonimien etuliite digitaalikameroiden yleisesti käyttämille tiedostonimille
+CIMG # Casio
+DSC_ # Nikon
+DSCF # Fuji
+DSCN # Nikon
+DUW # jotkut matkapuhelimet
+IMG # yleinen
+JD # Jenoptik
+MGP # Pentax
+PICT # muut
+ #</pre> <!-- älä muokkaa tätä riviä -->',
 'upload-success-subj'         => 'Tallennus onnistui',
 'upload-success-msg'          => 'Tallennuksesi [$2] onnistui. Tiedosto on saatavilla täällä: [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Tallennusongelma',
@@ -1732,7 +1747,7 @@ Sitä ei voida tarkistaa tietoturvan varalta kunnolla.',
 'img-auth-nopathinfo'       => 'PATH_INFO puuttuu.
 Palvelintasi ei ole asetettu välittämään tätä tietoa.
 Se saattaa olla CGI-pohjainen eikä voi tukea img_authia.
-Katso http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+[//www.mediawiki.org/wiki/Manual:Image_Authorization Katso lisätietoja].',
 'img-auth-notindir'         => 'Pyydetty polku ei ole asetuksissa tiedostojen tallennushakemistona.',
 'img-auth-badtitle'         => '”$1” ei kelpaa oikean otsikon muodostamiseen.',
 'img-auth-nologinnWL'       => 'Et ole kirjautunut sisään ja tiedosto ”$1” ei ole sallittujen tiedostojen luettelossa.',
@@ -2038,9 +2053,9 @@ Katso myös [[Special:WantedCategories|halutut luokat]].',
 'linksearch-pat'   => 'Osoite',
 'linksearch-ns'    => 'Nimiavaruus',
 'linksearch-ok'    => 'Etsi',
-'linksearch-text'  => 'Asteriskia (*) voi käyttää jokerimerkkinä, esimerkiksi ”*.wikipedia.org”.
-
-Tuetut protokollat: <tt>$1</tt>.',
+'linksearch-text'  => 'Tähteä (*) voi käyttää jokerimerkkinä, esimerkiksi ”*.wikipedia.org”.
+Vähintään ylätason verkkotunnus, esimerkiksi "*.org", tarvitaan.<br />
+Tuetut protokollat: <tt>$1</tt> (älä lisää näitä hakuusi).',
 'linksearch-line'  => '$1 on linkitetty sivulta $2',
 'linksearch-error' => 'Jokerimerkkiä voi käyttää ainoastaan osoitteen alussa.',
 
@@ -2791,16 +2806,38 @@ Tallenna tiedot koneellesi ja tuo ne tällä sivulla.',
 'tooltip-summary'                 => 'Kirjoita lyhyt yhteenveto',
 
 # Stylesheets
-'common.css'   => '/* Tämä sivu sisältää koko sivustoa muuttavia tyylejä. */',
-'monobook.css' => '/* Tämä sivu sisältää Monobook-ulkoasua muuttavia tyylejä. */',
+'common.css'              => '/* Tämä sivu sisältää koko sivustoa muuttavia tyylejä. */',
+'standard.css'            => '/* Tämä sivu sisältää Perus-ulkoasua muuttavia tyylejä. */',
+'nostalgia.css'           => '/* Tämä sivu sisältää Nostalgia-ulkoasua muuttavia tyylejä. */',
+'cologneblue.css'         => '/* Tämä sivu sisältää Kölnin sininen -ulkoasua muuttavia tyylejä. */',
+'monobook.css'            => '/* Tämä sivu sisältää Monobook-ulkoasua muuttavia tyylejä. */',
+'myskin.css'              => '/* Tämä sivu sisältää Oma tyylisivu -ulkoasua muuttavia tyylejä. */',
+'chick.css'               => '/* Tämä sivu sisältää Chick-ulkoasua muuttavia tyylejä. */',
+'simple.css'              => '/* Tämä sivu sisältää Yksinkertainen-ulkoasua muuttavia tyylejä. */',
+'modern.css'              => '/* Tämä sivu sisältää Moderni-ulkoasua muuttavia tyylejä. */',
+'vector.css'              => '/* Tämä sivu sisältää Vector-ulkoasua muuttavia tyylejä. */',
+'print.css'               => '/* Tämä sivu sisältää tulostettua sivua muuttavia tyylejä */',
+'noscript.css'            => '/* Tämä sivun tyylit muuttavat niiden käyttäjien tyylejä, joilla JavaScript ei ole käytössä */',
+'group-autoconfirmed.css' => '/* Tämä sivun tyylit muuttavat automaattisesti hyväksyttyjen käyttäjien tyylejä */',
+'group-bot.css'           => '/* Tämä sivun tyylit muuttavat bottien tyylejä */',
+'group-sysop.css'         => '/* Tämä sivun tyylit muuttavat ylläpitäjien tyylejä */',
+'group-bureaucrat.css'    => '/* Tämä sivun tyylit muuttavat byrokraattien tyylejä */',
 
 # Scripts
-'common.js'      => '/* Tämän sivun koodi liitetään jokaiseen sivulataukseen */',
-'nostalgia.js'   => '/* Tämän sivun JavaScript-koodi liitetään Nostalgia-tyyliin */',
-'cologneblue.js' => '/* Tämän sivun JavaScript-koodi liitetään Kölnin sininen -tyyliin */',
-'monobook.js'    => '/* Tämän sivun JavaScript-koodi liitetään Monobook-tyyliin */',
-'simple.js'      => '/* Tämän sivun JavaScript-koodi liitetään Yksinkertaistettuun tyyliin */',
-'modern.js'      => '/* Tämän sivun JavaScript-koodi liitetään Moderni-tyyliin */',
+'common.js'              => '/* Tämän sivun JavaScript-koodi liitetään jokaiseen sivulataukseen */',
+'standard.js'            => '/* Tämän sivun JavaScript-koodi liitetään Perus-tyyliin */',
+'nostalgia.js'           => '/* Tämän sivun JavaScript-koodi liitetään Nostalgia-tyyliin */',
+'cologneblue.js'         => '/* Tämän sivun JavaScript-koodi liitetään Kölnin sininen -tyyliin */',
+'monobook.js'            => '/* Tämän sivun JavaScript-koodi liitetään Monobook-tyyliin */',
+'myskin.js'              => '/* Tämän sivun JavaScript-koodi liitetään Oma tyylisivu -tyyliin */',
+'chick.js'               => '/* Tämän sivun JavaScript-koodi liitetään Chick-tyyliin */',
+'simple.js'              => '/* Tämän sivun JavaScript-koodi liitetään Yksinkertaistettuun tyyliin */',
+'modern.js'              => '/* Tämän sivun JavaScript-koodi liitetään Moderni-tyyliin */',
+'vector.js'              => '/* Tämän sivun JavaScript-koodi liitetään Vector-tyyliin */',
+'group-autoconfirmed.js' => '/* Tämän sivun JavaScript-koodi liitetään vain automaattisesti hyväksytyille käyttäjille */',
+'group-bot.js'           => '/* Tämän sivun JavaScript-koodi liitetään vain boteille */',
+'group-sysop.js'         => '/* Tämän sivun JavaScript-koodi liitetään vain ylläpitäjille */',
+'group-bureaucrat.js'    => '/* Tämän sivun JavaScript-koodi liitetään vain byrokraateille */',
 
 # Metadata
 'notacceptable' => 'Wikipalvelin ei voi näyttää tietoja muodossa, jota ohjelmasi voisi lukea.',
@@ -2850,8 +2887,8 @@ Tallenna tiedot koneellesi ja tuo ne tällä sivulla.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Merkitse tarkastetuksi',
-'markaspatrolledtext'                 => 'Merkitse muokkaus tarkastetuksi',
-'markedaspatrolled'                   => 'Tarkastettu',
+'markaspatrolledtext'                 => 'Merkitse muutos tarkastetuksi',
+'markedaspatrolled'                   => 'Muutos on tarkastettu',
 'markedaspatrolledtext'               => 'Valittu versio sivusta [[:$1]] on merkitty tarkastetuksi.',
 'rcpatroldisabled'                    => 'Tuoreiden muutosten tarkastustoiminto ei ole käytössä',
 'rcpatroldisabledtext'                => 'Tuoreiden muutosten tarkastustoiminto ei ole käytössä.',
@@ -3125,6 +3162,7 @@ Kaikki muut linkit ovat poikkeuksia eli toisin sanoen sivuja, joissa tiedostoa s
 'exif-compression-2' => 'CCITT:n Group 3 -yksiulotteinen muokattu Huffman-ajopituuskoodaus',
 'exif-compression-3' => 'CCITT:n Group 3 -faksipakkaus',
 'exif-compression-4' => 'CCITT:n Group 4 -faksipakkaus',
+'exif-compression-6' => 'JPEG (vanha)',
 
 'exif-copyrighted-true'  => 'Tekijänoikeuksien alainen',
 'exif-copyrighted-false' => 'Vapaasti käytettävä',

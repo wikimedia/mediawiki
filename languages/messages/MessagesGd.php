@@ -444,11 +444,29 @@ Na dìochuimhnich na [[Special:Preferences|roghainnean agad air {{SITENAME}}]] a
 Nach tagh thu ainm eile?",
 'loginerror'                 => 'Mearachd log a-steach',
 'createaccounterror'         => 'Cha do ghabh an cunntas a leanas a chruthachadh: $1',
+'nocookiesnew'               => "Chaidh an cunntas a chruthachadh ach cha do rinn thu logadh a-steach.
+Tha {{SITENAME}} a' cleachdadh briosgaidean gus daoine a logadh a-steach.
+Chuir thu na briosgaidean à comas.
+Cuir am comas iad agus log a-steach leis an ainm-chleachdaiche 's am facal-faire agad an uairsin.",
+'nocookieslogin'             => "Tha {{SITENAME}} a' cleachdadh briosgaidean gus daoine a logadh a-steach.
+Chuir thu briosgaidean à comas.
+Cuir an comas iad is feuch ris a-rithist.",
+'nocookiesfornew'            => "Cha deach an cunntas a chruthachadh oir cha b' urrainn dhuinn a thùs a dhearbhadh.
+Dèan cinnteach gu bheil briosgaidean an comas, ath-luchdaich an duilleag seo 's feuch ris a-rithist.",
 'noname'                     => 'Cha do thagh thu ainm-cleachdaiche dligheach.',
+'loginsuccesstitle'          => 'Rinn thu logadh a-steach',
+'loginsuccess'               => "'''Rinn thu logadh a-steach air {{SITENAME}} mar \"\$1\".'''",
+'nosuchuser'                 => 'Chan eil cleachdaiche ann air a bheil "$1".
+Tha ainmean chleachdaichean mothaichail do litrichean mòra \'s beaga.
+Thoir sùil air an litreachadh no [[Special:UserLogin/signup|cruthaich cunntas ùr]].',
 'nosuchusershort'            => 'Chan eil cleachdaiche ann leis an ainm "$1".
 Cuir sùil air an litreachadh.',
+'nouserspecified'            => 'Tha agad ri ainm-cleachdaiche a chur ann.',
+'login-userblocked'          => 'Chaidh an cleachdaiche seo a chasgadh. Chan eil logadh a-steach ceadaichte dhaibh.',
 'wrongpassword'              => 'Chuir thu a-steach facal-faire cearr.
 Am feuch thu ris a-rithist?',
+'wrongpasswordempty'         => 'Cha do chuir thu a-steach facal-faire.
+Feuch ris a-rithist.',
 'mailmypassword'             => "Cuir facal-faire ùr thugam air a' phost-dealain",
 'acct_creation_throttle_hit' => "Chruthaich na h-aoighean air an Uici seo {{PLURAL:$1|chunntas|chunntas|chunntas|chunntas|cunntasan|cunntas}} fon IP agad an-dè agus sin an àireamh as motha a tha ceadaichte. Chan urrainn do dh'aoighean eile on IP seo barrachd chunntasan a chruthachadh air sgàth sin.",
 'accountcreated'             => 'Cunntas cruthaichte',
@@ -731,7 +749,7 @@ Tha duilleagan air [[Special:Watchlist|do chlàr-faire]] ann an litrichean '''tr
 'recentchangeslinked-to'       => "Seall mùthaidhean nan duilleagan a tha a' ceangal ris an duilleag sin 'na àite",
 
 # Upload
-'upload'        => 'Luchdaich a-nuas faidhle',
+'upload'        => 'Luchdaich suas faidhle',
 'uploadlogpage' => 'Loga an luchdaidh suas',
 'filename'      => 'Ainm-faidhle',
 'filedesc'      => 'Gearr-chunntas',

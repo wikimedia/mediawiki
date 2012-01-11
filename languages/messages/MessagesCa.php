@@ -809,12 +809,12 @@ Podeu [[Special:Search/{{PAGENAME}}|cercar aquest títol]] en altres pàgines o 
 'userpage-userdoesnotexist-view'   => 'El compte d\'usuari "$1" no està registrat.',
 'blocked-notice-logextract'        => "En aquests moments aquest compte d'usuari es troba blocat.
 Per més detalls, la darrera entrada del registre es mostra a continuació:",
-'clearyourcache'                   => "'''Nota:''' Després de desar, heu de posar al dia la memòria cau del vostre navegador per veure els canvis.
-* '''Firefox / Safari:''' premeu ''Shift'' mentre cliqueu ''Actualitza'' (Reload), o premeu ''Ctrl+F5'' o ''Ctrl+R'' (''Cmd+R'' en un Mac)
-* '''Google Chrome:''' premeu ''Ctrl+Shift+R'' (''Cmd+Shift+R'' en un Mac)
-* '''Internet Explorer:''' premeu ''Ctrl'' mentre cliqueu ''Actualitza'' (Refresh), o premeu ''Ctrl+F5''
-* '''Konqueror:''' cliqueu el botó ''Recarregar'' (Reload), o premeu ''F5''
-* '''Opera:''' esborreu la vostra memòria cau a ''Tools → Preferences''",
+'clearyourcache'                   => "'''Nota:''' Després de desar, podeu haver d'ometre la memòria cau del vostre navegador per a veure'n els canvis.
+* '''Firefox / Safari:''' Premeu ''Maj'' mentre cliqueu a ''Actualitza'' (Reload), o premeu ''Ctrl+F5'' o ''Ctrl+R'' (''⌘+R'' en un Mac)
+* '''Google Chrome:''' Premeu ''Ctrl+Maj+R'' (''⌘+Maj+R'' en un Mac)
+* '''Internet Explorer:''' Premeu ''Ctrl'' mentre cliqueu a ''Actualitza'' (Refresh), o premeu ''Ctrl+F5''
+* '''Konqueror:''' Cliqueu al botó ''Recarrega'' (Reload), o premeu ''F5''
+* '''Opera:''' Netegeu la vostra memòria cau a ''Tools → Preferences''",
 'usercssyoucanpreview'             => "'''Consell:''' Utilitzeu el botó \"{{int:showpreview}}\" per provar el vostre nou CSS abans de desar-lo.",
 'userjsyoucanpreview'              => "'''Consell:''' Utilitzeu el botó \"{{int:showpreview}}\" per provar el vostre nou JavaScript abans de desar-lo.",
 'usercsspreview'                   => "'''Recordeu que esteu previsualitzant el vostre CSS d'usuari.'''
@@ -1339,12 +1339,12 @@ Ha de tenir com a molt {{PLURAL:$1|un caràcter|$1 caràcters}}.',
 'group-suppress'      => 'Oversights',
 'group-all'           => '(tots)',
 
-'group-user-member'          => 'usuari',
-'group-autoconfirmed-member' => 'usuari autoconfirmat',
-'group-bot-member'           => 'bot',
-'group-sysop-member'         => 'administrador',
-'group-bureaucrat-member'    => 'buròcrata',
-'group-suppress-member'      => 'oversight',
+'group-user-member'          => '{{GENDER:$1|usuari|usuària}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|usuari autoconfirmat|usuària autoconfirmada}}',
+'group-bot-member'           => '{{GENDER:$1|bot}}',
+'group-sysop-member'         => '{{GENDER:$1|administrador|administradora}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|buròcrata}}',
+'group-suppress-member'      => '{{GENDER:$1|supervisió}}',
 
 'grouppage-user'          => '{{ns:project}}:Usuaris',
 'grouppage-autoconfirmed' => '{{ns:project}}:Usuaris autoconfirmats',
@@ -1811,7 +1811,7 @@ La descripció de la seva [$2 pàgina de descripció] es mostra a continuació.'
 'statistics-users-active-desc' => "Usuaris que han dut a terme alguna acció en {{PLURAL:$1|l'últim dia|els últims $1 dies}}",
 'statistics-mostpopular'       => 'Pàgines més visualitzades',
 
-'disambiguations'      => 'Pàgines amb enllaços a pàgines de desambiguació',
+'disambiguations'      => 'Pàgines que enllacen a pàgines de desambiguació',
 'disambiguationspage'  => 'Template:Desambiguació',
 'disambiguations-text' => "Les següents pàgines enllacen a una '''pàgina de desambiguació'''.
 Per això, caldria que enllacessin al tema apropiat.<br />
@@ -1910,8 +1910,8 @@ Tingueu en compte que altres llocs web poden enllaçar un fitxer amb un URL dire
 'booksources-invalid-isbn'  => "El codi ISBN donat no és vàlid. Comproveu si l'heu copiat correctament.",
 
 # Special:Log
-'specialloguserlabel'  => 'Usuari:',
-'speciallogtitlelabel' => 'Títol:',
+'specialloguserlabel'  => 'Realitzador:',
+'speciallogtitlelabel' => "L'objectiu (títol o usuari):",
 'log'                  => 'Registres',
 'all-logs-page'        => 'Tots els registres públics',
 'alllogstext'          => "Presentació combinada de tots els registres disponibles de {{SITENAME}}.
@@ -1955,9 +1955,9 @@ Vegeu també [[Special:WantedCategories|les categories soŀlicitades]].",
 'linksearch-pat'   => 'Patró de cerca:',
 'linksearch-ns'    => 'Espai de noms:',
 'linksearch-ok'    => 'Cerca',
-'linksearch-text'  => 'Comodins com "*. wikipedia.org" es pot utilitzar.
+'linksearch-text'  => 'Podeu fer servir caràcters comodí com "*.wikipedia.org".
 Necessita com a mínim un domini de primer nivell, per exemple "*.org".<br />
-Dóna suport a protocols: <tt> $1 </tt> (no afegir algun d\'aquests en la seva recerca).',
+Protocols admesos: <tt> $1 </tt> (no els afegiu en la vostra recerca).',
 'linksearch-line'  => '$1 enllaçat a $2',
 'linksearch-error' => "Els caràcters comodí només poden aparèixer a l'inici de l'url.",
 

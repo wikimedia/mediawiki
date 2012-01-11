@@ -733,6 +733,8 @@ $2',
 ئەگەر تۆ بەکارهێنەرێکی نەناسراوی و هەست ئەکەی ئەم لێدوانە پەیوەندی بە تۆوە نیە تکایە [[Special:UserLogin/signup|ھەژمارێکی نوێ دروست بکە]] یان [[Special:UserLogin|بچۆ ژوورەوە]] لەبەر ئەوەی لەداهاتوودا دەگەڵ بەکارهێنەرانی‌ نەناسراوی دی تێکەڵ نەکرێیت. ''",
 'noarticletext'                    => 'ھەنووکە ھیچ دەقێک لەم پەڕەدا نییە.
 دەتوانی بۆ ئەم ناوە لە [[Special:Search/{{PAGENAME}}|پەڕەکانی تردا بگەڕێی]]، <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} لە لۆگەکاندا بگەڕێی]، یان [{{fullurl:{{FULLPAGENAME}}|action=edit}} ئەم پەڕە دەستکاری بکەیت]</span>.',
+'noarticletext-nopermission'       => 'ھەنووکە ھیچ دەقێک لەم پەڕەیەدا نییە.
+دەتوانی بۆ ئەم ناوە لە [[Special:Search/{{PAGENAME}}|پەڕەکانی تردا بگەڕێی]] یان <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} لە لۆگە پەیوەندیدارەکاندا بگەڕێی]</span>.',
 'userpage-userdoesnotexist'        => 'هەژماری بەکارهێنەری "<nowiki>$1</nowiki>" تۆمار نەکراوە.<br />
 گەر دەتەوێ ئەم لاپەڕە درووست‌کەی یان دەستکاری بکەی تکایە تاقی‌بکەوە .',
 'clearyourcache'                   => "'''ئاگاداری:''' لە دوای پاشەکەوت کردن، لەوانەیە  بۆ بینینی گۆڕانکارییەکان پێویست بێ کاشی وێبگەڕەکەت دەور لێ‌دەیتەوە.
@@ -1254,12 +1256,12 @@ $1",
 'group-suppress'      => 'چاودێرەکان',
 'group-all'           => '(هەموو)',
 
-'group-user-member'          => 'بەکارھێنەر',
-'group-autoconfirmed-member' => 'بەکارھێنەری خۆکار پەسەندکراو',
+'group-user-member'          => '{{GENDER:$1|بەکارھێنەر}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|بەکارھێنەری خۆکار پەسەندکراو}}',
 'group-bot-member'           => 'بۆت',
-'group-sysop-member'         => 'بەڕێوەبەر',
-'group-bureaucrat-member'    => 'بورووکرات',
-'group-suppress-member'      => 'چاودێر',
+'group-sysop-member'         => '{{GENDER:$1|بەڕێوبەر}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|بورووکرات}}',
+'group-suppress-member'      => '{{GENDER:$1|چاودێر}}',
 
 'grouppage-user'          => '{{ns:project}}:بەکارھێنەران',
 'grouppage-autoconfirmed' => '{{ns:project}}:بەکارهێنەرانی خۆکار-بڕواکراو',
@@ -2145,9 +2147,10 @@ $1',
 'undelete-show-file-submit'    => 'بەڵێ',
 
 # Namespace form on various pages
-'namespace'      => 'بۆشاییی ناو:',
-'invert'         => 'ھەڵبژاردەکان پێچەوانە بکە',
-'blanknamespace' => '(سەرەکی)',
+'namespace'             => 'بۆشاییی ناو:',
+'invert'                => 'ھەڵبژاردەکان پێچەوانە بکە',
+'namespace_association' => 'بۆشایی ناوی پەیوەندیدار',
+'blanknamespace'        => '(سەرەکی)',
 
 # Contributions
 'contributions'       => 'بەشدارییەکانی بەکارھێنەر',

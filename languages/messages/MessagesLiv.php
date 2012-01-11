@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Ohpuu
  * @author Warbola
  */
 
@@ -443,7 +444,7 @@ Legend: '''({{int:cur}})''' = vaiţīd līdzinţõmizõks lǟndz redaktsijõks,,
 'filehist-user'             => 'kȭlbatiji',
 'filehist-dimensions'       => 'Sūrit',
 'filehist-comment'          => 'Komentār',
-'imagelinks'                => 'Siḑīmõd fail jūrõ',
+'imagelinks'                => 'Fail kȭlbatõmi',
 'linkstoimage'              => 'Sīen bīldan {{PLURAL:$1|sidūb se lēḑ|$1 sidābõd ne lēḑõd}}:',
 'nolinkstoimage'            => 'Äbmingi lēḑ äb sidā sīe bīlda pǟlõ',
 'sharedupload'              => 'Se fail um võttõd ovātõst $1 ja siedā võib vȱlda kȭlbatõd ka mūši projektis.',

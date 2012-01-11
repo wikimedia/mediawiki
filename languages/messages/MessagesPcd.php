@@ -493,8 +493,8 @@ Ale doét mie éte pu longue éq $1 {{PLURAL:$1|caracter|caractéres}}.',
 'group-sysop'      => 'Aménistrateus',
 'group-bureaucrat' => 'Buroécrates',
 
-'group-sysop-member'      => 'Aménistrateu',
-'group-bureaucrat-member' => 'Buroécrate',
+'group-sysop-member'      => '{{GENDER:$1|aménistrateu|aménistratriche}}',
+'group-bureaucrat-member' => '{{GENDER:$1|buroécrate}}',
 
 'grouppage-sysop' => '{{ns:project}}:Aménistrateus',
 

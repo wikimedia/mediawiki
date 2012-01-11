@@ -10,7 +10,9 @@
  * @author Alquen
  * @author Balasyum
  * @author Bdamokos
+ * @author Bean49
  * @author Bennó
+ * @author Bináris
  * @author BáthoryPéter
  * @author CERminator
  * @author Cerasus
@@ -939,7 +941,7 @@ Nézd meg, hogy valóban ezt a lapot szeretnéd-e létrehozni vagy szerkeszteni.
 'blocked-notice-logextract'        => 'A felhasználó jelenleg blokkolva van.
 A blokkolási napló legutóbbi ide vonatkozó bejegyzése a következő:',
 'clearyourcache'                   => "'''Megjegyzés:''' mentés után frissítened kell a böngésződ gyorsítótárát, hogy lásd a változásokat.
-'''Firefox / Safari:''' tartsd lenyomva a Shift gombot és kattints a ''Frissítés'' gombra az eszköztáron, vagy használd a ''Ctrl–F5'' vagy ''Ctrl–R'' billentyűkombinációt (Mac-en ''Command–R'');
+'''Firefox / Safari:''' tartsd lenyomva a Shift gombot és kattints a ''Frissítés'' gombra a címsorban, vagy használd a ''Ctrl–F5'' vagy ''Ctrl–R'' billentyűkombinációt (Mac-en ''Command–R'');
 '''Google Chrome:''' használd a ''Ctrl–Shift–R'' billentyűkombinációt (Mac-en ''Command–Shift–R'');
 '''Internet Explorer:''' tartsd nyomva a ''Ctrl''-t, és kattints a ''Frissítés'' gombra, vagy nyomj ''Ctrl–F5''-öt;
 '''Konqueror: '''kattints a ''Frissítés'' gombra vagy nyomj ''F5''-öt;
@@ -999,7 +1001,7 @@ A lap szöveget kimásolhatod egy szövegfájlba, amit elmenthetsz későbbre.''
 Az adatbázist lezáró adminisztrátor az alábbi magyarázatot adta: $1",
 'protectedpagewarning'             => "'''Figyelem: Ez a lap le van védve, így csak adminisztrátori jogosultságokkal rendelkező szerkesztők módosíthatják.'''
 A legutolsó ide vonatkozó naplóbejegyzés alább látható:",
-'semiprotectedpagewarning'         => "'''Megjegyzés:''' ez a lap védett, így regisztrálatlan, vagy újonnan regisztrált szerkesztők nem módosíthatják.",
+'semiprotectedpagewarning'         => "'''Megjegyzés:''' ez a lap védett, így regisztrálatlan vagy újonnan regisztrált szerkesztők nem módosíthatják.",
 'cascadeprotectedwarning'          => "'''Figyelem:''' ez a lap le van zárva, csak adminisztrátorok szerkeszthetik, mert a következő kaszkádvédelemmel ellátott {{PLURAL:$1|lapon|lapokon}} szerepel beillesztve:",
 'titleprotectedwarning'            => "'''Figyelem: Ez a lap le van védve, így csak a [[Special:ListGroupRights|megfelelő jogosultságokkal]] rendelkező szerkesztők hozhatják létre.'''
 A legutolsó ide vonatkozó naplóbejegyzés alább látható:",
@@ -1460,12 +1462,12 @@ A műveletet nem lehet visszavonni.',
 'group-suppress'      => 'adatvédelmi biztosok',
 'group-all'           => '(mind)',
 
-'group-user-member'          => 'szerkesztő',
-'group-autoconfirmed-member' => 'automatikusan megerősített felhasználó',
-'group-bot-member'           => 'bot',
-'group-sysop-member'         => 'adminisztrátor',
-'group-bureaucrat-member'    => 'bürokrata',
-'group-suppress-member'      => 'adatvédelmi biztos',
+'group-user-member'          => '{{GENDER:$1|szerkesztő}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|automatikusan megerősített felhasználó}}',
+'group-bot-member'           => '{{GENDER:$1|bot}}',
+'group-sysop-member'         => '{{GENDER:$1|adminisztrátor}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|bürokrata}}',
+'group-suppress-member'      => '{{GENDER:$1|adatvédelmi biztos}}',
 
 'grouppage-user'          => '{{ns:project}}:Felhasználók',
 'grouppage-autoconfirmed' => '{{ns:project}}:Automatikusan megerősített felhasználók',
@@ -1874,6 +1876,7 @@ A [$2 fájl ottani leírólapjának] másolata alább látható.',
 'uploadnewversion-linktext' => 'Új változat feltöltése',
 'shared-repo-from'          => 'a(z) $1 megosztott tárhelyről',
 'shared-repo'               => 'megosztott tárhely',
+'filepage.css'              => '/* Az itt elhelyezett CSS a fájl leíró lapra kerül beillesztésre, a külföldi nyelvű kliens wikikbe is*/',
 
 # File reversion
 'filerevert'                => '$1 visszaállítása',
@@ -2887,29 +2890,39 @@ Mentsd el a számítógépedre, majd töltsd fel ide.',
 'tooltip-summary'                 => 'Adj meg egy rövid összefoglalót',
 
 # Stylesheets
-'common.css'      => '/* Közös CSS az összes felületnek */',
-'standard.css'    => '/* Az ide elhelyezett CSS hatással lesz a Klasszikus felület használóira */',
-'nostalgia.css'   => '/* Az ide elhelyezett CSS hatással lesz a Nosztalgia felület használóira */',
-'cologneblue.css' => '/* Az ide elhelyezett CSS hatással lesz a Kölni kék felület használóira */',
-'monobook.css'    => '/* Az ide elhelyezett CSS hatással lesz a Monobook felület használóira */',
-'myskin.css'      => '/* Az ide elhelyezett CSS hatással lesz a MySkin felület használóira */',
-'chick.css'       => '/* Az ide elhelyezett CSS hatással lesz a Chick felület használóira */',
-'simple.css'      => '/* Az ide elhelyezett CSS hatással lesz a Egyszerű felület használóira */',
-'modern.css'      => '/* Az ide elhelyezett CSS hatással lesz a Modern felület használóira */',
-'vector.css'      => '/* Az ide elhelyezett CSS hatással lesz a Vector felület használóira */',
-'print.css'       => '/* Az ide elhelyezett CSS hatással lesz a nyomtatás kimenetelére */',
+'common.css'              => '/* Közös CSS az összes felületnek */',
+'standard.css'            => '/* Az ide elhelyezett CSS hatással lesz a Klasszikus felület használóira */',
+'nostalgia.css'           => '/* Az ide elhelyezett CSS hatással lesz a Nosztalgia felület használóira */',
+'cologneblue.css'         => '/* Az ide elhelyezett CSS hatással lesz a Kölni kék felület használóira */',
+'monobook.css'            => '/* Az ide elhelyezett CSS hatással lesz a Monobook felület használóira */',
+'myskin.css'              => '/* Az ide elhelyezett CSS hatással lesz a MySkin felület használóira */',
+'chick.css'               => '/* Az ide elhelyezett CSS hatással lesz a Chick felület használóira */',
+'simple.css'              => '/* Az ide elhelyezett CSS hatással lesz a Egyszerű felület használóira */',
+'modern.css'              => '/* Az ide elhelyezett CSS hatással lesz a Modern felület használóira */',
+'vector.css'              => '/* Az ide elhelyezett CSS hatással lesz a Vector felület használóira */',
+'print.css'               => '/* Az ide elhelyezett CSS hatással lesz a nyomtatás kimenetelére */',
+'handheld.css'            => '/* Az ide elhelyezett CSS hatással lesz azon kézi eszközökre, amelyek $wgHandheldStyle felülettel vannak konfigurálva */',
+'noscript.css'            => '/* Az ide elhelyezett CSS azon felhasználókra lesz hatással, ahol a JavaScript le van tiltva */',
+'group-autoconfirmed.css' => '/* Az ide elhelyezett CSS az automatikusan megerősített felhasználókra lesz hatással */',
+'group-bot.css'           => '/* Az ide elhelyezett CSS csak botokra lesz hatással */',
+'group-sysop.css'         => '/* Az ide elhelyezett CSS csak adminisztrátorokra lesz hatással */',
+'group-bureaucrat.css'    => '/* Az ide elhelyezett CSS csak bürokratákra lesz hatással */',
 
 # Scripts
-'common.js'      => '/* Az ide elhelyezett JavaScript kód minden felhasználó számára lefut az oldalak betöltésekor. */',
-'standard.js'    => '/* A Klasszikus felületet használó szerkesztők számára betöltendő JavaScriptek */',
-'nostalgia.js'   => '/* A Nosztalgia felületet használó szerkesztők számára betöltendő JavaScriptek */',
-'cologneblue.js' => '/* A Kölni kék felületet használó szerkesztők számára betöltendő JavaScriptek */',
-'monobook.js'    => '/* A Monobook felületet használó szerkesztők számára betöltendő JavaScriptek */',
-'myskin.js'      => '/* A MySkin felületet használó szerkesztők számára betöltendő JavaScriptek */',
-'chick.js'       => '/* A Chick felületet használó szerkesztők számára betöltendő JavaScriptek */',
-'simple.js'      => '/* Az Egyszerű felületet használó szerkesztők számára betöltendő JavaScriptek */',
-'modern.js'      => '/* A Modern felületet használó szerkesztők számára betöltendő JavaScriptek */',
-'vector.js'      => '/* A Vector felületet használó szerkesztők számára betöltendő JavaScriptek */',
+'common.js'              => '/* Az ide elhelyezett JavaScript kód minden felhasználó számára lefut az oldalak betöltésekor. */',
+'standard.js'            => '/* A Klasszikus felületet használó szerkesztők számára betöltendő JavaScriptek */',
+'nostalgia.js'           => '/* A Nosztalgia felületet használó szerkesztők számára betöltendő JavaScriptek */',
+'cologneblue.js'         => '/* A Kölni kék felületet használó szerkesztők számára betöltendő JavaScriptek */',
+'monobook.js'            => '/* A Monobook felületet használó szerkesztők számára betöltendő JavaScriptek */',
+'myskin.js'              => '/* A MySkin felületet használó szerkesztők számára betöltendő JavaScriptek */',
+'chick.js'               => '/* A Chick felületet használó szerkesztők számára betöltendő JavaScriptek */',
+'simple.js'              => '/* Az Egyszerű felületet használó szerkesztők számára betöltendő JavaScriptek */',
+'modern.js'              => '/* A Modern felületet használó szerkesztők számára betöltendő JavaScriptek */',
+'vector.js'              => '/* A Vector felületet használó szerkesztők számára betöltendő JavaScriptek */',
+'group-autoconfirmed.js' => '/* Az ide elhelyezett JavaScript csak automatikusan megerősített felhasználóknak töltődik be */',
+'group-bot.js'           => '/* Az ide elhelyezett JavaScript csak botoknak töltődik be */',
+'group-sysop.js'         => '/* Az ide elhelyezett JavaScript csak adminisztrátoroknak töltődik be */',
+'group-bureaucrat.js'    => '/* Az ide elhelyezett JavaScript csak bürokratáknak töltődik be */',
 
 # Metadata
 'notacceptable' => 'A wiki kiszolgálója nem tudja olyan formátumban biztosítani az adatokat, amit a kliens olvasni tud.',
@@ -2970,7 +2983,7 @@ Ez valószínűleg egy olyan link miatt van, ami egy feketelistán lévő oldalr
 'markedaspatrollederror-noautopatrol' => 'A saját változtatásaid megjelölése ellenőrzöttként nem engedélyezett.',
 
 # Patrol log
-'patrol-log-page'      => 'Ellenőrzési napló',
+'patrol-log-page'      => 'Ellenőrzési napló (patrol)',
 'patrol-log-header'    => 'Ez az ellenőrzött változatok naplója.',
 'patrol-log-line'      => 'ellenőrzöttnek jelölte a(z) $2 $1 $3',
 'patrol-log-auto'      => '(automatikus)',

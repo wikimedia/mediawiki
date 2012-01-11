@@ -15,6 +15,7 @@
  * @author Stanqo
  * @author Turin
  * @author Urhixidur
+ * @author Vladimir Penov
  * @author Петър Петров
  * @author לערי ריינהארט
  */
@@ -263,7 +264,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Уведомяване по е-пощата даже при малки промени',
 'tog-enotifrevealaddr'        => 'Показване на електронния ми адрес в известяващите писма',
 'tog-shownumberswatching'     => 'Показване на броя на потребителите, наблюдаващи дадена страница',
-'tog-oldsig'                  => 'Преглед на съществуващия подпис:',
+'tog-oldsig'                  => 'Съществуващ подпис:',
 'tog-fancysig'                => 'Без превръщане на подписа в препратка към потребителската страница',
 'tog-externaleditor'          => 'Използване на външен редактор по подразбиране (само за експерти, необходими са специални настройки на компютъра.
 [//www.mediawiki.org/wiki/Manual:External_editors Повече информация.])',
@@ -745,7 +746,9 @@ $2',
 'passwordreset-text'           => 'След попълването на формуляра ще получите писмо с напомняща информация за потребителската сметка.',
 'passwordreset-legend'         => 'Възстановяване на парола',
 'passwordreset-disabled'       => 'Възстановяването на паролата е изключено в това уики.',
+'passwordreset-pretext'        => '{{PLURAL:$1||Въведете една част от данните по-долу}}',
 'passwordreset-username'       => 'Потребителско име:',
+'passwordreset-domain'         => 'Домейн:',
 'passwordreset-email'          => 'Електронна поща:',
 'passwordreset-emailtitle'     => 'Подробности за сметката в {{SITENAME}}',
 'passwordreset-emailtext-ip'   => 'Някой (вероятно вие, от IP адрес $1) поиска напомняне за
@@ -1129,7 +1132,7 @@ $1",
 # Suppression log
 'suppressionlog'     => 'Дневник на прикриванията',
 'suppressionlogtext' => 'По-долу е посочен списък на изтривания и блокирания, свързан със съдържание, скрито от администраторите.
-За текущите блокирания и забрани, вижте [[Special:IPBlockList|списъка с блокираните IP адреси]].',
+За текущите блокирания и забрани, вижте [[Special:BlockList|списъка с блокираните IP адреси]].',
 
 # History merging
 'mergehistory'                     => 'Сливане на редакционни истории',
@@ -1236,12 +1239,13 @@ $1",
 'searchdisabled'                   => 'Търсенето в {{SITENAME}} е временно изключено. Междувременно можете да търсите чрез Google. Обърнете внимание, че съхранените при тях страници най-вероятно са остарели.',
 
 # Quickbar
-'qbsettings'               => 'Лента за бърз избор',
-'qbsettings-none'          => 'Без меню',
-'qbsettings-fixedleft'     => 'Неподвижно вляво',
-'qbsettings-fixedright'    => 'Неподвижно вдясно',
-'qbsettings-floatingleft'  => 'Плаващо вляво',
-'qbsettings-floatingright' => 'Плаващо вдясно',
+'qbsettings'                => 'Лента за бърз избор',
+'qbsettings-none'           => 'Без меню',
+'qbsettings-fixedleft'      => 'Неподвижно вляво',
+'qbsettings-fixedright'     => 'Неподвижно вдясно',
+'qbsettings-floatingleft'   => 'Плаващо вляво',
+'qbsettings-floatingright'  => 'Плаващо вдясно',
+'qbsettings-directionality' => 'Фиксирана, в зависимост от посоката на скрипта от вашия език',
 
 # Preferences page
 'preferences'                   => 'Настройки',
@@ -1324,7 +1328,7 @@ $1",
 'prefs-registration'            => 'Регистрация:',
 'yourrealname'                  => 'Истинско име:',
 'yourlanguage'                  => 'Език:',
-'yourvariant'                   => 'Вариант',
+'yourvariant'                   => 'Езиков вариант на съдържанието:',
 'yournick'                      => 'Подпис:',
 'prefs-help-signature'          => 'Коментарите в дискусионните страници трябва да се подписват с поредица от четири тилди "<nowiki>~~~~</nowiki>", която при съхранение на редакцията сървърът превръща в подпис с потребителско име, дата и час.',
 'badsig'                        => 'Избраният подпис не е валиден. Проверете HTML-етикетите!',
@@ -1378,7 +1382,7 @@ $1",
 'userrights-no-interwiki'      => 'Нямате права да редактирате потребителските групи на други уикита.',
 'userrights-nodatabase'        => 'Базата данни $1 не съществува или не е на локалния сървър.',
 'userrights-nologin'           => 'За управление на потребителските права е необходимо [[Special:UserLogin|влизане]] с администраторска сметка.',
-'userrights-notallowed'        => 'Не ви е позволено да променяте потребителски права.',
+'userrights-notallowed'        => 'С вашия акаунт нямате разрешение да добавяте или премахвате потребителски права.',
 'userrights-changeable-col'    => 'Групи, които можете да променяте',
 'userrights-unchangeable-col'  => 'Групи, които не можете да променяте',
 
@@ -1392,12 +1396,12 @@ $1",
 'group-suppress'      => 'Ревизори',
 'group-all'           => '(всички)',
 
-'group-user-member'          => 'Потребител',
-'group-autoconfirmed-member' => 'Автоматично одобрен потребител',
-'group-bot-member'           => 'Бот',
-'group-sysop-member'         => 'Администратор',
-'group-bureaucrat-member'    => 'Бюрократ',
-'group-suppress-member'      => 'Ревизор',
+'group-user-member'          => '{{GENDER:$1|потребител}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|автоматично одобрен потребител}}',
+'group-bot-member'           => '{{GENDER:$1|бот}}',
+'group-sysop-member'         => '{{GENDER:$1|администратор}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|бюрократ}}',
+'group-suppress-member'      => '{{GENDER:$1|ревизор}}',
 
 'grouppage-user'          => '{{ns:project}}:Потребители',
 'grouppage-autoconfirmed' => '{{ns:project}}:Автоматично одобрени потребители',
@@ -1862,7 +1866,7 @@ $1',
 'statistics-users-active-desc' => 'Потребители, направили редакция през {{PLURAL:$1|последния ден|последните $1 дни}}',
 'statistics-mostpopular'       => 'Най-преглеждани страници',
 
-'disambiguations'      => 'Пояснителни страници',
+'disambiguations'      => 'Страници, сочещи към пояснителни страници',
 'disambiguationspage'  => 'Template:Пояснение',
 'disambiguations-text' => "Следните страници сочат към '''пояснителна страница''', вместо към истинската тематична страница.<br />Една страница се смята за пояснителна, ако ползва шаблон, към който се препраща от [[MediaWiki:Disambiguationspage]]",
 
@@ -2000,7 +2004,7 @@ $1',
 'sp-deletedcontributions-contribs' => 'приноси',
 
 # Special:LinkSearch
-'linksearch'       => 'Външни препратки',
+'linksearch'       => 'Търсене на външни препратки',
 'linksearch-pat'   => 'Търсене по:',
 'linksearch-ns'    => 'Именно пространство:',
 'linksearch-ok'    => 'Търсене',
@@ -3028,6 +3032,7 @@ $1',
 'exif-gpsareainformation'          => 'Име на GPS зоната',
 'exif-gpsdatestamp'                => 'GPS дата',
 'exif-gpsdifferential'             => 'Диференциална корекция на GPS',
+'exif-jpegfilecomment'             => 'Kоментар на JPEG файл',
 'exif-keywords'                    => 'Ключови думи',
 'exif-objectname'                  => 'Кратко заглавие',
 'exif-specialinstructions'         => 'Специални инструкции',
@@ -3035,15 +3040,26 @@ $1',
 'exif-languagecode'                => 'Език',
 'exif-iimversion'                  => 'IIM версия',
 'exif-iimcategory'                 => 'Категория',
+'exif-iimsupplementalcategory'     => 'Допълнителни категории',
 'exif-datetimeexpires'             => 'Да не се използва след',
 'exif-identifier'                  => 'Идентификатор',
+'exif-lens'                        => 'Използвана оптична леща',
 'exif-serialnumber'                => 'Сериен номер на фотоапарата',
 'exif-cameraownername'             => 'Собственик на фотоапарата',
+'exif-label'                       => 'Етикет',
 'exif-nickname'                    => 'Неформално име на изображението',
 'exif-rating'                      => 'Рейтинг (от 5)',
+'exif-rightscertificate'           => 'Сертификат за управление на правата',
+'exif-copyrightowner'              => 'Притежател на авторското право',
 'exif-usageterms'                  => 'Условия за използване',
 'exif-originaldocumentid'          => 'Уникален номер на оригиналния документ',
+'exif-licenseurl'                  => 'URL адрес за лиценз за авторски права',
 'exif-morepermissionsurl'          => 'Алтернативна информация за лиценза',
+'exif-pngfilecomment'              => 'Kоментар на PNG файл',
+'exif-disclaimer'                  => 'Отказ от отговорност',
+'exif-contentwarning'              => 'Предупреждение за съдържанието',
+'exif-giffilecomment'              => 'Kоментар на GIF файл',
+'exif-intellectualgenre'           => 'Тип елемент',
 'exif-event'                       => 'Изобразено събитие',
 'exif-organisationinimage'         => 'Изобразена организация',
 'exif-personinimage'               => 'Изобразена личност',
@@ -3053,6 +3069,7 @@ $1',
 # EXIF attributes
 'exif-compression-1' => 'Некомпресиран',
 
+'exif-copyrighted-true'  => 'С авторски права',
 'exif-copyrighted-false' => 'Обществено достояние',
 
 'exif-unknowndate' => 'Неизвестна дата',
@@ -3062,12 +3079,14 @@ $1',
 'exif-orientation-3' => 'Обърнато на 180°',
 'exif-orientation-4' => 'Отражение по вертикалата',
 'exif-orientation-5' => 'Обърнато на 90° срещу часовниковата стрелка и отразено по вертикалата',
-'exif-orientation-6' => 'Обърнато на 90° по часовниковата стрелка',
+'exif-orientation-6' => 'Обърнато на 90° срещу часовниковата стрелка',
 'exif-orientation-7' => 'Обърнато на 90° по часовниковата стрелка и отразено по вертикалата',
-'exif-orientation-8' => 'Обърнато на 90° срещу часовниковата стрелка',
+'exif-orientation-8' => 'Обърнато на 90° по часовниковата стрелка',
 
 'exif-planarconfiguration-1' => 'формат „chunky“',
 'exif-planarconfiguration-2' => 'формат „planar“',
+
+'exif-colorspace-65535' => 'Некалибрирана',
 
 'exif-componentsconfiguration-0' => 'не съществува',
 
@@ -3208,6 +3227,9 @@ $1',
 'exif-gpsdop-moderate'  => 'Умерено ($1)',
 'exif-gpsdop-fair'      => 'Горе-долу ($1)',
 'exif-gpsdop-poor'      => 'Лошо ($1)',
+
+'exif-objectcycle-a' => 'Само сутрин',
+'exif-objectcycle-p' => 'Само вечер',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'истинска',

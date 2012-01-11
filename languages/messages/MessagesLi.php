@@ -779,11 +779,11 @@ De kans [[Special:Search/{{PAGENAME}}|nao dees term zeuke]] in anger pagina\'s o
 'userpage-userdoesnotexist-view'   => 'Gebroeker "$1" is neet geregistreerd.',
 'blocked-notice-logextract'        => "Deze gebroeker is noe geblok.
 De leste bloklogregel wuuertj hiejónger t'r raodpleging gegaeve:",
-'clearyourcache'                   => "Lèt op:''' Nao 't opsjlaon mós te diene browserbuffer wisse óm de verangeringe te zeen:
-* '''Firefox / Safari:''' haoj ''Shift'' ingedrök terwielse op ''Vernuuj'' kliks of dröks op ''Ctrl-F5'' of ''Ctrl-R'' (''Command-R'' op 'ne Mac)
-* '''Google Chrome:''' drök op ''Ctrl-Shift-R'' (''Command-Shift-R'' op 'ne Mac)
-* '''Internet Explorer:''' haoj ''Ctrl'' ingedrök terwielse op ''Vernuuj'' kliks of dröks op ''Ctrl-F5''
-* '''Konqueror: '''klik op ''Reload'' of drök op ''F5''
+'clearyourcache'                   => "Lèt op:''' Nao 't opsjlaon mós te diene browsercache wisse óm de verangeringe te zeen:
+* '''Firefox / Safari:''' hauw ''Shift'' ingedrök terwiels te op ''Vernuuj'' kliks of duujs op ''Ctrl-F5'' of ''Ctrl-R'' (''Command-R'' op 'ne Mac)
+* '''Google Chrome:''' duuj op ''Ctrl-Shift-R'' (''Command-Shift-R'' op 'ne Mac)
+* '''Internet Explorer:''' hauw ''Ctrl'' ingeduujt terwiels te op ''Vernuuj'' kliks of duujs op ''Ctrl-F5''
+* '''Konqueror: '''klik op ''Reload'' of duuj op ''F5''
 * '''Opera:''' laeg diene cache in ''Extra → Veurkäöre''",
 'usercssyoucanpreview'             => "'''Tip:''' Gebroek de knóp '{{int:showpreview}}' om dien nuuj CSS te teste veurdets te opsjleis.",
 'userjsyoucanpreview'              => "'''Tip:''' Gebroek de knóp '{{int:showpreview}}' om dien nuuj JS te teste veurdets te opsjleis.",
@@ -1309,12 +1309,12 @@ Deze informatie is zichbaar veur angere gebroekers.',
 'group-suppress'      => 'Toezichhajers',
 'group-all'           => '(alle)',
 
-'group-user-member'          => 'Gebroeker',
-'group-autoconfirmed-member' => 'Geregistreerde gebroeker',
-'group-bot-member'           => 'Bot',
-'group-sysop-member'         => 'Administrator',
-'group-bureaucrat-member'    => 'Bureaucraat',
-'group-suppress-member'      => 'Toezichhajer',
+'group-user-member'          => '{{GENDER:$1|gebroeker}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|geregistreerde gebroeker}}',
+'group-bot-member'           => '{{GENDER:$1|bot}}',
+'group-sysop-member'         => '{{GENDER:$1|administrator}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|bureaucraat}}',
+'group-suppress-member'      => '{{GENDER:$1|toezichhajer}}',
 
 'grouppage-user'          => '{{ns:project}}:Gebroekers',
 'grouppage-autoconfirmed' => '{{ns:project}}:Geregistreerde gebroekers',

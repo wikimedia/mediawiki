@@ -622,7 +622,7 @@ abo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}
 'userpage-userdoesnotexist'        => 'Užytkowńik "<nowiki>$1</nowiki>" ńy je zareještrowany. Sprowdź eli na pewno chćoužeś stwořyć/pomjynić gynau ta zajta.',
 'userpage-userdoesnotexist-view'   => "Konto sprowjorza ''$1'' ńy istnieje.",
 'blocked-notice-logextract'        => '{{GENDER:$1|Tyn sprowjorz|Ta sprowjorka}} mo zawrzite sprowjyńa.',
-'clearyourcache'                   => "!'''Dej pozůr:''' Coby łobejrzeć pomjyńańo pů naszkryflańu nowych sztalowań poleć przeglůndorce wyczyśćić zawartość pamjyńći podryncznyj (cache). '''Mozilla / Firefox / Safari:''' przitrzimej ''Shift'' klikajůnc na ''Łodśwjyž'' abo wciś ''Ctrl-Shift-R'' (''Cmd-Shift-R'' na Macu), '''IE :''' przitrzimej ''Ctrl'' klikajůnc na ''Łodśwjyž'' abo wciś ''Ctrl-F5''; '''Konqueror:''': kliknij knefel ''Łodśwjyž'' abo wciś ''F5''; użytkowńicy '''Opery''' mogům być zmuszeńi coby cołkym wyczyśćić jejich pamjyńć podrynczno we menu ''Werkcojgi→Preferencyje''.; '''Internet Explorer:''' trzim ''Ctrl'' a wćiś ''Łodśwjyż'', abo wćiś ''Ctrl-F5''.",
+'clearyourcache'                   => "'''Dej pozůr:''' Coby uobejrzeć pomjyńańo pů naszkryflańu nowych sztalowań poleć przeglůndorce wyczyśćić zawartość pamjyńći podryncznyj (cache). '''Mozilla / Firefox / Safari:''' przitrzimej ''Shift'' klikajůnc na ''Uodśwjyž'' abo wciś ''Ctrl-Shift-R'' (''Cmd-Shift-R'' na Macu), '''IE :''' przitrzimej ''Ctrl'' klikajůnc na ''Uodśwjyž'' abo wciś ''Ctrl-F5''; '''Konqueror:''': kliknij knefel ''Uodśwjyž'' abo wciś ''F5''; użytkowńicy '''Opery''' mogům być zmuszeńi coby cołkym wyczyśćić jejich pamjyńć podrynczno we menu ''Werkcojgi→Preferencyje''.; '''Internet Explorer:''' trzim ''Ctrl'' a wćiś ''Uodśwjyż'', abo wćiś ''Ctrl-F5''.",
 'usercssyoucanpreview'             => "!'''Podpowjydź:''' Użyj knefla \"Podglůnd\", coby przetestować Twůj nowy arkusz stylůw CSS abo kod JavaScript przed jego zaszrajbowańym.",
 'userjsyoucanpreview'              => "!'''Podpowjydź:''' Użyj knefla \"Podglůnd\", coby przetestować Twůj nowy arkusz stylůw CSS abo kod JavaScript przed jego zaszrajbowańym.",
 'usercsspreview'                   => "'''Pamjyntej, aže to je na raźe ino podglůnd Twojego arkuša stylůw CSS.'''
@@ -767,18 +767,20 @@ Powody wyćepańo idźe znejść we [{{fullurl:{{#Special:Log}}/suppress|page={{
 'revisiondelete'              => 'Wyćep/wćep nazod wersyje',
 'revdelete-nooldid-title'     => 'Ńy wybrano wersyji',
 'revdelete-nooldid-text'      => 'Ńy wybrano wersyji na kerych mo zostać wykůnano ta uoperacyjo.',
+'revdelete-show-file-submit'  => 'Ja',
 'revdelete-selected'          => "'''{{PLURAL:$2|Wybrano wersyja|Wybrane wersyje}} zajty [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Wybrane zdařyńy s rejeru|Wybrane zdařyńa s rejeru}}:'''",
-'revdelete-text'              => "'''Wyćepane wersyje bydům dali widočne w historyji zajty, nale jejich treść ńy bydźe publičńy dostympna.'''
+'revdelete-text'              => "'''Wyćepane wersyje bydům dali widoczne w historyji zajty, nale jejich treść ńy bydźe publiczńy dostympna.'''
 
-Inkśi admińistratoři {{GRAMMAR:D.lp|{{SITENAME}}}} dali bydům mjeć dostymp do schrůńůnych wersyji a bydům můgli je wćepać nazod, chyba aže uoperator serwisu nouožůu dodatkowe uograńičyńo.",
+Inkśi admińistratorzi {{GRAMMAR:D.lp|{{SITENAME}}}} dali bydům mjeć dostymp do schrůńůnych wersyji a bydům můgli je wćepać nazod, chyba aże uoperator serwisu nouożůł dodatkowe uograńiczyńo.",
 'revdelete-legend'            => 'Naštaluj uograńičyńo lo wersyji:',
 'revdelete-hide-text'         => 'Schrůń tekst wersyji',
 'revdelete-hide-image'        => 'Schrůń zawartość plika',
 'revdelete-hide-name'         => 'Schrůń akcyjo a cyl',
 'revdelete-hide-comment'      => 'Schrůń kůmyntoř sprowjyńo',
 'revdelete-hide-user'         => 'Schrůń mjano užytkowńika/adres IP',
-'revdelete-hide-restricted'   => 'Wprowadź te uograńičyńo zarůwno lo admińistratorůw jak i lo inkšych',
+'revdelete-hide-restricted'   => 'Schrůń informacyje zarůwno przed admińistratorůma jak i przed inkszymi',
+'revdelete-radio-same'        => '(byz pomjyń)',
 'revdelete-radio-set'         => 'Ja',
 'revdelete-radio-unset'       => 'Ńy',
 'revdelete-suppress'          => 'Schrůń informacyje zarůwno před admińistratorůma jak i před inkšymi',

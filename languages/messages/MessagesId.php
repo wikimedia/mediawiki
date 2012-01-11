@@ -954,12 +954,12 @@ Anda dapat [[Special:Search/{{PAGENAME}}|melakukan pencarian untuk judul halaman
 'userpage-userdoesnotexist-view'   => 'Pengguna "$1" tidak terdaftar.',
 'blocked-notice-logextract'        => 'Pengguna ini sedang diblokir.
 Entri log pemblokiran terakhir tersedia di bawah ini sebagai rujukan.',
-'clearyourcache'                   => "'''Catatan:''' Setelah menyimpan, Anda mungkin harus memotong singgahan peramban Anda untuk melihat perubahan.
-* '''Firefox / Safari:''' tahan ''Shift'' sambil mengklik ''Reload'', atau tekan ''Ctrl-F5'' atau ''Ctrl-R'' (''Command-R'' di Mac)
-* '''Google Chrome:''' tekan ''Ctrl-Shift-R'' (''Command-Shift-R'' di Mac)
-* '''Internet Explorer:''' tahan ''Ctrl'' sambl mengklik ''Refresh'', atau tekan ''Ctrl-F5''
-* '''Konqueror:''' klik ''Reload'' atau tekan ''F5''
-* '''Opera:''' bersihkan singgahan di ''Tools → Preferences''",
+'clearyourcache'                   => "'''Catatan:''' Setelah menyimpan, Anda mungkin harus memotong tembolok peramban Anda untuk melihat perubahan.
+* '''Firefox / Safari:''' Tahan ''Shift'' sambil mengeklik ''Reload'', atau tekan ''Ctrl-F5'' atau ''Ctrl-R'' (''⌘-R'' di Mac)
+* '''Google Chrome:''' Tekan ''Ctrl-Shift-R'' (''⌘-Shift-R'' di Mac)
+* '''Internet Explorer:''' Tahan ''Ctrl'' sambl mengeklik ''Refresh'', atau tekan ''Ctrl-F5''
+* '''Konqueror:''' Klik ''Reload'' atau tekan ''F5''
+* '''Opera:''' Bersihkan tembolok di ''Tools → Preferences''",
 'usercssyoucanpreview'             => "'''Tips:''' Gunakan tombol \"{{int:showpreview}}\" untuk menguji CSS baru Anda sebelum menyimpannya.",
 'userjsyoucanpreview'              => "'''Tips:''' Gunakan tombol \"{{int:showpreview}}\" untuk menguji JS baru Anda sebelum menyimpannya.",
 'usercsspreview'                   => "'''Ingatlah bahwa Anda sedang menampilkan pratayang dari CSS Anda.
@@ -1481,12 +1481,12 @@ Jika Anda memberikannya, nama asli Anda akan digunakan untuk memberi pengenalan 
 'group-suppress'      => 'Pengawas',
 'group-all'           => '(semua)',
 
-'group-user-member'          => 'Pengguna',
-'group-autoconfirmed-member' => 'Pengguna terkonfirmasi otomatis',
+'group-user-member'          => '{{GENDER:$1| pengguna}}',
+'group-autoconfirmed-member' => '{{GENDER:$1| pengguna}} terkonfimasi otomatis',
 'group-bot-member'           => 'Bot',
-'group-sysop-member'         => 'Pengurus',
-'group-bureaucrat-member'    => 'Birokrat',
-'group-suppress-member'      => 'Pengawas',
+'group-sysop-member'         => '{{GENDER:$1|pengurus}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|birokrat}}',
+'group-suppress-member'      => '{{GENDER:$1|pengawas}}',
 
 'grouppage-user'          => '{{ns:project}}:Pengguna',
 'grouppage-autoconfirmed' => '{{ns:project}}:Pengguna terkonfirmasi otomatis',

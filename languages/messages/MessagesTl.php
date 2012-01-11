@@ -160,7 +160,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Padalhan din ako ng e-liham para sa mga maliliit na pagbabago ng mga pahina',
 'tog-enotifrevealaddr'        => 'Ipakita ang adres ng e-liham ko sa loob ng mga e-liham ng pagpapahayag',
 'tog-shownumberswatching'     => 'Ipakita ang bilang ng mga nagbabantay na tagagamit',
-'tog-oldsig'                  => 'Paunang tingin ng kasalukuyang lagda:',
+'tog-oldsig'                  => 'Umiiral na lagda:',
 'tog-fancysig'                => 'Ituring ang lagda bilang teksto ng wiki (walang automatikong pagkawing)',
 'tog-externaleditor'          => 'Gumamit ng nakatakdang panlabas na pampatnugot ayon sa likas na pagkakatakda (para sa mga dalubhasa lamang, kailangan ng natatanging mga pagtatakda sa iyong kompyuter. [//www.mediawiki.org/wiki/Manual:External_editors Marami pang kabatiran.])',
 'tog-externaldiff'            => 'Gumamit ng likas na nakatakdang panlabas na pagkakaiba (para sa mga dalubhasa lamang, kailangan ng natatanging mga pagtatakda sa iyong kompyuter. [//www.mediawiki.org/wiki/Manual:External_editors Mas marami pang kabatiran.])',
@@ -281,8 +281,8 @@ $messages = array(
 'qbpageinfo'     => 'Konteksto',
 'qbmyoptions'    => 'Mga pahina ko',
 'qbspecialpages' => 'Mga natatanging pahina',
-'faq'            => "Mga malimit itanong (''FAQ'')",
-'faqpage'        => "Project:Mga malimit itanong (''FAQ'')",
+'faq'            => "Mga karaniwang itinatanong (''FAQ'')",
+'faqpage'        => "Project:Mga karaniwang itinatanong (''FAQ'')",
 
 # Vector skin
 'vector-action-addsection'       => 'Magdagdag ng paksa',
@@ -290,7 +290,7 @@ $messages = array(
 'vector-action-move'             => 'Ilipat',
 'vector-action-protect'          => 'Ipagsanggalang',
 'vector-action-undelete'         => 'Alisin ang pagbubura',
-'vector-action-unprotect'        => 'Alisin ang pagsasanggalang',
+'vector-action-unprotect'        => 'Baguhin ang pagsasanggalang',
 'vector-simplesearch-preference' => 'Paganahin ang pinainam na mga mungkahi sa paghahanap (pabalat na Vector lang)',
 'vector-view-create'             => 'Likhain',
 'vector-view-edit'               => 'Baguhin',
@@ -327,8 +327,8 @@ $messages = array(
 'protect'           => 'Ipagsanggalang',
 'protect_change'    => 'baguhin',
 'protectthispage'   => 'Ipagsanggalang itong pahina',
-'unprotect'         => 'Alisin ang pagsasanggalang',
-'unprotectthispage' => 'Alisin ang pagsasanggalang sa pahinang ito',
+'unprotect'         => 'Baguhin ang pagsasanggalang',
+'unprotectthispage' => 'Baguhin ang pagsasanggalang sa pahinang ito',
 'newpage'           => 'Bagong pahina',
 'talkpage'          => 'Pag-usapan ang pahinang ito',
 'talkpagelinktext'  => 'Usapan',
@@ -404,7 +404,7 @@ Tingnan ang [[Special:Version|pahina ng bersyon]].',
 'viewsourceold'           => 'tingnan ang pinagmulan',
 'editlink'                => 'baguhin',
 'viewsourcelink'          => 'tingnan ang pinagmulan',
-'editsectionhint'         => 'Baguhin ang seksyon: $1',
+'editsectionhint'         => 'Baguhin ang seksiyon: $1',
 'toc'                     => 'Mga nilalaman',
 'showtoc'                 => 'ipakita',
 'hidetoc'                 => 'itago',
@@ -556,8 +556,8 @@ Huwag kalimutang baguhin ang iyong [[Special:Preferences|mga kagustuhan sa {{SIT
 'createaccountmail'          => 'sa pamamagitan ng e-liham',
 'createaccountreason'        => 'Dahilan:',
 'badretype'                  => 'Hindi magkatugma ang ipinasok mong mga hudyat.',
-'userexists'                 => 'May gumagamit na ng ganyang pangalang pantagagamit.
-Pumili lamang ng iba pang pangalan.',
+'userexists'                 => 'May gumagamit na ng ipinasok na bansag.
+Pumili po ng ibang pangalan.',
 'loginerror'                 => 'Kamalian sa paglagda',
 'createaccounterror'         => 'Hindi mailikha ang kuwenta: $1',
 'nocookiesnew'               => "Nilikha na ang kuwentang pantagagamit, ngunit hindi ka nakalagda.
@@ -609,12 +609,12 @@ Para maiwasin ang pangaabuso, isang paalalang panghudyat lang ang ipapadala bawa
 'mailerror'                  => 'Kamalian sa pagpapadala ng liham: $1',
 'acct_creation_throttle_hit' => 'Ang mga panauhin sa wiking ito na gumagamit ng adres ng IP mo ay nakalikha na ng {{PLURAL:$1|1 kuwenta|$1 kuwenta}} sa loob ng huling araw, na siyang pinakamataas na pinapahintulutan sa loob ng sakop ng panahong ito.
 Bilang kinalabasan, ang mga panauhing gumagamit ng ganitong adres ng IP ay hindi na muna makakalikha ng anumang karagdagang kuwenta sa ngayon.',
-'emailauthenticated'         => 'Napatunayan na ang iyong adres ng e-liham noong $2 noong $3.',
+'emailauthenticated'         => 'Napatunayan na ang iyong direksiyong e-liham sa $2 noong $3.',
 'emailnotauthenticated'      => 'Hindi pa napapatunayan ang iyong adres ng e-liham.
 Walang e-liham na ipapadala para sa anumang sumusunod na tampok na kasangkapang-katangian.',
-'noemailprefs'               => 'Tumukoy ng isang adres ng e-liham sa loob ng mga nais mo upang gumana ang mga kasangkapang-katangiang ito.',
-'emailconfirmlink'           => 'Pakikompirma ang iyong adres ng e-liham.',
-'invalidemailaddress'        => 'Hindi matatanggap ang adres ng e-liham na ito dahil tila mayroon itong maling anyo.
+'noemailprefs'               => 'Tumukoy ng isang direksiyong e-liham sa loob ng mga nais mo upang gumana ang mga kasangkapang-katangiang ito.',
+'emailconfirmlink'           => 'Pakikompirma ang iyong direksiyong e-liham.',
+'invalidemailaddress'        => 'Hindi matatanggap ang direksiyong e-liham na ito dahil tila mayroon itong maling anyo.
 Pakipasok ang isang may mahusay na anyong adres o paki-iwang walang laman na lang ang lagayan.',
 'accountcreated'             => 'Nilikha na ang kuwenta',
 'accountcreatedtext'         => 'Nilikha na ang kuwentang tagagamit para kay $1.',
@@ -783,11 +783,12 @@ Pakisuri kung ibig mong likhain/baguhin ang pahinang ito.',
 'userpage-userdoesnotexist-view'   => 'Hindi nakatala ang kuwenta ng tagagamit na "$1".',
 'blocked-notice-logextract'        => 'Kasalukuyang hinarang ang tagagamit na ito.
 Ang pinakahuling entrada sa talaan  ng pagharang ay ibinigay sa baba para sa inyong pagsasangguni:',
-'clearyourcache'                   => "'''Tandaan: Pagkatapos magtala, dapat linisin mo ang baunan ng iyong pambasa-basa upang makita ang mga pagbabago.'''
-'''Mozilla / Firefox / Safari:''' panatilihing nakapindot ang ''Shift'' habang kiniklik ang ''Reload'', o pindutin ang ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' sa isang Mac);
-'''Konqueror:''' i-klik ang ''Reload'' o pindutin ang ''F5'';
-'''Opera:''' linisin ang baunan sa ''Tools → Preferences'';
-'''Internet Explorer:''' panatilihing nakapindot ang ''Ctrl'' habang kiniklik ang ''Refresh'', o pindutin ang ''Ctrl-F5''.",
+'clearyourcache'                   => "'''Tandaan: Pagkatapos magtala, baka kailangan mong linisin ang baunan ng iyong pambasa-basa upang makita ang mga pagbabago.'''
+'''Firefox / Safari:''' Panatilihing nakapindot ang ''Shift'' habang kiniklik ang ''Reload'', o pindutin ang ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' sa isang Mac)
+'''Google Chrome:''' Pindutin ang ''Ctrl-Shift-R'' (''Command-Shift-R'' sa isang Mac)
+'''Internet Explorer:''' Panatilihing nakapindot ang ''Ctrl'' habang kiniklik ang ''Refresh'', o pindutin ang ''Ctrl-F5''.
+'''Konqueror:''' I-klik ang ''Reload'' o pindutin ang ''F5''
+'''Opera:''' Linisin ang baunan sa ''Tools → Preferences''",
 'usercssyoucanpreview'             => "'''Balato:''' Gamitin ang pindutang \"{{int:showpreview}}\" upang masubok ang bago mong CSS bago sagipin.",
 'userjsyoucanpreview'              => "'''Balato:''' Gamitin ang pindutang \"{{int:showpreview}}\" upang masubok ang bago mong JavaScript bago sagipin.",
 'usercsspreview'                   => "'''Tandaan mong paunang tingin pa lamang ito ng iyong CSS na pantagagamit.'''

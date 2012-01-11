@@ -8,6 +8,7 @@
  * @file
  *
  * @author Dalinanir
+ * @author Ebe123
  * @author Zanatos
  */
 
@@ -456,7 +457,7 @@ Han irwas is yad tsbadlt awal n uzri niɣd is ḍalbt yan yaḍn n yat tklit.',
 'savearticle'                      => 'Ẓṛig d tḥbut',
 'preview'                          => 'Iẓṛi amzwaru',
 'showpreview'                      => 'Iẓṛi amzwaru',
-'showlivepreview'                  => 'Iẓṛi izrbn (ⵉⵥⵕⵉ ⵉⵣⵔⴱⵏ)',
+'showlivepreview'                  => 'Iẓṛi izrbn',
 'showdiff'                         => 'Mel imbddln lli ifttun',
 'anoneditwarning'                  => "Han  ''' ur ttuyssant ''' rad ibayn IP nk ɣ umzrut n tasna yad, ur sul  iḥba tamagit nk",
 'anonpreviewwarning'               => 'ur ittuyssan mat tgit. Iɣ tgdl tawuri nk, tansa nk IP rad tbayn ɣ umzruy n imbdln n tasna yad.',

@@ -976,11 +976,12 @@ Můžete [[Special:Search/{{PAGENAME}}|zkusit tento název vyhledat]] na jiných
 'userpage-userdoesnotexist-view'   => 'Uživatelský účet „$1“ není zaregistrován.',
 'blocked-notice-logextract'        => 'Tento uživatel je momentálně zablokován.
 Zde je pro přehled zobrazen nejnovější záznam z knihy zablokování:',
-'clearyourcache'                   => "'''Poznámka: Po uložení musíte smazat cache vašeho prohlížeče, jinak změny neuvidíte.'''
-'''Mozilla / Firefox / Safari:''' při kliknutí na ''Aktualizovat'' držte ''Shift'', nebo stiskněte ''Ctrl-F5'' nebo ''Ctrl-R'' (na Macintoshi ''Command-R'');
-'''Konqueror''': klikněte na ''Aktualizovat'' nebo stiskněte ''F5'';
-'''Opera:''' smažte obsah cache v menu ''Nástroje → Nastavení'';
-'''Internet Explorer:''' při kliknutí na ''Aktualizovat'' držte ''Ctrl'', nebo stiskněte ''Ctrl-F5''.",
+'clearyourcache'                   => "'''Poznámka:''' Po uložení musíte smazat cache vašeho prohlížeče, jinak změny neuvidíte.
+* '''Firefox / Safari:''' Při kliknutí na ''Aktualizovat'' držte ''Shift'' nebo stiskněte ''Ctrl-F5'' nebo ''Ctrl-R'' (na Macu ''⌘-R'').
+* '''Google Chrome:''' Stiskněte ''Ctrl-Shift-R'' (na Macu ''⌘-Shift-R'').
+* '''Internet Explorer:''' Při kliknutí na ''Aktualizovat'' držte ''Ctrl'' nebo stiskněte ''Ctrl-F5''.
+* '''Konqueror:''' Klikněte na ''Aktualizovat'' nebo stiskněte ''F5''.
+* '''Opera:''' Smažte obsah cache v menu ''Nástroje → Nastavení''.",
 'usercssyoucanpreview'             => "'''Tip:''' Použijte tlačítko „{{int:showpreview}}“ k testování vašeho nového CSS před uložením.",
 'userjsyoucanpreview'              => "'''Tip:''' Použijte tlačítko „{{int:showpreview}}“ k testování vašeho nového JavaScriptu před uložením.",
 'usercsspreview'                   => "'''Pamatujte, že si prohlížíte jen náhled vašeho uživatelského CSS.'''
@@ -1500,12 +1501,12 @@ Tuto operaci nelze vrátit zpět.',
 'group-suppress'      => 'Dohlížitelé',
 'group-all'           => '(všichni)',
 
-'group-user-member'          => 'uživatel',
-'group-autoconfirmed-member' => 'automaticky schválený uživatel',
-'group-bot-member'           => 'bot',
-'group-sysop-member'         => 'správce',
-'group-bureaucrat-member'    => 'byrokrat',
-'group-suppress-member'      => 'dohlížitel',
+'group-user-member'          => '{{GENDER:$1|uživatel|uživatelka|uživatel}}',
+'group-autoconfirmed-member' => 'automaticky {{GENDER:$1|schválený uživatel|schválená uživatelka|schválený uživatel}}',
+'group-bot-member'           => '{{GENDER:$1|bot|botka|bot}}',
+'group-sysop-member'         => '{{GENDER:$1|správce|správkyně|správce}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|byrokrat|byrokratka|byrokrat}}',
+'group-suppress-member'      => '{{GENDER:$1|dohlížitel|dohlížitelka|dohlížitel}}',
 
 'grouppage-user'          => '{{ns:project}}:Uživatelé',
 'grouppage-autoconfirmed' => '{{ns:project}}:Automaticky schválení uživatelé',
@@ -1657,7 +1658,7 @@ $3',
 'recentchangeslinked'          => 'Související změny',
 'recentchangeslinked-feed'     => 'Související změny',
 'recentchangeslinked-toolbox'  => 'Související změny',
-'recentchangeslinked-title'    => 'Související změny pro stránku "$1"',
+'recentchangeslinked-title'    => 'Související změny pro stránku „$1“',
 'recentchangeslinked-noresult' => 'V zadaném období nebyly na odkazovaných stránkách provedeny žádné změny.',
 'recentchangeslinked-summary'  => "Níže je seznam nedávných změn stránek odkazovaných ze zadané stránky (nebo patřících do dané kategorie). Vaše [[Special:Watchlist|sledované stránky]] jsou '''zvýrazněny'''.",
 'recentchangeslinked-page'     => 'Název stránky:',

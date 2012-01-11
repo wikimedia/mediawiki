@@ -817,9 +817,9 @@ eller <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}
 'blocked-notice-logextract'        => 'Denne bruger er i øjeblikket blokeret.
 Loggen over den seneste blokering ses nedenfor:',
 'clearyourcache'                   => "'''Bemærk:''' Efter at have gemt er du måske nødt til at tømme din browsers cache for at kunne se ændringerne.
-* '''Firefox / Safari:''' Hold ''shifttasten'' nede og klik på ''reload'', eller tryk enten ''Ctrl-F5'' eller ''Ctrl-Shift-r'' (''Cmd-R'' på en Mac).
-* '''Google Chrome:''' Tryk ''Ctrl-Shift-R'' (''Cmd-Shift-R'' på en Mac).
-* '''Internet Explorer:''' hold ''controltasten'' nede og klik på ''refresh'' eller tryk på ''Ctrl-F5''.
+* '''Firefox / Safari:''' Hold ''shifttasten'' nede og klik på ''reload'', eller tryk enten ''Ctrl-F5'' eller ''Ctrl-Shift-r'' (''⌘-R'' på en Mac).
+* '''Google Chrome:''' Tryk ''Ctrl-Shift-R'' (''⌘-Shift-R'' på en Mac).
+* '''Internet Explorer:''' Hold ''controltasten'' nede og klik på ''refresh'' eller tryk på ''Ctrl-F5''.
 * '''Konqueror:''' Klik på ''reload'' eller tryk på ''F5''.
 * '''Opera:''' Tøm cachen i ''Tools → Preferences''.",
 'usercssyoucanpreview'             => "'''Tip:''' Brug \"{{int:showpreview}}\"-knappen for at teste dit nye CSS inden du gemmer.",
@@ -960,7 +960,7 @@ version, (forrige) = forskel til den forrige version, M = mindre ændring',
 'history-feed-title'          => 'Versionshistorie',
 'history-feed-description'    => 'Versionshistorie for denne side i {{SITENAME}}',
 'history-feed-item-nocomment' => '$1 med $2',
-'history-feed-empty'          => 'Den ønskede side findes ikke. Måske er den slettet eller flyttet. [[Special:Search|Gennesøg]] {{SITENAME}} efter passende nye sider.',
+'history-feed-empty'          => 'Den ønskede side findes ikke. Måske er den slettet eller flyttet. [[Special:Search|Gennemsøg]] {{SITENAME}} efter passende nye sider.',
 
 # Revision deletion
 'rev-deleted-comment'         => '(redigeringsbeskrivelsen er fjernet)',
@@ -1336,12 +1336,12 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'group-suppress'      => 'Logskjulere',
 'group-all'           => '(alle)',
 
-'group-user-member'          => 'bruger',
-'group-autoconfirmed-member' => 'Registreret bruger',
-'group-bot-member'           => 'Robot',
-'group-sysop-member'         => 'Administrator',
-'group-bureaucrat-member'    => 'Bureaukrat',
-'group-suppress-member'      => 'logskjuler',
+'group-user-member'          => '{{GENDER:$1|bruger}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|registreret bruger}}',
+'group-bot-member'           => '{{GENDER:$1|robot}}',
+'group-sysop-member'         => '{{GENDER:$1|administrator}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|bureaukrat}}',
+'group-suppress-member'      => '{{GENDER:$1|logskjuler}}',
 
 'grouppage-user'          => '{{ns:project}}:Brugere',
 'grouppage-autoconfirmed' => '{{ns:project}}:Registrerede brugere',
@@ -1891,7 +1891,7 @@ Hver linje indeholder henvisninger til den første og den anden omdirigering, s�
 'move'                    => 'Flyt',
 'movethispage'            => 'Flyt side',
 'unusedimagestext'        => 'De følgende filer findes, men bruges ikke på nogen sider.
-Læg mærke til at andre hjemmesider kan henvise til filen med et direkte URL, og kan stadig være listet her, selvom den faktisk er i brug.',
+Læg mærke til at andre hjemmesider kan henvise til filen med en direkte URL, og dermed kan filen stadig være listet her, selvom den faktisk er i brug.',
 'unusedcategoriestext'    => 'Denne specialside viser alle kategorier, som ikke selv er henført til en kategori.',
 'notargettitle'           => 'Sideangivelse mangler',
 'notargettext'            => 'Du har ikke angivet en side eller bruger at udføre denne funktion på.',
@@ -2777,7 +2777,7 @@ Dette skyldes sandsynligvis en henvisning til et sortlistet eksternt websted.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Markér som patruljeret',
-'markaspatrolledtext'                 => 'Markér denne artikel som patruljeret',
+'markaspatrolledtext'                 => 'Markér denne side som patruljeret',
 'markedaspatrolled'                   => 'Markeret som patruljeret',
 'markedaspatrolledtext'               => 'Den valgte redigering af [[:$1]] er nu markeret som patruljeret.',
 'rcpatroldisabled'                    => 'Seneste ændringer-patruljeringen er slået fra',

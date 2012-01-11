@@ -834,11 +834,11 @@ Prosimo preverite, ali res želite ustvariti/urediti to stran.',
 'blocked-notice-logextract'        => 'Ta uporabnik je trenutno blokiran.
 Najnovejši vnos v dnevniku blokad je prikazan spodaj:',
 'clearyourcache'                   => "'''Opomba:''' Da bodo spremembe prišle do veljave, po shranitvi izpraznite predpomnilnik svojega brskalnika.
-* '''Firefox/Safari:''' držite ''Shift'' in kliknite ''Ponovno naloži'' (''Reload'') ali pritisnite ''Ctrl-Shift-R'' ali ''Ctrl-R'' (''Command-R'' na sistemu Mac)
-* '''Internet Explorer:''' držite ''Ctrl-F5'' in kliknite ''Osveži'' (''Refresh'') ali pritisnite ''Ctrl-F5''
-* '''Google Chrome:''' pritisnite ''Ctrl-Shift-R'' (''Command-Shift-R'' na sistemu Mac)
-* '''Konqueror:''' kliknite ''Ponovno naloži'' (''Reload'') ali pritisnite ''F5''.
-* '''Opera:''' počistite predpomnilnik v ''Tools → Preferences''",
+* '''Firefox/Safari:''' Držite ''Shift'' in kliknite ''Ponovno naloži'' (''Reload'') ali pritisnite ''Ctrl-Shift-R'' ali ''Ctrl-R'' (''⌘-R'' na sistemu Mac)
+* '''Internet Explorer:''' Držite ''Ctrl-F5'' in kliknite ''Osveži'' (''Refresh'') ali pritisnite ''Ctrl-F5''
+* '''Google Chrome:''' Pritisnite ''Ctrl-Shift-R'' (''⌘-Shift-R'' na sistemu Mac)
+* '''Konqueror:''' Kliknite ''Ponovno naloži'' (''Reload'') ali pritisnite ''F5''.
+* '''Opera:''' Počistite predpomnilnik v ''Tools → Preferences''",
 'usercssyoucanpreview'             => "'''Nasvet:''' Za preizkušanje svojega novega CSS pred shranjevanjem uporabite gumb »{{int:showpreview}}«.",
 'userjsyoucanpreview'              => "'''Nasvet:''' Za preizkušanje svojega novega JavaScripta pred shranjevanjem uporabite gumb »{{int:showpreview}}«.",
 'usercsspreview'                   => "'''Svoj uporabniški CSS le predogledujete.'''
@@ -1371,12 +1371,12 @@ Podatek bo javno prikazan.',
 'group-suppress'      => 'Nadzorniki',
 'group-all'           => '(vsi)',
 
-'group-user-member'          => 'Uporabnik',
-'group-autoconfirmed-member' => 'Samodejno potrjen uporabnik',
-'group-bot-member'           => 'Bot',
-'group-sysop-member'         => 'Administrator',
-'group-bureaucrat-member'    => 'Birokrat',
-'group-suppress-member'      => 'Nadzornik',
+'group-user-member'          => '{{GENDER:$1|uporabnik|uporabnica}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|samodejno potrjen uporabnik|samodejno potrjena uporabnica}}',
+'group-bot-member'           => '{{GENDER:$1|bot}}',
+'group-sysop-member'         => '{{GENDER:$1|administrator|administratorka}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|birokrat|birokratinja}}',
+'group-suppress-member'      => '{{GENDER:$1|nadzornik|nadzornica}}',
 
 'grouppage-user'          => '{{ns:project}}:Uporabniki',
 'grouppage-autoconfirmed' => '{{ns:project}}:Samodejno potrjeni uporabniki',
@@ -1449,7 +1449,7 @@ Podatek bo javno prikazan.',
 # User rights log
 'rightslog'                  => 'Dnevnik uporabniških pravic',
 'rightslogtext'              => 'Prikazan je dnevnik sprememb uporabniških pravic.',
-'rightslogentry'             => '- sprememba pravic uporabnika $1 iz $2 v $3',
+'rightslogentry'             => 'je spremenil(-a) pravice uporabnika $1 iz $2 v $3',
 'rightslogentry-autopromote' => 'je bil(-a) samodejno povišan(-a) z $2 na $3',
 'rightsnone'                 => '(nobeno)',
 
@@ -2525,7 +2525,7 @@ Je pa blokiran kot del območja $2, ki ga lahko odblokirate.',
 'ip_range_toolarge'               => 'Območja blokade večja od /$1 niso dovoljena.',
 'blockme'                         => 'Blokiraj me',
 'proxyblocker'                    => 'Blokator posredniških strežnikov',
-'proxyblocker-disabled'           => 'Ta funkcija je onemogočena.',
+'proxyblocker-disabled'           => 'Funkcija je onemogočena.',
 'proxyblockreason'                => 'Ker uporabljate odprti posredniški strežnik, je urejanje z vašega IP-naslova preprečeno.
 Gre za resno varnostno težavo, o kateri obvestite svojega internetnega ponudnika ali tehnično podporo.',
 'proxyblocksuccess'               => 'Storjeno.',

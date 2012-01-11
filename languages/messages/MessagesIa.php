@@ -315,7 +315,7 @@ $messages = array(
 'history'           => 'Historia del pagina',
 'history_short'     => 'Historia',
 'updatedmarker'     => 'actualisate post mi ultime visita',
-'printableversion'  => 'Version imprimibile',
+'printableversion'  => 'Version pro imprimer',
 'permalink'         => 'Ligamine permanente',
 'print'             => 'Imprimer',
 'view'              => 'Leger',
@@ -602,9 +602,8 @@ le contrasigno e non plus vole cambiar lo, tu pote ignorar iste message
 e continuar a usar le contrasigno original.',
 'noemail'                    => 'Il non ha un adresse de e-mail registrate pro le usator "$1".',
 'noemailcreate'              => 'Es necessari fornir un adresse de e-mail valide',
-'passwordsent'               => 'Un nove contrasigno esseva inviate al adresse de e-mail
-registrate pro "$1".
-Per favor initia un session post reciper lo.',
+'passwordsent'               => 'Un nove contrasigno ha essite inviate al adresse de e-mail registrate pro "$1".
+Per favor aperi session de novo post reciper lo.',
 'blocked-mailpassword'       => 'Tu adresse IP es blocate de facer modificationes, e pro impedir le abuso, le uso del function pro recuperar contrasignos es equalmente blocate.',
 'eauthentsent'               => 'Un e-mail de confirmation ha essite inviate al adresse de e-mail nominate.
 Ante que alcun altere e-mail se invia al conto, tu debera sequer le instructiones in le e-mail, pro confirmar que le conto es de facto tue.',
@@ -616,7 +615,7 @@ A causa de isto, le visitatores usante iste adresse IP non pote crear nove conto
 'emailauthenticated'         => 'Tu adresse de e-mail esseva authentificate le $2 a $3.',
 'emailnotauthenticated'      => 'Tu adresse de e-mail non ha essite authentificate ancora.
 Nos non inviara e-mail pro alcun del sequente functiones.',
-'noemailprefs'               => 'Specifica un adresse de e-mail pro poter executar iste functiones.',
+'noemailprefs'               => 'Es necessari specificar un adresse de e-mail in tu preferentias pro poter executar iste functiones.',
 'emailconfirmlink'           => 'Confirmar tu adresse de e-mail',
 'invalidemailaddress'        => 'Le adresse de e-mail ha un formato invalide e non pote esser acceptate.
 Entra un adresse ben formatate, o vacua ille campo.',
@@ -797,11 +796,11 @@ o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 
 'blocked-notice-logextract'        => 'Iste usator es actualmente blocate.
 Le ultime entrata del registro de blocadas es reproducite ci infra pro information:',
 'clearyourcache'                   => "'''Nota:''' Post confirmar, il pote esser necessari refrescar le ''cache'' de tu navigator pro vider le cambiamentos.
-* '''Firefox / Safari:''' tenente ''Shift'' clicca ''Reload (Recargar)'', o preme ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' sur Mac)
-* '''Google Chrome:''' preme ''Ctrl-Shift-R'' (''Command-Shift-R'' sur Mac)
-* '''Internet Explorer:''' tenente ''Ctrl'' clicca ''Refresh (Refrescar)'', o preme ''Ctrl-F5'' 
-* '''Konqueror:''' clicca ''Reload (Recargar)'' o preme ''F5''
-* '''Opera:''' vacua le ''cache'' in ''Tools → Preferences (Utensiles → Preferentias)''",
+* '''Firefox / Safari:''' Tenente ''Shift'' clicca ''Reload (Recargar)'', o preme ''Ctrl-F5'' o ''Ctrl-R'' (''⌘-R'' sur Mac)
+* '''Google Chrome:''' Preme ''Ctrl-Shift-R'' (''⌘-Shift-R'' sur Mac)
+* '''Internet Explorer:''' Tenente ''Ctrl'' clicca ''Refresh (Refrescar)'', o preme ''Ctrl-F5'' 
+* '''Konqueror:''' Clicca ''Reload (Recargar)'' o preme ''F5''
+* '''Opera:''' Vacua le ''cache'' in ''Tools → Preferences (Utensiles → Preferentias)''",
 'usercssyoucanpreview'             => "'''Consilio:''' Usa le button \"{{int:showpreview}}\" pro testar tu nove CSS ante de salveguardar lo.",
 'userjsyoucanpreview'              => "'''Consilio:''' Usa le button \"{{int:showpreview}}\" pro testar tu nove JavaScript ante de salveguardar lo.",
 'usercsspreview'                   => "'''Non oblida que isto es solmente un previsualisation de tu CSS personalisate.'''
@@ -1340,12 +1339,12 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'group-suppress'      => 'Supervisores',
 'group-all'           => '(totes)',
 
-'group-user-member'          => 'Usator',
-'group-autoconfirmed-member' => 'Usator autoconfirmate',
-'group-bot-member'           => 'Bot',
-'group-sysop-member'         => 'Administrator',
-'group-bureaucrat-member'    => 'Bureaucrate',
-'group-suppress-member'      => 'Supervisor',
+'group-user-member'          => '{{GENDER:$1|usator|usatrice|usator}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|usator|usatrice|usator}} autoconfirmate',
+'group-bot-member'           => '{{GENDER:$1|robot}}',
+'group-sysop-member'         => '{{GENDER:$1|administrator|administratrice|administrator}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|bureaucrate}}',
+'group-suppress-member'      => '{{GENDER:$1|supervisor|supervisora}}',
 
 'grouppage-user'          => '{{ns:project}}:Usatores',
 'grouppage-autoconfirmed' => '{{ns:project}}:Usatores autoconfirmate',
@@ -2057,7 +2056,7 @@ como le adresse del expeditor del e-mail, de modo que le destinatario pote respo
 'nowikiemailtitle'     => 'E-mail non permittite',
 'nowikiemailtext'      => 'Iste usator ha optate pro non reciper e-mail de altere usatores.',
 'emailnotarget'        => 'Nomine de usator inexistente o invalide pro le destinatario.',
-'emailtarget'          => 'Entra le nomine de usator del destinatario.',
+'emailtarget'          => 'Specifica le nomine de usator del destinatario.',
 'emailusername'        => 'Nomine de usator:',
 'emailusernamesubmit'  => 'Submitter',
 'email-legend'         => 'Inviar e-mail a un altere usator de {{SITENAME}}',
@@ -2505,7 +2504,7 @@ Illo es, nonobstante, blocate como parte del intervallo $2, le qual pote esser d
 'ip_range_toolarge'               => 'Non es permittite blocar un gamma de adresses IP plus grande que /$1.',
 'blockme'                         => 'Blocar me',
 'proxyblocker'                    => 'Blocator de proxy',
-'proxyblocker-disabled'           => 'Iste function is disactivate.',
+'proxyblocker-disabled'           => 'Iste function es disactivate.',
 'proxyblockreason'                => 'Tu adresse IP ha essite blocate proque illo es un proxy aperte.
 Per favor contacta tu providitor de servicio internet o supporto technic e informa les de iste problema grave de securitate.',
 'proxyblocksuccess'               => 'Succedite.',
@@ -3505,7 +3504,7 @@ Per favor confirma que tu realmente vole recrear iste pagina.",
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'Le modificationes plus nove que $1 {{PLURAL:$1|secunda|secundas}} possibilemente non se revela in iste lista.',
-'lag-warn-high'   => 'A causa de un alte latentia del servitor de base de datos, le modificationes plus nove que $1 {{PLURAL:$1|secunda|secundas}} possibilemente non se revela in iste lista.',
+'lag-warn-high'   => 'Le servitor del base de datos es in retardo; modificationes facite durante le ultime $1 {{PLURAL:$1|secunda|secundas}} possibilemente non appare in iste lista.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Tu observatorio contine {{PLURAL:$1|1 titulo|$1 titulos}}, excludente le paginas de discussion.',

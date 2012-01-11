@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Hercule
  * @author Kaffi
  * @author Les Meloures
  * @author Purodha
@@ -416,7 +417,7 @@ $1",
 'mainpage-description' => 'Haaptsäit',
 'policy-url'           => 'Project:Richtlinnen',
 'portal'               => '{{SITENAME}}-Portal',
-'portal-url'           => 'Project:Kommunautéit',
+'portal-url'           => 'Project:Communautéitssäit',
 'privacy'              => 'Dateschutz',
 'privacypage'          => 'Project:Dateschutz',
 
@@ -788,10 +789,11 @@ oder <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}
 'blocked-notice-logextract'        => 'Dëse Benotzer ass elo gespaart.
 Déi lescht Entrée am Logbuch vun de Späre steet als Referenz hei drënner:',
 'clearyourcache'                   => "'''Opgepasst - Nom Späichere muss der Ärem Browser seng Cache eidel maachen, fir d'Ännerungen ze gesinn.'''
-'''Mozilla / Firefox / Safari: ''' dréckt op ''Shift'' während Dir ''Reload'' klickt oder dréckt ''Ctrl-F5'' oder ''Ctrl-R''(''Command-R'' op engem Mac);
-'''Konqueror: ''' klickt  ''Reload'' oder dréckt ''F5'' 
-'''Opera:''' maacht de Cache eidel an ''Tools → Preferences;'' 
-'''Internet Explorer:''' dréckt ''Ctrl'' während Dir op ''Refresh'' klickt oder dréckt ''Ctrl-F5.''",
+* '''Firefox / Safari:''' Halt ''Shift'' während Dir ''Reload'' klickt oder dréckt entweder ''Ctrl-F5'' oder ''Ctrl-R'' (''⌘-R'' op engem Mac);
+* '''Google Chrome:''' Dréckt ''Ctrl-Shift-R'' (''⌘-Shift-R'' op engem Mac)
+* '''Internet Explorer:''' dréckt ''Ctrl'' während Dir op ''Refresh'' klickt oder dréckt ''Ctrl-F5.''
+* '''Konqueror:''' klickt  ''Reload'' oder dréckt ''F5'' 
+* '''Opera:''' maacht de Cache eidel an ''Tools → Preferences;''",
 'usercssyoucanpreview'             => "'''Tipp:''' Benotzt de \"{{int:showpreview}}\"-Knäppchen, fir Ären neien CSS virum Späicheren ze testen.",
 'userjsyoucanpreview'              => "'''Tipp:''' Benotzt de ''{{int:showpreview}}''-Knäppchen, fir Ären neie JavaScript virum Späicheren ze testen.",
 'usercsspreview'                   => "'''Bedenkt: Dir kuckt just är Benotzer CSS.
@@ -1311,12 +1313,12 @@ Si muss manner wéi $1 {{PLURAL:$1|Zeechen|Zeechen}} hunn.',
 'group-suppress'      => 'Iwwersiicht',
 'group-all'           => '(all)',
 
-'group-user-member'          => 'Benotzer',
-'group-autoconfirmed-member' => 'Registréierte Benotzer',
-'group-bot-member'           => 'Bot',
-'group-sysop-member'         => 'Administrateur',
-'group-bureaucrat-member'    => 'Bürokrat',
-'group-suppress-member'      => 'Iwwersiicht',
+'group-user-member'          => '{{GENDER:$1|Benotzer}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|automatesch confirméiert Benotzer}}',
+'group-bot-member'           => '{{GENDER:$1|Bot}}',
+'group-sysop-member'         => '{{GENDER:$1|Administrateur|Administratrice}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|Bürokrat|Bürokratin}}',
+'group-suppress-member'      => '{{GENDER:$1|Iwwersiicht}}',
 
 'grouppage-user'          => '{{ns:project}}:Benotzer',
 'grouppage-autoconfirmed' => '{{ns:project}}:Registréiert Benotzer',
@@ -3014,6 +3016,8 @@ Déi aner sinn am Standard verstoppt.
 'exif-editstatus'                  => 'Redaktionnelle Statut vum Bild',
 'exif-urgency'                     => 'Urgence',
 'exif-fixtureidentifier'           => 'Numm vun der Rubrik',
+'exif-locationdest'                => 'Gewise Plaz',
+'exif-locationdestcode'            => 'Code fir déi gewise Plaz',
 'exif-objectcycle'                 => 'Zäit vum Dag fir deen dëse Fichier geduecht ass',
 'exif-contact'                     => 'Kontaktinformatioun',
 'exif-writer'                      => 'Auteur',
@@ -3035,6 +3039,7 @@ Déi aner sinn am Standard verstoppt.
 'exif-copyrighted'                 => 'Copyright Status',
 'exif-copyrightowner'              => "Titulaire vun den Droits d'auteur",
 'exif-usageterms'                  => 'Benotzungsbedingungen',
+'exif-webstatement'                => 'Omline Copyright Deklaratioun',
 'exif-licenseurl'                  => 'URL vum Copyright (Lizenz)',
 'exif-morepermissionsurl'          => 'Alternativ Lizenzinformatiounen',
 'exif-attributionurl'              => 'Wann dëst Wierk weiderbenotzt gëtt, da linkt w.e.g. op',

@@ -692,6 +692,7 @@ Jūs galbūt jau sėkmingai pakeitėte savo slaptažodį ar gavote naują laikin
 'passwordreset-disabled'       => 'Slaptažodžių atstatymai šiame wikyje išjungti.',
 'passwordreset-pretext'        => '{{PLURAL:$1| | Langelyje parašykite vieną duomenų vienetų žemiau}}',
 'passwordreset-username'       => 'Naudotojo vardas:',
+'passwordreset-domain'         => 'Domenas:',
 'passwordreset-email'          => 'E-pašto adresas:',
 'passwordreset-emailtitle'     => 'Paskyros informacija apie {{sitename}}',
 'passwordreset-emailtext-ip'   => 'Kažkas (tikriausiai jūs, IP adresu $1 ) paprašė informacijos priminimas jūsų! N! sąskaitą {{sitename}} ( $4 ). Šis vartotojas {{PLURAL:$3| sąskaita | sąskaitas}} N!! N!, susijusių su šiuo e-pašto adresą!: N!! $2 ! N! N! {{PLURAL:$3| Šis laikinas slaptažodis | Šie laikini slaptažodžiai}} baigsis {{PLURAL:$5| vieną dieną | $5 dienų}} slaptažodis.! N! Jūs turėtumėte prisijungti ir pasirinkti naują. Jei kažkas padarė tai! N! prašymu, arba jūs prisiminėte savo pirminį slaptažodį, ir jums nebereikia! N! nori ją pakeisti, galite ignoruoti šį pranešimą ir toliau naudotis savo senuoju! N! slaptažodį.',

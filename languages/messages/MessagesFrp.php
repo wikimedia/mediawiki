@@ -310,7 +310,7 @@ $messages = array(
 'tog-hideminor'               => 'Cachiér los petiôts changements des dèrriérs changements',
 'tog-hidepatrolled'           => 'Cachiér los changements survelyês des dèrriérs changements',
 'tog-newpageshidepatrolled'   => 'Cachiér les pâges survelyês de la lista de les pâges novèles',
-'tog-extendwatchlist'         => 'Ètendre la lista de survelyence por fâre vêre tôs los changements et pas ren que los ples novéls',
+'tog-extendwatchlist'         => 'Ètendre la lista de survelyence por fâre vêre tôs los changements et pas solament los ples novéls',
 'tog-usenewrc'                => 'Utilisar los dèrriérs changements mèlyorâs (at fôta de JavaScript)',
 'tog-numberheadings'          => 'Numerotar ôtomaticament los titros de sèccions',
 'tog-showtoolbar'             => 'Montrar la bârra d’outils d’èdicion (at fôta de JavaScript)',
@@ -331,22 +331,22 @@ $messages = array(
 'tog-enotifusertalkpages'     => 'M’avèrtir per mèssageria èlèctronica quand ma pâge de discussion est changiê',
 'tog-enotifminoredits'        => 'M’avèrtir per mèssageria èlèctronica mémo en câs de petiôts changements',
 'tog-enotifrevealaddr'        => 'Fâre vêre mon adrèce èlèctronica dens los mèssâjos d’avèrtissement',
-'tog-shownumberswatching'     => 'Fâre vêre lo nombro d’utilisators que siuvont les pâges',
+'tog-shownumberswatching'     => 'Fâre vêre lo nombro d’usanciérs que siuvont les pâges',
 'tog-oldsig'                  => 'Signatura ègzistenta :',
 'tog-fancysig'                => 'Trètar la signatura coment de vouiquitèxto (sen lim ôtomatico)',
-'tog-externaleditor'          => 'Utilisar per dèfôt un èditor de tèxto de defôr (solament por los utilisators avanciês, at fôta d’una configuracion spèciâla sur voutron ordenator. [//www.mediawiki.org/wiki/Manual:External_editors Més d’enformacions.])',
-'tog-externaldiff'            => 'Utilisar per dèfôt un comparator de defôr (solament por los utilisators avanciês, at fôta d’una configuracion spèciâla sur voutron ordenator. [//www.mediawiki.org/wiki/Manual:External_editors Més d’enformacions.])',
+'tog-externaleditor'          => 'Utilisar per dèfôt un èditor de tèxto de defôr (solament por los usanciérs avanciês, at fôta d’una configuracion spèciâla sur voutron ordenator. [//www.mediawiki.org/wiki/Manual:External_editors Més d’enformacions.])',
+'tog-externaldiff'            => 'Utilisar per dèfôt un comparator de defôr (solament por los usanciérs avanciês, at fôta d’una configuracion spèciâla sur voutron ordenator. [//www.mediawiki.org/wiki/Manual:External_editors Més d’enformacions.])',
 'tog-showjumplinks'           => 'Activar los lims « navigacion » et « rechèrche » d’amont la pâge',
 'tog-uselivepreview'          => 'Utilisar l’apèrçu vito fêt (at fôta de JavaScript) (èxpèrimentâl)',
 'tog-forceeditsummary'        => 'M’avèrtir quand j’é pas spècefiâ de rèsumâ de changement',
 'tog-watchlisthideown'        => 'Cachiér mos prôpros changements dens la lista de survelyence',
 'tog-watchlisthidebots'       => 'Cachiér los changements fêts per des bots dens la lista de survelyence',
 'tog-watchlisthideminor'      => 'Cachiér los petiôts changements dens la lista de survelyence',
-'tog-watchlisthideliu'        => 'Cachiér los changements fêts per des utilisators branchiês dens la lista de survelyence',
-'tog-watchlisthideanons'      => 'Cachiér los changements fêts per des utilisators pas encartâs dens la lista de survelyence',
+'tog-watchlisthideliu'        => 'Cachiér los changements fêts per des usanciérs branchiês dens la lista de survelyence',
+'tog-watchlisthideanons'      => 'Cachiér los changements fêts per des usanciérs pas encartâs dens la lista de survelyence',
 'tog-watchlisthidepatrolled'  => 'Cachiér los changements survelyês dens la lista de survelyence',
 'tog-nolangconversion'        => 'Dèsactivar la convèrsion de les variantes de lengoua',
-'tog-ccmeonemails'            => 'Mè mandar una copia des mèssâjos que mando ux ôtros utilisators',
+'tog-ccmeonemails'            => 'Mè mandar una copia des mèssâjos que mando ux ôtros usanciérs',
 'tog-diffonly'                => 'Pas montrar lo contegnu de les pâges desot los difs',
 'tog-showhiddencats'          => 'Fâre vêre les catègories cachiês',
 'tog-noconvertlink'           => 'Dèsactivar la convèrsion des titros',
@@ -511,7 +511,7 @@ $messages = array(
 'talk'              => 'Discussion',
 'views'             => 'Visualisacions',
 'toolbox'           => 'Bouèta d’outils',
-'userpage'          => 'Pâge utilisator',
+'userpage'          => 'Pâge usanciér',
 'projectpage'       => 'Pâge du projèt',
 'imagepage'         => 'Vêde la pâge du fichiér',
 'mediawikipage'     => 'Vêde la pâge du mèssâjo',
@@ -529,7 +529,7 @@ $messages = array(
 'jumptonavigation'  => 'Navigacion',
 'jumptosearch'      => 'Rechèrche',
 'view-pool-error'   => 'Dèsolâ, los sèrvors sont surchargiês por lo moment.
-Trop d’utilisators chèrchont a arrevar a ceta pâge.
+Trop d’usanciérs chèrchont a arrevar a ceta pâge.
 Volyéd atendre un moment devant que vos tâchiéd de tornar arrevar a ceta pâge.
 
 $1',
@@ -559,7 +559,7 @@ $1',
 
 'badaccess'        => 'Èrror de pèrmission',
 'badaccess-group0' => 'Vos avéd pas los drêts sufisents por rèalisar l’accion que vos demandâd.',
-'badaccess-groups' => 'L’accion que vos tâchiéd de rèalisar est accèssibla ren qu’ux utilisators a {{PLURAL:$2|la tropa|les tropes}} : $1.',
+'badaccess-groups' => 'L’accion que vos tâchiéd de rèalisar est accèssibla ren qu’ux usanciérs a {{PLURAL:$2|la tropa|les tropes}} : $1.',
 
 'versionrequired'     => 'Vèrsion $1 de MediaWiki nècèssèra',
 'versionrequiredtext' => 'La vèrsion $1 de MediaWiki est nècèssèra por utilisar ceta pâge.
@@ -598,7 +598,7 @@ Vêde la [[Special:Version|pâge de les vèrsions]].',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Pâge',
-'nstab-user'      => 'Pâge utilisator',
+'nstab-user'      => 'Pâge usanciér',
 'nstab-media'     => 'Pâge de mèdia',
 'nstab-special'   => 'Pâge spèciâla',
 'nstab-project'   => 'Pâge du projèt',
@@ -635,9 +635,9 @@ La bâsa de balyês at retornâ l’èrror « $3 : $4 ».',
 'laggedslavemode'      => "'''Atencion :''' cela pâge pôt pas contegnir tôs los dèrriérs changements fêts.",
 'readonly'             => 'Bâsa de balyês vèrrolyê',
 'enterlockreason'      => 'Balyéd la rêson du vèrrolyâjo et pués una èstimacion de son temps',
-'readonlytext'         => 'Ora, les aponses et les mises a jorn de la bâsa de balyês sont blocâs, probâblament por pèrmetre la mantegnence de la bâsa, aprés què, tot rentrerat dedens l’ôrdre.
+'readonlytext'         => 'Ora, la bâsa de balyês est vèrrolyê por d’entrâs novèles et d’ôtros changements, probâblament por pèrmetre la mantegnence de la bâsa de balyês, aprés què tot tornerat a la normala.
 
-L’administrator qu’at vèrrolyê la bâsa de balyês at balyê ceta èxplicacion : $1',
+L’administrator que l’at vèrrolyê at balyê ceta èxplicacion : $1',
 'missing-article'      => 'La bâsa de balyês at pas trovâ lo tèxto d’una pâge qu’el arêt diu trovar, avouéc lo titro « $1 » $2.
 
 En g·ènèral, cen arreve en siuvent un lim de vers un dif dèpassâ ou ben de vers l’historico d’una pâge suprimâ.
@@ -681,14 +681,14 @@ Volyéd tornar èprovar dens doux-três menutes.',
 'viewsourcetext'       => 'Vos pouede vêre et copiyér lo tèxto sôrsa de la pâge :',
 'protectedinterface'   => 'Ceta pâge fât de tèxto d’entèrface por la programeria et est protègiê por èvitar los abus.',
 'editinginterface'     => "'''Atencion :''' vos éte aprés changiér una pâge utilisâ por fâre lo tèxto d’entèrface por la programeria.
-Los changements sè cognetront, d’aprés lo contèxto, sur totes ou ben quârques pâges visibles per los ôtros utilisators.
+Los changements sè cognetront, d’aprés lo contèxto, sur totes ou ben quârques pâges visibles per los ôtros usanciérs.
 Por les traduccions, nos vos envitens a utilisar lo seto [//translatewiki.net/wiki/Main_Page?setlang=frp translatewiki.net], lo projèt de localisacion de MediaWiki.",
 'sqlhidden'            => '(Requéta SQL cachiê)',
 'cascadeprotected'     => 'Ora, cela pâge est protègiê perce qu’el est encllua dens {{PLURAL:$1|ceta pâge|cetes pâges}}, {{PLURAL:$1|qu’at étâ protègiê|qu’ont étâ protègiês}} avouéc lo chouèx « protèccion en cascâda » activâ :
 $2',
 'namespaceprotected'   => "Vos avéd pas la pèrmission de changiér les pâges de l’èspâço de noms '''« $1 »'''.",
-'customcssprotected'   => 'Vos avéd pas la pèrmission de changiér ceta pâge CSS, perce que contint les prèferences a un ôtro utilisator.',
-'customjsprotected'    => 'Vos avéd pas la pèrmission de changiér ceta pâge JavaScript, perce que contint les prèferences a un ôtro utilisator.',
+'customcssprotected'   => 'Vos avéd pas la pèrmission de changiér cela pâge CSS, perce que contint les prèferences a un ôtro usanciér.',
+'customjsprotected'    => 'Vos avéd pas la pèrmission de changiér cela pâge JavaScript, perce que contint les prèferences a un ôtro usanciér.',
 'ns-specialprotected'  => 'Les pâges dens l’èspâço de noms « {{ns:special}} » pôvont pas étre changiês.',
 'titleprotected'       => "Cél titro at étâ protègiê a la crèacion per [[User:$1|$1]].
 La rêson balyê est « ''$2'' ».",
@@ -704,11 +704,11 @@ La rêson balyê est « ''$2'' ».",
 Vos pouede continuar a utilisar {{SITENAME}} de façon anonima, ou ben [[Special:UserLogin|vos tornar branchiér]] desot lo mémo nom ou ben un ôtro.
 Notâd que quârques pâges pôvont étre adés montrâs coment se vos érâd tojorn branchiê, tant que vos èfaciéd lo cache de voutron navigator.",
 'welcomecreation'            => '== Benvegnua, $1 ! ==
-Voutron compto utilisator at étâ fêt.
+Voutron compto usanciér at étâ fêt.
 Oubliâd pas de pèrsonalisar voutres [[Special:Preferences|prèferences dessus {{SITENAME}}]].',
-'yourname'                   => 'Voutron nom d’utilisator :',
-'yourpassword'               => 'Mot de pâssa :',
-'yourpasswordagain'          => 'Confirmâd lo mot de pâssa :',
+'yourname'                   => 'Nom d’usanciér :',
+'yourpassword'               => 'Contresegno :',
+'yourpasswordagain'          => 'Confirmâd lo contresegno :',
 'remembermypassword'         => 'Sè rapelar de mon branchement sur ceti navigator (por $1 jorn{{PLURAL:$1||s}} u més)',
 'securelogin-stick-https'    => 'Réstar branchiê en HTTPS aprés lo branchement',
 'yourdomainname'             => 'Voutron domêno :',
@@ -729,54 +729,54 @@ Oubliâd pas de pèrsonalisar voutres [[Special:Preferences|prèferences dessus 
 'userlogin-resetlink'        => 'Vos éd oubliâ voutros dètalys de branchement ?',
 'createaccountmail'          => 'per mèssageria èlèctronica',
 'createaccountreason'        => 'Rêson :',
-'badretype'                  => 'Los mots de pâssa que vos éd buchiês sont pas pariérs.',
-'userexists'                 => 'Lo nom d’utilisator buchiê est ja utilisâ.
+'badretype'                  => 'Los contresegnos que vos éd buchiês sont pas pariérs.',
+'userexists'                 => 'Lo nom d’usanciér buchiê est ja utilisâ.
 Nen volyéd chouèsir un ôtro.',
 'loginerror'                 => 'Èrror de branchement',
 'createaccounterror'         => 'Empossiblo de fâre lo compto : $1',
-'nocookiesnew'               => "Lo compto utilisator at étâ fêt, mas vos éte pas branchiê.
+'nocookiesnew'               => "Lo compto usanciér at étâ fêt, mas vos éte pas branchiê.
 {{SITENAME}} utilise des tèmouens (''cookies'') por lo branchement mas vos los éd dèsactivâs.
-Los volyéd activar et pués vos tornar branchiér avouéc lo mémo nom et lo mémo mot de pâssa.",
+Los volyéd activar et pués vos tornar branchiér avouéc lo mémo nom et lo mémo contresegno.",
 'nocookieslogin'             => "{{SITENAME}} utilise des tèmouens (''cookies'') por lo branchement mas vos los éd dèsactivâs.
 Los volyéd activar et pués vos tornar branchiér.",
-'nocookiesfornew'            => "Lo compto utilisator at pas étâ fêt, perce que nos ens pas possu confirmar sa sôrsa.
+'nocookiesfornew'            => "Lo compto usanciér at pas étâ fêt, perce que nos ens pas possu confirmar sa sôrsa.
 Controlâd que vos éd activâ los tèmouens (''cookies''), rechargiéd la pâge et pués tornâd èprovar.",
-'noname'                     => 'Vos éd pas buchiê un nom d’utilisator valido.',
+'noname'                     => 'Vos éd pas buchiê un nom d’usanciér valido.',
 'loginsuccesstitle'          => 'Branchement reussi.',
 'loginsuccess'               => "'''Ora, vos éte branchiê a {{SITENAME}} coment « $1 ».'''",
-'nosuchuser'                 => 'L’utilisator « $1 » ègziste pas.
-Los noms d’utilisator sont sensiblos a la câssa.
+'nosuchuser'                 => 'L’usanciér « $1 » ègziste pas.
+Los noms d’usanciér sont sensiblos a la câssa.
 Controlâd l’ortografia, ou ben [[Special:UserLogin/signup|féte un compto novél]].',
 'nosuchusershort'            => 'Y at gins de contributor avouéc lo nom « $1 ».
 Volyéd controlar l’ortografia.',
-'nouserspecified'            => 'Vos dête buchiér un nom d’utilisator.',
-'login-userblocked'          => 'Ceti utilisator est blocâ. Branchement pas ôtorisâ.',
-'wrongpassword'              => 'Lo mot de pâssa est fôx.
+'nouserspecified'            => 'Vos dête buchiér un nom d’usanciér.',
+'login-userblocked'          => 'Ceti usanciér est blocâ. Branchement pas ôtorisâ.',
+'wrongpassword'              => 'Lo contresegno est fôx.
 Volyéd tornar èprovar.',
-'wrongpasswordempty'         => 'Vos éd pas buchiê de mot de pâssa.
+'wrongpasswordempty'         => 'Vos éd pas buchiê de contresegno.
 Volyéd tornar èprovar.',
-'passwordtooshort'           => 'Voutron mot de pâssa dêt contegnir u muens $1 caractèro{{PLURAL:$1||s}}.',
-'password-name-match'        => 'Voutron mot de pâssa dêt étre difèrent de voutron nom d’utilisator.',
-'password-login-forbidden'   => 'L’usâjo de cél nom d’utilisator et de cél mot de pâssa at étâ dèfendu.',
-'mailmypassword'             => 'Recêvre un mot de pâssa novél per mèssageria èlèctronica',
-'passwordremindertitle'      => 'Mot de pâssa temporèro novél por {{SITENAME}}',
-'passwordremindertext'       => 'Quârqu’un (probâblament vos, avouéc l’adrèce IP $1) at demandâ un mot de pâssa
-novél por {{SITENAME}} ($4). Un mot de pâssa temporèro at étâ fêt por
-l’utilisator « $2 » et est « $3 ». S’o ére voutra entencion, vos vos devréd
-branchiér et pués chouèsir un mot de pâssa novél.
-Voutron mot de pâssa temporèro èxpirerat dens $5 jorn{{PLURAL:$5||s}}.
+'passwordtooshort'           => 'Voutron contresegno dêt contegnir u muens $1 caractèro{{PLURAL:$1||s}}.',
+'password-name-match'        => 'Voutron contresegno dêt étre difèrent de voutron nom d’usanciér.',
+'password-login-forbidden'   => 'L’usâjo de cél nom d’usanciér et de cél contresegno at étâ dèfendu.',
+'mailmypassword'             => 'Recêvre un contresegno novél per mèssageria èlèctronica',
+'passwordremindertitle'      => 'Contresegno temporèro novél por {{SITENAME}}',
+'passwordremindertext'       => 'Quârqu’un (probâblament vos, avouéc l’adrèce IP $1) at demandâ un contresegno
+novél por {{SITENAME}} ($4). Un contresegno temporèro at étâ fêt por
+l’usanciér « $2 » et est « $3 ». S’o ére voutra entencion, vos vos devréd
+branchiér et pués chouèsir un contresegno novél.
+Voutron contresegno temporèro èxpirerat dens $5 jorn{{PLURAL:$5||s}}.
 
 Se cela demanda vint pas de vos, ou ben se vos vos rapelâd ora
-de voutron mot de pâssa et que vos souhètâd pas més nen changiér, vos
-pouede ignorar ceti mèssâjo et continuar a utilisar voutron viely mot de pâssa.',
-'noemail'                    => 'Niona adrèce èlèctronica at étâ encartâ por l’utilisator « $1 ».',
+de voutron contresegno et que vos souhètâd pas més nen changiér, vos
+pouede ignorar ceti mèssâjo et continuar a utilisar voutron viely contresegno.',
+'noemail'                    => 'Niona adrèce èlèctronica at étâ encartâ por l’usanciér « $1 ».',
 'noemailcreate'              => 'Vos dête balyér una adrèce èlèctronica valida',
-'passwordsent'               => 'Un mot de pâssa novél at étâ mandâ a l’adrèce èlèctronica a l’utilisator « $1 ».
+'passwordsent'               => 'Un contresegno novél at étâ mandâ a l’adrèce èlèctronica a l’usanciér « $1 ».
 Vos volyéd tornar branchiér aprés l’avêr reçu.',
-'blocked-mailpassword'       => 'Voutra adrèce IP est blocâ en ècritura, la fonccion de rapèl du mot de pâssa est vêr dèsactivâ por èvitar los abus.',
+'blocked-mailpassword'       => 'Voutra adrèce IP est blocâ en ècritura, la fonccion de rapèl du contresegno est vêr dèsactivâ por èvitar los abus.',
 'eauthentsent'               => 'Un mèssâjo de confirmacion at étâ mandâ a l’adrèce endicâ.
 Devant qu’un ôtro mèssâjo seye mandâ a ceti compto, vos devréd siuvre les enstruccions du mèssâjo et confirmar que lo compto est franc lo voutro.',
-'throttled-mailpassword'     => 'Un mèssâjo de rapèl de voutron mot de pâssa at ja étâ mandâ pendent {{PLURAL:$1|l’hora passâ|les $1 hores passâs}}.
+'throttled-mailpassword'     => 'Un mèssâjo de rapèl de voutron contresegno at ja étâ mandâ pendent {{PLURAL:$1|l’hora passâ|les $1 hores passâs}}.
 Por èvitar los abus, solament yon mèssâjo de rapèl serat mandâ per {{PLURAL:$1|hora|entèrvalo de $1 hores}}.',
 'mailerror'                  => 'Èrror pendent l’èxpèdicion du mèssâjo : $1',
 'acct_creation_throttle_hit' => 'Quârqu’un qu’utilise voutra adrèce IP at fêt {{PLURAL:$1|yon compto|$1 comptos}} pendent les 24 hores passâs, cen qu’est la limita ôtorisâ dens ceti temps.
@@ -789,13 +789,13 @@ Nion mèssâjo serat mandâ por châcuna de cetes fonccions.',
 'invalidemailaddress'        => 'Ceta adrèce èlèctronica pôt pas étre accèptâ perce que semble avêr un format fôx.
 Volyéd buchiér una adrèce bien formatâ ou ben lèssiér cél champ vouedo.',
 'accountcreated'             => 'Compto fêt.',
-'accountcreatedtext'         => 'Lo compto utilisator por $1 at étâ fêt.',
+'accountcreatedtext'         => 'Lo compto usanciér por $1 at étâ fêt.',
 'createaccount-title'        => 'Crèacion d’un compto por {{SITENAME}}',
-'createaccount-text'         => 'Quârqu’un at fêt un compto por voutra adrèce èlèctronica dessus {{SITENAME}} ($4) avouéc lo titro « $2 » et lo mot de pâssa « $3 ».
-Vos vos devriâd branchiér et pués changiér dês ora voutron mot de pâssa.
+'createaccount-text'         => 'Quârqu’un at fêt un compto por voutra adrèce èlèctronica dessus {{SITENAME}} ($4) avouéc lo titro « $2 » et lo contresegno « $3 ».
+Vos vos devriâd branchiér et pués changiér dês ora voutron contresegno.
 
 Ignorâd ceti mèssâjo se cél compto at étâ fêt per èrror.',
-'usernamehasherror'          => 'Lo nom d’utilisator pôt pas contegnir des caractèros de chaplâjo',
+'usernamehasherror'          => 'Lo nom d’usanciér pôt pas contegnir des caractèros de chaplâjo',
 'login-throttled'            => 'Vos éd tentâ dèrriérement un trop grant nombro de branchements.
 Volyéd atendre devant que tornar èprovar.',
 'login-abort-generic'        => 'Voutra tentativa de branchement at pas reussia - Anulâ',
@@ -806,48 +806,57 @@ Volyéd atendre devant que tornar èprovar.',
 'php-mail-error-unknown' => 'Èrror encognua dens la fonccion mail() de PHP.',
 
 # Change password dialog
-'resetpass'                 => 'Changiér lo mot de pâssa',
-'resetpass_announce'        => 'Vos vos éte branchiê avouéc un mot de pâssa temporèro mandâ per mèssageria èlèctronica.
-Por chavonar lo branchement, vos dête buchiér un mot de pâssa novél ique :',
+'resetpass'                 => 'Changiér lo contresegno',
+'resetpass_announce'        => 'Vos vos éte branchiê avouéc un contresegno temporèro mandâ per mèssageria èlèctronica.
+Por chavonar lo branchement, vos dête buchiér un contresegno novél ique :',
 'resetpass_text'            => '<!-- Apondéd lo tèxto ique -->',
-'resetpass_header'          => 'Changiér lo mot de pâssa du compto',
-'oldpassword'               => 'Viely mot de pâssa :',
-'newpassword'               => 'Mot de pâssa novél :',
-'retypenew'                 => 'Confirmar lo mot de pâssa novél :',
-'resetpass_submit'          => 'Changiér lo mot de pâssa et sè branchiér',
-'resetpass_success'         => 'Voutron mot de pâssa at étâ changiê avouéc reusséta ! Branchement en cors...',
-'resetpass_forbidden'       => 'Los mots de pâssa pôvont pas étre changiês.',
+'resetpass_header'          => 'Changiér lo contresegno du compto',
+'oldpassword'               => 'Viely contresegno :',
+'newpassword'               => 'Contresegno novél :',
+'retypenew'                 => 'Confirmar lo contresegno novél :',
+'resetpass_submit'          => 'Changiér lo contresegno et sè branchiér',
+'resetpass_success'         => 'Voutron contresegno at étâ changiê avouéc reusséta !
+Branchement en cors...',
+'resetpass_forbidden'       => 'Los contresegnos pôvont pas étre changiês.',
 'resetpass-no-info'         => 'Vos dête étre branchiê por avêr accès a cela pâge.',
-'resetpass-submit-loggedin' => 'Changiér lo mot de pâssa',
+'resetpass-submit-loggedin' => 'Changiér lo contresegno',
 'resetpass-submit-cancel'   => 'Anular',
-'resetpass-wrong-oldpass'   => 'Mot de pâssa d’ora ou ben temporèro envalido.
-Vos éd pôt-étre ja changiê voutron mot de pâssa avouéc reusséta ou ben demandâ un mot de pâssa temporèro novél.',
-'resetpass-temp-password'   => 'Mot de pâssa temporèro :',
+'resetpass-wrong-oldpass'   => 'Contresegno temporèro ou ben d’ora fôx.
+Vos éd pôt-étre ja changiê voutron contresegno avouéc reusséta ou ben demandâ un contresegno temporèro novél.',
+'resetpass-temp-password'   => 'Contresegno temporèro :',
 
 # Special:PasswordReset
-'passwordreset'                => 'Remisa a zérô du mot de pâssa',
+'passwordreset'                => 'Tornar inicialisar lo contresegno',
 'passwordreset-text'           => 'Rempléd ceti formulèro por recêvre un mèssâjo de rapèl des dètalys de voutron compto.',
-'passwordreset-legend'         => 'Remisa a zérô du mot de pâssa',
-'passwordreset-disabled'       => 'La remisa a zérô des mots de pâssa at étâ dèsactivâ sur ceti vouiqui.',
+'passwordreset-legend'         => 'Tornar inicialisar lo contresegno',
+'passwordreset-disabled'       => 'La remisa a zérô des contresegnos at étâ dèsactivâ sur ceti vouiqui.',
 'passwordreset-pretext'        => '{{PLURAL:$1||Buchiéd yon des bocons de balyês ce-desot}}',
-'passwordreset-username'       => 'Nom d’utilisator :',
+'passwordreset-username'       => 'Nom d’usanciér :',
 'passwordreset-domain'         => 'Domêno :',
 'passwordreset-email'          => 'Adrèce èlèctronica :',
 'passwordreset-emailtitle'     => 'Dètalys du compto dessus {{SITENAME}}',
 'passwordreset-emailtext-ip'   => 'Quârqu’un (probâblament vos, avouéc l’adrèce IP $1) at demandâ un rapèl des dètalys
-de voutron compto por {{SITENAME}} ($4). {{PLURAL:$3|Ceti compto utilisator est associyê|Cetos comptos utilisators sont associyês}} a cela adrèce èlèctronica :
+de voutron compto por {{SITENAME}} ($4). {{PLURAL:$3|Ceti compto usanciér est associyê|Cetos comptos usanciérs sont associyês}}
+a cela adrèce èlèctronica :
 
 $2
 
-{{PLURAL:$3|Cél mot de pâssa temporèro èxpirerat|Celos mots de pâssa temporèros èxpireront}} dens $5 jorn{{PLURAL:$5||s}}. Ora, vos vos dête branchiér et pués chouèsir un mot de pâssa novél. Se cela demanda vint pas de vos, ou ben se vos vos rapelâd ora de voutron mot de pâssa originâl et que vos souhètâd pas més nen changiér, vos pouede ignorar ceti mèssâjo et continuar a utilisar voutron viely mot de pâssa.',
-'passwordreset-emailtext-user' => 'L’utilisator $1 dessus {{SITENAME}} at demandâ un rapèl des dètalys
-de voutron compto por {{SITENAME}} ($4). {{PLURAL:$3|Ceti compto utilisator est associyê|Cetos comptos utilisators sont associyês}} a cela adrèce èlèctronica :
+{{PLURAL:$3|Cél contresegno temporèro èxpirerat|Celos contresegnos temporèros èxpireront}} dens $5 jorn{{PLURAL:$5||s}}.
+Ora, vos vos dête branchiér et pués chouèsir un contresegno novél. Se cela demanda vint pas de vos,
+ou ben se vos vos rapelâd ora de voutron contresegno originâl et que vos souhètâd pas més nen changiér,
+vos pouede ignorar ceti mèssâjo et continuar a utilisar voutron viely contresegno.',
+'passwordreset-emailtext-user' => 'L’usanciér $1 dessus {{SITENAME}} at demandâ un rapèl des dètalys
+de voutron compto por {{SITENAME}} ($4). {{PLURAL:$3|Ceti compto usanciér est associyê|Cetos comptos usanciérs sont associyês}}
+a cela adrèce èlèctronica :
 
 $2
 
-{{PLURAL:$3|Cél mot de pâssa temporèro èxpirerat|Celos mots de pâssa temporèros èxpireront}} dens $5 jorn{{PLURAL:$5||s}}. Ora, vos vos dête branchiér et pués chouèsir un mot de pâssa novél. Se cela demanda vint pas de vos, ou ben se vos vos rapelâd ora de voutron mot de pâssa originâl et que vos souhètâd pas més nen changiér, vos pouede ignorar ceti mèssâjo et continuar a utilisar voutron viely mot de pâssa.',
-'passwordreset-emailelement'   => 'Nom d’utilisator : $1
-Mot de pâssa temporèro : $2',
+{{PLURAL:$3|Cél contresegno temporèro èxpirerat|Celos contresegnos temporèros èxpireront}} dens $5 jorn{{PLURAL:$5||s}}.
+Ora, vos vos dête branchiér et pués chouèsir un contresegno novél. Se cela demanda vint pas de vos,
+ou ben se vos vos rapelâd ora de voutron contresegno originâl et que vos souhètâd pas més nen changiér,
+vos pouede ignorar ceti mèssâjo et continuar a utilisar voutron viely contresegno.',
+'passwordreset-emailelement'   => 'Nom d’usanciér : $1
+Contresegno temporèro : $2',
 'passwordreset-emailsent'      => 'Un mèssâjo de rapèl at étâ mandâ.',
 
 # Edit page toolbar
@@ -890,8 +899,8 @@ Se vos tornâd clicar dessus « {{int:savearticle}} », voutron changement serat
 Se vos tornâd clicar dessus « {{int:savearticle}} », voutron changement serat sôvâ sen titro.",
 'summary-preview'                  => 'Prèvisualisacion du rèsumâ :',
 'subject-preview'                  => 'Prèvisualisacion du sujèt / titro :',
-'blockedtitle'                     => 'L’utilisator est blocâ.',
-'blockedtext'                      => "'''Voutron compto utilisator ou ben voutra adrèce IP at étâ blocâ.'''
+'blockedtitle'                     => 'L’usanciér est blocâ.',
+'blockedtext'                      => "'''Voutron compto usanciér ou ben voutra adrèce IP at étâ blocâ.'''
 
 Lo blocâjo at étâ fêt per $1.
 La rêson balyê est ceta : ''$2''.
@@ -904,7 +913,7 @@ Vos vos pouede veriér vers $1 ou ben yon des ôtros [[{{MediaWiki:Grouppage-sys
 Vos pouede pas utilisar la fonccionalitât « Lui mandar un mèssâjo » a muens que vos èyâd una adrèce èlèctronica valida encartâ dens voutres [[Special:Preferences|prèferences]] et que la fonccionalitât èye pas étâ dèsactivâ.
 Voutra adrèce IP d’ora est $3, et lo numerô de blocâjo est $5.
 Volyéd spècefiar cetes endicacions dens totes les requétes que vos faréd.",
-'autoblockedtext'                  => "Voutra adrèce IP at étâ blocâ ôtomaticament perce qu’el at étâ utilisâ per un ôtro utilisator, lui-mémo blocâ per $1.
+'autoblockedtext'                  => "Voutra adrèce IP at étâ blocâ ôtomaticament perce qu’el at étâ utilisâ per un ôtro usanciér, lui-mémo blocâ per $1.
 La rêson balyê est ceta :
 
 :''$2''
@@ -932,18 +941,18 @@ El at pôt-étre étâ dèplaciê ou ben suprimâ dês que vos éd liesu cela p�
 'loginreqtitle'                    => 'Branchement nècèssèro',
 'loginreqlink'                     => 'branchiér',
 'loginreqpagetext'                 => 'Vos vos dête $1 por vêre les ôtres pâges.',
-'accmailtitle'                     => 'Mot de pâssa mandâ.',
-'accmailtext'                      => "Un mot de pâssa fêt per hasârd por [[User talk:$1|$1]] at étâ mandâ a $2.
+'accmailtitle'                     => 'Contresegno mandâ.',
+'accmailtext'                      => "Un contresegno fêt per hasârd por [[User talk:$1|$1]] at étâ mandâ a $2.
 
-Lo mot de pâssa por cél compto novél pôt étre changiê sur la pâge de ''[[Special:ChangePassword|changement de mot de pâssa]]'' aprés s’étre branchiê.",
+Lo contresegno por cél compto novél pôt étre changiê sur la pâge de ''[[Special:ChangePassword|changement de contresegno]]'' aprés s’étre branchiê.",
 'newarticle'                       => '(Novél)',
 'newarticletext'                   => "Vos éd siuvu un lim de vers una pâge qu’ègziste p’oncor.
 Por fâre cela pâge, buchiéd voutron tèxto dens la bouèta ce-desot (vêde la [[{{MediaWiki:Helppage}}|pâge d’éde]] por més d’enformacions).
 Se vos éte arrevâ ice per èrror, clicâd sur lo boton '''Devant''' de voutron navigator.",
-'anontalkpagetext'                 => "---- ''O est la pâge de discussion a un utilisator pas encartâ qu’at p’oncor fêt un compto ou ben que nen utilise pas.
+'anontalkpagetext'                 => "---- ''O est la pâge de discussion a un usanciér pas encartâ qu’at p’oncor fêt un compto ou ben que nen utilise pas.
 Por celes rêsons, nos devens utilisar son adrèce IP numerica por l’identifiar.
-Una adrèce IP pôt étre partagiê per un mouél d’utilisators.
-Se vos éte un utilisator pas encartâ et pués se vos constatâd que des comentèros que vos regârdont pas vos ont étâ adrèciês, vos pouede [[Special:UserLogin/signup|fâre un compto]] ou ben [[Special:UserLogin|vos branchiér]] por èvitar tota confusion a vegnir avouéc d’ôtros contributors pas encartâs.''",
+Una adrèce IP pôt étre partagiê per un mouél d’usanciérs.
+Se vos éte un usanciér pas encartâ et pués se vos constatâd que des comentèros que vos regârdont pas vos ont étâ adrèciês, vos pouede [[Special:UserLogin/signup|fâre un compto]] ou ben [[Special:UserLogin|vos branchiér]] por èvitar tota confusion a vegnir avouéc d’ôtros contributors pas encartâs.''",
 'noarticletext'                    => 'Ora, y at gins de tèxto dens ceta pâge.
 Vos pouede [[Special:Search/{{PAGENAME}}|fâre una rechèrche sur lo titro de la pâge]] dens les ôtres pâges,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} rechèrchiér dens los jornals liyês]
@@ -951,14 +960,14 @@ ou ben [{{fullurl:{{FULLPAGENAME}}|action=edit}} fâre cela pâge]</span>.',
 'noarticletext-nopermission'       => 'Ora, y at gins de tèxto dens ceta pâge.
 Vos pouede [[Special:Search/{{PAGENAME}}|fâre una rechèrche sur lo titro de la pâge]] dens les ôtres pâges,
 ou ben <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} rechèrchiér dens los jornals liyês]</span>.',
-'userpage-userdoesnotexist'        => 'Lo compto utilisator « <nowiki>$1</nowiki> » est pas encartâ.
+'userpage-userdoesnotexist'        => 'Lo compto usanciér « $1 » est pas encartâ.
 Volyéd controlar que vos voléd fâre ou ben changiér cela pâge.',
-'userpage-userdoesnotexist-view'   => 'Lo compto utilisator « $1 » est pas encartâ.',
-'blocked-notice-logextract'        => 'Ceti utilisator est ora blocâ.
+'userpage-userdoesnotexist-view'   => 'Lo compto usanciér « $1 » est pas encartâ.',
+'blocked-notice-logextract'        => 'Ceti usanciér est ora blocâ.
 La dèrriére entrâ du jornal des blocâjos est disponibla ce-desot :',
 'clearyourcache'                   => "'''Nota :''' aprés avêr encartâ, vos devréd forciér lo rechargement complèt du cache de voutron navigator por vêre los changements.
-* '''Firefox / Safari :''' mantegnéd la toche ''Granta Lètra'' (''Shift'') en cliquent sur lo boton ''Rechargiér'' (''Reload'') ou ben prèssâd ''Ctrl-F5'' ou ''Ctrl-R'' (''Command-R'' dessus Mac)
-* '''Google Chrome :''' prèssâd ''Ctrl-Shift-R'' (''Command-Shift-R'' dessus Mac)
+* '''Firefox / Safari :''' mantegnéd la toche ''Granta Lètra'' (''Shift'') en cliquent sur lo boton ''Rechargiér'' (''Reload'') ou ben prèssâd ''Ctrl-F5'' ou ''Ctrl-R'' (''⌘-R'' sur un Mac)
+* '''Google Chrome :''' prèssâd ''Ctrl-Shift-R'' (''⌘-Shift-R'' sur un Mac)
 * '''Internet Explorer :''' mantegnéd la toche ''Ctrl'' en cliquent sur lo boton ''Rafrèchir'' (''Refresh'') ou ben prèssâd ''Ctrl-F5''
 * '''Konqueror :''' clicâd sur lo boton ''Rechargiér'' ou ben prèssâd ''F5''
 * '''Opera :''' èfaciéd lo cache dens ''Outils → Prèferences''",
@@ -1011,11 +1020,11 @@ Se vos la sôvâd, tôs los changements fêts dês ceta vèrsion seront pèrdues
 'yourdiff'                         => 'Difèrences',
 'copyrightwarning'                 => "Volyéd notar que totes les contribucions a {{SITENAME}} sont considèrâs coment publeyês desot los tèrmos de la $2 (vêde $1 por més de dètalys).
 Se vos voléd pas que voutros ècrits seyont changiês sen gins de rèstriccion et pués rebalyês a volontât, adonc los volyéd pas sometre ique.<br />
-Vos nos assurâd asse-ben que vos éd cen ècrit vos-mémo, ou ben que vos l’éd copiyê d’una sôrsa que vint du domêno publico, ou ben d’una ressôrsa abada.
+Vos nos assurâd asse-ben que vos éd cen ècrit vos-mémo, ou ben que vos l’éd copiyê d’una sôrsa que vint du domêno publico, ou ben d’una ressôrsa libra.
 '''Utilisâd gins d’ôvra desot drêt d’ôtor sen pèrmission èxprèssa !'''",
-'copyrightwarning2'                => "Volyéd notar que totes les contribucions a {{SITENAME}} pôvont étre changiês ou ben suprimâs per d’ôtros utilisators.
+'copyrightwarning2'                => "Volyéd notar que totes les contribucions a {{SITENAME}} pôvont étre changiês ou ben enlevâs per d’ôtros usanciérs.
 Se vos voléd pas que voutros ècrits seyont changiês sen gins de rèstriccion, adonc los volyéd pas sometre ique.<br />
-Vos nos assurâd asse-ben que vos éd cen ècrit vos-mémo, ou ben que vos l’éd copiyê d’una sôrsa que vint du domêno publico, ou ben d’una ressôrsa abada (vêde $1 por més de dètalys).
+Vos nos assurâd asse-ben que vos éd cen ècrit vos-mémo, ou ben que vos l’éd copiyê d’una sôrsa que vint du domêno publico, ou ben d’una ressôrsa libra (vêde $1 por més de dètalys).
 '''Utilisâd gins d’ôvra desot drêt d’ôtor sen pèrmission èxprèssa !'''",
 'longpageerror'                    => "'''ÈRROR : lo tèxto que vos éd somês fât $1 Kio, cen que dèpâsse la limita fixâ a $2 Kio.'''
 Lo tèxto pôt pas étre sôvâ.",
@@ -1023,11 +1032,11 @@ Lo tèxto pôt pas étre sôvâ.",
 Vos pouede copiyér lo tèxto dens un fichiér tèxto et pués lo sôvar por ples târd.
 
 L’administrator qu’at vèrrolyê la bâsa de balyês at balyê ceta èxplicacion : $1",
-'protectedpagewarning'             => "'''ATENCION : ceta pâge at étâ protègiê de façon que solament los utilisators qu’ont lo statut d’administrator la pouessont changiér.'''
+'protectedpagewarning'             => "'''ATENCION : ceta pâge at étâ protègiê de façon que solament los usanciérs qu’ont lo statut d’administrator la pouessont changiér.'''
 La dèrriére entrâ du jornal est montrâ ce-desot coment refèrence :",
-'semiprotectedpagewarning'         => "'''Nota :''' ceta pâge at étâ protègiê de façon que solament los utilisators encartâs la pouessont changiér.
+'semiprotectedpagewarning'         => "'''Nota :''' ceta pâge at étâ protègiê de façon que solament los usanciérs encartâs la pouessont changiér.
 La dèrriére entrâ du jornal est montrâ ce-desot coment refèrence :",
-'cascadeprotectedwarning'          => "'''ATENCION :''' ceta pâge at étâ protègiê de façon que solament los utilisators qu’ont lo statut d’administrator la pouessont changiér.
+'cascadeprotectedwarning'          => "'''ATENCION :''' ceta pâge at étâ protègiê de façon que solament los usanciérs qu’ont lo statut d’administrator la pouessont changiér.
 Cela protèccion at étâ fêta perce que ceta pâge est encllua dens {{PLURAL:$1|ceta pâge protègiê|cetes pâges protègiês}} avouéc la « protèccion en cascâda » activâ :",
 'titleprotectedwarning'            => "'''ATENCION : ceta pâge at étâ protègiê de façon que des [[Special:ListGroupRights|drêts spèceficos]] sont nècèssèros por la povêr fâre.'''
 La dèrriére entrâ du jornal est montrâ ce-desot coment refèrence :",
@@ -1109,7 +1118,7 @@ La rêson balyê per $3 ére ''$2''.",
 'histlegend'             => "Lègenda : '''({{int:cur}})''' = difèrence avouéc la vèrsion d’ora,
 '''({{int:last}})''' = difèrence avouéc la vèrsion devant, '''{{int:minoreditletter}}''' = petiôt changement.",
 'history-fieldset-title' => 'Navegar dens l’historico',
-'history-show-deleted'   => 'Ren que los suprimâs',
+'history-show-deleted'   => 'Solament los suprimâs',
 'histfirst'              => 'Tota premiére',
 'histlast'               => 'Tota dèrriére',
 'historysize'            => '($1 octèt{{PLURAL:$1||s}})',
@@ -1125,9 +1134,9 @@ Tâchiéd de [[Special:Search|rechèrchiér sur lo vouiqui]] por trovar des pâg
 
 # Revision deletion
 'rev-deleted-comment'         => '(rèsumâ de changement enlevâ)',
-'rev-deleted-user'            => '(nom d’utilisator suprimâ)',
+'rev-deleted-user'            => '(nom d’usanciér suprimâ)',
 'rev-deleted-event'           => '(entrâ suprimâ)',
-'rev-deleted-user-contribs'   => '[nom d’utilisator ou ben adrèce IP suprimâ - changement cachiê sur les contribucions]',
+'rev-deleted-user-contribs'   => '[nom d’usanciér ou ben adrèce IP suprimâ - changement cachiê sur les contribucions]',
 'rev-deleted-text-permission' => "Ceta vèrsion de la pâge at étâ '''suprimâ'''.
 Y pôt avêr més de dètalys dens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
 'rev-deleted-text-unhide'     => "Ceta vèrsion de la pâge at étâ '''suprimâ'''.
@@ -1203,7 +1212,7 @@ $1",
 'deletedhist'                 => 'Historico suprimâ',
 'revdelete-content'           => 'contegnu',
 'revdelete-summary'           => 'rèsumâ du changement',
-'revdelete-uname'             => 'nom d’utilisator',
+'revdelete-uname'             => 'nom d’usanciér',
 'revdelete-restricted'        => 'at aplicâ les rèstriccions ux administrators',
 'revdelete-unrestricted'      => 'rèstriccions enlevâs por los administrators',
 'revdelete-hid'               => 'at cachiê $1',
@@ -1232,7 +1241,7 @@ Volyéd controlar los jornals.',
 # Suppression log
 'suppressionlog'     => 'Jornal de les suprèssions',
 'suppressionlogtext' => 'Vê-que la lista de les suprèssions et des blocâjos qu’ont de contegnu cachiê ux administrators.
-Vêde la [[Special:BlockList|lista ux utilisators et a les adrèces IP blocâs]] por vêre los banissements et los blocâjos que sont ora opèracionèls.',
+Vêde la [[Special:BlockList|lista ux usanciérs et a les adrèces IP blocâs]] por vêre los banissements et los blocâjos que sont ora opèracionèls.',
 
 # History merging
 'mergehistory'                     => 'Fusionar los historicos de les pâges',
@@ -1273,8 +1282,8 @@ Notâd bien que l’usâjo des lims de navigacion tornerat inicialisar cela colo
 'compareselectedversions'  => 'Comparar les vèrsions chouèsies',
 'showhideselectedversions' => 'Fâre vêre / cachiér les vèrsions chouèsies',
 'editundo'                 => 'dèfâre',
-'diff-multi'               => '({{PLURAL:$1|Yona vèrsion entèrmèdièra|$1 vèrsions entèrmèdières}} per {{PLURAL:$2|yon utilisator|$2 utilisators}} {{PLURAL:$1|est pas montrâ|sont pas montrâs}})',
-'diff-multi-manyusers'     => '({{PLURAL:$1|Yona vèrsion entèrmèdièra|$1 vèrsions entèrmèdières}} per més de $2 utilisator{{PLURAL:$2||s}} {{PLURAL:$1|est pas montrâ|sont pas montrâs}})',
+'diff-multi'               => '({{PLURAL:$1|Yona vèrsion entèrmèdièra|$1 vèrsions entèrmèdières}} per {{PLURAL:$2|yon usanciér|$2 usanciérs}} {{PLURAL:$1|est pas montrâ|sont pas montrâs}})',
+'diff-multi-manyusers'     => '({{PLURAL:$1|Yona vèrsion entèrmèdièra|$1 vèrsions entèrmèdières}} per més de $2 usanciér{{PLURAL:$2||s}} {{PLURAL:$1|est pas montrâ|sont pas montrâs}})',
 
 # Search results
 'searchresults'                    => 'Rèsultats de la rechèrche',
@@ -1357,8 +1366,8 @@ Atencion, lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
 'mypreferences'                 => 'Prèferences',
 'prefs-edits'                   => 'Nombro de changements :',
 'prefsnologin'                  => 'Pas branchiê',
-'prefsnologintext'              => 'Vos dête étre <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} branchiê]</span> por changiér voutres prèferences utilisator.',
-'changepassword'                => 'Changement du mot de pâssa',
+'prefsnologintext'              => 'Vos dête étre <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} branchiê]</span> por changiér voutres prèferences usanciér.',
+'changepassword'                => 'Changiér lo contresegno',
 'prefs-skin'                    => 'Habelyâjo',
 'skin-preview'                  => 'Prèvisualisar',
 'datedefault'                   => 'Gins de prèference',
@@ -1374,7 +1383,7 @@ Atencion, lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
 'prefs-watchlist-edits-max'     => 'Nombro lo ples grant : 1000',
 'prefs-watchlist-token'         => 'Jeton por la lista de survelyence :',
 'prefs-misc'                    => 'Prèferences de totes sôrtes',
-'prefs-resetpass'               => 'Changiér lo mot de pâssa',
+'prefs-resetpass'               => 'Changiér lo contresegno',
 'prefs-email'                   => 'Chouèx de mèssageria èlèctronica',
 'prefs-rendering'               => 'Aparence',
 'saveprefs'                     => 'Encartar les prèferences',
@@ -1413,7 +1422,7 @@ Vê-que una valor fêta per hasârd que vos pouede utilisar : $1',
 'timezoneregion-europe'         => 'Eropa',
 'timezoneregion-indian'         => 'Ocèan endien',
 'timezoneregion-pacific'        => 'Ocèan pacefico',
-'allowemail'                    => 'Ôtorisar l’èxpèdicion de mèssâjos que vegnont d’ôtros utilisators',
+'allowemail'                    => 'Ôtorisar l’èxpèdicion de mèssâjos que vegnont d’ôtros usanciérs',
 'prefs-searchoptions'           => 'Chouèx de rechèrche',
 'prefs-namespaces'              => 'Èspâços de noms',
 'defaultns'                     => 'Ôtrament rechèrchiér dens cetos èspâços de noms :',
@@ -1427,8 +1436,8 @@ Cen pôt pas étre dèfêt.',
 'prefs-emailconfirm-label'      => 'Confirmacion de la mèssageria èlèctronica :',
 'prefs-textboxsize'             => 'Talye de la fenétra d’èdicion',
 'youremail'                     => 'Adrèce èlèctronica :',
-'username'                      => 'Nom d’utilisator :',
-'uid'                           => 'Numerô d’utilisator :',
+'username'                      => 'Nom d’usanciér :',
+'uid'                           => 'Numerô d’usanciér :',
 'prefs-memberingroups'          => 'Membro a {{PLURAL:$1|la tropa|les tropes}} :',
 'prefs-registration'            => 'Dâta d’encartâjo :',
 'yourrealname'                  => 'Veré nom :',
@@ -1448,8 +1457,8 @@ Dêt pas dèpassar $1 caractèro{{PLURAL:$1||s}}.',
 Ceta enformacion serat publica.',
 'email'                         => 'Mèssageria èlèctronica',
 'prefs-help-realname'           => 'U chouèx : se vos lo spècefiâd, serat utilisâ por vos atribuar voutres contribucions.',
-'prefs-help-email'              => 'L’adrèce èlèctronica est u chouèx, mas el est nècèssèra por tornar inicialisar voutron mot de pâssa, se vos vegnéd a l’oubliar.',
-'prefs-help-email-others'       => 'Vos porriâd asse-ben chouèsir de lèssiér los ôtros sè veriér vers vos sur voutra pâge utilisator ou ben de discussion sen que seye nècèssèro de dèvouèlar voutra identitât.',
+'prefs-help-email'              => 'L’adrèce èlèctronica est u chouèx, mas el est nècèssèra por tornar inicialisar voutron contresegno, se vos vegnéd a l’oubliar.',
+'prefs-help-email-others'       => 'Vos porriâd asse-ben chouèsir de lèssiér los ôtros sè veriér vers vos sur voutra pâge usanciér ou ben de discussion sen que seye nècèssèro de dèvouèlar voutra identitât.',
 'prefs-help-email-required'     => 'Una adrèce èlèctronica est nècèssèra.',
 'prefs-info'                    => 'Enformacions de bâsa',
 'prefs-i18n'                    => 'Entèrnacionalisacion',
@@ -1471,46 +1480,46 @@ Ceta enformacion serat publica.',
 'email-address-validity-invalid' => 'Buchiéd una adrèce èlèctronica valida',
 
 # User rights
-'userrights'                   => 'Administracion des drêts d’utilisator',
-'userrights-lookup-user'       => 'Administracion a les tropes d’utilisators',
-'userrights-user-editname'     => 'Buchiéd un nom d’utilisator :',
-'editusergroup'                => 'Changiér les tropes a l’utilisator',
+'userrights'                   => 'Administracion des drêts d’usanciér',
+'userrights-lookup-user'       => 'Administracion a les tropes d’usanciérs',
+'userrights-user-editname'     => 'Buchiéd un nom d’usanciér :',
+'editusergroup'                => 'Changiér les tropes a l’usanciér',
 'editinguser'                  => "Changement des drêts d’utilisator a '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'     => 'Changement a les tropes a l’utilisator',
-'saveusergroups'               => 'Sôvar les tropes a l’utilisator',
+'userrights-editusergroup'     => 'Changiér les tropes a l’usanciér',
+'saveusergroups'               => 'Encartar les tropes a l’usanciér',
 'userrights-groupsmember'      => 'Membro de :',
 'userrights-groupsmember-auto' => 'Membro emplicito de :',
-'userrights-groups-help'       => 'Vos pouede changiér les tropes a lesquintes est ceti utilisator.
-* Una câsa pouentâ vôt dére que l’utilisator sè trove dens cela tropa.
+'userrights-groups-help'       => 'Vos pouede changiér les tropes a lesquintes est ceti usanciér.
+* Una câsa pouentâ vôt dére que l’usanciér sè trove dens cela tropa.
 * Una câsa pas pouentâ vôt dére qu’y sè trove pas.
 * Una petiôta ètêla (*) endique que vos porréd pas enlevar cela tropa setout que vos l’aréd apondua et l’un l’ôtro.',
 'userrights-reason'            => 'Rêson :',
-'userrights-no-interwiki'      => 'Vos avéd pas la pèrmission de changiér des drêts d’utilisator dessus d’ôtros vouiquis.',
+'userrights-no-interwiki'      => 'Vos avéd pas la pèrmission de changiér des drêts d’usanciér dessus d’ôtros vouiquis.',
 'userrights-nodatabase'        => 'La bâsa de balyês « $1 » ègziste pas ou ben el est pas locala.',
-'userrights-nologin'           => 'Vos vos dête [[Special:UserLogin|branchiér]] avouéc un compto d’administrator por balyér des drêts d’utilisator.',
-'userrights-notallowed'        => 'Voutron compto at pas la pèrmission de balyér ou enlevar des drêts d’utilisator.',
+'userrights-nologin'           => 'Vos vos dête [[Special:UserLogin|branchiér]] avouéc un compto d’administrator por balyér des drêts d’usanciér.',
+'userrights-notallowed'        => 'Voutron compto at pas la pèrmission de balyér ou enlevar des drêts d’usanciér.',
 'userrights-changeable-col'    => 'Les tropes que vos pouede changiér',
 'userrights-unchangeable-col'  => 'Les tropes que vos pouede pas changiér',
 
 # Groups
 'group'               => 'Tropa :',
-'group-user'          => 'Utilisators',
-'group-autoconfirmed' => 'Utilisators encartâs',
+'group-user'          => 'Usanciérs',
+'group-autoconfirmed' => 'Usanciérs encartâs',
 'group-bot'           => 'Bots',
 'group-sysop'         => 'Administrators',
 'group-bureaucrat'    => 'Grata-papiérs',
 'group-suppress'      => 'Supèrvisors',
 'group-all'           => '(tôs)',
 
-'group-user-member'          => 'Utilisator',
-'group-autoconfirmed-member' => 'Utilisator encartâ',
-'group-bot-member'           => 'Bot',
-'group-sysop-member'         => 'Administrator',
-'group-bureaucrat-member'    => 'Grata-papiér',
-'group-suppress-member'      => 'Supèrvisor',
+'group-user-member'          => 'usanciér{{GENDER:$1||e}}',
+'group-autoconfirmed-member' => 'usanciér{{GENDER:$1||e}} encartâ',
+'group-bot-member'           => '{{GENDER:$1|bot}}',
+'group-sysop-member'         => 'administrat{{GENDER:$1|or|rice}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|grata-papiér}}',
+'group-suppress-member'      => 'supèrviso{{GENDER:$1|r|sa}}',
 
-'grouppage-user'          => '{{ns:project}}:Utilisators',
-'grouppage-autoconfirmed' => '{{ns:project}}:Utilisators encartâs',
+'grouppage-user'          => '{{ns:project}}:Usanciérs',
+'grouppage-autoconfirmed' => '{{ns:project}}:Usanciérs encartâs',
 'grouppage-bot'           => '{{ns:project}}:Bots',
 'grouppage-sysop'         => '{{ns:project}}:Administrators',
 'grouppage-bureaucrat'    => '{{ns:project}}:Grata-papiérs',
@@ -1521,11 +1530,11 @@ Ceta enformacion serat publica.',
 'right-edit'                  => 'Changiér les pâges',
 'right-createpage'            => 'Fâre des pâges (que sont pas des pâges de discussion)',
 'right-createtalk'            => 'Fâre des pâges de discussion',
-'right-createaccount'         => 'Fâre des comptos utilisator novéls',
+'right-createaccount'         => 'Fâre des comptos usanciér novéls',
 'right-minoredit'             => 'Marcar sos changements coment petiôts',
 'right-move'                  => 'Renomar des pâges',
 'right-move-subpages'         => 'Renomar des pâges avouéc lors sot-pâges',
-'right-move-rootuserpages'    => 'Renomar la pâge principâla a un utilisator',
+'right-move-rootuserpages'    => 'Renomar la pâge principâla a un usanciér',
 'right-movefile'              => 'Renomar des fichiérs',
 'right-suppressredirect'      => 'Pas fâre de redirèccion dês lo titro d’origina en renoment una pâge',
 'right-upload'                => 'Tèlèchargiér des fichiérs',
@@ -1536,7 +1545,7 @@ Ceta enformacion serat publica.',
 'right-purge'                 => 'Purgiér lo cache de les pâges sen demanda de confirmacion',
 'right-autoconfirmed'         => 'Changiér les pâges mié-protègiês',
 'right-bot'                   => 'Étre trètâ coment una pratica ôtomatisâ',
-'right-nominornewtalk'        => 'Pas dècllenchiér la notificacion de mèssâjo novél quand on fât un petiôt changement sur la pâge de discussion a un utilisator',
+'right-nominornewtalk'        => 'Pas dècllenchiér la notificacion de mèssâjo novél quand on fât un petiôt changement sur la pâge de discussion a un usanciér',
 'right-apihighlimits'         => 'Utilisar des limites ples hôtes dens les requétes API',
 'right-writeapi'              => 'Utilisar l’API d’ècritura',
 'right-delete'                => 'Suprimar des pâges',
@@ -1548,19 +1557,19 @@ Ceta enformacion serat publica.',
 'right-undelete'              => 'Refâre una pâge suprimâ',
 'right-suppressrevision'      => 'Revêre et refâre les vèrsions cachiês ux administrators',
 'right-suppressionlog'        => 'Vêre los jornals privâs',
-'right-block'                 => 'Blocar en ècritura d’ôtros utilisators',
-'right-blockemail'            => 'Empachiér un utilisator de mandar des mèssâjos',
-'right-hideuser'              => 'Blocar un utilisator en cachient son nom u publico',
+'right-block'                 => 'Blocar en ècritura d’ôtros usanciérs',
+'right-blockemail'            => 'Empachiér un usanciér de mandar des mèssâjos',
+'right-hideuser'              => 'Blocar un usanciér en cachient son nom u publico',
 'right-ipblock-exempt'        => 'Pas étre afèctâ per les adrèces IP blocâs, los blocâjos ôtomaticos et los blocâjos de plages d’adrèces IP',
 'right-proxyunbannable'       => "Pas étre afèctâ per los blocâjos ôtomaticos de sèrvors mandatèros (''proxies'')",
 'right-unblockself'           => 'Sè dèblocar lor-mémos',
 'right-protect'               => 'Changiér lo nivél de protèccion de les pâges et changiér les pâges protègiês',
 'right-editprotected'         => 'Changiér les pâges protègiês (sen protèccion en cascâda)',
 'right-editinterface'         => 'Changiér l’entèrface de la programeria',
-'right-editusercssjs'         => 'Changiér los fichiérs CSS et JS d’ôtros utilisators',
-'right-editusercss'           => 'Changiér los fichiérs CSS d’ôtros utilisators',
-'right-edituserjs'            => 'Changiér los fichiérs JS d’ôtros utilisators',
-'right-rollback'              => 'Rèvocar rêdo los changements u dèrriér utilisator qu’at changiê una pâge spècefica',
+'right-editusercssjs'         => 'Changiér los fichiérs CSS et JS d’ôtros usanciérs',
+'right-editusercss'           => 'Changiér los fichiérs CSS d’ôtros usanciérs',
+'right-edituserjs'            => 'Changiér los fichiérs JS d’ôtros usanciérs',
+'right-rollback'              => 'Rèvocar rêdo los changements u dèrriér usanciér qu’at changiê una pâge spècefica',
 'right-markbotedits'          => 'Marcar des changements rèvocâs coment èyent étâ fêts per un bot',
 'right-noratelimit'           => 'Pas étre afèctâ per les limites de quota',
 'right-import'                => 'Importar des pâges dês d’ôtros vouiquis',
@@ -1571,16 +1580,16 @@ Ceta enformacion serat publica.',
 'right-unwatchedpages'        => 'Vêre la lista de les pâges pas siuvues',
 'right-trackback'             => 'Apondre des rètrolims',
 'right-mergehistory'          => 'Fusionar los historicos de les pâges',
-'right-userrights'            => 'Changiér tôs los drêts a un utilisator',
-'right-userrights-interwiki'  => 'Changiér los drêts ux utilisators sur d’ôtros vouiquis',
+'right-userrights'            => 'Changiér tôs los drêts a un usanciér',
+'right-userrights-interwiki'  => 'Changiér los drêts ux usanciérs sur d’ôtros vouiquis',
 'right-siteadmin'             => 'Vèrrolyér ou dèvèrrolyér la bâsa de balyês',
 'right-override-export-depth' => 'Èxportar les pâges en encllusent les pâges liyês tant qu’a una provondior de 5 nivéls',
-'right-sendemail'             => 'Mandar un mèssâjo ux ôtros utilisators',
+'right-sendemail'             => 'Mandar un mèssâjo ux ôtros usanciérs',
 
 # User rights log
-'rightslog'                  => 'Jornal des changements de statut d’utilisator',
-'rightslogtext'              => 'Vê-que lo jornal des changements de statut d’utilisator.',
-'rightslogentry'             => 'at changiê los drêts a l’utilisator « $1 » de $2 a $3',
+'rightslog'                  => 'Jornal des changements de statut d’usanciér',
+'rightslogtext'              => 'Vê-que lo jornal des changements de statut d’usanciér.',
+'rightslogentry'             => 'at changiê los drêts a l’usanciér « $1 » de $2 a $3',
 'rightslogentry-autopromote' => 'at étâ nomâ ôtomaticament de $2 a $3',
 'rightsnone'                 => '(nion)',
 
@@ -1589,11 +1598,11 @@ Ceta enformacion serat publica.',
 'action-edit'                 => 'changiér cela pâge',
 'action-createpage'           => 'fâre des pâges',
 'action-createtalk'           => 'fâre des pâges de discussion',
-'action-createaccount'        => 'fâre cél compto utilisator',
+'action-createaccount'        => 'fâre cél compto usanciér',
 'action-minoredit'            => 'marcar cél changement coment petiôt',
 'action-move'                 => 'renomar cela pâge',
 'action-move-subpages'        => 'renomar cela pâge et ses sot-pâges',
-'action-move-rootuserpages'   => 'renomar la pâge principâla a un utilisator',
+'action-move-rootuserpages'   => 'renomar la pâge principâla a un usanciér',
 'action-movefile'             => 'renomar cél fichiér',
 'action-upload'               => 'tèlèchargiér cél fichiér',
 'action-reupload'             => 'ècllafar cél fichiér ègzistent',
@@ -1607,7 +1616,7 @@ Ceta enformacion serat publica.',
 'action-undelete'             => 'refâre cela pâge',
 'action-suppressrevision'     => 'revêre et refâre cela vèrsion cachiê',
 'action-suppressionlog'       => 'vêre cél jornal privâ',
-'action-block'                => 'blocar en ècritura cél utilisator',
+'action-block'                => 'blocar en ècritura cél usanciér',
 'action-protect'              => 'changiér los nivéls de protèccion por cela pâge',
 'action-import'               => 'importar cela pâge dês un ôtro vouiqui',
 'action-importupload'         => 'importar cela pâge dês un fichiér tèlèchargiê',
@@ -1616,8 +1625,8 @@ Ceta enformacion serat publica.',
 'action-unwatchedpages'       => 'vêre la lista de les pâges pas siuvues',
 'action-trackback'            => 'apondre un rètrolim',
 'action-mergehistory'         => 'fusionar l’historico de cela pâge',
-'action-userrights'           => 'changiér tôs los drêts d’utilisator',
-'action-userrights-interwiki' => 'changiér los drêts ux utilisators sur d’ôtros vouiquis',
+'action-userrights'           => 'changiér tôs los drêts d’usanciér',
+'action-userrights-interwiki' => 'changiér los drêts ux usanciérs sur d’ôtros vouiquis',
 'action-siteadmin'            => 'vèrrolyér ou ben dèvèrrolyér la bâsa de balyês',
 
 # Recent changes
@@ -1635,8 +1644,8 @@ Ceta enformacion serat publica.',
 'rclistfrom'                        => 'Fâre vêre los novéls changements dês lo $1.',
 'rcshowhideminor'                   => '$1 los petiôts changements',
 'rcshowhidebots'                    => '$1 los bots',
-'rcshowhideliu'                     => '$1 los utilisators encartâs',
-'rcshowhideanons'                   => '$1 los utilisators pas encartâs',
+'rcshowhideliu'                     => '$1 los usanciérs encartâs',
+'rcshowhideanons'                   => '$1 los usanciérs pas encartâs',
 'rcshowhidepatr'                    => '$1 los changements survelyês',
 'rcshowhidemine'                    => '$1 mos changements',
 'rclinks'                           => 'Fâre vêre los $1 dèrriérs changements fêts pendent los $2 jorns passâs ;<br />$3.',
@@ -1647,7 +1656,7 @@ Ceta enformacion serat publica.',
 'minoreditletter'                   => 'p',
 'newpageletter'                     => 'N',
 'boteditletter'                     => 'b',
-'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|utilisator qu’est|utilisators que sont}} aprés siuvre]',
+'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|usanciér qu’est|usanciérs que sont}} aprés siuvre]',
 'rc_categories'                     => 'Limita de les catègories (sèparacion avouéc « | »)',
 'rc_categories_any'                 => 'Totes',
 'newsectionsummary'                 => '/* $1 */ novèla sèccion',
@@ -1832,7 +1841,7 @@ Pôt pas étre controlâ tot drêt por la sècuritât.',
 
 # Special:UploadStash
 'uploadstash'          => 'Cache d’importacion',
-'uploadstash-summary'  => 'Ceta pâge balye accès ux fichiérs que sont importâs (ou ben en cors d’importacion), mas sont p’oncor publeyês dens lo vouiqui. Celos fichiérs sont p’oncor visiblos, solament por l’utilisator que los at importâs.',
+'uploadstash-summary'  => 'Ceta pâge balye accès ux fichiérs que sont importâs (ou ben en cors d’importacion), mas sont p’oncor publeyês dens lo vouiqui. Celos fichiérs sont p’oncor visiblos, solament por l’usanciér que los at importâs.',
 'uploadstash-clear'    => 'Èfaciér los fichiérs en cache d’importacion',
 'uploadstash-nofiles'  => 'Vos avéd gins de fichiér en cache d’importacion.',
 'uploadstash-badtoken' => 'L’ègzécucion de cela accion at pas reussia, pôt-étre perce que voutres enformacions de branchement ont èxpirâs. Tornâd èprovar.',
@@ -1855,7 +1864,7 @@ Solament l’accès ux fichiérs est pèrmês.',
 'img-auth-public'           => 'La fonccion de img_auth.php est de fâre vêre des fichiérs d’un vouiqui privâ.
 Ceti vouiqui est configurâ coment un vouiqui publico.
 Por una sècuritât parfèta, img_auth.php est dèsactivâ.',
-'img-auth-noread'           => 'L’utilisator at pas lo drêt en lèctura dessus « $1 ».',
+'img-auth-noread'           => 'L’usanciér at pas lo drêt en lèctura dessus « $1 ».',
 'img-auth-bad-query-string' => 'L’URL at una chêna de requéta envalida.',
 
 # HTTP errors
@@ -1886,14 +1895,14 @@ Vos pouede asse-ben tornar èprovar a una hora de muendra afluence.',
 
 # Special:ListFiles
 'listfiles-summary'     => 'Ceta pâge spèciâla montre tôs los fichiérs tèlèchargiês.
-Quand el est filtrâ per utilisator, solament los fichiérs que la vèrsion la ples novèla at étâ importâ per cél utilisator sont montrâs.',
+Quand el est filtrâ per usanciér, solament los fichiérs que la vèrsion la ples novèla at étâ importâ per cél usanciér sont montrâs.',
 'listfiles_search_for'  => 'Rechèrchiér un nom de mèdia :',
 'imgfile'               => 'fichiér',
 'listfiles'             => 'Lista des fichiérs',
 'listfiles_thumb'       => 'Figura',
 'listfiles_date'        => 'Dâta',
 'listfiles_name'        => 'Nom',
-'listfiles_user'        => 'Utilisator',
+'listfiles_user'        => 'Usanciér',
 'listfiles_size'        => 'Talye',
 'listfiles_description' => 'Dèscripcion',
 'listfiles_count'       => 'Vèrsions',
@@ -1910,7 +1919,7 @@ Quand el est filtrâ per utilisator, solament los fichiérs que la vèrsion la p
 'filehist-thumb'            => 'Figura',
 'filehist-thumbtext'        => 'Figura por la vèrsion du $1',
 'filehist-nothumb'          => 'Gins de figura',
-'filehist-user'             => 'Utilisator',
+'filehist-user'             => 'Usanciér',
 'filehist-dimensions'       => 'Dimensions',
 'filehist-filesize'         => 'Talye du fichiér',
 'filehist-comment'          => 'Comentèro',
@@ -1997,7 +2006,7 @@ Oubliâd pas de controlar s’y at pas d’ôtros lims de vers los modèlos deva
 'statistics-header-pages'      => 'Statistiques de les pâges',
 'statistics-header-edits'      => 'Statistiques des changements',
 'statistics-header-views'      => 'Statistiques de les visualisacions',
-'statistics-header-users'      => 'Statistiques ux utilisators',
+'statistics-header-users'      => 'Statistiques ux usanciérs',
 'statistics-header-hooks'      => 'Ôtres statistiques',
 'statistics-articles'          => 'Pâges de contegnu',
 'statistics-pages'             => 'Pâges',
@@ -2008,9 +2017,9 @@ Oubliâd pas de controlar s’y at pas d’ôtros lims de vers los modèlos deva
 'statistics-views-total'       => 'Soma de les visualisacions',
 'statistics-views-total-desc'  => 'Les visualisacions de les pâges pas ègzistentes et de les pâges spèciâles sont pas encllues',
 'statistics-views-peredit'     => 'Visualisacions per changement',
-'statistics-users'             => '[[Special:ListUsers|Utilisators]] encartâs',
-'statistics-users-active'      => 'Utilisators actifs',
-'statistics-users-active-desc' => 'Utilisators qu’ont fêt u muens una accion pendent {{PLURAL:$1|lo jorn passâ|los $1 jorns passâs}}',
+'statistics-users'             => '[[Special:ListUsers|Usanciérs]] encartâs',
+'statistics-users-active'      => 'Usanciérs actifs',
+'statistics-users-active-desc' => 'Usanciérs qu’ont fêt u muens una accion pendent {{PLURAL:$1|lo jorn passâ|los $1 jorns passâs}}',
 'statistics-mostpopular'       => 'Pâges les ples vues',
 
 'disambiguations'      => 'Pâges qu’ont des lims de vers des pâges d’homonimia',
@@ -2075,20 +2084,20 @@ Les entrâs <del>barrâs</del> ont étâ solucionâs.',
 'deadendpages'            => 'Pâges en cul-de-sac',
 'deadendpagestext'        => 'Cetes pâges ont gins de lim de vers d’ôtres pâges de {{SITENAME}}.',
 'protectedpages'          => 'Pâges protègiês',
-'protectedpages-indef'    => 'Ren que les protèccions sen fin',
-'protectedpages-cascade'  => 'Ren que les protèccions en cascâda',
+'protectedpages-indef'    => 'Solament les protèccions sen fin',
+'protectedpages-cascade'  => 'Solament les protèccions en cascâda',
 'protectedpagestext'      => 'Cetes pâges sont protègiês contre los changements et/ou lo changement de nom :',
 'protectedpagesempty'     => 'Ora, niona pâge est protègiê avouéc celos paramètres.',
 'protectedtitles'         => 'Titros protègiês',
 'protectedtitlestext'     => 'Cetos titros sont protègiês a la crèacion :',
 'protectedtitlesempty'    => 'Ora, nion titro est protègiê avouéc celos paramètres.',
-'listusers'               => 'Lista ux utilisators',
-'listusers-editsonly'     => 'Fâre vêre ren que los utilisators qu’ont u muens yona contribucion',
+'listusers'               => 'Lista ux usanciérs',
+'listusers-editsonly'     => 'Fâre vêre ren que los usanciérs qu’ont u muens yona contribucion',
 'listusers-creationsort'  => 'Triyér per dâta de crèacion',
 'usereditcount'           => '$1 changement{{PLURAL:$1||s}}',
 'usercreated'             => 'Fêt lo $1 a $2',
 'newpages'                => 'Pâges novèles',
-'newpages-username'       => 'Utilisator :',
+'newpages-username'       => 'Nom d’usanciér :',
 'ancientpages'            => 'Pâges les muens dèrriérement changiês',
 'move'                    => 'Renomar',
 'movethispage'            => 'Renomar ceta pâge',
@@ -2096,7 +2105,7 @@ Les entrâs <del>barrâs</del> ont étâ solucionâs.',
 Volyéd notar que d’ôtros setos pôvont avêr un lim drêt de vers un fichiér, et donc qu’un fichiér pôt étre listâ ique pendent qu’il est en rèalitât utilisâ sur celos setos.',
 'unusedcategoriestext'    => 'Cetes catègories ègzistont mas gins de pâge ou ben de catègorie les utilise.',
 'notargettitle'           => 'Gins de ciba',
-'notargettext'            => 'Vos éd pas spècefiâ una pâge ou ben un utilisator ciba sur laquinta/loquint vos souhètâd fâre cela accion.',
+'notargettext'            => 'Vos éd pas spècefiâ una pâge ou ben un usanciér ciba sur laquinta / loquint vos souhètâd fâre cela accion.',
 'nopagetitle'             => 'Gins de pâge ciba',
 'nopagetext'              => 'La pâge ciba que vos éd spècefiâ ègziste pas.',
 'pager-newer-n'           => '{{PLURAL:$1|ples novèla|$1 ples novèles}}',
@@ -2113,12 +2122,12 @@ Volyéd notar que d’ôtros setos pôvont avêr un lim drêt de vers un fichié
 'booksources-invalid-isbn'  => 'L’ISBN balyê semble pas étre valido ; controlâd se vos éd fêt una èrror en copiyent la sôrsa originâla.',
 
 # Special:Log
-'specialloguserlabel'  => 'Utilisator :',
-'speciallogtitlelabel' => 'Titro :',
+'specialloguserlabel'  => 'Ôtor :',
+'speciallogtitlelabel' => 'Ciba (titro ou ben usanciér) :',
 'log'                  => 'Jornals',
 'all-logs-page'        => 'Tôs los jornals publicos',
 'alllogstext'          => 'Visualisacion combinâ de tôs los jornals disponiblos dessus {{SITENAME}}.
-Vos pouede rètrendre la vua en chouèséssent un tipo de jornal, un nom d’utilisator (sensiblo a la câssa) ou ben una pâge afèctâ (sensibla a la câssa avouéc).',
+Vos pouede rètrendre la vua en chouèséssent un tipo de jornal, un nom d’usanciér (sensiblo a la câssa) ou ben una pâge afèctâ (sensibla a la câssa avouéc).',
 'logempty'             => 'Nion èlèment d’ense at étâ trovâ dens lo jornal.',
 'log-title-wildcard'   => 'Chèrchiér permié los titros que començont per ceti tèxto',
 
@@ -2159,37 +2168,37 @@ Vêde asse-ben les [[Special:WantedCategories|catègories les ples demandâs]].'
 'linksearch-pat'   => 'Modèlo de rechèrche :',
 'linksearch-ns'    => 'Èspâço de noms :',
 'linksearch-ok'    => 'Rechèrchiér',
-'linksearch-text'  => 'Des caractèros « j·oquères » pôvont étre utilisâs, per ègzemplo <code>*.wikipedia.org</code>.<br />
-Protocolos recognus : <tt>$1</tt>',
+'linksearch-text'  => 'Des caractèros j·oquères coment « *.wikipedia.org » pôvont étre utilisâs.
+Ils ont fôta d’u muens un domêno de nivél supèrior, per ègzemplo « *.org ».<br />
+Protocolos recognus : <tt>$1</tt> (apondéd gins de cetos dedens voutra rechèrche).',
 'linksearch-line'  => '$1 est liyê dês $2',
-'linksearch-error' => 'Los caractèros « j·oquères » pôvont étre utilisâs ren qu’u comencement du nom de domêno de l’hôto.',
+'linksearch-error' => 'Los caractèros j·oquères pôvont étre utilisâs ren qu’u comencement du nom de domêno de l’hôto.',
 
 # Special:ListUsers
-'listusersfrom'      => 'Fâre vêre los utilisators dês :',
+'listusersfrom'      => 'Fâre vêre los usanciérs dês :',
 'listusers-submit'   => 'Listar',
-'listusers-noresult' => 'Gins d’utilisator trovâ.
-Controlâd asse-ben les variantes de câssa.',
+'listusers-noresult' => 'Gins d’usanciér trovâ.',
 'listusers-blocked'  => '(blocâ)',
 
 # Special:ActiveUsers
-'activeusers'            => 'Lista des utilisators actifs',
-'activeusers-intro'      => 'O est una lista ux utilisators qu’ont ègzèrciê una activitât quinta que seye pendent {{PLURAL:$1|lo jorn passâ|los $1 jorns passâs}}.',
+'activeusers'            => 'Lista ux usanciérs actifs',
+'activeusers-intro'      => 'O est una lista ux usanciérs qu’ont ègzèrciê una activitât quinta que seye pendent {{PLURAL:$1|lo jorn passâ|los $1 jorns passâs}}.',
 'activeusers-count'      => '$1 {{PLURAL:$1|novél changement|novéls changements}} dens {{PLURAL:$3|lo jorn passâ|los $3 jorns passâs}}',
-'activeusers-from'       => 'Fâre vêre los utilisators dês :',
+'activeusers-from'       => 'Fâre vêre los usanciérs dês :',
 'activeusers-hidebots'   => 'Cachiér los bots',
 'activeusers-hidesysops' => 'Cachiér los administrators',
-'activeusers-noresult'   => 'Gins d’utilisator trovâ.',
+'activeusers-noresult'   => 'Gins d’usanciér trovâ.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Jornal de les crèacions de comptos utilisator',
-'newuserlogpagetext'          => 'O est un jornal de les crèacions de comptos utilisator.',
-'newuserlog-byemail'          => 'mot de pâssa mandâ per mèssageria èlèctronica',
-'newuserlog-create-entry'     => 'Compto utilisator novél',
+'newuserlogpage'              => 'Jornal de les crèacions de comptos usanciér',
+'newuserlogpagetext'          => 'O est un jornal de les crèacions de comptos usanciér.',
+'newuserlog-byemail'          => 'contresegno mandâ per mèssageria èlèctronica',
+'newuserlog-create-entry'     => 'Compto usanciér novél',
 'newuserlog-create2-entry'    => 'at fêt lo compto novél $1',
 'newuserlog-autocreate-entry' => 'Compto fêt ôtomaticament',
 
 # Special:ListGroupRights
-'listgrouprights'                      => 'Drêts a les tropes d’utilisators',
+'listgrouprights'                      => 'Drêts a les tropes d’usanciérs',
 'listgrouprights-summary'              => 'Ceta pâge contint una lista a les tropes dèfenies sur ceti vouiqui et pués los drêts d’accès que lor sont associyês.
 Y pôt avêr [[{{MediaWiki:Listgrouprights-helppage}}|més d’enformacions]] sur los drêts particuliérs.',
 'listgrouprights-key'                  => '* <span class="listgrouprights-granted">Drêt balyê</span>
@@ -2209,24 +2218,24 @@ Y pôt avêr [[{{MediaWiki:Listgrouprights-helppage}}|més d’enformacions]] su
 
 # E-mail user
 'mailnologin'          => 'Gins d’adrèce d’èxpèdior',
-'mailnologintext'      => 'Vos dête étre [[Special:UserLogin|branchiê]] et avêr endicâ una adrèce èlèctronica valida dens voutres [[Special:Preferences|prèferences]] por povêr mandar des mèssâjos a d’ôtros utilisators.',
+'mailnologintext'      => 'Vos dête étre [[Special:UserLogin|branchiê]] et avêr endicâ una adrèce èlèctronica valida dens voutres [[Special:Preferences|prèferences]] por povêr mandar des mèssâjos a d’ôtros usanciérs.',
 'emailuser'            => 'Lui mandar un mèssâjo',
-'emailpage'            => 'Mandar un mèssâjo a l’utilisator',
-'emailpagetext'        => 'Vos pouede utilisar lo formulèro ce-desot por mandar un mèssâjo a ceti utilisator.
-L’adrèce èlèctronica que vos éd endicâ dens voutres [[Special:Preferences|prèferences]] aparètrat dedens lo champ « Èxpèdior » de voutron mèssâjo ; d’ense, lo dèstinatèro vos porrat rèpondre tot drêt.',
+'emailpage'            => 'Mandar un mèssâjo a l’usanciér',
+'emailpagetext'        => 'Vos pouede utilisar lo formulèro ce-desot por mandar un mèssâjo a ceti usanciér.
+L’adrèce èlèctronica que vos éd buchiê dens voutres [[Special:Preferences|prèferences]] aparètrat dedens lo champ « Èxpèdior » de voutron mèssâjo ; d’ense, lo dèstinatèro vos porrat rèpondre tot drêt.',
 'usermailererror'      => 'Èrror dens lo sujèt du mèssâjo :',
 'defemailsubject'      => 'Mèssâjo de {{SITENAME}}',
-'usermaildisabled'     => 'L’èxpèdicion de mèssâjos entre-mié utilisators est dèsactivâ',
-'usermaildisabledtext' => 'Vos pouede pas mandar des mèssâjos a d’ôtros utilisators sur ceti vouiqui',
+'usermaildisabled'     => 'L’èxpèdicion de mèssâjos entre-mié usanciérs est dèsactivâ',
+'usermaildisabledtext' => 'Vos pouede pas mandar des mèssâjos a d’ôtros usanciérs sur ceti vouiqui',
 'noemailtitle'         => 'Dèstinatèro sen adrèce èlèctronica',
-'noemailtext'          => 'Ceti utilisator at pas spècefiâ una adrèce èlèctronica valida.',
+'noemailtext'          => 'Ceti usanciér at pas spècefiâ una adrèce èlèctronica valida.',
 'nowikiemailtitle'     => 'Gins de mèssageria èlèctronica ôtorisâ',
-'nowikiemailtext'      => 'Ceti utilisator at chouèsi de pas recêvre de mèssâjo de la pârt d’ôtros utilisators.',
-'emailnotarget'        => 'Nom d’utilisator u dèstinatèro pas ègzistent ou ben envalido.',
-'emailtarget'          => 'Buchiéd lo nom d’utilisator u dèstinatèro',
-'emailusername'        => 'Nom d’utilisator :',
+'nowikiemailtext'      => 'Ceti usanciér at chouèsi de pas recêvre de mèssâjo de la pârt d’ôtros usanciérs.',
+'emailnotarget'        => 'Nom d’usanciér u dèstinatèro pas ègzistent ou ben envalido.',
+'emailtarget'          => 'Buchiéd lo nom d’usanciér u dèstinatèro',
+'emailusername'        => 'Nom d’usanciér :',
 'emailusernamesubmit'  => 'Sometre',
-'email-legend'         => 'Mandar un mèssâjo a un ôtro utilisator de {{SITENAME}}',
+'email-legend'         => 'Mandar un mèssâjo a un ôtro usanciér de {{SITENAME}}',
 'emailfrom'            => 'Èxpèdior :',
 'emailto'              => 'Dèstinatèro :',
 'emailsubject'         => 'Sujèt :',
@@ -2282,13 +2291,13 @@ Los changements a vegnir de ceta pâge et de sa pâge de discussion y seront lis
 'enotif_mailer'                => 'Sistèmo de notificacion per mèssageria èlèctronica de {{SITENAME}}',
 'enotif_reset'                 => 'Marcar totes les pâges coment visitâs',
 'enotif_newpagetext'           => 'O est una pâge novèla.',
-'enotif_impersonal_salutation' => 'Utilisator de {{SITENAME}}',
+'enotif_impersonal_salutation' => 'Usanciér de {{SITENAME}}',
 'changed'                      => 'changiê',
 'created'                      => 'fêta',
 'enotif_subject'               => 'La pâge « $PAGETITLE » de {{SITENAME}} at étâ $CHANGEDORCREATED per $PAGEEDITOR',
 'enotif_lastvisited'           => 'Vêde $1 por tôs los changements dês voutra dèrriére visita.',
 'enotif_lastdiff'              => 'Vêde $1 por vêre cél changement.',
-'enotif_anon_editor'           => 'utilisator pas encartâ $1',
+'enotif_anon_editor'           => 'usanciér pas encartâ $1',
 'enotif_body'                  => 'Chier(a) $WATCHINGUSERNAME,
 
 
@@ -2369,7 +2378,7 @@ quârqu’un d’ôtro at ja changiê ou ben rèvocâ la pâge.
 Lo dèrriér changement de la pâge at étâ fêt per [[User:$3|$3]] ([[User talk:$3|Discutar]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'       => "Lo rèsumâ de changement ére : « ''$1'' ».",
 'revertpage'        => 'Rèvocacion des changements a [[Special:Contributions/$2|$2]] ([[User talk:$2|Discutar]]) de vers la dèrriére vèrsion a [[User:$1|$1]]',
-'revertpage-nouser' => 'Rèvocacion des changements per (nom d’utilisator suprimâ) a la dèrriére vèrsion per [[User:$1|$1]]',
+'revertpage-nouser' => 'Rèvocacion des changements per (nom d’usanciér suprimâ) a la dèrriére vèrsion per [[User:$1|$1]]',
 'rollback-success'  => 'Rèvocacion des changements fêts per $1 ;
 rètablissement de la dèrriére vèrsion per $2.',
 
@@ -2404,10 +2413,10 @@ Vê-que la configuracion d’ora de la pâge '''$1''' :",
 Vê-que la configuracion d’ora de la pâge '''$1''' :",
 'protect-cascadeon'           => 'Ora, ceta pâge est protègiê perce qu’el est encllua dens {{PLURAL:$1|ceta pâge|cetes pâges}}, {{PLURAL:$1|qu’at étâ protègiê|qu’ont étâ protègiês}} avouéc lo chouèx « Protèccion en cascâda » activâ.
 Vos pouede changiér lo nivél de protèccion de ceta pâge sen que cen afècte la protèccion en cascâda.',
-'protect-default'             => 'Ôtorisar tôs los utilisators',
+'protect-default'             => 'Ôtorisar tôs los usanciérs',
 'protect-fallback'            => 'At fôta de la pèrmission « $1 »',
-'protect-level-autoconfirmed' => 'Blocar los novéls utilisators et los utilisators pas encartâs',
-'protect-level-sysop'         => 'Ren que los administrators',
+'protect-level-autoconfirmed' => 'Blocar los novéls usanciérs et los usanciérs pas encartâs',
+'protect-level-sysop'         => 'Solament los administrators',
 'protect-summary-cascade'     => 'protèccion en cascâda',
 'protect-expiring'            => 'èxpire lo $1 (UTC)',
 'protect-expiry-indefinite'   => 'sen fin',
@@ -2458,7 +2467,7 @@ S’una pâge novèla avouéc lo mémo nom at étâ fêta dês la suprèssion, l
 'undeleterevdel'               => 'La rèstoracion serat pas fêta se, a la fin, la vèrsion la ples novèla de la pâge ou ben du fichiér réste suprimâ a mêtiêt.
 Dens celos câs, vos dête pas pouentar ou ben pas cachiér les vèrsions suprimâs les ples novèles (d’amont la lista).',
 'undeletehistorynoadmin'       => 'Ceta pâge at étâ suprimâ.
-La rêson de la suprèssion est montrâ dens lo rèsumâ ce-desot, avouéc los dètalys ux utilisators que l’ont changiê devant sa suprèssion.
+La rêson de la suprèssion est montrâ dens lo rèsumâ ce-desot, avouéc los dètalys ux usanciérs que l’ont changiê devant sa suprèssion.
 Lo contegnu èfèctif de celes vèrsions suprimâs est accèssiblo ren qu’ux administrators.',
 'undelete-revision'            => 'Vèrsion suprimâ de $1 (vèrsion du $4 a $5) per $3 :',
 'undeleterevision-missing'     => 'Vèrsion fôssa ou ben manquenta.
@@ -2475,7 +2484,7 @@ Vos avéd pôt-étre un crouyo lim, ou ben la vèrsion at possu étre refêta ou
 'undeletedrevisions-files'     => '$1 vèrsion{{PLURAL:$1||s}} et $2 fichiér{{PLURAL:$2||s}} refêts',
 'undeletedfiles'               => '$1 {{PLURAL:$1|fichiér refêt|fichiérs refêts}}',
 'cannotundelete'               => 'La rèstoracion at pas reussia ;
-un ôtro utilisator at probâblament ja refêt la pâge.',
+un ôtro usanciér at probâblament ja refêt la pâge.',
 'undeletedpage'                => "'''La pâge $1 at étâ refêta.'''
 
 Vêde lo [[Special:Log/delete|jornal de les suprèssions]] por vêre la lista de les novèles suprèssions et de les novèles rèstoracions.",
@@ -2505,8 +2514,8 @@ $1',
 'blanknamespace'                => '(Principâl)',
 
 # Contributions
-'contributions'       => 'Contribucions a l’utilisator',
-'contributions-title' => 'Lista de les contribucions a l’utilisator $1',
+'contributions'       => 'Contribucions a l’usanciér',
+'contributions-title' => 'Lista de les contribucions a l’usanciér $1',
 'mycontris'           => 'Contribucions',
 'contribsub2'         => 'Por $1 ($2)',
 'nocontribs'          => 'Y at gins de changement que corrèspond a cetos critèros.',
@@ -2514,21 +2523,21 @@ $1',
 'month'               => 'Dês lo mês (et devant) :',
 'year'                => 'Dês l’an (et devant) :',
 
-'sp-contributions-newbies'             => 'Fâre vêre ren que les contribucions ux novéls utilisators',
+'sp-contributions-newbies'             => 'Fâre vêre ren que les contribucions ux novéls usanciérs',
 'sp-contributions-newbies-sub'         => 'Permié los comptos novéls',
-'sp-contributions-newbies-title'       => 'Contribucions d’utilisators permié los comptos novéls',
+'sp-contributions-newbies-title'       => 'Contribucions d’usanciérs permié los comptos novéls',
 'sp-contributions-blocklog'            => 'jornal des blocâjos',
 'sp-contributions-deleted'             => 'contribucions suprimâs',
 'sp-contributions-uploads'             => 'tèlèchargements',
 'sp-contributions-logs'                => 'jornals',
 'sp-contributions-talk'                => 'discutar',
-'sp-contributions-userrights'          => 'administrar los drêts d’utilisator',
-'sp-contributions-blocked-notice'      => 'Ceti utilisator est ora blocâ.
+'sp-contributions-userrights'          => 'administrar los drêts d’usanciér',
+'sp-contributions-blocked-notice'      => 'Ceti usanciér est ora blocâ.
 La dèrriére entrâ du jornal des blocâjos est disponibla ce-desot :',
 'sp-contributions-blocked-notice-anon' => 'Ceta adrèce IP est ora blocâ.
 La dèrriére entrâ du jornal des blocâjos est disponibla ce-desot :',
 'sp-contributions-search'              => 'Rechèrchiér les contribucions',
-'sp-contributions-username'            => 'Adrèce IP ou ben nom d’utilisator :',
+'sp-contributions-username'            => 'Adrèce IP ou ben nom d’usanciér :',
 'sp-contributions-toponly'             => 'Montrar ren que les novèles vèrsions',
 'sp-contributions-submit'              => 'Rechèrchiér',
 
@@ -2553,15 +2562,15 @@ La dèrriére entrâ du jornal des blocâjos est disponibla ce-desot :',
 
 # Block/unblock
 'autoblockid'                     => 'Blocâjo ôtomatico #$1',
-'block'                           => 'Blocar l’utilisator',
-'unblock'                         => 'Dèblocar l’utilisator',
-'blockip'                         => 'Blocar l’utilisator',
-'blockip-title'                   => 'Blocar l’utilisator',
-'blockip-legend'                  => 'Blocar l’utilisator',
-'blockiptext'                     => 'Utilisâd lo formulèro ce-desot por blocar l’accès en ècritura dês una adrèce IP spècefica ou ben un nom d’utilisator.
+'block'                           => 'Blocar l’usanciér',
+'unblock'                         => 'Dèblocar l’usanciér',
+'blockip'                         => 'Blocar l’usanciér',
+'blockip-title'                   => 'Blocar l’usanciér',
+'blockip-legend'                  => 'Blocar l’usanciér',
+'blockiptext'                     => 'Utilisâd lo formulèro ce-desot por blocar l’accès en ècritura dês una adrèce IP spècefica ou ben un nom d’usanciér.
 Una tâla mesera devrêt étre prêsa ren que por empachiér lo vandalismo et en acôrd avouéc les [[{{MediaWiki:Policy-url}}|règlles de dedens]].
 Balyéd ce-desot una rêson justa (per ègzemplo en citent les pâges qu’ont étâ vandalisâs).',
-'ipadressorusername'              => 'Adrèce IP ou ben nom d’utilisator :',
+'ipadressorusername'              => 'Adrèce IP ou ben nom d’usanciér :',
 'ipbexpiry'                       => 'Temps devant èxpiracion :',
 'ipbreason'                       => 'Rêson :',
 'ipbreasonotherlist'              => 'Ôtra rêson',
@@ -2572,41 +2581,41 @@ Balyéd ce-desot una rêson justa (per ègzemplo en citent les pâges qu’ont �
 ** Entrebetâ de contegnu sen gins de significacion et d’ècovelyes dens les pâges
 ** Tentativa d’entimidacion ou ben de torment
 ** Abus d’usâjo d’un mouél de comptos
-** Nom d’utilisator pas accèptâblo, ofensent ou ben difament',
-'ipb-hardblock'                   => 'Empache los changements des utilisators encartâs qu’utilisont cela adrèce IP',
+** Nom d’usanciér pas accèptâblo, ofensent ou ben difament',
+'ipb-hardblock'                   => 'Empache los changements des usanciérs encartâs qu’utilisont cela adrèce IP',
 'ipbcreateaccount'                => 'Empachiér la crèacion de compto',
-'ipbemailban'                     => 'Empachiér l’utilisator de mandar des mèssâjos',
-'ipbenableautoblock'              => 'Blocar ôtomaticament la dèrriére adrèce IP utilisâ per l’utilisator et pués totes ses adrèces IP a vegnir que porrêt èprovar',
-'ipbsubmit'                       => 'Blocar ceti utilisator',
+'ipbemailban'                     => 'Empachiér l’usanciér de mandar des mèssâjos',
+'ipbenableautoblock'              => 'Blocar ôtomaticament la dèrriére adrèce IP utilisâ per l’usanciér et pués totes ses adrèces IP a vegnir que porrêt èprovar',
+'ipbsubmit'                       => 'Blocar ceti usanciér',
 'ipbother'                        => 'Ôtro temps :',
 'ipboptions'                      => '2 hores:2 hours,1 jorn:1 day,3 jorns:3 days,1 semana:1 week,2 semanes:2 weeks,1 mês:1 month,3 mês:3 months,6 mês:6 months,1 an:1 year,sen fin:infinite',
 'ipbotheroption'                  => 'ôtra',
 'ipbotherreason'                  => 'Ôtra rêson / rêson de ples :',
-'ipbhidename'                     => 'Cachiér lo nom d’utilisator des changements et de les listes',
-'ipbwatchuser'                    => 'Siuvre les pâges utilisator et de discussion a ceti utilisator',
-'ipb-disableusertalk'             => 'Empache cél utilisator de changiér sa prôpra pâge de discussion pendent lo temps de son blocâjo',
-'ipb-change-block'                => 'Tornar blocar ceti utilisator avouéc celos paramètres',
+'ipbhidename'                     => 'Cachiér lo nom d’usanciér des changements et de les listes',
+'ipbwatchuser'                    => 'Siuvre les pâges usanciér et de discussion a ceti usanciér',
+'ipb-disableusertalk'             => 'Empache cél usanciér de changiér sa prôpra pâge de discussion pendent lo temps de son blocâjo',
+'ipb-change-block'                => 'Tornar blocar ceti usanciér avouéc celos paramètres',
 'ipb-confirm'                     => 'Confirmar lo blocâjo',
 'badipaddress'                    => 'L’adrèce IP est fôssa.',
 'blockipsuccesssub'               => 'Blocâjo reussi',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] at étâ blocâ.<br />
-Vêde la [[Special:IPBlockList|lista ux utilisators et a les adrèces IP blocâs]] por revêre los blocâjos.',
+Vêde la [[Special:BlockList|lista a les adrèces IP blocâs]] por revêre los blocâjos.',
 'ipb-blockingself'                => 'Vos éte prèst a vos blocar vos-mémo !  Éte-vos de sûr de lo volêr fâre ?',
-'ipb-confirmhideuser'             => 'Vos éte prèst a blocar un utilisator avouéc « cachiér l’utilisator » activâ.  Cen suprime lo nom a l’utilisator dens totes les listes et les entrâs du jornal.  Éte-vos de sûr de lo volêr fâre ?',
+'ipb-confirmhideuser'             => 'Vos éte prèst a blocar un usanciér avouéc « cachiér l’usanciér » activâ.  Cen suprime lo nom a l’usanciér dens totes les listes et les entrâs du jornal.  Éte-vos de sûr de lo volêr fâre ?',
 'ipb-edit-dropdown'               => 'Changiér les rêsons de blocâjo',
 'ipb-unblock-addr'                => 'Dèblocar $1',
-'ipb-unblock'                     => 'Dèblocar un compto utilisator ou ben una adrèce IP',
+'ipb-unblock'                     => 'Dèblocar un usanciér ou ben una adrèce IP',
 'ipb-blocklist'                   => 'Vêde los blocâjos ègzistents',
 'ipb-blocklist-contribs'          => 'Contribucions por $1',
-'unblockip'                       => 'Dèblocar l’utilisator',
-'unblockiptext'                   => 'Utilisâd lo formulèro ce-desot por rètablir l’accès en ècritura dês una adrèce IP spècefica ou ben un nom d’utilisator.',
+'unblockip'                       => 'Dèblocar l’usanciér',
+'unblockiptext'                   => 'Utilisâd lo formulèro ce-desot por rètablir l’accès en ècritura dês una adrèce IP spècefica ou ben un nom d’usanciér.',
 'ipusubmit'                       => 'Enlevar ceti blocâjo',
 'unblocked'                       => '[[User:$1|$1]] at étâ dèblocâ',
 'unblocked-range'                 => '$1 at étâ dèblocâ',
 'unblocked-id'                    => 'Lo blocâjo $1 at étâ enlevâ',
-'blocklist'                       => 'Utilisators blocâs',
-'ipblocklist'                     => 'Utilisators blocâs',
-'ipblocklist-legend'              => 'Chèrchiér un utilisator blocâ',
+'blocklist'                       => 'Usanciérs blocâs',
+'ipblocklist'                     => 'Usanciérs blocâs',
+'ipblocklist-legend'              => 'Chèrchiér un usanciér blocâ',
 'blocklist-userblocks'            => 'Cachiér los blocâjos de comptos',
 'blocklist-tempblocks'            => 'Cachiér los blocâjos temporèros',
 'blocklist-addressblocks'         => 'Cachiér los blocâjos d’adrèces IP solètes',
@@ -2621,13 +2630,13 @@ Vêde la [[Special:IPBlockList|lista ux utilisators et a les adrèces IP blocâs
 'ipblocklist-otherblocks'         => '{{PLURAL:$1|Ôtro blocâjo|Ôtros blocâjos}}',
 'infiniteblock'                   => 'sen fin',
 'expiringblock'                   => 'èxpire lo $1 a $2',
-'anononlyblock'                   => 'ren que los utilisators pas encartâs',
+'anononlyblock'                   => 'solament los usanciérs pas encartâs',
 'noautoblockblock'                => 'blocâjo ôtomatico dèsactivâ',
 'createaccountblock'              => 'crèacion de compto dèfendua',
 'emailblock'                      => 'mèssageria èlèctronica blocâ',
 'blocklist-nousertalk'            => 'pôt pas changiér sa prôpra pâge de discussion',
 'ipblocklist-empty'               => 'Ora, la lista a les adrèces IP blocâs est voueda.',
-'ipblocklist-no-results'          => 'L’adrèce IP ou ben l’utilisator demandâ est pas blocâ.',
+'ipblocklist-no-results'          => 'L’adrèce IP ou ben l’usanciér demandâ est pas blocâ.',
 'blocklink'                       => 'blocar',
 'unblocklink'                     => 'dèblocar',
 'change-blocklink'                => 'changiér lo blocâjo',
@@ -2635,32 +2644,32 @@ Vêde la [[Special:IPBlockList|lista ux utilisators et a les adrèces IP blocâs
 'autoblocker'                     => 'Vos avéd étâ blocâ ôtomaticament perce que voutra adrèce IP at étâ utilisâ dèrriérement per « [[User:$1|$1]] ».
 La rêson balyê por lo blocâjo a $1 est : « $2 ».',
 'blocklogpage'                    => 'Jornal des blocâjos',
-'blocklog-showlog'                => 'Ceti utilisator at étâ blocâ dês devant.
+'blocklog-showlog'                => 'Ceti usanciér at étâ blocâ dês devant.
 Lo jornal des blocâjos est disponiblo ce-desot :',
-'blocklog-showsuppresslog'        => 'Ceti utilisator at étâ blocâ et pués cachiê dês devant.
+'blocklog-showsuppresslog'        => 'Ceti usanciér at étâ blocâ et pués cachiê dês devant.
 Lo jornal de les suprèssions est disponiblo ce-desot :',
 'blocklogentry'                   => 'at blocâ [[$1]] ; èxpiracion : $2 $3',
 'reblock-logentry'                => 'at changiê los paramètres du blocâjo a [[$1]] avouéc una èxpiracion u $2 $3',
-'blocklogtext'                    => 'O est lo jornal des blocâjos et des dèblocâjos ux utilisators.
+'blocklogtext'                    => 'O est lo jornal des blocâjos et des dèblocâjos ux usanciérs.
 Les adrèces IP blocâs ôtomaticament sont pas listâs.
-Vêde la [[Special:BlockList|lista ux utilisators et a les adrèces IP blocâs]] por vêre los banissements et los blocâjos que sont ora opèracionèls.',
+Vêde la [[Special:BlockList|lista ux usanciérs et a les adrèces IP blocâs]] por vêre los banissements et los blocâjos que sont ora opèracionèls.',
 'unblocklogentry'                 => 'at dèblocâ $1',
-'block-log-flags-anononly'        => 'ren que los utilisators pas encartâs',
+'block-log-flags-anononly'        => 'solament los usanciérs pas encartâs',
 'block-log-flags-nocreate'        => 'crèacion de compto dèfendua',
 'block-log-flags-noautoblock'     => 'ôtoblocâjo a les adrèces IP dèsactivâ',
 'block-log-flags-noemail'         => 'èxpèdicion de mèssâjo dèfendua',
 'block-log-flags-nousertalk'      => 'pôt pas changiér sa prôpra pâge de discussion',
 'block-log-flags-angry-autoblock' => 'ôtoblocâjo mèlyorâ activâ',
-'block-log-flags-hiddenname'      => 'nom d’utilisator cachiê',
+'block-log-flags-hiddenname'      => 'nom d’usanciér cachiê',
 'range_block_disabled'            => 'Lo povêr d’administrator de fâre des blocâjos de plages d’adrèces IP est dèsactivâ.',
 'ipb_expiry_invalid'              => 'Temps d’èxpiracion fôx.',
-'ipb_expiry_temp'                 => 'Los blocâjos de noms d’utilisator cachiês dêvont étre sen fin.',
+'ipb_expiry_temp'                 => 'Los blocâjos de noms d’usanciér cachiês dêvont étre sen fin.',
 'ipb_hide_invalid'                => 'Empossiblo de suprimar ceti compto ; semble avêr trop de changements.',
 'ipb_already_blocked'             => '« $1 » est ja blocâ',
 'ipb-needreblock'                 => '$1 est ja blocâ.
 Voléd-vos changiér los paramètres ?',
 'ipb-otherblocks-header'          => '{{PLURAL:$1|Ôtro blocâjo|Ôtros blocâjos}}',
-'unblock-hideuser'                => 'Vos pouede pas dèblocar cél utilisator, perce que son nom d’utilisator at étâ cachiê.',
+'unblock-hideuser'                => 'Vos pouede pas dèblocar cél usanciér, perce que son nom d’usanciér at étâ cachiê.',
 'ipb_cant_unblock'                => 'Èrror : numerô de blocâjo $1 pas trovâ.
 O est possiblo qu’un dèblocâjo èye ja étâ fêt.',
 'ipb_blocked_as_range'            => 'Èrror : l’adrèce IP $1 est pas blocâ tot drêt et pôt vêr pas étre dèblocâ.
@@ -2676,17 +2685,18 @@ Vos volyéd veriér vers voutron fornissor d’accès u Malyâjo ou ben voutra a
 'sorbsreason'                     => "Voutra adrèce IP est listâ coment sèrvor mandatèro (''proxy'') uvèrt dens lo DNSBL utilisâ per {{SITENAME}}.",
 'sorbs_create_account_reason'     => "Voutra adrèce IP est listâ coment sèrvor mandatèro (''proxy'') uvèrt dens lo DNSBL utilisâ per {{SITENAME}}.
 Vos pouede pas fâre un compto.",
-'cant-block-while-blocked'        => 'Vos pouede pas blocar d’ôtros utilisators tant que vos éte blocâ.',
-'cant-see-hidden-user'            => 'L’utilisator que vos tâchiéd de blocar at ja étâ blocâ et cachiê. Pas èyent lo drêt hideuser, vos pouede pas vêre ou ben changiér lo blocâjo a l’utilisator.',
-'ipbblocked'                      => 'Vos pouede pas blocar ou ben dèblocar d’ôtros utilisators, perce que vos éte vos-mémo blocâ',
+'cant-block-while-blocked'        => 'Vos pouede pas blocar d’ôtros usanciérs tant que vos éte blocâ.',
+'cant-see-hidden-user'            => 'L’usanciér que vos tâchiéd de blocar at ja étâ blocâ et cachiê.
+Pas èyent lo drêt hideuser, vos pouede pas vêre ou ben changiér lo blocâjo a l’usanciér.',
+'ipbblocked'                      => 'Vos pouede pas blocar ou ben dèblocar d’ôtros usanciérs, perce que vos éte vos-mémo blocâ',
 'ipbnounblockself'                => 'Vos éte pas ôtorisâ a vos dèblocar vos-mémo',
 
 # Developer tools
 'lockdb'              => 'Vèrrolyér la bâsa de balyês',
 'unlockdb'            => 'Dèvèrrolyér la bâsa de balyês',
-'lockdbtext'          => 'Lo vèrrolyâjo de la bâsa de balyês empachierat tôs los utilisators de changiér des pâges, d’encartar lors prèferences, de changiér lor lista de survelyence et pués de fâre totes les ôtres opèracions qu’ont fôta des changements dens la bâsa de balyês.
+'lockdbtext'          => 'Lo vèrrolyâjo de la bâsa de balyês empachierat tôs los usanciérs de changiér des pâges, d’encartar lors prèferences, de changiér lor lista de survelyence et pués de fâre totes les ôtres opèracions qu’ont fôta des changements dens la bâsa de balyês.
 Volyéd confirmar qu’o est franc cen que vos voléd fâre et que vos dèvèrrolyeréd la bâsa setout que voutra opèracion de mantegnence serat chavonâ.',
-'unlockdbtext'        => 'Lo dèvèrrolyâjo de la bâsa de balyês tornerat pèrmetre a tôs los utilisators de changiér des pâges, d’encartar lors prèferences, de changiér lor lista de survelyence et pués de fâre totes les ôtres opèracions qu’ont fôta des changements dens la bâsa de balyês.
+'unlockdbtext'        => 'Lo dèvèrrolyâjo de la bâsa de balyês tornerat pèrmetre a tôs los usanciérs de changiér des pâges, d’encartar lors prèferences, de changiér lor lista de survelyence et pués de fâre totes les ôtres opèracions qu’ont fôta des changements dens la bâsa de balyês.
 Volyéd confirmar qu’o est franc cen que vos voléd fâre.',
 'lockconfirm'         => 'Ouè, confirmo que souhèto vèrrolyér la bâsa de balyês.',
 'unlockconfirm'       => 'Ouè, confirmo que souhèto dèvèrrolyér la bâsa de balyês.',
@@ -2735,13 +2745,13 @@ assurâd-vos de nen avêr comprês les consèquences devant que continuar.",
 
 Dens celos câs, vos devréd renomar ou ben fusionar la pâge a la man se vos lo voléd.",
 'movearticle'                  => 'Renomar la pâge :',
-'moveuserpage-warning'         => "'''Atencion :''' vos éte prèst a renomar una pâge utilisator. Volyéd notar que solament la pâge serat renomâ et que l’utilisator serat '''pas''' renomâ.",
+'moveuserpage-warning'         => "'''Atencion :''' vos éte prèst a renomar una pâge usanciér. Volyéd notar que solament la pâge serat renomâ et que l’usanciér serat '''pas''' renomâ.",
 'movenologin'                  => 'Pas branchiê',
-'movenologintext'              => 'Por povêr renomar una pâge, vos dête étre [[Special:UserLogin|branchiê]] coment utilisator encartâ.',
+'movenologintext'              => 'Por povêr renomar una pâge, vos dête étre [[Special:UserLogin|branchiê]] coment usanciér encartâ.',
 'movenotallowed'               => 'Vos avéd pas la pèrmission de renomar les pâges.',
 'movenotallowedfile'           => 'Vos avéd pas la pèrmission de renomar los fichiérs.',
-'cant-move-user-page'          => 'Vos avéd pas la pèrmission de renomar les pâges principâles d’utilisators (en defôr de lors sot-pâges).',
-'cant-move-to-user-page'       => 'Vos avéd pas la pèrmission de renomar una pâge vers una pâge utilisator (a l’èxcèpcion d’una sot-pâge).',
+'cant-move-user-page'          => 'Vos avéd pas la pèrmission de renomar les pâges principâles d’usanciérs (en defôr de lors sot-pâges).',
+'cant-move-to-user-page'       => 'Vos avéd pas la pèrmission de renomar una pâge vers una pâge usanciér (a l’èxcèpcion d’una sot-pâge).',
 'newtitle'                     => 'De vers lo titro novél :',
 'move-watch'                   => 'Siuvre les pâges sôrsa et ciba',
 'movepagebtn'                  => 'Renomar la pâge',
@@ -2791,9 +2801,9 @@ empossiblo de renomar una pâge sur lyé-méma.',
 'imageinvalidfilename'         => 'Lo nom du fichiér ciba est fôx',
 'fix-double-redirects'         => 'Betar a jorn les redirèccions que pouentont vers lo titro originâl',
 'move-leave-redirect'          => 'Lèssiér una redirèccion de vers lo titro novél',
-'protectedpagemovewarning'     => "'''ATENCION :''' ceta pâge at étâ protègiê de façon que solament los utilisators qu’ont lo statut d’administrator la pouessont renomar.
+'protectedpagemovewarning'     => "'''ATENCION :''' ceta pâge at étâ protègiê de façon que solament los usanciérs qu’ont lo statut d’administrator la pouessont renomar.
 La dèrriére entrâ du jornal est montrâ ce-desot coment refèrence :",
-'semiprotectedpagemovewarning' => "'''Nota :''' ceta pâge at étâ protègiê de façon que solament los utilisators encartâs la pouessont renomar.
+'semiprotectedpagemovewarning' => "'''Nota :''' ceta pâge at étâ protègiê de façon que solament los usanciérs encartâs la pouessont renomar.
 La dèrriére entrâ du jornal est montrâ ce-desot coment refèrence :",
 'move-over-sharedrepo'         => '== Lo fichiér ègziste ==
 [[:$1]] ègziste ja sur un dèpôt partagiê. Renomar cél fichiér rendrat lo fichiér sur lo dèpôt partagiê pas accèssiblo.',
@@ -2901,8 +2911,8 @@ Volyéd tornar èprovar.',
 'import-logentry-interwiki-detail' => '$1 vèrsion{{PLURAL:$1||s}} dês $2',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'             => 'Voutra pâge utilisator',
-'tooltip-pt-anonuserpage'         => 'La pâge utilisator a l’adrèce IP avouéc laquinta vos contribuâd',
+'tooltip-pt-userpage'             => 'Voutra pâge usanciér',
+'tooltip-pt-anonuserpage'         => 'La pâge usanciér de l’adrèce IP avouéc laquinta vos contribuâd',
 'tooltip-pt-mytalk'               => 'Voutra pâge de discussion',
 'tooltip-pt-anontalk'             => 'La pâge de discussion por les contribucions dês cela adrèce IP',
 'tooltip-pt-preferences'          => 'Voutres prèferences',
@@ -2940,14 +2950,14 @@ Portant, vos en pouede vêre lo tèxto sôrsa.',
 'tooltip-t-recentchangeslinked'   => 'Lista des dèrriérs changements de les pâges liyês a ceta',
 'tooltip-feed-rss'                => 'Flux RSS por ceta pâge',
 'tooltip-feed-atom'               => 'Flux Atom por ceta pâge',
-'tooltip-t-contributions'         => 'Vêre la lista de les contribucions a ceti utilisator',
-'tooltip-t-emailuser'             => 'Mandar un mèssâjo a ceti utilisator',
+'tooltip-t-contributions'         => 'Vêre la lista de les contribucions a ceti usanciér',
+'tooltip-t-emailuser'             => 'Mandar un mèssâjo a ceti usanciér',
 'tooltip-t-upload'                => 'Tèlèchargiér des fichiérs',
 'tooltip-t-specialpages'          => 'Lista de totes les pâges spèciâles',
 'tooltip-t-print'                 => 'Vèrsion emprimâbla de ceta pâge',
 'tooltip-t-permalink'             => 'Lim fixo de vers ceta vèrsion de la pâge',
 'tooltip-ca-nstab-main'           => 'Vêre la pâge de contegnu',
-'tooltip-ca-nstab-user'           => 'Vêre la pâge utilisator',
+'tooltip-ca-nstab-user'           => 'Vêre la pâge usanciér',
 'tooltip-ca-nstab-media'          => 'Vêre la pâge de mèdia',
 'tooltip-ca-nstab-special'        => 'O est una pâge spèciâla, vos la pouede pas changiér.',
 'tooltip-ca-nstab-project'        => 'Vêre la pâge du projèt',
@@ -2972,51 +2982,51 @@ Pèrmèt de rètablir la vèrsion devant et pués d’apondre una rêson dens la
 
 # Stylesheets
 'common.css'              => '/* Lo code CSS betâ ique serat aplicâ a tôs los habelyâjos. */',
-'standard.css'            => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « Estandârd ». */',
-'nostalgia.css'           => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « Cafârd ». */',
-'cologneblue.css'         => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « Blu de Cologne ». */',
-'monobook.css'            => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « MonoBook ». */',
-'myskin.css'              => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « MonHabelyâjo ». */',
-'chick.css'               => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « Pugin ». */',
-'simple.css'              => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « Simplo ». */',
-'modern.css'              => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « Modèrno ». */',
-'vector.css'              => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « Vèctor ». */',
+'standard.css'            => '/* Lo code CSS betâ ique afècterat los usanciérs de l’habelyâjo « Estandârd ». */',
+'nostalgia.css'           => '/* Lo code CSS betâ ique afècterat los usanciérs de l’habelyâjo « Cafârd ». */',
+'cologneblue.css'         => '/* Lo code CSS betâ ique afècterat los usanciérs de l’habelyâjo « Blu de Cologne ». */',
+'monobook.css'            => '/* Lo code CSS betâ ique afècterat los usanciérs de l’habelyâjo « MonoBook ». */',
+'myskin.css'              => '/* Lo code CSS betâ ique afècterat los usanciérs de l’habelyâjo « MonHabelyâjo ». */',
+'chick.css'               => '/* Lo code CSS betâ ique afècterat los usanciérs de l’habelyâjo « Pugin ». */',
+'simple.css'              => '/* Lo code CSS betâ ique afècterat los usanciérs de l’habelyâjo « Simplo ». */',
+'modern.css'              => '/* Lo code CSS betâ ique afècterat los usanciérs de l’habelyâjo « Modèrno ». */',
+'vector.css'              => '/* Lo code CSS betâ ique afècterat los usanciérs de l’habelyâjo « Vèctor ». */',
 'print.css'               => '/* Lo code CSS betâ ique afècterat les emprèssions. */',
 'handheld.css'            => '/* Lo code CSS betâ ique afècterat los aparèlys mobilos d’aprés l’habelyâjo configurâ dedens « $wgHandheldStyle ». */',
-'noscript.css'            => '/* Lo code CSS betâ ique afècterat los utilisators qu’ont dèsactivâ lo code JavaScript. */',
-'group-autoconfirmed.css' => '/* Lo code CSS betâ ique afècterat ren que los utilisators encartâs. */',
+'noscript.css'            => '/* Lo code CSS betâ ique afècterat los usanciérs qu’ont dèsactivâ lo code JavaScript. */',
+'group-autoconfirmed.css' => '/* Lo code CSS betâ ique afècterat ren que los usanciérs encartâs. */',
 'group-bot.css'           => '/* Lo code CSS betâ ique afècterat ren que los bots. */',
 'group-sysop.css'         => '/* Lo code CSS betâ ique afècterat ren que los administrators. */',
 'group-bureaucrat.css'    => '/* Lo code CSS betâ ique afècterat ren que los grata-papiérs. */',
 
 # Scripts
-'common.js'              => '/* Tot code JavaScript betâ ique serat chargiê per tôs los utilisators avouéc châque chargement de pâge. */',
-'standard.js'            => '/* Tot code JavaScript betâ ique serat chargiê per los utilisators de l’habelyâjo « Estandârd ». */',
-'nostalgia.js'           => '/* Tot code JavaScript betâ ique serat chargiê per los utilisators de l’habelyâjo « Cafârd ». */',
-'cologneblue.js'         => '/* Tot code JavaScript betâ ique serat chargiê per los utilisators de l’habelyâjo « Blu de Cologne ». */',
-'monobook.js'            => '/* Tot code JavaScript betâ ique serat chargiê per los utilisators de l’habelyâjo « MonoBook ». */',
-'myskin.js'              => '/* Tot code JavaScript betâ ique serat chargiê per los utilisators de l’habelyâjo « MonHabelyâjo ». */',
-'chick.js'               => '/* Tot code JavaScript betâ ique serat chargiê per los utilisators de l’habelyâjo « Pugin ». */',
-'simple.js'              => '/* Tot code JavaScript betâ ique serat chargiê per los utilisators de l’habelyâjo « Simplo ». */',
-'modern.js'              => '/* Tot code JavaScript betâ ique serat chargiê per los utilisators de l’habelyâjo « Modèrno ». */',
-'vector.js'              => '/* Tot code JavaScript betâ ique serat chargiê per los utilisators de l’habelyâjo « Vèctor ». */',
-'group-autoconfirmed.js' => '/* Tot code JavaScript betâ ique serat chargiê per ren que los utilisators encartâs. */',
-'group-bot.js'           => '/* Tot code JavaScript betâ ique serat chargiê per ren que los bots. */',
-'group-sysop.js'         => '/* Tot code JavaScript betâ ique serat chargiê per ren que los administrators. */',
-'group-bureaucrat.js'    => '/* Tot code JavaScript betâ ique serat chargiê per ren que los grata-papiérs. */',
+'common.js'              => '/* Tot code JavaScript betâ ique serat chargiê per tôs los usanciérs avouéc châque chargement de pâge. */',
+'standard.js'            => '/* Tot code JavaScript betâ ique serat chargiê per los usanciérs de l’habelyâjo « Estandârd ». */',
+'nostalgia.js'           => '/* Tot code JavaScript betâ ique serat chargiê per los usanciérs de l’habelyâjo « Cafârd ». */',
+'cologneblue.js'         => '/* Tot code JavaScript betâ ique serat chargiê per los usanciérs de l’habelyâjo « Blu de Cologne ». */',
+'monobook.js'            => '/* Tot code JavaScript betâ ique serat chargiê per los usanciérs de l’habelyâjo « MonoBook ». */',
+'myskin.js'              => '/* Tot code JavaScript betâ ique serat chargiê per los usanciérs de l’habelyâjo « MonHabelyâjo ». */',
+'chick.js'               => '/* Tot code JavaScript betâ ique serat chargiê per los usanciérs de l’habelyâjo « Pugin ». */',
+'simple.js'              => '/* Tot code JavaScript betâ ique serat chargiê per los usanciérs de l’habelyâjo « Simplo ». */',
+'modern.js'              => '/* Tot code JavaScript betâ ique serat chargiê per los usanciérs de l’habelyâjo « Modèrno ». */',
+'vector.js'              => '/* Tot code JavaScript betâ ique serat chargiê per los usanciérs de l’habelyâjo « Vèctor ». */',
+'group-autoconfirmed.js' => '/* Tot code JavaScript betâ ique serat chargiê ren que por los usanciérs encartâs. */',
+'group-bot.js'           => '/* Tot code JavaScript betâ ique serat chargiê ren que por los bots. */',
+'group-sysop.js'         => '/* Tot code JavaScript betâ ique serat chargiê ren que por los administrators. */',
+'group-bureaucrat.js'    => '/* Tot code JavaScript betâ ique serat chargiê ren que por los grata-papiérs. */',
 
 # Metadata
 'notacceptable' => 'Lo sèrvor vouiqui pôt pas balyér les balyês dens un format que voutron cliant est capâblo de liére.',
 
 # Attribution
-'anonymous'        => '{{PLURAL:$1|Utilisator pas encartâ|Utilisators pas encartâs}} dessus {{SITENAME}}',
-'siteuser'         => 'l’utilisator $1 de {{SITENAME}}',
-'anonuser'         => 'l’utilisator pas encartâ $1 de {{SITENAME}}',
+'anonymous'        => '{{PLURAL:$1|Usanciér pas encartâ|Usanciérs pas encartâs}} dessus {{SITENAME}}',
+'siteuser'         => 'l’usanciér{{GENDER:$2||e}} $1 de {{SITENAME}}',
+'anonuser'         => 'l’usanciér pas encartâ $1 de {{SITENAME}}',
 'lastmodifiedatby' => 'Ceta pâge at étâ changiê por lo dèrriér côp lo $1 a $2 per $3.',
 'othercontribs'    => 'Basâ sur l’ôvra a $1.',
 'others'           => 'ôtros',
-'siteusers'        => '{{PLURAL:$2|l’utilisator|los utilisators}} $1 de {{SITENAME}}',
-'anonusers'        => '{{PLURAL:$2|l’utilisator pas encartâ|los utilisators pas encartâs}} $1 de {{SITENAME}}',
+'siteusers'        => '{{PLURAL:$2|l’usanciér|los usanciérs}} $1 de {{SITENAME}}',
+'anonusers'        => '{{PLURAL:$2|l’usanciér pas encartâ|los usanciérs pas encartâs}} $1 de {{SITENAME}}',
 'creditspage'      => 'Crèdits de la pâge',
 'nocredits'        => 'Y at gins d’enformacion d’atribucion disponibla por ceta pâge.',
 
@@ -3189,7 +3199,7 @@ Los ôtros champs seront cachiês per dèfôt.
 'exif-compressedbitsperpixel'      => 'Fôrma de comprèssion de l’émâge',
 'exif-pixelydimension'             => 'Largior de l’émâge',
 'exif-pixelxdimension'             => 'Hôtior de l’émâge',
-'exif-usercomment'                 => 'Comentèros a l’utilisator',
+'exif-usercomment'                 => 'Comentèros a l’usanciér',
 'exif-relatedsoundfile'            => 'Fichiér ôdiô associyê',
 'exif-datetimeoriginal'            => 'Dâta et hora de la g·ènèracion de les balyês',
 'exif-datetimedigitized'           => 'Dâta et hora de la numerisacion',
@@ -3542,7 +3552,7 @@ Los ôtros champs seront cachiês per dèfôt.
 'exif-urgency-normal' => 'Normala ($1)',
 'exif-urgency-low'    => 'Fêbla ($1)',
 'exif-urgency-high'   => 'Hôta ($1)',
-'exif-urgency-other'  => 'Prioritât dèfenia per l’utilisator ($1)',
+'exif-urgency-other'  => 'Prioritât dèfenia per l’usanciér ($1)',
 
 # External editor support
 'edit-externally'      => 'Changiér ceti fichiér en utilisent una aplicacion de defôr',
@@ -3642,11 +3652,10 @@ $1',
 
 # Delete conflict
 'deletedwhileediting'      => "'''Atencion :''' ceta pâge at étâ suprimâ aprés que vos vos éte betâ a la changiér !",
-'confirmrecreate'          => "L’utilisator [[User:$1|$1]] ([[User talk:$1|Discussion]]) at suprimâ ceta pâge, pendent que vos vos érâd betâ a la changiér, por ceta rêson :
+'confirmrecreate'          => "L’usanciér [[User:$1|$1]] ([[User talk:$1|Discussion]]) at suprimâ ceta pâge, pendent que vos vos érâd betâ a la changiér, por ceta rêson :
 : ''$2''
 Volyéd confirmar que vos voléd franc refâre cela pâge.",
-'confirmrecreate-noreason' => 'L’utilisator [[User:$1|$1]] ([[User talk:$1|Discussion]]) at suprimâ ceta pâge, pendent que vos vos érâd betâ a la changiér.
-Volyéd confirmar que vos voléd franc refâre cela pâge.',
+'confirmrecreate-noreason' => 'L’usanciér [[User:$1|$1]] ([[User talk:$1|Discussion]]) at suprimâ ceta pâge, pendent que vos vos érâd betâ a la changiér.  Volyéd confirmar que vos voléd franc refâre cela pâge.',
 'recreate'                 => 'Refâre',
 
 # action=purge
@@ -3818,7 +3827,7 @@ Vos pouede asse-ben utilisar l’[[Special:EditWatchlist|èditor normal]].',
 'version-license'               => 'Licence',
 'version-poweredby-credits'     => "Ceti vouiqui fonccione grâce a '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'      => 'ôtros',
-'version-license-info'          => 'MediaWiki est una programeria abada ; vos la pouede tornar distribuar et / ou changiér d’aprés los tèrmos de la Licence publica g·ènèrala GNU coment publeyê per la Free Software Foundation ; seye la vèrsion 2 de la Licence, ou ben (a voutron chouèx) tota novèla vèrsion.
+'version-license-info'          => 'MediaWiki est una programeria libra ; vos la pouede tornar distribuar et / ou changiér d’aprés los tèrmos de la Licence publica g·ènèrala GNU coment publeyê per la Free Software Foundation ; seye la vèrsion 2 de la Licence, ou ben (a voutron chouèx) tota novèla vèrsion.
 
 MediaWiki est distribuâ dens l’èsperance que serat utila, mas SEN GINS DE GARANTIA ; sen mémo la garantia emplicita de COMÈRCIALISACION ou ben d’ADAPTACION A UN USÂJO PARTICULIÉR. Vêde la Licence publica g·ènèrala GNU por més de dètalys.
 
@@ -3856,7 +3865,7 @@ Les émâges sont montrâs dens lor plêna rèsolucion, los ôtros fichiérs son
 'specialpages-group-login'       => 'Branchement / encartâjo',
 'specialpages-group-changes'     => 'Dèrriérs changements et jornals',
 'specialpages-group-media'       => 'Rapôrts et tèlèchargements de fichiérs mèdia',
-'specialpages-group-users'       => 'Utilisators et drêts apondus',
+'specialpages-group-users'       => 'Usanciérs et drêts apondus',
 'specialpages-group-highuse'     => 'Pâges d’usâjo important',
 'specialpages-group-pages'       => 'Listes de pâges',
 'specialpages-group-pagetools'   => 'Outils por les pâges',
@@ -3870,7 +3879,7 @@ Les émâges sont montrâs dens lor plêna rèsolucion, los ôtros fichiérs son
 
 # External image whitelist
 'external_image_whitelist' => '  #Lèssiéd ceta legne justo d’ense.<pre>
-#Endicâd los bocons d’èxprèssions racionèles (ren que la partia endicâ entre-mié los //) ce-desot.
+#Endicâd los bocons d’èxprèssions racionèles (solament la partia endicâ entre-mié los //) ce-desot.
 #Corrèspondront avouéc los lims hipèrtèxtos de les émâges (ben liyês) de defôr.
 #Celos que corrèspondont sè montreront coment des émâges, ôtrament solament un lim de vers l’émâge serat montrâ.
 #Les legnes que començont per un # seront considèrâs coment des comentèros.

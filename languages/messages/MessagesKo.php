@@ -25,6 +25,7 @@
  * @author ToePeu
  * @author Yknok29
  * @author לערי ריינהארט
+ * @author 관인생략
  */
 
 $namespaceNames = array(
@@ -910,9 +911,8 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'blocked-notice-logextract'        => '이 사용자는 현재 차단되어 있습니다.
 해당 사용자의 최근 차단 기록을 참고하십시오:',
 'clearyourcache'                   => "'''참고:''' 설정을 저장한 후에 바뀐 점을 확인하기 위해서는 브라우저의 캐시를 갱신해야 합니다.
-
-* '''파이어폭스 / 사파리''': ''Shift'' 키를 누르면서 새로 고침을 클릭하거나, ''Ctrl-F5'' 또는 ''Ctrl-R'' 을 입력 (Mac에서는 ''Command-R'')
-* '''구글 크롬''': ''Ctrl-Shift-R''키를 입력 (Mac에서는 ''Command-Shift-R'')
+* '''파이어폭스 / 사파리''': ''Shift'' 키를 누르면서 새로 고침을 클릭하거나, ''Ctrl-F5'' 또는 ''Ctrl-R'' 을 입력 (Mac에서는 ''⌘-R'')
+* '''구글 크롬''': ''Ctrl-Shift-R''키를 입력 (Mac에서는 ''⌘-Shift-R'')
 * '''인터넷 익스플로러''': ''Ctrl'' 키를 누르면서 새로 고침을 클릭하거나, ''Ctrl-F5''를 입력.
 * '''컨커러''': ''새로고침''을 클릭하거나 ''F5''를 입력
 * '''오페라''': 도구→설정에서 캐시를 비움",
@@ -1435,12 +1435,12 @@ $1",
 'group-suppress'      => '오버사이트',
 'group-all'           => '(모두)',
 
-'group-user-member'          => '사용자',
-'group-autoconfirmed-member' => '자동 인증된 사용자',
-'group-bot-member'           => '봇',
-'group-sysop-member'         => '관리자',
-'group-bureaucrat-member'    => '사무관',
-'group-suppress-member'      => '오버사이트',
+'group-user-member'          => '{{GENDER:$1|사용자}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|자동 인증된 사용자}}',
+'group-bot-member'           => '{{GENDER:$1|봇}}',
+'group-sysop-member'         => '{{GENDER:$1|관리자}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|사무관}}',
+'group-suppress-member'      => '{{GENDER:$1|오버사이트}}',
 
 'grouppage-user'          => '{{ns:project}}:일반 사용자',
 'grouppage-autoconfirmed' => '{{ns:project}}:자동 인증된 사용자',
@@ -2866,6 +2866,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 # Scripts
 'common.js'   => '/* 이 자바스크립트 설정은 모든 문서, 모든 사용자에게 적용됩니다. */',
 'monobook.js' => '/* 이 자바스크립트 설정은 모노북 스킨을 사용하는 사용자에게 적용됩니다. */',
+'vector.js'   => '/* 이 자바스크립트 설정은 벡터 스킨을 사용하는 사용자에게 적용됩니다. */',
 
 # Metadata
 'notacceptable' => '클라이언트에서 인식 가능한 출력 포맷이 없습니다.',
@@ -3157,23 +3158,34 @@ Variants for Chinese language
 'exif-locationdestcode'            => '장소의 위치 코드(ISO, XSP 등)',
 'exif-objectcycle'                 => '미디어 파일이 의도하는 시간대',
 'exif-contact'                     => '연락처 정보',
+'exif-writer'                      => '작성자',
 'exif-languagecode'                => '언어',
 'exif-iimversion'                  => 'IIM 버전',
 'exif-iimcategory'                 => '분류',
 'exif-iimsupplementalcategory'     => '보조 분류',
-'exif-datetimeexpires'             => '이 시각 이후 사용 금지',
+'exif-datetimeexpires'             => '사용 기한',
 'exif-datetimereleased'            => '발표된 날짜',
+'exif-identifier'                  => '식별자',
 'exif-lens'                        => '사용된 렌즈',
 'exif-serialnumber'                => '카메라 일련 번호',
 'exif-cameraownername'             => '카메라 소유자',
 'exif-label'                       => '라벨',
+'exif-datetimemetadata'            => '메타데이터 최종 변경일',
+'exif-nickname'                    => '이미지의 비공식적 이름',
+'exif-rating'                      => '평가 (5점 만점)',
+'exif-rightscertificate'           => '권리 관리 인증서',
 'exif-copyrighted'                 => '저작권 정보',
 'exif-copyrightowner'              => '저작권자',
 'exif-usageterms'                  => '이용 조건',
+'exif-webstatement'                => '온라인 저작권 선언',
+'exif-originaldocumentid'          => '원본 문서의 고유 ID',
 'exif-licenseurl'                  => '저작권 라이선스의 URL',
 'exif-morepermissionsurl'          => '다른 라이선스 정보',
+'exif-attributionurl'              => '이 저작물을 이용할 때 링크할 주소',
+'exif-preferredattributionname'    => '이 저작물을 이용할 때 표시할 저작자 이름',
 'exif-pngfilecomment'              => 'PNG 파일 주석',
 'exif-disclaimer'                  => '면책 조항',
+'exif-contentwarning'              => '콘텐츠 경고',
 'exif-giffilecomment'              => 'GIF 파일 주석',
 'exif-intellectualgenre'           => '컨텐츠 정보',
 'exif-scenecode'                   => 'IPTC 장면 코드',
@@ -3344,6 +3356,8 @@ Variants for Chinese language
 'exif-dc-date'      => '날짜',
 'exif-dc-publisher' => '출판사',
 'exif-dc-relation'  => '관련된 미디어',
+'exif-dc-rights'    => '권리',
+'exif-dc-source'    => '원본 출처 미디어',
 'exif-dc-type'      => '미디어 종류',
 
 'exif-isospeedratings-overflow' => '65535 이상',

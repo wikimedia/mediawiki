@@ -7,7 +7,11 @@
  * @ingroup Language
  * @file
  *
+ * @author Aan
  * @author Angela
+ * @author Ankitgadgil
+ * @author Chandu
+ * @author Dnyanesh325
  * @author Harshalhayat
  * @author Hemanshu
  * @author Hemant wikikosh1
@@ -15,9 +19,20 @@
  * @author Kaajawa
  * @author Kaustubh
  * @author Mahitgar
+ * @author Marathipremi101
+ * @author Mohanpurkar
+ * @author Mvkulkarni23
+ * @author Prabodh1987
+ * @author Rahuldeshmukh101
+ * @author Rdeshmuk
  * @author Sankalpdravid
  * @author Shreewiki
+ * @author Shreyas19
+ * @author Sudhanwa
+ * @author Tusharpawar1982
  * @author V.narsikar
+ * @author Vpnagarkar
+ * @author Ynwala
  * @author अभय नातू
  * @author कोलࣿहापࣿरी
  * @author कोल्हापुरी
@@ -298,10 +313,10 @@ $linkTrail = "/^([\xE0\xA4\x80-\xE0\xA5\xA3\xE0\xA5\xB1-\xE0\xA5\xBF\xEF\xBB\xBF
 
 $messages = array(
 # User preference toggles
-'tog-underline'               => 'दुव्यांना अधोरेखित करा:',
-'tog-highlightbroken'         => 'चुकीचे दुवे <a href="" class="new">असे दाखवा</a> (किंवा: असे दाखवा<a href="" class="internal">?</a>).',
+'tog-underline'               => 'दुव्यांचे अधोरेखन:',
+'tog-highlightbroken'         => 'तुटके दुवे <a href="" class="new">असे दाखवा</a> (किंवा: असे दाखवा<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'परिच्छेद समान करा',
-'tog-hideminor'               => 'छोटे बदल लपवा',
+'tog-hideminor'               => 'अलिकडील बदलांत छोटी संपादने दाखवू नका',
 'tog-hidepatrolled'           => 'पहारा दिलेली संपादने अलीकडील बदलांमधून लपवा',
 'tog-newpageshidepatrolled'   => 'नवीन पृष्ठ यादीतून पहारा दिलेली पाने लपवा',
 'tog-extendwatchlist'         => 'पहार्‍याच्या सूचीत सर्व बदल दाखवा, फक्त अलीकडील बदल नकोत',
@@ -311,13 +326,13 @@ $messages = array(
 'tog-editondblclick'          => 'दोनवेळा क्लीक करुन पान संपादित करा (जावास्क्रीप्ट)',
 'tog-editsection'             => '[संपादन] दुव्याने संपादन करणे शक्य करा',
 'tog-editsectiononrightclick' => 'विभाग शीर्षकावर उजव्या क्लीकने संपादन करा(जावास्क्रीप्ट)',
-'tog-showtoc'                 => '३ पेक्षा जास्त शीर्षके असताना अनुक्रमणिका दाखवा',
-'tog-rememberpassword'        => 'माझा प्रवेश या संगणकावर लक्षात ठेवा (जास्तीत जास्त $1 {{PLURAL:$1|दिवसांकरिता}})',
+'tog-showtoc'                 => 'पानात ३ पेक्षा जास्त शीर्षके असल्यास अनुक्रमणिका दाखवा',
+'tog-rememberpassword'        => 'माझा प्रवेश या संगणकावर लक्षात ठेवा (जास्तीत जास्त $1 {{PLURAL:$1|दिवसासाठी|दिवसांसाठी}})',
 'tog-watchcreations'          => 'मी तयार केलेली पाने माझ्या पहार्‍याच्या सूचीत टाका',
 'tog-watchdefault'            => 'मी संपादित केलेली पाने माझ्या पहार्‍याच्या सूचीत टाका',
 'tog-watchmoves'              => 'मी स्थानांतरीत केलेली पाने माझ्या पहार्‍याच्या सूचीत टाका',
 'tog-watchdeletion'           => 'मी वगळलेली पाने माझ्या पहार्‍याच्या सूचीत टाका',
-'tog-minordefault'            => 'सर्व संपादने ’छोटी’ म्हणून आपोआप जतन करा',
+'tog-minordefault'            => "सर्व संपादने 'छोटा बदल' म्हणून आपोआप जतन करा.",
 'tog-previewontop'            => 'झलक संपादन खिडकीच्या आधी दाखवा',
 'tog-previewonfirst'          => 'पहिल्या संपादनानंतर झलक दाखवा',
 'tog-nocache'                 => 'न्याहाळकाची पान सय अक्षम करा',
@@ -326,7 +341,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'मला छोट्या बदलांकरीता सुद्धा विरोप पाठवा',
 'tog-enotifrevealaddr'        => 'सूचना विरोपात माझा विरोपाचा पत्ता दाखवा',
 'tog-shownumberswatching'     => 'पहारा दिलेले सदस्य दाखवा',
-'tog-oldsig'                  => 'सध्याचे सहीची झलक:',
+'tog-oldsig'                  => 'सध्याची सही:',
 'tog-fancysig'                => 'सही विकिसंज्ञा म्हणून वापरा (आपोआप दुव्याशिवाय)',
 'tog-externaleditor'          => 'कायम बाह्य संपादक वापरा (फक्त प्रशिक्षित सदस्यांसाठीच, संगणकावर विशेष प्रणाली लागते) ([//www.mediawiki.org/wiki/Manual:External_editors अधिक माहिती])',
 'tog-externaldiff'            => 'इतिहास पानावर निवडलेल्या आवृत्त्यांमधील बदल दाखविण्यासाठी बाह्य प्रणाली वापरा (फक्त प्रशिक्षित सदस्यांसाठीच, संगणकावर विशेष प्रणाली लागते) ([//www.mediawiki.org/wiki/Manual:External_editors अधिक माहिती])',
@@ -334,22 +349,22 @@ $messages = array(
 'tog-uselivepreview'          => 'संपादन करता करताच झलक दाखवा (जावास्क्रीप्ट)(प्रयोगक्षम)',
 'tog-forceeditsummary'        => 'जर ’बदलांचा आढावा’ दिला नसेल तर मला सूचित करा',
 'tog-watchlisthideown'        => 'पहार्‍याच्या सूचीतून माझे बदल लपवा',
-'tog-watchlisthidebots'       => 'पहार्‍याच्या सूचीतून सांगकामे बदल लपवा',
+'tog-watchlisthidebots'       => 'पहार्‍याच्या सूचीतून सांगकाम्यांचे बदल लपवा',
 'tog-watchlisthideminor'      => 'माझ्या पहार्‍याच्या सूचीतून छोटे बदल लपवा',
 'tog-watchlisthideliu'        => 'पहार्‍याच्या सूचीतून प्रवेश केलेल्या सदस्यांची संपादने लपवा',
 'tog-watchlisthideanons'      => 'पहा‍र्‍याच्या सूचीतून अनामिक सदस्यांची संपादने लपवा',
 'tog-watchlisthidepatrolled'  => 'पहार्‍याच्या सूचीतून तपासलेली संपादने लपवा',
-'tog-ccmeonemails'            => 'मी इतर सदस्यांना पाठविलेल्या इमेल च्या प्रती मलाही पाठवा',
+'tog-ccmeonemails'            => 'मी इतर सदस्यांना पाठविलेल्या इमेल च्या प्रती मलाही माझ्या इमेल पत्त्यावर पाठवा',
 'tog-diffonly'                => 'निवडलेल्या आवृत्त्यांमधील बदल दाखवताना जुनी आवृत्ती दाखवू नका.',
 'tog-showhiddencats'          => 'लपविलेले वर्ग दाखवा',
-'tog-norollbackdiff'          => 'द्रूतमाघार घेतल्यास बदल वगळा',
+'tog-norollbackdiff'          => 'द्रुतमाघार घेतल्यास बदल वगळा',
 
-'underline-always'  => 'नेहमी',
+'underline-always'  => 'नेहेमी',
 'underline-never'   => 'कधीच नाही',
 'underline-default' => 'न्याहाळक अविचल (browser default)',
 
 # Font style option in Special:Preferences
-'editfont-style'     => 'विभागाची टंकशैली संपादा:',
+'editfont-style'     => 'विभागाची टंकशैली संपादित करा:',
 'editfont-default'   => 'न्याहाळक अविचल',
 'editfont-monospace' => 'एकलअंतर असलेला टंक',
 'editfont-sansserif' => 'सॅन्स-सेरिफ टंक',
@@ -501,7 +516,7 @@ $messages = array(
 'postcomment'       => 'नवीन चर्चा',
 'articlepage'       => 'लेख पृष्ठ',
 'talk'              => 'चर्चा',
-'views'             => 'दृष्टीपथात',
+'views'             => 'दृष्ये',
 'toolbox'           => 'साधनपेटी',
 'userpage'          => 'सदस्य पृष्ठ',
 'projectpage'       => 'प्रकल्प पान पहा',
@@ -564,7 +579,7 @@ $1',
 'viewsourceold'           => 'स्रोत पहा',
 'editlink'                => 'संपादन',
 'viewsourcelink'          => 'स्रोत पहा',
-'editsectionhint'         => 'विभाग: $1 संपादा',
+'editsectionhint'         => 'विभाग: $1 संपादित करा',
 'toc'                     => 'अनुक्रमणिका',
 'showtoc'                 => 'दाखवा',
 'hidetoc'                 => 'लपवा',
@@ -580,7 +595,7 @@ $1',
 'site-atom-feed'          => '$1 ऍटम रसद (Atom Feed)',
 'page-rss-feed'           => '"$1" आर.एस.एस.रसद (RSS Feed)',
 'page-atom-feed'          => '"$1" ऍटम रसद (Atom Feed)',
-'feed-atom'               => 'ऍटम',
+'feed-atom'               => 'ॲटम',
 'feed-rss'                => 'आर.एस.ए‍स.',
 'red-link-title'          => '$1 (पान अस्तित्त्वात नाही)',
 'sort-descending'         => 'उतरत्या क्रमाने लावा',
@@ -671,6 +686,7 @@ MySQL returned error "$3: $4".',
 $2',
 'namespaceprotected'   => "'''$1''' नामविश्वातील पाने बदलण्याची आपणांस परवानगी नाही.",
 'customcssprotected'   => 'या पानावर इतर सदस्याच्या व्यक्तिगत पसंती असल्यामुळे, तुम्हाला हे सीएसएस पान संपादीत करण्याची परवानगी नाही.',
+'customjsprotected'    => 'या पानावर इतर सदस्याच्या व्यक्तिगत पसंती असल्यामुळे, तुम्हाला हे JavaScript पान संपादीत करण्याची परवानगी नाही.',
 'ns-specialprotected'  => 'विशेष पाने संपादीत करता येत नाहीत.',
 'titleprotected'       => "या शीर्षकाचे पान सदस्य [[User:$1|$1]]ने निर्मीत करण्यापासून सुरक्षित केलेले आहे.
 ''$2'' हे कारण नमूद केलेले आहे.",
@@ -692,7 +708,7 @@ $2',
 'yourname'                   => 'तुमचे नाव',
 'yourpassword'               => 'तुमचा परवलीचा शब्द',
 'yourpasswordagain'          => 'तुमचा परवलीचा शब्द पुन्हा लिहा',
-'remembermypassword'         => 'माझा परवलीचा शब्द पुढील खेपेसाठी लक्षात ठेवा (जास्तीतजास्त $1 {{PLURAL:$1|दिवसासाठी|दिवसांसाठी}})',
+'remembermypassword'         => 'माझा प्रवेश या संगणकावर लक्षात ठेवा (जास्तीत जास्त $1 {{PLURAL:$1|दिवसासाठी|दिवसांसाठी}})',
 'securelogin-stick-https'    => 'प्रवेशानंतर एचटीटीपीएसच्या संपर्कात रहा',
 'yourdomainname'             => 'तुमचे क्षेत्र (डॉमेन) :',
 'externaldberror'            => 'विदागार ’खातरजमा’ (प्रमाणितीकरण) त्रूटी होती अथवा तुम्हाला तुमचे बाह्य खाते अद्यावत  करण्याची परवानगी नाही.',
@@ -785,8 +801,8 @@ $2',
 'resetpass-no-info'         => 'या पानामध्ये थेट जाण्यासाठी तुम्हाला प्रवेश घ्यावा लागेल.',
 'resetpass-submit-loggedin' => 'परवलीचा शब्द बदला',
 'resetpass-submit-cancel'   => 'रद्द करा',
-'resetpass-wrong-oldpass'   => 'अवैध अस्थायी किंवा परवलीचा शब्द.
-कदाचित तुम्ही आधीच तो यशस्वीरीत्या बदलला असेल किंवा तात्पुरता परवलीचा शब्द मागवला असेल.',
+'resetpass-wrong-oldpass'   => 'अवैध किंवा अस्थायी परवलीचा शब्द.
+कदाचित तुम्ही आधीच तो यशस्वीरीत्या बदलला असेल किंवा नवीन तात्पुरता परवलीचा शब्द मागवला असेल.',
 'resetpass-temp-password'   => 'तात्पुरता परवलीचा शब्द',
 
 # Special:PasswordReset
@@ -796,6 +812,7 @@ $2',
 'passwordreset-disabled'       => 'या विकीवर परवलीचा शब्द पुनर्स्थापित करता येत नाही.',
 'passwordreset-pretext'        => '{{PLURAL:$1||खालील माहितीच्या भागांपैकी एक भाग लिहा}}',
 'passwordreset-username'       => 'सदस्यनाव:',
+'passwordreset-domain'         => 'डोमेन',
 'passwordreset-email'          => 'विपत्र पत्ता',
 'passwordreset-emailtitle'     => '{{SITENAME}} वर खात्याची माहिती',
 'passwordreset-emailtext-ip'   => 'कुणीतरी (कदाचित तुम्ही, अंकपत्ता $1 कडून) {{SITENAME}} करिता ’नवा परवलीचा शब्दांक पाठवावा’ अशी विनंती केली आहे ($4).
@@ -821,26 +838,26 @@ $2',
 'link_tip'        => 'अंतर्गत दुवा',
 'extlink_sample'  => 'http://www.example.com दुव्याचे शीर्षक',
 'extlink_tip'     => 'बाह्य दुव्यात (http:// हा उपसर्ग विसरू नका)',
-'headline_sample' => 'अग्रशीर्ष मजकुर',
+'headline_sample' => 'मथळा मजकुर',
 'headline_tip'    => 'द्वितीय-स्तर अग्रशीर्ष',
 'nowiki_sample'   => 'मजकूर इथे लिहा',
 'nowiki_tip'      => 'विकिभाषेप्रमाणे बदल करू नका',
 'image_tip'       => 'संलग्न संचिका',
 'media_tip'       => 'संचिकेचा दुवा',
 'sig_tip'         => 'वेळेबरोबर तुमची सही',
-'hr_tip'          => 'आडवी रेषा (कमी वापरा)',
+'hr_tip'          => 'आडवी रेषा (कमितकमी वापरा)',
 
 # Edit pages
 'summary'                          => 'बदलांचा आढावा :',
-'subject'                          => 'विषय:',
+'subject'                          => 'विषय/मथळा:',
 'minoredit'                        => 'हा एक छोटा बदल आहे',
 'watchthis'                        => 'या लेखावर लक्ष ठेवा',
-'savearticle'                      => 'हा लेख साठवून ठेवा',
+'savearticle'                      => 'हा लेख साठवा',
 'preview'                          => 'झलक',
-'showpreview'                      => 'झलक पहा',
+'showpreview'                      => 'झलक दाखवा',
 'showlivepreview'                  => 'थेट झलक',
 'showdiff'                         => 'बदल दाखवा',
-'anoneditwarning'                  => "'''सावधानः''' तुम्ही विकिपीडियाचे सदस्य म्हणून प्रवेश (लॉग-इन) केलेला नाही. या पानाच्या संपादन इतिहासात तुमचा आय.पी. ऍड्रेस नोंदला जाईल.",
+'anoneditwarning'                  => "'''ईशारा:''' तुम्ही विकिपीडियाचे सदस्य म्हणून प्रवेश (लॉग-इन) केलेला नाही. या पानाच्या संपादन इतिहासात तुमचा आयपी अंकपत्ता नोंदला जाईल.",
 'anonpreviewwarning'               => "\"'''सावधान:''' तुम्ही विकिपीडियाचे सदस्य म्हणून प्रवेश (लॉग-इन) केलेला नाही. या पानाच्या संपादन इतिहासात तुमचा आय.पी. अंकपत्ता (अ‍ॅड्रेस) नोंदला जाईल.\"",
 'missingsummary'                   => "'''आठवण:''' तूम्ही संपादन सारांश पुरवलेला नाही.आपण जतन करा वर पुन्हा टीचकी मारली तर तेत्या शिवाय जतन होईल.",
 'missingcommenttext'               => 'कृपया खाली प्रतिक्रीया भरा.',
@@ -878,7 +895,7 @@ $2',
 'blockededitsource'                => "'''$1'''ला '''तुमची संपादने'''चा मजकुर खाली दाखवला आहे:",
 'whitelistedittitle'               => 'संपादनासाठी सदस्य म्हणून प्रवेश आवश्यक आहे.',
 'whitelistedittext'                => 'लेखांचे संपादन करण्यासाठी आधी $1 करा.',
-'confirmedittext'                  => 'तुम्ही संपादने करण्यापुर्वी तुमचा विपत्र पत्ता शाबीत करणे आवश्यक आहे.Please set and validate तुमचा विपत्र पत्ता तुमच्या[[Special:Preferences|सदस्य पसंती]]तून लिहा व सिद्ध करा.',
+'confirmedittext'                  => 'तुम्ही संपादने करण्यापुर्वी तुमचा विपत्र पत्ता प्रमाणित करणे आवश्यक आहे.Please set and validate तुमचा विपत्र पत्ता तुमच्या[[Special:Preferences|सदस्य पसंती]]तून लिहा व सिद्ध करा.',
 'nosuchsectiontitle'               => 'असा विभाग नाही.',
 'nosuchsectiontext'                => 'तुम्ही अस्तिवात नसलेला विभाग संपादन करण्याचा प्रयत्न केला आहे.',
 'loginreqtitle'                    => 'प्रवेश गरजेचा आहे',
@@ -903,9 +920,12 @@ $2',
 'userpage-userdoesnotexist-view'   => 'सदस्यखाते "$1"  हे नोंदलेले नाही.',
 'blocked-notice-logextract'        => 'हा सदस्य सध्या प्रतिबंधित आहे.
 सर्वांत नवीन प्रतिबंधन यादी खाली संदर्भासाठी दिली आहे:',
-'clearyourcache'                   => "'''सूचना:''' जतन केल्यानंतर, बदल पहाण्याकरिता तुम्हाला तुमच्या विचरकाची सय टाळायला लागू शकते. '''मोझील्ला/फायरफॉक्स /सफारी:''' ''Reload''करताना ''Shift''दाबून ठेवा किंवा ''Ctrl-Shift-R'' दाबा
-
-(ऍपल मॅक वर ''Cmd-shift-R'');'''IE:''' ''Refresh'' टिचकताना ''Ctrl'' दाबा,किंवा ''Ctrl-F5'' दाबा ; '''Konqueror:''': केवळ '''Reload''' टिचकवा,किवा ''F5'' दाबा; '''Opera'''उपयोगकर्त्यांना  ''Tools→Preferences'' मधील सय पूर्ण रिकामी करायला लागेल.",
+'clearyourcache'                   => "'''सूचना:''' जतन केल्यावर बदल दिसण्यासाठी तुम्हाला कदाचित न्याहाळकाची सय टाळायला लागेल. असे करण्यासाठी - 
+*'''फायरफॉक्स / सफारी:''' ''Reload'' करताना ''Shift'' दाबून ठेवा, किंवा ''Ctrl-F5'' अथवा ''Ctrl-R'' दाबा (मॅकसाठी ''⌘-R'')
+*'''गूगल क्रोम:''' ''Ctrl-Shift-R'' दाबा (मॅकसाठी ''⌘-Shift-R'')
+*'''इंटरनेट एक्सप्लोरर:''' ''Reload'' करताना ''Ctrl'' दाबून ठेवा, किंवा ''Ctrl-F5'' दाबा
+*'''कॉन्क्वरर:''' '''Reload''' दाबा किंवा ''F5'' दाबा
+*'''ऑपेरा:''' ''Tools → Preferences'' मधून सय रिकामी करा",
 'usercssyoucanpreview'             => "'''टीप:'''तुमचे नवे सीएसएस जतन करण्यापूर्वी 'झलक पहा' कळ वापरा.",
 'userjsyoucanpreview'              => "'''टीप:''' तुमचा नवा जावास्क्रिप्ट जतन करण्यापूर्वी 'झलक पहा' कळ वापरा.",
 'usercsspreview'                   => "'''तुम्ही तुमच्या सी.एस.एस.ची केवळ झलक पहात आहात, ती अजून जतन केलेली नाही हे लक्षात घ्या.'''",
@@ -1051,34 +1071,37 @@ $3ने ''$2'' कारण दिले आहे.",
 'rev-deleted-text-permission' => "या पानाची आवृत्ती सार्वजनिक विदागारातून '''वगळण्यात आली आहे'''.
 
 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} वगळल्याच्या नोंदीत]निर्देश असण्याची शक्यता आहे",
-'rev-deleted-text-unhide'     => "पानाचे हे आवर्तन सार्वजनिक विदागारातून '''वगळले गेले आहे'''.
-{{SITENAME}}च्या प्रबंधक या नात्याने तुम्ही ते [$1पाहू शकता]; [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} वगळलेल्या नोंदीत] माहिती असण्याची शक्यता आहे .",
-'rev-suppressed-text-unhide'  => "पानाचे हे आवर्तन सार्वजनिक विदागारातून '''लपवले गेले आहे'''.
-{{SITENAME}}च्या प्रबंधक या नात्याने तुम्ही ते [$1पाहू शकता]; [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} वगळलेल्या नोंदीत] माहिती असण्याची शक्यता आहे .",
-'rev-deleted-text-view'       => "पानाचे हे आवर्तन सार्वजनिक विदागारातून '''वगळण्यात आले आहे'''.
-{{SITENAME}}च्या प्रबंधक या नात्याने तुम्ही ते पाहू शकता; [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} वगळलेल्या नोंदीत] माहिती असण्याची शक्यता आहे .",
-'rev-suppressed-text-view'    => "पानाचे हे आवर्तन सार्वजनिक विदागारातून '''लपवण्यात आले आहे'''.
-{{SITENAME}}च्या प्रबंधक या नात्याने तुम्ही ते पाहू शकता; [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} वगळलेल्या नोंदीत] माहिती असण्याची शक्यता आहे .",
-'rev-deleted-no-diff'         => "या पानाची आवृत्ती '''वगळण्यात आली आहे'''.
-
-[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} वगळल्याच्या नोंदीत]निर्देश असण्याची शक्यता आहे",
-'rev-suppressed-no-diff'      => 'तुम्ही हा फरक पाहू शकत नाही कारण या आवृत्त्यांमधील एक आवृती ”’वगळण्यात आली आहे.”’',
-'rev-deleted-unhide-diff'     => "पानाचे हे आवर्तन '''वगळले गेले आहे'''.
-{{SITENAME}}च्या प्रबंधक या नात्याने तुम्ही ते [$1पाहू शकता]; [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} वगळलेल्या नोंदीत] माहिती असण्याची शक्यता आहे .",
-'rev-suppressed-unhide-diff'  => "पानाचे हे आवर्तन '''लपवले गेले आहे'''.
-{{SITENAME}}च्या प्रबंधक या नात्याने तुम्ही ते [$1पाहू शकता]; [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} वगळलेल्या नोंदीत] माहिती असण्याची शक्यता आहे .",
-'rev-deleted-diff-view'       => "पानाचे हे आवर्तन'''वगळण्यात आले आहे'''.
-{{SITENAME}}च्या प्रबंधक या नात्याने तुम्ही ते पाहू शकता; [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} वगळलेल्या नोंदीत] माहिती असण्याची शक्यता आहे .",
-'rev-suppressed-diff-view'    => "या फरकातील एक आवर्तन '''लपवण्यात आले आहे'''.
-{{SITENAME}}च्या प्रबंधक या नात्याने तुम्ही ते पाहू शकता; [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} वगळलेल्या नोंदीत] माहिती असण्याची शक्यता आहे .",
+'rev-deleted-text-unhide'     => "या पानाचे संस्करण '''वगळले'''.
+ [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} वगळलेल्या नोंदी] येथे याची माहिती मिळेल.
+जर आपणास पुढे जावयाचे असल्यास, अजूनही [$1 हे संस्करण बघु शकता].",
+'rev-suppressed-text-unhide'  => "या पानाचे संस्करण '''दडपले'''.
+ [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} दडपलेले क्रमलेख] येथे याची माहिती मिळेल.
+जर आपणास पुढे जावयाचे असल्यास, अजूनही [$1 हे संस्करण बघु शकता].",
+'rev-deleted-text-view'       => "या पानाचि आवृत्ती '''वगळण्यात आली आहे'''.
+हे तुम्हि बघु शकता; महिति हि तुम्हाला इथे सपदेल् [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} कधुन तकले आहे].",
+'rev-suppressed-text-view'    => "या पानाची आवृत्ती '''दडपली'''.
+आपण हे बघु शकता; [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} दडपलेल्यांचा क्रमलेख] येथे त्याची विस्तृत माहिती सापडेल.",
+'rev-deleted-no-diff'         => "आपण यातील फरक बघु शकत नाही कारण त्यापैकी एक संस्करण '''वगळले''' आहे.
+[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} वगळल्याचा क्रमलेख] येथे त्याची विस्तृत माहिती सापडेल.",
+'rev-suppressed-no-diff'      => 'तुम्ही हा फरक पाहू शकत नाही कारण या आवृत्त्यांमधील एक संस्करण ”’वगळण्यात आले आहे.”’',
+'rev-deleted-unhide-diff'     => "या पेज चे रिविषन  '''रीक्त करन्यात आले आहे'''.
+महिती एथे सुद्धा मीलु शकेल [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} रीक्क्त कर्न्यात आले आहे].
+तुम्म्हि आत्ता सुद्धा [$1 फरक बघा] जर तुम्हि चलु थेउ ईच्चुक असाल तर.",
+'rev-suppressed-unhide-diff'  => "या पेज चे रिविषन  '''रीक्त करन्यात आले आहे'''.
+महिती एथे सुद्धा मीलु शकेल  [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} रीक्क्त कर्न्यात आले आहे].
+तुम्म्हि तरी सुद्धा [$1 हा फरक ओलखा] जर तुम्हि चलु थेउ ईच्चुक असाल तर.",
+'rev-deleted-diff-view'       => "या पेज चे रिविषन  '''रीक्त करन्यात आले आहे'''.
+तुम्म्ही हा फरक बघु शकता ; माहिती यात मीलु शकेल [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} रिक्क्त केलेली महिती].",
+'rev-suppressed-diff-view'    => "या पेज चे रिविषन  '''रीक्त करन्यात आले आहे'''.
+तुम्म्ही हा फरक बघु शकता ; माहिती यात मीलु शकेल [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}}  जर तुम्हि चलु थेउ ईच्चुक असाल तर].",
 'rev-delundel'                => 'दाखवा/लपवा',
 'rev-showdeleted'             => 'दाखवा',
 'revisiondelete'              => 'आवर्तने वगळा/पुनर्स्थापित करा',
 'revdelete-nooldid-title'     => 'अपेक्षीत आवृत्ती दिलेली नाही',
 'revdelete-nooldid-text'      => '!!आपण ही कृती करावयाची आवर्तने सूचीत केलेली नाहीत, दिलेले आवर्तन अस्तित्वात नाही, किंवा तुम्ही सध्याचे आवर्तन लपविण्याचा प्रयत्न करीत आहात.',
-'revdelete-nologtype-title'   => 'कोणताही यादीप्रकार दिलेला नाही',
+'revdelete-nologtype-title'   => 'कोणताही क्रमलेखप्रकार दिलेला नाही',
 'revdelete-nologtype-text'    => 'ही क्रिया करण्यासाठी तुम्ही यादीप्रकार निवडला नाही.',
-'revdelete-nologid-title'     => 'अवैध यादी प्रविष्टी',
+'revdelete-nologid-title'     => 'अवैध क्रमलेख प्रविष्टी',
 'revdelete-nologid-text'      => 'तुम्ही हे कार्य होण्यासाठी निश्चित यादी प्रसंग निवडला नाही किंवा दिलेली प्रविष्टी अस्तित्वात नाही.',
 'revdelete-no-file'           => 'दर्शिवलेली संचिका अस्तित्वात नाही.',
 'revdelete-show-file-confirm' => 'तुम्ही "<nowiki>$1</nowiki>" या संचिकेचे $2 येथून $3 वेळी असलेले आवर्तन नक्की पहाणार आहात?',
@@ -1088,28 +1111,28 @@ $3ने ''$2'' कारण दिले आहे.",
 'revdelete-text'              => "'''वगळलेल्या नोंदी आणि घटना अजूनही पानाच्या इतिहासात आणि नोंदीत आढळेल,परंतु मजकुराचा भाग सार्वजनिक स्वरूपात उपलब्ध राहणार नाही.'''
 
 अजून इतर  प्रतिबंध घातल्या शिवाय {{SITENAME}}चे इतर प्रबंधक झाकलेला मजकुर याच दुव्याने परतवू शकतील.",
-'revdelete-confirm'           => 'कृपया याची खात्री करा की तुम्ही हे करत आहात, त्याचे परिणाम जाणत आहात, आणि ते [[{{MediaWiki:Policy-url}}|मीडियाविकीच्या नीती]]नुसार आहे का?',
-'revdelete-suppress-text'     => "लपवण्याचा वापर '''फक्त''' पुढील गोष्टी असल्यासाठी होतो:
+'revdelete-confirm'           => 'कृपया याची खात्री करा की तुम्ही जे करीत आहात, त्याचे परिणाम जाणत आहात, आणि ते [[{{MediaWiki:Policy-url}}|मीडियाविकीच्या नीती]]नुसार आहे काय?',
+'revdelete-suppress-text'     => "लपवण्याचा वापर '''फक्त''' पुढील बाबतीत होतो:
 * अनुपयोगी माहिती
 * अयोग्य व्यक्तिगत माहिती
 *: ''गृहपत्ते, दूरध्वनी क्रमांक व सामाजिक सुरक्षा क्रमांक''",
 'revdelete-legend'            => 'दृश्य बंधने निश्चित करा',
 'revdelete-hide-text'         => 'आवर्तीत मजकुर लपवा',
 'revdelete-hide-image'        => 'संचिका मजकुर लपवा',
-'revdelete-hide-name'         => 'कृती आणि ध्येय लपवा',
-'revdelete-hide-comment'      => 'संपादन प्रतिक्रीया लपवा',
-'revdelete-hide-user'         => 'संपादकाचे सदस्यनाव/आंतरजाल अंकपत्ता लपवा',
+'revdelete-hide-name'         => 'कृती आणि लक्ष्य लपवा',
+'revdelete-hide-comment'      => 'संपादन संक्षेप लपवा',
+'revdelete-hide-user'         => 'संपादकाचे सदस्यनाव/आयपी अंकपत्ता लपवा',
 'revdelete-hide-restricted'   => 'ही बंधने प्रबंधक तसेच इतरांनाही लागू करा तसेच व्यक्तिरेखेला ताळा ठोका.',
 'revdelete-radio-same'        => '(कृपया बदलू नये)',
 'revdelete-radio-set'         => 'होय',
 'revdelete-radio-unset'       => 'नाही',
 'revdelete-suppress'          => 'प्रबंधक तसेच इतरांपासून विदा लपवा',
-'revdelete-unsuppress'        => 'पुर्नस्थापीत आवृत्तीवरील बंधने ऊठवा',
+'revdelete-unsuppress'        => 'पुर्नस्थापीत आवृत्त्यांवरील बंधने ऊठवा',
 'revdelete-log'               => 'कारण:',
 'revdelete-submit'            => 'निवडलेल्या {{PLURAL:$1|आवृत्तीला|आवृत्त्यांना}} लागू करा',
 'revdelete-logentry'          => '[[$1]]ची आवर्तन सदृश्यता बदलली.',
 'logdelete-logentry'          => '[[$1]]ची घटना सदृश्यता बदलली.',
-'revdelete-success'           => "'''आवर्तनांची दृश्यता यशस्वी पणे लाविली.'''",
+'revdelete-success'           => "'''आवर्तनांची दृश्यता यशस्वीपणे अद्ययावत केली.'''",
 'revdelete-failure'           => "'''आवर्तन दृश्यता अद्ययावत करता येत नाही:'''
 $1",
 'logdelete-success'           => "'''घटनांची दृश्यता यशस्वी पणे लाविली.'''",
@@ -1151,7 +1174,8 @@ $1",
 
 # Suppression log
 'suppressionlog'     => 'सप्रेशन नोंद',
-'suppressionlogtext' => 'खाली सर्वात अलीकडील ब्लॉक तसेच प्रबंधकांपासून लपविलेला मजकूर वगळण्याची यादी आहे. सध्या अस्तित्वात असेलेले प्रतिबंध पाहण्यासाठी [[Special:IPBlockList|IP ब्लॉक यादी]] पहा.',
+'suppressionlogtext' => 'खालील यादी ही रिक्क्त आनी ब्लोक त्याचे प्रकार हे आड्मिनिस्ट्रेटर्स पासून चुपे असतात.
+हे बघा [[Special:BlockList|IP block list]] सद्ध्या चालु असलेले  ओपरेश्नल बन्स आणी ब्लोच्क्स.',
 
 # History merging
 'mergehistory'                     => 'पान ईतिहासांचे एकत्रिकरण करा',
@@ -1258,12 +1282,13 @@ $1",
 'searchdisabled'                   => '{{SITENAME}} शोध अनुपलब्ध केला आहे.तो पर्यंत गूगलवरून शोध घ्या.{{SITENAME}}च्या मजकुराची त्यांची सूचिबद्धता शिळी असण्याची शक्यता असु शकते हे लक्षात घ्या.',
 
 # Quickbar
-'qbsettings'               => 'शीघ्रपट',
-'qbsettings-none'          => 'नाही',
-'qbsettings-fixedleft'     => 'स्थिर डावे',
-'qbsettings-fixedright'    => 'स्थिर ऊजवे',
-'qbsettings-floatingleft'  => 'तरंगते डावे',
-'qbsettings-floatingright' => 'तरंगते ऊजवे',
+'qbsettings'                => 'शीघ्रपट',
+'qbsettings-none'           => 'नाही',
+'qbsettings-fixedleft'      => 'स्थिर डावे',
+'qbsettings-fixedright'     => 'स्थिर ऊजवे',
+'qbsettings-floatingleft'   => 'तरंगते डावे',
+'qbsettings-floatingright'  => 'तरंगते ऊजवे',
+'qbsettings-directionality' => 'तुमच्या भाशा ची पद्धत दिशात्मक असली पाहिजे.',
 
 # Preferences page
 'preferences'                   => 'माझ्या पसंती',
@@ -1305,6 +1330,9 @@ $1",
 'recentchangesdays-max'         => 'जास्तीतजास्त $1 {{PLURAL:$1|दिवस|दिवस}}',
 'recentchangescount'            => 'अलिकडील बदल, इतिहास व नोंद पानांमध्ये दाखवायाच्या संपादनांची संख्या:',
 'prefs-help-recentchangescount' => 'यात नुकतेच झालेले बदल, पानांचे इतिहास व याद्या या गोष्टी असतात.',
+'prefs-help-watchlist-token'    => 'या क्षेत्रत गुपित किल्लि प्रदान केल्यस तुमच्या निरीक्षणयादीसाठी एक आरएसएस फीड उत्पन्न होईल.
+कोणीही ज्याला या क्षेत्रातिल किल्लि माहित असेल तुमची निरीक्षणयादी वाचू शकतो, त्यमुळे कोणतीही सुरक्षित किल्लि निवडा.
+येथे एक यंत्रजनित किल्लि दिलेली आहे गरज असल्यस तुम्ही ती वपरु शकता: $1',
 'savedprefs'                    => 'तुमच्या पसंती जतन केल्या आहेत.',
 'timezonelegend'                => 'वेळक्षेत्र',
 'localtime'                     => 'स्थानिक वेळ:',
@@ -1323,7 +1351,7 @@ $1",
 'timezoneregion-europe'         => 'युरोप',
 'timezoneregion-indian'         => 'हिंदी महासागर',
 'timezoneregion-pacific'        => 'प्रशांत महासागर',
-'allowemail'                    => 'इतर सदस्यांकडून इ-मेल येण्यास मुभा द्या',
+'allowemail'                    => 'इतर सदस्यांकडून माझ्या इमेल पत्त्यावर इमेल येण्यास मुभा द्या',
 'prefs-searchoptions'           => 'शोध विकल्प',
 'prefs-namespaces'              => 'नामविश्वे',
 'defaultns'                     => 'या नामविश्वातील अविचल शोध :',
@@ -1332,6 +1360,7 @@ $1",
 'prefs-custom-css'              => 'सीएसएस पद्धत बदला',
 'prefs-custom-js'               => 'जावास्क्रिप्ट पद्धत बदला',
 'prefs-common-css-js'           => 'मिळून वापरलेले सर्व त्वचांसाठींचे सीएसएस / जावास्क्रिप्ट:',
+'prefs-reset-intro'             => 'आपन द्दीलेले सर्व प्रीफ्र्न्सेस् वपर्न्यासथि तुम्ही हे पेज् वापरू शकता.',
 'prefs-emailconfirm-label'      => 'विपत्र निश्चितीकरण:',
 'prefs-textboxsize'             => 'संपादन खिडकीचा आकार',
 'youremail'                     => 'विपत्र:',
@@ -1341,7 +1370,9 @@ $1",
 'prefs-registration'            => 'नोंदणीची वेळ:',
 'yourrealname'                  => 'तुमचे खरे नाव:',
 'yourlanguage'                  => 'भाषा:',
+'yourvariant'                   => 'भाषा वेगळे आशय:',
 'yournick'                      => 'आपले उपनाव (सहीसाठी)',
+'prefs-help-signature'          => 'चर्चा पानावरील टिपणाखाली "<nowiki>~~~~</nowiki>" लिहावे म्हणजे त्याचे रूपांतर आपली सही व सही करण्याची वेळ यात होईल.',
 'badsig'                        => 'अयोग्य कच्ची सही;HTML खूणा तपासा.',
 'badsiglength'                  => 'तुमची स्वाक्षरी खूप लांब आहे.
 टोपणनाव $1 {{PLURAL:$1|अक्षरापेक्षा|अक्षरांपेक्षा}} कमी लांबीचे हवे.',
@@ -1349,9 +1380,11 @@ $1",
 'gender-unknown'                => 'अज्ञात',
 'gender-male'                   => 'पुरुष',
 'gender-female'                 => 'स्त्री',
+'prefs-help-gender'             => 'ऐच्छिक: याचा उपयोग लिंगानुसार संबोधन करण्यास होतो. ही माहिती सार्वजनिक असेल.',
 'email'                         => 'विपत्र',
 'prefs-help-realname'           => 'तुमचे खरे नाव (वैकल्पिक): हे नाव दिल्यास आपले योगदान या नावाखाली नोंदले व दाखवले जाईल.',
 'prefs-help-email'              => 'विपत्र (वैकल्पिक) :इतरांना सदस्य किंवा सदस्यचर्चा पानातून, तुमची ओळख देण्याची आवश्यकता न ठेवता, तुमच्याशी संपर्क सुविधा पुरवते.',
+'prefs-help-email-others'       => 'इतरांना सदस्य किंवा सदस्य चर्चा पानातून, तुमची ओळख (इ मेल) देण्याची आवश्यकता न ठेवता, तुमच्याशी संपर्क साधता येऊ शकतो. तुमचा इ मेल गुप्त राहतो.',
 'prefs-help-email-required'     => 'विपत्र(ईमेल)पत्ता  लागेल.',
 'prefs-info'                    => 'मूलभूत माहिती',
 'prefs-i18n'                    => 'आंतरराष्ट्रीयीकरण',
@@ -1400,89 +1433,91 @@ $1",
 'group-autoconfirmed' => 'नोंदणीकृत सदस्य',
 'group-bot'           => 'सांगकामे',
 'group-sysop'         => 'प्रचालक',
-'group-bureaucrat'    => 'प्रशासक',
+'group-bureaucrat'    => 'स्विकृती अधिकारी',
 'group-suppress'      => 'झापडबंद',
 'group-all'           => '(सर्व)',
 
-'group-user-member'          => 'सदस्य',
+'group-user-member'          => '{{लिंग:$1|सदस्य}}',
 'group-autoconfirmed-member' => 'स्वयंशाबीत सदस्य',
-'group-bot-member'           => 'सांगकाम्या',
-'group-sysop-member'         => 'प्रचालक',
-'group-bureaucrat-member'    => 'प्रशासक',
-'group-suppress-member'      => 'झापडबंद',
+'group-bot-member'           => '{{GENDER:$1|सांगकाम्या}}',
+'group-sysop-member'         => '{{GENDER:$1|प्रचालक}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|स्विकृती अधिकारी}}',
+'group-suppress-member'      => '{{GENDER:$1|झापडबंद}}',
 
 'grouppage-user'          => '{{ns:project}}:सदस्य',
 'grouppage-autoconfirmed' => '{{ns:project}}:नोंदणीकृत सदस्य',
 'grouppage-bot'           => '{{ns:project}}:सांगकाम्या',
 'grouppage-sysop'         => '{{ns:project}}:प्रचालक',
-'grouppage-bureaucrat'    => '{{ns:project}}:प्रशासक',
+'grouppage-bureaucrat'    => '{{ns:project}}:स्विकृती अधिकारी',
 'grouppage-suppress'      => '{{ns:project}}:झापडबंद',
 
 # Rights
-'right-read'                 => 'पृष्ठे वाचा',
-'right-edit'                 => 'पाने संपादा',
-'right-createpage'           => 'पृष्ठे तयार करा',
-'right-createtalk'           => 'चर्चा पृष्ठे तयार करा',
-'right-createaccount'        => 'नवीन सदस्य खाती तयार करा',
-'right-minoredit'            => 'बदल छोटे म्हणून जतन करा',
-'right-move'                 => 'पानांचे स्थानांतरण करा',
-'right-move-subpages'        => 'पाने उपपानांसकट हलवा',
-'right-move-rootuserpages'   => 'मूळ सदस्यपाने हलवा',
-'right-movefile'             => 'संचिका हलवा',
-'right-suppressredirect'     => 'एखाद्या पानाचे नवीन नावावर स्थानांतरण करत असताना पुनर्निर्देशन वगळा',
-'right-upload'               => 'संचिका चढवा',
-'right-reupload'             => 'अस्तित्वात असलेल्या संचिकेवर पुनर्लेखन करा',
-'right-reupload-own'         => 'त्याच सदस्याने चढविलेल्या संचिकेवर पुनर्लेखन करा',
-'right-reupload-shared'      => 'स्थानिक पातळीवरून शेअर्ड चित्र धारिकेतील संचिकांवर पुनर्लेखन करा',
-'right-upload_by_url'        => 'एखादी संचिका URL सहित चढवा',
-'right-purge'                => 'एखाद्या पानाची सय रिकामी करा',
-'right-autoconfirmed'        => 'नोंदणीकृत सदस्याप्रमाणे वागणूक मिळवा',
-'right-bot'                  => 'स्वयंचलित कार्याप्रमाणे वागणूक मिळवा',
-'right-nominornewtalk'       => 'चर्चा पृष्ठावर छोटी संपादने जी नवीन चर्चा दर्शवितात ती नकोत',
-'right-apihighlimits'        => 'API पृच्छांमध्ये वरची मर्यादा वापरा',
-'right-writeapi'             => 'लेखन एपीआय चा उपयोग',
-'right-delete'               => 'पृष्ठे वगळा',
-'right-bigdelete'            => 'जास्त इतिहास असणारी पाने वगळा',
-'right-deleterevision'       => 'एखाद्या पानाच्या विशिष्ट आवृत्त्या लपवा',
-'right-deletedhistory'       => 'वगळलेल्या इतिहास नोंदी, त्यांच्या संलग्न मजकूराशिवाय पहा',
-'right-deletedtext'          => 'वगळलेला मजकूर व वगळलेल्या आवर्तनांमधील बदल पहा',
-'right-browsearchive'        => 'वगळलेली पाने पहा',
-'right-undelete'             => 'एखादे पान पुनर्स्थापित करा',
-'right-suppressrevision'     => 'लपविलेल्या आवृत्त्या पहा व पुनर्स्थापित करा',
-'right-suppressionlog'       => 'खासगी नोंदी पहा',
-'right-block'                => 'इतर सदस्यांना संपादन करण्यापासून प्रतिबंधित करा',
-'right-blockemail'           => 'एखाद्या सदस्याला इ-मेल पाठविण्यापासून थांबवा',
-'right-hideuser'             => 'एखादे सदस्य नाव इतरांपासून लपवा',
-'right-ipblock-exempt'       => 'आइपी ब्लॉक्स कडे दुर्लक्ष करा',
-'right-proxyunbannable'      => 'प्रॉक्सी असताना ब्लॉक्स कडे दुर्लक्ष करा',
-'right-unblockself'          => 'अप्रतिबंधित करा',
-'right-protect'              => 'सुरक्षितता पातळी बदला',
-'right-editprotected'        => 'सुरक्षित पाने संपादा',
-'right-editinterface'        => 'सदस्य पसंती बदला',
-'right-editusercssjs'        => 'इतर सदस्यांच्या CSS व JS संचिका संपादित करा',
-'right-editusercss'          => 'इतर सदस्यांच्या CSS संचिका संपादित करा',
-'right-edituserjs'           => 'इतर सदस्यांच्या JS संचिका संपादित करा',
-'right-rollback'             => 'एखादे विशिष्ट पान ज्याने संपादन केले त्याला लवकर पूर्वपदास न्या',
-'right-markbotedits'         => 'निवडलेली संपादने सांगकाम्यांची म्हणून जतन करा',
-'right-noratelimit'          => 'रेट लिमिट्स चा परिणाम होत नाही.',
-'right-import'               => 'इतर विकिंमधून पाने आयात करा',
-'right-importupload'         => 'चढविलेल्या संचिकेतून पाने आयात करा',
-'right-patrol'               => 'इतरांची संपादने तपासलेली म्हणून जतन करा',
-'right-autopatrol'           => 'संपादने आपोआप तपासलेली (patrolled) म्हणून जतन करा',
-'right-patrolmarks'          => 'अलीकडील बदलांमधील तपासल्याच्या खूणा पहा',
-'right-unwatchedpages'       => 'न पाहिलेल्या पानांची यादी पहा',
-'right-trackback'            => 'एक विपरित पथ पाठवा',
-'right-mergehistory'         => 'पानांचा इतिहास एकत्रित करा',
-'right-userrights'           => 'सर्व सदस्यांचे अधिकार संपादा',
-'right-userrights-interwiki' => 'इतर विकिंवर सदस्य अधिकार बदला',
-'right-siteadmin'            => 'माहितीसाठ्याला कुलुप लावा अथवा काढा',
-'right-sendemail'            => 'इतर सदस्यांना विपत्रे पाठवा',
+'right-read'                  => 'पृष्ठे वाचा',
+'right-edit'                  => 'पाने संपादा',
+'right-createpage'            => 'पृष्ठे तयार करा',
+'right-createtalk'            => 'चर्चा पृष्ठे तयार करा',
+'right-createaccount'         => 'नवीन सदस्य खाती तयार करा',
+'right-minoredit'             => 'बदल छोटे म्हणून जतन करा',
+'right-move'                  => 'पानांचे स्थानांतरण करा',
+'right-move-subpages'         => 'पाने उपपानांसकट हलवा',
+'right-move-rootuserpages'    => 'मूळ सदस्यपाने हलवा',
+'right-movefile'              => 'संचिका हलवा',
+'right-suppressredirect'      => 'एखाद्या पानाचे नवीन नावावर स्थानांतरण करत असताना पुनर्निर्देशन वगळा',
+'right-upload'                => 'संचिका चढवा',
+'right-reupload'              => 'अस्तित्वात असलेल्या संचिकेवर पुनर्लेखन करा',
+'right-reupload-own'          => 'त्याच सदस्याने चढविलेल्या संचिकेवर पुनर्लेखन करा',
+'right-reupload-shared'       => 'स्थानिक पातळीवरून शेअर्ड चित्र धारिकेतील संचिकांवर पुनर्लेखन करा',
+'right-upload_by_url'         => 'एखादी संचिका URL सहित चढवा',
+'right-purge'                 => 'एखाद्या पानाची सय रिकामी करा',
+'right-autoconfirmed'         => 'नोंदणीकृत सदस्याप्रमाणे वागणूक मिळवा',
+'right-bot'                   => 'स्वयंचलित कार्याप्रमाणे वागणूक मिळवा',
+'right-nominornewtalk'        => 'चर्चा पृष्ठावर छोटी संपादने जी नवीन चर्चा दर्शवितात ती नकोत',
+'right-apihighlimits'         => 'API पृच्छांमध्ये वरची मर्यादा वापरा',
+'right-writeapi'              => 'लेखन एपीआय चा उपयोग',
+'right-delete'                => 'पृष्ठे वगळा',
+'right-bigdelete'             => 'जास्त इतिहास असणारी पाने वगळा',
+'right-deleterevision'        => 'एखाद्या पानाच्या विशिष्ट आवृत्त्या लपवा',
+'right-deletedhistory'        => 'वगळलेल्या इतिहास नोंदी, त्यांच्या संलग्न मजकूराशिवाय पहा',
+'right-deletedtext'           => 'वगळलेला मजकूर व वगळलेल्या आवर्तनांमधील बदल पहा',
+'right-browsearchive'         => 'वगळलेली पाने पहा',
+'right-undelete'              => 'एखादे पान पुनर्स्थापित करा',
+'right-suppressrevision'      => 'लपविलेल्या आवृत्त्या पहा व पुनर्स्थापित करा',
+'right-suppressionlog'        => 'खासगी नोंदी पहा',
+'right-block'                 => 'इतर सदस्यांना संपादन करण्यापासून प्रतिबंधित करा',
+'right-blockemail'            => 'एखाद्या सदस्याला इ-मेल पाठविण्यापासून थांबवा',
+'right-hideuser'              => 'एखादे सदस्य नाव इतरांपासून लपवा',
+'right-ipblock-exempt'        => 'आइपी ब्लॉक्स कडे दुर्लक्ष करा',
+'right-proxyunbannable'       => 'प्रॉक्सी असताना ब्लॉक्स कडे दुर्लक्ष करा',
+'right-unblockself'           => 'अप्रतिबंधित करा',
+'right-protect'               => 'सुरक्षितता पातळी बदला',
+'right-editprotected'         => 'सुरक्षित पाने संपादा',
+'right-editinterface'         => 'सदस्य पसंती बदला',
+'right-editusercssjs'         => 'इतर सदस्यांच्या CSS व JS संचिका संपादित करा',
+'right-editusercss'           => 'इतर सदस्यांच्या CSS संचिका संपादित करा',
+'right-edituserjs'            => 'इतर सदस्यांच्या JS संचिका संपादित करा',
+'right-rollback'              => 'एखादे विशिष्ट पान ज्याने संपादन केले त्याला लवकर पूर्वपदास न्या',
+'right-markbotedits'          => 'निवडलेली संपादने सांगकाम्यांची म्हणून जतन करा',
+'right-noratelimit'           => 'रेट लिमिट्स चा परिणाम होत नाही.',
+'right-import'                => 'इतर विकिंमधून पाने आयात करा',
+'right-importupload'          => 'चढविलेल्या संचिकेतून पाने आयात करा',
+'right-patrol'                => 'इतरांची संपादने तपासलेली म्हणून जतन करा',
+'right-autopatrol'            => 'संपादने आपोआप तपासलेली (patrolled) म्हणून जतन करा',
+'right-patrolmarks'           => 'अलीकडील बदलांमधील तपासल्याच्या खूणा पहा',
+'right-unwatchedpages'        => 'न पाहिलेल्या पानांची यादी पहा',
+'right-trackback'             => 'एक विपरित पथ पाठवा',
+'right-mergehistory'          => 'पानांचा इतिहास एकत्रित करा',
+'right-userrights'            => 'सर्व सदस्यांचे अधिकार संपादा',
+'right-userrights-interwiki'  => 'इतर विकिंवर सदस्य अधिकार बदला',
+'right-siteadmin'             => 'माहितीसाठ्याला कुलुप लावा अथवा काढा',
+'right-override-export-depth' => 'पाने निर्यात करा (आंतरिक जेडलेली पाने पाचव्या पतळी पर्यंत समाविष्ट करुन).',
+'right-sendemail'             => 'इतर सदस्यांना विपत्रे पाठवा',
 
 # User rights log
-'rightslog'      => 'सदस्य आधिकार नोंद',
-'rightslogtext'  => 'ही सदस्य अधिकारांमध्ये झालेल्या बदलांची यादी आहे.',
-'rightslogentry' => '$1 चे ग्रुप सदस्यत्व $2 पासून $3 ला बदलण्यात आलेले आहे',
-'rightsnone'     => '(काहीही नाही)',
+'rightslog'                  => 'सदस्य आधिकार नोंद',
+'rightslogtext'              => 'ही सदस्य अधिकारांमध्ये झालेल्या बदलांची यादी आहे.',
+'rightslogentry'             => '$1 चे ग्रुप सदस्यत्व $2 पासून $3 ला बदलण्यात आलेले आहे',
+'rightslogentry-autopromote' => '$2 ते $3 आपोआप नियुक्ती झाली.',
+'rightsnone'                 => '(काहीही नाही)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'हे पान वाचा',
@@ -1497,6 +1532,7 @@ $1",
 'action-movefile'             => 'ही संचिका हलवा',
 'action-upload'               => 'ही संचिका चढवा',
 'action-reupload'             => 'अस्तित्वात असलेल्या संचिकेवर पुनर्लेखन करा',
+'action-reupload-shared'      => 'हि संचिका सामाईक (shared) संग्रहस्थानावर (repository) पुन्हा लिहा.',
 'action-upload_by_url'        => 'आंतरजालपत्त्यापासून संचिका चढवा',
 'action-writeapi'             => 'लेखन एपीआय वापरा',
 'action-delete'               => 'हे पान वगळा',
@@ -1511,6 +1547,7 @@ $1",
 'action-import'               => 'दुसर्‍या विकीवरुन हे पान आयात करा',
 'action-importupload'         => 'चढविलेल्या संचिकेतून पान आयात करा',
 'action-patrol'               => 'इतरांची संपादने तपासलेली म्हणून जतन करा',
+'action-autopatrol'           => 'आपल्या बदलास देखरेखी खाली असल्याचे सुचवा',
 'action-unwatchedpages'       => 'न पाहिलेल्या पानांची यादी पहा',
 'action-trackback'            => 'एक विपरित पथ पाठवा',
 'action-mergehistory'         => 'पानाचा इतिहास विलीन करा',
@@ -1573,6 +1610,8 @@ $1",
 'upload_directory_missing'    => 'अपलोड डिरेक्टरी ($1) सापडली नाही तसेच वेबसर्व्हर ती तयार करू शकलेला नाही.',
 'upload_directory_read_only'  => '$1 या डिरेक्टरी मध्ये सर्व्हर लिहू शकत नाही.',
 'uploaderror'                 => 'चढवण्यात चूक',
+'upload-recreate-warning'     => "'''सावधान: या नावाची संचीका वगळली अथवा स्थलांतरीत करण्यात आली आहे.'''
+या पानाची वगळल्याची व स्थलांतरणाची नोंद तुमच्या सोयीसाठी येथे पुरवली आहे.:",
 'uploadtext'                  => "खालील अर्ज नवीन संचिका चढविण्यासाठी वापरा.
 पूर्वी चढविलेल्या संचिका पाहण्यासाठी अथवा शोधण्यासाठी [[Special:FileList|चढविलेल्या संचिकांची यादी]] पहा. चढविलेल्या तसेच वगळलेल्या संचिकांची यादी पहाण्यासाठी [[Special:Log/upload|चढवलेल्या संचिकांची सूची]] व [[Special:Log/delete|वगळलेल्या संचिकांची सूची]] पहा.
 
@@ -1609,6 +1648,7 @@ $1",
 'filename-tooshort'           => 'तुम्ही प्रस्तुत केलेली संचिका आकाराने खूप कमी होती.',
 'filetype-banned'             => 'याप्रकारची संचिका प्रतिबंधित आहे.',
 'verification-error'          => 'संचिका पडताळणीत ही संचिका अनुत्तीर्ण झाली.',
+'hookaborted'                 => 'तुम्ही करू इच्छीणारे संपादन बाह्य हुक द्वारे थंबवण्यात आले.',
 'illegal-filename'            => 'हे संचिकानाम प्रतिबंधित आहे.',
 'overwrite'                   => 'अस्तित्वात असलेल्या संचिकेवर पुनर्लेखन प्रतिबंधित आहे.',
 'unknown-error'               => 'एक अज्ञात चूक उद्भवली.',
@@ -1617,6 +1657,7 @@ $1",
 'large-file'                  => 'संचिका $1 पेक्षा कमी आकाराची असण्याची अपेक्षा आहे, ही संचिका $2 एवढी आहे.',
 'largefileserver'             => 'सेवा संगणकावर (सर्वर) निर्धारित केलेल्या आकारापेक्षा या संचिकेचा आकार मोठा आहे.',
 'emptyfile'                   => 'चढवलेली संचिका रिकामी आहे. हे संचिकानाम चुकीचे लिहिल्याने असू शकते. कृपया तुम्हाला हीच संचिका चढवायची आहे का ते तपासा.',
+'windows-nonascii-filename'   => 'या विकीवर विशेष चिन्हातील फाईलनांवाचा आधार घेता येणार नाही.',
 'fileexists'                  => "या नावाची संचिका आधीच अस्तित्वात आहे, कृपया ही संचिका बदलण्याबद्दल तुम्ही साशंक असाल तर '''<tt>[[:$1]]</tt>''' तपासा.
 [[$1|thumb]]",
 'filepageexists'              => "या नावाचे एक माहितीपृष्ठ (संचिका नव्हे) अगोदरच अस्तित्त्वात आहे. कृपया जर आपणांस त्यात बदल करायचा नसेल तर '''<tt>[[:$1]]</tt>''' तपासा.
@@ -1634,6 +1675,8 @@ $1",
 [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'हे नाव असलेली एक संचिका शेअर्ड संचिका कोशात आधी पासून आहे; कृपया परत फिरा आणि नविन(वेगळ्या) नावाने ही संचिका पुन्हा चढवा.[[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'ही संचिका खालील {{PLURAL:$1|संचिकेची|संचिकांची}} प्रत आहे:',
+'file-deleted-duplicate'      => 'या संचिकेसारखीच् संचिका ([[:$1]]) या आधी वगळण्यात आली आहे.
+हि संचिका पुनः चढवण्यापूर्वी आपण त्या संचिकेची वगळण्याची नोंद तपासावी.',
 'uploadwarning'               => 'चढवताना सूचना',
 'uploadwarning-text'          => 'कृपया खालील संचिका वर्णन संपादित करून पुनर्प्रयत्न करा.',
 'savefile'                    => 'संचिका जतन करा',
@@ -1643,8 +1686,12 @@ $1",
 'copyuploaddisabled'          => 'आंतरजालपत्त्याद्वारे चढवणे प्रतिबंधित आहे.',
 'uploadfromurl-queued'        => 'तुमचे चढवणे नोंदवण्यात आले आहे',
 'uploaddisabledtext'          => '{{SITENAME}} वर संचिका चढविण्यास बंदी घालण्यात आलेली आहे.',
+'php-uploaddisabledtext'      => 'PHP मध्ये संचिका चढवणे प्रतिबंधीत केले आहे.
+कृपया file_uploads मांडणी (setting) तपासावी.',
 'uploadscripted'              => 'या संचिकेत HTML किंवा स्क्रिप्ट कोडचा आंतर्भाव आहे, त्याचा एखाद्या विचरकाकडून विचीत्र अर्थ लावला जाऊ शकतो.',
 'uploadvirus'                 => 'ह्या संचिकेत व्हायरस आहे. अधिक माहिती: $1',
+'uploadjava'                  => 'ही फाईल झीप् ह्या प्रकारातिल आहे ज्यामधे जाव्हा .क्लास फाईल. आहे,
+ जाव्हा फाईल  ह्यात वापर्ता  येनार नाहित ,कारन ईथे सुरक्षेचे कारने येतात्',
 'upload-source'               => 'स्रोत संचिका',
 'sourcefilename'              => 'स्रोत-संचिकानाम:',
 'sourceurl'                   => 'स्रोत युआरएल',
@@ -1675,33 +1722,47 @@ $1',
 'upload-http-error'         => 'एक एचटीटीपी चूक उद्भवली: $1',
 
 # ZipDirectoryReader
-'zip-wrong-format' => 'ही संचिका "झिप" प्रकारची नाही.',
-'zip-bad'          => 'ही संचिका दूषित किंवा न वाचता येणारी झिप संचिका आहे.
+'zip-file-open-error' => 'संचीका ZIP तपासणीसाठी उघडताना त्रुटी आली.',
+'zip-wrong-format'    => 'ही संचिका "झिप" प्रकारची नाही.',
+'zip-bad'             => 'ही संचिका दूषित किंवा न वाचता येणारी झिप संचिका आहे.
 ती सुरक्षिततेसाठी नीट तपासता आली नाही.',
+'zip-unsupported'     => 'हि संचिका एक ZIP संचिका आहे जी मिडीयाविकी द्वरे  (support) न केलेले ZIP वैशिष्ट्ये (features) वापरते.
+या संचिकेची सुरक्षा पडताळणीसाठी व्यवस्थितरीत्या होऊ शकत नाही.',
 
 # Special:UploadStash
 'uploadstash'          => 'चढवणे लपवा',
+'uploadstash-summary'  => 'या पानावर अश्या संचिका पहावयास् मिळतात ज्या चढवल्या आहेत (अथवा चढवल्या जात आहेत) परंतु अजुन विकी वर प्रकाशित केल्या नाहित. या संचिका फक्त त्या सदस्यास् दिसतील ज्याने त्या चढवल्या आहेत, इतर सदस्यांस् त्या दिसणार नाहीत.',
 'uploadstash-clear'    => 'लपवलेल्या संचिका काढा',
 'uploadstash-nofiles'  => 'तुमच्याकडे लपवलेल्या संचिका नाहीत.',
+'uploadstash-badtoken' => 'हि कृती अयशस्वी होती. कदाचित आपल्या संपादन अधिकारपत्राची (editing credentials) मुदत संपली.',
 'uploadstash-errclear' => 'संचिका स्वच्छ करणे अयशस्वी.',
 'uploadstash-refresh'  => 'संचिकांची यादी ताजीतवानी करा',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'परवानगी नाही',
-'img-auth-nopathinfo'   => 'PATH_INFO आढळले नाही.
+'img-auth-accessdenied'     => 'परवानगी नाही',
+'img-auth-nopathinfo'       => 'PATH_INFO आढळले नाही.
 आपला सर्व्हर ही माहिती पोचवू शकत नाही.
 तो सीजीआय-आधारित व img_auth ला समर्थन न देऊ शकणारा असू शकतो.
-http://www.mediawiki.org/wiki/Manual:Image_Authorization पहा.',
-'img-auth-badtitle'     => '"$1" पासून वैध शीर्षक बनवण्यात अयशस्वी.',
-'img-auth-nologinnWL'   => 'तुम्ही प्रवेश घेतलेला नाही व "$1" श्वेतयादीत नाही.',
-'img-auth-nofile'       => '"$1" ही संचिका अस्तित्वात नाही.',
-'img-auth-streaming'    => 'स्ट्रीमिंग "$1".',
-'img-auth-noread'       => 'तुम्हाला "$1" वाचण्याची परवानगी नाही',
+[//www.mediawiki.org/wiki/Manual:Image_Authorization कृपया हे पहा.]',
+'img-auth-notindir'         => 'मागितलेला मार्ग अपलोड निर्देशिकेकरीता जोडलेला नाही.',
+'img-auth-badtitle'         => '"$1" पासून वैध शीर्षक बनवण्यात अयशस्वी.',
+'img-auth-nologinnWL'       => 'तुम्ही प्रवेश घेतलेला नाही व "$1" श्वेतयादीत नाही.',
+'img-auth-nofile'           => '"$1" ही संचिका अस्तित्वात नाही.',
+'img-auth-isdir'            => 'तुम्ही $1 निदेशक वापरण्याचा प्रयत्न करत आहात.
+फक्त संचिका वापरण्याची परवानगी आहे.',
+'img-auth-streaming'        => 'स्ट्रीमिंग "$1".',
+'img-auth-public'           => 'img_auth.php हे  वैयक्तिक विकीमधून  माहिती प्रदान करण्याचे कार्य करते.
+हा विकि सार्वजनिक विकि म्हणून सब्चित करण्यात आला आ.े.
+उचित सुरक्षा के लिए img_auth.php को निष्कृय किया हुआ है।',
+'img-auth-noread'           => 'तुम्हाला "$1" वाचण्याची परवानगी नाही',
+'img-auth-bad-query-string' => 'या दुव्यामध्ये (URL) अवैध query string आहे.',
 
 # HTTP errors
 'http-invalid-url'      => 'अवैध आंतरजालपत्ता: $1',
+'http-invalid-scheme'   => 'URL सोबत "$1"पध्दत चालत नाही',
 'http-request-error'    => 'एचटीटीपी मागणी अज्ञात कारणामुळे अयशस्वी.',
 'http-read-error'       => 'एचटीटीपी वाचन त्रुटी.',
+'http-timed-out'        => 'विनंती वेळ सपला आहे',
 'http-curl-error'       => 'आंतरजालपत्ता पकडताना चूक: $1',
 'http-host-unreachable' => 'आंतरजाल पत्त्यापाशी पोहोचले नाही',
 'http-bad-status'       => 'एचटीटीपी मागणीदरम्यान एक चूक उद्भवली: $1 $2',
@@ -1753,11 +1814,16 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization पहा.',
 'filehist-missing'          => 'संचिका सापडत नाही',
 'imagelinks'                => 'संचिका दुवे',
 'linkstoimage'              => 'खालील {{PLURAL:$1|पान चित्राशी जोडले आहे|$1 पाने चित्राशी जोडली आहेत}}:',
+'linkstoimage-more'         => 'या संचिके ला $1 {{PLURAL:$1|पान जोडले|पाने जोडली}} आहेत.
+या संचिके ला जोडलेल्या {{PLURAL:$1|पहिल्या पानचा दुवा खाली दिला आहे|पहिल्या $1 पानांचे दुवे खाली दिले आहेत}}.
+[[Special:WhatLinksHere/$2|संपुर्ण यादी]] उपलब्ध आहे.',
 'nolinkstoimage'            => 'या चित्राशी जोडलेली पृष्ठे नाही आहेत.',
 'morelinkstoimage'          => 'या संचिकेचे [[Special:WhatLinksHere/$1|अधिक दुवे]] पहा.',
 'linkstoimage-redirect'     => '$1 (संचिका पुनर्निर्देशन) $2',
 'duplicatesoffile'          => 'खालील संचिका या दिलेल्या {{PLURAL:$1|संचिकेची प्रत आहे|$1 संचिकांच्या प्रती आहेत}}. [[Special:FileDuplicateSearch/$2|अधिक माहिती]]',
 'sharedupload'              => 'ही संचिका $1 मधील आहे व ती इतर प्रकल्पांमध्ये वापरली गेल्याची शक्यता आहे.',
+'sharedupload-desc-there'   => 'ही संचिका $1 मधील आहे व ती इतर प्रकल्पांमध्ये वापरली जाऊ शकते.
+अधिक माहिती साठी कृपया [$2 संचिका वर्णन पान] पहावे.',
 'sharedupload-desc-here'    => 'ही संचिका $1 येथील असून ती इतर प्रकल्पात वापरलेली असू शकते.
 तिचे तेथील [$2 संचिका वर्णन पान] खाली दाखवले आहे.',
 'filepage-nofile'           => 'या नावाची संचिका अस्तित्वात नाही.',
@@ -1793,6 +1859,7 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization पहा.',
 ** प्रताधिकार उल्लंघन
 ** जुळी संचिका',
 'filedelete-edit-reasonlist'  => 'वगळण्याची कारणे संपादीत करा',
+'filedelete-maintenance'      => 'फाईल वगळने आणि पुन्:स्थापित करण्',
 
 # MIME search
 'mimesearch'         => 'विविधामाप (माईम) शोधा',
@@ -1834,6 +1901,7 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'statistics-edits'             => '{{SITENAME}} च्या सुरुवातीपासूनची पानांची संपादने',
 'statistics-edits-average'     => 'प्रतिपान सरासरी संपादने',
 'statistics-views-total'       => 'सर्व दाखवते',
+'statistics-views-total-desc'  => 'जे पाने यामध्दे नाहीत ते पाहा आनि खास पाने सामिला करु नका.',
 'statistics-views-peredit'     => 'प्रति संपादनामागे पाहणे',
 'statistics-users'             => 'नोंदणीकृत [[Special:ListUsers|सदस्य]]',
 'statistics-users-active'      => 'कार्यरत सदस्य',
@@ -1884,6 +1952,7 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'popularpages'            => 'प्रसिद्ध पाने',
 'wantedcategories'        => 'पाहिजे असलेले वर्ग',
 'wantedpages'             => 'पाहिजे असलेले लेख',
+'wantedpages-badtitle'    => 'परिणामाच्या यादीत अवैध शीर्षक: $1',
 'wantedfiles'             => 'पाहिजे असलेल्या संचिका',
 'wantedtemplates'         => 'पाहिजे असलेले साचे',
 'mostlinked'              => 'सर्वाधिक जोडलेली पाने',
@@ -1899,6 +1968,7 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'deadendpagestext'        => 'या पानांवर या विकिवरील इतर कुठल्याही पानाला जोडणारा दुवा नाही.',
 'protectedpages'          => 'सुरक्षित पाने',
 'protectedpages-indef'    => 'फक्त अनंत काळासाठी सुरक्षित केलेले',
+'protectedpages-cascade'  => 'केवळ एकामेकांवर अवलंबून कास्केडींग सुरक्षा (सुरक्षा शिडी)',
 'protectedpagestext'      => 'खालील पाने स्थानांतरण किंवा संपादन यांपासुन सुरक्षित आहेत',
 'protectedpagesempty'     => 'सध्या या नियमावलीने कोणतीही पाने सुरक्षीत केलेली नाहीत.',
 'protectedtitles'         => 'सुरक्षीत शीर्षके',
@@ -1923,6 +1993,7 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'pager-newer-n'           => '{{PLURAL:$1|नवे 1|नवे $1}}',
 'pager-older-n'           => '{{PLURAL:$1|जुने 1|जुने $1}}',
 'suppress'                => 'झापडबंद',
+'querypage-disabled'      => 'हे विषेश पान कार्यमापन (performance) करणांमुळे प्रतिबंधित करण्यात आले आहे.',
 
 # Book sources
 'booksources'               => 'पुस्तक स्रोत',
@@ -1932,8 +2003,8 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'booksources-invalid-isbn'  => 'दिलेला आयएसबीएन वैध नाही; मूळ स्रोतातून उतरवताना झालेल्या चुकांचे निरसन करा.',
 
 # Special:Log
-'specialloguserlabel'  => 'सदस्य:',
-'speciallogtitlelabel' => 'शीर्षक:',
+'specialloguserlabel'  => 'कार्यकर्ता:',
+'speciallogtitlelabel' => 'उद्दिष्ट (लक्ष):',
 'log'                  => 'नोंदी',
 'all-logs-page'        => 'सर्व नोंदी',
 'alllogstext'          => '{{SITENAME}}च्या सर्व नोंदीचे एकत्र दर्शन.नोंद प्रकार, सदस्यनाव किंवा बाधीत पान निवडून तुम्ही तुमचे दृश्यपान मर्यादीत करू शकता.',
@@ -1972,11 +2043,13 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'sp-deletedcontributions-contribs' => 'संपादने',
 
 # Special:LinkSearch
-'linksearch'       => 'बाह्य दुवे',
+'linksearch'       => 'बाह्य दुवे शोध',
 'linksearch-pat'   => 'शोधण्याचा मजकूर:',
 'linksearch-ns'    => 'नामविश्व:',
 'linksearch-ok'    => 'शोध',
-'linksearch-text'  => '"*.wikipedia.org" सारखी वाईल्डकार्ड्स वापरायला परवानगी आहे.<br />पुढील प्रोटोकॉल्समध्ये चालेल: <tt>$1</tt>',
+'linksearch-text'  => '"*.wikipedia.org" सारखी वाईल्डकार्ड्स वापरायला परवानगी आहे.
+किमान एक उच्च-स्तरिय डोमेन (top-level domain) गरजेचे आहे.<br />
+पुढील प्रोटोकॉल्समध्ये चालेल: <tt>$1</tt> (तुमच्या शोधामध्ये या पैकी कुठलेही टाकू नयेत).',
 'linksearch-line'  => '$2 मधून $1 जोडलेले आहे',
 'linksearch-error' => 'वाईल्डकार्ड्स होस्ट नावाच्या फक्त सुरवातीलाच येऊ शकतात.',
 
@@ -1988,6 +2061,7 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 
 # Special:ActiveUsers
 'activeusers'            => 'कार्यरत सदस्यांची यादी',
+'activeusers-intro'      => '$1 {{PLURAL:$1|day|days}} मधे शेवटी काम केलेल्या सदस्यांची यादी येथे मिळेल',
 'activeusers-count'      => 'शेवटच्या {{PLURAL:$3|दिवसात|$3 दिवसांत}} $1 {{PLURAL:$1|संपादन|संपादने}}',
 'activeusers-from'       => 'पुढील शब्दापासुन सुरू होणारे सदस्य दाखवा:',
 'activeusers-hidebots'   => 'सांगकामे लपवा',
@@ -2022,10 +2096,10 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 
 # E-mail user
 'mailnologin'          => 'पाठविण्याचा पत्ता नाही',
-'mailnologintext'      => 'इतर सदस्यांना विपत्र(ईमेल) पाठवण्याकरिता तुम्ही [[Special:UserLogin|प्रवेश केलेला]] असणे आणि  शाबीत विपत्र पत्ता तुमच्या [[Special:Preferences|पसंतीत]] नमुद असणे आवश्यक आहे.',
+'mailnologintext'      => 'इतर सदस्यांना विपत्र(ईमेल) पाठवण्याकरिता तुम्ही [[Special:UserLogin|प्रवेश केलेला]] असणे आणि  प्रमाणित (इमेल) पत्ता तुमच्या [[Special:Preferences|पसंतीत]] नमुद असणे आवश्यक आहे.',
 'emailuser'            => 'या सदस्याला इमेल पाठवा',
 'emailpage'            => 'विपत्र (ईमेल) उपयोगकर्ता',
-'emailpagetext'        => 'जर या सदस्याने शाबीत विपत्र (ईमेल)पत्ता तीच्या अथवा त्याच्या सदस्य पसंतीत नमुद केला असेल,तर खालील सारणी तुम्हाला एक(च) संदेश पाठवेल.तुम्ही तुमच्या [[Special:Preferences|सदस्य पसंतीत]] नमुद केलेला विपत्र पत्ता "कडून" पत्त्यात येईल म्हणजे  प्राप्तकरता आपल्याला उत्तर देऊ शकेल.',
+'emailpagetext'        => 'जर या सदस्याने प्रमाणित विपत्र (ईमेल)पत्ता तीच्या अथवा त्याच्या सदस्य पसंतीत नमुद केला असेल,तर खालील सारणी तुम्हाला एक(च) संदेश पाठवेल.तुम्ही तुमच्या [[Special:Preferences|सदस्य पसंतीत]] नमुद केलेला विपत्र पत्ता "कडून" पत्त्यात येईल म्हणजे  प्राप्तकरता आपल्याला उत्तर देऊ शकेल.',
 'usermailererror'      => 'पत्र बाब त्रूटी वापस पाठवली:',
 'defemailsubject'      => '{{SITENAME}} विपत्र',
 'usermaildisabled'     => 'सदस्य विपत्र निष्क्रीय आहे',
@@ -2033,6 +2107,9 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'noemailtitle'         => 'विपत्र पत्ता नाही',
 'noemailtext'          => 'या सदस्याने वैध विपत्र पत्ता नमूद केलेला नाही.',
 'nowikiemailtitle'     => 'विपत्र प्रतिबंधित',
+'nowikiemailtext'      => 'हा प्रयोक्ता अन्य प्रयोक्ता कडुन  ई-मेल घेऊ ईच्छित नाही.',
+'emailnotarget'        => 'प्राप्तकर्ता करीता अस्तित्वात नसलेले  किंवा अवैध सदस्य',
+'emailtarget'          => 'प्राप्तकर्ता प्रयोक्ताचे नांव टाका.',
 'emailusername'        => 'सदस्यनाम:',
 'emailusernamesubmit'  => 'पाठवा',
 'email-legend'         => 'ईमेल अन्य सदस्याला पाठवा',
@@ -2052,8 +2129,8 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'usermessage-editor'  => 'प्रणाली संदेशवाहक',
 
 # Watchlist
-'watchlist'            => 'माझी पहार्‍याची सूची',
-'mywatchlist'          => 'माझी पहार्‍याची सूची',
+'watchlist'            => 'माझी नित्य पहाण्याची सूची',
+'mywatchlist'          => 'माझी नित्य पहाण्याची सूची',
 'watchlistfor2'        => '$1 $2 साठी',
 'nowatchlist'          => 'तुमची पहार्‍याची सूची रिकामी आहे.',
 'watchlistanontext'    => 'तुमच्या पहार्‍याच्या सूचीतील बाबी पाहण्याकरता किंवा संपादित करण्याकरता, कृपया $1.',
@@ -2084,23 +2161,24 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'watchlist-options'    => 'पहार्‍याची सूची पर्याय',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'पाहताहे...',
-'unwatching' => 'पहारा काढत आहे...',
+'watching'       => 'पाहताहे...',
+'unwatching'     => 'पहारा काढत आहे...',
+'watcherrortext' => '$1 साठीच्या तुमच्या पहाऱ्याच्या सूचीतील मांडणीत (watchlist settings) बदल करताना त्रुटी आली.',
 
 'enotif_mailer'                => '{{SITENAME}} सूचना विपत्र',
 'enotif_reset'                 => 'सर्व पानास भेट दिल्याचे नमुद करा',
 'enotif_newpagetext'           => 'हे नवीन पान आहे.',
 'enotif_impersonal_salutation' => '{{SITENAME}} सदस्य',
-'changed'                      => 'बदलला',
-'created'                      => 'घडवले',
-'enotif_subject'               => '{{SITENAME}} पान $पानशिर्षक $पानसंपादकाने $निर्मीले किंवा बदलले आहे',
+'changed'                      => 'बदलले',
+'created'                      => 'तयार केले',
+'enotif_subject'               => '{{SITENAME}} पान $PAGETITLE $PAGEEDITOR ने $CHANGEDORCREATED आहे',
 'enotif_lastvisited'           => 'तुमच्या शेवटच्या भेटीनंतरचे बदल बघणयासाठी पहा - $1.',
 'enotif_lastdiff'              => 'हा बदल पहाण्याकरिता $1 पहा.',
 'enotif_anon_editor'           => 'अनामिक उपयोगकर्ता $1',
 'enotif_body'                  => 'प्रिय $WATCHINGUSERNAME,
 
-
-The {{SITENAME}}चे  $PAGETITLE पान $PAGEEDITORने $PAGEEDITDATE तारखेस $CHANGEDORCREATED केले आहे ,सध्याच्या आवृत्तीकरिता पहा $PAGETITLE_URL.
+The {{SITENAME}}चे $PAGETITLE पान $PAGEEDITORने $PAGEEDITDATE तारखेस $CHANGEDORCREATED आहे, सध्याची आवृत्ती पाहण्यासाठी खलील दुव्यावर टिचकी मारा.
+$PAGETITLE_URL
 
 $NEWPAGE
 
@@ -2110,13 +2188,16 @@ $NEWPAGE
 विपत्र: $PAGEEDITOR_EMAIL
 विकि: $PAGEEDITOR_WIKI
 
-तुम्ही पानास भेट देत नाही तोपर्यंत पुढे होणार्‍या बदलांची इतर कोणतीही वेगळी सूचना नसेल.तुम्ही पहार्‍याच्या सूचीतील पहारा ठेवलेल्या पानांकरिताच्या सूचना पताकांचे पुर्नयोजन करु शकता.
+तुम्ही पानास भेट देत नाही तोपर्यंत पुढे होणार्‍या बदलांची इतर कोणतीही वेगळी सूचना नसेल. तुम्ही पहाऱ्याची सूचीतील पहारा ठेवलेल्या पानांकरिताच्या सूचना पताकांचे पुर्नयोजन करु शकता.
 
 तुमची मैत्रीपूर्ण {{SITENAME}} सुचना प्रणाली
 
 --
 
-तुमचे पहार्‍यातील पानांची मांडणावळ (कोंदण) बदलू शकता,{{canonicalurl:{{#special:EditWatchlist}}}}ला भेट द्या
+तुमचे पहार्‍यातील पानांची मांडणावळ (कोंदण) बदलू शकता, {{canonicalurl:{{#special:EditWatchlist}}}} ला भेट द्या
+
+हे पान तुमच्या पहार्‍याच्या सुचीतुन काधुन टाकण्यासाठी खलील दुव्यावर टिचकी मारा.
+$UNWATCHURL
 
 पुढील सहाय्य आणि प्रतिक्रीया:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
@@ -2156,17 +2237,18 @@ $NEWPAGE
 कृपया काळजीपूर्वक हे पान वगळा.',
 
 # Rollback
-'rollback'         => 'बदल वेगात माघारी न्या',
-'rollback_short'   => 'द्रूतमाघार',
-'rollbacklink'     => 'द्रूतमाघार',
-'rollbackfailed'   => 'द्रूतमाघार फसली',
-'cantrollback'     => 'जुन्या आवृत्तीकडे परतवता येत नाही; शेवटचा संपादक या पानाचा एकमात्र लेखक आहे.',
-'alreadyrolled'    => '[[User:$2|$2]] ([[User talk:$2|Talk]] [[Special:Contributions/$2|{{int:contribslink}}]])चे शेवटाचे [[:$1]]वे संपादन माघारी परतवता येत नाही; पान आधीच कुणी माघारी परतवले आहे किंवा संपादीत केले आहे.
+'rollback'          => 'बदल वेगात माघारी न्या',
+'rollback_short'    => 'द्रुतमाघार',
+'rollbacklink'      => 'द्रुतमाघार',
+'rollbackfailed'    => 'द्रूतमाघार फसली',
+'cantrollback'      => 'जुन्या आवृत्तीकडे परतवता येत नाही; शेवटचा संपादक या पानाचा एकमात्र लेखक आहे.',
+'alreadyrolled'     => '[[User:$2|$2]] ([[User talk:$2|Talk]] [[Special:Contributions/$2|{{int:contribslink}}]])चे शेवटाचे [[:$1]]वे संपादन माघारी परतवता येत नाही; पान आधीच कुणी माघारी परतवले आहे किंवा संपादीत केले आहे.
 
 शेवटचे संपादन [[User:$3|$3]] ([[User talk:$3|Talk]] [[Special:Contributions/$3|{{int:contribslink}}]])-चे होते.',
-'editcomment'      => "संपादन सारांश \"''\$1''\" होता.",
-'revertpage'       => '[[Special:Contributions/$2|$2]] ([[User talk:$2|चर्चा]]) यांनी केलेले बदल [[User:$1|$1]] यांच्या आवृत्तीकडे पूर्वपदास नेले.',
-'rollback-success' => '$1 ने उलटवलेली संपादने;$2 च्या आवृत्तीस परत नेली.',
+'editcomment'       => "संपादन सारांश \"''\$1''\" होता.",
+'revertpage'        => '[[Special:Contributions/$2|$2]] ([[User talk:$2|चर्चा]]) यांनी केलेले बदल [[User:$1|$1]] यांच्या आवृत्तीकडे पूर्वपदास नेले.',
+'revertpage-nouser' => '(सदस्यनाम काढून टाकले) यांचे बदल उलटवुन [[User:$1|$1]] यांच्या मागील आवृत्तीस न्या.',
+'rollback-success'  => '$1 ने उलटवलेली संपादने;$2 च्या आवृत्तीस परत नेली.',
 
 # Edit tokens
 'sessionfailure-title' => 'सत्र त्रुटी',
@@ -2186,6 +2268,7 @@ $NEWPAGE
 'protectexpiry'               => 'संपण्याचा कालावधी:',
 'protect_expiry_invalid'      => 'संपण्याचा कालावधी चुकीचा आहे.',
 'protect_expiry_old'          => 'संपण्याचा कालावधी उलटून गेलेला आहे.',
+'protect-unchain-permissions' => 'पुढील संरक्षित विकल्प उघडा.',
 'protect-text'                => "'''$1''' या पानाची सुरक्षापातळी तुम्ही इथे पाहू शकता अथवा बदलू शकता.",
 'protect-locked-blocked'      => "तुम्ही प्रतिबंधीत असताना सुरक्षा पातळी बदलू शकत नाही.येथे '''$1''' पानाकरिता सध्याची मांडणावळ आहे:",
 'protect-locked-dblock'       => "विदागारास ताळे लागलेले असताना सुरक्षा पातळी बदलता येत नाही.येथे '''$1''' पानाकरिता सध्याची मांडणावळ आहे:",
@@ -2206,6 +2289,11 @@ $NEWPAGE
 'protect-existing-expiry'     => 'शेवट दिनांक: $3, $2',
 'protect-otherreason'         => 'इतर / अतिरिक्त कारण:',
 'protect-otherreason-op'      => 'दुसरे कारण',
+'protect-dropdown'            => '* सुरक्षीत करण्याची सामान्य कारणे
+** अती उपद्रव
+** अती उत्पात
+** अनुत्पादक संपादन युद्ध
+** अत्यधिक वाचकभेटींचे पान',
 'protect-edit-reasonlist'     => 'सुरक्षेची कारणे संपादित करा',
 'protect-expiry-options'      => '१ तास:1 hour,१ दिवस:1 day,१ आठवडा:1 week,२ आठवडे:2 weeks,१ महिना:1 month,३ महिने:3 months,६ महिने:6 months,१ वर्ष:1 year,अनंत:infinite',
 'restriction-type'            => 'परवानगी:',
@@ -2269,13 +2357,16 @@ $NEWPAGE
 'undelete-error-long'          => 'संचिकेचे वगळणे उलटवताना त्रूटींचा अडथळा आला:
 
 $1',
+'undelete-show-file-confirm'   => 'तुम्ही "<nowiki>$1</nowiki>" या संचिकेचे $2 येथून $3 वेळी असलेले आवर्तन नक्की पहाणार आहात?',
 'undelete-show-file-submit'    => 'होय',
 
 # Namespace form on various pages
-'namespace'             => 'नामविश्व:',
-'invert'                => 'निवडीचा क्रम उलटा करा',
-'namespace_association' => 'सहभागी नामविश्वे',
-'blanknamespace'        => '(मुख्य)',
+'namespace'                     => 'नामविश्व:',
+'invert'                        => 'निवडीचा क्रम उलटा करा',
+'tooltip-invert'                => 'निवडलेल्या नामविश्वातील (आणि तसे निवडल्यास संबंधीत नामविश्वातील)  पानांचे बदल  अदृष्य करण्या साटी टिचकी मारा',
+'namespace_association'         => 'सहभागी नामविश्वे',
+'tooltip-namespace_association' => 'निवडलेल्या नामविश्वासंबधीत विषय अथवा चर्चा नामविश्वसुद्धा आंतर्भूत करण्याकरिता हा बॉक्स टिचकवून चिह्नित करा',
+'blanknamespace'                => '(मुख्य)',
 
 # Contributions
 'contributions'       => 'सदस्याचे योगदान',
@@ -2325,20 +2416,20 @@ $1',
 'whatlinkshere-filters'    => 'फिल्टर्स',
 
 # Block/unblock
-'autoblockid'                 => '#$1ला स्वयंचलितपणे प्रतिबंधित करा',
-'block'                       => 'सदस्यास प्रतिबंध करा',
-'unblock'                     => 'सदस्य सोडवा',
-'blockip'                     => 'हा अंकपत्ता अडवा',
-'blockip-title'               => 'सदस्यास प्रतिबंध करा',
-'blockip-legend'              => 'सदस्यास प्रतिबंध करा',
-'blockiptext'                 => 'एखाद्या विशिष्ट अंकपत्त्याची किंवा सदस्याची लिहिण्याची क्षमता प्रतिबंधीत  करण्याकरिता खालील सारणी वापरा.
+'autoblockid'                     => '#$1ला स्वयंचलितपणे प्रतिबंधित करा',
+'block'                           => 'सदस्यास प्रतिबंध करा',
+'unblock'                         => 'सदस्य सोडवा',
+'blockip'                         => 'हा अंकपत्ता अडवा',
+'blockip-title'                   => 'सदस्यास प्रतिबंध करा',
+'blockip-legend'                  => 'सदस्यास प्रतिबंध करा',
+'blockiptext'                     => 'एखाद्या विशिष्ट अंकपत्त्याची किंवा सदस्याची लिहिण्याची क्षमता प्रतिबंधीत  करण्याकरिता खालील सारणी वापरा.
 हे केवळ उच्छेद टाळण्याच्याच दृष्टीने आणि [[{{MediaWiki:Policy-url}}|निती]]स अनुसरून केले पाहिजे.
 खाली विशिष्ट कारण भरा(उदाहरणार्थ,ज्या पानांवर उच्छेद माजवला गेला त्यांची उद्धरणे देऊन).',
-'ipadressorusername'          => 'अंकपत्ता किंवा सदस्यनाम:',
-'ipbexpiry'                   => 'समाप्ति:',
-'ipbreason'                   => 'कारण:',
-'ipbreasonotherlist'          => 'इतर कारण',
-'ipbreason-dropdown'          => '*प्रतिबंधनाची सामान्य कारणे
+'ipadressorusername'              => 'अंकपत्ता किंवा सदस्यनाम:',
+'ipbexpiry'                       => 'समाप्ति:',
+'ipbreason'                       => 'कारण:',
+'ipbreasonotherlist'              => 'इतर कारण',
+'ipbreason-dropdown'              => '*प्रतिबंधनाची सामान्य कारणे
 ** चुकीची माहिती भरणे
 ** पानांवरील मजकूर काढणे
 ** बाह्यसंकेतस्थळाचे चिखलणी(स्पॅमींग) दुवे देणे
@@ -2346,88 +2437,107 @@ $1',
 ** धमकावणारे/उपद्रवी वर्तन
 ** असंख्य खात्यांचा गैरवापर
 ** अस्वीकार्य सदस्यनाम',
-'ipbcreateaccount'            => 'खात्याची निर्मिती प्रतिबंधीत करा',
-'ipbemailban'                 => 'सदस्यांना विपत्र पाठवण्यापासून प्रतिबंधीत करा',
-'ipbenableautoblock'          => 'या सदस्याने वापरलेला शेवटचा अंकपत्ता आणि जेथून या पुढे तो संपादनाचा प्रयत्न करेल ते सर्व अंकपत्ते आपोआप प्रतिबंधीत करा.',
-'ipbsubmit'                   => 'हा पत्ता अडवा',
-'ipbother'                    => 'इतर वेळ:',
-'ipboptions'                  => '२ तास:2 hours,१ दिवस:1 day,३ दिवस:3 days,१ आठवडा:1 week,२ आठवडे:2 weeks,१ महिना:1 month,३ महिने:3 months,६ महिने:6 months,१ वर्ष:1 year,अनंत:infinite',
-'ipbotheroption'              => 'इतर',
-'ipbotherreason'              => 'इतर/अजून कारण:',
-'ipbhidename'                 => 'सदस्य नाम प्रतिबंधन नोंदी, प्रतिबंधनाची चालू यादी आणि सदस्य यादी इत्यादीतून लपवा',
-'ipbwatchuser'                => 'या सदस्याच्या सदस्य तसेच चर्चा पानावर पहारा ठेवा',
-'badipaddress'                => 'अंकपत्ता बरोबर नाही.',
-'blockipsuccesssub'           => 'अडवणूक यशस्वी झाली',
-'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]]ला प्रतिबंधीत केले.<br />
+'ipb-hardblock'                   => 'या अंक पत्यावरुन (IP address) प्रवेश केलेल्या सदस्यांना बदल करण्यापासून प्रतिबंध करा.',
+'ipbcreateaccount'                => 'खात्याची निर्मिती प्रतिबंधीत करा',
+'ipbemailban'                     => 'सदस्यांना विपत्र पाठवण्यापासून प्रतिबंधीत करा',
+'ipbenableautoblock'              => 'या सदस्याने वापरलेला शेवटचा अंकपत्ता आणि जेथून या पुढे तो संपादनाचा प्रयत्न करेल ते सर्व अंकपत्ते आपोआप प्रतिबंधीत करा.',
+'ipbsubmit'                       => 'हा पत्ता अडवा',
+'ipbother'                        => 'इतर वेळ:',
+'ipboptions'                      => '२ तास:2 hours,१ दिवस:1 day,३ दिवस:3 days,१ आठवडा:1 week,२ आठवडे:2 weeks,१ महिना:1 month,३ महिने:3 months,६ महिने:6 months,१ वर्ष:1 year,अनंत:infinite',
+'ipbotheroption'                  => 'इतर',
+'ipbotherreason'                  => 'इतर/अजून कारण:',
+'ipbhidename'                     => 'सदस्य नाम प्रतिबंधन नोंदी, प्रतिबंधनाची चालू यादी आणि सदस्य यादी इत्यादीतून लपवा',
+'ipbwatchuser'                    => 'या सदस्याच्या सदस्य तसेच चर्चा पानावर पहारा ठेवा',
+'ipb-disableusertalk'             => 'सदस्यास स्वत:चे चर्चापान संपादण्यापासून प्रतिबंधीत करा',
+'ipb-change-block'                => 'युपयोगकर्ताला पुन्हा ब्लाक करा सोबत स्थानिक सेथिँग.',
+'ipb-confirm'                     => 'अडथाळा सुनिश्चित करा.',
+'badipaddress'                    => 'अंकपत्ता बरोबर नाही.',
+'blockipsuccesssub'               => 'अडवणूक यशस्वी झाली',
+'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]]ला प्रतिबंधीत केले.<br />
 प्रतिबंधनांचा आढावा घेण्याकरिता [[Special:IPBlockList|अंकपत्ता प्रतिबंधन सूची]] पहा.',
-'ipb-blockingself'            => 'तुम्ही स्वतःलाच प्रतिबंधित करत आहात! तुम्ही ते नक्की करणार आहात का?',
-'ipb-edit-dropdown'           => 'प्रतिबंधाची कारणे संपादा',
-'ipb-unblock-addr'            => '$1चा प्रतिबंध उठवा',
-'ipb-unblock'                 => 'सदस्यनाव आणि अंकपत्त्यावरचे प्रतिबंधन उठवा',
-'ipb-blocklist'               => 'सध्याचे प्रतिबंध पहा',
-'ipb-blocklist-contribs'      => '$1 साठी सदस्याचे योगदान',
-'unblockip'                   => 'अंकपत्ता सोडवा',
-'unblockiptext'               => 'खाली दिलेला फॉर्म वापरून पूर्वी अडवलेल्या अंकपत्त्याला लेखनासाठी आधिकार द्या.',
-'ipusubmit'                   => 'हा पत्ता सोडवा',
-'unblocked'                   => '[[User:$1|$1]] वरचे प्रतिबंध उठवले आहेत',
-'unblocked-range'             => '$1 याच्यावरील प्रतिबंधन काढले आहे',
-'unblocked-id'                => 'प्रतिबंध $1 काढले',
-'blocklist'                   => 'प्रतिबंधित केलेले सदस्य',
-'ipblocklist'                 => 'अडविलेले अंकपत्ते व सदस्य नावे',
-'ipblocklist-legend'          => 'प्रतिबंधीत सदस्य शोधा',
-'blocklist-userblocks'        => 'खाते प्रतिबंधन लपवा',
-'blocklist-tempblocks'        => 'तात्पुरती प्रतिबंधने लपवा',
-'blocklist-timestamp'         => 'वेळशिक्का',
-'blocklist-target'            => 'लक्ष्य',
-'blocklist-by'                => 'प्रबंधकास प्रतिबंधन',
-'blocklist-params'            => 'प्रतिबंध मापदंड',
-'blocklist-reason'            => 'कारण',
-'ipblocklist-submit'          => 'शोध',
-'ipblocklist-localblock'      => 'स्थानिक प्रतिबंधन',
-'ipblocklist-otherblocks'     => '{{PLURAL:$1|दुसरे प्रतिबंधन|इतर प्रतिबंधने}}',
-'infiniteblock'               => 'अनंत',
-'expiringblock'               => 'समाप्ति $1 $2',
-'anononlyblock'               => 'केवळ अनामिक',
-'noautoblockblock'            => 'स्व्यंचलितप्रतिबंधन स्थगित केले',
-'createaccountblock'          => 'खात्याची निर्मिती प्रतिबंधीत केली',
-'emailblock'                  => 'विपत्र प्रतिबंधीत',
-'blocklist-nousertalk'        => 'ला स्वतःचे चर्चापान संपादता येत नाही',
-'ipblocklist-empty'           => 'प्रतिबंधन यादी रिकामी आहे.',
-'ipblocklist-no-results'      => 'विनंती केलेला अंकपत्ता अथवा सदस्यनाव प्रतिबंधीत केलेले नाही.',
-'blocklink'                   => 'अडवा',
-'unblocklink'                 => 'सोडवा',
-'change-blocklink'            => 'ब्लॉक बदला',
-'contribslink'                => 'योगदान',
-'autoblocker'                 => 'स्वयंचलितप्रतिबंधन केले गेले कारण तुमचा अंकपत्ता अलीकडे "[[User:$1|$1]]"ने वापरला होता. $1 च्या प्रतिबंधनाकरिता दिलेले कारण: "$2" आहे.',
-'blocklogpage'                => 'ब्लॉक यादी',
-'blocklogentry'               => '[[$1]] ला $2 $3 पर्यंत ब्लॉक केलेले आहे',
-'blocklogtext'                => 'ही सदस्यांच्या प्रतिबंधनाची आणि प्रतिबंधने उठवल्याची नोंद आहे.
+'ipb-blockingself'                => 'तुम्ही स्वतःलाच प्रतिबंधित करत आहात! तुम्ही ते नक्की करणार आहात का?',
+'ipb-confirmhideuser'             => 'तुमच्याकडून सदस्य प्रतिबंधनासोबतच "सदस्य लपवला" जातो आहे.या कृउतीने सर्व याद्या आणि नोंदीतून सदस्य नाव लपविले जाते.असे करावयाचे आहे या बद्दल आपली खात्री आहे काय ?',
+'ipb-edit-dropdown'               => 'प्रतिबंधाची कारणे संपादा',
+'ipb-unblock-addr'                => '$1चा प्रतिबंध उठवा',
+'ipb-unblock'                     => 'सदस्यनाव आणि अंकपत्त्यावरचे प्रतिबंधन उठवा',
+'ipb-blocklist'                   => 'सध्याचे प्रतिबंध पहा',
+'ipb-blocklist-contribs'          => '$1 साठी सदस्याचे योगदान',
+'unblockip'                       => 'अंकपत्ता सोडवा',
+'unblockiptext'                   => 'खाली दिलेला फॉर्म वापरून पूर्वी अडवलेल्या अंकपत्त्याला लेखनासाठी आधिकार द्या.',
+'ipusubmit'                       => 'हा पत्ता सोडवा',
+'unblocked'                       => '[[User:$1|$1]] वरचे प्रतिबंध उठवले आहेत',
+'unblocked-range'                 => '$1 याच्यावरील प्रतिबंधन काढले आहे',
+'unblocked-id'                    => 'प्रतिबंध $1 काढले',
+'blocklist'                       => 'प्रतिबंधित केलेले सदस्य',
+'ipblocklist'                     => 'अडविलेले अंकपत्ते व सदस्य नावे',
+'ipblocklist-legend'              => 'प्रतिबंधीत सदस्य शोधा',
+'blocklist-userblocks'            => 'खाते प्रतिबंधन लपवा',
+'blocklist-tempblocks'            => 'तात्पुरती प्रतिबंधने लपवा',
+'blocklist-addressblocks'         => 'एकल अंकपत्ता प्रतिबंधने दाखवू नका',
+'blocklist-timestamp'             => 'वेळशिक्का',
+'blocklist-target'                => 'लक्ष्य',
+'blocklist-expiry'                => 'संपण्याचा कालावधी',
+'blocklist-by'                    => 'प्रबंधकास प्रतिबंधन',
+'blocklist-params'                => 'प्रतिबंध मापदंड',
+'blocklist-reason'                => 'कारण',
+'ipblocklist-submit'              => 'शोध',
+'ipblocklist-localblock'          => 'स्थानिक प्रतिबंधन',
+'ipblocklist-otherblocks'         => '{{PLURAL:$1|दुसरे प्रतिबंधन|इतर प्रतिबंधने}}',
+'infiniteblock'                   => 'अनंत',
+'expiringblock'                   => 'समाप्ति $1 $2',
+'anononlyblock'                   => 'केवळ अनामिक',
+'noautoblockblock'                => 'स्व्यंचलितप्रतिबंधन स्थगित केले',
+'createaccountblock'              => 'खात्याची निर्मिती प्रतिबंधीत केली',
+'emailblock'                      => 'विपत्र प्रतिबंधीत',
+'blocklist-nousertalk'            => 'ला स्वतःचे चर्चापान संपादता येत नाही',
+'ipblocklist-empty'               => 'प्रतिबंधन यादी रिकामी आहे.',
+'ipblocklist-no-results'          => 'विनंती केलेला अंकपत्ता अथवा सदस्यनाव प्रतिबंधीत केलेले नाही.',
+'blocklink'                       => 'अडवा',
+'unblocklink'                     => 'सोडवा',
+'change-blocklink'                => 'ब्लॉक बदला',
+'contribslink'                    => 'योगदान',
+'autoblocker'                     => 'स्वयंचलितप्रतिबंधन केले गेले कारण तुमचा अंकपत्ता अलीकडे "[[User:$1|$1]]"ने वापरला होता. $1 च्या प्रतिबंधनाकरिता दिलेले कारण: "$2" आहे.',
+'blocklogpage'                    => 'ब्लॉक यादी',
+'blocklog-showlog'                => 'या सदस्यावर आधी बन्दी घालन्यात आली आहे. बन्दी सन्दर्भातील अधिक नोन्दी येथे आहेत',
+'blocklog-showsuppresslog'        => 'हा सदस्य पुर्वी प्रतिबंधीत अथवा लपविला गेला होता.
+लपविलेल्या नोंदी खाली संदर्भाकरिता उपलब्ध आहेत.',
+'blocklogentry'                   => '[[$1]] ला $2 $3 पर्यंत ब्लॉक केलेले आहे',
+'reblock-logentry'                => ' $2 $3 हि अंतीम वेळ देऊन   [[$1]] चे प्रतिबंधन बदलले',
+'blocklogtext'                    => 'ही सदस्यांच्या प्रतिबंधनाची आणि प्रतिबंधने उठवल्याची नोंद आहे.
 आपोआप प्रतिबंधीत केलेले अंकपत्ते नमूद केलेले नाहीत.
 सध्या लागू असलेली बंदी व प्रतिबंधनांच्या यादीकरिता [[Special:BlockList|अंकपत्ता प्रतिबंधन सूची]] पहा.',
-'unblocklogentry'             => 'प्रतिबंधन $1 हटवले',
-'block-log-flags-anononly'    => 'केवळ अनामिक सदस्य',
-'block-log-flags-nocreate'    => 'खाते तयारकरणे अवरूद्ध केले',
-'block-log-flags-noautoblock' => 'स्वयंचलित प्रतिबंधन अवरूद्ध केले',
-'block-log-flags-noemail'     => 'विपत्र अवरूद्ध केले',
-'block-log-flags-nousertalk'  => 'ला स्वतःचे चर्चापान संपादता येत नाही',
-'block-log-flags-hiddenname'  => 'सदस्यनाम लपवलेले आहे',
-'range_block_disabled'        => 'प्रचालकांची पल्ला बंधने घालण्याची क्षमता अनुपलब्ध केली आहे.',
-'ipb_expiry_invalid'          => 'अयोग्य समाप्ती काळ.',
-'ipb_expiry_temp'             => 'लपविलेले सदस्यनाम प्रतिबंधन कायमस्वरुपी असले पाहिजे.',
-'ipb_already_blocked'         => '"$1" आधीच अवरूद्ध केलेले आहे.',
-'ipb-otherblocks-header'      => '{{PLURAL:$1|दुसरे प्रतिबंधन|इतर प्रतिबंधने}}',
-'ipb_cant_unblock'            => 'त्रूटी: प्रतिबंधन क्र.$1 मिळाला नाही. त्यावरील प्रतिबंधन कदाचित आधीच उठवले असेल.',
-'ipb_blocked_as_range'        => 'त्रूटी:अंकपत्ता IP $1 हा प्रत्यक्षपणे प्रतिबंधीत केलेला नाही आणि अप्रतिबंधीत करता येत नाही.तो,अर्थात,$2पल्ल्याचा भाग म्हाणून तो प्रतिबंधीत केलेला आहे,जो की अप्रतिबंधीत करता येत नाही.',
-'ip_range_invalid'            => 'अंकपत्ता अयोग्य टप्प्यात.',
-'blockme'                     => 'मला प्रतिबंधीत करा',
-'proxyblocker'                => 'प्रातिनिधी(प्रॉक्झी)प्रतिबंधक',
-'proxyblocker-disabled'       => 'हे कार्य अवरूद्ध केले आहे.',
-'proxyblockreason'            => 'तुमचा अंकपत्ता प्रतिबंधीत केला आहे कारण तो उघड-उघड प्रतिनिधी आहे.कृपया तुमच्या आंतरजाल सेवा दात्यास किंवा तंत्रज्ञास पाचारण संपर्क करा आणि त्यांचे या गंभीर सुरक्षाप्रश्ना कडे लक्ष वेधा.',
-'proxyblocksuccess'           => 'झाले.',
-'sorbsreason'                 => '{{SITENAME}}ने वापरलेल्या DNSBL मध्ये तुमच्या अंकपत्त्याची नोंद उघड-उघड प्रतिनिधी म्हणून सूचित केली आहे.',
-'sorbs_create_account_reason' => '{{SITENAME}}च्या DNSBLने तुमचा अंकपत्ता उघड-उघड प्रतिनिधी म्हणून सूचित केला आहे.तुम्ही खाते उघडू शकत नाही',
-'cant-block-while-blocked'    => 'तुम्ही स्वतः प्रतिबंधित असताना इतरांना प्रतिबंधित करू शकत नाही.',
-'ipbnounblockself'            => 'तुम्ही स्वतः अप्रतिबंधित करू शकत नाही',
+'unblocklogentry'                 => 'प्रतिबंधन $1 हटवले',
+'block-log-flags-anononly'        => 'केवळ अनामिक सदस्य',
+'block-log-flags-nocreate'        => 'खाते तयारकरणे अवरूद्ध केले',
+'block-log-flags-noautoblock'     => 'स्वयंचलित प्रतिबंधन अवरूद्ध केले',
+'block-log-flags-noemail'         => 'विपत्र अवरूद्ध केले',
+'block-log-flags-nousertalk'      => 'ला स्वतःचे चर्चापान संपादता येत नाही',
+'block-log-flags-angry-autoblock' => 'अद्ययावत स्वयमेवप्रतिबंधन सक्षमीत',
+'block-log-flags-hiddenname'      => 'सदस्यनाम लपवलेले आहे',
+'range_block_disabled'            => 'प्रचालकांची पल्ला बंधने घालण्याची क्षमता अनुपलब्ध केली आहे.',
+'ipb_expiry_invalid'              => 'अयोग्य समाप्ती काळ.',
+'ipb_expiry_temp'                 => 'लपविलेले सदस्यनाम प्रतिबंधन कायमस्वरुपी असले पाहिजे.',
+'ipb_hide_invalid'                => 'हे खात दाबन्यासाथि असमर्थ: ते सुध्दा बदल करन्याचि सकतात.',
+'ipb_already_blocked'             => '"$1" आधीच अवरूद्ध केलेले आहे.',
+'ipb-needreblock'                 => '$1 आधीच प्रतिबंधीत आहे . तुम्हाला त्याचि सेटींग्स बदलण्याची इच्छा आहे का ?',
+'ipb-otherblocks-header'          => '{{PLURAL:$1|दुसरे प्रतिबंधन|इतर प्रतिबंधने}}',
+'unblock-hideuser'                => 'सदस्याचे नाव हे गोपनीय असल्यामुळे हे सदस्य खाते आपण गोठवू शकत नाही',
+'ipb_cant_unblock'                => 'त्रूटी: प्रतिबंधन क्र.$1 मिळाला नाही. त्यावरील प्रतिबंधन कदाचित आधीच उठवले असेल.',
+'ipb_blocked_as_range'            => 'त्रूटी:अंकपत्ता IP $1 हा प्रत्यक्षपणे प्रतिबंधीत केलेला नाही आणि अप्रतिबंधीत करता येत नाही.तो,अर्थात,$2पल्ल्याचा भाग म्हाणून तो प्रतिबंधीत केलेला आहे,जो की अप्रतिबंधीत करता येत नाही.',
+'ip_range_invalid'                => 'अंकपत्ता अयोग्य टप्प्यात.',
+'ip_range_toolarge'               => '/$1 पेक्षा मोठ्या Range प्रतिबंधनाची परवानगी नाह् are not allowed.',
+'blockme'                         => 'मला प्रतिबंधीत करा',
+'proxyblocker'                    => 'प्रातिनिधी(प्रॉक्झी)प्रतिबंधक',
+'proxyblocker-disabled'           => 'हे कार्य अवरूद्ध केले आहे.',
+'proxyblockreason'                => 'तुमचा अंकपत्ता प्रतिबंधीत केला आहे कारण तो उघड-उघड प्रतिनिधी आहे.कृपया तुमच्या आंतरजाल सेवा दात्यास किंवा तंत्रज्ञास पाचारण संपर्क करा आणि त्यांचे या गंभीर सुरक्षाप्रश्ना कडे लक्ष वेधा.',
+'proxyblocksuccess'               => 'झाले.',
+'sorbsreason'                     => '{{SITENAME}}ने वापरलेल्या DNSBL मध्ये तुमच्या अंकपत्त्याची नोंद उघड-उघड प्रतिनिधी म्हणून सूचित केली आहे.',
+'sorbs_create_account_reason'     => '{{SITENAME}}च्या DNSBLने तुमचा अंकपत्ता उघड-उघड प्रतिनिधी म्हणून सूचित केला आहे.तुम्ही खाते उघडू शकत नाही',
+'cant-block-while-blocked'        => 'तुम्ही स्वतः प्रतिबंधित असताना इतरांना प्रतिबंधित करू शकत नाही.',
+'cant-see-hidden-user'            => 'तुम्ही प्रतिब्ंधकरण्याचा प्रयत्न करत असलेले सदस्य खाते आधीपासूनच प्रतिबंधीत आणि लपविले गेले आहे.
+तुमच्याकडे सदस्य लपविण्याचे अधिकार नसल्यामुळे , तुम्ही सदस्य प्रतिबंधन  पाहू अथवा संपादीत करू शकत नाही',
+'ipbblocked'                      => 'तुमचे स्वत:चेच खाते प्रतिबंधीत असल्यामुळे तुम्ही इतर सदस्यांना प्रतिबंधीत किंवा अप्रतिबंधीत करू शकत नाही',
+'ipbnounblockself'                => 'तुम्ही स्वतः अप्रतिबंधित करू शकत नाही',
 
 # Developer tools
 'lockdb'              => 'विदागारास ताळे ठोका',
@@ -2448,6 +2558,7 @@ $1',
 'unlockdbsuccesstext' => 'विदागाराचे ताळे उघडण्यात आले आहे.',
 'lockfilenotwritable' => 'विदा ताळे संचिका लेखनीय नाही.विदेस ताळे लावण्याकरिता किंवा उघडण्याकरिता, ती आंतरजाल विदादात्याकडून लेखनीय असावयास हवी.',
 'databasenotlocked'   => 'विदागारास ताळे नही',
+'lockedbyandtime'     => '({{GENDER:$1|$1}} द्वारे $2 ला $3 वाजता)',
 
 # Move page
 'move-page'                    => '$1 हलवा',
@@ -2464,6 +2575,18 @@ $1',
 '''सूचना!'''
 स्थानांतरण केल्याने एखाद्या महत्वाच्या लेखामध्ये अनपेक्षित बदल होऊ शकतात. तुम्हाला विनंती आहे की तुम्ही पूर्ण काळजी घ्या व होणारे परिणाम समजावून घ्या.
 जर तुम्हाला शंका असेल तर प्रबंधकांशी संपर्क करा.",
+'movepagetext-noredirectfixer' => "खालील अर्ज हा एखाद्या लेखाचे शीर्षक बदलण्यासाठी वापरता येईल. खालील अर्ज भरल्यानंतर लेखाचे शीर्षक बदलले जाईल तसेच त्या लेखाचा सर्व इतिहास हा नवीन लेखामध्ये स्थानांतरित केला जाईल.
+
+जुने शीर्षक नवीन शीर्षकाकडे पुनर्निर्देशित करेल.
+
+[[Special:DoubleRedirects|दुहेरी]] अथवा [[Special:BrokenRedirects|मोडकी]] पुनर्निर्देशनांकरीता तपासण्याची काळजी घ्या.
+उपलब्ध दुवे  जीथे उघडणे अभिप्रेत होते तसेच उघडतील याची तुम्ही जबाबदारी घेत आहात
+
+जर नवीन शीर्षकाचा लेख अस्तित्वात असेल तर स्थानांतरण होणार '''नाही'''.
+पण जर नवीन शीर्षकाचा लेख हा रिकामा असेल अथवा पुनर्निर्देशन असेल (म्हणजेच त्या लेखाला जर संपादन इतिहास नसेल) तर स्थानांतरण होईल. याचा अर्थ असा की जर काही चूक झाली तर तुम्ही पुन्हा जुन्या शीर्षकाकडे स्थानांतरण करू शकता.
+'''सूचना!'''
+असे केल्याने एखाद्या महत्वाच्या/लोकप्रीय लेखामध्ये अनपेक्षित आणि महत्वाचे बदल होऊ शकतात. तुम्हाला विनंती आहे की तुम्ही पूर्ण काळजी घ्या व होणारे परिणाम समजावून घ्या.
+जर तुम्हाला शंका असेल तर प्रचालक/प्रबंधकांशी संपर्क करा.",
 'movepagetalktext'             => "संबंधित चर्चा पृष्ठ याबरोबर स्थानांतरीत होणार नाही '''जर:'''
 * तुम्ही पृष्ठ दुसर्‍या नामविश्वात स्थानांतरीत करत असाल
 * या नावाचे चर्चा पान अगोदरच अस्तित्वात असेल तर, किंवा
@@ -2471,17 +2594,20 @@ $1',
 
 या बाबतीत तुम्हाला स्वतःला ही पाने एकत्र करावी लागतील.",
 'movearticle'                  => 'पृष्ठाचे स्थानांतरण',
+'moveuserpage-warning'         => "'''सावधान:''' आपण एक सदस्य पान स्थलांतरीत करत आहात. कृपया लक्षात घ्या की, फक्त हे पान स्थलांतरीत होइल, सदस्य नाम बदलले जणार नाही.",
 'movenologin'                  => 'प्रवेश केलेला नाही',
 'movenologintext'              => 'पान स्थानांतरित करण्यासाठी तुम्हाला [[Special:UserLogin|प्रवेश]] करावा लागेल.',
 'movenotallowed'               => '{{SITENAME}}वरील पाने स्थानांतरीत करण्याची आपल्यापाशी परवानगी नाही.',
 'movenotallowedfile'           => 'तुम्हाला दस्तावैज स्थानांतरीत करण्याची परवानगी नाही.',
 'cant-move-user-page'          => 'तुम्हाला सदस्याचे दस्तावैज स्थानांतरीत करण्याची परवानगी नाही.',
+'cant-move-to-user-page'       => 'तुम्हाला एखाद्या पानास सदस्य पानांवर (सदस्य उप-पाने सोडून) घेऊन जाण्यास परवानगी नाही.',
 'newtitle'                     => 'नवीन शीर्षकाकडे:',
 'move-watch'                   => 'या पानावर लक्ष ठेवा',
 'movepagebtn'                  => 'स्थानांतरण करा',
 'pagemovedsub'                 => 'स्थानांतरण यशस्वी',
 'movepage-moved'               => '\'\'\'"$1" ला "$2" मथळ्याखाली स्थानांतरीत केले\'\'\'',
 'movepage-moved-redirect'      => 'एक पुनर्निर्देशन तयार केले आहे.',
+'movepage-moved-noredirect'    => 'पुनःनिर्देशीत पान तयार केलेले नाही',
 'articleexists'                => 'त्या नावाचे पृष्ठ अगोदरच अस्तित्वात आहे, किंवा तुम्ही निवडलेले
 नाव योग्य नाही आहे.
 कृपया दुसरे नाव शोधा.',
@@ -2515,14 +2641,21 @@ $1',
 'selfmove'                     => 'स्रोत आणि लक्ष्य पाने समान आहेत; एखादे पान स्वत:च्याच जागी स्थानांतरीत करता येत नाही.',
 'immobile-source-namespace'    => 'नामविश्व "$1" मधील पाने हलवता आली नाहीत.',
 'immobile-target-namespace'    => 'नामविश्व "$1" मध्ये पाने हलवता आली नाहीत.',
+'immobile-target-namespace-iw' => 'पुढे चाल करण्यासाठी हा विकिअंतर्गत दुवा योग्य लक्ष नाही',
 'immobile-source-page'         => 'हे पान हलवता येत नाही',
 'immobile-target-page'         => 'लक्ष्य मथळा हलवता येत नाही.',
 'imagenocrossnamespace'        => 'ज्या नामविश्वात संचिका साठविता येत नाहीत, त्या नामविश्वात संचिकांचे स्थानांतरण करता येत नाही',
+'nonfile-cannot-move-to-file'  => 'संचिका स्वरुपाची नसलेली माहिती आपणास संचिका नामविश्वात वळती करता येणार नाही',
 'imagetypemismatch'            => 'दिलेले संचिकेचे एक्सटेंशन त्या संचिकेच्या प्रकाराशी जुळत नाही',
 'imageinvalidfilename'         => 'लक्ष्यसंचिका अवैध आहे',
+'fix-double-redirects'         => 'मुळ शिर्षक दर्शविणारे फेरे अद्ययावत करा',
 'move-leave-redirect'          => 'मागे एक पुनर्निर्देशन ठेवा',
+'protectedpagemovewarning'     => "'''सूचना:''' हे पान सुरक्षित आहे. फक्त प्रशासकीय अधिकार असलेले सदस्य याच्यात बदल करू शकतात.",
 'semiprotectedpagemovewarning' => "'''सूचना:''' हे पान सुरक्षित आहे. फक्त नोंदणीकृत सदस्य याच्यात बदल करू शकतात.
 सर्वांत ताजी यादी खाली संदर्भासाठी दिली आहे:",
+'move-over-sharedrepo'         => '== संचिका अस्तित्वात आहे ==
+सामायिक भांडारात [[:$1]] नाव आधी पासून अस्तित्वात आहे. संचिका या नावावर स्थानांतरीत केल्यास सामायिक संचिकेवर चढेल.',
+'file-exists-sharedrepo'       => 'धीरिकेसाठी तुम्ही निवडलेले नाव हे सामुहीक संग्राहलयात आधीपासून वापरात असल्याने कृपया दुसरे नाव निवडा.',
 
 # Export
 'export'            => 'पाने निर्यात करा',
@@ -2541,6 +2674,7 @@ $1',
 'export-addns'      => 'वाढवा',
 'export-download'   => 'संचिका म्हणून जतन करा',
 'export-templates'  => 'साचे आंतरभूत करा',
+'export-pagelinks'  => 'पुढे उल्लेखीत पातळी पर्यंत दुवे दिलेल्या पानांचा आंतर्भाव करा :',
 
 # Namespace 8 related
 'allmessages'                   => 'सर्व प्रणाली-संदेश',
@@ -2550,6 +2684,7 @@ $1',
 'allmessagestext'               => 'मीडियाविकी नामविश्वातील सर्व प्रणाली संदेशांची यादी',
 'allmessagesnotsupportedDB'     => "हे पान संपादित करता येत नाही कारण'''\$wgUseDatabaseMessages''' मालवला आहे.",
 'allmessages-filter-legend'     => 'गाळक',
+'allmessages-filter'            => 'कस्टमायझेशन स्टेटनुसार गाळणी लावा :',
 'allmessages-filter-unmodified' => 'असंपादित',
 'allmessages-filter-all'        => 'सर्व',
 'allmessages-filter-modified'   => 'संपादित',
@@ -2566,6 +2701,7 @@ $1',
 'thumbnail_invalid_params' => 'इवल्याशाचित्राचा अयोग्य परिचय',
 'thumbnail_dest_directory' => 'लक्ष्य धारिकेच्या निर्मितीस असमर्थ',
 'thumbnail_image-type'     => 'चित्रप्रकार समर्थित नाही',
+'thumbnail_gd-library'     => '$1 जी.डी. ग्रंथालयाची बांधणी अपूर्ण आहे.',
 'thumbnail_image-missing'  => 'संचिका सापडत नाही: $1',
 
 # Special:Import
@@ -2605,6 +2741,7 @@ $1',
 'import-upload'              => 'XML डाटा चढवा',
 'import-token-mismatch'      => 'अधिवेशन माहितीची हानी.
 कृपया पुन्हा प्रयत्न करा.',
+'import-invalid-interwiki'   => 'नमूद केलेल्या विकिमधून आयात करू शकत नाही.',
 
 # Import log
 'importlogpage'                    => 'ईम्पोर्ट सूची',
@@ -2646,7 +2783,7 @@ $1',
 'tooltip-n-portal'                => 'प्रकल्पाबद्दल, तुम्ही काय करू शकता, कुठे काय सापडेल',
 'tooltip-n-currentevents'         => 'सद्य घटनांबद्दलची माहिती',
 'tooltip-n-recentchanges'         => 'विकिवरील अलीकडील बदलांची यादी',
-'tooltip-n-randompage'            => 'कोणतेही पान पहा',
+'tooltip-n-randompage'            => 'कोणतेही अविशिष्ट पान पहा',
 'tooltip-n-help'                  => 'मदत मिळवण्याचे ठिकाण',
 'tooltip-t-whatlinkshere'         => 'येथे जोडलेल्या सर्व विकिपानांची यादी',
 'tooltip-t-recentchangeslinked'   => 'येथुन जोडलेल्या सर्व पानांवरील अलीकडील बदल',
@@ -2708,10 +2845,17 @@ $1',
 'spam_blanking'       => '$1शी दुवे असलेली सर्व आवर्तने,रिक्त केली जात आहेत',
 
 # Info page
+'pageinfo-title'            => '"$1" च्याबद्दल माहिती',
 'pageinfo-header-edits'     => 'संपादने',
 'pageinfo-header-watchlist' => 'पहार्‍याची सूची',
+'pageinfo-header-views'     => 'दृष्टीपथात',
 'pageinfo-subjectpage'      => 'पान',
 'pageinfo-talkpage'         => 'चर्चा पान',
+'pageinfo-watchers'         => 'पाहणाऱ्यांची संख्या',
+'pageinfo-edits'            => 'संपादनांची संख्या',
+'pageinfo-authors'          => 'वेगळ्या लेखकांची संख्या',
+'pageinfo-views'            => 'अभिप्रायांची संख्या',
+'pageinfo-viewsperedit'     => 'प्रति संपादन अभिप्राय',
 
 # Skin names
 'skinname-standard'    => 'अभिजात',
@@ -2722,6 +2866,7 @@ $1',
 'skinname-chick'       => 'मस्त',
 'skinname-simple'      => 'साधी',
 'skinname-modern'      => 'आधुनिक',
+'skinname-vector'      => 'सदिश',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'टेहळणी केल्याची खूण करा',
@@ -2735,10 +2880,12 @@ $1',
 'markedaspatrollederror-noautopatrol' => 'तुम्हाला स्वत:च्याच बदलांवर गस्त घातल्याची खूण करण्याची परवानगी नाही.',
 
 # Patrol log
-'patrol-log-page' => 'टेहळणीतील नोंदी',
-'patrol-log-line' => '$2चे $1 $3 गस्त घातल्याची खूण केली',
-'patrol-log-auto' => '(स्वयंचलीत)',
-'patrol-log-diff' => 'आवर्तन $1',
+'patrol-log-page'      => 'टेहळणीतील नोंदी',
+'patrol-log-header'    => 'ही पाहणीनंतरच्या निरिक्षणाची नोंद आहे.',
+'patrol-log-line'      => '$2चे $1 $3 गस्त घातल्याची खूण केली',
+'patrol-log-auto'      => '(स्वयंचलीत)',
+'patrol-log-diff'      => 'आवर्तन $1',
+'log-show-hide-patrol' => '$1 गस्तीची नोंद',
 
 # Image deletion
 'deletedrevision'                 => 'जुनी आवृत्ती ($1) वगळली.',
@@ -2769,7 +2916,9 @@ $1',
 'show-big-image-preview' => '<small>या झलकेचा आकार: $1. पिक्सेल</small>',
 'show-big-image-other'   => '<small>इतर रिझॉल्युशन्स: $1.</small>',
 'show-big-image-size'    => '$1 × $2 पिक्सेल',
+'file-info-gif-looped'   => 'विळख्यात सापडलेले',
 'file-info-gif-frames'   => '$1 {{PLURAL:$1|चौकट|चौकटी}}',
+'file-info-png-looped'   => 'विळख्यात सापडलेले',
 'file-info-png-repeat'   => '$1 {{PLURAL:$1|वेळा दाखवले|वेळा दाखवले}}',
 'file-info-png-frames'   => '$1 {{PLURAL:$1|चौकट|चौकटी}}',
 
@@ -2835,8 +2984,8 @@ $1',
 'exif-referenceblackwhite'         => 'काळ्या आणि पांढर्‍या संदर्भ मुल्यांची जोडी',
 'exif-datetime'                    => 'संचिका बदल तारीख आणि वेळ',
 'exif-imagedescription'            => 'चित्र शीर्षक',
-'exif-make'                        => 'हुबहू छाउ (कॅमेरा) उत्पादक',
-'exif-model'                       => 'हुबहू छाउ (कॅमेरा) उपकरण',
+'exif-make'                        => 'कॅमेरा उत्पादक',
+'exif-model'                       => 'कॅमेरा उपकरण',
 'exif-software'                    => 'वापरलेली संगणन अज्ञावली',
 'exif-artist'                      => 'लेखक',
 'exif-copyright'                   => 'प्रताधिकार धारक',
@@ -2870,6 +3019,7 @@ $1',
 'exif-lightsource'                 => 'प्रकाश स्रोत',
 'exif-flash'                       => "लख'''लखाट''' (फ्लॅश)",
 'exif-focallength'                 => 'भींगाची मध्यवर्ती लांबी (फोकल लांबी)',
+'exif-focallength-format'          => '$1 मि.मी.',
 'exif-subjectarea'                 => 'विषय विभाग',
 'exif-flashenergy'                 => 'लखाट उर्जा (फ्लॅश एनर्जी)',
 'exif-focalplanexresolution'       => 'फोकल प्लेन x रिझोल्यूशन',
@@ -2926,26 +3076,74 @@ $1',
 'exif-gpsdifferential'             => 'GPS डिफरेंशीअल सुधारणा',
 'exif-jpegfilecomment'             => 'जेपीईजी संचिका टिप्पणी',
 'exif-keywords'                    => 'लघुशब्द',
+'exif-worldregioncreated'          => 'छायाचित्र काढले तो देश',
 'exif-countrycreated'              => 'देश ज्याच्यात चित्र घेतले',
+'exif-countrycodecreated'          => 'ज्या देशात छायाचित्र घेतले त्या देशाचे कोड',
+'exif-provinceorstatecreated'      => 'जिथे छायाचित्र काढले तो प्रांत वा देश',
+'exif-citycreated'                 => 'छायाचित्र घेतले ‍‍‍‍(काढले) ते शहर',
+'exif-sublocationcreated'          => 'शहराज्या ज्या परिसरात छायाचित्र काढले तो परिसर',
+'exif-worldregiondest'             => 'जगाचा दर्शित केलेला भूभाग(प्रदेश)',
+'exif-countrydest'                 => 'दर्शविलेला देश',
+'exif-countrycodedest'             => 'दर्शविलेल्या देशाचे चिन्ह',
+'exif-provinceorstatedest'         => 'दर्शविलेला प्रांत वा देश',
+'exif-citydest'                    => 'दर्शविलेले शहर',
+'exif-sublocationdest'             => 'दर्शविलेले शहरातील नगर',
 'exif-objectname'                  => 'लघुशीर्षक',
+'exif-specialinstructions'         => 'विशेष सूचना',
 'exif-headline'                    => 'मथळा',
+'exif-credit'                      => 'जमा/पुरवठादार',
 'exif-source'                      => 'स्रोत',
+'exif-editstatus'                  => 'प्रतिमेच्या संपादनाची स्थिती',
 'exif-urgency'                     => 'तात्कालिकता',
+'exif-fixtureidentifier'           => 'संपादयकीय जोडणीदाराचे नाव',
+'exif-locationdest'                => 'स्थान दर्शविले आहे',
+'exif-locationdestcode'            => 'स्थानाच्या कूटाक्षराचा(कोड)  निर्देश केला आहे',
+'exif-objectcycle'                 => 'मिडिया दिवसाच्या ज्या वेळेकरिता अभिप्रेत आहे.',
 'exif-contact'                     => 'संपर्क माहिती',
 'exif-writer'                      => 'लेखक',
 'exif-languagecode'                => 'भाषा',
+'exif-iimversion'                  => 'आय् आय् एम्  संस्करण',
 'exif-iimcategory'                 => 'वर्ग',
+'exif-iimsupplementalcategory'     => 'पुरवणी श्रेणी',
+'exif-datetimeexpires'             => 'या तारखेपश्चात वापरू नका',
+'exif-datetimereleased'            => 'या वेळी/दिवशी प्रसृत (प्रसारण )केले/मुक्त केले / सूरू केले',
+'exif-originaltransmissionref'     => 'Original transmission location code: मूळ प्रसारण केले त्या स्थानाचे कूटाक्षर(कोड)',
+'exif-identifier'                  => 'ओळख दुवा',
 'exif-lens'                        => 'वापरलेले भिंग',
 'exif-serialnumber'                => 'छायाचित्रकाचा सामयिक क्रमांक',
 'exif-cameraownername'             => 'छायाचित्रकाचा मालक',
+'exif-label'                       => 'लेबल',
+'exif-datetimemetadata'            => 'मेटाडाटाच्या शेवटच्या बदलाची तारीख',
+'exif-nickname'                    => 'चित्राचे / फोटोचे सामान्य नाव',
+'exif-rating'                      => 'गुण (५ पैकी)',
+'exif-rightscertificate'           => 'अधिकार व्यवस्थापन प्रमाणपत्र',
 'exif-copyrighted'                 => 'प्रताधिकार स्थिती',
 'exif-copyrightowner'              => 'प्रताधिकार धारक',
+'exif-usageterms'                  => 'वापरण्यासाठी शर्थी',
+'exif-webstatement'                => 'ऑनलाईन प्रताधिकार(कॉपीराईट)  उद्घोषणा',
+'exif-originaldocumentid'          => 'मुळ दस्तएवजाचा  यूनिक आयडी (Unique ID)',
+'exif-licenseurl'                  => 'प्रताधिकार परवान्याचा  (कॉपीराईट लायसन्सचा)  URL',
+'exif-morepermissionsurl'          => 'पर्यायी परवाना माहिती',
+'exif-attributionurl'              => 'ह्या कामाचा पुर्न-उपयोग करताना , कृपया पुढीलास दुवा द्या',
+'exif-preferredattributionname'    => 'ह्या कामाचा पुर्न-उपयोग करताना, कृपया श्रेय दुवा द्या',
 'exif-pngfilecomment'              => 'पीएनजी संचिका टिप्पणी',
 'exif-disclaimer'                  => 'परवाना',
+'exif-contentwarning'              => 'आशय विषयी सूचना',
 'exif-giffilecomment'              => 'जीआयएफ संचिका टिप्पणी',
+'exif-intellectualgenre'           => 'विशिष्ठ वस्तुचा प्रकार',
+'exif-subjectnewscode'             => 'विषयाचे संकेतचिन्ह',
+'exif-scenecode'                   => 'IPTC दृश्य संकेत',
+'exif-event'                       => 'सादर केलेला उपक्रम',
+'exif-organisationinimage'         => 'सादरकर्ती संस्था',
+'exif-personinimage'               => 'सादरकर्ती व्यक्ती',
+'exif-originalimageheight'         => 'चित्राचा आकार बदलण्यापुर्वीची उंची',
+'exif-originalimagewidth'          => 'छाचाचित्राचा आकार बदलण्यापुर्वीची रूंदी',
 
 # EXIF attributes
 'exif-compression-1' => 'अनाकुंचीत',
+'exif-compression-2' => 'CCITT गट३ १-Dimensional Modified Huffman run length encoding',
+'exif-compression-3' => 'CCITT Group 3 फॅक्स संकेतन',
+'exif-compression-4' => 'CCITT Group 4  फॅक्स संकेतन',
 
 'exif-copyrighted-true'  => 'प्रताधिकारीत',
 'exif-copyrighted-false' => 'सार्वजनिक ज्ञानक्षेत्र',
@@ -2957,12 +3155,14 @@ $1',
 'exif-orientation-3' => '180° फिरवले',
 'exif-orientation-4' => 'उभ्या बाजूने पालटले',
 'exif-orientation-5' => '९०° CCW अंशात वळवले आणि उभे पालटले',
-'exif-orientation-6' => '90° CW फिरवले',
+'exif-orientation-6' => '90° घडाळ्याच्या काट्याच्या दिशेने फिरवले',
 'exif-orientation-7' => '90° CW वळवले आणि उभे पलटवले',
-'exif-orientation-8' => '90° CCW फिरवले',
+'exif-orientation-8' => '90° घडाळ्याच्या काट्याच्या दिशेने फिरवले',
 
 'exif-planarconfiguration-1' => 'चंकी संरचना (रूपरेषा)',
 'exif-planarconfiguration-2' => 'प्लानर संरचना(रूपरेषा)',
+
+'exif-colorspace-65535' => 'रंगमात्रांश न दिलेले (अनकॅलिब्रेटेड)',
 
 'exif-componentsconfiguration-0' => 'अस्तित्वात नाही',
 
@@ -3006,7 +3206,17 @@ $1',
 'exif-lightsource-255' => 'इतर प्रकाश स्रोत',
 
 # Flash modes
-'exif-flash-mode-3' => 'स्वयंचलित स्थिती',
+'exif-flash-fired-0'    => 'Flash did not fire
+फ्लॅशदिवा प्रज्ज्वलित झाला नाही',
+'exif-flash-fired-1'    => 'क्षणदीप(फ्लेशदिवा)प्रज्ज्वलित झाला',
+'exif-flash-return-0'   => 'लखलखाट (फ्लॅश) - प्रकाश परावर्तन नोंदणीची सुविधा अनुपलब्ध',
+'exif-flash-return-2'   => 'लखलखाटाच्या (फ्लॅश)   परावर्तन प्रकाशाची नोंद झाली नाही',
+'exif-flash-return-3'   => 'लखलखाटाचे (फ्लॅश) - प्रकाश परावर्तन होत असल्याचे टिपले',
+'exif-flash-mode-1'     => 'अनिवार्य लखलखाट प्रदीपन (फ्लॅश फायरींग )',
+'exif-flash-mode-2'     => 'अनिवार्य विना-लखलखाट  (फ्लॅश सप्रेशन)',
+'exif-flash-mode-3'     => 'स्वयंचलित स्थिती',
+'exif-flash-function-1' => 'लखलखाट  (फ्लॅश) सुविधा अनुपलब्ध',
+'exif-flash-redeye-1'   => 'बुबुळ-लाली कमीकरा सक्षमता (रेड-आय रिडक्शन मोड)',
 
 'exif-focalplaneresolutionunit-2' => 'इंच',
 
@@ -3017,6 +3227,8 @@ $1',
 'exif-sensingmethod-5' => 'कलर सिक्वेण्शीयल एरीया सेंसॉर',
 'exif-sensingmethod-7' => 'ट्राय्‍एलिनीयर सेंसर',
 'exif-sensingmethod-8' => 'कलर सिक्वेंशीयल लिनीयर सेन्‍सर',
+
+'exif-filesource-3' => 'स्थिरचित्र  अंकीय छाउ (डिजीटल स्टील कॅमेरा)',
 
 'exif-scenetype-1' => 'डायरेक्टली छायाचित्रीत चित्र',
 
@@ -3094,12 +3306,17 @@ $1',
 
 'exif-objectcycle-a' => 'फक्त सकाळी',
 'exif-objectcycle-p' => 'फक्त संध्याकाळी',
+'exif-objectcycle-b' => 'सकाळ-संध्याकाळ दोन्ही सक्षमता',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'बरोबर दिशा',
 'exif-gpsdirection-m' => 'चुंबकीय दिशा',
 
+'exif-ycbcrpositioning-1' => 'मध्यकेंद्रीत (सेंटर्ड)',
+'exif-ycbcrpositioning-2' => 'आरोहीत (को-सिटेड )',
+
 'exif-dc-contributor' => 'योगदानकर्ते',
+'exif-dc-coverage'    => 'माध्यमाचा स्पॅतीयल किंवा टेंपोरल आवाका',
 'exif-dc-date'        => 'दिनांक',
 'exif-dc-publisher'   => 'प्रकाशक',
 'exif-dc-relation'    => 'संबंधित मीडिया',
@@ -3107,24 +3324,32 @@ $1',
 'exif-dc-source'      => 'स्रोत मीडिया',
 'exif-dc-type'        => 'मीडिया प्रकार',
 
+'exif-rating-rejected' => 'अमान्य केले/झाले',
+
 'exif-isospeedratings-overflow' => '६५,५३६ हून मोठे',
 
 'exif-iimcategory-ace' => 'कला, संस्कृती व मनोरंजन',
 'exif-iimcategory-clj' => 'कायदे व गुन्हे',
+'exif-iimcategory-dis' => 'अपघात आणि अनर्थ',
 'exif-iimcategory-fin' => 'व्यापार व अर्थशास्त्र',
 'exif-iimcategory-edu' => 'शिक्षण',
 'exif-iimcategory-evn' => 'पर्यावरण',
 'exif-iimcategory-hth' => 'तब्येत',
+'exif-iimcategory-hum' => 'मानवी अभिरुचि',
 'exif-iimcategory-lab' => 'परिश्रम',
+'exif-iimcategory-lif' => 'आराम आणि जिवन पद्धती',
 'exif-iimcategory-pol' => 'राजनीती',
 'exif-iimcategory-rel' => 'धर्म व श्रद्धा',
 'exif-iimcategory-sci' => 'विज्ञान व तंत्रज्ञान',
+'exif-iimcategory-soi' => 'सामाजिक प्रश्न',
 'exif-iimcategory-spo' => 'क्रीडा',
+'exif-iimcategory-war' => 'युद्ध, संघर्ष आणि अशांती',
 'exif-iimcategory-wea' => 'हवामान',
 
 'exif-urgency-normal' => 'सामान्य ($1)',
 'exif-urgency-low'    => 'नीचतम ($1)',
 'exif-urgency-high'   => 'उच्चतम ($1)',
+'exif-urgency-other'  => '($1) उपयोगकर्ता-निश्चित  प्राधान्य',
 
 # External editor support
 'edit-externally'      => 'बाहेरील संगणक प्रणाली वापरून ही संचिका संपादित करा.',
@@ -3137,24 +3362,24 @@ $1',
 'limitall'      => 'सर्व',
 
 # E-mail address confirmation
-'confirmemail'             => 'इमेल पत्ता पडताळून पहा',
-'confirmemail_noemail'     => '[[Special:Preferences|सदस्य पसंतीत]] तुम्ही शाबीत विपत्र पत्ता दिलेला नाही.',
-'confirmemail_text'        => 'विपत्र सुविधा वापरण्या पूर्वी {{SITENAME}}वर तुमचा विपत्र पत्ता  शाबीत करणे गरजेचे आहे.तुमच्या पत्त्यावर निश्चितीकरण विपत्र पाठवण्याकरिता खालील बटण सुरू करा.विपत्रात कुटसंकेत असलेला दुवा असेल;तुमचा विपत्र पत्ता शाबीत करण्या करिता तुमच्या विचरकात हा दिलेला दुवा चढवा.',
-'confirmemail_pending'     => 'एक निश्चितीकरण कुटसंकेत आधीच तुम्हाला विपत्र केला आहे; जर तुम्ही खाते अशातच उघडले असेल तर,एक नवा कुट संकेत मागण्यापूर्वी,पाठवलेला मिळण्याकरिता थोडी मिनिटे वाट पहाणे तुम्हाला आवडू शकेल.',
-'confirmemail_send'        => 'विपत्र निश्चितीकरण नियमावली',
-'confirmemail_sent'        => 'शाबितीकरण विपत्र पाठवले.',
-'confirmemail_oncreate'    => 'तुमच्या विपत्र पत्त्यावर निश्चितीकरण कुटसंकेत पाठवला होता .
+'confirmemail'              => 'इमेल पत्ता पडताळून पहा',
+'confirmemail_noemail'      => '[[Special:Preferences|सदस्य पसंतीत]] तुम्ही प्रमाणित विपत्र (इमेल) पत्ता दिलेला नाही.',
+'confirmemail_text'         => 'विपत्र सुविधा वापरण्या पूर्वी {{SITENAME}}वर तुमचा विपत्र (इमेल) पत्ता प्रमाणित करणे गरजेचे आहे. तुमच्या पत्त्यावर निश्चितीकरण विपत्र (इमेल) पाठवण्याकरिता खालील बटण सुरू करा.विपत्रात कुटसंकेतच्(पासवर्ड) असलेला दुवा असेल;तुमचा विपत्र (इमेल) पत्ता प्रमाणित करण्या करिता तुमच्या विचरकात हा दिलेला दुवा चढवा.',
+'confirmemail_pending'      => 'एक निश्चितीकरण कुटसंकेत आधीच तुम्हाला विपत्र केला आहे; जर तुम्ही खाते अशातच उघडले असेल तर,एक नवा कुट संकेत मागण्यापूर्वी,पाठवलेला मिळण्याकरिता थोडी मिनिटे वाट पहाणे तुम्हाला आवडू शकेल.',
+'confirmemail_send'         => 'विपत्र निश्चितीकरण नियमावली',
+'confirmemail_sent'         => 'शाबितीकरण विपत्र पाठवले.',
+'confirmemail_oncreate'     => 'तुमच्या विपत्र पत्त्यावर निश्चितीकरण कुटसंकेत पाठवला होता .
 हा कुटसंकेत तुम्हाला खात्यात दाखल होण्याकरिता लागणार नाही,पण तुम्हाला तो कोणतीही विपत्रावर अवलंबून कोणतीही सुविधा उपलब्ध करून घेण्यापूर्वी द्यावा लागेल.',
-'confirmemail_sendfailed'  => 'पोच-विपत्र पाठवू शकलो नाही. अयोग्य चिन्हांकरिता पत्ता तपासा.
+'confirmemail_sendfailed'   => 'पोच-विपत्र पाठवू शकलो नाही. अयोग्य चिन्हांकरिता पत्ता तपासा.
 
 मेलर परत आले: $1',
-'confirmemail_invalid'     => 'अयोग्य निश्चितीकरण नियमावली.नियमावली काल समाप्त झाला असु शकेल.',
-'confirmemail_needlogin'   => 'तुमचा विपत्रपत्ता शाबीत करण्यासाठी तुम्ही $1 करावयास हवे.',
-'confirmemail_success'     => 'तुमचा विपत्रपत्ता शाबीत झाला आहे.तुम्ही आता दाखल होऊ शकता आणि विकिचा आनंद घेऊ शकता.',
-'confirmemail_loggedin'    => 'तुमचा विपत्र पत्ता आता शाबीत झाला आहे.',
-'confirmemail_error'       => 'तुमची निश्चिती जतन करताना काही तरी चूकले',
-'confirmemail_subject'     => '{{SITENAME}} विपत्र पत्ता शाबीत',
-'confirmemail_body'        => 'कुणीतरी, बहुतेक तुम्ही, $1 या पत्त्यावारून, "$2" खाते हा ईमेल पत्ता वापरून {{SITENAME}} या संकेतस्थळावर उघडले आहे.
+'confirmemail_invalid'      => 'अयोग्य निश्चितीकरण नियमावली.नियमावली काल समाप्त झाला असु शकेल.',
+'confirmemail_needlogin'    => 'तुमचा विपत्रपत्ता प्रमाणित करण्यासाठी तुम्ही $1 करावयास हवे.',
+'confirmemail_success'      => 'तुमचा विपत्र (इमेल) पत्ता प्रमाणित झाला आहे.तुम्ही आता [[Special:UserLogin|दाखल]] होऊ शकता आणि विकिचा आनंद घेऊ शकता.',
+'confirmemail_loggedin'     => 'तुमचा विपत्र (इमेल) पत्ता आता प्रमाणित झाला आहे.',
+'confirmemail_error'        => 'तुमची निश्चिती जतन करताना काही तरी चूकले',
+'confirmemail_subject'      => '{{SITENAME}} विपत्र (इमेल) पत्ता प्रमाणित',
+'confirmemail_body'         => 'कुणीतरी, बहुतेक तुम्ही, $1 या पत्त्यावारून, "$2" खाते हा ईमेल पत्ता वापरून {{SITENAME}} या संकेतस्थळावर उघडले आहे.
 
 हे खाते खरोखर तुमचे आहे याची खात्री करण्यासाठी आणि {{SITENAME}} वर ईमेल पर्याय उत्तेजित (उपलब्ध) करण्यासाठी, हा दुवा तुमच्या ब्राउजर मधे उघडा:
 
@@ -3165,8 +3390,32 @@ $3
 $5
 
 हा हमी कलम $4 ला नष्ट होईल.',
-'confirmemail_invalidated' => 'इ-मेल पत्ता तपासणी रद्द करण्यात आलेली आहे',
-'invalidateemail'          => 'इ-मेल तपासणी रद्द करा',
+'confirmemail_body_changed' => '
+
+{{SITENAME}} या संकेतस्थळावर कुणीतरी, बहुतेक तुम्ही, $1 या अंकपत्त्यावारून, "$2" खात्याकरिताचा  ईमेल   आपल्या या इमेल पत्त्यावर बदलला आहे.
+
+हे खाते खरोखर तुमचे आहे याची खात्री करण्यासाठी आणि {{SITENAME}} वर ईमेल पर्याय उत्तेजित (उपलब्ध) करण्यासाठी, हा दुवा तुमच्या ब्राउजर मधे उघडा:
+
+$3
+
+जर तुम्ही हे खाते तुमचे *नसेल* तर ही इमेलपत्त्याच्या बदलाची मागणी रद्द करण्यासाठी खालील दुवा उघडा:
+
+$5
+
+हा  निश्चितीकरण संदेश  $4 ला नष्ट होईल.',
+'confirmemail_body_set'     => '{{SITENAME}} या संकेतस्थळावर कुणीतरी, बहुतेक तुम्ही, $1 या अंकपत्त्यावारून, "$2" खात्याकरिताचा  ईमेल  आपल्या या इमेल पत्त्यानुसार दिला आहे.
+
+हे खाते खरोखर तुमचे आहे याची खात्री करण्यासाठी आणि {{SITENAME}} वर ईमेल पर्याय उत्तेजित (उपलब्ध) करण्यासाठी, हा दुवा तुमच्या ब्राउजर मधे उघडा:
+
+$3
+
+जर तुम्ही हे खाते तुमचे *नसेल* तर ही इमेलपत्त्याच्या बदलाची मागणी रद्द करण्यासाठी खालील दुवा उघडा:
+
+$5
+
+हा खात्रीकरण संदेश  $4 ला नष्ट होईल.',
+'confirmemail_invalidated'  => 'इ-मेल पत्ता तपासणी रद्द करण्यात आलेली आहे',
+'invalidateemail'           => 'इ-मेल तपासणी रद्द करा',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[आंतरविकि आंतरन्यास अनुपलब्ध केले आहे]',
@@ -3191,6 +3440,13 @@ $1',
 # action=purge
 'confirm_purge_button' => 'ठीक',
 'confirm-purge-top'    => 'यापानाची सय रिकामी करावयाची आहे?',
+'confirm-purge-bottom' => 'पानाची अती अलिकडील आवृत्ती सादर करण्यासाठी त्या पानाचे क्षालन,  पानाची सय ( पानाचे पर्जींग पानाची cache )  रिकामी करते .',
+
+# action=watch/unwatch
+'confirm-watch-button'   => 'ठीक आहे',
+'confirm-watch-top'      => 'हे पान तुमच्या पहारा सूचीत टाकायचे?',
+'confirm-unwatch-button' => 'ठीक',
+'confirm-unwatch-top'    => 'हे पान पहार्‍याच्या सूचीतून काढायचे?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← मागील पान',
@@ -3215,6 +3471,12 @@ $1',
 'autosumm-replace' => "पान '$1' वापरून बदलले.",
 'autoredircomment' => '[[$1]] कडे पुनर्निर्देशित',
 'autosumm-new'     => 'नवीन पान: $1',
+
+# Size units
+'size-bytes'     => '$1 बा.',
+'size-kilobytes' => '$1 कि.बा.',
+'size-megabytes' => '$1 मे.बा.',
+'size-gigabytes' => '$1 गि.बा.',
 
 # Live preview
 'livepreview-loading' => 'चढवत आहे…',
@@ -3252,6 +3514,7 @@ $1',
 
 # Core parser functions
 'unknown_extension_tag' => 'अज्ञात विस्तार खूण "$1"',
+'duplicate-defaultsort' => '\'\'\'वॉर्निंग:\'\'\' डिफॉल्ट सॉर्ट की "$2"ओवर्राइड्स अर्लीयर डिफॉल्ट सॉर्ट की "$1".',
 
 # Special:Version
 'version'                       => 'आवृत्ती',
@@ -3259,6 +3522,7 @@ $1',
 'version-specialpages'          => 'विशेष पाने',
 'version-parserhooks'           => 'पृथकक अंकुश',
 'version-variables'             => 'चल',
+'version-antispam'              => 'उत्पात प्रतिबंधन',
 'version-skins'                 => 'त्वचा',
 'version-other'                 => 'इतर',
 'version-mediahandlers'         => 'मिडिया हॅंडलर',
@@ -3272,6 +3536,11 @@ $1',
 'version-license'               => 'परवाना',
 'version-poweredby-credits'     => "हा विकी '''[//www.mediawiki.org/ मीडियाविकी]'''द्वारे संचालित आहे, प्रताधिकारित © २००१-$1 $2.",
 'version-poweredby-others'      => 'इतर',
+'version-license-info'          => 'मिडियाविकि हे  मुक्त संगणक प्रणाली विकि पॅकेज आहे.Free Software Foundation प्रकाशित  GNU General Public परवान्याच्या अटीस अनुसरून तुम्ही त्यात बदल आणि/अथवा त्याचे  पुर्नवितरण  करू शकता.
+
+मिडियाविकि  संगणक प्रणाली उपयूक्त ठरेल या आशेने वितरीत केली जात असली तरी;कोणत्याही वितरणास अथवा विशीष्ट उद्देशाकरिता योग्यतेची अगदी कोणतीही अप्रत्यक्ष अथवा उपलक्षित   अथवा  निहित अशा अथवा कोणत्याही प्रकारच्या केवळ  कोणत्याही प्राश्वासनाशिवायच (WITHOUT ANY WARRANTY) उपलब्ध आहे.अधिक माहिती करिता   GNU General Public License पहावे.
+
+तुम्हाला या प्रणाली सोबत [{{SERVER}}{{SCRIPTPATH}}/COPYING  GNU General Public License परवान्याची प्रत] मिळालेली असावयास हवी, तसे नसेल तर,[//www.gnu.org/licenses/old-licenses/gpl-2.0.html  येथे ऑनलाईन वाचा] किंवा the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA ला लिहा.',
 'version-software'              => 'स्थापित संगणक प्रणाली (Installed software)',
 'version-software-product'      => 'उत्पादन',
 'version-software-version'      => 'आवृत्ती',
@@ -3315,11 +3584,22 @@ $1',
 'blankpage'              => 'रिकामे पान',
 'intentionallyblankpage' => 'हे पान मुद्दाम कोरे सोडण्यात आले आहे.',
 
+# External image whitelist
+'external_image_whitelist' => '#हे ओल बरोबर जशि आहे तशि घेने.
+#नेहमि वपरले जानारे सर्व चीह्न्न् वपरने.
+#बाहेरिल सर्व चित्राना ह्यासोबत जोद्दले जाइल.
+#ह्या मधिल जुललेले सर्व चित्र म्हनुन दखवले जतिल,अथवा चित्राचि फक़्त् लिन्क दखवलि जाइल.
+## ह्या चिह्ना पासुन सुरु झलेल्या सर्व ओलि कमेन्त म्हनुन वपरर्ल्या जातिल.
+#हे केस सेन्सेतिव आहे.',
+
 # Special:Tags
+'tags'                    => 'मान्य बदल खुणा',
 'tag-filter'              => '[[Special:Tags|खूण]] गाळक:',
 'tag-filter-submit'       => 'गाळक',
 'tags-title'              => 'खुणा',
+'tags-intro'              => 'प्रणालीतून विशिष्ट संपादनांच्या अर्थासहीत  खूणांची  यादी नमुद करणारे पान',
 'tags-tag'                => 'खूण नाव',
+'tags-display-header'     => 'बदल सुचीवर कसे दिसेल',
 'tags-description-header' => 'अर्थाची पूर्ण माहिती',
 'tags-hitcount-header'    => 'खुणा केलेले बदल',
 'tags-edit'               => 'संपादन करा',
@@ -3338,11 +3618,15 @@ $1',
 'dberr-header'      => 'या विकीत एक चूक आहे',
 'dberr-problems'    => 'माफ करा, हे संकेतस्थळ सध्या तांत्रिक अडचणींना सामोरे जात आहे.',
 'dberr-again'       => 'थोडा वेळ थांबून पुन्हा पहा.',
+'dberr-info'        => '( विदादाताशी संपर्क साधण्यात  असमर्थ : $1)',
 'dberr-usegoogle'   => 'तोपर्यंत गूगलवर शोधून पहा',
+'dberr-outofdate'   => 'लक्षात घ्या, आमच्या मजकुराबाबत त्यांची सुची कालबाह्य असु शकते',
 'dberr-cachederror' => 'ही मागवलेल्या पानाची सयीतील प्रत आहे, ती अद्ययावत नसण्याची शक्यता आहे.',
 
 # HTML forms
 'htmlform-invalid-input'       => 'तुम्ही दिलेल्या माहितीत काहीतरी गडबड आहे',
+'htmlform-select-badoption'    => 'आपण नमुद करत असलेली व्हॅल्यू ग्राह्य पर्याय ठरत नाही',
+'htmlform-int-invalid'         => 'आपण नमुद केलेली व्हॅल्यू पूर्णांक (इंटीजर) नाही.',
 'htmlform-float-invalid'       => 'तुम्ही दिलेली किंमत आकडा नाही.',
 'htmlform-int-toolow'          => '$1 किंवा मोठा आकडा द्या.',
 'htmlform-int-toohigh'         => '$1 किंवा त्याहून छोटा आकडा द्या.',

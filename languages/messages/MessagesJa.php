@@ -29,6 +29,7 @@
  * @author Kkkdc
  * @author Klutzy
  * @author Koba-chan
+ * @author Likibp
  * @author Lovekhmer
  * @author Marine-Blue
  * @author Mizusumashi
@@ -1009,9 +1010,9 @@ IPアドレスは複数の利用者の間で共有されていることがあり
 'userpage-userdoesnotexist-view'   => '利用者アカウント「$1」は登録されていません。',
 'blocked-notice-logextract'        => 'この利用者は現在ブロックされています。
 参考のために最新のブロック記録を以下に表示します。',
-'clearyourcache'                   => "'''注意:''' 保存後、変更を確認するにはブラウザのキャッシュをクリアする必要がある場合があります。
-* '''Firefox / Safari:''' ''Shift'' を押しながら ''再読み込み'' をクリックする、もしくは ''Ctrl-F5'' か ''Ctrl-R'' を押してください (Macでは ''Command-R'' )
-* '''Google Chrome:''' ''Ctrl-Shift-R'' を押してください (Macでは ''Command-Shift-R'' )
+'clearyourcache'                   => "'''注意:''' 保存後、変更を確認するにはブラウザのキャッシュを消去する必要がある場合があります。
+* '''Firefox / Safari:''' ''Shift'' を押しながら ''再読み込み'' をクリックする、もしくは ''Ctrl-F5'' か ''Ctrl-R'' を押してください (Macでは ''⌘-R'' )
+* '''Google Chrome:''' ''Ctrl-Shift-R'' を押してください (Macでは ''⌘-Shift-R'' )
 * '''Internet Explorer:''' ''Ctrl'' を押しながら ''最新の情報に更新'' をクリックする、もしくは ''Ctrl-F5'' を押してください
 * '''Konqueror:''' ''再読み込み'' をクリックするか、 ''F5'' を押してください。
 * '''Opera:''' ''ツール → 設定'' からキャッシュをクリアしてください。",
@@ -1193,7 +1194,7 @@ $3による理由は以下の通りです：''$2''",
 内容を見ることができます。[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 秘匿記録]に詳細情報があるかもしれません。",
 'rev-deleted-no-diff'         => "どちらかの版が'''削除されているため'''、差分表示できません。
 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 削除記録]に詳細情報があるかもしれません。",
-'rev-suppressed-no-diff'      => "指定された差分は'''削除された'''版を含んでいるため表示出来ません。",
+'rev-suppressed-no-diff'      => "指定された差分は'''削除された'''版を含んでいるため、閲覧することができません。",
 'rev-deleted-unhide-diff'     => "この差分の一方の版は'''削除されています'''。
 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 削除記録]に詳細情報があるかもしれません。
 このまま[$1 この差分を見る]ことができます。",
@@ -1554,12 +1555,12 @@ HTMLタグを見直してください。',
 'group-suppress'      => '秘匿者',
 'group-all'           => '（全員）',
 
-'group-user-member'          => '利用者',
-'group-autoconfirmed-member' => '自動承認された利用者',
-'group-bot-member'           => 'ボット',
-'group-sysop-member'         => '管理者',
-'group-bureaucrat-member'    => 'ビューロクラット',
-'group-suppress-member'      => '秘匿者',
+'group-user-member'          => '{{GENDER:$1|利用者}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|自動承認された利用者}}',
+'group-bot-member'           => '{{GENDER:$1|ボット}}',
+'group-sysop-member'         => '{{GENDER:$1|管理者}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|ビューロクラット}}',
+'group-suppress-member'      => '{{GENDER:$1|秘匿者}}',
 
 'grouppage-user'          => '{{ns:project}}:利用者',
 'grouppage-autoconfirmed' => '{{ns:project}}:自動承認された利用者',
@@ -1826,7 +1827,7 @@ file_uploadsの設定を確認してください。',
 詳細：$1',
 'uploadjava'                  => 'このファイルは、Javaの.classファイルを含むZIPファイルです。
 セキュリティの制限を回避されるおそれがあるため、Javaファイルをアップロードすることは許可されていません。',
-'upload-source'               => 'アップロード先のファイル',
+'upload-source'               => 'アップロード元ファイル',
 'sourcefilename'              => 'アップロード元のファイル名：',
 'sourceurl'                   => 'アップロード元のURL：',
 'destfilename'                => 'ファイル名：',
@@ -2850,9 +2851,9 @@ hideuser権限を持っていないため、この利用者のブロックを閲
 # Export
 'export'            => 'ページの書き出し',
 'exporttext'        => 'ここでは単独あるいは複数のページの本文と編集履歴を、XMLの形で書き出すことができます。
-このXMLは、他のMediaWikiを使用しているウィキで[[Special:Import|取り込みページ]]を使って取り込めます。
+このXMLは、他のMediaWikiを使用しているウィキで[[Special:Import|取り込みページ]]を使って取り込むことができます。
 
-ページを書き出すには、下の入力ボックスに書き出したいページの名前を一行に一つずつ記入してください。また、編集履歴とともにすべての過去版を含んで書き出すのか、最新版のみを書き出すのか選択してください。
+ページを書き出すには、下の入力ボックスに一行に一つずつ書き出したいページの名前を記入してください。また、編集履歴とともにすべての過去版を含めて書き出すのか、最新版のみを書き出すのか選択してください。
 
 後者の場合ではリンクの形で使うこともできます。例えば、[[{{#Special:Export}}/{{MediaWiki:Mainpage}}]]はページ「[[{{MediaWiki:Mainpage}}]]」が対象になります。',
 'exportcuronly'     => 'すべての履歴はなしで、最新版のみを含める',
@@ -3133,7 +3134,7 @@ $1',
 'nextdiff'     => '新しい編集→',
 
 # Media information
-'mediawarning'           => "'''警告：'''このファイルは悪意のあるコードを含んでいる可能性があります。
+'mediawarning'           => "'''警告：'''この種類のファイルは悪意のあるコードを含んでいる可能性があります。
 実行するとシステムが危険にさらされる可能性があります。",
 'imagemaxsize'           => "画像のサイズ制限：<br />''（ファイルページに対する）''",
 'thumbsize'              => 'サムネイルの大きさ：',
@@ -3228,8 +3229,8 @@ Variants for Chinese language
 
 # Metadata
 'metadata'          => 'メタデータ',
-'metadata-help'     => 'このファイルは、追加情報を含んでいます（おそらく、デジタルカメラやスキャナーが作成あるいはデジタル化し追加したもの）。
-このファイルが元の状態から変更されている場合、いくつかの項目は、修正されたファイルへ完全に反映されていないかもしれません。',
+'metadata-help'     => 'このファイルには、追加情報があります（おそらく、作成やデジタル化する際に使われたデジタルカメラやスキャナーによって追加されたものです）。
+このファイルが元の状態から変更されている場合、いくつかの項目は、修正されたファイルを完全に反映していないかもしれません。',
 'metadata-expand'   => '拡張項目を表示',
 'metadata-collapse' => '拡張項目を非表示',
 'metadata-fields'   => 'ここのメッセージにあるEXIFメタデータフィールドは、メタデータ表が折りたたまれている状態のときに画像ページに読み込まれます。
@@ -3249,48 +3250,48 @@ Variants for Chinese language
 * gpsaltitude',
 
 # EXIF tags
-'exif-imagewidth'                  => '幅',
-'exif-imagelength'                 => '高さ',
-'exif-bitspersample'               => 'コンポーネントごとのビット',
-'exif-compression'                 => '圧縮形式',
+'exif-imagewidth'                  => '画像の幅',
+'exif-imagelength'                 => '画像の高さ',
+'exif-bitspersample'               => '画像のビットの深さ',
+'exif-compression'                 => '圧縮の種類',
 'exif-photometricinterpretation'   => '画素構成',
 'exif-orientation'                 => '画像方向',
 'exif-samplesperpixel'             => 'コンポーネント数',
-'exif-planarconfiguration'         => 'データ格納形式',
-'exif-ycbcrsubsampling'            => 'CへのYの副次抽出率',
-'exif-ycbcrpositioning'            => 'YとCの位置',
-'exif-xresolution'                 => '水平解像度',
-'exif-yresolution'                 => '垂直解像度',
-'exif-stripoffsets'                => '画像データの場所',
-'exif-rowsperstrip'                => 'ストリップごとの行数',
-'exif-stripbytecounts'             => '圧縮されたストリップごとのバイト数',
+'exif-planarconfiguration'         => '画像データの並び',
+'exif-ycbcrsubsampling'            => 'YCCの画素構成 (Cの間引き率)',
+'exif-ycbcrpositioning'            => 'YCCの画素構成 (YとCの位置)',
+'exif-xresolution'                 => '画像の幅の解像度',
+'exif-yresolution'                 => '画像の高さの解像度',
+'exif-stripoffsets'                => '画像データのロケーション',
+'exif-rowsperstrip'                => '1ストリップごとの行の数',
+'exif-stripbytecounts'             => 'ストリップの総バイト数',
 'exif-jpeginterchangeformat'       => 'JPEGのSOIへのオフセット',
 'exif-jpeginterchangeformatlength' => 'JPEGデータのバイト数',
 'exif-whitepoint'                  => '参照白色点の色度座標値',
 'exif-primarychromaticities'       => '原色の色度座標値',
 'exif-ycbcrcoefficients'           => '色変換マトリックス係数',
-'exif-referenceblackwhite'         => '参照黒色点値・参照白色点値',
+'exif-referenceblackwhite'         => '参照黒色点値と参照白色点値',
 'exif-datetime'                    => 'ファイル変更日時',
 'exif-imagedescription'            => '画像の説明',
-'exif-make'                        => '画像入力機器のメーカー',
-'exif-model'                       => '画像入力機器の機種',
-'exif-software'                    => 'ファームウェアのバージョン',
-'exif-artist'                      => '作成者',
-'exif-copyright'                   => '著作権者',
+'exif-make'                        => '画像入力機器のメーカ名',
+'exif-model'                       => '画像入力機器のモデル名',
+'exif-software'                    => '使用ソフトウェア名',
+'exif-artist'                      => '作者名',
+'exif-copyright'                   => '撮影著作権者/編集著作権者',
 'exif-exifversion'                 => 'Exifバージョン',
 'exif-flashpixversion'             => '対応フラッシュピックスバージョン',
-'exif-colorspace'                  => '色空間',
-'exif-componentsconfiguration'     => '各コンポーネントの構成',
+'exif-colorspace'                  => '色空間情報',
+'exif-componentsconfiguration'     => '各コンポーネントの意味',
 'exif-compressedbitsperpixel'      => '画像圧縮モード',
-'exif-pixelydimension'             => '画像の幅',
-'exif-pixelxdimension'             => '画像の高さ',
-'exif-usercomment'                 => '利用者のコメント',
+'exif-pixelydimension'             => '実効画像の幅',
+'exif-pixelxdimension'             => '実効画像の高さ',
+'exif-usercomment'                 => 'ユーザコメント',
 'exif-relatedsoundfile'            => '関連音声ファイル',
-'exif-datetimeoriginal'            => '画像データ生成日時',
-'exif-datetimedigitized'           => 'デジタルデータ作成日時',
-'exif-subsectime'                  => 'ファイル変更日時（秒未満）',
-'exif-subsectimeoriginal'          => '画像データ生成日時（秒未満）',
-'exif-subsectimedigitized'         => 'デジタルデータ作成日時（秒未満）',
+'exif-datetimeoriginal'            => '原画像データの生成日時',
+'exif-datetimedigitized'           => 'デジタルデータの作成日時',
+'exif-subsectime'                  => 'ファイル変更日時(1秒未満)',
+'exif-subsectimeoriginal'          => '原画像データの生成日時(1秒未満)',
+'exif-subsectimedigitized'         => 'デジタルデータの作成日時(1秒未満)',
 'exif-exposuretime'                => '露出時間',
 'exif-exposuretime-format'         => '$1秒 ($2)',
 'exif-fnumber'                     => 'F値',
@@ -3299,68 +3300,68 @@ Variants for Chinese language
 'exif-isospeedratings'             => 'ISOスピードレート',
 'exif-shutterspeedvalue'           => 'シャッタースピード',
 'exif-aperturevalue'               => '絞り値',
-'exif-brightnessvalue'             => '明るさ',
+'exif-brightnessvalue'             => '輝度値',
 'exif-exposurebiasvalue'           => '露出補正値',
 'exif-maxaperturevalue'            => 'レンズ最小F値',
 'exif-subjectdistance'             => '被写体距離',
 'exif-meteringmode'                => '測光方式',
 'exif-lightsource'                 => '光源',
 'exif-flash'                       => 'フラッシュ',
-'exif-focallength'                 => 'レンズの焦点距離',
-'exif-subjectarea'                 => '主要被写体の位置',
+'exif-focallength'                 => 'レンズ焦点距離',
+'exif-subjectarea'                 => '被写体領域',
 'exif-flashenergy'                 => 'フラッシュ強度',
-'exif-focalplanexresolution'       => '水平方向の焦点面解像度',
-'exif-focalplaneyresolution'       => '垂直方向の焦点面解像度',
-'exif-focalplaneresolutionunit'    => '焦点面解像度の単位',
-'exif-subjectlocation'             => '被写体の場所',
+'exif-focalplanexresolution'       => '焦点面の幅の解像度',
+'exif-focalplaneyresolution'       => '焦点面の高さの解像度',
+'exif-focalplaneresolutionunit'    => '焦点面解像度単位',
+'exif-subjectlocation'             => '被写体位置',
 'exif-exposureindex'               => '露出インデックス',
 'exif-sensingmethod'               => 'センサー方式',
 'exif-filesource'                  => 'ファイルソース',
 'exif-scenetype'                   => 'シーンタイプ',
-'exif-customrendered'              => '画像処理',
+'exif-customrendered'              => '個別画像処理',
 'exif-exposuremode'                => '露出モード',
 'exif-whitebalance'                => 'ホワイトバランス',
 'exif-digitalzoomratio'            => 'デジタルズーム倍率',
-'exif-focallengthin35mmfilm'       => 'レンズの焦点距離（35mmフィルム換算）',
-'exif-scenecapturetype'            => '被写体の種別',
-'exif-gaincontrol'                 => 'ゲインコントロール',
-'exif-contrast'                    => 'コントラスト',
-'exif-saturation'                  => '彩度',
-'exif-sharpness'                   => 'シャープネス',
-'exif-devicesettingdescription'    => '機器設定',
-'exif-subjectdistancerange'        => '被写体距離の範囲',
-'exif-imageuniqueid'               => 'ユニーク画像ID',
+'exif-focallengthin35mmfilm'       => '35mm換算レンズ焦点距離',
+'exif-scenecapturetype'            => '撮影シーンタイプ',
+'exif-gaincontrol'                 => 'ゲイン制御',
+'exif-contrast'                    => '撮影コントラスト',
+'exif-saturation'                  => '撮影彩度',
+'exif-sharpness'                   => '撮影シャープネス',
+'exif-devicesettingdescription'    => '撮影条件記述情報',
+'exif-subjectdistancerange'        => '被写体距離レンジ',
+'exif-imageuniqueid'               => '画像ユニークID',
 'exif-gpsversionid'                => 'GPSタグのバージョン',
-'exif-gpslatituderef'              => '北緯/南緯',
+'exif-gpslatituderef'              => '北緯または南緯',
 'exif-gpslatitude'                 => '緯度',
-'exif-gpslongituderef'             => '東経/西経',
+'exif-gpslongituderef'             => '東経または西経',
 'exif-gpslongitude'                => '経度',
 'exif-gpsaltituderef'              => '高度の基準',
 'exif-gpsaltitude'                 => '高度',
-'exif-gpstimestamp'                => 'GPS時刻（原子時計）',
+'exif-gpstimestamp'                => 'GPS時間(原子時計の時間)',
 'exif-gpssatellites'               => '測位に用いた衛星信号',
 'exif-gpsstatus'                   => 'GPS受信機の状態',
-'exif-gpsmeasuremode'              => 'GPS測位方法',
-'exif-gpsdop'                      => '測位精度',
+'exif-gpsmeasuremode'              => 'GPSの測位方法',
+'exif-gpsdop'                      => '測位の信頼性',
 'exif-gpsspeedref'                 => '速度の単位',
 'exif-gpsspeed'                    => '速度',
-'exif-gpstrackref'                 => '進行方向の基準',
+'exif-gpstrackref'                 => '進行方向の単位',
 'exif-gpstrack'                    => '進行方向',
 'exif-gpsimgdirectionref'          => '撮影方向の基準',
-'exif-gpsimgdirection'             => '撮影方向',
-'exif-gpsmapdatum'                 => '測地系',
-'exif-gpsdestlatituderef'          => '目的地の北緯/南緯',
+'exif-gpsimgdirection'             => '撮影した画像の方向',
+'exif-gpsmapdatum'                 => '測位に用いた地図データ',
+'exif-gpsdestlatituderef'          => '目的地の北緯または南緯',
 'exif-gpsdestlatitude'             => '目的地の緯度',
-'exif-gpsdestlongituderef'         => '目的地の東経/西経',
+'exif-gpsdestlongituderef'         => '目的地の東経または西経',
 'exif-gpsdestlongitude'            => '目的地の経度',
-'exif-gpsdestbearingref'           => '目的地の方角の基準',
-'exif-gpsdestbearing'              => '目的地の方角',
+'exif-gpsdestbearingref'           => '目的地の方角の単位',
+'exif-gpsdestbearing'              => '目的の方角',
 'exif-gpsdestdistanceref'          => '目的地までの距離の単位',
 'exif-gpsdestdistance'             => '目的地までの距離',
-'exif-gpsprocessingmethod'         => 'GPS処理方法',
-'exif-gpsareainformation'          => 'GPSエリア名',
-'exif-gpsdatestamp'                => 'GPS測位日時',
-'exif-gpsdifferential'             => 'ディファレンシャル補正',
+'exif-gpsprocessingmethod'         => '測位方式の名称',
+'exif-gpsareainformation'          => '測位地点の名称',
+'exif-gpsdatestamp'                => 'GPS日付',
+'exif-gpsdifferential'             => 'GPS補正測位',
 'exif-jpegfilecomment'             => 'JPEGファイルのコメント',
 'exif-keywords'                    => 'キーワード',
 'exif-worldregioncreated'          => 'この写真が撮られた大陸や地域',
@@ -3389,7 +3390,7 @@ Variants for Chinese language
 'exif-contact'                     => '連絡先情報',
 'exif-writer'                      => '記入者',
 'exif-languagecode'                => '言語',
-'exif-iimversion'                  => 'IIM バージョン',
+'exif-iimversion'                  => 'IIMバージョン',
 'exif-iimcategory'                 => 'カテゴリー',
 'exif-iimsupplementalcategory'     => '補足カテゴリー',
 'exif-datetimeexpires'             => '使用期限',
@@ -3428,10 +3429,13 @@ Variants for Chinese language
 
 # EXIF attributes
 'exif-compression-1' => '無圧縮',
+'exif-compression-2' => 'CCITT Group 3 1次元修正ハフマン連長符号化',
+'exif-compression-3' => 'CCITT Group 3 ファックス符号化',
+'exif-compression-4' => 'CCITT Group 4 ファックス符号化',
 'exif-compression-6' => 'JPEG (旧式)',
 
 'exif-copyrighted-true'  => '著作権あり',
-'exif-copyrighted-false' => 'パブリック・ドメイン',
+'exif-copyrighted-false' => 'パブリックドメイン',
 
 'exif-unknowndate' => '不明な日付',
 
@@ -3449,17 +3453,17 @@ Variants for Chinese language
 
 'exif-colorspace-65535' => 'その他',
 
-'exif-componentsconfiguration-0' => 'なし',
+'exif-componentsconfiguration-0' => '存在しない',
 
 'exif-exposureprogram-0' => '未定義',
 'exif-exposureprogram-1' => 'マニュアル',
 'exif-exposureprogram-2' => 'ノーマルプログラム',
-'exif-exposureprogram-3' => '露出優先',
-'exif-exposureprogram-4' => 'シャッター速度優先',
-'exif-exposureprogram-5' => 'クリエイティブプログラム',
-'exif-exposureprogram-6' => 'アクションプログラム',
-'exif-exposureprogram-7' => 'ポートレイトモード（近景）',
-'exif-exposureprogram-8' => 'ランドスケープモード（遠景）',
+'exif-exposureprogram-3' => '絞り優先',
+'exif-exposureprogram-4' => 'シャッター優先',
+'exif-exposureprogram-5' => 'クリエイティブプログラム(被写界を深度方向に偏らせる)',
+'exif-exposureprogram-6' => 'アクションプログラム(シャッタースピードを高速側に偏らせる)',
+'exif-exposureprogram-7' => 'ポートレイトモード(近接撮影、フォーカスを背景から外す)',
+'exif-exposureprogram-8' => 'ランドスケープモード(風景撮影、フォーカスを背景に合わせる)',
 
 'exif-subjectdistance-value' => '$1メートル',
 
@@ -3470,7 +3474,7 @@ Variants for Chinese language
 'exif-meteringmode-4'   => 'マルチスポット',
 'exif-meteringmode-5'   => '分割測光',
 'exif-meteringmode-6'   => '部分測光',
-'exif-meteringmode-255' => 'その他',
+'exif-meteringmode-255' => 'その他の測光形式',
 
 'exif-lightsource-0'   => '不明',
 'exif-lightsource-1'   => '昼光',
@@ -3480,27 +3484,27 @@ Variants for Chinese language
 'exif-lightsource-9'   => '晴天',
 'exif-lightsource-10'  => '曇天',
 'exif-lightsource-11'  => '日陰',
-'exif-lightsource-12'  => '昼光色蛍光灯 (D 5700 - 7100K)',
-'exif-lightsource-13'  => '昼白色蛍光灯 (N 4600 - 5400K)',
-'exif-lightsource-14'  => '白色蛍光灯 (W 3900 - 4500K)',
-'exif-lightsource-15'  => '温白色蛍光灯 (WW 3200 - 3700K)',
+'exif-lightsource-12'  => '昼光色蛍光灯 (D:5700 - 7100K)',
+'exif-lightsource-13'  => '昼白色蛍光灯 (N:4600 - 5400K)',
+'exif-lightsource-14'  => '白色蛍光灯 (W:3900 - 4500K)',
+'exif-lightsource-15'  => '温白色蛍光灯 (WW:3200 - 3700K)',
 'exif-lightsource-17'  => '標準光A',
 'exif-lightsource-18'  => '標準光B',
 'exif-lightsource-19'  => '標準光C',
 'exif-lightsource-24'  => 'ISOスタジオタングステン',
-'exif-lightsource-255' => 'その他',
+'exif-lightsource-255' => 'その他の光源',
 
 # Flash modes
-'exif-flash-fired-0'    => 'フラッシュが光りませんでした',
-'exif-flash-fired-1'    => 'フラッシュが光りました',
-'exif-flash-return-0'   => 'ストロボ反応検知機能がありません',
-'exif-flash-return-2'   => 'ストロボ反応光が検知されませんでした',
-'exif-flash-return-3'   => 'ストロボ反応光が検知されました',
-'exif-flash-mode-1'     => '強制フラッシュ',
-'exif-flash-mode-2'     => '強制フラッシュ禁止',
-'exif-flash-mode-3'     => '自動モード',
-'exif-flash-function-1' => 'フラッシュ機能がありません',
-'exif-flash-redeye-1'   => '赤目防止モード',
+'exif-flash-fired-0'    => 'ストロボ発光せず',
+'exif-flash-fired-1'    => 'ストロボ発光',
+'exif-flash-return-0'   => 'ストロボのリターン検出機能なし',
+'exif-flash-return-2'   => 'ストロボのリターン検出されず',
+'exif-flash-return-3'   => 'ストロボのリターン検出',
+'exif-flash-mode-1'     => '強制発光モード',
+'exif-flash-mode-2'     => '強制非発光モード',
+'exif-flash-mode-3'     => '自動発光モード',
+'exif-flash-function-1' => 'ストロボ機能無し',
+'exif-flash-redeye-1'   => '赤目軽減有り',
 
 'exif-focalplaneresolutionunit-2' => 'インチ',
 
@@ -3516,26 +3520,26 @@ Variants for Chinese language
 
 'exif-scenetype-1' => '直接撮影された画像',
 
-'exif-customrendered-0' => '通常',
-'exif-customrendered-1' => 'カスタム',
+'exif-customrendered-0' => '通常処理',
+'exif-customrendered-1' => '特殊処理',
 
-'exif-exposuremode-0' => '自動',
-'exif-exposuremode-1' => 'マニュアル',
+'exif-exposuremode-0' => '露出自動',
+'exif-exposuremode-1' => '露出マニュアル',
 'exif-exposuremode-2' => 'オートブラケット',
 
-'exif-whitebalance-0' => '自動',
-'exif-whitebalance-1' => 'マニュアル',
+'exif-whitebalance-0' => 'ホワイトバランス自動',
+'exif-whitebalance-1' => 'ホワイトバランスマニュアル',
 
 'exif-scenecapturetype-0' => '標準',
 'exif-scenecapturetype-1' => '風景',
 'exif-scenecapturetype-2' => '人物',
 'exif-scenecapturetype-3' => '夜景',
 
-'exif-gaincontrol-0' => 'なし',
-'exif-gaincontrol-1' => '弱増感',
-'exif-gaincontrol-2' => '強増感',
-'exif-gaincontrol-3' => '弱減感',
-'exif-gaincontrol-4' => '強減感',
+'exif-gaincontrol-0' => '無し',
+'exif-gaincontrol-1' => '弱い増感',
+'exif-gaincontrol-2' => '強い増感',
+'exif-gaincontrol-3' => '弱い減感',
+'exif-gaincontrol-4' => '強い減感',
 
 'exif-contrast-0' => '標準',
 'exif-contrast-1' => '軟調',
@@ -3546,8 +3550,8 @@ Variants for Chinese language
 'exif-saturation-2' => '高彩度',
 
 'exif-sharpness-0' => '標準',
-'exif-sharpness-1' => '弱',
-'exif-sharpness-2' => '強',
+'exif-sharpness-1' => '弱い',
+'exif-sharpness-2' => '強い',
 
 'exif-subjectdistancerange-0' => '不明',
 'exif-subjectdistancerange-1' => 'マクロ',
@@ -3567,14 +3571,14 @@ Variants for Chinese language
 'exif-gpsaltitude-below-sealevel' => '海抜マイナス $1 {{PLURAL:$1|メートル}}',
 
 'exif-gpsstatus-a' => '測位中',
-'exif-gpsstatus-v' => '未測位',
+'exif-gpsstatus-v' => '未測位(中断中)',
 
-'exif-gpsmeasuremode-2' => '2次元測位',
-'exif-gpsmeasuremode-3' => '3次元測位',
+'exif-gpsmeasuremode-2' => '2次元測位中',
+'exif-gpsmeasuremode-3' => '3次元測位中',
 
 # Pseudotags used for GPSSpeedRef
-'exif-gpsspeed-k' => 'キロメートル毎時',
-'exif-gpsspeed-m' => 'マイル毎時',
+'exif-gpsspeed-k' => 'キロメール/時',
+'exif-gpsspeed-m' => 'マイル/時',
 'exif-gpsspeed-n' => 'ノット',
 
 # Pseudotags used for GPSDestDistanceRef
@@ -3594,7 +3598,10 @@ Variants for Chinese language
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => '真方位',
-'exif-gpsdirection-m' => '磁方位',
+'exif-gpsdirection-m' => '磁気方位',
+
+'exif-ycbcrpositioning-1' => '中心',
+'exif-ycbcrpositioning-2' => '一致',
 
 'exif-dc-contributor' => '貢献者',
 'exif-dc-coverage'    => 'メディアの空間的または時間的範囲',

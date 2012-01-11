@@ -54,6 +54,7 @@
  * @author Pertile
  * @author Piolinfax
  * @author Platonides
+ * @author PoLuX124
  * @author Remember the dot
  * @author Richard Wolf VI
  * @author Sanbec
@@ -975,8 +976,8 @@ o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 
 'blocked-notice-logextract'        => 'Este usuario está actualmente bloqueado.
 La última entrada del registro de bloqueos se proporciona debajo para mayor referencia:',
 'clearyourcache'                   => "'''Nota:''' después de guardar, quizás necesites refrescar la caché de tu navegador para ver los cambios.
-* '''Firefox / Safari:''' Mantén presionada ''Mayús'' mientras pulsas el botón ''Actualizar'', o presiona ''Ctrl+F5'' o ''Ctrl+R'' (''Comando+R'' en Mac)
-* '''Google Chrome:''' presiona ''Ctrl+Shift+R'' (''Comando+Mayús+R'' en Mac)
+* '''Firefox / Safari:''' Mantén presionada ''Mayús'' mientras pulsas el botón ''Actualizar'', o presiona ''Ctrl+F5'' o ''Ctrl+R'' (''⌘+R'' en Mac)
+* '''Google Chrome:''' presiona ''Ctrl+Shift+R'' (''⌘+Mayús+R'' en Mac)
 * '''Internet Explorer:''' mantén presionada ''Ctrl'' mientras pulsas ''Actualizar'', o presiona ''Ctrl+F5''
 * '''Konqueror:''' pulsa ''Recargar'' o presiona ''F5''
 * '''Opera:''' vacía la caché en ''Herramientas → Preferencias''",
@@ -1506,12 +1507,12 @@ Tu dirección de correo-e no se revela cuando otros usuarios te contactan.',
 'group-suppress'      => 'Supresores de ediciones',
 'group-all'           => '(todos)',
 
-'group-user-member'          => 'usuario',
-'group-autoconfirmed-member' => 'usuario autoconfirmado',
+'group-user-member'          => '{{GENDER:$1|usuario|usuaria}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|usuario autoconfirmado|usuaria autoconfirmada}}',
 'group-bot-member'           => 'bot',
-'group-sysop-member'         => 'administrador',
+'group-sysop-member'         => '{{GENDER:$1|administrador|administradora}}',
 'group-bureaucrat-member'    => 'burócrata',
-'group-suppress-member'      => 'supresor de ediciones',
+'group-suppress-member'      => '{{GENDER:$1|supresor|supresora}} de ediciones',
 
 'grouppage-user'          => '{{ns:project}}:Usuarios',
 'grouppage-autoconfirmed' => '{{ns:project}}:Usuarios autoconfirmados',
@@ -1858,7 +1859,7 @@ Para óptima seguridad, img_auth.php está desactivado.',
 
 # Special:ListFiles
 'listfiles-summary'     => 'Esta página especial muestra todos los archivos subidos.
-Cuando es filytrado por el usuario, sólo los archivos cargados por el usuario se muestran en su versión más reciente.',
+Cuando es filtrado por el usuario, sólo los archivos cargados por el usuario se muestran en su versión más reciente.',
 'listfiles_search_for'  => 'Buscar por nombre de imagen:',
 'imgfile'               => 'archivo',
 'listfiles'             => 'Lista de archivos',
@@ -2085,7 +2086,7 @@ Por favor note que otros sitios web pueden vincular a un archivo con un URL dire
 
 # Special:Log
 'specialloguserlabel'  => 'Usuario:',
-'speciallogtitlelabel' => 'Título:',
+'speciallogtitlelabel' => 'Objetivo (título o usuario):',
 'log'                  => 'Registros',
 'all-logs-page'        => 'Todos los registros públicos',
 'alllogstext'          => 'Vista combinada de todos los registros de {{SITENAME}}.
@@ -2101,7 +2102,7 @@ Puedes filtrar la vista seleccionando un tipo de registro, el nombre del usuario
 'allpagesfrom'      => 'Mostrar páginas que empiecen por:',
 'allpagesto'        => 'Mostrar páginas terminadas con:',
 'allarticles'       => 'Todos los artículos',
-'allinnamespace'    => 'Todas las páginas (espacio $1)',
+'allinnamespace'    => 'Todas las páginas (espacio de nombres $1)',
 'allnotinnamespace' => 'Todas las páginas que no están en el espacio de nombres $1',
 'allpagesprev'      => 'Anterior',
 'allpagesnext'      => 'Siguiente',
@@ -2843,7 +2844,7 @@ No hay un directorio temporal.',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revisión|revisiones}} desde $2',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'             => 'Tu página de usuario',
+'tooltip-pt-userpage'             => 'Tu página de {{gender:|usuario|usuaria}}',
 'tooltip-pt-anonuserpage'         => 'La página de usuario de la IP desde la que editas',
 'tooltip-pt-mytalk'               => 'Tu página de discusión',
 'tooltip-pt-anontalk'             => 'Discusión sobre ediciones hechas desde esta dirección IP',

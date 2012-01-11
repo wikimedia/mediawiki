@@ -997,8 +997,8 @@ Controleer of u deze pagina wel wilt aanmaken of bewerken.',
 'blocked-notice-logextract'        => 'Deze gebruiker is op het moment geblokkeerd.
 De laatste regel uit het blokkeerlogboek wordt hieronder ter referentie weergegeven:',
 'clearyourcache'                   => "'''Let op!''' Nadat u de wijzigingen hebt opgeslagen is het wellicht nodig uw browsercache te legen.
-* '''Firefox / Safari:''' houd ''Shift'' ingedrukt terwijl u op ''Vernieuwen'' klikt of druk op ''Ctrl-F5'' of ''Ctrl-R'' (''Command-R'' op een Mac)
-* '''Google Chrome:''' druk op ''Ctrl-Shift-R'' (''Command-Shift-R'' op een Mac)
+* '''Firefox / Safari:''' houd ''Shift'' ingedrukt terwijl u op ''Vernieuwen'' klikt of druk op ''Ctrl-F5'' of ''Ctrl-R'' (''⌘-Shift-R'' op een Mac)
+* '''Google Chrome:''' druk op ''Ctrl-Shift-R'' (''⌘-Shift-R'' op een Mac)
 * '''Internet Explorer:''' houd ''Ctrl'' ingedrukt terwijl u op ''Vernieuwen'' klikt of druk op ''Ctrl-F5''
 * '''Konqueror: '''klik op ''Reload'' of druk op ''F5''
 * '''Opera:''' leeg uw cache in ''Extra → Voorkeuren''",
@@ -1543,12 +1543,12 @@ Deze informatie is zichtbaar voor andere gebruikers.',
 'group-suppress'      => 'toezichthouders',
 'group-all'           => '(iedereen)',
 
-'group-user-member'          => 'gebruiker',
-'group-autoconfirmed-member' => 'autobevestigde gebruiker',
-'group-bot-member'           => 'bot',
-'group-sysop-member'         => 'beheerder',
-'group-bureaucrat-member'    => 'bureaucraat',
-'group-suppress-member'      => 'toezichthouder',
+'group-user-member'          => '{{GENDER:$1|gebruiker}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|autobevestigde gebruiker}}',
+'group-bot-member'           => '{{GENDER:$1|bot}}',
+'group-sysop-member'         => '{{GENDER:$1|beheerder}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|bureaucraat}}',
+'group-suppress-member'      => '{{GENDER:$1|toezichthouder}}',
 
 'grouppage-user'          => '{{ns:project}}:Gebruikers',
 'grouppage-autoconfirmed' => '{{ns:project}}:Geregistreerde gebruikers',
@@ -1585,7 +1585,7 @@ Deze informatie is zichtbaar voor andere gebruikers.',
 'right-deleterevision'        => "Versies van pagina's verbergen",
 'right-deletedhistory'        => 'Verwijderde versies bekijken, zonder te kunnen zien wat verwijderd is',
 'right-deletedtext'           => 'Verwijderde tekst en wijzigingen tussen verwijderde versies bekijken',
-'right-browsearchive'         => "Verwijderde pagina's bekijken",
+'right-browsearchive'         => "Verwijderde pagina's zoeken",
 'right-undelete'              => "Verwijderde pagina's terugplaatsen",
 'right-suppressrevision'      => 'Verborgen versies bekijken en terugplaatsen',
 'right-suppressionlog'        => 'Niet-publieke logboeken bekijken',
@@ -1640,7 +1640,7 @@ Deze informatie is zichtbaar voor andere gebruikers.',
 'action-reupload'             => 'dit bestaande bestand te overschrijven',
 'action-reupload-shared'      => 'dit bestand te uploaden, terwijl er al een bestand met dezelfde naam in de gedeelde mediadatabank staat',
 'action-upload_by_url'        => 'dit bestand vanaf een URL te uploaden',
-'action-writeapi'             => 'de via de API te bewerken',
+'action-writeapi'             => 'via de API te bewerken',
 'action-delete'               => 'deze pagina te verwijderen',
 'action-deleterevision'       => 'deze versie te verwijderen',
 'action-deletedhistory'       => 'de verwijderde versies van deze pagina te bekijken',
@@ -2239,7 +2239,7 @@ Ondersteunde protocollen: <tt>$1</tt> (voeg deze niet toe in uw zoekopdracht).',
 'listgrouprights'                      => 'Rechten van gebruikersgroepen',
 'listgrouprights-summary'              => 'Op deze pagina staan de gebruikersgroepen in deze wiki beschreven, met hun bijbehorende rechten.
 Er kan [[{{MediaWiki:Listgrouprights-helppage}}|extra informatie]] over individuele rechten aanwezig zijn.',
-'listgrouprights-key'                  => '* <span class="listgrouprights-granted">Toewezen recht</span>
+'listgrouprights-key'                  => '* <span class="listgrouprights-granted">Toegewezen recht</span>
 * <span class="listgrouprights-revoked">Ingetrokken recht</span>',
 'listgrouprights-group'                => 'Groep',
 'listgrouprights-rights'               => 'Rechten',
@@ -2969,9 +2969,9 @@ De tijdelijke map is niet aanwezig.',
 'tooltip-search'                  => '{{SITENAME}} doorzoeken',
 'tooltip-search-go'               => 'Naar een pagina met deze naam gaan als die bestaat',
 'tooltip-search-fulltext'         => "Alle pagina's op deze tekst doorzoeken",
-'tooltip-p-logo'                  => 'Hoofdpaginalogo',
-'tooltip-n-mainpage'              => 'Ga naar de Hoofdpagina',
-'tooltip-n-mainpage-description'  => 'Ga naar de Hoofdpagina',
+'tooltip-p-logo'                  => 'Naar de hoofdpagina gaan',
+'tooltip-n-mainpage'              => 'Naar de hoofdpagina gaan',
+'tooltip-n-mainpage-description'  => 'Naar de hoofdpagina gaan',
 'tooltip-n-portal'                => 'Informatie over het project: wie, wat, hoe en waarom',
 'tooltip-n-currentevents'         => 'Achtergrondinformatie over actuele zaken',
 'tooltip-n-recentchanges'         => 'De lijst van recente wijzigingen in deze wiki.',
@@ -3774,7 +3774,7 @@ U kunt ook [[Special:EditWatchlist|het standaard bewerkingsscherm gebruiken]].',
 'duplicate-defaultsort' => 'Waarschuwing: De standaardsortering "$2" krijgt voorrang voor de sortering "$1".',
 
 # Special:Version
-'version'                       => 'Softwareversie',
+'version'                       => 'Versie',
 'version-extensions'            => 'Geïnstalleerde uitbreidingen',
 'version-specialpages'          => "Speciale pagina's",
 'version-parserhooks'           => 'Parserhooks',

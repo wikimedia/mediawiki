@@ -1098,12 +1098,12 @@ Həmçinin kimliyinizi gostərmədən belə, başqalarının sizinlə istifadə�
 'group-suppress'      => 'Müfəttişlər',
 'group-all'           => '(bütün)',
 
-'group-user-member'          => 'İstifadəçi',
+'group-user-member'          => '{{GENDER:$1|istifadəçi}}',
 'group-autoconfirmed-member' => 'Avtotəsdiqlənmiş istifadəçilər',
-'group-bot-member'           => 'Bot',
-'group-sysop-member'         => 'İdarəçi',
-'group-bureaucrat-member'    => 'Bürokrat',
-'group-suppress-member'      => 'Təftişçi',
+'group-bot-member'           => '{{GENDER:$1|bot}}',
+'group-sysop-member'         => '{{GENDER:$1|idarəçi}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|bürokrat}}',
+'group-suppress-member'      => '{{GENDER:$1|oversight}}',
 
 'grouppage-user'          => '{{ns:project}}:İstifadəçilər',
 'grouppage-autoconfirmed' => '{{ns:project}}:Avtotəsdiqlənmiş istifadəçilər',

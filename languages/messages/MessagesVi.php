@@ -476,7 +476,7 @@ $messages = array(
 'view'              => 'Xem',
 'edit'              => 'Sửa đổi',
 'create'            => 'Tạo',
-'editthispage'      => 'Sửa trang này',
+'editthispage'      => 'Sửa đổi trang này',
 'create-this-page'  => 'Tạo trang này',
 'delete'            => 'Xóa',
 'deletethispage'    => 'Xóa trang này',
@@ -757,7 +757,7 @@ Hãy nhập một địa chỉ có định dạng đúng hoặc bỏ trống ô 
 
 Xin hãy bỏ qua thông báo này nếu tài khoản này không phải do bạn tạo ra.',
 'usernamehasherror'          => 'Tên người dùng không thể chứa dấu rào',
-'login-throttled'            => 'Bạn đã thử quá nhiều mật khẩu của tài khoản này
+'login-throttled'            => 'Bạn đã thử quá nhiều mật khẩu của tài khoản này.
 Xin hãy đợi chốc lát rồi thử lại.',
 'login-abort-generic'        => 'Thất bại khi đăng nhập',
 'loginlanguagelabel'         => 'Ngôn ngữ: $1',
@@ -920,12 +920,12 @@ hoặc <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE
 'userpage-userdoesnotexist'        => 'Tài khoản mang tên “<nowiki>$1</nowiki>” chưa được đăng ký. Xin hãy kiểm tra lại nếu bạn muốn tạo/sửa trang này.',
 'userpage-userdoesnotexist-view'   => 'Tài khoản “$1” chưa được đăng ký.',
 'blocked-notice-logextract'        => 'Người dùng này hiện đang bị cấm sửa đổi. Nhật trình cấm gần nhất được ghi ở dưới để tiện theo dõi:',
-'clearyourcache'                   => "'''Ghi chú:''' Sau khi lưu trang, có thể bạn sẽ phải xóa bộ nhớ đệm của trình duyệt để xem các thay đổi.
-* '''Firefox / Safari:''' giữ phím ''Shift'' trong khi nhấn ''Reload'' (''Tải lại''), hoặc nhấn tổ hợp ''Ctrl-F5'' hay ''Ctrl-R'' (<span title=\"Command\">⌘</span>R trên Mac)
-* '''Google Chrome:''' nhấn tổ hợp ''Ctrl-Shift-R'' (<span title=\"Shift\">⇧</span><span title=\"Command\">⌘</span>R trên Mac)
-* '''Internet Explorer:''' giữ phím ''Ctrl'' trong khi nhấn ''Refresh'', hoặc nhấn tổ hợp ''Ctrl-F5''
-* '''Konqueror:''' nhấn nút ''Reload'' hoặc nhấn ''F5''
-* '''Opera:''' xóa bộ nhớ đệm trong ''Tools → Preferences''",
+'clearyourcache'                   => "'''Chú ý:''' Sau khi lưu trang, có thể bạn sẽ phải xóa bộ nhớ đệm của trình duyệt để xem các thay đổi.
+* '''Firefox / Safari:''' Giữ phím ''Shift'' trong khi nhấn ''Reload'' (''Tải lại''), hoặc nhấn tổ hợp ''Ctrl-F5'' hay ''Ctrl-R'' (⌘R trên Mac)
+* '''Google Chrome:''' Nhấn tổ hợp ''Ctrl-Shift-R'' (⇧⌘R trên Mac)
+* '''Internet Explorer:''' Giữ phím ''Ctrl'' trong khi nhấn ''Refresh'', hoặc nhấn tổ hợp ''Ctrl-F5''
+* '''Konqueror:''' Nhấn nút ''Reload'' hoặc nhấn ''F5''
+* '''Opera:''' Xóa bộ nhớ đệm trong ''Tools → Preferences''",
 'usercssyoucanpreview'             => "'''Mẹo:''' Sử dụng nút “{{int:showpreview}}” để kiểm thử bản CSS của bạn trước khi lưu trang.",
 'userjsyoucanpreview'              => "'''Mẹo:''' Sử dụng nút “{{int:showpreview}}” để kiểm thử bản JS của bạn trước khi lưu trang.",
 'usercsspreview'                   => "'''Hãy nhớ rằng bạn chỉ đang xem thử trang CSS cá nhân của bạn.
@@ -1450,12 +1450,12 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'group-suppress'      => 'Giám sát viên',
 'group-all'           => '(tất cả)',
 
-'group-user-member'          => 'thành viên',
-'group-autoconfirmed-member' => 'thành viên tự động xác nhận',
-'group-bot-member'           => 'bot',
-'group-sysop-member'         => 'bảo quản viên',
-'group-bureaucrat-member'    => 'hành chính viên',
-'group-suppress-member'      => 'giám sát viên',
+'group-user-member'          => '{{GENDER:$1}}thành viên',
+'group-autoconfirmed-member' => '{{GENDER:$1}}thành viên tự động xác nhận',
+'group-bot-member'           => '{{GENDER:$1}}bot',
+'group-sysop-member'         => '{{GENDER:$1}}bảo quản viên',
+'group-bureaucrat-member'    => '{{GENDER:$1}}hành chính viên',
+'group-suppress-member'      => '{{GENDER:$1}}giám sát viên',
 
 'grouppage-user'          => '{{ns:project}}:Thành viên',
 'grouppage-autoconfirmed' => '{{ns:project}}:Thành viên tự xác nhận',
@@ -2178,9 +2178,8 @@ Có [[{{MediaWiki:Listgrouprights-helppage}}|thông tin thêm]] về từng nhó
 'watchnologin'         => 'Chưa đăng nhập',
 'watchnologintext'     => 'Bạn phải [[Special:UserLogin|đăng nhập]] mới sửa đổi được danh sách theo dõi.',
 'addwatch'             => 'Thêm vào danh sách theo dõi',
-'addedwatchtext'       => 'Trang “<nowiki>$1</nowiki>” đã được cho vào [[Special:Watchlist|danh sách theo dõi]]. Những sửa đổi đối với trang này và trang thảo luận của nó sẽ được liệt kê, và được <b>tô đậm</b> trong [[Special:RecentChanges|danh sách các thay đổi mới]].
-
-Nếu bạn muốn cho trang này ra khỏi danh sách theo dõi, nhấn vào "Ngừng theo dõi" ở trên.',
+'addedwatchtext'       => "Trang “[[:$1]]” đã vào [[Special:Watchlist|danh sách theo dõi]] của bạn.
+Những sửa đổi đối với trang này và trang thảo luận của nó sẽ được liệt kê và '''tô đậm''' trong [[Special:RecentChanges|danh sách các “Thay đổi gần đây”]] để dễ nhận ra.",
 'removewatch'          => 'Gỡ khỏi danh sách theo dõi',
 'removedwatchtext'     => 'Trang “[[:$1]]” đã được đưa ra khỏi [[Special:Watchlist|danh sách theo dõi]] của bạn.',
 'watch'                => 'Theo dõi',
@@ -3099,7 +3098,7 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 'exif-orientation'                 => 'Hướng',
 'exif-samplesperpixel'             => 'Số mẫu trên điểm ảnh',
 'exif-planarconfiguration'         => 'Cách xếp dữ liệu',
-'exif-ycbcrsubsampling'            => 'Tỉ lệ lấy mẫu con của Y so với C',
+'exif-ycbcrsubsampling'            => 'Tỷ lệ lấy mẫu con của Y so với C',
 'exif-ycbcrpositioning'            => 'Định vị Y và C',
 'exif-xresolution'                 => 'Phân giải theo chiều ngang',
 'exif-yresolution'                 => 'Phân giải theo chiều cao',
@@ -3164,7 +3163,7 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 'exif-customrendered'              => 'Sửa hình thủ công',
 'exif-exposuremode'                => 'Chế độ phơi sáng',
 'exif-whitebalance'                => 'Độ sáng trắng',
-'exif-digitalzoomratio'            => 'Tỉ lệ phóng lớn kỹ thuật số',
+'exif-digitalzoomratio'            => 'Tỷ lệ phóng lớn kỹ thuật số',
 'exif-focallengthin35mmfilm'       => 'Tiêu cự trong phim 35 mm',
 'exif-scenecapturetype'            => 'Kiểu chụp cảnh',
 'exif-gaincontrol'                 => 'Điều khiển cảnh',
@@ -3329,10 +3328,10 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 'exif-lightsource-9'   => 'Trời đẹp',
 'exif-lightsource-10'  => 'Trời mây',
 'exif-lightsource-11'  => 'Che nắng',
-'exif-lightsource-12'  => 'Nắng huỳnh quang (D 5700 – 7100K)',
-'exif-lightsource-13'  => 'Màu trắng huỳnh quang ban ngày (N 4600 – 5400K)',
-'exif-lightsource-14'  => 'Màu trắng mát huỳnh quang (W 3900 – 4500K)',
-'exif-lightsource-15'  => 'Màu trắng huỳnh quang (WW 3200 – 3700K)',
+'exif-lightsource-12'  => 'Nắng huỳnh quang (D 5700–7100 K)',
+'exif-lightsource-13'  => 'Màu trắng huỳnh quang ban ngày (N 4600–5400 K)',
+'exif-lightsource-14'  => 'Màu trắng mát huỳnh quang (W 3900–4500 K)',
+'exif-lightsource-15'  => 'Màu trắng huỳnh quang (WW 3200–3700 K)',
 'exif-lightsource-17'  => 'Ánh chuẩn A',
 'exif-lightsource-18'  => 'Ánh chuẩn B',
 'exif-lightsource-19'  => 'Ánh chuẩn C',
@@ -3618,7 +3617,7 @@ Xin hãy xác nhận bạn thực sự muốn tạo lại trang này.",
 'autosumm-blank'   => 'Tẩy trống trang',
 'autosumm-replace' => 'Thay cả nội dung bằng “$1”',
 'autoredircomment' => 'Đổi hướng đến [[$1]]',
-'autosumm-new'     => 'Tạo trang mới với nội dung ‘$1’',
+'autosumm-new'     => 'Tạo trang mới với nội dung “$1”',
 
 # Size units
 'size-kilobytes' => '$1 kB',

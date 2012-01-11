@@ -403,11 +403,11 @@ Por favor informa d'esto a un [[Special:ListUsers/sysop|alministrador]], anotand
 'internalerror_info'   => 'Error internu: $1',
 'fileappenderrorread'  => 'Nun se pudo lleer "$1" mientres s\'amestaba.',
 'fileappenderror'      => 'Nun se pudo amestar "$1" a "$2".',
-'filecopyerror'        => 'Nun se pudo copiar l\'archivu "$1" como "$2".',
+'filecopyerror'        => 'Nun se pudo copiar el ficheru "$1" como "$2".',
 'filerenameerror'      => 'Nun se pudo renomar l\'archivu "$1" como "$2".',
-'filedeleteerror'      => 'Nun se pudo esborrar l\'archivu "$1".',
+'filedeleteerror'      => 'Nun se pudo desaniciar el ficheru "$1".',
 'directorycreateerror' => 'Nun se pudo crear el direutoriu "$1".',
-'filenotfound'         => 'Nun se pudo atopar l\'archivu "$1".',
+'filenotfound'         => 'Nun se pudo atopar el ficheru "$1".',
 'fileexistserror'      => 'Nun se pue escribir nel archivu "$1": yá esiste',
 'unexpected'           => 'Valor inesperáu: "$1"="$2".',
 'formerror'            => 'Error: nun se pudo unviar el formulariu',
@@ -703,12 +703,12 @@ o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 
 'userpage-userdoesnotexist-view'   => 'La cuenta d\'usuariu "$1" nun ta rexistrada.',
 'blocked-notice-logextract'        => "Esti usuariu anguaño ta bloquiáu.
 La cabera entrada del rexistru de bloqueos s'ufre darréu pa referencia:",
-'clearyourcache'                   => "'''Nota:''' Llueu de salvar, seique tengas que llimpiar la caché del navegador pa ver los cambeos.
-*'''Firefox / Safari:''' caltién ''Mayús'' mentes calques en ''Recargar'', o calca ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' nún Mac)
-* '''Google Chrome:''' calca ''Ctrl-Mayús-R'' (''Command-Mayús-R'' nún Mac)
-* '''Internet Explorer:''' caltién ''Ctrl'' mentes calques ''Refrescar'', o calca ''Ctrl-F5''
-* '''Konqueror:''' calca nel botón ''Recargar'', o calca ''F5''
-* '''Opera:''' desanicia la caché en ''Ferramientes→Preferencies''",
+'clearyourcache'                   => "'''Nota:''' Llueu de salvar, seique tengas que llimpiar la caché del navegador pa ver los cambios.
+*'''Firefox / Safari:''' Caltién ''Mayús'' mentanto calques en ''Recargar'', o calca ''Ctrl-F5'' o ''Ctrl-R'' (''⌘-R'' nún Mac)
+* '''Google Chrome:''' Calca ''Ctrl-Mayús-R'' (''⌘-Mayús-R'' nún Mac)
+* '''Internet Explorer:''' Caltién ''Ctrl'' mentanto calques ''Refrescar'', o calca ''Ctrl-F5''
+* '''Konqueror:''' Calca nel botón ''Recargar'', o calca ''F5''
+* '''Opera:''' Desanicia la caché en ''Ferramientes→Preferencies''",
 'usercssyoucanpreview'             => "'''Conseyu:''' Usa'l botón \"{{int:showpreview}}\" pa probar el to nuevu CSS enantes de guardalu.",
 'userjsyoucanpreview'              => "'''Conseyu:''' Usa'l botón \"{{int:showpreview}}\" pa probar el to nuevu JavaScript enantes de guardalu.",
 'usercsspreview'                   => "'''Recuerda que namái tas previsualizando'l to CSS d'usuariu.'''
@@ -1233,12 +1233,12 @@ Esta información sedrá pública.",
 'group-suppress'      => 'Güeyadores',
 'group-all'           => '(toos)',
 
-'group-user-member'          => 'usuariu',
-'group-autoconfirmed-member' => 'usuariu autoconfirmáu',
-'group-bot-member'           => 'bot',
-'group-sysop-member'         => 'alministrador',
-'group-bureaucrat-member'    => 'burócrata',
-'group-suppress-member'      => 'güeyador',
+'group-user-member'          => '{{GENDER:$1|usuariu|usuaria}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|usuariu auto-confirmáu|usuaria auto-confirmada}}',
+'group-bot-member'           => '{{GENDER:$1|bot}}',
+'group-sysop-member'         => '{{GENDER:$1|alministrador|alministradora}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|burócrata}}',
+'group-suppress-member'      => '{{GENDER:$1|supervisor|supervisora}}',
 
 'grouppage-user'          => '{{ns:project}}:Usuarios',
 'grouppage-autoconfirmed' => '{{ns:project}}:Usuarios autoconfirmaos',
@@ -1616,7 +1616,7 @@ Al peñerar por usuariu, s'amuesa namái la cabera versión de los ficheros que 
 'imgfile'               => 'archivu',
 'listfiles'             => "Llista d'imáxenes",
 'listfiles_thumb'       => 'Miniatura',
-'listfiles_date'        => 'Fecha',
+'listfiles_date'        => 'Data',
 'listfiles_name'        => 'Nome',
 'listfiles_user'        => 'Usuariu',
 'listfiles_size'        => 'Tamañu',
@@ -1637,7 +1637,7 @@ Al peñerar por usuariu, s'amuesa namái la cabera versión de los ficheros que 
 'filehist-nothumb'          => 'Ensin miniatura',
 'filehist-user'             => 'Usuariu',
 'filehist-dimensions'       => 'Dimensiones',
-'filehist-filesize'         => 'Tamañu del archivu',
+'filehist-filesize'         => 'Tamañu del ficheru',
 'filehist-comment'          => 'Comentariu',
 'filehist-missing'          => 'Falta ficheru',
 'imagelinks'                => 'Usu del ficheru',
@@ -2379,7 +2379,7 @@ Pa ver los bloqueos qu'hai agora mesmo, mira na [[Special:BlockList|llista d'IP 
 'ip_range_toolarge'               => 'Nun se permiten bloqueos mayores de /$1.',
 'blockme'                         => 'Blóquiame',
 'proxyblocker'                    => 'Bloquiador de proxys',
-'proxyblocker-disabled'           => 'Esta función ta deshabilitada.',
+'proxyblocker-disabled'           => 'Esta función ta desactivada.',
 'proxyblockreason'                => "La to direición IP foi bloquiada porque ye un proxy abiertu. Por favor contauta col to proveedor de serviciones d'Internet o col to servicio d'asistencia téunica y infórmalos d'esti seriu problema de seguridá.",
 'proxyblocksuccess'               => 'Fecho.',
 'sorbsreason'                     => 'La to direición IP sal na llista de proxys abiertos en DNSBL usada por {{SITENAME}}.',
@@ -2583,7 +2583,7 @@ Guárdalu nel ordenador y xúbilu equí.",
 'imported-log-entries'       => 'Importao $1 {{PLURAL:$1|entrada del rexistru|entraes del rexistru}}.',
 'importfailed'               => 'Falló la importación: $1',
 'importunknownsource'        => "Triba d'orixe d'importación desconocida",
-'importcantopen'             => "Nun se pudo abrir l'archivu d'importación",
+'importcantopen'             => "Nun se pudo abrir el ficheru d'importación",
 'importbadinterwiki'         => 'Enllaz interwiki incorreutu',
 'importnotext'               => 'Vaciu o ensin testu',
 'importsuccess'              => '¡Importación finalizada!',
@@ -3396,7 +3396,7 @@ Por favor confirma que daveres quies volver a crear esta páxina.",
 'watchlistedit-normal-explain' => "Abaxo s'amuesen los títulos de la to llista de vixilancia.
 Pa desaniciar un títulu, marca la caxella d'al llau d'él, y calca \"{{int:Watchlistedit-normal-submit}}\".
 Tamién pues [[Special:EditWatchlist/raw|editar la llista en bruto]].",
-'watchlistedit-normal-submit'  => 'Eliminar títulos',
+'watchlistedit-normal-submit'  => 'Desaniciar títulos',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|Eliminóse un títulu|Elimináronse $1 títulos}} de la to llista de vixilancia:',
 'watchlistedit-raw-title'      => 'Editar la llista de vixilancia en bruto',
 'watchlistedit-raw-legend'     => 'Editar la llista de vixilancia en bruto',
@@ -3404,7 +3404,7 @@ Tamién pues [[Special:EditWatchlist/raw|editar la llista en bruto]].",
 N'acabando, calca \"{{int:Watchlistedit-raw-submit}}\".
 Tamién pues [[Special:EditWatchlist|usar l'editor estándar]].",
 'watchlistedit-raw-titles'     => 'Títulos:',
-'watchlistedit-raw-submit'     => 'Actualizar llista de vixilancia',
+'watchlistedit-raw-submit'     => 'Anovar llista de vixilancia',
 'watchlistedit-raw-done'       => 'La to llista de vixilancia foi actualizada.',
 'watchlistedit-raw-added'      => '{{PLURAL:$1|Añadióse un títulu|Añadiéronse $1 títulos}}:',
 'watchlistedit-raw-removed'    => '{{PLURAL:$1|Eliminóse ún títulu|Elimináronse $1 títulos}}:',

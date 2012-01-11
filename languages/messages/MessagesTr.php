@@ -20,6 +20,7 @@
  * @author Karduelis
  * @author Katpatuka
  * @author Khutuck
+ * @author LuCKY
  * @author Mach
  * @author Manco Capac
  * @author Metal Militia
@@ -33,6 +34,7 @@
  * @author Szoszv
  * @author Tarikozket
  * @author Tarkovsky
+ * @author Universal Life
  * @author Urhixidur
  * @author Uğur Başak
  * @author Vito Genovese
@@ -700,7 +702,7 @@ Verilen sebep: ''$2''.",
 
 Şimdi kimliğinizi belirtmeksizin {{SITENAME}} sitesini kullanmaya devam edebilirsiniz, ya da [[Special:UserLogin|yeniden oturum açabilirsiniz]] (ister aynı kullanıcı adıyla, ister başka bir kullanıcı adıyla).
 Web tarayıcınızın önbelleğini temizleyene kadar bazı sayfalar sanki hala oturumunuz açıkmış gibi görünebilir.",
-'welcomecreation'            => '== Hoşgeldiniz, $1! ==
+'welcomecreation'            => '== Hoş geldin, $1! ==
 
 Hesabınız açıldı.
 [[Special:Preferences|{{SITENAME}} tercihlerinizi]] değiştirmeyi unutmayın.',
@@ -709,10 +711,10 @@ Hesabınız açıldı.
 'yourpasswordagain'          => 'Parolayı yeniden yaz:',
 'remembermypassword'         => 'Girişimi bu bilgisayarda hatırla (en fazla $1 {{PLURAL:$1|gün|gün}} için)',
 'securelogin-stick-https'    => "Giriş yaptıktan sonra HTTPS'e bağlı kal",
-'yourdomainname'             => 'Alan adınız',
+'yourdomainname'             => 'Alan adınız:',
 'externaldberror'            => 'Ya doğrulama veritabanı hatası var ya da kullanıcı hesabınızı güncellemeye yetkiniz yok.',
 'login'                      => 'Oturum aç',
-'nav-login-createaccount'    => 'Oturum aç / yeni hesap oluştur',
+'nav-login-createaccount'    => 'Oturum aç / hesap oluştur',
 'loginprompt'                => '{{SITENAME}} sitesinde oturum açabilmek için çerezleri etkinleştirmeniz gerekmektedir.',
 'userlogin'                  => 'Oturum aç / hesap oluştur',
 'userloginnocreate'          => 'Giriş yap',
@@ -724,7 +726,7 @@ Hesabınız açıldı.
 'createaccount'              => 'Hesap oluştur',
 'gotaccount'                 => "Çoktan kayıt oldunuz mu? '''$1'''.",
 'gotaccountlink'             => 'Oturum açın',
-'userlogin-resetlink'        => 'Giriş bilgileriniz mi unuttunuz?',
+'userlogin-resetlink'        => 'Giriş bilgilerinizi mi unuttunuz?',
 'createaccountmail'          => 'e-posta ile',
 'createaccountreason'        => 'Sebep:',
 'badretype'                  => 'Girdiğiniz şifreler birbirleriyle uyuşmuyor.',
@@ -815,25 +817,31 @@ Girişi bitirmek için, burada yeni bir parola yazın:',
 'resetpass-temp-password'   => 'Geçici parola:',
 
 # Special:PasswordReset
-'passwordreset'              => 'Parola sıfırlama',
-'passwordreset-text'         => 'Hesap bilgilerinizin e-posta ile hatırlatılması için bu formu doldurunuz.',
-'passwordreset-legend'       => 'Şifreyi sıfırla',
-'passwordreset-disabled'     => 'Parola sıfırlamaları bu wiki üzerinde devre dışı bırakıldı.',
-'passwordreset-pretext'      => '{{PLURAL:$1||Aşağıdaki verilerden birini girin}}',
-'passwordreset-username'     => 'Kullanıcı adı:',
-'passwordreset-domain'       => 'Domain:',
-'passwordreset-email'        => 'E-posta adresi:',
-'passwordreset-emailtitle'   => '{{SITENAME}} hesap detayları',
-'passwordreset-emailtext-ip' => 'Birisi, (muhtemelen siz, $1 IP adresinden) {{SITENAME}} ($4) için hesap bilgilerinizin 
+'passwordreset'                => 'Parola sıfırlama',
+'passwordreset-text'           => 'Hesap bilgilerinizin e-posta ile hatırlatılması için bu formu doldurunuz.',
+'passwordreset-legend'         => 'Şifreyi sıfırla',
+'passwordreset-disabled'       => 'Parola sıfırlamaları bu wiki üzerinde devre dışı bırakıldı.',
+'passwordreset-pretext'        => '{{PLURAL:$1||Aşağıdaki verilerden birini girin}}',
+'passwordreset-username'       => 'Kullanıcı adı:',
+'passwordreset-domain'         => 'Domain:',
+'passwordreset-email'          => 'E-posta adresi:',
+'passwordreset-emailtitle'     => '{{SITENAME}} hesap detayları',
+'passwordreset-emailtext-ip'   => 'Birisi, (muhtemelen siz, $1 IP adresinden) {{SITENAME}} ($4) için hesap bilgilerinizin 
 hatırlatılmasını istedi. Aşağıdaki kullanıcı {{PLURAL:$3|hesabı|hesapları}} bu e-posta adresiyle ilişkili:
 
 $2
 
 {{PLURAL:$3|Bu geçici şifre|Bu geçici şifreler}} {{PLURAL:$5|bir gün|$5  gün}} geçerlidir.
 Bu geçici parola ile giriş yapın ve yeni bir şifre seçin. Şifre değişimini siz istemediyseniz veya şifrenizi hatırladıysanız ve artık şifrenizi değiştirmek istemiyorsanız; bu iletiyi önemsemeyerek eski şifrenizi kullanmaya devam edebilirsiniz.',
-'passwordreset-emailelement' => 'Kullanıcı adı: $1
+'passwordreset-emailtext-user' => '$1 adlı kullanıcı, {{SITENAME}} ($4) için hesap bilgilerinizin hatırlatılmasını istedi. Aşağıdaki kullanıcı {{PLURAL:$3|hesabı|hesapları}} bu e-posta adresiyle ilişkili:
+
+$2
+
+{{PLURAL:$3|Bu geçici şifre|Bu geçici şifreler}} {{PLURAL:$5|bir gün|$5  gün}} geçerlidir.
+Bu geçici parola ile giriş yapın ve yeni bir şifre seçin. Bu talep bir başkasına aitse veya şifrenizi hatırladıysanız ve artık şifrenizi değiştirmek istemiyorsanız; bu iletiyi önemsemeyerek eski şifrenizi kullanmaya devam edebilirsiniz.',
+'passwordreset-emailelement'   => 'Kullanıcı adı: $1
 Geçici şifre: $2',
-'passwordreset-emailsent'    => 'Hatırlatma e-postası gönderildi.',
+'passwordreset-emailsent'      => 'Hatırlatma e-postası gönderildi.',
 
 # Edit page toolbar
 'bold_sample'     => 'Kalın yazı',
@@ -1041,7 +1049,7 @@ Bu değişkenler atlandı.",
 'undo-success' => 'Bu değişiklik geri alınabilir. Lütfen aşağıdaki karşılaştırmayı kontrol edin, gerçekten bu değişikliği yapmak istediğinizden emin olun ve sayfayı kaydederek bir önceki değişikliği geriye alın.',
 'undo-failure' => 'Değişikliklerin çakışması nedeniyle geri alma işlemi başarısız oldu.',
 'undo-norev'   => 'Değişiklik geri alınamaz çünkü ya silinmiş ya da varolmamaktadır.',
-'undo-summary' => '$1 değişikliği [[Special:Contributions/$2|$2]] ([[User talk:$2|İleti]]) tarafından geri alındı.',
+'undo-summary' => '$1 değişikliği [[Special:Contributions/$2|$2]] ([[User talk:$2|mesaj]]) tarafından geri alındı.',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Hesap açılamıyor',
@@ -1368,7 +1376,7 @@ Kullanabileceğiniz rastgele-üretilmiş bir değer: $1',
 'timezoneregion-europe'         => 'Avrupa',
 'timezoneregion-indian'         => 'Hint Okyanusu',
 'timezoneregion-pacific'        => 'Pasifik Okyanusu',
-'allowemail'                    => 'Diğer kullanıcılar size e-posta atabilsin',
+'allowemail'                    => 'Diğer kullanıcılar bana e-posta atabilsin',
 'prefs-searchoptions'           => 'Arama seçenekleri',
 'prefs-namespaces'              => 'İsim alanları',
 'defaultns'                     => 'Aksi halde bu ad alanlarında ara:',
@@ -1383,7 +1391,7 @@ Kullanabileceğiniz rastgele-üretilmiş bir değer: $1',
 'youremail'                     => 'E-posta:',
 'username'                      => 'Kullanıcı adı:',
 'uid'                           => 'Kayıt numarası:',
-'prefs-memberingroups'          => '{{PLURAL:$1|grup|grup}} üyesi:',
+'prefs-memberingroups'          => '{{PLURAL:$1|Grup|Grup}} üyesi:',
 'prefs-registration'            => 'Kayıt zamanı:',
 'yourrealname'                  => 'Gerçek adınız:',
 'yourlanguage'                  => 'Dil:',
@@ -1397,7 +1405,7 @@ $1 {{PLURAL:$1|karakterin|karakterin}} altında olmalı.',
 'gender-unknown'                => 'Belirtilmemiş',
 'gender-male'                   => 'Erkek',
 'gender-female'                 => 'Bayan',
-'prefs-help-gender'             => 'İsteğe bağlı: yazılım tarafından doğru cinsiyet adreslemesi için kullanılır. Bu bilgi umumi olacaktır.',
+'prefs-help-gender'             => 'İsteğe bağlı: Yazılım tarafından doğru cinsiyet adreslemesi için kullanılır. Bu bilgi umumi olacaktır.',
 'email'                         => 'E-posta',
 'prefs-help-realname'           => '* Gerçek isim (isteğe bağlı): eğer gerçek isminizi vermeyi seçerseniz, çalışmanızı size atfederken kullanılacaktır.',
 'prefs-help-email'              => 'E-posta adresi isteğe bağlıdır; ancak eğer parolanızı unutursanız e-posta adresinize yeni parola gönderilmesine olanak sağlar.',
@@ -1455,12 +1463,12 @@ Diğer kullanıcılar sizinle bu yolla iletişime geçtiğinde e-posta adresiniz
 'group-suppress'      => 'Gözetmenler',
 'group-all'           => '(hepsi)',
 
-'group-user-member'          => 'Kullanıcı',
-'group-autoconfirmed-member' => 'Otomatik onaylanmış kullanıcı',
-'group-bot-member'           => 'Bot',
-'group-sysop-member'         => 'Hizmetli',
-'group-bureaucrat-member'    => 'Bürokrat',
-'group-suppress-member'      => 'Gözetmen',
+'group-user-member'          => '{{GENDER:$1|kullanıcı}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|otomatik onaylanmış kullanıcı}}',
+'group-bot-member'           => '{{GENDER:$1|bot}}',
+'group-sysop-member'         => '{{GENDER:$1|hizmetli}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|bürokrat}}',
+'group-suppress-member'      => '{{GENDER:$1|gözetmen}}',
 
 'grouppage-user'          => '{{ns:project}}:Kullanıcılar',
 'grouppage-autoconfirmed' => '{{ns:project}}:Otomatik onaylanmış kullanıcılar',
@@ -1677,7 +1685,7 @@ Bir sayfaya dosya koymak için bağlantınızda aşağıdaki formlardan birini k
 bu dosyanın boyutu $2.',
 'largefileserver'             => 'Bu dosyanın uzunluğu sunucuda izin verilenden daha büyüktür.',
 'emptyfile'                   => 'Yüklediğiniz dosya boş görünüyor. Bunun sebebi dosya adındaki bir yazım hatası olabilir. Lütfen dosyayı gerçekten yüklemek isteyip istemediğinizden emin olun.',
-'windows-nonascii-filename'   => 'Bu wiki dosya isimlerinde özel karakter kullanımını desteklemiyor',
+'windows-nonascii-filename'   => 'Bu viki dosya isimlerinde özel karakter kullanımını desteklemiyor',
 'fileexists'                  => "Bu isimde bir dosya mevcut.
 Eğer değiştirmekten emin değilseniz ilk önce '''<tt>[[:$1]]</tt>''' dosyasına bir gözatın.
 [[$1|thumb]]",
@@ -2297,7 +2305,7 @@ başka biri sayfada değişiklik yaptı ya da sayfayı geriye aldı.
 
 Son değişikliği yapan: [[User:$3|$3]] ([[User talk:$3|Talk]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'       => "Değişiklik özeti: \"''\$1''\" idi.",
-'revertpage'        => '[[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) tarafından yapılan değişiklikler geri alınarak, [[User:$1|$1]] tarafından değiştirilmiş önceki sürüm geri getirildi.',
+'revertpage'        => '[[Special:Contributions/$2|$2]] [[User talk:$2|mesaj]] tarafından yapılan değişiklikler geri alınarak, [[User:$1|$1]] tarafından değiştirilmiş önceki sürüm geri getirildi.',
 'revertpage-nouser' => '(kullanıcı adı çıkarılmış) tarafından yapılan değişiklikler [[User:$1|$1]] tarafından yapılan son revizyona geri alındı',
 'rollback-success'  => '$1 tarafından yapılan değişiklikler geri alınarak;
 $2 tarafından değiştirilmiş önceki sürüme geri dönüldü.',

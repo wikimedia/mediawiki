@@ -327,7 +327,7 @@ $messages = array(
 'variants'                       => 'Warianty',
 
 'errorpagetitle'    => 'Zmólka',
-'returnto'          => 'Slědk k boku $1.',
+'returnto'          => 'Slědk k bokoju $1.',
 'tagline'           => 'Z {{GRAMMAR:genitiw|{{SITENAME}}}}',
 'help'              => 'Pomoc',
 'search'            => 'Pytaś',
@@ -772,8 +772,8 @@ abo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}
 'blocked-notice-logextract'        => 'Toś ten wužywaŕ jo tuchylu blokěrowany.
 Nejnowšy zapisk blokěrowańskego protokola pódawa se dołojce ako referenca:',
 'clearyourcache'                   => "'''Pokazka:''' Pó składowanju dejš snaź wuprozniś cache wobglědowaka, aby změny wiźeł.
-* '''Firefox/Safari:''' Źarź ''Umsch'' tłocony, mjaztym až kliknjoš na ''Znowego'' abo tłoc pak ''Strg-F5'' pak ''Strg-R'' (''Command-R'' na Makintošu)
-* '''Google Chrome:''' Tłoc na ''Strg-Umsch-R'' (''command-Umsch-R'' na Makintošu)
+* '''Firefox/Safari:''' Źarź ''Umsch'' tłocony, mjaztym až kliknjoš na ''Znowego'' abo tłoc pak ''Strg-F5'' pak ''Strg-R'' (''⌘-R'' na Makintošu)
+* '''Google Chrome:''' Tłoc na ''Strg-Umsch-R'' ('⌘-Umsch-R'' na Makintošu)
 * '''Internet Explorer:''' Źarź ''Strg'' tłocony, mjaztym až kliknjoš na ''Aktualisieren'' abo tłoc ''Strg-F5''
 * '''Konqueror:''' Klikni na ''Aktualisieren'' abo tłoc ''F5''
 * '''Opera:''' Wuprozni cache w ''Extras → Einstellungen''",
@@ -1287,12 +1287,12 @@ Móžoš toś ten bok wužywaś, aby slědk stajił swóje nastajenja na standar
 'group-suppress'      => 'Doglědowanja',
 'group-all'           => '(wše)',
 
-'group-user-member'          => 'Wužywaŕ',
-'group-autoconfirmed-member' => 'Wobkšuśony wužywaŕ',
-'group-bot-member'           => 'awtomatiski program (bot)',
-'group-sysop-member'         => 'administrator',
-'group-bureaucrat-member'    => 'Běrokrat',
-'group-suppress-member'      => 'Doglědowanje',
+'group-user-member'          => '{{GENDER:$1|wužywaŕ|wužywarka}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|awtomatiski wobkšuśony wužywaŕ|awtomatiski wobkšuśona wužywarka}}',
+'group-bot-member'           => '{{GENDER:$1|bot}}',
+'group-sysop-member'         => '{{GENDER:$1|administrator|administratorka}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|běrokrat|běrokratka}}',
+'group-suppress-member'      => '{{GENDER:$1|doglědowaŕ|doglědowarka}}',
 
 'grouppage-user'          => '{{ns:project}}:Wužywarje',
 'grouppage-autoconfirmed' => '{{ns:project}}:Awtomatiski wobkšuśone wužywarje',

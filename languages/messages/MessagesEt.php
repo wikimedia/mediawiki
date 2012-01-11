@@ -906,11 +906,12 @@ Palun mõtle järele, kas soovid seda lehte luua või muuta.',
 'userpage-userdoesnotexist-view'   => 'Kasutajakonto "$1" pole registreeritud.',
 'blocked-notice-logextract'        => 'See kasutaja on praegu blokeeritud.
 Allpool on toodud viimane blokeerimislogi sissekanne:',
-'clearyourcache'                   => "'''Märkus: Võimalik, et pärast salvestamist tuleb muudatuste nägemiseks veebilehitseja puhver tühjendada.'''
-'''Mozilla / Firefox / Safari:''' Hoia all ''Shift''-klahvi ja klõpsa ''Laadi uuesti'' või vajuta kas ''Ctrl-F5'' või ''Ctrl-R'' (Macis ''Command-R'').
-'''Konqueror:''' Klõpsa ''Reload'' või vajuta ''F5'';
-'''Opera:''' Tühjenda puhver asukohas ''Seaded → Eelistused'';
-'''Internet Explorer:''' Hoia all ''Ctrl''-klahvi ja klõpsa ''Värskenda'' või vajuta ''Ctrl-F5''.",
+'clearyourcache'                   => "'''Märkus:''' Võimalik, et pärast salvestamist tuleb muudatuste nägemiseks veebilehitseja puhver tühjendada.
+* '''Firefox / Safari:''' Hoia all ''Shift''-klahvi ja klõpsa ''Laadi uuesti'' või vajuta kas ''Ctrl-F5'' või ''Ctrl-R'' (Macis ''⌘-R'').
+* '''Google Chrome:''' Vajuta ''Ctrl-Shift-R'' (Macis ''⌘-Shift-R'').
+* '''Internet Explorer:''' Hoia all ''Ctrl''-klahvi ja klõpsa ''Värskenda'' või vajuta ''Ctrl-F5''.
+* '''Konqueror:''' Klõpsa ''Reload'' või vajuta ''F5''.
+* '''Opera:''' Tühjenda puhver asukohas ''Seaded → Eelistused''.",
 'usercssyoucanpreview'             => "'''Vihje:''' Enne salvestamist kasuta oma uue CSSi proovimiseks nuppu \"{{int:showpreview}}\".",
 'userjsyoucanpreview'              => "'''Vihje:''' Enne salvestamist kasuta oma uue JavaScripti proovimiseks nuppu \"{{int:showpreview}}\".",
 'usercsspreview'                   => "'''Ära unusta, et seda versiooni sinu isiklikust stiililehest pole veel salvestatud!'''",
@@ -1064,7 +1065,7 @@ See võib olla vikist kustutatud või ümber nimetatud.
 'rev-deleted-comment'         => '(muudatuse resümee eemaldatud)',
 'rev-deleted-user'            => '(kasutajanimi eemaldatud)',
 'rev-deleted-event'           => '(logitoiming eemaldatud)',
-'rev-deleted-user-contribs'   => '[kasutajanimi või IP-aadress kustutatud - muudatust ei näidata]',
+'rev-deleted-user-contribs'   => '[kasutajanimi või IP-aadress eemaldatud – muudatust ei näidata]',
 'rev-deleted-text-permission' => "See lehekülje redaktsioon on '''kustutatud'''.
 Üksikasju võib olla [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} kustutamise logis].",
 'rev-deleted-text-unhide'     => "See lehekülje redaktsioon on '''kustutatud'''.
@@ -1437,12 +1438,12 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 'group-suppress'      => 'Varjajad',
 'group-all'           => '(kõik)',
 
-'group-user-member'          => 'Kasutaja',
-'group-autoconfirmed-member' => 'Automaatselt kinnitatud kasutaja',
-'group-bot-member'           => 'Robot',
-'group-sysop-member'         => 'Administraator',
-'group-bureaucrat-member'    => 'Bürokraat',
-'group-suppress-member'      => 'Varjaja',
+'group-user-member'          => 'kasutaja',
+'group-autoconfirmed-member' => 'automaatselt kinnitatud kasutaja',
+'group-bot-member'           => 'robot',
+'group-sysop-member'         => 'administraator',
+'group-bureaucrat-member'    => 'bürokraat',
+'group-suppress-member'      => 'varjaja',
 
 'grouppage-user'          => '{{ns:project}}:Kasutajad',
 'grouppage-autoconfirmed' => '{{ns:project}}:Automaatselt kinnitatud kasutajad',
@@ -3081,6 +3082,7 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-whitebalance'                => 'Valge tasakaal',
 'exif-digitalzoomratio'            => 'Digisuumi tegur',
 'exif-focallengthin35mmfilm'       => '35 mm-se filmi fookuskaugus',
+'exif-gaincontrol'                 => 'Tundlikkus',
 'exif-contrast'                    => 'Kontrastsus',
 'exif-saturation'                  => 'Küllastus',
 'exif-sharpness'                   => 'Teravus',
@@ -3198,7 +3200,7 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-exposureprogram-3' => 'Ava prioriteet',
 'exif-exposureprogram-4' => 'Katiku prioriteet',
 'exif-exposureprogram-7' => 'Portree töörežiim (lähifotode jaoks, taust fookusest väljas)',
-'exif-exposureprogram-8' => 'Maastiku töörežiim (maastikupiltide jaoks, taust on fokuseeritud)',
+'exif-exposureprogram-8' => 'Maastiku töörežiim (maastikupiltide jaoks, taust on teravdatud)',
 
 'exif-subjectdistance-value' => '$1 meetrit',
 
@@ -3249,6 +3251,8 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-sensingmethod-4' => 'Kolme-kiibiga värvisensor',
 'exif-sensingmethod-7' => 'Kolmerealine sensor',
 
+'exif-filesource-3' => 'Digitaalne fotokaamera',
+
 'exif-customrendered-0' => 'Normaalne protsess',
 'exif-customrendered-1' => 'Kohandatud protsess',
 
@@ -3256,16 +3260,18 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-exposuremode-1' => 'Manuaalne säritus',
 
 'exif-whitebalance-0' => 'Automaatne valge tasakaal',
-'exif-whitebalance-1' => 'Manuaalne valgusbalanss',
+'exif-whitebalance-1' => 'Manuaalne valge tasakaal',
 
 'exif-scenecapturetype-0' => 'Standardne',
 'exif-scenecapturetype-1' => 'Maastik',
 'exif-scenecapturetype-2' => 'Portree',
 'exif-scenecapturetype-3' => 'Ööpilt',
 
-'exif-gaincontrol-0' => 'Ei ole',
-'exif-gaincontrol-1' => 'Aeglane tõus',
-'exif-gaincontrol-2' => 'Kiire tõus',
+'exif-gaincontrol-0' => 'Puudub',
+'exif-gaincontrol-1' => 'Natuke tõstetud',
+'exif-gaincontrol-2' => 'Suur',
+'exif-gaincontrol-3' => 'Natuke vähendatud',
+'exif-gaincontrol-4' => 'Vähene',
 
 'exif-contrast-0' => 'Normaalne',
 'exif-contrast-1' => 'Pehme',

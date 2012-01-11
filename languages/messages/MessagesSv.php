@@ -942,9 +942,9 @@ eller <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}
 'blocked-notice-logextract'        => 'Användaren är blockerad.
 Orsaken till senaste blockeringen kan ses nedan:',
 'clearyourcache'                   => "'''OBS:''' Sedan du sparat sidan kan du behöva tömma din webbläsares cache för att se ändringarna.
-*'''Firefox / Safari:''' Håll ner ''Skift'' och klicka på ''Uppdatera sidan'' eller tryck antingen ''Ctrl-F5'' eller ''Ctrl-R'' (''Command-R'' på Mac)
-*'''Google Chrome:''' Tryck ''Ctrl-Skift-R''  (''Command-R'' på Mac)
-*'''Internet Explorer:'''  Håll ner ''Ctrl'' och klicka på ''Uppdatera'' eller tryck ''Ctrl-F5''
+*'''Firefox / Safari:''' Håll ned ''Skift'' och klicka på ''Uppdatera sidan'' eller tryck antingen ''Ctrl-F5'' eller ''Ctrl-R'' (''⌘-R'' på Mac)
+*'''Google Chrome:''' Tryck ''Ctrl-Skift-R''  (''⌘-Shift-R'' på Mac)
+*'''Internet Explorer:'''  Håll ned ''Ctrl'' och klicka på ''Uppdatera'' eller tryck ''Ctrl-F5''
 *'''Konqueror:''' Klicka på ''Reload'' eller tryck på ''F5''
 *'''Opera:''' Rensa cachen i ''Verktyg → Inställningar''",
 'usercssyoucanpreview'             => "'''Tips:''' Använd \"{{int:showpreview}}\"-knappen för att testa din nya css innan du sparar.",
@@ -1477,12 +1477,12 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'group-suppress'      => 'Censorer',
 'group-all'           => '(alla)',
 
-'group-user-member'          => 'användare',
-'group-autoconfirmed-member' => 'bekräftad användare',
-'group-bot-member'           => 'robot',
-'group-sysop-member'         => 'administratör',
-'group-bureaucrat-member'    => 'byråkrat',
-'group-suppress-member'      => 'censor',
+'group-user-member'          => '{{GENDER:$1|användare}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|bekräftad användare}}',
+'group-bot-member'           => '{{GENDER:$1|robot}}',
+'group-sysop-member'         => '{{GENDER:$1|administratör}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|byråkrat}}',
+'group-suppress-member'      => '{{GENDER:$1|censor}}',
 
 'grouppage-user'          => '{{ns:project}}:Användare',
 'grouppage-autoconfirmed' => '{{ns:project}}:Bekräftade användare',

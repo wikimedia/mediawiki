@@ -8,6 +8,7 @@
  * @file
  *
  * @author Cesco
+ * @author Crt
  * @author EugeneZelenko
  * @author Jim-by
  * @author Red Winged Duck
@@ -296,6 +297,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Дасылаць мне копіі лістоў, якія я дасылаю іншым удзельнікам і ўдзельніцам',
 'tog-diffonly'                => 'Не паказваць зьмест старонкі пад параўнаньнем зьменаў',
 'tog-showhiddencats'          => 'Паказваць схаваныя катэгорыі',
+'tog-noconvertlink'           => 'Забараніць канвэртацыю назваў спасылак',
 'tog-norollbackdiff'          => 'Не паказваць зьмены пасьля выкарыстаньня функцыі адкату',
 
 'underline-always'  => 'Заўсёды',
@@ -544,7 +546,7 @@ $1',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Старонка',
-'nstab-user'      => 'Старонка ўдзельніка/ўдзельніцы',
+'nstab-user'      => 'Старонка {{GENDER:{{BASEPAGENAME}}|ўдзельніка|ўдзельніцы}}',
 'nstab-media'     => 'Мэдыя',
 'nstab-special'   => 'Спэцыяльная старонка',
 'nstab-project'   => 'Старонка праекту',
@@ -878,18 +880,18 @@ $2
 'noarticletext'                    => 'Цяпер тэкст на гэтай старонцы адсутнічае.
 Вы можаце [[Special:Search/{{PAGENAME}}|пашукаць гэтую назву]] ў іншых старонках, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} пашукаць у адпаведных журналах падзеяў]
 альбо [{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} рэдагаваць гэтую старонку]</span>.',
-'noarticletext-nopermission'       => 'Зараз на гэтай старонцы тэкст адсутнічае.
+'noarticletext-nopermission'       => 'Цяпер на гэтай старонцы тэкст адсутнічае.
 Вы можаце [[Special:Search/{{PAGENAME}}|пашукаць назву гэтай старонкі]] на іншых старонках, альбо <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} пашукаць зьвязаныя запісы ў журналах]</span>.',
 'userpage-userdoesnotexist'        => 'Рахунак удзельніка «<nowiki>$1</nowiki>» не зарэгістраваны. Калі ласка, удакладніце, ці жадаеце Вы стварыць/рэдагаваць гэтую старонку.',
 'userpage-userdoesnotexist-view'   => 'Рахунак «$1» ня створаны.',
 'blocked-notice-logextract'        => 'Гэты ўдзельнік у дадзены момант заблякаваны.
 Апошні запіс з журналу блякаваньняў пададзены ніжэй для даведкі:',
 'clearyourcache'                   => "'''Заўвага:''' Каб пабачыць зьмены пасьля захаваньня, Вам можа спатрэбіцца ачысьціць кэш Вашага браўзэра. 
-* '''Firefox / Safari:''' трымайце ''Shift'' і націсьніце ''Reload'', ці націсьніце ''Ctrl-F5'' ці ''Ctrl-R'' (''Command-R''' на Mac)
-* '''Google Chrome:''' націсьніце ''Ctrl-Shift-R'' (''Command-Shift-R'' на Mac)
-* '''Internet Explorer:''' трымайце ''Ctrl'' і націсьніце ''Refresh'', ці націсьніце ''Ctrl-F5''
-* '''Konqueror:''' націсьніце кнопку ''Reload'' ці ''F5''
-* '''Opera:''' ачысьціце кэш праз ''Tools → Preferences''",
+* '''Firefox / Safari:''' Трымайце ''Shift'' і націсьніце ''Reload'', ці націсьніце ''Ctrl-F5'' ці ''Ctrl-R'' (''⌘-R'' на Mac)
+* '''Google Chrome:''' Націсьніце ''Ctrl-Shift-R'' (''⌘-Shift-R'' на Mac)
+* '''Internet Explorer:''' Трымайце ''Ctrl'' і націсьніце ''Refresh'', ці націсьніце ''Ctrl-F5''
+* '''Konqueror:''' Націсьніце кнопку ''Reload'' ці ''F5''
+* '''Opera:''' Ачысьціце кэш праз ''Tools → Preferences''",
 'usercssyoucanpreview'             => "'''Падказка:''' выкарыстоўвайце кнопку «{{int:showpreview}}», каб паспрабаваць новы код CSS перад тым як яго запісаць.",
 'userjsyoucanpreview'              => "'''Падказка:''' выкарыстоўвайце кнопку «{{int:showpreview}}», каб паспрабаваць новы код JavaScript перад тым, як яго запісаць.",
 'usercsspreview'                   => "'''Памятайце, што гэта толькі папярэдні прагляд Вашага CSS. Ён яшчэ не запісаны!'''",
@@ -1415,12 +1417,12 @@ $1",
 'group-suppress'      => 'Рэвізоры',
 'group-all'           => '(усе)',
 
-'group-user-member'          => 'удзельнік',
-'group-autoconfirmed-member' => 'аўтаматычна пацьверджаны ўдзельнік',
+'group-user-member'          => '{{GENDER:$1|удзельнік|удзельніца}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|аўтаматычна пацьверджаны ўдзельнік|аўтаматычна пацьверджаная ўдзельніца}}',
 'group-bot-member'           => 'робат',
-'group-sysop-member'         => 'адміністратар',
-'group-bureaucrat-member'    => 'бюракрат',
-'group-suppress-member'      => 'рэвізор',
+'group-sysop-member'         => '{{GENDER:$1|адміністратар|адміністратарка}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|бюракрат|бюракратка}}',
+'group-suppress-member'      => '{{GENDER:$1|рэвізор|рэвізорка}}',
 
 'grouppage-user'          => '{{ns:project}}:Удзельнікі',
 'grouppage-autoconfirmed' => '{{ns:project}}:Аўтаматычна пацьверджаныя ўдзельнікі',
@@ -1994,6 +1996,7 @@ $1',
 # Book sources
 'booksources'               => 'Пошук кніг',
 'booksources-search-legend' => 'Пошук кніг',
+'booksources-isbn'          => 'ISBN:',
 'booksources-go'            => 'Паказаць',
 'booksources-text'          => 'Ніжэй знаходзіцца сьпіс спасылак на іншыя сайты, якія прадаюць новыя і патрыманыя кнігі, і могуць таксама мець інфармацыю пра кнігі, якія Вы шукаеце:',
 'booksources-invalid-isbn'  => 'Пададзены няслушны ISBN; праверце, магчыма ўзьніклі памылкі пры пераносе нумару з арыгінальнай крыніцы.',
@@ -2454,7 +2457,7 @@ $1',
 'ipbcreateaccount'                => 'Забараніць стварэньне рахункаў',
 'ipbemailban'                     => 'Забараніць удзельніку дасылаць лісты па электроннай пошце',
 'ipbenableautoblock'              => 'Аўтаматычна блякаваць апошні IP-адрас гэтага ўдзельніка, і ўсіх наступных IP-адрасоў зь якіх ён будзе спрабаваць рэдагаваць',
-'ipbsubmit'                       => 'Заблякаваць гэтага удзельніка',
+'ipbsubmit'                       => 'Заблякаваць гэтага ўдзельніка',
 'ipbother'                        => 'Іншы тэрмін:',
 'ipboptions'                      => '2 гадзіны:2 hours,1 дзень:1 day,3 дні:3 days,1 тыдзень:1 week,2 тыдні:2 weeks,1 месяц:1 month,3 месяцы:3 months,6 месяцаў:6 months,1 год:1 year,назаўсёды:infinite',
 'ipbotheroption'                  => 'іншы',
@@ -2481,8 +2484,8 @@ $1',
 'unblocked'                       => '[[User:$1|$1]] быў разблякаваны.',
 'unblocked-range'                 => '$1 быў разблякаваны',
 'unblocked-id'                    => 'Блякаваньне $1 зьнятае',
-'blocklist'                       => 'Заблякаваныя удзельнікі',
-'ipblocklist'                     => 'Заблякаваныя удзельнікі',
+'blocklist'                       => 'Заблякаваныя ўдзельнікі',
+'ipblocklist'                     => 'Заблякаваныя ўдзельнікі',
 'ipblocklist-legend'              => 'Пошук заблякаванага ўдзельніка',
 'blocklist-userblocks'            => 'Схаваць блякаваньні рахункаў',
 'blocklist-tempblocks'            => 'Схаваць часовыя блякаваньні',
@@ -3182,6 +3185,9 @@ $1',
 'exif-planarconfiguration-1' => 'фармат «chunky»',
 'exif-planarconfiguration-2' => 'фармат «planar»',
 
+'exif-xyresolution-i' => '$1 пунктаў на цалю',
+'exif-xyresolution-c' => '$1 пунктаў на сантымэтар',
+
 'exif-colorspace-65535' => 'Некалібраванае',
 
 'exif-componentsconfiguration-0' => 'не існуе',
@@ -3334,10 +3340,10 @@ $1',
 'exif-ycbcrpositioning-1' => 'Цэнтраваны',
 'exif-ycbcrpositioning-2' => 'Сумяшчоныя',
 
-'exif-dc-contributor' => 'Сааўтары',
+'exif-dc-contributor' => 'Аўтары',
 'exif-dc-coverage'    => 'Прасторавыя ці часавыя абмежаваньні мэдыя',
 'exif-dc-date'        => 'Дата(ы)',
-'exif-dc-publisher'   => 'Выдавец',
+'exif-dc-publisher'   => 'Выдавецтва',
 'exif-dc-relation'    => 'Зьвязаныя мэдыя',
 'exif-dc-rights'      => 'Правы',
 'exif-dc-source'      => 'Крынічнае мэдыя',
@@ -3537,6 +3543,9 @@ $1',
 'watchlisttools-edit' => 'Праглядзець альбо рэдагаваць сьпіс назіраньня',
 'watchlisttools-raw'  => 'Рэдагаваць як тэкст',
 
+# Signatures
+'timezone-utc' => 'UTC',
+
 # Core parser functions
 'unknown_extension_tag' => 'Невядомы тэг пашырэньня «$1»',
 'duplicate-defaultsort' => 'Папярэджаньне: Ключ сартыроўкі па змоўчваньні «$2» замяняе папярэдні ключ сартыроўкі па змоўчваньні «$1».',
@@ -3549,6 +3558,7 @@ $1',
 'version-variables'             => 'Зьменныя',
 'version-antispam'              => 'Абарона ад спаму',
 'version-skins'                 => 'Афармленьні',
+'version-api'                   => 'API',
 'version-other'                 => 'Іншыя',
 'version-mediahandlers'         => 'Апрацоўшчыкі мэдыя',
 'version-hooks'                 => 'Працэдуры-перахопнікі',
@@ -3558,6 +3568,7 @@ $1',
 'version-hook-name'             => 'Назва працэдуры-перахопніка',
 'version-hook-subscribedby'     => 'Падпісаны на',
 'version-version'               => '(Вэрсія $1)',
+'version-svn-revision'          => '(r$2)',
 'version-license'               => 'Ліцэнзія',
 'version-poweredby-credits'     => "{{SITENAME}} працуе на праграмным забесьпячэньні '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'      => 'іншыя',

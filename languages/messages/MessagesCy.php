@@ -737,10 +737,10 @@ Gallwch [[Special:Search/{{PAGENAME}}|chwilio am y teitl hwn]] ar dudalennau era
 'blocked-notice-logextract'        => "Mae'r defnyddiwr hwn wedi ei flocio ar hyn o bryd.
 Dyma'r cofnod lòg diweddaraf, er gwybodaeth:",
 'clearyourcache'                   => "'''Sylwer - Wedi i chi roi'r dudalen ar gadw, efallai y bydd angen mynd heibio celc eich porwr er mwyn gweld y newidiadau.'''
-*'''Firefox / Safari:''' pwyswch ar ''Shift'' tra'n clicio ''Ail-lwytho/Reload'', neu gwasgwch ''Ctrl-F5'' neu ''Ctrl-R'' (''Command-R'' ar Mac);
-*'''Google Chrome:'''pwyswch ar Ctrl-Shift-R'' (''Command-Shift-R'' ar Mac)
-*'''Internet Explorer:''' pwyswch ar ''Ctrl'' tra'n clicio ''Adnewyddu/Refresh'', neu gwasgwch ''Ctrl-F5''. 
-*'''Konqueror:''' cliciwch y botwm ''Ail-lwytho/Reload'', neu gwasgwch ''F5''; 
+*'''Firefox / Safari:''' Pwyswch ar ''Shift'' tra'n clicio ''Ail-lwytho/Reload'', neu gwasgwch ''Ctrl-F5'' neu ''Ctrl-R'' (''⌘-R'' ar Mac);
+*'''Google Chrome:'''Pwyswch ar Ctrl-Shift-R'' (''⌘-Shift-R'' ar Mac)
+*'''Internet Explorer:''' Pwyswch ar ''Ctrl'' tra'n clicio ''Adnewyddu/Refresh'', neu gwasgwch ''Ctrl-F5''. 
+*'''Konqueror:''' Cliciwch y botwm ''Ail-lwytho/Reload'', neu gwasgwch ''F5''; 
 *'''Opera:''' gwacewch y celc yn llwyr trwy ''Offer → Dewisiadau / Tools→Preferences'';",
 'usercssyoucanpreview'             => "'''Tip:''' Defnyddiwch y botwm \"{{int:showpreview}}\" er mwyn profi eich CSS newydd cyn ei gadw.",
 'userjsyoucanpreview'              => "'''Tip:''' Defnyddiwch y botwm \"{{int:showpreview}}\" er mwyn profi eich JS newydd cyn ei gadw.",
@@ -1267,12 +1267,12 @@ Mae'r wybodaeth hon ar gael i'r cyhoedd.",
 'group-suppress'      => 'Goruchwylwyr',
 'group-all'           => '(pawb)',
 
-'group-user-member'          => 'Defnyddiwr',
-'group-autoconfirmed-member' => "Defnyddiwr wedi ei gadarnhau'n awtomatig",
-'group-bot-member'           => 'Bot',
-'group-sysop-member'         => 'Gweinyddwr',
-'group-bureaucrat-member'    => 'Biwrocrat',
-'group-suppress-member'      => 'Goruchwyliwr',
+'group-user-member'          => '{{GENDER:$1|defnyddiwr}}',
+'group-autoconfirmed-member' => "{{GENDER:$1|defnyddiwr wedi ei gadarnhau'n awtomatig}}",
+'group-bot-member'           => '{{GENDER:$1|bot}}',
+'group-sysop-member'         => '{{GENDER:$1|gweinyddwr}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|biwrocrat}}',
+'group-suppress-member'      => '{{GENDER:$1|goruchwyliwr}}',
 
 'grouppage-user'          => '{{ns:project}}:Defnyddwyr',
 'grouppage-autoconfirmed' => "{{ns:project}}:Defnyddwyr wedi eu cadarnhau'n awtomatig",
@@ -1397,7 +1397,7 @@ Mae'r wybodaeth hon ar gael i'r cyhoedd.",
 'recentchanges-label-unpatrolled'   => "Nid yw'r golygiad hwn wedi derbyn ymweliad patrôl eto",
 'rcnote'                            => "Isod mae'r '''$1''' newid diweddaraf yn ystod y {{PLURAL:$2|diwrnod|diwrnod|deuddydd|tridiau|'''$2''' diwrnod|'''$2''' diwrnod}} diwethaf, hyd at $5, $4.",
 'rcnotefrom'                        => "Isod rhestrir pob newid ers '''$2''' (hyd at '''$1''' ohonynt).",
-'rclistfrom'                        => 'Dangos newidiadau newydd gan ddechrau o $1',
+'rclistfrom'                        => 'Dangos newidiadau newydd, gan ddechrau ers $1',
 'rcshowhideminor'                   => '$1 golygiadau bychain',
 'rcshowhidebots'                    => '$1 botiau',
 'rcshowhideliu'                     => '$1 defnyddwyr mewngofnodedig',
@@ -1849,8 +1849,8 @@ Sylwch y gall gwefannau eraill gysylltu â ffeil drwy URL uniongyrchol. Gan hynn
 'booksources-invalid-isbn'  => "Ymddengys nad yw'r rhif ISBN hwn yn ddilys; efallai y cafwyd gwall wrth drosglwyddo'r rhif.",
 
 # Special:Log
-'specialloguserlabel'  => 'Defnyddiwr:',
-'speciallogtitlelabel' => 'Teitl:',
+'specialloguserlabel'  => 'Gwneuthurwr:',
+'speciallogtitlelabel' => 'Gwrthrych (teitl neu ddefnyddiwr):',
 'log'                  => 'Logiau',
 'all-logs-page'        => 'Pob lòg cyhoeddus',
 'alllogstext'          => "Mae pob cofnod yn holl logiau {{SITENAME}} wedi cael eu rhestru yma.
@@ -3363,7 +3363,7 @@ Gallwch hefyd ddewis golygu\'r rhestr wylio ar ei [[Special:EditWatchlist/raw|ff
 Pan yn barod, pwyswch ar "{{int:Watchlistedit-raw-submit}}".
 Gallwch hefyd [[Special:EditWatchlist|ddefnyddio\'r rhestr arferol]].',
 'watchlistedit-raw-titles'     => 'Teitlau:',
-'watchlistedit-raw-submit'     => "Diweddaru'r rhestr wylio",
+'watchlistedit-raw-submit'     => 'Diweddarer y rhestr wylio',
 'watchlistedit-raw-done'       => 'Diweddarwyd eich rhestr wylio.',
 'watchlistedit-raw-added'      => 'Ychwanegwyd {{PLURAL:$1|1 teitl|$1 teitl|$1 deitl|$1 theitl|$1 theitl|$1 o deitlau}}:',
 'watchlistedit-raw-removed'    => 'Tynnwyd {{PLURAL:$1|1 teitl|$1 teitl|$1 deitl|$1 theitl|$1 theitl|$1 o deitlau}}:',

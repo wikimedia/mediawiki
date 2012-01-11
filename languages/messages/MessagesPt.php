@@ -943,9 +943,9 @@ Verifique se deseja realmente criar ou editar esta página, por favor.',
 'userpage-userdoesnotexist-view'   => 'A conta de utilizador "$1" não está registada.',
 'blocked-notice-logextract'        => 'Este utilizador encontra-se actualmente bloqueado.
 Para referência, o último registo de bloqueio é apresentado abaixo:',
-'clearyourcache'                   => "'''Nota:''' Após gravar, terá de limpar a ''cache'' do seu browser para ver as alterações.'''
-'''Firefox / Safari:''' pressione ''Shift'' enquanto clica ''Recarregar'', ou pressione ''Ctrl-F5'' ou ''Ctrl-R'' (''Command-R'' no Mac)
-'''Google Chrome:''': pressione ''Ctrl-Shift-R'' (Command-Shift-R no Mac)
+'clearyourcache'                   => "'''Nota:''' após gravar, terá de limpar a ''cache'' do seu browser para ver as alterações.'''
+'''Firefox / Safari:''' pressione ''Shift'' enquanto clica ''Recarregar'', ou pressione ''Ctrl-F5'' ou ''Ctrl-R'' (''⌘-Shift-R'' no Mac)
+'''Google Chrome:''': pressione ''Ctrl-Shift-R'' (''⌘-R'' no Mac)
 '''Internet Explorer:''' pressione ''Ctrl'' enquanto clica ''Recarregar'', ou pressione ''Ctrl-F5''
 '''Konqueror:''': clique ''Recarregar'' ou pressione ''F5''
 '''Opera:''' limpe a ''cache'' em ''Ferramentas → Preferências'' (''Tools → Preferences'')",
@@ -1124,9 +1124,9 @@ Pode mesmo assim [$1 ver esta edição] se deseja prosseguir.",
 Podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressões].
 Pode mesmo assim [$1 ver esta revisão] se deseja prosseguir.",
 'rev-deleted-text-view'       => "Esta revisão de página foi '''eliminada'''.
-Como administrador, pode vê-la; podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].",
+Você pode vê-la; podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].",
 'rev-suppressed-text-view'    => "Esta revisão de página foi '''suprimida'''.
-Como administrador, pode vê-la; podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressões].",
+Você pode vê-la; podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressões].",
 'rev-deleted-no-diff'         => "Não pode ver esta diferença entre revisões porque uma das revisões foi '''eliminada'''.
 Podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].",
 'rev-suppressed-no-diff'      => "Não pode ver esta diferença entre versões porque uma das revisões foi '''eliminada'''.",
@@ -1137,9 +1137,9 @@ Pode mesmo assim [$1 ver estas diferenças] se deseja prosseguir.",
 Podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressões].
 Pode mesmo assim [$1 ver estas diferenças] se deseja prosseguir.",
 'rev-deleted-diff-view'       => "Uma das revisões desta diferença entre revisões foi '''eliminada'''.
-Como administrador, pode ver a diferença entre revisões; podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].",
+Você pode ver a diferença entre revisões; podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].",
 'rev-suppressed-diff-view'    => "Uma das revisões desta diferença entre revisões foi '''suprimida'''.
-Como administrador, pode ver a diferença entre revisões; podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressões].",
+Você pode ver a diferença entre revisões; podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressões].",
 'rev-delundel'                => 'mostrar/esconder',
 'rev-showdeleted'             => 'mostrar',
 'revisiondelete'              => 'Eliminar/restaurar edições',
@@ -1219,8 +1219,8 @@ Verifique os registos, por favor.',
 
 # Suppression log
 'suppressionlog'     => 'Registo de supressões',
-'suppressionlogtext' => 'Abaixo está uma lista das eliminações e bloqueios envolvendo conteúdo ocultado por administradores.
-Veja a [[Special:IPBlockList|lista de bloqueios]] para uma lista de banimentos e bloqueios em efeito neste momento.',
+'suppressionlogtext' => 'Abaixo está uma lista das eliminações e bloqueios envolvendo conteúdo ocultado a administradores.
+Veja a [[Special:BlockList|lista de bloqueios a IPs]] para uma lista de banimentos e bloqueios em efeito neste momento.',
 
 # History merging
 'mergehistory'                     => 'Fundir histórico de páginas',
@@ -1490,12 +1490,12 @@ Esta informação será pública.',
 'group-suppress'      => 'Supervisores',
 'group-all'           => '(todos)',
 
-'group-user-member'          => 'Utilizador',
-'group-autoconfirmed-member' => 'Utilizador auto-confirmado',
+'group-user-member'          => '{{GENDER:$1|utilizador|utilizadora}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|utilizador autoconfirmado|utilizadora autoconfirmada}}',
 'group-bot-member'           => 'robô',
-'group-sysop-member'         => 'administrador',
+'group-sysop-member'         => '{{GENDER:$1|administrador|administradora}}',
 'group-bureaucrat-member'    => 'burocrata',
-'group-suppress-member'      => 'supervisor',
+'group-suppress-member'      => '{{GENDER:$1|supressor|supressora}}',
 
 'grouppage-user'          => '{{ns:project}}:Utilizadores',
 'grouppage-autoconfirmed' => '{{ns:project}}:Auto-confirmados',
@@ -1825,10 +1825,10 @@ A sua segurança não pode ser devidamente verificada.',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Acesso negado',
-'img-auth-nopathinfo'       => 'Falta PATH_INFO.
+'img-auth-nopathinfo'       => 'PATH_INFO em falta.
 O seu servidor não está configurado para passar esta informação.
 Pode ser baseado em CGI e não consegue suportar img_auth.
-Consulte http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+Consulte a documentação em [//www.mediawiki.org/wiki/Manual:Image_Authorization Image Authorization].',
 'img-auth-notindir'         => 'O endereço especificado não conduz ao directório de carregamento de ficheiros configurado.',
 'img-auth-badtitle'         => 'Não é possível construir um título válido a partir de "$1".',
 'img-auth-nologinnWL'       => 'Não está autenticado e o ficheiro "$1" não está na lista branca.',
@@ -1992,7 +1992,7 @@ A descrição na [$2 página de descrição] é mostrada abaixo.',
 'statistics-users-active-desc' => 'Utilizadores que efectuaram uma operação {{PLURAL:$1|no último dia|nos últimos $1 dias}}',
 'statistics-mostpopular'       => 'Páginas mais vistas',
 
-'disambiguations'      => 'Desambiguações',
+'disambiguations'      => 'Páginas com ligações para páginas de desambiguação',
 'disambiguationspage'  => 'Template:disambig',
 'disambiguations-text' => 'As páginas abaixo contêm links para uma página de desambiguação.
 Estes links deviam ser desambiguados, apontando-os para a página apropriada.<br />
@@ -2092,8 +2092,8 @@ No entanto, outros sites na internet podem ter links para um ficheiro através d
 'booksources-invalid-isbn'  => 'O número ISBN fornecido não parece ser válido; verifique a existência de erros ao copiar da fonte original.',
 
 # Special:Log
-'specialloguserlabel'  => 'Utilizador:',
-'speciallogtitlelabel' => 'Título:',
+'specialloguserlabel'  => 'Executante:',
+'speciallogtitlelabel' => 'Alvo (página ou utilizador):',
 'log'                  => 'Registos',
 'all-logs-page'        => 'Todos os registos públicos',
 'alllogstext'          => 'Apresentação combinada de todos os registos disponíveis na wiki {{SITENAME}}.
@@ -2134,11 +2134,13 @@ Veja também as [[Special:WantedCategories|categorias desejadas]].',
 'sp-deletedcontributions-contribs' => 'contribuições',
 
 # Special:LinkSearch
-'linksearch'       => 'Links externos',
+'linksearch'       => 'Pesquisa de ligações externas',
 'linksearch-pat'   => 'Padrão de busca:',
 'linksearch-ns'    => 'Espaço nominal:',
 'linksearch-ok'    => 'Prosseguir',
-'linksearch-text'  => "É possível usar caracteres de substituição ''(wildcards)'' no padrão de busca, como por exemplo: \"*.wikipedia.org\".<br />Protocolos suportados: <tt>\$1</tt>",
+'linksearch-text'  => 'É possível usar caracteres de substituição \'\'(wildcards)\'\', como por exemplo: "*.wikipedia.org".
+É necessário, pelo menos, um domínio de topo, por exemplo "*.org".<br />
+Protocolos suportados: <tt>$1</tt> (não adicione nenhum destes na sua pesquisa).',
 'linksearch-line'  => 'Link para $1 na página $2',
 'linksearch-error' => "Caracteres de substituição ''(wildcards)'' só podem ser usados no início do endereço.",
 

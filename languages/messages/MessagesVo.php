@@ -569,7 +569,10 @@ Ba ya evotükol benosekiko letavödi olik, u ya ebegol benosekiko letavödi nela
 'resetpass-temp-password'   => 'Letavöd nelaidüpik:',
 
 # Special:PasswordReset
+'passwordreset'          => 'Dönuvälön letavödi',
+'passwordreset-legend'   => 'Dönuvälön letavödi',
 'passwordreset-username' => 'Gebananem:',
+'passwordreset-email'    => 'Ladet leäktronik:',
 
 # Edit page toolbar
 'bold_sample'     => 'Vödem bigik',
@@ -801,7 +804,7 @@ Ba pemoükon se ragivs, u ba pevotanemon.
 Kanol [[Special:Search|sukön]] padis nulik tefik.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(küpet pemoükon)',
+'rev-deleted-comment'         => '(küpet redakama pemoükon)',
 'rev-deleted-user'            => '(gebananem pemoükon)',
 'rev-deleted-event'           => '(lisedadun pemoükon)',
 'rev-deleted-text-permission' => "Padafomam at '''pemoükon'''.
@@ -838,6 +841,7 @@ Ninäd peklänedöl at binon ye nog lügolovik guvanes votik vüka: {{SITENAME}}
 'revdelete-success'           => "'''Logov padafomama pelonon benosekiko.'''",
 'logdelete-success'           => 'Logov jenotaliseda pelonon benosekiko.',
 'revdel-restore'              => 'Votükön logovi',
+'revdel-restore-deleted'      => 'revids pemoüköl',
 'pagehist'                    => 'Padajenotem',
 'deletedhist'                 => 'Jenotem pemoüköl',
 'revdelete-content'           => 'ninäd',
@@ -1054,7 +1058,7 @@ Dalol i dälön votikanes kosikön ko ol yufü gebana- u bespikapad olik nes sä
 'userrights'                  => 'Guvam gebanagitätas',
 'userrights-lookup-user'      => 'Guvön gebanagrupis',
 'userrights-user-editname'    => 'Penolös gebananemi:',
-'editusergroup'               => 'Redakön Gebanagrupis',
+'editusergroup'               => 'Redakön gebanagrupis',
 'editinguser'                 => "Votükam gitätas gebana: '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'    => 'Redakön gebanagrupis',
 'saveusergroups'              => 'Dakipolöd gebanagrupis',
@@ -1078,22 +1082,22 @@ Dalol i dälön votikanes kosikön ko ol yufü gebana- u bespikapad olik nes sä
 'group-bot'           => 'Bots',
 'group-sysop'         => 'Guvans',
 'group-bureaucrat'    => 'Bürans',
-'group-suppress'      => 'Lovelogams',
+'group-suppress'      => 'Lovelogans',
 'group-all'           => '(valik)',
 
-'group-user-member'          => 'Geban',
-'group-autoconfirmed-member' => 'Geban itjäfidiko pezepöl',
-'group-bot-member'           => 'Bot',
-'group-sysop-member'         => 'Guvan',
-'group-bureaucrat-member'    => 'Büran',
-'group-suppress-member'      => 'Lovelogam',
+'group-user-member'          => 'geban',
+'group-autoconfirmed-member' => 'geban itjäfidiko pezepöl',
+'group-bot-member'           => 'bot',
+'group-sysop-member'         => 'guvan',
+'group-bureaucrat-member'    => 'büran',
+'group-suppress-member'      => 'lovelogan',
 
 'grouppage-user'          => '{{ns:project}}:Gebans',
 'grouppage-autoconfirmed' => '{{ns:project}}:Gebans itjäfidiko pezepöls',
 'grouppage-bot'           => '{{ns:project}}:Bots',
 'grouppage-sysop'         => '{{ns:project}}:Guvans',
 'grouppage-bureaucrat'    => '{{ns:project}}:Bürans',
-'grouppage-suppress'      => '{{ns:project}}:Lovelogam',
+'grouppage-suppress'      => '{{ns:project}}:Lovelogans',
 
 # Rights
 'right-read'                 => 'Reidön padis',
@@ -1380,7 +1384,7 @@ Klikolös tiädi padüla ad votükön sökaleodi at.',
 'filehist-dimensions'       => 'Mafots',
 'filehist-filesize'         => 'Ragivagret',
 'filehist-comment'          => 'Küpet',
-'imagelinks'                => 'Ragivayüms',
+'imagelinks'                => 'Geb ragiva',
 'linkstoimage'              => '{{PLURAL:$1|Pad sököl payümon|Pads sököl payümons}} ko pad at:',
 'linkstoimage-more'         => 'Pads plu {{PLURAL:$1|bals|$1}} labons yümi lü ragiv at.
 Lised dono jonon {{PLURAL:$1|padayümi balid|padayümis balid $1}} te lü ragiv at.
@@ -1991,7 +1995,7 @@ $1',
 'unblocked'                       => '[[User:$1|$1]] pesäblokon',
 'unblocked-range'                 => '$1 pesäblokon',
 'unblocked-id'                    => 'Blokam: $1 pesädunon',
-'ipblocklist'                     => 'Ladets-IP e gebananems pebloköls',
+'ipblocklist'                     => 'Gebans pebloköl',
 'ipblocklist-legend'              => 'Tuvön gebani pebloköl',
 'blocklist-reason'                => 'Kod',
 'ipblocklist-submit'              => 'Suk',

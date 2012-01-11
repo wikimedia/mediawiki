@@ -23,6 +23,7 @@
  * @author Tchoř
  * @author Urhixidur
  * @author Valasek
+ * @author Wizzard
  * @author לערי ריינהארט
  */
 
@@ -1449,12 +1450,12 @@ Musí obsahovať menej ako $1 {{PLURAL:$1|znak|znaky|znakov}}.',
 'group-suppress'      => 'Dozorcovia',
 'group-all'           => '(všetci)',
 
-'group-user-member'          => 'Používateľ',
-'group-autoconfirmed-member' => 'zaregistrovaný používateľ',
-'group-bot-member'           => 'Bot',
-'group-sysop-member'         => 'Správca',
-'group-bureaucrat-member'    => 'Byrokrat',
-'group-suppress-member'      => 'Dozorca',
+'group-user-member'          => '{{GENDER:$1|používateľ|používateľka|používateľ}}',
+'group-autoconfirmed-member' => 'automaticky {{GENDER:$1|schválený používateľ|schválená používateľka|schválený používateľ}}',
+'group-bot-member'           => '{{GENDER:$1|bot|botka|bot}}',
+'group-sysop-member'         => '{{GENDER:$1|správca|správkyňa|správca}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|byrokrat|byrokratka|byrokrat}}',
+'group-suppress-member'      => '{{GENDER:$1|dozorca|dozorkyňa|dozorca}}',
 
 'grouppage-user'          => '{{ns:project}}:Používatelia',
 'grouppage-autoconfirmed' => '{{ns:project}}:Zaregistrovaní používatelia',
@@ -1776,8 +1777,7 @@ Nie je možné správne skontrolovať jeho bezpečnosť.',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Prístup zamietnutý',
-'img-auth-nopathinfo'       => 'Chýba PATH_INFO.
-Váš server nie je nastavený tak, aby poskytoval tieto informácie.
+'img-auth-nopathinfo'       => 'Váš server nie je nastavený tak, aby poskytoval tieto informácie.
 Môže byť založený na CGI a nedokáže podporovať img_auth.
 Pozri http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'         => 'Požadovaná cesta nie je v nastavenom adresári na nahrávanie.',
@@ -1847,7 +1847,7 @@ Pri filtrovaní podľa používateľa sa zobrazia iba súbory, ktorých najnovš
 'filehist-filesize'         => 'veľkosť súboru',
 'filehist-comment'          => 'komentár',
 'filehist-missing'          => 'Súbor chýba',
-'imagelinks'                => 'Využitie súboru',
+'imagelinks'                => 'Použitie súboru',
 'linkstoimage'              => 'Na tento obrázok {{PLURAL:$1|odkazuje nasledujúca stránka|odkazujú nasledujúce $1 stránky|odkazuje nasledujúcich $1 stránok}}:',
 'linkstoimage-more'         => 'Viac ako $1 {{PLURAL:$1|stránka odkazuje|stránky odkazujú|stránok odkazuje}} na tento súbor.
 Nasledovný zoznam zobrazuje {{PLURAL:$1|prvú stránku odkazujúcu|prvé $1 stránky odkazujúce|prvých $1 stránok odkazujúcich}} iba na tento súbor.
@@ -1940,7 +1940,7 @@ Môžete si pozrieť [[Special:WhatLinksHere/$2|úplný zoznam]].',
 'statistics-users-active-desc' => 'Používatelia, ktorí za {{PLURAL:$1|posledný deň|posledné $1 dni|posledných $1 dní}} vykonali nejakú operáciu',
 'statistics-mostpopular'       => 'Najčastejšie prezerané stránky',
 
-'disambiguations'      => 'Stránky na rozlíšenie viacerých významov',
+'disambiguations'      => 'Stránky odkazujúce na rozlišovacie stránky',
 'disambiguationspage'  => 'Template:Rozlišovacia stránka',
 'disambiguations-text' => "Nasledovné stránky odkazujú na '''rozlišovaciu stránku'''.
 Mali by však odkazovať priamo na príslušnú tému.<br />
@@ -2040,8 +2040,8 @@ na ktorý/-ého chcete aplikovať túto funkciu.',
 'booksources-invalid-isbn'  => 'Zdá sa, že dané ISBN nie je platné. Skontrolujte, či ste neurobili chybu pri kopírovaní z pôvodného zdroja.',
 
 # Special:Log
-'specialloguserlabel'  => 'Používateľ:',
-'speciallogtitlelabel' => 'Názov:',
+'specialloguserlabel'  => 'Pôvodca:',
+'speciallogtitlelabel' => 'Cieľ (názov alebo používateľ):',
 'log'                  => 'Záznamy',
 'all-logs-page'        => 'Všetky verejné záznamy',
 'alllogstext'          => 'Kombinované zobrazenie všetkých dostupných záznamov {{GRAMMAR:genitív|{{SITENAME}}}}.
@@ -2085,8 +2085,9 @@ Pozri aj [[Special:WantedCategories|žiadané kategórie]].',
 'linksearch-pat'   => 'Vyhľadávací vzor:',
 'linksearch-ns'    => 'Menný priestor:',
 'linksearch-ok'    => 'Hľadať',
-'linksearch-text'  => 'Je možné použiť zástupné znaky ako „*.wikipedia.org“.<br />
-Podporované protokoly: <tt>$1</tt>',
+'linksearch-text'  => 'Je možné používať zástupné znaky, napr. „*.wikipedia.org“.
+Povinná je minimálne doména najvyššej úrovne, napr.. „*.org“.<br />
+Podporované protokoly: <tt>$1</tt> (nepridávajte ich do hľadania).',
 'linksearch-line'  => 'Na $1 odkazuje $2',
 'linksearch-error' => 'Zástupné znaky je možné použiť iba na začiatku názvu domény.',
 

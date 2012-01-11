@@ -462,9 +462,9 @@ Paesswatt fer nau: $2',
 'group-sysop' => 'Verwalter',
 'group-all'   => '(all)',
 
-'group-user-member'  => 'Yuuser',
-'group-bot-member'   => 'Waddefresser',
-'group-sysop-member' => 'Verwalter',
+'group-user-member'  => '{{GENDER:$1|Yuuser}}',
+'group-bot-member'   => '{{GENDER:$1|Waddefresser}}',
+'group-sysop-member' => '{{GENDER:$1|Verwalter}}',
 
 'grouppage-user'  => '{{ns:project}}:Yuuser',
 'grouppage-bot'   => '{{ns:project}}:Waddefresser',

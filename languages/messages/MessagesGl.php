@@ -9,6 +9,7 @@
  *
  * @author Alma
  * @author Gallaecio
+ * @author Gustronico
  * @author Lameiro
  * @author Prevert
  * @author Toliño
@@ -453,7 +454,7 @@ $1',
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Acerca de {{SITENAME}}',
 'aboutpage'            => 'Project:Acerca de',
-'copyright'            => 'Todo o texto está dispoñíbel baixo $1.',
+'copyright'            => 'Todo o texto está dispoñible baixo $1.',
 'copyrightpage'        => '{{ns:project}}:Dereitos de autor',
 'currentevents'        => 'Actualidade',
 'currentevents-url'    => 'Project:Actualidade',
@@ -545,8 +546,8 @@ A última consulta á base de datos foi:
 desde a función "$2".
 A base de datos devolveu o erro "$3: $4"',
 'laggedslavemode'      => "'''Aviso:''' A páxina pode non conter as actualizacións recentes.",
-'readonly'             => 'Base de datos fechada',
-'enterlockreason'      => 'Dea unha razón para o fechamento, incluíndo unha estimación de até cando se manterá.',
+'readonly'             => 'Base de datos pechada',
+'enterlockreason'      => 'Dea unha razón para o peche, incluíndo unha estimación de até cando se manterá',
 'readonlytext'         => 'Nestes intres a base de datos está pechada a novas entradas e outras modificacións, probabelmente debido a rutinas de mantemento, tras as que volverá á normalidade.
 
 O administrador que a pechou deu esta explicación: $1',
@@ -662,7 +663,7 @@ Os nomes de usuario diferencian entre maiúsculas e minúsculas.
 Verifique o nome que inseriu ou [[Special:UserLogin/signup|cree unha nova conta]].',
 'nosuchusershort'            => 'Non existe ningún usuario chamado "$1".
 Verifique o nome que inseriu.',
-'nouserspecified'            => 'Debe especificar un nome de usuario.',
+'nouserspecified'            => 'Cómpre especificar un nome de usuario.',
 'login-userblocked'          => 'Este usuario está bloqueado. Acceso non autorizado.',
 'wrongpassword'              => 'O contrasinal escrito é incorrecto.
 Por favor, insira outro.',
@@ -727,7 +728,7 @@ Por favor, agarde antes de probar outra vez.',
 'retypenew'                 => 'Insira outra vez o novo contrasinal:',
 'resetpass_submit'          => 'Poñer o contrasinal e entrar',
 'resetpass_success'         => 'O cambio do contrasinal realizouse con éxito! Agora pode entrar...',
-'resetpass_forbidden'       => 'Os contrasinais non poden ser mudados',
+'resetpass_forbidden'       => 'Non se poden mudar os contrasinais',
 'resetpass-no-info'         => 'Debe rexistrarse para acceder directamente a esta páxina.',
 'resetpass-submit-loggedin' => 'Cambiar o contrasinal',
 'resetpass-submit-cancel'   => 'Cancelar',
@@ -871,11 +872,11 @@ ou <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}}
 'blocked-notice-logextract'        => 'Este usuario está bloqueado.
 Velaquí está a última entrada do rexistro de bloqueos, por se quere consultala:',
 'clearyourcache'                   => "'''Nota:''' Despois de gardar, cómpre limpar a memoria caché do seu navegador para ver os cambios.
-* '''Firefox / Safari:''' prema ''Maiúsculas'' á vez que en ''Recargar'', ou prema en ''Ctrl-F5'' ou ''Ctrl-R'' (''Command-R'' nos Mac)
-* '''Google Chrome:''' prema en ''Ctrl-Shift-R'' (''Command-Shift-R'' nos Mac)
-* '''Internet Explorer:''' prema ''Ctrl'' ao tempo que fai clic en ''Refrescar'', ou prema en ''Ctrl-F5''
-* '''Konqueror:''' prema en ''Recargar'' ou prema en ''F5''
-* '''Opera:''' limpe a súa memoria caché en ''Ferramentas → Preferencias''",
+* '''Firefox / Safari:''' Prema ''Maiúsculas'' á vez que en ''Recargar'', ou prema en ''Ctrl-F5'' ou ''Ctrl-R'' (''⌘-R'' nos Mac)
+* '''Google Chrome:''' Prema en ''Ctrl-Shift-R'' (''⌘-Shift-R'' nos Mac)
+* '''Internet Explorer:''' Prema ''Ctrl'' ao tempo que fai clic en ''Refrescar'', ou prema en ''Ctrl-F5''
+* '''Konqueror:''' Prema en ''Recargar'' ou prema en ''F5''
+* '''Opera:''' Limpe a súa memoria caché en ''Ferramentas → Preferencias''",
 'usercssyoucanpreview'             => "'''Nota:''' Use o botón \"{{int:showpreview}}\" para verificar o novo CSS antes de gardalo.",
 'userjsyoucanpreview'              => "'''Nota:''' Use o botón \"{{int:showpreview}}\" para verificar o novo JS antes de gardalo.",
 'usercsspreview'                   => "'''Lembre que só está vendo a vista previa do seu CSS de usuario.'''
@@ -929,10 +930,10 @@ Do mesmo xeito, comprométese a que o que vostede escriba sexa da súa autoría 
 '''NON ENVÍE SEN PERMISO TRABALLOS CON DEREITOS DE COPIA!'''",
 'longpageerror'                    => "'''Erro: O texto que pretende gardar ocupa $1 kilobytes, e existe un límite dun máximo de $2 kilobytes.'''
 Polo tanto, non se pode gardar.",
-'readonlywarning'                  => "'''Atención: A base de datos foi fechada para facer mantemento, polo que non vai poder gardar as súas edicións polo de agora.'''
+'readonlywarning'                  => "'''Atención: A base de datos foi pechada para facer mantemento, polo que non vai poder gardar as súas edicións polo de agora.'''
 Se cadra, pode cortar e pegar o texto nun ficheiro de texto e gardalo para despois.
 
-O administrador que a fechou deu esta explicación: $1",
+O administrador que a pechou deu esta explicación: $1",
 'protectedpagewarning'             => "'''Aviso: Esta páxina foi protexida de xeito que só os usuarios con privilexios de administrador a poidan editar.'''
 Velaquí está a última entrada no rexistro, por se quere consultala:",
 'semiprotectedpagewarning'         => "'''Nota:''' Esta páxina foi protexida de xeito que só os usuarios rexistrados a poidan editar.
@@ -1035,7 +1036,7 @@ Probe a [[Special:Search|buscar no wiki]] para atopar as páxinas relacionadas.'
 # Revision deletion
 'rev-deleted-comment'         => '(resumo de edición eliminado)',
 'rev-deleted-user'            => '(nome de usuario eliminado)',
-'rev-deleted-event'           => '(rexistro de evento eliminado)',
+'rev-deleted-event'           => '(entrada eliminada)',
 'rev-deleted-user-contribs'   => '[nome de usuario ou enderezo IP eliminado; edición agochada das contribucións]',
 'rev-deleted-text-permission' => "Esta revisión da páxina foi '''borrada'''.
 Pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados].",
@@ -1098,7 +1099,7 @@ Os demais administradores de {{SITENAME}} poderán acceder ao contido agochado e
 'revdelete-log'               => 'Motivo:',
 'revdelete-submit'            => 'Aplicar {{PLURAL:$1|á revisión seleccionada|ás revisións seleccionadas}}',
 'revdelete-logentry'          => 'mudou a visibilidade dunha revisión de "[[$1]]"',
-'logdelete-logentry'          => 'mudou a visibilidade do evento de [[$1]]',
+'logdelete-logentry'          => 'mudou a visibilidade do evento de "[[$1]]"',
 'revdelete-success'           => "'''Actualizouse sen problemas a visibilidade da revisión.'''",
 'revdelete-failure'           => "'''Non se puido actualizar a visibilidade da revisión:'''
 $1",
@@ -1296,7 +1297,7 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'stub-threshold'                => 'Límite superior para o formato de <a href="#" class="stub">ligazóns de bosquexo</a> (bytes):',
 'stub-threshold-disabled'       => 'Desactivado',
 'recentchangesdays'             => 'Número de días a mostrar nos cambios recentes:',
-'recentchangesdays-max'         => '(máximo {{PLURAL:$1|un día|$1 días}})',
+'recentchangesdays-max'         => 'Máximo $1 {{PLURAL:$1|día|días}}',
 'recentchangescount'            => 'Número de edicións a mostrar por defecto:',
 'prefs-help-recentchangescount' => 'Isto inclúe os cambios recentes, os historiais e mais os rexistros.',
 'prefs-help-watchlist-token'    => 'Ao encher este campo cunha clave secreta xerarase unha fonte de novas RSS para a súa lista de vixilancia.
@@ -1355,7 +1356,7 @@ Ha de ter menos {{PLURAL:$1|dun carácter|de $1 caracteres}}.',
 'prefs-help-realname'           => 'O seu nome real é opcional, pero se escolle dalo utilizarase para atribuírlle o seu traballo.',
 'prefs-help-email'              => 'O enderezo de correo electrónico é opcional, pero permite que se lle envíe un contrasinal novo se se esquece del.',
 'prefs-help-email-others'       => 'Tamén pode optar por deixar aos outros que se poidan poñer en contacto con vostede a través da súa páxina de usuario sen necesidade de revelar a súa identidade.',
-'prefs-help-email-required'     => 'Requírese o enderezo de correo electrónico.',
+'prefs-help-email-required'     => 'Cómpre o enderezo de correo electrónico.',
 'prefs-info'                    => 'Información básica',
 'prefs-i18n'                    => 'Internacionalización',
 'prefs-signature'               => 'Sinatura',
@@ -1407,12 +1408,12 @@ Ha de ter menos {{PLURAL:$1|dun carácter|de $1 caracteres}}.',
 'group-suppress'      => 'Supervisores',
 'group-all'           => '(todos)',
 
-'group-user-member'          => 'usuario',
-'group-autoconfirmed-member' => 'usuario autoconfirmado',
-'group-bot-member'           => 'bot',
-'group-sysop-member'         => 'administrador',
-'group-bureaucrat-member'    => 'burócrata',
-'group-suppress-member'      => 'supervisor',
+'group-user-member'          => '{{GENDER:$1|usuario|usuaria}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|usuario autoconfirmado|usuaria autoconfirmada}}',
+'group-bot-member'           => '{{GENDER:$1|bot}}',
+'group-sysop-member'         => '{{GENDER:$1|administrador|administradora}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|burócrata}}',
+'group-suppress-member'      => '{{GENDER:$1|supervisor|supervisora}}',
 
 'grouppage-user'          => '{{ns:project}}:Usuarios',
 'grouppage-autoconfirmed' => '{{ns:project}}:Usuarios autoconfirmados',
@@ -1443,7 +1444,7 @@ Ha de ter menos {{PLURAL:$1|dun carácter|de $1 caracteres}}.',
 'right-bot'                   => 'Ser tratado coma un proceso automatizado',
 'right-nominornewtalk'        => 'As edicións pequenas nas páxinas de conversa non lanzan o aviso de mensaxes novas',
 'right-apihighlimits'         => 'Usar os límites superiores nas peticións API',
-'right-writeapi'              => 'Usar o API para modificar o wiki',
+'right-writeapi'              => 'Usar a API para modificar o wiki',
 'right-delete'                => 'Borrar páxinas',
 'right-bigdelete'             => 'Borrar páxinas con historiais grandes',
 'right-deleterevision'        => 'Borrar e restaurar versións específicas de páxinas',
@@ -1478,13 +1479,13 @@ Ha de ter menos {{PLURAL:$1|dun carácter|de $1 caracteres}}.',
 'right-mergehistory'          => 'Fusionar o historial das páxinas',
 'right-userrights'            => 'Editar todos os dereitos de usuario',
 'right-userrights-interwiki'  => 'Editar os dereitos de usuario dos usuarios doutros wikis',
-'right-siteadmin'             => 'Fechar e abrir a base de datos',
+'right-siteadmin'             => 'Pechar e abrir a base de datos',
 'right-override-export-depth' => 'Exportar páxinas incluíndo as páxinas ligadas ata unha profundidade de 5',
 'right-sendemail'             => 'Enviar correos electrónicos a outros usuarios',
 
 # User rights log
 'rightslog'                  => 'Rexistro de dereitos de usuario',
-'rightslogtext'              => 'Este é un rexistro de permisos dos usuarios.',
+'rightslogtext'              => 'Este é un rexistro dos cambios nos permisos de usuario.',
 'rightslogentry'             => 'cambiou o grupo ao que pertence "$1" de $2 a $3',
 'rightslogentry-autopromote' => 'foi promovido automaticamente de $2 a $3',
 'rightsnone'                 => '(ningún)',
@@ -1529,8 +1530,8 @@ Ha de ter menos {{PLURAL:$1|dun carácter|de $1 caracteres}}.',
 'nchanges'                          => '$1 {{PLURAL:$1|cambio|cambios}}',
 'recentchanges'                     => 'Cambios recentes',
 'recentchanges-legend'              => 'Opcións dos cambios',
-'recentchangestext'                 => 'Siga, nesta páxina, as modificacións máis recentes no wiki.',
-'recentchanges-feed-description'    => 'Siga os cambios máis recentes deste wiki nesta fonte de novas.',
+'recentchangestext'                 => 'Nesta páxina pode seguir os cambios máis recentes no wiki.',
+'recentchanges-feed-description'    => 'Nesta fonte de novas pode seguir os cambios máis recentes no wiki.',
 'recentchanges-label-newpage'       => 'Esta edición creou unha nova páxina',
 'recentchanges-label-minor'         => 'Esta é unha edición pequena',
 'recentchanges-label-bot'           => 'Esta edición foi realizada por un bot',
@@ -1630,7 +1631,7 @@ Por favor, cambie o nome do ficheiro e intente cargalo de novo.',
 'tmp-create-error'            => 'Non se puido crear o ficheiro temporal.',
 'tmp-write-error'             => 'Houbo un erro ao gravar o ficheiro temporal.',
 'large-file'                  => 'Recoméndase que o tamaño dos ficheiros non supere os $1; este ficheiro ocupa $2.',
-'largefileserver'             => 'Este ficheiro é de maior tamaño có permitido pola configuración do servidor.',
+'largefileserver'             => 'Este ficheiro é de maior tamaño ca o permitido pola configuración do servidor.',
 'emptyfile'                   => 'O ficheiro que cargou semella estar baleiro.
 Isto pode deberse a un erro ortográfico no seu nome.
 Por favor, verifique se realmente quere cargar este ficheiro.',
@@ -1715,8 +1716,8 @@ $1',
 Por favor, contacte cun [[Special:ListUsers/sysop|administrador]] do sistema.',
 'upload-misc-error'         => 'Erro de carga descoñecido',
 'upload-misc-error-text'    => 'Ocorreu un erro descoñecido durante a carga.
-Por favor, comprobe que o enderezo URL é válido e está dispoñíbel e, despois, inténteo de novo.
-Se o problema persiste contacte cun [[Special:ListUsers/sysop|administrador]] do sistema.',
+Comprobe que o enderezo URL é válido e accesible e, despois, inténteo de novo.
+Se o problema persiste, póñase en contacto cun [[Special:ListUsers/sysop|administrador]] do sistema.',
 'upload-too-many-redirects' => 'O enderezo URL contiña moitas redireccións',
 'upload-unknown-size'       => 'Tamaño descoñecido',
 'upload-http-error'         => 'Produciuse un erro HTTP: $1',
@@ -1778,7 +1779,7 @@ Tamén pode reintentalo cando haxa menos actividade.',
 'license'            => 'Licenza:',
 'license-header'     => 'Licenza',
 'nolicense'          => 'Ningunha (os ficheiros sen licenza serán eliminados)',
-'license-nopreview'  => '(A vista previa non está dispoñíbel)',
+'license-nopreview'  => '(A vista previa non está dispoñible)',
 'upload_source_url'  => '  (un URL válido e accesible publicamente)',
 'upload_source_file' => '  (un ficheiro no seu ordenador)',
 
@@ -2220,7 +2221,7 @@ Axuda:
 'deletepage'             => 'Borrar a páxina',
 'confirm'                => 'Confirmar',
 'excontent'              => 'o contido era: "$1"',
-'excontentauthor'        => 'o contido era: "$1" (e o único editor foi "[[Special:Contributions/$2|$2]]")',
+'excontentauthor'        => 'o contido era: "$1" (e o único editor foi [[Special:Contributions/$2|$2]])',
 'exbeforeblank'          => 'o contido antes do baleirado era: "$1"',
 'exblank'                => 'a páxina estaba baleira',
 'delete-confirm'         => 'Borrar "$1"',
@@ -2412,7 +2413,7 @@ $1',
 'sp-contributions-uploads'             => 'cargas',
 'sp-contributions-logs'                => 'rexistros',
 'sp-contributions-talk'                => 'conversa',
-'sp-contributions-userrights'          => 'xestión dos dereitos de usuario',
+'sp-contributions-userrights'          => 'xestión dos dereitos do usuario',
 'sp-contributions-blocked-notice'      => 'Este usuario está bloqueado. Velaquí está a última entrada do rexistro de bloqueos, por se quere consultala:',
 'sp-contributions-blocked-notice-anon' => 'Este enderezo IP está bloqueado.
 Velaquí está a última entrada do rexistro de bloqueos, por se quere consultala:',
@@ -2566,20 +2567,20 @@ Polo tanto, non pode crear unha conta",
 'ipbnounblockself'                => 'Non ten os permisos necesarios para desbloquearse a si mesmo',
 
 # Developer tools
-'lockdb'              => 'Fechar a base de datos',
+'lockdb'              => 'Pechar a base de datos',
 'unlockdb'            => 'Desbloquear a base de datos',
-'lockdbtext'          => 'Ao fechar a base de datos quitaralles aos usuarios a posibilidade de editar páxinas, cambiar as súas preferencias, editar as súas listas de vixilancia e outras cousas que requiren cambios na base de datos.
+'lockdbtext'          => 'Ao pechar a base de datos quitaralles aos usuarios a posibilidade de editar páxinas, cambiar as súas preferencias, editar as súas listas de vixilancia e outras cousas que requiren cambios na base de datos.
 Por favor, confirme que isto é o que realmente quere facer e que retirará o bloqueo da base de datos cando remate co mantemento.',
 'unlockdbtext'        => 'O desbloqueo da base de datos vai permitir que os usuarios poidan editar páxinas, cambiar as súas preferencias, editar as súas listas de vixilancia e outras accións que requiran cambios na base de datos.
 Por favor confirme que isto é o que quere facer.',
-'lockconfirm'         => 'Si, realmente quero fechar a base de datos.',
+'lockconfirm'         => 'Si, realmente quero pechar a base de datos.',
 'unlockconfirm'       => 'Si, realmente quero desbloquear a base de datos',
-'lockbtn'             => 'Fechar a base de datos',
+'lockbtn'             => 'Pechar a base de datos',
 'unlockbtn'           => 'Desbloquear a base de datos',
 'locknoconfirm'       => 'Non marcou a caixa de confirmación.',
-'lockdbsuccesssub'    => 'A base de datos foi fechada con éxito',
+'lockdbsuccesssub'    => 'A base de datos foi pechada correctamente',
 'unlockdbsuccesssub'  => 'Quitouse a protección da base de datos',
-'lockdbsuccesstext'   => 'Fechouse a base de datos.<br />
+'lockdbsuccesstext'   => 'Pechouse a base de datos.<br />
 Lembre [[Special:UnlockDB|eliminar o bloqueo]] unha vez completado o seu mantemento.',
 'unlockdbsuccesstext' => 'A base de datos foi desbloqueada.',
 'lockfilenotwritable' => 'Non se pode escribir no ficheiro de bloqueo da base de datos. Para bloquear ou desbloquear a base de datos, o servidor web ten que poder escribir neste ficheiro.',
@@ -2697,7 +2698,7 @@ No último caso, pode usar tamén unha ligazón, por exemplo [[{{#Special:Export
 'export-addcat'     => 'Engadir',
 'export-addnstext'  => 'Engadir as páxinas do espazo de nomes:',
 'export-addns'      => 'Engadir',
-'export-download'   => 'Ofrecer gardar como un ficheiro',
+'export-download'   => 'Gardar como un ficheiro',
 'export-templates'  => 'Incluír os modelos',
 'export-pagelinks'  => 'Engadir as páxinas ligadas a unha profundidade de:',
 
@@ -2708,7 +2709,7 @@ No último caso, pode usar tamén unha ligazón, por exemplo [[{{#Special:Export
 'allmessagescurrent'            => 'Texto actual',
 'allmessagestext'               => 'Esta é unha lista de todas as mensaxes dispoñibles no espazo de nomes MediaWiki.
 Por favor, visite a [//www.mediawiki.org/wiki/Localisation localización MediaWiki] e [//translatewiki.net translatewiki.net] se quere contribuír á localización xenérica de MediaWiki.',
-'allmessagesnotsupportedDB'     => "Esta páxina non está dispoñíbel porque '''\$wgUseDatabaseMessages''' está desactivado.",
+'allmessagesnotsupportedDB'     => "Esta páxina non está dispoñible porque '''\$wgUseDatabaseMessages''' está desactivado.",
 'allmessages-filter-legend'     => 'Filtrar',
 'allmessages-filter'            => 'Filtrar por estado de personalización:',
 'allmessages-filter-unmodified' => 'Inalteradas',
@@ -2722,12 +2723,12 @@ Por favor, visite a [//www.mediawiki.org/wiki/Localisation localización MediaWi
 'thumbnail-more'           => 'Ampliar',
 'filemissing'              => 'O ficheiro non se dá atopado',
 'thumbnail_error'          => 'Erro ao crear a miniatura: $1',
-'djvu_page_error'          => 'Páxina DjVu fóra de rango',
-'djvu_no_xml'              => 'Foi imposíbel obter o XML para o ficheiro DjVu',
+'djvu_page_error'          => 'A páxina DjVu está fóra do rango',
+'djvu_no_xml'              => 'Non se puido obter o XML para o ficheiro DjVu',
 'thumbnail_invalid_params' => 'Parámetros de miniatura non válidos',
-'thumbnail_dest_directory' => 'Foi imposíbel crear un directorio de destino',
+'thumbnail_dest_directory' => 'Non se puido crear o directorio de destino',
 'thumbnail_image-type'     => 'Tipo de imaxe non soportado',
-'thumbnail_gd-library'     => 'Configuración da libraría GD incompleta: falta a función $1',
+'thumbnail_gd-library'     => 'Configuración da libraría GD incompleta: Falta a función $1',
 'thumbnail_image-missing'  => 'Parece que falta o ficheiro: $1',
 
 # Special:Import
@@ -2745,7 +2746,7 @@ Todas as accións relacionadas coa importación entre wikis poden verse no [[Spe
 'import-comment'             => 'Comentario:',
 'importtext'                 => 'Por favor, exporte o ficheiro do wiki de orixe usando a [[Special:Export|ferramenta de exportación]].
 Gárdeo no seu disco duro e cárgueo aquí.',
-'importstart'                => 'Importando páxinas...',
+'importstart'                => 'Importando as páxinas...',
 'import-revision-count'      => '$1 {{PLURAL:$1|revisión|revisións}}',
 'importnopages'              => 'Non hai páxinas para importar.',
 'imported-log-entries'       => '{{PLURAL:$1|Importouse unha entrada|Importáronse $1 entradas}} do rexisto.',
@@ -2778,7 +2779,7 @@ Gárdeo no seu disco duro e cárgueo aquí.',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revisión|revisións}} de $2',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'             => 'A súa páxina de {{GENDER:{{BASEPAGENAME}}|usuario|usuaria}}',
+'tooltip-pt-userpage'             => 'A súa páxina de {{GENDER:|usuario|usuaria}}',
 'tooltip-pt-anonuserpage'         => 'A páxina de usuario do enderezo IP desde o que está a editar',
 'tooltip-pt-mytalk'               => 'A súa páxina de conversa',
 'tooltip-pt-anontalk'             => 'Conversa acerca de edicións feitas desde este enderezo IP',
@@ -2892,7 +2893,7 @@ Gárdeo no seu disco duro e cárgueo aquí.',
 'siteusers'        => '{{PLURAL:$2|$1}} de {{SITENAME}}',
 'anonusers'        => '{{PLURAL:$2|o usuario anónimo|os usuarios anónimos}} $1 de {{SITENAME}}',
 'creditspage'      => 'Páxina de créditos',
-'nocredits'        => 'Non hai información de créditos dispoñíbel para esta páxina.',
+'nocredits'        => 'Esta páxina non ten dispoñible información de créditos.',
 
 # Spam protection
 'spamprotectiontitle' => 'Filtro de protección de spam',
@@ -3599,7 +3600,7 @@ Tamén pode [[Special:EditWatchlist|empregar o editor normal]].',
 'version-extensions'            => 'Extensións instaladas',
 'version-specialpages'          => 'Páxinas especiais',
 'version-parserhooks'           => 'Asociadores analíticos',
-'version-variables'             => 'Variábeis',
+'version-variables'             => 'Variables',
 'version-antispam'              => 'Prevención contra spam',
 'version-skins'                 => 'Aparencias',
 'version-other'                 => 'Outros',
@@ -3658,7 +3659,7 @@ As imaxes móstranse na súa resolución completa; outros tipos de ficheiros in�
 'specialpages-group-pagetools'   => 'Ferramentas das páxinas',
 'specialpages-group-wiki'        => 'Datos do wiki e ferramentas',
 'specialpages-group-redirects'   => 'Páxinas de redirección especiais',
-'specialpages-group-spam'        => "Ferramentas contra o ''spam''",
+'specialpages-group-spam'        => 'Ferramentas contra o spam',
 
 # Special:BlankPage
 'blankpage'              => 'Baleirar a páxina',

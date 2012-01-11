@@ -26,6 +26,7 @@
  * @author Nux
  * @author Odder
  * @author Remember the dot
+ * @author Rzuwig
  * @author Saper
  * @author Sp5uhe
  * @author Stlmch
@@ -892,12 +893,12 @@ Upewnij się, czy na pewno zamierza{{GENDER:|łeś|łaś|sz}} utworzyć lub zmod
 'userpage-userdoesnotexist-view'   => 'Konto użytkownika „$1” nie jest zarejestrowane.',
 'blocked-notice-logextract'        => '{{GENDER:$1|Ten użytkownik|Ta użytkowniczka}} jest obecnie {{GENDER:$1|zablokowany|zablokowana}}.
 Ostatni wpis rejestru blokad jest pokazany poniżej.',
-'clearyourcache'                   => "'''Uwaga:''' Należy wyczyścić zawartość pamięci podręcznej przeglądarki internetowej, w przeciwnym razie nie będzie można zobaczyć efektu działania nowych ustawień.
-*'''Mozilla, Firefox lub Safari''' – przytrzymaj wciśnięty ''Shift'' i kliknij na ''Odśwież'' lub wciśnij ''Ctrl‐F5'' lub ''Ctrl‐R'' (''Command‐R'' na Macu)
-*'''Google Chrome'''  – przytrzymaj wciśnięty ''Ctrl'', ''Shift'' i wciśnij ''R'' (''Command-Shift-R'' na Macu)
-*'''Internet Explorer''' – przytrzymaj ''Ctrl'' i kliknij na ''Odśwież'' lub wciśnij ''Ctrl‐F5''
-*'''Konqueror''' – naciśnij przycisk ''Odśwież'' lub wciśnij ''F5''
-*'''Opera''' – wyczyść pamięć podręczną w menu ''Narzędzia → Preferencje''",
+'clearyourcache'                   => "'''Uwaga:''' aby zobaczyć zmiany po zapisaniu, może zajść potrzeba wyczyszczenia pamięci podręcznej przeglądarki.
+* '''Firefox / Safari:''' Przytrzymaj ''Shift'' podczas klikania ''Odśwież bieżącą stronę'', lub naciśnij klawisze ''Ctrl+F5'' lub ''Ctrl+R'' (''⌘-R'' na komputerze Mac)
+* '''Google Chrome:''' Naciśnij ''Ctrl-Shift-R'' (''⌘-Shift-R'' na komputerze Mac)
+* '''Internet Explorer:''' Przytrzymaj ''Ctrl'' jednocześnie klikając ''Odśwież'' lub naciśnij klawisze ''Ctrl+F5''
+* '''Konqueror:''' Kliknij polecenie ''Odśwież'' lub naciśnij klawisz ''F5''
+* '''Opera:''' Wyczyść pamięć podręczną w ''Narzędzia → Preferencje''",
 'usercssyoucanpreview'             => "'''Podpowiedź:''' Użyj przycisku „Podgląd”, aby przetestować nowy arkusz stylów CSS przed jego zapisaniem.",
 'userjsyoucanpreview'              => "'''Podpowiedź:''' Użyj przycisku „Podgląd”, aby przetestować nowy kod JavaScript przed jego zapisaniem.",
 'usercsspreview'                   => "'''Pamiętaj, że to tylko podgląd arkusza stylów CSS – nic jeszcze nie zostało zapisane!'''",
@@ -1348,12 +1349,12 @@ Wygenerowany losowo klucz, którego możesz użyć to $1',
 'prefs-common-css-js'           => 'Wspólny CSS/JS dla wszystkich skórek',
 'prefs-reset-intro'             => 'Na tej stronie można przywrócić domyślne ustawienia preferencji dla tej witryny.
 Tej operacji nie można później cofnąć.',
-'prefs-emailconfirm-label'      => 'Potwierdzenie adresu e‐mail –',
+'prefs-emailconfirm-label'      => 'Potwierdzenie adresu e‐mail',
 'prefs-textboxsize'             => 'Rozmiar okna edycji',
 'youremail'                     => 'Twój adres e‐mail',
 'username'                      => 'Nazwa użytkownika',
 'uid'                           => 'ID użytkownika',
-'prefs-memberingroups'          => 'Należy do {{PLURAL:$1|grupy|grup:}}',
+'prefs-memberingroups'          => 'Należy do {{PLURAL:$1|grupy|grup}}',
 'prefs-registration'            => 'Moment rejestracji',
 'yourrealname'                  => 'Imię i nazwisko',
 'yourlanguage'                  => 'Język interfejsu',
@@ -1425,12 +1426,12 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'group-suppress'      => 'Rewizorzy',
 'group-all'           => '(wszyscy)',
 
-'group-user-member'          => 'użytkownik',
-'group-autoconfirmed-member' => 'automatycznie zatwierdzony użytkownik',
-'group-bot-member'           => 'bot',
-'group-sysop-member'         => 'administrator',
-'group-bureaucrat-member'    => 'biurokrata',
-'group-suppress-member'      => 'rewizor',
+'group-user-member'          => '{{GENDER:$1|użytkownik|użytkowniczka}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|automatycznie zatwierdzony użytkownik|automatycznie zatwierdzona użytkowniczka}}',
+'group-bot-member'           => '{{GENDER:$1|bot}}',
+'group-sysop-member'         => '{{GENDER:$1|administrator|administratorka}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|biurokrata|biurokratka}}',
+'group-suppress-member'      => '{{GENDER:$1|rewizor|rewizorka}}',
 
 'grouppage-user'          => '{{ns:project}}:Użytkownicy',
 'grouppage-autoconfirmed' => '{{ns:project}}:Automatycznie zatwierdzeni użytkownicy',
@@ -2664,7 +2665,7 @@ Wybierz inną nazwę.',
 'movelogpage'                  => 'Przeniesione',
 'movelogpagetext'              => 'Lista stron, które ostatnio zostały przeniesione.',
 'movesubpage'                  => '{{PLURAL:$1|Podstrona|Podstrony}}',
-'movesubpagetext'              => 'Ta strona posiada $1 {{PLURAL:$1|podstronę|podstrony|podstron}}, {{PLURAL:$1|która została pokazana|które zostały pokazane}} poniżej.',
+'movesubpagetext'              => 'Ta strona posiada $1 {{PLURAL:$1|podstronę|podstrony|podstron}}:',
 'movenosubpage'                => 'Ta strona nie posiada podstron.',
 'movereason'                   => 'Powód',
 'revertmove'                   => 'cofnij',

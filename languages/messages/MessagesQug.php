@@ -438,7 +438,7 @@ Shuk rurakkunaka kikinpa e-chaski ''dirección''ta mana yachankachu.",
 'filehist-user'          => 'Rurak',
 'filehist-dimensions'    => 'Mashna hatun',
 'filehist-comment'       => 'Willana',
-'imagelinks'             => 'Archivuman tinkikuna',
+'imagelinks'             => 'Archivu churapaykuna',
 'linkstoimage'           => 'Kay rikchaman {{PLURAL:$1|pankaka|pankakunaka}}  tinkikunata charin:',
 'nolinkstoimage'         => 'Nima pankaka kay rikchaman tinkikunchu.',
 'sharedupload'           => 'Chay rikchaka $1-mantami kan, icha shuk ruraykamaykunaka paywan llankan',
@@ -484,7 +484,7 @@ Shuk rurakkunaka kikinpa e-chaski ''dirección''ta mana yachankachu.",
 'categories' => 'Katiguriyakuna',
 
 # Special:LinkSearch
-'linksearch'      => 'hawaman tinkikuna',
+'linksearch'      => 'hawaman tinkikunata maskana',
 'linksearch-line' => '$1 pankaka $2-manta tinkishkami kan',
 
 # Special:Log/newusers

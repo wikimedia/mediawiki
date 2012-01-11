@@ -11,6 +11,7 @@
  * @author Ahonc
  * @author Aleator
  * @author AlexSm
+ * @author Amire80
  * @author AnakngAraw
  * @author Ans
  * @author Antime
@@ -36,6 +37,7 @@
  * @author Fryed-peach
  * @author Garas
  * @author GerardM
+ * @author Gustronico
  * @author Hamilton Abreu
  * @author Helix84
  * @author Holek
@@ -275,7 +277,7 @@ In user preferences.',
 'category-media-header'          => 'In category description page',
 'category-empty'                 => 'The text displayed in category page when that category is empty',
 'hidden-categories'              => 'Used in the categories section of pages. Is followed by a colon and a list of categories.',
-'hidden-category-category'       => 'Name of the category where hidden categories will be listed.',
+'hidden-category-category'       => 'Name of the [[mw:Help:Tracking categories|tracking category]] where hidden categories will be listed.',
 'category-subcat-count'          => 'This message is displayed at the top of a category page showing the number of pages in the category. Parameters:
 * $1: number of subcategories shown
 * $2: total number of subcategories in category',
@@ -293,9 +295,9 @@ In user preferences.',
 * $1: number of files shown',
 'listingcontinuesabbrev'         => 'Shown in contiuation of each first letter group.
 See http://test.wikipedia.org/wiki/Category:Test_ko?uselang={{SUBPAGENAME}}, for example.',
-'index-category'                 => 'Name of the category where pages with the <nowiki>__INDEX__</nowiki> behaviour switch are listed. For description of this behaviour switch see [//www.mediawiki.org/wiki/Help:Magic_words#Behavior_switches mediawiki].',
-'noindex-category'               => 'Name of the category where pages with the <nowiki>__NOINDEX__</nowiki> behaviour switch are listed. For description of this behaviour switch see [//www.mediawiki.org/wiki/Help:Magic_words#Behavior_switches mediawiki].',
-'broken-file-category'           => 'Name of category where pages that embed files that do not exist ("broken images") are listed.',
+'index-category'                 => 'Name of the [[mw:Help:Tracking categories|tracking category]] where pages with the <nowiki>__INDEX__</nowiki> behaviour switch are listed. For description of this behaviour switch see [//www.mediawiki.org/wiki/Help:Magic_words#Behavior_switches mediawiki].',
+'noindex-category'               => 'Name of the [[mw:Help:Tracking categories|tracking category]] where pages with the <nowiki>__NOINDEX__</nowiki> behaviour switch are listed. For description of this behaviour switch see [//www.mediawiki.org/wiki/Help:Magic_words#Behavior_switches mediawiki].',
+'broken-file-category'           => 'Name of [[mw:Help:Tracking categories|tracking category]] where pages that embed files that do not exist ("broken images") are listed.',
 
 'linkprefix' => '{{optional}}',
 
@@ -324,6 +326,7 @@ This can also appear in the credits page if the credits feature is enabled,for e
 # Cologne Blue skin
 'qbfind'         => 'Alternative for "search" as used in Cologne Blue skin.
 {{Identical|Find}}',
+'qbbrowse'       => '{{Identical|Browse}}',
 'qbedit'         => '{{Identical|Edit}}',
 'qbmyoptions'    => '{{Identical|My pages}}',
 'qbspecialpages' => '{{Identical|Special pages}}',
@@ -332,33 +335,34 @@ This can also appear in the credits page if the credits feature is enabled,for e
 {{doc-important|Do not translate <tt>Project:</tt> part.}}",
 
 # Vector skin
-'vector-action-addsection' => 'Used in the Vector skin. See for example http://translatewiki.net/wiki/Talk:Main_Page?useskin=vector',
-'vector-action-delete'     => 'Used in the Vector skin, as the name of a tab at the top of the page. See for example http://translatewiki.net/wiki/Main_Page?useskin=vector
+'vector-action-addsection'       => 'Used in the Vector skin. See for example http://translatewiki.net/wiki/Talk:Main_Page?useskin=vector',
+'vector-action-delete'           => 'Used in the Vector skin, as the name of a tab at the top of the page. See for example http://translatewiki.net/wiki/Main_Page?useskin=vector
 
 {{Identical|Delete}}',
-'vector-action-move'       => 'Used in the Vector skin, on the tabs at the top of the page. See for example http://translatewiki.net/wiki/Talk:Main_Page?useskin=vector
+'vector-action-move'             => 'Used in the Vector skin, on the tabs at the top of the page. See for example http://translatewiki.net/wiki/Talk:Main_Page?useskin=vector
 
 {{Identical|Move}}',
-'vector-action-protect'    => 'Tab at top of page, in vector skin
+'vector-action-protect'          => 'Tab at top of page, in vector skin
 
 {{Identical|Protect}}',
-'vector-action-undelete'   => 'Tab at top of page, in vector skin.
+'vector-action-undelete'         => 'Tab at top of page, in vector skin.
 {{Identical|Undelete}}',
-'vector-action-unprotect'  => 'Tab at top of page, in vector skin.
+'vector-action-unprotect'        => 'Tab at top of page, in vector skin.
 
 {{Identical|Unprotect}}',
-'vector-view-create'       => 'Tab label in the Vector skin. See for example http://translatewiki.net/wiki/Foo?useskin=vector
+'vector-simplesearch-preference' => 'Preference for enhanced search suggestion in the Vector skin.',
+'vector-view-create'             => 'Tab label in the Vector skin. See for example http://translatewiki.net/wiki/Foo?useskin=vector
 {{Identical|Create}}',
-'vector-view-edit'         => 'Tab label in the Vector skin. See for example http://translatewiki.net/wiki/Main_Page?useskin=vector
+'vector-view-edit'               => 'Tab label in the Vector skin. See for example http://translatewiki.net/wiki/Main_Page?useskin=vector
 {{Identical|Edit}}',
-'vector-view-history'      => 'Tab label in the Vector skin. See for example http://translatewiki.net/wiki/Main_Page?useskin=vector
+'vector-view-history'            => 'Tab label in the Vector skin. See for example http://translatewiki.net/wiki/Main_Page?useskin=vector
 {{Identical|View history}}',
-'vector-view-view'         => 'Tab label in the Vector skin (verb). See for example http://translatewiki.net/w/i.php?title=Main_Page&useskin=vector',
-'vector-view-viewsource'   => 'Tab label in the Vector skin.
+'vector-view-view'               => 'Tab label in the Vector skin (verb). See for example http://translatewiki.net/w/i.php?title=Main_Page&useskin=vector',
+'vector-view-viewsource'         => 'Tab label in the Vector skin.
 {{Identical|View source}}',
-'actions'                  => '{{Identical|Action}}',
-'namespaces'               => '{{Identical|Namespace}}',
-'variants'                 => 'Used by the Vector skin.',
+'actions'                        => '{{Identical|Action}}',
+'namespaces'                     => '{{Identical|Namespace}}',
+'variants'                       => 'Used by the Vector skin.',
 
 'errorpagetitle'    => 'Message shown in browser title bar when encountering error operation.
 
@@ -858,6 +862,7 @@ Used in text generated by Picture button in toolbar.',
 
 {{Identical|Preview}}',
 'showpreview'                      => 'The text of the button to preview the page you are editing. See also {{msg|showdiff}} and {{msg|savearticle}} for the other buttons.',
+'showlivepreview'                  => 'An edit preview without needing to reload the edit form.',
 'showdiff'                         => 'Button below the edit page. See also {{msg|showpreview}} and {{msg|savearticle}} for the other buttons.',
 'anoneditwarning'                  => 'Shown when editing a page anonymously.',
 'anonpreviewwarning'               => 'See also {{msg-mw|Anoneditwarning}}',
@@ -904,6 +909,7 @@ Parameters:
 {{doc-important|Do not translate \"<nowiki>[[User talk:\$1|\$1]]</nowiki>\" and ''Special:ChangePassword''.}}",
 'newarticle'                       => '{{Identical|New}}',
 'newarticletext'                   => "Text displayed above the edit box in editor when trying to create a new page.<br />'''Very important:''' leave <tt><nowiki>{{MediaWiki:Helppage}}</nowiki></tt> exactly as it is!",
+'anontalkpagetext'                 => 'Displayed at the bottom of talk pages of anonymous users.',
 'noarticletext'                    => 'This is the message that you get if you search for a term that has not yet got any entries on the wiki.
 
 See also {{msg-mw|Noarticletext-nopermission}}.',
@@ -958,9 +964,10 @@ Please report at [[Support]] if you are unable to properly translate this messag
 
 * $1 is the current number of parser function calls.
 * $2 is the allowed number of parser function calls.',
-'expensive-parserfunction-category'       => 'This message is used as a category name for a category where pages are placed automatically if they contain too many calls to expensive parser functions.',
+'expensive-parserfunction-category'       => 'This message is used as a category name for a [[mw:Help:Tracking categories|tracking category]] where pages are placed automatically if they contain too many calls to expensive parser functions.',
 'post-expand-template-inclusion-warning'  => 'When templates are expanded, there is a size limit for the number of bytes yielded. Usually that occurs from excessively nested templates, recursive templates, or ones having x-zillion of #if #case or similar contructs in them. When the wikicode parser detects this, it outputs a red warning message to the page.',
-'post-expand-template-inclusion-category' => 'When templates are expanded, there is a size limit for the number of bytes yielded. Usually that occurs from excessively nested templates, recursive templates, or ones having x-zillion of #if #case or similar contructs in them. When the wikicode parser detects this, it outputs a red warning message to the page.',
+'post-expand-template-inclusion-category' => 'This message is used as a category name for a [[mw:Help:Tracking categories|tracking category]] where pages are placed automatically if the expanded size of the templates they contain exceeds the limit.
+When templates are expanded, there is a size limit for the number of bytes yielded. Usually that occurs from excessively nested templates, recursive templates, or ones having x-zillion of #if #case or similar contructs in them. When the wikicode parser detects this, it outputs a red warning message to the page.',
 'language-converter-depth-warning'        => 'Error message shown when a page uses too deeply nested language conversion syntax
 
 * <tt>$1</tt> is the value of the depth limit',
@@ -1326,6 +1333,10 @@ This is a search result (and I guess search engine) dependent messages. I do not
 # Quickbar
 'qbsettings'                => 'The title of the section in [[Special:Preferences]], only shown when using the skins "Standard/Classic" or "Cologne Blue". The quicbar is the same as the sidebar.',
 'qbsettings-none'           => '{{Identical|None}}',
+'qbsettings-fixedleft'      => 'Position of the quickbar (sidebar). Used in the preferences.',
+'qbsettings-fixedright'     => 'Position of the quickbar (sidebar). Used in the preferences.',
+'qbsettings-floatingleft'   => 'Position of the quickbar (sidebar). Used in the preferences.',
+'qbsettings-floatingright'  => 'Position of the quickbar (sidebar). Used in the preferences.',
 'qbsettings-directionality' => '"Fixed", as in the position "fixed left or right". For left-to-right languages, the quickbar will be positioned at the left, for right-to-left languages at the right.',
 
 # Preferences page
@@ -1388,6 +1399,7 @@ When changing this message, please also update {{msg-mw|vector-editwarning-warni
 
 This option lets your time zone setting use the one that is used on the wiki (often UTC).',
 'timezoneoffset'                => "Text next to input box in [[Special:Preferences]], tab 'date and time', section 'timezone'.",
+'guesstimezone'                 => 'Option to fill in the timezone from the browser setting',
 'allowemail'                    => 'Used in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.',
 'prefs-searchoptions'           => '{{Identical|Search options}}',
 'prefs-namespaces'              => "{{Identical|Namespaces}}
@@ -1438,7 +1450,7 @@ Used in [[Special:Preferences]]. Parameters are:
 'prefs-help-realname'           => 'In user preferences.
 {{Identical|Real name attribution}}',
 'prefs-help-email'              => 'Shown as explanation text on [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.',
-'prefs-help-email-others'       => 'Виводиться як підказка до поля «Адреса електронної пошти» (друге речення) в налаштуваннях, на вкладці «Особисті дані». Someone translate this to English!!!',
+'prefs-help-email-others'       => 'This text is shown on account creation, below the description of the e-mail address field (which is optional).',
 'prefs-info'                    => "Header for the box giving basic information on the user account, displayed on the 'user profile' tab of the [[Special:Preferences|user preferences]] special page.",
 'prefs-i18n'                    => 'Field set legend for user preferences regarding the interface language',
 'prefs-signature'               => '{{Identical|Signature}}',
@@ -1478,7 +1490,8 @@ Used in [[Special:Preferences]], tab "Watchlist". The display options refer to:
 
 {{Identical|Edit user groups}}',
 'editinguser'                    => "Appears on [[Special:UserRights]]. The '''last part''' of the message '''should remain completely untranslated''', but if your language has S-O-V word order, the verb can follow it.",
-'userrights-editusergroup'       => '{{Identical|Edit user groups}}',
+'userrights-editusergroup'       => '{{Identical|Edit user groups}}. Parameter:
+* $1 is a username - optional, can be used for GENDER',
 'saveusergroups'                 => 'Button text when editing user groups',
 'userrights-groupsmember'        => 'Used when editing user groups in [[Special:Userrights]]. The messsage is followed by a list of group names.
 
@@ -1489,7 +1502,8 @@ Parameters:
 
 Parameters:
 * $1 - optional, for PLURAL use, the number of items in the list following the message. Please avoid PLURAL, if your language can do without.',
-'userrights-groups-help'         => 'Instructions displayed on [[Special:UserRights]].',
+'userrights-groups-help'         => 'Instructions displayed on [[Special:UserRights]]. Parameters:
+* $1 is a username - optional, can be used for GENDER',
 'userrights-reason'              => 'Text beside log field when editing user groups
 
 {{Identical|Reason}}',
@@ -1525,14 +1539,14 @@ This is an optional (disabled by default) user group, meant for the [[mw:Revisio
 
 {{Identical|All}}',
 
-'group-user-member'          => 'Name of member of group',
-'group-autoconfirmed-member' => 'Name of a member of group',
-'group-bot-member'           => 'Name of a member of group',
-'group-sysop-member'         => 'Name of member of group',
-'group-bureaucrat-member'    => 'Name of member of group',
-'group-suppress-member'      => 'This is a member of the optional (disabled by default) user group, meant for the [[mw:RevisionDelete|RevisionDelete]] feature, to change the visibility of revisions through [[Special:RevisionDelete]].
+'group-user-member'          => '{{doc-group|user|member}}, can use <nowiki>{{GENDER}}</nowiki>',
+'group-autoconfirmed-member' => '{{doc-group|autoconfirmed|member}}, can use <nowiki>{{GENDER}}</nowiki>',
+'group-bot-member'           => '{{doc-group|bot|member}}, can use <nowiki>{{GENDER}}</nowiki>',
+'group-sysop-member'         => '{{doc-group|sysop|member}}, can use <nowiki>{{GENDER}}</nowiki>',
+'group-bureaucrat-member'    => '{{doc-group|bureaucrat|member}}, can use <nowiki>{{GENDER}}</nowiki>',
+'group-suppress-member'      => '{{doc-group|suppress|member}}, can use <nowiki>{{GENDER}}</nowiki>
+This is a member of the optional (disabled by default) user group, meant for the [[mw:RevisionDelete|RevisionDelete]] feature, to change the visibility of revisions through [[Special:RevisionDelete]].
 
-* See also: {{msg|Group-suppress|pl=yes}} for the name of the group.
 {{Identical|Oversight}}',
 
 'grouppage-user'          => '{{doc-group|user|page}}',
@@ -1727,7 +1741,7 @@ This action allows editing of all of the "user rights", not just the rights of t
 'recentchanges-label-bot'         => 'Tooltip for {{msg-mw|boteditletter}}',
 'recentchanges-label-unpatrolled' => 'Tooltip for {{msg-mw|unpatrolledletter}}',
 'rcnote'                          => 'Used on [[Special:RecentChanges]].
-Shoulds looks like the message {{msg-mw|wlnote}} used similary but on [[Special:Watchlist]]
+Similar to {{msg-mw|wlnote}} which is used on [[Special:Watchlist]].
 * $1 is the number of changes shown,
 * $2 is the number of days for which the changes are shown,
 * $3 is a date and time (deprecated),
@@ -1785,7 +1799,7 @@ Does not work under $wgMiserMode ([[mwr:48986|r48986]]).',
 'recentchangeslinked'          => 'Title of [[Special:RecentChangesLinked]] and display name of page on [[Special:SpecialPages]].',
 'recentchangeslinked-feed'     => 'Title of [[Special:RecentChangesLinked]] and display name of page on [[Special:SpecialPages]].',
 'recentchangeslinked-toolbox'  => 'Title of [[Special:RecentChangesLinked]] and display name of page on [[Special:SpecialPages]].',
-'recentchangeslinked-title'    => 'Message used as title and page header on [[Special:RecentChangesLinked]] (needs an argument like "/Main Page"). Related changes are all recent change to pages that are linked from \'\'this page\'\'. "$1" is the name of the page for which related changes as show.',
+'recentchangeslinked-title'    => 'Message used as title and page header on [[Special:RecentChangesLinked]] (needs an argument like "/Main Page"). Related changes are all recent change to pages that are linked from \'\'this page\'\'. "$1" is the name of the page for which related changes are shown.',
 'recentchangeslinked-backlink' => '{{optional}}',
 'recentchangeslinked-summary'  => 'Summary of [[Special:RecentChangesLinked]].',
 'recentchangeslinked-page'     => '{{Identical|Page name}}',
@@ -2226,8 +2240,8 @@ The title is {{msg-mw|nopagetitle}}.',
 'booksources-invalid-isbn'  => 'This message is displayed after an invalid ISBN is entered on Special:Booksources.',
 
 # Special:Log
-'specialloguserlabel'  => "Used in [[Special:Log]] as a label for an input field with which the log can be filtered for entries describing actions ''performed'' by the specified user.",
-'speciallogtitlelabel' => 'Used in [[Special:Log]].',
+'specialloguserlabel'  => 'Used in [[Special:Log]] as a label for an input field with which the log can be filtered for entries describing actions \'\'performed\'\' by the specified user.  "Carried out" and "done" are possible alternatives for "performed".',
+'speciallogtitlelabel' => 'Used in [[Special:Log]] as a label for an input field with which the log can be filtered.  This filter selects for pages or users on which a log action was performed.',
 'log'                  => 'Name of special page displayed in [[Special:SpecialPages]]',
 'all-logs-page'        => 'Title of [[Special:Log]].',
 'alllogstext'          => 'Header of [[Special:Log]]',
@@ -2250,7 +2264,7 @@ The title is {{msg-mw|nopagetitle}}.',
 'allarticles'       => 'The page title of [[Special:Allpages]]. When the user limit the list to a certain namespace, {{msg-mw|allinnamespace}} is used instead.
 
 {{Identical|All pages}}',
-'allinnamespace'    => 'The page title of [[Special:Allpages]] and [[Special:PrefixIndex]], when the user limits the display to a certain namespace. When not limited, {{msg-mw|allarticles}} and {{msg-mw|prefixindex}} is used respectively.
+'allinnamespace'    => 'The page title of [[Special:Allpages]], when the user limits the display to a certain namespace. When not limited, {{msg-mw|allarticles}} is used respectively.
 
 {{Identical|All pages}}',
 'allnotinnamespace' => 'Presumably intended to be used as a page title of [[Special:Allpages]] and probably also in [[Special:PrefixIndex]] when the user limit the display to other than a certain namespace.
@@ -2945,7 +2959,8 @@ Parameters:
 'allmessages-filter-unmodified' => 'Used in [[Special:AllMessages]].',
 'allmessages-filter-all'        => 'Used in [[Special:AllMessages]].
 {{Identical|All}}',
-'allmessages-filter-modified'   => 'Used in [[Special:AllMessages]].',
+'allmessages-filter-modified'   => 'Used in [[Special:AllMessages]].
+{{Identical|Modified}}',
 'allmessages-prefix'            => 'Used in [[Special:AllMessages]].',
 'allmessages-language'          => 'Used on [[Special:Allmessages]].
 
@@ -2989,7 +3004,7 @@ Related messages: {{msg|right-importupload|pl=yes}} (the user right for this).',
 * $1 is the name of the imported file',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'             => 'This text appears in the tool-tip when you hover the mouse over your the tab with you User name on it',
+'tooltip-pt-userpage'             => 'Tooltip shown when hovering the mouse over the link to your own User page in the upper-side personal toolbox.',
 'tooltip-pt-mytalk'               => 'Tooltip shown when hovering over the "my talk" link in your personal toolbox (upper right side).',
 'tooltip-pt-preferences'          => 'Tooltip shown when hovering over the "my preferences" ([[MediaWiki:Mypreferences]]) link in your personal toolbox (upper right side).
 
@@ -3849,7 +3864,8 @@ See: http://www.awaresystems.be/imaging/tiff/tifftags/ycbcrpositioning.html',
 'exif-dc-contributor' => 'People who helped make the resource, but are secondary in contribution to the author.',
 'exif-dc-coverage'    => '"The extent or scope of the resource" see dc:coverage in http://www.adobe.com/content/dam/Adobe/en/devnet/xmp/pdfs/XMPSpecificationPart2.pdf',
 'exif-dc-date'        => 'One or more dates associated with the image. How they are associated is not really defined. From the dc:date XMP property.',
-'exif-dc-publisher'   => 'One or more publisher of resource',
+'exif-dc-publisher'   => 'One or more publisher of resource.
+{{Identical|Publisher}}',
 'exif-dc-relation'    => "Something related to this image. Often a list of url's to related images.",
 'exif-dc-rights'      => 'Copyright information about the image/media given in informal language.',
 'exif-dc-source'      => 'Source of the image. This is another image that this image is based on. This does not refer to the person who provided the image.',

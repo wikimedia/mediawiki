@@ -1212,12 +1212,12 @@ $1 {{PLURAL:$1|бэлиэттэн|бэлиэттэн (буукубаттан)}} 
 'group-suppress'      => 'Алҕастар',
 'group-all'           => '(бары)',
 
-'group-user-member'          => 'Кыттааччы',
-'group-autoconfirmed-member' => 'Аптамаатынан бигэргэтиллибит кыттааччы',
-'group-bot-member'           => 'Робот',
-'group-sysop-member'         => 'Дьаһабыл',
-'group-bureaucrat-member'    => 'Бюрократ',
-'group-suppress-member'      => 'Алҕас',
+'group-user-member'          => '{{GENDER:$1|кыттааччы}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|аптамаатынан бигэргэтиллибит кыттааччы}}',
+'group-bot-member'           => '{{GENDER:$1|робот}}',
+'group-sysop-member'         => '{{GENDER:$1|дьаһабыл}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|бүрэкирээт}}',
+'group-suppress-member'      => '{{GENDER:$1|ревизор}}',
 
 'grouppage-user'          => '{{ns:project}}:Кыттааччылар',
 'grouppage-autoconfirmed' => '{{ns:project}}:Аптамаатынан бигэргэммит кыттааччылар',

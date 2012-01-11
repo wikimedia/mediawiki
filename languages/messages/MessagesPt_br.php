@@ -37,6 +37,7 @@
  * @author McDutchie
  * @author MetalBrasil
  * @author Pedroca cerebral
+ * @author Rafael Vargas
  * @author Raylton P. Sousa
  * @author Rodrigo Calanca Nishino
  * @author Urhixidur
@@ -1466,12 +1467,12 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 'group-suppress'      => 'Oversights',
 'group-all'           => '(todos)',
 
-'group-user-member'          => 'Usuário',
-'group-autoconfirmed-member' => 'Usuário auto-confirmado',
+'group-user-member'          => '{{GENDER:$1|usuário|usuária}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|usuário autoconfirmado|usuária autoconfirmada}}',
 'group-bot-member'           => 'robô',
-'group-sysop-member'         => 'administrador',
+'group-sysop-member'         => '{{GENDER:$1|administrador |administradora}}',
 'group-bureaucrat-member'    => 'burocrata',
-'group-suppress-member'      => 'supervisor',
+'group-suppress-member'      => '{{GENDER:$1|supressor|supressora}}',
 
 'grouppage-user'          => '{{ns:project}}:Usuários',
 'grouppage-autoconfirmed' => '{{ns:project}}:Auto-confirmados',
@@ -2055,8 +2056,8 @@ Por favor note que outros websites podem apontar para um arquivo através de um 
 'booksources-invalid-isbn'  => 'O número ISBN fornecido não parece ser válido; verifique se houve erros ao copiar da fonte original.',
 
 # Special:Log
-'specialloguserlabel'  => 'Usuário:',
-'speciallogtitlelabel' => 'Título:',
+'specialloguserlabel'  => 'Executor:',
+'speciallogtitlelabel' => 'Destino (título ou usuário):',
 'log'                  => 'Registros',
 'all-logs-page'        => 'Todos os registros públicos',
 'alllogstext'          => 'Exibição combinada de todos registros disponíveis para o {{SITENAME}}.

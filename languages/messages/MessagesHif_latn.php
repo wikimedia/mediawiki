@@ -8,6 +8,7 @@
  * @file
  *
  * @author Abdul Kadir
+ * @author Bihari
  * @author Girmitya
  * @author Malafaya
  * @author Thakurji
@@ -535,6 +536,12 @@ Sait aap password ke safalta se badal sia hoga nai to nawaa temporary password k
 'passwordreset-domain'       => 'Domain:',
 'passwordreset-email'        => 'E-mail ke address',
 'passwordreset-emailtitle'   => '{{SITENAME}} me account ke jaankari',
+'passwordreset-emailtext-ip' => 'Koi (hoe sake aap, IP address $1 se) {{SITENAME}} ($4) pe aap ke account ke baare me jaankari maanga hae. Niche likha gias sadasya ii e-mail se associated hae.  {{PLURAL:$3|account hae|accounts hae}}
+
+$2
+
+{{PLURAL:$3|Ii temporary password|Ii sab temporary passwords}}  {{PLURAL:$5|ek din|$5 din}} me khalaas hoi.
+Aap ke chaahi ki aap login kar ke ek nawaa password banao.  Agar aur koi ii request karis hae, nai to agae aap aapan purana paasword ke yaad kar liya hae, tab ii sandes ke baare me bhuul jaao aur purana password use karte raho.',
 'passwordreset-emailelement' => 'Sadasya ke naam: $1
 Kuchh din ke khatir password: $2',
 'passwordreset-emailsent'    => 'Aap ke yaad karae ke khatir ek e-mail ke bhej dewa gais hae.',
@@ -814,28 +821,29 @@ Try karo [[Special:Search|wiki me khije ke]] aur nawaa panna ke.',
 'rev-deleted-user-contribs'   => '[Sadasya ke naam nai to IP address ke hatae dewa gais hae- yogdaan se badlao ke lukae dewa gais hae]',
 'rev-deleted-text-permission' => "Panna ke ii badlao ke '''mitae''' dewa gais hae.
 Iske baare me aur jaankari [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log] me saait hoi.",
-'rev-deleted-text-unhide'     => "Ii panna ke badlao ke '''mitae''' dewa gais hai.
+'rev-deleted-text-unhide'     => "i panna ke badlao ke '''mitae''' dewa gais hai.
 Iske baare me aur jaankari saait [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log] me hoi.
-Ek administrator rahe se aap fir bhi [$1 ii badlao ke dekhe sakta hae] agar aap aage barrhe mangtaa hae tab.",
+Aap fir bhi [$1 ii badlao ke dekhe sakta hae] agar aap aage barrhe mangtaa hae tab.",
 'rev-suppressed-text-unhide'  => "Ii panna ke badlao ke '''dabae''' dewa gais hai.
 Iske baare me aur jaankari saait [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log] me hoi.
-Ek administrator rahe se aap fir bhi [$1 ii badlao ke dekhe sakta hae] agar aap aage barrhe mangtaa hae tab.",
+Aap fir bhi [$1 ii badlao ke dekhe sakta hae] agar aap aage barrhe mangtaa hae tab.",
 'rev-deleted-text-view'       => "Panna ke ii badlao ke '''mitae''' dewa gais hae.
-Aap ek administrator hoe ke kaaran iske dekhe sakta hai; iske baare me aur jaankari [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log] me saait hoi.",
+Aap iske dekhe sakta hai; iske baare me aur jaankari [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log] me saait hoi.",
 'rev-suppressed-text-view'    => "Ii panna ke badlao ke '''dabae''' dewa gais hai.
-Ek administrator rahe ke kaaran aap iske dekhe saktaa hae; Iske baare me aur jaankari saait [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log] me hoi.",
+Aap iske dekhe saktaa hae; Iske baare me aur jaankari saait [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log] me hoi.",
 'rev-deleted-no-diff'         => "Aap ii diff ke nai dekhe saktaa hai kahe ki ek badlao '''mitae''' dewa gais hae.
 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log] me sait kuch aur jaankari hoi.",
 'rev-suppressed-no-diff'      => "Aap ii antar ke nahi dekhe sakta hae, kahe ki ek badlao ke '''mitae''' dewa gais hae.",
 'rev-deleted-unhide-diff'     => "Ii diff me se ek badlao ke '''mitae''' dewa gais hae.
 Aur jaankari saait [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log] me hoi.
-Ek administrator hoe ke kaaran aap fir bhi [$1 ii diff ke dekhe sakta hae] agar aap aage barrhe mangtaa hai tab.",
-'rev-suppressed-unhide-diff'  => 'Ii antar me ke ek balao ke nai dekhawa jaae hae.
+Aap fir bhi [$1 ii diff ke dekhe sakta hae] agar aap aage barrhe mangtaa hai tab.",
+'rev-suppressed-unhide-diff'  => "Ii antar me ke ek balao ke '''dabae''' dewa gais hae.
 Iske baare me aur jaankari [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log] me milii.
-Ek administrator hoe ke kaaran aap [$1 view this diff] ke dekehe saktaa hae',
+Aap [$1 ke dekehe saktaa hae]  agar aap aage barrhae mantaa hae tab.",
 'rev-deleted-diff-view'       => "Ii antar ke ek badlao ke '''mitae''' dwa gais hae.
-Ek administrator hoe ke kaaran aap ii antar ke dekhe sakta hae; saait [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log] me saait aur jaankari hoe.",
-'rev-suppressed-diff-view'    => "Ii antar ke ek badlao ke '''lukae''' dewa gais hae.",
+Aap ii antar ke dekhe sakta hae; saait [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log] me saait aur jaankari hoe.",
+'rev-suppressed-diff-view'    => "Ii antar ke ek badlao ke '''dabae''' dewa gais hae.
+Aap ii diff ke dekhe saktaa hae: iske baare me aur jaan kaari [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log] me milii.",
 'rev-delundel'                => 'dekhao/lukao',
 'rev-showdeleted'             => 'dekhao',
 'revisiondelete'              => 'Badlao ke mitao/nai mitao',
@@ -914,7 +922,7 @@ Meharbani ka ke logs ke check karo.',
 # Suppression log
 'suppressionlog'     => 'Dabae waala log',
 'suppressionlogtext' => 'Niche ke suchi me administrators se lukawa gais deletions au rukawat hae.
-Abhi ke laabu rukawat ke suchi ke khatir [[Special:IPBlockList|IP block list]] ke dekho.',
+Abhi ke laabu rukawat ke suchi ke khatir [[Special:BlockList|IP block list]] ke dekho.',
 
 # History merging
 'mergehistory'                     => 'Panna ke itihass ke jorro',
@@ -1182,12 +1190,12 @@ Iske $1 {{PLURAL:$1|character|characters}} se kamti rahe ke chaahi.',
 'group-suppress'      => 'Oversights',
 'group-all'           => '(sab)',
 
-'group-user-member'          => 'Sadasya',
-'group-autoconfirmed-member' => 'Autoconfirmed sadasya',
-'group-bot-member'           => 'Bot',
-'group-sysop-member'         => 'Sysop',
-'group-bureaucrat-member'    => 'Bureaucrat',
-'group-suppress-member'      => 'Oversight',
+'group-user-member'          => '{{GENDER:$1|sadasya}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|autoconfirmed sadasya}}',
+'group-bot-member'           => '{{GENDER:$1|bot}}',
+'group-sysop-member'         => '{{GENDER:$1|administrator}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|bureaucrat}}',
+'group-suppress-member'      => '{{GENDER:$1|oversight}}',
 
 'grouppage-user'          => '{{ns:project}}:Sadasya',
 'grouppage-autoconfirmed' => '{{ns:project}}:Autoconfirmed sadasya',
@@ -1489,22 +1497,23 @@ Ii sab panna khaali uu sadasya ke dekhae hae jon ki iske uplaod karis hae.',
 'uploadstash-refresh'  => 'File ke suchi ke fir se dekhao',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'ijajat nai hae',
-'img-auth-nopathinfo'   => 'PATH_INFO nai hae
+'img-auth-accessdenied'     => 'ijajat nai hae',
+'img-auth-nopathinfo'       => 'PATH_INFO nai hae
 Aap ke server ke ii jankari de khatir set up nai karaa gais hae
 Saait ii CGI-based hoi aur img_auth ke nai support karat hoi.
 http://www.mediawiki.org/wiki/Manual:Image_Authorization ke dekho.',
-'img-auth-notindir'     => 'Maanga gais path configured upload directory me me nai hae.',
-'img-auth-badtitle'     => '"$1" se kanuni title ke nai banae sakaa hae.',
-'img-auth-nologinnWL'   => 'Aap logged in nai hae aur "$1" whitelist me nai hae.',
-'img-auth-nofile'       => 'File "$1" nai hae.',
-'img-auth-isdir'        => 'Aap directory "$1" me jaae mangtaa hae.
+'img-auth-notindir'         => 'Maanga gais path configured upload directory me me nai hae.',
+'img-auth-badtitle'         => '"$1" se kanuni title ke nai banae sakaa hae.',
+'img-auth-nologinnWL'       => 'Aap logged in nai hae aur "$1" whitelist me nai hae.',
+'img-auth-nofile'           => 'File "$1" nai hae.',
+'img-auth-isdir'            => 'Aap directory "$1" me jaae mangtaa hae.
 Khaali file me jaawe ke ijajat hae',
-'img-auth-streaming'    => '"$1" ke stream karaa jaawe hae.',
-'img-auth-public'       => 'img_auth.php ke function private wiki se file nikale ke hae.
+'img-auth-streaming'        => '"$1" ke stream karaa jaawe hae.',
+'img-auth-public'           => 'img_auth.php ke function private wiki se file nikale ke hae.
 Ii wiki ek public wiki hae.
 Puura surakchha ke khatir, img_auth.php ke band kar dewa gais hae.',
-'img-auth-noread'       => 'Sadasya ke "$1" parrhe ke ijajat nai hae.',
+'img-auth-noread'           => 'Sadasya ke "$1" parrhe ke ijajat nai hae.',
+'img-auth-bad-query-string' => 'Ii URL me ek kharaab query string hae.',
 
 # HTTP errors
 'http-invalid-url'      => 'URL kharaab hae: $1',
@@ -1659,7 +1668,7 @@ Templates ke delete kare se pahile duusra links ke bhi check kare ke nai bhulna.
 'statistics-users-active-desc' => 'Sadasya jon ki pichhle {{PLURAL:$1|din|$1 din}} me kuchh karin hai.',
 'statistics-mostpopular'       => 'Sab se jaada dekha gae panna',
 
-'disambiguations'      => 'Disambiguation panna',
+'disambiguations'      => 'Garrbarri ke sudhare waala panna',
 'disambiguationspage'  => 'Template:disambig',
 'disambiguations-text' => "Niche ke panna '''disambiguation panna''' se link hoe hai.
 They should link to the appropriate topic instead.<br />
@@ -1757,7 +1766,7 @@ Yaad rakhna ki duusra web site bhi direct URL se ek file se link hoe sake hae, a
 
 # Special:Log
 'specialloguserlabel'  => 'Sadasya:',
-'speciallogtitlelabel' => 'Title:',
+'speciallogtitlelabel' => 'Padwi:',
 'log'                  => 'Suchi',
 'all-logs-page'        => 'Sab janta waala suchi',
 'alllogstext'          => '{{SITENAME}} ke sab log ke ek saathe dekhawa jjawe hae.
@@ -2759,8 +2768,12 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'exif-subjectarea'                 => 'Vishay ke jagha',
 'exif-flashenergy'                 => 'Chamak ke taagat',
 'exif-focalplanexresolution'       => 'Focal plane X resolution',
+'exif-filesource'                  => 'File ke source',
+'exif-scenetype'                   => 'Kon rakam ke scene hae',
 'exif-gpsaltitude'                 => 'Uunchai',
 'exif-gpsspeedref'                 => 'Raftar ke unit',
+'exif-gpsdestdistance'             => 'Manjil se duuri',
+'exif-gpsareainformation'          => 'GPS ilaka ke naam',
 'exif-gpsdatestamp'                => 'GPS ke taarik',
 
 'exif-orientation-2' => 'Baraabar ultawa gais hae',
@@ -2848,6 +2861,9 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'watchlisttools-edit' => 'Dhyan suchi ke dekho aur badlo',
 'watchlisttools-raw'  => 'Dhyan suchi ke apne sampadan karo',
 
+# Core parser functions
+'duplicate-defaultsort' => '\'\'\'Chetauni:\'\'\' Default sort key "$2" pahile ke default sort key "$1" ke override kare hae.',
+
 # Special:Version
 'version'                  => 'Badlao',
 'version-specialpages'     => 'Khaas panna',
@@ -2873,7 +2889,20 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'blankpage'              => 'Khaali panna',
 'intentionallyblankpage' => 'Ii panna ke jaan ke khaliya chhorraa gais hae.',
 
+# External image whitelist
+'external_image_whitelist' => '#Leave this line exactly as it is<pre>
+#Put regular expression fragments (just the part that goes between the //) below
+#These will be matched with the URLs of external (hotlinked) images
+#Those that match will be displayed as images, otherwise only a link to the image will be shown
+#Lines beginning with # are treated as comments
+#This is case-insensitive
+
+# Ii line ke yahii rakam chhorr do<pre>
+#Sab regular expression fragments (wahii hissa jon ki // ke biich me jaawe hae) ke niche rakkho
+#Iske bahaari URLs  (hotlinked) chapa se link karaa jaai',
+
 # Special:Tags
+'tag-filter'    => '[[Special:Tags|Tag]] filter karo:',
 'tags-edit'     => 'badlo',
 'tags-hitcount' => '$1 {{PLURAL:$1|badlao|badlao}}',
 

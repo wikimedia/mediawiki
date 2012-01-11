@@ -63,6 +63,7 @@
  * @author Verdy p
  * @author Wyz
  * @author Yumeki
+ * @author Zebulon84
  * @author Zetud
  * @author Горан Анђелковић
  * @author לערי ריינהארט
@@ -453,15 +454,15 @@ $messages = array(
 'october-gen'   => 'octobre',
 'november-gen'  => 'novembre',
 'december-gen'  => 'décembre',
-'jan'           => 'jan',
-'feb'           => 'fév',
-'mar'           => 'mar',
+'jan'           => 'janv',
+'feb'           => 'févr',
+'mar'           => 'mars',
 'apr'           => 'avr',
 'may'           => 'mai',
-'jun'           => 'jun',
-'jul'           => 'jul',
-'aug'           => 'aoû',
-'sep'           => 'sep',
+'jun'           => 'juin',
+'jul'           => 'juil',
+'aug'           => 'août',
+'sep'           => 'sept',
 'oct'           => 'oct',
 'nov'           => 'nov',
 'dec'           => 'déc',
@@ -630,8 +631,8 @@ $1',
 'toc'                     => 'Sommaire',
 'showtoc'                 => 'afficher',
 'hidetoc'                 => 'masquer',
-'collapsible-collapse'    => 'Replier',
-'collapsible-expand'      => 'Développer',
+'collapsible-collapse'    => 'masquer',
+'collapsible-expand'      => 'afficher',
 'thisisdeleted'           => 'Désirez-vous afficher ou restaurer $1 ?',
 'viewdeleted'             => 'Voir $1 ?',
 'restorelink'             => '{{PLURAL:$1|la modification effacée|les $1 modifications effacées}}',
@@ -733,7 +734,7 @@ Essayez à nouveau dans quelques minutes.',
 'cascadeprotected'     => 'Cette page est protégée car elle est incluse par {{PLURAL:$1|la page suivante, qui a été protégée|les pages suivantes, qui ont été protégées}} avec l’option « protection en cascade » activée :
 $2',
 'namespaceprotected'   => "Vous n’avez pas la permission de modifier les pages de l’espace de noms « '''$1''' ».",
-'customcssprotected'   => "Vous n'avez pas la permission de modifier cette page de CSS, car elle contient les paramètres personnels d'un autre utilisateur.",
+'customcssprotected'   => 'Vous n’avez pas la permission de modifier cette page de CSS, car elle contient les paramètres personnels d’un autre utilisateur.',
 'customjsprotected'    => "Vous n'avez pas la permission de modifier cette page de JavaScript, car elle contient les paramètres personnels d'un autre utilisateur.",
 'ns-specialprotected'  => 'Les pages dans l’espace de noms « {{ns:special}} » ne peuvent pas être modifiées.',
 'titleprotected'       => "Ce titre a été protégé à la création par [[User:$1|$1]].
@@ -783,8 +784,8 @@ Veuillez choisir un nom différent.',
 'createaccounterror'         => 'Impossible de créer le compte : $1',
 'nocookiesnew'               => "Le compte utilisateur a été créé, mais vous n’êtes pas connecté{{GENDER:||e|(e)}}. {{SITENAME}} utilise des témoins (''cookies'') pour la connexion mais vous les avez désactivés. Veuillez les activer et vous reconnecter avec le même nom et le même mot de passe.",
 'nocookieslogin'             => "{{SITENAME}} utilise des témoins (''cookies'') pour la connexion mais vous les avez désactivés. Veuillez les activer et vous reconnecter.",
-'nocookiesfornew'            => "Le compte utilisateur n'a pas été créé, car nous n'avons pas pu identifier son origine.
-Vérifiez que vous avez activé les cookies, rechargez la page et rééssayez.",
+'nocookiesfornew'            => 'Le compte utilisateur n’a pas été créé, car nous n’avons pas pu identifier son origine.
+Vérifiez que vous avez activé les cookies, rechargez la page et rééssayez.',
 'noname'                     => 'Vous n’avez pas saisi un nom d’utilisateur valide.',
 'loginsuccesstitle'          => 'Connexion réussie',
 'loginsuccess'               => 'Vous êtes maintenant connecté{{GENDER:$1||e|(e)}} à {{SITENAME}} en tant que « $1 ».',
@@ -798,7 +799,7 @@ Vérifiez l’orthographe, ou [[Special:UserLogin/signup|créez un nouveau compt
 'wrongpasswordempty'         => 'Vous n’avez pas entré de mot de passe. Veuillez essayer à nouveau.',
 'passwordtooshort'           => 'Votre mot de passe doit contenir au moins $1 caractère{{PLURAL:$1||s}}.',
 'password-name-match'        => 'Votre mot de passe doit être différent de votre nom d’utilisateur.',
-'password-login-forbidden'   => "L'utilisation de ce nom d'utilisateur et de ce mot de passe a été interdite.",
+'password-login-forbidden'   => 'L’utilisation de ce nom d’utilisateur et de ce mot de passe a été interdite.',
 'mailmypassword'             => 'Recevoir un nouveau mot de passe par courriel',
 'passwordremindertitle'      => 'Nouveau mot de passe temporaire pour {{SITENAME}}',
 'passwordremindertext'       => 'Quelqu’un (probablement vous, ayant l’adresse IP $1) a demandé un nouveau mot de
@@ -881,8 +882,8 @@ $2
 $2
 
 {{PLURAL:$3|Ce mot de passe temporaire expirera|Ces mots de passe temporaires expireront}} dans {{PLURAL:$5|un jour|$5 jours}}. Vous devez maintenant vous connecter et choisir un nouveau mot de passe. Si cette demande ne provient pas de vous, ou que vous vous êtes souvenu de votre mot de passe initial, et ne souhaitez plus le modifier, vous pouvez ignorer ce message et continuer à utiliser votre ancien mot de passe.',
-'passwordreset-emailelement'   => "Nom d'utilisateur :       $1
-Mot de passe temporaire : $2",
+'passwordreset-emailelement'   => 'Nom d’utilisateur : $1
+Mot de passe temporaire : $2',
 'passwordreset-emailsent'      => 'Un courriel de rappel a été envoyé.',
 
 # Edit page toolbar
@@ -986,11 +987,11 @@ ou <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}}
 'blocked-notice-logextract'        => 'Cet utilisateur est actuellement bloqué.
 La dernière entrée du registre des blocages est indiquée ci-dessous à titre d’information :',
 'clearyourcache'                   => "'''Note :''' après avoir enregistré vos préférences, vous devrez forcer le rechargement complet du cache de votre navigateur pour voir les changements.
-* '''Firefox / Safari :''' maintenez la touche ''Maj'' (''Shift'') en cliquant sur le bouton ''Actualiser'' ou pressez ''Ctrl-F5'' ou ''Ctrl-R'' (''Cmd-R'' sur un Mac) ;
-* '''Google Chrome :''' pressez ''Ctrl-Maj-R'' (''Cmd-Maj-R'' sur un Mac) ;
-* '''Internet Explorer :''' maintenez la touche ''Ctrl'' en cliquant sur le bouton ''Actualiser'' ou pressez ''Ctrl-F5'' ;
-* '''Konqueror :''' cliquez sur ''Actualiser'' ou pressez ''F5'' ;
-* '''Opera :''' videz le cache dans ''Outils → Préférences''.",
+* '''Firefox / Safari :''' Maintenez la touche ''Maj'' (''Shift'') en cliquant sur le bouton ''Actualiser'' ou pressez ''Ctrl-F5'' ou ''Ctrl-R'' (''⌘-R'' sur un Mac) ;
+* '''Google Chrome :''' Appuyez sur ''Ctrl-Maj-R'' (''⌘-Shift-R'' sur un Mac) ;
+* '''Internet Explorer :''' Maintenez la touche ''Ctrl'' en cliquant sur le bouton ''Actualiser'' ou pressez ''Ctrl-F5'' ;
+* '''Konqueror :''' Cliquez sur ''Actualiser'' ou pressez ''F5'' ;
+* '''Opera :''' Videz le cache dans ''Outils → Préférences''.",
 'usercssyoucanpreview'             => "'''Astuce :''' utilisez le bouton « {{int:showpreview}} » pour tester votre nouvelle feuille CSS avant de l’enregistrer.",
 'userjsyoucanpreview'              => "'''Astuce :''' utilisez le bouton « {{int:showpreview}} » pour tester votre nouvelle feuille JavaScript avant de l’enregistrer.",
 'usercsspreview'                   => "'''Rappelez-vous que vous n’êtes qu’en train de prévisualiser votre propre feuille CSS.'''
@@ -1358,7 +1359,7 @@ Essayez en utilisant le préfixe ''all:'' pour rechercher dans tout le contenu (
 'qbsettings-fixedright'     => 'Droite',
 'qbsettings-floatingleft'   => 'Flottante à gauche',
 'qbsettings-floatingright'  => 'Flottante à droite',
-'qbsettings-directionality' => "Fixe, en fonction de la directivité d'écriture de votre langue",
+'qbsettings-directionality' => 'Fixe, en fonction de la directivité d’écriture de votre langue',
 
 # Preferences page
 'preferences'                   => 'Préférences',
@@ -1486,10 +1487,10 @@ Elle ne doit pas dépasser $1 caractère{{PLURAL:$1||s}}.',
 'saveusergroups'               => 'Enregistrer les groupes de l’utilisateur',
 'userrights-groupsmember'      => 'Membre de :',
 'userrights-groupsmember-auto' => 'Membre implicite de :',
-'userrights-groups-help'       => 'Vous pouvez modifier les groupes auxquels appartient cet utilisateur.
+'userrights-groups-help'       => 'Vous pouvez modifier les groupes auxquels appartient cet utilisateur:
 * Une case cochée signifie que l’utilisateur se trouve dans ce groupe.
 * Une case non cochée signifie qu’il ne s’y trouve pas.
-* Un astérisque (*) indique que vous ne pouvez pas retirer ce groupe une fois que vous l’avez ajouté.',
+* Un astérisque (*) indique que vous ne pouvez pas retirer ce groupe une fois que vous l’avez ajouté, ou vice-versa.',
 'userrights-reason'            => 'Motif :',
 'userrights-no-interwiki'      => 'Vous n’avez pas la permission de modifier des droits d’utilisateurs sur d’autres wikis.',
 'userrights-nodatabase'        => 'La base de donnée « $1 » n’existe pas ou n’est pas locale.',
@@ -1508,12 +1509,12 @@ Elle ne doit pas dépasser $1 caractère{{PLURAL:$1||s}}.',
 'group-suppress'      => 'Superviseurs',
 'group-all'           => '(tous)',
 
-'group-user-member'          => 'utilisateur',
-'group-autoconfirmed-member' => 'utilisateur enregistré',
-'group-bot-member'           => 'robot',
-'group-sysop-member'         => 'administrateur',
-'group-bureaucrat-member'    => 'bureaucrate',
-'group-suppress-member'      => 'superviseur',
+'group-user-member'          => '{{GENDER:$1|utilisateur|utilisatrice}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|utilisateur enregistré|utilisatrice enregistrée}}',
+'group-bot-member'           => '{{GENDER:$1|robot}}',
+'group-sysop-member'         => '{{GENDER:$1|administrateur|administratrice}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|bureaucrate}}',
+'group-suppress-member'      => '{{GENDER:$1|superviseur|superviseuse}}',
 
 'grouppage-user'          => '{{ns:project}}:Utilisateurs',
 'grouppage-autoconfirmed' => '{{ns:project}}:Utilisateurs enregistrés',
@@ -1769,7 +1770,7 @@ Si vous voulez toujours importer votre fichier, veuillez revenir en arrière et 
 'uploadscripted'              => 'Ce fichier contient du code HTML ou un script qui pourrait être interprété de façon incorrecte par un navigateur web.',
 'uploadvirus'                 => 'Ce fichier contient un virus ! Pour plus de détails, consultez : $1',
 'uploadjava'                  => "C'est un fichier ZIP qui contient un fichier Java .class.
-Le téléchargement de fichiers Java n'est pas autorisé, car ils peuvent entraîner des restrictions de sécurité.",
+Le téléchargement de fichiers Java n'est pas autorisé, car ils peuvent contourner des restrictions de sécurité.",
 'upload-source'               => 'Fichier source',
 'sourcefilename'              => 'Nom du fichier source :',
 'sourceurl'                   => 'URL source :',
@@ -1815,7 +1816,7 @@ Veuillez vérifier que l’URL est valide et accessible, puis essayer à nouveau
 Si le problème persiste, contactez un [[Special:ListUsers/sysop|administrateur]].",
 'upload-too-many-redirects' => 'L’URL contient trop de redirections.',
 'upload-unknown-size'       => 'Taille inconnue',
-'upload-http-error'         => 'Une erreur HTTP est intervenue : $1',
+'upload-http-error'         => 'Une erreur HTTP est survenue : $1',
 
 # ZipDirectoryReader
 'zip-file-open-error' => "Une erreur s'est produite lors de l'ouverture du fichier ZIP pour contrôle.",
@@ -2105,7 +2106,7 @@ Veuillez noter que d’autres sites peuvent avoir un lien direct vers un fichier
 'booksources-invalid-isbn'  => 'L’ISBN donné ne semble pas être correct ; vérifiez si vous avez fait une erreur en copiant la source originale.',
 
 # Special:Log
-'specialloguserlabel'  => 'Artiste:',
+'specialloguserlabel'  => 'Auteur :',
 'speciallogtitlelabel' => 'Cible (titre ou utilisateur):',
 'log'                  => 'Journaux d’opérations',
 'all-logs-page'        => 'Tous les journaux publics',
@@ -2150,9 +2151,9 @@ Voyez aussi [[Special:WantedCategories|les catégories demandées]].',
 'linksearch-pat'   => 'Expression recherchée :',
 'linksearch-ns'    => 'Espace de noms :',
 'linksearch-ok'    => 'Rechercher',
-'linksearch-text'  => 'Des caractères jokers comme "*.wikipedia.org" peuvent être utilisés.
-Ils nécessitent au moins un domaine de niveau supérieur, par exemple "*.org".<br />
-Protocoles reconnus : <tt>$1</tt> (n\'ajoutez aucun de ceux-ci dans votre recherche).',
+'linksearch-text'  => 'Des caractères jokers comme « *.wikipedia.org » peuvent être utilisés.
+Ils nécessitent au moins un domaine de niveau supérieur, par exemple « *.org ».<br />
+Protocoles reconnus : <tt>$1</tt> (n’ajoutez aucun de ceux-ci dans votre recherche).',
 'linksearch-line'  => '$1 est lié depuis $2',
 'linksearch-error' => 'Les caractères jokers ne peuvent être utilisés qu’au début du nom de domaine de l’hôte.',
 
@@ -2218,7 +2219,7 @@ L’adresse électronique que vous avez indiquée dans [[Special:Preferences|vos
 'emailusername'        => "Nom de l'utilisateur :",
 'emailusernamesubmit'  => 'Soumettre',
 'email-legend'         => 'Envoyer un courriel à un autre utilisateur de {{SITENAME}}',
-'emailfrom'            => 'Expéditeur :',
+'emailfrom'            => 'De :',
 'emailto'              => 'Destinataire :',
 'emailsubject'         => 'Objet :',
 'emailmessage'         => 'Message :',
@@ -2965,6 +2966,7 @@ Permet de rétablir la version précédente et d’ajouter un motif dans la boî
 'chick.js'       => '/* Tout JavaScript ici sera chargé avec les pages accédées par les utilisateurs de l’habillage Poussin uniquement */',
 'simple.js'      => '/* Tout JavaScript ici sera chargé avec les pages accédées par les utilisateurs de l’habillage Simple uniquement */',
 'modern.js'      => '/* Tout JavaScript ici sera chargé avec les pages accédées par les utilisateurs de l’habillage Moderne uniquement */',
+'vector.js'      => '/* Tout code JavaScript placé ici sera chargé pour les utilisateurs de l’habillage Vector */',
 'group-sysop.js' => '/* Le JavaScript inclus ici n’affectera que les administrateurs */',
 
 # Metadata
@@ -3258,7 +3260,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-lens'                        => 'Lentille utilisée',
 'exif-serialnumber'                => 'Numéro de série de l’appareil photo',
 'exif-cameraownername'             => "Propriétaire de l'appareil photo",
-'exif-label'                       => 'Étiquette',
+'exif-label'                       => 'Libellé',
 'exif-datetimemetadata'            => 'Date de la dernière modification des métadonnées',
 'exif-nickname'                    => 'Nom informel de l’image',
 'exif-rating'                      => 'Note (sur 5)',

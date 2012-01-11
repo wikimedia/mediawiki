@@ -557,19 +557,19 @@ $messages = array(
 'dec'           => 'ديسمبر',
 
 # Categories related messages
-'pagecategories'                 => '{{PLURAL:$1|لا تصانيف|التصنيف|التصنيفان|التصنيفات}}',
+'pagecategories'                 => '{{PLURAL:$1|لا تصنيف|تصنيف|تصنيفان|تصنيفات}}',
 'category_header'                => 'صفحات تصنيف "$1"',
 'subcategories'                  => 'التصنيفات الفرعية',
 'category-media-header'          => 'الوسائط في التصنيف "$1"',
 'category-empty'                 => "''هذا التصنيف لا يحتوي حاليا على صفحات أو وسائط.''",
-'hidden-categories'              => '{{PLURAL:$1|لا تصانيف مخفية|التصنيف المخفي|التصنيفان المخفيان|التصانيف المخفية|التصانيف المخفية|التصانيف المخفية}}',
+'hidden-categories'              => '{{PLURAL:$1|لا تصنيف مخفيا|تصنيف مخفي|تصنيفان مخفيان|تصنيفات مخفية}}',
 'hidden-category-category'       => 'تصنيفات مخفية',
 'category-subcat-count'          => '{{PLURAL:$2|لا تصانيف فرعية في هذا التصنيف|هذا التصنيف فيه التصنيف الفرعي التالي فقط.|هذا التصنيف فيه {{PLURAL:$1||هذا التصنيف الفرعي|هذين التصنيفين الفرعيين|هذه ال$1 تصانيف الفرعية|هذه ال$1 تصنيفا فرعيا|هذه ال$1 تصنيف فرعي}}، من إجمالي $2.}}',
 'category-subcat-count-limited'  => 'هذا التصنيف فيه {{PLURAL:$1||التصنيف الفرعي التالي|التصنيفين الفرعيين التاليين|$1 تصانيف فرعية تالية|$1 تصنيفا فرعيا تاليا|$1 تصنيف فرعي تالي}}.',
 'category-article-count'         => '{{PLURAL:$2|لا يحتوي هذا التصنيف أي صفحات.|هذا التصنيف يحتوي على الصفحة التالية فقط.|{{PLURAL:$1||الصفحة التالية|الصفحتان التاليتان|ال$1 صفحات التالية|ال$1 صفحة التالية|ال$1 صفحة التالية}} في هذا التصنيف، من إجمالي $2.}}',
 'category-article-count-limited' => '{{PLURAL:$1||الصفحة التالية|الصفحتان التاليتان|ال$1 صفحات التالية|ال$1 صفحة التالية|ال$1 صفحة التالية}} في التصنيف الحالي.',
 'category-file-count'            => '{{PLURAL:$2|هذا التصنيف يحتوي فقط على الملف التالي.|{{PLURAL:$1|الملف|ال$1 ملف}} التالية في هذا التصنيف، من إجمالي $2.}}',
-'category-file-count-limited'    => '{{PLURAL:$1|الملف التالي|الملفان التاليان|ال$1 ملفات التالية|ال$1 ملفًا تاليًا|ال$1 ملف تالٍ}}) في التصنيف الحالي.',
+'category-file-count-limited'    => '{{PLURAL:$1|الملف التالي|الملفان التاليان|ال$1 ملفات التالية|ال$1 ملفًا تاليًا|ال$1 ملف تالٍ}} في التصنيف الحالي.',
 'listingcontinuesabbrev'         => 'متابعة',
 'index-category'                 => 'صفحات مفهرسة',
 'noindex-category'               => 'صفحات غير مفهرسة',
@@ -1266,31 +1266,31 @@ $2
 'rev-deleted-user'            => '(اسم المستخدم تمت إزالته)',
 'rev-deleted-event'           => '(فعل السجل تمت إزالته)',
 'rev-deleted-user-contribs'   => '[اسم المستخدم أو عنوان الأيبي تمت إزالته - التعديل مخفي من المساهمات]',
-'rev-deleted-text-permission' => "تم '''حذف''' مراجعة هذه الصفحة.
-قد تتوفر تفاصيل في [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].",
-'rev-deleted-text-unhide'     => "مراجعة الصفحة هذه تم '''حذفها'''.
-ربما تكون هناك تفاصيل في [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].
-كإداري مازال بإمكانك [$1 رؤية هذه المراجعة] إذا أردت المتابعة.",
-'rev-suppressed-text-unhide'  => "تم '''حذف''' مراجعة الصفحة هذه.
-قد تتوفر تفاصيل في [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سجل الحذف].
-لا يزال بإمكانك كإداري [$1 رؤية هذه المراجعة] إذا أردت المتابعة.",
-'rev-deleted-text-view'       => "تم '''حذف''' مراجعة هذه الصفحة.
-كإداري يمكنك رؤيتها؛ ربما تكون هناك تفاصيل في [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].",
-'rev-suppressed-text-view'    => "تم '''حذف''' مراجعة هذه الصفحة.
-تستطيع كإداري مشاهدتها؛ وقد تتوفر تفاصيل في  [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سجل الحذف].",
-'rev-deleted-no-diff'         => "لا يمكنك رؤية هذا الفرق لأن واحدة من المراجعات تم '''حذفها'''.
-ربما تكون هناك تفاصيل في [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].",
+'rev-deleted-text-permission' => "'''حُذِفت''' مراجعة هذه الصفحة.
+يمكنك العثور على التفاصيل في [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].",
+'rev-deleted-text-unhide'     => "'''حُذِفت''' مراجعة الصفحة هذه.
+يمكن العثور على تفاصيل في [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].
+مازال بإمكانك [$1 رؤية هذه المراجعة] إذا أردت المتابعة.",
+'rev-suppressed-text-unhide'  => "'''أُخفيت''' مراجعة الصفحة هذه.
+يمكنك العثور على التفاصيل في [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سجل الإخفاء].
+بإمكانك [$1 رؤية هذه المراجعة] إذا أردت المتابعة.",
+'rev-deleted-text-view'       => "'''حُذِفت''' مراجعة هذه الصفحة.
+يمكنك رؤيتها؛ ويمكنك العثور على التفاصيل في [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].",
+'rev-suppressed-text-view'    => "'''أُخفيت''' مراجعة الصفحة هذه.
+يمكنك رؤيتها؛ ويمكنك العثور على التفاصيل في  [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سجل الإخفاء].",
+'rev-deleted-no-diff'         => "لا يمكنك رؤية هذا الفرق لأن إحدى المراجعات '''حُذِفت'''.
+يمكنك العثور على التفاصيل في [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].",
 'rev-suppressed-no-diff'      => "ليس بإمكانك مشاهدة هذا الفرق لأن إحدى المراجعات '''حذفت'''.",
-'rev-deleted-unhide-diff'     => "واحدة من مراجعتي هذا الفرق تم '''حذفها'''.
-ربما تكون هناك تفاصيل في [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].
-كإداري مازال بإمكانك [$1 رؤية هذا الفرق] إذا أردت المتابعة.",
-'rev-suppressed-unhide-diff'  => "واحدة من مراجعتي هذا الفرق تم '''حذفها'''.
-ربما توجد تفاصيل في [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سجل الحذف].
-كإداري مازال بإمكانك [$1 رؤية هذا الفرق] إذا أردت المتابعة.",
-'rev-deleted-diff-view'       => "واحدة من المراجعتي هذا الفرق تم '''حذفها'''.
-كإداري يمكنك رؤية هذا الفرق؛ ربما تكون هناك تفاصيل في [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].",
-'rev-suppressed-diff-view'    => "واحدة من المراجعتي هذا الفرق تم '''إخفاؤها'''.
-كإداري يمكنك رؤية هذا الفرق؛ ربما تكون هناك تفاصيل في [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سجل الإخفاء].",
+'rev-deleted-unhide-diff'     => "'''حُذِفت''' إحدى مراجعتي هذا الفرق.
+يمكن العثور على التفاصيل في [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].
+بإمكانك [$1 رؤية هذا الفرق] إذا أردت المتابعة.",
+'rev-suppressed-unhide-diff'  => "'''أُخفيت''' إحدى مراجعتي هذا الفرق.
+يمكنك العثور على التفاصيل في [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سجل الإخفاء].
+بإمكانك [$1 رؤية هذا الفرق] إذا أردت المتابعة.",
+'rev-deleted-diff-view'       => "'''حُذِفت''' إحدى مراجعتي هذا الفرق.
+يمكنك رؤية الفرق؛ ويمكنك العثور على التفاصيل في [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].",
+'rev-suppressed-diff-view'    => "'''أُخفيت''' إحدى مراجعتي هذا الفرق.
+يمكنك رؤية هذا الفرق؛ ويمكنك العثور على التفاصيل في [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سجل الإخفاء].",
 'rev-delundel'                => 'أظهر/أخف',
 'rev-showdeleted'             => 'أظهر',
 'revisiondelete'              => 'حذف/استرجاع المراجعات',
@@ -1640,12 +1640,12 @@ $1",
 'group-suppress'      => 'نظار',
 'group-all'           => '(الكل)',
 
-'group-user-member'          => 'مستخدم',
-'group-autoconfirmed-member' => 'مستخدم مؤكد تلقائيا',
+'group-user-member'          => '{{GENDER:$1|مستخدم|مستخدمة}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|مستخدم مؤكد تلقائيًا|مستخدمة مؤكدة تلقائيًا}}',
 'group-bot-member'           => 'بوت',
-'group-sysop-member'         => 'مدير نظام',
+'group-sysop-member'         => '{{GENDER:$1|إداري|إدارية}}',
 'group-bureaucrat-member'    => 'بيروقراط',
-'group-suppress-member'      => 'ناظر',
+'group-suppress-member'      => '{{GENDER:$1|ناظر|ناظرة}}',
 
 'grouppage-user'          => '{{ns:project}}:مستخدمون',
 'grouppage-autoconfirmed' => '{{ns:project}}:مستخدمون مؤكدون تلقائيا',
@@ -2086,7 +2086,7 @@ $1',
 'filedelete-intro'            => "أنت على وشك حذف الملف '''[[Media:$1|$1]]''' مع كل تاريخه.",
 'filedelete-intro-old'        => "أنت تحذف نسخة '''[[Media:$1|$1]]''' بتاريخ [$4 $3، $2].",
 'filedelete-comment'          => 'السبب:',
-'filedelete-submit'           => 'حذف',
+'filedelete-submit'           => 'احذف',
 'filedelete-success'          => "'''$1''' تم حذفه.",
 'filedelete-success-old'      => "نسخة '''[[Media:$1|$1]]''' بتاريخ $3، $2 تم حذفها.",
 'filedelete-nofile'           => "'''$1''' غير موجود.",
@@ -2247,8 +2247,8 @@ $1',
 'booksources-invalid-isbn'  => 'رقم ISBN المعطى لا يبدو صحيحا؛ تحقق من أخطاء النسخ من المصدر الأصلي.',
 
 # Special:Log
-'specialloguserlabel'  => 'المستخدم:',
-'speciallogtitlelabel' => 'العنوان:',
+'specialloguserlabel'  => 'المؤدي:',
+'speciallogtitlelabel' => 'الهدف (عنوان أو مستخدم):',
 'log'                  => 'سجلات',
 'all-logs-page'        => 'كل السجلات العامة',
 'alllogstext'          => 'عرض شامل لكل السجلات المتوفرة في {{SITENAME}}.
@@ -3214,7 +3214,7 @@ $1',
 'mediawarning'           => "'''تحذير''': قد يحتوي نوع هذا الملف على كود خبيث، يمكن عند تشغيله السيطرة على نظامك.",
 'imagemaxsize'           => "حد حجم الصور:<br />''(لصفحات وصف الملفات)''",
 'thumbsize'              => 'حجم العرض المصغر:',
-'widthheightpage'        => '$1×$2، {{PLURAL:$1|لا صفحات|صفحة واحدة|صفحتان|$1 صفحات|$1 صفحة}}',
+'widthheightpage'        => '$1×$2، {{PLURAL:$3|لا صفحات|صفحة واحدة|صفحتان|$3 صفحات|$3 صفحة}}',
 'file-info'              => 'حجم الملف: $1، نوع MIME: $2',
 'file-info-size'         => '$1 × $2 بكسل حجم الملف: $3، نوع MIME: $4',
 'file-info-size-pages'   => '$1 × $2 بكسل, حجم الملف  : $3 ، نوع الملف : $4 ، $5 {{PLURAL:$5| صفحة | صفحات}}',
@@ -3485,9 +3485,9 @@ $1',
 'exif-orientation-3' => 'دار 180°',
 'exif-orientation-4' => 'دار أفقيا',
 'exif-orientation-5' => 'دار 90° CCW و انزلق رأسيا',
-'exif-orientation-6' => 'دار 90° CW',
+'exif-orientation-6' => 'مدورة 90° عكس عقارب الساعة',
 'exif-orientation-7' => 'دار 90° CW و انزلق رأسيا',
-'exif-orientation-8' => 'دار 90° عكس عقارب الساعة',
+'exif-orientation-8' => 'مدورة 90° في اتجاه عقارب الساعة',
 
 'exif-planarconfiguration-1' => 'صيغة تشنكي',
 'exif-planarconfiguration-2' => 'صيغة مستوية',

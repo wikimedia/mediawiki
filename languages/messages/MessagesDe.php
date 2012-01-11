@@ -604,7 +604,7 @@ $1',
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Über {{SITENAME}}',
 'aboutpage'            => 'Project:Über',
-'copyright'            => 'Inhalt ist verfügbar unter der Lizenz $1.',
+'copyright'            => 'Der Inhalt ist verfügbar unter der Lizenz $1.',
 'copyrightpage'        => '{{ns:project}}:Urheberrechte',
 'currentevents'        => 'Aktuelle Ereignisse',
 'currentevents-url'    => 'Project:Aktuelle Ereignisse',
@@ -623,13 +623,13 @@ $1',
 
 'badaccess'        => 'Keine ausreichenden Rechte',
 'badaccess-group0' => 'Du hast nicht die erforderliche Berechtigung für diese Aktion.',
-'badaccess-groups' => 'Diese Aktion ist beschränkt auf Benutzer, die {{PLURAL:$2|der Gruppe|einer der Gruppen}} „$1“ angehören.',
+'badaccess-groups' => 'Diese Aktion ist auf Benutzer beschränkt, die {{PLURAL:$2|der Gruppe|einer der Gruppen}} „$1“ angehören.',
 
 'versionrequired'     => 'Version $1 von MediaWiki ist erforderlich.',
 'versionrequiredtext' => 'Version $1 von MediaWiki ist erforderlich, um diese Seite zu nutzen.
 Siehe die [[Special:Version|Versionsseite]]',
 
-'ok'                      => 'OK',
+'ok'                      => 'Okay',
 'pagetitle'               => '$1 – {{SITENAME}}',
 'retrievedfrom'           => 'Von „$1“',
 'youhavenewmessages'      => 'Du hast $1 auf deiner Diskussionsseite ($2).',
@@ -777,7 +777,7 @@ Vergiss nicht, deine [[Special:Preferences|{{SITENAME}}-Einstellungen]] anzupass
 'login'                      => 'Anmelden',
 'nav-login-createaccount'    => 'Anmelden / Benutzerkonto erstellen',
 'loginprompt'                => 'Zur Anmeldung müssen Cookies aktiviert sein.',
-'userlogin'                  => 'Anmelden / Benutzerkonto erstellen',
+'userlogin'                  => 'Anmelden / Erstellen',
 'userloginnocreate'          => 'Anmelden',
 'logout'                     => 'Abmelden',
 'userlogout'                 => 'Abmelden',
@@ -804,7 +804,7 @@ Es muss sichergestellt sein, dass Cookies aktiviert sind. Danach diese Seite ern
 'loginsuccess'               => 'Du bist jetzt als „$1“ bei {{SITENAME}} angemeldet.',
 'nosuchuser'                 => 'Der Benutzername „$1“ existiert nicht.
 Überprüfe die Schreibweise (Groß-/Kleinschreibung beachten) oder [[Special:UserLogin/signup|melde dich als neuer Benutzer an]].',
-'nosuchusershort'            => 'Der Benutzername „$1“ existiert nicht. Bitte überprüfe die Schreibweise.',
+'nosuchusershort'            => 'Der Benutzername „$1“ ist nicht vorhanden. Bitte überprüfe die Schreibweise.',
 'nouserspecified'            => 'Bitte gib einen Benutzernamen an.',
 'login-userblocked'          => '{{GENDER:$1|Dieser Benutzer|Dieser Benutzerin|Dieser Benutzer}} ist gesperrt. Anmeldung nicht erlaubt.',
 'wrongpassword'              => 'Das Passwort ist falsch. Bitte versuche es erneut.',
@@ -983,8 +983,8 @@ Vermutlich wurde er verschoben oder gelöscht, nachdem du die Seite aufgerufen h
 Das Passwort für dieses neue Benutzerkonto kann auf der Spezialseite „[[Special:ChangePassword|Passwort ändern]]“ geändert werden.',
 'newarticle'                       => '(Neu)',
 'newarticletext'                   => "Du bist einem Link zu einer Seite gefolgt, die nicht vorhanden ist.
-Um die Seite anzulegen, trage deinen Text in die untenstehende Box ein (siehe die [[{{MediaWiki:Helppage}}|Hilfeseite]] für mehr Informationen).
-Bist du fälschlicherweise hier, klicke die '''Zurück'''-Schaltfläche deines Browsers.",
+Um diese Seite anzulegen, trage deinen Text in das untenstehende Bearbeitungsfeld ein (siehe die [[{{MediaWiki:Helppage}}|Hilfeseite]] für weitere Informationen).
+Sofern du fälschlicherweise hier bist, klicke auf die Schaltfläche '''Zurück''' deines Browsers.",
 'anontalkpagetext'                 => "----''Diese Seite dient dazu, einem nicht angemeldeten Benutzer Nachrichten zu hinterlassen. Es wird seine IP-Adresse zur Identifizierung verwendet. IP-Adressen können von mehreren Benutzern gemeinsam verwendet werden. Wenn du mit den Kommentaren auf dieser Seite nichts anfangen kannst, richten sie sich vermutlich an einen früheren Inhaber deiner IP-Adresse und du kannst sie ignorieren. Du kannst dir auch ein [[Special:UserLogin/signup|Benutzerkonto erstellen]] oder dich [[Special:UserLogin|anmelden]], um künftig Verwechslungen mit anderen anonymen Benutzern zu vermeiden.''",
 'noarticletext'                    => 'Diese Seite enthält momentan noch keinen Text.
 Du kannst sie <span class="plainlinks">[{{fullurl:{{FULLPAGENAME}}|action=edit}} bearbeiten]</span>,
@@ -998,8 +998,8 @@ oder die zugehörigen <span class="plainlinks">[{{fullurl:{{#special:Log}}|page=
 'blocked-notice-logextract'        => '{{GENDER:$1|Dieser Benutzer|Diese Benutzerin|Dieser Benutzer}} ist zurzeit gesperrt.
 Zur Information folgt ein aktueller Auszug aus dem Benutzersperr-Logbuch:',
 'clearyourcache'                   => "'''Hinweis:''' Leere nach dem Speichern den Browser-Cache, um die Änderungen sehen zu können.
-* '''Firefox/Safari:''' ''Umschaltung'' drücken und gleichzeitig ''Aktualisieren'' anklicken oder entweder ''Strg+F5'' oder ''Strg+R'' (''Befehlstaste-R'' auf dem Mac) drücken
-* '''Google Chrome:''' ''Umschaltung+Strg+R'' (''Befehlstaste-R'' auf dem Mac) drücken
+* '''Firefox/Safari:''' ''Umschalttaste'' drücken und gleichzeitig ''Aktualisieren'' anklicken oder entweder ''Strg+F5'' oder ''Strg+R'' (''⌘+R'' auf dem Mac) drücken
+* '''Google Chrome:''' ''Umschalttaste+Strg+R'' (''⌘+Umschalttaste+R'' auf dem Mac) drücken
 * '''Internet Explorer:''' ''Strg+F5'' drücken oder ''Strg'' drücken und gleichzeitig ''Aktualisieren'' anklicken
 * '''Opera:''' ''Extras → Internetspuren löschen … → Individuelle Auswahl → Den kompletten Cache löschen''
 * '''Konqueror:''' ''Aktualisieren'' anklicken oder ''F5'' drücken",
@@ -1079,7 +1079,7 @@ Zur Information folgt der aktuelle Logbucheintrag:",
 'sectioneditnotsupported-text'     => 'Die Bearbeitung von Abschnitten wird auf dieser Bearbeitungsseite nicht unterstützt.',
 'permissionserrors'                => 'Berechtigungsfehler',
 'permissionserrorstext'            => 'Du bist nicht berechtigt, die Aktion auszuführen. {{PLURAL:$1|Grund|Gründe}}:',
-'permissionserrorstext-withaction' => 'Du bist nicht berechtigt, $2.
+'permissionserrorstext-withaction' => 'Du bist nicht berechtigt $2.
 {{PLURAL:$1|Grund|Gründe}}:',
 'recreate-moveddeleted-warn'       => "'''Achtung: Du erstellst eine Seite, die bereits früher gelöscht wurde.'''
 
@@ -1095,9 +1095,9 @@ Sie wurde anscheinend gelöscht.',
 'edit-already-exists'              => 'Die neue Seite konnte nicht erstellt werden, da sie bereits vorhanden ist.',
 
 # Parser/template warnings
-'expensive-parserfunction-warning'        => 'Achtung: Diese Seite enthält zu viele Aufrufe aufwendiger Parserfunktionen.
+'expensive-parserfunction-warning'        => "'''Achtung''': Diese Seite enthält zu viele Aufrufe aufwändiger Parserfunktionen.
 
-Es {{PLURAL:$2|darf nicht mehr als 1 Aufruf|dürfen nicht mehr als $1 Aufrufe}} sein.',
+Sie darf nicht mehr als $2 {{PLURAL:$2|Aufruf|Aufrufe}} haben, es {{PLURAL:$1|ist aktuell $1 Aufruf|sind aktuell $1 Aufrufe}}.",
 'expensive-parserfunction-category'       => 'Seiten, die aufwändige Parserfunktionen zu oft aufrufen',
 'post-expand-template-inclusion-warning'  => 'Warnung: Die Größe eingebundener Vorlagen ist zu groß, einige Vorlagen können nicht eingebunden werden.',
 'post-expand-template-inclusion-category' => 'Seiten, in denen die maximale Größe eingebundener Vorlagen überschritten ist',
@@ -1297,7 +1297,7 @@ Stelle sicher, dass die Versionsgeschichte einer Seite historisch korrekt ist.',
 'lineno'                   => 'Zeile $1:',
 'compareselectedversions'  => 'Gewählte Versionen vergleichen',
 'showhideselectedversions' => 'Gewählte Versionen zeigen/verstecken',
-'editundo'                 => 'rückgängig',
+'editundo'                 => 'rückgängig machen',
 'diff-multi'               => '({{PLURAL:$1|Eine dazwischenliegende Version|$1 dazwischenliegende Versionen}} von {{PLURAL:$2|einem Benutzer|$2 Benutzern}} {{PLURAL:$1|wird|werden}} nicht angezeigt)',
 'diff-multi-manyusers'     => '({{PLURAL:$1|$1 dazwischenliegende Versionen}} von mehr als {{PLURAL:$2|$2 Benutzern}}, die nicht angezeigt werden)',
 
@@ -1386,7 +1386,7 @@ Stelle sicher, dass die Versionsgeschichte einer Seite historisch korrekt ist.',
 'datedefault'                   => 'Standard',
 'prefs-beta'                    => 'Beta-Funktionen',
 'prefs-datetime'                => 'Datum und Zeit',
-'prefs-labs'                    => 'Experimentelle Labor-Funktionen',
+'prefs-labs'                    => 'Alpha-Funktionen (experimentell)',
 'prefs-personal'                => 'Benutzerdaten',
 'prefs-rc'                      => 'Letzte Änderungen',
 'prefs-watchlist'               => 'Beobachtungsliste',
@@ -1523,12 +1523,12 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 'group-suppress'      => 'Oversighter',
 'group-all'           => '(alle)',
 
-'group-user-member'          => 'Benutzer',
-'group-autoconfirmed-member' => 'Automatisch bestätigter Benutzer',
+'group-user-member'          => '{{GENDER:$1|Benutzer|Benutzerin}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|Automatisch bestätigter Benutzer|Automatisch bestätigte Benutzerin}}',
 'group-bot-member'           => 'Bot',
-'group-sysop-member'         => 'Administrator',
-'group-bureaucrat-member'    => 'Bürokrat',
-'group-suppress-member'      => 'Oversighter',
+'group-sysop-member'         => '{{GENDER:$1|Administrator|Administratorin}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|Bürokrat|Bürokratin}}',
+'group-suppress-member'      => '{{GENDER:$1|Oversighter|Oversighterin}}',
 
 'grouppage-user'          => '{{ns:project}}:Benutzer',
 'grouppage-autoconfirmed' => '{{ns:project}}:Automatisch bestätigte Benutzer',
@@ -2025,9 +2025,9 @@ Eine Seite gilt als Begriffsklärungsseite, wenn sie eine der in [[MediaWiki:Dis
 Links aus Namensräumen werden hier nicht aufgelistet.',
 
 'doubleredirects'                   => 'Doppelte Weiterleitungen',
-'doubleredirectstext'               => 'Diese Liste enthält Weiterleitungen, die auf weitere Weiterleitungen verlinken.
-Jede Zeile enthält Links zu der ersten und zweiten Weiterleitung sowie das Ziel der zweiten Weiterleitung, welches für gewöhnlich die gewünschte Zielseite ist, auf die bereits die erste Weiterleitung zeigen sollte.
-<del>Durchgestrichene</del> Einträge wurden bereits erledigt.',
+'doubleredirectstext'               => 'Diese Liste enthält Weiterleitungen, die auf Weiterleitungen verlinken.
+Jede Zeile enthält Links zur ersten und zweiten Weiterleitung sowie dem Ziel der zweiten Weiterleitung, welches für gewöhnlich die gewünschte Zielseite ist, auf die bereits die erste Weiterleitung zeigen sollte.
+<del>Durchgestrichene</del> Einträge wurden bereits erfolgreich bearbeitet.',
 'double-redirect-fixed-move'        => '[[$1]] wurde verschoben und leitet nun nach [[$2]] weiter.',
 'double-redirect-fixed-maintenance' => 'Bereinigung der doppelten Weiterleitung von [[$1]] nach [[$2]].',
 'double-redirect-fixer'             => 'RedirectBot',
@@ -2783,9 +2783,9 @@ Alternativ ist der Export auch mit der Syntax [[{{#Special:Export}}/{{MediaWiki:
 'exportnohistory'   => "----
 '''Hinweis:''' Der Export kompletter Versionsgeschichten ist aus Performancegründen bis auf weiteres nicht möglich.",
 'export-submit'     => 'Seiten exportieren',
-'export-addcattext' => 'Seiten aus Kategorie hinzufügen:',
+'export-addcattext' => 'Seiten aus folgender Kategorie hinzufügen:',
 'export-addcat'     => 'Hinzufügen',
-'export-addnstext'  => 'Seiten aus Namensraum hinzufügen:',
+'export-addnstext'  => 'Seiten aus folgendem Namensraum hinzufügen:',
 'export-addns'      => 'Hinzufügen',
 'export-download'   => 'Als XML-Datei speichern',
 'export-templates'  => 'Inklusive Vorlagen',
@@ -2803,7 +2803,7 @@ Bitte besuche die Seiten [//www.mediawiki.org/wiki/Localisation MediaWiki-Lokali
 'allmessages-filter'            => 'Filter für angepassten Zustand:',
 'allmessages-filter-unmodified' => 'Unverändert',
 'allmessages-filter-all'        => 'Alle',
-'allmessages-filter-modified'   => 'Verändert',
+'allmessages-filter-modified'   => 'Geändert',
 'allmessages-prefix'            => 'Präfixfilter:',
 'allmessages-language'          => 'Sprache:',
 'allmessages-filter-submit'     => 'Los',
@@ -3055,7 +3055,7 @@ $1',
 'mediawarning'           => "'''Warnung:''' Dieser Dateityp kann böswilligen Programmcode enthalten.
 Durch das Herunterladen und Öffnen der Datei kann dein Computer beschädigt werden.",
 'imagemaxsize'           => "Maximale Bildgröße:<br />''(für Dateibeschreibungsseiten)''",
-'thumbsize'              => 'Standardgröße der Vorschaubilder (Thumbnails):',
+'thumbsize'              => 'Standardgröße der Vorschaubilder:',
 'widthheightpage'        => '$1×$2, {{PLURAL:$3|1 Seite|$3 Seiten}}',
 'file-info'              => 'Dateigröße: $1, MIME-Typ: $2',
 'file-info-size'         => '$1 × $2 Pixel, Dateigröße: $3, MIME-Typ: $4',
@@ -3746,12 +3746,12 @@ Eine [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie der ''GNU General Public License'']
 * <span class="mw-specialpagecached">Gecachte Spezialseiten (Deren Inhalt ist möglicherweise veraltet.)</span>',
 'specialpages-group-maintenance' => 'Wartungslisten',
 'specialpages-group-other'       => 'Andere Spezialseiten',
-'specialpages-group-login'       => 'Anmelden',
+'specialpages-group-login'       => 'Benutzerkonto',
 'specialpages-group-changes'     => 'Letzte Änderungen und Logbücher',
 'specialpages-group-media'       => 'Medien',
 'specialpages-group-users'       => 'Benutzer und Rechte',
 'specialpages-group-highuse'     => 'Häufig benutzte Seiten',
-'specialpages-group-pages'       => 'Listen von Seiten',
+'specialpages-group-pages'       => 'Seitenlisten',
 'specialpages-group-pagetools'   => 'Seitenwerkzeuge',
 'specialpages-group-wiki'        => 'Systemdaten und Werkzeuge',
 'specialpages-group-redirects'   => 'Weiterleitende Spezialseiten',

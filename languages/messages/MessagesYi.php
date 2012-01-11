@@ -815,17 +815,17 @@ $2
 'userpage-userdoesnotexist-view'   => 'באניצער קאנטע "$1" איז נישט איינגעשריבן.',
 'blocked-notice-logextract'        => 'דער באַניצער איז דערווייַל פֿאַרשפאַרט.
 די לעצטע בלאָקירן לאג אַקציע איז צוגעשטעלט אונטן:',
-'clearyourcache'                   => "'''אַכטונג: נאכן אויפֿהיטן, ברויכט איר אפשר נאך אַריבערגיין דעם בלעטערערס זאַפאַס צו זען די ענדערונגען.'''
+'clearyourcache'                   => "'''אַכטונג:''' נאכן אויפֿהיטן, ברויכט איר אפשר נאך אַריבערגיין דעם בלעטערערס זאַפאַס צו זען די ענדערונגען.
 
-* '''פֿייערפוקס/סאפֿארי:''' האלט אראפ ''שיפֿט'' בשעתן דרוקן ''Reload'', אדער דרוקט ''Ctrl-F5'' אדער ''Ctrl-R'' (אויף א מאקינטאש ''Cmd-R'')
+* '''פֿייערפוקס/סאפֿארי:''' האלט אראפ ''שיפֿט'' בשעתן דרוקן ''Reload'', אדער דרוקט ''Ctrl-F5'' אדער ''Ctrl-R'' (אויף א מאקינטאש ''⌘-R'')
 
-* '''גוגל כראם''': דרוקט ''Ctrl-Shift-R'' (אויף א מאקינטאש ''Cmd-Shift-R'')
+* '''גוגל כראם:''' דרוקט ''Ctrl-Shift-R'' (אויף א מאקינטאש ''⌘-Shift-R'')
 
-* '''אינטערנעט עקספלארער''': האלט ''Ctrl'' בשעתן קליקן ''Refresh'', אדער  דרוקט ''Ctrl-F5''
+* '''אינטערנעט עקספלארער:''' האלט אראפ ''Ctrl'' בשעתן קליקן ''Refresh'', אדער  דרוקט ''Ctrl-F5''
 
-* '''קאנקעראר''': קליקט ''Reload'' אדער דרוקט ''F5''
+* '''קאנקעראר:''' קליקט ''Reload'' אדער דרוקט ''F5''
 
-* '''אפערע:''' מען ליידיגט אויס דעם זאַפאַס אין ''Tools → Preferences'' (''העדפות'' > ''כלים'')",
+* '''אפערע:''' ליידיגט אויס דעם זאַפאַס אין ''Tools → Preferences'' (''העדפות'' > ''כלים'')",
 'usercssyoucanpreview'             => "'''טיפ:''' נוצט דאס {{int:showpreview}} קנעפל אויספרובירן אייער CSS בעפארן אויפהיטן.",
 'userjsyoucanpreview'              => "'''טיפ:''' נוצט דאס {{int:showpreview}} קנעפל אויספרובירן אייער  JavaScript בעפארן אויפהיטן.",
 'usercsspreview'                   => "'''געדענקט אז איר טוט בלויז פאראויס זען אייער באניצער CSS.'''
@@ -1342,12 +1342,12 @@ $1",
 'group-suppress'      => 'אויפֿזעער',
 'group-all'           => '(אלע)',
 
-'group-user-member'          => 'באניצער',
-'group-autoconfirmed-member' => 'באַשטעטיקטער באַניצער',
-'group-bot-member'           => 'באט',
-'group-sysop-member'         => 'סיסאפ',
-'group-bureaucrat-member'    => 'ביוראקראט',
-'group-suppress-member'      => 'אויפֿזעער',
+'group-user-member'          => '{{GENDER:$1|באַניצער|באַניצערין}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|באַשטעטיקטער באַניצער|באַשטעטיקטע באַניצערין}}',
+'group-bot-member'           => '{{GENDER:$1|באט}}',
+'group-sysop-member'         => '{{GENDER:$1|סיסאפ}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|ביוראקראַט}}',
+'group-suppress-member'      => '{{GENDER:$1|אויפֿזעער|אויפֿזעערין}}',
 
 'grouppage-user'          => '{{ns:project}}:אײַנגעשריבענער באניצער',
 'grouppage-autoconfirmed' => '{{ns:project}}:אויטאבאַשטעטיגטע באַניצער',
@@ -1569,7 +1569,7 @@ $1",
 'uploaddisabled'              => 'אַרויפֿלאָדן טעקעס מבוטל',
 'uploaddisabledtext'          => 'אַרויפֿלאָדן טעקעס נישט דערמעגלעכט אצינד.',
 'uploadscripted'              => 'די טעקע האט א סקריפט אדער HTML קאד וואס קען ווערן פֿאלש אויסגעטייטשט דורך א בלעטערער',
-'uploadvirus'                 => 'די טעקע האָט אַ ווירוס! פרטים: <div style="direction:rtl;">$1</div>',
+'uploadvirus'                 => 'די טעקע האָט אַ ווירוס! פרטים: <div dir="rtl">$1</div>',
 'upload-source'               => 'מקור טעקע',
 'sourcefilename'              => 'מקור טעקע נאמען:',
 'sourceurl'                   => 'מקור URL:',
@@ -1845,8 +1845,8 @@ $1",
 'booksources-invalid-isbn'  => 'דאָס געגעבענע ISBN זעט נישט אויס צו זיין גילטיק; קאנטראלירט פֿאַר גרײַזן בײַם קאפּירן פון דעם ערשטיקן מקור.',
 
 # Special:Log
-'specialloguserlabel'  => 'באַניצער:',
-'speciallogtitlelabel' => 'טיטל:',
+'specialloguserlabel'  => 'אויספֿירער:',
+'speciallogtitlelabel' => 'ציל (טיטל אדער באניצער):',
 'log'                  => 'לאגביכער',
 'all-logs-page'        => 'אלע פובליקע לאגביכער',
 'alllogstext'          => 'קאמבינירטער אויסשטעל פון אלע לאגביכער פון {{SITENAME}} בנמצא.
@@ -2858,6 +2858,7 @@ $1',
 'exif-gpsareainformation'       => 'נאמען פון GPS געגענט',
 'exif-gpsdatestamp'             => 'דאטום GPS',
 'exif-gpsdifferential'          => 'דיפראנציאלע קאקרעקציע GPS',
+'exif-citydest'                 => 'געוויזענע שטאט',
 'exif-objectname'               => 'קורצער טיטל',
 'exif-source'                   => 'מקור',
 'exif-editstatus'               => 'רעדאקציאנעלער סטאטוס פון בילד',
@@ -2870,6 +2871,17 @@ $1',
 'exif-iimcategory'              => 'קאַטעגאָריע',
 'exif-datetimeexpires'          => 'נישט צו ניצן נאָך',
 'exif-datetimereleased'         => 'באַפֿרייט אום',
+'exif-cameraownername'          => 'אייגנטימער פון קאמערע',
+'exif-datetimemetadata'         => 'דאטע ווען מעטאדאטן זענען געווען לעצט געענדערט',
+'exif-rating'                   => 'שאצונג (פֿון 5)',
+'exif-copyrighted'              => 'קאפירעכט סטאַטוס',
+'exif-copyrightowner'           => 'קאפירעכטן האלטער',
+'exif-usageterms'               => 'ניץ באַדינגונג',
+'exif-licenseurl'               => 'URL פֿאר קאפירעכט ליצענץ',
+'exif-morepermissionsurl'       => 'אלטערנאטיווע ליצענצירן אינפארמאציע',
+'exif-pngfilecomment'           => 'PNG טעקע הערה',
+'exif-giffilecomment'           => 'GIF טעקע הערה',
+'exif-subjectnewscode'          => 'טעמע קאד',
 
 # EXIF attributes
 'exif-compression-1' => 'אומ-צאמגעקוועטשט',
@@ -2964,6 +2976,8 @@ $1',
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'ריכטיגע דירעקציע',
 'exif-gpsdirection-m' => 'מאגנאטיק ריכטונג',
+
+'exif-dc-publisher' => 'פֿאַרלעגער',
 
 'exif-isospeedratings-overflow' => 'גרעסער פֿון 65535',
 
@@ -3165,6 +3179,7 @@ $5
 'fileduplicatesearch-legend'    => 'זוכן א דופליקאַט',
 'fileduplicatesearch-filename'  => 'טעקע:',
 'fileduplicatesearch-submit'    => 'זוכן',
+'fileduplicatesearch-info'      => '$1 × $2 פיקסעל<br />טעקע גרייס: $3<br /> טיפ MIME: $4',
 'fileduplicatesearch-noresults' => 'קיין טעקע מיטן נאמען "$1" נישט געטראפֿן.',
 
 # Special:SpecialPages

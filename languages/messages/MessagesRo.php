@@ -12,6 +12,7 @@
  * @author Danutz
  * @author Emily
  * @author Firilacroco
+ * @author Gutza
  * @author KlaudiuMihaila
  * @author Laurap
  * @author Malafaya
@@ -935,8 +936,8 @@ Asigurați-vă că doriți să creați/modificați această pagină.',
 'blocked-notice-logextract'        => 'Acest utilizator este momentan blocat.
 Ultima intrare în jurnalul blocărilor este afișată mai jos pentru referință:',
 'clearyourcache'                   => "'''Notă:''' După salvare, trebuie să treceți peste memoria cache a navigatorului pentru a putea vedea modificările:
-* '''Firefox / Safari:''' țineți apăsat pe ''Shift'' în timp ce faceți clic pe ''Reîncărcare'', ori apăsați ''Ctrl-F5'' sau ''Ctrl-R'' (''Command-R'' pe un sistem Mac);
-* '''Google Chrome:''' apăsați ''Ctrl-Shift-R'' (''Command-Shift-R'' pe un sistem Mac);
+* '''Firefox / Safari:''' țineți apăsat pe ''Shift'' în timp ce faceți clic pe ''Reîncărcare'', ori apăsați ''Ctrl-F5'' sau ''Ctrl-R'' (''⌘-R'' pe un sistem Mac);
+* '''Google Chrome:''' apăsați ''Ctrl-Shift-R'' (''⌘-Shift-R'' pe un sistem Mac);
 * '''Internet Explorer:''' țineți apăsat pe ''Ctrl'' în timp ce faceți clic pe ''Reîmprospătare'' sau apăsați ''Ctrl-F5'';
 * '''Konqueror:''' faceți clic pe ''Reîncărcare'' sau apăsați ''F5'';
 * '''Opera:''' curățați memoria cache din ''Unelte → Preferințe''.",
@@ -1469,12 +1470,12 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'group-suppress'      => 'Oversights',
 'group-all'           => '(toți)',
 
-'group-user-member'          => 'Utilizator',
-'group-autoconfirmed-member' => 'Utilizator autoconfirmat',
-'group-bot-member'           => 'Robot',
-'group-sysop-member'         => 'Administrator',
-'group-bureaucrat-member'    => 'Birocrat',
-'group-suppress-member'      => 'oversight',
+'group-user-member'          => '{{GENDER:$1|utilizator|utilizatoare|utilizator}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|utilizator autoconfirmat|utilizatoare autoconfirmată|utilizator autoconfirmat}}',
+'group-bot-member'           => '{{GENDER:$1|robot}}',
+'group-sysop-member'         => '{{GENDER:$1|administrator}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|birocrat}}',
+'group-suppress-member'      => '{{GENDER:$1|supraveghetor}}',
 
 'grouppage-user'          => '{{ns:project}}:Utilizatori',
 'grouppage-autoconfirmed' => '{{ns:project}}:Utilizator autoconfirmați',
@@ -2364,9 +2365,9 @@ Puteți schimba nivelul de protejare al acestei pagini, dar asta nu va afecta pr
 'protect-existing-expiry'     => 'Data expirării: $3, $2',
 'protect-otherreason'         => 'Motiv diferit/adițional:',
 'protect-otherreason-op'      => 'Alt motiv',
-'protect-dropdown'            => '*Motive comune de protejare
+'protect-dropdown'            => '*Motive uzuale de protejare
 ** Vandalism excesiv
-** Spam excesiv
+** SPAM excesiv
 ** Modificări neproductive
 ** Pagină cu trafic mare',
 'protect-edit-reasonlist'     => 'Modifică motivele protejării',

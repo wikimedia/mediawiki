@@ -1068,6 +1068,7 @@ $3 күрсәткән сәбәп: ''$2''",
 'notextmatches'                    => 'Тиңдәш текстлы битләр юк',
 'prevn'                            => 'алдагы {{PLURAL:$1|$1}}',
 'nextn'                            => 'чираттагы {{PLURAL:$1|$1}}',
+'shown-title'                      => 'Сәхифәдә $1 язма күрсәтергә',
 'viewprevnext'                     => 'Күрсәтелүе: ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-legend'                => 'Эзләү көйләнмәләре',
 'searchmenu-exists'                => "'''Бу вики-проекта «[[:$1]]» исемле бит бар инде'''",
@@ -2338,7 +2339,7 @@ $1',
 
 # action=purge
 'confirm_purge_button' => 'OK',
-'confirm-purge-top'    => 'Бу битнең кэшын чистартыргамы?',
+'confirm-purge-top'    => 'Бу битнең кэшы чистартылсынмы?',
 'confirm-purge-bottom' => 'Кэшны чистартудан соң аның соңгы юрамасы күрсәтеләчәк.',
 
 # Multipage image navigation

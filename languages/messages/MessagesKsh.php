@@ -927,8 +927,8 @@ Heh kütt der neuste Enndraach drövver uss_em Logbooch övver et Metmaacher_Spe
 \'\'\'Opjepass:\'\'\'
 Noh em Speichere künnd et sin, datt De Dingem Brauser singe Cache Speicher
 övverlisste muss, ih datt De de Änderunge och ze sinn kreß.
-* Beim \'\'\'<i lang="en">Mozilla</i>\'\'\' un \'\'\'<i lang="en">Firefox</i>\'\'\' un \'\'\'<i lang="en">Safari</i>\'\'\', dröck dä Jrußschreffknopp eronger un kleck dann op <i lang="en">Reload</i> / <i lang="de">Aktualisieren</i>, udder dröck <i lang="de">Ctrl+F5</i> / <i lang="de">Strg+F5</i>, udder dröck <i lang="en">Ctrl+R</i> / <i lang="de">Strg+R</i>, obb enem <i lang="en">Macintosh</i> dröck <i lang="de">Command+R</i>.
-* Beim \'\'\'<i lang="en">Google Chrome</i>\'\'\', dröck <i lang="en">Ctrl+Jrußschreffknopp+R</i> / <i lang="de">Strg+Jrußschreffknopp+R</i>, obb enem <i lang="en">Macintosh</i> dröck <i lang="de">Command+Jrußschreffknopp+R</i>.
+* Beim \'\'\'<i lang="en">Mozilla</i>\'\'\' un \'\'\'<i lang="en">Firefox</i>\'\'\' un \'\'\'<i lang="en">Safari</i>\'\'\', dröck dä Jrußschreffknopp eronger un kleck dann op <i lang="en">Reload</i> / <i lang="de">Aktualisieren</i>, udder dröck <i lang="de">Ctrl+F5</i> / <i lang="de">Strg+F5</i>, udder dröck <i lang="en">Ctrl+R</i> / <i lang="de">Strg+R</i>, obb enem <i lang="en">Macintosh</i> dröck <i lang="de">⌘+R</i>.
+* Beim \'\'\'<i lang="en">Google Chrome</i>\'\'\', dröck <i lang="en">Ctrl+Jrußschreffknopp+R</i> / <i lang="de">Strg+Jrußschreffknopp+R</i>, obb enem <i lang="en">Macintosh</i> dröck <i lang="de">⌘+Jrußschreffknopp+R</i>.
 * Beim \'\'\'<i lang="en">Internet Explorer</i>\'\'\', dröck dä Jrußschreffknopp eronger un kleck dann op <i lang="en">Refresh</i> / <i lang="de">Aktualisieren</i>, udder dröck <i lang="de">Ctrl+F5</i> / <i lang="de">Strg+F5</i>,
 * Beim \'\'\'<i lang="en">Konqueror</i>\'\'\' kleck op <i lang="en">Reload</i> / <i lang="de">Aktualisieren</i>, udder dröck op <i>F5</i>.
 * Beim  \'\'\'<i lang="en">Opera</i>\'\'\' kanns De övver et Menue jonn un däm janze Zwescheschpeischer singe Enhald övver <i lang="en">Tools → Preferences</i> / <i lang="de">Werkzeug → Einstellungen</i> fottschmieße, neuerdings jeiht et och met <i>Alt+F5</i>.',
@@ -1439,7 +1439,7 @@ Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <cod
 'prefs-help-realname'           => '* Dinge richtije Name — kanns De fott looße — wann De en ävver nenne wells, dann weed dä jebruch, öm Ding Beidräch domet ze schmöcke.',
 'prefs-help-email'              => 'Ding <i lang="en">e-mail</i> Adress - kanns De fottlooße, un se es för Andre nit ze sinn - mäht et ävver müjjelich, Der e neu Passwoot ze schecke, wann De et ens verjäße häß.',
 'prefs-help-email-others'       => 'Do kannß och zohlohße, dat mer Der domet övver Ding Metmaacherklaafsigg en <i lang="en">e-mail</i> schecke kann. Esu künne ander Metmaacher met Der en Kontak kumme, ohne dat se Dinge Name oder Ding <i lang="en">e-Mail</i> Adress kenne mööte.',
-'prefs-help-email-required'     => 'Do moß en jöltije E-Mail-Adress aanjevve.',
+'prefs-help-email-required'     => 'Do moß en <i lang="en>e-mail</i>-Addräß aanjevve.',
 'prefs-info'                    => 'Jrundlare',
 'prefs-i18n'                    => 'Shprooche-Enshtellunge',
 'prefs-signature'               => 'Ongerschreff',
@@ -1492,11 +1492,11 @@ Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <cod
 'group-suppress'      => 'Kontrollettis',
 'group-all'           => '(jeede)',
 
-'group-user-member'          => 'Metmaacher',
-'group-autoconfirmed-member' => 'Bestätichte Metmaacher',
+'group-user-member'          => '{{GENDER:$1|Metmaacher|Metmaacherin|Metmaacher|Metmaacherin|Metmaacher}}',
+'group-autoconfirmed-member' => 'automattesch beshtääteshte {{GENDER:$1|Metmaacher|Metmaacherėn|Metmaacher|Metmaacherėn|Metmaacher}}',
 'group-bot-member'           => 'Bot',
 'group-sysop-member'         => 'Wiki-Köbes',
-'group-bureaucrat-member'    => 'Bürrokrad',
+'group-bureaucrat-member'    => '{{GENDER:$1|Bürrokrad|Bürrokraatėn|Bürrokrad|Bürrokraatėn|Bürrokrad}}',
 'group-suppress-member'      => 'Kontrolletti',
 
 'grouppage-user'          => '{{ns:project}}:Metmaacher',

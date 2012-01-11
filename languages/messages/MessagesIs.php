@@ -698,7 +698,7 @@ Gjörðu svo vel og settu inn netfang á gildu formi eða tæmdu reitinn.',
 'createaccount-text'         => 'Einhver bjó til aðgang fyrir netfangið þitt á {{SITENAME}} ($4) undir nafninu „$2“, með lykilorðið „$3“.
 Þú ættir að skrá þig inn og breyta lykilorðinu núna.
 
-Þú getur hunsað þetta skilaboð, ef villa hefur átt sér stað.',
+Þú getur hunsað þessi skilaboð, ef villa hefur átt sér stað.',
 'usernamehasherror'          => 'Notendanöfn mega ekki innihalda kassa (#)',
 'login-throttled'            => 'Þér hefur mistekist að skrá þig inn undir þessu notendanafni of oft.
 Vinsamlegast reynið aftur síðar.',
@@ -861,8 +861,8 @@ Gjörðu svo vel og athugaðu hvort að þú viljir skapa/breyta þessari síðu
 'blocked-notice-logextract'        => 'Þessi notandi er í banni.
 Síðasta færsla notandans úr bönnunarskrá er sýnd hér fyrir neðan til skýringar:',
 'clearyourcache'                   => "Athugaðu - Eftir vistun, má vera að þú þurfir að komast hjá skyndiminni vafrans til að sjá breytingarnar.'''
-'''Mozilla / Firefox / Safari:''' haltu ''Shift'' og smelltu á ''Reload'', eða ýttu á annaðhvort ''Ctrl-F5'' eða ''Ctrl-R'' (''Command-R'' á Mac)
-'''Google Chrome: '''smelltu á ''Ctrl-Shift-R'' (''Command-Shift-R'' á Mac)
+'''Mozilla / Firefox / Safari:''' haltu ''Shift'' og smelltu á ''Reload'', eða ýttu á annaðhvort ''Ctrl-F5'' eða ''Ctrl-R'' (''⌘-R'' á Mac)
+'''Google Chrome: '''smelltu á ''Ctrl-Shift-R'' (''⌘-Shift-R'' á Mac)
 '''Konqueror: '''smelltu á ''Reload'' eða ýttu á ''F5'' 
 '''Opera:''' hreinsaðu skyndiminnið í ''Tools → Prefernces'';
 '''Internet Explorer:''' haltu ''Ctrl'' og smelltu á ''Refresh'', eða ýttu á ''Ctrl-F5''.",
@@ -1028,6 +1028,9 @@ Frekari upplýsingar eru í [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENA
 Þú getur enn skoðað hana; frekari upplýsingar eru í [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} eyðingaskrá].",
 'rev-suppressed-text-view'    => "Þessari útgáfu síðunnar hefur verið '''bæld niður'''.
 Frekari upplýsingar eru í [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} bælingarskrá].",
+'rev-deleted-no-diff'         => "Þú getur ekki skoðað þessa breytingu því ein af breytingunum hefur verið '''eytt'''.
+Frekari upplýsingar eru í [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} eyðingaskrá]",
+'rev-suppressed-no-diff'      => "Þú getur ekki skoðað þessa breytingu því einni af útgáfunum var '''eytt'''.",
 'rev-delundel'                => 'sýna/fela',
 'rev-showdeleted'             => 'sýna',
 'revisiondelete'              => 'Eyða/endurvekja breytingar',
@@ -1071,6 +1074,7 @@ Sjáðu til þess að þessi breyting sameini breytingarskrárnar samfellt.',
 'mergehistory-from'   => 'Heimildsíða:',
 'mergehistory-into'   => 'Áætlunarsíða:',
 'mergehistory-list'   => 'Breytingarskrá sem hægt er að sameina',
+'mergehistory-reason' => 'Ástæða:',
 
 # Merge log
 'mergelog'           => 'Sameiningar skrá',
@@ -1313,12 +1317,12 @@ Tölvupóstfang þitt er ekki gefið upp þegar aðrir notendur hafa samband vi�
 'group-suppress'      => 'Yfirsýn',
 'group-all'           => '(allir)',
 
-'group-user-member'          => 'Notandi',
-'group-autoconfirmed-member' => 'Sjálfkrafa staðfesting notanda',
-'group-bot-member'           => 'Vélmenni',
-'group-sysop-member'         => 'Stjórnandi',
-'group-bureaucrat-member'    => 'Möppudýr',
-'group-suppress-member'      => 'Umsjón',
+'group-user-member'          => '{{GENDER:$1|Notandi}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|Sjálfkrafa staðfesting notanda}}',
+'group-bot-member'           => '{{GENDER:$1|Vélmenni}}',
+'group-sysop-member'         => '{{GENDER:$1|Stjórnandi}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|Möppudýr}}',
+'group-suppress-member'      => '{{GENDER:$1|Umsjón}}',
 
 'grouppage-user'          => '{{ns:project}}:Notendur',
 'grouppage-autoconfirmed' => '{{ns:project}}:Sjálfkrafa staðfesting notenda',
@@ -2873,7 +2877,7 @@ Ef skránni hefur verið breytt, kann að vera að einhverjar upplýsingar eigi 
 'exif-imagedescription'            => 'Titill myndar',
 'exif-make'                        => 'Framleiðandi myndavélar',
 'exif-model'                       => 'Tegund',
-'exif-software'                    => 'Hugbúnaður notaður',
+'exif-software'                    => 'Hugbúnaður',
 'exif-artist'                      => 'Höfundur',
 'exif-copyright'                   => 'höfundur',
 'exif-exifversion'                 => 'Exif-útgáfa',

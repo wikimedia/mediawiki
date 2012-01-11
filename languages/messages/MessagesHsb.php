@@ -474,7 +474,7 @@ Administrator, kiž je datowu banku zawrěł, je jako přičinu podał: $1',
 
 To so zwjetša zawinuje, hdyž so njepłaćiwa změna abo zapisk stawiznow na stronu wotkazuje, kotraž bu wušmórnjena.
 
-Jeli to njetrjechi, sy najskerje programowu zmólku w softwarje namakał.
+Jeli to njetrjechi, sy najskerje programowy zmylk w softwarje namakał.
 Zdźěl to prošu [[Special:ListUsers/sysop|admininistratorej]] podawajo wotpowědny URL.',
 'missingarticle-rev'   => '(Wersijowe čisło: $1)',
 'missingarticle-diff'  => '(Rozdźěl: $1, $2)',
@@ -751,10 +751,11 @@ Móžeš [[Special:Search/{{PAGENAME}}|tutón titul strony]] na druhich stronach
 'userpage-userdoesnotexist-view'   => 'Wužiwarske konto "$1" njeje zregistrowane.',
 'blocked-notice-logextract'        => 'Tutón wužiwar je tuchwilu zablokowany. Najnowši protokolowy zapisk so deleka jako referenca podawa:',
 'clearyourcache'                   => "'''Kedźbu: Po składowanju dyrbiš snano pufrowak swojeho wobhladowaka wuprózdnić, zo by změny widźał.''' 
-* '''Mozilla/Firefox/Safari:''' tłóč na ''Umsch'' kliknjo na ''Znowa'' abo tłóč ''Strg-F5'' abo ''Strg-R'' (''Cmd-Shift-R'' na Macintosh);
-* '''Konqueror: '''klikń na ''Znowa'' abo tłoč ''F5'';
-* '''Opera:''' wuprózdń pufrowak w 'Extras → Einstellungen'';
-* '''Internet Explorer:''' dźěrź ''Strg'' tłóčeny kliknjo ''Znowa,'' abo tłóč ''Strg-F5''.",
+* '''Firefox/Safari:''' Tłóč na ''Umsch'' kliknjo na ''Znowa'' abo tłóč ''Strg-F5'' abo ''Strg-R'' (''⌘-R'' na Macintosh);
+* '''Google Chrome:''' Tłóč na ''Strg-Umsch-R'' (''⌘-Umsch-R'' na Mac)
+* '''Internet Explorer:''' Dźěrź ''Strg'' tłóčeny kliknjo na ''Znowa,'' abo tłóč ''Strg-F5''.
+* '''Konqueror: '''Klikń na ''Znowa'' abo tłoč ''F5'';
+* '''Opera:''' Wuprózdń pufrowak w ''Extras → Einstellungen'';",
 'usercssyoucanpreview'             => "'''Pokiw:''' Wužij tłóčku '{{int:showpreview}}', zo by swój nowy css do składowanja testował.",
 'userjsyoucanpreview'              => "'''Pokiw:''' Wužij tłóčatko \"{{int:showpreview}}\", zo by swój nowy JavaScript do składowanja testował.",
 'usercsspreview'                   => "'''Wobkedźbujće, zo sej jenož přehlad swojeho wužiwarskeho CSS wobhladuješ. Hišće njeje składowany!'''",
@@ -1219,7 +1220,7 @@ Smě mjenje hač $1 {{PLURAL:$1|znamješko|znamješce|znamješka|znamješkow}} d
 'prefs-help-realname'           => '* Woprawdźite mjeno (opcionalne): jeli so rozsudźiš to zapodać, budźe to so wužiwać, zo by tebi woprawnjenje za twoje dźěło dało.',
 'prefs-help-email'              => 'E-mejlowa adresa je opcionalna, ale zmóžnja ći nowe hesło emejlować, jeli sy swoje hesło zabył.',
 'prefs-help-email-others'       => 'Móžeš tež druhim dowolić, so z tobu přez swoju diskusijnu stronu do zwiska stajić, bjeztoho zo dyrbiš swoju identitu přeradźić.',
-'prefs-help-email-required'     => 'Je płaćiwa emejlowa adresa trjeba.',
+'prefs-help-email-required'     => 'E-mejlowa adresa je trěbna.',
 'prefs-info'                    => 'Zakładne informacije',
 'prefs-i18n'                    => 'Internacionalizacija',
 'prefs-signature'               => 'Podpis',
@@ -1271,12 +1272,12 @@ Smě mjenje hač $1 {{PLURAL:$1|znamješko|znamješce|znamješka|znamješkow}} d
 'group-suppress'      => 'dohladowarjo',
 'group-all'           => '(wšě)',
 
-'group-user-member'          => 'Wužiwar',
-'group-autoconfirmed-member' => 'Potwjerdźeny wužiwar',
-'group-bot-member'           => 'bot',
-'group-sysop-member'         => 'administrator',
-'group-bureaucrat-member'    => 'běrokrat',
-'group-suppress-member'      => 'Dohladowar',
+'group-user-member'          => '{{GENDER:$1|wužiwar|wužiwarka}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|awtomatisce potwjerdźeny wužiwar|awtomatisce potwjerdźena wužiwarka}}',
+'group-bot-member'           => '{{GENDER:$1|bot}}',
+'group-sysop-member'         => '{{GENDER:$1|administrator|administratorka}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|běrokrat|běrokratka}}',
+'group-suppress-member'      => '{{GENDER:$1|dohladowar|dohladowarka}}',
 
 'grouppage-user'          => '{{ns:project}}:Wužiwarjo',
 'grouppage-autoconfirmed' => '{{ns:project}}:Awtomatisce potwjerdźeni wužiwarjo',
@@ -1342,7 +1343,7 @@ Smě mjenje hač $1 {{PLURAL:$1|znamješko|znamješce|znamješka|znamješkow}} d
 'right-mergehistory'          => 'Stawizny stronow zjednoćić',
 'right-userrights'            => 'Wužiwarske prawa wobdźěłać',
 'right-userrights-interwiki'  => 'Wužiwarske prawa wužiwarjow druhich wikijow wobdźěłać',
-'right-siteadmin'             => 'Datowu banku zawrěć a wotewrěć',
+'right-siteadmin'             => 'Datowu banku zawrěć abo wotewrić',
 'right-override-export-depth' => 'Strony inkluziwnje wotkazanych stronow hač do hłubokosće 5 eksportować',
 'right-sendemail'             => 'Druhim wužiwarjam e-mejl pósłać',
 

@@ -664,9 +664,9 @@ $1',
 'dberrortext'          => 'אירעה שגיאת תחביר בשאילתה לבסיס הנתונים.
 שגיאה זו עלולה להעיד על באג בתוכנה.
 השאילתה האחרונה שבוצעה לבסיס הנתונים הייתה:
-<blockquote><tt dir="ltr">$1</tt></blockquote>
-מתוך הפונקציה "<tt dir="ltr">$2</tt>".
-בסיס הנתונים החזיר את השגיאה "<tt dir="ltr">$3: $4</tt>".',
+<blockquote><tt>$1</tt></blockquote>
+מתוך הפונקציה "<tt>$2</tt>".
+בסיס הנתונים החזיר את השגיאה "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'אירעה שגיאת תחביר בשאילתה לבסיס הנתונים.
 השאילתה האחרונה שבוצעה לבסיס הנתונים הייתה:
 "$1"
@@ -812,7 +812,8 @@ $2',
 'blocked-mailpassword'       => 'כתובת ה־IP שלכם חסומה מעריכה, ולפיכך אינכם מורשים להשתמש באפשרות שחזור הסיסמה כדי למנוע ניצול לרעה של התכונה.',
 'eauthentsent'               => 'דוא"ל אימות נשלח לכתובת הדוא"ל שקבעת.
 לפני שדברי דוא"ל אחרים יישלחו לחשבון הזה, יהיה עליך לפעול לפי ההוראות בדוא"ל, כדי לאשר שהחשבון אכן שייך לך.',
-'throttled-mailpassword'     => 'כבר נעשה שימוש באפשרות שחזור הסיסמה ב{{PLURAL:$1|שעה האחרונה|־$1 השעות האחרונות}}. כדי למנוע ניצול לרעה, רק דואר אחד כזה יכול להישלח כל {{PLURAL:$1|שעה אחת|$1 שעות}}.',
+'throttled-mailpassword'     => 'כבר נעשה שימוש באפשרות שחזור הסיסמה ב{{PLURAL:$1|שעה האחרונה|־$1 השעות האחרונות|שעתיים האחרונות}}.
+כדי למנוע ניצול לרעה, יכול להישלח רק דואר אחד כזה בכל {{PLURAL:$1|שעה|$1 שעות|שעתיים}}.',
 'mailerror'                  => 'שגיאה בשליחת דואר: $1',
 'acct_creation_throttle_hit' => 'מבקרים באתר זה דרך כתובת ה־IP שלכם כבר יצרו {{PLURAL:$1|חשבון אחד|$1 חשבונות}} ביום האחרון. זהו המקסימום המותר בתקופה זו.
 לפיכך, מבקרים דרך כתובת ה־IP הזו לא יכולים ליצור חשבונות נוספים ברגע זה.',
@@ -989,11 +990,11 @@ $2
 'blocked-notice-logextract'        => 'משתמש זה חסום כרגע.
 פעולת יומן החסימות האחרונה מוצגת להלן:',
 'clearyourcache'                   => "'''הערה:''' לאחר השמירה, עליכם לנקות את זיכרון המטמון (Cache) של הדפדפן כדי להבחין בשינויים.
-* '''פיירפוקס / ספארי:''' לחצו על Shift בעת לחיצתכם על '''העלה מחדש''' (Reload), או הקישו על ''Ctrl-F5'' או על ''Ctrl-R'' (או על ''Command+R'' במק)
-* '''Google Chrome:''' לחצו על ''Ctrl-Shift-R'' (או על ''Command-Shift-R'' במק)
-* '''אינטרנט אקספלורר:''' לחצו על Ctrl בעת לחיצתכם על '''רענן''' (Refresh), או הקישו על ''Ctrl+F5''
-* '''Konqueror:''' לחצו על '''העלה מחדש''' (Reload) או הקישו על ''F5''
-* '''אופרה''': נקו את המטמון ב'''כלים''' (Tools) > '''העדפות''' (Preferences)",
+* '''פיירפוקס / ספארי:''' לחצו על Shift בעת לחיצתכם על '''העלה מחדש''' (Reload), או הקישו על ''Ctrl-F5'' או על ''Ctrl-R'' (או על ''<span dir=\"ltr\">⌘-R</span>'' במחשב מק)
+* '''Google Chrome:''' לחצו על ''Ctrl-Shift-R'' (או על ''<span dir=\"ltr\">⌘-Shift-R</span>'' במק)
+* '''אינטרנט אקספלורר:''' לחצו על Ctrl בעת לחיצתכם על '''רענן''' (Refresh), או הקישו על ''Ctrl-F5''
+* '''Konqueror:''' לחצו על '''טען מחדש''' (Reload) או הקישו על ''F5''
+* '''אופרה''': נקו את המטמון ב־''Tools‏ ← Preferences''",
 'usercssyoucanpreview'             => "'''עצה:''' השתמשו בלחצן \"{{int:showpreview}}\" כדי לבחון את גיליון ה־CSS החדש שלכם לפני השמירה.",
 'userjsyoucanpreview'              => "'''עצה:''' השתמשו בלחצן \"{{int:showpreview}}\" כדי לבחון את סקריפט ה־JavaScript החדש שלכם לפני השמירה.",
 'usercsspreview'                   => "'''זכרו שזו רק תצוגה מקדימה של גיליון ה־CSS שלכם.'''
@@ -1524,12 +1525,12 @@ $1",
 'group-suppress'      => 'מסתירים',
 'group-all'           => '(הכול)',
 
-'group-user-member'          => 'משתמש',
-'group-autoconfirmed-member' => 'משתמש ותיק',
-'group-bot-member'           => 'בוט',
-'group-sysop-member'         => 'מפעיל מערכת',
-'group-bureaucrat-member'    => 'ביורוקרט',
-'group-suppress-member'      => 'מסתיר',
+'group-user-member'          => '{{GENDER:$1|משתמש|משתמשת}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|משתמש ותיק|משתמשת ותיקה}}',
+'group-bot-member'           => '{{GENDER:$1|בוט}}',
+'group-sysop-member'         => '{{GENDER:$1|מפעיל מערכת|מפעילת מערכת}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|ביורוקרט|ביורוקרטית}}',
+'group-suppress-member'      => '{{GENDER:$1|מסתיר|מסתירה}}',
 
 'grouppage-user'          => '{{ns:project}}:משתמש רשום',
 'grouppage-autoconfirmed' => '{{ns:project}}:משתמש ותיק',
@@ -1634,7 +1635,7 @@ $1",
 'action-import'               => 'לייבא דף זה מאתר ויקי אחר',
 'action-importupload'         => 'לייבא דף זה באמצעות העלאת קובץ',
 'action-patrol'               => 'לסמן עריכות של אחרים כבדוקות',
-'action-autopatrol'           => 'לסמן את עריכותיכם כבדוקות',
+'action-autopatrol'           => 'לסמן את עריכותיך כבדוקות',
 'action-unwatchedpages'       => 'לצפות ברשימת הדפים שאינם במעקב',
 'action-trackback'            => 'לשלוח טרקבק',
 'action-mergehistory'         => 'למזג את ההיסטוריה של דף זה',
@@ -1681,7 +1682,7 @@ $1",
 'recentchangeslinked'          => 'שינויים בדפים המקושרים',
 'recentchangeslinked-feed'     => 'שינויים בדפים המקושרים',
 'recentchangeslinked-toolbox'  => 'שינויים בדפים המקושרים',
-'recentchangeslinked-title'    => 'שינויים בדפים המקושרים לדף $1',
+'recentchangeslinked-title'    => 'שינויים בדפים המקושרים מהדף $1',
 'recentchangeslinked-backlink' => '→ $1',
 'recentchangeslinked-noresult' => 'לא היו שינויים בדפים המקושרים בתקופה זו.',
 'recentchangeslinked-summary'  => "בדף מיוחד זה רשומים השינויים האחרונים בדפים המקושרים מתוך הדף (או בדפים הכלולים בקטגוריה).
@@ -2079,7 +2080,7 @@ $1',
 'mostlinked'              => 'הדפים המקושרים ביותר',
 'mostlinkedcategories'    => 'הקטגוריות המקושרות ביותר',
 'mostlinkedtemplates'     => 'התבניות המקושרות ביותר',
-'mostcategories'          => 'הדפים מרובי־הקטגוריות ביותר',
+'mostcategories'          => 'הדפים עם המספר הרב ביותר של קטגוריות',
 'mostimages'              => 'הקבצים המקושרים ביותר',
 'mostrevisions'           => 'הדפים בעלי מספר העריכות הגבוה ביותר',
 'prefixindex'             => 'רשימת הדפים המתחילים ב…',
@@ -3051,7 +3052,7 @@ $1',
 'rcpatroldisabled'                    => 'אפשרות סימון השינויים כבדוקים מבוטלת',
 'rcpatroldisabledtext'                => 'התכונה של סימון שינוי כבדוק בשינויים האחרונים מבוטלת.',
 'markedaspatrollederror'              => 'לא ניתן לסמן כבדוק',
-'markedaspatrollederrortext'          => 'עליכם לציין גרסה שתסמנו כבדוקה.',
+'markedaspatrollederrortext'          => 'עליכם לציין גרסה שתציינו כבדוקה.',
 'markedaspatrollederror-noautopatrol' => 'אינכם מורשים לסמן את השינויים של עצמכם כבדוקים.',
 
 # Patrol log
@@ -3685,7 +3686,7 @@ $1',
 לאחר סיום העריכה, יש ללחוץ על "{{int:Watchlistedit-raw-submit}}".
 באפשרותכם גם [[Special:EditWatchlist|להשתמש בעורך הרגיל]].',
 'watchlistedit-raw-titles'     => 'דפים:',
-'watchlistedit-raw-submit'     => 'עדכון הרשימה',
+'watchlistedit-raw-submit'     => 'עדכון רשימת המעקב',
 'watchlistedit-raw-done'       => 'רשימת המעקב עודכנה.',
 'watchlistedit-raw-added'      => '{{PLURAL:$1|כותרת אחת נוספה|$1 כותרות נוספו}}:',
 'watchlistedit-raw-removed'    => '{{PLURAL:$1|כותרת אחת הוסרה|$1 כותרות הוסרו}}:',
