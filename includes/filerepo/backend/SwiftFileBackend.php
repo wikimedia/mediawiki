@@ -11,11 +11,10 @@
  * Status messages should avoid mentioning the Swift account name
  * Likewise, error suppression should be used to avoid path disclosure.
  *
- * This requires the php-cloudfiles library is present,
+ * This requires that the php-cloudfiles library is present,
  * which is available at https://github.com/rackspace/php-cloudfiles.
  * All of the library classes must be registed in $wgAutoloadClasses.
  *
- * @TODO: update MessagesEn for status errors.
  * @TODO: handle 'latest' param as "X-Newest: true".
  *
  * @ingroup FileBackend
@@ -95,7 +94,7 @@ class SwiftFileBackend extends FileBackend {
 			$status->fatal( 'backend-fail-connect', $this->name );
 			return $status;
 		} catch ( Exception $e ) { // some other exception?
-			$status->fatal( 'backend-fail-internal' );
+			$status->fatal( 'backend-fail-internal', $this->name );
 			$this->logException( $e, __METHOD__, $params );
 			return $status;
 		}
@@ -114,7 +113,7 @@ class SwiftFileBackend extends FileBackend {
 			$status->fatal( 'backend-fail-connect', $this->name );
 			return $status;
 		} catch ( Exception $e ) { // some other exception?
-			$status->fatal( 'backend-fail-internal' );
+			$status->fatal( 'backend-fail-internal', $this->name );
 			$this->logException( $e, __METHOD__, $params );
 			return $status;
 		}
@@ -133,7 +132,7 @@ class SwiftFileBackend extends FileBackend {
 		} catch ( InvalidResponseException $e ) {
 			$status->fatal( 'backend-fail-connect', $this->name );
 		} catch ( Exception $e ) { // some other exception?
-			$status->fatal( 'backend-fail-internal' );
+			$status->fatal( 'backend-fail-internal', $this->name );
 			$this->logException( $e, __METHOD__, $params );
 		}
 
@@ -169,7 +168,7 @@ class SwiftFileBackend extends FileBackend {
 			$status->fatal( 'backend-fail-connect', $this->name );
 			return $status;
 		} catch ( Exception $e ) { // some other exception?
-			$status->fatal( 'backend-fail-internal' );
+			$status->fatal( 'backend-fail-internal', $this->name );
 			$this->logException( $e, __METHOD__, $params );
 			return $status;
 		}
@@ -188,7 +187,7 @@ class SwiftFileBackend extends FileBackend {
 			$status->fatal( 'backend-fail-connect', $this->name );
 			return $status;
 		} catch ( Exception $e ) { // some other exception?
-			$status->fatal( 'backend-fail-internal' );
+			$status->fatal( 'backend-fail-internal', $this->name );
 			$this->logException( $e, __METHOD__, $params );
 			return $status;
 		}
@@ -214,7 +213,7 @@ class SwiftFileBackend extends FileBackend {
 		} catch ( InvalidResponseException $e ) {
 			$status->fatal( 'backend-fail-connect', $this->name );
 		} catch ( Exception $e ) { // some other exception?
-			$status->fatal( 'backend-fail-internal' );
+			$status->fatal( 'backend-fail-internal', $this->name );
 			$this->logException( $e, __METHOD__, $params );
 		}
 
@@ -257,7 +256,7 @@ class SwiftFileBackend extends FileBackend {
 			$status->fatal( 'backend-fail-connect', $this->name );
 			return $status;
 		} catch ( Exception $e ) { // some other exception?
-			$status->fatal( 'backend-fail-internal' );
+			$status->fatal( 'backend-fail-internal', $this->name );
 			$this->logException( $e, __METHOD__, $params );
 			return $status;
 		}
@@ -276,7 +275,7 @@ class SwiftFileBackend extends FileBackend {
 			$status->fatal( 'backend-fail-connect', $this->name );
 			return $status;
 		} catch ( Exception $e ) { // some other exception?
-			$status->fatal( 'backend-fail-internal' );
+			$status->fatal( 'backend-fail-internal', $this->name );
 			$this->logException( $e, __METHOD__, $params );
 			return $status;
 		}
@@ -289,7 +288,7 @@ class SwiftFileBackend extends FileBackend {
 		} catch ( InvalidResponseException $e ) {
 			$status->fatal( 'backend-fail-connect', $this->name );
 		} catch ( Exception $e ) { // some other exception?
-			$status->fatal( 'backend-fail-internal' );
+			$status->fatal( 'backend-fail-internal', $this->name );
 			$this->logException( $e, __METHOD__, $params );
 		}
 
@@ -325,7 +324,7 @@ class SwiftFileBackend extends FileBackend {
 			$status->fatal( 'backend-fail-connect', $this->name );
 			return $status;
 		} catch ( Exception $e ) { // some other exception?
-			$status->fatal( 'backend-fail-internal' );
+			$status->fatal( 'backend-fail-internal', $this->name );
 			$this->logException( $e, __METHOD__, $params );
 			return $status;
 		}
@@ -340,7 +339,7 @@ class SwiftFileBackend extends FileBackend {
 		} catch ( InvalidResponseException $e ) {
 			$status->fatal( 'backend-fail-connect', $this->name );
 		} catch ( Exception $e ) { // some other exception?
-			$status->fatal( 'backend-fail-internal' );
+			$status->fatal( 'backend-fail-internal', $this->name );
 			$this->logException( $e, __METHOD__, $params );
 		}
 
@@ -366,7 +365,7 @@ class SwiftFileBackend extends FileBackend {
 		} catch ( InvalidResponseException $e ) {
 			$status->fatal( 'backend-fail-connect', $this->name );
 		} catch ( Exception $e ) { // some other exception?
-			$status->fatal( 'backend-fail-internal' );
+			$status->fatal( 'backend-fail-internal', $this->name );
 			$this->logException( $e, __METHOD__, $params );
 		}
 

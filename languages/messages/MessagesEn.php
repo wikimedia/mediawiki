@@ -2256,7 +2256,7 @@ If the problem persists, contact an [[Special:ListUsers/sysop|administrator]].',
 'backend-fail-readonly'      => 'The backend "$1" is currently read-only. The reason given is: "$2"',
 'backend-fail-synced'        => 'The file "$1" is in an inconsistent state within the internal backends',
 'backend-fail-connect'       => 'Could not connect to file backend "$1".',
-'backend-fail-internal'      => 'An unknown internal file backend error occured.',
+'backend-fail-internal'      => 'An unknown error occurred in file backend "$1".',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Could not unlock "$1"; it is not locked.',
