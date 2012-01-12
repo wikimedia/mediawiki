@@ -1,6 +1,9 @@
 <?php
 
-// @TODO: fix empty dir leakage
+/**
+ * @group FileRepo
+ * @TODO: fix empty dir leakage
+ */
 class FileBackendTest extends MediaWikiTestCase {
 	private $backend, $multiBackend;
 	private $filesToPrune, $pathsToPrune;
