@@ -117,6 +117,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'addPgField', 'revision',      'rev_sha1',             "TEXT NOT NULL DEFAULT ''" ),
 			array( 'addPgField', 'archive',       'ar_sha1',              "TEXT NOT NULL DEFAULT ''" ),
 			array( 'addPgField', 'uploadstash',   'us_chunk_inx',         "INTEGER NULL" ),
+			array( 'addPgField', 'job',           'job_timestamp',        "TIMESTAMPTZ" ),
 
 			# type changes
 			array( 'changeField', 'archive',       'ar_deleted',      'smallint', '' ),
@@ -184,6 +185,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'addPgIndex', 'logging',       'logging_user_type_time', '(log_user, log_type, log_timestamp)' ),
 			array( 'addPgIndex', 'logging',       'logging_page_id_time',   '(log_page,log_timestamp)' ),
 			array( 'addPgIndex', 'iwlinks',       'iwl_prefix_title_from',  '(iwl_prefix, iwl_title, iwl_from)' ),
+			array( 'addPgIndex', 'job',           'job_timestamp_idx',      '(job_timestamp)' ),
 
 			array( 'checkOiNameConstraint' ),
 			array( 'checkPageDeletedTrigger' ),

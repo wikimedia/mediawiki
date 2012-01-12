@@ -519,9 +519,11 @@ CREATE TABLE job (
   job_cmd        TEXT      NOT NULL,
   job_namespace  SMALLINT  NOT NULL,
   job_title      TEXT      NOT NULL,
+  job_timestamp  TIMESTAMPTZ,
   job_params     TEXT      NOT NULL
 );
 CREATE INDEX job_cmd_namespace_title ON job (job_cmd, job_namespace, job_title);
+CREATE INDEX job_timestamp_idx ON job (job_timestamp);
 
 -- Tsearch2 2 stuff. Will fail if we don't have proper access to the tsearch2 tables
 -- Version 8.3 or higher only. Previous versions would need another parmeter for to_tsvector.
