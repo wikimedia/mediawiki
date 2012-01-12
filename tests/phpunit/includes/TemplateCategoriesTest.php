@@ -16,7 +16,10 @@ class TemplateCategoriesTest extends MediaWikiLangTestCase {
 		$wgUser->mRights['*'] = array( 'createpage', 'edit', 'purge' );
 
 		$status = $article->doEdit( '{{Categorising template}}', 'Create a page with a template', 0 );
-		$this->assertEquals( $title->getParentCategories(), array() );
+		$this->assertEquals(
+			array()
+			, $title->getParentCategories()
+		);
 
 		$template = new Article( Title::newFromText( 'Template:Categorising template' ) );
 		$status = $template->doEdit( '[[Category:Solved bugs]]', 'Add a category through a template', 0 );
@@ -26,7 +29,10 @@ class TemplateCategoriesTest extends MediaWikiLangTestCase {
 		$jobs->loadParamsAndArgs( null, array( 'quiet' => true ), null );
 		$jobs->execute();
 
-		$this->assertEquals( $title->getParentCategories(), array( 'Category:Solved_bugs' => $title->getPrefixedText() ) );
+		$this->assertEquals(
+			array( 'Category:Solved_bugs' => $title->getPrefixedText() )
+			, $title->getParentCategories()
+		);
 	}
 
 }
