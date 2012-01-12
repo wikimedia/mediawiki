@@ -1046,7 +1046,7 @@ SQL;
 		return 'SearchPostgres';
 	}
 
-	protected function streamStatementEnd( &$sql, &$newLine ) {
+	public function streamStatementEnd( &$sql, &$newLine ) {
 		# Allow dollar quoting for function declarations
 		if ( substr( $newLine, 0, 4 ) == '$mw$' ) {
 			if ( $this->delimiter ) {
