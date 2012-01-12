@@ -1638,6 +1638,8 @@ Template:Khu-pia̍t-ia̍h',
 'popularpages'            => 'Sî-kiâⁿ ê ia̍h',
 'wantedcategories'        => 'wantedcategories',
 'wantedpages'             => 'Beh ti̍h ê ia̍h',
+'wantedfiles'             => '欲挃的檔案',
+'wantedtemplates'         => '欲挃的枋模',
 'mostlinked'              => 'Siōng chia̍p liân-kiat ê ia̍h',
 'mostlinkedcategories'    => 'Siōng chia̍p liân-kiat ê lūi-pia̍t',
 'mostlinkedtemplates'     => 'Siōng chia̍p liân-kiat ê pang-bô͘',
@@ -1646,6 +1648,7 @@ Template:Khu-pia̍t-ia̍h',
 'mostrevisions'           => 'Siōng chia̍p siu-kái ê ia̍h',
 'prefixindex'             => 'Só͘-ū chiàu sû-thâu sek-ín liáu ê  ia̍h',
 'shortpages'              => 'Té-ia̍h',
+'longpages'               => '長頁',
 'deadendpages'            => 'Khu̍t-thâu-ia̍h',
 'deadendpagestext'        => 'Ē-kha ê ia̍h bô liân kàu wiki lāi-té ê kî-thaⁿ ia̍h.',
 'protectedpages'          => 'Siū pó-hō͘ ê ia̍h',
@@ -1699,10 +1702,22 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'linksearch'      => 'Chhiau-chhoē chām-goā liân-kiat',
 'linksearch-line' => '$1 是對$2連接來的',
 
+# Special:ListUsers
+'listusers-submit'   => '顯示',
+'listusers-noresult' => '揣無用者',
+
+# Special:ActiveUsers
+'activeusers'            => '有咧活動的用者清單',
+'activeusers-intro'      => '這是佇過去$1 {{PLURAL:$1|工y|工}}有做過一寡活動的用者清單。',
+'activeusers-hidebots'   => '掩機器人',
+'activeusers-hidesysops' => '掩管理員',
+
 # Special:Log/newusers
-'newuserlogpage' => '用者建立的記錄',
+'newuserlogpage'     => '用者建立的記錄',
+'newuserlogpagetext' => '這是開用者口座的記錄',
 
 # Special:ListGroupRights
+'listgrouprights'         => '用者陣權利',
 'listgrouprights-members' => '(成員列單)',
 
 # E-mail user
@@ -1728,12 +1743,15 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'nowatchlist'        => 'Lí ê kàm-sī-toaⁿ bô pòaⁿ hāng.',
 'watchnologin'       => 'Bô teng-ji̍p',
 'watchnologintext'   => 'Lí it-tēng ài [[Special:UserLogin|teng-ji̍p]] chiah ē-tàng siu-kái lí ê kàm-sī-toaⁿ.',
+'addwatch'           => '加入去監視單',
 'addedwatchtext'     => "\"[[:\$1]]\" chit ia̍h í-keng ka-ji̍p lí ê [[Special:Watchlist|kàm-sī-toaⁿ]]. Bī-lâi chit ia̍h a̍h-sī siong-koan ê thó-lūn-ia̍h nā ū kái-piàn, ē lia̍t tī hia. Tông-sî tī [[Special:RecentChanges|Chòe-kīn ê kái-piàn]] ē iōng '''chho·-thé''' hián-sī ia̍h ê piau-tê, án-ne khah bêng-hián. Ká-sú lí beh chiōng chit ia̍h tùi lí ê kàm-sī-toaⁿ tû tiāu, khì khòng-chè-tiâu chhi̍h \"Mài kàm-sī\" chiū ē-sái-tit.",
+'removewatch'        => '對監視單徙走',
 'removedwatchtext'   => '"[[:$1]]" chit ia̍h í-keng tùi lí ê kàm-sī-toaⁿ tû tiāu.',
 'watch'              => 'kàm-sī',
 'watchthispage'      => 'Kàm-sī chit ia̍h',
 'unwatch'            => 'Mài kàm-sī',
 'unwatchthispage'    => 'Mài koh kàm-sī',
+'notanarticle'       => '毋是內容頁面',
 'watchnochange'      => 'Lí kàm-sī ê hāng-bo̍k tī hián-sī ê sî-kî í-lāi lóng bô siu-kái kòe.',
 'watchlist-details'  => 'Kàm-sī-toaⁿ ū {{PLURAL:$1|$1 ia̍h|$1 ia̍h}}, thó-lūn-ia̍h bô sǹg chāi-lāi.',
 'watchmethod-recent' => 'tng teh kíam-cha choè-kīn ê siu-kái, khoàⁿ ū kàm-sī ê ia̍h bô',
@@ -1742,6 +1760,19 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'wlnote'             => "Ē-kha sī '''$2''' tiám-cheng í-lāi siōng sin ê $1 ê kái-piàn.",
 'wlshowlast'         => 'Hián-sī chêng $1 tiám-cheng $2 ji̍t $3',
 'watchlist-options'  => '監視單的選項',
+
+# Displayed when you click the "watch" button and it is in the process of watching
+'watching'       => '共監視',
+'unwatching'     => '莫監視',
+'watcherrortext' => '佇你改"$1"監視設定的時陣，發生一个問題',
+
+'enotif_reset'       => '共全部的頁攏當做巡過',
+'changed'            => '改過',
+'created'            => '寫過',
+'enotif_subject'     => '佇{{SITENAME}}的$PAGETITLE這頁捌予$CHANGEDORCREATED$PAGEEDITOR',
+'enotif_lastvisited' => '看$1，自你頂回來到今所有改的',
+'enotif_lastdiff'    => '看$1這回改的',
+'enotif_anon_editor' => '無名氏用者$1',
 
 # Delete
 'deletepage'             => 'Thâi ia̍h',
@@ -1760,7 +1791,14 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'dellogpage'             => '刣掉的記錄',
 'dellogpagetext'         => 'Í-hā lia̍t chhut chòe-kīn thâi tiāu ê hāng-bo̍k.',
 'deletionlog'            => '刣掉的記錄',
+'reverted'               => '轉轉去前一个版本',
 'deletecomment'          => 'Lí-iû:',
+'deleteotherreason'      => '其他／另外的理由：',
+'deletereasonotherlist'  => '其他的理由',
+'deletereason-dropdown'  => '*一般刣掉的理由
+** 作者的要求
+** 違反著作權
+** 破壞',
 'delete-edit-reasonlist' => '編輯刣掉的理由',
 
 # Rollback
@@ -2189,5 +2227,6 @@ Nā-chún *m̄-sī* lí, chhiáⁿ mài tòe liân-kiat khì.  Chit tiuⁿ phoe 
 # New logging system
 'revdelete-restricted'   => '已經共限制用佇管裡員',
 'revdelete-unrestricted' => '徙走對管裡員的限制',
+'newuserlog-byemail'     => '用電子批寄密碼',
 
 );

@@ -1668,6 +1668,7 @@ Ma talc'h ar gudenn, kit e darempred gant [[Special:ListUsers/sysop|merourien ar
 'backend-fail-read'          => 'Dibosupl lenn ar restr $1.',
 'backend-fail-create'        => 'Dibosupl krouiñ ar restr $1.',
 'backend-fail-readonly'      => 'Emañ an dermenell "$1" e mod lenn hepken. Setu aze an abeg roet : "$2".',
+'backend-fail-synced'        => 'Emañ ar restr "$1" en ur stad direizhet en termenelloù diabarzh',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Dibosupl dibrennañ "$1"; n\'eo ket prennet.',
@@ -2740,7 +2741,7 @@ Enrollit ar bajenn war hoc'h urzhiataer ha kargit anezhi amañ.",
 # JavaScriptTest
 'javascripttest'                           => 'Amprouadenn JavaScript',
 'javascripttest-disabled'                  => "Diweredekaet eo an arc'hwel-mañ.",
-'javascripttest-title'                     => 'Emeur o seveniñ an amprouadennoù',
+'javascripttest-title'                     => 'Emeur o seveniñ $1 amprouadenn',
 'javascripttest-pagetext-noframework'      => 'Miret eo ar bajenn-mañ evit amprouiñ JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Framm amprouiñ "$1" dianav.',
 'javascripttest-pagetext-frameworks'       => 'Diuzit unan eus ar frammoù amprouiñ da-heul : $1',

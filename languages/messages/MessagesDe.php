@@ -1866,6 +1866,8 @@ Wenn das Problem weiter besteht, informiere einen [[Special:ListUsers/sysop|Syst
 'backend-fail-create'        => 'Die Datei $1 konnte nicht erstellt werden.',
 'backend-fail-readonly'      => 'Das Backend „$1“ befindet sich derzeit im Lesemodus. Der angegebene Grund lautet: „$2“',
 'backend-fail-synced'        => 'Die Datei „$1“ befindet sich, innerhalb des internen Backends, in einem inkonsistenten Zustand.',
+'backend-fail-connect'       => 'Es konnte keine Verbindung zum Datei-Backend „$1“ hergestellt werden.',
+'backend-fail-internal'      => 'Im Datei-Backend „$1“ ist ein unbekannter Fehler aufgetreten.',
 
 # Lock manager
 'lockmanager-notlocked'        => '„$1“ konnte nicht entsperrt werden, da keine Sperrung besteht.',
@@ -2062,7 +2064,7 @@ Eine [[Special:WhatLinksHere/$2|vollständige Liste]] ist verfügbar.',
 'statistics-views-peredit'     => 'Seitenaufrufe pro Bearbeitung',
 'statistics-users'             => 'Registrierte [[Special:ListUsers|Benutzer]]',
 'statistics-users-active'      => 'Aktive Benutzer',
-'statistics-users-active-desc' => 'Benutzer mit Bearbeitungen {{PLURAL:$1|in den letzten 24 Stunden|in den vergangenen $1 Tagen}}',
+'statistics-users-active-desc' => 'Benutzer mit Bearbeitungen {{PLURAL:$1|während der letzten 24 Stunden|während der vergangenen $1 Tage}}',
 'statistics-mostpopular'       => 'Meistbesuchte Seiten',
 
 'disambiguations'      => 'Seiten die auf Begriffsklärungsseiten verlinken',
