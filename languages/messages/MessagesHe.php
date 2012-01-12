@@ -2952,13 +2952,13 @@ $1',
 # JavaScriptTest
 'javascripttest'                           => 'בדיקת JavaScript',
 'javascripttest-disabled'                  => 'אפשרות זו מבוטלת.',
-'javascripttest-title'                     => 'הרצת $1 בדיקות',
+'javascripttest-title'                     => 'הרצת בדיקות $1',
 'javascripttest-pagetext-noframework'      => 'דף זה שמור להרצת בדיקות JavaScript.',
-'javascripttest-pagetext-unknownframework' => 'סביבת הבדיקה "$1" אינה ידועה.',
-'javascripttest-pagetext-frameworks'       => 'אנא בחרו אחת מסביבות הבדיקה הבאות: $1',
+'javascripttest-pagetext-unknownframework' => 'סביבת הבדיקות "$1" אינה ידועה.',
+'javascripttest-pagetext-frameworks'       => 'נא לבחור אחת מסביבות הבדיקות הבאות: $1',
 'javascripttest-pagetext-skins'            => 'בחירת עיצוב שאיתו יורצו הבדיקות:',
-'javascripttest-qunit-intro'               => 'ראו את [$1 תיעוד הבדיקה] באתר mediawiki.org.',
-'javascripttest-qunit-heading'             => 'מערך בדיקות QUnit ל־JavaScript של  מדיה־ויקי',
+'javascripttest-qunit-intro'               => 'ראו את [$1 תיעוד הבדיקות] באתר mediawiki.org.',
+'javascripttest-qunit-heading'             => 'מערך בדיקות QUnit ל־JavaScript של מדיה־ויקי',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'                 => 'דף המשתמש שלכם',

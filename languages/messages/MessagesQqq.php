@@ -3252,7 +3252,8 @@ See also {{msg-mw|Anonuser}} and {{msg-mw|Siteusers}}.',
 'pageinfo-talkpage'         => 'Table header in action=info.',
 
 # Skin names
-'skinname-standard'    => '{{optional}}',
+'skinname-standard'    => '{{optional}}
+{{Identical|Classic}}',
 'skinname-nostalgia'   => '{{optional}}',
 'skinname-cologneblue' => '{{optional}}',
 'skinname-monobook'    => '{{optional}}',

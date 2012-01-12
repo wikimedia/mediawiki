@@ -2091,7 +2091,7 @@ $1',
 'watchnologin'         => '未登录',
 'watchnologintext'     => '您必须先[[Special:UserLogin|登录]]才能更改您的监视列表。',
 'addwatch'             => '添加至监视列表',
-'addedwatchtext'       => "页面“[[:$1]]”已添加至你的[[Special:Watchlist|监视列表]]。本页面及其讨论页面的新增更改将会列入监视列表，本页面将以'''粗体'''显示在[[Special:RecentChanges|最近更改列表]]中以便挑出。",
+'addedwatchtext'       => "页面“[[:$1]]”已添加至你的[[Special:Watchlist|监视列表]]。本页面及其讨论页面的新增更改将会列入监视列表，本页面将以'''粗体'''显示在[[Special:RecentChanges|最近更改列表]]中以方便识别。",
 'removewatch'          => '从监视列表中删除',
 'removedwatchtext'     => '页面“[[:$1]]”已从[[Special:Watchlist|你的监视列表]]中删除。',
 'watch'                => '监视',
@@ -2157,7 +2157,7 @@ $UNWATCHURL
 'deletepage'             => '删除页面',
 'confirm'                => '确认',
 'excontent'              => '内容：“$1”',
-'excontentauthor'        => '内容：“$1”（唯一贡献者为“[[Special:Contributions/$2|$2]]”）',
+'excontentauthor'        => '内容：“$1”（且唯一贡献者为“[[Special:Contributions/$2|$2]]”）',
 'exbeforeblank'          => '被清空前的内容为：“$1”',
 'exblank'                => '页面为空',
 'delete-confirm'         => '删除“$1”',
@@ -2288,7 +2288,7 @@ $UNWATCHURL
 'undeleteinvert'               => '反向选择',
 'undeletecomment'              => '原因：',
 'undeletedrevisions'           => '$1个版本已恢复',
-'undeletedrevisions-files'     => '$1个版本和$2个文件被恢复',
+'undeletedrevisions-files'     => '$1个版本和$2个文件已恢复',
 'undeletedfiles'               => '$1个文件已经被恢复',
 'cannotundelete'               => '恢复删除失败；可能已有其他人先行恢复了此页面。',
 'undeletedpage'                => "'''$1已经被恢复'''
@@ -3521,7 +3521,7 @@ $5
 'watchlistedit-raw-titles'     => '标题：',
 'watchlistedit-raw-submit'     => '更新监视列表',
 'watchlistedit-raw-done'       => '您的监视列表已经更新。',
-'watchlistedit-raw-added'      => '$1个标题被添加：',
+'watchlistedit-raw-added'      => '$1个标题已添加：',
 'watchlistedit-raw-removed'    => '$1个标题被删除：',
 
 # Watchlist editing tools
@@ -3710,7 +3710,7 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 'feedback-error3'    => '错误：API没有响应',
 'feedback-thanks'    => '谢谢！你的反馈已发布至页面“[$2 $1]”。',
 'feedback-close'     => '完成',
-'feedback-bugcheck'  => '请检查本bug是否为[$1 已知bug]。',
+'feedback-bugcheck'  => '太好了！再检查一下它是否是[$1 已知bug]。',
 'feedback-bugnew'    => '我检查了。报告新bug',
 
 # API errors

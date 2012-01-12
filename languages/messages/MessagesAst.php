@@ -2648,6 +2648,9 @@ Guárdalu nel ordenador y xúbilu equí.",
 'import-invalid-interwiki'   => "Nun se puede importar d'esi wiki.",
 'import-error-edit'          => "La páxina $1 nun s'importó porque nun tienes permisu pa editala.",
 'import-error-create'        => "La páxina $1 nun s'importó porque nun tienes permisu pa creala.",
+'import-error-interwiki'     => "La páxina «$1» nun s'importó porque'l so nome ta acutáu pa enllaces esternos (interwiki).",
+'import-error-special'       => "La páxina «$1» nun s'importó porque pertenez a un espaciu de nomes especial que nun permite les páxines.",
+'import-error-invalid'       => "La páxina «$1» nun s'importó porque tien un nome inválidu.",
 
 # Import log
 'importlogpage'                    => "Rexistru d'importaciones",
