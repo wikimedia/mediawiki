@@ -476,7 +476,7 @@ class XmlDumpWriter {
 	function openPage( $row ) {
 		$out = "  <page>\n";
 		$title = Title::makeTitle( $row->page_namespace, $row->page_title );
-		$out .= '    ' . Xml::elementClean( 'title', array(), self::canonicalTitle( $title ) ) . "\n";
+		$out .= '    ' . Xml::elementClean( 'title', array(), $title->getPrefixedText() ) . "\n";
 		$out .= '    ' . Xml::element( 'ns', array(), strval( $row->page_namespace) ) . "\n";
 		$out .= '    ' . Xml::element( 'id', array(), strval( $row->page_id ) ) . "\n";
 		if ( $row->page_is_redirect ) {
@@ -521,6 +521,12 @@ class XmlDumpWriter {
 
 		$out .= $this->writeTimestamp( $row->rev_timestamp );
 
+		if ( $row->rev_sha1 ) {
+			$out .= "      " . Xml::element('sha1', null, strval($row->rev_sha1) ) . "\n";
+		} else {
+			$out .= "      <sha1/>\n";
+		}
+		
 		if ( $row->rev_deleted & Revision::DELETED_USER ) {
 			$out .= "      " . Xml::element( 'contributor', array( 'deleted' => 'deleted' ) ) . "\n";
 		} else {
