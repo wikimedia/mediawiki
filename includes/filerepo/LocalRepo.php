@@ -261,7 +261,6 @@ class LocalRepo extends FileRepo {
 	 * Invalidates image redirect cache related to that image
 	 *
 	 * @param $title Title of page
-	 * @return void
 	 */
 	function invalidateImageRedirect( Title $title ) {
 		global $wgMemc;

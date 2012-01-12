@@ -126,7 +126,6 @@ class FileRepo {
 	 * directories, in case the user has not configured offline storage
 	 *
 	 * @param $dir string
-	 * @return void
 	 */
 	protected function initDeletedDir( $dir ) {
 		$this->backend->secure( // prevent web access & dir listings
@@ -718,8 +717,7 @@ class FileRepo {
 	 * Each file can be a (zone, rel) pair, virtual url, storage path, or FS path.
 	 * It will try to delete each file, but ignores any errors that may occur.
 	 *
-	 * @param $pairs array List of files to delete
-	 * @return void
+	 * @param $files array List of files to delete
 	 */
 	public function cleanupBatch( $files ) {
 		$operations = array();
@@ -1217,7 +1215,6 @@ class FileRepo {
 	 * May use either the database or the filesystem.
 	 *
 	 * @param $callback Array|string
-	 * @return void
 	 */
 	public function enumFiles( $callback ) {
 		$this->enumFilesInStorage( $callback );
@@ -1228,7 +1225,6 @@ class FileRepo {
 	 * May use either the database or the filesystem.
 	 *
 	 * @param $callback Array|string
-	 * @return void
 	 */
 	protected function enumFilesInStorage( $callback ) {
 		$publicRoot = $this->getZonePath( 'public' );

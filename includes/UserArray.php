@@ -60,7 +60,6 @@ class UserArrayFromResult extends UserArray {
 
 	/**
 	 * @param  $row
-	 * @return void
 	 */
 	protected function setCurrent( $row ) {
 		if ( $row === false ) {

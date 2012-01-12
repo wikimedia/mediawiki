@@ -151,7 +151,6 @@ abstract class FileCacheBase {
 
 	/**
 	 * Clear the cache for this page
-	 * @return void
 	 */
 	public function clearCache() {
 		wfSuppressWarnings();
@@ -162,7 +161,6 @@ abstract class FileCacheBase {
 
 	/**
 	 * Create parent directors of $this->cachePath()
-	 * @return void
 	 */
 	protected function checkCacheDirs() {
 		wfMkdirParents( dirname( $this->cachePath() ), null, __METHOD__ );
@@ -198,7 +196,6 @@ abstract class FileCacheBase {
 	/**
 	 * Roughly increments the cache misses in the last hour by unique visitors
 	 * @param $request WebRequest
-	 * @return void
 	 */
 	public function incrMissesRecent( WebRequest $request ) {
 		global $wgMemc;

@@ -45,7 +45,6 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 
 	/**
 	 * @param $resultPageSet ApiPageSet
-	 * @return void
 	 */
 	public function executeGenerator( $resultPageSet ) {
 		if ( $resultPageSet->isResolvingRedirects() ) {
@@ -57,7 +56,6 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 
 	/**
 	 * @param $resultPageSet ApiPageSet
-	 * @return void
 	 */
 	private function run( $resultPageSet = null ) {
 		$db = $this->getDB();

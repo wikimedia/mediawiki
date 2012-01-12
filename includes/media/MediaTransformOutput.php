@@ -50,7 +50,6 @@ abstract class MediaTransformOutput {
 
 	/**
 	 * @param $storagePath string The permanent storage path
-	 * @return void
 	 */
 	public function setStoragePath( $storagePath ) {
 		$this->storagePath = $storagePath;

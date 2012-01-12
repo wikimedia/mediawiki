@@ -12,7 +12,6 @@
 class CoreTagHooks {
 	/**
 	 * @param $parser Parser
-	 * @return void
 	 */
 	static function register( $parser ) {
 		global $wgRawHtml;

@@ -101,9 +101,6 @@ class LockServerDaemon {
 			: 10;
 	}
 
-	/**
-	 * @return void
-	 */
 	protected function setupSocket() {
 		if ( !function_exists( 'socket_create' ) ) {
 			throw new Exception( "PHP sockets extension missing from PHP CLI mode." );
@@ -125,9 +122,6 @@ class LockServerDaemon {
 		$this->startTime = time();
 	}
 
-	/**
-	 * @return void
-	 */
 	public function main() {
 		// Setup socket and start listing
 		$this->setupSocket();
@@ -354,8 +348,6 @@ class LockServerDaemon {
 
 	/**
 	 * Clear locks for sessions that have been dead for a while
-	 *
-	 * @return void
 	 */
 	protected function purgeExpiredLocks() {
 		$now = time();
@@ -370,7 +362,6 @@ class LockServerDaemon {
 	/**
 	 * @param $key string
 	 * @param $session string
-	 * @return void
 	 */
 	protected function set_sh_lock( $key, $session ) {
 		if ( !isset( $this->shLocks[$key][$session] ) ) {
@@ -383,7 +374,6 @@ class LockServerDaemon {
 	/**
 	 * @param $key string
 	 * @param $session string
-	 * @return void
 	 */
 	protected function set_ex_lock( $key, $session ) {
 		if ( !isset( $this->exLocks[$key][$session] ) ) {
@@ -396,7 +386,6 @@ class LockServerDaemon {
 	/**
 	 * @param $key string
 	 * @param $session string
-	 * @return void
 	 */
 	protected function unset_sh_lock( $key, $session ) {
 		if ( isset( $this->shLocks[$key][$session] ) ) {
@@ -415,7 +404,6 @@ class LockServerDaemon {
 	/**
 	 * @param $key string
 	 * @param $session string
-	 * @return void
 	 */
 	protected function unset_ex_lock( $key, $session ) {
 		if ( isset( $this->exLocks[$key] ) && $this->exLocks[$key] === $session ) {

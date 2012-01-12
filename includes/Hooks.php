@@ -39,7 +39,6 @@ class Hooks {
 	 *
 	 * @param $name Mixed: name of hook
 	 * @param $callback Mixed: callback function to attach
-	 * @return void
 	 */
 	public static function register( $name, $callback ) {
 		if( !isset( self::$handlers[$name] ) ) {

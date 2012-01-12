@@ -340,7 +340,6 @@ class SquidPurgeClientPool {
 
 	/**
 	 * @param $client SquidPurgeClient
-	 * @return void
 	 */
 	public function addClient( $client ) {
 		$this->clients[] = $client;

@@ -515,7 +515,6 @@ abstract class FileBackendBase {
 	 * If $paths is given, then only the cache for those files will be cleared.
 	 *
 	 * @param $paths Array Storage paths
-	 * @return void
 	 */
 	abstract public function clearCache( array $paths = null );
 
@@ -1164,8 +1163,6 @@ abstract class FileBackend extends FileBackendBase {
 
 	/**
 	 * Prune the cache if it is too big to add an item
-	 * 
-	 * @return void
 	 */
 	protected function trimCache() {
 		if ( count( $this->cache ) >= $this->maxCacheSize ) {

@@ -656,7 +656,6 @@ class LoginForm extends SpecialPage {
 	/**
 	 * Clear the login attempt throttle hit count for the (username,current IP) tuple.
 	 * @param $username string The user name
-	 * @return void
 	 */
 	public static function clearLoginThrottle( $username ) {
 		global $wgMemc, $wgRequest;
