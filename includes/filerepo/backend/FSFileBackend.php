@@ -11,6 +11,8 @@
  * All "containers" each map to a directory under the backend's base directory.
  * For backwards-compatibility, some container paths can be set to custom paths.
  * The wiki ID will not be used in any custom paths, so this should be avoided.
+ * 
+ * Having directories with thousands of files will diminish performance.
  * Sharding can be accomplished by using FileRepo-style hash paths.
  *
  * Status messages should avoid mentioning the internal FS paths.
@@ -364,14 +366,13 @@ class FSFileBackend extends FileBackend {
 		}
 		// Add a .htaccess file to the root of the container...
 		if ( !empty( $params['noAccess'] ) ) {
-			$dirRoot = $this->resolveToFSPath( $params['dir'], '' );
-			if ( !file_exists( "{$dirRoot}/.htaccess" ) ) {
+			if ( !file_exists( "{$contRoot}/.htaccess" ) ) {
 				wfSuppressWarnings();
 				$ok = file_put_contents( "{$dirRoot}/.htaccess", "Deny from all\n" );
 				wfRestoreWarnings();
 				if ( !$ok ) {
 					$storeDir = "mwstore://{$this->name}/{$shortCont}";
-					$status->fatal( 'backend-fail-create', "$storeDir/.htaccess" );
+					$status->fatal( 'backend-fail-create', "{$storeDir}/.htaccess" );
 					return $status;
 				}
 			}
