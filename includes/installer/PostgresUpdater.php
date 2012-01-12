@@ -116,6 +116,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'addPgField', 'interwiki',     'iw_wikiid',            "TEXT NOT NULL DEFAULT ''"),
 			array( 'addPgField', 'revision',      'rev_sha1',             "TEXT NOT NULL DEFAULT ''" ),
 			array( 'addPgField', 'archive',       'ar_sha1',              "TEXT NOT NULL DEFAULT ''" ),
+			array( 'addPgField', 'uploadstash',   'us_chunk_inx',         "INTEGER NULL" ),
 
 			# type changes
 			array( 'changeField', 'archive',       'ar_deleted',      'smallint', '' ),
