@@ -29,7 +29,7 @@ class ExternalEdit extends ContextSource {
 	/**
 	 * Constructor
 	 * @param $context IContextSource context to use
-	 * @param $mode String What mode we're using. Only 'file' has any effect
+	 * @param $urls array
 	 */
 	public function __construct( IContextSource $context, array $urls = array() ) {
 		$this->setContext( $context );
@@ -77,24 +77,22 @@ class ExternalEdit extends ContextSource {
 		if ( count( $this->urls ) ) {
 			$urls = $this->urls;
 			$type = "Diff text";
+		} elseif ( $this->getRequest()->getVal( 'mode' ) == 'file' ) {
+			$type = "Edit file";
+			$image = wfLocalFile( $this->getTitle() );
+			$urls = array( 'File' => array(
+				'Extension' => $image->getExtension(),
+				'URL' => $image->getCanonicalURL()
+			) );
 		} else {
-			if ( $this->getRequest()->getVal( 'mode' ) == 'file' ) {
-				$type = "Edit file";
-				$image = wfLocalFile( $this->getTitle() );
-				$urls = array( 'File' => array(
-					'Extension' => $image->getExtension(),
-					'URL' => $image->getCanonicalURL()
-				) );
-			} else {
-				$type = "Edit text";
-				# *.wiki file extension is used by some editors for syntax
-				# highlighting, so we follow that convention
-				$urls = array( 'File' => array(
-					'Extension' => 'wiki',
-					'URL' => $this->getTitle()->getCanonicalURL(
-						array( 'action' => 'edit', 'internaledit' => 'true' ) )
-				) );
-			}
+			$type = "Edit text";
+			# *.wiki file extension is used by some editors for syntax
+			# highlighting, so we follow that convention
+			$urls = array( 'File' => array(
+				'Extension' => 'wiki',
+				'URL' => $this->getTitle()->getCanonicalURL(
+					array( 'action' => 'edit', 'internaledit' => 'true' ) )
+			) );
 		}
 
 		$files = '';
