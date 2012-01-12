@@ -34,7 +34,7 @@
 $optionsWithArgs = array( 'd' );
 
 /** */
-require_once( "commandLine.inc" );
+require_once( dirname( __FILE__ ) . "/commandLine.inc" );
 
 if ( isset( $options['d'] ) ) {
 	$d = $options['d'];
@@ -55,13 +55,8 @@ if ( isset( $options['d'] ) ) {
 	}
 }
 
-if ( function_exists( 'readline_add_history' )
-	&& Maintenance::posix_isatty( 0 /*STDIN*/ ) )
-{
-	$useReadline = true;
-} else {
-	$useReadline = false;
-}
+$useReadline = function_exists( 'readline_add_history' )
+			&& Maintenance::posix_isatty( 0 /*STDIN*/ );
 
 if ( $useReadline ) {
 	$historyFile = isset( $_ENV['HOME'] ) ?
