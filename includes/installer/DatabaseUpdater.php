@@ -250,15 +250,16 @@ abstract class DatabaseUpdater {
 
 		$this->setAppliedUpdates( $wgVersion, $this->updates );
 
+		if ( isset( $what['stats'] ) ) {
+			$this->checkStats();
+		}
+
 		if ( isset( $what['purge'] ) ) {
 			$this->purgeCache();
 
 			if ( $wgLocalisationCacheConf['manualRecache'] ) {
 				$this->rebuildLocalisationCache();
 			}
-		}
-		if ( isset( $what['stats'] ) ) {
-			$this->checkStats();
 		}
 	}
 
@@ -562,7 +563,7 @@ abstract class DatabaseUpdater {
 	 * Check the site_stats table is not properly populated.
 	 */
 	protected function checkStats() {
-		$this->output( "Checking site_stats row..." );
+		$this->output( "...site_stats is populated..." );
 		$row = $this->db->selectRow( 'site_stats', '*', array( 'ss_row_id' => 1 ), __METHOD__ );
 		if ( $row === false ) {
 			$this->output( "data is missing! rebuilding...\n" );
