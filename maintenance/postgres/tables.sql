@@ -371,6 +371,7 @@ CREATE TABLE uploadstash (
   us_source_type  TEXT,
   us_timestamp    TIMESTAMPTZ,
   us_status       TEXT,
+  us_chunk_inx    INTEGER NULL,
   us_size         INTEGER,
   us_sha1         TEXT,
   us_mime         TEXT,
