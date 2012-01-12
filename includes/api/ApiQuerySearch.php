@@ -45,7 +45,6 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 
 	/**
 	 * @param $resultPageSet ApiPageSet
-	 * @return void
 	 */
 	private function run( $resultPageSet = null ) {
 		global $wgContLang;

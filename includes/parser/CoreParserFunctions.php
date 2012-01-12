@@ -12,7 +12,6 @@
 class CoreParserFunctions {
 	/**
 	 * @param $parser Parser
-	 * @return void
 	 */
 	static function register( $parser ) {
 		global $wgAllowDisplayTitle, $wgAllowSlowParserFunctions;

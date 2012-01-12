@@ -46,12 +46,11 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @param  $randstr
-	 * @param  $limit
-	 * @param  $namespace
+	 * @param $randstr
+	 * @param $limit
+	 * @param $namespace
 	 * @param $resultPageSet ApiPageSet
-	 * @param  $redirect
-	 * @return void
+	 * @param $redirect
 	 */
 	protected function prepareQuery( $randstr, $limit, $namespace, &$resultPageSet, $redirect ) {
 		$this->resetQueryParams();
@@ -101,7 +100,6 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 
 	/**
 	 * @param $resultPageSet ApiPageSet
-	 * @return void
 	 */
 	public function run( $resultPageSet = null ) {
 		$params = $this->extractRequestParams();

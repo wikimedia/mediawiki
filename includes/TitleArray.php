@@ -53,7 +53,6 @@ class TitleArrayFromResult extends TitleArray {
 
 	/**
 	 * @param $row ResultWrapper
-	 * @return void
 	 */
 	protected function setCurrent( $row ) {
 		if ( $row === false ) {

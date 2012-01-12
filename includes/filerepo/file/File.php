@@ -1694,8 +1694,7 @@ abstract class File {
 	}
 
 	/**
-	 * @param  $from
-	 * @return void
+	 * @param $from
 	 */
 	function redirectedFrom( $from ) {
 		$this->redirected = $from;

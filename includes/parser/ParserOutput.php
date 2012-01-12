@@ -286,7 +286,6 @@ class ParserOutput extends CacheTime {
 	 * @param $name string Title dbKey
 	 * @param $timestamp string MW timestamp of file creation (or false if non-existing)
 	 * @param $sha string base 36 SHA-1 of file (or false if non-existing)
-	 * @return void
 	 */
 	function addImage( $name, $timestamp = null, $sha1 = null ) {
 		$this->mImages[$name] = 1;
@@ -300,7 +299,6 @@ class ParserOutput extends CacheTime {
 	 * @param $title Title
 	 * @param $page_id
 	 * @param $rev_id
-	 * @return void
 	 */
 	function addTemplate( $title, $page_id, $rev_id ) {
 		$ns = $title->getNamespace();

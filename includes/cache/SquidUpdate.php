@@ -99,7 +99,6 @@ class SquidUpdate {
 	 * XXX report broken Squids per mail or log
 	 *
 	 * @param $urlArr array
-	 * @return void
 	 */
 	static function purge( $urlArr ) {
 		global $wgSquidServers, $wgHTCPMulticastAddress, $wgHTCPPort;

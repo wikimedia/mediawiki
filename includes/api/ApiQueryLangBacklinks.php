@@ -45,7 +45,6 @@ class ApiQueryLangBacklinks extends ApiQueryGeneratorBase {
 
 	/**
 	 * @param $resultPageSet ApiPageSet
-	 * @return void
 	 */
 	public function run( $resultPageSet = null ) {
 		$params = $this->extractRequestParams();

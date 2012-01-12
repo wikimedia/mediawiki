@@ -521,7 +521,6 @@ class ResourceLoader {
 	 * @param $context ResourceLoaderContext
 	 * @param $mtime string TS_MW timestamp to use for last-modified
 	 * @param $private bool True iff response contains any private modules
-	 * @return void
 	 */
 	protected function sendResponseHeaders( ResourceLoaderContext $context, $mtime, $private ) {
 		global $wgResourceLoaderMaxage;

@@ -145,8 +145,6 @@ class MediaWiki {
 	 * - redirect loop
 	 * - special pages
 	 * - normal pages
-	 *
-	 * @return void
 	 */
 	private function performRequest() {
 		global $wgServer, $wgUsePathInfo, $wgTitle;

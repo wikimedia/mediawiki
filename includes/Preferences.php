@@ -129,7 +129,6 @@ class Preferences {
 	 * @param $user User
 	 * @param $context IContextSource
 	 * @param $defaultPreferences
-	 * @return void
 	 */
 	static function profilePreferences( $user, IContextSource $context, &$defaultPreferences ) {
 		global $wgAuth, $wgContLang, $wgParser, $wgCookieExpiration, $wgLanguageCode,
@@ -456,7 +455,6 @@ class Preferences {
 	 * @param $user User
 	 * @param $context IContextSource
 	 * @param $defaultPreferences
-	 * @return void
 	 */
 	static function skinPreferences( $user, IContextSource $context, &$defaultPreferences ) {
 		## Skin #####################################
@@ -532,7 +530,6 @@ class Preferences {
 	 * @param $user User
 	 * @param $context IContextSource
 	 * @param $defaultPreferences
-	 * @return void
 	 */
 	static function datetimePreferences( $user, IContextSource $context, &$defaultPreferences ) {
 		## Date and time #####################################

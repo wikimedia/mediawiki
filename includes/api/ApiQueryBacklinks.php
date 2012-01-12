@@ -119,7 +119,6 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 
 	/**
 	 * @param $resultPageSet ApiPageSet
-	 * @return void
 	 */
 	private function prepareFirstQuery( $resultPageSet = null ) {
 		/* SELECT page_id, page_title, page_namespace, page_is_redirect
@@ -161,7 +160,6 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 
 	/**
 	 * @param $resultPageSet ApiPageSet
-	 * @return void
 	 */
 	private function prepareSecondQuery( $resultPageSet = null ) {
 		/* SELECT page_id, page_title, page_namespace, page_is_redirect, pl_title, pl_namespace
@@ -223,7 +221,6 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 
 	/**
 	 * @param $resultPageSet ApiPageSet
-	 * @return void
 	 */
 	private function run( $resultPageSet = null ) {
 		$this->params = $this->extractRequestParams( false );
