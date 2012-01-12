@@ -38,18 +38,29 @@ class MediaWiki {
 	 */
 	private $performedAction = 'nosuchaction';
 
+	/**
+	 * @param $x null|WebRequest
+	 * @return WebRequest
+	 */
 	public function request( WebRequest $x = null ) {
 		$old = $this->context->getRequest();
 		$this->context->setRequest( $x );
 		return $old;
 	}
 
+	/**
+	 * @param $x null|OutputPage
+	 * @return OutputPage
+	 */
 	public function output( OutputPage $x = null ) {
 		$old = $this->context->getOutput();
 		$this->context->setOutput( $x );
 		return $old;
 	}
 
+	/**
+	 * @param IContextSource|null $context
+	 */
 	public function __construct( IContextSource $context = null ) {
 		if ( !$context ) {
 			$context = RequestContext::getMain();
@@ -577,6 +588,7 @@ class MediaWiki {
 	/**
 	 * Checks if the request should abort due to a lagged server,
 	 * for given maxlag parameter.
+	 * @return bool
 	 */
 	private function checkMaxLag() {
 		global $wgShowHostnames;
