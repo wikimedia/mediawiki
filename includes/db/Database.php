@@ -846,7 +846,6 @@ abstract class DatabaseBase implements DatabaseType {
 			$sqlx = substr( $commentedSql, 0, 500 );
 			$sqlx = strtr( $sqlx, "\t\n", '  ' );
 
-
 			$master = $isMaster ? 'master' : 'slave';
 			wfDebug( "Query {$this->mDBname} ($cnt) ($master): $sqlx\n" );
 		}
@@ -3154,7 +3153,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @param $inputCallback Callback: Optional function called for each complete line (ended with ;) sent
 	 * @return bool|string
 	 */
-	function sourceStream( $fp, $lineCallback = false, $resultCallback = false,
+	public function sourceStream( $fp, $lineCallback = false, $resultCallback = false,
 		$fname = 'DatabaseBase::sourceStream', $inputCallback = false )
 	{
 		$cmd = '';
@@ -3208,11 +3207,11 @@ abstract class DatabaseBase implements DatabaseType {
 	/**
 	 * Called by sourceStream() to check if we've reached a statement end
 	 *
-	 * @param $sql String: SQL assembled so far
-	 * @param $newLine String: New line about to be added to $sql
-	 * @returns Bool: Whether $newLine contains end of the statement
+	 * @param $sql String SQL assembled so far
+	 * @param $newLine String New line about to be added to $sql
+	 * @return Bool Whether $newLine contains end of the statement
 	 */
-	protected function streamStatementEnd( &$sql, &$newLine ) {
+	public function streamStatementEnd( &$sql, &$newLine ) {
 		if ( $this->delimiter ) {
 			$prev = $newLine;
 			$newLine = preg_replace( '/' . preg_quote( $this->delimiter, '/' ) . '$/', '', $newLine );
