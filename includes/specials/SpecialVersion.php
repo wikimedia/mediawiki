@@ -368,7 +368,7 @@ class SpecialVersion extends SpecialPage {
 	}
 
 	/**
-	 * Creates and formats the creidts for a single extension and returns this.
+	 * Creates and formats the credits for a single extension and returns this.
 	 *
 	 * @param $extension Array
 	 *

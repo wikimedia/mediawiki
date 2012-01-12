@@ -21,7 +21,7 @@
  * @ingroup Maintenance
  */
 
-require( dirname( __FILE__ ) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 global $optionsWithArgs;
 if ( !isset( $optionsWithArgs ) ) {
