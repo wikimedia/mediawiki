@@ -3185,7 +3185,7 @@ abstract class DatabaseBase implements DatabaseType {
 			if ( $done || feof( $fp ) ) {
 				$cmd = $this->replaceVars( $cmd );
 				if ( $inputCallback ) {
-					call_user_func( $resultCallback, $cmd );
+					call_user_func( $inputCallback, $cmd );
 				}
 				$res = $this->query( $cmd, $fname );
 
