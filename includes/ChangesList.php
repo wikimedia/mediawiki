@@ -259,7 +259,6 @@ class ChangesList extends ContextSource {
 	 * @param $s
 	 * @param $rc RecentChange
 	 * @param $unpatrolled
-	 * @return void
 	 */
 	public function insertDiffHist( &$s, &$rc, $unpatrolled ) {
 		# Diff link
@@ -304,7 +303,6 @@ class ChangesList extends ContextSource {
 	 * @param $rc RecentChange
 	 * @param $unpatrolled
 	 * @param $watched
-	 * @return void
 	 */
 	public function insertArticleLink( &$s, &$rc, $unpatrolled, $watched ) {
 		# If it's a new article, there is no diff link, but if it hasn't been
@@ -340,7 +338,6 @@ class ChangesList extends ContextSource {
 	/**
 	 * @param $s
 	 * @param $rc RecentChange
-	 * @return void
 	 */
 	public function insertTimestamp( &$s, $rc ) {
 		$s .= $this->message['semicolon-separator'] .
@@ -355,12 +352,14 @@ class ChangesList extends ContextSource {
 		if( $this->isDeleted( $rc, Revision::DELETED_USER ) ) {
 			$s .= ' <span class="history-deleted">' . wfMsgHtml( 'rev-deleted-user' ) . '</span>';
 		} else {
-			$s .= $this->getLanguage()->getDirMark() . Linker::userLink( $rc->mAttribs['rc_user'], $rc->mAttribs['rc_user_text'] );
+			$s .= $this->getLanguage()->getDirMark() . Linker::userLink( $rc->mAttribs['rc_user'],
+				$rc->mAttribs['rc_user_text'] );
 			$s .= Linker::userToolLinks( $rc->mAttribs['rc_user'], $rc->mAttribs['rc_user_text'] );
 		}
 	}
 
-	/** insert a formatted action
+	/**
+	 * insert a formatted action
 	 *
 	 * @param $rc RecentChange
 	 */
@@ -436,6 +435,11 @@ class ChangesList extends ContextSource {
 		}
 	}
 
+	/**
+	 * @param $link string
+	 * @param $watched bool
+	 * @return string
+	 */
 	protected function maybeWatchedLink( $link, $watched = false ) {
 		if( $watched ) {
 			return '<strong class="mw-watched">' . $link . '</strong>';
@@ -607,6 +611,9 @@ class OldChangesList extends ChangesList {
  * Generate a list of changes using an Enhanced system (uses javascript).
  */
 class EnhancedChangesList extends ChangesList {
+
+	protected $rc_cache;
+
 	/**
 	 * Add the JavaScript file for enhanced changeslist
 	 * @return String
@@ -779,9 +786,11 @@ class EnhancedChangesList extends ChangesList {
 		# Add the namespace and title of the block as part of the class
 		if ( $block[0]->mAttribs['rc_log_type'] ) {
 			# Log entry
-			$classes = 'mw-collapsible mw-collapsed mw-enhanced-rc ' . Sanitizer::escapeClass( 'mw-changeslist-log-' . $block[0]->mAttribs['rc_log_type'] . '-' . $block[0]->mAttribs['rc_title'] );
+			$classes = 'mw-collapsible mw-collapsed mw-enhanced-rc ' . Sanitizer::escapeClass( 'mw-changeslist-log-'
+					. $block[0]->mAttribs['rc_log_type'] . '-' . $block[0]->mAttribs['rc_title'] );
 		} else {
-			$classes = 'mw-collapsible mw-collapsed mw-enhanced-rc ' . Sanitizer::escapeClass( 'mw-changeslist-ns' . $block[0]->mAttribs['rc_namespace'] . '-' . $block[0]->mAttribs['rc_title'] );
+			$classes = 'mw-collapsible mw-collapsed mw-enhanced-rc ' . Sanitizer::escapeClass( 'mw-changeslist-ns'
+					. $block[0]->mAttribs['rc_namespace'] . '-' . $block[0]->mAttribs['rc_title'] );
 		}
 		$r = Html::openElement( 'table', array( 'class' => $classes ) ) .
 			Html::openElement( 'tr' );
@@ -1094,9 +1103,11 @@ class EnhancedChangesList extends ChangesList {
 		$logType = $rcObj->mAttribs['rc_log_type'];
 		if( $logType ) {
 			# Log entry
-			$classes = 'mw-enhanced-rc ' . Sanitizer::escapeClass( 'mw-changeslist-log-' . $logType . '-' . $rcObj->mAttribs['rc_title'] );
+			$classes = 'mw-enhanced-rc ' . Sanitizer::escapeClass( 'mw-changeslist-log-'
+					. $logType . '-' . $rcObj->mAttribs['rc_title'] );
 		} else {
-			$classes = 'mw-enhanced-rc ' . Sanitizer::escapeClass( 'mw-changeslist-ns' . $rcObj->mAttribs['rc_namespace'] . '-' . $rcObj->mAttribs['rc_title'] );
+			$classes = 'mw-enhanced-rc ' . Sanitizer::escapeClass( 'mw-changeslist-ns' .
+					$rcObj->mAttribs['rc_namespace'] . '-' . $rcObj->mAttribs['rc_title'] );
 		}
 		$r = Html::openElement( 'table', array( 'class' => $classes ) ) .
 			Html::openElement( 'tr' );
@@ -1190,6 +1201,7 @@ class EnhancedChangesList extends ChangesList {
 	/**
 	 * Returns text for the end of RC
 	 * If enhanced RC is in use, returns pretty much all the text
+	 * @return string
 	 */
 	public function endRecentChangesList() {
 		return $this->recentChangesBlock() . parent::endRecentChangesList();
