@@ -491,6 +491,7 @@ $wgAutoloadLocalClasses = array(
 	'FileBackend' => 'includes/filerepo/backend/FileBackend.php',
 	'FileBackendMultiWrite' => 'includes/filerepo/backend/FileBackendMultiWrite.php',
 	'FSFileBackend' => 'includes/filerepo/backend/FSFileBackend.php',
+	'SwiftFileBackend' => 'includes/filerepo/backend/SwiftFileBackend.php',
 	'FSFileIterator' => 'includes/filerepo/backend/FSFileBackend.php',
 	'LockManagerGroup' => 'includes/filerepo/backend/lockmanager/LockManagerGroup.php',
 	'LockManager' => 'includes/filerepo/backend/lockmanager/LockManager.php',
