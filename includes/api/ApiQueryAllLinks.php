@@ -49,6 +49,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 
 	/**
 	 * @param $resultPageSet ApiPageSet
+	 * @return void
 	 */
 	private function run( $resultPageSet = null ) {
 		$db = $this->getDB();

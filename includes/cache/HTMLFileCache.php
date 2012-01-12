@@ -92,6 +92,7 @@ class HTMLFileCache extends FileCacheBase {
 	/**
 	 * Read from cache to context output
 	 * @param $context IContextSource
+	 * @return void
 	 */
 	public function loadFromFileCache( IContextSource $context ) {
 		global $wgMimeType, $wgLanguageCode;

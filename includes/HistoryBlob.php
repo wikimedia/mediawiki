@@ -94,6 +94,7 @@ class ConcatenatedGzipHistoryBlob implements HistoryBlob
 
 	/**
 	 * @param $text string
+	 * @return void
 	 */
 	public function setText( $text ) {
 		$this->uncompress();

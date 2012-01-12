@@ -233,6 +233,7 @@ class GIFMetadataExtractor {
 	/**
 	 * @param $fh
 	 * @param $bpp
+	 * @return void
 	 */
 	static function readGCT( $fh, $bpp ) {
 		if ( $bpp > 0 ) {

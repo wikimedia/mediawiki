@@ -32,6 +32,8 @@ class FileBackendGroup {
 
 	/**
 	 * Destroy the singleton instance
+	 * 
+	 * @return void
 	 */
 	public static function destroySingleton() {
 		self::$instance = null;
@@ -39,6 +41,8 @@ class FileBackendGroup {
 
 	/**
 	 * Register file backends from the global variables
+	 * 
+	 * @return void
 	 */
 	protected function initFromGlobals() {
 		global $wgLocalFileRepo, $wgForeignFileRepos, $wgFileBackends;
@@ -89,6 +93,7 @@ class FileBackendGroup {
 	 * Register an array of file backend configurations
 	 *
 	 * @param $configs Array
+	 * @return void
 	 * @throws MWException
 	 */
 	protected function register( array $configs ) {

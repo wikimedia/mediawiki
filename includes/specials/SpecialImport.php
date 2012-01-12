@@ -349,6 +349,7 @@ class ImportReporter extends ContextSource {
 	 * @param int $revisionCount
 	 * @param  $successCount
 	 * @param  $pageInfo
+	 * @return void
 	 */
 	function reportPage( $title, $origTitle, $revisionCount, $successCount, $pageInfo ) {
 		global $wgContLang;

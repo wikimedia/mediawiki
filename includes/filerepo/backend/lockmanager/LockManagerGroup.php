@@ -27,6 +27,8 @@ class LockManagerGroup {
 
 	/**
 	 * Register lock managers from the global variables
+	 * 
+	 * @return void
 	 */
 	protected function initFromGlobals() {
 		global $wgLockManagers;
@@ -38,6 +40,7 @@ class LockManagerGroup {
 	 * Register an array of file lock manager configurations
 	 *
 	 * @param $configs Array
+	 * @return void
 	 * @throws MWException
 	 */
 	protected function register( array $configs ) {

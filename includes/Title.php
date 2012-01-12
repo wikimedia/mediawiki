@@ -261,6 +261,7 @@ class Title {
 	 * If false is given, the title will be treated as non-existing.
 	 *
 	 * @param $row Object|false database row
+	 * @return void
 	 */
 	public function loadFromRow( $row ) {
 		if ( $row ) { // page found

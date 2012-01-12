@@ -367,6 +367,7 @@ class WikiPage extends Page {
 	 *		A DB query result object or...
 	 *		"fromdb" to get from a slave DB or...
 	 *		"fromdbmaster" to get from the master DB
+	 * @return void
 	 */
 	public function loadPageData( $data = 'fromdb' ) {
 		if ( $data === 'fromdbmaster' ) {
@@ -621,6 +622,7 @@ class WikiPage extends Page {
 	/**
 	 * Set the page timestamp (use only to avoid DB queries)
 	 * @param $ts string MW timestamp of last article revision
+	 * @return void
 	 */
 	public function setTimestamp( $ts ) {
 		$this->mTimestamp = wfTimestamp( TS_MW, $ts );
@@ -703,6 +705,7 @@ class WikiPage extends Page {
 	 * Set the cached timestamp for the last time the page changed.
 	 * This is only used to help handle slave lag by comparing to page_touched.
 	 * @param $timestamp string
+	 * @return void
 	 */
 	public function setCachedLastEditTime( $timestamp ) {
 		global $wgMemc;

@@ -51,6 +51,7 @@ class ApiQueryInfo extends ApiQueryBase {
 
 	/**
 	 * @param $pageSet ApiPageSet
+	 * @return void
 	 */
 	public function requestExtraData( $pageSet ) {
 		global $wgDisableCounters;

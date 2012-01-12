@@ -44,7 +44,8 @@ class BenchmarkDeleteTruncate extends Benchmarker {
 	}
 
 	/**
-	 * @param $dbw DatabaseBase
+	 * @param  $dbw DatabaseBase
+	 * @return void
 	 */
 	private function insertData( $dbw ) {
 		$range = range( 0, 1024 );
@@ -56,14 +57,16 @@ class BenchmarkDeleteTruncate extends Benchmarker {
 	}
 
 	/**
-	 * @param $dbw DatabaseBase
+	 * @param  $dbw DatabaseBase
+	 * @return void
 	 */
 	private function delete( $dbw ) {
 		$dbw->delete( 'text', '*', __METHOD__ );
 	}
 
 	/**
-	 * @param $dbw DatabaseBase
+	 * @param  $dbw DatabaseBase
+	 * @return void
 	 */
 	private function truncate( $dbw ) {
 		$test = $dbw->tableName( 'test' );
