@@ -66,6 +66,7 @@ class TempFSFile extends FSFile {
 	 * Clean up the temporary file only after an object goes out of scope
 	 *
 	 * @param $object Object
+	 * @return void
 	 */
 	public function bind( $object ) {
 		if ( is_object( $object ) ) {
@@ -75,6 +76,8 @@ class TempFSFile extends FSFile {
 
 	/**
 	 * Set flag to not clean up after the temporary file
+	 *
+	 * @return void
 	 */
 	public function preserve() {
 		$this->canDelete = false;

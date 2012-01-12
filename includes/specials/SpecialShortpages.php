@@ -56,6 +56,7 @@ class ShortPagesPage extends QueryPage {
 	/**
 	 * @param $db DatabaseBase
 	 * @param $res
+	 * @return void
 	 */
 	function preprocessResults( $db, $res ) {
 		# There's no point doing a batch check if we aren't caching results;

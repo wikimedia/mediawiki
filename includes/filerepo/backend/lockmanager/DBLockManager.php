@@ -281,6 +281,7 @@ class DBLockManager extends LockManager {
 	 *
 	 * @param $lockDb string
 	 * @param $db DatabaseBase
+	 * @return void
 	 * @throws DBError
 	 */
 	protected function initConnection( $lockDb, DatabaseBase $db ) {}

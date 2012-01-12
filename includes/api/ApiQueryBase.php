@@ -505,6 +505,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * Also adds relevant block information
 	 *
 	 * @param bool $showBlockInfo
+	 * @return void
 	 */
 	public function showHiddenUsersAddBlockInfo( $showBlockInfo ) {
 		$userCanViewHiddenUsers = $this->getUser()->isAllowed( 'hideuser' );

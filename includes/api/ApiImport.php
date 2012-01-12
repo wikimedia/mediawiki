@@ -181,6 +181,7 @@ class ApiImportReporter extends ImportReporter {
 	 * @param $revisionCount int
 	 * @param $successCount int
 	 * @param $pageInfo
+	 * @return void
 	 */
 	function reportPage( $title, $origTitle, $revisionCount, $successCount, $pageInfo ) {
 		// Add a result entry

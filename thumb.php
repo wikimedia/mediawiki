@@ -29,6 +29,8 @@ wfLogProfilingData();
 
 /**
  * Handle a thumbnail request via query parameters
+ *
+ * @return void
  */
 function wfThumbHandleRequest() {
 	$params = get_magic_quotes_gpc()
@@ -40,6 +42,8 @@ function wfThumbHandleRequest() {
 
 /**
  * Handle a thumbnail request via thumbnail file URL
+ *
+ * @return void
  */
 function wfThumbHandle404() {
 	# lighttpd puts the original request in REQUEST_URI, while
@@ -65,6 +69,7 @@ function wfThumbHandle404() {
  * Stream a thumbnail specified by parameters
  *
  * @param $params Array
+ * @return void
  */
 function wfStreamThumb( array $params ) {
 	wfProfileIn( __METHOD__ );
@@ -261,6 +266,7 @@ function wfExtractThumbParams( $uri ) {
  *
  * @param $status integer
  * @param $msg string
+ * @return void
  */
 function wfThumbError( $status, $msg ) {
 	global $wgShowHostnames;

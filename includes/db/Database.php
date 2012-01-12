@@ -3052,6 +3052,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * Override database's default connection timeout
 	 *
 	 * @param $timeout Integer in seconds
+	 * @return void
 	 * @deprecated since 1.19; use setSessionOptions()
 	 */
 	public function setTimeout( $timeout ) {
@@ -3067,6 +3068,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 *                     hours or days.
 	 *
 	 * @param $options Array
+	 * @return void
 	 */
 	public function setSessionOptions( array $options ) {}
 

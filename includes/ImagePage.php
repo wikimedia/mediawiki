@@ -39,7 +39,8 @@ class ImagePage extends Article {
 	}
 
 	/**
-	 * @param $file File
+	 * @param $file File:
+	 * @return void
 	 */
 	public function setFile( $file ) {
 		$this->mPage->setFile( $file );

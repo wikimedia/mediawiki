@@ -39,6 +39,9 @@ class SpecialMergeHistory extends SpecialPage {
 		parent::__construct( 'MergeHistory', 'mergehistory' );
 	}
 
+	/**
+	 * @return void
+	 */
 	private function loadRequestParams() {
 		$request = $this->getRequest();
 		$this->mAction = $request->getVal( 'action' );

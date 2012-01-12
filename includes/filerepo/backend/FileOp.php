@@ -54,6 +54,8 @@ abstract class FileOp {
 
 	/**
 	 * Disable file backups for this operation
+	 *
+	 * @return void
 	 */
 	final protected function disableBackups() {
 		$this->useBackups = false;
@@ -63,6 +65,8 @@ abstract class FileOp {
 	 * Allow stale data for file reads and existence checks.
 	 * If this is called, then disableBackups() should also be called
 	 * unless the affected files are known to have not changed recently.
+	 *
+	 * @return void
 	 */
 	final protected function allowStaleReads() {
 		$this->useLatest = false;
@@ -500,6 +504,7 @@ abstract class FileOp {
 	 * Log a file operation failure and preserve any temp files
 	 * 
 	 * @param $fileOp FileOp
+	 * @return void
 	 */
 	final protected function logFailure( $action ) {
 		$params = $this->params;
