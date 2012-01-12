@@ -14,11 +14,12 @@ class SpecialSearchTest extends MediaWikiTestCase {
 	function tearDown() { }
 
 	/**
+	 * @covers SpecialSearch::load
 	 * @dataProvider provideSearchOptionsTests
 	 * @param $requested Array Request parameters. For example array( 'ns5' => true, 'ns6' => true). NULL to use default options.
 	 * @param $userOptions Array User options to test with. For example array('searchNs5' => 1 );. NULL to use default options.
 	 */
-	function testFoobar(
+	function testProfileAndNamespaceLoading(
 		$requested, $userOptions, $expectedProfile, $expectedNS,
 		$message = 'Profile name andnamespaces mismatches!'
 	) {
@@ -79,14 +80,11 @@ class SpecialSearchTest extends MediaWikiTestCase {
 				'advanced', array(  5),
 				'Web request with specific NS should override user preference'
 			),
-		/* FIXME this test is for bug 33583
-		array(
-			$EMPTY_REQUEST, array( 'searchNs2' ),
-			'advanced', array( 2 ),
-			'Bug 33583: search with no option should honor User search preferences'
-		),
-		 */
-
+			array(
+				$EMPTY_REQUEST, array( 'searchNs2' => 1, 'searchNs14' => 1 ),
+				'advanced', array( 2, 14 ),
+				'Bug 33583: search with no option should honor User search preferences'
+			),
 		);
 	}
 

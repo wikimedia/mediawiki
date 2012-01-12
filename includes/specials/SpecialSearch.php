@@ -110,6 +110,8 @@ class SpecialSearch extends SpecialPage {
 
 	/**
 	 * Set up basic search parameters from the request and user settings.
+	 *
+	 * @see tests/phpunit/includes/specials/SpecialSearchTest.php
 	 */
 	public function load() {
 		$request = $this->getRequest();
@@ -117,27 +119,30 @@ class SpecialSearch extends SpecialPage {
 		$this->mPrefix = $request->getVal( 'prefix', '' );
 
 		$user = $this->getUser();
+
 		# Extract manually requested namespaces
 		$nslist = $this->powerSearch( $request );
+		if ( !count( $nslist ) ) {
+			# Fallback to user preference
+			$nslist = SearchEngine::userNamespaces( $user );
+		}
+
 		$profile = null;
 		if ( !count( $nslist ) ) {
 			$profile = 'default';
 		}
+
 		$profile = $request->getVal( 'profile', $profile );
 		$profiles = $this->getSearchProfiles();
 		if ( $profile === null ) {
 			// BC with old request format
 			$profile = 'advanced';
-			if ( count( $nslist ) ) {
-				foreach( $profiles as $key => $data ) {
-					if ( $nslist === $data['namespaces'] && $key !== 'advanced') {
-						$profile = $key;
-					}
+			foreach( $profiles as $key => $data ) {
+				if ( $nslist === $data['namespaces'] && $key !== 'advanced') {
+					$profile = $key;
 				}
-				$this->namespaces = $nslist;
-			} else {
-				$this->namespaces = SearchEngine::userNamespaces( $user );
 			}
+			$this->namespaces = $nslist;
 		} elseif ( $profile === 'advanced' ) {
 			$this->namespaces = $nslist;
 		} else {
