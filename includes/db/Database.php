@@ -3151,13 +3151,13 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @param $lineCallback Callback: Optional function called before reading each line
 	 * @param $resultCallback Callback: Optional function called for each MySQL result
 	 * @param $fname String: Calling function name
+	 * @param $inputCallback Callback: Optional function called for each complete line (ended with ;) sent
 	 * @return bool|string
 	 */
 	function sourceStream( $fp, $lineCallback = false, $resultCallback = false,
-		$fname = 'DatabaseBase::sourceStream' )
+		$fname = 'DatabaseBase::sourceStream', $inputCallback = false )
 	{
 		$cmd = '';
-		$done = false;
 
 		while ( !feof( $fp ) ) {
 			if ( $lineCallback ) {
@@ -3184,6 +3184,9 @@ abstract class DatabaseBase implements DatabaseType {
 
 			if ( $done || feof( $fp ) ) {
 				$cmd = $this->replaceVars( $cmd );
+				if ( $inputCallback ) {
+					call_user_func( $resultCallback, $cmd );
+				}
 				$res = $this->query( $cmd, $fname );
 
 				if ( $resultCallback ) {
@@ -3196,7 +3199,6 @@ abstract class DatabaseBase implements DatabaseType {
 				}
 
 				$cmd = '';
-				$done = false;
 			}
 		}
 
