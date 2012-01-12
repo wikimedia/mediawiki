@@ -94,7 +94,7 @@ class PopulateImageSha1 extends LoggedUpdateMaintenance {
 			if ( !$file ) {
 				continue;
 			}
-			$sha1 = File::sha1Base36( $file->getPath() );
+			$sha1 = $file->getRepo()->getFileSha1( $file->getPath() );
 			if ( strval( $sha1 ) !== '' ) {
 				$sql = "UPDATE $imageTable SET img_sha1=" . $dbw->addQuotes( $sha1 ) .
 					" WHERE img_name=" . $dbw->addQuotes( $row->img_name );
