@@ -1364,7 +1364,9 @@ $wgMessageStructure = array(
 		'backend-fail-read',
 		'backend-fail-create',
 		'backend-fail-readonly',
-		'backend-fail-synced'
+		'backend-fail-synced',
+		'backend-fail-connect',
+		'backend-fail-internal'
 	),
 
 	'lockmanager-errors' => array(
