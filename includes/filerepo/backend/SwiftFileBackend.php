@@ -15,8 +15,6 @@
  * which is available at https://github.com/rackspace/php-cloudfiles.
  * All of the library classes must be registed in $wgAutoloadClasses.
  *
- * @TODO: handle 'latest' param as "X-Newest: true".
- *
  * @ingroup FileBackend
  */
 class SwiftFileBackend extends FileBackend {
@@ -378,7 +376,7 @@ class SwiftFileBackend extends FileBackend {
 	protected function doSecureInternal( $fullCont, $dir, array $params ) {
 		$status = Status::newGood();
 		// @TODO: restrict container from $this->swiftProxyUser
-		return $status; // badgers? We don't need no steenking badgers!
+		return $status;
 	}
 
 	/**
@@ -398,6 +396,7 @@ class SwiftFileBackend extends FileBackend {
 		$stat = false;
 		try {
 			$container = $conn->get_container( $srcCont );
+			// @TODO: handle 'latest' param as "X-Newest: true"
 			$obj = $container->get_object( $srcRel );
 			// Convert "Tue, 03 Jan 2012 22:01:04 GMT" to TS_MW
 			$date = DateTime::createFromFormat( 'D, d F Y G:i:s e', $obj->last_modified );
@@ -440,7 +439,7 @@ class SwiftFileBackend extends FileBackend {
 		try {
 			$container = $conn->get_container( $srcCont );
 			$obj = $container->get_object( $srcRel );
-			$data = $obj->read();
+			$data = $obj->read( $this->headersFromParams( $params ) );
 		} catch ( NoSuchContainerException $e ) {
 		} catch ( NoSuchObjectException $e ) {
 		} catch ( InvalidResponseException $e ) {
@@ -462,7 +461,7 @@ class SwiftFileBackend extends FileBackend {
 	 * Do not call this function outside of SwiftFileIterator
 	 * 
 	 * @param $fullCont string Resolved container name
-	 * @param $dir string Resolved storage directory
+	 * @param $dir string Resolved storage directory with no trailing slash
 	 * @param $after string Storage path of file to list items after
 	 * @param $limit integer Max number of items to list
 	 * @return Array
@@ -476,7 +475,7 @@ class SwiftFileBackend extends FileBackend {
 		$files = array();
 		try {
 			$container = $conn->get_container( $fullCont );
-			$files = $container->list_objects( $limit, $after, $dir );
+			$files = $container->list_objects( $limit, $after, "{$dir}/" );
 		} catch ( NoSuchContainerException $e ) {
 		} catch ( NoSuchObjectException $e ) {
 		} catch ( InvalidResponseException $e ) {
@@ -534,8 +533,8 @@ class SwiftFileBackend extends FileBackend {
 		}
 
 		try {
-			$output = fopen("php://output", "w");
-			$obj->stream( $output );
+			$output = fopen( "php://output", "w" );
+			$obj->stream( $output, $this->headersFromParams( $params ) );
 		} catch ( InvalidResponseException $e ) {
 			$status->fatal( 'backend-fail-connect', $this->name );
 		} catch ( Exception $e ) { // some other exception?
@@ -571,12 +570,16 @@ class SwiftFileBackend extends FileBackend {
 		try {
 			$cont = $conn->get_container( $srcCont );
 			$obj = $cont->get_object( $srcRel );
-			$obj->save_to_filename( $tmpFile->getPath() );
+			$handle = fopen( $tmpFile->getPath(), 'w' );
+			if ( $handle ) {
+				$obj->stream( $handle, $this->headersFromParams( $params ) );
+				fclose( $handle );
+			} else {
+				$tmpFile = null; // couldn't open temp file
+			}
 		} catch ( NoSuchContainerException $e ) {
 			$tmpFile = null;
 		} catch ( NoSuchObjectException $e ) {
-			$tmpFile = null;
-		} catch ( IOException $e ) {
 			$tmpFile = null;
 		} catch ( InvalidResponseException $e ) {
 			$tmpFile = null;
@@ -586,6 +589,22 @@ class SwiftFileBackend extends FileBackend {
 		}
 
 		return $tmpFile;
+	}
+
+	/**
+	 * Get headers to send to Swift when reading a file based
+	 * on a FileBackend params array, e.g. that of getLocalCopy(). 
+	 * $params is currently only checked for a 'latest' flag.
+	 * 
+	 * @param $params Array
+	 * @return Array 
+	 */
+	protected function headersFromParams( array $params ) {
+		$hdrs = array();
+		if ( !empty( $params['latest'] ) ) {
+			$hdrs[] = 'X-Newest: true';
+		}
+		return $hdrs;
 	}
 
 	/**
@@ -644,6 +663,7 @@ class SwiftFileIterator implements Iterator {
 	protected $backend; 
 	protected $container; //
 	protected $dir; // string storage directory
+	protected $suffixStart; // integer
 
 	const PAGE_SIZE = 5000; // file listing buffer size
 
@@ -652,16 +672,20 @@ class SwiftFileIterator implements Iterator {
 	 * 
 	 * @param $backend SwiftFileBackend
 	 * @param $fullCont string Resolved container name
-	 * @param $dir string Resolved relateive path
+	 * @param $dir string Resolved relative directory
 	 */
 	public function __construct( SwiftFileBackend $backend, $fullCont, $dir ) {
+		$this->backend = $backend;
 		$this->container = $fullCont;
 		$this->dir = $dir;
-		$this->backend = $backend;
+		if ( substr( $this->dir, -1 ) === '/' ) {
+			$this->dir = substr( $this->dir, 0, -1 ); // remove trailing slash
+		}
+		$this->suffixStart = strlen( $dir ) + 1; // size of "path/to/dir/"
 	}
 
 	public function current() {
-		return current( $this->bufferIter );
+		return substr( current( $this->bufferIter ), $this->suffixStart );
 	}
 
 	public function key() {

@@ -1226,12 +1226,14 @@ abstract class FileBackend extends FileBackendBase {
 	 * Null is returned if the path involves directory traversal.
 	 * Traversal is insecure for FS backends and broken for others.
 	 *
-	 * @param $path string
+	 * @param $path string Storage path relative to a container
 	 * @return string|null
 	 */
-	final protected static function normalizeStoragePath( $path ) {
+	final protected static function normalizeContainerPath( $path ) {
 		// Normalize directory separators
 		$path = strtr( $path, '\\', '/' );
+		// Collapse consecutive directory separators
+		$path = preg_replace( '![/]{2,}!', '/', $path );
 		// Use the same traversal protection as Title::secureAndSplit()
 		if ( strpos( $path, '.' ) !== false ) {
 			if (
@@ -1264,7 +1266,7 @@ abstract class FileBackend extends FileBackendBase {
 	final protected function resolveStoragePath( $storagePath ) {
 		list( $backend, $container, $relPath ) = self::splitStoragePath( $storagePath );
 		if ( $backend === $this->name ) { // must be for this backend
-			$relPath = self::normalizeStoragePath( $relPath );
+			$relPath = self::normalizeContainerPath( $relPath );
 			if ( $relPath !== null ) {
 				// Get shard for the normalized path if this container is sharded
 				$cShard = $this->getContainerShard( $container, $relPath );

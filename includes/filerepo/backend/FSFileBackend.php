@@ -514,7 +514,8 @@ class FSFileIterator implements Iterator {
 	 * @param $dir string
 	 */
 	public function __construct( $dir ) {
-		$this->suffixStart = strlen( realpath( $dir ) ) + 1; // size of "path/to/dir/"
+		$dir = realpath( $dir ); // normalize
+		$this->suffixStart = strlen( $dir ) + 1; // size of "path/to/dir/"
 		try {
 			$flags = FilesystemIterator::CURRENT_AS_FILEINFO | FilesystemIterator::SKIP_DOTS;
 			$this->iter = new RecursiveIteratorIterator(
