@@ -305,9 +305,9 @@ abstract class FileBackendBase {
 	abstract protected function doPrepare( array $params );
 
 	/**
-	 * Take measures to block web access to a directory and
+	 * Take measures to block web access to a storage directory and
 	 * the container it belongs to. FS backends might add .htaccess
-	 * files wheras backends like Swift this might restrict container
+	 * files whereas backends like Swift this might restrict container
 	 * access to backend user that represents end-users in web request.
 	 * This is not guaranteed to actually do anything.
 	 * 
@@ -773,6 +773,8 @@ abstract class FileBackend extends FileBackendBase {
 			$status->fatal( 'backend-fail-closetemp', $tmpPath );
 			return $status;
 		}
+
+		clearstatcache(); // temp file changed
 
 		return $status;
 	}
