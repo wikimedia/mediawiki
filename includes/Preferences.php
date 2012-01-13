@@ -509,10 +509,10 @@ class Preferences {
 
 	/**
 	 * @param $user User
-	 * @param $context IContextSource
+	 * @param $context ContextSource
 	 * @param $defaultPreferences Array
 	 */
-	static function filesPreferences( $user, IContextSource $context, &$defaultPreferences ) {
+	static function filesPreferences( $user, ContextSource $context, &$defaultPreferences ) {
 		## Files #####################################
 		$defaultPreferences['imagesize'] = array(
 			'type' => 'select',
@@ -530,11 +530,11 @@ class Preferences {
 
 	/**
 	 * @param $user User
-	 * @param $context IContextSource
+	 * @param $context ContextSource
 	 * @param $defaultPreferences
 	 * @return void
 	 */
-	static function datetimePreferences( $user, IContextSource $context, &$defaultPreferences ) {
+	static function datetimePreferences( $user, ContextSource $context, &$defaultPreferences ) {
 		## Date and time #####################################
 		$dateOptions = self::getDateOptions( $context );
 		if ( $dateOptions ) {

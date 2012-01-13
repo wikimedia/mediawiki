@@ -1115,7 +1115,7 @@ abstract class HTMLFormField {
 	/**
 	 * flatten an array of options to a single array, for instance,
 	 * a set of <options> inside <optgroups>.
-	 * @param $options Associative Array with values either Strings
+	 * @param $options array Associative Array with values either Strings
 	 *	 or Arrays
 	 * @return Array flattened input
 	 */
