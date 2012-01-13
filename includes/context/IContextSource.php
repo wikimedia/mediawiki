@@ -86,5 +86,12 @@ interface IContextSource {
 	 * @return Skin
 	 */
 	public function getSkin();
+
+	/**
+	 * Get a Message object with context set
+	 *
+	 * @return Message object
+	 */
+	public function msg();
 }
 
