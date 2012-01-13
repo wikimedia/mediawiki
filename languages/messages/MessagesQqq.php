@@ -4428,6 +4428,12 @@ Used on [[Special:Tags]]. Verb. Used as display text on a link to create/edit a 
 'tags-hitcount'           => 'Shown in the “Tagged changes” column in [[Special:Tags]]. For more information on tags see [//www.mediawiki.org/wiki/Manual:Tags Mediawiki].
 
 * <code>$1</code> is the number of changes marked with the tag',
+'tag-filter-dropdown-list' => 'A list of change tags to put in a dropdown list for selecting a tag to filter by.',
+'tag-filter-newpages-dropdown-list' => 'A list of change tags to put in a dropdown list for selecting a tag to filter by on [[Special:NewPages]].',
+'tag-filter-dropdown-other' => 'The "other" option in the dropdown list for selecting a tag to filter by. When a user selects this, he can type any tag in the text field next to it.
+
+{{Identical|Other}}
+',
 
 # Special:ComparePages
 'comparepages'     => 'The title of [[Special:ComparePages]]',
