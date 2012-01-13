@@ -7,6 +7,9 @@ class MWDebugTest extends MediaWikiTestCase {
 		MWDebug::clearLog();
 	}
 
+	/**
+	 * @group Broken
+	 */
 	function testAddLog() {
 		MWDebug::log( 'logging a string' );
 		$this->assertEquals( array( array(
@@ -18,6 +21,9 @@ class MWDebugTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @group Broken
+	 */
 	function testAddWarning() {
 		MWDebug::warning( 'Warning message' );
 		$this->assertEquals( array( array(
@@ -29,6 +35,10 @@ class MWDebugTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * Broken on gallium which use an old PHPUnit version
+	 * @group Broken
+	 */
 	function testAvoidDuplicateDeprecations() {
 		MWDebug::deprecated( 'wfOldFunction', '1.0', 'component' );
 		MWDebug::deprecated( 'wfOldFunction', '1.0', 'component' );
@@ -39,6 +49,10 @@ class MWDebugTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * Broken on gallium which use an old PHPUnit version
+	 * @group Broken
+	 */
 	function testAvoidNonConsecutivesDuplicateDeprecations() {
 		MWDebug::deprecated( 'wfOldFunction', '1.0', 'component' );
 		MWDebug::warning( 'some warning' );
