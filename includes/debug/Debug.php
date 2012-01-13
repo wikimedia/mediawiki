@@ -85,6 +85,21 @@ class MWDebug {
 	}
 
 	/**
+	 * Returns internal log array
+	 */
+	public static function getLog() {
+		return self::$log;
+	}
+
+	/**
+	 * Clears internal log array and deprecation tracking
+	 */
+	public static function clearLog() {
+		self::$log = array();
+		self::$deprecationWarnings = array();
+	}
+
+	/**
 	 * Adds a warning entry to the log
 	 *
 	 * @param $msg
