@@ -55,7 +55,7 @@
  */
 class HTMLForm extends ContextSource {
 
-	# A mapping of 'type' inputs onto standard HTMLFormField subclasses
+	// A mapping of 'type' inputs onto standard HTMLFormField subclasses
 	static $typeMappings = array(
 		'text' => 'HTMLTextField',
 		'textarea' => 'HTMLTextAreaField',
@@ -73,9 +73,9 @@ class HTMLForm extends ContextSource {
 		'hidden' => 'HTMLHiddenField',
 		'edittools' => 'HTMLEditTools',
 
-		# HTMLTextField will output the correct type="" attribute automagically.
-		# There are about four zillion other HTML5 input types, like url, but
-		# we don't use those at the moment, so no point in adding all of them.
+		// HTMLTextField will output the correct type="" attribute automagically.
+		// There are about four zillion other HTML5 input types, like url, but
+		// we don't use those at the moment, so no point in adding all of them.
 		'email' => 'HTMLTextField',
 		'password' => 'HTMLTextField',
 	);
