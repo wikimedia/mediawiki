@@ -813,7 +813,7 @@ class OutputPage extends ContextSource {
 		$this->mPagetitle = $nameWithTags;
 
 		# change "<i>foo&amp;bar</i>" to "foo&bar"
-		$this->setHTMLTitle( $this->msg( 'pagetitle' )->rawParams( Sanitizer::stripAllTags( $nameWithTags ) )->escaped() );
+		$this->setHTMLTitle( $this->msg( 'pagetitle' )->rawParams( Sanitizer::stripAllTags( $nameWithTags ) ) );
 	}
 
 	/**
