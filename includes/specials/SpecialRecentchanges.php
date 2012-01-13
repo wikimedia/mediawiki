@@ -60,7 +60,6 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		$opts->add( 'categories', '' );
 		$opts->add( 'categories_any', false );
 		$opts->add( 'tagfilter', '' );
-		$opts->add( 'tagfilterdropdown', '' );
 		return $opts;
 	}
 
@@ -401,7 +400,8 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 			// Tag stuff.
 			// Doesn't work when transcluding. See bug 23293
 			ChangeTags::modifyDisplayQuery(
-				$tables, $fields, $conds, $join_conds, $query_options
+				$tables, $fields, $conds, $join_conds, $query_options,
+				$opts['tagfilter']
 			);
 		}
 
@@ -554,7 +554,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		$nondefaults = $opts->getChangedValues();
 		$opts->consumeValues( array(
 			'namespace', 'invert', 'associated', 'tagfilter',
-			'categories', 'categories_any', 'tagfilterdropdown'
+			'categories', 'categories_any'
 		) );
 
 		$panel = array();
@@ -616,10 +616,9 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 			$extraOpts['category'] = $this->categoryFilterForm( $opts );
 		}
 
-		$tagFilter = ChangeTags::buildTagFilterWithDropdown( 'tag-filter-dropdown-list',
-			$opts['tagfilter'], $opts['tagfilterdropdown'] );
+		$tagFilter = ChangeTags::buildTagFilterSelector( $opts['tagfilter'] );
 		if ( count( $tagFilter ) ) {
-			$extraOpts['tagfilter'] = implode( '&#160;', $tagFilter );
+			$extraOpts['tagfilter'] = $tagFilter;
 		}
 
 		wfRunHooks( 'SpecialRecentChangesPanel', array( &$extraOpts, $opts ) );

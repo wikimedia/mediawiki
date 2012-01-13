@@ -26,7 +26,7 @@ class ChangeTags {
 
 	static function tagDescription( $tag ) {
 		$msg = wfMessage( "tag-$tag" );
-		return $msg->exists() ? $msg->parse() : htmlspecialchars( $tag );
+		return $msg->exists() ? $msg->parse() : htmlspecialchars( $tag ); 
 	}
 
 	## Basic utility method to add tags to a particular change, given its rc_id, rev_id and/or log_id.
@@ -109,10 +109,7 @@ class ChangeTags {
 		global $wgRequest, $wgUseTagFilter;
 
 		if( $filter_tag === false ) {
-			$filter_tag = $wgRequest->getVal( 'tagfilterdropdown', '' );
-			if ( $filter_tag === '' || $filter_tag === 'other' ) {
-				$filter_tag = $wgRequest->getVal( 'tagfilter' );
-			}
+			$filter_tag = $wgRequest->getVal( 'tagfilter' );
 		}
 
 		// Figure out which conditions can be done.
@@ -178,45 +175,6 @@ class ChangeTags {
 		$html = Xml::tags( 'form', array( 'action' => $title->getLocalURL(), 'method' => 'get' ), $html );
 
 		return $html;
-	}
-
-	/**
-	 * Build a text box and a dropdown list to select a change tag
-	 *
-	 * @param $msgkey String: message key for the message where a (newline delimited)
-	 *        list of tags can be specified. These tags will be put in the dropdown list.
-	 *        If the specified message is empty, only the text field will be returned.
-	 * @param $selectedtxt String: tag to put in text box
-	 * @param $selecteddropdown String: tag to select in dropdown
-	 * @return Array of html fragments of which the first element is the label
-	 *         If $wgUseTagFilter is false or there are no defined tags, an empty array is returned
-	 */
-	public static function buildTagFilterWithDropdown( $msgkey, $selectedtxt = '', $selecteddropdown = 'other' ) {
-
-		global $wgUseTagFilter;
-
-		$definedtags = self::listDefinedTags();
-
-		if ( !$wgUseTagFilter || !count( $definedtags ) ) {
-			// no tag filter if there are no tags defined or $wgUseTagFilter is false
-			return array();
-		}
-
-		// Extract tags from message: one tag per line
-		$tags = preg_split( "/\n/", wfMsgForContent( $msgkey ), -1, PREG_SPLIT_NO_EMPTY);
-
-		$data[] = Html::rawElement( 'label', array( 'for' => 'tagfilter' ), wfMsgExt( 'tag-filter', 'parseinline' ) );
-
-		if ( count( $tags ) ) {
-			// Add dropdown list only when message $msgkey contains at least one tag
-			$data[] = Xml::listDropDown( 'tagfilterdropdown', implode( "\n", $tags ),
-				wfMsgForContent( 'tag-filter-dropdown-other' ), $selecteddropdown );
-		}
-
-		$data[] = Xml::input( 'tagfilter', 20, $selectedtxt );
-
-		return  $data;
-
 	}
 
 	/**

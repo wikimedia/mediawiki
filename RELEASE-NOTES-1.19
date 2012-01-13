@@ -119,7 +119,6 @@ production.
 * mediawiki.js Message object constructor is now publicly available as mw.Message.
 * (bug 29309) allow CSS class per tooltip (tipsy)
 * (bug 33565) Add accesskey/tooltip to submit buttons on Special:EditWatchlist.
-* (bug 25909) Add a drop-down list for the tags in Recentchanges and Newpages
 
 === Bug fixes in 1.19 ===
 * $wgUploadNavigationUrl should be used for file redlinks if.
