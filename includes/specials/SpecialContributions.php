@@ -103,7 +103,6 @@ class SpecialContributions extends SpecialPage {
 		$this->opts['nsInvert'] = (bool) $request->getVal( 'nsInvert' );
 
 		$this->opts['tagfilter'] = (string) $request->getVal( 'tagfilter' );
-		$this->opts['tagfilterdropdown'] = (string) $request->getVal( 'tagfilterdropdown' );
 
 		// Allows reverts to have the bot flag in recent changes. It is just here to
 		// be passed in the form at the top of the page
@@ -138,9 +137,6 @@ class SpecialContributions extends SpecialPage {
 			}
 			if ( $this->opts['tagfilter'] !== '' ) {
 				$apiParams['tagfilter'] = $this->opts['tagfilter'];
-			}
-			if ( $this->opts['tagfilterdropdown'] !== '' && $this->opts['tagfilterdropdown'] !== 'other' ) {
-				$apiParams['tagfilter'] = $this->opts['tagfilterdropdown'];
 			}
 			if ( $this->opts['namespace'] !== '' ) {
 				$apiParams['namespace'] = $this->opts['namespace'];
@@ -403,11 +399,7 @@ class SpecialContributions extends SpecialPage {
 			$form .= "\t" . Html::hidden( $name, $value ) . "\n";
 		}
 
-		$tagFilter = ChangeTags::buildTagFilterWithDropdown(
-			'tag-filter-dropdown-list',
-			$this->opts['tagfilter'],
-			$this->opts['tagfilterdropdown']
-		);
+		$tagFilter = ChangeTags::buildTagFilterSelector( $this->opts['tagfilter'] );
 
 		if ( $tagFilter ) {
 			$filterSelection =
