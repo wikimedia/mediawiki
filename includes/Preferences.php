@@ -38,10 +38,10 @@ class Preferences {
 	/**
 	 * @throws MWException
 	 * @param $user User
-	 * @param $context ContextSource
+	 * @param $context IContextSource
 	 * @return array|null
 	 */
-	public static function getPreferences( $user, ContextSource $context ) {
+	static function getPreferences( $user, IContextSource $context ) {
 		if ( self::$defaultPreferences ) {
 			return self::$defaultPreferences;
 		}
@@ -127,11 +127,11 @@ class Preferences {
 
 	/**
 	 * @param $user User
-	 * @param $context ContextSource
+	 * @param $context IContextSource
 	 * @param $defaultPreferences
 	 * @return void
 	 */
-	static function profilePreferences( $user, ContextSource $context, &$defaultPreferences ) {
+	static function profilePreferences( $user, IContextSource $context, &$defaultPreferences ) {
 		global $wgAuth, $wgContLang, $wgParser, $wgCookieExpiration, $wgLanguageCode,
 			$wgDisableTitleConversion, $wgDisableLangConversion, $wgMaxSigChars,
 			$wgEnableEmail, $wgEmailConfirmToEdit, $wgEnableUserEmail, $wgEmailAuthentication,
@@ -454,11 +454,11 @@ class Preferences {
 
 	/**
 	 * @param $user User
-	 * @param $context ContextSource
+	 * @param $context IContextSource
 	 * @param $defaultPreferences
 	 * @return void
 	 */
-	static function skinPreferences( $user, ContextSource $context, &$defaultPreferences ) {
+	static function skinPreferences( $user, IContextSource $context, &$defaultPreferences ) {
 		## Skin #####################################
 		global $wgAllowUserCss, $wgAllowUserJs;
 
@@ -509,10 +509,10 @@ class Preferences {
 
 	/**
 	 * @param $user User
-	 * @param $context ContextSource
+	 * @param $context IContextSource
 	 * @param $defaultPreferences Array
 	 */
-	static function filesPreferences( $user, ContextSource $context, &$defaultPreferences ) {
+	static function filesPreferences( $user, IContextSource $context, &$defaultPreferences ) {
 		## Files #####################################
 		$defaultPreferences['imagesize'] = array(
 			'type' => 'select',
@@ -530,11 +530,11 @@ class Preferences {
 
 	/**
 	 * @param $user User
-	 * @param $context ContextSource
+	 * @param $context IContextSource
 	 * @param $defaultPreferences
 	 * @return void
 	 */
-	static function datetimePreferences( $user, ContextSource $context, &$defaultPreferences ) {
+	static function datetimePreferences( $user, IContextSource $context, &$defaultPreferences ) {
 		## Date and time #####################################
 		$dateOptions = self::getDateOptions( $context );
 		if ( $dateOptions ) {
@@ -603,10 +603,10 @@ class Preferences {
 
 	/**
 	 * @param $user User
-	 * @param $context ContextSource
+	 * @param $context IContextSource
 	 * @param $defaultPreferences Array
 	 */
-	static function renderingPreferences( $user, ContextSource $context, &$defaultPreferences ) {
+	static function renderingPreferences( $user, IContextSource $context, &$defaultPreferences ) {
 		## Page Rendering ##############################
 		global $wgAllowUserCssPrefs;
 		if ( $wgAllowUserCssPrefs ) {
@@ -681,10 +681,10 @@ class Preferences {
 
 	/**
 	 * @param $user User
-	 * @param $context ContextSource
+	 * @param $context IContextSource
 	 * @param $defaultPreferences Array
 	 */
-	static function editingPreferences( $user, ContextSource $context, &$defaultPreferences ) {
+	static function editingPreferences( $user, IContextSource $context, &$defaultPreferences ) {
 		global $wgUseExternalEditor, $wgAllowUserCssPrefs;
 
 		## Editing #####################################
@@ -781,10 +781,10 @@ class Preferences {
 
 	/**
 	 * @param $user User
-	 * @param $context ContextSource
+	 * @param $context IContextSource
 	 * @param $defaultPreferences Array
 	 */
-	static function rcPreferences( $user, ContextSource $context, &$defaultPreferences ) {
+	static function rcPreferences( $user, IContextSource $context, &$defaultPreferences ) {
 		global $wgRCMaxAge, $wgRCShowWatchingUsers;
 
 		## RecentChanges #####################################
@@ -838,10 +838,10 @@ class Preferences {
 
 	/**
 	 * @param $user User
-	 * @param $context ContextSource
+	 * @param $context IContextSource
 	 * @param $defaultPreferences
 	 */
-	static function watchlistPreferences( $user, ContextSource $context, &$defaultPreferences ) {
+	static function watchlistPreferences( $user, IContextSource $context, &$defaultPreferences ) {
 		global $wgUseRCPatrol, $wgEnableAPI, $wgRCMaxAge;
 
 		$watchlistdaysMax = ceil( $wgRCMaxAge / ( 3600 * 24 ) );
@@ -939,10 +939,10 @@ class Preferences {
 
 	/**
 	 * @param $user User
-	 * @param $context ContextSource
+	 * @param $context IContextSource
 	 * @param $defaultPreferences Array
 	 */
-	static function searchPreferences( $user, ContextSource $context, &$defaultPreferences ) {
+	static function searchPreferences( $user, IContextSource $context, &$defaultPreferences ) {
 		global $wgContLang, $wgEnableMWSuggest, $wgVectorUseSimpleSearch;
 
 		## Search #####################################
@@ -1003,10 +1003,10 @@ class Preferences {
 
 	/**
 	 * @param $user User
-	 * @param $context ContextSource
+	 * @param $context IContextSource
 	 * @param $defaultPreferences Array
 	 */
-	static function miscPreferences( $user, ContextSource $context, &$defaultPreferences ) {
+	static function miscPreferences( $user, IContextSource $context, &$defaultPreferences ) {
 		global $wgContLang;
 
 		## Misc #####################################
@@ -1035,10 +1035,10 @@ class Preferences {
 
 	/**
 	 * @param $user User The User object
-	 * @param $context ContextSource
+	 * @param $context IContextSource
 	 * @return Array: text/links to display as key; $skinkey as value
 	 */
-	static function generateSkinOptions( $user, ContextSource $context ) {
+	static function generateSkinOptions( $user, IContextSource $context ) {
 		global $wgDefaultSkin, $wgAllowUserCss, $wgAllowUserJs;
 		$ret = array();
 
@@ -1090,10 +1090,10 @@ class Preferences {
 	}
 
 	/**
-	 * @param $context ContextSource
+	 * @param $context IContextSource
 	 * @return array
 	 */
-	static function getDateOptions( ContextSource $context ) {
+	static function getDateOptions( IContextSource $context ) {
 		$lang = $context->getLanguage();
 		$dateopts = $lang->getDatePreferences();
 
@@ -1125,10 +1125,10 @@ class Preferences {
 	}
 
 	/**
-	 * @param $context ContextSource
+	 * @param $context IContextSource
 	 * @return array
 	 */
-	static function getImageSizes( ContextSource $context ) {
+	static function getImageSizes( IContextSource $context ) {
 		global $wgImageLimits;
 
 		$ret = array();
@@ -1143,10 +1143,10 @@ class Preferences {
 	}
 
 	/**
-	 * @param $context ContextSource
+	 * @param $context IContextSource
 	 * @return array
 	 */
-	static function getThumbSizes( ContextSource $context ) {
+	static function getThumbSizes( IContextSource $context ) {
 		global $wgThumbLimits;
 
 		$ret = array();
@@ -1200,12 +1200,12 @@ class Preferences {
 
 	/**
 	 * @param $user User
-	 * @param $context ContextSource
+	 * @param $context IContextSource
 	 * @param $formClass string
 	 * @param $remove Array: array of items to remove
 	 * @return HtmlForm
 	 */
-	static function getFormObject( $user, ContextSource $context, $formClass = 'PreferencesForm', array $remove = array() ) {
+	static function getFormObject( $user, IContextSource $context, $formClass = 'PreferencesForm', array $remove = array() ) {
 		$formDescriptor = Preferences::getPreferences( $user, $context );
 		if ( count( $remove ) ) {
 			$removeKeys = array_flip( $remove );
@@ -1229,10 +1229,9 @@ class Preferences {
 	}
 
 	/**
-	 * @param $context ContextSource
 	 * @return array
 	 */
-	static function getTimezoneOptions( ContextSource $context ) {
+	static function getTimezoneOptions( IContextSource $context ) {
 		$opt = array();
 
 		global $wgLocalTZoffset, $wgLocaltimezone;
