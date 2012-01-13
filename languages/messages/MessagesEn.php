@@ -4755,9 +4755,10 @@ Otherwise, you can use the easy form below. Your comment will be added to the pa
 'api-error-stashfailed'                   => 'Internal error: Server failed to store temporary file.',
 'api-error-timeout'                       => 'The server did not respond within the expected time.',
 'api-error-unclassified'                  => 'An unknown error occurred.',
-'api-error-unknown-code'                  => 'Unknown error: "$1"',
+'api-error-unknown-code'                  => 'Unknown error: "$1".',
 'api-error-unknown-error'                 => 'Internal error: Something went wrong when trying to upload your file.',
-'api-error-unknown-warning'               => 'Unknown warning: $1',
+'api-error-unknown-warning'               => 'Unknown warning: "$1".',
+'api-error-unknownerror'                  => 'Unknown error: "$1".',
 'api-error-uploaddisabled'                => 'Uploading is disabled on this wiki.',
 'api-error-verification-error'            => 'This file might be corrupt, or have the wrong extension.',
 

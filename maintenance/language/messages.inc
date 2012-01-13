@@ -3624,6 +3624,7 @@ $wgMessageStructure = array(
 		'api-error-unknown-code',
 		'api-error-unknown-error',
 		'api-error-unknown-warning',
+		'api-error-unknownerror',
 		'api-error-uploaddisabled',
 		'api-error-verification-error',
 	),
