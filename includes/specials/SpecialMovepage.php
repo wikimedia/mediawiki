@@ -195,7 +195,7 @@ class MovePageForm extends UnlistedSpecialPage {
 			$action_desc = $this->msg( 'action-move' )->plain();
 			$out->addWikiMsg( 'permissionserrorstext-withaction', count( $err ), $action_desc );
 
-			if ( count( $err ) ) {
+			if ( count( $err ) == 1 ) {
 				$errMsg = $err[0];
 				$errMsgName = array_shift( $errMsg );
 				if ( $errMsgName == 'hookaborted' ) {
