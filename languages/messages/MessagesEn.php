@@ -4727,7 +4727,7 @@ Otherwise, you can use the easy form below. Your comment will be added to the pa
 'api-error-copyuploaddisabled'            => 'Uploading by URL is disabled on this server.',
 'api-error-duplicate'                     => 'There {{PLURAL:$1|is [$2 another file]|are [$2 some other files]}} already on the site with the same content.',
 'api-error-duplicate-archive'             => 'There {{PLURAL:$1|was [$2 another file]|were [$2 some other files]}} already on the site with the same content, but {{PLURAL:$1|it was|they were}} deleted.',
-'api-error-duplicate-archive-popup-title' => 'Duplicate {{PLURAL:$1|file|files}} that have already been deleted.',
+'api-error-duplicate-archive-popup-title' => 'Duplicate {{PLURAL:$1|file that has|files that have}} already been deleted.',
 'api-error-duplicate-popup-title'         => 'Duplicate {{PLURAL:$1|file|files}}.',
 'api-error-empty-file'                    => 'The file you submitted was empty.',
 'api-error-emptypage'                     => 'Creating new, empty pages is not allowed.',
