@@ -196,7 +196,7 @@ class FSFile {
 	 * Get the final file extension from a file system path
 	 * 
 	 * @param $path string
-	 * @returns string
+	 * @return string
 	 */
 	public static function extensionFromPath( $path ) {
 		$i = strrpos( $path, '.' );
