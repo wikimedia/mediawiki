@@ -1100,7 +1100,7 @@ abstract class ApiBase extends ContextSource {
 		'customcssprotected' => array( 'code' => 'customcssprotected', 'info' => "You're not allowed to edit custom CSS pages" ),
 		'customjsprotected' => array( 'code' => 'customjsprotected', 'info' => "You're not allowed to edit custom JavaScript pages" ),
 		'cascadeprotected' => array( 'code' => 'cascadeprotected', 'info' => "The page you're trying to edit is protected because it's included in a cascade-protected page" ),
-		'protectedpagetext' => array( 'code' => 'protectedpage', 'info' => "The \"\$1'' right is required to edit this page" ),
+		'protectedpagetext' => array( 'code' => 'protectedpage', 'info' => "The \"\$1\" right is required to edit this page" ),
 		'protect-cantedit' => array( 'code' => 'cantedit', 'info' => "You can't protect this page because you can't edit it" ),
 		'badaccess-group0' => array( 'code' => 'permissiondenied', 'info' => "Permission denied" ), // Generic permission denied message
 		'badaccess-groups' => array( 'code' => 'permissiondenied', 'info' => "Permission denied" ),
