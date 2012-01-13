@@ -1601,7 +1601,10 @@ $1',
 'upload-http-error'         => 'HTTP-zmólka nastata: $1',
 
 # File backend
+'backend-fail-stream'        => 'Dataja $1 njedajo se pśenjasć.',
+'backend-fail-backup'        => 'Dataja $1 njedajo se zawěsćiś.',
 'backend-fail-notexists'     => 'Dataja $1 njeeksistěrujo.',
+'backend-fail-hashes'        => 'Sypańske gódnoty dataje njedaju se za pśorownowanje wótwołaś.',
 'backend-fail-notsame'       => 'Njeidentiska dataja $1 južo eksistěrujo.',
 'backend-fail-invalidpath'   => '$1 njejo płaśiwy puśik za składowanje.',
 'backend-fail-delete'        => 'Dataja $1 njedajo se wulašowaś.',
@@ -1616,6 +1619,19 @@ $1',
 'backend-fail-create'        => 'Dataja $1 njedajo se napóraś.',
 'backend-fail-readonly'      => 'Backend "$1" dajo se tuchylu jano cytaś. Pśicyna je: "$2"',
 'backend-fail-synced'        => 'Dataja "$1" jo  w internem backenźe w inkonsistentnem stawje',
+'backend-fail-connect'       => 'Zwisk z datajowym backendom "$1" njejo móžno.',
+'backend-fail-internal'      => 'W datajowem backenźe "$1" jo njeznata zmólka nastała.',
+
+# Lock manager
+'lockmanager-notlocked'        => '"$1" njedajo se wótwóriś; njejo zastajony.',
+'lockmanager-fail-closelock'   => 'Zastajańska dataja njedajo se za "$1" zacyniś.',
+'lockmanager-fail-deletelock'  => 'Zastajańska dataja njedajo se za "$1" wulašowaś.',
+'lockmanager-fail-acquirelock' => 'Zastajenje za "$1" njedajo se wótwołaś.',
+'lockmanager-fail-openlock'    => 'Zastajańska dataja njedajo se za "$1" wócyniś.',
+'lockmanager-fail-releaselock' => 'Zastajenje za "$1" njedajo se dopušćiś.',
+'lockmanager-fail-db-bucket'   => 'W zběrniku $1 njedajo se dosć zastajeńskich datowych bankow kontaktěrowaś',
+'lockmanager-fail-db-release'  => 'Zastajenja na datowu banku $1 njedaju se dopušćiś.',
+'lockmanager-fail-svr-release' => 'Zastajenja na serwer $1 njedaju se dopušćiś.',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'Pśi wocynjenju dataja za ZIP-pśekontrolěrowanje jo zmólka nastała.',
@@ -3627,6 +3643,7 @@ Hować móžoš slědujucy jadnory formular wužywaś. Twój komentar pśidajo s
 'api-error-duplicate-archive-popup-title' => '{{PLURAL:$1|Dwójna dataja, kótaraž jo|Dwójnej dataji, kótarejž stej|Dwójne dataje, kótarež su|Dwójne dataje, kótarež su}} se južo {{PLURAL:$1|wulašowała|wulašowałej|wulašowali|wulašowali}}',
 'api-error-duplicate-popup-title'         => '{{PLURAL:$1|Dwójna dataja|Dwójnej dataji|Dwójne dataje|Dwójne dataje}}',
 'api-error-empty-file'                    => 'Dataja, kótaruž sy nagrał, jo prozna była.',
+'api-error-emptypage'                     => 'Napóranje nowych, proznych bokow njejo dowólone.',
 'api-error-fetchfileerror'                => 'Nutśikowna zmólka: Pśii wobstarowanju dataje jo se něco njeraźiło.',
 'api-error-file-too-large'                => 'Dataja, kótaruž sy nagrał, jo pśewjelika była.',
 'api-error-filename-tooshort'             => 'Datajowe mě jo pśekrotke.',

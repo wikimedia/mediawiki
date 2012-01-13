@@ -49,6 +49,7 @@
  * @author Yanajin66
  * @author לערי ריינהארט
  * @author 欅
+ * @author 蝋燭α
  * @author 青子守歌
  */
 
@@ -1032,8 +1033,8 @@ IPアドレスは複数の利用者の間で共有されていることがあり
 'blocked-notice-logextract'        => 'この利用者は現在ブロックされています。
 参考のために最新のブロック記録を以下に表示します。',
 'clearyourcache'                   => "'''注意:''' 保存後、変更を確認するにはブラウザのキャッシュを消去する必要がある場合があります。
-* '''Firefox / Safari:''' ''Shift'' を押しながら ''再読み込み'' をクリックする、もしくは ''Ctrl-F5'' か ''Ctrl-R'' を押してください (Macでは ''⌘-R'' )
-* '''Google Chrome:''' ''Ctrl-Shift-R'' を押してください (Macでは ''⌘-Shift-R'' )
+* '''Firefox / Safari:''' ''Shift'' を押しながら ''再読み込み'' をクリックする、もしくは ''Ctrl-F5'' か ''Ctrl-R'' を押してください (Macでは ''&#x2318;-R'' )
+* '''Google Chrome:''' ''Ctrl-Shift-R'' を押してください (Macでは ''&#x2318;-Shift-R'' )
 * '''Internet Explorer:''' ''Ctrl'' を押しながら ''最新の情報に更新'' をクリックする、もしくは ''Ctrl-F5'' を押してください
 * '''Konqueror:''' ''再読み込み'' をクリックするか、 ''F5'' を押してください。
 * '''Opera:''' ''ツール → 設定'' からキャッシュをクリアしてください。",

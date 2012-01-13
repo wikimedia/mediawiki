@@ -1689,6 +1689,8 @@ Si le problema persiste, contacta un [[Special:ListUsers/sysop|administrator]].'
 'backend-fail-create'        => 'Non poteva crear le file $1',
 'backend-fail-readonly'      => 'Le back-end "$1" es actualmente in lectura sol. Le motivo date es: "$2"',
 'backend-fail-synced'        => 'Le file "$1" es in un stato inconsistente inter le back-ends interne',
+'backend-fail-connect'       => 'Impossibile connecter al back-end de files "$1".',
+'backend-fail-internal'      => 'Un error incognite occurreva in le back-end de files "$1".',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Impossibile disblocar "$1"; illo non es blocate.',
@@ -3797,6 +3799,7 @@ Si non, tu pote usar le formulario facile hic infra. Tu commento essera addite a
 'api-error-duplicate-archive-popup-title' => '{{PLURAL:$1|File|Files}} duplicate que ha jam essite delite',
 'api-error-duplicate-popup-title'         => '{{PLURAL:$1|File|Files}} duplicate',
 'api-error-empty-file'                    => 'Le file que tu submitteva es vacue.',
+'api-error-emptypage'                     => 'Le creation de nove paginas vacue non es permittite.',
 'api-error-fetchfileerror'                => 'Error interne: qualcosa errava durante le obtention del file.',
 'api-error-file-too-large'                => 'Le file que tu submitteva es troppo grande.',
 'api-error-filename-tooshort'             => 'Le nomine del file es troppo curte.',

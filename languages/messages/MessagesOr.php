@@ -440,7 +440,7 @@ $messages = array(
 'create'            => 'ତିଆରି କରିବେ',
 'editthispage'      => 'ଏହି ପୃଷ୍ଠାଟିକୁ ବଦଳାଇବା',
 'create-this-page'  => 'ଏହି ପୃଷ୍ଠାଟି ତିଆରିବେ',
-'delete'            => 'ଲିଭେଇବେ',
+'delete'            => 'ଲିଭାଇବେ',
 'deletethispage'    => 'ଏହି ପୃଷ୍ଠାଟି ଲିଭାଇବେ',
 'undelete_short'    => '{{PLURAL:$1|ଗୋଟିଏ ବଦଳ|$1ଟି ବଦଳ}} ଯାହା ଲିଭାସରିଛି ତାହାକୁ ପଛକୁ ଫେରାଇଦେବା',
 'viewdeleted_short' => '{{PLURAL:$1|ଗୋଟିଏ ଲିଭାଯାଇଥିବା ବଦଳ|$1ଟି ଲିଭାଯାଇଥିବା ବଦଳ}} ଦେଖାଇବେ',
@@ -2003,7 +2003,7 @@ A page is treated as disambiguation page if it uses a template which is linked f
 'brokenredirects'        => 'ଭଙ୍ଗା ପୁନପ୍ରେରଣ',
 'brokenredirectstext'    => 'ତଳଲିଖିତ ପୁନପ୍ରେରଣ ସବୁ ସ୍ଥିତିହିନ ପୃଷ୍ଠାମାନଙ୍କୁ ପୁନପ୍ରେରିତ ହୋଇଥାଏ :',
 'brokenredirects-edit'   => 'ବଦଳାଇବେ',
-'brokenredirects-delete' => 'ଲିଭାଇବା',
+'brokenredirects-delete' => 'ଲିଭାଇବେ',
 
 'withoutinterwiki'         => 'ଭାଷାର ଲିଙ୍କ ନଥିବା ପୃଷ୍ଠାମାନ',
 'withoutinterwiki-summary' => 'ତଳଲିଖିତ ପୃଷ୍ଠାମାନ ଗୋଟିଏ ବି ଅଲଗା ଭାଷାର ସଂସ୍କରଣ ସହ ଯୋଡ଼ା ନୁହନ୍ତି ।',
@@ -2296,7 +2296,7 @@ $UNWATCHURL ଦେଖନ୍ତୁ
 'exbeforeblank'          => 'ଖାଲି କରିବା ଆଗରୁ ଭିତରେ "$1" ଥିଲା',
 'exblank'                => 'ପୃଷ୍ଠାଟି ଖାଲି ଅଛି',
 'delete-confirm'         => 'ଲିଭେଇବେ $1',
-'delete-legend'          => 'ଲିଭେଇବେ',
+'delete-legend'          => 'ଲିଭାଇବେ',
 'historywarning'         => "'''ଚେତାବନୀ:''' ଆପଣ ଲିଭାଇବାକୁ ଯାଉଥିବା ଏହି ପୃଷ୍ଠାଟିର ପାଖାପାଖି $1 {{PLURAL:$1|ଟି ସଙ୍କଳନ|ଗୋଟି ସଙ୍କଳନ}} ରହିଅଛି:",
 'confirmdeletetext'      => 'ଆପଣ ଗୋଟିଏ ପୃଷ୍ଠାର ଇତିହାସ ସହ ତାହାକୁ ଲିଭାଇବାକୁ ଯାଉଛନ୍ତି ।
 ଏହା ଥୟ କରନ୍ତୁ ଯେ ଆପଣ ଏହାର ପରିଣତି ଜାଣିଛନ୍ତି ଓ ଏହା [[{{MediaWiki:Policy-url}}|ମିଡ଼ିଆଉଇକିର ନିୟମ]] ଅନୁସାରେ କରୁଛନ୍ତି ।',

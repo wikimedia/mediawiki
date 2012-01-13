@@ -1798,6 +1798,9 @@ Kérjük, hogy lépj kapcsolatba egy  [[Special:ListUsers/sysop|adminisztrátorr
 'backend-fail-read'          => 'Nem sikerült olvasni ebből a fájlból: $1.',
 'backend-fail-create'        => 'Nem sikerült létrehozni ezt a fájlt: $1.',
 'backend-fail-readonly'      => 'A „$1” háttér rendszer csak olvasható. Ennek az ok: „$2”',
+'backend-fail-synced'        => 'A „$1” fájl inkonzisztens állapotban van a belső háttér rendszeren',
+'backend-fail-connect'       => 'Nem sikerült csatlakozni a „$1” fájlhoz a háttér rendszeren.',
+'backend-fail-internal'      => 'Ismeretlen hiba keletkezett a „$1” fájlban a háttér rendszeren.',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Nem lehet a zárolást feloldani: „$1”; nincs zárolva.',
@@ -3879,6 +3882,7 @@ A képek teljes méretben jelennek meg, más fájltípusok közvetlenül a hozz�
 'api-error-duplicate-archive-popup-title' => '{{PLURAL:$1|Az azonos fájl, ami törölve lett|Azonos fájlok, amik törölve lettek}}',
 'api-error-duplicate-popup-title'         => '{{PLURAL:$1|Duplikátum|Duplikátumok}}',
 'api-error-empty-file'                    => 'Az általad elküldött fájl üres volt.',
+'api-error-emptypage'                     => 'Új, üres lap létrehozása nem engedélyezett.',
 'api-error-fetchfileerror'                => 'Belső hiba: valami baj történt a fájl beolvasása közben.',
 'api-error-file-too-large'                => 'Az általad elküldött fájl túl nagy.',
 'api-error-filename-tooshort'             => 'A fájlnév túl rövid.',

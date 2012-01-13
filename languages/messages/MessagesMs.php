@@ -1684,6 +1684,8 @@ Sila hubungi [[Special:ListUsers/sysop|pentadbir sistem]].',
 'backend-fail-create'        => 'Fail $1 tidak dapat diwujudkan.',
 'backend-fail-readonly'      => 'Backend "$1" kini hanya boleh dibaca. Sebab yang diberikan: "$2"',
 'backend-fail-synced'        => 'Fail "$1" berada dalam keadaan yang tidak sejajar dalam backend dalaman',
+'backend-fail-connect'       => 'Tidak dapat bersambung dengan backend fail "$1".',
+'backend-fail-internal'      => 'Berlakunya ralat yang tidak dikenali dalam backend fail "$1".',
 
 # Lock manager
 'lockmanager-notlocked'        => '"$1" tidak dapat dibuka; ia tidak terkunci.',
