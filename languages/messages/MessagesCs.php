@@ -1835,6 +1835,8 @@ Kontaktuje prosím [[Special:ListUsers/sysop|správce]].',
 'backend-fail-create'        => 'Soubor $1 nelze vytvořit.',
 'backend-fail-readonly'      => 'Koncový systém „$1“ je momentálně pouze pro čtení. Udaným důvodem je: „$2“',
 'backend-fail-synced'        => 'Soubor „$1“ je v interních koncových systémech v nekonzistentním stavu',
+'backend-fail-connect'       => 'Nepodařilo se připojit k souborovému koncovému systému „$1“.',
+'backend-fail-internal'      => 'V souborovém koncovém systému „$1“ došlo k neznámé chybě.',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Soubor „$1“ nelze odemknout, neboť není zamčen.',
@@ -3621,7 +3623,8 @@ Opravdu si přejete znovu tuto stránku založit?',
 'confirm-unwatch-top'    => 'Vyjmout tuto stránku ze sledovaných?',
 
 # Separators for various lists, etc.
-'percent' => '$1&nbsp;%',
+'ellipsis' => '…',
+'percent'  => '$1&nbsp;%',
 
 # Multipage image navigation
 'imgmultipageprev' => '← předchozí stránka',

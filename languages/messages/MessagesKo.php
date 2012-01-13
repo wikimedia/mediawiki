@@ -1037,7 +1037,7 @@ $2개 보다 적게 써야 하지만 지금은 $1개를 쓰고 있습니다.",
 'undo-success' => '이 편집을 되돌리려면 아래의 변경되는 사항을 확인한 후 저장해주세요.',
 'undo-failure' => '중간의 다른 편집과 충돌하여 이 편집을 되돌릴 수 없습니다.',
 'undo-norev'   => '문서가 없거나 삭제되었기 때문에, 편집을 되돌릴 수 없습니다.',
-'undo-summary' => '[[Special:Contributions/$2|$2]] ([[User talk:$2|토론]]) 의 $1 판 편집을 되돌림',
+'undo-summary' => '[[Special:Contributions/$2|$2]] ([[User talk:$2|토론]]) 의 $1판 편집을 되돌림',
 
 # Account creation failure
 'cantcreateaccounttitle' => '계정을 만들 수 없음',

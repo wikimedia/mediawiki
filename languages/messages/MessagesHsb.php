@@ -1623,6 +1623,8 @@ $1',
 'backend-fail-create'        => 'Dataja $1 njeda so wutworić',
 'backend-fail-readonly'      => 'Backend "$1" da so tuchwilu jenož čitać. Přičina je: "$2"',
 'backend-fail-synced'        => 'Dataja "$1" je znutřka interneho backenda w inkonsistentnym stawje',
+'backend-fail-connect'       => 'Zwisk z datajowym backendom "$1" móžno njeje.',
+'backend-fail-internal'      => 'W datajowym backendźe "$1" je njeznaty zmylk wustupił.',
 
 # Lock manager
 'lockmanager-notlocked'        => '"$1" njeda so wotewrić; njeje zawrjeny.',
@@ -3630,6 +3632,7 @@ Hewak móžeš slědowacy jednory formular wužiwać. Twój komentar přida so s
 'api-error-duplicate-archive-popup-title' => '{{PLURAL:$1|Dwójna dataja, kotraž je|Dwójnej dataji, kotrejž stej|Dwójne dataje, kotrež su|Dwójne dataje, kotrež su}} so hižo {{PLURAL:$1|zhašała|zhašałoj|zhašeli|zhašeli}}',
 'api-error-duplicate-popup-title'         => '{{PLURAL:$1|Dwójna dataja|Dwójnej dataji|Dwójne dataje|Dwójne dataje}}',
 'api-error-empty-file'                    => 'Dataja, kotruž sy nahrał, je prózdna.',
+'api-error-emptypage'                     => 'Wutworjenje nowych, prózdnych stronow njeje dowolene.',
 'api-error-fetchfileerror'                => 'Nutřkowny zmylk: při wobstarowanju dataje je so něšto nimokuliło.',
 'api-error-file-too-large'                => 'Dataja, kotruž sy nahrał, bě přewulka.',
 'api-error-filename-tooshort'             => 'Datajowe mjeno překrótko',

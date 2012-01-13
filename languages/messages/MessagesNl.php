@@ -1902,6 +1902,8 @@ Als het probleem aanhoudt, neem dan contact op met een [[Special:ListUsers/sysop
 'backend-fail-create'        => 'Het was niet mogelijk het bestand $1 aan te maken.',
 'backend-fail-readonly'      => 'Van de opslag "$1" kan op dit moment alleen gelezen worden. De opgegeven reden is: "$2"',
 'backend-fail-synced'        => 'Het bestand "$1" bevindt zich in een inconsistente toestand in het interne backend.',
+'backend-fail-connect'       => 'Het was niet mogelijk een verbinding te maken met het bestandsbackend "$1".',
+'backend-fail-internal'      => 'Er is een onbekende fout opgetreden in het bestandsbackend "$1".',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Het was niet mogelijk "$1" vrij te geven; dit object is niet vergrendeld.',
@@ -4033,6 +4035,7 @@ Anders kunt u ook het eenvoudige formulier hieronder gebruiken. Uw commentaar za
 'api-error-duplicate-archive-popup-title' => '{{PLURAL:$1|Duplicaatbestand dat al verwijderd is|Duplicaatbestanden die al verwijderd zijn}}',
 'api-error-duplicate-popup-title'         => 'Zelfde {{PLURAL:$1|bestand|bestanden}}',
 'api-error-empty-file'                    => 'Het bestand dat u hebt geüpload is leeg.',
+'api-error-emptypage'                     => "Het aanmaken van nieuwe, lege pagina's is niet toegestaan.",
 'api-error-fetchfileerror'                => 'Interne fout: er is iets misgegaan bij het ophalen van het bestand.',
 'api-error-file-too-large'                => 'Het bestand dat u hebt geüpload is te groot.',
 'api-error-filename-tooshort'             => 'De bestandsnaam is te kort.',

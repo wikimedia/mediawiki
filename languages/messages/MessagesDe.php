@@ -56,6 +56,7 @@
  * @author Umherirrender
  * @author W (aka Wuzur)
  * @author Wikifan
+ * @author Xqt
  * @author Ziko
  * @author לערי ריינהארט
  * @author ✓
@@ -404,7 +405,7 @@ $messages = array(
 'tog-oldsig'                  => 'Existierende Signatur:',
 'tog-fancysig'                => 'Signatur als Wikitext behandeln (ohne automatische Verlinkung)',
 'tog-externaleditor'          => 'Externen Editor standardmäßig nutzen (nur für Experten, erfordert spezielle Einstellungen auf dem eigenen Computer. [//www.mediawiki.org/wiki/Manual:External_editors Weitere Informationen hierzu.])',
-'tog-externaldiff'            => 'Externes Programm für Versionsunterschiede standardmäßig nutzen (nur für Experten, erfordert spezielle Einstellungen auf dem eigenen Computer. [//www.mediawiki.org/wiki/Manual:External_editors Weitere Informationen hierzu.])',
+'tog-externaldiff'            => 'Externes Programm standardmäßig für Versionsunterschiede nutzen (nur für Experten, erfordert spezielle Einstellungen auf dem eigenen Computer. [//www.mediawiki.org/wiki/Manual:External_editors Weitere Informationen hierzu.])',
 'tog-showjumplinks'           => '„Wechseln zu“-Links aktivieren',
 'tog-uselivepreview'          => 'Sofortige Vorschau nutzen (benötigt JavaScript) (experimentell)',
 'tog-forceeditsummary'        => 'Warnen, sofern beim Speichern die Zusammenfassung fehlt',
@@ -3053,7 +3054,7 @@ Diese auf dem lokalen Rechner speichern und danach hier hochladen.',
 'othercontribs'    => 'Basierend auf der Arbeit von $1.',
 'others'           => 'anderen',
 'siteusers'        => '{{SITENAME}}-{{PLURAL:$2|Benutzer|Benutzer}} $1',
-'anonusers'        => '{{PLURAL:$2|unangemeldeter|unangemeldete}} {{SITENAME}}-{{PLURAL:$2|Benutzer|Benutzer}} $1',
+'anonusers'        => '{{PLURAL:$2|unangemeldetem|unangemeldeten}} {{SITENAME}}-{{PLURAL:$2|Benutzer|Benutzern}} $1',
 'creditspage'      => 'Seiteninformationen',
 'nocredits'        => 'Für diese Seite sind keine Informationen vorhanden.',
 
@@ -3951,6 +3952,7 @@ Anderenfalls kannst du auch das untenstehende einfache Formular nutzen. Dein Kom
 'api-error-duplicate-archive-popup-title' => 'Doppelte {{PLURAL:$1|Datei, die bereits gelöscht wurde|Dateien, die bereits gelöscht wurden}}',
 'api-error-duplicate-popup-title'         => 'Doppelt vorhandene {{PLURAL:$1|Datei|Dateien}}',
 'api-error-empty-file'                    => 'Die hochgeladene Datei war leer.',
+'api-error-emptypage'                     => 'Es ist nicht erlaubt, neue leere Seiten zu erstellen.',
 'api-error-fetchfileerror'                => 'Interner Fehler: Beim Abrufen der Datei ist ein Fehler aufgetreten.',
 'api-error-file-too-large'                => 'Die hochgeladene Datei war zu groß.',
 'api-error-filename-tooshort'             => 'Der Dateiname ist zu kurz.',

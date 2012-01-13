@@ -4564,9 +4564,47 @@ $4 is the gender of the target user.',
 'feedback-bugnew'    => 'Button label - asserts that the user has checked for existing bugs. When clicked will launch a bugzilla form to add a new bug in a new tab or window',
 
 # API errors
-'api-error-duplicate-popup-title' => 'This message is a pop-up title shown in case one or more files exactly equal to the one just uploaded are already present. The word "duplicate" is an adjective.',
-'api-error-filetype-missing'      => 'The word "extension" refers to the part behind the last dot in a file name, that by convention gives a hint about the kind of data format which a files contents are in.',
-'api-error-hookaborted'           => 'The word "extension" here refers to a [[:mw:Manual:Extensions|MediaWiki Extension]] which extends the functionality of the basic wiki by adding something to its capabilities. "… aborted by an extension" implies that an operation could not be performed successfully or was not allowed to continue to its intended end.',
-'api-error-verification-error'    => 'The word "extension" refers to the part behind the last dot in a file name, that by convention gives a hint about the kind of data format which a files contents are in.',
+'api-error-badaccess-groups'              => 'API error message that can be used for client side localisation of API errors.',
+'api-error-badtoken'                      => 'API error message that can be used for client side localisation of API errors.',
+'api-error-copyuploaddisabled'            => 'API error message that can be used for client side localisation of API errors.',
+'api-error-duplicate'                     => 'API error message that can be used for client side localisation of API errors. Parameters:
+* $1 is a number of files
+* $2 is a link to a list of duplicate files.',
+'api-error-duplicate-archive'             => 'API error message that can be used for client side localisation of API errors. Parameters:
+* $1 is a number of files
+* $2 is a link to a list of duplicate files.',
+'api-error-duplicate-archive-popup-title' => 'API error message that can be used for client side localisation of API errors. Parameters:
+* $1 is a number of files.',
+'api-error-duplicate-popup-title'         => 'This message is a pop-up title shown in case one or more files exactly equal to the one just uploaded are already present. The word "duplicate" is an adjective.',
+'api-error-empty-file'                    => 'API error message that can be used for client side localisation of API errors.',
+'api-error-emptypage'                     => 'API error message that can be used for client side localisation of API errors.',
+'api-error-fetchfileerror'                => 'API error message that can be used for client side localisation of API errors.',
+'api-error-file-too-large'                => 'API error message that can be used for client side localisation of API errors.',
+'api-error-filename-tooshort'             => 'API error message that can be used for client side localisation of API errors.',
+'api-error-filetype-banned'               => 'API error message that can be used for client side localisation of API errors.',
+'api-error-filetype-missing'              => 'The word "extension" refers to the part behind the last dot in a file name, that by convention gives a hint about the kind of data format which a files contents are in.',
+'api-error-hookaborted'                   => 'The word "extension" here refers to a [[:mw:Manual:Extensions|MediaWiki Extension]] which extends the functionality of the basic wiki by adding something to its capabilities. "… aborted by an extension" implies that an operation could not be performed successfully or was not allowed to continue to its intended end.',
+'api-error-http'                          => 'API error message that can be used for client side localisation of API errors.',
+'api-error-illegal-filename'              => 'API error message that can be used for client side localisation of API errors.',
+'api-error-internal-error'                => 'API error message that can be used for client side localisation of API errors.',
+'api-error-invalid-file-key'              => 'API error message that can be used for client side localisation of API errors.',
+'api-error-missingparam'                  => 'API error message that can be used for client side localisation of API errors.',
+'api-error-missingresult'                 => 'API error message that can be used for client side localisation of API errors.',
+'api-error-mustbeloggedin'                => 'API error message that can be used for client side localisation of API errors.',
+'api-error-mustbeposted'                  => 'API error message that can be used for client side localisation of API errors.',
+'api-error-noimageinfo'                   => 'API error message that can be used for client side localisation of API errors.',
+'api-error-nomodule'                      => 'API error message that can be used for client side localisation of API errors.',
+'api-error-ok-but-empty'                  => 'API error message that can be used for client side localisation of API errors.',
+'api-error-overwrite'                     => 'API error message that can be used for client side localisation of API errors.',
+'api-error-stashfailed'                   => 'API error message that can be used for client side localisation of API errors.',
+'api-error-timeout'                       => 'API error message that can be used for client side localisation of API errors.',
+'api-error-unclassified'                  => 'API error message that can be used for client side localisation of API errors.',
+'api-error-unknown-code'                  => 'API error message that can be used for client side localisation of API errors. Parameters:
+* $1 may contain more error details.',
+'api-error-unknown-error'                 => 'API error message that can be used for client side localisation of API errors.',
+'api-error-unknown-warning'               => 'API error message that can be used for client side localisation of API errors. Parameters:
+* $1 is an unknown warning.',
+'api-error-uploaddisabled'                => 'API error message that can be used for client side localisation of API errors.',
+'api-error-verification-error'            => 'The word "extension" refers to the part behind the last dot in a file name, that by convention gives a hint about the kind of data format which a files contents are in.',
 
 );
