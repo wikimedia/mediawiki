@@ -75,7 +75,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 			foreach ( $params['categories'] as $cat ) {
 				$title = Title::newFromText( $cat );
 				if ( !$title || $title->getNamespace() != NS_CATEGORY ) {
-					$this->setWarning( "``$cat'' is not a category" );
+					$this->setWarning( "\"$cat\" is not a category" );
 				} else {
 					$cats[] = $title->getDBkey();
 				}

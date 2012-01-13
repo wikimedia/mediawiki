@@ -41,7 +41,7 @@ class ApiDisabled extends ApiBase {
 	}
 
 	public function execute() {
-		$this->dieUsage( "The ``{$this->getModuleName()}'' module has been disabled.", 'moduledisabled' );
+		$this->dieUsage( "The \"{$this->getModuleName()}\" module has been disabled.", 'moduledisabled' );
 	}
 
 	public function isReadMode() {
