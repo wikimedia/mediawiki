@@ -20,6 +20,14 @@
 class XCFHandler extends BitmapHandler {
 
 	/**
+	 * @param $file
+	 * @return bool
+	 */
+	function mustRender( $file ) {
+		return true;
+	}
+
+	/**
 	 * Render files as PNG
 	 *
 	 * @param $ext
