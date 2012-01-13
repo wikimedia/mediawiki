@@ -161,6 +161,7 @@ class ScopedLock {
 
 /**
  * Simple version of LockManager that does nothing
+ * @since 1.19
  */
 class NullLockManager extends LockManager {
 	protected function doLock( array $paths, $type ) {

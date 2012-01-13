@@ -72,6 +72,8 @@ class FileBackendTest extends MediaWikiTestCase {
 	function doTestStore( $op, $source, $dest ) {
 		$backendName = $this->backendClass();
 
+		$this->backend->prepare( array( 'dir' => dirname( $dest ) ) );
+
 		file_put_contents( $source, "Unit test file" );
 		$status = $this->backend->doOperation( $op );
 
@@ -136,6 +138,9 @@ class FileBackendTest extends MediaWikiTestCase {
 
 	function doTestCopy( $op, $source, $dest ) {
 		$backendName = $this->backendClass();
+
+		$this->backend->prepare( array( 'dir' => dirname( $source ) ) );
+		$this->backend->prepare( array( 'dir' => dirname( $dest ) ) );
 
 		$status = $this->backend->doOperation(
 			array( 'op' => 'create', 'content' => 'blahblah', 'dst' => $source ) );
@@ -207,6 +212,9 @@ class FileBackendTest extends MediaWikiTestCase {
 	public function doTestMove( $op, $source, $dest ) {
 		$backendName = $this->backendClass();
 
+		$this->backend->prepare( array( 'dir' => dirname( $source ) ) );
+		$this->backend->prepare( array( 'dir' => dirname( $dest ) ) );
+
 		$status = $this->backend->doOperation(
 			array( 'op' => 'create', 'content' => 'blahblah', 'dst' => $source ) );
 		$this->assertEquals( true, $status->isOK(),
@@ -277,6 +285,8 @@ class FileBackendTest extends MediaWikiTestCase {
 
 	public function doTestDelete( $op, $source, $withSource, $okStatus ) {
 		$backendName = $this->backendClass();
+
+		$this->backend->prepare( array( 'dir' => dirname( $source ) ) );
 
 		if ( $withSource ) {
 			$status = $this->backend->doOperation(
@@ -358,6 +368,8 @@ class FileBackendTest extends MediaWikiTestCase {
 
 	public function doTestCreate( $op, $dest, $alreadyExists, $okStatus, $newSize ) {
 		$backendName = $this->backendClass();
+
+		$this->backend->prepare( array( 'dir' => dirname( $dest ) ) );
 
 		$oldText = 'blah...blah...waahwaah';
 		if ( $alreadyExists ) {
@@ -462,6 +474,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		// Create sources
 		$ops = array();
 		foreach ( $srcs as $i => $source ) {
+			$this->backend->prepare( array( 'dir' => dirname( $source ) ) );
 			$ops[] = array(
 				'op'      => 'create', // operation
 				'dst'     => $source, // source
@@ -585,20 +598,22 @@ class FileBackendTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provider_testGetFileContents
 	 */
-	public function doTestGetFileContents( $src, $content ) {
+	public function doTestGetFileContents( $source, $content ) {
 		$backendName = $this->backendClass();
 
-		$status = $this->backend->doOperation(
-			array( 'op' => 'create', 'content' => $content, 'dst' => $src ) );
-		$this->assertEquals( true, $status->isOK(),
-			"Creation of file at $src succeeded ($backendName)." );
+		$this->backend->prepare( array( 'dir' => dirname( $source ) ) );
 
-		$newContents = $this->backend->getFileContents( array( 'src' => $src ) );
+		$status = $this->backend->doOperation(
+			array( 'op' => 'create', 'content' => $content, 'dst' => $source ) );
+		$this->assertEquals( true, $status->isOK(),
+			"Creation of file at $source succeeded ($backendName)." );
+
+		$newContents = $this->backend->getFileContents( array( 'src' => $source ) );
 		$this->assertNotEquals( false, $newContents,
-			"Read of file at $src succeeded ($backendName)." );
+			"Read of file at $source succeeded ($backendName)." );
 
 		$this->assertEquals( $content, $newContents,
-			"Contents read match data at $src ($backendName)." );
+			"Contents read match data at $source ($backendName)." );
 	}
 
 	function provider_testGetFileContents() {
@@ -626,20 +641,22 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->tearDownFiles();
 	}
 
-	public function doTestGetLocalCopy( $src, $content ) {
+	public function doTestGetLocalCopy( $source, $content ) {
 		$backendName = $this->backendClass();
 
-		$status = $this->backend->doOperation(
-			array( 'op' => 'create', 'content' => $content, 'dst' => $src ) );
-		$this->assertEquals( true, $status->isOK(),
-			"Creation of file at $src succeeded ($backendName)." );
+		$this->backend->prepare( array( 'dir' => dirname( $source ) ) );
 
-		$tmpFile = $this->backend->getLocalCopy( array( 'src' => $src ) );
+		$status = $this->backend->doOperation(
+			array( 'op' => 'create', 'content' => $content, 'dst' => $source ) );
+		$this->assertEquals( true, $status->isOK(),
+			"Creation of file at $source succeeded ($backendName)." );
+
+		$tmpFile = $this->backend->getLocalCopy( array( 'src' => $source ) );
 		$this->assertNotNull( $tmpFile,
-			"Creation of local copy of $src succeeded ($backendName)." );
+			"Creation of local copy of $source succeeded ($backendName)." );
 
 		$contents = file_get_contents( $tmpFile->getPath() );
-		$this->assertNotEquals( false, $contents, "Local copy of $src exists ($backendName)." );
+		$this->assertNotEquals( false, $contents, "Local copy of $source exists ($backendName)." );
 	}
 
 	function provider_testGetLocalCopy() {
@@ -667,20 +684,22 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->tearDownFiles();
 	}
 
-	public function doTestGetLocalReference( $src, $content ) {
+	public function doTestGetLocalReference( $source, $content ) {
 		$backendName = $this->backendClass();
 
-		$status = $this->backend->doOperation(
-			array( 'op' => 'create', 'content' => $content, 'dst' => $src ) );
-		$this->assertEquals( true, $status->isOK(),
-			"Creation of file at $src succeeded ($backendName)." );
+		$this->backend->prepare( array( 'dir' => dirname( $source ) ) );
 
-		$tmpFile = $this->backend->getLocalReference( array( 'src' => $src ) );
+		$status = $this->backend->doOperation(
+			array( 'op' => 'create', 'content' => $content, 'dst' => $source ) );
+		$this->assertEquals( true, $status->isOK(),
+			"Creation of file at $source succeeded ($backendName)." );
+
+		$tmpFile = $this->backend->getLocalReference( array( 'src' => $source ) );
 		$this->assertNotNull( $tmpFile,
-			"Creation of local copy of $src succeeded ($backendName)." );
+			"Creation of local copy of $source succeeded ($backendName)." );
 
 		$contents = file_get_contents( $tmpFile->getPath() );
-		$this->assertNotEquals( false, $contents, "Local copy of $src exists ($backendName)." );
+		$this->assertNotEquals( false, $contents, "Local copy of $source exists ($backendName)." );
 	}
 
 	function provider_testGetLocalReference() {
@@ -779,6 +798,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$ops = array();
 		foreach ( $files as $file ) {
 			$ops[] = array( 'op' => 'create', 'content' => 'xxy', 'dst' => $file );
+			$this->backend->prepare( array( 'dir' => dirname( $file ) ) );
 		}
 		$status = $this->backend->doOperations( $ops );
 		$this->assertEquals( true, $status->isOK(),

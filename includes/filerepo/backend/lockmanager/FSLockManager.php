@@ -10,6 +10,7 @@
  * locks will be ignored; see http://nfs.sourceforge.net/#section_d.
  *
  * @ingroup LockManager
+ * @since 1.19
  */
 class FSLockManager extends LockManager {
 	/** @var Array Mapping of lock types to the type actually used */

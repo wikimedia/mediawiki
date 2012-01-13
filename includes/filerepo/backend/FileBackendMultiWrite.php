@@ -18,6 +18,7 @@
  * If an operation fails on one backend it will be rolled back from the others.
  *
  * @ingroup FileBackend
+ * @since 1.19
  */
 class FileBackendMultiWrite extends FileBackendBase {
 	/** @var Array Prioritized list of FileBackend objects */

@@ -323,7 +323,11 @@ abstract class FileBackendBase {
 		if ( $this->readOnly != '' ) {
 			return Status::newFatal( 'backend-fail-readonly', $this->name, $this->readOnly );
 		}
-		return $this->doSecure( $params );
+		$status = $this->doPrepare( $params ); // dir must exist to restrict it
+		if ( $status->isOK() ) {
+			$status->merge( $this->doSecure( $params ) );
+		}
+		return $status;
 	}
 
 	/**
