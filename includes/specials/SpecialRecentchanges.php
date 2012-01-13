@@ -73,9 +73,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	public function setup( $parameters ) {
 		$opts = $this->getDefaultOptions();
 
-		$this->customFilters = array();
-		wfRunHooks( 'SpecialRecentChangesFilters', array( $this, &$this->customFilters ) );
-		foreach( $this->customFilters as $key => $params ) {
+		foreach( $this->getCustomFilters() as $key => $params ) {
 			$opts->add( $key, $params['default'] );
 		}
 
@@ -88,6 +86,19 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 
 		$opts->validateIntBounds( 'limit', 0, 5000 );
 		return $opts;
+	}
+
+	/**
+	 * Get custom show/hide filters
+	 *
+	 * @return Array Map of filter URL param names to properties (msg/default)
+	 */
+	protected function getCustomFilters() {
+		if ( $this->customFilters === null ) {
+			$this->customFilters = array();
+			wfRunHooks( 'SpecialRecentChangesFilters', array( $this, &$this->customFilters ) );
+		}
+		return $this->customFilters;
 	}
 
 	/**
@@ -806,14 +817,14 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		// show/hide links
 		$showhide = array( wfMsg( 'show' ), wfMsg( 'hide' ) );
 		$filters = array(
-			'hideminor' => 'rcshowhideminor',
-			'hidebots'  => 'rcshowhidebots',
-			'hideanons' => 'rcshowhideanons',
-			'hideliu'   => 'rcshowhideliu',
+			'hideminor'     => 'rcshowhideminor',
+			'hidebots'      => 'rcshowhidebots',
+			'hideanons'     => 'rcshowhideanons',
+			'hideliu'       => 'rcshowhideliu',
 			'hidepatrolled' => 'rcshowhidepatr',
-			'hidemyself' => 'rcshowhidemine'
+			'hidemyself'    => 'rcshowhidemine'
 		);
-		foreach ( $this->customFilters as $key => $params ) {
+		foreach ( $this->getCustomFilters() as $key => $params ) {
 			$filters[$key] = $params['msg'];
 		}
 		// Disable some if needed
