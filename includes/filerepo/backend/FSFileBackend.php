@@ -405,17 +405,19 @@ class FSFileBackend extends FileBackend {
 			return false; // invalid storage path
 		}
 
-		wfSuppressWarnings();
+		$this->trapWarnings();
 		$stat = is_file( $source ) ? stat( $source ) : false; // regular files only
-		wfRestoreWarnings();
+		$hadError = $this->untrapWarnings();
 
 		if ( $stat ) {
 			return array(
 				'mtime' => wfTimestamp( TS_MW, $stat['mtime'] ),
 				'size'  => $stat['size']
 			);
+		} elseif ( !$hadError ) {
+			return false; // file does not exist
 		} else {
-			return false;
+			return null; // failure
 		}
 	}
 
@@ -494,6 +496,31 @@ class FSFileBackend extends FileBackend {
 		wfRestoreWarnings();
 
 		return $ok;
+	}
+
+	/**
+	 * Suppress E_WARNING errors and track whether any happen
+	 *
+	 * @return void
+	 */
+	protected function trapWarnings() {
+		$this->hadWarningErrors[] = false; // push to stack
+		set_error_handler( array( $this, 'handleWarning' ), E_WARNING );
+	}
+
+	/**
+	 * Unsuppress E_WARNING errors and return true if any happened
+	 *
+	 * @return bool
+	 */
+	protected function untrapWarnings() {
+		restore_error_handler(); // restore previous handler
+		return array_pop( $this->hadWarningErrors ); // pop from stack
+	}
+
+	private function handleWarning() {
+		$this->hadWarningErrors[count( $this->hadWarningErrors ) - 1] = true;
+		return true; // suppress from PHP handler
 	}
 }
 
