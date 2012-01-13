@@ -14,6 +14,7 @@
  * Caching is used to avoid hitting servers that are down.
  *
  * @ingroup LockManager
+ * @since 1.19
  */
 class DBLockManager extends LockManager {
 	/** @var Array Map of DB names to server config */

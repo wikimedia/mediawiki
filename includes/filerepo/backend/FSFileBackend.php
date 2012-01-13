@@ -19,6 +19,7 @@
  * Likewise, error suppression should be used to avoid path disclosure.
  *
  * @ingroup FileBackend
+ * @since 1.19
  */
 class FSFileBackend extends FileBackend {
 	protected $basePath; // string; directory holding the container directories
@@ -125,18 +126,13 @@ class FSFileBackend extends FileBackend {
 				$status->fatal( 'backend-fail-alreadyexists', $params['dst'] );
 				return $status;
 			}
-		} else {
-			if ( !wfMkdirParents( dirname( $dest ) ) ) {
-				$status->fatal( 'directorycreateerror', $params['dst'] );
-				return $status;
-			}
 		}
 
 		wfSuppressWarnings();
 		$ok = copy( $params['src'], $dest );
 		wfRestoreWarnings();
 		if ( !$ok ) {
-			$status->fatal( 'backend-fail-copy', $params['src'], $params['dst'] );
+			$status->fatal( 'backend-fail-store', $params['src'], $params['dst'] );
 			return $status;
 		}
 
@@ -174,11 +170,6 @@ class FSFileBackend extends FileBackend {
 				}
 			} else {
 				$status->fatal( 'backend-fail-alreadyexists', $params['dst'] );
-				return $status;
-			}
-		} else {
-			if ( !wfMkdirParents( dirname( $dest ) ) ) {
-				$status->fatal( 'directorycreateerror', $params['dst'] );
 				return $status;
 			}
 		}
@@ -228,11 +219,6 @@ class FSFileBackend extends FileBackend {
 				}
 			} else {
 				$status->fatal( 'backend-fail-alreadyexists', $params['dst'] );
-				return $status;
-			}
-		} else {
-			if ( !wfMkdirParents( dirname( $dest ) ) ) {
-				$status->fatal( 'directorycreateerror', $params['dst'] );
 				return $status;
 			}
 		}
@@ -304,11 +290,6 @@ class FSFileBackend extends FileBackend {
 				$status->fatal( 'backend-fail-alreadyexists', $params['dst'] );
 				return $status;
 			}
-		} else {
-			if ( !wfMkdirParents( dirname( $dest ) ) ) {
-				$status->fatal( 'directorycreateerror', $params['dst'] );
-				return $status;
-			}
 		}
 
 		wfSuppressWarnings();
@@ -332,7 +313,7 @@ class FSFileBackend extends FileBackend {
 		list( $b, $shortCont, $r ) = FileBackend::splitStoragePath( $params['dir'] );
 		$contRoot = $this->containerFSRoot( $shortCont, $fullCont ); // must be valid
 		$dir = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
-		if ( !wfMkdirParents( $dir ) ) {
+		if ( !wfMkdirParents( $dir ) ) { // make directory and its parents
 			$status->fatal( 'directorycreateerror', $params['dir'] );
 		} elseif ( !is_writable( $dir ) ) {
 			$status->fatal( 'directoryreadonlyerror', $params['dir'] );
@@ -350,10 +331,6 @@ class FSFileBackend extends FileBackend {
 		list( $b, $shortCont, $r ) = FileBackend::splitStoragePath( $params['dir'] );
 		$contRoot = $this->containerFSRoot( $shortCont, $fullCont ); // must be valid
 		$dir = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
-		if ( !wfMkdirParents( $dir ) ) {
-			$status->fatal( 'directorycreateerror', $params['dir'] );
-			return $status;
-		}
 		// Seed new directories with a blank index.html, to prevent crawling...
 		if ( !empty( $params['noListing'] ) && !file_exists( "{$dir}/index.html" ) ) {
 			wfSuppressWarnings();
@@ -527,6 +504,7 @@ class FSFileBackend extends FileBackend {
 /**
  * Wrapper around RecursiveDirectoryIterator that catches
  * exception or does any custom behavoir that we may want.
+ * Do not use this class from places outside FSFileBackend.
  *
  * @ingroup FileBackend
  */

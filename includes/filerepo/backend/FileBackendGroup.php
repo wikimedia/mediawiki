@@ -9,6 +9,7 @@
  * Class to handle file backend registration
  *
  * @ingroup FileBackend
+ * @since 1.19
  */
 class FileBackendGroup {
 	protected static $instance = null;

@@ -4,6 +4,7 @@
  * 
  * @ingroup LockManager
  * @author Aaron Schulz
+ * @since 1.19
  */
 class LockManagerGroup {
 	protected static $instance = null;

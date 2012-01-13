@@ -11,6 +11,7 @@
  * A majority of peers must agree for a lock to be acquired.
  *
  * @ingroup LockManager
+ * @since 1.19
  */
 class LSLockManager extends LockManager {
 	/** @var Array Mapping of lock types to the type actually used */
