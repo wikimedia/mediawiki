@@ -301,6 +301,7 @@ class Revision {
 	/**
 	 * Return the value of a select() JOIN conds array for the user table.
 	 * This will get user table rows for logged-in users.
+	 * @since 1.19
 	 * @return Array
 	 */
 	public static function userJoinCond() {
@@ -310,6 +311,7 @@ class Revision {
 	/**
 	 * Return the value of a select() page conds array for the paeg table.
 	 * This will assure that the revision(s) are not orphaned from live pages.
+	 * @since 1.19
 	 * @return Array
 	 */
 	public static function pageJoinCond() {
