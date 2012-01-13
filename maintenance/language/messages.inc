@@ -3599,6 +3599,7 @@ $wgMessageStructure = array(
 		'api-error-duplicate-archive-popup-title',
 		'api-error-duplicate-popup-title',
 		'api-error-empty-file',
+		'api-error-emptypage',
 		'api-error-fetchfileerror',
 		'api-error-file-too-large',
 		'api-error-filename-tooshort',
