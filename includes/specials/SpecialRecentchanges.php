@@ -806,12 +806,12 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		// show/hide links
 		$showhide = array( wfMsg( 'show' ), wfMsg( 'hide' ) );
 		$filters = array(
-			'hideminor' 	=> 'rcshowhideminor',
-			'hidebots'  	=> 'rcshowhidebots',
-			'hideanons' 	=> 'rcshowhideanons',
-			'hideliu'		=> 'rcshowhideliu',
+			'hideminor' => 'rcshowhideminor',
+			'hidebots'  => 'rcshowhidebots',
+			'hideanons' => 'rcshowhideanons',
+			'hideliu'   => 'rcshowhideliu',
 			'hidepatrolled' => 'rcshowhidepatr',
-			'hidemyself'	=> 'rcshowhidemine'
+			'hidemyself' => 'rcshowhidemine'
 		);
 		foreach ( $this->customFilters as $key => $params ) {
 			$filters[$key] = $params['msg'];
