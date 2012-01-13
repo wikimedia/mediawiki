@@ -113,8 +113,9 @@ class MWDebug {
 
 		// Check to see if there was already a deprecation notice, so not to
 		// get a duplicate warning
-		if ( count( self::$log ) ) {
-			$lastLog = self::$log[ count( self::$log ) - 1 ];
+		$logCount = count( self::$log );
+		if ( $logCount ) {
+			$lastLog = self::$log[ $logCount - 1 ];
 			if ( $lastLog['type'] == 'deprecated' && $lastLog['caller'] == wfGetCaller( $callerOffset + 1 ) ) {
 				return;
 			}
