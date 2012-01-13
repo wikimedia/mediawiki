@@ -347,7 +347,11 @@ class ApiEditPage extends ApiBase {
 				$this->dieUsageMsg( $errors[0] ); // TODO: Add new errors to message map
 				break;
 			default:
-				$this->dieUsageMsg( array( 'unknownerror', $status->value ) );
+				if ( is_string( $status->value ) && strlen( $status->value ) ) {
+					$this->dieUsage( "An unknown return value was returned by Editpage. The code returned was \"{$status->value}\"" , $status->value );
+				} else {
+					$this->dieUsageMsg( array( 'unknownerror', $status->value ) );
+				}
 		}
 		$apiResult->addValue( null, $this->getModuleName(), $r );
 	}
