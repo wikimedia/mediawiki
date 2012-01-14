@@ -498,12 +498,6 @@ $wgTitle = null;
 
 $wgDeferredUpdateList = array();
 
-// We need to check for safe_mode, because mail() will throw an E_NOTICE
-// on additional parameters
-if( !is_null($wgAdditionalMailParams) && wfIniGetBool('safe_mode') ) {
-	$wgAdditionalMailParams = null;
-}
-
 wfProfileOut( $fname . '-globals' );
 wfProfileIn( $fname . '-extensions' );
 
