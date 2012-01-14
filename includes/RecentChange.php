@@ -55,6 +55,7 @@ class RecentChange {
 	 */
 	var $mMovedToTitle = false;
 	var $numberofWatchingusers = 0 ; # Dummy to prevent error message in SpecialRecentchangeslinked
+	var $notificationtimestamp;
 
 	# Factory methods
 
@@ -69,7 +70,7 @@ class RecentChange {
 	}
 
 	/**
-	 * @staticw
+	 * @param $row
 	 * @return RecentChange
 	 */
 	public static function newFromCurRow( $row ) {
@@ -104,9 +105,7 @@ class RecentChange {
 	 * @param $fname Mixed: override the method name in profiling/logs
 	 * @return RecentChange
 	 */
-	public static function newFromConds( $conds, $fname = false ) {
-		if( $fname === false )
-			$fname = __METHOD__;
+	public static function newFromConds( $conds, $fname = __METHOD__ ) {
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select(
 			'recentchanges',
@@ -124,10 +123,16 @@ class RecentChange {
 
 	# Accessors
 
+	/**
+	 * @param $attribs array
+	 */
 	public function setAttribs( $attribs ) {
 		$this->mAttribs = $attribs;
 	}
 
+	/**
+	 * @param $extra array
+	 */
 	public function setExtra( $extra ) {
 		$this->mExtra = $extra;
 	}
@@ -442,7 +447,9 @@ class RecentChange {
 		global $wgRequest;
 		if( !$ip ) {
 			$ip = $wgRequest->getIP();
-			if( !$ip ) $ip = '';
+			if( !$ip ) {
+				$ip = '';
+			}
 		}
 
 		$rc = new RecentChange;
