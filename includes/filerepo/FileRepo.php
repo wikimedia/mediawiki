@@ -1083,18 +1083,14 @@ class FileRepo {
 			}
 			$this->initDeletedDir( $archiveDir );
 
-			if ( $backend->fileExists( array( 'src' => $archivePath ) ) ) {
-				$operations[] = array(
-					'op'  => 'delete',
-					'src' => $srcPath
-				);
-			} else {
-				$operations[] = array(
-					'op'  => 'move',
-					'src' => $srcPath,
-					'dst' => $archivePath
-				);
-			}
+			$operations[] = array(
+				'op'            => 'move',
+				'src'           => $srcPath,
+				'dst'           => $archivePath,
+				// We may have 2+ identical files being deleted,
+				// all of which will map to the same destination file
+				'overwriteSame' => true
+			);
 		}
 
 		// Move the files by execute the operations for each pair.
