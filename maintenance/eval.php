@@ -31,69 +31,54 @@
  * @ingroup Maintenance
  */
 
-require_once( dirname( __FILE__ ) . '/Maintenance.php' );
+$optionsWithArgs = array( 'd' );
 
-class MwEval extends Maintenance {
-	public function __construct() {
-		parent::__construct();
-		$this->mDescription = "This script lets a command-line user start up the wiki engine and then poke about by issuing PHP commands directly.";
-		$this->addOption( 'd', 'Debug level' );
+/** */
+require_once( dirname( __FILE__ ) . "/commandLine.inc" );
+
+if ( isset( $options['d'] ) ) {
+	$d = $options['d'];
+	if ( $d > 0 ) {
+		$wgDebugLogFile = '/dev/stdout';
 	}
-
-	public function execute() {
-		if ( $this->hasOption( 'd' ) ) {
-			$d = $this->getOption( 'd' );
-
-			if ( $d > 0 ) {
-				global $wgDebugLogFile;
-				$wgDebugLogFile = '/dev/stdout';
-			}
-			if ( $d > 1 ) {
-				$lb = wfGetLB();
-				$serverCount = $lb->getServerCount();
-				for ( $i = 0; $i < $serverCount; $i++ ) {
-					$server = $lb->getServerInfo( $i );
-					$server['flags'] |= DBO_DEBUG;
-					$lb->setServerInfo( $i, $server );
-				}
-			}
-			if ( $d > 2 ) {
-				global $wgDebugFunctionEntry;
-				$wgDebugFunctionEntry = true;
-			}
+	if ( $d > 1 ) {
+		$lb = wfGetLB();
+		$serverCount = $lb->getServerCount(); 
+		for ( $i = 0; $i < $serverCount; $i++ ) {
+			$server = $lb->getServerInfo( $i );
+			$server['flags'] |= DBO_DEBUG;
+			$lb->setServerInfo( $i, $server );
 		}
-
-		$useReadline = function_exists( 'readline_add_history' )
-				&& Maintenance::posix_isatty( 0 /*STDIN*/ );
-
-		if ( $useReadline ) {
-			global $IP;
-			$historyFile = isset( $_ENV['HOME'] ) ?
-					"{$_ENV['HOME']}/.mweval_history" : "$IP/maintenance/.mweval_history";
-			readline_read_history( $historyFile );
-		}
-
-		while ( ( $line = Maintenance::readconsole() ) !== false ) {
-			if ( $useReadline ) {
-				readline_add_history( $line );
-				readline_write_history( $historyFile );
-			}
-			$val = eval( $line . ";" );
-			if ( wfIsHipHop() || is_null( $val ) ) {
-				$this->output( "\n" );
-				echo "\n";
-			} elseif ( is_string( $val ) || is_numeric( $val ) ) {
-				$this->output( "$val\n" );
-			} else {
-				$var = '';
-				var_export( $val, $var );
-				$this->output( "$var" );
-			}
-		}
-
-		$this->output( "\n" );
+	}
+	if ( $d > 2 ) {
+		$wgDebugFunctionEntry = true;
 	}
 }
 
-$maintClass = "MwEval";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+$useReadline = function_exists( 'readline_add_history' )
+			&& Maintenance::posix_isatty( 0 /*STDIN*/ );
+
+if ( $useReadline ) {
+	$historyFile = isset( $_ENV['HOME'] ) ?
+		"{$_ENV['HOME']}/.mweval_history" : "$IP/maintenance/.mweval_history";
+	readline_read_history( $historyFile );
+}
+
+while ( ( $line = Maintenance::readconsole() ) !== false ) {
+	if ( $useReadline ) {
+		readline_add_history( $line );
+		readline_write_history( $historyFile );
+	}
+	$val = eval( $line . ";" );
+	if ( wfIsHipHop() || is_null( $val ) ) {
+		echo "\n";
+	} elseif ( is_string( $val ) || is_numeric( $val ) ) {
+		echo "$val\n";
+	} else {
+		var_dump( $val );
+	}
+}
+
+print "\n";
+
+
