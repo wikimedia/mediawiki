@@ -278,7 +278,7 @@ class LSLockManager extends LockManager {
 	 */
 	protected function getBucketFromKey( $path ) {
 		$prefix = substr( sha1( $path ), 0, 2 ); // first 2 hex chars (8 bits)
-		return intval( base_convert( $prefix, 16, 10 ) ) % count( $this->dbsByBucket );
+		return intval( base_convert( $prefix, 16, 10 ) ) % count( $this->srvsByBucket );
 	}
 
 	/**
