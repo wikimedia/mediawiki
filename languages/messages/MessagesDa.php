@@ -229,6 +229,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Send mig kopier af e-mails som jeg sender til andre brugere',
 'tog-diffonly'                => 'Vis ved versionssammenligninger kun forskelle, ikke hele siden',
 'tog-showhiddencats'          => 'Vis skjulte kategorier',
+'tog-noconvertlink'           => 'Slå konvertering af sidetitler fra',
 'tog-norollbackdiff'          => 'Vis ikke forskel efter tilbagerulning',
 
 'underline-always'  => 'Altid',
@@ -1651,10 +1652,13 @@ Informer venligst en [[Special:ListUsers/sysop|systemadministrator]].',
 'backend-fail-create'        => 'Kunne ikke oprette filen $1.',
 
 # Lock manager
+'lockmanager-notlocked'        => 'Kunne ikke låse "$1" op, da den ikke er låst.',
 'lockmanager-fail-closelock'   => 'Kunne ikke lukke låsefilen for "$1".',
 'lockmanager-fail-deletelock'  => 'Kunne ikke slette låsefilen for "$1".',
 'lockmanager-fail-openlock'    => 'Kunne ikke åbne låsefilen for "$1".',
 'lockmanager-fail-releaselock' => 'Kunne ikke frigive låsen for "$1".',
+'lockmanager-fail-db-release'  => 'Kunne ikke frigive lås til databasen $1.',
+'lockmanager-fail-svr-release' => 'Kunne ikke frigive låse til serveren $1.',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'En fejl opstod under åbning af filen til ZIP kontrol.',
@@ -3102,6 +3106,7 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'exif-compression-2' => 'CCITT Gruppe 3 1-dimensionel modificeret Huffman run length encoding',
 'exif-compression-3' => 'CCITT Gruppe 3 fax-kodning',
 'exif-compression-4' => 'CCITT Gruppe 4 fax-kodning',
+'exif-compression-6' => 'JPEG (gammel)',
 
 'exif-copyrighted-true'  => 'Ophavsretligt beskyttet',
 'exif-copyrighted-false' => 'Offentlig ejendom',
@@ -3676,6 +3681,7 @@ Billeder vises i fuld opløsning, og andre mediatyper vil blive aktiveret med de
 'api-error-unknown-code'                  => 'Ukendt fejl: "$1"',
 'api-error-unknown-error'                 => 'Intern fejl: noget gik galt under forsøget på at lægge din fil op.',
 'api-error-unknown-warning'               => 'Ukendt advarsel: $1',
+'api-error-unknownerror'                  => 'Ukendt fejl: "$1".',
 'api-error-uploaddisabled'                => 'Oplægning af filer er slået fra på denne wiki.',
 'api-error-verification-error'            => 'Denne fil kan være beskadiget, eller den har måske en forkert filendelse.',
 

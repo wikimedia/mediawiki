@@ -1856,6 +1856,8 @@ Ako se problem ne reši, kontaktirajte [[Special:ListUsers/sysop|administratora]
 'backend-fail-create'        => 'Ne mogu da napravim datoteku $1.',
 'backend-fail-readonly'      => 'Na osnovu „$1“ trenutno ne može da se piše. Navedeni razlog glasi: „$2“',
 'backend-fail-synced'        => 'Datoteka „$1“ je u nedoslednom stanju između unutrašnjih delova',
+'backend-fail-connect'       => 'Ne mogu da se povežem s pozadinom datoteke „$1“.',
+'backend-fail-internal'      => 'Došlo je do nepoznate greške u pozadini datoteke „$1“.',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Ne mogu da otključam „$1“ jer nije zaključan.',
@@ -4154,6 +4156,7 @@ U suprotnom, poslužite se jednostavnim obrascem ispod. Vaš komentar će stajat
 'api-error-duplicate-archive-popup-title' => '{{PLURAL:$1|Dvojna datoteka koja je već obrisana|Dvojne datoteke koje su već obrisane}}',
 'api-error-duplicate-popup-title'         => '{{PLURAL:$1|Dvojna datoteka|Dvojne datoteke}}',
 'api-error-empty-file'                    => 'Datoteka koju ste poslali je prazna.',
+'api-error-emptypage'                     => 'Stvaranje novih praznih stranica nije dozvoljeno.',
 'api-error-fetchfileerror'                => 'Unutrašnja greška: došlo je do problema pri dobavljanju datoteke.',
 'api-error-file-too-large'                => 'Datoteka koju ste poslali je prevelika.',
 'api-error-filename-tooshort'             => 'Naziv datoteke je prekratak.',
@@ -4178,6 +4181,7 @@ U suprotnom, poslužite se jednostavnim obrascem ispod. Vaš komentar će stajat
 'api-error-unknown-code'                  => 'Nepoznata greška: „$1“',
 'api-error-unknown-error'                 => 'Unutrašnja greška: došlo je do greške pri otpremanju datoteke.',
 'api-error-unknown-warning'               => 'Nepoznato upozorenje: $1',
+'api-error-unknownerror'                  => 'Nepoznata greška: „$1“.',
 'api-error-uploaddisabled'                => 'Otpremanje je onemogućeno na ovom vikiju.',
 'api-error-verification-error'            => 'Ova datoteka je možda oštećena ili ima pogrešnu ekstenziju.',
 

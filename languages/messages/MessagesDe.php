@@ -3977,6 +3977,7 @@ Anderenfalls kannst du auch das untenstehende einfache Formular nutzen. Dein Kom
 'api-error-unknown-code'                  => 'Unbekannter Fehler: „$1“',
 'api-error-unknown-error'                 => 'Interner Fehler: Ein unbekannter Fehler ist beim Hochladen der Datei aufgetreten.',
 'api-error-unknown-warning'               => 'Unbekannte Warnung: $1',
+'api-error-unknownerror'                  => 'Unbekannter Fehler: „$1“',
 'api-error-uploaddisabled'                => 'Das Hochladen ist in diesem Wiki deaktiviert.',
 'api-error-verification-error'            => 'Die hochzuladende Datei ist entweder fehlerhaft oder hat keine Dateinamenserweiterung.',
 

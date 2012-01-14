@@ -3957,6 +3957,7 @@ Sinon, vous pouvez utiliser le formulaire simplifié ci-dessous. Votre commentai
 'api-error-duplicate-archive-popup-title' => 'Dupliquer {{PLURAL:$1|le fichier|les fichiers}} qui {{PLURAL:$1|a déjà été supprimé|ont déjà été supprimés}}',
 'api-error-duplicate-popup-title'         => '{{PLURAL:$1|fichier|fichiers}} en double',
 'api-error-empty-file'                    => 'Le fichier que vous avez soumis était vide.',
+'api-error-emptypage'                     => "Création de pages vide n'est pas autorisée.",
 'api-error-fetchfileerror'                => 'Erreur interne : Quelque chose s’est mal passé lors de la récupération du fichier.',
 'api-error-file-too-large'                => 'Le fichier que vous avez soumis était trop grand.',
 'api-error-filename-tooshort'             => 'Le nom du fichier est trop court.',
@@ -3981,6 +3982,7 @@ Sinon, vous pouvez utiliser le formulaire simplifié ci-dessous. Votre commentai
 'api-error-unknown-code'                  => 'Erreur inconnue : « $1 »',
 'api-error-unknown-error'                 => 'Erreur interne : Quelque chose a mal tourné lors du versement de votre fichier.',
 'api-error-unknown-warning'               => 'Avertissement inconnu : $1',
+'api-error-unknownerror'                  => 'Erreur inconnue : « $1 ».',
 'api-error-uploaddisabled'                => 'Le versement est désactivé sur ce wiki.',
 'api-error-verification-error'            => 'Ce fichier peut être corrompu, ou son extension est incorrecte.',
 

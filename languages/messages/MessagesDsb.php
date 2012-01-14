@@ -3668,6 +3668,7 @@ Hować móžoš slědujucy jadnory formular wužywaś. Twój komentar pśidajo s
 'api-error-unknown-code'                  => 'Njeznata zmólka: "$1"',
 'api-error-unknown-error'                 => 'Nutśikowna zmólka: Pśi nagrawanju twójeje dataje jo se něco njeraźiło.',
 'api-error-unknown-warning'               => 'Njeznate warnowanje: $1',
+'api-error-unknownerror'                  => 'Njeznata zmólka: "$1".',
 'api-error-uploaddisabled'                => 'Nagraśa su na toś tom wikiju znjemóžnjone.',
 'api-error-verification-error'            => 'Toś ta dataja by mógła wobkškóźona byś abo wopacnu kóńcowku měś.',
 

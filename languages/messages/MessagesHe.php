@@ -4018,6 +4018,7 @@ $5
 'api-error-duplicate-archive-popup-title' => '{{PLURAL:$1|קובץ כפול שכבר נמחק|קבצים כפולים שכבר נמחקו}}',
 'api-error-duplicate-popup-title'         => '{{PLURAL:$1|קובץ כפול|קבצים כפולים}}',
 'api-error-empty-file'                    => 'הקובץ ששלחתם היה ריק.',
+'api-error-emptypage'                     => 'יצירת דפים חדשים ריקים אינה אפשרית.',
 'api-error-fetchfileerror'                => 'שגיאה פנימית: משהו השתבש בזמן אחזור הקובץ.',
 'api-error-file-too-large'                => 'הקובץ ששלחתם היה גדול מדי.',
 'api-error-filename-tooshort'             => 'שם הקובץ קצר מדי.',
@@ -4042,6 +4043,7 @@ $5
 'api-error-unknown-code'                  => 'שגיאה בלתי ידועה: "$1"',
 'api-error-unknown-error'                 => 'שגיאה פנימית: משהו השתבש בעת ניסיון להעלות את הקובץ שלכם.',
 'api-error-unknown-warning'               => 'אזהרה לא ידועה: $1',
+'api-error-unknownerror'                  => 'שגיאה לא ידועה: "$1".',
 'api-error-uploaddisabled'                => 'ההעלאה מבוטלת באתר הוויקי הזה.',
 'api-error-verification-error'            => 'קובץ זה עשוי להיות פגום או בעל סיומת שגויה.',
 

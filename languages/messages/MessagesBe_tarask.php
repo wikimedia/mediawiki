@@ -3805,7 +3805,7 @@ MediaWiki распаўсюджваецца з надзеяй, што будзе 
 'api-error-duplicate-archive-popup-title' => 'Дублікаты {{PLURAL:$1|файла, які ўжо быў выдалены|файлаў, якія ўжо былі выдаленыя}}',
 'api-error-duplicate-popup-title'         => '{{PLURAL:$1|Ідэнтычны файл|Ідэнтычныя файлы}}',
 'api-error-empty-file'                    => 'Дасланы Вамі файл быў пусты.',
-'api-error-emptypage'                     => 'Стварэньне новых парожніх старонак забаронена.',
+'api-error-emptypage'                     => 'Стварэньне новых пустых старонак забаронена.',
 'api-error-fetchfileerror'                => 'Унутраная памылка: падчас атрыманьня файла штосьці здарылася.',
 'api-error-file-too-large'                => 'Дасланы Вамі файл занадта вялікі.',
 'api-error-filename-tooshort'             => 'Назва файла занадта кароткая.',

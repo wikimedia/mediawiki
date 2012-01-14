@@ -1754,6 +1754,8 @@ Se o problema persiste, póñase en contacto cun [[Special:ListUsers/sysop|admin
 'backend-fail-create'        => 'Non se puido crear o ficheiro "$1".',
 'backend-fail-readonly'      => 'Nestes intres, a instalación "$1" está en modo de só lectura. A razón dada é: "$2"',
 'backend-fail-synced'        => 'O ficheiro "$1" está nun estado inconsistente dentro da instalación interna',
+'backend-fail-connect'       => 'Non se puido conectar co ficheiro da instalación "$1".',
+'backend-fail-internal'      => 'Houbo un erro descoñecido no ficheiro da instalación "$1".',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Non se puido desbloquear "$1". Non está bloqueado.',
@@ -3848,6 +3850,7 @@ En caso contrario, pode empregar o formulario sinxelo inferior. O seu comentario
 'api-error-duplicate-archive-popup-title' => '{{PLURAL:$1|Ficheiro duplicado|Ficheiros duplicados}} que xa {{PLURAL:$1|foi borrado|foron borrados}}',
 'api-error-duplicate-popup-title'         => '{{PLURAL:$1|Ficheiro duplicado|Ficheiros duplicados}}',
 'api-error-empty-file'                    => 'O ficheiro que enviou estaba baleiro.',
+'api-error-emptypage'                     => 'Non está permitida a creación de páxinas novas que estean baleiras.',
 'api-error-fetchfileerror'                => 'Erro interno: Houbo un problema ao buscar o ficheiro.',
 'api-error-file-too-large'                => 'O ficheiro que enviou era grande de máis.',
 'api-error-filename-tooshort'             => 'O nome do ficheiro é curto de máis.',
@@ -3872,6 +3875,7 @@ En caso contrario, pode empregar o formulario sinxelo inferior. O seu comentario
 'api-error-unknown-code'                  => 'Erro descoñecido: "$1"',
 'api-error-unknown-error'                 => 'Erro interno: Houbo un problema ao intentar cargar o ficheiro.',
 'api-error-unknown-warning'               => 'Advertencia descoñecida: $1',
+'api-error-unknownerror'                  => 'Erro descoñecido: "$1".',
 'api-error-uploaddisabled'                => 'As cargas están desactivadas neste wiki.',
 'api-error-verification-error'            => 'Este ficheiro podería estar corrupto ou ter unha extensión incorrecta.',
 

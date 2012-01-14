@@ -3938,6 +3938,7 @@ Jinak můžete využít jednoduchý formulář níže. Váš komentář bude př
 'api-error-duplicate-archive-popup-title' => 'Duplicitní {{PLURAL:$1|soubor, který byl|soubory, které byly}} smazány',
 'api-error-duplicate-popup-title'         => 'Duplicitní {{PLURAL:$1|soubor|soubory}}',
 'api-error-empty-file'                    => 'Načtený soubor je prázdný.',
+'api-error-emptypage'                     => 'Zakládání prázdných stránek není dovoleno.',
 'api-error-fetchfileerror'                => 'Vnitřní chyba: došlo k chybě při stahování souboru.',
 'api-error-file-too-large'                => 'Načtený soubor je příliš velký.',
 'api-error-filename-tooshort'             => 'Název souboru je příliš krátký.',
@@ -3962,6 +3963,7 @@ Jinak můžete využít jednoduchý formulář níže. Váš komentář bude př
 'api-error-unknown-code'                  => 'Neznámá chyba: „$1“',
 'api-error-unknown-error'                 => 'Vnitřní chyba: došlo k chybě při pokusu o načtení souboru.',
 'api-error-unknown-warning'               => 'Neznámé varování: $1',
+'api-error-unknownerror'                  => 'Neznámá chyba: „$1“.',
 'api-error-uploaddisabled'                => 'Načítání souborů je na této wiki vypnuto.',
 'api-error-verification-error'            => 'Soubor je možná poškozen nebo má špatnou příponu.',
 

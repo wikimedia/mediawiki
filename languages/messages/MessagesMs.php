@@ -3755,6 +3755,7 @@ Ataupun, anda boleh menggunakan borang yang mudah di bawah. Ulasan anda akan dic
 'api-error-duplicate-archive-popup-title' => '{{PLURAL:$1|Fail|Fail-fail}} pendua yang sudah dihapuskan',
 'api-error-duplicate-popup-title'         => '{{PLURAL:$1|Fail|Fail-fail}} pendua',
 'api-error-empty-file'                    => 'Fail yang anda serahkan adalah kosong.',
+'api-error-emptypage'                     => 'Anda tidak dibenarkan membuat laman baru yang kosong.',
 'api-error-fetchfileerror'                => 'Ralat dalaman: ada malasah ketika mengambil fail itu.',
 'api-error-file-too-large'                => 'Fail yang anda serahkan adalah terlalu besar.',
 'api-error-filename-tooshort'             => 'Nama fail ini terlalu pendek.',
@@ -3779,6 +3780,7 @@ Ataupun, anda boleh menggunakan borang yang mudah di bawah. Ulasan anda akan dic
 'api-error-unknown-code'                  => 'Ralat tidak diketahui: "$1"',
 'api-error-unknown-error'                 => 'Ralat dalaman: ada masalah apabila cuba memuat naik fail anda.',
 'api-error-unknown-warning'               => 'Amaran tidak diketahui: $1',
+'api-error-unknownerror'                  => 'Ralat tidak dikenali: "$1".',
 'api-error-uploaddisabled'                => 'Ciri muat naik dimatikan di wiki ini.',
 'api-error-verification-error'            => 'Fail ini mungkin tercemar atau tersalah sambungannya.',
 
