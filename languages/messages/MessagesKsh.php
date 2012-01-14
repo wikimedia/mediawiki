@@ -576,8 +576,10 @@ wat en Üvverschrefte nit erlaub es.
 Et künnt ussinn, wie ene InterWikiLink,
 dat jeiht ävver nit.
 Muss De repareere.',
-'perfcached'           => 'De Daate heenoh kumme usem Zweschespeicher (Cache) un künnte nit mieh janz de allerneuste sin.',
-'perfcachedts'         => 'De Daate heenoh kumme usem Zweschespeicher (Cache) un woodte aam $2 öm $3 opjenumme. Se künnte nit janz de allerneuste sin.',
+'perfcached'           => 'De Daate heenoh kumme usem Zweschespeicher (Cache) un künnte nit mieh janz de allerneuste sin.
+{{PLURAL:$1|Bloß ein Antwoot es|Nit mieh wi $1 Antwoote sin|Kein Antwoot es} doh ze han.',
+'perfcachedts'         => 'De Daate heenoh kumme usem Zweschespeicher (Cache) un woodte aam $2 öm $3 opjenumme. Se künnte nit janz de allerneuste sin.
+{{PLURAL:$4|Bloß ein Antwoot es|Nit mieh wi $4 Antwoote sind|Kein Antwoot es}} doh ze han.',
 'querypage-no-updates' => "'''Heh die Sigg weed nit mieh op ene neue Stand jebraat.'''",
 'wrong_wfQuery_params' => 'Verkihrte Parameter för: <strong><code>wfQuery()</code></strong><br />
 De Funktion es: „<code>$1</code>“<br />
@@ -1656,6 +1658,7 @@ Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <cod
 'rc_categories'                     => 'Nor de Saachjruppe (met „|“ dozwesche):',
 'rc_categories_any'                 => 'All, wat mer han',
 'rc-change-size'                    => '$1 {{PLURAL:$1|Byte|Bytes}}',
+'rc-change-size-new'                => '$1 {{PLURAL:$1|Byte|Bytes|Bytes}} noh dem Ändere',
 'newsectionsummary'                 => 'Neu Avschnet /* $1 */',
 'rc-enhanced-expand'                => 'Einzelheite zeije (bruch JavaSkripp)',
 'rc-enhanced-hide'                  => 'Einzelheite versteiche',
@@ -1840,6 +1843,7 @@ Wann et nit flupp, verzäll et enem [[Special:ListUsers/sysop|Wiki-Köbes]].',
 'upload-http-error'         => 'Ene <i lang="en">HTTP</i>-Fäähler es opjetrodde: $1',
 
 # File backend
+'backend-fail-stream'        => 'Mer kunnte di Dattei $1 nit övverdraare.',
 'backend-fail-backup'        => 'Mer kunnte kein Sescherongskopih vun dä Dattei $1 maache.',
 'backend-fail-notexists'     => 'En Dattei $1 jidd et nit.',
 'backend-fail-hashes'        => 'Mer kunnte kein Pröfsomme vun dä Datteje träcke zom verjliesche.',
@@ -4060,6 +4064,7 @@ Wat De doh enjiß, kütt met Dingem Metmaachername un Dingem Brauser op die Sigg
 'api-error-unknown-code'                  => 'Nit bekannte Fähler: „$1“',
 'api-error-unknown-error'                 => 'Fähler: Mer han et Huhlaade versöhk, ävver et es jät donävve jejange.',
 'api-error-unknown-warning'               => 'En onbikannte Warnong: $1',
+'api-error-unknownerror'                  => 'Ene onbikannte Fähler: „$1“',
 'api-error-uploaddisabled'                => 'Et Huhlaade es en heh däm Wiki nit zohjelohße.',
 'api-error-verification-error'            => 'Di Dattei künnt kappott sin, udder en verkehte Endong em Naame han.',
 

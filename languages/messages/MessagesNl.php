@@ -4060,6 +4060,7 @@ Anders kunt u ook het eenvoudige formulier hieronder gebruiken. Uw commentaar za
 'api-error-unknown-code'                  => 'Interne fout: "$1"',
 'api-error-unknown-error'                 => 'Interne fout: er is iets misgegaan tijdens het uploaden van uw bestand.',
 'api-error-unknown-warning'               => 'Onbekende waarschuwing: $1',
+'api-error-unknownerror'                  => 'Onbekende fout: "$1"',
 'api-error-uploaddisabled'                => 'Uploaden is niet mogelijk in deze wiki.',
 'api-error-verification-error'            => 'Dit bestand is mogelijk beschadigd of heeft een onjuiste extensie.',
 

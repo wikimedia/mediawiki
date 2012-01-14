@@ -3824,6 +3824,7 @@ Si non, tu pote usar le formulario facile hic infra. Tu commento essera addite a
 'api-error-unknown-code'                  => 'Error incognite: "$1"',
 'api-error-unknown-error'                 => 'Error interne: qualcosa errava durante le tentativa de incargar le file.',
 'api-error-unknown-warning'               => 'Advertimento incognite: $1',
+'api-error-unknownerror'                  => 'Error incognite: "$1".',
 'api-error-uploaddisabled'                => 'Le incargamento es disactivate in iste wiki.',
 'api-error-verification-error'            => 'Le file pote esser corrumpite o su nomine pote haber un extension errate.',
 

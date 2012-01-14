@@ -3657,6 +3657,7 @@ Hewak móžeš slědowacy jednory formular wužiwać. Twój komentar přida so s
 'api-error-unknown-code'                  => 'Njeznaty zmylk: "$1"',
 'api-error-unknown-error'                 => 'Nutřkowny zmylk: Při nahrawanju twojeje dataje je so něšto nimokuliło.',
 'api-error-unknown-warning'               => 'Njeznate warnowanje: $1',
+'api-error-unknownerror'                  => 'Njeznaty zmylk: "$1".',
 'api-error-uploaddisabled'                => 'Nahraća su na tutym wikiju znjemóžnjene.',
 'api-error-verification-error'            => 'Tuta dataja móhła wobkškodźena być abo wopačny sufiks měć.',
 

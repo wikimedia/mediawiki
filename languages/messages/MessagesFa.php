@@ -18,6 +18,7 @@
  * @author Ladsgroup
  * @author Leyth
  * @author Mardetanha
+ * @author Mehran
  * @author MehranVB
  * @author Meisam
  * @author Meno25
@@ -2660,7 +2661,7 @@ $1',
 'mycontris'           => 'مشارکت‌های من',
 'contribsub2'         => 'برای $1 ($2)',
 'nocontribs'          => 'هیچ تغییری با این مشخصات یافت نشد.',
-'uctop'               => ' (بالا)',
+'uctop'               => ' (آخرین نسخه)',
 'month'               => 'در این ماه (و پیش از آن):',
 'year'                => 'در این سال (و پیش از آن):',
 

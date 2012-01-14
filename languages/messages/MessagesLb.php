@@ -3653,6 +3653,7 @@ Den ugefrote Fichier gëtt direkt gewise respektiv mat enger verbonner Applikati
 'api-error-duplicate-archive-popup-title' => '{{PLURAL:$1|Duebele Fichier, dee scho geläscht gouf|Duebel Fichieren, déi scho geläscht goufen}}',
 'api-error-duplicate-popup-title'         => '{{PLURAL:$1|Duebele Fichier|Duebel Fichieren}}',
 'api-error-empty-file'                    => 'De Fichier deen Dir geschéckt hutt war eidel.',
+'api-error-emptypage'                     => 'Et ass net erlaabt nei, eidel Säiten unzeleeën.',
 'api-error-fetchfileerror'                => 'Interne Feeler: beim Opruffe vum Fichier huet eppes net fonctionnéiert.',
 'api-error-file-too-large'                => 'De Fichier deen Dir geschéckt hutt war ze grouss.',
 'api-error-filename-tooshort'             => 'Den Numm vum Fichier ass ze kuerz.',
@@ -3677,6 +3678,7 @@ Den ugefrote Fichier gëtt direkt gewise respektiv mat enger verbonner Applikati
 'api-error-unknown-code'                  => 'Onbekannte Feeler: "$1"',
 'api-error-unknown-error'                 => 'Interne Feeler: beim Versuch fir Äre Fichier eropzelueden ass eppes schif gaang',
 'api-error-unknown-warning'               => 'Onbekannte Warnung: $1',
+'api-error-unknownerror'                  => 'Onbekannte Feeler: "$1".',
 'api-error-uploaddisabled'                => "D'Eroplueden ass op dëser Wiki ausgeschalt.",
 'api-error-verification-error'            => 'Dëse Fichier kéint korrupt sinn, oder en huet eng falsch Erweiderung.',
 
