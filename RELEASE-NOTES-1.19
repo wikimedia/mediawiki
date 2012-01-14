@@ -229,6 +229,8 @@ production.
 * (bug 33703) Common border-bottom color for <abbr> should inherit default (text) color
 
 === API changes in 1.19 ===
+* Made action=edit less likely to return "unknownerror", by returning the actual error
+  message (which may have come from a hook call or similar)
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.
 * (bug 29748) Add API search prefix support.
 * (bug 29684) Set forgotten parameter types in ApiQueryIWLinks.
