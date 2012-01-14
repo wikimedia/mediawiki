@@ -55,6 +55,7 @@ class SpecialExport extends SpecialPage {
 			$request->getIntOrNull( 'pagelink-depth' )
 		);
 		$nsindex = '';
+		$exportall = false;
 
 		if ( $request->getCheck( 'addcat' ) ) {
 			$page = $request->getText( 'pages' );
