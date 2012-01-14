@@ -368,7 +368,7 @@ class SwiftFileBackend extends FileBackend {
 		}
 
 		// (c) Delete the container if empty
-		if ( $contObj->count == 0 ) {
+		if ( $contObj->object_count == 0 ) {
 			try {
 				$this->deleteContainer( $fullCont );
 			} catch ( NoSuchContainerException $e ) {
