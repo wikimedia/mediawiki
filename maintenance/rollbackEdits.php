@@ -62,10 +62,12 @@ class RollbackEdits extends Maintenance {
 			return;
 		}
 
+		$doer = User::newFromName( 'Maintenance script' );
+
 		foreach ( $titles as $t ) {
-			$a = new Article( $t );
-			$this->output( 'Processing ' . $t->getPrefixedText() . '...' );
-			if ( !$a->commitRollback( $user, $summary, $bot, $results ) ) {
+			$page = WikiPage::factory( $t );
+			$this->output( 'Processing ' . $t->getPrefixedText() . '... ' );
+			if ( !$page->commitRollback( $user, $summary, $bot, $results, $doer ) ) {
 				$this->output( "done\n" );
 			} else {
 				$this->output( "failed\n" );
