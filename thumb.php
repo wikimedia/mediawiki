@@ -46,12 +46,18 @@ function wfThumbHandleRequest() {
  * @return void
  */
 function wfThumbHandle404() {
-	# lighttpd puts the original request in REQUEST_URI, while
-	# sjs sets that to the 404 handler, and puts the original
-	# request in REDIRECT_URL.
+	# lighttpd puts the original request in REQUEST_URI, while sjs sets
+	# that to the 404 handler, and puts the original request in REDIRECT_URL.
 	if ( isset( $_SERVER['REDIRECT_URL'] ) ) {
-		# The URL is un-encoded, so put it back how it was.
+		# The URL is un-encoded, so put it back how it was
 		$uri = str_replace( "%2F", "/", urlencode( $_SERVER['REDIRECT_URL'] ) );
+		# Just get the URI path (REDIRECT_URL is either a full URL or a path)
+		if ( $uri[0] !== '/' ) {
+			$bits = wfParseUrl( $uri );
+			if ( $bits && isset( $bits['path'] ) ) {
+				$uri = $bits['path'];
+			}
+		}
 	} else {
 		$uri = $_SERVER['REQUEST_URI'];
 	}
@@ -215,18 +221,23 @@ function wfStreamThumb( array $params ) {
  * Extract the required params for thumb.php from the thumbnail request URI.
  * At least 'width' and 'f' should be set if the result is an array.
  *
- * @param $uri String Thumbnail request URI
+ * @param $uri String Thumbnail request URI path
  * @return Array|null associative params array or null
  */
 function wfExtractThumbParams( $uri ) {
 	$repo = RepoGroup::singleton()->getLocalRepo();
+
+	$bits = wfParseUrl( $repo->getZoneUrl( 'thumb' ) );
+	if ( !$bits ) {
+		return null;
+	}
+	$zoneUrlRegex = preg_quote( $bits['path'] );
 
 	$hashDirRegex = $subdirRegex = '';
 	for ( $i = 0; $i < $repo->getHashLevels(); $i++ ) {
 		$subdirRegex .= '[0-9a-f]';
 		$hashDirRegex .= "$subdirRegex/";
 	}
-	$zoneUrlRegex = preg_quote( $repo->getZoneUrl( 'thumb' ) );
 
 	$thumbUrlRegex = "!^$zoneUrlRegex(/archive|/temp|)/$hashDirRegex([^/]*)/([^/]*)$!";
 
