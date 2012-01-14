@@ -1236,6 +1236,8 @@ abstract class ApiBase extends ContextSource {
 		'filename-toolong' => array( 'code' => 'filename-toolong', 'info' => 'The filename is too long' ),
 		'illegal-filename' => array( 'code' => 'illegal-filename', 'info' => 'The filename is not allowed' ),
 		'filetype-missing' => array( 'code' => 'filetype-missing', 'info' => 'The file is missing an extension' ),
+
+		'mustbeloggedin' => array( 'code' => 'mustbeloggedin', 'info' => 'You must be logged in to $1.' )
 	);
 
 	/**
