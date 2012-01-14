@@ -454,11 +454,11 @@ class SwiftFileBackend extends FileBackend {
 	 * @see FileBackend::getFileListInternal()
 	 */
 	public function getFileListInternal( $fullCont, $dir, array $params ) {
-		return new SwiftFileIterator( $this, $fullCont, $dir );
+		return new SwiftFileBackendFileList( $this, $fullCont, $dir );
 	}
 
 	/**
-	 * Do not call this function outside of SwiftFileIterator
+	 * Do not call this function outside of SwiftFileBackendFileList
 	 * 
 	 * @param $fullCont string Resolved container name
 	 * @param $dir string Resolved storage directory with no trailing slash
@@ -653,7 +653,7 @@ class SwiftFileBackend extends FileBackend {
  *
  * @ingroup FileBackend
  */
-class SwiftFileIterator implements Iterator {
+class SwiftFileBackendFileList implements Iterator {
 	/** @var Array */
 	protected $bufferIter = array();
 	protected $bufferAfter = null; // string; list items *after* this path
@@ -668,11 +668,9 @@ class SwiftFileIterator implements Iterator {
 	const PAGE_SIZE = 5000; // file listing buffer size
 
 	/**
-	 * Get an FSFileIterator from a file system directory
-	 * 
 	 * @param $backend SwiftFileBackend
 	 * @param $fullCont string Resolved container name
-	 * @param $dir string Resolved relative directory
+	 * @param $dir string Resolved directory relative to container
 	 */
 	public function __construct( SwiftFileBackend $backend, $fullCont, $dir ) {
 		$this->backend = $backend;

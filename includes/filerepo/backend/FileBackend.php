@@ -1052,7 +1052,7 @@ abstract class FileBackend extends FileBackendBase {
 			wfDebug( __METHOD__ . ": iterating over all container shards.\n" );
 			// File listing spans multiple containers/shards
 			list( $b, $shortCont, $r ) = self::splitStoragePath( $params['dir'] );
-			return new ContainerShardListIterator( $this,
+			return new FileBackendShardListIterator( $this,
 				$fullCont, $this->getContainerSuffixes( $shortCont ), $params );
 		}
 	}
@@ -1431,7 +1431,7 @@ abstract class FileBackend extends FileBackendBase {
  *
  * @ingroup FileBackend
  */
-class ContainerShardListIterator implements Iterator {
+class FileBackendShardListIterator implements Iterator {
 	/* @var FileBackend */
 	protected $backend;
 	/* @var Array */

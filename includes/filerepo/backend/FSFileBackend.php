@@ -417,7 +417,7 @@ class FSFileBackend extends FileBackend {
 		if ( !$readable ) {
 			return null; // bad permissions?
 		}
-		return new FSFileIterator( $dir );
+		return new FSFileBackendFileList( $dir );
 	}
 
 	/**
@@ -508,15 +508,13 @@ class FSFileBackend extends FileBackend {
  *
  * @ingroup FileBackend
  */
-class FSFileIterator implements Iterator {
+class FSFileBackendFileList implements Iterator {
 	/** @var RecursiveIteratorIterator */
 	protected $iter;
 	protected $suffixStart; // integer
 
 	/**
-	 * Get an FSFileIterator from a file system directory
-	 * 
-	 * @param $dir string
+	 * @param $dir string file system directory
 	 */
 	public function __construct( $dir ) {
 		$dir = realpath( $dir ); // normalize
