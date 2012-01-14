@@ -109,6 +109,29 @@ class RequestContext implements IContextSource {
 	}
 
 	/**
+	 * Check whether a WikiPage object can be get with getWikiPage().
+	 * Callers should expect that an exception is thrown from getWikiPage()
+	 * if this method returns false.
+	 *
+	 * @since 1.19
+	 * @return bool
+	 */
+	public function canUseWikiPage() {
+		if ( $this->wikipage !== null ) {
+			# If there's a WikiPage object set, we can for sure get it
+			return true;
+		}
+		$title = $this->getTitle();
+		if ( $title === null ) {
+			# No Title, no WikiPage
+			return false;
+		} else {
+			# Only namespaces whose pages are stored in the database can have WikiPage
+			return $title->canExist();
+		}
+	}
+
+	/**
 	 * Set the WikiPage object
 	 *
 	 * @since 1.19
@@ -119,7 +142,10 @@ class RequestContext implements IContextSource {
 	}
 
 	/**
-	 * Get the WikiPage object
+	 * Get the WikiPage object.
+	 * May throw an exception if there's no Title object set or the Title object
+	 * belongs to a special namespace that doesn't have WikiPage, so use first
+	 * canUseWikiPage() to check whether this method can be called safely.
 	 *
 	 * @since 1.19
 	 * @return WikiPage

@@ -79,7 +79,22 @@ abstract class ContextSource implements IContextSource {
 	}
 
 	/**
-	 * Get the WikiPage object
+	 * Check whether a WikiPage object can be get with getWikiPage().
+	 * Callers should expect that an exception is thrown from getWikiPage()
+	 * if this method returns false.
+	 *
+	 * @since 1.19
+	 * @return bool
+	 */
+	public function canUseWikiPage() {
+		return $this->getContext()->canUseWikiPage();
+	}
+
+	/**
+	 * Get the WikiPage object.
+	 * May throw an exception if there's no Title object set or the Title object
+	 * belongs to a special namespace that doesn't have WikiPage, so use first
+	 * canUseWikiPage() to check whether this method can be called safely.
 	 *
 	 * @since 1.19
 	 * @return WikiPage
