@@ -1,5 +1,5 @@
 /**
- * This plugin provides functionallity to expand a text box on focus to double it's current width
+ * This plugin provides functionality to expand a text box on focus to double it's current width
  *
  * Usage:
  *
