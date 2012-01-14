@@ -16,6 +16,7 @@
  * All of the library classes must be registed in $wgAutoloadClasses.
  *
  * @ingroup FileBackend
+ * @since 1.19
  */
 class SwiftFileBackend extends FileBackend {
 	/** @var CF_Authentication */
@@ -650,6 +651,7 @@ class SwiftFileBackend extends FileBackend {
 /**
  * SwiftFileBackend helper class to page through object listings.
  * Swift also has a listing limit of 10,000 objects for sanity.
+ * Do not use this class from places outside SwiftFileBackend.
  *
  * @ingroup FileBackend
  */

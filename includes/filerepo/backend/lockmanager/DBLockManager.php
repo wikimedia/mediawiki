@@ -55,7 +55,9 @@ class DBLockManager extends LockManager {
 	 * @param Array $config 
 	 */
 	public function __construct( array $config ) {
-		$this->dbServers = $config['dbServers'];
+		$this->dbServers = isset( $config['dbServers'] )
+			? $config['dbServers']
+			: array(); // likely just using 'localDBMaster'
 		// Sanitize dbsByBucket config to prevent PHP errors
 		$this->dbsByBucket = array_filter( $config['dbsByBucket'], 'is_array' );
 		$this->dbsByBucket = array_values( $this->dbsByBucket ); // consecutive
