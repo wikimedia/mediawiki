@@ -7,26 +7,29 @@
  */
 
 /**
- * Class for a Swift based file backend.
- * Status messages should avoid mentioning the Swift account name
- * Likewise, error suppression should be used to avoid path disclosure.
+ * Class for an OpenStack Swift based file backend.
  *
  * This requires that the php-cloudfiles library is present,
  * which is available at https://github.com/rackspace/php-cloudfiles.
  * All of the library classes must be registed in $wgAutoloadClasses.
+ *
+ * Status messages should avoid mentioning the Swift account name
+ * Likewise, error suppression should be used to avoid path disclosure.
  *
  * @ingroup FileBackend
  * @since 1.19
  */
 class SwiftFileBackend extends FileBackend {
 	/** @var CF_Authentication */
-	protected $auth; // swift authentication handler
+	protected $auth; // Swift authentication handler
+
 	/** @var CF_Connection */
-	protected $conn; // swift connection handle
+	protected $conn; // Swift connection handle
 	protected $connStarted = 0; // integer UNIX timestamp
+	protected $connContainers = array(); // container object cache
+	protected $connTTL = 120; // integer seconds
 
 	protected $swiftProxyUser; // string
-	protected $connTTL = 60; // integer seconds
 
 	/**
 	 * @see FileBackend::__construct()
@@ -59,7 +62,7 @@ class SwiftFileBackend extends FileBackend {
 	 */
 	protected function resolveContainerPath( $container, $relStoragePath ) {
 		if ( strlen( urlencode( $relStoragePath ) ) > 1024 ) {
-			return null; // too long for swift
+			return null; // too long for Swift
 		}
 		return $relStoragePath;
 	}
@@ -76,16 +79,9 @@ class SwiftFileBackend extends FileBackend {
 			return $status;
 		}
 
-		// (a) Get a swift proxy connection
-		$conn = $this->getConnection();
-		if ( !$conn ) {
-			$status->fatal( 'backend-fail-connect', $this->name );
-			return $status;
-		}
-
-		// (b) Check the destination container
+		// (a) Check the destination container
 		try {
-			$dContObj = $conn->get_container( $dstCont );
+			$dContObj = $this->getContainer( $dstCont );
 		} catch ( NoSuchContainerException $e ) {
 			$status->fatal( 'backend-fail-create', $params['dst'] );
 			return $status;
@@ -98,7 +94,7 @@ class SwiftFileBackend extends FileBackend {
 			return $status;
 		}
 
-		// (c) Check if the destination object already exists
+		// (b) Check if the destination object already exists
 		try {
 			$dContObj->get_object( $destRel ); // throws NoSuchObjectException
 			// NoSuchObjectException not thrown: file must exist
@@ -117,10 +113,10 @@ class SwiftFileBackend extends FileBackend {
 			return $status;
 		}
 
-		// (d) Get a SHA-1 hash of the object
+		// (c) Get a SHA-1 hash of the object
 		$sha1Hash = wfBaseConvert( sha1( $params['content'] ), 16, 36, 31 );
 
-		// (e) Actually create the object
+		// (d) Actually create the object
 		try {
 			$obj = $dContObj->create_object( $destRel );
 			// Note: metadata keys stored as [Upper case char][[Lower case char]...]
@@ -150,16 +146,9 @@ class SwiftFileBackend extends FileBackend {
 			return $status;
 		}
 
-		// (a) Get a swift proxy connection
-		$conn = $this->getConnection();
-		if ( !$conn ) {
-			$status->fatal( 'backend-fail-connect', $this->name );
-			return $status;
-		}
-
-		// (b) Check the destination container
+		// (a) Check the destination container
 		try {
-			$dContObj = $conn->get_container( $dstCont );
+			$dContObj = $this->getContainer( $dstCont );
 		} catch ( NoSuchContainerException $e ) {
 			$status->fatal( 'backend-fail-copy', $params['src'], $params['dst'] );
 			return $status;
@@ -172,7 +161,7 @@ class SwiftFileBackend extends FileBackend {
 			return $status;
 		}
 
-		// (c) Check if the destination object already exists
+		// (b) Check if the destination object already exists
 		try {
 			$dContObj->get_object( $destRel ); // throws NoSuchObjectException
 			// NoSuchObjectException not thrown: file must exist
@@ -191,7 +180,7 @@ class SwiftFileBackend extends FileBackend {
 			return $status;
 		}
 
-		// (d) Get a SHA-1 hash of the object
+		// (c) Get a SHA-1 hash of the object
 		$sha1Hash = sha1_file( $params['src'] );
 		if ( $sha1Hash === false ) { // source doesn't exist?
 			$status->fatal( 'backend-fail-copy', $params['src'], $params['dst'] );
@@ -199,7 +188,7 @@ class SwiftFileBackend extends FileBackend {
 		}
 		$sha1Hash = wfBaseConvert( $sha1Hash, 16, 36, 31 );
 
-		// (e) Actually store the object
+		// (d) Actually store the object
 		try {
 			$obj = $dContObj->create_object( $destRel );
 			// Note: metadata keys stored as [Upper case char][[Lower case char]...]
@@ -237,17 +226,10 @@ class SwiftFileBackend extends FileBackend {
 			return $status;
 		}
 
-		// (a) Get a swift proxy connection
-		$conn = $this->getConnection();
-		if ( !$conn ) {
-			$status->fatal( 'backend-fail-connect', $this->name );
-			return $status;
-		}
-
-		// (b) Check the source and destination containers
+		// (a) Check the source and destination containers
 		try {
-			$sContObj = $conn->get_container( $srcCont );
-			$dContObj = $conn->get_container( $dstCont );
+			$sContObj = $this->getContainer( $srcCont );
+			$dContObj = $this->getContainer( $dstCont );
 		} catch ( NoSuchContainerException $e ) {
 			$status->fatal( 'backend-fail-copy', $params['src'], $params['dst'] );
 			return $status;
@@ -260,7 +242,7 @@ class SwiftFileBackend extends FileBackend {
 			return $status;
 		}
 
-		// (c) Check if the destination object already exists
+		// (b) Check if the destination object already exists
 		try {
 			$dContObj->get_object( $destRel ); // throws NoSuchObjectException
 			// NoSuchObjectException not thrown: file must exist
@@ -279,7 +261,7 @@ class SwiftFileBackend extends FileBackend {
 			return $status;
 		}
 
-		// (d) Actually copy the file to the destination
+		// (c) Actually copy the file to the destination
 		try {
 			$sContObj->copy_object_to( $srcRel, $dContObj, $destRel );
 		} catch ( NoSuchObjectException $e ) { // source object does not exist
@@ -306,16 +288,9 @@ class SwiftFileBackend extends FileBackend {
 			return $status;
 		}
 
-		// (a) Get a swift proxy connection
-		$conn = $this->getConnection();
-		if ( !$conn ) {
-			$status->fatal( 'backend-fail-connect', $this->name );
-			return $status;
-		}
-
-		// (b) Check the source container
+		// (a) Check the source container
 		try {
-			$sContObj = $conn->get_container( $srcCont );
+			$sContObj = $this->getContainer( $srcCont );
 		} catch ( NoSuchContainerException $e ) {
 			$status->fatal( 'backend-fail-delete', $params['src'] );
 			return $status;
@@ -328,7 +303,7 @@ class SwiftFileBackend extends FileBackend {
 			return $status;
 		}
 
-		// (c) Actually delete the object
+		// (b) Actually delete the object
 		try {
 			$sContObj->delete_object( $srcRel );
 		} catch ( NoSuchObjectException $e ) {
@@ -351,16 +326,8 @@ class SwiftFileBackend extends FileBackend {
 	protected function doPrepareInternal( $fullCont, $dir, array $params ) {
 		$status = Status::newGood();
 
-		// (a) Get a swift proxy connection
-		$conn = $this->getConnection();
-		if ( !$conn ) {
-			$status->fatal( 'backend-fail-connect', $this->name );
-			return $status;
-		}
-
-		// (b) Create the destination container
 		try {
-			$conn->create_container( $fullCont );
+			$this->createContainer( $fullCont );
 		} catch ( InvalidResponseException $e ) {
 			$status->fatal( 'backend-fail-connect', $this->name );
 		} catch ( Exception $e ) { // some other exception?
@@ -381,6 +348,45 @@ class SwiftFileBackend extends FileBackend {
 	}
 
 	/**
+	 * @see FileBackend::doCleanInternal()
+	 */
+	protected function doCleanInternal( $fullCont, $dir, array $params ) {
+		$status = Status::newGood();
+
+		// (a) Check the container
+		try {
+			$contObj = $this->getContainer( $fullCont, true );
+		} catch ( NoSuchContainerException $e ) {
+			return $status; // ok, nothing to do
+		} catch ( InvalidResponseException $e ) {
+			$status->fatal( 'backend-fail-connect', $this->name );
+			return $status;
+		} catch ( Exception $e ) { // some other exception?
+			$status->fatal( 'backend-fail-internal', $this->name );
+			$this->logException( $e, __METHOD__, $params );
+			return $status;
+		}
+
+		// (c) Delete the container if empty
+		if ( $contObj->count == 0 ) {
+			try {
+				$this->deleteContainer( $fullCont );
+			} catch ( NoSuchContainerException $e ) {
+				return $status; // race?
+			} catch ( InvalidResponseException $e ) {
+				$status->fatal( 'backend-fail-connect', $this->name );
+				return $status;
+			} catch ( Exception $e ) { // some other exception?
+				$status->fatal( 'backend-fail-internal', $this->name );
+				$this->logException( $e, __METHOD__, $params );
+				return $status;
+			}
+		}
+
+		return $status;
+	}
+
+	/**
 	 * @see FileBackend::doFileExists()
 	 */
 	protected function doGetFileStat( array $params ) {
@@ -389,17 +395,12 @@ class SwiftFileBackend extends FileBackend {
 			return false; // invalid storage path
 		}
 
-		$conn = $this->getConnection();
-		if ( !$conn ) {
-			return null;
-		}
-
 		$stat = false;
 		try {
-			$container = $conn->get_container( $srcCont );
+			$container = $this->getContainer( $srcCont );
 			// @TODO: handle 'latest' param as "X-Newest: true"
 			$obj = $container->get_object( $srcRel );
-			// Convert "Tue, 03 Jan 2012 22:01:04 GMT" to TS_MW
+			// Convert dates like "Tue, 03 Jan 2012 22:01:04 GMT" to TS_MW
 			$date = DateTime::createFromFormat( 'D, d F Y G:i:s e', $obj->last_modified );
 			if ( $date ) {
 				$stat = array(
@@ -431,14 +432,9 @@ class SwiftFileBackend extends FileBackend {
 			return false; // invalid storage path
 		}
 
-		$conn = $this->getConnection();
-		if ( !$conn ) {
-			return false;
-		}
-
 		$data = false;
 		try {
-			$container = $conn->get_container( $srcCont );
+			$container = $this->getContainer( $srcCont );
 			$obj = $container->get_object( $srcRel );
 			$data = $obj->read( $this->headersFromParams( $params ) );
 		} catch ( NoSuchContainerException $e ) {
@@ -468,14 +464,9 @@ class SwiftFileBackend extends FileBackend {
 	 * @return Array
 	 */
 	public function getFileListPageInternal( $fullCont, $dir, $after, $limit ) {
-		$conn = $this->getConnection();
-		if ( !$conn ) {
-			return null;
-		}
-
 		$files = array();
 		try {
-			$container = $conn->get_container( $fullCont );
+			$container = $this->getContainer( $fullCont );
 			$files = $container->list_objects( $limit, $after, "{$dir}/" );
 		} catch ( NoSuchContainerException $e ) {
 		} catch ( NoSuchObjectException $e ) {
@@ -510,13 +501,8 @@ class SwiftFileBackend extends FileBackend {
 			$status->fatal( 'backend-fail-invalidpath', $params['src'] );
 		}
 
-		$conn = $this->getConnection();
-		if ( !$conn ) {
-			$status->fatal( 'backend-fail-connect', $this->name );
-		}
-
 		try {
-			$cont = $conn->get_container( $srcCont );
+			$cont = $this->getContainer( $srcCont );
 			$obj = $cont->get_object( $srcRel );
 		} catch ( NoSuchContainerException $e ) {
 			$status->fatal( 'backend-fail-stream', $params['src'] );
@@ -534,7 +520,7 @@ class SwiftFileBackend extends FileBackend {
 		}
 
 		try {
-			$output = fopen( "php://output", "w" );
+			$output = fopen( 'php://output', 'w' );
 			$obj->stream( $output, $this->headersFromParams( $params ) );
 		} catch ( InvalidResponseException $e ) {
 			$status->fatal( 'backend-fail-connect', $this->name );
@@ -555,11 +541,6 @@ class SwiftFileBackend extends FileBackend {
 			return null;
 		}
 
-		$conn = $this->getConnection();
-		if ( !$conn ) {
-			return null;
-		}
-
 		// Get source file extension
 		$ext = FileBackend::extensionFromPath( $srcRel );
 		// Create a new temporary file...
@@ -569,7 +550,7 @@ class SwiftFileBackend extends FileBackend {
 		}
 
 		try {
-			$cont = $conn->get_container( $srcCont );
+			$cont = $this->getContainer( $srcCont );
 			$obj = $cont->get_object( $srcRel );
 			$handle = fopen( $tmpFile->getPath(), 'w' );
 			if ( $handle ) {
@@ -609,9 +590,10 @@ class SwiftFileBackend extends FileBackend {
 	}
 
 	/**
-	 * Get a connection to the swift proxy
+	 * Get a connection to the Swift proxy
 	 *
 	 * @return CF_Connection|false
+	 * @throws InvalidResponseException
 	 */
 	protected function getConnection() {
 		if ( $this->conn === false ) {
@@ -620,6 +602,7 @@ class SwiftFileBackend extends FileBackend {
 		// Authenticate with proxy and get a session key.
 		// Session keys expire after a while, so we renew them periodically.
 		if ( $this->conn === null || ( time() - $this->connStarted ) > $this->connTTL ) {
+			$this->connContainers = array();
 			try {
 				$this->auth->authenticate();
 				$this->conn = new CF_Connection( $this->auth );
@@ -630,7 +613,56 @@ class SwiftFileBackend extends FileBackend {
 				$this->conn = false; // don't keep re-trying
 			}
 		}
+		if ( !$this->conn ) {
+			throw new InvalidResponseException; // auth/connection problem
+		}
 		return $this->conn;
+	}
+
+	/**
+	 * Get a Swift container object, possibly from process cache.
+	 * Use $reCache if the file count or byte count is needed.
+	 *
+	 * @param $container string Container name
+	 * @param $reCache bool Refresh the process cache
+	 * @return CF_Container
+	 */
+	protected function getContainer( $container, $reCache = false ) {
+		$conn = $this->getConnection(); // Swift proxy connection
+		if ( $reCache ) {
+			unset( $this->connContainers[$container] ); // purge cache
+		}
+		if ( !isset( $this->connContainers[$container] ) ) {
+			$contObj = $conn->get_container( $container );
+			// Exception not thrown: container must exist
+			$this->connContainers[$container] = $contObj; // cache it
+		}
+		return $this->connContainers[$container];
+	}
+
+	/**
+	 * Create a Swift container
+	 *
+	 * @param $container string Container name
+	 * @return CF_Container
+	 */
+	protected function createContainer( $container ) {
+		$conn = $this->getConnection(); // Swift proxy connection
+		$contObj = $conn->create_container( $container );
+		$this->connContainers[$container] = $contObj; // cache it
+		return $contObj;
+	}
+
+	/**
+	 * Delete a Swift container
+	 *
+	 * @param $container string Container name
+	 * @return void
+	 */
+	protected function deleteContainer( $container ) {
+		$conn = $this->getConnection(); // Swift proxy connection
+		$conn->delete_container( $container );
+		unset( $this->connContainers[$container] ); // purge cache
 	}
 
 	/**
