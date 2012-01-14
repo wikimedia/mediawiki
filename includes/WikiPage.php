@@ -2220,7 +2220,7 @@ class WikiPage extends Page {
 		}
 
 		# Actually store the edit
-		$status = $this->doEdit( $target->getText(), $summary, $flags, $target->getId() );
+		$status = $this->doEdit( $target->getText(), $summary, $flags, $target->getId(), $guser );
 		if ( !empty( $status->value['revision'] ) ) {
 			$revId = $status->value['revision']->getId();
 		} else {
