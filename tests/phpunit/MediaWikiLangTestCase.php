@@ -14,7 +14,9 @@ abstract class MediaWikiLangTestCase extends MediaWikiTestCase {
 		self::$oldContLang = $wgContLang;
 
 		if( $wgLanguageCode != $wgContLang->getCode() ) {
-			die("Fatal error in MediaWikiLangTestCase::setUp(): \$wgLanguageCode: $wgLanguageCode; \$wgContLang->getCode(): " . $wgContLang->getCode());
+			throw new MWException("Error in MediaWikiLangTestCase::setUp(): " .
+				"\$wgLanguageCode ('$wgLanguageCode') is different from " .
+				"\$wgContLang->getCode() (" . $wgContLang->getCode() . ")" );
 		}
 
 		$wgLanguageCode = 'en'; # For mainpage to be 'Main Page'
