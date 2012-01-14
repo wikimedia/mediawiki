@@ -39,7 +39,7 @@ class LanguageHe extends Language {
 					$word = substr( $word, 2 );
 				}
 
-				# Add a hyphen if non-Hebrew letters
+				# Add a hyphen (maqaf) if non-Hebrew letters
 				if ( substr( $word, 0, 2 ) < "א" || substr( $word, 0, 2 ) > "ת" ) {
 					$word = "־" . $word;
 				}
@@ -60,11 +60,11 @@ class LanguageHe extends Language {
 		$forms = $this->preConvertPlural( $forms, 3 );
 
 		if ( $count == '1' ) {
-			return $forms[0];
+			return $forms[0]; // Singular
 		} elseif ( $count == '2' && isset( $forms[2] ) ) {
-			return $forms[2];
+			return $forms[2]; // Dual
 		} else {
-			return $forms[1];
+			return $forms[1]; // Plural
 		}
 	}
 }
