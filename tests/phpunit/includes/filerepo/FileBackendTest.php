@@ -760,7 +760,90 @@ class FileBackendTest extends MediaWikiTestCase {
 
 	// @TODO: testSecure
 
-	// @TODO: testDoOperations
+	public function testDoOperations() {
+		$this->backend = $this->singleBackend;
+		$this->doTestDoOperations();
+
+		$this->backend = $this->multiBackend;
+		$this->doTestDoOperations();
+	}
+
+	function doTestDoOperations() {
+		$base = $this->baseStorePath();
+
+		$fileA = "$base/cont1/a/b/fileA.txt";
+		$fileAContents = '3tqtmoeatmn4wg4qe-mg3qt3 tq';
+		$fileB = "$base/cont1/a/b/fileB.txt";
+		$fileBContents = 'g-jmq3gpqgt3qtg q3GT ';
+		$fileC = "$base/cont1/a/b/fileC.txt";
+		$fileCContents = 'eigna[ogmewt 3qt g3qg flew[ag';
+		$fileD = "$base/cont1/a/b/fileD.txt";
+
+		$this->pathsToPrune[] = $fileA;
+		$this->pathsToPrune[] = $fileB;
+		$this->pathsToPrune[] = $fileC;
+		$this->pathsToPrune[] = $fileD;
+
+		$this->backend->prepare( array( 'dir' => dirname( $fileA ) ) );
+		$this->backend->create( array( 'dst' => $fileA, 'content' => $fileAContents ) );
+		$this->backend->prepare( array( 'dir' => dirname( $fileB ) ) );
+		$this->backend->create( array( 'dst' => $fileB, 'content' => $fileBContents ) );
+		$this->backend->prepare( array( 'dir' => dirname( $fileC ) ) );
+		$this->backend->create( array( 'dst' => $fileC, 'content' => $fileCContents ) );
+
+		$status = $this->backend->doOperations( array(
+			array( 'op' => 'copy', 'src' => $fileA, 'dst' => $fileC, 'overwriteDest' => 1 ),
+			// Now: A:<A>, B:<B>, C:<A>, D:<D> (file:<orginal contents>)
+			array( 'op' => 'copy', 'src' => $fileC, 'dst' => $fileA, 'overwriteSame' => 1 ),
+			// Now: A:<A>, B:<B>, C:<A>, D:<D>
+			array( 'op' => 'move', 'src' => $fileC, 'dst' => $fileD, 'overwriteDest' => 1 ),
+			// Now: A:<A>, B:<B>, C:<empty>, D:<A>
+			array( 'op' => 'move', 'src' => $fileB, 'dst' => $fileC ),
+			// Now: A:<A>, B:<empty>, C:<B>, D:<A>
+			array( 'op' => 'move', 'src' => $fileD, 'dst' => $fileA, 'overwriteSame' => 1 ),
+			// Now: A:<A>, B:<empty>, C:<B>, D:<empty>
+			array( 'op' => 'move', 'src' => $fileC, 'dst' => $fileA, 'overwriteDest' => 1 ),
+			// Now: A:<B>, B:<empty>, C:<empty>, D:<empty>
+			array( 'op' => 'copy', 'src' => $fileA, 'dst' => $fileC ),
+			// Now: A:<B>, B:<empty>, C:<B>, D:<empty>
+			array( 'op' => 'move', 'src' => $fileA, 'dst' => $fileC, 'overwriteSame' => 1 ),
+			// Now: A:<empty>, B:<empty>, C:<B>, D:<empty>
+			array( 'op' => 'copy', 'src' => $fileC, 'dst' => $fileC, 'overwriteDest' => 1 ),
+			// Does nothing
+			array( 'op' => 'copy', 'src' => $fileC, 'dst' => $fileC, 'overwriteSame' => 1 ),
+			// Does nothing
+			array( 'op' => 'move', 'src' => $fileC, 'dst' => $fileC, 'overwriteDest' => 1 ),
+			// Does nothing
+			array( 'op' => 'move', 'src' => $fileC, 'dst' => $fileC, 'overwriteSame' => 1 ),
+			// Does nothing
+		) );
+
+		$this->assertEquals( array(), $status->errors, "Operation batch succeeded" );
+		$this->assertEquals( true, $status->isOK(), "Operation batch succeeded" );
+		$this->assertEquals( 12, count( $status->success ),
+			"Operation batch has correct success array" );
+
+		$this->assertEquals( false, $this->backend->fileExists( array( 'src' => $fileA ) ),
+			"File does not exist at $fileA" );
+		$this->assertEquals( false, $this->backend->fileExists( array( 'src' => $fileB ) ),
+			"File does not exist at $fileB" );
+		$this->assertEquals( false, $this->backend->fileExists( array( 'src' => $fileD ) ),
+			"File does not exist at $fileD" );
+
+		$this->assertEquals( true, $this->backend->fileExists( array( 'src' => $fileC ) ),
+			"File exists at $fileC" );
+		$this->assertEquals( $fileBContents,
+			$this->backend->getFileContents( array( 'src' => $fileC ) ),
+			"Correct file contents of $fileC" );
+		$this->assertEquals( strlen( $fileBContents ),
+			$this->backend->getFileSize( array( 'src' => $fileC ) ),
+			"Correct file size of $fileC" );
+		$this->assertEquals( wfBaseConvert( sha1( $fileBContents ), 16, 36, 31 ),
+			$this->backend->getFileSha1Base36( array( 'src' => $fileC ) ),
+			"Correct file SHA-1 of $fileC" );
+
+		// @TODO: test some cases where the ops should fail
+	}
 
 	public function testGetFileList() {
 		$this->backend = $this->singleBackend;
