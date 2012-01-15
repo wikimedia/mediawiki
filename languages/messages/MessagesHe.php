@@ -1874,6 +1874,8 @@ $1',
 'backend-fail-create'        => 'יצירת הקובץ $1 לא הצליחה',
 'backend-fail-readonly'      => 'מאגר האחסון לקבצים "$1" הוא כרגע במצב קריאה בלבד. הסיבה שניתנה לכך היא: "$2"',
 'backend-fail-synced'        => 'הקובץ "$1" נמצא במצב לא עקבי בתוך מאגרי האחסון הפנימיים לקבצים',
+'backend-fail-connect'       => 'לא ניתן היה להתחבר למאגר האחסון הפנימי לקבצים "$1".',
+'backend-fail-internal'      => 'אירעה שגיאה בלתי ידועה במאגר האחסון הפנימי לקבצים "$1".',
 
 # Lock manager
 'lockmanager-notlocked'        => 'פתיחת הנעילה של "$1" לא הצליחה; הוא לא נעול.',
@@ -4040,10 +4042,10 @@ $5
 'api-error-stashfailed'                   => 'שגיאה פנימית: השרת נכשל באחסון הקובץ הזמני.',
 'api-error-timeout'                       => 'השרת לא השיב בזמן המצופה.',
 'api-error-unclassified'                  => 'אירעה שגיאה בלתי ידועה.',
-'api-error-unknown-code'                  => 'שגיאה בלתי ידועה: "$1"',
+'api-error-unknown-code'                  => 'שגיאה בלתי ידועה: "$1".',
 'api-error-unknown-error'                 => 'שגיאה פנימית: משהו השתבש בעת ניסיון להעלות את הקובץ שלכם.',
-'api-error-unknown-warning'               => 'אזהרה לא ידועה: $1',
-'api-error-unknownerror'                  => 'שגיאה לא ידועה: "$1".',
+'api-error-unknown-warning'               => 'אזהרה בלתי ידועה: "$1".',
+'api-error-unknownerror'                  => 'שגיאה בלתי ידועה: "$1".',
 'api-error-uploaddisabled'                => 'ההעלאה מבוטלת באתר הוויקי הזה.',
 'api-error-verification-error'            => 'קובץ זה עשוי להיות פגום או בעל סיומת שגויה.',
 

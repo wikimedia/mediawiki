@@ -1225,12 +1225,12 @@ Co qualcheduni te scrivarà, nol vedarà mia el to indirizo.',
 'group-suppress'      => 'Supervisioni',
 'group-all'           => '(utenti)',
 
-'group-user-member'          => 'Utente',
-'group-autoconfirmed-member' => 'Utente autoconvalidà',
-'group-bot-member'           => 'Bot',
-'group-sysop-member'         => 'Aministrador',
-'group-bureaucrat-member'    => 'Burocrate',
-'group-suppress-member'      => 'Supervision',
+'group-user-member'          => 'utente',
+'group-autoconfirmed-member' => 'utente autoconvalidà',
+'group-bot-member'           => 'bot',
+'group-sysop-member'         => 'aministrador',
+'group-bureaucrat-member'    => 'burocrate',
+'group-suppress-member'      => 'supervision',
 
 'grouppage-user'          => '{{ns:project}}:Utenti',
 'grouppage-autoconfirmed' => '{{ns:project}}:Utenti autoconvalidà',
@@ -1748,7 +1748,7 @@ Le righe <del>sbarà</del> le xe xà stà sistemà.',
 'listusers-editsonly'     => 'Fà védar sol che i utenti che gà fato dei contributi',
 'listusers-creationsort'  => 'Òrdena par data de creassion',
 'usereditcount'           => '$1 {{PLURAL:$1|contributo|contributi}}',
-'usercreated'             => 'Creà el $1 a le $2',
+'usercreated'             => '{{GENDER:$3|Creà|Creà}} el $1 a le $2',
 'newpages'                => 'Pagine nove',
 'newpages-username'       => 'Nome utente:',
 'ancientpages'            => 'Pagine pì vece',
@@ -2635,7 +2635,7 @@ I colegamenti dopo, su la stessa riga, i xe considerai come ecession (cioè, pag
 'metadata-help'     => 'Sto file contien informasion zontive, probabilmente zonte da ła fotocamara o da ło scanner usai par crearlo o digitałizarlo. Se el file xè sta modifegà, alcuni detaji i podaria no corispondere a ła realtà.',
 'metadata-expand'   => 'Mostra detaji',
 'metadata-collapse' => 'Scondi detaji',
-'metadata-fields'   => "I canpi rełativi a i metadati EXIF elencai en sto mesajo i verà mostrai so ła pajina de l'imasine quando ła tabeła de i metadati xè presentà ne ła forma breve. Par inpostasion predefinia, i altri canpi i verà sconti.
+'metadata-fields'   => "I canpi rełativi a i metadati de l'imagine elencai en sto mesajo i verà mostrai so ła pajina de l'imasine quando ła tabeła de i metadati xè presentà ne ła forma breve. Par inpostasion predefinia, i altri canpi i verà sconti.
 * make
 * model
 * datetimeoriginal

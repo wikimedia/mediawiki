@@ -758,6 +758,12 @@ Kiye ora teyeng diumpetna.',
 Rika ora duwe hak akses maring revisi kiye.',
 
 # History merging
+'mergehistory-from'                => 'Kaca sumber:',
+'mergehistory-into'                => 'Kaca tujuan:',
+'mergehistory-list'                => 'Sejarah suntingan sing teyeng digabung',
+'mergehistory-merge'               => 'Révisi-révisi sekang [[:$1]] sing ana nang ngisor kiye teyeng digabungna maring [[:$2]].
+Gunakna tombol radio kanggo nggabungna révisi-révisi sing digawé sadurungé wektu tartamtu. 
+Gatèkna, angger nganggo pranala navigasi kuwe bakalan nge-reset kolom kiye.',
 'mergehistory-go'                  => 'Tidokna suntingan-suntingan sing teyeng digabung',
 'mergehistory-submit'              => 'Gabung revisi',
 'mergehistory-empty'               => 'Ora ana revisi sing teyeng digabung.',
@@ -906,6 +912,9 @@ Ningen Rika kudu eling nek indeks Google kanggo {{SITENAME}} bisa baen isine anu
 'recentchangesdays-max'         => 'Maksimum $1 {{PLURAL:$1|dina|dina}}',
 'recentchangescount'            => 'Standar jumlah suntingan sing ditampilna:',
 'prefs-help-recentchangescount' => 'Kiye klebu owahan anyar, sajarah kaca, lan log.',
+'prefs-help-watchlist-token'    => 'Ngisi kotak kiye ngannggo tembung wadi (PIN) bakal ngasilna sindikasi RSS kanggo daftar pantauane Rika.
+Sapa baen sing weruh PIN kiye bakal teyeng maca daftar pantauane Rika, mulane kuwe pilih sing aman.
+Kiye PIN acak sing teyeng digunakna Rika: $1',
 'savedprefs'                    => 'Preferensine Rika wis disimpen.',
 'timezonelegend'                => 'Zona wektu:',
 'localtime'                     => 'Wektu lokal:',

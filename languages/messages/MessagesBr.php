@@ -1669,6 +1669,8 @@ Ma talc'h ar gudenn, kit e darempred gant [[Special:ListUsers/sysop|merourien ar
 'backend-fail-create'        => 'Dibosupl krouiñ ar restr $1.',
 'backend-fail-readonly'      => 'Emañ an dermenell "$1" e mod lenn hepken. Setu aze an abeg roet : "$2".',
 'backend-fail-synced'        => 'Emañ ar restr "$1" en ur stad direizhet en termenelloù diabarzh',
+'backend-fail-connect'       => 'Dibosupl kevreañ ouzh termenell ar restr "$1".',
+'backend-fail-internal'      => 'C\'hoarvezet ez eus ur fazi dianav e termenell ar restr "$1".',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Dibosupl dibrennañ "$1"; n\'eo ket prennet.',
@@ -3755,6 +3757,7 @@ A-hend-all e c'hallit ober gant ar furmskrid eeunaet dindan. Ouzhpennet e vo hoc
 'api-error-duplicate-archive-popup-title' => "Eilañ ar {{PLURAL:$1|restr|restroù}} zo bet diverket c'hoazh",
 'api-error-duplicate-popup-title'         => 'Eilañ {{PLURAL:$1|ar restr|ar restroù}}',
 'api-error-empty-file'                    => "Ar restr hoc'h eus roet a oa goullo.",
+'api-error-emptypage'                     => "N'eo ket aotreet krouiñ pajennoù goullo.",
 'api-error-fetchfileerror'                => 'Fazi diabarzh : aet ez eus un dra bennak a-dreuz en ur glask adtapout ar restr.',
 'api-error-file-too-large'                => "Ar restr hoc'h eus roet a oa re vras.",
 'api-error-filename-tooshort'             => 'Re verr eo anv ar restr.',
@@ -3779,6 +3782,7 @@ A-hend-all e c'hallit ober gant ar furmskrid eeunaet dindan. Ouzhpennet e vo hoc
 'api-error-unknown-code'                  => 'Fazi dianav : "$1"',
 'api-error-unknown-error'                 => 'Fazi diabarzh : aet ez eus un dra bennak a-dreuz en ur glask enporzhiañ ho restr.',
 'api-error-unknown-warning'               => 'Kemenn diwall dianav : $1',
+'api-error-unknownerror'                  => 'Fazi dianav : "$1".',
 'api-error-uploaddisabled'                => 'Diweredekaat eo an enporzh war ar wiki-mañ.',
 'api-error-verification-error'            => 'Pe eo brein ar restr pe eo fall an astenn anezhi.',
 

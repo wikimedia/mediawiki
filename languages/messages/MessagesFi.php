@@ -3813,6 +3813,7 @@ Muussa tapauksessa voit käyttää alla olevaa helpompaa lomaketta. Kommenttisi 
 'api-error-unknown-code'                  => 'Tuntematon virhe: $1',
 'api-error-unknown-error'                 => 'Sisäinen virhe: jotain meni vikaan tiedoston siirrossa.',
 'api-error-unknown-warning'               => 'Tuntematon varoitus: $1',
+'api-error-unknownerror'                  => 'Tuntematon virhe: $1.',
 'api-error-uploaddisabled'                => 'Tiedostojen tallentaminen ei ole käytössä.',
 'api-error-verification-error'            => 'Tiedosto voi olla vioittunut, tai sillä saattaa olla väärä tiedostopääte.',
 
