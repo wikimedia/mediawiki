@@ -57,8 +57,8 @@ if ( count( $args ) < 1 || isset( $options['help'] ) ) {
 					$flags = 0 | ( isset( $options['norc'] ) ? EDIT_SUPPRESS_RC : 0 );
 
 					echo( "\nPerforming edit..." );
-					$article = new Article( $title );
-					$article->doEdit( $text, $comment, $flags );
+					$page = WikiPage::factory( $title );
+					$page->doEdit( $text, $comment, $flags, false, $user );
 					echo( "done.\n" );
 
 				} else {
