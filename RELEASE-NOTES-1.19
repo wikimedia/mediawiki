@@ -119,6 +119,7 @@ production.
 * mediawiki.js Message object constructor is now publicly available as mw.Message.
 * (bug 29309) allow CSS class per tooltip (tipsy)
 * (bug 33565) Add accesskey/tooltip to submit buttons on Special:EditWatchlist.
+* (bug 17959) Inline rendering/thumbnailing for Gimp XCF images
 
 === Bug fixes in 1.19 ===
 * $wgUploadNavigationUrl should be used for file redlinks if.
