@@ -115,13 +115,4 @@ class ProfilerSimple extends Profiler {
 			return 0;
 		}
 	}
-
-	/* If argument is passed, it assumes that it is dual-format time string, returns proper float time value */
-	function getTime($time=null) {
-		if ($time==null) {
-			return microtime(true);
-		}
-		list($a,$b)=explode(" ",$time);
-		return (float)($a+$b);
-	}
 }
