@@ -150,12 +150,12 @@ class Profiler {
 				if( $functionname == 'close' ){
 					$message = "Profile section ended by close(): {$bit[0]}";
 					$this->debug( "$message\n" );
-					$this->mStack[] = array( $message, 0, '0 0', 0, '0 0', 0 );
+					$this->mStack[] = array( $message, 0, 0.0, 0, 0.0, 0 );
 				}
 				elseif( $bit[0] != $functionname ){
 					$message = "Profiling error: in({$bit[0]}), out($functionname)";
 					$this->debug( "$message\n" );
-					$this->mStack[] = array( $message, 0, '0 0', 0, '0 0', 0 );
+					$this->mStack[] = array( $message, 0, 0.0, 0, 0.0, 0 );
 				}
 			//}
 			$bit[] = $time;
@@ -265,13 +265,13 @@ class Profiler {
 		if ( $this->mTimeMetric === 'user' ) {
 			return $this->getUserTime();
 		} else {
-			return microtime(true);
+			return microtime( true );
 		}
 	}
 
 	function getUserTime() {
 		$ru = getrusage();
-		return $ru['ru_utime.tv_sec'].' '.$ru['ru_utime.tv_usec'] / 1e6;
+		return $ru['ru_utime.tv_sec'] + $ru['ru_utime.tv_usec'] / 1e6;
 	}
 
 	protected function collateData() {
