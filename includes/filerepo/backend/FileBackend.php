@@ -155,6 +155,11 @@ abstract class FileBackendBase {
 	 *                         This can increase performance for non-critical writes.
 	 *                         This has no effect unless the 'force' flag is set.
 	 * 
+	 * Remarks:
+	 * File system paths given to operations should refer to files that are
+	 * either locked or otherwise safe from modification from other processes.
+	 * Normally these files will be new temp files, which should be adequate.
+	 * 
 	 * Return value:
 	 * This returns a Status, which contains all warnings and fatals that occured
 	 * during the operation. The 'failCount', 'successCount', and 'success' members

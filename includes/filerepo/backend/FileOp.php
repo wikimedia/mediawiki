@@ -17,25 +17,22 @@
  * @since 1.19
  */
 abstract class FileOp {
-	/** $var Array */
+	/** @var Array */
 	protected $params = array();
-	/** $var FileBackendBase */
+	/** @var FileBackendBase */
 	protected $backend;
-	/** @var TempFSFile|null */
-	protected $tmpSourceFile, $tmpDestFile;
 
 	protected $state = self::STATE_NEW; // integer
 	protected $failed = false; // boolean
-	protected $useBackups = true; // boolean
 	protected $useLatest = true; // boolean
-	protected $destSameAsSource = false; // boolean
-	protected $destAlreadyExists = false; // boolean
+
+	protected $sourceSha1; // string
+	protected $destSameAsSource; // boolean
 
 	/* Object life-cycle */
 	const STATE_NEW = 1;
 	const STATE_CHECKED = 2;
 	const STATE_ATTEMPTED = 3;
-	const STATE_DONE = 4;
 
 	/**
 	 * Build a new file operation transaction
@@ -54,18 +51,7 @@ abstract class FileOp {
 	}
 
 	/**
-	 * Disable file backups for this operation
-	 *
-	 * @return void
-	 */
-	final protected function disableBackups() {
-		$this->useBackups = false;
-	}
-
-	/**
 	 * Allow stale data for file reads and existence checks.
-	 * If this is called, then disableBackups() should also be called
-	 * unless the affected files are known to have not changed recently.
 	 *
 	 * @return void
 	 */
@@ -91,81 +77,57 @@ abstract class FileOp {
 	final public static function attemptBatch( array $performOps, array $opts ) {
 		$status = Status::newGood();
 
-		$allowStale = isset( $opts['allowStale'] ) && $opts['allowStale'];
-		$ignoreErrors = isset( $opts['force'] ) && $opts['force'];
+		$allowStale = !empty( $opts['allowStale'] );
+		$ignoreErrors = !empty( $opts['force'] );
+
 		$predicates = FileOp::newPredicates(); // account for previous op in prechecks
 		// Do pre-checks for each operation; abort on failure...
 		foreach ( $performOps as $index => $fileOp ) {
 			if ( $allowStale ) {
 				$fileOp->allowStaleReads(); // allow potentially stale reads
 			}
-			$status->merge( $fileOp->precheck( $predicates ) );
-			if ( !$status->isOK() ) { // operation failed?
-				if ( $ignoreErrors ) {
-					++$status->failCount;
-					$status->success[$index] = false;
-				} else {
-					return $status;
-				}
-			}
-		}
-
-		// Attempt each operation; abort on failure...
-		foreach ( $performOps as $index => $fileOp ) {
-			if ( $fileOp->failed() ) {
-				continue; // nothing to do
-			} elseif ( $ignoreErrors ) {
-				$fileOp->disableBackups(); // no chance of revert() calls
-			}
-			$status->merge( $fileOp->attempt() );
-			if ( !$status->isOK() ) { // operation failed?
-				if ( $ignoreErrors ) {
-					++$status->failCount;
-					$status->success[$index] = false;
-				} else {
-					// Revert everything done so far and abort.
-					// Do this by reverting each previous operation in reverse order.
-					$pos = $index - 1; // last one failed; no need to revert()
-					while ( $pos >= 0 ) {
-						if ( !$performOps[$pos]->failed() ) {
-							$status->merge( $performOps[$pos]->revert() );
-						}
-						$pos--;
-					}
-					return $status;
-				}
-			}
-		}
-
-		$wasOk = $status->isOK();
-		// Finish each operation...
-		foreach ( $performOps as $index => $fileOp ) {
-			if ( $fileOp->failed() ) {
-				continue; // nothing to do
-			}
-			$subStatus = $fileOp->finish();
-			if ( $subStatus->isOK() ) {
-				++$status->successCount;
-				$status->success[$index] = true;
-			} else {
-				++$status->failCount;
-				$status->success[$index] = false;
-			}
+			$subStatus = $fileOp->precheck( $predicates );
 			$status->merge( $subStatus );
+			if ( !$subStatus->isOK() ) { // operation failed?
+				$status->success[$index] = false;
+				++$status->failCount;
+				if ( !$ignoreErrors ) {
+					return $status; // abort
+				}
+			}
 		}
 
-		// Make sure status is OK, despite any finish() fatals
-		$status->setResult( $wasOk, $status->value );
+		// Attempt each operation...
+		foreach ( $performOps as $index => $fileOp ) {
+			if ( $fileOp->failed() ) {
+				continue; // nothing to do
+			}
+			$subStatus = $fileOp->attempt();
+			$status->merge( $subStatus );
+			if ( $subStatus->isOK() ) {
+				$status->success[$index] = true;
+				++$status->successCount;
+			} else {
+				$status->success[$index] = false;
+				++$status->failCount;
+				if ( !$ignoreErrors ) {
+					// Log remaining ops as failed for recovery...
+					for ( $i = ($index + 1); $i < count( $performOps ); $i++ ) {
+						$performOps[$i]->logFailure( 'attempt_aborted' );
+					}
+					return $status; // bail out
+				}
+			}
+		}
 
 		return $status;
 	}
 
 	/**
-	 * Get the value of the parameter with the given name.
-	 * Returns null if the parameter is not set.
+	 * Get the value of the parameter with the given name
 	 * 
 	 * @param $name string
-	 * @return mixed
+	 * @return mixed Returns null if the parameter is not set
 	 */
 	final public function getParam( $name ) {
 		return isset( $this->params[$name] ) ? $this->params[$name] : null;
@@ -173,6 +135,7 @@ abstract class FileOp {
 
 	/**
 	 * Check if this operation failed precheck() or attempt()
+	 * 
 	 * @return type 
 	 */
 	final public function failed() {
@@ -185,7 +148,7 @@ abstract class FileOp {
 	 * @return Array 
 	 */
 	final public static function newPredicates() {
-		return array( 'exists' => array() );
+		return array( 'exists' => array(), 'sha1' => array() );
 	}
 
 	/**
@@ -222,45 +185,6 @@ abstract class FileOp {
 		if ( !$status->isOK() ) {
 			$this->failed = true;
 			$this->logFailure( 'attempt' );
-		}
-		return $status;
-	}
-
-	/**
-	 * Revert the operation; affected files are restored
-	 *
-	 * @return Status
-	 */
-	final public function revert() {
-		if ( $this->state !== self::STATE_ATTEMPTED ) {
-			return Status::newFatal( 'fileop-fail-state', self::STATE_ATTEMPTED, $this->state );
-		}
-		$this->state = self::STATE_DONE;
-		if ( $this->failed ) {
-			$status = Status::newGood(); // nothing to revert
-		} else {
-			$status = $this->doRevert();
-			if ( !$status->isOK() ) {
-				$this->logFailure( 'revert' );
-			}
-		}
-		return $status;
-	}
-
-	/**
-	 * Finish the operation; this may be irreversible
-	 *
-	 * @return Status
-	 */
-	final public function finish() {
-		if ( $this->state !== self::STATE_ATTEMPTED ) {
-			return Status::newFatal( 'fileop-fail-state', self::STATE_ATTEMPTED, $this->state );
-		}
-		$this->state = self::STATE_DONE;
-		if ( $this->failed ) {
-			$status = Status::newGood(); // nothing to finish
-		} else {
-			$status = $this->doFinish();
 		}
 		return $status;
 	}
@@ -303,186 +227,52 @@ abstract class FileOp {
 	abstract protected function doAttempt();
 
 	/**
-	 * @return Status
-	 */
-	abstract protected function doRevert();
-
-	/**
-	 * @return Status
-	 */
-	protected function doFinish() {
-		return Status::newGood();
-	}
-
-	/**
-	 * Check if the destination file exists and update the
-	 * destAlreadyExists member variable. A bad status will
-	 * be returned if there is no chance it can be overwritten.
+	 * Check for errors with regards to the destination file already existing.
+	 * This also updates the destSameAsSource and sourceSha1 member variables.
+	 * A bad status will be returned if there is no chance it can be overwritten.
 	 * 
 	 * @param $predicates Array
 	 * @return Status
 	 */
 	protected function precheckDestExistence( array $predicates ) {
 		$status = Status::newGood();
-		if ( $this->fileExists( $this->params['dst'], $predicates ) ) {
-			$this->destAlreadyExists = true;
-			if ( !$this->getParam( 'overwriteDest' ) && !$this->getParam( 'overwriteSame' ) ) {
-				$status->fatal( 'backend-fail-alreadyexists', $this->params['dst'] );
-				return $status;
-			}
-		} else {
-			$this->destAlreadyExists = false;
+		// Get hash of source file/string and the destination file
+		$this->sourceSha1 = $this->getSourceSha1Base36(); // FS file or data string
+		if ( $this->sourceSha1 === null ) { // file in storage?
+			$this->sourceSha1 = $this->fileSha1( $this->params['src'], $predicates );
 		}
-		return $status;
-	}
-
-	/**
-	 * Backup any file at the source to a temporary file
-	 *
-	 * @return Status
-	 */
-	protected function backupSource() {
-		$status = Status::newGood();
-		if ( $this->useBackups ) {
-			// Check if a file already exists at the source...
-			$params = array( 'src' => $this->params['src'], 'latest' => $this->useLatest );
-			if ( $this->backend->fileExists( $params ) ) {
-				// Create a temporary backup copy...
-				$this->tmpSourcePath = $this->backend->getLocalCopy( $params );
-				if ( $this->tmpSourcePath === null ) {
-					$status->fatal( 'backend-fail-backup', $this->params['src'] );
-					return $status;
-				}
-			}
-		}
-		return $status;
-	}
-
-	/**
-	 * Backup the file at the destination to a temporary file.
-	 * Don't bother backing it up unless we might overwrite the file.
-	 * This assumes that the destination is in the backend and that
-	 * the source is either in the backend or on the file system.
-	 * This also handles the 'overwriteSame' check logic and updates
-	 * the destSameAsSource member variable.
-	 *
-	 * @return Status
-	 */
-	protected function checkAndBackupDest() {
-		$status = Status::newGood();
 		$this->destSameAsSource = false;
-
-		if ( $this->getParam( 'overwriteDest' ) ) {
-			if ( $this->useBackups ) {
-				// Create a temporary backup copy...
-				$params = array( 'src' => $this->params['dst'], 'latest' => $this->useLatest );
-				$this->tmpDestFile = $this->backend->getLocalCopy( $params );
-				if ( !$this->tmpDestFile ) {
-					$status->fatal( 'backend-fail-backup', $this->params['dst'] );
-					return $status;
-				}
-			}
-		} elseif ( $this->getParam( 'overwriteSame' ) ) {
-			$shash = $this->getSourceSha1Base36();
-			// If there is a single source, then we can do some checks already.
-			// For things like concatenate(), we would need to build a temp file
-			// first and thus don't support 'overwriteSame' ($shash is null).
-			if ( $shash !== null ) {
-				$dhash = $this->getFileSha1Base36( $this->params['dst'] );
-				if ( !strlen( $shash ) || !strlen( $dhash ) ) {
+		if ( $this->fileExists( $this->params['dst'], $predicates ) ) {
+			if ( $this->getParam( 'overwriteDest' ) ) {
+				return $status; // OK
+			} elseif ( $this->getParam( 'overwriteSame' ) ) {
+				$dhash = $this->fileSha1( $this->params['dst'], $predicates );
+				// Check if hashes are valid and match each other...
+				if ( !strlen( $this->sourceSha1 ) || !strlen( $dhash ) ) {
 					$status->fatal( 'backend-fail-hashes' );
-				} elseif ( $shash !== $dhash ) {
+				} elseif ( $this->sourceSha1 !== $dhash ) {
 					// Give an error if the files are not identical
 					$status->fatal( 'backend-fail-notsame', $this->params['dst'] );
 				} else {
-					$this->destSameAsSource = true;
+					$this->destSameAsSource = true; // OK
 				}
 				return $status; // do nothing; either OK or bad status
+			} else {
+				$status->fatal( 'backend-fail-alreadyexists', $this->params['dst'] );
+				return $status;
 			}
-		} else {
-			$status->fatal( 'backend-fail-alreadyexists', $this->params['dst'] );
-			return $status;
 		}
-
 		return $status;
 	}
 
 	/**
-	 * checkAndBackupDest() helper function to get the source file Sha1.
-	 * Returns false on failure and null if there is no single source.
+	 * precheckDestExistence() helper function to get the source file SHA-1.
+	 * Subclasses should overwride this iff the source is not in storage.
 	 *
-	 * @return string|false|null
+	 * @return string|false Returns false on failure
 	 */
 	protected function getSourceSha1Base36() {
 		return null; // N/A
-	}
-
-	/**
-	 * checkAndBackupDest() helper function to get the Sha1 of a file.
-	 *
-	 * @return string|false False on failure
-	 */
-	protected function getFileSha1Base36( $path ) {
-		// Source file is in backend
-		if ( FileBackend::isStoragePath( $path ) ) {
-			// For some backends (e.g. Swift, Azure) we can get
-			// standard hashes to use for this types of comparisons.
-			$params = array( 'src' => $path, 'latest' => $this->useLatest );
-			$hash = $this->backend->getFileSha1Base36( $params );
-		// Source file is on file system
-		} else {
-			wfSuppressWarnings();
-			$hash = sha1_file( $path );
-			wfRestoreWarnings();
-			if ( $hash !== false ) {
-				$hash = wfBaseConvert( $hash, 16, 36, 31 );
-			}
-		}
-		return $hash;
-	}
-
-	/**
-	 * Restore any temporary source backup file
-	 *
-	 * @return Status
-	 */
-	protected function restoreSource() {
-		$status = Status::newGood();
-		// Restore any file that was at the destination
-		if ( $this->tmpSourcePath !== null ) {
-			$params = array(
-				'src'           => $this->tmpSourcePath,
-				'dst'           => $this->params['src'],
-				'overwriteDest' => true
-			);
-			$status = $this->backend->storeInternal( $params );
-			if ( !$status->isOK() ) {
-				return $status;
-			}
-		}
-		return $status;
-	}
-
-	/**
-	 * Restore any temporary destination backup file
-	 *
-	 * @return Status
-	 */
-	protected function restoreDest() {
-		$status = Status::newGood();
-		// Restore any file that was at the destination
-		if ( $this->tmpDestFile ) {
-			$params = array(
-				'src'           => $this->tmpDestFile->getPath(),
-				'dst'           => $this->params['dst'],
-				'overwriteDest' => true
-			);
-			$status = $this->backend->storeInternal( $params );
-			if ( !$status->isOK() ) {
-				return $status;
-			}
-		}
-		return $status;
 	}
 
 	/**
@@ -502,23 +292,30 @@ abstract class FileOp {
 	}
 
 	/**
+	 * Get the SHA-1 of a file in storage when this operation is attempted
+	 * 
+	 * @param $source string Storage path
+	 * @param $predicates Array
+	 * @return string|false 
+	 */
+	final protected function fileSha1( $source, array $predicates ) {
+		if ( isset( $predicates['sha1'][$source] ) ) {
+			return $predicates['sha1'][$source]; // previous op assures this
+		} else {
+			$params = array( 'src' => $source, 'latest' => $this->useLatest );
+			return $this->backend->getFileSha1Base36( $params );
+		}
+	}
+
+	/**
 	 * Log a file operation failure and preserve any temp files
 	 * 
-	 * @param $fileOp FileOp
+	 * @param $action string
 	 * @return void
 	 */
 	final protected function logFailure( $action ) {
 		$params = $this->params;
 		$params['failedAction'] = $action;
-		// Preserve backup files just in case (for recovery)
-		if ( $this->tmpSourceFile ) {
-			$this->tmpSourceFile->preserve(); // don't purge
-			$params['srcBackupPath'] = $this->tmpSourceFile->getPath();
-		}
-		if ( $this->tmpDestFile ) {
-			$this->tmpDestFile->preserve(); // don't purge
-			$params['dstBackupPath'] = $this->tmpDestFile->getPath();
-		}
 		try {
 			wfDebugLog( 'FileOperation',
 				get_class( $this ) . ' failed:' . serialize( $params ) );
@@ -543,30 +340,24 @@ class StoreFileOp extends FileOp {
 
 	protected function doPrecheck( array &$predicates ) {
 		$status = Status::newGood();
-		// Check if destination file exists
-		$status->merge( $this->precheckDestExistence( $predicates ) );
-		if ( !$status->isOK() ) {
-			return $status;
-		}
 		// Check if the source file exists on the file system
 		if ( !is_file( $this->params['src'] ) ) {
 			$status->fatal( 'backend-fail-notexists', $this->params['src'] );
 			return $status;
 		}
+		// Check if destination file exists
+		$status->merge( $this->precheckDestExistence( $predicates ) );
+		if ( !$status->isOK() ) {
+			return $status;
+		}
 		// Update file existence predicates
 		$predicates['exists'][$this->params['dst']] = true;
-		return $status;
+		$predicates['sha1'][$this->params['dst']] = $this->sourceSha1;
+		return $status; // safe to call attempt()
 	}
 
 	protected function doAttempt() {
 		$status = Status::newGood();
-		// Create a destination backup copy as needed
-		if ( $this->destAlreadyExists ) {
-			$status->merge( $this->checkAndBackupDest() );
-			if ( !$status->isOK() ) {
-				return $status;
-			}
-		}
 		// Store the file at the destination
 		if ( !$this->destSameAsSource ) {
 			$status->merge( $this->backend->storeInternal( $this->params ) );
@@ -574,18 +365,14 @@ class StoreFileOp extends FileOp {
 		return $status;
 	}
 
-	protected function doRevert() {
-		$status = Status::newGood();
-		if ( !$this->destSameAsSource ) {
-			// Restore any file that was at the destination,
-			// overwritting what was put there in attempt()
-			$status->merge( $this->restoreDest() );
-		}
-		return $status;
-	}
-
 	protected function getSourceSha1Base36() {
-		return $this->getFileSha1Base36( $this->params['src'] );
+		wfSuppressWarnings();
+		$hash = sha1_file( $this->params['src'] );
+		wfRestoreWarnings();
+		if ( $hash !== false ) {
+			$hash = wfBaseConvert( $hash, 16, 36, 31 );
+		}
+		return $hash;
 	}
 
 	public function storagePathsChanged() {
@@ -615,31 +402,15 @@ class CreateFileOp extends FileOp {
 		}
 		// Update file existence predicates
 		$predicates['exists'][$this->params['dst']] = true;
-		return $status;
+		$predicates['sha1'][$this->params['dst']] = $this->sourceSha1;
+		return $status; // safe to call attempt()
 	}
 
 	protected function doAttempt() {
 		$status = Status::newGood();
-		// Create a destination backup copy as needed
-		if ( $this->destAlreadyExists ) {
-			$status->merge( $this->checkAndBackupDest() );
-			if ( !$status->isOK() ) {
-				return $status;
-			}
-		}
 		// Create the file at the destination
 		if ( !$this->destSameAsSource ) {
 			$status->merge( $this->backend->createInternal( $this->params ) );
-		}
-		return $status;
-	}
-
-	protected function doRevert() {
-		$status = Status::newGood();
-		if ( !$this->destSameAsSource ) {
-			// Restore any file that was at the destination,
-			// overwritting what was put there in attempt()
-			$status->merge( $this->restoreDest() );
 		}
 		return $status;
 	}
@@ -668,49 +439,32 @@ class CopyFileOp extends FileOp {
 
 	protected function doPrecheck( array &$predicates ) {
 		$status = Status::newGood();
-		// Check if destination file exists
-		$status->merge( $this->precheckDestExistence( $predicates ) );
-		if ( !$status->isOK() ) {
-			return $status;
-		}
 		// Check if the source file exists
 		if ( !$this->fileExists( $this->params['src'], $predicates ) ) {
 			$status->fatal( 'backend-fail-notexists', $this->params['src'] );
 			return $status;
 		}
+		// Check if destination file exists
+		$status->merge( $this->precheckDestExistence( $predicates ) );
+		if ( !$status->isOK() ) {
+			return $status;
+		}
 		// Update file existence predicates
 		$predicates['exists'][$this->params['dst']] = true;
-		return $status;
+		$predicates['sha1'][$this->params['dst']] = $this->sourceSha1;
+		return $status; // safe to call attempt()
 	}
 
 	protected function doAttempt() {
 		$status = Status::newGood();
-		// Create a destination backup copy as needed
-		if ( $this->destAlreadyExists ) {
-			$status->merge( $this->checkAndBackupDest() );
-			if ( !$status->isOK() ) {
-				return $status;
+		// Do nothing if the src/dst paths are the same
+		if ( $this->params['src'] !== $this->params['dst'] ) {
+			// Copy the file into the destination
+			if ( !$this->destSameAsSource ) {
+				$status->merge( $this->backend->copyInternal( $this->params ) );
 			}
 		}
-		// Copy the file into the destination
-		if ( !$this->destSameAsSource ) {
-			$status->merge( $this->backend->copyInternal( $this->params ) );
-		}
 		return $status;
-	}
-
-	protected function doRevert() {
-		$status = Status::newGood();
-		if ( !$this->destSameAsSource ) {
-			// Restore any file that was at the destination,
-			// overwritting what was put there in attempt()
-			$status->merge( $this->restoreDest() );
-		}
-		return $status;
-	}
-
-	protected function getSourceSha1Base36() {
-		return $this->getFileSha1Base36( $this->params['src'] );
 	}
 
 	public function storagePathsRead() {
@@ -737,74 +491,41 @@ class MoveFileOp extends FileOp {
 
 	protected function doPrecheck( array &$predicates ) {
 		$status = Status::newGood();
-		// Check if destination file exists
-		$status->merge( $this->precheckDestExistence( $predicates ) );
-		if ( !$status->isOK() ) {
-			return $status;
-		}
 		// Check if the source file exists
 		if ( !$this->fileExists( $this->params['src'], $predicates ) ) {
 			$status->fatal( 'backend-fail-notexists', $this->params['src'] );
 			return $status;
 		}
+		// Check if destination file exists
+		$status->merge( $this->precheckDestExistence( $predicates ) );
+		if ( !$status->isOK() ) {
+			return $status;
+		}
 		// Update file existence predicates
 		$predicates['exists'][$this->params['src']] = false;
+		$predicates['sha1'][$this->params['src']] = false;
 		$predicates['exists'][$this->params['dst']] = true;
-		return $status;
+		$predicates['sha1'][$this->params['dst']] = $this->sourceSha1;
+		return $status; // safe to call attempt()
 	}
 
 	protected function doAttempt() {
 		$status = Status::newGood();
-		// Create a destination backup copy as needed
-		if ( $this->destAlreadyExists ) {
-			$status->merge( $this->checkAndBackupDest() );
-			if ( !$status->isOK() ) {
-				return $status;
-			}
-		}
-		if ( !$this->destSameAsSource ) {
-			// Move the file into the destination
-			$status->merge( $this->backend->moveInternal( $this->params ) );
-		} else {
-			// Create a source backup copy as needed
-			$status->merge( $this->backupSource() );
-			if ( !$status->isOK() ) {
-				return $status;
-			}
-			// Just delete source as the destination needs no changes
-			$params = array( 'src' => $this->params['src'] );
-			$status->merge( $this->backend->deleteInternal( $params ) );
-			if ( !$status->isOK() ) {
-				return $status;
+		// Do nothing if the src/dst paths are the same
+		if ( $this->params['src'] !== $this->params['dst'] ) {
+			if ( !$this->destSameAsSource ) {
+				// Move the file into the destination
+				$status->merge( $this->backend->moveInternal( $this->params ) );
+			} else {
+				// Just delete source as the destination needs no changes
+				$params = array( 'src' => $this->params['src'] );
+				$status->merge( $this->backend->deleteInternal( $params ) );
+				if ( !$status->isOK() ) {
+					return $status;
+				}
 			}
 		}
 		return $status;
-	}
-
-	protected function doRevert() {
-		$status = Status::newGood();
-		if ( !$this->destSameAsSource ) {
-			// Move the file back to the source
-			$params = array(
-				'src' => $this->params['dst'],
-				'dst' => $this->params['src']
-			);
-			$status->merge( $this->backend->moveInternal( $params ) );
-			if ( !$status->isOK() ) {
-				return $status; // also can't restore any dest file
-			}
-			// Restore any file that was at the destination
-			$status->merge( $this->restoreDest() );
-		} else {
-			// Restore any source file
-			return $this->restoreSource();
-		}
-
-		return $status;
-	}
-
-	protected function getSourceSha1Base36() {
-		return $this->getFileSha1Base36( $this->params['src'] );
 	}
 
 	public function storagePathsRead() {
@@ -841,17 +562,13 @@ class DeleteFileOp extends FileOp {
 		}
 		// Update file existence predicates
 		$predicates['exists'][$this->params['src']] = false;
-		return $status;
+		$predicates['sha1'][$this->params['src']] = false;
+		return $status; // safe to call attempt()
 	}
 
 	protected function doAttempt() {
 		$status = Status::newGood();
 		if ( $this->needsDelete ) {
-			// Create a source backup copy as needed
-			$status->merge( $this->backupSource() );
-			if ( !$status->isOK() ) {
-				return $status;
-			}
 			// Delete the source file
 			$status->merge( $this->backend->deleteInternal( $this->params ) );
 			if ( !$status->isOK() ) {
@@ -859,11 +576,6 @@ class DeleteFileOp extends FileOp {
 			}
 		}
 		return $status;
-	}
-
-	protected function doRevert() {
-		// Restore any source file that we deleted
-		return $this->restoreSource();
 	}
 
 	public function storagePathsChanged() {
@@ -876,10 +588,6 @@ class DeleteFileOp extends FileOp {
  */
 class NullFileOp extends FileOp {
 	protected function doAttempt() {
-		return Status::newGood();
-	}
-
-	protected function doRevert() {
 		return Status::newGood();
 	}
 }
