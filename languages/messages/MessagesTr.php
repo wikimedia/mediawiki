@@ -2107,7 +2107,7 @@ Ayrıca [[Special:WantedCategories|İstenen kategoriler]]'e bakınız.",
 'sp-deletedcontributions-contribs' => 'katkılar',
 
 # Special:LinkSearch
-'linksearch'       => 'Dış bağlantılar',
+'linksearch'       => 'Dış bağlantı arama',
 'linksearch-pat'   => 'Motif ara:',
 'linksearch-ns'    => 'Ad alanı:',
 'linksearch-ok'    => 'Ara',
