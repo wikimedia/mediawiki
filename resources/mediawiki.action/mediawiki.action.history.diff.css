@@ -1,11 +1,6 @@
-/*
-** Diff rendering
-*/
-table.diff,
-td.diff-otitle,
-td.diff-ntitle {
-	background-color: transparent;
-}
+/**
+ * Diff rendering
+ */
 
 td.diff-otitle,
 td.diff-ntitle {
