@@ -313,6 +313,14 @@ class ManualLogEntry extends LogEntryBase {
 	protected $comment = ''; ///!< @var string
 	protected $deleted; ///!< @var int
 
+	/**
+	 * Constructor.
+	 * 
+	 * @since 1.19
+	 * 
+	 * @param string $type
+	 * @param string $subtype
+	 */
 	public function __construct( $type, $subtype ) {
 		$this->type = $type;
 		$this->subtype = $subtype;
@@ -329,28 +337,66 @@ class ManualLogEntry extends LogEntryBase {
 	 *   '4:color' => 'blue',
 	 *   'animal' => 'dog'
 	 * );
+	 * 
+	 * @since 1.19
+	 * 
 	 * @param $parameters Associative array
 	 */
 	public function setParameters( $parameters ) {
 		$this->parameters = $parameters;
 	}
 
+	/**
+	 * Set the user that performed the action being logged.
+	 * 
+	 * @since 1.19
+	 * 
+	 * @param User $performer
+	 */
 	public function setPerformer( User $performer ) {
 		$this->performer = $performer;
 	}
 
+	/**
+	 * Set the title of the object changed.
+	 * 
+	 * @since 1.19
+	 * 
+	 * @param Title $target
+	 */
 	public function setTarget( Title $target ) {
 		$this->target = $target;
 	}
 
+	/**
+	 * Set the timestamp of when the logged action took place.
+	 * 
+	 * @since 1.19
+	 * 
+	 * @param string $timestamp
+	 */
 	public function setTimestamp( $timestamp ) {
 		$this->timestamp = $timestamp;
 	}
 
+	/**
+	 * Set a comment associated with the action being logged.
+	 * 
+	 * @since 1.19
+	 * 
+	 * @param string $comment
+	 */
 	public function setComment( $comment ) {
 		$this->comment = $comment;
 	}
 
+	/**
+	 * TODO: document
+	 * 
+	 * @since 1.19
+	 * 
+	 * @param integer $deleted
+	 */
 	public function setDeleted( $deleted ) {
 		$this->deleted = $deleted;
 	}
