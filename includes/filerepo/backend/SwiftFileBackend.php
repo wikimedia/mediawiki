@@ -25,9 +25,9 @@ class SwiftFileBackend extends FileBackend {
 
 	/** @var CF_Connection */
 	protected $conn; // Swift connection handle
+	protected $connTTL = 120; // integer seconds
 	protected $connStarted = 0; // integer UNIX timestamp
 	protected $connContainers = array(); // container object cache
-	protected $connTTL = 120; // integer seconds
 
 	protected $swiftProxyUser; // string
 
@@ -367,7 +367,7 @@ class SwiftFileBackend extends FileBackend {
 			return $status;
 		}
 
-		// (c) Delete the container if empty
+		// (b) Delete the container if empty
 		if ( $contObj->object_count == 0 ) {
 			try {
 				$this->deleteContainer( $fullCont );
@@ -503,15 +503,11 @@ class SwiftFileBackend extends FileBackend {
 
 		try {
 			$cont = $this->getContainer( $srcCont );
-			$obj = $cont->get_object( $srcRel );
 		} catch ( NoSuchContainerException $e ) {
 			$status->fatal( 'backend-fail-stream', $params['src'] );
 			return $status;
-		} catch ( NoSuchObjectException $e ) {
-			$status->fatal( 'backend-fail-stream', $params['src'] );
-			return $status;
-		} catch ( IOException $e ) {
-			$status->fatal( 'backend-fail-stream', $params['src'] );
+		} catch ( InvalidResponseException $e ) {
+			$status->fatal( 'backend-fail-connect', $this->name );
 			return $status;
 		} catch ( Exception $e ) { // some other exception?
 			$status->fatal( 'backend-fail-stream', $params['src'] );
@@ -521,9 +517,10 @@ class SwiftFileBackend extends FileBackend {
 
 		try {
 			$output = fopen( 'php://output', 'w' );
+			$obj = new CF_Object( $cont, $srcRel, False, False ); // skip HEAD request
 			$obj->stream( $output, $this->headersFromParams( $params ) );
-		} catch ( InvalidResponseException $e ) {
-			$status->fatal( 'backend-fail-connect', $this->name );
+		} catch ( InvalidResponseException $e ) { // 404? connection problem?
+			$status->fatal( 'backend-fail-stream', $params['src'] );
 		} catch ( Exception $e ) { // some other exception?
 			$status->fatal( 'backend-fail-stream', $params['src'] );
 			$this->logException( $e, __METHOD__, $params );
