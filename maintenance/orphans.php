@@ -53,10 +53,11 @@ class Orphans extends Maintenance {
 	 * @param $db DatabaseBase object
 	 * @param $extraTable String The name of any extra tables to lock (eg: text)
 	 */
-	private function lockTables( &$db, $extraTable = null ) {
+	private function lockTables( $db, $extraTable = array() ) {
 		$tbls = array( 'page', 'revision', 'redirect' );
-		if ( $extraTable )
-			$tbls[] = $extraTable;
+		if ( $extraTable ) {
+			$tbls = array_merge( $tbls, $extraTable );
+		}
 		$db->lockTables( array(), $tbls, __METHOD__, false );
 	}
 
@@ -167,7 +168,7 @@ class Orphans extends Maintenance {
 		$revision = $dbw->tableName( 'revision' );
 
 		if ( $fix ) {
-			$dbw->lockTables( $dbw, 'text', __METHOD__ );
+			$this->lockTables( $dbw, array( 'user', 'text' ) );
 		}
 
 		$this->output( "\nChecking for pages whose page_latest links are incorrect... (this may take a while on a large wiki)\n" );
@@ -206,7 +207,7 @@ class Orphans extends Maintenance {
 						$this->output( "... updating to revision $maxId\n" );
 						$maxRev = Revision::newFromId( $maxId );
 						$title = Title::makeTitle( $row->page_namespace, $row->page_title );
-						$article = new Article( $title );
+						$article = WikiPage::factory( $title );
 						$article->updateRevisionOn( $dbw, $maxRev );
 					}
 				}
