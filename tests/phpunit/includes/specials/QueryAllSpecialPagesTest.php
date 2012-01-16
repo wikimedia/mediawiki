@@ -23,6 +23,16 @@ class QueryAllSpecialPagesTest extends MediaWikiTestCase {
 	);
 
 	/**
+	 * Pages whose query use the same DB table more than once.
+	 * This is used to skip testing those pages when run against a MySQL backend
+	 * which does not support reopening a temporary table. See upstream bug:
+	 * http://bugs.mysql.com/bug.php?id=10327
+	 */
+	protected $reopensTempTable = array(
+		'BrokenRedirects',
+	);
+
+	/**
 	 * Initialize all query page objects
 	 */
 	function __construct() {
@@ -42,7 +52,19 @@ class QueryAllSpecialPagesTest extends MediaWikiTestCase {
 	 * @group Database
 	 */
 	function testQuerypageSqlQuery() {
+		global $wgDBtype;
+
 		foreach( $this->queryPages as $page ) {
+
+			// With MySQL, skips special pages reopening a temporary table
+			// See http://bugs.mysql.com/bug.php?id=10327
+			if(
+				$wgDBtype === 'mysql'
+				&& in_array( $page->getName(), $this->reopensTempTable )
+			) {
+					$this->markTestSkipped( "SQL query for page {$page->getName()} can not be tested on MySQL backend (it reopens a temporary table)" );
+					continue;
+				}
 
 			$msg = "SQL query for page {$page->getName()} should give a result wrapper object" ;
 
