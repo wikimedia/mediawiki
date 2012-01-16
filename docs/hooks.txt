@@ -1054,7 +1054,8 @@ Return false to stop further processing of the tag
 
 'ImportHandleRevisionXMLTag': When parsing a XML tag in a page revision
 $reader: XMLReader object
-$revInfo: Array of information
+$pageInfo: Array of page information
+$revisionInfo: Array of revision information
 Return false to stop further processing of the tag
 
 'ImportHandleToplevelXMLTag': When parsing a top level XML tag
