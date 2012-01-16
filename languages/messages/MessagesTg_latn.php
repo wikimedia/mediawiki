@@ -1505,7 +1505,7 @@ Daleli muşaxxas baroi in korro dar zer zikr kuned (baroi misol, zikri sahifahoe
 'badipaddress'                => "IP nişonai nomū'tabar",
 'blockipsuccesssub'           => 'Bastan muvaffaq щud',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] basta şudaast.<br />
-Baroi barrasī ba [[Special:IPBlockList|fehristi nişonahoi IP va nomhoi korbariji basta şuda]] nigared.',
+Baroi barrasī ba [[Special:BlockList|fehristi nişonahoi IP va nomhoi korbariji basta şuda]] nigared.',
 'ipb-edit-dropdown'           => "Daleli qat'i dastrasī",
 'ipb-unblock-addr'            => 'Boz kardani $1',
 'ipb-unblock'                 => 'Boz kardani nomi korbarī jo nişonai IP',

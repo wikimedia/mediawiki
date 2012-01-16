@@ -2577,7 +2577,7 @@ Ange orsak nedan (exempelvis genom att nämna sidor som blivit vandaliserade).',
 'badipaddress'                    => 'Du har inte skrivit IP-adressen korrekt.',
 'blockipsuccesssub'               => 'Blockeringen är utförd',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] har blockerats.
-<br />För att se alla aktuella blockeringar, gå till [[Special:IPBlockList|listan över blockeringar]].',
+<br />För att se alla aktuella blockeringar, gå till [[Special:BlockList|listan över blockeringar]].',
 'ipb-blockingself'                => 'Du håller på att blockera dig själv! Är du säker på att du vill göra det?',
 'ipb-confirmhideuser'             => 'Du är på väg att blockera en användare med "göm användare" aktiverat. Detta kommer upphäva användarens namn i alla listor och loggar. Är du säker på att du vill göra det?',
 'ipb-edit-dropdown'               => 'Redigera blockeringsanledningar',

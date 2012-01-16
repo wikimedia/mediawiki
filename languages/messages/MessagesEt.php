@@ -2518,7 +2518,7 @@ Täida ka põhjuse väli, näiteks viidates lehekülgedele, mis rikuti.',
 'badipaddress'                    => 'Vigane IP-aadress',
 'blockipsuccesssub'               => 'Blokeerimine õnnestus',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] on blokeeritud.<br />
-Kehtivaid blokeeringuid vaata [[Special:IPBlockList|blokeeringute loendist]].',
+Kehtivaid blokeeringuid vaata [[Special:BlockList|blokeeringute loendist]].',
 'ipb-blockingself'                => 'Sa blokeerid iseenda! Kas tahad tõesti seda teha?',
 'ipb-confirmhideuser'             => 'Avaldasid soovi kasutaja blokeerida ja peita. Kasutaja nimi peidetakse kõigist loenditest ja logisissekannetest. Kas oled kindel, et soovid seda teha?',
 'ipb-edit-dropdown'               => 'Muuda blokeeringu põhjuseid',

@@ -2000,7 +2000,7 @@ Kirjutagat sü alemba (ozutesikš, citiruigat vandaliziruidud lehtpoled).',
 'badipaddress'                    => 'Vär IP-adres',
 'blockipsuccesssub'               => 'Blokiruind om tehtud',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] om blokiruidud.<br />
-Kc. [[Special:IPBlockList|blokiruidud IP-adresoiden nimikirjuteshe]].',
+Kc. [[Special:BlockList|blokiruidud IP-adresoiden nimikirjuteshe]].',
 'ipb-edit-dropdown'               => 'Redaktiruida süiden nimikirjutez',
 'ipb-unblock-addr'                => 'Heitta blokiruind kävutajalpäi $1',
 'ipb-unblock'                     => 'Heitta blokiruind kävutajan nimelpäi vai IP-adresalpäi',

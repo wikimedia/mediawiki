@@ -1958,7 +1958,7 @@ Bloklama qeydlərinin sonuncusu aşağıda göstərilmişdir:',
 'badipaddress'                    => 'Səhv IP',
 'blockipsuccesssub'               => 'bloklandı',
 'blockipsuccesstext'              => '[[Special:Contributions/$1| $1]]bloklanıb..<br />
-Bax [[Special:IPBlockList|IP blok siyahısı]] bloklanmış IP-lər.',
+Bax [[Special:BlockList|IP blok siyahısı]] bloklanmış IP-lər.',
 'ipb-blockingself'                => 'Özünü bloklayacaqsınız.! Bunu etmək istədiyinizdən əminsinizmi?',
 'ipb-confirmhideuser'             => 'İstifadəçini bloklamaq və redaktə siyahısından onun adını silmək üzərəsiniz. Bunu etmək istədiyinizdən əminsinizmi?',
 'ipb-edit-dropdown'               => 'Bloklama səbəblərini redaktə et',

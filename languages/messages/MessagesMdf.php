@@ -1915,7 +1915,7 @@ $1',
 'badipaddress'                    => 'Аф кондясти IP адрес',
 'blockipsuccesssub'               => 'Сёлгома ётась лац',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] сёлгозь.<br />
-Ванк [[Special:IPBlockList|IP сёлгома лувомать]] сёлгомат ваноманкса.',
+Ванк [[Special:BlockList|IP сёлгома лувомать]] сёлгомат ваноманкса.',
 'ipb-edit-dropdown'               => 'Полафтомс сёлгома туфталхт',
 'ipb-unblock-addr'                => 'Валхтомс $1-нь сёлгома',
 'ipb-unblock'                     => 'Тиинь эли IP адресонь сёлгома валхтомс',

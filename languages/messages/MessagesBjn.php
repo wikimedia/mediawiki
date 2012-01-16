@@ -1901,7 +1901,7 @@ Janaki jua [[Special:WantedCategories|tutumbung nang dihandaki]].',
 'sp-deletedcontributions-contribs' => 'Sumbangan',
 
 # Special:LinkSearch
-'linksearch'       => 'Tautan luar',
+'linksearch'       => 'Manggagai tautan luar',
 'linksearch-pat'   => 'Gagai bapola:',
 'linksearch-ns'    => 'Ngaran-kamar:',
 'linksearch-ok'    => 'Gagai',

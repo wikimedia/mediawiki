@@ -2505,7 +2505,7 @@ vandalizirane).',
 'badipaddress'                    => 'Nevaljana IP adresa.',
 'blockipsuccesssub'               => 'Uspješno blokirano',
 'blockipsuccesstext'              => 'Suradnik [[Special:Contributions/$1|$1]] je blokiran.<br />
-Pogledaj [[Special:IPBlockList|popis blokiranih IP adresa]] za pregled.',
+Pogledaj [[Special:BlockList|popis blokiranih IP adresa]] za pregled.',
 'ipb-blockingself'                => 'Blokirat ćete se! Jeste li sigurni da to želite?',
 'ipb-confirmhideuser'             => 'Upravo ćete blokirati suradnika koji ima mogućnost "sakrij suradnika" omogućenu. To će sakriti suradničko ime na svim popisima i evidencijama. Jeste li sigurni da želite to učiniti?',
 'ipb-edit-dropdown'               => 'Uredi razloge blokiranja',

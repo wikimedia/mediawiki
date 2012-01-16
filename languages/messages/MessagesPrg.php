@@ -1845,7 +1845,7 @@ Padāis brewīnslin zemmais (p. endījanei tītelins stēisan wandalizītan pāu
 'badipaddress'                    => 'Nitikrōmiska IP adressi',
 'blockipsuccesssub'               => 'Blōkisenis izpalla',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] pastāi blōkitan.<br />
-Jaīs en [[Special:IPBlockList|listin stēisan IP adressin]] kai widālai blōkisenins.',
+Jaīs en [[Special:BlockList|listin stēisan IP adressin]] kai widālai blōkisenins.',
 'ipb-edit-dropdown'               => 'Redigīs blōkisenes brewīnslins',
 'ipb-unblock-addr'                => 'Etblōkis $1',
 'ipb-unblock'                     => 'Etblōkis tērpautajas pabilīsnan anga IP adressin',

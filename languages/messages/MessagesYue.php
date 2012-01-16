@@ -2316,7 +2316,7 @@ $1',
 'badipaddress'                    => '無效嘅IP地址',
 'blockipsuccesssub'               => '封鎖成功',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]]已經封鎖。<br />
-去[[Special:IPBlockList|IP封鎖清單]]睇返封鎖名單。',
+去[[Special:BlockList|IP封鎖清單]]睇返封鎖名單。',
 'ipb-edit-dropdown'               => '改封鎖原因',
 'ipb-unblock-addr'                => '解封$1',
 'ipb-unblock'                     => '解封一個用戶名或IP地址',

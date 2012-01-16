@@ -2458,7 +2458,7 @@ dirosakkan).',
 'badipaddress'                    => 'Alamat IP tidak sah',
 'blockipsuccesssub'               => 'Sekatan berjaya',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] telah disekat.
-<br />Sila lihat [[Special:IPBlockList|senarai sekatan IP]] untuk maklumat lanjut.',
+<br />Sila lihat [[Special:BlockList|senarai sekatan IP]] untuk maklumat lanjut.',
 'ipb-blockingself'                => 'Anda akan menyekat diri sendiri! Pastikah anda mahu berbuat demikian?',
 'ipb-confirmhideuser'             => 'Anda akan menyekat seorang pengguna yang menghidupkan "sorokkan pengguna". Ini akan menindaskan nama pengguna itu di semua senarai dan entri log. Pastikah anda mahu berbuat demikian?',
 'ipb-edit-dropdown'               => 'Sunting sebab sekatan',

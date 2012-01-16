@@ -2441,7 +2441,7 @@ Willariy imaraykum hark'anki (ahinataq: sapaq wandaluchasqa p'anqakunamanta will
 'ipb-confirm'                     => "Hark'ayta takyachiy",
 'badipaddress'                    => 'IP huchhaqa manam allinchu.',
 'blockipsuccesssub'               => "Ruraqqa hark'asqañam",
-'blockipsuccesstext'              => "[[Special:Contributions/$1|$1]] huchhayuq tiyayqa hark'asqañam. <br />[[Special:IPBlockList|Hark'asqakunamanta p'anqata]] qhaway hark'akunata hukchanaykipaq.",
+'blockipsuccesstext'              => "[[Special:Contributions/$1|$1]] huchhayuq tiyayqa hark'asqañam. <br />[[Special:BlockList|Hark'asqakunamanta p'anqata]] qhaway hark'akunata hukchanaykipaq.",
 'ipb-blockingself'                => "Kikiykitam hark'aykachachkanki!  Chiqapta kayta rurayta munankichu?",
 'ipb-confirmhideuser'             => 'Ruraqta hark\'aykachachkanki, payman "Ruraqta pakay" nisqam.  Chaywanqa manam pipas chay ruraqpa sutinta ima sutisuyupipas hallch\'apipas rikunqachu.  Chiqapta kayta rurayta munankichu?',
 'ipb-edit-dropdown'               => "Hark'aypa hamunta llamk'apuy",

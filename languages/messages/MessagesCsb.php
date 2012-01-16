@@ -1048,7 +1048,7 @@ Mòżesz zmienic légã zazychrowaniô, nie bãdze to równak miało cëskù na 
 'badipaddress'             => 'IP-adresa nie je richtich pòdónô.',
 'blockipsuccesssub'        => 'Zascëgónié dało sã',
 'blockipsuccesstext'       => 'Brëkòwnik [[Special:Contributions/$1|$1]] òstał zascëgóny.<br />
-Biéj do [[Special:IPBlockList|lëstë zascëgónëch adresów IP]] abë òbaczëc zascëdżi.',
+Biéj do [[Special:BlockList|lëstë zascëgónëch adresów IP]] abë òbaczëc zascëdżi.',
 'ipblocklist'              => 'Lësta zablokòwónëch adresów IP ë mionów brëkòwników',
 'blocklink'                => 'blokùjë',
 'unblocklink'              => 'òdblokùjë',

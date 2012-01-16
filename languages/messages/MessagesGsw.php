@@ -2312,7 +2312,7 @@ Des sott numme erfolge go Vandalismus verhindere un in Ibereinstimmig mit in dr 
 'badipaddress'                    => 'D IP-Adräss het e falsch Format.',
 'blockipsuccesssub'               => 'Mit Erfolg gsperrt',
 'blockipsuccesstext'              => 'Dr Benutzer/d IP-Adräss [[Special:Contributions/$1|$1]] isch gsperrt wore.<br />
-Go d Sperri ufhebe lueg d [[Special:IPBlockList|Lisch vu allene aktive Sperrine]].',
+Go d Sperri ufhebe lueg d [[Special:BlockList|Lisch vu allene aktive Sperrine]].',
 'ipb-blockingself'                => 'Du bist grad am Sperre vu Dir sälber! Wettsch des wirkli mache?',
 'ipb-confirmhideuser'             => 'Du bist grad am Sperre vun eme Benutzer im Modus „Benutzer verstecke“. Des fiert derzue, ass dr Benutzername in allne Lischten un Logbiecher unterdruckt wird. Wettsch des wirkli mache?',
 'ipb-edit-dropdown'               => 'Sperrgrind bearbeite',

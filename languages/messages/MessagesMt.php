@@ -2481,7 +2481,7 @@ Indika r-raġuni speċifika għalfejn tixtieq tipproċedi bil-blokk (per eżempj
 'badipaddress'                    => "Indirizz ta' IP invalidu",
 'blockipsuccesssub'               => 'Il-blokk irnexxa',
 'blockipsuccesstext'              => 'L-utent [[Special:Contributions/$1|$1]] ġie imblukkat.<br />
-Ara l-[[Special:IPBlockList|lista tal-IP imblukkati]] biex tara l-blokki attivi.',
+Ara l-[[Special:BlockList|lista tal-IP imblukkati]] biex tara l-blokki attivi.',
 'ipb-blockingself'                => 'Inti se timblokka lilek innifsek! Inti ċert li trid tagħmel dan?',
 'ipb-confirmhideuser'             => 'Inti se timblokka utent bl-opzjoni "Aħbi l-utent" magħżula. B\'dan il-mod jiġi evitat li jidher l-isem tal-utent fl-elenki u fid-daħliet rar-reġistri kollha. Inti ċert li trid tagħmel dan?',
 'ipb-edit-dropdown'               => 'Immodifika r-raġunijiet tal-imblukkar',

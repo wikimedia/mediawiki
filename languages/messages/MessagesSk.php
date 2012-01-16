@@ -2508,7 +2508,7 @@ Nižšie uveďte konkrétny dôvod (napríklad uveďte konkrétne stránky, ktor
 'badipaddress'                    => 'IP adresa má nesprávny formát.',
 'blockipsuccesssub'               => 'Zablokovanie bolo úspešné',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] bol zablokovaný.<br />
-[[Special:IPBlockList|IP block list]] obsahuje zoznam blokovaní.',
+[[Special:BlockList|IP block list]] obsahuje zoznam blokovaní.',
 'ipb-blockingself'                => 'Chystáte sa zablokovať sám seba! Ste si istí, že to chcete urobiť?',
 'ipb-confirmhideuser'             => 'Chystáte sa zablokovať používateľa so zapnutou funkciou „skryť používateľa“. Tým sa potlačí meno používateľa vo všetkých zoznamoch a záznamoch. Ste si istí, že chcete urobiť?',
 'ipb-edit-dropdown'               => 'Upraviť dôvody pre blokovanie',

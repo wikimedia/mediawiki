@@ -1019,7 +1019,7 @@ When templates are expanded, there is a size limit for the number of bytes yield
 'undo-norev'   => 'Message appears if an attempt to revert an edit by clicking the "undo" link on the page history fails.
 
 {{Identical|Undo}}',
-'undo-summary' => '{{Identical|Undo}}',
+'undo-summary' => 'Edit summary for an undo action.{{Identical|Undo}}',
 
 # History pages
 'viewpagelogs'           => 'Link displayed in history of pages',
@@ -2518,7 +2518,10 @@ Similar to {{msg-mw|rcnote}} which is used on [[Special:RecentChanges]].
 'created'            => 'Possible value for $CHANGEDORCREATED in {{msg|enotif_subject}} and {{msg|enotif_body}}.',
 'enotif_subject'     => '$CHANGEDORCREATED can be one of {{msg|changed}} and {{msg|created}}. Can also be {{msg-mw|blog-added}} or {{msg-mw|blog-edited}} from Wikia.',
 'enotif_lastvisited' => '$1 is a URL address.',
-'enotif_lastdiff'    => '* $1 is a link to diff, shown as a plainlink',
+'enotif_lastdiff'    => 'E-mail notification text to the latest page differences. Parameters:
+* $1 is a link to a diff, shown as a plain link.',
+'enotif_anon_editor' => 'User name in an e-mail notification when referring to an anonymous user. Parameters:
+* $1 is the anonymous user name (i.e. an IP address).',
 'enotif_body'        => 'Text of a notification e-mail sent when a watched page has been edited or deleted.[[File:Screenshot_MediaWiki_e-mail_notifier.PNG|150px|right]]
 
 * <tt>$CHANGEDORCREATED</tt> can be one of {{msg-mw|changed}}, {{msg-mw|created}}, or {{msg-mw|deleted}}. Can also be {{msg-mw|blog-added}} or {{msg-mw|blog-edited}} from Wikia.',
@@ -2780,11 +2783,14 @@ Example line:
 * [[Main Page]] ([[Special:WhatLinksHere/Main Page|{{int:whatlinkshere-links}}]])
 
 {{Identical|Links}}',
-'whatlinkshere-hideredirs' => 'Parameter $1 is the message "[[MediaWiki:Hide/{{SUBPAGENAME}}|hide]]" or "[[MediaWiki:Show/{{SUBPAGENAME}}|show]]".',
-'whatlinkshere-hidetrans'  => 'Parameter $1 is the message "[[MediaWiki:Hide/{{SUBPAGENAME}}|hide]]" or "[[MediaWiki:Show/{{SUBPAGENAME}}|show]]".',
-'whatlinkshere-hidelinks'  => 'Parameter $1 is the message "[[MediaWiki:Hide/{{SUBPAGENAME}}|hide]]" or "[[MediaWiki:Show/{{SUBPAGENAME}}|show]]".',
-'whatlinkshere-hideimages' => 'This is the text of the option on [[Special:WhatLinksHere]] for image pages, allowing to hide/show pages which display the file inline.
-Parameter $1 is the message "[[MediaWiki:Hide/{{SUBPAGENAME}}|hide]]" or "[[MediaWiki:Show/{{SUBPAGENAME}}|show]]".',
+'whatlinkshere-hideredirs' => 'Filter option in [[Special:WhatLinksHere]]. Parameters:
+* $1 is the {{msg-mw|hide}} or {{msg-mw|show}}',
+'whatlinkshere-hidetrans'  => 'First filter option in [[Special:WhatLinksHere]]. Parameters:
+* $1 is the {{msg-mw|hide}} or {{msg-mw|show}}',
+'whatlinkshere-hidelinks'  => 'Filter option in [[Special:WhatLinksHere]]. Parameters:
+* $1 is the {{msg-mw|hide}} or {{msg-mw|show}}',
+'whatlinkshere-hideimages' => 'Filter option in [[Special:WhatLinksHere]]. Parameters:
+* $1 is the {{msg-mw|hide}} or {{msg-mw|show}}',
 'whatlinkshere-filters'    => '{{Identical|Filter}}',
 
 # Block/unblock
@@ -2794,7 +2800,7 @@ Parameter $1 is the message "[[MediaWiki:Hide/{{SUBPAGENAME}}|hide]]" or "[[Medi
 
 {{Identical|Block user}}',
 'blockip-title'               => '{{Identical|Block user}}',
-'blockip-legend'              => 'Legend/Header for the fieldset around the input form of [[Special:BlockIP]].
+'blockip-legend'              => 'Legend/Header for the fieldset around the input form of [[Special:Block]].
 
 {{Identical|Block user}}',
 'ipadressorusername'          => '{{Identical/IP address or username}}',

@@ -2298,7 +2298,7 @@ $1',
 'badipaddress'                => 'Àdírẹ́ẹ̀sì IP tíkòtọ́',
 'blockipsuccesssub'           => 'Ìdínà yọrí sí rere',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] ti jẹ́ dídílọ́nà.<br />
-Ẹ wo [[Special:IPBlockList|IP àkójọ ìdínà]] láti ṣàtúnyẹ̀wò àwọn ìdínà.',
+Ẹ wo [[Special:BlockList|IP àkójọ ìdínà]] láti ṣàtúnyẹ̀wò àwọn ìdínà.',
 'ipb-blockingself'            => 'Ẹ ti fẹ́ dínà ara yín! Ṣé èyí dáa yín lójú?',
 'ipb-edit-dropdown'           => 'Àtúnṣe àwọn ìdí ìdínà',
 'ipb-unblock-addr'            => 'Ìmúkúrò ìdínà $1',

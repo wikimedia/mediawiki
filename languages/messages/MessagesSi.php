@@ -2500,7 +2500,7 @@ $1',
 'badipaddress'                    => 'අනීතික අන්තර්ජාල ලිපිනයකි',
 'blockipsuccesssub'               => 'වාරණය සාර්ථක විය',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] වාරණයට ලක් කර ඇත.<br />
-වාරණයන් සමාලෝචනය සඳහා  [[Special:IPBlockList|අන්තර්ජාල වාරණ ලැයිස්තුව]] බලන්න.',
+වාරණයන් සමාලෝචනය සඳහා  [[Special:BlockList|අන්තර්ජාල වාරණ ලැයිස්තුව]] බලන්න.',
 'ipb-blockingself'                => 'ඔබ විසින් ඔබවම වාරණය කිරමට උත්සහ දරයි! ඔබට විශ්වාසද මෙය කල යුතුමයි කියා?',
 'ipb-edit-dropdown'               => 'සංස්කරණ වාරණ හේතූන්',
 'ipb-unblock-addr'                => '$1වාරණය අත්හිටුවන්න',

@@ -1606,7 +1606,7 @@ Sedemekê binivîse!',
 'badipaddress'                => 'Bikarhêner bi vî navî tune',
 'blockipsuccesssub'           => 'Astengkirin serkeftî bû',
 'blockipsuccesstext'          => '"$1" hat asteng kirin.
-<br />Bibîne [[Special:IPBlockList|Lîsteya IP\'yan hatî asteng kirin]] ji bo lîsteya blokan.',
+<br />Bibîne [[Special:BlockList|Lîsteya IP\'yan hatî asteng kirin]] ji bo lîsteya blokan.',
 'ipb-edit-dropdown'           => 'Sedemên astengkirinê',
 'ipb-unblock-addr'            => 'Astengkirinê $1 rake',
 'ipb-unblock'                 => "Astengkirina bikarhênerekî ya adrêsa IP'yekê rake",

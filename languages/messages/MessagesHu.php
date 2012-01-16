@@ -2570,7 +2570,7 @@ Add meg a blokkolás okát is (például idézd a blokkolandó személy által v
 'badipaddress'                    => 'Érvénytelen IP-cím',
 'blockipsuccesssub'               => 'Sikeres blokkolás',
 'blockipsuccesstext'              => '„[[Special:Contributions/$1|$1]]” felhasználót blokkoltad.
-<br />Lásd a [[Special:IPBlockList|blokkolt IP-címek listáját]] az érvényben lévő blokkok áttekintéséhez.',
+<br />Lásd a [[Special:BlockList|blokkolt IP-címek listáját]] az érvényben lévő blokkok áttekintéséhez.',
 'ipb-blockingself'                => 'Saját magad blokkolására készülsz! Biztos, hogy ezt szeretnéd tenni?',
 'ipb-confirmhideuser'             => 'Egy felhasználó blokkolására készülsz, úgy, hogy a „felhasználó elrejtése” funkció be van kapcsolva. Ez elrejti a felhasználó nevét az összes listában és naplóbejegyzésben. Biztosan ezt szeretnéd tenni?',
 'ipb-edit-dropdown'               => 'Blokkolási okok szerkesztése',
@@ -3907,6 +3907,7 @@ A képek teljes méretben jelennek meg, más fájltípusok közvetlenül a hozz�
 'api-error-unknown-code'                  => 'Ismeretlen hiba: „$1”',
 'api-error-unknown-error'                 => 'Belső hiba: valami baj történt a fájl feltöltése közben.',
 'api-error-unknown-warning'               => 'Ismeretlen figyelmeztetés: $1',
+'api-error-unknownerror'                  => 'Ismeretlen hiba: „$1”.',
 'api-error-uploaddisabled'                => 'A feltöltés le van tiltva ezen a wikin.',
 'api-error-verification-error'            => 'A fájl feltehetőleg sérült, vagy hibás a kiterjesztése.',
 

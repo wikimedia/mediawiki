@@ -2055,7 +2055,7 @@ Inditgescha sutvart in motiv (per exempel pos ti inditgar paginas ch'èn vegnida
 'badipaddress'                    => "L'adressa IP è nunvalida",
 'blockipsuccesssub'               => 'Bloccà cun success',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] è vegnì bloccà.<br />
-Sin [[Special:IPBlockList|la glista dad IPs bliccadas]] pos ti repassar tut las bloccadas.',
+Sin [[Special:BlockList|la glista dad IPs bliccadas]] pos ti repassar tut las bloccadas.',
 'ipb-edit-dropdown'               => 'Modifitgar ils motivs per bloccar',
 'ipb-unblock-addr'                => 'Debloccar $1',
 'ipb-unblock'                     => 'Debloccar in utilisader u ina adressa IP',

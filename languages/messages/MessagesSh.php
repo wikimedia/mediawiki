@@ -2469,7 +2469,7 @@ Unesite konkretan razlog ispod (na primjer, navodeći koje konkretne stranice su
 'badipaddress'                    => 'Nevaljana IP adresa',
 'blockipsuccesssub'               => 'Blokiranje je uspjelo',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] je blokiran.
-<br />Pogledajte [[Special:IPBlockList|IP spisak blokiranih korisnika]] za pregled blokiranja.',
+<br />Pogledajte [[Special:BlockList|IP spisak blokiranih korisnika]] za pregled blokiranja.',
 'ipb-blockingself'                => 'Ovom akcijom ćete blokirati sebe! Da li ste sigurni da to želite?',
 'ipb-confirmhideuser'             => "Upravo ćete blokirati korisnika sa uključenom opcijom ''sakrij korisnika''. Ovim će korisničko ime biti sakriveno u svim spiskovima i stavkama zapisnika. Da li ste sigurni da to želite?",
 'ipb-edit-dropdown'               => 'Uredi razloge blokiranja',

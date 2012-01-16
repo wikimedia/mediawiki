@@ -2154,7 +2154,7 @@ Reek dän Gruund foar ju Speere oun.',
 'badipaddress'                    => 'Dissen Benutser bestoant nit, d.h. die Noome is falsk',
 'blockipsuccesssub'               => 'Blokkoade geloangen',
 'blockipsuccesstext'              => 'Ju IP-Adrässe [[Special:Contributions/$1|$1]] wuude blokkierd.
-<br />[[Special:IPBlockList|Lieste fon Blokkoaden]].',
+<br />[[Special:BlockList|Lieste fon Blokkoaden]].',
 'ipb-blockingself'                => 'Du bäst tougong, die sälwen tou speeren! Moatest dät wuudelk dwo?',
 'ipb-confirmhideuser'             => 'Du bäst tougong n Benutser in dän Modus "Benutser fersteete" tou speeren. Dät fiert deertou, dät die Benutsernoome in aal Liesten un Logbouke unnerdrukt wäd. Moatest dät wuudelk dwo?',
 'ipb-edit-dropdown'               => 'Speergruunde beoarbaidje',

@@ -1625,7 +1625,7 @@ mu nung sanu retang bulung a sinira da).',
 'badipaddress'                => 'E matatanggap ing IP address',
 'blockipsuccesssub'           => 'Ing sabat migtagumpe ya',
 'blockipsuccesstext'          => 'Mesabat ya ing [[Special:Contributions/$1|$1]]
-<br />Lon me ing [[Special:IPBlockList|IP block list]] ba mong akit detang mesabat.',
+<br />Lon me ing [[Special:BlockList|IP block list]] ba mong akit detang mesabat.',
 'ipb-edit-dropdown'           => 'Sangkan ning pamaniabat king pamag-edit',
 'ipb-unblock-addr'            => 'Ilako ya pangasabat ing $1',
 'ipb-unblock'                 => 'Ilako ya pangasabat ing lagyungtalagamit (username) o IP address',

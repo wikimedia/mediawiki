@@ -1001,7 +1001,7 @@ Seo roghainnean làithreach na duilleige '''$1''':",
 'badipaddress'             => "Chan eil an seòladh IP aig a' cleachdair seo iomchaidh",
 'blockipsuccesssub'        => "Shoirbhich leat leis a' bhacadh",
 'blockipsuccesstext'       => "Tha [[Special:Contributions/$1|$1]] air a bhacadh.
-<br />Faic [[Special:IPBlockList|Liosta nan IP baicte]] na bacaidhean a dh'ath-sgrùdadh.",
+<br />Faic [[Special:BlockList|Liosta nan IP baicte]] na bacaidhean a dh'ath-sgrùdadh.",
 'unblockip'                => 'Neo-bhac an cleachdaiche',
 'ipusubmit'                => 'Thoir air falbh am bacadh seo',
 'ipblocklist'              => 'Cleachdaichean a chaidh a bhacadh',

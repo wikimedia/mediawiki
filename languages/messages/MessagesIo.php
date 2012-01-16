@@ -1237,7 +1237,7 @@ restauris ad lasta versiono da $2.',
 'badipaddress'       => 'IP-adreso ne esas valida',
 'blockipsuccesssub'  => 'Blokusado sucesis',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] blokusesis.<br />
-Videz [[Special:IPBlockList|IP-blokuslisto]] por revizor blokusadi.',
+Videz [[Special:BlockList|IP-blokuslisto]] por revizor blokusadi.',
 'ipb-edit-dropdown'  => 'Redaktar blokuso-motivi',
 'unblockip'          => 'Desblokusar uzanto',
 'unblockiptext'      => 'Uzez la sequanta formularo por restaurar la skribo-aceso ad IP-adreso qua blokusesis antee.',

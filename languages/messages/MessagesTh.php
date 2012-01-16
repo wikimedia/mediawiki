@@ -2309,7 +2309,7 @@ $1',
 'badipaddress'                    => 'หมายเลขไอพีไม่ถูกต้อง',
 'blockipsuccesssub'               => 'บล็อกสำเร็จ',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] ถูกบล็อก
-<br />ดู  [[Special:IPBlockList|รายการไอพีที่ถูกบล็อก]] เพื่อตรวจสอบการบล็อก',
+<br />ดู  [[Special:BlockList|รายการไอพีที่ถูกบล็อก]] เพื่อตรวจสอบการบล็อก',
 'ipb-edit-dropdown'               => 'แก้ไขสาเหตุการบล็อก',
 'ipb-unblock-addr'                => 'เลิกบล็อก $1',
 'ipb-unblock'                     => 'เลิกบล็อกผู้ใช้หรือหมายเลขไอพี',

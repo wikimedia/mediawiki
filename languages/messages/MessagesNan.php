@@ -1922,7 +1922,7 @@ Téng 1 ūi siu-kái-chiá sī [[User:$3|$3]] ([[User talk:$3|talk]]{{int:pipe-s
 'ipbotherreason'              => '其他／另外的理由：',
 'badipaddress'                => 'Bô-hāu ê IP chū-chí',
 'blockipsuccesssub'           => 'Hong-só sêng-kong',
-'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] í-keng pī hong-só. <br />Khì [[Special:IPBlockList|IP hong-só lia̍t-toaⁿ]] review hong-só ê IP.',
+'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] í-keng pī hong-só. <br />Khì [[Special:BlockList|IP hong-só lia̍t-toaⁿ]] review hong-só ê IP.',
 'unblockip'                   => '解除對用者的封鎖',
 'ipusubmit'                   => 'Chhú-siau chit ê hong-só',
 'ipblocklist'                 => 'Siū hong-só ê iōng-chiá',

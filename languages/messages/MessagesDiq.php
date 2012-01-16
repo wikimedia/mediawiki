@@ -2097,7 +2097,7 @@ Cıkewtışo tewr peyêno ke bloke biyo, cêr seba referansi belikerdeyo:',
 'badipaddress'                    => 'Adresê IPî raşt niyo',
 'blockipsuccesssub'               => 'Blok biyo',
 'blockipsuccesstext'              => 'verniyê [[Special:Contributions/$1|$1]] geriya.
-<br />qey çım ra viyarnayişê verni-grewtışi bıewnê[[Special:IPBlockList|Ê yê ke verniyê IPadresê inan geriyayê]].',
+<br />qey çım ra viyarnayişê verni-grewtışi bıewnê[[Special:BlockList|Ê yê ke verniyê IPadresê inan geriyayê]].',
 'ipb-edit-dropdown'               => 'Sebebê blokî bivurne',
 'ipb-unblock-addr'                => '$1 a bik',
 'ipb-unblock'                     => 'Yew adresê IPî ya zi nameyê karberî blok bike',

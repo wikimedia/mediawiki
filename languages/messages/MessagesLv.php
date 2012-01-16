@@ -2079,7 +2079,7 @@ Norādi konkrētu iemeslu (piemēram, linkus uz vandalizētajām lapām).',
 'badipaddress'                => 'Nederīga IP adrese',
 'blockipsuccesssub'           => 'Nobloķēts veiksmīgi',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] tika nobloķēts.<br />
-Visus blokus var apskatīties [[Special:IPBlockList|IP bloku sarakstā]].',
+Visus blokus var apskatīties [[Special:BlockList|IP bloku sarakstā]].',
 'ipb-edit-dropdown'           => 'Izmainīt bloķēšanas iemeslus',
 'ipb-unblock-addr'            => 'Atbloķēt $1',
 'ipb-unblock'                 => 'Atbloķēt lietotāju vai IP adresi',

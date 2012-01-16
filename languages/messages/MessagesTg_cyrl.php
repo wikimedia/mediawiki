@@ -1693,7 +1693,7 @@ $1',
 'badipaddress'                => 'IP нишонаи номӯътабар',
 'blockipsuccesssub'           => 'Бастан муваффақ щуд',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] баста шудааст.<br />
-Барои баррасӣ ба [[Special:IPBlockList|феҳристи нишонаҳои IP ва номҳои корбарии баста шуда]] нигаред.',
+Барои баррасӣ ба [[Special:BlockList|феҳристи нишонаҳои IP ва номҳои корбарии баста шуда]] нигаред.',
 'ipb-edit-dropdown'           => 'Далели қатъи дастрасӣ',
 'ipb-unblock-addr'            => 'Боз кардани $1',
 'ipb-unblock'                 => 'Боз кардани номи корбарӣ ё нишонаи IP',

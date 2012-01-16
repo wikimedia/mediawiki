@@ -2373,7 +2373,7 @@ Fenoy etsy ambany ny antony manokana (ohatra, mitanisà pejy nosomparana).",
 'badipaddress'                    => 'Tsy mety ny adiresy IP (invalid)',
 'blockipsuccesssub'               => 'Vita soa aman-tsara ny sakana',
 'blockipsuccesstext'              => 'Voasakana i [[Special:Contributions/$1|$1]].
-<br />Jereo ny [[Special:IPBlockList|lisitry ny IP voasakana]] raha hanala ny sakana efa misy.',
+<br />Jereo ny [[Special:BlockList|lisitry ny IP voasakana]] raha hanala ny sakana efa misy.',
 'ipb-blockingself'                => 'Hanakana ny kaontinao ianao ! Tena hanao izany ve ?',
 'ipb-edit-dropdown'               => 'Hanova ny antony fanakanana tsipalotra',
 'ipb-unblock-addr'                => "Hanala ny sakan' i $1",

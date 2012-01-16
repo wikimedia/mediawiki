@@ -2477,7 +2477,7 @@ Plotësoni arsyen specifike më poshtë (p.sh., tregoni faqet specifike që u va
 'badipaddress'                    => 'Nuk ka asnjë përdorues me atë emër',
 'blockipsuccesssub'               => 'Bllokimi u bë me sukses',
 'blockipsuccesstext'              => 'Përdoruesi/IP-Adresa [[Special:Contributions/$1|$1]] u bllokua.<br />
-Shiko te [[Special:IPBlockList|Lista e përdoruesve dhe e IP adresave të bllokuara]] për të çbllokuar Përdorues/IP.',
+Shiko te [[Special:BlockList|Lista e përdoruesve dhe e IP adresave të bllokuara]] për të çbllokuar Përdorues/IP.',
 'ipb-blockingself'                => 'Ju jeni duke bllokuar vetëveten ! Jeni te sigurte qe doni te bëni këtë?',
 'ipb-confirmhideuser'             => 'Ju jeni gati për të bllokuar një përdorues me "përdorues të fshehur" të aktivizuar. Kjo do të shtypur emrin e përdoruesit në të gjitha listat dhe aktivitetet hyrëse. Jeni te sigurte qe doni ta bëni këtë ?',
 'ipb-edit-dropdown'               => 'Redakto arsyet e bllokimit',

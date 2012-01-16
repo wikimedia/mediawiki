@@ -1592,7 +1592,7 @@ $1',
 'badipaddress'                => 'የማይሆን የቁ. አድራሻ',
 'blockipsuccesssub'           => 'ማገጃ ተከናወነ',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] ታግዷል።<br />
-ማገጃዎች ለማመልከት [[Special:IPBlockList|የማገጃ ዝርዝሩን]] ይዩ።',
+ማገጃዎች ለማመልከት [[Special:BlockList|የማገጃ ዝርዝሩን]] ይዩ።',
 'ipb-edit-dropdown'           => "'ተራ የማገጃ ምክንያቶች' ለማስተካከል",
 'ipb-unblock-addr'            => 'ከ$1 መገጃ ለማንሣት',
 'ipb-unblock'                 => 'ከብዕር ስም ወይም ከቁ. አድራሻ ማገጃ ለማንሣት',

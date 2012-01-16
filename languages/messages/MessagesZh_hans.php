@@ -2406,7 +2406,7 @@ $1',
 'badipaddress'                    => '无效IP地址',
 'blockipsuccesssub'               => '封禁成功',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]]已被封禁。<br />
-参见[[Special:IPBlockList|封禁列表]]以复核封禁。',
+参见[[Special:BlockList|封禁列表]]以复核封禁。',
 'ipb-blockingself'                => '您将要封禁自己！确实要这样做吗？',
 'ipb-confirmhideuser'             => '您即将在封禁用户的同时启用“隐藏账户”功能。这将从所有列表和日志记录中隐藏这个用户名。您确认这样做吗？',
 'ipb-edit-dropdown'               => '编辑封禁理由',

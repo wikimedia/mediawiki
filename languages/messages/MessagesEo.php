@@ -2562,7 +2562,7 @@ Jen la lasta ero de la forbara protokolo:',
 'badipaddress'                    => 'Neniu uzanto, aŭ la IP-adreso estas misformita.',
 'blockipsuccesssub'               => 'Oni sukcese forbaris la adreson/nomon.',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] estas forbarita. <br />
-Vidu la [[Special:IPBlockList|liston de IP-forbaroj]] por kontroli.',
+Vidu la [[Special:BlockList|liston de IP-forbaroj]] por kontroli.',
 'ipb-blockingself'                => 'Vi preskaŭ forbaros vin mem! Ĉu vi certas ke vi volas fari ĉi tiel?',
 'ipb-confirmhideuser'             => 'Vi preskaŭ forbaras uzanto kun "kaŝi uzanton" ŝalta. Ĉi tiu kaŝi la nomon de uzanto en ĉiuj listoj ka protokoloj. Ĉu vi certas ke vi volas fari ĉi tiel?',
 'ipb-edit-dropdown'               => 'Redakti kialojn por forbaro.',

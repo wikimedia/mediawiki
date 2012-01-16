@@ -2387,7 +2387,7 @@ $1',
 'badipaddress'                    => 'عنوان أيبى مش صحيح',
 'blockipsuccesssub'               => 'المنع حصل بنجاح',
 'blockipsuccesstext'              => 'اتمنع [[Special:Contributions/$1|$1]].<br />
-شوف [[Special:IPBlockList|لستة منع الأيبي]] علشان تراجع حالات المنع.',
+شوف [[Special:BlockList|لستة منع الأيبي]] علشان تراجع حالات المنع.',
 'ipb-edit-dropdown'               => 'عدل أسباب المنع',
 'ipb-unblock-addr'                => 'رفع منع $1',
 'ipb-unblock'                     => 'رفع المنع عن يوزر أو عنوان أيبي',

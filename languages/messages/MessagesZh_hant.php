@@ -2418,7 +2418,7 @@ $1',
 'badipaddress'                    => '無效IP地址',
 'blockipsuccesssub'               => '查封成功',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]]已經被查封。
-<br />參看[[Special:IPBlockList|被封IP地址列表]]以覆審查封。',
+<br />參看[[Special:BlockList|被封IP地址列表]]以覆審查封。',
 'ipb-blockingself'                => '你要封禁自己！確認要這樣做嗎？',
 'ipb-confirmhideuser'             => '你要封禁用戶並隱藏其用戶名，這會隱藏在所有列表及日誌中涉及此用戶之用戶名。你確定要這樣做嗎？',
 'ipb-edit-dropdown'               => '編輯查封原因',

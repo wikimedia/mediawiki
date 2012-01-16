@@ -2384,7 +2384,7 @@ De leste bloklogregel wuuertj hiejónger t'r raodpleging gegaeve:",
 'badipaddress'                    => "'t IP-adres haet 'n ongeldige opmaak.",
 'blockipsuccesssub'               => 'Blokkaad gelök',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] is geblokkeerd.<br />
-Zuug de [[Special:IPBlockList|lies van geblokkeerde IP-adresse]].',
+Zuug de [[Special:BlockList|lies van geblokkeerde IP-adresse]].',
 'ipb-blockingself'                => "Doe steis óp 't pöntj dichzelf te blokke! Wèts se zeker desse det wils doon?",
 'ipb-confirmhideuser'             => "Doe steis óp 't pöntj 'ne verbórge gebroeker te blokke. Hieveur waere gebroekersname in alle liesre en logbookregels verbórge. Wèts se zeker desse door wils gaon?",
 'ipb-edit-dropdown'               => 'Bewerk lies van rejer',

@@ -2533,7 +2533,7 @@ Masukkan alasan Anda di bawah (contoh, menuliskan nama halaman yang telah divand
 'badipaddress'                    => 'Format alamat IP atau nama pengguna salah.',
 'blockipsuccesssub'               => 'Pemblokiran sukses',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] telah diblokir.<br />
-Lihat [[Special:IPBlockList|Daftar IP]] untuk meninjau kembali pemblokiran.',
+Lihat [[Special:BlockList|Daftar IP]] untuk meninjau kembali pemblokiran.',
 'ipb-blockingself'                => 'Anda akan memblokir diri sendiri! Apakah Anda yakin akan melakukannya?',
 'ipb-confirmhideuser'             => 'Anda akan memblokir pengguna dengan mengaktifkan "sembunyikan pengguna" diaktifkan. Ini akan menyembunyikan nama pengguna pada semua daftar dan entri log. Apakah Anda yakin ingin melakukannya?',
 'ipb-edit-dropdown'               => 'Sunting alasan pemblokiran',

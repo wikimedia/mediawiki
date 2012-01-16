@@ -1962,7 +1962,7 @@ $1',
 'badipaddress'                    => 'Ladet-IP no lonöfon',
 'blockipsuccesssub'               => 'Blokam eplöpon',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] peblokon.
-<br />Logolös [[Special:IPBlockList|lisedi ladetas-IP pebloköl]] ad vestigön blokamis.',
+<br />Logolös [[Special:BlockList|lisedi ladetas-IP pebloköl]] ad vestigön blokamis.',
 'ipb-edit-dropdown'               => 'Redakön kodis blokama',
 'ipb-unblock-addr'                => 'Säblokön eli $1',
 'ipb-unblock'                     => 'Säblokön gebananemi u ladeti-IP',

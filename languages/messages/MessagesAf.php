@@ -2473,7 +2473,7 @@ Vul 'n spesifieke rede hier onder in (haal byvoorbeeld spesifieke bladsye wat ge
 'badipaddress'                    => 'Die IP-adres is nie in die regte formaat nie.',
 'blockipsuccesssub'               => 'Blokkering het geslaag',
 'blockipsuccesstext'              => "[[Special:Contributions/$1|$1]] is geblokkeer.<br />
-Sien die [[Special:IPBlockList|IP-bloklys]] vir 'n oorsig van blokkerings.",
+Sien die [[Special:BlockList|IP-bloklys]] vir 'n oorsig van blokkerings.",
 'ipb-blockingself'                => 'U is besig om uself te blokkeer! Is u seker u wil dit doen?',
 'ipb-confirmhideuser'             => 'U staan op die punt om \'n "versteekte gebruiker" te blokkeer. Dit sal die gebruiker se naam vanaf alle lyste en logboeke onderdruk. Is u seker u wil om dit te doen?',
 'ipb-edit-dropdown'               => 'Werk lys van redes by',

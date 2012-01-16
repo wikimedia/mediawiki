@@ -2347,7 +2347,7 @@ Esto debería facese sólo pa prevenir vandalismu como indiquen les [[{{MediaWik
 'badipaddress'                    => 'IP non válida',
 'blockipsuccesssub'               => 'Bloquéu fechu correctamente',
 'blockipsuccesstext'              => "Bloquióse al usuariu [[Special:Contributions/$1|$1]].
-<br />Mira na [[Special:IPBlockList|llista d'IPs bloquiaes]] pa revisar los bloqueos.",
+<br />Mira na [[Special:BlockList|llista d'IPs bloquiaes]] pa revisar los bloqueos.",
 'ipb-blockingself'                => '¡Tas a piques de bloquiate tú mesmu! ¿Tas seguru de que quies facer eso?',
 'ipb-confirmhideuser'             => 'Tas a piques de bloquiar un usuariu con "anubrir usuariu" activao. Esto desaniciará el nome del usuariu de tolos llistaos y entraes de los rexistros. ¿De xuro quies facer eso?',
 'ipb-edit-dropdown'               => 'Editar motivos de bloquéu',

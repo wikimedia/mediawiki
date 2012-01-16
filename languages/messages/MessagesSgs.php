@@ -1485,7 +1485,7 @@ Parveizėkiet [[Special:Log/delete|trīnimu sāraša]], nuoriedamė rastė pasko
 'badipaddress'                => 'Nelaistėns IP adresos',
 'blockipsuccesssub'           => 'Ožblokavėms pavīka',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] bova ožblokouts.
-<br />Aplonkīkėt [[Special:IPBlockList|IP blokavėmu istuorėjė]] noriedamė ana parveizėtė.',
+<br />Aplonkīkėt [[Special:BlockList|IP blokavėmu istuorėjė]] noriedamė ana parveizėtė.',
 'ipb-edit-dropdown'           => 'Redagoutė blokavėmu prīžastis',
 'ipb-unblock-addr'            => 'Atblokoutė $1',
 'ipb-unblock'                 => 'Atblokoutė nauduotuojė varda a IP adresa',

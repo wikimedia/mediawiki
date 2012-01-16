@@ -1666,7 +1666,7 @@ Escrebi una razón concreta embahu (pol sabulugal, almientandu páhinas qu'aigan
 'badipaddress'                => 'Direción IP nu premitia',
 'blockipsuccesssub'           => 'Usuáriu atarugau!',
 'blockipsuccesstext'          => "La direción IP [[Special:Contributions/$1|$1]] á siu atarugá.
-<br />Consurta la [[Special:IPBlockList|lista d'IP atarugás]] pa visoreal los tarugus.",
+<br />Consurta la [[Special:BlockList|lista d'IP atarugás]] pa visoreal los tarugus.",
 'ipb-edit-dropdown'           => 'Eital las razonis el tarugu',
 'ipb-unblock-addr'            => 'Desatarugal $1',
 'ipb-unblock'                 => 'Desatarugal un nombri d´usuáriu u direción IP',

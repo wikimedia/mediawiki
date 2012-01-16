@@ -1516,7 +1516,7 @@ $1",
 'badipaddress'                => 'Indirizzu IP invàriddu',
 'blockipsuccesssub'           => 'Broccu eseguiddu',
 'blockipsuccesstext'          => "[[Special:Contributions/$1|$1]] è isthaddu broccaddu.
-<br />Cunsulthà la [[Special:IPBlockList|listha di l'IP broccaddi]] pa vidé i brocchi attibi.",
+<br />Cunsulthà la [[Special:BlockList|listha di l'IP broccaddi]] pa vidé i brocchi attibi.",
 'ipb-edit-dropdown'           => 'Mutibi pa lu broccu',
 'ipb-unblock-addr'            => 'Ibbrucca $1',
 'ipb-unblock'                 => "Ibbrucca un'utenti o un'indirizzu IP",

@@ -1909,7 +1909,7 @@ Podej powůd (np. umješčajůnc mjana zajtůw, na kerych dopuščůno śe wanda
 'badipaddress'                    => 'Felerny adres IP',
 'blockipsuccesssub'               => 'Zawarće uod sprowjyń udane',
 'blockipsuccesstext'              => 'Užytkowńik [[Special:Contributions/$1|$1]] zostou zawarty uod sprowjyń.<br />
-Přyńdź do [[Special:IPBlockList|listy zawartych adresůw IP]] coby přejřeć zawarća.',
+Přyńdź do [[Special:BlockList|listy zawartych adresůw IP]] coby přejřeć zawarća.',
 'ipb-edit-dropdown'               => 'Sprowjej powody zawjyrańo uod sprowjyń',
 'ipb-unblock-addr'                => 'Uodymknij $1',
 'ipb-unblock'                     => 'Uodymknij užytkowńika abo adres IP',

@@ -1848,7 +1848,7 @@ $1',
 'badipaddress'                    => 'Màkkaanu IP bi baaxul.',
 'blockipsuccesssub'               => 'Téye gi antu na',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] dees koo téye.<br />
-Xoolal [[Special:IPBlockList|limu IP yees téye]] ngir gis ñees téye ñépp.',
+Xoolal [[Special:BlockList|limu IP yees téye]] ngir gis ñees téye ñépp.',
 'ipb-edit-dropdown'               => 'Soppi ngirtey téye gi',
 'ipb-unblock-addr'                => 'Téyedi $1',
 'ipb-unblock'                     => 'Téyedi ab turu jëfandikukat walla ab màkkaanub IP',

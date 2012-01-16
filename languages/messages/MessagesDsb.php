@@ -2370,7 +2370,7 @@ Nejnowšy zapisk protokola blokěrowanjow pódawa se dołojce ako referenca:',
 'badipaddress'                    => 'IP-adresa jo njekorektna',
 'blockipsuccesssub'               => 'Wuspěšnje blokěrowane',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] jo se blokěrował.<br />
-Glědaj do [[Special:IPBlockList|lisćiny aktiwnych blokěrowanjow]], aby blokěrowanja pśeglědał.',
+Glědaj do [[Special:BlockList|lisćiny aktiwnych blokěrowanjow]], aby blokěrowanja pśeglědał.',
 'ipb-blockingself'                => 'Coš samogo blokěrowaś! Coš to napšawdu cyniś?',
 'ipb-confirmhideuser'             => 'Coš rowno wužywarja z nastajenim "wužywarja schowaś" blokěrowaś. To k tomu dowjeźo, až mě wužywarja pódłocyjo se we wšych lisćinach a protokolowych zapiskach. Coš to napšawdu cyniś?',
 'ipb-edit-dropdown'               => 'Pśicyny blokěrowanja wobźěłaś',
