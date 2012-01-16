@@ -2628,7 +2628,7 @@ Donnez ci-dessous un motif précis (par exemple en citant les pages qui ont ét�
 'badipaddress'                    => 'Adresse IP incorrecte',
 'blockipsuccesssub'               => 'Blocage réussi',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] a été bloqué{{GENDER:$1||e|}}.<br />
-Consultez la [[Special:IPBlockList|liste des adresses IP et comptes bloqués]] pour revoir les blocages.',
+Consultez la [[Special:BlockList|liste des adresses IP et comptes bloqués]] pour revoir les blocages.',
 'ipb-blockingself'                => 'Vous êtes sur le point de bloquer votre propre compte ! Êtes-vous certain de vouloir faire cela ?',
 'ipb-confirmhideuser'             => 'Vous êtes sur le point de bloquer un utilisateur avec « cacher l’utilisateur » activé. Cela supprime le nom de l’utilisateur dans toutes les listes et les entrées du journal. Êtes-vous sûr de vouloir le faire ?',
 'ipb-edit-dropdown'               => 'Modifier les motifs de blocage par défaut',

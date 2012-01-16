@@ -2361,7 +2361,7 @@ Paskutinis blokavimo įrašas pateikiamas žemiau:',
 'badipaddress'                    => 'Neleistinas IP adresas',
 'blockipsuccesssub'               => 'Užblokavimas pavyko',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] buvo užblokuotas.<br />
-Aplankykite [[Special:IPBlockList|IP blokavimų istoriją]] norėdami jį peržiūrėti.',
+Aplankykite [[Special:BlockList|IP blokavimų istoriją]] norėdami jį peržiūrėti.',
 'ipb-blockingself'                => 'Jūs ruošiatės blokuoti sau! Ar tikrai norite tai padaryti?',
 'ipb-confirmhideuser'             => 'Jūs ruošiatės užblokuoti tam tikro vartotojo su "slėpti vartotojo" įjungtas. Tai bus nuslopinti vartotojo vardą visuose sąrašuose ir žurnalo įrašus. Ar tikrai norite tai padaryti?',
 'ipb-edit-dropdown'               => 'Redaguoti blokavimų priežastis',

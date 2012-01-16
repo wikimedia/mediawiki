@@ -2552,7 +2552,7 @@ $1',
 'badipaddress'                    => 'Địa chỉ IP không hợp lệ',
 'blockipsuccesssub'               => 'Cấm thành công',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] đã bị cấm.
-<br />Xem lại những lần cấm tại [[Special:IPBlockList|danh sách cấm]].',
+<br />Xem lại những lần cấm tại [[Special:BlockList|danh sách cấm]].',
 'ipb-blockingself'                => 'Bạn sẽ tự bỏ cấm cho mình! Bạn có chắc chắn muốn làm vậy không?',
 'ipb-confirmhideuser'             => 'Bạn sẽ cấm người dùng với tùy chọn “ẩn người dùng”. Bạn có chắc chắn muốn dời tên người dùng khỏi tất cả mọi danh sách và nhật trình?',
 'ipb-edit-dropdown'               => 'Sửa đổi lý do cấm',

@@ -1884,7 +1884,7 @@ $1',
 'badipaddress'                => 'Սխալ IP-հասցե',
 'blockipsuccesssub'           => 'Արգելափակումը կատարված է',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|«$1»]] արգելափակված է։
-<br />Տես [[Special:IPBlockList|արգելափակված IP-հասցեների ցանկը]]։',
+<br />Տես [[Special:BlockList|արգելափակված IP-հասցեների ցանկը]]։',
 'ipb-edit-dropdown'           => 'Խմբագրել արգելափակման պատճառները',
 'ipb-unblock-addr'            => 'Անարգելել $1 մասնակցին',
 'ipb-unblock'                 => 'Անարգելել որևէ մասնակից կամ IP-հասցե',

@@ -2473,7 +2473,7 @@ Indicare il motivo specifico per il quale si procede al blocco (per esempio, cit
 'badipaddress'                    => 'Indirizzo IP non valido.',
 'blockipsuccesssub'               => 'Blocco eseguito',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] è stato bloccato. <br />
-Consultare la [[Special:IPBlockList|lista degli IP bloccati]] per vedere i blocchi attivi.',
+Consultare la [[Special:BlockList|lista degli IP bloccati]] per vedere i blocchi attivi.',
 'ipb-blockingself'                => 'Stai per bloccare te stesso! Sei sicuro di volerlo fare?',
 'ipb-confirmhideuser'             => 'Si sta per bloccare un utente con l\'opzione "Nascondi utente" abilitata.
 In questo modo si evita che il nome utente compaia in tutte le liste e le voci di registro.

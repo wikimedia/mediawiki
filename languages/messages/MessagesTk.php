@@ -2157,7 +2157,7 @@ Aşakda blokirlemäniň takyk sebäbini ýazyň (meselem: wandalizm eden sahypal
 'badipaddress'                    => 'Nädogry IP adresi',
 'blockipsuccesssub'               => 'Blokirleme amala aşdy',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] blokirlendi.
-<br /> Blokirlemeleri gözden geçirmek üçin [[Special:IPBlockList|IP blokirleme sanawyna]] serediň.',
+<br /> Blokirlemeleri gözden geçirmek üçin [[Special:BlockList|IP blokirleme sanawyna]] serediň.',
 'ipb-edit-dropdown'               => 'Blokirleme sebäplerini redaktirle',
 'ipb-unblock-addr'                => '$1 üçin blokirlemäni aýyr',
 'ipb-unblock'                     => 'Ulanyjy adynyň ýa-da IP adresiniň blokirlemesini aýyr',

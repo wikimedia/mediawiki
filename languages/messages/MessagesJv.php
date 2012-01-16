@@ -2005,7 +2005,7 @@ Lebokna alesan panjenengan ing ngisor iki (contoné njupuk conto kaca sing wis t
 'badipaddress'                    => 'Alamat IP klèntu',
 'blockipsuccesssub'               => 'Pemblokiran suksès',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] wis diblokir.<br />
-Pirsani [[Special:IPBlockList|Daftar blokir IP]] kanggo ninjo ulang pamblokiran.',
+Pirsani [[Special:BlockList|Daftar blokir IP]] kanggo ninjo ulang pamblokiran.',
 'ipb-edit-dropdown'               => 'Sunting alesan pamblokiran',
 'ipb-unblock-addr'                => 'Ilangna blokir $1',
 'ipb-unblock'                     => 'Ilangna blokir sawijining panganggo utawa alamat IP',

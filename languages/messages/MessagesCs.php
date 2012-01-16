@@ -2592,7 +2592,7 @@ Udejte přesný důvod níže (například ocitujte, které stránky byly poško
 'badipaddress'                    => 'Neplatná IP adresa',
 'blockipsuccesssub'               => 'Zablokování uspělo',
 'blockipsuccesstext'              => 'Uživatel „[[Special:Contributions/$1|$1]]“ je zablokován.<br />
-Můžete si prohlédnout [[Special:IPBlockList|seznam zablokovaných uživatelů]].',
+Můžete si prohlédnout [[Special:BlockList|seznam zablokovaných uživatelů]].',
 'ipb-blockingself'                => 'Chystáte se zablokovat {{gender:|sám|sama|sami}} sebe! Jste si {{gender:|jist|jista|jisti}}, že to chcete udělat?',
 'ipb-confirmhideuser'             => 'Chystáte se zablokovat uživatele se zapnutou volbou „skrýt uživatelské jméno“. To způsobí, že jméno uživatele zmizí ze všech seznamů a protokolovacích záznamů. Jste si {{gender:|jist|jista|jisti}}, že to chcete udělat?',
 'ipb-edit-dropdown'               => 'Editace seznamu důvodů zablokování',

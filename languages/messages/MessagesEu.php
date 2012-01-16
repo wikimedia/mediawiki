@@ -2208,7 +2208,7 @@ Blokeo erregistroa azken sarrera ematen da azpian erreferentziarako:',
 'badipaddress'                    => 'Baliogabeko IP helbidea',
 'blockipsuccesssub'               => 'Blokeoa burutu da',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] erabiltzaileari blokeoa ezarri zaio.<br />
-Ikus [[Special:IPBlockList|IP blokeoen zerrenda]] blokeoak aztertzeko.',
+Ikus [[Special:BlockList|IP blokeoen zerrenda]] blokeoak aztertzeko.',
 'ipb-edit-dropdown'               => 'Blokeatzeko arrazoiak aldatu',
 'ipb-unblock-addr'                => '$1 lankide edo IP helbideari blokeoa baliogabetu',
 'ipb-unblock'                     => 'Erabiltzaile izen edo IP helbide bati blokeoa kendu',

@@ -2530,7 +2530,7 @@ Explique a razón específica do bloqueo (por exemplo, citando as páxinas concr
 'badipaddress'                    => 'O enderezo IP non é válido',
 'blockipsuccesssub'               => 'Bloqueo exitoso',
 'blockipsuccesstext'              => 'O enderezo IP [[Special:Contributions/$1|$1]] foi bloqueado.<br />
-Olle a [[Special:IPBlockList|lista de enderezos IP e usuarios bloqueados]] para revisalo.',
+Olle a [[Special:BlockList|lista de enderezos IP e usuarios bloqueados]] para revisalo.',
 'ipb-blockingself'                => 'Está a piques de se bloquear! Está seguro de querer facelo?',
 'ipb-confirmhideuser'             => 'Está a piques de bloquear un usuario coa opción "agochar o usuario" activada. Isto suprime o nome de usuario de todas as listas e entradas de rexistro. Está seguro de querer facelo?',
 'ipb-edit-dropdown'               => 'Editar os motivos de bloqueo',

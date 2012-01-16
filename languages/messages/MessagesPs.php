@@ -1803,7 +1803,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'badipaddress'               => 'ناسمه IP پته',
 'blockipsuccesssub'          => 'بنديز په برياليتوب سره ولګېده',
 'blockipsuccesstext'         => 'د [[Special:Contributions/$1|$1]] مخه نيول شوې.
-<br />د مخنيول شويو خلکو د کتنې لپاره، د [[Special:IPBlockList|مخنيول شويو IP لړليک]] وګورۍ.',
+<br />د مخنيول شويو خلکو د کتنې لپاره، د [[Special:BlockList|مخنيول شويو IP لړليک]] وګورۍ.',
 'ipb-edit-dropdown'          => 'د بنديز سببونه سمول',
 'ipb-unblock-addr'           => 'له $1 بنديز ليرې کول',
 'ipb-unblock'                => 'له يوه کارن-نوم يا IP پتې بنديز ليري کول',

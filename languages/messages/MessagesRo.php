@@ -2573,7 +2573,7 @@ Precizați motivul blocării; de exemplu indicați paginile vandalizate de acest
 'badipaddress'                    => 'Adresa IP este invalidă.',
 'blockipsuccesssub'               => 'Utilizatorul a fost blocat',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] a fost blocată.<br />
-Vezi [[Special:IPBlockList|lista de adrese IP și conturi blocate]] pentru a revizui adresele blocate.',
+Vezi [[Special:BlockList|lista de adrese IP și conturi blocate]] pentru a revizui adresele blocate.',
 'ipb-blockingself'                => 'Sunteți pe cale să vă autoblocați! Sunteți sigur că doriți să continuați?',
 'ipb-confirmhideuser'             => 'Sunteți pe cale să blocați un utilizator cu funcția „ascunde utilizator” activată. Acest lucru va înlătura numele său de utilizator din toate listele și jurnalele. Sunteți sigur că vreți să continuați?',
 'ipb-edit-dropdown'               => 'Modifică motivele blocării',
@@ -3870,6 +3870,7 @@ Imaginile sunt afișate la rezoluția lor maximă, în timp ce alte tipuri de fi
 'api-error-duplicate-archive-popup-title' => '{{PLURAL:$1|Fișierul|Fișierele}} {{PLURAL:$1|duplicat|duplicate}} care {{PLURAL:$1|a|au}} fost deja {{PLURAL:$1|șters|șterse}}',
 'api-error-duplicate-popup-title'         => '{{PLURAL:$1|Fișier|Fișiere}} {{PLURAL:$1|duplicat|duplicate}}',
 'api-error-empty-file'                    => 'Fișierul încărcat de dumneavoastră este gol.',
+'api-error-emptypage'                     => 'Crearea paginilor noi, goale nu este permisă.',
 'api-error-fetchfileerror'                => 'Eroare internă: ceva nu a funcționat corect la prelucrarea fișierului.',
 'api-error-file-too-large'                => 'Fișierul pe care l-ați trimis este prea mare.',
 'api-error-filename-tooshort'             => 'Numele fișierului este prea scurt.',
@@ -3894,6 +3895,7 @@ Imaginile sunt afișate la rezoluția lor maximă, în timp ce alte tipuri de fi
 'api-error-unknown-code'                  => 'Eroare necunoscută: „$1”',
 'api-error-unknown-error'                 => 'Eroare internă: ceva nu a funcționat atunci când ați încercat să încărcați fișierul.',
 'api-error-unknown-warning'               => 'Avertisment necunoscut: $1',
+'api-error-unknownerror'                  => 'Eroare necunoscută: „$1”.',
 'api-error-uploaddisabled'                => 'Încărcarea este dezactivată pe acest wiki.',
 'api-error-verification-error'            => 'Acest fișier ar putea fi corupt sau poate avea extensia greșită.',
 

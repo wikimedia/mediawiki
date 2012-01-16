@@ -1313,7 +1313,7 @@ Gib bittschee an Grund fyr d' Sperrn å.",
 'badipaddress'                => 'De IP-Adress hod a foischs Format.',
 'blockipsuccesssub'           => 'De Sperrn is erfoigraich gween',
 'blockipsuccesstext'          => 'Da Benytzer/de IP-Adress [[Special:Contributions/$1|$1]] is gsperrt worn.<br />
-Zur da Aufheewung vo da Sperrn schau unter da [[Special:IPBlockList|Listen vo olle aktivm Sperrn]].',
+Zur da Aufheewung vo da Sperrn schau unter da [[Special:BlockList|Listen vo olle aktivm Sperrn]].',
 'ipb-edit-dropdown'           => 'Sperrgrynd beorwaiten',
 'ipb-unblock-addr'            => '„$1“ fraigeem',
 'ipb-unblock'                 => 'IP-Adress/Benytzer fraigeem',

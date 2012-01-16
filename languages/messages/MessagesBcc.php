@@ -2071,7 +2071,7 @@ $1',
 'badipaddress'                    => 'نامعتبر آدرس آی پی',
 'blockipsuccesssub'               => 'محدودیت موفق بوت',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] محدود بوتت..<br />
-بچار [[Special:IPBlockList|لیست آی پی محدود]] په بازبینی محدودیتان.',
+بچار [[Special:BlockList|لیست آی پی محدود]] په بازبینی محدودیتان.',
 'ipb-edit-dropdown'               => 'اصلاح کن دلایل محدودیت',
 'ipb-unblock-addr'                => 'رفع محدودیت  $1',
 'ipb-unblock'                     => 'نام کاربری یا آدرس آی پی رفع محدودیت کن',

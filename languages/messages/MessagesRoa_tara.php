@@ -2365,7 +2365,7 @@ Mitte pure 'nu mutive specifiche aqquà sotte (pe esembije, nnomene 'a pàgene a
 'badipaddress'                    => 'Indirizze IP invalide',
 'blockipsuccesssub'               => 'Blocche effettuate',
 'blockipsuccesstext'              => "[[Special:Contributions/$1|$1]] ha state bloccate.<br />
-Vide [[Special:IPBlockList|'a liste de le IP bloccate]] pe revedè le blocche.",
+Vide [[Special:BlockList|'a liste de le IP bloccate]] pe revedè le blocche.",
 'ipb-blockingself'                => "Te stè bluecche da sule, si secure ca 'u vuè ccu face?",
 'ipb-confirmhideuser'             => "Tu ste bluècche 'n'utende cu l'opzione \"scunne utende\" abbilitate. St'operazione pò leve 'u nome de l'utende jndr'à tutte l'elenghe e le vôsce de l'archivije. Tu si secure ca 'u vuè ccu face?",
 'ipb-edit-dropdown'               => "Cange le mutive d'u blocche",

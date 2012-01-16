@@ -2592,7 +2592,7 @@ Explica la razón específica del bloqueo (por ejemplo, citando las páginas en 
 'badipaddress'                    => 'La dirección IP no tiene el formato correcto.',
 'blockipsuccesssub'               => 'Bloqueo realizado con éxito',
 'blockipsuccesstext'              => '"[[Special:Contributions/$1|$1]]" ha sido bloqueado.<br />
-Véase la [[Special:IPBlockList|lista de bloqueos]] para revisarlo.',
+Véase la [[Special:BlockList|lista de bloqueos]] para revisarlo.',
 'ipb-blockingself'                => '¡Estás a punto de bloquearte a ti mismo!  ¿Estás seguro de que quieres hacerlo?',
 'ipb-confirmhideuser'             => 'Estás a punto de bloquear un usuario con la opción de supresión activada. Esto suprimirá el nombre de usuario en todas las listas y entradas de registro. ¿Estás seguro de que deseas proceder?',
 'ipb-edit-dropdown'               => 'Editar motivo del bloqueo',

@@ -1515,7 +1515,7 @@ leathanaigh áirithe a rinne an duine damáiste ar).',
 'badipaddress'             => 'Níl aon úsáideoir ann leis an ainm seo.',
 'blockipsuccesssub'        => "D'éirigh leis an cosc",
 'blockipsuccesstext'       => 'Choisceadh [[Special:Contributions/$1|$1]].
-<br />Féach ar an g[[Special:IPBlockList|liosta coisc IP]] chun coisc a athbhreithniú.',
+<br />Féach ar an g[[Special:BlockList|liosta coisc IP]] chun coisc a athbhreithniú.',
 'ipb-unblock-addr'         => 'Díchoisc $1',
 'ipb-unblock'              => 'Díchosc ainm úsáideora ná seoladh IP',
 'unblockip'                => 'Díchoisc úsáideoir',

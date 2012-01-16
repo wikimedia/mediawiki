@@ -1463,7 +1463,7 @@ Magkaag nin espisipikong rason (halimbawa, magtao nin ehemplo kan mga páhinang 
 'badipaddress'                => 'Dai pwede ining IP',
 'blockipsuccesssub'           => 'Nagibo na an pagbagát',
 'blockipsuccesstext'          => 'Binagat si [[Special:Contributions/$1|$1]].
-<br />Hilingon an [[Special:IPBlockList|lista nin mga binagat na IP]] para marepaso an mga binagat.',
+<br />Hilingon an [[Special:BlockList|lista nin mga binagat na IP]] para marepaso an mga binagat.',
 'ipb-edit-dropdown'           => 'Hirahón an mga rasón sa pagbabagát',
 'ipb-unblock-addr'            => 'Paagihon $1',
 'ipb-unblock'                 => 'Bawion an pagbagat nin ngaran nin paragamit o direccion nin IP',

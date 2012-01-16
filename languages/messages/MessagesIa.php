@@ -2482,7 +2482,7 @@ specific que ha essite vandalisate).',
 'badipaddress'                    => 'Adresse IP mal formate.',
 'blockipsuccesssub'               => 'Blocada succedite',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] ha essite blocate.<br />
-Vide le [[Special:IPBlockList|lista de adresses IP blocate]] pro revider le blocadas.',
+Vide le [[Special:BlockList|lista de adresses IP blocate]] pro revider le blocadas.',
 'ipb-blockingself'                => 'Tu sta super le puncto de blocar te mesme! Es tu secur de voler facer isto?',
 'ipb-confirmhideuser'             => 'Tu es super le puncto de blocar un usator con le option "celar usator" activate. Isto supprimera le nomine del usator in tote le listas e entratas de registro. Es tu secur de voler facer isto?',
 'ipb-edit-dropdown'               => 'Modificar le motivos pro blocar',

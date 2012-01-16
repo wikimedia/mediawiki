@@ -2501,7 +2501,7 @@ Alla on viimeisin estolokin tapahtuma:',
 'badipaddress'                    => 'IP-osoite on väärin muotoiltu.',
 'blockipsuccesssub'               => 'Esto onnistui',
 'blockipsuccesstext'              => 'Käyttäjä tai IP-osoite [[Special:Contributions/$1|$1]] on estetty.<br />
-Nykyiset estot löytyvät [[Special:IPBlockList|estolistalta]].',
+Nykyiset estot löytyvät [[Special:BlockList|estolistalta]].',
 'ipb-blockingself'                => 'Olet estämässä itseäsi. Oletko varma, että haluat tehdä niin?',
 'ipb-confirmhideuser'             => 'Olet estämässä käyttäjää ”piilota käyttäjä” -toiminnon kanssa.  Tämä piilottaa käyttäjän nimen kaikissa luetteloissa ja lokitapahtumissa.  Oletko varma, että haluat tehdä näin?',
 'ipb-edit-dropdown'               => 'Muokkaa estosyitä',

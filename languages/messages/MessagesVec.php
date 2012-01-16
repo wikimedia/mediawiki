@@ -2199,7 +2199,7 @@ $1',
 'badipaddress'                    => "L'indirisso IP indicà no'l xè mìa coreto.",
 'blockipsuccesssub'               => 'Bloco eseguìo',
 'blockipsuccesstext'              => "[[Special:Contributions/$1|$1]] l'è sta bloccà.<br />
-Varda [[Special:IPBlockList|lista IP bloccati]] par védar tuti i blochi.",
+Varda [[Special:BlockList|lista IP bloccati]] par védar tuti i blochi.",
 'ipb-edit-dropdown'               => 'Motivi par el bloco',
 'ipb-unblock-addr'                => 'Sbloca $1',
 'ipb-unblock'                     => 'Sbloca un utente o un indirizo IP',

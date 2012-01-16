@@ -2658,7 +2658,7 @@ $1',
 'badipaddress'                    => '不正なIPアドレス',
 'blockipsuccesssub'               => 'ブロックしました',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]]をブロックしました。<br />
-[[Special:IPBlockList|投稿ブロック中の利用者やIPアドレス]]を参照してください。',
+[[Special:BlockList|投稿ブロック中の利用者やIPアドレス]]を参照してください。',
 'ipb-blockingself'                => '自分自身をブロックしようとしています。本当に実行しますか。',
 'ipb-confirmhideuser'             => '利用者名の秘匿を有効にしてブロックしようとしています。実行すると、すべてのリストやログにおいて利用者名が非表示になります。本当にこれでよろしいですか。',
 'ipb-edit-dropdown'               => 'ブロック理由を編集する',

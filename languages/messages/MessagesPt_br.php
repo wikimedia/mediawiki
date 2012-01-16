@@ -2538,7 +2538,7 @@ Isto só deve ser feito para prevenir vandalismo, e de acordo com a [[{{MediaWik
 'badipaddress'                    => 'Endereço de IP inválido',
 'blockipsuccesssub'               => 'Bloqueio bem sucedido',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] foi bloqueado.<br />
-Consulte a [[Special:IPBlockList|lista de IPs bloqueados]] para rever os bloqueios.',
+Consulte a [[Special:BlockList|lista de IPs bloqueados]] para rever os bloqueios.',
 'ipb-blockingself'                => 'Você está prestes a bloquear-se a si próprio. Você tem a certeza de que pretende fazê-lo?',
 'ipb-confirmhideuser'             => 'Você está prestes a bloquear um utilizador com "Ocultar nome de utilizador/IP" ativado. Isto irá suprimir o nome do usuário de todas as listas e entradas dos registos. Tem a certeza de que pretende fazê-lo?',
 'ipb-edit-dropdown'               => 'Editar motivos de bloqueio',

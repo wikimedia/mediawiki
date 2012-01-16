@@ -2402,7 +2402,7 @@ $1',
 'badipaddress'                    => 'IP-adressa er ugyldig eller blokkering av brukarar er slått av på tenaren.',
 'blockipsuccesssub'               => 'Blokkeringa er utførd',
 'blockipsuccesstext'              => '«[[Special:Contributions/$1|$1]]» er blokkert.<br />
-Sjå [[Special:IPBlockList|blokkeringslista]] for alle blokkeringane.',
+Sjå [[Special:BlockList|blokkeringslista]] for alle blokkeringane.',
 'ipb-blockingself'                => 'Du er i ferd med å blokkera deg sjølv. Er du viss på at du ynskjer gjera dette?',
 'ipb-confirmhideuser'             => 'Du er i ferd med å blokkere ein brukar med "skjult brukar" aktivert. Brukarens namn vil verte skjult i alle lister og loggoppføringar. Er du sikker på at du vil gjere dette?',
 'ipb-edit-dropdown'               => 'Endre grunnane for blokkering',

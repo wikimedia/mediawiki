@@ -2236,7 +2236,7 @@ Niche ek khaas kaaran likho (jaise ki, citing particular pages that were vandali
 'badipaddress'                    => 'IP address kharaab hai',
 'blockipsuccesssub'               => 'Rukawat safal rahaa',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] ke rok dewa gais hai.<br />
-Ii rukawat pe fir se bichar kare ke khatir [[Special:IPBlockList|IP block list]] ke dekho.',
+Ii rukawat pe fir se bichar kare ke khatir [[Special:BlockList|IP block list]] ke dekho.',
 'ipb-edit-dropdown'               => 'Badlao ke roke ke kaaran',
 'ipb-unblock-addr'                => '$1 ke rukawat ke khalaas karo',
 'ipb-unblock'                     => 'Ek username nai to IP address ke rukawat ke khalaas karo',

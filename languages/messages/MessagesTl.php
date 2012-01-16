@@ -2336,7 +2336,7 @@ Punan ang espesipikong dahilan sa ibaba (halimbawa, magbanggit ng partikular na 
 'badipaddress'                    => 'Hindi tanggap na adres ng IP',
 'blockipsuccesssub'               => 'Matagumpay ang pagharang/paghadlang',
 'blockipsuccesstext'              => 'Hinadlangan ang  [[Special:Contributions/$1|$1]].<br />
-Tingnan ang [[Special:IPBlockList|talaan ng mga hinadlangang IP]] upang makita ang mga paghadlang.',
+Tingnan ang [[Special:BlockList|talaan ng mga hinadlangang IP]] upang makita ang mga paghadlang.',
 'ipb-blockingself'                => 'Hahadlangan mo na ang sarili mo!  Nakatitiyak ka bang nais mong gawin iyan?',
 'ipb-confirmhideuser'             => 'Hahadlangan mo na ang isang tagagamit na pinagagana ang "ikubli ang tagagamit".  Susupilin nito ang pangalan ng tagagamit sa lahat ng mga pagpapasok sa mga tala at mga talaan.  Nakatitiyak ka bang nais mong gawin iyan?',
 'ipb-edit-dropdown'               => 'Baguhin ang mga dahilan sa pagharang',

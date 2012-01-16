@@ -2404,7 +2404,7 @@ Clicking '''''{{int:undeletereset}}''''' will clear the comment field and all ch
 'badipaddress'                    => 'અવૈધ IP સરનામું',
 'blockipsuccesssub'               => 'સફળ પ્રતિબંધ મુકાયો',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] પરા રોક લગાવાઈ છે<br />
-રોક લગાવેલ સભ્યોની યાદિ [[Special:IPBlockList|IP block list]].',
+રોક લગાવેલ સભ્યોની યાદિ [[Special:BlockList|IP block list]].',
 'ipb-blockingself'                => 'તમે પોતાના પર પ્રતિબંધ મુકવા જાઓ છો! શું તમે સાચેજમાં આ કરવા માગો છો?',
 'ipb-confirmhideuser'             => 'તમે "સભ્ય છુપાવો" સક્રિય રાખીને આ સભ્ય પર પ્રતિબંધ મુકવા જઇ રહ્યાં છો. આના કારણે કોઇપણ યાદી કે નોંધમાં સભ્યનું નામ જોઇ નહી શકાય. શું તમે ખરેખર આમ કરવા માંગો છો?',
 'ipb-edit-dropdown'               => 'પ્રતિબંધ કારણોમાં ફેરફાર કરો',

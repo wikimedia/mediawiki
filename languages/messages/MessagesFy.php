@@ -1934,7 +1934,7 @@ Meld de krekte reden! Neam bygelyks de siden dy't oantaaste waarden.",
 'badipaddress'        => 'Gjin jildige IP-adres',
 'blockipsuccesssub'   => 'Utsluting slagge',
 'blockipsuccesstext'  => 'Meidogger [[Special:Contributions/$1|$1]] is útsletten.<br />
-(List fan [[Special:IPBlockList|útslette meidoggers]].)',
+(List fan [[Special:BlockList|útslette meidoggers]].)',
 'ipb-unblock-addr'    => 'Lit $1 yn',
 'ipb-unblock'         => 'Lit in meidogger of IP-adres yn',
 'ipb-blocklist'       => 'Besteande útslutings besjen',

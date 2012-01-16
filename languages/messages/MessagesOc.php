@@ -2407,7 +2407,7 @@ Donatz çaijós un motiu precís (per exemple en citant las paginas que son esta
 'badipaddress'                    => "L'adreça IP es incorrècta",
 'blockipsuccesssub'               => 'Blocatge capitat',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] es estat blocat.<br />
-Podètz consultar la [[Special:IPBlockList|lista dels comptes e de las adreças IP blocats]].',
+Podètz consultar la [[Special:BlockList|lista dels comptes e de las adreças IP blocats]].',
 'ipb-edit-dropdown'               => 'Modificar los motius de blocatge per defaut',
 'ipb-unblock-addr'                => 'Desblocar $1',
 'ipb-unblock'                     => "Desblocar un compte d'utilizaire o una adreça IP",

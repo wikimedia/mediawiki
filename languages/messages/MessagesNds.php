@@ -2155,7 +2155,7 @@ Ok den Grund för dat Blocken indregen.',
 'badipaddress'                    => 'De IP-Adress hett en falsch Format.',
 'blockipsuccesssub'               => 'Blocken hett Spood',
 'blockipsuccesstext'              => 'De IP-Adress „[[Special:Contributions/$1|$1]]“ is nu blockt.<br />
-Op de [[Special:IPBlockList|IP-Blocklist]] is en List vun alle Blocks to finnen.',
+Op de [[Special:BlockList|IP-Blocklist]] is en List vun alle Blocks to finnen.',
 'ipb-edit-dropdown'               => 'Blockgrünn ännern',
 'ipb-unblock-addr'                => '„$1“ freegeven',
 'ipb-unblock'                     => 'IP-Adress/Bruker freegeven',

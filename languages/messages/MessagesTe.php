@@ -2306,7 +2306,7 @@ $UNWATCHURL కి వెళ్ళండి.
 'badipaddress'                    => 'సరైన ఐ.పి. అడ్రసు కాదు',
 'blockipsuccesssub'               => 'నిరోధం విజయవంతం అయింది',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] నిరోధించబడింది.
-<br />నిరోధాల సమీక్ష కొరకు [[Special:IPBlockList|ఐ.పి. నిరొధాల జాబితా]] చూడండి.',
+<br />నిరోధాల సమీక్ష కొరకు [[Special:BlockList|ఐ.పి. నిరొధాల జాబితా]] చూడండి.',
 'ipb-blockingself'                => 'మిమ్మల్ని మీరే నిరోధించుకోబోతున్నారు! అదే మీ నిశ్చయమా?',
 'ipb-edit-dropdown'               => 'నిరోధపు కారణాలను మార్చండి',
 'ipb-unblock-addr'                => '$1 పై ఉన్న నిరోధాన్ని తొలగించండి',

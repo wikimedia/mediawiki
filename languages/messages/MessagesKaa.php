@@ -1592,7 +1592,7 @@ Aqırg'ı o'shirilgenlerdin' dizimin ko'riw ushin \$2 ni qaran'",
 'badipaddress'                => 'Jaramsız IP adres',
 'blockipsuccesssub'           => 'Tabıslı qulplaw',
 'blockipsuccesstext'          => "[[Special:Contributions/$1|$1]] bloklang'an.<br />
-Basqa bloklawlar ushın [[Special:IPBlockList|IP bloklaw dizimin]] ko'rip shıg'ın'iz.",
+Basqa bloklawlar ushın [[Special:BlockList|IP bloklaw dizimin]] ko'rip shıg'ın'iz.",
 'ipb-edit-dropdown'           => "Bloklaw sebeplerin o'zgertiw",
 'ipb-unblock-addr'            => '$1 degennin qulpın sheshiw',
 'ipb-unblock'                 => "Paydalanıwshının' yamasa IP adrestin' qulpın shesh",

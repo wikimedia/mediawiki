@@ -1712,7 +1712,7 @@ Si pagina nova cum ipso nomine post deletionem creata est, emendationes restitut
 'badipaddress'                => 'Locus IP male formatus',
 'blockipsuccesssub'           => 'Locus prospere obstructus est',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] obstructus est.
-<br />Vide [[Special:IPBlockList|indicem usorum obstructorum]] ut obstructos revideas.',
+<br />Vide [[Special:BlockList|indicem usorum obstructorum]] ut obstructos revideas.',
 'ipb-edit-dropdown'           => 'Causas obstructionum recensere',
 'ipb-unblock-addr'            => 'Deobstruere $1',
 'ipb-unblock'                 => 'Deobstruere nomen usoris vel locum IP',

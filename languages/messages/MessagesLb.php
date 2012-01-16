@@ -2399,7 +2399,7 @@ $1',
 'blockipsuccesssub'               => 'Gouf gespaart',
 'blockipsuccesstext'              => "[[Special:Contributions/$1|$1]] gouf gespaart. <br />
 
-Kuckt d'[[Special:IPBlockList|IP Spär-Lëscht]] fir all Spären ze gesin.",
+Kuckt d'[[Special:BlockList|IP Spär-Lëscht]] fir all Spären ze gesin.",
 'ipb-blockingself'                => 'Dir sidd am gaang Iech selwer ze spären! Sidd Dir sécher datt Dir dat maache wëllt?',
 'ipb-confirmhideuser'             => 'Dir sidd am gaang e Benotzer ze späre mat der Fonctioun "Benotzer verstoppen" ageschalt. Dëst hëlt den Numm vum Benotzer aus alle Lëschten a Logbicher eraus. Sidd Dir sécher datt Dir dat maache wëllt?',
 'ipb-edit-dropdown'               => 'Spärgrënn änneren',

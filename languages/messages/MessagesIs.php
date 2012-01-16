@@ -2406,7 +2406,7 @@ Gefðu nákvæma skýringu að neðan (til dæmis, með því að vísa í þær
 'badipaddress'                    => 'Ógilt vistfang',
 'blockipsuccesssub'               => 'Bann tókst',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] hefur verið bannaður/bönnuð.<br />
-Sjá [[Special:IPBlockList|bannaðar notendur og vistföng]] fyrir yfirlit yfir núverandi bönn.',
+Sjá [[Special:BlockList|bannaðar notendur og vistföng]] fyrir yfirlit yfir núverandi bönn.',
 'ipb-blockingself'                => 'Þú ert í þann mund að banna sjálfan þig! Ertu viss um að þú viljir gera það?',
 'ipb-confirmhideuser'             => 'Þú ert í þann mund að banna notenda sem er falinn. Notendanafn hans mun ekki birtast í listum og aðgerðarskrám. Ertu viss um að þú viljir gera það?',
 'ipb-edit-dropdown'               => 'Breyta ástæðu fyrir banni',

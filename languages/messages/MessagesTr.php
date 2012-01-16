@@ -1003,7 +1003,7 @@ Sayfaları güvenle değiştirmenize izin vermek için: ASCII olmayan karakterle
 Kaydettiğinizde bu tarihli sürümden günümüze kadar olan değişiklikler yok olacaktır.'''",
 'yourdiff'                         => 'Karşılaştırma',
 'copyrightwarning'                 => "'''Lütfen dikkat:''' {{SITENAME}} sitesine yapılan bütün katkılar $2 sözleşmesi kapsamındadır (ayrıntılar için $1'a bakınız).
-Yaptığınız katkının başka katılımcılar tarafından acımasızca değiştirilmesini ya da özgürce ve sınırsızca başka yerlere dağıtılmasını istemiyorsanız, katkıda bulunmayınız.<br />
+Yaptığınız katkının başka katılımcılar tarafından acımasızca değiştirilmesini ve sınırsızca başka yerlere dağıtılmasını istemiyorsanız, katkıda bulunmayınız.<br />
 Ayrıca buraya katkıda bulunarak, bu katkının kendiniz tarafından yazıldığına ya da kamuya açık bir kaynaktan ya da başka bir özgür/ücretsiz kaynaktan kopyalandığına güvence vermiş oluyorsunuz. '''Buraya, telif sahibinin izni olmadan telif hakkı ile korunan eserleri eklemeyiz! '''",
 'copyrightwarning2'                => 'Lütfen, {{SITENAME}} sitesine bulunacağınız tüm katkıların diğer üyeler tarafından düzenlenebileceğini, değiştirilebileceğini ya da silinebileceğini hatırlayın. Yazılarınızın merhametsizce değiştirilebilmesine rıza göstermiyorsanız buraya katkıda bulunmayın. <br />
 Ayrıca bu ekleyeceğiniz yazıyı sizin yazdığınızı ya da serbest kopyalama izni veren bir kaynaktan kopyaladığınızı bize taahhüt etmektesiniz (ayrıntılar için referans: $1).',
@@ -2524,7 +2524,7 @@ Son engelleme günlüğü girdisi kaynak amacıyla aşağıda verilmiştir:',
 'badipaddress'                    => 'Geçersiz IP adresi',
 'blockipsuccesssub'               => 'IP adresi engelleme işlemi başarılı oldu',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] engellendi.
-<br />Engellemeleri gözden geçirmek için [[Special:IPBlockList|IP adresi engellenenler]] listesine bakınız.',
+<br />Engellemeleri gözden geçirmek için [[Special:BlockList|IP adresi engellenenler]] listesine bakınız.',
 'ipb-blockingself'                => 'Kendinizi engellemek üzeresiniz! Bunu yapmak istediğinizden emin misiniz?',
 'ipb-confirmhideuser'             => '"Kullanıcıyı gizle" seçiliyken bir kullanıcı engellemek üzeresiniz. Bu, kullanıcının adını tüm listeler ile günlük girişlerinde bastıracaktır. Bunu yapmak istediğinizden emin misiniz?',
 'ipb-edit-dropdown'               => 'Engelleme nedenleri düzenle',

@@ -2492,7 +2492,7 @@ Vnesite tudi razlog (''na primer'' seznam strani, ki jih je uporabnik po nepotre
 'badipaddress'                    => 'Neveljaven IP-naslov ali uporabniško ime.',
 'blockipsuccesssub'               => 'Blokiranje je uspelo',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] je {{GENDER:$1|blokiran|blokirana|blokiran(-a)}}.<br />
-Oglejte si [[Special:IPBlockList|seznam blokiranih IP-naslovov]] za pregled blokad.',
+Oglejte si [[Special:BlockList|seznam blokiranih IP-naslovov]] za pregled blokad.',
 'ipb-blockingself'                => 'Nameravate se blokirati! Ste prepričani, da želite to storiti?',
 'ipb-confirmhideuser'             => 'Nameravate blokirati uporabnika z omogočeno možnostjo »skrij uporabnika«. To bo skrilo uporabnikovo ime na vseh seznamih in dnevniških vnosih. Ste prepričani, da želite to storiti?',
 'ipb-edit-dropdown'               => 'Uredi razloge blokade',

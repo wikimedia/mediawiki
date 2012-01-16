@@ -2136,7 +2136,7 @@ $1',
 'badipaddress'                    => 'Хүчингүй IP хаяг',
 'blockipsuccesssub'               => 'Түгжээ амжилттай боллоо.',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] түгжигдсэн.
-<br />Түгжилтийн тоймыг [[Special:IPBlockList|түгжигдсэн IP-ийн жагсаалт]]аас үзнэ үү.',
+<br />Түгжилтийн тоймыг [[Special:BlockList|түгжигдсэн IP-ийн жагсаалт]]аас үзнэ үү.',
 'ipb-edit-dropdown'               => 'Түгжих шалтгаануудыг засварлах',
 'ipb-unblock-addr'                => '$1-н түгжээг тайлах',
 'ipb-unblock'                     => 'Хэрэглэгчийн нэр эсвэл IP хаягийн түгжээг тайлах',

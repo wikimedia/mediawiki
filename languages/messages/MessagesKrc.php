@@ -2145,7 +2145,7 @@ $1',
 'badipaddress'                    => 'Терс IP-адрес',
 'blockipsuccesssub'               => 'Тыйыу джетишимли болду',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] тыйылды. <br />
-Тыйыуланы кёрюр ючюн [[Special:IPBlockList|тыйылгъан IP-адреслени списогуна]] къарагъыз.',
+Тыйыуланы кёрюр ючюн [[Special:BlockList|тыйылгъан IP-адреслени списогуна]] къарагъыз.',
 'ipb-edit-dropdown'               => 'Чурумланы списогун тюрлендир',
 'ipb-unblock-addr'                => '$1 блокдан ал',
 'ipb-unblock'                     => 'Къошулуучуну неда IP-адресни тыйылыуун тохтат',

@@ -2353,7 +2353,7 @@ $1',
 'badipaddress'                    => 'अमान्य आईपी पता।',
 'blockipsuccesssub'               => 'अवरोधन सफल ।(संपादन करने से रोक दिया गया है)',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] को बाध्य किया जा चुका है।<br />
-बाध्यों की समीक्षा के लिए [[Special:IPBlockList|IP बाध्य सूची]] देखें।',
+बाध्यों की समीक्षा के लिए [[Special:BlockList|IP बाध्य सूची]] देखें।',
 'ipb-blockingself'                => 'आप खुद को अवरोधित कर रहे हैं! क्या आप वाकई ऐसा करना चाहते हैं?',
 'ipb-edit-dropdown'               => 'ब्लॉक कारण संपादित करें',
 'ipb-unblock-addr'                => '$1 को अनब्लॉक करें',

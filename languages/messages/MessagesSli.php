@@ -1685,7 +1685,7 @@ Bitte gib dann Grund fier de Sperre oa.",
 'ipb-change-block'            => 'Sperre miet diesen Sperrparametern erneuern',
 'badipaddress'                => 'De IP-Atresse hoot a foalsches Furmat.',
 'blockipsuccesstext'          => 'Dar Nutzer/de IP-Atresse [[Special:Contributions/$1|$1]] wurde gesperrt.<br />
-Zur Uffhebung dar Sperre siehe ie [[Special:IPBlockList|Liste oller aktiven Sperra]].',
+Zur Uffhebung dar Sperre siehe ie [[Special:BlockList|Liste oller aktiven Sperra]].',
 'ipb-edit-dropdown'           => 'Sperrgrinde beoarbeeta',
 'ipb-unblock-addr'            => '„$1“ freigahn',
 'ipb-unblock'                 => 'IP-Atresse/Nutzer freigahn',

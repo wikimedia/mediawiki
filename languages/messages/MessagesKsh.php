@@ -2662,7 +2662,7 @@ Drag bei „Aanlass“ ene möchlichs jenaue Jrund en, wöröm dat Sperre passee
 'badipaddress'                    => 'Wat De do jeschrevve häs, dat es kein öntlije IP-Adress.',
 'blockipsuccesssub'               => 'De IP-Adress es jetz jesperrt',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] es jetz jesperrt.
-Luur op [[Special:IPBlockList|de Liss met jesperrte IP_Adresse]] wann de ne Üvverbleck üvver de Sperre han wells,
+Luur op [[Special:BlockList|de Liss met jesperrte IP_Adresse]] wann de ne Üvverbleck üvver de Sperre han wells,
 un och wann De se ändere wells.',
 'ipb-blockingself'                => 'Do bes om Wääsch, Desh sellver ze sperre. Wells De dat?',
 'ipb-confirmhideuser'             => 'Do bes om bäßte Wääsch ene Metaacher ze sperre met „Vershteishe“ ußjewählt.

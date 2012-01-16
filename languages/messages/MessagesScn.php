@@ -2042,7 +2042,7 @@ $1',
 'badipaddress'                    => 'Ndirizzu IP nun vàlidu.',
 'blockipsuccesssub'               => 'Bloccu esiquitu',
 'blockipsuccesstext'              => "[[Special:Contributions/$1|$1]] fu bluccatu.<br />
-Pi maggiuri nfurmazzioni, talìa la [[Special:IPBlockList|lista di l'IP bluccati]] .",
+Pi maggiuri nfurmazzioni, talìa la [[Special:BlockList|lista di l'IP bluccati]] .",
 'ipb-edit-dropdown'               => 'Mutivi pô bloccu',
 'ipb-unblock-addr'                => 'Sblocca $1',
 'ipb-unblock'                     => "Sblocca n'utenti o nu ndirizzu IP",
