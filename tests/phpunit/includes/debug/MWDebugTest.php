@@ -17,9 +17,6 @@ class MWDebugTest extends MediaWikiTestCase {
 		MWDebug::clearLog();
 	}
 
-	/**
-	 * @group Broken
-	 */
 	function testAddLog() {
 		MWDebug::log( 'logging a string' );
 		$this->assertEquals( array( array(
@@ -31,9 +28,6 @@ class MWDebugTest extends MediaWikiTestCase {
 		);
 	}
 
-	/**
-	 * @group Broken
-	 */
 	function testAddWarning() {
 		MWDebug::warning( 'Warning message' );
 		$this->assertEquals( array( array(
@@ -45,24 +39,17 @@ class MWDebugTest extends MediaWikiTestCase {
 		);
 	}
 
-	/**
-	 * Broken on gallium which use an old PHPUnit version
-	 * @group Broken
-	 */
 	function testAvoidDuplicateDeprecations() {
 		MWDebug::deprecated( 'wfOldFunction', '1.0', 'component' );
 		MWDebug::deprecated( 'wfOldFunction', '1.0', 'component' );
 
-		$this->assertCount( 1,
-			MWDebug::getLog(),
+		// assertCount() not available on WMF integration server
+		$this->assertEquals( 1,
+			count( MWDebug::getLog() ),
 			"Only one deprecated warning per function should be kept"
 		);
 	}
 
-	/**
-	 * Broken on gallium which use an old PHPUnit version
-	 * @group Broken
-	 */
 	function testAvoidNonConsecutivesDuplicateDeprecations() {
 		MWDebug::deprecated( 'wfOldFunction', '1.0', 'component' );
 		MWDebug::warning( 'some warning' );
@@ -70,8 +57,9 @@ class MWDebugTest extends MediaWikiTestCase {
 		// Another deprecation
 		MWDebug::deprecated( 'wfOldFunction', '1.0', 'component' );
 
-		$this->assertCount( 3,
-			MWDebug::getLog(),
+		// assertCount() not available on WMF integration server
+		$this->assertEquals( 3,
+			count( MWDebug::getLog() ),
 			"Only one deprecated warning per function should be kept"
 		);
 	}
