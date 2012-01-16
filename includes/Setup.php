@@ -359,7 +359,9 @@ if ( $wgCookieSecure === 'detect' ) {
 	$wgCookieSecure = ( substr( $wgServer, 0, 6 ) === 'https:' );
 }
 
-MWDebug::init();
+if ( $wgDebugToolbar ) {
+	MWDebug::init();
+}
 
 if ( !defined( 'MW_COMPILED' ) ) {
 	if ( !MWInit::classExists( 'AutoLoader' ) ) {

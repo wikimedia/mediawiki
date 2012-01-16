@@ -3,6 +3,9 @@
 /**
  * New debugger system that outputs a toolbar on page view
  *
+ * By default, most methods do nothing ( self::$enabled = false ). You have
+ * to explicitly call MWDebug::init() to enabled them.
+ *
  * @todo Profiler support
  */
 class MWDebug {
@@ -40,7 +43,7 @@ class MWDebug {
 	 *
 	 * @var bool
 	 */
-	protected static $enabled = true;
+	protected static $enabled = false;
 
 	/**
 	 * Array of functions that have already been warned, formatted
@@ -51,17 +54,11 @@ class MWDebug {
 	protected static $deprecationWarnings = array();
 
 	/**
-	 * Called in Setup.php, initializes the debugger if it is enabled with
-	 * $wgDebugToolbar
+	 * Enabled the debugger and load resource module.
+	 * This is called by Setup.php when $wgDebugToolbar is true.
 	 */
 	public static function init() {
-		global $wgDebugToolbar;
-
-		if ( !$wgDebugToolbar ) {
-			self::$enabled = false;
-			return;
-		}
-
+		self::$enabled = true;
 		RequestContext::getMain()->getOutput()->addModules( 'mediawiki.debug' );
 	}
 
