@@ -2,6 +2,16 @@
 
 class MWDebugTest extends MediaWikiTestCase {
 
+
+	function setUp() {
+		// Make sure MWDebug class is enabled
+		static $MWDebugEnabled = false;
+		if( !$MWDebugEnabled ) {
+			MWDebug::init();
+			$MWDebugEnabled = true;
+		}
+	}
+
 	function tearDown() {
 		/** Clear log before each test */
 		MWDebug::clearLog();
