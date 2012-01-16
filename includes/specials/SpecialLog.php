@@ -38,7 +38,7 @@ class SpecialLog extends SpecialPage {
 	private $typeOnUser = array(
 		'block',
 		'newusers',
-		'right',
+		'rights',
 	);
 
 	public function __construct() {
