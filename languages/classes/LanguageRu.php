@@ -72,8 +72,10 @@ class LanguageRu extends Language {
 	 * Examples:
 	 *   message with number
 	 *     "Сделано $1 {{PLURAL:$1|изменение|изменения|изменений}}"
+	 *     ("$1 change[s] were made)
 	 *   message without number
 	 *     "Действие не может быть выполнено по {{PLURAL:$1|следующей причине|следующим причинам}}:"
+	 *     ("The action cannot be performed for the following reason[s]")
 	 * @param $count int
 	 * @param $forms array
 	 *
@@ -84,7 +86,7 @@ class LanguageRu extends Language {
 
 		// If the actual number is not mentioned in the expression, then just two forms are enough:
 		// singular for $count == 1
-		// plural   for $count != 0
+		// plural   for $count != 1
 		// For example, "This user belongs to {{PLURAL:$1|one group|several groups}}."
 		if ( count( $forms ) === 2 ) return $count == 1 ? $forms[0] : $forms[1];
 
