@@ -32,13 +32,6 @@ class MWDebug {
 	protected static $query = array();
 
 	/**
-	 * Request information
-	 *
-	 * @var array
-	 */
-	protected static $request = array();
-
-	/**
 	 * Is the debugger enabled?
 	 *
 	 * @var bool
@@ -59,7 +52,6 @@ class MWDebug {
 	 */
 	public static function init() {
 		self::$enabled = true;
-		RequestContext::getMain()->getOutput()->addModules( 'mediawiki.debug' );
 	}
 
 	/**
@@ -217,24 +209,6 @@ class MWDebug {
 	}
 
 	/**
-	 * Processes a WebRequest object
-	 *
-	 * @param $request WebRequest
-	 */
-	public static function processRequest( WebRequest $request ) {
-		if ( !self::$enabled ) {
-			return;
-		}
-
-		self::$request = array(
-			'method' => $_SERVER['REQUEST_METHOD'],
-			'url' => $request->getRequestURL(),
-			'headers' => $request->getAllHeaders(),
-			'params' => $request->getValues(),
-		);
-	}
-
-	/**
 	 * Returns a list of files included, along with their size
 	 *
 	 * @param $context IContextSource
@@ -267,6 +241,7 @@ class MWDebug {
 
 		global $wgVersion, $wgRequestTime;
 		MWDebug::log( 'MWDebug output complete' );
+		$request = $context->getRequest();
 		$debugInfo = array(
 			'mwVersion' => $wgVersion,
 			'phpVersion' => PHP_VERSION,
@@ -274,7 +249,12 @@ class MWDebug {
 			'log' => self::$log,
 			'debugLog' => self::$debug,
 			'queries' => self::$query,
-			'request' => self::$request,
+			'request' => array(
+				'method' => $_SERVER['REQUEST_METHOD'],
+				'url' => $request->getRequestURL(),
+				'headers' => $request->getAllHeaders(),
+				'params' => $request->getValues(),
+			),
 			'memory' => $context->getLanguage()->formatSize( memory_get_usage() ),
 			'memoryPeak' => $context->getLanguage()->formatSize( memory_get_peak_usage() ),
 			'includes' => self::getFilesIncluded( $context ),

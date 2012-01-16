@@ -427,7 +427,6 @@ if ( $wgCommandLineMode ) {
 		}
 	}
 	wfDebug( "$debug\n" );
-	MWDebug::processRequest( $wgRequest );
 }
 
 wfProfileOut( $fname . '-misc1' );
