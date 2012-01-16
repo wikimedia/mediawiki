@@ -71,7 +71,10 @@ class LanguageUk extends Language {
 	function convertPlural( $count, $forms ) {
 		if ( !count( $forms ) ) { return ''; }
 
-		// if no number with word, then use $form[0] for singular and $form[1] for plural or zero
+		// If the actual number is not mentioned in the expression, then just two forms are enough:
+		// singular for $count == 1
+		// plural   for $count != 0
+		// For example, "This user belongs to {{PLURAL:$1|one group|several groups}}."
 		if ( count( $forms ) === 2 ) return $count == 1 ? $forms[0] : $forms[1];
 
 		// @todo FIXME: CLDR defines 4 plural forms. Form for decimals is missing/
