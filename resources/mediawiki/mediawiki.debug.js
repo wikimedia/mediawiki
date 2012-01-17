@@ -243,11 +243,12 @@
 
 			$table = $( '<table id="mw-debug-querylist"></table>' );
 
-			// Widths on table cells and columns behave weird in some browsers like Chrome,
-			// in that, contrary to the W3 box model, padding does not increase cells having a fixed width
-			$('<colgroup>').css( 'width', /*padding=*/20 + ( String( this.data.queries.length ).length*/*fontSize*/11 ) ).appendTo( $table );
-			$('<colgroup>').appendTo( $table );
-			$('<colgroup>').css( 'width', 350 ).appendTo( $table );
+			$( '<tr>' )
+				.append( $('<th>#</th>').css( 'width', '4em' )    )
+				.append( $('<th>SQL</th>') )
+				.append( $('<th>Time</th>').css( 'width', '8em'  ) )
+				.append( $('<th>Call</th>').css( 'width', '12em' ) )
+			.appendTo( $table );
 
 			for ( i = 0, length = this.data.queries.length; i < length; i += 1 ) {
 				query = this.data.queries[i];
@@ -255,11 +256,9 @@
 				$( '<tr>' )
 					.append( $( '<td>' ).text( i + 1 ) )
 					.append( $( '<td>' ).text( query.sql ) )
-					.append( $( '<td>' )
-						.append( $( '<span class="stats"></span>' ).text( '(' + query.time.toFixed( 4 ) + 'ms) ' ) )
-						.append( query['function'] )
-					)
-					.appendTo( $table );
+					.append( $( '<td class="stats">' ).text( query.time.toFixed( 4 )+ 'ms' ) )
+					.append( $( '<td>' ).text( query['function'] ) )
+				.appendTo( $table );
 			}
 
 
