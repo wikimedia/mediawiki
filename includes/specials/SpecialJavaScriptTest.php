@@ -106,7 +106,7 @@ class SpecialJavaScriptTest extends SpecialPage {
 	 * Initialize the page for QUnit.
 	 */
 	private function initQUnitTesting() {
-		global $wgJavaScriptTestConfig;
+		global $wgJavaScriptTestConfig, $wgLang;
 
 		$out = $this->getOutput();
 
@@ -118,13 +118,16 @@ class SpecialJavaScriptTest extends SpecialPage {
 			->params( $wgJavaScriptTestConfig['qunit']['documentation'] )
 			->parseAsBlock();
 		$header = wfMessage( 'javascripttest-qunit-heading' )->escaped();
+		$userDir = $wgLang->getDir();
 
 		$baseHtml = <<<HTML
-<div id="qunit-header">$header</div>
+<div class="mw-content-ltr">
+<div id="qunit-header"><span dir="$userDir">$header</span></div>
 <div id="qunit-banner"></div>
 <div id="qunit-testrunner-toolbar"></div>
 <div id="qunit-userAgent"></div>
 <ol id="qunit-tests"></ol>
+</div>
 HTML;
 		$out->addHtml( $this->wrapSummaryHtml( $summary, 'frameworkfound' ) . $baseHtml );
 
