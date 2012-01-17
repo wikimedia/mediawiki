@@ -3132,7 +3132,9 @@ Possible alternatives to the word 'content' are 'subject matter' or 'wiki subjec
 Possible alternatives to the word 'content' are 'subject matter' or 'wiki subject' or 'wiki purpose'.
 
 {{Identical|Content page}}",
-'tooltip-ca-nstab-user'               => 'Tooltip shown when hovering over {{msg|nstab-user}} (User namespace tab).',
+'tooltip-ca-nstab-user'               => 'Tooltip shown when hovering over {{msg|nstab-user}} (User namespace tab).
+
+No GENDER-Support for performance reason.',
 'tooltip-ca-nstab-image'              => 'Tooltip shown when hovering over {{msg|nstab-image}} (Image namespace tab).',
 'tooltip-ca-nstab-template'           => 'Tooltip shown when hovering over the {{msg|nstab-template}} tab.',
 'tooltip-ca-nstab-help'               => 'Tootip shown when hovering over the {{msg|nstab-help}} tab in the Help namespace.',

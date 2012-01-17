@@ -947,7 +947,7 @@ Ao mesmo tempo, prométanos que o que escribiu é da súa autoría ou que está 
 'copyrightwarning2'                => "Por favor, decátese de que todas as súas contribucións a {{SITENAME}} poden ser editadas, alteradas ou eliminadas por outras persoas. Se non quere que os seus escritos sexan editados sen piedade, non os publique aquí.<br />
 Do mesmo xeito, comprométese a que o que vostede escriba sexa da súa autoría ou copiado dunha fonte de dominio público ou recurso público semellante (vexa $1 para detalles).
 '''NON ENVÍE SEN PERMISO TRABALLOS CON DEREITOS DE COPIA!'''",
-'longpageerror'                    => "'''Erro: O texto que pretende gardar ocupa $1 kilobytes, e existe un límite dun máximo de $2 kilobytes.'''
+'longpageerror'                    => "'''Erro: O texto que pretende gardar ocupa {{PLURAL:$1|$1 kilobyte|$1 kilobytes}}, e existe un límite dun máximo de {{PLURAL:$2|$2 kilobyte|$2 kilobytes}}.'''
 Polo tanto, non se pode gardar.",
 'readonlywarning'                  => "'''Atención: A base de datos foi pechada para facer mantemento, polo que non vai poder gardar as súas edicións polo de agora.'''
 Se cadra, pode cortar e pegar o texto nun ficheiro de texto e gardalo para despois.
@@ -1893,7 +1893,7 @@ A descrición da [$2 páxina de descrición do ficheiro] móstrase a continuaci�
 'filerevert-badversion'     => 'Non existe unha versión local anterior deste ficheiro coa data e hora indicadas.',
 
 # File deletion
-'filedelete'                   => 'Eliminar "$1"',
+'filedelete'                   => 'Borrar "$1"',
 'filedelete-legend'            => 'Eliminar un ficheiro',
 'filedelete-intro'             => "Está a piques de eliminar o ficheiro \"'''[[Media:\$1|\$1]]'''\" xunto con todo o seu historial.",
 'filedelete-intro-old'         => 'Vai eliminar a versión de "\'\'\'[[Media:$1|$1]]\'\'\'" do [$4 $2 ás $3].',

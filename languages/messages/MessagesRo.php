@@ -651,9 +651,9 @@ Te rog anunță acest aspect unui [[Special:ListUsers/sysop|administrator]], ind
 'filerenameerror'      => 'Fișierul "$1" nu a putut fi mutat la "$2".',
 'filedeleteerror'      => 'Fișierul "$1" nu a putut fi șters.',
 'directorycreateerror' => 'Nu se poate crea directorul "$1".',
-'filenotfound'         => 'Fișierul "$1" nu a putut fi găsit.',
-'fileexistserror'      => 'Imposibil de scris fișierul "$1": fișierul există deja',
-'unexpected'           => 'Valoare neașteptată: "$1"="$2".',
+'filenotfound'         => 'Fișierul „$1” nu a putut fi găsit.',
+'fileexistserror'      => 'Imposibil de scris fișierul „$1”: fișierul există deja.',
+'unexpected'           => 'Valoare neașteptată: „$1”=„$2”.',
 'formerror'            => 'Eroare: datele nu au putut fi trimise',
 'badarticleerror'      => 'Această acțiune nu poate fi efectuată pe această pagină.',
 'cannotdelete'         => 'Pagina sau fișierul „$1” nu a putut fi șters.
@@ -684,7 +684,7 @@ Pentru traduceri, considerați utilizarea [//translatewiki.net/wiki/Main_Page?se
 'sqlhidden'            => '(interogare SQL ascunsă)',
 'cascadeprotected'     => 'Această pagină a fost protejată la scriere deoarece este inclusă în {{PLURAL:$1|următoarea pagină|următoarele pagini}}, care {{PLURAL:$1|este protejată|sunt protejate}} în cascadă:
 $2',
-'namespaceprotected'   => "Nu ai permisiunea de a edita pagini în spațiul de nume '''$1'''.",
+'namespaceprotected'   => "Nu aveți permisiunea de a modifica pagini din spațiul de nume '''$1'''.",
 'customcssprotected'   => 'Nu aveți permisiunea de a modifica această pagină CSS, deoarece conține setările personale ale altui utilizator.',
 'customjsprotected'    => 'Nu aveți permisiunea de a modifica această pagină JavaScript, deoarece conține setările personale ale altui utilizator.',
 'ns-specialprotected'  => 'Paginile din spațiul de nume {{ns:special}} nu pot fi editate.',
@@ -697,7 +697,10 @@ Motivul invocat este ''$2''.",
 'virus-unknownscanner' => 'antivirus necunoscut:',
 
 # Login and logout pages
-'logouttext'                 => 'Sesiunea ta în {{SITENAME}} a fost încheiată. Poți continua să folosești {{SITENAME}} anonim, sau poți să te [[Special:UserLogin|reautentifici]] ca același sau ca alt utilizator.',
+'logouttext'                 => "'''Acum sunteți deconectat.'''
+
+Sesiunea dumneavoastră la {{SITENAME}} a fost închisă. Puteți continua să folosiți {{SITENAME}} ca utilizator anonim, sau puteți să vă [[Special:UserLogin|reautentificați]] ca același sau ca alt utilizator.
+Țineți minte că anumite pagini pot fi în continuare afișate ca și când ați fi autentificat până când curățați memoria cache a navigatorului.",
 'welcomecreation'            => '==Bun venit, $1!==
 
 Contul dumneavoatră a fost creat. Nu uitați să vă personalizați [[Special:Preferences|preferințele]] în {{SITENAME}}.',
@@ -994,22 +997,25 @@ Caseta de text de sus conține pagina așa cum este ea acum (după editarea cele
 Pagina cu modificările dumneavoastră (așa cum ați încercat să o salvați) se află în caseta de jos.
 Va trebui să editați manual caseta de sus pentru a reflecta modificările pe care tocmai le-ați făcut în cea de jos.
 '''Numai''' textul din caseta de sus va fi salvat atunci când veți apăsa pe „{{int:savearticle}}”.",
-'yourtext'                         => 'Textul tău',
+'yourtext'                         => 'Textul dumneavoastră',
 'storedversion'                    => 'Versiunea curentă',
-'nonunicodebrowser'                => "'''ATENŢIE: Browser-ul dumneavoastră nu este compilant unicode, vă rugăm să îl schimbați înainte de a începe modificarea unui articol.'''",
-'editingold'                       => "'''ATENŢIE! Modifici o variantă mai veche a acestei pagini! Orice modificări care s-au făcut de la această versiune și până la cea curentă se vor pierde!'''",
+'nonunicodebrowser'                => "'''Atenție: Navigatorul dumneavoastră nu este compatibil cu Unicode.'''
+În schimb, există o soluție care vă permite să modificați paginile în siguranță: caracterele non-ASCII vor fi afișate în caseta de editare drept coduri hexazecimale.",
+'editingold'                       => "'''Atenție: Modificați o versiune veche a acestei pagini.'''
+Dacă salvați pagina, toate modificările intermediare se vor pierde.",
 'yourdiff'                         => 'Diferențe',
 'copyrightwarning'                 => "Reține că toate contribuțiile la {{SITENAME}} sunt distribuite sub licența $2 (vezi $1 pentru detalii).
 Dacă nu doriți ca ceea ce scrieți să fie modificat fără milă și redistribuit în voie, atunci nu trimiteți materialele respective aici.<br />
 De asemenea, ne asigurați că ceea ce ați scris a fost compoziție proprie sau copie dintr-o resursă publică sau liberă.
-'''NU INTRODUCEŢI MATERIALE CU DREPTURI DE AUTOR FĂRĂ PERMISIUNE!'''",
+'''Nu introduceți materiale aflate sub incidența drepturilor de autor fără a avea permisiune!'''",
 'copyrightwarning2'                => "Rețineți că toate contribuțiile la {{SITENAME}} pot fi modificate, alterate sau șterse de alți contribuitori.
 Dacă nu doriți ca ceea ce scrieți să fie modificat fără milă și redistribuit în voie, atunci nu trimiteți materialele respective aici.<br />
 De asemenea, ne asigurați că ceea ce ați scris a fost compoziție proprie sau copie dintr-o resursă publică sau liberă (vedeți $1 pentru detalii).
-'''NU INTRODUCEŢI MATERIALE CU DREPTURI DE AUTOR FĂRĂ PERMISIUNE!'''",
-'longpageerror'                    => "'''EROARE: Textul pe care vrei să-l salvezi are $1 kilobytes,
-ceea ce înseamnă mai mult decât maximum de $2 kilobytes. Salvarea nu este posibilă.'''",
-'readonlywarning'                  => "'''ATENŢIE: Baza de date a fost blocată pentru întreținere, deci nu veți putea salva modificările în acest moment. Puteți copia textul într-un fișier text local pentru a-l salva când va fi posibil.'''
+'''Nu introduceți materiale aflate sub incidența drepturilor de autor fără a avea permisiune!'''",
+'longpageerror'                    => "'''Eroare: Textul pe care l-ați trimis are o lungime de {{PLURAL:$1|un kilooctet|$1 kiloocteți|$1 de kiloocteți}}, ceea ce înseamnă mai mult decât maximul de {{PLURAL:$2|un kilooctet|$2 kiloocteți|$2 de kiloocteți}}.'''
+Salvarea nu este posibilă.",
+'readonlywarning'                  => "'''Atenție: Baza de date a fost blocată pentru întreținere, deci nu veți putea salva modificările în acest moment.'''
+Puteți copia textul într-un fișier text, păstrându-l pentru mai târziu.
 
 Administratorul care a efectuat blocarea a oferit următoarea explicație: $1",
 'protectedpagewarning'             => "'''Atenție: această pagină a fost protejată astfel încât poate fi modificată doar de către administratori.'''
@@ -1300,8 +1306,8 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 'searchrelated'                    => 'relaționat',
 'searchall'                        => 'toate',
 'showingresults'                   => "Mai jos {{PLURAL:$1|apare '''1''' rezultat|apar '''$1''' rezultate|apar '''$1''' de rezultate}} începând cu nr. <b>$2</b>.",
-'showingresultsnum'                => "Mai jos {{PLURAL:$3|apare '''1''' rezultat|apar '''$3''' rezultate|apar '''$3''' de rezultate}} cu #<b>$2</b>.",
-'showingresultsheader'             => "{{PLURAL:$5|Rezultat '''$1'''|Resultate '''$1 - $2'''}} ale '''$3''' pentru '''$4'''",
+'showingresultsnum'                => "Mai jos {{PLURAL:$3|apare '''1''' rezultat|apar '''$3''' rezultate|apar '''$3''' de rezultate}} cu nr. <b>$2</b>.",
+'showingresultsheader'             => "{{PLURAL:$5|Rezultatul '''$1''' din '''$3'''|Rezultatele '''$1 - $2''' din '''$3'''}} pentru '''$4'''",
 'nonefound'                        => "'''Notă''': Numai unele spații de nume sunt căutate implicit.
 Încercați să puneți ca și prefix al căutării ''all:'' pentru a căuta în tot conținutul (incluzând și paginile de discuții, formate, etc), sau folosiți spațiul de nume dorit ca și prefix.",
 'search-nonefound'                 => 'Nu sunt rezultate conforme interogării.',

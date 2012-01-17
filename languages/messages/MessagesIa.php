@@ -880,7 +880,7 @@ In addition, tu nos garanti que tu es le autor de isto, o que tu lo ha copiate d
 Si tu non vole que tu scripto sia modificate impietosemente, alora non lo submitte hic.<br />
 In addition, tu nos garanti que tu es le autor de isto, o que tu lo ha copiate de un ressource a dominio public o alteremente libere de derectos (vide $1 pro detalios).
 '''Non submitte material subjecte a copyright sin autorisation expresse!'''",
-'longpageerror'                    => "'''Error: Le texto que tu submitteva occupa $1 kilobytes, excedente le maximo de $2 kilobytes.'''
+'longpageerror'                    => "'''Error: Le texto que tu submitteva occupa {{PLURAL:$1|un kilobyte|$1 kilobytes}}, excedente le maximo de {{PLURAL:$2|un kilobyte|$2 kilobytes}}.'''
 Illo non pote esser salveguardate.",
 'readonlywarning'                  => "'''Attention: Le base de datos ha essite blocate pro mantenentia, ergo tu non pote salveguardar tu modificationes in iste momento.'''
 Nos recommenda copiar-e-collar le texto in un file de texto e salveguardar lo pro plus tarde.

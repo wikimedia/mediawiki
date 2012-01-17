@@ -1011,7 +1011,7 @@ Azt is megígéred, hogy ezt magadtól írtad, vagy egy közkincsből vagy más 
 Ha nem akarod, hogy az írásodat módosítsák, akkor ne küldd be.<br />
 Azt is megígéred, hogy ezt magadtól írtad, vagy egy közkincsből vagy más szabad forrásból másoltad (lásd a(z) $1 lapot a részletekért).
 '''NE KÜLDJ BE JOGVÉDETT MUNKÁT ENGEDÉLY NÉLKÜL!'''",
-'longpageerror'                    => "'''HIBA: Az általad beküldött szöveg $1 kilobájt hosszú, ami több az engedélyezett $2 kilobájtnál.
+'longpageerror'                    => "'''HIBA: Az általad beküldött szöveg {{PLURAL:$1|egy kilobájt|$1 kilobájt}} hosszú, ami több az engedélyezett {{PLURAL:$2|egy kilobájtnál|$2 kilobájtnál}}.
 A szerkesztést nem lehet elmenteni.'''",
 'readonlywarning'                  => "'''FIGYELMEZTETÉS: A wiki adatbázisát karbantartás miatt zárolták, ezért most nem fogod tudni elmenteni a szerkesztéseidet.
 A lap szöveget kimásolhatod egy szövegfájlba, amit elmenthetsz későbbre.'''
