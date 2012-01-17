@@ -642,7 +642,7 @@
 		gender: function( nodes ) { 
 			var gender;
 			if  ( nodes[0] && nodes[0].options instanceof mw.Map ){
-				gender = nodes[0].options.get( 'gender' )
+				gender = nodes[0].options.get( 'gender' );
 			} else {
 				gender = nodes[0];
 			}
