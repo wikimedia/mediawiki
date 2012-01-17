@@ -22,7 +22,7 @@
 
 	footHovzer = {
 		update: function () {
-			var $body, winTop;
+			var $body;
 
 			$body = $( 'body' );
 			if ( prevHeight === undefined ) {
@@ -31,12 +31,7 @@
 			} else {
 				newHeight = getHovzer().outerHeight( true );
 				$body.css( 'paddingBottom', ( parseFloat( $body.css( 'paddingBottom' ) ) - prevHeight ) + newHeight );
-				// Update scroll so that page stays focusses on same area
-				winTop = $(window).scrollTop();
-				if ( $(document).height() - $(window).height() > winTop ) {
-					$(window).scrollTop( winTop + ( newHeight - prevHeight ) );
-				}
-				
+
 				prevHeight = newHeight;
 			}
 		}
