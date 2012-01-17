@@ -889,8 +889,8 @@ Anda juga berjanji bahawa ini adalah hasil kerja tangan anda sendiri, atau disal
 Anda juga berjanji bahawa ini adalah hasil kerja tangan anda sendiri, atau
 disalin daripada domain awam atau mana-mana sumber bebas lain (lihat $1 untuk butiran lanjut).
 '''JANGAN KIRIM KARYA HAK CIPTA ORANG LAIN TANPA KEBENARAN!'''",
-'longpageerror'                    => "'''RALAT: Panjang teks yang dikirim ialah $1 kilobait,
-melebihi had maksimum $2 kilobait. Ia tidak boleh disimpan.'''",
+'longpageerror'                    => "'''Ralat: Teks yang anda serahkan itu panjangnya {{PLURAL:$1|1|$1}} kilobait, iaitu lebih panjang daripada had maksimum {{PLURAL:$2|1|$2}} kilobait.'''
+Oleh itu, ia tidak boleh disimpan.",
 'readonlywarning'                  => "'''AMARAN: Pangkalan data telah dikunci untuk penyenggaraan. Justeru, anda tidak boleh menyimpan suntingan anda pada masa sekarang.
 Anda boleh menyalin teks anda ke dalam komputer anda terlebih dahulu dan simpan teks tersebut di sini pada masa akan datang.'''
 

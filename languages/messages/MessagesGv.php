@@ -387,7 +387,7 @@ Aascreeu, my sailliu.",
 'noemailcreate'              => 'Shegin diu enmys post-l fondagh y honraghey',
 'passwordsent'               => 'Va fockle arrey noa currit da enmys post-L ta recortyssit da "$1".<br />
 Tra t\'eh eu, log stiagh my sailliu.',
-'acct_creation_throttle_hit' => "Va {{PLURAL:$1|1 choontys|$1 coontyssyn}} crooit ec keayrtee da'n wiki shoh lesh yn enmys IP eu 'sy laa ain, as cha nel ny smoo coontyssyn y chroo lhiggalagh.<br />
+'acct_creation_throttle_hit' => "Va {{PLURAL:$1|$1 coontys|$1 choontys|$1 choontys|$1 coontyssyn}} crooit ec keayrtee da'n wiki shoh lesh yn enmys IP eu 'sy laa ain, as cha nel ny smoo coontyssyn y chroo lhiggalagh.<br />
 Myr eiyrtys, cha nod keayrtee lesh yn enmys IP shoh ny smoo coontyssyn noa y chroo nish.",
 'emailconfirmlink'           => 'Shickyree yn enmys post-l eu',
 'accountcreated'             => 'Coontys crooit',
@@ -500,7 +500,7 @@ Chammah as shen, t’ou gialdyn dooin dy screeu oo hene eh, ny ren oo coip jeh n
 'nocreatetext'                     => "Ta ablid duillagyn noa y chroo lhiettalit ec {{SITENAME}}.<br />
 Foddee shiu goll er ash as reaghey duillag t'ayn nish, ny [[Special:UserLogin|loggal stiagh ny croo coontys]].",
 'nocreate-loggedin'                => 'Cha nel kied ayd duillagyn noa y chroo er {{SITENAME}}.',
-'permissionserrorstext-withaction' => 'Cha nel kiart ayd y $2, er {{PLURAL:$1|y fa|y fa}}:',
+'permissionserrorstext-withaction' => 'Cha nel kiart ayd $2, er {{PLURAL:$1|y fa|y fa|y fa|ny faghyn}} heese:',
 'recreate-moveddeleted-warn'       => "'''Raaue: Ta shiu aachroo duillag as eh er ve scrysst roie.'''
 
 By chair dhyt smooinagh vel eh kiart goll er oai lesh reaghey yn duillag shoh.<br />
@@ -1426,7 +1426,7 @@ Bee adsyn elley follit dy seyr-obbragh.<br />
 'autosumm-new' => 'Duillag crooit lesh: $1',
 
 # Watchlist editor
-'watchlistedit-numitems'      => 'Ta {{PLURAL:$1|1 ard-ennym|$1 ard-enmyn}} ayns dty rolley arrey, magh voish duillagyn resoonaght.',
+'watchlistedit-numitems'      => 'Ta {{PLURAL:$1|1 ard-ennym|$1 ard-ennym|$1 ard-ennym|$1 ard-enmyn}} ayns dty rolley arrey, magh voish duillagyn resoonaght.',
 'watchlistedit-noitems'       => 'Cha nel ard-enmyn ayns dty rolley arrey.',
 'watchlistedit-normal-title'  => 'Rolley arrey y reaghey',
 'watchlistedit-normal-legend' => 'Enmyn y scughey ass y rolley arrey',

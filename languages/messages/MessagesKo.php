@@ -976,7 +976,8 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'copyrightwarning2'                => "{{SITENAME}}에서의 모든 기여는 다른 사용자가 편집, 수정, 삭제할 수 있다는 점을 유의해 주세요. 만약 여기에 동의하지 않는다면, 문서를 저장하지 말아 주세요.<br />
 또한, 직접 작성했거나 퍼블릭 도메인과 같은 자유 문서에서 가져왔다는 것을 보증해야 합니다 (자세한 내용에 대해서는 $1 문서를 읽어 주세요).
 '''저작권이 있는 내용을 허가 없이 저장하지 마세요!'''",
-'longpageerror'                    => "'''오류: 문서의 크기가 $1킬로바이트로서 가능한 최대 크기인 $2킬로바이트보다 큽니다. 저장할 수 없습니다.'''",
+'longpageerror'                    => "'''오류: 문서의 크기가 {{PLURAL:$1|$1킬로바이트}}로 최대 크기인 {{PLURAL:$2|$2킬로바이트}}보다 큽니다.'''
+저장할 수 없습니다.",
 'readonlywarning'                  => "'''주의: 데이터베이스가 관리를 위해 잠겨 있습니다. 따라서 문서를 편집한 내용을 지금 저장할 수 없습니다.
 편집 내용을 복사 붙여넣기 등을 사용하여 일단 다른 곳에 저장한 후, 나중에 다시 시도해 주세요.'''
 
@@ -3774,6 +3775,7 @@ $5
 'api-error-duplicate-archive-popup-title' => '중복된 {{PLURAL:$1|파일}}이 이미 삭제되었습니다.',
 'api-error-duplicate-popup-title'         => '중복된 {{PLURAL:$1|파일}}',
 'api-error-empty-file'                    => '당신이 올리려는 파일이 비어 있습니다.',
+'api-error-emptypage'                     => '새 문서로 빈 문서를 만들 수 없습니다.',
 'api-error-fetchfileerror'                => '내부 오류: 파일을 불러오는 중 문제가 발생했습니다.',
 'api-error-file-too-large'                => '당신이 올리려는 파일이 너무 큽니다.',
 'api-error-filename-tooshort'             => '파일 이름이 너무 짧습니다.',
@@ -3798,6 +3800,7 @@ $5
 'api-error-unknown-code'                  => '알 수 없는 오류: "$1"',
 'api-error-unknown-error'                 => '내부 오류: 파일을 올리려 하는 도중에 무엇인가가 잘못되었습니다.',
 'api-error-unknown-warning'               => '원인 불명의 경고: $1',
+'api-error-unknownerror'                  => '알 수 없는 오류: "$1".',
 'api-error-uploaddisabled'                => '이 위키에서 파일 올리기가 비활성화되어 있습니다.',
 'api-error-verification-error'            => '파일이 손상되었거나 잘못된 확장자를 사용하고 있습니다.',
 

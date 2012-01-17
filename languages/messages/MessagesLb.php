@@ -858,7 +858,7 @@ Dir verspriecht ausserdeem datt Dir dësen Text selwer verfaasst hutt, oder aus 
 '''DROT KEE COPYRECHTLECH GESCHÜTZTE CONTENU OUNI ERLAABNES AN!'''",
 'copyrightwarning2'                => "W.e.g. notéiert datt all Kontributiounen op {{SITENAME}} vun anere Benotzer verännert oder geläscht kënne ginn. Wann dir dat net wëllt, da setzt näischt heihinner.<br />
 Dir verspriecht ausserdeem datt dir dësen Text selwer verfaasst hutt, oder aus dem Domaine public oder anere fräie Quelle kopéiert hutt. (cf. $1 fir méi Detailler). '''DROT KEE COPYRECHTLECH GESCHÜTZTE CONTENU AN!'''",
-'longpageerror'                    => "'''FEELER: Den Text, den Dir Versicht ze späicheren, huet $1 KB. Dëst ass méi wéi den erlaabte Maximum vun $2 KB – dofir kann den Text net gespäichert ginn.'''",
+'longpageerror'                    => "'''FEELER: Den Text, den Dir Versicht ze späicheren, huet {{PLURAL:$1|1 Kilobyte|$1 Kilobytes}}. Dëst ass méi wéi den erlaabte Maximum vun  {{PLURAL:$2|1 Kilobyte|$2 Kilobytes}}''' Dofir kann den Text net gespäichert ginn.",
 'readonlywarning'                  => "'''OPGEPASST: D'Datebank gouf wéinst Maintenanceaarbechte fir Säitenännerunge gespaart, dofir kënnt Dir déi Säit den Ament net ofspäicheren. Versuergt den Text a versicht d'Ännerunge méi spéit nach emol ze maachen.'''
 
 Den Administrateur den d'Datebank gespaart huet, huet dës Erklärung ginn: $1",

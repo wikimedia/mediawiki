@@ -1034,8 +1034,8 @@ Takođe nam obećavate da ste ga sami napisali ili umnožili s izvora koji je u 
 Ako ne želite da se vaši prilozi nemilosrdno menjaju, ne šaljite ih ovde.<br />
 Takođe nam obećavate da ste ovo sami napisali ili umnožili s izvora u javnom vlasništvu (pogledajte $1 za detalje).
 '''Ne šaljite radove zaštićene autorskim pravima bez dozvole!'''",
-'longpageerror'                    => "'''Greška: tekst koji ste uneli je veličine $1 kilobajta, što je veće od dozvoljenih $2 kilobajta.
-Stranica ne može biti sačuvana.'''",
+'longpageerror'                    => "'''Greška: tekst koji ste uneli je veličine {{PLURAL:$1|jedan kilobajt|$1 kilobajta|$1 kilobajta}}, što je veće od {{PLURAL:$2|dozvoljenog jednog kilobajta|dozvoljena $2 kilobajta|dozvoljenih $2 kilobajta}}.'''
+Stranica ne može biti sačuvana.",
 'readonlywarning'                  => "'''Upozorenje: baza podataka je zaključana radi održavanja, tako da nećete moći da sačuvate izmene.
 Najbolje bi bilo da umnožite tekst u uređivač teksta i sačuvate ga za kasnije.'''
 
