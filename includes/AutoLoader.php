@@ -253,19 +253,26 @@ $wgAutoloadLocalClasses = array(
 
 	# includes/actions
 	'CreditsAction' => 'includes/actions/CreditsAction.php',
+	'DeleteAction' => 'includes/actions/DeleteAction.php',
+	'EditAction' => 'includes/actions/EditAction.php',
 	'HistoryAction' => 'includes/actions/HistoryAction.php',
 	'HistoryPage' => 'includes/actions/HistoryAction.php',
 	'HistoryPager' => 'includes/actions/HistoryAction.php',
 	'InfoAction' => 'includes/actions/InfoAction.php',
 	'MarkpatrolledAction' => 'includes/actions/MarkpatrolledAction.php',
+	'ProtectAction' => 'includes/actions/ProtectAction.php',
 	'PurgeAction' => 'includes/actions/PurgeAction.php',
 	'RawAction' => 'includes/actions/RawAction.php',
 	'RawPage' => 'includes/actions/RawAction.php',
+	'RenderAction' => 'includes/actions/RenderAction.php',
 	'RevertAction' => 'includes/actions/RevertAction.php',
 	'RevertFileAction' => 'includes/actions/RevertAction.php',
 	'RevisiondeleteAction' => 'includes/actions/RevisiondeleteAction.php',
 	'RollbackAction' => 'includes/actions/RollbackAction.php',
+	'SubmitAction' => 'includes/actions/EditAction.php',
+	'UnprotectAction' => 'includes/actions/ProtectAction.php',
 	'UnwatchAction' => 'includes/actions/WatchAction.php',
+	'ViewAction' => 'includes/actions/ViewAction.php',
 	'WatchAction' => 'includes/actions/WatchAction.php',
 
 	# includes/api
