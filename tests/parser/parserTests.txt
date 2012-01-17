@@ -8479,7 +8479,7 @@ comment title=[[Main Page]]
 !! input
 /* External links */ removed bogus entries
 !! result
-<span class="autocomment"><a href="/wiki/Main_Page#External_links" title="Main Page">→</a>External links: </span> removed bogus entries
+<a href="/wiki/Main_Page#External_links" title="Main Page">→</a>‎<span dir="auto"><span class="autocomment">External links: </span> removed bogus entries</span>
 !!end
 
 !! test
@@ -8489,7 +8489,7 @@ comment local title=[[Main Page]]
 !! input
 /* External links */ removed bogus entries
 !! result
-<span class="autocomment"><a href="#External_links">→</a>External links: </span> removed bogus entries
+<a href="#External_links">→</a>‎<span dir="auto"><span class="autocomment">External links: </span> removed bogus entries</span>
 !!end
 
 !! test
@@ -8576,7 +8576,7 @@ title=[[Main Page]]
 !!input
 /* __hello__world__ */
 !! result
-<span class="autocomment"><a href="/wiki/Main_Page#hello_world" title="Main Page">→</a>__hello__world__</span>
+<a href="/wiki/Main_Page#hello_world" title="Main Page">→</a>‎<span dir="auto"><span class="autocomment">__hello__world__</span></span>
 !! end
 
 !! test
