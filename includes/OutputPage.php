@@ -2380,7 +2380,7 @@ $templates
 	 * @return String: The doctype, opening <html>, and head element.
 	 */
 	public function headElement( Skin $sk, $includeStyle = true ) {
-		global $wgContLang;
+		global $wgContLang, $mediaWiki;
 
 		$userdir = $this->getLanguage()->getDir();
 		$sitedir = $wgContLang->getDir();
@@ -2426,7 +2426,7 @@ $templates
 		}
 		$bodyAttrs['class'] .= ' ' . $sk->getPageClasses( $this->getTitle() );
 		$bodyAttrs['class'] .= ' skin-' . Sanitizer::escapeClass( $sk->getSkinName() );
-		$bodyAttrs['class'] .= ' action-' . Sanitizer::escapeClass( Action::getActionName( $this->getContext() ) );
+		$bodyAttrs['class'] .= ' action-' . Sanitizer::escapeClass( $mediaWiki->getPerformedAction() );
 
 		$sk->addToBodyAttributes( $this, $bodyAttrs ); // Allow skins to add body attributes they need
 		wfRunHooks( 'OutputPageBodyAttributes', array( $this, $sk, &$bodyAttrs ) );
@@ -2828,7 +2828,7 @@ $templates
 	 * @return array
 	 */
 	public function getJSVars() {
-		global $wgUseAjax, $wgEnableMWSuggest;
+		global $wgUseAjax, $wgEnableMWSuggest, $mediaWiki;
 
 		$title = $this->getTitle();
 		$ns = $title->getNamespace();
@@ -2864,7 +2864,7 @@ $templates
 			'wgCurRevisionId' => $title->getLatestRevID(),
 			'wgArticleId' => $title->getArticleId(),
 			'wgIsArticle' => $this->isArticle(),
-			'wgAction' => Action::getActionName( $this->getContext() ),
+			'wgAction' => $mediaWiki->getPerformedAction(),
 			'wgUserName' => $this->getUser()->isAnon() ? null : $this->getUser()->getName(),
 			'wgUserGroups' => $this->getUser()->getEffectiveGroups(),
 			'wgCategories' => $this->getCategories(),
