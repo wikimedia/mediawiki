@@ -1219,8 +1219,18 @@ class Title {
 
 	/**
 	 * Helper to fix up the get{Local,Full,Link,Canonical}URL args
+	 * get{Canonical,Full,Link,Local}URL methods accepted an optional
+	 * second argument named variant. This was deprecated in favor
+	 * of passing an array of option with a "variant" key
+	 * Once $query2 is removed for good, this helper can be dropped
+	 * andthe wfArrayToCGI moved to getLocalURL();
+	 *
+	 * @since 1.19 (r105919)
 	 */
-	private static function fixUrlQueryArgs( $query, $query2 ) {
+	private static function fixUrlQueryArgs( $query, $query2 = false ) {
+		if( $query2 !== false ) {
+			wfDeprecated( "Title::get{Canonical,Full,Link,Local} method called with a second parameter is deprecated. Add your parameter to an array passed as the first parameter. This ", "1.19" );
+		}
 		if ( is_array( $query ) ) {
 			$query = wfArrayToCGI( $query );
 		}
@@ -1282,6 +1292,9 @@ class Title {
 	 *   be an array. If a string is passed it will be interpreted as a deprecated
 	 *   variant argument and urlencoded into a variant= argument.
 	 *   This second query argument will be added to the $query
+	 *   The second parameter is deprecated since 1.19. Pass it as a key,value
+	 *   pair in the first parameter array instead.
+	 *
 	 * @return String the URL
 	 */
 	public function getLocalURL( $query = '', $query2 = false ) {
