@@ -41,17 +41,17 @@ class StreamFile {
 	 * (c) sends Content-Length header based on HTTP_IF_MODIFIED_SINCE check
 	 *
 	 * @param $path string Storage path or file system path
-	 * @param $info Array File stat info with 'mtime' and 'size' fields
+	 * @param $info Array|false File stat info with 'mtime' and 'size' fields
 	 * @param $headers Array Additional headers to send
 	 * @param $sendErrors bool Send error messages if errors occur (like 404)
 	 * @return int|false READY_STREAM, NOT_MODIFIED, or false on failure
 	 */
 	public static function prepareForStream(
-		$path, array $info, $headers = array(), $sendErrors = true
+		$path, $info, $headers = array(), $sendErrors = true
 	) {
 		global $wgLanguageCode;
 
-		if ( !$info ) {
+		if ( !is_array( $info ) ) {
 			if ( $sendErrors ) {
 				header( 'HTTP/1.0 404 Not Found' );
 				header( 'Cache-Control: no-cache' );
