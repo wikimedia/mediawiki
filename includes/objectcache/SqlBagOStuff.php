@@ -133,7 +133,7 @@ class SqlBagOStuff extends BagOStuff {
 		if ( $this->isExpired( $row->exptime ) ) {
 			$this->debug( "get: key has expired, deleting" );
 			try {
-				$db->begin();
+				$db->begin( __METHOD__ );
 				# Put the expiry time in the WHERE condition to avoid deleting a
 				# newly-inserted value
 				$db->delete( $tableName,
@@ -141,7 +141,7 @@ class SqlBagOStuff extends BagOStuff {
 						'keyname' => $key,
 						'exptime' => $row->exptime
 					), __METHOD__ );
-				$db->commit();
+				$db->commit( __METHOD__ );
 			} catch ( DBQueryError $e ) {
 				$this->handleWriteError( $e );
 			}
@@ -170,7 +170,7 @@ class SqlBagOStuff extends BagOStuff {
 			$encExpiry = $db->timestamp( $exptime );
 		}
 		try {
-			$db->begin();
+			$db->begin( __METHOD__ );
 			// (bug 24425) use a replace if the db supports it instead of
 			// delete/insert to avoid clashes with conflicting keynames
 			$db->replace(
@@ -181,7 +181,7 @@ class SqlBagOStuff extends BagOStuff {
 					'value' => $db->encodeBlob( $this->serialize( $value ) ),
 					'exptime' => $encExpiry
 				), __METHOD__ );
-			$db->commit();
+			$db->commit( __METHOD__ );
 		} catch ( DBQueryError $e ) {
 			$this->handleWriteError( $e );
 
@@ -195,12 +195,12 @@ class SqlBagOStuff extends BagOStuff {
 		$db = $this->getDB();
 
 		try {
-			$db->begin();
+			$db->begin( __METHOD__ );
 			$db->delete(
 				$this->getTableByKey( $key ),
 				array( 'keyname' => $key ),
 				__METHOD__ );
-			$db->commit();
+			$db->commit( __METHOD__ );
 		} catch ( DBQueryError $e ) {
 			$this->handleWriteError( $e );
 
@@ -216,7 +216,7 @@ class SqlBagOStuff extends BagOStuff {
 		$step = intval( $step );
 
 		try {
-			$db->begin();
+			$db->begin( __METHOD__ );
 			$row = $db->selectRow(
 				$tableName,
 				array( 'value', 'exptime' ),
@@ -225,14 +225,14 @@ class SqlBagOStuff extends BagOStuff {
 				array( 'FOR UPDATE' ) );
 			if ( $row === false ) {
 				// Missing
-				$db->commit();
+				$db->commit( __METHOD__ );
 
 				return null;
 			}
 			$db->delete( $tableName, array( 'keyname' => $key ), __METHOD__ );
 			if ( $this->isExpired( $row->exptime ) ) {
 				// Expired, do not reinsert
-				$db->commit();
+				$db->commit( __METHOD__ );
 
 				return null;
 			}
@@ -250,7 +250,7 @@ class SqlBagOStuff extends BagOStuff {
 				// Race condition. See bug 28611
 				$newValue = null;
 			}
-			$db->commit();
+			$db->commit( __METHOD__ );
 		} catch ( DBQueryError $e ) {
 			$this->handleWriteError( $e );
 
@@ -346,7 +346,7 @@ class SqlBagOStuff extends BagOStuff {
 						$maxExpTime = $row->exptime;
 					}
 
-					$db->begin();
+					$db->begin( __METHOD__ );
 					$db->delete(
 						$this->getTableByShard( $i ),
 						array( 
@@ -355,7 +355,7 @@ class SqlBagOStuff extends BagOStuff {
 							'keyname' => $keys
 						),
 						__METHOD__ );
-					$db->commit();
+					$db->commit( __METHOD__ );
 
 					if ( $progressCallback ) {
 						if ( intval( $totalSeconds ) === 0 ) {
@@ -384,9 +384,9 @@ class SqlBagOStuff extends BagOStuff {
 
 		try {
 			for ( $i = 0; $i < $this->shards; $i++ ) {
-				$db->begin();
+				$db->begin( __METHOD__ );
 				$db->delete( $this->getTableByShard( $i ), '*', __METHOD__ );
-				$db->commit();
+				$db->commit( __METHOD__ );
 			}
 		} catch ( DBQueryError $e ) {
 			$this->handleWriteError( $e );
@@ -464,12 +464,12 @@ class SqlBagOStuff extends BagOStuff {
 		}
 
 		for ( $i = 0; $i < $this->shards; $i++ ) {
-			$db->begin();
+			$db->begin( __METHOD__ );
 			$db->query(
 				'CREATE TABLE ' . $db->tableName( $this->getTableByShard( $i ) ) .
 				' LIKE ' . $db->tableName( 'objectcache' ),
 				__METHOD__ );
-			$db->commit();
+			$db->commit( __METHOD__ );
 		}
 	}
 }
