@@ -516,46 +516,11 @@ class MediaWiki {
 			return;
 		}
 
-		switch( $act ) {
-			case 'view':
-				$output->setSquidMaxage( $wgSquidMaxage );
-				$this->performedAction = $act;
-				$article->view();
-				break;
-			case 'delete':
-			case 'protect':
-			case 'unprotect':
-			case 'render':
-				$this->performedAction = $act;
-				$article->$act();
-				break;
-			case 'submit':
-				if ( session_id() == '' ) {
-					// Send a cookie so anons get talk message notifications
-					wfSetupSession();
-				}
-				// Continue...
-			case 'edit':
-				if ( wfRunHooks( 'CustomEditor', array( $article, $user ) ) ) {
-					$this->performedAction = 'edit';
-					if ( ExternalEdit::useExternalEngine( $this->context, 'edit' )
-						&& $act == 'edit' && !$request->getVal( 'section' )
-						&& !$request->getVal( 'oldid' ) )
-					{
-						$extedit = new ExternalEdit( $this->context );
-						$extedit->execute();
-					} else {
-						$editor = new EditPage( $article );
-						$editor->edit();
-					}
-				}
-				break;
-			default:
-				if ( wfRunHooks( 'UnknownAction', array( $act, $article ) ) ) {
-					$this->performedAction = 'nosuchaction';
-					$output->showErrorPage( 'nosuchaction', 'nosuchactiontext' );
-				}
+		if ( wfRunHooks( 'UnknownAction', array( $act, $article ) ) ) {
+			$this->performedAction = 'nosuchaction';
+			$output->showErrorPage( 'nosuchaction', 'nosuchactiontext' );
 		}
+
 		wfProfileOut( __METHOD__ );
 	}
 
