@@ -30,15 +30,20 @@ class MwSql extends Maintenance {
 	}
 
 	public function execute() {
+		$dbw = wfGetDB( DB_MASTER );
 		if ( $this->hasArg() ) {
 			$fileName = $this->getArg();
 			$file = fopen( $fileName, 'r' );
-		} else {
-			$file = $this->getStdin();
-		}
+			if ( !$file ) {
+				$this->error( "Unable to open input file", true );
+			}
 
-		if ( !$file ) {
-			$this->error( "Unable to open input file", true );
+			$error = $dbw->sourceStream( $file, false, array( $this, 'sqlPrintResult' ) );
+			if ( $error !== true ) {
+				$this->error( $error, true );
+			} else {
+				exit( 0 );
+			}
 		}
 
 		$useReadline = function_exists( 'readline_add_history' )
@@ -51,7 +56,6 @@ class MwSql extends Maintenance {
 			readline_read_history( $historyFile );
 		}
 
-		$dbw = wfGetDB( DB_MASTER );
 		$wholeLine = '';
 		while ( ( $line = Maintenance::readconsole() ) !== false ) {
 			$done = $dbw->streamStatementEnd( $wholeLine, $line );
