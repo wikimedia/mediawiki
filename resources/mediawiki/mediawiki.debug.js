@@ -127,10 +127,15 @@
 			/**
 			 * Returns a jQuery element for a debug-bit div with a for a pane link
 			 *
-			 * @param id
+			 * @param id CSS id snippet. Will be prefixed with 'mw-debug-'
+			 * @param text Text to show
+			 * @param count Optional count to show
 			 * @return {jQuery}
 			 */
-			function paneTriggerBitDiv( id, text ) {
+			function paneTriggerBitDiv( id, text, count ) {
+				if( count ) {
+					text = text + ' (' + count + ')';
+				}
 				return $( '<div>' ).attr({
 					id: 'mw-debug-' + id,
 					'class': 'mw-debug-bit mw-debug-panelink'
@@ -139,15 +144,15 @@
 				.appendTo( $bits );
 			}
 
-			paneTriggerBitDiv( 'console', 'Console (' + this.data.log.length + ')' );
+			paneTriggerBitDiv( 'console', 'Console', this.data.log.length );
 
-			paneTriggerBitDiv( 'querylist', 'Queries: ' + this.data.queries.length );
+			paneTriggerBitDiv( 'querylist', 'Queries', this.data.queries.length );
 
-			paneTriggerBitDiv( 'debuglog', 'Debug Log (' + this.data.debugLog.length + ' lines)' );
+			paneTriggerBitDiv( 'debuglog', 'Debug Log', this.data.debugLog.length );
 
 			paneTriggerBitDiv( 'request', 'Request' );
 
-			paneTriggerBitDiv( 'includes', this.data.includes.length + ' Files Included' );
+			paneTriggerBitDiv( 'includes', 'PHP includes', this.data.includes.length );
 
 			bitDiv( 'mwversion' )
 				.append( $( '<a href="//www.mediawiki.org/"></a>' ).text( 'MediaWiki' ) )
