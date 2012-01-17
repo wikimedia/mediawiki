@@ -382,7 +382,7 @@ class StoreFileOp extends FileOp {
 
 /**
  * Create a file in the backend with the given content.
- * Parameters similar to FileBackend::create(), which include:
+ * Parameters similar to FileBackend::createInternal(), which include:
  *     content       : a string of raw file contents
  *     dst           : destination storage path
  *     overwriteDest : do nothing and pass if an identical file exists at destination
@@ -426,7 +426,7 @@ class CreateFileOp extends FileOp {
 
 /**
  * Copy a file from one storage path to another in the backend.
- * Parameters similar to FileBackend::copy(), which include:
+ * Parameters similar to FileBackend::copyInternal(), which include:
  *     src           : source storage path
  *     dst           : destination storage path
  *     overwriteDest : do nothing and pass if an identical file exists at destination
@@ -478,7 +478,7 @@ class CopyFileOp extends FileOp {
 
 /**
  * Move a file from one storage path to another in the backend.
- * Parameters similar to FileBackend::move(), which include:
+ * Parameters similar to FileBackend::moveInternal(), which include:
  *     src           : source storage path
  *     dst           : destination storage path
  *     overwriteDest : do nothing and pass if an identical file exists at destination
@@ -539,7 +539,7 @@ class MoveFileOp extends FileOp {
 
 /**
  * Delete a file at the storage path.
- * Parameters similar to FileBackend::delete(), which include:
+ * Parameters similar to FileBackend::deleteInternal(), which include:
  *     src                 : source storage path
  *     ignoreMissingSource : don't return an error if the file does not exist
  */

@@ -75,7 +75,6 @@ abstract class FileBackendBase {
 
 	/**
 	 * Get the unique backend name.
-	 * 
 	 * We may have multiple different backends of the same type.
 	 * For example, we can have two Swift backends using different proxies.
 	 * 
@@ -288,8 +287,9 @@ abstract class FileBackendBase {
 	abstract public function concatenate( array $params );
 
 	/**
-	 * Prepare a storage path for usage. This will create containers
-	 * that don't yet exist or, on FS backends, create parent directories.
+	 * Prepare a storage directory for usage.
+	 * This will create any required containers and parent directories.
+	 * Backends using key/value stores only need to create the container.
 	 * 
 	 * $params include:
 	 *     dir : storage directory
@@ -312,8 +312,8 @@ abstract class FileBackendBase {
 	/**
 	 * Take measures to block web access to a storage directory and
 	 * the container it belongs to. FS backends might add .htaccess
-	 * files whereas backends like Swift this might restrict container
-	 * access to backend user that represents end-users in web request.
+	 * files whereas key/value store backends might restrict container
+	 * access to the auth user that represents end-users in web request.
 	 * This is not guaranteed to actually do anything.
 	 * 
 	 * $params include:
@@ -341,8 +341,9 @@ abstract class FileBackendBase {
 	abstract protected function doSecure( array $params );
 
 	/**
-	 * Clean up an empty storage directory.
-	 * On FS backends, the directory will be deleted. Others may do nothing.
+	 * Delete a storage directory if it is empty.
+	 * Backends using key/value stores may do nothing unless the directory
+	 * is that of an empty container, in which case it should be deleted.
 	 * 
 	 * $params include:
 	 *     dir : storage directory
