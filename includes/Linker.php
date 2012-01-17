@@ -1178,7 +1178,6 @@ class Linker {
 				$link = '';
 			}
 		}
-		$auto = "$link$auto";
 		if ( $pre ) {
 			# written summary $presep autocomment (summary /* section */)
 			$auto = wfMsgExt( 'autocomment-prefix', array( 'escapenoentities', 'content' ) ) . $auto;
@@ -1188,7 +1187,7 @@ class Linker {
 			$auto .= wfMsgExt( 'colon-separator', array( 'escapenoentities', 'content' ) );
 		}
 		$auto = '<span class="autocomment">' . $auto . '</span>';
-		$comment = $pre . $auto . $post;
+		$comment = $pre . $link . $wgLang->getDirMark() . '<span dir="auto">' . $auto . $post . '</span>';
 		return $comment;
 	}
 
