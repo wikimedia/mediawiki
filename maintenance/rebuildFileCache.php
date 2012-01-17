@@ -86,16 +86,21 @@ class RebuildFileCache extends Maintenance {
 			$dbw->begin(); // for any changes
 			foreach ( $res as $row ) {
 				$rebuilt = false;
-				$wgRequestTime = wfTime(); # bug 22852
-				$context = new RequestContext;
+				$wgRequestTime = microtime( true ); # bug 22852
+				
 				$wgTitle = Title::makeTitleSafe( $row->page_namespace, $row->page_title );
-				$context->setTitle( $wgTitle );
 				if ( null == $wgTitle ) {
 					$this->output( "Page {$row->page_id} has bad title\n" );
 					continue; // broken title?
 				}
+
+				$context = new RequestContext;
+				$context->setTitle( $wgTitle );
+				$article = Article::newFromTitle( $wgTitle, $context );
+				$context->setWikiPage( $article->getPage() );
+
 				$wgOut = $context->getOutput(); // set display title
-				$article = new Article( $wgTitle );
+
 				// If the article is cacheable, then load it
 				if ( $article->isFileCacheable() ) {
 					$cache = HTMLFileCache::newFromTitle( $wgTitle, 'view' );
