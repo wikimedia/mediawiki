@@ -223,13 +223,6 @@ class MagicWord {
 	 */
 	static function getVariableIDs() {
 		if ( !self::$mVariableIDsInitialised ) {
-			# Deprecated constant definition hook, available for extensions that need it
-			$magicWords = array();
-			wfRunHooks( 'MagicWordMagicWords', array( &$magicWords ) );
-			foreach ( $magicWords as $word ) {
-				define( $word, $word );
-			}
-
 			# Get variable IDs
 			wfRunHooks( 'MagicWordwgVariableIDs', array( &self::$mVariableIDs ) );
 			self::$mVariableIDsInitialised = true;
