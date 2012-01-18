@@ -593,7 +593,6 @@ class ResourceLoader {
 
 				header( 'HTTP/1.0 304 Not Modified' );
 				header( 'Status: 304 Not Modified' );
-				wfProfileOut( __METHOD__ );
 				return true;
 			}
 		}
