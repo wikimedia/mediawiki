@@ -10,9 +10,6 @@ class MWDebugTest extends MediaWikiTestCase {
 			MWDebug::init();
 			$MWDebugEnabled = true;
 		}
-	}
-
-	function tearDown() {
 		/** Clear log before each test */
 		MWDebug::clearLog();
 	}
