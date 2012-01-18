@@ -26,6 +26,10 @@ class StoreBatchTest extends MediaWikiTestCase {
 		$this->date = gmdate( "YmdHis" );
 		$this->createdFiles = array();
 
+		// ApiTestUser requires a database connection. Code below does not
+		// seem to be needed so it is commented out to not make this test
+		// requires a database connection.
+		/**
 		$this->users = array(
 			'sysop' => new ApiTestUser(
 				'Uploadstashtestsysop',
@@ -40,6 +44,7 @@ class StoreBatchTest extends MediaWikiTestCase {
 				array()
 			)
 		);
+		**/
 	}
 
 	/**

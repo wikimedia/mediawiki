@@ -19,6 +19,7 @@ class MockDatabaseSqlite extends DatabaseSqliteStandalone {
 
 /**
  * @group sqlite
+ * @group Database
  */
 class DatabaseSqliteTest extends MediaWikiTestCase {
 	var $db;
