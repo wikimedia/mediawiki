@@ -912,7 +912,7 @@ class LoadBalancer {
 			}
 			foreach ( $conns2[$masterIndex] as $conn ) {
 				if ( $conn->doneWrites() ) {
-					$conn->commit();
+					$conn->commit( __METHOD__ );
 				}
 			}
 		}

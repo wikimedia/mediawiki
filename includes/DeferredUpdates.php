@@ -70,7 +70,7 @@ class DeferredUpdates {
 			$update->doUpdate();
 
 			if ( $doCommit && $dbw->trxLevel() ) {
-				$dbw->commit();
+				$dbw->commit( __METHOD__ );
 			}
 		}
 

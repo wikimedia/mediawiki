@@ -268,9 +268,9 @@ class SiteStatsUpdate implements DeferrableUpdate {
 			$sql = "UPDATE $site_stats SET $updates";
 
 			# Need a separate transaction because this a global lock
-			$dbw->begin();
+			$dbw->begin( __METHOD__ );
 			$dbw->query( $sql, __METHOD__ );
-			$dbw->commit();
+			$dbw->commit( __METHOD__ );
 		}
 	}
 
