@@ -1688,7 +1688,7 @@ class Sanitizer {
 				\xe1\xa0\x8d| # 180d MONGOLIAN FREE VARIATION SELECTOR THREE
 				\xe2\x80\x8c| # 200c ZERO WIDTH NON-JOINER
 				\xe2\x80\x8d| # 200d ZERO WIDTH JOINER
-				[\xef\xb8\x80-\xef\xb8\x8f] # fe00-fe00f VARIATION SELECTOR-1-16
+				[\xef\xb8\x80-\xef\xb8\x8f] # fe00-fe0f VARIATION SELECTOR-1-16
 				/xuD";
 
 			$host = preg_replace( $strip, '', $host );
