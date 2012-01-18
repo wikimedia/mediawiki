@@ -63,6 +63,9 @@
 				}
 			}
 
+			// Skip hash fragment handling. Prevents screen from jumping.
+			e.preventDefault();
+
 			$( this ).addClass( 'current ');
 			$( '.mw-debug-panelink' ).not( this ).removeClass( 'current ');
 
