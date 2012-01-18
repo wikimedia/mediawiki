@@ -836,7 +836,7 @@ abstract class DatabaseBase implements DatabaseType {
 			# is really used by application
 			$sqlstart = substr( $sql, 0, 10 ); // very much worth it, benchmark certified(tm)
 			if ( strpos( $sqlstart, "SHOW " ) !== 0 && strpos( $sqlstart, "SET " ) !== 0 )
-				$this->begin();
+				$this->begin( __METHOD__ . " ($fname)" );
 		}
 
 		if ( $this->debug() ) {
@@ -2742,7 +2742,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 */
 	function deadlockLoop() {
 
-		$this->begin();
+		$this->begin( __METHOD__ );
 		$args = func_get_args();
 		$function = array_shift( $args );
 		$oldIgnore = $this->ignoreErrors( true );
