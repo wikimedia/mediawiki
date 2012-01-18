@@ -475,9 +475,15 @@ Feuch ris a-rithist.',
 'loginlanguagelabel'         => 'Cànan: $1',
 
 # Change password dialog
-'oldpassword' => 'Seann fhacal-faire',
-'newpassword' => 'Facal-faire ùr',
-'retypenew'   => 'Ath-sgrìobh am facal-faire ùr',
+'oldpassword'             => 'Seann fhacal-faire',
+'newpassword'             => 'Facal-faire ùr',
+'retypenew'               => 'Ath-sgrìobh am facal-faire ùr',
+'resetpass-temp-password' => 'Facal-faire sealach:',
+
+# Special:PasswordReset
+'passwordreset'        => 'Ath-shuidhich am facal-faire',
+'passwordreset-text'   => "Lìon am foirm seo gus post-d fhaighinn sa bheil mion-fhiosrachadh a' chunntais agad.",
+'passwordreset-legend' => 'Ath-shuidhich am facal-faire',
 
 # Edit page toolbar
 'bold_sample'     => 'Teacs trom',

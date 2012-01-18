@@ -347,7 +347,7 @@ $messages = array(
 'talk'              => 'చర్చ',
 'views'             => 'పేజీ లింకులు',
 'toolbox'           => 'పరికరాలపెట్టె',
-'userpage'          => 'సభ్యుని పేజీని చూడు',
+'userpage'          => 'వాడుకరి పేజీని చూడండి',
 'projectpage'       => 'ప్రాజెక్టు పేజీని చూడు',
 'imagepage'         => 'ఫైలు పేజీని చూడండి',
 'mediawikipage'     => 'సందేశం పేజీని చూడు',
@@ -2642,7 +2642,7 @@ $UNWATCHURL కి వెళ్ళండి.
 'tooltip-t-print'                 => 'ఈ పేజీ యొక్క ముద్రణా కూర్పు',
 'tooltip-t-permalink'             => 'పేజీ యొక్క ఈ కూర్పుకి శాశ్వత లింకు',
 'tooltip-ca-nstab-main'           => 'విషయపు పేజీ చూడండి',
-'tooltip-ca-nstab-user'           => 'వాడుకరి పేజీ చూడండి',
+'tooltip-ca-nstab-user'           => 'వాడుకరి పేజీని చూడండి',
 'tooltip-ca-nstab-media'          => 'మీడియా పేజీని చూడండి',
 'tooltip-ca-nstab-special'        => 'ఇది ఒక ప్రత్యేక పుట, దీన్ని మీరు సరిదిద్దలేరు',
 'tooltip-ca-nstab-project'        => 'ప్రాజెక్టు పేజీని చూడండి',
@@ -3276,7 +3276,7 @@ $5
 # Auto-summaries
 'autosumm-blank'   => 'పేజీలోని విషయాన్నంతటినీ తీసేసారు.',
 'autosumm-replace' => "పేజీని '$1' తో మారుస్తున్నాం",
-'autoredircomment' => '[[$1]]కు మళ్ళించబడుతుంది',
+'autoredircomment' => '[[$1]]కు దారిమళ్ళించారు',
 'autosumm-new'     => "'$1' తో కొత్త పేజీని సృష్టించారు",
 
 # Live preview

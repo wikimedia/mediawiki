@@ -886,7 +886,8 @@ Læg ingen tekster ind, hvis du ikke kan acceptere at disse kan ændres.
 
 Du bekræfter hermed også, at du selv har skrevet denne tekst eller kopieret den fra en fri kilde (se $1 for detaljer).
 '''OVERFØR IKKE OPHAVSRETSLIGT BESKYTTET INDHOLD UDEN TILLADELSE!'''",
-'longpageerror'                    => "'''FEJL: Teksten, som du ville gemme, er $1 kB stor. Det er større end det tilladet maksimum på $2 kB. Det er ikke muligt at gemme.'''",
+'longpageerror'                    => "'''Fejl: Teksten, som du ville gemme, er {{PLURAL:$1|en kilobyte|$1 kilobytes}} stor, hvilket er mere end det tilladte maksimum på {{PLURAL:$2|en kilobyte|$2 kilobytes}}.'''
+Det er ikke muligt at gemme den.",
 'readonlywarning'                  => "'''ADVARSEL: Databasen er låst på grund af vedligeholdelse, så du kan ikke gemme dine ændringer lige nu. Det kan godt være en god ide at kopiere din tekst til en tekstfil, så du kan gemme den til senere.'''
 
 Systemadministratoren som låste databasen, gav denne forklaring: $1",
@@ -1638,7 +1639,9 @@ Informer venligst en [[Special:ListUsers/sysop|systemadministrator]].',
 'upload-http-error'         => 'Der opstod en HTTP-fejl: $1',
 
 # File backend
+'backend-fail-backup'        => 'Kunne ikke lave sikkerhedskopi af filen $1.',
 'backend-fail-notexists'     => 'Filen $1 findes ikke.',
+'backend-fail-hashes'        => 'Kunne ikke danne hashværdier til sammenligning af filer.',
 'backend-fail-notsame'       => 'En ikke-identisk fil eksisterer allerede som $1.',
 'backend-fail-delete'        => 'Kunne ikke slette filen $1.',
 'backend-fail-alreadyexists' => 'Filen $1 findes allerede.',
@@ -1655,6 +1658,7 @@ Informer venligst en [[Special:ListUsers/sysop|systemadministrator]].',
 'lockmanager-notlocked'        => 'Kunne ikke låse "$1" op, da den ikke er låst.',
 'lockmanager-fail-closelock'   => 'Kunne ikke lukke låsefilen for "$1".',
 'lockmanager-fail-deletelock'  => 'Kunne ikke slette låsefilen for "$1".',
+'lockmanager-fail-acquirelock' => 'Kunne ikke opnå lås for "$1".',
 'lockmanager-fail-openlock'    => 'Kunne ikke åbne låsefilen for "$1".',
 'lockmanager-fail-releaselock' => 'Kunne ikke frigive låsen for "$1".',
 'lockmanager-fail-db-release'  => 'Kunne ikke frigive lås til databasen $1.',
@@ -1896,6 +1900,8 @@ Hver linje indeholder henvisninger til den første og den anden omdirigering, s�
 'wantedpages'             => 'Ønskede sider',
 'wantedpages-badtitle'    => 'Ugyldig titel i resultaterne: $1',
 'wantedfiles'             => 'Ønskede filer',
+'wantedfiletext-cat'      => 'De følgende filer er i brug, men findes ikke. Filer fra eksterne databaser kan være medtaget, selvom de reelt findes. Sådanne falske positiver vil være <del>streget over</del>. Sider, der bruger ikke-eksisterende filer, kan findes i [[:$1]].',
+'wantedfiletext-nocat'    => 'De følgende filer er i brug, men findes ikke. Filer fra eksterne databaser kan være medtaget, selvom de reelt findes. Sådanne falske positiver vil være <del>streget over</del>.',
 'wantedtemplates'         => 'Ønskede skabeloner',
 'mostlinked'              => 'Sider med flest henvisninger',
 'mostlinkedcategories'    => 'Mest brugte kategorier',
@@ -2637,6 +2643,7 @@ Besøg venligst [//www.mediawiki.org/wiki/Localisation MediaWiki-lokalisering] o
 'djvu_page_error'          => 'DjVu-side udenfor sideområdet',
 'djvu_no_xml'              => 'XML-data kan ikke hentes til DjVu-filen',
 'thumbnail-temp-create'    => 'Kunne ikke oprette midlertidig miniaturefil',
+'thumbnail-dest-create'    => 'Kunne ikke gemme miniaturebillede til destinationen',
 'thumbnail_invalid_params' => 'Ugyldige thumbnail-parametre',
 'thumbnail_dest_directory' => 'Kataloget kan ikke oprettes.',
 'thumbnail_image-type'     => 'Billedtypen understøttes ikke',
@@ -2697,7 +2704,9 @@ Alle Transwiki import-aktioner protokolleres i [[Special:Log/import|import-logge
 # JavaScriptTest
 'javascripttest'                      => 'Test af JavaScript',
 'javascripttest-disabled'             => 'Denne funktion er deaktiveret.',
+'javascripttest-title'                => 'Kører $1 test',
 'javascripttest-pagetext-noframework' => 'Denne side er reserveret til at teste JavaScript.',
+'javascripttest-pagetext-skins'       => 'Vælg et udseende, som testene skal køres med:',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'                 => 'Din brugerside',

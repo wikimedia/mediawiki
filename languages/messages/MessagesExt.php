@@ -10,6 +10,7 @@
  * @author Better
  * @author The Evil IP address
  * @author Urhixidur
+ * @author Xuacu
  */
 
 $namespaceNames = array(

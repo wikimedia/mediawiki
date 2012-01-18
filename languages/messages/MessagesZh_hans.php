@@ -1666,6 +1666,9 @@ $1',
 'backend-fail-create'        => '找不到文件“$1”。',
 'backend-fail-readonly'      => '“$1”后端“$2”目前在只读模式，原因是：',
 'backend-fail-synced'        => '文件“$1”在内部后端是不一致的区域。',
+'backend-fail-connect'       => '无法连接到文件后端“$1”。',
+'backend-fail-internal'      => '文件后端“$1”发生了一个未知错误。',
+'backend-fail-contenttype'   => '无法判断文件的内容类型来储存于“$1”。',
 
 # Lock manager
 'lockmanager-notlocked'        => '无法解锁“$1”；它没有被锁定。',
@@ -3723,6 +3726,7 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 'api-error-duplicate-archive-popup-title' => '已被删的除重复{{PLURAL:$1|文件|文件}}',
 'api-error-duplicate-popup-title'         => '重复的 {{PLURAL:$1|文件|文件}}',
 'api-error-empty-file'                    => '您提交的文件是空的。',
+'api-error-emptypage'                     => '不能创建没有内容的新页面。',
 'api-error-fetchfileerror'                => '内部错误：获取文件时发生错误。',
 'api-error-file-too-large'                => '您提交的文件太大了。',
 'api-error-filename-tooshort'             => '文件名太短了。',
@@ -3747,6 +3751,7 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 'api-error-unknown-code'                  => '未知错误：$1',
 'api-error-unknown-error'                 => '内部错误：尝试上传文件时出错。',
 'api-error-unknown-warning'               => '未知的警告：$1',
+'api-error-unknownerror'                  => '未知错误：$1。',
 'api-error-uploaddisabled'                => '这个维基不接受上传。',
 'api-error-verification-error'            => '此文件可能已损坏，或有错误的扩展名。',
 

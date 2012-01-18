@@ -1838,6 +1838,7 @@ Kontaktuje prosím [[Special:ListUsers/sysop|správce]].',
 'backend-fail-synced'        => 'Soubor „$1“ je v interních koncových systémech v nekonzistentním stavu',
 'backend-fail-connect'       => 'Nepodařilo se připojit k souborovému koncovému systému „$1“.',
 'backend-fail-internal'      => 'V souborovém koncovém systému „$1“ došlo k neznámé chybě.',
+'backend-fail-contenttype'   => 'Nelze určit typ obsahu souboru k uložení do „$1“.',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Soubor „$1“ nelze odemknout, neboť není zamčen.',

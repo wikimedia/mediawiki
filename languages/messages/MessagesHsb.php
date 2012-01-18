@@ -1623,6 +1623,7 @@ $1',
 'backend-fail-synced'        => 'Dataja "$1" je znutřka interneho backenda w inkonsistentnym stawje',
 'backend-fail-connect'       => 'Zwisk z datajowym backendom "$1" móžno njeje.',
 'backend-fail-internal'      => 'W datajowym backendźe "$1" je njeznaty zmylk wustupił.',
+'backend-fail-contenttype'   => 'Wobsahowy typ dataje, kotraž ma so na "$1" składować, njeda so zwěsćić.',
 
 # Lock manager
 'lockmanager-notlocked'        => '"$1" njeda so wotewrić; njeje zawrjeny.',
