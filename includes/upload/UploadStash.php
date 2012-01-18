@@ -331,13 +331,13 @@ class UploadStash {
 		$dbw = $this->repo->getMasterDb();
 
 		// this gets its own transaction since it's called serially by the cleanupUploadStash maintenance script
-		$dbw->begin();
+		$dbw->begin( __METHOD__ );
 		$dbw->delete(
 			'uploadstash',
 			array( 'us_key' => $key ),
 			__METHOD__
 		);
-		$dbw->commit();
+		$dbw->commit( __METHOD__ );
 
 		// TODO: look into UnregisteredLocalFile and find out why the rv here is sometimes wrong (false when file was removed)
 		// for now, ignore.

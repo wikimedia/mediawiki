@@ -73,7 +73,7 @@ class UploadStashCleanup extends Maintenance {
 				$stash->getFile( $key, true );
 				$stash->removeFileNoAuth( $key );
 			} catch ( UploadStashBadPathException $ex ) {
-				$this->output( 'Failed removing stashed upload with key:' . $key );
+				$this->output( "Failed removing stashed upload with key: $key\n"  );
 				continue;
 			}
 		}
