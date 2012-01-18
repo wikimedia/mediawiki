@@ -1855,6 +1855,7 @@ Si le problème persiste, contactez un [[Special:ListUsers/sysop|administrateur]
 'backend-fail-synced'        => 'Le fichier "$1" est dans un état incohérent dans les terminaux internes',
 'backend-fail-connect'       => 'Impossible de se connecter au terminal de fichier "$1".',
 'backend-fail-internal'      => 'Une erreur inconnue s\'est produite dans le terminal de fichier "$1".',
+'backend-fail-contenttype'   => 'Impossible de déterminer le type de contenu du fichier à stocker en "$1".',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Impossible de déverrouiller « $1 » ; elle n’est pas verrouillée.',

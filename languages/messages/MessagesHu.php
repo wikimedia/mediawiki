@@ -1801,6 +1801,7 @@ Kérjük, hogy lépj kapcsolatba egy  [[Special:ListUsers/sysop|adminisztrátorr
 'backend-fail-synced'        => 'A „$1” fájl inkonzisztens állapotban van a belső háttér rendszeren',
 'backend-fail-connect'       => 'Nem sikerült csatlakozni a „$1” fájlhoz a háttér rendszeren.',
 'backend-fail-internal'      => 'Ismeretlen hiba keletkezett a „$1” fájlban a háttér rendszeren.',
+'backend-fail-contenttype'   => 'Nem lehetett a fájl típusát meghatározni a „$1” helyen történő tároláshoz.',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Nem lehet a zárolást feloldani: „$1”; nincs zárolva.',

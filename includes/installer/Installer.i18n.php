@@ -3629,7 +3629,7 @@ Die Datei <code>php.ini</code> muss geprüft und es muss dabei sichergestellt we
 	'config-page-welcome' => 'Willkommen bei MediaWiki!',
 	'config-page-dbconnect' => 'Mit der Datenbank verbinden',
 	'config-page-upgrade' => 'Eine vorhandene Installation aktualisieren',
-	'config-page-dbsettings' => 'Datenbankeinstellungen',
+	'config-page-dbsettings' => 'Einstellungen zur Datenbank',
 	'config-page-name' => 'Name',
 	'config-page-options' => 'Optionen',
 	'config-page-install' => 'Installieren',
@@ -3962,7 +3962,7 @@ Diese Mailingliste sollte abonniert werden. Zudem sollte die MediaWiki-Installat
 	'config-subscribe-noemail' => 'Beim Abonnieren der Mailingliste mit Mitteilungen zu Versionsveröffentlichungen wurde keine E-Mail-Adresse angegeben.
 Bitte eine E-Mail-Adresse angeben, sofern die Mailingliste abonniert werden soll.',
 	'config-almost-done' => 'Der Vorgang ist fast abgeschlossen!
-Die verbliebenen Konfigurationseinstellungen können übersprungen und das Wiki umgehend installiert werden.',
+Die verbleibenden Konfigurationseinstellungen können übersprungen und das Wiki umgehend installiert werden.',
 	'config-optional-continue' => 'Ja, es sollen weitere Konfigurationseinstellungen vorgenommen werden.',
 	'config-optional-skip' => 'Nein, das Wiki soll nun installiert werden.',
 	'config-profile' => 'Profil der Benutzerberechtigungen:',
@@ -4044,7 +4044,7 @@ Die Lizenz ist daher jetzt manuell einzugeben.',
 	'config-cache-help' => 'Das Objektcaching wird dazu genutzt die Geschwindigkeit von MediaWiki zu verbessern, indem häufig genutzte Daten zwischengespeichert werden.
 Es wird sehr empfohlen es für mittelgroße bis große Wikis zu nutzen, aber auch für kleine Wikis ergeben sich erkennbare Geschwindigkeitsverbesserungen.',
 	'config-cache-none' => 'Kein Objektcaching (es wird keine Funktion entfernt, allerdings kann dies die Geschwindigkeit größerer Wikis negativ beeinflussen)',
-	'config-cache-accel' => 'Objektcaching von PHP (APC, XCache or WinCache)',
+	'config-cache-accel' => 'Objektcaching von PHP (APC, XCache oder WinCache)',
 	'config-cache-memcached' => 'Memchached Cacheserver nutzen (erfordert einen zusätzliche Installationsvorgang mitsamt Konfiguration)',
 	'config-memcached-servers' => 'Memcached Cacheserver',
 	'config-memcached-help' => 'Liste der für Memcached nutzbaren IP-Adressen.

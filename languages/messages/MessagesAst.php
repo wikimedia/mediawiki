@@ -76,7 +76,7 @@ $messages = array(
 'tog-watchdefault'            => "Añader les páxines qu'edito a la mio llista de vixilancia",
 'tog-watchmoves'              => 'Añader les páxines que muevo a la mio llista de vixilancia',
 'tog-watchdeletion'           => "Añader les páxines qu'esborro a la mio llista de vixilancia",
-'tog-minordefault'            => 'Marcar toles ediciones como menores por defeutu',
+'tog-minordefault'            => 'Marcar toles ediciones como menores de mou predetermináu',
 'tog-previewontop'            => "Amosar previsualización enantes de la caxa d'edición",
 'tog-previewonfirst'          => 'Amosar previsualización na primer edición',
 'tog-nocache'                 => 'Desactivar la caché de páxines del restolador',
@@ -105,9 +105,9 @@ $messages = array(
 'tog-noconvertlink'           => 'Desactivar la conversión del títulu del enllaz',
 'tog-norollbackdiff'          => 'Desanicier les diferencies depués de restaurar',
 
-'underline-always'  => 'Siempre',
+'underline-always'  => 'Siempres',
 'underline-never'   => 'Nunca',
-'underline-default' => 'Valor por defeutu del navegador',
+'underline-default' => 'Valor predetermináu del navegador',
 
 # Font style option in Special:Preferences
 'editfont-style'     => "Estilu de fonte del área d'edición:",
@@ -770,7 +770,7 @@ Amás tas dexándonos afitao qu'escribisti esto tu mesmu o que lo copiasti d'una
 'copyrightwarning2'                => "Por favor, ten en cuenta que toles contribuciones de {{SITENAME}} se puen editar, alterar o desaniciar por otros usuarios. Si nun quies que'l to trabayu s'edite ensin midida, nun lu pongas equí.<br />
 Amás tas dexándonos afitao qu'escribisti esto tu mesmu, o que lo copiasti d'una fonte llibre de dominiu públicu o asemeyao (ver $1 pa más detalles).
 '''¡Nun pongas trabayos con drechos d'autor ensin permisu!'''",
-'longpageerror'                    => "'''ERROR: El testu qu'unviasti tien $1 quilobytes, que ye más que'l máximu de $2 quilobytes.'''
+'longpageerror'                    => "'''ERROR: El testu qu'unviasti tien {{PLURAL:$1|un quilobyte|$1 quilobytes}}, que pasa del máximu de {{PLURAL:$2|un quilobyte|$2 quilobytes}}.'''
 Nun se pue grabar.",
 'readonlywarning'                  => "'''Avisu: La base de datos ta candada por mantenimientu, polo que nun vas poder guardar les tos ediciones nestos momentos.'''
 Seique habríes copiar el testu nun ficheru de testu y guardalu pa intentalo llueu.
@@ -1067,7 +1067,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'showingresults'                   => "Abaxo {{PLURAL:$1|amuésase '''un''' resultáu|amuésense '''$1''' resultaos}}, entamando col #'''$2'''.",
 'showingresultsnum'                => "Abaxo {{PLURAL:$3|amuésase '''un''' resultáu|amuésense '''$3''' resultaos}}, entamando col #'''$2'''.",
 'showingresultsheader'             => "{{PLURAL:$5|Resultáu '''$1''' de '''$3'''|Resultaos '''$1 - $2''' de '''$3'''}} pa '''$4'''",
-'nonefound'                        => "'''Nota''': Por defeutu namái se busca en dalgunos de los espacios de nome. Prueba a poner delantre de la to consulta ''all:'' pa buscar en tol conteníu (inxiriendo páxines d'alderique, plantíes, etc.), o usa como prefixu l'espaciu de nome deseáu.",
+'nonefound'                        => "'''Nota''': De mou predetermináu namái se busca en dellos espacios de nomes. Prueba a poner delantre de la to consulta ''all:'' pa buscar en tol conteníu (inxiriendo páxines d'alderique, plantíes, etc.), o usa como prefixu l'espaciu de nome deseáu.",
 'search-nonefound'                 => 'Nun hebo resultaos que concueyen cola consulta.',
 'powersearch'                      => 'Gueta avanzada',
 'powersearch-legend'               => 'Gueta avanzada',
@@ -1117,7 +1117,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'prefs-email'                   => 'Opciones de corréu',
 'prefs-rendering'               => 'Aspeutu',
 'saveprefs'                     => 'Guardar',
-'resetprefs'                    => 'Volver a les preferencies por defeutu',
+'resetprefs'                    => 'Llimpiar los cambios ensin guardar',
 'restoreprefs'                  => 'Restaurar tolos axustes predeterminaos',
 'prefs-editing'                 => 'Edición',
 'prefs-edit-boxsize'            => "Tamañu de la ventana d'edición.",
@@ -1155,7 +1155,7 @@ Equí tienes un valor al debalu que pues usar: $1",
 'prefs-searchoptions'           => 'Opciones de busca',
 'prefs-namespaces'              => 'Espacios de nome',
 'defaultns'                     => "D'otra miente, guetar nestos espacios de nome:",
-'default'                       => 'por defeutu',
+'default'                       => 'predetermináu',
 'prefs-files'                   => 'Ficheros',
 'prefs-custom-css'              => 'CSS personalizada',
 'prefs-custom-js'               => 'JS personalizada',
@@ -1577,6 +1577,7 @@ Si'l problema persiste, contauta con un [[Special:ListUsers/sysop|alministrador]
 'backend-fail-closetemp'     => 'Nun se pudo zarrar el ficheru temporal.',
 'backend-fail-read'          => 'Nun se pudo lleer el ficheru $1.',
 'backend-fail-create'        => 'Nun se pudo crear el ficheru $1.',
+'backend-fail-contenttype'   => 'Non se pudo determinar la triba de conteníu de ficheru a guardar en "$1".',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Nun se pudo desbloquiar "$1"; nun ta bloquiáu.',
@@ -2580,7 +2581,7 @@ Por último, tamién pues usar un enllaz: p.e. [[{{#Special:Export}}/{{MediaWiki
 # Namespace 8 related
 'allmessages'                   => 'Tolos mensaxes del sistema',
 'allmessagesname'               => 'Nome',
-'allmessagesdefault'            => 'Testu por defeutu',
+'allmessagesdefault'            => 'Testu predetermináu',
 'allmessagescurrent'            => 'Testu actual',
 'allmessagestext'               => 'Esta ye una llista de los mensaxes de sistema disponibles nel espaciu de nomes de MediaWiki.
 Por favor visita [//www.mediawiki.org/wiki/Localisation Llocalización de MediaWiki] y [//translatewiki.net translatewiki.net] si quies contribuyer a la llocalización xenérica de MediaWiki.',
@@ -2661,13 +2662,15 @@ Guárdalu nel ordenador y xúbilu equí.",
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revisión|revisiones}} dende $2',
 
 # JavaScriptTest
-'javascripttest'                      => 'Prueba de JavaScript',
-'javascripttest-disabled'             => 'Esta función ta desactivada.',
-'javascripttest-title'                => 'Executando pruebes de $1',
-'javascripttest-pagetext-noframework' => 'Esta páxina ta acutada pa executar pruebes de javascript.',
-'javascripttest-pagetext-skins'       => 'Escueyi una apariencia pa executar les pruebes:',
-'javascripttest-qunit-intro'          => 'Ver la [$1 documentación de les pruebes] en mediawiki.org.',
-'javascripttest-qunit-heading'        => 'Conxuntu de pruebes JavaScript QUnit de MediaWiki',
+'javascripttest'                           => 'Prueba de JavaScript',
+'javascripttest-disabled'                  => 'Esta función ta desactivada.',
+'javascripttest-title'                     => 'Executando pruebes de $1',
+'javascripttest-pagetext-noframework'      => 'Esta páxina ta acutada pa executar pruebes de javascript.',
+'javascripttest-pagetext-unknownframework' => "L'entornu de pruebes «$1» ye desconocíu.",
+'javascripttest-pagetext-frameworks'       => 'Escueyi un de los siguientes entornos de pruebes: $1',
+'javascripttest-pagetext-skins'            => 'Escueyi una apariencia pa executar les pruebes:',
+'javascripttest-qunit-intro'               => 'Ver la [$1 documentación de les pruebes] en mediawiki.org.',
+'javascripttest-qunit-heading'             => 'Conxuntu de pruebes JavaScript QUnit de MediaWiki',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'                 => "La to páxina d'usuariu",
@@ -3667,6 +3670,7 @@ D\'otra miente, pues usar el formulariu cenciellu d\'abaxo. El to comentariu apa
 'api-error-duplicate-archive-popup-title' => '{{PLURAL:$1|Ficheru duplicáu|Ficheros duplicaos}} que yá se {{PLURAL:$1|desanició|desaniciaron}}',
 'api-error-duplicate-popup-title'         => '{{PLURAL:$1|Ficheru duplicáu|Ficheros duplicaos}}',
 'api-error-empty-file'                    => "El ficheru qu'unviasti taba baleru.",
+'api-error-emptypage'                     => 'Nun se permite la creación de páxines nueves baleres.',
 'api-error-fetchfileerror'                => 'Fallu internu: daqué nun funcionó al buscar el ficheru.',
 'api-error-file-too-large'                => "El ficheru qu'unviasti yera demasiao grande.",
 'api-error-filename-tooshort'             => 'El nome de ficheru ye demasiao curtiu.',
@@ -3691,6 +3695,7 @@ D\'otra miente, pues usar el formulariu cenciellu d\'abaxo. El to comentariu apa
 'api-error-unknown-code'                  => 'Fallu desconocíu: «$1»',
 'api-error-unknown-error'                 => 'Fallu internu: daqué nun funcionó al tentar xubir el ficheru.',
 'api-error-unknown-warning'               => 'Avisu desconocíu: $1',
+'api-error-unknownerror'                  => 'Fallu desconocíu: «$1».',
 'api-error-uploaddisabled'                => 'Les xubíes tan desactivaes nesta wiki.',
 'api-error-verification-error'            => 'Esti ficheru pudiera tar corrompíu, o tien una estensión incorreuta.',
 

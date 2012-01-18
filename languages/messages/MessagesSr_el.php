@@ -1858,6 +1858,7 @@ Ako se problem ne reši, kontaktirajte [[Special:ListUsers/sysop|administratora]
 'backend-fail-synced'        => 'Datoteka „$1“ je u nedoslednom stanju između unutrašnjih delova',
 'backend-fail-connect'       => 'Ne mogu da se povežem s pozadinom datoteke „$1“.',
 'backend-fail-internal'      => 'Došlo je do nepoznate greške u pozadini datoteke „$1“.',
+'backend-fail-contenttype'   => 'Ne mogu da utvrdim kakav sadržaj ima datoteka koju treba da smestim u „$1“.',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Ne mogu da otključam „$1“ jer nije zaključan.',

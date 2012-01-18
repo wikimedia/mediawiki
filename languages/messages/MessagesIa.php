@@ -1691,6 +1691,7 @@ Si le problema persiste, contacta un [[Special:ListUsers/sysop|administrator]].'
 'backend-fail-synced'        => 'Le file "$1" es in un stato inconsistente inter le back-ends interne',
 'backend-fail-connect'       => 'Impossibile connecter al back-end de files "$1".',
 'backend-fail-internal'      => 'Un error incognite occurreva in le back-end de files "$1".',
+'backend-fail-contenttype'   => 'Non poteva determinar le typo de contento del file a immagazinar in "$1".',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Impossibile disblocar "$1"; illo non es blocate.',

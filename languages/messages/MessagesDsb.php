@@ -834,7 +834,7 @@ Ty teke wobkšuśijoš, až sy tekst sam napisał abo sy jen wót public domainy
 
 '''NJEWÓZJAW WÓT COPYRIGHTA ŠĆITANE ŹĚŁA MIMO DOWÓLNOSĆI!'''",
 'copyrightwarning2'                => "Pšosym buź se togo wědobny, až wšykne pśinoski na {{SITENAME}} mógu wót drugich wužywarjow se wobźěłaś, narownaś abo wulašowaś. Jolic až njocoš, až twój tekst se mimo zmilnosći wobźěłujo, ga pón jen how njeskładuj.<br /> Ty teke wobkšuśijoš, až sy tekst sam napisał abo sy jen wót public domainy resp. wót pódobneje lichotneje resursy kopěrował (glědaj $1 za dalše detaile). '''NJEWÓZJAW WÓT COPYRIGHTA ŠĆITANE ŹĚŁA MIMO DOWÓLNOSĆI!'''",
-'longpageerror'                    => "'''Zmólka: Tekst, kótaryž coš składowaś jo $1 KB wjeliki. To jo wěcej, ako dowólony maksimum ($2 KB). Składowanje njejo móžno.'''",
+'longpageerror'                    => "'''Zmólka: Tekst, kótaryž coš składowaś, jo {{PLURAL:$1| jaden kilobajt|$1 kilobajta|$1 kilobajty|$1 kilobajtow}} wjeliki. To jo wěcej ako dowólony maksimum {{PLURAL:$2|jaden kilobajt|$1 kilobajta|$1 kilobajty|$1 kilobajtow}}.''' Składowanje njejo móžno.",
 'readonlywarning'                  => "'''WARNOWANJE: Datowa banka jo se za wótwardowanje zacyniła, togodla njebuźo tuchylu móžno, twóje změny składowaś. Jolic až coš, ga móžoš tekst do tekstoweje dataje kopěrowaś a pózdźej składowaś.'''
 
 Administrator, kenž jo ju zastajił, su toś tu pśicynu pódał: $1",
@@ -1621,6 +1621,7 @@ $1',
 'backend-fail-synced'        => 'Dataja "$1" jo  w internem backenźe w inkonsistentnem stawje',
 'backend-fail-connect'       => 'Zwisk z datajowym backendom "$1" njejo móžno.',
 'backend-fail-internal'      => 'W datajowem backenźe "$1" jo njeznata zmólka nastała.',
+'backend-fail-contenttype'   => 'Wopśimjeśowy typ dataje, kótaraž ma se na "$1" składowaś, njedajo se zwěsćiś.',
 
 # Lock manager
 'lockmanager-notlocked'        => '"$1" njedajo se wótwóriś; njejo zastajony.',

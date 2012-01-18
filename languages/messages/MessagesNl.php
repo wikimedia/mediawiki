@@ -1079,7 +1079,7 @@ Hierbij belooft u ons tevens dat u deze tekst zelf hebt geschreven of overgenome
 Als u niet wilt dat uw teksten rigoureus aangepast worden door anderen, plaats ze hier dan niet.<br />
 U belooft ook dat u de oorspronkelijke auteur bent van dit materiaal of dat u het hebt gekopieerd uit een bron in het publieke domein of een soortgelijke vrije bron (zie $1 voor details).
 '''Gebruik geen materiaal dat beschermd wordt door auteursrecht, tenzij u daarvoor toestemming hebt!'''",
-'longpageerror'                    => "'''Fout: de tekst die u hebt toegevoegd is $1 kilobyte groot, wat groter is dan het maximum van $2 kilobyte.'''
+'longpageerror'                    => "'''Fout: de tekst die u hebt toegevoegd is {{PLURAL:$1|één kilobyte|$1 kilobyte}} groot, wat groter is dan het maximum van {{PLURAL:$2|één kilobyte|$2 kilobyte}}.'''
 Opslaan is niet mogelijk.",
 'readonlywarning'                  => "'''Waarschiwing: de database is geblokkeerd voor bewerkingen, waarschijnlijk voor regulier databaseonderhoud, dus u kunt deze nu niet opslaan.'''
 Het is misschien verstandig om uw tekst tijdelijk in een tekstbestand op te slaan om dit te bewaren voor wanneer de blokkering van de database opgeheven is.
@@ -1901,6 +1901,7 @@ Als het probleem aanhoudt, neem dan contact op met een [[Special:ListUsers/sysop
 'backend-fail-synced'        => 'Het bestand "$1" bevindt zich in een inconsistente toestand in het interne backend.',
 'backend-fail-connect'       => 'Het was niet mogelijk een verbinding te maken met het bestandsbackend "$1".',
 'backend-fail-internal'      => 'Er is een onbekende fout opgetreden in het bestandsbackend "$1".',
+'backend-fail-contenttype'   => 'Kon het inhoudstype van het bestand om op "$1" op te slaan niet bepalen.',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Het was niet mogelijk "$1" vrij te geven; dit object is niet vergrendeld.',

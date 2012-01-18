@@ -744,8 +744,8 @@ Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno t
 No dimo kayat a ti sinuratmo ket maurnos nga awanan-asi ken maiwaras nga awan sungsungbatan kenka, saanmo laengen nga ip-ipan wenno ipabpablaak ditoy.<br />
 Kasta met nga ikarim kadakami a bukodmo a sinurat wenno gapuanan daytoy, wenno tinuladam ngem iti maysa a nawaya a pagturayan ti publiko wenno pumadmad a libre a pagtaudan (kitaen ti $1 para iti detalye).
 '''Saan a mangipan iti addaan ti karbengan ti pinagpablaak nga obra no awan ti  pammalubos!'''",
-'longpageerror'                    => "'''Biddut: Ti teksto nga intedmo ket agatiddog iti $1 a kilobytes, nga at-atiddog ngem ti mayat  $2 a kilobytes.
-Isut' gapuna a saan a maidulin.'''",
+'longpageerror'                    => "'''Biddut: Ti teksto nga intedmo ket {{PLURAL:$1|maysa a kilobyte|$1 kil-kilobyte}} a katiddog, nga at-atiddog ngem ti kangatuan iti  {{PLURAL:$2|maysa a kilobyte|$2 kil-kilobyte}}.'''
+Isut' gapuna a saan a maidulin.",
 'readonlywarning'                  => "'''Ballaag: Nakandadoan ti database tapno masimpaan, saan mo a mabalin nga idulin dagita inurnos mo tattan.'''
 No kayatmo i \"cut-n-paste\" mo dagiti teksto iti teksto a papeles ken idulin mo no madamdama.
 
@@ -3624,6 +3624,7 @@ Nupay kaste, mau-sar mo ti nakabuklan dita baba. Ti komentario nga ited mo ket m
 'api-error-unknown-code'                  => 'Di amamo a biddut: "$1"',
 'api-error-unknown-error'                 => 'Kinauneg a biddut: Addaan ti dakes a napasamak idi inpadas mo ti agipan ti papeles mo.',
 'api-error-unknown-warning'               => 'Di am-ammo a ballaag: $1',
+'api-error-unknownerror'                  => 'Di amamo a biddut: "$1".',
 'api-error-uploaddisabled'                => 'Nabaldado ti mangipapan iti daytoy a wiki.',
 'api-error-verification-error'            => 'Dakes ngata daytoy a papeles, wenno addaan ti madi a pagpa-atiddog.',
 

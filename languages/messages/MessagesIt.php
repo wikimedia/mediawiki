@@ -948,7 +948,8 @@ Inviando il testo dichiari inoltre, sotto tua responsabilità, che è stato scri
 Se non desideri che i tuoi testi possano essere alterati, non inviarli qui.<br />
 Inviando il testo dichiari inoltre, sotto tua responsabilità, che è stato scritto da te personalmente oppure è stato copiato da una fonte di pubblico dominio o similarmente libera (vedi $1 per maggiori dettagli).
 '''Non inviare materiale protetto da copyright senza autorizzazione!'''",
-'longpageerror'                    => "'''ERRORE: Il testo inviato è lungo $1 kilobyte, più della dimensione massima consentita ($2 kilobyte). Il testo non può essere salvato.'''",
+'longpageerror'                    => "'''Errore: il testo inviato è lungo {{PLURAL:$1|1|$1}} kilobyte, che è maggiore della dimensione massima consentita ({{PLURAL:$2|1|$2}} kilobyte).'''
+Il testo non può essere salvato.'''",
 'readonlywarning'                  => "'''ATTENZIONE: Il database è stato bloccato per manutenzione, è quindi impossibile salvare le modifiche in questo momento. Per non perderle, è possibile copiare quanto inserito finora nella casella di modifica, incollarlo in un programma di elaborazione testi e salvarlo in attesa dello sblocco del database.'''
 
 L'amministratore che ha bloccato il database ha fornito questa spiegazione: $1",
@@ -3598,13 +3599,13 @@ Si noti che è anche possibile [[Special:EditWatchlist|modificare la lista con l
 'version-hook-subscribedby'     => 'Sottoscrizioni',
 'version-version'               => '(Versione $1)',
 'version-license'               => 'Licenza',
-'version-poweredby-credits'     => "Questo wiki è alimentato da '''[//www.mediawiki.org/ MediaWiki ]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits'     => "Questo wiki è realizzato con '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'      => 'altri',
-'version-license-info'          => 'MediaWiki è software libero; è lecito redistribuirlo e/o modificarlo secondo i termini della GNU General Public License, come pubblicata dalla Free Software Foundation; o la versione 2 della Licenza o (a propria scelta) qualunque versione successiva.
+'version-license-info'          => 'MediaWiki è un software libero; puoi redistribuirlo e/o modificarlo secondo i termini della GNU General Public License, come pubblicata dalla Free Software Foundation; o la versione 2 della Licenza o (a propria scelta) qualunque versione successiva.
 
 MediaWiki è distribuito nella speranza che sia utile, ma SENZA ALCUNA GARANZIA; senza neppure la garanzia implicita di NEGOZIABILITÀ o di APPLICABILITÀ PER UN PARTICOLARE SCOPO. Si veda la GNU General Public License per maggiori dettagli.
 
-Questo programma deve essere distribuito assieme ad [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia di una copia della GNU General Public License]; in caso contrario, se ne può ottenere una scrivendo alla Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA oppure [//www.softwarelibero.it/gnudoc/gpl.it.txt leggerla in rete].',
+Questo programma deve essere distribuito assieme ad [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia della GNU General Public License]; in caso contrario, se ne può ottenere una scrivendo alla Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA oppure [//www.softwarelibero.it/gnudoc/gpl.it.txt leggerla in rete].',
 'version-software'              => 'Software installato',
 'version-software-product'      => 'Prodotto',
 'version-software-version'      => 'Versione',
@@ -3766,6 +3767,7 @@ Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri
 'api-error-duplicate-archive-popup-title' => 'File duplicat{{PLURAL:$1|o che è già stato cancellato|i che sono già stati cancellati}}',
 'api-error-duplicate-popup-title'         => '{{PLURAL:$1|documento duplicato|documenti duplicati}}',
 'api-error-empty-file'                    => 'Il file selezionato era vuoto.',
+'api-error-emptypage'                     => 'La creazione di nuove pagine vuote non è consentita.',
 'api-error-fetchfileerror'                => "Errore interno: c'è stato un problema durante il recupero del documento.",
 'api-error-file-too-large'                => 'Il file selezionato era troppo grande.',
 'api-error-filename-tooshort'             => 'Il nome del file è troppo breve.',
@@ -3790,6 +3792,7 @@ Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri
 'api-error-unknown-code'                  => 'Errore sconosciuto: "$1"',
 'api-error-unknown-error'                 => 'Errore interno: qualcosa è andato storto provando a caricare il file.',
 'api-error-unknown-warning'               => 'Avviso sconosciuto: $1',
+'api-error-unknownerror'                  => 'Errore sconosciuto: "$1".',
 'api-error-uploaddisabled'                => 'Il caricamento è disabilitato su questa wiki.',
 'api-error-verification-error'            => "Questo file potrebbe essere danneggiato, o avere l'estensione sbagliata.",
 

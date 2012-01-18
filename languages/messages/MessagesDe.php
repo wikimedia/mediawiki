@@ -402,7 +402,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Auch bei kleinen Änderungen an Seiten E-Mails senden',
 'tog-enotifrevealaddr'        => 'Meine E-Mail-Adresse in Benachrichtigungs-E-Mails anzeigen',
 'tog-shownumberswatching'     => 'Anzahl der beobachtenden Benutzer anzeigen',
-'tog-oldsig'                  => 'Existierende Signatur:',
+'tog-oldsig'                  => 'Vorhandene Signatur:',
 'tog-fancysig'                => 'Signatur als Wikitext behandeln (ohne automatische Verlinkung)',
 'tog-externaleditor'          => 'Externen Editor standardmäßig nutzen (nur für Experten, erfordert spezielle Einstellungen auf dem eigenen Computer. [//www.mediawiki.org/wiki/Manual:External_editors Weitere Informationen hierzu.])',
 'tog-externaldiff'            => 'Externes Programm standardmäßig für Versionsunterschiede nutzen (nur für Experten, erfordert spezielle Einstellungen auf dem eigenen Computer. [//www.mediawiki.org/wiki/Manual:External_editors Weitere Informationen hierzu.])',
@@ -1869,6 +1869,7 @@ Wenn das Problem weiter besteht, informiere einen [[Special:ListUsers/sysop|Syst
 'backend-fail-synced'        => 'Die Datei „$1“ befindet sich, innerhalb des internen Backends, in einem inkonsistenten Zustand.',
 'backend-fail-connect'       => 'Es konnte keine Verbindung zum Datei-Backend „$1“ hergestellt werden.',
 'backend-fail-internal'      => 'Im Datei-Backend „$1“ ist ein unbekannter Fehler aufgetreten.',
+'backend-fail-contenttype'   => 'Der Inhaltstyp, der im „$1“ zu speichernden Datei, konnte nicht bestimmt werden.',
 
 # Lock manager
 'lockmanager-notlocked'        => '„$1“ konnte nicht entsperrt werden, da keine Sperrung besteht.',

@@ -17,6 +17,7 @@
  * @author Hakka
  * @author Horacewai2
  * @author Hydra
+ * @author Hzy980512
  * @author Jidanni
  * @author Jimmy xu wrk
  * @author KaiesTse
@@ -1654,6 +1655,9 @@ $1',
 'backend-fail-create'        => '找不到「$1」檔案。',
 'backend-fail-readonly'      => '$1後端目前是唯讀模式，因為$2。',
 'backend-fail-synced'        => '文件"$1"在內部後端是不一致的區域。',
+'backend-fail-connect'       => '無法連結至檔案後方“$1”。',
+'backend-fail-internal'      => '檔案後方“$1”發生了一個未知錯誤。',
+'backend-fail-contenttype'   => '無法確定檔案的內容類型以存儲於“$1”。',
 
 # Lock manager
 'lockmanager-notlocked'        => '無法解鎖「$1」；它沒有被鎖定。',
@@ -3737,6 +3741,7 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'api-error-duplicate-archive-popup-title' => '已被刪除的重複{{PLURAL:$1|文件|文件}}',
 'api-error-duplicate-popup-title'         => '重複的{{PLURAL:$1|文件|文件}}',
 'api-error-empty-file'                    => '您提交的檔案是空的。',
+'api-error-emptypage'                     => '不許創建沒有內容的新頁面。',
 'api-error-fetchfileerror'                => '內部錯誤：獲取文件時發生錯誤。',
 'api-error-file-too-large'                => '您提交的檔案太大了。',
 'api-error-filename-tooshort'             => '檔案名過短。',
