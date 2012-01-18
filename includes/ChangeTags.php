@@ -1,6 +1,23 @@
 <?php
-
+/**
+ * Functions related to change tags.
+ *
+ * @file
+ */
 class ChangeTags {
+
+	/**
+	 * Creates HTML for the given tags
+	 *
+	 * @param $tags String: Comma-seperated list of tags
+	 * @param $page String: A label for the type of action which is being displayed,
+	 *                     for example: 'history', 'contributions' or 'newpages'
+	 *
+	 * @return Array with two items: (html, classes)
+	 *            - html: String: HTML for displaying the tags (empty string when param $tags is empty)
+	 *            - classes: Array of strings: CSS classes used in the generated html, one class for each tag
+	 *
+	 */
 	static function formatSummaryRow( $tags, $page ) {
 		if( !$tags )
 			return array( '', array() );
@@ -18,18 +35,38 @@ class ChangeTags {
 			);
 			$classes[] = Sanitizer::escapeClass( "mw-tag-$tag" );
 		}
-
 		$markers = '(' . implode( ', ', $displayTags ) . ')';
 		$markers = Xml::tags( 'span', array( 'class' => 'mw-tag-markers' ), $markers );
+
 		return array( $markers, $classes );
 	}
 
+	/**
+	 * Get a short description for a tag
+	 *
+	 * @param $tag String: tag
+	 *
+	 * @return String: Short description of the tag from "mediawiki:tag-$tag" if this message exists,
+	 *                 html-escaped version of $tag otherwise
+	 */
 	static function tagDescription( $tag ) {
 		$msg = wfMessage( "tag-$tag" );
-		return $msg->exists() ? $msg->parse() : htmlspecialchars( $tag ); 
+		return $msg->exists() ? $msg->parse() : htmlspecialchars( $tag );
 	}
 
-	## Basic utility method to add tags to a particular change, given its rc_id, rev_id and/or log_id.
+	/**
+	 * Add tags to a change given its rc_id, rev_id and/or log_id
+	 *
+	 * @param $tags String|Array: Tags to add to the change
+	 * @param $rc_id int: rc_id of the change to add the tags to
+	 * @param $rev_id int: rev_id of the change to add the tags to
+	 * @param $log_id int: log_id of the change to add the tags to
+	 * @param $params String: params to put in the ct_params field of tabel 'change_tag'
+	 *
+	 * @return bool: false if no changes are made, otherwise true
+	 *
+	 * @exception MWException when $rc_id, $rev_id and $log_id are all null
+	 */
 	static function addTags( $tags, $rc_id = null, $rev_id = null, $log_id = null, $params = null ) {
 		if ( !is_array( $tags ) ) {
 			$tags = array( $tags );
@@ -103,6 +140,16 @@ class ChangeTags {
 	 * Applies all tags-related changes to a query.
 	 * Handles selecting tags, and filtering.
 	 * Needs $tables to be set up properly, so we can figure out which join conditions to use.
+	 *
+	 * @param $tables String|Array: Tabel names, see DatabaseBase::select
+	 * @param $fields String|Array: Fields used in query, see DatabaseBase::select
+	 * @param $conds String|Array: conditions used in query, see DatabaseBase::select
+	 * @param $join_conds Array: join conditions, see DatabaseBase::select
+	 * @param $options Array: options, see Database::select
+	 * @param $filter_tag String: tag to select on
+	 *
+	 * @exception MWException when unable to determine appropriate JOIN condition for tagging
+	 *
 	 */
 	static function modifyDisplayQuery( &$tables, &$fields,  &$conds,
 										&$join_conds, &$options, $filter_tag = false ) {
@@ -178,9 +225,13 @@ class ChangeTags {
 	}
 
 	/**
-	 *Basically lists defined tags which count even if they aren't applied to anything
+	 * Basically lists defined tags which count even if they aren't applied to anything.
+	 * Tags on items in table 'change_tag' which are not (or no longer) in table 'valid_tag'
+	 * are not included.
 	 *
-	 * @return array
+	 * Tries memcached first.
+	 *
+	 * @return Array of strings: tags
 	 */
 	static function listDefinedTags() {
 		// Caching...
