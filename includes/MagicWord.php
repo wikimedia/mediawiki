@@ -20,8 +20,19 @@
  * Please avoid reading the data out of one of these objects and then writing
  * special case code. If possible, add another match()-like function here.
  *
- * To add magic words in an extension, use the LanguageGetMagic hook. For
- * magic words which are also Parser variables, add a MagicWordwgVariableIDs
+ * To add magic words in an extension, use $magicWords in a file listed in
+ * $wgExtensionMessagesFiles[].
+ * 
+ * Example:
+ *
+ * $magicWords = array();
+ *
+ * $magicWords['en'] = array(
+ * 	'magicwordkey' => array( 0, 'case_insensitive_magic_word' ),
+ * 	'magicwordkey2' => array( 1, 'CASE_sensitive_magic_word2' ),
+ * );
+ *
+ * For magic words which are also Parser variables, add a MagicWordwgVariableIDs
  * hook. Use string keys.
  *
  * @ingroup Parser
