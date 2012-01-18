@@ -12,9 +12,6 @@ defined is used by the program, for example, when moving a page and its old name
 should include #REDIRECT.
 
 They can be added in several arrays:
-* LanguageGetMagic hook, by adding a new key in $magicWords array. You can get
-  language code in the $lang parameter. Use both the localized name and the 
-  English name.
 * By adding a file to $wgExtensionMessagesFiles and defining there $magicWords.
   This array is associative with the language code in the first dimension key
   and then a "normal" array of magic words.
@@ -27,23 +24,28 @@ the variable with the "ParserGetVariableValueSwitch" hook.
 
 For example to add a new variable:
 
+Create a file called ExtensionName.i18n.magic.php with the following contents:
+----
+<?php
+
+$magicWords = array();
+
+$magicWords['en'] = array(
+	// Case sensitive.
+	'mag_custom' => array( 1, 'CUSTOM' ),
+);
+
+$magicWords['es'] = array(
+	'mag_custom' => array( 1, 'ADUANERO' ),
+);
+----
+
+$wgExtensionMessagesFiles['ExtensionNameMagic'] = dirname( __FILE__ ) . '/ExtensionName.i18n.magic.php';
 $wgHooks['MagicWordwgVariableIDs'][] = 'wfAddCustomMagicWordID';
-$wgHooks['LanguageGetMagic'][] = 'wfAddCustomMagicWordLang';
 $wgHooks['ParserGetVariableValueSwitch'][] = 'wfGetCustomMagicWordValue';
 
 function wfAddCustomMagicWordID( &$magicWords ) {
 	$magicWords[] = 'mag_custom';
-	return true;
-}
-
-function wfAddCustomMagicWordLang( &$magicWords, $langCode ) {
-	switch ( $langCode ) {
-		case 'es':
-			$magicWords['mag_custom'] = array( 1, "ADUANERO", "CUSTOM" );
-			break;
-		default:
-			$magicWords['mag_custom'] = array( 1, "CUSTOM" );
-	}
 	return true;
 }
 
@@ -56,19 +58,24 @@ function wfGetCustomMagicWordValue( &$parser, &$varCache, &$index, &$ret ){
 
 And to add a new parser function:
 
-$wgHooks['LanguageGetMagic'][] = 'wfAddCustomMagicWordLang';
-$wgHooks['ParserFirstCallInit'][] = 'wfRegisterCustomMagicWord';
+Create a file called ExtensionName.i18n.magic.php with the following contents:
+----
+<?php
 
-function wfAddCustomMagicWordLang( &$magicWords, $langCode ) {
-	switch ( $langCode ) {
-		case 'es':
-			$magicWords['mag_custom'] = array( 0, "aduanero", "custom" );
-			break;
-		default:
-			$magicWords['mag_custom'] = array( 0, "custom" );
-	}
-	return true;
-}
+$magicWords = array();
+
+$magicWords['en'] = array(
+	// Case insensitive.
+	'mag_custom' => array( 0, 'custom' ),
+);
+
+$magicWords['es'] = array(
+	'mag_custom' => array( 0, 'aduanero' ),
+);
+----
+
+$wgExtensionMessagesFiles['ExtensionNameMagic'] = dirname( __FILE__ ) . '/ExtensionName.i18n.magic.php';
+$wgHooks['ParserFirstCallInit'][] = 'wfRegisterCustomMagicWord';
 
 function wfRegisterCustomMagicWord( &$parser ){
 	$parser->setFunctionHook( 'mag_custom', 'wfGetCustomMagicWordValue' );
