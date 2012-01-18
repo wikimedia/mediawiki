@@ -41,19 +41,20 @@ class Profiler {
 	private static $__instance = null;
 
 	function __construct( $params ) {
-		// Push an entry for the pre-profile setup time onto the stack
-		global $wgRequestTime;
-		if ( !empty( $wgRequestTime ) ) {
-			$this->mWorkStack[] = array( '-total', 0, $wgRequestTime, 0 );
-			$this->mStack[] = array( '-setup', 1, $wgRequestTime, 0, microtime(true), 0 );
-		} else {
-			$this->profileIn( '-total' );
-		}
 		if ( isset( $params['timeMetric'] ) ) {
 			$this->mTimeMetric = $params['timeMetric'];
 		}
 		if ( isset( $params['profileID'] ) ) {
 			$this->mProfileID = $params['profileID'];
+		}
+
+		// Push an entry for the pre-profile setup time onto the stack
+		$initial = $this->getInitialTime();
+		if ( $initial !== null ) {
+			$this->mWorkStack[] = array( '-total', 0, $initial, 0 );
+			$this->mStack[] = array( '-setup', 1, $initial, 0, $this->getTime(), 0 );
+		} else {
+			$this->profileIn( '-total' );
 		}
 	}
 
@@ -272,6 +273,24 @@ class Profiler {
 	function getUserTime() {
 		$ru = getrusage();
 		return $ru['ru_utime.tv_sec'] + $ru['ru_utime.tv_usec'] / 1e6;
+	}
+
+	private function getInitialTime() {
+		global $wgRequestTime, $wgRUstart;
+
+		if ( $this->mTimeMetric === 'user' ) {
+			if ( count( $wgRUstart ) ) {
+				return $wgRUstart['ru_utime.tv_sec'] + $wgRUstart['ru_utime.tv_usec'] / 1e6;
+			} else {
+				return null;
+			}
+		} else {
+			if ( empty( $wgRequestTime ) ) {
+				return null;
+			} else {
+				return $wgRequestTime;
+			}
+		}
 	}
 
 	protected function collateData() {
