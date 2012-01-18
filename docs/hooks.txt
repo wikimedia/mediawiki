@@ -1264,11 +1264,6 @@ $time: timestamp of the log entry (added in 1.12)
 'MaintenanceRefreshLinksInit': before executing the refreshLinks.php maintenance script
 $refreshLinks: RefreshLinks object
 
-'MagicWordMagicWords': When defining new magic word.
-DEPRECATED: use $magicWords in a file listed in
-$wgExtensionMessagesFiles instead.
-$magicWords: array of strings
-
 'MagicWordwgVariableIDs': When definig new magic words IDs.
 $variableIDs: array of strings
 
