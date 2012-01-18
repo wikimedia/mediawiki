@@ -9,9 +9,9 @@
 /**
  * Class for an OpenStack Swift based file backend.
  *
- * This requires that the php-cloudfiles library is present,
- * which is available at https://github.com/rackspace/php-cloudfiles.
- * All of the library classes must be registed in $wgAutoloadClasses.
+ * This requires the SwiftCloudFiles MediaWiki extension, which includes
+ * the php-cloudfiles library (https://github.com/rackspace/php-cloudfiles).
+ * php-cloudfiles requires the curl, fileinfo, and mb_string PHP extensions.
  *
  * Status messages should avoid mentioning the Swift account name
  * Likewise, error suppression should be used to avoid path disclosure.
@@ -22,35 +22,40 @@
 class SwiftFileBackend extends FileBackend {
 	/** @var CF_Authentication */
 	protected $auth; // Swift authentication handler
+	protected $authTTL; // integer seconds
+	protected $swiftAnonUser; // string; username to handle unauthenticated requests
+	protected $maxContCacheSize = 20; // integer; max containers with entries
 
 	/** @var CF_Connection */
 	protected $conn; // Swift connection handle
-	protected $connTTL = 120; // integer seconds
 	protected $connStarted = 0; // integer UNIX timestamp
 	protected $connContainers = array(); // container object cache
-
-	protected $swiftProxyUser; // string
 
 	/**
 	 * @see FileBackend::__construct()
 	 * Additional $config params include:
 	 *    swiftAuthUrl       : Swift authentication server URL
-	 *    swiftUser          : Swift user used by MediaWiki
+	 *    swiftUser          : Swift user used by MediaWiki (account:username)
 	 *    swiftKey           : Swift authentication key for the above user
-	 *    swiftProxyUser     : Swift user used for end-user hits to proxy server
+	 *    swiftAuthTTL       : Swift authentication TTL (seconds)
+	 *    swiftAnonUser      : Swift user used for end-user requests (account:username)
 	 *    shardViaHashLevels : Map of container names to the number of hash levels
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );
 		// Required settings
 		$this->auth = new CF_Authentication(
-			$config['swiftUser'], $config['swiftKey'], null, $config['swiftAuthUrl'] );
+			$config['swiftUser'], 
+			$config['swiftKey'], 
+			null, // account; unused
+			$config['swiftAuthUrl'] 
+		);
 		// Optional settings
-		$this->connTTL = isset( $config['connTTL'] )
-			? $config['connTTL']
-			: 60; // some sane number
-		$this->swiftProxyUser = isset( $config['swiftProxyUser'] )
-			? $config['swiftProxyUser']
+		$this->authTTL = isset( $config['swiftAuthTTL'] )
+			? $config['authTTL']
+			: 120; // some sane number
+		$this->swiftAnonUser = isset( $config['swiftAnonUser'] )
+			? $config['swiftAnonUser']
 			: '';
 		$this->shardViaHashLevels = isset( $config['shardViaHashLevels'] )
 			? $config['shardViaHashLevels']
@@ -73,15 +78,23 @@ class SwiftFileBackend extends FileBackend {
 	protected function doCreateInternal( array $params ) {
 		$status = Status::newGood();
 
-		list( $dstCont, $destRel ) = $this->resolveStoragePathReal( $params['dst'] );
-		if ( $destRel === null ) {
+		list( $dstCont, $dstRel ) = $this->resolveStoragePathReal( $params['dst'] );
+		if ( $dstRel === null ) {
 			$status->fatal( 'backend-fail-invalidpath', $params['dst'] );
 			return $status;
 		}
 
-		// (a) Check the destination container
+		// (a) Check the destination container and object
 		try {
 			$dContObj = $this->getContainer( $dstCont );
+			if ( empty( $params['overwriteDest'] ) ) {
+				$destObj = $dContObj->create_object( $dstRel );
+				// Check if the object already exists (fields populated)
+				if ( $destObj->last_modified ) {
+					$status->fatal( 'backend-fail-alreadyexists', $params['dst'] );
+					return $status;
+				}
+			}
 		} catch ( NoSuchContainerException $e ) {
 			$status->fatal( 'backend-fail-create', $params['dst'] );
 			return $status;
@@ -94,31 +107,14 @@ class SwiftFileBackend extends FileBackend {
 			return $status;
 		}
 
-		// (b) Check if the destination object already exists
-		try {
-			$dContObj->get_object( $destRel ); // throws NoSuchObjectException
-			// NoSuchObjectException not thrown: file must exist
-			if ( empty( $params['overwriteDest'] ) ) {
-				$status->fatal( 'backend-fail-alreadyexists', $params['dst'] );
-				return $status;
-			}
-		} catch ( NoSuchObjectException $e ) {
-			// NoSuchObjectException thrown: file does not exist
-		} catch ( InvalidResponseException $e ) {
-			$status->fatal( 'backend-fail-connect', $this->name );
-			return $status;
-		} catch ( Exception $e ) { // some other exception?
-			$status->fatal( 'backend-fail-internal', $this->name );
-			$this->logException( $e, __METHOD__, $params );
-			return $status;
-		}
-
-		// (c) Get a SHA-1 hash of the object
+		// (b) Get a SHA-1 hash of the object
 		$sha1Hash = wfBaseConvert( sha1( $params['content'] ), 16, 36, 31 );
 
-		// (d) Actually create the object
+		// (c) Actually create the object
 		try {
-			$obj = $dContObj->create_object( $destRel );
+			// Create a fresh CF_Object with no fields preloaded.
+			// We don't want to preserve headers, metadata, and such.
+			$obj = new CF_Object( $dContObj, $dstRel, false, false ); // skip HEAD
 			// Note: metadata keys stored as [Upper case char][[Lower case char]...]
 			$obj->metadata = array( 'Sha1base36' => $sha1Hash );
 			$obj->write( $params['content'] );
@@ -140,15 +136,23 @@ class SwiftFileBackend extends FileBackend {
 	protected function doStoreInternal( array $params ) {
 		$status = Status::newGood();
 
-		list( $dstCont, $destRel ) = $this->resolveStoragePathReal( $params['dst'] );
-		if ( $destRel === null ) {
+		list( $dstCont, $dstRel ) = $this->resolveStoragePathReal( $params['dst'] );
+		if ( $dstRel === null ) {
 			$status->fatal( 'backend-fail-invalidpath', $params['dst'] );
 			return $status;
 		}
 
-		// (a) Check the destination container
+		// (a) Check the destination container and object
 		try {
 			$dContObj = $this->getContainer( $dstCont );
+			if ( empty( $params['overwriteDest'] ) ) {
+				$destObj = $dContObj->create_object( $dstRel );
+				// Check if the object already exists (fields populated)
+				if ( $destObj->last_modified ) {
+					$status->fatal( 'backend-fail-alreadyexists', $params['dst'] );
+					return $status;
+				}
+			}
 		} catch ( NoSuchContainerException $e ) {
 			$status->fatal( 'backend-fail-copy', $params['src'], $params['dst'] );
 			return $status;
@@ -161,26 +165,7 @@ class SwiftFileBackend extends FileBackend {
 			return $status;
 		}
 
-		// (b) Check if the destination object already exists
-		try {
-			$dContObj->get_object( $destRel ); // throws NoSuchObjectException
-			// NoSuchObjectException not thrown: file must exist
-			if ( empty( $params['overwriteDest'] ) ) {
-				$status->fatal( 'backend-fail-alreadyexists', $params['dst'] );
-				return $status;
-			}
-		} catch ( NoSuchObjectException $e ) {
-			// NoSuchObjectException thrown: file does not exist
-		} catch ( InvalidResponseException $e ) {
-			$status->fatal( 'backend-fail-connect', $this->name );
-			return $status;
-		} catch ( Exception $e ) { // some other exception?
-			$status->fatal( 'backend-fail-internal', $this->name );
-			$this->logException( $e, __METHOD__, $params );
-			return $status;
-		}
-
-		// (c) Get a SHA-1 hash of the object
+		// (b) Get a SHA-1 hash of the object
 		$sha1Hash = sha1_file( $params['src'] );
 		if ( $sha1Hash === false ) { // source doesn't exist?
 			$status->fatal( 'backend-fail-copy', $params['src'], $params['dst'] );
@@ -188,9 +173,11 @@ class SwiftFileBackend extends FileBackend {
 		}
 		$sha1Hash = wfBaseConvert( $sha1Hash, 16, 36, 31 );
 
-		// (d) Actually store the object
+		// (c) Actually store the object
 		try {
-			$obj = $dContObj->create_object( $destRel );
+			// Create a fresh CF_Object with no fields preloaded.
+			// We don't want to preserve headers, metadata, and such.
+			$obj = new CF_Object( $dContObj, $dstRel, false, false ); // skip HEAD
 			// Note: metadata keys stored as [Upper case char][[Lower case char]...]
 			$obj->metadata = array( 'Sha1base36' => $sha1Hash );
 			$obj->load_from_filename( $params['src'], True ); // calls $obj->write()
@@ -220,16 +207,24 @@ class SwiftFileBackend extends FileBackend {
 			return $status;
 		}
 
-		list( $dstCont, $destRel ) = $this->resolveStoragePathReal( $params['dst'] );
-		if ( $destRel === null ) {
+		list( $dstCont, $dstRel ) = $this->resolveStoragePathReal( $params['dst'] );
+		if ( $dstRel === null ) {
 			$status->fatal( 'backend-fail-invalidpath', $params['dst'] );
 			return $status;
 		}
 
-		// (a) Check the source and destination containers
+		// (a) Check the source/destination containers and destination object
 		try {
 			$sContObj = $this->getContainer( $srcCont );
 			$dContObj = $this->getContainer( $dstCont );
+			if ( empty( $params['overwriteDest'] ) ) {
+				$destObj = $dContObj->create_object( $dstRel );
+				// Check if the object already exists (fields populated)
+				if ( $destObj->last_modified ) {
+					$status->fatal( 'backend-fail-alreadyexists', $params['dst'] );
+					return $status;
+				}
+			}
 		} catch ( NoSuchContainerException $e ) {
 			$status->fatal( 'backend-fail-copy', $params['src'], $params['dst'] );
 			return $status;
@@ -242,28 +237,9 @@ class SwiftFileBackend extends FileBackend {
 			return $status;
 		}
 
-		// (b) Check if the destination object already exists
+		// (b) Actually copy the file to the destination
 		try {
-			$dContObj->get_object( $destRel ); // throws NoSuchObjectException
-			// NoSuchObjectException not thrown: file must exist
-			if ( empty( $params['overwriteDest'] ) ) {
-				$status->fatal( 'backend-fail-alreadyexists', $params['dst'] );
-				return $status;
-			}
-		} catch ( NoSuchObjectException $e ) {
-			// NoSuchObjectException thrown: file does not exist
-		} catch ( InvalidResponseException $e ) {
-			$status->fatal( 'backend-fail-connect', $this->name );
-			return $status;
-		} catch ( Exception $e ) { // some other exception?
-			$status->fatal( 'backend-fail-internal', $this->name );
-			$this->logException( $e, __METHOD__, $params );
-			return $status;
-		}
-
-		// (c) Actually copy the file to the destination
-		try {
-			$sContObj->copy_object_to( $srcRel, $dContObj, $destRel );
+			$sContObj->copy_object_to( $srcRel, $dContObj, $dstRel );
 		} catch ( NoSuchObjectException $e ) { // source object does not exist
 			$status->fatal( 'backend-fail-copy', $params['src'], $params['dst'] );
 		} catch ( InvalidResponseException $e ) {
@@ -288,24 +264,11 @@ class SwiftFileBackend extends FileBackend {
 			return $status;
 		}
 
-		// (a) Check the source container
 		try {
 			$sContObj = $this->getContainer( $srcCont );
+			$sContObj->delete_object( $srcRel );
 		} catch ( NoSuchContainerException $e ) {
 			$status->fatal( 'backend-fail-delete', $params['src'] );
-			return $status;
-		} catch ( InvalidResponseException $e ) {
-			$status->fatal( 'backend-fail-connect', $this->name );
-			return $status;
-		} catch ( Exception $e ) { // some other exception?
-			$status->fatal( 'backend-fail-internal', $this->name );
-			$this->logException( $e, __METHOD__, $params );
-			return $status;
-		}
-
-		// (b) Actually delete the object
-		try {
-			$sContObj->delete_object( $srcRel );
 		} catch ( NoSuchObjectException $e ) {
 			if ( empty( $params['ignoreMissingSource'] ) ) {
 				$status->fatal( 'backend-fail-delete', $params['src'] );
@@ -326,13 +289,40 @@ class SwiftFileBackend extends FileBackend {
 	protected function doPrepareInternal( $fullCont, $dir, array $params ) {
 		$status = Status::newGood();
 
+		// (a) Check if container already exists
 		try {
-			$this->createContainer( $fullCont );
+			$contObj = $this->getContainer( $fullCont );
+			// NoSuchContainerException not thrown: container must exist
+			return $status; // already exists
+		} catch ( NoSuchContainerException $e ) {
+			// NoSuchContainerException thrown: container does not exist
 		} catch ( InvalidResponseException $e ) {
 			$status->fatal( 'backend-fail-connect', $this->name );
+			return $status;
 		} catch ( Exception $e ) { // some other exception?
 			$status->fatal( 'backend-fail-internal', $this->name );
 			$this->logException( $e, __METHOD__, $params );
+			return $status;
+		}
+
+		// (b) Create container as needed
+		try {
+			$contObj = $this->createContainer( $fullCont );
+			if ( $this->swiftAnonUser != '' ) {
+				// Make container public to end-users...
+				$status->merge( $this->setContainerAccess(
+					$contObj,
+					array( $this->auth->username, $this->swiftAnonUser ), // read
+					array( $this->auth->username ) // write
+				) );
+			}
+		} catch ( InvalidResponseException $e ) {
+			$status->fatal( 'backend-fail-connect', $this->name );
+			return $status;
+		} catch ( Exception $e ) { // some other exception?
+			$status->fatal( 'backend-fail-internal', $this->name );
+			$this->logException( $e, __METHOD__, $params );
+			return $status;
 		}
 
 		return $status;
@@ -343,7 +333,32 @@ class SwiftFileBackend extends FileBackend {
 	 */
 	protected function doSecureInternal( $fullCont, $dir, array $params ) {
 		$status = Status::newGood();
-		// @TODO: restrict container from $this->swiftProxyUser
+
+		if ( $this->swiftAnonUser != '' ) {
+			// Restrict container from end-users...
+			try {
+				// doPrepareInternal() should have been called,
+				// so the Swift container should already exist...
+				$contObj = $this->getContainer( $fullCont ); // normally a cache hit
+				// NoSuchContainerException not thrown: container must exist
+				if ( !isset( $contObj->mw_wasSecured ) ) {
+					$status->merge( $this->setContainerAccess(
+						$contObj,
+						array( $this->auth->username ), // read
+						array( $this->auth->username ) // write
+					) );
+					// @TODO: when php-cloudfiles supports container
+					// metadata, we can make use of that to avoid RTTs
+					$contObj->mw_wasSecured = true; // avoid useless RTTs
+				}
+			} catch ( InvalidResponseException $e ) {
+				$status->fatal( 'backend-fail-connect', $this->name );
+			} catch ( Exception $e ) { // some other exception?
+				$status->fatal( 'backend-fail-internal', $this->name );
+				$this->logException( $e, __METHOD__, $params );
+			}
+		}
+
 		return $status;
 	}
 
@@ -352,6 +367,11 @@ class SwiftFileBackend extends FileBackend {
 	 */
 	protected function doCleanInternal( $fullCont, $dir, array $params ) {
 		$status = Status::newGood();
+
+		// Only containers themselves can be removed, all else is virtual
+		if ( $dir != '' ) {
+			return $status; // nothing to do
+		}
 
 		// (a) Check the container
 		try {
@@ -397,16 +417,15 @@ class SwiftFileBackend extends FileBackend {
 
 		$stat = false;
 		try {
-			$container = $this->getContainer( $srcCont );
-			// @TODO: handle 'latest' param as "X-Newest: true"
-			$obj = $container->get_object( $srcRel );
+			$contObj = $this->getContainer( $srcCont );
+			$srcObj = $contObj->get_object( $srcRel, $this->headersFromParams( $params ) );
 			// Convert dates like "Tue, 03 Jan 2012 22:01:04 GMT" to TS_MW
-			$date = DateTime::createFromFormat( 'D, d F Y G:i:s e', $obj->last_modified );
+			$date = DateTime::createFromFormat( 'D, d F Y G:i:s e', $srcObj->last_modified );
 			if ( $date ) {
 				$stat = array(
 					'mtime' => $date->format( 'YmdHis' ),
-					'size'  => $obj->content_length,
-					'sha1'  => $obj->metadata['Sha1base36']
+					'size'  => $srcObj->content_length,
+					'sha1'  => $srcObj->metadata['Sha1base36']
 				);
 			} else { // exception will be caught below
 				throw new Exception( "Could not parse date for object {$srcRel}" );
@@ -465,6 +484,7 @@ class SwiftFileBackend extends FileBackend {
 	 */
 	public function getFileListPageInternal( $fullCont, $dir, $after, $limit ) {
 		$files = array();
+
 		try {
 			$container = $this->getContainer( $fullCont );
 			$files = $container->list_objects( $limit, $after, "{$dir}/" );
@@ -517,7 +537,8 @@ class SwiftFileBackend extends FileBackend {
 
 		try {
 			$output = fopen( 'php://output', 'w' );
-			$obj = new CF_Object( $cont, $srcRel, False, False ); // skip HEAD request
+			// FileBackend::streamFile() already checks existence
+			$obj = new CF_Object( $cont, $srcRel, false, false ); // skip HEAD request
 			$obj->stream( $output, $this->headersFromParams( $params ) );
 		} catch ( InvalidResponseException $e ) { // 404? connection problem?
 			$status->fatal( 'backend-fail-stream', $params['src'] );
@@ -538,23 +559,22 @@ class SwiftFileBackend extends FileBackend {
 			return null;
 		}
 
-		// Get source file extension
-		$ext = FileBackend::extensionFromPath( $srcRel );
-		// Create a new temporary file...
-		$tmpFile = TempFSFile::factory( wfBaseName( $srcRel ) . '_', $ext );
-		if ( !$tmpFile ) {
-			return null;
-		}
-
+		$tmpFile = null;
 		try {
 			$cont = $this->getContainer( $srcCont );
 			$obj = $cont->get_object( $srcRel );
-			$handle = fopen( $tmpFile->getPath(), 'w' );
-			if ( $handle ) {
-				$obj->stream( $handle, $this->headersFromParams( $params ) );
-				fclose( $handle );
-			} else {
-				$tmpFile = null; // couldn't open temp file
+			// Get source file extension
+			$ext = FileBackend::extensionFromPath( $srcRel );
+			// Create a new temporary file...
+			$tmpFile = TempFSFile::factory( wfBaseName( $srcRel ) . '_', $ext );
+			if ( $tmpFile ) {
+				$handle = fopen( $tmpFile->getPath(), 'w' );
+				if ( $handle ) {
+					$obj->stream( $handle, $this->headersFromParams( $params ) );
+					fclose( $handle );
+				} else {
+					$tmpFile = null; // couldn't open temp file
+				}
 			}
 		} catch ( NoSuchContainerException $e ) {
 			$tmpFile = null;
@@ -587,6 +607,30 @@ class SwiftFileBackend extends FileBackend {
 	}
 
 	/**
+	 * Set read/write permissions for a Swift container
+	 *
+	 * @param $contObj CF_Container Swift container
+	 * @param $readGrps Array Swift users who can read (account:user)
+	 * @param $writeGrps Array Swift users who can write (account:user)
+	 * @return Status
+	 */
+	protected function setContainerAccess(
+		CF_Container $contObj, array $readGrps, array $writeGrps
+	) {
+		$creds = $contObj->cfs_auth->export_credentials();
+
+		$url = $creds['storage_url'] . '/' . rawurlencode( $contObj->name );
+
+		// Note: 10 second timeout consistent with php-cloudfiles
+		$req = new CurlHttpRequest( $url, array( 'method'  => 'POST', 'timeout' => 10 ) );
+		$req->setHeader( 'X-Auth-Token', $creds['auth_token'] );
+		$req->setHeader( 'X-Container-Read', implode( ',', $readGrps ) );
+		$req->setHeader( 'X-Container-Write', implode( ',', $writeGrps ) );
+
+		return $req->execute(); // should return 204
+	}
+
+	/**
 	 * Get a connection to the Swift proxy
 	 *
 	 * @return CF_Connection|false
@@ -596,9 +640,13 @@ class SwiftFileBackend extends FileBackend {
 		if ( $this->conn === false ) {
 			return false; // failed last attempt
 		}
-		// Authenticate with proxy and get a session key.
-		// Session keys expire after a while, so we renew them periodically.
-		if ( $this->conn === null || ( time() - $this->connStarted ) > $this->connTTL ) {
+		// Session keys expire after a while, so we renew them periodically
+		if ( $this->conn && ( time() - $this->connStarted ) > $this->authTTL ) {
+			$this->conn->close(); // close active cURL connections
+			$this->conn = null;
+		}
+		// Authenticate with proxy and get a session key...
+		if ( $this->conn === null ) {
 			$this->connContainers = array();
 			try {
 				$this->auth->authenticate();
@@ -631,7 +679,12 @@ class SwiftFileBackend extends FileBackend {
 		}
 		if ( !isset( $this->connContainers[$container] ) ) {
 			$contObj = $conn->get_container( $container );
-			// Exception not thrown: container must exist
+			// NoSuchContainerException not thrown: container must exist
+			if ( count( $this->connContainers ) >= $this->maxContCacheSize ) { // trim cache?
+				reset( $this->connContainers );
+				$key = key( $this->connContainers );
+				unset( $this->connContainers[$key] );
+			}
 			$this->connContainers[$container] = $contObj; // cache it
 		}
 		return $this->connContainers[$container];
