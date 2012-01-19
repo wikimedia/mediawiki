@@ -9,7 +9,7 @@ class ChangeTags {
 	/**
 	 * Creates HTML for the given tags
 	 *
-	 * @param $tags String: Comma-seperated list of tags
+	 * @param $tags String: Comma-separated list of tags
 	 * @param $page String: A label for the type of action which is being displayed,
 	 *                     for example: 'history', 'contributions' or 'newpages'
 	 *
