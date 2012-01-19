@@ -405,7 +405,7 @@ abstract class MediaHandler {
 	 */
 	function getShortDesc( $file ) {
 		global $wgLang;
-		return $wgLang->formatSize( $file->getSize() );
+		return htmlspecialchars( $wgLang->formatSize( $file->getSize() ) );
 	}
 
 	/**
@@ -414,7 +414,7 @@ abstract class MediaHandler {
 	 */
 	function getLongDesc( $file ) {
 		global $wgLang;
-		return wfMessage( 'file-info', $wgLang->formatSize( $file->getSize() ),
+		return wfMessage( 'file-info', htmlspecialchars( $wgLang->formatSize( $file->getSize() ) ),
 			$file->getMimeType() )->parse();
 	}
 
@@ -710,7 +710,7 @@ abstract class ImageHandler extends MediaHandler {
 	 */
 	function getShortDesc( $file ) {
 		global $wgLang;
-		$nbytes = $wgLang->formatSize( $file->getSize() );
+		$nbytes = htmlspecialchars( $wgLang->formatSize( $file->getSize() ) );
 		$widthheight = wfMessage( 'widthheight' )->numParams( $file->getWidth(), $file->getHeight() )->escaped();
 
 		return "$widthheight ($nbytes)";
@@ -723,13 +723,14 @@ abstract class ImageHandler extends MediaHandler {
 	function getLongDesc( $file ) {
 		global $wgLang;
 		$pages = $file->pageCount();
+		$size = htmlspecialchars( $wgLang->formatSize( $file->getSize() ) );
 		if ( $pages === false || $pages <= 1 ) {
 			$msg = wfMessage( 'file-info-size' )->numParams( $file->getWidth(),
-				$file->getHeight() )->params( $wgLang->formatSize( $file->getSize() ),
+				$file->getHeight() )->params( $size,
 				$file->getMimeType() )->parse();
 		} else {
 			$msg = wfMessage( 'file-info-size-pages' )->numParams( $file->getWidth(),
-				$file->getHeight() )->params( $wgLang->formatSize( $file->getSize() ),
+				$file->getHeight() )->params( $size,
 				$file->getMimeType() )->numParams( $pages )->parse();
 		}
 		return $msg;
