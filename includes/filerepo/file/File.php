@@ -811,7 +811,7 @@ abstract class File {
 			// FileRepo::store(); getThumbPath() uses a different zone in some subclasses.
 			$backend->prepare( array( 'dir' => dirname( $thumbPath ) ) );
 			$status = $backend->store(
-				array( 'src' => $tmpThumbPath, 'dst' => $thumbPath, 'overwriteDest' => 1 ),
+				array( 'src' => $tmpThumbPath, 'dst' => $thumbPath, 'overwrite' => 1 ),
 				array( 'force' => 1, 'nonLocking' => 1, 'allowStale' => 1 )
 			);
 			if ( $status->isOK() ) {

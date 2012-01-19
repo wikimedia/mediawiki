@@ -687,7 +687,7 @@ class FileRepo {
 				'op'            => $opName,
 				'src'           => $srcPath,
 				'dst'           => $dstPath,
-				'overwriteDest' => $flags & self::OVERWRITE,
+				'overwrite'     => $flags & self::OVERWRITE,
 				'overwriteSame' => $flags & self::OVERWRITE_SAME,
 			);
 		}

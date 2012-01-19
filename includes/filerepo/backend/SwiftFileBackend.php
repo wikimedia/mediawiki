@@ -87,7 +87,7 @@ class SwiftFileBackend extends FileBackend {
 		// (a) Check the destination container and object
 		try {
 			$dContObj = $this->getContainer( $dstCont );
-			if ( empty( $params['overwriteDest'] ) ) {
+			if ( empty( $params['overwrite'] ) ) {
 				$destObj = $dContObj->create_object( $dstRel );
 				// Check if the object already exists (fields populated)
 				if ( $destObj->last_modified ) {
@@ -145,7 +145,7 @@ class SwiftFileBackend extends FileBackend {
 		// (a) Check the destination container and object
 		try {
 			$dContObj = $this->getContainer( $dstCont );
-			if ( empty( $params['overwriteDest'] ) ) {
+			if ( empty( $params['overwrite'] ) ) {
 				$destObj = $dContObj->create_object( $dstRel );
 				// Check if the object already exists (fields populated)
 				if ( $destObj->last_modified ) {
@@ -217,7 +217,7 @@ class SwiftFileBackend extends FileBackend {
 		try {
 			$sContObj = $this->getContainer( $srcCont );
 			$dContObj = $this->getContainer( $dstCont );
-			if ( empty( $params['overwriteDest'] ) ) {
+			if ( empty( $params['overwrite'] ) ) {
 				$destObj = $dContObj->create_object( $dstRel );
 				// Check if the object already exists (fields populated)
 				if ( $destObj->last_modified ) {

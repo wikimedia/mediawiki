@@ -110,7 +110,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			$toPath, // dest
 		);
 
-		$op['overwriteDest'] = true;
+		$op['overwrite'] = true;
 		$cases[] = array(
 			$op, // operation
 			$tmpName, // source
@@ -183,7 +183,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			$dest, // dest
 		);
 
-		$op['overwriteDest'] = true;
+		$op['overwrite'] = true;
 		$cases[] = array(
 			$op, // operation
 			$source, // source
@@ -258,7 +258,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			$dest, // dest
 		);
 
-		$op['overwriteDest'] = true;
+		$op['overwrite'] = true;
 		$cases[] = array(
 			$op, // operation
 			$source, // source
@@ -439,7 +439,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			strlen( $dummyText )
 		);
 
-		$op['overwriteDest'] = true;
+		$op['overwrite'] = true;
 		$cases[] = array(
 			$op, // operation
 			$source, // source
@@ -792,27 +792,27 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->backend->create( array( 'dst' => $fileC, 'content' => $fileCContents ) );
 
 		$status = $this->backend->doOperations( array(
-			array( 'op' => 'copy', 'src' => $fileA, 'dst' => $fileC, 'overwriteDest' => 1 ),
+			array( 'op' => 'copy', 'src' => $fileA, 'dst' => $fileC, 'overwrite' => 1 ),
 			// Now: A:<A>, B:<B>, C:<A>, D:<D> (file:<orginal contents>)
 			array( 'op' => 'copy', 'src' => $fileC, 'dst' => $fileA, 'overwriteSame' => 1 ),
 			// Now: A:<A>, B:<B>, C:<A>, D:<D>
-			array( 'op' => 'move', 'src' => $fileC, 'dst' => $fileD, 'overwriteDest' => 1 ),
+			array( 'op' => 'move', 'src' => $fileC, 'dst' => $fileD, 'overwrite' => 1 ),
 			// Now: A:<A>, B:<B>, C:<empty>, D:<A>
 			array( 'op' => 'move', 'src' => $fileB, 'dst' => $fileC ),
 			// Now: A:<A>, B:<empty>, C:<B>, D:<A>
 			array( 'op' => 'move', 'src' => $fileD, 'dst' => $fileA, 'overwriteSame' => 1 ),
 			// Now: A:<A>, B:<empty>, C:<B>, D:<empty>
-			array( 'op' => 'move', 'src' => $fileC, 'dst' => $fileA, 'overwriteDest' => 1 ),
+			array( 'op' => 'move', 'src' => $fileC, 'dst' => $fileA, 'overwrite' => 1 ),
 			// Now: A:<B>, B:<empty>, C:<empty>, D:<empty>
 			array( 'op' => 'copy', 'src' => $fileA, 'dst' => $fileC ),
 			// Now: A:<B>, B:<empty>, C:<B>, D:<empty>
 			array( 'op' => 'move', 'src' => $fileA, 'dst' => $fileC, 'overwriteSame' => 1 ),
 			// Now: A:<empty>, B:<empty>, C:<B>, D:<empty>
-			array( 'op' => 'copy', 'src' => $fileC, 'dst' => $fileC, 'overwriteDest' => 1 ),
+			array( 'op' => 'copy', 'src' => $fileC, 'dst' => $fileC, 'overwrite' => 1 ),
 			// Does nothing
 			array( 'op' => 'copy', 'src' => $fileC, 'dst' => $fileC, 'overwriteSame' => 1 ),
 			// Does nothing
-			array( 'op' => 'move', 'src' => $fileC, 'dst' => $fileC, 'overwriteDest' => 1 ),
+			array( 'op' => 'move', 'src' => $fileC, 'dst' => $fileC, 'overwrite' => 1 ),
 			// Does nothing
 			array( 'op' => 'move', 'src' => $fileC, 'dst' => $fileC, 'overwriteSame' => 1 ),
 			// Does nothing
