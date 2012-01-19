@@ -103,7 +103,10 @@ class NewFilesPager extends ReverseChronologicalPager {
 	}
 
 	function getStartBody(){
-		$this->gallery = new ImageGallery();
+		if ( !$this->gallery ) {
+			$this->gallery = new ImageGallery();
+		}
+		return '';
 	}
 
 	function getEndBody(){
