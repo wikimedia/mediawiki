@@ -719,7 +719,20 @@ My bailliu eh y chiarail, bee eh ymmydit son cur gys lieh y chur dhyt er son yn 
 'rightsnone' => '(veg)',
 
 # Associated actions - in the sentence "You do not have permission to X"
-'action-edit' => 'yn duillag shoh y reaghey',
+'action-read'          => 'y duillag shoh y lhaih',
+'action-edit'          => 'yn duillag shoh y reaghey',
+'action-createpage'    => 'duillagyn y chroo',
+'action-createtalk'    => 'duillagyn resoonaght y chroo',
+'action-createaccount' => 'y coontys ymmydeyr shoh y chroo',
+'action-minoredit'     => 'yn caghlaa shoh y chowraghey myr myn-arraghey',
+'action-move'          => 'yn duillag shoh y scughey',
+'action-move-subpages' => 'yn duillag shoh as ny fo-ghuillagyn echey y scughey',
+'action-movefile'      => 'y coadan shoh y scughey',
+'action-upload'        => 'y coadan shoh y laadey neese',
+'action-reupload'      => "dy screeu harrish y choadan shoh t'ayn hannah",
+'action-delete'        => 'yn duillag shoh y scryssey',
+'action-browsearchive' => 'duillagyn scrysst y ronsaghey',
+'action-undelete'      => 'yn duillag shoh y yee-scryssey',
 
 # Recent changes
 'nchanges'                       => '$1 {{PLURAL:$1|caghlaa|chaghlaa|chaghlaa|caghlaaghyn}}',

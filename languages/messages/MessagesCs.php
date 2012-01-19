@@ -1839,6 +1839,7 @@ Kontaktuje prosím [[Special:ListUsers/sysop|správce]].',
 'backend-fail-connect'       => 'Nepodařilo se připojit k souborovému koncovému systému „$1“.',
 'backend-fail-internal'      => 'V souborovém koncovém systému „$1“ došlo k neznámé chybě.',
 'backend-fail-contenttype'   => 'Nelze určit typ obsahu souboru k uložení do „$1“.',
+'backend-fail-batchsize'     => 'Koncový systém přijal dávku s $1 {{PLURAL:souborovou operací|souborovými operacemi}}; limit je $2.',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Soubor „$1“ nelze odemknout, neboť není zamčen.',

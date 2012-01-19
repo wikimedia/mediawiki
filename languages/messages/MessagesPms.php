@@ -1545,8 +1545,8 @@ Se a-i riva sossì n'àotra vira, ch'as buta an comunicassion con n'[[Special:Li
 'backend-fail-create'        => "As peul pa creesse l'archivi $1.",
 'backend-fail-readonly'      => "Ël terminal «$1» a l'é al moment an sola letura. La rason dàita a l'é: «$2»",
 'backend-fail-synced'        => "L'archivi «$1» a l'é ant në stat incoerent andrinta ai terminaj intern",
-'backend-fail-connect'       => 'As paeu pa coleghesse al backend d\'archivi "$1".',
-'backend-fail-internal'      => 'N\'eror pa conossù a l\'é capità ant ël backend d\'archivi "$1".',
+'backend-fail-connect'       => "Impossìbil coleghesse al terminal d'archivi «$1».",
+'backend-fail-internal'      => "N'eror pa conossù a l'é rivaje ant ël terminal d'archivi «$1».",
 
 # Lock manager
 'lockmanager-notlocked'        => "As peul pa dësblochesse «$1»; a l'é nen blocà.",
@@ -2356,7 +2356,7 @@ Ch'a consulta la [[Special:BlockList|lista dj'IP blocà]] për rivëdde ij bloca
 'ipblocklist-empty'               => "La lista dij blocagi a l'é veujda.",
 'ipblocklist-no-results'          => "L'adrëssa IP ò lë stranòm ch'a l'ha ciamà a l'é pa blocà.",
 'blocklink'                       => 'bloché',
-'unblocklink'                     => 'dësblòca',
+'unblocklink'                     => 'dësbloché',
 'change-blocklink'                => 'cambia blòch',
 'contribslink'                    => 'contribussion',
 'emaillink'                       => 'mandé un mëssagi eletrònich',
@@ -3625,7 +3625,7 @@ Dësnò, a peule dovré ël formlari semplificà sì-sota. Sò coment a sarà gi
 'api-error-duplicate-archive-popup-title' => "Dupliché {{PLURAL:$1|l'archivi|j'archivi}} ch'a son già stàit ëscancelà",
 'api-error-duplicate-popup-title'         => "Dupliché {{PLURAL:$1|l'archivi|j'archivi}}",
 'api-error-empty-file'                    => "L'archivi ch'a l'ha mandà a l'era veuid.",
-'api-error-emptypage'                     => "La creassion ëd pagine neuve, veujde a l'é pa përmëttùa.",
+'api-error-emptypage'                     => "La creassion ëd pagine neuve veujde a l'é pa përmëttùa.",
 'api-error-fetchfileerror'                => "Eror antern: quaicòs a l'é andàit mal an mente as arcuperava l'archivi",
 'api-error-file-too-large'                => "L'archivi ch'a l'ha mandà a l'era tròp gròss.",
 'api-error-filename-tooshort'             => "Ël nòm ëd l'archivi a l'é tròp curt.",

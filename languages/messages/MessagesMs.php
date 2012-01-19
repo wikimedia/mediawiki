@@ -1686,6 +1686,8 @@ Sila hubungi [[Special:ListUsers/sysop|pentadbir sistem]].',
 'backend-fail-synced'        => 'Fail "$1" berada dalam keadaan yang tidak sejajar dalam backend dalaman',
 'backend-fail-connect'       => 'Tidak dapat bersambung dengan backend fail "$1".',
 'backend-fail-internal'      => 'Berlakunya ralat yang tidak dikenali dalam backend fail "$1".',
+'backend-fail-contenttype'   => 'Jenis kandungan fail untuk disimpan di "$1" tidak dapat ditentukan.',
+'backend-fail-batchsize'     => 'Backend diberi $1 operasi fail dalam satu kelompok; hadnya ialah $2.',
 
 # Lock manager
 'lockmanager-notlocked'        => '"$1" tidak dapat dibuka; ia tidak terkunci.',

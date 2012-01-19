@@ -1624,6 +1624,7 @@ $1',
 'backend-fail-connect'       => 'Zwisk z datajowym backendom "$1" móžno njeje.',
 'backend-fail-internal'      => 'W datajowym backendźe "$1" je njeznaty zmylk wustupił.',
 'backend-fail-contenttype'   => 'Wobsahowy typ dataje, kotraž ma so na "$1" składować, njeda so zwěsćić.',
+'backend-fail-batchsize'     => 'Staplowa dataja, kotraž {{PLURAL:$1|jednu operaciju|$1 operaciji|$1 operacije|$1 operacijow}} wobsahuje,  je so  na backend pósłała; limit je $2.',
 
 # Lock manager
 'lockmanager-notlocked'        => '"$1" njeda so wotewrić; njeje zawrjeny.',

@@ -1013,7 +1013,8 @@ Du lovar oss också att du skrev texten själv, eller kopierade från kulturellt
 'copyrightwarning2'                => "Observera att alla bidrag till {{SITENAME}} kan komma att redigeras, ändras, eller tas bort av andra deltagare. Om du inte vill se din text förändrad efter andras gottfinnade skall du inte skriva in någon text här.<br />
 Du lovar oss också att du skrev texten själv, eller kopierade från kulturellt allmängods som inte skyddas av upphovsrätt, eller liknande källor - se $1 för detaljer.
 '''LÄGG INTE UT UPPHOVSRÄTTSSKYDDAT MATERIAL HÄR UTAN TILLÅTELSE!'''",
-'longpageerror'                    => "'''FEL: Texten som du försöker spara är $1 kilobyte, vilket är mer än det maximalt tillåtna $2 kilobyte. Den kan inte sparas.'''",
+'longpageerror'                    => "'''FEL: Texten som du försöker spara är {{PLURAL:$1|en kilobyte|$1 kilobyte}}, vilket är mer än det maximalt tillåtna {{PLURAL:$2|en kilobyte|$2 kilobyte}}.'''
+Den kan inte sparas.",
 'readonlywarning'                  => "'''VARNING: Databasen är tillfälligt låst för underhåll. Du kommer inte att kunna spara dina ändringar just nu.
 Det kan vara klokt att kopiera över texten till din egen dator, tills databasen är upplåst igen.'''
 
@@ -1815,6 +1816,7 @@ Om problemet kvarstår, kontakta en [[Special:ListUsers/sysop|administratör]].'
 'backend-fail-create'        => 'Kunde inte skapa filen $1.',
 'backend-fail-readonly'      => 'Backend "$1" är för närvarande skrivskyddad. Den angivna anledningen är: "$2"',
 'backend-fail-synced'        => 'Filen "$1" är i ett inkonsekvent tillstånd inom de interna backends',
+'backend-fail-contenttype'   => 'Kunde inte bestämma innehållstypen för filen att spara på "$1".',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Kunde inte låsa upp "$1"; den är inte låst.',
@@ -3886,6 +3888,7 @@ Annars kan du använda det enkla formuläret nedan. Din kommentar kommer att lä
 'api-error-duplicate-archive-popup-title' => 'Dubblett av {{PLURAL:$1|fil|filer}} som redan har tagits bort',
 'api-error-duplicate-popup-title'         => 'Dubblett{{PLURAL:$1|fil|filer}}',
 'api-error-empty-file'                    => 'Filen du skickade var tom.',
+'api-error-emptypage'                     => 'Det är inte tillåtet att skapa nya, tomma sidor.',
 'api-error-fetchfileerror'                => 'Internt fel: något gick fel vid hämtningen av filen.',
 'api-error-file-too-large'                => 'Filen du skickade var för stor.',
 'api-error-filename-tooshort'             => 'Filnamnet är för kort.',
@@ -3910,6 +3913,7 @@ Annars kan du använda det enkla formuläret nedan. Din kommentar kommer att lä
 'api-error-unknown-code'                  => 'Okänt fel: "$1"',
 'api-error-unknown-error'                 => 'Internt fel: något gick fel när vi försökte ladda upp din fil.',
 'api-error-unknown-warning'               => 'Okänd varning: $1',
+'api-error-unknownerror'                  => 'Okänt fel: "$1".',
 'api-error-uploaddisabled'                => 'Uppladdning är inaktiverad på denna wiki.',
 'api-error-verification-error'            => 'Denna fil kan vara skadad eller har fel filändelse.',
 
