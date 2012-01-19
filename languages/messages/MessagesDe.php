@@ -1870,6 +1870,7 @@ Wenn das Problem weiter besteht, informiere einen [[Special:ListUsers/sysop|Syst
 'backend-fail-connect'       => 'Es konnte keine Verbindung zum Datei-Backend „$1“ hergestellt werden.',
 'backend-fail-internal'      => 'Im Datei-Backend „$1“ ist ein unbekannter Fehler aufgetreten.',
 'backend-fail-contenttype'   => 'Der Inhaltstyp, der im „$1“ zu speichernden Datei, konnte nicht bestimmt werden.',
+'backend-fail-batchsize'     => 'Eine Stapelverarbeitungsdatei, die {{PLURAL:$1|eine Operation|$1 Operationen}} enthält, wurde an das Backend gesandt. Die Begrenzung liegt bei $2.',
 
 # Lock manager
 'lockmanager-notlocked'        => '„$1“ konnte nicht entsperrt werden, da keine Sperrung besteht.',

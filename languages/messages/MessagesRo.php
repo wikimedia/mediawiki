@@ -1799,6 +1799,7 @@ Dacă problema persistă, contactați un [[Special:ListUsers/sysop|administrator
 'backend-fail-closetemp'     => 'Imposibil de închis fișierul temporar.',
 'backend-fail-read'          => 'Imposibil de citit fișierul $1.',
 'backend-fail-create'        => 'Imposibil de creat fișierul $1.',
+'backend-fail-contenttype'   => 'Nu s-a putut determina tipul de conținut al fișierului de stocat la „$1”.',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Imposibil de deblocat „$1”; nu este blocată.',

@@ -18,6 +18,7 @@
  * @author Ladsgroup
  * @author Leyth
  * @author Mardetanha
+ * @author Mehdi
  * @author Mehran
  * @author MehranVB
  * @author Meisam
@@ -1507,7 +1508,7 @@ $1",
 'prefs-watchlist'               => 'فهرست پی‌گیری‌ها',
 'prefs-watchlist-days'          => 'تعداد روزهایی که باید در فهرست پی‌گیری‌ها نمایش داده شود:',
 'prefs-watchlist-days-max'      => '(حداکثر $1 {{PLURAL:$1|روز|روز}})',
-'prefs-watchlist-edits'         => 'تعداد ویرایشهای نشان‌داده‌شده در فهرست پی‌گیری‌های گسترش‌یافته:',
+'prefs-watchlist-edits'         => 'تعداد ویرایش‌های نشان‌داده‌شده در فهرست پی‌گیری‌های گسترش‌یافته:',
 'prefs-watchlist-edits-max'     => 'حداکثر تعداد: ۱۰۰۰',
 'prefs-watchlist-token'         => 'رمز فهرست پی‌گیری:',
 'prefs-misc'                    => 'تنظیمات متفرقه',
