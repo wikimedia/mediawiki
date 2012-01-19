@@ -73,6 +73,27 @@ class SwiftFileBackend extends FileBackend {
 	}
 
 	/**
+	 * @see FileBackend::isPathUsableInternal()
+	 */
+	public function isPathUsableInternal( $storagePath ) {
+		list( $container, $rel ) = $this->resolveStoragePathReal( $storagePath );
+		if ( $rel === null ) {
+			return false; // invalid
+		}
+
+		try {
+			$this->getContainer( $container );
+			return true; // container exists
+		} catch ( NoSuchContainerException $e ) {
+		} catch ( InvalidResponseException $e ) {
+		} catch ( Exception $e ) { // some other exception?
+			$this->logException( $e, __METHOD__, array( 'path' => $storagePath ) );
+		}
+
+		return false;
+	}
+
+	/**
 	 * @see FileBackend::doCopyInternal()
 	 */
 	protected function doCreateInternal( array $params ) {
@@ -492,7 +513,7 @@ class SwiftFileBackend extends FileBackend {
 		} catch ( NoSuchObjectException $e ) {
 		} catch ( InvalidResponseException $e ) {
 		} catch ( Exception $e ) { // some other exception?
-			$this->logException( $e, __METHOD__, $params );
+			$this->logException( $e, __METHOD__, array( 'cont' => $fullCont, 'dir' => $dir ) );
 		}
 
 		return $files;
