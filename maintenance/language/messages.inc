@@ -1344,6 +1344,7 @@ $wgMessageStructure = array(
 		'upload-too-many-redirects',
 		'upload-unknown-size',
 		'upload-http-error',
+		'upload-copy-upload-invalid-domain',
 	),
 
 	'filebackend-errors' => array(
