@@ -40,6 +40,7 @@ class FeedItem {
 	 * @var Title
 	 */
 	var $title;
+
 	var $description;
 	var $url;
 	var $date;

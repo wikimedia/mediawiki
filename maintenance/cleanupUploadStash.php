@@ -32,9 +32,9 @@ class UploadStashCleanup extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Clean up abandoned files in temporary uploaded file stash";
-  	}
+	}
 
-  	public function execute() {
+	public function execute() {
 		$repo = RepoGroup::singleton()->getLocalRepo();
 
 		$dbr = $repo->getSlaveDb();
@@ -47,7 +47,7 @@ class UploadStashCleanup extends Maintenance {
 			'uploadstash',
 			'us_key',
 			'us_timestamp < ' . $dbr->addQuotes( $dbr->timestamp( time() - $wgUploadStashMaxAge ) ),
-			__METHOD__
+			__METHOD__,
 		);
 
 		if( !is_object( $res ) || $res->numRows() == 0 ) {
@@ -58,7 +58,7 @@ class UploadStashCleanup extends Maintenance {
 
 		// finish the read before starting writes.
 		$keys = array();
-		foreach($res as $row) {
+		foreach( $res as $row ) {
 			array_push( $keys, $row->us_key );
 		}
 
