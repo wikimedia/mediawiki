@@ -47,7 +47,7 @@ class UploadStashCleanup extends Maintenance {
 			'uploadstash',
 			'us_key',
 			'us_timestamp < ' . $dbr->addQuotes( $dbr->timestamp( time() - $wgUploadStashMaxAge ) ),
-			__METHOD__,
+			__METHOD__
 		);
 
 		if( !is_object( $res ) || $res->numRows() == 0 ) {
