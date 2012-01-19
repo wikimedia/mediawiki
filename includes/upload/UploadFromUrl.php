@@ -49,8 +49,9 @@ class UploadFromUrl extends UploadBase {
 			return true;
 		}
 		$valid = false;
+		$parsedUrl = wfParseUrl( $url );
 		foreach( $wgCopyUploadsDomains as $domain ) {
-			if ( strpos( $url, $domain ) !== false ) {
+			if ( $parsedUrl['host'] === $domain ) {
 				$valid = true;
 				break;
 			}
