@@ -419,6 +419,7 @@ abstract class FileBackendBase {
 	 * Otherwise, the result is an associative array that includes:
 	 *     mtime  : the last-modified timestamp (TS_MW)
 	 *     size   : the file size (bytes)
+	 * Additional values may be included for internal use only.
 	 * 
 	 * $params include:
 	 *     src    : source storage path
@@ -577,11 +578,11 @@ abstract class FileBackendBase {
  * This class defines the methods as abstract that subclasses must implement.
  * Callers outside of FileBackend and its helper classes, such as FileOp,
  * should only call functions that are present in FileBackendBase.
- *
+ * 
  * The FileBackendBase operations are implemented using primitive functions
  * such as storeInternal(), copyInternal(), deleteInternal() and the like.
  * This class is also responsible for path resolution and sanitization.
- *
+ * 
  * @ingroup FileBackend
  * @since 1.19
  */
@@ -604,6 +605,16 @@ abstract class FileBackend extends FileBackendBase {
 	final public function maxFileSizeInternal() {
 		return $this->maxFileSize;
 	}
+
+	/**
+	 * Check if a file can be created at a given storage path.
+	 * FS backends should check if the parent directory exists and the file is writable.
+	 * Backends using key/value stores should check if the container exists.
+	 *
+	 * @param $storagePath string
+	 * @return bool
+	 */
+	abstract public function isPathUsableInternal( $storagePath );
 
 	/**
 	 * Create a file in the backend with the given contents.
@@ -878,6 +889,12 @@ abstract class FileBackend extends FileBackendBase {
 			$status->fatal( 'backend-fail-invalidpath', $params['dir'] );
 			return $status; // invalid storage path
 		}
+		// Attempt to lock this directory...
+		$filesLockEx = array( $params['dir'] );
+		$scopedLockE = $this->getScopedFileLocks( $filesLockEx, LockManager::LOCK_EX, $status );
+		if ( !$status->isOK() ) {
+			return $status; // abort
+		}
 		if ( $shard !== null ) { // confined to a single container/shard
 			$status->merge( $this->doCleanInternal( $fullCont, $dir, $params ) );
 		} else { // directory is on several shards
@@ -937,13 +954,19 @@ abstract class FileBackend extends FileBackendBase {
 	 */
 	final public function getFileStat( array $params ) {
 		$path = $params['src'];
+		$latest = !empty( $params['latest'] );
 		if ( isset( $this->cache[$path]['stat'] ) ) {
-			return $this->cache[$path]['stat'];
+			// If we want the latest data, check that this cached
+			// value was in fact fetched with the latest available data.
+			if ( !$latest || $this->cache[$path]['stat']['latest'] ) {
+				return $this->cache[$path]['stat'];
+			}
 		}
 		$stat = $this->doGetFileStat( $params );
 		if ( is_array( $stat ) ) { // don't cache negatives
 			$this->trimCache(); // limit memory
 			$this->cache[$path]['stat'] = $stat;
+			$this->cache[$path]['stat']['latest'] = $latest;
 		}
 		return $stat;
 	}
@@ -1161,6 +1184,8 @@ abstract class FileBackend extends FileBackendBase {
 			}
 			// Optimization: if doing an EX lock anyway, don't also set an SH one
 			$filesLockSh = array_diff( $filesLockSh, $filesLockEx );
+			// Get a shared lock on the parent directory of each path changed
+			$filesLockSh = array_merge( $filesLockSh, array_map( 'dirname', $filesLockEx ) );
 			// Try to lock those files for the scope of this function...
 			$scopeLockS = $this->getScopedFileLocks( $filesLockSh, LockManager::LOCK_UW, $status );
 			$scopeLockE = $this->getScopedFileLocks( $filesLockEx, LockManager::LOCK_EX, $status );

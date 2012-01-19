@@ -55,11 +55,7 @@ abstract class FileOp {
 	}
 
 	/**
-	 * Allow stale data for file reads and existence checks.
-	 * 
-	 * Note that we don't want to mix stale and non-stale reads
-	 * because stat calls are cached: if we read X without 'latest'
-	 * and then read it with 'latest', the data may still be stale.
+	 * Allow stale data for file reads and existence checks
 	 *
 	 * @return void
 	 */
@@ -72,11 +68,11 @@ abstract class FileOp {
 	 * Callers are responsible for handling file locking.
 	 * 
 	 * $opts is an array of options, including:
-	 * 'force'               : Errors that would normally cause a rollback do not.
-	 *                         The remaining operations are still attempted if any fail.
-	 * 'allowStale'          : Don't require the latest available data.
-	 *                         This can increase performance for non-critical writes.
-	 *                         This has no effect unless the 'force' flag is set.
+	 * 'force'      : Errors that would normally cause a rollback do not.
+	 *                The remaining operations are still attempted if any fail.
+	 * 'allowStale' : Don't require the latest available data.
+	 *                This can increase performance for non-critical writes.
+	 *                This has no effect unless the 'force' flag is set.
 	 * 
 	 * @param $performOps Array List of FileOp operations
 	 * @param $opts Array Batch operation options
@@ -155,7 +151,7 @@ abstract class FileOp {
 	/**
 	 * Check if this operation failed precheck() or attempt()
 	 * 
-	 * @return type 
+	 * @return bool 
 	 */
 	final public function failed() {
 		return $this->failed;
@@ -396,20 +392,22 @@ class StoreFileOp extends FileOp {
 		if ( !is_file( $this->params['src'] ) ) {
 			$status->fatal( 'backend-fail-notexists', $this->params['src'] );
 			return $status;
-		}
 		// Check if the source file is too big
-		if ( filesize( $this->params['src'] ) > $this->backend->maxFileSizeInternal() ) {
-			$status->fatal( 'backend-fail-store', $this->params['dst'] );
+		} elseif ( filesize( $this->params['src'] ) > $this->backend->maxFileSizeInternal() ) {
+			$status->fatal( 'backend-fail-store', $this->params['src'], $this->params['dst'] );
+			return $status;
+		// Check if a file can be placed at the destination
+		} elseif ( !$this->backend->isPathUsableInternal( $this->params['dst'] ) ) {
+			$status->fatal( 'backend-fail-store', $this->params['src'], $this->params['dst'] );
 			return $status;
 		}
 		// Check if destination file exists
 		$status->merge( $this->precheckDestExistence( $predicates ) );
-		if ( !$status->isOK() ) {
-			return $status;
+		if ( $status->isOK() ) {
+			// Update file existence predicates
+			$predicates['exists'][$this->params['dst']] = true;
+			$predicates['sha1'][$this->params['dst']] = $this->sourceSha1;
 		}
-		// Update file existence predicates
-		$predicates['exists'][$this->params['dst']] = true;
-		$predicates['sha1'][$this->params['dst']] = $this->sourceSha1;
 		return $status; // safe to call attempt()
 	}
 
@@ -456,15 +454,18 @@ class CreateFileOp extends FileOp {
 		if ( strlen( $this->params['content'] ) > $this->backend->maxFileSizeInternal() ) {
 			$status->fatal( 'backend-fail-create', $this->params['dst'] );
 			return $status;
+		// Check if a file can be placed at the destination
+		} elseif ( !$this->backend->isPathUsableInternal( $this->params['dst'] ) ) {
+			$status->fatal( 'backend-fail-create', $this->params['dst'] );
+			return $status;
 		}
 		// Check if destination file exists
 		$status->merge( $this->precheckDestExistence( $predicates ) );
-		if ( !$status->isOK() ) {
-			return $status;
+		if ( $status->isOK() ) {
+			// Update file existence predicates
+			$predicates['exists'][$this->params['dst']] = true;
+			$predicates['sha1'][$this->params['dst']] = $this->sourceSha1;
 		}
-		// Update file existence predicates
-		$predicates['exists'][$this->params['dst']] = true;
-		$predicates['sha1'][$this->params['dst']] = $this->sourceSha1;
 		return $status; // safe to call attempt()
 	}
 
@@ -505,15 +506,18 @@ class CopyFileOp extends FileOp {
 		if ( !$this->fileExists( $this->params['src'], $predicates ) ) {
 			$status->fatal( 'backend-fail-notexists', $this->params['src'] );
 			return $status;
+		// Check if a file can be placed at the destination
+		} elseif ( !$this->backend->isPathUsableInternal( $this->params['dst'] ) ) {
+			$status->fatal( 'backend-fail-copy', $this->params['src'], $this->params['dst'] );
+			return $status;
 		}
 		// Check if destination file exists
 		$status->merge( $this->precheckDestExistence( $predicates ) );
-		if ( !$status->isOK() ) {
-			return $status;
+		if ( $status->isOK() ) {
+			// Update file existence predicates
+			$predicates['exists'][$this->params['dst']] = true;
+			$predicates['sha1'][$this->params['dst']] = $this->sourceSha1;
 		}
-		// Update file existence predicates
-		$predicates['exists'][$this->params['dst']] = true;
-		$predicates['sha1'][$this->params['dst']] = $this->sourceSha1;
 		return $status; // safe to call attempt()
 	}
 
@@ -557,17 +561,20 @@ class MoveFileOp extends FileOp {
 		if ( !$this->fileExists( $this->params['src'], $predicates ) ) {
 			$status->fatal( 'backend-fail-notexists', $this->params['src'] );
 			return $status;
+		// Check if a file can be placed at the destination
+		} elseif ( !$this->backend->isPathUsableInternal( $this->params['dst'] ) ) {
+			$status->fatal( 'backend-fail-move', $this->params['src'], $this->params['dst'] );
+			return $status;
 		}
 		// Check if destination file exists
 		$status->merge( $this->precheckDestExistence( $predicates ) );
-		if ( !$status->isOK() ) {
-			return $status;
+		if ( $status->isOK() ) {
+			// Update file existence predicates
+			$predicates['exists'][$this->params['src']] = false;
+			$predicates['sha1'][$this->params['src']] = false;
+			$predicates['exists'][$this->params['dst']] = true;
+			$predicates['sha1'][$this->params['dst']] = $this->sourceSha1;
 		}
-		// Update file existence predicates
-		$predicates['exists'][$this->params['src']] = false;
-		$predicates['sha1'][$this->params['src']] = false;
-		$predicates['exists'][$this->params['dst']] = true;
-		$predicates['sha1'][$this->params['dst']] = $this->sourceSha1;
 		return $status; // safe to call attempt()
 	}
 
@@ -582,9 +589,6 @@ class MoveFileOp extends FileOp {
 				// Just delete source as the destination needs no changes
 				$params = array( 'src' => $this->params['src'] );
 				$status->merge( $this->backend->deleteInternal( $params ) );
-				if ( !$status->isOK() ) {
-					return $status;
-				}
 			}
 		}
 		return $status;
@@ -633,9 +637,6 @@ class DeleteFileOp extends FileOp {
 		if ( $this->needsDelete ) {
 			// Delete the source file
 			$status->merge( $this->backend->deleteInternal( $this->params ) );
-			if ( !$status->isOK() ) {
-				return $status;
-			}
 		}
 		return $status;
 	}

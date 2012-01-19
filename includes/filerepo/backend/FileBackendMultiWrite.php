@@ -96,6 +96,9 @@ class FileBackendMultiWrite extends FileBackendBase {
 		if ( empty( $opts['nonLocking'] ) ) {
 			$filesLockSh = array_diff( $filesRead, $filesChanged ); // optimization
 			$filesLockEx = $filesChanged;
+			// Get a shared lock on the parent directory of each path changed
+			$filesLockSh = array_merge( $filesLockSh, array_map( 'dirname', $filesLockEx ) );
+			// Try to lock those files for the scope of this function...
 			$scopeLockS = $this->getScopedFileLocks( $filesLockSh, LockManager::LOCK_UW, $status );
 			$scopeLockE = $this->getScopedFileLocks( $filesLockEx, LockManager::LOCK_EX, $status );
 			if ( !$status->isOK() ) {
@@ -156,7 +159,7 @@ class FileBackendMultiWrite extends FileBackendBase {
 
 		$mBackend = $this->backends[$this->masterIndex];
 		foreach ( array_unique( $paths ) as $path ) {
-			$params = array( 'src' => $path );
+			$params = array( 'src' => $path, 'latest' => true );
 			// Stat the file on the 'master' backend
 			$mStat = $mBackend->getFileStat( $this->substOpPaths( $params, $mBackend ) );
 			// Check of all clone backends agree with the master...

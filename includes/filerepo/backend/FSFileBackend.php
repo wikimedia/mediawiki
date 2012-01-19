@@ -102,6 +102,27 @@ class FSFileBackend extends FileBackend {
 	}
 
 	/**
+	 * @see FileBackend::isPathUsableInternal()
+	 */
+	public function isPathUsableInternal( $storagePath ) {
+		$fsPath = $this->resolveToFSPath( $storagePath );
+		if ( $fsPath === null ) {
+			return false; // invalid
+		}
+		$parentDir = dirname( $fsPath );
+
+		wfSuppressWarnings();
+		if ( file_exists( $fsPath ) ) {
+			$ok = is_file( $fsPath ) && is_writable( $fsPath );
+		} else {
+			$ok = is_dir( $parentDir ) && is_writable( $parentDir );
+		}
+		wfRestoreWarnings();
+
+		return $ok;
+	}
+
+	/**
 	 * @see FileBackend::doStoreInternal()
 	 */
 	protected function doStoreInternal( array $params ) {
