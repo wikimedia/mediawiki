@@ -8,6 +8,10 @@ define( 'NS_UNITTEST_TALK', 5601 );
  */
 class UserTest extends MediaWikiTestCase {
 	protected $savedGroupPermissions, $savedRevokedPermissions;
+
+	/**
+	 * @var User
+	 */
 	protected $user;
 
 	public function setUp() {
@@ -90,6 +94,7 @@ class UserTest extends MediaWikiTestCase {
 
 		$this->assertEquals( $expected, $result, "Groups with permission $right" );
 	}
+
 	public function provideGetGroupsWithPermission() {
 		return array(
 			array(
