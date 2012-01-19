@@ -35,6 +35,7 @@ textarea {
 	color: black;
 	background-color: white;
 	overflow: auto;
+	width: 100%;
 }
 /* hide this from ie/mac and konq2.2 */
 @media All {
