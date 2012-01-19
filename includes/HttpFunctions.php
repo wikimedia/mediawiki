@@ -233,7 +233,7 @@ class MWHttpRequest {
 	 * Generate a new request object
 	 * @param $url String: url to use
 	 * @param $options Array: (optional) extra params to pass (see Http::request())
-	 * @return \CurlHttpRequest|\PhpHttpRequest
+	 * @return CurlHttpRequest|PhpHttpRequest
 	 * @see MWHttpRequest::__construct
 	 */
 	public static function factory( $url, $options = null ) {

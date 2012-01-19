@@ -177,8 +177,7 @@ class SpecialUpload extends SpecialPage {
 		if (
 			$this->mTokenOk && !$this->mCancelUpload &&
 			( $this->mUpload && $this->mUploadClicked )
-		)
-		{
+		) {
 			$this->processUpload();
 		} else {
 			# Backwards compatibility hook
@@ -186,8 +185,6 @@ class SpecialUpload extends SpecialPage {
 				wfDebug( "Hook 'UploadForm:initial' broke output of the upload form" );
 				return;
 			}
-
-
 			$this->showUploadForm( $this->getUploadForm() );
 		}
 
@@ -821,7 +818,7 @@ class UploadForm extends HTMLForm {
 			);
 		}
 
-		$canUploadByUrl = UploadFromUrl::isEnabled() && $this->getUser()->isAllowed( 'upload_by_url' );
+		$canUploadByUrl = UploadFromUrl::isEnabled() && UploadFromUrl::isAllowed( $this->getUser() );
 		$radio = $canUploadByUrl;
 		$selectedSourceType = strtolower( $this->getRequest()->getText( 'wpSourceType', 'File' ) );
 

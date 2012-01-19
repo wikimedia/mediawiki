@@ -38,6 +38,27 @@ class UploadFromUrl extends UploadBase {
 	}
 
 	/**
+	 * Checks whether the URL is for an allowed host
+	 *
+	 * @param $url string
+	 * @return bool
+	 */
+	public static function isAllowedHost( $url ) {
+		global $wgCopyUploadsDomains;
+		if ( !count( $wgCopyUploadsDomains ) ) {
+			return true;
+		}
+		$valid = false;
+		foreach( $wgCopyUploadsDomains as $domain ) {
+			if ( strpos( $url, $domain ) !== false ) {
+				$valid = true;
+				break;
+			}
+		}
+		return $valid;
+	}
+
+	/**
 	 * Entry point for API upload
 	 *
 	 * @param $name string
@@ -66,8 +87,9 @@ class UploadFromUrl extends UploadBase {
 	 */
 	public function initializeFromRequest( &$request ) {
 		$desiredDestName = $request->getText( 'wpDestFile' );
-		if ( !$desiredDestName )
+		if ( !$desiredDestName ) {
 			$desiredDestName = $request->getText( 'wpUploadFileURL' );
+		}
 		return $this->initialize(
 			$desiredDestName,
 			trim( $request->getVal( 'wpUploadFileURL' ) ),
@@ -101,6 +123,9 @@ class UploadFromUrl extends UploadBase {
 			return Status::newFatal( 'http-invalid-url' );
 		}
 
+		if( !self::isAllowedHost( $this->mUrl ) ) {
+			return Status::newFatal( 'upload-copy-upload-invalid-domain' );
+		}
 		if ( !$this->mAsync ) {
 			return $this->reallyFetchFile();
 		}
@@ -219,9 +244,7 @@ class UploadFromUrl extends UploadBase {
 		if ( $this->mAsync ) {
 			$sessionKey = $this->insertJob( $comment, $pageText, $watch, $user );
 
-			$status = new Status;
-			$status->error( 'async', $sessionKey );
-			return $status;
+			return Status::newFatal( 'async', $sessionKey );
 		}
 
 		return parent::performUpload( $comment, $pageText, $watch, $user );
