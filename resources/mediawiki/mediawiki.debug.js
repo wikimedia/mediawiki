@@ -255,7 +255,7 @@
 				.append( $('<th>#</th>').css( 'width', '4em' )    )
 				.append( $('<th>SQL</th>') )
 				.append( $('<th>Time</th>').css( 'width', '8em'  ) )
-				.append( $('<th>Call</th>').css( 'width', '12em' ) )
+				.append( $('<th>Call</th>').css( 'width', '18em' ) )
 			.appendTo( $table );
 
 			for ( i = 0, length = this.data.queries.length; i < length; i += 1 ) {
