@@ -592,6 +592,19 @@ abstract class FileBackend extends FileBackendBase {
 	/** @var Array */
 	protected $shardViaHashLevels = array(); // (container name => integer)
 
+	protected $maxFileSize = 1000000000; // integer bytes (1GB)
+
+	/**
+	 * Get the maximum allowable file size given backend
+	 * medium restrictions and basic performance constraints.
+	 * Do not call this function from places outside FileBackend and FileOp.
+	 * 
+	 * @return integer Bytes 
+	 */
+	final public function maxFileSizeInternal() {
+		return $this->maxFileSize;
+	}
+
 	/**
 	 * Create a file in the backend with the given contents.
 	 * Do not call this function from places outside FileBackend and FileOp.
@@ -605,8 +618,12 @@ abstract class FileBackend extends FileBackendBase {
 	 * @return Status
 	 */
 	final public function createInternal( array $params ) {
-		$status = $this->doCreateInternal( $params );
-		$this->clearCache( array( $params['dst'] ) );
+		if ( strlen( $params['content'] ) > $this->maxFileSizeInternal() ) {
+			$status = Status::newFatal( 'backend-fail-create', $params['dst'] );
+		} else {
+			$status = $this->doCreateInternal( $params );
+			$this->clearCache( array( $params['dst'] ) );
+		}
 		return $status;
 	}
 
@@ -628,8 +645,12 @@ abstract class FileBackend extends FileBackendBase {
 	 * @return Status
 	 */
 	final public function storeInternal( array $params ) {
-		$status = $this->doStoreInternal( $params );
-		$this->clearCache( array( $params['dst'] ) );
+		if ( filesize( $params['src'] ) > $this->maxFileSizeInternal() ) {
+			$status = Status::newFatal( 'backend-fail-store', $params['dst'] );
+		} else {
+			$status = $this->doStoreInternal( $params );
+			$this->clearCache( array( $params['dst'] ) );
+		}
 		return $status;
 	}
 
