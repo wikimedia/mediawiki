@@ -37,7 +37,7 @@ class EditPage {
 	const AS_HOOK_ERROR                = 210;
 
 	/**
-	 * Status: TODO: What is this?
+	 * Status: The filter function set in $wgFilterCallback returned true (= block it) 
 	 */
 	const AS_FILTERING                 = 211;
 
