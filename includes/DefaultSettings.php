@@ -361,6 +361,8 @@ $wgImgAuthPublicTest = true;
  * If you set $wgForeignFileRepos to an array of repostory structures, those will
  * be searched after the local file repo.
  * Otherwise, you will only have access to local media files.
+ *
+ * @see Setup.php for an example usage and default initialization.
  */
 $wgLocalFileRepo = false;
 
