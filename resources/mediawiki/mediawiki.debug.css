@@ -28,8 +28,11 @@
 	background-color: #f9f9f9;
 }
 
-.mw-debug table td {
+.mw-debug table td, .mw-debug table th  {
 	padding: 4px 10px;
+}
+
+.mw-debug table td {
 	border-bottom: 1px solid #eee;
 	word-wrap: break-word;
 }
