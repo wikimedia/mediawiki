@@ -34,6 +34,10 @@ abstract class FileOp {
 	const STATE_CHECKED = 2;
 	const STATE_ATTEMPTED = 3;
 
+	/* Timeout related parameters */
+	const MAX_BATCH_SIZE = 1000;
+	const TIME_LIMIT_SEC = 300; // 5 minutes
+
 	/**
 	 * Build a new file operation transaction
 	 *
@@ -52,6 +56,10 @@ abstract class FileOp {
 
 	/**
 	 * Allow stale data for file reads and existence checks.
+	 * 
+	 * Note that we don't want to mix stale and non-stale reads
+	 * because stat calls are cached: if we read X without 'latest'
+	 * and then read it with 'latest', the data may still be stale.
 	 *
 	 * @return void
 	 */
@@ -80,6 +88,12 @@ abstract class FileOp {
 		$allowStale = !empty( $opts['allowStale'] );
 		$ignoreErrors = !empty( $opts['force'] );
 
+		$n = count( $performOps );
+		if ( $n > self::MAX_BATCH_SIZE ) {
+			$status->fatal( 'backend-fail-batchsize', $n, self::MAX_BATCH_SIZE );
+			return $status;
+		}
+
 		$predicates = FileOp::newPredicates(); // account for previous op in prechecks
 		// Do pre-checks for each operation; abort on failure...
 		foreach ( $performOps as $index => $fileOp ) {
@@ -96,6 +110,11 @@ abstract class FileOp {
 				}
 			}
 		}
+
+		// Restart PHP's execution timer and set the timeout to safe amount.
+		// This handles cases where the operations take a long time or where we are
+		// already running low on time left. The old timeout is restored afterwards.
+		$scopedTimeLimit = new FileOpScopedPHPTimeout( self::TIME_LIMIT_SEC );
 
 		// Attempt each operation...
 		foreach ( $performOps as $index => $fileOp ) {
@@ -326,6 +345,39 @@ abstract class FileOp {
 }
 
 /**
+ * FileOp helper class to expand PHP execution time for a function.
+ * On construction, set_time_limit() is called and set to $seconds.
+ * When the object goes out of scope, the timer is restarted, with
+ * the original time limit minus the time the object existed.
+ */
+class FileOpScopedPHPTimeout {
+	protected $startTime; // integer seconds
+	protected $oldTimeout; // integer seconds
+
+	/**
+	 * @param $seconds integer
+	 */
+	public function __construct( $seconds ) {
+		if ( ini_get( 'max_execution_time' ) > 0 ) { // CLI uses 0
+			$this->oldTimeout = ini_set( 'max_execution_time', $seconds );
+		}
+		$this->startTime = time();
+	}
+
+	/*
+	 * Restore the original timeout.
+	 * This does not account for the timer value on __construct().
+	 */
+	public function __destruct() {
+		if ( $this->oldTimeout ) {
+			$elapsed = time() - $this->startTime;
+			// Note: a limit of 0 is treated as "forever"
+			set_time_limit( max( 1, $this->oldTimeout - $elapsed ) );
+		}
+	}
+}
+
+/**
  * Store a file into the backend from a file on the file system.
  * Parameters similar to FileBackend::storeInternal(), which include:
  *     src           : source path on file system
@@ -343,6 +395,11 @@ class StoreFileOp extends FileOp {
 		// Check if the source file exists on the file system
 		if ( !is_file( $this->params['src'] ) ) {
 			$status->fatal( 'backend-fail-notexists', $this->params['src'] );
+			return $status;
+		}
+		// Check if the source file is too big
+		if ( filesize( $this->params['src'] ) > $this->backend->maxFileSizeInternal() ) {
+			$status->fatal( 'backend-fail-store', $this->params['dst'] );
 			return $status;
 		}
 		// Check if destination file exists
@@ -395,6 +452,11 @@ class CreateFileOp extends FileOp {
 
 	protected function doPrecheck( array &$predicates ) {
 		$status = Status::newGood();
+		// Check if the source data is too big
+		if ( strlen( $this->params['content'] ) > $this->backend->maxFileSizeInternal() ) {
+			$status->fatal( 'backend-fail-create', $this->params['dst'] );
+			return $status;
+		}
 		// Check if destination file exists
 		$status->merge( $this->precheckDestExistence( $predicates ) );
 		if ( !$status->isOK() ) {

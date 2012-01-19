@@ -511,6 +511,7 @@ $wgAutoloadLocalClasses = array(
 	'MySqlLockManager'=> 'includes/filerepo/backend/lockmanager/DBLockManager.php',
 	'NullLockManager' => 'includes/filerepo/backend/lockmanager/LockManager.php',
 	'FileOp' => 'includes/filerepo/backend/FileOp.php',
+	'FileOpScopedPHPTimeout' => 'includes/filerepo/backend/FileOp.php',
 	'StoreFileOp' => 'includes/filerepo/backend/FileOp.php',
 	'CopyFileOp' => 'includes/filerepo/backend/FileOp.php',
 	'MoveFileOp' => 'includes/filerepo/backend/FileOp.php',

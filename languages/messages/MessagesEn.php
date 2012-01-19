@@ -2258,6 +2258,7 @@ If the problem persists, contact an [[Special:ListUsers/sysop|administrator]].',
 'backend-fail-connect'       => 'Could not connect to file backend "$1".',
 'backend-fail-internal'      => 'An unknown error occurred in file backend "$1".',
 'backend-fail-contenttype'   => 'Could not determine the content type of file to store at "$1".',
+'backend-fail-batchsize'     => 'Backend given a batch of $1 file {{PLURAL:$1|operation|operations}}; the limit is $2.',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Could not unlock "$1"; it is not locked.',
