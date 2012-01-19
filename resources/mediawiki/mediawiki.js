@@ -163,7 +163,9 @@ var mw = ( function ( $, undefined ) {
 		 * @return string Message as a string in the current form or <key> if key does not exist.
 		 */
 		toString: function() {
-			if ( !this.exists( ) ) {
+			var text;
+
+			if ( !this.exists() ) {
 				// Use <key> as text if key does not exist
 				if ( this.format !== 'plain' ) {
 					// format 'escape' and 'parse' need to have the brackets and key html escaped
@@ -172,13 +174,11 @@ var mw = ( function ( $, undefined ) {
 				return '<' + this.key + '>';
 			}
 
-			var text;
 			if ( this.format === 'plain' ) {
-				// FIXME this is wrong. There should be a way
-				// to tell parser() whether we're looking for
-				// plain text or HTML, but I don't know jQueryMsg
-				// well enough to implement this.
-				// Currently it always outputs HTML
+				// @todo FIXME: Although not applicable to core Message,
+				// Plugins like jQueryMsg should be able to distinguish
+				// between 'plain' (only variable replacement and plural/gender)
+				// and actually parsing wikitext to HTML.
 				text = this.parser();
 			}
 
