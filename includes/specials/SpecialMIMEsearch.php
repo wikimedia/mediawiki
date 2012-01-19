@@ -95,8 +95,7 @@ class MIMEsearchPage extends QueryPage {
 
 		$download = Linker::makeMediaLinkObj( $nt, wfMsgHtml( 'download' ) );
 		$lang = $this->getLanguage();
-		$bytes = wfMsgExt( 'nbytes', array( 'parsemag', 'escape' ),
-			$lang->formatNum( $result->img_size ) );
+		$bytes = $fileSize = $lang->formatSize( $result->img_size );
 		$dimensions = htmlspecialchars( wfMsg( 'widthheight',
 			$lang->formatNum( $result->img_width ),
 			$lang->formatNum( $result->img_height )
