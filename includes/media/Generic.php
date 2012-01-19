@@ -404,7 +404,8 @@ abstract class MediaHandler {
 	 * @return string
 	 */
 	function getShortDesc( $file ) {
-		return wfMessage( 'nbytes' )->numParams( $file->getSize() )->escaped();
+		global $wgLang;
+		return $wgLang->formatSize( $file->getSize() );
 	}
 
 	/**
@@ -422,7 +423,8 @@ abstract class MediaHandler {
 	 * @return string
 	 */
 	static function getGeneralShortDesc( $file ) {
-		return wfMessage( 'nbytes' )->numParams( $file->getSize() )->escaped();
+		global $wgLang;
+		return $wgLang->formatSize( $file->getSize() );
 	}
 
 	/**
@@ -707,7 +709,8 @@ abstract class ImageHandler extends MediaHandler {
 	 * @return string
 	 */
 	function getShortDesc( $file ) {
-		$nbytes = wfMessage( 'nbytes' )->numParams( $file->getSize() )->escaped();
+		global $wgLang;
+		$nbytes = $wgLang->formatSize( $file->getSize() );
 		$widthheight = wfMessage( 'widthheight' )->numParams( $file->getWidth(), $file->getHeight() )->escaped();
 
 		return "$widthheight ($nbytes)";
