@@ -2440,7 +2440,7 @@ $templates
 	 * Add the default ResourceLoader modules to this object
 	 */
 	private function addDefaultModules() {
-		global $wgIncludeLegacyJavaScript, $wgDebugToolbar, $wgUseAjax, $wgAjaxWatch, $wgEnableMWSuggest;
+		global $wgIncludeLegacyJavaScript, $wgUseAjax, $wgAjaxWatch, $wgEnableMWSuggest;
 
 		// Add base resources
 		$this->addModules( array(
@@ -2451,10 +2451,6 @@ $templates
 		) );
 		if ( $wgIncludeLegacyJavaScript ){
 			$this->addModules( 'mediawiki.legacy.wikibits' );
-		}
-
-		if ( $wgDebugToolbar ) {
-			$this->addModules( 'mediawiki.debug' );
 		}
 
 		// Add various resources if required
