@@ -244,8 +244,7 @@ class SpecialUpload extends SpecialPage {
 		if(
 			!$this->mTokenOk && !$this->mCancelUpload &&
 			( $this->mUpload && $this->mUploadClicked )
-		)
-		{
+		) {
 			$form->addPreText( wfMsgExt( 'session_fail_preview', 'parseinline' ) );
 		}
 
@@ -279,7 +278,6 @@ class SpecialUpload extends SpecialPage {
 		}
 
 		return $form;
-
 	}
 
 	/**
@@ -385,7 +383,7 @@ class SpecialUpload extends SpecialPage {
 	/**
 	 * Show the upload form with error message, but do not stash the file.
 	 *
-	 * @param $message HTML string
+	 * @param $message string HTML string
 	 */
 	protected function showUploadError( $message ) {
 		$message = '<h2>' . wfMsgHtml( 'uploadwarning' ) . "</h2>\n" .
@@ -462,11 +460,17 @@ class SpecialUpload extends SpecialPage {
 
 	/**
 	 * Get the initial image page text based on a comment and optional file status information
+	 * @param $comment string
+	 * @param $license string
+	 * @param $copyStatus string
+	 * @param $source string
+	 * @return string
 	 */
 	public static function getInitialPageText( $comment = '', $license = '', $copyStatus = '', $source = '' ) {
 		global $wgUseCopyrightUpload, $wgForceUIMsgAsContentMsg;
 		$wgForceUIMsgAsContentMsg = (array) $wgForceUIMsgAsContentMsg;
 
+		$msg = array();
 		/* These messages are transcluded into the actual text of the description page.
 		 * Thus, forcing them as content messages makes the upload to produce an int: template
 		 * instead of hardcoding it there in the uploader language.
@@ -510,6 +514,7 @@ class SpecialUpload extends SpecialPage {
 	 *
 	 * Note that the page target can be changed *on the form*, so our check
 	 * state can get out of sync.
+	 * @return Bool|String
 	 */
 	protected function getWatchCheck() {
 		if( $this->getUser()->getOption( 'watchdefault' ) ) {
@@ -708,6 +713,8 @@ class SpecialUpload extends SpecialPage {
 
 	/**
 	 * Construct a warning and a gallery from an array of duplicate files.
+	 * @param $dupes array
+	 * @return string
 	 */
 	public static function getDupeWarning( $dupes ) {
 		global $wgOut;
@@ -748,6 +755,8 @@ class UploadForm extends HTMLForm {
 	protected $mSourceIds;
 
 	protected $mMaxFileSize = array();
+
+	protected $mMaxUploadSize = array();
 
 	public function __construct( array $options = array(), IContextSource $context = null ) {
 		$this->mWatch = !empty( $options['watch'] );
@@ -1109,6 +1118,11 @@ class UploadForm extends HTMLForm {
  * A form field that contains a radio box in the label
  */
 class UploadSourceField extends HTMLTextField {
+
+	/**
+	 * @param $cellAttributes array
+	 * @return string
+	 */
 	function getLabelHtml( $cellAttributes = array() ) {
 		$id = "wpSourceType{$this->mParams['upload-type']}";
 		$label = Html::rawElement( 'label', array( 'for' => $id ), $this->mLabel );
@@ -1129,6 +1143,9 @@ class UploadSourceField extends HTMLTextField {
 		return Html::rawElement( 'td', array( 'class' => 'mw-label' ) + $cellAttributes, $label );
 	}
 
+	/**
+	 * @return int
+	 */
 	function getSize() {
 		return isset( $this->mParams['size'] )
 			? $this->mParams['size']
