@@ -314,8 +314,7 @@ class ImageGallery {
 
 			if( $this->mShowBytes ) {
 				if( $img ) {
-					$fileSize = wfMsgExt( 'nbytes', array( 'parsemag', 'escape'),
-						$wgLang->formatNum( $img->getSize() ) );
+					$fileSize = $wgLang->formatSize( $img->getSize() );
 				} else {
 					$fileSize = wfMsgHtml( 'filemissing' );
 				}
