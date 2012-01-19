@@ -262,7 +262,7 @@ abstract class FileOp {
 		}
 		$this->destSameAsSource = false;
 		if ( $this->fileExists( $this->params['dst'], $predicates ) ) {
-			if ( $this->getParam( 'overwriteDest' ) ) {
+			if ( $this->getParam( 'overwrite' ) ) {
 				return $status; // OK
 			} elseif ( $this->getParam( 'overwriteSame' ) ) {
 				$dhash = $this->fileSha1( $this->params['dst'], $predicates );
@@ -382,12 +382,12 @@ class FileOpScopedPHPTimeout {
  * Parameters similar to FileBackend::storeInternal(), which include:
  *     src           : source path on file system
  *     dst           : destination storage path
- *     overwriteDest : do nothing and pass if an identical file exists at destination
+ *     overwrite     : do nothing and pass if an identical file exists at destination
  *     overwriteSame : override any existing file at destination
  */
 class StoreFileOp extends FileOp {
 	protected function allowedParams() {
-		return array( 'src', 'dst', 'overwriteDest', 'overwriteSame' );
+		return array( 'src', 'dst', 'overwrite', 'overwriteSame' );
 	}
 
 	protected function doPrecheck( array &$predicates ) {
@@ -442,12 +442,12 @@ class StoreFileOp extends FileOp {
  * Parameters similar to FileBackend::createInternal(), which include:
  *     content       : a string of raw file contents
  *     dst           : destination storage path
- *     overwriteDest : do nothing and pass if an identical file exists at destination
+ *     overwrite     : do nothing and pass if an identical file exists at destination
  *     overwriteSame : override any existing file at destination
  */
 class CreateFileOp extends FileOp {
 	protected function allowedParams() {
-		return array( 'content', 'dst', 'overwriteDest', 'overwriteSame' );
+		return array( 'content', 'dst', 'overwrite', 'overwriteSame' );
 	}
 
 	protected function doPrecheck( array &$predicates ) {
@@ -491,12 +491,12 @@ class CreateFileOp extends FileOp {
  * Parameters similar to FileBackend::copyInternal(), which include:
  *     src           : source storage path
  *     dst           : destination storage path
- *     overwriteDest : do nothing and pass if an identical file exists at destination
+ *     overwrite     : do nothing and pass if an identical file exists at destination
  *     overwriteSame : override any existing file at destination
  */
 class CopyFileOp extends FileOp {
 	protected function allowedParams() {
-		return array( 'src', 'dst', 'overwriteDest', 'overwriteSame' );
+		return array( 'src', 'dst', 'overwrite', 'overwriteSame' );
 	}
 
 	protected function doPrecheck( array &$predicates ) {
@@ -543,12 +543,12 @@ class CopyFileOp extends FileOp {
  * Parameters similar to FileBackend::moveInternal(), which include:
  *     src           : source storage path
  *     dst           : destination storage path
- *     overwriteDest : do nothing and pass if an identical file exists at destination
+ *     overwrite     : do nothing and pass if an identical file exists at destination
  *     overwriteSame : override any existing file at destination
  */
 class MoveFileOp extends FileOp {
 	protected function allowedParams() {
-		return array( 'src', 'dst', 'overwriteDest', 'overwriteSame' );
+		return array( 'src', 'dst', 'overwrite', 'overwriteSame' );
 	}
 
 	protected function doPrecheck( array &$predicates ) {

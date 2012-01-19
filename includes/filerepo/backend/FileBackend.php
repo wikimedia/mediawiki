@@ -98,7 +98,7 @@ abstract class FileBackendBase {
 	 *         'op'                  => 'create',
 	 *         'dst'                 => <storage path>,
 	 *         'content'             => <string of new file contents>,
-	 *         'overwriteDest'       => <boolean>,
+	 *         'overwrite'           => <boolean>,
 	 *         'overwriteSame'       => <boolean>
 	 *     )
 	 * b) Copy a file system file into storage
@@ -106,7 +106,7 @@ abstract class FileBackendBase {
 	 *         'op'                  => 'store',
 	 *         'src'                 => <file system path>,
 	 *         'dst'                 => <storage path>,
-	 *         'overwriteDest'       => <boolean>,
+	 *         'overwrite'           => <boolean>,
 	 *         'overwriteSame'       => <boolean>
 	 *     )
 	 * c) Copy a file within storage
@@ -114,7 +114,7 @@ abstract class FileBackendBase {
 	 *         'op'                  => 'copy',
 	 *         'src'                 => <storage path>,
 	 *         'dst'                 => <storage path>,
-	 *         'overwriteDest'       => <boolean>,
+	 *         'overwrite'           => <boolean>,
 	 *         'overwriteSame'       => <boolean>
 	 *     )
 	 * d) Move a file within storage
@@ -122,7 +122,7 @@ abstract class FileBackendBase {
 	 *         'op'                  => 'move',
 	 *         'src'                 => <storage path>,
 	 *         'dst'                 => <storage path>,
-	 *         'overwriteDest'       => <boolean>,
+	 *         'overwrite'           => <boolean>,
 	 *         'overwriteSame'       => <boolean>
 	 *     )
 	 * e) Delete a file within storage
@@ -139,7 +139,7 @@ abstract class FileBackendBase {
 	 * Boolean flags for operations (operation-specific):
 	 * 'ignoreMissingSource' : The operation will simply succeed and do
 	 *                         nothing if the source file does not exist.
-	 * 'overwriteDest'       : Any destination file will be overwritten.
+	 * 'overwrite'           : Any destination file will be overwritten.
 	 * 'overwriteSame'       : An error will not be given if a file already
 	 *                         exists at the destination that has the same
 	 *                         contents as the new contents to be written there.
@@ -612,7 +612,7 @@ abstract class FileBackend extends FileBackendBase {
 	 * $params include:
 	 *     content       : the raw file contents
 	 *     dst           : destination storage path
-	 *     overwriteDest : overwrite any file that exists at the destination
+	 *     overwrite     : overwrite any file that exists at the destination
 	 * 
 	 * @param $params Array
 	 * @return Status
@@ -639,7 +639,7 @@ abstract class FileBackend extends FileBackendBase {
 	 * $params include:
 	 *     src           : source path on disk
 	 *     dst           : destination storage path
-	 *     overwriteDest : overwrite any file that exists at the destination
+	 *     overwrite     : overwrite any file that exists at the destination
 	 * 
 	 * @param $params Array
 	 * @return Status
@@ -666,7 +666,7 @@ abstract class FileBackend extends FileBackendBase {
 	 * $params include:
 	 *     src           : source storage path
 	 *     dst           : destination storage path
-	 *     overwriteDest : overwrite any file that exists at the destination
+	 *     overwrite     : overwrite any file that exists at the destination
 	 * 
 	 * @param $params Array
 	 * @return Status
@@ -711,7 +711,7 @@ abstract class FileBackend extends FileBackendBase {
 	 * $params include:
 	 *     src           : source storage path
 	 *     dst           : destination storage path
-	 *     overwriteDest : overwrite any file that exists at the destination
+	 *     overwrite     : overwrite any file that exists at the destination
 	 * 
 	 * @param $params Array
 	 * @return Status
