@@ -4,17 +4,15 @@ class XmlTest extends MediaWikiTestCase {
 	private static $oldLang;
 
 	public function setUp() {
-		global $wgLang, $wgLanguageCode;
+		global $wgLang;
 
 		self::$oldLang = $wgLang;
-		$wgLanguageCode = 'en';
-		$wgLang = Language::factory( $wgLanguageCode );
+		$wgLang = Language::factory( 'en' );
 	}
 
 	public function tearDown() {
-		global $wgLang, $wgLanguageCode;
+		global $wgLang;
 		$wgLang = self::$oldLang;
-		$wgLanguageCode = $wgLang->getCode();
 	}
 
 	public function testExpandAttributes() {
