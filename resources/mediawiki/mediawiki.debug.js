@@ -151,7 +151,7 @@
 
 			paneTriggerBitDiv( 'querylist', 'Queries', this.data.queries.length );
 
-			paneTriggerBitDiv( 'debuglog', 'Debug Log', this.data.debugLog.length );
+			paneTriggerBitDiv( 'debuglog', 'Debug log', this.data.debugLog.length );
 
 			paneTriggerBitDiv( 'request', 'Request' );
 
