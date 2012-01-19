@@ -338,7 +338,7 @@ class HTMLForm extends ContextSource {
 	/**
 	 * Add header text, inside the form.
 	 * @param $msg String complete text of message to display
-	 * @param $section The section to add the header to
+	 * @param $section string The section to add the header to
 	 */
 	function addHeaderText( $msg, $section = null ) {
 		if ( is_null( $section ) ) {
