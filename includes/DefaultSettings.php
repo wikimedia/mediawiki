@@ -4142,7 +4142,7 @@ $wgUDPProfilerPort = '3811';
 $wgDebugProfiling = false;
 
 /** Output debug message on every wfProfileIn/wfProfileOut */
-$wgDebugFunctionEntry = 0;
+$wgDebugFunctionEntry = false;
 
 /**
  * Destination for wfIncrStats() data...
