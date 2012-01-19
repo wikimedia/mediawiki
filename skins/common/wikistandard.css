@@ -88,6 +88,7 @@ form.inline {
 
 textarea {
 	overflow: auto;
+	width: 100%;
 }
 
 h1.pagetitle {
