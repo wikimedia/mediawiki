@@ -1835,18 +1835,19 @@ $1',
 'upload-warning-subj'         => 'Hochladewarnung',
 'upload-warning-msg'          => 'Es gab ein Problem beim Hochladen von [$2]. Bitte zum [[Special:Upload/stash/$1|Hochladeformular]] zurückkehren, um dieses Problem zu beheben.',
 
-'upload-proto-error'        => 'Falsches Protokoll',
-'upload-proto-error-text'   => 'Die URL muss mit <code>http://</code> oder <code>ftp://</code> beginnen.',
-'upload-file-error'         => 'Interner Fehler',
-'upload-file-error-text'    => 'Bei der Erstellung einer temporären Datei auf dem Server ist ein interner Fehler aufgetreten.
+'upload-proto-error'                => 'Falsches Protokoll',
+'upload-proto-error-text'           => 'Die URL muss mit <code>http://</code> oder <code>ftp://</code> beginnen.',
+'upload-file-error'                 => 'Interner Fehler',
+'upload-file-error-text'            => 'Bei der Erstellung einer temporären Datei auf dem Server ist ein interner Fehler aufgetreten.
 Bitte informiere einen [[Special:ListUsers/sysop|System-Administrator]].',
-'upload-misc-error'         => 'Unbekannter Fehler beim Hochladen',
-'upload-misc-error-text'    => 'Beim Hochladen ist ein unbekannter Fehler aufgetreten.
+'upload-misc-error'                 => 'Unbekannter Fehler beim Hochladen',
+'upload-misc-error-text'            => 'Beim Hochladen ist ein unbekannter Fehler aufgetreten.
 Prüfe die URL auf Fehler, den Online-Status der Seite und versuche es erneut.
 Wenn das Problem weiter besteht, informiere einen [[Special:ListUsers/sysop|System-Administrator]].',
-'upload-too-many-redirects' => 'Die URL beinhaltete zu viele Weiterleitungen',
-'upload-unknown-size'       => 'Unbekannte Größe',
-'upload-http-error'         => 'Ein HTTP-Fehler ist aufgetreten: $1',
+'upload-too-many-redirects'         => 'Die URL beinhaltete zu viele Weiterleitungen',
+'upload-unknown-size'               => 'Unbekannte Größe',
+'upload-http-error'                 => 'Ein HTTP-Fehler ist aufgetreten: $1',
+'upload-copy-upload-invalid-domain' => 'Als Kopie hochladbare Dateien sind über diese Domain nicht verfügbar.',
 
 # File backend
 'backend-fail-stream'        => 'Die Datei $1 konnte nicht übertragen werden.',
@@ -1870,7 +1871,7 @@ Wenn das Problem weiter besteht, informiere einen [[Special:ListUsers/sysop|Syst
 'backend-fail-connect'       => 'Es konnte keine Verbindung zum Datei-Backend „$1“ hergestellt werden.',
 'backend-fail-internal'      => 'Im Datei-Backend „$1“ ist ein unbekannter Fehler aufgetreten.',
 'backend-fail-contenttype'   => 'Der Inhaltstyp, der im „$1“ zu speichernden Datei, konnte nicht bestimmt werden.',
-'backend-fail-batchsize'     => 'Eine Stapelverarbeitungsdatei, die {{PLURAL:$1|eine Operation|$1 Operationen}} enthält, wurde an das Backend gesandt. Die Begrenzung liegt bei $2.',
+'backend-fail-batchsize'     => 'Eine Stapelverarbeitungsdatei, die {{PLURAL:$1|eine Operation|$1 Operationen}} enthält, wurde an das Backend gesandt. Die Begrenzung liegt allerdings bei {{PLURAL:$2|einer Operation|$2 Operationen}}.',
 
 # Lock manager
 'lockmanager-notlocked'        => '„$1“ konnte nicht entsperrt werden, da keine Sperrung besteht.',

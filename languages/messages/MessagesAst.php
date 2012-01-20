@@ -1547,18 +1547,19 @@ $1',
 'upload-warning-subj'         => 'Avisu de xubía',
 'upload-warning-msg'          => 'Hebo un problema cola to xubía de [$2]. Pues volver al [[Special:Upload/stash/$1|formulariu de xubía]] pa iguar esti problema.',
 
-'upload-proto-error'        => 'Protocolu incorreutu',
-'upload-proto-error-text'   => "La xubida remota requier que l'URL entame por <code>http://</code> o <code>ftp://</code>.",
-'upload-file-error'         => 'Error internu',
-'upload-file-error-text'    => 'Hebo un error al intentar crear un ficheru temporal nel sirvidor.
+'upload-proto-error'                => 'Protocolu incorreutu',
+'upload-proto-error-text'           => "La xubida remota requier que l'URL entame por <code>http://</code> o <code>ftp://</code>.",
+'upload-file-error'                 => 'Error internu',
+'upload-file-error-text'            => 'Hebo un error al intentar crear un ficheru temporal nel sirvidor.
 Por favor contauta con un [[Special:ListUsers/sysop|alministrador]] del sistema.',
-'upload-misc-error'         => 'Error de xubida desconocíu',
-'upload-misc-error-text'    => "Hebo un error desconocíu na xubida del ficheru.
+'upload-misc-error'                 => 'Error de xubida desconocíu',
+'upload-misc-error-text'            => "Hebo un error desconocíu na xubida del ficheru.
 Por favor comprueba que l'URL ye válidu y accesible, y inténtalo otra vuelta.
 Si'l problema persiste, contauta con un [[Special:ListUsers/sysop|alministrador]] del sistema.",
-'upload-too-many-redirects' => 'La URL contenía demasiaes redireiciones',
-'upload-unknown-size'       => 'Tamañu desconocíu',
-'upload-http-error'         => 'Hebo un error HTTP: $1',
+'upload-too-many-redirects'         => 'La URL contenía demasiaes redireiciones',
+'upload-unknown-size'               => 'Tamañu desconocíu',
+'upload-http-error'                 => 'Hebo un error HTTP: $1',
+'upload-copy-upload-invalid-domain' => 'La xubida de copies nun ta disponible dende esti dominiu.',
 
 # File backend
 'backend-fail-stream'        => 'Nun se pudo tresmitir el ficheru $1.',
@@ -1577,7 +1578,12 @@ Si'l problema persiste, contauta con un [[Special:ListUsers/sysop|alministrador]
 'backend-fail-closetemp'     => 'Nun se pudo zarrar el ficheru temporal.',
 'backend-fail-read'          => 'Nun se pudo lleer el ficheru $1.',
 'backend-fail-create'        => 'Nun se pudo crear el ficheru $1.',
+'backend-fail-readonly'      => 'Nesti momentu el motor de "$1" ta en mou de sólo llectura. El motivu dau ye: "$2"',
+'backend-fail-synced'        => 'El ficheru "$1" ta nún estáu inconsistente colos motores internos',
+'backend-fail-connect'       => 'Non se pudo coneutar col motor de ficheros "$1".',
+'backend-fail-internal'      => 'Hebo un fallu desconocíu nel motor de ficheros "$1".',
 'backend-fail-contenttype'   => 'Non se pudo determinar la triba de conteníu de ficheru a guardar en "$1".',
+'backend-fail-batchsize'     => 'El motor dio un llote de $1 {{PLURAL:$1|operación|operaciones}} en ficheros; el llímite ye de $2.',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Nun se pudo desbloquiar "$1"; nun ta bloquiáu.',

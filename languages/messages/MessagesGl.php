@@ -1757,7 +1757,7 @@ Se o problema persiste, póñase en contacto cun [[Special:ListUsers/sysop|admin
 'backend-fail-connect'       => 'Non se puido conectar co ficheiro da instalación "$1".',
 'backend-fail-internal'      => 'Houbo un erro descoñecido no ficheiro da instalación "$1".',
 'backend-fail-contenttype'   => 'Non se puido determinar o tipo de contido do ficheiro a almacenar en "$1".',
-'backend-fail-batchsize'     => 'A infraestrutura recibiu un feixe de $1 {{PLURAL:$1|operación|operacións}} de ficheiro; o límite está en $2.',
+'backend-fail-batchsize'     => 'A infraestrutura recibiu un feixe de $1 {{PLURAL:$1|operación|operacións}} de ficheiro; o límite está en $2 {{PLURAL:$2|operación|operacións}}.',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Non se puido desbloquear "$1". Non está bloqueado.',
@@ -2879,7 +2879,7 @@ Pode ver o código fonte.',
 'tooltip-p-logo'                      => 'Visitar a páxina principal',
 'tooltip-n-mainpage'                  => 'Visitar a páxina principal',
 'tooltip-n-mainpage-description'      => 'Visitar a páxina principal',
-'tooltip-n-portal'                    => 'Información acerca do proxecto, as cousas que pode facer e os lugares onde atopar as cousas',
+'tooltip-n-portal'                    => 'Información acerca do proxecto, o que pode facer e os lugares onde atopar as cousas',
 'tooltip-n-currentevents'             => 'Información acerca de acontecementos de actualidade',
 'tooltip-n-recentchanges'             => 'A lista de modificacións recentes no wiki',
 'tooltip-n-randompage'                => 'Cargar unha páxina ao chou',
