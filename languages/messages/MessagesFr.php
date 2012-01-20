@@ -1822,17 +1822,18 @@ $1',
 'upload-warning-subj'         => "Avertissement lors de l'import",
 'upload-warning-msg'          => "Un problème est survenu lors de l'import depuis [$2]. Vous pouvez revenir au [[Special:Upload/stash/$1|formulaire d'import]] pour le résoudre.",
 
-'upload-proto-error'        => 'Protocole incorrect',
-'upload-proto-error-text'   => "L'import requiert des URL commençant par <code>http://</code> ou <code>ftp://</code>.",
-'upload-file-error'         => 'Erreur interne',
-'upload-file-error-text'    => 'Une erreur interne est survenue en voulant créer un fichier temporaire sur le serveur. Veuillez contacter un [[Special:ListUsers/sysop|administrateur]].',
-'upload-misc-error'         => "Erreur d'import inconnue",
-'upload-misc-error-text'    => "Une erreur inconnue est survenue pendant l'import.
+'upload-proto-error'                => 'Protocole incorrect',
+'upload-proto-error-text'           => "L'import requiert des URL commençant par <code>http://</code> ou <code>ftp://</code>.",
+'upload-file-error'                 => 'Erreur interne',
+'upload-file-error-text'            => 'Une erreur interne est survenue en voulant créer un fichier temporaire sur le serveur. Veuillez contacter un [[Special:ListUsers/sysop|administrateur]].',
+'upload-misc-error'                 => "Erreur d'import inconnue",
+'upload-misc-error-text'            => "Une erreur inconnue est survenue pendant l'import.
 Veuillez vérifier que l’URL est valide et accessible, puis essayer à nouveau.
 Si le problème persiste, contactez un [[Special:ListUsers/sysop|administrateur]].",
-'upload-too-many-redirects' => 'L’URL contient trop de redirections.',
-'upload-unknown-size'       => 'Taille inconnue',
-'upload-http-error'         => 'Une erreur HTTP est survenue : $1',
+'upload-too-many-redirects'         => 'L’URL contient trop de redirections.',
+'upload-unknown-size'               => 'Taille inconnue',
+'upload-http-error'                 => 'Une erreur HTTP est survenue : $1',
+'upload-copy-upload-invalid-domain' => "La copie des téléchargements n'est pas disponible depuis ce domaine.",
 
 # File backend
 'backend-fail-stream'        => 'Impossible de lire le fichier $1.',
@@ -1856,7 +1857,7 @@ Si le problème persiste, contactez un [[Special:ListUsers/sysop|administrateur]
 'backend-fail-connect'       => 'Impossible de se connecter au terminal de fichier "$1".',
 'backend-fail-internal'      => 'Une erreur inconnue s\'est produite dans le terminal de fichier "$1".',
 'backend-fail-contenttype'   => 'Impossible de déterminer le type de contenu du fichier à stocker en "$1".',
-'backend-fail-batchsize'     => 'Le terminal a fourni un lot de $1 {{PLURAL:$1|opération|opérations}} de fichier; la limite est $2.',
+'backend-fail-batchsize'     => 'Le terminal a fourni un lot de $1 {{PLURAL:$1|opération|opérations}} de fichier; la limite est $2 {{PLURAL:$2|opération|opérations}}.',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Impossible de déverrouiller « $1 » ; elle n’est pas verrouillée.',

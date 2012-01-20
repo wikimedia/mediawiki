@@ -392,7 +392,7 @@ $messages = array(
 'cancel'        => '取消',
 'moredotdotdot' => '更多',
 'mypage'        => '我的页面',
-'mytalk'        => '我的讨论页',
+'mytalk'        => '讨论',
 'anontalk'      => '该IP地址的讨论',
 'navigation'    => '导航',
 'and'           => '和',
@@ -1549,7 +1549,7 @@ $1",
 'uploadlogpagetext'           => '以下是一个最近上传文件的列表。
 查看[[Special:NewFiles|新文件画廊]]去看更富图像的总览。',
 'filename'                    => '文件名',
-'filedesc'                    => '摘要',
+'filedesc'                    => '文件说明',
 'fileuploadsummary'           => '摘要：',
 'filereuploadsummary'         => '文件更改：',
 'filestatus'                  => '著作权状况：',
@@ -1728,7 +1728,7 @@ $1',
 'upload-curl-error28'      => '上传超时',
 'upload-curl-error28-text' => '站点响应时间过长。请检查此网站的访问是否正常，过一会再进行尝试。您可能需要在网络访问空闲时间再次进行尝试。',
 
-'license'            => '授权协议：',
+'license'            => '授权协议',
 'license-header'     => '授权协议',
 'nolicense'          => '未选定',
 'license-nopreview'  => '（无预览可用）',
@@ -1766,7 +1766,7 @@ $1',
 'filehist-filesize'                 => '文件大小',
 'filehist-comment'                  => '注解',
 'filehist-missing'                  => '文件遗失',
-'imagelinks'                        => '文件使用情况',
+'imagelinks'                        => '文件用途',
 'linkstoimage'                      => '以下的$1个页面链接到本文件：',
 'linkstoimage-more'                 => '多于$1个页面连接到这个文件。
 下面的列表只列示了连去这个文件的最首$1个页面。
@@ -2161,7 +2161,7 @@ $UNWATCHURL
 'deletepage'             => '删除页面',
 'confirm'                => '确认',
 'excontent'              => '内容：“$1”',
-'excontentauthor'        => '内容：“$1”（且唯一贡献者为“[[Special:Contributions/$2|$2]]”）',
+'excontentauthor'        => '内容：“$1”（唯一贡献者为“[[Special:Contributions/$2|$2]]”）',
 'exbeforeblank'          => '被清空前的内容为：“$1”',
 'exblank'                => '页面为空',
 'delete-confirm'         => '删除“$1”',
@@ -3525,7 +3525,7 @@ $5
 'watchlistedit-raw-titles'     => '标题：',
 'watchlistedit-raw-submit'     => '更新监视列表',
 'watchlistedit-raw-done'       => '您的监视列表已经更新。',
-'watchlistedit-raw-added'      => '$1个标题已添加：',
+'watchlistedit-raw-added'      => '$1个标题被添加：',
 'watchlistedit-raw-removed'    => '$1个标题被删除：',
 
 # Watchlist editing tools
@@ -3714,7 +3714,7 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 'feedback-error3'    => '错误：API没有响应',
 'feedback-thanks'    => '谢谢！你的反馈已发布至页面“[$2 $1]”。',
 'feedback-close'     => '完成',
-'feedback-bugcheck'  => '太好了！再检查一下它是否是[$1 已知bug]。',
+'feedback-bugcheck'  => '请检查本bug是否为[$1 已知bug]。',
 'feedback-bugnew'    => '我检查了。报告新bug',
 
 # API errors

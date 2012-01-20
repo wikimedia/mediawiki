@@ -740,9 +740,8 @@ Se a veul nen che sò test a peula esse modificà e distribuì da qualsëssìa p
 'copyrightwarning2'                => "Për piasì, che a ten-a present che tute le contribussion a {{SITENAME}} a peulo esse modificà ò scancelà da dj'àutri contributor. Se a veul nen che lòn che a scriv a ven-a modificà sensa limitassion ëd gnun-a sòrt, che a lo manda nen ambelessì.<br />
 Ant l'istess temp, ën mandand dël material un as pija la responsabilità dë dì che a l'ha scrivusslo daspërchiel (ò daspërchila), ò pura che a l'ha copialo da na sorgiss ëd domini pùblich, ò pura da 'nt n'àutra sorgiss dla midema sòrt (che a varda $1 për avèj pì d'anformassion).
 '''CHE A MANDA PA DËL MATERIAL COATÀ DA DRIT D'AUTOR SENSA AVÈJ AVÙ ËL PËRMESS SCRIT DË FELO!'''",
-'longpageerror'                    => "'''EROR: Ël test che a l'ha mandà a l'é longh $1 kb, che a resta pì che ël
-lìmit màssim ëd $2 kb. Parèj as peul nen salvesse. A venta che a në fasa vàire
-pàgine diferente për rintré ant ij lìmit técnich.'''",
+'longpageerror'                    => "'''EROR: Ël test che a l'ha mandà a l'é longh {{PLURAL:$1|un kilobyte|$1 kilobyte}} , che a resta pì che ël
+lìmit màssim ëd {{PLURAL:$2|un kilobyte|$2 kilobyte}}. Parèj as peul pa salvesse.",
 'readonlywarning'                  => "'''Avis: La base dat a l'é stàita blocà për manutension, e donca a podrà pa salvesse soe modìfiche tut sùbit.'''
 A peul esse che a-j ven-a còmod copiesse via sò test e butesslo da na part për salvelo peuj.
 
@@ -1513,18 +1512,19 @@ $1",
 'upload-warning-subj'         => "Avis antramentre ch'as caria",
 'upload-warning-msg'          => "A-i era un problema con lòn ch'a l'ha carià da [$2]. A peul artorné al [[Special:Upload/stash/$1|formolari për carié]] për corege ël problema.",
 
-'upload-proto-error'        => 'Protocòl cioch',
-'upload-proto-error-text'   => "Për carié da dij servent lontan a venta buté dj'anliure ch'as anandio për <code>http://</code> ò pura <code>ftp://</code>.",
-'upload-file-error'         => 'Eror antern',
-'upload-file-error-text'    => "A l'é rivaie n'eror antern dëmentrè che as fasìa n'archivi provisòri ant sël servent.
+'upload-proto-error'                => 'Protocòl cioch',
+'upload-proto-error-text'           => "Për carié da dij servent lontan a venta buté dj'anliure ch'as anandio për <code>http://</code> ò pura <code>ftp://</code>.",
+'upload-file-error'                 => 'Eror antern',
+'upload-file-error-text'            => "A l'é rivaie n'eror antern dëmentrè che as fasìa n'archivi provisòri ant sël servent.
 Për piasì, ch'as butà an comunicassion con n'[[Special:ListUsers/sysop|aministrator]].",
-'upload-misc-error'         => "Eror nen identificà antramentr ch'as cariava",
-'upload-misc-error-text'    => "A l'é staie n'eror nen identificà dëmentrè ch'as cariava chèich-còs.
+'upload-misc-error'                 => "Eror nen identificà antramentr ch'as cariava",
+'upload-misc-error-text'            => "A l'é staie n'eror nen identificà dëmentrè ch'as cariava chèich-còs.
 Për piasì, ch'a varda che soa anliura a sia bon-a e che a l'arsponda e peuj ch'a preuva torna.
 Se a-i riva sossì n'àotra vira, ch'as buta an comunicassion con n'[[Special:ListUsers/sysop|aministrator]].",
-'upload-too-many-redirects' => "L'adrëssa dl'aragnà a l'avìa tròpe ridiression",
-'upload-unknown-size'       => 'Dimension pa conossùa',
-'upload-http-error'         => "A l'é staje n'eror HTTP: $1.",
+'upload-too-many-redirects'         => "L'adrëssa dl'aragnà a l'avìa tròpe ridiression",
+'upload-unknown-size'               => 'Dimension pa conossùa',
+'upload-http-error'                 => "A l'é staje n'eror HTTP: $1.",
+'upload-copy-upload-invalid-domain' => "Cariagi ëd cobie a l'é pa disponìbil da sto domini.",
 
 # File backend
 'backend-fail-stream'        => "A peul pa sequensialisé l'archivi $1.",
@@ -1547,6 +1547,8 @@ Se a-i riva sossì n'àotra vira, ch'as buta an comunicassion con n'[[Special:Li
 'backend-fail-synced'        => "L'archivi «$1» a l'é ant në stat incoerent andrinta ai terminaj intern",
 'backend-fail-connect'       => "Impossìbil coleghesse al terminal d'archivi «$1».",
 'backend-fail-internal'      => "N'eror pa conossù a l'é rivaje ant ël terminal d'archivi «$1».",
+'backend-fail-contenttype'   => 'As peul pa dëterminesse la sòrt ëd contnù dl\'archivi da memorisé a "$1".',
+'backend-fail-batchsize'     => "Ël backend a l'ha dàit un lòt ëd $1 {{PLURAL:$1|operassion|operassion}} d'archivi; ël lìmit a l'é $2 {{PLURAL:$1|operassion|operassion}}.",
 
 # Lock manager
 'lockmanager-notlocked'        => "As peul pa dësblochesse «$1»; a l'é nen blocà.",
@@ -2357,7 +2359,7 @@ Ch'a consulta la [[Special:BlockList|lista dj'IP blocà]] për rivëdde ij bloca
 'ipblocklist-no-results'          => "L'adrëssa IP ò lë stranòm ch'a l'ha ciamà a l'é pa blocà.",
 'blocklink'                       => 'bloché',
 'unblocklink'                     => 'dësbloché',
-'change-blocklink'                => 'cambia blòch',
+'change-blocklink'                => 'modifiché ël blocagi',
 'contribslink'                    => 'contribussion',
 'emaillink'                       => 'mandé un mëssagi eletrònich',
 'autoblocker'                     => "A l'é scataje un blocagi përchè soa adrëssa IP a l'é staita dovrà ant j'ùltim temp da l'Utent \"[[User:\$1|\$1]]\". Ël motiv për bloché \$1 a l'é stait: \"'''\$2'''\"",

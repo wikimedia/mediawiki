@@ -1842,18 +1842,19 @@ $1',
 'upload-warning-subj'         => 'אזהרה בהעלאה',
 'upload-warning-msg'          => 'הייתה בעיה עם הקובץ שהעליתם מהכתובת [$2]. באפשרותכם לחזור ל[[Special:Upload/stash/$1|טופס ההעלאה]] כדי לתקן בעיה זו.',
 
-'upload-proto-error'        => 'פרוטוקול שגוי',
-'upload-proto-error-text'   => 'בהעלאה מרוחקת, יש להשתמש בכתובות URL המתחילות עם <code>http://</code> או <code>ftp://</code>.',
-'upload-file-error'         => 'שגיאה פנימית',
-'upload-file-error-text'    => 'שגיאה פנימית התרחשה בעת הניסיון ליצור קובץ זמני על השרת.
+'upload-proto-error'                => 'פרוטוקול שגוי',
+'upload-proto-error-text'           => 'בהעלאה מרוחקת, יש להשתמש בכתובות URL המתחילות עם <code>http://</code> או <code>ftp://</code>.',
+'upload-file-error'                 => 'שגיאה פנימית',
+'upload-file-error-text'            => 'שגיאה פנימית התרחשה בעת הניסיון ליצור קובץ זמני על השרת.
 אנא צרו קשר עם [[Special:ListUsers/sysop|מפעיל מערכת]].',
-'upload-misc-error'         => 'שגיאת העלאה בלתי ידועה',
-'upload-misc-error-text'    => 'שגיאת העלאה בלתי ידועה התרחשה במהלך ההעלאה.
+'upload-misc-error'                 => 'שגיאת העלאה בלתי ידועה',
+'upload-misc-error-text'            => 'שגיאת העלאה בלתי ידועה התרחשה במהלך ההעלאה.
 אנא ודאו שכתובת ה־URL תקינה וזמינה ונסו שוב.
 אם הבעיה חוזרת על עצמה, אנא צרו קשר עם [[Special:ListUsers/sysop|מפעיל מערכת]].',
-'upload-too-many-redirects' => 'הכתובת מכילה הפניות רבות מדי',
-'upload-unknown-size'       => 'גודל בלתי ידוע',
-'upload-http-error'         => 'התרחשה שגיאת HTTP‏: $1',
+'upload-too-many-redirects'         => 'הכתובת מכילה הפניות רבות מדי',
+'upload-unknown-size'               => 'גודל בלתי ידוע',
+'upload-http-error'                 => 'התרחשה שגיאת HTTP‏: $1',
+'upload-copy-upload-invalid-domain' => 'העלאת קבצים משרת זה אינה אפשרית.',
 
 # File backend
 'backend-fail-stream'        => 'לא הייתה אפשרות להזרים את הקובץ $1.',
@@ -1877,6 +1878,7 @@ $1',
 'backend-fail-connect'       => 'לא ניתן היה להתחבר למאגר האחסון הפנימי לקבצים "$1".',
 'backend-fail-internal'      => 'אירעה שגיאה בלתי ידועה במאגר האחסון הפנימי לקבצים "$1".',
 'backend-fail-contenttype'   => 'לא ניתן היה לקבוע את סוג התוכן של הקובץ לאחסון ב־"$1".',
+'backend-fail-batchsize'     => 'למאגר האחסון הפנימי לקבצים הועבר אוסף של {{PLURAL:$1|פעולת קובץ אחת|$1 פעולות קבצים}}; המגבלה היא {{PLURAL:$2|פעולת קובץ אחת|$2 פעולות קבצים}}.',
 
 # Lock manager
 'lockmanager-notlocked'        => 'פתיחת הנעילה של "$1" לא הצליחה; הוא לא נעול.',

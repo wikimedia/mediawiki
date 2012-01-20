@@ -878,7 +878,8 @@ A més a més, en enviar el vostre text, doneu fe que és vostra l'autoria, o b�
 'copyrightwarning2'                => "Si us plau, tingueu en compte que totes les contribucions al projecte {{SITENAME}} poden ser corregides, alterades o esborrades per altres usuaris. Si no desitgeu la modificació i distribució lliure dels vostres escrits sense el vostre consentiment, no els poseu ací.<br />
 A més a més, en enviar el vostre text, doneu fe que és vostra l'autoria, o bé de fonts en el domini públic o altres recursos lliures similars (consulteu $1 per a més detalls).
 '''No feu servir textos amb drets d'autor sense permís!'''",
-'longpageerror'                    => "'''ERROR: El text que heu introduït és de $1 kB i  sobrepassa el màxim permès de $2 kB. Per tant, no es desarà.'''",
+'longpageerror'                    => "'''Error: El text que heu introduït és {{PLURAL:$1|d'un kilobyte|de $1 kilobytes}} i sobrepassa el màxim permès de {{PLURAL:$2|one kilobyte|$2 kilobytes}}.'''
+No es pot desar.",
 'readonlywarning'                  => "'''ADVERTÈNCIA: La base de dades està tancada per manteniment
 i no podeu desar les vostres contribucions en aquests moments. Podeu retallar i enganxar el codi
 en un fitxer de text i desar-lo més tard.'''
@@ -1627,15 +1628,16 @@ $1',
 'upload-warning-subj'         => 'Avís de càrrega',
 'upload-warning-msg'          => 'Hi ha hagut un problema amb la teva càrrega de [$2]. Pots tornar a [[Special:Upload/stash/$1|formulari de càrrega]] per corregir aquest problema.',
 
-'upload-proto-error'        => 'El protocol és incorrecte',
-'upload-proto-error-text'   => 'Per a les càrregues remotes cal que els URL comencin amb <code>http://</code> o <code>ftp://</code>.',
-'upload-file-error'         => "S'ha produït un error intern",
-'upload-file-error-text'    => "S'ha produït un error de càrrega desconegut quan s'intentava crear un fitxer temporal al servidor. Poseu-vos en contacte amb un [[Special:ListUsers/sysop|administrador]].",
-'upload-misc-error'         => "S'ha produït un error de càrrega desconegut",
-'upload-misc-error-text'    => "S'ha produït un error desconegut durant la càrrega. Verifiqueu que l'URL és vàlid i accessible, i torneu-ho a provar. Si el problema persisteix, adreceu-vos a un [[Special:ListUsers/sysop|administrador]].",
-'upload-too-many-redirects' => 'La URL conté massa redireccions',
-'upload-unknown-size'       => 'Mida desconeguda',
-'upload-http-error'         => 'Ha ocorregut un error HTTP: $1',
+'upload-proto-error'                => 'El protocol és incorrecte',
+'upload-proto-error-text'           => 'Per a les càrregues remotes cal que els URL comencin amb <code>http://</code> o <code>ftp://</code>.',
+'upload-file-error'                 => "S'ha produït un error intern",
+'upload-file-error-text'            => "S'ha produït un error de càrrega desconegut quan s'intentava crear un fitxer temporal al servidor. Poseu-vos en contacte amb un [[Special:ListUsers/sysop|administrador]].",
+'upload-misc-error'                 => "S'ha produït un error de càrrega desconegut",
+'upload-misc-error-text'            => "S'ha produït un error desconegut durant la càrrega. Verifiqueu que l'URL és vàlid i accessible, i torneu-ho a provar. Si el problema persisteix, adreceu-vos a un [[Special:ListUsers/sysop|administrador]].",
+'upload-too-many-redirects'         => 'La URL conté massa redireccions',
+'upload-unknown-size'               => 'Mida desconeguda',
+'upload-http-error'                 => 'Ha ocorregut un error HTTP: $1',
+'upload-copy-upload-invalid-domain' => "Les càrregues de còpia no són disponibles des d'aquest domini.",
 
 # File backend
 'backend-fail-backup'        => "No s'ha pogut fer una còpia de seguretat del fitxer $1.",
@@ -1653,6 +1655,11 @@ $1',
 'backend-fail-closetemp'     => "No s'ha pogut tancar el fitxer temporal.",
 'backend-fail-read'          => "No s'ha pogut llegir el fitxer $1.",
 'backend-fail-create'        => "No s'ha pogut crear el fitxer $1.",
+'backend-fail-readonly'      => 'El rerefons «$1» actualment només és de lectura. El motiu que es dóna és: «$2»',
+'backend-fail-synced'        => 'El fitxer «$1» es troba en un estat inconsistent amb els rerefons interns.',
+'backend-fail-connect'       => "No s'ha pogut connectar al fitxer de rerefons «$1».",
+'backend-fail-internal'      => "S'ha produït un error desconegut en el fitxer de rerefons «$1».",
+'backend-fail-contenttype'   => 'No es pot determinar el tipus de contingut del fitxer per emmagatzemar a «$1».',
 
 # Lock manager
 'lockmanager-notlocked'        => "No s'ha pogut desbloquejar «$1»; no és bloquejat.",
