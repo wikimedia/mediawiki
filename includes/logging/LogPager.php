@@ -297,6 +297,10 @@ class LogPager extends ReverseChronologicalPager {
 				$lb->add( $row->log_namespace, $row->log_title );
 				$lb->addObj( Title::makeTitleSafe( NS_USER, $row->user_name ) );
 				$lb->addObj( Title::makeTitleSafe( NS_USER_TALK, $row->user_name ) );
+				$formatter = LogFormatter::newFromRow( $row );
+				foreach ( $formatter->getPreloadTitles() as $title ) {
+					$lb->addObj( $title );
+				}
 			}
 			$lb->execute();
 			$this->mResult->seek( 0 );
