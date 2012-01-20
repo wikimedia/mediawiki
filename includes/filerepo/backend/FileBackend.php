@@ -1245,6 +1245,20 @@ abstract class FileBackend extends FileBackendBase {
 	}
 
 	/**
+	 * Get the parent storage directory of a storage path.
+	 * This returns a path like "mwstore://backend/container",
+	 * "mwstore://backend/container/...", or false if there is no parent.
+	 * 
+	 * @param $storagePath string
+	 * @return string|false
+	 */
+	final public static function parentStoragePath( $storagePath ) {
+		$storagePath = dirname( $storagePath );
+		list( $b, $cont, $rel ) = self::splitStoragePath( $storagePath );
+		return ( $rel === null ) ? null : $storagePath;
+	}
+
+	/**
 	 * Check if a given path is a mwstore:// path.
 	 * This does not do any actual validation or existence checks.
 	 * 
