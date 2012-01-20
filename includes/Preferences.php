@@ -1456,10 +1456,13 @@ class Preferences {
 	}
 
 	/**
+	 * @deprecated in 1.19; will be removed in 1.20.
 	 * @param $user User
 	 * @return array
 	 */
 	public static function loadOldSearchNs( $user ) {
+		wfDeprecated( __METHOD__, '1.19' );
+
 		$searchableNamespaces = SearchEngine::searchableNamespaces();
 		// Back compat with old format
 		$arr = array();
