@@ -25,26 +25,6 @@ class StoreBatchTest extends MediaWikiTestCase {
 
 		$this->date = gmdate( "YmdHis" );
 		$this->createdFiles = array();
-
-		// ApiTestUser requires a database connection. Code below does not
-		// seem to be needed so it is commented out to not make this test
-		// requires a database connection.
-		/**
-		$this->users = array(
-			'sysop' => new ApiTestUser(
-				'Uploadstashtestsysop',
-				'Upload Stash Test Sysop',
-				'upload_stash_test_sysop@example.com',
-				array( 'sysop' )
-			),
-			'uploader' => new ApiTestUser(
-				'Uploadstashtestuser',
-				'Upload Stash Test User',
-				'upload_stash_test_user@example.com',
-				array()
-			)
-		);
-		**/
 	}
 
 	/**
@@ -116,8 +96,11 @@ class StoreBatchTest extends MediaWikiTestCase {
 
 	public function tearDown() {
 		$this->repo->cleanupBatch( $this->createdFiles );
-		foreach ( array( "temp/0/06", "temp/0", "temp/4/4d", "temp/4", "temp/3/31", "temp/3", "temp", "" ) as $tmp ) {
-			rmdir( $this->tmpDir . "/" . $tmp );
+		foreach ( $this->createdFiles as $tmp ) {
+			$tmp = $this->repo->resolveVirtualUrl( $tmp );
+			while ( $tmp = FileBackend::parentStoragePath( $tmp ) ) {
+				$this->repo->getBackend()->clean( array( 'dir' => $tmp ) );
+			}
 		}
 		parent::tearDown();
 	}

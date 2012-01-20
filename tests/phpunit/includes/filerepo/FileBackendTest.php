@@ -2,7 +2,6 @@
 
 /**
  * @group FileRepo
- * @TODO: fix empty dir leakage
  */
 class FileBackendTest extends MediaWikiTestCase {
 	private $backend, $multiBackend;
@@ -940,6 +939,10 @@ class FileBackendTest extends MediaWikiTestCase {
 		}
 		foreach ( $this->pathsToPrune as $file ) {
 			$this->backend->doOperation( array( 'op' => 'delete', 'src' => $file ) );
+			$tmp = $file;
+			while ( $tmp = FileBackend::parentStoragePath( $tmp ) ) {
+				$this->backend->clean( array( 'dir' => $tmp ) );
+			}
 		}
 	}
 
