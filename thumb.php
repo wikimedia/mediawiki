@@ -227,11 +227,16 @@ function wfStreamThumb( array $params ) {
 function wfExtractThumbParams( $uri ) {
 	$repo = RepoGroup::singleton()->getLocalRepo();
 
-	$bits = wfParseUrl( $repo->getZoneUrl( 'thumb' ) );
-	if ( !$bits ) {
-		return null;
+	$zoneURI = $repo->getZoneUrl( 'thumb' );
+	if ( substr( $zoneURI, 0, 1 ) !== '/' ) {
+		$bits = wfParseUrl( $zoneURI );
+		if ( $bits && isset( $bits['path'] ) ) {
+			$zoneURI = $bits['path'];
+		} else {
+			return null;
+		}
 	}
-	$zoneUrlRegex = preg_quote( $bits['path'] );
+	$zoneUrlRegex = preg_quote( $zoneURI );
 
 	$hashDirRegex = $subdirRegex = '';
 	for ( $i = 0; $i < $repo->getHashLevels(); $i++ ) {
