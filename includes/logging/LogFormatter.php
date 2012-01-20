@@ -178,10 +178,12 @@ class LogFormatter {
 		 * Fill in missing indexes with empty strings to avoid
 		 * incorrect renumbering.
 		 */
-		$max = max( array_keys( $params ) );
-		for ( $i = 4; $i < $max; $i++ ) {
-			if ( !isset( $params[$i] ) ) {
-				$params[$i] = '';
+		if ( count( $params ) ) {
+			$max = max( array_keys( $params ) );
+			for ( $i = 4; $i < $max; $i++ ) {
+				if ( !isset( $params[$i] ) ) {
+					$params[$i] = '';
+				}
 			}
 		}
 		return $params;
