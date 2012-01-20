@@ -153,25 +153,13 @@ class LogFormatter {
 	}
 
 	/**
-	 * Extract parameters intented for action message from
-	 * array of all parameters. There are three hardcoded
-	 * parameters (array zero-indexed, this list not):
-	 *  - 1: user name with premade link
-	 *  - 2: usable for gender magic function
-	 *  - 3: target page with premade link
+	 * Extracts the optional extra parameters for use in action messages.
+	 * The array indexes start from number 3.
 	 * @return array
 	 */
-	protected function getMessageParameters() {
-		if ( isset( $this->parsedParameters ) ) {
-			return $this->parsedParameters;
-		}
-
+	protected function extractParameters() {
 		$entry = $this->entry;
-
 		$params = array();
-		$params[0] = Message::rawParam( $this->getPerformerElement() );
-		$params[1] = $entry->getPerformer()->getName();
-		$params[2] = Message::rawParam( $this->makePageLink( $entry->getTarget() ) );
 
 		if ( $entry->isLegacy() ) {
 			foreach ( $entry->getParameters() as $index => $value ) {
@@ -196,7 +184,31 @@ class LogFormatter {
 				$params[$i] = '';
 			}
 		}
+		return $params;
+	}
 
+	/**
+	 * Formats parameters intented for action message from
+	 * array of all parameters. There are three hardcoded
+	 * parameters (array is zero-indexed, this list not):
+	 *  - 1: user name with premade link
+	 *  - 2: usable for gender magic function
+	 *  - 3: target page with premade link
+	 * @return array
+	 */
+	protected function getMessageParameters() {
+		if ( isset( $this->parsedParameters ) ) {
+			return $this->parsedParameters;
+		}
+
+		$entry = $this->entry;
+		$params = $this->extractParameters();
+		$params[0] = Message::rawParam( $this->getPerformerElement() );
+		$params[1] = $entry->getPerformer()->getName();
+		$params[2] = Message::rawParam( $this->makePageLink( $entry->getTarget() ) );
+
+		// Bad things happens if the numbers are not in correct order
+		ksort( $params );
 		return $this->parsedParameters = $params;
 	}
 
@@ -300,6 +312,13 @@ class LogFormatter {
 		return $element;
 	}
 
+	/**
+	 * @return Array of titles that should be preloaded with LinkBatch.
+	 */
+	public function getPreloadTitles() {
+		return array();
+	}
+
 }
 
 /**
@@ -334,6 +353,11 @@ class LegacyLogFormatter extends LogFormatter {
  * @since 1.19
  */
 class MoveLogFormatter extends LogFormatter {
+	public function getPreloadTitles() {
+		$params = $this->extractParameters();
+		return array( Title::newFromText( $params[3] ) );
+	}
+
 	protected function getMessageKey() {
 		$key = parent::getMessageKey();
 		$params = $this->getMessageParameters();
