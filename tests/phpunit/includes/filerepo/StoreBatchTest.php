@@ -8,17 +8,17 @@ class StoreBatchTest extends MediaWikiTestCase {
 		parent::setUp();
 
 		# Forge a FSRepo object to not have to rely on local wiki settings
-		$tmpDir = wfTempDir() . '/' . time() . '-' . mt_rand();
+		$this->tmpDir = wfTempDir() . '/store-batch-test-' . time() . '-' . mt_rand();
 		$this->repo = new FSRepo( array(
 			'name'    => 'test',
 			'backend' => new FSFileBackend( array(
 				'name'        => 'local-backend',
 				'lockManager' => 'nullLockManager',
 				'containerPaths' => array(
-					'test-public'  => "$tmpDir/public",
-					'test-thumb'   => "$tmpDir/thumb",
-					'test-temp'    => "$tmpDir/temp",
-					'test-deleted' => "$tmpDir/deleted",
+					'test-public'  => $this->tmpDir . "/public",
+					'test-thumb'   => $this->tmpDir . "/thumb",
+					'test-temp'    => $this->tmpDir . "/temp",
+					'test-deleted' => $this->tmpDir . "/deleted",
 				)
 			) )
 		) );
@@ -116,6 +116,9 @@ class StoreBatchTest extends MediaWikiTestCase {
 
 	public function tearDown() {
 		$this->repo->cleanupBatch( $this->createdFiles );
+		foreach ( array( "temp/0/06", "temp/0", "temp/4/4d", "temp/4", "temp/3/31", "temp/3", "temp", "" ) as $tmp ) {
+			rmdir( $this->tmpDir . "/" . $tmp );
+		}
 		parent::tearDown();
 	}
 }
