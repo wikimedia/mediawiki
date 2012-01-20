@@ -420,6 +420,13 @@ class FSFileBackend extends FileBackend {
 	}
 
 	/**
+	 * @see FileBackend::doClearCache()
+	 */
+	protected function doClearCache( array $paths = null ) {
+		clearstatcache(); // clear the PHP file stat cache
+	}
+
+	/**
 	 * @see FileBackend::getFileListInternal()
 	 */
 	public function getFileListInternal( $fullCont, $dirRel, array $params ) {
