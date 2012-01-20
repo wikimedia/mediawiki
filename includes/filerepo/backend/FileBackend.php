@@ -525,7 +525,7 @@ abstract class FileBackendBase {
 	 * Invalidate any in-process file existence and property cache.
 	 * If $paths is given, then only the cache for those files will be cleared.
 	 *
-	 * @param $paths Array Storage paths
+	 * @param $paths Array Storage paths (optional)
 	 * @return void
 	 */
 	abstract public function clearCache( array $paths = null );
@@ -1218,7 +1218,18 @@ abstract class FileBackend extends FileBackendBase {
 				unset( $this->cache[$path] );
 			}
 		}
+		$this->doClearCache( $paths );
 	}
+
+	/**
+	 * Clears any additional stat caches for storage paths
+	 * 
+	 * @see FileBackendBase::clearCache()
+	 * 
+	 * @param $paths Array Storage paths (optional)
+	 * @return void
+	 */
+	protected function doClearCache( array $paths = null ) {}
 
 	/**
 	 * Prune the cache if it is too big to add an item
