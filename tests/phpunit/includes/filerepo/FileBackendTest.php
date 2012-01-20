@@ -10,7 +10,7 @@ class FileBackendTest extends MediaWikiTestCase {
 
 	function setUp() {
 		parent::setUp();
-		$tmpDir = wfTempDir() . '/' . time() . '-' . mt_rand();
+		$tmpDir = wfTempDir() . '/file-backend-test-' . time() . '-' . mt_rand();
 		$this->singleBackend = new FSFileBackend( array(
 			'name'        => 'localtesting',
 			'lockManager' => 'fsLockManager',
