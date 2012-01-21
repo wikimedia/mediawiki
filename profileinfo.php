@@ -80,8 +80,8 @@ if ( !$wgEnableProfileInfo ) {
 
 $dbr = wfGetDB( DB_SLAVE );
 
-if( !$dbr->tableExists( 'profileinfo' ) ) {
-	echo "<p>No 'profileinfo' table exists, so we can't show you anything.</p>\n";
+if( !$dbr->tableExists( 'profiling' ) ) {
+	echo "<p>No 'profiling' table exists, so we can't show you anything.</p>\n";
 	echo "<p>If you want to log profiling data, create the table using "
 		. "<tt>maintenance/archives/patch-profiling.sql</tt> and enable "
 		. "<tt>\$wgProfileToDatabase</tt>.</p>\n";
