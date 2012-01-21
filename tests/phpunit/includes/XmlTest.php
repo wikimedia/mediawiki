@@ -2,17 +2,42 @@
 
 class XmlTest extends MediaWikiTestCase {
 	private static $oldLang;
+	private static $oldNamespaces;
 
 	public function setUp() {
-		global $wgLang;
+		global $wgLang, $wgContLang;
 
 		self::$oldLang = $wgLang;
 		$wgLang = Language::factory( 'en' );
+
+		// Hardcode namespaces during test runs,
+		// so that html output based on existing namespaces
+		// can be properly evaluated.
+		self::$oldNamespaces = $wgContLang->namespaceNames;
+		$wgContLang->namespaceNames = array(
+			-2 => 'Media',
+			-1 => 'Special',
+			0  => '',
+			1  => 'Talk',
+			2  => 'User',
+			3  => 'User_talk',
+			4  => 'MyWiki',
+			5  => 'MyWiki_Talk',
+			6  => 'File',
+			7  => 'File_talk',
+			8  => 'MediaWiki',
+			9  => 'MediaWiki_talk',
+			10  => 'Template',
+			11  => 'Template_talk',
+			100  => 'Custom',
+			101  => 'Custom_talk',
+		);
 	}
 
 	public function tearDown() {
-		global $wgLang;
+		global $wgLang, $wgContLang;
 		$wgLang = self::$oldLang;
+		$wgContLang->namespaceNames = self::$oldNamespaces;
 	}
 
 	public function testExpandAttributes() {
@@ -166,6 +191,51 @@ class XmlTest extends MediaWikiTestCase {
 			"Date menu with neither year or month"
 		);
 	}
+
+	function testNamespaceSelector() {
+		$this->assertEquals(
+			'<select id="namespace" name="namespace" class="namespaceselector">
+<option value="0">(Main)</option>
+<option value="1">Talk</option>
+<option value="2">User</option>
+<option value="3">User talk</option>
+<option value="4">MyWiki</option>
+<option value="5">MyWiki Talk</option>
+<option value="6">File</option>
+<option value="7">File talk</option>
+<option value="8">MediaWiki</option>
+<option value="9">MediaWiki talk</option>
+<option value="10">Template</option>
+<option value="11">Template talk</option>
+<option value="100">Custom</option>
+<option value="101">Custom talk</option>
+</select>',
+			Xml::namespaceSelector(),
+			'Basic namespace selector without custom options'
+		);
+		$this->assertEquals(
+			'<label for="myname">Select a namespace:</label>&#160;<select id="namespace" name="myname" class="namespaceselector">
+<option value="all">all</option>
+<option value="0">(Main)</option>
+<option value="1">Talk</option>
+<option value="2" selected="">User</option>
+<option value="3">User talk</option>
+<option value="4">MyWiki</option>
+<option value="5">MyWiki Talk</option>
+<option value="6">File</option>
+<option value="7">File talk</option>
+<option value="8">MediaWiki</option>
+<option value="9">MediaWiki talk</option>
+<option value="10">Template</option>
+<option value="11">Template talk</option>
+<option value="100">Custom</option>
+<option value="101">Custom talk</option>
+</select>',
+			Xml::namespaceSelector( $selected = '2', $all = 'all', $element_name = 'myname', $label = 'Select a namespace:' ),
+			'Basic namespace selector with custom values'
+		);
+	}
+
 
 	#
 	# textarea

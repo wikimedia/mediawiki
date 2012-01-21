@@ -63,9 +63,11 @@ class Language {
 	var $mMagicExtensions = array(), $mMagicHookDone = false;
 	private $mHtmlCode = null;
 
-	var $mNamespaceIds, $namespaceNames, $namespaceAliases;
+	var $mNamespaceIds, $namespaceAliases;
 	var $dateFormatStrings = array();
 	var $mExtendedSpecialPageAliases;
+
+	public $namespaceNames;
 
 	/**
 	 * ReplacementArray object caches
