@@ -108,18 +108,18 @@ test( 'toggleToc', function() {
 test( 'getParamValue', function() {
 	expect(5);
 
-	var	url1 = 'http://mediawiki.org/?foo=wrong&foo=right#&foo=bad';
+	var	url1 = 'http://example.org/?foo=wrong&foo=right#&foo=bad';
 
 	equal( mw.util.getParamValue( 'foo', url1 ), 'right', 'Use latest one, ignore hash' );
 	strictEqual( mw.util.getParamValue( 'bar', url1 ), null, 'Return null when not found' );
 
-	var url2 = 'http://mediawiki.org/#&foo=bad';
+	var url2 = 'http://example.org/#&foo=bad';
 	strictEqual( mw.util.getParamValue( 'foo', url2 ), null, 'Ignore hash if param is not in querystring but in hash (bug 27427)' );
 
-	var url3 = 'example.com?' + $.param({ 'TEST': 'a b+c' });
+	var url3 = 'example.org?' + $.param({ 'TEST': 'a b+c' });
 	strictEqual( mw.util.getParamValue( 'TEST', url3 ), 'a b+c', 'Bug 30441: getParamValue must understand "+" encoding of space' );
 
-	var url4 = 'example.com?' + $.param({ 'TEST': 'a b+c d' }); // check for sloppy code from r95332 :)
+	var url4 = 'example.org?' + $.param({ 'TEST': 'a b+c d' }); // check for sloppy code from r95332 :)
 	strictEqual( mw.util.getParamValue( 'TEST', url4 ), 'a b+c d', 'Bug 30441: getParamValue must understand "+" encoding of space (multiple spaces)' );
 });
 
@@ -161,12 +161,12 @@ test( 'addPortletLink', function() {
 	$mwPanel = $(mwPanel).appendTo( 'body' ),
 	$vectorTabs = $(vectorTabs).appendTo( 'body' );
 
-	var tbRL = mw.util.addPortletLink( 'p-test-tb', 'http://mediawiki.org/wiki/ResourceLoader',
+	var tbRL = mw.util.addPortletLink( 'p-test-tb', '//mediawiki.org/wiki/ResourceLoader',
 		'ResourceLoader', 't-rl', 'More info about ResourceLoader on MediaWiki.org ', 'l' );
 
 	ok( $.isDomElement( tbRL ), 'addPortletLink returns a valid DOM Element according to $.isDomElement' );
 
-	var	tbMW = mw.util.addPortletLink( 'p-test-tb', 'http://mediawiki.org/',
+	var	tbMW = mw.util.addPortletLink( 'p-test-tb', '//mediawiki.org/',
 			'MediaWiki.org', 't-mworg', 'Go to MediaWiki.org ', 'm', tbRL ),
 		$tbMW = $( tbMW );
 
@@ -175,7 +175,7 @@ test( 'addPortletLink', function() {
 	equal( $tbMW.closest( '.portlet' ).attr( 'id' ), 'p-test-tb', 'Link was inserted within correct portlet' );
 	equal( $tbMW.next().attr( 'id' ), 't-rl', 'Link is in the correct position (by passing nextnode)' );
 
-	var tbRLDM = mw.util.addPortletLink( 'p-test-tb', 'http://mediawiki.org/wiki/RL/DM',
+	var tbRLDM = mw.util.addPortletLink( 'p-test-tb', '//mediawiki.org/wiki/RL/DM',
 		'Default modules', 't-rldm', 'List of all default modules ', 'd', '#t-rl' );
 
 	equal( $( tbRLDM ).next().attr( 'id' ), 't-rl', 'Link is in the correct position (by passing CSS selector)' );
