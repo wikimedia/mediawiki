@@ -1247,10 +1247,10 @@ abstract class FileBackend extends FileBackendBase {
 	/**
 	 * Get the parent storage directory of a storage path.
 	 * This returns a path like "mwstore://backend/container",
-	 * "mwstore://backend/container/...", or false if there is no parent.
+	 * "mwstore://backend/container/...", or null if there is no parent.
 	 * 
 	 * @param $storagePath string
-	 * @return string|false
+	 * @return string|null
 	 */
 	final public static function parentStoragePath( $storagePath ) {
 		$storagePath = dirname( $storagePath );

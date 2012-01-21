@@ -231,19 +231,22 @@ class ForeignAPIFile extends File {
 		$key = $this->repo->getLocalCacheKey( 'ForeignAPIRepo', 'ThumbUrl', $this->getName() );
 		$wgMemc->delete( $key );
 
-		$backend = $this->repo->getBackend();
 		$files = $this->getThumbnails();
 		// Give media handler a chance to filter the purge list
 		$handler = $this->getHandler();
 		if ( $handler ) {
 			$handler->filterThumbnailPurgeList( $files, $options );
 		}
-		
+
 		$dir = $this->getThumbPath( $this->getName() );
+		$purgeList = array();
 		foreach ( $files as $file ) {
-			$op = array( 'op' => 'delete', 'src' => "{$dir}{$file}" );
-			$backend->doOperation( $op );
+			$purgeList[] = "{$dir}{$file}";
 		}
-		$backend->clean( array( 'dir' => $dir ) );
+
+		# Delete the thumbnails
+		$this->repo->cleanupBatch( $purgeList );
+		# Clear out the thumbnail directory if empty
+		$this->repo->getBackend()->clean( array( 'dir' => $dir ) );
 	}
 }
