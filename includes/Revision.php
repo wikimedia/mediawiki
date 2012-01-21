@@ -475,6 +475,16 @@ class Revision {
 	}
 
 	/**
+	 * Set the revision ID
+	 *
+	 * @since 1.19
+	 * @param $id Integer
+	 */
+	public function setId( $id ) {
+		$this->mId = $id;
+	}
+
+	/**
 	 * Get text row ID
 	 *
 	 * @return Integer

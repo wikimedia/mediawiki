@@ -89,7 +89,8 @@ class ApiPurge extends ApiBase {
 					global $wgParser, $wgEnableParserCache;
 
 					$popts = ParserOptions::newFromContext( $this->getContext() );
-					$p_result = $wgParser->parse( $page->getRawText(), $title, $popts );
+					$p_result = $wgParser->parse( $page->getRawText(), $title, $popts,
+						true, true, $page->getLatest() );
 
 					# Update the links tables
 					$u = new LinksUpdate( $title, $p_result );

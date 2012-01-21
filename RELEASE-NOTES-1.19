@@ -230,6 +230,8 @@ production.
 * (bug 4438) Add CSS hook for current WikiPage action.
 * (bug 33703) Common border-bottom color for <abbr> should inherit default (text) color.
 * (bug 33819) Display file sizes in appropriate units.
+* (bug 32948) {{REVISIONID}} and related variables are no longer blank after doing
+  a null edit.
 
 === API changes in 1.19 ===
 * Made action=edit less likely to return "unknownerror", by returning the actual error
@@ -262,6 +264,8 @@ production.
 * (bug 33147) API examples should explain what they do.
 * (bug 33482) Api incorrectly calls ApiBase::parseMultiValue if allowed
   values is given as an array.
+* (bug 32948) {{REVISIONID}} and related variables are no longer blank after
+  calling action=purge&forcelinkupdate.
 
 === Languages updated in 1.19 ===
 
