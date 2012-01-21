@@ -12,6 +12,8 @@ This is a maintenance release of the MediaWiki 1.18 branch.
 
 * (bug 33686) could not get a list of contributor for an article when using
  a SQLite database.
+* (Bug 33865) Exception thrown in action=parse when attempting to use the title
+  parameter without setting the text parameter.
 
 == MediaWiki 1.18.1 ==
 2012-01-11
