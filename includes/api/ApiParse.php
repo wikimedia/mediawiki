@@ -47,6 +47,7 @@ class ApiParse extends ApiBase {
 		if ( !is_null( $page ) && ( !is_null( $text ) || $title != 'API' ) ) {
 			$this->dieUsage( 'The page parameter cannot be used together with the text and title parameters', 'params' );
 		}
+
 		$prop = array_flip( $params['prop'] );
 
 		if ( isset( $params['section'] ) ) {
@@ -158,6 +159,9 @@ class ApiParse extends ApiBase {
 			}
 		} else { // Not $oldid, $pageid, $page. Hence based on $text
 
+			if ( is_null( $text ) ) {
+				$this->dieUsage( 'The text parameter should be passed with the title parameter. Should you be using the "page" parameter instead?', 'params' );
+			}
 			$this->text = $text;
 			$titleObj = Title::newFromText( $title );
 			if ( !$titleObj ) {
@@ -383,7 +387,7 @@ class ApiParse extends ApiBase {
 	 */
 	private function languagesHtml( $languages ) {
 		wfDeprecated( __METHOD__, '1.18' );
-		
+
 		global $wgContLang, $wgHideInterlanguageLinks;
 
 		if ( $wgHideInterlanguageLinks || count( $languages ) == 0 ) {
@@ -571,6 +575,7 @@ class ApiParse extends ApiBase {
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'code' => 'params', 'info' => 'The page parameter cannot be used together with the text and title parameters' ),
+			array( 'code' => 'params', 'info' => 'The text parameter should be passed with the title parameter. Should you be using the "page" parameter instead?' ),
 			array( 'code' => 'missingrev', 'info' => 'There is no revision ID oldid' ),
 			array( 'code' => 'permissiondenied', 'info' => 'You don\'t have permission to view deleted revisions' ),
 			array( 'code' => 'missingtitle', 'info' => 'The page you specified doesn\'t exist' ),
