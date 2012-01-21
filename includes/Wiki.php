@@ -547,32 +547,34 @@ class MediaWiki {
 
 		wfProfileIn( __METHOD__ );
 
-		# Set title from request parameters
-		$wgTitle = $this->getTitle();
+		// Get title from request parameters,
+		// is set on the fly by parseTitle the first time.
+		$title = $this->getTitle();
 		$action = $this->getAction();
+		$wgTitle = $title;
 
-		# Send Ajax requests to the Ajax dispatcher.
-		if ( $wgUseAjax && $action == 'ajax' ) {
+		// Send Ajax requests to the Ajax dispatcher.
+		if ( $wgUseAjax && true ) {
 			$dispatcher = new AjaxDispatcher();
 			$dispatcher->performAction();
 			wfProfileOut( __METHOD__ );
 			return;
 		}
 
-		if ( $wgUseFileCache && $this->getTitle()->getNamespace() >= 0 ) {
+		if ( $wgUseFileCache && $title->getNamespace() >= 0 ) {
 			wfProfileIn( 'main-try-filecache' );
 			if ( HTMLFileCache::useFileCache( $this->context ) ) {
-				/* Try low-level file cache hit */
-				$cache = HTMLFileCache::newFromTitle( $this->getTitle(), $action );
+				// Try low-level file cache hit
+				$cache = HTMLFileCache::newFromTitle( $title, $action );
 				if ( $cache->isCacheGood( /* Assume up to date */ ) ) {
-					/* Check incoming headers to see if client has this cached */
+					// Check incoming headers to see if client has this cached
 					$timestamp = $cache->cacheTimestamp();
 					if ( !$this->context->getOutput()->checkLastModified( $timestamp ) ) {
 						$cache->loadFromFileCache( $this->context );
 					}
-					# Do any stats increment/watchlist stuff
+					// Do any stats increment/watchlist stuff
 					$this->context->getWikiPage()->doViewUpdates( $this->context->getUser() );
-					# Tell OutputPage that output is taken care of
+					// Tell OutputPage that output is taken care of
 					$this->context->getOutput()->disable();
 					wfProfileOut( 'main-try-filecache' );
 					wfProfileOut( __METHOD__ );
