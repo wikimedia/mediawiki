@@ -127,6 +127,7 @@ class SpecialJavaScriptTest extends SpecialPage {
 <div id="qunit-testrunner-toolbar"></div>
 <div id="qunit-userAgent"></div>
 <ol id="qunit-tests"></ol>
+<div id="qunit-fixture">test markup, will be hidden</div>
 </div>
 HTML;
 		$out->addHtml( $this->wrapSummaryHtml( $summary, 'frameworkfound' ) . $baseHtml );
