@@ -1693,7 +1693,7 @@ Si le problema persiste, contacta un [[Special:ListUsers/sysop|administrator]].'
 'backend-fail-connect'       => 'Impossibile connecter al back-end de files "$1".',
 'backend-fail-internal'      => 'Un error incognite occurreva in le back-end de files "$1".',
 'backend-fail-contenttype'   => 'Non poteva determinar le typo de contento del file a immagazinar in "$1".',
-'backend-fail-batchsize'     => 'Le back-end ha recipite un lot de $1 {{PLURAL:$1|operation|operationes}} de file; le limite es $2.',
+'backend-fail-batchsize'     => 'Le back-end ha recipite un lot de $1 {{PLURAL:$1|operation|operationes}} de file; le limite es $2 {{PLURAL:$2|operation|operationes}}.',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Impossibile disblocar "$1"; illo non es blocate.',

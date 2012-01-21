@@ -3596,6 +3596,7 @@ Dangosir delweddau ar eu maint llawn, dechreuir ffeiliau o fathau eraill yn unio
 'api-error-unknown-code'       => 'Gwall anhysbys: "$1"',
 'api-error-unknown-error'      => "Gwall mewnol: aeth rhywbeth o'i le wrth geisio llwytho eich ffeil.",
 'api-error-unknown-warning'    => 'Rhybudd anhysbys: $1',
+'api-error-unknownerror'       => 'Gwall anhysbys: "$1".',
 'api-error-uploaddisabled'     => 'Analluogwyd uwchlwytho ar y wici hwn.',
 'api-error-verification-error' => "Gallai'r ffeil hon fod wedi ei llygru, neu gall fod estyniad anghywir iddi.",
 

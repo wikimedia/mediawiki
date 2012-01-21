@@ -1653,6 +1653,7 @@ Informer venligst en [[Special:ListUsers/sysop|systemadministrator]].',
 'backend-fail-closetemp'     => 'Kunne ikke lukke midlertidig fil.',
 'backend-fail-read'          => 'Kunne ikke læse filen $1.',
 'backend-fail-create'        => 'Kunne ikke oprette filen $1.',
+'backend-fail-contenttype'   => 'Kunne ikke bestemme typen af indhold i filen, der skal gemmes på "$1".',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Kunne ikke låse "$1" op, da den ikke er låst.',
@@ -2707,6 +2708,7 @@ Alle Transwiki import-aktioner protokolleres i [[Special:Log/import|import-logge
 'javascripttest-title'                => 'Kører $1 test',
 'javascripttest-pagetext-noframework' => 'Denne side er reserveret til at teste JavaScript.',
 'javascripttest-pagetext-skins'       => 'Vælg et udseende, som testene skal køres med:',
+'javascripttest-qunit-intro'          => 'Se [$1 testdokumentationen] på mediawiki.org.',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'                 => 'Din brugerside',
@@ -3645,16 +3647,20 @@ Billeder vises i fuld opløsning, og andre mediatyper vil blive aktiveret med de
 'newuserlog-byemail'                  => 'kodeord tilsendt pr. e-mail',
 
 # Feedback
-'feedback-subject' => 'Emne:',
-'feedback-message' => 'Besked:',
-'feedback-cancel'  => 'Afbryd',
-'feedback-submit'  => 'Send kommentar',
-'feedback-adding'  => 'Tilføjer kommentar til side...',
-'feedback-error1'  => 'Fejl: Ukendt resultat fra API',
-'feedback-error2'  => 'Fejl: Redigering mislykkedes',
-'feedback-error3'  => 'Fejl: Intet svar fra API',
-'feedback-close'   => 'Færdig',
-'feedback-bugnew'  => 'Jeg har kontrolleret. Rapporter en ny fejl.',
+'feedback-bugornote' => 'Hvis du er klar til at beskrive et teknisk problem i detaljer, bedes du [$1 rapportere en fejl].
+Ellers kan du bruge den enkle formular nedenfor. Din kommentar vil blive tilføjet siden "[$3 $2]" sammen med dit brugernavn og den browser, du anvender.',
+'feedback-subject'   => 'Emne:',
+'feedback-message'   => 'Besked:',
+'feedback-cancel'    => 'Afbryd',
+'feedback-submit'    => 'Send kommentar',
+'feedback-adding'    => 'Tilføjer kommentar til side...',
+'feedback-error1'    => 'Fejl: Ukendt resultat fra API',
+'feedback-error2'    => 'Fejl: Redigering mislykkedes',
+'feedback-error3'    => 'Fejl: Intet svar fra API',
+'feedback-thanks'    => 'Tak! Dine tilbagemeldinger er blevet noteret på siden "[$2 $1]".',
+'feedback-close'     => 'Færdig',
+'feedback-bugcheck'  => 'Skønt! Men tjek venligst, at det ikke er en af de [$1 kendte fejl].',
+'feedback-bugnew'    => 'Jeg har kontrolleret. Rapporter en ny fejl.',
 
 # API errors
 'api-error-badaccess-groups'              => 'Du har ikke tilladelse til at overføre filer til denne wiki.',

@@ -1624,6 +1624,7 @@ Wann de Problem weider besteet, dann un de [[Special:ListUsers/sysop|Administrat
 'backend-fail-backup'        => 'De Fichier $1 konnt net geséchert ginn.',
 'backend-fail-notexists'     => 'De Fichier $1 gëtt et net.',
 'backend-fail-notsame'       => 'Et gëtt schonn en net-identesche Fichier op $1.',
+'backend-fail-invalidpath'   => '$1 ass keng valabel Plaz fir ze späicheren.',
 'backend-fail-delete'        => 'De Fichier $1 konnt net geläscht ginn.',
 'backend-fail-alreadyexists' => 'De Fichier $1 gëtt et schonn.',
 'backend-fail-store'         => 'De Fichier $1 konnt net op $2 gespäichert ginn.',
@@ -2690,6 +2691,8 @@ Späichert en op Ärem Computer of a luet en hei nees erop.',
 'import-invalid-interwiki'   => 'Aus der Wiki déi Dir uginn hutt kann näischt importéiert ginn.',
 'import-error-edit'          => 'D\'Säit "$1" gouf net importéiert well Dir se net änneren däerft.',
 'import-error-create'        => 'D\'Säit "$1" gouf net importéiert well Dir se net uleeën däerft.',
+'import-error-interwiki'     => 'D\'Säit  "$1" gouf net importéiert well deen Numm fir extern Linken (Interwiki) reservéiert ass.',
+'import-error-special'       => 'D\'Säit "$1" gouf net importéiert well se zu engem speziellen Nummraum gehéiert an deem et keng Säite gëtt.',
 'import-error-invalid'       => 'D\'Säit "$1" gouf net importéiert well hiren Numm net valabel ass.',
 
 # Import log

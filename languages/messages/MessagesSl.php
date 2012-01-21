@@ -906,7 +906,7 @@ Poleg tega zagotavljate, da ste prispevke napisali oziroma ustvarili sami ali pa
 Če niste pripravljeni na neusmiljeno urejanje in prosto razširjanje vašega gradiva, ga ne prispevajte.<br />
 Poleg tega zagotavljate, da ste prispevke napisali oziroma ustvarili sami ali pa prepisali iz javno dostopnega ali podobnega prostega vira (za podrobnosti glej $1).
 '''Ne dodajajte avtorsko zaščitenega dela brez dovoljenja!'''",
-'longpageerror'                    => "'''Napaka: Predloženo besedilo je dolgo $1 {{PLURAL:$1|kilobajt|kilobajta|kilobajte|kilobajtov|kilobajtov}}, s čimer presega največjo dovoljeno dolžino $2 {{PLURAL:$2|kilobajta|kilobajtov|kilobajtov|kilobajtov|kilobajtov}}.'''
+'longpageerror'                    => "'''Napaka: Predloženo besedilo je dolgo $1 {{PLURAL:$1|kilobajt|kilobajta|kilobajte|kilobajtov}}, s čimer presega največjo dovoljeno dolžino $2 {{PLURAL:$2|kilobajta|kilobajtov|kilobajtov|kilobajtov}}.'''
 Zato ga ni mogoče shraniti.",
 'readonlywarning'                  => "'''Opozorilo: Zbirka podatkov je zaradi vzdrževanja začasno zaklenjena, kar pomeni, da sprememb trenutno ne morete shraniti. Prosimo, prenesite besedilo v urejevalnik in ga dodajte pozneje.'''
 
@@ -1683,18 +1683,19 @@ $1',
 'upload-warning-subj'         => 'Opozorilo pri nalaganju',
 'upload-warning-msg'          => 'Prišlo je do težave pri nalaganju datoteke iz [$2]. Lahko se vrnete na [[Special:Upload/stash/$1|obrazec za nalaganje]], da odpravite težavo.',
 
-'upload-proto-error'        => 'Nepravilni protokol',
-'upload-proto-error-text'   => 'Oddaljeno nalaganje zahteva, da se URL začenja s <code>http://</code> ali <code>ftp://</code>.',
-'upload-file-error'         => 'Notranja napaka',
-'upload-file-error-text'    => 'Prišlo je do notranje napake pri poskusu ustvarjanja začasne datoteke na strežniku.
+'upload-proto-error'                => 'Nepravilni protokol',
+'upload-proto-error-text'           => 'Oddaljeno nalaganje zahteva, da se URL začenja s <code>http://</code> ali <code>ftp://</code>.',
+'upload-file-error'                 => 'Notranja napaka',
+'upload-file-error-text'            => 'Prišlo je do notranje napake pri poskusu ustvarjanja začasne datoteke na strežniku.
 Prosimo, obrnite se na [[Special:ListUsers/sysop|administratorja]].',
-'upload-misc-error'         => 'Neznana napaka pri nalaganju',
-'upload-misc-error-text'    => 'Med nalaganjem je prišlo do neznane napake.
+'upload-misc-error'                 => 'Neznana napaka pri nalaganju',
+'upload-misc-error-text'            => 'Med nalaganjem je prišlo do neznane napake.
 Prosimo, preverite veljavnost in dostopnost naslova URL ter poskusite ponovno.
 Če se težava ponavlja, kontaktirajte [[Special:ListUsers/sysop|administratorja]].',
-'upload-too-many-redirects' => 'URL vsebuje preveč preusmeritev',
-'upload-unknown-size'       => 'Neznana velikost',
-'upload-http-error'         => 'Prišlo je do napake HTTP: $1',
+'upload-too-many-redirects'         => 'URL vsebuje preveč preusmeritev',
+'upload-unknown-size'               => 'Neznana velikost',
+'upload-http-error'                 => 'Prišlo je do napake HTTP: $1',
+'upload-copy-upload-invalid-domain' => 'Nalaganje kopij s te domene ni na voljo.',
 
 # File backend
 'backend-fail-stream'        => 'Ne morem pretakati datoteke $1.',
@@ -1713,6 +1714,12 @@ Prosimo, preverite veljavnost in dostopnost naslova URL ter poskusite ponovno.
 'backend-fail-closetemp'     => 'Ne morem zapreti začasne datoteke.',
 'backend-fail-read'          => 'Ne morem brati datoteke $1.',
 'backend-fail-create'        => 'Ne morem ustvariti datoteke $1.',
+'backend-fail-readonly'      => 'Zaledje »$1« je trenutno označeno samo za branje. Podan razlog: »$2«',
+'backend-fail-synced'        => 'Datoteka »$1« je v neskladnem stanju z notranjimi zaledji',
+'backend-fail-connect'       => 'Ne morem se povezati z datotečnimim zaledjem »$1«.',
+'backend-fail-internal'      => 'V datotečnem zaledju »$1« je prišlo do neznane napake.',
+'backend-fail-contenttype'   => 'Ne morem določiti vrsto vsebine datoteke za shranjevanje pri »$1«.',
+'backend-fail-batchsize'     => 'Zaledju je dana vrsta $1 {{PLURAL:$1|datotečne operacije|datotečnih operacij}}; omejitev {{PLURAL:$2|je $2 operacija|sta $2 operaciji|so $2 operacije|je $2 operacij}}.',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Ne morem odkleniti »$1«, saj ni zaklenjeno.',
@@ -2796,6 +2803,9 @@ Prosimo, poskusite znova.',
 'import-invalid-interwiki'   => 'Uvoz iz navedenega wikija ni možen.',
 'import-error-edit'          => 'Stran »$1« ni uvožena, ker vam ni dovoljeno, da jo urejate.',
 'import-error-create'        => 'Stran »$1« ni uvožena, ker vam ni dovoljeno, da jo ustvarite.',
+'import-error-interwiki'     => 'Strani »$1« nismo uvozili, ker je njeno ime rezervirano za zunanje povezovanje (interwiki).',
+'import-error-special'       => 'Strani »$1« nismo uvozili, ker spada k posebnemu imenskemu prostoru, ki ne dovoljuje strani.',
+'import-error-invalid'       => 'Strani »$1« nismo uvozili, ker njeno ime ni veljavno.',
 
 # Import log
 'importlogpage'                    => 'Dnevnik uvozov',
@@ -2806,9 +2816,15 @@ Prosimo, poskusite znova.',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|redakcija|redakciji|redakcije|redakcij}} uporabnika $2',
 
 # JavaScriptTest
-'javascripttest'          => 'Preizkušanje JavaScripta',
-'javascripttest-disabled' => 'Funkcija je onemogočena.',
-'javascripttest-title'    => 'Poganjanje $1 preizkusov',
+'javascripttest'                           => 'Preizkušanje JavaScripta',
+'javascripttest-disabled'                  => 'Funkcija je onemogočena.',
+'javascripttest-title'                     => 'Poganjanje $1 preizkusov',
+'javascripttest-pagetext-noframework'      => 'Stran je rezervirana za poganjanje preizkusov JavaScript.',
+'javascripttest-pagetext-unknownframework' => 'Neznano ogrodje za preizkušanje »$1«.',
+'javascripttest-pagetext-frameworks'       => 'Prosimo, izberite enega od naslednjih ogrodjev za preizkušanje: $1',
+'javascripttest-pagetext-skins'            => 'Izberite kožo, v kateri želite pognati preizkuse:',
+'javascripttest-qunit-intro'               => 'Oglejte si [$1 dokumentacijo o preizkušanju] na mediawiki.org.',
+'javascripttest-qunit-heading'             => 'Preizkuševalni paket MediaWiki JavaScript QUnit',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'                 => 'Vaša uporabniška stran',
@@ -3774,6 +3790,7 @@ V nasprotnem primeru lahko uporabite preprost obrazec spodaj. Vašo pripombo bom
 'api-error-duplicate-archive-popup-title' => '{{PLURAL:$1|Podvojena datoteka, ki je že bila izbrisana|Podvojeni datoteki, ki sta že bili izbrisani|Podvojene datoteke, ki so že bile izbrisane}}',
 'api-error-duplicate-popup-title'         => '{{PLURAL:$1|Podvojena datoteka|Podvojeni datoteki|Podvojene datoteke}}',
 'api-error-empty-file'                    => 'Poslana datoteka je prazna.',
+'api-error-emptypage'                     => 'Ustvarjanje novih, praznih strani ni dovoljeno.',
 'api-error-fetchfileerror'                => 'Notranja napaka: pri pridobivanju datoteke je nekaj šlo narobe.',
 'api-error-file-too-large'                => 'Poslana datoteka je prevelika.',
 'api-error-filename-tooshort'             => 'Ime datoteke je prekratko.',
@@ -3798,6 +3815,7 @@ V nasprotnem primeru lahko uporabite preprost obrazec spodaj. Vašo pripombo bom
 'api-error-unknown-code'                  => 'Neznana napaka: »$1«',
 'api-error-unknown-error'                 => 'Notranja napaka: pri poskusu nalaganja vaše datoteke je nekaj šlo narobe.',
 'api-error-unknown-warning'               => 'Neznano opozorilo: $1',
+'api-error-unknownerror'                  => 'Neznana napaka: »$1«.',
 'api-error-uploaddisabled'                => 'Nalaganje je onemogočeno na tem wikiju.',
 'api-error-verification-error'            => 'Ta datoteka je morda poškodovana ali ima napačno končnico.',
 

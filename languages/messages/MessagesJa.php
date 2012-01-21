@@ -1201,7 +1201,7 @@ $3による理由は以下の通りです：''$2''",
 'rev-deleted-comment'         => '(要約は除去されています)',
 'rev-deleted-user'            => '（利用者名は除去されています）',
 'rev-deleted-event'           => '（記録は除去されています）',
-'rev-deleted-user-contribs'   => '[利用者名またはIPアドレスは除去されました - その編集は投稿の中から隠されています]',
+'rev-deleted-user-contribs'   => '[利用者名またはIPアドレスは除去されました - その編集は投稿記録で非表示にされています]',
 'rev-deleted-text-permission' => "この版は'''削除されています'''。
 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 削除記録]に詳細情報があるかもしれません。",
 'rev-deleted-text-unhide'     => "この版は'''削除されています'''。
@@ -2427,8 +2427,8 @@ $UNWATCHURL
 'rollbackfailed'    => '巻き戻しに失敗しました',
 'cantrollback'      => '編集を差し戻せません。
 最後の投稿者が、このページの唯一の作者です。',
-'alreadyrolled'     => 'ページ[[:$1]]の[[User:$2|$2]]（[[User talk:$2|トーク]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]）による編集をまきもどせません。
-他の利用者が、すでに編集あるいは巻き戻しました。
+'alreadyrolled'     => 'ページ[[:$1]]の[[User:$2|$2]]（[[User talk:$2|トーク]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]）による編集を巻き戻せません。
+他の利用者が、すでに編集あるいは巻き戻したためです。
 
 このページの最後の編集は[[User:$3|$3]]（[[User talk:$3|トーク]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]）によるものです。',
 'editcomment'       => "編集内容の要約：「''$1''」",
@@ -2465,7 +2465,7 @@ $2による最後の版へ変更されました。',
 'protect-text'                => "ページ「'''$1'''」に対する保護レベルの表示と操作ができます。",
 'protect-locked-blocked'      => "ブロック中は、保護レベルを変更できません。
 ページ'''$1'''の現在の状態は以下の通りです：",
-'protect-locked-dblock'       => "使用中のでデータベースが現在ロックされているため、保護レベルを変更できません。
+'protect-locked-dblock'       => "データベースのロックが有効なため、保護レベルを変更できません。
 ページ'''$1'''の現在の状態は以下の通りです：",
 'protect-locked-access'       => "アカウントに、ページの保護レベルを変更する権限がありません。
 ページ'''$1'''の現在の状態は以下の通りです：",
@@ -2626,7 +2626,7 @@ $1',
 'blockip'                         => '利用者をブロック',
 'blockip-title'                   => '利用者のブロック',
 'blockip-legend'                  => '利用者をブロック',
-'blockiptext'                     => '以下のフォームを使用して、指定した利用者やIPアドレスからの書き込みアクセスブロックすることができます。
+'blockiptext'                     => '以下のフォームを使用して、指定した利用者やIPアドレスからの書き込みアクセスをブロックすることができます。
 このような措置は、荒らしからの防御のためにのみ行われるべきで、また[[{{MediaWiki:Policy-url}}|方針]]に沿ったものであるべきです。
 以下にブロックの理由を具体的に書いてください（例えば、荒らされたページへの言及など）。',
 'ipadressorusername'              => 'IPアドレスまたは利用者名：',
@@ -2665,7 +2665,7 @@ $1',
 'ipb-unblock-addr'                => '$1のブロックを解除',
 'ipb-unblock'                     => '利用者またはIPアドレスのブロックを解除する',
 'ipb-blocklist'                   => '現在有効なブロックを表示',
-'ipb-blocklist-contribs'          => '$1の投稿',
+'ipb-blocklist-contribs'          => '$1の投稿の一覧',
 'unblockip'                       => 'ブロックを解除する',
 'unblockiptext'                   => '以下のフォームで利用者またはIPアドレスの投稿ブロックを解除できます。',
 'ipusubmit'                       => 'この投稿ブロックを解除',
@@ -2741,7 +2741,7 @@ $1のブロックの理由は「$2」です。',
 'proxyblocker'                    => 'プロキシブロック係',
 'proxyblocker-disabled'           => 'この機能は無効になっています。',
 'proxyblockreason'                => '使用中のIPアドレスは公開プロキシであるため投稿ブロックされています。
-使用中ののインターネットサービスプロバイダー、もしくは技術担当者に連絡を取り、これが深刻なセキュリティー問題であることを伝えてください。',
+使用中のインターネットサービスプロバイダー、もしくは所属組織の技術担当者に連絡を取り、これが深刻なセキュリティー問題であることを伝えてください。',
 'proxyblocksuccess'               => '完了。',
 'sorbsreason'                     => '使用中のIPアドレスが、{{SITENAME}}の使用しているDNSBLに公開プロキシとして記載されています。',
 'sorbs_create_account_reason'     => '使用中のIPアドレスが、{{SITENAME}}の使用しているDNSBLに公開プロキシとして記載されています。
@@ -2766,7 +2766,7 @@ hideuser権限を持っていないため、この利用者のブロックを閲
 'locknoconfirm'       => '確認ボックスがチェックされていません。',
 'lockdbsuccesssub'    => 'データベースのロックに成功しました',
 'unlockdbsuccesssub'  => 'データベースのロックを除去しました',
-'lockdbsuccesstext'   => 'データベースはロックされましたら。<br />
+'lockdbsuccesstext'   => 'データベースはロックされました。<br />
 メンテナンスが完了したら、忘れずに[[Special:UnlockDB|ロックを除去]]してください。',
 'unlockdbsuccesstext' => 'データベースのロックは解除されました。',
 'lockfilenotwritable' => 'データベースのロックファイルは書き込み不可です。
@@ -2786,16 +2786,16 @@ hideuser権限を持っていないため、この利用者のブロックを閲
 
 '''注意！'''
 よく閲覧されるページや、他の多くのページからリンクされているページを移動すると予期せぬ結果が起こるかもしれません。ページの移動に伴う影響をよく考えてから踏み切るようにしてください。",
-'movepagetext-noredirectfixer' => "下のフォームを利用すると、ページ名が変更され、その履歴も変更先へ移動します。
+'movepagetext-noredirectfixer' => "下のフォームを利用すると、ページ名が変更され、ページの履歴も変更先へ移動します。
 古いページは変更先への転送ページとなります。
 自動的な修正を選択しない場合は、[[Special:DoubleRedirects|二重リダイレクト]]や[[Special:BrokenRedirects|迷子のリダイレクト]]を確認する必要があります。
-リンクを正しく維持するのは移動した人の責任です。
+つながるべき場所にリンクがつながるよう維持するのは移動した人の責任です。
 
 移動先がすでに存在する場合には、そのページが空またはリダイレクトで、かつ過去の版を持たない場合を除いて移動'''できません'''。
 つまり、間違えてページ名を変更した場合には元に戻せます。また移動によって既存のページを上書きしてしまうことはありません。
 
-'''注意！'''
-よく閲覧されるページや、他の多くのページからリンクされているページを移動すると予期せぬ結果が起こるかもしれません。
+'''警告！'''
+多く閲覧されたりリンクされているページを移動すると、予期せぬ大きな変化が起こるかもしれません。
 ページの移動に伴う影響をよく考えてから移動してください。",
 'movepagetalktext'             => '関連付けられたトークページは、自動的に一緒に移動されます。ただしこれは、以下の場合を除きます。
 * 空でないトークページが新しい名前で存在する場合
@@ -2831,7 +2831,7 @@ hideuser権限を持っていないため、この利用者のブロックを閲
 'movepage-page-unmoved'        => 'ページ$1は$2へ移動できませんでした。',
 'movepage-max-pages'           => '自動的に移動できる{{PLURAL:$1|ページ}}は $1件までで、それ以上は移動されません。',
 'movelogpage'                  => '移動記録',
-'movelogpagetext'              => '以下は全てのページの移動一覧です。',
+'movelogpagetext'              => '以下は全てのページ移動の一覧です。',
 'movesubpage'                  => '{{PLURAL:$1|下位ページ}}',
 'movesubpagetext'              => 'このページには、以下に示す$1下位ページがあります。',
 'movenosubpage'                => 'このページに下位ページはありません。',
@@ -2873,7 +2873,7 @@ hideuser権限を持っていないため、この利用者のブロックを閲
 ページを書き出すには、下の入力ボックスに一行に一つずつ書き出したいページの名前を記入してください。また、編集履歴とともにすべての過去版を含めて書き出すのか、最新版のみを書き出すのか選択してください。
 
 後者の場合ではリンクの形で使うこともできます。例えば、[[{{#Special:Export}}/{{MediaWiki:Mainpage}}]]はページ「[[{{MediaWiki:Mainpage}}]]」が対象になります。',
-'exportcuronly'     => 'すべての履歴はなしで、最新版のみを含める',
+'exportcuronly'     => '完全な履歴は含めず、最新版のみを含める',
 'exportnohistory'   => "----
 '''注意：'''負荷上の理由により、このフォームによるページの完全な履歴の書き出しは無効化されています。",
 'exportlistauthors' => '各ページの投稿者の完全な一覧を含める',
@@ -3000,10 +3000,10 @@ hideuser権限を持っていないため、この利用者のブロックを閲
 'tooltip-n-mainpage-description'  => 'メインページに移動する',
 'tooltip-n-portal'                => 'このプロジェクトについて、できること、情報を入手する場所',
 'tooltip-n-currentevents'         => '最近の出来事について予備知識を得る',
-'tooltip-n-recentchanges'         => 'ウィキにおける最近の更新の一覧',
+'tooltip-n-recentchanges'         => 'このウィキにおける最近の更新の一覧',
 'tooltip-n-randompage'            => '無作為に抽出されたページの読み込み',
 'tooltip-n-help'                  => '情報を得る場所',
-'tooltip-t-whatlinkshere'         => 'ここにリンクしている全ウィキのページの一覧',
+'tooltip-t-whatlinkshere'         => 'ここにリンクしている全ウィキページの一覧',
 'tooltip-t-recentchangeslinked'   => 'このページからリンクしているページの最近の更新',
 'tooltip-feed-rss'                => 'このページのRSSフィード',
 'tooltip-feed-atom'               => 'このページのAtomフィード',
@@ -3012,7 +3012,7 @@ hideuser権限を持っていないため、この利用者のブロックを閲
 'tooltip-t-upload'                => 'ファイルをアップロード',
 'tooltip-t-specialpages'          => '特別ページの一覧',
 'tooltip-t-print'                 => 'このページの印刷用ページ',
-'tooltip-t-permalink'             => 'ページのこの版への固定リンク',
+'tooltip-t-permalink'             => 'このページのこの版への固定リンク',
 'tooltip-ca-nstab-main'           => '本文を表示',
 'tooltip-ca-nstab-user'           => '利用者ページを表示',
 'tooltip-ca-nstab-media'          => 'メディアページを表示',
@@ -3029,7 +3029,7 @@ hideuser権限を持っていないため、この利用者のブロックを閲
 'tooltip-diff'                    => '文章に加えた変更を表示します',
 'tooltip-compareselectedversions' => '選択された二つの版の差分を表示します。',
 'tooltip-watch'                   => 'このページをウォッチリストへ追加します',
-'tooltip-recreate'                => '削除されていても、ページを再作成',
+'tooltip-recreate'                => '削除されていても、ページを再作成する',
 'tooltip-upload'                  => 'アップロードを開始',
 'tooltip-rollback'                => '「巻き戻し」は、このページの最後の編集者によるこのページへの編集を1クリックで差し戻します',
 'tooltip-undo'                    => '「取り消し」はこの編集を差し戻し、編集画面をプレビューをつけて開きます。要約欄に取り消しの理由を追加することができます。',
@@ -3197,7 +3197,7 @@ $1',
 
 箇条書き項目（*で始まる行）のみが考慮されます。
 各行最初のリンクは、好ましくないファイルへのリンクとしてください。
-同じ行の以降のリンクは例外とみなされ、つまりそのファイルの内部挿入が許可されます。',
+同じ行でそれ以降にあるリンクは例外、つまりインライン挿入されてもよいページとみなされます。',
 
 /*
 Short names for language variants used for language conversion links.
@@ -3689,7 +3689,7 @@ Variants for Chinese language
 
 メールサーバーからの返答：$1',
 'confirmemail_invalid'      => '確認用コードが正しくありません。
-このコードの有効期限が切れています。',
+このコードの有効期限が切れている可能性があります。',
 'confirmemail_needlogin'    => 'メールアドレスを確認するために$1が必要です。',
 'confirmemail_success'      => 'メールアドレスは確認されました。
 [[Special:UserLogin|ログイン]]してウィキを使用できます。',
@@ -3757,7 +3757,7 @@ $5
 # action=purge
 'confirm_purge_button' => 'はい',
 'confirm-purge-top'    => 'ページのキャッシュを破棄します。よろしいですか？',
-'confirm-purge-bottom' => 'ページのパージは、キャッシュを破棄し、強制的に最新の版を表示します。',
+'confirm-purge-bottom' => 'ページをパージすると、キャッシュが破棄され、強制的に最新の版が表示されます。',
 
 # action=watch/unwatch
 'confirm-watch-button'   => 'OK',
@@ -3789,7 +3789,7 @@ $5
 
 # Auto-summaries
 'autosumm-blank'   => 'ページの白紙化',
-'autosumm-replace' => 'ページの置換「$1」',
+'autosumm-replace' => '内容を「$1」で置換',
 'autoredircomment' => '[[$1]]へのリダイレクト',
 'autosumm-new'     => 'ページの作成：「$1」',
 
@@ -3812,7 +3812,7 @@ $5
 'lag-warn-high'   => 'データベースサーバー遅延のため、この一覧には、$1秒より前の変更が表示されていない可能性があります。',
 
 # Watchlist editor
-'watchlistedit-numitems'       => 'ウォッチリストには、$1のページ名が含まれています（トークページは除く）。',
+'watchlistedit-numitems'       => 'ウォッチリストには、$1件のページ名が含まれています（トークページは除く）。',
 'watchlistedit-noitems'        => 'ウォッチリストにはページ名が1つも含まれていません。',
 'watchlistedit-normal-title'   => 'ウォッチリストの編集',
 'watchlistedit-normal-legend'  => 'ウォッチリストからページ名を除去',
@@ -3831,7 +3831,7 @@ $5
 'watchlistedit-raw-submit'     => 'ウォッチリストを更新',
 'watchlistedit-raw-done'       => 'ウォッチリストを更新しました。',
 'watchlistedit-raw-added'      => '$1のページ名が追加されました：',
-'watchlistedit-raw-removed'    => '$1のページ名が除去されました：',
+'watchlistedit-raw-removed'    => '$1件のページ名が除去されました：',
 
 # Watchlist editing tools
 'watchlisttools-view' => '関連する変更の表示',
@@ -3936,7 +3936,8 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'filepath'         => 'ファイルパス',
 'filepath-page'    => 'ファイル：',
 'filepath-submit'  => '取得',
-'filepath-summary' => 'この特別ページは、ファイルへの完全なパスを返します。画像は最大解像度で表示され、他のファイルタイプは関連付けされたプログラムが直接起動します。',
+'filepath-summary' => 'この特別ページは、ファイルへの完全なパスを返します。
+画像は最大解像度で表示され、他のファイルタイプは関連付けされたプログラムが直接起動します。',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => '重複ファイルの検索',
@@ -3946,7 +3947,7 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'fileduplicatesearch-submit'    => '検索',
 'fileduplicatesearch-info'      => '$1×$2ピクセル<br />ファイルサイズ：$3<br />MIMEタイプ：$4',
 'fileduplicatesearch-result-1'  => 'ファイル「$1」と重複するファイルはありません。',
-'fileduplicatesearch-result-n'  => 'ファイル「$1」は$2ファイルと重複しています。',
+'fileduplicatesearch-result-n'  => 'ファイル「$1」は$2件のファイルと重複しています。',
 'fileduplicatesearch-noresults' => '「$1」という名前のファイルがみつかりません。',
 
 # Special:SpecialPages
@@ -3965,7 +3966,7 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'specialpages-group-pages'       => 'ページの一覧',
 'specialpages-group-pagetools'   => 'ページツール',
 'specialpages-group-wiki'        => 'ウィキに関する情報とツール',
-'specialpages-group-redirects'   => '転送されている特別ページ',
+'specialpages-group-redirects'   => '転送される特別ページ',
 'specialpages-group-spam'        => 'スパム対策ツール',
 
 # Special:BlankPage
@@ -4010,12 +4011,12 @@ MediaWikiは、有用であることを期待して配布されていますが�
 # Database error messages
 'dberr-header'      => '問題発生中です',
 'dberr-problems'    => '申し訳ありません！
-サイトに技術的な問題が発生しています。',
+このウェブサイトに技術的な問題が発生しています。',
 'dberr-again'       => '数分間待った後、もう一度読み込んでください。',
 'dberr-info'        => '（データベースサーバー：$1に接続できませんでした。）',
 'dberr-usegoogle'   => '元に戻るまで、Googleを利用して検索することができます。',
 'dberr-outofdate'   => 'それらが収集した内容は古い可能性があることに注意してください。',
-'dberr-cachederror' => 'これは要求されたページのキャッシュされた複製で、古い可能性があります。',
+'dberr-cachederror' => 'これは要求されたページをキャッシュした複製であり、古くなっている可能性があります。',
 
 # HTML forms
 'htmlform-invalid-input'       => '入力になんらかの問題があります',
