@@ -1583,7 +1583,7 @@ Si'l problema persiste, contauta con un [[Special:ListUsers/sysop|alministrador]
 'backend-fail-connect'       => 'Non se pudo coneutar col motor de ficheros "$1".',
 'backend-fail-internal'      => 'Hebo un fallu desconocíu nel motor de ficheros "$1".',
 'backend-fail-contenttype'   => 'Non se pudo determinar la triba de conteníu de ficheru a guardar en "$1".',
-'backend-fail-batchsize'     => 'El motor dio un llote de $1 {{PLURAL:$1|operación|operaciones}} en ficheros; el llímite ye de $2.',
+'backend-fail-batchsize'     => 'El motor dio un llote de $1 {{PLURAL:$1|operación|operaciones}} en ficheros; el llímite ye de $2 {{PLURAL:$2|operación|operaciones}}.',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Nun se pudo desbloquiar "$1"; nun ta bloquiáu.',

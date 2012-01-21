@@ -1824,18 +1824,19 @@ $1',
 'upload-warning-subj'         => 'Upozorenje pri slanju',
 'upload-warning-msg'          => 'Došlo je do greške pri slanju iz [$2]. Vratite se na [[Special:Upload/stash/$1|stranicu za slanje datoteka]] da biste rešili problem.',
 
-'upload-proto-error'        => 'Neispravan protokol',
-'upload-proto-error-text'   => 'Slanje sa spoljne lokacije zahteva adresu koja počinje sa <code>http://</code> ili <code>ftp://</code>.',
-'upload-file-error'         => 'Unutrašnja greška',
-'upload-file-error-text'    => 'Došlo je do unutrašnje greške pri otvaranju privremene datoteke na serveru.
+'upload-proto-error'                => 'Neispravan protokol',
+'upload-proto-error-text'           => 'Slanje sa spoljne lokacije zahteva adresu koja počinje sa <code>http://</code> ili <code>ftp://</code>.',
+'upload-file-error'                 => 'Unutrašnja greška',
+'upload-file-error-text'            => 'Došlo je do unutrašnje greške pri otvaranju privremene datoteke na serveru.
 Kontaktirajte [[Special:ListUsers/sysop|administratora]].',
-'upload-misc-error'         => 'Nepoznata greška pri slanju datoteke',
-'upload-misc-error-text'    => 'Nepoznata greška pri slanju datoteke.
+'upload-misc-error'                 => 'Nepoznata greška pri slanju datoteke',
+'upload-misc-error-text'            => 'Nepoznata greška pri slanju datoteke.
 Proverite da li je adresa ispravna i pokušajte ponovo.
 Ako se problem ne reši, kontaktirajte [[Special:ListUsers/sysop|administratora]].',
-'upload-too-many-redirects' => 'Adresa sadrži previše preusmerenja',
-'upload-unknown-size'       => 'Nepoznata veličina',
-'upload-http-error'         => 'Došlo je do HTTP greške: $1',
+'upload-too-many-redirects'         => 'Adresa sadrži previše preusmerenja',
+'upload-unknown-size'               => 'Nepoznata veličina',
+'upload-http-error'                 => 'Došlo je do HTTP greške: $1',
+'upload-copy-upload-invalid-domain' => 'Primerci otpremanja nisu dostupni na ovom domenu.',
 
 # File backend
 'backend-fail-stream'        => 'Ne mogu da emitujem datoteku $1.',
@@ -1859,7 +1860,7 @@ Ako se problem ne reši, kontaktirajte [[Special:ListUsers/sysop|administratora]
 'backend-fail-connect'       => 'Ne mogu da se povežem s pozadinom datoteke „$1“.',
 'backend-fail-internal'      => 'Došlo je do nepoznate greške u pozadini datoteke „$1“.',
 'backend-fail-contenttype'   => 'Ne mogu da utvrdim kakav sadržaj ima datoteka koju treba da smestim u „$1“.',
-'backend-fail-batchsize'     => 'Podloga je dobila blokadu od $1 {{PLURAL:$1|operacije|operacije|operacija}}; ograničenje je $2.',
+'backend-fail-batchsize'     => 'Podloga je dobila blokadu od $1 {{PLURAL:$1|operacije|operacije|operacija}}; ograničenje je $2 {{PLURAL:$2|operacija|operacije|operacija}}.',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Ne mogu da otključam „$1“ jer nije zaključan.',

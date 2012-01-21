@@ -409,7 +409,7 @@ $1',
 'nstab-project'   => 'প্ৰকল্প পৃষ্ঠা',
 'nstab-image'     => 'চিত্ৰ',
 'nstab-mediawiki' => 'বাৰ্তা',
-'nstab-template'  => 'Template',
+'nstab-template'  => 'সাঁচ',
 'nstab-help'      => 'সাহায্য পৃষ্ঠা',
 'nstab-category'  => 'শ্ৰেণী',
 
@@ -1230,7 +1230,7 @@ $1",
 'yourlanguage'                  => 'ভাষা:',
 'yourvariant'                   => 'বিষয়-বস্তুৰ ভাষা বিকল্প',
 'prefs-help-variant'            => 'এই ৱিকিৰ সমল পৃষ্ঠাসমূহ প্ৰদৰ্শন কৰিবলে আপোনাৰ পছন্দৰ অপৰ অথবা বৰ্ণবিন্যাস।',
-'yournick'                      => 'আপোনাৰ স্বাক্ষ্যৰ:',
+'yournick'                      => 'নতুন স্বাক্ষ্যৰ:',
 'prefs-help-signature'          => 'কথা-বতৰা পৃষ্ঠাত মন্তব্যসমূহৰ তলত "<nowiki>~~~~</nowiki>" লিখিলে ই স্বয়ংক্ৰিয়ভাৱে আপোনাৰ নাম আৰু সময় সংযুক্ত কৰিব ।',
 'badsig'                        => 'অনুপযোগী স্বাক্ষ্যৰ, HTML টেগ পৰীক্ষা কৰি লওক।',
 'badsiglength'                  => 'আপোনাৰ স্বাক্ষৰ অত্যাধিক দীঘলীয়া ।
@@ -3661,5 +3661,11 @@ You can also [[Special:EditWatchlist/raw|edit the raw list]].',
 'feedback-close'     => 'কৰা হ’ল',
 'feedback-bugcheck'  => 'অতি উত্তম! কেৱল পৰীক্ষা কৰক যে ই ইতিমধ্যে [$1 জ্ঞাত বাগসমূহ]ৰ এটা নহয়।',
 'feedback-bugnew'    => 'মই পৰীক্ষা কৰিলো। এটা নতুন বাগ সংবাদন কৰক',
+
+# API errors
+'api-error-empty-file'        => 'আপুনি দাখিল কৰা ফাইলখন খালী ।',
+'api-error-file-too-large'    => 'আপুনি দাখিল কৰা ফাইলখন বৰ ডাঙৰ ।',
+'api-error-filename-tooshort' => 'ফাইলৰ নামটো অতি চুটি।',
+'api-error-filetype-banned'   => 'এই ধৰণৰ ফাইল নিষেধ ।',
 
 );

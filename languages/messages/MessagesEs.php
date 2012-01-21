@@ -11,6 +11,7 @@
  * @author Alhen
  * @author Alpertron
  * @author Alvaro qc
+ * @author Armando-Martin
  * @author Ascánder
  * @author Baiji
  * @author Bea.miau
@@ -1830,6 +1831,9 @@ $1',
 'backend-fail-closetemp'     => 'No se pudo cerrar el archivo temporal.',
 'backend-fail-read'          => 'No se pudo leer el archivo «$1».',
 'backend-fail-create'        => 'No se pudo crear el archivo «$1».',
+'backend-fail-connect'       => 'No se pudo conectar al servidor de archivo " $1 ".',
+'backend-fail-internal'      => 'Se ha producido un error desconocido en el servidor de archivos " $1 ".',
+'backend-fail-contenttype'   => 'No se pudo determinar el tipo de contenido del archivo a guardar en " $1 ".',
 
 # Lock manager
 'lockmanager-notlocked'        => 'No se pudo desbloquear "$1": no se encontraba bloqueado.',
@@ -2892,6 +2896,9 @@ No hay un directorio temporal.',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|revisión|revisiones}}',
 'import-logentry-interwiki'        => 'transwikificada $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revisión|revisiones}} desde $2',
+
+# JavaScriptTest
+'javascripttest-disabled' => 'Esta función está deshabilitada.',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Tu página de {{gender:|usuario|usuaria}}',
