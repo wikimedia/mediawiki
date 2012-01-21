@@ -91,6 +91,7 @@ abstract class Action {
 	 * passed through the "action" request parameter. Actions disabled in
 	 * $wgDisabledActions will be replaced by "nosuchaction".
 	 *
+	 * @since 1.19
 	 * @param $context IContextSource
 	 * @return string: action name
 	 */
