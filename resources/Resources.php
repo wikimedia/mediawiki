@@ -628,7 +628,10 @@ return array(
 	),
 	'mediawiki.action.watch.ajax' => array(
 		'scripts' => 'resources/mediawiki.action/mediawiki.action.watch.ajax.js',
-		'dependencies' => 'mediawiki.api.watch',
+		'dependencies' => array(
+			'mediawiki.api.watch',
+			'mediawiki.util',
+		),
 		'messages' => array(
 			'watch',
 			'unwatch',
@@ -735,11 +738,20 @@ return array(
 	),
 	'mediawiki.special.block' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.block.js',
+		'dependencies' => array(
+			'mediawiki.util',
+		),
 	),
 	'mediawiki.special.changeemail' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.changeemail.js',
 		'styles' => 'resources/mediawiki.special/mediawiki.special.changeemail.css',
-		'messages' => array( 'email-address-validity-valid', 'email-address-validity-invalid' ),
+		'dependencies' => array(
+			'mediawiki.util',
+		),
+		'messages' => array(
+			'email-address-validity-valid',
+			'email-address-validity-invalid',
+		),
 	),
 	'mediawiki.special.changeslist' => array(
 		'styles' => 'resources/mediawiki.special/mediawiki.special.changeslist.css',
@@ -806,7 +818,10 @@ return array(
 		'scripts' => 'common/ajax.js',
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
-		'dependencies' => array( 'mediawiki.util', 'mediawiki.legacy.wikibits' ),
+		'dependencies' => array(
+			'mediawiki.util',
+			'mediawiki.legacy.wikibits',
+		),
 	),
 	'mediawiki.legacy.commonPrint' => array(
 		'styles' => array( 'common/commonPrint.css' => array( 'media' => 'print' ) ),
@@ -862,12 +877,18 @@ return array(
 		'scripts' => 'common/upload.js',
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
-		'dependencies' => 'mediawiki.legacy.wikibits',
+		'dependencies' => array(
+			'mediawiki.legacy.wikibits',
+			'mediawiki.util',
+		),
 	),
 	'mediawiki.legacy.wikibits' => array(
 		'scripts' => 'common/wikibits.js',
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
+		'dependencies' => array(
+			'mediawiki.util',
+		),
 		'position' => 'top',
 	),
 	'mediawiki.legacy.wikiprintable' => array(
