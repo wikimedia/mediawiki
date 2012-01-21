@@ -87,6 +87,52 @@ abstract class Action {
 	}
 
 	/**
+	 * Get the action that will be executed, not necessarily the one passed
+	 * passed through the "action" request parameter. Actions disabled in
+	 * $wgDisabledActions will be replaced by "nosuchaction".
+	 *
+	 * @param $context IContextSource
+	 * @return string: action name
+	 */
+	public final static function getActionName( IContextSource $context ) {
+		global $wgDisabledActions;
+
+		$request = $context->getRequest();
+		$actionName = $request->getVal( 'action', 'view' );
+
+		// Check for disabled actions
+		if ( in_array( $actionName, $wgDisabledActions ) ) {
+			$actionName = 'nosuchaction';
+		}
+
+		// Workaround for bug #20966: inability of IE to provide an action dependent
+		// on which submit button is clicked.
+		if ( $actionName === 'historysubmit' ) {
+			if ( $request->getBool( 'revisiondelete' ) ) {
+				$actionName = 'revisiondelete';
+			} else {
+				$actionName = 'view';
+			}
+		} elseif ( $actionName == 'editredlink' ) {
+			$actionName = 'edit';
+		}
+
+		// Trying to get a WikiPage for NS_SPECIAL etc. will result
+		// in WikiPage::factory throwing "Invalid or virtual namespace -1 given."
+		// For SpecialPages et al, default to action=view.
+		if ( !$context->canUseWikiPage() ) {
+			return 'view';
+		}
+		
+		$action = Action::factory( $actionName, $context->getWikiPage() );
+		if ( $action instanceof Action ) {
+			return $action->getName();
+		}
+
+		return 'nosuchaction';
+	}
+
+	/**
 	 * Check if a given action is recognised, even if it's disabled
 	 *
 	 * @param $name String: name of an action
