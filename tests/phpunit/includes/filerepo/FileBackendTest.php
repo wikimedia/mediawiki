@@ -5,18 +5,31 @@
  */
 class FileBackendTest extends MediaWikiTestCase {
 	private $backend, $multiBackend;
-	private $filesToPrune, $pathsToPrune;
+	private $filesToPrune;
 
 	function setUp() {
+		global $wgFileBackends;
 		parent::setUp();
 		$tmpDir = wfTempDir() . '/file-backend-test-' . time() . '-' . mt_rand();
-		$this->singleBackend = new FSFileBackend( array(
-			'name'        => 'localtesting',
-			'lockManager' => 'fsLockManager',
-			'containerPaths' => array(
-				'cont1' => "$tmpDir/localtesting/cont1",
-				'cont2' => "$tmpDir/localtesting/cont2" )
-		) );
+		if ( $this->getCliArg( 'use-filebackend=' ) ) {
+			$name = $this->getCliArg( 'use-filebackend=' );
+			$useConfig = array();
+			foreach ( $wgFileBackends as $conf ) {
+				if ( $conf['name'] == $name ) {
+					$useConfig = $conf;
+				}
+			}
+			$useConfig['name'] = 'localtesting'; // swap name
+			$this->singleBackend = new $conf['class']( $useConfig );
+		} else {
+			$this->singleBackend = new FSFileBackend( array(
+				'name'        => 'localtesting',
+				'lockManager' => 'fsLockManager',
+				'containerPaths' => array(
+					'unittest-cont1' => "$tmpDir/localtesting/unittest-cont1",
+					'unittest-cont2' => "$tmpDir/localtesting/unittest-cont2" )
+			) );
+		}
 		$this->multiBackend = new FileBackendMultiWrite( array(
 			'name'        => 'localtesting',
 			'lockManager' => 'fsLockManager',
@@ -26,8 +39,8 @@ class FileBackendTest extends MediaWikiTestCase {
 					'class'         => 'FSFileBackend',
 					'lockManager'   => 'nullLockManager',
 					'containerPaths' => array(
-						'cont1' => "$tmpDir/localtestingmulti1/cont1",
-						'cont2' => "$tmpDir/localtestingmulti1/cont2" ),
+						'unittest-cont1' => "$tmpDir/localtestingmulti1/cont1",
+						'unittest-cont2' => "$tmpDir/localtestingmulti1/unittest-cont2" ),
 					'isMultiMaster' => false
 				),
 				array(
@@ -35,13 +48,13 @@ class FileBackendTest extends MediaWikiTestCase {
 					'class'         => 'FSFileBackend',
 					'lockManager'   => 'nullLockManager',
 					'containerPaths' => array(
-						'cont1' => "$tmpDir/localtestingmulti2/cont1",
-						'cont2' => "$tmpDir/localtestingmulti2/cont2" ),
+						'unittest-cont1' => "$tmpDir/localtestingmulti2/cont1",
+						'unittest-cont2' => "$tmpDir/localtestingmulti2/unittest-cont2" ),
 					'isMultiMaster' => true
 				)
 			)
 		) );
-		$this->filesToPrune = $this->pathsToPrune = array();
+		$this->filesToPrune = array();
 	}
 
 	private function baseStorePath() {
@@ -57,13 +70,14 @@ class FileBackendTest extends MediaWikiTestCase {
 	 */
 	public function testStore( $op, $source, $dest ) {
 		$this->filesToPrune[] = $source;
-		$this->pathsToPrune[] = $dest;
 
 		$this->backend = $this->singleBackend;
+		$this->tearDownFiles();
 		$this->doTestStore( $op, $source, $dest );
 		$this->tearDownFiles();
 
 		$this->backend = $this->multiBackend;
+		$this->tearDownFiles();
 		$this->doTestStore( $op, $source, $dest );
 		$this->tearDownFiles();
 	}
@@ -101,7 +115,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$cases = array();
 
 		$tmpName = TempFSFile::factory( "unittests_", 'txt' )->getPath();
-		$toPath = $this->baseStorePath() . '/cont1/fun/obj1.txt';
+		$toPath = $this->baseStorePath() . '/unittest-cont1/fun/obj1.txt';
 		$op = array( 'op' => 'store', 'src' => $tmpName, 'dst' => $toPath );
 		$cases[] = array(
 			$op, // operation
@@ -116,6 +130,8 @@ class FileBackendTest extends MediaWikiTestCase {
 			$toPath, // dest
 		);
 
+		// @TODO: test overwriteSame
+
 		return $cases;
 	}
 
@@ -123,14 +139,13 @@ class FileBackendTest extends MediaWikiTestCase {
 	 * @dataProvider provider_testCopy
 	 */
 	public function testCopy( $op, $source, $dest ) {
-		$this->pathsToPrune[] = $source;
-		$this->pathsToPrune[] = $dest;
-
 		$this->backend = $this->singleBackend;
+		$this->tearDownFiles();
 		$this->doTestCopy( $op, $source, $dest );
 		$this->tearDownFiles();
 
 		$this->backend = $this->multiBackend;
+		$this->tearDownFiles();
 		$this->doTestCopy( $op, $source, $dest );
 		$this->tearDownFiles();
 	}
@@ -172,8 +187,8 @@ class FileBackendTest extends MediaWikiTestCase {
 	public function provider_testCopy() {
 		$cases = array();
 
-		$source = $this->baseStorePath() . '/cont1/file.txt';
-		$dest = $this->baseStorePath() . '/cont2/fileMoved.txt';
+		$source = $this->baseStorePath() . '/unittest-cont1/file.txt';
+		$dest = $this->baseStorePath() . '/unittest-cont2/fileMoved.txt';
 
 		$op = array( 'op' => 'copy', 'src' => $source, 'dst' => $dest );
 		$cases[] = array(
@@ -196,19 +211,18 @@ class FileBackendTest extends MediaWikiTestCase {
 	 * @dataProvider provider_testMove
 	 */
 	public function testMove( $op, $source, $dest ) {
-		$this->pathsToPrune[] = $source;
-		$this->pathsToPrune[] = $dest;
-
 		$this->backend = $this->singleBackend;
+		$this->tearDownFiles();
 		$this->doTestMove( $op, $source, $dest );
 		$this->tearDownFiles();
 
 		$this->backend = $this->multiBackend;
+		$this->tearDownFiles();
 		$this->doTestMove( $op, $source, $dest );
 		$this->tearDownFiles();
 	}
 
-	public function doTestMove( $op, $source, $dest ) {
+	private function doTestMove( $op, $source, $dest ) {
 		$backendName = $this->backendClass();
 
 		$this->backend->prepare( array( 'dir' => dirname( $source ) ) );
@@ -247,8 +261,8 @@ class FileBackendTest extends MediaWikiTestCase {
 	public function provider_testMove() {
 		$cases = array();
 
-		$source = $this->baseStorePath() . '/cont1/file.txt';
-		$dest = $this->baseStorePath() . '/cont2/fileMoved.txt';
+		$source = $this->baseStorePath() . '/unittest-cont1/file.txt';
+		$dest = $this->baseStorePath() . '/unittest-cont2/fileMoved.txt';
 
 		$op = array( 'op' => 'move', 'src' => $source, 'dst' => $dest );
 		$cases[] = array(
@@ -271,18 +285,18 @@ class FileBackendTest extends MediaWikiTestCase {
 	 * @dataProvider provider_testDelete
 	 */
 	public function testDelete( $op, $source, $withSource, $okStatus ) {
-		$this->pathsToPrune[] = $source;
-
 		$this->backend = $this->singleBackend;
+		$this->tearDownFiles();
 		$this->doTestDelete( $op, $source, $withSource, $okStatus );
 		$this->tearDownFiles();
 
 		$this->backend = $this->multiBackend;
+		$this->tearDownFiles();
 		$this->doTestDelete( $op, $source, $withSource, $okStatus );
 		$this->tearDownFiles();
 	}
 
-	public function doTestDelete( $op, $source, $withSource, $okStatus ) {
+	private function doTestDelete( $op, $source, $withSource, $okStatus ) {
 		$backendName = $this->backendClass();
 
 		$this->backend->prepare( array( 'dir' => dirname( $source ) ) );
@@ -322,7 +336,7 @@ class FileBackendTest extends MediaWikiTestCase {
 	public function provider_testDelete() {
 		$cases = array();
 
-		$source = $this->baseStorePath() . '/cont1/myfacefile.txt';
+		$source = $this->baseStorePath() . '/unittest-cont1/myfacefile.txt';
 
 		$op = array( 'op' => 'delete', 'src' => $source );
 		$cases[] = array(
@@ -354,18 +368,18 @@ class FileBackendTest extends MediaWikiTestCase {
 	 * @dataProvider provider_testCreate
 	 */
 	public function testCreate( $op, $dest, $alreadyExists, $okStatus, $newSize ) {
-		$this->pathsToPrune[] = $dest;
-
 		$this->backend = $this->singleBackend;
+		$this->tearDownFiles();
 		$this->doTestCreate( $op, $dest, $alreadyExists, $okStatus, $newSize );
 		$this->tearDownFiles();
 
 		$this->backend = $this->multiBackend;
+		$this->tearDownFiles();
 		$this->doTestCreate( $op, $dest, $alreadyExists, $okStatus, $newSize );
 		$this->tearDownFiles();
 	}
 
-	public function doTestCreate( $op, $dest, $alreadyExists, $okStatus, $newSize ) {
+	private function doTestCreate( $op, $dest, $alreadyExists, $okStatus, $newSize ) {
 		$backendName = $this->backendClass();
 
 		$this->backend->prepare( array( 'dir' => dirname( $dest ) ) );
@@ -418,7 +432,7 @@ class FileBackendTest extends MediaWikiTestCase {
 	public function provider_testCreate() {
 		$cases = array();
 
-		$source = $this->baseStorePath() . '/cont2/myspacefile.txt';
+		$source = $this->baseStorePath() . '/unittest-cont2/myspacefile.txt';
 
 		$dummyText = 'hey hey';
 		$op = array( 'op' => 'create', 'content' => $dummyText, 'dst' => $source );
@@ -454,14 +468,15 @@ class FileBackendTest extends MediaWikiTestCase {
 	 * @dataProvider provider_testConcatenate
 	 */
 	public function testConcatenate( $op, $srcs, $srcsContent, $alreadyExists, $okStatus ) {
-		$this->pathsToPrune = array_merge( $this->pathsToPrune, $srcs );
 		$this->filesToPrune[] = $op['dst'];
 
 		$this->backend = $this->singleBackend;
+		$this->tearDownFiles();
 		$this->doTestConcatenate( $op, $srcs, $srcsContent, $alreadyExists, $okStatus );
 		$this->tearDownFiles();
 
 		$this->backend = $this->multiBackend;
+		$this->tearDownFiles();
 		$this->doTestConcatenate( $op, $srcs, $srcsContent, $alreadyExists, $okStatus );
 		$this->tearDownFiles();
 	}
@@ -535,16 +550,16 @@ class FileBackendTest extends MediaWikiTestCase {
 		$rand = mt_rand( 0, 2000000000 ) . time();
 		$dest = wfTempDir() . "/randomfile!$rand.txt";
 		$srcs = array(
-			$this->baseStorePath() . '/cont1/file1.txt',
-			$this->baseStorePath() . '/cont1/file2.txt',
-			$this->baseStorePath() . '/cont1/file3.txt',
-			$this->baseStorePath() . '/cont1/file4.txt',
-			$this->baseStorePath() . '/cont1/file5.txt',
-			$this->baseStorePath() . '/cont1/file6.txt',
-			$this->baseStorePath() . '/cont1/file7.txt',
-			$this->baseStorePath() . '/cont1/file8.txt',
-			$this->baseStorePath() . '/cont1/file9.txt',
-			$this->baseStorePath() . '/cont1/file10.txt'
+			$this->baseStorePath() . '/unittest-cont1/file1.txt',
+			$this->baseStorePath() . '/unittest-cont1/file2.txt',
+			$this->baseStorePath() . '/unittest-cont1/file3.txt',
+			$this->baseStorePath() . '/unittest-cont1/file4.txt',
+			$this->baseStorePath() . '/unittest-cont1/file5.txt',
+			$this->baseStorePath() . '/unittest-cont1/file6.txt',
+			$this->baseStorePath() . '/unittest-cont1/file7.txt',
+			$this->baseStorePath() . '/unittest-cont1/file8.txt',
+			$this->baseStorePath() . '/unittest-cont1/file9.txt',
+			$this->baseStorePath() . '/unittest-cont1/file10.txt'
 		);
 		$content = array(
 			'egfage',
@@ -583,13 +598,13 @@ class FileBackendTest extends MediaWikiTestCase {
 	 * @dataProvider provider_testGetFileContents
 	 */
 	public function testGetFileContents( $src, $content ) {
-		$this->pathsToPrune[] = $src;
-
 		$this->backend = $this->singleBackend;
+		$this->tearDownFiles();
 		$this->doTestGetFileContents( $src, $content );
 		$this->tearDownFiles();
 
 		$this->backend = $this->multiBackend;
+		$this->tearDownFiles();
 		$this->doTestGetFileContents( $src, $content );
 		$this->tearDownFiles();
 	}
@@ -604,8 +619,10 @@ class FileBackendTest extends MediaWikiTestCase {
 
 		$status = $this->backend->doOperation(
 			array( 'op' => 'create', 'content' => $content, 'dst' => $source ) );
-		$this->assertEquals( true, $status->isOK(),
+		$this->assertEquals( array(), $status->errors,
 			"Creation of file at $source succeeded ($backendName)." );
+		$this->assertEquals( true, $status->isOK(),
+			"Creation of file at $source succeeded with OK status ($backendName)." );
 
 		$newContents = $this->backend->getFileContents( array( 'src' => $source ) );
 		$this->assertNotEquals( false, $newContents,
@@ -619,8 +636,8 @@ class FileBackendTest extends MediaWikiTestCase {
 		$cases = array();
 
 		$base = $this->baseStorePath();
-		$cases[] = array( "$base/cont1/b/z/some_file.txt", "some file contents" );
-		$cases[] = array( "$base/cont1/b/some-other_file.txt", "more file contents" );
+		$cases[] = array( "$base/unittest-cont1/b/z/some_file.txt", "some file contents" );
+		$cases[] = array( "$base/unittest-cont1/b/some-other_file.txt", "more file contents" );
 
 		return $cases;
 	}
@@ -629,13 +646,13 @@ class FileBackendTest extends MediaWikiTestCase {
 	 * @dataProvider provider_testGetLocalCopy
 	 */
 	public function testGetLocalCopy( $src, $content ) {
-		$this->pathsToPrune[] = $src;
-
 		$this->backend = $this->singleBackend;
+		$this->tearDownFiles();
 		$this->doTestGetLocalCopy( $src, $content );
 		$this->tearDownFiles();
 
 		$this->backend = $this->multiBackend;
+		$this->tearDownFiles();
 		$this->doTestGetLocalCopy( $src, $content );
 		$this->tearDownFiles();
 	}
@@ -662,8 +679,8 @@ class FileBackendTest extends MediaWikiTestCase {
 		$cases = array();
 
 		$base = $this->baseStorePath();
-		$cases[] = array( "$base/cont1/a/z/some_file.txt", "some file contents" );
-		$cases[] = array( "$base/cont1/a/some-other_file.txt", "more file contents" );
+		$cases[] = array( "$base/unittest-cont1/a/z/some_file.txt", "some file contents" );
+		$cases[] = array( "$base/unittest-cont1/a/some-other_file.txt", "more file contents" );
 
 		return $cases;
 	}
@@ -672,18 +689,18 @@ class FileBackendTest extends MediaWikiTestCase {
 	 * @dataProvider provider_testGetLocalReference
 	 */
 	public function testGetLocalReference( $src, $content ) {
-		$this->pathsToPrune[] = $src;
-
 		$this->backend = $this->singleBackend;
+		$this->tearDownFiles();
 		$this->doTestGetLocalReference( $src, $content );
 		$this->tearDownFiles();
 
 		$this->backend = $this->multiBackend;
+		$this->tearDownFiles();
 		$this->doTestGetLocalReference( $src, $content );
 		$this->tearDownFiles();
 	}
 
-	public function doTestGetLocalReference( $source, $content ) {
+	private function doTestGetLocalReference( $source, $content ) {
 		$backendName = $this->backendClass();
 
 		$this->backend->prepare( array( 'dir' => dirname( $source ) ) );
@@ -705,8 +722,8 @@ class FileBackendTest extends MediaWikiTestCase {
 		$cases = array();
 
 		$base = $this->baseStorePath();
-		$cases[] = array( "$base/cont1/a/z/some_file.txt", "some file contents" );
-		$cases[] = array( "$base/cont1/a/some-other_file.txt", "more file contents" );
+		$cases[] = array( "$base/unittest-cont1/a/z/some_file.txt", "some file contents" );
+		$cases[] = array( "$base/unittest-cont1/a/some-other_file.txt", "more file contents" );
 
 		return $cases;
 	}
@@ -725,9 +742,10 @@ class FileBackendTest extends MediaWikiTestCase {
 	function provider_testPrepareAndClean() {
 		$base = $this->baseStorePath();
 		return array(
-			array( "$base/cont1/a/z/some_file1.txt", true ),
-			array( "$base/cont2/a/z/some_file2.txt", true ),
-			array( "$base/cont3/a/z/some_file3.txt", false ),
+			array( "$base/unittest-cont1/a/z/some_file1.txt", true ),
+			array( "$base/unittest-cont2/a/z/some_file2.txt", true ),
+			# Specific to FS backend with no basePath field set
+			#array( "$base/unittest-cont3/a/z/some_file3.txt", false ),
 		);
 	}
 
@@ -770,18 +788,13 @@ class FileBackendTest extends MediaWikiTestCase {
 	function doTestDoOperations() {
 		$base = $this->baseStorePath();
 
-		$fileA = "$base/cont1/a/b/fileA.txt";
+		$fileA = "$base/unittest-cont1/a/b/fileA.txt";
 		$fileAContents = '3tqtmoeatmn4wg4qe-mg3qt3 tq';
-		$fileB = "$base/cont1/a/b/fileB.txt";
+		$fileB = "$base/unittest-cont1/a/b/fileB.txt";
 		$fileBContents = 'g-jmq3gpqgt3qtg q3GT ';
-		$fileC = "$base/cont1/a/b/fileC.txt";
+		$fileC = "$base/unittest-cont1/a/b/fileC.txt";
 		$fileCContents = 'eigna[ogmewt 3qt g3qg flew[ag';
-		$fileD = "$base/cont1/a/b/fileD.txt";
-
-		$this->pathsToPrune[] = $fileA;
-		$this->pathsToPrune[] = $fileB;
-		$this->pathsToPrune[] = $fileC;
-		$this->pathsToPrune[] = $fileD;
+		$fileD = "$base/unittest-cont1/a/b/fileD.txt";
 
 		$this->backend->prepare( array( 'dir' => dirname( $fileA ) ) );
 		$this->backend->create( array( 'dst' => $fileA, 'content' => $fileAContents ) );
@@ -846,35 +859,36 @@ class FileBackendTest extends MediaWikiTestCase {
 
 	public function testGetFileList() {
 		$this->backend = $this->singleBackend;
+		$this->tearDownFiles();
 		$this->doTestGetFileList();
 		$this->tearDownFiles();
 
 		$this->backend = $this->multiBackend;
+		$this->tearDownFiles();
 		$this->doTestGetFileList();
 		$this->tearDownFiles();
 	}
 
-	public function doTestGetFileList() {
+	private function doTestGetFileList() {
 		$backendName = $this->backendClass();
 
 		$base = $this->baseStorePath();
 		$files = array(
-			"$base/cont1/test1.txt",
-			"$base/cont1/test2.txt",
-			"$base/cont1/test3.txt",
-			"$base/cont1/subdir1/test1.txt",
-			"$base/cont1/subdir1/test2.txt",
-			"$base/cont1/subdir2/test3.txt",
-			"$base/cont1/subdir2/test4.txt",
-			"$base/cont1/subdir2/subdir/test1.txt",
-			"$base/cont1/subdir2/subdir/test2.txt",
-			"$base/cont1/subdir2/subdir/test3.txt",
-			"$base/cont1/subdir2/subdir/test4.txt",
-			"$base/cont1/subdir2/subdir/test5.txt",
-			"$base/cont1/subdir2/subdir/sub/test0.txt",
-			"$base/cont1/subdir2/subdir/sub/120-px-file.txt",
+			"$base/unittest-cont1/test1.txt",
+			"$base/unittest-cont1/test2.txt",
+			"$base/unittest-cont1/test3.txt",
+			"$base/unittest-cont1/subdir1/test1.txt",
+			"$base/unittest-cont1/subdir1/test2.txt",
+			"$base/unittest-cont1/subdir2/test3.txt",
+			"$base/unittest-cont1/subdir2/test4.txt",
+			"$base/unittest-cont1/subdir2/subdir/test1.txt",
+			"$base/unittest-cont1/subdir2/subdir/test2.txt",
+			"$base/unittest-cont1/subdir2/subdir/test3.txt",
+			"$base/unittest-cont1/subdir2/subdir/test4.txt",
+			"$base/unittest-cont1/subdir2/subdir/test5.txt",
+			"$base/unittest-cont1/subdir2/subdir/sub/test0.txt",
+			"$base/unittest-cont1/subdir2/subdir/sub/120-px-file.txt",
 		);
-		$this->pathsToPrune = array_merge( $this->pathsToPrune, $files );
 
 		// Add the files
 		$ops = array();
@@ -883,8 +897,10 @@ class FileBackendTest extends MediaWikiTestCase {
 			$this->backend->prepare( array( 'dir' => dirname( $file ) ) );
 		}
 		$status = $this->backend->doOperations( $ops );
-		$this->assertEquals( true, $status->isOK(),
+		$this->assertEquals( array(), $status->errors,
 			"Creation of files succeeded ($backendName)." );
+		$this->assertEquals( true, $status->isOK(),
+			"Creation of files succeeded with OK status ($backendName)." );
 
 		// Expected listing
 		$expected = array(
@@ -907,7 +923,7 @@ class FileBackendTest extends MediaWikiTestCase {
 
 		// Actual listing (no trailing slash)
 		$list = array();
-		$iter = $this->backend->getFileList( array( 'dir' => "$base/cont1" ) );
+		$iter = $this->backend->getFileList( array( 'dir' => "$base/unittest-cont1" ) );
 		foreach ( $iter as $file ) {
 			$list[] = $file;
 		}
@@ -917,7 +933,39 @@ class FileBackendTest extends MediaWikiTestCase {
 
 		// Actual listing (with trailing slash)
 		$list = array();
-		$iter = $this->backend->getFileList( array( 'dir' => "$base/cont1/" ) );
+		$iter = $this->backend->getFileList( array( 'dir' => "$base/unittest-cont1/" ) );
+		foreach ( $iter as $file ) {
+			$list[] = $file;
+		}
+		sort( $list );
+
+		$this->assertEquals( $expected, $list, "Correct file listing ($backendName)." );
+
+		// Expected listing
+		$expected = array(
+			"test1.txt",
+			"test2.txt",
+			"test3.txt",
+			"test4.txt",
+			"test5.txt",
+			"sub/test0.txt",
+			"sub/120-px-file.txt",
+		);
+		sort( $expected );
+
+		// Actual listing (no trailing slash)
+		$list = array();
+		$iter = $this->backend->getFileList( array( 'dir' => "$base/unittest-cont1/subdir2/subdir" ) );
+		foreach ( $iter as $file ) {
+			$list[] = $file;
+		}
+		sort( $list );
+
+		$this->assertEquals( $expected, $list, "Correct file listing ($backendName)." );
+
+		// Actual listing (with trailing slash)
+		$list = array();
+		$iter = $this->backend->getFileList( array( 'dir' => "$base/unittest-cont1/subdir2/subdir/" ) );
 		foreach ( $iter as $file ) {
 			$list[] = $file;
 		}
@@ -929,7 +977,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			$this->backend->doOperation( array( 'op' => 'delete', 'src' => "$base/$file" ) );
 		}
 
-		$iter = $this->backend->getFileList( array( 'dir' => "$base/cont1/not/exists" ) );
+		$iter = $this->backend->getFileList( array( 'dir' => "$base/unittest-cont1/not/exists" ) );
 		foreach ( $iter as $iter ) {} // no errors
 	}
 
@@ -937,11 +985,22 @@ class FileBackendTest extends MediaWikiTestCase {
 		foreach ( $this->filesToPrune as $file ) {
 			@unlink( $file );
 		}
-		foreach ( $this->pathsToPrune as $file ) {
-			$this->backend->doOperation( array( 'op' => 'delete', 'src' => $file ) );
-			$tmp = $file;
-			while ( $tmp = FileBackend::parentStoragePath( $tmp ) ) {
-				$this->backend->clean( array( 'dir' => $tmp ) );
+		$containers = array( 'unittest-cont1', 'unittest-cont2', 'unittest-cont3' );
+		foreach ( $containers as $container ) {
+			$this->deleteFiles( $this->backend, $container );
+		}
+	}
+
+	private function deleteFiles( $backend, $container ) {
+		$base = $this->baseStorePath();
+		$iter = $backend->getFileList( array( 'dir' => "$base/$container" ) );
+		if ( $iter ) {
+			foreach ( $iter as $file ) {
+				$backend->doOperation( array( 'op' => 'delete', 'src' => "$base/$container/$file" ) );
+				$tmp = $file;
+				while ( $tmp = FileBackend::parentStoragePath( $tmp ) ) {
+					$backend->clean( array( 'dir' => $tmp ) );
+				}
 			}
 		}
 	}
