@@ -1300,7 +1300,7 @@ abstract class FileBackend extends FileBackendBase {
 		// This accounts for Swift and S3 restrictions while leaving room 
 		// for things like '.xxx' (hex shard chars) or '.seg' (segments).
 		// Note that matching strings URL encode to the same string;
-		// in Swift, the length resriction is *after* URL encoding.
+		// in Swift, the length restriction is *after* URL encoding.
 		return preg_match( '/^[a-z0-9][a-z0-9-_]{0,199}$/i', $container );
 	}
 
