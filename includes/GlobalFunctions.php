@@ -577,29 +577,49 @@ function wfAssembleUrl( $urlParts ) {
  */
 function wfRemoveDotSegments( $urlPath ) {
 	$output = '';
+	$inputOffset = 0;
+	$inputLength = strlen( $urlPath );
 
-	while ( $urlPath ) {
-		$matches = null;
-		if ( preg_match('%^\.\.?/%', $urlPath, $matches) ) {
-			# Step A, remove leading "../" or "./"
-			$urlPath = substr( $urlPath, strlen( $matches[0] ) );
-		} elseif ( preg_match( '%^/\.(/|$)%', $urlPath, $matches ) ) {
-			# Step B, replace leading "/.$" or "/./" with "/"
-			$start = strlen( $matches[0] );
-			$urlPath = '/' . substr( $urlPath, $start );
-		} elseif ( preg_match( '%^/\.\.(/|$)%', $urlPath, $matches ) ) {
-			# Step C, replace leading "/..$" or "/../" with "/" and
+	while ( $inputOffset < $inputLength ) {
+		$prefixLengthOne = substr( $urlPath, $inputOffset, 1 );
+		$prefixLengthTwo = substr( $urlPath, $inputOffset, 2 );
+		$prefixLengthThree = substr( $urlPath, $inputOffset, 3 );
+		$prefixLengthFour = substr( $urlPath, $inputOffset, 4 );
+
+		if ( $prefixLengthTwo == './' ) {
+			# Step A, remove leading "./"
+			$inputOffset += 2;
+		} elseif ( $prefixLengthThree == '../' ) {
+			# Step A, remove leading "../"
+			$inputOffset += 3;
+		} elseif ( ( $prefixLengthTwo == '/.' ) && ( $inputOffset + 2 == $inputLength ) ) {
+			# Step B, replace leading "/.$" with "/"
+			$inputOffset += 1;
+			$urlPath[$inputOffset] = '/';
+		} elseif ( $prefixLengthThree == '/./' ) {
+			# Step B, replace leading "/./" with "/"
+			$inputOffset += 2;
+		} elseif ( $prefixLengthThree == '/..' && ( $inputOffset + 3 == $inputLength ) ) {
+			# Step C, replace leading "/..$" with "/" and
 			# remove last path component in output
-			$start = strlen( $matches[0] );
-			$urlPath = '/' . substr( $urlPath, $start );
+			$inputOffset += 2;
+			$urlPath[$inputOffset] = '/';
 			$output = preg_replace('%(^|/)[^/]*$%', '', $output);
-		} elseif ( preg_match( '%^\.\.?$%', $urlPath, $matches ) ) {
-			# Step D, remove "^..$" or "^.$"
-			$urlPath = '';
+		} elseif ( $prefixLengthFour == '/../' ) {
+			# Step C, replace leading "/../" with "/" and
+			# remove last path component in output
+			$inputOffset += 3;
+			$output = preg_replace('%(^|/)[^/]*$%', '', $output);
+		} elseif ( ( $prefixLengthOne == '.' ) && ( $inputOffset + 1 == $inputLength ) ) {
+			# Step D, remove "^.$"
+			$inputOffset += 1;
+		} elseif ( ( $prefixLengthTwo == '..' ) && ( $inputOffset + 2 == $inputLength ) ) {
+			# Step D, remove "^..$"
+			$inputOffset += 2;
 		} else {
 			# Step E, move leading path segment to output
-			preg_match( '%^/?[^/]*%', $urlPath, $matches );
-			$urlPath = substr( $urlPath, strlen( $matches[0] ) );
+			preg_match( '%/?[^/]*%A', $urlPath, $matches, 0, $inputOffset );
+			$inputOffset += strlen( $matches[0] );
 			$output .= $matches[0];
 		}
 	}
