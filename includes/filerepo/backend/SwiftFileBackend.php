@@ -52,7 +52,7 @@ class SwiftFileBackend extends FileBackend {
 		);
 		// Optional settings
 		$this->authTTL = isset( $config['swiftAuthTTL'] )
-			? $config['authTTL']
+			? $config['swiftAuthTTL']
 			: 120; // some sane number
 		$this->swiftAnonUser = isset( $config['swiftAnonUser'] )
 			? $config['swiftAnonUser']
@@ -795,7 +795,7 @@ class SwiftFileBackendFileList implements Iterator {
 		if ( $this->dir == '' ) { // whole container
 			$this->suffixStart = 0;
 		} else { // dir within container
-			$this->suffixStart = strlen( $dir ) + 1; // size of "path/to/dir/"
+			$this->suffixStart = strlen( $this->dir ) + 1; // size of "path/to/dir/"
 		}
 	}
 
