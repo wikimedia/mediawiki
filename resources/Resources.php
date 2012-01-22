@@ -16,7 +16,7 @@ return array(
 	/* Skins */
 
 	'skins.chick' => array(
-		'styles' => array( 'chick/main.css' => array( 'media' => 'screen,handheld' ) ),
+		'styles' => array( 'chick/main.css' => array( 'media' => 'screen, handheld' ) ),
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 	),
@@ -862,6 +862,7 @@ return array(
 			'mediawiki.legacy.wikibits',
 			'jquery.byteLimit',
 		),
+		'position' => 'top',
 	),
 	'mediawiki.legacy.shared' => array(
 		'styles' => array( 'common/shared.css' => array( 'media' => 'screen' ) ),
