@@ -407,11 +407,6 @@ class Sanitizer {
 				$htmlsingleonly[] = 'img';
 			}
 
-			global $wgAllowATag;
-			if ( $wgAllowATag ) {
-				$htmlpairsStatic[] = 'a';
-			}
-
 			$htmlsingleallowed = array_unique( array_merge( $htmlsingle, $tabletags ) );
 			$htmlelementsStatic = array_unique( array_merge( $htmlsingle, $htmlpairsStatic, $htmlnest ) );
 
@@ -799,23 +794,6 @@ class Sanitizer {
 				if ( !preg_match( $hrefExp, $value ) ) {
 					continue; //drop any href or src attributes not using an allowed protocol.
 						  //NOTE: this also drops all relative URLs
-				}
-			}
-
-			if ( $attribute === 'href' || $attribute === 'src' ) {
-				if ( !preg_match( $hrefExp, $value ) ) {
-					continue; //drop any href or src attributes not using an allowed protocol.
-						  //NOTE: this also drops all relative URLs
-				}
-			}
-
-			//RDFa properties allow URIs. check them
-			if ( $attribute === 'rel' || $attribute === 'rev' || 
-				$attribute === 'about' || $attribute === 'property' || $attribute === 'resource' ||
-				$attribute === 'datatype' || $attribute === 'typeof' ) {  
-				//Paranoia. Allow "simple" values but suppress javascript
-				if ( preg_match( '/(^|\s)javascript\s*:/i', $value ) ) {
-					continue; 
 				}
 			}
 
@@ -1594,7 +1572,7 @@ class Sanitizer {
 			'td'         => array_merge( $common, $tablecell, $tablealign ),
 			'th'         => array_merge( $common, $tablecell, $tablealign ),
 
-			# 12.2 
+			# 12.2 # NOTE: <a> is not allowed directly, but the attrib whitelist is used from the Parser object
 			'a'          => array_merge( $common, array( 'href', 'rel', 'rev' ) ), # rel/rev esp. for RDFa
 
 			# 13.2
