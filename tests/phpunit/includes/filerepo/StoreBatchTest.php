@@ -5,22 +5,36 @@
 class StoreBatchTest extends MediaWikiTestCase {
 
 	public function setUp() {
+		global $wgFileBackends;
 		parent::setUp();
 
 		# Forge a FSRepo object to not have to rely on local wiki settings
 		$this->tmpDir = wfTempDir() . '/store-batch-test-' . time() . '-' . mt_rand();
-		$this->repo = new FSRepo( array(
-			'name'    => 'test',
-			'backend' => new FSFileBackend( array(
+		if ( $this->getCliArg( 'use-filebackend=' ) ) {
+			$name = $this->getCliArg( 'use-filebackend=' );
+			$useConfig = array();
+			foreach ( $wgFileBackends as $conf ) {
+				if ( $conf['name'] == $name ) {
+					$useConfig = $conf;
+				}
+			}
+			$useConfig['name'] = 'localtesting'; // swap name
+			$backend = new $conf['class']( $useConfig );
+		} else {
+			$backend = new FSFileBackend( array(
 				'name'        => 'local-backend',
 				'lockManager' => 'nullLockManager',
 				'containerPaths' => array(
-					'test-public'  => $this->tmpDir . "/public",
-					'test-thumb'   => $this->tmpDir . "/thumb",
-					'test-temp'    => $this->tmpDir . "/temp",
-					'test-deleted' => $this->tmpDir . "/deleted",
+					'unittests-public'  => $this->tmpDir . "/public",
+					'unittests-thumb'   => $this->tmpDir . "/thumb",
+					'unittests-temp'    => $this->tmpDir . "/temp",
+					'unittests-deleted' => $this->tmpDir . "/deleted",
 				)
-			) )
+			) );
+		}
+		$this->repo = new FileRepo( array(
+			'name'    => 'unittests',
+			'backend' => $backend
 		) );
 
 		$this->date = gmdate( "YmdHis" );
