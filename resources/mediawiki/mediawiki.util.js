@@ -11,11 +11,8 @@
 		 * Initialisation
 		 * (don't call before document ready)
 		 */
-		init: function() {
-			var	profile = $.client.profile(),
-				$tocTitle = $( '#toctitle' ),
-				$tocToggleLink = $( '#togglelink' ),
-				hideTocCookie;
+		init: function () {
+			var profile, $tocTitle, $tocToggleLink, hideTocCookie;
 
 			/* Set up $.messageBox */
 			$.messageBoxNew( {
@@ -24,6 +21,7 @@
 			} );
 
 			/* Set tooltipAccessKeyPrefix */
+			profile = $.client.profile();
 
 			// Opera on any platform
 			if ( profile.name === 'opera' ) {
@@ -76,12 +74,14 @@
 			}
 
 			// Table of contents toggle
+			$tocTitle = $( '#toctitle' );
+			$tocToggleLink = $( '#togglelink' );
 			// Only add it if there is a TOC and there is no toggle added already
 			if ( $( '#toc' ).length && $tocTitle.length && !$tocToggleLink.length ) {
 				hideTocCookie = $.cookie( 'mw_hidetoc' );
 					$tocToggleLink = $( '<a href="#" class="internal" id="togglelink"></a>' )
 						.text( mw.msg( 'hidetoc' ) )
-						.click( function( e ) {
+						.click( function ( e ) {
 							e.preventDefault();
 							util.toggleToc( $(this) );
 						} );
@@ -106,7 +106,7 @@
 		 *
 		 * @param str string String to be encoded
 		 */
-		rawurlencode: function( str ) {
+		rawurlencode: function ( str ) {
 			str = String( str );
 			return encodeURIComponent( str )
 				.replace( /!/g, '%21' ).replace( /'/g, '%27' ).replace( /\(/g, '%28' )
@@ -120,7 +120,7 @@
 		 *
 		 * @param str string String to be encoded
 		 */
-		wikiUrlencode: function( str ) {
+		wikiUrlencode: function ( str ) {
 			return this.rawurlencode( str )
 				.replace( /%20/g, '_' ).replace( /%3A/g, ':' ).replace( /%2F/g, '/' );
 		},
@@ -131,7 +131,7 @@
 		 * @param str string Page name to get the link for.
 		 * @return string Location for a page with name of 'str' or boolean false on error.
 		 */
-		wikiGetlink: function( str ) {
+		wikiGetlink: function ( str ) {
 			return mw.config.get( 'wgArticlePath' ).replace( '$1',
 				this.wikiUrlencode( str || mw.config.get( 'wgPageName' ) ) );
 		},
@@ -143,7 +143,7 @@
 		 * @param str string Name of script (eg. 'api'), defaults to 'index'
 		 * @return string Address to script (eg. '/w/api.php' )
 		 */
-		wikiScript: function( str ) {
+		wikiScript: function ( str ) {
 			return mw.config.get( 'wgScriptPath' ) + '/' + ( str || 'index' ) +
 				mw.config.get( 'wgScriptExtension' );
 		},
@@ -154,7 +154,7 @@
 		 * @param text string CSS to be appended
 		 * @return CSSStyleSheet
 		 */
-		addCSS: function( text ) {
+		addCSS: function ( text ) {
 			var s = document.createElement( 'style' );
 			s.type = 'text/css';
 			s.rel = 'stylesheet';
@@ -164,7 +164,7 @@
 				s.styleSheet.cssText = text; // IE
 			} else {
 				// Safari sometimes borks on null
-				s.appendChild( document.createTextNode( text + '' ) );
+				s.appendChild( document.createTextNode( String( text ) ) );
 			}
 			return s.sheet || s;
 		},
@@ -178,7 +178,7 @@
 		 * @return mixed Boolean visibility of the toc (true if it's visible)
 		 * or Null if there was no table of contents.
 		 */
-		toggleToc: function( $toggleLink, callback ) {
+		toggleToc: function ( $toggleLink, callback ) {
 			var $tocList = $( '#toc ul:first' );
 
 			// This function shouldn't be called if there's no TOC,
@@ -216,7 +216,7 @@
 		 * @param url string URL to search through (optional)
 		 * @return mixed Parameter value or null.
 		 */
-		getParamValue: function( param, url ) {
+		getParamValue: function ( param, url ) {
 			url = url || document.location.href;
 			// Get last match, stop at hash
 			var	re = new RegExp( '^[^#]*[&?]' + $.escapeRE( param ) + '=([^&#]*)' ),
@@ -251,7 +251,7 @@
 		 * @param $nodes {Array|jQuery} [optional] A jQuery object, or array
 		 * of elements to update.
 		 */
-		updateTooltipAccessKeys: function( $nodes ) {
+		updateTooltipAccessKeys: function ( $nodes ) {
 			if ( !$nodes ) {
 				// Rather than going into a loop of all anchor tags, limit to few elements that
 				// contain the relevant anchor tags.
@@ -261,7 +261,7 @@
 				$nodes = $( $nodes );
 			}
 
-			$nodes.attr( 'title', function( i, val ) {
+			$nodes.attr( 'title', function ( i, val ) {
 				if ( val && util.tooltipAccessKeyRegexp.exec( val ) ) {
 					return val.replace( util.tooltipAccessKeyRegexp,
 						'[' + util.tooltipAccessKeyPrefix + '$5]' );
@@ -312,7 +312,7 @@
 		 * @return mixed The DOM Node of the added item (a ListItem or Anchor element,
 		 * depending on the skin) or null if no element was added to the document.
 		 */
-		addPortletLink: function( portlet, href, text, id, tooltip, accesskey, nextnode ) {
+		addPortletLink: function ( portlet, href, text, id, tooltip, accesskey, nextnode ) {
 			var $item, $link, $portlet, $ul;
 
 			// Check if there's atleast 3 arguments to prevent a TypeError
@@ -328,14 +328,14 @@
 			// Some skins don't have any portlets
 			// just add it to the bottom of their 'sidebar' element as a fallback
 			switch ( mw.config.get( 'skin' ) ) {
-			case 'standard' :
-			case 'cologneblue' :
+			case 'standard':
+			case 'cologneblue':
 				$( '#quickbar' ).append( $link.after( '<br/>' ) );
 				return $link[0];
-			case 'nostalgia' :
+			case 'nostalgia':
 				$( '#searchform' ).before( $link ).before( ' &#124; ' );
 				return $link[0];
-			default : // Skins like chick, modern, monobook, myskin, simple, vector...
+			default: // Skins like chick, modern, monobook, myskin, simple, vector...
 
 				// Select the specified portlet
 				$portlet = $( '#' + portlet );
@@ -418,7 +418,7 @@
 		 * to allow CSS/JS to hide different boxes. null = no class used.
 		 * @return {Boolean} True on success, false on failure.
 		 */
-		jsMessage: function( message, className ) {
+		jsMessage: function ( message, className ) {
 			if ( !arguments.length || message === '' || message === null ) {
 				$( '#mw-js-message' ).empty().hide();
 				return true; // Emptying and hiding message is intended behaviour, return true
@@ -464,8 +464,10 @@
 		 * @return mixed Null if mailtxt was an empty string, otherwise true/false
 		 * is determined by validation.
 		 */
-		validateEmail: function( mailtxt ) {
-			if( mailtxt === '' ) {
+		validateEmail: function ( mailtxt ) {
+			var rfc5322_atext, rfc1034_ldh_str, HTML5_email_regexp;
+
+			if ( mailtxt === '' ) {
 				return null;
 			}
 
@@ -481,7 +483,7 @@
 			 */
 
 			/**
-			 * First, define the RFC 5322 'atext' which is pretty easy :
+			 * First, define the RFC 5322 'atext' which is pretty easy:
 			 * atext = ALPHA / DIGIT / ; Printable US-ASCII
 						 "!" / "#" /	 ; characters not including
 						 "$" / "%" /	 ; specials. Used for atoms.
@@ -494,7 +496,7 @@
 						 "|" / "}" /
 						 "~"
 			*/
-			var	rfc5322_atext = "a-z0-9!#$%&'*+\\-/=?^_`{|}~",
+			rfc5322_atext = "a-z0-9!#$%&'*+\\-/=?^_`{|}~";
 
 			/**
 			 * Next define the RFC 1034 'ldh-str'
@@ -505,29 +507,29 @@
 			 *	<let-dig-hyp> ::= <let-dig> | "-"
 			 *	<let-dig> ::= <letter> | <digit>
 			 */
-				rfc1034_ldh_str = "a-z0-9\\-",
+			rfc1034_ldh_str = "a-z0-9\\-";
 
-				HTML5_email_regexp = new RegExp(
-					// start of string
-					'^'
-					+
-					// User part which is liberal :p
-					'[' + rfc5322_atext + '\\.]+'
-					+
-					// 'at'
-					'@'
-					+
-					// Domain first part
-					'[' + rfc1034_ldh_str + ']+'
-					+
-					// Optional second part and following are separated by a dot
-					'(?:\\.[' + rfc1034_ldh_str + ']+)*'
-					+
-					// End of string
-					'$',
-					// RegExp is case insensitive
-					'i'
-				);
+			HTML5_email_regexp = new RegExp(
+				// start of string
+				'^'
+				+
+				// User part which is liberal :p
+				'[' + rfc5322_atext + '\\.]+'
+				+
+				// 'at'
+				'@'
+				+
+				// Domain first part
+				'[' + rfc1034_ldh_str + ']+'
+				+
+				// Optional second part and following are separated by a dot
+				'(?:\\.[' + rfc1034_ldh_str + ']+)*'
+				+
+				// End of string
+				'$',
+				// RegExp is case insensitive
+				'i'
+			);
 			return (null !== mailtxt.match( HTML5_email_regexp ) );
 		},
 
@@ -538,7 +540,7 @@
 		 * @param allowBlock boolean
 		 * @return boolean
 		 */
-		isIPv4Address: function( address, allowBlock ) {
+		isIPv4Address: function ( address, allowBlock ) {
 			if ( typeof address !== 'string' ) {
 				return false;
 			}
@@ -557,7 +559,7 @@
 		 * @param allowBlock boolean
 		 * @return boolean
 		 */
-		isIPv6Address: function( address, allowBlock ) {
+		isIPv6Address: function ( address, allowBlock ) {
 			if ( typeof address !== 'string' ) {
 				return false;
 			}
