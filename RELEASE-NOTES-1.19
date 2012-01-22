@@ -26,9 +26,6 @@ production.
 * (bug 32239) Removed wgEnableTooltipsAndAccesskeys.
 * Removed $wgVectorShowVariantName.
 * Removed $wgExtensionAliasesFiles. Use wgExtensionMessagesFiles.
-* Introduced $wgAllowATag to allow <a> tags to be used for external links,
-  so rel and ref attributes can be used with microdata resp RDFa.
-  Defaults is false.
 
 === New features in 1.19 ===
 * (bug 19838) Possibility to get all interwiki prefixes if the interwiki
