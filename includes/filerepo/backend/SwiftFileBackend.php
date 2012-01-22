@@ -508,7 +508,8 @@ class SwiftFileBackend extends FileBackend {
 
 		try {
 			$container = $this->getContainer( $fullCont );
-			$files = $container->list_objects( $limit, $after, "{$dir}/" );
+			$prefix = ( $dir == '' ) ? null : "{$dir}/";
+			$files = $container->list_objects( $limit, $after, $prefix );
 		} catch ( NoSuchContainerException $e ) {
 		} catch ( NoSuchObjectException $e ) {
 		} catch ( InvalidResponseException $e ) {
@@ -686,6 +687,13 @@ class SwiftFileBackend extends FileBackend {
 	}
 
 	/**
+	 * @see FileBackend::doClearCache()
+	 */
+	protected function doClearCache( array $paths = null ) {
+		$this->connContainers = array(); // clear container object cache
+	}
+
+	/**
 	 * Get a Swift container object, possibly from process cache.
 	 * Use $reCache if the file count or byte count is needed.
 	 *
@@ -784,7 +792,11 @@ class SwiftFileBackendFileList implements Iterator {
 		if ( substr( $this->dir, -1 ) === '/' ) {
 			$this->dir = substr( $this->dir, 0, -1 ); // remove trailing slash
 		}
-		$this->suffixStart = strlen( $dir ) + 1; // size of "path/to/dir/"
+		if ( $this->dir == '' ) { // whole container
+			$this->suffixStart = 0;
+		} else { // dir within container
+			$this->suffixStart = strlen( $dir ) + 1; // size of "path/to/dir/"
+		}
 	}
 
 	public function current() {

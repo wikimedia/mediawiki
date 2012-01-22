@@ -1084,7 +1084,7 @@ class FileRepo {
 				'dst'           => $archivePath,
 				// We may have 2+ identical files being deleted,
 				// all of which will map to the same destination file
-				'overwriteSame' => true
+				'overwriteSame' => true // also see bug 31792
 			);
 		}
 
