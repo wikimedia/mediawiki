@@ -69,13 +69,14 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 		if ( $target === '' ) {
 			return false;
 		}
+		$outputPage = $this->getOutput();
 		$title = Title::newFromURL( $target );
 		if( !$title || $title->getInterwiki() != '' ){
-			$this->getOutput()->wrapWikiMsg( "<div class=\"errorbox\">\n$1\n</div><br style=\"clear: both\" />", 'allpagesbadtitle' );
+			$outputPage->wrapWikiMsg( "<div class=\"errorbox\">\n$1\n</div><br style=\"clear: both\" />", 'allpagesbadtitle' );
 			return false;
 		}
 
-		$this->getOutput()->setPageTitle( $this->msg( 'recentchangeslinked-title', $title->getPrefixedText() ) );
+		$outputPage->setPageTitle( $this->msg( 'recentchangeslinked-title', $title->getPrefixedText() ) );
 
 		/*
 		 * Ordinary links are in the pagelinks table, while transclusions are
@@ -113,8 +114,9 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 				$query_options, $opts['tagfilter'] );
 		}
 
-		if ( !wfRunHooks( 'SpecialRecentChangesQuery', array( &$conds, &$tables, &$join_conds, $opts, &$query_options, &$select ) ) )
+		if ( !wfRunHooks( 'SpecialRecentChangesQuery', array( &$conds, &$tables, &$join_conds, $opts, &$query_options, &$select ) ) ) {
 			return false;
+		}
 
 		if( $ns == NS_CATEGORY && !$showlinkedto ) {
 			// special handling for categories
@@ -125,11 +127,14 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 			// for now, always join on these tables; really should be configurable as in whatlinkshere
 			$link_tables = array( 'pagelinks', 'templatelinks' );
 			// imagelinks only contains links to pages in NS_FILE
-			if( $ns == NS_FILE || !$showlinkedto ) $link_tables[] = 'imagelinks';
+			if( $ns == NS_FILE || !$showlinkedto ) {
+				$link_tables[] = 'imagelinks';
+			}
 		}
 
-		if( $id == 0 && !$showlinkedto )
+		if( $id == 0 && !$showlinkedto ) {
 			return false; // nonexistent pages can't link to any pages
+		}
 
 		// field name prefixes for all the various tables we might want to join with
 		$prefix = array( 'pagelinks' => 'pl', 'templatelinks' => 'tl', 'categorylinks' => 'cl', 'imagelinks' => 'il' );
@@ -140,14 +145,20 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 			$pfx = $prefix[$link_table];
 
 			// imagelinks and categorylinks tables have no xx_namespace field, and have xx_to instead of xx_title
-			if( $link_table == 'imagelinks' ) $link_ns = NS_FILE;
-			elseif( $link_table == 'categorylinks' ) $link_ns = NS_CATEGORY;
-			else $link_ns = 0;
+			if( $link_table == 'imagelinks' ) {
+				$link_ns = NS_FILE;
+			} elseif( $link_table == 'categorylinks' ) {
+				$link_ns = NS_CATEGORY;
+			} else {
+				$link_ns = 0;
+			}
 
 			if( $showlinkedto ) {
 				// find changes to pages linking to this page
 				if( $link_ns ) {
-					if( $ns != $link_ns ) continue; // should never happen, but check anyway
+					if( $ns != $link_ns ) {
+						continue;
+					} // should never happen, but check anyway
 					$subconds = array( "{$pfx}_to" => $dbkey );
 				} else {
 					$subconds = array( "{$pfx}_namespace" => $ns, "{$pfx}_title" => $dbkey );
@@ -164,11 +175,11 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 				}
 			}
 
-			if( $dbr->unionSupportsOrderAndLimit())
+			if( $dbr->unionSupportsOrderAndLimit()) {
 				$order = array( 'ORDER BY' => 'rc_timestamp DESC' );
-			else
+			} else {
 				$order = array();
-
+			}
 
 			$query = $dbr->selectSQLText(
 				array_merge( $tables, array( $link_table ) ),
@@ -185,11 +196,12 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 			$subsql[] = $query;
 		}
 
-		if( count($subsql) == 0 )
+		if( count($subsql) == 0 ) {
 			return false; // should never happen
-		if( count($subsql) == 1 && $dbr->unionSupportsOrderAndLimit() )
+		}
+		if( count($subsql) == 1 && $dbr->unionSupportsOrderAndLimit() ) {
 			$sql = $subsql[0];
-		else {
+		} else {
 			// need to resort and relimit after union
 			$sql = $dbr->unionQueries($subsql, false).' ORDER BY rc_timestamp DESC';
 			$sql = $dbr->limitResult($sql, $limit, false);
@@ -197,12 +209,17 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 
 		$res = $dbr->query( $sql, __METHOD__ );
 
-		if( $res->numRows() == 0 )
+		if( $res->numRows() == 0 ) {
 			$this->mResultEmpty = true;
+		}
 
 		return $res;
 	}
 
+	/**
+	 * @param $opts FormOptions
+	 * @return array
+	 */
 	function getExtraOptions( $opts ){
 		$opts->consumeValues( array( 'showlinkedto', 'target', 'tagfilter' ) );
 		$extraOpts = array();
@@ -212,8 +229,9 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 			Xml::check( 'showlinkedto', $opts['showlinkedto'], array('id' => 'showlinkedto') ) . ' ' .
 			Xml::label( wfMsg("recentchangeslinked-to"), 'showlinkedto' ) );
 		$tagFilter = ChangeTags::buildTagFilterSelector( $opts['tagfilter'] );
-		if ($tagFilter)
+		if ($tagFilter) {
 			$extraOpts['tagfilter'] = $tagFilter;
+		}
 		return $extraOpts;
 	}
 

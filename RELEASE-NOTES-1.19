@@ -117,9 +117,9 @@ production.
 * (bug 33456) Show $wgQueryCacheLimit on cached query pages.
 * (bug 10574) Add an option to allow all pages to be exported by Special:Export.
 * mediawiki.js Message object constructor is now publicly available as mw.Message.
-* (bug 29309) allow CSS class per tooltip (tipsy)
+* (bug 29309) Allow CSS class per tooltip (tipsy).
 * (bug 33565) Add accesskey/tooltip to submit buttons on Special:EditWatchlist.
-* (bug 17959) Inline rendering/thumbnailing for Gimp XCF images
+* (bug 17959) Inline rendering/thumbnailing for Gimp XCF images.
 * (bug 32341) Add upload by URL domain limitation.
 
 === Bug fixes in 1.19 ===
@@ -292,7 +292,7 @@ changes to languages because of Bugzilla reports.
   been removed from wikibits.js
 * jquery.mwPrototypes module was renamed to jquery.mwExtension.
 * The maintenance script populateSha1.php was renamed to the more concise
-  populateImageSha1.php
+  populateImageSha1.php.
 * The Client-IP header is no longer checked for when trying to resolve a client's
   real IP address.
 * (bug 22096) Although IE5.x and below was already unsupported officially, stylesheets
