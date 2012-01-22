@@ -440,17 +440,12 @@ class SwiftFileBackend extends FileBackend {
 		try {
 			$contObj = $this->getContainer( $srcCont );
 			$srcObj = $contObj->get_object( $srcRel, $this->headersFromParams( $params ) );
-			// Convert dates like "Tue, 03 Jan 2012 22:01:04 GMT" to TS_MW
-			$date = DateTime::createFromFormat( 'D, d F Y G:i:s e', $srcObj->last_modified );
-			if ( $date ) {
-				$stat = array(
-					'mtime' => $date->format( 'YmdHis' ),
-					'size'  => $srcObj->content_length,
-					'sha1'  => $srcObj->metadata['Sha1base36']
-				);
-			} else { // exception will be caught below
-				throw new Exception( "Could not parse date for object {$srcRel}" );
-			}
+			$stat = array(
+				// Convert dates like "Tue, 03 Jan 2012 22:01:04 GMT" to TS_MW
+				'mtime' => wfTimestamp( TS_MW, $srcObj->last_modified ),
+				'size'  => $srcObj->content_length,
+				'sha1'  => $srcObj->metadata['Sha1base36']
+			);
 		} catch ( NoSuchContainerException $e ) {
 		} catch ( NoSuchObjectException $e ) {
 		} catch ( InvalidResponseException $e ) {
