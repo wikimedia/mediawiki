@@ -1712,19 +1712,18 @@ $1',
 'upload-warning-subj'         => 'Папярэджаньне загрузкі',
 'upload-warning-msg'          => 'Узьнікла праблема з Вашай загрузкай з [$2]. Вы можаце вярнуцца на [[Special:Upload/stash/$1|форму загрузкі]] для вырашэньня гэтай праблемы.',
 
-'upload-proto-error'                => 'Няслушны пратакол',
-'upload-proto-error-text'           => 'Аддаленая загрузка файлаў патрабуе URL-адрас, які пачынаецца з <code>http://</code> альбо <code>ftp://</code>.',
-'upload-file-error'                 => 'Унутраная памылка',
-'upload-file-error-text'            => 'Адбылася ўнутраная памылка пад час спробы стварыць часовы файл на сэрвэры.
+'upload-proto-error'        => 'Няслушны пратакол',
+'upload-proto-error-text'   => 'Аддаленая загрузка файлаў патрабуе URL-адрас, які пачынаецца з <code>http://</code> альбо <code>ftp://</code>.',
+'upload-file-error'         => 'Унутраная памылка',
+'upload-file-error-text'    => 'Адбылася ўнутраная памылка пад час спробы стварыць часовы файл на сэрвэры.
 Калі ласка, зьвярніцеся да [[Special:ListUsers/sysop|сыстэмнага адміністратара]].',
-'upload-misc-error'                 => 'Невядомая памылка загрузкі',
-'upload-misc-error-text'            => 'Адбылася невядомая памылка пад час загрузкі.
+'upload-misc-error'         => 'Невядомая памылка загрузкі',
+'upload-misc-error-text'    => 'Адбылася невядомая памылка пад час загрузкі.
 Калі ласка, упэўніцеся, што URL-адрас слушны, і паспрабуйце ізноў.
 Калі памылка паўтарыцца, зьвярніцеся да [[Special:ListUsers/sysop|сыстэмнага адміністратара]].',
-'upload-too-many-redirects'         => 'URL-адрас утрымлівае зашмат перанакіраваньняў',
-'upload-unknown-size'               => 'Невядомы памер',
-'upload-http-error'                 => 'Узьнікла памылка HTTP: $1',
-'upload-copy-upload-invalid-domain' => 'Капіяваньне загрузак не дазволенае ў гэтым дамэне.',
+'upload-too-many-redirects' => 'URL-адрас утрымлівае зашмат перанакіраваньняў',
+'upload-unknown-size'       => 'Невядомы памер',
+'upload-http-error'         => 'Узьнікла памылка HTTP: $1',
 
 # File backend
 'backend-fail-stream'        => 'Немагчыма накіраваць файл $1.',

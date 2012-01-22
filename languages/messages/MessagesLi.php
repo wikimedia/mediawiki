@@ -516,7 +516,7 @@ Mesjiens haet emes angers det al gedaon.',
 'cannotdelete-title'   => 'Pagina "$1" kin neet gewösj waere',
 'badtitle'             => 'Óngeljige paginatitel',
 'badtitletext'         => 'De opgevraogde pagina is neet besjikbaar of laeg.',
-'perfcached'           => "De gegaeves koume oet 'n cache en zeen mäögelik neet actueel:",
+'perfcached'           => "De gegaeves koume oet 'n cache en zeen mäögelik neet actueel. 't Geuf {{PLURAL:$1|maximaal ei rizzeltaot|maximaal $1 rizzeltaote}} inne cache.",
 'perfcachedts'         => "De getuunde gegaeves komme oet 'n cache en zeen veur 't letst biejgewèrk op $1.",
 'querypage-no-updates' => "Deze pagina kin op 't memènt neet biegewirk waere. Deze gegaeves waere neet verfrisj.",
 'wrong_wfQuery_params' => 'Verkeerde paramaeters veur wfQuery()<br />
@@ -1629,6 +1629,7 @@ Gank trök nao t [[Special:Upload/stash/$1|uploadformuleer]] om dit perbleem te 
 'backend-fail-read'          => 'Kós bestjand $1 neet laeze.',
 'backend-fail-create'        => 'Kós bestjand $1 neet aanmake.',
 'backend-fail-readonly'      => 'Vannen opslaag "$1" kin op dit memènt allein gelaeze waere. De opgegaeve raeje is: "$2"',
+'backend-fail-connect'       => 'Kós de bestandjsbackend neet verbinje "$1".',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Kós "$1" neet vrijgaeve; \'t waes neet vergrendeld.',

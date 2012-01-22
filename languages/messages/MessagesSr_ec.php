@@ -1923,19 +1923,18 @@ $1',
 'upload-warning-subj'         => 'Упозорење при слању',
 'upload-warning-msg'          => 'Дошло је до грешке при слању из [$2]. Вратите се на [[Special:Upload/stash/$1|страницу за слање датотека]] да бисте решили проблем.',
 
-'upload-proto-error'                => 'Неисправан протокол',
-'upload-proto-error-text'           => 'Слање са спољне локације захтева адресу која почиње са <code>http://</code> или <code>ftp://</code>.',
-'upload-file-error'                 => 'Унутрашња грешка',
-'upload-file-error-text'            => 'Дошло је до унутрашње грешке при отварању привремене датотеке на серверу.
+'upload-proto-error'        => 'Неисправан протокол',
+'upload-proto-error-text'   => 'Слање са спољне локације захтева адресу која почиње са <code>http://</code> или <code>ftp://</code>.',
+'upload-file-error'         => 'Унутрашња грешка',
+'upload-file-error-text'    => 'Дошло је до унутрашње грешке при отварању привремене датотеке на серверу.
 Контактирајте [[Special:ListUsers/sysop|администратора]].',
-'upload-misc-error'                 => 'Непозната грешка при слању датотеке',
-'upload-misc-error-text'            => 'Непозната грешка при слању датотеке.
+'upload-misc-error'         => 'Непозната грешка при слању датотеке',
+'upload-misc-error-text'    => 'Непозната грешка при слању датотеке.
 Проверите да ли је адреса исправна и покушајте поново.
 Ако се проблем не реши, контактирајте [[Special:ListUsers/sysop|администратора]].',
-'upload-too-many-redirects'         => 'Адреса садржи превише преусмерења',
-'upload-unknown-size'               => 'Непозната величина',
-'upload-http-error'                 => 'Дошло је до HTTP грешке: $1',
-'upload-copy-upload-invalid-domain' => 'Примерци отпремања нису доступни на овом домену.',
+'upload-too-many-redirects' => 'Адреса садржи превише преусмерења',
+'upload-unknown-size'       => 'Непозната величина',
+'upload-http-error'         => 'Дошло је до HTTP грешке: $1',
 
 # File backend
 'backend-fail-stream'        => 'Не могу да емитујем датотеку $1.',

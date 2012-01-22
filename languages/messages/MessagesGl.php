@@ -628,7 +628,7 @@ Non esqueza personalizar as súas [[Special:Preferences|preferencias de {{SITENA
 'yourpasswordagain'          => 'Insira o seu contrasinal outra vez:',
 'remembermypassword'         => 'Lembrar o meu contrasinal neste ordenador (ata $1 {{PLURAL:$1|día|días}})',
 'securelogin-stick-https'    => 'Permanecer conectado mediante as HTTPS despois de acceder',
-'yourdomainname'             => 'O seu dominio',
+'yourdomainname'             => 'O seu dominio:',
 'externaldberror'            => 'Ou ben se produciu un erro da base de datos na autenticación externa ou ben non se lle permite actualizar a súa conta externa.',
 'login'                      => 'Acceder ao sistema',
 'nav-login-createaccount'    => 'Rexistro',

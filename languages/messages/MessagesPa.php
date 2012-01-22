@@ -11,6 +11,7 @@
  * @author Aalam
  * @author Anjalikaushal
  * @author Gman124
+ * @author Guglani
  * @author Sukh
  * @author Ævar Arnfjörð Bjarmason
  * @author לערי ריינהארט
@@ -483,6 +484,7 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'revdelete-log'           => 'ਕਾਰਨ:',
 'revdelete-submit'        => 'ਚੁਣੇ ਰੀਵਿਜ਼ਨ ਉੱਤੇ ਲਾਗੂ ਕਰੋ',
 'revdel-restore'          => 'ਦਿੱਖ ਬਦਲੋ',
+'revdel-restore-deleted'  => 'ਹਟਾਏ ਗਏ ਬਦਲਾਅ',
 'pagehist'                => 'ਪੇਜ ਦਾ ਅਤੀਤ',
 'deletedhist'             => 'ਹਟਾਇਆ ਗਿਆ ਅਤੀਤ',
 
@@ -617,6 +619,7 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'recentchanges-label-newpage' => 'ਇਹ ਸੋਧ ਨੇ ਨਵਾਂ ਸਫ਼ਾ ਬਣਾਇਆ ਹੈ',
 'recentchanges-label-minor'   => 'ਇਹ ਛੋਟੀ ਸੋਧ ਹੈ',
 'recentchanges-label-bot'     => 'ਇਹ ਸੋਧ ਨੂੰ ਬੋਟ ਵਲੋਂ ਕੀਤਾ ਗਿਆ ਹੈ',
+'rcnotefrom'                  => "'''$2'''ਤੌਂ ('''$1''' ਤਕ) ਬਦਲਾਅ ਥੱਲੇ ਦਰਸਾਏ ਗਏ ਹਨ।",
 'rcshowhideminor'             => '$1 ਛੋਟੀਆਂ ਸੋਧਾਂ',
 'rcshowhidebots'              => '$1 ਬੋਟ',
 'rcshowhideliu'               => '$1 ਲਾਗਇਨ ਹੋਏ ਯੂਜ਼ਰ',
@@ -708,7 +711,7 @@ to upload files.',
 'filehist-dimensions'       => 'ਮਾਪ',
 'filehist-filesize'         => 'ਫਾਇਲ ਆਕਾਰ',
 'filehist-comment'          => 'ਟਿੱਪਣੀ',
-'imagelinks'                => 'ਫਾਇਲ ਲਿੰਕ',
+'imagelinks'                => 'ਫ਼ਾਈਲ ਦੀ ਵਰਤੌਂ',
 'uploadnewversion-linktext' => 'ਇਸ ਫਾਇਲ ਦਾ ਇੱਕ ਨਵਾਂ ਵਰਜਨ ਅੱਪਲੋਡ ਕਰੋ',
 
 # File reversion
@@ -749,6 +752,7 @@ to upload files.',
 'unusedcategories'  => 'ਅਣਵਰਤੀਆਂ ਕੈਟਾਗਰੀਆਂ',
 'unusedimages'      => 'ਅਣਵਰਤੀਆਂ ਫਾਇਲਾਂ',
 'popularpages'      => 'ਪਾਪੂਲਰ ਪੇਜ',
+'prefixindex'       => 'ਇਸ ਅਗੇਤਰ ਵਾਲੇ ਸਾਰੇ ਪੰਨੇ',
 'shortpages'        => 'ਛੋਟੇ ਪੇਜ',
 'listusers'         => 'ਯੂਜ਼ਰ ਲਿਸਟ',
 'newpages'          => 'ਨਵੇਂ ਪੇਜ',
@@ -890,15 +894,18 @@ to upload files.',
 
 'sp-contributions-newbies-sub' => 'ਨਵੇਂ ਅਕਾਊਂਟਾਂ ਲਈ',
 'sp-contributions-talk'        => 'ਗੱਲਬਾਤ',
+'sp-contributions-search'      => 'ਯੋਗਦਾਨ ਖੋਜੋ',
 'sp-contributions-username'    => 'IP ਐਡਰੈੱਸ ਜਾਂ ਯੂਜ਼ਰ ਨਾਂ:',
 'sp-contributions-submit'      => 'ਖੋਜ',
 
 # What links here
-'whatlinkshere'           => 'ਇੱਥੇ ਕਿਹੜੇ ਲਿੰਕ',
-'whatlinkshere-page'      => 'ਸਫਾ:',
-'whatlinkshere-links'     => '← ਲਿੰਕ',
-'whatlinkshere-hidelinks' => '$1 ਲਿੰਕ',
-'whatlinkshere-filters'   => 'ਫਿਲਟਰ',
+'whatlinkshere'            => 'ਇੱਥੇ ਕਿਹੜੇ ਲਿੰਕ',
+'whatlinkshere-page'       => 'ਸਫਾ:',
+'nolinkshere'              => "'''[[:$1]]'''ਨਾਲ ਮਿਲਦਾ ਜੁਲਦਾ ਕੋਈ ਪੰਨਾ ਨਹੀਂ ਹੈ।",
+'whatlinkshere-links'      => '← ਲਿੰਕ',
+'whatlinkshere-hidelinks'  => '$1 ਲਿੰਕ',
+'whatlinkshere-hideimages' => '$1 ਸੰਬੰਧਿਤ ਚਿਤਰ',
+'whatlinkshere-filters'    => 'ਫਿਲਟਰ',
 
 # Block/unblock
 'blockip'            => 'ਯੂਜ਼ਰ ਬਲਾਕ ਕਰੋ',

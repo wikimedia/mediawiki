@@ -38,6 +38,7 @@
  * @author Fryed-peach
  * @author Garas
  * @author GerardM
+ * @author Guglani
  * @author Gustronico
  * @author Hamilton Abreu
  * @author Helix84
@@ -1872,8 +1873,8 @@ $2 is the url the file tried to upload from, when using upload-by-url.',
 'upload-warning-msg'          => '$1 is the url the file was uploaded from, when using upload-by-url
 $2 is the session key for the upload',
 
-'upload-proto-error-text'           => '"Remote upload" is explained on [http://en.wikipedia.org/wiki/Uploading_and_downloading#Remote_upload Wikipedia].',
-'upload-file-error'                 => 'Unused on core [http://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/includes/specials/SpecialUpload.php?r1=53161&r2=53282].
+'upload-proto-error-text' => '"Remote upload" is explained on [http://en.wikipedia.org/wiki/Uploading_and_downloading#Remote_upload Wikipedia].',
+'upload-file-error'       => 'Unused on core [http://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/includes/specials/SpecialUpload.php?r1=53161&r2=53282].
 
 Extensions making use of it:
 *ImportFreeImages
@@ -1881,7 +1882,6 @@ Extensions making use of it:
 
 
 {{Identical|Internal error}}',
-'upload-copy-upload-invalid-domain' => 'Error message shown if a user is trying to upload (i.e. copy) a file from a website that is not in $wgCopyUploadsDomains (if set).',
 
 # File backend
 'backend-fail-stream'        => 'Parameters:
@@ -1911,6 +1911,7 @@ Extensions making use of it:
 * $1 is a filename.',
 'backend-fail-create'        => 'Parameters:
 * $1 is a filename.',
+'backend-fail-contenttype'   => '$1 is a storage (file) path',
 'backend-fail-batchsize'     => 'Error message when the limit of 1000 operations in the file backend was reached.',
 
 # Lock manager
@@ -2691,7 +2692,7 @@ This message was something like "unlock move protection" in the past.',
 
 {{Identical|View}}
 {{Identical|Restore}}',
-'undeleteviewlink'           => 'First part of {{msg-mw|undeletelink}}',
+'undeleteviewlink'           => 'ਦੇਖੋ',
 'undeletereset'              => 'Shown on [[Special:Undelete]] as button caption.
 {{Identical|Reset}}',
 'undeleteinvert'             => '{{Identical|Invert selection}}',
