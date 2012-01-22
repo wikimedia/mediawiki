@@ -1654,17 +1654,16 @@ $1',
 'upload-warning-subj'         => 'Amaran muat naik',
 'upload-warning-msg'          => 'Terdapat masalah dengan muat naik anda daripada [$2]. Anda boleh kembali ke [[Special:Upload/stash/$1|borang muat naik]] untuk mengatasi masalah ini.',
 
-'upload-proto-error'                => 'Protokol salah',
-'upload-proto-error-text'           => 'Muat naik jauh memerlukan URL yang dimulakan dengan <code>http://</code> atau <code>ftp://</code>.',
-'upload-file-error'                 => 'Ralat dalaman',
-'upload-file-error-text'            => 'Ralat dalaman telah berlaku ketika cuba mencipta fail sementara pada komputer pelayan.
+'upload-proto-error'        => 'Protokol salah',
+'upload-proto-error-text'   => 'Muat naik jauh memerlukan URL yang dimulakan dengan <code>http://</code> atau <code>ftp://</code>.',
+'upload-file-error'         => 'Ralat dalaman',
+'upload-file-error-text'    => 'Ralat dalaman telah berlaku ketika cuba mencipta fail sementara pada komputer pelayan.
 Sila hubungi [[Special:ListUsers/sysop|pentadbir sistem]].',
-'upload-misc-error'                 => 'Ralat muat naik yang tidak diketahui',
-'upload-misc-error-text'            => 'Ralat yang tidak diketahui telah berlaku ketika muat naik. Sila pastikan bahawa URL tersebut sah dan boleh dicapai kemudian cuba lagi. Jika masalah ini berterusan, sila hubungi pentadbir sistem.',
-'upload-too-many-redirects'         => 'URL ini mengandungi terlalu banyak lencongan',
-'upload-unknown-size'               => 'Saiz tidak diketahui',
-'upload-http-error'                 => 'Berlaku ralat HTTP: $1',
-'upload-copy-upload-invalid-domain' => 'Muat naik salin tidak terdapat dari domain ini.',
+'upload-misc-error'         => 'Ralat muat naik yang tidak diketahui',
+'upload-misc-error-text'    => 'Ralat yang tidak diketahui telah berlaku ketika muat naik. Sila pastikan bahawa URL tersebut sah dan boleh dicapai kemudian cuba lagi. Jika masalah ini berterusan, sila hubungi pentadbir sistem.',
+'upload-too-many-redirects' => 'URL ini mengandungi terlalu banyak lencongan',
+'upload-unknown-size'       => 'Saiz tidak diketahui',
+'upload-http-error'         => 'Berlaku ralat HTTP: $1',
 
 # File backend
 'backend-fail-stream'        => 'Fail $1 tidak dapat distrimkan.',
@@ -1688,7 +1687,7 @@ Sila hubungi [[Special:ListUsers/sysop|pentadbir sistem]].',
 'backend-fail-connect'       => 'Tidak dapat bersambung dengan backend fail "$1".',
 'backend-fail-internal'      => 'Berlakunya ralat yang tidak dikenali dalam backend fail "$1".',
 'backend-fail-contenttype'   => 'Jenis kandungan fail untuk disimpan di "$1" tidak dapat ditentukan.',
-'backend-fail-batchsize'     => 'Backend diberi $1 operasi fail dalam satu kelompok; hadnya ialah $2.',
+'backend-fail-batchsize'     => 'Backend diberi $1 operasi fail dalam satu kelompok; hadnya ialah $2 operasi.',
 
 # Lock manager
 'lockmanager-notlocked'        => '"$1" tidak dapat dibuka; ia tidak terkunci.',

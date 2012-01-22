@@ -1547,19 +1547,18 @@ $1',
 'upload-warning-subj'         => 'Avisu de xubía',
 'upload-warning-msg'          => 'Hebo un problema cola to xubía de [$2]. Pues volver al [[Special:Upload/stash/$1|formulariu de xubía]] pa iguar esti problema.',
 
-'upload-proto-error'                => 'Protocolu incorreutu',
-'upload-proto-error-text'           => "La xubida remota requier que l'URL entame por <code>http://</code> o <code>ftp://</code>.",
-'upload-file-error'                 => 'Error internu',
-'upload-file-error-text'            => 'Hebo un error al intentar crear un ficheru temporal nel sirvidor.
+'upload-proto-error'        => 'Protocolu incorreutu',
+'upload-proto-error-text'   => "La xubida remota requier que l'URL entame por <code>http://</code> o <code>ftp://</code>.",
+'upload-file-error'         => 'Error internu',
+'upload-file-error-text'    => 'Hebo un error al intentar crear un ficheru temporal nel sirvidor.
 Por favor contauta con un [[Special:ListUsers/sysop|alministrador]] del sistema.',
-'upload-misc-error'                 => 'Error de xubida desconocíu',
-'upload-misc-error-text'            => "Hebo un error desconocíu na xubida del ficheru.
+'upload-misc-error'         => 'Error de xubida desconocíu',
+'upload-misc-error-text'    => "Hebo un error desconocíu na xubida del ficheru.
 Por favor comprueba que l'URL ye válidu y accesible, y inténtalo otra vuelta.
 Si'l problema persiste, contauta con un [[Special:ListUsers/sysop|alministrador]] del sistema.",
-'upload-too-many-redirects'         => 'La URL contenía demasiaes redireiciones',
-'upload-unknown-size'               => 'Tamañu desconocíu',
-'upload-http-error'                 => 'Hebo un error HTTP: $1',
-'upload-copy-upload-invalid-domain' => 'La xubida de copies nun ta disponible dende esti dominiu.',
+'upload-too-many-redirects' => 'La URL contenía demasiaes redireiciones',
+'upload-unknown-size'       => 'Tamañu desconocíu',
+'upload-http-error'         => 'Hebo un error HTTP: $1',
 
 # File backend
 'backend-fail-stream'        => 'Nun se pudo tresmitir el ficheru $1.',

@@ -1512,19 +1512,18 @@ $1",
 'upload-warning-subj'         => "Avis antramentre ch'as caria",
 'upload-warning-msg'          => "A-i era un problema con lòn ch'a l'ha carià da [$2]. A peul artorné al [[Special:Upload/stash/$1|formolari për carié]] për corege ël problema.",
 
-'upload-proto-error'                => 'Protocòl cioch',
-'upload-proto-error-text'           => "Për carié da dij servent lontan a venta buté dj'anliure ch'as anandio për <code>http://</code> ò pura <code>ftp://</code>.",
-'upload-file-error'                 => 'Eror antern',
-'upload-file-error-text'            => "A l'é rivaie n'eror antern dëmentrè che as fasìa n'archivi provisòri ant sël servent.
+'upload-proto-error'        => 'Protocòl cioch',
+'upload-proto-error-text'   => "Për carié da dij servent lontan a venta buté dj'anliure ch'as anandio për <code>http://</code> ò pura <code>ftp://</code>.",
+'upload-file-error'         => 'Eror antern',
+'upload-file-error-text'    => "A l'é rivaie n'eror antern dëmentrè che as fasìa n'archivi provisòri ant sël servent.
 Për piasì, ch'as butà an comunicassion con n'[[Special:ListUsers/sysop|aministrator]].",
-'upload-misc-error'                 => "Eror nen identificà antramentr ch'as cariava",
-'upload-misc-error-text'            => "A l'é staie n'eror nen identificà dëmentrè ch'as cariava chèich-còs.
+'upload-misc-error'         => "Eror nen identificà antramentr ch'as cariava",
+'upload-misc-error-text'    => "A l'é staie n'eror nen identificà dëmentrè ch'as cariava chèich-còs.
 Për piasì, ch'a varda che soa anliura a sia bon-a e che a l'arsponda e peuj ch'a preuva torna.
 Se a-i riva sossì n'àotra vira, ch'as buta an comunicassion con n'[[Special:ListUsers/sysop|aministrator]].",
-'upload-too-many-redirects'         => "L'adrëssa dl'aragnà a l'avìa tròpe ridiression",
-'upload-unknown-size'               => 'Dimension pa conossùa',
-'upload-http-error'                 => "A l'é staje n'eror HTTP: $1.",
-'upload-copy-upload-invalid-domain' => "Cariagi ëd cobie a l'é pa disponìbil da sto domini.",
+'upload-too-many-redirects' => "L'adrëssa dl'aragnà a l'avìa tròpe ridiression",
+'upload-unknown-size'       => 'Dimension pa conossùa',
+'upload-http-error'         => "A l'é staje n'eror HTTP: $1.",
 
 # File backend
 'backend-fail-stream'        => "A peul pa sequensialisé l'archivi $1.",

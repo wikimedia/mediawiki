@@ -27,6 +27,7 @@
  * @author Mwpnl
  * @author Naudefj
  * @author Niels
+ * @author Paul B
  * @author Romaine
  * @author SPQRobin
  * @author Saruman
@@ -1146,7 +1147,7 @@ Hieronder staat de tekst waarin de wijziging ongedaan is gemaakt.
 Controleer voor het opslaan of het resultaat gewenst is.',
 'undo-failure' => 'De wijziging kan niet ongedaan gemaakt worden vanwege andere strijdige wijzigingen.',
 'undo-norev'   => 'De bewerking kon niet ongedaan gemaakt worden, omdat die niet bestaat of is verwijderd.',
-'undo-summary' => 'Versie $1 van [[Special:Contributions/$2|$2]] ([[User talk:$2|overleg]]) ongedaan gemaakt',
+'undo-summary' => 'Versie $1 van [[Special:Contributions/$2|$2]] ([[User talk:$2|overleg]]) ongedaan gemaakt.',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Registreren is mislukt.',
@@ -1868,19 +1869,18 @@ $1',
 'upload-warning-msg'          => 'Er was een probleem met uw upload van [$2].
 Ga terug naar het [[Special:Upload/stash/$1|uploadformulier]] om dit probleem te verhelpen.',
 
-'upload-proto-error'                => 'Verkeerd protocol',
-'upload-proto-error-text'           => "Uploads via deze methode vereisen URL's die beginnen met <code>http://</code> of <code>ftp://</code>.",
-'upload-file-error'                 => 'Interne fout',
-'upload-file-error-text'            => 'Er is een interne fout opgetreden tijdens het aanmaken van een tijdelijk bestaan op de server.
+'upload-proto-error'        => 'Verkeerd protocol',
+'upload-proto-error-text'   => "Uploads via deze methode vereisen URL's die beginnen met <code>http://</code> of <code>ftp://</code>.",
+'upload-file-error'         => 'Interne fout',
+'upload-file-error-text'    => 'Er is een interne fout opgetreden tijdens het aanmaken van een tijdelijk bestaan op de server.
 Neem contact op met een [[Special:ListUsers/sysop|systeembeheerder]].',
-'upload-misc-error'                 => 'Onbekende uploadfout',
-'upload-misc-error-text'            => 'Er is tijdens het uploaden een onbekende fout opgetreden.
+'upload-misc-error'         => 'Onbekende uploadfout',
+'upload-misc-error-text'    => 'Er is tijdens het uploaden een onbekende fout opgetreden.
 Controleer of de URL correct en beschikbaar is en probeer het opnieuw.
 Als het probleem aanhoudt, neem dan contact op met een [[Special:ListUsers/sysop|systeembeheerder]].',
-'upload-too-many-redirects'         => 'De URL bevatte te veel doorverwijzingen',
-'upload-unknown-size'               => 'Onbekende grootte',
-'upload-http-error'                 => 'Er is een HTTP-fout opgetreden: $1',
-'upload-copy-upload-invalid-domain' => 'Uploaden per kopie is niet beschikbaar vanuit dit domein.',
+'upload-too-many-redirects' => 'De URL bevatte te veel doorverwijzingen',
+'upload-unknown-size'       => 'Onbekende grootte',
+'upload-http-error'         => 'Er is een HTTP-fout opgetreden: $1',
 
 # File backend
 'backend-fail-stream'        => 'Het was niet mogelijk het bestand $1 te streamen.',

@@ -967,12 +967,12 @@ Verifique se deseja realmente criar ou editar esta página, por favor.',
 'userpage-userdoesnotexist-view'   => 'A conta de utilizador "$1" não está registada.',
 'blocked-notice-logextract'        => 'Este utilizador encontra-se actualmente bloqueado.
 Para referência, o último registo de bloqueio é apresentado abaixo:',
-'clearyourcache'                   => "'''Nota:''' após gravar, terá de limpar a ''cache'' do seu browser para ver as alterações.'''
-'''Firefox / Safari:''' pressione ''Shift'' enquanto clica ''Recarregar'', ou pressione ''Ctrl-F5'' ou ''Ctrl-R'' (''⌘-Shift-R'' no Mac)
-'''Google Chrome:''': pressione ''Ctrl-Shift-R'' (''⌘-R'' no Mac)
-'''Internet Explorer:''' pressione ''Ctrl'' enquanto clica ''Recarregar'', ou pressione ''Ctrl-F5''
-'''Konqueror:''': clique ''Recarregar'' ou pressione ''F5''
-'''Opera:''' limpe a ''cache'' em ''Ferramentas → Preferências'' (''Tools → Preferences'')",
+'clearyourcache'                   => "'''Nota:''' Após gravar, terá de limpar a ''cache'' do seu browser para ver as alterações.'''
+'''Firefox / Safari:''' Pressione ''Shift'' enquanto clica ''Recarregar'', ou pressione ''Ctrl-F5'' ou ''Ctrl-R'' (''⌘-R'' no Mac)
+'''Google Chrome:''': Pressione ''Ctrl-Shift-R'' (''⌘-Shift-R'' no Mac)
+'''Internet Explorer:''' Pressione ''Ctrl'' enquanto clica ''Recarregar'', ou pressione ''Ctrl-F5''
+'''Konqueror:''': Clique ''Recarregar'' ou pressione ''F5''
+'''Opera:''' Limpe a ''cache'' em ''Ferramentas → Preferências'' (''Tools → Preferences'')",
 'usercssyoucanpreview'             => "'''Dica:''' Use o botão \"{{int:showpreview}}\" para testar o seu novo CSS antes de gravar.",
 'userjsyoucanpreview'              => "'''Dica:''' Use o botão \"{{int:showpreview}}\" para testar o seu novo JavaScript antes de gravar.",
 'usercsspreview'                   => "'''Lembre-se de que está apenas a antever o seu CSS particular.
@@ -1026,8 +1026,8 @@ Garante-nos também que isto é algo escrito por si, ou copiado do domínio púb
 Se não deseja que o seu texto seja inexoravelmente editado, não o envie.<br />
 Garante-nos também que isto é algo escrito por si, ou copiado do domínio público ou de outra fonte de teor livre (consulte $1 para mais detalhes).<br />
 '''Não envie conteúdos cujos direitos de autor estão protegidos, sem ter a devida permissão!'''",
-'longpageerror'                    => "'''Erro: O texto que submeteu ocupa $1 KB, um espaço superior ao máximo de $2 KB.
-A página não pode ser gravada.'''",
+'longpageerror'                    => "'''Erro: O texto que submeteu ocupa $1 KB, um espaço superior ao máximo de $2 KB.'''
+A página não pode ser gravada.",
 'readonlywarning'                  => "'''Aviso: A base de dados foi bloqueada para manutenção, pelo que não poderá gravar a sua edição neste momento.'''
 Pode, no entanto, copiar o seu texto para um editor externo e guardá-lo para posterior submissão.
 

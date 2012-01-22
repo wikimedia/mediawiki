@@ -1824,19 +1824,18 @@ $1',
 'upload-warning-subj'         => 'Upozorenje pri slanju',
 'upload-warning-msg'          => 'Došlo je do greške pri slanju iz [$2]. Vratite se na [[Special:Upload/stash/$1|stranicu za slanje datoteka]] da biste rešili problem.',
 
-'upload-proto-error'                => 'Neispravan protokol',
-'upload-proto-error-text'           => 'Slanje sa spoljne lokacije zahteva adresu koja počinje sa <code>http://</code> ili <code>ftp://</code>.',
-'upload-file-error'                 => 'Unutrašnja greška',
-'upload-file-error-text'            => 'Došlo je do unutrašnje greške pri otvaranju privremene datoteke na serveru.
+'upload-proto-error'        => 'Neispravan protokol',
+'upload-proto-error-text'   => 'Slanje sa spoljne lokacije zahteva adresu koja počinje sa <code>http://</code> ili <code>ftp://</code>.',
+'upload-file-error'         => 'Unutrašnja greška',
+'upload-file-error-text'    => 'Došlo je do unutrašnje greške pri otvaranju privremene datoteke na serveru.
 Kontaktirajte [[Special:ListUsers/sysop|administratora]].',
-'upload-misc-error'                 => 'Nepoznata greška pri slanju datoteke',
-'upload-misc-error-text'            => 'Nepoznata greška pri slanju datoteke.
+'upload-misc-error'         => 'Nepoznata greška pri slanju datoteke',
+'upload-misc-error-text'    => 'Nepoznata greška pri slanju datoteke.
 Proverite da li je adresa ispravna i pokušajte ponovo.
 Ako se problem ne reši, kontaktirajte [[Special:ListUsers/sysop|administratora]].',
-'upload-too-many-redirects'         => 'Adresa sadrži previše preusmerenja',
-'upload-unknown-size'               => 'Nepoznata veličina',
-'upload-http-error'                 => 'Došlo je do HTTP greške: $1',
-'upload-copy-upload-invalid-domain' => 'Primerci otpremanja nisu dostupni na ovom domenu.',
+'upload-too-many-redirects' => 'Adresa sadrži previše preusmerenja',
+'upload-unknown-size'       => 'Nepoznata veličina',
+'upload-http-error'         => 'Došlo je do HTTP greške: $1',
 
 # File backend
 'backend-fail-stream'        => 'Ne mogu da emitujem datoteku $1.',

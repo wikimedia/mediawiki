@@ -1683,19 +1683,18 @@ $1',
 'upload-warning-subj'         => 'Opozorilo pri nalaganju',
 'upload-warning-msg'          => 'Prišlo je do težave pri nalaganju datoteke iz [$2]. Lahko se vrnete na [[Special:Upload/stash/$1|obrazec za nalaganje]], da odpravite težavo.',
 
-'upload-proto-error'                => 'Nepravilni protokol',
-'upload-proto-error-text'           => 'Oddaljeno nalaganje zahteva, da se URL začenja s <code>http://</code> ali <code>ftp://</code>.',
-'upload-file-error'                 => 'Notranja napaka',
-'upload-file-error-text'            => 'Prišlo je do notranje napake pri poskusu ustvarjanja začasne datoteke na strežniku.
+'upload-proto-error'        => 'Nepravilni protokol',
+'upload-proto-error-text'   => 'Oddaljeno nalaganje zahteva, da se URL začenja s <code>http://</code> ali <code>ftp://</code>.',
+'upload-file-error'         => 'Notranja napaka',
+'upload-file-error-text'    => 'Prišlo je do notranje napake pri poskusu ustvarjanja začasne datoteke na strežniku.
 Prosimo, obrnite se na [[Special:ListUsers/sysop|administratorja]].',
-'upload-misc-error'                 => 'Neznana napaka pri nalaganju',
-'upload-misc-error-text'            => 'Med nalaganjem je prišlo do neznane napake.
+'upload-misc-error'         => 'Neznana napaka pri nalaganju',
+'upload-misc-error-text'    => 'Med nalaganjem je prišlo do neznane napake.
 Prosimo, preverite veljavnost in dostopnost naslova URL ter poskusite ponovno.
 Če se težava ponavlja, kontaktirajte [[Special:ListUsers/sysop|administratorja]].',
-'upload-too-many-redirects'         => 'URL vsebuje preveč preusmeritev',
-'upload-unknown-size'               => 'Neznana velikost',
-'upload-http-error'                 => 'Prišlo je do napake HTTP: $1',
-'upload-copy-upload-invalid-domain' => 'Nalaganje kopij s te domene ni na voljo.',
+'upload-too-many-redirects' => 'URL vsebuje preveč preusmeritev',
+'upload-unknown-size'       => 'Neznana velikost',
+'upload-http-error'         => 'Prišlo je do napake HTTP: $1',
 
 # File backend
 'backend-fail-stream'        => 'Ne morem pretakati datoteke $1.',

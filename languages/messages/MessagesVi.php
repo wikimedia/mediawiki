@@ -1756,19 +1756,18 @@ $1',
 'upload-warning-subj'         => 'Cảnh báo tải lên',
 'upload-warning-msg'          => 'Tập tin tải lên từ [$2] đã gặp vấn đề. Xin hãy trở về [[Special:Upload/stash/$1|biểu mẫu tải lên]] để giải quyết vấn đề này.',
 
-'upload-proto-error'                => 'Giao thức sai',
-'upload-proto-error-text'           => 'Phải đưa vào URL bắt đầu với <code>http://</code> hay <code>ftp://</code> để tải lên tập tin từ trang web khác.',
-'upload-file-error'                 => 'Lỗi nội bộ',
-'upload-file-error-text'            => 'Có lỗi nội bộ khi tạo tập tin tạm trên máy chủ.
+'upload-proto-error'        => 'Giao thức sai',
+'upload-proto-error-text'   => 'Phải đưa vào URL bắt đầu với <code>http://</code> hay <code>ftp://</code> để tải lên tập tin từ trang web khác.',
+'upload-file-error'         => 'Lỗi nội bộ',
+'upload-file-error-text'    => 'Có lỗi nội bộ khi tạo tập tin tạm trên máy chủ.
 Xin hãy liên hệ với một [[Special:ListUsers/sysop|bảo quản viên]].',
-'upload-misc-error'                 => 'Có lỗi lạ khi tải lên',
-'upload-misc-error-text'            => 'Có lỗi lạ khi tải lên.
+'upload-misc-error'         => 'Có lỗi lạ khi tải lên',
+'upload-misc-error-text'    => 'Có lỗi lạ khi tải lên.
 Xin hãy xác nhận lại địa chỉ URL là hợp lệ và có thể truy cập được không rồi thử lại lần nữa.
 Nếu vẫn còn bị lỗi, xin hãy liên hệ với một [[Special:ListUsers/sysop|bảo quản viên]].',
-'upload-too-many-redirects'         => 'URL có quá nhiều chuyển hướng',
-'upload-unknown-size'               => 'Không rõ kích thước',
-'upload-http-error'                 => 'Xảy ra lỗi HTTP: $1',
-'upload-copy-upload-invalid-domain' => 'Không có sẵn các bản sao tải lên tại tên miền này.',
+'upload-too-many-redirects' => 'URL có quá nhiều chuyển hướng',
+'upload-unknown-size'       => 'Không rõ kích thước',
+'upload-http-error'         => 'Xảy ra lỗi HTTP: $1',
 
 # File backend
 'backend-fail-stream'        => 'Không thể gửi luồng tập tin $1.',
