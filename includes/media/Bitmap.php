@@ -507,7 +507,7 @@ class BitmapHandler extends ImageHandler {
 		if ( !isset( $typemap[$params['mimeType']] ) ) {
 			$err = 'Image type not supported';
 			wfDebug( "$err\n" );
-			$errMsg = wfMsg ( 'thumbnail_image-type' );
+			$errMsg = wfMsg( 'thumbnail_image-type' );
 			return $this->getMediaTransformError( $params, $errMsg );
 		}
 		list( $loader, $colorStyle, $saveType ) = $typemap[$params['mimeType']];
@@ -515,14 +515,14 @@ class BitmapHandler extends ImageHandler {
 		if ( !function_exists( $loader ) ) {
 			$err = "Incomplete GD library configuration: missing function $loader";
 			wfDebug( "$err\n" );
-			$errMsg = wfMsg ( 'thumbnail_gd-library', $loader );
+			$errMsg = wfMsg( 'thumbnail_gd-library', $loader );
 			return $this->getMediaTransformError( $params, $errMsg );
 		}
 
 		if ( !file_exists( $params['srcPath'] ) ) {
 			$err = "File seems to be missing: {$params['srcPath']}";
 			wfDebug( "$err\n" );
-			$errMsg = wfMsg ( 'thumbnail_image-missing', $params['srcPath'] );
+			$errMsg = wfMsg( 'thumbnail_image-missing', $params['srcPath'] );
 			return $this->getMediaTransformError( $params, $errMsg );
 		}
 
