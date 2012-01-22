@@ -36,8 +36,9 @@ class mcTest extends Maintenance {
 		global $wgMemCachedServers;
 
 		$iterations = $this->getOption( 'i', 100 );
-		if ( $this->hasArg() )
+		if ( $this->hasArg() ) {
 			$wgMemCachedServers = array( $this->getArg() );
+		}
 
 		foreach ( $wgMemCachedServers as $server ) {
 			$this->output( $server . " ", $server );
