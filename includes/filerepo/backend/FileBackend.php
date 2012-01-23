@@ -53,13 +53,11 @@ abstract class FileBackendBase {
 	public function __construct( array $config ) {
 		$defaultConfig = array(
 			'lockManager' => null,
+			'wikiId' => wfWikiID(),
 		);
 		$config = array_merge(  $defaultConfig, $config );
 		$this->name = $config['name'];
-		$this->wikiId = isset( $config['wikiId'] )
-			? $config['wikiId']
-			: wfWikiID(); // e.g. "my_wiki-en_"
-		$this->wikiId = $this->resolveWikiId( $this->wikiId );
+		$this->wikiId = $this->resolveWikiId( $config['wikiId'] );
 		$this->lockManager = LockManagerGroup::singleton()->get( $config['lockManager'] );
 		$this->readOnly = isset( $config['readOnly'] )
 			? (string)$config['readOnly']
