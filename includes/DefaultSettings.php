@@ -1188,7 +1188,7 @@ $wgEnotifUseRealName = false;
 
 /**
  * Array of usernames who will be sent a notification email for every change
- * which occurs on a wiki.
+ * which occurs on a wiki. Users will not be notified of their own changes.
  */
 $wgUsersNotifiedOnAllChanges = array();
 
