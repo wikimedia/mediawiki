@@ -46,8 +46,8 @@ require( RUN_MAINTENANCE_IF_MAIN );
 
 if( !in_array( '--configuration', $_SERVER['argv'] ) ) {
 	//Hack to eliminate the need to use the Makefile (which sucks ATM)
-	$_SERVER['argv'][] = '--configuration';
-	$_SERVER['argv'][] = $IP . '/tests/phpunit/suite.xml';
+	array_splice( $_SERVER['argv'], 1, 0, 
+		array( '--configuration', $IP . '/tests/phpunit/suite.xml' ) );
 }
 
 require_once( 'PHPUnit/Runner/Version.php' );
