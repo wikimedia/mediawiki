@@ -22,30 +22,22 @@ class LockServerDaemon {
 	/** @var resource */
 	protected $sock; // socket to listen/accept on
 	/** @var Array */
-	protected $shLocks = array(); // (key => session => 1)
-	/** @var Array */
-	protected $exLocks = array(); // (key => session)
-	/** @var Array */
 	protected $sessions = array(); // (session => resource)
 	/** @var Array */
 	protected $deadSessions = array(); // (session => UNIX timestamp)
 
-	/** @var Array */
-	protected $sessionIndexSh = array(); // (session => key => 1)
-	/** @var Array */
-	protected $sessionIndexEx = array(); // (session => key => 1)
+	/** @var LockHolder */
+	protected $lockHolder;
 
 	protected $address; // string (IP/hostname)
 	protected $port; // integer
 	protected $authKey; // string key
 	protected $connTimeout; // array ( 'sec' => integer, 'usec' => integer )
 	protected $lockTimeout; // integer number of seconds
-	protected $maxLocks; // integer
-	protected $maxClients; // integer
 	protected $maxBacklog; // integer
+	protected $maxClients; // integer
 
 	protected $startTime; // integer UNIX timestamp
-	protected $lockCount = 0; // integer
 	protected $ticks = 0; // integer counter
 
 	protected static $instance = null;
@@ -88,17 +80,19 @@ class LockServerDaemon {
 			'usec' => floor( ( $connTimeout - floor( $connTimeout ) ) * 1e6 )
 		);
 		$this->lockTimeout = isset( $config['lockTimeout'] )
-			? $config['lockTimeout']
+			? (int)$config['lockTimeout']
 			: 60;
-		$this->maxLocks = isset( $config['maxLocks'] )
-			? $config['maxLocks']
-			: 5000;
 		$this->maxClients = isset( $config['maxClients'] )
-			? $config['maxClients']
+			? (int)$config['maxClients']
 			: 1000; // less than default FD_SETSIZE
 		$this->maxBacklog = isset( $config['maxBacklog'] )
-			? $config['maxBacklog']
-			: 10;
+			? (int)$config['maxBacklog']
+			: 100;
+		$maxLocks = isset( $config['maxLocks'] )
+			? (int)$config['maxLocks']
+			: 5000;
+
+		$this->lockHolder = new LockHolder( $maxLocks );
 	}
 
 	/**
@@ -113,6 +107,7 @@ class LockServerDaemon {
 			throw new Exception( "socket_create(): " . socket_strerror( socket_last_error() ) );
 		}
 		socket_set_option( $sock, SOL_SOCKET, SO_REUSEADDR, 1 ); // bypass 2MLS
+		socket_set_nonblock( $sock ); // don't block on accept()
 		if ( socket_bind( $sock, $this->address, $this->port ) === false ) {
 			throw new Exception( "socket_bind(): " .
 				socket_strerror( socket_last_error( $sock ) ) );
@@ -135,7 +130,7 @@ class LockServerDaemon {
 		$clients = array( $this->sock ); // start off with listening socket
 		do {
 			// Create a copy, so $clients doesn't get modified by socket_select()
-			$read = $clients; // clients-with-data
+			$read = $clients; // clients-with-data (plus listening socket)
 			// Get a list of all the clients that have data to be read from
 			$changed = socket_select( $read, $write = NULL, $except = NULL, NULL );
 			if ( $changed === false ) {
@@ -148,12 +143,15 @@ class LockServerDaemon {
 			if ( in_array( $this->sock, $read ) && count( $clients ) < $this->maxClients ) {
 				// Accept the new client...
 				$newsock = socket_accept( $this->sock );
-				socket_set_option( $newsock, SOL_SOCKET, SO_RCVTIMEO, $this->connTimeout );
-				socket_set_option( $newsock, SOL_SOCKET, SO_SNDTIMEO, $this->connTimeout );
-				$clients[] = $newsock;
-				// Remove the listening socket from the clients-with-data array...
-				$key = array_search( $this->sock, $read );
-				unset( $read[$key] );
+				if ( $newsock ) {
+					socket_set_option( $newsock, SOL_SOCKET, SO_KEEPALIVE, 1 );
+					socket_set_option( $newsock, SOL_SOCKET, SO_RCVTIMEO, $this->connTimeout );
+					socket_set_option( $newsock, SOL_SOCKET, SO_SNDTIMEO, $this->connTimeout );
+					$clients[] = $newsock;
+					// Remove the listening socket from the clients-with-data array...
+					$key = array_search( $this->sock, $read );
+					unset( $read[$key] );
+				}
 			}
 			// Loop through all the clients that have data to read...
 			foreach ( $read as $read_sock ) {
@@ -210,11 +208,11 @@ class LockServerDaemon {
 			$this->sessions[$session] = $sourceSock;
 		}
 		if ( $function === 'ACQUIRE' ) {
-			return $this->lock( $session, $type, $resources );
+			return $this->lockHolder->lock( $session, $type, $resources );
 		} elseif ( $function === 'RELEASE' ) {
-			return $this->unlock( $session, $type, $resources );
+			return $this->lockHolder->unlock( $session, $type, $resources );
 		} elseif ( $function === 'RELEASE_ALL' ) {
-			return $this->release( $session );
+			return $this->lockHolder->release( $session );
 		} elseif ( $function === 'STAT' ) {
 			return $this->stat();
 		}
@@ -262,12 +260,63 @@ class LockServerDaemon {
 	}
 
 	/**
+	 * Clear locks for sessions that have been dead for a while
+	 *
+	 * @return integer Number of sessions purged
+	 */
+	protected function purgeExpiredLocks() {
+		$now = time();
+		$count = 0;
+		foreach ( $this->deadSessions as $session => $timestamp ) {
+			if ( ( $now - $timestamp ) > $this->lockTimeout ) {
+				$this->lockHolder->release( $session );
+				unset( $this->deadSessions[$session] );
+				++$count;
+			}
+		}
+		return $count;
+	}
+
+	/**
+	 * @return string
+	 */
+	protected function stat() {
+		return ( time() - $this->startTime ) . ':' . memory_get_usage();
+	}
+}
+
+/**
+ * LockServerDaemon helper class that keeps track of the locks.
+ * This should not require MediaWiki setup or PHP files.
+ */
+class LockHolder {
+	/** @var Array */
+	protected $shLocks = array(); // (key => session => 1)
+	/** @var Array */
+	protected $exLocks = array(); // (key => session)
+
+	/** @var Array */
+	protected $sessionIndexSh = array(); // (session => key => 1)
+	/** @var Array */
+	protected $sessionIndexEx = array(); // (session => key => 1)
+	protected $lockCount = 0; // integer
+
+	protected $maxLocks; // integer
+
+	/**
+	 * @params $maxLocks integer Maximum number of locks to allow
+	 */
+	public function __construct( $maxLocks ) {
+		$this->maxLocks = $maxLocks;
+	}
+
+	/**
 	 * @param $session string
 	 * @param $type string
 	 * @param $keys Array
 	 * @return string
 	 */
-	protected function lock( $session, $type, $keys ) {
+	public function lock( $session, $type, array $keys ) {
 		if ( $this->lockCount >= $this->maxLocks ) {
 			return 'TOO_MANY_LOCKS';
 		}
@@ -312,7 +361,7 @@ class LockServerDaemon {
 	 * @param $keys Array
 	 * @return string
 	 */
-	protected function unlock( $session, $type, $keys ) {
+	public function unlock( $session, $type, array $keys ) {
 		if ( $type === 'SH' ) {
 			foreach ( $keys as $key ) {
 				$this->unset_sh_lock( $key, $session );
@@ -331,7 +380,7 @@ class LockServerDaemon {
 	 * @param $session string
 	 * @return string
 	 */
-	protected function release( $session ) {
+	public function release( $session ) {
 		if ( isset( $this->sessionIndexSh[$session] ) ) {
 			foreach ( $this->sessionIndexSh[$session] as $key => $x ) {
 				$this->unset_sh_lock( $key, $session );
@@ -343,28 +392,6 @@ class LockServerDaemon {
 			}
 		}
 		return 'RELEASED_ALL';
-	}
-
-	/**
-	 * @return string
-	 */
-	protected function stat() {
-		return ( time() - $this->startTime ) . ':' . memory_get_usage();
-	}
-
-	/**
-	 * Clear locks for sessions that have been dead for a while
-	 *
-	 * @return void
-	 */
-	protected function purgeExpiredLocks() {
-		$now = time();
-		foreach ( $this->deadSessions as $session => $timestamp ) {
-			if ( ( $now - $timestamp ) > $this->lockTimeout ) {
-				$this->release( $session );
-				unset( $this->deadSessions[$session] );
-			}
-		}
 	}
 
 	/**
