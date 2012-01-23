@@ -585,6 +585,7 @@ function wfRemoveDotSegments( $urlPath ) {
 		$prefixLengthTwo = substr( $urlPath, $inputOffset, 2 );
 		$prefixLengthThree = substr( $urlPath, $inputOffset, 3 );
 		$prefixLengthFour = substr( $urlPath, $inputOffset, 4 );
+		$trimOutput = false;
 
 		if ( $prefixLengthTwo == './' ) {
 			# Step A, remove leading "./"
@@ -604,12 +605,12 @@ function wfRemoveDotSegments( $urlPath ) {
 			# remove last path component in output
 			$inputOffset += 2;
 			$urlPath[$inputOffset] = '/';
-			$output = preg_replace('%(^|/)[^/]*$%', '', $output);
+			$trimOutput = true;
 		} elseif ( $prefixLengthFour == '/../' ) {
 			# Step C, replace leading "/../" with "/" and
 			# remove last path component in output
 			$inputOffset += 3;
-			$output = preg_replace('%(^|/)[^/]*$%', '', $output);
+			$trimOutput = true;
 		} elseif ( ( $prefixLengthOne == '.' ) && ( $inputOffset + 1 == $inputLength ) ) {
 			# Step D, remove "^.$"
 			$inputOffset += 1;
@@ -618,9 +619,27 @@ function wfRemoveDotSegments( $urlPath ) {
 			$inputOffset += 2;
 		} else {
 			# Step E, move leading path segment to output
-			preg_match( '%/?[^/]*%A', $urlPath, $matches, 0, $inputOffset );
-			$inputOffset += strlen( $matches[0] );
-			$output .= $matches[0];
+			if ( $prefixLengthOne == '/' ) {
+				$slashPos = strpos( $urlPath, '/', $inputOffset + 1 );
+			} else {
+				$slashPos = strpos( $urlPath, '/', $inputOffset );
+			}
+			if ( $slashPos === false ) {
+				$output .= substr( $urlPath, $inputOffset );
+				$inputOffset = $inputLength;
+			} else {
+				$output .= substr( $urlPath, $inputOffset, $slashPos - $inputOffset );
+				$inputOffset += $slashPos - $inputOffset;
+			}
+		}
+
+		if ( $trimOutput ) {
+			$slashPos = strrpos( $output, '/' );
+			if ( $slashPos === false ) {
+				$output = '';
+			} else {
+				$output = substr( $output, 0, $slashPos );
+			}
 		}
 	}
 
