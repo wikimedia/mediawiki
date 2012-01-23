@@ -82,10 +82,6 @@ return array(
 	'jquery.appear' => array(
 		'scripts' => 'resources/jquery/jquery.appear.js',
 	),
-	'jquery.arrowSteps' => array(
-		'scripts' => 'resources/jquery/jquery.arrowSteps.js',
-		'styles' => 'resources/jquery/jquery.arrowSteps.css',
-	),
 	'jquery.async' => array(
 		'scripts' => 'resources/jquery/jquery.async.js',
 	),
