@@ -438,7 +438,7 @@ class StoreFileOp extends FileOp {
 /**
  * Create a file in the backend with the given content.
  * Parameters similar to FileBackend::createInternal(), which include:
- *     content       : a string of raw file contents
+ *     content       : a string of raw file content. Let unset to create an empty file.
  *     dst           : destination storage path
  *     overwrite     : do nothing and pass if an identical file exists at destination
  *     overwriteSame : override any existing file at destination
@@ -451,7 +451,7 @@ class CreateFileOp extends FileOp {
 	protected function doPrecheck( array &$predicates ) {
 		$status = Status::newGood();
 		// Check if the source data is too big
-		if ( strlen( $this->params['content'] ) > $this->backend->maxFileSizeInternal() ) {
+		if ( strlen( $this->getParam( 'content' ) ) > $this->backend->maxFileSizeInternal() ) {
 			$status->fatal( 'backend-fail-create', $this->params['dst'] );
 			return $status;
 		// Check if a file can be placed at the destination
