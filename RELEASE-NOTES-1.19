@@ -233,6 +233,7 @@ production.
   a null edit.
 * (bug 33880) $wgUsersNotifiedOnAllChanges should not send e-mail to user who made
   the edit.
+* (bug 33902) Decoding %2B with mw.Uri.decode results in ' ' instead of +
 
 === API changes in 1.19 ===
 * Made action=edit less likely to return "unknownerror", by returning the actual error
