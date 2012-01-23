@@ -1467,8 +1467,6 @@ class OutputPage extends ContextSource {
 
 		wfProfileIn( __METHOD__ );
 
-		wfIncrStats( 'pcache_not_possible' );
-
 		$popts = $this->parserOptions();
 		$oldTidy = $popts->setTidy( $tidy );
 		$popts->setInterfaceMessage( (bool) $interface );

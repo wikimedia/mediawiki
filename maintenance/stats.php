@@ -54,14 +54,12 @@ class CacheStats extends Maintenance {
 
 		$this->output( "\nParser cache\n" );
 		$hits = intval( $wgMemc->get( wfMemcKey( 'stats', 'pcache_hit' ) ) );
-		$invalid = intval( $wgMemc->get( wfMemcKey( 'stats', 'pcache_miss_invalid' ) ) );
 		$expired = intval( $wgMemc->get( wfMemcKey( 'stats', 'pcache_miss_expired' ) ) );
 		$absent = intval( $wgMemc->get( wfMemcKey( 'stats', 'pcache_miss_absent' ) ) );
 		$stub = intval( $wgMemc->get( wfMemcKey( 'stats', 'pcache_miss_stub' ) ) );
-		$total = $hits + $invalid + $expired + $absent + $stub;
+		$total = $hits + $expired + $absent + $stub;
 		if ( $total ) {
 			$this->output( sprintf( "hits:              %-10d %6.2f%%\n", $hits, $hits / $total * 100 ) );
-			$this->output( sprintf( "invalid:           %-10d %6.2f%%\n", $invalid, $invalid / $total * 100 ) );
 			$this->output( sprintf( "expired:           %-10d %6.2f%%\n", $expired, $expired / $total * 100 ) );
 			$this->output( sprintf( "absent:            %-10d %6.2f%%\n", $absent, $absent / $total * 100 ) );
 			$this->output( sprintf( "stub threshold:    %-10d %6.2f%%\n", $stub, $stub / $total * 100 ) );
