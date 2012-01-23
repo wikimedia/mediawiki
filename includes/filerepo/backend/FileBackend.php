@@ -51,6 +51,10 @@ abstract class FileBackendBase {
 	 * @param $config Array
 	 */
 	public function __construct( array $config ) {
+		$defaultConfig = array(
+			'lockManager' => null,
+		);
+		$config = array_merge(  $defaultConfig, $config );
 		$this->name = $config['name'];
 		$this->wikiId = isset( $config['wikiId'] )
 			? $config['wikiId']
