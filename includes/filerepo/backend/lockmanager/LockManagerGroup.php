@@ -66,14 +66,11 @@ class LockManagerGroup {
 	/**
 	 * Get the lock manager object with a given name
 	 *
-	 * @param $name string. Empty value (default) will give a nullLockManager
-	 * @return LockManager (default: nullLockManager)
+	 * @param $name string
+	 * @return LockManager
 	 * @throws MWException
 	 */
-	public function get( $name = null ) {
-		if( empty( $name ) ) {
-			$name = 'nullLockManager';
-		}
+	public function get( $name ) {
 		if ( !isset( $this->managers[$name] ) ) {
 			throw new MWException( "No lock manager defined with the name `$name`." );
 		}
