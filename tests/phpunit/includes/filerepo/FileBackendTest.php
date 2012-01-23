@@ -6,21 +6,27 @@
 class FileBackendTest extends MediaWikiTestCase {
 	private $backend, $multiBackend;
 	private $filesToPrune;
+	private static $backendToUse;
 
 	function setUp() {
 		global $wgFileBackends;
 		parent::setUp();
 		$tmpDir = wfTempDir() . '/file-backend-test-' . time() . '-' . mt_rand();
 		if ( $this->getCliArg( 'use-filebackend=' ) ) {
-			$name = $this->getCliArg( 'use-filebackend=' );
-			$useConfig = array();
-			foreach ( $wgFileBackends as $conf ) {
-				if ( $conf['name'] == $name ) {
-					$useConfig = $conf;
+			if ( self::$backendToUse ) {
+				$this->singleBackend = self::$backendToUse;
+			} else {
+				$name = $this->getCliArg( 'use-filebackend=' );
+				$useConfig = array();
+				foreach ( $wgFileBackends as $conf ) {
+					if ( $conf['name'] == $name ) {
+						$useConfig = $conf;
+					}
 				}
+				$useConfig['name'] = 'localtesting'; // swap name
+				self::$backendToUse = new $conf['class']( $useConfig );
+				$this->singleBackend = self::$backendToUse;
 			}
-			$useConfig['name'] = 'localtesting'; // swap name
-			$this->singleBackend = new $conf['class']( $useConfig );
 		} else {
 			$this->singleBackend = new FSFileBackend( array(
 				'name'        => 'localtesting',
@@ -88,11 +94,16 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->backend->prepare( array( 'dir' => dirname( $dest ) ) );
 
 		file_put_contents( $source, "Unit test file" );
+
+		if ( isset( $op['overwrite'] ) || isset( $op['overwriteSame'] ) ) {
+			$this->backend->store( $op );
+		}
+
 		$status = $this->backend->doOperation( $op );
 
 		$this->assertEquals( array(), $status->errors,
 			"Store from $source to $dest succeeded without warnings ($backendName)." );
-		$this->assertEquals( true, $status->isOK(),
+		$this->assertEquals( array(), $status->errors,
 			"Store from $source to $dest succeeded ($backendName)." );
 		$this->assertEquals( array( 0 => true ), $status->success,
 			"Store from $source to $dest has proper 'success' field in Status ($backendName)." );
@@ -123,14 +134,21 @@ class FileBackendTest extends MediaWikiTestCase {
 			$toPath, // dest
 		);
 
-		$op['overwrite'] = true;
+		$op2 = $op;
+		$op2['overwrite'] = true;
 		$cases[] = array(
-			$op, // operation
+			$op2, // operation
 			$tmpName, // source
 			$toPath, // dest
 		);
 
-		// @TODO: test overwriteSame
+		$op2 = $op;
+		$op2['overwriteSame'] = true;
+		$cases[] = array(
+			$op2, // operation
+			$tmpName, // source
+			$toPath, // dest
+		);
 
 		return $cases;
 	}
@@ -158,10 +176,15 @@ class FileBackendTest extends MediaWikiTestCase {
 
 		$status = $this->backend->doOperation(
 			array( 'op' => 'create', 'content' => 'blahblah', 'dst' => $source ) );
-		$this->assertEquals( true, $status->isOK(),
+		$this->assertEquals( array(), $status->errors,
 			"Creation of file at $source succeeded ($backendName)." );
 
+		if ( isset( $op['overwrite'] ) || isset( $op['overwriteSame'] ) ) {
+			$this->backend->copy( $op );
+		}
+
 		$status = $this->backend->doOperation( $op );
+
 		$this->assertEquals( array(), $status->errors,
 			"Copy from $source to $dest succeeded without warnings ($backendName)." );
 		$this->assertEquals( true, $status->isOK(),
@@ -197,9 +220,18 @@ class FileBackendTest extends MediaWikiTestCase {
 			$dest, // dest
 		);
 
-		$op['overwrite'] = true;
+		$op2 = $op;
+		$op2['overwrite'] = true;
 		$cases[] = array(
-			$op, // operation
+			$op2, // operation
+			$source, // source
+			$dest, // dest
+		);
+
+		$op2 = $op;
+		$op2['overwriteSame'] = true;
+		$cases[] = array(
+			$op2, // operation
 			$source, // source
 			$dest, // dest
 		);
@@ -230,8 +262,12 @@ class FileBackendTest extends MediaWikiTestCase {
 
 		$status = $this->backend->doOperation(
 			array( 'op' => 'create', 'content' => 'blahblah', 'dst' => $source ) );
-		$this->assertEquals( true, $status->isOK(),
+		$this->assertEquals( array(), $status->errors,
 			"Creation of file at $source succeeded ($backendName)." );
+
+		if ( isset( $op['overwrite'] ) || isset( $op['overwriteSame'] ) ) {
+			$this->backend->copy( $op );
+		}
 
 		$status = $this->backend->doOperation( $op );
 		$this->assertEquals( array(), $status->errors,
@@ -271,9 +307,18 @@ class FileBackendTest extends MediaWikiTestCase {
 			$dest, // dest
 		);
 
-		$op['overwrite'] = true;
+		$op2 = $op;
+		$op2['overwrite'] = true;
 		$cases[] = array(
-			$op, // operation
+			$op2, // operation
+			$source, // source
+			$dest, // dest
+		);
+
+		$op2 = $op;
+		$op2['overwriteSame'] = true;
+		$cases[] = array(
+			$op2, // operation
 			$source, // source
 			$dest, // dest
 		);
@@ -304,7 +349,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		if ( $withSource ) {
 			$status = $this->backend->doOperation(
 				array( 'op' => 'create', 'content' => 'blahblah', 'dst' => $source ) );
-			$this->assertEquals( true, $status->isOK(),
+			$this->assertEquals( array(), $status->errors,
 				"Creation of file at $source succeeded ($backendName)." );
 		}
 
@@ -388,7 +433,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		if ( $alreadyExists ) {
 			$status = $this->backend->doOperation(
 				array( 'op' => 'create', 'content' => $oldText, 'dst' => $dest ) );
-			$this->assertEquals( true, $status->isOK(),
+			$this->assertEquals( array(), $status->errors,
 				"Creation of file at $dest succeeded ($backendName)." );
 		}
 
@@ -452,12 +497,23 @@ class FileBackendTest extends MediaWikiTestCase {
 			strlen( $dummyText )
 		);
 
-		$op['overwrite'] = true;
+		$op2 = $op;
+		$op2['overwrite'] = true;
 		$cases[] = array(
-			$op, // operation
+			$op2, // operation
 			$source, // source
 			true, // dest already exists
 			true, // succeeds
+			strlen( $dummyText )
+		);
+
+		$op2 = $op;
+		$op2['overwriteSame'] = true;
+		$cases[] = array(
+			$op2, // operation
+			$source, // source
+			true, // dest already exists
+			false, // succeeds
 			strlen( $dummyText )
 		);
 
@@ -498,7 +554,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		}
 		$status = $this->backend->doOperations( $ops );
 
-		$this->assertEquals( true, $status->isOK(),
+		$this->assertEquals( array(), $status->errors,
 			"Creation of source files succeeded ($backendName)." );
 
 		$dest = $params['dst'];
@@ -664,7 +720,7 @@ class FileBackendTest extends MediaWikiTestCase {
 
 		$status = $this->backend->doOperation(
 			array( 'op' => 'create', 'content' => $content, 'dst' => $source ) );
-		$this->assertEquals( true, $status->isOK(),
+		$this->assertEquals( array(), $status->errors,
 			"Creation of file at $source succeeded ($backendName)." );
 
 		$tmpFile = $this->backend->getLocalCopy( array( 'src' => $source ) );
@@ -707,7 +763,7 @@ class FileBackendTest extends MediaWikiTestCase {
 
 		$status = $this->backend->doOperation(
 			array( 'op' => 'create', 'content' => $content, 'dst' => $source ) );
-		$this->assertEquals( true, $status->isOK(),
+		$this->assertEquals( array(), $status->errors,
 			"Creation of file at $source succeeded ($backendName)." );
 
 		$tmpFile = $this->backend->getLocalReference( array( 'src' => $source ) );
@@ -996,7 +1052,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$iter = $backend->getFileList( array( 'dir' => "$base/$container" ) );
 		if ( $iter ) {
 			foreach ( $iter as $file ) {
-				$backend->doOperation( array( 'op' => 'delete', 'src' => "$base/$container/$file" ) );
+				$backend->delete( array( 'src' => "$base/$container/$file", 'ignoreMissingSource' => 1 ) );
 				$tmp = $file;
 				while ( $tmp = FileBackend::parentStoragePath( $tmp ) ) {
 					$backend->clean( array( 'dir' => $tmp ) );

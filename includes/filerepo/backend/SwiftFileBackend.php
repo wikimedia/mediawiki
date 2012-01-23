@@ -655,7 +655,7 @@ class SwiftFileBackend extends FileBackend {
 	 */
 	protected function getConnection() {
 		if ( $this->conn === false ) {
-			return false; // failed last attempt
+			throw new InvalidResponseException; // failed last attempt
 		}
 		// Session keys expire after a while, so we renew them periodically
 		if ( $this->conn && ( time() - $this->connStarted ) > $this->authTTL ) {
