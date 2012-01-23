@@ -629,12 +629,14 @@ abstract class FileBackend extends FileBackendBase {
 	 * @return Status
 	 */
 	final public function createInternal( array $params ) {
+		wfProfileIn( __METHOD__ );
 		if ( strlen( $params['content'] ) > $this->maxFileSizeInternal() ) {
 			$status = Status::newFatal( 'backend-fail-create', $params['dst'] );
 		} else {
 			$status = $this->doCreateInternal( $params );
 			$this->clearCache( array( $params['dst'] ) );
 		}
+		wfProfileOut( __METHOD__ );
 		return $status;
 	}
 
@@ -656,12 +658,14 @@ abstract class FileBackend extends FileBackendBase {
 	 * @return Status
 	 */
 	final public function storeInternal( array $params ) {
+		wfProfileIn( __METHOD__ );
 		if ( filesize( $params['src'] ) > $this->maxFileSizeInternal() ) {
 			$status = Status::newFatal( 'backend-fail-store', $params['dst'] );
 		} else {
 			$status = $this->doStoreInternal( $params );
 			$this->clearCache( array( $params['dst'] ) );
 		}
+		wfProfileOut( __METHOD__ );
 		return $status;
 	}
 
@@ -683,8 +687,10 @@ abstract class FileBackend extends FileBackendBase {
 	 * @return Status
 	 */
 	final public function copyInternal( array $params ) {
+		wfProfileIn( __METHOD__ );
 		$status = $this->doCopyInternal( $params );
 		$this->clearCache( array( $params['dst'] ) );
+		wfProfileOut( __METHOD__ );
 		return $status;
 	}
 
@@ -705,8 +711,10 @@ abstract class FileBackend extends FileBackendBase {
 	 * @return Status
 	 */
 	final public function deleteInternal( array $params ) {
+		wfProfileIn( __METHOD__ );
 		$status = $this->doDeleteInternal( $params );
 		$this->clearCache( array( $params['src'] ) );
+		wfProfileOut( __METHOD__ );
 		return $status;
 	}
 
@@ -728,8 +736,10 @@ abstract class FileBackend extends FileBackendBase {
 	 * @return Status
 	 */
 	final public function moveInternal( array $params ) {
+		wfProfileIn( __METHOD__ );
 		$status = $this->doMoveInternal( $params );
 		$this->clearCache( array( $params['src'], $params['dst'] ) );
+		wfProfileOut( __METHOD__ );
 		return $status;
 	}
 
@@ -739,12 +749,11 @@ abstract class FileBackend extends FileBackendBase {
 	protected function doMoveInternal( array $params ) {
 		// Copy source to dest
 		$status = $this->copyInternal( $params );
-		if ( !$status->isOK() ) {
-			return $status;
+		if ( $status->isOK() ) {
+			// Delete source (only fails due to races or medium going down)
+			$status->merge( $this->deleteInternal( array( 'src' => $params['src'] ) ) );
+			$status->setResult( true, $status->value ); // ignore delete() errors
 		}
-		// Delete source (only fails due to races or medium going down)
-		$status->merge( $this->deleteInternal( array( 'src' => $params['src'] ) ) );
-		$status->setResult( true, $status->value ); // ignore delete() errors
 		return $status;
 	}
 
@@ -752,17 +761,17 @@ abstract class FileBackend extends FileBackendBase {
 	 * @see FileBackendBase::concatenate()
 	 */
 	final public function concatenate( array $params ) {
+		wfProfileIn( __METHOD__ );
 		$status = Status::newGood();
 
 		// Try to lock the source files for the scope of this function
 		$scopeLockS = $this->getScopedFileLocks( $params['srcs'], LockManager::LOCK_UW, $status );
-		if ( !$status->isOK() ) {
-			return $status; // abort
+		if ( $status->isOK() ) {
+			// Actually do the concatenation
+			$status->merge( $this->doConcatenate( $params ) );
 		}
 
-		// Actually do the concatenation
-		$status->merge( $this->doConcatenate( $params ) );
-
+		wfProfileOut( __METHOD__ );
 		return $status;
 	}
 
@@ -825,12 +834,16 @@ abstract class FileBackend extends FileBackendBase {
 	 * @see FileBackendBase::doPrepare()
 	 */
 	final protected function doPrepare( array $params ) {
+		wfProfileIn( __METHOD__ );
+
 		$status = Status::newGood();
 		list( $fullCont, $dir, $shard ) = $this->resolveStoragePath( $params['dir'] );
 		if ( $dir === null ) {
 			$status->fatal( 'backend-fail-invalidpath', $params['dir'] );
+			wfProfileOut( __METHOD__ );
 			return $status; // invalid storage path
 		}
+
 		if ( $shard !== null ) { // confined to a single container/shard
 			$status->merge( $this->doPrepareInternal( $fullCont, $dir, $params ) );
 		} else { // directory is on several shards
@@ -840,6 +853,8 @@ abstract class FileBackend extends FileBackendBase {
 				$status->merge( $this->doPrepareInternal( "{$fullCont}{$suffix}", $dir, $params ) );
 			}
 		}
+
+		wfProfileOut( __METHOD__ );
 		return $status;
 	}
 
@@ -854,12 +869,16 @@ abstract class FileBackend extends FileBackendBase {
 	 * @see FileBackendBase::doSecure()
 	 */
 	final protected function doSecure( array $params ) {
+		wfProfileIn( __METHOD__ );
 		$status = Status::newGood();
+
 		list( $fullCont, $dir, $shard ) = $this->resolveStoragePath( $params['dir'] );
 		if ( $dir === null ) {
 			$status->fatal( 'backend-fail-invalidpath', $params['dir'] );
+			wfProfileOut( __METHOD__ );
 			return $status; // invalid storage path
 		}
+
 		if ( $shard !== null ) { // confined to a single container/shard
 			$status->merge( $this->doSecureInternal( $fullCont, $dir, $params ) );
 		} else { // directory is on several shards
@@ -869,6 +888,8 @@ abstract class FileBackend extends FileBackendBase {
 				$status->merge( $this->doSecureInternal( "{$fullCont}{$suffix}", $dir, $params ) );
 			}
 		}
+
+		wfProfileOut( __METHOD__ );
 		return $status;
 	}
 
@@ -883,18 +904,24 @@ abstract class FileBackend extends FileBackendBase {
 	 * @see FileBackendBase::doClean()
 	 */
 	final protected function doClean( array $params ) {
+		wfProfileIn( __METHOD__ );
 		$status = Status::newGood();
+
 		list( $fullCont, $dir, $shard ) = $this->resolveStoragePath( $params['dir'] );
 		if ( $dir === null ) {
 			$status->fatal( 'backend-fail-invalidpath', $params['dir'] );
+			wfProfileOut( __METHOD__ );
 			return $status; // invalid storage path
 		}
+
 		// Attempt to lock this directory...
 		$filesLockEx = array( $params['dir'] );
 		$scopedLockE = $this->getScopedFileLocks( $filesLockEx, LockManager::LOCK_EX, $status );
 		if ( !$status->isOK() ) {
+			wfProfileOut( __METHOD__ );
 			return $status; // abort
 		}
+
 		if ( $shard !== null ) { // confined to a single container/shard
 			$status->merge( $this->doCleanInternal( $fullCont, $dir, $params ) );
 		} else { // directory is on several shards
@@ -904,6 +931,8 @@ abstract class FileBackend extends FileBackendBase {
 				$status->merge( $this->doCleanInternal( "{$fullCont}{$suffix}", $dir, $params ) );
 			}
 		}
+
+		wfProfileOut( __METHOD__ );
 		return $status;
 	}
 
@@ -918,47 +947,44 @@ abstract class FileBackend extends FileBackendBase {
 	 * @see FileBackendBase::fileExists()
 	 */
 	final public function fileExists( array $params ) {
+		wfProfileIn( __METHOD__ );
 		$stat = $this->getFileStat( $params );
-		if ( $stat === null ) {
-			return null; // failure
-		}
-		return (bool)$stat;
+		wfProfileOut( __METHOD__ );
+		return ( $stat === null ) ? null : (bool)$stat; // null => failure
 	}
 
 	/**
 	 * @see FileBackendBase::getFileTimestamp()
 	 */
 	final public function getFileTimestamp( array $params ) {
+		wfProfileIn( __METHOD__ );
 		$stat = $this->getFileStat( $params );
-		if ( $stat ) {
-			return $stat['mtime'];
-		} else {
-			return false;
-		}
+		wfProfileOut( __METHOD__ );
+		return $stat ? $stat['mtime'] : false;
 	}
 
 	/**
 	 * @see FileBackendBase::getFileSize()
 	 */
 	final public function getFileSize( array $params ) {
+		wfProfileIn( __METHOD__ );
 		$stat = $this->getFileStat( $params );
-		if ( $stat ) {
-			return $stat['size'];
-		} else {
-			return false;
-		}
+		wfProfileOut( __METHOD__ );
+		return $stat ? $stat['size'] : false;
 	}
 
 	/**
 	 * @see FileBackendBase::getFileStat()
 	 */
 	final public function getFileStat( array $params ) {
+		wfProfileIn( __METHOD__ );
 		$path = $params['src'];
 		$latest = !empty( $params['latest'] );
 		if ( isset( $this->cache[$path]['stat'] ) ) {
 			// If we want the latest data, check that this cached
 			// value was in fact fetched with the latest available data.
 			if ( !$latest || $this->cache[$path]['stat']['latest'] ) {
+				wfProfileOut( __METHOD__ );
 				return $this->cache[$path]['stat'];
 			}
 		}
@@ -968,6 +994,7 @@ abstract class FileBackend extends FileBackendBase {
 			$this->cache[$path]['stat'] = $stat;
 			$this->cache[$path]['stat']['latest'] = $latest;
 		}
+		wfProfileOut( __METHOD__ );
 		return $stat;
 	}
 
@@ -980,13 +1007,16 @@ abstract class FileBackend extends FileBackendBase {
 	 * @see FileBackendBase::getFileContents()
 	 */
 	public function getFileContents( array $params ) {
+		wfProfileIn( __METHOD__ );
 		$tmpFile = $this->getLocalReference( $params );
 		if ( !$tmpFile ) {
+			wfProfileOut( __METHOD__ );
 			return false;
 		}
 		wfSuppressWarnings();
 		$data = file_get_contents( $tmpFile->getPath() );
 		wfRestoreWarnings();
+		wfProfileOut( __METHOD__ );
 		return $data;
 	}
 
@@ -994,8 +1024,10 @@ abstract class FileBackend extends FileBackendBase {
 	 * @see FileBackendBase::getFileSha1Base36()
 	 */
 	final public function getFileSha1Base36( array $params ) {
+		wfProfileIn( __METHOD__ );
 		$path = $params['src'];
 		if ( isset( $this->cache[$path]['sha1'] ) ) {
+			wfProfileOut( __METHOD__ );
 			return $this->cache[$path]['sha1'];
 		}
 		$hash = $this->doGetFileSha1Base36( $params );
@@ -1003,6 +1035,7 @@ abstract class FileBackend extends FileBackendBase {
 			$this->trimCache(); // limit memory
 			$this->cache[$path]['sha1'] = $hash;
 		}
+		wfProfileOut( __METHOD__ );
 		return $hash;
 	}
 
@@ -1021,21 +1054,22 @@ abstract class FileBackend extends FileBackendBase {
 	/**
 	 * @see FileBackendBase::getFileProps()
 	 */
-	public function getFileProps( array $params ) {
+	final public function getFileProps( array $params ) {
+		wfProfileIn( __METHOD__ );
 		$fsFile = $this->getLocalReference( $params );
-		if ( !$fsFile ) {
-			return FSFile::placeholderProps();
-		} else {
-			return $fsFile->getProps();
-		}
+		$props = $fsFile ? $fsFile->getProps() : FSFile::placeholderProps();
+		wfProfileOut( __METHOD__ );
+		return $props;
 	}
 
 	/**
 	 * @see FileBackendBase::getLocalReference()
 	 */
 	public function getLocalReference( array $params ) {
+		wfProfileIn( __METHOD__ );
 		$path = $params['src'];
 		if ( isset( $this->cache[$path]['localRef'] ) ) {
+			wfProfileOut( __METHOD__ );
 			return $this->cache[$path]['localRef'];
 		}
 		$tmpFile = $this->getLocalCopy( $params );
@@ -1043,6 +1077,7 @@ abstract class FileBackend extends FileBackendBase {
 			$this->trimCache(); // limit memory
 			$this->cache[$path]['localRef'] = $tmpFile;
 		}
+		wfProfileOut( __METHOD__ );
 		return $tmpFile;
 	}
 
@@ -1050,6 +1085,7 @@ abstract class FileBackend extends FileBackendBase {
 	 * @see FileBackendBase::streamFile()
 	 */
 	final public function streamFile( array $params ) {
+		wfProfileIn( __METHOD__ );
 		$status = Status::newGood();
 
 		$info = $this->getFileStat( $params );
@@ -1068,6 +1104,7 @@ abstract class FileBackend extends FileBackendBase {
 			$status->fatal( 'backend-fail-stream', $params['src'] );
 		}
 
+		wfProfileOut( __METHOD__ );
 		return $status;
 	}
 
@@ -1169,6 +1206,7 @@ abstract class FileBackend extends FileBackendBase {
 	 * @see FileBackendBase::doOperationsInternal()
 	 */
 	protected function doOperationsInternal( array $ops, array $opts ) {
+		wfProfileIn( __METHOD__ );
 		$status = Status::newGood();
 
 		// Build up a list of FileOps...
@@ -1190,6 +1228,7 @@ abstract class FileBackend extends FileBackendBase {
 			$scopeLockS = $this->getScopedFileLocks( $filesLockSh, LockManager::LOCK_UW, $status );
 			$scopeLockE = $this->getScopedFileLocks( $filesLockEx, LockManager::LOCK_EX, $status );
 			if ( !$status->isOK() ) {
+				wfProfileOut( __METHOD__ );
 				return $status; // abort
 			}
 		}
@@ -1204,6 +1243,7 @@ abstract class FileBackend extends FileBackendBase {
 		$status->merge( $subStatus );
 		$status->success = $subStatus->success; // not done in merge()
 
+		wfProfileOut( __METHOD__ );
 		return $status;
 	}
 
