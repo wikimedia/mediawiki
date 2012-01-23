@@ -512,6 +512,10 @@ class EmailNotification {
 
 		global $wgUsersNotifiedOnAllChanges;
 		foreach ( $wgUsersNotifiedOnAllChanges as $name ) {
+			if ( $editor->getName() == $name ) {
+				// No point notifying the user that actually made the change!
+				continue;
+			}
 			$user = User::newFromName( $name );
 			$this->compose( $user );
 		}
