@@ -231,6 +231,8 @@ production.
 * (bug 33819) Display file sizes in appropriate units.
 * (bug 32948) {{REVISIONID}} and related variables are no longer blank after doing
   a null edit.
+* (bug 33880) $wgUsersNotifiedOnAllChanges should not send e-mail to user who made
+  the edit.
 
 === API changes in 1.19 ===
 * Made action=edit less likely to return "unknownerror", by returning the actual error
