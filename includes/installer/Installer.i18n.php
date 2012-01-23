@@ -5833,7 +5833,7 @@ Instalación abortada.',
 	'config-using531' => 'O PHP $1 non é compatible con MediaWiki debido a un erro que afecta aos parámetros de referencia de <code>__call()</code>.
 Actualice o sistema á versión 5.3.2 ou posterior do PHP ou volva á versión 5.3.0 do PHP para arranxar o problema.
 Instalación abortada.',
-	'config-suhosin-max-value-length' => 'Suhosin está instalado e limita a lonxitude do parámetro GET a $1 bytes. O compoñente ResourceLoader (Cargador de recursos) de MediaWiki traballa neste límite, pero este prexudica o rendemento. Se é posible, debería establecer suhosin.get.max_value_length no valor 1024 ou superior en php.ini e establecer $wgResourceLoaderMaxQueryLength no mesmo valor en LocalSettings.php.',
+	'config-suhosin-max-value-length' => 'Suhosin está instalado e limita a lonxitude do parámetro GET a $1 bytes. O compoñente ResourceLoader (xestor de recursos) de MediaWiki traballa neste límite, pero este prexudica o rendemento. Se é posible, debería establecer suhosin.get.max_value_length no valor 1024 ou superior en php.ini e establecer $wgResourceLoaderMaxQueryLength no mesmo valor en LocalSettings.php.',
 	'config-db-type' => 'Tipo de base de datos:',
 	'config-db-host' => 'Servidor da base de datos:',
 	'config-db-host-help' => 'Se o servidor da súa base de datos está nun servidor diferente, escriba o nome do servidor ou o enderezo IP aquí.

@@ -139,6 +139,7 @@ $messages = array(
 'subcategories'         => 'ਸਬ-ਕੈਟਾਗਰੀਆਂ',
 'category-media-header' => 'ਕੈਟਾਗਰੀ "$1" ਵਿੱਚ ਮੀਡਿਆ',
 'category-empty'        => "''ਇਹ ਕੈਟਾਗਰੀ ਵਿੱਚ ਇਸ ਵੇਲੇ ਕੋਈ ਲੇਖ (ਆਰਟੀਕਲ) ਜਾਂ ਮੀਡਿਆ ਨਹੀਂ ਹੈ।''",
+'hidden-categories'     => '{{PLURAL:$1|ਅਲੋਪ ਸ਼੍ਰੇਣੀ|ਅਲੋਪ ਸ਼੍ਰੇਣੀਆ}}',
 
 'about'         => 'ਇਸ ਬਾਰੇ',
 'article'       => 'ਸਮੱਗਰੀ ਪੇਜ',
@@ -300,10 +301,19 @@ A list of valid special pages can be found at [[Special:SpecialPages]].',
 'error'              => 'ਗਲਤੀ',
 'databaseerror'      => 'ਡਾਟਾਬੇਸ ਗਲਤੀ',
 'readonly'           => 'ਡਾਟਾਬੇਸ ਲਾਕ ਹੈ',
+'missing-article'    => "ਡੈਟਾਬੇਸ ਨੂੰ ਕਿਸੇ ਪੰਨੇ ਦਾ ਪਾਠ ''$1''ਜੋ ਇਸ ਨੂੰ $2 ਵਿਚ ਢੂੰਡਣਾ ਸੀ ,ਨਹੀਂ ਮਿਲਿਆ।
+ਆਮ ਤੌਰ ਤੇ ਮਿਟਾਏ ਜਾ ਚੁਕੇ ਪੰਨੇ ਦੀ ਇਤਿਹਾਸ ਕੜੀ ਦੀ ਵਰਤੌਂ ਕਰਣ ਨਾਲ ਇਸ ਤਰਾਂ ਹੁੰਦਾ ਹੈ।
+ਜੇ ਇਸ ਤਰਾਂ ਦਿ ਗੱਲ ਨਹੀਂ ਤਾਂ ਹੋ ਸਕਦਾ ਹੈ ਤੁਹਾਨੂੰ ਸਾਫ਼ਟਵੇਅਰ ਵਿਚ ਤ੍ਰੁਟੀ ਮਿਲ ਗਈ ਹੈ।ਕਿਰਪਾ ਕਰਕੇ ਪਤੇ ਸਮੇਤ [[Special:ListUsers/sysop|administrator]] ਨੂੰ  ਇਸ ਦੀ ਸੂਚਨਾ ਦਿਓ।",
 'internalerror'      => 'ਅੰਦਰੂਨੀ ਗਲਤੀ',
 'internalerror_info' => 'ਅੰਦਰੂਨੀ ਗਲਤੀ: $1',
 'badtitle'           => 'ਗਲਤ ਟਾਇਟਲ',
 'viewsource'         => 'ਸਰੋਤ ਵੇਖੋ',
+'protectedpagetext'  => 'ਇਸ ਪੰਨੇ ਨੂੰ ਐਡਿਟ ਕਰਨ ਦੀ ਮਨਾਹੀ ਹੈ।',
+'viewsourcetext'     => 'ਤੁਸੀਂ ਇਸ ਪੰਨੇ ਦਾ ਸੋਮਾ ਦੇਖ ਸਕਦੇ ਹੋ ਤੇ ਉਸ ਦਾ ਉਤਾਰਾ ਵੀ ਲੈ ਸਕਦੇ ਹੋ।',
+'viewyourtext'       => 'ਤੁਸੀਂ ਇਸ ਪੰਨੇ ਬਾਰੇ " ਆਪਣੇ ਸੰਪਾਦਨਾਂ " ਨੂੰ ਦੇਖ ਸਕਦੇ ਹੋ ਤੇ ਉਨ੍ਹਾਂ ਦਾ ਉਤਾਰਾ ਵਿ ਲੈ ਸਕਦੇ ਹੋ।',
+'protectedinterface' => 'ਇਹ ਪੰਨਾ ਸਾਫ਼ਟਵੇਅਰ ਇੰਟਰਫ਼ੇਸ ਦਾ ਮੂਲ ਪਾਠ ਹੈ ,ਅਤੇ ਦੁਰਵਰਤੌਂ ਤੌਂ ਬਚਾਅ ਲਈ ਰਾਖਵਾਂ ਕੀਤਾ ਗਿਆ ਹੈ।',
+'editinginterface'   => "'''ਚਿਤਾਵਨੀ''' ਤੁਸੀਂ ਐਸੇ ਪੰਨੇ ਨੂੰ ਬਦਲ ਰਹੇ ਹੋ ਜੋ ਸਾਫ਼ਟਵੇਅਰ ਇੰਟਰਫ਼ੇਸ ਦੇ ਮੂਲ ਪਾਠ ਲਈ ਵਰਤਿਆ ਗਿਆ ਹੈ।
+ਇਸ ਪੰਨੇ ਦੇ ਬਦਲਾਅ ਦੁਸਰੇ ਵਰਤੋਂ ਕਰਣ ਵਾਲਿਆਂ ਲਈ ਵਰਤੇ ਜਾਣ ਵਾਲੇ ਇੰਟਰਫਲੇਸ ਦੀ ਸ਼ਕਲ ਤੇ ਅਸਰ ਪਾ ਦੇਣਗੇ।ਅਨੁਵਾਦ ਕਰਣ ਲਈ ,ਕਿਰਪਾ ਕਰਕੇ [//translatewiki.net/wiki/Main_Page?setlang=pa ਟ੍ਰਾਂਸਲੇਟਵਿਕੀ.ਨੈਟ] ਦੀ ਵਰਤੌਂ ਕਰੋ,ਇਹ ਮੀਡੀਆਵਿਕੀ ਦੀ ਸਥਾਨਕੀਕਰਣ ਯੋਜਨਾ ਹੈ।",
 
 # Login and logout pages
 'logouttext'                 => "'''ਹੁਣ ਤੁਸੀਂ ਲਾਗਆਉਟ ਹੋ ਗਏ ਹੋ।'''
@@ -521,6 +531,7 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'searchprofile-project-tooltip'    => "$1 'ਚ ਖੋਜ",
 'searchprofile-images-tooltip'     => 'ਫਾਇਲਾਂ ਲਈ ਖੋਜ',
 'searchprofile-everything-tooltip' => 'ਸਭ ਸਮੱਗਰੀ ਦੀ ਖੋਜ (ਟਾਕ ਸਫ਼ਿਆਂ ਸਮੇਤ)',
+'searchprofile-advanced-tooltip'   => 'ਖਾਸ ਸਿਰਲੇਖਾਂ ਵਿਚ ਖੋਜੋ',
 'search-result-size'               => '$1 ({{PLURAL:$2|੧ ਸ਼ਬਦ|$2 ਸ਼ਬਦ}})',
 'search-redirect'                  => '($1 ਰੀ-ਡਿਰੈਕਟ)',
 'search-section'                   => '(ਭਾਗ $1)',
@@ -878,6 +889,7 @@ to upload files.',
 # Undelete
 'undeletebtn'               => 'ਰੀਸਟੋਰ',
 'undeletelink'              => 'ਵੇਖੋ/ਰੀਸਟੋਰ',
+'undeleteviewlink'          => 'ਦੇਖੋ',
 'undeletereset'             => 'ਰੀ-ਸੈੱਟ',
 'undeletecomment'           => 'ਟਿੱਪਣੀ:',
 'undelete-show-file-submit' => 'ਹਾਂ',
@@ -989,6 +1001,7 @@ to upload files.',
 'tooltip-pt-userpage'            => 'ਤੁਹਾਡਾ ਯੂਜ਼ਰ ਸਫ਼ਾ',
 'tooltip-pt-mytalk'              => 'ਤੁਹਾਡਾ ਚਰਚਾ ਪੇਜ',
 'tooltip-pt-preferences'         => 'ਮੇਰੀ ਪਸੰਦ',
+'tooltip-pt-watchlist'           => 'ਤੁਹਾਡੇ ਵਿਚਾਰ ਗੋਚਰੇ ਰੱਖੇ ਪੰਨਿਆਂ ਦਿ ਸੂਚੀ।',
 'tooltip-pt-mycontris'           => 'ਮੇਰੇ ਯੋਗਦਾਨ ਦੀ ਲਿਸਟ',
 'tooltip-pt-login'               => 'ਤੁਹਾਨੂੰ ਲਾਗਇਨ ਕਰਨ ਲਈ ਉਤਸ਼ਾਹਿਤ ਕੀਤਾ ਜਾਂਦਾ ਹੈ, ਪਰ ਇਹ ਲਾਜ਼ਮੀ ਨਹੀਂ ਹੈ',
 'tooltip-pt-logout'              => 'ਲਾਗ ਆਉਟ',
@@ -1015,6 +1028,7 @@ to upload files.',
 'tooltip-n-help'                 => 'ਖੋਜਣ ਲਈ ਥਾਂ',
 'tooltip-t-whatlinkshere'        => 'ਸਭ ਵਿਕਿ ਸਫ਼ਿਆਂ ਦੀ ਲਿਸਟ, ਜੋ ਇੱਥੇ ਲਿੰਕ ਕੀਤੇ ਹਨ',
 'tooltip-t-recentchangeslinked'  => 'ਇਹ ਸਫ਼ੇ ਤੋਂ ਲਿੰਕ ਕੀਤੇ ਸਫ਼ਿਆਂ ਵਿੱਚ ਤਾਜ਼ਾ ਬਦਲਾਅ',
+'tooltip-feed-atom'              => 'ਇਸ ਪੰਨੇ ਦੀ ਐਟਮ ਫ਼ੀਡ',
 'tooltip-t-emailuser'            => 'ਇਹ ਯੂਜ਼ਰ ਨੂੰ ਮੇਲ ਭੇਜੋ',
 'tooltip-t-upload'               => 'ਚਿੱਤਰ ਜਾਂ ਮੀਡਿਆ ਫਾਇਲਾਂ ਅੱਪਲੋਡ ਕਰੋ',
 'tooltip-t-specialpages'         => 'ਸਭ ਖਾਸ ਸਫ਼ਿਆਂ ਦੀ ਲਿਸਟ',
@@ -1033,6 +1047,9 @@ to upload files.',
 'tooltip-save'                   => 'ਆਪਣੇ ਬਦਲਾਅ ਸੰਭਾਲੋ',
 'tooltip-preview'                => 'ਆਪਣੇ ਬਦਲਾਅ ਦੀ ਝਲਕ ਵੇਖੋ, ਸੰਭਾਲਣ ਤੋਂ ਪਹਿਲਾਂ ਇਹ ਵਰਤੋਂ ਜੀ!',
 'tooltip-upload'                 => 'ਅੱਪਲੋਡ ਸਟਾਰਟ ਕਰੋ',
+'tooltip-rollback'               => "'' ਵਾਪਸ ਲੈ ਜਾਓ '' ਇਕ ਝਟਕੇ ਵਿਚ ਹੀ ਪਿਛਲੇ ਯੂਜ਼ਰ ਦੇ ਬਦਲਾਵਾਂ ਨੂੰ ਗਾਇਬ ਕਰ ਦੇਂਦਾ ਹੈ।",
+'tooltip-undo'                   => '" ਪੁਰਾਣੀ ਹਾਲਤ ਵਿਚ ਪਰਤੋ " ਇਸ ਬਦਲਾਅ ਨੂੰ ਰੱਦ ਕਰਕੇ ਸੰਪਾਦਨ ਫਾਰਮ ਨੂੰ ਝਲਕ ਦੇ ਅੰਦਾਜ਼ ਵਿਚ ਦਿਖਾਂਦਾ ਹੈ।
+ਇਸ ਦਵਾਰਾ ਸਾਰ ਵਿਚ ਪੁਰਾਣੇ ਹਾਲਤ ਵਿਚ ਪਰਤਣ ਦਾ ਕਾਰਨ ਲਿਖਿਆ ਜਾ ਸਕਦਾ ਹੈ।',
 
 # Attribution
 'others'      => 'ਹੋਰ',
@@ -1066,6 +1083,11 @@ to upload files.',
 'noimages'  => 'ਵੇਖਣ ਲਈ ਕੁਝ ਨਹੀਂ',
 'ilsubmit'  => 'ਖੋਜ',
 'bydate'    => 'ਮਿਤੀ ਨਾਲ',
+
+# Bad image list
+'bad_image_list' => 'ਤਰਤੀਬ ਇਸ ਤਰਾਂ ਹੈ:
+ਕੇਵਲ ਸੂਚੀਬੱਧ ਮੱਦਾਂ (* ਨਾਲ ਸ਼ੁਰੂ ਹੋਣ ਵਾਲੀਆਂ ਪੰਕਤੀਆਂ) ਹੀ ਵਿਚਾਰ ਅਧੀਨ ਹੋਣਗੀਆਂ।
+ਪੰਕਤੀ ਵਿਚ ਪਹਿਲੀ ਕੜੀ ਗਲਤ ਫਾਈਲ ਦੀ ਕੜੀ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ।ਉਸ ਪੰਕਤੀ ਵਿਚ ਅੱਗੇ ਦਿਤੀਆਂ ਕੜੀਆਂ ਨੂੰ ਅਪਵਾਦ ਮੰਨਿਆ ਜਾਵੇਗਾ, ਭਾਵ ਉਹ ਪੰਨੇ ਜਿਨ੍ਹਾਂ ਵਿਚ ਫਾਈਲ ਕਿਸੇ ਪੰਕਤੀ ਵਿਚ ਸਥਿਤ ਹੋ ਸਕਦੀ ਹੇ।',
 
 # EXIF tags
 'exif-imagewidth'       => 'ਚੌੜਾਈ',

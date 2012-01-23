@@ -1816,7 +1816,10 @@ Om problemet kvarstår, kontakta en [[Special:ListUsers/sysop|administratör]].'
 'backend-fail-create'        => 'Kunde inte skapa filen $1.',
 'backend-fail-readonly'      => 'Backend "$1" är för närvarande skrivskyddad. Den angivna anledningen är: "$2"',
 'backend-fail-synced'        => 'Filen "$1" är i ett inkonsekvent tillstånd inom de interna backends',
+'backend-fail-connect'       => 'Kunde inte ansluta till fil-backend "$1".',
+'backend-fail-internal'      => 'Ett okänt fel uppstod i fil-backend "$1".',
 'backend-fail-contenttype'   => 'Kunde inte bestämma innehållstypen för filen att spara på "$1".',
+'backend-fail-batchsize'     => 'Backend gavs en batch på $1 fil{{PLURAL:$1|operation|operationer}}; gränsen är $2 {{PLURAL:$2|operation|operationer}}.',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Kunde inte låsa upp "$1"; den är inte låst.',
