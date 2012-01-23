@@ -15,8 +15,8 @@
 
 	Version 0.5 adds byte count per revision.
 	
-	Version 0.6 adds a separate namespace tag, locates the
-	redirect target and strips of the namespace from the title. 
+	Version 0.6 adds a separate namespace tag, and resolves the
+	redirect target and adds a separate sha1 tag for each revision. 
 	
 	The canonical URL to the schema document is:
 	http://www.mediawiki.org/xml/export-0.6.xsd
@@ -106,8 +106,8 @@
 			<!-- Title in text form. (Using spaces, not underscores; with namespace ) -->
 			<element name="title" type="string"/>
 			
-			<!-- Namesapce in text form -->
-			<element name="ns" type="string"/>
+			<!-- Namespace in canonical form -->
+			<element name="ns" type="positiveInteger"/>
 			
 			<!-- optional page ID number -->
 			<element name="id" type="positiveInteger" minOccurs="0"/>
@@ -137,6 +137,7 @@
 			<element name="contributor" type="mw:ContributorType"/>
 			<element name="minor" minOccurs="0" />
 			<element name="comment" type="mw:CommentType" minOccurs="0"/>
+			<element name="sha1" type="string" />
 			<element name="text" type="mw:TextType" />
 		</sequence>
 	</complexType>
