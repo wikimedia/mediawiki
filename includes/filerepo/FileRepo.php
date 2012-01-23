@@ -39,7 +39,16 @@ class FileRepo {
 	var $oldFileFactory = false;
 	var $fileFactoryKey = false, $oldFileFactoryKey = false;
 
-	function __construct( $info ) {
+	function __construct( Array $info = null ) {
+		// Verify required settings presence
+		if(
+			$info === null
+			|| !array_key_exists( 'name', $info )
+			|| !array_key_exists( 'backend', $info )
+		) {
+			throw new MWException( __CLASS__ . " requires an array of options having both 'name' and 'backend' keys.\n" );
+		}
+
 		// Required settings
 		$this->name = $info['name'];
 		if ( $info['backend'] instanceof FileBackendBase ) {
