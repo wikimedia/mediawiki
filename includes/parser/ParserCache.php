@@ -158,6 +158,7 @@ class ParserCache {
 
 		$parserOutputKey = $this->getKey( $article, $popts, $useOutdated );
 		if ( $parserOutputKey === false ) {
+			wfIncrStats( 'pcache_miss_absent' );
 			wfProfileOut( __METHOD__ );
 			return false;
 		}
