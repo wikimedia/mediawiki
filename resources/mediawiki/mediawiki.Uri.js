@@ -160,7 +160,7 @@
 		 * @return {String} decoded string
 		 */
 		Uri.decode = function( s ) {
-			return decodeURIComponent( s ).replace( /\+/g, ' ' );
+			return decodeURIComponent( s.replace( /\+/g, '%20' ) );
 		};
 
 		Uri.prototype = {
