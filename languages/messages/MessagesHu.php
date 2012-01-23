@@ -1802,6 +1802,7 @@ Kérjük, hogy lépj kapcsolatba egy  [[Special:ListUsers/sysop|adminisztrátorr
 'backend-fail-connect'       => 'Nem sikerült csatlakozni a „$1” fájlhoz a háttér rendszeren.',
 'backend-fail-internal'      => 'Ismeretlen hiba keletkezett a „$1” fájlban a háttér rendszeren.',
 'backend-fail-contenttype'   => 'Nem lehetett a fájl típusát meghatározni a „$1” helyen történő tároláshoz.',
+'backend-fail-batchsize'     => 'A háttér rendszer {{PLURAL:$1|1 fájl műveletet|$1 fájl műveletet}} tartalmazó parancsfájlt kapott; a határérték {{PLURAL:$2|1 művelet| $2művelet}}.',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Nem lehet a zárolást feloldani: „$1”; nincs zárolva.',

@@ -1029,7 +1029,7 @@ Jika Anda menyimpannya, perubahan-perubahan yang dibuat sejak revisi ini akan hi
 'yourdiff'                         => 'Perbedaan',
 'copyrightwarning'                 => "Perhatikan bahwa semua kontribusi terhadap {{SITENAME}} dianggap dilisensikan sesuai dengan $2 (lihat $1 untuk informasi lebih lanjut). Jika Anda tidak ingin tulisan Anda disunting dan disebarkan ke halaman web yang lain, jangan kirimkan ke sini.<br />Anda juga berjanji bahwa ini adalah hasil karya Anda sendiri, atau disalin dari sumber milik umum atau sumber bebas yang lain. '''JANGAN KIRIMKAN KARYA YANG DILINDUNGI HAK CIPTA TANPA IZIN!'''",
 'copyrightwarning2'                => "Perhatikan bahwa semua kontribusi terhadap {{SITENAME}} dapat disunting, diubah, atau dihapus oleh penyumbang lainnya. Jika Anda tidak ingin tulisan Anda disunting orang lain, jangan kirimkan ke sini.<br />Anda juga berjanji bahwa ini adalah hasil karya Anda sendiri, atau disalin dari sumber milik umum atau sumber bebas yang lain (lihat $1 untuk informasi lebih lanjut). '''JANGAN KIRIMKAN KARYA YANG DILINDUNGI HAK CIPTA TANPA IZIN!'''",
-'longpageerror'                    => "'''KESALAHAN: Teks yang Anda kirimkan sebesar $1 kilobita, yang berarti lebih besar dari jumlah maksimum $2 kilobita. Teks tidak dapat disimpan.'''",
+'longpageerror'                    => "'''KESALAHAN: Teks yang Anda kirimkan sebesar $1 kilobita, yang berarti lebih besar daripada jumlah maksimum $2 kilobita. Teks tidak dapat disimpan.'''",
 'readonlywarning'                  => "'''PERINGATAN: Basis data sedang dikunci karena pemeliharaan, sehingga saat ini Anda tidak dapat menyimpan hasil suntingan Anda.
 Anda mungkin perlu menyalin teks suntingan Anda ini dan menyimpannya ke sebuah berkas teks dan memuatkannya lagi setelah pemeliharaan selesai.'''
 
@@ -1817,9 +1817,9 @@ Berkas tersebut tidak dapat diperiksa keamanannya dengan baik.',
 # img_auth script messages
 'img-auth-accessdenied'     => 'Akses ditolak',
 'img-auth-nopathinfo'       => 'PATH_INFO hilang.
-Server anda tidak diatur untuk melewatkan informasi ini.
-Ini mungkin CGI-based dan tidak ditunjang img_auth.
-Lihat http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+Server Anda tidak diatur untuk melewatkan informasi ini.
+Server tersebut mungkin berbasis CGI dan tidak dapat mendukung img_auth.
+[//www.mediawiki.org/wiki/Manual:Image_Authorization Lihat otorisasi gambar.]',
 'img-auth-notindir'         => 'Alur yang diminta tidak diatur dalam direktori ungahan.',
 'img-auth-badtitle'         => 'Tidak dapat membangun judul yang sah dari "$1".',
 'img-auth-nologinnWL'       => 'Anda tidak masuk log dan "$1" tidak dalam daftar putih.',
@@ -1984,7 +1984,7 @@ Cek dahulu pranala lain ke templat tersebut sebelum menghapusnya.',
 'statistics-users-active-desc' => 'Pengguna yang telah melakukan suatu aktivitas dalam {{PLURAL:$1|sehari|$1 hari}} terakhir.',
 'statistics-mostpopular'       => 'Halaman yang paling banyak ditampilkan',
 
-'disambiguations'      => 'Disambiguasi',
+'disambiguations'      => 'Halaman yang terhubung ke halaman disambiguasi',
 'disambiguationspage'  => 'Template:Disambig',
 'disambiguations-text' => "Halaman-halaman berikut memiliki pranala ke suatu '''halaman disambiguasi'''.
 Halaman-halaman tersebut seharusnya berpaut ke topik-topik yang sesuai.<br />
@@ -2084,7 +2084,7 @@ Harap perhatikan bahwa situs web lain mungkin memiliki pranala ke suatu berkas d
 
 # Special:Log
 'specialloguserlabel'  => 'Pengguna:',
-'speciallogtitlelabel' => 'Judul:',
+'speciallogtitlelabel' => 'Taget (judul atau pengguna):',
 'log'                  => 'Log',
 'all-logs-page'        => 'Semua log publik',
 'alllogstext'          => 'Gabungan tampilan semua log yang tersedia di {{SITENAME}}.
@@ -2128,7 +2128,9 @@ Lihat pula [[Special:WantedCategories|kategori yang diinginkan]].',
 'linksearch-pat'   => 'Pola pencarian:',
 'linksearch-ns'    => 'Ruang nama:',
 'linksearch-ok'    => 'Cari',
-'linksearch-text'  => "Bentuk pencarian ''wildcards'' seperti \"*.wikipedia.org\" dapat digunakan.<br />Protokol yang didukung: <tt>\$1</tt>",
+'linksearch-text'  => 'Kartu liar seperti "*.wikipedia.org" dapat digunakan.
+Membutuhkan sedikitnya satu ranah tingkat atas, misalnya "*.org".<br />
+Protokol yang didukung: <tt>$1</tt> (jangan tambahkan dalam pencarian Anda)',
 'linksearch-line'  => '$1 memiliki pranala dari $2',
 'linksearch-error' => "''Wildcards'' hanya dapat digunakan di bagian awal dari nama host.",
 

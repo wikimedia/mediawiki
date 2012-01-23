@@ -321,6 +321,9 @@ $1',
 'nosuchaction' => 'Kay rurayta illanmi',
 
 # General errors
+'error'              => 'Pantay',
+'databaseerror'      => 'Yachayyuk ukupi pantay',
+'laggedslavemode'    => "'''Rikupay''': Kay pankapi, shina kakpi, mushuk killkaykuna illankacha.",
 'missing-article'    => "Hatun kamupi shuk killkayta mana tarin, shinapash chay killkayta tiyanami kan. Paypa chay shutima kan : «$1» $2.
 Icha shuk ñawpak pachamanta ''diff'' ñamana tiyanchu, icha kay tinkika shuk pichashka pankapa shutimi kan. 
 Mana shina kakpi, shuk [[Special:ListUsers/sysop|kamachyik]]man willapay, payta URL killkata willapay.",
