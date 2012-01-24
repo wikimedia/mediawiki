@@ -78,6 +78,10 @@ class StreamFile {
 		if ( $type && $type != 'unknown/unknown' ) {
 			header( "Content-type: $type" );
 		} else {
+			// Send a content type which is not known to Internet Explorer, to
+			// avoid triggering IE's content type detection. Sending a standard
+			// unknown content type here essentially gives IE license to apply
+			// whatever content type it likes.
 			header( 'Content-type: application/x-wiki' );
 		}
 
