@@ -28,10 +28,6 @@ abstract class FileOp {
 	protected $sourceSha1; // string
 	protected $destSameAsSource; // boolean
 
-	/* Operation parameters */
-	protected static $requiredParams = array();
-	protected static $optionalParams = array();
-
 	/* Object life-cycle */
 	const STATE_NEW = 1;
 	const STATE_CHECKED = 2;
@@ -50,15 +46,15 @@ abstract class FileOp {
 	 */
 	final public function __construct( FileBackendBase $backend, array $params ) {
 		$this->backend = $backend;
-		$class = get_class( $this ); // simulate LSB
-		foreach ( $class::$requiredParams as $name ) {
+		list( $required, $optional ) = $this->allowedParams();
+		foreach ( $required as $name ) {
 			if ( isset( $params[$name] ) ) {
 				$this->params[$name] = $params[$name];
 			} else {
 				throw new MWException( "File operation missing parameter '$name'." );
 			}
 		}
-		foreach ( $class::$optionalParams as $name ) {
+		foreach ( $optional as $name ) {
 			if ( isset( $params[$name] ) ) {
 				$this->params[$name] = $params[$name];
 			}
@@ -214,6 +210,15 @@ abstract class FileOp {
 			$this->logFailure( 'attempt' );
 		}
 		return $status;
+	}
+
+	/**
+	 * Get required operation parameters
+	 * 
+	 * @return Array (required params list, optional params list)
+	 */
+	protected function allowedParams() {
+		return array( array(), array() );
 	}
 
 	/**
@@ -387,8 +392,9 @@ class FileOpScopedPHPTimeout {
  *     overwriteSame : override any existing file at destination
  */
 class StoreFileOp extends FileOp {
-	protected static $requiredParams = array( 'src', 'dst' );
-	protected static $optionalParams = array( 'overwrite', 'overwriteSame' );
+	protected function allowedParams() {
+		return array( array( 'src', 'dst' ), array( 'overwrite', 'overwriteSame' ) );
+	}
 
 	protected function doPrecheck( array &$predicates ) {
 		$status = Status::newGood();
@@ -448,8 +454,9 @@ class StoreFileOp extends FileOp {
  *     overwriteSame : override any existing file at destination
  */
 class CreateFileOp extends FileOp {
-	protected static $requiredParams = array( 'content', 'dst' );
-	protected static $optionalParams = array( 'overwrite', 'overwriteSame' );
+	protected function allowedParams() {
+		return array( array( 'content', 'dst' ), array( 'overwrite', 'overwriteSame' ) );
+	}
 
 	protected function doPrecheck( array &$predicates ) {
 		$status = Status::newGood();
@@ -499,8 +506,9 @@ class CreateFileOp extends FileOp {
  *     overwriteSame : override any existing file at destination
  */
 class CopyFileOp extends FileOp {
-	protected static $requiredParams = array( 'src', 'dst' );
-	protected static $optionalParams = array( 'overwrite', 'overwriteSame' );
+	protected function allowedParams() {
+		return array( array( 'src', 'dst' ), array( 'overwrite', 'overwriteSame' ) );
+	}
 
 	protected function doPrecheck( array &$predicates ) {
 		$status = Status::newGood();
@@ -553,8 +561,9 @@ class CopyFileOp extends FileOp {
  *     overwriteSame : override any existing file at destination
  */
 class MoveFileOp extends FileOp {
-	protected static $requiredParams = array( 'src', 'dst' );
-	protected static $optionalParams = array( 'overwrite', 'overwriteSame' );
+	protected function allowedParams() {
+		return array( array( 'src', 'dst' ), array( 'overwrite', 'overwriteSame' ) );
+	}
 
 	protected function doPrecheck( array &$predicates ) {
 		$status = Status::newGood();
@@ -611,8 +620,9 @@ class MoveFileOp extends FileOp {
  *     ignoreMissingSource : don't return an error if the file does not exist
  */
 class DeleteFileOp extends FileOp {
-	protected static $requiredParams = array( 'src' );
-	protected static $optionalParams = array( 'ignoreMissingSource' );
+	protected function allowedParams() {
+		return array( array( 'src' ), array( 'ignoreMissingSource' ) );
+	}
 
 	protected $needsDelete = true;
 
