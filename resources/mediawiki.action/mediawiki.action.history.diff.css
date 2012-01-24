@@ -19,6 +19,7 @@ td.diff-addedline,
 td.diff-deletedline,
 td.diff-context {
 	font-size: 88%;
+	vertical-align: top;
 	white-space: -moz-pre-wrap;
 	white-space: pre-wrap;
 }
