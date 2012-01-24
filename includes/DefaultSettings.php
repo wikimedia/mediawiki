@@ -3760,7 +3760,7 @@ $wgSummarySpamRegex = array();
  *  - false : let it through
  *
  * @deprecated since 1.17 Use hooks. See SpamBlacklist extension.
- * @var callback
+ * @var $wgFilterCallback bool|string|Closure
  */
 $wgFilterCallback = false;
 
