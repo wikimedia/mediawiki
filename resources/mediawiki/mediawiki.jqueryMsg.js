@@ -26,9 +26,12 @@
 		 */
 		return function( args ) {
 			var key = args[0];
-			var replacements = $.isArray( args[1] ) ? args[1] : $.makeArray( args ).slice( 1 ); 
+			var argsArray = $.isArray( args[1] ) ? args[1] : $.makeArray( args ).slice( 1 ); 
+			var escapedArgsArray = $.map( argsArray, function( arg ) { 
+				return arg instanceof jQuery ? arg : mw.html.escape( arg );
+			} );
 			try {
-				return parser.parse( key, replacements );
+				return parser.parse( key, escapedArgsArray );
 			} catch ( e ) {
 				return $( '<span></span>' ).append( key + ': ' + e.message );
 			}
