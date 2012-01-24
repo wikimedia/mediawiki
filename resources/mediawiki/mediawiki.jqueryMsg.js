@@ -28,7 +28,7 @@
 			var key = args[0];
 			var argsArray = $.isArray( args[1] ) ? args[1] : $.makeArray( args ).slice( 1 ); 
 			var escapedArgsArray = $.map( argsArray, function( arg ) { 
-				return arg instanceof jQuery ? arg : mw.html.escape( arg );
+				return typeof arg === 'string' ? mw.html.escape( arg ) : arg;
 			} );
 			try {
 				return parser.parse( key, escapedArgsArray );
