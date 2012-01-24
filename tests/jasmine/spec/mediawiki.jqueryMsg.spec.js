@@ -16,7 +16,7 @@ mw.messages.set( {
 	"en_escape2": "I had {{PLURAL:$1|the absolute \\|$1\\| which came out to \\$3.00 in my C:\\\\drive| some stuff}}",
 	"en_fail": "This should fail to {{parse",
 	"en_fail_magic": "There is no such magic word as {{SIETNAME}}",
-	"en_evil": "This has <script type='text/javascript'>window.en_evil = true;</script> tags",
+	"en_evil": "This has <script type='text/javascript'>window.en_evil = true;</script> tags"
 } );
 
 /**
