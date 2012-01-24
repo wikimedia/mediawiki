@@ -15,7 +15,8 @@ mw.messages.set( {
 	"en_escape1": "I had \\$2.50 in my pocket",
 	"en_escape2": "I had {{PLURAL:$1|the absolute \\|$1\\| which came out to \\$3.00 in my C:\\\\drive| some stuff}}",
 	"en_fail": "This should fail to {{parse",
-	"en_fail_magic": "There is no such magic word as {{SIETNAME}}"
+	"en_fail_magic": "There is no such magic word as {{SIETNAME}}",
+	"en_evil": "This has <script type='text/javascript'>window.en_evil = true;</script> tags",
 } );
 
 /**
@@ -222,6 +223,44 @@ mw.messages.set( {
 				}
 				delete $.fn.msg;
 			} );
+
+			it( "jQuery plugin should escape incoming string arguments", function() {
+				$.fn.msg = mw.jqueryMsg.getPlugin();
+				var $div = $( '<div>' ).addClass( 'foo' );
+				$div.msg( 'en_replace', '<p>x</p>' ); // looks like HTML, but as a string, should be escaped.
+				// passing this through jQuery and back to string, because browsers may have subtle differences, like the case of tag names.
+				var expectedHtml = $( '<div class="foo">Simple &lt;p&gt;x&lt;/p&gt; replacement</div>' ).html();
+				var createdHtml = $div.html();
+				expect( expectedHtml ).toEqual( createdHtml );
+				delete $.fn.msg;
+			} );
+
+
+			it( "jQuery plugin should never execute scripts", function() {
+				window.en_evil = false;
+				$.fn.msg = mw.jqueryMsg.getPlugin();
+				var $div = $( '<div>' );
+				$div.msg( 'en_evil' );
+				expect( window.en_evil ).toEqual( false );
+				delete $.fn.msg;
+			} );
+
+
+			// n.b. this passes because jQuery already seems to strip scripts away; however, it still executes them if they are appended to any element.
+			it( "jQuery plugin should never emit scripts", function() {
+				$.fn.msg = mw.jqueryMsg.getPlugin();
+				var $div = $( '<div>' );
+				$div.msg( 'en_evil' );
+				// passing this through jQuery and back to string, because browsers may have subtle differences, like the case of tag names.
+				var expectedHtml = $( '<div>This has  tags</div>' ).html();
+				var createdHtml = $div.html();
+				expect( expectedHtml ).toEqual( createdHtml );
+				console.log( 'expected: ' + expectedHtml );
+				console.log( 'created: ' + createdHtml );
+				delete $.fn.msg;
+			} );
+
+
 
 		} );
 
