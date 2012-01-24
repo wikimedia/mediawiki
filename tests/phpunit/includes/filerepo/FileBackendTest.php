@@ -884,11 +884,13 @@ class FileBackendTest extends MediaWikiTestCase {
 			// Does nothing
 			array( 'op' => 'move', 'src' => $fileC, 'dst' => $fileC, 'overwriteSame' => 1 ),
 			// Does nothing
+			array( 'op' => 'null' ),
+			// Does nothing
 		) );
 
 		$this->assertEquals( array(), $status->errors, "Operation batch succeeded" );
 		$this->assertEquals( true, $status->isOK(), "Operation batch succeeded" );
-		$this->assertEquals( 12, count( $status->success ),
+		$this->assertEquals( 13, count( $status->success ),
 			"Operation batch has correct success array" );
 
 		$this->assertEquals( false, $this->backend->fileExists( array( 'src' => $fileA ) ),
