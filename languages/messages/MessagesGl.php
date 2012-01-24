@@ -334,7 +334,7 @@ $messages = array(
 
 # Categories related messages
 'pagecategories'                 => '{{PLURAL:$1|Categoría|Categorías}}',
-'category_header'                => 'Artigos na categoría "$1"',
+'category_header'                => 'Páxinas na categoría "$1"',
 'subcategories'                  => 'Subcategorías',
 'category-media-header'          => 'Ficheiros multimedia na categoría "$1"',
 'category-empty'                 => "''Actualmente esta categoría non conta con ningunha páxina ou ficheiro multimedia.''",
@@ -513,7 +513,7 @@ $1',
 'sort-ascending'          => 'Orde ascendente',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'      => 'Artigo',
+'nstab-main'      => 'Páxina',
 'nstab-user'      => 'Páxina de {{GENDER:{{BASEPAGENAME}}|usuario|usuaria}}',
 'nstab-media'     => 'Páxina multimedia',
 'nstab-special'   => 'Páxina especial',
@@ -625,7 +625,7 @@ A súa conta foi creada correctamente.
 Non esqueza personalizar as súas [[Special:Preferences|preferencias de {{SITENAME}}]].',
 'yourname'                   => 'Nome de usuario:',
 'yourpassword'               => 'Contrasinal:',
-'yourpasswordagain'          => 'Insira o seu contrasinal outra vez:',
+'yourpasswordagain'          => 'Insira o contrasinal outra vez:',
 'remembermypassword'         => 'Lembrar o meu contrasinal neste ordenador (ata $1 {{PLURAL:$1|día|días}})',
 'securelogin-stick-https'    => 'Permanecer conectado mediante as HTTPS despois de acceder',
 'yourdomainname'             => 'O seu dominio:',
@@ -1578,7 +1578,7 @@ Ha de ter menos {{PLURAL:$1|dun carácter|de $1 caracteres}}.',
 'recentchangeslinked-toolbox'  => 'Cambios relacionados',
 'recentchangeslinked-title'    => 'Cambios relacionados con "$1"',
 'recentchangeslinked-noresult' => 'Non se produciron cambios nas páxinas vinculadas a esta durante o período de tempo seleccionado.',
-'recentchangeslinked-summary'  => "Esta é unha lista dos cambios que se realizaron recentemente nas páxinas vinculadas a esta (ou dos membros da categoría especificada).
+'recentchangeslinked-summary'  => "Esta é unha lista dos cambios que se realizaron recentemente nas páxinas vinculadas a esta (ou nos membros da categoría especificada).
 As páxinas da súa [[Special:Watchlist|lista de vixilancia]] aparecen en '''negra'''.",
 'recentchangeslinked-page'     => 'Nome da páxina:',
 'recentchangeslinked-to'       => 'Mostrar os cambios relacionados das páxinas que ligan coa dada',
@@ -2080,7 +2080,7 @@ Pode precisar máis a vista seleccionando o tipo de rexistro, o nome do usuario 
 'prevpage'          => 'Páxina anterior ($1)',
 'allpagesfrom'      => 'Mostrar as páxinas que comecen por:',
 'allpagesto'        => 'Mostrar as páxinas que rematen en:',
-'allarticles'       => 'Todos os artigos',
+'allarticles'       => 'Todas as páxinas',
 'allinnamespace'    => 'Todas as páxinas (espazo de nomes $1)',
 'allnotinnamespace' => 'Todas as páxinas (que non están no espazo de nomes $1)',
 'allpagesprev'      => 'Anterior',
@@ -3082,7 +3082,7 @@ As ligazóns posteriores da mesma liña considéranse excepcións, isto é, páx
 
 # Metadata
 'metadata'          => 'Metadatos',
-'metadata-help'     => 'Este ficheiro contén información adicional, probabelmente engadida pola cámara dixital ou polo escáner usado para crear ou dixitalizar a imaxe. Se o ficheiro orixinal foi modificado, pode que algúns detalles non se reflictan no ficheiro modificado.',
+'metadata-help'     => 'Este ficheiro contén información adicional, probablemente engadida pola cámara dixital ou polo escáner usado para crear ou dixitalizar a imaxe. Se o ficheiro orixinal foi modificado, poida que algúns detalles non se reflictan no ficheiro modificado.',
 'metadata-expand'   => 'Mostrar os detalles',
 'metadata-collapse' => 'Agochar os detalles',
 'metadata-fields'   => 'Os campos de metadatos listados nesta mensaxe incluiranse na páxina da imaxe ao contraer a táboa dos metadatos.

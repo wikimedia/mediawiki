@@ -596,6 +596,9 @@ Kiye ndeyan anu uwis dipindah utawa dibusek dong Rika lagi ndeleng kaca kiye.',
 
 Tembung sandhi kanggo akun anyarkiye teyeng diganti nang kaca ''[[Special:ChangePassword|ganti tembung sandhi]]'' seuwise mlebu log.",
 'newarticle'                     => '(Anyar)',
+'newarticletext'                 => "Rika ngetutna pranala maring kaca sing durung ana.
+Kanggo nggawe kaca kuwe,molai baen ngetik nang kotak nang ngisor kiye (deleng [[{{MediaWiki:Helppage}}|kaca pitulung]] kanggo informasi lewih detil).
+Angger Rika ora nguja gutul kene, klik baen tombol ''back'' nang panjlajah web Rika.",
 'noarticletext'                  => 'Sekiye ora ana teks nang kaca kiye.
 Rika teyeng [[Special:Search/{{PAGENAME}}|nggoleti judul kaca kiye]] nang kaca-kaca liyane,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} goleti log sing ana gandengane],
