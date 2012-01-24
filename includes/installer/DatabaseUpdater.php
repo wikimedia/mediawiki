@@ -465,9 +465,9 @@ abstract class DatabaseUpdater {
 	 */
 	protected function addIndex( $table, $index, $patch, $fullpath = false ) {
 		if ( $this->db->indexExists( $table, $index, __METHOD__ ) ) {
-			$this->output( "...$index key already set on $table table.\n" );
+			$this->output( "...index $index already set on $table table.\n" );
 		} else {
-			$this->output( "Adding $index key to table $table... " );
+			$this->output( "Adding index $index to table $table... " );
 			$this->applyPatch( $patch, $fullpath );
 			$this->output( "done.\n" );
 		}
