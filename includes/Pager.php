@@ -782,11 +782,11 @@ abstract class ReverseChronologicalPager extends IndexPager {
 	}
 
 	function getDateCond( $year, $month ) {
-		$year = intval($year);
-		$month = intval($month);
+		$year = intval( $year );
+		$month = intval( $month );
 		// Basic validity checks
 		$this->mYear = $year > 0 ? $year : false;
-		$this->mMonth = ($month > 0 && $month < 13) ? $month : false;
+		$this->mMonth = ( $month > 0 && $month < 13 ) ? $month : false;
 		// Given an optional year and month, we need to generate a timestamp
 		// to use as "WHERE rev_timestamp <= result"
 		// Examples: year = 2006 equals < 20070101 (+000000)
