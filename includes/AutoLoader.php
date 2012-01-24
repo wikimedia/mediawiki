@@ -489,8 +489,8 @@ $wgAutoloadLocalClasses = array(
 	'LocalFileRestoreBatch' => 'includes/filerepo/file/LocalFile.php',
 	'OldLocalFile' => 'includes/filerepo/file/OldLocalFile.php',
 	'UnregisteredLocalFile' => 'includes/filerepo/file/UnregisteredLocalFile.php',
-	'FSFile' => 'includes/filerepo/file/FSFile.php',
-	'TempFSFile' => 'includes/filerepo/file/TempFSFile.php',
+	'FSFile' => 'includes/filerepo/backend/FSFile.php',
+	'TempFSFile' => 'includes/filerepo/backend/TempFSFile.php',
 
 	# includes/filerepo/backend
 	'FileBackendGroup' => 'includes/filerepo/backend/FileBackendGroup.php',

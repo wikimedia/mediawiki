@@ -278,6 +278,8 @@ class LockServerDaemon {
 	}
 
 	/**
+	 * Get the current timestamp and memory usage
+	 * 
 	 * @return string
 	 */
 	protected function stat() {
@@ -317,7 +319,7 @@ class LockHolder {
 	 * @return string
 	 */
 	public function lock( $session, $type, array $keys ) {
-		if ( $this->lockCount >= $this->maxLocks ) {
+		if ( ( $this->lockCount + count( $keys ) ) > $this->maxLocks ) {
 			return 'TOO_MANY_LOCKS';
 		}
 		if ( $type === 'SH' ) {
