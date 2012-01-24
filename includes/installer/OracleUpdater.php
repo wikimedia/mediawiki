@@ -49,6 +49,9 @@ class OracleUpdater extends DatabaseUpdater {
 			array( 'doRemoveNotNullEmptyDefaults2' ),
 			array( 'addIndex', 'page', 'i03', 'patch-page_redirect_namespace_len.sql' ),
 			array( 'modifyField', 'user', 'ug_group', 'patch-ug_group-length-increase.sql' ),
+			array( 'addField', 'uploadstash', 'us_chunk_inx', 'patch-us_chunk_inx_field.sql' ),
+			array( 'addField', 'job', 'job_timestamp', 'patch-job_timestamp_field.sql' ),
+			array( 'addIndex', 'job', 'i02', 'patch-job_timestamp_index.sql' ),
 
 			// KEEP THIS AT THE BOTTOM!!
 			array( 'doRebuildDuplicateFunction' ),

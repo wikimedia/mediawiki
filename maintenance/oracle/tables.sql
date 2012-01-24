@@ -375,6 +375,7 @@ CREATE TABLE &mw_prefix.uploadstash (
 	us_source_type				VARCHAR2(50),
   us_timestamp          TIMESTAMP(6) WITH TIME ZONE,
 	us_status							VARCHAR2(50) NOT NULL,
+	us_chunk_inx						NUMBER,
 	us_size								NUMBER NOT NULL,
 	us_sha1								VARCHAR2(32) NOT NULL,
 	us_mime								VARCHAR2(255),
@@ -518,10 +519,12 @@ CREATE TABLE &mw_prefix.job (
   job_cmd        VARCHAR2(60)      NOT NULL,
   job_namespace  NUMBER  DEFAULT 0 NOT NULL,
   job_title      VARCHAR2(255)      NOT NULL,
+  job_timestamp	 TIMESTAMP(6) WITH TIME ZONE NULL,
   job_params     CLOB      NOT NULL
 );
 ALTER TABLE &mw_prefix.job ADD CONSTRAINT &mw_prefix.job_pk PRIMARY KEY (job_id);
 CREATE INDEX &mw_prefix.job_i01 ON &mw_prefix.job (job_cmd, job_namespace, job_title);
+CREATE INDEX &mw_prefix.job_i02 ON &mw_prefix.job (job_timestamp);
 
 CREATE TABLE &mw_prefix.querycache_info (
   qci_type       VARCHAR2(32) NOT NULL,
