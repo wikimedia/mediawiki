@@ -143,8 +143,8 @@ class Xml {
 			$options[] = self::option( $name, $index, $index === $selected );
 		}
 
-		$ret = Xml::openElement( 'select', array( 'id' => 'namespace', 'name' => $element_name,
-			'class' => 'namespaceselector' ) )
+		$ret = Xml::openElement( 'select', array( 'class' => 'namespaceselector', 'id' => 'namespace',
+			'name' => $element_name ) )
 			. "\n"
 			. implode( "\n", $options )
 			. "\n"
