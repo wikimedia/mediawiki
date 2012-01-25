@@ -15,3 +15,7 @@ nbproject*
 project.index
 static*
 tags
+cache/*.cdb
+images/[0-9a-f]
+images/temp
+images/thumb
