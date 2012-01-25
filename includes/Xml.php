@@ -117,42 +117,19 @@ class Xml {
 	 * @param $element_name String: value of the "name" attribute of the select tag
 	 * @param $label String: optional label to add to the field
 	 * @return string
+	 * @deprecated since 1.19
 	 */
 	public static function namespaceSelector( $selected = '', $all = null, $element_name = 'namespace', $label = null ) {
-		global $wgContLang;
-		$namespaces = $wgContLang->getFormattedNamespaces();
-		$options = array();
-
-		// Godawful hack... we'll be frequently passed selected namespaces
-		// as strings since PHP is such a shithole.
-		// But we also don't want blanks and nulls and "all"s matching 0,
-		// so let's convert *just* string ints to clean ints.
-		if( preg_match( '/^\d+$/', $selected ) ) {
-			$selected = intval( $selected );
-		}
-
-		if( !is_null( $all ) )
-			$namespaces = array( $all => wfMsg( 'namespacesall' ) ) + $namespaces;
-		foreach( $namespaces as $index => $name ) {
-			if( $index < NS_MAIN ) {
-				continue;
-			}
-			if( $index === 0 ) {
-				$name = wfMsg( 'blanknamespace' );
-			}
-			$options[] = self::option( $name, $index, $index === $selected );
-		}
-
-		$ret = Xml::openElement( 'select', array( 'class' => 'namespaceselector', 'id' => 'namespace',
-			'name' => $element_name ) )
-			. "\n"
-			. implode( "\n", $options )
-			. "\n"
-			. Xml::closeElement( 'select' );
-		if ( !is_null( $label ) ) {
-			$ret = Xml::label( $label, $element_name ) . '&#160;' . $ret;
-		}
-		return $ret;
+		wfDeprecated( __METHOD__, '1.19' );
+		return Html::namespaceSelector( array(
+			'selected' => $selected,
+			'all' => $all,
+			'label' => $label,
+		), array(
+			'name' => $element_name,
+			'id' => 'namespace',
+			'class' => 'namespaceselector',
+		) );
 	}
 
 	/**

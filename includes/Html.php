@@ -699,6 +699,60 @@ class Html {
 		}
 		return self::element( 'textarea', $attribs, $spacedValue );
 	}
+	/**
+	 * Build a drop-down box for selecting a namespace
+	 *
+	 * @param $params array:
+	 * - selected: [optional] Id of namespace which should be pre-selected
+	 * - all: [optional] Value of item for "all namespaces". If null or unset, <option> is omitted.
+	 * - label: text for label to add before the field
+	 * @param $selectAttribs array
+	 * @return string
+	 */
+	public static function namespaceSelector( Array $params = array(), Array $selectAttribs = array() ) {
+		global $wgContLang;
+
+		$selectAttribs = $selectAttribs + array(
+			'id' => 'mw-namespaceselect',
+			'name' => 'namespace',
+		);
+		ksort( $selectAttribs );
+
+		// If string only contains digits, convert to clean int. Selected could also
+		// be "all" or "" etc. which needs to be left untouched.
+		// PHP is_numeric() has issues with large strings, PHP ctype_digit has other issues
+		// and returns false for already clean ints. Use regex instead..
+		if ( preg_match( '/^\d+$/', $params['selected'] ) ) {
+			$params['selected'] = intval( $params['selected'] );
+		}
+
+		$options = array();
+		if ( isset( $params['all'] ) ) {
+			$options[$params['all']] = wfMsg( 'namespacesall' );
+		}
+		$options += $wgContLang->getFormattedNamespaces();
+
+		$optionsHtml = array();
+		foreach ( $options as $nsId => $nsName ) {
+			if ( $nsId < NS_MAIN ) {
+				continue;
+			}
+			if ( $nsId === 0 ) {
+				$nsName = wfMsg( 'blanknamespace' );
+			}
+			$optionsHtml[] = Xml::option( $nsName, $nsId, $nsId === $params['selected'] );
+		}
+
+		$ret = Html::openElement( 'select', $selectAttribs )
+			. "\n"
+			. implode( "\n", $optionsHtml )
+			. "\n"
+			. Html::closeElement( 'select' );
+		if ( isset( $params['label'] ) ) {
+			$ret = Xml::label( $params['label'], $selectAttribs['name'] ) . '&#160;' . $ret;
+		}
+		return $ret;
+	}
 
 	/**
 	 * Constructs the opening html-tag with necessary doctypes depending on
