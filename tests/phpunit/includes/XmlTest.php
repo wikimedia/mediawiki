@@ -214,7 +214,7 @@ class XmlTest extends MediaWikiTestCase {
 			'Basic namespace selector without custom options'
 		);
 		$this->assertEquals(
-			'<label for="myname">Select a namespace:</label>&#160;<select class="namespaceselector" id="namespace" name="myname">
+			'<label for="namespace">Select a namespace:</label>&#160;<select class="namespaceselector" id="namespace" name="myname">
 <option value="all">all</option>
 <option value="0">(Main)</option>
 <option value="1">Talk</option>

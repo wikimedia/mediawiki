@@ -713,17 +713,21 @@ class Html {
 		global $wgContLang;
 
 		$selectAttribs = $selectAttribs + array(
-			'id' => 'mw-namespaceselect',
+			'id' => 'namespace',
 			'name' => 'namespace',
 		);
 		ksort( $selectAttribs );
 
-		// If string only contains digits, convert to clean int. Selected could also
-		// be "all" or "" etc. which needs to be left untouched.
-		// PHP is_numeric() has issues with large strings, PHP ctype_digit has other issues
-		// and returns false for already clean ints. Use regex instead..
-		if ( preg_match( '/^\d+$/', $params['selected'] ) ) {
-			$params['selected'] = intval( $params['selected'] );
+		if ( isset( $params['selected'] ) ) {
+			// If string only contains digits, convert to clean int. Selected could also
+			// be "all" or "" etc. which needs to be left untouched.
+			// PHP is_numeric() has issues with large strings, PHP ctype_digit has other issues
+			// and returns false for already clean ints. Use regex instead..
+			if ( preg_match( '/^\d+$/', $params['selected'] ) ) {
+				$params['selected'] = intval( $params['selected'] );
+			}
+		} else {
+			$params['selected'] = '';
 		}
 
 		$options = array();
@@ -749,7 +753,7 @@ class Html {
 			. "\n"
 			. Html::closeElement( 'select' );
 		if ( isset( $params['label'] ) ) {
-			$ret = Xml::label( $params['label'], $selectAttribs['name'] ) . '&#160;' . $ret;
+			$ret = Xml::label( $params['label'], $selectAttribs['id'] ) . '&#160;' . $ret;
 		}
 		return $ret;
 	}
