@@ -4,6 +4,7 @@
 class HtmlTest extends MediaWikiTestCase {
 	private static $oldLang;
 	private static $oldContLang;
+	private static $oldNamespaces;
 
 	public function setUp() {
 		global $wgLang, $wgContLang, $wgLanguageCode;
@@ -13,6 +14,29 @@ class HtmlTest extends MediaWikiTestCase {
 		
 		$wgLanguageCode = 'en';
 		$wgContLang = $wgLang = Language::factory( $wgLanguageCode );
+
+		// Hardcode namespaces during test runs,
+		// so that html output based on existing namespaces
+		// can be properly evaluated.
+		self::$oldNamespaces = $wgContLang->namespaceNames;
+		$wgContLang->namespaceNames = array(
+			-2 => 'Media',
+			-1 => 'Special',
+			0  => '',
+			1  => 'Talk',
+			2  => 'User',
+			3  => 'User_talk',
+			4  => 'MyWiki',
+			5  => 'MyWiki_Talk',
+			6  => 'File',
+			7  => 'File_talk',
+			8  => 'MediaWiki',
+			9  => 'MediaWiki_talk',
+			10  => 'Template',
+			11  => 'Template_talk',
+			100  => 'Custom',
+			101  => 'Custom_talk',
+		);
 	}
 	
 	public function tearDown() {
@@ -20,6 +44,7 @@ class HtmlTest extends MediaWikiTestCase {
 		$wgLang = self::$oldLang;
 		$wgContLang = self::$oldContLang;
 		$wgLanguageCode = $wgContLang->getCode();
+		$wgContLang->namespaceNames = self::$oldNamespaces;
 	}
 
 	public function testExpandAttributesSkipsNullAndFalse() {
@@ -180,6 +205,53 @@ class HtmlTest extends MediaWikiTestCase {
 				'GREEN' => false,
 				'GREEN',
 			)))
+		);
+	}
+
+	function testNamespaceSelector() {
+		$this->assertEquals(
+			'<select id="namespace" name="namespace">
+<option value="0">(Main)</option>
+<option value="1">Talk</option>
+<option value="2">User</option>
+<option value="3">User talk</option>
+<option value="4">MyWiki</option>
+<option value="5">MyWiki Talk</option>
+<option value="6">File</option>
+<option value="7">File talk</option>
+<option value="8">MediaWiki</option>
+<option value="9">MediaWiki talk</option>
+<option value="10">Template</option>
+<option value="11">Template talk</option>
+<option value="100">Custom</option>
+<option value="101">Custom talk</option>
+</select>',
+			Html::namespaceSelector(),
+			'Basic namespace selector without custom options'
+		);
+		$this->assertEquals(
+			'<label for="mw-test-namespace">Select a namespace:</label>&#160;<select id="mw-test-namespace" name="wpNamespace">
+<option value="all">all</option>
+<option value="0">(Main)</option>
+<option value="1">Talk</option>
+<option value="2" selected="">User</option>
+<option value="3">User talk</option>
+<option value="4">MyWiki</option>
+<option value="5">MyWiki Talk</option>
+<option value="6">File</option>
+<option value="7">File talk</option>
+<option value="8">MediaWiki</option>
+<option value="9">MediaWiki talk</option>
+<option value="10">Template</option>
+<option value="11">Template talk</option>
+<option value="100">Custom</option>
+<option value="101">Custom talk</option>
+</select>',
+			Html::namespaceSelector(
+				array( 'selected' => '2', 'all' => 'all', 'label' => 'Select a namespace:' ),
+				array( 'name' => 'wpNamespace', 'id' => 'mw-test-namespace' )
+			),
+			'Basic namespace selector with custom values'
 		);
 	}
 }
