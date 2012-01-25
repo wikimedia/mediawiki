@@ -123,6 +123,7 @@ production.
 * (bug 27775) Namespace has it's own XML tag in the XML dump file. 
 * (bug 30513) Redirect tag is now resolved in XML dump file.
 * sha1 xml tag added to XML dump file. 
+* (bug 33646) Badtitle error page now emits a 400 HTTP status.
 
 === Bug fixes in 1.19 ===
 * $wgUploadNavigationUrl should be used for file redlinks if.

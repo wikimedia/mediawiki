@@ -266,9 +266,40 @@ class ErrorPageError extends MWException {
 	function report() {
 		global $wgOut;
 
+
 		$wgOut->showErrorPage( $this->title, $this->msg, $this->params );
 		$wgOut->output();
 	}
+}
+
+/**
+ * Show an error page on a badtitle.
+ * Similar to ErrorPage, but emit a 400 HTTP error code to let mobile
+ * browser it is not really a valid content.
+ */
+class BadTitleError extends ErrorPageError {
+
+	/**
+	 * @param $msg string A message key (default: 'badtitletext')
+	 * @param $params Array parameter to wfMsg()
+	 */
+	function __construct( $msg = 'badtitletext', $params = null ) {
+		parent::__construct( 'badtitle', $msg, $params );
+	}
+
+	/**
+	 * Just like ErrorPageError::report() but additionally set
+	 * a 400 HTTP status code (bug 33646).
+	 */
+	function report() {
+		global $wgOut;
+
+		// bug 33646: a badtitle error page need to return an error code
+		// to let mobile browser now that it is not a normal page.
+		$wgOut->setStatusCode( 400 );
+		parent::report();
+	}
+
 }
 
 /**

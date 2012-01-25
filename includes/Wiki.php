@@ -167,7 +167,7 @@ class MediaWiki {
 		{
 			$this->context->setTitle( SpecialPage::getTitleFor( 'Badtitle' ) );
 			wfProfileOut( __METHOD__ );
-			throw new ErrorPageError( 'badtitle', 'badtitletext' );
+			throw new BadTitleError();
 		}
 
 		// Check user's permissions to read this page.
@@ -214,7 +214,7 @@ class MediaWiki {
 			} else {
 				$this->context->setTitle( SpecialPage::getTitleFor( 'Badtitle' ) );
 				wfProfileOut( __METHOD__ );
-				throw new ErrorPageError( 'badtitle', 'badtitletext' );
+				throw new BadTitleError();
 			}
 		// Redirect loops, no title in URL, $wgUsePathInfo URLs, and URLs with a variant
 		} elseif ( $request->getVal( 'action', 'view' ) == 'view' && !$request->wasPosted()
