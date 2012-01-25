@@ -314,7 +314,6 @@ changes to languages because of Bugzilla reports.
   methods have been removed, the variant is now part of the $query argument.
 * Removed Title::isValidCssJsSubpage(), deprecated since 1.17 in favor of
   using Title::isCssJsSubpage() or checking Title::isWrongCaseCssJsPage().
-* (bug 24430) Remove number of column for edit field in preference page.
 * Support for the deprecated hook MagicWordMagicWords was removed.
 * The Xml::namespaceSelector method has been deprecated, please use
   Html::namespaceSelector instead (note that the parameters have changed also).
