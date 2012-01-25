@@ -315,6 +315,8 @@ changes to languages because of Bugzilla reports.
   using Title::isCssJsSubpage() or checking Title::isWrongCaseCssJsPage().
 * (bug 24430) Remove number of column for edit field in preference page.
 * Support for the deprecated hook MagicWordMagicWords was removed.
+* The Xml::namespaceSelector method has been deprecated, please use
+  Html::namespaceSelector instead (note that the parameters have changed also).
 
 == Compatibility ==
 
