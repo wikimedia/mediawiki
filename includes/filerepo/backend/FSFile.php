@@ -1,14 +1,12 @@
 <?php
 /**
  * @file
- * @ingroup FileRepo
  * @ingroup FileBackend
  */
 
 /**
  * Class representing a non-directory file on the file system
  *
- * @ingroup FileRepo
  * @ingroup FileBackend
  */
 class FSFile {

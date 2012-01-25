@@ -138,6 +138,12 @@ class SwiftFileBackend extends FileBackend {
 			$obj = new CF_Object( $dContObj, $dstRel, false, false ); // skip HEAD
 			// Note: metadata keys stored as [Upper case char][[Lower case char]...]
 			$obj->metadata = array( 'Sha1base36' => $sha1Hash );
+			// Manually set the ETag (https://github.com/rackspace/php-cloudfiles/issues/59).
+			// The MD5 here will be checked within Swift against its own MD5.
+			$obj->set_etag( md5( $params['content'] ) );
+			// Use the same content type as StreamFile for security
+			$obj->content_type = StreamFile::contentTypeFromPath( $params['dst'] );
+			// Actually write the object in Swift
 			$obj->write( $params['content'] );
 		} catch ( BadContentTypeException $e ) {
 			$status->fatal( 'backend-fail-contenttype', $params['dst'] );
@@ -201,6 +207,11 @@ class SwiftFileBackend extends FileBackend {
 			$obj = new CF_Object( $dContObj, $dstRel, false, false ); // skip HEAD
 			// Note: metadata keys stored as [Upper case char][[Lower case char]...]
 			$obj->metadata = array( 'Sha1base36' => $sha1Hash );
+			// The MD5 here will be checked within Swift against its own MD5.
+			$obj->set_etag( md5_file( $params['src'] ) );
+			// Use the same content type as StreamFile for security
+			$obj->content_type = StreamFile::contentTypeFromPath( $params['dst'] );
+			// Actually write the object in Swift
 			$obj->load_from_filename( $params['src'], True ); // calls $obj->write()
 		} catch ( BadContentTypeException $e ) {
 			$status->fatal( 'backend-fail-contenttype', $params['dst'] );
@@ -585,7 +596,7 @@ class SwiftFileBackend extends FileBackend {
 			// Create a new temporary file...
 			$tmpFile = TempFSFile::factory( wfBaseName( $srcRel ) . '_', $ext );
 			if ( $tmpFile ) {
-				$handle = fopen( $tmpFile->getPath(), 'w' );
+				$handle = fopen( $tmpFile->getPath(), 'wb' );
 				if ( $handle ) {
 					$obj->stream( $handle, $this->headersFromParams( $params ) );
 					fclose( $handle );

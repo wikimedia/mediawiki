@@ -213,7 +213,7 @@ abstract class FileOp {
 	}
 
 	/**
-	 * Get required operation parameters
+	 * Get the file operation parameters
 	 * 
 	 * @return Array (required params list, optional params list)
 	 */

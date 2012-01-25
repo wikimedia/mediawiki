@@ -1,7 +1,6 @@
 <?php
 /**
  * @file
- * @ingroup FileRepo
  * @ingroup FileBackend
  */
 
@@ -9,7 +8,6 @@
  * This class is used to hold the location and do limited manipulation
  * of files stored temporarily (usually this will be $wgTmpDirectory)
  *
- * @ingroup FileRepo
  * @ingroup FileBackend
  */
 class TempFSFile extends FSFile {

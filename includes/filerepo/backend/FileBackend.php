@@ -792,7 +792,7 @@ abstract class FileBackend extends FileBackendBase {
 		}
 
 		// Build up the temp file using the source chunks (in order)...
-		$tmpHandle = fopen( $tmpPath, 'a' );
+		$tmpHandle = fopen( $tmpPath, 'ab' );
 		if ( $tmpHandle === false ) {
 			$status->fatal( 'backend-fail-opentemp', $tmpPath );
 			return $status;
@@ -1448,8 +1448,9 @@ abstract class FileBackend extends FileBackendBase {
 		// Allow certain directories to be above the hash dirs so as
 		// to work with FileRepo (e.g. "archive/a/ab" or "temp/a/ab").
 		// They must be 2+ chars to avoid any hash directory ambiguity.
+		$m = array();
 		if ( preg_match( "!^(?:[^/]{2,}/)*$hashDirRegex(?:/|$)!", $relPath, $m ) ) {
-			return '.' . str_pad( $m['shard'], $hashLevels, '0', STR_PAD_LEFT );
+			return '.' . $m['shard'];
 		}
 		return null; // failed to match
 	}
