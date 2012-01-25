@@ -14,7 +14,6 @@ class NewParserTest extends MediaWikiTestCase {
 	 * When running tests from several files, all tests will see all articles.
 	 */
 
-	public $uploadDir;
 	public $keepUploads = false;
 	public $runDisabled = false;
 	public $regex = '';
@@ -118,7 +117,11 @@ class NewParserTest extends MediaWikiTestCase {
 	}
 
 	function addDBData() {
-		$this->tablesUsed[] = 'image';
+		$this->tablesUsed[] = 'site_stats';
+		$this->tablesUsed[] = 'interwiki';
+		# disabled for performance
+		#$this->tablesUsed[] = 'image';
+
 		# Hack: insert a few Wikipedia in-project interwiki prefixes,
 		# for testing inter-language links
 		$this->db->insert( 'interwiki', array(
@@ -156,13 +159,15 @@ class NewParserTest extends MediaWikiTestCase {
 			 * @todo Fixme! Why are we inserting duplicate data here? Shouldn't
 			 * need this IGNORE or shouldn't need the insert at all.
 			 */
-			), __METHOD__, array( 'IGNORE' ) );
+			), __METHOD__, array( 'IGNORE' )
+		);
 
 
 		# Update certain things in site_stats
 		$this->db->insert( 'site_stats',
 			array( 'ss_row_id' => 1, 'ss_images' => 2, 'ss_good_articles' => 1 ),
-			__METHOD__, array( 'IGNORE' ) );
+			__METHOD__
+		);
 
 		# Reinitialise the LocalisationCache to match the database state
 		Language::getLocalisationCache()->unloadAll();
@@ -170,38 +175,53 @@ class NewParserTest extends MediaWikiTestCase {
 		# Clear the message cache
 		MessageCache::singleton()->clear();
 
-		$this->uploadDir = $this->setupUploadDir();
-
 		$user = User::newFromId( 0 );
 		LinkCache::singleton()->clear(); # Avoids the odd failure at creating the nullRevision
 
+		# Upload DB table entries for files.
+		# We will upload the actual files later. Note that if anything causes LocalFile::load()
+		# to be triggered before then, it will break via maybeUpgrade() setting the fileExists
+		# member to false and storing it in cache.
 		$image = wfLocalFile( Title::makeTitle( NS_FILE, 'Foobar.jpg' ) );
-		$image->recordUpload2( '', 'Upload of some lame file', 'Some lame file', array(
-			'size'        => 12345,
-			'width'       => 1941,
-			'height'      => 220,
-			'bits'        => 24,
-			'media_type'  => MEDIATYPE_BITMAP,
-			'mime'        => 'image/jpeg',
-			'metadata'    => serialize( array() ),
-			'sha1'        => wfBaseConvert( '', 16, 36, 31 ),
-			'fileExists'  => true
-			), $this->db->timestamp( '20010115123500' ), $user );
+		if ( !$this->db->selectField( 'image', '1', array( 'img_name' => $image->getName() ) ) ) {
+			$image->recordUpload2(
+				'', // archive name
+				'Upload of some lame file', 
+				'Some lame file',
+				array(
+					'size'        => 12345,
+					'width'       => 1941,
+					'height'      => 220,
+					'bits'        => 24,
+					'media_type'  => MEDIATYPE_BITMAP,
+					'mime'        => 'image/jpeg',
+					'metadata'    => serialize( array() ),
+					'sha1'        => wfBaseConvert( '', 16, 36, 31 ),
+					'fileExists'  => true ), 
+				$this->db->timestamp( '20010115123500' ), $user
+			);
+		}
 
 		# This image will be blacklisted in [[MediaWiki:Bad image list]]
 		$image = wfLocalFile( Title::makeTitle( NS_FILE, 'Bad.jpg' ) );
-		$image->recordUpload2( '', 'zomgnotcensored', 'Borderline image', array(
-			'size'        => 12345,
-			'width'       => 320,
-			'height'      => 240,
-			'bits'        => 24,
-			'media_type'  => MEDIATYPE_BITMAP,
-			'mime'        => 'image/jpeg',
-			'metadata'    => serialize( array() ),
-			'sha1'        => wfBaseConvert( '', 16, 36, 31 ),
-			'fileExists'  => true
-			), $this->db->timestamp( '20010115123500' ), $user );
-
+		if ( !$this->db->selectField( 'image', '1', array( 'img_name' => $image->getName() ) ) ) {
+			$image->recordUpload2(
+				'', // archive name
+				'zomgnotcensored', 
+				'Borderline image', 
+				array(
+					'size'        => 12345,
+					'width'       => 320,
+					'height'      => 240,
+					'bits'        => 24,
+					'media_type'  => MEDIATYPE_BITMAP,
+					'mime'        => 'image/jpeg',
+					'metadata'    => serialize( array() ),
+					'sha1'        => wfBaseConvert( '', 16, 36, 31 ),
+					'fileExists'  => true ), 
+				$this->db->timestamp( '20010115123500' ), $user
+			);
+		}
 	}
 
 
@@ -224,6 +244,16 @@ class NewParserTest extends MediaWikiTestCase {
 		$linkHolderBatchSize =
 			self::getOptionValue( 'wgLinkHolderBatchSize', $opts, 1000 );
 
+		$uploadDir = $this->getUploadDir();
+		$backend = new FSFileBackend( array(
+			'name'        => 'local-backend',
+			'lockManager' => 'nullLockManager',
+			'containerPaths' => array(
+				'local-public' => "$uploadDir",
+				'local-thumb'  => "$uploadDir/thumb",
+			)
+		) );
+
 		$settings = array(
 			'wgServer' => 'http://Britney-Spears',
 			'wgScript' => '/index.php',
@@ -237,14 +267,7 @@ class NewParserTest extends MediaWikiTestCase {
 				'url'             => 'http://example.com/images',
 				'hashLevels'      => 2,
 				'transformVia404' => false,
-				'backend'         => new FSFileBackend( array(
-					'name'        => 'local-backend',
-					'lockManager' => 'nullLockManager',
-					'containerPaths' => array(
-						'local-public' => "$this->uploadDir",
-						'local-thumb'  => "$this->uploadDir/thumb",
-					)
-				) )
+				'backend'         => $backend
 			),
 			'wgEnableUploads' => self::getOptionValue( 'wgEnableUploads', $opts, true ),
 			'wgStylePath' => '/skins',
@@ -263,7 +286,7 @@ class NewParserTest extends MediaWikiTestCase {
 			'wgThumbnailScriptPath' => false,
 			'wgUseImageResize' => false,
 			'wgUseTeX' => isset( $opts['math'] ),
-			'wgMathDirectory' => $this->uploadDir . '/math',
+			'wgMathDirectory' => $uploadDir . '/math',
 			'wgLocaltimezone' => 'UTC',
 			'wgAllowExternalImages' => true,
 			'wgUseTidy' => false,
@@ -329,6 +352,9 @@ class NewParserTest extends MediaWikiTestCase {
 		RepoGroup::destroySingleton();
 		FileBackendGroup::destroySingleton();
 
+		# Create dummy files in storage
+		$this->setupUploads();
+
 		# Publish the articles after we have the final language set
 		$this->publishTestArticles();
 
@@ -341,14 +367,11 @@ class NewParserTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * Create a dummy uploads directory which will contain a couple
-	 * of files in order to pass existence tests.
+	 * Get an FS upload directory (only applies to FSFileBackend)
 	 *
 	 * @return String: the directory
 	 */
-	protected function setupUploadDir() {
-		global $IP;
-
+	protected function getUploadDir() {
 		if ( $this->keepUploads ) {
 			$dir = wfTempDir() . '/mwParser-images';
 
@@ -365,12 +388,28 @@ class NewParserTest extends MediaWikiTestCase {
 			return $dir;
 		}
 
-		wfMkdirParents( $dir . '/3/3a', null, __METHOD__ );
-		copy( "$IP/skins/monobook/headbg.jpg", "$dir/3/3a/Foobar.jpg" );
-		wfMkdirParents( $dir . '/0/09', null, __METHOD__ );
-		copy( "$IP/skins/monobook/headbg.jpg", "$dir/0/09/Bad.jpg" );
-
 		return $dir;
+	}
+
+	/**
+	 * Create a dummy uploads directory which will contain a couple
+	 * of files in order to pass existence tests.
+	 *
+	 * @return String: the directory
+	 */
+	protected function setupUploads() {
+		global $IP;
+
+		$base = $this->getBaseDir();
+		$backend = RepoGroup::singleton()->getLocalRepo()->getBackend();
+		$backend->prepare( array( 'dir' => "$base/local-public/3/3a" ) );
+		$backend->store( array(
+			'src' => "$IP/skins/monobook/headbg.jpg", 'dst' => "$base/local-public/3/3a/Foobar.jpg"
+		) );
+		$backend->prepare( array( 'dir' => "$base/local-public/0/09" ) );
+		$backend->store( array(
+			'src' => "$IP/skins/monobook/headbg.jpg", 'dst' => "$base/local-public/0/09/Bad.jpg"
+		) );
 	}
 
 	/**
@@ -378,57 +417,37 @@ class NewParserTest extends MediaWikiTestCase {
 	 * after each test runs.
 	 */
 	protected function teardownGlobals() {
+		$this->teardownUploads();
+
 		foreach ( $this->savedGlobals as $var => $val ) {
 			$GLOBALS[$var] = $val;
 		}
 
 		RepoGroup::destroySingleton();
 		LinkCache::singleton()->clear();
-
-		$this->teardownUploadDir( $this->uploadDir );
 	}
 
 	/**
 	 * Remove the dummy uploads directory
 	 */
-	private function teardownUploadDir( $dir ) {
+	private function teardownUploads() {
 		if ( $this->keepUploads ) {
 			return;
 		}
 
+		$base = $this->getBaseDir();
 		// delete the files first, then the dirs.
 		self::deleteFiles(
 			array (
-				"$dir/3/3a/Foobar.jpg",
-				"$dir/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg",
-				"$dir/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg",
-				"$dir/thumb/3/3a/Foobar.jpg/640px-Foobar.jpg",
-				"$dir/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg",
+				"$base/local-public/3/3a/Foobar.jpg",
+				"$base/local-thumb/3/3a/Foobar.jpg/180px-Foobar.jpg",
+				"$base/local-thumb/3/3a/Foobar.jpg/200px-Foobar.jpg",
+				"$base/local-thumb/3/3a/Foobar.jpg/640px-Foobar.jpg",
+				"$base/local-thumb/3/3a/Foobar.jpg/120px-Foobar.jpg",
 
-				"$dir/0/09/Bad.jpg",
+				"$base/local-thumb/0/09/Bad.jpg",
 
-				"$dir/math/f/a/5/fa50b8b616463173474302ca3e63586b.png",
-			)
-		);
-
-		self::deleteDirs(
-			array (
-				"$dir/3/3a",
-				"$dir/3",
-				"$dir/thumb/6/65",
-				"$dir/thumb/6",
-				"$dir/thumb/3/3a/Foobar.jpg",
-				"$dir/thumb/3/3a",
-				"$dir/thumb/3",
-
-				"$dir/0/09/",
-				"$dir/0/",
-				"$dir/thumb",
-				"$dir/math/f/a/5",
-				"$dir/math/f/a",
-				"$dir/math/f",
-				"$dir/math",
-				"$dir",
+				"$base/local-public/math/f/a/5/fa50b8b616463173474302ca3e63586b.png",
 			)
 		);
 	}
@@ -438,23 +457,20 @@ class NewParserTest extends MediaWikiTestCase {
 	 * @param $files Array: full paths to files to delete.
 	 */
 	private static function deleteFiles( $files ) {
+		$backend = RepoGroup::singleton()->getLocalRepo()->getBackend();
 		foreach ( $files as $file ) {
-			if ( file_exists( $file ) ) {
-				unlink( $file );
+			$backend->delete( array( 'src' => $file ), array( 'force' => 1 ) );
+		}
+		foreach ( $files as $file ) {
+			$tmp = $file;
+			while ( $tmp = FileBackend::parentStoragePath( $tmp ) ) {
+				$backend->clean( array( 'dir' => $tmp ) );
 			}
 		}
 	}
 
-	/**
-	 * Delete the specified directories, if they exist. Must be empty.
-	 * @param $dirs Array: full paths to directories to delete.
-	 */
-	private static function deleteDirs( $dirs ) {
-		foreach ( $dirs as $dir ) {
-			if ( is_dir( $dir ) ) {
-				rmdir( $dir );
-			}
-		}
+	protected function getBaseDir() {
+		return 'mwstore://local-backend';
 	}
 
 	public function parserTestProvider() {
@@ -474,7 +490,11 @@ class NewParserTest extends MediaWikiTestCase {
 
 	/** @dataProvider parserTestProvider */
 	public function testParserTest( $desc, $input, $result, $opts, $config ) {
-		if ( !preg_match( '/' . $this->regex . '/', $desc ) ) return; //$this->markTestSkipped( 'Filtered out by the user' );
+		if ( $this->regex != '' && !preg_match( '/' . $this->regex . '/', $desc ) ) {
+			$this->assertTrue( true ); // XXX: don't flood output with "test made no assertions"
+			//$this->markTestSkipped( 'Filtered out by the user' );
+			return;
+		}
 
 		wfDebug( "Running parser test: $desc\n" );
 
