@@ -1383,6 +1383,7 @@ $1",
 'prefs-editing'                 => 'Επεξεργασία',
 'prefs-edit-boxsize'            => 'Μέγεθος του παραθύρου επεξεργασίας.',
 'rows'                          => 'Σειρές',
+'columns'                       => 'Στήλες',
 'searchresultshead'             => 'Αποτελέσματα αναζήτησης/Ρυθμίσεις',
 'resultsperpage'                => 'Αποτελέσματα ανά σελίδα',
 'stub-threshold'                => 'Κατώφλι για μορφοποίηση <span class="mw-stub-example">συνδέσμου επεκτάσιμου</span>:',
@@ -1807,6 +1808,7 @@ $1',
 # File backend
 'backend-fail-backup'        => 'Αδύνατη η δημιουργία αντίγραφου ασφαλείας του αρχείου $1.',
 'backend-fail-notexists'     => 'Το αρχείο $1 δεν υπάρχει.',
+'backend-fail-invalidpath'   => '$1 δεν είναι έγκυρη διαδρομή αποθήκευσης.',
 'backend-fail-delete'        => 'Αδύνατη η διαγραφή αρχείου $1.',
 'backend-fail-alreadyexists' => 'Το αρχείο $1 υπάρχει ήδη.',
 'backend-fail-store'         => 'Αδύνατη η αποθήκευση του αρχείου $1 σε $2.',
@@ -1836,10 +1838,10 @@ $1',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Δεν επετράπη η πρόσβαση',
-'img-auth-nopathinfo'       => 'Υπολείπεται το PATH_INFO.
-Ο διακομιστής σας δεν είναι παραμετροποιημένος για να περάσει αυτές τις πληροφορίες.
+'img-auth-nopathinfo'       => 'Λείπει το PATH_INFO.
+Ο διακομιστής σας δεν είναι ρυθμισμένος για να περάσει αυτές τις πληροφορίες.
 Μπορεί να είναι βασισμένος σε CGI και να μην υποστηρίζει img_atuh.
-Συμβουλευτείτε το http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+[//www.mediawiki.org/wiki/Manual:Image_Authorization Δείτε το image authorization.]',
 'img-auth-notindir'         => 'Η ζητούμενη διαδρομή δεν βρίσκεται στον διαμορφωμένο αρχειοκατάλογο επιφορτώσεων',
 'img-auth-badtitle'         => 'Αδύνατη η κατασκευή έγκυρου τίτλου από "$1".',
 'img-auth-nologinnWL'       => 'Δεν έχετε συνδεθεί και η "$1" δεν είναι στην άσπρη λίστα.',
@@ -2740,7 +2742,7 @@ $1',
 
 Το άρθρο [[:$1]] υπάρχει ήδη. Θέλετε να το διαγράψετε για να εκτελεσθεί η μετακίνηση;',
 'delete_and_move_confirm'      => 'Ναι, διέγραψε τη σελίδα',
-'delete_and_move_reason'       => '',
+'delete_and_move_reason'       => 'Διαγράφηκε για να δημιουργήσει χώρο για μετακίνηση από το "[[$1]]"',
 'selfmove'                     => 'Ο τίτλος προέλευσης είναι ο ίδιος με τον τίτλο προορισμού -δεν είναι δυνατόν να μετακινηθεί μια σελίδα προς τον εαυτό της.',
 'immobile-source-namespace'    => 'Δεν μπορούν να μετακινηθούν σελίδες στη περιοχή "$1"',
 'immobile-target-namespace'    => 'Δεν μπορούν να μετακινηθούν σελίδες στην περιοχή "$1"',
@@ -3777,6 +3779,7 @@ $5
 # New logging system
 'revdelete-restricted'         => 'εφάρμοσε περιορισμούς στους sysops',
 'revdelete-unrestricted'       => 'αφαίρεσε περιορισμούς στους sysops',
+'logentry-newusers-create'     => '$1 {{GENDER:$2|δημιούργησε}} έναν λογαριασμό χρήστη',
 'logentry-newusers-autocreate' => 'Ο λογαριασμός $1 {{GENDER:$2|δημιουργήθηκε}} αυτόματα',
 'newuserlog-byemail'           => 'ο κωδικός έχει σταλεί μέσω ηλεκτρονικού μηνύματος',
 

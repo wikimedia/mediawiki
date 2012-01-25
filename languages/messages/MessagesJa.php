@@ -1449,6 +1449,7 @@ $1",
 'prefs-editing'                 => '編集',
 'prefs-edit-boxsize'            => '編集ウィンドウのサイズ。',
 'rows'                          => '行数：',
+'columns'                       => '列数：',
 'searchresultshead'             => '検索',
 'resultsperpage'                => '1ページあたりの表示件数：',
 'stub-threshold'                => '<a href="#" class="stub">スタブリンク</a>として表示する閾値（バイト）：',
@@ -1750,7 +1751,7 @@ HTMLタグを見直してください。',
 'uploadtext'                  => "ファイルをアップロードするには、以下のフォームを利用してください。
 以前にアップロードされたファイルの表示と検索には[[Special:FileList|{{int:listfiles}}]]を使用し、（再）アップロードは[[Special:Log/upload|アップロード記録]]に、削除は[[Special:Log/delete|削除記録]]にも記録されます。
 
-ページにファイルを含めるには、以下の書式のリンクを使用してください：
+ページにファイルを入れるには、以下の書式のリンクを使用してください：
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}:<nowiki>File.jpg]]</nowiki></tt>'''とすると、ファイルが完全なままで使用されます
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}:<nowiki>File.png|200px|thumb|left|代替文]]</nowiki></tt>'''とすると、200ピクセルの幅に修正された状態で、左寄せの枠内に、「代替文」が説明として使用されます。
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}:<nowiki>File.ogg]]</nowiki></tt>'''とするとファイルを表示せずに直接ファイルへリンクします",
@@ -1777,7 +1778,7 @@ HTMLタグを見直してください。',
 'badfilename'                 => 'ファイル名は「$1」へ変更されました。',
 'filetype-mime-mismatch'      => 'ファイルの拡張子「$1」がMIMEタイプ「$2」と一致しません。',
 'filetype-badmime'            => 'MIMEタイプ「$1」のファイルのアップロードは許可されていません。',
-'filetype-bad-ie-mime'        => 'Internet Explorerが、許可されていない潜在的危険性のあるファイル形式「$1」と認識してしまうため、このファイルをアップロードできません。',
+'filetype-bad-ie-mime'        => '許可されていない潜在的危険性のあるファイル形式「$1」としてInternet Explorerに認識されてしまうため、このファイルをアップロードできません。',
 'filetype-unwanted-type'      => "'''「.$1」'''は好ましくないファイル形式です。
 推奨される{{PLURAL:$3|ファイル形式}}は$2です。",
 'filetype-banned-type'        => "'''「.$1」''' は許可されていないファイル形式です{{PLURAL:$4|}}。
@@ -1801,11 +1802,11 @@ HTMLタグを見直してください。',
 ファイル名の指定が間違っている可能性があります。
 本当にこのファイルをアップロードしたいのか、確認してください。',
 'windows-nonascii-filename'   => 'このwikiでは、ファイル名に特殊文字を使うことができません。',
-'fileexists'                  => "この名前のファイルは既に存在しています。置き換えたいか確信がもてない場合は、'''<tt>[[:$1]]</tt>'''を確認してください。
+'fileexists'                  => "この名前のファイルは既に存在しています。置き換えるべきかどうか確信がもてない場合は、'''<tt>[[:$1]]</tt>'''を確認してください。
 [[$1|thumb]]",
-'filepageexists'              => "このファイルのための説明ページは既に'''<tt>[[:$1]]</tt>'''に作成されていますが、現在、この名前のファイルは存在していません。
-入力したファイルの概要は説明ページに反映されません。
-新しい概要を反映するに、説明ページを手動で編集する必要があります。
+'filepageexists'              => "このファイルのための説明ページは既に'''<tt>[[:$1]]</tt>'''に作成されていますが、現在、ファイルが存在していません。
+入力した概要は説明ページに反映されません。
+新しい概要を表示させるには、説明ページを手動で編集する必要があります。
 [[$1|thumb]]",
 'fileexists-extension'        => "類似した名前のファイルが既に存在しています：[[$2|thumb]]
 * アップロード中のファイルの名前：'''<tt>[[:$1]]</tt>'''
@@ -1846,7 +1847,7 @@ file_uploadsの設定を確認してください。',
 'upload-source'               => 'アップロード元ファイル',
 'sourcefilename'              => 'アップロード元のファイル名：',
 'sourceurl'                   => 'アップロード元のURL：',
-'destfilename'                => 'ファイル名：',
+'destfilename'                => '登録するファイル名：',
 'upload-maxfilesize'          => 'ファイルの最大サイズ：$1',
 'upload-description'          => 'ファイル説明',
 'upload-options'              => 'アップロードのオプション',
@@ -1879,7 +1880,7 @@ $1',
 'upload-warning-msg'          => '[$2] からアップロードしようとしたデータに問題があります。 [[Special:Upload/stash/$1|アップロードのフォーム]]に戻って問題を修正してください。',
 
 'upload-proto-error'        => '不正なプロトコル',
-'upload-proto-error-text'   => '外部アップロード機能では、<code>http://</code>か<code>ftp://</code>で始まっているURLが必要があります。',
+'upload-proto-error-text'   => '遠隔アップロード機能では、URLが<code>http://</code>か<code>ftp://</code>で始まっている必要があります。',
 'upload-file-error'         => '内部エラー',
 'upload-file-error-text'    => '内部エラーのため、サーバー上の一時ファイル作成に失敗しました。
 [[Special:ListUsers/sysop|管理者]]に連絡してください。',
@@ -1941,11 +1942,11 @@ CGI ベースであるため、img_auth に対応できない可能性もあり�
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URLに到達できませんでした',
 'upload-curl-error6-text'  => '指定したURLに到達できませんでした。
-URLが正しいものであるか、指定したサイトが現在使用可能かを再度確認してください。',
+URLが正しいものであり、ウェブサイトが稼働していることを再度確認してください。',
 'upload-curl-error28'      => 'アップロードのタイムアウト',
-'upload-curl-error28-text' => 'サイトからの応答に時間がかかりすぎています。
-指定したサイトが現在使用可能かを確認した上で、しばらく待ってもう一度お試しください。
-混雑していない時間帯に実行することを推奨します。',
+'upload-curl-error28-text' => 'ウェブサイトからの応答に時間がかかりすぎています。
+ウェブサイトが現在稼働していることを確認し、しばらく待ってからもう一度お試しください。
+混雑していない時間帯に試すことをおすすめします。',
 
 'license'            => 'ライセンス：',
 'license-header'     => 'ライセンス',
@@ -1987,7 +1988,7 @@ URLが正しいものであるか、指定したサイトが現在使用可能�
 'filehist-missing'                  => 'ファイルがみつかりません',
 'imagelinks'                        => 'ファイルの使用状況',
 'linkstoimage'                      => '以下の{{PLURAL:$1|ページ|$1ページ}}が、このファイルへリンクしています：',
-'linkstoimage-more'                 => '$1より多いページが、このファイルにリンクしています。
+'linkstoimage-more'                 => '$1を超える数のページが、このファイルにリンクしています。
 以下の一覧は、このファイルにリンクしている最初の$1ページのみを表示しています。
 [[Special:WhatLinksHere/$2|完全な一覧]]も参照してください。',
 'nolinkstoimage'                    => 'このファイルへリンクしているページはありません。',
@@ -2094,8 +2095,8 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 'doubleredirectstext'               => 'これは他のリダイレクトページへのリダイレクトの一覧です。
 各行には、最初のリダイレクトと、その転送先のリダイレクト、そのまた転送先へのリンクが表示されています。多くの場合、最終の転送先が正しい転送先であり、最初のリダイレクトは直接最後の転送先に向けるべきです。
 <del>打ち消し線</del>のはいった項目は既に修正されています。',
-'double-redirect-fixed-move'        => '[[$1]]が移動されています。
-[[$2]]に転送されます。',
+'double-redirect-fixed-move'        => '[[$1]]が移動されました。
+これからは[[$2]]に転送されます。',
 'double-redirect-fixed-maintenance' => '[[$1]]から[[$2]]への二重転送を修正します。',
 'double-redirect-fixer'             => '転送修正係',
 
@@ -2281,7 +2282,7 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 'emailuser'            => 'この利用者にメールを送信',
 'emailpage'            => '利用者にメール送信',
 'emailpagetext'        => '下のフォームを通じて、この利用者にメールを送ることができます。
-[[Special:Preferences|利用者の個人設定]]で登録した電子メールアドレスが「差出人」アドレスとして表示され、受信者は返事を直接出せるようになっています。',
+受信者が直接返事を出せるよう、[[Special:Preferences|利用者の個人設定]]で登録した電子メールアドレスがメール中で「差出人」アドレスとして表示されます。',
 'usermailererror'      => 'メールが以下のエラーを返しました：',
 'defemailsubject'      => '利用者「$1」からの {{SITENAME}} 電子メール',
 'usermaildisabled'     => '利用者メール機能は無効になっています',
@@ -2333,8 +2334,8 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 'watchlist-details'    => 'ウォッチリストには$1ページが登録されています（トークページは数えません）。',
 'wlheader-enotif'      => '* メール通知が有効になっています',
 'wlheader-showupdated' => "* 最後に訪問したあとに変更されたページは、'''太字'''で表示されます",
-'watchmethod-recent'   => 'ウォッチしているページの最近の編集を確認中',
-'watchmethod-list'     => '最近の編集内のウォッチしているページを確認中',
+'watchmethod-recent'   => '最近の更新内のウォッチされているページを確認中',
+'watchmethod-list'     => 'ウォッチされているページ内の最近の更新を確認中',
 'watchlistcontains'    => 'ウォッチリストには、$1ページが登録されています。',
 'iteminvalidname'      => '項目「$1」は問題があります、名前が不正です・・・',
 'wlnote'               => "$3 $4までの{{PLURAL:$2|'''1'''日|'''$2'''日間}}になされた'''$1'''件の変更は以下のとおりです。",

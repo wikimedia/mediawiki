@@ -1397,6 +1397,7 @@ Pokud na začátek dotazu přidáte ''all:'', bude se hledat všude (včetně di
 'prefs-editing'                 => 'Editace',
 'prefs-edit-boxsize'            => 'Velikost editačního okna:',
 'rows'                          => 'Řádky',
+'columns'                       => 'Sloupce',
 'searchresultshead'             => 'Vyhledávání',
 'resultsperpage'                => 'Počet výsledků na stránku:',
 'stub-threshold'                => 'Limit pro formátování odkazu jako <a href="#" class="stub">pahýl</a> (v bajtech):',

@@ -283,6 +283,7 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 'changepassword'        => 'Cagna password',
 'prefs-rc'              => 'Urdeme nove',
 'prefs-watchlist'       => 'Asservate speciale',
+'columns'               => 'Culonne:',
 'timezoneregion-africa' => 'Afreca',
 'username'              => 'Nomme utente',
 'yourlanguage'          => 'Lengua:',

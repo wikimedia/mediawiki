@@ -876,7 +876,7 @@ N'eus '''nemet''' an destenn zo en takad krec'h a vo saveteet pa klikot war \"{{
 Heñveldra, prometiñ a rit kemer perzh dre zegas skridoù savet ganeoc'h hepken pe tennet eus ur vammenn frank a wirioù.
 '''NA IMPLIJIT KET LABOURIOÙ GANT GWIRIOÙ AOZER (COPYRIGHT) HEP AOTRE D'OBER KEMENT-SE!'''",
 'copyrightwarning2'                => "Notit mat e c'hall kement degasadenn graet ganeoc'h war {{SITENAME}} bezañ kemmet, adaozet pe lamet kuit gant an implijerien all. Mar ne fell ket deoc'h e vije kemmet-digemmet ar pezh hoc'h eus skrivet na gemerit ket perzh er raktres-mañ.<br /> Gouestlañ a rit ivez eo bet savet ar boued spered ganeoc'h pe eilet diwar ur vammenn frank a wirioù pe en domani foran (gwelet $1 evit gouzout hiroc'h). '''NA IMPLIJIT KET LABOURIOÙ GANT GWIRIOÙ AOZER HEP AOTRE D'OBER KEMENT-SE!'''",
-'longpageerror'                    => "'''FAZI: $1 kilobit hir eo an destenn lakaet ganeoc'h, ar pezh zo hiroc'h eget $2 kilobit, ar vent vrasañ aotreet. N'haller ket enrollañ.'''",
+'longpageerror'                    => "'''FAZI : {{PLURAL:$1|Ur c'hilookted|$1 kilookted}} hir eo an destenn lakaet ganeoc'h, ar pezh zo hiroc'h eget {{PLURAL:$2|ur c'hilookted|$2 kilookted}}, ar vent vrasañ aotreet. N'haller ket enrollañ.'''",
 'readonlywarning'                  => "'''KEMENN DIWALL : stanket eo an diaz titouroù a-benn bezañ trezalc'het; setu ne viot ket evit enrollañ ho kemmoù diouzhtu-diouzhtu eta.
 Gallout a rit eilañ-pegañ an destenn en ur restr skrid all hag enrollañ anezhi a-benn diwezhatoc'hik.'''
 
@@ -1222,6 +1222,7 @@ Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.",
 'prefs-editing'                 => 'Prenestr skridaozañ',
 'prefs-edit-boxsize'            => 'Ment ar prenestr skridaozañ.',
 'rows'                          => 'Linennoù :',
+'columns'                       => 'Bannoù',
 'searchresultshead'             => 'Klask',
 'resultsperpage'                => 'Niver a respontoù dre bajenn :',
 'stub-threshold'                => 'Bevenn uhelañ evit al <a href="#" class="stub">liammoù war-du an danvez pennadoù</a> (okted) :',
@@ -1671,6 +1672,8 @@ Ma talc'h ar gudenn, kit e darempred gant [[Special:ListUsers/sysop|merourien ar
 'backend-fail-synced'        => 'Emañ ar restr "$1" en ur stad direizhet en termenelloù diabarzh',
 'backend-fail-connect'       => 'Dibosupl kevreañ ouzh termenell ar restr "$1".',
 'backend-fail-internal'      => 'C\'hoarvezet ez eus ur fazi dianav e termenell ar restr "$1".',
+'backend-fail-contenttype'   => 'Dibosupl termeniñ ar seurt danvez da enrollañ e "$1".',
+'backend-fail-batchsize'     => 'Pourvezet he deus an dermenell ur pakad a $1 {{PLURAL:$1|oberiadenn|oberiadenn}}; sevel a ra ar vevenn da $2 {{PLURAL:$2|oberiadenn|oberiadenn}}.',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Dibosupl dibrennañ "$1"; n\'eo ket prennet.',

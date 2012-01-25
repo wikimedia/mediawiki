@@ -1011,6 +1011,7 @@ Otkat sil'mnägubale üks-se, miše {{SITENAME}}-saitan sädäimišt voib olda v
 'prefs-editing'                 => 'Redaktiruind',
 'prefs-edit-boxsize'            => 'Redaktiruindan iknan suruz.',
 'rows'                          => 'Rivid:',
+'columns'                       => 'Pachid:',
 'searchresultshead'             => 'Ecind',
 'resultsperpage'                => 'Kirjutesiden lugu lehtpolel:',
 'stub-threshold'                => 'Nägutesen märitamižen künduz <a href="#" class="stub">kosketust otetile</a> (baitoiš)',

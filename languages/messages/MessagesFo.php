@@ -1087,6 +1087,7 @@ Legg til merkis, at teirra innihaldsyvirlit av {{SITENAME}} kann vera gamalt og 
 'prefs-editing'               => 'Broyting av greinum',
 'prefs-edit-boxsize'          => 'Støddin á rættingar vindeyganum.',
 'rows'                        => 'Røð:',
+'columns'                     => 'Teigar:',
 'searchresultshead'           => 'Leita',
 'resultsperpage'              => 'Úrslit fyri hvørja síðu:',
 'stub-threshold-disabled'     => 'Er gjørt óvirki',

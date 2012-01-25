@@ -999,24 +999,27 @@ Om det fortsetter å gå galt, prøv å [[Special:UserLogout|logge ut]] og så i
 'editingcomment'                   => 'Redigerer $1 (ny seksjon)',
 'editconflict'                     => 'Redigeringskonflikt: $1',
 'explainconflict'                  => "Noen andre har endret teksten siden du begynte å redigere.
-Den øverste boksen inneholder den nåværende tekst.
+Den øverste boksen inneholder den nåværende teksten.
 Dine endringer vises i den nederste boksen.
 Du er nødt til å flette dine endringer sammen med den nåværende teksten.
 '''Kun''' teksten i den øverste tekstboksen blir lagret når du trykker «{{int:savearticle}}».",
 'yourtext'                         => 'Din tekst',
 'storedversion'                    => 'Den lagrede versjonen',
-'nonunicodebrowser'                => "'''ADVARSEL: Nettleseren din har ikke støtte for Unicode. Skru det på før du begynner å redigere artikler.'''",
-'editingold'                       => "'''ADVARSEL:
-Du redigerer en gammel versjon av denne siden.
-Hvis du lagrer den, vil alle endringer foretatt siden denne versjonen bli overskrevet.'''",
+'nonunicodebrowser'                => "'''Advarsel: Nettleseren din har ikke Unicode-støtte.'''
+For å unngå problemer blir som ikke er med i ASCII vist som heksadesimale kode i redigeringsruten.",
+'editingold'                       => "'''Advarsel: Du redigerer en gammel versjon av denne siden.'''
+Om du lagrer den slik vil alle endringer som ble gjort etter revisjonen du redigerer gå tapt.",
 'yourdiff'                         => 'Forskjeller',
-'copyrightwarning'                 => "Merk at alle bidrag til {{SITENAME}} anses som utgitt under $2 (se $1 for detaljer).
-Om du ikke vil at dine bidrag skal kunne redigeres og distribuert fritt etter andres forgodtbefinnende, ikke legg det til her.<br />
-Du lover også at du har skrevet dette selv, eller kopiert det fra en ressurs som samsvarer med vilkårene eller ikke er vernet av opphavsrett.
-'''Ikke legg til opphavsbeskyttet materiale uten tillatelse!'''",
-'copyrightwarning2'                => "Vennligst merk at alle bidrag til {{SITENAME}} kan bli redigert, endret eller fjernet av andre bidragsytere. Om du ikke vil at dine bidrag skal kunne redigeres fritt, ikke legg det til her.<br />
-Du lover også at du har skrevet dette selv, eller kopiert det fra en ressurs som er i public domain eller lignende (se $1 for detaljer). '''IKKE LEGG TIL OPPHAVSBESKYTTET MATERIALE UTEN TILLATELSE!'''",
-'longpageerror'                    => "'''FEIL: Teksten du prøvde å lagre er $1&nbsp;kB lang, dvs. lenger enn det maksimale $2&nbsp;kB. Den kan ikke lagres.'''",
+'copyrightwarning'                 => "Merk at alle bidrag til {{SITENAME}} anses som frigitt under $2 (se $1 for detaljer).
+Om du ikke vil at ditt materiale skal kunne redigeres og distribueres fritt må du ikke lagre det her.<br />
+Du lover oss også at du har skrevet teksten selv, eller kopiert den fra en kilde i offentlig eie eller en annen fri ressurs.
+'''Ikke lagre opphavsrettsbeskyttet materiale uten tillatelse!'''",
+'copyrightwarning2'                => "Vennligst merk at alle bidrag til {{SITENAME}} kan bli redigert, endret eller fjernet av andre bidragsytere.
+Om du ikke vil at dine bidrag skal kunne redigeres fritt, ikke legg det til her.<br />
+Du lover også at du har skrevet dette selv, eller kopiert det fra en ressurs som er i offentlig eie eller en lignende fri ressurs (se $1 for detaljer).
+'''Ikke legg til opphavsrettsbeskyttet materiale uten tillatelse!'''",
+'longpageerror'                    => "'''Feil: Teksten du ønsker å lagre er {{PLURAL:$1|én kilobyte|$1 kilobyte}} stor. Dette er større enn det tillatte maksimum på {{PLURAL:$2|én kilobyte|$2 kilobyte}}.'''
+Den kan ikke lagres.",
 'readonlywarning'                  => "'''ADVARSEL: Databasen er låst på grunn av vedlikehold,
 så du kan ikke lagre dine endringer akkurat nå. Det kan være en god idé å
 kopiere teksten din til en tekstfil, så du kan lagre den til senere.'''
@@ -1050,7 +1053,7 @@ Du bør vurdere om det er passende å fortsette å redigere denne siden.
 Slette- og flytteloggen for denne siden gjengis her:",
 'moveddeleted-notice'              => 'Denne siden har blitt slettet.
 Slette- og flytteloggen vises nedenfor.',
-'log-fulllog'                      => 'Vis fullstendig logg',
+'log-fulllog'                      => 'Vil hele loggen',
 'edit-hook-aborted'                => 'Redigering avbrutt av en funksjon, uten forklaring.',
 'edit-gone-missing'                => 'Kunne ikke oppdatere siden fordi den har blitt slettet.',
 'edit-conflict'                    => 'Redigeringskonflikt.',
@@ -1076,7 +1079,7 @@ Disse parameterne har blitt utelatt.',
 'undo-success' => 'Redigeringen kan omgjøres. Sjekk sammenligningen under for å bekrefte at du vil gjøre dette, og lagre endringene for å fullføre omgjøringen.',
 'undo-failure' => 'Redigeringen kunne ikke omgjøres på grunn av konflikterende etterfølgende redigeringer.',
 'undo-norev'   => 'Redigeringen kunne ikke fjernes fordi den ikke eksisterer eller ble slettet',
-'undo-summary' => 'Fjerner revisjon $1 av [[Special:Contributions/$2]] ([[User talk:$2|diskusjon]] | [[Special:Contributions/$2|{{int:contribslink}}]])',
+'undo-summary' => 'Fjerner revisjon $1 av [[Special:Contributions/$2|$2]] ([[User talk:$2|diskusjon]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Kan ikke opprette konto',
@@ -1099,7 +1102,7 @@ Grunnen som ble oppgitt av $3 er ''$2''",
 'last'                   => 'forrige',
 'page_first'             => 'første',
 'page_last'              => 'siste',
-'histlegend'             => "Valg av diff: merk i radioboksene de revisjonene du ønsker å sammenligne og trykk linjeskift eller knappen nederst på siden.<br />
+'histlegend'             => "Valg av diff: merk i radioboksene de revisjonene du ønsker å sammenligne og trykk enter eller knappen nederst på siden.<br />
 Forklaring: '''({{int:cur}})''' = forskjell fra nåværende revisjon, '''({{int:last}})''' = forskjell fra foregående revisjon, '''{{int:minoreditletter}}''' = mindre endring.",
 'history-fieldset-title' => 'Bla i historikken',
 'history-show-deleted'   => 'Kun slettede',
@@ -1112,7 +1115,9 @@ Forklaring: '''({{int:cur}})''' = forskjell fra nåværende revisjon, '''({{int:
 'history-feed-title'          => 'Revisjonshistorikk',
 'history-feed-description'    => 'Revisjonshistorikk for denne siden',
 'history-feed-item-nocomment' => '$1 på $2',
-'history-feed-empty'          => 'Den etterspurte siden finnes ikke. Den kan ha blitt slettet fra wikien, eller fått et nytt navn. Prøv å [[Special:Search|søke]] etter beslektede sider.',
+'history-feed-empty'          => 'Den etterspurte siden finnes ikke.
+Den kan ha blitt slettet fra wikien, eller fått et nytt navn.
+Prøv å [[Special:Search|søke]] etter beslektede sider.',
 
 # Revision deletion
 'rev-deleted-comment'         => '(redigeringskommentar fjernet)',
@@ -1123,27 +1128,27 @@ Forklaring: '''({{int:cur}})''' = forskjell fra nåværende revisjon, '''({{int:
 Det kan være detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} slettingsloggen].",
 'rev-deleted-text-unhide'     => "Denne siderevisjonen har blitt '''slettet'''.
 Se etter detaljer i slettingsloggen: [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}].
-Som administrator kan du fortsatt [$1 se revisjonen] om du ønsker det.",
+Du kan fortsatt [$1 se revisjonen] om du ønsker det.",
 'rev-suppressed-text-unhide'  => "Denne siderevisjonen har blitt '''skjult'''.
 Informasjon om dette kan finnes i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} skjulingsloggen].
-Som administrator kan du fortsatt [$1 se revisjonen] om du ønsker det.",
+Du kan fortsatt [$1 se revisjonen] om du ønsker det.",
 'rev-deleted-text-view'       => "Denne siderevisjonen har blitt '''slettet'''.
-Som administrator kan du fortsatt se den. Detaljer finnes i slettingsloggen: [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}].",
-'rev-suppressed-text-view'    => "!Denne siderevisjonen har blitt '''skjult'''.
+Du kan fortsatt se den; detaljer finnes i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} slettingsloggen].",
+'rev-suppressed-text-view'    => "Denne siderevisjonen har blitt '''skjult'''.
 Som administrator kan du se den; detaljer kan finnes i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} skjulingsloggen].",
 'rev-deleted-no-diff'         => "Du kan ikke vise forskjellen fordi en av versjonene har blitt '''slettet'''.
 Det kan finnes flere detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} slettingsloggen].",
 'rev-suppressed-no-diff'      => "Du kanne ikke se revisjonsforskjellen fordi en av revisjonene har blitt '''slettet'''.",
 'rev-deleted-unhide-diff'     => "Én av revisjonene i denne diffen har blitt '''slettet'''.
 Det finnes flere detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} slettingsloggen].
-Som administrator kan du fortsatt [$1 se diffen] om du ønsker å gå videre.",
+Du kan fortsatt [$1 se diffen] om du ønsker å gå videre.",
 'rev-suppressed-unhide-diff'  => "En av siderevisjonene i denne diffen har blitt '''skjult'''.
 Det kan være detaljer i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} skjulingsloggen].
-Som administrator kan du fortsatt [$1 se diffen] om du ønsker å gå videre.",
+Du kan fortsatt [$1 se diffen] om du ønsker å gå videre.",
 'rev-deleted-diff-view'       => "En av revisjonene i denne diffen har blitt '''slettet'''.
-Som administrator kan du se diffen; det kan finnes detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletteloggen].",
+Du kan se diffen; det kan finnes detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} slettingsloggen].",
 'rev-suppressed-diff-view'    => "En av revisjonene i denne diffen har blitt '''skjult'''.
-Som administrator kan du se denne diffen; det kan finnes detaljer i [{{fullurl:{{#Special:Log}}/suppcess|page={{FULLPAGENAMEE}}}} skjulingsloggen].",
+Du kan se denne diffen; det kan finnes detaljer i [{{fullurl:{{#Special:Log}}/suppcess|page={{FULLPAGENAMEE}}}} skjulingsloggen].",
 'rev-delundel'                => 'vis/skjul',
 'rev-showdeleted'             => 'vis',
 'revisiondelete'              => 'Slett/gjenopprett revisjoner',
@@ -1152,9 +1157,9 @@ Som administrator kan du se denne diffen; det kan finnes detaljer i [{{fullurl:{
 'revdelete-nologtype-title'   => 'Ingen loggtype spesifisert',
 'revdelete-nologtype-text'    => 'Du har ikke spesifisert en loggtype å utføre denne handlingen på.',
 'revdelete-nologid-title'     => 'Ugyldig loggelement',
-'revdelete-nologid-text'      => 'Du har enten ikke spesifisert ett loggelement å utføre på denne funksjonen, eller spesifisert element finnes ikke.',
+'revdelete-nologid-text'      => 'Enten fins ikke det angitte loggelementet, eller så har du ikke angitt noe loggelement å utføre denne funksjonen på.',
 'revdelete-no-file'           => 'Den spesifiserte filen finnes ikke.',
-'revdelete-show-file-confirm' => 'Er du sikker på at du ønsker å vise en slettet versjon av filen «<nowiki>$1</nowiki>» fra den $2 klokken $3?',
+'revdelete-show-file-confirm' => 'Er du sikker på at du ønsker å vise en slettet versjon av filen «<nowiki>$1</nowiki>» fra $2 kl. $3?',
 'revdelete-show-file-submit'  => 'Ja',
 'revdelete-selected'          => "'''{{PLURAL:$2|Valgt revisjon|Valgte revisjoner}} av [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Valgt loggoppføring|Valgte loggoppføringer}}:'''",
@@ -1171,7 +1176,7 @@ Andre administratorer på {{SITENAME}} vil fortsatt kunne se det skjulte innhold
 'revdelete-hide-name'         => 'Skjul handling og mål',
 'revdelete-hide-comment'      => 'Skjul redigeringsforklaring',
 'revdelete-hide-user'         => 'Skjul bidragsyters brukernavn eller IP',
-'revdelete-hide-restricted'   => 'La disse begrensningene gjelde for administratorer også, og steng dette grensesnittet',
+'revdelete-hide-restricted'   => 'La disse begrensningene gjelde for administratorer også',
 'revdelete-radio-same'        => '(ikke endre)',
 'revdelete-radio-set'         => 'Ja',
 'revdelete-radio-unset'       => 'Nei',
@@ -1179,7 +1184,7 @@ Andre administratorer på {{SITENAME}} vil fortsatt kunne se det skjulte innhold
 'revdelete-unsuppress'        => 'Fjern betingelser på gjenopprettede revisjoner',
 'revdelete-log'               => 'Årsak:',
 'revdelete-submit'            => 'Utfør på {{PLURAL:$1|valgt revisjon|valgte revisjoner}}',
-'revdelete-success'           => "'''Versjonssynlighet vellykket oppdatert.'''",
+'revdelete-success'           => "'''Revisjonssynlighet vellykket oppdatert.'''",
 'revdelete-failure'           => "'''Kunne ikke endre versjonssynligheten:'''
 $1",
 'logdelete-success'           => "'''Hendelsessynlighet satt.'''",
@@ -1362,6 +1367,7 @@ For å søke i alle, bruk prefikset ''all:'' (inkluderer diskusjonssider, maler,
 'prefs-editing'                 => 'Redigering',
 'prefs-edit-boxsize'            => 'Størrelse på redigeringsvinduet.',
 'rows'                          => 'Rader:',
+'columns'                       => 'Kolonner',
 'searchresultshead'             => 'Søk',
 'resultsperpage'                => 'Resultater per side:',
 'stub-threshold'                => 'Grense for <span class="mw-stub-example">stubblenkeformatering</span>:',
@@ -1807,6 +1813,10 @@ Om problemet fortsetter, kontakt en [[Special:ListUsers/sysop|administrator]].',
 'backend-fail-create'        => 'Kunne ikke opprette filen $1.',
 'backend-fail-readonly'      => 'Underliggende "$1" er satt skrivebeskyttet fordi: "$2"',
 'backend-fail-synced'        => 'Fila «$1» er i en inkonsistent status innen de interne bakstykkene',
+'backend-fail-connect'       => 'Kunne ikke koble til filbackend «$1».',
+'backend-fail-internal'      => 'En ukjent feil oppsto i filbackend «$1».',
+'backend-fail-contenttype'   => 'Kunne ikke avgjøre innholdstypen til filen som skal lagres på «$1».',
+'backend-fail-batchsize'     => 'Bakgrunnsprosesseringen belastet med {{PLURAL:$1|en filoperasjon|en samling av $1 filoperasjoner}}; grensen er $2.',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Kunne ikke låse opp «$1» fordi den er ikke låst.',
@@ -2563,7 +2573,7 @@ Den siste oppføringen i blokkeringsloggen er vist nedenfor som referanse:',
 'badipaddress'                    => 'Ugyldig IP-adresse.',
 'blockipsuccesssub'               => 'Blokkering utført',
 'blockipsuccesstext'              => '­«[[Special:Contributions/$1|$1]]» har blitt blokkert.<br />
-Se [[Special:IPBlockList|blokkeringslisten]] for alle blokkeringer.',
+Se [[Special:BlockList|blokkeringslisten]] for alle blokkeringer.',
 'ipb-blockingself'                => 'Du er i ferd med å blokkere deg selv! Er du sikker på at du vil gjøre det?',
 'ipb-confirmhideuser'             => 'Du er i ferd med å blokkere en bruker med «skjul bruker» aktivert. Dette vil skjule brukerens navn i alle lister og loggoppføringer. Er du sikker på at du vil gjøre dette?',
 'ipb-edit-dropdown'               => 'Rediger blokkeringsgrunner',
@@ -3883,6 +3893,7 @@ Om det ikke er tilfellet, kan du bruke det enkle skjemaet som du finner under. K
 'api-error-duplicate-archive-popup-title' => 'Duplikat-{{PLURAL:$1|fil|filer}} som allerede har blitt slettet',
 'api-error-duplicate-popup-title'         => 'Duplikat {{PLURAL:$1|fil|filer}}',
 'api-error-empty-file'                    => 'Filen du sendte inn var tom.',
+'api-error-emptypage'                     => 'Det er ikke tillatt å opprette nye, tomme sider.',
 'api-error-fetchfileerror'                => 'Intern feil: Noe gikk galt ved henting av denne filen.',
 'api-error-file-too-large'                => 'Filen du la inn var for stor.',
 'api-error-filename-tooshort'             => 'Filnavnet er for kort.',
@@ -3907,6 +3918,7 @@ Om det ikke er tilfellet, kan du bruke det enkle skjemaet som du finner under. K
 'api-error-unknown-code'                  => 'Ukjent feil: "$1"',
 'api-error-unknown-error'                 => 'Intern feil: Noe gikk galt ved opplastning av filen din.',
 'api-error-unknown-warning'               => 'Ukjent advarsel: $1',
+'api-error-unknownerror'                  => 'Ukjent feil: «$1».',
 'api-error-uploaddisabled'                => 'Opplastning har blitt deaktivert på denne wikien.',
 'api-error-verification-error'            => 'Filen kan være korrupt, eller ha feil filendelse.',
 

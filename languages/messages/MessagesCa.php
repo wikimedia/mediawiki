@@ -227,10 +227,11 @@ $messages = array(
 'tog-watchlisthideliu'        => "Amaga a la llista les edicions d'usuaris registrats",
 'tog-watchlisthideanons'      => "Amaga a la llista les edicions d'usuaris anònims",
 'tog-watchlisthidepatrolled'  => 'Amaga edicions patrullades de la llista de seguiment',
-'tog-nolangconversion'        => 'Desactiva la conversió de variants',
+'tog-nolangconversion'        => 'Inhabilita la conversió de variants',
 'tog-ccmeonemails'            => "Envia'm còpies dels missatges que enviï als altres usuaris.",
 'tog-diffonly'                => 'Amaga el contingut de la pàgina davall de la taula de diferències',
 'tog-showhiddencats'          => 'Mostra les categories ocultes',
+'tog-noconvertlink'           => 'Inhabilita la conversió dels títols dels enllaços',
 'tog-norollbackdiff'          => 'Omet la pàgina de diferències després de realitzar una reversió',
 
 'underline-always'  => 'Sempre',
@@ -1230,6 +1231,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'prefs-editing'                 => "Caixa d'edició",
 'prefs-edit-boxsize'            => "Mida de la finestra d'edició.",
 'rows'                          => 'Files',
+'columns'                       => 'Columnes',
 'searchresultshead'             => 'Preferències de la cerca',
 'resultsperpage'                => 'Resultats a mostrar per pàgina',
 'stub-threshold'                => 'Límit per a formatar l\'enllaç com <a href="#" class="stub">esborrany</a> (en octets):',
@@ -1639,6 +1641,7 @@ $1',
 'upload-http-error'         => 'Ha ocorregut un error HTTP: $1',
 
 # File backend
+'backend-fail-stream'        => "No s'ha pogut transmetre el fitxer $1.",
 'backend-fail-backup'        => "No s'ha pogut fer una còpia de seguretat del fitxer $1.",
 'backend-fail-notexists'     => 'El fitxer $1 no existeix.',
 'backend-fail-hashes'        => "No s'han pogut obtenir els resums dels fitxer per fer-ne comparació.",
@@ -1659,6 +1662,7 @@ $1',
 'backend-fail-connect'       => "No s'ha pogut connectar al fitxer de rerefons «$1».",
 'backend-fail-internal'      => "S'ha produït un error desconegut en el fitxer de rerefons «$1».",
 'backend-fail-contenttype'   => 'No es pot determinar el tipus de contingut del fitxer per emmagatzemar a «$1».',
+'backend-fail-batchsize'     => "El rerefons ha rebut un lot {{PLURAL:$1|d'$1 operació|de $1 operacions}} de fitxer; el límit és $2 {{PLURAL:$2|operació|operacions}}.",
 
 # Lock manager
 'lockmanager-notlocked'        => "No s'ha pogut desbloquejar «$1»; no és bloquejat.",
@@ -1667,6 +1671,7 @@ $1',
 'lockmanager-fail-acquirelock' => "No s'ha pogut adquirir el bloqueig de «$1».",
 'lockmanager-fail-openlock'    => "No s'ha pogut obrir el fitxer de bloqueig de «$1».",
 'lockmanager-fail-releaselock' => "No s'ha pogut alliberar el bloqueig de «$1».",
+'lockmanager-fail-db-bucket'   => "No s'han pogut contactar un nombre suficient de bases de bloqueig en el cubell $1.",
 'lockmanager-fail-db-release'  => "No s'han pogut alliberar els bloquejos a la base de dades $1.",
 'lockmanager-fail-svr-release' => "No s'han pogut alliberar els bloquejos al servidor $1.",
 
@@ -1685,6 +1690,7 @@ No s'hi ha pogut comprovar la seguretat.",
 'uploadstash-badtoken' => "No s'ha pogut realitzar l'acció, possiblement perquè han caducat la vostra identificació. Intenteu-ho de nou.",
 'uploadstash-errclear' => "No ha estat possible l'esborrat dels fitxers.",
 'uploadstash-refresh'  => 'Actualitza la llista de fitxers',
+'invalid-chunk-offset' => 'El desplaçament del fragment no és vàlid',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Accés denegat',
@@ -2741,6 +2747,7 @@ Deseu-lo al vostre ordinador i carregueu-ne una còpia ací.",
 'javascripttest-pagetext-frameworks'       => 'Trieu un dels següents entorns de prova: $1',
 'javascripttest-pagetext-skins'            => 'Trieu un tema on executar-hi els tests:',
 'javascripttest-qunit-intro'               => 'Consulteu la [documentació de tests de $1] a mediawiki.org.',
+'javascripttest-qunit-heading'             => 'Entorn de proves JavaScript QUnit per al MediaWiki',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'                 => "La vostra pàgina d'usuari",

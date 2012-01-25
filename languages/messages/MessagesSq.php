@@ -1251,6 +1251,7 @@ Kini kujdes se përdorimi i lidhjeve të shfletimit do të ndryshojë përzgjedh
 'prefs-editing'                 => 'Redaktimi',
 'prefs-edit-boxsize'            => 'Madhësia e dritares së redaktimit.',
 'rows'                          => 'Rreshta:',
+'columns'                       => 'Kollona:',
 'searchresultshead'             => 'Kërkimi',
 'resultsperpage'                => 'Sa përputhje të tregohen për faqe:',
 'stub-threshold'                => 'Kufiri për formatin e <a href="#" class="stub">lidhjeve cung</a> (B):',

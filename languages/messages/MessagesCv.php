@@ -609,6 +609,7 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 'saveprefs'                 => 'Çырса хур',
 'prefs-editing'             => 'Тӳрлетни',
 'rows'                      => 'Йěркесем',
+'columns'                   => 'Юпасем:',
 'searchresultshead'         => 'Шыраса тупрăмăр',
 'recentchangesdays'         => 'Çак кунсен хушшинчи юлашки улшăнусене кăтартмалла:',
 'recentchangescount'        => 'Списокра çакăн чухлĕ тӳрлетӳ кăтартмалла:',

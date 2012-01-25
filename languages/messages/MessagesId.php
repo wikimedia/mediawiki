@@ -1378,6 +1378,7 @@ Perlu diingat bahwa indeks Google untuk konten {{SITENAME}} mungkin belum mencak
 'prefs-editing'                 => 'Penyuntingan',
 'prefs-edit-boxsize'            => 'Ukuran kotak penyuntingan.',
 'rows'                          => 'Baris:',
+'columns'                       => 'Kolom:',
 'searchresultshead'             => 'Cari',
 'resultsperpage'                => 'Hasil per halaman:',
 'stub-threshold'                => 'Ambang batas untuk format <a href="#" class="stub">pranala rintisan</a>:',
