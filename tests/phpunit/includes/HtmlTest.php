@@ -4,6 +4,7 @@
 class HtmlTest extends MediaWikiTestCase {
 	private static $oldLang;
 	private static $oldContLang;
+	private static $oldLanguageCode;
 	private static $oldNamespaces;
 
 	public function setUp() {
@@ -11,6 +12,8 @@ class HtmlTest extends MediaWikiTestCase {
 		
 		self::$oldLang = $wgLang;
 		self::$oldContLang = $wgContLang;
+		self::$oldNamespaces = $wgContLang->namespaceNames;
+		self::$oldLanguageCode = $wgLanguageCode;
 		
 		$wgLanguageCode = 'en';
 		$wgContLang = $wgLang = Language::factory( $wgLanguageCode );
@@ -18,7 +21,6 @@ class HtmlTest extends MediaWikiTestCase {
 		// Hardcode namespaces during test runs,
 		// so that html output based on existing namespaces
 		// can be properly evaluated.
-		self::$oldNamespaces = $wgContLang->namespaceNames;
 		$wgContLang->namespaceNames = array(
 			-2 => 'Media',
 			-1 => 'Special',
@@ -41,10 +43,11 @@ class HtmlTest extends MediaWikiTestCase {
 	
 	public function tearDown() {
 		global $wgLang, $wgContLang, $wgLanguageCode;
+
+		$wgContLang->namespaceNames = self::$oldNamespaces;
 		$wgLang = self::$oldLang;
 		$wgContLang = self::$oldContLang;
-		$wgLanguageCode = $wgContLang->getCode();
-		$wgContLang->namespaceNames = self::$oldNamespaces;
+		$wgLanguageCode = self::$oldLanguageCode;
 	}
 
 	public function testExpandAttributesSkipsNullAndFalse() {
