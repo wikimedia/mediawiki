@@ -74,7 +74,7 @@ class StreamFile {
 		// Cancel output buffering and gzipping if set
 		wfResetOutputBuffers();
 
-		$type = self::getType( $path );
+		$type = self::contentTypeFromPath( $path );
 		if ( $type && $type != 'unknown/unknown' ) {
 			header( "Content-type: $type" );
 		} else {
@@ -115,12 +115,13 @@ class StreamFile {
 	}
 
 	/**
-	 * Determine the filetype we're dealing with
+	 * Determine the file type of a file based on the path
+	 * 
 	 * @param $filename string Storage path or file system path
 	 * @param $safe bool Whether to do retroactive upload blacklist checks
 	 * @return null|string
 	 */
-	protected static function getType( $filename, $safe = true ) {
+	public static function contentTypeFromPath( $filename, $safe = true ) {
 		global $wgTrivialMimeDetection;
 
 		$ext = strrchr( $filename, '.' );

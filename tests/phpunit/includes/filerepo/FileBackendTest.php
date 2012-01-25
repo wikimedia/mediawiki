@@ -412,21 +412,22 @@ class FileBackendTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provider_testCreate
 	 */
-	public function testCreate( $op, $dest, $alreadyExists, $okStatus, $newSize ) {
+	public function testCreate( $op, $alreadyExists, $okStatus, $newSize ) {
 		$this->backend = $this->singleBackend;
 		$this->tearDownFiles();
-		$this->doTestCreate( $op, $dest, $alreadyExists, $okStatus, $newSize );
+		$this->doTestCreate( $op, $alreadyExists, $okStatus, $newSize );
 		$this->tearDownFiles();
 
 		$this->backend = $this->multiBackend;
 		$this->tearDownFiles();
-		$this->doTestCreate( $op, $dest, $alreadyExists, $okStatus, $newSize );
+		$this->doTestCreate( $op, $alreadyExists, $okStatus, $newSize );
 		$this->tearDownFiles();
 	}
 
-	private function doTestCreate( $op, $dest, $alreadyExists, $okStatus, $newSize ) {
+	private function doTestCreate( $op, $alreadyExists, $okStatus, $newSize ) {
 		$backendName = $this->backendClass();
 
+		$dest = $op['dst'];
 		$this->backend->prepare( array( 'dir' => dirname( $dest ) ) );
 
 		$oldText = 'blah...blah...waahwaah';
@@ -477,44 +478,52 @@ class FileBackendTest extends MediaWikiTestCase {
 	public function provider_testCreate() {
 		$cases = array();
 
-		$source = $this->baseStorePath() . '/unittest-cont2/myspacefile.txt';
+		$dest = $this->baseStorePath() . '/unittest-cont2/myspacefile.txt';
 
-		$dummyText = 'hey hey';
-		$op = array( 'op' => 'create', 'content' => $dummyText, 'dst' => $source );
+		$op = array( 'op' => 'create', 'content' => 'test test testing', 'dst' => $dest );
 		$cases[] = array(
 			$op, // operation
-			$source, // source
 			false, // no dest already exists
 			true, // succeeds
-			strlen( $dummyText )
-		);
-
-		$cases[] = array(
-			$op, // operation
-			$source, // source
-			true, // dest already exists
-			false, // fails
-			strlen( $dummyText )
+			strlen( $op['content'] )
 		);
 
 		$op2 = $op;
+		$op2['content'] = "\n";
+		$cases[] = array(
+			$op2, // operation
+			false, // no dest already exists
+			true, // succeeds
+			strlen( $op2['content'] )
+		);
+
+		$op2 = $op;
+		$op2['content'] = "fsf\n waf 3kt";
+		$cases[] = array(
+			$op2, // operation
+			true, // dest already exists
+			false, // fails
+			strlen( $op2['content'] )
+		);
+
+		$op2 = $op;
+		$op2['content'] = "egm'g gkpe gpqg eqwgwqg";
 		$op2['overwrite'] = true;
 		$cases[] = array(
 			$op2, // operation
-			$source, // source
 			true, // dest already exists
 			true, // succeeds
-			strlen( $dummyText )
+			strlen( $op2['content'] )
 		);
 
 		$op2 = $op;
+		$op2['content'] = "39qjmg3-qg";
 		$op2['overwriteSame'] = true;
 		$cases[] = array(
 			$op2, // operation
-			$source, // source
 			true, // dest already exists
 			false, // succeeds
-			strlen( $dummyText )
+			strlen( $op2['content'] )
 		);
 
 		return $cases;
