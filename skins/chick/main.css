@@ -120,7 +120,6 @@ textarea {
 	width: 100%;
 	padding: 0.1em;
 	overflow: auto;
-	width: 100%;
 }
 /* hide this from ie/mac and konq2.2 */
 @media All {
