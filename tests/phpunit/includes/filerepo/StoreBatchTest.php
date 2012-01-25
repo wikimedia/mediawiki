@@ -109,8 +109,8 @@ class StoreBatchTest extends MediaWikiTestCase {
 	}
 
 	public function tearDown() {
-		$this->repo->cleanupBatch( $this->createdFiles );
-		foreach ( $this->createdFiles as $tmp ) {
+		$this->repo->cleanupBatch( $this->createdFiles ); // delete files
+		foreach ( $this->createdFiles as $tmp ) { // delete dirs
 			$tmp = $this->repo->resolveVirtualUrl( $tmp );
 			while ( $tmp = FileBackend::parentStoragePath( $tmp ) ) {
 				$this->repo->getBackend()->clean( array( 'dir' => $tmp ) );

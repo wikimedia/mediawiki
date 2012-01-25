@@ -87,6 +87,10 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	function addDBData() {}
 
 	private function addCoreDBData() {
+		# disabled for performance
+		#$this->tablesUsed[] = 'page';
+		#$this->tablesUsed[] = 'revision';
+
 		if ( $this->db->getType() == 'oracle' ) {
 
 			# Insert 0 user to prevent FK violations
@@ -129,11 +133,13 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 		//Make 1 page with 1 revision
 		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
-		$page->doEdit( 'UTContent',
-						'UTPageSummary',
-						EDIT_NEW,
-						false,
-						User::newFromName( 'UTSysop' ) );
+		if ( !$page->getId() == 0 ) {
+			$page->doEdit( 'UTContent',
+							'UTPageSummary',
+							EDIT_NEW,
+							false,
+							User::newFromName( 'UTSysop' ) );
+		}
 	}
 
 	private function initDB() {

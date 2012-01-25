@@ -1062,8 +1062,10 @@ class FileBackendTest extends MediaWikiTestCase {
 		$base = $this->baseStorePath();
 		$iter = $backend->getFileList( array( 'dir' => "$base/$container" ) );
 		if ( $iter ) {
-			foreach ( $iter as $file ) {
-				$backend->delete( array( 'src' => "$base/$container/$file", 'ignoreMissingSource' => 1 ) );
+			foreach ( $iter as $file ) { // delete files
+				$backend->delete( array( 'src' => "$base/$container/$file" ), array( 'force' => 1 ) );
+			}
+			foreach ( $iter as $file ) { // delete dirs
 				$tmp = $file;
 				while ( $tmp = FileBackend::parentStoragePath( $tmp ) ) {
 					$backend->clean( array( 'dir' => $tmp ) );
