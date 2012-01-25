@@ -1358,6 +1358,7 @@ Aramanızın başına '''all:''' önekini ekleyerek tüm içeriği aramayı (tar
 'prefs-editing'                 => 'Sayfa yazma alanı',
 'prefs-edit-boxsize'            => 'Değiştirme penceresinin boyutu.',
 'rows'                          => 'Satır',
+'columns'                       => 'Sütun',
 'searchresultshead'             => 'Arama',
 'resultsperpage'                => 'Sayfada gösterilecek bulunan madde sayısı',
 'stub-threshold'                => '<a href="#" class="stub">Taslak bağlantısı</a> formatı için baraj (bayt):',

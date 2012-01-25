@@ -777,6 +777,7 @@ Hinumdomi nga ang ilang indeks sa sulod sa {{SITENAME}} mahimong dugay-dugay na.
 'prefs-editing'                 => 'Nagausab',
 'prefs-edit-boxsize'            => 'Size sa edit window.',
 'rows'                          => 'Mga row:',
+'columns'                       => 'Mga kolum:',
 'searchresultshead'             => 'Pangitaa',
 'resultsperpage'                => 'Mga hit matag panid:',
 'stub-threshold'                => 'Threshold para sa <a href="#" class="stub">stub link</a> formatting (bytes):',

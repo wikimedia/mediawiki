@@ -288,8 +288,8 @@ $messages = array(
 # User preference toggles
 'tog-underline'               => 'Podkreślenie linków',
 'tog-highlightbroken'         => 'Oznacz <a href="" class="new">tak</a> linki do brakujących stron (alternatywa – dołączany znak zapytania<a href="" class="internal">?</a>).',
-'tog-justify'                 => 'Wyrównuj tekst w akapitach do obu stron',
-'tog-hideminor'               => 'Ukryj drobne zmiany w ostatnich zmianach',
+'tog-justify'                 => 'Wyrównuj tekst w akapitach do obu marginesów',
+'tog-hideminor'               => 'Ukryj drobne modyfikacje w ostatnich zmianach',
 'tog-hidepatrolled'           => 'Ukryj sprawdzone edycje w ostatnich zmianach',
 'tog-newpageshidepatrolled'   => 'Ukryj sprawdzone strony na liście nowych stron',
 'tog-extendwatchlist'         => 'Pokaż na liście obserwowanych wszystkie zmiany, nie tylko ostatnie',
@@ -1353,6 +1353,7 @@ Jednak informacje o treści {{GRAMMAR:D.lp|{{SITENAME}}}} mogą być w Google ni
 'prefs-editing'                 => 'Edycja',
 'prefs-edit-boxsize'            => 'Rozmiar okna edycji.',
 'rows'                          => 'Wiersze',
+'columns'                       => 'Kolumny',
 'searchresultshead'             => 'Wyszukiwanie',
 'resultsperpage'                => 'Liczba wyników na stronie',
 'stub-threshold'                => 'Maksymalny (w bajtach) rozmiar strony oznaczanej jako <a href="#" class="stub">zalążek (stub)</a>',

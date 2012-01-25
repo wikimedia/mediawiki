@@ -598,6 +598,7 @@ folcliċum āgnunge oþþe ȝelīċum frēom horde (sēo $1 for āscungum).
 'prefs-watchlist'    => 'Ƿæccȝetalu',
 'saveprefs'          => 'Sparian',
 'rows'               => 'Rǣƿa',
+'columns'            => 'Sȳla:',
 'searchresultshead'  => 'Sōcnfintan',
 'resultsperpage'     => 'Tōhīgunga tō īewenne for tramete',
 'recentchangescount' => 'Hū mæniȝ ādihtas to scēaƿenne ȝeþēaƿe:',

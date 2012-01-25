@@ -378,13 +378,14 @@ Fois dés néd zuadrifft, host eventuö an Feeler in da Software gfunden. Bittsc
 Méglicherweis iss schoh vohram åndern gléschd worn.',
 'badtitle'             => 'néd gütiger Titel',
 'badtitletext'         => 'Da Titel voh da ågforderden Seiten is néd gütig, laar óder a ungütiger Sproochlink vohram åndern Wiki.',
-'perfcached'           => "Dé fóigernden Daaten ståmmern aus 'm Cache und san méglicherweis nimmer aktuö:",
-'perfcachedts'         => "Dé Daaten ståmmern aus 'm Cache, létzde Aktualisiarung: $2, $3 Uar",
+'perfcached'           => "Dé fóigernden Daaten staummern aus'm Cache und san méglicherweis nimmer aktuö. Maximoi {{PLURAL:$1|oah Ergebnis is|$1 Ergebniss san}} im Cache vafiagbor.",
+'perfcachedts'         => "Dé Daaten staummern aus 'm Cache. Da Zeidbunkt voh da létzden Aktualisiarung: $1. Maximoi {{PLURAL:$4|oah Ergebnis is|$4 Ergebniss san}} im Cache vafiagbor.",
 'querypage-no-updates' => "'''Dé Aktualisiarungsfunkzión voh derer Seiten is derzeid deaktivird. Dé Daaten wern bis auf Weiders néd daneiert.'''",
 'wrong_wfQuery_params' => 'Foische Parameeter fyr wfQuery()<br />
 Funkzión: $1<br />
 Obfrog: $2',
 'viewsource'           => 'an Quötext åschauh',
+'viewsource-title'     => 'Quöntext voh da Seiten $1 auhschauh',
 'actionthrottled'      => 'Akziónszoi limitird',
 'actionthrottledtext'  => 'Im Råmen voh ner Anti-Spam-Moossnåm kå dé Akzión do in am kurzen Zeidobstånd netter begrenzd ausgfyrd wern. Dé Grenzen host ywerschritten.
 Bittscheh vasuachs in a por Minunten nuamoi.',
@@ -623,9 +624,8 @@ Vielleicht is sie gelöscht oda verschom worn.
 # Revision deletion
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks"> De Version is glöscht worn und is nimma öffentlich zum einseng.
 Nähere Angaben zum Löschvorgang sowia a Begründung findn si im [{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}} Lösch-Logbuch].</div>',
-'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">De Version is gelöscht worn und is nimma öffentlich einsehbar.
-Als Administrator kennan Sie weiterhin einseng.
-Nähere Angaben zum Löschvorgang sowia a Begründung finden si im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Lösch-Logbuach].</div>',
+'rev-deleted-text-view'       => "Dé Versión dodan is '''gléscht''' worn.
+Du kauhstas auhschauh, waunn du wüst. Nahernte Auhgoom steengern im [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lésch-Logbiaché].",
 'rev-deleted-no-diff'         => '<div class="mw-warning plainlinks">Du kannst diesen Unterschied nicht betrachten, da eine der Versionen aus den öffentlichen Archiven entfernt wurde.
 Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].</div>',
 'rev-delundel'                => 'zoang / vastecken',
@@ -705,6 +705,7 @@ Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 
 'prefs-editing'             => 'Beorweiten',
 'prefs-edit-boxsize'        => 'Gress vom Beorweitungsfenster',
 'rows'                      => 'Zeiln:',
+'columns'                   => 'Spoiten',
 'searchresultshead'         => 'Suachen',
 'resultsperpage'            => 'Treffer pro Saiten:',
 'savedprefs'                => 'Deine Eihstellungen san gspeicherd worn.',

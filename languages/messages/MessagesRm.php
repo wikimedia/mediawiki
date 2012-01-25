@@ -70,7 +70,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Trametta era in e-mail tar pitschnas midadas da las paginas',
 'tog-enotifrevealaddr'        => "Mussar mia adressa dad e-mail en e-mails d'avis",
 'tog-shownumberswatching'     => "Mussar il dumber d'utilisaders che obervan questa pagina",
-'tog-oldsig'                  => 'Prevista da la signatura actuala:',
+'tog-oldsig'                  => 'Signatura actuala:',
 'tog-fancysig'                => "Suttascripziun senza link automatic tar la pagina da l'utilisader.",
 'tog-externaleditor'          => 'Utilisar sco standard in editur extern (be per experts, basegna ina configuraziun speziala da des computer. [//www.mediawiki.org/wiki/Manual:External_editors Dapli infurmaziuns.])',
 'tog-externaldiff'            => 'Utilisar sco standard in program extern per visualisar differenzas tranter versiuns (be per experts, basegna ina configuraziun speziala da des computer. [//www.mediawiki.org/wiki/Manual:External_editors Dapli infurmaziuns.])',
@@ -557,6 +557,7 @@ Eventualmain has ti gia midà cun success tes pled-clav u dumandà per in nov pl
 'passwordreset-disabled'       => 'La pussaivladad da redefinir il pled-clav è vegnida deactivada sin questa wiki.',
 'passwordreset-pretext'        => '{{PLURAL:$1||Endatescha in dals tocs da data sutvart}}',
 'passwordreset-username'       => "Num d'utilisader:",
+'passwordreset-domain'         => 'Domain:',
 'passwordreset-email'          => 'Adressa dad e-mail:',
 'passwordreset-emailtitle'     => 'Detagls davart il conto sn {{SITENAME}}',
 'passwordreset-emailtext-ip'   => "Insatgi (probablamain ti da l'adressa dad IP $1) ha dumandà in nov pled-clav per la pagina {{SITENAME}} ($4). 
@@ -676,11 +677,11 @@ Controllescha sch ti vuls propi crear/modiftgar questa pagina.',
 'blocked-notice-logextract'        => "Quai utilisader è bloccà actualmain. 
 L'ultima endataziun dal log da bloccar vegn mussà sutvart sco referenza:",
 'clearyourcache'                   => "'''Remartga''' Suenter memorisar las midadas stos ti eventualmain svidar il chache da tes navigatur per vesair las midadas.
-* '''Firefox / Safari:''' tegnair ''Shift'' durant cliccar ''chargiar danovamain'', u smatgar ''Ctrl-F5'' u ''Ctrl-R'' (''Command-R'' sin in Mac)
-* '''Google Chrome:''' smatgar ''Ctrl-Shift-R'' (''Command-Shift-R'' sin in Mac)
-* '''Internet Explorer:''' tegnair ''Ctrl'' durant cliccar ''Refresh,'' u smatgar ''Ctrl-F5''
-* '''Konqueror:''' cliccar ''Reload'' ni smatgar ''F5''
-* '''Opera:''' stizzar il cache sut ''Tools → Preferences''",
+* '''Firefox / Safari:''' Tegnair ''Shift'' durant cliccar ''chargiar danovamain'', u smatgar ''Ctrl-F5'' u ''Ctrl-R'' (''⌘-R'' sin in Mac)
+* '''Google Chrome:''' Smatgar ''Ctrl-Shift-R'' (''⌘-Shift-R'' sin in Mac)
+* '''Internet Explorer:''' Tegnair ''Ctrl'' durant cliccar ''Rechargiar,'' u smatgar ''Ctrl-F5''
+* '''Konqueror:''' Cliccar ''Rechargiar'' ni smatgar ''F5''
+* '''Opera:''' Stizzar il cache sut ''Tools → Preferences''",
 'usercssyoucanpreview'             => "'''Tip:''' Utilisescha il buttun \"{{int:showpreview}}\" per testar tes nov CSS avant che memorisar.",
 'userjsyoucanpreview'              => "'''Tip:''' Utilisescha il buttun \"{{int:showpreview}}\" per testar tes nov JavaScript avant che memorisar.",
 'usercsspreview'                   => "'''Fa stim che quai è be ina prevista da tes CSS d'utilisader.'''
@@ -735,7 +736,8 @@ Ti garanteschas che ti has scrit tez quai u copià dad ina funtauna ch'è 'publi
 Sche ti na vuls betg che tes texts pon vegnir modifitgads, na als endatescha betg qua.<br />
 Ti confermas era che ti has scrit sez quest text u al has copià d'ina funtaunda 'public domain' u semigliant libra (guarda $1 per detagls).
 '''Betg trametta ovras protegidas dal dretg d'autur senza lubientscha!'''",
-'longpageerror'                    => "'''Errur: Il text che ti has tramess è $1 kilobytes gronds. Quei ei pli grond ch'il maximum da $2 kilobytes. Il text na po betg vegnir memorisà. '''",
+'longpageerror'                    => "'''Errur: Il text che ti has tramess è {{PLURAL:$1|in kilobyte|$1 kilobytes}} grond. Quei ei pli grond ch'il maximum da {{PLURAL:$2|in kilobyte|$2 kilobytes}}.'''
+Il text na po betg vegnir memorisà.",
 'readonlywarning'                  => "'''Attenziun: La banca da datas è vegnida bloccada per motivs da mantegniment, uschia che ti na sas betg memorisar tias modificaziuns gest ussa.'''
 Per betg perder las midadas ta recummandain nus da copiar il text en in editur da text sin tes computer ed al memorisar per pli tard. 
 
@@ -848,12 +850,12 @@ Emprova da [[Special:Search|tschertgar]] novas paginas sumegliantas en la wiki."
 Detagls pon vegnir chattads en il [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log da stizzar].",
 'rev-deleted-text-unhide'     => "Questa versiun da la pagina è vegnida '''stizzada'''.
 Detagls pon vegnir chattads en il [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log da stizzar].
-Sco administratur pos ti anc adina [$1 contemplar questa versiun].",
+Ti sas anc adina [$1 contemplar questa versiun].",
 'rev-suppressed-text-unhide'  => "Questa versiun da la pagina è vegnida '''supprimida'''.
 Detagls pon vegnir chattads en il [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log da supprimer].
-Sco administratur pos ti anc adina [$1 contemplar questa versiun].",
+Ti pos anc adina [$1 contemplar questa versiun].",
 'rev-deleted-text-view'       => "Questa versiun da la pagina è vegnida '''stizzada'''.
-Sco administratur pos ti la vesair; detagls pon vegnir chattads en il [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log da stizzar].",
+Ti pos la vesair; detagls pon vegnir chattads en il [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log da stizzar].",
 'rev-suppressed-text-view'    => "Questa versiun da la pagina è vegnida '''supprimida'''.
 Sco administratur pos ti la vesair; detagls pon vegnir chattads en il [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}}  log da supprimer].",
 'rev-deleted-no-diff'         => "Ti na pos betg guardar quest diff perquai ch'ina da las versiuns è vegnida '''stizzada'''.
@@ -1040,6 +1042,7 @@ Considerescha che lur index da {{SITENAME}} po cuntegnair datas ch'èn betg pli 
 'prefs-editing'               => 'Modifitgar',
 'prefs-edit-boxsize'          => 'Grondezza da la fanestra da modifitgar',
 'rows'                        => 'Lingias:',
+'columns'                     => 'Colonnas:',
 'searchresultshead'           => 'Tschertga',
 'resultsperpage'              => 'resultats per pagina:',
 'stub-threshold-disabled'     => 'Deactivà',
@@ -1083,7 +1086,7 @@ Questa operaziun na po betg vegnir revocada.',
 'prefs-registration'          => 'Temp da registraziun:',
 'yourrealname'                => 'Num real:',
 'yourlanguage'                => 'Lingua:',
-'yourvariant'                 => 'varianta',
+'yourvariant'                 => 'Varianta da la lingua:',
 'yournick'                    => 'Signatura:',
 'prefs-help-signature'        => 'Commentaris sin paginas da discussiun duessan vegnir signadas cun "<nowiki>~~~~</nowiki>". Quests segns vegnan lura convertids en tia signatura ed la data.',
 'badsig'                      => 'Signatura invalida. 

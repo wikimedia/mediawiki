@@ -1228,6 +1228,7 @@ Du kan prøve at bruge \"all:\" som præfiks for at søge i alt indhold (inkl. d
 'prefs-editing'                 => 'Redigering',
 'prefs-edit-boxsize'            => 'Størrelse på redigeringsvinduet.',
 'rows'                          => 'Rækker',
+'columns'                       => 'Kolonner',
 'searchresultshead'             => 'Søgeresultater',
 'resultsperpage'                => 'Resultater pr. side',
 'stub-threshold'                => 'Grænse for visning af henvisning som <a href="#" class="stub">artikelstump</a>:',

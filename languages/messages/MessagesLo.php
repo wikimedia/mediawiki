@@ -515,6 +515,7 @@ $messages = array(
 'resetprefs'            => 'ເລີ່ມຄືນໃໝ່',
 'prefs-editing'         => 'ການດັດແກ້',
 'rows'                  => 'ແຖວ:',
+'columns'               => 'ຖັນ:',
 'searchresultshead'     => 'ຊອກຫາ',
 'resultsperpage'        => 'ຈຳນວນຜົນການຊອກເຫັນ ຕໍ່ ໜ້າ:',
 'recentchangesdays'     => 'ຈຳນວນມື້ສະແດງໃນການປ່ຽນແປງຫຼ້າສຸດ:',

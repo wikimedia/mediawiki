@@ -290,6 +290,7 @@ $messages = array(
 'preferences'    => 'ތަރުޖީހުތައް',
 'mypreferences'  => 'މަގޭ ތަރުޖީހުތައް',
 'changepassword' => 'ސިއްރުބަސް ބަދަލުކުރައްވާ',
+'columns'        => 'ކޮލަންތައް:',
 'prefs-files'    => 'ފައިލުތައް',
 'youremail'      => '٭ އީމޭލު',
 'username'       => 'މެންބަރުނަން:',
