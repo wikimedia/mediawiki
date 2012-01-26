@@ -4,52 +4,78 @@
  * processing them into variety of formats that are needed in MediaWiki.
  *
  * It is intented to replace the old wfMsg* functions that over time grew
- * unusable.
+ * unusable. \see https://www.mediawiki.org/wiki/New_messages_API for
+ * equivalence between old and new functions.
  *
- * Examples:
+ * Below, you will find several examples of wfMessage() usage.
+ *
+ *
  * Fetching a message text for interface message
+ * @code
  *    $button = Xml::button( wfMessage( 'submit' )->text() );
- * </pre>
+ * @endcode
+ *
  * Messages can have parameters:
+ *
+ * @code
  *    wfMessage( 'welcome-to' )->params( $wgSitename )->text();
- *        {{GRAMMAR}} and friends work correctly
+ * @endcode
+ *
+ * {{GRAMMAR}} and friends work correctly
+ * @code
  *    wfMessage( 'are-friends', $user, $friend );
  *    wfMessage( 'bad-message' )->rawParams( '<script>...</script>' )->escaped();
- * </pre>
+ * @endcode
+ *
  * Sometimes the message text ends up in the database, so content language is needed.
+ * @code
  *    wfMessage( 'file-log', $user, $filename )->inContentLanguage()->text()
  * </pre>
- * Checking if message exists:
- *    wfMessage( 'mysterious-message' )->exists()
- * </pre>
- * If you want to use a different language:
- *    wfMessage( 'email-header' )->inLanguage( $user->getOption( 'language' ) )->plain()
- *        Note that you cannot parse the text except in the content or interface
- *        languages
- * </pre>
+ * @endcode
  *
+ * Checking whether a message exists:
+ * @code
+ *    wfMessage( 'mysterious-message' )->exists()
+ * @endcode
+ *
+ * If you want to use a different language:
+ * @code
+ *    wfMessage( 'email-header' )->inLanguage( $user->getOption( 'language' ) )->plain()
+ * @endcode
+ *
+ * \note You cannot parse the text except in the content or interface
+ * \note languages
  *
  * Comparison with old wfMsg* functions:
  *
  * Use full parsing.
+ *
+ * @code
  *     wfMsgExt( 'key', array( 'parseinline' ), 'apple' );
  *     === wfMessage( 'key', 'apple' )->parse();
- * </pre>
+ * @endcode
+ *
  * Parseinline is used because it is more useful when pre-building html.
  * In normal use it is better to use OutputPage::(add|wrap)WikiMsg.
  *
  * Places where html cannot be used. {{-transformation is done.
+ * @code
  *     wfMsgExt( 'key', array( 'parsemag' ), 'apple', 'pear' );
  *     === wfMessage( 'key', 'apple', 'pear' )->text();
- * </pre>
+ * @endcode
  *
  * Shortcut for escaping the message too, similar to wfMsgHTML, but
  * parameters are not replaced after escaping by default.
+ * @code
  * $escaped = wfMessage( 'key' )->rawParams( 'apple' )->escaped();
- * </pre>
+ * @endcode
  *
  * @todo
  * - test, can we have tests?
+ *
+ * \see https://www.mediawiki.org/wiki/WfMessage()
+ * \see https://www.mediawiki.org/wiki/New_messages_API
+ * \see https://www.mediawiki.org/wiki/Localisation
  *
  * @since 1.17
  * @author Niklas Laxström
