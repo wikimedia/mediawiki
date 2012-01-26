@@ -1,78 +1,133 @@
 <?php
 /**
- * This class provides methods for fetching interface messages and
- * processing them into variety of formats that are needed in MediaWiki.
+ * The Message class provides methods which fullfil two basic services:
+ *  - fetching interface messages
+ *  - processing messages into a variety of formats
  *
- * It is intented to replace the old wfMsg* functions that over time grew
- * unusable. 
- * @see https://www.mediawiki.org/wiki/New_messages_API for
- * equivalence between old and new functions.
+ * First implemented with MediaWiki 1.17, the Message class is intented to
+ * replace the old wfMsg* functions that over time grew unusable.
+ * @see https://www.mediawiki.org/wiki/New_messages_API for equivalences
+ * between old and new functions.
  *
- * Below, you will find several examples of wfMessage() usage.
+ * You should use the wfMessage() global function which acts as a wrapper for
+ * the Message class. The wrapper let you pass parameters as arguments.
  *
+ * The most basic usage cases would be:
  *
- * Fetching a message text for interface message
  * @code
- *    $button = Xml::button( wfMessage( 'submit' )->text() );
+ *     // Initialize a Message object using the 'some_key' message key
+ *     $message = wfMessage( 'some_key' );
+ *
+ *     // Using two parameters those values are strings 'value1' and 'value2':
+ *     $message = wfMessage( 'some_key',
+ *          'value1', 'value2'
+ *     );
  * @endcode
  *
- * Messages can have parameters:
+ * @section message_global_fn Global function wrapper:
+ *
+ * Since wfMessage() returns a Message instance, you can chain its call with
+ * a method. Some of them return a Message instance too so you can chain them.
+ * You will find below several examples of wfMessage() usage.
+ *
+ * Fetching a message text for interface message:
  *
  * @code
- *    wfMessage( 'welcome-to' )->params( $wgSitename )->text();
+ *    $button = Xml::button(
+ *         wfMessage( 'submit' )->text()
+ *    );
  * @endcode
  *
- * {{GRAMMAR}} and friends work correctly
+ * A Message instance can be passed parameters after it has been constructed,
+ * use the params() method to do so:
+ *
  * @code
- *    wfMessage( 'are-friends', $user, $friend );
- *    wfMessage( 'bad-message' )->rawParams( '<script>...</script>' )->escaped();
+ *     wfMessage( 'welcome-to' )
+ *         ->params( $wgSitename )
+ *         ->text();
  * @endcode
  *
- * Sometimes the message text ends up in the database, so content language is needed.
+ * {{GRAMMAR}} and friends work correctly:
+ *
  * @code
- *    wfMessage( 'file-log', $user, $filename )->inContentLanguage()->text()
- * </pre>
+ *    wfMessage( 'are-friends',
+ *        $user, $friend
+ *    );
+ *    wfMessage( 'bad-message' )
+ *         ->rawParams( '<script>...</script>' )
+ *         ->escaped();
+ * @endcode
+ *
+ * @section message_language Changing language:
+ *
+ * Messages can be requested in a different language or in whatever current
+ * content language is being used. The methods are:
+ *     - Message->inContentLanguage()
+ *     - Message->inLanguage()
+ *
+ * Sometimes the message text ends up in the database, so content language is
+ * needed:
+ *
+ * @code
+ *    wfMessage( 'file-log',
+ *        $user, $filename
+ *    )->inContentLanguage()->text();
  * @endcode
  *
  * Checking whether a message exists:
+ *
  * @code
  *    wfMessage( 'mysterious-message' )->exists()
+ *    // returns a boolean whether the 'mysterious-message' key exist.
  * @endcode
  *
  * If you want to use a different language:
+ *
  * @code
- *    wfMessage( 'email-header' )->inLanguage( $user->getOption( 'language' ) )->plain()
+ *    $userLanguage = $user->getOption( 'language' );
+ *    wfMessage( 'email-header' )
+ *         ->inLanguage( $userLanguage )
+ *         ->plain();
  * @endcode
  *
  * @note You cannot parse the text except in the content or interface
  * @note languages
  *
- * Comparison with old wfMsg* functions:
+ * @section message_compare_old Comparison with old wfMsg* functions:
  *
- * Use full parsing.
+ * Use full parsing:
  *
  * @code
+ *     // old style:
  *     wfMsgExt( 'key', array( 'parseinline' ), 'apple' );
- *     === wfMessage( 'key', 'apple' )->parse();
+ *     // new style:
+ *     wfMessage( 'key', 'apple' )->parse();
  * @endcode
  *
- * Parseinline is used because it is more useful when pre-building html.
+ * Parseinline is used because it is more useful when pre-building HTML.
  * In normal use it is better to use OutputPage::(add|wrap)WikiMsg.
  *
- * Places where html cannot be used. {{-transformation is done.
+ * Places where HTML cannot be used. {{-transformation is done.
  * @code
+ *     // old style:
  *     wfMsgExt( 'key', array( 'parsemag' ), 'apple', 'pear' );
- *     === wfMessage( 'key', 'apple', 'pear' )->text();
+ *     // new style:
+ *     wfMessage( 'key', 'apple', 'pear' )->text();
  * @endcode
  *
- * Shortcut for escaping the message too, similar to wfMsgHTML, but
+ * Shortcut for escaping the message too, similar to wfMsgHTML(), but
  * parameters are not replaced after escaping by default.
  * @code
- * $escaped = wfMessage( 'key' )->rawParams( 'apple' )->escaped();
+ *     $escaped = wfMessage( 'key' )
+ *          ->rawParams( 'apple' )
+ *          ->escaped();
  * @endcode
+ *
+ * @section message_appendix Appendix:
  *
  * @todo
  * - test, can we have tests?
+ * - this documentation needs to be extended
  *
  * @see https://www.mediawiki.org/wiki/WfMessage()
  * @see https://www.mediawiki.org/wiki/New_messages_API
