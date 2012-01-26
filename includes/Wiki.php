@@ -463,8 +463,6 @@ class MediaWiki {
 	 * @param $article Article
 	 */
 	private function performAction( Page $article ) {
-		global $wgSquidMaxage;
-
 		wfProfileIn( __METHOD__ );
 
 		$request = $this->context->getRequest();
