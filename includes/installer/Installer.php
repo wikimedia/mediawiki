@@ -604,7 +604,6 @@ abstract class Installer {
 			'ss_good_articles' => 0,
 			'ss_total_pages' => 0,
 			'ss_users' => 0,
-			'ss_admins' => 0,
 			'ss_images' => 0 ),
 			__METHOD__, 'IGNORE' );
 		return Status::newGood();
