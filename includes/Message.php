@@ -4,7 +4,8 @@
  * processing them into variety of formats that are needed in MediaWiki.
  *
  * It is intented to replace the old wfMsg* functions that over time grew
- * unusable. \see https://www.mediawiki.org/wiki/New_messages_API for
+ * unusable. 
+ * @see https://www.mediawiki.org/wiki/New_messages_API for
  * equivalence between old and new functions.
  *
  * Below, you will find several examples of wfMessage() usage.
@@ -43,8 +44,8 @@
  *    wfMessage( 'email-header' )->inLanguage( $user->getOption( 'language' ) )->plain()
  * @endcode
  *
- * \note You cannot parse the text except in the content or interface
- * \note languages
+ * @note You cannot parse the text except in the content or interface
+ * @note languages
  *
  * Comparison with old wfMsg* functions:
  *
@@ -73,9 +74,9 @@
  * @todo
  * - test, can we have tests?
  *
- * \see https://www.mediawiki.org/wiki/WfMessage()
- * \see https://www.mediawiki.org/wiki/New_messages_API
- * \see https://www.mediawiki.org/wiki/Localisation
+ * @see https://www.mediawiki.org/wiki/WfMessage()
+ * @see https://www.mediawiki.org/wiki/New_messages_API
+ * @see https://www.mediawiki.org/wiki/Localisation
  *
  * @since 1.17
  * @author Niklas Laxström
