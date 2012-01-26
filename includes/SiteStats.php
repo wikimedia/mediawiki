@@ -5,7 +5,7 @@
  */
 class SiteStats {
 	static $row, $loaded = false;
-	static $admins, $jobs;
+	static $jobs;
 	static $pageCount = array();
 	static $groupMemberCounts = array();
 
@@ -207,7 +207,7 @@ class SiteStats {
 		}
 		// Now check for underflow/overflow
 		foreach( array( 'total_views', 'total_edits', 'good_articles',
-		'total_pages', 'users', 'admins', 'images' ) as $member ) {
+		'total_pages', 'users', 'images' ) as $member ) {
 			if(
 				$row->{"ss_$member"} > 2000000000
 				|| $row->{"ss_$member"} < 0
