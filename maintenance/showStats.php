@@ -42,7 +42,6 @@ class ShowStats extends Maintenance {
 			'ss_good_articles' => 'Number of articles',
 			'ss_total_pages' => 'Total pages',
 			'ss_users' => 'Number of users',
-			'ss_admins' => 'Number of admins',
 			'ss_images' => 'Number of images',
 		);
 
