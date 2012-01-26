@@ -108,13 +108,11 @@ class SwiftFileBackend extends FileBackend {
 		// (a) Check the destination container and object
 		try {
 			$dContObj = $this->getContainer( $dstCont );
-			if ( empty( $params['overwrite'] ) ) {
-				$destObj = $dContObj->create_object( $dstRel );
-				// Check if the object already exists (fields populated)
-				if ( $destObj->last_modified ) {
-					$status->fatal( 'backend-fail-alreadyexists', $params['dst'] );
-					return $status;
-				}
+			if ( empty( $params['overwrite'] ) &&
+				$this->fileExists( array( 'src' => $params['dst'], 'latest' => 1 ) ) ) 
+			{
+				$status->fatal( 'backend-fail-alreadyexists', $params['dst'] );
+				return $status;
 			}
 		} catch ( NoSuchContainerException $e ) {
 			$status->fatal( 'backend-fail-create', $params['dst'] );
@@ -172,13 +170,11 @@ class SwiftFileBackend extends FileBackend {
 		// (a) Check the destination container and object
 		try {
 			$dContObj = $this->getContainer( $dstCont );
-			if ( empty( $params['overwrite'] ) ) {
-				$destObj = $dContObj->create_object( $dstRel );
-				// Check if the object already exists (fields populated)
-				if ( $destObj->last_modified ) {
-					$status->fatal( 'backend-fail-alreadyexists', $params['dst'] );
-					return $status;
-				}
+			if ( empty( $params['overwrite'] ) &&
+				$this->fileExists( array( 'src' => $params['dst'], 'latest' => 1 ) ) ) 
+			{
+				$status->fatal( 'backend-fail-alreadyexists', $params['dst'] );
+				return $status;
 			}
 		} catch ( NoSuchContainerException $e ) {
 			$status->fatal( 'backend-fail-copy', $params['src'], $params['dst'] );
@@ -249,13 +245,11 @@ class SwiftFileBackend extends FileBackend {
 		try {
 			$sContObj = $this->getContainer( $srcCont );
 			$dContObj = $this->getContainer( $dstCont );
-			if ( empty( $params['overwrite'] ) ) {
-				$destObj = $dContObj->create_object( $dstRel );
-				// Check if the object already exists (fields populated)
-				if ( $destObj->last_modified ) {
-					$status->fatal( 'backend-fail-alreadyexists', $params['dst'] );
-					return $status;
-				}
+			if ( empty( $params['overwrite'] ) &&
+				$this->fileExists( array( 'src' => $params['dst'], 'latest' => 1 ) ) ) 
+			{
+				$status->fatal( 'backend-fail-alreadyexists', $params['dst'] );
+				return $status;
 			}
 		} catch ( NoSuchContainerException $e ) {
 			$status->fatal( 'backend-fail-copy', $params['src'], $params['dst'] );
@@ -478,13 +472,16 @@ class SwiftFileBackend extends FileBackend {
 			return false; // invalid storage path
 		}
 
+		if ( !$this->fileExists( $params ) ) {
+			return null;
+		}
+
 		$data = false;
 		try {
-			$container = $this->getContainer( $srcCont );
-			$obj = $container->get_object( $srcRel );
+			$sContObj = $this->getContainer( $srcCont );
+			$obj = new CF_Object( $sContObj, $srcRel, false, false ); // skip HEAD request
 			$data = $obj->read( $this->headersFromParams( $params ) );
 		} catch ( NoSuchContainerException $e ) {
-		} catch ( NoSuchObjectException $e ) {
 		} catch ( InvalidResponseException $e ) {
 		} catch ( Exception $e ) { // some other exception?
 			$this->logException( $e, __METHOD__, $params );
@@ -587,10 +584,14 @@ class SwiftFileBackend extends FileBackend {
 			return null;
 		}
 
+		if ( !$this->fileExists( $params ) ) {
+			return null;
+		}
+
 		$tmpFile = null;
 		try {
-			$cont = $this->getContainer( $srcCont );
-			$obj = $cont->get_object( $srcRel );
+			$sContObj = $this->getContainer( $srcCont );
+			$obj = new CF_Object( $sContObj, $srcRel, false, false ); // skip HEAD
 			// Get source file extension
 			$ext = FileBackend::extensionFromPath( $srcRel );
 			// Create a new temporary file...
@@ -605,8 +606,6 @@ class SwiftFileBackend extends FileBackend {
 				}
 			}
 		} catch ( NoSuchContainerException $e ) {
-			$tmpFile = null;
-		} catch ( NoSuchObjectException $e ) {
 			$tmpFile = null;
 		} catch ( InvalidResponseException $e ) {
 			$tmpFile = null;
