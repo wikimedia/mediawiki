@@ -87,6 +87,7 @@ abstract class FileBackendBase {
 	/**
 	 * This is the main entry point into the backend for write operations.
 	 * Callers supply an ordered list of operations to perform as a transaction.
+	 * Files will be locked, the stat cache cleared, and then the operations attempted.
 	 * If any serious errors occur, all attempted operations will be rolled back.
 	 * 
 	 * $ops is an array of arrays. The outer array holds a list of operations.
@@ -154,9 +155,9 @@ abstract class FileBackendBase {
 	 *                         This can increase performance for non-critical writes.
 	 *                         This has no effect unless the 'force' flag is set.
 	 * 
-	 * Remarks:
+	 * Remarks on locking:
 	 * File system paths given to operations should refer to files that are
-	 * either locked or otherwise safe from modification from other processes.
+	 * already locked or otherwise safe from modification from other processes.
 	 * Normally these files will be new temp files, which should be adequate.
 	 * 
 	 * Return value:
@@ -528,7 +529,7 @@ abstract class FileBackendBase {
 	 * @param $paths Array Storage paths (optional)
 	 * @return void
 	 */
-	abstract public function clearCache( array $paths = null );
+	public function clearCache( array $paths = null ) {}
 
 	/**
 	 * Lock the files at the given storage paths in the backend.
@@ -978,7 +979,10 @@ abstract class FileBackend extends FileBackendBase {
 	 */
 	final public function getFileStat( array $params ) {
 		wfProfileIn( __METHOD__ );
-		$path = $params['src'];
+		$path = self::normalizeStoragePath( $params['src'] );
+		if ( $path === null ) {
+			return false; // invalid storage path
+		}
 		$latest = !empty( $params['latest'] );
 		if ( isset( $this->cache[$path]['stat'] ) ) {
 			// If we want the latest data, check that this cached
@@ -1255,7 +1259,10 @@ abstract class FileBackend extends FileBackendBase {
 			$this->cache = array();
 		} else {
 			foreach ( $paths as $path ) {
-				unset( $this->cache[$path] );
+				$path = self::normalizeStoragePath( $path );
+				if ( $path !== null ) {
+					unset( $this->cache[$path] );
+				}
 			}
 		}
 		$this->doClearCache( $paths );
@@ -1310,8 +1317,28 @@ abstract class FileBackend extends FileBackendBase {
 	}
 
 	/**
-	 * Split a storage path (e.g. "mwstore://backend/container/path/to/object")
-	 * into a backend name, a container name, and a relative object path.
+	 * Normalize a storage path by cleaning up directory separators.
+	 * Returns null if the path is not of the format of a valid storage path.
+	 * 
+	 * @param $storagePath string
+	 * @return string|null 
+	 */
+	final public static function normalizeStoragePath( $storagePath ) {
+		list( $backend, $container, $relPath ) = self::splitStoragePath( $storagePath );
+		if ( $relPath !== null ) { // must be for this backend
+			$relPath = self::normalizeContainerPath( $relPath );
+			if ( $relPath !== null ) {
+				return ( $relPath != '' )
+					? "mwstore://{$backend}/{$container}/{$relPath}"
+					: "mwstore://{$backend}/{$container}";
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Split a storage path into a backend name, a container name, 
+	 * and a relative file path. The relative path may be the empty string.
 	 *
 	 * @param $storagePath string
 	 * @return Array (backend, container, rel object) or (null, null, null)
