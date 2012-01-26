@@ -16,6 +16,7 @@
  * @author EPO
  * @author Emilkris33
  * @author Froztbyte
+ * @author Gorbi
  * @author H92
  * @author Hylle
  * @author Jan Friberg
@@ -1640,10 +1641,12 @@ Informer venligst en [[Special:ListUsers/sysop|systemadministrator]].',
 'upload-http-error'         => 'Der opstod en HTTP-fejl: $1',
 
 # File backend
+'backend-fail-stream'        => 'Kunne ikke streame filen $1.',
 'backend-fail-backup'        => 'Kunne ikke lave sikkerhedskopi af filen $1.',
 'backend-fail-notexists'     => 'Filen $1 findes ikke.',
 'backend-fail-hashes'        => 'Kunne ikke danne hashværdier til sammenligning af filer.',
 'backend-fail-notsame'       => 'En ikke-identisk fil eksisterer allerede som $1.',
+'backend-fail-invalidpath'   => '$1 er ikke en gyldig lagringssti.',
 'backend-fail-delete'        => 'Kunne ikke slette filen $1.',
 'backend-fail-alreadyexists' => 'Filen $1 findes allerede.',
 'backend-fail-store'         => 'Kunne ikke gemme filen $1 i $2.',
@@ -1654,7 +1657,12 @@ Informer venligst en [[Special:ListUsers/sysop|systemadministrator]].',
 'backend-fail-closetemp'     => 'Kunne ikke lukke midlertidig fil.',
 'backend-fail-read'          => 'Kunne ikke læse filen $1.',
 'backend-fail-create'        => 'Kunne ikke oprette filen $1.',
+'backend-fail-readonly'      => 'Underliggende "$1" er sat til skrivebeskyttet, fordi: "$2"',
+'backend-fail-synced'        => 'Filen "$1" er i en inkonsistent status inden i de interne backends',
+'backend-fail-connect'       => 'Kunne ikke forbinde til filbackend «$1».',
+'backend-fail-internal'      => 'En ukendt fejl opstod i filbackend «$1».',
 'backend-fail-contenttype'   => 'Kunne ikke bestemme typen af indhold i filen, der skal gemmes på "$1".',
+'backend-fail-batchsize'     => 'Backend gav en batch på $1 fil{{PLURAL:$1|operation|operationer}}; grænsen er $2 {{PLURAL:$2|operation|operationer}}.',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Kunne ikke låse "$1" op, da den ikke er låst.',
@@ -1663,6 +1671,7 @@ Informer venligst en [[Special:ListUsers/sysop|systemadministrator]].',
 'lockmanager-fail-acquirelock' => 'Kunne ikke opnå lås for "$1".',
 'lockmanager-fail-openlock'    => 'Kunne ikke åbne låsefilen for "$1".',
 'lockmanager-fail-releaselock' => 'Kunne ikke frigive låsen for "$1".',
+'lockmanager-fail-db-bucket'   => 'Kunne ikke kontakte nok låsedatabaser i bøtten $1.',
 'lockmanager-fail-db-release'  => 'Kunne ikke frigive lås til databasen $1.',
 'lockmanager-fail-svr-release' => 'Kunne ikke frigive låse til serveren $1.',
 
@@ -2704,12 +2713,15 @@ Alle Transwiki import-aktioner protokolleres i [[Special:Log/import|import-logge
 'import-logentry-interwiki-detail' => '{{PLURAL:$1|1 version|$1 versioner}} af $2 importeret',
 
 # JavaScriptTest
-'javascripttest'                      => 'Test af JavaScript',
-'javascripttest-disabled'             => 'Denne funktion er deaktiveret.',
-'javascripttest-title'                => 'Kører $1 test',
-'javascripttest-pagetext-noframework' => 'Denne side er reserveret til at teste JavaScript.',
-'javascripttest-pagetext-skins'       => 'Vælg et udseende, som testene skal køres med:',
-'javascripttest-qunit-intro'          => 'Se [$1 testdokumentationen] på mediawiki.org.',
+'javascripttest'                           => 'Test af JavaScript',
+'javascripttest-disabled'                  => 'Denne funktion er deaktiveret.',
+'javascripttest-title'                     => 'Kører $1 test',
+'javascripttest-pagetext-noframework'      => 'Denne side er reserveret til at teste JavaScript.',
+'javascripttest-pagetext-unknownframework' => 'Ukendt testmiljø "$1".',
+'javascripttest-pagetext-frameworks'       => 'Vælg venligst en af de følgende testmiljøer: $1',
+'javascripttest-pagetext-skins'            => 'Vælg et udseende, som testene skal køres med:',
+'javascripttest-qunit-intro'               => 'Se [$1 testdokumentationen] på mediawiki.org.',
+'javascripttest-qunit-heading'             => 'MediaWiki JavaScript QUnit testsuite',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'                 => 'Din brugerside',

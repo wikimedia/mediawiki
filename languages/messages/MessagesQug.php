@@ -321,16 +321,35 @@ $1',
 'nosuchaction' => 'Kay rurayta illanmi',
 
 # General errors
-'error'              => 'Pantay',
-'databaseerror'      => 'Yachayyuk ukupi pantay',
-'laggedslavemode'    => "'''Rikupay''': Kay pankapi, shina kakpi, mushuk killkaykuna illankacha.",
-'missing-article'    => "Hatun kamupi shuk killkayta mana tarin, shinapash chay killkayta tiyanami kan. Paypa chay shutima kan : «$1» $2.
+'error'                => 'Pantay',
+'databaseerror'        => 'Yachayyuk ukupi pantay',
+'laggedslavemode'      => "'''Rikupay''': Kay pankapi, shina kakpi, mushuk killkaykuna illankacha.",
+'missing-article'      => "Hatun kamupi shuk killkayta mana tarin, shinapash chay killkayta tiyanami kan. Paypa chay shutima kan : «$1» $2.
 Icha shuk ñawpak pachamanta ''diff'' ñamana tiyanchu, icha kay tinkika shuk pichashka pankapa shutimi kan. 
 Mana shina kakpi, shuk [[Special:ListUsers/sysop|kamachyik]]man willapay, payta URL killkata willapay.",
-'missingarticle-rev' => '(Killkay#: $1)',
-'badtitle'           => 'Pankapa shutika mana allichu',
-'badtitletext'       => 'Kay pankapa shutika mana allichu, icha illakmi kan. Icha mana alli llikata charin.',
-'viewsource'         => 'Pukyu killkata rikuna',
+'missingarticle-rev'   => '(Killkay#: $1)',
+'internalerror'        => 'Antawa ukupi pantay tiyarka',
+'internalerror_info'   => 'Antawa ukupi pantay tiyarka: $1',
+'fileappenderrorread'  => 'Pankata wiñachishpa $1-ta na tarinata usharkanchikchu',
+'fileappenderror'      => '$1-ta $2-man yapanata na atirkanchikchu',
+'filecopyerror'        => '$1-ta $2-man ishkachanata na atirkanchikchu',
+'filerenameerror'      => '$1-man $2 shutita karana na atirkanchikchu',
+'filedeleteerror'      => '"$1" archivuta pichanata na atirkanchikchu.',
+'directorycreateerror' => '$1 allichina ukuta na wachachinata atirkanchikchu',
+'filenotfound'         => '"$1" archivuta tarinata na atirkanchikchu.',
+'fileexistserror'      => '$1 archivupi na killkanata ushapankichu: shuk shina shutiyuk archivuta ñami tiyan',
+'unexpected'           => 'Chayta na shuyashkachu karka: "$1"="$2".',
+'badarticleerror'      => 'Kay pankapi chayta na ruranachu.',
+'cannotdelete'         => '$1 shutiyuk pankata (archivucha) na pichanata atirkanchikchu.
+Shina kakpika, shuk rurakka ña pankata pichankacha.',
+'badtitle'             => 'Pankapa shutika mana allichu',
+'badtitletext'         => 'Kay pankapa shutika mana allichu, icha illakmi kan. Icha mana alli llikata charin.',
+'viewsource'           => 'Pukyu killkata rikuna',
+'actionthrottled'      => 'Rurayta harkashka',
+'actionthrottledtext'  => 'Spam rurashpa nalli runakunaka ama yapata chaskikuna kachankapak, mana chayta kutin ñapash rurana ushapankichu. Ama shinachu kapay, ashata shuyashpa  (wakin minutoskuna) kutin rurapay.',
+'protectedpagetext'    => 'Kay pankata ama shukchinkapak harkashkami kan.',
+'viewsourcetext'       => 'Kay pankapak wiki killkayta rikunata, ishkachinatapash ushapankimi.',
+'protectedinterface'   => 'Kay pankaka kapak willaykunata charinmi, ama nalli runakunaka kaypi killkankapak harkashkami kapan.',
 
 # Login and logout pages
 'yourname'                => 'Rurak shuti:',
