@@ -1121,7 +1121,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'restoreprefs'                  => 'Restaurar tolos axustes predeterminaos',
 'prefs-editing'                 => 'Edición',
 'prefs-edit-boxsize'            => "Tamañu de la ventana d'edición.",
-'rows'                          => 'Files:',
+'rows'                          => 'Fileres:',
 'columns'                       => 'Columnes:',
 'searchresultshead'             => 'Guetar',
 'resultsperpage'                => "Resultaos p'amosar per páxina:",

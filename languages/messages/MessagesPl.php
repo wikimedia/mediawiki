@@ -3935,7 +3935,7 @@ W przeciwnym wypadku można użyć prostego formularza poniżej. Komentarz zosta
 'feedback-error3'    => 'Błąd – brak odpowiedzi API',
 'feedback-thanks'    => 'Dziękujemy! Twoja opinia została opublikowana na stronie "[ $2  $1 ]".',
 'feedback-close'     => 'Gotowe',
-'feedback-bugcheck'  => 'Świetnie! Tylko sprawdzić, czy nie jest już jednym z [ $1  znanych błędów].',
+'feedback-bugcheck'  => 'Świetnie! Tylko sprawdzić, czy nie jest już jednym z [$1 znanych błędów].',
 'feedback-bugnew'    => 'Sprawdziłem. Zgłoś nowy błąd',
 
 # API errors

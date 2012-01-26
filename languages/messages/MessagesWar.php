@@ -408,9 +408,11 @@ Ayaw paghingalimot hin pagbalyo han imo [[Special:Preferences|{{SITENAME}} mga g
 'yourname'                => 'Agnay hit gumaramit:',
 'yourpassword'            => 'Tigaman-pagsulod:',
 'yourpasswordagain'       => 'Utroha pagbutang an tigaman-han-pagsakob:',
+'remembermypassword'      => "Hinumdumi an akon pan-sakob dinhi nga panngaykay ''(browser)'' (para ha pinakamaiha $1 {{PLURAL:$1|ka adlaw|ka mga adlaw}})",
 'yourdomainname'          => 'Imo dominyo:',
 'login'                   => 'Sakob',
 'nav-login-createaccount' => 'Sakob / paghimo hin bag-o nga akawnt',
+'loginprompt'             => "Kinahanglan mo hin mga kuki (''cookie'') para makapag log-in ha {{SITENAME}}.",
 'userlogin'               => 'Sakob/Pagrehistro',
 'userloginnocreate'       => 'Sakob',
 'logout'                  => 'Gawas',
@@ -492,7 +494,10 @@ Alayon pagutro pagbutang.',
 An imo IP address in maitatala ha hinin pakli nga kaagi han pagliwat.",
 'summary-preview'                  => 'Pahiuna nga pagawas han dalikyat nga pulong:',
 'subject-preview'                  => 'Pahiuna nga pagawas hit himangrawon:',
+'blockedtitle'                     => 'Ginpugngan ini nga gumaramit',
 'blockednoreason'                  => 'waray katadungan nga ginhatag',
+'loginreqtitle'                    => 'Nagkikinahanglan hin pan-sakob',
+'loginreqlink'                     => 'Pansakob',
 'loginreqpagetext'                 => 'Kinahanglan mo mag-$1 para makakita ha iba nga mga pakli.',
 'accmailtitle'                     => 'Ginpadara na an tigaman-pagsulod.',
 'newarticle'                       => '(Bag-o)',
@@ -523,6 +528,8 @@ Nasaad ka liwat nga imo ini kalugaringon nga ginsurat, o ginkopya nimo ini tikan
 
 Angay mo hunahunaon kon naangay ba nga magpadayon hin pagliwat hini nga pakli.
 An talaan hin pagpara ngan pagbalhin hini nga pakli ginhahatag dinhi para hin masayon nga pagkita:",
+'moveddeleted-notice'              => 'Ini nga pakli in ginpara.
+An taramdan han pagpara ngan pagbalhin para han pakli in ginhahatag ha ubos para han kasarigan.',
 'log-fulllog'                      => 'Kitaa an bug-os nga taramdan',
 'edit-conflict'                    => 'Diri pagkakauroyon han pagliwat.',
 'edit-no-change'                   => 'Ginpabay-an an im pagliwat, mahitungod nga waray pagbalyo nga nabuhat ha nakasurat.',
@@ -554,6 +561,8 @@ Ini nga mga argumento in ginlaktawan.",
 'last'                   => 'kataposan',
 'page_first'             => 'syahan',
 'page_last'              => 'kataposan',
+'histlegend'             => "Kaibhan nga pirilion: Igmarka an mga radyo nga kahon han mga pagbag-o para maikumpara ngan sabura an ''enter' o an piridlitan ha ubos.<br />
+Leyenda: '''({{int:cur}})''' = kaibhan ha giuurhii nga pag-bag-o, '''({{int:last}})''' = kaibhan ha nahiuna nga pag-bag-o, '''{{int:minoreditletter}}''' = gagmay nga pagliwat.",
 'history-fieldset-title' => 'Kaagi han panngaykay',
 'history-show-deleted'   => 'Ginpara la',
 'histfirst'              => 'Giunhani',
@@ -615,10 +624,12 @@ Ini nga mga argumento in ginlaktawan.",
 'searchprofile-project'            => 'Mga Bulig ngan Proyekto nga pakli',
 'searchprofile-images'             => 'Multimedia',
 'searchprofile-everything'         => 'Ngatanan',
+'searchprofile-advanced'           => 'Abansado',
 'searchprofile-articles-tooltip'   => 'Pamiling ha $1',
 'searchprofile-project-tooltip'    => 'Pamiling ha $1',
 'searchprofile-images-tooltip'     => 'Pamiling hin mga fayl',
 'searchprofile-everything-tooltip' => 'Pamiling ha ngatanan nga sulod (lakip an mga hiruhimangraw nga pakli)',
+'searchprofile-advanced-tooltip'   => "Pamilnga ha mga nabatasan nga ngaran-lat'ang",
 'search-result-size'               => '$1 ({{PLURAL:$2|1 nga pulong|$2 nga mga pulong}})',
 'search-result-category-size'      => '{{PLURAL:$1|1 nga api|$1 nga mga api}} ({{PLURAL:$2|1 nga ubos-nga-kaarangay|$2 nga mga ubos-nga-kaarangay}}, {{PLURAL:$3| 1 nga fayl|$3 nga mga fayl}})',
 'search-redirect'                  => '(redirekta $1)',
@@ -732,8 +743,8 @@ Dapat diri malabaw ha $1 {{PLURAL:$1|agi|mga agi}} nga kahilaba.',
 # Recent changes
 'nchanges'                        => '$1 {{PLURAL:$1|pagbag-o|mga pagbabag-o}}',
 'recentchanges'                   => 'Mga kabag-ohan',
-'recentchanges-legend'            => 'Mga pirilian han mga lab-as nga pagbabag-o',
-'recentchangestext'               => 'Panultol han pinakalab-as nga pagbabag-o ha wiki dinhi nga pakli.',
+'recentchanges-legend'            => 'Mga pirilion han mga lab-as nga pagbag-o',
+'recentchangestext'               => 'Nasubay han pinakalab-as nga pagbag-o ha wiki dinhi nga pakli.',
 'recentchanges-feed-description'  => 'Panultol han pinakalab-as nga pagbabag-o ha wiki dinhi nga panubong.',
 'recentchanges-label-newpage'     => 'Ini nga pagliwat hin naghimo hin bag-o nga pakli',
 'recentchanges-label-minor'       => 'Gutiay ini nga pagliwat',
@@ -822,6 +833,8 @@ An taramdan han pagpara ngan pagbalhin para hini nga pakli in ginhahatag para ha
 'sharedupload'            => 'Ini nga fayl tikang han $1 ngan puyde magamit ha iba nga mga proyekto.',
 'sharedupload-desc-there' => 'Ini nga fayl tikang han $1 ngan puyde magamit ha iba nga mga proyekto.
 Alayon pagkita han [$2 nga pakli hin pagpahayag mahitungod hini nga fayl] para hin dugang nga kasayuran.',
+'sharedupload-desc-here'  => 'An fayl in tikang ha $1 ngan puydi mahigamitan para han iba nga mga proyekto.
+An paglaladawan han iya [$2 fayl han paglaladawan nga pakli] didto in ginpapakita ha sirong.',
 'shared-repo-from'        => 'tikang $1',
 
 # File reversion
@@ -945,7 +958,7 @@ Alayon pagkita han [$2 nga pakli hin pagpahayag mahitungod hini nga fayl] para h
 'listgrouprights-group'           => 'Hugpo',
 'listgrouprights-rights'          => 'Mga katungod',
 'listgrouprights-helppage'        => 'Help:Mga katungod han hugpo',
-'listgrouprights-members'         => '(talaan hiton mga api)',
+'listgrouprights-members'         => '(taramdan hiton mga api)',
 'listgrouprights-addgroup'        => 'Dugnga {{PLURAL:$2|hugpo|mga hugpo}}: $1',
 'listgrouprights-removegroup'     => 'Tanggala {{PLURAL:$2|hugpo|mga hugpo}}: $1',
 'listgrouprights-addgroup-all'    => 'Igdugang ngatanan nga mga hugpo',
@@ -1022,9 +1035,10 @@ Kitaa an $2 para hin talaan han mga gibag-ohi nga mga ginpamara.',
 'undelete-show-file-submit' => 'Oo',
 
 # Namespace form on various pages
-'namespace'      => "Ngaran-lat'ang",
-'invert'         => 'Baliskara an pirilion',
-'blanknamespace' => '(Panguna)',
+'namespace'             => "Ngaran-lat'ang",
+'invert'                => 'Baliskara an pirilion',
+'namespace_association' => "Kasumpay nga mga ngaran-lat'ang",
+'blanknamespace'        => '(Panguna)',
 
 # Contributions
 'contributions'       => 'Mga amot han gumaramit',
@@ -1109,6 +1123,7 @@ Kitaa an $2 para hin talaan han mga gibag-ohi nga mga ginpamara.',
 
 # Namespace 8 related
 'allmessagesname'           => 'Ngaran',
+'allmessagesdefault'        => 'Daan aada nga teksto hiton mensahe',
 'allmessages-filter-all'    => 'Ngatanan',
 'allmessages-language'      => 'Yinaknan:',
 'allmessages-filter-submit' => 'Kadto-a',
@@ -1209,7 +1224,22 @@ Makikit-an nimo an ginkuhaaan',
 'ago' => '$1 an nakalabay',
 
 # Metadata
-'metadata' => 'Metadata',
+'metadata'        => 'Metadata',
+'metadata-fields' => 'An mga rumbay han hulagway han metadato nga nakatala dinhi nga mensahe in iglalakip ha padayag hin hulagway nga pakli kun an taramdan metadato in nakalukot.
+An iba in daan nakatago.
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* isospeedratings
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'       => 'Kahaluag',
@@ -1328,6 +1358,9 @@ Makikit-an nimo an ginkuhaaan',
 'watchlisttools-view' => 'Kitaa an mga nanginginlabot nga mga pagbabag-o',
 'watchlisttools-edit' => 'Kitaa ngan igliwat an talaan han binabantayan',
 'watchlisttools-raw'  => 'Igliwat an hilaw nga talaan han binabantayan',
+
+# Core parser functions
+'duplicate-defaultsort' => '\'\'\'Pahimatngon:\'\'\' An daan-aada nga paglainlain nga piridlitan nga "$2" in igsasapaw an durudaan nga daan-aada nga paglainlain nga piridlitan nga "$1".',
 
 # Special:Version
 'version'                  => 'Bersyon',

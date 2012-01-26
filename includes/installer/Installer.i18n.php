@@ -3654,10 +3654,10 @@ Dieses Programm ist freie Software, d. h. es kann, gemäß den Bedingungen der v
 Dieses Programm wird in der Hoffnung verteilt, dass es nützlich sein wird, allerdings '''ohne jegliche Garantie''' und sogar ohne die implizierte Garantie einer '''Marktgängigkeit''' oder '''Eignung für einen bestimmten Zweck'''. Hierzu sind weitere Hinweise in der ''GNU General Public License'' enthalten.
 
 Eine <doclink href=Copying>Kopie der ''GNU General Public License''</doclink> sollte zusammen mit diesem Programm verteilt worden sein. Sofern dies nicht der Fall war, kann eine Kopie bei der Free Software Foundation Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA, schriftlich angefordert oder auf deren Website [http://www.gnu.org/copyleft/gpl.html online gelesen] werden.",
-	'config-sidebar' => '* [//www.mediawiki.org Website von MediaWiki]
-* [//www.mediawiki.org/wiki/Help:Contents Benutzeranleitung]
-* [//www.mediawiki.org/wiki/Manual:Contents Administratorenanleitung]
-* [//www.mediawiki.org/wiki/Manual:FAQ Häufig gestellte Fragen]
+	'config-sidebar' => '* [//www.mediawiki.org/wiki/MediaWiki/de Website von MediaWiki]
+* [//www.mediawiki.org/wiki/Help:Contents/de Benutzeranleitung]
+* [//www.mediawiki.org/wiki/Manual:Contents/de Administratorenanleitung]
+* [//www.mediawiki.org/wiki/Manual:FAQ/de Häufig gestellte Fragen]
 ----
 * <doclink href=Readme>Lies mich</doclink>
 * <doclink href=ReleaseNotes>Versionsinformationen</doclink>
@@ -4059,7 +4059,7 @@ Sofern der Port unbekannt ist, ist 11211 die Standardangabe.',
 	'config-extensions' => 'Erweiterungen',
 	'config-extensions-help' => 'Die obig angegebenen Erweiterungen wurden im Verzeichnis <code>./extensions</code> gefunden.
 
-Sie könnten zusätzliche Konfigurierung erfordern, können aber bereits jetzt aktiviert werden.',
+Es könnten zusätzliche Konfigurierungen zu einzelnen Erweiterungen erforderlich sein, dennoch können sie aber bereits jetzt aktiviert werden.',
 	'config-install-alreadydone' => "'''Warnung:''' Es wurde eine vorhandene MediaWiki-Installation gefunden.
 Es muss daher mit den nächsten Seite weitergemacht werden.",
 	'config-install-begin' => 'Durch Drücken von „{{int:config-continue}}“ wird die Installation von MediaWiki gestartet.

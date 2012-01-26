@@ -694,7 +694,7 @@ $2',
 Некоторые страницы могут продолжать отображаться в том виде, как будто вы всё ещё представлены системе. Для борьбы с этим явлением обновите кеш браузера.",
 'welcomecreation'            => '== Добро пожаловать, $1! ==
 Ваша учётная запись создана.
-Не забудьте провести [[Special:Preferences|личные настройки]].',
+Не забудьте провести [[Special:Preferences|персональную настройку]] сайта.',
 'yourname'                   => 'Имя участника:',
 'yourpassword'               => 'Пароль:',
 'yourpasswordagain'          => 'Повторный набор пароля:',
@@ -1450,7 +1450,7 @@ $1",
 'userrights-user-editname'     => 'Введите имя участника:',
 'editusergroup'                => 'Изменение членства в группах участника',
 'editinguser'                  => "Изменение прав {{GENDER:$1|участника|участницы}} '''[[User:$1|$1]]''' $2",
-'userrights-editusergroup'     => 'Изменить членство в группах {{GENDER:$1|участника|участницы}} $1',
+'userrights-editusergroup'     => 'Права участника',
 'saveusergroups'               => 'Сохранить группы участника',
 'userrights-groupsmember'      => 'Член групп:',
 'userrights-groupsmember-auto' => 'Неявный член:',
@@ -2584,7 +2584,7 @@ $1',
 'ipb-unblock-addr'                => 'Разблокировать $1',
 'ipb-unblock'                     => 'Разблокировать участника или IP-адрес',
 'ipb-blocklist'                   => 'Показать действующие блокировки',
-'ipb-blocklist-contribs'          => 'Вклад {{GENDER:$1|участника|участницы}} $1',
+'ipb-blocklist-contribs'          => 'Вклад $1',
 'unblockip'                       => 'Разблокировать IP-адрес',
 'unblockiptext'                   => 'Используйте форму ниже, чтобы восстановить возможность записи с ранее заблокированного IP-адреса или учётной записи.',
 'ipusubmit'                       => 'Снять эту блокировку',
@@ -3643,7 +3643,7 @@ $5
 
 # Separators for various lists, etc.
 'ellipsis'    => '…',
-'parentheses' => '($1).',
+'parentheses' => '($1)',
 
 # Multipage image navigation
 'imgmultipageprev' => '← предыдущая страница',
