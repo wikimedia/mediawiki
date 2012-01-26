@@ -1275,6 +1275,15 @@ class WikiPage extends Page {
 			# Update article, but only if changed.
 			$status->value['new'] = false;
 
+			if ( !$oldid ) {
+				# Article gone missing
+				wfDebug( __METHOD__ . ": EDIT_UPDATE specified but article doesn't exist\n" );
+				$status->fatal( 'edit-gone-missing' );
+
+				wfProfileOut( __METHOD__ );
+				return $status;
+			}
+
 			# Make sure the revision is either completely inserted or not inserted at all
 			if ( !$wgDBtransactions ) {
 				$userAbort = ignore_user_abort( true );
@@ -1294,15 +1303,6 @@ class WikiPage extends Page {
 			$changed = ( strcmp( $text, $oldtext ) != 0 );
 
 			if ( $changed ) {
-				if ( !$this->mLatest ) {
-					# Article gone missing
-					wfDebug( __METHOD__ . ": EDIT_UPDATE specified but article doesn't exist\n" );
-					$status->fatal( 'edit-gone-missing' );
-
-					wfProfileOut( __METHOD__ );
-					return $status;
-				}
-
 				$dbw->begin();
 				$revisionId = $revision->insertOn( $dbw );
 
