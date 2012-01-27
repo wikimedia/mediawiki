@@ -438,7 +438,9 @@ abstract class QueryPage extends SpecialPage {
 	 */
 	function execute( $par ) {
 		global $wgQueryCacheLimit;
-		if ( !$this->userCanExecute( $this->getUser() ) ) {
+
+		$user = $this->getUser();
+		if ( !$this->userCanExecute( $user ) ) {
 			$this->displayRestrictionError();
 			return;
 		}
@@ -475,9 +477,9 @@ abstract class QueryPage extends SpecialPage {
 				$maxResults = $lang->formatNum( $wgQueryCacheLimit );
 
 				if ( $ts ) {
-					$updated = $lang->timeanddate( $ts, true, true );
-					$updateddate = $lang->date( $ts, true, true );
-					$updatedtime = $lang->time( $ts, true, true );
+					$updated = $lang->userTimeAndDate( $ts, $user );
+					$updateddate = $lang->userDate( $ts, $user );
+					$updatedtime = $lang->userTime( $ts, $user );
 					$out->addMeta( 'Data-Cache-Time', $ts );
 					$out->addInlineScript( "var dataCacheTime = '$ts';" );
 					$out->addWikiMsg( 'perfcachedts', $updated, $updateddate, $updatedtime, $maxResults );
