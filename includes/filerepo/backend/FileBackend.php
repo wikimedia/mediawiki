@@ -1144,7 +1144,7 @@ abstract class FileBackend extends FileBackendBase {
 			// File listing spans multiple containers/shards
 			list( $b, $shortCont, $r ) = self::splitStoragePath( $params['dir'] );
 			return new FileBackendShardListIterator( $this,
-				$fullCont, $this->getContainerSuffixes( $shortCont ), $params );
+				$fullCont, $dir, $this->getContainerSuffixes( $shortCont ), $params );
 		}
 	}
 
