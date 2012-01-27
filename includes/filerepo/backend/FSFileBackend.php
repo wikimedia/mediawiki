@@ -22,14 +22,6 @@ g<?php
  * @since 1.19
  */
 class FSFileBackend extends FileBackend {
-
-	/**
-	 * These constants are the same as the ones in FilesystemIterator, but
-	 * that's only 5.3+ so copy them here. When we drop 5.2 we can remove this
-	 */
-	const CURRENT_AS_FILEINFO = 0;
-	const SKIP_DOTS = 4096;
-	
 	protected $basePath; // string; directory holding the container directories
 	/** @var Array Map of container names to root paths */
 	protected $containerPaths = array(); // for custom container paths
@@ -556,7 +548,7 @@ class FSFileBackendFileList implements Iterator {
 		$dir = realpath( $dir ); // normalize
 		$this->suffixStart = strlen( $dir ) + 1; // size of "path/to/dir/"
 		try {
-			$flags = self::CURRENT_AS_FILEINFO | self::SKIP_DOTS;
+			$flags = FilesystemIterator::CURRENT_AS_FILEINFO | FilesystemIterator::SKIP_DOTS;
 			$this->iter = new RecursiveIteratorIterator(
 				new RecursiveDirectoryIterator( $dir, $flags ) );
 		} catch ( UnexpectedValueException $e ) {
