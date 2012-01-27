@@ -1255,14 +1255,15 @@ abstract class FileBackend extends FileBackendBase {
 	 * @see FileBackendBase::clearCache()
 	 */
 	final public function clearCache( array $paths = null ) {
+		if ( is_array( $paths ) ) {
+			$paths = array_map( 'FileBackend::normalizeStoragePath', $paths );
+			$paths = array_filter( $paths, 'strlen' ); // remove nulls
+		}
 		if ( $paths === null ) {
 			$this->cache = array();
 		} else {
 			foreach ( $paths as $path ) {
-				$path = self::normalizeStoragePath( $path );
-				if ( $path !== null ) {
-					unset( $this->cache[$path] );
-				}
+				unset( $this->cache[$path] );
 			}
 		}
 		$this->doClearCache( $paths );
