@@ -445,6 +445,7 @@ class NewParserTest extends MediaWikiTestCase {
 				"$base/local-thumb/3/3a/Foobar.jpg/640px-Foobar.jpg",
 				"$base/local-thumb/3/3a/Foobar.jpg/120px-Foobar.jpg",
 
+				"$base/local-public/0/09/Bad.jpg",
 				"$base/local-thumb/0/09/Bad.jpg",
 
 				"$base/local-public/math/f/a/5/fa50b8b616463173474302ca3e63586b.png",
@@ -464,7 +465,9 @@ class NewParserTest extends MediaWikiTestCase {
 		foreach ( $files as $file ) {
 			$tmp = $file;
 			while ( $tmp = FileBackend::parentStoragePath( $tmp ) ) {
-				$backend->clean( array( 'dir' => $tmp ) );
+				if ( !$backend->clean( array( 'dir' => $tmp ) )->isOK() ) {
+					break;
+				}
 			}
 		}
 	}
