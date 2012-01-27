@@ -119,128 +119,6 @@ class WikiPage extends Page {
 	}
 
 	/**
-	 * If this page is a redirect, get its target
-	 *
-	 * The target will be fetched from the redirect table if possible.
-	 * If this page doesn't have an entry there, call insertRedirect()
-	 * @return Title|mixed object, or null if this page is not a redirect
-	 */
-	public function getRedirectTarget() {
-		if ( !$this->mTitle->isRedirect() ) {
-			return null;
-		}
-
-		if ( $this->mRedirectTarget !== null ) {
-			return $this->mRedirectTarget;
-		}
-
-		# Query the redirect table
-		$dbr = wfGetDB( DB_SLAVE );
-		$row = $dbr->selectRow( 'redirect',
-			array( 'rd_namespace', 'rd_title', 'rd_fragment', 'rd_interwiki' ),
-			array( 'rd_from' => $this->getId() ),
-			__METHOD__
-		);
-
-		// rd_fragment and rd_interwiki were added later, populate them if empty
-		if ( $row && !is_null( $row->rd_fragment ) && !is_null( $row->rd_interwiki ) ) {
-			return $this->mRedirectTarget = Title::makeTitle(
-				$row->rd_namespace, $row->rd_title,
-				$row->rd_fragment, $row->rd_interwiki );
-		}
-
-		# This page doesn't have an entry in the redirect table
-		return $this->mRedirectTarget = $this->insertRedirect();
-	}
-
-	/**
-	 * Insert an entry for this page into the redirect table.
-	 *
-	 * Don't call this function directly unless you know what you're doing.
-	 * @return Title object or null if not a redirect
-	 */
-	public function insertRedirect() {
-		// recurse through to only get the final target
-		$retval = Title::newFromRedirectRecurse( $this->getRawText() );
-		if ( !$retval ) {
-			return null;
-		}
-		$this->insertRedirectEntry( $retval );
-		return $retval;
-	}
-
-	/**
-	 * Insert or update the redirect table entry for this page to indicate
-	 * it redirects to $rt .
-	 * @param $rt Title redirect target
-	 */
-	public function insertRedirectEntry( $rt ) {
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->replace( 'redirect', array( 'rd_from' ),
-			array(
-				'rd_from'      => $this->getId(),
-				'rd_namespace' => $rt->getNamespace(),
-				'rd_title'     => $rt->getDBkey(),
-				'rd_fragment'  => $rt->getFragment(),
-				'rd_interwiki' => $rt->getInterwiki(),
-			),
-			__METHOD__
-		);
-	}
-
-	/**
-	 * Get the Title object or URL this page redirects to
-	 *
-	 * @return mixed false, Title of in-wiki target, or string with URL
-	 */
-	public function followRedirect() {
-		return $this->getRedirectURL( $this->getRedirectTarget() );
-	}
-
-	/**
-	 * Get the Title object or URL to use for a redirect. We use Title
-	 * objects for same-wiki, non-special redirects and URLs for everything
-	 * else.
-	 * @param $rt Title Redirect target
-	 * @return mixed false, Title object of local target, or string with URL
-	 */
-	public function getRedirectURL( $rt ) {
-		if ( !$rt ) {
-			return false;
-		}
-
-		if ( $rt->isExternal() ) {
-			if ( $rt->isLocal() ) {
-				// Offsite wikis need an HTTP redirect.
-				//
-				// This can be hard to reverse and may produce loops,
-				// so they may be disabled in the site configuration.
-				$source = $this->mTitle->getFullURL( 'redirect=no' );
-				return $rt->getFullURL( 'rdfrom=' . urlencode( $source ) );
-			} else {
-				// External pages pages without "local" bit set are not valid
-				// redirect targets
-				return false;
-			}
-		}
-
-		if ( $rt->isSpecialPage() ) {
-			// Gotta handle redirects to special pages differently:
-			// Fill the HTTP response "Location" header and ignore
-			// the rest of the page we're on.
-			//
-			// Some pages are not valid targets
-			if ( $rt->isValidRedirectTarget() ) {
-				return $rt->getFullURL();
-			} else {
-				return false;
-			}
-		}
-
-		return $rt;
-	}
-
-	/**
 	 * Get the title object of the article
 	 * @return Title object of this page
 	 */
@@ -262,36 +140,6 @@ class WikiPage extends Page {
 		$this->mIsRedirect = false;
 		$this->mLatest = false;
 		$this->mPreparedEdit = false;
-	}
-
-	/**
-	 * Get the text that needs to be saved in order to undo all revisions
-	 * between $undo and $undoafter. Revisions must belong to the same page,
-	 * must exist and must not be deleted
-	 * @param $undo Revision
-	 * @param $undoafter Revision Must be an earlier revision than $undo
-	 * @return mixed string on success, false on failure
-	 */
-	public function getUndoText( Revision $undo, Revision $undoafter = null ) {
-		$cur_text = $this->getRawText();
-		if ( $cur_text === false ) {
-			return false; // no page
-		}
-		$undo_text = $undo->getText();
-		$undoafter_text = $undoafter->getText();
-
-		if ( $cur_text == $undo_text ) {
-			# No use doing a merge if it's just a straight revert.
-			return $undoafter_text;
-		}
-
-		$undone_text = '';
-
-		if ( !wfMerge( $undo_text, $undoafter_text, $cur_text, $undone_text ) ) {
-			return false;
-		}
-
-		return $undone_text;
 	}
 
 	/**
@@ -442,49 +290,6 @@ class WikiPage extends Page {
 		}
 
 		return $this->mCounter;
-	}
-
-	/**
-	 * Determine whether a page would be suitable for being counted as an
-	 * article in the site_stats table based on the title & its content
-	 *
-	 * @param $editInfo Object or false: object returned by prepareTextForEdit(),
-	 *        if false, the current database state will be used
-	 * @return Boolean
-	 */
-	public function isCountable( $editInfo = false ) {
-		global $wgArticleCountMethod;
-
-		if ( !$this->mTitle->isContentPage() ) {
-			return false;
-		}
-
-		$text = $editInfo ? $editInfo->pst : false;
-
-		if ( $this->isRedirect( $text ) ) {
-			return false;
-		}
-
-		switch ( $wgArticleCountMethod ) {
-		case 'any':
-			return true;
-		case 'comma':
-			if ( $text === false ) {
-				$text = $this->getRawText();
-			}
-			return strpos( $text,  ',' ) !== false;
-		case 'link':
-			if ( $editInfo ) {
-				// ParserOutput::getLinks() is a 2D array of page links, so
-				// to be really correct we would need to recurse in the array
-				// but the main array should only have items in it if there are
-				// links.
-				return (bool)count( $editInfo->output->getLinks() );
-			} else {
-				return (bool)wfGetDB( DB_SLAVE )->selectField( 'pagelinks', 1,
-					array( 'pl_from' => $this->getId() ), __METHOD__ );
-			}
-		}
 	}
 
 	/**
@@ -711,6 +516,171 @@ class WikiPage extends Page {
 		global $wgMemc;
 		$key = wfMemcKey( 'page-lastedit', md5( $this->mTitle->getPrefixedDBkey() ) );
 		$wgMemc->set( $key, wfTimestamp( TS_MW, $timestamp ), 60*15 );
+	}
+
+	/**
+	 * Determine whether a page would be suitable for being counted as an
+	 * article in the site_stats table based on the title & its content
+	 *
+	 * @param $editInfo Object or false: object returned by prepareTextForEdit(),
+	 *        if false, the current database state will be used
+	 * @return Boolean
+	 */
+	public function isCountable( $editInfo = false ) {
+		global $wgArticleCountMethod;
+
+		if ( !$this->mTitle->isContentPage() ) {
+			return false;
+		}
+
+		$text = $editInfo ? $editInfo->pst : false;
+
+		if ( $this->isRedirect( $text ) ) {
+			return false;
+		}
+
+		switch ( $wgArticleCountMethod ) {
+		case 'any':
+			return true;
+		case 'comma':
+			if ( $text === false ) {
+				$text = $this->getRawText();
+			}
+			return strpos( $text,  ',' ) !== false;
+		case 'link':
+			if ( $editInfo ) {
+				// ParserOutput::getLinks() is a 2D array of page links, so
+				// to be really correct we would need to recurse in the array
+				// but the main array should only have items in it if there are
+				// links.
+				return (bool)count( $editInfo->output->getLinks() );
+			} else {
+				return (bool)wfGetDB( DB_SLAVE )->selectField( 'pagelinks', 1,
+					array( 'pl_from' => $this->getId() ), __METHOD__ );
+			}
+		}
+	}
+
+	/**
+	 * If this page is a redirect, get its target
+	 *
+	 * The target will be fetched from the redirect table if possible.
+	 * If this page doesn't have an entry there, call insertRedirect()
+	 * @return Title|mixed object, or null if this page is not a redirect
+	 */
+	public function getRedirectTarget() {
+		if ( !$this->mTitle->isRedirect() ) {
+			return null;
+		}
+
+		if ( $this->mRedirectTarget !== null ) {
+			return $this->mRedirectTarget;
+		}
+
+		# Query the redirect table
+		$dbr = wfGetDB( DB_SLAVE );
+		$row = $dbr->selectRow( 'redirect',
+			array( 'rd_namespace', 'rd_title', 'rd_fragment', 'rd_interwiki' ),
+			array( 'rd_from' => $this->getId() ),
+			__METHOD__
+		);
+
+		// rd_fragment and rd_interwiki were added later, populate them if empty
+		if ( $row && !is_null( $row->rd_fragment ) && !is_null( $row->rd_interwiki ) ) {
+			return $this->mRedirectTarget = Title::makeTitle(
+				$row->rd_namespace, $row->rd_title,
+				$row->rd_fragment, $row->rd_interwiki );
+		}
+
+		# This page doesn't have an entry in the redirect table
+		return $this->mRedirectTarget = $this->insertRedirect();
+	}
+
+	/**
+	 * Insert an entry for this page into the redirect table.
+	 *
+	 * Don't call this function directly unless you know what you're doing.
+	 * @return Title object or null if not a redirect
+	 */
+	public function insertRedirect() {
+		// recurse through to only get the final target
+		$retval = Title::newFromRedirectRecurse( $this->getRawText() );
+		if ( !$retval ) {
+			return null;
+		}
+		$this->insertRedirectEntry( $retval );
+		return $retval;
+	}
+
+	/**
+	 * Insert or update the redirect table entry for this page to indicate
+	 * it redirects to $rt .
+	 * @param $rt Title redirect target
+	 */
+	public function insertRedirectEntry( $rt ) {
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->replace( 'redirect', array( 'rd_from' ),
+			array(
+				'rd_from'      => $this->getId(),
+				'rd_namespace' => $rt->getNamespace(),
+				'rd_title'     => $rt->getDBkey(),
+				'rd_fragment'  => $rt->getFragment(),
+				'rd_interwiki' => $rt->getInterwiki(),
+			),
+			__METHOD__
+		);
+	}
+
+	/**
+	 * Get the Title object or URL this page redirects to
+	 *
+	 * @return mixed false, Title of in-wiki target, or string with URL
+	 */
+	public function followRedirect() {
+		return $this->getRedirectURL( $this->getRedirectTarget() );
+	}
+
+	/**
+	 * Get the Title object or URL to use for a redirect. We use Title
+	 * objects for same-wiki, non-special redirects and URLs for everything
+	 * else.
+	 * @param $rt Title Redirect target
+	 * @return mixed false, Title object of local target, or string with URL
+	 */
+	public function getRedirectURL( $rt ) {
+		if ( !$rt ) {
+			return false;
+		}
+
+		if ( $rt->isExternal() ) {
+			if ( $rt->isLocal() ) {
+				// Offsite wikis need an HTTP redirect.
+				//
+				// This can be hard to reverse and may produce loops,
+				// so they may be disabled in the site configuration.
+				$source = $this->mTitle->getFullURL( 'redirect=no' );
+				return $rt->getFullURL( 'rdfrom=' . urlencode( $source ) );
+			} else {
+				// External pages pages without "local" bit set are not valid
+				// redirect targets
+				return false;
+			}
+		}
+
+		if ( $rt->isSpecialPage() ) {
+			// Gotta handle redirects to special pages differently:
+			// Fill the HTTP response "Location" header and ignore
+			// the rest of the page we're on.
+			//
+			// Some pages are not valid targets
+			if ( $rt->isValidRedirectTarget() ) {
+				return $rt->getFullURL();
+			} else {
+				return false;
+			}
+		}
+
+		return $rt;
 	}
 
 	/**
@@ -1097,6 +1067,36 @@ class WikiPage extends Page {
 
 		wfProfileOut( __METHOD__ );
 		return $ret;
+	}
+
+	/**
+	 * Get the text that needs to be saved in order to undo all revisions
+	 * between $undo and $undoafter. Revisions must belong to the same page,
+	 * must exist and must not be deleted
+	 * @param $undo Revision
+	 * @param $undoafter Revision Must be an earlier revision than $undo
+	 * @return mixed string on success, false on failure
+	 */
+	public function getUndoText( Revision $undo, Revision $undoafter = null ) {
+		$cur_text = $this->getRawText();
+		if ( $cur_text === false ) {
+			return false; // no page
+		}
+		$undo_text = $undo->getText();
+		$undoafter_text = $undoafter->getText();
+
+		if ( $cur_text == $undo_text ) {
+			# No use doing a merge if it's just a straight revert.
+			return $undoafter_text;
+		}
+
+		$undone_text = '';
+
+		if ( !wfMerge( $undo_text, $undoafter_text, $cur_text, $undone_text ) ) {
+			return false;
+		}
+
+		return $undone_text;
 	}
 
 	/**
