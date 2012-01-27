@@ -1,4 +1,4 @@
-g<?php
+<?php
 /**
  * @file
  * @ingroup FileBackend
