@@ -17,6 +17,7 @@
  * @author Gjue
  * @author IRTC1015
  * @author ITurtle
+ * @author Kaganer
  * @author Klutzy
  * @author Kwj2772
  * @author Pi.C.Noizecehx
@@ -2995,7 +2996,7 @@ $1',
 'mediawarning'           => "'''경고''': 이 파일에 악성 코드가 포함되어 있을 수 있습니다. 파일을 실행하면 컴퓨터에 문제가 생길 가능성이 있습니다.",
 'imagemaxsize'           => "그림 최대 크기:<br />''(파일 문서에 적용되는 기능)''",
 'thumbsize'              => '섬네일 크기:',
-'widthheightpage'        => '$1×$2, $3페이지',
+'widthheightpage'        => '$1 × $2, $3페이지',
 'file-info'              => '파일 크기: $1, MIME 종류: $2',
 'file-info-size'         => '$1 × $2 픽셀, 파일 크기: $3, MIME 종류: $4',
 'file-info-size-pages'   => '$1 × $2 픽셀, 파일 크기: $3, MIME 형식: $4, $5{{PLURAL:$5|쪽}}',

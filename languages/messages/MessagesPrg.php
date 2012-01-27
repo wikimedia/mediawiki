@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Kaganer
  * @author Nertiks
  * @author Peteris
  */
@@ -2217,7 +2218,7 @@ $1',
 Enskatināntei din,  tū mazzi ārditun twajjan sistēman.",
 'imagemaxsize'         => "Arāikinais bildin debban:<br />''(per zūrbrukes ebpeisāsenes pāusans)''",
 'thumbsize'            => 'Miniatūris debban:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pāusan|pāusai}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|pāusan|pāusai}}',
 'file-info'            => 'zūrbrukes debban: $1, MIME tīps: $2',
 'file-info-size'       => '$1 × $2 pikselai, zūrbrukes debban: $3, MIME tīps: $4',
 'file-nohires'         => 'Mūisesa rezōluciōni ni ast preiēiminan.',

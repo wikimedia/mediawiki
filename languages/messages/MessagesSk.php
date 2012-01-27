@@ -10,6 +10,7 @@
  * @author Chiak
  * @author Danny B.
  * @author Helix84
+ * @author Kaganer
  * @author Liso
  * @author Maros
  * @author Michawiki
@@ -2998,7 +2999,7 @@ $1',
 Jeho spustením môžete kompromitovať svoj systém.",
 'imagemaxsize'           => "Obmedziť veľkosť obrázka:<br />''(na popisnej stránke súboru)''",
 'thumbsize'              => 'Veľkosť náhľadu:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|stránka|stránky|stránok}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|stránka|stránky|stránok}}',
 'file-info'              => 'veľkosť súboru: $1, MIME typ: $2',
 'file-info-size'         => '$1 × $2 pixelov, veľkosť súboru: $3, MIME typ: $4',
 'file-info-size-pages'   => '$1 × $2 pixlov, veľkosť súboru: $3, typ MIME: $4, $5 {{PLURAL:$5|stránka|stránky|stránok}}',

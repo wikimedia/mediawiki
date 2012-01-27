@@ -17,6 +17,7 @@
  * @author Iradigalesc
  * @author Jordi Roqué
  * @author Juanpabl
+ * @author Kaganer
  * @author Martorell
  * @author McDutchie
  * @author Pasqual (ca)
@@ -2904,7 +2905,7 @@ $1",
 Si l'executeu, podeu comprometre la seguretat del vostre sistema.",
 'imagemaxsize'           => "Límit de mida d'imatges:<br />''(per a pàgines de descripció de fitxers)''",
 'thumbsize'              => 'Mida de la miniatura:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|pàgina|pàgines}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|pàgina|pàgines}}',
 'file-info'              => 'mida: $1, tipus MIME: $2',
 'file-info-size'         => '$1 × $2 píxels, mida del fitxer: $3, tipus MIME: $4',
 'file-info-size-pages'   => '$1 × $2 píxels, mida del fitxer: $3, tipus MIME: $4, $5 {{PLURAL:$5|pàgina|pàgines}}',

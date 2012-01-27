@@ -11,6 +11,7 @@
  * @author Andrijko Z.
  * @author Dato deutschland
  * @author Dawid Deutschland
+ * @author Kaganer
  * @author Kilavagora
  * @author Lika2672
  * @author Machirkholi
@@ -853,7 +854,7 @@ $messages = array(
 # Media information
 'file-info-size' => '$1 × $2 პიქსელ, ფაილიშ ზომა: $3, MIME ტიპ: $4',
 'file-nohires'   => ' უმოს მაღალ გიშაგორანჯალა ვა რე შელებუან.',
-'svg-long-desc'  => 'SVG ფაილ, ნომინალურო $1×$2 პიქსელ, ფაილიშ ზიმა: $3',
+'svg-long-desc'  => 'SVG ფაილ, ნომინალურო $1 × $2 პიქსელ, ფაილიშ ზიმა: $3',
 'show-big-image' => 'რსული გიშაგორანჯალა',
 
 # Special:NewFiles

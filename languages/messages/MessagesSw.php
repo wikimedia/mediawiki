@@ -9,6 +9,7 @@
  *
  * @author Ikiwaner
  * @author Jagwar
+ * @author Kaganer
  * @author Lloffiwr
  * @author Malangali
  * @author Marcos
@@ -2524,7 +2525,7 @@ Tafadhali jaribu tena.',
 Ukilitekeleza faili, mashine yako huenda ikawa matatani.',
 'imagemaxsize'           => "Kikomo cha ukubwa wa picha:<br />''(cha kurasa za maelezo ya mafaili)''",
 'thumbsize'              => 'Ukubwa wa picha ndogo:',
-'widthheightpage'        => '$1×$2, {{PLURAL:$3|ukurasa|kurasa}} $3',
+'widthheightpage'        => '$1 × $2, {{PLURAL:$3|ukurasa|kurasa}} $3',
 'file-info'              => 'ukubwa wa faili: $1, aina ya MIME: $2',
 'file-info-size'         => 'piseli $1 × $2, saizi ya faili: $3, aina ya MIME: $4',
 'file-info-size-pages'   => 'Piseli $1 × $2, ukubwa wa faili: $3, aina ya MIME: $4, {{PLURAL:$5|ukurasa|kurasa}} $5',

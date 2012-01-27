@@ -8,6 +8,7 @@
  * @file
  *
  * @author Demmy
+ * @author Kaganer
  * @author Meno25
  * @author Urhixidur
  */
@@ -2634,7 +2635,7 @@ kò le yípò ojúewé padà sí ara rẹ̀.',
 
 # Media information
 'thumbsize'            => 'Ìtóbi àwòrán kékeré:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|ojúewé|àwọn ojúewé}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|ojúewé|àwọn ojúewé}}',
 'file-info'            => 'ìtóbi faili: $1, irú MIME: $2',
 'file-info-size'       => '$1 × $2 pixel, ìtóbi faili: $3, irú MIME: $4',
 'file-nohires'         => 'Kò sí ìgbéhàn gíga jù báun lọ.',

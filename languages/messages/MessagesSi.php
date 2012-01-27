@@ -12,6 +12,7 @@
  * @author Calcey
  * @author Chandana
  * @author Jiro Ono
+ * @author Kaganer
  * @author Meno25
  * @author Pasanbhathiya2
  * @author Romaine
@@ -2983,7 +2984,7 @@ $1',
 එය ක්‍රියාත්මක කිරීමෙන්, ඔබගේ පද්ධතියට හානිවිය හැක.",
 'imagemaxsize'           => "රූප ප්‍රමාණ සීමාව:<br />''(ගොනු විස්තර පිටු සඳහා)''",
 'thumbsize'              => 'සිඟිති-රූපයේ විශාලත්වය:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|පිටුව|පිටු}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|පිටුව|පිටු}}',
 'file-info'              => 'ගොනු විශාලත්වය: $1, MIME වර්ගය: $2',
 'file-info-size'         => '$1 × $2 පික්සල, ගොනු විශාලත්වය: $3, MIME ශෛලිය: $4',
 'file-info-size-pages'   => '$1 × $2 පික්සල, ගොනු තරම: $3, MIME වර්ගය: $4, $5 {{PLURAL:$5|පිටුව|පිටු}}',

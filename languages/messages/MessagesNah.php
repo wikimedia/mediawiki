@@ -8,6 +8,7 @@
  * @file
  *
  * @author Fluence
+ * @author Kaganer
  * @author Reedy
  * @author Ricardo gs
  * @author Rob Church <robchur@gmail.com>
@@ -1320,7 +1321,7 @@ Hueliz cah inīn huēyi tlapatlaliztli. Timitztlātlauhtia ticmatīz cuallōtl a
 'nextdiff'     => 'Oc ye cencah yancuīc tlapatlaliztli →',
 
 # Media information
-'widthheightpage' => '$1×$2, $3 {{PLURAL:|zāzanilli|zāzanilli}}',
+'widthheightpage' => '$1 × $2, $3 {{PLURAL:|zāzanilli|zāzanilli}}',
 'file-info-size'  => '$1 × $2 pixel; zāzanilli octacayōtl: $3; machiyōtl MIME: $4',
 'file-nohires'    => 'Ahmo ia achi cualli ahmo occē īxiptli.',
 'show-big-image'  => 'Mochi cuallōtl',

@@ -19,6 +19,7 @@
  * @author Goktr001
  * @author Hanberke
  * @author Joseph
+ * @author Kaganer
  * @author Karduelis
  * @author Katpatuka
  * @author Khutuck
@@ -2973,7 +2974,7 @@ $1',
 Bunu çalıştırarak, sisteminiz tehlikeye atılabilir.",
 'imagemaxsize'           => "Resim boyutu sınırı:<br />''(dosya açıklama sayfaları için)''",
 'thumbsize'              => 'Küçük boyut:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|sayfa|sayfa}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|sayfa|sayfa}}',
 'file-info'              => 'dosya boyutu: $1, MIME tipi: $2',
 'file-info-size'         => '$1 × $2 piksel, dosya boyutu: $3, MIME tipi: $4',
 'file-info-size-pages'   => '$1 × $2 piksel, dosya boyutu: $3, MIME tipi: $4, $5 {{PLURAL:$5|sayfa|sayfa}}',

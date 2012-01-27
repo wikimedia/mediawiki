@@ -8,6 +8,7 @@
  * @file
  *
  * @author Better
+ * @author Kaganer
  * @author The Evil IP address
  * @author Urhixidur
  * @author Xuacu
@@ -1976,7 +1977,7 @@ $1',
 
 # Media information
 'thumbsize'       => 'Grandol el cuairu:',
-'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|página|páginas}}',
+'widthheightpage' => '$1 × $2, $3 {{PLURAL:$3|página|páginas}}',
 'file-info'       => 'grandol el archivu: $1, MIME type: $2',
 'file-info-size'  => '$1 × $2 pixel, grandol el archivu: $3, MIME type: $4',
 'file-nohires'    => 'Nu disponibri a mayol resolución.',

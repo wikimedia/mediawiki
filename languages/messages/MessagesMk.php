@@ -14,7 +14,9 @@
  * @author FlavrSavr
  * @author Glupav
  * @author INkubusse
+ * @author Kaganer
  * @author Misos
+ * @author Rancher
  * @author Spacebirdy
  * @author Urhixidur
  * @author לערי ריינהארט
@@ -1310,7 +1312,7 @@ $1",
 'notitlematches'                   => 'Ниеден наслов на страница не одговара',
 'textmatches'                      => 'Совпаднат текст во страниците',
 'notextmatches'                    => 'Ниеден текст во статиите не одговара',
-'prevn'                            => '{{PLURAL:претходна $1| претходни $1}}',
+'prevn'                            => '{{PLURAL:$1|претходна $1| претходни $1}}',
 'nextn'                            => '{{PLURAL:следна $1|следни $1}}',
 'prevn-title'                      => '{{PLURAL:$1|Претходен|Претходни}} $1 {{PLURAL:$1|резултат|резултати}}',
 'nextn-title'                      => '{{PLURAL:$1|Следен|Следни}} $1 {{PLURAL:$1|резултат|резултати}}',
@@ -3168,7 +3170,7 @@ $1',
 'imagemaxsize'           => "Ограничување на големина на слика:<br />''(на нивните описни страници)''",
 'thumbsize'              => 'Големина на минијатурата:',
 'widthheight'            => '$1 × $2',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|страница|страници}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|страница|страници}}',
 'file-info'              => 'големина: $1, MIME-тип: $2',
 'file-info-size'         => '$1 × $2 пиксели, големина: $3, MIME-тип: $4',
 'file-info-size-pages'   => '$1 × $2 пиксели, големина: $3, MIME-тип: $4, $5 {{PLURAL:$5|страница|страници}}',

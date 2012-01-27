@@ -11,6 +11,7 @@
  * @author Hendrik
  * @author Hendrix
  * @author Jaan513
+ * @author Kaganer
  * @author KaidoKikkas
  * @author KalmerE.
  * @author Ker
@@ -2776,8 +2777,8 @@ Kui soovid MediaWiki tarkvara tõlkimises osaleda siis vaata lehti [//www.mediaw
 'import'                     => 'Lehekülgede import',
 'importinterwiki'            => 'Vikidevaheline import',
 'import-interwiki-text'      => 'Vali importimiseks viki ja lehekülje pealkiri.
-Redigeerimisajad ja toimetajate nimed säilitatakse.
-Kõik vikide vahelised toimingud on [[Special:Log/import|impordilogis]].',
+Redigeerimisajad ja kaastööliste nimed säilitatakse.
+Kõik vikidevahelised toimingud on [[Special:Log/import|impordilogis]].',
 'import-interwiki-source'    => 'Lähteviki/lehekülg:',
 'import-interwiki-history'   => 'Kopeeri selle lehekülje kogu ajalugu',
 'import-interwiki-templates' => 'Liida kõik mallid',
@@ -2991,7 +2992,7 @@ $1',
 Selle avamine võib su arvutit kahjustada.",
 'imagemaxsize'           => "Pildi suuruse ülemmäär:<br />''(faili kirjeldusleheküljel)''",
 'thumbsize'              => 'Pisipildi suurus:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|lehekülg|lehekülge}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|lehekülg|lehekülge}}',
 'file-info'              => 'faili suurus: $1, MIME tüüp: $2',
 'file-info-size'         => '$1 × $2 pikslit, faili suurus: $3, MIME tüüp: $4',
 'file-info-size-pages'   => '$1 × $2 pikslit, faili suurus: $3 , MIME tüüp: $4, $5 {{PLURAL:$5|lehekülg|lehekülge}}',

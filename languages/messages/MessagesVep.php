@@ -8,6 +8,7 @@
  * @file
  *
  * @author Andrijko Z.
+ * @author Kaganer
  * @author Sura
  * @author Triple-ADHD-AS
  * @author Игорь Бродский
@@ -2366,7 +2367,7 @@ $1',
 # Media information
 'imagemaxsize'         => "Kuvan suruden limit:<br />''(failan ümbrikirjutamižen lehtpolen täht)''",
 'thumbsize'            => 'Pičukuvan suruz:',
-'widthheightpage'      => "$1×$2, $3 {{PLURAL:$3|lehtpol'|lehtpol't}}",
+'widthheightpage'      => "$1 × $2, $3 {{PLURAL:$3|lehtpol'|lehtpol't}}",
 'file-info'            => 'failan suruz: $1, MIME-tip: $2',
 'file-info-size'       => '$1 × $2 pikselad, failan suruz: $3, MIME-tip: $4',
 'file-nohires'         => 'Ei ole versijad paremban tarkoiktusenke.',

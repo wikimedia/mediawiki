@@ -10,6 +10,7 @@
  * @author Als-Holder
  * @author Jens Liebenau
  * @author Jonny84
+ * @author Kaganer
  * @author Piotron
  * @author Przemub
  * @author Purodha
@@ -2015,7 +2016,7 @@ $1',
 Durch doas Herunderloada und Effna dar Datei koan dei Computer beschädigt waan.",
 'imagemaxsize'    => "Maximale Bildgrieße:<br />''(fier Dateibeschreibungsseyta)''",
 'thumbsize'       => 'Standardgriße dar Vurschaubilder (Thumbnails):',
-'widthheightpage' => '$1×$2, {{PLURAL:$3|1 Seyte|$3 Seyta}}',
+'widthheightpage' => '$1 × $2, {{PLURAL:$3|1 Seyte|$3 Seyta}}',
 'file-info'       => 'Dateigreeße: $1, MIME-Typ: $2',
 'file-info-size'  => '$1 × $2 Pixel, Dateigreeße: $3, MIME-Typ: $4',
 'file-nohires'    => 'Kenne hiehere Uffleesung vurhanda.',

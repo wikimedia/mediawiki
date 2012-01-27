@@ -11,6 +11,7 @@
  * @author Elisardojm
  * @author Gallaecio
  * @author Gustronico
+ * @author Kaganer
  * @author Lameiro
  * @author Prevert
  * @author Toliño
@@ -3039,7 +3040,7 @@ $1',
 O seu sistema pode quedar comprometido se o executa.",
 'imagemaxsize'           => "Límite de tamaño das imaxes:<br />''(nas páxinas de descrición de ficheiros)''",
 'thumbsize'              => 'Tamaño da miniatura:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|páxina|páxinas}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|páxina|páxinas}}',
 'file-info'              => 'Tamaño do ficheiro: $1, tipo MIME: $2',
 'file-info-size'         => '$1 × $2 píxeles, tamaño do ficheiro: $3, tipo MIME: $4',
 'file-info-size-pages'   => '$1 × $2 píxeles, tamaño do ficheiro: $3, tipo MIME: $4, $5 {{PLURAL:$5|páxina|páxinas}}',

@@ -8,6 +8,7 @@
  * @file
  *
  * @author Filipinayzd
+ * @author Kaganer
  * @author Steven*fung
  * @author Urhixidur
  */
@@ -1758,7 +1759,7 @@ $1",
 'mediawarning'    => "'''Patanid''': May ''malicious code'' sa ''file'' na ini, kun gigibohon ini pwede ser na maraot an saimong ''system''.",
 'imagemaxsize'    => 'Limitaran an mga ladawan sa mga páhinang deskripsyon kan ladawan sa:',
 'thumbsize'       => 'Sokol nin retratito:',
-'widthheightpage' => '$1×$2, $3 mga pahina',
+'widthheightpage' => '$1 × $2, $3 mga pahina',
 'file-info'       => "sokol kan ''file'': $1, tipo nin MIME: $2",
 'file-info-size'  => "$1 × $2 na pixel, sokol kan ''file'': $3, tipo nin MIME: $4",
 'file-nohires'    => 'Mayong mas halangkáw na resolusyon.',

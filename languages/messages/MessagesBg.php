@@ -11,6 +11,7 @@
  * @author Borislav
  * @author DCLXVI
  * @author Daggerstab
+ * @author Kaganer
  * @author Spiritia
  * @author Stanqo
  * @author Turin
@@ -2889,7 +2890,7 @@ $1',
 'mediawarning'           => "'''Внимание''': Възможно е файлът да съдържа злонамерен програмен код. Неговото изпълнение може да доведе до повреди в системата ви.",
 'imagemaxsize'           => "Ограничение на размерите на картинките:<br />''(само за описателните страници)''",
 'thumbsize'              => 'Размери на миникартинките:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|страница|страници}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|страница|страници}}',
 'file-info'              => 'големина на файла: $1, MIME-тип: $2',
 'file-info-size'         => '$1 × $2 пиксела, големина на файла: $3, MIME-тип: $4',
 'file-info-size-pages'   => '$1 × $2 пиксела, размер на файла: $3, MIME тип: $4, $5 {{PLURAL:$5|страница|страници}}',

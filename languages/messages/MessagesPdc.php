@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Kaganer
  * @author Xqt
  * @author לערי ריינהארט
  */
@@ -879,7 +880,7 @@ Guck $2 fer e Lischt vun de letscht Leschunge.',
 'nextdiff' => 'Zum neegschte Versionsunnerschidd →',
 
 # Media information
-'widthheightpage' => '$1×$2, {{PLURAL:$3|1 Blatt|$3 Bledder}}',
+'widthheightpage' => '$1 × $2, {{PLURAL:$3|1 Blatt|$3 Bledder}}',
 'file-info-size'  => '$1 × $2 Pixel, Daadegrees: $3, MIME-Typ: $4',
 
 # Special:NewFiles

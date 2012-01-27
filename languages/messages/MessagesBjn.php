@@ -10,6 +10,7 @@
  * @author Alamnirvana
  * @author Ezagren
  * @author J Subhi
+ * @author Kaganer
  */
 
 $fallback = 'id';
@@ -2772,7 +2773,7 @@ $1',
 Manarusakan ngini, kawa manyarang sistem Pian.",
 'imagemaxsize'           => "Watas takaran gambar: <br />''(gasan barakas tutungkaran diskripsi)''",
 'thumbsize'              => 'Ukuran kuku-uma-jari:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|tungkaran|tutungkaran}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|tungkaran|tutungkaran}}',
 'file-info'              => 'takaran barakas: $1, macam MIME: $2',
 'file-info-size'         => '$1 × $2 piksel, ukuran barakas: $3, tipe MIME: $4',
 'file-info-size-pages'   => '$1 × $2 piksal, takaran barakas: $3, macam MIME: $4, $5 {{PLURAL:$5|tungkaran|tutungkaran}}',

@@ -20,6 +20,7 @@
  * @author Hzy980512
  * @author Jidanni
  * @author Jimmy xu wrk
+ * @author Kaganer
  * @author KaiesTse
  * @author Kuailong
  * @author Lauhenry
@@ -2133,28 +2134,28 @@ Template:消除歧義',
 'enotif_lastvisited'           => '檢視您上次訪問後的所有更改請參閱$1。',
 'enotif_lastdiff'              => '檢視更改請參閱$1。',
 'enotif_anon_editor'           => '匿名用戶$1',
-'enotif_body'                  => '親愛的 $WATCHINGUSERNAME，
+'enotif_body'                  => '親愛的$WATCHINGUSERNAME：
 
-{{SITENAME}}的頁面$PAGETITLE 已經於$PAGEEDITDATE 由$PAGEEDITOR 進行了CHANGEDORCREATED ，請見$PAGETITLE_URL 瀏覽現在的版本。 
+
+{{SITENAME}}的頁面$PAGETITLE已經於$PAGEEDITDATE由$PAGEEDITOR$CHANGEDORCREATED，請見 $PAGETITLE_URL 瀏覽現在的版本。
 
 $NEWPAGE
 
-編輯摘要: $PAGESUMMARY $PAGEMINOREDIT
+編輯摘要：$PAGESUMMARY $PAGEMINOREDIT
 
-聯繫此編輯者:
+聯繫此編輯者：
 
-郵件: $PAGEEDITOR_EMAIL
-本站: $PAGEEDITOR_WIKI
+郵件：$PAGEEDITOR_EMAIL
+本站：$PAGEEDITOR_WIKI
 
 在您訪問此頁之前，將來的更改將不會向您發通知。
-您也可以重設您所有監視頁面的通知標記。
+您也可以在監視列表中重設您所有監視頁面的通知標記。
 
-                {{SITENAME}}通知系統
+			 友好的{{SITENAME}}通知系統
 
 --
 要改變您的電郵設定，請參閱
 {{canonicalurl:{{#special:Preferences}}}}
-
 
 要改變您的監視列表設定，請參閱
 {{canonicalurl:{{#special:EditWatchlist}}}}
@@ -2162,7 +2163,7 @@ $NEWPAGE
 要刪除您監視清單中的該頁面，請參閱
 $UNWATCHURL
 
-回饋和進一步的幫助:
+回饋和進一步的幫助：
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
@@ -2920,7 +2921,7 @@ $1',
 執行它可能對您的系統帶來危險。",
 'imagemaxsize'           => "影像大小限制:<br />''（用在檔案描述頁面中）''",
 'thumbsize'              => '縮略圖大小：',
-'widthheightpage'        => '$1×$2, $3頁',
+'widthheightpage'        => '$1 × $2, $3頁',
 'file-info'              => '檔案大小: $1, MIME 類型: $2',
 'file-info-size'         => '$1 × $2 像素，檔案大小：$3，MIME類型：$4',
 'file-info-size-pages'   => '$1 × $2像素，檔案大小: $3，檔案類型: $4, $5 {{PLURAL:$5|頁|頁}}',
@@ -2929,7 +2930,7 @@ $1',
 'show-big-image'         => '完整解像度',
 'show-big-image-preview' => '此預覽的大小：$1.',
 'show-big-image-other'   => '其他{{PLURAL:$2||}}解析度：$1。',
-'show-big-image-size'    => '$1× $2 像素',
+'show-big-image-size'    => '$1 × $2 像素',
 'file-info-gif-looped'   => '循環',
 'file-info-gif-frames'   => '$1幀',
 'file-info-png-looped'   => '循環',
@@ -3767,6 +3768,7 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'api-error-unknown-code'                  => '未知錯誤：$1',
 'api-error-unknown-error'                 => '內部錯誤：嘗試上傳文件時出錯。',
 'api-error-unknown-warning'               => '未知的警告：$1',
+'api-error-unknownerror'                  => '未知錯誤：$1。',
 'api-error-uploaddisabled'                => '本wiki的上傳檔案功能已停用。',
 'api-error-verification-error'            => '本檔案可能已損壞，或副檔名錯誤。',
 

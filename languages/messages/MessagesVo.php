@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Kaganer
  * @author Malafaya
  * @author Reedy
  * @author Smeira
@@ -2337,7 +2338,7 @@ $1',
 If ojäfidükol oni, nünömasit olik ba podämükon.",
 'imagemaxsize'    => 'Miedükön magodis su pads magodis bepenöls ad:',
 'thumbsize'       => 'Gretot magodüla:',
-'widthheightpage' => '$1×$2, {{PLURAL:$3|pad|pads}} $3',
+'widthheightpage' => '$1 × $2, {{PLURAL:$3|pad|pads}} $3',
 'file-info'       => 'ragivagretot: $1, MIME-pated: $2',
 'file-info-size'  => '$1 × $2 pixel, ragivagret: $3, pated MIME: $4',
 'file-nohires'    => 'Gretot gudikum no pagebidon.',

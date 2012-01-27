@@ -11,6 +11,7 @@
  * @author Bhawani Gautam Rhk
  * @author Ganesh
  * @author Indiver
+ * @author Kaganer
  * @author Lkhatiwada
  * @author RajeshPandey
  * @author Reedy
@@ -2594,8 +2595,8 @@ $1',
 यसलाई सञ्चालन गरेर तपाईको प्रणालीमा नियन्त्रण गरिन सक्छ ।",
 'imagemaxsize'           => "तस्विर आकार सिमा:<br />''(फाइल जानकारी पृष्ठको लागि )''",
 'thumbsize'              => 'थम्बनेल आकार:',
-'widthheight'            => '$1×$2',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|पृष्ठ|पृष्ठहरु}}',
+'widthheight'            => '$1 × $2',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|पृष्ठ|पृष्ठहरु}}',
 'file-info'              => 'फाइल आकार: $1, MIME प्रकार: $2',
 'file-info-size'         => '$1 × $2 पिक्सेलहरु, फाइल आकार: $3, MIME प्रकार: $4',
 'file-info-size-pages'   => '$1 × $2 पिक्सेलहरु, फाइल आकार: $3, MIME प्रकार: $4, $5 {{PLURAL:$5|पृष्ठ|पृष्ठहरु}}',

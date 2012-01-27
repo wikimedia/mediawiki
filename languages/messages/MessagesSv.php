@@ -20,6 +20,7 @@
  * @author Habjchen
  * @author Hannibal
  * @author Jon Harald Søby
+ * @author Kaganer
  * @author LPfi
  * @author Lejonel
  * @author Leo Johannes
@@ -3081,7 +3082,7 @@ $1',
 Om du kör den kan din dator skadas.",
 'imagemaxsize'           => "Begränsa bilders storlek:<br />''(för filbeskrivningssidor)''",
 'thumbsize'              => 'Storlek på minibild:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|sida|sidor}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|sida|sidor}}',
 'file-info'              => 'filstorlek: $1, MIME-typ: $2',
 'file-info-size'         => '$1 × $2 pixlar, filstorlek: $3, MIME-typ: $4',
 'file-info-size-pages'   => '$1 × $2 pixlar, filstorlek: $3, MIME-typ: $4, $5 {{PLURAL:$5|sida|sidor}}',

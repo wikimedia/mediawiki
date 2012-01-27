@@ -10,6 +10,7 @@
  * @author Borichèt
  * @author Bèrto 'd Sèra
  * @author Dragonòt
+ * @author Kaganer
  * @author MaxSem
  * @author SabineCretella
  * @author Teak
@@ -1547,8 +1548,8 @@ Se a-i riva sossì n'àotra vira, ch'as buta an comunicassion con n'[[Special:Li
 'backend-fail-synced'        => "L'archivi «$1» a l'é ant në stat incoerent andrinta ai terminaj intern",
 'backend-fail-connect'       => "Impossìbil coleghesse al terminal d'archivi «$1».",
 'backend-fail-internal'      => "N'eror pa conossù a l'é rivaje ant ël terminal d'archivi «$1».",
-'backend-fail-contenttype'   => 'As peul pa dëterminesse la sòrt ëd contnù dl\'archivi da memorisé a "$1".',
-'backend-fail-batchsize'     => "Ël backend a l'ha dàit un lòt ëd $1 {{PLURAL:$1|operassion|operassion}} d'archivi; ël lìmit a l'é $2 {{PLURAL:$1|operassion|operassion}}.",
+'backend-fail-contenttype'   => "As peul pa determinesse la sòrt ëd contnù dl'archivi da memorisé a «$1».",
+'backend-fail-batchsize'     => "Ël terminal a l'ha dàit un total ëd $1 {{PLURAL:$1|operassion|operassion}} d'archivi; ël lìmit a l'é $2 {{PLURAL:$1|operassion|operassion}}.",
 
 # Lock manager
 'lockmanager-notlocked'        => "As peul pa dësblochesse «$1»; a l'é nen blocà.",
@@ -2362,9 +2363,9 @@ Ch'a consulta la [[Special:BlockList|lista dj'IP blocà]] për rivëdde ij bloca
 'change-blocklink'                => 'modifiché ël blocagi',
 'contribslink'                    => 'contribussion',
 'emaillink'                       => 'mandé un mëssagi eletrònich',
-'autoblocker'                     => "A l'é scataje un blocagi përchè soa adrëssa IP a l'é staita dovrà ant j'ùltim temp da l'Utent \"[[User:\$1|\$1]]\". Ël motiv për bloché \$1 a l'é stait: \"'''\$2'''\"",
+'autoblocker'                     => "A l'é scataje un blocagi përchè soa adrëssa IP a l'é staita dovrà ant j'ùltim temp da l'Utent «[[User:$1|$1]]». Ël motiv për bloché $1 a l'é stait: «'''$2'''»",
 'blocklogpage'                    => 'Registr dij blocagi',
-'blocklog-showlog'                => "St'utent-sì a l'é già stàit blocà. Ël registr dij blòch a l'é dàit sì sota për arferiment:",
+'blocklog-showlog'                => "St'utent-sì a l'é già stàit blocà ant ël passà. Ël registr dij blocagi a l'é disponìbil sì-sota 'me arferiment:",
 'blocklog-showsuppresslog'        => "St'utent-sì a l'é già stàit blocà e stërmà. Ël registr stërmà a l'é dàit sì sota për arferiment:",
 'blocklogentry'                   => '"[[$1]]" a l\'é stait blocà për $2 $3',
 'reblock-logentry'                => 'cambià le ampostassion dël blòch për [[$1]] con un temp ëd fin ëd $2 $3',
@@ -2790,7 +2791,7 @@ $1",
 An fasend-lo travajé ansima a sò ordinator chiel a podrìa porteje ëd dann a sò sistema.",
 'imagemaxsize'           => "Lìmit ëd la dimension ëd la figura:<br /> ''(për pàgine ëd descrission dij file)''",
 'thumbsize'              => 'Amzura dle figurin-e:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|pàgina|pàgine}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|pàgina|pàgine}}',
 'file-info'              => "amzura dl'archivi: $1, sòrt MIME: $2",
 'file-info-size'         => '$1 × $2 pixel, amzure: $3, sòrt MIME: $4',
 'file-info-size-pages'   => "$1 × $2 pontin, dimension ëd l'archivi: $3, sòrt MIME: $4, $5 {{PLURAL:$5|pàgina|pàgine}}",

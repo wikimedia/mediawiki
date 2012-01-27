@@ -14,6 +14,7 @@
  * @author Dsvyas
  * @author Haritosh
  * @author Jay
+ * @author Kaganer
  * @author Mohit.dalal
  * @author Nehal
  * @author Ramesh
@@ -2911,7 +2912,7 @@ Clicking '''''{{int:undeletereset}}''''' will clear the comment field and all ch
 તેને ચલવતા, તમારા સંગણકને ભય છે.",
 'imagemaxsize'           => "ચિત્રના કદની મર્યાદા:<br />''(for file description pages)''",
 'thumbsize'              => 'લઘુચિત્ર કદ',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|પાનું|પાના}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|પાનું|પાના}}',
 'file-info'              => 'ફાઇલ કદ : $1, MIME પ્રકાર: $2',
 'file-info-size'         => '$1 × $2 પીક્સલ, ફાઇલનું કદ: $3, MIME પ્રકાર: $4',
 'file-nohires'           => 'આથી વધુ આવર્તન ઉપલબ્ધ નથી.',

@@ -8,6 +8,7 @@
  * @file
  *
  * @author Chaduvari
+ * @author Kaganer
  * @author Kiranmayee
  * @author Meno25
  * @author Mpradeep
@@ -2747,7 +2748,7 @@ $1',
 దాన్ని నడపడం వల్ల, మీ సిస్టమ్ లొంగిపోవచ్చు.",
 'imagemaxsize'           => "బొమ్మ పరిమాణంపై పరిమితి:<br />''(దస్త్రపు వివరణ పుటల కొరకు)''",
 'thumbsize'              => 'నఖచిత్రం వైశాల్యం:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|పేజీ|పేజీలు}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|పేజీ|పేజీలు}}',
 'file-info'              => 'ఫైలు పరిమాణం: $1, MIME రకం: $2',
 'file-info-size'         => '$1 × $2 పిక్సెళ్ళు, ఫైలు పరిమాణం: $3, MIME రకం: $4',
 'file-info-size-pages'   => '$1 × $2 పిక్సెళ్ళు, దస్త్రపు పరిమాణం: $3, MIME రకం: $4, $5 {{PLURAL:$5|పేజీ|పేజీలు}}',

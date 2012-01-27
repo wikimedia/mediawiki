@@ -11,6 +11,7 @@
  * @author Don Alessandro
  * @author Emperyan
  * @author Gulmammad
+ * @author Kaganer
  * @author PPerviz
  * @author PrinceValiant
  * @author Sortilegus
@@ -424,10 +425,10 @@ Xahiş edirik bunu bir [[Special:ListUsers/sysop|İdarəçilərə]], URL not ed�
 'readonly_lag'         => 'Məlumatlar bazasının ikinci dərəcəli serveri əsas serverlə əlaqə yaradanadək məlumatlar bazası avtomatik olaraq bloklanmışdır',
 'internalerror'        => 'Daxili xəta',
 'internalerror_info'   => 'Daxili xəta: $1',
-'fileappenderrorread'  => 'Daxil olmuş edilərkən "$1" oxuna bilmir.',
+'fileappenderrorread'  => 'Əlavələr daxil edilərkən "$1" oxuna bilmədi.',
 'fileappenderror'      => '"$1" faylı "$2" faylına əlavə edilə bilmir.',
-'filecopyerror'        => '"$1" faylı "$2" faylına kopiyalanmır.',
-'filerenameerror'      => '«$1» faylının adını «$2» dəyişmək mümkün deyil',
+'filecopyerror'        => '"$1" faylı "$2" faylına kopyalanmır.',
+'filerenameerror'      => '"$1" faylının adını "$2"-yə dəyişmək mümkün deyil',
 'filedeleteerror'      => '"$1" fayılını silə bilmədi.',
 'directorycreateerror' => '"$1" direktoriyasını yaratmaq mümkün deyil',
 'filenotfound'         => '"$1" faylını tapa bilmədi.',
@@ -471,7 +472,7 @@ Göstərilən səbəb: "\'\'$2\'\'".',
 # Login and logout pages
 'logouttext'                 => "'''Sistemdən çıxdınız.'''
 
-Siz {{SITENAME}}nı anonim olaraq istifadə etməyə davam edə bilər və ya eyni, yaxud başqa istifadəçi adı ilə [[Special:UserLogin|yenidən daxil ola]] bilərsiniz. Veb-brauzerin keş yaddaşını təmizləyənədək bəzi səhifələr hələ də sistemdə imişsiniz kimi görünə bilər.",
+Siz {{SITENAME}} saytını anonim olaraq istifadə etməyə davam edə bilər və ya eyni, yaxud başqa istifadəçi adı ilə [[Special:UserLogin|yenidən daxil ola]] bilərsiniz. Veb-brauzerin keş yaddaşını təmizləyənədək bəzi səhifələr hələ də sistemdə imişsiniz kimi görünə bilər.",
 'welcomecreation'            => '== $1, xoş gəlmişsiniz! ==
 Hesabınız yaradıldı.
 [[Special:Preferences|{{SITENAME}} nizamlamalarınızı]] dəyişdirməyi unutmayın.',
@@ -479,9 +480,9 @@ Hesabınız yaradıldı.
 'yourpassword'               => 'Parol:',
 'yourpasswordagain'          => 'Parolu təkrar yazın:',
 'remembermypassword'         => 'Məni bu kompüterdə xatırla (maksimum $1 {{PLURAL:$1|gün|gün}})',
-'securelogin-stick-https'    => 'Loqini daxil etdikdən sonra HTTPS-lə əlaqədə qal',
+'securelogin-stick-https'    => 'Daxil olduqdan sonra HTTPS-lə əlaqədə qal',
 'yourdomainname'             => 'Sizin domain',
-'externaldberror'            => 'Ya verilənlər bazasının doğruluğunu yoxlamada xəta baş verib, yaxud da siz xarici akkauntu yeniləməyi bacarmırsınız.',
+'externaldberror'            => 'Verilənlər bazasının doğruluğunu yoxlamada xəta baş verib və yaxud sizin xarici istifadəçi qeydiyyatını yeniləmək hüququnuz yoxdur.',
 'login'                      => 'Daxil ol',
 'nav-login-createaccount'    => 'Daxil ol / hesab yarat',
 'loginprompt'                => '{{SITENAME}}-ya daxil olmaq üçün "veb kökələrinin" (cookies) istifadəsinə icazə verilməlidir.',
@@ -494,15 +495,15 @@ Hesabınız yaradıldı.
 'nologinlink'                => 'hesab açın',
 'createaccount'              => 'Hesab aç',
 'gotaccount'                 => "Giriş hesabınız varsa '''$1'''.",
-'gotaccountlink'             => 'daxil olun',
+'gotaccountlink'             => 'Daxil olun',
 'userlogin-resetlink'        => 'Daxilolma məlumatlarınızı unutmusunuz?',
 'createaccountmail'          => 'e-məktub ilə',
 'createaccountreason'        => 'Səbəb:',
 'badretype'                  => 'Daxil etdiyiniz parol uyğun gəlmir.',
 'userexists'                 => 'Daxil edilmiş ad artıq istifadədədir.
 Lütfən başqa ad seçin.',
-'loginerror'                 => 'Daxil olunma xətası',
-'createaccounterror'         => '$1 Hesab açılmadı',
+'loginerror'                 => 'Daxil olma xətası',
+'createaccounterror'         => 'Bu istifadəçi adını yaratmaq mümkün olmadı: $1',
 'nocookiesnew'               => 'İstifadəçi qeydiyyatı yaradıldı, lakin daxil ola bilmədiniz.
 {{SITENAME}} iştirakçıların təqdim olunması üçün "cookie"lərdən istifadə edir.
 Siz "cookie"lərin qəbuluna qadağa qoymusunuz.
@@ -513,7 +514,7 @@ Kukların qoşulmasına əmin olduqdan sonra səhifəni yeniləyib bir daha sın
 'nocookiesforlogin'          => '{{int:nocookieslogin}}',
 'noname'                     => 'Siz mövcud olan istifadəçi adı daxil etməmisiniz.',
 'loginsuccesstitle'          => 'Daxil oldunuz',
-'loginsuccess'               => "'''\"\$1\" adı ilə {{SITENAME}}ya daxil oldunuz.'''",
+'loginsuccess'               => "'''\"\$1\" adı ilə {{SITENAME}} saytına daxil oldunuz.'''",
 'nosuchuser'                 => '"$1" adında istifadəçi mövcud deyil.
 İstifadəçi adları hərflərin böyük və ya kiçik olmasına həssasdırlar.
 Düzgün yazdığına əmin ol, yaxud [[Special:UserLogin/signup|yeni hesab aç]].',
@@ -1478,7 +1479,7 @@ $1',
 'statistics-users-active-desc' => 'Son {{PLURAL:$1|gün|$1 gündə}} iş görən istifadəçilər',
 'statistics-mostpopular'       => 'Ən çox baxılan səhifələr',
 
-'disambiguations'      => 'Dəqiqləşdirmə səhifələri',
+'disambiguations'      => 'Dəqiqləşdirmə səhifələrinə keçid verən səhifələr',
 'disambiguationspage'  => 'Template:dəqiqləşdirmə',
 'disambiguations-text' => "Aşağıdakı səhifələr '''dəqiqləşdirmə səhifələrinə''' keçid verir. Bunun əvəzinə onlar çox guman ki, müvafiq konkret bir məqaləni göstərməlidirlər.
 <br />Səhifə o zaman dəqiqləşdirmə səhifəsi hesab edilir ki, onda  [[MediaWiki:Disambiguationspage]]-dən keçid verilmiş şablon istifadə edilir.",
@@ -1544,7 +1545,7 @@ Hazırda [[$2]]-yə istiqamətlənib.',
 'listusers-editsonly'     => 'Yalnız redaktələri olan istifadəçiləri göstər',
 'listusers-creationsort'  => 'Yaranma tarixinə görə sırala',
 'usereditcount'           => '$1 {{PLURAL:$1|redaktə}}',
-'usercreated'             => '$1 $2 vaxtda yaradılıb',
+'usercreated'             => 'Saat $2, $1 tarixində {{GENDER:$3|qeydiyyatdan keçib}}',
 'newpages'                => 'Yeni səhifələr',
 'newpages-username'       => 'İstifadəçi adı:',
 'ancientpages'            => 'Ən köhnə səhifələr',
@@ -1564,8 +1565,8 @@ Hazırda [[$2]]-yə istiqamətlənib.',
 'booksources-text'          => 'Aşağıda yeni və işlənmiş kitablar satan xarici keçidlərdə siz axtardığınız kitab haqqında əlavə məlumat ala bilərsiz:',
 
 # Special:Log
-'specialloguserlabel'  => 'İstifadəçi:',
-'speciallogtitlelabel' => 'Başlıq:',
+'specialloguserlabel'  => 'İcraçı:',
+'speciallogtitlelabel' => 'Məqsəd (başlıq və ya istifadəçi):',
 'log'                  => 'Loglar',
 'all-logs-page'        => 'Bütün ictimai qeydlər',
 'alllogstext'          => '{{SITENAME}} üçün bütün mövcud qeydlərin birgə göstərişi.
@@ -1602,7 +1603,7 @@ Həmçinin, [[Special:WantedCategories|tələb olunan kateqoriyalara]] baxın.',
 'sp-deletedcontributions-contribs' => 'fəaliyyət',
 
 # Special:LinkSearch
-'linksearch'      => 'Xarici keçidlər',
+'linksearch'      => 'Xarici keçid axtar',
 'linksearch-pat'  => 'Axtarış sxemi:',
 'linksearch-ns'   => 'Adlar fəzası:',
 'linksearch-ok'   => 'Axtar',
@@ -1679,6 +1680,7 @@ Fərdi hüquqlar haqqında əlavə məlumatı [[{{MediaWiki:Listgrouprights-help
 'mywatchlist'          => 'İzlədiyim səhifələr',
 'watchlistfor2'        => '$1 $2 üçün',
 'nowatchlist'          => 'İzləmə siyahınız böşdur.',
+'watchlistanontext'    => 'Lütfən, izlədiyiniz səhifələri görmək və ya redaktə etmək üçün $1.',
 'watchnologin'         => 'Daxil olmamısınız',
 'watchnologintext'     => 'İzləmə siyahınızda dəyişiklik aparmaq üçün [[Special:UserLogin|daxil olmalısınız]].',
 'addwatch'             => 'İzləmə siyahısına əlavə et',
@@ -2344,8 +2346,8 @@ $1',
 # Media information
 'imagemaxsize'           => "Şəkilin maksimal tutumu:<br />''(faylın təsviri səhifələri üçün)''",
 'thumbsize'              => 'Kiçik ölçü:',
-'widthheight'            => '$1×$2',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|səhifə|səhifələr}}',
+'widthheight'            => '$1 × $2',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|səhifə|səhifələr}}',
 'file-info'              => 'faylın ölçüsü: $1, MIME tipi: $2',
 'file-info-size'         => '$1 × $2 piksel, fayl həcmi: $3, MIME növü: $4',
 'file-nohires'           => 'Daha dəqiq versiyası yoxdur.',

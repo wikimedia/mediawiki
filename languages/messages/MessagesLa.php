@@ -10,6 +10,7 @@
  * @author Andrew Dalby
  * @author Dferg
  * @author Esteban97
+ * @author Kaganer
  * @author LeighvsOptimvsMaximvs
  * @author McDutchie
  * @author MissPetticoats
@@ -1985,7 +1986,7 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 'imagemaxsize'         => "Magnitudo maxima fasciculorum:<br />
 ''(in pagina descriptionis fasciculi)''",
 'thumbsize'            => 'Magnitudo pollicisunguis:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pagina|paginae}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|pagina|paginae}}',
 'file-info'            => 'magnitudo fasciculi: $1, typus MIME: $2',
 'file-info-size'       => '$1 × $2 elementa imaginalia, magnitudo fasciculi: $3, typus MIME: $4',
 'file-nohires'         => 'Nulla maior resolutio exstat.',

@@ -10,6 +10,7 @@
  * @author Assele
  * @author Comp1089
  * @author Haqmar
+ * @author Kaganer
  * @author Reedy
  * @author Roustammr
  * @author Timming
@@ -2763,7 +2764,7 @@ $1',
 Уны башҡарған саҡта һеҙҙең системағыҙға хәүеф янауы мөмкин.",
 'imagemaxsize'           => "Рәсем дәүмәле өсөн сик: <br />''(файл тасуирламаһы биттәре өсөн)''",
 'thumbsize'              => 'Шартлы рәсем дәүмәле:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|бит}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|бит}}',
 'file-info'              => 'файлдың дәүмәле: $1, MIME төрө: $2',
 'file-info-size'         => '$1 × $2 нөктә, файлдың дәүмәле: $3, MIME төрө: $4',
 'file-info-size-pages'   => '$1 × $2 пиксель, файл күләме: $3, MIME төр: $4, $5 {{PLURAL:$5|бит}}',

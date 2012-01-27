@@ -10,6 +10,7 @@
  * @author Andrijko Z.
  * @author Bert Jickty
  * @author HalanTul
+ * @author Kaganer
  * @author Meno25
  * @author Urhixidur
  */
@@ -2750,7 +2751,7 @@ $1',
 Куһаҕан буоллаҕына систиэмэни алдьатыан сөп.",
 'imagemaxsize'           => "Ойуу улаханын хааччахтааһын:<br />''(билэ туһунан сирэйгэ аналлаах)''",
 'thumbsize'              => 'Кыра ойуу (миниатюра) кээмэйэ:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|сирэй|сирэй}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|сирэй|сирэй}}',
 'file-info'              => 'билэ кээмэйэ: $1, MIME тиибэ: $2',
 'file-info-size'         => '$1 × $2 пииксэл, билэ кээмэйэ: $3, MIME тиибэ: $4',
 'file-info-size-pages'   => '$1 × $2 пиксель, билэ кээмэйэ: $3, MIME-көрүҥ: $4, $5 сирэйдээх',

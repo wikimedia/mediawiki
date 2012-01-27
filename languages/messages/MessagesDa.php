@@ -21,6 +21,7 @@
  * @author Hylle
  * @author Jan Friberg
  * @author Jon Harald Søby
+ * @author Kaganer
  * @author Kwi
  * @author Lars J. Helbo <lars.helbo@gmail.com>
  * @author Leolaursen
@@ -2885,7 +2886,7 @@ $1',
 Du kan beskadige dit system hvis du udfører den.",
 'imagemaxsize'           => "Maksimal billedstørrelse<br />''(på filbeskrivelsessider)''",
 'thumbsize'              => 'Thumbnailstørrelse :',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|side|sider}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|side|sider}}',
 'file-info'              => 'Filstørrelse: $1, MIME-Type: $2',
 'file-info-size'         => '$1 × $2 punkter, filstørrelse: $3, MIME-Type: $4',
 'file-info-size-pages'   => '$1 × $2 punkter, filstørrelse: $3, MIME-type: $4, $5 {{PLURAL:$5|side|sider}}',

@@ -18,6 +18,7 @@
  * @author Dineshjk
  * @author Hemant wikikosh1
  * @author Htt
+ * @author Kaganer
  * @author Kamal
  * @author Kannankumar
  * @author Karunakar
@@ -2816,16 +2817,16 @@ $1',
 'mediawarning'           => 'चेतावनी मीडिया',
 'imagemaxsize'           => "छवि आकार सीमा:<br />''(संचिका वर्णन पन्नों के लिए)''",
 'thumbsize'              => 'अंगूठानख आकार:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|पन्ना|पन्ने}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|पन्ना|पन्ने}}',
 'file-info'              => 'फ़ाईल का आकार: $1, MIME प्रकार: $2',
 'file-info-size'         => '$1 × $2 चित्रतत्व, संचिका का आकार: $3, माइम प्रकार: $4',
-'file-info-size-pages'   => '$1×  $2  पिक्सेल, फ़ाइल का आकार:  $3 , MIME प्रकार:  $4 ,  $5   {{PLURAL:$5| page|pages}}',
+'file-info-size-pages'   => '$1 × $2  पिक्सेल, फ़ाइल का आकार:  $3 , MIME प्रकार:  $4 ,  $5   {{PLURAL:$5| page|pages}}',
 'file-nohires'           => 'इससे ज्यादा रिज़ोल्यूशन उपलब्ध नहीं हैं.',
 'svg-long-desc'          => 'SVG फ़ाईल, साधारणत: $1 × $2 पीक्सेल्स, फ़ाईलका आकार: $3',
 'show-big-image'         => 'सम्पूर्ण रिज़ोल्यूशन',
 'show-big-image-preview' => 'इस पूर्वावलोकन का आकार:  $1 ।',
 'show-big-image-other'   => 'अन्य  {{PLURAL:$2| resolution|resolutions}}:  $1 ।',
-'show-big-image-size'    => '$1×  $2  पिक्सेल',
+'show-big-image-size'    => '$1 × $2  पिक्सेल',
 'file-info-gif-looped'   => 'चक्रित',
 'file-info-gif-frames'   => '$1 {{PLURAL:$1|ढाँचा|ढाँचे}}',
 'file-info-png-looped'   => 'चक्रित',

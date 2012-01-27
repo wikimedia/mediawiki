@@ -1805,7 +1805,7 @@ $1",
 'recentchangeslinked-toolbox'  => 'تغییرات مرتبط',
 'recentchangeslinked-title'    => 'تغییرات مرتبط با $1',
 'recentchangeslinked-noresult' => 'در بازهٔ ‌زمانی داده‌شده تغییری در صفحه‌های پیوندداده رخ نداده‌است.',
-'recentchangeslinked-summary'  => "در زیر فهرستی از تغییرات اخیر صفحه‌های پیوند داده شده به این صفحه (یا اعضای رده مورد نظر) را می‌بینید.
+'recentchangeslinked-summary'  => "در زیر فهرستی از تغییرات اخیر صفحه‌های پیوند داده شده از این صفحه (یا اعضای رده مورد نظر) را می‌بینید.
 صفحه‌هایی که در [[Special:Watchlist|فهرست پی‌گیری‌هایتان]] باشند به صورت '''پررنگ''' نشان داده می‌شوند.",
 'recentchangeslinked-page'     => 'نام صفحه:',
 'recentchangeslinked-to'       => 'نمایش تغییرات صفحه‌هایی که به صفحهٔ داده‌شده پیوند‌ دارند',
@@ -3547,7 +3547,7 @@ $1',
 
 'exif-focalplaneresolutionunit-2' => 'اینچ',
 
-'exif-sensingmethod-1' => 'تعریف نشده',
+'exif-sensingmethod-1' => 'تعریف‌نشده',
 'exif-sensingmethod-2' => 'حسگر ناحیهٔ رنگی یک تراشه‌ای',
 'exif-sensingmethod-3' => 'حسگر ناحیهٔ رنگی دو تراشه‌ای',
 'exif-sensingmethod-4' => 'حسگر ناحیهٔ رنگی سه تراشه‌ای',

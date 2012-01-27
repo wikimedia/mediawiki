@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Kaganer
  * @author Laila
  * @author Skuolfi
  * @author Teak
@@ -1140,7 +1141,7 @@ Siiddus $2 lea listu maŋimus sihkomiin.',
 'nextdiff'     => 'Čuovvovaš rievdadus →',
 
 # Media information
-'widthheightpage' => '$1×$2, $3 siiddut',
+'widthheightpage' => '$1 × $2, $3 siiddut',
 
 # Special:NewFiles
 'newimages'             => 'Ođđa govat',

@@ -10,6 +10,7 @@
  * @author Chaim Shel
  * @author Jiddisch
  * @author Joystick
+ * @author Kaganer
  * @author Reedy
  * @author Teak
  * @author Yidel
@@ -2745,7 +2746,7 @@ $1',
 'nextdiff'     => 'קומענדיקע ווערסיע ←',
 
 # Media information
-'widthheightpage'      => '$1×$2, {{PLURAL:$3|איין בלאט|$3 בלעטער}}',
+'widthheightpage'      => '$1 × $2, {{PLURAL:$3|איין בלאט|$3 בלעטער}}',
 'file-info'            => 'טעקע גרייס: $1, MIME טיפ: $2',
 'file-info-size'       => '$1 × $2 פיקסעל, טעקע גרייס: $3, טיפ MIME: $4',
 'file-nohires'         => 'נישטא מיט א העכערע רעזאלוציע.',

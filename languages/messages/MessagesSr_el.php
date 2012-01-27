@@ -8,6 +8,7 @@
  * @file
  *
  * @author FriedrickMILBarbarossa
+ * @author Kaganer
  * @author Liangent
  * @author Meno25
  * @author Michaello
@@ -3171,17 +3172,17 @@ $1',
 Ako ga pokrenete, vaš računar može biti ugrožen.",
 'imagemaxsize'           => "Ograničenje veličine slike:<br />''(na stranicama za opis datoteka)''",
 'thumbsize'              => 'Veličina umanjenog prikaza :',
-'widthheight'            => '$1×$2',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|stranica|stranice|stranica}}',
+'widthheight'            => '$1 × $2',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|stranica|stranice|stranica}}',
 'file-info'              => 'veličina: $1, MIME tip: $2',
-'file-info-size'         => '$1×$2 piksela, veličina: $3, MIME tip: $4',
+'file-info-size'         => '$1 × $2 piksela, veličina: $3, MIME tip: $4',
 'file-info-size-pages'   => '$1 × $2 piksela, veličina: $3, MIME vrsta: $4, $5 {{PLURAL:$5|stranica|stranice|stranica}}',
 'file-nohires'           => 'Veća rezolucija nije dostupna.',
-'svg-long-desc'          => 'SVG datoteka, nominalno $1×$2 tačaka, veličina: $3',
+'svg-long-desc'          => 'SVG datoteka, nominalno $1 × $2 tačaka, veličina: $3',
 'show-big-image'         => 'Puna veličina',
 'show-big-image-preview' => 'Veličina ovog prikaza: $1.',
 'show-big-image-other'   => '{{PLURAL:$2|Druga rezolucija|Druge rezolucije}}: $1.',
-'show-big-image-size'    => '$1×$2 piksela',
+'show-big-image-size'    => '$1 × $2 piksela',
 'file-info-gif-looped'   => 'petlja',
 'file-info-gif-frames'   => '$1 {{PLURAL:$1|kadar|kadra|kadrova}}',
 'file-info-png-looped'   => 'petlja',
@@ -4014,7 +4015,7 @@ Slike su prikazane u punoj veličini, a druge vrste datoteka se pokreću pomoću
 'fileduplicatesearch-legend'    => 'Pretraga duplikata',
 'fileduplicatesearch-filename'  => 'Naziv datoteke:',
 'fileduplicatesearch-submit'    => 'Pretraži',
-'fileduplicatesearch-info'      => '$1×$2 piksela<br />Veličina: $3<br />MIME tip: $4',
+'fileduplicatesearch-info'      => '$1 × $2 piksela<br />Veličina: $3<br />MIME tip: $4',
 'fileduplicatesearch-result-1'  => 'Datoteka „$1“ nema identičnih duplikata.',
 'fileduplicatesearch-result-n'  => 'Datoteka „$1“ ima {{PLURAL:$2|identičan duplikat|$2 identična duplikata|$2 identičnih duplikata}}.',
 'fileduplicatesearch-noresults' => 'Datoteka pod nazivom „$1“ nije pronađena.',

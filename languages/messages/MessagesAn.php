@@ -8,6 +8,7 @@
  * @file
  *
  * @author Juanpabl
+ * @author Kaganer
  * @author Malafaya
  * @author Reedy
  * @author Remember the dot
@@ -2841,10 +2842,10 @@ $1',
 En executar-lo, podría meter en un contornillo a seguridat d'o suyo sistema.",
 'imagemaxsize'           => "Limite de grandaria d'as imáchens:<br />''(ta pachinas de descripción de fichers)''",
 'thumbsize'              => "Midas d'a miniatura:",
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|pachina|pachinas}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|pachina|pachinas}}',
 'file-info'              => "grandaria d'o fichero: $1; tipo MIME: $2",
 'file-info-size'         => "$1 × $2 píxels; grandaria d'o fichero: $3; tipo MIME: $4",
-'file-info-size-pages'   => "$1× $2 pixels, grandaria d'o fichero: $3, tipo MIME: $4, $5 {{PLURAL:$5|pachina|pachinas}}",
+'file-info-size-pages'   => "$1 × $2 pixels, grandaria d'o fichero: $3, tipo MIME: $4, $5 {{PLURAL:$5|pachina|pachinas}}",
 'file-nohires'           => 'No bi ha garra versión con resolución más gran.',
 'svg-long-desc'          => 'fichero SVG, nominalment $1 × $2 píxels, grandaria: $3',
 'show-big-image'         => 'Imachen en a maxima resolución',

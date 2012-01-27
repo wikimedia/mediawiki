@@ -12,6 +12,7 @@
  * @author Ariesanywhere
  * @author Harley Hartwell
  * @author Horus
+ * @author Kaganer
  * @author Korrawit
  * @author LMNOP at Thai Wikipedia (manop@itshee.com) since July 2007
  * @author Manop
@@ -2781,7 +2782,7 @@ $1',
 ระบบของท่านอาจเสียหายอันเนื่องจากโค้ดทำงาน",
 'imagemaxsize'         => "ขนาดภาพที่จำกัด:<br />''(สำหรับหน้าอธิบายภาพ)''",
 'thumbsize'            => 'ขนาดรูปย่อ:',
-'widthheightpage'      => '{{PLURAL:$3|หน้า|หน้า}} $1×$2, $3',
+'widthheightpage'      => '{{PLURAL:$3|หน้า|หน้า}} $1 × $2, $3',
 'file-info'            => 'ขนาดไฟล์: $1, ชนิดไมม์: $2',
 'file-info-size'       => '$1 × $2 พิกเซล, ขนาดไฟล์: $3, ชนิดไมม์: $4',
 'file-info-size-pages' => '$1 × $2 พิกเซล, ขนาดไฟล์: $3, ประเภท MIME: $4, $5 {{PLURAL:$5|หน้า|หน้า}}',

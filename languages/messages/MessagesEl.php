@@ -21,6 +21,7 @@
  * @author Geraki
  * @author Glavkos
  * @author Grondin
+ * @author Kaganer
  * @author Kiolalis
  * @author Kiriakos
  * @author Lou
@@ -3037,7 +3038,7 @@ $1',
 Εκτελώντας το, μπορεί να βλάψει το σύστημα του υπολογιστή σας.",
 'imagemaxsize'           => "Όριο μεγέθους εικόνων:<br />''(στις σελίδες περιγραφής εικόνων)''",
 'thumbsize'              => 'Μέγεθος μικρογραφίας:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|σελίδα|σελίδες}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|σελίδα|σελίδες}}',
 'file-info'              => 'μέγεθος αρχείου: $1, τύπος MIME: $2',
 'file-info-size'         => '$1 × $2 εικονοστοιχεία, μέγεθος αρχείου: $3, τύπος MIME: $4',
 'file-info-size-pages'   => '$1 × $2 εικονοστοιχεία, μέγεθος αρχείου: $3 , τύπος MIME: $4 , $5 {{PLURAL:$5| σελίδα | σελίδες}}',

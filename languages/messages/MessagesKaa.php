@@ -11,6 +11,7 @@
  * @author Atabek
  * @author Emperyan
  * @author Jiemurat
+ * @author Kaganer
  * @author Reedy
  * @author Urhixidur
  */
@@ -1795,7 +1796,7 @@ Please visit [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and 
 # Media information
 'thumbsize'       => "Miniatyuranın' ha'jmi:",
 'widthheight'     => '$1 × $2',
-'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|bet|bet}}',
+'widthheightpage' => '$1 × $2, $3 {{PLURAL:$3|bet|bet}}',
 'file-info'       => "fayldın' ha'jmi: $1, MIME tu'ri: $2",
 'file-info-size'  => "$1 × $2 piksel, fayldın' ha'jmi: $3, MIME tu'ri: $4",
 'file-nohires'    => 'Bunnan joqarı imkaniyatlı tabılmadı.',

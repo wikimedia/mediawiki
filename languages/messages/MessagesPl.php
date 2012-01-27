@@ -17,6 +17,7 @@
  * @author Herr Kriss
  * @author Holek
  * @author Jwitos
+ * @author Kaganer
  * @author Lajsikonik
  * @author Lampak
  * @author Leinad
@@ -3080,7 +3081,7 @@ $1',
 Jeśli go otworzysz, możesz zarazić swój system.",
 'imagemaxsize'           => "Ograniczenie wielkości obrazków<br />''(na stronach opisu plików)''",
 'thumbsize'              => 'Rozmiar miniaturki',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|strona|strony|stron}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|strona|strony|stron}}',
 'file-info'              => 'rozmiar pliku: $1, typ MIME: $2',
 'file-info-size'         => '$1 × $2 pikseli, rozmiar pliku: $3, typ MIME: $4',
 'file-info-size-pages'   => '$1 × $2 pikseli, rozmiar pliku: $3, typ MIME: $4, $5 {{PLURAL:$5|strona|strony|stron}}',

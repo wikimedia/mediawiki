@@ -10,6 +10,7 @@
  * @author Derbeth
  * @author Dunak
  * @author Dundak
+ * @author Kaganer
  * @author Michawiki
  * @author Murjarik
  * @author Nepl1
@@ -2840,7 +2841,7 @@ $1',
 'mediawarning'           => "'''Warnowanje''': Toś ten datajowy typ móžo wopśimjeś złosny programowy kod. Gaž toś ten kod se wuwjeźo, twój system móžo se wobškóźeś.",
 'imagemaxsize'           => "Maksimalna wobrazowa wjelikosć:<br />'' (za boki datajowego wopisanja)''",
 'thumbsize'              => 'Rozměra miniaturow:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|bok|boka|boki|bokow}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|bok|boka|boki|bokow}}',
 'file-info'              => 'wjelikosć dataje: $1, MIME-Typ: $2',
 'file-info-size'         => '$1 × $2 pikselow, wjelikosć dataje: $3, MIME-Typ: $4',
 'file-info-size-pages'   => '$1 × $2 pikselow, wjelikosć dataje: $3, MIME-typ: $4, $5 {{PLURAL:$5|bok|boka|boki|bokow}}',

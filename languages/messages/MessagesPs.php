@@ -8,6 +8,7 @@
  * @file
  *
  * @author Ahmed-Najib-Biabani-Ibrahimkhel
+ * @author Kaganer
  */
 
 $namespaceNames = array(
@@ -2062,7 +2063,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 
 # Media information
 'thumbsize'            => 'د بټنوک کچه:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|مخ|مخونه}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|مخ|مخونه}}',
 'file-info-size'       => '$1 × $2 پېکسل, د دوتنې کچه: $3, MIME بڼه: $4',
 'file-nohires'         => 'تر دې کچې لوړې بېلن نښې نشته.',
 'svg-long-desc'        => 'SVG دوتنه، نومېنلي $1 × $2 پېکسل، د دوتنې کچه: $3',

@@ -14,6 +14,7 @@
  * @author Harriv
  * @author Jaakonam
  * @author Jack Phoenix
+ * @author Kaganer
  * @author Mobe
  * @author Nedergard
  * @author Nike
@@ -2986,16 +2987,16 @@ $1',
 Suorittamalla sen järjestelmäsi voi muuttua epäluotettavaksi.",
 'imagemaxsize'           => 'Kuvien enimmäiskoko kuvaussivuilla',
 'thumbsize'              => 'Pienoiskuvien koko',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|sivu|sivua}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|sivu|sivua}}',
 'file-info'              => '$1, MIME-tyyppi: $2',
-'file-info-size'         => '$1×$2 kuvapistettä, $3, MIME-tyyppi: $4',
-'file-info-size-pages'   => '$1×$2 kuvapistettä, tiedoston koko $3, MIME-tyyppi $4, $5 {{PLURAL:$5|sivu|sivua}}',
+'file-info-size'         => '$1 × $2 kuvapistettä, $3, MIME-tyyppi: $4',
+'file-info-size-pages'   => '$1 × $2 kuvapistettä, tiedoston koko $3, MIME-tyyppi $4, $5 {{PLURAL:$5|sivu|sivua}}',
 'file-nohires'           => 'Tarkempaa kuvaa ei ole saatavilla.',
-'svg-long-desc'          => 'SVG-tiedosto; oletustarkkuus $1×$2 kuvapistettä; tiedostokoko $3',
+'svg-long-desc'          => 'SVG-tiedosto; oletustarkkuus $1 × $2 kuvapistettä; tiedostokoko $3',
 'show-big-image'         => 'Korkeatarkkuuksinen versio',
 'show-big-image-preview' => 'Tämän esikatselun koko: $1.',
 'show-big-image-other'   => '{{PLURAL:$2|Muu resoluutio|Muut resoluutiot}}: $1.',
-'show-big-image-size'    => '$1×$2 kuvapistettä',
+'show-big-image-size'    => '$1 × $2 kuvapistettä',
 'file-info-gif-looped'   => 'toistuva',
 'file-info-gif-frames'   => '$1 {{PLURAL:$1|kehys|kehystä}}',
 'file-info-png-looped'   => 'toistuva',
@@ -3646,7 +3647,7 @@ Kuvat näytetään täysikokoisina. Muut tiedostot avataan niille määritetyss�
 'fileduplicatesearch-legend'    => 'Etsi kaksoiskappaleita',
 'fileduplicatesearch-filename'  => 'Tiedostonimi',
 'fileduplicatesearch-submit'    => 'Etsi',
-'fileduplicatesearch-info'      => '$1×$2 kuvapistettä<br />Tiedostokoko: $3<br />MIME-tyyppi: $4',
+'fileduplicatesearch-info'      => '$1 × $2 kuvapistettä<br />Tiedostokoko: $3<br />MIME-tyyppi: $4',
 'fileduplicatesearch-result-1'  => 'Tiedostolla ”$1” ei ole identtisiä kaksoiskappaleita.',
 'fileduplicatesearch-result-n'  => 'Tiedostolla ”$1” on {{PLURAL:$2|yksi identtinen kaksoiskappale|$2 identtistä kaksoiskappaletta}}.',
 'fileduplicatesearch-noresults' => 'Tiedostoa nimeltä ”$1” ei löytynyt.',

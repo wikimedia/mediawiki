@@ -8,6 +8,7 @@
  * @file
  *
  * @author Joetaras
+ * @author Kaganer
  * @author McDutchie
  */
 
@@ -2877,7 +2878,7 @@ Ce l'esegue sus a 'u sisteme tue pò essere ca se combromette.",
 'imagemaxsize'           => "Limite d'a dimenzione e l'immaggine:<br />''(pe le pàggene de descrizione d'u file)''",
 'thumbsize'              => "Dimenziona d'a miniature:",
 'widthheight'            => '$1 × $2',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|pàgene|pàggene}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|pàgene|pàggene}}',
 'file-info'              => "dimenzione d'u fail: $1, tipe de MIME: $2",
 'file-info-size'         => "$1 × $2 pixel, dimenzione d'u fail: $3, tipe de MIME: $4",
 'file-info-size-pages'   => "$1 × $2 pixel, dimenzione d'u file: $3, tipe de MIME: $4, $5 {{PLURAL:$5|pàgene|pàggene}}",

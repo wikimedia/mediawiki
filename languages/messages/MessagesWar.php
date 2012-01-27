@@ -10,6 +10,7 @@
  * @author Estudyante
  * @author Harvzsf
  * @author JinJian
+ * @author Kaganer
  * @author לערי ריינהארט
  */
 
@@ -171,6 +172,7 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|Ini nga kaarangay mayda hin amo la nga fayl.|An mga nasunod nga {{PLURAL:$1|ka fayl|$1 ka mga fayl aada}} han hini nga kaarangay, tikang hin $2 nga kabug-osan.}}',
 'category-file-count-limited'    => 'An mga nasunod nga {{PLURAL:$1|ka fayl|$1 ka mga faly aada}} han yana nga kaarangay.',
 'listingcontinuesabbrev'         => 'pdyn.',
+'noindex-category'               => 'Mga diri nakatudlokan nga pagkli',
 
 'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
 
@@ -701,6 +703,9 @@ Dapat diri malabaw ha $1 {{PLURAL:$1|agi|mga agi}} nga kahilaba.',
 'gender-male'               => 'Lalaki',
 'gender-female'             => 'Babaye',
 'email'                     => 'E-mail',
+'prefs-help-email'          => "Diri pinipirit it pagbutang hin E-mail address, pero kinahanglan ini para hin pag-utro hin tigaman-hit-pagsulod (''password''), ngan kun mangalimot ka hit imo tigaman-hit-pagsulod.",
+'prefs-help-email-others'   => 'Puydi mo pilion nga it iba in makakontak ha imo gamit an e-mail pinaagi han sumpay ha imo gumaramit o hiruhimangraw nga pakli.
+An imo e-mail address in diri makikit-an kun an iba nga mga gumaramit in makontak ha imo.',
 'prefs-help-email-required' => 'Kinahanglanon it e-mail address.',
 'prefs-info'                => 'Panguna nga pananabotan',
 'prefs-signature'           => 'Pirma',
@@ -1209,7 +1214,7 @@ Makikit-an nimo an ginkuhaaan',
 'nextdiff'     => 'Burubag-o nga pagliwat',
 
 # Media information
-'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|pakli|mga pakli}}',
+'widthheightpage' => '$1 × $2, $3 {{PLURAL:$3|pakli|mga pakli}}',
 'file-info-size'  => '$1 × $2 nga pixel, kadako han fayl: $3, MIME nga tipo: $4',
 'file-nohires'    => 'Waray mas hiruhitaas nga resolusyon.',
 'svg-long-desc'   => 'SVG nga fayl, ginbabanabanahan nga $1 × $2 nga mga pixel, kadako han fayl: $3',

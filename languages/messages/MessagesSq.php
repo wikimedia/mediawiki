@@ -14,6 +14,7 @@
  * @author Dori
  * @author Eagleal
  * @author Ergon
+ * @author Kaganer
  * @author Marinari
  * @author Mdupont
  * @author MicroBoy
@@ -2929,7 +2930,7 @@ $1',
 Duke e përdorur sistemi juaj mund të rrezikohet.",
 'imagemaxsize'           => "Kufizoni madhësinë e fotos:<br />''(për faqet e përshkrimit të skedave)''",
 'thumbsize'              => 'Madhësia fotove përmbledhëse:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|faqe|faqe}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|faqe|faqe}}',
 'file-info'              => 'madhësia skedës: $1, lloji MIME: $2',
 'file-info-size'         => '$1 × $2 pixela, madhësia e skedës: $3, tipi MIME: $4',
 'file-info-size-pages'   => '$1 × $2 pixel, madhësia e dokumentit: $3 , MIME tipi: $4 , $5 {{PLURAL:$5| faqe | faqet}}',

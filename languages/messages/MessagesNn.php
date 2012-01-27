@@ -19,6 +19,7 @@
  * @author Harald Khan
  * @author Jon Harald Søby
  * @author Jorunn
+ * @author Kaganer
  * @author Marinsb
  * @author Najami
  * @author Nghtwlkr
@@ -2856,7 +2857,7 @@ $1',
 'mediawarning'           => "'''Åtvaring''': Denne fila kan innehalda skadeleg programkode, ved å køyra programmet kan systemet ditt ta skade.",
 'imagemaxsize'           => "Avgrens storleiken for bilete:<br />''(for sider som skildrar filer)''",
 'thumbsize'              => 'Miniatyrstørrelse:',
-'widthheightpage'        => '$1×$2, {{PLURAL:$3|éi side|$3 sider}}',
+'widthheightpage'        => '$1 × $2, {{PLURAL:$3|éi side|$3 sider}}',
 'file-info'              => 'filstorleik: $1, MIME-type: $2',
 'file-info-size'         => '$1 × $2 pikslar, filstorleik: $3, MIME-type: $4',
 'file-nohires'           => 'Høgare oppløysing er ikkje tilgjengeleg.',
