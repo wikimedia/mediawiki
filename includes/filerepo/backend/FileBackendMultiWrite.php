@@ -392,7 +392,7 @@ class FileBackendMultiWrite extends FileBackendBase {
 	 */
 	public function clearCache( array $paths = null ) {
 		foreach ( $this->backends as $backend ) {
-			$realPaths = is_array( $paths ) ? $this->substPaths( $paths ) : null;
+			$realPaths = is_array( $paths ) ? $this->substPaths( $paths, $backend ) : null;
 			$backend->clearCache( $realPaths );
 		}
 	}
