@@ -52,4 +52,27 @@ class LanguageArTest extends MediaWikiTestCase {
 			),
 		);
 	}
+	/** @dataProvider providePlural */
+	function testPlural( $result, $value ) {
+		$forms =  array( 'zero', 'one', 'two', 'few', 'many', 'other' );
+		$this->assertEquals( $result, $this->lang->convertPlural( $value, $forms ) );
+	}
+	function providePlural() {
+		return array (
+			array( 'zero', 0 ),
+			array( 'one', 1 ),
+			array( 'two', 2 ),
+			array( 'few', 3 ),
+			array( 'few', 9 ),
+			array( 'few', 110 ),
+			array( 'many', 11 ),
+			array( 'many', 15 ),
+			array( 'many', 99 ),
+			array( 'many', 9999 ),
+			array( 'other', 100 ),
+			array( 'other', 102 ),
+			array( 'other', 1000 ),
+			array( 'other', 1.7 ),
+		);
+	}
 }
