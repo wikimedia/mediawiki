@@ -63,11 +63,10 @@ class Language {
 	var $mMagicExtensions = array(), $mMagicHookDone = false;
 	private $mHtmlCode = null;
 
-	var $mNamespaceIds, $namespaceAliases;
 	var $dateFormatStrings = array();
 	var $mExtendedSpecialPageAliases;
 
-	public $namespaceNames;
+	protected $namespaceNames, $mNamespaceIds, $namespaceAliases;
 
 	/**
 	 * ReplacementArray object caches
@@ -331,7 +330,7 @@ class Language {
 	/**
 	 * @return array
 	 */
-	function getNamespaces() {
+	public function getNamespaces() {
 		if ( is_null( $this->namespaceNames ) ) {
 			global $wgMetaNamespace, $wgMetaNamespaceTalk, $wgExtraNamespaces;
 
@@ -363,6 +362,14 @@ class Language {
 			wfRunHooks( 'LanguageGetNamespaces', array( &$this->namespaceNames ) );
 		}
 		return $this->namespaceNames;
+	}
+	
+	/**
+	 * Arbitrarily set all of the namespace names at once. Mainly used for testing
+	 * @param $namespaces Array of namespaces (id => name)
+	 */
+	public function setNamespaces( array $namespaces ) {
+		$this->namespaceNames = $namespaces;
 	}
 
 	/**

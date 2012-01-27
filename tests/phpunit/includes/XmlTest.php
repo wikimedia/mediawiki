@@ -13,8 +13,8 @@ class XmlTest extends MediaWikiTestCase {
 		// Hardcode namespaces during test runs,
 		// so that html output based on existing namespaces
 		// can be properly evaluated.
-		self::$oldNamespaces = $wgContLang->namespaceNames;
-		$wgContLang->namespaceNames = array(
+		self::$oldNamespaces = $wgContLang->getNamespaces();
+		$wgContLang->setNamespaces( array(
 			-2 => 'Media',
 			-1 => 'Special',
 			0  => '',
@@ -31,13 +31,14 @@ class XmlTest extends MediaWikiTestCase {
 			11  => 'Template_talk',
 			100  => 'Custom',
 			101  => 'Custom_talk',
-		);
+		) );
 	}
 
 	public function tearDown() {
 		global $wgLang, $wgContLang;
 		$wgLang = self::$oldLang;
-		$wgContLang->namespaceNames = self::$oldNamespaces;
+		
+		$wgContLang->setNamespaces( self::$oldNamespaces );
 	}
 
 	public function testExpandAttributes() {

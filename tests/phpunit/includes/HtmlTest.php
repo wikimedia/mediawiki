@@ -12,7 +12,7 @@ class HtmlTest extends MediaWikiTestCase {
 		
 		self::$oldLang = $wgLang;
 		self::$oldContLang = $wgContLang;
-		self::$oldNamespaces = $wgContLang->namespaceNames;
+		self::$oldNamespaces = $wgContLang->getNamespaces();
 		self::$oldLanguageCode = $wgLanguageCode;
 		
 		$wgLanguageCode = 'en';
@@ -21,7 +21,7 @@ class HtmlTest extends MediaWikiTestCase {
 		// Hardcode namespaces during test runs,
 		// so that html output based on existing namespaces
 		// can be properly evaluated.
-		$wgContLang->namespaceNames = array(
+		$wgContLang->setNamespaces( array(
 			-2 => 'Media',
 			-1 => 'Special',
 			0  => '',
@@ -38,13 +38,13 @@ class HtmlTest extends MediaWikiTestCase {
 			11  => 'Template_talk',
 			100  => 'Custom',
 			101  => 'Custom_talk',
-		);
+		) );
 	}
 	
 	public function tearDown() {
 		global $wgLang, $wgContLang, $wgLanguageCode;
 
-		$wgContLang->namespaceNames = self::$oldNamespaces;
+		$wgContLang->setNamespaces( self::$oldNamespaces );
 		$wgLang = self::$oldLang;
 		$wgContLang = self::$oldContLang;
 		$wgLanguageCode = self::$oldLanguageCode;
