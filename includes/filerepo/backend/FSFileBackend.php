@@ -540,6 +540,7 @@ class FSFileBackendFileList implements Iterator {
 	/** @var RecursiveIteratorIterator */
 	protected $iter;
 	protected $suffixStart; // integer
+	protected $pos = 0; // integer
 
 	/**
 	 * @param $dir string file system directory
@@ -548,9 +549,8 @@ class FSFileBackendFileList implements Iterator {
 		$dir = realpath( $dir ); // normalize
 		$this->suffixStart = strlen( $dir ) + 1; // size of "path/to/dir/"
 		try {
-			$flags = FilesystemIterator::CURRENT_AS_FILEINFO | FilesystemIterator::SKIP_DOTS;
-			$this->iter = new RecursiveIteratorIterator(
-				new RecursiveDirectoryIterator( $dir, $flags ) );
+			# Get an iterator that will return leaf nodes (non-directories)
+			$this->iter = new RecursiveIteratorIterator( new RecursiveDirectoryIterator( $dir ) );
 		} catch ( UnexpectedValueException $e ) {
 			$this->iter = null; // bad permissions? deleted?
 		}
@@ -564,7 +564,7 @@ class FSFileBackendFileList implements Iterator {
 	}
 
 	public function key() {
-		return $this->iter->key();
+		return $this->pos;
 	}
 
 	public function next() {
@@ -573,9 +573,11 @@ class FSFileBackendFileList implements Iterator {
 		} catch ( UnexpectedValueException $e ) {
 			$this->iter = null;
 		}
+		++$this->pos;
 	}
 
 	public function rewind() {
+		$this->pos = 0;
 		try {
 			$this->iter->rewind();
 		} catch ( UnexpectedValueException $e ) {
