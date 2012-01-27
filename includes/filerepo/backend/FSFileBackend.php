@@ -1,4 +1,4 @@
-<?php
+g<?php
 /**
  * @file
  * @ingroup FileBackend
@@ -366,7 +366,7 @@ class FSFileBackend extends FileBackend {
 		if ( !empty( $params['noAccess'] ) ) {
 			if ( !file_exists( "{$contRoot}/.htaccess" ) ) {
 				wfSuppressWarnings();
-				$ok = file_put_contents( "{$dirRoot}/.htaccess", "Deny from all\n" );
+				$ok = file_put_contents( "{$contRoot}/.htaccess", "Deny from all\n" );
 				wfRestoreWarnings();
 				if ( !$ok ) {
 					$storeDir = "mwstore://{$this->name}/{$shortCont}";
