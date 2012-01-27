@@ -7,6 +7,10 @@
  * @since 1.19
  */
 class LockManagerGroup {
+
+	/**
+	 * @var LockManagerGroup
+	 */
 	protected static $instance = null;
 
 	/** @var Array of (name => ('class' =>, 'config' =>, 'instance' =>)) */
