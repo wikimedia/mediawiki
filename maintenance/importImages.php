@@ -206,7 +206,7 @@ if ( $count > 0 ) {
 					echo( " No comment file with extension {$commentExt} found for {$file}, using default comment. " );
 				} else {
 					$commentText = file_get_contents( $f );
-					if ( !$f ) {
+					if ( !$commentText ) {
 						echo( " Failed to load comment file {$f}, using default comment. " );
 					}
 				}
