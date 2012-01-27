@@ -550,7 +550,17 @@ class FSFileBackendFileList implements Iterator {
 		$this->suffixStart = strlen( $dir ) + 1; // size of "path/to/dir/"
 		try {
 			# Get an iterator that will return leaf nodes (non-directories)
-			$this->iter = new RecursiveIteratorIterator( new RecursiveDirectoryIterator( $dir ) );
+			if ( MWInit::classExists( 'FilesystemIterator' ) ) { // PHP >= 5.3
+				# RecursiveDirectoryIterator extends FilesystemIterator.
+				# FilesystemIterator::SKIP_DOTS default is inconsistent in PHP 5.3.x.
+				$flags = FilesystemIterator::CURRENT_AS_FILEINFO | FilesystemIterator::SKIP_DOTS;
+				$this->iter = new RecursiveIteratorIterator( 
+					new RecursiveDirectoryIterator( $dir, $flags ) );
+			} else { // PHP < 5.3
+				# RecursiveDirectoryIterator extends DirectoryIterator
+				$this->iter = new RecursiveIteratorIterator( 
+					new RecursiveDirectoryIterator( $dir ) );
+			}
 		} catch ( UnexpectedValueException $e ) {
 			$this->iter = null; // bad permissions? deleted?
 		}
