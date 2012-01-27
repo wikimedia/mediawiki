@@ -5,13 +5,14 @@
  */
 class FileBackendTest extends MediaWikiTestCase {
 	private $backend, $multiBackend;
-	private $filesToPrune;
+	private $filesToPrune = array();
+	private $dirsToPrune = array();
 	private static $backendToUse;
 
 	function setUp() {
 		global $wgFileBackends;
 		parent::setUp();
-		$tmpDir = wfTempDir() . '/file-backend-test-' . time() . '-' . mt_rand();
+		$tmpPrefix = wfTempDir() . '/filebackend-unittest-' . time() . '-' . mt_rand();
 		if ( $this->getCliArg( 'use-filebackend=' ) ) {
 			if ( self::$backendToUse ) {
 				$this->singleBackend = self::$backendToUse;
@@ -24,7 +25,8 @@ class FileBackendTest extends MediaWikiTestCase {
 					}
 				}
 				$useConfig['name'] = 'localtesting'; // swap name
-				self::$backendToUse = new $conf['class']( $useConfig );
+				$class = $conf['class'];
+				self::$backendToUse = new $class( $useConfig );
 				$this->singleBackend = self::$backendToUse;
 			}
 		} else {
@@ -32,8 +34,8 @@ class FileBackendTest extends MediaWikiTestCase {
 				'name'        => 'localtesting',
 				'lockManager' => 'fsLockManager',
 				'containerPaths' => array(
-					'unittest-cont1' => "$tmpDir/localtesting/unittest-cont1",
-					'unittest-cont2' => "$tmpDir/localtesting/unittest-cont2" )
+					'unittest-cont1' => "{$tmpPrefix}-localtesting-cont1",
+					'unittest-cont2' => "{$tmpPrefix}-localtesting-cont2" )
 			) );
 		}
 		$this->multiBackend = new FileBackendMultiWrite( array(
@@ -45,8 +47,8 @@ class FileBackendTest extends MediaWikiTestCase {
 					'class'         => 'FSFileBackend',
 					'lockManager'   => 'nullLockManager',
 					'containerPaths' => array(
-						'unittest-cont1' => "$tmpDir/localtestingmulti1/cont1",
-						'unittest-cont2' => "$tmpDir/localtestingmulti1/unittest-cont2" ),
+						'unittest-cont1' => "{$tmpPrefix}-localtestingmulti1-cont1",
+						'unittest-cont2' => "{$tmpPrefix}-localtestingmulti1-cont2" ),
 					'isMultiMaster' => false
 				),
 				array(
@@ -54,8 +56,8 @@ class FileBackendTest extends MediaWikiTestCase {
 					'class'         => 'FSFileBackend',
 					'lockManager'   => 'nullLockManager',
 					'containerPaths' => array(
-						'unittest-cont1' => "$tmpDir/localtestingmulti2/cont1",
-						'unittest-cont2' => "$tmpDir/localtestingmulti2/unittest-cont2" ),
+						'unittest-cont1' => "{$tmpPrefix}-localtestingmulti2-cont1",
+						'unittest-cont2' => "{$tmpPrefix}-localtestingmulti2-cont2" ),
 					'isMultiMaster' => true
 				)
 			)
@@ -74,24 +76,26 @@ class FileBackendTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provider_testStore
 	 */
-	public function testStore( $op, $source, $dest ) {
-		$this->filesToPrune[] = $source;
+	public function testStore( $op ) {
+		$this->filesToPrune[] = $op['src'];
 
 		$this->backend = $this->singleBackend;
 		$this->tearDownFiles();
-		$this->doTestStore( $op, $source, $dest );
+		$this->doTestStore( $op );
 		$this->tearDownFiles();
 
 		$this->backend = $this->multiBackend;
 		$this->tearDownFiles();
-		$this->doTestStore( $op, $source, $dest );
+		$this->doTestStore( $op );
 		$this->tearDownFiles();
 	}
 
-	function doTestStore( $op, $source, $dest ) {
+	function doTestStore( $op ) {
 		$backendName = $this->backendClass();
 
-		$this->backend->prepare( array( 'dir' => dirname( $dest ) ) );
+		$source = $op['src'];
+		$dest = $op['dst'];
+		$this->prepare( array( 'dir' => dirname( $dest ) ) );
 
 		file_put_contents( $source, "Unit test file" );
 
@@ -156,23 +160,25 @@ class FileBackendTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provider_testCopy
 	 */
-	public function testCopy( $op, $source, $dest ) {
+	public function testCopy( $op ) {
 		$this->backend = $this->singleBackend;
 		$this->tearDownFiles();
-		$this->doTestCopy( $op, $source, $dest );
+		$this->doTestCopy( $op );
 		$this->tearDownFiles();
 
 		$this->backend = $this->multiBackend;
 		$this->tearDownFiles();
-		$this->doTestCopy( $op, $source, $dest );
+		$this->doTestCopy( $op );
 		$this->tearDownFiles();
 	}
 
-	function doTestCopy( $op, $source, $dest ) {
+	function doTestCopy( $op ) {
 		$backendName = $this->backendClass();
 
-		$this->backend->prepare( array( 'dir' => dirname( $source ) ) );
-		$this->backend->prepare( array( 'dir' => dirname( $dest ) ) );
+		$source = $op['src'];
+		$dest = $op['dst'];
+		$this->prepare( array( 'dir' => dirname( $source ) ) );
+		$this->prepare( array( 'dir' => dirname( $dest ) ) );
 
 		$status = $this->backend->doOperation(
 			array( 'op' => 'create', 'content' => 'blahblah', 'dst' => $source ) );
@@ -242,23 +248,25 @@ class FileBackendTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provider_testMove
 	 */
-	public function testMove( $op, $source, $dest ) {
+	public function testMove( $op ) {
 		$this->backend = $this->singleBackend;
 		$this->tearDownFiles();
-		$this->doTestMove( $op, $source, $dest );
+		$this->doTestMove( $op );
 		$this->tearDownFiles();
 
 		$this->backend = $this->multiBackend;
 		$this->tearDownFiles();
-		$this->doTestMove( $op, $source, $dest );
+		$this->doTestMove( $op );
 		$this->tearDownFiles();
 	}
 
-	private function doTestMove( $op, $source, $dest ) {
+	private function doTestMove( $op ) {
 		$backendName = $this->backendClass();
 
-		$this->backend->prepare( array( 'dir' => dirname( $source ) ) );
-		$this->backend->prepare( array( 'dir' => dirname( $dest ) ) );
+		$source = $op['src'];
+		$dest = $op['dst'];
+		$this->prepare( array( 'dir' => dirname( $source ) ) );
+		$this->prepare( array( 'dir' => dirname( $dest ) ) );
 
 		$status = $this->backend->doOperation(
 			array( 'op' => 'create', 'content' => 'blahblah', 'dst' => $source ) );
@@ -329,22 +337,23 @@ class FileBackendTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provider_testDelete
 	 */
-	public function testDelete( $op, $source, $withSource, $okStatus ) {
+	public function testDelete( $op, $withSource, $okStatus ) {
 		$this->backend = $this->singleBackend;
 		$this->tearDownFiles();
-		$this->doTestDelete( $op, $source, $withSource, $okStatus );
+		$this->doTestDelete( $op, $withSource, $okStatus );
 		$this->tearDownFiles();
 
 		$this->backend = $this->multiBackend;
 		$this->tearDownFiles();
-		$this->doTestDelete( $op, $source, $withSource, $okStatus );
+		$this->doTestDelete( $op, $withSource, $okStatus );
 		$this->tearDownFiles();
 	}
 
-	private function doTestDelete( $op, $source, $withSource, $okStatus ) {
+	private function doTestDelete( $op, $withSource, $okStatus ) {
 		$backendName = $this->backendClass();
 
-		$this->backend->prepare( array( 'dir' => dirname( $source ) ) );
+		$source = $op['src'];
+		$this->prepare( array( 'dir' => dirname( $source ) ) );
 
 		if ( $withSource ) {
 			$status = $this->backend->doOperation(
@@ -386,14 +395,12 @@ class FileBackendTest extends MediaWikiTestCase {
 		$op = array( 'op' => 'delete', 'src' => $source );
 		$cases[] = array(
 			$op, // operation
-			$source, // source
 			true, // with source
 			true // succeeds
 		);
 
 		$cases[] = array(
 			$op, // operation
-			$source, // source
 			false, // without source
 			false // fails
 		);
@@ -401,7 +408,6 @@ class FileBackendTest extends MediaWikiTestCase {
 		$op['ignoreMissingSource'] = true;
 		$cases[] = array(
 			$op, // operation
-			$source, // source
 			false, // without source
 			true // succeeds
 		);
@@ -428,7 +434,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$backendName = $this->backendClass();
 
 		$dest = $op['dst'];
-		$this->backend->prepare( array( 'dir' => dirname( $dest ) ) );
+		$this->prepare( array( 'dir' => dirname( $dest ) ) );
 
 		$oldText = 'blah...blah...waahwaah';
 		if ( $alreadyExists ) {
@@ -553,7 +559,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		// Create sources
 		$ops = array();
 		foreach ( $srcs as $i => $source ) {
-			$this->backend->prepare( array( 'dir' => dirname( $source ) ) );
+			$this->prepare( array( 'dir' => dirname( $source ) ) );
 			$ops[] = array(
 				'op'      => 'create', // operation
 				'dst'     => $source, // source
@@ -662,15 +668,15 @@ class FileBackendTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provider_testGetFileContents
 	 */
-	public function testGetFileContents( $src, $content ) {
+	public function testGetFileContents( $source, $content ) {
 		$this->backend = $this->singleBackend;
 		$this->tearDownFiles();
-		$this->doTestGetFileContents( $src, $content );
+		$this->doTestGetFileContents( $source, $content );
 		$this->tearDownFiles();
 
 		$this->backend = $this->multiBackend;
 		$this->tearDownFiles();
-		$this->doTestGetFileContents( $src, $content );
+		$this->doTestGetFileContents( $source, $content );
 		$this->tearDownFiles();
 	}
 
@@ -680,7 +686,7 @@ class FileBackendTest extends MediaWikiTestCase {
 	public function doTestGetFileContents( $source, $content ) {
 		$backendName = $this->backendClass();
 
-		$this->backend->prepare( array( 'dir' => dirname( $source ) ) );
+		$this->prepare( array( 'dir' => dirname( $source ) ) );
 
 		$status = $this->backend->doOperation(
 			array( 'op' => 'create', 'content' => $content, 'dst' => $source ) );
@@ -710,22 +716,22 @@ class FileBackendTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provider_testGetLocalCopy
 	 */
-	public function testGetLocalCopy( $src, $content ) {
+	public function testGetLocalCopy( $source, $content ) {
 		$this->backend = $this->singleBackend;
 		$this->tearDownFiles();
-		$this->doTestGetLocalCopy( $src, $content );
+		$this->doTestGetLocalCopy( $source, $content );
 		$this->tearDownFiles();
 
 		$this->backend = $this->multiBackend;
 		$this->tearDownFiles();
-		$this->doTestGetLocalCopy( $src, $content );
+		$this->doTestGetLocalCopy( $source, $content );
 		$this->tearDownFiles();
 	}
 
 	public function doTestGetLocalCopy( $source, $content ) {
 		$backendName = $this->backendClass();
 
-		$this->backend->prepare( array( 'dir' => dirname( $source ) ) );
+		$this->prepare( array( 'dir' => dirname( $source ) ) );
 
 		$status = $this->backend->doOperation(
 			array( 'op' => 'create', 'content' => $content, 'dst' => $source ) );
@@ -753,22 +759,22 @@ class FileBackendTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provider_testGetLocalReference
 	 */
-	public function testGetLocalReference( $src, $content ) {
+	public function testGetLocalReference( $source, $content ) {
 		$this->backend = $this->singleBackend;
 		$this->tearDownFiles();
-		$this->doTestGetLocalReference( $src, $content );
+		$this->doTestGetLocalReference( $source, $content );
 		$this->tearDownFiles();
 
 		$this->backend = $this->multiBackend;
 		$this->tearDownFiles();
-		$this->doTestGetLocalReference( $src, $content );
+		$this->doTestGetLocalReference( $source, $content );
 		$this->tearDownFiles();
 	}
 
 	private function doTestGetLocalReference( $source, $content ) {
 		$backendName = $this->backendClass();
 
-		$this->backend->prepare( array( 'dir' => dirname( $source ) ) );
+		$this->prepare( array( 'dir' => dirname( $source ) ) );
 
 		$status = $this->backend->doOperation(
 			array( 'op' => 'create', 'content' => $content, 'dst' => $source ) );
@@ -799,9 +805,11 @@ class FileBackendTest extends MediaWikiTestCase {
 	public function testPrepareAndClean( $path, $isOK ) {
 		$this->backend = $this->singleBackend;
 		$this->doTestPrepareAndClean( $path, $isOK );
+		$this->tearDownFiles();
 
 		$this->backend = $this->multiBackend;
 		$this->doTestPrepareAndClean( $path, $isOK );
+		$this->tearDownFiles();
 	}
 
 	function provider_testPrepareAndClean() {
@@ -817,7 +825,7 @@ class FileBackendTest extends MediaWikiTestCase {
 	function doTestPrepareAndClean( $path, $isOK ) {
 		$backendName = $this->backendClass();
 
-		$status = $this->backend->prepare( array( 'dir' => $path ) );
+		$status = $this->prepare( array( 'dir' => dirname( $path ) ) );
 		if ( $isOK ) {
 			$this->assertEquals( array(), $status->errors,
 				"Preparing dir $path succeeded without warnings ($backendName)." );
@@ -828,7 +836,7 @@ class FileBackendTest extends MediaWikiTestCase {
 				"Preparing dir $path failed ($backendName)." );
 		}
 
-		$status = $this->backend->clean( array( 'dir' => $path ) );
+		$status = $this->backend->clean( array( 'dir' => dirname( $path ) ) );
 		if ( $isOK ) {
 			$this->assertEquals( array(), $status->errors,
 				"Cleaning dir $path succeeded without warnings ($backendName)." );
@@ -844,10 +852,16 @@ class FileBackendTest extends MediaWikiTestCase {
 
 	public function testDoOperations() {
 		$this->backend = $this->singleBackend;
+		$this->tearDownFiles();
 		$this->doTestDoOperations();
+		$this->tearDownFiles();
 
 		$this->backend = $this->multiBackend;
+		$this->tearDownFiles();
 		$this->doTestDoOperations();
+		$this->tearDownFiles();
+
+		// @TODO: test some cases where the ops should fail
 	}
 
 	function doTestDoOperations() {
@@ -861,11 +875,11 @@ class FileBackendTest extends MediaWikiTestCase {
 		$fileCContents = 'eigna[ogmewt 3qt g3qg flew[ag';
 		$fileD = "$base/unittest-cont1/a/b/fileD.txt";
 
-		$this->backend->prepare( array( 'dir' => dirname( $fileA ) ) );
+		$this->prepare( array( 'dir' => dirname( $fileA ) ) );
 		$this->backend->create( array( 'dst' => $fileA, 'content' => $fileAContents ) );
-		$this->backend->prepare( array( 'dir' => dirname( $fileB ) ) );
+		$this->prepare( array( 'dir' => dirname( $fileB ) ) );
 		$this->backend->create( array( 'dst' => $fileB, 'content' => $fileBContents ) );
-		$this->backend->prepare( array( 'dir' => dirname( $fileC ) ) );
+		$this->prepare( array( 'dir' => dirname( $fileC ) ) );
 		$this->backend->create( array( 'dst' => $fileC, 'content' => $fileCContents ) );
 
 		$status = $this->backend->doOperations( array(
@@ -920,8 +934,6 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->assertEquals( wfBaseConvert( sha1( $fileBContents ), 16, 36, 31 ),
 			$this->backend->getFileSha1Base36( array( 'src' => $fileC ) ),
 			"Correct file SHA-1 of $fileC" );
-
-		// @TODO: test some cases where the ops should fail
 	}
 
 	public function testGetFileList() {
@@ -961,7 +973,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$ops = array();
 		foreach ( $files as $file ) {
 			$ops[] = array( 'op' => 'create', 'content' => 'xxy', 'dst' => $file );
-			$this->backend->prepare( array( 'dir' => dirname( $file ) ) );
+			$this->prepare( array( 'dir' => dirname( $file ) ) );
 		}
 		$status = $this->backend->doOperations( $ops );
 		$this->assertEquals( array(), $status->errors,
@@ -1040,12 +1052,20 @@ class FileBackendTest extends MediaWikiTestCase {
 
 		$this->assertEquals( $expected, $list, "Correct file listing ($backendName)." );
 
-		foreach ( $files as $file ) {
-			$this->backend->doOperation( array( 'op' => 'delete', 'src' => "$base/$file" ) );
+		foreach ( $files as $file ) { // clean up
+			$this->backend->doOperation( array( 'op' => 'delete', 'src' => $file ) );
+		}
+		foreach ( $files as $file ) { // clean up
+			$this->recursiveClean( FileBackend::parentStoragePath( $file ) );
 		}
 
 		$iter = $this->backend->getFileList( array( 'dir' => "$base/unittest-cont1/not/exists" ) );
 		foreach ( $iter as $iter ) {} // no errors
+	}
+
+	private function prepare( array $params ) {
+		$this->dirsToPrune[] = $params['dir'];
+		return $this->backend->prepare( $params );
 	}
 
 	function tearDownFiles() {
@@ -1054,24 +1074,30 @@ class FileBackendTest extends MediaWikiTestCase {
 		}
 		$containers = array( 'unittest-cont1', 'unittest-cont2', 'unittest-cont3' );
 		foreach ( $containers as $container ) {
-			$this->deleteFiles( $this->backend, $container );
+			$this->deleteFiles( $container );
+		}
+		foreach ( $this->dirsToPrune as $dir ) {
+			$this->recursiveClean( $dir );
+		}
+		$this->filesToPrune = $this->dirsToPrune = array();
+	}
+
+	private function deleteFiles( $container ) {
+		$base = $this->baseStorePath();
+		$iter = $this->backend->getFileList( array( 'dir' => "$base/$container" ) );
+		if ( $iter ) {
+			foreach ( $iter as $file ) {
+				$this->backend->delete( array( 'src' => "$base/$container/$file" ), array( 'force' => 1 ) );
+			}
 		}
 	}
 
-	private function deleteFiles( $backend, $container ) {
-		$base = $this->baseStorePath();
-		$iter = $backend->getFileList( array( 'dir' => "$base/$container" ) );
-		if ( $iter ) {
-			foreach ( $iter as $file ) { // delete files
-				$backend->delete( array( 'src' => "$base/$container/$file" ), array( 'force' => 1 ) );
+	private function recursiveClean( $dir ) {
+		do {
+			if ( !$this->backend->clean( array( 'dir' => $dir ) )->isOK() ) {
+				break;
 			}
-			foreach ( $iter as $file ) { // delete dirs
-				$tmp = $file;
-				while ( $tmp = FileBackend::parentStoragePath( $tmp ) ) {
-					$backend->clean( array( 'dir' => $tmp ) );
-				}
-			}
-		}
+		} while ( $dir = FileBackend::parentStoragePath( $dir ) );
 	}
 
 	function tearDown() {

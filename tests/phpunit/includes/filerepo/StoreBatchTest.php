@@ -9,7 +9,7 @@ class StoreBatchTest extends MediaWikiTestCase {
 		parent::setUp();
 
 		# Forge a FSRepo object to not have to rely on local wiki settings
-		$this->tmpDir = wfTempDir() . '/store-batch-test-' . time() . '-' . mt_rand();
+		$tmpPrefix = wfTempDir() . '/storebatch-test-' . time() . '-' . mt_rand();
 		if ( $this->getCliArg( 'use-filebackend=' ) ) {
 			$name = $this->getCliArg( 'use-filebackend=' );
 			$useConfig = array();
@@ -19,16 +19,17 @@ class StoreBatchTest extends MediaWikiTestCase {
 				}
 			}
 			$useConfig['name'] = 'localtesting'; // swap name
-			$backend = new $conf['class']( $useConfig );
+			$class = $conf['class'];
+			self::$backendToUse = new $class( $useConfig );
 		} else {
 			$backend = new FSFileBackend( array(
 				'name'        => 'local-backend',
 				'lockManager' => 'nullLockManager',
 				'containerPaths' => array(
-					'unittests-public'  => $this->tmpDir . "/public",
-					'unittests-thumb'   => $this->tmpDir . "/thumb",
-					'unittests-temp'    => $this->tmpDir . "/temp",
-					'unittests-deleted' => $this->tmpDir . "/deleted",
+					'unittests-public'  => "{$tmpPrefix}-public",
+					'unittests-thumb'   => "{$tmpPrefix}-thumb",
+					'unittests-temp'    => "{$tmpPrefix}-temp",
+					'unittests-deleted' => "{$tmpPrefix}-deleted",
 				)
 			) );
 		}
