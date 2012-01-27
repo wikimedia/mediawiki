@@ -449,6 +449,8 @@ abstract class QueryPage extends SpecialPage {
 		$dbr = wfGetDB( DB_SLAVE );
 
 		$this->setHeaders();
+		$this->outputHeader();
+
 		$out = $this->getOutput();
 		$out->setSyndicated( $this->isSyndicated() );
 
