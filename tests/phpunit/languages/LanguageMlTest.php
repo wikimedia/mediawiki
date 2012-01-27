@@ -17,20 +17,27 @@ class LanguageMlTest extends MediaWikiTestCase {
 	}
 
 	/** see bug 29495 */
-	function testFormatNum() {
-		$this->assertEquals( '12,34,567', $this->lang->formatNum( '1234567' ) );
-		$this->assertEquals( '12,345', $this->lang->formatNum( '12345' ) );
-		$this->assertEquals( '1', $this->lang->formatNum( '1' ) );
-		$this->assertEquals( '123', $this->lang->formatNum( '123' ) );
-		$this->assertEquals( '1,234', $this->lang->formatNum( '1234' ) );
-		$this->assertEquals( '12,345.56', $this->lang->formatNum( '12345.56' ) );
-		$this->assertEquals( '12,34,56,79,81,23,45,678', $this->lang->formatNum( '12345679812345678' ) );
-		$this->assertEquals( '.12345', $this->lang->formatNum( '.12345' ) );
-		$this->assertEquals( '-12,00,000', $this->lang->formatNum( '-1200000' ) );
-		$this->assertEquals( '-98', $this->lang->formatNum( '-98' ) );
-		$this->assertEquals( '-98', $this->lang->formatNum( -98 ) );
-		$this->assertEquals( '-1,23,45,678', $this->lang->formatNum( -12345678 ) );
-		$this->assertEquals( '', $this->lang->formatNum( '' ) );
-		$this->assertEquals( '', $this->lang->formatNum( null ) );
+	/** @dataProvider providerFormatNum*/
+	function testFormatNum( $result, $value ) {
+		$this->assertEquals( $result,  $this->lang->formatNum( $value ) );
+	}
+
+	function providerFormatNum() {
+		return array(
+			array( '12,34,567', '1234567'  ),
+			array( '12,345', '12345' ),
+			array( '1', '1' ),
+			array( '123', '123' ) ,
+			array( '1,234', '1234' ),
+			array( '12,345.56', '12345.56' ),
+			array( '12,34,56,79,81,23,45,678', '12345679812345678' ),
+			array( '.12345', '.12345' ),
+			array( '-12,00,000', '-1200000' ),
+			array( '-98', '-98' ),
+			array( '-98', -98 ),
+			array( '-1,23,45,678',  -12345678 ),
+			array( '', '' ),
+			array( '', null ),
+		);
 	}
 }
