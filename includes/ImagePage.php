@@ -331,7 +331,7 @@ class ImagePage extends Article {
 					$msgsmall = wfMessage( 'show-big-image-preview' )->
 						rawParams( $this->makeSizeLink( $params, $width, $height ) )->
 						parse();
-					if ( count( $otherSizes ) && $this->displayImg->getRepo()->transformVia404 ) {
+					if ( count( $otherSizes ) && $this->displayImg->getRepo()->canTransformVia404() ) {
 						$msgsmall .= ' ' .
 						Html::rawElement( 'span', array( 'class' => 'mw-filepage-other-resolutions' ),
 							wfMessage( 'show-big-image-other' )->rawParams( $wgLang->pipeList( $otherSizes ) )->
