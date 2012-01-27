@@ -119,10 +119,10 @@ class ScopedLock {
 	protected function __construct(
 		LockManager $manager, array $paths, $type, Status $status
 	) {
-	   $this->manager = $manager;
-	   $this->paths = $paths;
-	   $this->status = $status;
-	   $this->type = $type;
+		$this->manager = $manager;
+		$this->paths = $paths;
+		$this->status = $status;
+		$this->type = $type;
 	}
 
 	protected function __clone() {}

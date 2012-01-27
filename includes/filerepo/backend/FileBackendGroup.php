@@ -12,6 +12,9 @@
  * @since 1.19
  */
 class FileBackendGroup {
+	/**
+	 * @var FileBackendGroup
+	 */
 	protected static $instance = null;
 
 	/** @var Array (name => ('class' => string, 'config' => array, 'instance' => object)) */
