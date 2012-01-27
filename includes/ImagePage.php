@@ -330,11 +330,14 @@ class ImagePage extends Article {
 					}
 					$msgsmall = wfMessage( 'show-big-image-preview' )->
 						rawParams( $this->makeSizeLink( $params, $width, $height ) )->
-						parse() . ' ' .
+						parse();
+					if ( count( $otherSizes ) && $this->displayImg->getRepo()->transformVia404 ) {
+						$msgsmall .= ' ' .
 						Html::rawElement( 'span', array( 'class' => 'mw-filepage-other-resolutions' ),
 							wfMessage( 'show-big-image-other' )->rawParams( $wgLang->pipeList( $otherSizes ) )->
 							params( count( $otherSizes ) )->parse()
 						);
+					}
 				} elseif ( $width == 0 && $height == 0 ){
 					# Some sort of audio file that doesn't have dimensions
 					# Don't output a no hi res message for such a file
