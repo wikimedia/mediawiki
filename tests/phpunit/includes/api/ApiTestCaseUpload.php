@@ -37,8 +37,8 @@ abstract class ApiTestCaseUpload extends ApiTestCase {
 			if ( !$status->isGood() ) {
 				return false;
 			}
-			$article = new Article( $title );
-			$article->doDeleteArticle( "removing for test" );
+			$page = WikiPage::factory( $title );
+			$page->doDeleteArticle( "removing for test" );
 
 			// see if it now doesn't exist; reload
 			$title = Title::newFromText( $title->getText(), NS_FILE );
