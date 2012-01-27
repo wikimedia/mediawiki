@@ -1,58 +1,188 @@
 <?php
 /**
- * Options for the PHP parser
+ * \brief Options for the PHP parser
  *
  * @file
  * @ingroup Parser
  */
 
 /**
- * Set options of the Parser
- * @todo document
+ * \brief Set options of the Parser
+ *
+ * All member variables are supposed to be private in theory, although in practise this is not the case.
+ *
  * @ingroup Parser
  */
 class ParserOptions {
-	# All variables are supposed to be private in theory, although in practise this is not the case.
-	var $mUseDynamicDates;           # Use DateFormatter to format dates
-	var $mInterwikiMagic;            # Interlanguage links are removed and returned in an array
-	var $mAllowExternalImages;       # Allow external images inline
-	var $mAllowExternalImagesFrom;   # If not, any exception?
-	var $mEnableImageWhitelist;      # If not or it doesn't match, should we check an on-wiki whitelist?
-	var $mDateFormat = null;         # Date format index
-	var $mEditSection = true;        # Create "edit section" links
-	var $mAllowSpecialInclusion;     # Allow inclusion of special pages
-	var $mTidy = false;              # Ask for tidy cleanup
-	var $mInterfaceMessage = false;  # Which lang to call for PLURAL and GRAMMAR
-	var $mTargetLanguage = null;     # Overrides above setting with arbitrary language
-	var $mMaxIncludeSize;            # Maximum size of template expansions, in bytes
-	var $mMaxPPNodeCount;            # Maximum number of nodes touched by PPFrame::expand()
-	var $mMaxPPExpandDepth;          # Maximum recursion depth in PPFrame::expand()
-	var $mMaxTemplateDepth;          # Maximum recursion depth for templates within templates
-	var $mRemoveComments = true;     # Remove HTML comments. ONLY APPLIES TO PREPROCESS OPERATIONS
-	var $mTemplateCallback =         # Callback for template fetching
+	
+	/**
+	 * Use DateFormatter to format dates
+	 */
+	var $mUseDynamicDates;
+	
+	/**
+	 * Interlanguage links are removed and returned in an array
+	 */
+	var $mInterwikiMagic;
+	
+	/**
+	 * Allow external images inline?
+	 */
+	var $mAllowExternalImages;
+	
+	/**
+	 * If not, any exception?
+	 */
+	var $mAllowExternalImagesFrom;
+	
+	/**
+	 * If not or it doesn't match, should we check an on-wiki whitelist?
+	 */
+	var $mEnableImageWhitelist;
+	
+	/**
+	 * Date format index
+	 */
+	var $mDateFormat = null;
+	
+	/**
+	 * Create "edit section" links?
+	 */
+	var $mEditSection = true;
+	
+	/**
+	 * Allow inclusion of special pages?
+	 */
+	var $mAllowSpecialInclusion;
+	
+	/**
+	 * Use tidy to cleanup output HTML?
+	 */
+	var $mTidy = false;
+	
+	/**
+	 * Which lang to call for PLURAL and GRAMMAR
+	 */
+	var $mInterfaceMessage = false;
+	
+	/**
+	 * Overrides $mInterfaceMessage with arbitrary language
+	 */
+	var $mTargetLanguage = null;
+	
+	/**
+	 * Maximum size of template expansions, in bytes
+	 */
+	var $mMaxIncludeSize;
+	
+	/**
+	 * Maximum number of nodes touched by PPFrame::expand()
+	 */
+	var $mMaxPPNodeCount;
+	
+	/**
+	 * Maximum recursion depth in PPFrame::expand()
+	 */
+	var $mMaxPPExpandDepth;
+	
+	/**
+	 * Maximum recursion depth for templates within templates
+	 */
+	var $mMaxTemplateDepth;
+	
+	/**
+	 * Remove HTML comments. ONLY APPLIES TO PREPROCESS OPERATIONS
+	 */
+	var $mRemoveComments = true;
+	
+	/**
+	 * Callback for template fetching. Used as first argument to call_user_func().
+	 */
+	var $mTemplateCallback =
 		array( 'Parser', 'statelessFetchTemplate' );
-	var $mEnableLimitReport = false; # Enable limit report in an HTML comment on output
-	var $mTimestamp;                 # Timestamp used for {{CURRENTDAY}} etc.
-	var $mExternalLinkTarget;        # Target attribute for external links
-	var $mCleanSignatures;           #
-	var $mPreSaveTransform = true;   # Transform wiki markup when saving the page.
-
-	var $mNumberHeadings;            # Automatically number headings
-	var $mMath;                      # User math preference (as integer)
-	var $mThumbSize;                 # Thumb size preferred by the user.
-	private $mStubThreshold;         # Maximum article size of an article to be marked as "stub"
-	var $mUserLang;                  # Language object of the User language.
+		
+	/**
+	 * Enable limit report in an HTML comment on output
+	 */
+	var $mEnableLimitReport = false;
+	
+	/**
+	 * Timestamp used for {{CURRENTDAY}} etc.
+	 */
+	var $mTimestamp;
+	
+	/**
+	 * Target attribute for external links
+	 */
+	var $mExternalLinkTarget;
+	
+	/**
+	 * Clean up signature texts? 
+	 *
+	 * 1) Strip ~~~, ~~~~ and ~~~~~ out of signatures
+	 * 2) Substitute all transclusions
+	 */
+	var $mCleanSignatures;
+	
+	/**
+	 * Transform wiki markup when saving the page?
+	 */
+	var $mPreSaveTransform = true;
 
 	/**
-	 * @var User
+	 * Automatically number headings?
 	 */
-	var $mUser;                      # Stored user object
-	var $mIsPreview = false;         # Parsing the page for a "preview" operation
-	var $mIsSectionPreview = false;  # Parsing the page for a "preview" operation on a single section
-	var $mIsPrintable = false;       # Parsing the printable version of the page
+	var $mNumberHeadings;
+	
+	/**
+	 * User math preference (as integer). Not used (1.19)
+	 */
+	var $mMath;
+	
+	/**
+	 * Thumb size preferred by the user.
+	 */
+	var $mThumbSize;
+	
+	/**
+	 * Maximum article size of an article to be marked as "stub"
+	 */
+	private $mStubThreshold;
+	
+	/**
+	 * Language object of the User language.
+	 */
+	var $mUserLang;
 
-	var $mExtraKey = '';             # Extra key that should be present in the caching key.
+	/**
+	 * @var User 
+	 * Stored user object
+	 */
+	var $mUser;
+	
+	/**
+	 * Parsing the page for a "preview" operation?
+	 */
+	var $mIsPreview = false;
+	
+	/**
+	 * Parsing the page for a "preview" operation on a single section?
+	 */
+	var $mIsSectionPreview = false;
+	
+	/**
+	 * Parsing the printable version of the page?
+	 */
+	var $mIsPrintable = false;
 
+	/**
+	 * Extra key that should be present in the caching key.
+	 */
+	var $mExtraKey = '';
+
+	/**
+	 * Function to be called when an option is accessed.
+	 */
 	protected $onAccessCallback = null;
 
 	function getUseDynamicDates()               { return $this->mUseDynamicDates; }
@@ -184,6 +314,11 @@ class ParserOptions {
 		$this->mExtraKey .= '!' . $key;
 	}
 
+	/**
+	 * Constructor
+	 * @param $user User object
+	 * @param $lang Language object
+	 */
 	function __construct( $user = null, $lang = null ) {
 		if ( $user === null ) {
 			global $wgUser;
@@ -235,7 +370,12 @@ class ParserOptions {
 		return new ParserOptions( $context->getUser(), $context->getLanguage() );
 	}
 
-	/** Get user options */
+	/** 
+	 * Get user options 
+	 *
+	 * @param $user User object
+	 * @param $lang Language object
+	 */
 	private function initialiseFromUser( $user, $lang ) {
 		global $wgUseDynamicDates, $wgInterwikiMagic, $wgAllowExternalImages,
 			$wgAllowExternalImagesFrom, $wgEnableImageWhitelist, $wgAllowSpecialInclusion,
@@ -314,7 +454,7 @@ class ParserOptions {
 	 * @since 1.17
 	 * @param $forOptions Array
 	 * @param $title Title: used to get the content language of the page (since r97636)
-	 * @return \string Page rendering hash
+	 * @return string Page rendering hash
 	 */
 	public function optionsHash( $forOptions, $title = null ) {
 		global $wgRenderHashAppend;
