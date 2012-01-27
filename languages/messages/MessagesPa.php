@@ -12,6 +12,7 @@
  * @author Anjalikaushal
  * @author Gman124
  * @author Guglani
+ * @author Kaganer
  * @author Sukh
  * @author Ævar Arnfjörð Bjarmason
  * @author לערי ריינהארט
@@ -1110,7 +1111,7 @@ to upload files.',
 
 # Media information
 'thumbsize'       => 'ਥੰਮਨੇਲ ਆਕਾਰ:',
-'widthheightpage' => '$1×$2, $3 ਪੇਜ਼',
+'widthheightpage' => '$1 × $2, $3 ਪੇਜ਼',
 'file-info'       => 'ਫਾਇਲ ਆਕਾਰ: $1, MIME ਕਿਸਮ: $2',
 'file-info-size'  => '$1 × $2 ਪਿਕਸਲ, ਫਾਇਲ ਆਕਾਰ: $3, MIME ਕਿਸਮ: $4',
 'svg-long-desc'   => 'SVG ਫਾਇਲ, nominally $1 × $2 pixels, file size: $3',

@@ -15,6 +15,7 @@
  * @author Homo
  * @author Hugo.arg
  * @author Ignas693
+ * @author Kaganer
  * @author Matasg
  * @author Meno25
  * @author Pdxx
@@ -2833,7 +2834,7 @@ $1',
 Jį paleidus jūsų sistema gali būti pažeista.",
 'imagemaxsize'           => "Riboti paveikslėlių dydį:<br />''(failų aprašymo puslapiuose)''",
 'thumbsize'              => 'Sumažintų paveikslėlių dydis:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|puslapis|puslapiai|puslapių}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|puslapis|puslapiai|puslapių}}',
 'file-info'              => 'failo dydis: $1, MIME tipas: $2',
 'file-info-size'         => '$1 × $2 taškų, failo dydis: $3, MIME tipas: $4',
 'file-info-size-pages'   => '$1 × $2 taškų, failo dydis: $3, MIME tipas: $4, $5 {{PLURAL:$5|page|pages}}',

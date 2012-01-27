@@ -29,6 +29,7 @@
  * @author FollowTheMedia
  * @author Gianfranco
  * @author HalphaZ
+ * @author Kaganer
  * @author Klutzy
  * @author Marco 27
  * @author Martorell
@@ -2951,10 +2952,10 @@ $1',
 'mediawarning'           => "'''Attenzione''': Questo file potrebbe contenere codice maligno. La sua esecuzione potrebbe danneggiare il tuo sistema.",
 'imagemaxsize'           => "Dimensione massima delle immagini:<br />''(per le pagine di descrizione del file)''",
 'thumbsize'              => 'Grandezza delle miniature:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|pagina|pagine}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|pagina|pagine}}',
 'file-info'              => 'dimensione del file: $1, tipo MIME: $2',
 'file-info-size'         => '$1 × $2 pixel, dimensione del file: $3, tipo MIME: $4',
-'file-info-size-pages'   => '$1× $2 pixel, dimensione del file: $3, tipo MIME: $4, $5 {{PLURAL:$5|pagina|pagine}}',
+'file-info-size-pages'   => '$1 × $2 pixel, dimensione del file: $3, tipo MIME: $4, $5 {{PLURAL:$5|pagina|pagine}}',
 'file-nohires'           => 'Non sono disponibili versioni a risoluzione più elevata.',
 'svg-long-desc'          => 'file in formato SVG, dimensioni nominali $1 × $2 pixel, dimensione del file: $3',
 'show-big-image'         => 'Versione ad alta risoluzione',

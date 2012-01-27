@@ -11,6 +11,7 @@
  * @author Bellayet
  * @author Ehsanulhb
  * @author Jayantanth
+ * @author Kaganer
  * @author Mayeenul Islam
  * @author Nasir8891
  * @author Prometheus.pyrphoros
@@ -2487,7 +2488,7 @@ $1',
 'mediawarning'         => "'''সতর্কীকরণ''': এই ফাইলের ধরনে ক্ষতিকর কোড থাকতে পারে। এটি চালালে আপনার সিস্টেমে ক্ষতি হতে পারে।",
 'imagemaxsize'         => 'ছবির বিবরণ পাতায় প্রদর্শিত ছবির আকারের সর্বোচ্চ সীমা:',
 'thumbsize'            => 'থাম্বনেইল আকার:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$1|পাতাট|পাতাগুলো}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$1|পাতাট|পাতাগুলো}}',
 'file-info'            => 'ফাইলের আকার: $1, MIME ধরণ: $2',
 'file-info-size'       => '$1 × $2 pixel, ফাইলের আকার: $3, MIME ধরণ: $4',
 'file-nohires'         => 'এর চেয়ে বেশি রেজোলিউশন লভ্য নয়।',

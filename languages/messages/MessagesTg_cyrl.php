@@ -12,6 +12,7 @@
  * @author Farrukh
  * @author FrancisTyers
  * @author Ibrahim
+ * @author Kaganer
  * @author Soroush
  * @author Urhixidur
  * @author לערי ריינהארט
@@ -2028,7 +2029,7 @@ $1',
 Бо иҷрои он, системаи шумо шояд осеб бубинад.",
 'imagemaxsize'    => 'Маҳуд кардани аксҳо дар саҳифаҳои тавсифоти парванда ба:',
 'thumbsize'       => 'Андозаи ангуштдона (thumbnail):',
-'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|саҳифа|саҳифаҳо}}',
+'widthheightpage' => '$1 × $2, $3 {{PLURAL:$3|саҳифа|саҳифаҳо}}',
 'file-info'       => 'андозаи парванда: $1, навъи MIME: $2',
 'file-info-size'  => '$1 × $2 пиксел, ҳаҷми парванда: $3, навъи MIME: $4',
 'file-nohires'    => 'Нусхаи ҳаҷман ва сифатан баландтар дастрас нест.',

@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Kaganer
  * @author OC Ripper
  * @author לערי ריינהארט
  */
@@ -2924,7 +2925,7 @@ $1',
 Njegovim izvršavanjem možete da ugrozite Vaš sistem.",
 'imagemaxsize'           => "Ograničenje veličine slike:<br />''(za stranice opisa datoteke)''",
 'thumbsize'              => 'Veličina umanjenog prikaza:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|stranica|stranice|stranica}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|stranica|stranice|stranica}}',
 'file-info'              => 'veličina datoteke: $1, MIME tip: $2',
 'file-info-size'         => '$1 × $2 piksela, veličina datoteke/fajla: $3, MIME tip: $4',
 'file-info-size-pages'   => '$1 × $2 piksela, veličina datoteke: $3, MIME vrsta: $4, $5 {{PLURAL:$5|stranica|stranice|stranica}}',

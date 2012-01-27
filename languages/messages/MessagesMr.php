@@ -18,6 +18,7 @@
  * @author Hemant wikikosh1
  * @author Htt
  * @author Kaajawa
+ * @author Kaganer
  * @author Kaustubh
  * @author Mahitgar
  * @author Marathipremi101
@@ -2941,7 +2942,7 @@ $1',
 'mediawarning'           => "'''सावधान''': या संचिकेत डंखी संकेत असू शकतो, जो वापरल्याने तुमच्या संचालन प्रणालीस नाजूक परिस्थितीस सामोरे जावे लागू शकते.",
 'imagemaxsize'           => 'संचिका वर्णन पानांवरील चित्रांना मर्यादा घाला:',
 'thumbsize'              => 'इवलासा आकार:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|पान|पाने}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|पान|पाने}}',
 'file-info'              => 'संचिकेचा आकार:$1,विविधामापमाईमप्रकार: $2',
 'file-info-size'         => '$1 × $2 pixel, संचिकेचा आकार: $3, MIME प्रकार: $4',
 'file-info-size-pages'   => '$1 × $2 पिक्सेल, संचिका आकारमान: $3, एमआयएमई प्रकार: $4, $5 {{PLURAL:$5|पान|पाने}}',

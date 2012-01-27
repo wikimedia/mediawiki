@@ -14,6 +14,7 @@
  * @author Castelobranco
  * @author Iketsi
  * @author Jens Liebenau
+ * @author Kaganer
  * @author Lucas
  * @author LyzTyphone
  * @author Malafaya
@@ -3026,7 +3027,7 @@ $1',
 'mediawarning'           => "'''Atenton!''': Ĉi tiu dosiero eble enhavas malican kodadon, per ĝia ruligo via sistemo povus endanĝeriĝi.",
 'imagemaxsize'           => "Limo por bildoj:<br />''(por dosieraj priskribo-paĝoj)''",
 'thumbsize'              => 'Grandeco de bildetoj:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|paĝo|paĝoj}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|paĝo|paĝoj}}',
 'file-info'              => 'grando de dosiero: $1, MIME-tipo: $2',
 'file-info-size'         => '$1 × $2 rastrumeroj, dosiera grandeco: $3, MIME-tipo: $4',
 'file-info-size-pages'   => '$1 × $2 rastrumeroj, dosiera grandeco: $3, MIME-tipo: $4, $5 {{PLURAL:$5|paĝo|paĝoj}}',

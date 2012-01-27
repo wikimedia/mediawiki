@@ -9,6 +9,7 @@
  *
  * @author Gazeb
  * @author Gleb Borisov
+ * @author Kaganer
  * @author Nemo bis
  * @author Reedy
  * @author Tkalyn
@@ -2665,7 +2666,7 @@ $1',
 'imagemaxsize'           => "Максімалный розмір образку:<br />
 ''(на сторінцї з пописом файлу)''",
 'thumbsize'              => 'Великость нагляду:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|сторінка|сторінкы|сторінок}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|сторінка|сторінкы|сторінок}}',
 'file-info'              => 'розмір файлу: $1, MIME-тіп: $2',
 'file-info-size'         => '$1 × $2 пікселів, розмір файлу: $3, MIME-тип: $4',
 'file-info-size-pages'   => '$1 × $2 пікселів, великость файлу: $3, MIME тіп: $4, $5 {{PLURAL:$5|сторінка|сторінкы|сторінок}}',

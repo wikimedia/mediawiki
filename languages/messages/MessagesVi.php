@@ -10,6 +10,7 @@
  * @author Apple
  * @author Arisa
  * @author DHN
+ * @author Kaganer
  * @author Minh Nguyen
  * @author Mxn
  * @author Neoneurone
@@ -3060,12 +3061,12 @@ $1',
 Nếu thực thi nó máy tính của bạn có thể bị tiếm quyền.",
 'imagemaxsize'           => "Giới hạn cỡ hình:<br />''(trên trang miêu tả tập tin)''",
 'thumbsize'              => 'Cỡ hình thu nhỏ:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|trang|trang}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|trang|trang}}',
 'file-info'              => 'kích thước tập tin: $1, kiểu MIME: $2',
-'file-info-size'         => '$1×$2 điểm ảnh, kích thước tập tin: $3, kiểu MIME: $4',
-'file-info-size-pages'   => '$1×$2 điểm ảnh, kích thước tập tin: $3, kiểu MIME: $4, $5 trang',
+'file-info-size'         => '$1 × $2 điểm ảnh, kích thước tập tin: $3, kiểu MIME: $4',
+'file-info-size-pages'   => '$1 × $2 điểm ảnh, kích thước tập tin: $3, kiểu MIME: $4, $5 trang',
 'file-nohires'           => 'Không có độ phân giải cao hơn.',
-'svg-long-desc'          => 'tập tin SVG, $1×$2 điểm ảnh trên danh nghĩa, kích thước: $3',
+'svg-long-desc'          => 'tập tin SVG, $1 × $2 điểm ảnh trên danh nghĩa, kích thước: $3',
 'show-big-image'         => 'Độ phân giải tối đa',
 'show-big-image-preview' => 'Kích thước của ảnh xem thử: $1.',
 'show-big-image-other'   => '{{PLURAL:$2|Độ phân giải|Các độ phân giải}} khác: $1.',
@@ -3826,7 +3827,7 @@ Các hình ảnh được hiển thị ở kích thước tối đa, còn các l
 'fileduplicatesearch-legend'    => 'Tìm kiếm tập tin trùng lắp',
 'fileduplicatesearch-filename'  => 'Tên tập tin:',
 'fileduplicatesearch-submit'    => 'Tìm kiếm',
-'fileduplicatesearch-info'      => '$1×$2 điểm ảnh<br />Kích thước tập tin: $3<br />Kiểu MIME: $4',
+'fileduplicatesearch-info'      => '$1 × $2 điểm ảnh<br />Kích thước tập tin: $3<br />Kiểu MIME: $4',
 'fileduplicatesearch-result-1'  => 'Không có bản sao y hệt với tập tin “$1”.',
 'fileduplicatesearch-result-n'  => 'Có {{PLURAL:$2|1 bản sao|$2 bản sao}} y hệt với tập tin “$1”.',
 'fileduplicatesearch-noresults' => 'Không tìm thấy tập tin nào tên “$1”.',

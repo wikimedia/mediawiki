@@ -10,6 +10,7 @@
  * @author Cekli829
  * @author Flrn
  * @author Hanberke
+ * @author Kaganer
  * @author Runningfridgesrule
  * @author The Evil IP address
  */
@@ -2555,7 +2556,7 @@ $1',
 Ony işletseňiz iş ulgamyňyza howp astyna salmagyňyz mümkin.",
 'imagemaxsize'         => "Surat ölçeginiň çägi:<br />''(faýl düşündiriş sahypalary üçin)''",
 'thumbsize'            => 'Miniatýura ölçegi:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|sahypa|sahypa}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|sahypa|sahypa}}',
 'file-info'            => 'faýl ölçegi: $1, MIME tipi: $2',
 'file-info-size'       => '$1 × $2 piksel, faýlyň ölçegi: $3, MIME tipli: $4',
 'file-nohires'         => 'Wersiýanyň mundan uly ölçegi ýok.',

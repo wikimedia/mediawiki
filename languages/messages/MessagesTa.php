@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Kaganer
  * @author Kanags
  * @author Karthi.dr
  * @author Krishnaprasaths
@@ -2695,7 +2696,7 @@ $1',
 இதனை செயற்படுத்துவதன் மூலம் உங்கள் கணனியின் பாதுகாப்பு கேள்விகுறியாகலாம்.",
 'imagemaxsize'           => "படிமங்களின் உச்ச அளவு:<br />''(கோப்புக்களின் விவர பக்கங்களுக்கு)''",
 'thumbsize'              => 'சிறு முன்தோற்றத்தின் பரிமாணம்:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|பக்கம்|பக்கங்கள்}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|பக்கம்|பக்கங்கள்}}',
 'file-info'              => 'கோப்பின் அளவு: $1, MIME வகை: $2',
 'file-info-size'         => '$1 × $2 படவணுக்கள், கோப்பின் அளவு: $3, MIME வகை: $4',
 'file-nohires'           => 'இதைவிட அளவில் பெரிய படிமம் இல்லை.',
@@ -2703,7 +2704,7 @@ $1',
 'show-big-image'         => 'முழு அளவிலான படிமம்',
 'show-big-image-preview' => 'இந்த முன்னோட்டத்தின் அளவு:  $1 .',
 'show-big-image-other'   => 'மற்ற  {{PLURAL:$2|பிரிதிறன்|பிரிதிறன்கள்}}:  $1 .',
-'show-big-image-size'    => '$1×  $2 படப்புள்ளிகள்',
+'show-big-image-size'    => '$1 × $2 படப்புள்ளிகள்',
 'file-info-gif-looped'   => 'வளயமிடப்பட்டது.(looped)',
 'file-info-gif-frames'   => '$1 {{PLURAL:$1|சட்டகம்|சட்டகங்கள்}}',
 'file-info-png-looped'   => 'வளயமிடப்பட்டது.(looped)',

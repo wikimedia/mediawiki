@@ -19,6 +19,7 @@
  * @author Jan Luca
  * @author Jens Liebenau
  * @author Jimmy Collins <jimmy.collins@web.de>
+ * @author Kaganer
  * @author Kebap
  * @author Kghbln
  * @author Khaledelmansoury
@@ -2105,8 +2106,8 @@ Jede Zeile enthält Links zur ersten und zweiten Weiterleitung sowie dem Ziel de
 'nmembers'                => '{{PLURAL:$1|1 Eintrag|$1 Einträge}}',
 'nrevisions'              => '{{PLURAL:$1|1 Bearbeitung|$1 Bearbeitungen}}',
 'nviews'                  => '{{PLURAL:$1|1 Abfrage|$1 Abfragen}}',
-'nimagelinks'             => 'Verwendet auf $1 {{PLURAL:$1|Seite|Seiten}}',
-'ntransclusions'          => 'verwendet auf $1 {{PLURAL:$1|Seite|Seiten}}',
+'nimagelinks'             => 'Verwendet auf {{PLURAL:$1|einer Seite|$1 Seiten}}',
+'ntransclusions'          => 'verwendet auf {{PLURAL:$1|einer Seite|$1 Seiten}}',
 'specialpage-empty'       => 'Die Seite enthält aktuell keine Einträge.',
 'lonelypages'             => 'Verwaiste Seiten',
 'lonelypagestext'         => 'Die folgenden Seiten werden nicht eingebunden oder es wird nicht auf sie in {{SITENAME}} verwiesen.',
@@ -3130,7 +3131,7 @@ $1',
 Durch das Herunterladen und Öffnen der Datei kann dein Computer beschädigt werden.",
 'imagemaxsize'           => "Maximale Bildgröße:<br />''(für Dateibeschreibungsseiten)''",
 'thumbsize'              => 'Standardgröße der Vorschaubilder:',
-'widthheightpage'        => '$1×$2, {{PLURAL:$3|1 Seite|$3 Seiten}}',
+'widthheightpage'        => '$1 × $2, {{PLURAL:$3|1 Seite|$3 Seiten}}',
 'file-info'              => 'Dateigröße: $1, MIME-Typ: $2',
 'file-info-size'         => '$1 × $2 Pixel, Dateigröße: $3, MIME-Typ: $4',
 'file-info-size-pages'   => '$1 × $2 Pixel, Dateigröße: $3, MIME-Typ: $4, $5 {{PLURAL:$5|Seite| Seiten}}',

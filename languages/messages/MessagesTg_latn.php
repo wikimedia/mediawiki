@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Kaganer
  * @author Liangent
  */
 
@@ -1837,7 +1838,7 @@ $1',
 'mediawarning'    => "'''Huşdor''': In parvanda mumkin ast ramzhoi badqasdro dar bar girad.
 Bo içroi on, sistemai şumo şojad oseb bubinad.",
 'thumbsize'       => 'Andozai anguştdona (thumbnail):',
-'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|sahifa|sahifaho}}',
+'widthheightpage' => '$1 × $2, $3 {{PLURAL:$3|sahifa|sahifaho}}',
 'file-info'       => "andozai parvanda: $1, nav'i MIME: $2",
 'file-info-size'  => "$1 × $2 piksel, haçmi parvanda: $3, nav'i MIME: $4",
 'file-nohires'    => 'Nusxai haçman va sifatan balandtar dastras nest.',

@@ -15,6 +15,7 @@
  * @author Jigesh
  * @author Junaidpv
  * @author Jyothis
+ * @author Kaganer
  * @author Manjith Joseph <manjithkaini@gmail.com>
  * @author Naveen Sankar
  * @author Praveen Prakash <me.praveen@gmail.com>
@@ -3005,7 +3006,7 @@ $1',
 'mediawarning'           => "'''മുന്നറിയിപ്പ്''': ഈ തരത്തിലുള്ള പ്രമാണത്തിൽ വിനാശകാരിയായ കോഡ് ഉണ്ടായേക്കാം. ഇതു തുറക്കുന്നതു താങ്കളുടെ കമ്പ്യൂട്ടറിനു അപകടമായി തീർന്നേക്കാം.",
 'imagemaxsize'           => "ചിത്രത്തിന്റെ വലിപ്പം:<br />''(പ്രമാണത്തിന്റെ വിവരണ താളുകളിൽ)''",
 'thumbsize'              => 'ലഘുചിത്രത്തിന്റെ വലിപ്പം:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|താൾ|താളുകൾ}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|താൾ|താളുകൾ}}',
 'file-info'              => 'പ്രമാണത്തിന്റെ വലിപ്പം: $1, മൈം തരം: $2',
 'file-info-size'         => '$1 × $2 പിക്സൽ, പ്രമാണത്തിന്റെ വലിപ്പം: $3, മൈം തരം: $4',
 'file-info-size-pages'   => '$1 × $2 പിക്സൽ, പ്രമാണത്തിന്റെ വലിപ്പം: $3, മൈം തരം: $4, {{PLURAL:$5|ഒരു താൾ|$5 താളുകൾ}}',

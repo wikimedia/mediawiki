@@ -19,6 +19,7 @@
  * @author IvanLanin
  * @author Iwan Novirion
  * @author J Subhi
+ * @author Kaganer
  * @author Kenrick95
  * @author McDutchie
  * @author Meursault2004
@@ -2993,7 +2994,7 @@ $1',
 Jika dijalankan, sistem Anda akan berisiko terserang.",
 'imagemaxsize'           => "Batas ukuran gambar:<br />''(untuk halaman deskripsi berkas)''",
 'thumbsize'              => 'Ukuran miniatur:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|halaman|halaman}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|halaman|halaman}}',
 'file-info'              => 'ukuran berkas: $1, tipe MIME: $2',
 'file-info-size'         => '$1 × $2 piksel, ukuran berkas: $3, tipe MIME: $4',
 'file-info-size-pages'   => '$1 × $2 piksel, ukuran berkas: $3, jenis MIME: $4, $5 {{PLURAL:$5|halaman|halaman}}',

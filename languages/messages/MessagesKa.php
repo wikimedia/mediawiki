@@ -14,6 +14,7 @@
  * @author David1010
  * @author Dawid Deutschland
  * @author ITshnik
+ * @author Kaganer
  * @author Malafaya
  * @author Nodar Kherkheulidze
  * @author Reedy
@@ -547,7 +548,7 @@ $2',
 'yourdomainname'             => 'თქვენი დომენი',
 'externaldberror'            => 'საგარეო მონაცემთა ბაზაში აუტენტიფიკაციის შეცდომაა, ან თქვენ არ გაქვთ საკმარისი უფლებები საგარეო ანგარიშში ცვლილებების შესატანად.',
 'login'                      => 'შესვლა',
-'nav-login-createaccount'    => 'შესვლა/რეგისტრაცია',
+'nav-login-createaccount'    => 'შესვლა / რეგისტრაცია',
 'loginprompt'                => '{{SITENAME}}-ში შესასვლელად საჭიროა კუკის (cookies) გააქტიურება.',
 'userlogin'                  => 'შესვლა/ანგარიშის შექმნა',
 'userloginnocreate'          => 'შესვლა',
@@ -2792,7 +2793,7 @@ $1',
 მისმა ჩატვირთვამ შესაძლოა თქვენი სისტემა დააზიანოს.",
 'imagemaxsize'           => "სურათის მაქსიმალური ზომა <br />''აღწერილობის გვერდზე:''",
 'thumbsize'              => 'შემცირებული ზომა:',
-'widthheightpage'        => '$1×$2, $3 გვერდი',
+'widthheightpage'        => '$1 × $2, $3 გვერდი',
 'file-info'              => 'ფაილის ზომა: $1, MIME ტიპი: $2',
 'file-info-size'         => '$1 × $2 პიქსელი, ფაილის ზომა: $3, MIME ტიპი: $4',
 'file-info-size-pages'   => '$1 × $2 პიქსელი, ფაილის ზომა: $3, MIME ტიპი: $4, $5 გვერდი',

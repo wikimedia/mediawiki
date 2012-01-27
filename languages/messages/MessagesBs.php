@@ -11,6 +11,7 @@
  * @author CERminator
  * @author Demicx
  * @author Fulup
+ * @author Kaganer
  * @author Kal-El
  * @author Malafaya
  * @author Palapa
@@ -3003,7 +3004,7 @@ $1',
 'mediawarning'           => "'''Upozorenje''': Ova datoteka sadrži loš kod, njegovim izvršavanjem možete da ugrozite Vaš sistem.",
 'imagemaxsize'           => "Ograničenje veličine slike:<br />''(za stranice opisa datoteke)''",
 'thumbsize'              => 'Veličina umanjenog prikaza:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|stranica|stranice|stranica}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|stranica|stranice|stranica}}',
 'file-info'              => 'veličina datoteke: $1, MIME tip: $2',
 'file-info-size'         => '$1 × $2 piksela, veličina datoteke: $3, MIME tip: $4',
 'file-info-size-pages'   => '$1 × $2 piksela, veličina datoteke: $3, MIME vrsta: $4, $5 {{PLURAL:$5|stranica|stranice|stranica}}',

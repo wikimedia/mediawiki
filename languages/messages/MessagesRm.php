@@ -9,6 +9,7 @@
  *
  * @author Gion
  * @author Gion-andri
+ * @author Kaganer
  * @author Kazu89
  * @author Urhixidur
  * @author לערי ריינהארט
@@ -2492,7 +2493,7 @@ $1',
 Cun exequir questa datoteca po tes sistem vegnir donnegià.",
 'imagemaxsize'           => "Grondezza maximala da maletgs:<br />''(per paginas da descripziun da datotecas)''",
 'thumbsize'              => 'Grondezza dals maletgs da prevista:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|pagina|paginas}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|pagina|paginas}}',
 'file-info'              => 'grondezza da datoteca: $1, tip da MIME: $2',
 'file-info-size'         => '$1 × $2 pixels, grondezza da datoteca: $3, tip da MIME: $4',
 'file-info-size-pages'   => '$1 × $2 pixels, grondezza da datoteca: $3, tip da MIME: $4, $5 {{PLURAL:$5|pagina|paginas}}',

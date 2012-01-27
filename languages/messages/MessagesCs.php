@@ -12,6 +12,7 @@
  * @author Helix84
  * @author Jachym
  * @author Jkjk
+ * @author Kaganer
  * @author Kuvaly
  * @author Li-sung
  * @author Martin Kozák
@@ -3079,7 +3080,7 @@ Otevřením souboru můžete ohrozit svůj počítač.",
 'imagemaxsize'           => "Maximální velikost obrázku:<br />
 ''(na stránce s popisem souboru)''",
 'thumbsize'              => 'Velikost náhledu:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|stránka|stránky|stránek}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|stránka|stránky|stránek}}',
 'file-info'              => 'velikost souboru: $1, MIME typ: $2',
 'file-info-size'         => '$1 × $2 pixelů, velikost souboru: $3, MIME typ: $4',
 'file-info-size-pages'   => '$1 × $2 pixelů, velikost souboru: $3, MIME typ: $4, $5 {{PLURAL:$5|stránka|stránky|stránek}}',

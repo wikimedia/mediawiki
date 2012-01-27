@@ -10,6 +10,7 @@
  * @author Aelske
  * @author Benopat
  * @author Cicero
+ * @author Kaganer
  * @author Matthias
  * @author Ooswesthoesbes
  * @author Pahles
@@ -2840,7 +2841,7 @@ $1",
 'mediawarning'           => "'''Waorsjuwing''': Dit bestandj kin 'n anger kood höbbe, door 't te doorveure in dien systeem kin 't gecompromeerde dinger oplevere.",
 'imagemaxsize'           => "Meximale aafbeildjingsaafmaeting:<b r/>''(veur besjrievingspaasj)''",
 'thumbsize'              => 'Gruutde vanne thumbnail:',
-'widthheightpage'        => "$1×$2, $3 {{PLURAL:$3|pazjena|pazjena's}}",
+'widthheightpage'        => "$1 × $2, $3 {{PLURAL:$3|pazjena|pazjena's}}",
 'file-info'              => 'bestandsgruutde: $1, MIME-type: $2',
 'file-info-size'         => '$1 × $2 pixels, besjtandjgruutde: $3, MIME-type: $4',
 'file-info-size-pages'   => "$1 × $2 pixels, bestandjsgreudje: $3, MIME-type: $4, $5 {{PLURAL:$5|pagina|pagina's}}",

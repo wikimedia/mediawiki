@@ -12,6 +12,7 @@
  * @author ChrisPtDe
  * @author Fryed-peach
  * @author Jfblanc
+ * @author Kaganer
  * @author Spacebirdy
  * @author Горан Анђелковић
  * @author לערי ריינהארט
@@ -2833,7 +2834,7 @@ $1",
 Se l'executatz, vòstre sistèma pòt èsser compromés.",
 'imagemaxsize'         => "Format maximal dels imatges :<br />''(per las paginas de descripcion d’imatges)''",
 'thumbsize'            => 'Talha de la miniatura :',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pagina|paginas}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|pagina|paginas}}',
 'file-info'            => 'Talha del fichièr: $1, tipe MIME: $2',
 'file-info-size'       => '$1 × $2 pixèl, talha del fichièr: $3, tipe MIME: $4',
 'file-nohires'         => 'Pas de resolucion mai nauta disponibla.',

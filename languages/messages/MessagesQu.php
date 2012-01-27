@@ -9,6 +9,7 @@
  *
  * @author AlimanRuna
  * @author Diego Grez
+ * @author Kaganer
  * @author Omnipaedista
  * @author Reedy
  * @author The Evil IP address
@@ -2896,7 +2897,7 @@ $1",
 Payta rurachiyqa antañiqiqniykita llikaykitapas waqllinqachá.",
 'imagemaxsize'           => "Rikchap chhikan kayninta kaykama saywachay:<br />''(willañiqi ch'uyanchana p'anqakunapaq)''",
 'thumbsize'              => "Ch'iñicha rikchachap chhikan kaynin:",
-'widthheightpage'        => "$1×$2, $3 {{PLURAL:$3|p'anqa|p'anqakuna}}",
+'widthheightpage'        => "$1 × $2, $3 {{PLURAL:$3|p'anqa|p'anqakuna}}",
 'file-info'              => 'willañiqip chhikan kaynin: $1; MIME laya: $2',
 'file-info-size'         => '$1 × $2 iñu; willañiqip chhikan kaynin: $3; MIME laya: $4',
 'file-info-size-pages'   => "$1 × $2 iñu, willañiqip chhikan kaynin: $3; MIME laya: $4, $5 {{PLURAL:$5|p'anqa|p'anqa}}",

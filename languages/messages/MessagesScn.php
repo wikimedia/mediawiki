@@ -9,6 +9,7 @@
  *
  * @author Aushulz
  * @author Gmelfi
+ * @author Kaganer
  * @author Melos
  * @author Omnipaedista
  * @author Santu
@@ -2417,7 +2418,7 @@ $1',
 'mediawarning'         => "'''Accura''': Stu file pò cuntèniri còdici malignu, esiquènnulu lu vostru sistema putisi vèniri cumprumissu.",
 'imagemaxsize'         => "Diminzioni màssima dî mmàggini:<br />''(pi li pàggini di discrizzioni dô file)''",
 'thumbsize'            => 'Grannizza dî miniaturi:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pàggina|pàggini}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|pàggina|pàggini}}',
 'file-info'            => 'Diminzioni: $1, tipu MIME: $2',
 'file-info-size'       => '$1 × $2 pixel, diminzioni: $3, tipu MIME: $4',
 'file-nohires'         => 'Nun sunnu dispunìbbili virsioni a risuluzzioni cchiù elivata.',

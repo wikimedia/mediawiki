@@ -9,6 +9,7 @@
  *
  * @author Anggoro
  * @author Helix84
+ * @author Kaganer
  * @author Meursault2004
  * @author Pras
  * @author Rex
@@ -2373,7 +2374,7 @@ $1',
 'mediawarning'         => "'''Pènget:''' Berkas iki mbokmenawa ngandhut kode sing bebayani, yèn dilakokaké sistém panjenengan bisa kena pangaruh ala.",
 'imagemaxsize'         => "Wates ukuran gambar:<br />''(kanggo kaca dhèskripsi berkas)''",
 'thumbsize'            => 'Ukuran gambar cilik (thumbnail):',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|kaca|kaca}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|kaca|kaca}}',
 'file-info'            => 'ukuran berkas: $1, tipe MIME: $2',
 'file-info-size'       => '$1 × $2 piksel, ukuran berkas: $3, tipe MIME: $4',
 'file-nohires'         => 'Ora ana résolusi sing luwih dhuwur.',

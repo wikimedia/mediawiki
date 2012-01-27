@@ -13,6 +13,7 @@
  * @author Fulup
  * @author Gwendal
  * @author Gwenn-Ael
+ * @author Kaganer
  * @author Malafaya
  * @author Y-M D
  * @author לערי ריינהארט
@@ -2935,7 +2936,7 @@ $1',
 Ma vez erounezet ganeoc'h e c'hallje tagañ ho reizhiad.",
 'imagemaxsize'           => "Bevenn ment vrasañ ar skeudennoù :<br />''(evit ar pajennoù deskrivañ)''",
 'thumbsize'              => 'Ment an alberz :',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|pajenn|pajenn}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|pajenn|pajenn}}',
 'file-info'              => 'ment ar restr : $1, seurt MIME : $2',
 'file-info-size'         => '$1 × $2 piksel, ment ar restr : $3, seurt MIME : $4',
 'file-info-size-pages'   => '$1 × $2 piksel, ment ar restr : $3, seurt MIME : $4, $5 {{PLURAL:$5|pajenn|pajenn}}',

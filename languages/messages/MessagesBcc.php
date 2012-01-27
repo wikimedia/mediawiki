@@ -8,6 +8,7 @@
  * @file
  *
  * @author Huji
+ * @author Kaganer
  * @author Mostafadaneshvar
  * @author ZxxZxxZ
  */
@@ -2464,7 +2465,7 @@ $1',
 'mediawarning'    => "''''هوژاری:'''' ای فایل شاید شامل بد واهین کد بوت،اجرای آیی ته وتی سیستم شاید توافقی بیت.",
 'imagemaxsize'    => "محدودیت تصاویر: <br />''(په صفحات توضیح فایل)''",
 'thumbsize'       => 'اندازه پیج انگشتی',
-'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|صفحه|صفحات}}',
+'widthheightpage' => '$1 × $2, $3 {{PLURAL:$3|صفحه|صفحات}}',
 'file-info'       => 'اندازه فایل: $1, مایم نوع: $2',
 'file-info-size'  => '$1 × $2 پیکسل, اندازه فایل: $3, مایم نوع: $4',
 'file-nohires'    => 'مزنترین رزلوشن نیست.',

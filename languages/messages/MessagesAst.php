@@ -8,6 +8,7 @@
  * @file
  *
  * @author Esbardu
+ * @author Kaganer
  * @author Mikel
  * @author Remember the dot
  * @author Xuacu
@@ -2862,7 +2863,7 @@ $1",
 Al executalu pues comprometer el to sistema.",
 'imagemaxsize'           => "Llende del tamañu d'imaxe: <br />''(pa les páxines de descripción de ficheru)''",
 'thumbsize'              => 'Tamañu de la muestra:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|páxina|páxines}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|páxina|páxines}}',
 'file-info'              => "tamañu d'archivu: $1, triba MIME: $2",
 'file-info-size'         => "$1 × $2 píxeles, tamañu d'archivu: $3, triba MIME: $4",
 'file-info-size-pages'   => '$1 × $2 pixels, tamañu del ficheru: $3, triba MIME: $4, $5 {{PLURAL:$5|páxina|páxines}}',

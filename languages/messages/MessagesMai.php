@@ -10,6 +10,7 @@
  * @author Ashishanchinhar
  * @author Dhirendra.maithili
  * @author Ggajendra
+ * @author Kaganer
  * @author Kapileshwar.raut
  * @author Kumariprity
  * @author Manojberma77
@@ -2736,7 +2737,7 @@ $1',
 'imagemaxsize'           => "चित्र आकारक सीमा:<br />''(संचिका वर्णन पन्ना लेल)''",
 'thumbsize'              => 'संकुचितचित्र आकार:',
 'widthheight'            => '$1 × $2',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|पन्ना|पन्ना सभ}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|पन्ना|पन्ना सभ}}',
 'file-info'              => 'संचिका आकार: $1, माइम प्रकार: $2',
 'file-info-size'         => '$1 × $2 चित्राणु, फाइल आकार: $3, माइम प्रकार: $4',
 'file-info-size-pages'   => '$1 × $2 चित्रकण, संचिका आकार : $3, माइम प्रकार: $4, $5 {{PLURAL:$5|पन्ना|पन्ना सभ}}',

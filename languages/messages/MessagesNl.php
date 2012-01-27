@@ -19,6 +19,7 @@
  * @author GerardM
  * @author Hamaryns
  * @author Jens Liebenau
+ * @author Kaganer
  * @author Krinkle
  * @author MarkvA
  * @author McDutchie
@@ -3208,7 +3209,7 @@ $1',
 ''(voor op de beschrijvingspagina)''",
 'thumbsize'              => 'Grootte miniatuurafbeelding:',
 'widthheight'            => '$1 × $2',
-'widthheightpage'        => "$1×$2, $3 {{PLURAL:$3|pagina|pagina's}}",
+'widthheightpage'        => "$1 × $2, $3 {{PLURAL:$3|pagina|pagina's}}",
 'file-info'              => 'bestandsgrootte: $1, MIME-type: $2',
 'file-info-size'         => '$1 × $2 pixels, bestandsgrootte: $3, MIME-type: $4',
 'file-info-size-pages'   => "$1 × $2 pixels, bestandsgrootte: $3, MIME-type: $4, $5 {{PLURAL:$5|pagina|pagina's}}",

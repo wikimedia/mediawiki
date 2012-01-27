@@ -42,6 +42,7 @@
  * @author Jatrobat
  * @author Jens Liebenau
  * @author Jurock
+ * @author Kaganer
  * @author Lin linao
  * @author Linterweb
  * @author Locos epraix
@@ -3080,10 +3081,10 @@ $1',
 Ejecutarlo podría comprometer la seguridad de su equipo.",
 'imagemaxsize'           => "Límite de tamaño de imagen:<br />''(para páginas de descripción de archivo)''",
 'thumbsize'              => 'Tamaño de las vistas en miniatura:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:|página|páginas}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:|página|páginas}}',
 'file-info'              => 'tamaño de archivo: $1; tipo MIME: $2',
 'file-info-size'         => '$1 × $2 píxeles; tamaño de archivo: $3; tipo MIME: $4',
-'file-info-size-pages'   => '$1× $2 píxeles, tamaño de archivo: $3, tipo MIME: $4, $5 {{PLURAL:$5|página|páginas}}',
+'file-info-size-pages'   => '$1 × $2 píxeles, tamaño de archivo: $3, tipo MIME: $4, $5 {{PLURAL:$5|página|páginas}}',
 'file-nohires'           => 'No disponible a mayor resolución.',
 'svg-long-desc'          => 'archivo SVG, nominalmente $1 × $2 píxeles, tamaño de archivo: $3',
 'show-big-image'         => 'Resolución original',

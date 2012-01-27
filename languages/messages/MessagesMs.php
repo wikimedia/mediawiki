@@ -14,6 +14,7 @@
  * @author Diagramma Della Verita
  * @author Hydra
  * @author Izzudin
+ * @author Kaganer
  * @author Kurniasan
  * @author Meno25
  * @author Putera Luqman Tunku Andre
@@ -2942,7 +2943,7 @@ Dengan menjalankannya, komputer anda mungkin akan terjejas.",
 'imagemaxsize'           => "Had saiz imej:<br />''(untuk laman keterangan fail)''",
 'thumbsize'              => 'Saiz gambar kenit:',
 'widthheight'            => '$1 × $2',
-'widthheightpage'        => '$1×$2, $3 halaman',
+'widthheightpage'        => '$1 × $2, $3 halaman',
 'file-info'              => 'saiz file: $1, jenis MIME: $2',
 'file-info-size'         => '$1 × $2 piksel, saiz fail: $3, jenis MIME: $4',
 'file-info-size-pages'   => '$1 × $2 piksel, saiz fail: $3, jenis MIME: $4, $5 laman',

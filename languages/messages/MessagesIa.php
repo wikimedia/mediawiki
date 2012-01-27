@@ -8,6 +8,7 @@
  * @file
  *
  * @author Julian Mendez
+ * @author Kaganer
  * @author Malafaya
  * @author McDutchie
  * @author Reedy
@@ -2990,7 +2991,7 @@ $1',
 Le execution de illo pote compromitter le securitate de tu systema.",
 'imagemaxsize'           => "Dimension maxime de imagines:<br />''(pro paginas de description de files)''",
 'thumbsize'              => 'Dimension del miniaturas:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|pagina|paginas}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|pagina|paginas}}',
 'file-info'              => 'grandor del file: $1, typo MIME: $2',
 'file-info-size'         => '$1 × $2 pixel, grandor del file: $3, typo MIME: $4',
 'file-info-size-pages'   => '$1 × $2 pixels, dimension del file: $3, typo MIME: $4, $5 {{PLURAL:$5|pagina|paginas}}',

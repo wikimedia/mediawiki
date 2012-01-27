@@ -9,6 +9,7 @@
  *
  * @author Hercule
  * @author Kaffi
+ * @author Kaganer
  * @author Les Meloures
  * @author Purodha
  * @author Reedy
@@ -2879,7 +2880,7 @@ $1',
 Duerch d'Opmaache vum Fichier kann Äre System beschiedegt ginn.",
 'imagemaxsize'           => "Maximal Gréisst fir Biller:<br />''(fir Billerbeschreiwungssäiten)''",
 'thumbsize'              => 'Gréisst vun der Miniatur:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|Säit|Säiten}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|Säit|Säiten}}',
 'file-info'              => 'Fichiersgréisst: $1, MIME-Typ: $2',
 'file-info-size'         => '$1 × $2 Pixel, Fichiersgréisst: $3, MIME-Typ: $4',
 'file-info-size-pages'   => '$1 × $2 Pixelen, Gréisst vum Fichier: $3, MIME Typ: $4, $5 {{PLURAL:$5|Säit|Säiten}}',

@@ -8,6 +8,7 @@
  * @file
  *
  * @author Arslan
+ * @author Kaganer
  * @author Khalid Mahmood
  * @author Rachitrali
  * @author ZaDiak
@@ -2687,7 +2688,7 @@ $1',
 اینوں ورت کے تسیں اپنے کمپیوٹر نوں خراب کرسکدے او۔",
 'imagemaxsize'           => "مورت ناپ حد:<br />''(دسن والیاں فائل صفیاں لئی)''",
 'thumbsize'              => 'تھمبنیل ناپ',
-'widthheightpage'        => '$1×$2, $3 {{انیک:$3|صفہ|وفے}}',
+'widthheightpage'        => '$1 × $2, $3 {{انیک:$3|صفہ|وفے}}',
 'file-info'              => 'فائل ناپ: $1، MIME  ٹائپ: $2',
 'file-info-size'         => 'پکسل:$1 × $2, فائل سائز: $3, مائم ٹائپ: $4',
 'file-info-size-pages'   => '$1 × $2 پکسل, فائل ناپ: $3, مائم ٹائپ: $4, $5 {{انیک:$5|صفہ|صفے}}',

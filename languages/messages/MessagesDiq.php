@@ -11,6 +11,7 @@
  * @author Aspar
  * @author Belekvor
  * @author Erdemaslancan
+ * @author Kaganer
  * @author Mirzali
  * @author Reedy
  * @author Sahim
@@ -2507,7 +2508,7 @@ $1',
 Gurênayışê nae de, beno ke sistemê şıma zerar bıvêno.",
 'imagemaxsize'         => "Limitê ebat ê resimi:<br />''(qe pela deskripsiyonê dosyayan)''",
 'thumbsize'            => 'Ebadê Thumbnaili',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pele|peleyi}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|pele|peleyi}}',
 'file-info'            => 'ebatê dosyayi: $1, MIME tip: $2',
 'file-info-size'       => '$1 × $2 pixelan, ebatê dosya: $3, MIME type: $4',
 'file-nohires'         => 'Rovıleşiyayışo berzêr çıniyo.',

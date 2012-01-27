@@ -16,6 +16,7 @@
  * @author Ex13
  * @author Excaliboor
  * @author Herr Mlinka
+ * @author Kaganer
  * @author Luka Krstulovic
  * @author MayaSimFan
  * @author Meno25
@@ -2960,7 +2961,7 @@ $1',
 Njegovim izvršavanjem mogli biste oštetiti svoj sustav.",
 'imagemaxsize'           => "Ograniči veličinu slike:<br />''(za stranicu s opisom datoteke)''",
 'thumbsize'              => 'Veličina sličice (umanjene inačice slike):',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|stranica|stranice}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|stranica|stranice}}',
 'file-info'              => 'veličina datoteke: $1, MIME tip: $2',
 'file-info-size'         => '$1 × $2 piksela, veličina datoteke: $3, MIME tip: $4',
 'file-info-size-pages'   => '$1 × $2 piksela, veličina datoteke: $3, MIME vrsta: $4, $5 {{PLURAL:$5|stranica|stranice|stranica}}',

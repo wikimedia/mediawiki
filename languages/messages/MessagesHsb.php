@@ -9,6 +9,7 @@
  *
  * @author Dundak
  * @author J budissin
+ * @author Kaganer
  * @author Michawiki
  * @author Tchoř
  * @author Tlustulimu
@@ -2833,7 +2834,7 @@ $1',
 'imagemaxsize'           => "Maksimalna wobrazowa wulkosć:<br />''(za strony datajoweho wopisanja)''",
 'thumbsize'              => 'Wulkosć miniaturkow (thumbnails):',
 'widthheight'            => '$1x$2',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|strona|stronje|strony|stronow}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|strona|stronje|strony|stronow}}',
 'file-info'              => 'Wulkosć dataje: $1, typ MIME: $2',
 'file-info-size'         => '$1 × $2 pikselow, wulkosć dataje: $3, typ MIME: $4',
 'file-info-size-pages'   => '$1 × $2 pikselow, wulkosć dataje: $3, MIME-typ: $4, $5 {{PLURAL:$5|strona|stronje|strony|stronow}}',

@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Kaganer
  * @author Lam-ang
  * @author Saluyot
  * @author Urhixidur
@@ -2800,7 +2801,7 @@ $1',
 No usarem ket, baka makompromiso ti sistema.",
 'imagemaxsize'           => "Ti patingga a kadakkel ti papeles:<br />''(para dagiti pagpalpalawag ti papeles a panid)''",
 'thumbsize'              => 'Rukod ti imahen:',
-'widthheightpage'        => '$1×$2, $3 a {{PLURAL:$3|panid|pampanid}}',
+'widthheightpage'        => '$1 × $2, $3 a {{PLURAL:$3|panid|pampanid}}',
 'file-info'              => 'kadakkel ti papeles: $1, MIME a kita: $2',
 'file-info-size'         => '$1 × $2 dagiti pixel, kadakkel ti papeles: $3, kita ti  MIME: $4',
 'file-info-size-pages'   => '$1 × $2 pixels, kadakkel ti papeles: $3, kita ti MIME: $4, $5 {{PLURAL:$5|panid|pampanid}}',

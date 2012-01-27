@@ -8,6 +8,7 @@
  * @file
  *
  * @author Ccaxjoj Iteja Z Iti Poop
+ * @author Kaganer
  * @author SeriCtam
  * @author Teak
  * @author Urhixidur
@@ -1024,7 +1025,7 @@ iitom e-iitomde diijömde caitóm.',
 'spambot_username' => 'MediaWiki nespam',
 
 # Media information
-'widthheightpage' => '$1×$2, $3 páhinám',
+'widthheightpage' => '$1 × $2, $3 páhinám',
 
 # Special:NewFiles
 'showhidebots' => '($1 botám)',

@@ -9,6 +9,7 @@
  *
  * @author AnakngAraw
  * @author Felipe Aira
+ * @author Kaganer
  * @author Sky Harbor
  * @author tl.wikipedia.org sysops
  * @author לערי ריינהארט
@@ -2794,7 +2795,7 @@ $1',
 Maaaring manganib ang iyong sistema kapag ipinagana mo ito.",
 'imagemaxsize'           => "Takdang hangganan sa laki ng larawan: <br />''(para sa mga pahina ng paglalarawan ng talaksan)''",
 'thumbsize'              => 'Maliit na sukat (parang "kuko sa hinlalaki" lamang):',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|pahina|mga pahina}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|pahina|mga pahina}}',
 'file-info'              => 'sukat ng talaksan: $1, tipo ng MIME: $2',
 'file-info-size'         => '$1 × $2 piksel, sukat ng talaksan: $3, tipo ng MIME: $4',
 'file-info-size-pages'   => '$1 × $2 mga piksel, sukat ng talaksan: $3, uri ng MIME: $4, $5 {{PLURAL:$5|pahina|mga pahina}}',

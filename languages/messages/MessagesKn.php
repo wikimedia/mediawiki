@@ -11,6 +11,7 @@
  * @author Dipin
  * @author HPN
  * @author Hari Prasad Nadig <hpnadig@gmail.com> http://en.wikipedia.org/wiki/User:Hpnadig
+ * @author Kaganer
  * @author Ktkaushik
  * @author M G Harish
  * @author Mana
@@ -1804,7 +1805,7 @@ $1',
 
 # Media information
 'thumbsize'       => 'ಕಿರುನೋಟದ ಗಾತ್ರ:',
-'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|ಪುಟ|ಪುಟಗಳು}}',
+'widthheightpage' => '$1 × $2, $3 {{PLURAL:$3|ಪುಟ|ಪುಟಗಳು}}',
 'file-info'       => 'ಫೈಲಿನ ಗಾತ್ರ: $1, MIME ಪ್ರಕಾರ: $2',
 'file-info-size'  => '$1 × $2 ಚಿತ್ರಬಿಂದು, ಫೈಲಿನ ಗಾತ್ರ: $3, MIME ಪ್ರಕಾರ: $4',
 'file-nohires'    => 'ಇದಕ್ಕಿಂತ ಹೆಚ್ಚಿನ ವಿವರವಾದ ನೋಟ ಇಲ್ಲ.',

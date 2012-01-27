@@ -28,6 +28,7 @@
  * @author Helder.wiki
  * @author Jesielt
  * @author Jorge Morais
+ * @author Kaganer
  * @author Leonardo.stabile
  * @author LeonardoG
  * @author Lijealso
@@ -2168,7 +2169,7 @@ Pode haver [[{{MediaWiki:Listgrouprights-helppage}}|informações adicionais]] s
 # E-mail user
 'mailnologin'          => 'Nenhum endereço de envio',
 'mailnologintext'      => 'Necessita de estar [[Special:UserLogin|autenticado]] e de possuir um endereço de e-mail válido nas suas [[Special:Preferences|preferências]] para poder enviar um e-mail a outros usuários.',
-'emailuser'            => 'Contatar este usuário',
+'emailuser'            => 'Enviar-lhe um e-mail',
 'emailpage'            => 'Contactar usuário',
 'emailpagetext'        => 'Você pode usar o formulário abaixo para enviar uma mensagem por correio eletrônico para este usuário.
 O endereço eletrônico que você inseriu em [[Special:Preferences|suas preferências de usuário]] irá aparecer como o endereço do remetente da mensagem, então o destinatário poderá responder diretamente para você.',
@@ -2998,7 +2999,7 @@ $1',
 Executá-lo poderá comprometer a segurança do seu sistema.",
 'imagemaxsize'           => "Limite de tamanho de imagem:<br />''(para páginas de descrição de arquivos)''",
 'thumbsize'              => 'Tamanho de miniaturas:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|página|páginas}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|página|páginas}}',
 'file-info'              => 'tamanho: $1, tipo MIME: $2',
 'file-info-size'         => '$1 × $2 pixels, tamanho: $3, tipo MIME: $4',
 'file-info-size-pages'   => '$1 × $2 pixels, tamanho do arquivo: $3, tipo MIME: $4, $5 {{PLURAL:$5|página|páginas}}',

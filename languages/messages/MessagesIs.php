@@ -11,6 +11,7 @@
  * @author Friðrik Bragi Dýrfjörð
  * @author Gott wisst
  * @author Jóna Þórunn
+ * @author Kaganer
  * @author Krun
  * @author Maxí
  * @author S.Örvarr.S
@@ -2857,7 +2858,7 @@ Vinsamlegast reyndu aftur.',
 'mediawarning'           => "'''AÐVÖRUN''': Þessi skrá kann að hafa meinfýsinn kóða, ef keyrður kann hann að stofna kerfinu þínu í hættu.",
 'imagemaxsize'           => "Takmarka myndastærð:<br />''(fyrir skráarsíður)''",
 'thumbsize'              => 'Stærð smámynda:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|síða|síður}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|síða|síður}}',
 'file-info'              => 'stærð skráar: $1, MIME-tegund: $2',
 'file-info-size'         => '$1 × $2 dílar, stærð skráar: $3, MIME-gerð: $4',
 'file-info-size-pages'   => '$1 x $2 dílar, skráarstærð: $3, MIME-gerð: $4, $5 {{PLURAL:$5|síða|síður}} tengja í skránna.',

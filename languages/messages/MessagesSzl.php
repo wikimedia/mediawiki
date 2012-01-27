@@ -12,6 +12,7 @@
  * @author Djpalar
  * @author Gaj777
  * @author Herr Kriss
+ * @author Kaganer
  * @author Lajsikonik
  * @author Leinad
  * @author Ozi64
@@ -2259,7 +2260,7 @@ $1',
 'mediawarning'    => "'''Pozůr!''' Tyn plik može zawjerać zuośliwy kod. Jak go uodymkńyš možeš zaraźić swůj systym.",
 'imagemaxsize'    => 'Na zajtach uopisu plikůw uůgrańič rozmjar uobrazkůw do:',
 'thumbsize'       => 'Rozmjar mińjatůrki',
-'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|zajta|zajty|zajtůw}}',
+'widthheightpage' => '$1 × $2, $3 {{PLURAL:$3|zajta|zajty|zajtůw}}',
 'file-info'       => 'rozmjor plika: $1, typ MIME: $2',
 'file-info-size'  => '$1 × $2 pikselůw, wjelgość plika: $3, zorta MIME: $4',
 'file-nohires'    => 'Wjynksze wymjyry ńy sům dostympne',

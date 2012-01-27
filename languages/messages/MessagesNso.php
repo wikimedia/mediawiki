@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Kaganer
  * @author Mohau
  * @author Urhixidur
  */
@@ -1175,7 +1176,7 @@ $1',
 'nextdiff'     => 'Diphapano tše dimpšha →',
 
 # Media information
-'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|letlakala|matlakala}}',
+'widthheightpage' => '$1 × $2, $3 {{PLURAL:$3|letlakala|matlakala}}',
 'file-info-size'  => '$1 × $2 pixel, bogolo ba faele: $3, Mohuta wa MIME: $4',
 'file-nohires'    => "Gago ''resolution'' ya go feta mo.",
 'svg-long-desc'   => 'SVG faele, nominally $1 × $2 pixels, bogolo ba faele: $3',

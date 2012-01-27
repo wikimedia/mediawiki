@@ -23,6 +23,7 @@
  * @author Glanthor Reviol
  * @author Gondnok
  * @author Hunyadym
+ * @author Kaganer
  * @author KossuthRad
  * @author Misibacsi
  * @author Samat
@@ -3080,7 +3081,7 @@ $1',
 A futtatása során kárt tehet a számítógépedben.",
 'imagemaxsize'           => "A képek mérete, legfeljebb:<br />''(a leírólapokon)''",
 'thumbsize'              => 'Bélyegkép mérete:',
-'widthheightpage'        => '$1×$2, {{PLURAL:$3|egy|$3}} oldal',
+'widthheightpage'        => '$1 × $2, {{PLURAL:$3|egy|$3}} oldal',
 'file-info'              => 'fájlméret: $1, MIME-típus: $2',
 'file-info-size'         => '$1 × $2 képpont, fájlméret: $3, MIME-típus: $4',
 'file-info-size-pages'   => '$1 × $2 képpont, fájlméret: $3, MIME típus: $4, $5 oldal',
