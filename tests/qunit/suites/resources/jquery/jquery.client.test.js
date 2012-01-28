@@ -285,19 +285,25 @@ test( 'test', function() {
 test( 'User-agent matches against WikiEditor\'s compatibility map', function() {
 	expect( uacount * 2 ); // double since we test both LTR and RTL
 
+	var	$body = $( 'body' ),
+		bodyClasses = $body.attr( 'class' );
+
 	// Loop through and run tests
-	$.each( uas, function( agent, data ) {
-		$.each( ['ltr', 'rtl'], function( i, dir ) {
-			$('body').addClass(dir);
+	$.each( uas, function ( agent, data ) {
+		$.each( ['ltr', 'rtl'], function ( i, dir ) {
+			$body.removeClass( 'ltr rtl' ).addClass( dir );
 			var profile = $.client.profile( {
 				userAgent: agent,
 				platform: data.platform
 			} );
 			var testMatch = $.client.test( testMap, profile );
-			$('body').removeClass(dir);
+			$body.removeClass( dir );
 
 			equal( testMatch, data.wikiEditor[dir], 'testing comparison based on ' + dir + ', ' + agent );
 		});
 	});
+
+	// Restore body classes
+	$body.attr( 'class', bodyClasses );
 });
 
