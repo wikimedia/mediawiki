@@ -51,11 +51,18 @@ class MovePageForm extends UnlistedSpecialPage {
 		$target = !is_null( $par ) ? $par : $request->getVal( 'target' );
 
 		// Yes, the use of getVal() and getText() is wanted, see bug 20365
-		$oldTitleText = $request->getVal( 'wpOldTitle', $target );
-		$newTitleText = $request->getText( 'wpNewTitle' );
 
+		$oldTitleText = $request->getVal( 'wpOldTitle', $target );
 		$this->oldTitle = Title::newFromText( $oldTitleText );
-		$this->newTitle = Title::newFromText( $newTitleText );
+
+		$newTitleTextMain = $request->getText( 'wpNewTitleMain' );
+		$newTitleTextNs = $request->getInt( 'wpNewTitleNs', $this->oldTitle->getNamespace() );
+		// Backwards compatibility for forms submitting here from other sources
+		// which is more common than it should be..
+		$newTitleText_bc = $request->getText( 'wpNewTitle' );
+		$this->newTitle = strlen( $newTitleText_bc ) > 0
+			? Title::newFromText( $newTitleText_bc )
+			: Title::makeTitleSafe( $newTitleTextNs, $newTitleTextMain );
 
 		if( is_null( $this->oldTitle ) ) {
 			throw new ErrorPageError( 'notargettitle', 'notargettext' );
@@ -113,7 +120,7 @@ class MovePageForm extends UnlistedSpecialPage {
 
 		$newTitle = $this->newTitle;
 
-		if( !$newTitle ) {
+		if ( !$newTitle ) {
 			# Show the current title as a default
 			# when the form is first opened.
 			$newTitle = $this->oldTitle;
@@ -235,6 +242,9 @@ class MovePageForm extends UnlistedSpecialPage {
 			$out->addHTML( "</div>\n" );
 		}
 
+		// Byte limit (not string length limit) for wpReason and wpNewTitleMain
+		// is enforced in the mediawiki.special.movePage module
+
 		$out->addHTML(
 			 Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getTitle()->getLocalURL( 'action=submit' ), 'id' => 'movepage' ) ) .
 			 Xml::openElement( 'fieldset' ) .
@@ -250,10 +260,18 @@ class MovePageForm extends UnlistedSpecialPage {
 			</tr>
 			<tr>
 				<td class='mw-label'>" .
-					Xml::label( wfMsg( 'newtitle' ), 'wpNewTitle' ) .
+					Xml::label( wfMsg( 'newtitle' ), 'wpNewTitleMain' ) .
 				"</td>
 				<td class='mw-input'>" .
-					Xml::input( 'wpNewTitle', 60, $wgContLang->recodeForEdit( $newTitle->getPrefixedText() ), array( 'type' => 'text', 'id' => 'wpNewTitle' ) ) .
+					Html::namespaceSelector(
+						array( 'selected' => $newTitle->getNamespace() ),
+						array( 'name' => 'wpNewTitleNs', 'id' => 'wpNewTitleNs' )
+					) .
+					Xml::input( 'wpNewTitleMain', 60, $wgContLang->recodeForEdit( $newTitle->getBaseText() ), array(
+						'type' => 'text',
+						'id' => 'wpNewTitleMain',
+						'maxlength' => 255,
+					) ) .
 					Html::hidden( 'wpOldTitle', $this->oldTitle->getPrefixedText() ) .
 				"</td>
 			</tr>
@@ -263,7 +281,7 @@ class MovePageForm extends UnlistedSpecialPage {
 				"</td>
 				<td class='mw-input'>" .
 					Html::element( 'textarea', array( 'name' => 'wpReason', 'id' => 'wpReason', 'cols' => 60, 'rows' => 2,
-					'maxlength' => 200 ), $this->reason ) . // maxlength byte limit is enforce in mediawiki.special.movePage.js
+					'maxlength' => 200 ), $this->reason ) .
 				"</td>
 			</tr>"
 		);

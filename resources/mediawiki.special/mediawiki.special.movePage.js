@@ -1,5 +1,5 @@
 /* JavaScript for Special:MovePage */
 
 jQuery( function( $ ) {
-	$( '#wpReason' ).byteLimit();
+	$( '#wpReason, #wpNewTitleMain' ).byteLimit();
 });
