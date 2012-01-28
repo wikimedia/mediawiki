@@ -8,11 +8,11 @@
  * @group Stub
  */
 class NewParserTest extends MediaWikiTestCase {
-
 	static protected $articles = array();	// Array of test articles defined by the tests
 	/* The dataProvider is run on a different instance than the test, so it must be static
 	 * When running tests from several files, all tests will see all articles.
 	 */
+	static protected $backendToUse;
 
 	public $keepUploads = false;
 	public $runDisabled = false;
@@ -234,6 +234,7 @@ class NewParserTest extends MediaWikiTestCase {
 	 * Ideally this should replace the global configuration entirely.
 	 */
 	protected function setupGlobals( $opts = '', $config = '' ) {
+		global $wgFileBackends;
 		# Find out values for some special options.
 		$lang =
 			self::getOptionValue( 'language', $opts, 'en' );
@@ -245,14 +246,32 @@ class NewParserTest extends MediaWikiTestCase {
 			self::getOptionValue( 'wgLinkHolderBatchSize', $opts, 1000 );
 
 		$uploadDir = $this->getUploadDir();
-		$backend = new FSFileBackend( array(
-			'name'        => 'local-backend',
-			'lockManager' => 'nullLockManager',
-			'containerPaths' => array(
-				'local-public' => "$uploadDir",
-				'local-thumb'  => "$uploadDir/thumb",
-			)
-		) );
+		if ( $this->getCliArg( 'use-filebackend=' ) ) {
+			if ( self::$backendToUse ) {
+				$backend = self::$backendToUse;
+			} else {
+				$name = $this->getCliArg( 'use-filebackend=' );
+				$useConfig = array();
+				foreach ( $wgFileBackends as $conf ) {
+					if ( $conf['name'] == $name ) {
+						$useConfig = $conf;
+					}
+				}
+				$useConfig['name'] = 'local-backend'; // swap name
+				$class = $conf['class'];
+				self::$backendToUse = new $class( $useConfig );
+				$backend = self::$backendToUse;
+			}
+		} else {
+			$backend = new FSFileBackend( array(
+				'name'        => 'local-backend',
+				'lockManager' => 'nullLockManager',
+				'containerPaths' => array(
+					'local-public' => "$uploadDir",
+					'local-thumb'  => "$uploadDir/thumb",
+				)
+			) );
+		}
 
 		$settings = array(
 			'wgServer' => 'http://Britney-Spears',

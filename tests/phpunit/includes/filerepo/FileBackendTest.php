@@ -695,7 +695,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->assertEquals( true, $status->isOK(),
 			"Creation of file at $source succeeded with OK status ($backendName)." );
 
-		$newContents = $this->backend->getFileContents( array( 'src' => $source ) );
+		$newContents = $this->backend->getFileContents( array( 'src' => $source, 'latest' => 1 ) );
 		$this->assertNotEquals( false, $newContents,
 			"Read of file at $source succeeded ($backendName)." );
 
@@ -972,8 +972,8 @@ class FileBackendTest extends MediaWikiTestCase {
 		// Add the files
 		$ops = array();
 		foreach ( $files as $file ) {
-			$ops[] = array( 'op' => 'create', 'content' => 'xxy', 'dst' => $file );
 			$this->prepare( array( 'dir' => dirname( $file ) ) );
+			$ops[] = array( 'op' => 'create', 'content' => 'xxy', 'dst' => $file );
 		}
 		$status = $this->backend->doOperations( $ops );
 		$this->assertEquals( array(), $status->errors,
@@ -1054,9 +1054,6 @@ class FileBackendTest extends MediaWikiTestCase {
 
 		foreach ( $files as $file ) { // clean up
 			$this->backend->doOperation( array( 'op' => 'delete', 'src' => $file ) );
-		}
-		foreach ( $files as $file ) { // clean up
-			$this->recursiveClean( FileBackend::parentStoragePath( $file ) );
 		}
 
 		$iter = $this->backend->getFileList( array( 'dir' => "$base/unittest-cont1/not/exists" ) );
