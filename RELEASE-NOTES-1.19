@@ -124,6 +124,7 @@ production.
 * (bug 30513) Redirect tag is now resolved in XML dump file.
 * sha1 xml tag added to XML dump file. 
 * (bug 33646) Badtitle error page now emits a 400 HTTP status.
+* Special:MovePage now has a dropdown menu for namespaces.
 
 === Bug fixes in 1.19 ===
 * $wgUploadNavigationUrl should be used for file redlinks if.
@@ -240,6 +241,7 @@ production.
 * (bug 33902) Decoding %2B with mw.Uri.decode results in ' ' instead of +
 * (bug 33762) QueryPage-based special pages no longer misses *-summary message.
 * Other sizes links are no longer generated for wikis without a 404 thumbnail handler.
+* (bug 29454) Enforce byteLimit for page title input on Special:MovePage
 
 === API changes in 1.19 ===
 * Made action=edit less likely to return "unknownerror", by returning the actual error
