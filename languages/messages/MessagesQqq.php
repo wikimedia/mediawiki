@@ -2969,7 +2969,7 @@ See also {{msg-mw|Movepagetext-noredirectfixer|notext=1}}',
 'move-talk-subpages'           => 'The text of an option on the special page [[Special:MovePage|MovePage]]. If this option is ticked, any talk subpages will be moved with the talk page to a new title.',
 'movelogpage'                  => 'Title of [[Special:Log/move]]. Used as heading on that page, and in the dropdown menu on log pages.',
 'movelogpagetext'              => "Text on the special page 'Move log'.",
-'movesubpage'                  => "This is a page header.
+'movesubpage'                  => "This is a section header on [[Special:MovePage]], below is a list of subpages.
 Parameters:
 *'''$1''' = number of subpages
 <!--{{Note|Plural is supported if you need it, the number of subpages is available in <code>$1</code>.}}-->",

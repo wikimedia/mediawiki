@@ -493,7 +493,7 @@ Alayon pagutro pagbutang.',
 'showlivepreview'                  => 'Buhi nga pahiuna nga pagawas',
 'showdiff'                         => 'Igpakita an mga ginliwat',
 'anoneditwarning'                  => "'''Pahimatngon:''' Diri ka pa naka log-in.
-An imo IP address in maitatala ha hinin pakli nga kaagi han pagliwat.",
+An imo IP address in maitatala ha kaagi hinin pakli han pagliwat.",
 'summary-preview'                  => 'Pahiuna nga pagawas han dalikyat nga pulong:',
 'subject-preview'                  => 'Pahiuna nga pagawas hit himangrawon:',
 'blockedtitle'                     => 'Ginpugngan ini nga gumaramit',

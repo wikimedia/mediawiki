@@ -6510,10 +6510,11 @@ $1
 	'config-memory-bad' => "'''אזהרה:''' ערך האפשרות <code>memory_limit</code> של PHP הוא $1.
 זה כנראה נמוך מדי.
 ההתקנה עשויה להיכשל!",
+	'config-ctype' => "'''שגיאה סופנית''': נדרשת גרסת PHP שתומכת בהרחבה [http://www.php.net/manual/en/ctype.installation.php Ctype].",
 	'config-xcache' => '[http://xcache.lighttpd.net/ XCache] מותקן',
 	'config-apc' => '[http://www.php.net/apc APC] מותקן',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] מותקן',
-	'config-no-cache' => "'''אזהרה:''' אחת מהתוכנות הבאות לא נמצאה: [http://eaccelerator.sourceforge.net eAccelerator]&rlm;, [http://www.php.net/apc APC]&rlm;, [http://xcache.lighttpd.net/ XCache] או [http://www.iis.net/download/WinCacheForPhp WinCache].
+	'config-no-cache' => "'''אזהרה:''' אחת מהתוכנות הבאות לא נמצאה: [http://www.php.net/apc APC]&rlm;, [http://xcache.lighttpd.net/ XCache] או [http://www.iis.net/download/WinCacheForPhp WinCache].
 מטמון עצמים לא מופעל.",
 	'config-mod-security' => "'''אזהרה''': בשרת הווב שלכם מופעל [http://modsecurity.org/ mod_security]. אם הוא לא מוגדר טוב, זה יכול לגרום לבעיות במדיה־ויקי ובתכנה אחרת שמאפשרת למשתמשים לשלוח תוכן שרירותי.
 קראו את [http://modsecurity.org/documentation/ התיעוד של mod_security] או צרו קשר עם אנשי התמיכה של שירותי האירוח שלכם אם אתם נתקלים בשגיאות אקראיות.",
@@ -6840,7 +6841,7 @@ chmod a+w $3</pre></div>',
 	'config-cache-help' => 'מטמון עצמים משמש לשיפור המהירות של מדיה־ויקי על־ידי שמירה של נתונים שהשימוש בהם נפוץ במטמון.
 לאתרים בינוניים וגדולים כדאי מאוד להפעיל את זה, וגם אתרים קטנים ייהנו מזה.',
 	'config-cache-none' => 'ללא מטמון (שום יכולת אינה מוסרת, אבל הביצועים באתרים גדולים ייפגעו)',
-	'config-cache-accel' => 'מטמון עצמים (object caching) של PHP&rlm; (APC&rlm;, eAccelerator&rlm;, XCache או WinCache)',
+	'config-cache-accel' => 'מטמון עצמים (object caching) של PHP&rlm; (APC&rlm;, XCache או WinCache)',
 	'config-cache-memcached' => 'להשתמש ב־Memcached (דורש התקנות והגדרות נוספות)',
 	'config-memcached-servers' => 'שרתי Memcached:',
 	'config-memcached-help' => 'רשימת כתובות IP ש־Memcached ישתמש בהן.
