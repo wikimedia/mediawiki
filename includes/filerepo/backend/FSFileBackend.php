@@ -27,6 +27,8 @@ class FSFileBackend extends FileBackend {
 	protected $containerPaths = array(); // for custom container paths
 	protected $fileMode; // integer; file permission mode
 
+	protected $hadWarningErrors = array();
+
 	/**
 	 * @see FileBackend::__construct()
 	 * Additional $config params include:
