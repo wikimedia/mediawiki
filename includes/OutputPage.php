@@ -2829,13 +2829,20 @@ $templates
 	public function getJSVars() {
 		global $wgUseAjax, $wgEnableMWSuggest;
 
+		$latestRevID = 0;
+		$pageID = 0;
+		$canonicalName = false; # bug 21115
+
 		$title = $this->getTitle();
 		$ns = $title->getNamespace();
 		$nsname = MWNamespace::exists( $ns ) ? MWNamespace::getCanonicalName( $ns ) : $title->getNsText();
+
 		if ( $ns == NS_SPECIAL ) {
 			list( $canonicalName, /*...*/ ) = SpecialPageFactory::resolveAlias( $title->getDBkey() );
-		} else {
-			$canonicalName = false; # bug 21115
+		} elseif ( $this->canUseWikiPage() ) {
+			$wikiPage = $this->getWikiPage();
+			$latestRevID = $wikiPage->getLatest();
+			$pageID = $wikiPage->getId();
 		}
 
 		$lang = $title->getPageLanguage();
@@ -2860,8 +2867,8 @@ $templates
 			'wgNamespaceNumber' => $title->getNamespace(),
 			'wgPageName' => $title->getPrefixedDBKey(),
 			'wgTitle' => $title->getText(),
-			'wgCurRevisionId' => $title->getLatestRevID(),
-			'wgArticleId' => $title->getArticleId(),
+			'wgCurRevisionId' => $latestRevID,
+			'wgArticleId' => $pageID,
 			'wgIsArticle' => $this->isArticle(),
 			'wgAction' => Action::getActionName( $this->getContext() ),
 			'wgUserName' => $this->getUser()->isAnon() ? null : $this->getUser()->getName(),
