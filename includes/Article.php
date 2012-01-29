@@ -262,6 +262,7 @@ class Article extends Page {
 			$nextid = $this->getTitle()->getNextRevisionID( $oldid );
 			if ( $nextid ) {
 				$oldid = $nextid;
+				$this->mRevision = null;
 			} else {
 				$this->mRedirectUrl = $this->getTitle()->getFullURL( 'redirect=no' );
 			}
@@ -269,6 +270,7 @@ class Article extends Page {
 			$previd = $this->getTitle()->getPreviousRevisionID( $oldid );
 			if ( $previd ) {
 				$oldid = $previd;
+				$this->mRevision = null;
 			}
 		}
 
