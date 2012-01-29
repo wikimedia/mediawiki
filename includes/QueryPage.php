@@ -437,7 +437,7 @@ abstract class QueryPage extends SpecialPage {
 	 * real, honest-to-gosh query page.
 	 */
 	function execute( $par ) {
-		global $wgQueryCacheLimit;
+		global $wgQueryCacheLimit, $wgDisableQueryPageUpdate;
 
 		$user = $this->getUser();
 		if ( !$this->userCanExecute( $user ) ) {
@@ -445,25 +445,23 @@ abstract class QueryPage extends SpecialPage {
 			return;
 		}
 
-		if ( $this->limit == 0 && $this->offset == 0 ) {
-			list( $this->limit, $this->offset ) = $this->getRequest()->getLimitOffset();
-		}
-		$dbr = wfGetDB( DB_SLAVE );
-
 		$this->setHeaders();
 		$this->outputHeader();
 
 		$out = $this->getOutput();
-		$out->setSyndicated( $this->isSyndicated() );
 
 		if ( $this->isCached() && !$this->isCacheable() ) {
-			$out->setSyndicated( false );
 			$out->addWikiMsg( 'querypage-disabled' );
 			return 0;
 		}
 
+		$out->setSyndicated( $this->isSyndicated() );
+
+		if ( $this->limit == 0 && $this->offset == 0 ) {
+			list( $this->limit, $this->offset ) = $this->getRequest()->getLimitOffset();
+		}
+
 		// TODO: Use doQuery()
-		// $res = null;
 		if ( !$this->isCached() ) {
 			$res = $this->reallyDoQuery( $this->limit, $this->offset );
 		} else {
@@ -489,17 +487,15 @@ abstract class QueryPage extends SpecialPage {
 
 				# If updates on this page have been disabled, let the user know
 				# that the data set won't be refreshed for now
-				global $wgDisableQueryPageUpdate;
 				if ( is_array( $wgDisableQueryPageUpdate ) && in_array( $this->getName(), $wgDisableQueryPageUpdate ) ) {
 					$out->addWikiMsg( 'querypage-no-updates' );
 				}
-
 			}
-
 		}
 
-		$this->numRows = $dbr->numRows( $res );
+		$this->numRows = $res->numRows();
 
+		$dbr = wfGetDB( DB_SLAVE );
 		$this->preprocessResults( $dbr, $res );
 
 		$out->addHTML( Xml::openElement( 'div', array( 'class' => 'mw-spcontent' ) ) );
