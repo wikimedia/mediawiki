@@ -15,6 +15,7 @@
  * @author Gwenn-Ael
  * @author Kaganer
  * @author Malafaya
+ * @author VIGNERON
  * @author Y-M D
  * @author לערי ריינהארט
  */
@@ -1516,7 +1517,7 @@ E '''tev''' emañ ar pajennoù zo war ho [[Special:Watchlist|roll evezhiañ]].",
 'uploadnologintext'           => "Ret eo deoc'h bezañ [[Special:UserLogin|kevreetet]] a-benn gellout enporzhiañ restroù war ar servijer.",
 'upload_directory_missing'    => "Mankout a ra ar c'havlec'h enporzhiañ ($1) ha n'eo ket bet ar servijer Web evit e grouiñ.",
 'upload_directory_read_only'  => "N'hall ket ar servijer skrivañ e renkell ar c'hargadennoù ($1).",
-'uploaderror'                 => 'Fazi',
+'uploaderror'                 => 'Fazi enporzhiañ',
 'upload-recreate-warning'     => "'''Diwallit''' : Diverket pe dilec'hiet ez eus bet ur restr gant an anv-se.'''
 
 Deoc'h da c'houzout, setu aze marilh an diverkañ hag an dilec'hiañ evit ar bajenn-mañ.",
