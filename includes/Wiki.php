@@ -460,9 +460,9 @@ class MediaWiki {
 	/**
 	 * Perform one of the "standard" actions
 	 *
-	 * @param $article Article
+	 * @param $page Page
 	 */
-	private function performAction( Page $article ) {
+	private function performAction( Page $page ) {
 		wfProfileIn( __METHOD__ );
 
 		$request = $this->context->getRequest();
@@ -471,7 +471,7 @@ class MediaWiki {
 		$user = $this->context->getUser();
 
 		if ( !wfRunHooks( 'MediaWikiPerformAction',
-			array( $output, $article, $title, $user, $request, $this ) ) )
+			array( $output, $page, $title, $user, $request, $this ) ) )
 		{
 			wfProfileOut( __METHOD__ );
 			return;
@@ -479,14 +479,14 @@ class MediaWiki {
 
 		$act = $this->getAction();
 
-		$action = Action::factory( $act, $article );
+		$action = Action::factory( $act, $page );
 		if ( $action instanceof Action ) {
 			$action->show();
 			wfProfileOut( __METHOD__ );
 			return;
 		}
 
-		if ( wfRunHooks( 'UnknownAction', array( $act, $article ) ) ) {
+		if ( wfRunHooks( 'UnknownAction', array( $act, $page ) ) ) {
 			$output->showErrorPage( 'nosuchaction', 'nosuchactiontext' );
 		}
 
