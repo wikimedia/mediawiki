@@ -13,7 +13,7 @@
  * the php-cloudfiles library (https://github.com/rackspace/php-cloudfiles).
  * php-cloudfiles requires the curl, fileinfo, and mb_string PHP extensions.
  *
- * Status messages should avoid mentioning the Swift account name
+ * Status messages should avoid mentioning the Swift account name.
  * Likewise, error suppression should be used to avoid path disclosure.
  *
  * @ingroup FileBackend
@@ -445,6 +445,7 @@ class SwiftFileBackend extends FileBackend {
 		try {
 			$contObj = $this->getContainer( $srcCont );
 			$srcObj = $contObj->get_object( $srcRel, $this->headersFromParams( $params ) );
+			$this->addMissingMetadata( $srcObj, $params['src'] );
 			$stat = array(
 				// Convert dates like "Tue, 03 Jan 2012 22:01:04 GMT" to TS_MW
 				'mtime' => wfTimestamp( TS_MW, $srcObj->last_modified ),
@@ -461,6 +462,35 @@ class SwiftFileBackend extends FileBackend {
 		}
 
 		return $stat;
+	}
+
+	/**
+	 * Fill in any missing object metadata and save it to Swift
+	 * 
+	 * @param $obj CF_Object
+	 * @param $path string Storage path to object
+	 * @return bool Success
+	 * @throws Exception cloudfiles exceptions
+	 */
+	protected function addMissingMetadata( CF_Object $obj, $path ) {
+		if ( isset( $obj->metadata['Sha1base36'] ) ) {
+			return true; // nothing to do
+		}
+		$status = Status::newGood();
+		$scopeLockS = $this->getScopedFileLocks( array( $path ), LockManager::LOCK_UW, $status );
+		if ( $status->isOK() ) {
+			$tmpFile = $this->getLocalCopy( array( 'src' => $path, 'latest' => 1 ) );
+			if ( $tmpFile ) {
+				$hash = $tmpFile->getSha1Base36();
+				if ( $hash !== false ) {
+					$obj->metadata['Sha1base36'] = $hash;
+					$obj->sync_metadata(); // save to Swift
+					return true; // success
+				}
+			}
+		}
+		$obj->metadata['Sha1base36'] = false;
+		return false; // failed
 	}
 
 	/**
@@ -649,7 +679,7 @@ class SwiftFileBackend extends FileBackend {
 		$url = $creds['storage_url'] . '/' . rawurlencode( $contObj->name );
 
 		// Note: 10 second timeout consistent with php-cloudfiles
-		$req = new CurlHttpRequest( $url, array( 'method'  => 'POST', 'timeout' => 10 ) );
+		$req = new CurlHttpRequest( $url, array( 'method' => 'POST', 'timeout' => 10 ) );
 		$req->setHeader( 'X-Auth-Token', $creds['auth_token'] );
 		$req->setHeader( 'X-Container-Read', implode( ',', $readGrps ) );
 		$req->setHeader( 'X-Container-Write', implode( ',', $writeGrps ) );
@@ -821,7 +851,7 @@ class SwiftFileBackendFileList implements Iterator {
 		if ( !$this->valid() && count( $this->bufferIter ) ) {
 			$this->bufferAfter = end( $this->bufferIter );
 			$this->bufferIter = $this->backend->getFileListPageInternal(
-				$this->container, $this->dir, $this->bufferAfter, self::PAGE_SIZE
+					$this->container, $this->dir, $this->bufferAfter, self::PAGE_SIZE
 			);
 		}
 	}
@@ -830,7 +860,7 @@ class SwiftFileBackendFileList implements Iterator {
 		$this->pos = 0;
 		$this->bufferAfter = null;
 		$this->bufferIter = $this->backend->getFileListPageInternal(
-			$this->container, $this->dir, $this->bufferAfter, self::PAGE_SIZE
+				$this->container, $this->dir, $this->bufferAfter, self::PAGE_SIZE
 		);
 	}
 
