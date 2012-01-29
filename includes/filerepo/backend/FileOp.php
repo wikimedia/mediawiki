@@ -249,7 +249,9 @@ abstract class FileOp {
 	/**
 	 * @return Status
 	 */
-	abstract protected function doAttempt();
+	protected function doAttempt() {
+		return Status::newGood();
+	}
 
 	/**
 	 * Check for errors with regards to the destination file already existing.
@@ -614,7 +616,7 @@ class MoveFileOp extends FileOp {
 }
 
 /**
- * Delete a file at the storage path.
+ * Delete a file at the given storage path from the backend.
  * Parameters similar to FileBackend::deleteInternal(), which include:
  *     src                 : source storage path
  *     ignoreMissingSource : don't return an error if the file does not exist
@@ -659,8 +661,4 @@ class DeleteFileOp extends FileOp {
 /**
  * Placeholder operation that has no params and does nothing
  */
-class NullFileOp extends FileOp {
-	protected function doAttempt() {
-		return Status::newGood();
-	}
-}
+class NullFileOp extends FileOp {}
