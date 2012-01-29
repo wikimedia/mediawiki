@@ -20,17 +20,17 @@
  * @ingroup FileBackend
  * @since 1.19
  */
-class FileBackendMultiWrite extends FileBackendBase {
-	/** @var Array Prioritized list of FileBackend objects */
+class FileBackendMultiWrite extends FileBackend {
+	/** @var Array Prioritized list of FileBackendStore objects */
 	protected $backends = array(); // array of (backend index => backends)
-	protected $masterIndex = -1; // index of master backend
+	protected $masterIndex = -1; // integer; index of master backend
 
 	/**
 	 * Construct a proxy backend that consists of several internal backends.
 	 * Additional $config params include:
 	 *     'backends'    : Array of backend config and multi-backend settings.
 	 *                     Each value is the config used in the constructor of a
-	 *                     FileBackend class, but with these additional settings:
+	 *                     FileBackendStore class, but with these additional settings:
 	 *                         'class'         : The name of the backend class
 	 *                         'isMultiMaster' : This must be set for one backend.
 	 * @param $config Array
@@ -64,7 +64,7 @@ class FileBackendMultiWrite extends FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackendBase::doOperationsInternal()
+	 * @see FileBackend::doOperationsInternal()
 	 */
 	final protected function doOperationsInternal( array $ops, array $opts ) {
 		$status = Status::newGood();
@@ -196,10 +196,10 @@ class FileBackendMultiWrite extends FileBackendBase {
 	 * for a set of operations with that of a given internal backend.
 	 * 
 	 * @param $ops Array List of file operation arrays
-	 * @param $backend FileBackend
+	 * @param $backend FileBackendStore
 	 * @return Array
 	 */
-	protected function substOpBatchPaths( array $ops, FileBackend $backend ) {
+	protected function substOpBatchPaths( array $ops, FileBackendStore $backend ) {
 		$newOps = array(); // operations
 		foreach ( $ops as $op ) {
 			$newOp = $op; // operation
@@ -217,10 +217,10 @@ class FileBackendMultiWrite extends FileBackendBase {
 	 * Same as substOpBatchPaths() but for a single operation
 	 * 
 	 * @param $op File operation array
-	 * @param $backend FileBackend
+	 * @param $backend FileBackendStore
 	 * @return Array
 	 */
-	protected function substOpPaths( array $ops, FileBackend $backend ) {
+	protected function substOpPaths( array $ops, FileBackendStore $backend ) {
 		$newOps = $this->substOpBatchPaths( array( $ops ), $backend );
 		return $newOps[0];
 	}
@@ -229,10 +229,10 @@ class FileBackendMultiWrite extends FileBackendBase {
 	 * Substitute the backend of storage paths with an internal backend's name
 	 * 
 	 * @param $paths Array|string List of paths or single string path
-	 * @param $backend FileBackend
+	 * @param $backend FileBackendStore
 	 * @return Array|string
 	 */
-	protected function substPaths( $paths, FileBackend $backend ) {
+	protected function substPaths( $paths, FileBackendStore $backend ) {
 		return preg_replace(
 			'!^mwstore://' . preg_quote( $this->name ) . '/!',
 			'mwstore://' . $backend->getName() . '/',
@@ -255,7 +255,7 @@ class FileBackendMultiWrite extends FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackendBase::doPrepare()
+	 * @see FileBackend::doPrepare()
 	 */
 	public function doPrepare( array $params ) {
 		$status = Status::newGood();
@@ -267,7 +267,7 @@ class FileBackendMultiWrite extends FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackendBase::doSecure()
+	 * @see FileBackend::doSecure()
 	 */
 	public function doSecure( array $params ) {
 		$status = Status::newGood();
@@ -279,7 +279,7 @@ class FileBackendMultiWrite extends FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackendBase::doClean()
+	 * @see FileBackend::doClean()
 	 */
 	public function doClean( array $params ) {
 		$status = Status::newGood();
@@ -291,7 +291,7 @@ class FileBackendMultiWrite extends FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackendBase::getFileList()
+	 * @see FileBackend::getFileList()
 	 */
 	public function concatenate( array $params ) {
 		// We are writing to an FS file, so we don't need to do this per-backend
@@ -300,7 +300,7 @@ class FileBackendMultiWrite extends FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackendBase::fileExists()
+	 * @see FileBackend::fileExists()
 	 */
 	public function fileExists( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
@@ -308,7 +308,7 @@ class FileBackendMultiWrite extends FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackendBase::getFileTimestamp()
+	 * @see FileBackend::getFileTimestamp()
 	 */
 	public function getFileTimestamp( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
@@ -316,7 +316,7 @@ class FileBackendMultiWrite extends FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackendBase::getFileSize()
+	 * @see FileBackend::getFileSize()
 	 */
 	public function getFileSize( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
@@ -324,7 +324,7 @@ class FileBackendMultiWrite extends FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackendBase::getFileStat()
+	 * @see FileBackend::getFileStat()
 	 */
 	public function getFileStat( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
@@ -332,7 +332,7 @@ class FileBackendMultiWrite extends FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackendBase::getFileContents()
+	 * @see FileBackend::getFileContents()
 	 */
 	public function getFileContents( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
@@ -340,7 +340,7 @@ class FileBackendMultiWrite extends FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackendBase::getFileSha1Base36()
+	 * @see FileBackend::getFileSha1Base36()
 	 */
 	public function getFileSha1Base36( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
@@ -348,7 +348,7 @@ class FileBackendMultiWrite extends FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackendBase::getFileProps()
+	 * @see FileBackend::getFileProps()
 	 */
 	public function getFileProps( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
@@ -356,7 +356,7 @@ class FileBackendMultiWrite extends FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackendBase::streamFile()
+	 * @see FileBackend::streamFile()
 	 */
 	public function streamFile( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
@@ -364,7 +364,7 @@ class FileBackendMultiWrite extends FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackendBase::getLocalReference()
+	 * @see FileBackend::getLocalReference()
 	 */
 	public function getLocalReference( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
@@ -372,7 +372,7 @@ class FileBackendMultiWrite extends FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackendBase::getLocalCopy()
+	 * @see FileBackend::getLocalCopy()
 	 */
 	public function getLocalCopy( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
@@ -380,7 +380,7 @@ class FileBackendMultiWrite extends FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackendBase::getFileList()
+	 * @see FileBackend::getFileList()
 	 */
 	public function getFileList( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
@@ -388,7 +388,7 @@ class FileBackendMultiWrite extends FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackendBase::clearCache()
+	 * @see FileBackend::clearCache()
 	 */
 	public function clearCache( array $paths = null ) {
 		foreach ( $this->backends as $backend ) {

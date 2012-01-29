@@ -124,7 +124,7 @@ class FileBackendGroup {
 	 * Get the backend object with a given name
 	 *
 	 * @param $name string
-	 * @return FileBackendBase
+	 * @return FileBackend
 	 * @throws MWException
 	 */
 	public function get( $name ) {
@@ -144,7 +144,7 @@ class FileBackendGroup {
 	 * Get an appropriate backend object from a storage path
 	 *
 	 * @param $storagePath string
-	 * @return FileBackendBase|null Backend or null on failure
+	 * @return FileBackend|null Backend or null on failure
 	 */
 	public function backendFromPath( $storagePath ) {
 		list( $backend, $c, $p ) = FileBackend::splitStoragePath( $storagePath );

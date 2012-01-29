@@ -19,7 +19,7 @@
  * @ingroup FileBackend
  * @since 1.19
  */
-class SwiftFileBackend extends FileBackend {
+class SwiftFileBackend extends FileBackendStore {
 	/** @var CF_Authentication */
 	protected $auth; // Swift authentication handler
 	protected $authTTL; // integer seconds
@@ -32,7 +32,7 @@ class SwiftFileBackend extends FileBackend {
 	protected $connContainers = array(); // container object cache
 
 	/**
-	 * @see FileBackend::__construct()
+	 * @see FileBackendStore::__construct()
 	 * Additional $config params include:
 	 *    swiftAuthUrl       : Swift authentication server URL
 	 *    swiftUser          : Swift user used by MediaWiki (account:username)
@@ -63,7 +63,7 @@ class SwiftFileBackend extends FileBackend {
 	}
 
 	/**
-	 * @see FileBackend::resolveContainerPath()
+	 * @see FileBackendStore::resolveContainerPath()
 	 */
 	protected function resolveContainerPath( $container, $relStoragePath ) {
 		if ( strlen( urlencode( $relStoragePath ) ) > 1024 ) {
@@ -73,7 +73,7 @@ class SwiftFileBackend extends FileBackend {
 	}
 
 	/**
-	 * @see FileBackend::isPathUsableInternal()
+	 * @see FileBackendStore::isPathUsableInternal()
 	 */
 	public function isPathUsableInternal( $storagePath ) {
 		list( $container, $rel ) = $this->resolveStoragePathReal( $storagePath );
@@ -94,7 +94,7 @@ class SwiftFileBackend extends FileBackend {
 	}
 
 	/**
-	 * @see FileBackend::doCopyInternal()
+	 * @see FileBackendStore::doCopyInternal()
 	 */
 	protected function doCreateInternal( array $params ) {
 		$status = Status::newGood();
@@ -156,7 +156,7 @@ class SwiftFileBackend extends FileBackend {
 	}
 
 	/**
-	 * @see FileBackend::doStoreInternal()
+	 * @see FileBackendStore::doStoreInternal()
 	 */
 	protected function doStoreInternal( array $params ) {
 		$status = Status::newGood();
@@ -224,7 +224,7 @@ class SwiftFileBackend extends FileBackend {
 	}
 
 	/**
-	 * @see FileBackend::doCopyInternal()
+	 * @see FileBackendStore::doCopyInternal()
 	 */
 	protected function doCopyInternal( array $params ) {
 		$status = Status::newGood();
@@ -279,7 +279,7 @@ class SwiftFileBackend extends FileBackend {
 	}
 
 	/**
-	 * @see FileBackend::doDeleteInternal()
+	 * @see FileBackendStore::doDeleteInternal()
 	 */
 	protected function doDeleteInternal( array $params ) {
 		$status = Status::newGood();
@@ -310,7 +310,7 @@ class SwiftFileBackend extends FileBackend {
 	}
 
 	/**
-	 * @see FileBackend::doPrepareInternal()
+	 * @see FileBackendStore::doPrepareInternal()
 	 */
 	protected function doPrepareInternal( $fullCont, $dir, array $params ) {
 		$status = Status::newGood();
@@ -355,7 +355,7 @@ class SwiftFileBackend extends FileBackend {
 	}
 
 	/**
-	 * @see FileBackend::doSecureInternal()
+	 * @see FileBackendStore::doSecureInternal()
 	 */
 	protected function doSecureInternal( $fullCont, $dir, array $params ) {
 		$status = Status::newGood();
@@ -389,7 +389,7 @@ class SwiftFileBackend extends FileBackend {
 	}
 
 	/**
-	 * @see FileBackend::doCleanInternal()
+	 * @see FileBackendStore::doCleanInternal()
 	 */
 	protected function doCleanInternal( $fullCont, $dir, array $params ) {
 		$status = Status::newGood();
@@ -433,7 +433,7 @@ class SwiftFileBackend extends FileBackend {
 	}
 
 	/**
-	 * @see FileBackend::doFileExists()
+	 * @see FileBackendStore::doFileExists()
 	 */
 	protected function doGetFileStat( array $params ) {
 		list( $srcCont, $srcRel ) = $this->resolveStoragePathReal( $params['src'] );
@@ -494,7 +494,7 @@ class SwiftFileBackend extends FileBackend {
 	}
 
 	/**
-	 * @see FileBackendBase::getFileContents()
+	 * @see FileBackend::getFileContents()
 	 */
 	public function getFileContents( array $params ) {
 		list( $srcCont, $srcRel ) = $this->resolveStoragePathReal( $params['src'] );
@@ -521,7 +521,7 @@ class SwiftFileBackend extends FileBackend {
 	}
 
 	/**
-	 * @see FileBackend::getFileListInternal()
+	 * @see FileBackendStore::getFileListInternal()
 	 */
 	public function getFileListInternal( $fullCont, $dir, array $params ) {
 		return new SwiftFileBackendFileList( $this, $fullCont, $dir );
@@ -554,7 +554,7 @@ class SwiftFileBackend extends FileBackend {
 	}
 
 	/**
-	 * @see FileBackend::doGetFileSha1base36()
+	 * @see FileBackendStore::doGetFileSha1base36()
 	 */
 	public function doGetFileSha1base36( array $params ) {
 		$stat = $this->getFileStat( $params );
@@ -566,7 +566,7 @@ class SwiftFileBackend extends FileBackend {
 	}
 
 	/**
-	 * @see FileBackend::doStreamFile()
+	 * @see FileBackendStore::doStreamFile()
 	 */
 	protected function doStreamFile( array $params ) {
 		$status = Status::newGood();
@@ -592,7 +592,6 @@ class SwiftFileBackend extends FileBackend {
 
 		try {
 			$output = fopen( 'php://output', 'w' );
-			// FileBackend::streamFile() already checks existence
 			$obj = new CF_Object( $cont, $srcRel, false, false ); // skip HEAD request
 			$obj->stream( $output, $this->headersFromParams( $params ) );
 		} catch ( InvalidResponseException $e ) { // 404? connection problem?
@@ -606,7 +605,7 @@ class SwiftFileBackend extends FileBackend {
 	}
 
 	/**
-	 * @see FileBackend::getLocalCopy()
+	 * @see FileBackendStore::getLocalCopy()
 	 */
 	public function getLocalCopy( array $params ) {
 		list( $srcCont, $srcRel ) = $this->resolveStoragePathReal( $params['src'] );
@@ -722,7 +721,7 @@ class SwiftFileBackend extends FileBackend {
 	}
 
 	/**
-	 * @see FileBackend::doClearCache()
+	 * @see FileBackendStore::doClearCache()
 	 */
 	protected function doClearCache( array $paths = null ) {
 		$this->connContainers = array(); // clear container object cache
