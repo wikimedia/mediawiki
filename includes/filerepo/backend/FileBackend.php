@@ -30,9 +30,9 @@
  * @since 1.19
  */
 abstract class FileBackendBase {
-	protected $name; // unique backend name
-	protected $wikiId; // unique wiki name
-	protected $readOnly; // string
+	protected $name; // string; unique backend name
+	protected $wikiId; // string; unique wiki name
+	protected $readOnly; // string; read-only explanation message
 	/** @var LockManager */
 	protected $lockManager;
 
@@ -265,7 +265,10 @@ abstract class FileBackendBase {
 	}
 
 	/**
-	 * Concatenate a list of storage files into a single file on the file system
+	 * Concatenate a list of storage files into a single file system file.
+	 * The target path should refer to a file that is already locked or
+	 * otherwise safe from modification from other processes. Normally,
+	 * the file will be a new temp file, which should be adequate.
 	 * $params include:
 	 *     srcs          : ordered source storage paths (e.g. chunk1, chunk2, ...)
 	 *     dst           : file system path to 0-byte temp file
@@ -560,6 +563,116 @@ abstract class FileBackendBase {
 	 */
 	final public function getScopedFileLocks( array $paths, $type, Status $status ) {
 		return ScopedLock::factory( $this->lockManager, $paths, $type, $status );
+	}
+
+	/**
+	 * Check if a given path is a "mwstore://" path.
+	 * This does not do any further validation or any existence checks.
+	 * 
+	 * @param $path string
+	 * @return bool
+	 */
+	final public static function isStoragePath( $path ) {
+		return ( strpos( $path, 'mwstore://' ) === 0 );
+	}
+
+	/**
+	 * Split a storage path into a backend name, a container name, 
+	 * and a relative file path. The relative path may be the empty string.
+	 * This does not do any path normalization or traversal checks.
+	 *
+	 * @param $storagePath string
+	 * @return Array (backend, container, rel object) or (null, null, null)
+	 */
+	final public static function splitStoragePath( $storagePath ) {
+		if ( self::isStoragePath( $storagePath ) ) {
+			// Remove the "mwstore://" prefix and split the path
+			$parts = explode( '/', substr( $storagePath, 10 ), 3 );
+			if ( count( $parts ) >= 2 && $parts[0] != '' && $parts[1] != '' ) {
+				if ( count( $parts ) == 3 ) {
+					return $parts; // e.g. "backend/container/path"
+				} else {
+					return array( $parts[0], $parts[1], '' ); // e.g. "backend/container" 
+				}
+			}
+		}
+		return array( null, null, null );
+	}
+
+	/**
+	 * Normalize a storage path by cleaning up directory separators.
+	 * Returns null if the path is not of the format of a valid storage path.
+	 * 
+	 * @param $storagePath string
+	 * @return string|null 
+	 */
+	final public static function normalizeStoragePath( $storagePath ) {
+		list( $backend, $container, $relPath ) = self::splitStoragePath( $storagePath );
+		if ( $relPath !== null ) { // must be for this backend
+			$relPath = self::normalizeContainerPath( $relPath );
+			if ( $relPath !== null ) {
+				return ( $relPath != '' )
+					? "mwstore://{$backend}/{$container}/{$relPath}"
+					: "mwstore://{$backend}/{$container}";
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Validate and normalize a relative storage path.
+	 * Null is returned if the path involves directory traversal.
+	 * Traversal is insecure for FS backends and broken for others.
+	 *
+	 * @param $path string Storage path relative to a container
+	 * @return string|null
+	 */
+	final protected static function normalizeContainerPath( $path ) {
+		// Normalize directory separators
+		$path = strtr( $path, '\\', '/' );
+		// Collapse any consecutive directory separators
+		$path = preg_replace( '![/]{2,}!', '/', $path );
+		// Remove any leading directory separator
+		$path = ltrim( $path, '/' );
+		// Use the same traversal protection as Title::secureAndSplit()
+		if ( strpos( $path, '.' ) !== false ) {
+			if (
+				$path === '.' ||
+				$path === '..' ||
+				strpos( $path, './' ) === 0 ||
+				strpos( $path, '../' ) === 0 ||
+				strpos( $path, '/./' ) !== false ||
+				strpos( $path, '/../' ) !== false
+			) { 
+				return null;
+			}
+		}
+		return $path;
+	}
+
+	/**
+	 * Get the parent storage directory of a storage path.
+	 * This returns a path like "mwstore://backend/container",
+	 * "mwstore://backend/container/...", or null if there is no parent.
+	 * 
+	 * @param $storagePath string
+	 * @return string|null
+	 */
+	final public static function parentStoragePath( $storagePath ) {
+		$storagePath = dirname( $storagePath );
+		list( $b, $cont, $rel ) = self::splitStoragePath( $storagePath );
+		return ( $rel === null ) ? null : $storagePath;
+	}
+
+	/**
+	 * Get the final extension from a storage or FS path
+	 * 
+	 * @param $path string
+	 * @return string
+	 */
+	final public static function extensionFromPath( $path ) {
+		$i = strrpos( $path, '.' );
+		return strtolower( $i ? substr( $path, $i + 1 ) : '' );
 	}
 }
 
@@ -1300,71 +1413,6 @@ abstract class FileBackend extends FileBackendBase {
 	}
 
 	/**
-	 * Get the parent storage directory of a storage path.
-	 * This returns a path like "mwstore://backend/container",
-	 * "mwstore://backend/container/...", or null if there is no parent.
-	 * 
-	 * @param $storagePath string
-	 * @return string|null
-	 */
-	final public static function parentStoragePath( $storagePath ) {
-		$storagePath = dirname( $storagePath );
-		list( $b, $cont, $rel ) = self::splitStoragePath( $storagePath );
-		return ( $rel === null ) ? null : $storagePath;
-	}
-
-	/**
-	 * Check if a given path is a mwstore:// path.
-	 * This does not do any actual validation or existence checks.
-	 * 
-	 * @param $path string
-	 * @return bool
-	 */
-	final public static function isStoragePath( $path ) {
-		return ( strpos( $path, 'mwstore://' ) === 0 );
-	}
-
-	/**
-	 * Normalize a storage path by cleaning up directory separators.
-	 * Returns null if the path is not of the format of a valid storage path.
-	 * 
-	 * @param $storagePath string
-	 * @return string|null 
-	 */
-	final public static function normalizeStoragePath( $storagePath ) {
-		list( $backend, $container, $relPath ) = self::splitStoragePath( $storagePath );
-		if ( $relPath !== null ) { // must be for this backend
-			$relPath = self::normalizeContainerPath( $relPath );
-			if ( $relPath !== null ) {
-				return ( $relPath != '' )
-					? "mwstore://{$backend}/{$container}/{$relPath}"
-					: "mwstore://{$backend}/{$container}";
-			}
-		}
-		return null;
-	}
-
-	/**
-	 * Split a storage path into a backend name, a container name, 
-	 * and a relative file path. The relative path may be the empty string.
-	 *
-	 * @param $storagePath string
-	 * @return Array (backend, container, rel object) or (null, null, null)
-	 */
-	final public static function splitStoragePath( $storagePath ) {
-		if ( self::isStoragePath( $storagePath ) ) {
-			// Note: strlen( 'mwstore://' ) = 10
-			$parts = explode( '/', substr( $storagePath, 10 ), 3 );
-			if ( count( $parts ) == 3 ) {
-				return $parts; // e.g. "backend/container/path"
-			} elseif ( count( $parts ) == 2 ) {
-				return array( $parts[0], $parts[1], '' ); // e.g. "backend/container" 
-			}
-		}
-		return array( null, null, null );
-	}
-
-	/**
 	 * Check if a container name is valid.
 	 * This checks for for length and illegal characters.
 	 * 
@@ -1377,35 +1425,6 @@ abstract class FileBackend extends FileBackendBase {
 		// Note that matching strings URL encode to the same string;
 		// in Swift, the length restriction is *after* URL encoding.
 		return preg_match( '/^[a-z0-9][a-z0-9-_]{0,199}$/i', $container );
-	}
-
-	/**
-	 * Validate and normalize a relative storage path.
-	 * Null is returned if the path involves directory traversal.
-	 * Traversal is insecure for FS backends and broken for others.
-	 *
-	 * @param $path string Storage path relative to a container
-	 * @return string|null
-	 */
-	final protected static function normalizeContainerPath( $path ) {
-		// Normalize directory separators
-		$path = strtr( $path, '\\', '/' );
-		// Collapse consecutive directory separators
-		$path = preg_replace( '![/]{2,}!', '/', $path );
-		// Use the same traversal protection as Title::secureAndSplit()
-		if ( strpos( $path, '.' ) !== false ) {
-			if (
-				$path === '.' ||
-				$path === '..' ||
-				strpos( $path, './' ) === 0 ||
-				strpos( $path, '../' ) === 0 ||
-				strpos( $path, '/./' ) !== false ||
-				strpos( $path, '/../' ) !== false
-			) { 
-				return null;
-			}
-		}
-		return $path;
 	}
 
 	/**
@@ -1564,17 +1583,6 @@ abstract class FileBackend extends FileBackendBase {
 	 */
 	protected function resolveContainerPath( $container, $relStoragePath ) {
 		return $relStoragePath;
-	}
-
-	/**
-	 * Get the final extension from a storage or FS path
-	 * 
-	 * @param $path string
-	 * @return string
-	 */
-	final public static function extensionFromPath( $path ) {
-		$i = strrpos( $path, '.' );
-		return strtolower( $i ? substr( $path, $i + 1 ) : '' );
 	}
 }
 

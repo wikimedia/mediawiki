@@ -2,6 +2,7 @@
 
 /**
  * @group FileRepo
+ * @group FileBackend
  */
 class FileBackendTest extends MediaWikiTestCase {
 	private $backend, $multiBackend;
@@ -71,6 +72,118 @@ class FileBackendTest extends MediaWikiTestCase {
 
 	private function backendClass() {
 		return get_class( $this->backend );
+	}
+
+	/**
+	 * @dataProvider provider_testIsStoragePath
+	 */
+	public function testIsStoragePath( $path, $isStorePath ) {
+		$this->assertEquals( $isStorePath, FileBackend::isStoragePath( $path ),
+			"FileBackend::isStoragePath on path '$path'" );
+	}
+
+	function provider_testIsStoragePath() {
+		return array(
+			array( 'mwstore://', true ),
+			array( 'mwstore://backend', true ),
+			array( 'mwstore://backend/container', true ),
+			array( 'mwstore://backend/container/', true ),
+			array( 'mwstore://backend/container/path', true ),
+			array( 'mwstore://backend//container/', true ),
+			array( 'mwstore://backend//container//', true ),
+			array( 'mwstore://backend//container//path', true ),
+			array( 'mwstore:///', true ),
+			array( 'mwstore:/', false ),
+			array( 'mwstore:', false ),
+		);
+	}
+
+	/**
+	 * @dataProvider provider_testSplitStoragePath
+	 */
+	public function testSplitStoragePath( $path, $res ) {
+		$this->assertEquals( $res, FileBackend::splitStoragePath( $path ),
+			"FileBackend::splitStoragePath on path '$path'" );
+	}
+
+	function provider_testSplitStoragePath() {
+		return array(
+			array( 'mwstore://backend/container', array( 'backend', 'container', '' ) ),
+			array( 'mwstore://backend/container/', array( 'backend', 'container', '' ) ),
+			array( 'mwstore://backend/container/path', array( 'backend', 'container', 'path' ) ),
+			array( 'mwstore://backend/container//path', array( 'backend', 'container', '/path' ) ),
+			array( 'mwstore://backend//container/path', array( null, null, null ) ),
+			array( 'mwstore://backend//container//path', array( null, null, null ) ),
+			array( 'mwstore://', array( null, null, null ) ),
+			array( 'mwstore://backend', array( null, null, null ) ),
+			array( 'mwstore:///', array( null, null, null ) ),
+			array( 'mwstore:/', array( null, null, null ) ),
+			array( 'mwstore:', array( null, null, null ) )
+		);
+	}
+
+	/**
+	 * @dataProvider provider_normalizeStoragePath
+	 */
+	public function testNormalizeStoragePath( $path, $res ) {
+		$this->assertEquals( $res, FileBackend::normalizeStoragePath( $path ),
+			"FileBackend::normalizeStoragePath on path '$path'" );
+	}
+
+	function provider_normalizeStoragePath() {
+		return array(
+			array( 'mwstore://backend/container', 'mwstore://backend/container' ),
+			array( 'mwstore://backend/container/', 'mwstore://backend/container' ),
+			array( 'mwstore://backend/container/path', 'mwstore://backend/container/path' ),
+			array( 'mwstore://backend/container//path', 'mwstore://backend/container/path' ),
+			array( 'mwstore://backend/container///path', 'mwstore://backend/container/path' ),
+			array( 'mwstore://backend/container///path//to///obj', 'mwstore://backend/container/path/to/obj',
+			array( 'mwstore://', null ),
+			array( 'mwstore://backend', null ),
+			array( 'mwstore://backend//container/path', null ),
+			array( 'mwstore://backend//container//path', null ),
+			array( 'mwstore:///', null ),
+			array( 'mwstore:/', null ),
+			array( 'mwstore:', null ), )
+		);
+	}
+
+	/**
+	 * @dataProvider provider_testParentStoragePath
+	 */
+	public function testParentStoragePath( $path, $res ) {
+		$this->assertEquals( $res, FileBackend::parentStoragePath( $path ),
+			"FileBackend::parentStoragePath on path '$path'" );
+	}
+
+	function provider_testParentStoragePath() {
+		return array(
+			array( 'mwstore://backend/container/path/to/obj', 'mwstore://backend/container/path/to' ),
+			array( 'mwstore://backend/container/path/to', 'mwstore://backend/container/path' ),
+			array( 'mwstore://backend/container/path', 'mwstore://backend/container' ),
+			array( 'mwstore://backend/container', null ),
+			array( 'mwstore://backend/container/path/to/obj/', 'mwstore://backend/container/path/to' ),
+			array( 'mwstore://backend/container/path/to/', 'mwstore://backend/container/path' ),
+			array( 'mwstore://backend/container/path/', 'mwstore://backend/container' ),
+			array( 'mwstore://backend/container/', null ),
+		);
+	}
+
+	/**
+	 * @dataProvider provider_testExtensionFromPath
+	 */
+	public function testExtensionFromPath( $path, $res ) {
+		$this->assertEquals( $res, FileBackend::extensionFromPath( $path ),
+			"FileBackend::extensionFromPath on path '$path'" );
+	}
+
+	function provider_testExtensionFromPath() {
+		return array(
+			array( 'mwstore://backend/container/path.txt', 'txt' ),
+			array( 'mwstore://backend/container/path.svg.png', 'png' ),
+			array( 'mwstore://backend/container/path', '' ),
+			array( 'mwstore://backend/container/path.', '' ),
+		);
 	}
 
 	/**
@@ -1060,6 +1173,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		foreach ( $iter as $iter ) {} // no errors
 	}
 
+	// test helper wrapper for backend prepare() function
 	private function prepare( array $params ) {
 		$this->dirsToPrune[] = $params['dir'];
 		return $this->backend->prepare( $params );
