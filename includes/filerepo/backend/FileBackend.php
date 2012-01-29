@@ -29,7 +29,7 @@
  * @ingroup FileBackend
  * @since 1.19
  */
-abstract class FileBackendBase {
+abstract class FileBackend {
 	protected $name; // string; unique backend name
 	protected $wikiId; // string; unique wiki name
 	protected $readOnly; // string; read-only explanation message
@@ -170,7 +170,7 @@ abstract class FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackendBase::doOperations()
+	 * @see FileBackend::doOperations()
 	 */
 	abstract protected function doOperationsInternal( array $ops, array $opts );
 
@@ -179,7 +179,7 @@ abstract class FileBackendBase {
 	 * If you are doing a batch of operations that should either
 	 * all succeed or all fail, then use that function instead.
 	 *
-	 * @see FileBackendBase::doOperations()
+	 * @see FileBackend::doOperations()
 	 *
 	 * @param $op Array Operation
 	 * @param $opts Array Operation options
@@ -193,7 +193,7 @@ abstract class FileBackendBase {
 	 * Performs a single create operation.
 	 * This sets $params['op'] to 'create' and passes it to doOperation().
 	 *
-	 * @see FileBackendBase::doOperation()
+	 * @see FileBackend::doOperation()
 	 *
 	 * @param $params Array Operation parameters
 	 * @param $opts Array Operation options
@@ -208,7 +208,7 @@ abstract class FileBackendBase {
 	 * Performs a single store operation.
 	 * This sets $params['op'] to 'store' and passes it to doOperation().
 	 *
-	 * @see FileBackendBase::doOperation()
+	 * @see FileBackend::doOperation()
 	 *
 	 * @param $params Array Operation parameters
 	 * @param $opts Array Operation options
@@ -223,7 +223,7 @@ abstract class FileBackendBase {
 	 * Performs a single copy operation.
 	 * This sets $params['op'] to 'copy' and passes it to doOperation().
 	 *
-	 * @see FileBackendBase::doOperation()
+	 * @see FileBackend::doOperation()
 	 *
 	 * @param $params Array Operation parameters
 	 * @param $opts Array Operation options
@@ -238,7 +238,7 @@ abstract class FileBackendBase {
 	 * Performs a single move operation.
 	 * This sets $params['op'] to 'move' and passes it to doOperation().
 	 *
-	 * @see FileBackendBase::doOperation()
+	 * @see FileBackend::doOperation()
 	 *
 	 * @param $params Array Operation parameters
 	 * @param $opts Array Operation options
@@ -253,7 +253,7 @@ abstract class FileBackendBase {
 	 * Performs a single delete operation.
 	 * This sets $params['op'] to 'delete' and passes it to doOperation().
 	 *
-	 * @see FileBackendBase::doOperation()
+	 * @see FileBackend::doOperation()
 	 *
 	 * @param $params Array Operation parameters
 	 * @param $opts Array Operation options
@@ -297,7 +297,7 @@ abstract class FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackendBase::prepare()
+	 * @see FileBackend::prepare()
 	 */
 	abstract protected function doPrepare( array $params );
 
@@ -328,7 +328,7 @@ abstract class FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackendBase::secure()
+	 * @see FileBackend::secure()
 	 */
 	abstract protected function doSecure( array $params );
 
@@ -351,7 +351,7 @@ abstract class FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackendBase::clean()
+	 * @see FileBackend::clean()
 	 */
 	abstract protected function doClean( array $params );
 
@@ -681,14 +681,14 @@ abstract class FileBackendBase {
  * This class defines the methods as abstract that subclasses must implement.
  * Outside callers should *not* use functions with "Internal" in the name.
  * 
- * The FileBackendBase operations are implemented using basic functions
+ * The FileBackend operations are implemented using basic functions
  * such as storeInternal(), copyInternal(), deleteInternal() and the like.
  * This class is also responsible for path resolution and sanitization.
  * 
  * @ingroup FileBackend
  * @since 1.19
  */
-abstract class FileBackend extends FileBackendBase {
+abstract class FileBackendStore extends FileBackend {
 	/** @var Array Map of paths to small (RAM/disk) cache items */
 	protected $cache = array(); // (storage path => key => value)
 	protected $maxCacheSize = 100; // integer; max paths with entries
@@ -747,7 +747,7 @@ abstract class FileBackend extends FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackend::createInternal()
+	 * @see FileBackendStore::createInternal()
 	 */
 	abstract protected function doCreateInternal( array $params );
 
@@ -776,7 +776,7 @@ abstract class FileBackend extends FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackend::storeInternal()
+	 * @see FileBackendStore::storeInternal()
 	 */
 	abstract protected function doStoreInternal( array $params );
 
@@ -801,7 +801,7 @@ abstract class FileBackend extends FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackend::copyInternal()
+	 * @see FileBackendStore::copyInternal()
 	 */
 	abstract protected function doCopyInternal( array $params );
 
@@ -825,7 +825,7 @@ abstract class FileBackend extends FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackend::deleteInternal()
+	 * @see FileBackendStore::deleteInternal()
 	 */
 	abstract protected function doDeleteInternal( array $params );
 
@@ -850,7 +850,7 @@ abstract class FileBackend extends FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackend::moveInternal()
+	 * @see FileBackendStore::moveInternal()
 	 */
 	protected function doMoveInternal( array $params ) {
 		// Copy source to dest
@@ -864,7 +864,7 @@ abstract class FileBackend extends FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackendBase::concatenate()
+	 * @see FileBackend::concatenate()
 	 */
 	final public function concatenate( array $params ) {
 		wfProfileIn( __METHOD__ );
@@ -882,7 +882,7 @@ abstract class FileBackend extends FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackend::concatenate()
+	 * @see FileBackendStore::concatenate()
 	 */
 	protected function doConcatenate( array $params ) {
 		$status = Status::newGood();
@@ -937,7 +937,7 @@ abstract class FileBackend extends FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackendBase::doPrepare()
+	 * @see FileBackend::doPrepare()
 	 */
 	final protected function doPrepare( array $params ) {
 		wfProfileIn( __METHOD__ );
@@ -965,14 +965,14 @@ abstract class FileBackend extends FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackend::doPrepare()
+	 * @see FileBackendStore::doPrepare()
 	 */
 	protected function doPrepareInternal( $container, $dir, array $params ) {
 		return Status::newGood();
 	}
 
 	/**
-	 * @see FileBackendBase::doSecure()
+	 * @see FileBackend::doSecure()
 	 */
 	final protected function doSecure( array $params ) {
 		wfProfileIn( __METHOD__ );
@@ -1000,14 +1000,14 @@ abstract class FileBackend extends FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackend::doSecure()
+	 * @see FileBackendStore::doSecure()
 	 */
 	protected function doSecureInternal( $container, $dir, array $params ) {
 		return Status::newGood();
 	}
 
 	/**
-	 * @see FileBackendBase::doClean()
+	 * @see FileBackend::doClean()
 	 */
 	final protected function doClean( array $params ) {
 		wfProfileIn( __METHOD__ );
@@ -1043,14 +1043,14 @@ abstract class FileBackend extends FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackend::doClean()
+	 * @see FileBackendStore::doClean()
 	 */
 	protected function doCleanInternal( $container, $dir, array $params ) {
 		return Status::newGood();
 	}
 
 	/**
-	 * @see FileBackendBase::fileExists()
+	 * @see FileBackend::fileExists()
 	 */
 	final public function fileExists( array $params ) {
 		wfProfileIn( __METHOD__ );
@@ -1060,7 +1060,7 @@ abstract class FileBackend extends FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackendBase::getFileTimestamp()
+	 * @see FileBackend::getFileTimestamp()
 	 */
 	final public function getFileTimestamp( array $params ) {
 		wfProfileIn( __METHOD__ );
@@ -1070,7 +1070,7 @@ abstract class FileBackend extends FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackendBase::getFileSize()
+	 * @see FileBackend::getFileSize()
 	 */
 	final public function getFileSize( array $params ) {
 		wfProfileIn( __METHOD__ );
@@ -1080,7 +1080,7 @@ abstract class FileBackend extends FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackendBase::getFileStat()
+	 * @see FileBackend::getFileStat()
 	 */
 	final public function getFileStat( array $params ) {
 		wfProfileIn( __METHOD__ );
@@ -1108,12 +1108,12 @@ abstract class FileBackend extends FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackend::getFileStat()
+	 * @see FileBackendStore::getFileStat()
 	 */
 	abstract protected function doGetFileStat( array $params );
 
 	/**
-	 * @see FileBackendBase::getFileContents()
+	 * @see FileBackend::getFileContents()
 	 */
 	public function getFileContents( array $params ) {
 		wfProfileIn( __METHOD__ );
@@ -1130,7 +1130,7 @@ abstract class FileBackend extends FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackendBase::getFileSha1Base36()
+	 * @see FileBackend::getFileSha1Base36()
 	 */
 	final public function getFileSha1Base36( array $params ) {
 		wfProfileIn( __METHOD__ );
@@ -1149,7 +1149,7 @@ abstract class FileBackend extends FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackend::getFileSha1Base36()
+	 * @see FileBackendStore::getFileSha1Base36()
 	 */
 	protected function doGetFileSha1Base36( array $params ) {
 		$fsFile = $this->getLocalReference( $params );
@@ -1161,7 +1161,7 @@ abstract class FileBackend extends FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackendBase::getFileProps()
+	 * @see FileBackend::getFileProps()
 	 */
 	final public function getFileProps( array $params ) {
 		wfProfileIn( __METHOD__ );
@@ -1172,7 +1172,7 @@ abstract class FileBackend extends FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackendBase::getLocalReference()
+	 * @see FileBackend::getLocalReference()
 	 */
 	public function getLocalReference( array $params ) {
 		wfProfileIn( __METHOD__ );
@@ -1191,7 +1191,7 @@ abstract class FileBackend extends FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackendBase::streamFile()
+	 * @see FileBackend::streamFile()
 	 */
 	final public function streamFile( array $params ) {
 		wfProfileIn( __METHOD__ );
@@ -1218,7 +1218,7 @@ abstract class FileBackend extends FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackend::streamFile()
+	 * @see FileBackendStore::streamFile()
 	 */
 	protected function doStreamFile( array $params ) {
 		$status = Status::newGood();
@@ -1234,7 +1234,7 @@ abstract class FileBackend extends FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackendBase::getFileList()
+	 * @see FileBackend::getFileList()
 	 */
 	final public function getFileList( array $params ) {
 		list( $fullCont, $dir, $shard ) = $this->resolveStoragePath( $params['dir'] );
@@ -1248,7 +1248,7 @@ abstract class FileBackend extends FileBackendBase {
 			wfDebug( __METHOD__ . ": iterating over all container shards.\n" );
 			// File listing spans multiple containers/shards
 			list( $b, $shortCont, $r ) = self::splitStoragePath( $params['dir'] );
-			return new FileBackendShardListIterator( $this,
+			return new FileBackendStoreShardListIterator( $this,
 				$fullCont, $dir, $this->getContainerSuffixes( $shortCont ), $params );
 		}
 	}
@@ -1256,7 +1256,7 @@ abstract class FileBackend extends FileBackendBase {
 	/**
 	 * Do not call this function from places outside FileBackend
 	 *
-	 * @see FileBackend::getFileList()
+	 * @see FileBackendStore::getFileList()
 	 * 
 	 * @param $container string Resolved container name
 	 * @param $dir string Resolved path relative to container
@@ -1314,7 +1314,7 @@ abstract class FileBackend extends FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackendBase::doOperationsInternal()
+	 * @see FileBackend::doOperationsInternal()
 	 */
 	protected function doOperationsInternal( array $ops, array $opts ) {
 		wfProfileIn( __METHOD__ );
@@ -1359,7 +1359,7 @@ abstract class FileBackend extends FileBackendBase {
 	}
 
 	/**
-	 * @see FileBackendBase::clearCache()
+	 * @see FileBackend::clearCache()
 	 */
 	final public function clearCache( array $paths = null ) {
 		if ( is_array( $paths ) ) {
@@ -1381,7 +1381,7 @@ abstract class FileBackend extends FileBackendBase {
 	/**
 	 * Clears any additional stat caches for storage paths
 	 * 
-	 * @see FileBackendBase::clearCache()
+	 * @see FileBackend::clearCache()
 	 * 
 	 * @param $paths Array Storage paths (optional)
 	 * @return void
@@ -1469,7 +1469,7 @@ abstract class FileBackend extends FileBackendBase {
 	 * Like resolveStoragePath() except null values are returned if
 	 * the container is sharded and the shard could not be determined.
 	 *
-	 * @see FileBackend::resolveStoragePath()
+	 * @see FileBackendStore::resolveStoragePath()
 	 *
 	 * @param $storagePath string
 	 * @return Array (container, path) or (null, null) if invalid
@@ -1587,13 +1587,13 @@ abstract class FileBackend extends FileBackendBase {
 }
 
 /**
- * FileBackend helper function to handle file listings that span container shards.
- * Do not use this class from places outside of FileBackend.
+ * FileBackendStore helper function to handle file listings that span container shards.
+ * Do not use this class from places outside of FileBackendStore.
  *
- * @ingroup FileBackend
+ * @ingroup FileBackendStore
  */
-class FileBackendShardListIterator implements Iterator {
-	/* @var FileBackend */
+class FileBackendStoreShardListIterator implements Iterator {
+	/* @var FileBackendStore */
 	protected $backend;
 	/* @var Array */
 	protected $params;
@@ -1608,14 +1608,14 @@ class FileBackendShardListIterator implements Iterator {
 	protected $pos = 0; // integer
 
 	/**
-	 * @param $backend FileBackend
+	 * @param $backend FileBackendStore
 	 * @param $container string Full storage container name
 	 * @param $dir string Storage directory relative to container
 	 * @param $suffixes Array List of container shard suffixes
 	 * @param $params Array
 	 */
 	public function __construct(
-		FileBackend $backend, $container, $dir, array $suffixes, array $params
+		FileBackendStore $backend, $container, $dir, array $suffixes, array $params
 	) {
 		$this->backend = $backend;
 		$this->container = $container;

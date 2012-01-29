@@ -19,7 +19,7 @@ class FileRepo {
 	const OVERWRITE_SAME = 4;
 	const SKIP_LOCKING = 8;
 
-	/** @var FileBackendBase */
+	/** @var FileBackend */
 	protected $backend;
 	/** @var Array Map of zones to config */
 	protected $zones = array();
@@ -51,7 +51,7 @@ class FileRepo {
 
 		// Required settings
 		$this->name = $info['name'];
-		if ( $info['backend'] instanceof FileBackendBase ) {
+		if ( $info['backend'] instanceof FileBackend ) {
 			$this->backend = $info['backend']; // useful for testing
 		} else {
 			$this->backend = FileBackendGroup::singleton()->get( $info['backend'] );
@@ -105,7 +105,7 @@ class FileRepo {
 	/**
 	 * Get the file backend instance
 	 *
-	 * @return FileBackendBase
+	 * @return FileBackend
 	 */
 	public function getBackend() {
 		return $this->backend;

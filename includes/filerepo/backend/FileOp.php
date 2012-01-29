@@ -18,7 +18,7 @@
 abstract class FileOp {
 	/** @var Array */
 	protected $params = array();
-	/** @var FileBackendBase */
+	/** @var FileBackendStore */
 	protected $backend;
 
 	protected $state = self::STATE_NEW; // integer
@@ -40,11 +40,11 @@ abstract class FileOp {
 	/**
 	 * Build a new file operation transaction
 	 *
-	 * @params $backend FileBackend
+	 * @params $backend FileBackendStore
 	 * @params $params Array
 	 * @throws MWException
 	 */
-	final public function __construct( FileBackendBase $backend, array $params ) {
+	final public function __construct( FileBackendStore $backend, array $params ) {
 		$this->backend = $backend;
 		list( $required, $optional ) = $this->allowedParams();
 		foreach ( $required as $name ) {
@@ -387,7 +387,7 @@ class FileOpScopedPHPTimeout {
 
 /**
  * Store a file into the backend from a file on the file system.
- * Parameters similar to FileBackend::storeInternal(), which include:
+ * Parameters similar to FileBackendStore::storeInternal(), which include:
  *     src           : source path on file system
  *     dst           : destination storage path
  *     overwrite     : do nothing and pass if an identical file exists at destination
@@ -449,7 +449,7 @@ class StoreFileOp extends FileOp {
 
 /**
  * Create a file in the backend with the given content.
- * Parameters similar to FileBackend::createInternal(), which include:
+ * Parameters similar to FileBackendStore::createInternal(), which include:
  *     content       : the raw file contents
  *     dst           : destination storage path
  *     overwrite     : do nothing and pass if an identical file exists at destination
@@ -501,7 +501,7 @@ class CreateFileOp extends FileOp {
 
 /**
  * Copy a file from one storage path to another in the backend.
- * Parameters similar to FileBackend::copyInternal(), which include:
+ * Parameters similar to FileBackendStore::copyInternal(), which include:
  *     src           : source storage path
  *     dst           : destination storage path
  *     overwrite     : do nothing and pass if an identical file exists at destination
@@ -556,7 +556,7 @@ class CopyFileOp extends FileOp {
 
 /**
  * Move a file from one storage path to another in the backend.
- * Parameters similar to FileBackend::moveInternal(), which include:
+ * Parameters similar to FileBackendStore::moveInternal(), which include:
  *     src           : source storage path
  *     dst           : destination storage path
  *     overwrite     : do nothing and pass if an identical file exists at destination
@@ -617,7 +617,7 @@ class MoveFileOp extends FileOp {
 
 /**
  * Delete a file at the given storage path from the backend.
- * Parameters similar to FileBackend::deleteInternal(), which include:
+ * Parameters similar to FileBackendStore::deleteInternal(), which include:
  *     src                 : source storage path
  *     ignoreMissingSource : don't return an error if the file does not exist
  */
