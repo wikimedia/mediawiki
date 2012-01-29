@@ -55,22 +55,10 @@ abstract class FileBackendBase {
 		$this->wikiId = isset( $config['wikiId'] )
 			? $config['wikiId']
 			: wfWikiID(); // e.g. "my_wiki-en_"
-		$this->wikiId = $this->resolveWikiId( $this->wikiId );
 		$this->lockManager = LockManagerGroup::singleton()->get( $config['lockManager'] );
 		$this->readOnly = isset( $config['readOnly'] )
 			? (string)$config['readOnly']
 			: '';
-	}
-
-	/**
-	 * Normalize a wiki ID by replacing characters that are
-	 * not supported by the backend as part of container names.
-	 * 
-	 * @param $wikiId string
-	 * @return string 
-	 */
-	protected function resolveWikiId( $wikiId ) {
-		return $wikiId;
 	}
 
 	/**
@@ -484,6 +472,7 @@ abstract class FileBackendBase {
 	 * Write operations should *never* be done on this file as some backends
 	 * may do internal tracking or may be instances of FileBackendMultiWrite.
 	 * In that later case, there are copies of the file that must stay in sync.
+	 * Additionally, further calls to this function may return the same file.
 	 * 
 	 * $params include:
 	 *     src    : source storage path
@@ -577,10 +566,9 @@ abstract class FileBackendBase {
 /**
  * Base class for all single-write backends.
  * This class defines the methods as abstract that subclasses must implement.
- * Callers outside of FileBackend and its helper classes, such as FileOp,
- * should only call functions that are present in FileBackendBase.
+ * Outside callers should *not* use functions with "Internal" in the name.
  * 
- * The FileBackendBase operations are implemented using primitive functions
+ * The FileBackendBase operations are implemented using basic functions
  * such as storeInternal(), copyInternal(), deleteInternal() and the like.
  * This class is also responsible for path resolution and sanitization.
  * 
@@ -588,9 +576,13 @@ abstract class FileBackendBase {
  * @since 1.19
  */
 abstract class FileBackend extends FileBackendBase {
-	/** @var Array */
+	/** @var Array Map of paths to small (RAM/disk) cache items */
 	protected $cache = array(); // (storage path => key => value)
-	protected $maxCacheSize = 75; // integer; max paths with entries
+	protected $maxCacheSize = 100; // integer; max paths with entries
+	/** @var Array Map of paths to large (RAM/disk) cache items */
+	protected $expCache = array(); // (storage path => key => value)
+	protected $maxExpCacheSize = 10; // integer; max paths with entries
+
 	/** @var Array */
 	protected $shardViaHashLevels = array(); // (container name => integer)
 
@@ -1072,14 +1064,14 @@ abstract class FileBackend extends FileBackendBase {
 	public function getLocalReference( array $params ) {
 		wfProfileIn( __METHOD__ );
 		$path = $params['src'];
-		if ( isset( $this->cache[$path]['localRef'] ) ) {
+		if ( isset( $this->expCache[$path]['localRef'] ) ) {
 			wfProfileOut( __METHOD__ );
-			return $this->cache[$path]['localRef'];
+			return $this->expCache[$path]['localRef'];
 		}
 		$tmpFile = $this->getLocalCopy( $params );
 		if ( $tmpFile ) { // don't cache negatives
-			$this->trimCache(); // limit memory
-			$this->cache[$path]['localRef'] = $tmpFile;
+			$this->trimExpCache(); // limit memory
+			$this->expCache[$path]['localRef'] = $tmpFile;
 		}
 		wfProfileOut( __METHOD__ );
 		return $tmpFile;
@@ -1149,12 +1141,14 @@ abstract class FileBackend extends FileBackendBase {
 	}
 
 	/**
-	 * Do not call this function from places outside FileBackend and ContainerFileListIterator
+	 * Do not call this function from places outside FileBackend
 	 *
+	 * @see FileBackend::getFileList()
+	 * 
 	 * @param $container string Resolved container name
 	 * @param $dir string Resolved path relative to container
 	 * @param $params Array
-	 * @see FileBackend::getFileList()
+	 * @return Traversable|Array|null
 	 */
 	abstract public function getFileListInternal( $container, $dir, array $params );
 
@@ -1261,9 +1255,11 @@ abstract class FileBackend extends FileBackendBase {
 		}
 		if ( $paths === null ) {
 			$this->cache = array();
+			$this->expCache = array();
 		} else {
 			foreach ( $paths as $path ) {
 				unset( $this->cache[$path] );
+				unset( $this->expCache[$path] );
 			}
 		}
 		$this->doClearCache( $paths );
@@ -1280,15 +1276,26 @@ abstract class FileBackend extends FileBackendBase {
 	protected function doClearCache( array $paths = null ) {}
 
 	/**
-	 * Prune the cache if it is too big to add an item
+	 * Prune the inexpensive cache if it is too big to add an item
 	 * 
 	 * @return void
 	 */
 	protected function trimCache() {
 		if ( count( $this->cache ) >= $this->maxCacheSize ) {
 			reset( $this->cache );
-			$key = key( $this->cache );
-			unset( $this->cache[$key] );
+			unset( $this->cache[key( $this->cache )] );
+		}
+	}
+
+	/**
+	 * Prune the expensive cache if it is too big to add an item
+	 * 
+	 * @return void
+	 */
+	protected function trimExpCache() {
+		if ( count( $this->expCache ) >= $this->maxExpCacheSize ) {
+			reset( $this->expCache );
+			unset( $this->expCache[key( $this->expCache )] );
 		}
 	}
 
