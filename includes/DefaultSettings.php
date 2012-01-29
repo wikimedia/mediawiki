@@ -2605,6 +2605,19 @@ $wgResourceLoaderMinifierMaxLineLength = 1000;
 $wgIncludeLegacyJavaScript = true;
 
 /**
+ * Whether to preload the mediawiki.util module as blocking module in the top queue.
+ * Before MediaWiki 1.19, modules used to load slower/less asynchronous which allowed
+ * modules to lack dependencies on 'popular' modules that were likely loaded already.
+ * This setting is to aid scripts during migration by providing mediawiki.util
+ * unconditionally (which was the most commonly missed dependency).
+ * It doesn't cover all missing dependencies obviously but should fix most of them.
+ * This should be removed at some point after site/user scripts have been fixed.
+ * Enable this if your wiki has a large amount of user/site scripts that are lacking
+ * dependencies.
+ */
+$wgPreloadJavaScriptMwUtil = false;
+
+/**
  * Whether or not to assing configuration variables to the global window object.
  * If this is set to false, old code using deprecated variables like:
  * " if ( window.wgRestrictionEdit ) ..."

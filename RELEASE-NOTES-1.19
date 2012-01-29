@@ -321,6 +321,13 @@ changes to languages because of Bugzilla reports.
 * Support for the deprecated hook MagicWordMagicWords was removed.
 * The Xml::namespaceSelector method has been deprecated, please use
   Html::namespaceSelector instead (note that the parameters have changed also).
+* (bug 33746) Preload popular ResourceLoader modules (mediawiki.util) as stop-gap
+  for scripts missing dependencies.
+  New configuration variable $wgPreloadJavaScriptMwUtil has been introduced for this
+  (set to false by default for new installations). Set to true if your wiki has a large
+  amount of user/site scripts that are lacking dependency information. In the short to
+  medium term these user/site scripts should be fixed by adding the used modules to the
+  dependencies in the module registry and/or wrapping them in a callback to mw.loader.using.
 
 == Compatibility ==
 

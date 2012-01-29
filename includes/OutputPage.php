@@ -2439,17 +2439,21 @@ $templates
 	 * Add the default ResourceLoader modules to this object
 	 */
 	private function addDefaultModules() {
-		global $wgIncludeLegacyJavaScript, $wgUseAjax, $wgAjaxWatch, $wgEnableMWSuggest;
+		global $wgIncludeLegacyJavaScript, $wgPreloadJavaScriptMwUtil, $wgUseAjax,
+			$wgAjaxWatch, $wgEnableMWSuggest;
 
 		// Add base resources
 		$this->addModules( array(
 			'mediawiki.user',
-			'mediawiki.util',
 			'mediawiki.page.startup',
 			'mediawiki.page.ready',
 		) );
 		if ( $wgIncludeLegacyJavaScript ){
 			$this->addModules( 'mediawiki.legacy.wikibits' );
+		}
+
+		if ( $wgPreloadJavaScriptMwUtil ) {
+			$this->addModules( 'mediawiki.util' );
 		}
 
 		// Add various resources if required

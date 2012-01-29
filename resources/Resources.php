@@ -592,6 +592,7 @@ return array(
 			'jquery.mwExtension',
 		),
 		'messages' => array( 'showtoc', 'hidetoc' ),
+		'position' => 'top', // For $wgPreloadJavaScriptMwUtil
 	),
 
 	/* MediaWiki Action */
