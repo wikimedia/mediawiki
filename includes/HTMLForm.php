@@ -107,6 +107,12 @@ class HTMLForm extends ContextSource {
 
 	protected $mTitle;
 	protected $mMethod = 'post';
+	
+	/**
+	 * @since 1.19
+	 * @var false|string
+	 */
+	protected $mAction = false;
 
 	protected $mUseMultipart = false;
 	protected $mHiddenFields = array();
@@ -472,7 +478,7 @@ class HTMLForm extends ContextSource {
 			: 'application/x-www-form-urlencoded';
 		# Attributes
 		$attribs = array(
-			'action'  => $this->getTitle()->getFullURL(),
+			'action'  => $this->mAction === false ? $this->getTitle()->getFullURL() : $this->mAction,
 			'method'  => $this->mMethod,
 			'class'   => 'visualClear',
 			'enctype' => $encType,
@@ -845,6 +851,19 @@ class HTMLForm extends ContextSource {
 	public function getLegend( $key ) {
 		return wfMsg( "{$this->mMessagePrefix}-$key" );
 	}
+	
+	/**
+	 * Set the value for the action attribute of the form.
+	 * When set to false (which is the default state), the set title is used. 
+	 * 
+	 * @since 1.19
+	 * 
+	 * @param string|false $action
+	 */
+	public function setAction( $action ) {
+		$this->mAction = $action;
+	}
+	
 }
 
 /**
