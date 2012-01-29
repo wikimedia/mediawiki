@@ -33,6 +33,7 @@ class FakeConverter {
 	function __construct( $langobj ) { $this->mLang = $langobj; }
 	function autoConvertToAllVariants( $text ) { return array( $this->mLang->getCode() => $text ); }
 	function convert( $t ) { return $t; }
+	function convertTo( $text, $variant ) { return $text; }
 	function convertTitle( $t ) { return $t->getPrefixedText(); }
 	function getVariants() { return array( $this->mLang->getCode() ); }
 	function getPreferredVariant() { return $this->mLang->getCode(); }
