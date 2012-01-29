@@ -88,12 +88,15 @@ $messages = array(
 'tog-shownumberswatching'     => 'Igpakita an ihap han mga nangingita nga mga nagamit',
 'tog-oldsig'                  => 'Aada nga pirma:',
 'tog-fancysig'                => 'Tratuha it pirma komo uska wikitext (nga waray automatiko nga sumpay)',
+'tog-showjumplinks'           => 'Enable "jump to" accessibility links',
 'tog-uselivepreview'          => 'Gamita an buhi nga pahiuna nga pagawas (nagkikinahanglan hin JavaScript) (eksperimental)',
 'tog-forceeditsummary'        => 'Pasabti ako kun waray ko ginsurat ha dalikyat-nga-tigaman han pagliwat (edit summary)',
 'tog-watchlisthideown'        => 'Tago-a an akon mga ginliwat tikang han angay timan-an',
 'tog-watchlisthidebots'       => 'Tago-a an ginliwat hin bot tikang han angay timan-an',
 'tog-watchlisthideminor'      => 'Tago-a an mga gagmay nga pagliwat tikang han angay timan-an',
+'tog-watchlisthideliu'        => 'Igatag an mga ginliwat han naka log-in nga mga gumaramit tikang ha gintitiman-an',
 'tog-watchlisthideanons'      => 'Igtago an mga ginliwat han mga waray nagpakilala nga nagamit tikang ha gintitiman-an',
+'tog-watchlisthidepatrolled'  => 'Igatag an mga pinatrolya nga mga pagliwat tikang ha angay timan-an',
 'tog-ccmeonemails'            => 'Padad-i ak hin mga kopya hin mga email nga akon ginpapadara ha iba nga mga gumaramit',
 'tog-diffonly'                => 'Ayaw igpakita an sulod han pakli ha ilarom han pagkakaiba',
 'tog-showhiddencats'          => 'Igpakita an mga tinago nga mga kaarangay',
@@ -172,6 +175,7 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|Ini nga kaarangay mayda hin amo la nga fayl.|An mga nasunod nga {{PLURAL:$1|ka fayl|$1 ka mga fayl aada}} han hini nga kaarangay, tikang hin $2 nga kabug-osan.}}',
 'category-file-count-limited'    => 'An mga nasunod nga {{PLURAL:$1|ka fayl|$1 ka mga faly aada}} han yana nga kaarangay.',
 'listingcontinuesabbrev'         => 'pdyn.',
+'index-category'                 => 'Mga nakatudlokan nga pagkli',
 'noindex-category'               => 'Mga diri nakatudlokan nga pagkli',
 
 'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
@@ -504,6 +508,9 @@ An imo IP address in maitatala ha kaagi hinin pakli han pagliwat.",
 'accmailtitle'                     => 'Ginpadara na an tigaman-pagsulod.',
 'newarticle'                       => '(Bag-o)',
 'newarticletext'                   => "Ginsunod mo an pakli nga waray pa kahihimo.  Para ighimo an pakli, tikanga pagmakinilya ha kahon nga aada ha ubos (kitaa an [[{{MediaWiki:Helppage}}|nabulig nga pakli]] para han kadugangan nga pananabutan).  Kun sayop an imo pagkanhi, igpidlit an imo kanan panngaykay (''browser'') '''balik''' (''back'') nga piridlitan.",
+'noarticletext-nopermission'       => 'Ha yana waray surat ini nga pakli.
+Puydi nimo [[Special:Search/{{PAGENAME}}|pamilngon ini nga titulo han pakli]] ha iba nga mga pakli,
+o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} pamilngon ha mga kasumpay nga talaan]</span>.',
 'userpage-userdoesnotexist-view'   => "An akawnt han gumaramit ni ''$1'' in diri nakarehistro.",
 'updated'                          => '(Ginbag-ohan)',
 'note'                             => "'''Pahibaro:'''",
@@ -755,6 +762,7 @@ An imo e-mail address in diri makikit-an kun an iba nga mga gumaramit in makonta
 'recentchanges-label-minor'       => 'Gutiay ini nga pagliwat',
 'recentchanges-label-bot'         => 'Ini nga pagliwat in ginbuhat han bot',
 'recentchanges-label-unpatrolled' => 'Ini nga pagliwat in diri pa nakapatrol',
+'rcnote'                          => "An ha ubos {{PLURAL:$1|in '''1''' nga pagbag-o|in kaurhian nga mga '''$1''' nga pagbag-o}} ha kaurhian nga {{PLURAL:$2|ka adlaw|'''$2''' ka mga adlaw}}, han $5, $4.",
 'rcnotefrom'                      => "An ha ubos in mga pagbabag-o tikanng '''$''' (kutob ngadto ha '''$1''' nga ginpakita).",
 'rclistfrom'                      => 'Pakit-a an mga ginbag-ohan tikang han $1',
 'rcshowhideminor'                 => '$1 gudti nga mga pagliwat',
@@ -781,6 +789,8 @@ An imo e-mail address in diri makikit-an kun an iba nga mga gumaramit in makonta
 'recentchangeslinked-toolbox'  => 'Mga may kalabotan nga binag-o',
 'recentchangeslinked-title'    => "Mga pagbag-o kasumpay ha ''$1''",
 'recentchangeslinked-noresult' => 'Waray pagbabag-o ha mga nakasumpay nga pakli han ginhatag nga oras.',
+'recentchangeslinked-summary'  => "Ini nga taramdan hin pagbag-o nga lab-as nga hinimo ha mga pakli nga nakasumpay tikang a naka-specifico nga pakli (o ha api han uska specifico nga kaarangay).
+Mga pakli ha [[Special:Watchlist|imo angay timan-an]] in naka-'''bold'''.",
 'recentchangeslinked-page'     => 'Ngaran han pakli:',
 'recentchangeslinked-to'       => 'Igpakita lugod an mga pagbabag-o han mga pakli nga nahisumpay ha ginhatag nga pakli',
 
@@ -829,6 +839,7 @@ An taramdan han pagpara ngan pagbalhin para hini nga pakli in ginhahatag para ha
 'filehist-current'        => 'yana',
 'filehist-datetime'       => 'Pitsa/Oras',
 'filehist-thumb'          => 'Thumbnail',
+'filehist-thumbtext'      => 'Bersyon han thumbnail han $1',
 'filehist-user'           => 'Gumaramit',
 'filehist-dimensions'     => 'Mga dimensyon',
 'filehist-comment'        => 'Komento',
@@ -1107,7 +1118,7 @@ Kitaa an $2 para hin talaan han mga gibag-ohi nga mga ginpamara.',
 'databasenotlocked' => 'An database in diri nakatrangka.',
 
 # Move page
-'move-page'            => 'Igbalhin an $1',
+'move-page'            => 'Mabalhin an $1',
 'movearticle'          => 'Balhina an pakli:',
 'moveuserpage-warning' => "'''Pahimatngon:''' Tibalhin ka hin pakli hin gumaramit. Alayon pagtigaman nga an pakli là an mababalhin ngan an gumaramit in ''diri'' mababalyoan hin ngaran.",
 'newtitle'             => 'Para ha bag-o nga titulo:',
@@ -1136,6 +1147,7 @@ Kitaa an $2 para hin talaan han mga gibag-ohi nga mga ginpamara.',
 # Thumbnails
 'thumbnail-more'       => 'Padako-a',
 'filemissing'          => 'Nawawara an fayl',
+'thumbnail_error'      => 'Sayo han paghihimo hin thumbnail: $1',
 'thumbnail_image-type' => 'An klase han hulagway in diri suportado',
 
 # Special:Import
@@ -1199,6 +1211,7 @@ Makikit-an nimo an ginkuhaaan',
 'tooltip-watch'                       => 'Dugnga ini nga pakli ngadto han imo talaan hin ginbibinantayan',
 'tooltip-watchlistedit-normal-submit' => 'Igtanggal an mga titulo',
 'tooltip-rollback'                    => 'An "libot-pabalik" in nabalik han (mga) pagliwat hini nga pakli ngadto han kataposan nga nag-amot hin usa ka pidlit',
+'tooltip-undo'                        => '"Igpawara an ginbuhat (undo)" in nagbabalik hinin nga pagliwat ngan nabuklad hin pagliwat nga porma ha pahiuna-nga-paggawas nga kahimtang.  Natugot liwat pagdugang hin katadungan ha dinalikyat nga sumat.',
 'tooltip-summary'                     => 'Pagbutang hin dalikyat nga sumat',
 
 # Attribution
@@ -1227,6 +1240,13 @@ Makikit-an nimo an ginkuhaaan',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'ago' => '$1 an nakalabay',
+
+# Bad image list
+'bad_image_list' => 'An kabutangan in masunod:
+
+An nakatalala la nga mga butang (mga bagis nga nagtitikang hin *) in mahiuupod paglabot.
+An syahan nga sumpay ha uska bagis in dapat may-ada sumpay ngadto ha maraot nga fayl.
+An bisan ano nga masunod nga mga sumpay ha kapareho nga bagis in igtratrato nga eksepsyon, sugad hin, mga pakli kun diin an mga fayl in puydi mabubutang ha sulod han bagis.',
 
 # Metadata
 'metadata'        => 'Metadata',

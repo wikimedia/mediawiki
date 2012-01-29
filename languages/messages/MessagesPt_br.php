@@ -3672,8 +3672,7 @@ As imagens serão exibidas em sua resolução máxima, outros tipos de arquivos 
 'specialpages'                   => 'Páginas especiais',
 'specialpages-note'              => '----
 * Páginas especiais normais.
-* <span class="mw-specialpagerestricted">Páginas especiais restritas.</span>
-* <span class="mw-specialpagecached">Páginas especiais com cache (podem estar obsoletas).</span>',
+* <span class="mw-specialpagerestricted">Páginas especiais restritas.</span>',
 'specialpages-group-maintenance' => 'Relatórios de manutenção',
 'specialpages-group-other'       => 'Outras páginas especiais',
 'specialpages-group-login'       => 'Entrar / registrar-se',
@@ -3826,6 +3825,7 @@ As imagens serão exibidas em sua resolução máxima, outros tipos de arquivos 
 'api-error-unknown-code'                  => 'Erro desconhecido: "$1"',
 'api-error-unknown-error'                 => 'Erro interno: ocorreu um erro indeterminado ao tentar enviar o arquivo.',
 'api-error-unknown-warning'               => 'Aviso desconhecido: $1',
+'api-error-unknownerror'                  => 'Erro desconhecido: "$1".',
 'api-error-uploaddisabled'                => 'Esta wiki está com uploads de arquivos desativados.',
 'api-error-verification-error'            => 'Este arquivo pode estar corrompido ou ter a extensão errada.',
 
