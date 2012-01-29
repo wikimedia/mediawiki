@@ -58,6 +58,16 @@ class FSFileBackend extends FileBackend {
 	}
 
 	/**
+	 * @see FileBackend::resolveContainerName()
+	 */
+	protected function resolveContainerName( $container ) {
+		if ( $container !== '.' ) {
+			return $container; // container is not a traversal
+		}
+		return null;
+	}
+
+	/**
 	 * @see FileBackend::resolveContainerPath()
 	 */
 	protected function resolveContainerPath( $container, $relStoragePath ) {
