@@ -127,7 +127,10 @@ class SpecialAllpages extends IncludableSpecialPage {
 			Xml::label( $this->msg( 'namespace' )->text(), 'namespace' ) .
 			"	</td>
 			<td class='mw-input'>" .
-			Xml::namespaceSelector( $namespace, null ) . ' ' .
+			Html::namespaceSelector(
+				array( 'selected' => $namespace ),
+				array( 'name' => 'namespace', 'id' => 'namespace' )
+			) . ' ' .
 			Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) .
 			"	</td>
 </tr>";
