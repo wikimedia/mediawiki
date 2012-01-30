@@ -31,7 +31,7 @@ class WatchAction extends FormAction {
 	}
 
 	protected function getDescription() {
-		return wfMsg( 'addwatch' );
+		return wfMsgHtml( 'addwatch' );
 	}
 
 	/**
