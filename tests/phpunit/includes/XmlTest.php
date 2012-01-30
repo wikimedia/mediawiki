@@ -325,12 +325,12 @@ class XmlTest extends MediaWikiTestCase {
 
 	function testEncodeJsVarArray() {
 		$this->assertEquals(
-			'["a", 1]',
+			'["a",1]',
 			Xml::encodeJsVar( array( 'a', 1 ) ),
 			'encodeJsVar() with array'
 		);
 		$this->assertEquals(
-			'{"a": "a", "b": 1}',
+			'{"a":"a","b":1}',
 			Xml::encodeJsVar( array( 'a' => 'a', 'b' => 1 ) ),
 			'encodeJsVar() with associative array'
 		);
@@ -338,7 +338,7 @@ class XmlTest extends MediaWikiTestCase {
 
 	function testEncodeJsVarObject() {
 		$this->assertEquals(
-			'{"a": "a", "b": 1}',
+			'{"a":"a","b":1}',
 			Xml::encodeJsVar( (object)array( 'a' => 'a', 'b' => 1 ) ),
 			'encodeJsVar() with object'
 		);

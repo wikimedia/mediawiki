@@ -630,7 +630,7 @@ class Xml {
 			$s = '[';
 			foreach ( $value as $elt ) {
 				if ( $s != '[' ) {
-					$s .= ', ';
+					$s .= ',';
 				}
 				$s .= self::encodeJsVar( $elt );
 			}
@@ -642,10 +642,10 @@ class Xml {
 			$s = '{';
 			foreach ( (array)$value as $name => $elt ) {
 				if ( $s != '{' ) {
-					$s .= ', ';
+					$s .= ',';
 				}
 
-				$s .= '"' . self::escapeJsString( $name ) . '": ' .
+				$s .= '"' . self::escapeJsString( $name ) . '":' .
 					self::encodeJsVar( $elt );
 			}
 			$s .= '}';
