@@ -24,6 +24,11 @@ class FileBackendMultiWrite extends FileBackend {
 	/** @var Array Prioritized list of FileBackendStore objects */
 	protected $backends = array(); // array of (backend index => backends)
 	protected $masterIndex = -1; // integer; index of master backend
+	protected $syncChecks = 0; // integer bitfield
+
+	/* Possible internal backend consistency checks */
+	const CHECK_SIZE = 1;
+	const CHECK_TIME = 2;
 
 	/**
 	 * Construct a proxy backend that consists of several internal backends.
@@ -33,6 +38,9 @@ class FileBackendMultiWrite extends FileBackend {
 	 *                     FileBackendStore class, but with these additional settings:
 	 *                         'class'         : The name of the backend class
 	 *                         'isMultiMaster' : This must be set for one backend.
+	 *     'syncChecks'  : Integer bitfield of internal backend sync checks to perform.
+	 *                     Possible bits include self::CHECK_SIZE and self::CHECK_TIME.
+	 *                     The checks are done before allowing any file operations.
 	 * @param $config Array
 	 */
 	public function __construct( array $config ) {
@@ -61,6 +69,9 @@ class FileBackendMultiWrite extends FileBackend {
 		if ( $this->masterIndex < 0 ) { // need backends and must have a master
 			throw new MWException( 'No master backend defined.' );
 		}
+		$this->syncChecks = isset( $config['syncChecks'] )
+			? $config['syncChecks']
+			: self::CHECK_SIZE;
 	}
 
 	/**
@@ -156,6 +167,9 @@ class FileBackendMultiWrite extends FileBackend {
 	 */
 	public function consistencyCheck( array $paths ) {
 		$status = Status::newGood();
+		if ( $this->syncChecks == 0 ) {
+			return $status; // skip checks
+		}
 
 		$mBackend = $this->backends[$this->masterIndex];
 		foreach ( array_unique( $paths ) as $path ) {
@@ -171,13 +185,20 @@ class FileBackendMultiWrite extends FileBackend {
 				if ( $mStat ) { // file is in master
 					if ( !$cStat ) { // file should exist
 						$status->fatal( 'backend-fail-synced', $path );
-					} elseif ( $cStat['size'] != $mStat['size'] ) { // wrong size
-						$status->fatal( 'backend-fail-synced', $path );
-					} else {
+						continue;
+					}
+					if ( $this->syncChecks & self::CHECK_SIZE ) {
+						if ( $cStat['size'] != $mStat['size'] ) { // wrong size
+							$status->fatal( 'backend-fail-synced', $path );
+							continue;
+						}
+					}
+					if ( $this->syncChecks & self::CHECK_TIME ) {
 						$mTs = wfTimestamp( TS_UNIX, $mStat['mtime'] );
 						$cTs = wfTimestamp( TS_UNIX, $cStat['mtime'] );
 						if ( abs( $mTs - $cTs ) > 30 ) { // outdated file somewhere
 							$status->fatal( 'backend-fail-synced', $path );
+							continue;
 						}
 					}
 				} else { // file is not in master
