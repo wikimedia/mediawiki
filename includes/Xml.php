@@ -123,11 +123,11 @@ class Xml {
 		wfDeprecated( __METHOD__, '1.19' );
 		return Html::namespaceSelector( array(
 			'selected' => $selected,
-			'all' => $all,
-			'label' => $label,
+			'all'      => $all,
+			'label'    => $label,
 		), array(
-			'name' => $element_name,
-			'id' => 'namespace',
+			'name'  => $element_name,
+			'id'    => 'namespace',
 			'class' => 'namespaceselector',
 		) );
 	}
