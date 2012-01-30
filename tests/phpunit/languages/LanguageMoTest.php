@@ -35,6 +35,7 @@ class LanguageMoTest extends MediaWikiTestCase {
 			array( 'other', 20.123 ),
 			array( 'other', 31 ),
 			array( 'other', 200 ),
+			array( 'few', 201 ),
 		);
 	}
 
