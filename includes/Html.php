@@ -704,20 +704,24 @@ class Html {
 	 *
 	 * @param $params array:
 	 * - selected: [optional] Id of namespace which should be pre-selected
-	 * - all: [optional] Value of item for "all namespaces". If null or unset, <option> is omitted.
+	 * - all: [optional] Value of item for "all namespaces". If null or unset, no <option> is generated to select all namespaces
 	 * - label: text for label to add before the field
-	 * @param $selectAttribs array
-	 * @return string
+	 * @param $selectAttribs array HTML attributes for the generated select element.
+	 * - id:   [optional], default: 'namespace'
+	 * - name: [optional], default: 'namespace'
+	 * @return string HTML code to select a namespace.
 	 */
 	public static function namespaceSelector( Array $params = array(), Array $selectAttribs = array() ) {
 		global $wgContLang;
 
+		// Default 'id' & 'name' <select> attributes
 		$selectAttribs = $selectAttribs + array(
-			'id' => 'namespace',
+			'id'   => 'namespace',
 			'name' => 'namespace',
 		);
 		ksort( $selectAttribs );
 
+		// Is a namespace selected?
 		if ( isset( $params['selected'] ) ) {
 			// If string only contains digits, convert to clean int. Selected could also
 			// be "all" or "" etc. which needs to be left untouched.
@@ -726,16 +730,23 @@ class Html {
 			if ( preg_match( '/^\d+$/', $params['selected'] ) ) {
 				$params['selected'] = intval( $params['selected'] );
 			}
+			// else: leaves it untouched for later processing
 		} else {
 			$params['selected'] = '';
 		}
 
+		// Array holding the <option> elements
 		$options = array();
+
 		if ( isset( $params['all'] ) ) {
+			// add an <option> that would let the user select all namespaces.
+			// Value is provided by user, the name shown is localized.
 			$options[$params['all']] = wfMsg( 'namespacesall' );
 		}
+		// Add defaults <option> according to content language
 		$options += $wgContLang->getFormattedNamespaces();
 
+		// Convert $options to HTML
 		$optionsHtml = array();
 		foreach ( $options as $nsId => $nsName ) {
 			if ( $nsId < NS_MAIN ) {
@@ -747,14 +758,16 @@ class Html {
 			$optionsHtml[] = Xml::option( $nsName, $nsId, $nsId === $params['selected'] );
 		}
 
-		$ret = Html::openElement( 'select', $selectAttribs )
+		// Forge a <select> element and returns it
+		$ret = '';
+		if ( isset( $params['label'] ) ) {
+			$ret .= Xml::label( $params['label'], $selectAttribs['id'] ) . '&#160;';
+		}
+		$ret .= Html::openElement( 'select', $selectAttribs )
 			. "\n"
 			. implode( "\n", $optionsHtml )
 			. "\n"
 			. Html::closeElement( 'select' );
-		if ( isset( $params['label'] ) ) {
-			$ret = Xml::label( $params['label'], $selectAttribs['id'] ) . '&#160;' . $ret;
-		}
 		return $ret;
 	}
 
