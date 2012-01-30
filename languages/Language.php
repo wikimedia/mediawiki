@@ -3287,6 +3287,8 @@ class Language {
 
 	/**
 	 * Return the LanguageConverter used in the Language
+	 *
+	 * @since 1.19
 	 * @return LanguageConverter
 	 */
 	public function getConverter() {
@@ -3334,6 +3336,8 @@ class Language {
 
 	/**
 	 * Check if the language has the specific variant
+	 *
+	 * @since 1.19
 	 * @param $variant string
 	 * @return bool
 	 */
