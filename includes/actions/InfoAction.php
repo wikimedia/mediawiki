@@ -42,7 +42,7 @@ class InfoAction extends FormlessAction {
 	}
 
 	protected function getPageTitle() {
-		return wfMsg( 'pageinfo-title', $this->getTitle()->getSubjectPage()->getPrefixedText() );
+		return $this->msg( 'pageinfo-title', $this->getTitle()->getSubjectPage()->getPrefixedText() )->text();
 	}
 
 	public function onView() {
@@ -56,42 +56,42 @@ class InfoAction extends FormlessAction {
 		return Html::rawElement( 'table', array( 'class' => 'wikitable mw-page-info' ),
 			Html::rawElement( 'tr', array(),
 				Html::element( 'th', array(), '' ) .
-				Html::element( 'th', array(), wfMsg( 'pageinfo-subjectpage' ) ) .
-				Html::element( 'th', array(), wfMsg( 'pageinfo-talkpage' ) )
+				Html::element( 'th', array(), $this->msg( 'pageinfo-subjectpage' )->text() ) .
+				Html::element( 'th', array(), $this->msg( 'pageinfo-talkpage' )->text() )
 			) .
 			Html::rawElement( 'tr', array(),
-				Html::element( 'th', array( 'colspan' => 3 ), wfMsg( 'pageinfo-header-edits' ) )
+				Html::element( 'th', array( 'colspan' => 3 ), $this->msg( 'pageinfo-header-edits' )->text() )
 			) .
 			Html::rawElement( 'tr', array(),
-				Html::element( 'td', array(), wfMsg( 'pageinfo-edits' ) ) .
+				Html::element( 'td', array(), $this->msg( 'pageinfo-edits' )->text() ) .
 				Html::element( 'td', array(), $this->getLanguage()->formatNum( $pageInfo['edits'] ) ) .
 				Html::element( 'td', array(), $this->getLanguage()->formatNum( $talkInfo['edits'] ) )
 			) .
 			Html::rawElement( 'tr', array(),
-				Html::element( 'td', array(), wfMsg( 'pageinfo-authors' ) ) .
+				Html::element( 'td', array(), $this->msg( 'pageinfo-authors' )->text() ) .
 				Html::element( 'td', array(), $this->getLanguage()->formatNum( $pageInfo['authors'] ) ) .
 				Html::element( 'td', array(), $this->getLanguage()->formatNum( $talkInfo['authors'] ) )
 			) .
 			( !$this->getUser()->isAllowed( 'unwatchedpages' ) ? '' :
 				Html::rawElement( 'tr', array(),
-					Html::element( 'th', array( 'colspan' => 3 ), wfMsg( 'pageinfo-header-watchlist' ) )
+					Html::element( 'th', array( 'colspan' => 3 ), $this->msg( 'pageinfo-header-watchlist' )->text() )
 				) .
 				Html::rawElement( 'tr', array(),
-					Html::element( 'td', array(), wfMsg( 'pageinfo-watchers' ) ) .
+					Html::element( 'td', array(), $this->msg( 'pageinfo-watchers' )->text() ) .
 					Html::element( 'td', array( 'colspan' => 2 ), $this->getLanguage()->formatNum( $pageInfo['watchers'] ) )
 				)
 			).
 			( $wgDisableCounters ? '' :
 				Html::rawElement( 'tr', array(),
-					Html::element( 'th', array( 'colspan' => 3 ), wfMsg( 'pageinfo-header-views' ) )
+					Html::element( 'th', array( 'colspan' => 3 ), $this->msg( 'pageinfo-header-views' )->text() )
 				) .
 				Html::rawElement( 'tr', array(),
-					Html::element( 'td', array(), wfMsg( 'pageinfo-views' ) ) .
+					Html::element( 'td', array(), $this->msg( 'pageinfo-views' )->text() ) .
 					Html::element( 'td', array(), $this->getLanguage()->formatNum( $pageInfo['views'] ) ) .
 					Html::element( 'td', array(), $this->getLanguage()->formatNum( $talkInfo['views'] ) )
 				) .
 				Html::rawElement( 'tr', array(),
-					Html::element( 'td', array(), wfMsg( 'pageinfo-viewsperedit' ) ) .
+					Html::element( 'td', array(), $this->msg( 'pageinfo-viewsperedit' )->text() ) .
 					Html::element( 'td', array(), $this->getLanguage()->formatNum( sprintf( '%.2f', $pageInfo['edits'] ? $pageInfo['views'] / $pageInfo['edits'] : 0 ) ) ) .
 					Html::element( 'td', array(), $this->getLanguage()->formatNum( sprintf( '%.2f', $talkInfo['edits'] ? $talkInfo['views'] / $talkInfo['edits'] : 0 ) ) )
 				)
