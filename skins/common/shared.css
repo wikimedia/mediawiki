@@ -238,7 +238,7 @@ td.mw-submit {
 }
 
 table.mw-htmlform-nolabel td.mw-label {
-	width: 0 !important;
+	width: 1px;
 }
 
 tr.mw-htmlform-vertical-label td.mw-label {
