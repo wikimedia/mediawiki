@@ -2,7 +2,7 @@
  * jQuery QUnit CompletenessTest 0.3
  *
  * Tests the completeness of test suites for object oriented javascript
- * libraries. Written to be used in enviroments with jQuery and QUnit.
+ * libraries. Written to be used in environments with jQuery and QUnit.
  * Requires jQuery 1.5.2 or higher.
  *
  * Globals: jQuery, QUnit, console.log
