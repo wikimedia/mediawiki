@@ -22,10 +22,13 @@ class ApiQueryTest extends ApiTestCase {
 		$this->assertArrayHasKey( 'query', $data[0] );
 		$this->assertArrayHasKey( 'normalized', $data[0]['query'] );
 
+		// Forge a normalized title
+		$to = Title::newFromText( $wgMetaNamespace.':ArticleA' );
+
 		$this->assertEquals(
 			array(
 				'from' => 'Project:articleA',
-				'to' => $wgMetaNamespace . ':ArticleA'
+				'to' => $to->getPrefixedText(),
 			),
 			$data[0]['query']['normalized'][0]
 		);
