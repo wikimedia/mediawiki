@@ -28,8 +28,7 @@
  *
  * @internal documentation reviewed 15 Mar 2010
  */
-class
-Title {
+class Title {
 	/** @name Static cache variables */
 	// @{
 	static private $titleCache = array();
