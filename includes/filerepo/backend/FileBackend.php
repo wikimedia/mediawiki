@@ -1422,6 +1422,7 @@ abstract class FileBackendStore extends FileBackend {
 	final protected static function isValidContainerName( $container ) {
 		// This accounts for Swift and S3 restrictions while leaving room 
 		// for things like '.xxx' (hex shard chars) or '.seg' (segments).
+		// This disallows directory separators or traversal characters.
 		// Note that matching strings URL encode to the same string;
 		// in Swift, the length restriction is *after* URL encoding.
 		return preg_match( '/^[a-z0-9][a-z0-9-_]{0,199}$/i', $container );
