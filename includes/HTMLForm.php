@@ -107,8 +107,9 @@ class HTMLForm extends ContextSource {
 
 	protected $mTitle;
 	protected $mMethod = 'post';
-	
+
 	/**
+	 * Form action URL. false means we will use the URL to set Title
 	 * @since 1.19
 	 * @var false|string
 	 */
@@ -851,19 +852,19 @@ class HTMLForm extends ContextSource {
 	public function getLegend( $key ) {
 		return wfMsg( "{$this->mMessagePrefix}-$key" );
 	}
-	
+
 	/**
 	 * Set the value for the action attribute of the form.
-	 * When set to false (which is the default state), the set title is used. 
-	 * 
+	 * When set to false (which is the default state), the set title is used.
+	 *
 	 * @since 1.19
-	 * 
+	 *
 	 * @param string|false $action
 	 */
 	public function setAction( $action ) {
 		$this->mAction = $action;
 	}
-	
+
 }
 
 /**
