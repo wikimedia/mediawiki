@@ -61,8 +61,8 @@ class LanguageHe extends Language {
 
 		if ( $count == '1' ) {
 			return $forms[0]; // Singular
-		} elseif ( $count == '2' && isset( $forms[2] ) ) {
-			return $forms[2]; // Dual
+		} elseif ( $count == '2' ) {
+			return $forms[2]; // Dual or plural if dual is not provided (filled in preConvertPlural)
 		} else {
 			return $forms[1]; // Plural
 		}
