@@ -1470,8 +1470,8 @@ Esto no se puede deshacer.',
 'email'                         => 'Correo electrónico',
 'prefs-help-realname'           => 'El nombre real es opcional. Si decides proporcionarlo, se usará para dar atribución a tu trabajo.',
 'prefs-help-email'              => 'La dirección de correo electrónico es opcional, pero es necesaria para el restablecimiento de tu contraseña, en caso de que la olvides.',
-'prefs-help-email-others'       => 'También puedes permitir que otros usuarios te contacten por correo-e a través de un enlace en tus páginas de usuario y discusión.
-Tu dirección de correo-e no se revela cuando otros usuarios te contactan.',
+'prefs-help-email-others'       => 'También puedes permitir que otros usuarios te contacten por correo a través de un enlace en tus páginas de usuario y de discusión.
+Tu dirección de correo no se revela cuando otros usuarios te contactan.',
 'prefs-help-email-required'     => 'Es necesario proporcionar una dirección de correo electrónico.',
 'prefs-info'                    => 'Información básica',
 'prefs-i18n'                    => 'Internacionalización',
@@ -1647,8 +1647,8 @@ Tu dirección de correo-e no se revela cuando otros usuarios te contactan.',
 'nchanges'                          => '$1 {{PLURAL:$1|cambio|cambios}}',
 'recentchanges'                     => 'Cambios recientes',
 'recentchanges-legend'              => 'Opciones sobre cambios recientes',
-'recentchangestext'                 => 'Sigue los cambios más recientes de la wiki en esta página.',
-'recentchanges-feed-description'    => 'Seguir los cambios más recientes en el wiki en este feed.',
+'recentchangestext'                 => 'Realiza un seguimiento de los cambios más recientes en el wiki en esta página.',
+'recentchanges-feed-description'    => 'Realiza un seguimiento de los cambios más recientes en el wiki en este canal.',
 'recentchanges-label-newpage'       => 'Esta edición creó una nueva página',
 'recentchanges-label-minor'         => 'Esta es una edición menor',
 'recentchanges-label-bot'           => 'Esta edición fue realizada por un robot',
@@ -3555,7 +3555,7 @@ El correo incluirá un enlace con un código. Introdúcelo para confirmar la val
 'confirmemail_send'         => 'Envíar el código de confimación.',
 'confirmemail_sent'         => 'Confirmación de correo enviada.',
 'confirmemail_oncreate'     => 'Se ha enviado un código de confirmación a tu dirección de correo electrónico.
-Este código no es necesario para entrar, pero necesitarás darlo antes de activar cualquier función basada en correo electrónico en el wiki.',
+Este código no es necesario para iniciar sesión, pero necesitarás proporcionarlo antes de activar cualquier función basada en correo electrónico en el wiki.',
 'confirmemail_sendfailed'   => 'No fue posible enviar el correo de confirmación. Por favor, comprueba la validez de la dirección de correo.
 
 El servidor indicó el error: $1',
