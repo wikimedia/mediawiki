@@ -39,7 +39,11 @@ class SwiftFileBackend extends FileBackendStore {
 	 *    swiftKey           : Swift authentication key for the above user
 	 *    swiftAuthTTL       : Swift authentication TTL (seconds)
 	 *    swiftAnonUser      : Swift user used for end-user requests (account:username)
-	 *    shardViaHashLevels : Map of container names to the number of hash levels
+	 *    shardViaHashLevels : Map of container names to sharding config with:
+	 *                         'base'   : base of hash characters, 16 or 36
+	 *                         'levels' : the number of hash levels (and digits)
+	 *                         'repeat' : hash subdirectories are prefixed with all the 
+	 *                                    parent hash directory names (e.g. "a/ab/abc")
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );
