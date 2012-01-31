@@ -3613,7 +3613,7 @@ Les imatges es mostren en plena resolució; altres tipus de fitxer s'inicien dir
 
 # Special:Tags
 'tags'                    => 'Etiquetes de canvi vàlides',
-'tag-filter'              => "Filtre d'[[Special:Tags|Etiquetes]]:",
+'tag-filter'              => "Filtre d'[[Special:Tags|etiquetes]]:",
 'tag-filter-submit'       => 'Filtra',
 'tags-title'              => 'Etiquetes',
 'tags-intro'              => 'Aquesta pàgina llista les etiquetes amb les què el programari pot marcar una modificació, i llur significat.',

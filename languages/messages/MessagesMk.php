@@ -3822,10 +3822,26 @@ $5
 'autosumm-new'     => 'Создадена страница со: $1',
 
 # Size units
-'size-bytes'     => '$1 Б',
-'size-kilobytes' => '$1 КБ',
-'size-megabytes' => '$1 МБ',
-'size-gigabytes' => '$1 ГБ',
+'size-bytes'      => '$1 Б',
+'size-kilobytes'  => '$1 КБ',
+'size-megabytes'  => '$1 МБ',
+'size-gigabytes'  => '$1 ГБ',
+'size-terabytes'  => '$1 ТБ',
+'size-petabytes'  => '$1 ПБ',
+'size-exabytes'   => '$1 ЕБ',
+'size-zetabytes'  => '$1 ЗБ',
+'size-yottabytes' => '$1 ЈБ',
+
+# Bitrate units
+'bitrate-bits'      => '$1 б/с',
+'bitrate-kilobits'  => '$1 кб/с',
+'bitrate-megabits'  => '$1 Мб/с',
+'bitrate-gigabits'  => '$1 Гб/с',
+'bitrate-terabits'  => '$1 Тб/с',
+'bitrate-petabits'  => '$1 Пб/с',
+'bitrate-exabits'   => '$1 Еб/с',
+'bitrate-zetabits'  => '$1 Зб/с',
+'bitrate-yottabits' => '$1 Јб/с',
 
 # Live preview
 'livepreview-loading' => 'Вчитувам...',

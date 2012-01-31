@@ -16318,6 +16318,7 @@ $messages['zea'] = array(
 
 /** Simplified Chinese (‪中文(简体)‬)
  * @author Hydra
+ * @author Hzy980512
  * @author PhiLiP
  * @author Xiaomingyan
  * @author 阿pp
@@ -16394,27 +16395,30 @@ $1',
 	'config-no-db' => '找不到合适的数据库驱动！您需要为PHP安装数据库驱动。目前支持以下数据库：$1。
 
 如果您正在使用共享主机，请向您的主机提供商申请安装合适的数据库驱动。如果您通过自行编译安装的PHP，请对其进行重新配置以启用数据库客户端，例如使用<code>./configure --with-mysql</code>。如果您通过Debian或Ubuntu包安装的PHP，您还需要安装php5-mysql模块。',
+	'config-outdated-sqlite' => "'''警告'''：您已安装SQLite $1，但是它的版本低于最低要求版本$2。因此您无法选择SQLite。",
 	'config-no-fts3' => "'''警告'''：已编译的SQLite不包含[//sqlite.org/fts3.html FTS3模块]，后台搜索功能将不可用。",
 	'config-register-globals' => "'''警告：PHP的<code>[http://php.net/register_globals register_globals]</code>选项被启用。请尽量禁用该功能，'''虽然不会影响MediaWiki的运行，但您的服务器会被暴露给潜在的安全漏洞。",
-	'config-magic-quotes-runtime' => "'''致命错误：[http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_runtime]被启用！'''
+	'config-magic-quotes-runtime' => "'''毁灭性错误：[http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_runtime]已启用！'''
 此选项会无法预测地破坏输入的数据，请将其禁用，否则您将不能安装或使用MediaWiki。",
-	'config-magic-quotes-sybase' => "'''致命错误：[http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_sybase]被启用！'''
+	'config-magic-quotes-sybase' => "'''毁灭性错误：[http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_sybase]已启用！'''
 此选项会无法预测地破坏输入的数据，请将其禁用，否则您将不能安装或使用MediaWiki。",
-	'config-mbstring' => "'''致命错误：[http://www.php.net/manual/en/ref.mbstring.php#mbstring.overload mbstring.func_overload]被启用！'''
+	'config-mbstring' => "'''毁灭性错误：[http://www.php.net/manual/en/ref.mbstring.php#mbstring.overload mbstring.func_overload]已启用！'''
 此选项会导致错误并不可预测地破坏数据，请将其禁用，否则您将不能安装或使用MediaWiki。",
-	'config-ze1' => "'''致命错误：[http://www.php.net/manual/en/ini.core.php zend.ze1_compatibility_mode]被启用！'''
+	'config-ze1' => "'''毁灭性错误：[http://www.php.net/manual/en/ini.core.php zend.ze1_compatibility_mode]已启用！'''
 此选项将导致MediaWiki出现极其严重的故障，请将其禁用，否则您将不能安装或使用MediaWiki。",
 	'config-safe-mode' => "'''警告：'''PHP的[http://www.php.net/features.safe-mode 安全模式]已启用。它可能会导致一些问题，尤其在对文件上传和数学公式<code>math</code>的支持方面。",
 	'config-xml-bad' => '缺少PHP的XML模块。MediaWiki需要使用该模块提供的函数，在当前配置下将无法工作。如果您正在使用Mandrake Linux，请安装php-xml包。',
 	'config-pcre' => '可能缺少PCRE的支持模块。MediaWiki的运行需要兼容于Perl的正则表达式函数。',
-	'config-pcre-no-utf8' => "'''致命错误'''：PHP的PCRE模块在编译时可能没有包含PCRE_UTF8支持。MediaWiki需要UTF-8支持才能正常工作。",
+	'config-pcre-no-utf8' => "'''毁灭性错误'''：PHP的PCRE模块在编译时可能没有包含PCRE_UTF8支持。MediaWiki需要UTF-8支持才能正常工作。",
 	'config-memory-raised' => 'PHP的内存使用上限<code>memory_limit</code>为$1，自动提升到$2。',
 	'config-memory-bad' => "'''警告：'''PHP的内存使用上限<code>memory_limit</code>为$1。该设定可能过低，并导致安装失败！",
+	'config-ctype' => "'''毁灭性错误'''：PHP必须有[http://www.php.net/manual/en/ctype.installation.php Ctype 扩展]来支持编译。",
 	'config-xcache' => '[http://xcache.lighttpd.net/ XCache]已安装',
 	'config-apc' => '[http://www.php.net/apc APC]已安装',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache]已安装',
 	'config-no-cache' => "'''警告：'''找不到[http://www.php.net/apc APC]、[http://xcache.lighttpd.net/ XCache]或[http://www.iis.net/download/WinCacheForPhp WinCache]，无法启用对象缓存。
 Object caching is not enabled.",
+	'config-mod-security' => "'''警告'''：您的服务器已启动[http://modsecurity.org/ mod_security]。若其配置错误, 会导致MediaWiki和其他软件的错误并允许用户任意发布内容。如果您遇到任何错误，请查阅[http://modsecurity.org/documentation/ mod_security文档]或联系您的客服。",
 	'config-diff3-bad' => '找不到GNU diff3。',
 	'config-imagemagick' => '已找到ImageMagick：<code>$1</code>。如果你启用了上传功能，缩略图功能也将被启用。',
 	'config-gd' => '已找到内建的GD图形库。如果你启用了上传功能，缩略图功能也将被启用。',
@@ -16430,11 +16434,13 @@ Object caching is not enabled.",
 	'config-suhosin-max-value-length' => 'Suhosin已经安装并将GET请求的参数长度限制在$1字节。MediaWiki的ResourceLoader部件可以在此限制下正常工作，但其性能会被降低。如果可能，请在php.ini中将suhosin.get.max_value_length设为1024或更高值，并在LocalSettings.php中将$wgResourceLoaderMaxQueryLength设为同一值。',
 	'config-db-type' => '数据库类型：',
 	'config-db-host' => '数据库主机：',
-	'config-db-host-help' => '如果您的数据库位于另一台服务器上，在此输入主机名或IP地址。
+	'config-db-host-help' => '如果您的数据库在别的服务器上，请在这里输入它的域名或IP地址。
 
-如果您使用的是共享web主机，您的主机提供商应会在他们的文档中给出正确的主机名称。
+如果您在使用共享网站套餐，您的网站商应该已在他们的控制面板中给您数据库信息了。
 
-如果您使用了Windows服务器和MySQL数据库，使用“localhost”可能无法识别到本地服务器。如果是这样的话，请尝试指定本地服务器的IP地址为“127.0.0.1”。',
+如果您在Windows中安装并且使用MySQL，“localhost”可能无效。如果确实无效，请输入“127.0.0.1”作为IP地址。
+
+如果您在使用PostgreSQL，并且要用Unix socket来连接，请留空。',
 	'config-db-host-oracle' => '数据库透明网络底层（TNS）：',
 	'config-db-host-oracle-help' => '请输入合法的[http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm 本地连接名]，并确保tnsnames.ora文件对本安装程序可见。<br />如果您使用的客户端库为10g或更新的版本，您还可以使用[http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm 简单连接名方法]（easy connect naming method）。',
 	'config-db-wiki-settings' => '标识本wiki',
@@ -16552,7 +16558,7 @@ chmod a+w $3</pre>',
 
 现在您可以[$1 开始使用您的wiki]了。',
 	'config-regenerate' => '重新生成LocalSettings.php →',
-	'config-show-table-status' => '查询SHOW TABLE STATUS失败！',
+	'config-show-table-status' => 'SHOW TABLE STATUS语句执行失败！',
 	'config-unknown-collation' => "'''警告：'''数据库使用了无法识别的整理。",
 	'config-db-web-account' => '供网页访问使用的数据库帐号',
 	'config-db-web-help' => '请指定在wiki执行普通操作时，网页服务器用于连接数据库服务器的用户名和密码。',
@@ -16752,6 +16758,7 @@ $3
 );
 
 /** Traditional Chinese (‪中文(繁體)‬)
+ * @author Hzy980512
  * @author Mark85296341
  */
 $messages['zh-hant'] = array(
@@ -16759,7 +16766,7 @@ $messages['zh-hant'] = array(
 	'config-title' => 'MediaWiki $1配置',
 	'config-information' => '資訊',
 	'config-localsettings-upgrade' => '已檢測到<code>LocalSettings.php</code>文件。要升級該配置，請在下面的框中輸入<code>$wgUpgradeKey</code>的值。您可以在LocalSettings.php中找到它。',
-	'config-localsettings-cli-upgrade' => '已檢測到LocalSettings.php文件。要升級該配置，請直接運行update.php。',
+	'config-localsettings-cli-upgrade' => '已檢測到LocalSettings.php文件。要升級該配置，請直接執行update.php。',
 	'config-localsettings-key' => '升級密鑰：',
 	'config-localsettings-badkey' => '您提供的密鑰不正確。',
 	'config-upgrade-key-missing' => '檢測到MediaWiki的配置已經存在。若要升級該配置，請將下面一行文本添加到LocalSettings.php的底部：
