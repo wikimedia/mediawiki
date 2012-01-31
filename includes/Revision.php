@@ -357,6 +357,7 @@ class Revision {
 		return array(
 			'page_namespace',
 			'page_title',
+			'page_id',
 			'page_latest'
 		);
 	}
