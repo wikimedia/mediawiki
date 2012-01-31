@@ -696,8 +696,8 @@ abstract class FileBackendStore extends FileBackend {
 	protected $expCache = array(); // (storage path => key => value)
 	protected $maxExpCacheSize = 10; // integer; max paths with entries
 
-	/** @var Array */
-	protected $shardViaHashLevels = array(); // (container name => integer)
+	/** @var Array Map of container names to sharding settings */
+	protected $shardViaHashLevels = array(); // (container name => config array)
 
 	protected $maxFileSize = 1000000000; // integer bytes (1GB)
 
@@ -1492,40 +1492,53 @@ abstract class FileBackendStore extends FileBackend {
 	 * @return string|null Returns null if shard could not be determined
 	 */
 	final protected function getContainerShard( $container, $relPath ) {
-		$hashLevels = $this->getContainerHashLevels( $container );
-		if ( $hashLevels === 1 ) { // 16 shards per container
-			$hashDirRegex = '(?P<shard>[0-9a-f])';
-		} elseif ( $hashLevels === 2 ) { // 256 shards per container
-			$hashDirRegex = '[0-9a-f]/(?P<shard>[0-9a-f]{2})';
-		} else {
-			return ''; // no sharding
+		list( $levels, $base, $repeat ) = $this->getContainerHashLevels( $container );
+		if ( $levels == 1 || $levels == 2 ) {
+			// Hash characters are either base 16 or 36
+			$char = ( $base == 36 ) ? '[0-9a-z]' : '[0-9a-f]';
+			// Get a regex that represents the shard portion of paths.
+			// The concatenation of the captures gives us the shard.
+			if ( $levels === 1 ) { // 16 or 36 shards per container
+				$hashDirRegex = '(' . $char . ')';
+			} else { // 256 or 1296 shards per container
+				if ( $repeat ) { // verbose hash dir format (e.g. "a/ab/abc")
+					$hashDirRegex = $char . '/(' . $char . '{2})';
+				} else { // short hash dir format (e.g. "a/b/c")
+					$hashDirRegex = '(' . $char . ')/(' . $char . ')';
+				}
+			}
+			// Allow certain directories to be above the hash dirs so as
+			// to work with FileRepo (e.g. "archive/a/ab" or "temp/a/ab").
+			// They must be 2+ chars to avoid any hash directory ambiguity.
+			$m = array();
+			if ( preg_match( "!^(?:[^/]{2,}/)*$hashDirRegex(?:/|$)!", $relPath, $m ) ) {
+				return '.' . implode( '', array_slice( $m, 1 ) );
+			}
+			return null; // failed to match
 		}
-		// Allow certain directories to be above the hash dirs so as
-		// to work with FileRepo (e.g. "archive/a/ab" or "temp/a/ab").
-		// They must be 2+ chars to avoid any hash directory ambiguity.
-		$m = array();
-		if ( preg_match( "!^(?:[^/]{2,}/)*$hashDirRegex(?:/|$)!", $relPath, $m ) ) {
-			return '.' . $m['shard'];
-		}
-		return null; // failed to match
+		return ''; // no sharding
 	}
 
 	/**
-	 * Get the number of hash levels for a container.
+	 * Get the sharding config for a container.
 	 * If greater than 0, then all file storage paths within
 	 * the container are required to be hashed accordingly.
 	 *
 	 * @param $container string
-	 * @return integer
+	 * @return Array (integer levels, integer base, repeat flag) or (0, 0, false)
 	 */
 	final protected function getContainerHashLevels( $container ) {
 		if ( isset( $this->shardViaHashLevels[$container] ) ) {
-			$hashLevels = (int)$this->shardViaHashLevels[$container];
-			if ( $hashLevels >= 0 && $hashLevels <= 2 ) {
-				return $hashLevels;
+			$config = $this->shardViaHashLevels[$container];
+			$hashLevels = (int)$config['levels'];
+			if ( $hashLevels == 0 || $hashLevels == 2 ) {
+				$hashBase = (int)$config['base'];
+				if ( $hashBase == 16 || $hashBase == 36 ) {
+					return array( $hashLevels, $hashBase, $config['repeat'] );
+				}
 			}
 		}
-		return 0; // no sharding
+		return array( 0, 0, false ); // no sharding
 	}
 
 	/**
@@ -1536,11 +1549,11 @@ abstract class FileBackendStore extends FileBackend {
 	 */
 	final protected function getContainerSuffixes( $container ) {
 		$shards = array();
-		$digits = $this->getContainerHashLevels( $container );
+		list( $digits, $base ) = $this->getContainerHashLevels( $container );
 		if ( $digits > 0 ) {
-			$numShards = 1 << ( $digits * 4 );
+			$numShards = pow( $base, $digits );
 			for ( $index = 0; $index < $numShards; $index++ ) {
-				$shards[] = '.' . str_pad( dechex( $index ), $digits, '0', STR_PAD_LEFT );
+				$shards[] = '.' . wfBaseConvert( $index, 10, $base, $digits );
 			}
 		}
 		return $shards;
