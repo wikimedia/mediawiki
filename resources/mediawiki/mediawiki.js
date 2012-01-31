@@ -1137,7 +1137,7 @@ var mw = ( function ( $, undefined ) {
 				 *  "text/javascript"; if no type is provided, text/javascript is assumed.
 				 */
 				load: function ( modules, type ) {
-					var filtered, m, reValidURL;
+					var filtered, m;
 
 					// Validate input
 					if ( typeof modules !== 'object' && typeof modules !== 'string' ) {
@@ -1146,8 +1146,7 @@ var mw = ( function ( $, undefined ) {
 					// Allow calling with an external url or single dependency as a string
 					if ( typeof modules === 'string' ) {
 						// Support adding arbitrary external scripts
-						reValidURL = new RegExp( '^((https?:)?\\/\\/|' + $.escapeRE( mw.config.get( 'wgScript' ) ) + ')' );
-						if ( reValidURL.test( modules ) ) {
+						if ( /^(https?:)?\/\//.test( modules ) ) {
 							if ( type === 'text/css' ) {
 								$( 'head' ).append( $( '<link>', {
 									rel: 'stylesheet',
