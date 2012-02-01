@@ -677,7 +677,7 @@ abstract class FileBackend {
 }
 
 /**
- * Base class for all single-write backends.
+ * Base class for all backends associated with a particular storage medium.
  * This class defines the methods as abstract that subclasses must implement.
  * Outside callers should *not* use functions with "Internal" in the name.
  * 
@@ -693,8 +693,8 @@ abstract class FileBackendStore extends FileBackend {
 	protected $cache = array(); // (storage path => key => value)
 	protected $maxCacheSize = 100; // integer; max paths with entries
 	/** @var Array Map of paths to large (RAM/disk) cache items */
-	protected $expCache = array(); // (storage path => key => value)
-	protected $maxExpCacheSize = 10; // integer; max paths with entries
+	protected $expensiveCache = array(); // (storage path => key => value)
+	protected $maxExpensiveCacheSize = 10; // integer; max paths with entries
 
 	/** @var Array Map of container names to sharding settings */
 	protected $shardViaHashLevels = array(); // (container name => config array)
@@ -1177,14 +1177,14 @@ abstract class FileBackendStore extends FileBackend {
 	public function getLocalReference( array $params ) {
 		wfProfileIn( __METHOD__ );
 		$path = $params['src'];
-		if ( isset( $this->expCache[$path]['localRef'] ) ) {
+		if ( isset( $this->expensiveCache[$path]['localRef'] ) ) {
 			wfProfileOut( __METHOD__ );
-			return $this->expCache[$path]['localRef'];
+			return $this->expensiveCache[$path]['localRef'];
 		}
 		$tmpFile = $this->getLocalCopy( $params );
 		if ( $tmpFile ) { // don't cache negatives
-			$this->trimExpCache(); // limit memory
-			$this->expCache[$path]['localRef'] = $tmpFile;
+			$this->trimExpensiveCache(); // limit memory
+			$this->expensiveCache[$path]['localRef'] = $tmpFile;
 		}
 		wfProfileOut( __METHOD__ );
 		return $tmpFile;
@@ -1368,11 +1368,11 @@ abstract class FileBackendStore extends FileBackend {
 		}
 		if ( $paths === null ) {
 			$this->cache = array();
-			$this->expCache = array();
+			$this->expensiveCache = array();
 		} else {
 			foreach ( $paths as $path ) {
 				unset( $this->cache[$path] );
-				unset( $this->expCache[$path] );
+				unset( $this->expensiveCache[$path] );
 			}
 		}
 		$this->doClearCache( $paths );
@@ -1405,10 +1405,10 @@ abstract class FileBackendStore extends FileBackend {
 	 * 
 	 * @return void
 	 */
-	protected function trimExpCache() {
-		if ( count( $this->expCache ) >= $this->maxExpCacheSize ) {
-			reset( $this->expCache );
-			unset( $this->expCache[key( $this->expCache )] );
+	protected function trimExpensiveCache() {
+		if ( count( $this->expensiveCache ) >= $this->maxExpensiveCacheSize ) {
+			reset( $this->expensiveCache );
+			unset( $this->expensiveCache[key( $this->expensiveCache )] );
 		}
 	}
 
