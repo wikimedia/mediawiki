@@ -1531,7 +1531,7 @@ abstract class FileBackendStore extends FileBackend {
 		if ( isset( $this->shardViaHashLevels[$container] ) ) {
 			$config = $this->shardViaHashLevels[$container];
 			$hashLevels = (int)$config['levels'];
-			if ( $hashLevels == 0 || $hashLevels == 2 ) {
+			if ( $hashLevels == 1 || $hashLevels == 2 ) {
 				$hashBase = (int)$config['base'];
 				if ( $hashBase == 16 || $hashBase == 36 ) {
 					return array( $hashLevels, $hashBase, $config['repeat'] );
