@@ -131,9 +131,14 @@ class FauxResponse extends WebResponse {
 	}
 
 	/**
+	 * @todo document. It just ignore optional parameters.
+	 *
 	 * @param $name String: name of cookie
 	 * @param $value String: value to give cookie
-	 * @param $expire Int: number of seconds til cookie expires
+	 * @param $expire Int: number of seconds til cookie expires (Default: 0)
+	 * @param $prefix TODO DOCUMENT (Default: null)
+	 * @param $domain TODO DOCUMENT (Default: null)
+	 *
 	 */
 	public function setcookie( $name, $value, $expire = 0, $prefix = null, $domain = null ) {
 		$this->cookies[$name] = $value;

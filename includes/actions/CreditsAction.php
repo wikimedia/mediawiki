@@ -219,8 +219,7 @@ class CreditsAction extends FormlessAction {
 
 	/**
 	 * Get a link to action=credits of $article page
-	 * @param $article Article object
-	 * @return String: html
+	 * @return String: HTML link
 	 */
 	protected function othersLink() {
 		return Linker::linkKnown(

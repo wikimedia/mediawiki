@@ -230,7 +230,6 @@ class LogEventsList {
 
 	/**
 	 * Returns log page selector.
-	 * @param $default string The default selection
 	 * @return XmlSelect
 	 * @since 1.19
 	 */

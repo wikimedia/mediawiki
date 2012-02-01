@@ -109,8 +109,8 @@ class UserMailer {
 	/**
 	 * Creates a single string from an associative array
 	 *
-	 * @param $header Associative Array: keys are header field names,
-	 *                values are ... values.
+	 * @param $headers Associative Array: keys are header field names,
+	 *                 values are ... values.
 	 * @param $endl String: The end of line character.  Defaults to "\n"
 	 * @return String
 	 */

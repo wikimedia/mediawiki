@@ -70,6 +70,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	 * request, without actually requesting a "real" edit token
 	 * @param $params: key-value API params
 	 * @param $session: session array
+	 * @param $user String|null A User object for the context 
 	 */
 	protected function doApiRequestWithToken( $params, $session, $user = null ) {
 		if ( $session['wsToken'] ) {

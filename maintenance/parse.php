@@ -88,7 +88,7 @@ class CLIParser extends Maintenance {
 	}
 
 	/**
-	 * @param string $text Wikitext to parse
+	 * @param string $wikitext Wikitext to parse
 	 * @return ParserOutput
 	 */
 	protected function parse( $wikitext ) {

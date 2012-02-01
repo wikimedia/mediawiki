@@ -210,9 +210,9 @@ class XMPReader {
 	* Also catches any errors during processing, writes them to
 	* debug log, blanks result array and returns false.
 	*
-	* @param String: $content XMP data
-	* @param Boolean: $allOfIt If this is all the data (true) or if its split up (false). Default true
-	* @param Boolean: $reset - does xml parser need to be reset. Default false
+	* @param $content String: XMP data
+	* @param $allOfIt Boolean: If this is all the data (true) or if its split up (false). Default true
+	* @param $reset Boolean: does xml parser need to be reset. Default false
 	* @return Boolean success.
 	*/
 	public function parse( $content, $allOfIt = true, $reset = false ) {

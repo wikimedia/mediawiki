@@ -1900,7 +1900,7 @@ class WikiPage extends Page {
 	 * 	Revision::DELETED_RESTRICTED
 	 * @param $id int article ID
 	 * @param $commit boolean defaults to true, triggers transaction end
-	 * @param &$errors Array of errors to append to
+	 * @param &$error Array of errors to append to
 	 * @param $user User The relevant user
 	 * @return boolean true if successful
 	 */

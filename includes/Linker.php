@@ -241,6 +241,8 @@ class Linker {
 	 * Returns the Url used to link to a Title
 	 *
 	 * @param $target Title
+	 * @param $query Array: query parameters
+	 * @param $options Array
 	 */
 	private static function linkUrl( $target, $query, $options ) {
 		wfProfileIn( __METHOD__ );

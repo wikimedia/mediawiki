@@ -106,7 +106,7 @@ class WatchAction extends FormAction {
 	 * Get token to watch (or unwatch) a page for a user
 	 *
 	 * @param Title $title Title object of page to watch
-	 * @param User $title User for whom the action is going to be performed
+	 * @param User $user User for whom the action is going to be performed
 	 * @param string $action Optionally override the action to 'unwatch'
 	 * @return string Token
 	 * @since 1.18
@@ -126,7 +126,7 @@ class WatchAction extends FormAction {
 	 * Get token to unwatch (or watch) a page for a user
 	 *
 	 * @param Title $title Title object of page to unwatch
-	 * @param User $title User for whom the action is going to be performed
+	 * @param User $user User for whom the action is going to be performed
 	 * @param string $action Optionally override the action to 'watch'
 	 * @return string Token
 	 * @since 1.18
