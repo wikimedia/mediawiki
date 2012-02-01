@@ -383,6 +383,12 @@ Monggo dijajal maning nang sawetara menit.',
 'viewsourcetext'       => 'Rika teyeng ndeleng lan nyalin sumbere kaca kiye:',
 'viewyourtext'         => "Rika teyeng ndeleng lan nyalin sumbere '''suntingane Rika''' nang kaca kiye:",
 'protectedinterface'   => 'Kaca kiye isine teks antarmuka ding dienggo piranti lunak, lan uwis dikunci nggo menghindari kasalahan.',
+'editinginterface'     => "'''Pènget:''' Rika nyunting kaca sing dienggo nyedyakna tèks antarmuka kanggo piranti alus.
+Pangowahan kaca kiye bakal awèh pangaruh maring tampilan antarmuka panganggo duweke panganggo sejen.
+Angger arep nerjemahna, monggo nganggo [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], proyèk lokalisasi MediaWiki.",
+'sqlhidden'            => '(Penjalukan SQL diumpetna)',
+'cascadeprotected'     => 'Kaca kiye wis direksa sekang penyuntingan jalaran melu mlebu nang {{PLURAL:$1|kaca|kaca-kaca}} nang ngisor kiye sing wis direksa nganggo opsi "runtun":
+$2',
 'namespaceprotected'   => "Rika ora duwe hak akses kanggo nyunting kaca nang bilik jeneng '''$1'''.",
 'customcssprotected'   => 'Rika ora duwe izin nggo nyunting kaca CSS kiye, jalaran isine pengaturan pribadine panganggo sejen.',
 'customjsprotected'    => 'Rika ora duwe izin nggo nyunting kaca JavaScript kiye, jalaran isine pengaturan pribadine panganggo sejen.',
@@ -409,6 +415,7 @@ Akun Rika uwis digawe. Aja kelalen nata konfigurasi [[Special:Preferences|prefer
 'remembermypassword'         => 'Emutna data login-ne inyong nang peramban kiye (kanggo paling suwe $1 {{PLURAL:$1|dina|dina}})',
 'securelogin-stick-https'    => 'Tetep kahubung maring HTTPS seuwise mlebu log',
 'yourdomainname'             => 'Domain Rika:',
+'externaldberror'            => 'Ana kesalahan otentikasi basis data utawa Rika ora olih nglakokna pemutakhiran maring akun eksternale Rika.',
 'login'                      => 'Melebu',
 'nav-login-createaccount'    => 'Mlebu / gawe kaca anggota (akun)',
 'loginprompt'                => "Rika kudu ngaktifna ''cookies'' ben teyeng mlebu log maring {{SITENAME}}.",
@@ -458,11 +465,22 @@ Monggo dijajal sepisan maning.',
 'password-login-forbidden'   => 'Jeneng panganggo lan tembung sandhi kiye ora olih dienggo.',
 'mailmypassword'             => 'Imelna tembung sandhi anyar',
 'passwordremindertitle'      => 'Tembung sandi anyar temporer kanggo {{SITENAME}}',
+'passwordremindertext'       => 'Ana wong (ndeyane Rika dhewek, sekang alamat IP $1) sing njaluk
+tembung sandhi anyar kanggo {{SITENAME}} ($4). Tembung sandhi sawetara nggo panganggo 
+"$2" uwis digawe lan sekiye dadi "$3". Angger kiye pancen karepe Rika dhewek,
+mayuh ndang mlebu log lan ngganti tembung sandhi sekiye.
+Tembung sandhi sawetara kuwe mau bakal kadaluwarsa nang {{PLURAL:$5|sadina|$5 dina}}.
+
+Anggere wong sejen sing gawe panjalukan kiye, utawa Rika wis kemutan maning tembung sandhine Rika,
+lan Rika wis ora sida ngganti tembung sandhi kuwe, Rika ora usah nggubris pesen kiye lan
+terusna baen nggunakna tembung sandhine Rika sing lawas.',
 'noemail'                    => 'Ora ana alamat imel sing kecathet kanggo panganggo "$1".',
 'noemailcreate'              => 'Rika kudu nyediakna alamat imel sing sah',
 'passwordsent'               => 'Tembung sandhi anyar wis dikirim maring alamat imelsing didaftarna nggo "$1".
 Monggoo mlebu log maning seuwise Rika nampa imel kuwe.',
 'blocked-mailpassword'       => "Alamat IP-ne Rika diblokir sekang panyuntingan, mulane kuwe Rika ora olih nganggo fungsi pèngetan tembung sandhi kanggo ''mencegah penyalahgunaan''.",
+'eauthentsent'               => 'Pesen imel konfirmasi wis dikirim maring alamat imele Rika.
+Rika kudu ngetutna instruksi nang imel kuwe mau nggo mastekna nek alamat kuwe pancen imele Rika dhewek. {{SITENAME}} ora bakal ngaktifna fitur imel angger langkah kiye durung dilakokna.',
 'throttled-mailpassword'     => 'Sawijining pènget tembung sandhi wis dikirim, jroning {{PLURAL:$1|jam|$1 jam}} pungkasan kiye.
 Kanggo nyegah salah-guna, mung siji pènget tembung sandi thok sing teyeng dikirim saben {{PLURAL:$1|jam|$1 jam}}.',
 'mailerror'                  => 'Kasalahan dong ngirim imel: $1',
@@ -1207,20 +1225,122 @@ Deskripsi sekang [$2 kaca deskripsine] ditidokna nang ngisor kiye.',
 # Random page
 'randompage' => 'Kaca Liya',
 
-# Statistics
-'statistics' => 'Statistik',
+# Random redirect
+'randomredirect'         => 'Pangalihan sembarang',
+'randomredirect-nopages' => 'Ora ana pangalihan nang bilik jeneng "$1".',
 
-'disambiguationspage' => 'Template:Disambig',
+# Statistics
+'statistics'                   => 'Statistik',
+'statistics-header-pages'      => 'Statistik kaca',
+'statistics-header-edits'      => 'Statistik panyuntingan',
+'statistics-header-views'      => 'Statistik tampilan',
+'statistics-header-users'      => 'Statistik panganggo',
+'statistics-header-hooks'      => 'Statistik liyane',
+'statistics-articles'          => 'Kaca-kaca isi',
+'statistics-pages'             => 'Kaca',
+'statistics-pages-desc'        => 'Kabeh kaca nang wiki kiye, klebu kaca dhiskusi, pangalihan, lan liya-liyané.',
+'statistics-files'             => 'Berkas sing diunggahna',
+'statistics-edits'             => 'Jumlah suntingan wiwit {{SITENAME}} dimolai',
+'statistics-edits-average'     => 'Rata-rata suntingan saben kaca',
+'statistics-views-total'       => 'Jumlah penampilan kaca',
+'statistics-views-total-desc'  => 'Tampilan maring kaca sing ora-ana lan kaca astamiwa ora dilebokna',
+'statistics-views-peredit'     => 'Jumlah tampilan saben suntingan',
+'statistics-users'             => 'Jumlah [[Special:ListUsers|panganggo sing kedaftar]]',
+'statistics-users-active'      => 'Jumlah panganggo aktif',
+'statistics-users-active-desc' => 'Panganggo sing nglakokna aktivitas nang {{PLURAL:$1|dina|$1 dina}} pungkasan',
+'statistics-mostpopular'       => 'Kaca sing paling akèh dideleng',
+
+'disambiguations'      => 'Kaca sing nggandeng maring kaca disambiguasi',
+'disambiguationspage'  => 'Template:Disambig',
+'disambiguations-text' => "Kaca-kaca kiye nduwe pranala maring '''kaca disambiguasi'''.
+Kaca-kaca kuwe kudune nggandeng maring topik sing bener/pas.<br />
+Sawijining kaca bakal dianggep dadi kaca disambiguasi angger nggunakna cithakan sing nggandeng maring 
+[[MediaWiki:Disambiguationspage]]",
+
+'doubleredirects'                   => 'Pangalihan dobel',
+'doubleredirectstext'               => 'Kaca kiye muat daftar kaca sing dialihna maring kaca pangalihan liyane.
+Saben barise nduwe pranala maring pangalihan pertama lan kepindho, lan tujuan sekang pengalihan kepindho sing biasane kuwe kaca tujuan sing "sebenere", sing kudune dadi tujuane kaca pangalihan pertama.
+ Tembung sing <del>dicorèk</del> artine kuwe wis rampung didandani.',
+'double-redirect-fixed-move'        => '[[$1]] uwis dipindahna.
+Kiye sekiye dialihna maring [[$2]].',
+'double-redirect-fixed-maintenance' => 'Mbenerna pangalihan dobel sekang [[$1]] maring [[$2]].',
+'double-redirect-fixer'             => 'Révisi pangalihan',
+
+'brokenredirects'        => 'Pangalihan rusak',
+'brokenredirectstext'    => 'Pangalihan nang ngisor kiye nggandeng/nuju maring kaca sing ora ana:',
+'brokenredirects-edit'   => 'sunting',
+'brokenredirects-delete' => 'busek',
+
+'withoutinterwiki'         => 'Kaca sing ora duwe interwiki',
+'withoutinterwiki-summary' => 'Kaca-kaca kiye ora duwe pranala maring versi basa liyane.',
+'withoutinterwiki-legend'  => 'Préfiks',
+'withoutinterwiki-submit'  => 'Tidokna',
+
+'fewestrevisions' => 'Kaca-kaca sing diowahi paling sithik dhewek',
 
 # Miscellaneous special pages
-'nbytes'        => '$1 {{PLURAL:$1|bita|bita}}',
-'nmembers'      => '$1 {{PLURAL:$1|isi|isi}}',
-'prefixindex'   => 'Kabèh kaca mawa ater-ater',
-'usercreated'   => '{{GENDER:$3|Digawe}} dong tanggal $1 jam $2',
-'newpages'      => 'Kaca anyar',
-'move'          => 'Pindah',
-'pager-newer-n' => '{{PLURAL:$1|1 lewih anyar|$1 lewih anyar}}',
-'pager-older-n' => '{{PLURAL:$1|1 lewih lawas|$1 lewih lawas}}',
+'nbytes'                  => '$1 {{PLURAL:$1|bita|bita}}',
+'ncategories'             => '$1 {{PLURAL:$1|kategori|kategori}}',
+'nlinks'                  => '$1 {{PLURAL:$1|pranala|pranala}}',
+'nmembers'                => '$1 {{PLURAL:$1|isi|isi}}',
+'nrevisions'              => '$1 {{PLURAL:$1|revisi|revisi}}',
+'nviews'                  => 'Wis ping $1 {{PLURAL:$1|dideleng|dideleng}}',
+'nimagelinks'             => 'Digunakna nang $1 {{PLURAL:$1|kaca|kaca}}',
+'ntransclusions'          => 'digunakna nang $1 {{PLURAL:$1|kaca|kaca}}',
+'specialpage-empty'       => 'Ora ana sing perlu dilaporna.',
+'lonelypages'             => 'Kaca sing ora duwe pranala balik',
+'lonelypagestext'         => 'Kaca-kaca nang ngisor kiye ora nggandeng utawa ditransklusikna sekang kaca liyane nang {{SITENAME}}.',
+'uncategorizedpages'      => 'Kaca sing ora dikategorisasi',
+'uncategorizedcategories' => 'Kategori sing ora dikategorisasi',
+'uncategorizedimages'     => 'Berkas sing ora dikategorisasi',
+'uncategorizedtemplates'  => 'Cithakan sing ora dikategorisasi',
+'unusedcategories'        => 'Kategori sing ora digunakna',
+'unusedimages'            => 'Berkas sing ora digunakna',
+'popularpages'            => 'Kaca populèr',
+'wantedcategories'        => 'Kategori sing diperlokna',
+'wantedpages'             => 'Kaca sing dipèrlokna',
+'wantedpages-badtitle'    => 'Judhul ora valid nang sèt asil: $1',
+'wantedfiles'             => 'Berkas sing dipèrlokna',
+'wantedtemplates'         => 'Cithakan sing diperlokna',
+'mostlinked'              => 'Kaca-kaca sing paling sering dituju',
+'mostlinkedcategories'    => 'Kategori sing paling sering digunakna',
+'mostlinkedtemplates'     => 'Cithakan sing paling sering digunakna',
+'mostcategories'          => 'Kaca sing duwe kategori paling akeh',
+'mostimages'              => 'Berkas sing paling sering digunakna',
+'mostrevisions'           => 'Kaca sing paling akeh diowahi',
+'prefixindex'             => 'Kabèh kaca mawa ater-ater',
+'shortpages'              => 'Kaca cendhak',
+'longpages'               => 'Kaca dawa',
+'deadendpages'            => 'Kaca-kaca buntu (tanpa pranala)',
+'deadendpagestext'        => 'Kaca-kaca kiye ora duwe pranala maring kaca liyane nang {{SITENAME}}.',
+'protectedpages'          => 'Kaca sing direksa',
+'protectedpages-indef'    => 'Mung kanggo pangreksan sing wektune ora dibatesi',
+'protectedpages-cascade'  => 'Mung pangreksan runtun thok',
+'protectedpagestext'      => 'Kaca-kaca nang ngisor kiye wis direksa ben ora teyeng dipindah utawa disunting',
+'protectedpagesempty'     => 'Sekiye ora ana kaca sing lagi direksa nganggo parameter kuwe.',
+'protectedtitles'         => 'Judul sing direksa',
+'protectedtitlestext'     => 'Judul-judul kiye wis direksa lan ora teyeng digawe maning',
+'protectedtitlesempty'    => 'Sekiye ora ana judul sing lagi direksa nganggo parameter kuwe.',
+'listusers'               => 'Daftar panganggo',
+'listusers-creationsort'  => 'Urutna miturut tanggal gawene',
+'usereditcount'           => '$1 {{PLURAL:$1|suntingan|suntingan}}',
+'usercreated'             => '{{GENDER:$3|Digawe}} dong tanggal $1 jam $2',
+'newpages'                => 'Kaca anyar',
+'newpages-username'       => 'Jeneng panganggo:',
+'ancientpages'            => 'Kaca-kaca paling tuwa',
+'move'                    => 'Pindah',
+'movethispage'            => 'Pindahna kaca kiye',
+'unusedimagestext'        => 'Berkas-berkas nang ngisor kiye ana ningen ora dienggo nang kaca apa baen.
+Tulung digatekna nek situs web liyane ndeyan esih duwe pranala ming sawijining berkas nganggo URL langsung, lan mulane kuwe dadi esih kedaftar nang kene senajan wis ora digunakna aktif maning.',
+'unusedcategoriestext'    => 'Kategori kiye ana, senajan sekiye ora ana artikel utawa kategori liyane sing nganggo.',
+'notargettitle'           => 'Ora ana sasaran',
+'notargettext'            => 'Rika ora nentukna kaca utawa panganggo tujuane fungsi kiye.',
+'nopagetitle'             => 'Kaca tujuan ora ditemokna',
+'nopagetext'              => 'Kaca sing Rika tuju ora ditemokna.',
+'pager-newer-n'           => '{{PLURAL:$1|1 lewih anyar|$1 lewih anyar}}',
+'pager-older-n'           => '{{PLURAL:$1|1 lewih lawas|$1 lewih lawas}}',
+'suppress'                => "Pangawas (''oversight'')",
+'querypage-disabled'      => 'Kaca astamiwa kiye dinonaktifna kanggo alesan kinerja.',
 
 # Book sources
 'booksources'               => 'Sumber buku',
