@@ -1,16 +1,16 @@
 <?php
 /**
- * @author Santhosh Thottingal
- * @copyright Copyright © 2012, Santhosh Thottingal
+ * @author Amir E. Aharoni
+ * @copyright Copyright © 2012, Amir E. Aharoni
  * @file
  */
 
-/** Tests for MediaWiki languages/classes/LanguageMo.php */
-class LanguageMoTest extends MediaWikiTestCase {
+/** Tests for MediaWiki languages/classes/LanguageRo.php */
+class LanguageRoTest extends MediaWikiTestCase {
 	private $lang;
 
 	function setUp() {
-		$this->lang = Language::factory( 'mo' );
+		$this->lang = Language::factory( 'ro' );
 	}
 	function tearDown() {
 		unset( $this->lang );
