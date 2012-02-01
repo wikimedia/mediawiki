@@ -98,7 +98,7 @@ class SwiftFileBackend extends FileBackendStore {
 	}
 
 	/**
-	 * @see FileBackendStore::doCopyInternal()
+	 * @see FileBackendStore::doCreateInternal()
 	 */
 	protected function doCreateInternal( array $params ) {
 		$status = Status::newGood();
@@ -595,7 +595,7 @@ class SwiftFileBackend extends FileBackendStore {
 		}
 
 		try {
-			$output = fopen( 'php://output', 'w' );
+			$output = fopen( 'php://output', 'wb' );
 			$obj = new CF_Object( $cont, $srcRel, false, false ); // skip HEAD request
 			$obj->stream( $output, $this->headersFromParams( $params ) );
 		} catch ( InvalidResponseException $e ) { // 404? connection problem?
