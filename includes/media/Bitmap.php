@@ -125,7 +125,6 @@ class BitmapHandler extends ImageHandler {
 			'srcWidth' => $image->getWidth(),
 			'srcHeight' => $image->getHeight(),
 			'mimeType' => $image->getMimeType(),
-			'srcPath' => $image->getLocalRefPath(),
 			'dstPath' => $dstPath,
 			'dstUrl' => $dstUrl,
 		);
@@ -162,6 +161,9 @@ class BitmapHandler extends ImageHandler {
 			wfDebug( __METHOD__ . ": Unable to create thumbnail destination directory, falling back to client scaling\n" );
 			return $this->getClientScalingThumbnailImage( $image, $scalerParams );
 		}
+
+		# Transform functions and binaries need a FS source file
+		$scalerParams['srcPath'] = $image->getLocalRefPath();
 
 		# Try a hook
 		$mto = null;
@@ -248,7 +250,7 @@ class BitmapHandler extends ImageHandler {
 	 */
 	protected function getClientScalingThumbnailImage( $image, $params ) {
 		return new ThumbnailImage( $image, $image->getURL(),
-				$params['clientWidth'], $params['clientHeight'], $params['srcPath'] );
+			$params['clientWidth'], $params['clientHeight'], null );
 	}
 
 	/**
