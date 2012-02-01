@@ -12,7 +12,7 @@ class CategoryViewer extends ContextSource {
 		$imgsNoGallery;
 
 	/**
-	 * @var
+	 * @var Array
 	 */
 	var $nextPage;
 

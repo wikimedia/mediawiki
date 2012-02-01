@@ -344,9 +344,11 @@ class ChangesList extends ContextSource {
 			$this->getLanguage()->time( $rc->mAttribs['rc_timestamp'], true, true ) . ' . . ';
 	}
 
-	/** Insert links to user page, user talk page and eventually a blocking link
+	/**
+	 * Insert links to user page, user talk page and eventually a blocking link
 	 *
-	 * @param $rc RecentChange
+	 * @param &$s String HTML to update
+	 * @param &$rc RecentChange
 	 */
 	public function insertUserRelatedLinks( &$s, &$rc ) {
 		if( $this->isDeleted( $rc, Revision::DELETED_USER ) ) {
@@ -359,7 +361,7 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
-	 * insert a formatted action
+	 * Insert a formatted action
 	 *
 	 * @param $rc RecentChange
 	 */

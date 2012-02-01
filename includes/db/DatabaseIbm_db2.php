@@ -893,7 +893,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	 * Handle reserved keyword replacement in table names
 	 *
 	 * @param $name Object
-	 * @param $name Boolean
+	 * @param $format String Ignored parameter Default 'quoted'Boolean
 	 * @return String
 	 */
 	public function tableName( $name, $format = 'quoted' ) {

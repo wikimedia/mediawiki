@@ -100,6 +100,8 @@ class ParserCache {
 	 * It would be preferable to have this code in get()
 	 * instead of having Article looking in our internals.
 	 *
+	 * @todo Document parameter $useOutdated
+	 *
 	 * @param $article Article
 	 * @param $popts ParserOptions
 	 */

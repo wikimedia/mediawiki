@@ -72,8 +72,6 @@ class LoginForm extends SpecialPage {
 
 	/**
 	 * Loader
-	 *
-	 * @param $request WebRequest object
 	 */
 	function load() {
 		global $wgAuth, $wgHiddenPrefs, $wgEnableEmail, $wgRedirectOnLogin;

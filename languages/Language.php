@@ -1261,7 +1261,7 @@ class Language {
 	 *
 	 * Based on a PHP-Nuke block by Sharjeel which is released under GNU/GPL license
 	 *
-	 * @link http://phpnuke.org/modules.php?name=News&file=article&sid=8234&mode=thread&order=0&thold=0
+	 * @see http://phpnuke.org/modules.php?name=News&file=article&sid=8234&mode=thread&order=0&thold=0
 	 *
 	 * @param $ts string
 	 *

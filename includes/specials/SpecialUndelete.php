@@ -1263,6 +1263,8 @@ class SpecialUndelete extends SpecialPage {
 	 * Fetch revision text link if it's available to all users
 	 *
 	 * @param $rev Revision
+	 * @param $titleObj Title
+	 * @param $ts Timestamp
 	 * @return string
 	 */
 	function getPageLink( $rev, $titleObj, $ts ) {
@@ -1292,6 +1294,10 @@ class SpecialUndelete extends SpecialPage {
 	 * Fetch image view link if it's available to all users
 	 *
 	 * @param $file File
+	 * @param $titleObj Title
+	 * @param $ts A timestamp
+	 * @param $key String: a storage key
+	 *
 	 * @return String: HTML fragment
 	 */
 	function getFileLink( $file, $titleObj, $ts, $key ) {

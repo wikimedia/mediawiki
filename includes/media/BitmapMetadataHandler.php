@@ -52,7 +52,10 @@ class BitmapMetadataHandler {
 	 * Basically what used to be in BitmapHandler::getMetadata().
 	 * Just calls stuff in the Exif class.
 	 *
+	 * Parameters are passed to the Exif class.
+	 *
 	 * @param $filename string
+	 * @param $byteOrder string
 	 */
 	function getExif ( $filename, $byteOrder ) {
 		global $wgShowEXIF;

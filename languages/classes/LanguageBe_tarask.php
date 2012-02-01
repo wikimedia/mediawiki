@@ -4,7 +4,7 @@
   * @ingroup Language
   *
   * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
-  * @link http://be-x-old.wikipedia.org/wiki/Project_talk:LanguageBe_tarask.php
+  * @see http://be-x-old.wikipedia.org/wiki/Project_talk:LanguageBe_tarask.php
   * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License
   * @license http://www.gnu.org/copyleft/fdl.html GNU Free Documentation License
   */

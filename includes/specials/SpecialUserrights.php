@@ -493,7 +493,9 @@ class UserrightsPage extends SpecialPage {
 	/**
 	 * Adds a table with checkboxes where you can select what groups to add/remove
 	 *
+	 * @todo Just pass the username string?
 	 * @param $usergroups Array: groups the user belongs to
+	 * @param $user User a user object
 	 * @return string XHTML table element with checkboxes
 	 */
 	private function groupCheckboxes( $usergroups, $user ) {

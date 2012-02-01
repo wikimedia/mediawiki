@@ -376,20 +376,22 @@ class Html {
 	 * and converted to a space-separated string. In addition to a numerical
 	 * array, the attribute value may also be an associative array. See the
 	 * example below for how that works.
-	 * @example Numerical array
-	 * <code>
+	 *
+	 * @par Numerical array
+	 * @code
 	 *     Html::element( 'em', array(
 	 *         'class' => array( 'foo', 'bar' )
 	 *     ) );
 	 *     // gives '<em class="foo bar"></em>'
-	 * </code>
-	 * @example Associative array
-	 * <code>
+	 * @endcode
+	 *
+	 * @par Associative array
+	 * @code
 	 *     Html::element( 'em', array(
 	 *         'class' => array( 'foo', 'bar', 'foo' => false, 'quux' => true )
 	 *     ) );
 	 *     // gives '<em class="bar quux"></em>'
-	 * </code>
+	 * @endcode
 	 *
 	 * @param $attribs array Associative array of attributes, e.g., array(
 	 *   'href' => 'http://www.mediawiki.org/' ).  Values will be HTML-escaped.

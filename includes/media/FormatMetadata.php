@@ -1183,7 +1183,7 @@ class FormatMetadata {
 	 * Format a coordinate value, convert numbers from floating point
 	 * into degree minute second representation.
 	 *
-	 * @param $coords Array: degrees, minutes and seconds
+	 * @param $coord Array: degrees, minutes and seconds
 	 * @param $type String: latitude or longitude (for if its a NWS or E)
 	 * @return mixed A floating point number or whatever we were fed
 	 */

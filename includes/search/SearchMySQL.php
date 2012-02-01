@@ -45,7 +45,7 @@ class SearchMySQL extends SearchEngine {
 	 * become part of a WHERE clause
 	 *
 	 * @param $filteredText string
-	 * @param $fullText string
+	 * @param $fulltext string
 	 *
 	 * @return string
 	 */
@@ -290,6 +290,7 @@ class SearchMySQL extends SearchEngine {
 	/**
 	 * Get the base part of the search query.
 	 *
+	 * @param &$query Search query array
 	 * @param $filteredTerm String
 	 * @param $fulltext Boolean
 	 * @since 1.18 (changed)

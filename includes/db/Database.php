@@ -1432,7 +1432,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 *
 	 * @param $table string|array Table name
 	 * @param $vars string|array Field names
-	 * @param $conds|array Conditions
+	 * @param $conds array Conditions
 	 * @param $fname string Caller function name
 	 * @param $options string|array Query options
 	 * @param $join_conds array|string Join conditions

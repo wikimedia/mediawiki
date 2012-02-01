@@ -190,6 +190,7 @@ class DjVuHandler extends ImageHandler {
 	/**
 	 * Cache a document tree for the DjVu XML metadata
 	 * @param $image File
+	 * @param $gettext Boolean: DOCUMENT (Default: false)
 	 */
 	function getMetaTree( $image , $gettext = false ) {
 		if ( isset( $image->dejaMetaTree ) ) {

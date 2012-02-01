@@ -25,7 +25,6 @@
  *
  * @file
  * @defgroup Config Config
- * @ingroup Config
  */
 abstract class Conf {
 	/**

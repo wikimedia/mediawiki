@@ -562,7 +562,11 @@ class CoreParserFunctions {
 	 *   to the link cache, so the local cache here should be unnecessary, but
 	 *   in fact calling getLength() repeatedly for the same $page does seem to
 	 *   run one query for each call?
+	 * @todo Document parameters
+	 *
 	 * @param $parser Parser
+	 * @param $page String TODO DOCUMENT (Default: empty string)
+	 * @param $raw TODO DOCUMENT (Default: null)
 	 */
 	static function pagesize( $parser, $page = '', $raw = null ) {
 		static $cache = array();
