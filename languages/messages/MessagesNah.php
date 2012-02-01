@@ -504,7 +504,7 @@ Tihuelīti [[Special:Search/{{PAGENAME}}|tictēmoa inīn zāzaniltōcācopa]] oc
 'yourdiff'                         => 'Ahneneuhquiliztli',
 'copyrightwarning'                 => "<small>Timitztlātlauhtiah xiquitta mochi mopatlaliz cana {{SITENAME}} tlatzayāna īpan $2 (huēhca ōmpa xiquitta $1). Āqueh tlācah quipatlazqueh in motlahcuilōl auh tlatzayāna occeppa; intlā ahmō ticnequi, zātēpan ahmō titlahcuilōz nicān. Nō mitzihtoah in ōtitlahcuiloh ahmō quipiya in copyright nozo in yōllōxoxouhqui tlahcuilōlli. '''¡AHMŌ XITĒQUITILTIA AHYŌLLŌXOXOUHQUI TLAHCUILŌLLI!'''</small>",
 'copyrightwarning2'                => "<small>Āqueh tlācah quipatlazqueh in motlahcuilōl auh tlatzayāna occeppa; intlā ahmō ticnequi, zātēpan ahmō titlahcuilōz nicān {{SITENAME}}. Nō mitzihtoah in ōtitlahcuiloh ahmō quipiya in copyright nozo in yōllōxoxouhqui tlahcuilōlli (huēhca ōmpa xiquitta $1). '''¡AHMŌ TIQUINTEQUITILTIA AHYŌLLŌXOXOUHQUI TLAHCUILŌLLI!'''</small>",
-'longpageerror'                    => "'''AHCUALLŌTL: Motlahcuilōl cah huēiyac $1 KB, huehca ōmpa $2 KB. Ahmo mopiyāz.'''",
+'longpageerror'                    => "'''Aiuhcāyōtl: In tlahcuilōlli tlein ōtiquihuah tlatamachīhua {{PLURAL:$1|cē kilobyte|$1 kilobyte}}, tzonēhua {{PLURAL:$2|cē kilobyte|$2 kilobyte}}. Ahmo mopiyāz.'''",
 'templatesused'                    => '{{PLURAL:$1|Nemachiòtl tlèn motekìuhtia|Nemachiòmë tlèn mokìntekìuhtiä}} ìpan inìn tlaìxtlapalli:',
 'templatesusedpreview'             => '{{PLURAL:$1|Nemachiòtl tlèn motekìuhtia|Nemachiòmë tlèn mokìntekìuhtiä}} ìpan inìn achtochìwalistli:',
 'templatesusedsection'             => '{{PLURAL:$1|Nemachiòtl tlèn motekìuhtia|Nemachiòmë tlèn mokìntekìuhtiä}} ìpan inìn tlaxélòlistli:',
@@ -907,7 +907,7 @@ Timitztlātlauhtiah, xitlahcuiloa occē tōcāitl.",
 'statistics-views-peredit' => 'Tlahpololiztli ic tlapatlaliztli',
 
 'disambiguations'     => 'Āmatl tlein motzonhuiliah īca tlahtōlmelāhuacātlāliztli āmatl',
-'disambiguationspage' => 'Template:Tlahtōlmelāhuacātlāliztli',
+'disambiguationspage' => 'Template:Tlahtōlmelāhuacātlālīliztli',
 
 'doubleredirects' => 'Ōntetl tlacuepaliztli',
 

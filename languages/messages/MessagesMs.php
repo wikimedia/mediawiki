@@ -2132,7 +2132,7 @@ dan tajuk laman tersebut juga akan ditonjolkan dalam '''teks tebal''' di [[Speci
 untuk memudahkan anda.
 
 Jika anda mahu membuang laman tersebut daripada senarai pantau, klik \"Nyahpantau\" pada bar sisi.",
-'removewatch'          => 'Buang daripada senarai pantau',
+'removewatch'          => 'Buang dari senarai pantau',
 'removedwatchtext'     => 'Laman "[[:$1]]" telah dibuang daripada [[Special:Watchlist|senarai pantau anda]].',
 'watch'                => 'Pantau',
 'watchthispage'        => 'Pantau laman ini',
@@ -3529,7 +3529,7 @@ Sila sahkan bahawa anda mahu mencipta semula laman ini.",
 'watchlistedit-numitems'       => 'Senarai pantau anda mengandungi $1 tajuk (tidak termasuk laman perbincangan).',
 'watchlistedit-noitems'        => 'Tiada tajuk dalam senarai pantau anda.',
 'watchlistedit-normal-title'   => 'Sunting senarai pantau',
-'watchlistedit-normal-legend'  => 'Buang tajuk daripada senarai pantau',
+'watchlistedit-normal-legend'  => 'Buang tajuk-tajuk ini dari senarai pantau',
 'watchlistedit-normal-explain' => 'Tajuk-tajuk dalam senarai pantau anda ditunjukkan di bawah.
 Untuk membuang mana-mana tajuk, tanda kotak yang terletak di sebelahnya, dan klik "Buang Tajuk". Anda juga boleh [[Special:EditWatchlist/raw|menyunting senarai mentah]].',
 'watchlistedit-normal-submit'  => 'Gugurkan tajuk-tajuk',

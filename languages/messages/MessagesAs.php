@@ -166,7 +166,7 @@ $messages = array(
 'editfont-style'     => 'সম্পাদনাৰ ফন্ট ষ্টাইল',
 'editfont-default'   => "ব্ৰাউজাৰ ডিফ'ল্ট",
 'editfont-monospace' => 'মনোস্পেচ ফন্ট',
-'editfont-sansserif' => 'চেন্‌চেৰিফ ফন্ট',
+'editfont-sansserif' => 'চেন্স-চেৰিফ ফন্ট',
 'editfont-serif'     => 'চেৰিফ ফন্ট',
 
 # Dates
@@ -2356,7 +2356,7 @@ $1',
 'isimage'                  => 'ফাইল সংযোগ',
 'whatlinkshere-prev'       => '{{PLURAL:$1|পিছৰ|পিছৰ $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|আগৰ|আগৰ $1}}',
-'whatlinkshere-links'      => '← সূত্ৰসমূহ',
+'whatlinkshere-links'      => '← সংযোগকেইটা',
 'whatlinkshere-hideredirs' => '$1 পুননিৰ্দেশনাসমূহ',
 'whatlinkshere-hidetrans'  => '$1 ট্ৰেন্সক্লুস্বন-সমূহ',
 'whatlinkshere-hidelinks'  => '$1 টা সংযোগ',

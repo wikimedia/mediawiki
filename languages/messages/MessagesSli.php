@@ -292,7 +292,7 @@ $1",
 'nstab-user'      => 'Benutzerseyte',
 'nstab-media'     => 'Media',
 'nstab-special'   => 'Spezialseyte',
-'nstab-project'   => 'Portalseyte',
+'nstab-project'   => 'Projektseite',
 'nstab-image'     => 'Datei',
 'nstab-mediawiki' => 'MediaWiki-Systemtext',
 'nstab-template'  => 'Vierlooche',
@@ -500,29 +500,29 @@ Meeglicherweise host du dei Poaßwurt bereits erfolgreich geändert oder a neues
 De Sperrung wurde vu $1 durchgefiehrt.
 Ols Grund wurde ''$2'' oagegahn.
 
-* Beginn dar Sperre: $8
-* Ende dar Sperre: $6
+* Beginn der Sperre: $8
+* Ende der Sperre: $6
 * Sperre betrifft: $7
 
-Du koast $1 oder an'n dar andern [[{{MediaWiki:Grouppage-sysop}}|Administratorn]] kontaktiern, im ieber de Sperre zu diskuriren.
-Du koast de „E-Mail oa diesa Nutzer“-Funksjonn ne nutzen, solange kenne gültige E-Mail-Atresse ei denna [[Special:Preferences|Nutzerkonto-Einstellungen]] eengetraga ies, oder diese Funksjonn fier diech gesperrt wurde.
+Du koast $1 oder an'n der andern [[{{MediaWiki:Grouppage-sysop}}|Administratorn]] kontaktiern, im ieber de Sperre zu diskuriren.
+Du koast de „E-Mail oa diesa Nutzer“-Funksjonn ne nutzen, solange kenne gültige E-Mail-Atresse ei denna [[Special:Preferences|Nutzerkonto-Einstellunga]] eengetraga ies, oder diese Funksjonn fier diech gesperrt wurde.
 Denne aktuelle IP-Atresse ies $3, und de Sperr-ID ies $5.
-Bitte fiege olle Informationa jeder Oafroage hinzu, de du stallt.",
+Bitte fiege olle Informationen jeder Oafroage hinzu, de du stallt.",
 'autoblockedtext'                  => "Denne IP-Atresse wurde automatisch gesperrt, do se vu a'm andern Nutzer genutzt wurde, dar vu $1 gesperrt wurde.
 Ols Grund wurde oagegahn:
 
 :''$2''
 
-* Beginn dar Sperre: $8
-* Ende dar Sperre: $6
+* Beginn der Sperre: $8
+* Ende der Sperre: $6
 * Sperre betrifft: $7
 
 Du koast $1 oder an'n dar andern [[{{MediaWiki:Grouppage-sysop}}|Administratorn]] kontaktiern, im ieber de Sperre zu diskuriren.
 
-Du koast de „E-Mail oa diesa Nutzer“-Funksjonn ne nutza, sulange keene giltige E-Mail-Atresse ei dennen [[Special:Preferences|Nutzerkonto-Einstellungen]] eengetraga ies, oder diese Funksjonn fier diech gesperrt wurde.
+Du koast de „E-Mail oa diesa Nutzer“-Funksjonn ne nutza, sulange keene giltige E-Mail-Atresse ei dennen [[Special:Preferences|Nutzerkonto-Einstellunga]] eengetraga ies, oder diese Funksjonn fier diech gesperrt wurde.
 
 Denne aktuelle IP-Atresse ies $3, und de Sperr-ID ies $5.
-Bitte fiege olle Informationa jeder Oafroage hinzu, de du stallt.",
+Bitte fiege olle Informationen jeder Oafroage hinzu, de du stallt.",
 'blockednoreason'                  => 'keene Begründung oagegahn',
 'whitelistedittext'                => 'Du muoßt diech $1, im Seita bearbta zu kinna.',
 'confirmedittext'                  => 'Du mußt denne E-Mail-Atresse erscht bestätiga, bevor du Beoarbeetunga durchfiehrn koast. Bitte ergänze und bestätige Denne E-Mail ei dann [[Special:Preferences|Eenstallunga]].',
@@ -577,8 +577,8 @@ Doas undere Textfeld enthält denne Änderunga.
 Bitte fiege denne Änderungen ei doas obere Textfeld a.
 '''Ock''' der Inhalt des oberen Textfeldes werd gespeichert, wenn du uff „{{int:savearticle}}“ klickst!",
 'yourtext'                         => 'Deen Text',
-'nonunicodebrowser'                => "'''Ochtiche:''' Dei Browser koan Unicode-Zeicha ne richtig veroarbeeta. Bitte verwende a'n andern Browser im Seyta zu beoarbeeta.",
-'editingold'                       => "'''OCHTICHE: Du beoarbeetest anne aale Version dieser Seyte. Wenn du speicherst, waan olle neueren Versionen ieberschrieba.'''",
+'nonunicodebrowser'                => "'''Ochtiche:''' Dei Browser koan Unicode-Zeicha ne richtig verarbta. Bitte verwende anna andern Browser im Seita zu bearbta.",
+'editingold'                       => "'''OCHTICHE: Du beoarbeetest anne aale Version dieser Seite. Wenn du speicherst, waan olle neueren Versionen ieberschrieba.'''",
 'yourdiff'                         => 'Underschiede',
 'copyrightwarning'                 => "'''Bite kopiere kenne Webseita, de nee denne eegena sein, benutze kenne urheberrechtlich geschietzta Werke ohne Erlaubnis des Urhebers!'''<br />
 Du gest ons hiermit denne Zusoage, dass du dan Text '''selbst verfasst''' host, dass dar Text Allgemeengutt '''(public domain)''' ies, oder dass dar '''Urheber''' senne '''Zustimmung''' gegeben hoot. Foalls dieser Text bereits woanders vereeffentlicht wurde, weise bite uff dar Diskussionsseite darauf hin.
@@ -594,9 +594,9 @@ Sechere dann Text bitte lokal uff demm Computer und versiche zu a'm späteren Ze
 
 Grund fier de Sperre: $1",
 'protectedpagewarning'             => "'''OCHTICHE: Diese Seite wurde gesperrt. Ock Nutzer miet Administratorrechta kinna de Seite bearbta.'''",
-'semiprotectedpagewarning'         => "'''Holbsperrung:''' De Seyte wurde su gesperrt, doaß ock registrierte Nutzer diese ändern kinna.",
-'cascadeprotectedwarning'          => "'''OCHTICHE: Diese Seyte wurde gesperrt, su doß se ock durch Nutzer miet Administratorrechten beoarbeetet waan koan. Se ies ei de {{PLURAL:$1|fulgende Seyte|fulgenda Seyta}} eingebunden, de mittels dar Kaskadensperroption geschitzt {{PLURAL:$1|ies|sein}}:'''",
-'titleprotectedwarning'            => "'''OCHTICHE: De Seyta erstellung wurde gesperrt. Ock Nutzer miet [[Special:ListGroupRights|speziellen Rechta]] kinna de Seyte erstella.'''",
+'semiprotectedpagewarning'         => "'''Holbsperrung:''' De Seite wurde su gesperrt, doaß ock registrierte Nutzer diese ändern kinna.",
+'cascadeprotectedwarning'          => "'''OCHTICHE: Diese Seite wurde gesperrt, su doaß se ock durch Nutzer mit Administratorrechten bearbeetet waan koan. Se ies ei de {{PLURAL:$1|fulgende Seite|fulgenda Seita}} eingebunda, de mittels der Kaskadensperroption geschitzt {{PLURAL:$1|ies|sein}}:'''",
+'titleprotectedwarning'            => "'''OCHTICHE: De Seita erstellung wurde gesperrt. Ock Nutzer mit [[Special:ListGroupRights|speziellen Rechta]] kinna de Seite erstella.'''",
 'templatesused'                    => '{{PLURAL:$1|De fulgende Vurlooge werd|Fulgende Vurlooga waan}} vu dieser Seite verwendet:',
 'templatesusedpreview'             => '{{PLURAL:$1|De folgende Vurlooge werd|Folgende Vurlooga waan}} vu dieser Seytavurschau verwendet:',
 'templatesusedsection'             => '{{PLURAL:$1|De fulgende Vurloage werd|Fulgende Vurloaga waan}} vu diesem Obschnitt verwendet:',
@@ -609,10 +609,10 @@ Grund fier de Sperre: $1",
 'permissionserrorstext'            => 'Du best ne berechtigt, de Aksjonn auszufiehra. {{PLURAL:$1|Grund|Grinde}}:',
 'permissionserrorstext-withaction' => 'Du best nee berechtigt, $2.
 {{PLURAL:$1|Grund|Griende}}:',
-'recreate-moveddeleted-warn'       => "'''Ochtiche: Du erstellst anne Seyte, de bereits frieher geläscht wurde.'''
+'recreate-moveddeleted-warn'       => "'''Ochtiche: Du erstellst anne Seite, de bereits frieher geläscht wurde.'''
 
-Bitte priefe sorgfältig, ob de erneute Seytaerstellung dann Richtlinien entspricht.
-Zu denner Information folgt doas Läsch- und Verschiebungs-Logbuch miet dar Begrindung fier de vorhergehende Läschung:",
+Bitte priefe sorgfältig, ob de erneute Seitaerstellung den Richtlinien entspricht.
+Zu denner Information fulgt doas Läsch- und Verschiebungs-Logbuch mit der Begrindung fier de vorhergehende Läschung:",
 'moveddeleted-notice'              => "Diese Seite wurde geläscht. 'S fulgt a Auszug aus 'm Läsch- und Verschiebungs-Logbuch fier diese Seite.",
 'log-fulllog'                      => 'Olle Logbucheinträge oasahn',
 'edit-hook-aborted'                => 'De Beoarbeetung wurde ohne Erklärung durch anne Schnittstalle obgebrocha.',
@@ -620,16 +620,16 @@ Zu denner Information folgt doas Läsch- und Verschiebungs-Logbuch miet dar Begr
 Se wurde anscheinend geläscht.',
 'edit-conflict'                    => 'Beoarbeetungskonflikt.',
 'edit-no-change'                   => 'Denne Beoarbeetung wurde ignoriert, do kenne Änderung oa damm Text vurgenumma wurde.',
-'edit-already-exists'              => 'De neue Seyte konnte ne erstellt waan, do se bereits vorhanden ies.',
+'edit-already-exists'              => 'De neue Seite konnte nee erstellt waan, do se bereits vorhanden ies.',
 
 # Parser/template warnings
-'expensive-parserfunction-warning'        => 'Ochtiche: Diese Seyte enthält zu viele Uffruffe uffwendiger Parserfunksjonna.
+'expensive-parserfunction-warning'        => "Ochtiche: Diese Seite enthält zu viele Uffruffe uffwendiger Parserfunksjonna.
 
-Is {{PLURAL:$2|darf ne meh ols 1 Uffruff|dirfa ne meh ols $1 Uffruffe}} sei.',
+'S {{PLURAL:$2|darf nee meh ols 1 Uffruff|dirfa nee meh ols $1 Uffruffe}} sei.",
 'expensive-parserfunction-category'       => 'Seyta, de uffwändige Parserfunksjonna zu uffte uffrufa',
 'post-expand-template-inclusion-warning'  => 'Warnung: De Grieße eingebundener Vurlooga ies zu gruß, einige Vurloaga kinna ne eingebunden waan.',
 'post-expand-template-inclusion-category' => 'Seyta, ei denen de maximale Griße eingebundener Vurloaga ieberschritta ies',
-'post-expand-template-argument-warning'   => "Warnung: Diese Seyte enthält mindestens a Argument ei a'r Vurlooge, doas expandiert zu gruß ies. Diese Argumente waan ignoriert.",
+'post-expand-template-argument-warning'   => 'Warnung: Diese Seite enthält mindestens a Argument ei anner Vurlooge, doas expandiert zu gruß ies. Diese Argumente waan ignoriert.',
 'post-expand-template-argument-category'  => 'Seyta, de ignorierte Vurlagaargumente enthalta',
 'parser-template-loop-warning'            => 'Vurloagaschleife entdeckt: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Vurloogarekursionstiefengrenze ieberschritten ($1)',
@@ -669,9 +669,9 @@ Grund dar Sperre: ''$2''",
 
 # Revision feed
 'history-feed-title'          => 'Versionsgeschichtla',
-'history-feed-description'    => 'Versionsgeschichte fier diese Seyte ei {{SITENAME}}',
+'history-feed-description'    => 'Versionsgeschichte dieser Seite ei {{SITENAME}}',
 'history-feed-item-nocomment' => '$1 oam $3 im $4 Seeger',
-'history-feed-empty'          => 'De angeforderte Seyte existiert ne. Vielleicht wurde se geläscht oder verschoba. [[Special:Search|Durchsiche]] {{SITENAME}} fier poassende neue Seyta.',
+'history-feed-empty'          => 'De angeforderte Seite existiert nee. Vielleicht wurde se geläscht oder verschoba. [[Special:Search|Durchsuche]] {{SITENAME}} fier poassende neue Seita.',
 
 # Revision deletion
 'rev-deleted-comment'         => '(Beorbeetungskommentar entfernt)',
@@ -694,8 +694,8 @@ Administratorn kinna se eensahn; Details stiehn eim [{{fullurl:{{#Special:Log}}/
 'revdelete-show-file-submit'  => 'Ju',
 'revdelete-selected'          => "'''{{PLURAL:$2|Ausgewählte Version|Ausgewählte Versionen}} vu [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Ausgewählter Logbucheintrag|Ausgewählte Logbucheinträge}}:'''",
-'revdelete-text'              => "'''Geläschte Versionen und Aksjonna verbleiba ei dar Versionsgeschichte und dann Logbichern, jedoch sein Teele davon fier de Effentlichkeit unzugänglich.'''
-Andere Administratoren uff {{SITENAME}} hoan Zugriff uff dann versteckta Inhalt und kinna ihn miet dar gleichen Seyte wiederherstella, sufern ne zusätzliche Einschränkungen bestieha.",
+'revdelete-text'              => "'''Geläschte Versionen und Aksjonna verbleiba ei der Versionsgeschichte und den Logbichern, jedoch sein Teele davon fier de Effentlichkeit unzugänglich.'''
+Andere Administratoren uff {{SITENAME}} hoan Zugriff uff dann versteckta Inhalt und kinna ihn mit der gleichen Seite wiederherstella, sufern nee zusätzliche Einschränkungen bestieha.",
 'revdelete-legend'            => 'Setza der Sichtbarkeits-Einschränkunga',
 'revdelete-hide-text'         => 'Text dar Version verstecka',
 'revdelete-hide-image'        => 'Bildinhalt verstecka',
@@ -730,8 +730,8 @@ Siehe de [[Special:IPBlockList|Liste dar gesperrta IP-Atressa und Nutzernoama]] 
 
 # History merging
 'mergehistory'                     => 'Versionsgeschichta vereina',
-'mergehistory-header'              => "Miet dieser Spezialseyte koast du de Versionsgeschichte a'r Ursprungsseyte miet dar Versionsgeschichte a'r Zielseyte vereinen.
-Stelle secher, doaß de Versionsgeschichte a'r Seyte historisch korrekt ies.",
+'mergehistory-header'              => 'Mit dieser Spezialseite koast du de Versionsgeschichte anner Ursprungsseite mit der Versionsgeschichte anner Zielseite vereinen.
+Stelle sicher, doaß de Versionsgeschichte anner Seite historisch korrekt ies.',
 'mergehistory-box'                 => 'Versionsgeschichta zweier Seyta vereinen',
 'mergehistory-from'                => 'Ursprungsseyte:',
 'mergehistory-into'                => 'Zielseyte:',
@@ -781,7 +781,7 @@ Stelle secher, doaß de Versionsgeschichte a'r Seyte historisch korrekt ies.",
 'shown-title'                      => 'Zeige $1 {{PLURAL:$1|Ergebnis|Ergebnisse}} pro Seite',
 'viewprevnext'                     => 'Zeige ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-legend'                => 'Suchoptiona',
-'searchmenu-exists'                => "'''Is gitt anne Seyte, de dann Noama „[[:$1]]“ hoot'''",
+'searchmenu-exists'                => "'''Is gitt anne Seite, de den Noama „[[:$1]]“ hoot'''",
 'searchmenu-new'                   => "'''Erstalle de Seite „[[:$1|$1]]“ ei diesem Wiki.'''",
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Zeige olle Seyta, de miet damm Sichbegriff oafanga]]',
 'searchprofile-articles'           => 'Inhaltsseyta',
@@ -883,7 +883,7 @@ Stelle secher, doaß de Versionsgeschichte a'r Seyte historisch korrekt ies.",
 'userrights-user-editname'    => 'Nutzernoame:',
 'editusergroup'               => 'Benutzerrechte bearbta',
 'editinguser'                 => "Ändere Nutzerrechte vu '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'    => 'Nutzer-Gruppenzugehierigkeit beoarbeeta',
+'userrights-editusergroup'    => 'Nutzer-Gruppenzugehierigkeit bearbta',
 'saveusergroups'              => 'Gruppazugehierigkeit ändern',
 'userrights-groupsmember'     => 'Mitglied vun:',
 'userrights-groups-help'      => 'Du koast de Gruppenzugehierigkeit fier diesen Nutzer ändern:
@@ -934,7 +934,7 @@ Stelle secher, doaß de Versionsgeschichte a'r Seyte historisch korrekt ies.",
 'right-writeapi'             => 'Nutzung dar writeAPI',
 'right-delete'               => 'Seyta läscha',
 'right-bigdelete'            => 'Seyta läscha miet grußer Versionsgeschichte',
-'right-deleterevision'       => "Einzelne Versionen a'r Seyte läscha und wiederherstella",
+'right-deleterevision'       => 'Einzelne Versionen anner Seite läscha und wiederherstella',
 'right-deletedhistory'       => 'Geläschte Versionen ei dar Versionsgeschichte oasahn, ohne zugehieriga Text',
 'right-browsearchive'        => 'Noach geläschta Seita sucha',
 'right-undelete'             => 'Seyta wiederherstalla',
@@ -1106,8 +1106,8 @@ Bitte gieb dar Datei an'n Noama, dar dann Inhalt besser beschreibt.",
 Bitte informiere an'n [[Special:ListUsers/sysop|System-Administrator]].",
 'upload-misc-error'         => 'Unbekennter Fahler beim Huchloada',
 'upload-misc-error-text'    => "Beim Huchloada ies a unbekennter Fahler uffgetreta.
-Priefe de URL uff Fahler, dann Online-Status dar Seyte und versuche is erneut.
-Wenn doas Problem wetter bestieht, informiere an'n [[Special:ListUsers/sysop|System-Administrator]].",
+Priefe de URL uff Fahler, dann Online-Status der Seite und versuche 's erneut.
+Wenn doas Problem wetter bestieht, informiere anna [[Special:ListUsers/sysop|System-Administrator]].",
 'upload-too-many-redirects' => 'De URL beinhaltete zu viele Wetterleitunga',
 'upload-unknown-size'       => 'Unbekennte Grieße',
 'upload-http-error'         => 'A HTTP-Fahler ies uffgetreta: $1',
@@ -1118,9 +1118,9 @@ Wenn doas Problem wetter bestieht, informiere an'n [[Special:ListUsers/sysop|Sys
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL ies nee erreichbar',
-'upload-curl-error6-text'  => 'De oagegahne URL ies ne erreichbar. Priefe suwohl de URL uff Fahler ols au dann Online-Status dar Seyte.',
+'upload-curl-error6-text'  => "De oagegahne URL ies nee erreichbar. Priefe suwohl de URL uff Fahler ols au 'n Online-Status der Seite.",
 'upload-curl-error28'      => 'Zeitieberschreitung beim Huchloada',
-'upload-curl-error28-text' => "De Seyte braucht zu lange fier anne Antwurt. Priefe, ob de Seyte online ies, warte an'n kurza Moment und versiche is doann erneut. Is koan sinnvoll sei, an'n erneuta Versich zu a'm andern Zeitpunkt zu probieren.",
+'upload-curl-error28-text' => "De Seite braucht zu lange fier anne Ontwurt. Priefe, ob de Seite online ies, warte anna kurza Moment und versuche 's dann erneut. 'S koan sinnvull sei, anna erneuta Versuch zu a'm andern Zeitpunkt zu probieren.",
 
 'license'            => 'Lizenz:',
 'license-header'     => 'Lizenz',
@@ -1154,10 +1154,10 @@ Wenn doas Problem wetter bestieht, informiere an'n [[Special:ListUsers/sysop|Sys
 'filehist-missing'          => 'Datei fahlt',
 'imagelinks'                => 'Dateiverwendung',
 'linkstoimage'              => 'De {{PLURAL:$1|fulgende Seite verwendet|fulgenda $1 Seita verwenda}} diese Datei:',
-'linkstoimage-more'         => 'Meh ols {{PLURAL:$1|anne Seyte verlinkt|$1 Seyta verlinken}} uff diese Datei.
-De folgende Liste zeigt ock {{PLURAL:$1|dann erschta Link|de erschta $1 Links}} uff diese Datei.
+'linkstoimage-more'         => 'Meh ols {{PLURAL:$1|anne Seite verlinkt|$1 Seita verlinken}} uff diese Datei.
+De fulgende Liste zeigt ock {{PLURAL:$1|den erschta Link|de erschta $1 Links}} uff diese Datei.
 Anne [[Special:WhatLinksHere/$2|vullständige Liste]] ies verfiegbar.',
-'nolinkstoimage'            => 'Kenne Seyte nutzt diese Datei.',
+'nolinkstoimage'            => 'Kenne Seite nutzt diese Datei.',
 'morelinkstoimage'          => '[[Special:WhatLinksHere/$1|Weitere Links]] fier diese Datei.',
 'duplicatesoffile'          => 'De {{PLURAL:$1|folgende Datei ies a Duplikat|folgenda $1 Dateien sein Duplikate}} dieser Datei ([[Special:FileDuplicateSearch/$2|wettere Details]]):',
 'sharedupload'              => 'Diese Datei stommt ous $1 on dorf voo andern Projekta verwendet waan.',
@@ -1205,8 +1205,8 @@ Anne [[Special:WhatLinksHere/$2|vullständige Liste]] ies verfiegbar.',
 
 # Unused templates
 'unusedtemplates'     => 'Unbenutzte Vurloaga',
-'unusedtemplatestext' => 'Diese Seyte listet olle Seyta eim {{ns:template}}-Noamasraum uff, de ne ei andern Seyta eingebunden sein.
-Ieberpriefe andere Links zu dann Vurloaga, bevor du diese läscht.',
+'unusedtemplatestext' => 'Diese Seite listet olle Seita eim {{ns:template}}-Noamasraum uff, de nee ei andern Seita eingebunden sein.
+Ieberpriefe andere Links zu den Vurlooga, bevur du diese läscht.',
 'unusedtemplateswlh'  => 'Ondere Links',
 
 # Random page
@@ -1227,7 +1227,7 @@ Ieberpriefe andere Links zu dann Vurloaga, bevor du diese läscht.',
 'statistics-pages-desc'        => 'Olle Seita ei diesem Wiki, inklusive Dischkurseita, Weiterleitunga usw.',
 'statistics-files'             => 'Huchgeladene Dateien',
 'statistics-edits'             => 'Seytabeoarbeetunga',
-'statistics-edits-average'     => 'Beoarbeetunga pro Seyte eim Durchschnitt',
+'statistics-edits-average'     => 'Bearbeetunga pro Seite eim Durchschnitt',
 'statistics-views-total'       => 'Seytaaufrufe gesamt',
 'statistics-views-peredit'     => 'Seyta uffruffe pro Beoarbeetung',
 'statistics-users'             => 'Registrierte [[Special:ListUsers|Nutzer]]',
@@ -1236,7 +1236,7 @@ Ieberpriefe andere Links zu dann Vurloaga, bevor du diese läscht.',
 
 'disambiguations'      => 'Begriffsklärungsseyta',
 'disambiguationspage'  => 'Template:Begriffsklärung',
-'disambiguations-text' => 'De folgenda Seyta verlinka uff anne Seyte zur Begriffsklärung. Se sullten statt dessen uff de eigentlich gemeente Seyte verlinka.<br />Eine Seite wird als Begriffsklärungsseite behandelt, wenn [[MediaWiki:Disambiguationspage]] uff se verlinkt.<br />Links aus Noamasräumen waan hier ne uffgelistet.',
+'disambiguations-text' => 'De fulgenda Seita verlinka uff anne Seite zur Begriefsklärung. Se sullta stoats dassens uff de eigentlich gemeente Seite verlinka.<br />Anne Seite werd ols Begriefsklärungsseite behandelt, wenn [[MediaWiki:Disambiguationspage]] uff se verlinkt.<br />Links aus Noamasräumen waan hier ne uffgelistet.',
 
 'doubleredirects'            => 'Doppelte Weiterleitunga',
 'doubleredirectstext'        => 'Diese Liste enthält Weiterleitunga, de uff wettere Wetterleitunga verlinka.
@@ -1260,7 +1260,7 @@ Jede Zeile enthält Links zu dar erschta und zweeta Wetterleitung suwie doas Zie
 'nmembers'                => '{{PLURAL:$1|1 Eentrag|$1 Eenträge}}',
 'nrevisions'              => '{{PLURAL:$1|1 Beoarbeetung|$1 Beoarbeetunga}}',
 'nviews'                  => '{{PLURAL:$1|1 Obfroage|$1 Obfroaga}}',
-'specialpage-empty'       => 'De Seyte enthält aktuell kenne Einträge.',
+'specialpage-empty'       => 'De Seite enthält aktuell kenne Einträge.',
 'lonelypages'             => 'Verwaiste Seyta',
 'lonelypagestext'         => 'De folgenden Seyta waan ne eingebunden oder is werd ne uff se ei {{SITENAME}} verwiesa.',
 'uncategorizedpages'      => 'Ne kategorisierte Seyta',
@@ -1303,7 +1303,7 @@ Jede Zeile enthält Links zu dar erschta und zweeta Wetterleitung suwie doas Zie
 'unusedimagestext'        => "Bitte beachte, doaß andere Webseyta diese Datei miet a'r direkten URL verlinken kinna. Diese werd ne ols Verwendung erkannt, su doaß de Datei hier uffgefiehrt werd.",
 'unusedcategoriestext'    => 'Diese Spezialseyte zeigt olle Kategorien, de laar sein, also selbst kenne Kategorien oder Seyta enthalten.',
 'notargettitle'           => 'Kenne Seite oagegahn',
-'notargettext'            => 'Du host ne oagegahn, uff welche Seyte diese Funksjonn oagewendet waan sull.',
+'notargettext'            => 'Du host nee oagegahn, uff welche Seite diese Funksjonn oagewendet waan sull.',
 'nopagetitle'             => 'Zielseyte ne vurhanda',
 'nopagetext'              => 'De oagegebene Zielseyte ies ne vorhanden.',
 'pager-newer-n'           => '{{PLURAL:$1|nächster|nächste $1}}',
@@ -1431,7 +1431,7 @@ Wenn du de Seite wieder vu denner Beobachtungsliste entferna mechtest, klicke uf
 'wlheader-showupdated' => "* Seyta miet noo ne gesehenen Änderunga waan '''fett''' dargestellt.",
 'watchmethod-recent'   => 'Ieberprifa dar letzta Beoarbeetunga fier de Beobachtungsliste',
 'watchmethod-list'     => 'Ieberpriefa dar Beobachtungsliste noach letzta Beoarbeetunga',
-'watchlistcontains'    => 'Denne Beobachtungsliste enthält $1 {{PLURAL:$1|Seyte|Seyta}}.',
+'watchlistcontains'    => 'Denne Beobachtungsliste enthält $1 {{PLURAL:$1|Seite|Seita}}.',
 'iteminvalidname'      => "Problem mi'm Eintrag „$1“, ungiltiger Noame.",
 'wlnote'               => "Is {{PLURAL:$1|folgt de letzte Änderung|folga de letzta '''$1''' Änderunga}} dar letzta {{PLURAL:$2|Stunde|'''$2''' Stunda}}.",
 'wlshowlast'           => 'Zeige de Änneronga dar letzta $1 Stonda, $2 Taage oder $3.',
@@ -1451,7 +1451,7 @@ Wenn du de Seite wieder vu denner Beobachtungsliste entferna mechtest, klicke uf
 'enotif_anon_editor' => 'Anonymer Nutzer $1',
 'enotif_body'        => 'Hallo $WATCHINGUSERNAME,
 
-de {{SITENAME}}-Seyte „$PAGETITLE“ wurde vu $PAGEEDITOR oam $PAGEEDITDATE im $PAGEEDITTIME Seeger $CHANGEDORCREATED.
+de {{SITENAME}}-Seite „$PAGETITLE“ wurde vu $PAGEEDITOR oam $PAGEEDITDATE im $PAGEEDITTIME Seeger $CHANGEDORCREATED.
 
 Aktuelle Version: $PAGETITLE_URL
 
@@ -1459,29 +1459,29 @@ $NEWPAGE
 
 Zusommafassung des Beoarbeeters: $PAGESUMMARY $PAGEMINOREDIT
 
-Kontakt zum Beoarbeeter:
+Kuntakt zum Bearbeeter:
 E-Mail: $PAGEEDITOR_EMAIL
 Wiki: $PAGEEDITOR_WIKI
 
-Is waan sulange kenne wettera Benachrichtigungs-E-Mails gesendet, bis du de Seyte wieder besicht host. Uff denner Beobachtungsliste koast du olle Benachrichtigungsmarker zusomma zerrickesetza.
+Is waan sulange kenne wettera Benachrichtigungs-E-Mails gesendet, bis du de Seite wieder besucht host. Uff denner Beobachtungsliste koast du olle Benachrichtigungsmarker zusomma zerrickesetza.
 
-             Dei freindliches {{SITENAME}}-Benoachrichtigungssystem
+             Dei freindliches {{SITENAME}}-Benoachrichtigungssystem 
 
 --
-Im de Einstellunga denner Beobachtungsliste oazupoaßa, besiche: {{canonicalurl:{{#special:EditWatchlist}}}}
+Im de Einstellunga denner Beobachtungsliste oazupoaßa, besuche: {{canonicalurl:{{#special:EditWatchlist}}}}
 
-Rickmeldungen und wettere Helfe: {{canonicalurl:{{MediaWiki:Helppage}}}}',
+Rickmeldungen und wettere Hilfe: {{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Seite läscha',
 'confirm'                => 'Bestätiga',
 'excontent'              => 'Aaler Inhalt: „$1“',
 'excontentauthor'        => 'Inhalt woar: „$1“ (einziger Beoarbeeter: [[Special:Contributions/$2|$2]])',
-'exbeforeblank'          => 'Inhalt vur damm Laara dar Seyte: „$1“',
+'exbeforeblank'          => "Inhalt vur 'm Laara der Seite: „$1“",
 'exblank'                => 'Seite woar laar',
 'delete-confirm'         => 'Läscha vun „$1“',
 'delete-legend'          => 'Läscha',
-'historywarning'         => "'''Ochtiche:''' De Seyte, de du läscha mechtest, hoot anne Versionsgeschichte miet $1 {{PLURAL:$1|Version|Versionen}}:",
+'historywarning'         => "'''Ochtiche:''' De Seite, de du läscha mechtest, hoot anne Versionsgeschichte mit $1 {{PLURAL:$1|Version|Versionen}}:",
 'confirmdeletetext'      => "Du best dabei, anne Seite mit olla zugeheeriga ältera Versiona zu läscha. Bitte bestätige dazu, dass du dir der Konsequenza bewusst best, on dass du ei Iebereinstimmung mit 'n [[{{MediaWiki:Policy-url}}|Richtlinien]] handelst.",
 'actioncomplete'         => 'Aksjonn beendet',
 'actionfailed'           => 'Aksjonn fahlgeschlaga',
@@ -1495,9 +1495,9 @@ Rickmeldungen und wettere Helfe: {{canonicalurl:{{MediaWiki:Helppage}}}}',
 ** Wunsch des Autors
 ** Urheberrechtsverletzung
 ** Vandalismus',
-'delete-edit-reasonlist' => 'Läschgrinde beoarbeeta',
-'delete-toobig'          => 'Diese Seyte hoot miet meh ols $1 {{PLURAL:$1|Version|Versionen}} anne siehr lange Versionsgeschichte. Doas Läscha sulcher Seyta wurde eingeschränkt, im anne versehentliche Ieberlastung dar Server zu verhindern.',
-'delete-warning-toobig'  => 'Diese Seyte hoot miet meh ols $1 {{PLURAL:$1|Version|Versionen}} anne sehr lange Versionsgeschichte. Doas Läscha koan zu Sterunga eim Datenbankbetrieb fiehrn.',
+'delete-edit-reasonlist' => 'Läschgrinde bearbta',
+'delete-toobig'          => 'Diese Seite hoot miet meh ols $1 {{PLURAL:$1|Version|Versionen}} anne siehr lange Versionsgeschichte. Doas Läscha sulcher Seita wurde eingeschränkt, im anne versehentliche Ieberlastung der Server zu verhindern.',
+'delete-warning-toobig'  => 'Diese Seite hoot miet meh ols $1 {{PLURAL:$1|Version|Versionen}} anne sehr lange Versionsgeschichte. Doas Läscha koan zu Sterunga eim Datenbankbetrieb fiehrn.',
 
 # Rollback
 'rollback'         => 'Zerrickesetza dar Änderunga',
@@ -1505,7 +1505,7 @@ Rickmeldungen und wettere Helfe: {{canonicalurl:{{MediaWiki:Helppage}}}}',
 'rollbacklink'     => 'Zerrickesetza',
 'rollbackfailed'   => 'Zerrickesetza gescheitert',
 'cantrollback'     => 'De Änderung koan ne zerrickegesetzt waan, do is kenne friehera Autoren gibt.',
-'alreadyrolled'    => 'Doas Zerrickesetza dar Änderunga vu [[User:$2|$2]] ([[User talk:$2|Dischkur]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) oa [[:$1]] ies gescheitert, do ei dar Zwischenzeit a anderer Nutzer de Seyte geändert hoot.
+'alreadyrolled'    => 'Doas Zerrickesetza der Änderunga vu [[User:$2|$2]] ([[User talk:$2|Dischkur]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) oa [[:$1]] ies gescheitert, do ei der Zwischenzeit a anderer Nutzer de Seite geändert hoot.
 
 De letzte Änderung stommt vu [[User:$3|$3]] ([[User talk:$3|Dischkur]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => "De Änderungszusommafassung lautet: ''„$1“''.",
@@ -1531,8 +1531,8 @@ Siehe de [[Special:ProtectedPages|Liste dar geschietzta Seyta]] fier olle aktuel
 'protect_expiry_invalid'      => 'De eengegebene Lengde ies ungieltig.',
 'protect_expiry_old'          => 'De Sperrzeit liegt ei dar Vergangenheet.',
 'protect-text'                => 'Hier koast du dan Schutzstatus fier de Seite „$1“ asahn on ändern.',
-'protect-locked-blocked'      => "Du koast dann Seytaschutz ne ändern, do dei Nutzerkonto gesperrt ies. Hier sein de aktuellen Seytaschutz-Einstellunga fier de Seyte '''„$1“:'''",
-'protect-locked-dblock'       => "De Datenbank ies gesperrt, dar Seytaschutz koan daher ne geändert waan. Hier sein de aktuellen Seytaschutz-Einstellunga fier de Seyte '''„$1“:'''",
+'protect-locked-blocked'      => "Du koast den Seitaschutz nee ändern, do dei Nutzerkonto gesperrt ies. Hier sein de aktuellen Seitaschutz-Einstellunga fier de Seite '''„$1“:'''",
+'protect-locked-dblock'       => "De Datenbank ies gesperrt, der Seitaschutz koan daher nee geändert waan. Hier sein de aktuellen Seitaschutz-Einstellunga der Seite '''„$1“:'''",
 'protect-locked-access'       => "Dei Benutzerkonto verfiegt nee ieber de nuutwendiga Rechte zerr Ännerong des Seitaschutzes. Hier sein de aktuella Seitaschutzeinstellunga fier de Seite '''„$1“:'''",
 'protect-cascadeon'           => 'Diese Seite ies gegenwärtig Teel anner Kaskadensperre. Se ies ei de {{PLURAL:$1|fulgende Seite|fulgenda Seita}} eingebunda, welche durch de Kaskadensperroption geschitzt {{PLURAL:$1|ies|sein}}. Der Seitaschutzstatus koan fier diese Seite geändert waan, dies hoot jedoch kenn Einfluss uff de Kaskadensperre:',
 'protect-default'             => 'Olle Benutzer',
@@ -1547,8 +1547,8 @@ Siehe de [[Special:ProtectedPages|Liste dar geschietzta Seyta]] fier olle aktuel
 'protect-dropdown'            => '*Allgemeene Schutzgrinde
 ** Weblink-Spam
 ** Editwar
-** Häufig eingebundene Vurlage
-** Seyte miet huher Besucherzoahl',
+** Häufig eingebundene Vurlooge
+** Seite miet huher Besucherzoahl',
 'protect-edit-reasonlist'     => 'Schutzgrinde bearbta',
 'protect-expiry-options'      => '1 Stunde:1 hour,1 Tag:1 day,1 Wuche:1 week,2 Wucha:2 weeks,1 Monat:1 month,3 Monate:3 months,6 Monate:6 months,1 Joahr:1 year,Unbeschränkt:infinite',
 'restriction-type'            => 'Schutzstatus',
@@ -1572,18 +1572,17 @@ Siehe de [[Special:ProtectedPages|Liste dar geschietzta Seyta]] fier olle aktuel
 'undeletepage'                 => 'Geläschte Seyta oazeiga und wiederherstalla',
 'undeletepagetitle'            => "'''De folgende Ausgoabe zeigt de geläschta Versionen vu [[:$1|$1]]'''.",
 'viewdeletedpage'              => 'Geläschte Seyta oazeiga',
-'undeletepagetext'             => 'De {{PLURAL:$1|folgende Seyte wurde geläscht und koan|folgenda $1 Seyta wurden geläscht und kinna}} vu Administratoren wiederhergestellt waan:',
+'undeletepagetext'             => 'De {{PLURAL:$1|fulgende Seite wurde geläscht und koan|fulgenda $1 Seita wurden geläscht und kinna}} vu Administratoren wiederhergestellt waan:',
 'undelete-fieldset-title'      => 'Wiederherstalla',
-'undeleteextrahelp'            => '* Im de Seyte komplett miet olla Versionen wiederherzustella, wähle kenne Version aus, gib anne Begrindung oa und klicke uff „Wiederherstellen“.
-* Mechtest du ock bestimmte Versionen wiederherstella, su wähle diese bitte einzeln anhand dar Markierungen aus, gib anne Begrindung oa und klicke dann uff „Wiederherstella“.
-* „Obbrecha“ laart doas Kommentarfeld und entfernt olle Markierungen bei dann Versionen.',
-'undeletehistory'              => 'Wenn du diese Seyte wiederherstellst, waan au olle aaln Versionen wiederhergestellt.
-Wenn seit dar Läschung anne neue Seyte gleichen Noamens erstellt wurde, waan de wiederhergestellta Versionen chronologisch ei de Versionsgeschichte eingeordnet.',
+'undeleteextrahelp'            => '* Im de Seite komplett mit olla Versionen wiederherzustella, wähle kenne Version aus, gib anne Begrindung oa und klicke uff „Wiederherstellen“.
+* Im lediglich bestimmte Versionen der Seite wiederherzustella, wähle de betreffenden Versionen einzeln aus, gib anne Begrindung oa und klicke dann uff „{{int:undeletebtn}}“.',
+'undeletehistory'              => 'Wenn du diese Seite wiederherstellst, waan au olle aaln Versionen wiederhergestellt.
+Wenn seit dar Läschung anne neue Seite gleichen Noamens erstellt wurde, waan de wiederhergestellta Versionen chronologisch ei de Versionsgeschichte eingeordnet.',
 'undeleterevdel'               => "De Wiederherstellung werd ne durchgefiehrt, wenn de aktuellste Version versteckt ies oder versteckte Teele enthält.
 Ei diesem Foall darf de aktuellste Version ne markiert waan oder ihr Status muuß uff dann a'r normalen Version geändert waan.",
-'undeletehistorynoadmin'       => 'Diese Seyte wurde geläscht. Dar Grund fier de Läschung ies ei dar Zusommafassung oagegeba,
-genauso wie Details zum letzta Nutzer, dar diese Seyte vor dar Läschung beoarbeetet hoot.
-Dar aktuelle Text dar geläschta Seyte ies ock Administratoren zugänglich.',
+'undeletehistorynoadmin'       => 'Diese Seite wurde geläscht. Dar Grund fier de Läschung ies ei der Zusommafassung oagegeba,
+genauso wie Details zum letzta Nutzer, der diese Seite vur der Läschung beoarbeetet hoot.
+Der aktuelle Text der geläschta Seite ies ock Administratoren zugänglich.',
 'undelete-revision'            => 'Geläschte Version vu $1 (vum $4 im $5 Seeger), $3:',
 'undeleterevision-missing'     => 'Ungiltige oder fehlende Version. Entweder ies dar Link foalsch oder de Version wurde aus damm Archiv wiederhergestellt oder entfernt.',
 'undelete-nodiff'              => 'Kenne vorhergehende Version vorhanden.',
@@ -1593,12 +1592,12 @@ Dar aktuelle Text dar geläschta Seyte ies ock Administratoren zugänglich.',
 'undeleteinvert'               => 'Auswoahl umkehra',
 'undeletecomment'              => 'Begrindung:',
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 Version|$1 Versionen}} und {{PLURAL:$2|1 Datei|$2 Dateien}} wurden wiederhergestallt',
-'cannotundelete'               => 'Wiederherstellung fehlgeschlaga; jemand anderes hoot de Seyte bereits wiederhergestellt.',
+'cannotundelete'               => 'Wiederherstellung fehlgeschlaga; jemand anderes hoot de Seite bereits wiederhergestellt.',
 'undelete-header'              => 'Siehe eim [[Special:Log/delete|Läsch-Logbuch]] noach kierzlich geläschta Seyta.',
 'undelete-search-box'          => 'Noach geläschta Seita sucha',
 'undelete-search-prefix'       => 'Sichbegriff (Wortanfang ohne Wildcards):',
 'undelete-search-submit'       => 'Sucha',
-'undelete-no-results'          => 'Is wurde eim Archiv kenne zum Sichbegriff passende Seyte gefunda.',
+'undelete-no-results'          => "'S wurde eim Archiv kenne zum Suchbegriff passende Seite gefunda.",
 'undelete-filename-mismatch'   => 'De Dateiversion miet damm Zeitstempel $1 konnte ne wiederhergestellt waan: De Dateinoama passen ne zueinander.',
 'undelete-bad-store-key'       => 'De Dateiversion miet damm Zeitstempel $1 konnte ne wiederhergestellt waan: De Datei woar bereits vor damm Läscha ne meh vorhanden.',
 'undelete-cleanup-error'       => 'Fahler beim Läscha dar unbenutzta Archiv-Version $1.',
@@ -1645,7 +1644,7 @@ $1",
 'whatlinkshere-page'       => 'Seite:',
 'linkshere'                => "De folgenden Seyta verlinka uff '''„[[:$1]]“''':",
 'nolinkshere'              => "Kenne Seite verlinkt uff '''„[[:$1]]“'''.",
-'nolinkshere-ns'           => "Kenne Seyte verlinkt uff '''„[[:$1]]“''' eim gewählta Noamasraum.",
+'nolinkshere-ns'           => "Kenne Seite verlinkt uff '''„[[:$1]]“''' eim gewählta Noamasraum.",
 'isredirect'               => 'Weiterleitungsseyte',
 'istemplate'               => 'Vorlageneinbindung',
 'isimage'                  => 'Dateilink',
@@ -1668,10 +1667,10 @@ Bitte gib dann Grund fier de Sperre oa.",
 'ipbreason'                   => 'Begriendung:',
 'ipbreasonotherlist'          => 'Andere Begrindung',
 'ipbreason-dropdown'          => '* Allgemeene Sperrgrinde
-** Eenfiega foalscher Informationa
-** Laara vu Seyta
+** Eenfiega foalscher Informationen
+** Laara vu Seita
 ** Fiegt massenweise externe Links a
-** Einstalla unsinniger Sacha ei Seyta
+** Einstalla unsinniger Inhalte ei Seita 
 ** bedrohliches Verhaala/Belästigung
 ** Missbrauch durch mehrere Nutzerkonten
 ** Ungeeigneter Nutzernoame',
@@ -1684,7 +1683,7 @@ Bitte gib dann Grund fier de Sperre oa.",
 'ipbotheroption'              => 'Oandere Dauer',
 'ipbotherreason'              => 'Andere/ergänzende Begrindung:',
 'ipbhidename'                 => 'Nutzernoame ei Beoarbeetunga und Listen verstecka',
-'ipbwatchuser'                => 'Nutzer(dischkur)seyte beobachta',
+'ipbwatchuser'                => 'Nutzer(dischkur)seite beobachta',
 'ipb-change-block'            => 'Sperre miet diesen Sperrparametern erneuern',
 'badipaddress'                => 'De IP-Atresse hoot a foalsches Furmat.',
 'blockipsuccesstext'          => 'Dar Nutzer/de IP-Atresse [[Special:Contributions/$1|$1]] wurde gesperrt.<br />
@@ -1780,7 +1779,7 @@ Ei diesa Fäll muußt du, foalls gewinscht, den Inhalt der Seite vu Hand verschi
 Bitte den '''neua''' Tittel under '''Ziel''' eintraga, darunder de Umbenennung bitte '''begrienda.'''",
 'movearticle'                  => 'Seite verschieba:',
 'movenologin'                  => 'Nä oangemeldet',
-'movenologintext'              => 'Du mußt a registrierter Nutzer und [[Special:UserLogin|oagemeldet]] sei, im anne Seyte zu verschieba.',
+'movenologintext'              => 'Du muoßt a registrierter Nutzer und [[Special:UserLogin|oagemeldet]] sei, im anne Seite zu verschieba.',
 'movenotallowed'               => 'Du host kenne Berechtigung, Seyta zu verschieba.',
 'cant-move-user-page'          => 'Du host kenne Berechtigung, Nutzerhauptseyta zu verschieba.',
 'cant-move-to-user-page'       => 'Du host ne de Berechtigung, Seyta uff anne Nutzerseyte zu verschieba (miet Ausnahme vu Nutzerunderseyta).',
@@ -1794,10 +1793,10 @@ Bitte den '''neua''' Tittel under '''Ziel''' eintraga, darunder de Umbenennung b
 'movetalk'                     => 'De Dischkurseite mitverschieba, wenn meegliech',
 'move-subpages'                => 'Underseita verschieba (bis zu $1)',
 'move-talk-subpages'           => 'Underseita dar Dischkurseite verschieba (bis zu $1)',
-'movepage-page-exists'         => 'De Seyte „$1“ ies bereits vurhanda und koan ne automatisch ieberschrieba waan.',
-'movepage-page-moved'          => 'De Seyte „$1“ wurde noach „$2“ verschoba.',
-'movepage-page-unmoved'        => 'De Seyte „$1“ konnte ne noach „$2“ verschoba waan.',
-'movepage-max-pages'           => 'De Maximalanzoahl vu $1 {{PLURAL:$1|Seyte|Seyta}} wurde verschoba, Olle wettera Seyta kinna ne automatisch verschoba waan.',
+'movepage-page-exists'         => 'De Seite „$1“ ies bereits vurhanda und koan ne automatisch ieberschrieba waan.',
+'movepage-page-moved'          => 'De Seite „$1“ wurde noach „$2“ verschoba.',
+'movepage-page-unmoved'        => 'De Seite „$1“ konnte nee noach „$2“ verschoba waan.',
+'movepage-max-pages'           => 'De Maximalanzoahl vu $1 {{PLURAL:$1|Seite|Seita}} wurde verschuba, Olle wettera Seita kinna ne automatisch verschuba waan.',
 'movelogpage'                  => 'Verschiebungs-Logbuch',
 'movelogpagetext'              => 'Dies ies anne Liste oller verschobena Seyta.',
 'movesubpage'                  => '{{PLURAL:$1|Underseite|Underseita}}',
@@ -1807,10 +1806,10 @@ Bitte den '''neua''' Tittel under '''Ziel''' eintraga, darunder de Umbenennung b
 'delete_and_move'              => 'Läscha und Verschieba',
 'delete_and_move_text'         => '== Läschung erforderlich ==
 
-De Seyte „[[:$1]]“ existiert bereits. Mechtest du diese läscha, im de Seyte verschieba zu kinna?',
+De Seite „[[:$1]]“ existiert bereits. Mechtest du diese läscha, im de Seite verschieba zu kinna?',
 'delete_and_move_confirm'      => 'Zielseyte fier de Verschiebung läscha',
 'delete_and_move_reason'       => 'geläscht, im Ploatz fier Verschiebung zu macha',
-'selfmove'                     => 'Ursprungs- und Zielnoame sein glei; anne Seyte koan ne uff siech salbst verschoba waan.',
+'selfmove'                     => 'Ursprungs- und Zielnoame sein glei; anne Seite koan nee uff siech salbst verschoba waan.',
 'immobile-source-namespace'    => 'Seyta des „$1“-Noamasraums kinna ne verschoba waan',
 'immobile-target-namespace'    => 'Seyta kinna ne enn „$1“-Noamasraum verschoba waan',
 'immobile-target-namespace-iw' => 'Interwiki-Link ies kee giltiges Ziel fier Seytaverschiebunga.',
@@ -1821,17 +1820,17 @@ De Seyte „[[:$1]]“ existiert bereits. Mechtest du diese läscha, im de Seyte
 'imageinvalidfilename'         => 'Dar Ziel-Dateinoame ies ungiltig',
 'fix-double-redirects'         => 'Noach damm Verschieba doppelte Weiterleitunga ufflesa',
 'move-leave-redirect'          => 'Weiterleitung erstalla',
-'protectedpagemovewarning'     => "'''Warnung:''' Diese Seyte wurde gesperrt, su doß se ock vu Nutzern miet Administratorenrechten verschoba waan koan.",
+'protectedpagemovewarning'     => "'''Warnung:''' Diese Seite wurde gesperrt, su doaß se ock vu Nutzern miet Administratorenrechten verschoba waan koan.",
 
 # Export
 'export'            => 'Seyta exportiera',
-'exporttext'        => 'Miet dieser Spezialseyte koast du dann Text inklusive der Versionsgeschichte einzelner Seyta ei anne XML-Datei exportieren.
+'exporttext'        => 'Miet dieser Spezialseite koast du den Text inklusive der Versionsgeschichte einzelner Seita ei anne XML-Datei exportieren.
 De Datei koan ei a anderes MediaWiki-Wiki ieber de [[Special:Import|Importfunksjonn]] eingespielt waan.
 
-Trage dann oder de entsprechenden Seytatittel ei doas fulgende Textfeld a (pro Zeile jeweils ock fier anne Seyte).
+Trage den oder de entsprechenden Seitatittel ei doas fulgende Textfeld a (pro Zeile jeweils ock fier anne Seite).
 
-Alternativ ies dar Export au miet dar Syntax [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] meeglich, beispielsweise fier de [[{{MediaWiki:Mainpage}}]].',
-'exportcuronly'     => 'Ock de aktuelle Version dar Seyte exportieren',
+Alternativ ies der Export au miet der Syntax [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] meegliech, beispielsweise fier de [[{{MediaWiki:Mainpage}}]].',
+'exportcuronly'     => 'Ock de aktuelle Version der Seite exportieren',
 'exportnohistory'   => "'''Hinweis:''' Dar Export kompletter Versionsgeschichta ies aus Performancegrinda bis uff wetteres ne meeglich.",
 'export-submit'     => 'Seyta exportiera',
 'export-addcattext' => 'Seyta aus Kategorie hinzufiega:',
@@ -1853,7 +1852,7 @@ Besiche de Seyta [//www.mediawiki.org/wiki/Localisation MediaWiki-Lokalisierung]
 'thumbnail-more'           => 'vergrießern',
 'filemissing'              => 'Datei fahlt',
 'thumbnail_error'          => 'Fahler bem Erstella des Vurschaubildes: $1',
-'djvu_page_error'          => 'DjVu-Seyte außerholb des Seytabereichs',
+'djvu_page_error'          => 'DjVu-Seite außerholb des Seitabereichs',
 'djvu_no_xml'              => 'XML-Daten kinna fier de DjVu-Datei ne obgeruffa waan',
 'thumbnail_invalid_params' => 'Ungiltige Thumbnail-Parameter',
 'thumbnail_dest_directory' => 'Zielverzeichnis koan ne erstellt waan.',
@@ -1861,11 +1860,11 @@ Besiche de Seyta [//www.mediawiki.org/wiki/Localisation MediaWiki-Lokalisierung]
 
 # Special:Import
 'import'                     => 'Seyta importiern',
-'import-interwiki-text'      => 'Wähle a Wiki und anne Seyte zum Importiera aus.
-De Versionsdaten und Nutzernoama bleiba dabei erhalta.
+'import-interwiki-text'      => 'Wähle a Wiki und anne Seite zum Importieren aus.
+De Versionsdaten und Nutzernoama bleiba dabei erhaala.
 Olle Transwiki-Import-Aksjonna waan eim [[Special:Log/import|Import-Logbuch]] protokolliert.',
 'import-interwiki-source'    => 'Quell-Wiki/-Seite:',
-'import-interwiki-history'   => 'Importiere olle Versionen dieser Seyte',
+'import-interwiki-history'   => 'Olle Versionen dieser Seite importieren',
 'import-interwiki-templates' => 'Olle Vurloaga einschließen',
 'import-interwiki-namespace' => 'Zielnoamasraum:',
 'import-upload-filename'     => 'Dateinoame:',
@@ -1878,7 +1877,7 @@ Olle Transwiki-Import-Aksjonna waan eim [[Special:Log/import|Import-Logbuch]] pr
 'importbadinterwiki'         => 'Foalscher Interwiki-Link',
 'importnotext'               => 'Laar oder kee Text',
 'importsuccess'              => 'Import obgeschlossa.',
-'importhistoryconflict'      => 'Is existieren bereits ältere Versionen, welche miet diesen kollidieren. Meeglicherweise wurde de Seyte bereits vorher importiert.',
+'importhistoryconflict'      => "'S existieren bereits ältere Versionen, welche miet diesen kollidieren. Meegliecherweise wurde de Seite bereits vorher importiert.",
 'importnosources'            => 'Fier dann Transwiki-Import sein kenne Quellen definiert. Doas direkte Huchloada vu Versionen ies gesperrt.',
 'importnofile'               => 'Is ies kenne Importdatei ausgewählt worden.',
 'importuploaderrorsize'      => 'Doas Huchloada dar Importdatei ies fahlgeschlaga. De Datei ies grißer ols de maximal erlaubte Dateigriße.',
@@ -1916,7 +1915,7 @@ Olle Transwiki-Import-Aksjonna waan eim [[Special:Log/import|Import-Logbuch]] pr
 'tooltip-ca-protect'              => 'Diese Seite schitza',
 'tooltip-ca-unprotect'            => 'Seitaschutz ändern',
 'tooltip-ca-delete'               => 'Diese Seite läscha',
-'tooltip-ca-undelete'             => 'Einträge wiederherstella, bevor diese Seyte geläscht wurde',
+'tooltip-ca-undelete'             => 'Einträge wiederherstella, bevor diese Seite geläscht wurde',
 'tooltip-ca-move'                 => 'Diese Seite verschieba',
 'tooltip-ca-watch'                => 'Diese Seite zer perseenlicha Beobachtungsliste hinzufiega',
 'tooltip-ca-unwatch'              => 'Diese Seite vu der perseenlicha Beobachtungsliste entferna',
@@ -1945,7 +1944,7 @@ Olle Transwiki-Import-Aksjonna waan eim [[Special:Log/import|Import-Logbuch]] pr
 'tooltip-ca-nstab-user'           => 'Benutzerseyte oazeega',
 'tooltip-ca-nstab-media'          => 'Mediendateienseyte oazeiga',
 'tooltip-ca-nstab-special'        => 'Dies ies anne Spezialseyte. Se koan ne beorbeetet waan.',
-'tooltip-ca-nstab-project'        => 'Portalseyte oazeega',
+'tooltip-ca-nstab-project'        => 'Portalseite oazeiga',
 'tooltip-ca-nstab-image'          => 'Dateiseyte oazeega',
 'tooltip-ca-nstab-mediawiki'      => 'MediaWiki-Systemtext oazeiga',
 'tooltip-ca-nstab-template'       => 'Vorlage oazeega',
@@ -1957,7 +1956,7 @@ Olle Transwiki-Import-Aksjonna waan eim [[Special:Log/import|Import-Logbuch]] pr
 'tooltip-diff'                    => 'Zeigt Änderunga oam Text tabellarisch oa',
 'tooltip-compareselectedversions' => 'Underschied zwischa zwee ausgewählta Versionen dieser Seite oazeiga.',
 'tooltip-watch'                   => 'Fiege diese Seite denner Beobachtungsliste hinzu',
-'tooltip-recreate'                => 'Seyte neu erstella, obwohl se geläscht wurde.',
+'tooltip-recreate'                => 'Seite neu erstella, obwohl se geläscht wurde.',
 'tooltip-upload'                  => 'Huchloada starta',
 'tooltip-rollback'                => 'Moacht olle letzta Änderunga dar Seite, de vum gleichen Benutzer vurgenumma waan sein, dorch ocke eenen Klick rieckgängig.',
 'tooltip-undo'                    => 'Moacht lediglich diese eene Änderung rieckgängig on zeigt doas Resultat ei dar Vorschau oa, damit ei dar Zusommafassungszeile eene Begründung angegeba waan koan.',
@@ -1969,21 +1968,21 @@ Olle Transwiki-Import-Aksjonna waan eim [[Special:Log/import|Import-Logbuch]] pr
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Anonymer Nutzer|Anonyme Nutzer}} uff {{SITENAME}}',
 'siteuser'         => '{{SITENAME}}-Benutzer $1',
-'lastmodifiedatby' => 'Diese Seyte wurde zuletzt oam $1 im $2 Seeger vu $3 geändert.',
-'othercontribs'    => 'Basierend uff dar Orbeet vu $1.',
+'lastmodifiedatby' => 'Diese Seite wurde zuletzt oam $1 im $2 Seeger vu $3 geändert.',
+'othercontribs'    => 'Basierend uff der Arbeet vu $1.',
 'others'           => 'oandera',
 'siteusers'        => '{{SITENAME}}-{{PLURAL:$2|Nutzer|Nutzer}} $1',
 'creditspage'      => 'Seytainformationa',
 'nocredits'        => 'Fier diese Seite sein kenne Informationen vurhanda.',
 
 # Spam protection
-'spamprotectiontext'  => "De Seyte, de du speichern wielst, wurde vum Spamschutzfilter blockiert. Doas leit woahrscheinlich oa an'm Link uff anne externe Seyte.",
+'spamprotectiontext'  => "De Seite, de du speichern wielst, wurde vum Spamschutzfilter blockiert. Doas leit woahrscheinlich oa an'm Link uff anne externe Seite.",
 'spamprotectionmatch' => "'''Dar folgende Text wurde vum Spamfilter gefunda: ''$1'''''",
 'spam_blanking'       => 'Olle Versionen enthielta Links zu $1, bereinigt.',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Ols kontrolliert markiern',
-'markaspatrolledtext'                 => 'Diese Seyte ols kontrolliert markiernn',
+'markaspatrolledtext'                 => 'Diese Seite ols kontrolliert markiernn',
 'markedaspatrolled'                   => 'Ols kontrolliert markiert',
 'markedaspatrolledtext'               => 'De ausgewählte Seyta änderung wurde ols kontrolliert markiert.',
 'rcpatroldisabled'                    => 'Kontrolle dar letzta Änderunga gesperrt',
@@ -2041,7 +2040,7 @@ Darauf folgende Seitalinks ei derselba Zeile definiera Ausnahma, ei deren Kontex
 
 # Metadata
 'metadata'          => 'Metadata',
-'metadata-help'     => 'Diese Datei enthält weitere Informationa, de ei dar Regel voo dar Digitalkamera oder dam verwendeta Scanner stoamma. Dorch noachträgliche Bearbeitung der Originaldatei kinna eenige Details verändert worden sein.',
+'metadata-help'     => 'Diese Datei enthält weitere Informationen, de ei der Regel vu der Digitalkamera oder dem verwendeta Scanner stoamma. Durch noachträgliche Bearbeetung der Originaldatei kinna eenge Details verändert worden sei.',
 'metadata-expand'   => 'Erweiterte Details eenblenda',
 'metadata-collapse' => 'Erweiterte Details oausblenda',
 'metadata-fields'   => 'Die folgenden Felder der EXIF-Metadaten, die in diesem MediaWiki-Systemtext angegeben sind, werden auf Bildbeschreibungsseiten mit eingeklappter Metadatentabelle angezeigt.
@@ -2182,7 +2181,7 @@ Weitere werden standardmäßig nicht angezeigt.
 
 # External editor support
 'edit-externally'      => 'Diese Datei mit annem externen Programm bearbta',
-'edit-externally-help' => '(Siehe de [//www.mediawiki.org/wiki/Manual:External_editors Installationsanweisunga] fier weitere Informationa)',
+'edit-externally-help' => '(Siehe de [//www.mediawiki.org/wiki/Manual:External_editors Installationsoaweisunga] fier weitere Informationen)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'olle',
@@ -2242,7 +2241,7 @@ Bitte bestätige, doaß du diese Seite wirklich neu erstella mechta.",
 
 # action=purge
 'confirm-purge-top'    => "Diese Seite aus 'm Server-Cache läscha?",
-'confirm-purge-bottom' => "Laart dann Cache a'r Seyte und erzwingt de Oazeige dar aktuella Version.",
+'confirm-purge-bottom' => 'Laart den Cache anner Seite und erzwingt de Oazeige der aktuellen Version.',
 
 # Multipage image navigation
 'imgmultipageprev' => '← vurherige Seite',
@@ -2261,10 +2260,10 @@ Bitte bestätige, doaß du diese Seite wirklich neu erstella mechta.",
 'table_pager_empty'        => 'Kenne Ergebnisse',
 
 # Auto-summaries
-'autosumm-blank'   => 'De Seyte wurde gelaart.',
+'autosumm-blank'   => 'De Seite wurde gelaart.',
 'autosumm-replace' => "Dar Seytainhalt wurde durch an'n andern Text ersetzt: „$1“",
 'autoredircomment' => 'Weiterleitung noach [[$1]] erstallt',
-'autosumm-new'     => 'De Seyte wurde neu oagelagt: „$1“',
+'autosumm-new'     => 'De Seite wurde neu oagelagt: „$1“',
 
 # Live preview
 'livepreview-loading' => 'Loada…',
@@ -2281,7 +2280,7 @@ Bitte bestätige, doaß du diese Seite wirklich neu erstella mechta.",
 'watchlistedit-noitems'        => 'Denne Beobachtungsliste ies laar.',
 'watchlistedit-normal-title'   => 'Beobachtungsliste bearbta',
 'watchlistedit-normal-legend'  => 'Einträge vu dar Beobachtungsliste entferna',
-'watchlistedit-normal-explain' => 'Dies sein de Einträge denner Beobachtungsliste. Im Einträge zu entferna, markiere de Kästchen neben den Einträga und klicke oam Ende dar Seyte uff „Einträge entferna“. Du koast denne Beobachtungsliste au eim [[Special:EditWatchlist/raw|Listenfurmat bearbta]].',
+'watchlistedit-normal-explain' => 'Dies sein de Einträge denner Beobachtungsliste. Im Einträge zu entferna, markiere de Kästchen neben den Einträga und klicke oam Ende der Seite uff „Einträge entferna“. Du koast denne Beobachtungsliste au eim [[Special:EditWatchlist/raw|Listenfurmat bearbta]].',
 'watchlistedit-normal-submit'  => 'Einträge entferna',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 Eintrag wurde|$1 Einträge wurden}} vu denner Beobachtungsliste entfernt:',
 'watchlistedit-raw-title'      => 'Beobachtungsliste eim Listenfurmat bearbta',

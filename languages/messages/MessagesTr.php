@@ -18,6 +18,7 @@
  * @author Fryed-peach
  * @author Goktr001
  * @author Hanberke
+ * @author Incelemeelemani
  * @author Joseph
  * @author Kaganer
  * @author Karduelis
@@ -3579,6 +3580,12 @@ Ayrıca [[Special:EditWatchlist|standart düzenleme sayfasını]] da kullanabili
 'watchlisttools-view' => 'İlgili değişiklikleri göster',
 'watchlisttools-edit' => 'İzleme listesini gör ve düzenle',
 'watchlisttools-raw'  => 'Ham izleme listesini düzenle',
+
+# Hijri month names
+'hijri-calendar-m1'  => 'Muharrem',
+'hijri-calendar-m8'  => 'Şaban',
+'hijri-calendar-m9'  => 'Ramazan',
+'hijri-calendar-m10' => 'Şevval',
 
 # Signatures
 'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|tartışma]])',

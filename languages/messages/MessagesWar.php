@@ -466,7 +466,7 @@ Alayon pagutro pagbutang.',
 'emailconfirmlink'        => 'Igkompirma an imo e-mail address',
 'accountcreated'          => 'Nahimo an akawnt',
 'accountcreatedtext'      => 'An akwant han gumaramit para kan $1 in ginhimo.',
-'createaccount-title'     => 'Paghimo hin akawant para han {{SITENAME}}',
+'createaccount-title'     => 'Paghimo hin akawnt para han {{SITENAME}}',
 'loginlanguagelabel'      => 'Yinaknan: $1',
 
 # Change password dialog
@@ -952,7 +952,8 @@ An paglaladawan han iya [$2 fayl han paglaladawan nga pakli] didto in ginpapakit
 'disambiguations'     => 'Mga pakli nga nasumpay ha mga pansayod nga pakli',
 'disambiguationspage' => 'Template:pansayod',
 
-'brokenredirects-edit' => 'igliwat',
+'brokenredirects-edit'   => 'igliwat',
+'brokenredirects-delete' => 'paraa',
 
 'withoutinterwiki-submit' => 'Igpakita',
 
@@ -963,6 +964,8 @@ An paglaladawan han iya [$2 fayl han paglaladawan nga pakli] didto in ginpapakit
 'nmembers'             => '$1 {{PLURAL:$1|nga api|nga mga api}}',
 'nrevisions'           => '$1 {{PLURAL:$1|nga pagliwat|nga mga pagliwat}}',
 'nviews'               => '$1 {{PLURAL:$1|nga pangita|nga mga pangita}}',
+'nimagelinks'          => 'Gingamit ha $1 {{PLURAL:$1|nga pakli|nga mga pakli}}',
+'ntransclusions'       => 'gingamit ha $1 {{PLURAL:$1|nga pakli|nga mga pakli}}',
 'specialpage-empty'    => 'Waray mga resulta para hini nga report.',
 'lonelypages'          => 'Mga nahibulag nga mga pakli',
 'uncategorizedpages'   => 'Mga nagkikinahanglan hin pakli',
@@ -979,13 +982,14 @@ An paglaladawan han iya [$2 fayl han paglaladawan nga pakli] didto in ginpapakit
 'prefixindex'          => 'Ngatanan nga pakli nga may-ada pahiuna-nga-sumpay',
 'shortpages'           => 'Haglipot nga mga pakli',
 'longpages'            => 'Haglaba nga mga pakli',
-'listusers'            => 'Lista han mga nagamit',
+'listusers'            => 'Lista han mga gumaramit',
 'usercreated'          => '{{GENDER:$3|Ginhimo}} han $1 ha $2',
 'newpages'             => 'Bag-o nga mga pakli',
 'newpages-username'    => 'Agnay hiton gumaramit:',
 'ancientpages'         => 'Mga gidaani nga pakli',
 'move'                 => 'Balhina',
 'movethispage'         => 'Balhina ini nga pakli',
+'notargettitle'        => 'Waray iiguon',
 'pager-newer-n'        => '{{PLURAL:$1|burubag-o 1|burubag-o $1}}',
 'pager-older-n'        => '{{PLURAL:$1|durudaan 1|durudaan $1}}',
 
@@ -995,20 +999,23 @@ An paglaladawan han iya [$2 fayl han paglaladawan nga pakli] didto in ginpapakit
 'booksources-go'            => 'Kadto-a',
 
 # Special:Log
-'specialloguserlabel' => 'Magburuhat:',
-'log'                 => 'Mga talaan',
+'specialloguserlabel'  => 'Magburuhat:',
+'speciallogtitlelabel' => 'iiguon (titulo o gumarami):',
+'log'                  => 'Mga talaan',
 
 # Special:AllPages
-'allpages'       => 'Ngatanan nga mga pakli',
-'alphaindexline' => '$1 tubtob ha $2',
-'nextpage'       => 'Sunod nga pakli ($1)',
-'prevpage'       => 'Nahiuna nga pakli ($1)',
-'allpagesfrom'   => 'Igpakita an mga pakli nga nagtitikang ha:',
-'allpagesto'     => 'Igpakita an mga pakli nga nahuhuman ha:',
-'allarticles'    => 'Ngatanan nga mga artikulo',
-'allpagesprev'   => 'Naha-una',
-'allpagesnext'   => 'Sunod',
-'allpagessubmit' => 'Kadto-a',
+'allpages'          => 'Ngatanan nga mga pakli',
+'alphaindexline'    => '$1 tubtob ha $2',
+'nextpage'          => 'Sunod nga pakli ($1)',
+'prevpage'          => 'Nahiuna nga pakli ($1)',
+'allpagesfrom'      => 'Igpakita an mga pakli nga nagtitikang ha:',
+'allpagesto'        => 'Igpakita an mga pakli nga nahuhuman ha:',
+'allarticles'       => 'Ngatanan nga mga artikulo',
+'allinnamespace'    => "Ngatanan nga mga pakli ($1 ngaran-lat'ang)",
+'allnotinnamespace' => "Ngatanan nga mga pakli (waray ha $1 ngaran-lat'ang)",
+'allpagesprev'      => 'Naha-una',
+'allpagesnext'      => 'Sunod',
+'allpagessubmit'    => 'Kadto-a',
 
 # Special:Categories
 'categories'                    => 'Mga kaarangay',
@@ -1023,20 +1030,25 @@ An paglaladawan han iya [$2 fayl han paglaladawan nga pakli] didto in ginpapakit
 
 # Special:LinkSearch
 'linksearch'      => 'Pamiling ha mga sumpay ha gawas',
+'linksearch-ns'   => "Ngaran-lat'ang:",
 'linksearch-ok'   => 'Pamilnga',
 'linksearch-line' => 'An $1 in nahasumpay tikang ha $2',
 
 # Special:ListUsers
-'listusersfrom'    => 'Igpakita an mga nagamit nga nagtitikang ha:',
-'listusers-submit' => 'Pakit-a',
+'listusersfrom'      => 'Igpakita an mga nagamit nga nagtitikang ha:',
+'listusers-submit'   => 'Pakit-a',
+'listusers-noresult' => 'Waray gumaramit nga nahiagian.',
+'listusers-blocked'  => '(ginpugngan)',
 
 # Special:ActiveUsers
 'activeusers'            => 'Lista han mga nanggigios nga gumaramit',
 'activeusers-hidebots'   => 'Igtago an mga bot',
 'activeusers-hidesysops' => 'Igtago an mga magdudumara',
+'activeusers-noresult'   => 'Waray gumaramit nga nahiagian.',
 
 # Special:Log/newusers
-'newuserlogpage' => 'Talaan han paghimo hin gumaramit',
+'newuserlogpage'     => 'Talaan han paghimo hin gumaramit',
+'newuserlogpagetext' => 'Ini an talaan han mga nagkahihimo nga mga gumaramit.',
 
 # Special:ListGroupRights
 'listgrouprights-group'           => 'Hugpo',
@@ -1071,6 +1083,7 @@ An paglaladawan han iya [$2 fayl han paglaladawan nga pakli] didto in ginpapakit
 'watchlist-options' => 'Mga pirilian han talaan han binabantayan',
 
 'enotif_newpagetext' => 'Ini in bag-o nga pakli.',
+'created'            => 'nahimo',
 'enotif_anon_editor' => 'waray magpakilala nga gumaramit $1',
 
 # Delete

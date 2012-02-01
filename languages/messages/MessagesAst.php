@@ -639,7 +639,7 @@ Contraseña temporal: $2",
 'image_tip'       => 'Inxertar imaxe',
 'media_sample'    => 'Exemplu.ogg',
 'media_tip'       => 'Enllaz a archivu',
-'sig_tip'         => 'La to firma con fecha',
+'sig_tip'         => 'La to robla con data y hora',
 'hr_tip'          => 'Llinia horizontal (úsala con moderación)',
 
 # Edit pages
