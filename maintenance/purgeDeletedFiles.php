@@ -63,7 +63,8 @@ class PurgeDeletedFiles extends Maintenance {
 			$file = $repo->newFile( Title::makeTitle( NS_FILE, $row->log_title ) );
 
 			// Purge current version and any versions in oldimage table
-			$file->purgeEverything();
+			$file->purgeCache();
+			$file->purgeHistory();
 			// Purge items from fileachive table (rows are likely here)
 			$this->purgeFromArchiveTable( $file );
 
