@@ -112,7 +112,7 @@ class HistoryAction extends FormlessAction {
 		}
 
 		// Fail nicely if article doesn't exist.
-		if ( !$this->getTitle()->exists() ) {
+		if ( !$this->page->exists() ) {
 			$out->addWikiMsg( 'nohistory' );
 			# show deletion/move log if there is an entry
 			LogEventsList::showLogExtract(
@@ -206,7 +206,7 @@ class HistoryAction extends FormlessAction {
 			$offsets = array();
 		}
 
-		$page_id = $this->getTitle()->getArticleID();
+		$page_id = $this->page->getId();
 
 		return $dbr->select( 'revision',
 			Revision::selectFields(),
@@ -343,7 +343,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			'tables'  => array( 'revision', 'user' ),
 			'fields'  => array_merge( Revision::selectFields(), Revision::selectUserFields() ),
 			'conds'   => array_merge(
-				array( 'rev_page' => $this->getTitle()->getArticleID() ),
+				array( 'rev_page' => $this->getWikiPage()->getId() ),
 				$this->conds ),
 			'options' => array( 'USE INDEX' => array( 'revision' => 'page_timestamp' ) ),
 			'join_conds' => array(
@@ -676,7 +676,7 @@ class HistoryPager extends ReverseChronologicalPager {
 				$cur,
 				array(),
 				array(
-					'diff' => $this->getTitle()->getLatestRevID(),
+					'diff' => $this->getWikiPage()->getLatest(),
 					'oldid' => $rev->getId()
 				)
 			);

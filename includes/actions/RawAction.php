@@ -166,7 +166,7 @@ class RawAction extends FormlessAction {
 				# output previous revision, or nothing if there isn't one
 				if( !$oldid ) {
 					# get the current revision so we can get the penultimate one
-					$oldid = $this->getTitle()->getLatestRevID();
+					$oldid = $this->page->getLatest();
 				}
 				$prev = $this->getTitle()->getPreviousRevisionId( $oldid );
 				$oldid = $prev ? $prev : -1 ;
