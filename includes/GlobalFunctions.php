@@ -967,7 +967,7 @@ function wfDebugLog( $logGroup, $text, $public = true ) {
  * @param $text String: database error message.
  */
 function wfLogDBError( $text ) {
-	global $wgDBerrorLog, $wgDBname;
+	global $wgDBerrorLog;
 	if ( $wgDBerrorLog ) {
 		$host = wfHostname();
 		$wiki = wfWikiID();
