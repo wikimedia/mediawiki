@@ -911,20 +911,15 @@ function wfIsDebugRawPage() {
  * @return string
  */
 function wfDebugTimer() {
-	global $wgDebugTimestamps;
+	global $wgDebugTimestamps, $wgRequestTime;
+
 	if ( !$wgDebugTimestamps ) {
 		return '';
 	}
-	static $start = null;
 
-	if ( $start === null ) {
-		$start = microtime( true );
-		$prefix = "\n$start";
-	} else {
-		$prefix = sprintf( "%6.4f", microtime( true ) - $start );
-	}
-	$mem = sprintf( "%5.1fM", ( memory_get_usage( true ) / (1024*1024) ) );
-	return "$prefix $mem  " ;
+	$prefix = sprintf( "%6.4f", microtime( true ) - $wgRequestTime );
+	$mem = sprintf( "%5.1fM", ( memory_get_usage( true ) / ( 1024 * 1024 ) ) );
+	return "$prefix $mem  ";
 }
 
 /**
