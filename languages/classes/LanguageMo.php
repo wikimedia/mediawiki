@@ -19,9 +19,9 @@ class LanguageMo extends Language {
 
 		$forms = $this->preConvertPlural( $forms, 3 );
 
-		if ( $count === 1 ) {
+		if ( $count == 1 ) {
 			$index = 0;
-		} elseif ( $count === 0 || ( $count % 100 > 0 && $count % 100 < 20 ) ) {
+		} elseif ( $count == 0 || ( $count % 100 > 0 && $count % 100 < 20 ) ) {
 			$index = 1;
 		} else {
 			$index = 2;
