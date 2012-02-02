@@ -2695,9 +2695,7 @@ $templates
 		if ( $modules ) {
 			$scripts .= Html::inlineScript(
 				ResourceLoader::makeLoaderConditionalScript(
-					"mw.loader.setBlocking( true );\n" .
-					Xml::encodeJsCall( 'mw.loader.load', array( $modules ) ) .
-					"\nmw.loader.setBlocking( false );"
+					Xml::encodeJsCall( 'mw.loader.load', array( $modules, null, true ) )
 				)
 			);
 		}
