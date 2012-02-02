@@ -947,16 +947,12 @@ function wfDebugMem( $exact = false ) {
  *                     log file is specified, (default true)
  */
 function wfDebugLog( $logGroup, $text, $public = true ) {
-	global $wgDebugLogGroups, $wgShowHostnames;
+	global $wgDebugLogGroups;
 	$text = trim( $text ) . "\n";
 	if( isset( $wgDebugLogGroups[$logGroup] ) ) {
 		$time = wfTimestamp( TS_DB );
 		$wiki = wfWikiID();
-		if ( $wgShowHostnames ) {
-			$host = wfHostname();
-		} else {
-			$host = '';
-		}
+		$host = wfHostname();
 		if ( wfRunHooks( 'Debug', array( $text, $logGroup ) ) ) {
 			wfErrorLog( "$time $host $wiki: $text", $wgDebugLogGroups[$logGroup] );
 		}
@@ -973,8 +969,9 @@ function wfDebugLog( $logGroup, $text, $public = true ) {
 function wfLogDBError( $text ) {
 	global $wgDBerrorLog, $wgDBname;
 	if ( $wgDBerrorLog ) {
-		$host = trim(`hostname`);
-		$text = date( 'D M j G:i:s T Y' ) . "\t$host\t$wgDBname\t$text";
+		$host = wfHostname();
+		$wiki = wfWikiID();
+		$text = date( 'D M j G:i:s T Y' ) . "\t$host\t$wiki\t$text";
 		wfErrorLog( $text, $wgDBerrorLog );
 	}
 }
