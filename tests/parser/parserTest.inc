@@ -837,7 +837,6 @@ class ParserTest {
 				   'iw_local'  => 1 ),
 			) );
 
-
 		# Update certain things in site_stats
 		$this->db->insert( 'site_stats', array( 'ss_row_id' => 1, 'ss_images' => 2, 'ss_good_articles' => 1 ) );
 
