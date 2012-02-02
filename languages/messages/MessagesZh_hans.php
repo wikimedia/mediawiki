@@ -1671,6 +1671,7 @@ $1',
 'backend-fail-connect'       => '无法连接到文件后端“$1”。',
 'backend-fail-internal'      => '文件后端“$1”发生了一个未知错误。',
 'backend-fail-contenttype'   => '无法判断文件的内容类型来储存于“$1”。',
+'backend-fail-batchsize'     => '鉴于一批后端 $1 文件 {{PLURAL:$1| operation|operations}} ；限制是 $2   {{PLURAL:$2| operation|operations}}。',
 
 # Lock manager
 'lockmanager-notlocked'        => '无法解锁“$1”；它没有被锁定。',

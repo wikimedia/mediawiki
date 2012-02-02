@@ -1720,7 +1720,12 @@ $1',
 'backend-fail-closetemp'     => 'Impossibile chiudere il file temporaneo.',
 'backend-fail-read'          => 'Impossibile leggere il file  $1 .',
 'backend-fail-create'        => 'Impossibile creare il file  $1 .',
-'backend-fail-readonly'      => 'Il backend "$1" è attualmente di sola lettura. La ragione indicata è: "$2"',
+'backend-fail-readonly'      => 'Il sistema interno "$1" è attualmente di sola lettura. La ragione indicata è: "$2"',
+'backend-fail-synced'        => 'Il file "$1" è in uno stato non coerente nel sistema interno.',
+'backend-fail-connect'       => 'Impossibile connettersi al sistema interno per il file "$1".',
+'backend-fail-internal'      => 'Si è verificato un errore sconosciuto nel sistema interno per il file "$1".',
+'backend-fail-contenttype'   => 'Impossibile determinare la tipologia del file da archiviare in "$1".',
+'backend-fail-batchsize'     => 'Il sistema interno avrebbe dovuto eseguire $1 {{PLURAL:$1|operazione|operazioni}} sui file ma il limite è di $2 {{PLURAL:$2|operazione|operazioni}}.',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Impossibile sbloccare "$1"; non è bloccato.',

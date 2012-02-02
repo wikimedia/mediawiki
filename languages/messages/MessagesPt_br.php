@@ -2590,8 +2590,8 @@ Consulte a [[Special:BlockList|lista de IPs bloqueados]] para rever os bloqueios
 O registro de bloqueio é fornecido abaixo, para referência:',
 'blocklog-showsuppresslog'        => 'O usuário foi bloqueado e ocultado anteriormente.
 O registro de supressão é fornecido abaixo para referência:',
-'blocklogentry'                   => '"[[$1]]" foi bloqueado com um tempo de expiração de $2 $3',
-'reblock-logentry'                => 'modificou parâmetros de bloqueio para [[$1]] com um tempo de expiração de $2 $3',
+'blocklogentry'                   => 'bloqueou "[[$1]]" $3. O bloqueio expira em $2.',
+'reblock-logentry'                => 'modificou parâmetros de bloqueio de [[$1]] $3. O bloqueio expira em $2.',
 'blocklogtext'                    => 'Este é um registro de ações de bloqueio e desbloqueio.
 Endereços IP sujeitos a bloqueio automático não são listados.
 Consulte a [[Special:BlockList|lista de IPs bloqueados]] para obter a lista de bloqueios e banimentos atualmente válidos.',

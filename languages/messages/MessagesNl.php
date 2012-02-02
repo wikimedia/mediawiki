@@ -1084,7 +1084,7 @@ U belooft ook dat u de oorspronkelijke auteur bent van dit materiaal of dat u he
 '''Gebruik geen materiaal dat beschermd wordt door auteursrecht, tenzij u daarvoor toestemming hebt!'''",
 'longpageerror'                    => "'''Fout: de tekst die u hebt toegevoegd is {{PLURAL:$1|één kilobyte|$1 kilobyte}} groot, wat groter is dan het maximum van {{PLURAL:$2|één kilobyte|$2 kilobyte}}.'''
 Opslaan is niet mogelijk.",
-'readonlywarning'                  => "'''Waarschiwing: de database is geblokkeerd voor bewerkingen, waarschijnlijk voor regulier databaseonderhoud, dus u kunt deze nu niet opslaan.'''
+'readonlywarning'                  => "'''Waarschuwing: de database is geblokkeerd voor bewerkingen, waarschijnlijk voor regulier databaseonderhoud, dus u kunt deze nu niet opslaan.'''
 Het is misschien verstandig om uw tekst tijdelijk in een tekstbestand op te slaan om dit te bewaren voor wanneer de blokkering van de database opgeheven is.
 
 Een beheerder heeft de database geblokkeerd om de volgende reden: $1",
