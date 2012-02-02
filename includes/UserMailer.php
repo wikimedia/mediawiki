@@ -67,6 +67,8 @@ class MailAddress {
 			} else {
 				return $this->address;
 			}
+		} else {
+			return '';
 		}
 	}
 

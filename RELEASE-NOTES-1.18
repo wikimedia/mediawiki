@@ -14,6 +14,8 @@ This is a maintenance release of the MediaWiki 1.18 branch.
  a SQLite database.
 * (Bug 33865) Exception thrown in action=parse when attempting to use the title
   parameter without setting the text parameter.
+* UserMailer could potentially throw a fatal error when a MailAddress object had
+  an empty email address.
 
 == MediaWiki 1.18.1 ==
 2012-01-11
