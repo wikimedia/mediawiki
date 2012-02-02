@@ -243,6 +243,8 @@ production.
 * Other sizes links are no longer generated for wikis without a 404 thumbnail handler.
 * (bug 29454) Enforce byteLimit for page title input on Special:MovePage
 * (bug 34114) CSSMin::remap() doesn't respect its $embed parameter
+* Special:Contributions/newbies now shows the contributions for the user "newbies".
+  New user contributions are obtained using the form or using ?contribs=newbie in URL.
 
 === API changes in 1.19 ===
 * Made action=edit less likely to return "unknownerror", by returning the actual error
