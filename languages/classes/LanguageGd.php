@@ -29,13 +29,13 @@ class LanguageGd extends Language {
 		$forms = $this->preConvertPlural( $forms, 6 );
 
 		$count = abs( $count );
-		if ( $count === 1 ) {
+		if ( $count == 1 ) {
 			return $forms[0];
-		} elseif ( $count === 2 ) {
+		} elseif ( $count == 2 ) {
 			return $forms[1];
-		} elseif ( $count === 11 ) {
+		} elseif ( $count == 11 ) {
 			return $forms[2];
-		} elseif ( $count === 12 ) {
+		} elseif ( $count == 12 ) {
 			return $forms[3];
 		} elseif ( ($count >= 3 && $count <= 10) || ($count >= 13 && $count <= 19) ) {
 			return $forms[4];
