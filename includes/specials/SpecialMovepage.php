@@ -267,7 +267,7 @@ class MovePageForm extends UnlistedSpecialPage {
 						array( 'selected' => $newTitle->getNamespace() ),
 						array( 'name' => 'wpNewTitleNs', 'id' => 'wpNewTitleNs' )
 					) .
-					Xml::input( 'wpNewTitleMain', 60, $wgContLang->recodeForEdit( $newTitle->getBaseText() ), array(
+					Xml::input( 'wpNewTitleMain', 60, $wgContLang->recodeForEdit( $newTitle->getText() ), array(
 						'type' => 'text',
 						'id' => 'wpNewTitleMain',
 						'maxlength' => 255,
