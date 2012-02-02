@@ -726,6 +726,7 @@ return array(
 		'scripts' => 'resources/mediawiki.page/mediawiki.page.startup.js',
 		'dependencies' => array(
 			'jquery.client',
+			'mediawiki.util',
 		),
 		'position' => 'top',
 	),
