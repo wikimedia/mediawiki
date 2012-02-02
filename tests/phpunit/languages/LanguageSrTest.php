@@ -12,7 +12,7 @@
  * @file
  */
 
-require_once dirname(dirname(__FILE__)). '/bootstrap.php';
+require_once dirname( dirname( __FILE__ ) ) . '/bootstrap.php';
 
 /** Tests for MediaWiki languages/LanguageTr.php */
 class LanguageSrTest extends MediaWikiTestCase {
@@ -20,7 +20,7 @@ class LanguageSrTest extends MediaWikiTestCase {
 	private $lang;
 
 	function setUp() {
-		$this->lang = Language::factory( 'Sr' );
+		$this->lang = Language::factory( 'sr' );
 	}
 	function tearDown() {
 		unset( $this->lang );
@@ -62,7 +62,7 @@ class LanguageSrTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @author Nikola Smolenski 
+	 * @author Nikola Smolenski
 	 */
 	function testConversionToCyrillic() {
 		$this->assertEquals( 'абвг',
@@ -77,7 +77,7 @@ class LanguageSrTest extends MediaWikiTestCase {
 		$this->assertEquals( 'абвгшђжчћ',
 			$this->convertToCyrillic( 'абвгšđžčć' )
 		);
-		//Roman numerals are not converted
+		// Roman numerals are not converted
 		$this->assertEquals( 'а I б II в III г IV шђжчћ',
 			$this->convertToCyrillic( 'a I b II v III g IV šđžčć' )
 		);
@@ -121,7 +121,7 @@ class LanguageSrTest extends MediaWikiTestCase {
 	}
 	/** @dataProvider providePluralTwoForms */
 	function testPluralTwoForms( $result, $value ) {
-		$forms =  array( 'one', 'several' );
+		$forms = array( 'one', 'several' );
 		$this->assertEquals( $result, $this->lang->convertPlural( $value, $forms ) );
 	}
 	function providePluralTwoForms() {
