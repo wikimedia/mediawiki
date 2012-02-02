@@ -1098,8 +1098,9 @@ $3',
 Иннæ æрвитæнтæ уыцы рæнхъы нымады кæнынц куыд уæлвæткытæ, кæдон сты фæрстæ кæдæм ис бар бавæрын файл.',
 
 # Metadata
-'metadata'        => 'Метабæрæггæнæнтæ',
-'metadata-expand' => 'Фылдæр детальтæ равдис',
+'metadata'          => 'Метабæрæггæнæнтæ',
+'metadata-expand'   => 'Равдисын лæмбынæг афыст',
+'metadata-collapse' => 'Айсын лæмбынæг афыст',
 
 # EXIF tags
 'exif-imagewidth'   => 'Уæрх',
@@ -1163,5 +1164,23 @@ $3',
 
 # Special:SpecialPages
 'specialpages' => 'Сæрмагонд фæрстæ',
+
+# Special:Tags
+'tags-edit' => 'ивын',
+
+# Special:ComparePages
+'compare-page1'  => 'Фарс 1',
+'compare-page2'  => 'Фарс 2',
+'compare-rev1'   => 'Фæлтæр 1',
+'compare-rev2'   => 'Фæлтæр 2',
+'compare-submit' => 'Абарын',
+
+# HTML forms
+'htmlform-selectorother-other' => 'Æндæр',
+
+# Feedback
+'feedback-subject' => 'Сæр:',
+'feedback-message' => 'Фыстæг:',
+'feedback-close'   => 'Æххæст',
 
 );

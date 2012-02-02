@@ -11,6 +11,7 @@
  * @author Anakmalaysia
  * @author Andrew971218
  * @author Bencmq
+ * @author Breawycker
  * @author FireJackey
  * @author Frankou
  * @author Gaoxuewei
@@ -1660,6 +1661,7 @@ $1',
 'backend-fail-connect'       => '無法連結至檔案後方“$1”。',
 'backend-fail-internal'      => '檔案後方“$1”發生了一個未知錯誤。',
 'backend-fail-contenttype'   => '無法確定檔案的內容類型以存儲於“$1”。',
+'backend-fail-batchsize'     => '鑒於一批後端 $1 檔 {{PLURAL:$1| operation|operations}} ；限制是 $2   {{PLURAL:$2| operation|operations}}。',
 
 # Lock manager
 'lockmanager-notlocked'        => '無法解鎖「$1」；它沒有被鎖定。',

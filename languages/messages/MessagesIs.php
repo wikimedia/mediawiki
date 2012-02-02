@@ -3093,7 +3093,7 @@ Ef skránni hefur verið breytt, kann að vera að einhverjar upplýsingar eigi 
 'exif-componentsconfiguration-0' => 'er ekki til',
 
 'exif-exposureprogram-0' => 'Ekki skilgreind',
-'exif-exposureprogram-1' => 'Sjálfvirk',
+'exif-exposureprogram-1' => 'Handvirk',
 'exif-exposureprogram-2' => 'Hefðbundin stilling',
 'exif-exposureprogram-3' => 'Forgangur ljósops',
 'exif-exposureprogram-4' => 'Forgangur lokara',

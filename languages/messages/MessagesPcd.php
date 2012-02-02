@@ -121,6 +121,7 @@ $messages = array(
 'category-file-count'            => "{{PLURAL:$2|Chol catégorie o seulemint chol fichié-lo.|{{PLURAL:$1|Ech fichier-lo est|$1 Chés fichiés-lo sont}} din l'catégorie-lo, pou un total éd $2 fichiés.}}",
 'category-file-count-limited'    => "{{PLURAL:$1|Ech fichié d'apré est|Chés $1 fichiés d'apré sont}} dins l'catégorie-lo.",
 'listingcontinuesabbrev'         => 'cont.',
+'broken-file-category'           => "Paches aveuc des loïens d'fichiés bérzillés",
 
 'about'         => 'À pérpos',
 'article'       => 'Étnu del pache',
@@ -236,7 +237,8 @@ $messages = array(
 'privacy'              => "Politique d'éscrè",
 'privacypage'          => "Project:Politique d'éscrè",
 
-'badaccess' => 'Bérlure éd pérmission',
+'badaccess'        => 'Bérlure éd pérmission',
+'badaccess-group0' => 'Vos n’avez poin chés droéts pour foaire l’action dmindée.',
 
 'ok'                      => 'OK',
 'retrievedfrom'           => 'Érprind din  "$1"',
@@ -303,6 +305,7 @@ Si s'n'est poin ch'cas-lo, pététe éq ch'est un bogue din ch'businkillache. <b
 'badtitle'             => 'Méchant tite',
 'badtitletext'         => "Ch'tite del pache écmindée n'est poin valabe, est vide, ou bin ch'est un tite inter-langue ou inter-proujé aveuc des méchands loïens. Pététe qu'il y o un ou des caractére(s) éq i feut poin mette din chés tites.",
 'viewsource'           => "Vir l'source",
+'viewsource-title'     => "Vir l'source éd $1",
 'protectedpagetext'    => "L'pache-lo ale o té garantie pou impétcher chés canjemints.",
 'sqlhidden'            => "(l'édminde SQL est muchée)",
 'ns-specialprotected'  => "Ches paches éspéchiales, is n'peute poin éte éditées.",

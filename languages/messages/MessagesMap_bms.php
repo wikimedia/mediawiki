@@ -1348,7 +1348,8 @@ Tulung digatekna nek situs web liyane ndeyan esih duwe pranala ming sawijining b
 'booksources-go'            => 'Goleti',
 
 # Special:Log
-'log' => 'Log',
+'specialloguserlabel' => 'Panganggo:',
+'log'                 => 'Log',
 
 # Special:AllPages
 'allpages'       => 'Kabèh kaca',
