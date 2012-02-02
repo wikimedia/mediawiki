@@ -364,9 +364,6 @@ var mw = ( function ( $, undefined ) {
 				jobs = [],
 				// Flag indicating that document ready has occured
 				ready = false,
-				// Whether we should try to load scripts in a blocking way 
-				// Set with setBlocking()
-				blocking = false,
 				// Selector cache for the marker element. Use getMarker() to get/use the marker!
 				$marker = null;
 	
@@ -549,7 +546,7 @@ var mw = ( function ( $, undefined ) {
 				var j, r;
 	
 				try {
-					// Run jobs who's dependencies have just been met
+					// Run jobs whose dependencies have just been met
 					for ( j = 0; j < jobs.length; j += 1 ) {
 						if ( compare(
 							filter( 'ready', jobs[j].dependencies ),
@@ -562,7 +559,7 @@ var mw = ( function ( $, undefined ) {
 							j -= 1;
 						}
 					}
-					// Execute modules who's dependencies have just been met
+					// Execute modules whose dependencies have just been met
 					for ( r in registry ) {
 						if ( registry[r].state === 'loaded' ) {
 							if ( compare(
@@ -594,7 +591,7 @@ var mw = ( function ( $, undefined ) {
 			 * @param src String: URL to script, will be used as the src attribute in the script tag
 			 * @param callback Function: Optional callback which will be run when the script is done
 			 */
-			function addScript( src, callback ) {
+			function addScript( src, callback, blocking ) {
 				var done = false, script, head;
 				if ( ready || !blocking ) {
 					// jQuery's getScript method is NOT better than doing this the old-fashioned way
@@ -710,7 +707,7 @@ var mw = ( function ( $, undefined ) {
 							callback();
 						}
 					};
-					nestedAddScript = function ( arr, callback, i ) {
+					nestedAddScript = function ( arr, callback, blocking, i ) {
 						// Recursively call addScript() in its own callback
 						// for each element of arr.
 						if ( i >= arr.length ) {
@@ -720,13 +717,13 @@ var mw = ( function ( $, undefined ) {
 						}
 	
 						addScript( arr[i], function() {
-							nestedAddScript( arr, callback, i + 1 );
-						} );
+							nestedAddScript( arr, callback, blocking, i + 1 );
+						}, blocking );
 					};
 	
 					if ( $.isArray( script ) ) {
 						registry[module].state = 'loading';
-						nestedAddScript( script, markModuleReady, 0 );
+						nestedAddScript( script, markModuleReady, registry[module].blocking, 0 );
 					} else if ( $.isFunction( script ) ) {
 						script( $ );
 						markModuleReady();
@@ -749,8 +746,10 @@ var mw = ( function ( $, undefined ) {
 			 * @param dependencies string module name or array of string module names
 			 * @param ready function callback to execute when all dependencies are ready
 			 * @param error function callback to execute when any dependency fails
+			 * @param blocking (optional) If true, load modules in a blocking fashion if
+			 *   document ready has not yet occurred
 			 */
-			function request( dependencies, ready, error ) {
+			function request( dependencies, ready, error, blocking ) {
 				var regItemDeps, regItemDepLen, n;
 	
 				// Allow calling by single module name
@@ -782,6 +781,10 @@ var mw = ( function ( $, undefined ) {
 				for ( n = 0; n < dependencies.length; n += 1 ) {
 					if ( $.inArray( dependencies[n], queue ) === -1 ) {
 						queue[queue.length] = dependencies[n];
+						if ( blocking ) {
+							// Mark this module as blocking in the registry
+							registry[dependencies[n]].blocking = true;
+						}
 					}
 				}
 				// Work the queue
@@ -821,8 +824,9 @@ var mw = ( function ( $, undefined ) {
 			 * @param moduleMap {Object}: Module map, see buildModulesString()
 			 * @param currReqBase {Object}: Object with other parameters (other than 'modules') to use in the request
 			 * @param sourceLoadScript {String}: URL of load.php
+			 * @param blocking {Boolean}: If true, use a blocking request if document ready has not yet occurred
 			 */
-			function doRequest( moduleMap, currReqBase, sourceLoadScript ) {
+			function doRequest( moduleMap, currReqBase, sourceLoadScript, blocking ) {
 				var request = $.extend(
 					{ 'modules': buildModulesString( moduleMap ) },
 					currReqBase
@@ -830,7 +834,7 @@ var mw = ( function ( $, undefined ) {
 				request = sortQuery( request );
 				// Asynchronously append a script tag to the end of the body
 				// Append &* to avoid triggering the IE6 extension check
-				addScript( sourceLoadScript + '?' + $.param( request ) + '&*' );
+				addScript( sourceLoadScript + '?' + $.param( request ) + '&*', null, blocking );
 			}
 	
 			/* Public Methods */
@@ -842,7 +846,7 @@ var mw = ( function ( $, undefined ) {
 					var	reqBase, splits, maxQueryLength, q, b, bSource, bGroup, bSourceGroup,
 						source, group, g, i, modules, maxVersion, sourceLoadScript,
 						currReqBase, currReqBaseLength, moduleMap, l,
-						lastDotIndex, prefix, suffix, bytesAdded;
+						lastDotIndex, prefix, suffix, bytesAdded, blocking;
 		
 					// Build a list of request parameters common to all requests.
 					reqBase = {
@@ -919,7 +923,7 @@ var mw = ( function ( $, undefined ) {
 		
 							currReqBase = $.extend( { 'version': formatVersionNumber( maxVersion ) }, reqBase );
 							currReqBaseLength = $.param( currReqBase ).length;
-							moduleMap = {};
+							blocking = false;
 							// We may need to split up the request to honor the query string length limit,
 							// so build it piece by piece.
 							l = currReqBaseLength + 9; // '&modules='.length == 9
@@ -941,19 +945,26 @@ var mw = ( function ( $, undefined ) {
 								if ( maxQueryLength > 0 && !$.isEmptyObject( moduleMap ) && l + bytesAdded > maxQueryLength ) {
 									// This request would become too long, create a new one
 									// and fire off the old one
-									doRequest( moduleMap, currReqBase, sourceLoadScript );
+									doRequest( moduleMap, currReqBase, sourceLoadScript, blocking );
 									moduleMap = {};
+									blocking = false;
 									l = currReqBaseLength + 9;
 								}
 								if ( moduleMap[prefix] === undefined ) {
 									moduleMap[prefix] = [];
 								}
 								moduleMap[prefix].push( suffix );
+								if ( registry[modules[i]].blocking ) {
+									// If this module is blocking, make the entire request blocking
+									// This is slightly suboptimal, but in practice mixing of blocking
+									// and non-blocking modules will only occur in debug mode.
+									blocking = true;
+								}
 								l += bytesAdded;
 							}
 							// If there's anything left in moduleMap, request that too
 							if ( !$.isEmptyObject( moduleMap ) ) {
-								doRequest( moduleMap, currReqBase, sourceLoadScript );
+								doRequest( moduleMap, currReqBase, sourceLoadScript, blocking );
 							}
 						}
 					}
@@ -1135,8 +1146,10 @@ var mw = ( function ( $, undefined ) {
 				 * @param type {String} mime-type to use if calling with a URL of an
 				 *  external script or style; acceptable values are "text/css" and
 				 *  "text/javascript"; if no type is provided, text/javascript is assumed.
+				 * @param blocking {Boolean} (optional) If true, load modules in a blocking
+				 *  fashion if document ready has not yet occurred
 				 */
-				load: function ( modules, type ) {
+				load: function ( modules, type, blocking ) {
 					var filtered, m;
 
 					// Validate input
@@ -1155,7 +1168,7 @@ var mw = ( function ( $, undefined ) {
 								} ) );
 								return;
 							} else if ( type === 'text/javascript' || type === undefined ) {
-								addScript( modules );
+								addScript( modules, null, blocking );
 								return;
 							}
 							// Unknown type
@@ -1188,7 +1201,7 @@ var mw = ( function ( $, undefined ) {
 					}
 					// Since some modules are not yet ready, queue up a request
 					else {
-						request( filtered );
+						request( filtered, null, null, blocking );
 						return;
 					}
 				},
@@ -1253,18 +1266,6 @@ var mw = ( function ( $, undefined ) {
 					return $.map( registry, function ( i, key ) {
 						return key;
 					} );
-				},
-
-				/**
-				 * Enable or disable blocking. If blocking is enabled and
-				 * document ready has not yet occurred, scripts will be loaded
-				 * in a blocking way (using document.write) rather than
-				 * asynchronously using DOM manipulation
-				 * 
-				 * @param b {Boolean} True to enable blocking, false to disable it
-				 */
-				setBlocking: function( b ) {
-					blocking = b;
 				},
 		
 				/**
