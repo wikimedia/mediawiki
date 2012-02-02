@@ -760,7 +760,7 @@ $wgMaxAnimatedGifArea = 1.25e7;
  * Update if there is some need to force thumbs and SVG rasterizations
  * to rerender, such as fixes to rendering bugs.
  */
-$wgThumbnailEpoch = '20110101000000';
+$wgThumbnailEpoch = '20030516000000';
 
 /**
  * If set, inline scaled images will still produce <img> tags ready for
@@ -1683,7 +1683,7 @@ $wgCachePages = true;
  * You can get the current date on your server by using the command:
  *   date +%Y%m%d%H%M%S
  */
-$wgCacheEpoch = '20110101000000';
+$wgCacheEpoch = '20030516000000';
 
 /**
  * Bump this number when changing the global style sheets and JavaScript.
