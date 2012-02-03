@@ -1,7 +1,10 @@
 // tipsy, facebook style tooltips for jquery
-// version 1.0.0a
+// version 1.0.0a*
 // (c) 2008-2010 jason frame [jason@onehackoranother.com]
-// releated under the MIT license
+// released under the MIT license
+
+// * This installation of tipsy includes several local modifications to both Javascript and CSS.
+//   Please be careful when upgrading.
 
 (function($) {
 
