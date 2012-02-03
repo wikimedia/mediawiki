@@ -15,6 +15,7 @@
  * @author Haritosh
  * @author Jay
  * @author Kaganer
+ * @author KartikMistry
  * @author Mohit.dalal
  * @author Nehal
  * @author Ramesh
@@ -709,7 +710,7 @@ Please log in again after you receive it.
 
 # Edit page toolbar
 'bold_sample'     => 'ઘાટા અક્ષર',
-'bold_tip'        => 'ઘાટા અક્ષર',
+'bold_tip'        => 'ઘાટું લખાણ',
 'italic_sample'   => 'ત્રાંસા અક્ષર',
 'italic_tip'      => 'ઇટાલિક (ત્રાંસુ) લખાણ',
 'link_sample'     => 'કડીનું શીર્ષક',

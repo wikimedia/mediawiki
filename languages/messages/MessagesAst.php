@@ -461,8 +461,8 @@ Ten en cuenta que dalgunes páxines puen siguir apaeciendo como si tovía tuvier
 Se creó la to cuenta.
 Nun t'escaezas d'escoyer les tos [[Special:Preferences|preferencies de {{SITENAME}}]].",
 'yourname'                   => "Nome d'usuariu:",
-'yourpassword'               => 'Contraseña:',
-'yourpasswordagain'          => 'Reescribi la to clave:',
+'yourpassword'               => 'Conseña:',
+'yourpasswordagain'          => 'Escribi otra vuelta la to conseña:',
 'remembermypassword'         => 'Recordar la mio identificación nesti ordenador (por un máximu de $1 {{PLURAL:$1|día|díes}})',
 'securelogin-stick-https'    => "Siguir coneutáu al HTTPS dempués d'identificate",
 'yourdomainname'             => 'El to dominiu:',
@@ -488,7 +488,10 @@ Nun t'escaezas d'escoyer les tos [[Special:Preferences|preferencies de {{SITENAM
 Por favor escueyi un nome diferente.",
 'loginerror'                 => "Error d'identificación",
 'createaccounterror'         => 'Nun se pudo crear la cuenta: $1',
-'nocookiesnew'               => "La cuenta d'usuariu ta creada, pero nun tas identificáu. {{SITENAME}} usa cookies pa identificar a los usuarios. Tienes les cookies deshabilitaes. Por favor actívales y depués identifícate col to nuevu nome d'usuariu y la clave.",
+'nocookiesnew'               => "La cuenta d'usuariu ta creada, pero nun tas identificáu.
+{{SITENAME}} usa cookies pa identificar a los usuarios.
+Tienes les cookies desactivaes.
+Por favor activales y depués entra col to nuevu nome d'usuariu y conseña.",
 'nocookieslogin'             => '{{SITENAME}} usa cookies pa identificar a los usuarios. Tienes les cookies deshabilitaes. Por favor actívales y inténtalo otra vuelta.',
 'nocookiesfornew'            => "La cuenta nun se creó, porque nun pudimos confirmar l'orixe.
 Asegúrate de tener activaes les cookies, recarga esta páxina y vuelve a tentalo.",
@@ -502,30 +505,32 @@ Comprueba la ortografía o [[Special:UserLogin/signup|crea una cuenta d\'usuariu
 Mira que tea bien escritu.',
 'nouserspecified'            => "Has especificar un nome d'usuariu.",
 'login-userblocked'          => 'Esti usuariu ta bloquiáu. Nun se permite la conexón.',
-'wrongpassword'              => 'Clave errónea.  Inténtalo otra vuelta.',
-'wrongpasswordempty'         => 'La clave taba en blanco. Inténtalo otra vuelta.',
+'wrongpassword'              => 'La conseña escrita ye incorreuta.
+Vuelvi a intentalo.',
+'wrongpasswordempty'         => 'La conseña taba en blanco.
+Vuelvi a intentalo.',
 'passwordtooshort'           => 'Les contraseñes han de tener a lo menos {{PLURAL:$1|1 caráuter|$1 caráuteres}}.',
-'password-name-match'        => "La contraseña tien de ser distinta del nome d'usuariu.",
-'password-login-forbidden'   => "Ta torgao usar esti nome d'usuariu y contraseña.",
-'mailmypassword'             => 'Unviar la clave nueva',
-'passwordremindertitle'      => 'Nueva clave provisional pa {{SITENAME}}',
-'passwordremindertext'       => 'Daquién (seique tu, dende la direición IP $1) solicitó una clave
-nueva pa {{SITENAME}} ($4). Creóse una clave temporal pal usuariu
-"$2" que ye "$3". Si fuisti tu, necesites identificate y escoyer una
-clave nueva agora. La clave temporal caduca {{PLURAL:$5|nun día|en $5 díes}}.
+'password-name-match'        => "La conseña tien de ser distinta del nome d'usuariu.",
+'password-login-forbidden'   => "Ta torgao usar esti nome d'usuariu y conseña.",
+'mailmypassword'             => 'Unviar la conseña nueva per corréu',
+'passwordremindertitle'      => 'Nueva conseña provisional pa {{SITENAME}}',
+'passwordremindertext'       => 'Daquién (seique tu, dende la direición IP $1) solicitó una conseña
+nueva pa {{SITENAME}} ($4). Se creó una conseña temporal pal usuariu
+"$2" que ye "$3". Si fuisti tu, necesites identificate y escoyer
+una conseña nueva agora. La conseña temporal caducará {{PLURAL:$5|nun día|en $5 díes}}.
 
-Si daquién más fizo esta solicitú, o si recuerdes la to clave y
-nun quies volver a camudala, pues inorar esti mensaxe y siguir
-usando la to clave vieya.',
+Si esta solicitú la fizo otra persona, o si recuerdes la conseña y
+nun quies volver a camudala, pues escaecete d\'esti mensaxe y siguir
+usando la conseña antigua.',
 'noemail'                    => 'L\'usuariu "$1" nun tien puesta direición de corréu.',
 'noemailcreate'              => 'Tienes de conseñar una direición de corréu válida',
-'passwordsent'               => 'S\'unvió una clave nueva a la direición de corréu rexistrada pa "$1".
+'passwordsent'               => 'S\'unvió una conseña nueva a la direición de corréu rexistrada pa "$1".
 Por favor vuelve a coneutate depués de recibila.',
-'blocked-mailpassword'       => 'La edición dende la to direición IP ta bloquiada, y por tanto nun se pue usar la función de recuperación de clave pa evitar abusos.',
+'blocked-mailpassword'       => 'La edición dende la to direición IP ta bloquiada, y poro nun se pue usar la función de recuperación de conseña pa evitar abusos.',
 'eauthentsent'               => "S'unvió un corréu electrónicu de confirmación a la direición indicada.
 Enantes de que s'unvie nengún otru corréu a la cuenta, has siguir les instrucciones del corréu electrónicu, pa confirmar que la cuenta ye de to.",
-'throttled-mailpassword'     => "Yá s'unvió un recordatoriu de la clave {{PLURAL:$1|na cabera hora|nes caberes $1 hores}}.
-Pa evitar l'abusu, namái s'unviará un recordatoriu cada {{PLURAL:$1|hora|$1 hores}}.",
+'throttled-mailpassword'     => "Yá s'unvió un recordatoriu de la conseña {{PLURAL:$1|na cabera hora|nes caberes $1 hores}}.
+Pa evitar abusos, namái s'unviará un recordatoriu cada {{PLURAL:$1|hora|$1 hores}}.",
 'mailerror'                  => 'Error al unviar el corréu: $1',
 'acct_creation_throttle_hit' => "Los visitantes d'esta wiki qu'usen la to direición IP yá crearon güei {{PLURAL:$1|1 cuenta|$1 cuentes}}, que ye'l máximu almitíu nesti periodu de tiempu.
 Poro, los visitantes qu'usen esta direición IP nun puen crear más cuentes de momentu.",
@@ -540,9 +545,10 @@ Por favor escribi una direición con formatu afayadizu o dexa vaciu'l campu.",
 'accountcreated'             => 'Cuenta creada',
 'accountcreatedtext'         => "La cuenta d'usuariu de $1 ta creada.",
 'createaccount-title'        => 'Creación de cuenta pa {{SITENAME}}',
-'createaccount-text'         => 'Daquién creó una cuenta cola to direición de corréu electrónicu en {{SITENAME}} ($4) nomada "$2", asociada a la clave "$3". Tendríes de coneutate y camudar la to clave agora.
+'createaccount-text'         => 'Daquién creó una cuenta cola to direición de corréu electrónicu en {{SITENAME}} ($4) nomada "$2", asociada a la conseña "$3".
+Tendríes d\'entrar y camudar la conseña agora.
 
-Pues inorar esti mensaxe si esta cuenta se creó por error.',
+Pues escaecer esti mensaxe si esta cuenta se creó por error.',
 'usernamehasherror'          => "El nome d'usuariu nun pue contener caráuteres hash",
 'login-throttled'            => "Ficisti demasiaos intentos recientes de conexón.
 Por favor espera enantes d'intentalo otra vuelta.",
@@ -555,35 +561,35 @@ Por favor espera enantes d'intentalo otra vuelta.",
 'user-mail-no-addy'      => 'Tentasti unviar un corréu ensin direición de corréu electrónicu.',
 
 # Change password dialog
-'resetpass'                 => 'Camudar la clave',
-'resetpass_announce'        => "T'identificasti con una clave temporal unviada per corréu.
-P'acabar d'identificate has d'escribir equí una clave nueva:",
+'resetpass'                 => 'Camudar la conseña',
+'resetpass_announce'        => "Entrasti con una conseña provisional unviada per corréu.
+P'acabar d'identificate, tienes d'escribir equí una conseña nueva:",
 'resetpass_text'            => '<!-- Amestar testu equí -->',
-'resetpass_header'          => 'Camudar la clave de la cuenta',
-'oldpassword'               => 'Clave vieya:',
-'newpassword'               => 'Clave nueva:',
-'retypenew'                 => 'Repiti la nueva clave:',
-'resetpass_submit'          => 'Camudar clave y coneutar',
-'resetpass_success'         => '¡La to clave se camudó correutamente!
+'resetpass_header'          => 'Camudar la conseña de la cuenta',
+'oldpassword'               => 'Conseña antigua:',
+'newpassword'               => 'Conseña nueva:',
+'retypenew'                 => 'Escribi otra vuelta la nueva conseña:',
+'resetpass_submit'          => 'Definir una conseña y entrar',
+'resetpass_success'         => '¡La to conseña se camudó correutamente!
 Coneutando dafechu...',
 'resetpass_forbidden'       => 'Les claves nun se puen camudar',
 'resetpass-no-info'         => "Has tar identificáu p'acceder direutamente a esta páxina.",
-'resetpass-submit-loggedin' => 'Camudar clave',
+'resetpass-submit-loggedin' => 'Camudar la conseña',
 'resetpass-submit-cancel'   => 'Encaboxar',
-'resetpass-wrong-oldpass'   => "La clave temporal o d'anguaño nun ye válida.
-Seique yá camudasti la clave temporal o que solicitasti otra nueva.",
-'resetpass-temp-password'   => 'Clave temporal:',
+'resetpass-wrong-oldpass'   => 'La conseña temporal o actual nun ye válida.
+Seique yá camudasti correutamente la conseña o que pidieras una nueva conseña temporal.',
+'resetpass-temp-password'   => 'Conseña temporal:',
 
 # Special:PasswordReset
-'passwordreset'                    => 'Reaniciar contraseña',
+'passwordreset'                    => 'Reaniciar conseña',
 'passwordreset-text'               => 'Completa esti formulariu pa recibir un corréu que te recuerde los detalles de la to cuenta.',
-'passwordreset-legend'             => 'Reaniciar contraseña',
-'passwordreset-disabled'           => 'Los reanicios de contraseña tan desactivaos nesta wiki.',
+'passwordreset-legend'             => 'Reaniciar conseña',
+'passwordreset-disabled'           => 'Los reanicios de conseña tan desactivaos nesta wiki.',
 'passwordreset-pretext'            => "{{PLURAL:$1||Escribi una de les partes de los datos d'abaxo}}",
 'passwordreset-username'           => "Nome d'usuariu:",
 'passwordreset-domain'             => 'Dominiu:',
 'passwordreset-capture'            => '¿Ver el mensaxe de corréu resultante?',
-'passwordreset-capture-help'       => "Si marques esta caxella, podrás ver el corréu (cola contraseña temporal) de la que s'unvía al usuariu.",
+'passwordreset-capture-help'       => "Si marques esta caxella, podrás ver el corréu (cola conseña temporal) de la que s'unvia al usuariu.",
 'passwordreset-email'              => 'Direición de corréu:',
 'passwordreset-emailtitle'         => 'Detalles de la cuenta en {{SITENAME}}',
 'passwordreset-emailtext-ip'       => "Dalguién (seique tu, dende la direición IP $1) pidió un recordatoriu cola
@@ -592,21 +598,21 @@ información de la to cuenta de {{SITENAME}} ($4).
 
 $2
 
-{{PLURAL:$3|Esta contraseña temporal caducará|Estes contraseñes temporales caducarán}} {{PLURAL:$5|nun día|en $5 díes}}.
-Tendríes d'entrar al sistema y escoyer una contraseña nueva agora. Si esta
-solicitú ye d'otru o recordasti la contraseña orixinal y nun quies camudala,
-inora esti mensaxe y sigui emplegando la contraseña antigua.",
+{{PLURAL:$3|Esta conseña temporal caducará|Estes conseñes temporales caducarán}} {{PLURAL:$5|nún día|en $5 díes}}.
+Tendríes d'entrar al sistema y escoyer una conseña nueva agora. Si esta
+solicitú ye d'otru o recordasti la conseña orixinal y nun quies camudala,
+escaez esti mensaxe y sigui emplegando la conseña antigua.",
 'passwordreset-emailtext-user'     => "L'usuariu $1 de {{SITENAME}} pidió un recordatoriu cola información de la to cuenta de {{SITENAME}} ($4).
 {{PLURAL:$3|La siguiente cuenta d'usuariu ta asociada|Les siguientes cuentes d'usuariu tan asociaes}} con esta direición de corréu:
 
 $2
 
-{{PLURAL:$3|Esta contraseña temporal caducará|Estes contraseñes temporales caducarán}} {{PLURAL:$5|nun día|en $5 díes}}.
-Tendríes d'entrar al sistema y escoyer una contraseña nueva agora. Si esta
-solicitú ye d'otru o recordasti la contraseña orixinal y nun quies camudala,
-inora esti mensaxe y sigui emplegando la contraseña antigua.",
+{{PLURAL:$3|Esta conseña temporal caducará|Estes conseñes temporales caducarán}} {{PLURAL:$5|nun día|en $5 díes}}.
+Tendríes d'entrar al sistema y escoyer una conseña nueva agora. Si esta
+solicitú ye d'otru o recordasti la conseña orixinal y nun quies camudala,
+escaez esti mensaxe y sigui emplegando la conseña antigua.",
 'passwordreset-emailelement'       => "Nome d'usuariu: $1
-Contraseña temporal: $2",
+Conseña temporal: $2",
 'passwordreset-emailsent'          => "S'unvió un corréu de recordatoriu.",
 'passwordreset-emailsent-capture'  => "S'unvió un corréu de recordatoriu, que s'amuesa abaxo.",
 'passwordreset-emailerror-capture' => "Se xeneró un corréu de recordatoriu, que s'amuesa abaxo; pero falló unvialu al usuariu: $1",
@@ -614,7 +620,7 @@ Contraseña temporal: $2",
 # Special:ChangeEmail
 'changeemail'          => 'Camudar la direición de corréu electrónicu',
 'changeemail-header'   => 'Camudar la direición de corréu electrónicu de la cuenta',
-'changeemail-text'     => "Rellena esti formulariu pa camudar la to direición de corréu electrónicu. Tendrás d'escribir la to contraseña pa confirmar esti cambiu.",
+'changeemail-text'     => "Rellena esti formulariu pa camudar la to direición de corréu electrónicu. Tendrás d'escribir la to conseña pa confirmar esti cambiu.",
 'changeemail-no-info'  => "Has tar identificáu p'acceder direutamente a esta páxina.",
 'changeemail-oldemail' => 'Direición de corréu electrónicu actual:',
 'changeemail-newemail' => 'Nueva direición de corréu electrónicu:',
@@ -700,10 +706,10 @@ Seique se treslladara o desaniciara mientres visitabes la páxina.',
 'loginreqtitle'                    => 'Identificación Requerida',
 'loginreqlink'                     => 'identificase',
 'loginreqpagetext'                 => 'Has $1 pa ver otres páxines.',
-'accmailtitle'                     => 'Clave unviada.',
-'accmailtext'                      => "Unvióse a $2 una clave xenerada al debalu pa [[User talk:$1|$1]].
+'accmailtitle'                     => 'Conseña unviada.',
+'accmailtext'                      => "Unvióse a $2 una conseña xenerada al debalu pa [[User talk:$1|$1]].
 
-La clave pa esta cuenta nueva pue camudase na páxina ''[[Special:ChangePassword|camudar clave]]'' depués d'identificate.",
+La conseña d'esta cuenta nueva pue camudase na páxina ''[[Special:ChangePassword|camudar conseña]]'' depués d'identificate.",
 'newarticle'                       => '(Nuevu)',
 'newarticletext'                   => "Siguisti un enllaz a un artículu qu'inda nun esiste.
 Pa crear la páxina, empecipia a escribir nel cuadru que vien darréu (mira la [[{{MediaWiki:Helppage}}|páxina d'ayuda]] pa más información).
@@ -1096,7 +1102,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'prefs-edits'                   => "Númberu d'ediciones:",
 'prefsnologin'                  => 'Non identificáu',
 'prefsnologintext'              => 'Necesites tar <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} identificáu]</span> pa camudar les preferencies d\'usuariu.',
-'changepassword'                => 'Camudar clave',
+'changepassword'                => 'Camudar la conseña',
 'prefs-skin'                    => 'Apariencia',
 'skin-preview'                  => 'Entever',
 'datedefault'                   => 'Ensin preferencia',
@@ -1112,7 +1118,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'prefs-watchlist-edits-max'     => 'Númberu máximu: 1000',
 'prefs-watchlist-token'         => 'Marca de la llista de vixilancia:',
 'prefs-misc'                    => 'Varios',
-'prefs-resetpass'               => 'Camudar clave',
+'prefs-resetpass'               => 'Camudar la conseña',
 'prefs-changeemail'             => 'Camudar el corréu electrónicu',
 'prefs-setemail'                => 'Conseñar una direición de corréu electrónicu',
 'prefs-email'                   => 'Opciones de corréu',
@@ -1188,7 +1194,7 @@ Ha tener menos de $1 {{PLURAL:$1|caráuter|carauteres}}.',
 Esta información sedrá pública.",
 'email'                         => 'Corréu',
 'prefs-help-realname'           => "El nome real ye opcional y si decides conseñalu va ser usáu p'atribuyite'l to trabayu.",
-'prefs-help-email'              => 'La direición de corréu ye opcional, pero ye necesaria pa unviate una clave nueva si escaeces la tuya.',
+'prefs-help-email'              => 'La direición de corréu ye opcional, pero ye necesaria pa unviate una conseña nueva si escaeces la tuya.',
 'prefs-help-email-others'       => "Tamién pues escoyer permitir qu'otres persones contauten contigo pela to páxina d'usuariu o la d'alderique ensin necesidá de revelar la to identidá.",
 'prefs-help-email-required'     => 'Necesítase una direición de corréu electrónicu.',
 'prefs-info'                    => 'Información básica',
@@ -1315,7 +1321,7 @@ Esta información sedrá pública.",
 'right-siteadmin'             => 'Candar y descandar la base de datos',
 'right-override-export-depth' => 'Esportar páxines, incluyendo páxines enllazaes fasta una fondura de 5',
 'right-sendemail'             => 'Unviar corréu a otros usuarios',
-'right-passwordreset'         => 'Ver los correos de restablecimientu de contraseña',
+'right-passwordreset'         => 'Ver los correos de reestablecimientu de conseña',
 
 # User rights log
 'rightslog'                  => "Rexistru de perfil d'usuariu",
@@ -3650,7 +3656,7 @@ Les imáxenes amuésense a resolución completa; les demás tribes d'archivu exe
 'logentry-newusers-create'            => "$1 {{GENDER:$2|creó}} una cuenta d'usuariu",
 'logentry-newusers-create2'           => "$1 {{GENDER:$2|creó}} {{GENDER:$4|una cuenta d'usuariu}} $3",
 'logentry-newusers-autocreate'        => 'La cuenta $1 {{GENDER:$2|se creó}} automáticamente',
-'newuserlog-byemail'                  => 'clave unviada per corréu electrónicu',
+'newuserlog-byemail'                  => 'conseña unviada per corréu electrónicu',
 
 # Feedback
 'feedback-bugornote' => 'Si tas preparáu pa describir un problema técnicu en detalle, [$1 informa del fallu].

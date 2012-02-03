@@ -2841,19 +2841,19 @@ Kapag nabago ang talaksan mula sa anyong orihinal nito, may ilang detalyeng hind
 'metadata-collapse' => 'Itago ang karugtong na mga detalye',
 'metadata-fields'   => 'Ang mga hanay ng pook ng metadato ng larawan na nakatala sa mensaheng ito ay masasama sa ipinapakitang pahina ng larawan kapag tumiklop ang tabla ng metadato.
 Likas na nakatakdang itago ang iba pa.
-* yari
-* modelo
-* orihinal na petsa at oras
-* panahon ng pagkakalantad
-* bilang ng f
-* antas ng bilis ng iso
-* haba ng tuon
-* artista
-* karapatang-ari
-* paglalarawan ng larawan
-* latitud ng gps
-* longhitud ng gps
-* altitud ng gps',
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* isospeedratings
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Lapad',

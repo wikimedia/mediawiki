@@ -794,6 +794,7 @@ Võib-olla oled juba edukalt muudnud oma salasõna või taotlenud uut ajutist sa
 'passwordreset-legend'         => 'Parooli lähtestamine',
 'passwordreset-disabled'       => 'Selles vikis on paroolide lähtestamine keelatud.',
 'passwordreset-username'       => 'Kasutajanimi:',
+'passwordreset-domain'         => 'Domeen:',
 'passwordreset-email'          => 'E-posti aadress:',
 'passwordreset-emailtitle'     => '{{GRAMMAR:genitive|{{SITENAME}}}} konto andmed',
 'passwordreset-emailtext-ip'   => 'Keegi, arvatavasti sina ise, IP-aadressilt $1 palus meelde tuletada sinu {{GRAMMAR:genitive|{{SITENAME}}}} ($4) konto üksikasjad. Selle e-posti aadressiga on seotud {{PLURAL:$3|järgmine konto|järgmised kontod}}:

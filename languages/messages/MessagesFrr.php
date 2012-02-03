@@ -1433,7 +1433,6 @@ Deeraw föliende sidelinke önj dåtseelwi ra definiire ütnååme, önj di kont
 'metadata-expand'   => 'Ütbriidede detaile wise',
 'metadata-collapse' => 'Ütbriidede detaile fersteege',
 'metadata-fields'   => 'Da füliende fälje foon da EXIF-metadååte, da önj dideere MediaWiki-systeemtäkst önjjääwen san, wårde aw bilbeschriwingsside ma inklapede metadååtetabäle wist. Widere wårde standardmääsi ai wised.
-
 * make
 * model
 * datetimeoriginal

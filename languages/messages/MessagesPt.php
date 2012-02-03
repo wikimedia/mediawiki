@@ -603,7 +603,7 @@ Consulte a página da [[Special:Version|versão do sistema]].',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Página',
-'nstab-user'      => 'Página de utilizador',
+'nstab-user'      => 'Página de {{GENDER:{{BASEPAGENAME}}|utilizador|utilizadora}}',
 'nstab-media'     => 'Multimédia',
 'nstab-special'   => 'Página especial',
 'nstab-project'   => 'Página de projecto',

@@ -2778,7 +2778,6 @@ We die Datei isch veränderet worde, de cha's sy, das die zuesätzlechi Informat
 'metadata-collapse' => 'Erwytereti Details verstecke',
 'metadata-fields'   => 'Die Fälder vu dr EXIF-Metadate, wu in däm MediaWiki-Systemtext aagee sin, wäre uf Bildbschrybigssyte mit ere yyklappte Metadatetabälle aazeigt.
 Andri wäre standardmäßig nit aazeigt.
-
 * make
 * model
 * datetimeoriginal
