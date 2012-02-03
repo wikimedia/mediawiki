@@ -1056,8 +1056,7 @@ function wfLogProfilingData() {
 
 	// Get total page request time and only show pages that longer than
 	// $wgProfileLimit time (default is 0)
-	$now = wfTime();
-	$elapsed = $now - $wgRequestTime;
+	$elapsed = microtime( true ) - $wgRequestTime;
 	if ( $elapsed <= $wgProfileLimit ) {
 		return;
 	}
@@ -1560,8 +1559,7 @@ function wfHostname() {
 function wfReportTime() {
 	global $wgRequestTime, $wgShowHostnames;
 
-	$now = wfTime();
-	$elapsed = $now - $wgRequestTime;
+	$elapsed = microtime( true ) - $wgRequestTime;
 
 	return $wgShowHostnames
 		? sprintf( '<!-- Served by %s in %01.3f secs. -->', wfHostname(), $elapsed )

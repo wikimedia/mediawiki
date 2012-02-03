@@ -2861,10 +2861,10 @@ class PoolWorkArticleView extends PoolCounterWork {
 			$text = $rev->getText();
 		}
 
-		$time = - wfTime();
+		$time = - microtime( true );
 		$this->parserOutput = $wgParser->parse( $text, $this->page->getTitle(),
 			$this->parserOptions, true, true, $this->revid );
-		$time += wfTime();
+		$time += microtime( true );
 
 		# Timing hack
 		if ( $time > 3 ) {
