@@ -431,9 +431,9 @@ class MediaWiki {
 
 		while ( $n-- && false != ( $job = Job::pop() ) ) {
 			$output = $job->toString() . "\n";
-			$t = -wfTime();
+			$t = - microtime( true );
 			$success = $job->run();
-			$t += wfTime();
+			$t += microtime( true );
 			$t = round( $t * 1000 );
 			if ( !$success ) {
 				$output .= "Error: " . $job->getLastError() . ", Time: $t ms\n";
