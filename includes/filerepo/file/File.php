@@ -742,89 +742,6 @@ abstract class File {
 	}
 
 	/**
-	 * Do the work of a transform (from an original into a thumb).
-	 * Contains filesystem-specific functions.
-	 *
-	 * @param $thumbName string: the name of the thumbnail file.
-	 * @param $thumbUrl string: the URL of the thumbnail file.
-	 * @param $params Array: an associative array of handler-specific parameters.
-	 *                Typical keys are width, height and page.
-	 * @param $flags Integer: a bitfield, may contain self::RENDER_NOW to force rendering
-	 *
-	 * @return MediaTransformOutput|null
-	 */
-	protected function maybeDoTransform( $thumbName, $thumbUrl, $params, $flags = 0 ) {
-		global $wgIgnoreImageErrors, $wgThumbnailEpoch;
-
-		$thumbPath = $this->getThumbPath( $thumbName ); // final thumb path
-		if ( $this->repo ) {
-			// Defer rendering if a 404 handler is set up...
-			if ( $this->repo->canTransformVia404() && !( $flags & self::RENDER_NOW ) ) {
-				wfDebug( __METHOD__ . " transformation deferred." );
-				// XXX: Pass in the storage path even though we are not rendering anything
-				// and the path is supposed to be an FS path. This is due to getScalerType()
-				// getting called on the path and clobbering $thumb->getUrl() if it's false.
-				return $this->handler->getTransform( $this, $thumbPath, $thumbUrl, $params );
-			}
-			// Clean up broken thumbnails as needed
-			$this->migrateThumbFile( $thumbName );
-			// Check if an up-to-date thumbnail already exists...
-			wfDebug( __METHOD__.": Doing stat for $thumbPath\n" );
-			if ( $this->repo->fileExists( $thumbPath ) && !( $flags & self::RENDER_FORCE ) ) {
-				$timestamp = $this->repo->getFileTimestamp( $thumbPath );
-				if ( $timestamp !== false && $timestamp >= $wgThumbnailEpoch ) {
-					// XXX: Pass in the storage path even though we are not rendering anything
-					// and the path is supposed to be an FS path. This is due to getScalerType()
-					// getting called on the path and clobbering $thumb->getUrl() if it's false.
-					$thumb = $this->handler->getTransform( $this, $thumbPath, $thumbUrl, $params );
-					$thumb->setStoragePath( $thumbPath );
-					return $thumb;
-				}
-			} elseif ( $flags & self::RENDER_FORCE ) {
-				wfDebug( __METHOD__ . " forcing rendering per flag File::RENDER_FORCE\n" );
-			}
-		}
-
-		// Create a temp FS file with the same extension and the thumbnail
-		$thumbExt = FileBackend::extensionFromPath( $thumbPath );
-		$tmpFile = TempFSFile::factory( 'transform_', $thumbExt );
-		if ( !$tmpFile ) {
-			return $this->transformErrorOutput( $thumbPath, $thumbUrl, $params, $flags );
-		}
-		$tmpThumbPath = $tmpFile->getPath(); // path of 0-byte temp file
-
-		// Actually render the thumbnail...
-		$thumb = $this->handler->doTransform( $this, $tmpThumbPath, $thumbUrl, $params );
-		$tmpFile->bind( $thumb ); // keep alive with $thumb
-
-		if ( !$thumb ) { // bad params?
-			$thumb = null;
-		} elseif ( $thumb->isError() ) { // transform error
-			$this->lastError = $thumb->toText();
-			// Ignore errors if requested
-			if ( $wgIgnoreImageErrors && !( $flags & self::RENDER_NOW ) ) {
-				$thumb = $this->handler->getTransform( $this, $tmpThumbPath, $thumbUrl, $params );
-			}
-		} elseif ( $thumb->hasFile() && !$thumb->fileIsSource() ) {
-			$backend = $this->repo->getBackend();
-			// Copy the thumbnail from the file system into storage. This avoids using
-			// FileRepo::store(); getThumbPath() uses a different zone in some subclasses.
-			$backend->prepare( array( 'dir' => dirname( $thumbPath ) ) );
-			$status = $backend->store(
-				array( 'src' => $tmpThumbPath, 'dst' => $thumbPath, 'overwrite' => 1 ),
-				array( 'force' => 1, 'nonLocking' => 1, 'allowStale' => 1 )
-			);
-			if ( $status->isOK() ) {
-				$thumb->setStoragePath( $thumbPath );
-			} else {
-				$thumb = $this->transformErrorOutput( $thumbPath, $thumbUrl, $params, $flags );
-			}
-		}
-
-		return $thumb;
-	}
-
-	/**
 	 * Return either a MediaTransformError or placeholder thumbnail (if $wgIgnoreImageErrors)
 	 * 
 	 * @param $thumbPath string Thumbnail storage path
@@ -850,40 +767,105 @@ abstract class File {
 	 * @param $params Array: an associative array of handler-specific parameters.
 	 *                Typical keys are width, height and page.
 	 * @param $flags Integer: a bitfield, may contain self::RENDER_NOW to force rendering
-	 * @return MediaTransformOutput | false
+	 * @return MediaTransformOutput|false
 	 */
 	function transform( $params, $flags = 0 ) {
-		global $wgUseSquid;
+		global $wgUseSquid, $wgIgnoreImageErrors, $wgThumbnailEpoch;
 
 		wfProfileIn( __METHOD__ );
 		do {
 			if ( !$this->canRender() ) {
-				// not a bitmap or renderable image, don't try.
 				$thumb = $this->iconThumb();
-				break;
+				break; // not a bitmap or renderable image, don't try
 			}
 
 			// Get the descriptionUrl to embed it as comment into the thumbnail. Bug 19791.
-			$descriptionUrl =  $this->getDescriptionUrl();
+			$descriptionUrl = $this->getDescriptionUrl();
 			if ( $descriptionUrl ) {
 				$params['descriptionUrl'] = wfExpandUrl( $descriptionUrl, PROTO_CANONICAL );
 			}
 
 			$script = $this->getTransformScript();
-			if ( $script && !($flags & self::RENDER_NOW) ) {
+			if ( $script && !( $flags & self::RENDER_NOW ) ) {
 				// Use a script to transform on client request, if possible
 				$thumb = $this->handler->getScriptedTransform( $this, $script, $params );
-				if( $thumb ) {
+				if ( $thumb ) {
 					break;
 				}
 			}
 
 			$normalisedParams = $params;
 			$this->handler->normaliseParams( $this, $normalisedParams );
+
 			$thumbName = $this->thumbName( $normalisedParams );
 			$thumbUrl = $this->getThumbUrl( $thumbName );
+			$thumbPath = $this->getThumbPath( $thumbName ); // final thumb path
 
-			$thumb = $this->maybeDoTransform( $thumbName, $thumbUrl, $params, $flags );
+			if ( $this->repo ) {
+				// Defer rendering if a 404 handler is set up...
+				if ( $this->repo->canTransformVia404() && !( $flags & self::RENDER_NOW ) ) {
+					wfDebug( __METHOD__ . " transformation deferred." );
+					// XXX: Pass in the storage path even though we are not rendering anything
+					// and the path is supposed to be an FS path. This is due to getScalerType()
+					// getting called on the path and clobbering $thumb->getUrl() if it's false.
+					$thumb = $this->handler->getTransform( $this, $thumbPath, $thumbUrl, $params );
+					break;
+				}
+				// Clean up broken thumbnails as needed
+				$this->migrateThumbFile( $thumbName );
+				// Check if an up-to-date thumbnail already exists...
+				wfDebug( __METHOD__.": Doing stat for $thumbPath\n" );
+				if ( $this->repo->fileExists( $thumbPath ) && !( $flags & self::RENDER_FORCE ) ) {
+					$timestamp = $this->repo->getFileTimestamp( $thumbPath );
+					if ( $timestamp !== false && $timestamp >= $wgThumbnailEpoch ) {
+						// XXX: Pass in the storage path even though we are not rendering anything
+						// and the path is supposed to be an FS path. This is due to getScalerType()
+						// getting called on the path and clobbering $thumb->getUrl() if it's false.
+						$thumb = $this->handler->getTransform( $this, $thumbPath, $thumbUrl, $params );
+						$thumb->setStoragePath( $thumbPath );
+						break;
+					}
+				} elseif ( $flags & self::RENDER_FORCE ) {
+					wfDebug( __METHOD__ . " forcing rendering per flag File::RENDER_FORCE\n" );
+				}
+			}
+
+			// Create a temp FS file with the same extension and the thumbnail
+			$thumbExt = FileBackend::extensionFromPath( $thumbPath );
+			$tmpFile = TempFSFile::factory( 'transform_', $thumbExt );
+			if ( !$tmpFile ) {
+				$thumb = $this->transformErrorOutput( $thumbPath, $thumbUrl, $params, $flags );
+				break;
+			}
+			$tmpThumbPath = $tmpFile->getPath(); // path of 0-byte temp file
+
+			// Actually render the thumbnail...
+			$thumb = $this->handler->doTransform( $this, $tmpThumbPath, $thumbUrl, $params );
+			$tmpFile->bind( $thumb ); // keep alive with $thumb
+
+			if ( !$thumb ) { // bad params?
+				$thumb = null;
+			} elseif ( $thumb->isError() ) { // transform error
+				$this->lastError = $thumb->toText();
+				// Ignore errors if requested
+				if ( $wgIgnoreImageErrors && !( $flags & self::RENDER_NOW ) ) {
+					$thumb = $this->handler->getTransform( $this, $tmpThumbPath, $thumbUrl, $params );
+				}
+			} elseif ( $this->repo && $thumb->hasFile() && !$thumb->fileIsSource() ) {
+				$backend = $this->repo->getBackend();
+				// Copy the thumbnail from the file system into storage. This avoids using
+				// FileRepo::store(); getThumbPath() uses a different zone in some subclasses.
+				$backend->prepare( array( 'dir' => dirname( $thumbPath ) ) );
+				$status = $backend->store(
+					array( 'src' => $tmpThumbPath, 'dst' => $thumbPath, 'overwrite' => 1 ),
+					array( 'force' => 1, 'nonLocking' => 1, 'allowStale' => 1 )
+				);
+				if ( $status->isOK() ) {
+					$thumb->setStoragePath( $thumbPath );
+				} else {
+					$thumb = $this->transformErrorOutput( $thumbPath, $thumbUrl, $params, $flags );
+				}
+			}
 
 			// Purge. Useful in the event of Core -> Squid connection failure or squid
 			// purge collisions from elsewhere during failure. Don't keep triggering for
@@ -893,7 +875,7 @@ abstract class File {
 					SquidUpdate::purge( array( $thumbUrl ) );
 				}
 			}
-		} while (false);
+		} while ( false );
 
 		wfProfileOut( __METHOD__ );
 		return is_object( $thumb ) ? $thumb : false;
