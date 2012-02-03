@@ -42,8 +42,9 @@ abstract class FileBackend {
 	 * 
 	 * $config includes:
 	 *     'name'        : The unique name of this backend.
+	 *                     This should consist of alphanumberic, '-', and '_' characters.
 	 *     'wikiId'      : Prefix to container names that is unique to this wiki.
-	 *                     This should consist of alphanumberic, '-', and '_' chars.
+	 *                     This should consist of alphanumberic, '-', and '_' characters.
 	 *     'lockManager' : Registered name of a file lock manager to use.
 	 *     'readOnly'    : Write operations are disallowed if this is a non-empty string.
 	 *                     It should be an explanation for the backend being read-only.
