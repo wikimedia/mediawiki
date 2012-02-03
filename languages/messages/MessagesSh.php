@@ -2973,7 +2973,6 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 'metadata-expand'   => 'Pokaži dodatne detalje',
 'metadata-collapse' => 'Sakrij dodatne detalje',
 'metadata-fields'   => 'Polja metapodataka slika su prikazani ispod slike će biti uključeni u prikaz stranice slike kada je sakrivena tabela metapodataka. U suprotnom će biti sakrivena po postavkama.
-
 * make
 * model
 * datetimeoriginal

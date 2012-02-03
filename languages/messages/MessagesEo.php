@@ -23,6 +23,7 @@
  * @author Mihxil
  * @author MinuteElectron
  * @author Omnipaedista
+ * @author Pedroca cerebral
  * @author Petrus Adamus
  * @author Smeira
  * @author ThomasPusch
@@ -600,7 +601,7 @@ $1',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Paĝo',
-'nstab-user'      => 'Paĝo de uzanto',
+'nstab-user'      => 'Uzantopaĝo',
 'nstab-media'     => 'Media paĝo',
 'nstab-special'   => 'Speciala paĝo',
 'nstab-project'   => 'Projektpaĝo',

@@ -598,7 +598,7 @@ Veja a [[Special:Version|página sobre a versão do sistema]].',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Página',
-'nstab-user'      => 'Página de usuário',
+'nstab-user'      => 'Página de {{GENDER:{{BASEPAGENAME}}|usuário|usuária}}',
 'nstab-media'     => 'Página de mídia',
 'nstab-special'   => 'Página especial',
 'nstab-project'   => 'Página de projeto',

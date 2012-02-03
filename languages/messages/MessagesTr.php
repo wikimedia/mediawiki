@@ -965,7 +965,12 @@ ya da <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}
 'userpage-userdoesnotexist-view'   => '"$1" kullanıcı hesabı kayıtlı değil.',
 'blocked-notice-logextract'        => 'Bu kullanıcı şuanda engellenmiş.
 Son engelleme günlüğü girdisi referans için aşağıda sağlanmıştır:',
-'clearyourcache'                   => "Not:''' Ayarlarınızı kaydettikten sonra, tarayıcınızın belleğini de temizlemeniz gerekmektedir: '''Mozilla / Firefox / Safari:''' ''Shift'' e basılıyken safyayı yeniden yükleyerek veya ''Ctrl-Shift-R'' yaparak (Apple Mac için ''Cmd-Shift-R'');, '''IE:''' ''Ctrl-F5'', '''Konqueror:''' Sadece sayfayı yeniden yükle tuşuna basarak.",
+'clearyourcache'                   => "'''Not:''' Kaydettikten sonra değişiklikleri görmek için tarayıcınızın önbelleğini temizlemeniz gerekebilir.
+* '''Firefox / Safari:''' ''Shift'' tuşuna basılıyken \"Yeniden yükle\"'ye tıklayın ya da \"Ctrl-F5\" ya da ''Ctrl-R'' yapın (Mac için '⌘-R'').
+* '''Google Chrome:''' ''Ctrl-Shift-R'''ye basın. (Mac için ''⌘-Shift-R'')
+* '''Internet Explorer:''' ''Ctrl'' basılıyken ''Yenile'''ye tıklayın ya da ''Ctrl-F5'' yapın.
+* '''Konqueror:''' 'Yeniden yükle'''ye ya da ''F5'''e basın.
+* '''Opera:''' ''Araçlar → Tercihler'''den önbelliği temizleyin.",
 'usercssyoucanpreview'             => "'''İpucu:''' Kaydetmeden önce \"{{int:showpreview}}\"e tıklayarak yeni CSSinizi deneyin.",
 'userjsyoucanpreview'              => "'''İpucu:''' Kaydetmeden önce \"{{int:showpreview}}\"e tıklayarak yeni JavaScript'inizi test edin.",
 'usercsspreview'                   => "'''Sadece kullanıcı CSS dosyanızın önizlemesini görüyorsun.''' '''Kullanıcı CSS dosyası henüz kaydolmadı!'''",
@@ -2070,7 +2075,7 @@ Lütfen unutmayın ki, diğer web siteleri bir dosyaya doğrudan bir URL ile ba�
 
 # Special:Log
 'specialloguserlabel'  => 'Kullanıcı:',
-'speciallogtitlelabel' => 'Başlık:',
+'speciallogtitlelabel' => 'Hedef (başlık ya da kullanıcı):',
 'log'                  => 'Kayıtlar',
 'all-logs-page'        => 'Tüm umumi kayıtlar',
 'alllogstext'          => '{{SITENAME}} için mevcut tüm günlüklerin birleşik gösterimi.
@@ -2165,7 +2170,7 @@ Bireysel haklarla ilgili [[{{MediaWiki:Listgrouprights-helppage}}|daha fazla bil
 'emailpagetext'        => 'Bu kullanıcıya e-posta mesajı göndermek için aşağıdaki formu kullanabilirsiniz.
 [[Special:Preferences|Kullanıcı tercihlerinizde]] girdiğiniz e-posta adresiniz, e-postanın "From (Kimden)" adresinde görünecektir, bu yüzden alıcı size direk cevap verebilecektir.',
 'usermailererror'      => 'E-posta hizmeti hata verdi:',
-'defemailsubject'      => '{{SITENAME}} e-posta',
+'defemailsubject'      => '"$1" kullanıcısından {{SITENAME}} e-postası',
 'usermaildisabled'     => 'Kullanıcı e-postası devre dışı',
 'usermaildisabledtext' => 'Bu vikide diğer kullanıcılara e-posta gönderemezsiniz',
 'noemailtitle'         => 'e-posta adresi yok',
@@ -2422,6 +2427,7 @@ Revizyon onarılmış veya arşivden silinmiş olabilir ya da sahip olduğunuz b
 
 Önceki silme ve geri getirme işlemleri için [[Special:Log/delete|silme kayıtları]]na bakınız.",
 'undelete-header'              => 'Daha önce silinmiş sayfaları görmek için bakınız: [[Special:Log/delete|silme kayıtları]].',
+'undelete-search-title'        => 'Silinen sayfaları ara',
 'undelete-search-box'          => 'Silinmiş sayfaları ara',
 'undelete-search-prefix'       => 'Şununla başlayan sayfaları göster:',
 'undelete-search-submit'       => 'Ara',
@@ -3383,6 +3389,7 @@ Diğerleri varsayılan olarak gizlenecektir.
 'exif-ycbcrpositioning-1' => 'Ortalanmış',
 
 'exif-dc-contributor' => 'Katkıda bulunanlar',
+'exif-dc-coverage'    => 'Medyanın konumsal ya da zamansal kapsamı',
 'exif-dc-date'        => 'Tarih(ler)',
 'exif-dc-publisher'   => 'Yayımcı',
 'exif-dc-relation'    => 'İlgili medya',
