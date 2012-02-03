@@ -208,7 +208,7 @@ class MovePageForm extends UnlistedSpecialPage {
 				if ( $errMsgName == 'hookaborted' ) {
 					$out->addHTML( "<p>{$errMsg[0]}</p>\n" );
 				} else {
-					$out->addWikiMsgArray( $errMsg, $errMsgName );
+					$out->addWikiMsgArray( $errMsgName, $errMsg );
 				}
 			} else {
 				$errStr = array();
