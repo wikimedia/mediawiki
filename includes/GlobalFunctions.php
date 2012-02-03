@@ -977,6 +977,88 @@ function wfLogDBError( $text ) {
 }
 
 /**
+ * Throws a warning that $function is deprecated
+ *
+ * @param $function String
+ * @param $version String|false: Added in 1.19.
+ * @param $component String|false: Added in 1.19.
+ * 
+ * @return null
+ */
+function wfDeprecated( $function, $version = false, $component = false ) {
+	static $functionsWarned = array();
+
+	MWDebug::deprecated( $function, $version, $component );
+
+	if ( !isset( $functionsWarned[$function] ) ) {
+		$functionsWarned[$function] = true;
+		
+		if ( $version ) {
+			global $wgDeprecationReleaseLimit;
+			
+			if ( $wgDeprecationReleaseLimit && $component === false ) {
+				# Strip -* off the end of $version so that branches can use the
+				# format #.##-branchname to avoid issues if the branch is merged into
+				# a version of MediaWiki later than what it was branched from
+				$comparableVersion = preg_replace( '/-.*$/', '', $version );
+				
+				# If the comparableVersion is larger than our release limit then
+				# skip the warning message for the deprecation
+				if ( version_compare( $wgDeprecationReleaseLimit, $comparableVersion, '<' ) ) {
+					return;
+				}
+			}
+			
+			$component = $component === false ? 'MediaWiki' : $component;
+			wfWarn( "Use of $function was deprecated in $component $version.", 2 );
+		} else {
+			wfWarn( "Use of $function is deprecated.", 2 );
+		}
+	}
+}
+
+/**
+ * Send a warning either to the debug log or in a PHP error depending on
+ * $wgDevelopmentWarnings
+ *
+ * @param $msg String: message to send
+ * @param $callerOffset Integer: number of items to go back in the backtrace to
+ *        find the correct caller (1 = function calling wfWarn, ...)
+ * @param $level Integer: PHP error level; only used when $wgDevelopmentWarnings
+ *        is true
+ */
+function wfWarn( $msg, $callerOffset = 1, $level = E_USER_NOTICE ) {
+	global $wgDevelopmentWarnings;
+
+	MWDebug::warning( $msg, $callerOffset + 2 );
+
+	$callers = wfDebugBacktrace();
+	if ( isset( $callers[$callerOffset + 1] ) ) {
+		$callerfunc = $callers[$callerOffset + 1];
+		$callerfile = $callers[$callerOffset];
+		if ( isset( $callerfile['file'] ) && isset( $callerfile['line'] ) ) {
+			$file = $callerfile['file'] . ' at line ' . $callerfile['line'];
+		} else {
+			$file = '(internal function)';
+		}
+		$func = '';
+		if ( isset( $callerfunc['class'] ) ) {
+			$func .= $callerfunc['class'] . '::';
+		}
+		if ( isset( $callerfunc['function'] ) ) {
+			$func .= $callerfunc['function'];
+		}
+		$msg .= " [Called from $func in $file]";
+	}
+
+	if ( $wgDevelopmentWarnings ) {
+		trigger_error( $msg, $level );
+	} else {
+		wfDebug( "$msg\n" );
+	}
+}
+
+/**
  * Log to a file without getting "file size exceeded" signals.
  *
  * Can also log to TCP or UDP with the syntax udp://host:port/prefix. This will
@@ -3476,88 +3558,6 @@ function wfGetNull() {
 	return wfIsWindows()
 		? 'NUL'
 		: '/dev/null';
-}
-
-/**
- * Throws a warning that $function is deprecated
- *
- * @param $function String
- * @param $version String|false: Added in 1.19.
- * @param $component String|false: Added in 1.19.
- * 
- * @return null
- */
-function wfDeprecated( $function, $version = false, $component = false ) {
-	static $functionsWarned = array();
-
-	MWDebug::deprecated( $function, $version, $component );
-
-	if ( !isset( $functionsWarned[$function] ) ) {
-		$functionsWarned[$function] = true;
-		
-		if ( $version ) {
-			global $wgDeprecationReleaseLimit;
-			
-			if ( $wgDeprecationReleaseLimit && $component === false ) {
-				# Strip -* off the end of $version so that branches can use the
-				# format #.##-branchname to avoid issues if the branch is merged into
-				# a version of MediaWiki later than what it was branched from
-				$comparableVersion = preg_replace( '/-.*$/', '', $version );
-				
-				# If the comparableVersion is larger than our release limit then
-				# skip the warning message for the deprecation
-				if ( version_compare( $wgDeprecationReleaseLimit, $comparableVersion, '<' ) ) {
-					return;
-				}
-			}
-			
-			$component = $component === false ? 'MediaWiki' : $component;
-			wfWarn( "Use of $function was deprecated in $component $version.", 2 );
-		} else {
-			wfWarn( "Use of $function is deprecated.", 2 );
-		}
-	}
-}
-
-/**
- * Send a warning either to the debug log or in a PHP error depending on
- * $wgDevelopmentWarnings
- *
- * @param $msg String: message to send
- * @param $callerOffset Integer: number of items to go back in the backtrace to
- *        find the correct caller (1 = function calling wfWarn, ...)
- * @param $level Integer: PHP error level; only used when $wgDevelopmentWarnings
- *        is true
- */
-function wfWarn( $msg, $callerOffset = 1, $level = E_USER_NOTICE ) {
-	global $wgDevelopmentWarnings;
-
-	MWDebug::warning( $msg, $callerOffset + 2 );
-
-	$callers = wfDebugBacktrace();
-	if ( isset( $callers[$callerOffset + 1] ) ) {
-		$callerfunc = $callers[$callerOffset + 1];
-		$callerfile = $callers[$callerOffset];
-		if ( isset( $callerfile['file'] ) && isset( $callerfile['line'] ) ) {
-			$file = $callerfile['file'] . ' at line ' . $callerfile['line'];
-		} else {
-			$file = '(internal function)';
-		}
-		$func = '';
-		if ( isset( $callerfunc['class'] ) ) {
-			$func .= $callerfunc['class'] . '::';
-		}
-		if ( isset( $callerfunc['function'] ) ) {
-			$func .= $callerfunc['function'];
-		}
-		$msg .= " [Called from $func in $file]";
-	}
-
-	if ( $wgDevelopmentWarnings ) {
-		trigger_error( $msg, $level );
-	} else {
-		wfDebug( "$msg\n" );
-	}
 }
 
 /**
