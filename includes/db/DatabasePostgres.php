@@ -624,59 +624,15 @@ class DatabasePostgres extends DatabaseBase {
 	}
 
 	function tableName( $name, $format = 'quoted' ) {
-		global $wgSharedDB, $wgSharedTables;
-		# Skip quoted tablenames.
-		if ( $this->isQuotedIdentifier( $name ) ) {
-			return $name;
-		}
-		# Lets test for any bits of text that should never show up in a table
-		# name. Basically anything like JOIN or ON which are actually part of
-		# SQL queries, but may end up inside of the table value to combine
-		# sql. Such as how the API is doing.
-		# Note that we use a whitespace test rather than a \b test to avoid
-		# any remote case where a word like on may be inside of a table name
-		# surrounded by symbols which may be considered word breaks.
-		if ( preg_match( '/(^|\s)(DISTINCT|JOIN|ON|AS)(\s|$)/i', $name ) !== 0 ) {
-			return $name;
-		}
-		# Extract the database prefix, if any and quote it
-		$dbDetails = explode( '.', $name, 2 );
-		if ( isset( $dbDetails[1] ) ) {
-			$schema = '"' . $dbDetails[0] . '".';
-			$table  = $dbDetails[1];
-		} else {
-			$schema = ""; # do NOT force the schema (due to temporary tables)
-			$table = $dbDetails[0];
-		}
-		if ( $format != 'quoted' ) {
-			switch( $name ) {
-				case 'user':
-					return 'mwuser';
-				case 'text':
-					return 'pagecontent';
-				default:
-					return $table;
-			}
-		}
-
-		if ( isset( $wgSharedDB ) # We have a shared database (=> schema)
-		  && isset( $wgSharedTables )
-		  && is_array( $wgSharedTables )
-		  && in_array( $table, $wgSharedTables ) ) { # A shared table is selected
-			$schema = "\"{$wgSharedDB}\".";
-		}
-		switch ( $table ) {
+		# Replace reserved words with better ones
+		switch( $name ) {
 			case 'user':
-				$table = "{$schema}\"mwuser\"";
-				break;
+				return 'mwuser';
 			case 'text':
-				$table = "{$schema}\"pagecontent\"";
-				break;
+				return 'pagecontent';
 			default:
-				$table = "{$schema}\"$table\"";
-				break;
+				return parent::tableName( $name, $format );
 		}
-		return $table;
 	}
 
 	/**
