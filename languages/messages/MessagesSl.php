@@ -1714,12 +1714,12 @@ Prosimo, preverite veljavnost in dostopnost naslova URL ter poskusite ponovno.
 'backend-fail-closetemp'     => 'Ne morem zapreti začasne datoteke.',
 'backend-fail-read'          => 'Ne morem brati datoteke $1.',
 'backend-fail-create'        => 'Ne morem ustvariti datoteke $1.',
-'backend-fail-readonly'      => 'Zaledje »$1« je trenutno označeno samo za branje. Podan razlog: »$2«',
-'backend-fail-synced'        => 'Datoteka »$1« je v neskladnem stanju z notranjimi zaledji',
-'backend-fail-connect'       => 'Ne morem se povezati z datotečnimim zaledjem »$1«.',
-'backend-fail-internal'      => 'V datotečnem zaledju »$1« je prišlo do neznane napake.',
+'backend-fail-readonly'      => 'Skladiščno zaledje »$1« je trenutno označeno samo za branje. Podan razlog je: »$2«',
+'backend-fail-synced'        => 'Datoteka »$1« je v neskladnem stanju z notranjimi skladiščnimi zaledji',
+'backend-fail-connect'       => 'Ne morem se povezati s skladiščnim zaledjem »$1«.',
+'backend-fail-internal'      => 'V skladiščnem zaledju »$1« je prišlo do neznane napake.',
 'backend-fail-contenttype'   => 'Ne morem določiti vrsto vsebine datoteke za shranjevanje pri »$1«.',
-'backend-fail-batchsize'     => 'Zaledju je dana vrsta $1 {{PLURAL:$1|datotečne operacije|datotečnih operacij}}; omejitev {{PLURAL:$2|je $2 operacija|sta $2 operaciji|so $2 operacije|je $2 operacij}}.',
+'backend-fail-batchsize'     => 'Skladiščnemu zaledju je dana vrsta $1 {{PLURAL:$1|datotečne operacije|datotečnih operacij}}; omejitev {{PLURAL:$2|je $2 operacija|sta $2 operaciji|so $2 operacije|je $2 operacij}}.',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Ne morem odkleniti »$1«, saj ni zaklenjeno.',

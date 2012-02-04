@@ -2848,6 +2848,7 @@ Se deseja colaborar na localização genérica do MediaWiki, visite [//www.media
 'thumbnail_error'          => 'Erro ao criar miniatura: $1',
 'djvu_page_error'          => 'página DjVu inacessível',
 'djvu_no_xml'              => 'Não foi possível aceder ao XML para o ficheiro DjVU',
+'thumbnail-dest-create'    => 'Não é possível salvar miniatura',
 'thumbnail_invalid_params' => 'Parâmetros de miniatura inválidos',
 'thumbnail_dest_directory' => 'Não foi possível criar o directório de destino',
 'thumbnail_image-type'     => 'Tipo de imagem não suportado',
@@ -2897,6 +2898,9 @@ Não há um directório temporário.',
 'import-invalid-interwiki'   => 'Não é possível importar da wiki especificada.',
 'import-error-edit'          => 'A página "$1" não foi importada porque você não tem permissão para editá-la.',
 'import-error-create'        => 'A página "$1" não foi importada porque você não tem permissão para criá-la.',
+'import-error-interwiki'     => 'A página "$1" não pode ser importada pois seu nome está reservado para um link externo (interwiki).',
+'import-error-special'       => 'A página "$1" não pode ser importada porque ela pertence a um espaço nominal especial que não permite páginas.',
+'import-error-invalid'       => 'A página "$1" não pode ser importada porque seu nome é inválido.',
 
 # Import log
 'importlogpage'                    => 'Registo de importações',
@@ -2907,7 +2911,14 @@ Não há um directório temporário.',
 'import-logentry-interwiki-detail' => '{{PLURAL:$1|$1 edição|$1 edições}} de $2',
 
 # JavaScriptTest
-'javascripttest-disabled' => 'Esta função está desabilitada.',
+'javascripttest'                           => 'Teste de JavaScript',
+'javascripttest-disabled'                  => 'Esta função está desabilitada.',
+'javascripttest-title'                     => 'Executando os testes $1',
+'javascripttest-pagetext-noframework'      => 'Esta página é reservada para a execução de testes de JavaScript.',
+'javascripttest-pagetext-unknownframework' => 'Estrutura de testes "$1" desconhecido.',
+'javascripttest-pagetext-frameworks'       => 'Escolha, por favor, uma das seguintes estruturas de teste: $1',
+'javascripttest-pagetext-skins'            => 'Escolher um tema para executar os testes com:',
+'javascripttest-qunit-intro'               => 'Consulte a [ $1 documentação de testes] no mediawiki.org.',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'                 => 'A sua página de utilizador',

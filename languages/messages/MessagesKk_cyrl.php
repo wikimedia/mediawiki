@@ -2024,7 +2024,7 @@ $1',
 
 # Namespace form on various pages
 'namespace'             => 'Есім аясы:',
-'invert'                => 'Бөлектеуді керілеу',
+'invert'                => 'Таңдалғанды жасыру',
 'namespace_association' => 'Қатысты есім аясы',
 'blanknamespace'        => 'Негізгі беттерден',
 

@@ -1051,7 +1051,7 @@ $1",
 'mergehistory-reason'              => 'కారణం:',
 
 # Merge log
-'mergelog'           => 'లాగ్‌ను విలీనం చెయ్యి',
+'mergelog'           => 'వీలీనాల చిట్టా',
 'pagemerge-logentry' => '[[$1]] ను [[$2]] లోకి విలీనం చేసాం ($3 కూర్పు దాకా)',
 'revertmerge'        => 'విలీనాన్ని రద్దుచెయ్యి',
 'mergelogpagetext'   => 'ఒక పేజీ చరితాన్ని మరో పేజీ చరితం లోకి ఇటీవల చేసిన విలీనాల జాబితా ఇది.',
@@ -2479,7 +2479,7 @@ $UNWATCHURL కి వెళ్ళండి.
 
 ఉద్దేశించిన వ్యాసం "[[:$1]]" ఇప్పటికే ఉనికిలో ఉంది. ప్రస్తుత తరలింపుకు వీలుగా దాన్ని తొలగించేయమంటారా?',
 'delete_and_move_confirm'      => 'అవును, పేజీని తొలగించు',
-'delete_and_move_reason'       => 'తరలింపుకు వీలుగా తొలగించబడింది',
+'delete_and_move_reason'       => '"[[$1]]"ను తరలించడానికి వీలుగా తొలగించారు',
 'selfmove'                     => 'మూలం, గమ్యం పేర్లు ఒకటే; పేజీని దాని పైకే తరలించడం కుదరదు.',
 'immobile-source-namespace'    => '"$1" పేరుబరిలోని పేజీలను తరలించలేరు',
 'immobile-target-namespace'    => '"$1" పేరుబరిలోనికి పేజీలను తరలించలేరు',
@@ -2596,6 +2596,9 @@ $UNWATCHURL కి వెళ్ళండి.
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|కూర్పు|కూర్పులు}}',
 'import-logentry-interwiki'        => 'ఇతర వికీల నుండి $1',
 'import-logentry-interwiki-detail' => '$2 నుండి {{PLURAL:$1|ఒక కూర్పు|$1 కూర్పులు}}',
+
+# JavaScriptTest
+'javascripttest' => 'జావాస్క్రిప్ట్ పరీక్ష',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'మీ వాడుకరి పేజీ',

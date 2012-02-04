@@ -735,7 +735,7 @@ $messages = array(
 'contribslink'             => 'ნახანდ',
 'blocklogpage'             => 'ბლოკირეფიშ ერკებულ',
 'blocklogentry'            => 'ბლოკირ რე [[$1]] ბლოკირაფაშ ვადაშ ათე გულა ბორჯით: $2 $3.',
-'unblocklogentry'          => '$1–შა ბლოკიშ მონწყუმა',
+'unblocklogentry'          => '$1-შა ბლოკიშ მონწყუმა',
 'block-log-flags-nocreate' => 'ანგარიშიშ გონწყუმა მეჭყვადილ რე',
 
 # Move page

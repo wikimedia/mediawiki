@@ -353,6 +353,7 @@ Watumiaji wengi mno wanajaribu kutazama ukurasa huu.
 Tafadhali subiri kwa muda kadhaa kabla ya kujaribu kufungua tena.
 
 $1',
+'pool-timeout'      => 'Muda wa kusubiri kufunguliwa imezidishwa',
 'pool-queuefull'    => 'Foleni ya michakato imejaa',
 'pool-errorunknown' => 'Hitilafu isiyojulikana',
 
@@ -492,6 +493,7 @@ Data za hapa haziwezi kunawirishwa kwa sasa.',
 Kitenda: $1<br />
 Ulizio: $2',
 'viewsource'           => 'Onyesha kodi za ukurasa',
+'viewsource-title'     => 'Tazama chanzo cha $1',
 'actionthrottled'      => 'Tendo limesimamishwa',
 'actionthrottledtext'  => 'Ikiwa kama hatua ya kupambana na uharibifu, umefika kikomo katika kutenda jambo hili kwa mara nyingi mno tena kwa kipindi cha muda mfupi kama huu, na umevuka kiwango hiki.
 Tafadhali jaribu tena baada ya muda mfupi.',
@@ -506,6 +508,8 @@ Kwa lengo la kutaka kutafsiri, tafadhali fikiria kutumia  [//translatewiki.net/w
 'cascadeprotected'     => 'Ukurasa huu umekingwa usihaririwe, kwa sababu umejumlishwa katika {{PLURAL:$1|ukurasa ufuatao, ambao umekingwa|kurasa zifuatazo, ambazo zimekingwa}} na chagua la "cascadi" iliwashwa:
 $2',
 'namespaceprotected'   => "Huna ruhusa ya kuhariri kurasa za eneo la wiki la '''$1'''.",
+'customcssprotected'   => 'Huruhusiwi kuhariri ukurasa huu wa CSS, kwa sababu una mapendendekezo ya binafsi ya mtumiaji mwingine ndani wake.',
+'customjsprotected'    => 'Huruhusiwi kuhariri ukurasa huu wa JavaScript, kwa sababu una mapendendekezo ya binafsi ya mtumiaji mwingine ndani wake.',
 'ns-specialprotected'  => 'Kurasa maalumu haziwezi kuhaririwa.',
 'titleprotected'       => 'Jina hili limekingwa lisiumbwe na [[User:$1|$1]].
 Sababu zilizotolewa ni "\'\'$2\'\'".',
@@ -2353,9 +2357,11 @@ Nakala hizi zinaweza kuletwa katika wiki nyingine ya MediaWiki kwa kupitia [[Spe
 Kupeleka kurasa, andika majina yao katika sanduku chini, jina moja kwa kila mstari. Chagua kupeleka ama haririo ya kisasa pamoja na mapitio yote ya awali na maelezo ya historia, ama haririo ya kisasa pamoja na maelezo ya haririo la mwisho tu.
 
 Ukipeleka haririo ya kisasa tu, unaweza kutumia kiungo kinachokwenda ukurasa wa chanzo, kwa mfano [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] kwa ajili ya ukurasa wa "[[{{MediaWiki:Mainpage}}]]".',
+'exportall'         => 'Peleka kurasa zote',
 'exportcuronly'     => 'Peleka haririo la kisasa tu, bila mapitio ya awali',
 'exportnohistory'   => "----
 '''Ilani:''' Kupeleka mapitio yote ya kurasa kwa kutumia fomu hii kumesimamishwa ili utendaji wa tovuti isiathiriwe.",
+'exportlistauthors' => 'Weka orodha nzima wa wachangiaji kwa kila ukurasa',
 'export-submit'     => 'Peleka',
 'export-addcattext' => 'Ongeza kurasa kutoka jamii:',
 'export-addcat'     => 'Ongeza',
@@ -3045,10 +3051,25 @@ Tovuti hii inapata matatatizo wakati huu.',
 'logentry-newusers-newusers'        => '$1 {{GENDER:$2|alianzisha}} akaunti ya mtumiaji',
 'logentry-newusers-create'          => '$1 {{GENDER:$2|alianzisha}} akaunti ya mtumiaji',
 'logentry-newusers-create2'         => '$1 {{GENDER:$2|alianzisha}} {{GENDER:$4|akaunti ya mtumiaji}} $3',
+'logentry-newusers-autocreate'      => 'Akaunti ya mtumiaji $1 {{GENDER:$2|ilianzishwa}} na mashine',
 'newuserlog-byemail'                => 'neno la siri limetumwa kwa barua pepe',
 
 # Feedback
-'feedback-thanks' => 'Ahsante! Maoni yako yamewekwa kwenye ukurasa wa "[$2 $1]".',
-'feedback-close'  => 'Tayari',
+'feedback-subject' => 'Mada:',
+'feedback-message' => 'Ujumbe:',
+'feedback-cancel'  => 'Batilisha',
+'feedback-submit'  => 'Tuma maoni yako',
+'feedback-adding'  => 'Maoni yako yanaongezwa katika ukurasa...',
+'feedback-error1'  => 'Hitilafu: Matokeo ya API hayafahamiki',
+'feedback-error2'  => 'Hitilafu: Hiririo halikufaulu',
+'feedback-error3'  => 'Hitilafu: API ya wiki haiitiki',
+'feedback-thanks'  => 'Ahsante! Maoni yako yamewekwa kwenye ukurasa wa "[$2 $1]".',
+'feedback-close'   => 'Tayari',
+
+# API errors
+'api-error-unclassified'    => 'Ilitokea hitilafu isiyojulikana.',
+'api-error-unknown-code'    => 'Hitilafu isiyojulikana: "$1".',
+'api-error-unknown-warning' => 'Ilani isiyojulikana: "$1".',
+'api-error-unknownerror'    => 'Hitilafu isiyojulikana: "$1".',
 
 );

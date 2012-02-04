@@ -466,7 +466,9 @@ See also [[MediaWiki:Lastmodifiedatby/{{SUBPAGENAME}}]].',
 'jumptosearch'      => 'Part of the "jump to" navigation links. Hidden by default in monobook skin. The format is: [[MediaWiki:Jumpto/{{SUBPAGENAME}}|{{int:jumpto}}]] [[MediaWiki:Jumptonavigation/{{SUBPAGENAME}}|{{int:jumptonavigation}}]], {{int:jumptosearch}}.
 
 {{Identical|Search}}',
-'pool-timeout'      => 'Part of {{msg-mw|view-pool-error}}.',
+'pool-timeout'      => "Part of {{msg-mw|view-pool-error}}.
+
+For explanation of 'lock' see [http://en.wikipedia.org/wiki/Lock_%28computer_science%29 wikipedia].",
 'pool-queuefull'    => 'Part of {{msg-mw|view-pool-error}}
 
 "Pool" refers to a pool of processes.',
