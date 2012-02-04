@@ -59,6 +59,7 @@
  * @author Wikifan
  * @author Xqt
  * @author Ziko
+ * @author Zylbath
  * @author לערי ריינהארט
  * @author ✓
  */
@@ -756,7 +757,7 @@ Ziehe bitte im Fall von Übersetzungen in Betracht, diese bei [//translatewiki.n
 'cascadeprotected'     => 'Diese Seite ist zur Bearbeitung gesperrt. Sie ist in die {{PLURAL:$1|folgende Seite|folgenden Seiten}} eingebunden, die mittels der Kaskadensperroption geschützt {{PLURAL:$1|ist|sind}}:
 $2',
 'namespaceprotected'   => "Du hast nicht die erforderliche Berechtigung, um Seiten im Namensraum '''$1''' bearbeiten zu können.",
-'customcssprotected'   => 'Du hast nicht die Berechtigung diese CSS enthaltende Seite zu bearbeiten, da sie die persönlichen Einstellungen eines anderen Benutzers enthält.',
+'customcssprotected'   => 'Du hast nicht die Berechtigung, diese CSS enthaltende Seite zu bearbeiten, da sie die persönlichen Einstellungen eines anderen Benutzers enthält.',
 'customjsprotected'    => 'Du hast nicht die Berechtigung diese JavaScript enthaltende Seite zu bearbeiten, da sie die persönlichen Einstellungen eines anderen Benutzers enthält.',
 'ns-specialprotected'  => 'Spezialseiten können nicht bearbeitet werden.',
 'titleprotected'       => "Eine Seite mit diesem Namen kann nicht angelegt werden.
@@ -1867,12 +1868,12 @@ Wenn das Problem weiter besteht, informiere einen [[Special:ListUsers/sysop|Syst
 'backend-fail-closetemp'     => 'Die temporäre Datei konnte nicht geschlossen werden.',
 'backend-fail-read'          => 'Die Datei $1 konnte nicht gelesen werden.',
 'backend-fail-create'        => 'Die Datei $1 konnte nicht erstellt werden.',
-'backend-fail-readonly'      => 'Das Backend „$1“ befindet sich derzeit im Lesemodus. Der angegebene Grund lautet: „$2“',
-'backend-fail-synced'        => 'Die Datei „$1“ befindet sich, innerhalb des internen Backends, in einem inkonsistenten Zustand.',
-'backend-fail-connect'       => 'Es konnte keine Verbindung zum Datei-Backend „$1“ hergestellt werden.',
-'backend-fail-internal'      => 'Im Datei-Backend „$1“ ist ein unbekannter Fehler aufgetreten.',
+'backend-fail-readonly'      => 'Das Speicher-Backend „$1“ befindet sich derzeit im Lesemodus. Der angegebene Grund lautet: „$2“',
+'backend-fail-synced'        => 'Die Datei „$1“ befindet sich, innerhalb des internen Speicher-Backends, in einem inkonsistenten Zustand.',
+'backend-fail-connect'       => 'Es konnte keine Verbindung zum Speicher-Backend „$1“ hergestellt werden.',
+'backend-fail-internal'      => 'Im Speicher-Backend „$1“ ist ein unbekannter Fehler aufgetreten.',
 'backend-fail-contenttype'   => 'Der Inhaltstyp, der im Pfad „$1“ zu speichernden Datei, konnte nicht bestimmt werden.',
-'backend-fail-batchsize'     => 'Eine Stapelverarbeitungsdatei, die {{PLURAL:$1|eine Operation|$1 Operationen}} enthält, wurde an das Backend gesandt. Die Begrenzung liegt allerdings bei {{PLURAL:$2|einer Operation|$2 Operationen}}.',
+'backend-fail-batchsize'     => 'Eine Stapelverarbeitungsdatei, die {{PLURAL:$1|eine Operation|$1 Operationen}} enthält, wurde an das Speicher-Backend gesandt. Die Begrenzung liegt allerdings bei {{PLURAL:$2|einer Operation|$2 Operationen}}.',
 
 # Lock manager
 'lockmanager-notlocked'        => '„$1“ konnte nicht entsperrt werden, da keine Sperrung besteht.',
@@ -3295,9 +3296,9 @@ Weitere werden standardmäßig nicht angezeigt.
 'exif-gpsimgdirection'             => 'Bildrichtung',
 'exif-gpsmapdatum'                 => 'Geodätisches Referenzsystem',
 'exif-gpsdestlatituderef'          => 'Referenz für die Breite',
-'exif-gpsdestlatitude'             => 'Breite',
+'exif-gpsdestlatitude'             => 'Geografische Breite Zielpunkt',
 'exif-gpsdestlongituderef'         => 'Referenz für die Länge',
-'exif-gpsdestlongitude'            => 'Länge',
+'exif-gpsdestlongitude'            => 'Geografische Länge Zielpunkt',
 'exif-gpsdestbearingref'           => 'Referenz für Motivrichtung',
 'exif-gpsdestbearing'              => 'Motivrichtung',
 'exif-gpsdestdistanceref'          => 'Referenz für die Motiventfernung',

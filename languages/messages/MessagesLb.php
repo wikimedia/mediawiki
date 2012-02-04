@@ -1637,7 +1637,7 @@ Wann de Problem weider besteet, dann un de [[Special:ListUsers/sysop|Administrat
 'backend-fail-closetemp'     => 'Den temporäre Fichier konnt net zougemaach ginn.',
 'backend-fail-read'          => 'De Fichier $1 konnt net geliest ginn.',
 'backend-fail-create'        => 'De Fichier $1 konnt net ugeluecht ginn.',
-'backend-fail-readonly'      => 'De Backend "$1" kann elo nëmme geliest ginn (read-only). De Grond deen ugi gouf ass: "$2"',
+'backend-fail-readonly'      => 'De Späicher-Backend "$1" kann elo nëmme geliest ginn (read-only). De Grond deen ugi gouf war: "$2"',
 
 # Lock manager
 'lockmanager-notlocked'        => '"$1" konnt net fräigeschalt ginn; $1 ass net gespaart.',

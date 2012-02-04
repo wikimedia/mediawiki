@@ -1689,12 +1689,12 @@ Si le problema persiste, contacta un [[Special:ListUsers/sysop|administrator]].'
 'backend-fail-closetemp'     => 'Non poteva clauder file temporari.',
 'backend-fail-read'          => 'Non poteva leger le file $1',
 'backend-fail-create'        => 'Non poteva crear le file $1',
-'backend-fail-readonly'      => 'Le back-end "$1" es actualmente in lectura sol. Le motivo date es: "$2"',
-'backend-fail-synced'        => 'Le file "$1" es in un stato inconsistente inter le back-ends interne',
-'backend-fail-connect'       => 'Impossibile connecter al back-end de files "$1".',
-'backend-fail-internal'      => 'Un error incognite occurreva in le back-end de files "$1".',
+'backend-fail-readonly'      => 'Le systema de immagazinage "$1" es actualmente in lectura sol. Le sequente motivo esseva specificate: "$2"',
+'backend-fail-synced'        => 'Le file "$1" es in un stato inconsistente inter le systemas interne de immagazinage',
+'backend-fail-connect'       => 'Impossibile connecter al systema de immagazinage "$1".',
+'backend-fail-internal'      => 'Un error incognite occurreva in le systema de immagazinage "$1".',
 'backend-fail-contenttype'   => 'Non poteva determinar le typo de contento del file a immagazinar in "$1".',
-'backend-fail-batchsize'     => 'Le back-end ha recipite un lot de $1 {{PLURAL:$1|operation|operationes}} de file; le limite es $2 {{PLURAL:$2|operation|operationes}}.',
+'backend-fail-batchsize'     => 'Le systema de immagazinage ha recipite un lot de $1 {{PLURAL:$1|operation|operationes}} de file; le limite es $2 {{PLURAL:$2|operation|operationes}}.',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Impossibile disblocar "$1"; illo non es blocate.',

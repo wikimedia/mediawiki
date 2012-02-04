@@ -686,7 +686,7 @@ Please log in again after you receive it.
 'passwordreset-disabled'           => 'આ વિકી પર પાસવર્ડ રીસેટ કરવા પર પ્રતિબંધ છે.',
 'passwordreset-pretext'            => '{{PLURAL: $1| | એક નીચે માહિતીના ટુકડાઓ દાખલ}}',
 'passwordreset-username'           => 'સભ્ય નામ:',
-'passwordreset-domain'             => 'ડોમેન:',
+'passwordreset-domain'             => 'ડોમેઈન:',
 'passwordreset-capture'            => 'પરિણામી ઈ મેલ જોવો છે ?',
 'passwordreset-capture-help'       => 'જો તમે આ ઓપ્શન સિલેક્ટ કરશો, તો તમને અને યુઝર ને ઈ મેલ (કામચલાઉ પાસવર્ડ સાથે) દેખાડવામાં આવશે.',
 'passwordreset-email'              => 'ઇ મેલ સરનામું:',
@@ -704,7 +704,7 @@ Please log in again after you receive it.
 'changeemail-no-info'  => 'બારોબાર આ પાનું જોવા માટે પ્રવેશ કરવો આવશ્યક છે.',
 'changeemail-oldemail' => 'હાલ નું ઈ મેલ ખાતુ:',
 'changeemail-newemail' => 'નવું ઈ-મેલ સરનામું',
-'changeemail-none'     => 'કંઈ નથી',
+'changeemail-none'     => '(કંઈ નહી)',
 'changeemail-submit'   => 'ઈ મેલ બદલો',
 'changeemail-cancel'   => 'રદ કરો',
 
@@ -1424,7 +1424,7 @@ HTML નાકું ચકાસો',
 'rightslogtext'              => 'સભ્યના બદલાયેલ હક્કોની આ સંપાદન યાદિ છે .',
 'rightslogentry'             => '$2 થી $3 સુધી $1 માટે બદલાયેલું સમૂહ સભ્યપદ',
 'rightslogentry-autopromote' => 'આપોઆપ $2 માં થી $3 માં બઢતી થઇ',
-'rightsnone'                 => '(કોઈ નહિ)',
+'rightsnone'                 => '(કંઈ નહી)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'આ પાનું વાંચો.',
@@ -1816,7 +1816,7 @@ $1',
 'filedelete-success-old'       => "'''[[Media:$1|$1]]'''નું $3, $2ના રોજનું  સંસ્કરણ ભુંસી નાખ્યું છે.",
 'filedelete-nofile'            => "'''$1'''નું અસ્તિત્વ નથી.",
 'filedelete-nofile-old'        => "'''$1'''નું  આપે જણાવેલ ખાસિયતવાળું સંગ્રહિત સંસ્કરણ અસ્તિત્વમાં નથી.",
-'filedelete-otherreason'       => 'બીજું/વધારાનું કારણ:',
+'filedelete-otherreason'       => 'અન્ય/વધારાનું કારણ:',
 'filedelete-reason-otherlist'  => 'બીજું કારણ',
 'filedelete-reason-dropdown'   => '* હટાવવાનાં સામાન્ય કારણો
 ** પ્રકાશનાધિકાર ભંગ

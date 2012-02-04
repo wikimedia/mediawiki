@@ -211,7 +211,7 @@ $messages = array(
 'create-this-page'  => 'Khai-sí siá chit ia̍h',
 'delete'            => 'Thâi',
 'deletethispage'    => 'Thâi chit ia̍h',
-'undelete_short'    => 'Kiù $1 ê siu-kái',
+'undelete_short'    => 'Kiù {{PLURAL:$1| ê siu-káit|$1  ê siu-kái}}',
 'viewdeleted_short' => 'Khoàⁿ {{PLURAL:$1|chi̍t-ê thâi tiàu--ê pian-chi̍p|$1 ê thâi tiàu--ê pian-chi̍p}}',
 'protect'           => 'Pó-hō·',
 'protect_change'    => 'kái-piàn',
@@ -240,7 +240,7 @@ $messages = array(
 'redirectedfrom'    => '(Tùi $1 choán--lâi)',
 'redirectpagesub'   => 'Choán-ia̍h',
 'lastmodifiedat'    => 'Chit ia̍h tī $1,  $2 ū kái--koè',
-'viewcount'         => 'Pún-ia̍h kàu taⁿ ū $1 pái access.',
+'viewcount'         => 'Pún-ia̍h kàu taⁿ ū {{PLURAL:$1| pái|$1 pái}}  ê sú-iōng.',
 'protectedpage'     => 'Siū pó-hō͘ ê ia̍h',
 'jumpto'            => 'Thiàu khì:',
 'jumptonavigation'  => 'Se̍h chām',
@@ -413,10 +413,10 @@ $2',
 # Login and logout pages
 'logouttext'                 => "'''Lí í-keng teng-chhut.'''
 
-Lí ē-sái mài kì-miâ kè-siok sú-iōng {{SITENAME}}, mā ē-sái iōng kāng-ê a̍h-sī pa̍t-ê sin-hūn têng teng-ji̍p.
+Lí ē-sái mài kì-miâ kè-siok sú-iōng {{SITENAME}}, mā ē-sái iōng kāng-ê a̍h-sī  pa̍t-ê sin-hūn  [[Special:UserLogin|têng teng-ji̍p]].
 Chhiaⁿ chù-ì: ū-kóa ia̍h ū khó-lêng khoàⁿ-tio̍h bē-su lí iû-goân teng-ji̍p tiong; che chi-iàu piàⁿ tiāu lí ê browser ê cache chiū ē chèng-siông.",
 'welcomecreation'            => '==Hoan-gêng $1!==
-Í-keng khui hó lí ê kháu-chō.  M̄-hó bē-kì-tit chhiâu lí ê iōng-chiá siat-tēng.',
+Í-keng khui hó lí ê kháu-chō.  M̄-hó bē-kì-tit chhiâu lí tī [[Special:Preferences|{{SITENAME}} ê iōng-chiá siat-tēng]].',
 'yourname'                   => 'Lí ê iōng-chiá miâ-chheng:',
 'yourpassword'               => 'Lí ê bi̍t-bé:',
 'yourpasswordagain'          => 'Têng phah bi̍t-bé:',
@@ -483,7 +483,7 @@ Tùi khoàⁿ-māi,  lí phah--ê.',
 'mailerror'                  => 'Kià phoe tú tio̍h chhò-gō·: $1',
 'acct_creation_throttle_hit' => 'Tī koè-khì 24 tiám-cheng lāi,  ū chit ê iōng lí IP bāng-chí ê lâng í-keng khui {{PLURAL:$1|1 account|$1 kháu-chō}}. He sī hit ê sî-kan lāi thang chò ê.
 Tiō-sī kóng, tī chit-má iōng chit ê IP bāng-chí ê lâng bē-sái koh khui jīm-hô kháu-chō.',
-'emailauthenticated'         => 'Lí ê e-mail chū-chí tī $2 $2 khak-jīn sêng-kong.',
+'emailauthenticated'         => 'Lí ê e-mail chū-chí tī $2 $3 khak-jīn sêng-kong.',
 'emailnotauthenticated'      => 'Lí ê e-mail chū-chí iáu-bōe khak-jīn ū-hāu, só·-í ē--kha ê e-mail kong-lêng bē-ēng-tit.',
 'noemailprefs'               => 'Tī lí ê siat-piān chí-tēng chi̍t ê tiān-chú-phoe tē-chí thang hō͘ chia ê kong-lêng ē-tàng ēng.',
 'emailconfirmlink'           => 'Chhiáⁿ khak-jīn lí ê e-mail chū-chí ū-hāu',
@@ -637,7 +637,7 @@ Lîm-sî ê bi̍t-bé: $2',
 Kháu-chō ê sin bi̍t-bé thang tī teng-ji̍p liáu tī ''[[Special:ChangePassword|siu-kái bi̍t-bé]]'' ia̍h kái tiāu.",
 'newarticle'                       => '(Sin)',
 'newarticletext'                   => "Lí tòe 1 ê liân-kiat lâi kàu 1 bīn iáu-bōe chûn-chāi ê ia̍h. Beh khai-sí pian-chi̍p chit ia̍h, chhiáⁿ tī ē-kha ê bûn-jī keh-á lāi-té phah-jī. ([[{{MediaWiki:Helppage}}|Bo̍k-lio̍k]] kà lí án-choáⁿ chìn-hêng.) Ká-sú lí bô-tiuⁿ-tî lâi kàu chia, ē-sai chhi̍h liû-lám-khì ê '''téng-1-ia̍h''' tńg--khì.",
-'anontalkpagetext'                 => "----''Pún thó-lūn-ia̍h bô kò·-tēng ê kháu-chō/hō·-thâu, kan-na ū 1 ê IP chū-chí (chhin-chhiūⁿ 123.456.789.123). In-ūi bô kāng lâng tī bô kāng sî-chūn ū khó-lêng tú-hó kong-ke kāng-ê IP, lâu tī chia ê oē ū khó-lêng hō· bô kāng lâng ê! Beh pī-bián chit khoán būn-tê, ē-sái khì [[Special:UserLogin|khui 1 ê hō·-thâu a̍h-sī teng-ji̍p]].''",
+'anontalkpagetext'                 => "''Pún thó-lūn-ia̍h bô kò·-tēng ê kháu-chō/hō·-thâu, kan-na ū 1 ê IP chū-chí (chhin-chhiūⁿ 123.456.789.123). In-ūi bô kāng lâng tī bô kāng sî-chūn ū khó-lêng tú-hó kong-ke kāng-ê IP, lâu tī chia ê oē ū khó-lêng hō· bô kāng lâng ê! Beh pī-bián chit khoán būn-tê, ē-sái khì [[Special:UserLogin/signup|khui 1 ê hō·-thâu a̍h-sī teng-ji̍p]].''",
 'noarticletext'                    => '這頁這馬無內容，
 你會使佇別頁[[Special:Search/{{PAGENAME}}|搜揣這頁標題]]，
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搜揣有關的記錄]，
@@ -650,8 +650,9 @@ Kháu-chō ê sin bi̍t-bé thang tī teng-ji̍p liáu tī ''[[Special:ChangePas
 'userpage-userdoesnotexist-view'   => '用者口座「$1」猶未開',
 'blocked-notice-logextract'        => '這个用者這馬hông封鎖，
 下跤有最近封鎖的紀錄通參考：',
-'clearyourcache'                   => "'''Chù-ì:''' Pó-chûn liáu-āu, tio̍h ē-kì leh kā liû-lám-khì ê cache piàⁿ tiāu chiah khoàⁿ-ē-tio̍h kái-piàn: *'''Firefox / Safari:''' chhi̍h tiâu \"Shift\" kâng-sî-chūn tiám-kik ''Reload/têng-sin chài-ji̍p'' a̍h-sī chhi̍h ''Ctrl-F5'' \"Ctrl-R\" kî-tiong chi̍t ê (''Command-R'' tī Mac) 
-* '''Google Chrome:''' chhi̍h ''Ctrl-Shift-R'' (''Command-Shift-R'' tī Mac)
+'clearyourcache'                   => "'''Chù-ì:''' Pó-chûn liáu-āu, tio̍h ē-kì leh kā liû-lám-khì ê cache piàⁿ tiāu chiah khoàⁿ-ē-tio̍h kái-piàn. 
+*'''Firefox / Safari:''' chhi̍h tiâu \"Shift\" kâng-sî-chūn tiám-kik ''Reload/têng-sin chài-ji̍p'' a̍h-sī chhi̍h ''Ctrl-F5'' \"Ctrl-R\" kî-tiong chi̍t ê (''⌘-R'' tī Mac) 
+* '''Google Chrome:''' chhi̍h ''Ctrl-Shift-R'' (''⌘-R-Shift-R'' tī Mac)
 '''Internet Explorer :'''chhi̍h tiâu \"Ctrl\" kâng-sî-chūn tiám-kek ''Refresh/têng-sin chài-ji̍p'' a̍h-sī chhi̍h \"Ctrl-F5\" 
 * '''Konqueror:'''  tiám-kek ''Reload/têng-sin chài-ji̍p'' a̍h-sī chhi̍h ''F5''
 * '''Opera:''' piàⁿ-tiāu cache tī ''Tools(ke-si) → Preferences(siat-piān)''",
@@ -704,7 +705,7 @@ Lí ê kái-piàn tī ē-kha ê bûn-jī-keh. Lí su-iàu chiōng lí chò ê k�
 若你無希望你寫的文字hông無情修改，就毋莫佇遮提交。<br />
 你嘛向阮保證這是你家己寫的，抑是對無版權抑有授權(看$1的說明)的遐抄來的。
 '''毋通無授權就送出有版權作品！'''",
-'longpageerror'                    => "'''錯誤: 你送出來的文章長度有$1KB，這大過$2KB的上大界限。'''
+'longpageerror'                    => "'''錯誤: 你送出來的文章長度有$1 KB，這大過$2 KB的上大界限。'''
 伊無法度保存。",
 'readonlywarning'                  => "'''CHÙ-Ì: Chu-liāu-khò· taⁿ só tiâu leh thang pān î-siu khang-khòe, só·-í lí hiān-chú-sî bô thang pó-chûn jīn-hô phian-chi̍p hāng-bo̍k. Lí ē-sái kā siong-koan pō·-hūn tah--ji̍p-khì 1-ê bûn-jī tóng-àn pó-chûn, āu-chhiú chiah koh kè-sio̍k.'''
 
@@ -751,7 +752,7 @@ Chia ū chit ia̍h ê san-tû kì-lo̍k hō͘ lí chham-khó:",
 # Parser/template warnings
 'expensive-parserfunction-warning'        => "'''警示：'''這頁用傷濟擺函數呼叫。
 
-伊應該少過{PLURAL:$2|擺|擺}，這馬有{PLURAL:$1|擺|擺}。",
+伊應該少過{{PLURAL:$2|擺|擺}}，這馬有{{PLURAL:$1|擺|擺}}。",
 'expensive-parserfunction-category'       => '用傷濟擺函數呼叫的頁',
 'post-expand-template-inclusion-warning'  => "'''Kéng-pò:'''Pau ji̍t lâi ê pán-bôo sioⁿ koè tsē ia̍h tuā.
 Ū chi̍t-koá-á ē bô pau ji̍t lâi.",
@@ -992,8 +993,8 @@ $1",
 'searcheverything-enable'          => '揣所有的名空間',
 'searchrelated'                    => '相關的',
 'searchall'                        => 'choân-pō·',
-'showingresults'                   => 'Ē-kha tùi #<b>$2</b> khai-sí hián-sī <b>$1</b> hāng kiat-kó.',
-'showingresultsnum'                => 'Ē-kha tùi #<b>$2</b> khai-sí hián-sī <b>$3</b> hāng kiat-kó.',
+'showingresults'                   => "Ē-kha tùi #'''$2''' khai-sí hián-sī {{PLURAL:$1| hāng| hāng}} kiat-kó.",
+'showingresultsnum'                => "Ē-kha tùi #'''$2''' khai-sí hián-sī {{PLURAL:$3| hāng| hāng}} kiat-kó.",
 'showingresultsheader'             => "對'''$4'''的{{PLURAL:$5|第'''$1'''到第'''$3'''項結果|第'''$1 - $2'''項，總共'''$3'''項結果}}",
 'nonefound'                        => "'''注意'''：只有一寡名空間是預設會去揣。試''all:''去揣所有的頁（包括討論頁、枋模等等），抑是頭前指定名空間。",
 'search-nonefound'                 => '揣無欲愛的',
@@ -1553,7 +1554,7 @@ $1',
 有一个[[Special:WhatLinksHere/$2|全部的清單]]。',
 'nolinkstoimage'            => 'Bô poàⁿ ia̍h liân kàu chit tiuⁿ iáⁿ-siōng.',
 'morelinkstoimage'          => '看連接到這个檔案的[[Special:WhatLinksHere/$1|其他連結]]',
-'duplicatesoffile'          => '下跤$1个檔案佮這个仝款（[[Special:FileDuplicateSearch/$2|詳細]]）：',
+'duplicatesoffile'          => '下跤{{PLURAL:$1|个|个}}檔案佮這个仝款（[[Special:FileDuplicateSearch/$2|詳細]]）：',
 'sharedupload'              => '這个檔案是對$1遐來的，伊可能用佇別个事工。',
 'sharedupload-desc-there'   => '這个檔案對$1遐來的，伊可能用佇別个事工，
 請看[$2 檔案說明]以了解進一步訊息。',
@@ -1576,14 +1577,22 @@ $1',
 'filerevert-badversion'     => '這个檔案所提供的時間截記，無進前的本地版本。',
 
 # File deletion
-'filedelete'             => '刣掉$1',
-'filedelete-legend'      => '刣掉檔案',
-'filedelete-intro'       => "你當咧刣掉檔案'''[[Media:$1|$1]]'''，佮伊的歷史。",
-'filedelete-intro-old'   => "你當咧刣掉'''[[Media:$1|$1]]'''佇[$4 $2 $3]的版本",
-'filedelete-comment'     => '理由：',
-'filedelete-success'     => "'''$1'''已經刣掉",
-'filedelete-success-old' => "'''[[Media:$1|$1]]'''佇$2 $3 的版本已經刣掉",
-'filedelete-nofile'      => "無'''$1'''這个",
+'filedelete'                  => '刣掉$1',
+'filedelete-legend'           => '刣掉檔案',
+'filedelete-intro'            => "你當咧刣掉檔案'''[[Media:$1|$1]]'''，佮伊的歷史。",
+'filedelete-intro-old'        => "你當咧刣掉'''[[Media:$1|$1]]'''佇[$4 $2 $3]的版本",
+'filedelete-comment'          => '理由：',
+'filedelete-submit'           => '刣掉',
+'filedelete-success'          => "'''$1'''已經刣掉",
+'filedelete-success-old'      => "'''[[Media:$1|$1]]'''佇$2 $3 的版本已經刣掉",
+'filedelete-nofile'           => "無'''$1'''這个",
+'filedelete-nofile-old'       => "揣無'''$1'''指定的保存版本",
+'filedelete-otherreason'      => '其他／另外的理由：',
+'filedelete-reason-otherlist' => '其他理由',
+'filedelete-reason-dropdown'  => '*一般刣掉的理由
+** 違反著作權
+** 相仝',
+'filedelete-edit-reasonlist'  => '編輯刣掉的理由',
 
 # MIME search
 'mimesearch' => 'MIME chhiau-chhoē',
@@ -1729,13 +1738,18 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'emailpagetext'   => 'Ká-sú chit ê iōng-chiá ū siat-tēng 1 ê ū-hāu ê e-mail chū-chí, lí tō ē-tàng ēng ē-kha chit tiuⁿ FORM hoat sìn-sek hō· i. Lí siat-tēng ê e-mail chū-chí ē chhut-hiān tī e-mail ê "Kià-phoe-jîn" (From) hit ūi. Án-ne siu-phoe-jîn chiah ū hoat-tō· kā lí hôe-phoe.',
 'noemailtitle'    => 'Bô e-mail chū-chí',
 'noemailtext'     => 'Chit ūi iōng-chiá pēng-bô lâu ū-hāu ê e-mail chū-chí, bô tio̍h-sī i bô beh chiap-siū pat-ūi iōng-chiá ê e-mail.',
-'emailfrom'       => 'Lâi chū',
-'emailto'         => 'Khì hō·',
-'emailsubject'    => 'Tê-bo̍k',
+'emailfrom'       => 'Lâi chū:',
+'emailto'         => 'Khì hō·:',
+'emailsubject'    => 'Tê-bo̍k:',
 'emailmessage'    => 'Sìn-sit:',
 'emailsend'       => 'Sàng chhut-khì',
+'emailccme'       => '共我的訊息用電子批寄一份予我',
 'emailsent'       => 'E-mail sàng chhut-khì ah',
 'emailsenttext'   => 'Lí ê e-mail í-keng sàng chhut-khì ah.',
+
+# User Messenger
+'usermessage-summary' => '留系統信息',
+'usermessage-editor'  => '系統信息',
 
 # Watchlist
 'watchlist'          => 'Kàm-sī-toaⁿ',

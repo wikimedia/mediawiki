@@ -1856,12 +1856,12 @@ Ako se problem ne reši, kontaktirajte [[Special:ListUsers/sysop|administratora]
 'backend-fail-closetemp'     => 'Ne mogu da zatvorim privremenu datoteku.',
 'backend-fail-read'          => 'Ne mogu da pročitam datoteku $1.',
 'backend-fail-create'        => 'Ne mogu da napravim datoteku $1.',
-'backend-fail-readonly'      => 'Na osnovu „$1“ trenutno ne može da se piše. Navedeni razlog glasi: „$2“',
-'backend-fail-synced'        => 'Datoteka „$1“ je u nedoslednom stanju između unutrašnjih delova',
-'backend-fail-connect'       => 'Ne mogu da se povežem s pozadinom datoteke „$1“.',
-'backend-fail-internal'      => 'Došlo je do nepoznate greške u pozadini datoteke „$1“.',
+'backend-fail-readonly'      => 'Skladišna osnova „$1“ trenutno ne može da se zapisuje. Navedeni razlog glasi: „$2“',
+'backend-fail-synced'        => 'Datoteka „$1“ je nedosledna između unutrašnjih skladišnih osnova',
+'backend-fail-connect'       => 'Ne mogu da se povežem sa skladišnom osnovom „$1“.',
+'backend-fail-internal'      => 'Došlo je do nepoznate greške u skladišnoj osnovi „$1“.',
 'backend-fail-contenttype'   => 'Ne mogu da utvrdim kakav sadržaj ima datoteka koju treba da smestim u „$1“.',
-'backend-fail-batchsize'     => 'Podloga je dobila blokadu od $1 {{PLURAL:$1|operacije|operacije|operacija}}; ograničenje je $2 {{PLURAL:$2|operacija|operacije|operacija}}.',
+'backend-fail-batchsize'     => 'Skladišna osnova je dobila blokadu od $1 {{PLURAL:$1|operacije|operacije|operacija}}; ograničenje je $2 {{PLURAL:$2|operacija|operacije|operacija}}.',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Ne mogu da otključam „$1“ jer nije zaključan.',
