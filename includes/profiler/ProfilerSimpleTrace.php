@@ -10,7 +10,6 @@
  * @ingroup Profiler
  */
 class ProfilerSimpleTrace extends ProfilerSimple {
-	var $mMinimumTime = 0;
 	var $trace = "";
 	var $memory = 0;
 
