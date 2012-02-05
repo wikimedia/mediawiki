@@ -486,7 +486,7 @@ class MediaWiki {
 			return;
 		}
 
-		if ( wfRunHooks( 'UnknownAction', array( $act, $page ) ) ) {
+		if ( wfRunHooks( 'UnknownAction', array( $request->getVal( 'action', 'view' ), $page ) ) ) {
 			$output->showErrorPage( 'nosuchaction', 'nosuchactiontext' );
 		}
 
