@@ -46,7 +46,7 @@ var byteLimitTest = function( options ) {
 
 	test( opt.description, function() {
 
-		opt.$input.appendTo( 'body' );
+		opt.$input.appendTo( '#qunit-fixture' );
 
 		// Simulate pressing keys for each of the sample characters
 		$.addChars( opt.$input, opt.sample );
@@ -66,8 +66,6 @@ var byteLimitTest = function( options ) {
 			equal( newVal, opt.expected, 'New value matches the expected string' );
 			equal( $.byteLength( newVal ), $.byteLength( opt.expected ), 'Unlimited scenarios are not affected, expected length reached' );
 		}
-
-		opt.$input.remove();
 	} );
 };
 

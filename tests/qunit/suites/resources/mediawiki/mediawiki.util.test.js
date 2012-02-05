@@ -52,7 +52,7 @@ test( 'wikiScript', function() {
 test( 'addCSS', function() {
 	expect(3);
 
-	var $testEl = $( '<div>' ).attr( 'id', 'mw-addcsstest' ).appendTo( 'body' );
+	var $testEl = $( '<div>' ).attr( 'id', 'mw-addcsstest' ).appendTo( '#qunit-fixture' );
 
 	var style = mw.util.addCSS( '#mw-addcsstest { visibility: hidden; }' );
 	equal( typeof style, 'object', 'addCSS returned an object' );
@@ -61,9 +61,7 @@ test( 'addCSS', function() {
 	equal( $testEl.css( 'visibility' ), 'hidden', 'Added style properties are in effect' );
 
 	// Clean up
-	$( style.ownerNode )
-		.add( $testEl )
-		.remove();
+	$( style.ownerNode ).remove();
 });
 
 test( 'toggleToc', function() {
@@ -79,7 +77,7 @@ test( 'toggleToc', function() {
 		'</div>' +
 		'<ul><li></li></ul>' +
 	'</td></tr></table>',
-		$toc = $(tocHtml).appendTo( 'body' ),
+		$toc = $(tocHtml).appendTo( '#qunit-fixture' ),
 		$toggleLink = $( '#togglelink' );
 
 	strictEqual( $toggleLink.length, 1, 'Toggle link is appended to the page.' );
@@ -90,9 +88,6 @@ test( 'toggleToc', function() {
 
 	var actionC = function() {
 		start();
-
-		// Clean up
-		$toc.remove();
 	};
 	var actionB = function() {
 		start(); stop();
@@ -158,8 +153,8 @@ test( 'addPortletLink', function() {
 	<h5>Views</h5>\
 	<ul></ul>\
 </div>',
-	$mwPanel = $(mwPanel).appendTo( 'body' ),
-	$vectorTabs = $(vectorTabs).appendTo( 'body' );
+	$mwPanel = $(mwPanel).appendTo( '#qunit-fixture' ),
+	$vectorTabs = $(vectorTabs).appendTo( '#qunit-fixture' );
 
 	var tbRL = mw.util.addPortletLink( 'p-test-tb', '//mediawiki.org/wiki/ResourceLoader',
 		'ResourceLoader', 't-rl', 'More info about ResourceLoader on MediaWiki.org ', 'l' );
@@ -186,10 +181,7 @@ test( 'addPortletLink', function() {
 	strictEqual( $( caFoo ).find( 'span').length, 1, 'A <span> element should be added for porlets with vectorTabs class.' );
 
 	// Clean up
-	$( [tbRL, tbMW, tbRLDM, caFoo] )
-		.add( $mwPanel )
-		.add( $vectorTabs )
-		.remove();
+	$( [tbRL, tbMW, tbRLDM, caFoo] ).remove();
 });
 
 test( 'jsMessage', function() {

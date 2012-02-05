@@ -36,16 +36,14 @@ var encapsulateTest = function( options ) {
 
 	test( opt.description, function() {
 		var tests = 1;
-		if (opt.after.selected !== null) {
+		if ( opt.after.selected !== null ) {
 			tests++;
 		}
-		expect(tests);
+		expect( tests );
 
-		var $fixture = $( '<div id="qunit-fixture"></div>' );
 		var $textarea = $( '<textarea>' );
 
-		$fixture.append($textarea);
-		$( 'body' ).append($fixture);
+		$( '#qunit-fixture' ).append( $textarea );
 
 		//$textarea.textSelection( 'setContents', opt.before.text); // this method is actually missing atm...
 		$textarea.val( opt.before.text ); // won't work with the WikiEditor iframe?
@@ -228,11 +226,9 @@ var caretTest = function(options) {
 	test(options.description, function() {
 		expect(2);
 
-		var $fixture = $( '<div id="qunit-fixture"></div>' );
 		var $textarea = $( '<textarea>' ).text(options.text);
 
-		$fixture.append($textarea);
-		$( 'body' ).append($fixture);
+		$( '#qunit-fixture' ).append( $textarea );
 
 		if (options.mode == 'set') {
 			$textarea.textSelection('setSelection', {
