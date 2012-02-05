@@ -590,7 +590,7 @@ Seique yá camudasti correutamente la conseña o que pidieras una nueva conseña
 'passwordreset-domain'             => 'Dominiu:',
 'passwordreset-capture'            => '¿Ver el mensaxe de corréu resultante?',
 'passwordreset-capture-help'       => "Si marques esta caxella, podrás ver el corréu (cola conseña temporal) de la que s'unvia al usuariu.",
-'passwordreset-email'              => 'Direición de corréu:',
+'passwordreset-email'              => 'Direición de corréu electrónicu:',
 'passwordreset-emailtitle'         => 'Detalles de la cuenta en {{SITENAME}}',
 'passwordreset-emailtext-ip'       => "Dalguién (seique tu, dende la direición IP $1) pidió un recordatoriu cola
 información de la to cuenta de {{SITENAME}} ($4).
