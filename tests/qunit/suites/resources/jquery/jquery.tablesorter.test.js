@@ -79,7 +79,6 @@ var tableTest = function( msg, header, data, expected, callback ) {
 		expect(1);
 
 		var $table = tableCreate( header, data );
-		//$( 'body' ).append($table);
 
 		// Give caller a chance to set up sorting and manipulate the table.
 		callback( $table );
