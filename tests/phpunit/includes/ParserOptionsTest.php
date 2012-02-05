@@ -8,7 +8,7 @@ class ParserOptionsTest extends MediaWikiTestCase {
 	function setUp() {
 		global $wgContLang, $wgUser, $wgLanguageCode;
 		$wgContLang = Language::factory( $wgLanguageCode );
-		$this->popts = new ParserOptions( $wgUser );
+		$this->popts = ParserOptions::newFromUserAndLang( $wgUser, $wgContLang );
 		$this->pcache = ParserCache::singleton();
 	}
 
@@ -25,11 +25,11 @@ class ParserOptionsTest extends MediaWikiTestCase {
 		$wgUseDynamicDates = true;
 
 		$title = Title::newFromText( "Some test article" );
-		$article = new Article( $title );
+		$page = WikiPage::factory( $title );
 
-		$pcacheKeyBefore = $this->pcache->getKey( $article, $this->popts );
+		$pcacheKeyBefore = $this->pcache->getKey( $page, $this->popts );
 		$this->assertNotNull( $this->popts->getDateFormat() );
-		$pcacheKeyAfter = $this->pcache->getKey( $article, $this->popts );
+		$pcacheKeyAfter = $this->pcache->getKey( $page, $this->popts );
 		$this->assertEquals( $pcacheKeyBefore, $pcacheKeyAfter );
 	}
 }
