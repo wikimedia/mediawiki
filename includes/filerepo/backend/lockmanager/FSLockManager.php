@@ -43,14 +43,9 @@ class FSLockManager extends LockManager {
 
 		$lockedPaths = array(); // files locked in this attempt
 		foreach ( $paths as $path ) {
-			$subStatus = $this->doSingleLock( $path, $type );
-			$status->merge( $subStatus );
+			$status->merge( $this->doSingleLock( $path, $type ) );
 			if ( $status->isOK() ) {
-				// Don't append to $lockedPaths if $path is already locked.
-				// We do NOT want to unlock the key if we have to rollback.
-				if ( $subStatus->isGood() ) { // no warnings/fatals?
-					$lockedPaths[] = $path;
-				}
+				$lockedPaths[] = $path;
 			} else {
 				// Abort and unlock everything
 				$status->merge( $this->doUnlock( $lockedPaths, $type ) );
