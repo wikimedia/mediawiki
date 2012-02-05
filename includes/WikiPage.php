@@ -2133,7 +2133,7 @@ class WikiPage extends Page {
 		}
 
 		# Get the last editor
-		$current = Revision::newFromTitle( $this->mTitle );
+		$current = $this->getRevision();
 		if ( is_null( $current ) ) {
 			# Something wrong... no page?
 			return array( array( 'notanarticle' ) );
@@ -2431,9 +2431,8 @@ class WikiPage extends Page {
 	public function getAutoDeleteReason( &$hasHistory ) {
 		global $wgContLang;
 
-		$dbw = wfGetDB( DB_MASTER );
 		// Get the last revision
-		$rev = Revision::newFromTitle( $this->getTitle() );
+		$rev = $this->getRevision();
 
 		if ( is_null( $rev ) ) {
 			return false;
@@ -2453,6 +2452,8 @@ class WikiPage extends Page {
 				$blank = true;
 			}
 		}
+
+		$dbw = wfGetDB( DB_MASTER );
 
 		// Find out if there was only one contributor
 		// Only scan the last 20 revisions
