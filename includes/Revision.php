@@ -536,7 +536,7 @@ class Revision {
 			array( 'page_namespace', 'page_title' ),
 			array( 'page_id=rev_page',
 				   'rev_id' => $this->mId ),
-			'Revision::getTitle' );
+			__METHOD__ );
 		if( $row ) {
 			$this->mTitle = Title::makeTitle( $row->page_namespace, $row->page_title );
 		}
