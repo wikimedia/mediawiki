@@ -89,20 +89,20 @@ abstract class Action {
 	/**
 	 * Get the action that will be executed, not necessarily the one passed
 	 * passed through the "action" request parameter. Actions disabled in
-	 * $wgDisabledActions will be replaced by "nosuchaction".
+	 * $wgActions will be replaced by "nosuchaction".
 	 *
 	 * @since 1.19
 	 * @param $context IContextSource
 	 * @return string: action name
 	 */
 	public final static function getActionName( IContextSource $context ) {
-		global $wgDisabledActions;
+		global $wgActions;
 
 		$request = $context->getRequest();
 		$actionName = $request->getVal( 'action', 'view' );
 
 		// Check for disabled actions
-		if ( in_array( $actionName, $wgDisabledActions ) ) {
+		if ( isset( $wgActions[$actionName] ) && $wgActions[$actionName] === false ) {
 			$actionName = 'nosuchaction';
 		}
 
