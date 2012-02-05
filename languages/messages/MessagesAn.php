@@ -804,7 +804,7 @@ Habrá d'incorporar os suyos cambeos en o texto existent.
 '''NO COPIE SIN PREMISO ESCRITOS CON DREITOS D'AUTOR!'''<br />",
 'copyrightwarning2'                => "Por favor, pare cuenta que todas as contrebucions a {{SITENAME}} pueden estar editatas, cambiatas u borratas por atros colaboradors. Si no deseya que atra chent corricha os suyos escritos sin piedat y los destribuiga librement, alavez, no debería meter-los aquí. <br /> En publicar aquí, tamién ye declarando que vusté mesmo escribió iste texto y ye o duenyo d'os dreitos d'autor, u bien lo copió dende o dominio publico u qualsiquier atra fuent libre (veyer $1 ta más información). <br />
 '''NO COPIE SIN PREMISO ESCRITOS CON DREITOS D'AUTOR!'''",
-'longpageerror'                    => "'''ERROR: O texto que ha escrito ye de $1 kilobytes, que ye mayor que a grandaria maxima de $2 kilobytes. No se puede alzar.'''",
+'longpageerror'                    => "'''ERROR: O texto que ha escrito ye {{PLURAL:$1|d'un kilobyte|de $1 kilobytes}}, que ye mas gran que a mida maxima {{PLURAL:$2|d'un kilobyte|de $2 kilobytes}}. No se puede alzar.'''",
 'readonlywarning'                  => "'''Pare cuenta: A base de datos ye bloqueyata por custions de mantenimiento. Por ixo, en iste inte ye imposible d'alzar as suyas edicions. Puede copiar y apegar o texto en un fichero y alzar-lo ta dimpués.'''
 
 A esplicación ufierta por l'almenistrador que bloqueyó a base de datos ye ista: $1",
@@ -1589,7 +1589,12 @@ $1',
 'backend-fail-closetemp'     => "No s'ha puesto zarrar o fichero temporal.",
 'backend-fail-read'          => "No s'ha puesto leyer o fichero «$1».",
 'backend-fail-create'        => "No s'ha puesto creyar o fichero «$1».",
-'backend-fail-readonly'      => 'O backend "$1" ye actualment nomás de lectura. A razón dada ye: "$2"',
+'backend-fail-readonly'      => 'O backend d\'almagazenamiento "$1" ye agora nomás de lectura. A razón dada estió: "$2"',
+'backend-fail-synced'        => 'O fichero "$1" ye en un estau inconsistent en os backends d\'almagazenamiento internos',
+'backend-fail-connect'       => 'No s\'ha puesto connectar ta o backend d\'almagazenamiento "$1".',
+'backend-fail-internal'      => 'S\'ha produciu una error desconoixida en o fichero de backend d\'almagazenamiento "$1".',
+'backend-fail-contenttype'   => 'No s\'ha puesto determinar a mena de contenius d\'o fichero a almagazenar en "$1".',
+'backend-fail-batchsize'     => "O backend d'almagazenamiento ha recibiu un lot {{PLURAL:$1|d'$1 operación|de $1 operacions}} de fichero; o limite ye de $2 {{PLURAL:$2|operación|operacions}}",
 
 # Lock manager
 'lockmanager-notlocked'        => 'No s\'ha puesto desbloquiar "$1": no se trobaba bloquiau.',
@@ -3641,6 +3646,7 @@ Si no, puet usar o siguient formulario. O suyo comentario será adhibiu a la pac
 'api-error-duplicate-archive-popup-title' => "{{PLURAL:$1|Fichero|Fichers}} {{PLURAL:$1|duplicau|duplicaus}} que ya s'han eliminau",
 'api-error-duplicate-popup-title'         => '{{PLURAL:$1|Fichero|Fichers}} {{PLURAL:$1|duplicau|duplicaus}}',
 'api-error-empty-file'                    => 'O fichero que ninvió yera vuedo.',
+'api-error-emptypage'                     => 'No se permite a creyación de pachinas nuevas en blanco.',
 'api-error-fetchfileerror'                => "Error interna: Bella cosa salió malament mientres s'obteneba o fichero.",
 'api-error-file-too-large'                => 'O fichero que ninvió yera masiau gran.',
 'api-error-filename-tooshort'             => 'O nombre de fichero ye masiau corto.',
@@ -3665,6 +3671,7 @@ Si no, puet usar o siguient formulario. O suyo comentario será adhibiu a la pac
 'api-error-unknown-code'                  => 'Error desconoixida: «$1»',
 'api-error-unknown-error'                 => 'Error interna: Bella cosa salió malament en intentar cargar o fichero.',
 'api-error-unknown-warning'               => 'Alvertencia desconoixida: $1',
+'api-error-unknownerror'                  => 'Error desconoixida: «$1».',
 'api-error-uploaddisabled'                => 'As cargas de fichers son desactivadas en iste wiki.',
 'api-error-verification-error'            => 'Iste fichero puede estar danyau, u tiene una extensión incorrecta.',
 
