@@ -506,36 +506,36 @@ return array(
 		'debugRaw' => false,
 	),
 	'mediawiki.api' => array(
-		'scripts' => 'resources/mediawiki/mediawiki.api.js',
+		'scripts' => 'resources/mediawiki/mediawiki.api/mediawiki.api.js',
 		'dependencies' => 'mediawiki.util',
 	),
 	'mediawiki.api.category' => array( 
-		'scripts' => 'resources/mediawiki/mediawiki.api.category.js',
+		'scripts' => 'resources/mediawiki/mediawiki.api/mediawiki.api.category.js',
 		'dependencies' => array( 
 			'mediawiki.api',
 			'mediawiki.Title' 
 		),
 	),
 	'mediawiki.api.edit' => array( 
-		'scripts' => 'resources/mediawiki/mediawiki.api.edit.js',
+		'scripts' => 'resources/mediawiki/mediawiki.api/mediawiki.api.edit.js',
 		'dependencies' => array( 
 			'mediawiki.api',
 			'mediawiki.Title' 
 		),
 	),
 	'mediawiki.api.parse' => array( 
-		'scripts' => 'resources/mediawiki/mediawiki.api.parse.js',
+		'scripts' => 'resources/mediawiki/mediawiki.api/mediawiki.api.parse.js',
 		'dependencies' => 'mediawiki.api',
 	),
 	'mediawiki.api.titleblacklist' => array( 
-		'scripts' => 'resources/mediawiki/mediawiki.api.titleblacklist.js',
+		'scripts' => 'resources/mediawiki/mediawiki.api/mediawiki.api.titleblacklist.js',
 		'dependencies' => array( 
 			'mediawiki.api',
 			'mediawiki.Title' 
 		),
 	),
 	'mediawiki.api.watch' => array( 
-		'scripts' => 'resources/mediawiki/mediawiki.api.watch.js',
+		'scripts' => 'resources/mediawiki/mediawiki.api/mediawiki.api.watch.js',
 		'dependencies' => 'mediawiki.api',
 	),
 	'mediawiki.debug' => array(
