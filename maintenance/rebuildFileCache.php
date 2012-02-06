@@ -34,10 +34,14 @@ class RebuildFileCache extends Maintenance {
 
 	public function execute() {
 		global $wgUseFileCache, $wgReadOnly, $wgContentNamespaces, $wgRequestTime;
+		global $wgDebugToolbar;
 		global $wgTitle, $wgOut;
 		if ( !$wgUseFileCache ) {
 			$this->error( "Nothing to do -- \$wgUseFileCache is disabled.", true );
 		}
+		// Debug toolbar makes content uncacheable
+		$wgDebugToolbar = false;
+
 		$wgReadOnly = 'Building cache'; // avoid DB writes (like enotif/counters)
 
 		$start = $this->getOption( 'start', "0" );
