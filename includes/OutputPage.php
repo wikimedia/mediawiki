@@ -2456,8 +2456,6 @@ $templates
 			$this->addModules( 'mediawiki.util' );
 		}
 
-		MWDebug::addModules( $this );
-
 		// Add various resources if required
 		if ( $wgUseAjax ) {
 			$this->addModules( 'mediawiki.legacy.ajax' );
