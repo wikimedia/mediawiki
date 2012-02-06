@@ -964,7 +964,7 @@ $1",
 'prefs-rc'                      => 'Son dəyişikliklər',
 'prefs-watchlist'               => 'İzləmə siyahısı',
 'prefs-watchlist-days'          => 'İzləmə siyahısında göstərilən maksimal günlərin sayı:',
-'prefs-watchlist-days-max'      => 'Maksimum 7 gün',
+'prefs-watchlist-days-max'      => 'Maksimum $1 {{PLURAL:$1|gün|gün}}',
 'prefs-watchlist-edits'         => 'İzləmə siyahısında göstərilən maksimal redaktələrin sayı:',
 'prefs-watchlist-edits-max'     => 'Maksimum say: 1000',
 'prefs-watchlist-token'         => 'İzləmə siyahısı nişanı:',
@@ -2937,5 +2937,9 @@ Bu saytda texniki problemlər var.',
 'feedback-message' => 'Mesaj:',
 'feedback-cancel'  => 'İmtina',
 'feedback-close'   => 'Oldu',
+
+# API errors
+'api-error-unknown-code'    => 'Naməlum xəta: "$1".',
+'api-error-unknown-warning' => 'Naməlum xəbərdarlıq: "$1".',
 
 );

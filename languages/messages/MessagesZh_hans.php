@@ -505,8 +505,8 @@ $1',
 'mainpage'             => '首页',
 'mainpage-description' => '首页',
 'policy-url'           => 'Project:方针',
-'portal'               => '社区入口',
-'portal-url'           => 'Project:社区主页',
+'portal'               => '社区专页',
+'portal-url'           => 'Project:社区专页',
 'privacy'              => '隐私权政策',
 'privacypage'          => 'Project:隐私权政策',
 
@@ -2136,11 +2136,10 @@ $1',
 'enotif_anon_editor'           => '匿名用户$1',
 'enotif_body'                  => '亲爱的$WATCHINGUSERNAME：
 
+你好！
 
-{{SITENAME}}页面$PAGETITLE已于$PAGEEDITDATE被$PAGEEDITOR$CHANGEDORCREATED，请浏览 $PAGETITLE_URL 查看当前版本。
-
+{{SITENAME}}页面$PAGETITLE已于$PAGEEDITDATE被$PAGEEDITOR$CHANGEDORCREATED，请浏览$PAGETITLE_URL查看当前版本。
 $NEWPAGE
-
 编辑摘要：$PAGESUMMARY $PAGEMINOREDIT
 
 你可以通过以下方式联系编者：
@@ -2148,20 +2147,17 @@ $NEWPAGE
 用户页面：$PAGEEDITOR_WIKI
 
 在你访问该页面之前，我们不会发送新增更改的通知。
-你也可以在监视列表中重设你的所有监视页面的通知标志。
+你也可以重设你的监视列表中所有监视页面的通知标志。
 
-			 友好的{{SITENAME}}通知系统
+友好的{{SITENAME}}通知系统
 
 --
 更改邮件通知设置：
 {{canonicalurl:{{#special:Preferences}}}}
-
 更改监视列表设置：
 {{canonicalurl:{{#special:EditWatchlist}}}}
-
 从监视列表中删除该页面：
 $UNWATCHURL
-
 反馈与其他帮助:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
 
