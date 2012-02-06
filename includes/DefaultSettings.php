@@ -4234,6 +4234,7 @@ $wgCachePrefix = false;
 /**
  * Display the new debugging toolbar. This also enables profiling on database
  * queries and other useful output.
+ * Will disable file cache.
  *
  * @since 1.19
  */
