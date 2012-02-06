@@ -163,7 +163,7 @@ CREATE INDEX /*i*/ug_group ON /*_*/user_groups (ug_group);
 CREATE TABLE /*_*/user_former_groups (
   -- Key to user_id
   ufg_user int unsigned NOT NULL default 0,
-  ufg_group varbinary(16) NOT NULL default ''
+  ufg_group varbinary(32) NOT NULL default ''
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/ufg_user_group ON /*_*/user_former_groups (ufg_user,ufg_group);
