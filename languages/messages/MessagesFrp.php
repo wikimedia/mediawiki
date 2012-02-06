@@ -2282,7 +2282,7 @@ L’adrèce èlèctronica que vos éd buchiê dens voutres [[Special:Preferences
 'emailusername'        => 'Nom d’usanciér :',
 'emailusernamesubmit'  => 'Sometre',
 'email-legend'         => 'Mandar un mèssâjo a un ôtro usanciér de {{SITENAME}}',
-'emailfrom'            => 'Èxpèdior :',
+'emailfrom'            => 'De :',
 'emailto'              => 'Dèstinatèro :',
 'emailsubject'         => 'Sujèt :',
 'emailmessage'         => 'Mèssâjo :',

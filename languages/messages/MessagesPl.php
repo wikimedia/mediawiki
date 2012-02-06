@@ -31,6 +31,7 @@
  * @author Odder
  * @author Olgak85
  * @author Przemub
+ * @author Remedios44
  * @author Remember the dot
  * @author Rzuwig
  * @author Saper
@@ -2738,7 +2739,7 @@ W takich przypadkach treść dyskusji można przenieść tylko ręcznie.',
 'movepage-moved-noredirect'    => 'Nie zostało utworzone przekierowanie.',
 'articleexists'                => 'Strona o podanej nazwie już istnieje albo wybrana przez Ciebie nazwa nie jest poprawna.
 Wybierz inną nazwę.',
-'cantmove-titleprotected'      => 'Nie możesz przenieść strony, ponieważ nowa nazwa strony jest niedozwolona z powodu zabezpieczenia przed utworzeniem',
+'cantmove-titleprotected'      => 'Nie możesz przenieść strony, ponieważ nowa nazwa strony jest niedozwolona z powodu zabezpieczenia przed utworzeniem.',
 'talkexists'                   => "'''Strona treści została przeniesiona, natomiast strona dyskusji nie – strona dyskusji o nowym tytule już istnieje. Połącz teksty obu dyskusji ręcznie.'''",
 'movedto'                      => 'przeniesiono do',
 'movetalk'                     => 'Przenieś także stronę dyskusji, jeśli to możliwe.',

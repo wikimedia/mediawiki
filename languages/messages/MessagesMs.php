@@ -2440,7 +2440,7 @@ dirosakkan).',
 'ipbreason-dropdown'              => '*Sebab lazim
 ** Memasukkan maklumat palsu
 ** Membuang kandungan daripada laman
-** Memmasukkan pautan spam ke tapak web luar
+** Memasukkan pautan spam ke tapak web luar
 ** Memasukkan karut-marut ke dalam laman
 ** Mengugut/mengganggu pengguna lain
 ** Menyalahgunakan berbilang akaun

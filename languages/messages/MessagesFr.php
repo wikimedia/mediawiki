@@ -1852,12 +1852,12 @@ Si le problème persiste, contactez un [[Special:ListUsers/sysop|administrateur]
 'backend-fail-closetemp'     => 'Impossible de fermer le fichier temporaire.',
 'backend-fail-read'          => 'Impossible de lire le fichier $1.',
 'backend-fail-create'        => 'Impossible de créer le fichier $1.',
-'backend-fail-readonly'      => 'Le terminal "$1" est actuellement en lecture seule. La raison indiquée est: "$2"',
-'backend-fail-synced'        => 'Le fichier "$1" est dans un état incohérent dans les terminaux internes',
-'backend-fail-connect'       => 'Impossible de se connecter au terminal de fichier "$1".',
-'backend-fail-internal'      => 'Une erreur inconnue s\'est produite dans le terminal de fichier "$1".',
+'backend-fail-readonly'      => 'Le support de stockage "$1" est actuellement en lecture seule. La raison indiquée est: "$2"',
+'backend-fail-synced'        => 'Le fichier "$1" est dans un état incohérent dans les supports de stockage internes',
+'backend-fail-connect'       => 'Impossible de se connecter au support de stockage "$1".',
+'backend-fail-internal'      => 'Une erreur inconnue s\'est produite dans le support de stockage "$1".',
 'backend-fail-contenttype'   => 'Impossible de déterminer le type de contenu du fichier à stocker en "$1".',
-'backend-fail-batchsize'     => 'Le terminal a fourni un lot de $1 {{PLURAL:$1|opération|opérations}} de fichier; la limite est $2 {{PLURAL:$2|opération|opérations}}.',
+'backend-fail-batchsize'     => 'Le support de stockage a fourni un lot de $1 {{PLURAL:$1|opération|opérations}} de fichier; la limite est $2 {{PLURAL:$2|opération|opérations}}.',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Impossible de déverrouiller « $1 » ; elle n’est pas verrouillée.',

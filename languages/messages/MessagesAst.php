@@ -1075,7 +1075,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'showingresultsnum'                => "Abaxo {{PLURAL:$3|amuésase '''un''' resultáu|amuésense '''$3''' resultaos}}, entamando col #'''$2'''.",
 'showingresultsheader'             => "{{PLURAL:$5|Resultáu '''$1''' de '''$3'''|Resultaos '''$1 - $2''' de '''$3'''}} pa '''$4'''",
 'nonefound'                        => "'''Nota''': De mou predetermináu namái se busca en dellos espacios de nomes. Prueba a poner delantre de la to consulta ''all:'' pa buscar en tol conteníu (inxiriendo páxines d'alderique, plantíes, etc.), o usa como prefixu l'espaciu de nome deseáu.",
-'search-nonefound'                 => 'Nun hebo resultaos que concueyen cola consulta.',
+'search-nonefound'                 => 'Nun hebo resultaos que casaren cola consulta.',
 'powersearch'                      => 'Gueta avanzada',
 'powersearch-legend'               => 'Gueta avanzada',
 'powersearch-ns'                   => 'Buscar nos espacios de nome:',

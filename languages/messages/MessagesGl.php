@@ -1754,12 +1754,12 @@ Se o problema persiste, póñase en contacto cun [[Special:ListUsers/sysop|admin
 'backend-fail-closetemp'     => 'Non se puido pechar o ficheiro temporal.',
 'backend-fail-read'          => 'Non se puido ler o ficheiro "$1".',
 'backend-fail-create'        => 'Non se puido crear o ficheiro "$1".',
-'backend-fail-readonly'      => 'Nestes intres, a instalación "$1" está en modo de só lectura. A razón dada é: "$2"',
-'backend-fail-synced'        => 'O ficheiro "$1" está nun estado inconsistente dentro da instalación interna',
-'backend-fail-connect'       => 'Non se puido conectar co ficheiro da instalación "$1".',
-'backend-fail-internal'      => 'Houbo un erro descoñecido no ficheiro da instalación "$1".',
+'backend-fail-readonly'      => 'Nestes intres, o sistema de almacenamento "$1" está en modo de só lectura. A razón dada é: "$2"',
+'backend-fail-synced'        => 'O ficheiro "$1" está nun estado inconsistente dentro do sistema de almacenamento interno',
+'backend-fail-connect'       => 'Non se puido conectar co sistema de almacenamento "$1".',
+'backend-fail-internal'      => 'Houbo un erro descoñecido no sistema de almacenamento "$1".',
 'backend-fail-contenttype'   => 'Non se puido determinar o tipo de contido do ficheiro a almacenar en "$1".',
-'backend-fail-batchsize'     => 'A infraestrutura recibiu un feixe de $1 {{PLURAL:$1|operación|operacións}} de ficheiro; o límite está en $2 {{PLURAL:$2|operación|operacións}}.',
+'backend-fail-batchsize'     => 'O sistema de almacenamento recibiu un feixe de $1 {{PLURAL:$1|operación|operacións}} de ficheiro; o límite está en $2 {{PLURAL:$2|operación|operacións}}.',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Non se puido desbloquear "$1". Non está bloqueado.',
