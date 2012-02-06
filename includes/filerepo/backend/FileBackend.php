@@ -56,7 +56,9 @@ abstract class FileBackend {
 		$this->wikiId = isset( $config['wikiId'] )
 			? $config['wikiId']
 			: wfWikiID(); // e.g. "my_wiki-en_"
-		$this->lockManager = LockManagerGroup::singleton()->get( $config['lockManager'] );
+		$this->lockManager = ( $config['lockManager'] instanceof LockManager )
+			? $config['lockManager']
+			: LockManagerGroup::singleton()->get( $config['lockManager'] );
 		$this->readOnly = isset( $config['readOnly'] )
 			? (string)$config['readOnly']
 			: '';
@@ -71,6 +73,24 @@ abstract class FileBackend {
 	 */
 	final public function getName() {
 		return $this->name;
+	}
+
+	/**
+	 * Check if this backend is read-only
+	 * 
+	 * @return bool
+	 */
+	final public function isReadOnly() {
+		return ( $this->readOnly != '' );
+	}
+
+	/**
+	 * Get an explanatory message if this backend is read-only
+	 * 
+	 * @return string|false Returns falls if the backend is not read-only
+	 */
+	final public function getReadOnlyReason() {
+		return ( $this->readOnly != '' ) ? $this->readOnly : false;
 	}
 
 	/**
@@ -160,7 +180,7 @@ abstract class FileBackend {
 	 * @return Status
 	 */
 	final public function doOperations( array $ops, array $opts = array() ) {
-		if ( $this->readOnly != '' ) {
+		if ( $this->isReadOnly() ) {
 			return Status::newFatal( 'backend-fail-readonly', $this->name, $this->readOnly );
 		}
 		if ( empty( $opts['force'] ) ) { // sanity
@@ -291,7 +311,7 @@ abstract class FileBackend {
 	 * @return Status
 	 */
 	final public function prepare( array $params ) {
-		if ( $this->readOnly != '' ) {
+		if ( $this->isReadOnly() ) {
 			return Status::newFatal( 'backend-fail-readonly', $this->name, $this->readOnly );
 		}
 		return $this->doPrepare( $params );
@@ -318,7 +338,7 @@ abstract class FileBackend {
 	 * @return Status
 	 */
 	final public function secure( array $params ) {
-		if ( $this->readOnly != '' ) {
+		if ( $this->isReadOnly() ) {
 			return Status::newFatal( 'backend-fail-readonly', $this->name, $this->readOnly );
 		}
 		$status = $this->doPrepare( $params ); // dir must exist to restrict it
@@ -345,7 +365,7 @@ abstract class FileBackend {
 	 * @return Status
 	 */
 	final public function clean( array $params ) {
-		if ( $this->readOnly != '' ) {
+		if ( $this->isReadOnly() ) {
 			return Status::newFatal( 'backend-fail-readonly', $this->name, $this->readOnly );
 		}
 		return $this->doClean( $params );
