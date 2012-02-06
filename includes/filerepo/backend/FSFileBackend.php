@@ -316,9 +316,9 @@ class FSFileBackend extends FileBackendStore {
 		}
 
 		wfSuppressWarnings();
-		$ok = file_put_contents( $dest, $params['content'] );
+		$bytes = file_put_contents( $dest, $params['content'] );
 		wfRestoreWarnings();
-		if ( !$ok ) {
+		if ( $bytes === false ) {
 			$status->fatal( 'backend-fail-create', $params['dst'] );
 			return $status;
 		}
@@ -357,9 +357,9 @@ class FSFileBackend extends FileBackendStore {
 		// Seed new directories with a blank index.html, to prevent crawling...
 		if ( !empty( $params['noListing'] ) && !file_exists( "{$dir}/index.html" ) ) {
 			wfSuppressWarnings();
-			$ok = file_put_contents( "{$dir}/index.html", '' );
+			$bytes = file_put_contents( "{$dir}/index.html", '' );
 			wfRestoreWarnings();
-			if ( !$ok ) {
+			if ( !$bytes ) {
 				$status->fatal( 'backend-fail-create', $params['dir'] . '/index.html' );
 				return $status;
 			}
@@ -368,9 +368,9 @@ class FSFileBackend extends FileBackendStore {
 		if ( !empty( $params['noAccess'] ) ) {
 			if ( !file_exists( "{$contRoot}/.htaccess" ) ) {
 				wfSuppressWarnings();
-				$ok = file_put_contents( "{$contRoot}/.htaccess", "Deny from all\n" );
+				$bytes = file_put_contents( "{$contRoot}/.htaccess", "Deny from all\n" );
 				wfRestoreWarnings();
-				if ( !$ok ) {
+				if ( !$bytes ) {
 					$storeDir = "mwstore://{$this->name}/{$shortCont}";
 					$status->fatal( 'backend-fail-create', "{$storeDir}/.htaccess" );
 					return $status;
