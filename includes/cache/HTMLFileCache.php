@@ -65,8 +65,8 @@ class HTMLFileCache extends FileCacheBase {
 		if ( !$wgUseFileCache ) {
 			return false;
 		}
-		if( $wgShowIPinHeader || $wgDebugToolbar ) {
-			wfDebug("HTML file cache skipped. Either \$wgShowIPinHeader and/or \$wgDebugToolbar on\n" );
+		if ( $wgShowIPinHeader || $wgDebugToolbar ) {
+			wfDebug( "HTML file cache skipped. Either \$wgShowIPinHeader and/or \$wgDebugToolbar on\n" );
 			return false;
 		}
 
@@ -90,7 +90,7 @@ class HTMLFileCache extends FileCacheBase {
 		$ulang = $context->getLanguage()->getCode();
 		$clang = $wgContLang->getCode();
 		// Check that there are no other sources of variation
-		return !$wgShowIPinHeader && !$user->getId() && !$user->getNewtalk() && $ulang == $clang;
+		return !$user->getId() && !$user->getNewtalk() && $ulang == $clang;
 	}
 
 	/**
