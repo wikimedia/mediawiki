@@ -779,6 +779,67 @@ class FileBackendTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @dataProvider provider_testGetFileStat
+	 */
+	public function testGetFileStat( $path, $content, $alreadyExists ) {
+		$this->backend = $this->singleBackend;
+		$this->tearDownFiles();
+		$this->doTestGetFileStat( $path, $content, $alreadyExists );
+		$this->tearDownFiles();
+
+		$this->backend = $this->multiBackend;
+		$this->tearDownFiles();
+		$this->doTestGetFileStat( $path, $content, $alreadyExists );
+		$this->tearDownFiles();
+	}
+
+	private function doTestGetFileStat( $path, $content, $alreadyExists ) {
+		$backendName = $this->backendClass();
+
+		if ( $alreadyExists ) {
+			$this->prepare( array( 'dir' => dirname( $path ) ) );
+			$status = $this->backend->create( array( 'dst' => $path, 'content' => $content ) );
+			$this->assertEquals( array(), $status->errors,
+				"Creation of file at $path succeeded ($backendName)." );
+
+			$size = $this->backend->getFileSize( array( 'src' => $path ) );
+			$time = $this->backend->getFileTimestamp( array( 'src' => $path ) );
+			$stat = $this->backend->getFileStat( array( 'src' => $path ) );
+
+			$this->assertEquals( strlen( $content ), $size,
+				"Correct file size of '$path'" );
+			$this->assertTrue( abs( time() - wfTimestamp( TS_UNIX, $time ) ) < 5,
+				"Correct file timestamp of '$path'" );
+
+			$size = $stat['size'];
+			$time = $stat['mtime'];
+			$this->assertEquals( strlen( $content ), $size,
+				"Correct file size of '$path'" );
+			$this->assertTrue( abs( time() - wfTimestamp( TS_UNIX, $time ) ) < 5,
+				"Correct file timestamp of '$path'" );
+		} else {
+			$size = $this->backend->getFileSize( array( 'src' => $path ) );
+			$time = $this->backend->getFileTimestamp( array( 'src' => $path ) );
+			$stat = $this->backend->getFileStat( array( 'src' => $path ) );
+			
+			$this->assertFalse( $size, "Correct file size of '$path'" );
+			$this->assertFalse( $time, "Correct file timestamp of '$path'" );
+			$this->assertFalse( $stat, "Correct file stat of '$path'" );
+		}
+	}
+
+	function provider_testGetFileStat() {
+		$cases = array();
+
+		$base = $this->baseStorePath();
+		$cases[] = array( "$base/unittest-cont1/b/z/some_file.txt", "some file contents", true );
+		$cases[] = array( "$base/unittest-cont1/b/some-other_file.txt", "", true );
+		$cases[] = array( "$base/unittest-cont1/b/some-diff_file.txt", null, false );
+
+		return $cases;
+	}
+
+	/**
 	 * @dataProvider provider_testGetFileContents
 	 */
 	public function testGetFileContents( $source, $content ) {
@@ -793,9 +854,6 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->tearDownFiles();
 	}
 
-	/**
-	 * @dataProvider provider_testGetFileContents
-	 */
 	public function doTestGetFileContents( $source, $content ) {
 		$backendName = $this->backendClass();
 
