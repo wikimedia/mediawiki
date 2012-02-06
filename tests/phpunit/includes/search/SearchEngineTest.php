@@ -93,10 +93,10 @@ class SearchEngineTest extends MediaWikiTestCase {
 		// avoid memory leak...?
 		LinkCache::singleton()->clear();
 
-		$article = new Article( $title );
-		$article->doEdit( $text, $comment, 0, false, $user );
+		$page = WikiPage::factory( $title );
+		$page->doEdit( $text, $comment, 0, false, $user );
 
-		$this->pageList[] = array( $title, $article->getId() );
+		$this->pageList[] = array( $title, $page->getId() );
 
 		return true;
 	}
