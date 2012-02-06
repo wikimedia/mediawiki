@@ -14,6 +14,8 @@
  * @author Reedy
  */
 
+$fallback = 'ru';
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'ЭлячIунрин кIаникай цIар чIугун',
