@@ -71,7 +71,6 @@ class HTMLFileCache extends FileCacheBase {
 			if ( $query === 'title' || $query === 'curid' ) {
 				continue; // note: curid sets title
 			// Normal page view in query form can have action=view.
-			// Raw hits for pages also stored, like .css pages for example.
 			} elseif ( $query === 'action' && in_array( $val, self::cacheablePageActions() ) ) {
 				continue;
 			// Below are header setting params
