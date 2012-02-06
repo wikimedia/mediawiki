@@ -245,6 +245,7 @@ production.
 * (bug 34114) CSSMin::remap() doesn't respect its $embed parameter
 * Special:Contributions/newbies now shows the contributions for the user "newbies".
   New user contributions are obtained using the form or using ?contribs=newbie in URL.
+* It is now possible to delete images that have no corresponding description pages.
 
 === API changes in 1.19 ===
 * Made action=edit less likely to return "unknownerror", by returning the actual error

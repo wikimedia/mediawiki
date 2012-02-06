@@ -117,7 +117,7 @@ class FileDeleteForm {
 	 * Really delete the file
 	 *
 	 * @param $title Title object
-	 * @param $file File object
+	 * @param File $file: file object
 	 * @param $oldimage String: archive name
 	 * @param $reason String: reason of the deletion
 	 * @param $suppress Boolean: whether to mark all deleted versions as restricted
@@ -142,15 +142,17 @@ class FileDeleteForm {
 				$log->addEntry( 'delete', $title, $logComment );
 			}
 		} else {
-			$status = Status::newFatal( 'error' );
+			$status = Status::newFatal( 'cannotdelete',
+				wfEscapeWikiText( $title->getPrefixedText() )
+			);
 			$page = WikiPage::factory( $title );
 			$dbw = wfGetDB( DB_MASTER );
 			try {
 				// delete the associated article first
 				$error = '';
-				if ( $page->doDeleteArticle( $reason, $suppress, 0, false, $error, $user ) ) {
+				if ( $page->doDeleteArticleReal( $reason, $suppress, 0, false, $error, $user ) >= Page::DELETE_SUCCESS ) {
 					$status = $file->delete( $reason, $suppress );
-					if( $status->ok ) {
+					if( $status->isOK() ) {
 						$dbw->commit();
 					} else {
 						$dbw->rollback();
@@ -163,7 +165,7 @@ class FileDeleteForm {
 			}
 		}
 
-		if ( $status->isGood() ) {
+		if ( $status->isOK() ) {
 			wfRunHooks( 'FileDeleteComplete', array( &$file, &$oldimage, &$page, &$user, &$reason ) );
 		}
 
