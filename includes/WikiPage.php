@@ -2,7 +2,30 @@
 /**
  * Abstract class for type hinting (accepts WikiPage, Article, ImagePage, CategoryPage)
  */
-abstract class Page {}
+abstract class Page {
+	// doDeleteArticleReal() return values. Values less than zero indicate fatal errors,
+	// values greater than zero indicate that there were non-fatal problems.
+
+	/**
+	 * Delete operation aborted by hook
+	 */
+	const DELETE_HOOK_ABORTED = -1;
+
+	/**
+	 * Deletion successful
+	 */
+	const DELETE_SUCCESS = 0;
+
+	/**
+	 * Page not found
+	 */
+	const DELETE_NO_PAGE = 1;
+
+	/**
+	 * No revisions found to delete
+	 */
+	const DELETE_NO_REVISIONS = 2;
+}
 
 /**
  * Class representing a MediaWiki article and history.
@@ -1889,6 +1912,29 @@ class WikiPage extends Page {
 	}
 
 	/**
+	 * Same as doDeleteArticleReal(), but returns more detailed success/failure status
+	 * Deletes the article with database consistency, writes logs, purges caches
+	 *
+	 * @param $reason string delete reason for deletion log
+	 * @param $suppress bitfield
+	 * 	Revision::DELETED_TEXT
+	 * 	Revision::DELETED_COMMENT
+	 * 	Revision::DELETED_USER
+	 * 	Revision::DELETED_RESTRICTED
+	 * @param $id int article ID
+	 * @param $commit boolean defaults to true, triggers transaction end
+	 * @param &$error Array of errors to append to
+	 * @param $user User The deleting user
+	 * @return boolean true if successful
+	 */
+	public function doDeleteArticle(
+		$reason, $suppress = false, $id = 0, $commit = true, &$error = '', User $user = null
+	) {
+		return $this->doDeleteArticleReal( $reason, $suppress, $id, $commit, $error, $user )
+			!= Page::DELETE_SUCCESS;
+	}
+
+	/**
 	 * Back-end article deletion
 	 * Deletes the article with database consistency, writes logs, purges caches
 	 *
@@ -1901,10 +1947,10 @@ class WikiPage extends Page {
 	 * @param $id int article ID
 	 * @param $commit boolean defaults to true, triggers transaction end
 	 * @param &$error Array of errors to append to
-	 * @param $user User The relevant user
-	 * @return boolean true if successful
+	 * @param $user User The deleting user
+	 * @return int: One of Page::DELETE_* constants
 	 */
-	public function doDeleteArticle(
+	public function doDeleteArticleReal(
 		$reason, $suppress = false, $id = 0, $commit = true, &$error = '', User $user = null
 	) {
 		global $wgUser;
@@ -1913,14 +1959,14 @@ class WikiPage extends Page {
 		wfDebug( __METHOD__ . "\n" );
 
 		if ( ! wfRunHooks( 'ArticleDelete', array( &$this, &$user, &$reason, &$error ) ) ) {
-			return false;
+			return Page::DELETE_HOOK_ABORTED;
 		}
 		$dbw = wfGetDB( DB_MASTER );
 		$t = $this->mTitle->getDBkey();
 		$id = $id ? $id : $this->mTitle->getArticleID( Title::GAID_FOR_UPDATE );
 
 		if ( $t === '' || $id == 0 ) {
-			return false;
+			return Page::DELETE_NO_PAGE;
 		}
 
 		// Bitfields to further suppress the content
@@ -1976,7 +2022,7 @@ class WikiPage extends Page {
 
 		if ( !$ok ) {
 			$dbw->rollback();
-			return false;
+			return Page::DELETE_NO_REVISIONS;
 		}
 
 		$this->doDeleteUpdates( $id );
@@ -1996,7 +2042,7 @@ class WikiPage extends Page {
 		}
 
 		wfRunHooks( 'ArticleDeleteComplete', array( &$this, &$user, $reason, $id ) );
-		return true;
+		return Page::DELETE_SUCCESS;
 	}
 
 	/**
