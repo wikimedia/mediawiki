@@ -1006,6 +1006,8 @@ HTML;
 	/**
 	 * Fetch the raw IP from the request
 	 *
+	 * @since 1.19
+	 *
 	 * @return String
 	 */
 	protected function getRawIP() {
@@ -1019,6 +1021,9 @@ HTML;
 	/**
 	 * Work out the IP address based on various globals
 	 * For trusted proxies, use the XFF client IP (first of the chain)
+	 * 
+	 * @since 1.19
+	 *
 	 * @return string
 	 */
 	public function getIP() {
