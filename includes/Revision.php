@@ -533,12 +533,12 @@ class Revision {
 		$dbr = wfGetDB( DB_SLAVE );
 		$row = $dbr->selectRow(
 			array( 'page', 'revision' ),
-			array( 'page_namespace', 'page_title' ),
+			self::selectPageFields(),
 			array( 'page_id=rev_page',
 				   'rev_id' => $this->mId ),
 			__METHOD__ );
-		if( $row ) {
-			$this->mTitle = Title::makeTitle( $row->page_namespace, $row->page_title );
+		if ( $row ) {
+			$this->mTitle = Title::newFromRow( $row );
 		}
 		return $this->mTitle;
 	}
