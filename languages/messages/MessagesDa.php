@@ -1699,7 +1699,7 @@ Den kan ikke kontrolleres rigtigt for sikkerhed.',
 'img-auth-nopathinfo'       => 'PATH_INFO mangler.
 Din server er ikke sat op til at give denne information.
 Den bruger måske CGI og understøtter ikke img_auth.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization Se billedeautorisation].',
+Se https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'         => 'Den ønskede sti er ikke i det opsatte oplægningskatalog.',
 'img-auth-badtitle'         => 'Kan ikke lave en gyldig titel ud fra "$1".',
 'img-auth-nologinnWL'       => 'Du er ikke logget ind, og "$1" er ikke på hvidlisten.',

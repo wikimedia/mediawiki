@@ -1817,7 +1817,7 @@ $1',
 'img-auth-nopathinfo'       => 'PATH_INFO ମିଳୁ ନାହିଁ।
 ଆପଣଙ୍କ ସର୍ଭରକୁ ଏହି ତଥ୍ୟଟିକୁ ପଠାଇବା ନିମନ୍ତେ ସଜଡ଼ାଯାଇନାହିଁ ।
 ଏହା ସିଜିଆଇ-ଚାଳିତ ହୋଇପାରେ ଓ img_auth ରେ କାମକରୁନଥାଇପାରେ  ।
-http://www.mediawiki.org/wiki/Manual:Image_Authorization ଦେଖନ୍ତୁ ।',
+https://www.mediawiki.org/wiki/Manual:Image_Authorization ଦେଖନ୍ତୁ ।',
 'img-auth-notindir'         => 'ଅନୁରୋଧ କରାଯାଇଥିବା ପଥ ସଂରଚିତ ଅପଲୋଡ଼ ତାଲିକା ନୁହେଁ ।',
 'img-auth-badtitle'         => '"$1"ରୁ ଏକ ସଠିକ ଶିରୋନାମା ଗଠନ କରିବାରେ ଅସଫଳ ହେଲୁଁ ।',
 'img-auth-nologinnWL'       => 'ଆପଣ ଲଗ ଇନ କରି ନାହାନ୍ତି ଓ "$1" ଏକ ଅନୁମୋଦିତ ତାଲିକାରେ ନାହିଁ ।',

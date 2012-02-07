@@ -1784,8 +1784,8 @@ $1',
 'img-auth-accessdenied'     => 'Доступ забаронены',
 'img-auth-nopathinfo'       => 'Адсутнічае PATH_INFO.
 Ваш сэрвэр не ўстаноўлены на пропуск гэтай інфармацыі.
-Яна можа быць заснаваная на CGI і ня можа падтрымліваць img_auth.
-[http://www.mediawiki.org/wiki/Manual:Image_Authorization Глядзіце інфармацыю пра аўтарызацыю выявы.]',
+Магчма, ён працуе праз CGI і не падтрымлівае img_auth.
+[https://www.mediawiki.org/wiki/Manual:Image_Authorization Глядзіце інфармацыю пра аўтарызацыю выяваў.]',
 'img-auth-notindir'         => 'Неабходнага шляху няма ў дырэкторыі загрузкі, пазначанай у канфігурацыі.',
 'img-auth-badtitle'         => 'Немагчыма стварыць слушную назву з «$1».',
 'img-auth-nologinnWL'       => 'Вы не ўвайшлі ў сыстэму, а «$1» не знаходзіцца ў белым сьпісе.',

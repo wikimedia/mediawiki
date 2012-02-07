@@ -368,7 +368,7 @@ Ga terug naar het [[Special:Upload/stash/$1|uploadformulier]] om dit probleem te
 'img-auth-nopathinfo' => 'PATH_INFO mist.
 Je server is niet ingesteld om deze informatie door te geven.
 Misschien gebruikt deze CGI, en dan wordt img_auth niet ondersteund.
-Zie http://www.mediawiki.org/wiki/Manual:Image_Authorization voor meer informatie.',
+Zie https://www.mediawiki.org/wiki/Manual:Image_Authorization voor meer informatie.',
 'img-auth-nologinnWL' => 'Je bent niet aangemeld en "$1" staat niet op de witte lijst.',
 'img-auth-isdir'      => 'Je probeert de map "$1" te benaderen.
 Alleen toegang tot bestanden is toegestaan.',

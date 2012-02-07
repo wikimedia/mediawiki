@@ -1827,7 +1827,7 @@ $1',
 'img-auth-nopathinfo'       => 'Відсутній PATH_INFO.
 Ваш сервер не налаштований для передачі цих даних.
 Можливо, він працює на основі CGI та не підтримує img_auth.
-Перегляньте [http://www.mediawiki.org/wiki/Manual:Image_Authorization Відкриття доступу до зображень]',
+Перегляньте [https://www.mediawiki.org/wiki/Manual:Image_Authorization Відкриття доступу до зображень]',
 'img-auth-notindir'         => 'Проханий шлях не відноситься до теки завантажень, вказаної в налаштуваннях.',
 'img-auth-badtitle'         => 'Не можна побудувати правильний заголовок з «$1».',
 'img-auth-nologinnWL'       => 'Ви не ввійшли в систему, а «$1» не входить у білий список.',

@@ -1876,7 +1876,7 @@ No puede comprobarse adecuadamente su seguridad.',
 'img-auth-nopathinfo'       => 'Falta PATH_INFO.
 Tu servidor no está configurado para proporcionar esta información.
 Puede que esté basado en CGI y no sea compatible con img_auth.
-Véase [//www.mediawiki.org/wiki/Manual:Image_Authorization image authorization.]',
+Véase [https://www.mediawiki.org/wiki/Manual:Image_Authorization image authorization.]',
 'img-auth-notindir'         => 'Ruta solicitad no esá en el directorio de cargas configurado',
 'img-auth-badtitle'         => 'Incapaz de construir un título válido de «$1».',
 'img-auth-nologinnWL'       => 'No has iniciado sesión y «$1» no está en la lista blanca.',

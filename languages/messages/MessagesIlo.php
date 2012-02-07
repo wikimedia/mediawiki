@@ -1585,7 +1585,7 @@ Saan a matutup ti pinagkita ti seguridad na.',
 'img-auth-nopathinfo'       => 'Awan ti PATH_INFO.
 Ti server mo ket mabalin nga agipasa iti daytoy a pakaammo.
 Baka met laeng naibasta ti CGI ken saan na a tapayaen ti img_auth.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization Kitaen ti pammalubos ti imahen.]',
+[https://www.mediawiki.org/wiki/Manual:Image_Authorization Kitaen ti pammalubos ti imahen.]',
 'img-auth-notindir'         => 'Ti kiniddaw a dalan ket saan a ti naaramid a direktoria ti pag-ipan',
 'img-auth-badtitle'         => 'Saan a makaaramid ti umisu a titulo a naggapu idiay "$1".',
 'img-auth-nologinnWL'       => 'Saan ka a nakastrek ken ti "$1" ket awan idiay mabalin a listaan.',

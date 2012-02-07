@@ -1626,7 +1626,7 @@ $1',
 'img-auth-nopathinfo'       => 'ค่า PATH_INFO สูญหาย
 เซิร์ฟเวอร์ของคุณอาจไม่ได้ถูกตั้งให้ส่งข้อมูลนี้
 หรือเซิร์ฟเวอร์อาจจะเป็นแบบ CGI-based และไม่สนับสนุนข้อมูล img_auth
-ดูที่ http://www.mediawiki.org/wiki/Manual:Image_Authorization',
+ดูที่ https://www.mediawiki.org/wiki/Manual:Image_Authorization',
 'img-auth-notindir'         => 'ที่อยู่ที่ร้องขอไม่ได้อยู่ในไดเร็กทอรีอัพโหลดที่กำหนดไ้ว้',
 'img-auth-badtitle'         => 'ไม่สามารถสร้างชื่อเรื่องที่ถูกต้องจาก "$1" ได้',
 'img-auth-nologinnWL'       => 'คุณไม่ได้ลงชื่อเข้าใช้และ "$1" ไม่ได้อยู่ในรายชื่อผู้ใช้ที่ดี (whitelist)',

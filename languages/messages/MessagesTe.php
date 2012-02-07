@@ -1599,7 +1599,7 @@ $1',
 'img-auth-nopathinfo'       => 'PATH_INFO లేదు.
 మీ సర్వరు ఈ సమాచారాన్ని పంపించేందుకు అనువుగా అమర్చి లేదు.
 అది CGI ఆధారితమై ఉండొచ్చు. అంచేత img_auth కు అనుకూలంగా లేదు.
-http://www.mediawiki.org/wiki/Manual:Image_Authorization చూడండి.',
+https://www.mediawiki.org/wiki/Manual:Image_Authorization చూడండి.',
 'img-auth-notindir'         => 'అభ్యర్థించిన తోవ ఎక్కింపు సంచయంలో లేదు.',
 'img-auth-badtitle'         => '"$1" నుండి సరైన శీర్షికని నిర్మించలేకపోయాం.',
 'img-auth-nologinnWL'       => 'మీరు ప్రవేశించి లేరు మరియు "$1" అనేది తెల్లజాబితాలో లేదు.',

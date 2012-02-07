@@ -1294,7 +1294,7 @@ Jede Zeile enthält Links zu dar erschta und zweeta Wetterleitung suwie doas Zie
 'listusers-editsonly'     => 'Zeige ock Nutzer miet Beiträga',
 'listusers-creationsort'  => 'Noach Erstelldatum sortiera',
 'usereditcount'           => '$1 {{PLURAL:$1|Beoarbeetung|Beoarbeetunga}}',
-'usercreated'             => 'Erstallt oam $1 im $2 Seeger',
+'usercreated'             => '{{GENDER:$3|Erstallt}} oam $1 im $2 Seeger',
 'newpages'                => 'Neue Seyta',
 'newpages-username'       => 'Benutzernoame:',
 'ancientpages'            => 'Seit längerem unbeoarbeetete Seyta',

@@ -1722,7 +1722,7 @@ $1',
 'img-auth-nopathinfo'   => 'Липсва PATH_INFO.
 Вашият сървър не е конфигуриран да предава тази информация.
 Той може да е базиран на CGI и да не може да поддържа img_auth.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization Вижте повече информация.]',
+[https://www.mediawiki.org/wiki/Manual:Image_Authorization Вижте повече информация.]',
 'img-auth-notindir'     => 'Търсеният път не е в настроената директория за качвания.',
 'img-auth-badtitle'     => 'Грешка при изграждането на валидно заглавие от "$1".',
 'img-auth-nologinnWL'   => 'Не сте влезли в системата и „$1“ не е в белия списък.',

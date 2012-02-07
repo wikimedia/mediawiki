@@ -1751,7 +1751,7 @@ Manam allin qasikanapaq llanchinachu.",
 'img-auth-nopathinfo'       => "Manam kanchu PATH_INFO.
 Sirwiqniykiqa manam churasqachu kaymanta willananpaq.
 CGI nisqawanchá tiksichasqa, chayrayku manachá img_auth nisqata q'imiyta atinchu.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization Image authorization] nisqata qhaway.",
+[https://www.mediawiki.org/wiki/Manual:Image_Authorization Image authorization] nisqata qhaway.",
 'img-auth-notindir'         => 'Mañakusqa ñanqa manam churaykusqa churkuna churanapi kachkanchu.',
 'img-auth-badtitle'         => 'Manam atinichu "$1" nisqamanta chaniyuq sutita rurayta.',
 'img-auth-nologinnWL'       => 'Manam yaykusqa kachkankichu, "$1" nisqataq manam yuraq sutisuyupi kachkanchu.',

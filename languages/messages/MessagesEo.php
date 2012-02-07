@@ -1841,7 +1841,7 @@ Se la problemo kontinuas, kontaku [[Special:ListUsers/sysop|sisteman administran
 'img-auth-nopathinfo'       => 'Mankas PATH_INFO. (Informo pri dosiervojo.)
 Via servilo ne estas konfigurita por sendi ĉi tiun informon.
 Eble ĝi estas CGI-bazita kaj ne subtenas img_auth.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization Vidu permesigadon de bildojn.] (angle)',
+[https://www.mediawiki.org/wiki/Manual:Image_Authorization Vidu permesigadon de bildojn.] (angle)',
 'img-auth-notindir'         => 'Petita vojo ne estas en la konfigurita alŝuta dosierujo.',
 'img-auth-badtitle'         => 'Ne povas konstrui validan titolon de "$1".',
 'img-auth-nologinnWL'       => 'Vi ne estas ensalutita kaj "$1" ne estas en la blankalisto.',

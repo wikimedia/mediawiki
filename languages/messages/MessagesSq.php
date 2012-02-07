@@ -1723,7 +1723,7 @@ Ajo nuk mund të kontrollohet siç duhet për sigurinë.',
 'img-auth-nopathinfo'       => 'Mungon PATH_INFO.
 Shërbyesi juaj nuk e kalon këtë informacion.
 Mund të jetë CGI-bazuar dhe nuk mund të mbështesë img_auth.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization Shikoni autorizimin për figurat.]',
+[https://www.mediawiki.org/wiki/Manual:Image_Authorization Shikoni autorizimin për figurat.]',
 'img-auth-notindir'         => 'Kërkesa nuk është në drejtorinë e ngarkimeve të konfiguruara.',
 'img-auth-badtitle'         => 'Nuk mund të krihohej një titull i vlefshëm nga "$1".',
 'img-auth-nologinnWL'       => 'Ju nuk jeni i regjistruar dhe "$1" nuk është në listën e bardhë.',

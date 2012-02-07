@@ -1906,10 +1906,10 @@ Sie kann daher keiner ordnungsgemäßen Sicherheitsüberprüfung unterzogen werd
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Zugriff verweigert',
-'img-auth-nopathinfo'       => "PATH_INFO fehlt.
+'img-auth-nopathinfo'       => 'PATH_INFO fehlt.
 Der Server ist nicht dafür eingerichtet, diese Information weiterzugeben.
 Sie könnte CGI-gestützt sein und unterstützt img_auth nicht.
-Siehe hierzu die Seite [//www.mediawiki.org/wiki/Manual:Image_Authorization ''image authorization''].",
+Siehe hierzu die Seite https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'         => 'Der gewünschte Pfad ist nicht im konfigurierten Uploadverzeichnis.',
 'img-auth-badtitle'         => 'Aus „$1“ kann kein gültiger Titel erstellt werden.',
 'img-auth-nologinnWL'       => 'Du bist nicht angemeldet und „$1“ ist nicht in der weißen Liste.',

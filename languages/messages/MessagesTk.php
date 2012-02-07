@@ -1449,7 +1449,7 @@ Eger-de problema gaýtalansa, onda bir [[Special:ListUsers/sysop|administrator]]
 'img-auth-nopathinfo'   => 'PATH_INFO ýok.
 Serweriňiz bu maglumaty geçirmeklik üçin sazlanmandyr.
 CGI esaslanýan hem-de img_auth-y goldamaýan bolmagy mümkin.
-http://www.mediawiki.org/wiki/Manual:Image_Authorization sahypasyna serediň.',
+https://www.mediawiki.org/wiki/Manual:Image_Authorization sahypasyna serediň.',
 'img-auth-notindir'     => 'Talap edlýän ýol sazlanan ýükleme direktoriýasynda däl.',
 'img-auth-badtitle'     => '"$1" bilen dogry bir at gurup bolanok.',
 'img-auth-nologinnWL'   => 'Sessiýa açmansyňyz, "$1" bolsa ak sanawda däl.',

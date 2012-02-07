@@ -2005,7 +2005,7 @@ $1',
 'img-auth-nopathinfo'       => 'PATH_INFO موجود نیست.
 سرور شما برای ردکردن این مقدار تنظیم نشده‌است.
 ممکن است مبتنی بر سی‌جی‌آی باشد و از img_auth پشتیبانی نکند.
-[http://www.mediawiki.org/wiki/Manual:Image_Authorization اینجا] را ببینید.',
+[https://www.mediawiki.org/wiki/Manual:Image_Authorization اینجا] را ببینید.',
 'img-auth-notindir'         => 'مسیر درخواست شده در شاخهٔ بارگذاری تنظیم‌شده قرار ندارد.',
 'img-auth-badtitle'         => 'امکان ایجاد یک عنوان مجاز از «$1» وجود ندارد.',
 'img-auth-nologinnWL'       => 'شما به سامانه وارد نشده‌اید و «$1» در فهرست سفید قرار ندارد.',

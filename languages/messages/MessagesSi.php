@@ -1760,7 +1760,7 @@ $1',
 'img-auth-nopathinfo'       => 'PATH_INFO වැරදී ඇත.
 මෙම තොරතුරු යැවීම සඳහා ඔබගේ සේවා දායකය පිහිටුවා නැත.
 එය CGI-පාදක වූවක් විය හැකි අතර img_auth සඳහා සහය නොදක්වයි.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization image authorization බලන්න.]',
+[https://www.mediawiki.org/wiki/Manual:Image_Authorization image authorization බලන්න.]',
 'img-auth-notindir'         => 'ඉල්ලුම් කළ පෙත වින්‍යසගත උඩුගත කිරීම් නාමාවලියේ නැත.',
 'img-auth-badtitle'         => '"$1" මඟින් වලංගු මාතෘකාවක් ගොඩනැගිය නොහැකිය.',
 'img-auth-nologinnWL'       => 'ඔබ ඇතුල් වී නොමැති අතර "$1" සුදු ලැයිස්තුවේ නොමැත.',

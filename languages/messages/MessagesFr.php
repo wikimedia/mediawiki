@@ -1893,7 +1893,7 @@ Il ne peut pas être correctement vérifé pour la sécurité.',
 'img-auth-nopathinfo'       => "PATH_INFO manquant.
 Votre serveur n’est pas paramétré pour passer cette information.
 Il fonctionne peut-être en CGI et ne supporte pas img_auth.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization Voyez les droits d'image.]",
+[https://www.mediawiki.org/wiki/Manual:Image_Authorization Voyez les droits d'image.]",
 'img-auth-notindir'         => "Le chemin demandé n’est pas le répertoire d'import configuré.",
 'img-auth-badtitle'         => 'Impossible de construire un titre valide à partir de « $1 ».',
 'img-auth-nologinnWL'       => 'Vous n’êtes pas connecté et « $1 » n’est pas dans la liste blanche.',

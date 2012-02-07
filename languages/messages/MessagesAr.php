@@ -1998,7 +1998,7 @@ $1',
 'img-auth-nopathinfo'       => 'PATH_INFO مفقود.
 خادومك ليس مضبوطا لتمرير هذه المعلومات.
 ربما يكون مبني على CGI ولا يمكنه دعم img_auth.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization راجع تصريح الصور].',
+[https://www.mediawiki.org/wiki/Manual:Image_Authorization راجع تصريح الصور].',
 'img-auth-notindir'         => 'المسار المطلوب غير موجود في مجلد الرفع المضبوط.',
 'img-auth-badtitle'         => 'تعذر تشكيل عنوان صالح من "$1".',
 'img-auth-nologinnWL'       => 'لست والجا و"$1" ليست في القائمة البيضاء.',

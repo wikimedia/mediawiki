@@ -1821,7 +1821,7 @@ Berkas tersebut tidak dapat diperiksa keamanannya dengan baik.',
 'img-auth-nopathinfo'       => 'PATH_INFO hilang.
 Server Anda tidak diatur untuk melewatkan informasi ini.
 Server tersebut mungkin berbasis CGI dan tidak dapat mendukung img_auth.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization Lihat otorisasi gambar.]',
+[https://www.mediawiki.org/wiki/Manual:Image_Authorization Lihat otorisasi gambar.]',
 'img-auth-notindir'         => 'Alur yang diminta tidak diatur dalam direktori ungahan.',
 'img-auth-badtitle'         => 'Tidak dapat membangun judul yang sah dari "$1".',
 'img-auth-nologinnWL'       => 'Anda tidak masuk log dan "$1" tidak dalam daftar putih.',

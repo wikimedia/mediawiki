@@ -1763,7 +1763,7 @@ Ma jistax jiġi kkontrollat għas-sigurtà b'mod adegwat.",
 'img-auth-nopathinfo'       => "PATH_INFO nieqes.
 Is-server tiegħek mhuwiex issettjat sabiex jgħaddi din l-informazzjoni.
 Jista' jkun ibbażat fuq CGI u ma jistax isostni img_auth.
-Ikkonsulta lil http://www.mediawiki.org/wiki/Manual:Image_Authorization.",
+Ikkonsulta lil https://www.mediawiki.org/wiki/Manual:Image_Authorization.",
 'img-auth-notindir'         => 'Id-destinazzjoni rikjesta mhijiex fid-direttorju tat-tlugħ konfigurat.',
 'img-auth-badtitle'         => 'Ma setax jinbena titlu validu minn "$1".',
 'img-auth-nologinnWL'       => 'M\'intix fil-kont tiegħek u "$1" mhuwiex fil-lista l-bajda.',

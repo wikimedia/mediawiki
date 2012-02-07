@@ -3090,6 +3090,7 @@ Jsou podporovány následující typy databází: $1.
 Pokud jste na sdíleném hostingu, požádejte svého poskytovale o instalaci vhodného databázového ovladače.
 Pokud jste si PHP přeložili sami, překonfigurujte ho se zapnutým databázovým klientem, například pomocí <code>./configure --with-mysql</code>.
 Pokud jste PHP nainstalovali z balíčku Debian či Ubuntu, potřebujete nainstalovat také modul php5-mysql.',
+	'config-outdated-sqlite' => "'''Upozornění''': Máte SQLite $1, které je starší než minimálně vyžadovaná verze $2. SQLite nebude dostupné.",
 	'config-no-fts3' => "'''Upozornění''': SQLite bylo přeloženo bez [//sqlite.org/fts3.html modulu FTS3], funkce pro vyhledávání zde nebudou dostupné.",
 	'config-register-globals' => "'''Upozornění: Je zapnuta PHP volba <code>[http://php.net/register_globals register_globals]</code>.'''
 '''Pokud můžete, vypněte ji.'''

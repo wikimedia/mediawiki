@@ -1561,7 +1561,7 @@ $1',
 'img-auth-nopathinfo'       => 'PATH_INFO காணவில்லை.
 உங்கள் சேவகன்  இந்த தகவலை அனுப்புமாறு அமைக்கப்படவில்லை
 இது  CGI அடிப்படையிலானதாக இருக்கலாம் மற்றும் img_authக்கு ஆதரவு கிடையாது.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization See image authorization.]',
+[https://www.mediawiki.org/wiki/Manual:Image_Authorization See image authorization.]',
 'img-auth-notindir'         => 'கோரிய பாதை இந்த குறிப்பிட்ட தகவலேற்று கோப்புறையில் இல்லை.',
 'img-auth-badtitle'         => 'செல்லத்தக்க தலைப்பு "$1" ஐ கட்ட இயலவில்லை.',
 'img-auth-nologinnWL'       => 'நீங்கள் உட்புதிகை செய்யவில்லை மற்றும் "$1" whitelist ல் இல்லை',

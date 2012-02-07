@@ -1076,7 +1076,7 @@ Můžete se vrátit a editovat již existující stránku, nebo [[Special:UserLo
 'sectioneditnotsupported-text'     => 'Na této editační stránce není podporována editace jedné sekce.',
 'permissionserrors'                => 'Chyba povolení',
 'permissionserrorstext'            => 'Nemáte povoleno toto provést z {{PLURAL:$1|následujícího důvodu|následujících důvodů|následujících důvodů}}:',
-'permissionserrorstext-withaction' => 'Nemáte oprávnění „$2“. {{PLURAL:$1|Důvod:|Důvody:}}',
+'permissionserrorstext-withaction' => 'Z {{PLURAL:$1|následujícího důvodu|následujících důvodů}} nemáte oprávnění $2:',
 'recreate-moveddeleted-warn'       => "'''Upozornění: Pokoušíte se znovuzaložit stránku, která byla v minulosti smazána.'''
 
 Zvažte, zda je vhodné v editaci této stránky pokračovat.
@@ -1877,7 +1877,7 @@ Nelze náležitě zkontrolovat jeho bezpečnost.',
 'img-auth-nopathinfo'       => 'Chybí PATH_INFO.
 Váš server není nastaven tak, aby tuto informaci poskytoval.
 Možná funguje pomocí CGI a img_auth na něm nemůže fungovat.
-Vizte [//www.mediawiki.org/wiki/Manual:Image_Authorization Manual:Image Authorization].',
+Vizte https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'         => 'Požadovaná cesta nespadá pod nakonfigurovaný adresář s načtenými soubory.',
 'img-auth-badtitle'         => 'Z „$1“ nelze vytvořit platný název stránky.',
 'img-auth-nologinnWL'       => 'Nejste přihlášen(a) a „$1“ není na bílé listině.',

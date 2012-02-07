@@ -1791,7 +1791,7 @@ Nie je možné správne skontrolovať jeho bezpečnosť.',
 'img-auth-accessdenied'     => 'Prístup zamietnutý',
 'img-auth-nopathinfo'       => 'Váš server nie je nastavený tak, aby poskytoval tieto informácie.
 Môže byť založený na CGI a nedokáže podporovať img_auth.
-Pozri http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+Pozri https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'         => 'Požadovaná cesta nie je v nastavenom adresári na nahrávanie.',
 'img-auth-badtitle'         => 'Nepodarilo sa zostaviť platný názov z „$1“.',
 'img-auth-nologinnWL'       => 'Nie ste prihlásený a „$1“ nie je na bielej listine.',

@@ -1576,7 +1576,7 @@ $1',
 'img-auth-nopathinfo'       => 'Адсутнічае PATH_INFO.
 Ваш сервер не наладжаны, для перадачы гэтых звестак.
 Магчыма, ён працуе на аснове CGI і не падтрымлівае img_auth.
-Глядзіце [//www.mediawiki.org/wiki/Manual:Image_Authorization Размежаванне доступу да малюнкаў]',
+Глядзіце [https://www.mediawiki.org/wiki/Manual:Image_Authorization Размежаванне доступу да малюнкаў]',
 'img-auth-notindir'         => 'Запытаны шлях не ставіцца да наладжанага каталога ўкладанняў.',
 'img-auth-badtitle'         => 'Немагчыма пабудаваць правільны загаловак з «$1».',
 'img-auth-nologinnWL'       => 'Вы не ўвайшлі ў сістэму, а «$1» не ўваходзіць ў белы спіс.',

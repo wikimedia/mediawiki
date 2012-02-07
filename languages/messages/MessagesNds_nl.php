@@ -1828,7 +1828,7 @@ De veiligheid kan niet ekontroleerd wörden.',
 'img-auth-nopathinfo'       => 'PATH_INFO ontbrik.
 Joew server is niet in-esteld um disse informasie deur te geven.
 Misschien gebruukt disse CGI, en dan wörden img_auth niet ondersteund.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization Zie aofbeeldingsauthorisasie.]',
+[https://www.mediawiki.org/wiki/Manual:Image_Authorization Zie aofbeeldingsauthorisasie.]',
 'img-auth-notindir'         => 't Op-evreugen pad is niet de in-estelde bestaandinlaodmap',
 'img-auth-badtitle'         => 'Kon gien geldige paginanaam maken van "$1".',
 'img-auth-nologinnWL'       => 'Je bin niet an-emeld en "$1" steet niet op de witte lieste.',

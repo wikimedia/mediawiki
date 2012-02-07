@@ -1795,7 +1795,7 @@ Non pode superar adecuadamente as comprobacións de seguridade.',
 'img-auth-nopathinfo'       => 'Falta a PATH_INFO.
 O seu servidor non está configurado para pasar esta información.
 Pode ser que estea baseado en CGI e non soporte img_auth.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization Olle a autorización de imaxes para obter máis información.]',
+Véxase https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'         => 'A ruta solicitada non está no directorio de carga configurado.',
 'img-auth-badtitle'         => 'Non é posible construír un título válido a partir de "$1".',
 'img-auth-nologinnWL'       => 'Non accedeu ao sistema e "$1" non está na lista de branca.',

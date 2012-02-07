@@ -1584,7 +1584,7 @@ $1',
 'img-auth-nopathinfo'       => 'PATH_INFO суох.
 Эн сиэбэриҥ маннык сибидиэнньэни ыытар курдук туруоруута суох.
 Баҕар кини CGI олоҕурара буолуо ол иһин img_auth өйөөбөтө буолуо.
-[http://www.mediawiki.org/wiki/Manual:Image_Authorization Ойууну бигэргэтиини] көр.',
+[https://www.mediawiki.org/wiki/Manual:Image_Authorization Ойууну бигэргэтиини] көр.',
 'img-auth-notindir'         => 'Көрдөөбүт суолуҥ эрдэттэн туруоруллубут хачайдыыр паапкаҕа сыһыана суох.',
 'img-auth-badtitle'         => 'Мантан «$1» сөптөөх ааты оҥорор кыах суох.',
 'img-auth-nologinnWL'       => 'Эн тиһиликкэ киирбэтэххин, уонна «$1» үрүҥ (көҥүллэммит) тиһиккэ киирбэт эбит.',

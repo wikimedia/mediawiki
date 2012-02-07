@@ -1538,7 +1538,7 @@ $1',
 'img-auth-nopathinfo'       => 'बाटक जानकारी नै अछि।
 अहाँक वितरक ऐ सूचनाकेँ प्रसारित नै कऽ सकत।
 ई सी.जी.आइ.आधारित अछि आ चित्र-समर्थन केँ समर्थन नै दऽ सकत।
-[//www.mediawiki.org/wiki/Manual:Image_Authorization देखू image authorization.]',
+[https://www.mediawiki.org/wiki/Manual:Image_Authorization देखू image authorization.]',
 'img-auth-notindir'         => 'आग्रह कएल रस्ता विन्यासित उपारोपित निर्देशिकामे नै अछि।',
 'img-auth-badtitle'         => '"$1" लेल कोनो मान्य शीर्षक नै बना सकल।',
 'img-auth-nologinnWL'       => 'अहाँ सम्प्रवेशित नै छी आ "$1" स्वीकृत सूचीमे नै अछि।',

@@ -1631,7 +1631,7 @@ $1',
 'img-auth-nopathinfo'   => 'PATH_INFO唔見咗。
 你嘅伺服器重未設定呢個資料。
 佢可能係CGI為本，唔支援img_auth。
-睇吓 http://www.mediawiki.org/wiki/Manual:Image_Authorization。',
+睇吓 https://www.mediawiki.org/wiki/Manual:Image_Authorization。',
 'img-auth-notindir'     => '所請求嘅路徑唔響個已經設定咗嘅上載目錄。',
 'img-auth-badtitle'     => '唔能夠由"$1"整一個有效標題。',
 'img-auth-nologinnWL'   => '你而家無登入，"$1"唔響個白名單度。',

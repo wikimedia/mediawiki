@@ -1891,7 +1891,7 @@ Se kann nit aanjemäße jeprööf wääde, of se sescher es.',
 'img-auth-accessdenied'     => 'Keine Zohjang',
 'img-auth-nopathinfo'       => 'De <code lang="en">PATH_INFO</code> fäählt.
 Dä Webßööver es nit doför ennjerescht, di Ennfommazjuhn wigger ze jävve.
-Hä künnd_op <code lang="en">CGI</code> opjebout sin, un dröm <code lang="en">img_auth</code> nit ongshtöze künne. Loor em [http://www.mediawiki.org/wiki/Manual:Image_Authorization Handbooch] noh, wat domet es.',
+Hä künnd_op <code lang="en">CGI</code> opjebout sin, un dröm <code lang="en">img_auth</code> nit ongshtöze künne. Loor em [https://www.mediawiki.org/wiki/Manual:Image_Authorization Handbooch] noh, wat domet es.',
 'img-auth-notindir'         => 'Dä aanjefroochte Pat is nit em enjeschtallte Verzeischneß för et Huhlaade.',
 'img-auth-badtitle'         => 'Uß „$1“ lööt sesch keine jöltijje Tittel maache.',
 'img-auth-nologinnWL'       => 'Do bes nit ennjelogg, un „$1“ es nit op dä Leß met de zohjelohße Datteiname.',

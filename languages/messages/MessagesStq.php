@@ -1462,7 +1462,7 @@ Ju kon deeruum nit ap Sicherhaid wröiged wäide.',
 'img-auth-nopathinfo'   => 'PATH_INFO failt.
 Dien Server is nit deerfoar iengjucht, disse Information fääretoureeken.
 Dät kuud CGI-basierd weese un unnerstutset img_auth nit.
-Sjuch http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+Sjuch https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'     => 'Dät wonskede Paad is nit in dät konfigurierde Uploadferteeknis.',
 'img-auth-badtitle'     => 'Uut „$1“ kon naan gultigen Tittel moaked wäide.',
 'img-auth-nologinnWL'   => 'Du bäst nit anmälded un „$1“ is nit in ju wiete Lieste.',

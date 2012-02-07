@@ -1565,7 +1565,7 @@ $1',
 'img-auth-nopathinfo'       => 'PATH_INFO юҡ.
 Һеҙҙең сервер был мәғлүмәтте ебәреү өсөн көйләнмәгән.
 Уның CGI нигеҙендә эшләүе һәм img_auth ҡулланмауы мөмкин.
-Тулыраҡ мәғлүмәт: [//www.mediawiki.org/wiki/Manual:Image_Authorization Рәсемдәр рөхсәте.]',
+Тулыраҡ мәғлүмәт: [https://www.mediawiki.org/wiki/Manual:Image_Authorization Рәсемдәр рөхсәте.]',
 'img-auth-notindir'         => 'Һоралған юл көйләнгән тейәүҙәр директорияһына ҡарамай.',
 'img-auth-badtitle'         => '"$1" исеменән дөрөҫ исем төҙөп булмай.',
 'img-auth-nologinnWL'       => 'Һеҙ танылыу үтмәнегеҙ, "$1" аҡ исемлеккә кермәй.',

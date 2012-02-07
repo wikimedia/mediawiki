@@ -1867,7 +1867,7 @@ A sua segurança não pode ser devidamente verificada.',
 'img-auth-nopathinfo'       => 'PATH_INFO em falta.
 O seu servidor não está configurado para passar esta informação.
 Pode ser baseado em CGI e não consegue suportar img_auth.
-Consulte a documentação em [//www.mediawiki.org/wiki/Manual:Image_Authorization Image Authorization].',
+Consulte a documentação em [https://www.mediawiki.org/wiki/Manual:Image_Authorization Image Authorization].',
 'img-auth-notindir'         => 'O endereço especificado não conduz ao directório de carregamento de ficheiros configurado.',
 'img-auth-badtitle'         => 'Não é possível construir um título válido a partir de "$1".',
 'img-auth-nologinnWL'       => 'Não está autenticado e o ficheiro "$1" não está na lista branca.',

@@ -1615,7 +1615,7 @@ PICT # misc.
 'img-auth-nopathinfo'       => 'PATH_INFO मौजूद नहीं है।
 आपके सेवक में इस जानकारी को भेजने के लिए जमाव नहीं है।
 यह सीजीआई-आधारित हो सकता है और img_auth को समर्थित नहीं करता है।
-http://www.mediawiki.org/wiki/Manual:Image_Authorization को देखें।',
+https://www.mediawiki.org/wiki/Manual:Image_Authorization को देखें।',
 'img-auth-notindir'         => 'अनुरोधित पथ जमाई हुई चढ़ाने की निर्देशिका में नहीं है।',
 'img-auth-badtitle'         => '"$1" से एक वैध शीर्षक बनाने में असमर्थ।',
 'img-auth-nologinnWL'       => 'आपने सत्रारंभ नहीं किया हुआ है और "$1" श्वेतसूची में नहीं है।',

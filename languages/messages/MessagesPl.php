@@ -1846,7 +1846,7 @@ Plik nie może zostać odpowiednio sprawdzony pod kątem bezpieczeństwa.',
 'img-auth-nopathinfo'       => 'Brak PATH_INFO.
 Serwer nie został skonfigurowany, tak aby przekazywał tę informację.
 Możliwe, że jest oparty na CGI i nie może obsługiwać img_auth.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization Zobacz informacje o autoryzacji grafik.]',
+[https://www.mediawiki.org/wiki/Manual:Image_Authorization Zobacz informacje o autoryzacji grafik.]',
 'img-auth-notindir'         => 'Żądana ścieżka nie jest w obrębie katalogu skonfigurowanego do przesyłania plików.',
 'img-auth-badtitle'         => 'Nie można wygenerować prawidłowego tytuł z „$1”.',
 'img-auth-nologinnWL'       => 'Nie jesteś zalogowany, a „$1” nie jest na białej liście.',

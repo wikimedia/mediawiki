@@ -1428,7 +1428,7 @@ Lūdzu, sazinieties ar [[Special:ListUsers/sysop|administratoru.]]',
 'img-auth-nopathinfo'   => 'Trūkst PATH_INFO.
 Jūsu serveris nav konfigurēts nodot šo informāciju.
 Tas var būt bāzēts uz CGI un neatbalstīt img_auth.
-Skatīt http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+Skatīt https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-nologinnWL'   => 'Jūs neesat iegājis un "$1" nav baltajā sarakstā.',
 'img-auth-nofile'       => 'Fails "$1" nepastāv.',
 'img-auth-isdir'        => 'Jūs mēģinājāt piekļūt direktorijai "$1".

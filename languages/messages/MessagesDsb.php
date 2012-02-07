@@ -860,7 +860,7 @@ Nejnowšy protokolowy zapisk jo dołojce ako referenca pódany:",
 'sectioneditnotsupported-text'     => 'Wobźěłowanje wótrězka njepódpěra se na toś tom wobźěłowańskem boku.',
 'permissionserrors'                => 'Problem z pšawami',
 'permissionserrorstext'            => 'Njamaš pšawo to cyniś. {{PLURAL:$1|Pśicyna|Pśicynje|Pśicyny}}:',
-'permissionserrorstext-withaction' => 'Z {{PLURAL:$1|slědujuceje pśicyny|slědujuceju pśicynowu|slědujucych pśicynow|slědujucych pśicynow}} njamaš pšawo $2:',
+'permissionserrorstext-withaction' => 'Njamaš pšawo $2. {{PLURAL:$1|Pśicyna|Pśicynje|Pśicyny|Pśicyny}}:',
 'recreate-moveddeleted-warn'       => "'''Glědaj: Ty wótžywijoš bok, kótaryž jo pjerwjej se wulašował.'''
 
 Pšosym pśespytuj kradosćiwje, lěc jo gódnje z wobźěłowanim boka pokšacowaś.
@@ -1660,7 +1660,7 @@ Togodla njedajo se jeje wěstoty pśekontrolěrowaś.',
 'img-auth-nopathinfo'       => 'PATH_INFO felujo.
 Twój serwer njejo konfigurěrowany, aby toś te informacije dalej pósrědnił.
 Móžo na CGI bazěrowaś a njamóžo img_auth pódpěraś.
-Glědaj [//www.mediawiki.org/wiki/Manual:Image_Authorization image authorization].',
+Glědaj https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'         => 'Pominana šćažka njejo w konfigurěrowanem nagraśowem zapisu.',
 'img-auth-badtitle'         => 'Njejo móžno z "$1" płaśiwy titel twóriś.',
 'img-auth-nologinnWL'       => 'Njejsy pśizjawjony a "$1" njejo w běłej lisćinje.',
