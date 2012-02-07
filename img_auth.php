@@ -56,6 +56,10 @@ function wfImageAuthMain() {
 
 	// Get the requested file path (source file or thumbnail)
 	$matches = WebRequest::getPathInfo();
+	if ( !isset( $matches['title'] ) ) {
+		wfForbidden( 'img-auth-accessdenied', 'img-auth-nopathinfo' );
+		return;
+	}
 	$path = $matches['title'];
 	if ( $path && $path[0] !== '/' ) {
 		// Make sure $path has a leading /
