@@ -185,12 +185,13 @@ class UsersPager extends AlphabeticPager {
 
 	function getPageHeader( ) {
 		global $wgScript;
-		$self = $this->getTitle();
+		// @todo Add a PrefixedBaseDBKey
+		list( $self ) = explode( '/', $this->getTitle()->getPrefixedDBkey() );
 
 		# Form tag
 		$out  = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript, 'id' => 'mw-listusers-form' ) ) .
 			Xml::fieldset( wfMsg( 'listusers' ) ) .
-			Html::hidden( 'title', $self->getPrefixedDbKey() );
+			Html::hidden( 'title', $self );
 
 		# Username field
 		$out .= Xml::label( wfMsg( 'listusersfrom' ), 'offset' ) . ' ' .
