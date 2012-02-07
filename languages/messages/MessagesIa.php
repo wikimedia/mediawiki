@@ -1730,7 +1730,7 @@ Un verification correcte de su securitate es impossibile.',
 'img-auth-nopathinfo'       => 'PATH_INFO manca.
 Le servitor non ha essite configurate pro passar iste information.
 Illo pote esser basate super CGI e non pote supportar img_auth.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization Vide: Autorisation de imagines.]',
+Vide https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'         => 'Le cammino requestate non es in le directorio de incargamentos configurate.',
 'img-auth-badtitle'         => 'Impossibile construer un titulo valide ex "$1".',
 'img-auth-nologinnWL'       => 'Tu non ha aperite un session e "$1" non es in le lista blanc.',

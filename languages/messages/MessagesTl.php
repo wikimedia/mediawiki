@@ -1626,7 +1626,7 @@ Hindi ito maaaring suriin ng tama para sa kaligtasan.',
 'img-auth-nopathinfo'       => 'Nawawalang PATH_INFO.
 Ang tagapaghain mo ay hindi nakatakdang na maipasa ang kabatirang ito.
 Maaaring pang-CGI ito at hindi makatangkilik ng img_auth.
-Tingnan ang http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+Tingnan ang https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'         => 'Ang hiniling na daan ay wala sa loob ng isinaayos na direktoryo ng pagkarga.',
 'img-auth-badtitle'         => 'Hindi nagawang makabuo ng tanggap na pamagat mula sa "$1".',
 'img-auth-nologinnWL'       => 'Hindi ka nakalagda at ang "$1" ay wala sa puting talaan.',

@@ -1402,7 +1402,7 @@ Eke problem dewam kerd [[Special:ListUsers/sysop|serkari]] de irtibat kewe.',
 'img-auth-nopathinfo'   => 'PATH_INFO kemio.
 Pêşkêşwanê şıma seba ravurnayışê nê malumati eyar nêkerdo.
 Beno ke be CGI-bıngeyın bo u img_auth destek nêbeno.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization Selahiyetê resımi bıvêne.]',
+[https://www.mediawiki.org/wiki/Manual:Image_Authorization Selahiyetê resımi bıvêne.]',
 'img-auth-notindir'     => 'Patikayê ke ti wazeno direktorê bar biyayişî de çin o.',
 'img-auth-badtitle'     => '"$1" ra nieşkeno yew seroğê raştî virazî.',
 'img-auth-nologinnWL'   => 'Ti cikewte ni yo u "$1" listeyo sipê de çin o.',

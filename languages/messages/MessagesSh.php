@@ -1730,7 +1730,7 @@ Ne može se dobro provjeriti u vezi sigurnosti.',
 'img-auth-nopathinfo'       => 'Nedostaje PATH_INFO.
 Vaš server nije podešen da daje ovakve informacije.
 Možda je zasnovan na CGI-ju koji ne podržava img_auth.
-Pogledajte [//www.mediawiki.org/wiki/Manual:Image_Authorization?uselang=sh odobravanje slika.]',
+Pogledajte [https://www.mediawiki.org/wiki/Manual:Image_Authorization?uselang=sh odobravanje slika.]',
 'img-auth-notindir'         => 'Zahtjevana putanja nije u direktorijumu podešenom za postavljanje.',
 'img-auth-badtitle'         => 'Ne mogu napraviti valjani naslov iz "$1".',
 'img-auth-nologinnWL'       => 'Niste prijavljeni i "$1" nije na spisku dozvoljenih.',

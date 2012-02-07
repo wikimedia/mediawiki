@@ -1685,7 +1685,7 @@ PICT # misc.
 'img-auth-nopathinfo'   => 'PATH_INFO مش موجود.
 الخادم بتاعك مش مضبوط علشان يدى المعلومه دى.
 ممكن يكون CGI-based ومايقدرش يدعم img_auth.
-بص على http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+بص على https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'     => 'المسار المطلوب مش فى مجلد الرفع المضبوط.',
 'img-auth-badtitle'     => 'مش قادر يعمل عنوان صحيح من "$1".',
 'img-auth-nologinnWL'   => 'إنت مش مسجل الدخول و"$1" مش فى القايمه البيضا.',

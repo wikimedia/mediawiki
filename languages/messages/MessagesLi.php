@@ -1667,7 +1667,7 @@ De veiligheid kin neet waere gekónterleerdj.",
 'img-auth-nopathinfo'       => 'PATH_INFO óntbrèk.
 Diene server is neet ingesteld om dees informatie door te gaeve.
 Misjien gebroek deze CGI, en dan wört img_auth neet ongersteund.
-Zuuch [//www.mediawiki.org/wiki/Manual:Image_Authorization aafbeildingsrechte] veur mee informatie.',
+Zuuch [https://www.mediawiki.org/wiki/Manual:Image_Authorization aafbeildingsrechte] veur mee informatie.',
 'img-auth-notindir'         => "'t Ópgevraogdje paad is neet de ingestelde uploadmap.",
 'img-auth-badtitle'         => 'Kèn geine geldige paginanaam make van "$1".',
 'img-auth-nologinnWL'       => 'Doe bös neet aangemeld en "$1" steit neet op de witte lies.',

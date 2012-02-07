@@ -1568,7 +1568,7 @@ $1',
 'img-auth-nopathinfo'       => 'PATH_INFO يوقالغان.
 مۇلازىمىتىرىڭىز بۇ ئۇچۇرنى يوللاشنى تەڭشىمىگەن.
 ئۇ CGI ئاساسىدا بولغاچقا img_auth نى قوللىمايدۇ. تۆۋەندىكى ئادرېستىن كۆرۈڭ
-http://www.mediawiki.org/wiki/Manual:Image_Authorization',
+https://www.mediawiki.org/wiki/Manual:Image_Authorization',
 'img-auth-notindir'         => 'سەپلەنگەن يۈكلەش مۇندەرىجىسىدىن ئىلتىماس قىلغان يولنى تاپالمىدى.',
 'img-auth-badtitle'         => '"$1" ئۈچۈن ئىناۋەتلىك ماۋزۇ قۇرالمىدى.',
 'img-auth-nologinnWL'       => 'سىز تېخى تىزىمغا كىرمىدىڭىز، "$1" ئاق تىزىملىكتە ئەمەس.',

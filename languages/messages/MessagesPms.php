@@ -1585,7 +1585,7 @@ A peul pa esse controlà da bin për la sicurëssa.",
 'img-auth-nopathinfo'       => "PATH_INFO mancant.
 Sò servent a l'é nen ampostà për passé costa anformassion.
 Peul desse ch'a sia basà an sij CGI e a peul pa mantnì img_auth.
-[http://www.mediawiki.org/wiki/Manual:Image_Authorization. Ch'a bèica l'autorisassion dla figura.]",
+[https://www.mediawiki.org/wiki/Manual:Image_Authorization. Ch'a bèica l'autorisassion dla figura.]",
 'img-auth-notindir'         => "Ël senté ciamà a l'é pa ant ël dossié configurà për carié.",
 'img-auth-badtitle'         => 'As peul pa fesse un tìtol bon për "$1".',
 'img-auth-nologinnWL'       => 'A l\'é pa intrà ant ël sistema e "$1" a l\'é pa ant la lista bianca.',

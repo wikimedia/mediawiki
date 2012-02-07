@@ -1187,6 +1187,7 @@ $1 {{PLURAL:$1|karakteretik|karakteretik}} behera izan behar ditu.',
 'email'                         => 'E-posta',
 'prefs-help-realname'           => '* Benetako izena (aukerakoa): zehaztea erabakiz gero, zure lanarentzako atribuzio bezala balioko du.',
 'prefs-help-email'              => 'E-posta helbidea aukerakoa da, baina zure pasahitza ahaztekotan berriro zure e-postara bidaltzeko aukera ematen dizu.',
+'prefs-help-email-others'       => 'Besteak e-mail bidez zurekin harremanetan jartzea ahalbidetu dezakezu, zure lankide- edo eztabaida-orrietako loturaren bidez. Beste lankideak zurekin harremanetan jartzerakoan ez da ikusiko zure e-mail helbidea.',
 'prefs-help-email-required'     => 'E-mail helbidea derrigorrezkoa da.',
 'prefs-info'                    => 'Oinarrizko informazioa',
 'prefs-i18n'                    => 'Nazioartekotasuna',
@@ -1526,7 +1527,7 @@ $1',
 'img-auth-nopathinfo'   => 'PATH_INFO falta da.
 Zure zerbitzaria ez dago informazio hau pasatzeko konfiguratuta.
 CGI-oinarriduna izan daiteke, img_auth onartzen ez duena.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization Ikusi irudi-baimenak.]',
+[https://www.mediawiki.org/wiki/Manual:Image_Authorization Ikusi irudi-baimenak.]',
 'img-auth-notindir'     => 'Eskatutako bidea ez dago kofiguratutako igoera-direktorioan.',
 'img-auth-badtitle'     => 'Ezin izan da baleko izenbururik eraiki "$1" izenetik abiatuta',
 'img-auth-nologinnWL'   => 'Ez duzu saioa hasi eta "$1" ez dago zerrenda zurian.',

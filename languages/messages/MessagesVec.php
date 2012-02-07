@@ -1517,7 +1517,7 @@ Se el problema el persiste, contatar un [[Special:ListUsers/sysop|aministrador]]
 'img-auth-nopathinfo'   => "Manca el PATH_INFO.
 El to server no'l xe mia configurà par passar sta informassion.
 Magari el xe basà su CGI e no'l suporta img_auth.
-Varda http://www.mediawiki.org/wiki/Manual:Image_Authorization.",
+Varda https://www.mediawiki.org/wiki/Manual:Image_Authorization.",
 'img-auth-notindir'     => "El percorso richiesto no'l se cata in te la cartèla de caricamento configurà.",
 'img-auth-badtitle'     => 'No se riesse a costruir un titolo valido da "$1".',
 'img-auth-nologinnWL'   => 'No te sì autenticà e "$1" no\'l xe mia in te la lista bianca.',

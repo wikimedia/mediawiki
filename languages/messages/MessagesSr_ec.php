@@ -1996,7 +1996,7 @@ $1',
 'img-auth-nopathinfo'       => 'Недостаје PATH_INFO.
 Ваш сервер није подешен да прослеђује овакве податке.
 Можда је заснован на CGI-ју који не подржава img_auth.
-Погледајте [//www.mediawiki.org/wiki/Manual:Image_Authorization?uselang=sr-ec одобравање слика.]',
+Погледајте [https://www.mediawiki.org/wiki/Manual:Image_Authorization?uselang=sr-ec одобравање слика.]',
 'img-auth-notindir'         => 'Захтевана путања није у подешеној фасцикли за слање.',
 'img-auth-badtitle'         => 'Не могу да створим исправан наслов за „$1“.',
 'img-auth-nologinnWL'       => 'Нисте пријављени и „$1“ није на списку дозвољених.',

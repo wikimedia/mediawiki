@@ -1804,7 +1804,7 @@ $1',
 'img-auth-nopathinfo'       => 'PATH_INFO 값을 알 수 없습니다.
 서버가 이 정보를 받을 수 있도록 설정되어 있지 않습니다.
 이러한 경우는 서버가 CGI 기반이고 img_auth를 지원하지 않을 때 나타날 수 있습니다.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization 그림 권한에 대해 자세히 알아보려면 여기를 클릭하세요.]',
+[https://www.mediawiki.org/wiki/Manual:Image_Authorization 그림 권한에 대해 자세히 알아보려면 여기를 클릭하세요.]',
 'img-auth-notindir'         => '요청한 경로가 설정한 업로드 디렉토리에 없습니다.',
 'img-auth-badtitle'         => '"$1"에서 바른 제목을 만들 수 없습니다.',
 'img-auth-nologinnWL'       => '당신은 로그인하지 않았으며 "$1" 파일은 화이트리스트에 존재하지 않습니다.',

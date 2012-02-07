@@ -1715,7 +1715,7 @@ $1',
 'img-auth-nopathinfo'   => 'PATH_INFO manglar.
 Filtenaren din er ikkje sett opp for å gje denne informasjonen.
 Han kan vera CGI-basert og stør ikkje img_auth.
-Sjå http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+Sjå https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'     => 'Den ynskte filstien er ikkje i den oppsette opplastingskatalogen',
 'img-auth-badtitle'     => 'Kan ikkje laga ein gyldig ttitel ut frå "$1".',
 'img-auth-nologinnWL'   => 'Du er ikkje logga inn, og "$1" er ikkje på kvitlista.',

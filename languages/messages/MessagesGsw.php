@@ -1605,7 +1605,7 @@ Si cha wäge däm nit richtig iberprieft wäre.',
 'img-auth-nopathinfo'       => 'PATH_INFO fählt.
 Dyy Server isch nit derfir yygrichtet, die Information wyterzgee.
 S chennt CGI-basiert syy un unterstitzt img_auth nit.
-Lueg http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+Lueg https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'         => 'Dr gwinscht Pfad isch nit im konfigurierte Uploadverzeichnis.',
 'img-auth-badtitle'         => 'Giltige Titel vu „$1“ cha nit aagleit wäre.',
 'img-auth-nologinnWL'       => 'Du bisch nit aagmäldet un „$1“ isch nit in dr wyße Lischt.',

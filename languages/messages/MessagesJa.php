@@ -1915,7 +1915,7 @@ $1',
 'img-auth-nopathinfo'       => 'PATH_INFO が見つかりません。
 サーバーが、この情報を渡すように構成されていません。
 CGI ベースであるため、img_auth に対応できない可能性もあります。
-[//www.mediawiki.org/wiki/Manual:Image_Authorization 画像の認可を参照してください。]',
+[https://www.mediawiki.org/wiki/Manual:Image_Authorization 画像の認可を参照してください。]',
 'img-auth-notindir'         => '要求されたパスは、設定済みのアップロード用ディレクトリーの中にありません。',
 'img-auth-badtitle'         => '「$1」からは有効なページ名を構築できません。',
 'img-auth-nologinnWL'       => 'ログインしておらず、さらに「$1」はホワイトリストに入っていません。',

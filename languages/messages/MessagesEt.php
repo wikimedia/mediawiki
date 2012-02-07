@@ -1789,7 +1789,7 @@ Selle turvalisust ei saa kontrollida.',
 'img-auth-nopathinfo'       => 'PATH_INFO puudub.
 Sinu server pole seadistatud seda teavet edastama.
 See võib olla CGI-põhine ja ei toeta img_auth-i.
-Vaata lehekülge "[//www.mediawiki.org/wiki/Manual:Image_Authorization Image Authorization]".',
+Vaata lehekülge "[https://www.mediawiki.org/wiki/Manual:Image_Authorization Image Authorization]".',
 'img-auth-notindir'         => 'Soovitud salvestuskoht pole üleslaadimiskataloogi all.',
 'img-auth-badtitle'         => 'Väljendist "$1" ei saa sobivat pealkirja moodustada.',
 'img-auth-nologinnWL'       => 'Sa pole sisselogitud ja "$1" pole valges nimekirjas.',

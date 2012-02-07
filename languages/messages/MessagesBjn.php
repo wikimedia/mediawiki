@@ -1591,7 +1591,7 @@ Babarakas ngini kada kawa dilihat ka siapa pun kacuali pamuruk nang mahunggahnya
 'img-auth-nopathinfo'       => 'PATH_INFO hilang.
 Server Pian kada disetel hagan malimpatakan panjalasan ngini.
 Ngini karana CGI-based wan kada manyukung img_auth.
-Janaki http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+Janaki https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'         => "Jalur nang diminta kada ta'atur lawan direktori hunggahan.",
 'img-auth-badtitle'         => 'Kada kawa mambangun sabuah judul sah matan "$1".',
 'img-auth-nologinnWL'       => 'Pian kada kawa babuat log wan \'$1" kadada dalam daptar putih.',

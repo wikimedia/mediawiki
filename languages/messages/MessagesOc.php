@@ -1706,7 +1706,7 @@ Se lo problèma persistís, contactatz un [[Special:ListUsers/sysop|administrato
 'img-auth-nopathinfo'   => 'PATH_INFO mancant.
 Vòstre servidor es pas parametrat per passar aquesta informacion.
 Benlèu que fonciona en CGI e supòrta pas img_atuh.
-Consultatz http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+Consultatz https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'     => 'Lo camin demandat es pas lo repertòri de telecargament configurat.',
 'img-auth-badtitle'     => 'Impossible de construire un títol valid a partir de « $1 ».',
 'img-auth-nologinnWL'   => 'Sètz pas connectat e « $1 » es pas dins la lista blanca.',

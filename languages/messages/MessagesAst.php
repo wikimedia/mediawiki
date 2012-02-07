@@ -1626,7 +1626,7 @@ Nun se pue comprobar la seguridá de mou afayadizu.",
 'img-auth-nopathinfo'       => "Falta PATH_INFO.
 El sirvidor nun ta configuráu pa pasar esta información.
 Pue tar basáu en CGI y nun tener sofitu pa img_auth.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization Ver autorización d'imaxes.]",
+[https://www.mediawiki.org/wiki/Manual:Image_Authorization Ver autorización d'imaxes.]",
 'img-auth-notindir'         => 'El camín solicitáu nun ta nel direutoriu de xubíes configuráu.',
 'img-auth-badtitle'         => 'Nun se pue construir un títulu validu dende "$1".',
 'img-auth-nologinnWL'       => 'Nun tas coneutáu y "$1" nun ta na llista blanca.',

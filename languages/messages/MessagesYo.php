@@ -1597,7 +1597,7 @@ Kò ṣe é yẹ̀wò fún àbò.',
 'img-auth-nopathinfo'       => 'Kò sí PATH_INFO.
 Ẹ̀rọ-ìwọ̀fà yín kò létò láti mú dátà yìí kọjá.
 O ṣe é ṣe kó jẹ́ ti CGI tí kò ní ìtìlẹ́yìn fún img_auth.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization Ẹ wo àṣẹ àwòrán.]',
+[https://www.mediawiki.org/wiki/Manual:Image_Authorization Ẹ wo àṣẹ àwòrán.]',
 'img-auth-notindir'         => 'Ojúọ̀nà tí ẹ tọrọ kò ní nínú àpò ìrùsókè alátòsílẹ̀.',
 'img-auth-badtitle'         => 'Àkọlé oníìbámu kò ṣe é dá láti "$1".',
 'img-auth-nologinnWL'       => 'Ẹ kò tíì wọlẹ́ bẹ́ẹ̀sìni "$1" kò sí nínú àtòjọ funfun.',

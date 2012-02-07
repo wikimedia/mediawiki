@@ -1608,7 +1608,7 @@ Ni all gael ei wirio'n ddigonol er sicrhau diogelwch.",
 'img-auth-nopathinfo'       => "PATH_INFO yn eisiau.
 Nid yw'ch gweinydd wedi ei osod i fedru pasio'r wybodaeth hon.
 Efallai ei fod wedi ei seilio ar CGI, ac heb fod yn gallu cynnal img_auth.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization Gweler y cyngor ar awdurdodi lluniau.]",
+[https://www.mediawiki.org/wiki/Manual:Image_Authorization Gweler y cyngor ar awdurdodi lluniau.]",
 'img-auth-notindir'         => "Nid yw'r llwybr y gwneuthpwyd cais amdano yn y cyfeiriadur uwchlwytho ffurfweddedig.",
 'img-auth-badtitle'         => 'Ddim yn gallu gwneud teitl dilys o "$1".',
 'img-auth-nologinnWL'       => 'Nid ydych wedi mewngofnodi ac nid yw "$1" ar y rhestr wen.',

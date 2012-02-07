@@ -1781,7 +1781,7 @@ Ne može biti ispravno sigurnosno označena.',
 'img-auth-nopathinfo'       => 'Nedostaje PATH_INFO.
 Vaš poslužitelj nije postavljen da prosljeđuje ovu informaciju.
 Možda se temelji na CGI skripti i ne može podržavati img_auth.
-[http://www.mediawiki.org/wiki/Manual:Image_Authorization?uselang=hr Pogledajte stranicu o autorizaciji slika]',
+[https://www.mediawiki.org/wiki/Manual:Image_Authorization?uselang=hr Pogledajte stranicu o autorizaciji slika]',
 'img-auth-notindir'         => 'Zahtjevana putanja nije u direktoriju podešenom za postavljanje.',
 'img-auth-badtitle'         => 'Ne mogu stvoriti valjani naslov iz "$1".',
 'img-auth-nologinnWL'       => 'Niste prijavljeni i "$1" nije na popisu dozvoljenih.',

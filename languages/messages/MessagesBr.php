@@ -1711,7 +1711,7 @@ N'hall ket bezañ gwiriet ervat evit ar surentez.",
 'img-auth-nopathinfo'       => "Mankout a ra ar PATH_INFO.
 N'eo ket kefluniet ho servijer evit reiñ an titour-mañ.
 Marteze eo diazezet war CGI ha n'hall ket skorañ img_auth.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization Gwelet aotre ar skeudenn.]",
+[https://www.mediawiki.org/wiki/Manual:Image_Authorization Gwelet aotre ar skeudenn.]",
 'img-auth-notindir'         => "N'emañ ket an hent merket er c'havlec'h enporzhiañ kefluniet.",
 'img-auth-badtitle'         => 'Dibosupl krouiñ un titl reizh adalek "$1".',
 'img-auth-nologinnWL'       => 'N\'oc\'h ket kevreet ha n\'emañ ket "$1" war ar roll gwenn',

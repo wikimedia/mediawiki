@@ -1509,7 +1509,7 @@ Ii sab panna khaali uu sadasya ke dekhae hae jon ki iske uplaod karis hae.',
 'img-auth-nopathinfo'       => 'PATH_INFO nai hae
 Aap ke server ke ii jankari de khatir set up nai karaa gais hae
 Saait ii CGI-based hoi aur img_auth ke nai support karat hoi.
-http://www.mediawiki.org/wiki/Manual:Image_Authorization ke dekho.',
+https://www.mediawiki.org/wiki/Manual:Image_Authorization ke dekho.',
 'img-auth-notindir'         => 'Maanga gais path configured upload directory me me nai hae.',
 'img-auth-badtitle'         => '"$1" se kanuni title ke nai banae sakaa hae.',
 'img-auth-nologinnWL'       => 'Aap logged in nai hae aur "$1" whitelist me nai hae.',

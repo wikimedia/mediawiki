@@ -396,7 +396,7 @@ $messages = array(
 'sqlhidden'            => '(SQL کھوج چھپائی ہوئي اے)',
 'cascadeprotected'     => "ایس صفے نوں تبدیلی توں بچایا گیا اے، کیوں جے ایہ تھلے دتے گۓ {{PLURAL:$1|صفہ|صفے}} چ ہیگا اے تے اینوں ''کیسکیڈنگ'' چنوتی نال بچایا گیا اے:
 
- 2$",
+ $2",
 'namespaceprotected'   => "'''$1''' ناں دے صفحے تسی نئیں لکھ سکدے۔",
 'customcssprotected'   => 'تسی اے CSS صفحے نوں تبدیل نئیں کر سکدے کیونجے ایدے کسے دوجے ورتن آلے دیاں من پسند تانگاں نیں۔',
 'customjsprotected'    => 'تسی اے JavaScript  صفحے نوں تبدیل نئیں کر سکدے کیونجے ایدے کسے دوجے ورتن آلے دیاں من پسند تانگاں نیں۔',
@@ -473,7 +473,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'password-login-forbidden'   => 'اس ورتن ناں یا کنجی دا ورتن تے پابندی اے۔',
 'mailmypassword'             => 'نئی کنجی ای میل کرو',
 'passwordremindertitle'      => '{{SITENAME}} لئی نوی عارضی کنجی',
-'passwordremindertext'       => 'کسے نے (غالبن تسی 1$ آئی پی پتے توں) نوی کنجی (4$){{SITENAME}} واسطے منگی۔ اک عارضی کنجی ورتن والے "2$" دے لئی بنائی گئی سی تے "3$" تے سیٹ کر دتی گئی سی۔ اگر اے تواڈا کم اے تے توانوں اندر آکے اک نوی 5$ کنجی چننی پۓ گی۔ تواڈی کچی
+'passwordremindertext'       => 'کسے نے (غالبن تسی 1$ آئی پی پتے توں) نوی کنجی (4$) {{SITENAME}} واسطے منگی۔ اک عارضی کنجی ورتن والے "2$" دے لئی بنائی گئی سی تے "3$" تے سیٹ کر دتی گئی سی۔ اگر اے تواڈا کم اے تے توانوں اندر آکے اک  نویں  کنجی چننی پۓ گی۔ تواڈی کچی
  کنجی {{PLURAL:$5|اک دن|5$ دناں}} چ مک جائیگی۔
 اگر کسے ہور نے اے درخواست کیتی اے یا تسی اپنی پرانی کنجی لب لئی اے تے تسی اینوں بدلنا نئیں چاندے تے تسی اس سنعے نوں چھڈو تے پرانی کنجی استعمال کرو۔',
 'noemail'                    => 'اس ورتن والے "$1" دا کوئی ای میل پتہ نئیں ہے گا۔',
@@ -718,7 +718,7 @@ Custom .css تے .js pages use a lowercase title, e.g. {{ns:user}}:Foo/vector.cs
 اگر تسیں نئیں چاندے جے تواڈیاں لکھتاں  بے رحمی نال تبدیل کیتیاں جان تے فیر اپنی لکھتاں ایتھے ناں لکھو<br />
 تسیں ساڈے نال اے وی وعدہ کر رۓ او جے تساں اینوں آپ لکھیا اے، یایا کسے لوکاں آستے کاپی کرن والی تھاں توں کاپی کیتا اے یا اینج دے کھلے سورس توں ( پوری گل لئی $1 ویکھو)
 '''کاپی حق والےکم بنا اجازت دے ایتھے ناں پیش کرو'''",
-'longpageerror'                    => "'''غلطی : تھواڈی دتی گئی لکھت {{PLURAL:$1|1 کلوبائٹ|1$ کلوبائٹ}} 1$  لمی اے، جیہڑی کے ود توں ود {{PLURAL:$2|1 کلوبائٹ|$2 کلوبائٹ}}توں وی وڈی اے۔'''
+'longpageerror'                    => "'''غلطی : تھواڈی دتی گئی لکھت {{PLURAL:$1|1 کلوبائٹ|1$ کلوبائٹ}} 1$  لمی اے، جیہڑی کے ود توں ود {{PLURAL:$2|1 کلوبائٹ|2$ کلوبائٹ}} توں وی وڈی اے۔'''
 اینوں نئیں بچایا جاسکدا۔",
 'readonlywarning'                  => "'''خبردار: ڈیٹابیس نوں تالا لگیا اے جے مرمت ہورئی اے ایس تواڈیاں لکھتاں بچائیاں نئیں جاسکدیاں.'''
 تسیں  چاؤ گے جے ہن کاپی کرلو لکھت اک لکھت فائل چ تے بچا لو فیر ورتن لئی۔
@@ -786,8 +786,8 @@ Custom .css تے .js pages use a lowercase title, e.g. {{ns:user}}:Foo/vector.cs
 
 # Account creation failure
 'cantcreateaccounttitle' => 'کھاتہ نئیں کھول سکدے',
-'cantcreateaccount-text' => "کھاتہ بنانا ایس آئی پی پتے  ('''1\$''') لئی [[User:\$3|\$3]] نے روک دتی اے۔
-\$3 نے 2\$وجہ دسی اے۔",
+'cantcreateaccount-text' => "کھاتہ بنانا ایس آئی پی پتے  ('''1$''')  لئی  [[User:$3|$3]] نے روک دتی اے۔
+$3 نے ''2$'' وجہ دسی اے۔",
 
 # History pages
 'viewpagelogs'           => 'صفحے دے لاگ ویکھو',
@@ -1486,7 +1486,7 @@ $1",
 'upload-failure-subj'         => 'چڑھان رپھڑ',
 'upload-failure-msg'          => 'تھاڈی چڑھائی ہوئی [$2] فائل نال رپھڑ: $1',
 'upload-warning-subj'         => 'فائل چڑانے توں خبردار',
-'upload-warning-msg'          => 'تھواڈی  [2$]  توں چڑھائی گئی فائل چ رپھڑ اے۔ تسیں [[Special:Upload/stash/$1|چڑھائی جالت]] ول جاسکدے رپھڑ مکان لئی۔',
+'upload-warning-msg'          => 'تھواڈی  [2$]  توں چڑھائی گئی فائل چ رپھڑ اے۔ تسیں [[Special:Upload/stash/$1|چڑھائی حالت]] ول جاسکدے رپھڑ مکان لئی۔',
 
 'upload-proto-error'        => 'غلط پروٹوکول',
 'upload-proto-error-text'   => 'دوروں چڑھائی لئی فائل لئی ضروری اے جے اودی یوآرایل <code>http://</code> یا <code>ftp://</code> توں ٹرے۔',
@@ -1517,7 +1517,7 @@ $1",
 'backend-fail-closetemp'     => 'کچی فائل ناں بند کیتی جاسکی۔',
 'backend-fail-read'          => 'فائل "$1" نا پڑھی جاسکی۔',
 'backend-fail-create'        => 'فائل "$1" نا بنائی جاسکی۔',
-'backend-fail-readonly'      => 'سٹوریج بیکنڈ "1$"  ایس ویلے صرف پڑھیا جاسادا اے۔وجہ ؛ "2$"',
+'backend-fail-readonly'      => 'سٹوریج بیکنڈ "1$"  ایس ویلے صرف پڑھیا جاسکدا اے۔ وجہ دتی اے: "2$"',
 'backend-fail-synced'        => 'فائل "$1" اندرلے سٹوریح بیکنڈ چ اک کچی حالت چ اے۔',
 'backend-fail-connect'       => 'سٹوریج بیکنڈ "$1" نال جوڑ ناں ہوسکیا۔',
 'backend-fail-internal'      => 'اک نان سمج ج ان والی غلطی سٹوریج بیکنڈ "1$" چ ہوؤی۔',
@@ -1559,7 +1559,7 @@ $1",
 'img-auth-nopathinfo'       => 'گمی راہ بارے دس۔
 تواڈا سرور ایس جانکاری نوں نئیں گزار سکدا۔
 اے ۓۂـ- بیسد ہوسکدی اے یا تے img_auth نوں سپورٹ کردی اے۔
-ویکھو http://www.mediawiki.org/wiki/Manual:Image_Authorization',
+ویکھو https://www.mediawiki.org/wiki/Manual:Image_Authorization',
 'img-auth-notindir'         => 'پچھیا گیا راہ بنائی گئی ڈائریکٹری چ نئیں اے۔',
 'img-auth-badtitle'         => '"$1" توں اک پکا سرناواں بنان چ ہار',
 'img-auth-nologinnWL'       => 'تسیں لاگان نئیں ہووے "$1"  چٹی لسٹ چ نئیں۔',
@@ -1638,7 +1638,7 @@ $1",
 'nolinkstoimage'            => 'اس فائل نال جڑیا کوئی صفحہ نہیں۔',
 'morelinkstoimage'          => 'ایس فائل نوں [[Special:WhatLinksHere/$1|ہور جوڑ]] ویکھو',
 'linkstoimage-redirect'     => '$1 (فائل ریڈائیدکٹ) $2',
-'duplicatesoffile'          => 'تھلے دتیاں گیاں {{PLURAL:$1فائل دوہری اے|$1 فائلاں دوہریاں نیں} ایس فائل دیاں ([[Special:FileDuplicateSearch/$2|ہور گلاں]]) کاپی نیں۔',
+'duplicatesoffile'          => 'تھلے دتیاں گیاں {{PLURAL:$1|فائل دوہری اے|$1 فائلاں دوہریاں نیں} ایس فائل دیاں ([[Special:FileDuplicateSearch/$2|ہور گلاں]]) کاپی نیں۔',
 'sharedupload'              => 'اے فائل $1 مشترکہ اپلوڈ اے تے اے دوجے منصوبے وی استعمال کر سکدے نے۔',
 'sharedupload-desc-there'   => 'ایہ فائل $1 توں اے تے اینوں دوجے ویونت وی ورت سکدے نیں۔
 مہربانی کرکے [$2 فائل دس صفہ] ویکھو ہور دساں لئی۔',
@@ -1700,7 +1700,7 @@ $1",
 
 # Random page
 'randompage'         => 'ملے جلے صفحے',
-'randompage-nopages' => 'ایتھے کوئی صفے نئیں تھلے دتے گۓ {{PLURAL:$2|ناںتھاں|ناںتھانواں}}: 1$',
+'randompage-nopages' => 'ایتھے کوئی صفے نئیں تھلے دتے گۓ {{PLURAL:$2|ناںتھاں|ناںتھانواں}} : 1$',
 
 # Random redirect
 'randomredirect'         => 'بے پترتیب ریڈائریکٹ',
@@ -1876,8 +1876,9 @@ $1",
 'linksearch-pat'   => 'کھوج راہ:',
 'linksearch-ns'    => 'ناں دی جگہ:',
 'linksearch-ok'    => 'کھوج',
-'linksearch-text'  => 'وائلڈکارڈز جیویں کہ "*.wikipedia.org" ورتے جاسکدے نیں۔<br />
-منے گۓ پروٹوکول:<tt>$1</tt>',
+'linksearch-text'  => 'وائلڈکارڈز جیویں کہ "*.wikipedia.org" ورتے جاسکدے نیں۔
+"*.org".<br /> دی لوڑ
+منے گۓ پروٹوکول: <tt>$1</tt>',
 'linksearch-line'  => '$1 نوں $2 نال جوڑیا',
 'linksearch-error' => 'وکیکارڈو میزبان دے ناں دے شروع چ دس سکدے نیں۔',
 
@@ -1915,7 +1916,7 @@ $1",
 'listgrouprights-removegroup'          => 'ہٹاؤ {{PLURAL:$2|ٹولی|ٹولیاں}}: $1',
 'listgrouprights-addgroup-all'         => 'ساریاں ٹولیاں جورو',
 'listgrouprights-removegroup-all'      => 'ساریاں ٹولیاں ہٹاؤ',
-'listgrouprights-addgroup-self'        => 'جوڑو {{PLURAL:$2|ٹولی|ٹولیاں}} اپنے کھاتے چ: 1$',
+'listgrouprights-addgroup-self'        => 'جوڑو {{PLURAL : $2|ٹولی|ٹولیاں}} اپنے کھاتے چ: 1$',
 'listgrouprights-removegroup-self'     => 'ہٹاؤ {{PLURAL:$2|ٹولی|ٹولیاں}} اپنے کھاتے چوں: $1',
 'listgrouprights-addgroup-self-all'    => 'ساریاں ٹولیاں کٹھیاں کرو کھاتہ لئی',
 'listgrouprights-removegroup-self-all' => 'ایس کھاتے توں ساریاں ٹولیاں ہٹاؤ',
@@ -1982,7 +1983,7 @@ $1",
 'watchmethod-list'     => 'ویکھے کے صفے نیڑے ہون والیاں تبدیلیاں دی پڑتال',
 'watchlistcontains'    => 'تھواڈی اکھ تھلے رکھی لسٹ چ $1 {{PLURAL:$1|صفہ|صفے}}  نیں۔',
 'iteminvalidname'      => "'$1' نال رپھڑ، ناں غلط",
-'wlnote'               => "تھلے {{PLURAL:$1|آخری تبدیلی|آخری تبدیلیاں '''$1''' }} آخر تے {{PLURAL:$2|کینٹہ|'''$2''' کینٹے}}.",
+'wlnote'               => "تھلے {{PLURAL:\$1|آخری تبدیلی|آخری تبدیلیاں '''\$1''' }} آخر تے {{PLURAL:\$2|کینٹہ|'''\$2''' کینٹے}} 3\$، 4\$.",
 'wlshowlast'           => 'آخری $1 گھنٹے $2 دن $3 وکھاؤ',
 'watchlist-options'    => 'نظر تھلے رکھن دیاں راہواں',
 
@@ -2075,10 +2076,10 @@ $UNWATCHURL
 'rollbackfailed'    => 'واپس کرن ناکام',
 'cantrollback'      => 'تبدیلی واپس نئیں ہوسکدی؛
 آخری لکھاری ای ایدا اکو لکھاری سی۔',
-'alreadyrolled'     => '[[:$1]] دی آخری تبدیلی جیہڑی [[User:$2|$2]]  نے ([[User talk:$2:$2|گل بات]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); کیتی؛ واپس نئیں ہوسکدی
+'alreadyrolled'     => '[[:$1]] دی آخری تبدیلی جیہڑی [[User:$2|$2]]  نے ([[User talk:$2|talk|]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); کیتی؛ واپس نئیں ہوسکدی
 کسے ہور نے تبدیلی یا پچھے نوں پہلے ای کردتا اے۔
 
-صفے تے آخری تبدیلی [[User talk:$3|$3]] ([[User talk:$3|گل بات]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) نے کیتی۔',
+صفے تے آخری تبدیلی [[User:$3|$3]] ([[User talk:$3|talk]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) نے کیتی.',
 'editcomment'       => "تبدیلی دی سمری:\"''\$1''\".",
 'revertpage'        => 'پلٹائیاں گیاں تبدیلیاں [[Special:Contributions/$2|$2]] ([[User talk:$2|گل بات]]) [[User:$1|$1]] دی آخری ریوین تک',
 'revertpage-nouser' => 'بدلیاں گیاں تبدیلیاں (ورتن ناں ہٹادتا گیا) واپس آخری ریوین تک [[User:$1|$1]]',
@@ -2475,7 +2476,7 @@ $1',
 'movelogpage'                  => 'ناں تبدیل کرن دا لاگ',
 'movelogpagetext'              => 'تھلے سارے صفے دے پلٹن دی لسٹ دتی گئی اے۔',
 'movesubpage'                  => '{{PLURAL:$1|نکا صفہ|نکےصفے}}',
-'movesubpagetext'              => 'ایس صفے دے $1 {{انیک:$1|نکا صفہ|نکے صفے}}',
+'movesubpagetext'              => 'ایس صفے دے $1 {{PLURAL:$1|نکا صفہ|نکے صفے}}',
 'movenosubpage'                => 'ایس صفے دے کوئی نکے صفے نئیں۔',
 'movereason'                   => 'وجہ:',
 'revertmove'                   => 'واپس',
@@ -3362,7 +3363,7 @@ $5
 "{{int:Watchlistedit-normal-submit}}" تے کلک کرو۔
 تسیں [[Special:EditWatchlist/raw|کچی لسٹ تبدیل کرو]]',
 'watchlistedit-normal-submit'  => 'ٹائیٹلز ہٹاؤ',
-'watchlistedit-normal-done'    => '{PLURAL:$1|1 سرناواں سی|$1 سرناویں سن}}',
+'watchlistedit-normal-done'    => '{PLURAL:$1|1 سرناواں سی|1$ سرناویں سن}}',
 'watchlistedit-raw-title'      => 'کچی اکھ تھلے رکھی ہوئی نو تبدیل کرو',
 'watchlistedit-raw-legend'     => 'کچی اکھ تھلے رکھی ہوئی نو تبدیل کرو',
 'watchlistedit-raw-explain'    => 'سرناویں تواڈی اک تھلے رکھی لسٹ دے تھلے دتے نیں، تے ایناں چ وادا کعاٹا کرکے تبدیلی کیتی جاسکدی اے؛
@@ -3432,7 +3433,7 @@ the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 
 'fileduplicatesearch-submit'    => 'کھوج',
 'fileduplicatesearch-info'      => '$1 × $2 پکسل<br />فائل ناپ: $3<br />مائم ٹائپ: $4',
 'fileduplicatesearch-result-1'  => '"$1" فائل ورگی رلدی فائل کوئی نیں۔',
-'fileduplicatesearch-result-n'  => "فائل ''1$'' چ {{PLURAL:$2|1 رلدی نقل|$2 رلدیاں نقلں}} نیں۔",
+'fileduplicatesearch-result-n'  => "فائل ''1$'' چ {{PLURAL:$2|1 رلدی نقل|2$ رلدیاں نقلں}} نیں۔",
 'fileduplicatesearch-noresults' => '"$1" ناں دی کوئی فائل نئیں لبی۔',
 
 # Special:SpecialPages
@@ -3552,25 +3553,30 @@ the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 
 'newuserlog-byemail'                  => 'کنجی ای-میل راہ پیج دتی گئی۔',
 
 # Feedback
-'feedback-subject' => 'آرٹیکل',
-'feedback-message' => 'سنیعہ:',
-'feedback-cancel'  => 'واپس',
-'feedback-submit'  => 'مشورہ دیو',
-'feedback-adding'  => 'مشورہ  صفے تے دیو۔۔۔۔۔۔۔',
-'feedback-error1'  => 'غلطی: اے پی آئی توں ناں پچھانے گۓ نتارے۔',
-'feedback-error2'  => 'غلطی: تبدیلی نئیں چلی',
-'feedback-error3'  => 'غلطی: اے پی آئی توں کوئی جواب نئیں۔',
-'feedback-close'   => 'ہوگیا۔',
+'feedback-bugornote' => 'اگر تسیں اک تکنیکی مسلے نوں  پوری طراں دسن لئی تیار او تے فیر مہربانی کرکے [1$ بگ بارے دسو]۔  ںئیں تے تسیں تھلے دتا گیا فارم ورتو۔ تواڈی گل صفہ "[3$ 2$]" تے جڑے گی،  تواڈے ورتن والے ناں تے براؤزر جیہڑا تسیں ورت رۓ او۔',
+'feedback-subject'   => 'آرٹیکل',
+'feedback-message'   => 'سنیعہ:',
+'feedback-cancel'    => 'واپس',
+'feedback-submit'    => 'مشورہ دیو',
+'feedback-adding'    => 'مشورہ  صفے تے دیو۔۔۔۔۔۔۔',
+'feedback-error1'    => 'غلطی: اے پی آئی توں ناں پچھانے گۓ نتارے۔',
+'feedback-error2'    => 'غلطی: تبدیلی نئیں چلی',
+'feedback-error3'    => 'غلطی: اے پی آئی توں کوئی جواب نئیں۔',
+'feedback-thanks'    => 'شکریہ ! تواڈی صلاع  صفہ "[$2 $1]" تے چاڑ دتی گئی اے۔',
+'feedback-close'     => 'ہوگیا۔',
+'feedback-bugcheck'  => 'بعوت ودیا ! صرف ایہ ویکھو جے کیا ایہ پہلے لبے ہوۓ [$1 known bugs] چو اک تے نئیں۔',
+'feedback-bugnew'    => 'میں ویکھیا اے۔ نویں بگ دی رپورٹ کرو۔',
 
 # API errors
 'api-error-badaccess-groups'              => 'تھوانوں ایس وکی تے فائلاں چڑھان دی اجازت نئیں۔',
 'api-error-badtoken'                      => 'اندر دی غلطی: برا ٹوکن',
 'api-error-copyuploaddisabled'            => 'یو آر ایل نال فائل چڑھانا ایس سرور تے نکام',
-'api-error-duplicate'                     => 'ایتھے {{انیک:$1|ہے [$2 اک ہور فائل]|ہین [$2 کچ ہور فائلاں]}} ایسے مواد نال ایس تھاں تے پہلے ای ہے۔',
-'api-error-duplicate-archive'             => 'ایتھے  {{انیک:$1|سی [$2 اک ہور فائل]|سن [$2 کج ہور فائلاں]}} پہلے ای ایس تھاں تے اے اکو جے مواد نال پر {{انیک:$1|iاے سی|اوہ سن}} مٹایا گیا۔',
-'api-error-duplicate-archive-popup-title' => 'دوجی {{انیک:$1|فائل|فائلاں} جناں نوں پہلے ای مٹا دتا گیا اے۔',
-'api-error-duplicate-popup-title'         => 'دوجی {{انیک:$1|فائل|فائلاں}}',
+'api-error-duplicate'                     => 'ایتھے {{PLURAL:$1|ہے [$2 اک ہور فائل]|ہین [$2 کچ ہور فائلاں]}} ایسے مواد نال ایس تھاں تے پہلے ای ہے۔',
+'api-error-duplicate-archive'             => 'ایتھے  {{PLURAL:$1|سی [$2 اک ہور فائل]|سن [$2 کج ہور فائلاں]}} پہلے ای ایس تھاں تے اے اکو جے مواد نال پر {{PLURAL:$1|اے سی|اوہ سن}} مٹایا گیا۔',
+'api-error-duplicate-archive-popup-title' => 'دوجی {{PLURAL:$1|فائل|فائلاں}} جناں نوں پہلے ای مٹا دتا گیا اے۔',
+'api-error-duplicate-popup-title'         => 'دوجی {{PLURAL:$1|فائل|فائلاں}}',
 'api-error-empty-file'                    => 'جیڑی فائل تسی دسی اے اوہ حالی اے۔',
+'api-error-emptypage'                     => 'نواں بناریا آن، خالی صفیاں دی اجازت نئیں۔',
 'api-error-fetchfileerror'                => 'اندر دی غلطی: فائل لیندیاں کوئی غلطی ہوئی۔',
 'api-error-file-too-large'                => 'جیڑی فائل تسی دسی اے اوہ بوت وڈی اے۔',
 'api-error-filename-tooshort'             => 'اس فائل دا ناں بوت چھوٹا اے۔',
@@ -3595,6 +3601,7 @@ the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 
 'api-error-unknown-code'                  => 'اجان غلطی:"$1"',
 'api-error-unknown-error'                 => 'اندر دی غلطی: کوئی چیز غلط ہوئی جدوں تسی فائل چڑھاندے سی۔',
 'api-error-unknown-warning'               => 'انجان خبرداری: $1',
+'api-error-unknownerror'                  => 'انجان غلطی : "1$"۔',
 'api-error-uploaddisabled'                => 'فائل جڑھانا ایس وکی تے بند اے۔',
 'api-error-verification-error'            => 'اے فائل کرپٹ ہو سکدی یا فیر ایدا فارمیٹ غلط اے۔',
 

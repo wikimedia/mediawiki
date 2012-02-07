@@ -1842,7 +1842,7 @@ $1',
 'img-auth-nopathinfo'       => 'Λείπει το PATH_INFO.
 Ο διακομιστής σας δεν είναι ρυθμισμένος για να περάσει αυτές τις πληροφορίες.
 Μπορεί να είναι βασισμένος σε CGI και να μην υποστηρίζει img_atuh.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization Δείτε το image authorization.]',
+[https://www.mediawiki.org/wiki/Manual:Image_Authorization Δείτε το image authorization.]',
 'img-auth-notindir'         => 'Η ζητούμενη διαδρομή δεν βρίσκεται στον διαμορφωμένο αρχειοκατάλογο επιφορτώσεων',
 'img-auth-badtitle'         => 'Αδύνατη η κατασκευή έγκυρου τίτλου από "$1".',
 'img-auth-nologinnWL'       => 'Δεν έχετε συνδεθεί και η "$1" δεν είναι στην άσπρη λίστα.',

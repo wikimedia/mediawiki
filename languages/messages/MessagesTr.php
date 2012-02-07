@@ -1812,7 +1812,7 @@ Güvenlik denetimi uygun bir şekilde gerçekleştirilemiyor.',
 'img-auth-nopathinfo'       => 'Eksik PATH_INFO.
 Sunucunuz bu bilgiyi geçirmek için ayarlanmamış.
 CGI-tabanlı olabilir ve img_auth desteklenmiyor olabilir.
-http://www.mediawiki.org/wiki/Manual:Image_Authorization sayfasına bakın.',
+https://www.mediawiki.org/wiki/Manual:Image_Authorization sayfasına bakın.',
 'img-auth-notindir'         => 'İstenen yol yapılandırılmış yükleme dizininde değil.',
 'img-auth-badtitle'         => '"$1" ile geçerli bir başlık yapılamıyor.',
 'img-auth-nologinnWL'       => 'Giriş yapmadınız ve "$1" beyaz listede değil.',

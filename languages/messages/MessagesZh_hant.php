@@ -1694,7 +1694,7 @@ $1',
 
 # img_auth script messages
 'img-auth-accessdenied'     => '拒絕存取',
-'img-auth-nopathinfo'       => 'PATH_INFO缺失。您的服務器尚未設置傳送該信息。它可能是基於CGI的，因而不支持img_auth。[//www.mediawiki.org/wiki/Manual:Image_Authorization 參見圖片認證。]',
+'img-auth-nopathinfo'       => 'PATH_INFO缺失。您的服務器尚未設置傳送該信息。它可能是基於CGI的，因而不支持img_auth。[https://www.mediawiki.org/wiki/Manual:Image_Authorization 參見圖片認證。]',
 'img-auth-notindir'         => '所請求的路徑不在已經設定的上載目錄。',
 'img-auth-badtitle'         => '不能夠由"$1"建立一個有效標題。',
 'img-auth-nologinnWL'       => '您而家並未登入，"$1"不在白名單上。',

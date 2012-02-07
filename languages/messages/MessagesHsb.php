@@ -859,7 +859,7 @@ Najnowši protokolowy zapisk je deleka jako referenca podaty:",
 'sectioneditnotsupported-text'     => 'Wobdźěłowanje wotrězka so na tutej wobdźěłowanskej stronje njepodpěruje.',
 'permissionserrors'                => 'Woprawnjenske zmylki',
 'permissionserrorstext'            => 'Nimaš prawo, zo by tutu akciju wuwjedł. {{PLURAL:$1|Přičina|Přičiny}}:',
-'permissionserrorstext-withaction' => 'Nimaš dowolnosć za $2 ze {{PLURAL:$1|slědowaceje přičiny|slědowaceju přičinow|slědowacych přičinow|slědowacych přičinow}}:',
+'permissionserrorstext-withaction' => 'Nimaš prawo $2. {{PLURAL:$1|Přičina|Přičinje|Přičiny|Přičiny}}:',
 'recreate-moveddeleted-warn'       => "'''Kedźbu: Wutworiš stronu, kiž bu prjedy wušmórnjena.'''
 
 Prošu přepruwuj, hač je přihódne z wobdźěłowanjom tuteje strony pokročować.
@@ -1662,7 +1662,7 @@ Tohodla njeda so jeje wěstota porjadnje přepruwować.',
 'img-auth-nopathinfo'       => 'PATH_INFO faluje.
 Twój serwer njeje za to konfigurował, zo by tute informacije dale posrědkował.
 By móhł na CGI bazować a ani njemóže img_auth podpěrać.
-Hlej [//www.mediawiki.org/wiki/Manual:Image_Authorization image authorization].',
+Hlej https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'         => 'Požadana šćežka w konfigurowanym nahraćowym zapisu njeje.',
 'img-auth-badtitle'         => 'Njeje móžno z "$1" płaćiwy titul tworić.',
 'img-auth-nologinnWL'       => 'Njejsy přizjewjeny a "$1" w běłej lisćinje njeje.',

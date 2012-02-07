@@ -1841,7 +1841,7 @@ Nem lehet megfelelően ellenőrizni a biztonságosságát.',
 'img-auth-nopathinfo'       => 'Hiányzó PATH_INFO.
 A szerver nincs beállítva, hogy továbbítsa ezt az információt.
 Lehet, hogy CGI-alapú, és nem támogatja az img_auth-ot.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization Lásd kép hitelesítési lapot.]',
+[https://www.mediawiki.org/wiki/Manual:Image_Authorization Lásd kép hitelesítési lapot.]',
 'img-auth-notindir'         => 'A kért elérési út nincs a beállított feltöltési könyvtárban.',
 'img-auth-badtitle'         => 'Nem sikerült érvényes címet készíteni a(z) „$1” szövegből.',
 'img-auth-nologinnWL'       => 'Nem vagy bejelentkezve, és a(z) „$1” nincs az engedélyezési listán.',

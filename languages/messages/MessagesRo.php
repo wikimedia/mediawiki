@@ -1836,7 +1836,7 @@ Nu poate fi verificat în mod corespunzător în vederea securității.',
 'img-auth-nopathinfo'       => 'PATH_INFO lipsește.
 Serverul dumneavoastră nu a fost setat pentru a trece aceste informații.
 S-ar putea să fie bazat pe CGI și să nu suporte img_auth.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization Vedeți autorizarea imaginilor.]',
+[https://www.mediawiki.org/wiki/Manual:Image_Authorization Vedeți autorizarea imaginilor.]',
 'img-auth-notindir'         => 'Adresa cerută nu este în directorul pentru încărcări configurat.',
 'img-auth-badtitle'         => 'Nu s-a putut construi un titlu valid din "$1".',
 'img-auth-nologinnWL'       => 'Nu sunteți autentificat și "$1" nu este pe lista albă.',

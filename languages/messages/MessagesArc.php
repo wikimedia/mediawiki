@@ -1179,9 +1179,10 @@ $1',
 'undelete-show-file-submit' => 'ܐܝܢ',
 
 # Namespace form on various pages
-'namespace'      => 'ܚܩܠܐ:',
-'invert'         => 'ܐܗܦܟ ܠܓܘܒܝܐ',
-'blanknamespace' => '(ܪܫܝܬܐ)',
+'namespace'             => 'ܚܩܠܐ:',
+'invert'                => 'ܐܗܦܟ ܠܓܘܒܝܐ',
+'namespace_association' => 'ܚܩܠܐ ܠܐܝܡܐ',
+'blanknamespace'        => '(ܪܫܝܬܐ)',
 
 # Contributions
 'contributions'       => 'ܫܘܬܦܘܝܬ̈ܐ ܕܡܦܠܚܢܐ',

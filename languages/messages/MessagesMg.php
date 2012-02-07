@@ -1687,7 +1687,7 @@ Avereno fanindroany.',
 'img-auth-nopathinfo'   => "Tsy misy ny PATH_INFO.
 Tsy voaparametatra ny lohamilinao hampita io fampahalalàna io.
 Mety mifototra amin'ny CGI izy ka mety tsy mahazaka img_auth
-Vangio ny ttp://www.mediawiki.org/wiki/Manual:Image_Authorization.",
+Vangio ny ttp:https://www.mediawiki.org/wiki/Manual:Image_Authorization.",
 'img-auth-notindir'     => 'Ny lalana nangatahana dia tsy ny petra-drakitra nokaonfigiorena.',
 'img-auth-badtitle'     => "Tsy afaka mamorona lohateny azo ampiasaina avy amin'ny « $1 ».",
 'img-auth-nologinnWL'   => "Tsy mbola niditra ianao ary tsy ao amin'ny lisitra fotsy « $1 ».",

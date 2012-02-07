@@ -1432,7 +1432,7 @@ Controllescha per plaschair l'opziun <code>file_uploads</code>.",
 'img-auth-nopathinfo'   => "PATH_INFO manca.
 Tes server n'è betg configurà per surdar questa infurmaziun.
 I basa forsa sin CGI è na sustegna betg img_auth.
-Consultescha http://www.mediawiki.org/wiki/Manual:Image_Authorization.",
+Consultescha https://www.mediawiki.org/wiki/Manual:Image_Authorization.",
 'img-auth-nologinnWL'   => 'Ti n\'ès betg t\'annunzia ed "$1" n\'è betg sin la glista alva.',
 'img-auth-nofile'       => 'Datoteca "$1" n\'exista betg.',
 

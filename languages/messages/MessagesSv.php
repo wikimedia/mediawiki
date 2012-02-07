@@ -1816,12 +1816,12 @@ Om problemet kvarstår, kontakta en [[Special:ListUsers/sysop|administratör]].'
 'backend-fail-closetemp'     => 'Kunde inte stänga temporär fil.',
 'backend-fail-read'          => 'Kunde inte läsa filen $1.',
 'backend-fail-create'        => 'Kunde inte skapa filen $1.',
-'backend-fail-readonly'      => 'Backend "$1" är för närvarande skrivskyddad. Den angivna anledningen är: "$2"',
-'backend-fail-synced'        => 'Filen "$1" är i ett inkonsekvent tillstånd inom de interna backends',
-'backend-fail-connect'       => 'Kunde inte ansluta till fil-backend "$1".',
-'backend-fail-internal'      => 'Ett okänt fel uppstod i fil-backend "$1".',
+'backend-fail-readonly'      => 'Lagrings-backend "$1" är för närvarande skrivskyddad. Den angivna anledningen är: "$2"',
+'backend-fail-synced'        => 'Filen "$1" är i ett inkonsekvent tillstånd inom de interna lagrings-backends',
+'backend-fail-connect'       => 'Kunde inte ansluta till lagrings-backend "$1".',
+'backend-fail-internal'      => 'Ett okänt fel uppstod i lagrings-backend "$1".',
 'backend-fail-contenttype'   => 'Kunde inte bestämma innehållstypen för filen att spara på "$1".',
-'backend-fail-batchsize'     => 'Backend gavs en batch på $1 fil{{PLURAL:$1|operation|operationer}}; gränsen är $2 {{PLURAL:$2|operation|operationer}}.',
+'backend-fail-batchsize'     => 'Lagrings-backend gavs en batch på $1 fil{{PLURAL:$1|operation|operationer}}; gränsen är $2 {{PLURAL:$2|operation|operationer}}.',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Kunde inte låsa upp "$1"; den är inte låst.',
@@ -1857,7 +1857,7 @@ Den kan inte säkerhetskontrolleras ordentligt.',
 'img-auth-nopathinfo'       => 'PATH_INFO saknas.
 Din server är inte inställd för att ge denna information.
 Den kan vara CGI-baserad och stöttar inte img_auth.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization Se bildbehörighet.]',
+[https://www.mediawiki.org/wiki/Manual:Image_Authorization Se bildbehörighet.]',
 'img-auth-notindir'         => 'Den önskade sökvägen finns inte i den inställda uppladdningskatalogen.',
 'img-auth-badtitle'         => 'Kan inte skapa en giltig titel från "$1"',
 'img-auth-nologinnWL'       => 'Du är inte inloggad och "$1" finns inte i vitlistan.',

@@ -1679,7 +1679,7 @@ Reyndu aftur.',
 'img-auth-nopathinfo'       => 'PATH_INFO vantar.
 Biðlarinn þínn er ekki stilltur til að gefa upp þessar upplýsingar.
 Þær mega vera CGI-byggðar og mega ekki styðja img_auth.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization Sjá mynda hópréttindi.]',
+[https://www.mediawiki.org/wiki/Manual:Image_Authorization Sjá mynda hópréttindi.]',
 'img-auth-nofile'           => 'Skráin "$1" er ekki til.',
 'img-auth-streaming'        => 'Streymi "$1".',
 'img-auth-noread'           => 'Notandinn hefur ekki rétt til að lesa "$1"',

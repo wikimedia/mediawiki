@@ -1698,7 +1698,7 @@ No s'hi ha pogut comprovar la seguretat.",
 'img-auth-nopathinfo'       => "Falta PATH_INFO.
 El servidor no està configurat per passar aquesta informació.
 Això pot ser basat en CGI i no és compatible amb img_auth.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization Vegeu l'auturització de la imatge.]",
+[https://www.mediawiki.org/wiki/Manual:Image_Authorization Vegeu l'auturització de la imatge.]",
 'img-auth-notindir'         => "No s'ha trobat la ruta sol·licitada al directori de càrrega configurat.",
 'img-auth-badtitle'         => 'No s\'ha pogut construir un títol vàlid a partir de "$1".',
 'img-auth-nologinnWL'       => 'No has iniciat sessió i "$1" no està a la llista blanca.',
