@@ -570,7 +570,10 @@ class Message {
 	protected function fetchMessage() {
 		if ( !isset( $this->message ) ) {
 			$cache = MessageCache::singleton();
-			if ( is_array($this->key) ) {
+			if ( is_array( $this->key ) ) {
+				if ( !count( $this->key ) ) {
+					throw new MWException( "Given empty message key array." );
+				}
 				foreach ( $this->key as $key ) {
 					$message = $cache->get( $key, $this->useDatabase, $this->language );
 					if ( $message !== false && $message !== '' ) {
