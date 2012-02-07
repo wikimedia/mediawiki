@@ -206,8 +206,6 @@ echo $footerEnd;
 	/**
 	 * Prints the cactions bar.
 	 * Shared between MonoBook and Modern
-	 *
-	 * @param $skin Skin
 	 */
 	function cactions() {
 ?>
