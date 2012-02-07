@@ -116,12 +116,9 @@ abstract class FileCacheBase {
 	 * @return string
 	 */
 	public function fetchText() {
-		if ( $this->useGzip() ) {
-			/* Why is there no gzfile_get_contents() or gzdecode()? */
-			return implode( '', gzfile( $this->cachePath() ) );
-		} else {
-			return file_get_contents( $this->cachePath() );
-		}
+		// gzopen can transparently read from gziped or plain text
+		$fh = gzopen( $this->cachePath(), 'r' );
+		return stream_get_contents( $fh );
 	}
 
 	/**
@@ -141,6 +138,7 @@ abstract class FileCacheBase {
 
 		$this->checkCacheDirs(); // build parent dir
 		if ( !file_put_contents( $this->cachePath(), $text, LOCK_EX ) ) {
+			wfDebug( __METHOD__ . "() failed saving ". $this->cachePath() . "\n");
 			$this->mCached = null;
 			return false;
 		}
