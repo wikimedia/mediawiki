@@ -16,6 +16,9 @@
  * @since 1.19
  */
 class LogFormatter {
+	// Audience options for viewing usernames, comments, and actions
+	const FOR_PUBLIC = 1;
+	const FOR_THIS_USER = 2;
 
 	// Static->
 
@@ -59,6 +62,9 @@ class LogFormatter {
 	/// @var LogEntry
 	protected $entry;
 
+	/// Integer constant for handling log_deleted
+	protected $audience = self::FOR_PUBLIC;
+
 	/// Whether to output user tool links
 	protected $linkFlood = false;
 
@@ -82,6 +88,32 @@ class LogFormatter {
 	 */
 	public function setContext( IContextSource $context ) {
 		$this->context = $context;
+	}
+
+	/**
+	 * Set the visibility restrictions for displaying content.
+	 * If set to public, and an item is deleted, then it will be replaced 
+	 * with a placeholder even if the context user is allowed to view it.
+	 * @param $audience integer self::FOR_THIS_USER or self::FOR_PUBLIC
+	 */
+	public function setAudience( $audience ) {
+		$this->audience = ( $audience == self::FOR_THIS_USER )
+			? self::FOR_THIS_USER 
+			: self::FOR_PUBLIC;
+	}
+
+	/**
+	 * Check if a log item can be displayed
+	 * @param $field integer LogPage::DELETED_* constant
+	 * @return bool 
+	 */
+	protected function canView( $field ) {
+		if ( $this->audience == self::FOR_THIS_USER ) {
+			return LogEventsList::userCanBitfield( 
+				$this->entry->getDeleted(), $field, $this->context->getUser() );
+		} else {
+			return !$this->entry->isDeleted( $field );
+		}
 	}
 
 	/**
@@ -113,14 +145,17 @@ class LogFormatter {
 	 * @return string HTML
 	 */
 	public function getActionText() {
-		$element = $this->getActionMessage();
-		if ( $element instanceof Message ) {
-			$element = $this->plaintext ? $element->text() : $element->escaped();
-		}
-
-		if ( $this->entry->isDeleted( LogPage::DELETED_ACTION ) ) {
+		if ( $this->canView( LogPage::DELETED_ACTION ) ) {
+			$element = $this->getActionMessage();
+			if ( $element instanceof Message ) {
+				$element = $this->plaintext ? $element->text() : $element->escaped();
+			}
+			if ( $this->entry->isDeleted( LogPage::DELETED_ACTION ) ) {
+				$element = $this->styleRestricedElement( $element );
+			}
+		} else {
 			$performer = $this->getPerformerElement() . $this->msg( 'word-separator' )->text();
-			$element = $performer . self::getRestrictedElement( 'rev-deleted-event' );
+			$element = $performer . $this->getRestrictedElement( 'rev-deleted-event' );
 		}
 
 		return $element;
@@ -239,11 +274,14 @@ class LogFormatter {
 	 * which parts of the log entry has been hidden.
 	 */
 	public function getPerformerElement() {
-		$performer = $this->entry->getPerformer();
-		$element = $this->makeUserLink( $performer );
-
-		if ( $this->entry->isDeleted( LogPage::DELETED_USER ) ) {
-			$element = self::getRestrictedElement( 'rev-deleted-user' );
+		if ( $this->canView( LogPage::DELETED_USER ) ) {
+			$performer = $this->entry->getPerformer();
+			$element = $this->makeUserLink( $performer );
+			if ( $this->entry->isDeleted( LogPage::DELETED_USER ) ) {
+				$element = $this->styleRestricedElement( $element );
+			}
+		} else {
+			$element = $this->getRestrictedElement( 'rev-deleted-user' );
 		}
 
 		return $element;
@@ -254,12 +292,15 @@ class LogFormatter {
 	 * @return string HTML
 	 */
 	public function getComment() {
-		$comment = Linker::commentBlock( $this->entry->getComment() );
-		// No hard coded spaces thanx
-		$element = ltrim( $comment );
-
-		if ( $this->entry->isDeleted( LogPage::DELETED_COMMENT ) ) {
-			$element = self::getRestrictedElement( 'rev-deleted-comment' );
+		if ( $this->canView( LogPage::DELETED_COMMENT ) ) {
+			$comment = Linker::commentBlock( $this->entry->getComment() );
+			// No hard coded spaces thanx
+			$element = ltrim( $comment );
+			if ( $this->entry->isDeleted( LogPage::DELETED_COMMENT ) ) {
+				$element = $this->styleRestricedElement( $element );
+			}
+		} else {
+			$element = $this->getRestrictedElement( 'rev-deleted-comment' );
 		}
 
 		return $element;
@@ -268,7 +309,7 @@ class LogFormatter {
 	/**
 	 * Helper method for displaying restricted element.
 	 * @param $message string
-	 * @return string HTML
+	 * @return string HTML or wikitext
 	 */
 	protected function getRestrictedElement( $message ) {
 		if ( $this->plaintext ) {
@@ -276,6 +317,19 @@ class LogFormatter {
 		}
 
 		$content =  $this->msg( $message )->escaped();
+		$attribs = array( 'class' => 'history-deleted' );
+		return Html::rawElement( 'span', $attribs, $content );
+	}
+
+	/**
+	 * Helper method for styling restricted element.
+	 * @param $content string
+	 * @return string HTML or wikitext
+	 */
+	protected function styleRestricedElement( $content ) {
+		if ( $this->plaintext ) {
+			return $content;
+		}
 		$attribs = array( 'class' => 'history-deleted' );
 		return Html::rawElement( 'span', $attribs, $content );
 	}
