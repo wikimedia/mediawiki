@@ -1555,13 +1555,18 @@ function wfMsgExt( $key, $options ) {
 	}
 
 	$messageCache = MessageCache::singleton();
-	if( in_array( 'parse', $options, true ) ) {
-		$string = $messageCache->parse( $string, null, true, !$forContent, $langCodeObj )->getText();
-	} elseif ( in_array( 'parseinline', $options, true ) ) {
-		$string = $messageCache->parse( $string, null, true, !$forContent, $langCodeObj )->getText();
-		$m = array();
-		if( preg_match( '/^<p>(.*)\n?<\/p>\n?$/sU', $string, $m ) ) {
-			$string = $m[1];
+	$parseInline = in_array( 'parseinline', $options, true );
+	if( in_array( 'parse', $options, true ) || $parseInline ) {
+		$string = $messageCache->parse( $string, null, true, !$forContent, $langCodeObj );
+		if ( $string instanceof ParserOutput ) {
+			$string = $string->getText();
+		}
+
+		if ( $parseInline ) {
+			$m = array();
+			if( preg_match( '/^<p>(.*)\n?<\/p>\n?$/sU', $string, $m ) ) {
+				$string = $m[1];
+			}
 		}
 	} elseif ( in_array( 'parsemag', $options, true ) ) {
 		$string = $messageCache->transform( $string,

@@ -243,6 +243,8 @@ production.
 * Special:Contributions/newbies now shows the contributions for the user "newbies".
   New user contributions are obtained using the form or using ?contribs=newbie in URL.
 * It is now possible to delete images that have no corresponding description pages.
+* (bug 33165) GlobalFunctions.php line 1312: Call to a member function
+  getText() on a non-object
 
 === API changes in 1.19 ===
 * Made action=edit less likely to return "unknownerror", by returning the actual error
