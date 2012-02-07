@@ -32,15 +32,21 @@ class RebuildFileCache extends Maintenance {
 		$this->setBatchSize( 100 );
 	}
 
+	public function finalSetup() {
+		global $wgDebugToolbar;
+
+		// Debug toolbar makes content uncacheable so we disable it.
+		// Has to be done before Setup.php initialize MWDebug
+		$wgDebugToolbar = false;
+		parent::finalSetup();
+	}
+
 	public function execute() {
 		global $wgUseFileCache, $wgReadOnly, $wgContentNamespaces, $wgRequestTime;
-		global $wgDebugToolbar;
 		global $wgTitle, $wgOut;
 		if ( !$wgUseFileCache ) {
 			$this->error( "Nothing to do -- \$wgUseFileCache is disabled.", true );
 		}
-		// Debug toolbar makes content uncacheable
-		$wgDebugToolbar = false;
 
 		$wgReadOnly = 'Building cache'; // avoid DB writes (like enotif/counters)
 
