@@ -45,6 +45,8 @@ class HTMLFileCache extends FileCacheBase {
 
 	/**
 	 * Get the cache type subdirectory (with the trailing slash) or the empty string
+	 * Alter the type -> directory mapping to put action=view cache at the root.
+	 *
 	 * @return string
 	 */
 	protected function typeSubdirectory() {

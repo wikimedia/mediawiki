@@ -169,7 +169,10 @@ abstract class FileCacheBase {
 	}
 
 	/**
-	 * Get the cache type subdirectory (with trailing slash) or the empty string
+	 * Get the cache type subdirectory (with trailing slash)
+	 * An extending class could use that method to alter the type -> directory
+	 * mapping. @see HTMLFileCache::typeSubdirectory() for an example.
+	 *
 	 * @return string
 	 */
 	protected function typeSubdirectory() {
