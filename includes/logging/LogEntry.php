@@ -217,9 +217,13 @@ class DatabaseLogEntry extends LogEntryBase {
 
 	public function getPerformer() {
 		$userId = (int) $this->row->log_user;
-		if ( $userId !== 0 ) {
-			return User::newFromRow( $this->row );
-		} else {
+		if ( $userId !== 0 ) { // logged-in users
+			if ( isset( $this->row->user_name ) ) {
+				return User::newFromRow( $this->row );
+			} else {
+				return User::newFromId( $userId );
+			}
+		} else { // IP users
 			$userText = $this->row->log_user_text;
 			return User::newFromName( $userText, false );
 		}
