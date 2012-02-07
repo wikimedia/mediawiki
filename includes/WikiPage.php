@@ -2,9 +2,20 @@
 /**
  * Abstract class for type hinting (accepts WikiPage, Article, ImagePage, CategoryPage)
  */
-abstract class Page {
+abstract class Page {}
+
+/**
+ * Class representing a MediaWiki article and history.
+ *
+ * Some fields are public only for backwards-compatibility. Use accessors.
+ * In the past, this class was part of Article.php and everything was public.
+ *
+ * @internal documentation reviewed 15 Mar 2010
+ */
+class WikiPage extends Page {
 	// doDeleteArticleReal() return values. Values less than zero indicate fatal errors,
-	// values greater than zero indicate that there were non-fatal problems.
+	// values greater than zero indicate that there were problems not resulting in page
+	// not being deleted
 
 	/**
 	 * Delete operation aborted by hook
@@ -25,17 +36,7 @@ abstract class Page {
 	 * No revisions found to delete
 	 */
 	const DELETE_NO_REVISIONS = 2;
-}
 
-/**
- * Class representing a MediaWiki article and history.
- *
- * Some fields are public only for backwards-compatibility. Use accessors.
- * In the past, this class was part of Article.php and everything was public.
- *
- * @internal documentation reviewed 15 Mar 2010
- */
-class WikiPage extends Page {
 	/**
 	 * @var Title
 	 */
@@ -1931,7 +1932,7 @@ class WikiPage extends Page {
 		$reason, $suppress = false, $id = 0, $commit = true, &$error = '', User $user = null
 	) {
 		return $this->doDeleteArticleReal( $reason, $suppress, $id, $commit, $error, $user )
-			!= Page::DELETE_SUCCESS;
+			!= WikiPage::DELETE_SUCCESS;
 	}
 
 	/**
@@ -1948,7 +1949,7 @@ class WikiPage extends Page {
 	 * @param $commit boolean defaults to true, triggers transaction end
 	 * @param &$error Array of errors to append to
 	 * @param $user User The deleting user
-	 * @return int: One of Page::DELETE_* constants
+	 * @return int: One of WikiPage::DELETE_* constants
 	 */
 	public function doDeleteArticleReal(
 		$reason, $suppress = false, $id = 0, $commit = true, &$error = '', User $user = null
@@ -1959,14 +1960,14 @@ class WikiPage extends Page {
 		wfDebug( __METHOD__ . "\n" );
 
 		if ( ! wfRunHooks( 'ArticleDelete', array( &$this, &$user, &$reason, &$error ) ) ) {
-			return Page::DELETE_HOOK_ABORTED;
+			return WikiPage::DELETE_HOOK_ABORTED;
 		}
 		$dbw = wfGetDB( DB_MASTER );
 		$t = $this->mTitle->getDBkey();
 		$id = $id ? $id : $this->mTitle->getArticleID( Title::GAID_FOR_UPDATE );
 
 		if ( $t === '' || $id == 0 ) {
-			return Page::DELETE_NO_PAGE;
+			return WikiPage::DELETE_NO_PAGE;
 		}
 
 		// Bitfields to further suppress the content
@@ -2022,7 +2023,7 @@ class WikiPage extends Page {
 
 		if ( !$ok ) {
 			$dbw->rollback();
-			return Page::DELETE_NO_REVISIONS;
+			return WikiPage::DELETE_NO_REVISIONS;
 		}
 
 		$this->doDeleteUpdates( $id );
@@ -2042,7 +2043,7 @@ class WikiPage extends Page {
 		}
 
 		wfRunHooks( 'ArticleDeleteComplete', array( &$this, &$user, $reason, $id ) );
-		return Page::DELETE_SUCCESS;
+		return WikiPage::DELETE_SUCCESS;
 	}
 
 	/**

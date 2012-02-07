@@ -150,7 +150,7 @@ class FileDeleteForm {
 			try {
 				// delete the associated article first
 				$error = '';
-				if ( $page->doDeleteArticleReal( $reason, $suppress, 0, false, $error, $user ) >= Page::DELETE_SUCCESS ) {
+				if ( $page->doDeleteArticleReal( $reason, $suppress, 0, false, $error, $user ) >= WikiPage::DELETE_SUCCESS ) {
 					$status = $file->delete( $reason, $suppress );
 					if( $status->isOK() ) {
 						$dbw->commit();
