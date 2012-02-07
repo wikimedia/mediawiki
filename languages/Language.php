@@ -364,7 +364,7 @@ class Language {
 		}
 		return $this->namespaceNames;
 	}
-	
+
 	/**
 	 * Arbitrarily set all of the namespace names at once. Mainly used for testing
 	 * @param $namespaces Array of namespaces (id => name)
