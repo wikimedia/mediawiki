@@ -1178,13 +1178,13 @@ abstract class Skin extends ContextSource {
 	 * @return array
 	 */
 	function buildSidebar() {
-		global $parserMemc, $wgEnableSidebarCache, $wgSidebarCacheExpiry;
+		global $wgMemc, $wgEnableSidebarCache, $wgSidebarCacheExpiry;
 		wfProfileIn( __METHOD__ );
 
 		$key = wfMemcKey( 'sidebar', $this->getLanguage()->getCode() );
 
 		if ( $wgEnableSidebarCache ) {
-			$cachedsidebar = $parserMemc->get( $key );
+			$cachedsidebar = $wgMemc->get( $key );
 			if ( $cachedsidebar ) {
 				wfProfileOut( __METHOD__ );
 				return $cachedsidebar;
@@ -1196,7 +1196,7 @@ abstract class Skin extends ContextSource {
 
 		wfRunHooks( 'SkinBuildSidebar', array( $this, &$bar ) );
 		if ( $wgEnableSidebarCache ) {
-			$parserMemc->set( $key, $bar, $wgSidebarCacheExpiry );
+			$wgMemc->set( $key, $bar, $wgSidebarCacheExpiry );
 		}
 
 		wfProfileOut( __METHOD__ );
