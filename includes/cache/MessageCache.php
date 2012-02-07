@@ -499,10 +499,10 @@ class MessageCache {
 			$codes = array_keys( Language::getLanguageNames() );
 		}
 
-		global $parserMemc;
+		global $wgMemc;
 		foreach ( $codes as $code ) {
 			$sidebarKey = wfMemcKey( 'sidebar', $code );
-			$parserMemc->delete( $sidebarKey );
+			$wgMemc->delete( $sidebarKey );
 		}
 
 		// Update the message in the message blob store
