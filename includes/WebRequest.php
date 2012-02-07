@@ -97,7 +97,7 @@ class WebRequest {
 					// Abort to keep from breaking...
 					return $matches;
 				}
-				
+
 				$router = new PathRouter;
 
 				// Raw PATH_INFO style
@@ -543,7 +543,7 @@ class WebRequest {
 	 * @return Array
 	 */
 	 public function getQueryValues() {
-	 	return $_GET;
+		return $_GET;
 	 }
 
 	/**

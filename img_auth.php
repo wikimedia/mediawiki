@@ -108,7 +108,7 @@ function wfImageAuthMain() {
 		wfForbidden( $result[0], $result[1], array_slice( $result, 2 ) );
 		return;
 	}
-	
+
 	// Check user authorization for this title
 	// Checks Whitelist too
 	if ( !$title->userCan( 'read' ) ) {
