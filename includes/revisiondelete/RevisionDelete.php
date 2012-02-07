@@ -848,8 +848,9 @@ class RevDel_LogItem extends RevDel_Item {
 
 	public function getHTML() {
 		$date = htmlspecialchars( $this->list->getLanguage()->timeanddate( $this->row->log_timestamp ) );
-		$paramArray = LogPage::extractParams( $this->row->log_params );
 		$title = Title::makeTitle( $this->row->log_namespace, $this->row->log_title );
+		$formatter = LogFormatter::newFromRow( $this->row );
+		$formatter->setAudience( LogFormatter::FOR_THIS_USER );
 
 		// Log link for this page
 		$loglink = Linker::link(
@@ -858,27 +859,14 @@ class RevDel_LogItem extends RevDel_Item {
 			array(),
 			array( 'page' => $title->getPrefixedText() )
 		);
-		// Action text
-		if( !$this->canView() ) {
-			$action = '<span class="history-deleted">' . wfMsgHtml('rev-deleted-event') . '</span>';
-		} else {
-			$skin = $this->list->getSkin();
-			$action = LogPage::actionText( $this->row->log_type, $this->row->log_action,
-				$title, $skin, $paramArray, true, true );
-			if( $this->row->log_deleted & LogPage::DELETED_ACTION )
-				$action = '<span class="history-deleted">' . $action . '</span>';
-		}
-		// User links
-		$userLink = Linker::userLink( $this->row->log_user,
-			User::WhoIs( $this->row->log_user ) );
-		if( LogEventsList::isDeleted($this->row,LogPage::DELETED_USER) ) {
-			$userLink = '<span class="history-deleted">' . $userLink . '</span>';
-		}
+		// User links and action text
+		$action = $formatter->getActionText();
 		// Comment
 		$comment = $this->list->getLanguage()->getDirMark() . Linker::commentBlock( $this->row->log_comment );
 		if( LogEventsList::isDeleted($this->row,LogPage::DELETED_COMMENT) ) {
 			$comment = '<span class="history-deleted">' . $comment . '</span>';
 		}
-		return "<li>($loglink) $date $userLink $action $comment</li>";
+
+		return "<li>($loglink) $date $action $comment</li>";
 	}
 }
