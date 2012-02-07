@@ -57,18 +57,17 @@ class FeedUtils {
 		$timestamp = wfTimestamp( TS_MW, $row->rc_timestamp );
 		$actiontext = '';
 		if( $row->rc_type == RC_LOG ) {
-			if( $row->rc_deleted & LogPage::DELETED_ACTION ) {
-				$actiontext = wfMsgHtml('rev-deleted-event');
-			} else {
-				$actiontext = LogPage::actionText( $row->rc_log_type, $row->rc_log_action,
-					$titleObj, RequestContext::getMain()->getSkin(), LogPage::extractParams($row->rc_params,true,true) );
-			}
+			$rcRow = (array)$row; // newFromRow() only accepts arrays for RC rows
+			$actiontext = LogFormatter::newFromRow( $rcRow )->getActionText();
 		}
 		return self::formatDiffRow( $titleObj,
 			$row->rc_last_oldid, $row->rc_this_oldid,
 			$timestamp,
-			($row->rc_deleted & Revision::DELETED_COMMENT) ? wfMsgHtml('rev-deleted-comment') : $row->rc_comment,
-			$actiontext );
+			($row->rc_deleted & Revision::DELETED_COMMENT)
+				? wfMsgHtml('rev-deleted-comment') 
+				: $row->rc_comment,
+			$actiontext 
+		);
 	}
 
 	/**
