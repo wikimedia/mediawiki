@@ -2280,6 +2280,7 @@ $wgXhtmlNamespaces = array();
 /**
  * Show IP address, for non-logged in users. It's necessary to switch this off
  * for some forms of caching.
+ * Will disable file cache.
  */
 $wgShowIPinHeader = true;
 
