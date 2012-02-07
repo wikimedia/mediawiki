@@ -299,8 +299,10 @@ $wgContLanguageCode = $wgLanguageCode;
 
 # Easy to forget to falsify $wgShowIPinHeader for static caches.
 # If file cache or squid cache is on, just disable this (DWIMD).
+# Do the same for $wgDebugToolbar.
 if ( $wgUseFileCache || $wgUseSquid ) {
 	$wgShowIPinHeader = false;
+	$wgDebugToolbar = false;
 }
 
 # $wgAllowRealName and $wgAllowUserSkin were removed in 1.16
