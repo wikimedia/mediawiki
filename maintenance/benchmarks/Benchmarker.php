@@ -1,6 +1,7 @@
 <?php
 /**
  * @defgroup Benchmark Benchmark
+ * @ingroup  Maintenance
  */
 
 /**
@@ -23,7 +24,7 @@
  *
  * @todo Report PHP version, OS ..
  * @file
- * @ingroup Maintenance Benchmark
+ * @ingroup Benchmark
  */
 
 require_once( dirname( __FILE__ ) . '/../Maintenance.php' );
