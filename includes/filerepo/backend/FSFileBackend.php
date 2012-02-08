@@ -48,10 +48,13 @@ class FSFileBackend extends FileBackendStore {
 			$this->basePath = null; // none; containers must have explicit paths
 		}
 
-		$this->containerPaths = (array)$config['containerPaths'];
-		foreach ( $this->containerPaths as &$path ) {
-			rtrim( $path, '/' );  // remove trailing slash
+		if( isset( $config['containerPaths'] ) ) {
+			$this->containerPaths = (array)$config['containerPaths'];
+			foreach ( $this->containerPaths as &$path ) {
+				rtrim( $path, '/' );  // remove trailing slash
+			}
 		}
+
 		$this->fileMode = isset( $config['fileMode'] )
 			? $config['fileMode']
 			: 0644;
