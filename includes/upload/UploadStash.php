@@ -215,7 +215,7 @@ class UploadStash {
 				}
 			}
 			// at this point, $error should contain the single "most important" error, plus any parameters.
-			throw new UploadStashFileException( "Error storing file in '$path': " . implode( '; ', wfMessage( $error ) ) );
+			throw new UploadStashFileException( "Error storing file in '$path': " . wfMessage( $error )->text() );
 		}
 		$stashPath = $storeStatus->value;
 
