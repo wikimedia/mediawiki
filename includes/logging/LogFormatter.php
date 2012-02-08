@@ -393,9 +393,9 @@ class LegacyLogFormatter extends LogFormatter {
 			$entry->getType(),
 			$entry->getSubtype(),
 			$entry->getTarget(),
-			$this->context->getSkin(),
+			$this->plaintext ? null : $this->context->getSkin(),
 			(array)$entry->getParameters(),
-			true
+			!$this->plaintext // whether to filter [[]] links
 		);
 
 		$performer = $this->getPerformerElement();

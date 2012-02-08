@@ -201,7 +201,8 @@ class LogPage {
 	}
 
 	/**
-	 * Generate text for a log entry
+	 * Generate text for a log entry. 
+	 * Only LogFormatter should call this function.
 	 *
 	 * @param $type String: log type
 	 * @param $action String: log action
@@ -420,6 +421,7 @@ class LogPage {
 	 * @param $doer User object: the user doing the action
 	 *
 	 * @return bool|int|null
+	 * @TODO: make this use LogEntry::saveContent()
 	 */
 	public function addEntry( $action, $target, $comment, $params = array(), $doer = null ) {
 		global $wgContLang;
@@ -449,7 +451,16 @@ class LogPage {
 
 		$this->doer = $doer;
 
-		$this->actionText = LogPage::actionText( $this->type, $action, $target, null, $params );
+		$logEntry = new ManualLogEntry( $this->type, $action );
+		$logEntry->setTarget( $target );
+		$logEntry->setPerformer( $doer );
+		$logEntry->setParameters( $params );
+
+		$formatter = LogFormatter::newFromEntry( $logEntry );
+		$context = RequestContext::newExtraneousContext( $target );
+		$formatter->setContext( $context );
+
+		$this->actionText = $formatter->getPlainActionText();
 
 		return $this->saveContent();
 	}
