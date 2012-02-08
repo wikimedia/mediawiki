@@ -1223,6 +1223,15 @@ class FileBackendTest extends MediaWikiTestCase {
 
 		$this->assertEquals( $expected, $list, "Correct file listing ($backendName)." );
 
+		// Actual listing (using iterator second time)
+		$list = array();
+		foreach ( $iter as $file ) {
+			$list[] = $file;
+		}
+		sort( $list );
+
+		$this->assertEquals( $expected, $list, "Correct file listing ($backendName), second iteration." );
+
 		foreach ( $files as $file ) { // clean up
 			$this->backend->doOperation( array( 'op' => 'delete', 'src' => $file ) );
 		}

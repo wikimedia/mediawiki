@@ -531,10 +531,13 @@ abstract class FileBackend {
 
 	/**
 	 * Get an iterator to list out all stored files under a storage directory.
-	 * If the directory is of the form "mwstore://container", then all items in
-	 * the container should be listed. If of the form "mwstore://container/dir",
-	 * then all items under that container directory should be listed.
+	 * If the directory is of the form "mwstore://backend/container", 
+	 * then all files in the container should be listed.
+	 * If the directory is of form "mwstore://backend/container/dir",
+	 * then all files under that container directory should be listed.
 	 * Results should be storage paths relative to the given directory.
+	 * 
+	 * Storage backends with eventual consistency might return stale data.
 	 * 
 	 * $params include:
 	 *     dir : storage path directory
