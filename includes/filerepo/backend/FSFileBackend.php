@@ -39,18 +39,18 @@ class FSFileBackend extends FileBackendStore {
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );
+
+		// Remove any possible trailing slash from directories
+
 		if ( isset( $config['basePath'] ) ) {
-			if ( substr( $this->basePath, -1 ) === '/' ) {
-				$this->basePath = substr( $this->basePath, 0, -1 ); // remove trailing slash
-			}
+			rtrim( $this->basePath, '/' ); // remove trailing slash
 		} else {
 			$this->basePath = null; // none; containers must have explicit paths
 		}
+
 		$this->containerPaths = (array)$config['containerPaths'];
 		foreach ( $this->containerPaths as &$path ) {
-			if ( substr( $path, -1 ) === '/' ) {
-				$path = substr( $path, 0, -1 ); // remove trailing slash
-			}
+			rtrim( $path, '/' );  // remove trailing slash
 		}
 		$this->fileMode = isset( $config['fileMode'] )
 			? $config['fileMode']
