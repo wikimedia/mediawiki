@@ -3,13 +3,13 @@
  * Deleted file in the 'filearchive' table
  *
  * @file
- * @ingroup FileRepo
+ * @ingroup FileAbstraction
  */
 
 /**
  * Class representing a row of the 'filearchive' table
  *
- * @ingroup FileRepo
+ * @ingroup FileAbstraction
  */
 class ArchivedFile {
 	/**#@+

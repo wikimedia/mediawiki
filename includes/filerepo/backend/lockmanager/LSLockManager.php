@@ -1,6 +1,8 @@
 <?php
 
 /**
+ * Manage locks using a lock daemon server.
+ *
  * Version of LockManager based on using lock daemon servers.
  * This is meant for multi-wiki systems that may share files.
  * All locks are non-blocking, which avoids deadlocks.

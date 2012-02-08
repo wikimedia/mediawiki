@@ -1,5 +1,13 @@
 <?php
 /**
+ * @defgroup FileRepo File Repository
+ *
+ * @brief This module handles how MediaWiki interacts with filesystems.
+ *
+ * @details
+ */
+
+/**
  * Base code for file repositories.
  *
  * @file

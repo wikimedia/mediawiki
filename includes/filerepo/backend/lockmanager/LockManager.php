@@ -1,5 +1,10 @@
 <?php
 /**
+ * @defgroup LockManager Lock management
+ * @ingroup FileBackend
+ */
+
+/**
  * @file
  * @ingroup LockManager
  * @author Aaron Schulz
@@ -7,13 +12,14 @@
 
 /**
  * Class for handling resource locking.
+ *
  * Locks on resource keys can either be shared or exclusive.
- * 
+ *
  * Implementations must keep track of what is locked by this proccess
  * in-memory and support nested locking calls (using reference counting).
  * At least LOCK_UW and LOCK_EX must be implemented. LOCK_SH can be a no-op.
  * Locks should either be non-blocking or have low wait timeouts.
- * 
+ *
  * Subclasses should avoid throwing exceptions at all costs.
  *
  * @ingroup LockManager
@@ -94,6 +100,8 @@ abstract class LockManager {
 }
 
 /**
+ * Self releasing locks
+ *
  * LockManager helper class to handle scoped locks, which
  * release when an object is destroyed or goes out of scope.
  *

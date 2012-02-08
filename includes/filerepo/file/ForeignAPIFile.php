@@ -3,14 +3,14 @@
  * Foreign file accessible through api.php requests.
  *
  * @file
- * @ingroup FileRepo
+ * @ingroup FileAbstraction
  */
 
 /**
  * Foreign file accessible through api.php requests.
  * Very hacky and inefficient, do not use :D
  *
- * @ingroup FileRepo
+ * @ingroup FileAbstraction
  */
 class ForeignAPIFile extends File {
 	private $mExists;

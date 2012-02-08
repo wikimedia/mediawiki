@@ -1,9 +1,16 @@
 <?php
 /**
+ * @defgroup FileAbstraction File abstraction
+ * @ingroup FileRepo
+ *
+ * Represents files in a repository.
+ */
+
+/**
  * Base code for files.
  *
  * @file
- * @ingroup FileRepo
+ * @ingroup FileAbstraction
  */
 
 /**
@@ -23,7 +30,7 @@
  * The convenience functions wfLocalFile() and wfFindFile() should be sufficient
  * in most cases.
  *
- * @ingroup FileRepo
+ * @ingroup FileAbstraction
  */
 abstract class File {
 	const DELETED_FILE = 1;
