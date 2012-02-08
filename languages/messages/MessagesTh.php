@@ -3415,16 +3415,16 @@ $5
 'sqlite-no-fts'  => 'รุ่น $1 โดยไม่มีการสนับสนุนการค้นหาข้อความแบบเต็ม',
 
 # New logging system
-'logentry-delete-delete'        => '$1 {{GENDER:$2|ลบ}}หน้า $3',
-'logentry-delete-restore'       => '$1 {{GENDER:$2|กู้คืน}}หน้า $3',
+'logentry-delete-delete'        => '$1 ลบหน้า $3',
+'logentry-delete-restore'       => '$1 กู้คืนหน้า $3',
 'revdelete-restricted'          => 'จำกัดให้เฉพาะผู้ดูแลระบบขั้นพื้นฐาน',
 'revdelete-unrestricted'        => 'ยกเลิกการจำกัดให้เฉพาะผู้ดูแลระบบขั้นพื้นฐาน',
-'logentry-move-move'            => '$1 {{GENDER:$2|ย้าย}}หน้า $3 ไปยัง $4',
-'logentry-move-move-noredirect' => '$1 {{GENDER:$2|ย้าย}}หน้า $3 ไปยัง $4 โดยไม่ทิ้งการเปลี่ยนทาง',
-'logentry-newusers-newusers'    => '$1 {{GENDER:$2|สร้าง}} บัญชีผู้ใช้',
-'logentry-newusers-create'      => '$1 {{GENDER:$2|สร้าง}} บัญชีผู้ใช้',
-'logentry-newusers-create2'     => '$1 {{GENDER:$2|สร้าง}}{{GENDER:$4|บัญชีผู้ใช้}} $3',
-'logentry-newusers-autocreate'  => 'บัญชี $1 ถูก{{GENDER:$2|สร้างขึ้น}}อัตโนมัติ',
+'logentry-move-move'            => '$1 ย้ายหน้า $3 ไปยัง $4',
+'logentry-move-move-noredirect' => '$1 ย้ายหน้า $3 ไปยัง $4 โดยไม่ทิ้งการเปลี่ยนทาง',
+'logentry-newusers-newusers'    => '$1 สร้าง บัญชีผู้ใช้',
+'logentry-newusers-create'      => '$1 สร้าง บัญชีผู้ใช้',
+'logentry-newusers-create2'     => '$1 สร้างบัญชีผู้ใช้ $3',
+'logentry-newusers-autocreate'  => 'บัญชี $1 ถูกสร้างขึ้นอัตโนมัติ',
 'newuserlog-byemail'            => 'รหัสผ่านถูกส่งทางอีเมล',
 
 # Feedback

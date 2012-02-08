@@ -995,8 +995,8 @@ $5
 'specialpages-group-maintenance' => 'چله‌بندی صفحه‌ئون',
 
 # New logging system
-'logentry-newusers-newusers' => '$1 {{GENDER:$2| بساتن}} اتا حساب کاروری',
-'logentry-newusers-create'   => '$1 {{GENDER:$2| بساتن}} اتا حساب کاروری',
+'logentry-newusers-newusers' => '$1  بساتن اتا حساب کاروری',
+'logentry-newusers-create'   => '$1  بساتن اتا حساب کاروری',
 
 # Feedback
 'feedback-subject' => 'موضوع:',

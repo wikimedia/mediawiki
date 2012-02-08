@@ -2096,8 +2096,8 @@ Xêra xwe zanibe ku tu bi rastî dixwazê vê rûpelê dîsa çêkê",
 
 # New logging system
 'revdelete-uname-hid'        => 'navê bikarhêneriyê yê veşartî',
-'logentry-newusers-newusers' => '$1 hesabekî bikarhêneriyê {{GENDER:$2|çêkir}}',
-'logentry-newusers-create'   => '$1 hesabekî bikarhêneriyê {{GENDER:$2|çêkir}}',
+'logentry-newusers-newusers' => '$1 hesabekî bikarhêneriyê çêkir',
+'logentry-newusers-create'   => '$1 hesabekî bikarhêneriyê çêkir',
 'newuserlog-byemail'         => 'şîfre bi e-nameyê hate şandin',
 
 # Feedback

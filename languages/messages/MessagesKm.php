@@ -3460,14 +3460,14 @@ $5
 # New logging system
 'revdelete-restricted'                => 'បានអនុវត្តការដាក់កំហិតចំពោះអ្នកអភិបាល',
 'revdelete-unrestricted'              => 'បានដកការដាក់កំហិតចេញសម្រាប់អ្នកអភិបាល',
-'logentry-move-move'                  => '$1 {{GENDER:$2|បានប្ដូរទីតាំង}}ទំព័រ $3 ពី $4',
-'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|បានប្ដូរទីតាំង}} ទំព័រ $3 ពី $4 ដោយមិនបន្សល់ទុកតំនភ្ជាប់បញ្ជូនបន្ត',
-'logentry-move-move_redir'            => '$1 {{GENDER:$2|បានប្ដូរទីតាំង}} ទំព័រ $3 ពី $4 តាមរយៈការបញ្ជូនបន្ត',
-'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|បានប្ដូរទីតាំង}} ទំព័រ $3 ពី $4 តាមរយៈការបញ្ជូនបន្ត ដោយមិនបន្សល់ទុកតំនភ្ជាប់បញ្ជូនបន្ត',
-'logentry-newusers-newusers'          => '$1 {{GENDER:$2|បានបង្កើត}} គណនីអ្នកប្រើប្រាស់មួយ',
-'logentry-newusers-create'            => '$1 {{GENDER:$2|បានបង្កើត}} គណនីអ្នកប្រើប្រាស់មួយ',
-'logentry-newusers-create2'           => '$1 {{GENDER:$2|បានបង្កើត}} {{GENDER:$4|គណនីអ្នកប្រើប្រាស់មួយ}} $3',
-'logentry-newusers-autocreate'        => 'គណនី $1 ត្រូវ {{GENDER:$2|បានបង្កើត}} ដោយស្វ័យប្រវត្តិ',
+'logentry-move-move'                  => '$1 បានប្ដូរទីតាំងទំព័រ $3 ពី $4',
+'logentry-move-move-noredirect'       => '$1 បានប្ដូរទីតាំង ទំព័រ $3 ពី $4 ដោយមិនបន្សល់ទុកតំនភ្ជាប់បញ្ជូនបន្ត',
+'logentry-move-move_redir'            => '$1 បានប្ដូរទីតាំង ទំព័រ $3 ពី $4 តាមរយៈការបញ្ជូនបន្ត',
+'logentry-move-move_redir-noredirect' => '$1 បានប្ដូរទីតាំង ទំព័រ $3 ពី $4 តាមរយៈការបញ្ជូនបន្ត ដោយមិនបន្សល់ទុកតំនភ្ជាប់បញ្ជូនបន្ត',
+'logentry-newusers-newusers'          => '$1 បានបង្កើត គណនីអ្នកប្រើប្រាស់មួយ',
+'logentry-newusers-create'            => '$1 បានបង្កើត គណនីអ្នកប្រើប្រាស់មួយ',
+'logentry-newusers-create2'           => '$1 បានបង្កើត គណនីអ្នកប្រើប្រាស់មួយ $3',
+'logentry-newusers-autocreate'        => 'គណនី $1 ត្រូវ បានបង្កើត ដោយស្វ័យប្រវត្តិ',
 'newuserlog-byemail'                  => 'ពាក្យសំងាត់ត្រូវបានផ្ញើតាមអ៊ីមែល',
 
 );

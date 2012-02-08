@@ -3456,16 +3456,16 @@ $5
 'sqlite-no-fts'  => '$1 పూర్తి-పాఠ్య అన్వేషణ తోడ్పాటు లేకుండా',
 
 # New logging system
-'logentry-delete-delete'       => '$1 $3 పుటను {{GENDER:$2|తొలగించారు}}',
+'logentry-delete-delete'       => '$1 $3 పుటను తొలగించారు',
 'revdelete-content-hid'        => 'కంటెంట్ దాచబడింది',
 'revdelete-summary-hid'        => 'మార్పుల సారాంశాన్ని దాచారు',
 'revdelete-uname-hid'          => 'వాడుకరి పేరుని దాచారు',
 'revdelete-restricted'         => 'నిర్వాహకులకు ఆంక్షలు విధించాను',
 'revdelete-unrestricted'       => 'నిర్వాహకులకున్న ఆంక్షలను ఎత్తేశాను',
-'logentry-newusers-newusers'   => '$1 వాడుకరి ఖాతాను {{GENDER:$2|సృష్టించారు}}',
-'logentry-newusers-create'     => '$1 ఒక వాడుకరి ఖాతాను {{GENDER:$2|సృష్టించారు}}',
-'logentry-newusers-create2'    => '$1  {{GENDER:$4|వాడుకరి ఖాతా}} $3ను {{GENDER:$2|సృష్టించారు}}',
-'logentry-newusers-autocreate' => '$1 ఖాతాను ఆటోమెటిగ్గా {{GENDER:$2|సృష్టించారు}}',
+'logentry-newusers-newusers'   => '$1 వాడుకరి ఖాతాను సృష్టించారు',
+'logentry-newusers-create'     => '$1 ఒక వాడుకరి ఖాతాను సృష్టించారు',
+'logentry-newusers-create2'    => '$1  వాడుకరి ఖాతా $3ను సృష్టించారు',
+'logentry-newusers-autocreate' => '$1 ఖాతాను ఆటోమెటిగ్గా సృష్టించారు',
 'newuserlog-byemail'           => 'ఈ-మెయిలులో సంకేతపదం పంపించాం',
 
 # Feedback

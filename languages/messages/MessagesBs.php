@@ -3813,8 +3813,8 @@ Slike su prikazane u punoj veličini, ostale vrste datoteka su prikazane direktn
 'revdelete-uname-unhid'         => 'korisničko ime je otkriveno',
 'revdelete-restricted'          => 'primijenjena ograničenja za administratore',
 'revdelete-unrestricted'        => 'uklonjena ograničenja za administratore',
-'logentry-move-move'            => '$1 {{GENDER:$2|je premjestio|je premjestila|premjesti}} stranicu $3 na $4',
-'logentry-move-move-noredirect' => '$1 {{GENDER:$2|je premjestio|je premjestila|premjesti}} stranicu $3 na $4 bez ostavljanja preusmjerenja',
+'logentry-move-move'            => '$1 premjesti stranicu $3 na $4',
+'logentry-move-move-noredirect' => '$1 premjesti stranicu $3 na $4 bez ostavljanja preusmjerenja',
 'newuserlog-byemail'            => 'šifra je poslana putem e-maila',
 
 # Feedback
