@@ -17,7 +17,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  *
  * @file
- * @ingroup Action
+ * @ingroup Actions
  * @ingroup Media
  * @author Alexandre Emsenhuber
  * @author Rob Church <robchur@gmail.com>
@@ -26,7 +26,7 @@
 /**
  * Dummy class for pages not in NS_FILE
  *
- * @ingroup Action
+ * @ingroup Actions
  */
 class RevertAction extends Action {
 
@@ -44,7 +44,7 @@ class RevertAction extends Action {
 /**
  * Class for pages in NS_FILE
  *
- * @ingroup Action
+ * @ingroup Actions
  */
 class RevertFileAction extends FormAction {
 	protected $oldFile;
