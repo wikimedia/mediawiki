@@ -372,7 +372,8 @@ class Profiler {
 
 	/**
 	 * Returns a list of profiled functions.
-	 * Also log it into the database if $wgProfileToDatabase is set to true.
+	 *
+	 * @return string
 	 */
 	function getFunctionReport() {
 		$this->collateData();
