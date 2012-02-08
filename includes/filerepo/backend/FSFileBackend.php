@@ -43,7 +43,7 @@ class FSFileBackend extends FileBackendStore {
 		// Remove any possible trailing slash from directories
 
 		if ( isset( $config['basePath'] ) ) {
-			rtrim( $this->basePath, '/' ); // remove trailing slash
+			$this->basePath = rtrim( $config['basePath'], '/' ); // remove trailing slash
 		} else {
 			$this->basePath = null; // none; containers must have explicit paths
 		}
