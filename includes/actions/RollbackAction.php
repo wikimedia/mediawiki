@@ -17,13 +17,13 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  *
  * @file
- * @ingroup Action
+ * @ingroup Actions
  */
 
 /**
  * User interface for the rollback action
  *
- * @ingroup Action
+ * @ingroup Actions
  */
 class RollbackAction extends FormlessAction {
 

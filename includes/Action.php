@@ -1,5 +1,9 @@
 <?php
 /**
+ * @defgroup Actions Action done on pages
+ */
+
+/**
  * Actions are things which can be done to pages (edit, delete, rollback, etc).  They
  * are distinct from Special Pages because an action must apply to exactly one page.
  *
