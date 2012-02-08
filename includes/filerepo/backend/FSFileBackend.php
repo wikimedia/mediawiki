@@ -51,7 +51,7 @@ class FSFileBackend extends FileBackendStore {
 		if( isset( $config['containerPaths'] ) ) {
 			$this->containerPaths = (array)$config['containerPaths'];
 			foreach ( $this->containerPaths as &$path ) {
-				rtrim( $path, '/' );  // remove trailing slash
+				$path = rtrim( $path, '/' );  // remove trailing slash
 			}
 		}
 
