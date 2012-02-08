@@ -657,6 +657,9 @@ class FileRepo {
 		// Validate each triplet and get the store operation...
 		foreach ( $triplets as $triplet ) {
 			list( $srcPath, $dstZone, $dstRel ) = $triplet;
+			wfDebug( __METHOD__
+				. "( \$src='$srcPath', \$dstZone='$dstZone', \$dstRel='$dstRel' )\n"
+			);
 
 			// Resolve destination path
 			$root = $this->getZonePath( $dstZone );
@@ -667,8 +670,7 @@ class FileRepo {
 				throw new MWException( 'Validation error in $dstRel' );
 			}
 			$dstPath = "$root/$dstRel";
-			$dstDir = dirname( $dstPath );
-
+			$dstDir  = dirname( $dstPath );
 			// Create destination directories for this triplet
 			if ( !$backend->prepare( array( 'dir' => $dstDir ) )->isOK() ) {
 				return $this->newFatal( 'directorycreateerror', $dstDir );
@@ -774,9 +776,9 @@ class FileRepo {
 	 * @return FileRepoStatus object with the URL in the value.
 	 */
 	public function storeTemp( $originalName, $srcPath ) {
-		$date = gmdate( "YmdHis" );
-		$hashPath = $this->getHashPath( $originalName );
-		$dstRel = "{$hashPath}{$date}!{$originalName}";
+		$date      = gmdate( "YmdHis" );
+		$hashPath  = $this->getHashPath( $originalName );
+		$dstRel    = "{$hashPath}{$date}!{$originalName}";
 		$dstUrlRel = $hashPath . $date . '!' . rawurlencode( $originalName );
 
 		$result = $this->store( $srcPath, 'temp', $dstRel, self::SKIP_LOCKING );
