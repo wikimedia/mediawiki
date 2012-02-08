@@ -18,8 +18,8 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Maintenance
- * @author Platonides 
+ * @ingroup Benchmark
+ * @author  Platonides
  */
 
 require_once( dirname( __FILE__ ) . '/Benchmarker.php' );
