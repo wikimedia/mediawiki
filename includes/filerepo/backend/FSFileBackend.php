@@ -61,10 +61,31 @@ class FSFileBackend extends FileBackendStore {
 	 * @see FileBackendStore::resolveContainerPath()
 	 */
 	protected function resolveContainerPath( $container, $relStoragePath ) {
+		// Check that container has a root directory
 		if ( isset( $this->containerPaths[$container] ) || isset( $this->basePath ) ) {
-			return $relStoragePath; // container has a root directory
+			// Check for sane relative paths (assume the base paths are OK)
+			if ( $this->isLegalRelPath( $relStoragePath ) ) {
+				return $relStoragePath;
+			}
 		}
 		return null;
+	}
+
+	/**
+	 * Sanity check a relative file system path for validity
+	 * 
+	 * @param $path string Normalized relative path
+	 */
+	protected function isLegalRelPath( $path ) {
+		// Check for file names longer than 255 chars
+		if ( preg_match( '![^/]{256}!', $path ) ) { // ext3/NTFS
+			return false;
+		}
+		if ( wfIsWindows() ) { // NTFS
+			return !preg_match( '![:*?"<>]!', $path );
+		} else {
+			return true;
+		}
 	}
 
 	/**
