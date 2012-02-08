@@ -3780,8 +3780,8 @@ $5
 # New logging system
 'revdelete-restricted'         => 'εφάρμοσε περιορισμούς στους sysops',
 'revdelete-unrestricted'       => 'αφαίρεσε περιορισμούς στους sysops',
-'logentry-newusers-create'     => '$1 {{GENDER:$2|δημιούργησε}} έναν λογαριασμό χρήστη',
-'logentry-newusers-autocreate' => 'Ο λογαριασμός $1 {{GENDER:$2|δημιουργήθηκε}} αυτόματα',
+'logentry-newusers-create'     => '$1 δημιούργησε έναν λογαριασμό χρήστη',
+'logentry-newusers-autocreate' => 'Ο λογαριασμός $1 δημιουργήθηκε αυτόματα',
 'newuserlog-byemail'           => 'ο κωδικός έχει σταλεί μέσω ηλεκτρονικού μηνύματος',
 
 # Feedback

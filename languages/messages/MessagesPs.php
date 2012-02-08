@@ -2482,14 +2482,14 @@ $5
 'htmlform-selectorother-other' => 'بل',
 
 # New logging system
-'logentry-delete-delete'     => '$1 د $3 مخ {{GENDER:$2|ړنګ کړ}}',
+'logentry-delete-delete'     => '$1 د $3 مخ ړنګ کړ',
 'revdelete-content-hid'      => 'مېنځپانګه پټېدلې',
 'revdelete-uname-hid'        => 'کارن نوم پټ شوی',
 'revdelete-content-unhid'    => 'مېنځپانګه ښکاره شوی',
 'revdelete-uname-unhid'      => 'ښکاره کارن-نوم',
-'logentry-move-move'         => '$1 د $3 مخ $4 ته {{GENDER:$2|ولېږداوه}}',
-'logentry-newusers-newusers' => '$1 يو کارن ګڼون {{GENDER:$2|جوړ کړ}}',
-'logentry-newusers-create'   => '$1 يو کارن ګڼون {{GENDER:$2|جوړ کړ}}',
+'logentry-move-move'         => '$1 د $3 مخ $4 ته ولېږداوه',
+'logentry-newusers-newusers' => '$1 يو کارن ګڼون جوړ کړ',
+'logentry-newusers-create'   => '$1 يو کارن ګڼون جوړ کړ',
 'newuserlog-byemail'         => 'پټنوم مو برېښليک ته درولېږه',
 
 # Feedback

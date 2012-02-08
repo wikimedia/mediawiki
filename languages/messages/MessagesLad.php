@@ -1223,7 +1223,7 @@ Los otros campos se van a guardar por defecto.
 'htmlform-selectorother-other' => 'Otro',
 
 # New logging system
-'logentry-newusers-autocreate' => 'El cuento $1 fue {{GENDER:$2|crîado}} otomatika mente',
+'logentry-newusers-autocreate' => 'El cuento $1 fue crîado otomatika mente',
 'newuserlog-byemail'           => 'kóddiche mandado con letral',
 
 # Feedback

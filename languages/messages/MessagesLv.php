@@ -3060,8 +3060,8 @@ Var arī lietot [[Special:EditWatchlist|standarta izmainīšanas lapu]].',
 'sqlite-no-fts'  => '$1 bez pilnteksta meklēšanas atbalsta',
 
 # New logging system
-'logentry-delete-delete'       => '$1 {{GENDER:$2|izdzēsa}} lapu $3',
-'logentry-delete-restore'      => '$1 {{GENDER:$2|atjaunoja}} lapu $3',
+'logentry-delete-delete'       => '$1 izdzēsa lapu $3',
+'logentry-delete-restore'      => '$1 atjaunoja lapu $3',
 'revdelete-content-hid'        => 'saturs slēpts',
 'revdelete-summary-hid'        => 'labojuma kopsavilkums slēpts',
 'revdelete-uname-hid'          => 'lietotājvārds slēpts',
@@ -3070,7 +3070,7 @@ Var arī lietot [[Special:EditWatchlist|standarta izmainīšanas lapu]].',
 'revdelete-uname-unhid'        => 'lietotājvārda slēpšana atcelta',
 'revdelete-restricted'         => 'piemērot administratoriem ierobežojumus',
 'revdelete-unrestricted'       => 'noņemt administratoriem ierobežojumus',
-'logentry-newusers-autocreate' => 'Konts $1 tika {{GENDER:$2|izveidots}} automātiski',
+'logentry-newusers-autocreate' => 'Konts $1 tika izveidots automātiski',
 'newuserlog-byemail'           => 'parole nosūtīta pa e-pastu',
 
 # Feedback

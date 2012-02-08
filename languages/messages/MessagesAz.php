@@ -2920,7 +2920,7 @@ Bu saytda texniki problemlər var.',
 'sqlite-no-fts'  => '$1 tam mətn axtarma olmadan',
 
 # New logging system
-'logentry-suppress-delete'     => '$1 {{GENDER:$2|suppressed}} page $3',
+'logentry-suppress-delete'     => '$1 suppressed page $3',
 'revdelete-content-hid'        => 'Mətn gizli',
 'revdelete-summary-hid'        => 'redaktələr gizli',
 'revdelete-uname-hid'          => 'İstifadəçi adı gizli',
@@ -2929,7 +2929,7 @@ Bu saytda texniki problemlər var.',
 'revdelete-uname-unhid'        => 'İstifadəçi adı gizli deyil',
 'revdelete-restricted'         => 'məhdudiyyətlər idarəçilərə tətbiq olunur',
 'revdelete-unrestricted'       => 'idarəçilər üçün götürülmüş məhdudiyyətlər',
-'logentry-newusers-autocreate' => 'Hesab $1 {{GENDER:$2yaradıldı}} avtomatik',
+'logentry-newusers-autocreate' => 'Hesab $1 yaradıldı avtomatik',
 'newuserlog-byemail'           => 'parol e-maillə göndərildi',
 
 # Feedback

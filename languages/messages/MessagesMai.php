@@ -3534,7 +3534,7 @@ $5
 'revdelete-uname-unhid'               => 'प्रयोक्तानाम सोझाँ',
 'revdelete-restricted'                => 'संचालक लेल प्रायोगिक प्रतिबन्ध',
 'revdelete-unrestricted'              => 'संचालक लेल हटाओल प्रतिबन्ध',
-'logentry-move-move'                  => '$1 {{GENDER:$2|हटाएल}} पन्ना $3 सँ $4',
+'logentry-move-move'                  => '$1 हटाएल पन्ना $3 सँ $4',
 'logentry-move-move-noredirect'       => '$1 {{लिंग:$2|हटाएल}} पन्ना $3 सँ $4 घुमौआकेँ बिना छोड़ने',
 'logentry-move-move_redir'            => '$1 {{लिंग:$2|हटाएल}} पन्ना $3 सँ $4 घुमौआक अतिरिक्त',
 'logentry-move-move_redir-noredirect' => '$1 {{लिंग:$2|हटाएल}} पन्ना $3 सँ $4 घुमौआक अतितिक्त घुमौआकेँ बिना छोड़ने',
