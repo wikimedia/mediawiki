@@ -463,12 +463,14 @@ class FSFileBackend extends FileBackendStore {
 		$exists = is_dir( $dir );
 		wfRestoreWarnings();
 		if ( !$exists ) {
+			wfDebug( __METHOD__ . "() given directory does not exist: '$dir'\n" );
 			return array(); // nothing under this dir
 		}
 		wfSuppressWarnings();
 		$readable = is_readable( $dir );
 		wfRestoreWarnings();
 		if ( !$readable ) {
+			wfDebug( __METHOD__ . "() given directory is unreadable: '$dir'\n" );
 			return null; // bad permissions?
 		}
 		return new FSFileBackendFileList( $dir );
