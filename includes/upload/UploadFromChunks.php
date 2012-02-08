@@ -2,11 +2,9 @@
 /**
  * Implements uploading from chunks
  *
- * @file
- * @ingroup upload
+ * @ingroup Upload
  * @author Michael Dale
  */
-
 class UploadFromChunks extends UploadFromFile {
 	protected $mOffset, $mChunkIndex, $mFileKey, $mVirtualTempPath;
 	

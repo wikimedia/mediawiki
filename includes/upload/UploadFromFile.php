@@ -2,11 +2,9 @@
 /**
  * Implements regular file uploads
  *
- * @file
- * @ingroup upload
+ * @ingroup Upload
  * @author Bryan Tong Minh
  */
-
 class UploadFromFile extends UploadBase {
 
 	/**

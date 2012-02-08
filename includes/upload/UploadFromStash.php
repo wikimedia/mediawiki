@@ -2,11 +2,9 @@
 /**
  * Implements uploading from previously stored file.
  *
- * @file
- * @ingroup upload
+ * @ingroup Upload
  * @author Bryan Tong Minh
  */
-
 class UploadFromStash extends UploadBase {
 	protected $mFileKey, $mVirtualTempPath, $mFileProps, $mSourceType;
 

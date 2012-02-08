@@ -16,6 +16,8 @@
  * UploadStash represents the entire stash of temporary files.
  * UploadStashFile is a filestore for the actual physical disk files.
  * UploadFromStash extends UploadBase, and represents a single stashed file as it is moved from the stash to the regular file repository
+ *
+ * @ingroup Upload
  */
 class UploadStash {
 
