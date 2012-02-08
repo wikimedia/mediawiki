@@ -527,30 +527,33 @@ Tiō-sī kóng, tī chit-má iōng chit ê IP bāng-chí ê lâng bē-sái koh k
 'resetpass-temp-password'   => 'Lîm-sî ê bi̍t-bé:',
 
 # Special:PasswordReset
-'passwordreset'              => 'Têng siat bi̍t-bé',
-'passwordreset-text'         => '完成這个表，就通收著一封提醒你口座詳情的電子批。',
-'passwordreset-legend'       => 'Têng siat bi̍t-bé',
-'passwordreset-disabled'     => '佇這个Wiki已經禁止重設密碼',
-'passwordreset-pretext'      => '{{PLURAL:$1||拍下跤資料內底的一个}}',
-'passwordreset-username'     => 'Lí ê iōng-chiá miâ-chheng:',
-'passwordreset-domain'       => '網域：',
-'passwordreset-capture'      => '敢欲看產生的電子批？',
-'passwordreset-capture-help' => '若你選這个框，電子批（包括臨時的密碼）會予你看著，而且傳送予用者。',
-'passwordreset-email'        => 'Tiān-chú-phoe tē-chí:',
-'passwordreset-emailtitle'   => '佇{{SITENAME}}面頂的的口座詳細',
-'passwordreset-emailtext-ip' => '有人（可能是你，對$1這IP）要求發一个{{SITENAME}}（$4）口座詳情的提示。彼个用戶{{PLURAL:$3|是|是}}佮下跤電子批地址有關係：
+'passwordreset'                    => 'Têng siat bi̍t-bé',
+'passwordreset-text'               => '完成這个表，就通收著一封提醒你口座詳情的電子批。',
+'passwordreset-legend'             => 'Têng siat bi̍t-bé',
+'passwordreset-disabled'           => '佇這个Wiki已經禁止重設密碼',
+'passwordreset-pretext'            => '{{PLURAL:$1||拍下跤資料內底的一个}}',
+'passwordreset-username'           => 'Lí ê iōng-chiá miâ-chheng:',
+'passwordreset-domain'             => '網域：',
+'passwordreset-capture'            => '敢欲看產生的電子批？',
+'passwordreset-capture-help'       => '若你選這个框，電子批（包括臨時的密碼）會予你看著，而且傳送予用者。',
+'passwordreset-email'              => 'Tiān-chú-phoe tē-chí:',
+'passwordreset-emailtitle'         => '佇{{SITENAME}}面頂的的口座詳細',
+'passwordreset-emailtext-ip'       => '有人（可能是你，對$1這IP）要求發一个{{SITENAME}}（$4）口座詳情的提示。彼个用戶{{PLURAL:$3|是|是}}佮下跤電子批地址有關係：
 
 $2
 
 {{PLURAL:$3|這个臨時密碼|遮的臨時密碼}}會佇{{PLURAL:$5|一工 |$5工}}內到期。
 你這馬應該登入，而且選擇一个新密碼。若是別人做的要求，抑是你已經記
 起來你的密碼，你閣無想欲改，你會當免管這个信息，而且繼續用你的密碼。',
-'passwordreset-emailelement' => 'Iōng-chiá: $1
+'passwordreset-emailelement'       => 'Iōng-chiá: $1
 Lîm-sî ê bi̍t-bé: $2',
-'passwordreset-emailsent'    => 'Chit hong thê-chhíⁿ ê  tiān-chú-phoe í-keng kià chhut.',
+'passwordreset-emailsent'          => 'Chit hong thê-chhíⁿ ê  tiān-chú-phoe í-keng kià chhut.',
+'passwordreset-emailsent-capture'  => '一張提醒的電子批已經寄出，佇下面通看著。',
+'passwordreset-emailerror-capture' => '一張提醒的電子批已經寫好，佇下面通看著，毋過送袂到用者: $1。',
 
 # Special:ChangeEmail
 'changeemail'          => 'Kái tiān-chú-phoe ê tē-chí',
+'changeemail-header'   => '改口座的電子批地址。',
 'changeemail-oldemail' => 'Chit-má ê E-mail tē-chí:',
 'changeemail-newemail' => 'Sin E-mail ê chū-chí:',
 'changeemail-submit'   => '改電子批',
@@ -1032,7 +1035,7 @@ $1",
 'prefs-rc'                      => 'Chòe-kīn ê kái-piàn & stub ê hián-sī',
 'prefs-watchlist'               => 'Kàm-sī-toaⁿ',
 'prefs-watchlist-days'          => 'Kàm-sī-toaⁿ hián-sī kúi kang lāi--ê:',
-'prefs-watchlist-days-max'      => '上濟七工',
+'prefs-watchlist-days-max'      => '上濟$1 {{PLURAL:$1|工|工}}',
 'prefs-watchlist-edits'         => 'Khok-chhiong ê kàm-sī-toaⁿ tio̍h hián-sī kúi hāng pian-chi̍p:',
 'prefs-watchlist-edits-max'     => '上大的數目：1000',
 'prefs-watchlist-token'         => '監視列表的密鑰：',
@@ -1474,6 +1477,13 @@ $1',
 'backend-fail-backup'    => '無法度備份檔案$1',
 'backend-fail-notexists' => '無$1這个檔案',
 'backend-fail-hashes'    => '無法度讀著檔案散列值(hashe)通比並',
+'backend-fail-store'     => '無法度恢複佇$2的檔案$1。',
+'backend-fail-copy'      => '無法度共佇$1的檔案khop去$2。',
+'backend-fail-move'      => '無法度共佇$1的檔案徙去$2。',
+'backend-fail-opentemp'  => '無法度建立臨時檔案',
+'backend-fail-writetemp' => '無法度寫入去臨時檔案',
+'backend-fail-read'      => '無法度讀$1這个檔案',
+'backend-fail-create'    => '無法度建立$1這个檔案。',
 
 # img_auth script messages
 'img-auth-accessdenied'     => '拒絕讀寫',
@@ -1605,7 +1615,8 @@ $1',
 'listredirects' => 'Lia̍t-chhut choán-ia̍h',
 
 # Unused templates
-'unusedtemplates' => 'Bô iōng ê pang-bô·',
+'unusedtemplates'    => 'Bô iōng ê pang-bô·',
+'unusedtemplateswlh' => '其他的連結',
 
 # Random page
 'randompage' => 'Sûi-chāi kéng ia̍h',

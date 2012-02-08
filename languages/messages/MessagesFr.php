@@ -1402,7 +1402,7 @@ Essayez en utilisant le préfixe ''all:'' pour rechercher dans tout le contenu (
 'saveprefs'                     => 'Enregistrer les préférences',
 'resetprefs'                    => 'Rétablir les préférences',
 'restoreprefs'                  => 'Restaurer toutes les valeurs par défaut',
-'prefs-editing'                 => 'Fenêtre de modification',
+'prefs-editing'                 => 'Modification',
 'prefs-edit-boxsize'            => 'Taille de la fenêtre de modification.',
 'rows'                          => 'Rangées :',
 'columns'                       => 'Colonnes :',
@@ -1453,7 +1453,7 @@ Voici une valeur générée aléatoirement que vous pouvez utiliser : $1',
 'prefs-memberingroups'          => 'Membre {{PLURAL:$1|du groupe|des groupes}} :',
 'prefs-registration'            => 'Date d’inscription :',
 'yourrealname'                  => 'Nom réel :',
-'yourlanguage'                  => 'Langue de l’interface :',
+'yourlanguage'                  => 'Langue :',
 'yourvariant'                   => 'Variante de la langue du contenu:',
 'prefs-help-variant'            => 'Votre variante ou orthographe préféré dans lequel afficher les pages de contenu de ce wiki.',
 'yournick'                      => 'Signature pour les discussions :',
@@ -1890,10 +1890,10 @@ Il ne peut pas être correctement vérifé pour la sécurité.',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Accès refusé',
-'img-auth-nopathinfo'       => "PATH_INFO manquant.
+'img-auth-nopathinfo'       => 'PATH_INFO manquant.
 Votre serveur n’est pas paramétré pour passer cette information.
 Il fonctionne peut-être en CGI et ne supporte pas img_auth.
-[https://www.mediawiki.org/wiki/Manual:Image_Authorization Voyez les droits d'image.]",
+Voyez https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'         => "Le chemin demandé n’est pas le répertoire d'import configuré.",
 'img-auth-badtitle'         => 'Impossible de construire un titre valide à partir de « $1 ».',
 'img-auth-nologinnWL'       => 'Vous n’êtes pas connecté et « $1 » n’est pas dans la liste blanche.',

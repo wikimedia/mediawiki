@@ -325,8 +325,8 @@ $messages = array(
 
 # General errors
 'error'                => 'Рæдыд',
-'databaseerror'        => 'Бæрæггæнæнты базæйы рæдыд',
-'readonly'             => 'Бæрæггæнæнты базæ фыссынæн æхгæд у',
+'databaseerror'        => 'Рарддоны рæдыд',
+'readonly'             => 'Рарддон æхгæд у',
 'missingarticle-rev'   => '(фæлтæр № $1)',
 'missingarticle-diff'  => '(хъауджы: $1, $2)',
 'internalerror'        => 'Мидæг рæдыд',
@@ -374,7 +374,8 @@ $messages = array(
 'nouserspecified'         => 'Дæхи бацамонын хъæуы: дæ архайæджы ном цы у.',
 'wrongpassword'           => 'Цы пароль ныффыстай, уый раст нæу.
 Лæмбынæгæй ныффысс дæ пароль',
-'wrongpasswordempty'      => 'Пароль афтид уыд. Афтæ нæ баззы, ныффыс-ма исты пароль.',
+'wrongpasswordempty'      => 'Пароль афтид у.
+Бафæлвар ногæй.',
 'mailmypassword'          => 'Рарвит мæм ног пароль',
 'passwordremindertitle'   => 'Ног рæстæгмæ пароль {{grammar:dative|{{SITENAME}}}}',
 'noemail'                 => 'Архайæг $1 йæ электрон посты адрис нæ ныууагъта.',
@@ -608,7 +609,7 @@ $messages = array(
 'prefs-help-email-required' => 'Электронон посты адрис хъæуы.',
 
 # User rights
-'userrights-nodatabase' => 'Бæрæггæнæнты базæ $1 нæй кæнæ уый у бынæттон базæ.',
+'userrights-nodatabase' => 'Рарддон $1 нæй кæнæ бынæттон нæу.',
 
 # Groups
 'group'            => 'Къорд:',
@@ -969,10 +970,10 @@ $3',
 'block-log-flags-nocreate' => 'аккаунт аразæн нал ис',
 
 # Developer tools
-'lockdbsuccesssub'    => 'Бæрæггæнæнты базæ æхгæд у',
-'unlockdbsuccesssub'  => 'Бæрæггæнæнты базæ æхгæд нал у',
-'unlockdbsuccesstext' => 'Бæрæггæнæнты базæ æхгæд нал у.',
-'databasenotlocked'   => 'Бæрæггæнæнты базæ æхгæд не ’рцыд.',
+'lockdbsuccesssub'    => 'Рарддон æхгæд æрцыд',
+'unlockdbsuccesssub'  => 'Рардон байгомис',
+'unlockdbsuccesstext' => 'Рард дон гом æрцыд.',
+'databasenotlocked'   => 'Рарддон æхгæд неу.',
 
 # Move page
 'movearticle' => 'Статьяйы ном баив',
@@ -1008,7 +1009,7 @@ $3',
 'tooltip-pt-preferences'          => 'Дæ фадæттæ',
 'tooltip-pt-watchlist'            => 'Фæрстæ кæй ивдтытæм ды дарыс дæ цæст',
 'tooltip-pt-mycontris'            => 'Дæ бавæрд',
-'tooltip-pt-login'                => 'Хуыздæр у куы базизай системæмæ; фæлæ нæмæнг нæу',
+'tooltip-pt-login'                => 'Хуыздæр у куы бахизай системæмæ; фæлæ нæмæнг нæу',
 'tooltip-pt-logout'               => 'Рахизын',
 'tooltip-ca-talk'                 => 'Фарсы тыххæй тæрхон',
 'tooltip-ca-edit'                 => 'Ацы фарс дæ бон у ивын. Дæ хорзæхæй, «Фен уал æй» джыбыйæ пайда кæн',

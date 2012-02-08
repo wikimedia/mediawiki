@@ -1841,7 +1841,7 @@ Nem lehet megfelelően ellenőrizni a biztonságosságát.',
 'img-auth-nopathinfo'       => 'Hiányzó PATH_INFO.
 A szerver nincs beállítva, hogy továbbítsa ezt az információt.
 Lehet, hogy CGI-alapú, és nem támogatja az img_auth-ot.
-[https://www.mediawiki.org/wiki/Manual:Image_Authorization Lásd kép hitelesítési lapot.]',
+Lásd https://www.mediawiki.org/wiki/Manual:Image_Authorization!',
 'img-auth-notindir'         => 'A kért elérési út nincs a beállított feltöltési könyvtárban.',
 'img-auth-badtitle'         => 'Nem sikerült érvényes címet készíteni a(z) „$1” szövegből.',
 'img-auth-nologinnWL'       => 'Nem vagy bejelentkezve, és a(z) „$1” nincs az engedélyezési listán.',
@@ -3842,8 +3842,8 @@ A képek teljes méretben jelennek meg, más fájltípusok közvetlenül a hozz�
 'logentry-suppress-revision'          => '$1 rejtetten megváltoztatta {{PLURAL:$5|egy változat|$5 változat}} láthatóságát $3 lapon: $4',
 'logentry-suppress-event-legacy'      => '$1 rejtetten megváltoztatta napló bejegyzések láthatóságát a(z) $3 lapon',
 'logentry-suppress-revision-legacy'   => '$1 rejtetten megváltoztatta változatok láthatóságát a(z) $3 lapon',
-'revdelete-content-hid'               => 'rejtett tartalom',
-'revdelete-summary-hid'               => 'elrejtett összefoglaló szerkesztése',
+'revdelete-content-hid'               => 'tartalom elrejtve',
+'revdelete-summary-hid'               => 'szerkesztési összefoglaló elrejtve',
 'revdelete-uname-hid'                 => 'szerkesztő elrejtve',
 'revdelete-content-unhid'             => 'tartalom megjelenítve',
 'revdelete-summary-unhid'             => 'szerkesztési összefoglalás megjelenítve',

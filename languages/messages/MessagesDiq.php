@@ -321,7 +321,7 @@ $1',
 'nstab-project'   => 'Pela Procey',
 'nstab-image'     => 'Dosya',
 'nstab-mediawiki' => 'Mesac',
-'nstab-template'  => 'Sablon',
+'nstab-template'  => 'Şablon',
 'nstab-help'      => 'Pela peşti',
 'nstab-category'  => 'Kategoriye',
 
