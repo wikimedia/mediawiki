@@ -214,7 +214,8 @@ class UploadStash {
 					$error = array( 'unknown', 'no error recorded' );
 				}
 			}
-			throw new UploadStashFileException( "Error storing file in '$path': " . implode( '; ', $error ) );
+			// at this point, $error should contain the single "most important" error, plus any parameters.
+			throw new UploadStashFileException( "Error storing file in '$path': " . implode( '; ', wfMessage( $error ) ) );
 		}
 		$stashPath = $storeStatus->value;
 
