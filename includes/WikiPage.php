@@ -1932,7 +1932,7 @@ class WikiPage extends Page {
 		$reason, $suppress = false, $id = 0, $commit = true, &$error = '', User $user = null
 	) {
 		return $this->doDeleteArticleReal( $reason, $suppress, $id, $commit, $error, $user )
-			!= WikiPage::DELETE_SUCCESS;
+			== WikiPage::DELETE_SUCCESS;
 	}
 
 	/**
