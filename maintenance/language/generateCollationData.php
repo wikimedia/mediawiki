@@ -1,4 +1,8 @@
 <?php
+/**
+ * @ingroup Maintenance
+ * @file
+ */
 
 require_once( dirname( __FILE__ ) .'/../Maintenance.php' );
 

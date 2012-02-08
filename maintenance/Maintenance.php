@@ -20,6 +20,11 @@
  * @defgroup Maintenance Maintenance
  */
 
+/**
+ * @defgroup MaintenanceArchive Maintenance archives
+ * @ingroup Maintenance
+ */
+
 // Define this so scripts can easily find doMaintenance.php
 define( 'RUN_MAINTENANCE_IF_MAIN', dirname( __FILE__ ) . '/doMaintenance.php' );
 define( 'DO_MAINTENANCE', RUN_MAINTENANCE_IF_MAIN ); // original name, harmless
