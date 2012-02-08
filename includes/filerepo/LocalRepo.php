@@ -14,12 +14,12 @@
  * @ingroup FileRepo
  */
 class LocalRepo extends FileRepo {
-	var $fileFactory = array( 'LocalFile', 'newFromTitle' );
-	var $fileFactoryKey = array( 'LocalFile', 'newFromKey' );
-	var $oldFileFactory = array( 'OldLocalFile', 'newFromTitle' );
-	var $oldFileFactoryKey = array( 'OldLocalFile', 'newFromKey' );
-	var $fileFromRowFactory = array( 'LocalFile', 'newFromRow' );
-	var $oldFileFromRowFactory = array( 'OldLocalFile', 'newFromRow' );
+	var $fileFactory           = array( 'LocalFile'   , 'newFromTitle' );
+	var $fileFactoryKey        = array( 'LocalFile'   , 'newFromKey'   );
+	var $fileFromRowFactory    = array( 'LocalFile'   , 'newFromRow'   );
+	var $oldFileFactory        = array( 'OldLocalFile', 'newFromTitle' );
+	var $oldFileFactoryKey     = array( 'OldLocalFile', 'newFromKey'   );
+	var $oldFileFromRowFactory = array( 'OldLocalFile', 'newFromRow'   );
 
 	/**
 	 * @throws MWException
