@@ -3997,6 +3997,7 @@ class User {
 				__METHOD__
 			);
 
+			$this->mOptionOverrides = array();
 			foreach ( $res as $row ) {
 				$this->mOptionOverrides[$row->up_property] = $row->up_value;
 				$this->mOptions[$row->up_property] = $row->up_value;
