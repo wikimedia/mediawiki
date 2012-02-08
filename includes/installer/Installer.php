@@ -1270,6 +1270,7 @@ abstract class Installer {
 				$exts[] = $file;
 			}
 		}
+		natcasesort( $exts );
 
 		return $exts;
 	}
