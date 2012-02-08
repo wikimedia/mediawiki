@@ -3169,8 +3169,14 @@ class Language {
 	 * Usage {{gender:username|masculine|feminine|neutral}}.
 	 * username is optional, in which case the gender of current user is used,
 	 * but only in (some) interface messages; otherwise default gender is used.
-	 * If second or third parameter are not specified, masculine is used.
-	 * These details may be overriden per language.
+	 *
+	 * If no forms are given, an empty string is returned. If only one form is
+	 * given, it will be returned unconditionally. These details are implied by
+	 * the caller and cannot be overridden in subclasses.
+	 *
+	 * If more than one form is given, the default is to use the neutral one
+	 * if it is specified, and to use the masculine one otherwise. These
+	 * details can be overridden in subclasses.
 	 *
 	 * @param $gender string
 	 * @param $forms array
