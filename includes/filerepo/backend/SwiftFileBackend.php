@@ -24,7 +24,7 @@ class SwiftFileBackend extends FileBackendStore {
 	protected $auth; // Swift authentication handler
 	protected $authTTL; // integer seconds
 	protected $swiftAnonUser; // string; username to handle unauthenticated requests
-	protected $maxContCacheSize = 20; // integer; max containers with entries
+	protected $maxContCacheSize = 100; // integer; max containers with entries
 
 	/** @var CF_Connection */
 	protected $conn; // Swift connection handle
@@ -854,7 +854,7 @@ class SwiftFileBackendFileList implements Iterator {
 		if ( !$this->valid() && count( $this->bufferIter ) ) {
 			$this->bufferAfter = end( $this->bufferIter );
 			$this->bufferIter = $this->backend->getFileListPageInternal(
-					$this->container, $this->dir, $this->bufferAfter, self::PAGE_SIZE
+				$this->container, $this->dir, $this->bufferAfter, self::PAGE_SIZE
 			);
 		}
 	}
@@ -863,7 +863,7 @@ class SwiftFileBackendFileList implements Iterator {
 		$this->pos = 0;
 		$this->bufferAfter = null;
 		$this->bufferIter = $this->backend->getFileListPageInternal(
-				$this->container, $this->dir, $this->bufferAfter, self::PAGE_SIZE
+			$this->container, $this->dir, $this->bufferAfter, self::PAGE_SIZE
 		);
 	}
 
