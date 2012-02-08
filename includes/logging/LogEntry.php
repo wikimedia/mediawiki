@@ -410,12 +410,17 @@ class ManualLogEntry extends LogEntryBase {
 	 * @return int If of the log entry
 	 */
 	public function insert() {
+		global $wgContLang;
+
 		$dbw = wfGetDB( DB_MASTER );
 		$id = $dbw->nextSequenceValue( 'logging_log_id_seq' );
 
 		if ( $this->timestamp === null ) {
 			$this->timestamp = wfTimestampNow();
 		}
+
+		# Truncate for whole multibyte characters.
+		$comment = $wgContLang->truncate( $this->getComment(), 255 );
 
 		$data = array(
 			'log_id' => $id,
@@ -427,7 +432,7 @@ class ManualLogEntry extends LogEntryBase {
 			'log_namespace' => $this->getTarget()->getNamespace(),
 			'log_title' => $this->getTarget()->getDBkey(),
 			'log_page' => $this->getTarget()->getArticleId(),
-			'log_comment' => $this->getComment(),
+			'log_comment' => $comment,
 			'log_params' => serialize( (array) $this->getParameters() ),
 		);
 		$dbw->insert( 'logging', $data, __METHOD__ );
