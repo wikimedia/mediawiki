@@ -2,8 +2,7 @@
 /**
  * Implements uploading from a HTTP resource.
  *
- * @file
- * @ingroup upload
+ * @ingroup Upload
  * @author Bryan Tong Minh
  * @author Michael Dale
  */
