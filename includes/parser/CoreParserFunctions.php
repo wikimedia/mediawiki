@@ -277,7 +277,14 @@ class CoreParserFunctions {
 	 */
 	static function gender( $parser, $username ) {
 		wfProfileIn( __METHOD__ );
-		$forms = array_slice( func_get_args(), 2);
+		$forms = array_slice( func_get_args(), 2 );
+
+		// Some shortcuts to avoid loading user data unnecessarily
+		if ( count( $forms ) === 0 ) {
+			return '';
+		} elseif ( count( $forms ) === 1 ) {
+			return $forms[0];
+		}
 
 		$username = trim( $username );
 
