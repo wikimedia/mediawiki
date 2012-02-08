@@ -27,7 +27,7 @@
  * </p>$
  * @endcode
  *
- * @inGroup Maintenance
+ * @ingroup Maintenance
  * @author Antoine Musso <hashar at free dot fr>
  * @license GNU General Public License 2.0 or later
  */

@@ -1,5 +1,10 @@
 <?php
 /**
+ * @file
+ * @ingroup LockManager Maintenance
+ */
+
+/**
  * This code should not require MediaWiki setup or PHP files.
  */
 if ( php_sapi_name() !== 'cli' ) {

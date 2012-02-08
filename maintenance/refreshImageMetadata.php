@@ -24,7 +24,7 @@
  *
  * @file
  * @author Brian Wolff
- * @ingroup maintenance
+ * @ingroup Maintenance
  */
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
