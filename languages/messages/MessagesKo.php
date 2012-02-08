@@ -17,6 +17,7 @@
  * @author Gjue
  * @author IRTC1015
  * @author ITurtle
+ * @author Idh0854
  * @author Kaganer
  * @author Klutzy
  * @author Kwj2772
@@ -1772,7 +1773,11 @@ $1',
 'backend-fail-closetemp'     => '임시 파일을 닫을 수 없습니다.',
 'backend-fail-read'          => '$1 파일을 읽을 수 없습니다.',
 'backend-fail-create'        => '$1 파일을 쓸 수 없습니다.',
-'backend-fail-readonly'      => '‘$1’ 백엔드가 읽기 전용입니다. 자세한 이유는 다음과 같습니다: “$2”',
+'backend-fail-readonly'      => '‘$1’ 저장 백엔드가 읽기 전용입니다. 자세한 이유는 다음과 같습니다: “$2”',
+'backend-fail-connect'       => "'$1' 저장 백엔드에 접속하지 못했습니다.",
+'backend-fail-internal'      => '"$1" 저장 백엔드에 알 수 없는 오류가 발생했습니다.',
+'backend-fail-contenttype'   => '"$1"에 저장하기 위한 파일의 내용 유형을 판별하지 못했습니다.',
+'backend-fail-batchsize'     => '저장 백엔드에서 $1개의 파일 {{PLURAL:$1|작업}}이 쌓여 있습니다; 한계는 $2개입니다.',
 
 # Lock manager
 'lockmanager-notlocked'        => '‘$1’ 경로의 잠금을 풀 수 없습니다. 해당 경로는 잠겨 있지 않습니다.',
@@ -1801,10 +1806,9 @@ $1',
 
 # img_auth script messages
 'img-auth-accessdenied'     => '접근 거부됨',
-'img-auth-nopathinfo'       => 'PATH_INFO 값을 알 수 없습니다.
-서버가 이 정보를 받을 수 있도록 설정되어 있지 않습니다.
+'img-auth-nopathinfo'       => '서버가 이 정보를 받을 수 있도록 설정되어 있지 않습니다.
 이러한 경우는 서버가 CGI 기반이고 img_auth를 지원하지 않을 때 나타날 수 있습니다.
-[https://www.mediawiki.org/wiki/Manual:Image_Authorization 그림 권한에 대해 자세히 알아보려면 여기를 클릭하세요.]',
+https://www.mediawiki.org/wiki/Manual:Image_Authorization 을 참고하십시오.',
 'img-auth-notindir'         => '요청한 경로가 설정한 업로드 디렉토리에 없습니다.',
 'img-auth-badtitle'         => '"$1"에서 바른 제목을 만들 수 없습니다.',
 'img-auth-nologinnWL'       => '당신은 로그인하지 않았으며 "$1" 파일은 화이트리스트에 존재하지 않습니다.',
@@ -2307,9 +2311,9 @@ $UNWATCHURL
 'rollbacklink'      => '되돌리기',
 'rollbackfailed'    => '되돌리기 실패',
 'cantrollback'      => '편집을 되돌릴 수 없습니다. 문서를 편집한 사용자가 한명뿐입니다.',
-'alreadyrolled'     => '[[:$1]]에서 [[User:$2|$2]] ([[User talk:$2|토론]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) 의 편집을 되돌릴 수 없습니다; 누군가가 문서를 고치거나 되돌렸습니다.
+'alreadyrolled'     => '[[:$1]]에서 [[User:$2|$2]] ([[User talk:$2|토론]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) 의 편집을 되돌릴 수 없습니다; 누군가가 이미 문서를 고치거나 되돌렸습니다.
 
-마지막으로 문서를 편집한 사람은 [[User:$3|$3]] ([[User talk:$3|토론]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) 입니다.',
+마지막으로 이 문서를 편집한 사용자는 [[User:$3|$3]] ([[User talk:$3|토론]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) 입니다.',
 'editcomment'       => "편집 요약: ''$1''",
 'revertpage'        => '[[Special:Contributions/$2|$2]]([[User talk:$2|토론]])의 편집을 [[User:$1|$1]]의 마지막 버전으로 되돌림',
 'revertpage-nouser' => '(계정 이름 삭제됨)의 편집을 [[User:$1|$1]]의 마지막 편집으로 되돌림',
@@ -3239,6 +3243,8 @@ Variants for Chinese language
 'exif-giffilecomment'              => 'GIF 파일 주석',
 'exif-intellectualgenre'           => '컨텐츠 정보',
 'exif-scenecode'                   => 'IPTC 장면 코드',
+'exif-originalimageheight'         => '자르기 전 이미지의 세로 길이',
+'exif-originalimagewidth'          => '자르기 전 이미지의 가로 길이',
 
 # EXIF attributes
 'exif-compression-1' => '압축되지 않음',
@@ -3509,7 +3515,7 @@ $5
 
 # Delete conflict
 'deletedwhileediting'      => "'''주의''': 당신이 이 문서를 편집하던 중에 이 문서가 삭제되었습니다.",
-'confirmrecreate'          => '[[User:$1|$1]] 사용자([[User talk:$1|토론]])가 당신의 편집 도중 문서를 삭제했습니다. 삭제 이유는 다음과 같습니다:
+'confirmrecreate'          => '[[User:$1|$1]] 사용자([[User talk:$1|토론]])가 당신이 편집하는 도중에 문서를 삭제했습니다. 삭제 이유는 다음과 같습니다:
 : $2
 문서를 다시 생성해야 하는지 확인해주세요.',
 'confirmrecreate-noreason' => '[[User:$1|$1]] 사용자([[User talk:$1|토론]])가 당신의 편집 도중 문서를 삭제했습니다. 문서를 다시 생성해야 하는지 확인해주세요.',

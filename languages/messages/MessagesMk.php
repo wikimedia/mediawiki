@@ -1906,7 +1906,7 @@ $1',
 'img-auth-nopathinfo'       => 'Недостасува PATH_INFO.
 Вашиот опслужувач не е нагоден за да ја предаде оваа информација.
 Можеби се заснова на CGI, и така не подржува img_auth.
-Погл. [https://www.mediawiki.org/wiki/Manual:Image_Authorization?uselang=mk Одобрување на слики]',
+Погл. https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'         => 'Бараниот пат не води кон зададената папка за подигање.',
 'img-auth-badtitle'         => 'Не може да се конструира важечки наслов од „$1“.',
 'img-auth-nologinnWL'       => 'Не сте најавени и „$1“ не е на списокот на допуштени.',

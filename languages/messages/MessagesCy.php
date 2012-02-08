@@ -1608,7 +1608,7 @@ Ni all gael ei wirio'n ddigonol er sicrhau diogelwch.",
 'img-auth-nopathinfo'       => "PATH_INFO yn eisiau.
 Nid yw'ch gweinydd wedi ei osod i fedru pasio'r wybodaeth hon.
 Efallai ei fod wedi ei seilio ar CGI, ac heb fod yn gallu cynnal img_auth.
-[https://www.mediawiki.org/wiki/Manual:Image_Authorization Gweler y cyngor ar awdurdodi lluniau.]",
+Gweler https://www.mediawiki.org/wiki/Manual:Image_Authorization.",
 'img-auth-notindir'         => "Nid yw'r llwybr y gwneuthpwyd cais amdano yn y cyfeiriadur uwchlwytho ffurfweddedig.",
 'img-auth-badtitle'         => 'Ddim yn gallu gwneud teitl dilys o "$1".',
 'img-auth-nologinnWL'       => 'Nid ydych wedi mewngofnodi ac nid yw "$1" ar y rhestr wen.',
@@ -2644,6 +2644,9 @@ Mae ffolder dros dro yn eisiau.',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|diwygiad|diwygiad|ddiwygiad|diwygiad|diwygiad|diwygiad}}',
 'import-logentry-interwiki'        => 'wedi symud $1 (traws-wici)',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|diwygiad|diwygiad|ddiwygiad|diwygiad|diwygiad|diwygiad}} o $2',
+
+# JavaScriptTest
+'javascripttest-pagetext-skins' => 'Dewiswch wedd i gynnal profion arni:',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'                 => 'Eich tudalen defnyddiwr',

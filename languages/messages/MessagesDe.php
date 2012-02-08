@@ -3925,7 +3925,7 @@ Eine [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie der ''GNU General Public License'']
 'logentry-move-move_redir'            => '$1 verschob Seite $3 nach $4 und überschrieb dabei eine Weiterleitung',
 'logentry-move-move_redir-noredirect' => '$1 verschob Seite $3 nach $4 und überschrieb dabei eine Weiterleitung ohne selbst eine Weiterleitung anzulegen',
 'logentry-patrol-patrol'              => '$1 markierte Version $4 von Seite $3 als kontrolliert',
-'logentry-patrol-patrol-auto'         => '$1 markierte Version $4 von Seite $3 als kontrolliert (automatisch)',
+'logentry-patrol-patrol-auto'         => '$1 markierte automatisch Version $4 von Seite $3 als kontrolliert',
 'logentry-newusers-newusers'          => '$1 erstellte ein Benutzerkonto',
 'logentry-newusers-create'            => '$1 erstellte ein Benutzerkonto',
 'logentry-newusers-create2'           => '$1 erstellte ein Benutzerkonto $3',

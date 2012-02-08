@@ -1852,7 +1852,7 @@ $1',
 'img-auth-nopathinfo'       => 'Отсутствует <code>PATH_INFO</code>.
 Ваш сервер не настроен для передачи этих сведений.
 Возможно, он работает на основе CGI и не поддерживает <code>img_auth</code>.
-См. [https://www.mediawiki.org/wiki/Manual:Image_Authorization Разграничение доступа к изображениям]',
+См. https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'         => 'Запрашиваемый путь не относится к настроенной папке загрузок.',
 'img-auth-badtitle'         => 'Невозможно построить правильный заголовок из «$1».',
 'img-auth-nologinnWL'       => 'Вы не вошли в систему, а «$1» не входит в белый список.',
