@@ -3,7 +3,7 @@
  * Local file in the wiki's own database
  *
  * @file
- * @ingroup FileRepo
+ * @ingroup FileAbstraction
  */
 
 /**
@@ -26,7 +26,7 @@ define( 'MW_FILE_VERSION', 8 );
  * The convenience functions wfLocalFile() and wfFindFile() should be sufficient
  * in most cases.
  *
- * @ingroup FileRepo
+ * @ingroup FileAbstraction
  */
 class LocalFile extends File {
 	/**#@+
@@ -1432,7 +1432,7 @@ class LocalFile extends File {
 
 /**
  * Helper class for file deletion
- * @ingroup FileRepo
+ * @ingroup FileAbstraction
  */
 class LocalFileDeleteBatch {
 
@@ -1749,7 +1749,7 @@ class LocalFileDeleteBatch {
 
 /**
  * Helper class for file undeletion
- * @ingroup FileRepo
+ * @ingroup FileAbstraction
  */
 class LocalFileRestoreBatch {
 	/**
@@ -2097,7 +2097,7 @@ class LocalFileRestoreBatch {
 
 /**
  * Helper class for file movement
- * @ingroup FileRepo
+ * @ingroup FileAbstraction
  */
 class LocalFileMoveBatch {
 

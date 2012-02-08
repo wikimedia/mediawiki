@@ -1,5 +1,12 @@
 <?php
 /**
+ * @defgroup FileBackend File backend
+ * @ingroup  FileRepo
+ *
+ * This module regroup classes meant for MediaWiki to interacts with
+ */
+
+/**
  * @file
  * @ingroup FileBackend
  * @author Aaron Schulz
@@ -7,6 +14,7 @@
 
 /**
  * Base class for all file backend classes (including multi-write backends).
+ *
  * This class defines the methods as abstract that subclasses must implement.
  * Outside callers can assume that all backends will have these functions.
  * 
@@ -698,7 +706,8 @@ abstract class FileBackend {
 }
 
 /**
- * Base class for all backends associated with a particular storage medium.
+ * @brief Base class for all backends associated with a particular storage medium.
+ *
  * This class defines the methods as abstract that subclasses must implement.
  * Outside callers should *not* use functions with "Internal" in the name.
  * 
@@ -1255,7 +1264,7 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	/**
-	 * @see FileBackend::getFileList()
+	 * @copydoc FileBackend::getFileList() 
 	 */
 	final public function getFileList( array $params ) {
 		list( $fullCont, $dir, $shard ) = $this->resolveStoragePath( $params['dir'] );
@@ -1625,7 +1634,7 @@ abstract class FileBackendStore extends FileBackend {
  * FileBackendStore helper function to handle file listings that span container shards.
  * Do not use this class from places outside of FileBackendStore.
  *
- * @ingroup FileBackendStore
+ * @ingroup FileBackend
  */
 class FileBackendStoreShardListIterator implements Iterator {
 	/* @var FileBackendStore */

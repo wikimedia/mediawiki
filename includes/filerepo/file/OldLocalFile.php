@@ -3,13 +3,13 @@
  * Old file in the oldimage table
  *
  * @file
- * @ingroup FileRepo
+ * @ingroup FileAbstraction
  */
 
 /**
  * Class to represent a file in the oldimage table
  *
- * @ingroup FileRepo
+ * @ingroup FileAbstraction
  */
 class OldLocalFile extends LocalFile {
 	var $requestedTime, $archive_name;

@@ -3,13 +3,13 @@
  * Foreign file with an accessible MediaWiki database
  *
  * @file
- * @ingroup FileRepo
+ * @ingroup FileAbstraction
  */
 
 /**
  * Foreign file with an accessible MediaWiki database
  *
- * @ingroup FileRepo
+ * @ingroup FileAbstraction
  */
 class ForeignDBFile extends LocalFile {
 

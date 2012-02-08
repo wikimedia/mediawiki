@@ -7,10 +7,6 @@
  */
 
 /**
- * @defgroup FileRepo FileRepo
- */
-
-/**
  * Prioritized list of file repositories
  *
  * @ingroup FileRepo
