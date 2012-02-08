@@ -768,7 +768,9 @@ class FileRepo {
 
 	/**
 	 * Pick a random name in the temp zone and store a file to it.
-	 * Returns a FileRepoStatus object with the URL in the value.
+	 * Returns a FileRepoStatus object with the file Virtual URL in the value,
+	 * file can later be disposed using FileRepo::freeTemp().
+	 *
 	 *
 	 * @param $originalName String: the base name of the file as specified
 	 *     by the user. The file extension will be maintained.
@@ -831,7 +833,7 @@ class FileRepo {
 	/**
 	 * Remove a temporary file or mark it for garbage collection
 	 *
-	 * @param $virtualUrl String: the virtual URL returned by storeTemp
+	 * @param $virtualUrl String: the virtual URL returned by FileRepo::storeTemp()
 	 * @return Boolean: true on success, false on failure
 	 */
 	public function freeTemp( $virtualUrl ) {
@@ -840,8 +842,8 @@ class FileRepo {
 			wfDebug( __METHOD__.": Invalid temp virtual URL\n" );
 			return false;
 		}
-		$path = $this->resolveVirtualUrl( $virtualUrl );
-		$op = array( 'op' => 'delete', 'src' => $path );
+		$path   = $this->resolveVirtualUrl( $virtualUrl );
+		$op     = array( 'op' => 'delete', 'src' => $path );
 		$status = $this->backend->doOperation( $op );
 		return $status->isOK();
 	}
