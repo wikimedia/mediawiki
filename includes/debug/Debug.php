@@ -199,7 +199,7 @@ class MWDebug {
 			'sql' => $sql,
 			'function' => $function,
 			'master' => (bool) $isMaster,
-			'time' > 0.0,
+			'time' => 0.0,
 			'_start' => microtime( true ),
 		);
 
