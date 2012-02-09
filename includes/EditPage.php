@@ -182,6 +182,12 @@ class EditPage {
 	 * @var ParserOutput
 	 */
 	var $mParserOutput;
+	
+	/**
+	 * Has a summary been preset using GET parameter &summary= ?
+	 * @var Bool
+	 */
+	var $hasPresetSummary = false;
 
 	var $mBaseRevision = false;
 	var $mShowSummaryField = true;
@@ -679,6 +685,9 @@ class EditPage {
 			}
 			elseif ( $this->section != 'new' && $request->getVal( 'summary' ) ) {
 				$this->summary = $request->getText( 'summary' );
+				if ( $this->summary !== '' ) {
+					$this->hasPresetSummary = true;
+				}
 			}
 
 			if ( $request->getVal( 'minor' ) ) {
@@ -1795,6 +1804,13 @@ class EditPage {
 			$wgOut->addHTML( Html::hidden( 'wpIgnoreBlankSummary', true ) );
 		}
 
+		if ( $this->hasPresetSummary ) {
+			// If a summary has been preset using &summary= we dont want to prompt for
+			// a different summary. Only prompt for a summary if the summary is blanked.
+			// (Bug 17416)
+			$this->autoSumm = 'd41d8cd98f00b204e9800998ecf8427e'; # == md5('')
+		}
+		
 		$autosumm = $this->autoSumm ? $this->autoSumm : md5( $this->summary );
 		$wgOut->addHTML( Html::hidden( 'wpAutoSummary', $autosumm ) );
 
