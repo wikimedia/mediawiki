@@ -105,6 +105,7 @@ class HTMLFileCache extends FileCacheBase {
 
 		wfDebug( __METHOD__ . "()\n");
 		$filename = $this->cachePath();
+
 		$context->getOutput()->sendCacheControl();
 		header( "Content-Type: $wgMimeType; charset=UTF-8" );
 		header( "Content-Language: $wgLanguageCode" );
@@ -113,6 +114,7 @@ class HTMLFileCache extends FileCacheBase {
 				header( 'Content-Encoding: gzip' );
 			} else {
 				/* Send uncompressed */
+				wfDebug( __METHOD__ . " uncompressing cache file and sending it\n" );
 				readgzfile( $filename );
 				return;
 			}
