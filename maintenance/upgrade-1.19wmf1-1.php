@@ -21,7 +21,7 @@ class SchemaMigration extends Maintenance {
 		$sectionLoads = $wgLBFactoryConf['sectionLoads'];
 		$sectionsByDB = $wgLBFactoryConf['sectionsByDB'];
 
-		$rootPass = trim( wfShellExec( '/home/wikipedia/bin/mysql_root_pass' ) );
+		$rootPass = trim( wfShellExec( '/usr/local/bin/mysql_root_pass' ) );
 
 		// Compile wiki lists
 		$wikisBySection = array();
@@ -83,8 +83,6 @@ class SchemaMigration extends Maintenance {
 		}
 
 		echo "$server $wiki 1.19wmf1-1";
-
-		//$this->sourceUpgradeFile( $db, dirname( __FILE__ ) .'/schema-changes-1.19wmf1-1.sql' );
 
 		if ( ! $db->indexExists( 'page', 'page_redirect_namespace_len' ) ) {
 			echo " page_redirect_namespace_len index";
