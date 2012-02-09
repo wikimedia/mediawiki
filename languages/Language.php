@@ -29,6 +29,10 @@ if ( function_exists( 'mb_strtoupper' ) ) {
  * @ingroup Language
  */
 class FakeConverter {
+
+	/**
+	 * @var Language
+	 */
 	var $mLang;
 	function __construct( $langobj ) { $this->mLang = $langobj; }
 	function autoConvertToAllVariants( $text ) { return array( $this->mLang->getCode() => $text ); }
@@ -3131,7 +3135,7 @@ class Language {
 	 * (b) clear $tag value
 	 * @param &$tag string Current HTML tag name we are looking at
 	 * @param $tagType int (0-open tag, 1-close tag)
-	 * @param $lastCh char|string Character before the '>' that ended this tag
+	 * @param $lastCh string Character before the '>' that ended this tag
 	 * @param &$openTags array Open tag stack (not accounting for $tag)
 	 */
 	private function truncate_endBracket( &$tag, $tagType, $lastCh, &$openTags ) {
@@ -3244,7 +3248,7 @@ class Language {
 	 * match up with it.
 	 *
 	 * @param $str String: the validated block duration in English
-	 * @return Somehow translated block duration
+	 * @return string Somehow translated block duration
 	 * @see LanguageFi.php for example implementation
 	 */
 	function translateBlockExpiry( $str ) {
@@ -3583,7 +3587,7 @@ class Language {
 	 *
 	 * @param $code string
 	 *
-	 * @return false|string
+	 * @return bool|string
 	 */
 	public static function getFallbackFor( $code ) {
 		if ( $code === 'en' || !Language::isValidBuiltInCode( $code ) ) {
