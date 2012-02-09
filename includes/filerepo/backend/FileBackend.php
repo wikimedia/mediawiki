@@ -3,7 +3,8 @@
  * @defgroup FileBackend File backend
  * @ingroup  FileRepo
  *
- * This module regroup classes meant for MediaWiki to interacts with
+ * File backend is used to interact with file management systems such as SWIFT.
+ *
  */
 
 /**
