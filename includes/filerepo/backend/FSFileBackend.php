@@ -78,6 +78,7 @@ class FSFileBackend extends FileBackendStore {
 	 * Sanity check a relative file system path for validity
 	 * 
 	 * @param $path string Normalized relative path
+	 * @return bool
 	 */
 	protected function isLegalRelPath( $path ) {
 		// Check for file names longer than 255 chars
@@ -85,7 +86,7 @@ class FSFileBackend extends FileBackendStore {
 			return false;
 		}
 		if ( wfIsWindows() ) { // NTFS
-			return !preg_match( '![:*?"<>]!', $path );
+			return !preg_match( '![:*?"<>|]!', $path );
 		} else {
 			return true;
 		}
