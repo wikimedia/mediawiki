@@ -3,8 +3,8 @@
  * @defgroup FileBackend File backend
  * @ingroup  FileRepo
  *
- * File backend is used to interact with file management systems such as SWIFT.
- *
+ * File backend is used to interact with file storage systems,
+ * such as the local file system, NFS, or cloud storage systems.
  */
 
 /**
