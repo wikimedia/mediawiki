@@ -297,6 +297,7 @@ class SpecialBlock extends FormSpecialPage {
 
 	/**
 	 * Add header elements like block log entries, etc.
+	 * @return String
 	 */
 	protected function preText(){
 		$text = $this->msg( 'blockiptext' )->parse();

@@ -391,6 +391,7 @@ class UploadStash {
 	 * with an extension.
 	 * XXX this is somewhat redundant with the checks that ApiUpload.php does with incoming
 	 * uploads versus the desired filename. Maybe we can get that passed to us...
+	 * @return string
 	 */
 	public static function getExtensionForPath( $path ) {
 		// Does this have an extension?

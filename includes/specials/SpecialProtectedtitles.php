@@ -112,6 +112,7 @@ class SpecialProtectedtitles extends SpecialPage {
 	 * @param $namespace Integer:
 	 * @param $type string
 	 * @param $level string
+	 * @return string
 	 * @private
 	 */
 	function showOptions( $namespace, $type='edit', $level ) {

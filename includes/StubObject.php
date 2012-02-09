@@ -52,6 +52,7 @@ class StubObject {
 	 *
 	 * @param $name String: name of the function called
 	 * @param $args Array: arguments
+	 * @return mixed
 	 */
 	function _call( $name, $args ) {
 		$this->_unstub( $name, 5 );
@@ -72,6 +73,7 @@ class StubObject {
 	 *
 	 * @param $name String: name of the function called
 	 * @param $args Array: arguments
+	 * @return mixed
 	 */
 	function __call( $name, $args ) {
 		return $this->_call( $name, $args );

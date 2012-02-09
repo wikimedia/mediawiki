@@ -510,6 +510,7 @@ class SpecialExport extends SpecialPage {
 
 	/**
 	 * Expand a list of pages to include items used in those pages.
+	 * @return array
 	 */
 	private function getLinks( $inputPages, $pageSet, $table, $fields, $join ) {
 		$dbr = wfGetDB( DB_SLAVE );

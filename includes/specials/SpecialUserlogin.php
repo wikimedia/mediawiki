@@ -209,6 +209,7 @@ class LoginForm extends SpecialPage {
 
 	/**
 	 * @private
+	 * @return bool|void
 	 */
 	function addNewAccount() {
 		global $wgUser, $wgEmailAuthentication, $wgLoginLanguageSelector;
@@ -270,6 +271,7 @@ class LoginForm extends SpecialPage {
 
 	/**
 	 * @private
+	 * @return bool|\User
 	 */
 	function addNewAccountInternal() {
 		global $wgAuth, $wgMemc, $wgAccountCreationThrottle,
@@ -470,6 +472,7 @@ class LoginForm extends SpecialPage {
 	 * This may create a local account as a side effect if the
 	 * authentication plugin allows transparent local account
 	 * creation.
+	 * @return int
 	 */
 	public function authenticateUserData() {
 		global $wgUser, $wgAuth;
@@ -1117,6 +1120,7 @@ class LoginForm extends SpecialPage {
 	 * previous pass through the system.
 	 *
 	 * @private
+	 * @return bool
 	 */
 	function hasSessionCookie() {
 		global $wgDisableCookieCheck;
@@ -1125,6 +1129,7 @@ class LoginForm extends SpecialPage {
 
 	/**
 	 * Get the login token from the current session
+	 * @return Mixed
 	 */
 	public static function getLoginToken() {
 		global $wgRequest;
@@ -1151,6 +1156,7 @@ class LoginForm extends SpecialPage {
 
 	/**
 	 * Get the createaccount token from the current session
+	 * @return Mixed
 	 */
 	public static function getCreateaccountToken() {
 		global $wgRequest;
@@ -1175,6 +1181,7 @@ class LoginForm extends SpecialPage {
 
 	/**
 	 * @private
+	 * @return void
 	 */
 	function cookieRedirectCheck( $type ) {
 		$titleObj = SpecialPage::getTitleFor( 'Userlogin' );
@@ -1243,6 +1250,7 @@ class LoginForm extends SpecialPage {
 	 *
 	 * @param $text Link text
 	 * @param $lang Language code
+	 * @return string
 	 */
 	function makeLanguageSelectorLink( $text, $lang ) {
 		$attr = array( 'uselang' => $lang );

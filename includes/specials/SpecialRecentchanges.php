@@ -534,6 +534,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	/**
 	 * Get the query string to append to feed link URLs.
 	 * This is overridden by RCL to add the target parameter
+	 * @return bool
 	 */
 	public function getFeedQuery() {
 		return false;
@@ -760,6 +761,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	 * @param $override Array: options to override
 	 * @param $options Array: current options
 	 * @param $active Boolean: whether to show the link in bold
+	 * @return string
 	 */
 	function makeOptionsLink( $title, $override, $options, $active = false ) {
 		$params = $override + $options;
@@ -775,6 +777,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	 *
 	 * @param $defaults Array
 	 * @param $nondefaults Array
+	 * @return string
 	 */
 	function optionsPanel( $defaults, $nondefaults ) {
 		global $wgRCLinkLimits, $wgRCLinkDays;

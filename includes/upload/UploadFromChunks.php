@@ -129,6 +129,7 @@ class UploadFromChunks extends UploadFromFile {
 	/**
 	 * Returns the virtual chunk location: 	
 	 * @param $index
+	 * @return string
 	 */
 	function getVirtualChunkLocation( $index ){
 		return $this->repo->getVirtualUrl( 'temp' ) . 
@@ -241,6 +242,7 @@ class UploadFromChunks extends UploadFromFile {
 	 * Output the chunk to disk
 	 * 
 	 * @param $chunkPath string
+	 * @return \FileRepoStatus
 	 */
 	private function outputChunk( $chunkPath ){
 		// Key is fileKey + chunk index

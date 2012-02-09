@@ -95,6 +95,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 	 * @param $namespace Integer: a namespace constant (default NS_MAIN).
 	 * @param $from String: dbKey we are starting listing at.
 	 * @param $to String: dbKey we are ending listing at.
+	 * @return string
 	 */
 	function namespaceForm( $namespace = NS_MAIN, $from = '', $to = '' ) {
 		global $wgScript;
@@ -270,6 +271,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 	 * @param $inpoint String: lower limit of pagenames
 	 * @param $outpoint String: upper limit of pagenames
 	 * @param $namespace Integer (Default NS_MAIN)
+	 * @return string
 	 */
 	function showline( $inpoint, $outpoint, $namespace = NS_MAIN ) {
 		global $wgContLang;

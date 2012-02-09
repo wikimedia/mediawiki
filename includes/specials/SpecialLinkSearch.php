@@ -112,6 +112,7 @@ class LinkSearchPage extends QueryPage {
 
 	/**
 	 * Disable RSS/Atom feeds
+	 * @return bool
 	 */
 	function isSyndicated() {
 		return false;
@@ -203,6 +204,7 @@ class LinkSearchPage extends QueryPage {
 	 * We do a truncated index search, so the optimizer won't trust
 	 * it as good enough for optimizing sort. The implicit ordering
 	 * from the scan will usually do well enough for our needs.
+	 * @return array
 	 */
 	function getOrderFields() {
 		return array();

@@ -28,6 +28,7 @@ class Status {
 	 * Factory function for fatal errors
 	 *
 	 * @param $message String: message name
+	 * @return Status
 	 */
 	static function newFatal( $message /*, parameters...*/ ) {
 		$params = func_get_args();
@@ -41,6 +42,7 @@ class Status {
 	 * Factory function for good results
 	 *
 	 * @param $value Mixed
+	 * @return Status
 	 */
 	static function newGood( $value = null ) {
 		$result = new self;

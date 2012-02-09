@@ -97,6 +97,7 @@ class SpecialJavaScriptTest extends SpecialPage {
 	 * be thrown.
 	 * @param $html String: The raw HTML.
 	 * @param $state String: State, one of 'noframework', 'unknownframework' or 'frameworkfound'
+	 * @return string
 	 */
 	private function wrapSummaryHtml( $html, $state ) {
 		$validStates = array( 'noframework', 'unknownframework', 'frameworkfound' );

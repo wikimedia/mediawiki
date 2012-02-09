@@ -148,6 +148,7 @@ class WikiFilePage extends WikiPage {
 
 	/**
 	 * Override handling of action=purge
+	 * @return bool
 	 */
 	public function doPurge() {
 		$this->loadFile();

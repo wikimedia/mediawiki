@@ -52,6 +52,7 @@ class UnusedCategoriesPage extends QueryPage {
 
 	/**
 	 * A should come before Z (bug 30907)
+	 * @return bool
 	 */
 	function sortDescending() {
 		return false;

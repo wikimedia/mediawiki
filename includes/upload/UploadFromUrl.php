@@ -180,6 +180,7 @@ class UploadFromUrl extends UploadBase {
 	/**
 	 * Wrapper around the parent function in order to defer verifying the
 	 * upload until the file really has been fetched.
+	 * @return array|mixed
 	 */
 	public function verifyUpload() {
 		if ( $this->mAsync ) {
@@ -191,6 +192,7 @@ class UploadFromUrl extends UploadBase {
 	/**
 	 * Wrapper around the parent function in order to defer checking warnings
 	 * until the file really has been fetched.
+	 * @return Array
 	 */
 	public function checkWarnings() {
 		if ( $this->mAsync ) {
@@ -203,6 +205,7 @@ class UploadFromUrl extends UploadBase {
 	/**
 	 * Wrapper around the parent function in order to defer checking protection
 	 * until we are sure that the file can actually be uploaded
+	 * @return bool|mixed
 	 */
 	public function verifyTitlePermissions( $user ) {
 		if ( $this->mAsync ) {
@@ -214,6 +217,7 @@ class UploadFromUrl extends UploadBase {
 	/**
 	 * Wrapper around the parent function in order to defer uploading to the
 	 * job queue for asynchronous uploads
+	 * @return Status
 	 */
 	public function performUpload( $comment, $pageText, $watch, $user ) {
 		if ( $this->mAsync ) {

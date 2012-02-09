@@ -68,6 +68,7 @@ class FewestrevisionsPage extends QueryPage {
 	/**
 	 * @param $skin Skin object
 	 * @param $result Object: database row
+	 * @return String
 	 */
 	function formatResult( $skin, $result ) {
 		global $wgContLang;

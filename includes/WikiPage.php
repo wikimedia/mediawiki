@@ -888,6 +888,7 @@ class WikiPage extends Page {
 
 	/**
 	 * Perform the actions of a page purging
+	 * @return bool
 	 */
 	public function doPurge() {
 		global $wgUseSquid;
@@ -1498,6 +1499,7 @@ class WikiPage extends Page {
 	/**
 	 * Prepare text which is about to be saved.
 	 * Returns a stdclass with source, pst and output members
+	 * @return bool|object
 	 */
 	public function prepareTextForEdit( $text, $revid = null, User $user = null ) {
 		global $wgParser, $wgContLang, $wgUser;
@@ -2169,6 +2171,7 @@ class WikiPage extends Page {
 	 *
 	 * @param $resultDetails Array: contains result-specific array of additional values
 	 * @param $guser User The user performing the rollback
+	 * @return array
 	 */
 	public function commitRollback( $fromP, $summary, $bot, &$resultDetails, User $guser ) {
 		global $wgUseRCPatrol, $wgContLang;
@@ -2793,6 +2796,7 @@ class WikiPage extends Page {
 
 	/**
 	 * @deprecated since 1.18
+	 * @return bool
 	 */
 	public function useParserCache( $oldid ) {
 		wfDeprecated( __METHOD__, '1.18' );
@@ -2973,6 +2977,7 @@ class PoolWorkArticleView extends PoolCounterWork {
 
 	/**
 	 * @param $status Status
+	 * @return bool
 	 */
 	function error( $status ) {
 		$this->error = $status;
