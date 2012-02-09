@@ -980,8 +980,8 @@ function wfLogDBError( $text ) {
  * Throws a warning that $function is deprecated
  *
  * @param $function String
- * @param $version String|false: Added in 1.19.
- * @param $component String|false: Added in 1.19.
+ * @param $version String|bool: Added in 1.19.
+ * @param $component String|bool: Added in 1.19.
  * 
  * @return null
  */
@@ -3445,7 +3445,7 @@ function &wfGetLBFactory() {
  * Shortcut for RepoGroup::singleton()->findFile()
  *
  * @param $title String or Title object
- * @param $options Associative array of options:
+ * @param $options array Associative array of options:
  *     time:           requested time for an archived image, or false for the
  *                     current version. An image object will be returned which was
  *                     created at the specified time.
@@ -3806,7 +3806,7 @@ function wfRunHooks( $event, $args = array() ) {
  * because php might make it negative.
  *
  * @throws MWException if $data not long enough, or if unpack fails
- * @return Associative array of the extracted data
+ * @return array Associative array of the extracted data
  */
 function wfUnpack( $format, $data, $length=false ) {
 	if ( $length !== false ) {

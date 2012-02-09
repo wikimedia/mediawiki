@@ -617,7 +617,7 @@ class DatabaseSqlite extends DatabaseBase {
 	 * Get information about a given field
 	 * Returns false if the field does not exist.
 	 *
-	 * @return SQLiteField|false
+	 * @return SQLiteField|bool
 	 */
 	function fieldInfo( $table, $field ) {
 		$tableName = $this->tableName( $table );

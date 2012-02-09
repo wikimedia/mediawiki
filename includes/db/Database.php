@@ -2599,7 +2599,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 *
 	 * @param $sql String SQL query we will append the limit too
 	 * @param $limit Integer the SQL limit
-	 * @param $offset Integer|false the SQL offset (default false)
+	 * @param $offset Integer|bool the SQL offset (default false)
 	 *
 	 * @return string
 	 */
@@ -3009,7 +3009,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * installations. Most callers should use LoadBalancer::safeGetLag()
 	 * instead.
 	 *
-	 * @return Database replication lag in seconds
+	 * @return int Database replication lag in seconds
 	 */
 	function getLag() {
 		return intval( $this->mFakeSlaveLag );
@@ -3134,7 +3134,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * ones in $GLOBALS. If an array is set here, $GLOBALS will not be used at
 	 * all. If it's set to false, $GLOBALS will be used.
 	 *
-	 * @param $vars False, or array mapping variable name to value.
+	 * @param $vars bool|array mapping variable name to value.
 	 */
 	function setSchemaVars( $vars ) {
 		$this->mSchemaVars = $vars;

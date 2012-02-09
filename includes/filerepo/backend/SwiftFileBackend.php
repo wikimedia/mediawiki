@@ -693,7 +693,7 @@ class SwiftFileBackend extends FileBackendStore {
 	/**
 	 * Get a connection to the Swift proxy
 	 *
-	 * @return CF_Connection|false
+	 * @return CF_Connection|bool
 	 * @throws InvalidResponseException
 	 */
 	protected function getConnection() {

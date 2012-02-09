@@ -78,7 +78,7 @@ abstract class Action {
 	 * @param $action String
 	 * @param $page Page
 	 * @param $context IContextSource
-	 * @return Action|false|null false if the action is disabled, null
+	 * @return Action|bool|null false if the action is disabled, null
 	 *     if it is not recognised
 	 */
 	public final static function factory( $action, Page $page, IContextSource $context = null ) {

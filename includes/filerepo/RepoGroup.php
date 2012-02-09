@@ -65,7 +65,7 @@ class RepoGroup {
 	/**
 	 * Construct a group of file repositories.
 	 *
-	 * @param $localInfo Associative array for local repo's info
+	 * @param $localInfo array Associative array for local repo's info
 	 * @param $foreignInfo Array of repository info arrays.
 	 *     Each info array is an associative array with the 'class' member
 	 *     giving the class name. The entire array is passed to the repository

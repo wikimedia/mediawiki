@@ -135,7 +135,7 @@ class ApiQuery extends ApiBase {
 
 	/**
 	 * Gets a default slave database connection object
-	 * @return Database
+	 * @return DatabaseBase
 	 */
 	public function getDB() {
 		if ( !isset( $this->mSlaveDB ) ) {

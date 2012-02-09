@@ -295,7 +295,7 @@ class FileRepo {
 	 *     private:        If true, return restricted (deleted) files if the current
 	 *                     user is allowed to view them. Otherwise, such files will not
 	 *                     be found.
-	 * @return File|false
+	 * @return File|bool
 	 */
 	public function findFile( $title, $options = array() ) {
 		$title = File::normalizeTitle( $title );
@@ -377,8 +377,8 @@ class FileRepo {
 	 * version control should return false if the time is specified.
 	 *
 	 * @param $sha1 String base 36 SHA-1 hash
-	 * @param $options Option array, same as findFile().
-	 * @return File|false
+	 * @param $options array Option array, same as findFile().
+	 * @return File|bool
 	 */
 	public function findFileFromKey( $sha1, $options = array() ) {
 		$time = isset( $options['time'] ) ? $options['time'] : false;
@@ -419,7 +419,7 @@ class FileRepo {
 	/**
 	 * Get the public root URL of the repository
 	 *
-	 * @return string|false
+	 * @return string|bool
 	 */
 	public function getRootUrl() {
 		return $this->url;
@@ -531,7 +531,7 @@ class FileRepo {
 	 *
 	 * @param $query mixed Query string to append
 	 * @param $entry string Entry point; defaults to index
-	 * @return string|false
+	 * @return string|bool
 	 */
 	public function makeUrl( $query = '', $entry = 'index' ) {
 		if ( isset( $this->scriptDirUrl ) ) {
@@ -611,7 +611,7 @@ class FileRepo {
 	/**
 	 * Get the URL of the stylesheet to apply to description pages
 	 *
-	 * @return string|false
+	 * @return string|bool
 	 */
 	public function getDescriptionStylesheetUrl() {
 		if ( isset( $this->scriptDirUrl ) ) {
@@ -1188,7 +1188,7 @@ class FileRepo {
 	 * Get the timestamp of a file with a given virtual URL/storage path
 	 *
 	 * @param $virtualUrl string
-	 * @return string|false
+	 * @return string|bool
 	 */
 	public function getFileTimestamp( $virtualUrl ) {
 		$path = $this->resolveToStoragePath( $virtualUrl );
@@ -1199,7 +1199,7 @@ class FileRepo {
 	 * Get the sha1 of a file with a given virtual URL/storage path
 	 *
 	 * @param $virtualUrl string
-	 * @return string|false
+	 * @return string|bool
 	 */
 	public function getFileSha1( $virtualUrl ) {
 		$path = $this->resolveToStoragePath( $virtualUrl );

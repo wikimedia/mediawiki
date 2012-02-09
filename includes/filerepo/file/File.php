@@ -252,7 +252,7 @@ abstract class File {
 	/**
 	 * Return the associated title object
 	 *
-	 * @return Title|false
+	 * @return Title|bool
 	 */
 	public function getTitle() {
 		return $this->title;
@@ -329,7 +329,7 @@ abstract class File {
 	* Most callers don't check the return value, but ForeignAPIFile::getPath
 	* returns false.
 	 *
-	 * @return string|false
+	 * @return string|bool
 	*/
 	public function getPath() {
 		if ( !isset( $this->path ) ) {
@@ -344,7 +344,7 @@ abstract class File {
 	 * Returns false on failure. Callers must not alter the file.
 	 * Temporary files are cleared automatically.
 	 *
-	 * @return string|false
+	 * @return string|bool
 	 */
 	public function getLocalRefPath() {
 		$this->assertRepoDefined();
@@ -774,7 +774,7 @@ abstract class File {
 	 * @param $params Array: an associative array of handler-specific parameters.
 	 *                Typical keys are width, height and page.
 	 * @param $flags Integer: a bitfield, may contain self::RENDER_NOW to force rendering
-	 * @return MediaTransformOutput|false
+	 * @return MediaTransformOutput|bool
 	 */
 	function transform( $params, $flags = 0 ) {
 		global $wgUseSquid, $wgIgnoreImageErrors, $wgThumbnailEpoch;
@@ -1329,7 +1329,7 @@ abstract class File {
 	/**
 	 * Returns the repository
 	 *
-	 * @return FileRepo|false
+	 * @return FileRepo|bool
 	 */
 	function getRepo() {
 		return $this->repo;
@@ -1418,7 +1418,7 @@ abstract class File {
 	 * @param $versions array set of record ids of deleted items to restore,
 	 *                    or empty to restore all revisions.
 	 * @param $unsuppress bool remove restrictions on content upon restoration?
-	 * @return int|false the number of file revisions restored if successful,
+	 * @return int|bool the number of file revisions restored if successful,
 	 *         or false on failure
 	 * STUB
 	 * Overridden by LocalFile
@@ -1548,7 +1548,7 @@ abstract class File {
 	/**
 	 * Get the 14-character timestamp of the file upload
 	 *
-	 * @return string|false TS_MW timestamp or false on failure
+	 * @return string|bool TS_MW timestamp or false on failure
 	 */
 	function getTimestamp() {
 		$this->assertRepoDefined();
