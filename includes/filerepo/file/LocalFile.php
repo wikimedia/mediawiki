@@ -121,6 +121,7 @@ class LocalFile extends File {
 
 	/**
 	 * Fields in the image table
+	 * @return array
 	 */
 	static function selectFields() {
 		return array(
@@ -160,6 +161,7 @@ class LocalFile extends File {
 	/**
 	 * Get the memcached key for the main data for this file, or false if
 	 * there is no access to the shared cache.
+	 * @return bool
 	 */
 	function getCacheKey() {
 		$hashedName = md5( $this->getName() );
@@ -169,6 +171,7 @@ class LocalFile extends File {
 
 	/**
 	 * Try to load file metadata from memcached. Returns true on success.
+	 * @return bool
 	 */
 	function loadFromCache() {
 		global $wgMemc;
@@ -286,6 +289,7 @@ class LocalFile extends File {
 	/**
 	 * Decode a row from the database (either object or array) to an array
 	 * with timestamps and MIME types decoded, and the field prefix removed.
+	 * @return array
 	 */
 	function decodeRow( $row, $prefix = 'img_' ) {
 		$array = (array)$row;
@@ -474,6 +478,7 @@ class LocalFile extends File {
 	 * Return the width of the image
 	 *
 	 * Returns false on error
+	 * @return bool
 	 */
 	public function getWidth( $page = 1 ) {
 		$this->load();
@@ -494,6 +499,7 @@ class LocalFile extends File {
 	 * Return the height of the image
 	 *
 	 * Returns false on error
+	 * @return bool
 	 */
 	public function getHeight( $page = 1 ) {
 		$this->load();
@@ -527,6 +533,7 @@ class LocalFile extends File {
 
 	/**
 	 * Get handler-specific metadata
+	 * @return string
 	 */
 	function getMetadata() {
 		$this->load();
@@ -824,6 +831,7 @@ class LocalFile extends File {
 	 *  0      return line for current version
 	 *  1      query for old versions, return first one
 	 *  2, ... return next old version from above query
+	 * @return bool
 	 */
 	public function nextHistoryLine() {
 		# Polymorphic function name to distinguish foreign and local fetches
@@ -920,6 +928,7 @@ class LocalFile extends File {
 
 	/**
 	 * Record a file upload in the upload log and the image table
+	 * @return bool
 	 */
 	function recordUpload( $oldver, $desc, $license = '', $copyStatus = '', $source = '',
 		$watch = false, $timestamp = false )
@@ -939,6 +948,7 @@ class LocalFile extends File {
 
 	/**
 	 * Record a file upload in the upload log and the image table
+	 * @return bool
 	 */
 	function recordUpload2(
 		$oldver, $comment, $pageText, $props = false, $timestamp = false, $user = null
@@ -1336,6 +1346,7 @@ class LocalFile extends File {
 
 	/**
 	 * Get the URL of the file description page.
+	 * @return String
 	 */
 	function getDescriptionUrl() {
 		return $this->title->getLocalUrl();
@@ -1345,6 +1356,7 @@ class LocalFile extends File {
 	 * Get the HTML text of the description page
 	 * This is not used by ImagePage for local files, since (among other things)
 	 * it skips the parser cache.
+	 * @return bool|mixed
 	 */
 	function getDescriptionText() {
 		global $wgParser;
@@ -1634,6 +1646,7 @@ class LocalFileDeleteBatch {
 
 	/**
 	 * Run the transaction
+	 * @return \FileRepoStatus
 	 */
 	function execute() {
 		global $wgUseSquid;
@@ -1724,6 +1737,7 @@ class LocalFileDeleteBatch {
 
 	/**
 	 * Removes non-existent files from a deletion batch.
+	 * @return array
 	 */
 	function removeNonexistentFiles( $batch ) {
 		$files = $newBatch = array();
@@ -1793,6 +1807,7 @@ class LocalFileRestoreBatch {
 	 * rows and there's no need to keep the image row locked while it's acquiring those locks
 	 * The caller may have its own transaction open.
 	 * So we save the batch and let the caller call cleanup()
+	 * @return \FileRepoStatus
 	 */
 	function execute() {
 		global $wgLang;
@@ -2015,6 +2030,7 @@ class LocalFileRestoreBatch {
 
 	/**
 	 * Removes non-existent files from a store batch.
+	 * @return array
 	 */
 	function removeNonexistentFiles( $triplets ) {
 		$files = $filteredTriplets = array();
@@ -2034,6 +2050,7 @@ class LocalFileRestoreBatch {
 
 	/**
 	 * Removes non-existent files from a cleanup batch.
+	 * @return array
 	 */
 	function removeNonexistentFromCleanup( $batch ) {
 		$files = $newBatch = array();
@@ -2058,6 +2075,7 @@ class LocalFileRestoreBatch {
 	/**
 	 * Delete unused files in the deleted zone.
 	 * This should be called from outside the transaction in which execute() was called.
+	 * @return \FileRepoStatus|void
 	 */
 	function cleanup() {
 		if ( !$this->cleanupBatch ) {
@@ -2178,6 +2196,7 @@ class LocalFileMoveBatch {
 
 	/**
 	 * Perform the move.
+	 * @return \FileRepoStatus
 	 */
 	function execute() {
 		$repo = $this->file->repo;
@@ -2268,6 +2287,7 @@ class LocalFileMoveBatch {
 
 	/**
 	 * Generate triplets for FileRepo::storeBatch().
+	 * @return array
 	 */
 	function getMoveTriplets() {
 		$moves = array_merge( array( $this->cur ), $this->olds );
@@ -2285,6 +2305,7 @@ class LocalFileMoveBatch {
 
 	/**
 	 * Removes non-existent files from move batch.
+	 * @return array
 	 */
 	function removeNonexistentFiles( $triplets ) {
 		$files = array();

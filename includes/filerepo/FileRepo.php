@@ -411,6 +411,7 @@ class FileRepo {
 	 * SHA-1 content hash.
 	 *
 	 * STUB
+	 * @return array
 	 */
 	public function findBySha1( $hash ) {
 		return array();
@@ -456,6 +457,7 @@ class FileRepo {
 	 * Get the name of an image from its title object
 	 *
 	 * @param $title Title
+	 * @return String
 	 */
 	public function getNameFromTitle( Title $title ) {
 		global $wgContLang;
@@ -869,6 +871,7 @@ class FileRepo {
 	 *        be archived, if there is one. Relative to the public zone root.
 	 * @param $flags Integer: bitfield, may be FileRepo::DELETE_SOURCE to indicate
 	 *        that the source file should be deleted if possible
+	 * @return FileRepoStatus
 	 */
 	public function publish( $srcPath, $dstRel, $archiveRel, $flags = 0 ) {
 		$status = $this->publishBatch( array( array( $srcPath, $dstRel, $archiveRel ) ), $flags );
@@ -1422,6 +1425,7 @@ class FileRepo {
 	 * The parameters are the parts of the key, as for wfMemcKey().
 	 *
 	 * STUB
+	 * @return bool
 	 */
 	function getSharedCacheKey( /*...*/ ) {
 		return false;

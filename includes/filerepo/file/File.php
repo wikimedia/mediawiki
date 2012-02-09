@@ -433,6 +433,7 @@ abstract class File {
 	 * Get handler-specific metadata
 	 * Overridden by LocalFile, UnregisteredLocalFile
 	 * STUB
+	 * @return bool
 	 */
 	public function getMetadata() {
 		return false;
@@ -462,6 +463,7 @@ abstract class File {
 	 * Return the bit depth of the file
 	 * Overridden by LocalFile
 	 * STUB
+	 * @return int
 	 */
 	public function getBitDepth() {
 		return 0;
@@ -471,6 +473,7 @@ abstract class File {
 	 * Return the size of the image file, in bytes
 	 * Overridden by LocalFile, UnregisteredLocalFile
 	 * STUB
+	 * @return bool
 	 */
 	public function getSize() {
 		return false;
@@ -492,6 +495,7 @@ abstract class File {
 	 * Use the value returned by this function with the MEDIATYPE_xxx constants.
 	 * Overridden by LocalFile,
 	 * STUB
+	 * @return string
 	 */
 	function getMediaType() {
 		return MEDIATYPE_UNKNOWN;
@@ -518,6 +522,7 @@ abstract class File {
 
 	/**
 	 * Accessor for __get()
+	 * @return bool
 	 */
 	protected function getCanRender() {
 		return $this->canRender();
@@ -938,6 +943,7 @@ abstract class File {
 	 * Get all thumbnail names previously generated for this file
 	 * STUB
 	 * Overridden by LocalFile
+	 * @return array
 	 */
 	function getThumbnails() {
 		return array();
@@ -1004,6 +1010,7 @@ abstract class File {
 	 *
 	 * STUB
 	 * Overridden in LocalFile
+	 * @return bool
 	 */
 	public function nextHistoryLine() {
 		return false;
@@ -1360,6 +1367,7 @@ abstract class File {
 	/**
 	 * Return the deletion bitfield
 	 * STUB
+	 * @return int
 	 */
 	function getVisibility() {
 		return 0;

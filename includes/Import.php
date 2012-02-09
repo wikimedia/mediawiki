@@ -396,6 +396,7 @@ class WikiImporter {
 
 	/**
 	 * Primary entry point
+	 * @return bool
 	 */
 	public function doImport() {
 		$this->reader->read();

@@ -168,6 +168,7 @@ class ImageGallery {
 
 	/**
 	 * isEmpty() returns true if the gallery contains no images
+	 * @return bool
 	 */
 	function isEmpty() {
 		return empty( $this->mImages );
@@ -215,6 +216,7 @@ class ImageGallery {
 	 * - the additional text provided when adding the image
 	 * - the size of the image
 	 *
+	 * @return string
 	 */
 	function toHTML() {
 		global $wgLang;

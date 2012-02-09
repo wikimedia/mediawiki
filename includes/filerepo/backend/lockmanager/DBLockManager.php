@@ -90,6 +90,7 @@ class DBLockManager extends LockManager {
 
 	/**
 	 * @see LockManager::doLock()
+	 * @return Status
 	 */
 	protected function doLock( array $paths, $type ) {
 		$status = Status::newGood();
@@ -140,6 +141,7 @@ class DBLockManager extends LockManager {
 
 	/**
 	 * @see LockManager::doUnlock()
+	 * @return Status
 	 */
 	protected function doUnlock( array $paths, $type ) {
 		$status = Status::newGood();

@@ -641,6 +641,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * Same as new factory( ... ), kept for backward compatibility
 	 * @deprecated since 1.18
 	 * @see Database::factory()
+	 * @return DatabaseBase
 	 */
 	public final static function newFromType( $dbType, $p = array() ) {
 		wfDeprecated( __METHOD__, '1.18' );

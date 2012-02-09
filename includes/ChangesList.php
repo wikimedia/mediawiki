@@ -364,6 +364,7 @@ class ChangesList extends ContextSource {
 	 * Insert a formatted action
 	 *
 	 * @param $rc RecentChange
+	 * @return string
 	 */
 	public function insertLogEntry( $rc ) {
 		$formatter = LogFormatter::newFromRow( $rc->mAttribs );
@@ -375,6 +376,7 @@ class ChangesList extends ContextSource {
 	/** 
 	 * Insert a formatted comment
 	 * @param $rc RecentChange
+	 * @return string
 	 */
 	public function insertComment( $rc ) {
 		if( $rc->mAttribs['rc_type'] != RC_MOVE && $rc->mAttribs['rc_type'] != RC_MOVE_OVER_REDIRECT ) {
@@ -397,6 +399,7 @@ class ChangesList extends ContextSource {
 
 	/**
 	 * Returns the string which indicates the number of watching users
+	 * @return string
 	 */
 	protected function numberofWatchingusers( $count ) {
 		static $cache = array();
@@ -514,6 +517,7 @@ class OldChangesList extends ChangesList {
 	 * Format a line using the old system (aka without any javascript).
 	 *
 	 * @param $rc RecentChange
+	 * @return string
 	 */
 	public function recentChangesLine( &$rc, $watched = false, $linenumber = null ) {
 		global $wgRCShowChangedSize;
@@ -779,6 +783,7 @@ class EnhancedChangesList extends ChangesList {
 
 	/**
 	 * Enhanced RC group
+	 * @return string
 	 */
 	protected function recentChangesBlockGroup( $block ) {
 		global $wgRCShowChangedSize;

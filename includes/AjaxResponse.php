@@ -141,6 +141,7 @@ class AjaxResponse {
 	 * possible. If sucessful, the AjaxResponse is disabled so that
 	 * any future call to AjaxResponse::printText() have no effect. The method
 	 * returns true iff the response code was set to 304 Not Modified.
+	 * @return bool
 	 */
 	function checkLastModified ( $timestamp ) {
 		global $wgCachePages, $wgCacheEpoch, $wgUser;

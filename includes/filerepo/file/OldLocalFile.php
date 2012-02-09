@@ -64,6 +64,7 @@ class OldLocalFile extends LocalFile {
 	
 	/**
 	 * Fields in the oldimage table
+	 * @return array
 	 */
 	static function selectFields() {
 		return array(

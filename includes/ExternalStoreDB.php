@@ -73,6 +73,7 @@ class ExternalStoreDB {
 	/**
 	 * Fetch data from given URL
 	 * @param $url String: an url of the form DB://cluster/id or DB://cluster/id/itemid for concatened storage.
+	 * @return mixed
 	 */
 	function fetchFromURL( $url ) {
 		$path = explode( '/', $url );

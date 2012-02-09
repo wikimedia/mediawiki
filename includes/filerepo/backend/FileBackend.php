@@ -885,6 +885,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::moveInternal()
+	 * @return Status
 	 */
 	protected function doMoveInternal( array $params ) {
 		// Copy source to dest
@@ -899,6 +900,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackend::concatenate()
+	 * @return Status
 	 */
 	final public function concatenate( array $params ) {
 		wfProfileIn( __METHOD__ );
@@ -917,6 +919,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::concatenate()
+	 * @return Status
 	 */
 	protected function doConcatenate( array $params ) {
 		$status = Status::newGood();
@@ -972,6 +975,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackend::doPrepare()
+	 * @return Status
 	 */
 	final protected function doPrepare( array $params ) {
 		wfProfileIn( __METHOD__ );
@@ -1000,6 +1004,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::doPrepare()
+	 * @return Status
 	 */
 	protected function doPrepareInternal( $container, $dir, array $params ) {
 		return Status::newGood();
@@ -1007,6 +1012,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackend::doSecure()
+	 * @return Status
 	 */
 	final protected function doSecure( array $params ) {
 		wfProfileIn( __METHOD__ );
@@ -1035,6 +1041,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::doSecure()
+	 * @return Status
 	 */
 	protected function doSecureInternal( $container, $dir, array $params ) {
 		return Status::newGood();
@@ -1042,6 +1049,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackend::doClean()
+	 * @return Status
 	 */
 	final protected function doClean( array $params ) {
 		wfProfileIn( __METHOD__ );
@@ -1078,6 +1086,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::doClean()
+	 * @return Status
 	 */
 	protected function doCleanInternal( $container, $dir, array $params ) {
 		return Status::newGood();
@@ -1085,6 +1094,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackend::fileExists()
+	 * @return bool|null
 	 */
 	final public function fileExists( array $params ) {
 		wfProfileIn( __METHOD__ );
@@ -1095,6 +1105,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackend::getFileTimestamp()
+	 * @return bool
 	 */
 	final public function getFileTimestamp( array $params ) {
 		wfProfileIn( __METHOD__ );
@@ -1105,6 +1116,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackend::getFileSize()
+	 * @return bool
 	 */
 	final public function getFileSize( array $params ) {
 		wfProfileIn( __METHOD__ );
@@ -1115,6 +1127,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackend::getFileStat()
+	 * @return bool|void
 	 */
 	final public function getFileStat( array $params ) {
 		wfProfileIn( __METHOD__ );
@@ -1148,6 +1161,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackend::getFileContents()
+	 * @return bool|string
 	 */
 	public function getFileContents( array $params ) {
 		wfProfileIn( __METHOD__ );
@@ -1165,6 +1179,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackend::getFileSha1Base36()
+	 * @return bool
 	 */
 	final public function getFileSha1Base36( array $params ) {
 		wfProfileIn( __METHOD__ );
@@ -1184,6 +1199,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::getFileSha1Base36()
+	 * @return bool
 	 */
 	protected function doGetFileSha1Base36( array $params ) {
 		$fsFile = $this->getLocalReference( $params );
@@ -1196,6 +1212,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackend::getFileProps()
+	 * @return Array
 	 */
 	final public function getFileProps( array $params ) {
 		wfProfileIn( __METHOD__ );
@@ -1207,6 +1224,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackend::getLocalReference()
+	 * @return null|\TempFSFile
 	 */
 	public function getLocalReference( array $params ) {
 		wfProfileIn( __METHOD__ );
@@ -1226,6 +1244,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackend::streamFile()
+	 * @return Status
 	 */
 	final public function streamFile( array $params ) {
 		wfProfileIn( __METHOD__ );
@@ -1253,6 +1272,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::streamFile()
+	 * @return Status
 	 */
 	protected function doStreamFile( array $params ) {
 		$status = Status::newGood();
@@ -1268,7 +1288,8 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	/**
-	 * @copydoc FileBackend::getFileList() 
+	 * @copydoc FileBackend::getFileList()
+	 * @return Array|FileBackendStoreShardListIterator|null|Traversable
 	 */
 	final public function getFileList( array $params ) {
 		list( $fullCont, $dir, $shard ) = $this->resolveStoragePath( $params['dir'] );
@@ -1349,6 +1370,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackend::doOperationsInternal()
+	 * @return Status
 	 */
 	protected function doOperationsInternal( array $ops, array $opts ) {
 		wfProfileIn( __METHOD__ );

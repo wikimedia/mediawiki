@@ -507,6 +507,7 @@ class XmlDumpWriter {
 	 * Closes a <page> section on the output stream.
 	 *
 	 * @access private
+	 * @return string
 	 */
 	function closePage() {
 		return "  </page>\n";
@@ -633,6 +634,7 @@ class XmlDumpWriter {
 
 	/**
 	 * Warning! This data is potentially inconsistent. :(
+	 * @return string
 	 */
 	function writeUploads( $row, $dumpContents = false ) {
 		if ( $row->page_namespace == NS_IMAGE ) {
@@ -773,6 +775,7 @@ class DumpOutput {
 	/**
 	 * Returns the name of the file or files which are
 	 * being written to, if there are any.
+	 * @return null
 	 */
 	function getFilenames() {
 		return NULL;

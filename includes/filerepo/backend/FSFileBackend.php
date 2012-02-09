@@ -62,6 +62,7 @@ class FSFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::resolveContainerPath()
+	 * @return null|string
 	 */
 	protected function resolveContainerPath( $container, $relStoragePath ) {
 		// Check that container has a root directory
@@ -130,6 +131,7 @@ class FSFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::isPathUsableInternal()
+	 * @return bool
 	 */
 	public function isPathUsableInternal( $storagePath ) {
 		$fsPath = $this->resolveToFSPath( $storagePath );
@@ -151,6 +153,7 @@ class FSFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::doStoreInternal()
+	 * @return Status
 	 */
 	protected function doStoreInternal( array $params ) {
 		$status = Status::newGood();
@@ -191,6 +194,7 @@ class FSFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::doCopyInternal()
+	 * @return Status
 	 */
 	protected function doCopyInternal( array $params ) {
 		$status = Status::newGood();
@@ -237,6 +241,7 @@ class FSFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::doMoveInternal()
+	 * @return Status
 	 */
 	protected function doMoveInternal( array $params ) {
 		$status = Status::newGood();
@@ -285,6 +290,7 @@ class FSFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::doDeleteInternal()
+	 * @return Status
 	 */
 	protected function doDeleteInternal( array $params ) {
 		$status = Status::newGood();
@@ -315,6 +321,7 @@ class FSFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::doCreateInternal()
+	 * @return Status
 	 */
 	protected function doCreateInternal( array $params ) {
 		$status = Status::newGood();
@@ -355,6 +362,7 @@ class FSFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::doPrepareInternal()
+	 * @return Status
 	 */
 	protected function doPrepareInternal( $fullCont, $dirRel, array $params ) {
 		$status = Status::newGood();
@@ -373,6 +381,7 @@ class FSFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::doSecureInternal()
+	 * @return Status
 	 */
 	protected function doSecureInternal( $fullCont, $dirRel, array $params ) {
 		$status = Status::newGood();
@@ -407,6 +416,7 @@ class FSFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::doCleanInternal()
+	 * @return Status
 	 */
 	protected function doCleanInternal( $fullCont, $dirRel, array $params ) {
 		$status = Status::newGood();
@@ -423,6 +433,7 @@ class FSFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::doFileExists()
+	 * @return array|bool|null
 	 */
 	protected function doGetFileStat( array $params ) {
 		$source = $this->resolveToFSPath( $params['src'] );
@@ -455,6 +466,7 @@ class FSFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::getFileListInternal()
+	 * @return array|FSFileBackendFileList|null
 	 */
 	public function getFileListInternal( $fullCont, $dirRel, array $params ) {
 		list( $b, $shortCont, $r ) = FileBackend::splitStoragePath( $params['dir'] );
@@ -479,6 +491,7 @@ class FSFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::getLocalReference()
+	 * @return FSFile|null
 	 */
 	public function getLocalReference( array $params ) {
 		$source = $this->resolveToFSPath( $params['src'] );
@@ -490,6 +503,7 @@ class FSFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::getLocalCopy()
+	 * @return null|TempFSFile
 	 */
 	public function getLocalCopy( array $params ) {
 		$source = $this->resolveToFSPath( $params['src'] );

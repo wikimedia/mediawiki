@@ -87,6 +87,7 @@ class MWDebug {
 
 	/**
 	 * Returns internal log array
+	 * @return array
 	 */
 	public static function getLog() {
 		return self::$log;

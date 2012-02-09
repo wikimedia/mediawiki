@@ -189,6 +189,7 @@ class RepoGroup {
 
 	/**
 	 * Interface for FileRepo::checkRedirect()
+	 * @return bool
 	 */
 	function checkRedirect( Title $title ) {
 		if ( !$this->reposInitialised ) {
@@ -251,6 +252,7 @@ class RepoGroup {
 
 	/**
 	 * Get the repo instance with a given key.
+	 * @return bool|LocalRepo
 	 */
 	function getRepo( $index ) {
 		if ( !$this->reposInitialised ) {
@@ -266,6 +268,7 @@ class RepoGroup {
 	}
 	/**
 	 * Get the repo instance by its name
+	 * @return bool
 	 */
 	function getRepoByName( $name ) {
 		if ( !$this->reposInitialised ) {
@@ -294,6 +297,7 @@ class RepoGroup {
 	 *
 	 * @param $callback Callback: the function to call
 	 * @param $params Array: optional additional parameters to pass to the function
+	 * @return bool
 	 */
 	function forEachForeignRepo( $callback, $params = array() ) {
 		foreach( $this->foreignRepos as $repo ) {

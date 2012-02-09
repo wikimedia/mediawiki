@@ -49,6 +49,7 @@ class ForkController {
 	 * This will return 'child' in the child processes. In the parent process,
 	 * it will run until all the child processes exit or a TERM signal is
 	 * received. It will then return 'done'.
+	 * @return string
 	 */
 	public function start() {
 		// Trap SIGTERM

@@ -145,6 +145,7 @@ class DatabasePostgres extends DatabaseBase {
 
 	/**
 	 * Usually aborts on failure
+	 * @return DatabaseBase|null
 	 */
 	function open( $server, $user, $password, $dbName ) {
 		# Test for Postgres support, to avoid suppressed fatal error
@@ -237,6 +238,7 @@ class DatabasePostgres extends DatabaseBase {
 	/**
 	 * Closes a database connection, if it is open
 	 * Returns success, true if already closed
+	 * @return bool
 	 */
 	function close() {
 		$this->mOpened = false;
@@ -331,6 +333,7 @@ class DatabasePostgres extends DatabaseBase {
 
 	/**
 	 * This must be called after nextSequenceVal
+	 * @return null
 	 */
 	function insertId() {
 		return $this->mInsertId;
@@ -371,6 +374,7 @@ class DatabasePostgres extends DatabaseBase {
 	 * This is not necessarily an accurate estimate, so use sparingly
 	 * Returns -1 if count cannot be found
 	 * Takes same arguments as Database::select()
+	 * @return int
 	 */
 	function estimateRowCount( $table, $vars = '*', $conds='', $fname = 'DatabasePostgres::estimateRowCount', $options = array() ) {
 		$options['EXPLAIN'] = true;
@@ -389,6 +393,7 @@ class DatabasePostgres extends DatabaseBase {
 	/**
 	 * Returns information about an index
 	 * If errors are explicitly ignored, returns NULL on failure
+	 * @return bool|null
 	 */
 	function indexInfo( $table, $index, $fname = 'DatabasePostgres::indexInfo' ) {
 		$sql = "SELECT indexname FROM pg_indexes WHERE tablename='$table'";
@@ -555,6 +560,7 @@ class DatabasePostgres extends DatabaseBase {
 	 * $conds may be "*" to copy the whole table
 	 * srcTable may be an array of tables.
 	 * @todo FIXME: Implement this a little better (seperate select/insert)?
+	 * @return bool
 	 */
 	function insertSelect( $destTable, $srcTable, $varMap, $conds, $fname = 'DatabasePostgres::insertSelect',
 		$insertOptions = array(), $selectOptions = array() )
@@ -637,6 +643,7 @@ class DatabasePostgres extends DatabaseBase {
 
 	/**
 	 * Return the next in a sequence, save the value for retrieval via insertId()
+	 * @return null
 	 */
 	function nextSequenceValue( $seqName ) {
 		$safeseq = str_replace( "'", "''", $seqName );
@@ -648,6 +655,7 @@ class DatabasePostgres extends DatabaseBase {
 
 	/**
 	 * Return the current value of a sequence. Assumes it has been nextval'ed in this session.
+	 * @return
 	 */
 	function currentSequenceValue( $seqName ) {
 		$safeseq = str_replace( "'", "''", $seqName );
@@ -747,6 +755,7 @@ class DatabasePostgres extends DatabaseBase {
 	/**
 	 * Query whether a given relation exists (in the given schema, or the
 	 * default mw one if not given)
+	 * @return bool
 	 */
 	function relationExists( $table, $types, $schema = false ) {
 		global $wgDBmwschema;
@@ -770,6 +779,7 @@ class DatabasePostgres extends DatabaseBase {
 	/**
 	 * For backward compatibility, this function checks both tables and
 	 * views.
+	 * @return bool
 	 */
 	function tableExists( $table, $fname = __METHOD__, $schema = false ) {
 		return $this->relationExists( $table, array( 'r', 'v' ), $schema );
@@ -833,6 +843,7 @@ SQL;
 
 	/**
 	 * Query whether a given schema exists. Returns true if it does, false if it doesn't.
+	 * @return bool
 	 */
 	function schemaExists( $schema ) {
 		$exists = $this->selectField( '"pg_catalog"."pg_namespace"', 1,
@@ -842,6 +853,7 @@ SQL;
 
 	/**
 	 * Returns true if a given role (i.e. user) exists, false otherwise.
+	 * @return bool
 	 */
 	function roleExists( $roleName ) {
 		$exists = $this->selectField( '"pg_catalog"."pg_roles"', 1,
@@ -855,6 +867,7 @@ SQL;
 
 	/**
 	 * pg_field_type() wrapper
+	 * @return string
 	 */
 	function fieldType( $res, $index ) {
 		if ( $res instanceof ResultWrapper ) {

@@ -77,6 +77,7 @@ class ForeignAPIRepo extends FileRepo {
 
 	/**
 	 * No-ops
+	 * @return bool
 	 */
 
 	function storeBatch( $triplets, $flags = 0 ) {
@@ -231,6 +232,7 @@ class ForeignAPIRepo extends FileRepo {
 	 * @param $width
 	 * @param $height
 	 * @param String $param Other rendering parameters (page number, etc) from handler's makeParamString.
+	 * @return bool|string
 	 */
 	function getThumbUrlFromCache( $name, $width, $height, $params="" ) {
 		global $wgMemc;
@@ -312,6 +314,7 @@ class ForeignAPIRepo extends FileRepo {
 
 	/**
 	 * @see FileRepo::getZoneUrl()
+	 * @return String
 	 */
 	function getZoneUrl( $zone ) {
 		switch ( $zone ) {
@@ -326,6 +329,7 @@ class ForeignAPIRepo extends FileRepo {
 
 	/**
 	 * Get the local directory corresponding to one of the basic zones
+	 * @return bool|null|string
 	 */
 	function getZonePath( $zone ) {
 		$supported = array( 'public', 'thumb' );
@@ -345,6 +349,7 @@ class ForeignAPIRepo extends FileRepo {
 
 	/**
 	 * The user agent the ForeignAPIRepo will use.
+	 * @return string
 	 */
 	public static function getUserAgent() {
 		return Http::userAgent() . " ForeignAPIRepo/" . self::VERSION;
@@ -353,6 +358,7 @@ class ForeignAPIRepo extends FileRepo {
 	/**
 	 * Like a Http:get request, but with custom User-Agent.
 	 * @see Http:get
+	 * @return bool|String
 	 */
 	public static function httpGet( $url, $timeout = 'default', $options = array() ) {
 		$options['timeout'] = $timeout;
@@ -362,7 +368,7 @@ class ForeignAPIRepo extends FileRepo {
 		$options['method'] = "GET";
 
 		if ( !isset( $options['timeout'] ) ) {
-		        $options['timeout'] = 'default';
+			$options['timeout'] = 'default';
 		}
 
 		$req = MWHttpRequest::factory( $url, $options );
@@ -370,9 +376,9 @@ class ForeignAPIRepo extends FileRepo {
 		$status = $req->execute();
 
 		if ( $status->isOK() ) {
-		        return $req->getContent();
+			return $req->getContent();
 		} else {
-		        return false;
+			return false;
 		}
 	}
 
