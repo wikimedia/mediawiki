@@ -1,4 +1,7 @@
 <?php
+/**
+ * @defgroup Watchlist Users watchlist handling
+ */
 
 /**
  * Provides the UI through which users can perform editing
