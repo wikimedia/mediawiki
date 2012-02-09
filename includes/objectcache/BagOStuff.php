@@ -155,6 +155,7 @@ abstract class BagOStuff {
 
 	/**
 	 * Convert an optionally relative time to an absolute time
+	 * @return int
 	 */
 	protected function convertExpiry( $exptime ) {
 		if ( ( $exptime != 0 ) && ( $exptime < 86400 * 3650 /* 10 years */ ) ) {

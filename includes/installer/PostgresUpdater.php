@@ -23,6 +23,7 @@ class PostgresUpdater extends DatabaseUpdater {
 	/**
 	 * @todo FIXME: Postgres should use sequential updates like Mysql, Sqlite
 	 * and everybody else. It never got refactored like it should've.
+	 * @return array
 	 */
 	protected function getCoreUpdateList() {
 		return array(

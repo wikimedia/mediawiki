@@ -433,6 +433,7 @@ class WebInstaller extends Installer {
 	 *
 	 * @param $name String
 	 * @param $default
+	 * @return null
 	 */
 	public function getSession( $name, $default = null ) {
 		if ( !isset( $this->session[$name] ) ) {

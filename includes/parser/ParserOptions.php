@@ -428,6 +428,7 @@ class ParserOptions {
 	 * Returns the full array of options that would have been used by
 	 * in 1.16.
 	 * Used to get the old parser cache entries when available.
+	 * @return array
 	 */
 	public static function legacyOptions() {
 		global $wgUseDynamicDates;

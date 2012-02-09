@@ -122,6 +122,7 @@ class DateFormatter
 	 * @param $preference String: User preference
 	 * @param $text String: Text to reformat
 	 * @param $options Array: can contain 'linked' and/or 'match-whole'
+	 * @return mixed|String
 	 */
 	function reformat( $preference, $text, $options = array('linked') ) {
 	
@@ -172,6 +173,7 @@ class DateFormatter
 
 	/**
 	 * @param $matches
+	 * @return string
 	 */
 	function replace( $matches ) {
 		# Extract information from $matches
@@ -282,6 +284,7 @@ class DateFormatter
 
 	/**
 	 * @todo document
+	 * @return string
 	 */
 	function getMonthRegex() {
 		global $wgContLang;
@@ -325,6 +328,7 @@ class DateFormatter
 
 	/**
 	 * @todo document
+	 * @return int|string
 	 */
 	function makeNormalYear( $iso ) {
 		if ( $iso[0] == '-' ) {

@@ -549,6 +549,7 @@ class Exif {
 	 */
 	/**
 	 * Get $this->mRawExifData
+	 * @return array
 	 */
 	function getData() {
 		return $this->mRawExifData;

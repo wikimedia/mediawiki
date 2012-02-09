@@ -154,6 +154,7 @@ class CoreParserFunctions {
 	 * @param $parser Parser object
 	 * @param $s String: The text to encode.
 	 * @param $arg String (optional): The type of encoding.
+	 * @return string
 	 */
 	static function urlencode( $parser, $s = '', $arg = null ) {
 		static $magicWords = null;
@@ -418,6 +419,7 @@ class CoreParserFunctions {
 	 * corresponding magic word
 	 * Note: function name changed to "mwnamespace" rather than "namespace"
 	 * to not break PHP 5.3
+	 * @return mixed|string
 	 */
 	static function mwnamespace( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
@@ -459,6 +461,7 @@ class CoreParserFunctions {
 	/**
 	 * Functions to get and normalize pagenames, corresponding to the magic words
 	 * of the same names
+	 * @return String
 	 */
 	static function pagename( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
@@ -537,6 +540,7 @@ class CoreParserFunctions {
 	 * Return the number of pages in the given category, or 0 if it's nonexis-
 	 * tent.  This is an expensive parser function and can't be called too many
 	 * times per page.
+	 * @return string
 	 */
 	static function pagesincategory( $parser, $name = '', $raw = null ) {
 		static $cache = array();
@@ -574,6 +578,7 @@ class CoreParserFunctions {
 	 * @param $parser Parser
 	 * @param $page String TODO DOCUMENT (Default: empty string)
 	 * @param $raw TODO DOCUMENT (Default: null)
+	 * @return string
 	 */
 	static function pagesize( $parser, $page = '', $raw = null ) {
 		static $cache = array();
@@ -603,7 +608,8 @@ class CoreParserFunctions {
 
 	/**
 	* Returns the requested protection level for the current page
-	*/
+	 * @return string
+	 */
 	static function protectionlevel( $parser, $type = '' ) {
 		$restrictions = $parser->mTitle->getRestrictions( strtolower( $type ) );
 		# Title::getRestrictions returns an array, its possible it may have
@@ -634,6 +640,7 @@ class CoreParserFunctions {
 
 	/**
 	 * Unicode-safe str_pad with the restriction that $length is forced to be <= 500
+	 * @return string
 	 */
 	static function pad( $string, $length, $padding = '0', $direction = STR_PAD_RIGHT ) {
 		$lengthOfPadding = mb_strlen( $padding );
@@ -764,6 +771,7 @@ class CoreParserFunctions {
 
 	/**
 	 * Parser function to extension tag adaptor
+	 * @return string
 	 */
 	public static function tagObj( $parser, $frame, $args ) {
 		if ( !count( $args ) ) {

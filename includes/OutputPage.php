@@ -2788,6 +2788,7 @@ $templates
 
 	/**
 	 * JS stuff to put at the bottom of the <body>
+	 * @return string
 	 */
 	function getBottomScripts() {
 		global $wgResourceLoaderExperimentalAsyncLoading;

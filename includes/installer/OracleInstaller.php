@@ -241,6 +241,7 @@ class OracleInstaller extends DatabaseInstaller {
 
 	/**
 	 * Overload: after this action field info table has to be rebuilt
+	 * @return Status
 	 */
 	public function createTables() {
 		$this->setupSchemaVars();

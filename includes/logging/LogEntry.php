@@ -97,6 +97,7 @@ abstract class LogEntryBase implements LogEntry {
 	/**
 	 * Whether the parameters for this log are stored in new or
 	 * old format.
+	 * @return bool
 	 */
 	public function isLegacy() {
 		return false;

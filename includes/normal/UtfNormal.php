@@ -238,6 +238,7 @@ class UtfNormal {
 	 * Returns true if the string is _definitely_ in NFC.
 	 * Returns false if not or uncertain.
 	 * @param $string String: a UTF-8 string, altered on output to be valid UTF-8 safe for XML.
+	 * @return bool
 	 */
 	static function quickIsNFCVerify( &$string ) {
 		# Screen out some characters that eg won't be allowed in XML
