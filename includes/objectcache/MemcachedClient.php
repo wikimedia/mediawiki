@@ -871,6 +871,7 @@ class MWMemcached {
 	 * @param $sock Resource: socket to read from
 	 * @param $ret Array: returned values
 	 *
+	 * @return bool|int
 	 * @access private
 	 */
 	function _load_items( $sock, &$ret ) {
@@ -1079,6 +1080,7 @@ class MWMemcached {
 
 	/**
 	 * Original behaviour
+	 * @return int
 	 */
 	function _safe_fwrite( $f, $buf, $len = false ) {
 		if ( $len === false ) {

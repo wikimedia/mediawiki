@@ -36,6 +36,7 @@ abstract class WebInstallerPage {
 	 * Is this a slow-running page in the installer? If so, WebInstaller will
 	 * set_time_limit(0) before calling execute(). Right now this only applies
 	 * to Install and Upgrade pages
+	 * @return bool
 	 */
 	public function isSlow() {
 		return false;

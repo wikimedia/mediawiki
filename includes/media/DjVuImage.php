@@ -284,6 +284,7 @@ EOR;
 
 	/**
 	 * Hack to temporarily work around djvutoxml bug
+	 * @return bool|string
 	 */
 	function convertDumpToXML( $dump ) {
 		if ( strval( $dump ) == '' ) {

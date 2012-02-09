@@ -272,6 +272,7 @@ class LogFormatter {
 	 * Provides the name of the user who performed the log action.
 	 * Used as part of log action message or standalone, depending
 	 * which parts of the log entry has been hidden.
+	 * @return String
 	 */
 	public function getPerformerElement() {
 		if ( $this->canView( LogPage::DELETED_USER ) ) {

@@ -20,6 +20,7 @@ class Linker {
 	 *
 	 * @param $class String: the contents of the class attribute; if an empty
 	 *   string is passed, which is the default value, defaults to 'external'.
+	 * @return string
 	 * @deprecated since 1.18 Just pass the external class directly to something using Html::expandAttributes
 	 */
 	static function getExternalLinkAttributes( $class = 'external' ) {
@@ -36,6 +37,7 @@ class Linker {
 	 * @param $unused String: unused
 	 * @param $class String: the contents of the class attribute; if an empty
 	 *   string is passed, which is the default value, defaults to 'external'.
+	 * @return string
 	 */
 	static function getInterwikiLinkAttributes( $title, $unused = null, $class = 'external' ) {
 		global $wgContLang;
@@ -57,6 +59,7 @@ class Linker {
 	 *   not HTML-escaped
 	 * @param $unused String: unused
 	 * @param $class String: the contents of the class attribute, default none
+	 * @return string
 	 */
 	static function getInternalLinkAttributes( $title, $unused = null, $class = '' ) {
 		$title = urldecode( $title );
@@ -73,6 +76,7 @@ class Linker {
 	 * @param $class String: the contents of the class attribute, default none
 	 * @param $title Mixed: optional (unescaped) string to use in the title
 	 *   attribute; if false, default to the name of the page we're linking to
+	 * @return string
 	 */
 	static function getInternalLinkAttributesObj( $nt, $unused = null, $class = '', $title = false ) {
 		if ( $title === false ) {
@@ -229,6 +233,7 @@ class Linker {
 
 	/**
 	 * Identical to link(), except $options defaults to 'known'.
+	 * @return string
 	 */
 	public static function linkKnown(
 		$target, $html = null, $customAttribs = array(),
@@ -243,6 +248,7 @@ class Linker {
 	 * @param $target Title
 	 * @param $query Array: query parameters
 	 * @param $options Array
+	 * @return String
 	 */
 	private static function linkUrl( $target, $query, $options ) {
 		wfProfileIn( __METHOD__ );
@@ -641,6 +647,7 @@ class Linker {
 	 * @param $params Array
 	 * @param $framed Boolean
 	 * @param $manualthumb String
+	 * @return mixed
 	 */
 	public static function makeThumbLinkObj( Title $title, $file, $label = '', $alt,
 		$align = 'right', $params = array(), $framed = false , $manualthumb = "" )
@@ -893,6 +900,7 @@ class Linker {
 	 * @param $escape Boolean: do we escape the link text?
 	 * @param $linktype String: type of external link. Gets added to the classes
 	 * @param $attribs Array of extra attributes to <a>
+	 * @return string
 	 */
 	public static function makeExternalLink( $url, $text, $escape = true, $linktype = '', $attribs = array() ) {
 		$class = "external";
@@ -998,6 +1006,7 @@ class Linker {
 	 * @param $userId Integer: user identifier
 	 * @param $userText String: user name or IP address
 	 * @param $edits Integer: user edit count (optional, for performance)
+	 * @return String
 	 */
 	public static function userToolLinksRedContribs( $userId, $userText, $edits = null ) {
 		return self::userToolLinks( $userId, $userText, true, 0, $edits );
@@ -1096,6 +1105,7 @@ class Linker {
 	 * @param $comment String
 	 * @param $title Mixed: Title object (to generate link to the section in autocomment) or null
 	 * @param $local Boolean: whether section links should refer to local page
+	 * @return mixed|String
 	 */
 	public static function formatComment( $comment, $title = null, $local = false ) {
 		wfProfileIn( __METHOD__ );
@@ -1474,6 +1484,7 @@ class Linker {
 	 * End a Table Of Contents line.
 	 * tocUnindent() will be used instead if we're ending a line below
 	 * the new level.
+	 * @return string
 	 */
 	public static function tocLineEnd() {
 		return "</li>\n";
@@ -1552,6 +1563,7 @@ class Linker {
 	/**
 	 * Split a link trail, return the "inside" portion and the remainder of the trail
 	 * as a two-element array
+	 * @return array
 	 */
 	static function splitTrail( $trail ) {
 		global $wgContLang;
@@ -1579,6 +1591,7 @@ class Linker {
 	 * other users.
 	 *
 	 * @param $rev Revision object
+	 * @return string
 	 */
 	public static function generateRollback( $rev ) {
 		return '<span class="mw-rollback-link">['
@@ -1886,6 +1899,7 @@ class Linker {
 	 * @param $trail String: Optional trail. Alphabetic characters at the start of this string will
 	 *               be included in the link text. Other characters will be appended after
 	 *               the end of the link.
+	 * @return string
 	 */
 	static function makeBrokenLink( $title, $text = '', $query = '', $trail = '' ) {
 		wfDeprecated( __METHOD__, '1.16' );
@@ -1914,6 +1928,7 @@ class Linker {
 	 *                      be included in the link text. Other characters will be appended after
 	 *                      the end of the link.
 	 * @param $prefix String: optional prefix. As trail, only before instead of after.
+	 * @return string
 	 */
 	static function makeLinkObj( $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
 		# wfDeprecated( __METHOD__, '1.16' ); // See r105985 and it's revert. Somewhere still used.
@@ -1983,6 +1998,7 @@ class Linker {
 	 *                      be included in the link text. Other characters will be appended after
 	 *                      the end of the link.
 	 * @param $prefix String: Optional prefix
+	 * @return string
 	 */
 	static function makeBrokenLinkObj( $title, $text = '', $query = '', $trail = '', $prefix = '' ) {
 		wfDeprecated( __METHOD__, '1.16' );
@@ -2014,6 +2030,7 @@ class Linker {
 	 *                      be included in the link text. Other characters will be appended after
 	 *                      the end of the link.
 	 * @param $prefix String: Optional prefix
+	 * @return string
 	 */
 	static function makeColouredLinkObj( $nt, $colour, $text = '', $query = '', $trail = '', $prefix = '' ) {
 		wfDeprecated( __METHOD__, '1.16' );
@@ -2028,6 +2045,7 @@ class Linker {
 
 	/**
 	 * Returns the attributes for the tooltip and access key.
+	 * @return array
 	 */
 	public static function tooltipAndAccesskeyAttribs( $name ) {
 		# @todo FIXME: If Sanitizer::expandAttributes() treated "false" as "output
@@ -2048,6 +2066,7 @@ class Linker {
 
 	/**
 	 * Returns raw bits of HTML, use titleAttrib()
+	 * @return null|string
 	 */
 	public static function tooltip( $name, $options = null ) {
 		# @todo FIXME: If Sanitizer::expandAttributes() treated "false" as "output
@@ -2074,6 +2093,7 @@ class DummyLinker {
 	 *
 	 * @param $fname String Name of called method
 	 * @param $args Array Arguments to the method
+	 * @return mixed
 	 */
 	public function __call( $fname, $args ) {
 		return call_user_func_array( array( 'Linker', $fname ), $args );

@@ -344,6 +344,7 @@ class PostgresInstaller extends DatabaseInstaller {
 	/**
 	 * Returns true if the install user is able to create objects owned
 	 * by the web user, false otherwise.
+	 * @return bool
 	 */
 	protected function canCreateObjectsForWebUser() {
 		if ( $this->isSuperUser() ) {

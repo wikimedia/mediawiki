@@ -80,6 +80,7 @@ abstract class MediaTransformOutput {
 
 	/**
 	 * This will be overridden to return true in error classes
+	 * @return bool
 	 */
 	public function isError() {
 		return false;

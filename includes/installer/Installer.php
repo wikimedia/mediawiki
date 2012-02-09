@@ -672,6 +672,7 @@ abstract class Installer {
 
 	/**
 	 * Some versions of libxml+PHP break < and > encoding horribly
+	 * @return bool
 	 */
 	protected function envCheckBrokenXML() {
 		$test = new PhpXmlBugTester();
@@ -684,6 +685,7 @@ abstract class Installer {
 	/**
 	 * Test PHP (probably 5.3.1, but it could regress again) to make sure that
 	 * reference parameters to __call() are not converted to null
+	 * @return bool
 	 */
 	protected function envCheckPHP531() {
 		$test = new PhpRefCallBugTester;
@@ -696,6 +698,7 @@ abstract class Installer {
 
 	/**
 	 * Environment check for magic_quotes_runtime.
+	 * @return bool
 	 */
 	protected function envCheckMagicQuotes() {
 		if( wfIniGetBool( "magic_quotes_runtime" ) ) {
@@ -706,6 +709,7 @@ abstract class Installer {
 
 	/**
 	 * Environment check for magic_quotes_sybase.
+	 * @return bool
 	 */
 	protected function envCheckMagicSybase() {
 		if ( wfIniGetBool( 'magic_quotes_sybase' ) ) {
@@ -716,6 +720,7 @@ abstract class Installer {
 
 	/**
 	 * Environment check for mbstring.func_overload.
+	 * @return bool
 	 */
 	protected function envCheckMbstring() {
 		if ( wfIniGetBool( 'mbstring.func_overload' ) ) {
@@ -726,6 +731,7 @@ abstract class Installer {
 
 	/**
 	 * Environment check for zend.ze1_compatibility_mode.
+	 * @return bool
 	 */
 	protected function envCheckZE1() {
 		if ( wfIniGetBool( 'zend.ze1_compatibility_mode' ) ) {
@@ -746,6 +752,7 @@ abstract class Installer {
 
 	/**
 	 * Environment check for the XML module.
+	 * @return bool
 	 */
 	protected function envCheckXML() {
 		if ( !function_exists( "utf8_encode" ) ) {
@@ -756,6 +763,7 @@ abstract class Installer {
 
 	/**
 	 * Environment check for the PCRE module.
+	 * @return bool
 	 */
 	protected function envCheckPCRE() {
 		if ( !function_exists( 'preg_match' ) ) {
@@ -773,6 +781,7 @@ abstract class Installer {
 
 	/**
 	 * Environment check for available memory.
+	 * @return bool
 	 */
 	protected function envCheckMemory() {
 		$limit = ini_get( 'memory_limit' );
@@ -846,6 +855,7 @@ abstract class Installer {
 
 	/**
 	 * Environment check for ImageMagick and GD.
+	 * @return bool
 	 */
 	protected function envCheckGraphics() {
 		$names = array( wfIsWindows() ? 'convert.exe' : 'convert' );
@@ -981,6 +991,7 @@ abstract class Installer {
 
 	/**
 	 * TODO: document
+	 * @return bool
 	 */
 	protected function envCheckUploadsDirectory() {
 		global $IP;
@@ -1121,6 +1132,7 @@ abstract class Installer {
 	 *
 	 * If $versionInfo is not false, only executables with a version
 	 * matching $versionInfo[1] will be returned.
+	 * @return bool|string
 	 */
 	public static function locateExecutable( $path, $names, $versionInfo = false ) {
 		if ( !is_array( $names ) ) {
@@ -1169,6 +1181,7 @@ abstract class Installer {
 	 * Checks if scripts located in the given directory can be executed via the given URL.
 	 *
 	 * Used only by environment checks.
+	 * @return bool|int|string
 	 */
 	public function dirIsExecutable( $dir, $url ) {
 		$scriptTypes = array(

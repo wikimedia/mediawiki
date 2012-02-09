@@ -77,6 +77,7 @@ class ParserCache {
 	 *
 	 * @param $article Article
 	 * @param $popts ParserOptions
+	 * @return string
 	 */
 	function getETag( $article, $popts ) {
 		return 'W/"' . $this->getParserOutputKey( $article,
@@ -104,6 +105,7 @@ class ParserCache {
 	 *
 	 * @param $article Article
 	 * @param $popts ParserOptions
+	 * @return bool|mixed|string
 	 */
 	public function getKey( $article, $popts, $useOutdated = true ) {
 		global $wgCacheEpoch;

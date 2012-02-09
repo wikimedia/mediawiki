@@ -37,6 +37,7 @@ if( defined( 'PRETTY_UTF8' ) ) {
 } else {
 	/**
 	 * @ignore
+	 * @return string
 	 */
 	function pretty( $string ) {
 		return trim( preg_replace( '/(.)/use',

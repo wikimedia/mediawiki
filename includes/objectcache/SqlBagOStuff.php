@@ -92,6 +92,7 @@ class SqlBagOStuff extends BagOStuff {
 
 	/**
 	 * Get the table name for a given key
+	 * @return string
 	 */
 	protected function getTableByKey( $key ) {
 		if ( $this->shards > 1 ) {
@@ -104,6 +105,7 @@ class SqlBagOStuff extends BagOStuff {
 
 	/**
 	 * Get the table name for a given shard index
+	 * @return string
 	 */
 	protected function getTableByShard( $index ) {
 		if ( $this->shards > 1 ) {
@@ -310,6 +312,7 @@ class SqlBagOStuff extends BagOStuff {
 
 	/**
 	 * Delete objects from the database which expire before a certain date.
+	 * @return bool
 	 */
 	public function deleteObjectsExpiringBefore( $timestamp, $progressCallback = false ) {
 		$db = $this->getDB();

@@ -67,6 +67,7 @@ class MWNamespace {
 	/**
 	 * @see self::isSubject
 	 * @deprecated Please use the more consistently named isSubject (since 1.19)
+	 * @return bool
 	 */
 	public static function isMain( $index ) {
 		wfDeprecated( __METHOD__, '1.19' );

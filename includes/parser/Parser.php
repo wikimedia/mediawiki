@@ -494,6 +494,7 @@ class Parser {
 	/**
 	 * Expand templates and variables in the text, producing valid, static wikitext.
 	 * Also removes comments.
+	 * @return mixed|string
 	 */
 	function preprocess( $text, Title $title, ParserOptions $options, $revid = null ) {
 		wfProfileIn( __METHOD__ );
@@ -840,6 +841,7 @@ class Parser {
 	 * parse the wiki syntax used to render tables
 	 *
 	 * @private
+	 * @return string
 	 */
 	function doTableStuff( $text ) {
 		wfProfileIn( __METHOD__ );
@@ -3892,6 +3894,7 @@ class Parser {
 	 * @param $text String
 	 * @param $origText String: original, untouched wikitext
 	 * @param $isMain Boolean
+	 * @return mixed|string
 	 * @private
 	 */
 	function formatHeadings( $text, $origText, $isMain=true ) {
@@ -4711,6 +4714,7 @@ class Parser {
 	 * Create a tag function, e.g. <test>some stuff</test>.
 	 * Unlike tag hooks, tag functions are parsed at preprocessor level.
 	 * Unlike parser functions, their content is not preprocessed.
+	 * @return null
 	 */
 	function setFunctionTagHook( $tag, $callback, $flags ) {
 		$tag = strtolower( $tag );

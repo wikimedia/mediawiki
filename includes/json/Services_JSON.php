@@ -826,6 +826,7 @@ class Services_JSON
 
 	/**
 	 * @todo Ultimately, this should just call PEAR::isError()
+	 * @return bool
 	 */
 	function isError($data, $code = null)
 	{

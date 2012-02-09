@@ -160,6 +160,7 @@ abstract class MediaHandler {
 	 * MediaHandler::METADATA_GOOD for if the metadata is a-ok,
 	 * MediaHanlder::METADATA_COMPATIBLE if metadata is old but backwards
 	 * compatible (which may or may not trigger a metadata reload).
+	 * @return bool
 	 */
 	function isMetadataValid( $image, $metadata ) {
 		return self::METADATA_GOOD;
@@ -173,6 +174,7 @@ abstract class MediaHandler {
 	 * Used when the repository has a thumbnailScriptUrl option configured.
 	 *
 	 * Return false to fall back to the regular getTransform().
+	 * @return bool
 	 */
 	function getScriptedTransform( $image, $script, $params ) {
 		return false;
@@ -186,6 +188,7 @@ abstract class MediaHandler {
 	 * @param $dstPath String: filesystem destination path
 	 * @param $dstUrl String: Destination URL to use in output HTML
 	 * @param $params Array: Arbitrary set of parameters validated by $this->validateParam()
+	 * @return \MediaTransformOutput
 	 */
 	final function getTransform( $image, $dstPath, $dstUrl, $params ) {
 		return $this->doTransform( $image, $dstPath, $dstUrl, $params, self::TRANSFORM_LATER );
@@ -227,27 +230,33 @@ abstract class MediaHandler {
 
 	/**
 	 * True if the handled types can be transformed
+	 * @return bool
 	 */
 	function canRender( $file ) { return true; }
 	/**
 	 * True if handled types cannot be displayed directly in a browser
 	 * but can be rendered
+	 * @return bool
 	 */
 	function mustRender( $file ) { return false; }
 	/**
 	 * True if the type has multi-page capabilities
+	 * @return bool
 	 */
 	function isMultiPage( $file ) { return false; }
 	/**
 	 * Page count for a multi-page document, false if unsupported or unknown
+	 * @return bool
 	 */
 	function pageCount( $file ) { return false; }
 	/**
 	 * The material is vectorized and thus scaling is lossless
+	 * @return bool
 	 */
 	function isVectorized( $file ) { return false; }
 	/**
 	 * False if the handler is disabled for all files
+	 * @return bool
 	 */
 	function isEnabled() { return true; }
 
@@ -258,6 +267,7 @@ abstract class MediaHandler {
 	 * Returns false if unknown or if the document is not multi-page.
 	 *
 	 * @param $image File
+	 * @return array
 	 */
 	function getPageDimensions( $image, $page ) {
 		$gis = $this->getImageSize( $image, $image->getLocalRefPath() );
@@ -270,6 +280,7 @@ abstract class MediaHandler {
 	/**
 	 * Generic getter for text layer.
 	 * Currently overloaded by PDF and DjVu handlers
+	 * @return bool
 	 */
 	function getPageText( $image, $page ) {
 		return false;
@@ -300,6 +311,7 @@ abstract class MediaHandler {
 	 * all the formatting according to some standard. That makes it possible
 	 * to do things like visual indication of grouped and chained streams
 	 * in ogg container files.
+	 * @return bool
 	 */
 	function formatMetadata( $image ) {
 		return false;

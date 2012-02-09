@@ -566,6 +566,7 @@ class MimeMagic {
 	 *
 	 * @param string $file
 	 * @param mixed $ext
+	 * @return bool|string
 	 */
 	private function doGuessMimeType( $file, $ext ) { // TODO: remove $ext param
 		// Read a chunk of the file
@@ -1030,6 +1031,7 @@ class MimeMagic {
 	 *
 	 * This funktion relies on the mapping defined by $this->mMediaTypes
 	 * @access private
+	 * @return int|string
 	 */
 	function findMediaType( $extMime ) {
 		if ( strpos( $extMime, '.' ) === 0 ) { 
@@ -1067,6 +1069,7 @@ class MimeMagic {
 	 * @param $fileName String: the file name (unused at present)
 	 * @param $chunk String: the first 256 bytes of the file
 	 * @param $proposed String: the MIME type proposed by the server
+	 * @return Array
 	 */
 	public function getIEMimeTypes( $fileName, $chunk, $proposed ) {
 		$ca = $this->getIEContentAnalyzer();

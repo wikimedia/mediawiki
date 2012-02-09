@@ -343,6 +343,7 @@ class LocalisationCache {
 
 	/**
 	 * Returns true if the cache identified by $code is missing or expired.
+	 * @return bool
 	 */
 	public function isExpired( $code ) {
 		if ( $this->forceRecache && !isset( $this->recachedLangs[$code] ) ) {

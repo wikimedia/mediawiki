@@ -205,6 +205,7 @@ class Profiler {
 
 	/**
 	 * Returns a tree of function call instead of a list of functions
+	 * @return string
 	 */
 	function getCallTree() {
 		return implode( '', array_map( array( &$this, 'getCallTreeLine' ), $this->remapCallTree( $this->mStack ) ) );
@@ -214,6 +215,7 @@ class Profiler {
 	 * Recursive function the format the current profiling array into a tree
 	 *
 	 * @param $stack array profiling array
+	 * @return array
 	 */
 	function remapCallTree( $stack ) {
 		if( count( $stack ) < 2 ){
@@ -252,6 +254,7 @@ class Profiler {
 
 	/**
 	 * Callback to get a formatted line for the call tree
+	 * @return string
 	 */
 	function getCallTreeLine( $entry ) {
 		list( $fname, $level, $start, /* $x */, $end)  = $entry;
@@ -494,6 +497,7 @@ class Profiler {
 
 	/**
 	 * Get the function name of the current profiling section
+	 * @return
 	 */
 	function getCurrentSection() {
 		$elt = end( $this->mWorkStack );

@@ -33,7 +33,8 @@ class LinkHolderArray {
 	 * serializing at present.
 	 *
 	 * Compact the titles, only serialize the text form.
-	 */
+	  * @return array
+	  */
 	function __sleep() {
 		foreach ( $this->internals as &$nsLinks ) {
 			foreach ( $nsLinks as &$entry ) {
@@ -134,6 +135,7 @@ class LinkHolderArray {
 	/**
 	 * Get a subset of the current LinkHolderArray which is sufficient to
 	 * interpret the given text.
+	 * @return \LinkHolderArray
 	 */
 	function getSubArray( $text ) {
 		$sub = new LinkHolderArray( $this->parent );
@@ -167,6 +169,7 @@ class LinkHolderArray {
 
 	/**
 	 * Returns true if the memory requirements of this object are getting large
+	 * @return bool
 	 */
 	function isBig() {
 		global $wgLinkHolderBatchSize;
@@ -190,6 +193,7 @@ class LinkHolderArray {
 	 * article length checks (for stub links) to be bundled into a single query.
 	 *
 	 * @param $nt Title
+	 * @return string
 	 */
 	function makeHolder( $nt, $text = '', $query = array(), $trail = '', $prefix = ''  ) {
 		wfProfileIn( __METHOD__ );
