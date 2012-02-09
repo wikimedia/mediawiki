@@ -664,7 +664,7 @@ class HTMLForm extends ContextSource {
 
 	/**
 	 * Get the text for the submit button, either customised or a default.
-	 * @return unknown_type
+	 * @return
 	 */
 	function getSubmitText() {
 		return $this->mSubmitText
@@ -852,7 +852,7 @@ class HTMLForm extends ContextSource {
 	 * to the form as a whole, after it's submitted but before it's
 	 * processed.
 	 * @param $data
-	 * @return unknown_type
+	 * @return
 	 */
 	function filterDataForSubmit( $data ) {
 		return $data;

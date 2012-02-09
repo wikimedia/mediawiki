@@ -253,7 +253,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 *   - false to disable debugging
 	 *   - omitted or null to do nothing
 	 *
-	 * @return The previous value of the flag
+	 * @return bool|null previous value of the flag
 	 */
 	function debug( $debug = null ) {
 		return wfSetBit( $this->mFlags, DBO_DEBUG, $debug );
@@ -279,7 +279,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 *
 	 * @param $buffer null|bool
 	 *
-	 * @return The previous value of the flag
+	 * @return null|bool The previous value of the flag
 	 */
 	function bufferResults( $buffer = null ) {
 		if ( is_null( $buffer ) ) {
@@ -310,8 +310,8 @@ abstract class DatabaseBase implements DatabaseType {
 	 * Historically, transactions were allowed to be "nested". This is no
 	 * longer supported, so this function really only returns a boolean.
 	 *
-	 * @param $level An integer (0 or 1), or omitted to leave it unchanged.
-	 * @return The previous value
+	 * @param $level int An integer (0 or 1), or omitted to leave it unchanged.
+	 * @return int The previous value
 	 */
 	function trxLevel( $level = null ) {
 		return wfSetVar( $this->mTrxLevel, $level );
@@ -319,8 +319,8 @@ abstract class DatabaseBase implements DatabaseType {
 
 	/**
 	 * Get/set the number of errors logged. Only useful when errors are ignored
-	 * @param $count The count to set, or omitted to leave it unchanged.
-	 * @return The error count
+	 * @param $count int The count to set, or omitted to leave it unchanged.
+	 * @return int The error count
 	 */
 	function errorCount( $count = null ) {
 		return wfSetVar( $this->mErrorCount, $count );
@@ -328,8 +328,8 @@ abstract class DatabaseBase implements DatabaseType {
 
 	/**
 	 * Get/set the table prefix.
-	 * @param $prefix The table prefix to set, or omitted to leave it unchanged.
-	 * @return The previous table prefix.
+	 * @param $prefix string The table prefix to set, or omitted to leave it unchanged.
+	 * @return string The previous table prefix.
 	 */
 	function tablePrefix( $prefix = null ) {
 		return wfSetVar( $this->mTablePrefix, $prefix );
@@ -1371,7 +1371,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @param $options string|array Query options
 	 * @param $join_conds string|array Join conditions
 	 *
-	 * @return SQL query string.
+	 * @return string SQL query string.
 	 * @see DatabaseBase::select()
 	 */
 	function selectSQLText( $table, $vars, $conds = '', $fname = 'DatabaseBase::select', $options = array(), $join_conds = array() ) {
@@ -2789,7 +2789,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @param $timeout Integer: the maximum number of seconds to wait for
 	 *   synchronisation
 	 *
-	 * @return An integer: zero if the slave was past that position already,
+	 * @return integer: zero if the slave was past that position already,
 	 *   greater than zero if we waited for some period of time, less than
 	 *   zero if we timed out.
 	 */
@@ -2909,7 +2909,7 @@ abstract class DatabaseBase implements DatabaseType {
 	/**
 	 * List all tables on the database
 	 *
-	 * @param $prefix Only show tables with this prefix, e.g. mw_
+	 * @param $prefix string Only show tables with this prefix, e.g. mw_
 	 * @param $fname String: calling function name
 	 */
 	function listTables( $prefix = null, $fname = 'DatabaseBase::listTables' ) {
@@ -3351,7 +3351,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @param $lockName String: Name of lock to release
 	 * @param $method String: Name of method calling us
 	 *
-	 * @return Returns 1 if the lock was released, 0 if the lock was not established
+	 * @return int Returns 1 if the lock was released, 0 if the lock was not established
 	 * by this thread (in which case the lock is not released), and NULL if the named
 	 * lock did not exist
 	 */

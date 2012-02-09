@@ -987,8 +987,8 @@ abstract class File {
 	 *
 	 * STUB
 	 * @param $limit integer Limit of rows to return
-	 * @param $start timestamp Only revisions older than $start will be returned
-	 * @param $end timestamp Only revisions newer than $end will be returned
+	 * @param $start string timestamp Only revisions older than $start will be returned
+	 * @param $end string timestamp Only revisions newer than $end will be returned
 	 * @param $inc bool Include the endpoints of the time range
 	 *
 	 * @return array
@@ -1185,7 +1185,7 @@ abstract class File {
 	 *
 	 * @param $suffix bool|string if not false, the name of a thumbnail file
 	 *
-	 * @return path
+	 * @return string path
 	 */
 	function getThumbUrl( $suffix = false ) {
 		$this->assertRepoDefined();

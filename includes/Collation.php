@@ -311,7 +311,7 @@ class IcuCollation extends Collation {
 	 *     -1, 0 or 1 in the style of strcmp().
 	 * @param $target string The target value to find.
 	 *
-	 * @return The item index of the lower bound, or false if the target value
+	 * @return int|bool The item index of the lower bound, or false if the target value
 	 *     sorts before all items.
 	 */
 	function findLowerBound( $valueCallback, $valueCount, $comparisonCallback, $target ) {

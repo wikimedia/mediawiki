@@ -667,7 +667,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	 * Fields can be retrieved with $row->fieldname, with fields acting like
 	 * member variables.
 	 *
-	 * @param $res SQL result object as returned from Database::query(), etc.
+	 * @param $res array|ResultWrapper SQL result object as returned from Database::query(), etc.
 	 * @return DB2 row object
 	 * @throws DBUnexpectedError Thrown if the database returns an error
 	 */
@@ -689,8 +689,8 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	 * Fetch the next row from the given result object, in associative array
 	 * form. Fields are retrieved with $row['fieldname'].
 	 *
-	 * @param $res SQL result object as returned from Database::query(), etc.
-	 * @return DB2 row object
+	 * @param $res array|ResultWrapper SQL result object as returned from Database::query(), etc.
+	 * @return ResultWrapper row object
 	 * @throws DBUnexpectedError Thrown if the database returns an error
 	 */
 	public function fetchRow( $res ) {
@@ -715,7 +715,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	 * Doesn't escape numbers
 	 *
 	 * @param $s String: string to escape
-	 * @return escaped string
+	 * @return string escaped string
 	 */
 	public function addQuotes( $s ) {
 		//$this->installPrint( "DB2::addQuotes( $s )\n" );
@@ -758,7 +758,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	/**
 	 * Alias for addQuotes()
 	 * @param $s String: string to escape
-	 * @return escaped string
+	 * @return string escaped string
 	 */
 	public function strencode( $s ) {
 		// Bloody useless function
@@ -904,7 +904,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	/**
 	 * Generates a timestamp in an insertable format
 	 *
-	 * @param $ts timestamp
+	 * @param $ts string timestamp
 	 * @return String: timestamp value
 	 */
 	public function timestamp( $ts = 0 ) {
@@ -915,7 +915,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	/**
 	 * Return the next in a sequence, save the value for retrieval via insertId()
 	 * @param $seqName String: name of a defined sequence in the database
-	 * @return next value in that sequence
+	 * @return int next value in that sequence
 	 */
 	public function nextSequenceValue( $seqName ) {
 		// Not using sequences in the primary schema to allow for easier migration
@@ -934,7 +934,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 
 	/**
 	 * This must be called after nextSequenceVal
-	 * @return Last sequence value used as a primary key
+	 * @return int Last sequence value used as a primary key
 	 */
 	public function insertId() {
 		return $this->mInsertId;
@@ -1121,11 +1121,11 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	 * UPDATE wrapper, takes a condition array and a SET array
 	 *
 	 * @param $table  String: The table to UPDATE
-	 * @param $values An array of values to SET
-	 * @param $conds  An array of conditions ( WHERE ). Use '*' to update all rows.
+	 * @param $values array An array of values to SET
+	 * @param $conds  array An array of conditions ( WHERE ). Use '*' to update all rows.
 	 * @param $fname  String: The Class::Function calling this function
 	 *                ( for the log )
-	 * @param $options An array of UPDATE options, can be one or
+	 * @param $options array An array of UPDATE options, can be one or
 	 *                 more of IGNORE, LOW_PRIORITY
 	 * @return Boolean
 	 */
@@ -1206,7 +1206,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	 * Moves the row pointer of the result set
 	 * @param $res Object: result set
 	 * @param $row Integer: row number
-	 * @return success or failure
+	 * @return bool success or failure
 	 */
 	public function dataSeek( $res, $row ) {
 		if ( $res instanceof ResultWrapper ) {
@@ -1502,7 +1502,7 @@ SQL;
 	 * Verifies that an index was created as unique
 	 * @param $table String: table name
 	 * @param $index String: index name
-	 * @param $fname function name for profiling
+	 * @param $fname string function name for profiling
 	 * @return Bool
 	 */
 	public function indexUnique ( $table, $index,

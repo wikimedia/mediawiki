@@ -2182,7 +2182,7 @@ HTML
 	 * The $textoverride method can be used by subclasses overriding showContentForm
 	 * to pass back to this method.
 	 *
-	 * @param $customAttribs An array of html attributes to use in the textarea
+	 * @param $customAttribs array of html attributes to use in the textarea
 	 * @param $textoverride String: optional text to override $this->textarea1 with
 	 */
 	protected function showTextbox1( $customAttribs = null, $textoverride = null ) {
@@ -2817,7 +2817,7 @@ HTML
 	 * Returns an array of html code of the following checkboxes:
 	 * minor and watch
 	 *
-	 * @param $tabindex Current tabindex
+	 * @param $tabindex int Current tabindex
 	 * @param $checked Array of checkbox => bool, where bool indicates the checked
 	 *                 status of the checkbox
 	 *
@@ -2868,7 +2868,7 @@ HTML
 	 * Returns an array of html code of the following buttons:
 	 * save, diff, preview and live
 	 *
-	 * @param $tabindex Current tabindex
+	 * @param $tabindex int Current tabindex
 	 *
 	 * @return array
 	 */
@@ -2997,7 +2997,7 @@ HTML
 	/**
 	 * Produce the stock "your edit contains spam" page
 	 *
-	 * @param $match Text which triggered one or more filters
+	 * @param $match string Text which triggered one or more filters
 	 * @deprecated since 1.17 Use method spamPageWithContent() instead
 	 */
 	static function spamPage( $match = false ) {
@@ -3020,7 +3020,7 @@ HTML
 	/**
 	 * Show "your edit contains spam" page with your diff and text
 	 *
-	 * @param $match Text which triggered one or more filters
+	 * @param $match string|bool Text which triggered one or more filters
 	 */
 	public function spamPageWithContent( $match = false ) {
 		global $wgOut;

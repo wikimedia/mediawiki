@@ -301,7 +301,8 @@ class WikiImporter {
 
 	/**
 	 * Notify the callback function of a revision
-	 * @param $revision A WikiRevision object
+	 * @param $revision |WikiRevision object
+	 * @return bool|mixed
 	 */
 	private function revisionCallback( $revision ) {
 		if ( isset( $this->mRevisionCallback ) ) {
@@ -314,7 +315,8 @@ class WikiImporter {
 
 	/**
 	 * Notify the callback function of a new log item
-	 * @param $revision A WikiRevision object
+	 * @param $revision WikiRevision object
+	 * @return bool|mixed
 	 */
 	private function logItemCallback( $revision ) {
 		if ( isset( $this->mLogItemCallback ) ) {
