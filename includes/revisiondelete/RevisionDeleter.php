@@ -8,6 +8,7 @@
 /**
  * Temporary b/c interface, collection of static functions.
  * @ingroup SpecialPage
+ * @ingroup RevisionDelete
  */
 class RevisionDeleter {
 	/**

@@ -2,7 +2,7 @@
 /**
  * Contain a class for special pages
  * @file
- * @ingroup SpecialPages
+ * @ingroup SpecialPage
  */
 
 /**

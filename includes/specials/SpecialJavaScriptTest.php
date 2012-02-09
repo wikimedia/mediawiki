@@ -1,5 +1,12 @@
 <?php
+/**
+ * @ingroup SpecialPage
+ * @file
+ */
 
+/**
+ * @ingroup SpecialPage
+ */
 class SpecialJavaScriptTest extends SpecialPage {
 
 	/**
