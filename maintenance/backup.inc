@@ -262,7 +262,7 @@ class BackupDumper {
 
 		// Discourage the server from disconnecting us if it takes a long time
 		// to read out the big ol' batch query.
-		$db->setTimeout( 3600 * 24 );
+		$db->setSessionOptions( array( 'connTimeout' => 3600 * 24 ) );
 
 		return $db;
 	}

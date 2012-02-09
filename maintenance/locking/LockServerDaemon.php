@@ -258,7 +258,7 @@ class LockServerDaemon {
 	 * store it in the dead session tracking if it still has locks.
 	 * 
 	 * @param $socket resource
-	 * @return book
+	 * @return bool
 	 */
 	protected function recordDeadSocket( $socket ) {
 		$session = array_search( $socket, $this->sessions );
@@ -382,7 +382,7 @@ class SocketArray {
 
 	/**
 	 * @param $sock resource
-	 * @return string|false
+	 * @return string|bool
 	 */
 	public function readRcvBuffer( $sock ) {
 		$key = array_search( $sock, $this->clients );

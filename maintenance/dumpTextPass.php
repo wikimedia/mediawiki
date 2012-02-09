@@ -387,6 +387,8 @@ class TextPassDumper extends BackupDumper {
 	 * may not survive a long-term server outage.
 	 *
 	 * FIXME: WTF? Why is it using a loop and then returning unconditionally?
+	 * @param $id int
+	 * @return bool|string
 	 */
 	private function getTextDbSafe( $id ) {
 		while ( true ) {

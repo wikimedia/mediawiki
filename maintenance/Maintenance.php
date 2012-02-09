@@ -366,7 +366,7 @@ abstract class Maintenance {
 	 * same channel are concatenated, but any intervening messages in another
 	 * channel start a new line.
 	 * @param $msg String: the message without trailing newline
-	 * @param $channel Channel identifier or null for no
+	 * @param $channel string Channel identifier or null for no
 	 *     channel. Channel comparison uses ===.
 	 */
 	public function outputChanneled( $msg, $channel = null ) {
@@ -1080,7 +1080,7 @@ abstract class Maintenance {
 
 	/**
 	 * Lock the search index
-	 * @param &$db Database object
+	 * @param &$db DatabaseBase object
 	 */
 	private function lockSearchindex( &$db ) {
 		$write = array( 'searchindex' );
@@ -1090,7 +1090,7 @@ abstract class Maintenance {
 
 	/**
 	 * Unlock the tables
-	 * @param &$db Database object
+	 * @param &$db DatabaseBase object
 	 */
 	private function unlockSearchindex( &$db ) {
 		$db->unlockTables(  __CLASS__ . '::' . __METHOD__ );
@@ -1099,7 +1099,7 @@ abstract class Maintenance {
 	/**
 	 * Unlock and lock again
 	 * Since the lock is low-priority, queued reads will be able to complete
-	 * @param &$db Database object
+	 * @param &$db DatabaseBase object
 	 */
 	private function relockSearchindex( &$db ) {
 		$this->unlockSearchindex( $db );
@@ -1147,7 +1147,7 @@ abstract class Maintenance {
 
 	/**
 	 * Update the searchindex table for a given pageid
-	 * @param $dbw Database: a database write handle
+	 * @param $dbw DatabaseBase a database write handle
 	 * @param $pageId Integer: the page ID to update.
 	 * @return null|string
 	 */
