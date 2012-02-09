@@ -2681,6 +2681,8 @@ $templates
 		);
 
 		// Load embeddable private modules before any loader links
+		// Per bug 34289, this needs to be TYPE_SCRIPTS. Using TYPE_COMBINED
+		// causes the user.options CSS to be loaded twice.
 		$embedScripts = array( 'user.options', 'user.tokens' );
 		$scripts .= $this->makeResourceLoaderLink( $embedScripts, ResourceLoaderModule::TYPE_SCRIPTS );
 
