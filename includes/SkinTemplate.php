@@ -1345,7 +1345,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	/**
 	 * Get a Message object with its context set
 	 *
-	 * @param $name Str message name
+	 * @param $name string message name
 	 * @return Message
 	 */
 	public function getMsg( $name ) {

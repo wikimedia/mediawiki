@@ -237,7 +237,7 @@ class DeletedContribsPager extends IndexPager {
 	/**
 	 * Get the Database object in use
 	 *
-	 * @return Database
+	 * @return DatabaseBase
 	 */
 	public function getDatabase() {
 		return $this->mDb;
@@ -254,7 +254,6 @@ class DeletedContributionsPage extends SpecialPage {
 	 * Special page "deleted user contributions".
 	 * Shows a list of the deleted contributions of a user.
 	 *
-	 * @return	none
 	 * @param	$par	String: (optional) user name of the user for which to show the contributions
 	 */
 	function execute( $par ) {

@@ -433,7 +433,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * By default, all parameters passed in the URL are used, except for a
 	 * short blacklist.
 	 *
-	 * @return Associative array
+	 * @return array Associative array
 	 */
 	function getDefaultQuery() {
 		if ( !isset( $this->mDefaultQuery ) ) {

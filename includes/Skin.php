@@ -22,7 +22,7 @@ abstract class Skin extends ContextSource {
 
 	/**
 	 * Fetch the set of available skins.
-	 * @return associative array of strings
+	 * @return array associative array of strings
 	 */
 	static function getSkinNames() {
 		global $wgValidSkinNames;

@@ -91,7 +91,7 @@ class SearchEngine {
 	 * @since 1.18
 	 * @param $feature String
 	 * @param $data Mixed
-	 * @return Noolean
+	 * @return bool
 	 */
 	public function setFeatureData( $feature, $data ) {
 		$this->features[$feature] = $data;
@@ -771,7 +771,7 @@ class SearchResult {
 	}
 
 	/**
-	 * @return Double or null if not supported
+	 * @return Double|null if not supported
 	 */
 	function getScore() {
 		return null;

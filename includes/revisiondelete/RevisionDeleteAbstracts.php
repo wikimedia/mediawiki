@@ -196,7 +196,7 @@ abstract class RevDel_List extends RevisionListBase {
 
 	/**
 	 * Get log parameter array.
-	 * @param $params Associative array of log parameters, same as updateLog()
+	 * @param $params array Associative array of log parameters, same as updateLog()
 	 * @return array
 	 */
 	public function getLogParams( $params ) {

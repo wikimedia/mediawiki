@@ -417,8 +417,6 @@ class MWHttpRequest {
 	 * Parses the headers, including the HTTP status code and any
 	 * Set-Cookie headers.  This function expectes the headers to be
 	 * found in an array in the member variable headerList.
-	 *
-	 * @return nothing
 	 */
 	protected function parseHeader() {
 		$lastname = "";
@@ -446,8 +444,6 @@ class MWHttpRequest {
 	 * RFC2616, section 10,
 	 * http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html for a
 	 * list of status codes.)
-	 *
-	 * @return nothing
 	 */
 	protected function setStatus() {
 		if ( !$this->respHeaders ) {

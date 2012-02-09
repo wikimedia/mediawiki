@@ -874,7 +874,7 @@ class HTMLForm extends ContextSource {
 	 *
 	 * @since 1.19
 	 *
-	 * @param string|false $action
+	 * @param string|bool $action
 	 */
 	public function setAction( $action ) {
 		$this->mAction = $action;

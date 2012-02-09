@@ -344,7 +344,7 @@ class ManualLogEntry extends LogEntryBase {
 	 * 
 	 * @since 1.19
 	 * 
-	 * @param $parameters Associative array
+	 * @param $parameters array Associative array
 	 */
 	public function setParameters( $parameters ) {
 		$this->parameters = $parameters;

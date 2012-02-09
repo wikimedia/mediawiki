@@ -75,7 +75,7 @@ class MostlinkedTemplatesPage extends QueryPage {
 	/**
 	 * Pre-cache page existence to speed up link generation
 	 *
-	 * @param $db Database connection
+	 * @param $db DatabaseBase connection
 	 * @param $res ResultWrapper
 	 */
 	public function preprocessResults( $db, $res ) {

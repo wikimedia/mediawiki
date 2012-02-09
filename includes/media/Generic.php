@@ -482,8 +482,8 @@ abstract class MediaHandler {
 	 * Check for zero-sized thumbnails. These can be generated when
 	 * no disk space is available or some other error occurs
 	 *
-	 * @param $dstPath The location of the suspect file
-	 * @param $retval Return value of some shell process, file will be deleted if this is non-zero
+	 * @param $dstPath string The location of the suspect file
+	 * @param $retval int Return value of some shell process, file will be deleted if this is non-zero
 	 * @return bool if removed, false otherwise
 	 */
 	function removeBadFile( $dstPath, $retval = 0 ) {

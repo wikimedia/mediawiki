@@ -838,7 +838,7 @@ class WebRequest {
 	 * Get a request header, or false if it isn't set
 	 * @param $name String: case-insensitive header name
 	 *
-	 * @return string|false
+	 * @return string|bool
 	 */
 	public function getHeader( $name ) {
 		$this->initHeaders();

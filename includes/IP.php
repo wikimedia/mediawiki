@@ -198,7 +198,7 @@ class IP {
 	 *
 	 * A bare IPv6 address is accepted despite the lack of square brackets.
 	 *
-	 * @param $both The string with the host and port
+	 * @param $both string The string with the host and port
 	 * @return array
 	 */
 	public static function splitHostAndPort( $both ) {
