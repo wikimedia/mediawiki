@@ -23,7 +23,7 @@
 /**
  * Module for user preference customizations
  */
-class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
+class ResourceLoaderUserCSSPrefsModule extends ResourceLoaderModule {
 
 	/* Protected Members */
 
@@ -69,14 +69,55 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 			return User::getDefaultOptions();
 		}
 	}
-
+	
 	/**
 	 * @param $context ResourceLoaderContext
-	 * @return string
+	 * @return array
 	 */
-	public function getScript( ResourceLoaderContext $context ) {
-		return Xml::encodeJsCall( 'mw.user.options.set',
-			array( $this->contextUserOptions( $context ) ) );
+	public function getStyles( ResourceLoaderContext $context ) {
+		global $wgAllowUserCssPrefs;
+
+		if ( $wgAllowUserCssPrefs ) {
+			$options = $this->contextUserOptions( $context );
+
+			// Build CSS rules
+			$rules = array();
+
+			// Underline: 2 = browser default, 1 = always, 0 = never
+			if ( $options['underline'] < 2 ) {
+				$rules[] = "a { text-decoration: " .
+					( $options['underline'] ? 'underline' : 'none' ) . "; }";
+			} else {
+				# The scripts of these languages are very hard to read with underlines
+				$rules[] = 'a:lang(ar), a:lang(ckb), a:lang(fa),a:lang(kk-arab), ' .
+				'a:lang(mzn), a:lang(ps), a:lang(ur) { text-decoration: none; }';
+			}
+			if ( $options['highlightbroken'] ) {
+				$rules[] = "a.new, #quickbar a.new { color: #ba0000; }\n";
+			} else {
+				$rules[] = "a.new, #quickbar a.new, a.stub, #quickbar a.stub { color: inherit; }";
+				$rules[] = "a.new:after, #quickbar a.new:after { content: '?'; color: #ba0000; }";
+				$rules[] = "a.stub:after, #quickbar a.stub:after { content: '!'; color: #772233; }";
+			}
+			if ( $options['justify'] ) {
+				$rules[] = "#article, #bodyContent, #mw_content { text-align: justify; }\n";
+			}
+			if ( !$options['showtoc'] ) {
+				$rules[] = "#toc { display: none; }\n";
+			}
+			if ( !$options['editsection'] ) {
+				$rules[] = ".editsection { display: none; }\n";
+			}
+			if ( $options['editfont'] !== 'default' ) {
+				$rules[] = "textarea { font-family: {$options['editfont']}; }\n";
+			}
+			$style = implode( "\n", $rules );
+			if ( $this->getFlip( $context ) ) {
+				$style = CSSJanus::transform( $style, true, false );
+			}
+			return array( 'all' => $style );
+		}
+		return array();
 	}
 
 	/**

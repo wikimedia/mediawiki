@@ -10,6 +10,7 @@ return array(
 	'user' => array( 'class' => 'ResourceLoaderUserModule' ),
 	'user.groups' => array( 'class' => 'ResourceLoaderUserGroupsModule' ),
 	'user.options' => array( 'class' => 'ResourceLoaderUserOptionsModule' ),
+	'user.cssprefs' => array( 'class' => 'ResourceLoaderUserCSSPrefsModule' ),
 	'user.tokens' => array( 'class' => 'ResourceLoaderUserTokensModule' ),
 	'filepage' => array( 'class' => 'ResourceLoaderFilePageModule' ),
 
