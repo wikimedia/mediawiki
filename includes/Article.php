@@ -188,7 +188,7 @@ class Article extends Page {
 	 * This function has side effects! Do not use this function if you
 	 * only want the real revision text if any.
 	 *
-	 * @return Return the text of this revision
+	 * @return string Return the text of this revision
 	 */
 	public function getContent() {
 		global $wgUser;
@@ -1582,7 +1582,7 @@ class Article extends Page {
 
 	/**
 	 * Get parser options suitable for rendering the primary article wikitext
-	 * @return ParserOptions|false
+	 * @return ParserOptions|bool
 	 */
 	public function getParserOptions() {
 		global $wgUser;

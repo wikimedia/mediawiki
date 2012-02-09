@@ -385,7 +385,7 @@ class LoadBalancer {
 	 * Returns false if there is no connection open
 	 *
 	 * @param $i int
-	 * @return DatabaseBase|false
+	 * @return DatabaseBase|bool
 	 */
 	function getAnyOpenConnection( $i ) {
 		foreach ( $this->mConns as $conns ) {

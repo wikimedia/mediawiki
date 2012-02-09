@@ -406,7 +406,7 @@ abstract class FileBackend {
 	 *     latest : use the latest available data
 	 * 
 	 * @param $params Array
-	 * @return string|false TS_MW timestamp or false on failure
+	 * @return string|bool TS_MW timestamp or false on failure
 	 */
 	abstract public function getFileTimestamp( array $params );
 
@@ -419,7 +419,7 @@ abstract class FileBackend {
 	 *     latest : use the latest available data
 	 * 
 	 * @param $params Array
-	 * @return string|false Returns false on failure
+	 * @return string|bool Returns false on failure
 	 */
 	abstract public function getFileContents( array $params );
 
@@ -431,7 +431,7 @@ abstract class FileBackend {
 	 *     latest : use the latest available data
 	 * 
 	 * @param $params Array
-	 * @return integer|false Returns false on failure
+	 * @return integer|bool Returns false on failure
 	 */
 	abstract public function getFileSize( array $params );
 
@@ -448,7 +448,7 @@ abstract class FileBackend {
 	 *     latest : use the latest available data
 	 * 
 	 * @param $params Array
-	 * @return Array|false|null Returns null on failure
+	 * @return Array|bool|null Returns null on failure
 	 */
 	abstract public function getFileStat( array $params );
 
@@ -460,7 +460,7 @@ abstract class FileBackend {
 	 *     latest : use the latest available data
 	 * 
 	 * @param $params Array
-	 * @return string|false Hash string or false on failure
+	 * @return string|bool Hash string or false on failure
 	 */
 	abstract public function getFileSha1Base36( array $params );
 

@@ -893,7 +893,7 @@ class Block {
 	 * Encode expiry for DB
 	 *
 	 * @param $expiry String: timestamp for expiry, or
-	 * @param $db Database object
+	 * @param $db DatabaseBase object
 	 * @return String
 	 * @deprecated since 1.18; use $dbw->encodeExpiry() instead
 	 */

@@ -69,7 +69,6 @@ class HistoryAction extends FormlessAction {
 
 	/**
 	 * Print the history page for an article.
-	 * @return nothing
 	 */
 	function onView() {
 		global $wgScript, $wgUseFileCache, $wgSquidMaxage;
@@ -108,7 +107,8 @@ class HistoryAction extends FormlessAction {
 		$feedType = $request->getVal( 'feed' );
 		if ( $feedType ) {
 			wfProfileOut( __METHOD__ );
-			return $this->feed( $feedType );
+			$this->feed( $feedType );
+			return;
 		}
 
 		// Fail nicely if article doesn't exist.

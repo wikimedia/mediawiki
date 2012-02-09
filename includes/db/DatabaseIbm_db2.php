@@ -472,7 +472,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	 * @param $user String
 	 * @param $password String
 	 * @param $dbName String: database name
-	 * @return a fresh connection
+	 * @return DatabaseBase a fresh connection
 	 */
 	public function open( $server, $user, $password, $dbName ) {
 		wfProfileIn( __METHOD__ );
@@ -1279,11 +1279,11 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	 * @param $conds   Array or string, condition(s) for WHERE
 	 * @param $fname   String: calling function name (use __METHOD__)
 	 *                 for logs/profiling
-	 * @param $options Associative array of options
+	 * @param $options array Associative array of options
 	 *                 (e.g. array( 'GROUP BY' => 'page_title' )),
 	 *                 see Database::makeSelectOptions code for list of
 	 *                 supported stuff
-	 * @param $join_conds Associative array of table join conditions (optional)
+	 * @param $join_conds array Associative array of table join conditions (optional)
 	 *                    (e.g. array( 'page' => array('LEFT JOIN',
 	 *                    'page_latest=rev_id') )
 	 * @return Mixed: database result resource for fetch functions or false
@@ -1333,7 +1333,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	 *
 	 * @private
 	 *
-	 * @param $options Associative array of options to be turned into
+	 * @param $options array Associative array of options to be turned into
 	 *              an SQL query, valid keys are listed in the function.
 	 * @return Array
 	 */

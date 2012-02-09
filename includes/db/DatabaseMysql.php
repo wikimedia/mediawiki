@@ -585,7 +585,7 @@ class DatabaseMysql extends DatabaseBase {
 	/**
 	 * Get the position of the master from SHOW SLAVE STATUS
 	 *
-	 * @return MySQLMasterPos|false
+	 * @return MySQLMasterPos|bool
 	 */
 	function getSlavePos() {
 		if ( !is_null( $this->mFakeSlaveLag ) ) {
@@ -606,7 +606,7 @@ class DatabaseMysql extends DatabaseBase {
 	/**
 	 * Get the position of the master from SHOW MASTER STATUS
 	 *
-	 * @return MySQLMasterPos|false
+	 * @return MySQLMasterPos|bool
 	 */
 	function getMasterPos() {
 		if ( $this->mFakeMaster ) {

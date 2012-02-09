@@ -1551,7 +1551,7 @@ class EditPage {
 	 *
 	 * @param $text string
 	 *
-	 * @return string|false matching string or false
+	 * @return string|bool matching string or false
 	 */
 	public static function matchSpamRegex( $text ) {
 		global $wgSpamRegex;
@@ -1565,7 +1565,7 @@ class EditPage {
 	 *
 	 * @parma $text string
 	 *
-	 * @return string|false  matching string or false
+	 * @return string|bool  matching string or false
 	 */
 	public static function matchSummarySpamRegex( $text ) {
 		global $wgSummarySpamRegex;

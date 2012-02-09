@@ -179,8 +179,8 @@ class HistoryBlobStub {
 	var $mOldId, $mHash, $mRef;
 
 	/**
-	 * @param $hash Strng: the content hash of the text
-	 * @param $oldid Integer: the old_id for the CGZ object
+	 * @param $hash string the content hash of the text
+	 * @param $oldid Integer the old_id for the CGZ object
 	 */
 	function __construct( $hash = '', $oldid = 0 ) {
 		$this->mHash = $hash;
@@ -298,7 +298,7 @@ class HistoryBlobCurStub {
 	}
 
 	/**
-	 * @return string|false
+	 * @return string|bool
 	 */
 	function getText() {
 		$dbr = wfGetDB( DB_SLAVE );

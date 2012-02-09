@@ -297,7 +297,7 @@ abstract class FileOp {
 	 * precheckDestExistence() helper function to get the source file SHA-1.
 	 * Subclasses should overwride this iff the source is not in storage.
 	 *
-	 * @return string|false Returns false on failure
+	 * @return string|bool Returns false on failure
 	 */
 	protected function getSourceSha1Base36() {
 		return null; // N/A
@@ -324,7 +324,7 @@ abstract class FileOp {
 	 * 
 	 * @param $source string Storage path
 	 * @param $predicates Array
-	 * @return string|false 
+	 * @return string|bool
 	 */
 	final protected function fileSha1( $source, array $predicates ) {
 		if ( isset( $predicates['sha1'][$source] ) ) {

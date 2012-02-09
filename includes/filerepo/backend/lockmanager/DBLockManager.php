@@ -245,7 +245,7 @@ class DBLockManager extends LockManager {
 	 * Get (or reuse) a connection to a lock DB
 	 *
 	 * @param $lockDb string
-	 * @return Database
+	 * @return DatabaseBase
 	 * @throws DBError
 	 */
 	protected function getConnection( $lockDb ) {

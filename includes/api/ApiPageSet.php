@@ -342,7 +342,7 @@ class ApiPageSet extends ApiQueryBase {
 
 	/**
 	 * Populate this PageSet from a rowset returned from the database
-	 * @param $db Database object
+	 * @param $db DatabaseBase object
 	 * @param $queryResult ResultWrapper Query result object
 	 */
 	public function populateFromQueryResult( $db, $queryResult ) {
