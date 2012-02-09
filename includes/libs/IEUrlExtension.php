@@ -35,8 +35,8 @@ class IEUrlExtension {
 	 *
 	 * If the a variable is unset in $_SERVER, it should be unset in $vars.
 	 *
-	 * @param $vars A subset of $_SERVER.
-	 * @param $extWhitelist Extensions which are allowed, assumed harmless.
+	 * @param $vars array A subset of $_SERVER.
+	 * @param $extWhitelist array Extensions which are allowed, assumed harmless.
 	 * @return bool
 	 */
 	public static function areServerVarsBad( $vars, $extWhitelist = array() ) {

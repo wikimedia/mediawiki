@@ -98,7 +98,7 @@ abstract class BagOStuff {
 	 *     regularly during long-running operations with the percentage progress
 	 *     as the first parameter.
 	 *
-	 * @return true on success, false if unimplemented
+	 * @return bool on success, false if unimplemented
 	 */
 	public function deleteObjectsExpiringBefore( $date, $progressCallback = false ) {
 		// stub

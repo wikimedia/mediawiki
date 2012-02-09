@@ -39,7 +39,7 @@ class DeadendPagesPage extends PageQueryPage {
 	/**
 	 * LEFT JOIN is expensive
 	 *
-	 * @return true
+	 * @return bool
 	 */
 	function isExpensive() {
 		return true;
@@ -50,7 +50,7 @@ class DeadendPagesPage extends PageQueryPage {
 	}
 
 	/**
-	 * @return false
+	 * @return bool
 	 */
 	function sortDescending() {
 		return false;

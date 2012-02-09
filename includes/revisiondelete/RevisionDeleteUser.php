@@ -30,7 +30,7 @@ class RevisionDeleteUser {
 	 * @param  $name String username
 	 * @param  $userId Int user id
 	 * @param  $op String operator '|' or '&'
-	 * @param  $dbw null|Database, if you happen to have one lying around
+	 * @param  $dbw null|DatabaseBase, if you happen to have one lying around
 	 * @return bool
 	 */
 	private static function setUsernameBitfields( $name, $userId, $op, $dbw ) {

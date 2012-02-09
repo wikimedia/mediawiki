@@ -33,7 +33,7 @@ class MWNamespace {
 	 * @param $index
 	 * @param $method
 	 *
-	 * @return true
+	 * @return bool
 	 */
 	private static function isMethodValidFor( $index, $method ) {
 		if ( $index < NS_MAIN ) {

@@ -120,7 +120,7 @@ class LinkFilter {
 	 * Filters an array returned by makeLikeArray(), removing everything past first pattern placeholder.
 	 *
 	 * @param $arr array: array to filter
-	 * @return filtered array
+	 * @return array filtered array
 	 */
 	public static function keepOneWildcard( $arr ) {
 		if( !is_array( $arr ) ) {
