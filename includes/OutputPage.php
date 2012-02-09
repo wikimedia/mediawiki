@@ -1309,7 +1309,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Get/set the ParserOptions object to use for wikitext parsing
 	 *
-	 * @param $options either the ParserOption to use or null to only get the
+	 * @param $options ParserOptions|null either the ParserOption to use or null to only get the
 	 *                 current ParserOption object
 	 * @return ParserOptions object
 	 */
@@ -2344,7 +2344,7 @@ $templates
 	 * Add a "return to" link pointing to a specified title,
 	 * or the title indicated in the request, or else the main page
 	 *
-	 * @param $unused No longer used
+	 * @param $unused
 	 * @param $returnto Title or String to return to
 	 * @param $returntoquery String: query string for the return to link
 	 */
@@ -2932,7 +2932,7 @@ $templates
 	}
 
 	/**
-	 * @param $unused Unused
+	 * @param $unused
 	 * @param $addContentType bool
 	 *
 	 * @return string HTML tag links to be put in the header.

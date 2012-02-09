@@ -165,7 +165,7 @@ class LogFormatter {
 	 * Returns a sentence describing the log action. Usually
 	 * a Message object is returned, but old style log types
 	 * and entries might return pre-escaped html string.
-	 * @return Message|pre-escaped html
+	 * @return Message|string pre-escaped html
 	 */
 	protected function getActionMessage() {
 		$message = $this->msg( $this->getMessageKey() );

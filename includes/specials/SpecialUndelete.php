@@ -1264,7 +1264,7 @@ class SpecialUndelete extends SpecialPage {
 	 *
 	 * @param $rev Revision
 	 * @param $titleObj Title
-	 * @param $ts Timestamp
+	 * @param $ts string Timestamp
 	 * @return string
 	 */
 	function getPageLink( $rev, $titleObj, $ts ) {
@@ -1295,7 +1295,7 @@ class SpecialUndelete extends SpecialPage {
 	 *
 	 * @param $file File
 	 * @param $titleObj Title
-	 * @param $ts A timestamp
+	 * @param $ts string A timestamp
 	 * @param $key String: a storage key
 	 *
 	 * @return String: HTML fragment

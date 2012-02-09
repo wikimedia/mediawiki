@@ -84,7 +84,7 @@ class Parser_LinkHooks extends Parser {
 	 * @param $flags Integer: a combination of the following flags:
 	 *     SLH_PATTERN   Use a regex link pattern rather than a namespace
 	 *
-	 * @return The old callback function for this name, if any
+	 * @return callback|null The old callback function for this name, if any
 	 */
 	public function setLinkHook( $ns, $callback, $flags = 0 ) {
 		if( $flags & SLH_PATTERN && !is_string($ns) )

@@ -771,7 +771,7 @@ class SearchResult {
 	}
 
 	/**
-	 * @return Double|null if not supported
+	 * @return float|null if not supported
 	 */
 	function getScore() {
 		return null;

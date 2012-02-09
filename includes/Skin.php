@@ -317,7 +317,7 @@ abstract class Skin extends ContextSource {
 	 * Make a <script> tag containing global variables
 	 *
 	 * @deprecated in 1.19
-	 * @param $unused Unused
+	 * @param $unused
 	 * @return string HTML fragment
 	 */
 	public static function makeGlobalVariablesScript( $unused ) {

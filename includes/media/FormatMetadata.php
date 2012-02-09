@@ -1021,7 +1021,7 @@ class FormatMetadata {
 	 * @private
 	 *
 	 * @param $num Mixed: the value to format
-	 * @param $round digits to round to or false.
+	 * @param $round float|int digits to round to or false.
 	 * @return mixed A floating point number or whatever we were fed
 	 */
 	static function formatNum( $num, $round = false ) {
@@ -1102,7 +1102,8 @@ class FormatMetadata {
 		return $a;
 	}
 
-	/** Fetch the human readable version of a news code.
+	/**
+	 * Fetch the human readable version of a news code.
 	 * A news code is an 8 digit code. The first two 
 	 * digits are a general classification, so we just
 	 * translate that.
@@ -1111,7 +1112,7 @@ class FormatMetadata {
 	 * a string, not an int.
 	 *
 	 * @param $val String: The 8 digit news code.
-	 * @return The human readable form
+	 * @return srting The human readable form
 	 */
 	static private function convertNewsCode( $val ) {
 		if ( !preg_match( '/^\d{8}$/D', $val ) ) {

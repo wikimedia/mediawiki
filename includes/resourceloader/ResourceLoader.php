@@ -215,7 +215,7 @@ class ResourceLoader {
 	 * Registers a module with the ResourceLoader system.
 	 *
 	 * @param $name Mixed: Name of module as a string or List of name/object pairs as an array
-	 * @param $info Module info array. For backwards compatibility with 1.17alpha,
+	 * @param $info array Module info array. For backwards compatibility with 1.17alpha,
 	 *   this may also be a ResourceLoaderModule object. Optional when using
 	 *   multiple-registration calling style.
 	 * @throws MWException: If a duplicate module registration is attempted
@@ -795,7 +795,7 @@ class ResourceLoader {
 	 * Returns JS code to call to mw.loader.implement for a module with
 	 * given properties.
 	 *
-	 * @param $name Module name
+	 * @param $name string Module name
 	 * @param $scripts Mixed: List of URLs to JavaScript files or String of JavaScript code
 	 * @param $styles Mixed: List of CSS strings keyed by media type, or list of lists of URLs to
 	 * CSS files keyed by media type

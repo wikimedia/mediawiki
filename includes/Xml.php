@@ -529,8 +529,8 @@ class Xml {
 	/**
 	 * Shortcut for creating fieldsets.
 	 *
-	 * @param $legend Legend of the fieldset. If evaluates to false, legend is not added.
-	 * @param $content Pre-escaped content for the fieldset. If false, only open fieldset is returned.
+	 * @param $legend string|bool Legend of the fieldset. If evaluates to false, legend is not added.
+	 * @param $content string Pre-escaped content for the fieldset. If false, only open fieldset is returned.
 	 * @param $attribs array Any attributes to fieldset-element.
 	 *
 	 * @return string

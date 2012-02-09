@@ -128,7 +128,7 @@ class UploadFromChunks extends UploadFromFile {
 
 	/**
 	 * Returns the virtual chunk location: 	
-	 * @param unknown_type $index
+	 * @param $index
 	 */
 	function getVirtualChunkLocation( $index ){
 		return $this->repo->getVirtualUrl( 'temp' ) . 
@@ -138,12 +138,13 @@ class UploadFromChunks extends UploadFromFile {
 				) . 
 				$this->getChunkFileKey( $index );
 	}
+
 	/**
 	 * Add a chunk to the temporary directory
 	 *
-	 * @param $chunkPath path to temporary chunk file
-	 * @param $chunkSize size of the current chunk
-	 * @param $offset offset of current chunk ( mutch match database chunk offset ) 
+	 * @param $chunkPath string path to temporary chunk file
+	 * @param $chunkSize int size of the current chunk
+	 * @param $offset int offset of current chunk ( mutch match database chunk offset )
 	 * @return Status
 	 */
 	public function addChunk( $chunkPath, $chunkSize, $offset ) {

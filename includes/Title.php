@@ -1284,7 +1284,7 @@ class Title {
 	 * with action=render, $wgServer is prepended.
 	 *
 
-	 * @param $query \twotypes{\string,\array} an optional query string,
+	 * @param $query string|array an optional query string,
 	 *   not used for interwiki	links. Can be specified as an associative array as well,
 	 *   e.g., array( 'action' => 'edit' ) (keys and values will be URL-escaped).
 	 *   Some query patterns will trigger various shorturl path replacements.

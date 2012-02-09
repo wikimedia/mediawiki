@@ -140,7 +140,7 @@ class UploadFromStash extends UploadBase {
 
 	/**
 	 * Remove a temporarily kept file stashed by saveTempUploadedFile().
-	 * @return success
+	 * @return bool success
 	 */
 	public function unsaveUploadedFile() {
 		return $this->stash->removeFile( $this->mFileKey );

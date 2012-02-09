@@ -122,7 +122,7 @@ class BitmapMetadataHandler {
 	/** Main entry point for jpeg's.
 	 *
 	 * @param $filename string filename (with full path)
-	 * @return metadata result array.
+	 * @return array metadata result array.
 	 * @throws MWException on invalid file.
 	 */
 	static function Jpeg ( $filename ) {

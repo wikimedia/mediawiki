@@ -609,8 +609,9 @@ class Linker {
 	/**
 	 * Get the link parameters for MediaTransformOutput::toHtml() from given
 	 * frame parameters supplied by the Parser.
-	 * @param $frameParams The frame parameters
-	 * @param $query An optional query string to add to description page links
+	 * @param $frameParams array The frame parameters
+	 * @param $query string An optional query string to add to description page links
+	 * @return array
 	 */
 	private static function getImageLinkMTOParams( $frameParams, $query = '' ) {
 		$mtoParams = array();
@@ -1126,7 +1127,7 @@ class Linker {
 	 * Called by Linker::formatComment.
 	 *
 	 * @param $comment String: comment text
-	 * @param $title An optional title object used to links to sections
+	 * @param $title Title|null An optional title object used to links to sections
 	 * @param $local Boolean: whether section links should refer to local page
 	 * @return String: formatted comment
 	 */
@@ -1205,7 +1206,7 @@ class Linker {
 	 *
 	 * @todo FIXME: Doesn't handle sub-links as in image thumb texts like the main parser
 	 * @param $comment String: text to format links in
-	 * @param $title An optional title object used to links to sections
+	 * @param $title Title|null An optional title object used to links to sections
 	 * @param $local Boolean: whether section links should refer to local page
 	 * @return String
 	 */
@@ -1498,7 +1499,7 @@ class Linker {
 	 * Generate a table of contents from a section tree
 	 * Currently unused.
 	 *
-	 * @param $tree Return value of ParserOutput::getSections()
+	 * @param $tree array Return value of ParserOutput::getSections()
 	 * @return String: HTML fragment
 	 */
 	public static function generateTOC( $tree ) {
@@ -1708,7 +1709,7 @@ class Linker {
 	 * Format a size in bytes for output, using an appropriate
 	 * unit (B, KB, MB or GB) according to the magnitude in question
 	 *
-	 * @param $size Size to format
+	 * @param $size int Size to format
 	 * @return String
 	 */
 	public static function formatSize( $size ) {
@@ -1944,7 +1945,7 @@ class Linker {
 	 * @param $prefix String: text before link text
 	 * @param $aprops String: extra attributes to the a-element
 	 * @param $style  String: style to apply - if empty, use getInternalLinkAttributesObj instead
-	 * @return the a-element
+	 * @return string the a-element
 	 */
 	static function makeKnownLinkObj(
 		$title, $text = '', $query = '', $trail = '', $prefix = '' , $aprops = '', $style = ''

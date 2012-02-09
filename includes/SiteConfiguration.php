@@ -210,7 +210,7 @@ class SiteConfiguration {
 	 * @param $setting String ID of the setting name to retrieve
 	 * @param $wiki String Wiki ID of the wiki in question.
 	 * @param $suffix String The suffix of the wiki in question.
-	 * @param $var Reference The variable to insert the value into.
+	 * @param $var array Reference The variable to insert the value into.
 	 * @param $params Array List of parameters. $.'key' is replaced by $value in all returned data.
 	 * @param $wikiTags Array The tags assigned to the wiki.
 	 */

@@ -1023,7 +1023,7 @@ class WikiPage extends Page {
 	 * @param $dbw DatabaseBase
 	 * @param $redirectTitle Title object pointing to the redirect target,
 	 *                       or NULL if this is not a redirect
-	 * @param $lastRevIsRedirect If given, will optimize adding and
+	 * @param $lastRevIsRedirect null|bool If given, will optimize adding and
 	 *                           removing rows in redirect table.
 	 * @return bool true on success, false on failure
 	 * @private
@@ -1124,7 +1124,7 @@ class WikiPage extends Page {
 	}
 
 	/**
-	 * @param $section empty/null/false or a section number (0, 1, 2, T1, T2...)
+	 * @param $section null|bool|int or a section number (0, 1, 2, T1, T2...)
 	 * @param $text String: new text of the section
 	 * @param $sectionTitle String: new section's subject, only if $section is 'new'
 	 * @param $edittime String: revision timestamp or null to use the current revision
@@ -1223,7 +1223,7 @@ class WikiPage extends Page {
 	 * edit-already-exists error will be returned. These two conditions are also possible with
 	 * auto-detection due to MediaWiki's performance-optimised locking strategy.
 	 *
-	 * @param $baseRevId the revision ID this edit was based off, if any
+	 * @param $baseRevId int the revision ID this edit was based off, if any
 	 * @param $user User the user doing the edit
 	 *
 	 * @return Status object. Possible errors:
@@ -1917,7 +1917,7 @@ class WikiPage extends Page {
 	 * Deletes the article with database consistency, writes logs, purges caches
 	 *
 	 * @param $reason string delete reason for deletion log
-	 * @param $suppress bitfield
+	 * @param $suppress int bitfield
 	 * 	Revision::DELETED_TEXT
 	 * 	Revision::DELETED_COMMENT
 	 * 	Revision::DELETED_USER
@@ -1940,7 +1940,7 @@ class WikiPage extends Page {
 	 * Deletes the article with database consistency, writes logs, purges caches
 	 *
 	 * @param $reason string delete reason for deletion log
-	 * @param $suppress bitfield
+	 * @param $suppress int bitfield
 	 * 	Revision::DELETED_TEXT
 	 * 	Revision::DELETED_COMMENT
 	 * 	Revision::DELETED_USER
@@ -2829,7 +2829,7 @@ class PoolWorkArticleView extends PoolCounterWork {
 	private $text;
 
 	/**
-	 * @var ParserOutput|false
+	 * @var ParserOutput|bool
 	 */
 	private $parserOutput = false;
 
@@ -2839,7 +2839,7 @@ class PoolWorkArticleView extends PoolCounterWork {
 	private $isDirty = false;
 
 	/**
-	 * @var Status|false
+	 * @var Status|bool
 	 */
 	private $error = false;
 
@@ -2883,7 +2883,7 @@ class PoolWorkArticleView extends PoolCounterWork {
 	/**
 	 * Get a Status object in case of error or false otherwise
 	 *
-	 * @return Status|false
+	 * @return Status|bool
 	 */
 	public function getError() {
 		return $this->error;
