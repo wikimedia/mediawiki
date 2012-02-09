@@ -245,6 +245,8 @@ production.
 * It is now possible to delete images that have no corresponding description pages.
 * (bug 33165) GlobalFunctions.php line 1312: Call to a member function
   getText() on a non-object
+* (bug 31676) Group dynamically inserted CSS into a single <style> tag, to work
+  around a bug where not all styles were applied in Internet Explorer
 
 === API changes in 1.19 ===
 * Made action=edit less likely to return "unknownerror", by returning the actual error

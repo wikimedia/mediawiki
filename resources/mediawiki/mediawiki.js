@@ -375,7 +375,7 @@ var mw = ( function ( $, undefined ) {
 	
 			/* Private methods */
 	
-			function getMarker(){
+			function getMarker() {
 				// Cached ?
 				if ( $marker ) {
 					return $marker;
@@ -387,6 +387,27 @@ var mw = ( function ( $, undefined ) {
 					mw.log( 'getMarker> No <meta name="ResourceLoaderDynamicStyles"> found, inserting dynamically.' );
 					$marker = $( '<meta>' ).attr( 'name', 'ResourceLoaderDynamicStyles' ).appendTo( 'head' );
 					return $marker;
+				}
+			}
+			
+			function addInlineCSS( css, media ) {
+				var $style = getMarker().prev();
+				if ( $style.is( 'style' ) && $style.data( 'ResourceLoaderDynamicStyleTag' ) === true ) {
+					// There's already a dynamic <style> tag present, append to it
+					// This recycling of <style> tags is for bug 31676 (can't have
+					// more than 32 <style> tags in IE)
+					
+					// Do cdata sanitization on the provided CSS, and prepend a double newline
+					css = $( mw.html.element( 'style', {}, new mw.html.Cdata( "\n\n" + css ) ) ).html();
+					$style.append( css );
+				} else {
+					// Create a new <style> tag and insert it
+					$style = $( mw.html.element( 'style', {
+							'type': 'text/css',
+							'media': media
+						}, new mw.html.Cdata( css ) ) );
+					$style.data( 'ResourceLoaderDynamicStyleTag', true );
+					getMarker().before( $style );
 				}
 			}
 	
@@ -686,10 +707,7 @@ var mw = ( function ( $, undefined ) {
 								} ) );
 							}
 						} else if ( typeof style === 'string' ) {
-							getMarker().before( mw.html.element( 'style', {
-								'type': 'text/css',
-								'media': media
-							}, new mw.html.Cdata( style ) ) );
+							addInlineCSS( style, media );
 						}
 					}
 				}
