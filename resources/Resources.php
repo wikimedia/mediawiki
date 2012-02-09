@@ -825,6 +825,7 @@ return array(
 			'mediawiki.util',
 			'mediawiki.legacy.wikibits',
 		),
+		'position' => 'top', // Temporary hack for legacy support
 	),
 	'mediawiki.legacy.commonPrint' => array(
 		'styles' => array( 'common/commonPrint.css' => array( 'media' => 'print' ) ),
