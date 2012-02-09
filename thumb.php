@@ -173,6 +173,17 @@ function wfStreamThumb( array $params ) {
 	try {
 		$thumbName = $img->thumbName( $params );
 		if ( strlen( $thumbName ) ) { // valid params?
+			// For 404 handled thumbnails, we only use the the base name of the URI
+			// for the thumb params and the parent directory for the source file name.
+			// Check that the zone relative path matches up so squid caches won't pick
+			// up thumbs that would not be purged on source file deletion (bug 34231).
+			if ( isset( $params['rel404'] ) // thumbnail was handled via 404
+				&& $params['rel404'] !== $img->getThumbRel( $thumbName ) ) 
+			{
+				wfThumbError( 404, 'The source file for the specified thumbnail does not exist.' );
+				wfProfileOut( __METHOD__ );
+				return;
+			}
 			$thumbPath = $img->getThumbPath( $thumbName );
 			if ( $img->getRepo()->fileExists( $thumbPath ) ) {
 				$img->getRepo()->streamFile( $thumbPath, $headers );
@@ -244,18 +255,18 @@ function wfExtractThumbParams( $uri ) {
 		$hashDirRegex .= "$subdirRegex/";
 	}
 
-	$thumbUrlRegex = "!^$zoneUrlRegex(/archive|/temp|)/$hashDirRegex([^/]*)/([^/]*)$!";
+	$thumbUrlRegex = "!^$zoneUrlRegex/((archive/|temp/)?$hashDirRegex([^/]*)/([^/]*))$!";
 
 	// Check if this is a valid looking thumbnail request...
 	if ( preg_match( $thumbUrlRegex, $uri, $matches ) ) {
-		list( /* all */, $archOrTemp, $filename, $thumbname ) = $matches;
+		list( /* all */, $rel, $archOrTemp, $filename, $thumbname ) = $matches;
 		$filename = urldecode( $filename );
 		$thumbname = urldecode( $thumbname );
 
-		$params = array( 'f' => $filename );
-		if ( $archOrTemp == '/archive' ) {
+		$params = array( 'f' => $filename, 'rel404' => $rel );
+		if ( $archOrTemp == 'archive/' ) {
 			$params['archived'] = 1;
-		} elseif ( $archOrTemp == '/temp' ) {
+		} elseif ( $archOrTemp == 'temp/' ) {
 			$params['temp'] = 1;
 		}
 
