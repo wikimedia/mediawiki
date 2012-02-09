@@ -13,6 +13,7 @@ production.
 === Configuration changes in 1.20 ===
 
 === New features in 1.20 ===
+* Added TitleIsKnown hook which gets called when determining if a page exists.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
