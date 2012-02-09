@@ -51,7 +51,7 @@ class CdbFunctions {
 	/**
 	 * The CDB hash function.
 	 *
-	 * @param $s
+	 * @param $s string
 	 *
 	 * @return
 	 */
