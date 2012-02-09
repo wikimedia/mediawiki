@@ -2682,7 +2682,7 @@ $templates
 
 		// Load embeddable private modules before any loader links
 		$embedScripts = array( 'user.options', 'user.tokens' );
-		$scripts .= $this->makeResourceLoaderLink( $embedScripts, ResourceLoaderModule::TYPE_COMBINED );
+		$scripts .= $this->makeResourceLoaderLink( $embedScripts, ResourceLoaderModule::TYPE_SCRIPTS );
 
 		// Script and Messages "only" requests marked for top inclusion
 		// Messages should go first
