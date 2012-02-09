@@ -103,7 +103,7 @@ class Category {
 	 * Factory function.
 	 *
 	 * @param $title Title for the category page
-	 * @return category|false on a totally invalid name
+	 * @return Category|bool on a totally invalid name
 	 */
 	public static function newFromTitle( $title ) {
 		$cat = new self();
@@ -185,7 +185,7 @@ class Category {
 	public function getFileCount() { return $this->getX( 'mFiles' ); }
 
 	/**
-	 * @return Title|false Title for this category, or false on failure.
+	 * @return Title|bool Title for this category, or false on failure.
 	 */
 	public function getTitle() {
 		if ( $this->mTitle ) return $this->mTitle;

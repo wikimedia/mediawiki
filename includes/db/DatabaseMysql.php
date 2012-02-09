@@ -385,7 +385,7 @@ class DatabaseMysql extends DatabaseBase {
 	 * @param $table string
 	 * @param $index string
 	 * @param $fname string
-	 * @return false|array
+	 * @return bool|array
 	 */
 	function indexInfo( $table, $index, $fname = 'DatabaseMysql::indexInfo' ) {
 		# SHOW INDEX works in MySQL 3.23.58, but SHOW INDEXES does not.

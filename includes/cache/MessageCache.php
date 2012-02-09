@@ -126,7 +126,7 @@ class MessageCache {
 	 *
 	 * @param $hash String: the hash of contents, to check validity.
 	 * @param $code Mixed: Optional language code, see documenation of load().
-	 * @return false on failure.
+	 * @return bool on failure.
 	 */
 	function loadFromLocal( $hash, $code ) {
 		global $wgCacheDirectory, $wgLocalMessageCacheSerialized;
@@ -520,7 +520,7 @@ class MessageCache {
 	 * @param $cache Array: cached messages with a version.
 	 * @param $memc Bool: Wether to update or not memcache.
 	 * @param $code String: Language code.
-	 * @return False on somekind of error.
+	 * @return bool on somekind of error.
 	 */
 	protected function saveToCaches( $cache, $memc = true, $code = false ) {
 		wfProfileIn( __METHOD__ );

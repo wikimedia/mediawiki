@@ -175,7 +175,7 @@ class LSLockManager extends LockManager {
 	 * @param $action string
 	 * @param $type string
 	 * @param $values Array
-	 * @return string|false
+	 * @return string|bool
 	 */
 	protected function sendCommand( $lockSrv, $action, $type, $values ) {
 		$conn = $this->getConnection( $lockSrv );

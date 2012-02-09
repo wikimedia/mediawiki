@@ -50,7 +50,7 @@ abstract class DatabaseInstaller {
 	public abstract function getName();
 
 	/**
-	 * @return true if the client library is compiled in.
+	 * @return bool Returns true if the client library is compiled in.
 	 */
 	public abstract function isCompiled();
 
