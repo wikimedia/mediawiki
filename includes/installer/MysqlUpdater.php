@@ -182,7 +182,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'addTable', 'user_former_groups',                'patch-user_former_groups.sql'),
 
 			// 1.19
-			array( 'addTable', 'config',                            'patch-config.sql' ),
 			array( 'addIndex', 'logging',       'type_action',      'patch-logging-type-action-index.sql'),
 			array( 'doMigrateUserOptions' ),
 			array( 'dropField', 'user',         'user_options', 'patch-drop-user_options.sql' ),
@@ -193,6 +192,9 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'addField',	'uploadstash',	'us_chunk_inx',		'patch-uploadstash_chunk.sql' ),
 			array( 'addfield', 'job',           'job_timestamp',    'patch-jobs-add-timestamp.sql' ),
 			array( 'modifyField', 'user_former_groups', 'ufg_group', 'patch-ufg_group-length-increase.sql' ),
+
+			// 1.20
+			array( 'addTable', 'config',                            'patch-config.sql' ),
 		);
 	}
 
