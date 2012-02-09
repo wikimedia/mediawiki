@@ -65,7 +65,6 @@ class Ibm_db2Updater extends DatabaseUpdater {
 			array( 'doRebuildLocalisationCache' ), 
 			
 			// 1.19
-			array( 'addTable', 'config',                            'patch-config.sql' ),
 			array( 'addIndex', 'logging',       'type_action',      'patch-logging-type-action-index.sql'),
 			array( 'dropField', 'user',         'user_options', 'patch-drop-user_options.sql' ),
 			array( 'addField', 'revision',      'rev_sha1',         'patch-rev_sha1.sql' ),

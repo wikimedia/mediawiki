@@ -39,7 +39,6 @@ class OracleUpdater extends DatabaseUpdater {
 			array( 'doRecentchangesFK2Cascade' ),
 
 			//1.19
-			array( 'addTable', 'config', 'patch-config.sql' ),
 			array( 'addIndex', 'logging',       'i05',      'patch-logging_type_action_index.sql'),
 			array( 'addTable', 'globaltemplatelinks', 'patch-globaltemplatelinks.sql' ),
 			array( 'addTable', 'globalnamespaces', 'patch-globalnamespaces.sql' ),
