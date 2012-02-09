@@ -41,7 +41,7 @@ class CheckLanguageCLI {
 
 	/**
 	 * Constructor.
-	 * @param $options Options for script.
+	 * @param $options array Options for script.
 	 */
 	public function __construct( Array $options ) {
 		if ( isset( $options['help'] ) ) {
@@ -94,7 +94,7 @@ class CheckLanguageCLI {
 
 	/**
 	 * Get the default checks.
-	 * @return A list of the default checks.
+	 * @return array A list of the default checks.
 	 */
 	protected function defaultChecks() {
 		return array(
@@ -107,7 +107,7 @@ class CheckLanguageCLI {
 
 	/**
 	 * Get the checks which check other things than messages.
-	 * @return A list of the non-message checks.
+	 * @return array A list of the non-message checks.
 	 */
 	protected function nonMessageChecks() {
 		return array(
@@ -129,7 +129,7 @@ class CheckLanguageCLI {
 
 	/**
 	 * Get all checks.
-	 * @return An array of all check names mapped to their function names.
+	 * @return array An array of all check names mapped to their function names.
 	 */
 	protected function getChecks() {
 		return array(
@@ -157,7 +157,7 @@ class CheckLanguageCLI {
 
 	/**
 	 * Get total count for each check non-messages check.
-	 * @return An array of all check names mapped to a two-element array:
+	 * @return array An array of all check names mapped to a two-element array:
 	 * function name to get the total count and language code or null
 	 * for checked code.
 	 */
@@ -176,7 +176,7 @@ class CheckLanguageCLI {
 
 	/**
 	 * Get all check descriptions.
-	 * @return An array of all check names mapped to their descriptions.
+	 * @return array An array of all check names mapped to their descriptions.
 	 */
 	protected function getDescriptions() {
 		return array(
@@ -204,7 +204,7 @@ class CheckLanguageCLI {
 
 	/**
 	 * Get help.
-	 * @return The help string.
+	 * @return string The help string.
 	 */
 	protected function help() {
 		return <<<ENDS
@@ -295,7 +295,7 @@ ENDS;
 
 	/**
 	 * Get the check blacklist.
-	 * @return The list of checks which should not be executed.
+	 * @return array The list of checks which should not be executed.
 	 */
 	protected function getCheckBlacklist() {
 		global $checkBlacklist;
@@ -336,9 +336,9 @@ ENDS;
 
 	/**
 	 * Format a message key.
-	 * @param $key The message key.
-	 * @param $code The language code.
-	 * @return The formatted message key.
+	 * @param $key string The message key.
+	 * @param $code string The language code.
+	 * @return string The formatted message key.
 	 */
 	protected function formatKey( $key, $code ) {
 		if ( $this->doLinks ) {
@@ -355,7 +355,6 @@ ENDS;
 
 	/**
 	 * Output the checks results as plain text.
-	 * @return The checks results as plain text.
 	 */
 	protected function outputText() {
 		foreach ( $this->results as $code => $results ) {
@@ -401,7 +400,6 @@ ENDS;
 
 	/**
 	 * Output the checks results as wiki text.
-	 * @return The checks results as wiki text.
 	 */
 	function outputWiki() {
 		global $wgContLang;
@@ -462,7 +460,7 @@ EOL;
 
 	/**
 	 * Check if there are any results for the checks, in any language.
-	 * @return True if there are any results, false if not.
+	 * @return bool True if there are any results, false if not.
 	 */
 	protected function isEmpty() {
 		foreach( $this->results as $results ) {
@@ -484,8 +482,8 @@ class CheckExtensionsCLI extends CheckLanguageCLI {
 
 	/**
 	 * Constructor.
-	 * @param $options Options for script.
-	 * @param $extension The extension name (or names).
+	 * @param $options array Options for script.
+	 * @param $extension string The extension name (or names).
 	 */
 	public function __construct( Array $options, $extension ) {
 		if ( isset( $options['help'] ) ) {
@@ -569,7 +567,7 @@ class CheckExtensionsCLI extends CheckLanguageCLI {
 
 	/**
 	 * Get the default checks.
-	 * @return A list of the default checks.
+	 * @return array A list of the default checks.
 	 */
 	protected function defaultChecks() {
 		return array(
@@ -580,7 +578,7 @@ class CheckExtensionsCLI extends CheckLanguageCLI {
 
 	/**
 	 * Get the checks which check other things than messages.
-	 * @return A list of the non-message checks.
+	 * @return array A list of the non-message checks.
 	 */
 	protected function nonMessageChecks() {
 		return array();
@@ -588,7 +586,7 @@ class CheckExtensionsCLI extends CheckLanguageCLI {
 
 	/**
 	 * Get the checks that can easily be treated by non-speakers of the language.
-	 * @return A list of the easy checks.
+	 * @return arrayA list of the easy checks.
 	 */
 	protected function easyChecks() {
 		return array(
@@ -598,7 +596,7 @@ class CheckExtensionsCLI extends CheckLanguageCLI {
 
 	/**
 	 * Get help.
-	 * @return The help string.
+	 * @return string The help string.
 	 */
 	protected function help() {
 		return <<<ENDS

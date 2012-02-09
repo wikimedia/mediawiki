@@ -264,7 +264,7 @@ class GenerateSitemap extends Maintenance {
 	 * @return String
 	 */
 	function guessPriority( $namespace ) {
-		return MWNamespace::isMain( $namespace ) ? $this->priorities[self::GS_MAIN] : $this->priorities[self::GS_TALK];
+		return MWNamespace::isSubject( $namespace ) ? $this->priorities[self::GS_MAIN] : $this->priorities[self::GS_TALK];
 	}
 
 	/**

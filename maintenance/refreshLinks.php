@@ -230,8 +230,8 @@ class RefreshLinks extends Maintenance {
 	 * Removes non-existing links from pages from pagelinks, imagelinks,
 	 * categorylinks, templatelinks, externallinks, interwikilinks, langlinks and redirect tables.
 	 *
-	 * @param $maxLag
-	 * @param $batchSize The size of deletion batches
+	 * @param $maxLag int
+	 * @param $batchSize int The size of deletion batches
 	 *
 	 * @author Merlijn van Deen <valhallasw@arctus.nl>
 	 */

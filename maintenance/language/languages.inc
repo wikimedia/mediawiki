@@ -43,7 +43,7 @@ class languages {
 	 * Load the list of languages: all the Messages*.php
 	 * files in the languages directory.
 	 *
-	 * @param $exif Treat the EXIF messages?
+	 * @param $exif bool Treat the EXIF messages?
 	 */
 	function __construct( $exif = true ) {
 		require( dirname(__FILE__) . '/messageTypes.inc' );
@@ -244,7 +244,7 @@ class languages {
 	 *
 	 * @param $code string The language code.
 	 *
-	 * @return Namespace names.
+	 * @return array Namespace names.
 	 */
 	public function getNamespaceNames( $code ) {
 		$this->loadFile( $code );
@@ -256,7 +256,7 @@ class languages {
 	 *
 	 * @param $code string The language code.
 	 *
-	 * @return Namespace aliases.
+	 * @return array Namespace aliases.
 	 */
 	public function getNamespaceAliases( $code ) {
 		$this->loadFile( $code );
@@ -268,7 +268,7 @@ class languages {
 	 *
 	 * @param $code string The language code.
 	 *
-	 * @return Magic words.
+	 * @return array Magic words.
 	 */
 	public function getMagicWords( $code ) {
 		$this->loadFile( $code );
@@ -280,7 +280,7 @@ class languages {
 	 *
 	 * @param $code string The language code.
 	 *
-	 * @return Special page aliases.
+	 * @return array Special page aliases.
 	 */
 	public function getSpecialPageAliases( $code ) {
 		$this->loadFile( $code );
@@ -734,7 +734,7 @@ class extensionLanguages extends languages {
 
 	/**
 	 * Load the messages group.
-	 * @param $group The messages group.
+	 * @param $group MessageGroup The messages group.
 	 */
 	function __construct( MessageGroup $group ) {
 		$this->mMessageGroup = $group;

@@ -86,7 +86,7 @@ class RemoveUnusedAccounts extends Maintenance {
 	 * (No edits, no deleted edits, no log entries, no current/old uploads)
 	 *
 	 * @param $id User's ID
-	 * @param $master Perform checking on the master
+	 * @param $master bool Perform checking on the master
 	 * @return bool
 	 */
 	private function isInactiveAccount( $id, $master = false ) {

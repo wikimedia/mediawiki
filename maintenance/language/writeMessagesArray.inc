@@ -156,6 +156,7 @@ class MessageWriter {
 	 * @param $messages Array: key of messages.
 	 * @param $ignored Array: list of ingored message keys.
 	 * @param $optional Array: list of optional message keys.
+	 * @return array
 	 */
 	public static function makeComments( $messages, $ignored, $optional ) {
 		# Comment collector
@@ -181,7 +182,7 @@ class MessageWriter {
 	 * @param $messageComments Array: optional comments for messages in this block.
 	 * @param $prefix String: prefix for every line, for indenting purposes.
 	 *
-	 * @return The block, formatted in PHP.
+	 * @return string The block, formatted in PHP.
 	 */
 	public static function writeMessagesBlock( $blockComment, $messages,
 		$messageComments = array(), $prefix = '' ) {

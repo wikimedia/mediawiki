@@ -111,7 +111,7 @@ class RebuildLocalisationCache extends Maintenance {
 	/**
 	 * Helper function to rebuild list of languages codes. Prints the code
 	 * for each language which is rebuilt.
-	 * @param $codes  list  List of language codes to rebuild.
+	 * @param $codes array List of language codes to rebuild.
 	 * @param $lc LocalisationCache Instance of LocalisationCache_BulkLoad (?)
 	 * @param $force bool Rebuild up-to-date languages
 	 * @return int Number of rebuilt languages
