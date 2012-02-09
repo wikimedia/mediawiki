@@ -512,7 +512,7 @@ abstract class ApiBase extends ContextSource {
 
 	/**
 	 * Returns usage examples for this module. Return false if no examples are available.
-	 * @return false|string|array
+	 * @return bool|string|array
 	 */
 	protected function getExamples() {
 		return false;
@@ -1372,7 +1372,7 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * @return false|string|array Returns a false if the module has no help url, else returns a (array of) string
+	 * @return bool|string|array Returns a false if the module has no help url, else returns a (array of) string
 	 */
 	public function getHelpUrls() {
 		return false;

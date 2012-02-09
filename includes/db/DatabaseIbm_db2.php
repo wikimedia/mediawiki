@@ -122,7 +122,7 @@ class IBM_DB2Result{
 
 	/**
 	 * Construct and initialize a wrapper for DB2 query results
-	 * @param $db Database
+	 * @param $db DatabaseBase
 	 * @param $result Object
 	 * @param $num_rows Integer
 	 * @param $sql String

@@ -74,7 +74,7 @@ abstract class FileCacheBase {
 
 	/**
 	 * Get the last-modified timestamp of the cache file
-	 * @return string|false TS_MW timestamp
+	 * @return string|bool TS_MW timestamp
 	 */
 	public function cacheTimestamp() {
 		$timestamp = filemtime( $this->cachePath() );

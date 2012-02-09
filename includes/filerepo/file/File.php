@@ -68,19 +68,19 @@ abstract class File {
 	 */
 
 	/**
-	 * @var FileRepo|false
+	 * @var FileRepo|bool
 	 */
 	var $repo;
 
 	/**
-	 * @var Title|false
+	 * @var Title|bool
 	 */
 	var $title;
 
 	var $lastError, $redirected, $redirectedTitle;
 
 	/**
-	 * @var FSFile|false
+	 * @var FSFile|bool
 	 */
 	protected $fsFile;
 
@@ -111,8 +111,8 @@ abstract class File {
 	 * may return false or throw exceptions if they are not set.
 	 * Most subclasses will want to call assertRepoDefined() here.
 	 *
-	 * @param $title Title|string|false
-	 * @param $repo FileRepo|false
+	 * @param $title Title|string|bool
+	 * @param $repo FileRepo|bool
 	 */
 	function __construct( $title, $repo ) {
 		if ( $title !== false ) { // subclasses may not use MW titles
@@ -127,7 +127,7 @@ abstract class File {
 	 * valid Title object with namespace NS_FILE or null
 	 *
 	 * @param $title Title|string
-	 * @param $exception string|false Use 'exception' to throw an error on bad titles
+	 * @param $exception string|bool Use 'exception' to throw an error on bad titles
 	 * @return Title|null
 	 */
 	static function normalizeTitle( $title, $exception = false ) {
@@ -383,7 +383,7 @@ abstract class File {
 	 *
 	 * @param $page int
 	 *
-	 * @return false|number
+	 * @return bool|number
 	 */
 	public function getHeight( $page = 1 ) {
 		return false;
@@ -1401,7 +1401,7 @@ abstract class File {
 	 *
 	 * @param $reason String
 	 * @param $suppress Boolean: hide content from sysops?
-	 * @return true on success, false on some kind of failure
+	 * @return bool on success, false on some kind of failure
 	 * STUB
 	 * Overridden by LocalFile
 	 */
@@ -1442,7 +1442,7 @@ abstract class File {
 	 * Returns the number of pages of a multipage document, or false for
 	 * documents which aren't multipage documents
 	 *
-	 * @return false|int
+	 * @return bool|int
 	 */
 	function pageCount() {
 		if ( !isset( $this->pageCount ) ) {
@@ -1618,7 +1618,7 @@ abstract class File {
 	 *
 	 * @param $path string
 	 *
-	 * @return false|string False on failure
+	 * @return bool|string False on failure
 	 */
 	static function sha1Base36( $path ) {
 		wfDeprecated( __METHOD__, '1.19' );

@@ -93,7 +93,7 @@ class ArchivedFile {
 
 	/**
 	 * Loads a file object from the filearchive table
-	 * @return true on success or null
+	 * @return bool on success or null
 	 */
 	public function load() {
 		if ( $this->dataLoaded ) {

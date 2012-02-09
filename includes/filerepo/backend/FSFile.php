@@ -45,7 +45,7 @@ class FSFile {
 	/**
 	 * Get the file size in bytes
 	 *
-	 * @return int|false
+	 * @return int|bool
 	 */
 	public function getSize() {
 		return filesize( $this->path );
@@ -54,7 +54,7 @@ class FSFile {
 	/**
 	 * Get the file's last-modified timestamp
 	 *
-	 * @return string|false TS_MW timestamp or false on failure
+	 * @return string|bool TS_MW timestamp or false on failure
 	 */
 	public function getTimestamp() {
 		wfSuppressWarnings();
@@ -174,7 +174,7 @@ class FSFile {
 	 * 160 log 2 / log 36 = 30.95, so the 160-bit hash fills 31 digits in base 36
 	 * fairly neatly.
 	 *
-	 * @return false|string False on failure
+	 * @return bool|string False on failure
 	 */
 	public function getSha1Base36() {
 		wfProfileIn( __METHOD__ );
@@ -224,7 +224,7 @@ class FSFile {
 	 *
 	 * @param $path string
 	 *
-	 * @return false|string False on failure
+	 * @return bool|string False on failure
 	 */
 	public static function getSha1Base36FromPath( $path ) {
 		$fsFile = new self( $path );

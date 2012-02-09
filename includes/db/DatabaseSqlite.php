@@ -88,7 +88,7 @@ class DatabaseSqlite extends DatabaseBase {
 	 *
 	 * @param $fileName string
 	 *
-	 * @return PDO|false SQL connection or false if failed
+	 * @return PDO|bool SQL connection or false if failed
 	 */
 	function openFile( $fileName ) {
 		$this->mDatabaseFile = $fileName;
@@ -140,7 +140,7 @@ class DatabaseSqlite extends DatabaseBase {
 
 	/**
 	 * Check if the searchindext table is FTS enabled.
-	 * @return false if not enabled.
+	 * @return bool if not enabled.
 	 */
 	function checkForEnabledSearch() {
 		if ( self::$fulltextEnabled === null ) {

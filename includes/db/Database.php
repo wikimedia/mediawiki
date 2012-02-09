@@ -1093,7 +1093,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @param $fname string The function name of the caller.
 	 * @param $options string|array The query options. See DatabaseBase::select() for details.
 	 *
-	 * @return false|mixed The value from the field, or false on failure.
+	 * @return bool|mixed The value from the field, or false on failure.
 	 */
 	function selectField( $table, $var, $cond = '', $fname = 'DatabaseBase::selectField',
 		$options = array() )

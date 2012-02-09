@@ -49,7 +49,7 @@ class UnregisteredLocalFile extends File {
 	 * A FileRepo object is not required here, unlike most other File classes.
 	 * 
 	 * @throws MWException
-	 * @param $title Title|false
+	 * @param $title Title|bool
 	 * @param $repo FileRepo
 	 * @param $path string
 	 * @param $mime string

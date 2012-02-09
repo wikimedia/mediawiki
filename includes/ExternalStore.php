@@ -24,7 +24,7 @@ class ExternalStore {
 	 *
 	 * @param $url String: The URL of the text to get
 	 * @param $params Array: associative array of parameters for the ExternalStore object.
-	 * @return The text stored or false on error
+	 * @return string|bool The text stored or false on error
 	 */
 	static function fetchFromURL( $url, $params = array() ) {
 		global $wgExternalStores;
@@ -81,7 +81,7 @@ class ExternalStore {
 	 * @param $url
 	 * @param $data
 	 * @param $params array
-	 * @return string|false The URL of the stored data item, or false on error
+	 * @return string|bool The URL of the stored data item, or false on error
 	 */
 	static function insert( $url, $data, $params = array() ) {
 		list( $proto, $params ) = explode( '://', $url, 2 );
