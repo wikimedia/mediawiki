@@ -151,7 +151,6 @@ production.
 * Allow moving the associated talk pages of subpages even if the base page
   has no subpage.
 * Per page edit-notices now work in namespaces without subpages enabled.
-* (bug 30245) Use the correct way to construct a log page title.
 * (bug 31081) $wgEnotifUseJobQ caused many unnecessary jobs to be queued.
 * (bug 30202) File names are now restricted on upload to 240 bytes, because of
   restrictions on some of the database fields.
