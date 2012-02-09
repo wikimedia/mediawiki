@@ -37,6 +37,28 @@ class UploadFromUrl extends UploadBase {
 	}
 
 	/**
+	 * Checks whether the URL is for an allowed host
+	 *
+	 * @param $url string
+	 * @return bool
+	 */
+	public static function isAllowedHost( $url ) {
+		global $wgCopyUploadsDomains;
+		if ( !count( $wgCopyUploadsDomains ) ) {
+			return true;
+		}
+		$valid = false;
+		$parsedUrl = wfParseUrl( $url );
+		foreach( $wgCopyUploadsDomains as $domain ) {
+			if ( $parsedUrl['host'] === $domain ) {
+				$valid = true;
+				break;
+			}
+		}
+		return $valid;
+	}
+
+	/**
 	 * Entry point for API upload
 	 *
 	 * @param $name string
@@ -101,6 +123,9 @@ class UploadFromUrl extends UploadBase {
 			return Status::newFatal( 'http-invalid-url' );
 		}
 
+		if( !self::isAllowedHost( $this->mUrl ) ) {
+			return Status::newFatal( 'upload-copy-upload-invalid-domain' );
+		}
 		if ( !$this->mAsync ) {
 			return $this->reallyFetchFile();
 		}

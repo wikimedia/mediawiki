@@ -2236,6 +2236,7 @@ If the problem persists, contact an [[Special:ListUsers/sysop|administrator]].',
 'upload-too-many-redirects' => 'The URL contained too many redirects',
 'upload-unknown-size'       => 'Unknown size',
 'upload-http-error'         => 'An HTTP error occured: $1',
+'upload-copy-upload-invalid-domain' => 'Copy uploads are not available from this domain.',
 
 # File backend
 'backend-fail-stream'        => 'Could not stream file $1.',
