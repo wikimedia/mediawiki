@@ -254,8 +254,8 @@ class Xml {
 
 	/**
 	 * Shortcut to make a specific element with a class attribute
-	 * @param $text content of the element, will be escaped
-	 * @param $class class name of the span element
+	 * @param $text string content of the element, will be escaped
+	 * @param $class string class name of the span element
 	 * @param $tag string element name
 	 * @param $attribs array other attributes
 	 * @return string

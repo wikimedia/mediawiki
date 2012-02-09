@@ -123,9 +123,9 @@ class PathRouter {
 	/**
 	 * Add a new path pattern to the path router
 	 *
-	 * @param $path The path pattern to add
-	 * @param $params The params for this path pattern
-	 * @param $options The options for this path pattern
+	 * @param $path string The path pattern to add
+	 * @param $params array The params for this path pattern
+	 * @param $options array The options for this path pattern
 	 */
 	public function add( $path, $params = array(), $options = array() ) {
 		if ( is_array( $path ) ) {
@@ -195,7 +195,7 @@ class PathRouter {
 	/**
 	 * Parse a path and return the query matches for the path
 	 *
-	 * @param $path The path to parse
+	 * @param $path string The path to parse
 	 * @return Array The array of matches for the path
 	 */
 	public function parse( $path ) {

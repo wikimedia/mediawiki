@@ -260,7 +260,7 @@ class Title {
 	 * Load Title object fields from a DB row.
 	 * If false is given, the title will be treated as non-existing.
 	 *
-	 * @param $row Object|false database row
+	 * @param $row Object|bool database row
 	 * @return void
 	 */
 	public function loadFromRow( $row ) {

@@ -848,7 +848,7 @@ class Linker {
 	 * This will make a broken link if $file is false.
 	 *
 	 * @param $title Title object.
-	 * @param $file File|false mixed File object or false
+	 * @param $file File|bool mixed File object or false
 	 * @param $html String: pre-sanitized HTML
 	 * @return String: HTML
 	 *

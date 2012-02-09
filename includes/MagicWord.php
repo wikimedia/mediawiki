@@ -813,7 +813,7 @@ class MagicWordArray {
 	 *
 	 * @param $text string
 	 *
-	 * @return string|false
+	 * @return string|bool
 	 */
 	public function matchStartToEnd( $text ) {
 		$hash = $this->getHash();
@@ -861,7 +861,7 @@ class MagicWordArray {
 	 *
 	 * @param $text string
 	 *
-	 * @return int|false
+	 * @return int|bool
 	 */
 	public function matchStartAndRemove( &$text ) {
 		$regexes = $this->getRegexStart();

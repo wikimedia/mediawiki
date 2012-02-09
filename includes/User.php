@@ -445,7 +445,7 @@ class User {
 	/**
 	 * Get the username corresponding to a given user ID
 	 * @param $id Int User ID
-	 * @return String|false The corresponding username
+	 * @return String|bool The corresponding username
 	 */
 	public static function whoIs( $id ) {
 		$dbr = wfGetDB( DB_SLAVE );
@@ -456,7 +456,7 @@ class User {
 	 * Get the real name of a user given their user ID
 	 *
 	 * @param $id Int User ID
-	 * @return String|false The corresponding user's real name
+	 * @return String|bool The corresponding user's real name
 	 */
 	public static function whoIsReal( $id ) {
 		$dbr = wfGetDB( DB_SLAVE );

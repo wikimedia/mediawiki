@@ -869,7 +869,7 @@ class PPFrame_Hash implements PPFrame {
 	 * $args is optionally a multi-root PPNode or array containing the template arguments
 	 *
 	 * @param $args PPNode_Hash_Array|array
-	 * @param $title Title|false
+	 * @param $title Title|bool
 	 *
 	 * @return PPTemplateFrame_Hash
 	 */

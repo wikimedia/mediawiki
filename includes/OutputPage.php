@@ -1075,7 +1075,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add new language links
 	 *
-	 * @param $newLinkArray Associative array mapping language code to the page
+	 * @param $newLinkArray array Associative array mapping language code to the page
 	 *                      name
 	 */
 	public function addLanguageLinks( $newLinkArray ) {
@@ -1085,7 +1085,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Reset the language links and add new language links
 	 *
-	 * @param $newLinkArray Associative array mapping language code to the page
+	 * @param $newLinkArray array Associative array mapping language code to the page
 	 *                      name
 	 */
 	public function setLanguageLinks( $newLinkArray ) {
@@ -1366,7 +1366,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Set the displayed file version
 	 *
-	 * @param $file File|false
+	 * @param $file File|bool
 	 * @return Mixed: previous value
 	 */
 	public function setFileVersion( $file ) {

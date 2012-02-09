@@ -606,7 +606,7 @@ class LogEventsList {
 	 * @param $types String|Array Log types to show
 	 * @param $page String|Title The page title to show log entries for
 	 * @param $user String The user who made the log entries
-	 * @param $param Associative Array with the following additional options:
+	 * @param $param array Associative Array with the following additional options:
 	 * - lim Integer Limit of items to show, default is 50
 	 * - conds Array Extra conditions for the query (e.g. "log_action != 'revision'")
 	 * - showIfEmpty boolean Set to false if you don't want any output in case the loglist is empty

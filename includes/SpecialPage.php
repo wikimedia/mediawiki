@@ -200,7 +200,7 @@ class SpecialPage {
 	 *
 	 * @param $user User object to check permissions, $wgUser will be used
 	 *              if not provided
-	 * @return Associative array mapping page's name to its SpecialPage object
+	 * @return array Associative array mapping page's name to its SpecialPage object
 	 * @deprecated since 1.18 call SpecialPageFactory method directly
 	 */
 	static function getUsablePages( User $user = null ) {
@@ -211,7 +211,7 @@ class SpecialPage {
 	/**
 	 * Return categorised listable special pages for all users
 	 *
-	 * @return Associative array mapping page's name to its SpecialPage object
+	 * @return array Associative array mapping page's name to its SpecialPage object
 	 * @deprecated since 1.18 call SpecialPageFactory method directly
 	 */
 	static function getRegularPages() {
@@ -223,7 +223,7 @@ class SpecialPage {
 	 * Return categorised listable special pages which are available
 	 * for the current user, but not for everyone
 	 *
-	 * @return Associative array mapping page's name to its SpecialPage object
+	 * @return array Associative array mapping page's name to its SpecialPage object
 	 * @deprecated since 1.18 call SpecialPageFactory method directly
 	 */
 	static function getRestrictedPages() {
@@ -988,7 +988,7 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
 	 * False otherwise.
 	 *
 	 * @param $par String Subpage string
-	 * @return Title|false
+	 * @return Title|bool
 	 */
 	abstract public function getRedirect( $par );
 

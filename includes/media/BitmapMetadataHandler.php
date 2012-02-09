@@ -193,7 +193,7 @@ class BitmapMetadataHandler {
 	 * They don't really have native metadata, so just merges together
 	 * XMP and image comment.
 	 *
-	 * @param $filename full path to file
+	 * @param $filename string full path to file
 	 * @return Array metadata array
 	 */
 	static public function GIF ( $filename ) {

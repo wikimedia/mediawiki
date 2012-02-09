@@ -110,9 +110,9 @@ class PostgresInstaller extends DatabaseInstaller {
 
 	/**
 	 * Open a PG connection with given parameters
-	 * @param $user User name
-	 * @param $password Password
-	 * @param $dbName Database name
+	 * @param $user string User name
+	 * @param $password string Password
+	 * @param $dbName string Database name
 	 * @return Status
 	 */
 	protected function openConnectionWithParams( $user, $password, $dbName ) {
@@ -168,14 +168,14 @@ class PostgresInstaller extends DatabaseInstaller {
 	 * separate connection for this allows us to avoid accidental cross-module
 	 * dependencies.
 	 *
-	 * @param $type The type of connection to get:
+	 * @param $type string The type of connection to get:
 	 *    - create-db:     A connection for creating DBs, suitable for pre-
 	 *                     installation.
 	 *    - create-schema: A connection to the new DB, for creating schemas and
 	 *                     other similar objects in the new DB.
 	 *    - create-tables: A connection with a role suitable for creating tables.
 	 *
-	 * @return A Status object. On success, a connection object will be in the
+	 * @return Status object. On success, a connection object will be in the
 	 *   value member.
 	 */
 	protected function openPgConnection( $type ) {
@@ -365,10 +365,11 @@ class PostgresInstaller extends DatabaseInstaller {
 
 	/**
 	 * Recursive helper for canCreateObjectsForWebUser().
-	 * @param $conn Database object
-	 * @param $targetMember Role ID of the member to look for
-	 * @param $group Role ID of the group to look for
-	 * @param $maxDepth Maximum recursive search depth
+	 * @param $conn DatabaseBase object
+	 * @param $targetMember int Role ID of the member to look for
+	 * @param $group int Role ID of the group to look for
+	 * @param $maxDepth int Maximum recursive search depth
+	 * @return bool
 	 */
 	protected function isRoleMember( $conn, $targetMember, $group, $maxDepth ) {
 		if ( $targetMember === $group ) {

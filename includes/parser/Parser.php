@@ -616,7 +616,7 @@ class Parser {
 	/**
 	 * Accessor/mutator for the Title object
 	 *
-	 * @param $x New Title object or null to just get the current one
+	 * @param $x Title object or null to just get the current one
 	 * @return Title object
 	 */
 	function Title( $x = null ) {
@@ -3671,7 +3671,7 @@ class Parser {
 	 * Return the text to be used for a given extension tag.
 	 * This is the ghost of strip().
 	 *
-	 * @param $params Associative array of parameters:
+	 * @param $params array Associative array of parameters:
 	 *     name       PPNode for the tag name
 	 *     attr       PPNode for unparsed text where tag attributes are thought to be
 	 *     attributes Optional associative array of parsed attributes
