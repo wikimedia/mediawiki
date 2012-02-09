@@ -453,6 +453,10 @@ $wgAllowCopyUploads = false;
  * This feature is experimental and broken as of r81612.
  */
 $wgAllowAsyncCopyUploads = false;
+/**
+ * A list of domains copy uploads can come from
+ */
+$wgCopyUploadsDomains = array();
 
 /**
  * Max size for uploads, in bytes. If not set to an array, applies to all
