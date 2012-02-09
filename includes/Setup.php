@@ -483,7 +483,7 @@ $wgRequest->interpolateTitle();
 $wgUser = RequestContext::getMain()->getUser(); # BackCompat
 
 /**
- * @var Language
+ * @var $wgLang Language
  */
 $wgLang = new StubUserLang;
 
@@ -493,7 +493,7 @@ $wgLang = new StubUserLang;
 $wgOut = RequestContext::getMain()->getOutput(); # BackCompat
 
 /**
- * @var Parser
+ * @var $wgParser Parser
  */
 $wgParser = new StubObject( 'wgParser', $wgParserConf['class'], array( $wgParserConf ) );
 

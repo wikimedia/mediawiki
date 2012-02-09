@@ -42,7 +42,7 @@ abstract class MediaTransformOutput {
 	}
 
 	/**
-	 * @return string|false The permanent thumbnail storage path
+	 * @return string|bool The permanent thumbnail storage path
 	 */
 	public function getStoragePath() {
 		return $this->storagePath;
@@ -113,7 +113,7 @@ abstract class MediaTransformOutput {
 	 * Get the path of a file system copy of the thumbnail.
 	 * Callers should never write to this path.
 	 *
-	 * @return string|false Returns false if there isn't one
+	 * @return string|bool Returns false if there isn't one
 	 */
 	public function getLocalCopyPath() {
 		if ( $this->isError() ) {
@@ -187,7 +187,7 @@ class ThumbnailImage extends MediaTransformOutput {
 	 * @param $url String: URL path to the thumb
 	 * @param $width Integer: file's width
 	 * @param $height Integer: file's height
-	 * @param $path String|false|null: filesystem path to the thumb
+	 * @param $path String|bool|null: filesystem path to the thumb
 	 * @param $page Integer: page number, for multipage files
 	 * @private
 	 */

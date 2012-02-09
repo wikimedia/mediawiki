@@ -88,7 +88,7 @@ class ParserCache {
 	 * Retrieve the ParserOutput from ParserCache, even if it's outdated.
 	 * @param $article Article
 	 * @param $popts ParserOptions
-	 * @return ParserOutput|false
+	 * @return ParserOutput|bool
 	 */
 	public function getDirty( $article, $popts ) {
 		$value = $this->get( $article, $popts, true );
@@ -143,7 +143,7 @@ class ParserCache {
 	 * @param $popts ParserOptions
 	 * @param $useOutdated
 	 *
-	 * @return ParserOutput|false
+	 * @return ParserOutput|bool
 	 */
 	public function get( $article, $popts, $useOutdated = false ) {
 		global $wgCacheEpoch;

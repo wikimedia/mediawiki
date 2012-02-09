@@ -41,10 +41,10 @@ class StreamFile {
 	 * (c) sends Content-Length header based on HTTP_IF_MODIFIED_SINCE check
 	 *
 	 * @param $path string Storage path or file system path
-	 * @param $info Array|false File stat info with 'mtime' and 'size' fields
+	 * @param $info Array|bool File stat info with 'mtime' and 'size' fields
 	 * @param $headers Array Additional headers to send
 	 * @param $sendErrors bool Send error messages if errors occur (like 404)
-	 * @return int|false READY_STREAM, NOT_MODIFIED, or false on failure
+	 * @return int|bool READY_STREAM, NOT_MODIFIED, or false on failure
 	 */
 	public static function prepareForStream(
 		$path, $info, $headers = array(), $sendErrors = true

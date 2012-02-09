@@ -4660,7 +4660,7 @@ class Parser {
 	 *     Please read the documentation in includes/parser/Preprocessor.php for more information
 	 *     about the methods available in PPFrame and PPNode.
 	 *
-	 * @return The old callback function for this name, if any
+	 * @return string|callback The old callback function for this name, if any
 	 */
 	public function setFunctionHook( $id, $callback, $flags = 0 ) {
 		global $wgContLang;
@@ -4891,7 +4891,7 @@ class Parser {
 	 *
 	 * @param $title Title
 	 * @param $options String
-	 * @param $holders LinkHolderArray|false
+	 * @param $holders LinkHolderArray|bool
 	 * @return string HTML
 	 */
 	function makeImage( $title, $options, $holders = false ) {

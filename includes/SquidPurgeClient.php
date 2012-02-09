@@ -34,7 +34,7 @@ class SquidPurgeClient {
 	 * Open a socket if there isn't one open already, return it.
 	 * Returns false on error.
 	 *
-	 * @return false|resource
+	 * @return bool|resource
 	 */
 	protected function getSocket() {
 		if ( $this->socket !== null ) {

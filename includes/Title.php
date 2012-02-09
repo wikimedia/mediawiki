@@ -2020,9 +2020,8 @@ class Title {
 			$name = $this->getPrefixedText();
 			$dbName = $this->getPrefixedDBKey();
 
-			// Check with and without underscores
+			// Check for explicit whitelisting with and without underscores
 			if ( in_array( $name, $wgWhitelistRead, true ) || in_array( $dbName, $wgWhitelistRead, true ) ) {
-				# Check for explicit whitelisting
 				$whitelisted = true;
 			} elseif ( $this->getNamespace() == NS_MAIN ) {
 				# Old settings might have the title prefixed with

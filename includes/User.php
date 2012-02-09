@@ -3376,7 +3376,7 @@ class User {
 	 *
 	 * @note Call saveSettings() after calling this function to commit the change.
 	 *
-	 * @return true
+	 * @return bool
 	 */
 	public function confirmEmail() {
 		$this->setEmailAuthenticationTimestamp( wfTimestampNow() );
@@ -3389,7 +3389,7 @@ class User {
 	 * address if it was already confirmed.
 	 *
 	 * @note Call saveSettings() after calling this function to commit the change.
-	 * @return true
+	 * @return bool
 	 */
 	function invalidateEmail() {
 		$this->load();
@@ -3957,7 +3957,7 @@ class User {
 	 * Add an autocreate newuser log entry for this user
 	 * Used by things like CentralAuth and perhaps other authplugins.
 	 *
-	 * @return true
+	 * @return bool
 	 */
 	public function addNewUserLogEntryAutoCreate() {
 		global $wgNewUserLog;
