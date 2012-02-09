@@ -523,7 +523,7 @@ abstract class ApiBase extends ContextSource {
 	 * value) or (parameter name) => (array with PARAM_* constants as keys)
 	 * Don't call this function directly: use getFinalParams() to allow
 	 * hooks to modify parameters as needed.
-	 * @return array or false
+	 * @return array|bool
 	 */
 	protected function getAllowedParams() {
 		return false;
@@ -773,7 +773,7 @@ abstract class ApiBase extends ContextSource {
 	 * Using the settings determine the value for the given parameter
 	 *
 	 * @param $paramName String: parameter name
-	 * @param $paramSettings Mixed: default value or an array of settings
+	 * @param $paramSettings array|mixed default value or an array of settings
 	 *  using PARAM_* constants.
 	 * @param $parseLimit Boolean: parse limit?
 	 * @return mixed Parameter value
