@@ -143,7 +143,7 @@ class MWTidy {
 	 *
 	 * @param $text String: HTML to check
 	 * @param $stderr Boolean: Whether to read result from STDERR rather than STDOUT
-	 * @param &$retval Exit code (-1 on internal error)
+	 * @param &$retval int Exit code (-1 on internal error)
 	 * @return mixed String or null
 	 */
 	private static function execExternalTidy( $text, $stderr = false, &$retval = null ) {
@@ -207,7 +207,7 @@ class MWTidy {
 	 *
 	 * @param $text String: HTML to check
 	 * @param $stderr Boolean: Whether to read result from error status instead of output
-	 * @param &$retval Exit code (-1 on internal error)
+	 * @param &$retval int Exit code (-1 on internal error)
 	 * @return mixed String or null
 	 */
 	private static function execInternalTidy( $text, $stderr = false, &$retval = null ) {

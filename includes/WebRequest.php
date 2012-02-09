@@ -298,8 +298,8 @@ class WebRequest {
 	/**
 	 * Recursively normalizes UTF-8 strings in the given array.
 	 *
-	 * @param $data string or array
-	 * @return cleaned-up version of the given
+	 * @param $data string|array
+	 * @return array|string cleaned-up version of the given
 	 * @private
 	 */
 	function normalizeUnicode( $data ) {

@@ -642,7 +642,7 @@ class Parser {
 	/**
 	 * Accessor/mutator for the output type
 	 *
-	 * @param $x New value or null to just get the current one
+	 * @param $x int|null New value or null to just get the current one
 	 * @return Integer
 	 */
 	function OutputType( $x = null ) {
@@ -670,8 +670,8 @@ class Parser {
 	/**
 	 * Accessor/mutator for the ParserOptions object
 	 *
-	 * @param $x New value or null to just get the current one
-	 * @return Current ParserOptions object
+	 * @param $x ParserOptions New value or null to just get the current one
+	 * @return ParserOptions Current ParserOptions object
 	 */
 	function Options( $x = null ) {
 		return wfSetVar( $this->mOptions, $x );
@@ -2093,7 +2093,7 @@ class Parser {
 	 * element appropriate to the prefix character passed into them.
 	 * @private
 	 *
-	 * @param $char char
+	 * @param $char string
 	 *
 	 * @return string
 	 */
@@ -2998,11 +2998,11 @@ class Parser {
 	 *   'post-expand-template-inclusion' (corresponding messages:
 	 *       'post-expand-template-inclusion-warning',
 	 *       'post-expand-template-inclusion-category')
-	 * @param $current Current value
-	 * @param $max Maximum allowed, when an explicit limit has been
+	 * @param $current int|null Current value
+	 * @param $max int|null Maximum allowed, when an explicit limit has been
 	 *	 exceeded, provide the values (optional)
 	 */
-	function limitationWarn( $limitationType, $current=null, $max=null) {
+	function limitationWarn( $limitationType, $current = null, $max = null) {
 		# does no harm if $current and $max are present but are unnecessary for the message
 		$warning = wfMsgExt( "$limitationType-warning", array( 'parsemag', 'escape' ), $current, $max );
 		$this->mOutput->addWarning( $warning );
@@ -3527,7 +3527,7 @@ class Parser {
 	 * If 'broken' is a key in $options then the file will appear as a broken thumbnail.
 	 * @param Title $title
 	 * @param Array $options Array of options to RepoGroup::findFile
-	 * @return File|false
+	 * @return File|bool
 	 */
 	function fetchFile( $title, $options = array() ) {
 		$res = $this->fetchFileAndTitle( $title, $options );
@@ -4572,11 +4572,13 @@ class Parser {
 	 *
 	 * @param $tag Mixed: the tag to use, e.g. 'hook' for <hook>
 	 * @param $callback Mixed: the callback function (and object) to use for the tag
-	 * @return The old value of the mTagHooks array associated with the hook
+	 * @return Mixed|null The old value of the mTagHooks array associated with the hook
 	 */
 	public function setHook( $tag, $callback ) {
 		$tag = strtolower( $tag );
-		if ( preg_match( '/[<>\r\n]/', $tag, $m ) ) throw new MWException( "Invalid character {$m[0]} in setHook('$tag', ...) call" );
+		if ( preg_match( '/[<>\r\n]/', $tag, $m ) ) {
+			throw new MWException( "Invalid character {$m[0]} in setHook('$tag', ...) call" );
+		}
 		$oldVal = isset( $this->mTagHooks[$tag] ) ? $this->mTagHooks[$tag] : null;
 		$this->mTagHooks[$tag] = $callback;
 		if ( !in_array( $tag, $this->mStripList ) ) {
@@ -4600,11 +4602,13 @@ class Parser {
 	 *
 	 * @param $tag Mixed: the tag to use, e.g. 'hook' for <hook>
 	 * @param $callback Mixed: the callback function (and object) to use for the tag
-	 * @return The old value of the mTagHooks array associated with the hook
+	 * @return Mixed|null The old value of the mTagHooks array associated with the hook
 	 */
 	function setTransparentTagHook( $tag, $callback ) {
 		$tag = strtolower( $tag );
-		if ( preg_match( '/[<>\r\n]/', $tag, $m ) ) throw new MWException( "Invalid character {$m[0]} in setTransparentHook('$tag', ...) call" );
+		if ( preg_match( '/[<>\r\n]/', $tag, $m ) ) {
+			throw new MWException( "Invalid character {$m[0]} in setTransparentHook('$tag', ...) call" );
+		}
 		$oldVal = isset( $this->mTransparentTagHooks[$tag] ) ? $this->mTransparentTagHooks[$tag] : null;
 		$this->mTransparentTagHooks[$tag] = $callback;
 
@@ -5350,7 +5354,7 @@ class Parser {
 	 * section does not exist, $oldtext is returned unchanged.
 	 *
 	 * @param $oldtext String: former text of the article
-	 * @param $section Numeric: section identifier
+	 * @param $section int section identifier
 	 * @param $text String: replacing text
 	 * @return String: modified text
 	 */
@@ -5433,7 +5437,7 @@ class Parser {
 	/**
 	 * Mutator for $mDefaultSort
 	 *
-	 * @param $sort New value
+	 * @param $sort string New value
 	 */
 	public function setDefaultSort( $sort ) {
 		$this->mDefaultSort = $sort;
@@ -5511,7 +5515,7 @@ class Parser {
 	 *
 	 * @param $text String: text string to be stripped of wikitext
 	 * for use in a Section anchor
-	 * @return Filtered text string
+	 * @return string Filtered text string
 	 */
 	public function stripSectionName( $text ) {
 		# Strip internal link markup
@@ -5650,7 +5654,7 @@ class Parser {
 	 * If the $data array has been stored persistently, the caller should first
 	 * check whether it is still valid, by calling isValidHalfParsedText().
 	 *
-	 * @param $data Serialized data
+	 * @param $data array Serialized data
 	 * @return String
 	 */
 	function unserializeHalfParsedText( $data ) {

@@ -520,7 +520,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * Build a set of links for convenient navigation
 	 * between watchlist viewing and editing modes
 	 *
-	 * @param $unused Unused
+	 * @param $unused
 	 * @return string
 	 */
 	public static function buildTools( $unused ) {

@@ -471,7 +471,7 @@ abstract class MediaHandler {
 	 * match the handler class, a Status object should be returned containing
 	 * relevant errors.
 	 *
-	 * @param $fileName The local path to the file.
+	 * @param $fileName string The local path to the file.
 	 * @return Status object
 	 */
 	function verifyUpload( $fileName ) {
@@ -651,7 +651,7 @@ abstract class ImageHandler extends MediaHandler {
 	 * @param $height Integer: height (output only)
 	 * @param $srcWidth Integer: width of the source image
 	 * @param $srcHeight Integer: height of the source image
-	 * @param $mimeType Unused
+	 * @param $mimeType
 	 * @return bool to indicate that an error should be returned to the user.
 	 */
 	function validateThumbParams( &$width, &$height, $srcWidth, $srcHeight, $mimeType ) {

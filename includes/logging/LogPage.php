@@ -522,7 +522,7 @@ class LogPage {
 	 * Convert a comma-delimited list of block log flags
 	 * into a more readable (and translated) form
 	 *
-	 * @param $flags Flags to format
+	 * @param $flags string Flags to format
 	 * @param $lang Language object to use
 	 * @return String
 	 */

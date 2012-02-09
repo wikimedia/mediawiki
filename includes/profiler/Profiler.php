@@ -213,7 +213,7 @@ class Profiler {
 	/**
 	 * Recursive function the format the current profiling array into a tree
 	 *
-	 * @param $stack profiling array
+	 * @param $stack array profiling array
 	 */
 	function remapCallTree( $stack ) {
 		if( count( $stack ) < 2 ){

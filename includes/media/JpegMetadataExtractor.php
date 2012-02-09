@@ -143,13 +143,17 @@ class JpegMetadataExtractor {
 	/**
 	* Helper function for jpegSegmentSplitter
 	* @param &$fh FileHandle for jpeg file
-	* @return data content of segment.
+	* @return string data content of segment.
 	*/
 	private static function jpegExtractMarker( &$fh ) {
 		$size = wfUnpack( "nint", fread( $fh, 2 ), 2 );
-		if ( $size['int'] <= 2 ) throw new MWException( "invalid marker size in jpeg" );
+		if ( $size['int'] <= 2 ) {
+			throw new MWException( "invalid marker size in jpeg" );
+		}
 		$segment = fread( $fh, $size['int'] - 2 );
-		if ( strlen( $segment ) !== $size['int'] - 2 ) throw new MWException( "Segment shorter than expected" );
+		if ( strlen( $segment ) !== $size['int'] - 2 ) {
+			throw new MWException( "Segment shorter than expected" );
+		}
 		return $segment;
 	}
 

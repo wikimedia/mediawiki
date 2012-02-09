@@ -203,7 +203,7 @@ abstract class UploadBase {
 
 	/**
 	 * @param $srcPath String: the source path
-	 * @return the real path if it was a virtual URL
+	 * @return stringthe real path if it was a virtual URL
 	 */
 	function getRealPath( $srcPath ) {
 		$repo = RepoGroup::singleton()->getLocalRepo();
