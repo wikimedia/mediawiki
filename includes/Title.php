@@ -4164,7 +4164,21 @@ class Title {
 	 * @return Bool
 	 */
 	public function isKnown() {
-		return $this->isAlwaysKnown() || $this->exists();
+		$isKnown = null;
+		
+		/**
+		 * Allows overriding default behaviour for determining if a page exists.
+		 * If $isKnown is kept as null, regular checks happen. If it's
+		 * a boolean, this value is returned by the isKnown method.
+		 * 
+		 * @since 1.20
+		 * 
+		 * @param Title $title
+		 * @param boolean|null $isKnown
+		 */
+		wfRunHooks( 'TitleIsKnown', array( $this, &$isKnown ) );
+		
+		return is_null( $isKnown ) ? ( $this->isAlwaysKnown() || $this->exists() ) : $isKnown;
 	}
 
 	/**
