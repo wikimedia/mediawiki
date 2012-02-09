@@ -182,7 +182,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'addTable', 'user_former_groups',                'patch-user_former_groups.sql'),
 
 			// 1.19
-			array( 'addTable', 'config',                            'patch-config.sql' ),
 			array( 'addIndex', 'logging',       'type_action',      'patch-logging-type-action-index.sql'),
 			array( 'doMigrateUserOptions' ),
 			array( 'dropField', 'user',         'user_options', 'patch-drop-user_options.sql' ),
