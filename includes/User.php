@@ -2753,14 +2753,6 @@ class User {
 
 		$this->load();
 		if ( 0 == $this->mId ) return;
-		if ( !$this->mToken ) {
-			// When token is empty or NULL generate a new one and then save it to the database
-			// This allows a wiki to re-secure itself after a leak of it's user table or $wgSecretKey
-			// Simply by setting every cell in the user_token column to NULL and letting them be
-			// regenerated as users log back into the wiki.
-			$this->setToken();
-			$this->saveSettings();
-		}
 		$session = array(
 			'wsUserID' => $this->mId,
 			'wsToken' => $this->mToken,

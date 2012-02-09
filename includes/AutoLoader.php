@@ -366,7 +366,6 @@ $wgAutoloadLocalClasses = array(
 	'ApiUpload' => 'includes/api/ApiUpload.php',
 	'ApiUserrights' => 'includes/api/ApiUserrights.php',
 	'ApiWatch' => 'includes/api/ApiWatch.php',
-	'UsageException' => 'includes/api/ApiMain.php',
 
 	# includes/cache
 	'CacheDependency' => 'includes/cache/CacheDependency.php',
@@ -388,10 +387,7 @@ $wgAutoloadLocalClasses = array(
 	'TitleDependency' => 'includes/cache/CacheDependency.php',
 	'TitleListDependency' => 'includes/cache/CacheDependency.php',
 
-	# includes/conf
-	'Conf' => 'includes/conf/Conf.php',
-	'DatabaseConf' => 'includes/conf/DatabaseConf.php',
-	'DefaultSettings' => 'includes/conf/DefaultSettings.php',
+	'UsageException' => 'includes/api/ApiMain.php',
 
 	# includes/context
 	'ContextSource' => 'includes/context/ContextSource.php',
