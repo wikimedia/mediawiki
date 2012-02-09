@@ -10,6 +10,7 @@
  * @author Bartek50003
  * @author BdgwksxD
  * @author Beau
+ * @author BeginaFelicysym
  * @author Cysioland
  * @author Derbeth
  * @author Equadus
@@ -1807,10 +1808,10 @@ Jeśli problem będzie się powtarzał, skontaktuj się z [[Special:ListUsers/sy
 'backend-fail-closetemp'     => 'Nie można zamknąć pliku tymczasowego.',
 'backend-fail-read'          => 'Nie można odczytać pliku $1.',
 'backend-fail-create'        => 'Nie można utworzyć pliku $1.',
-'backend-fail-readonly'      => 'Interfejs „$1” jest obecnie tylko do odczytu. Powód: „$2”',
-'backend-fail-synced'        => 'Plik „$1” jest w niespójnym stanie w ramach wewnętrznych funkcji',
-'backend-fail-connect'       => 'Nie można nawiązać połączenia z pliku wewnętrznej bazy danych „$1”.',
-'backend-fail-internal'      => 'Wystąpił nieznany błąd w pliku wewnętrznej bazy danych „$1”.',
+'backend-fail-readonly'      => 'Interfejs magazynowania "$1" jest obecnie tylko do odczytu. Powód: "$2"',
+'backend-fail-synced'        => 'Plik "$1" jest w niespójnym stanie w ramach wewnętrznych funkcji magazynowania',
+'backend-fail-connect'       => 'Nie można nawiązać połączenia do wewnętrznych funkcji magazynowania "$1".',
+'backend-fail-internal'      => 'Wystąpił nieznany błąd w wewnętrznych procedurach magazynowania "$1".',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Nie można odblokować "$1", ponieważ nie jest on zablokowany.',
@@ -1846,7 +1847,7 @@ Plik nie może zostać odpowiednio sprawdzony pod kątem bezpieczeństwa.',
 'img-auth-nopathinfo'       => 'Brak PATH_INFO.
 Serwer nie został skonfigurowany, tak aby przekazywał tę informację.
 Możliwe, że jest oparty na CGI i nie może obsługiwać img_auth.
-[https://www.mediawiki.org/wiki/Manual:Image_Authorization Zobacz informacje o autoryzacji grafik.]',
+Więcej o informacji o autoryzacji grafik na https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'         => 'Żądana ścieżka nie jest w obrębie katalogu skonfigurowanego do przesyłania plików.',
 'img-auth-badtitle'         => 'Nie można wygenerować prawidłowego tytuł z „$1”.',
 'img-auth-nologinnWL'       => 'Nie jesteś zalogowany, a „$1” nie jest na białej liście.',
