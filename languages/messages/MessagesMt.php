@@ -2177,7 +2177,7 @@ Jekk f'xi ħin tkun tixtieq tneħħi l-paġna mil-lista ta' osservazzjoni tiegħ
 'watchmethod-list'     => 'Kontroll tal-osservati speċjali għal modifiki riċenti',
 'watchlistcontains'    => "Il-lista ta' osservazzjoni fiha {{PLURAL:$1|paġna|$1 paġni}}.",
 'iteminvalidname'      => "Problema bil-paġna'$1', l-isem mhux validu...",
-'wlnote'               => "Hawn taħt hawn {{PLURAL:$1|l-aħħar modifika|l-aħħar '''$1''' modifiki}} fl-aħħar {{PLURAL:$2|siegħa|'''$2''' siegħat}}.",
+'wlnote'               => "Hawn taħt hawn {{PLURAL:$1|l-aħħar modifika|l-aħħar '''$1''' modifiki}} fl-aħħar {{PLURAL:$2|siegħa|'''$2''' siegħat}}, sal-$3, fil-$4.",
 'wlshowlast'           => 'Uri l-aħħar $1 siegħat $2 ġranet $3',
 'watchlist-options'    => "Opzjonijiet tal-lista ta' osservazzjoni",
 
