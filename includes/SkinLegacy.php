@@ -84,6 +84,7 @@ class LegacyTemplate extends BaseTemplate {
 	/**
 	 * This will be called immediately after the <body> tag.  Split into
 	 * two functions to make it easier to subclass.
+	 * @return string
 	 */
 	function beforeContent() {
 		return $this->doBeforeContent();
@@ -152,7 +153,9 @@ class LegacyTemplate extends BaseTemplate {
 		return $this->doAfterContent();
 	}
 
-	/** overloaded by derived classes */
+	/** overloaded by derived classes
+	 * @return string
+	 */
 	function doAfterContent() {
 		return '</div></div>';
 	}
@@ -388,6 +391,7 @@ class LegacyTemplate extends BaseTemplate {
 
 	/**
 	 * Show a drop-down box of special pages
+	 * @return string
 	 */
 	function specialPagesList() {
 		global $wgScript;
@@ -530,6 +534,7 @@ class LegacyTemplate extends BaseTemplate {
 
 	/**
 	 * @deprecated in 1.19
+	 * @return string
 	 */
 	function getQuickbarCompensator( $rows = 1 ) {
 		wfDeprecated( __METHOD__, '1.19' );

@@ -356,6 +356,7 @@ class SpecialVersion extends SpecialPage {
 
 	/**
 	 * Callback to sort extensions by type.
+	 * @return int
 	 */
 	function compare( $a, $b ) {
 		if( $a['name'] === $b['name'] ) {
@@ -589,6 +590,7 @@ class SpecialVersion extends SpecialPage {
 	 *        url                   The subversion URL of the directory
 	 *        repo-url              The base URL of the repository
 	 *        viewvc-url            A ViewVC URL pointing to the checked-out revision
+	 * @return array|bool
 	 */
 	public static function getSvnInfo( $dir ) {
 		// http://svnbook.red-bean.com/nightly/en/svn.developer.insidewc.html

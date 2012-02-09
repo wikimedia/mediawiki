@@ -300,6 +300,7 @@ class UserMailer {
 	/**
 	 * Converts a string into quoted-printable format
 	 * @since 1.17
+	 * @return string
 	 */
 	public static function quotedPrintable( $string, $charset = '' ) {
 		# Probably incomplete; see RFC 2045
@@ -705,6 +706,7 @@ class EmailNotification {
 	/**
 	 * Same as sendPersonalised but does impersonal mail suitable for bulk
 	 * mailing.  Takes an array of MailAddress objects.
+	 * @return Status
 	 */
 	function sendImpersonal( $addresses ) {
 		global $wgContLang;

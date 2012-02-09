@@ -321,6 +321,7 @@ class Revision {
 	/**
 	 * Return the list of revision fields that should be selected to create
 	 * a new revision.
+	 * @return array
 	 */
 	public static function selectFields() {
 		return array(
@@ -342,6 +343,7 @@ class Revision {
 	/**
 	 * Return the list of text fields that should be selected to read the
 	 * revision text
+	 * @return array
 	 */
 	public static function selectTextFields() {
 		return array(
@@ -352,6 +354,7 @@ class Revision {
 
 	/**
 	 * Return the list of page fields that should be selected from page table
+	 * @return array
 	 */
 	public static function selectPageFields() {
 		return array(
@@ -364,6 +367,7 @@ class Revision {
 
 	/**
 	 * Return the list of user fields that should be selected from user table
+	 * @return array
 	 */
 	public static function selectUserFields() {
 		return array( 'user_name' );

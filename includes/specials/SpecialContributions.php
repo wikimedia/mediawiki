@@ -698,6 +698,7 @@ class ContribsPager extends ReverseChronologicalPager {
 
 	/**
 	 * Do a batched query to get the parent revision lengths
+	 * @return array
 	 */
 	private function getParentLengths( array $revIds ) {
 		$revLens = array();
@@ -739,6 +740,7 @@ class ContribsPager extends ReverseChronologicalPager {
 	 * was not written by the target user.
 	 *
 	 * @todo This would probably look a lot nicer in a table.
+	 * @return string
 	 */
 	function formatRow( $row ) {
 		wfProfileIn( __METHOD__ );
@@ -871,6 +873,7 @@ class ContribsPager extends ReverseChronologicalPager {
 
 	/**
 	 * Overwrite Pager function and return a helpful comment
+	 * @return string
 	 */
 	function getSqlComment() {
 		if ( $this->namespace || $this->deletedOnly ) {

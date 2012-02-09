@@ -191,6 +191,7 @@ class RevDel_RevisionItem extends RevDel_Item {
 	/**
 	 * Get the HTML link to the revision text.
 	 * Overridden by RevDel_ArchiveItem.
+	 * @return string
 	 */
 	protected function getRevisionLink() {
 		$date = $this->list->getLanguage()->timeanddate( $this->revision->getTimestamp(), true );
@@ -211,6 +212,7 @@ class RevDel_RevisionItem extends RevDel_Item {
 	/**
 	 * Get the HTML link to the diff.
 	 * Overridden by RevDel_ArchiveItem
+	 * @return string
 	 */
 	protected function getDiffLink() {
 		if ( $this->isDeleted() && !$this->canViewContent() ) {
@@ -569,6 +571,7 @@ class RevDel_FileItem extends RevDel_Item {
 	/**
 	 * Get the link to the file.
 	 * Overridden by RevDel_ArchivedFileItem.
+	 * @return string
 	 */
 	protected function getLink() {
 		$date = $this->list->getLanguage()->timeanddate( $this->file->getTimestamp(), true  );

@@ -863,6 +863,7 @@ class Title {
 	 * This is MUCH simpler than individually testing for equivilance
 	 * against both NS_USER and NS_USER_TALK, and is also forward compatible.
 	 * @since 1.19
+	 * @return bool
 	 */
 	public function hasSubjectNamespace( $ns ) {
 		return MWNamespace::subjectEquals( $this->getNamespace(), $ns );
@@ -1226,6 +1227,7 @@ class Title {
 	 * andthe wfArrayToCGI moved to getLocalURL();
 	 *
 	 * @since 1.19 (r105919)
+	 * @return String
 	 */
 	private static function fixUrlQueryArgs( $query, $query2 = false ) {
 		if( $query2 !== false ) {
@@ -1478,6 +1480,7 @@ class Title {
 	 *
 	 * @see self::getLocalURL
 	 * @since 1.18
+	 * @return string
 	 */
 	public function escapeCanonicalURL( $query = '', $query2 = false ) {
 		wfDeprecated( __METHOD__, '1.19' );

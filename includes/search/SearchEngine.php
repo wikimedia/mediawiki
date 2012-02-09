@@ -65,6 +65,7 @@ class SearchEngine {
 	/**
 	 * If this search backend can list/unlist redirects
 	 * @deprecated since 1.18 Call supports( 'list-redirects' );
+	 * @return bool
 	 */
 	function acceptListRedirects() {
 		wfDeprecated( __METHOD__, '1.18' );
@@ -147,6 +148,7 @@ class SearchEngine {
 
 	/**
 	 * Really find the title match.
+	 * @return null|\Title
 	 */
 	private static function getNearMatchInternal( $searchterm ) {
 		global $wgContLang, $wgEnableSearchContributorsByIP;
@@ -287,6 +289,7 @@ class SearchEngine {
 	 * or namespace names
 	 *
 	 * @param $query String
+	 * @return string
 	 */
 	function replacePrefixes( $query ) {
 		global $wgContLang;
@@ -391,6 +394,7 @@ class SearchEngine {
 	 * and preferences
 	 *
 	 * @param $namespaces Array
+	 * @return array
 	 */
 	public static function namespacesAsText( $namespaces ) {
 		global $wgContLang;
@@ -1185,6 +1189,7 @@ class SearchHighlighter {
 	 * Do manual case conversion for non-ascii chars
 	 *
 	 * @param $matches Array
+	 * @return string
 	 */
 	function caseCallback( $matches ) {
 		global $wgContLang;
@@ -1305,6 +1310,7 @@ class SearchHighlighter {
 	/**
 	 * Basic wikitext removal
 	 * @protected
+	 * @return mixed
 	 */
 	function removeWiki( $text ) {
 		$fname = __METHOD__;

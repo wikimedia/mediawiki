@@ -513,6 +513,7 @@ class SkinTemplate extends Skin {
 	 * This is setup as a method so that like with $wgLogo and getLogo() a skin
 	 * can override this setting and always output one or the other if it has
 	 * a reason it can't output one of the two modes.
+	 * @return bool
 	 */
 	function useCombinedLoginLink() {
 		global $wgUseCombinedLoginLink;
@@ -1310,6 +1311,7 @@ abstract class QuickTemplate {
 
 	/**
 	 * @private
+	 * @return bool
 	 */
 	function haveData( $str ) {
 		return isset( $this->data[$str] );
@@ -1369,6 +1371,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * stored by SkinTemplate.
 	 * The resulting array is built acording to a format intended to be passed
 	 * through makeListItem to generate the html.
+	 * @return array
 	 */
 	function getToolbox() {
 		wfProfileIn( __METHOD__ );
@@ -1429,6 +1432,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * This is in reality the same list as already stored in personal_urls
 	 * however it is reformatted so that you can just pass the individual items
 	 * to makeListItem instead of hardcoding the element creation boilerplate.
+	 * @return array
 	 */
 	function getPersonalTools() {
 		$personal_tools = array();
@@ -1602,6 +1606,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 *   A link-fallback can be used to specify a tag to use instead of <a> if there is
 	 *   no link. eg: If you specify 'link-fallback' => 'span' than any non-link will
 	 *   output a <span> instead of just text.
+	 * @return string
 	 */
 	function makeLink( $key, $item, $options = array() ) {
 		if ( isset( $item['text'] ) ) {
@@ -1680,6 +1685,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * If you need an id or class on a single link you should include a "links"
 	 * array with just one link item inside of it.
 	 * $options is also passed on to makeLink calls
+	 * @return string
 	 */
 	function makeListItem( $key, $item, $options = array() ) {
 		if ( isset( $item['links'] ) ) {
@@ -1774,6 +1780,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * If you pass "flat" as an option then the returned array will be a flat array
 	 * of footer icons instead of a key/value array of footerlinks arrays broken
 	 * up into categories.
+	 * @return array|mixed
 	 */
 	function getFooterLinks( $option = null ) {
 		$footerlinks = $this->data['footerlinks'];
@@ -1812,6 +1819,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * in the list of footer icons. This is mostly useful for skins which only
 	 * display the text from footericons instead of the images and don't want a
 	 * duplicate copyright statement because footerlinks already rendered one.
+	 * @return
 	 */
 	function getFooterIcons( $option = null ) {
 		// Generate additional footer icons

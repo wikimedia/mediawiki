@@ -308,6 +308,7 @@ class SearchMySQL extends SearchEngine {
 
 	/**
 	 * @since 1.18 (changed)
+	 * @return array
 	 */
 	function getCountQuery( $filteredTerm, $fulltext ) {
 		$match = $this->parseQuery( $filteredTerm, $fulltext );
@@ -365,6 +366,7 @@ class SearchMySQL extends SearchEngine {
 	/**
 	 * Converts some characters for MySQL's indexing to grok it correctly,
 	 * and pads short words to overcome limitations.
+	 * @return mixed|string
 	 */
 	function normalizeText( $string ) {
 		global $wgContLang;
@@ -412,6 +414,7 @@ class SearchMySQL extends SearchEngine {
 	 * Armor a case-folded UTF-8 string to get through MySQL's
 	 * fulltext search without being mucked up by funny charset
 	 * settings or anything else of the sort.
+	 * @return string
 	 */
 	protected function stripForSearchCallback( $matches ) {
 		return 'u8' . bin2hex( $matches[1] );

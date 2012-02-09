@@ -1540,6 +1540,7 @@ abstract class Skin extends ContextSource {
 	 *
 	 * @param $fname String Name of called method
 	 * @param $args Array Arguments to the method
+	 * @return mixed
 	 */
 	function __call( $fname, $args ) {
 		$realFunction = array( 'Linker', $fname );

@@ -130,6 +130,7 @@ class DeletedContribsPager extends IndexPager {
 	 * written by the target user.
 	 *
 	 * @todo This would probably look a lot nicer in a table.
+	 * @return string
 	 */
 	function formatRow( $row ) {
 		wfProfileIn( __METHOD__ );
@@ -449,6 +450,7 @@ class DeletedContributionsPage extends SpecialPage {
 	/**
 	 * Generates the namespace selector form with hidden attributes.
 	 * @param $options Array: the options to be included.
+	 * @return string
 	 */
 	function getForm( $options ) {
 		global $wgScript;

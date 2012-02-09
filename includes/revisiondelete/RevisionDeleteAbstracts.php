@@ -16,6 +16,7 @@ abstract class RevDel_List extends RevisionListBase {
 	 * Get the DB field name associated with the ID list.
 	 * This used to populate the log_search table for finding log entries.
 	 * Override this function.
+	 * @return null
 	 */
 	public static function getRelationType() {
 		return null;
@@ -189,6 +190,7 @@ abstract class RevDel_List extends RevisionListBase {
 
 	/**
 	 * Get the log action for this list type
+	 * @return string
 	 */
 	public function getLogAction() {
 		return 'revision';
@@ -247,6 +249,7 @@ abstract class RevDel_Item extends RevisionItemBase {
 	 * Returns true if the item is "current", and the operation to set the given
 	 * bits can't be executed for that reason
 	 * STUB
+	 * @return bool
 	 */
 	public function isHideCurrentOp( $newBits ) {
 		return false;

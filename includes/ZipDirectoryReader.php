@@ -426,6 +426,7 @@ class ZipDirectoryReader {
 
 	/**
 	 * Interpret ZIP64 "extra field" data and return an associative array.
+	 * @return array|bool
 	 */
 	function unpackZip64Extra( $extraField ) {
 		$extraHeaderInfo = array(
@@ -520,6 +521,7 @@ class ZipDirectoryReader {
 	 * If there are not enough bytes in the file to satsify the request, the
 	 * return value will be truncated. If a request is made for a segment beyond
 	 * the end of the file, an empty string will be returned.
+	 * @return string
 	 */
 	function getSegment( $segIndex ) {
 		if ( !isset( $this->buffer[$segIndex] ) ) {
@@ -542,6 +544,7 @@ class ZipDirectoryReader {
 
 	/**
 	 * Get the size of a structure in bytes. See unpack() for the format of $struct.
+	 * @return int
 	 */
 	function getStructSize( $struct ) {
 		$size = 0;

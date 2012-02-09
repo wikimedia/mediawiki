@@ -83,7 +83,8 @@ class SpecialPrefixindex extends SpecialAllpages {
 	* HTML for the top form
 	* @param $namespace Integer: a namespace constant (default NS_MAIN).
 	* @param $from String: dbKey we are starting listing at.
-	*/
+	 * @return string
+	 */
 	function namespacePrefixForm( $namespace = NS_MAIN, $from = '' ) {
 		global $wgScript;
 

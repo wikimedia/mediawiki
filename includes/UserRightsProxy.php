@@ -163,6 +163,7 @@ class UserRightsProxy {
 
 	/**
 	 * Replaces User::getUserGroups()
+	 * @return array
 	 */
 	function getGroups() {
 		$res = $this->db->select( 'user_groups',

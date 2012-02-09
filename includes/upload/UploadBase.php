@@ -64,6 +64,7 @@ abstract class UploadBase {
 	/**
 	 * Returns true if uploads are enabled.
 	 * Can be override by subclasses.
+	 * @return bool
 	 */
 	public static function isEnabled() {
 		global $wgEnableUploads;
@@ -82,6 +83,7 @@ abstract class UploadBase {
 	 * Can be overriden by subclasses.
 	 *
 	 * @param $user User
+	 * @return bool
 	 */
 	public static function isAllowed( $user ) {
 		foreach ( array( 'upload', 'edit' ) as $permission ) {
@@ -100,6 +102,7 @@ abstract class UploadBase {
 	 *
 	 * @param $request WebRequest
 	 * @param $type
+	 * @return null
 	 */
 	public static function createFromRequest( &$request, $type = null ) {
 		$type = $type ? $type : $request->getVal( 'wpSourceType', 'File' );
@@ -140,6 +143,7 @@ abstract class UploadBase {
 
 	/**
 	 * Check whether a request if valid for this handler
+	 * @return bool
 	 */
 	public static function isValidRequest( $request ) {
 		return false;
@@ -180,6 +184,7 @@ abstract class UploadBase {
 
 	/**
 	 * Fetch the file. Usually a no-op
+	 * @return Status
 	 */
 	public function fetchFile() {
 		return Status::newGood();
@@ -984,6 +989,7 @@ abstract class UploadBase {
 
 	/**
 	 * @todo Replace this with a whitelist filter!
+	 * @return bool
 	 */
 	public function checkSvgScriptCallback( $element, $attribs ) {
 		$stripped = $this->stripXmlNamespace( $element );
@@ -1249,6 +1255,7 @@ abstract class UploadBase {
 
 	/**
 	 * Helper function that checks whether the filename looks like a thumbnail
+	 * @return bool
 	 */
 	public static function isThumbName( $filename ) {
 		$n = strrpos( $filename, '.' );
