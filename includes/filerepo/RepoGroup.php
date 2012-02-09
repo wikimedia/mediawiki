@@ -213,7 +213,7 @@ class RepoGroup {
 	 * Returns false if the file does not exist.
 	 *
 	 * @param $hash String base 36 SHA-1 hash
-	 * @param $options Option array, same as findFile()
+	 * @param $options array Option array, same as findFile()
 	 * @return File object or false if it is not found
 	 */
 	function findFileFromKey( $hash, $options = array() ) {
@@ -339,7 +339,8 @@ class RepoGroup {
 
 	/**
 	 * Split a virtual URL into repo, zone and rel parts
-	 * @return an array containing repo, zone and rel
+	 * @param $url string
+	 * @return array containing repo, zone and rel
 	 */
 	function splitVirtualUrl( $url ) {
 		if ( substr( $url, 0, 9 ) != 'mwrepo://' ) {

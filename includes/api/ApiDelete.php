@@ -145,7 +145,7 @@ class ApiDelete extends ApiBase {
 	 * @param $oldimage
 	 * @param $reason
 	 * @param $suppress bool
-	 * @return \type|array|Title
+	 * @return array|Title
 	 */
 	public static function deleteFile( Page $page, User $user, $token, $oldimage, &$reason = null, $suppress = false ) {
 		$title = $page->getTitle();

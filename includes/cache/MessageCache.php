@@ -588,7 +588,7 @@ class MessageCache {
 	 * @param $isFullKey Boolean: specifies whether $key is a two part key
 	 *                   "msg/lang".
 	 *
-	 * @return string|false
+	 * @return string|bool
 	 */
 	function get( $key, $useDB = true, $langcode = true, $isFullKey = false ) {
 		global $wgLanguageCode, $wgContLang;

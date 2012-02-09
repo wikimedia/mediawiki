@@ -817,7 +817,7 @@ class DatabaseSqlite extends DatabaseBase {
 	/**
 	 * List all tables on the database
 	 *
-	 * @param $prefix Only show tables with this prefix, e.g. mw_
+	 * @param $prefix string Only show tables with this prefix, e.g. mw_
 	 * @param $fname String: calling function name
 	 *
 	 * @return array

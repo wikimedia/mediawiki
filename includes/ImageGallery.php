@@ -75,7 +75,7 @@ class ImageGallery {
 	/**
 	 * Set the caption (as plain text)
 	 *
-	 * @param $caption Caption
+	 * @param $caption string Caption
 	 */
 	function setCaption( $caption ) {
 		$this->mCaption = htmlspecialchars( $caption );

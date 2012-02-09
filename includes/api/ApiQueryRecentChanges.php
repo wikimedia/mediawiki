@@ -304,7 +304,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	 * Extracts from a single sql row the data needed to describe one recent change.
 	 *
 	 * @param $row The row from which to extract the data.
-	 * @return An array mapping strings (descriptors) to their respective string values.
+	 * @return array An array mapping strings (descriptors) to their respective string values.
 	 * @access public
 	 */
 	public function extractRowInfo( $row ) {

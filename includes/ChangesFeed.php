@@ -107,7 +107,7 @@ class ChangesFeed {
 	 * @param $lastmod Integer: timestamp of the last item in the recentchanges table
 	 * @param $timekey String: memcached key of the last modification
 	 * @param $key String: memcached key of the content
-	 * @return feed's content on cache hit or false on cache miss
+	 * @return string|bool feed's content on cache hit or false on cache miss
 	 */
 	public function loadFromCache( $lastmod, $timekey, $key ) {
 		global $wgFeedCacheTimeout, $wgOut, $messageMemc;

@@ -344,7 +344,7 @@ class FileRepo {
 	/**
 	 * Find many files at once.
 	 *
-	 * @param $items An array of titles, or an array of findFile() options with
+	 * @param $items array An array of titles, or an array of findFile() options with
 	 *    the "title" option giving the title. Example:
 	 *
 	 *     $findItem = array( 'title' => $title, 'private' => true );
@@ -996,7 +996,7 @@ class FileRepo {
 	/**
 	 * Checks existence of a a file
 	 *
-	 * @param $file Virtual URL (or storage path) of file to check
+	 * @param $file string Virtual URL (or storage path) of file to check
 	 * @param $flags Integer: bitwise combination of the following flags:
 	 *     self::FILES_ONLY     Mark file as existing only if it is a file (not directory)
 	 * @return bool
@@ -1012,7 +1012,7 @@ class FileRepo {
 	 * @param $files Array: Virtual URLs (or storage paths) of files to check
 	 * @param $flags Integer: bitwise combination of the following flags:
 	 *     self::FILES_ONLY     Mark file as existing only if it is a file (not directory)
-	 * @return Either array of files and existence flags, or false
+	 * @return array|bool Either array of files and existence flags, or false
 	 */
 	public function fileExistsBatch( $files, $flags = 0 ) {
 		$result = array();

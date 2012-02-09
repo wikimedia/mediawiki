@@ -65,7 +65,7 @@ class FormOptions implements ArrayAccess {
 	 *
 	 * @param $data Mixed: value to guess type for
 	 * @exception MWException Unsupported datatype
-	 * @return Type constant 
+	 * @return int Type constant
 	 */
 	public static function guessType( $data ) {
 		if ( is_bool( $data ) ) {

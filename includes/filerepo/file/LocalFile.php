@@ -1301,7 +1301,7 @@ class LocalFile extends File {
 	 *
 	 * May throw database exceptions on error.
 	 *
-	 * @param $versions set of record ids of deleted items to restore,
+	 * @param $versions array set of record ids of deleted items to restore,
 	 *                    or empty to restore all revisions.
 	 * @param $unsuppress Boolean
 	 * @return FileRepoStatus

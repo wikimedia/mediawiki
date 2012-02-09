@@ -122,7 +122,7 @@ class CSSJanus {
 	 * @param $css String: stylesheet to transform
 	 * @param $swapLtrRtlInURL Boolean: If true, swap 'ltr' and 'rtl' in URLs
 	 * @param $swapLeftRightInURL Boolean: If true, swap 'left' and 'right' in URLs
-	 * @return Transformed stylesheet
+	 * @return string Transformed stylesheet
 	 */
 	public static function transform( $css, $swapLtrRtlInURL = false, $swapLeftRightInURL = false ) {
 		// We wrap tokens in ` , not ~ like the original implementation does.

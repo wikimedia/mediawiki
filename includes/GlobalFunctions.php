@@ -1768,7 +1768,7 @@ function wfGetCaller( $level = 2 ) {
  * Return a string consisting of callers in the stack. Useful sometimes
  * for profiling specific points.
  *
- * @param $limit The maximum depth of the stack frame to return, or false for
+ * @param $limit int The maximum depth of the stack frame to return, or false for
  *               the entire stack.
  * @return String
  */
@@ -1977,7 +1977,7 @@ function wfSetBit( &$dest, $bit, $state = true ) {
  * A wrapper around the PHP function var_export().
  * Either print it or add it to the regular output ($wgOut).
  *
- * @param $var A PHP variable to dump.
+ * @param $var mixed A PHP variable to dump.
  */
 function wfVarDump( $var ) {
 	global $wgOut;
@@ -2749,11 +2749,11 @@ function wfEscapeShellArg( ) {
  * Execute a shell command, with time and memory limits mirrored from the PHP
  * configuration if supported.
  * @param $cmd String Command line, properly escaped for shell.
- * @param &$retval optional, will receive the program's exit code.
+ * @param &$retval null|Mixed optional, will receive the program's exit code.
  *                 (non-zero is usually failure)
  * @param $environ Array optional environment variables which should be
  *                 added to the executed command environment.
- * @return collected stdout as a string (trailing newlines stripped)
+ * @return string collected stdout as a string (trailing newlines stripped)
  */
 function wfShellExec( $cmd, &$retval = null, $environ = array() ) {
 	global $IP, $wgMaxShellMemory, $wgMaxShellFileSize, $wgMaxShellTime;
@@ -3513,7 +3513,7 @@ function wfScript( $script = 'index' ) {
 /**
  * Get the script URL.
  *
- * @return script URL
+ * @return string script URL
  */
 function wfGetScriptUrl() {
 	if( isset( $_SERVER['SCRIPT_NAME'] ) ) {

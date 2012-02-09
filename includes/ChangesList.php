@@ -63,7 +63,7 @@ class ChangesList extends ContextSource {
 	 * This first argument used to be an User object.
 	 *
 	 * @deprecated in 1.18; use newFromContext() instead
-	 * @param $unused Unused
+	 * @param $unused
 	 * @return ChangesList|EnhancedChangesList|OldChangesList derivative
 	 */
 	public static function newFromUser( $unused ) {
