@@ -46,10 +46,6 @@ The supported versions are:
 1.20 has several database changes since 1.19, and will not work without schema
 updates.
 
-As of 1.19 several JavaScript interfaces that were deprecated or superseeded in
-MediaWiki 1.17, MediaWiki 1.16 or even earlier have been removed. They are
-listed at the top of the "Other changes" list as a "BREAKING CHANGE".
-
 If upgrading from before 1.11, and you are using a wiki as a commons
 repository, make sure that it is updated as well. Otherwise, errors may arise
 due to database schema changes.
