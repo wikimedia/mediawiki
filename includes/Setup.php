@@ -388,6 +388,12 @@ if ( $wgCanonicalServer === false ) {
 	$wgCanonicalServer = wfExpandUrl( $wgServer, PROTO_HTTP );
 }
 
+if ( $wgUseFileCache && $wgUseGzip ) {
+	// Bypass any previous output handler to avoid double
+	// compression (bug 34254)
+	wfResetOutputBuffers();
+}
+
 wfProfileIn( $fname . '-misc1' );
 
 # Raise the memory limit if it's too low
