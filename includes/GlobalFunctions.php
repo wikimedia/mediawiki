@@ -20,33 +20,48 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  */
 
 if( !function_exists( 'iconv' ) ) {
-	/** @codeCoverageIgnore */
+	/**
+	 * @codeCoverageIgnore
+	 * @return string
+	 */
 	function iconv( $from, $to, $string ) {
 		return Fallback::iconv( $from, $to, $string );
 	}
 }
 
 if ( !function_exists( 'mb_substr' ) ) {
-	/** @codeCoverageIgnore */
+	/**
+	 * @codeCoverageIgnore
+	 * @return string
+	 */
 	function mb_substr( $str, $start, $count='end' ) {
 		return Fallback::mb_substr( $str, $start, $count );
 	}
 
-	/** @codeCoverageIgnore */
+	/**
+	 * @codeCoverageIgnore
+	 * @return int
+	 */
 	function mb_substr_split_unicode( $str, $splitPos ) {
 		return Fallback::mb_substr_split_unicode( $str, $splitPos );
 	}
 }
 
 if ( !function_exists( 'mb_strlen' ) ) {
-	/** @codeCoverageIgnore */
+	/**
+	 * @codeCoverageIgnore
+	 * @return int
+	 */
 	function mb_strlen( $str, $enc = '' ) {
 		return Fallback::mb_strlen( $str, $enc );
 	}
 }
 
 if( !function_exists( 'mb_strpos' ) ) {
-	/** @codeCoverageIgnore */
+	/**
+	 * @codeCoverageIgnore
+	 * @return int
+	 */
 	function mb_strpos( $haystack, $needle, $offset = 0, $encoding = '' ) {
 		return Fallback::mb_strpos( $haystack, $needle, $offset, $encoding );
 	}
@@ -54,7 +69,10 @@ if( !function_exists( 'mb_strpos' ) ) {
 }
 
 if( !function_exists( 'mb_strrpos' ) ) {
-	/** @codeCoverageIgnore */
+	/**
+	 * @codeCoverageIgnore
+	 * @return int
+	 */
 	function mb_strrpos( $haystack, $needle, $offset = 0, $encoding = '' ) {
 		return Fallback::mb_strrpos( $haystack, $needle, $offset, $encoding );
 	}
@@ -63,7 +81,10 @@ if( !function_exists( 'mb_strrpos' ) ) {
 
 // Support for Wietse Venema's taint feature
 if ( !function_exists( 'istainted' ) ) {
-	/** @codeCoverageIgnore */
+	/**
+	 * @codeCoverageIgnore
+	 * @return int
+	 */
 	function istainted( $var ) {
 		return 0;
 	}
@@ -885,6 +906,7 @@ function wfDebug( $text, $logonly = false ) {
 
 /**
  * Returns true if debug logging should be suppressed if $wgDebugRawPage = false
+ * @return bool
  */
 function wfIsDebugRawPage() {
 	static $cache;

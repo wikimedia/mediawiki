@@ -501,6 +501,7 @@ abstract class FormlessAction extends Action {
 
 	/**
 	 * We don't want an HTMLForm
+	 * @return bool
 	 */
 	protected function getFormFields() {
 		return false;

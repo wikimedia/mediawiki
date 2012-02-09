@@ -782,6 +782,7 @@ class HistoryPager extends ReverseChronologicalPager {
 
 	/**
 	 * Get the "prevent clickjacking" flag
+	 * @return bool
 	 */
 	function getPreventClickjacking() {
 		return $this->preventClickjacking;

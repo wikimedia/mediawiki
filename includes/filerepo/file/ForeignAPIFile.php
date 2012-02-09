@@ -68,6 +68,7 @@ class ForeignAPIFile extends File {
 
 	/**
 	 * Get the property string for iiprop and aiprop
+	 * @return string
 	 */
 	static function getProps() {
 		return 'timestamp|user|comment|url|size|sha1|metadata|mime';
@@ -183,6 +184,7 @@ class ForeignAPIFile extends File {
 
 	/**
 	 * Only useful if we're locally caching thumbs anyway...
+	 * @return null|string
 	 */
 	function getThumbPath( $suffix = '' ) {
 		if ( $this->repo->canCacheThumbs() ) {

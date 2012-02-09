@@ -497,6 +497,7 @@ class DatabaseSqlite extends DatabaseBase {
 
 	/**
 	 * Based on generic method (parent) with some prior SQLite-sepcific adjustments
+	 * @return bool
 	 */
 	function insert( $table, $a, $fname = 'DatabaseSqlite::insert', $options = array() ) {
 		if ( !count( $a ) ) {
@@ -723,6 +724,7 @@ class DatabaseSqlite extends DatabaseBase {
 
 	/**
 	 * No-op version of deadlockLoop
+	 * @return mixed
 	 */
 	public function deadlockLoop( /*...*/ ) {
 		$args = func_get_args();

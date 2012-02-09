@@ -189,6 +189,7 @@ class LocalRepo extends FileRepo {
 	 * We can't say Title object, what database it should use, so we duplicate that function here.
 	 *
 	 * @param $title Title
+	 * @return bool|int|mixed
 	 */
 	protected function getArticleID( $title ) {
 		if( !$title instanceof Title ) {
@@ -233,6 +234,7 @@ class LocalRepo extends FileRepo {
 
 	/**
 	 * Get a connection to the slave DB
+	 * @return DatabaseBase
 	 */
 	function getSlaveDB() {
 		return wfGetDB( DB_SLAVE );
@@ -240,6 +242,7 @@ class LocalRepo extends FileRepo {
 
 	/**
 	 * Get a connection to the master DB
+	 * @return DatabaseBase
 	 */
 	function getMasterDB() {
 		return wfGetDB( DB_MASTER );

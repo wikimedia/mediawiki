@@ -231,7 +231,10 @@ class Category {
 		);
 	}
 
-	/** Generic accessor */
+	/**
+	 * Generic accessor
+	 * @return bool
+	 */
 	private function getX( $key ) {
 		if ( !$this->initialize() ) {
 			return false;

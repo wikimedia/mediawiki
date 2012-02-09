@@ -113,6 +113,7 @@ class ApiUpload extends ApiBase {
 	}
 	/**
 	 * Get an uplaod result based on upload context
+	 * @return array
 	 */
 	private function getContextResult(){
 		$warnings = $this->getApiWarnings();
@@ -131,7 +132,8 @@ class ApiUpload extends ApiBase {
 		return $this->performUpload();
 	}
 	/**
-	 * Get Stash Result, throws an expetion if the file could not be stashed. 
+	 * Get Stash Result, throws an expetion if the file could not be stashed.
+	 * @return array
 	 */
 	private function getStashResult(){
 		$result = array ();
@@ -149,6 +151,7 @@ class ApiUpload extends ApiBase {
 	/**
 	 * Get Warnings Result
 	 * @param $warnings Array of Api upload warnings
+	 * @return array
 	 */
 	private function getWarningsResult( $warnings ){
 		$result = array();
@@ -165,7 +168,8 @@ class ApiUpload extends ApiBase {
 		return $result;
 	}
 	/**
-	 * Get the result of a chunk upload. 
+	 * Get the result of a chunk upload.
+	 * @return array
 	 */
 	private function getChunkResult(){
 		$result = array();

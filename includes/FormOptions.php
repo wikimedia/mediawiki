@@ -291,11 +291,17 @@ class FormOptions implements ArrayAccess {
 	 * @see http://php.net/manual/en/class.arrayaccess.php
 	 */
 	/* @{ */
-	/** Whether option exist*/
+	/**
+	 * Whether option exist
+	 * @return bool
+	 */
 	public function offsetExists( $name ) {
 		return isset( $this->options[$name] );
 	}
-	/** Retrieve an option value */
+	/**
+	 * Retrieve an option value
+	 * @return Mixed
+	 */
 	public function offsetGet( $name ) {
 		return $this->getValue( $name );
 	}

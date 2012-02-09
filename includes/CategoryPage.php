@@ -29,6 +29,7 @@ class CategoryPage extends Article {
 	/**
 	 * Constructor from a page id
 	 * @param $id Int article ID to load
+	 * @return CategoryPage|null
 	 */
 	public static function newFromID( $id ) {
 		$t = Title::newFromID( $id );

@@ -1770,6 +1770,7 @@ class Article extends Page {
 	 *
 	 * @param $fname String Name of called method
 	 * @param $args Array Arguments to the method
+	 * @return mixed
 	 */
 	public function __call( $fname, $args ) {
 		if ( is_callable( array( $this->mPage, $fname ) ) ) {

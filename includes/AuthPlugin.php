@@ -103,6 +103,7 @@ class AuthPlugin {
 	 * forget the & on your function declaration.
 	 *
 	 * @param $user User object
+	 * @return bool
 	 */
 	public function updateUser( &$user ) {
 		# Override this and do something

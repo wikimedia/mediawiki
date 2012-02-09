@@ -165,6 +165,7 @@ class FeedUtils {
 	 * @param $title Title object: used to generate the diff URL
 	 * @param $newid Integer newid for this diff
 	 * @param $oldid Integer|null oldid for the diff. Null means it is a new article
+	 * @return string
 	 */
 	protected static function getDiffLink( Title $title, $newid, $oldid = null ) {
 		$queryParameters = ($oldid == null)

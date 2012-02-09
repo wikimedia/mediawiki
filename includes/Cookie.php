@@ -193,6 +193,7 @@ class CookieJar {
 
 	/**
 	 * @see Cookie::serializeToHttpRequest
+	 * @return string
 	 */
 	public function serializeToHttpRequest( $path, $domain ) {
 		$cookies = array();
@@ -213,6 +214,7 @@ class CookieJar {
 	 *
 	 * @param $cookie String
 	 * @param $domain String: cookie's domain
+	 * @return null
 	 */
 	public function parseCookieResponseHeader ( $cookie, $domain ) {
 		$len = strlen( 'Set-Cookie:' );

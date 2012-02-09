@@ -672,6 +672,7 @@ class DifferenceEngine extends ContextSource {
 	 *
 	 * @param $otext String: old text, must be already segmented
 	 * @param $ntext String: new text, must be already segmented
+	 * @return bool|string
 	 */
 	function generateDiffBody( $otext, $ntext ) {
 		global $wgExternalDiffEngine, $wgContLang;
@@ -747,6 +748,7 @@ class DifferenceEngine extends ContextSource {
 	/**
 	 * Generate a debug comment indicating diff generating time,
 	 * server node, and generator backend.
+	 * @return string
 	 */
 	protected function debug( $generator = "internal" ) {
 		global $wgShowHostnames;
@@ -768,6 +770,7 @@ class DifferenceEngine extends ContextSource {
 
 	/**
 	 * Replace line numbers with the text in the user's language
+	 * @return mixed
 	 */
 	function localiseLineNumbers( $text ) {
 		return preg_replace_callback( '/<!--LINE (\d+)-->/',

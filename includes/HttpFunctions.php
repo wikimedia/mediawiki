@@ -376,6 +376,7 @@ class MWHttpRequest {
 	 *
 	 * @param $fh handle
 	 * @param $content String
+	 * @return int
 	 */
 	public function read( $fh, $content ) {
 		$this->content .= $content;

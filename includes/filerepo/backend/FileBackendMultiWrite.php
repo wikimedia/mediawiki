@@ -76,6 +76,7 @@ class FileBackendMultiWrite extends FileBackend {
 
 	/**
 	 * @see FileBackend::doOperationsInternal()
+	 * @return Status
 	 */
 	final protected function doOperationsInternal( array $ops, array $opts ) {
 		$status = Status::newGood();
@@ -277,6 +278,7 @@ class FileBackendMultiWrite extends FileBackend {
 
 	/**
 	 * @see FileBackend::doPrepare()
+	 * @return Status
 	 */
 	public function doPrepare( array $params ) {
 		$status = Status::newGood();
@@ -289,6 +291,7 @@ class FileBackendMultiWrite extends FileBackend {
 
 	/**
 	 * @see FileBackend::doSecure()
+	 * @return Status
 	 */
 	public function doSecure( array $params ) {
 		$status = Status::newGood();
@@ -301,6 +304,7 @@ class FileBackendMultiWrite extends FileBackend {
 
 	/**
 	 * @see FileBackend::doClean()
+	 * @return Status
 	 */
 	public function doClean( array $params ) {
 		$status = Status::newGood();

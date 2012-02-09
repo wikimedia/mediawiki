@@ -260,6 +260,7 @@ class MessageCache {
 	 * is disabled.
 	 *
 	 * @param $code String: language to which load messages
+	 * @return bool
 	 */
 	function load( $code = false ) {
 		global $wgUseLocalMessageCache;

@@ -313,6 +313,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 
 	/**
 	 * Returns true if this database supports (and uses) cascading deletes
+	 * @return bool
 	 */
 	function cascadingDeletes() {
 		return true;
@@ -321,6 +322,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	/**
 	 * Returns true if this database supports (and uses) triggers (e.g. on the
 	 *  page table)
+	 * @return bool
 	 */
 	function cleanupTriggers() {
 		return true;
@@ -330,6 +332,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	 * Returns true if this database is strict about what can be put into an
 	 *  IP field.
 	 * Specifically, it uses a NULL value instead of an empty string.
+	 * @return bool
 	 */
 	function strictIPs() {
 		return true;
@@ -337,13 +340,15 @@ class DatabaseIbm_db2 extends DatabaseBase {
 
 	/**
 	 * Returns true if this database uses timestamps rather than integers
-	*/
+	 * @return bool
+	 */
 	function realTimestamps() {
 		return true;
 	}
 
 	/**
 	 * Returns true if this database does an implicit sort when doing GROUP BY
+	 * @return bool
 	 */
 	function implicitGroupby() {
 		return false;
@@ -353,6 +358,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	 * Returns true if this database does an implicit order by when the column
 	 *  has an index
 	 * For example: SELECT page_title FROM page LIMIT 1
+	 * @return bool
 	 */
 	function implicitOrderby() {
 		return false;
@@ -361,6 +367,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	/**
 	 * Returns true if this database can do a native search on IP columns
 	 * e.g. this works as expected: .. WHERE rc_ip = '127.42.12.102/32';
+	 * @return bool
 	 */
 	function searchableIPs() {
 		return true;
@@ -368,6 +375,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 
 	/**
 	 * Returns true if this database can use functional indexes
+	 * @return bool
 	 */
 	function functionalIndexes() {
 		return true;
@@ -375,6 +383,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 
 	/**
 	 * Returns a unique string representing the wiki on the server
+	 * @return string
 	 */
 	public function getWikiID() {
 		if( $this->mSchema ) {
@@ -546,6 +555,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	/**
 	 * Closes a database connection, if it is open
 	 * Returns success, true if already closed
+	 * @return bool
 	 */
 	public function close() {
 		$this->mOpened = false;
@@ -562,6 +572,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	/**
 	 * Retrieves the most current database error
 	 * Forces a database rollback
+	 * @return bool|string
 	 */
 	public function lastError() {
 		$connerr = db2_conn_errormsg();
@@ -836,6 +847,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	 *   LIST_SET           - comma separated with field names, like a SET clause
 	 *   LIST_NAMES         - comma separated field names
 	 *   LIST_SET_PREPARED  - like LIST_SET, except with ? tokens as values
+	 * @return string
 	 */
 	function makeList( $a, $mode = LIST_COMMA ) {
 		if ( !is_array( $a ) ) {
@@ -873,6 +885,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	 * @param $sql string SQL query we will append the limit too
 	 * @param $limit integer the SQL limit
 	 * @param $offset integer the SQL offset (default false)
+	 * @return string
 	 */
 	public function limitResult( $sql, $limit, $offset=false ) {
 		if( !is_numeric( $limit ) ) {
@@ -1153,6 +1166,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	 * DELETE query wrapper
 	 *
 	 * Use $conds == "*" to delete all rows
+	 * @return bool|\ResultWrapper
 	 */
 	public function delete( $table, $conds, $fname = 'DatabaseIbm_db2::delete' ) {
 		if ( !$conds ) {
@@ -1640,6 +1654,7 @@ SQL;
 	 * in the appropriate places.
 	 * @param $query String
 	 * @param $args ...
+	 * @return Resource
 	 */
 	public function safeQuery( $query, $args = null ) {
 		// copied verbatim from Database.php
@@ -1674,6 +1689,7 @@ SQL;
 
 	/**
 	 * Switches module between regular and install modes
+	 * @return string
 	 */
 	public function setMode( $mode ) {
 		$old = $this->mMode;
