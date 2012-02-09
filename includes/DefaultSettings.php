@@ -1752,8 +1752,6 @@ $wgSidebarCacheExpiry = 86400;
 /**
  * When using the file cache, we can store the cached HTML gzipped to save disk
  * space. Pages will then also be served compressed to clients that support it.
- * THIS IS NOT COMPATIBLE with ob_gzhandler which is now enabled if supported in
- * the default LocalSettings.php! If you enable this, remove that setting first.
  *
  * Requires zlib support enabled in PHP.
  */
