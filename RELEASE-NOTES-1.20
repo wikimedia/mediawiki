@@ -15,6 +15,7 @@ production.
 === New features in 1.20 ===
 * Added TitleIsKnown hook which gets called when determining if a page exists.
 * (bug 32341) Add upload by URL domain limitation.
+* (bug 32626) Add CSS class 'mw-cite-backlink' to backlinks in reference sections.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
