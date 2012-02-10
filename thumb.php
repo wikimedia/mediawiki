@@ -271,7 +271,6 @@ function wfExtractThumbParams( $uri ) {
 		}
 
 		// Check if the parameters can be extracted from the thumbnail name...
-		// @TODO: remove 'page' stuff and make ProofreadPage handle it via hook.
 		if ( preg_match( '!^(page(\d*)-)*(\d*)px-[^/]*$!', $thumbname, $matches ) ) {
 			list( /* all */, $pagefull, $pagenum, $size ) = $matches;
 			$params['width'] = $size;
