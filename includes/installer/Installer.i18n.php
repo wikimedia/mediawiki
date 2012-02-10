@@ -12804,6 +12804,7 @@ $messages['pdc'] = array(
 );
 
 /** Polish (Polski)
+ * @author BeginaFelicysym
  * @author Holek
  * @author Sp5uhe
  * @author Woytecr
@@ -12901,6 +12902,7 @@ Można użyć następujących typów baz danych: $1.
 Jeżeli korzystasz ze współdzielonego hostingu, zwróć się do administratora o zainstalowanie odpowiedniego sterownika bazy danych.
 Jeśli skompilowałeś PHP samodzielnie, skonfiguruj je ponownie z włączonym klientem bazy danych, na przykład za pomocą polecenia <code>./configure --with-mysql</code>.
 Jeśli zainstalowałeś PHP jako pakiet Debiana lub Ubuntu, musisz również zainstalować moduł php5-mysql.',
+	'config-outdated-sqlite' => "'''Ostrzeżenie''': masz SQLite  $1, która jest niższa od minimalnej wymaganej wersji  $2 . SQLite będzie niedostępne.",
 	'config-no-fts3' => "'''Uwaga''' – SQLite został skompilowany bez [//sqlite.org/fts3.html modułu FTS3] – funkcje wyszukiwania nie będą dostępne.",
 	'config-register-globals' => "'''Uwaga –  w konfiguracji PHP włączona jest opcja <code>[http://php.net/register_globals register_globals]</code>.'''
 '''Jeśli możesz, wyłącz ją.'''
@@ -12930,11 +12932,14 @@ MediaWiki wymaga wsparcia dla UTF‐8 do prawidłowego działania.",
 	'config-memory-bad' => "'''Uwaga:''' PHP <code>memory_limit</code> jest ustawione na $1.
 To jest prawdopodobnie zbyt mało.
 Instalacja może się nie udać!",
+	'config-ctype' => "''' Krytyczny ''': PHP musi być skompilowany z obsługą [http://www.php.net/manual/en/ctype.installation.php rozszerzenia Ctype].",
 	'config-xcache' => '[Http://trac.lighttpd.net/xcache/ XCache] jest zainstalowany',
 	'config-apc' => '[Http://www.php.net/apc APC] jest zainstalowany',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] jest zainstalowany',
 	'config-no-cache' => "'''Uwaga:''' Nie można odnaleźć [http://www.php.net/apc APC], [http://xcache.lighttpd.net/ XCache] lub [http://www.iis.net/download/WinCacheForPhp WinCache].
 Buforowanie obiektów nie będzie możliwe.",
+	'config-mod-security' => "''' Ostrzeżenie ''': Serwer sieci web ma włączone [http://modsecurity.org/ mod_security]. Jeśli niepoprawnie skonfigurowane, może być przyczyną problemów MediaWiki lub innego oprogramowania, które pozwala użytkownikom na wysyłanie dowolnej zawartości.
+Sprawdź w [http://modsecurity.org/documentation/ dokumentacji mod_security] lub skontaktuj się z obsługa hosta, jeśli wystąpią losowe błędy.",
 	'config-diff3-bad' => 'Nie znaleziono GNU diff3.',
 	'config-imagemagick' => 'Odnaleziono ImageMagick <code>$1</code>.
 Miniatury grafik będą generowane jeśli włączysz przesyłanie plików.',
@@ -12944,15 +12949,20 @@ Miniatury grafik będą generowane jeśli włączysz przesyłanie plików.',
 Tworzenie miniatur grafik będzie wyłączone.',
 	'config-no-uri' => "'''Błąd.''' Nie można określić aktualnego URI.
 Instalacja została przerwana.",
+	'config-no-cli-uri' => "''' Ostrzeżenie ''': nie wskazano --scriptpath,  użycie wartości domyślnej: <code>$1</code> .",
 	'config-using-server' => 'Przy użyciu nazwy serwera „<nowiki>$1</nowiki>“.',
+	'config-using-uri' => 'Użycie adresu URL serwera "<nowiki>$1$2</nowiki>".',
 	'config-uploads-not-safe' => "'''Uwaga''' – domyślny katalog do którego zapisywane są przesyłane pliki <code>$1</code> jest podatny na wykonanie dowolnego skryptu.
 Chociaż MediaWiki sprawdza wszystkie przesłane pliki pod kątem bezpieczeństwa, zaleca się jednak, aby [//www.mediawiki.org/wiki/Manual:Security#Upload_security zamknąć tę lukę w zabezpieczeniach] przed włączeniem przesyłania plików.",
+	'config-no-cli-uploads-check' => "'''Ostrzeżenie:''' Katalog domyślny przesyłanych plików ( <code>$1</code> ) nie jest sprawdzona względem luki
+ wykonania dowolnego skryptu podczas instalacji CLI w zabezpieczeniach.",
 	'config-brokenlibxml' => 'Twój system jest kombinacją wersji PHP i libxml2, które zawierają błędy mogące powodować ukryte uszkodzenia danych w MediaWiki i innych aplikacjach sieci web.
 Wykonaj aktualizację PHP do wersji 5.2.9 lub późniejszej oraz libxml2 do wersji 2.7.3 lub późniejszej ([//bugs.php.net/bug.php?id=45996 błąd w PHP]).
 Instalacja została przerwana.',
 	'config-using531' => 'MediaWiki nie może być używane z PHP $1 z powodu błędu dotyczącego referencyjnych argumentów funkcji <code>__call()</code>.
 Uaktualnij do PHP 5.3.2 lub nowszego. Możesz również cofnąć wersję do PHP 5.3.0, aby naprawić ten błąd.
 Instalacja została przerwana.',
+	'config-suhosin-max-value-length' => 'Jest zainstalowany Suhosin i ogranicza długość parametru GET do $1  bajtów. Komponent ResourceLoader w MediaWiki  wykona obejście tego ograniczenia, ale kosztem wydajności. Jeśli to możliwe należy ustawić suhosin.get.max_value_length na 1024 lub wyższej w php.ini oraz ustawić $wgResourceLoaderMaxQueryLength w LocalSettings.php na tę samą wartość.',
 	'config-db-type' => 'Typ bazy danych',
 	'config-db-host' => 'Adres serwera bazy danych',
 	'config-db-host-help' => 'Jeśli serwer bazy danych jest na innej maszynie, wprowadź jej nazwę domenową lub adres IP.
@@ -12971,6 +12981,11 @@ Nie może ona zawierać spacji.
 
 Jeśli korzystasz ze współdzielonego hostingu, dostawca usługi hostingowej może wymagać użycia konkretnej nazwy bazy danych lub pozwalać na tworzenie baz danych za pośrednictwem panelu użytkownika.',
 	'config-db-name-oracle' => 'Schemat bazy danych',
+	'config-db-account-oracle-warn' => 'Istnieją trzy obsługiwane scenariusze instalacji Oracle jako wewnętrznej bazy danych:
+
+Jeśli chcesz utworzyć konto bazy danych jako część procesu instalacji, proszę dostarczyć konta z rolą SYSDBA jako konto bazy danych dla instalacji i określić żądane poświadczenia dla konta dostępu do sieci web, w przeciwnym razie można ręcznie utworzyć konta dostępu do sieci web i dostarczać tylko to konto (jeśli ma wymagane uprawnienia do tworzenia obiektów schematu) lub dostarczyć dwa różne konta - jedno z uprawnieniami do tworzenia i drugie ograniczone dla dostępu do sieci.
+
+Skrypt do tworzenia konta z uprawnieniami wymagane można znaleźć w folderze "maintenance/oracle/" tej instalacji. Należy pamiętać, że użycie konta z ograniczeniami spowoduje wyłączenie wszystkich możliwości konserwacji przy użyciu domyślnego konta.',
 	'config-db-install-account' => 'Konto użytkownika dla instalatora',
 	'config-db-username' => 'Nazwa użytkownika bazy danych',
 	'config-db-password' => 'Hasło bazy danych',

@@ -1871,18 +1871,19 @@ $1',
 'upload-warning-msg'          => 'Er was een probleem met uw upload van [$2].
 Ga terug naar het [[Special:Upload/stash/$1|uploadformulier]] om dit probleem te verhelpen.',
 
-'upload-proto-error'        => 'Verkeerd protocol',
-'upload-proto-error-text'   => "Uploads via deze methode vereisen URL's die beginnen met <code>http://</code> of <code>ftp://</code>.",
-'upload-file-error'         => 'Interne fout',
-'upload-file-error-text'    => 'Er is een interne fout opgetreden tijdens het aanmaken van een tijdelijk bestaan op de server.
+'upload-proto-error'                => 'Verkeerd protocol',
+'upload-proto-error-text'           => "Uploads via deze methode vereisen URL's die beginnen met <code>http://</code> of <code>ftp://</code>.",
+'upload-file-error'                 => 'Interne fout',
+'upload-file-error-text'            => 'Er is een interne fout opgetreden tijdens het aanmaken van een tijdelijk bestaan op de server.
 Neem contact op met een [[Special:ListUsers/sysop|systeembeheerder]].',
-'upload-misc-error'         => 'Onbekende uploadfout',
-'upload-misc-error-text'    => 'Er is tijdens het uploaden een onbekende fout opgetreden.
+'upload-misc-error'                 => 'Onbekende uploadfout',
+'upload-misc-error-text'            => 'Er is tijdens het uploaden een onbekende fout opgetreden.
 Controleer of de URL correct en beschikbaar is en probeer het opnieuw.
 Als het probleem aanhoudt, neem dan contact op met een [[Special:ListUsers/sysop|systeembeheerder]].',
-'upload-too-many-redirects' => 'De URL bevatte te veel doorverwijzingen',
-'upload-unknown-size'       => 'Onbekende grootte',
-'upload-http-error'         => 'Er is een HTTP-fout opgetreden: $1',
+'upload-too-many-redirects'         => 'De URL bevatte te veel doorverwijzingen',
+'upload-unknown-size'               => 'Onbekende grootte',
+'upload-http-error'                 => 'Er is een HTTP-fout opgetreden: $1',
+'upload-copy-upload-invalid-domain' => 'Uploaden per kopie is niet beschikbaar vanuit dit domein.',
 
 # File backend
 'backend-fail-stream'        => 'Het was niet mogelijk het bestand $1 te streamen.',
@@ -1901,12 +1902,12 @@ Als het probleem aanhoudt, neem dan contact op met een [[Special:ListUsers/sysop
 'backend-fail-closetemp'     => 'Het was niet mogelijk een tijdelijk bestand te sluiten.',
 'backend-fail-read'          => 'Het was niet mogelijk het bestand $1 te lezen.',
 'backend-fail-create'        => 'Het was niet mogelijk het bestand $1 aan te maken.',
-'backend-fail-readonly'      => 'Van de backend "$1" kan op dit moment alleen gelezen worden. De opgegeven reden is: "$2"',
-'backend-fail-synced'        => 'Het bestand "$1" bevindt zich in een inconsistente toestand in het interne backend.',
-'backend-fail-connect'       => 'Het was niet mogelijk een verbinding te maken met het bestandsbackend "$1".',
-'backend-fail-internal'      => 'Er is een onbekende fout opgetreden in het bestandsbackend "$1".',
+'backend-fail-readonly'      => 'De opslagbackend "$1" kan op dit moment alleen gelezen worden. De opgegeven reden was: "$2"',
+'backend-fail-synced'        => 'Het bestand "$1" bevindt zich in een inconsistente toestand in het interne opslagbackends.',
+'backend-fail-connect'       => 'Het was niet mogelijk een verbinding te maken met het opslagbackend "$1".',
+'backend-fail-internal'      => 'Er is een onbekende fout opgetreden in het opslagbackend "$1".',
 'backend-fail-contenttype'   => 'Kon het inhoudstype van het bestand om op "$1" op te slaan niet bepalen.',
-'backend-fail-batchsize'     => 'Reeks van $1 bestands{{PLURAL:$1|operatie|operaties}} in de backend; de limiet is $2 {{PLURAL:$2|operatie|operaties}}.',
+'backend-fail-batchsize'     => 'Reeks van $1 bestands{{PLURAL:$1|operatie|operaties}} in de opslagbackend; de limiet is $2 {{PLURAL:$2|operatie|operaties}}.',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Het was niet mogelijk "$1" vrij te geven; dit object is niet vergrendeld.',

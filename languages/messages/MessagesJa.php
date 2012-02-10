@@ -3768,10 +3768,10 @@ $5
 'confirm-unwatch-top'    => 'このページをウォッチリストから除去しますか?',
 
 # Separators for various lists, etc.
-'semicolon-separator' => '；',
+'semicolon-separator' => '；&#8203;',
 'comma-separator'     => '、',
-'colon-separator'     => '：',
-'pipe-separator'      => '｜',
+'colon-separator'     => '：&#8203;',
+'pipe-separator'      => '&#8203;｜&#8203;',
 'word-separator'      => '',
 
 # Multipage image navigation
