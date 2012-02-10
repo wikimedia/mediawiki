@@ -2595,32 +2595,33 @@ HTML
 			$previewHTML = $parserOutput->mText;
 			$previewHTML .= "<pre class=\"$class\" dir=\"ltr\">\n" . htmlspecialchars( $this->textbox1 ) . "\n</pre>\n";
 		} else {
+			$toparse = $this->textbox1;
+
+			# If we're adding a comment, we need to show the
+			# summary as the headline
+			if ( $this->section == "new" && $this->summary != "" ) {
+				$toparse = wfMsgForContent( 'newsectionheaderdefaultlevel', $this->summary ) . "\n\n" . $toparse;
+			}
+
+			wfRunHooks( 'EditPageGetPreviewText', array( $this, &$toparse ) );
+
+			$parserOptions->enableLimitReport();
+
+			$toparse = $wgParser->preSaveTransform( $toparse, $this->mTitle, $wgUser, $parserOptions );
+			$parserOutput = $wgParser->parse( $toparse, $this->mTitle, $parserOptions );
+
 			$rt = Title::newFromRedirectArray( $this->textbox1 );
 			if ( $rt ) {
 				$previewHTML = $this->mArticle->viewRedirect( $rt, false );
 			} else {
-				$toparse = $this->textbox1;
-
-				# If we're adding a comment, we need to show the
-				# summary as the headline
-				if ( $this->section == "new" && $this->summary != "" ) {
-					$toparse = wfMsgForContent( 'newsectionheaderdefaultlevel', $this->summary ) . "\n\n" . $toparse;
-				}
-
-				wfRunHooks( 'EditPageGetPreviewText', array( $this, &$toparse ) );
-
-				$parserOptions->enableLimitReport();
-
-				$toparse = $wgParser->preSaveTransform( $toparse, $this->mTitle, $wgUser, $parserOptions );
-				$parserOutput = $wgParser->parse( $toparse, $this->mTitle, $parserOptions );
-
 				$previewHTML = $parserOutput->getText();
-				$this->mParserOutput = $parserOutput;
-				$wgOut->addParserOutputNoText( $parserOutput );
+			}
 
-				if ( count( $parserOutput->getWarnings() ) ) {
-					$note .= "\n\n" . implode( "\n\n", $parserOutput->getWarnings() );
-				}
+			$this->mParserOutput = $parserOutput;
+			$wgOut->addParserOutputNoText( $parserOutput );
+
+			if ( count( $parserOutput->getWarnings() ) ) {
+				$note .= "\n\n" . implode( "\n\n", $parserOutput->getWarnings() );
 			}
 		}
 
