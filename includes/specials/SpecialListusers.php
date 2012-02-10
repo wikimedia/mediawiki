@@ -157,6 +157,10 @@ class UsersPager extends AlphabeticPager {
 			$edits = '';
 		}
 
+                global $wgLang;
+		$userTalkPage = $userPage->getTalkPage();
+		$talk = ' (' . Linker::link( $userTalkPage, $wgLang->getMessage( 'talkpagelinktext' ) ) . ')';
+
 		$created = '';
 		# Some rows may be NULL
 		if( $row->creation ) {
@@ -166,7 +170,7 @@ class UsersPager extends AlphabeticPager {
 		}
 
 		wfRunHooks( 'SpecialListusersFormatRow', array( &$item, $row ) );
-		return "<li>{$item}{$edits}{$created}</li>";
+		return "<li>{$item}{$edits}{$talk}{$created}</li>";
 	}
 
 	function getBody() {
