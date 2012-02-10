@@ -24,6 +24,7 @@ production.
   compressed the output twice resulting in garbage output (since 1.18)
 
 === API changes in 1.20 ===
+* (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
 
 === Languages updated in 1.20 ===
 

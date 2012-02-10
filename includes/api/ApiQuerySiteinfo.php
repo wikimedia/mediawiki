@@ -177,6 +177,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			$data['misermode'] = '';
 		}
 
+		$data['maxuploadsize'] = UploadBase::getMaxUploadSize();
+
 		wfRunHooks( 'APIQuerySiteInfoGeneralInfo', array( $this, &$data ) );
 
 		return $this->getResult()->addValue( 'query', $property, $data );
