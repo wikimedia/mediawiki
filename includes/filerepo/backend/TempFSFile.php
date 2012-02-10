@@ -41,9 +41,6 @@ class TempFSFile extends FSFile {
 			}
 		}
 		$tmpFile = new self( $path );
-		if ( php_sapi_name() != 'cli' ) {
-			self::$instances[] = $tmpFile; // defer purge till shutdown
-		}
 		return $tmpFile;
 	}
 

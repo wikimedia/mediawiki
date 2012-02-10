@@ -391,21 +391,34 @@ var mw = ( function ( $, undefined ) {
 			}
 			
 			function addInlineCSS( css, media ) {
-				var $style = getMarker().prev();
+				var	$style = getMarker().prev(),
+					$newStyle,
+					attrs = { 'type': 'text/css', 'media': media };
 				if ( $style.is( 'style' ) && $style.data( 'ResourceLoaderDynamicStyleTag' ) === true ) {
 					// There's already a dynamic <style> tag present, append to it
 					// This recycling of <style> tags is for bug 31676 (can't have
 					// more than 32 <style> tags in IE)
 					
-					// Do cdata sanitization on the provided CSS, and prepend a double newline
-					css = $( mw.html.element( 'style', {}, new mw.html.Cdata( "\n\n" + css ) ) ).html();
-					$style.append( css );
+					// Also, calling .append() on a <style> tag explodes with a JS error in IE,
+					// so if the .append() fails we fall back to building a new <style> tag and
+					// replacing the existing one
+					try {
+						// Do cdata sanitization on the provided CSS, and prepend a double newline
+						css = $( mw.html.element( 'style', {}, new mw.html.Cdata( "\n\n" + css ) ) ).html();
+						$style.append( css );
+					} catch ( e ) {
+						// Generate a new tag with the combined CSS
+						css = $style.html() + "\n\n" + css;
+						$newStyle = $( mw.html.element( 'style', attrs, new mw.html.Cdata( css ) ) )
+							.data( 'ResourceLoaderDynamicStyleTag', true );
+						// Prevent a flash of unstyled content by inserting the new tag
+						// before removing the old one
+						$style.after( $newStyle );
+						$style.remove();
+					}
 				} else {
 					// Create a new <style> tag and insert it
-					$style = $( mw.html.element( 'style', {
-							'type': 'text/css',
-							'media': media
-						}, new mw.html.Cdata( css ) ) );
+					$style = $( mw.html.element( 'style', attrs, new mw.html.Cdata( css ) ) );
 					$style.data( 'ResourceLoaderDynamicStyleTag', true );
 					getMarker().before( $style );
 				}

@@ -2681,6 +2681,8 @@ $templates
 		);
 
 		// Load embeddable private modules before any loader links
+		// This needs to be TYPE_COMBINED so these modules are properly wrapped
+		// in mw.loader.implement() calls and deferred until mw.user is available
 		$embedScripts = array( 'user.options', 'user.tokens' );
 		$scripts .= $this->makeResourceLoaderLink( $embedScripts, ResourceLoaderModule::TYPE_COMBINED );
 
@@ -3268,7 +3270,7 @@ $templates
 
 		// Per-user preference styles
 		if ( $wgAllowUserCssPrefs ) {
-			$moduleStyles[] = 'user.options';
+			$moduleStyles[] = 'user.cssprefs';
 		}
 
 		foreach ( $moduleStyles as $name ) {

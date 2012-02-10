@@ -10,6 +10,7 @@ return array(
 	'user' => array( 'class' => 'ResourceLoaderUserModule' ),
 	'user.groups' => array( 'class' => 'ResourceLoaderUserGroupsModule' ),
 	'user.options' => array( 'class' => 'ResourceLoaderUserOptionsModule' ),
+	'user.cssprefs' => array( 'class' => 'ResourceLoaderUserCSSPrefsModule' ),
 	'user.tokens' => array( 'class' => 'ResourceLoaderUserTokensModule' ),
 	'filepage' => array( 'class' => 'ResourceLoaderFilePageModule' ),
 
@@ -824,6 +825,7 @@ return array(
 			'mediawiki.util',
 			'mediawiki.legacy.wikibits',
 		),
+		'position' => 'top', // Temporary hack for legacy support
 	),
 	'mediawiki.legacy.commonPrint' => array(
 		'styles' => array( 'common/commonPrint.css' => array( 'media' => 'print' ) ),
