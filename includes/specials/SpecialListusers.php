@@ -157,9 +157,9 @@ class UsersPager extends AlphabeticPager {
 			$edits = '';
 		}
 
-                global $wgLang;
+		global $wgLang;
 		$userTalkPage = $userPage->getTalkPage();
-		$talk = ' (' . Linker::link( $userTalkPage, $wgLang->getMessage( 'talkpagelinktext' ) ) . ')';
+		$talk = ' (' . Linker::link( $userTalkPage, wfMessage( 'talkpagelinktext' )->escaped() ) . ')';
 
 		$created = '';
 		# Some rows may be NULL
