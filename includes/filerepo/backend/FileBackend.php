@@ -1224,7 +1224,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackend::getLocalReference()
-	 * @return null|\TempFSFile
+	 * @return TempFSFile|null
 	 */
 	public function getLocalReference( array $params ) {
 		wfProfileIn( __METHOD__ );
@@ -1289,7 +1289,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @copydoc FileBackend::getFileList()
-	 * @return Array|FileBackendStoreShardListIterator|null|Traversable
+	 * @return Array|null|Traversable
 	 */
 	final public function getFileList( array $params ) {
 		list( $fullCont, $dir, $shard ) = $this->resolveStoragePath( $params['dir'] );
