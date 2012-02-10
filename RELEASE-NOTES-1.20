@@ -24,6 +24,7 @@ production.
   compressed the output twice resulting in garbage output (since 1.18)
 * (bug 32210) New edit emails for watched pages always provide a link to the
   edit which triggered the mail.
+* (bug 12021) Added user talk link on Special:Listusers
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
