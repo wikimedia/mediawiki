@@ -250,7 +250,7 @@ class VectorTemplate extends BaseTemplate {
 	 *
 	 * @param $portals array
 	 */
-	private function renderPortals( $portals ) {
+	protected function renderPortals( $portals ) {
 		// Force the rendering of the following portals
 		if ( !isset( $portals['SEARCH'] ) ) {
 			$portals['SEARCH'] = true;
@@ -292,7 +292,7 @@ class VectorTemplate extends BaseTemplate {
 	 * @param $msg null|string
 	 * @param $hook null|string|array
 	 */
-	private function renderPortal( $name, $content, $msg = null, $hook = null ) {
+	protected function renderPortal( $name, $content, $msg = null, $hook = null ) {
 		if ( $msg === null ) {
 			$msg = $name;
 		}
@@ -330,7 +330,7 @@ class VectorTemplate extends BaseTemplate {
 	 *
 	 * @param $elements array
 	 */
-	private function renderNavigation( $elements ) {
+	protected function renderNavigation( $elements ) {
 		global $wgVectorUseSimpleSearch;
 
 		// If only one element was given, wrap it in an array, allowing more
