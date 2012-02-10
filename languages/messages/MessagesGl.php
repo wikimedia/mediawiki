@@ -1724,18 +1724,19 @@ $1',
 'upload-warning-subj'         => 'Advertencia ao cargar',
 'upload-warning-msg'          => 'Houbo un problema durante a carga desde [$2]. Pode volver ao [[Special:Upload/stash/$1|formulario de subidas]] para corrixilo.',
 
-'upload-proto-error'        => 'Protocolo erróneo',
-'upload-proto-error-text'   => 'A carga remota require URLs que comecen por <code>http://</code> ou <code>ftp://</code>.',
-'upload-file-error'         => 'Erro interno',
-'upload-file-error-text'    => 'Produciuse un erro interno ao intentar crear un ficheiro temporal no servidor.
+'upload-proto-error'                => 'Protocolo erróneo',
+'upload-proto-error-text'           => 'A carga remota require URLs que comecen por <code>http://</code> ou <code>ftp://</code>.',
+'upload-file-error'                 => 'Erro interno',
+'upload-file-error-text'            => 'Produciuse un erro interno ao intentar crear un ficheiro temporal no servidor.
 Por favor, contacte cun [[Special:ListUsers/sysop|administrador]] do sistema.',
-'upload-misc-error'         => 'Erro de carga descoñecido',
-'upload-misc-error-text'    => 'Ocorreu un erro descoñecido durante a carga.
+'upload-misc-error'                 => 'Erro de carga descoñecido',
+'upload-misc-error-text'            => 'Ocorreu un erro descoñecido durante a carga.
 Comprobe que o enderezo URL é válido e accesible e, despois, inténteo de novo.
 Se o problema persiste, póñase en contacto cun [[Special:ListUsers/sysop|administrador]] do sistema.',
-'upload-too-many-redirects' => 'O enderezo URL contiña moitas redireccións',
-'upload-unknown-size'       => 'Tamaño descoñecido',
-'upload-http-error'         => 'Produciuse un erro HTTP: $1',
+'upload-too-many-redirects'         => 'O enderezo URL contiña moitas redireccións',
+'upload-unknown-size'               => 'Tamaño descoñecido',
+'upload-http-error'                 => 'Produciuse un erro HTTP: $1',
+'upload-copy-upload-invalid-domain' => 'A copia de cargas non está dispoñible neste dominio.',
 
 # File backend
 'backend-fail-stream'        => 'Non se puido transmitir o ficheiro "$1".',

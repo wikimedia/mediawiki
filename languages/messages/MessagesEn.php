@@ -2224,18 +2224,18 @@ $1',
 'upload-warning-subj'         => 'Upload warning',
 'upload-warning-msg'          => 'There was a problem with your upload from [$2]. You may return to the [[Special:Upload/stash/$1|upload form]] to correct this problem.',
 
-'upload-proto-error'        => 'Incorrect protocol',
-'upload-proto-error-text'   => 'Remote upload requires URLs beginning with <code>http://</code> or <code>ftp://</code>.',
-'upload-file-error'         => 'Internal error',
-'upload-file-error-text'    => 'An internal error occurred when attempting to create a temporary file on the server.
+'upload-proto-error'                => 'Incorrect protocol',
+'upload-proto-error-text'           => 'Remote upload requires URLs beginning with <code>http://</code> or <code>ftp://</code>.',
+'upload-file-error'                 => 'Internal error',
+'upload-file-error-text'            => 'An internal error occurred when attempting to create a temporary file on the server.
 Please contact an [[Special:ListUsers/sysop|administrator]].',
-'upload-misc-error'         => 'Unknown upload error',
-'upload-misc-error-text'    => 'An unknown error occurred during the upload.
+'upload-misc-error'                 => 'Unknown upload error',
+'upload-misc-error-text'            => 'An unknown error occurred during the upload.
 Please verify that the URL is valid and accessible and try again.
 If the problem persists, contact an [[Special:ListUsers/sysop|administrator]].',
-'upload-too-many-redirects' => 'The URL contained too many redirects',
-'upload-unknown-size'       => 'Unknown size',
-'upload-http-error'         => 'An HTTP error occured: $1',
+'upload-too-many-redirects'         => 'The URL contained too many redirects',
+'upload-unknown-size'               => 'Unknown size',
+'upload-http-error'                 => 'An HTTP error occured: $1',
 'upload-copy-upload-invalid-domain' => 'Copy uploads are not available from this domain.',
 
 # File backend

@@ -1582,8 +1582,10 @@ Os yw'r broblem yn parhau, cysylltwch â [[Special:ListUsers/sysop|gweinyddwr]].
 'backend-fail-copy'          => "Wedi methu copïo'r ffeil $1 i $2.",
 'backend-fail-move'          => 'Wedi methu symud y ffeil $1 i $2.',
 'backend-fail-opentemp'      => 'Wedi methu agor y ffeil dros dro.',
+'backend-fail-writetemp'     => "Wedi methu ysgrifennu i'r ffeil dros dro.",
 'backend-fail-closetemp'     => "Wedi methu cau'r ffeil dros dro.",
 'backend-fail-read'          => 'Wedi methu darllen y ffeil $1.',
+'backend-fail-create'        => "Wedi methu creu'r ffeil $1.",
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'Cafwyd gwall wrth agor y ffeil er mwyn gwneud gwiriadau ZIP.',
@@ -3592,6 +3594,7 @@ Dangosir delweddau ar eu maint llawn, dechreuir ffeiliau o fathau eraill yn unio
 'api-error-duplicate-archive-popup-title' => '{{PLURAL:$1|Ffeiliau|Ffeil|Ffeiliau|Ffeiliau|Ffeiliau|Ffeiliau}} dyblyg, sydd eisoes wedi eu dileu.',
 'api-error-duplicate-popup-title'         => '{{PLURAL:$1|Ffeiliau|ffeil|ffeiliau|ffeiliau|ffeiliau|ffeiliau}} dyblyg.',
 'api-error-empty-file'                    => "Mae'r ffeil a gyflwynwyd gennych yn wag.",
+'api-error-emptypage'                     => "Ni chaniateir dechrau tudalen newydd, a honno'n wag.",
 'api-error-fetchfileerror'                => "Gwall mewnol: aeth rhywbeth o'i le tra'n cywain y ffeil.",
 'api-error-file-too-large'                => "Mae'r ffeil a gyflwynwyd gennych yn rhy fawr.",
 'api-error-filename-tooshort'             => "Mae enw'r ffeil yn rhy fyr.",

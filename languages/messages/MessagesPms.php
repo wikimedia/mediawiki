@@ -1514,18 +1514,19 @@ $1",
 'upload-warning-subj'         => "Avis antramentre ch'as caria",
 'upload-warning-msg'          => "A-i era un problema con lòn ch'a l'ha carià da [$2]. A peul artorné al [[Special:Upload/stash/$1|formolari për carié]] për corege ël problema.",
 
-'upload-proto-error'        => 'Protocòl cioch',
-'upload-proto-error-text'   => "Për carié da dij servent lontan a venta buté dj'anliure ch'as anandio për <code>http://</code> ò pura <code>ftp://</code>.",
-'upload-file-error'         => 'Eror antern',
-'upload-file-error-text'    => "A l'é rivaie n'eror antern dëmentrè che as fasìa n'archivi provisòri ant sël servent.
+'upload-proto-error'                => 'Protocòl cioch',
+'upload-proto-error-text'           => "Për carié da dij servent lontan a venta buté dj'anliure ch'as anandio për <code>http://</code> ò pura <code>ftp://</code>.",
+'upload-file-error'                 => 'Eror antern',
+'upload-file-error-text'            => "A l'é rivaie n'eror antern dëmentrè che as fasìa n'archivi provisòri ant sël servent.
 Për piasì, ch'as butà an comunicassion con n'[[Special:ListUsers/sysop|aministrator]].",
-'upload-misc-error'         => "Eror nen identificà antramentr ch'as cariava",
-'upload-misc-error-text'    => "A l'é staie n'eror nen identificà dëmentrè ch'as cariava chèich-còs.
+'upload-misc-error'                 => "Eror nen identificà antramentr ch'as cariava",
+'upload-misc-error-text'            => "A l'é staie n'eror nen identificà dëmentrè ch'as cariava chèich-còs.
 Për piasì, ch'a varda che soa anliura a sia bon-a e che a l'arsponda e peuj ch'a preuva torna.
 Se a-i riva sossì n'àotra vira, ch'as buta an comunicassion con n'[[Special:ListUsers/sysop|aministrator]].",
-'upload-too-many-redirects' => "L'adrëssa dl'aragnà a l'avìa tròpe ridiression",
-'upload-unknown-size'       => 'Dimension pa conossùa',
-'upload-http-error'         => "A l'é staje n'eror HTTP: $1.",
+'upload-too-many-redirects'         => "L'adrëssa dl'aragnà a l'avìa tròpe ridiression",
+'upload-unknown-size'               => 'Dimension pa conossùa',
+'upload-http-error'                 => "A l'é staje n'eror HTTP: $1.",
+'upload-copy-upload-invalid-domain' => "Cariagi ëd cobie a l'é pa disponìbil da sto domini.",
 
 # File backend
 'backend-fail-stream'        => "A peul pa sequensialisé l'archivi $1.",
@@ -1544,12 +1545,12 @@ Se a-i riva sossì n'àotra vira, ch'as buta an comunicassion con n'[[Special:Li
 'backend-fail-closetemp'     => "As peul pa saresse l'archivi temporani.",
 'backend-fail-read'          => "As peul pa les-se l'archivi $1.",
 'backend-fail-create'        => "As peul pa creesse l'archivi $1.",
-'backend-fail-readonly'      => "Ël terminal «$1» a l'é al moment an sola letura. La rason dàita a l'é: «$2»",
-'backend-fail-synced'        => "L'archivi «$1» a l'é ant në stat incoerent andrinta ai terminaj intern",
-'backend-fail-connect'       => "Impossìbil coleghesse al terminal d'archivi «$1».",
-'backend-fail-internal'      => "N'eror pa conossù a l'é rivaje ant ël terminal d'archivi «$1».",
+'backend-fail-readonly'      => "Ël dispositiv ëd memòria «$1» a l'é al moment an sola letura. La rason dàita a l'era: «$2»",
+'backend-fail-synced'        => "L'archivi «$1» a l'é ant në stat incoerent andrinta ai dispositiv ëd memòria intern",
+'backend-fail-connect'       => 'Impossìbil coleghesse al dispositiv ëd memòria «$1».',
+'backend-fail-internal'      => "N'eror pa conossù a l'é rivaje ant ël dispositiv ëd memòria «$1».",
 'backend-fail-contenttype'   => "As peul pa determinesse la sòrt ëd contnù dl'archivi da memorisé a «$1».",
-'backend-fail-batchsize'     => "Ël terminal a l'ha dàit un total ëd $1 {{PLURAL:$1|operassion|operassion}} d'archivi; ël lìmit a l'é $2 {{PLURAL:$1|operassion|operassion}}.",
+'backend-fail-batchsize'     => "Ël dispositiv ëd memòria a l'ha dàit un total ëd $1 {{PLURAL:$1|operassion|operassion}} d'archivi; ël lìmit a l'é $2 {{PLURAL:$1|operassion|operassion}}.",
 
 # Lock manager
 'lockmanager-notlocked'        => "As peul pa dësblochesse «$1»; a l'é nen blocà.",
@@ -1585,7 +1586,7 @@ A peul pa esse controlà da bin për la sicurëssa.",
 'img-auth-nopathinfo'       => "PATH_INFO mancant.
 Sò servent a l'é nen ampostà për passé costa anformassion.
 Peul desse ch'a sia basà an sij CGI e a peul pa mantnì img_auth.
-[https://www.mediawiki.org/wiki/Manual:Image_Authorization. Ch'a bèica l'autorisassion dla figura.]",
+Varda https://www.mediawiki.org/wiki/Manual:Image_Authorization.",
 'img-auth-notindir'         => "Ël senté ciamà a l'é pa ant ël dossié configurà për carié.",
 'img-auth-badtitle'         => 'As peul pa fesse un tìtol bon për "$1".',
 'img-auth-nologinnWL'       => 'A l\'é pa intrà ant ël sistema e "$1" a l\'é pa ant la lista bianca.',
@@ -2366,8 +2367,8 @@ Ch'a consulta la [[Special:BlockList|lista dj'IP blocà]] për rivëdde ij bloca
 'autoblocker'                     => "A l'é scataje un blocagi përchè soa adrëssa IP a l'é staita dovrà ant j'ùltim temp da l'Utent «[[User:$1|$1]]». Ël motiv për bloché $1 a l'é stait: «'''$2'''»",
 'blocklogpage'                    => 'Registr dij blocagi',
 'blocklog-showlog'                => "St'utent-sì a l'é già stàit blocà ant ël passà. Ël registr dij blocagi a l'é disponìbil sì-sota 'me arferiment:",
-'blocklog-showsuppresslog'        => "St'utent-sì a l'é già stàit blocà e stërmà. Ël registr stërmà a l'é dàit sì sota për arferiment:",
-'blocklogentry'                   => '"[[$1]]" a l\'é stait blocà për $2 $3',
+'blocklog-showsuppresslog'        => "St'utent-sì a l'é già stàit blocà e stërmà. Ël registr ëd j'eliminassion a l'é smonù sì-sota për arferiment:",
+'blocklogentry'                   => "«[[$1]]» a l'é stait blocà për $2 $3",
 'reblock-logentry'                => 'cambià le ampostassion dël blòch për [[$1]] con un temp ëd fin ëd $2 $3',
 'blocklogtext'                    => "Sossì a l'é ël registr dij blocagi e dësblocagi dj'Utent. J'adrësse che
 a son staite blocà n'automàtich ambelessì a së s-ciàiro nen.
