@@ -178,7 +178,7 @@ function wfStreamThumb( array $params ) {
 			// Check that the zone relative path matches up so squid caches won't pick
 			// up thumbs that would not be purged on source file deletion (bug 34231).
 			if ( isset( $params['rel404'] ) // thumbnail was handled via 404
-				&& $params['rel404'] !== $img->getThumbRel( $thumbName ) ) 
+				&& urldecode( $params['rel404'] ) !== $img->getThumbRel( $thumbName ) ) 
 			{
 				wfThumbError( 404, 'The source file for the specified thumbnail does not exist.' );
 				wfProfileOut( __METHOD__ );
