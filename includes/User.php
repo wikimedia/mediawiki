@@ -3381,7 +3381,7 @@ class User {
 	 * address if it was already confirmed.
 	 *
 	 * @note Call saveSettings() after calling this function to commit the change.
-	 * @return bool
+	 * @return bool Returns true
 	 */
 	function invalidateEmail() {
 		$this->load();

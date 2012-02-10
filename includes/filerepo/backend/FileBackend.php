@@ -1179,7 +1179,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackend::getFileSha1Base36()
-	 * @return bool
+	 * @return bool|string
 	 */
 	final public function getFileSha1Base36( array $params ) {
 		wfProfileIn( __METHOD__ );

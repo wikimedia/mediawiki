@@ -414,7 +414,7 @@ class WikiPage extends Page {
 	 *      Revision::FOR_PUBLIC       to be displayed to all users
 	 *      Revision::FOR_THIS_USER    to be displayed to $wgUser
 	 *      Revision::RAW              get the text regardless of permissions
-	 * @return String|bool The text of the current revision
+	 * @return String|bool The text of the current revision. False on failure
 	 */
 	public function getText( $audience = Revision::FOR_PUBLIC ) {
 		$this->loadLastEdit();
@@ -427,7 +427,7 @@ class WikiPage extends Page {
 	/**
 	 * Get the text of the current revision. No side-effects...
 	 *
-	 * @return String|bool The text of the current revision
+	 * @return String|bool The text of the current revision. False on failure
 	 */
 	public function getRawText() {
 		$this->loadLastEdit();

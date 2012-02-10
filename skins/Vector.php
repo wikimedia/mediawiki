@@ -286,6 +286,12 @@ class VectorTemplate extends BaseTemplate {
 		}
 	}
 
+	/**
+	 * @param $name string
+	 * @param $content array
+	 * @param $msg null|string
+	 * @param $hook null|string|array
+	 */
 	private function renderPortal( $name, $content, $msg = null, $hook = null ) {
 		if ( $msg === null ) {
 			$msg = $name;

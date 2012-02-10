@@ -295,7 +295,7 @@ class FileRepo {
 	 *     private:        If true, return restricted (deleted) files if the current
 	 *                     user is allowed to view them. Otherwise, such files will not
 	 *                     be found.
-	 * @return File|bool
+	 * @return File|bool False on failure
 	 */
 	public function findFile( $title, $options = array() ) {
 		$title = File::normalizeTitle( $title );
@@ -378,7 +378,7 @@ class FileRepo {
 	 *
 	 * @param $sha1 String base 36 SHA-1 hash
 	 * @param $options array Option array, same as findFile().
-	 * @return File|bool
+	 * @return File|bool False on failure
 	 */
 	public function findFileFromKey( $sha1, $options = array() ) {
 		$time = isset( $options['time'] ) ? $options['time'] : false;
@@ -420,7 +420,7 @@ class FileRepo {
 	/**
 	 * Get the public root URL of the repository
 	 *
-	 * @return string|bool
+	 * @return string
 	 */
 	public function getRootUrl() {
 		return $this->url;
@@ -533,7 +533,7 @@ class FileRepo {
 	 *
 	 * @param $query mixed Query string to append
 	 * @param $entry string Entry point; defaults to index
-	 * @return string|bool
+	 * @return string|bool False on failure
 	 */
 	public function makeUrl( $query = '', $entry = 'index' ) {
 		if ( isset( $this->scriptDirUrl ) ) {
@@ -613,7 +613,7 @@ class FileRepo {
 	/**
 	 * Get the URL of the stylesheet to apply to description pages
 	 *
-	 * @return string|bool
+	 * @return string|bool False on failure
 	 */
 	public function getDescriptionStylesheetUrl() {
 		if ( isset( $this->scriptDirUrl ) ) {
@@ -1191,7 +1191,7 @@ class FileRepo {
 	 * Get the timestamp of a file with a given virtual URL/storage path
 	 *
 	 * @param $virtualUrl string
-	 * @return string|bool
+	 * @return string|bool False on failure
 	 */
 	public function getFileTimestamp( $virtualUrl ) {
 		$path = $this->resolveToStoragePath( $virtualUrl );

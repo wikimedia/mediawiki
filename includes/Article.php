@@ -1582,7 +1582,7 @@ class Article extends Page {
 
 	/**
 	 * Get parser options suitable for rendering the primary article wikitext
-	 * @return ParserOptions|bool
+	 * @return ParserOptions
 	 */
 	public function getParserOptions() {
 		global $wgUser;

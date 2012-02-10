@@ -301,7 +301,7 @@ class WikiImporter {
 
 	/**
 	 * Notify the callback function of a revision
-	 * @param $revision |WikiRevision object
+	 * @param $revision WikiRevision object
 	 * @return bool|mixed
 	 */
 	private function revisionCallback( $revision ) {

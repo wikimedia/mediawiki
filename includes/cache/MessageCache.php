@@ -697,7 +697,7 @@ class MessageCache {
 	 * @param $title String: Message cache key with initial uppercase letter.
 	 * @param $code String: code denoting the language to try.
 	 *
-	 * @return string|bool
+	 * @return string|bool False on failure
 	 */
 	function getMsgFromNamespace( $title, $code ) {
 		global $wgAdaptiveMessageCache;

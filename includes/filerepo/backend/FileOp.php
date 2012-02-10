@@ -324,7 +324,7 @@ abstract class FileOp {
 	 * 
 	 * @param $source string Storage path
 	 * @param $predicates Array
-	 * @return string|bool
+	 * @return string|bool False on failure
 	 */
 	final protected function fileSha1( $source, array $predicates ) {
 		if ( isset( $predicates['sha1'][$source] ) ) {
