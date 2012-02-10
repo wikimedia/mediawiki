@@ -39,7 +39,6 @@ class OracleUpdater extends DatabaseUpdater {
 			array( 'doRecentchangesFK2Cascade' ),
 
 			//1.19
-			array( 'addTable', 'config', 'patch-config.sql' ),
 			array( 'addIndex', 'logging',       'i05',      'patch-logging_type_action_index.sql'),
 			array( 'addTable', 'globaltemplatelinks', 'patch-globaltemplatelinks.sql' ),
 			array( 'addTable', 'globalnamespaces', 'patch-globalnamespaces.sql' ),
@@ -52,6 +51,9 @@ class OracleUpdater extends DatabaseUpdater {
 			array( 'addField', 'uploadstash', 'us_chunk_inx', 'patch-us_chunk_inx_field.sql' ),
 			array( 'addField', 'job', 'job_timestamp', 'patch-job_timestamp_field.sql' ),
 			array( 'addIndex', 'job', 'i02', 'patch-job_timestamp_index.sql' ),
+
+			//1.20
+			array( 'addTable', 'config', 'patch-config.sql' ),
 
 			// KEEP THIS AT THE BOTTOM!!
 			array( 'doRebuildDuplicateFunction' ),
