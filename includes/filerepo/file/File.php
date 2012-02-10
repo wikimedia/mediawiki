@@ -73,14 +73,14 @@ abstract class File {
 	var $repo;
 
 	/**
-	 * @var Title|bool
+	 * @var Title
 	 */
 	var $title;
 
 	var $lastError, $redirected, $redirectedTitle;
 
 	/**
-	 * @var FSFile|bool
+	 * @var FSFile|bool False if undefined
 	 */
 	protected $fsFile;
 
@@ -252,7 +252,7 @@ abstract class File {
 	/**
 	 * Return the associated title object
 	 *
-	 * @return Title|bool
+	 * @return Title
 	 */
 	public function getTitle() {
 		return $this->title;
@@ -319,17 +319,17 @@ abstract class File {
 	}
 
 	/**
-	* Return the storage path to the file. Note that this does
-	* not mean that a file actually exists under that location.
-	*
-	* This path depends on whether directory hashing is active or not,
-	* i.e. whether the files are all found in the same directory,
-	* or in hashed paths like /images/3/3c.
-	*
-	* Most callers don't check the return value, but ForeignAPIFile::getPath
-	* returns false.
+	 * Return the storage path to the file. Note that this does
+	 * not mean that a file actually exists under that location.
 	 *
-	 * @return string|bool
+	 * This path depends on whether directory hashing is active or not,
+	 * i.e. whether the files are all found in the same directory,
+	 * or in hashed paths like /images/3/3c.
+	 *
+	 * Most callers don't check the return value, but ForeignAPIFile::getPath
+	 * returns false.
+	 *
+	 * @return string|bool ForeignAPIFile::getPath can return false
 	*/
 	public function getPath() {
 		if ( !isset( $this->path ) ) {
@@ -344,7 +344,7 @@ abstract class File {
 	 * Returns false on failure. Callers must not alter the file.
 	 * Temporary files are cleared automatically.
 	 *
-	 * @return string|bool
+	 * @return string|bool False on failure
 	 */
 	public function getLocalRefPath() {
 		$this->assertRepoDefined();
@@ -383,7 +383,7 @@ abstract class File {
 	 *
 	 * @param $page int
 	 *
-	 * @return bool|number
+	 * @return bool|number False on failure
 	 */
 	public function getHeight( $page = 1 ) {
 		return false;
@@ -779,7 +779,7 @@ abstract class File {
 	 * @param $params Array: an associative array of handler-specific parameters.
 	 *                Typical keys are width, height and page.
 	 * @param $flags Integer: a bitfield, may contain self::RENDER_NOW to force rendering
-	 * @return MediaTransformOutput|bool
+	 * @return MediaTransformOutput|bool False on failure
 	 */
 	function transform( $params, $flags = 0 ) {
 		global $wgUseSquid, $wgIgnoreImageErrors, $wgThumbnailEpoch;

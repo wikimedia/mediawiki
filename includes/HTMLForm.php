@@ -664,7 +664,7 @@ class HTMLForm extends ContextSource {
 
 	/**
 	 * Get the text for the submit button, either customised or a default.
-	 * @return
+	 * @return string
 	 */
 	function getSubmitText() {
 		return $this->mSubmitText

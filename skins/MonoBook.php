@@ -158,6 +158,9 @@ echo $footerEnd;
 
 	/*************************************************************************************************/
 
+	/**
+	 * @param $sidebar array
+	 */
 	protected function renderPortals( $sidebar ) {
 		if ( !isset( $sidebar['SEARCH'] ) ) $sidebar['SEARCH'] = true;
 		if ( !isset( $sidebar['TOOLBOX'] ) ) $sidebar['TOOLBOX'] = true;
@@ -265,6 +268,10 @@ echo $footerEnd;
 	}
 
 	/*************************************************************************************************/
+	/**
+	 * @param $bar string
+	 * @param $cont array|string
+	 */
 	function customBox( $bar, $cont ) {
 		$portletAttribs = array( 'class' => 'generated-sidebar portlet', 'id' => Sanitizer::escapeId( "p-$bar" ) );
 		$tooltip = Linker::titleAttrib( "p-$bar" );

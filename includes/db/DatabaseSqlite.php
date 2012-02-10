@@ -140,7 +140,7 @@ class DatabaseSqlite extends DatabaseBase {
 
 	/**
 	 * Check if the searchindext table is FTS enabled.
-	 * @return bool if not enabled.
+	 * @return bool False if not enabled.
 	 */
 	function checkForEnabledSearch() {
 		if ( self::$fulltextEnabled === null ) {
@@ -618,7 +618,9 @@ class DatabaseSqlite extends DatabaseBase {
 	 * Get information about a given field
 	 * Returns false if the field does not exist.
 	 *
-	 * @return SQLiteField|bool
+	 * @param $table string
+	 * @param $field string
+	 * @return SQLiteField|bool False on failure
 	 */
 	function fieldInfo( $table, $field ) {
 		$tableName = $this->tableName( $table );

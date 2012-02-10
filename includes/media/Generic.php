@@ -496,7 +496,7 @@ abstract class MediaHandler {
 	 *
 	 * @param $dstPath string The location of the suspect file
 	 * @param $retval int Return value of some shell process, file will be deleted if this is non-zero
-	 * @return bool if removed, false otherwise
+	 * @return bool True if removed, false otherwise
 	 */
 	function removeBadFile( $dstPath, $retval = 0 ) {
 		if( file_exists( $dstPath ) ) {
@@ -664,7 +664,7 @@ abstract class ImageHandler extends MediaHandler {
 	 * @param $srcWidth Integer: width of the source image
 	 * @param $srcHeight Integer: height of the source image
 	 * @param $mimeType
-	 * @return bool to indicate that an error should be returned to the user.
+	 * @return bool False to indicate that an error should be returned to the user.
 	 */
 	function validateThumbParams( &$width, &$height, $srcWidth, $srcHeight, $mimeType ) {
 		$width = intval( $width );
