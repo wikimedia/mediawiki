@@ -2635,28 +2635,15 @@ class User {
 		// The query to find out if it is watched is cached both in memcached and per-invocation,
 		// and when it does have to be executed, it can be on a slave
 		// If this is the user's newtalk page, we always update the timestamp
-		if( $title->getNamespace() == NS_USER_TALK &&
+		$force = '';
+		if ( $title->getNamespace() == NS_USER_TALK &&
 			$title->getText() == $this->getName() )
 		{
-			$watched = true;
-		} else {
-			$watched = $this->isWatched( $title );
+			$force = 'force';
 		}
 
-		// If the page is watched by the user (or may be watched), update the timestamp on any
-		// any matching rows
-		if ( $watched ) {
-			$dbw = wfGetDB( DB_MASTER );
-			$dbw->update( 'watchlist',
-					array( /* SET */
-						'wl_notificationtimestamp' => null
-					), array( /* WHERE */
-						'wl_title' => $title->getDBkey(),
-						'wl_namespace' => $title->getNamespace(),
-						'wl_user' => $this->getID()
-					), __METHOD__
-			);
-		}
+		$wi = WatchedItem::fromUserTitle( $this, $title );
+		$wi->resetNotificationTimestamp( $force );
 	}
 
 	/**
