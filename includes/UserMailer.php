@@ -575,12 +575,13 @@ class EmailNotification {
 		$keys = array();
 
 		if ( $this->oldid ) {
-			if ( $wgEnotifImpersonal ) {
-				// For impersonal mail, show a diff link to the last revision.
-				$keys['$NEWPAGE'] = wfMsgForContent( 'enotif_lastdiff',
-					$this->title->getCanonicalUrl( 'diff=next&oldid=' . $this->oldid ) );
-			} else {
-				$keys['$NEWPAGE'] = wfMsgForContent( 'enotif_lastvisited',
+			// Always show a link to the diff which triggered the mail. See bug 32210.
+			$keys['$NEWPAGE'] = wfMsgForContent( 'enotif_lastdiff',
+				$this->title->getCanonicalUrl( 'diff=next&oldid=' . $this->oldid ) );
+			if ( !$wgEnotifImpersonal ) {
+				// For personal mail, also show a link to the diff of all changes
+				// since last visited.
+				$keys['$NEWPAGE'] .= " \n" . wfMsgForContent( 'enotif_lastvisited',
 					$this->title->getCanonicalUrl( 'diff=0&oldid=' . $this->oldid ) );
 			}
 			$keys['$OLDID']   = $this->oldid;
