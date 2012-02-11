@@ -3040,7 +3040,7 @@ HTML
 	 * @param $match array|string|bool Text (or array of texts) which triggered one or more filters
 	 */
 	public function spamPageWithContent( $match = false ) {
-		global $wgOut;
+		global $wgOut, $wgLang;
 		$this->textbox2 = $this->textbox1;
 
 		if( is_array( $match ) ){
