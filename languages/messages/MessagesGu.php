@@ -1649,18 +1649,19 @@ $1',
 'upload-warning-subj'         => 'ફાઇલ ચઢાવ ચેતવણી',
 'upload-warning-msg'          => '[$2]થી કરાયેલ તમારા ચડાવા માં તકલીફ હતી. તમે [[Special:Upload/stash/$1|upload form]]  પર ફરી જઇ આ ત્રુટિ હટાવી ફરી ફાઇલ ચડાવો',
 
-'upload-proto-error'        => 'ખોટો શિષ્ટાચાર',
-'upload-proto-error-text'   => 'દુરના ફાઇલ ચઢાવના  URL ની શરૂઆત <code>http://</code> કે <code>ftp://</code>થી થવી જોઇએ.',
-'upload-file-error'         => 'આંતરિક ત્રુટિ',
-'upload-file-error-text'    => 'સર્વર પર હંગામી ફાઇલ રચતા કોઇ આંતરીક ત્રુટિ નિર્માણ થઇ.
+'upload-proto-error'                => 'ખોટો શિષ્ટાચાર',
+'upload-proto-error-text'           => 'દુરના ફાઇલ ચઢાવના  URL ની શરૂઆત <code>http://</code> કે <code>ftp://</code>થી થવી જોઇએ.',
+'upload-file-error'                 => 'આંતરિક ત્રુટિ',
+'upload-file-error-text'            => 'સર્વર પર હંગામી ફાઇલ રચતા કોઇ આંતરીક ત્રુટિ નિર્માણ થઇ.
 કૃપયા [[Special:ListUsers/sysop|administrator]]નો સંપર્ક કરો.',
-'upload-misc-error'         => 'અજ્ઞાત ફાઇલ ચડાવ ચૂક',
-'upload-misc-error-text'    => 'ફાઈલ ચડાવતી વખતે કાંઇક ત્રુટિ રહી ગઇ.
+'upload-misc-error'                 => 'અજ્ઞાત ફાઇલ ચડાવ ચૂક',
+'upload-misc-error-text'            => 'ફાઈલ ચડાવતી વખતે કાંઇક ત્રુટિ રહી ગઇ.
 ખાત્રી કરો કે URL વૈધ છે અને સક્રીય છે અને ફરી પ્રયત્ન કરો.
 તેમ છતાં પણ  પ્રોબ્લેમ રહે તો અહીં સંપર્ક કરશો [[Special:ListUsers/sysop|administrator]].',
-'upload-too-many-redirects' => 'URLમાં ઘણાં ઉપ નિર્દેશનો છે.',
-'upload-unknown-size'       => 'અજ્ઞાત કદ',
-'upload-http-error'         => ' HTTP ત્રુટિ : $1',
+'upload-too-many-redirects'         => 'URLમાં ઘણાં ઉપ નિર્દેશનો છે.',
+'upload-unknown-size'               => 'અજ્ઞાત કદ',
+'upload-http-error'                 => ' HTTP ત્રુટિ : $1',
+'upload-copy-upload-invalid-domain' => 'આ વેબસાઇટ પર થી ફાયલ નહી ચડાવાય',
 
 # File backend
 'backend-fail-stream'        => 'ફાઈલ $1 ને લાવી ન શકાઈ.',
@@ -1682,6 +1683,7 @@ $1',
 'backend-fail-readonly'      => 'સંગ્રહ પાર્શ્વભૂમિ  "$1" એ હાલમાં માત્ર વાંચન સક્ષમ છે. તેનું કારણ આપવામાં આવ્યું હતું: "$2"',
 'backend-fail-connect'       => 'સંગ્રહ પૃષ્ઠભૂમિ "$1" સાથે સંપર્ક સ્થાપી ના શકાયો.',
 'backend-fail-internal'      => 'સંગ્રહ પૃષ્ઠભૂમિ "$1"માં અજ્ઞાત ક્ષતિ ઉદ્ભવી.',
+'backend-fail-contenttype'   => '"$1"  પર  ફાઇલ સનગ્રવાહ માટે  સમાવિષ્ટ પ્રકાર નક્કી કરી નથી શકાય',
 
 # Lock manager
 'lockmanager-notlocked'        => '"$1" નું તાળું ખોલી ન શકાયું; તેના પર તાળું મરાયું જ નથી.',
@@ -2681,6 +2683,7 @@ To perform a selective restoration, check the boxes corresponding to the revisio
 'exportcuronly'     => 'માત્ર હાલના ફેરફારો જુઓ , પૂર્ણ ઇતિહાસ નહી.',
 'exportnohistory'   => "----
 '''નોંધ:''' કાર્યક્ષમતાને લાગતા કારણોને લીધે આ રૂપમાં ઇતિહાસ પાનાની નિકાસ ને નિષ્ક્રીય કરાઇ છે.",
+'exportlistauthors' => 'દરેક પાના માટે ફાળો આપનાર સભ્યો ની યાદી પુર્ણ કરો',
 'export-submit'     => 'નિકાસ',
 'export-addcattext' => 'આ શ્રેણીમાંથી પાના ઉમેરો',
 'export-addcat'     => 'ઉમેરો',
@@ -3151,7 +3154,9 @@ To perform a selective restoration, check the boxes corresponding to the revisio
 'exif-webstatement'                => 'ઑનલાઈન પ્રકાશન અધિકાર વક્તવ્ય',
 'exif-originaldocumentid'          => 'મૂલ પ્રતનું એક ID',
 'exif-licenseurl'                  => 'પ્રકાશન પરવાનગી ધરવતા પાનાનું URL',
+'exif-morepermissionsurl'          => 'વૈકલ્પિક લાઇસન્સ માહિતી',
 'exif-attributionurl'              => 'આ કાર્ય ફરીથી વાપરતાં અહીં કડી આપો',
+'exif-preferredattributionname'    => 'આ કાર્ય ફરીથી વાપરતાં અહીં કડી આપો',
 'exif-pngfilecomment'              => 'JPEG ફાઈલ પરની ટીપ્પણી',
 'exif-disclaimer'                  => 'જાહેર ઇનકાર કરનાર',
 'exif-contentwarning'              => 'માહિતી સંબંધી ચેતવણી',
@@ -3162,6 +3167,8 @@ To perform a selective restoration, check the boxes corresponding to the revisio
 'exif-event'                       => 'ઘટના',
 'exif-organisationinimage'         => 'સંસ્થાનું વર્ણન',
 'exif-personinimage'               => 'વ્યક્તિની ઓળખ',
+'exif-originalimageheight'         => 'છબી પર ફેરફાર કર્યા પહેલા ની ઊંચાઈ',
+'exif-originalimagewidth'          => 'છબી પર ફેરફાર કર્યા પહેલા ની પહોળાઈ',
 
 # EXIF attributes
 'exif-compression-1' => 'અસંકોચિત',
@@ -3724,6 +3731,7 @@ $5
 'api-error-filename-tooshort'     => 'ફાઇલ નામ ખૂબ ટૂંકું છે',
 'api-error-filetype-banned'       => 'આ પ્રકારની ફાઈલ પ્રતિબંધિત છે.',
 'api-error-filetype-missing'      => 'ફાઈલને ઍક્સટેન્શન નથી',
+'api-error-hookaborted'           => 'તમે કરેલ ફેરફારો વિસ્તારીત ખૂંટા દ્વારા રોકી દેવાયા.',
 'api-error-http'                  => 'આંતરીક ક્ષતિ: સર્વસનો સંપર્ક કરવામાં નિષ્ફળતા',
 'api-error-illegal-filename'      => 'ફાઈલા નામને પરવાનગી નથી',
 'api-error-internal-error'        => 'આંતરીક ત્રુટિ : વિકિ પર ફાઈલ ચડાવતા કાંઈક ગડબડ થઈ',

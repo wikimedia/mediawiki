@@ -1575,6 +1575,7 @@ Os yw'r broblem yn parhau, cysylltwch â [[Special:ListUsers/sysop|gweinyddwr]].
 'upload-http-error'         => 'Digwyddodd gwall HTTP: $1',
 
 # File backend
+'backend-fail-backup'        => "Wedi methu gwneud copi wrth gefn o'r ffeil $1.",
 'backend-fail-notexists'     => "Nid yw'r ffeil $1 ar gael.",
 'backend-fail-delete'        => "Wedi methu dileu'r ffeil $1.",
 'backend-fail-alreadyexists' => "Mae'r ffeil $1 ar gael yn barod.",
@@ -2590,6 +2591,8 @@ Os ydych am gyfrannu at y gwaith o gyfieithu ar gyfer holl prosiectau MediaWiki 
 'thumbnail_error'          => "Cafwyd gwall wrth greu'r mân-lun: $1",
 'djvu_page_error'          => 'Y dudalen DjVu allan o amrediad',
 'djvu_no_xml'              => 'Ddim yn gallu mofyn XML ar gyfer ffeil DjVu',
+'thumbnail-temp-create'    => 'Wedi methu gwneud ffeil mân-lun dros dro',
+'thumbnail-dest-create'    => "Wedi methu rhoi'r mân-lun ar gadw yn y man y gofynwyd iddo fod",
 'thumbnail_invalid_params' => 'Paramedrau maint mân-lun annilys',
 'thumbnail_dest_directory' => "Methwyd â chreu'r cyfeiriadur cyrchfan",
 'thumbnail_image-type'     => "Nid yw'r math hwn o ddelwedd yn cael ei gynnal",
@@ -2648,6 +2651,7 @@ Mae ffolder dros dro yn eisiau.',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|diwygiad|diwygiad|ddiwygiad|diwygiad|diwygiad|diwygiad}} o $2',
 
 # JavaScriptTest
+'javascripttest'                => 'Profi JavaScript',
 'javascripttest-pagetext-skins' => 'Dewiswch wedd i gynnal profion arni:',
 
 # Tooltip help for the actions

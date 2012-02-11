@@ -739,7 +739,8 @@ Temporärt Passwuert: $2',
 'showdiff'                         => 'Ännerunge weisen',
 'anoneditwarning'                  => 'Dir sidd net ageloggt. Dowéinst gëtt amplaz vun engem Benotzernumm Är IP Adress am Historique vun dëser Säit gespäichert.',
 'anonpreviewwarning'               => "''Dir sidd net ageloggt. Wann Dir ofspäichert gëtt Är IP-Adress an der Lëscht vun de Versioune vun dëser Säit enregistréiert.''",
-'missingsummary'                   => "'''Erënnerung:''' Dir hutt kee Resumé aginn. Wann Dir nachemol op \"Säit ofspäicheren\" klickt, gëtt är Ännerung ouni Resumé ofgespäichert.",
+'missingsummary'                   => "'''Erënnerung:''' Dir hutt kee Resumé aginn.
+Wann Dir nacheemol op \"{{int:savearticle}}\" klickt, gëtt Är Ännerung ouni Resumé ofgespäichert.",
 'missingcommenttext'               => 'Gitt w.e.g. eng Bemierkung an.',
 'missingcommentheader'             => "'''Denkt drun:''' Dir hutt keen Titel/Sujet fir dës Bemierkung aginn.
 Wann Dir nach en Kéier op \"{{int:savearticle}}\" klickt da gëtt Är Ännerung ouni Titel gespäichert.",
@@ -1608,18 +1609,19 @@ $1',
 'upload-warning-subj'         => 'Warnung beim Eroplueden',
 'upload-warning-msg'          => 'Et gouf e Problem beim Eropluede vun [$2]. Dir kënnt op de [[Special:Upload/stash/$1|Formulaire fir eropzelueden]] goe fir de Problem ze léisen.',
 
-'upload-proto-error'        => 'Falsche Protokoll',
-'upload-proto-error-text'   => "D'URL muss mat <code>http://</code> oder <code>ftp://</code> ufänken.",
-'upload-file-error'         => 'Interne Feeler',
-'upload-file-error-text'    => 'Beim Erstelle vun engem temporäre Fichier um Server ass een interne Feeler geschitt.
+'upload-proto-error'                => 'Falsche Protokoll',
+'upload-proto-error-text'           => "D'URL muss mat <code>http://</code> oder <code>ftp://</code> ufänken.",
+'upload-file-error'                 => 'Interne Feeler',
+'upload-file-error-text'            => 'Beim Erstelle vun engem temporäre Fichier um Server ass een interne Feeler geschitt.
 Informéiert w.e.g. e vun den [[Special:ListUsers/sysop|Administrateuren]].',
-'upload-misc-error'         => 'Onbekannte Feeler beim Eroplueden',
-'upload-misc-error-text'    => "Beim Eroplueden ass en onbekannte Feeler geschitt.
+'upload-misc-error'                 => 'Onbekannte Feeler beim Eroplueden',
+'upload-misc-error-text'            => "Beim Eroplueden ass en onbekannte Feeler geschitt.
 Kuckt d'URL w.e.g. no, a vergewëssert iech datt d'Säit online ass a probéiert et dann nach eng Kéier.
 Wann de Problem weider besteet, dann un de [[Special:ListUsers/sysop|Administrateuren]].",
-'upload-too-many-redirects' => "Et waren zevill Viruleedungen fir d'URL do",
-'upload-unknown-size'       => 'Onbekannte Gréisst',
-'upload-http-error'         => 'Et ass en HTTP-Feeler geschitt: $1',
+'upload-too-many-redirects'         => "Et waren zevill Viruleedungen fir d'URL do",
+'upload-unknown-size'               => 'Onbekannte Gréisst',
+'upload-http-error'                 => 'Et ass en HTTP-Feeler geschitt: $1',
+'upload-copy-upload-invalid-domain' => "Vun dësem Domain ass d'Eropluede vu Kopien net méiglech.",
 
 # File backend
 'backend-fail-stream'        => 'De Fichier $1 konnt net iwwerdroe ginn.',

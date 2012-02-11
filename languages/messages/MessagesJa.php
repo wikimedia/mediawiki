@@ -32,6 +32,7 @@
  * @author Likibp
  * @author Lovekhmer
  * @author Marine-Blue
+ * @author MarkAHershberger
  * @author Miya
  * @author Mizusumashi
  * @author Muttley
@@ -3768,9 +3769,9 @@ $5
 'confirm-unwatch-top'    => 'このページをウォッチリストから除去しますか?',
 
 # Separators for various lists, etc.
-'semicolon-separator' => '；&#8203;',
+'semicolon-separator' => '；​',
 'comma-separator'     => '、',
-'colon-separator'     => '：&#8203;',
+'colon-separator'     => '：​',
 'pipe-separator'      => '&#8203;｜&#8203;',
 'word-separator'      => '',
 

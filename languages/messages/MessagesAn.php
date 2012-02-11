@@ -526,9 +526,9 @@ Puede continar navegando por {{SITENAME}} anonimament, u puede [[Special:UserLog
 S'ha creyato a suya cuenta.
 No xublide de presonalizar [[Special:Preferences|as suyas preferencias en {{SITENAME}}]].",
 'yourname'                   => "Nombre d'usuario:",
-'yourpassword'               => 'Contrasenya:',
-'yourpasswordagain'          => 'Torne a escribir a contrasenya:',
-'remembermypassword'         => "Remerar o mío nombre d'usuario y contrasenya entre sesions en iste ordinador (como muito por $1 {{PLURAL:$1|día|días}})",
+'yourpassword'               => "Clau d'acceso:",
+'yourpasswordagain'          => 'Torne a escribir a clau:',
+'remembermypassword'         => "Remerar o mío nombre d'usuario y a clau entre sesions en iste navegador (como muito por $1 {{PLURAL:$1|día|días}})",
 'securelogin-stick-https'    => "Continar connectau con HTTPS dimpués d'encetar sesión",
 'yourdomainname'             => 'Dominio:',
 'externaldberror'            => "Bi habió una error d'autenticación externa d'a base de datos u bien no tiene premisos ta esviellar a suya cuenta externa.",
@@ -548,12 +548,12 @@ No xublide de presonalizar [[Special:Preferences|as suyas preferencias en {{SITE
 'userlogin-resetlink'        => "Ha xublidau os suyos datos d'acceso?",
 'createaccountmail'          => 'por correu electronico',
 'createaccountreason'        => 'Razón:',
-'badretype'                  => 'As contrasenyas que ha escrito no son iguals.',
+'badretype'                  => 'As claus que ha escrito no son iguals.',
 'userexists'                 => "O nombre d'usuario que ha escrito ya ye en uso.
 Por favor, trigue-ne uno de diferent.",
 'loginerror'                 => 'Error en encetar a sesión',
 'createaccounterror'         => "No s'ha puesto creyar a cuenta: $1",
-'nocookiesnew'               => "A cuenta d'usuario s'ha creyata, pero encara no ye indentificato. {{SITENAME}} fa servir <em>cookies</em> ta identificar a os usuario rechistratos, pero pareix que las tiene desactivatas. Por favor, active-las e identifique-se con o suyo nombre d'usuario y contrasenya.",
+'nocookiesnew'               => "A cuenta d'usuario s'ha creyata, pero encara no ye indentificato. {{SITENAME}} fa servir <em>cookies</em> ta identificar a os usuario rechistratos, pero pareix que las tiene desactivatas. Por favor, active-las e identifique-se con o suyo nombre d'usuario y a clau d'acceso.",
 'nocookieslogin'             => "{{SITENAME}} fa servir <em>cookies</em> ta la identificación d'usuarios. Tiene as <em>cookies</em> desactivatas en o suyo navegador. Por favor, active-las y prebe d'identificar-se de nuevas.",
 'nocookiesfornew'            => "No se puet creyar a cuenta d'usuario, porque no hemos puesto confimar o suyo orichen.  Asegure-se que tien as galletas (cookies) activatas, dimpués cargue de nuevas ista pachina y torne a intentar-lo.",
 'noname'                     => "No ha escrito un nombre d'usuario correcto.",
@@ -565,25 +565,25 @@ Comprebe si ha escrito bien o nombre u [[Special:UserLogin/signup|creye una nuev
 'nosuchusershort'            => 'No bi ha garra usuario con o nombre "$1". Comprebe si o nombre ye bien escrito.',
 'nouserspecified'            => "Ha d'escribir un nombre d'usuario.",
 'login-userblocked'          => "Iste usuario ye bloqueyau. No se permite l'inicio de sesión.",
-'wrongpassword'              => 'A contrasenya indicata no ye correcta. Prebe unatra vegada.',
-'wrongpasswordempty'         => 'No ha escrito garra contrasenya. Prebe unatra vegada.',
-'passwordtooshort'           => 'As contrasenyas han de tener a lo menos {{PLURAL:$1|1 carácter|$1 carácters}}.',
-'password-name-match'        => "A contrasenya ha d'estar diferent d'o suyo nombre d'usuario.",
-'password-login-forbidden'   => "No se permite d'emplegar iste nombre d'usuario y contrasenya.",
-'mailmypassword'             => 'Ninviar una nueva contrasenya por correu electronico',
-'passwordremindertitle'      => 'Nueva contrasenya temporal de {{SITENAME}}',
-'passwordremindertext'       => 'Bell un (probablement vusté mesmo, dende l\'adreza IP $1) demandó una nueva contrasenya ta la suya cuenta en {{SITENAME}} ($4). S\'ha creyato una nueva contrasenya temporal ta l\'usuario "$2", que ye "$3".
-Si isto ye o que quereba, ha d\'encetar agora una sesión y trigar una nueva contrasenya.
-A suya contrasenya temporal circumducirá en {{PLURAL:$5|un día|$5 días}}
+'wrongpassword'              => 'A clau indicata no ye correcta. Prebe unatra vegada.',
+'wrongpasswordempty'         => 'No ha escrito garra clau. Prebe unatra vegada.',
+'passwordtooshort'           => 'As claus han de tener a lo menos {{PLURAL:$1|1 caracter|$1 caracters}}.',
+'password-name-match'        => "A clau ha d'estar diferent d'o suyo nombre d'usuario.",
+'password-login-forbidden'   => "No se permite d'emplegar iste nombre d'usuario y clau.",
+'mailmypassword'             => 'Ninviar una nueva clau por correu electronico',
+'passwordremindertitle'      => 'Nueva clau temporal de {{SITENAME}}',
+'passwordremindertext'       => 'Bell un (probablement vusté mesmo, dende l\'adreza IP $1) demandó una nueva clau d\'acceso ta la suya cuenta en {{SITENAME}} ($4). S\'ha creyato una nueva clau temporal ta l\'usuario "$2", que ye "$3".
+Si isto ye o que quereba, ha d\'encetar agora una sesión y trigar una nueva clau.
+A suya clau temporal circumducirá en {{PLURAL:$5|un día|$5 días}}
 
-Si estió bell atro qui fació ista demanda, u ya se\'n ha alcordau d\'a contrasenya y ya no deseya cambiar-la, puet ignorar iste mensache y continar fendo servir l\'antiga contrasenya.',
+Si estió bell atro qui fació ista demanda, u ya se\'n ha alcordau d\'a clau y ya no deseya cambiar-la, puet ignorar iste mensache y continar fendo servir l\'antiga clau.',
 'noemail'                    => 'No bi ha garra adreza de correu electronico rechistrada ta "$1".',
 'noemailcreate'              => "Has d'indicar una adreza de correu electronico valida",
-'passwordsent'               => 'Una nueva contrasenya plega de ninviar-se ta o correu electronico de "$1".
+'passwordsent'               => 'Una nueva clau plega de ninviar-se ta o correu electronico de "$1".
 Por favor, identifique-se un atra vez malas que la reculla.',
-'blocked-mailpassword'       => "A suya adreza IP ye bloqueyata y, ta privar abusos, no se li premite emplegar d'a función de recuperación de contrasenyas.",
+'blocked-mailpassword'       => "A suya adreza IP ye bloqueyata y, ta privar abusos, no se li premite emplegar d'a función de recuperación de claus.",
 'eauthentsent'               => "S'ha ninviato un correu electronico de confirmación ta l'adreza especificata. Antes que no se ninvíe garra atro correu ta ixa cuenta, ha de confirmar que ixa adreza te pertenexe. Ta ixo, cal que siga as instruccions que trobará en o mensache.",
-'throttled-mailpassword'     => "Ya s'ha ninviato un correu recordatorio con a suya contrasenya fa menos de {{PLURAL:$1|1 hora|$1 horas}}. Ta escusar abusos, nomás se ninvia un recordatorio cada {{PLURAL:$1|hora|$1 horas}}.",
+'throttled-mailpassword'     => "Ya s'ha ninviato un correu recordatorio con a suya clau fa menos de {{PLURAL:$1|1 hora|$1 horas}}. Ta escusar abusos, nomás se ninvia un recordatorio cada {{PLURAL:$1|hora|$1 horas}}.",
 'mailerror'                  => 'Error en ninviar o correu: $1',
 'acct_creation_throttle_hit' => "Os vesitants d'iste wiki dende a suya adreza IP han creyato ya {{PLURAL:$1|1 cuenta|$1 cuentas}} en o zaguer día, o que ye o masimo premitito en iste periodo de tiempo.
 Por ixo, no se pueden creyar más cuentas por agora dende ixa adreza IP.",
@@ -596,7 +596,7 @@ Por ixo, no se pueden creyar más cuentas por agora dende ixa adreza IP.",
 'accountcreated'             => 'Cuenta creyata',
 'accountcreatedtext'         => "S'ha creyato a cuenta d'usuario de $1.",
 'createaccount-title'        => 'Creyar una cuenta en {{SITENAME}}',
-'createaccount-text'         => 'Belún ha creyato una cuenta con o nombre "$2" en {{SITENAME}} ($4), con a contrasenya "$3" y indicando a suya adreza de correu. Habría de dentrar-ie agora y cambiar a suya contrasenya.
+'createaccount-text'         => 'Belún ha creyato una cuenta con o nombre "$2" en {{SITENAME}} ($4), con a clau "$3" y indicando a suya adreza de correu. Habría de dentrar-ie agora y cambiar a suya clau.
 
 Si a cuenta s\'ha creyato por error, simplament ignore iste mensache.',
 'usernamehasherror'          => "O nombre d'usuario no puet contener simbolos hash",
@@ -610,47 +610,47 @@ Si a cuenta s\'ha creyato por error, simplament ignore iste mensache.',
 'user-mail-no-addy'      => 'Ha mirau de ninviar un mensache de correu sin una adreza de correu electronico.',
 
 # Change password dialog
-'resetpass'                 => 'Cambiar a contrasenya',
-'resetpass_announce'        => 'Ha encetato una sesión con una contrasenya temporal que se le ninvió por correu. Por favor, escriba aquí una nueva contrasenya:',
+'resetpass'                 => 'Cambiar a clau',
+'resetpass_announce'        => 'Ha encetato una sesión con una clau temporal que se le ninvió por correu. Por favor, escriba aquí una nueva clau:',
 'resetpass_text'            => '<!-- Adiba aquí o testo -->',
-'resetpass_header'          => "Cambiar a contrasenya d'a cuenta",
-'oldpassword'               => 'Contrasenya antiga:',
-'newpassword'               => 'Nueva contrasenya:',
-'retypenew'                 => 'Torne a escribir a nueva contrasenya:',
-'resetpass_submit'          => 'Cambiar a contrasenya e identificar-se',
-'resetpass_success'         => 'A suya contrasenya ya ye cambiata. Agora ya puede dentrar-ie...',
-'resetpass_forbidden'       => 'No se pueden cambiar as contrasenyas.',
+'resetpass_header'          => "Cambiar a clau d'a cuenta",
+'oldpassword'               => 'Clau antiga:',
+'newpassword'               => 'Nueva clau:',
+'retypenew'                 => 'Torne a escribir a nueva clau:',
+'resetpass_submit'          => 'Cambiar a clau y identificar-se',
+'resetpass_success'         => 'A suya clau ya ye cambiata. Agora ya puede dentrar-ie...',
+'resetpass_forbidden'       => "No se puede cambiar as claus d'acceso",
 'resetpass-no-info'         => 'Debe identificar-se como usuario ta poder acceder dreitament ta ista pachina.',
-'resetpass-submit-loggedin' => 'Cambiar a contrasenya',
+'resetpass-submit-loggedin' => 'Cambiar a clau',
 'resetpass-submit-cancel'   => 'Cancelar',
-'resetpass-wrong-oldpass'   => 'A contrasenya actual u temporal no ye conforme.
-Talment ya ha cambiato a suya contrasenya u ha demandato una nueva contrasenya temporal.',
-'resetpass-temp-password'   => 'Contrasenya temporal:',
+'resetpass-wrong-oldpass'   => 'A clau actual u temporal no ye conforme.
+Talment ya ha cambiato a suya clau u ha demandato una nueva clau temporal.',
+'resetpass-temp-password'   => 'Clau temporal:',
 
 # Special:PasswordReset
-'passwordreset'                    => 'Restablir a parola de paso',
+'passwordreset'                    => "Restablir a clau d'acceso",
 'passwordreset-text'               => "Completar ista forma ta recibir un recordatorio por correu con os detalles d'a suya cuenta.",
-'passwordreset-legend'             => 'Restablir a parola de paso',
-'passwordreset-disabled'           => "S'ha desactivau o restablimiento de parolas de paso en ista wiki.",
+'passwordreset-legend'             => "Restablir a clau d'acceso",
+'passwordreset-disabled'           => "S'ha desactivau o restablimiento de claus en ista wiki.",
 'passwordreset-pretext'            => "{{PLURAL:$1||Introduzca uno d'os siguients datos}}",
 'passwordreset-username'           => "Nombre d'usuario:",
 'passwordreset-domain'             => 'Dominio:',
 'passwordreset-capture'            => 'Veyer o mensache resultant?',
-'passwordreset-capture-help'       => "Si marca ista caixeta, se li amostrará o correu electronico (con a contrasenya temporal) amás de ninviar-lo ta l'usuario.",
+'passwordreset-capture-help'       => "Si marca ista caixeta, se li amostrará o correu electronico (con a clau temporal) amás de ninviar-lo ta l'usuario.",
 'passwordreset-email'              => 'Adreza de correu electronico:',
 'passwordreset-emailtitle'         => "Detalles d'a cuenta en {{SITENAME}}",
 'passwordreset-emailtext-ip'       => "Belún (probablement vusté, dende l'adreza IP $1) ha demandau un recordatorio d'a información d'a suya cuenta en  {{SITENAME}} ($4). {{PLURAL:$3|A cuenta d'usuario siguient ye asociata|As cuentas d'usuario siguients son asociatas}} a ista adreza de correu-e:
 
 $2
 
-{{PLURAL:$3|Ista parola de paso temporal circumducirá|Istas parolas de paso temporals circumducirán}} en {{PLURAL:$5|un día|$5 días}}. Habría de connectar-se agora y trigar una nueva parola de paso. Si ista demanda no dimana de vusté, u ya se'n ha acordau d'a suya parolas de paso inicial y ya no deseya modificar-la, puet ignorar iste mensache y continar emplegando a suya viella parola de paso.",
+{{PLURAL:$3|Ista clau temporal circumducirá|Istas claus temporals circumducirán}} en {{PLURAL:$5|un día|$5 días}}. Habría de connectar-se agora y trigar una nueva clau. Si ista demanda no dimana de vusté, u ya se'n ha acordau d'a suya clau inicial y ya no deseya modificar-la, puet ignorar iste mensache y continar emplegando a suya viella clau.",
 'passwordreset-emailtext-user'     => "L'usuario $1 en {{SITENAME}} ha demandau un recordatorio d'a información d'a suya cuenta en {{SITENAME}} ($4). {{PLURAL:$3|A cuenta d'usuario siguient ye asociata|As cuentas d'usuario siguients son asociatas}} a ista adreza de correu-e:
 
 $2
 
-{{PLURAL:$3|Ista parola de paso temporal circumducirá|Istas parolas de paso temporals circumducirán}} en {{PLURAL:$5|un día|$5 días}}. Habría de connectar-se agora y trigar una nueva parola de paso. Si ista demanda no dimana de vusté, u ya se'n ha acordau d'a suya parolas de paso inicial y ya no deseya modificar-la, puet ignorar iste mensache y continar emplegando a suya viella parola de paso.",
-'passwordreset-emailelement'       => 'Nombre de usuario: $1
-Parola de paso temporal: $2',
+{{PLURAL:$3|Ista clau d'acceso temporal circumducirá|Istas claus d'acceso temporals circumducirán}} en {{PLURAL:$5|un día|$5 días}}. Habría de connectar-se agora y trigar una nueva clau. Si ista demanda no dimana de vusté, u ya se'n ha acordau d'a suya clau inicial y ya no deseya modificar-la, puet ignorar iste mensache y continar emplegando a suya viella clau.",
+'passwordreset-emailelement'       => "Nombre de usuario: $1
+Clau d'acceso temporal: $2",
 'passwordreset-emailsent'          => "S'ha ninviau un recordatorio por correu-e.",
 'passwordreset-emailsent-capture'  => "Se le ha ninviau un recordatorio por correu electronico, que s'amuestra contino.",
 'passwordreset-emailerror-capture' => "S'ha chenerau un recordatorio por correu electronico, que s'amuestra contino, pero o ninvío ta l'usuario ha fallau: $1",
@@ -658,7 +658,7 @@ Parola de paso temporal: $2',
 # Special:ChangeEmail
 'changeemail'          => "Cambiar l'adreza de correu-e",
 'changeemail-header'   => "Cambiar l'adreza de correu-e d'a cuenta",
-'changeemail-text'     => "Replene iste formulario ta cambiar a suya adreza de correu electronico. Habrá d'introducir a contrasenya ta confirmar iste cambeo.",
+'changeemail-text'     => "Replene iste formulario ta cambiar a suya adreza de correu electronico. Habrá d'introducir a clau ta confirmar iste cambeo.",
 'changeemail-no-info'  => 'Debe identificar-se como usuario ta poder acceder dreitament ta ista pachina.',
 'changeemail-oldemail' => 'Adreza de correu-e actual:',
 'changeemail-newemail' => 'No bi ha garra adreza de correu electronico',
@@ -739,10 +739,10 @@ Talment bell un l'haiga moviu u borrau entre que vusté vesitaba a pachina.",
 'loginreqtitle'                    => 'Cal que encete una sesión',
 'loginreqlink'                     => 'encetar una sesión',
 'loginreqpagetext'                 => 'Ha de $1 ta veyer atras pachinas.',
-'accmailtitle'                     => 'A contrasenya ha estato ninviata.',
-'accmailtext'                      => "S'ha ninviato a $2 una contrasenya ta [[User talk:$1|$1]] chenerata aliatoriament.
+'accmailtitle'                     => "S'ha ninviau a clau.",
+'accmailtext'                      => "S'ha ninviato a $2 una clau ta [[User talk:$1|$1]] chenerata aliatoriament.
 
-A contrasenya ta ista nueva cuenta la puet cambiar en a pachina ''[[Special:ChangePassword|cambiar contrasenya]]'' dimpués d'haber dentrato en ella.",
+A clau ta ista nueva cuenta la puet cambiar en a pachina ''[[Special:ChangePassword|Cambiar a clau]]'' dimpués d'haber dentrato en ella.",
 'newarticle'                       => '(Nuevo)',
 'newarticletext'                   => "Ha siguito un vinclo ta una pachina que encara no existe.
 Ta creyar a pachina, prencipie a escribir en a caixa d'abaixo (mire-se l'[[{{MediaWiki:Helppage}}|aduya]] ta más información).
@@ -1123,7 +1123,7 @@ Asegure-se que iste cambio no trencará a continidat de l'historial d'a pachina.
 'prefs-edits'                   => "Numero d'edicions:",
 'prefsnologin'                  => 'No ye identificato',
 'prefsnologintext'              => 'Ha d\'haber <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} encetato una sesión] </span> ta cambiar as preferencias d\'usuario.',
-'changepassword'                => 'Cambiar a contrasenya',
+'changepassword'                => 'Cambiar a clau',
 'prefs-skin'                    => 'Aparencia',
 'skin-preview'                  => 'Fer una prebatina',
 'datedefault'                   => 'Sin de preferencias',
@@ -1139,7 +1139,7 @@ Asegure-se que iste cambio no trencará a continidat de l'historial d'a pachina.
 'prefs-watchlist-edits-max'     => 'Numero masimo: 1000',
 'prefs-watchlist-token'         => 'Ficha de lista de seguimiento:',
 'prefs-misc'                    => 'Atras preferencias',
-'prefs-resetpass'               => 'Cambear a contrasenya',
+'prefs-resetpass'               => 'Cambiar a clau',
 'prefs-changeemail'             => "Cambiar l'adreza de correu-e",
 'prefs-setemail'                => 'Establir una adreza de correu-e',
 'prefs-email'                   => 'Opcions de correu electronico',
@@ -1216,7 +1216,7 @@ Habría de tener menos de $1 {{PLURAL:$1|carácter|carácters}}.',
 'prefs-help-gender'             => 'Opcional: Emplegada ta corrección de chenero por o software. Ista información será publica.',
 'email'                         => 'Adreza de correu-e',
 'prefs-help-realname'           => "* Nombre reyal (opcional): si esliche escribir-lo, se ferá servir ta l'atribución d'a suya faina.",
-'prefs-help-email'              => "L'adreza de correu-e ye opcional, pero ye precisa ta que le ninviemos una nueva contrasenya si nunca la xublidase.",
+'prefs-help-email'              => "L'adreza de correu-e ye opcional, pero ye precisa ta que le ninviemos una nueva clau d'acceso si nunca la xublidase.",
 'prefs-help-email-others'       => "Tamién puet esleir deixar que atros usuarios contacten con vusté por correu-e a traviés d'a pachina personal de discusión, sin necesidat de desveilar a suya identidat.",
 'prefs-help-email-required'     => 'Cal una adreza de correu-e.',
 'prefs-info'                    => 'Información basica',
@@ -1343,7 +1343,7 @@ Habría de tener menos de $1 {{PLURAL:$1|carácter|carácters}}.',
 'right-siteadmin'             => 'Trancar y destrancar a base de datos',
 'right-override-export-depth' => 'Exporta pachinas que incluigan as enlazadas dica un fundaria de 5',
 'right-sendemail'             => 'Ninviar un correu electronico a atros usuarios',
-'right-passwordreset'         => 'Veyer os correus electronicos de restabimiento de contrasenyas',
+'right-passwordreset'         => 'Veyer os correus electronicos de restabimiento de claus',
 
 # User rights log
 'rightslog'                  => "Rechistro de cambios en os dreitos d'os usuarios",
@@ -1562,15 +1562,16 @@ $1',
 'upload-warning-subj'         => 'Alvertencia de carga',
 'upload-warning-msg'          => 'I habió un problea con a carga de [$2]. Puede tornar ta [[Special:Upload/stash/$1|upload form]] pa correchir iste problema.',
 
-'upload-proto-error'        => 'Protocolo incorrecto',
-'upload-proto-error-text'   => 'Si quiere cargar fichers dende atra pachina, a URL ha de prencipiar por <code>http://</code> u <code>ftp://</code>.',
-'upload-file-error'         => 'Error interna',
-'upload-file-error-text'    => "Ha escaicito una error interna entre que se prebaba de creyar un fichero temporal en o servidor. Por favor, contaute con un [[Special:ListUsers/sysop|almenistrador]] d'o sistema.",
-'upload-misc-error'         => 'Error esconoixita en a carga',
-'upload-misc-error-text'    => "Ha escaixito una error entre que se cargaba o fichero. Por favor, comprebe que a URL ye conforme y accesible y dimpués prebe de fer-lo una atra vegada. Si o problema contina, contaute con un [[Special:ListUsers/sysop|almenistrador]] d'o sistema.",
-'upload-too-many-redirects' => 'A URL contien masiadas endreceras',
-'upload-unknown-size'       => 'Grandaria desconoixid',
-'upload-http-error'         => 'Ha ocorriu una error HTTP: $1',
+'upload-proto-error'                => 'Protocolo incorrecto',
+'upload-proto-error-text'           => 'Si quiere cargar fichers dende atra pachina, a URL ha de prencipiar por <code>http://</code> u <code>ftp://</code>.',
+'upload-file-error'                 => 'Error interna',
+'upload-file-error-text'            => "Ha escaicito una error interna entre que se prebaba de creyar un fichero temporal en o servidor. Por favor, contaute con un [[Special:ListUsers/sysop|almenistrador]] d'o sistema.",
+'upload-misc-error'                 => 'Error esconoixita en a carga',
+'upload-misc-error-text'            => "Ha escaixito una error entre que se cargaba o fichero. Por favor, comprebe que a URL ye conforme y accesible y dimpués prebe de fer-lo una atra vegada. Si o problema contina, contaute con un [[Special:ListUsers/sysop|almenistrador]] d'o sistema.",
+'upload-too-many-redirects'         => 'A URL contien masiadas endreceras',
+'upload-unknown-size'               => 'Grandaria desconoixid',
+'upload-http-error'                 => 'Ha ocorriu una error HTTP: $1',
+'upload-copy-upload-invalid-domain' => 'A carga de copias no ye disponible en iste dominio.',
 
 # File backend
 'backend-fail-stream'        => "No s'ha puesto transmitir o fichero «$1».",
@@ -1628,9 +1629,9 @@ A suya seguranza no puede comprebar-se adequadament.',
 # img_auth script messages
 'img-auth-accessdenied'     => 'Acceso refusau',
 'img-auth-nopathinfo'       => "Falta PATH_INFO.
-O suyo servidor no ye configurau ta pasar ista información.
+ O suyo servidor no ye configurau ta pasar ista información.
 Puet que siga basau en CGI y no siga compatible con img_auth.
-[https://www.mediawiki.org/wiki/Manual:Image_Authorization Se veiga l'autorización d'a imachen.]",
+Se veiga l'autorización d'a imachen en https://www.mediawiki.org/wiki/Manual:Image_Authorization",
 'img-auth-notindir'         => 'A rota solicitada no ye en o directorio de cargas configurau',
 'img-auth-badtitle'         => 'No s\'ha puesto construyir un títol valito dende "$1".',
 'img-auth-nologinnWL'       => 'No ha encetau sesión y "$1" no ye en a lista blanca.',
@@ -3618,7 +3619,7 @@ As imachens s'amuestran en resolución completa, a resta de fichers fan encetar 
 'logentry-newusers-create'            => "$1 creyó una cuenta d'usuario",
 'logentry-newusers-create2'           => "$1 creyó una cuenta d'usuario $3",
 'logentry-newusers-autocreate'        => "S'ha creyau automaticament a cuenta $1",
-'newuserlog-byemail'                  => 'Contrasenya ninviata por correu electronico',
+'newuserlog-byemail'                  => 'Clau ninviata por correu electronico',
 
 # Feedback
 'feedback-bugornote' => "Si creye que puede describir en detalle un problema tecnico, [$1 informe d'un bug] por favor.

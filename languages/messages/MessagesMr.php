@@ -1726,15 +1726,16 @@ $1',
 'upload-warning-subj'         => 'चढवताना सूचना',
 'upload-warning-msg'          => 'तुमच्या चढवण्यात [$2] येथून चूक झाली. तुम्ही [[Special:Upload/stash/$1|चढवण्याचा अर्ज]] पुन्हा भरुन ही चूक दूर करू शकता.',
 
-'upload-proto-error'        => 'चूकीचा संकेत',
-'upload-proto-error-text'   => 'दूरस्थ चढवण्याच्या क्रियेत <code>http://</code>पासून किंवा <code>ftp://</code>पासून सूरू होणारी URL लागतात.',
-'upload-file-error'         => 'अंतर्गत त्रूटी',
-'upload-file-error-text'    => 'विदादात्यावर तात्पुरती संचिका तयार करण्याच्या प्रयत्न करत असताना अंतर्गत तांत्रिक अडचण आली.कृपया [[Special:ListUsers/sysop|प्रचालकांशी]] संपर्क करा.',
-'upload-misc-error'         => 'संचिका चढविताना माहित नसलेली त्रूटी आलेली आहे.',
-'upload-misc-error-text'    => 'चढवताना अज्ञात तांत्रिक अडचण आली.कृपया आंतरजालपत्ता सुयोग्य आणि उपलब्ध आहे का ते तपासा आणि पुन्हा प्रयत्न करा. अधिक अडचणी आल्यास तर [[Special:ListUsers/sysop|प्रचालकांशी]] संपर्क करा.',
-'upload-too-many-redirects' => 'या आंतरजालपत्त्यात खूप पुनर्निर्देशने आहेत',
-'upload-unknown-size'       => 'अज्ञात आकारमान',
-'upload-http-error'         => 'एक एचटीटीपी चूक उद्भवली: $1',
+'upload-proto-error'                => 'चूकीचा संकेत',
+'upload-proto-error-text'           => 'दूरस्थ चढवण्याच्या क्रियेत <code>http://</code>पासून किंवा <code>ftp://</code>पासून सूरू होणारी URL लागतात.',
+'upload-file-error'                 => 'अंतर्गत त्रूटी',
+'upload-file-error-text'            => 'विदादात्यावर तात्पुरती संचिका तयार करण्याच्या प्रयत्न करत असताना अंतर्गत तांत्रिक अडचण आली.कृपया [[Special:ListUsers/sysop|प्रचालकांशी]] संपर्क करा.',
+'upload-misc-error'                 => 'संचिका चढविताना माहित नसलेली त्रूटी आलेली आहे.',
+'upload-misc-error-text'            => 'चढवताना अज्ञात तांत्रिक अडचण आली.कृपया आंतरजालपत्ता सुयोग्य आणि उपलब्ध आहे का ते तपासा आणि पुन्हा प्रयत्न करा. अधिक अडचणी आल्यास तर [[Special:ListUsers/sysop|प्रचालकांशी]] संपर्क करा.',
+'upload-too-many-redirects'         => 'या आंतरजालपत्त्यात खूप पुनर्निर्देशने आहेत',
+'upload-unknown-size'               => 'अज्ञात आकारमान',
+'upload-http-error'                 => 'एक एचटीटीपी चूक उद्भवली: $1',
+'upload-copy-upload-invalid-domain' => 'संक्रमित केलेली महिती अधिक्षेत्रात उपलब्ध नाही.',
 
 # File backend
 'backend-fail-stream'        => '$1 या संचिकेचा स्त्रोत शोधता आला नाही.',
@@ -1753,12 +1754,12 @@ $1',
 'backend-fail-closetemp'     => 'तात्पुरती संचिका बंद करणे जमले नाही.',
 'backend-fail-read'          => '$1 ही संचिका वाचता आली नाही.',
 'backend-fail-create'        => '$1 ही संचिका बनवता आली नाही.',
-'backend-fail-readonly'      => 'पार्श्वभूमी कडील काम (backend) "$1" “फक्त वाचा” असे आहे. दिलेले कारण "$2" आहे',
-'backend-fail-synced'        => 'पार्श्वभूमी कडील अंतर्गत फाईल "$1" (backend) विसंगत आहे',
-'backend-fail-connect'       => 'पार्श्वभूमी कडील फाईलला (backend) "$1" जोडू शकत नाही',
-'backend-fail-internal'      => 'पार्श्वभूमी कडील फाईलमध्ये (backend) "$1" अज्ञात चूक झाली आहे',
+'backend-fail-readonly'      => 'पार्श्वभौमीक साठवण "$1" “फक्त वाचा” असे आहे. दिलेले कारण "$2" आहे.',
+'backend-fail-synced'        => 'अंतर्गत पार्श्वभौमीक साठवणीतील फाईल "$1" विसंगत आहे.',
+'backend-fail-connect'       => 'पार्श्वभौमीक साठा "$1"शी संबंध जोडू शकत नाही.',
+'backend-fail-internal'      => 'पार्श्वभौमीक साठा "$1" यात अज्ञात चूक झाली आहे.',
 'backend-fail-contenttype'   => '"$1" मध्ये ठेवलेल्या फाईलचा महितीचा प्रकार कळत नाही',
-'backend-fail-batchsize'     => 'पार्श्वभूमी कडील फाईलमध्ये बॅच $1 {{PLURAL:$1|operation|operations}} आहे, जास्तीत कस्त $२ {{PLURAL:$2|operation|operations}} असू शकते',
+'backend-fail-batchsize'     => 'पार्श्वभौमीक साठयातील बॅच $1 फाईल{{PLURAL:$1|operation|operations}}; मधे मर्यादीत कस्त $२ {{PLURAL:$2|operation|operations}} असू शकते',
 
 # Lock manager
 'lockmanager-notlocked'        => '"$1" ला मोकळे करता आले नाही;ते कुलुपबंद नाही.',
@@ -1791,9 +1792,9 @@ $1',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'परवानगी नाही',
-'img-auth-nopathinfo'       => 'PATH_INFO आढळले नाही.
+'img-auth-nopathinfo'       => 'मार्ग महीती आढळले नाही.
 आपला सर्व्हर ही माहिती पोचवू शकत नाही.
-तो सीजीआय-आधारित व img_auth ला समर्थन न देऊ शकणारा असू शकतो.
+तो CGI-आधारित व img_auth ला समर्थन न देऊ शकणारा असू शकतो.
 [https://www.mediawiki.org/wiki/Manual:Image_Authorization कृपया हे पहा.]',
 'img-auth-notindir'         => 'मागितलेला मार्ग अपलोड निर्देशिकेकरीता जोडलेला नाही.',
 'img-auth-badtitle'         => '"$1" पासून वैध शीर्षक बनवण्यात अयशस्वी.',

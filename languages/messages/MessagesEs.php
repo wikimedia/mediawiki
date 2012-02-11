@@ -702,8 +702,8 @@ Puede que ya haya sido borrado por alguien más.',
 'badtitle'             => 'Título incorrecto',
 'badtitletext'         => 'El título de la página solicitada está vacío, no es válido, o es un enlace interidioma o interwiki incorrecto.
 Puede que contenga uno o más caracteres que no se pueden usar en los títulos.',
-'perfcached'           => 'Los siguientes datos están en caché y por tanto pueden estar desactualizados:',
-'perfcachedts'         => 'Estos datos están almacenados. Su última actualización fue el $1.',
+'perfcached'           => 'Los siguientes datos provienen de la caché y pueden no estar actualizados. La caché puede contener {{PLURAL:$1|un resultado|$1 resultados}} como máximo.',
+'perfcachedts'         => 'Los siguientes datos provienen de la caché y su última fecha y hora de actualización es: $1. La caché puede contener {{PLURAL:$4|un resultado|$4 resultados}} como máximo.',
 'querypage-no-updates' => 'Actualmente las actualizaciones de esta página están desactivadas. Estos datos no serán actualizados a corto plazo.',
 'wrong_wfQuery_params' => 'Parámetros incorrectos para wfQuery()<br />
 Función: $1<br />
@@ -1810,15 +1810,16 @@ $1',
 'upload-warning-subj'         => 'Alerta de carga',
 'upload-warning-msg'          => 'Hubo un problema con tu carga de [$2]. Puedes regresar al [[Special:Upload/stash/$1|formulario de carga]] para corregir este problema.',
 
-'upload-proto-error'        => 'Protocolo incorrecto',
-'upload-proto-error-text'   => 'Para subir archivos desde otra página la URL debe comenzar por <code>http://</code> o <code>ftp://</code>.',
-'upload-file-error'         => 'Error interno al subir el archivo',
-'upload-file-error-text'    => 'Ha ocurrido un error interno mientras se intentaba crear un fichero temporal en el servidor. Por favor, contacta con un [[Special:ListUsers/sysop|administrador del sistema]].',
-'upload-misc-error'         => 'Error desconocido en la subida',
-'upload-misc-error-text'    => 'Ha ocurrido un error durante la subida. Por favor verifica que la URL es válida y accesible e inténtalo de nuevo. Si el problema persiste, contacta con un [[Special:ListUsers/sysop|administrador del sistema]].',
-'upload-too-many-redirects' => 'La URL contenía demasiadas redirecciones',
-'upload-unknown-size'       => 'Tamaño desconocido',
-'upload-http-error'         => 'Ha ocurrido un error HTTP: $1',
+'upload-proto-error'                => 'Protocolo incorrecto',
+'upload-proto-error-text'           => 'Para subir archivos desde otra página la URL debe comenzar por <code>http://</code> o <code>ftp://</code>.',
+'upload-file-error'                 => 'Error interno al subir el archivo',
+'upload-file-error-text'            => 'Ha ocurrido un error interno mientras se intentaba crear un fichero temporal en el servidor. Por favor, contacta con un [[Special:ListUsers/sysop|administrador del sistema]].',
+'upload-misc-error'                 => 'Error desconocido en la subida',
+'upload-misc-error-text'            => 'Ha ocurrido un error durante la subida. Por favor verifica que la URL es válida y accesible e inténtalo de nuevo. Si el problema persiste, contacta con un [[Special:ListUsers/sysop|administrador del sistema]].',
+'upload-too-many-redirects'         => 'La URL contenía demasiadas redirecciones',
+'upload-unknown-size'               => 'Tamaño desconocido',
+'upload-http-error'                 => 'Ha ocurrido un error HTTP: $1',
+'upload-copy-upload-invalid-domain' => 'No se pueden realizar cargas remotas desde este dominio.',
 
 # File backend
 'backend-fail-stream'        => 'No se pudo transmitir el archivo «$1».',
@@ -1876,9 +1877,9 @@ No puede comprobarse adecuadamente su seguridad.',
 # img_auth script messages
 'img-auth-accessdenied'     => 'Acceso denegado',
 'img-auth-nopathinfo'       => 'Falta PATH_INFO.
-Tu servidor no está configurado para proporcionar esta información.
-Puede que esté basado en CGI y no sea compatible con img_auth.
-Véase [https://www.mediawiki.org/wiki/Manual:Image_Authorization image authorization.]',
+El servidor no está configurado para proporcionar esta información.
+Es posible que esté basado en CGI y que no sea compatible con img_auth.
+Consulte https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'         => 'Ruta solicitad no esá en el directorio de cargas configurado',
 'img-auth-badtitle'         => 'Incapaz de construir un título válido de «$1».',
 'img-auth-nologinnWL'       => 'No has iniciado sesión y «$1» no está en la lista blanca.',
@@ -2094,7 +2095,8 @@ Las entradas <del>tachadas</del> han sido resueltas.',
 'wantedpages'             => 'Páginas requeridas',
 'wantedpages-badtitle'    => 'Título inválido en conjunto de resultados: $1',
 'wantedfiles'             => 'Ficheros requeridos',
-'wantedfiletext-cat'      => 'Los siguientes archivos se utilizan pero no existen. Los archivos en repositorios externos pueden aparecer a pesar de los existentes. Cualquiera de tales falsos positivos aparecerán <del>tachados</del>. Además, las páginas que incrustan los archivos que no existen se enumeran en [[:$1]].',
+'wantedfiletext-cat'      => 'Los siguientes archivos están en uso, pero no existen. Es posible que algunos de ellos estén almacenados en repositorios externos y se hayan incluido aquí por error; dichas entradas aparecen <del>tachadas</del>. De igual manera, las páginas que incluyen archivos inexistentes se enumeran en [[:$1]].',
+'wantedfiletext-nocat'    => 'Los siguientes archivos están en uso, pero no existen. Es posible que algunos de ellos estén almacenados en repositorios externos y se hayan incluido aquí por error; dichas entradas aparecen <del>tachadas</del>.',
 'wantedtemplates'         => 'Plantillas requeridas',
 'mostlinked'              => 'Artículos más enlazados',
 'mostlinkedcategories'    => 'Categorías más enlazadas',
@@ -2909,7 +2911,9 @@ No hay un directorio temporal.',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revisión|revisiones}} desde $2',
 
 # JavaScriptTest
-'javascripttest-disabled' => 'Esta función está deshabilitada.',
+'javascripttest-disabled'    => 'Esta función está deshabilitada.',
+'javascripttest-title'       => 'Pruebas de $1 en ejecución',
+'javascripttest-qunit-intro' => 'Consulte la [$1 documentación sobre las pruebas] en mediawiki.org.',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'                 => 'Tu página de {{gender:|usuario|usuaria}}',

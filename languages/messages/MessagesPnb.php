@@ -1638,7 +1638,7 @@ $1",
 'nolinkstoimage'            => 'اس فائل نال جڑیا کوئی صفحہ نہیں۔',
 'morelinkstoimage'          => 'ایس فائل نوں [[Special:WhatLinksHere/$1|ہور جوڑ]] ویکھو',
 'linkstoimage-redirect'     => '$1 (فائل ریڈائیدکٹ) $2',
-'duplicatesoffile'          => 'تھلے دتیاں گیاں {{PLURAL:$1|فائل دوہری اے|$1 فائلاں دوہریاں نیں} ایس فائل دیاں ([[Special:FileDuplicateSearch/$2|ہور گلاں]]) کاپی نیں۔',
+'duplicatesoffile'          => 'تھلے دتیاں گیاں {{PLURAL:$1|فائل دوہری اے|$1 فائلاں دوہریاں نیں}} ایس فائل دیاں ([[Special:FileDuplicateSearch/$2|ہور گلاں]]) کاپی نیں۔',
 'sharedupload'              => 'اے فائل $1 مشترکہ اپلوڈ اے تے اے دوجے منصوبے وی استعمال کر سکدے نے۔',
 'sharedupload-desc-there'   => 'ایہ فائل $1 توں اے تے اینوں دوجے ویونت وی ورت سکدے نیں۔
 مہربانی کرکے [$2 فائل دس صفہ] ویکھو ہور دساں لئی۔',
@@ -3363,7 +3363,7 @@ $5
 "{{int:Watchlistedit-normal-submit}}" تے کلک کرو۔
 تسیں [[Special:EditWatchlist/raw|کچی لسٹ تبدیل کرو]]',
 'watchlistedit-normal-submit'  => 'ٹائیٹلز ہٹاؤ',
-'watchlistedit-normal-done'    => '{PLURAL:$1|1 سرناواں سی|1$ سرناویں سن}}',
+'watchlistedit-normal-done'    => '{{PLURAL:$1|1 سرناواں سی|1$ سرناویں سن}}',
 'watchlistedit-raw-title'      => 'کچی اکھ تھلے رکھی ہوئی نو تبدیل کرو',
 'watchlistedit-raw-legend'     => 'کچی اکھ تھلے رکھی ہوئی نو تبدیل کرو',
 'watchlistedit-raw-explain'    => 'سرناویں تواڈی اک تھلے رکھی لسٹ دے تھلے دتے نیں، تے ایناں چ وادا کعاٹا کرکے تبدیلی کیتی جاسکدی اے؛
