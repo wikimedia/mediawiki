@@ -50,6 +50,7 @@ $wgAutoloadLocalClasses = array(
 	'Cookie' => 'includes/Cookie.php',
 	'CookieJar' => 'includes/Cookie.php',
 	'CurlHttpRequest' => 'includes/HttpFunctions.php',
+	'DBDataObject' => 'includes/DBDataObject.php',
 	'DeferrableUpdate' => 'includes/DeferredUpdates.php',
 	'DeferredUpdates' => 'includes/DeferredUpdates.php',
 	'DerivativeRequest' => 'includes/WebRequest.php',
