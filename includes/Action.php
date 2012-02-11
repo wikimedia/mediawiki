@@ -128,7 +128,7 @@ abstract class Action {
 		if ( !$context->canUseWikiPage() ) {
 			return 'view';
 		}
-		
+
 		$action = Action::factory( $actionName, $context->getWikiPage() );
 		if ( $action instanceof Action ) {
 			return $action->getName();
