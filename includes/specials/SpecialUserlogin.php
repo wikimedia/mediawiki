@@ -133,9 +133,13 @@ class LoginForm extends SpecialPage {
 		}
 		$wgAuth->setDomain( $this->mDomain );
 
-		# When switching accounts, it sucks to get automatically logged out
+		# 1. When switching accounts, it sucks to get automatically logged out
+		# 2. Do not return to PasswordReset after a successful password change
+		#    but goto Wiki start page (Main_Page) instead ( bug 33997 )
 		$returnToTitle = Title::newFromText( $this->mReturnTo );
-		if( is_object( $returnToTitle ) && $returnToTitle->isSpecial( 'Userlogout' ) ) {
+		if( is_object( $returnToTitle ) && (
+			$returnToTitle->isSpecial( 'Userlogout' )
+			|| $returnToTitle->isSpecial( 'PasswordReset' ) ) ) {
 			$this->mReturnTo = '';
 			$this->mReturnToQuery = '';
 		}
