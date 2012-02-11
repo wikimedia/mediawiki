@@ -3771,6 +3771,7 @@ Resimler tam çözünürlükte görüntülenir, diğer dosya tipleri ilgili prog
 'api-error-unclassified'          => 'Bilinmeyen bir hata oluştu.',
 'api-error-unknown-code'          => 'Bilinmeyen hata: "$1"',
 'api-error-unknown-warning'       => 'Bilinmeyen uyarı: $1',
+'api-error-unknownerror'          => 'Bilinmeyen hata: "$1".',
 'api-error-uploaddisabled'        => 'Yükleme bu vikide devre dışı bırakılmıştır.',
 
 );

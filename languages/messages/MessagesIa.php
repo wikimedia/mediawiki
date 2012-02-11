@@ -1659,18 +1659,19 @@ $1',
 'upload-warning-subj'         => 'Advertimento de incargamento',
 'upload-warning-msg'          => 'Occurreva un problema con le incargamento de [$2]. Tu pote retornar al [[Special:Upload/stash/$1|formulario de incargamento]] pro corriger iste problema.',
 
-'upload-proto-error'        => 'Protocollo incorrecte',
-'upload-proto-error-text'   => 'Le incargamento remote require que le adresses URL comencia con <code>http://</code> o <code>ftp://</code>.',
-'upload-file-error'         => 'Error interne',
-'upload-file-error-text'    => 'Un error interne occurreva quando se tentava crear un file temporari in le servitor.
+'upload-proto-error'                => 'Protocollo incorrecte',
+'upload-proto-error-text'           => 'Le incargamento remote require que le adresses URL comencia con <code>http://</code> o <code>ftp://</code>.',
+'upload-file-error'                 => 'Error interne',
+'upload-file-error-text'            => 'Un error interne occurreva quando se tentava crear un file temporari in le servitor.
 Per favor contacta un [[Special:ListUsers/sysop|administrator]].',
-'upload-misc-error'         => 'Error incognite de incargamento',
-'upload-misc-error-text'    => 'Un error non cognoscite occurreva durante le incargamento.
+'upload-misc-error'                 => 'Error incognite de incargamento',
+'upload-misc-error-text'            => 'Un error non cognoscite occurreva durante le incargamento.
 Per favor verifica que le adresse URL sia valide e accessibile, e reproba.
 Si le problema persiste, contacta un [[Special:ListUsers/sysop|administrator]].',
-'upload-too-many-redirects' => 'Le URL contineva troppo de redirectiones',
-'upload-unknown-size'       => 'Dimension incognite',
-'upload-http-error'         => 'Un error HTTP occurreva: $1',
+'upload-too-many-redirects'         => 'Le URL contineva troppo de redirectiones',
+'upload-unknown-size'               => 'Dimension incognite',
+'upload-http-error'                 => 'Un error HTTP occurreva: $1',
+'upload-copy-upload-invalid-domain' => 'Le incargamento de copias non es disponibile ab iste dominio.',
 
 # File backend
 'backend-fail-stream'        => 'Non poteva transmitter le file $1.',
@@ -3789,7 +3790,7 @@ Si non, tu pote usar le formulario facile hic infra. Tu commento essera addite a
 'feedback-error1'    => 'Error: Resultato del API non recognoscite',
 'feedback-error2'    => 'Error: Modification fallite',
 'feedback-error3'    => 'Error: Nulle responsa del API',
-'feedback-thanks'    => 'Gratias! Tu retroaction ha essite publicate in le pagina "[$2 $1]".',
+'feedback-thanks'    => 'Gratias! Tu evalutation ha essite publicate in le pagina "[$2 $1]".',
 'feedback-close'     => 'Finite',
 'feedback-bugcheck'  => 'Bon! Ma per favor verifica que iste falta non es [$1 jam cognoscite].',
 'feedback-bugnew'    => 'Si, io lo ha verificate; reportar un nove falta',

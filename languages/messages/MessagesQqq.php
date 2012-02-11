@@ -1876,8 +1876,8 @@ $2 is the url the file tried to upload from, when using upload-by-url.',
 'upload-warning-msg'          => '$1 is the url the file was uploaded from, when using upload-by-url
 $2 is the session key for the upload',
 
-'upload-proto-error-text' => '"Remote upload" is explained on [http://en.wikipedia.org/wiki/Uploading_and_downloading#Remote_upload Wikipedia].',
-'upload-file-error'       => 'Unused on core [http://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/includes/specials/SpecialUpload.php?r1=53161&r2=53282].
+'upload-proto-error-text'           => '"Remote upload" is explained on [http://en.wikipedia.org/wiki/Uploading_and_downloading#Remote_upload Wikipedia].',
+'upload-file-error'                 => 'Unused on core [http://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/includes/specials/SpecialUpload.php?r1=53161&r2=53282].
 
 Extensions making use of it:
 *ImportFreeImages
@@ -1885,6 +1885,7 @@ Extensions making use of it:
 
 
 {{Identical|Internal error}}',
+'upload-copy-upload-invalid-domain' => 'Error message shown if a user is trying to upload (i.e. copy) a file from a website that is not in $wgCopyUploadsDomains (if set).',
 
 # File backend
 'backend-fail-stream'        => 'Parameters:
@@ -3179,10 +3180,10 @@ CSS applied to users using Monobook skin.',
 'handheld.css'            => '{{optional}}
 Style that can be applied on [[w:handheld devices|handheld devices]] (e.g. mobile phones), <code>$wgHandheldStyle</code> is an optional configuration variable which specifies a style sheet file for handheld devices.',
 'noscript.css'            => '{{optional}}',
-'group-autoconfirmed.css' => '{{optional}}',
-'group-bot.css'           => '{{optional}}',
-'group-sysop.css'         => '{{optional}}',
-'group-bureaucrat.css'    => '{{optional}}',
+'group-autoconfirmed.css' => '{{doc-group|autoconfirmed|css}}',
+'group-bot.css'           => '{{doc-group|bot|css}}',
+'group-sysop.css'         => '{{doc-group|sysop|css}}',
+'group-bureaucrat.css'    => '{{doc-group|bureaucrat|css}}',
 
 # Scripts
 'common.js'              => '{{optional}}
@@ -3197,10 +3198,10 @@ JS for users using Monobook skin.',
 'simple.js'              => '{{optional}}',
 'modern.js'              => '{{optional}}',
 'vector.js'              => '{{optional}}',
-'group-autoconfirmed.js' => '{{optional}}',
-'group-bot.js'           => '{{optional}}',
-'group-sysop.js'         => '{{optional}}',
-'group-bureaucrat.js'    => '{{optional}}',
+'group-autoconfirmed.js' => '{{doc-group|autoconfirmed|js}}',
+'group-bot.js'           => '{{doc-group|bot|js}}',
+'group-sysop.js'         => '{{doc-group|sysop|js}}',
+'group-bureaucrat.js'    => '{{doc-group|bureaucrat|js}}',
 
 # Attribution
 'anonymous'        => 'This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on translatewiki.net).

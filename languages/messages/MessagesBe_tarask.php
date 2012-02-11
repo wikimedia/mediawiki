@@ -476,8 +476,8 @@ $messages = array(
 'viewcount'         => 'Гэтую старонку праглядалі $1 {{PLURAL:$1|раз|разы|разоў}}.',
 'protectedpage'     => 'Абароненая старонка',
 'jumpto'            => 'Перайсьці да:',
-'jumptonavigation'  => 'навігацыя',
-'jumptosearch'      => 'пошук',
+'jumptonavigation'  => 'навігацыі',
+'jumptosearch'      => 'пошуку',
 'view-pool-error'   => 'Прабачце, у цяперашні момант сэрвэры перагружаныя.
 Занадта шмат удзельнікаў спрабуюць праглядзець гэтую старонку.
 Калі ласка, пачакайце і паспрабуйце зайсьці пазьней.
@@ -1552,7 +1552,7 @@ $1",
 'recentchanges'                     => 'Апошнія зьмены',
 'recentchanges-legend'              => 'Налады апошніх зьменаў',
 'recentchangestext'                 => 'Сачыце за апошнімі зьменамі ў {{GRAMMAR:месны|{{SITENAME}}}} на гэтай старонцы.',
-'recentchanges-feed-description'    => 'Сачыць за апошнімі зьменамі ў {{GRAMMAR:месны|{{SITENAME}}}} праз гэтую стужку.',
+'recentchanges-feed-description'    => 'Сачыце за апошнімі зьменамі ў {{GRAMMAR:месны|{{SITENAME}}}} праз гэтую стужку.',
 'recentchanges-label-newpage'       => 'Гэтым рэдагаваньнем была створаная новая старонка',
 'recentchanges-label-minor'         => 'Гэтае рэдагаваньне — дробнае',
 'recentchanges-label-bot'           => 'Гэтае рэдагаваньне зробленае робатам',
@@ -1714,18 +1714,19 @@ $1',
 'upload-warning-subj'         => 'Папярэджаньне загрузкі',
 'upload-warning-msg'          => 'Узьнікла праблема з Вашай загрузкай з [$2]. Вы можаце вярнуцца на [[Special:Upload/stash/$1|форму загрузкі]] для вырашэньня гэтай праблемы.',
 
-'upload-proto-error'        => 'Няслушны пратакол',
-'upload-proto-error-text'   => 'Аддаленая загрузка файлаў патрабуе URL-адрас, які пачынаецца з <code>http://</code> альбо <code>ftp://</code>.',
-'upload-file-error'         => 'Унутраная памылка',
-'upload-file-error-text'    => 'Адбылася ўнутраная памылка пад час спробы стварыць часовы файл на сэрвэры.
+'upload-proto-error'                => 'Няслушны пратакол',
+'upload-proto-error-text'           => 'Аддаленая загрузка файлаў патрабуе URL-адрас, які пачынаецца з <code>http://</code> альбо <code>ftp://</code>.',
+'upload-file-error'                 => 'Унутраная памылка',
+'upload-file-error-text'            => 'Адбылася ўнутраная памылка пад час спробы стварыць часовы файл на сэрвэры.
 Калі ласка, зьвярніцеся да [[Special:ListUsers/sysop|сыстэмнага адміністратара]].',
-'upload-misc-error'         => 'Невядомая памылка загрузкі',
-'upload-misc-error-text'    => 'Адбылася невядомая памылка пад час загрузкі.
+'upload-misc-error'                 => 'Невядомая памылка загрузкі',
+'upload-misc-error-text'            => 'Адбылася невядомая памылка пад час загрузкі.
 Калі ласка, упэўніцеся, што URL-адрас слушны, і паспрабуйце ізноў.
 Калі памылка паўтарыцца, зьвярніцеся да [[Special:ListUsers/sysop|сыстэмнага адміністратара]].',
-'upload-too-many-redirects' => 'URL-адрас утрымлівае зашмат перанакіраваньняў',
-'upload-unknown-size'       => 'Невядомы памер',
-'upload-http-error'         => 'Узьнікла памылка HTTP: $1',
+'upload-too-many-redirects'         => 'URL-адрас утрымлівае зашмат перанакіраваньняў',
+'upload-unknown-size'               => 'Невядомы памер',
+'upload-http-error'                 => 'Узьнікла памылка HTTP: $1',
+'upload-copy-upload-invalid-domain' => 'Капіяваньне загрузак не дазволенае ў гэтым дамэне.',
 
 # File backend
 'backend-fail-stream'        => 'Немагчыма накіраваць файл $1.',

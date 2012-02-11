@@ -600,7 +600,7 @@ Ini nga mga argumento in ginlaktawan.",
 'last'                   => 'kataposan',
 'page_first'             => 'syahan',
 'page_last'              => 'kataposan',
-'histlegend'             => "Kaibhan nga pirilion: Igmarka an mga radyo nga kahon han mga pagbag-o para maikumpara ngan sabura an ''enter' o an piridlitan ha ubos.<br />
+'histlegend'             => "Kaibhan nga pirilion: Igmarka an mga radyo nga kahon han mga pagbag-o para maikumpara ngan igu-a an ''enter'' o an piridlitan ha ubos.<br />
 Leyenda: '''({{int:cur}})''' = kaibhan ha giuurhii nga pag-bag-o, '''({{int:last}})''' = kaibhan ha nahiuna nga pag-bag-o, '''{{int:minoreditletter}}''' = gagmay nga pagliwat.",
 'history-fieldset-title' => 'Kaagi han panngaykay',
 'history-show-deleted'   => 'Ginpara la',
