@@ -37,7 +37,7 @@ class EditPage {
 	const AS_HOOK_ERROR                = 210;
 
 	/**
-	 * Status: The filter function set in $wgFilterCallback returned true (= block it)
+	 * Status: The filter function set in $wgFilterCallback returned true (= block it) 
 	 */
 	const AS_FILTERING                 = 211;
 
@@ -182,7 +182,7 @@ class EditPage {
 	 * @var ParserOutput
 	 */
 	var $mParserOutput;
-
+	
 	/**
 	 * Has a summary been preset using GET parameter &summary= ?
 	 * @var Bool
@@ -475,7 +475,7 @@ class EditPage {
 	 */
 	function readOnlyPage( $source = null, $protected = false, $reasons = array(), $action = null ) {
 		wfDeprecated( __METHOD__, '1.19' );
-
+		
 		global $wgRequest, $wgOut;
 		if ( $wgRequest->getBool( 'redlink' ) ) {
 			// The edit page was reached via a red link.
@@ -582,7 +582,7 @@ class EditPage {
 			# header syntax, e.g. 'Foobar'. This is mainly an issue when we are using wpSummary for
 			# section titles.
 			$this->summary = preg_replace( '/^\s*=+\s*(.*?)\s*=+\s*$/', '$1', $this->summary );
-
+			
 			# Treat sectiontitle the same way as summary.
 			# Note that wpSectionTitle is not yet a part of the actual edit form, as wpSummary is
 			# currently doing double duty as both edit summary and section title. Right now this
@@ -675,7 +675,7 @@ class EditPage {
 			$this->minoredit    = false;
 			$this->watchthis    = $request->getBool( 'watchthis', false ); // Watch may be overriden by request parameters
 			$this->recreate     = false;
-
+			
 			// When creating a new section, we can preload a section title by passing it as the
 			// preloadtitle parameter in the URL (Bug 13100)
 			if ( $this->section == 'new' && $request->getVal( 'preloadtitle' ) ) {
@@ -915,7 +915,7 @@ class EditPage {
 		if ( !empty( $this->mPreloadText ) ) {
 			return $this->mPreloadText;
 		}
-
+		
 		if ( $preload === '' ) {
 			return '';
 		}
@@ -1240,10 +1240,10 @@ class EditPage {
 				if ( $this->sectiontitle !== '' ) {
 					// Insert the section title above the content.
 					$text = wfMsgForContent( 'newsectionheaderdefaultlevel', $this->sectiontitle ) . "\n\n" . $text;
-
+					
 					// Jump to the new section
 					$result['sectionanchor'] = $wgParser->guessLegacySectionNameFromWikiText( $this->sectiontitle );
-
+					
 					// If no edit summary was specified, create one automatically from the section
 					// title and have it link to the new section. Otherwise, respect the summary as
 					// passed.
@@ -1254,7 +1254,7 @@ class EditPage {
 				} elseif ( $this->summary !== '' ) {
 					// Insert the section title above the content.
 					$text = wfMsgForContent( 'newsectionheaderdefaultlevel', $this->summary ) . "\n\n" . $text;
-
+					
 					// Jump to the new section
 					$result['sectionanchor'] = $wgParser->guessLegacySectionNameFromWikiText( $this->summary );
 
@@ -1295,7 +1295,7 @@ class EditPage {
 					$this->isConflict = false;
 				}
 			}
-
+			
 			// If sectiontitle is set, use it, otherwise use the summary as the section title (for
 			// backwards compatibility with old forms/bots).
 			if ( $this->sectiontitle !== '' ) {
@@ -1303,7 +1303,7 @@ class EditPage {
 			} else {
 				$sectionTitle = $this->summary;
 			}
-
+			
 			if ( $this->isConflict ) {
 				wfDebug( __METHOD__ . ": conflict! getting section '$this->section' for time '$this->edittime' (article time '{$timestamp}')\n" );
 				$text = $this->mArticle->replaceSection( $this->section, $this->textbox1, $sectionTitle, $this->edittime );
@@ -1810,7 +1810,7 @@ class EditPage {
 			// (Bug 17416)
 			$this->autoSumm = 'd41d8cd98f00b204e9800998ecf8427e'; # == md5('')
 		}
-
+		
 		$autosumm = $this->autoSumm ? $this->autoSumm : md5( $this->summary );
 		$wgOut->addHTML( Html::hidden( 'wpAutoSummary', $autosumm ) );
 
@@ -2813,7 +2813,7 @@ HTML
 
 			$script .= Xml::encodeJsCall( 'mw.toolbar.addButton', $params );
 		}
-
+		
 		// This used to be called on DOMReady from mediawiki.action.edit, which
 		// ended up causing race conditions with the setup code above.
 		$script .= "\n" .
@@ -3019,7 +3019,7 @@ HTML
 	 */
 	static function spamPage( $match = false ) {
 		wfDeprecated( __METHOD__, '1.17' );
-
+		
 		global $wgOut, $wgTitle;
 
 		$wgOut->prepareErrorPage( wfMessage( 'spamprotectiontitle' ) );
