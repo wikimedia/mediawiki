@@ -458,7 +458,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		wfRunHooks( 'SpecialMovepageAfterMove', array( &$this, &$ot, &$nt ) );
 
 		$out = $this->getOutput();
-		$out->setPagetitle( wfMsg( 'pagemovedsub' ) );
+		$out->setPageTitle( $this->msg( 'pagemovedsub' ) );
 
 		$oldLink = Linker::link(
 			$ot,
