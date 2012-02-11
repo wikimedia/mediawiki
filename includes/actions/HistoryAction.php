@@ -385,8 +385,13 @@ class HistoryPager extends ReverseChronologicalPager {
 		$this->mResult->seek( 0 );
 		$batch = new LinkBatch();
 		foreach ( $this->mResult as $row ) {
-			$batch->addObj( Title::makeTitleSafe( NS_USER, $row->user_name ) );
-			$batch->addObj( Title::makeTitleSafe( NS_USER_TALK, $row->user_name ) );
+			if( !is_null( $row->user_name ) ) {
+				$batch->add( NS_USER, $row->user_name );
+				$batch->add( NS_USER_TALK, $row->user_name );
+			} else { # for anons or usernames of imported revisions
+				$batch->add( NS_USER, $row->rev_user_text );
+				$batch->add( NS_USER_TALK, $row->rev_user_text );
+			}
 		}
 		$batch->execute();
 		$this->mResult->seek( 0 );
@@ -568,13 +573,10 @@ class HistoryPager extends ReverseChronologicalPager {
 			$s .= ' ' . ChangesList::flag( 'minor' );
 		}
 
-		if ( $prevRev
-			&& !$prevRev->isDeleted( Revision::DELETED_TEXT )
-			&& !$rev->isDeleted( Revision::DELETED_TEXT ) )
-		{
-			$sDiff = ChangesList::showCharacterDifference( $prevRev->getSize(), $rev->getSize() );
-			$s .= ' . . ' . $sDiff . ' . . ';
-		}
+		# Size is always public data
+		$prevSize = $prevRev ? $prevRev->getSize() : 0;
+		$sDiff = ChangesList::showCharacterDifference( $prevSize, $rev->getSize() );
+		$s .= ' . . ' . $sDiff . ' . . ';
 
 		$s .= Linker::revComment( $rev, false, true );
 
