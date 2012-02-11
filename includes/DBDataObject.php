@@ -50,7 +50,7 @@ abstract class DBDataObject {
 	 * The fields of the object.
 	 * field name (w/o prefix) => value
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 * @var array
 	 */
 	protected $fields = array( 'id' => null );
@@ -61,7 +61,7 @@ abstract class DBDataObject {
 	 * Settings this to false can prevent needless updating work in situations
 	 * such as deleting a university, which will then delete all it's courses.
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 * @var bool
 	 */
 	protected $updateSummaries = true;
@@ -71,7 +71,7 @@ abstract class DBDataObject {
 	 * This mode indicates that only summary fields got updated,
 	 * which allows for optimizations.
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 * @var bool
 	 */
 	protected $inSummaryMode = false;
@@ -89,7 +89,7 @@ abstract class DBDataObject {
 	/**
 	 * Returns the name of the database table objects of this type are stored in.
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @throws MWException
 	 * @return string
@@ -107,7 +107,7 @@ abstract class DBDataObject {
 	/**
 	 * Gets the db field prefix.
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @throws MWException
 	 * @return string
@@ -136,7 +136,7 @@ abstract class DBDataObject {
 	 * * bool
 	 * * array
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @throws MWException
 	 * @return array
@@ -149,7 +149,7 @@ abstract class DBDataObject {
 	 * Returns a list of default field values.
 	 * field name => field value
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @return array
 	 */
@@ -162,7 +162,7 @@ abstract class DBDataObject {
 	 * These are fields that cache computed values, such as the amount of linked objects of $type.
 	 * This is relevant as one might not want to do actions such as log changes when these get updated.
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @return array
 	 */
@@ -173,7 +173,7 @@ abstract class DBDataObject {
 	/**
 	 * Constructor.
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @param array|null $fields
 	 * @param boolean $loadDefaults
@@ -193,7 +193,7 @@ abstract class DBDataObject {
 	/**
 	 * Load the specified fields from the database.
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @param array|null $fields
 	 * @param boolean $override
@@ -238,7 +238,7 @@ abstract class DBDataObject {
 	/**
 	 * Gets the value of a field.
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @param string $name
 	 * @param mixed $default
@@ -259,7 +259,7 @@ abstract class DBDataObject {
 	/**
 	 * Gets the value of a field but first loads it if not done so already.
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @param string$name
 	 *
@@ -276,7 +276,7 @@ abstract class DBDataObject {
 	/**
 	 * Remove a field.
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @param string $name
 	 */
@@ -287,7 +287,7 @@ abstract class DBDataObject {
 	/**
 	 * Returns the objects database id.
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @return integer|null
 	 */
@@ -298,7 +298,7 @@ abstract class DBDataObject {
 	/**
 	 * Sets the objects database id.
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @param integer|null $id
 	 */
@@ -309,7 +309,7 @@ abstract class DBDataObject {
 	/**
 	 * Gets if a certain field is set.
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @param string $name
 	 *
@@ -322,7 +322,7 @@ abstract class DBDataObject {
 	/**
 	 * Gets if the id field is set.
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @return boolean
 	 */
@@ -334,7 +334,7 @@ abstract class DBDataObject {
 	/**
 	 * Sets multiple fields.
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @param array $fields The fields to set
 	 * @param boolean $override Override already set fields with the provided values?
@@ -350,7 +350,7 @@ abstract class DBDataObject {
 	/**
 	 * Gets the fields => values to write to the table.
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @return array
 	 */
@@ -379,7 +379,7 @@ abstract class DBDataObject {
 	 * Serializes the object to an associative array which
 	 * can then easily be converted into JSON or similar.
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @param null|array $fields
 	 * @param boolean $incNullId
@@ -412,7 +412,7 @@ abstract class DBDataObject {
 	/**
 	 * Load the default values, via getDefaults.
 	 *
-	 *  @since 0.1
+	 *  @since 1.20
 	 *
 	 * @param boolean $override
 	 */
@@ -424,7 +424,7 @@ abstract class DBDataObject {
 	 * Writes the answer to the database, either updating it
 	 * when it already exists, or inserting it when it doesn't.
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @return boolean Success indicator
 	 */
@@ -439,7 +439,7 @@ abstract class DBDataObject {
 	/**
 	 * Updates the object in the database.
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @return boolean Success indicator
 	 */
@@ -459,7 +459,7 @@ abstract class DBDataObject {
 	/**
 	 * Inserts the object into the database.
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @return boolean Success indicator
 	 */
@@ -483,7 +483,7 @@ abstract class DBDataObject {
 	/**
 	 * Removes the object from the database.
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @return boolean Success indicator
 	 */
@@ -502,7 +502,7 @@ abstract class DBDataObject {
 	/**
 	 * Gets called before an object is removed from the database.
 	 * 
-	 * @since 0.1
+	 * @since 1.20
 	 */
 	protected function beforeRemove() {
 		$this->loadFields( $this->getBeforeRemoveFields(), false, true );
@@ -513,7 +513,7 @@ abstract class DBDataObject {
 	 * This method loads the fields of which the names have been returned by this one (or all fields if null is returned).
 	 * This allows for loading info needed after removal to get rid of linked data and the like.
 	 * 
-	 * @since 0.1
+	 * @since 1.20
 	 * 
 	 * @return array|null
 	 */
@@ -525,7 +525,7 @@ abstract class DBDataObject {
 	 * Gets called after successfull removal.
 	 * Can be overriden to get rid of linked data.
 	 * 
-	 * @since 0.1
+	 * @since 1.20
 	 */
 	protected function onRemoved() {
 		$this->setField( 'id', null );
@@ -534,7 +534,7 @@ abstract class DBDataObject {
 	/**
 	 * Return the names and values of the fields.
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @return array
 	 */
@@ -545,7 +545,7 @@ abstract class DBDataObject {
 	/**
 	 * Return the names of the fields.
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @return array
 	 */
@@ -558,7 +558,7 @@ abstract class DBDataObject {
 	 * Strings can be provided for other types,
 	 * so this method can be called from unserialization handlers.
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @param string $name
 	 * @param mixed $value
@@ -613,7 +613,7 @@ abstract class DBDataObject {
 	/**
 	 * Get a new instance of the class from an array.
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @param array $data
 	 * @param boolean $loadDefaults
@@ -648,7 +648,7 @@ abstract class DBDataObject {
 	/**
 	 * Gets if the object can take a certain field.
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @param string $name
 	 *
@@ -662,7 +662,7 @@ abstract class DBDataObject {
 	 * Takes in a field or array of fields and returns an
 	 * array with their prefixed versions, ready for db usage.
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @param array|string $fields
 	 *
@@ -682,7 +682,7 @@ abstract class DBDataObject {
 	 * array( 'tablename', 'fieldname' )
 	 * Where table name is registered in $wgDBDataObjects.
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @param string|array $field
 	 *
@@ -724,7 +724,7 @@ abstract class DBDataObject {
 	 *	 array( array( 'tablename', 'fieldname' ), $value ),
 	 * );
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @param array $values
 	 *
@@ -758,7 +758,7 @@ abstract class DBDataObject {
 	 * that can be fed directly to the constructor or
 	 * to setFields.
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @param object $result
 	 *
@@ -775,7 +775,7 @@ abstract class DBDataObject {
 	/**
 	 * Takes a field name with prefix and returns the unprefixed equivalent.
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @param string $fieldName
 	 *
@@ -788,7 +788,7 @@ abstract class DBDataObject {
 	/**
 	 * Takes an array of field names with prefix and returns the unprefixed equivalent.
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @param array $fieldNames
 	 *
@@ -801,7 +801,7 @@ abstract class DBDataObject {
 	/**
 	 * Get a new instance of the class from a database result.
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @param stdClass $result
 	 *
@@ -814,7 +814,7 @@ abstract class DBDataObject {
 	/**
 	 * Removes the object from the database.
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @param array $conditions
 	 *
@@ -830,7 +830,7 @@ abstract class DBDataObject {
 	/**
 	 * Add an amount (can be negative) to the specified field (needs to be numeric).
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @param string $field
 	 * @param integer $amount
@@ -871,7 +871,7 @@ abstract class DBDataObject {
 	 * Selects the the specified fields of the records matching the provided
 	 * conditions and returns them as DBDataObject. Field names get prefixed.
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @param array|string|null $fields
 	 * @param array $conditions
@@ -904,7 +904,7 @@ abstract class DBDataObject {
 	 * the first field and as value the second field.
 	 * If more then two fields are selected, each item will be an associative array.
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @param array|string|null $fields
 	 * @param array $conditions
@@ -961,7 +961,7 @@ abstract class DBDataObject {
 	 * Process the join conditions. This includes prefixing table and field names,
 	 * and adding of needed tables.
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @param array $joinConds Join conditions without prefixes and fields in array rather then string with equals sign.
 	 * @param array $tables List of tables to which the extra needed ones get added.
@@ -1005,7 +1005,7 @@ abstract class DBDataObject {
 	 * Selects the the specified fields of the first matching record.
 	 * Field names get prefixed.
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @param array|string|null $fields
 	 * @param array $conditions
@@ -1029,7 +1029,7 @@ abstract class DBDataObject {
 	 * returns the same results (if there are any, if there are none, this method returns false).
 	 * @see DBDataObject::selectFields
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @param array|string|null $fields
 	 * @param array $conditions
@@ -1051,7 +1051,7 @@ abstract class DBDataObject {
 	 * Returns if there is at least one record matching the provided conditions.
 	 * Condition field names get prefixed.
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @param array $conditions
 	 *
@@ -1065,7 +1065,7 @@ abstract class DBDataObject {
 	 * Returns the amount of matching records.
 	 * Condition field names get prefixed.
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @param array $conditions
 	 * @param array $options
@@ -1086,7 +1086,7 @@ abstract class DBDataObject {
 	 * Selects the the specified fields of the records matching the provided
 	 * conditions. Field names do NOT get prefixed.
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @param array $fields
 	 * @param array $conditions
@@ -1118,7 +1118,7 @@ abstract class DBDataObject {
 	 * setting the fields that are keys in the $values param to
 	 * their corresponding values.
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @param array $values
 	 * @param array $conditions
@@ -1139,7 +1139,7 @@ abstract class DBDataObject {
 	/**
 	 * Return the names of the fields.
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @return array
 	 */
@@ -1152,7 +1152,7 @@ abstract class DBDataObject {
 	 *
 	 * field name => field description
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @return array
 	 */
@@ -1163,7 +1163,7 @@ abstract class DBDataObject {
 	/**
 	 * Get API parameters for the fields supported by this object.
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @param boolean $requireParams
 	 * @param boolean $setDefaults
@@ -1212,7 +1212,7 @@ abstract class DBDataObject {
 	/**
 	 * Computes and updates the values of the summary fields.
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @param array|string|null $summaryFields
 	 */
@@ -1223,7 +1223,7 @@ abstract class DBDataObject {
 	/**
 	 * Computes the values of the summary fields of the objects matching the provided conditions.
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @param array|string|null $summaryFields
 	 * @param array $conditions
@@ -1243,7 +1243,7 @@ abstract class DBDataObject {
 	/**
 	 * Sets the value for the @see $updateSummaries field.
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @param boolean $update
 	 */
@@ -1254,7 +1254,7 @@ abstract class DBDataObject {
 	/**
 	 * Sets the value for the @see $inSummaryMode field.
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @param boolean $update
 	 */
@@ -1265,7 +1265,7 @@ abstract class DBDataObject {
 	/**
 	 * Return if any fields got changed.
 	 *
-	 * @since 0.1
+	 * @since 1.20
 	 *
 	 * @param DBDataObject $object
 	 * @param boolean $excludeSummaryFields When set to true, summary field changes are ignored.
