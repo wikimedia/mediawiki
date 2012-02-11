@@ -1461,27 +1461,6 @@ class Preferences {
 
 		return array( true, $info );
 	}
-
-	/**
-	 * @deprecated in 1.19; will be removed in 1.20.
-	 * @param $user User
-	 * @return array
-	 */
-	public static function loadOldSearchNs( $user ) {
-		wfDeprecated( __METHOD__, '1.19' );
-
-		$searchableNamespaces = SearchEngine::searchableNamespaces();
-		// Back compat with old format
-		$arr = array();
-
-		foreach ( $searchableNamespaces as $ns => $name ) {
-			if ( $user->getOption( 'searchNs' . $ns ) ) {
-				$arr[] = $ns;
-			}
-		}
-
-		return $arr;
-	}
 }
 
 /** Some tweaks to allow js prefs to work */
