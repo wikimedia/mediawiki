@@ -1808,7 +1808,7 @@ class EditPage {
 			// If a summary has been preset using &summary= we dont want to prompt for
 			// a different summary. Only prompt for a summary if the summary is blanked.
 			// (Bug 17416)
-			$this->autoSumm = 'd41d8cd98f00b204e9800998ecf8427e'; # == md5('')
+			$this->autoSumm = md5('');
 		}
 		
 		$autosumm = $this->autoSumm ? $this->autoSumm : md5( $this->summary );
