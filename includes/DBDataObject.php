@@ -199,7 +199,7 @@ abstract class DBDataObject {
 	 * @param boolean $override
 	 * @param boolean $skipLoaded
 	 *
-	 * @return Success indicator
+	 * @return bool Success indicator
 	 */
 	public function loadFields( $fields = null, $override = true, $skipLoaded = false ) {
 		if ( is_null( $this->getId() ) ) {
@@ -209,18 +209,18 @@ abstract class DBDataObject {
 		if ( is_null( $fields ) ) {
 			$fields = array_keys( $this->getFieldTypes() );
 		}
-		
+
 		if ( $skipLoaded ) {
 			$fields = array_diff( $fields, array_keys( $this->fields ) );
 		}
-		
+
 		if ( count( $fields ) > 0 ) {
 			$results = $this->rawSelect(
 				$this->getPrefixedFields( $fields ),
 				array( $this->getPrefixedField( 'id' ) => $this->getId() ),
 				array( 'LIMIT' => 1 )
 			);
-	
+
 			foreach ( $results as $result ) {
 				$this->setFields( $this->getFieldsFromDBResult( $result ), $override );
 				return true;
@@ -1009,7 +1009,7 @@ abstract class DBDataObject {
 	 * @param array $options
 	 * @param array $joinConds
 	 *
-	 * @return EPBObject|false
+	 * @return DBObject|bool False on failure
 	 */
 	public static function selectRow( $fields = null, array $conditions = array(), array $options = array(), array $joinConds = array() ) {
 		$options['LIMIT'] = 1;
@@ -1034,7 +1034,7 @@ abstract class DBDataObject {
 	 * @param array $joinConds
 	 * @param boolean $collapse Set to false to always return each result row as associative array.
 	 *
-	 * @return mixed|array|false
+	 * @return mixed|array|bool False on failure
 	 */
 	public static function selectFieldsRow( $fields = null, array $conditions = array(), array $options = array(), array $joinConds = array(), $collapse = true ) {
 		$options['LIMIT'] = 1;
@@ -1253,7 +1253,7 @@ abstract class DBDataObject {
 	 *
 	 * @since 1.20
 	 *
-	 * @param boolean $update
+	 * @param boolean $summaryMode
 	 */
 	public function setSummaryMode( $summaryMode ) {
 		$this->inSummaryMode = $summaryMode;
