@@ -4180,6 +4180,9 @@ class Title {
 	 * viewed?  In particular, this function may be used to determine if
 	 * links to the title should be rendered as "bluelinks" (as opposed to
 	 * "redlinks" to non-existent pages).
+	 * Adding something else to this function will cause inconsistency
+	 * since LinkHolderArray calls isAlwaysKnown() and does its own
+	 * page existence check.
 	 *
 	 * @return Bool
 	 */
