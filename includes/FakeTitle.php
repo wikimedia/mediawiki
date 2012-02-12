@@ -46,6 +46,7 @@ class FakeTitle extends Title {
 	function isNamespaceProtected( User $user ) { $this->error(); }
 	function userCan( $action, $user = null, $doExpensiveQueries = true ) { $this->error(); }
 	function getUserPermissionsErrors( $action, $user, $doExpensiveQueries = true, $ignoreErrors = array() ) { $this->error(); }
+	function updateTitleProtection( $create_perm, $reason, $expiry ) { $this->error(); }
 	function deleteTitleProtection() { $this->error(); }
 	function isMovable() { $this->error(); }
 	function userCanRead() { $this->error(); }
@@ -58,6 +59,9 @@ class FakeTitle extends Title {
 	function getSkinFromCssJsSubpage() { $this->error(); }
 	function isCssSubpage() { $this->error(); }
 	function isJsSubpage() { $this->error(); }
+	function userCanEditCssJsSubpage() { $this->error(); }
+	function userCanEditCssSubpage() { $this->error(); }
+	function userCanEditJsSubpage() { $this->error(); }
 	function isCascadeProtected() { $this->error(); }
 	function getCascadeProtectionSources( $get_pages = true ) { $this->error(); }
 	function areRestrictionsCascading() { $this->error(); }

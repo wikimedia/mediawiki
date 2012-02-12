@@ -2129,6 +2129,34 @@ class Title {
 	}
 
 	/**
+	 * Protect css subpages of user pages: can $wgUser edit
+	 * this page?
+	 *
+	 * @deprecated in 1.19; will be removed in 1.20. Use getUserPermissionsErrors() instead.
+	 * @return Bool
+	 */
+	public function userCanEditCssSubpage() {
+		global $wgUser;
+		wfDeprecated( __METHOD__, '1.19' );
+		return ( ( $wgUser->isAllowedAll( 'editusercssjs', 'editusercss' ) )
+			|| preg_match( '/^' . preg_quote( $wgUser->getName(), '/' ) . '\//', $this->mTextform ) );
+	}
+
+	/**
+	 * Protect js subpages of user pages: can $wgUser edit
+	 * this page?
+	 *
+	 * @deprecated in 1.19; will be removed in 1.20. Use getUserPermissionsErrors() instead.
+	 * @return Bool
+	 */
+	public function userCanEditJsSubpage() {
+		global $wgUser;
+		wfDeprecated( __METHOD__, '1.19' );
+		return ( ( $wgUser->isAllowedAll( 'editusercssjs', 'edituserjs' ) )
+			   || preg_match( '/^' . preg_quote( $wgUser->getName(), '/' ) . '\//', $this->mTextform ) );
+	}
+
+	/**
 	 * Get a filtered list of all restriction types supported by this wiki.
 	 * @param bool $exists True to get all restriction types that apply to
 	 * titles that do exist, False for all restriction types that apply to
@@ -2201,6 +2229,29 @@ class Title {
 			$this->mTitleProtection = $dbr->fetchRow( $res );
 		}
 		return $this->mTitleProtection;
+	}
+
+	/**
+	 * Update the title protection status
+	 *
+	 * @deprecated in 1.19; will be removed in 1.20. Use WikiPage::doUpdateRestrictions() instead.
+	 * @param $create_perm String Permission required for creation
+	 * @param $reason String Reason for protection
+	 * @param $expiry String Expiry timestamp
+	 * @return boolean true
+	 */
+	public function updateTitleProtection( $create_perm, $reason, $expiry ) {
+		wfDeprecated( __METHOD__, '1.19' );
+
+		global $wgUser;
+
+		$limit = array( 'create' => $create_perm );
+		$expiry = array( 'create' => $expiry );
+
+		$page = WikiPage::factory( $this );
+		$status = $page->doUpdateRestrictions( $limit, $expiry, false, $reason, $wgUser );
+
+		return $status->isOK();
 	}
 
 	/**
