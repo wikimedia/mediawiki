@@ -6,6 +6,7 @@
  * @ingroup SpecialPage
  */
 abstract class PageQueryPage extends QueryPage {
+
 	/**
 	 * Format the result as a simple link to the page
 	 *
@@ -15,14 +16,11 @@ abstract class PageQueryPage extends QueryPage {
 	 */
 	public function formatResult( $skin, $row ) {
 		global $wgContLang;
-
 		$title = Title::makeTitleSafe( $row->namespace, $row->title );
 		$text = $row->title;
-
 		if ( $title instanceof Title ) {
 			$text = $wgContLang->convert( $title->getPrefixedText() );
 		}
-
 		return Linker::linkKnown( $title, htmlspecialchars( $text ) );
 	}
 }

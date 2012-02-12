@@ -15,7 +15,6 @@ production.
 === New features in 1.20 ===
 * Added TitleIsKnown hook which gets called when determining if a page exists.
 * (bug 32341) Add upload by URL domain limitation.
-* wfLoadExtensionMessages() was removed. Deprecated in 1.16, removed in 1.20.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
