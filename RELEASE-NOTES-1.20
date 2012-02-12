@@ -21,8 +21,6 @@ production.
 * (bug 30245) Use the correct way to construct a log page title.
 * (bug 34237) Regenerate an empty user_token and save to the database
   when we try to set the user's cookies for login.
-* (bug 34254) Using a gzipped file cache ($wgUseGzip and $wgUseFileCache)
-  compressed the output twice resulting in garbage output (since 1.18)
 * (bug 32210) New edit emails for watched pages always provide a link to the
   edit which triggered the mail.
 * (bug 12021) Added user talk link on Special:Listusers
