@@ -651,7 +651,7 @@ abstract class DBDataObject {
 	 *
 	 * @return boolean
 	 */
-	public static function canHasField( $name ) {
+	public static function canHaveField( $name ) {
 		return array_key_exists( $name, static::getFieldTypes() );
 	}
 
