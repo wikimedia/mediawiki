@@ -813,6 +813,8 @@ div.gallerytext {
 /* Language specific height correction for titles. Ref Bug 29405 and Bug 30809 */
 /* Languages like hi or ml require slightly more vertical space to show diacritics properly */
 h1:lang(as),
+h1:lang(bh), /* Macrolanguage, used on bh.wikipedia.org, should be removed one day */
+h1:lang(bho),
 h1:lang(bn),
 h1:lang(gu),
 h1:lang(hi),
@@ -827,6 +829,8 @@ h1:lang(te) {
 	line-height: 1.5em !important;
 }
 h2:lang(as), h3:lang(as), h4:lang(as), h5:lang(as), h6:lang(as),
+h2:lang(bho), h3:lang(bho), h4:lang(bho), h5:lang(bho), h6:lang(bho),
+h2:lang(bh), h3:lang(bh), h4:lang(bh), h5:lang(bh), h6:lang(bh),
 h2:lang(bn), h3:lang(bn), h4:lang(bn), h5:lang(bn), h6:lang(bn),
 h2:lang(gu), h3:lang(gu), h4:lang(gu), h5:lang(gu), h6:lang(gu),
 h2:lang(hi), h3:lang(hi), h4:lang(hi), h5:lang(hi), h6:lang(hi),
