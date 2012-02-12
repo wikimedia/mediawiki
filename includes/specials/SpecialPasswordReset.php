@@ -65,6 +65,9 @@ class SpecialPasswordReset extends FormSpecialPage {
 				'type' => 'text',
 				'label-message' => 'passwordreset-username',
 			);
+			if( $this->getUser()->isLoggedIn() ) {
+				$a['Username']['default'] = $this->getUser()->getName();
+			}
 		}
 
 		if ( isset( $wgPasswordResetRoutes['email'] ) && $wgPasswordResetRoutes['email'] ) {
