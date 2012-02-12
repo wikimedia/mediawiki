@@ -895,7 +895,7 @@ abstract class DBDataObject {
 
 		if ( $collapse ) {
 			if ( count( $fields ) === 1 ) {
-				$objects = array_map( function( $object ) { return array_shift( $object ); } , $objects );
+				$objects = array_map( 'array_shift', $objects );
 			}
 			elseif ( count( $fields ) === 2 ) {
 				$o = array();
