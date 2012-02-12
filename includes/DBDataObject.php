@@ -81,7 +81,7 @@ abstract class DBDataObject {
 	 * The database connection to use for read operations.
 	 * Can be changed via @see setReadDb.
 	 *
-	 * @since 0.2
+	 * @since 1.20
 	 * @var integer DB_ enum
 	 */
 	protected static $readDb = DB_SLAVE;
@@ -624,7 +624,7 @@ abstract class DBDataObject {
 	/**
 	 * Get the database type used for read operations.
 	 *
-	 * @since 0.2
+	 * @since 1.20
 	 * @return integer DB_ enum
 	 */
 	public static function getReadDb() {
@@ -636,7 +636,7 @@ abstract class DBDataObject {
 	 *
 	 * @param integer $db
 	 *
-	 * @since 0.2
+	 * @since 1.20
 	 */
 	public static function setReadDb( $db ) {
 		self::$readDb = $db;
