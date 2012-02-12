@@ -116,9 +116,12 @@ abstract class FileCacheBase {
 	 * @return string
 	 */
 	public function fetchText() {
-		// gzopen can transparently read from gziped or plain text
-		$fh = gzopen( $this->cachePath(), 'rb' );
-		return stream_get_contents( $fh );
+		if( $this->useGzip() ) {
+			$fh = gzopen( $this->cachePath(), 'rb' );
+			return stream_get_contents( $fh );
+		} else {
+			return file_get_contents( $this-cachePath() );
+		}
 	}
 
 	/**
