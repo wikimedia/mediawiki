@@ -737,39 +737,43 @@ class Html {
 			$params['selected'] = '';
 		}
 
-		// Array holding the <option> elements
+		// Associative array between option-values and option-labels
 		$options = array();
 
 		if ( isset( $params['all'] ) ) {
-			// add an <option> that would let the user select all namespaces.
-			// Value is provided by user, the name shown is localized.
+			// add an option that would let the user select all namespaces.
+			// Value is provided by user, the name shown is localized for the user.
 			$options[$params['all']] = wfMsg( 'namespacesall' );
 		}
-		// Add defaults <option> according to content language
+		// Add all namespaces as options (in the content langauge)
 		$options += $wgContLang->getFormattedNamespaces();
 
-		// Convert $options to HTML
+		// Convert $options to HTML and filter out namespaces below 0
 		$optionsHtml = array();
 		foreach ( $options as $nsId => $nsName ) {
 			if ( $nsId < NS_MAIN ) {
 				continue;
 			}
 			if ( $nsId === 0 ) {
+				// For other namespaces use use the namespace prefix as label, but for
+				// main we don't use "" but the user message descripting it (e.g. "(Main)" or "(Article)")
 				$nsName = wfMsg( 'blanknamespace' );
 			}
 			$optionsHtml[] = Xml::option( $nsName, $nsId, $nsId === $params['selected'] );
 		}
 
-		// Forge a <select> element and returns it
 		$ret = '';
 		if ( isset( $params['label'] ) ) {
 			$ret .= Xml::label( $params['label'], $selectAttribs['id'] ) . '&#160;';
 		}
+
+		// Wrap options in a <select>
 		$ret .= Html::openElement( 'select', $selectAttribs )
 			. "\n"
 			. implode( "\n", $optionsHtml )
 			. "\n"
 			. Html::closeElement( 'select' );
+
 		return $ret;
 	}
 
