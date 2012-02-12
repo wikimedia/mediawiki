@@ -201,13 +201,13 @@ abstract class DBDataObject {
 		}
 
 		if ( count( $fields ) > 0 ) {
-			$results = $this->rawSelect(
+			$result = $this->rawSelectRow(
 				$this->getPrefixedFields( $fields ),
 				array( $this->getPrefixedField( 'id' ) => $this->getId() ),
 				array( 'LIMIT' => 1 )
 			);
 
-			foreach ( $results as $result ) {
+			if ( !$result ) {
 				$this->setFields( $this->getFieldsFromDBResult( $result ), $override );
 				return true;
 			}
@@ -878,10 +878,12 @@ abstract class DBDataObject {
 		else {
 			$fields = (array)$fields;
 		}
-
-		$result = static::rawSelect(
+		
+		$dbr = wfGetDB( static::getReadDb() );
+		$result = $dbr->select(static::getDBTable(),
 			static::getPrefixedFields( $fields ),
 			static::getPrefixedValues( $conditions ),
+			__METHOD__,
 			$options
 		);
 
@@ -979,11 +981,11 @@ abstract class DBDataObject {
 	 * @return integer
 	 */
 	public static function count( array $conditions = array(), array $options = array() ) {
-		$res = static::rawSelect(
+		$res = static::rawSelectRow(
 			array( 'COUNT(*) AS rowcount' ),
 			static::getPrefixedValues( $conditions ),
 			$options
-		)->fetchObject();
+		);
 
 		return $res->rowcount;
 	}
@@ -1000,13 +1002,13 @@ abstract class DBDataObject {
 	 *
 	 * @return ResultWrapper
 	 */
-	public static function rawSelect( array $fields, array $conditions = array(), array $options = array() ) {
+	protected static function rawSelectRow( array $fields, array $conditions = array(), array $options = array() ) {
 		$dbr = wfGetDB( static::getReadDb() );
 
-		return $dbr->select(
+		return $dbr->selectRow(
 			static::getDBTable(),
 			$fields,
-			count( $conditions ) == 0 ? '' : $conditions,
+			$conditions,
 			__METHOD__,
 			$options
 		);
