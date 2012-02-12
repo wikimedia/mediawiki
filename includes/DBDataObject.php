@@ -207,7 +207,7 @@ abstract class DBDataObject {
 				array( 'LIMIT' => 1 )
 			);
 
-			if ( !$result ) {
+			if ( $result !== false ) {
 				$this->setFields( $this->getFieldsFromDBResult( $result ), $override );
 				return true;
 			}
@@ -880,7 +880,8 @@ abstract class DBDataObject {
 		}
 		
 		$dbr = wfGetDB( static::getReadDb() );
-		$result = $dbr->select(static::getDBTable(),
+		$result = $dbr->select(
+			static::getDBTable(),
 			static::getPrefixedFields( $fields ),
 			static::getPrefixedValues( $conditions ),
 			__METHOD__,
