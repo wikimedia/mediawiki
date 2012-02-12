@@ -211,10 +211,7 @@ abstract class DBDataObject {
 		}
 		
 		if ( $skipLoaded ) {
-			$loadedFields = array_keys( $this->fields );
-			$fields = array_filter( $fields, function( $field ) use ( $loadedFields ) {
-				return !in_array( $field, $loadedFields );
-			} );
+			$fields = array_diff( $fields, array_keys( $this->fields ) );
 		}
 		
 		if ( count( $fields ) > 0 ) {
