@@ -1238,7 +1238,7 @@ $data: Associative array of data for handlers to record. It must include values 
  - 'comment'   Wikitext string in the same format as an edit summary
  - 'timestamp' Timestamp when the action occured
 
-LoginAuthenticateAudit': a login attempt for a valid user account either
+'LoginAuthenticateAudit': a login attempt for a valid user account either
 succeeded or failed. No return data is accepted; this hook is for auditing only.
 $user: the User object being authenticated against
 $password: the password being submitted and found wanting
