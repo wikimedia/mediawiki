@@ -7,6 +7,8 @@
  * array of fields and various methods to do common interaction with the database.
  *
  * These methods must be implemented in deriving classes:
+ * * getDBTable
+ * * getFieldPrefix
  * * getFieldTypes
  *
  * These methods are likely candidates for overriding:
@@ -16,10 +18,6 @@
  * * saveExisting
  * * loadSummaryFields
  * * getSummaryFields
- *
- * Deriving classes must register their table and field prefix in $wgDBDataObjects.
- * Syntax: $wgDBDataObjects['DrivingClassName'] = array( 'table' => 'table_name', 'prefix' => 'fieldprefix_' );
- * Example: $wgDBDataObjects['EPOrg'] = array( 'table' => 'ep_orgs', 'prefix' => 'org_' );
  *
  * Main instance methods:
  * * getField(s)
@@ -95,13 +93,7 @@ abstract class DBDataObject {
 	 * @return string
 	 */
 	public static function getDBTable() {
-		global $wgDBDataObjects;
-		if ( array_key_exists( get_called_class(), $wgDBDataObjects ) ) {
-			return $wgDBDataObjects[get_called_class()]['table'];
-		}
-		else {
-			throw new MWException( 'Class "' . get_called_class() . '" not found in $wgDBDataObjects' );
-		}
+		throw new MWException( 'Class "' . get_called_class() . '" did not implement getDBTable' );
 	}
 
 	/**
@@ -113,13 +105,7 @@ abstract class DBDataObject {
 	 * @return string
 	 */
 	protected static function getFieldPrefix() {
-		global $wgDBDataObjects;
-		if ( array_key_exists( get_called_class(), $wgDBDataObjects ) ) {
-			return $wgDBDataObjects[get_called_class()]['prefix'];
-		}
-		else {
-			throw new MWException( 'Class "' . get_called_class() . '" not found in $wgDBDataObjects' );
-		}
+		throw new MWException( 'Class "' . get_called_class() . '" did not implement getFieldPrefix' );
 	}
 
 	/**
@@ -675,9 +661,6 @@ abstract class DBDataObject {
 
 	/**
 	 * Takes in a field and returns an it's prefixed version, ready for db usage.
-	 * If the field needs to be prefixed for another table, provide an array in the form
-	 * array( 'tablename', 'fieldname' )
-	 * Where table name is registered in $wgDBDataObjects.
 	 *
 	 * @since 1.20
 	 *
@@ -687,28 +670,7 @@ abstract class DBDataObject {
 	 * @throws MWException
 	 */
 	public static function getPrefixedField( $field ) {
-		static $prefixes = false;
-
-		if ( $prefixes === false ) {
-			foreach ( $GLOBALS['wgDBDataObjects'] as $classInfo ) {
-				$prefixes[$classInfo['table']] = $classInfo['prefix'];
-			}
-		}
-
-		if ( is_array( $field ) && count( $field ) > 1 ) {
-			if ( array_key_exists( $field[0], $prefixes ) ) {
-				$prefix = $prefixes[$field[0]];
-				$field = $field[1];
-			}
-			else {
-				throw new MWException( 'Tried to prefix field with unknown table "' . $field[0] . '"' );
-			}
-		}
-		else {
-			$prefix = static::getFieldPrefix();
-		}
-
-		return $prefix . $field;
+		return static::getFieldPrefix() . $field;
 	}
 
 	/**
@@ -873,12 +835,11 @@ abstract class DBDataObject {
 	 * @param array|string|null $fields
 	 * @param array $conditions
 	 * @param array $options
-	 * @param array $joinConds
 	 *
 	 * @return array of self
 	 */
-	public static function select( $fields = null, array $conditions = array(), array $options = array(), array $joinConds = array() ) {
-		$result = static::selectFields( $fields, $conditions, $options, $joinConds, false );
+	public static function select( $fields = null, array $conditions = array(), array $options = array() ) {
+		$result = static::selectFields( $fields, $conditions, $options, false );
 
 		$objects = array();
 
@@ -906,12 +867,11 @@ abstract class DBDataObject {
 	 * @param array|string|null $fields
 	 * @param array $conditions
 	 * @param array $options
-	 * @param array $joinConds
 	 * @param boolean $collapse Set to false to always return each result row as associative array.
 	 *
 	 * @return array of array
 	 */
-	public static function selectFields( $fields = null, array $conditions = array(), array $options = array(), array $joinConds = array(), $collapse = true ) {
+	public static function selectFields( $fields = null, array $conditions = array(), array $options = array(), $collapse = true ) {
 		if ( is_null( $fields ) ) {
 			$fields = array_keys( static::getFieldTypes() );
 		}
@@ -919,15 +879,10 @@ abstract class DBDataObject {
 			$fields = (array)$fields;
 		}
 
-		$tables = array( static::getDBTable() );
-		$joinConds = static::getProcessedJoinConds( $joinConds, $tables );
-
 		$result = static::rawSelect(
 			static::getPrefixedFields( $fields ),
 			static::getPrefixedValues( $conditions ),
-			$options,
-			$joinConds,
-			$tables
+			$options
 		);
 
 		$objects = array();
@@ -955,50 +910,6 @@ abstract class DBDataObject {
 	}
 
 	/**
-	 * Process the join conditions. This includes prefixing table and field names,
-	 * and adding of needed tables.
-	 *
-	 * @since 1.20
-	 *
-	 * @param array $joinConds Join conditions without prefixes and fields in array rather then string with equals sign.
-	 * @param array $tables List of tables to which the extra needed ones get added.
-	 *
-	 * @return array Join conditions ready to be fed to MediaWikis native select function.
-	 */
-	protected static function getProcessedJoinConds( array $joinConds, array &$tables ) {
-		$conds = array();
-
-		foreach ( $joinConds as $table => $joinCond ) {
-			if ( !in_array( $table, $tables ) ) {
-				$tables[] = $table;
-			}
-
-			$cond = array( $joinCond[0], array() );
-
-			foreach ( $joinCond[1] as $joinCondPart ) {
-				$parts = array(
-					static::getPrefixedField( $joinCondPart[0] ),
-					static::getPrefixedField( $joinCondPart[1] ),
-				);
-
-				if ( !in_array( $joinCondPart[0][0], $tables ) ) {
-					$tables[] = $joinCondPart[0][0];
-				}
-
-				if ( !in_array( $joinCondPart[1][0], $tables ) ) {
-					$tables[] = $joinCondPart[1][0];
-				}
-
-				$cond[1][] = implode( '=', $parts );
-			}
-
-			$conds[$table] = $cond;
-		}
-
-		return $conds;
-	}
-
-	/**
 	 * Selects the the specified fields of the first matching record.
 	 * Field names get prefixed.
 	 *
@@ -1007,14 +918,13 @@ abstract class DBDataObject {
 	 * @param array|string|null $fields
 	 * @param array $conditions
 	 * @param array $options
-	 * @param array $joinConds
 	 *
 	 * @return DBObject|bool False on failure
 	 */
-	public static function selectRow( $fields = null, array $conditions = array(), array $options = array(), array $joinConds = array() ) {
+	public static function selectRow( $fields = null, array $conditions = array(), array $options = array() ) {
 		$options['LIMIT'] = 1;
 
-		$objects = static::select( $fields, $conditions, $options, $joinConds );
+		$objects = static::select( $fields, $conditions, $options );
 
 		return count( $objects ) > 0 ? $objects[0] : false;
 	}
@@ -1031,15 +941,14 @@ abstract class DBDataObject {
 	 * @param array|string|null $fields
 	 * @param array $conditions
 	 * @param array $options
-	 * @param array $joinConds
 	 * @param boolean $collapse Set to false to always return each result row as associative array.
 	 *
 	 * @return mixed|array|bool False on failure
 	 */
-	public static function selectFieldsRow( $fields = null, array $conditions = array(), array $options = array(), array $joinConds = array(), $collapse = true ) {
+	public static function selectFieldsRow( $fields = null, array $conditions = array(), array $options = array(), $collapse = true ) {
 		$options['LIMIT'] = 1;
 
-		$objects = static::selectFields( $fields, $conditions, $options, $joinConds, $collapse );
+		$objects = static::selectFields( $fields, $conditions, $options, $collapse );
 
 		return count( $objects ) > 0 ? $objects[0] : false;
 	}
@@ -1088,25 +997,18 @@ abstract class DBDataObject {
 	 * @param array $fields
 	 * @param array $conditions
 	 * @param array $options
-	 * @param array $joinConds
-	 * @param array $tables
 	 *
 	 * @return ResultWrapper
 	 */
-	public static function rawSelect( array $fields, array $conditions = array(), array $options = array(), array $joinConds = array(), array $tables = null ) {
-		if ( is_null( $tables ) ) {
-			$tables = static::getDBTable();
-		}
-
+	public static function rawSelect( array $fields, array $conditions = array(), array $options = array() ) {
 		$dbr = wfGetDB( static::getReadDb() );
 
 		return $dbr->select(
-			$tables,
+			static::getDBTable(),
 			$fields,
 			count( $conditions ) == 0 ? '' : $conditions,
 			__METHOD__,
-			$options,
-			$joinConds
+			$options
 		);
 	}
 
