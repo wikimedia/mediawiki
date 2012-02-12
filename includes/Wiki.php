@@ -267,6 +267,13 @@ class MediaWiki {
 			$article = $this->initializeArticle();
 			if ( is_object( $article ) ) {
 				$pageView = true;
+				/**
+				 * $wgArticle is deprecated, do not use it.
+				 * @deprecated since 1.18
+				 */
+				global $wgArticle;
+				$wgArticle = $article;
+
 				$this->performAction( $article );
 			} elseif ( is_string( $article ) ) {
 				$output->redirect( $article );
