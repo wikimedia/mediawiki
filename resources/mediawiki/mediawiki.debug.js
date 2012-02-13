@@ -1,5 +1,5 @@
 /**
- * JavaScript for the new debug toolbar, enabled with $wgDebugToolbar
+ * JavaScript for the new debug toolbar, enabled through $wgDebugToolbar.
  *
  * @author John Du Hart
  * @since 1.19
@@ -26,13 +26,15 @@
 		data: {},
 
 		/**
-		 * Initializes the debugging pane
+		 * Initializes the debugging pane.
+		 * Shouldn't be called before the document is ready
+		 * (since it binds to elements on the page).
 		 *
-		 * @param {Object} data
+		 * @param {Object} data, defaults to 'debugInfo' from mw.config
 		 */
 		init: function ( data ) {
 
-			this.data = data;
+			this.data = data || mw.config.get( 'debugInfo' );
 			this.buildHtml();
 
 			// Insert the container into the DOM
