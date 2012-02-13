@@ -214,6 +214,8 @@ class HtmlTest extends MediaWikiTestCase {
 	}
 
 	function testNamespaceSelector() {
+		global $wgContLang;
+
 		$this->assertEquals(
 			'<select id="namespace" name="namespace">' . "\n" .
 '<option value="0">(Main)</option>' . "\n" .
@@ -262,6 +264,35 @@ class HtmlTest extends MediaWikiTestCase {
 				array( 'name' => 'wpNamespace', 'id' => 'mw-test-namespace' )
 			),
 			'Basic namespace selector with custom values'
+		);
+		$immovable = array();
+		$namespaces = $wgContLang->getNamespaces();
+		foreach ( $namespaces as $nsId => $nsName ) {
+			if ( !MWNamespace::isMovable( intval( $nsId ) ) ) {
+				$immovable[] = $nsId;
+			}
+		}
+		$this->assertEquals(
+			'<select id="namespace" name="namespace">' . "\n" .
+'<option value="0">(Main)</option>' . "\n" .
+'<option value="1">Talk</option>' . "\n" .
+'<option value="2">User</option>' . "\n" .
+'<option value="3">User talk</option>' . "\n" .
+'<option value="4">MyWiki</option>' . "\n" .
+'<option value="5">MyWiki Talk</option>' . "\n" .
+'<option value="6">File</option>' . "\n" .
+'<option value="7">File talk</option>' . "\n" .
+'<option value="8">MediaWiki</option>' . "\n" .
+'<option value="9">MediaWiki talk</option>' . "\n" .
+'<option value="10">Template</option>' . "\n" .
+'<option value="11">Template talk</option>' . "\n" .
+'<option disabled="" value="14">Category</option>' . "\n" .
+'<option value="15">Category talk</option>' . "\n" .
+'</select>',
+			Html::namespaceSelector(
+				array( 'exclude' => array( 100, 101 ), 'disable' => $immovable )
+			),
+			'Namespace selector without the custom namespace and immovable namespaces disabled.'
 		);
 	}
 

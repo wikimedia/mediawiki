@@ -708,6 +708,8 @@ class Html {
 	 * - selected: [optional] Id of namespace which should be pre-selected
 	 * - all: [optional] Value of item for "all namespaces". If null or unset, no <option> is generated to select all namespaces
 	 * - label: text for label to add before the field
+	 * - exclude: [optional] Array of namespace ids to exclude
+	 * - disable: [optional] Array of namespace ids for which the option should be disabled in the selector
 	 * @param $selectAttribs array HTML attributes for the generated select element.
 	 * - id:   [optional], default: 'namespace'
 	 * - name: [optional], default: 'namespace'
@@ -737,6 +739,13 @@ class Html {
 			$params['selected'] = '';
 		}
 
+		if ( !isset( $params['exclude'] ) || !is_array( $params['exclude'] ) ) {
+			$params['exclude'] = array();
+		}
+		if ( !isset( $params['disable'] ) || !is_array( $params['disable'] ) ) {
+			$params['disable'] = array();
+		}
+
 		// Associative array between option-values and option-labels
 		$options = array();
 
@@ -751,7 +760,7 @@ class Html {
 		// Convert $options to HTML and filter out namespaces below 0
 		$optionsHtml = array();
 		foreach ( $options as $nsId => $nsName ) {
-			if ( $nsId < NS_MAIN ) {
+			if ( $nsId < NS_MAIN || in_array( $nsId, $params['exclude'] ) ) {
 				continue;
 			}
 			if ( $nsId === 0 ) {
@@ -759,7 +768,9 @@ class Html {
 				// main we don't use "" but the user message descripting it (e.g. "(Main)" or "(Article)")
 				$nsName = wfMsg( 'blanknamespace' );
 			}
-			$optionsHtml[] = Xml::option( $nsName, $nsId, $nsId === $params['selected'] );
+			$optionsHtml[] = Xml::option( $nsName, $nsId, $nsId === $params['selected'], array(
+				'disabled' => in_array( $nsId, $params['disable'] ),
+			) );
 		}
 
 		$ret = '';
