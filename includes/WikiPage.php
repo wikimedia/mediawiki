@@ -445,6 +445,7 @@ class WikiPage extends Page {
 		if ( !$this->mTimestamp ) {
 			$this->loadLastEdit();
 		}
+		
 		return wfTimestamp( TS_MW, $this->mTimestamp );
 	}
 
