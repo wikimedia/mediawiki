@@ -36,6 +36,8 @@ class HtmlTest extends MediaWikiTestCase {
 			9  => 'MediaWiki_talk',
 			10  => 'Template',
 			11  => 'Template_talk',
+			14  => 'Category',
+			15  => 'Category_talk',
 			100  => 'Custom',
 			101  => 'Custom_talk',
 		) );
@@ -226,6 +228,8 @@ class HtmlTest extends MediaWikiTestCase {
 '<option value="9">MediaWiki talk</option>' . "\n" .
 '<option value="10">Template</option>' . "\n" .
 '<option value="11">Template talk</option>' . "\n" .
+'<option value="14">Category</option>' . "\n" .
+'<option value="15">Category talk</option>' . "\n" .
 '<option value="100">Custom</option>' . "\n" .
 '<option value="101">Custom talk</option>' . "\n" .
 '</select>',
@@ -248,6 +252,8 @@ class HtmlTest extends MediaWikiTestCase {
 '<option value="9">MediaWiki talk</option>' . "\n" .
 '<option value="10">Template</option>' . "\n" .
 '<option value="11">Template talk</option>' . "\n" .
+'<option value="14">Category</option>' . "\n" .
+'<option value="15">Category talk</option>' . "\n" .
 '<option value="100">Custom</option>' . "\n" .
 '<option value="101">Custom talk</option>' . "\n" .
 '</select>',
