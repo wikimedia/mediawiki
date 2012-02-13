@@ -1282,7 +1282,7 @@ function wfGetLangObj( $langcode = false ) {
 
 /**
  * Old function when $wgBetterDirectionality existed
- * Removed in core, kept in extensions for backwards compat.
+ * All usage removed, wfUILang can be removed in near future
  *
  * @deprecated since 1.18
  * @return Language
