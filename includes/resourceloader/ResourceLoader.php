@@ -354,6 +354,7 @@ class ResourceLoader {
 	 * @return Array
 	 */
 	public function getTestModuleNames( $framework = 'all' ) {
+		/// @TODO: api siteinfo prop testmodulenames modulenames
 		if ( $framework == 'all' ) {
 			return $this->testModuleNames;
 		} elseif ( isset( $this->testModuleNames[$framework] ) && is_array( $this->testModuleNames[$framework] ) ) {
@@ -797,7 +798,7 @@ class ResourceLoader {
 	 *
 	 * @param $name string Module name
 	 * @param $scripts Mixed: List of URLs to JavaScript files or String of JavaScript code
-	 * @param $styles Mixed: List of CSS strings keyed by media type, or list of lists of URLs to
+	 * @param $styles Mixed: Array of CSS strings keyed by media type, or an array of lists of URLs to
 	 * CSS files keyed by media type
 	 * @param $messages Mixed: List of messages associated with this module. May either be an
 	 *     associative array mapping message key to value, or a JSON-encoded message blob containing
@@ -807,7 +808,7 @@ class ResourceLoader {
 	 */
 	public static function makeLoaderImplementScript( $name, $scripts, $styles, $messages ) {
 		if ( is_string( $scripts ) ) {
-			$scripts = new XmlJsCode( "function( $ ) {{$scripts}}" );
+			$scripts = new XmlJsCode( "function () {\n{$scripts}\n}" );
 		} elseif ( !is_array( $scripts ) ) {
 			throw new MWException( 'Invalid scripts error. Array of URLs or string of code expected.' );
 		}
@@ -816,6 +817,11 @@ class ResourceLoader {
 			array(
 				$name,
 				$scripts,
+				// Force objects. mw.loader.implement requires them to be javascript objects.
+				// Although these variables are associative arrays, which become javascript
+				// objects through json_encode. In many cases they will be empty arrays, and
+				// PHP/json_encode() consider empty arrays to be numerical arrays and
+				// output javascript "[]" instead of "{}". This fixes that.
 				(object)$styles,
 				(object)$messages
 			) );
@@ -901,7 +907,7 @@ class ResourceLoader {
 	public static function makeCustomLoaderScript( $name, $version, $dependencies, $group, $source, $script ) {
 		$script = str_replace( "\n", "\n\t", trim( $script ) );
 		return Xml::encodeJsCall(
-			"( function( name, version, dependencies, group, source ) {\n\t$script\n} )",
+			"( function ( name, version, dependencies, group, source ) {\n\t$script\n} )",
 			array( $name, $version, $dependencies, $group, $source ) );
 	}
 

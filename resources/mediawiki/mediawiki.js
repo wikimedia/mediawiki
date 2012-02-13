@@ -315,7 +315,7 @@ var mw = ( function ( $, undefined ) {
 		/**
 		 * Client-side module loader which integrates with the MediaWiki ResourceLoader
 		 */
-		loader: ( function() {
+		loader: ( function () {
 	
 			/* Private Members */
 	
@@ -756,7 +756,7 @@ var mw = ( function ( $, undefined ) {
 						registry[module].state = 'loading';
 						nestedAddScript( script, markModuleReady, registry[module].blocking, 0 );
 					} else if ( $.isFunction( script ) ) {
-						script( $ );
+						script();
 						markModuleReady();
 					}
 				} catch ( e ) {
@@ -1418,7 +1418,7 @@ var mw = ( function ( $, undefined ) {
 					return s;
 				}
 			};
-		})()
+		}() )
 	};
 	
 })( jQuery );
