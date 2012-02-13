@@ -501,7 +501,7 @@ class Revision {
 	/**
 	 * Get parent revision ID (the original previous page revision)
 	 *
-	 * @return Integer
+	 * @return Integer|null
 	 */
 	public function getParentId() {
 		return $this->mParentId;
