@@ -511,9 +511,9 @@ class SpecialContributions extends SpecialPage {
 					$filterSelection .
 				Xml::closeElement( 'tr' ) .
 				Xml::openElement( 'tr' ) .
- 					$extraOptions .
- 				Xml::closeElement( 'tr' ) .
- 				Xml::openElement( 'tr' ) .
+					$extraOptions .
+				Xml::closeElement( 'tr' ) .
+				Xml::openElement( 'tr' ) .
 					$dateSelectionAndSubmit .
 				Xml::closeElement( 'tr' ) .
 			Xml::closeElement( 'table' );
@@ -677,23 +677,26 @@ class ContribsPager extends ReverseChronologicalPager {
 		$this->mResult->rewind();
 		$revIds = array();
 		foreach ( $this->mResult as $row ) {
-			$revIds[] = $row->rev_parent_id;
+			if( $row->rev_parent_id ) {
+				$revIds[] = $row->rev_parent_id;
+			}
 		}
 		$this->mParentLens = $this->getParentLengths( $revIds );
 		$this->mResult->rewind(); // reset
 
-		if ( $this->contribs === 'newbie' ) { // multiple users
-			# Do a link batch query
-			$this->mResult->seek( 0 );
-			$batch = new LinkBatch();
-			# Give some pointers to make (last) links
-			foreach ( $this->mResult as $row ) {
-				$batch->addObj( Title::makeTitleSafe( NS_USER, $row->user_name ) );
-				$batch->addObj( Title::makeTitleSafe( NS_USER_TALK, $row->user_name ) );
+		# Do a link batch query
+		$this->mResult->seek( 0 );
+		$batch = new LinkBatch();
+		# Give some pointers to make (last) links
+		foreach ( $this->mResult as $row ) {
+			if ( $this->contribs === 'newbie' ) { // multiple users
+				$batch->add( NS_USER, $row->user_name );
+				$batch->add( NS_USER_TALK, $row->user_name );
 			}
-			$batch->execute();
-			$this->mResult->seek( 0 );
+			$batch->add( $row->page_namespace, $row->page_title );
 		}
+		$batch->execute();
+		$this->mResult->seek( 0 );
 	}
 
 	/**
@@ -787,12 +790,9 @@ class ContribsPager extends ReverseChronologicalPager {
 			array( 'action' => 'history' )
 		);
 
-		if ( isset( $this->mParentLens[$row->rev_parent_id] ) ) {
-			$chardiff = ' . . ' . ChangesList::showCharacterDifference(
-				$this->mParentLens[$row->rev_parent_id], $row->rev_len ) . ' . . ';
-		} else {
-			$chardiff = ' ';
-		}
+		$parentLen = isset( $this->mParentLens[$row->rev_parent_id] ) ? $this->mParentLens[$row->rev_parent_id] : 0;
+		$chardiff = ' . . ' . ChangesList::showCharacterDifference(
+				$parentLen, $row->rev_len ) . ' . . ';
 
 		$lang = $this->getLanguage();
 		$comment = $lang->getDirMark() . Linker::revComment( $rev, false, true );
