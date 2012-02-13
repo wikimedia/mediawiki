@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Aguddi
  * @author Aksi great
  * @author Aritra
  * @author Ashok modhvadia
@@ -16,6 +17,7 @@
  * @author Jay
  * @author Kaganer
  * @author KartikMistry
+ * @author Metrix1312
  * @author Mohit.dalal
  * @author Nehal
  * @author Ramesh
@@ -691,14 +693,14 @@ Please log in again after you receive it.
 'passwordreset-capture-help'       => 'જો તમે આ ઓપ્શન સિલેક્ટ કરશો, તો તમને અને યુઝર ને ઈ મેલ (કામચલાઉ પાસવર્ડ સાથે) દેખાડવામાં આવશે.',
 'passwordreset-email'              => 'ઇ મેલ સરનામું:',
 'passwordreset-emailtitle'         => '{{SITENAME}} માટે ખાતુ બનાવ્યું',
-'passwordreset-emailtext-ip'       => 'કોઈક (કદાચ તમો , $૧ IP એડ્રેસ થી) એ તમારી વેબસાઈટ {{SITENAME}} ના ખાતા ની વિગત અંગે યાદ દેવડાવાની રજૂઆત કરી છે. આ ઈ-મેઈલ એડ્રેસ સાથે {{PLURAL:$3}|નું ખાતું|ના ખાતા}} જોડાયેલા છે.
+'passwordreset-emailtext-ip'       => 'કોઈક (કદાચ તમો , $1 IP એડ્રેસ થી) એ તમારી વેબસાઈટ {{SITENAME}}  ($4) ના ખાતા ની વિગત અંગે યાદ દેવડાવાની રજૂઆત કરી છે. આ ઈ-મેઈલ એડ્રેસ સાથે {{PLURAL:$3|નું ખાતું|ના ખાતા}} જોડાયેલા છે.
 .
 .
 
 $2
 
 {{PLURAL:$3|આ કામચલાઉ પાસવર્ડ|આ બધા કામચલાઉ પાસવર્ડ}} {{PLURAL:$5|એક દિવસ|$5 દિવસ}} માં નષ્ટ થઇ જશે. તમારે અત્યારે જ ખાતું ખોલીને નવો પાસવર્ડ સેટ કરી લેવો જોઈએ .જો કોઈ બીજા એ આ રજૂઆત કરી હોય, અથવા જો તમને પોતાનો અસલ પાસવર્ડ યાદ હોય, અને તેને બદલવા નથી માગતા, તો આ સંદેશાને જતો કરીને પોતાના અસલ પાસવર્ડ ને વાપરી શકો છો.',
-'passwordreset-emailtext-user'     => 'વેબસાઈટ  {{SITENAME}} ના વપરાશકર્તા $1 એ તમારી ના ખાતા ની વિગત અંગે યાદ દેવડાવાની રજૂઆત કરી છે. આ ઈ-મેઈલ એડ્રેસ સાથે {{PLURAL:$3}|નું ખાતું|ના ખાતા}} જોડાયેલા છે.
+'passwordreset-emailtext-user'     => 'વેબસાઈટ  {{SITENAME}} ($4) ના વપરાશકર્તા $1 એ તમારી ના ખાતા ની વિગત અંગે યાદ દેવડાવાની રજૂઆત કરી છે. આ ઈ-મેઈલ એડ્રેસ સાથે {{PLURAL:$3|નું ખાતું|ના ખાતા}} જોડાયેલા છે.
 
 $2
 
@@ -879,7 +881,7 @@ $2
 જો આપ ના ચાહતા હોવ કે તમારા યોગદાનમાં અન્ય કોઇ વ્યક્તિ બેધડક પણે ફેરફાર કરે તો અહીં યોગદાન કરશો નહી.<br />
 સાથે સાથે તમે અમને એમ પણ ખાતરી આપી રહ્યા છો કે આ લખાણ તમે મૌલિક રીતે લખ્યું છે, અથવાતો પબ્લિક ડોમેઇન કે તેવા અન્ય મુક્ત સ્ત્રોતમાંથી લીધું છે (વધુ માહિતી માટે $1 જુઓ).
 '''પરવાનગી વગર પ્રકાશનાધિકારથી સુરક્ષિત કાર્ય અહીં પ્રકાશિત ના કરશો!'''",
-'longpageerror'                    => "'''ત્રુટિ: તમે લખેલ લેખ  $1 કિલોબાઇટ લાંબો છે, જે $2 કિલોબાઇટની મહત્તમ સીમા કરતાં વધુ છે.'''
+'longpageerror'                    => "ત્રુટિ: તમે લખેલ લેખ {{PLURAL:$1|એક કિલોબાઈટ|$1 કિલોબાઈટ્સ}} કિલોબાઇટ લાંબો છે, જે {{PLURAL:$1|એક કિલોબાઈટ|$2 કિલોબાઈટ્સ}}  કિલોબાઇટની મહત્તમ સીમા કરતાં વધુ છે.'''
 તેને સાચવી ન શકાયા.",
 'readonlywarning'                  => "'''ચેતવણી: માહિતીસંચ સમારકામ માટે બંધ કરાયો છે, તમે તમારા ફેરફારો હમણા સાચવી નહીં શકો.'''
 તમે તમારું લેખ કોઇ ટેક્સ્ટ ફાઇલ માં સેવ કરી મૂકી દો અને માહિતી સંચ ખુલતા વિકિ પર સાચવી શકશો. 
@@ -991,12 +993,12 @@ $3 દ્વારા અપાયેલ કારણ છે ''$2''",
 'rev-deleted-user-contribs'   => '[સભ્યનામ કે IP સરનામું  હટાવી દેવાયું છે - યોગદાનામાં આ ફેરફાર અદ્રશ્ય છે]',
 'rev-deleted-text-permission' => 'આ પુનરાવર્તન હટાવી દેવાયું છે
 આની વિસ્તરીત માહિતી અહીં મળશે [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].',
-'rev-deleted-text-unhide'     => "આ પાનું આવૃત્તિ''ગયેલ છે '''કાઢી.
-વિગતો શોધી શકાય છે [{{fullurl: {{# વિશેષ:}} લોગ / કાઢી | પાનું = {{FULLPAGENAMEE}}}} કાઢી નાંખવાનું લોગ].
-તમે હજુ પણ [આ આવૃત્તિ જોવા] શકો છો જો તમે પ્રક્રિયા કરવા માંગો છો.",
-'rev-suppressed-text-unhide'  => "આ પાનું આવૃત્તિ કરવામાં આવી છે'''''દબાવી.
-વિગતો શોધી શકાય છે [{{fullurl: {{# વિશેષ: લોગ}} / દબાવવા | પાનું = {{FULLPAGENAMEE}}}} દમન લોગ].
-તમે હજુ પણ [આ આવૃત્તિ જોવા] શકો છો જો તમે પ્રક્રિયા કરવા માંગો છો.",
+'rev-deleted-text-unhide'     => "આ પાનાની નવી આવૃત્તિ ''હટાવી છે '''.
+વિગતો શોધી શકાય છે [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].
+તમે હજુ પણ [$1 view this revision] આ આવૃત્તિ જોવા શકો છો જો તમે આગલ વધવા  માંગો તો.",
+'rev-suppressed-text-unhide'  => "આ પાના ફેરફારો ''' સંતાડવામાં ''' આવ્યાં છે.
+તેની વિગતો અહીં શોધી શકાય છે [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log].
+તમે હજુ પણ [$1 view this revision] આ આવૃત્તિ જોઈશકો છો જો તમે આગળ વધવા માંગો તો.",
 'rev-deleted-text-view'       => "આ પાનું આવૃત્તિ''ગયેલ છે '''કાઢી.
 તમે તેને જોઈ શકે છે; વિગતો શોધી શકાય છે [{{fullurl: {{# વિશેષ:}} લોગ / કાઢી | પાનું = {{FULLPAGENAMEE}}}} કાઢી નાંખવાનું લોગ].",
 'rev-suppressed-text-view'    => "આ પાનું આવૃત્તિ કરવામાં આવી છે'''''દબાવી.
@@ -1004,16 +1006,16 @@ $3 દ્વારા અપાયેલ કારણ છે ''$2''",
 'rev-deleted-no-diff'         => 'તમને આ ફરક નહીં દેખાય કેમકે કોઇ એક ફેરફાર હટાવી દેવાયો છે.
 આની માહિતી અહીં મળશે [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].',
 'rev-suppressed-no-diff'      => "તમને ફરક નહીં દેખાય કેમકે કોઈ એક પુનરાવર્તન '''હટાવાયું છે'''.",
-'rev-deleted-unhide-diff'     => "આ ભેદ આવૃત્તિઓની'''કાઢી''' કરવામાં આવી છે.
-વિગતો શોધી શકાય છે [{{fullurl: {{# વિશેષ:}} લોગ / કાઢી | પાનું = {{FULLPAGENAMEE}}}} કાઢી નાંખવાનું લોગ].
-તમે હજુ પણ [આ ભેદ જોવા] શકો છો જો તમે પ્રક્રિયા કરવા માંગો છો.",
+'rev-deleted-unhide-diff'     => "આમાંના ફેરફાર પછેની ઍકાદ આવૃત્તિ  '''કાઢી નાખવામાં'''  આવી છે.
+તેની વિગતો અહીં શોધી શકાય છે [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].
+તમે હજુ પણ [$1 view this diff] આ ભેદ અહીં જોઈ શકો છો જો તમે આગળ વધવા માંગો તો.",
 'rev-suppressed-unhide-diff'  => 'આ ફરકમાંનો કોઇ  એક ફેરફાર સંતાડી દેવાયો છે.
 આની માહિતી અહીંથી [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log] પરથી મળી જશે.
-પ્રબંધક તરીકે તમે ઇચ્છોતો [આ ફેરફારો ] જોઇ શકો છો.',
+તમે ઇચ્છોતો  [$1 view this diff] આ ફેરફારો જોઇ શકો છો.',
 'rev-deleted-diff-view'       => 'આ પુનરાવર્તન હટાવી દેવાયું છે
-પ્રબંધક તરીકે તમે આની લાહિતી મેળવી શકો છો. આની વિસ્તરીત માહિતી અહીં મળશે [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log]..',
-'rev-suppressed-diff-view'    => 'આ પુનરાવર્તન સંતાડી દેવાયું છે
-પ્રબંધક તરીકે તમે આની લાહિતી મેળવી શકો છો. આની વિસ્તરીત માહિતી અહીં મળશે [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log].',
+તમે આની લાહિતી મેળવી શકો છો. આની વિસ્તરીત માહિતી અહીં મળશે [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log]..',
+'rev-suppressed-diff-view'    => "આ પુનરાવર્તન '''સંતાડી''' દેવાયું છે
+તમે આની માહિતી મેળવી શકો છો. આની વિસ્તરીત માહિતી અહીં મળશે [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log].",
 'rev-delundel'                => 'બતાવો/છુપાવો',
 'rev-showdeleted'             => 'બતાવો',
 'revisiondelete'              => 'પુનરાવર્તન રદ્દ કરો/પુનર્જીવીત કરો',
@@ -1083,7 +1085,7 @@ $1",
 # Suppression log
 'suppressionlog'     => 'દાબ નોંધ',
 'suppressionlogtext' => 'નીચે પ્રબંધકોથી છુપાયેલ એવા હટાવ અને રોકની યાદિ આપેલી છે.
-હાલમાં સક્રીય એવા  પ્રતિબંધ અને રોકની યાદિ અહીં  [[Special:IPBlockList|IP block list]]  આપેલ છે.',
+હાલમાં સક્રીય એવા  પ્રતિબંધ અને રોકની યાદિ અહીં [[Special:BlockList|IP block list]]  આપેલ છે.',
 
 # History merging
 'mergehistory'                     => 'પાનાનાં ઇતિહાસોનું વિલીનીકરણ',
@@ -1287,6 +1289,7 @@ $1",
 'yourrealname'                  => 'સાચું નામ:',
 'yourlanguage'                  => 'ભાષા',
 'yourvariant'                   => 'સામગ્રી ભાષા વિવિધતા:',
+'prefs-help-variant'            => 'આ વિકિ પરના માહિતી પાનાના દેખાવ સંબંધે તમારી મનપસંદ variant કે orthography.',
 'yournick'                      => 'સહી:',
 'prefs-help-signature'          => 'ચર્ચા પાના પરની ટિપ્પણી "<nowiki>~~~~</nowiki>" દ્વારા હસ્તાક્ષરીત હોવા જોઇએ તેમાં તમારા હસ્તાક્ષર અને સમય શામિલ થશે.',
 'badsig'                        => 'અવૈધ કાચી સહી
@@ -1681,9 +1684,11 @@ $1',
 'backend-fail-read'          => 'ફાઈલ $1 ને વાંચી ન શકાઈ.',
 'backend-fail-create'        => 'ફાઈલ $1 ને બનાવી શકાઈ.',
 'backend-fail-readonly'      => 'સંગ્રહ પાર્શ્વભૂમિ  "$1" એ હાલમાં માત્ર વાંચન સક્ષમ છે. તેનું કારણ આપવામાં આવ્યું હતું: "$2"',
+'backend-fail-synced'        => 'ફાઈલ "$1"  અંતરિક સ્ટોરેજ બેકઍંડ માં એક અસંગત સ્થિતિમાં છે',
 'backend-fail-connect'       => 'સંગ્રહ પૃષ્ઠભૂમિ "$1" સાથે સંપર્ક સ્થાપી ના શકાયો.',
 'backend-fail-internal'      => 'સંગ્રહ પૃષ્ઠભૂમિ "$1"માં અજ્ઞાત ક્ષતિ ઉદ્ભવી.',
 'backend-fail-contenttype'   => '"$1"  પર  ફાઇલ સનગ્રવાહ માટે  સમાવિષ્ટ પ્રકાર નક્કી કરી નથી શકાય',
+'backend-fail-batchsize'     => '$1 ફાઈલના બેચને {{PLURAL:$1|પ્રક્રિયા|પ્રક્રિયાઓ}}ને સ્ટોરેજ બેકઍન્ડ અપાયું; મર્યાદા: $2 {{PLURAL:$2|પ્રક્રિયા|પ્રક્રિયાઓ}}.',
 
 # Lock manager
 'lockmanager-notlocked'        => '"$1" નું તાળું ખોલી ન શકાયું; તેના પર તાળું મરાયું જ નથી.',
@@ -1712,13 +1717,14 @@ $1',
 'uploadstash-badtoken' => 'તે કાર્ય કરવું નિષ્ફળ. કદાચ તમારા ફેરફાર હક્કો કાલાતિત થયાં છે. ફરી પ્રયત્ન કરો.',
 'uploadstash-errclear' => 'ફાઇલ સાફ સફાઇ અસફળ રહી',
 'uploadstash-refresh'  => 'અધ્યતન ફાઇલ યાદિ',
+'invalid-chunk-offset' => 'અમાન્ય કાપી કાઢેલો ઓફસેટ',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'પ્રવેશ વર્જીત',
 'img-auth-nopathinfo'       => 'પથ માહિતી ગાયબ.
 આ માહિતી પસાર કરવા તમારું સર્વર સજ્જ નથી.
 તે કદાચ CGI-આધારિત હોય અને img_authને આધાર ન આપે.
-[https://www.mediawiki.org/wiki/Manual:Image_Authorization ચિત્ર અધિકૃતિ જુઓ.]',
+https://www.mediawiki.org/wiki/Manual:Image_Authorization. જુઓ',
 'img-auth-notindir'         => 'અર્જીત પથ ચડાવેલ ફાઈલની ડીરેક્ટરીમાં નથી',
 'img-auth-badtitle'         => '"$1" માટે વૈધ શીર્ષક ન શોધી શકાયું',
 'img-auth-nologinnWL'       => 'તમે પ્રવેશ કર્યો નથી અને અને : $1 ધવલ યાદિમાં નથી.',
@@ -1936,6 +1942,8 @@ $1',
 'wantedpages'             => 'ઇચ્છિત પાનાં',
 'wantedpages-badtitle'    => 'પરિણામ ગણમાં અવૈધ શીર્ષક: $1',
 'wantedfiles'             => 'ઇચ્છિત ફાઈલો',
+'wantedfiletext-cat'      => 'નીચેની ફાઈલ વપરાઈ છે પણ તે વિહરમન નથી. ફાઈલ અહીં હોવા તેવી ફાઈલોને પણ પરદેશી રીપોસીટરીમાંથી ફાઈલો યાદીમાં જોઈ શકાય છે. આવા પુનરાવર્તનોને  <del>struck out</del> કાઢી નાખવામાં આવશે.વધારામાં, અસ્તિત્વમાં નહોય તેવી ફાઈલધરાવતાં પાનાની યાદી [[:$1]].',
+'wantedfiletext-nocat'    => 'નીચેની ફાઈલ વપરાઈ છે પણ તે અસ્તિત્વમાં નથી. ફાઈલ અહીં હોવા તેવી ફાઈલોને પણ પરદેશી રીપોસીટરીમાંથી ફાઈલો યાદીમાં જોઈ શકાય છે. આવા પુનરાવર્તનોને  <del>struck out</del> કાઢી નાખવામાં આવશે.',
 'wantedtemplates'         => 'જોઈતા ઢાંચા',
 'mostlinked'              => 'સૌથી વધુ કડીઓ દ્વારા જોડાયેલ પાનું',
 'mostlinkedcategories'    => 'સૌથી વધુ શ્રેણીઓ દ્વારા જોડાયેલ પાનું',
@@ -2250,17 +2258,17 @@ Deleting it may disrupt database operations of {{SITENAME}};',
 # Protect
 'protectlogpage'              => 'સુરક્ષા માહિતિ પત્રક',
 'protectlogtext'              => 'નીચે પૃષ્ઠ રક્ષણ માટે ફેરફારોની યાદી છે.
-જુઓ [[વિશેષ: Protected Pages | સુરક્ષિત પાનાંઓ યાદી]] વર્તમાનમાં ઓપરેશનલ પાનું સુરક્ષા યાદી માટે.',
+જુઓ [[Special:ProtectedPages|protected pages list]] વર્તમાનમાં ઓપરેશનલ પાનું સુરક્ષા યાદી માટે.',
 'protectedarticle'            => 'સુરક્ષિત "[[$1]]"',
 'modifiedarticleprotection'   => '"[[$1]]"નું સુરક્ષાસ્તર બદલ્યું',
-'unprotectedarticle'          => 'દૂર રક્ષણ',
-'movedarticleprotection'      => 'સંરક્ષણ વિકલ્પ  "[[$2]]" થી "[[$1]]" પર હટાવયા.',
-'protect-title'               => '"$1"નું સુરક્ષાસ્તર બદલ્યું',
+'unprotectedarticle'          => '"[[$1]]" થી સુરક્ષા હટાવી દીધી',
+'movedarticleprotection'      => '"[[$2]]" થી "[[$1]]"માં સંરક્ષણ વિકલ્પ  ખસેડ્યાં.',
+'protect-title'               => '"$1"નું સુરક્ષાસ્તર બદલો',
 'protect-title-notallowed'    => '"$1" નું સુરક્ષાસ્તર જોવો',
 'prot_1movedto2'              => '[[$1]]નું નામ બદલીને [[$2]] કરવામાં આવ્યું છે.',
 'protect-badnamespace-title'  => 'સંરક્ષિત ન કરી શકાતું નામસ્થળ',
-'protect-badnamespace-text'   => 'આ નામસ્થળમાં પાના સુરક્ષિત કરી શકાતી નથી.',
-'protect-legend'              => 'સંરક્ષણને બહાલી આપો',
+'protect-badnamespace-text'   => 'આ નામસ્થળમાં પાના સુરક્ષિત કરી શકાતા નથી.',
+'protect-legend'              => 'સંરક્ષણ બહાલી આપો',
 'protectcomment'              => 'કારણ:',
 'protectexpiry'               => 'સમાપ્તિ:',
 'protect_expiry_invalid'      => 'સમાપ્તિનો સમય માન્ય નથી.',
@@ -2282,7 +2290,7 @@ Deleting it may disrupt database operations of {{SITENAME}};',
 'protect-level-sysop'         => 'માત્ર પ્રબંધકો',
 'protect-summary-cascade'     => 'ધોધાકાર',
 'protect-expiring'            => '$1 (UTC) એ સમાપ્ત થાય છે',
-'protect-expiring-local'      => 'નિવૃત્ત થશે',
+'protect-expiring-local'      => '$1ના નિવૃત્ત થશે',
 'protect-expiry-indefinite'   => 'અનિશ્ચિત',
 'protect-cascade'             => 'આ પાનામાં સમાવિષ્ટ પેટા પાનાં પણ સુરક્ષિત કરો (કૅસ્કેડીંગ સુરક્ષા)',
 'protect-cantedit'            => 'આપ આ પાનાનાં સુરક્ષા સ્તરમાં ફેરફાર ના કરી શકો, કેમકે આપને અહિં ફેરફાર કરવાની પરવાનગી નથી.',
@@ -2369,10 +2377,12 @@ To perform a selective restoration, check the boxes corresponding to the revisio
 'undelete-show-file-submit'    => 'હા',
 
 # Namespace form on various pages
-'namespace'             => 'નામસ્થળ:',
-'invert'                => 'પસંદગી ઉલટાવો',
-'namespace_association' => 'સંકળાયેલ નામસ્થળ',
-'blanknamespace'        => '(મુખ્ય)',
+'namespace'                     => 'નામસ્થળ:',
+'invert'                        => 'પસંદગી ઉલટાવો',
+'tooltip-invert'                => 'પસંદકરેલા નામસ્થળમાં (અને સંલગ્ન નામ સ્થળ જો આંકિત હોય) થયેલા ફેરેફર સંતાડવા માટે આ ખાનું અંકિત કરો',
+'namespace_association'         => 'સંકળાયેલ નામસ્થળ',
+'tooltip-namespace_association' => 'પસંદ કરેલા નામસ્થળ સાથેસંલગ્ન નામ સ્થ્ળની માહિતી શામિલ કરવા આ ખાનું પણ અંકિત કરો',
+'blanknamespace'                => '(મુખ્ય)',
 
 # Contributions
 'contributions'       => 'સભ્યનું યોગદાન',
@@ -2768,6 +2778,8 @@ To perform a selective restoration, check the boxes corresponding to the revisio
 'import-invalid-interwiki'   => 'દર્શાવેલ વિકિ પરથી આયાત નહીં કરી શકાય',
 'import-error-edit'          => 'પાનું "$1" આયાત ન કરી શકાયું કેમકે તેને સંપાદિત કરવાનો હક્ક તમને પ્રાપત નથી.',
 'import-error-create'        => 'પાનું "$1" આયાત ન કરી શકાયું કેમકે તેને બનાવવાના હક્ક તમને પ્રાપત નથી.',
+'import-error-interwiki'     => '"$1" પાનું અહીં આયાત કરી ન શકાયું કેમકે તે નામ બાહ્ય કડીઓ  (interwiki) માટે આરક્ષીત છે',
+'import-error-special'       => 'પાનું "$1" આયાત કરી શકાયું નહીં કેમકે તે ખાસ નામસ્થળનો ભાગ જે અન્ય પાના ની રજા આપનો નથી.',
 'import-error-invalid'       => '"$1" આ પાનુમ્ આયાત ન થયું કેમકે નામ અવૈધ છે.',
 
 # Import log
@@ -2933,6 +2945,7 @@ To perform a selective restoration, check the boxes corresponding to the revisio
 'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|પાનું|પાના}}',
 'file-info'              => 'ફાઇલ કદ : $1, MIME પ્રકાર: $2',
 'file-info-size'         => '$1 × $2 પીક્સલ, ફાઇલનું કદ: $3, MIME પ્રકાર: $4',
+'file-info-size-pages'   => '$1 × $2 પીક્સેલ, ફાઈલ કદ: $3, MIME પ્રકાર: $4, $5 {{PLURAL:$5|પાનું|પાના}}',
 'file-nohires'           => 'આથી વધુ આવર્તન ઉપલબ્ધ નથી.',
 'svg-long-desc'          => 'SVG ફાઇલ, માત્ર $1 × $2 પીક્સલ, ફાઇલનું કદ: $3',
 'show-big-image'         => 'મહત્તમ આવર્તન',
@@ -2959,9 +2972,9 @@ To perform a selective restoration, check the boxes corresponding to the revisio
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'seconds' => '{{PLURAL:$1|$1 સેકન્ડ|$1 સેકન્ડ}}',
-'minutes' => 'વિવરણ , વિવરણ , વિવરણો',
-'hours'   => 'કલાક, કલાક, કલાકો',
-'days'    => '$1, $1 દિવસ, $1 દિવસો',
+'minutes' => '{{PLURAL:$1|$1 મિનિટ|$1 મિનિટો}}',
+'hours'   => '{{PLURAL:$1|$1 કલાક|$1 કલાકો}}',
+'days'    => '{{PLURAL:$1|$1 દિવસ|$1 દિવસો}}',
 'ago'     => '$1 પહેલાં',
 
 # Bad image list
@@ -3043,7 +3056,7 @@ To perform a selective restoration, check the boxes corresponding to the revisio
 'exif-spectralsensitivity'         => 'રંગપટલ સંવેદના',
 'exif-isospeedratings'             => 'ISO ઝડપ ક્ર્માંક',
 'exif-shutterspeedvalue'           => 'સર્વોચ્ચ શટર ઝડપ',
-'exif-aperturevalue'               => 'છીદ્ર માપ',
+'exif-aperturevalue'               => 'બાકોરું',
 'exif-brightnessvalue'             => 'સર્વોચ્ચ તેજ',
 'exif-exposurebiasvalue'           => 'પ્રકાશાગમ ફરક્',
 'exif-maxaperturevalue'            => 'મહત્તમ ભૂમિ છીદ્ર',
@@ -3113,6 +3126,7 @@ To perform a selective restoration, check the boxes corresponding to the revisio
 'exif-countrycodecreated'          => 'જે દેશમાં ચિત્ર લેવાયું તે દેશનો કોડ',
 'exif-provinceorstatecreated'      => 'જે સ્થળે ચિત્ર લેવાયું તે રાજ્યનું નામ',
 'exif-citycreated'                 => 'જે શહેરમાં આ ચિત્ર લેવાયું તેનું નામ',
+'exif-sublocationcreated'          => 'આ ચિત્ર શહૅર ના આ જગ્યા મા લિધુ હતુ',
 'exif-worldregiondest'             => 'વિશ્વ સંદર્ભ ક્ષેત્ર દર્શાવાયું',
 'exif-countrydest'                 => 'દેશ દર્શાવાયો',
 'exif-countrycodedest'             => 'દેશનો કોડ બતાવાયો',
@@ -3172,6 +3186,9 @@ To perform a selective restoration, check the boxes corresponding to the revisio
 
 # EXIF attributes
 'exif-compression-1' => 'અસંકોચિત',
+'exif-compression-2' => 'CCITT સમુદાય ૩ ૧-પરિમાણિય ફેરફાર કરેલુ Huffman રન લંબઈ એન્કોડિંગ',
+'exif-compression-3' => 'CCITT સમૂહ 3 ફેક્સ ઍનકોડિંગ',
+'exif-compression-4' => 'CCITT સમૂહ 3 ફેક્સ ઍનકોડિંગ',
 
 'exif-copyrighted-true'  => 'પ્રકશન અધિકારથી સુરક્ષીત',
 'exif-copyrighted-false' => 'સાર્વજનિક ડોમેન',
@@ -3189,6 +3206,8 @@ To perform a selective restoration, check the boxes corresponding to the revisio
 
 'exif-planarconfiguration-1' => 'ખરબચડું',
 'exif-planarconfiguration-2' => 'સપાટ',
+
+'exif-colorspace-65535' => 'અન કેલિબરેટેડ (Uncalibrated)',
 
 'exif-componentsconfiguration-0' => 'નથી',
 
@@ -3371,7 +3390,7 @@ To perform a selective restoration, check the boxes corresponding to the revisio
 'exif-iimcategory-war' => 'યુદ્ધ સંઘર્ષ, અને અશાંતિ',
 'exif-iimcategory-wea' => 'હવામાન',
 
-'exif-urgency-normal' => 'સામાન્ય ($૧)',
+'exif-urgency-normal' => 'સામાન્ય ($1)',
 'exif-urgency-low'    => 'નિમ્ન ($1)',
 'exif-urgency-high'   => 'ઉચ્ચ ($1)',
 'exif-urgency-other'  => 'વપરાશકર્તા-વ્યાખ્યાયિત અગ્રતા ($1)',
@@ -3459,7 +3478,7 @@ $5
 'confirmrecreate'          => "સભ્ય [[User:$1|$1]] ([[User talk:$1|talk]]) એતમે ફેરફાર કરો તે પહેલાં આ પાનું હટાવી દીધું તેનું કારણ:
 : ''$2''
 કૃપયા ખાત્રી કરો કે તમે આ પાનું ખરેખર રચવા માંગો છે.",
-'confirmrecreate-noreason' => 'વપરાશકર્તા [[વપરાશકર્તા:$૧|$૧]] ([[વપરાશકર્તા વાતચીત:$૧|વાતચીત]]) ઍ આ પાનું તમે ફેરફાર શરૂ ક્અર્ય્અ પછી કાઢી ન્અક્હ્ય્ઉ ખાતરી કરો કે તમે ખરેખર આ પૃષ્ઠ ફરીથી માંગો કરો.',
+'confirmrecreate-noreason' => 'વપરાશકર્તા [[User:$1|$1]] ([[User talk:$1|talk]]) એ આ પાનું તમે ફેરફાર શરૂ કર્યા પછી  ખાતરી કરો કે તમે ખરેખર આ પૃષ્ઠ ફરીથી રચવા માંગો કરો.',
 'recreate'                 => 'પુનર્નિર્માણ કરો',
 
 # action=purge
@@ -3537,7 +3556,7 @@ $5
 'watchlisttools-raw'  => 'કાચી ધ્યાનસૂચિમાં ફેરફાર કરો',
 
 # Signatures
-'signature' => '[[{{ns:વપરાશકર્તા}}:$1|$2]] ([[{{ns:વપરાશકર્તા_વાતચીત}}:$1|વાતચીત]])',
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|talk]])',
 
 # Core parser functions
 'unknown_extension_tag' => 'અજ્ઞાત વિસ્તારક શબ્દ "$1"',
@@ -3706,51 +3725,57 @@ $5
 'newuserlog-byemail'                  => 'ગુપ્ત સંજ્ઞા ઇ-મેલ દ્વારા મોકલાઇ છે.',
 
 # Feedback
-'feedback-subject'  => 'વિષય:',
-'feedback-message'  => 'સંદેશ',
-'feedback-cancel'   => 'રદ કરો',
-'feedback-submit'   => 'પ્રતિભાવ આપો',
-'feedback-adding'   => 'પ્રતિભાવ આ પાના પર ઉમેરાઈ રહ્યો છે.',
-'feedback-error1'   => 'ક્ષતિ:API તરફથી અજાણ પરિણામ',
-'feedback-error2'   => 'ક્ષતિ:ફેરફાર નિષ્ફળ',
-'feedback-error3'   => 'ત્રુટી: API તરફથી કોઈ પ્રત્યુત્તર નથી',
-'feedback-thanks'   => 'આભર! તમારા પ્રતિભાવને "[$2 $1]" પાના પર મુકાયા છે.',
-'feedback-close'    => 'સંપન્ન',
-'feedback-bugcheck' => 'સરસ! જરા જોઈ લેશો કે આ  પહેલેથી જ હાજર [$1 known bugs] નથીને?',
-'feedback-bugnew'   => 'મેં તપાસ્યું.  નવી ત્રુટીની જાણ કરો.',
+'feedback-bugornote' => 'જો તમને તકનીકી પ્રોબ્લેમને વર્ણન કરવા માંગતા હોય તો  [$1 report a bug] એ બગ અહીં નોંધાવો.
+અન્યથા, તમે નેચે આપેલ સરળ ફોર્મ વાંચી શકો છો. તમારી ટિપ્પણી "[$3 $2]" પાના કરવા માટે, તમારા સભ્ય નામ અને બ્રાઉઝર પ્રકાર વાપફો છો તેની માહિતી આપો.',
+'feedback-subject'   => 'વિષય:',
+'feedback-message'   => 'સંદેશ',
+'feedback-cancel'    => 'રદ કરો',
+'feedback-submit'    => 'પ્રતિભાવ આપો',
+'feedback-adding'    => 'પ્રતિભાવ આ પાના પર ઉમેરાઈ રહ્યો છે.',
+'feedback-error1'    => 'ક્ષતિ:API તરફથી અજાણ પરિણામ',
+'feedback-error2'    => 'ક્ષતિ:ફેરફાર નિષ્ફળ',
+'feedback-error3'    => 'ત્રુટી: API તરફથી કોઈ પ્રત્યુત્તર નથી',
+'feedback-thanks'    => 'આભર! તમારા પ્રતિભાવને "[$2 $1]" પાના પર મુકાયા છે.',
+'feedback-close'     => 'સંપન્ન',
+'feedback-bugcheck'  => 'સરસ! જરા જોઈ લેશો કે આ  પહેલેથી જ હાજર [$1 known bugs] નથીને?',
+'feedback-bugnew'    => 'મેં તપાસ્યું.  નવી ત્રુટીની જાણ કરો.',
 
 # API errors
-'api-error-badaccess-groups'      => 'આ વિકિ પર ફાઈલ ચઢાવવાની પરવાનગી તમને નથી.',
-'api-error-badtoken'              => 'આંતરીક ત્રુટી: ખરાબ ટોકન',
-'api-error-copyuploaddisabled'    => 'આ સર્વર પર URL દ્વારા માહિતી ચઢાવવા પર પ્રતિબંધ',
-'api-error-duplicate-popup-title' => 'આબેહુબ અન્ય {{PLURAL:$1|ફાઈલ|ફાઈલો}}.',
-'api-error-empty-file'            => 'તમે ચડાવેલ ફાઈલ ખાલી છે',
-'api-error-emptypage'             => 'નવા ખાલી પાના રચવાની અપ્રવાનગી નથી',
-'api-error-fetchfileerror'        => 'આંતરીક ત્રુટી: ફાઈલ લાવતી વખતે અમુક ગડબડ થઈ',
-'api-error-file-too-large'        => 'તમે ચડાવેલી ફાઈલ ખૂબ મોટી છે',
-'api-error-filename-tooshort'     => 'ફાઇલ નામ ખૂબ ટૂંકું છે',
-'api-error-filetype-banned'       => 'આ પ્રકારની ફાઈલ પ્રતિબંધિત છે.',
-'api-error-filetype-missing'      => 'ફાઈલને ઍક્સટેન્શન નથી',
-'api-error-hookaborted'           => 'તમે કરેલ ફેરફારો વિસ્તારીત ખૂંટા દ્વારા રોકી દેવાયા.',
-'api-error-http'                  => 'આંતરીક ક્ષતિ: સર્વસનો સંપર્ક કરવામાં નિષ્ફળતા',
-'api-error-illegal-filename'      => 'ફાઈલા નામને પરવાનગી નથી',
-'api-error-internal-error'        => 'આંતરીક ત્રુટિ : વિકિ પર ફાઈલ ચડાવતા કાંઈક ગડબડ થઈ',
-'api-error-invalid-file-key'      => 'આંતરીક ક્ષતિ: હંગામી સંગ્રહ સ્થળ પર ફાઈન ન મળી',
-'api-error-missingparam'          => 'આંતરીક ત્રુટી: અરજીમાં માહિતી ખુટે છે',
-'api-error-missingresult'         => 'આંતરીક ત્રુટી:  નકલ સફળ રહી કે કેમ તેની ખાત્રી ન કરી શકાઈ.',
-'api-error-mustbeloggedin'        => 'ફાઈલ ચઢાવવા તમારે લોગીન કરેલું હોવું જોઈએ.',
-'api-error-mustbeposted'          => 'આંતરીક ત્રુટી: તમારી વિનંતિમાં HTTP POST હોવી જોઈએ',
-'api-error-nomodule'              => 'આંતરીક ક્ષતિ: ફાઈલ ચઢાવવાનું મોડ્યુલ સેટ નથી',
-'api-error-ok-but-empty'          => 'આંતરીક ત્રુટી: સર્વર તરફથી કોઈ પ્રત્યુત્તર નથી',
-'api-error-overwrite'             => 'વિહરમાન ફાઇલ પર પુનર્લેખન કરવાની પરવાનગી નથી',
-'api-error-stashfailed'           => 'આંતરીક ક્ષતિ: હંગામી ફાઈલ સંચયમાં સર્વર નિષ્ફળ',
-'api-error-timeout'               => 'અપેક્ષિત સમય સુધી સર્વરે પ્રત્યુત્તર ન આપ્યો.',
-'api-error-unclassified'          => 'અજ્ઞાત ચૂક થઈ.',
-'api-error-unknown-code'          => 'અજ્ઞાત ક્ષતિ: "$1".',
-'api-error-unknown-error'         => 'આંતરીક ત્રુટિ : તમારી ફાઈલ ચડાવાતા કાંઈક ગડબડ થઈ.',
-'api-error-unknown-warning'       => 'અજ્ઞાત ચેતચણી: "$1".',
-'api-error-unknownerror'          => 'અજ્ઞાત ક્ષતિ: "$1".',
-'api-error-uploaddisabled'        => 'આ વીકી પર અપલોડ નિષ્ક્રિય કરવામાં આવેલ છે',
-'api-error-verification-error'    => 'ફાઈલ યાતો ખરાબ થઈ ગઈ છે યાતો તેનું ઍક્સટેન્શન (વિસ્તરક) ખોટો છે.',
+'api-error-badaccess-groups'              => 'આ વિકિ પર ફાઈલ ચઢાવવાની પરવાનગી તમને નથી.',
+'api-error-badtoken'                      => 'આંતરીક ત્રુટી: ખરાબ ટોકન',
+'api-error-copyuploaddisabled'            => 'આ સર્વર પર URL દ્વારા માહિતી ચઢાવવા પર પ્રતિબંધ',
+'api-error-duplicate'                     => 'આ {{PLURAL:$1|is [$2 another file]|are [$2 some other files]}} પહેલેથી સાઈટ પર તેજ માહિતી સાથે મોજૂદ છે.',
+'api-error-duplicate-archive'             => 'ત્યાં {{PLURAL:$1|was [$2 another file]|were [$2 some other files]}} તે જ મહિતી સાથે મોજૂદ છે , પણ {{PLURAL:$1|it was|they were}} હટાવી દો.',
+'api-error-duplicate-archive-popup-title' => 'ડ્યુપ્લીકેટ {{PLURAL:$1|ફાઈલ|ફાઈલો}} પહેલેથી મોજુદ છે.',
+'api-error-duplicate-popup-title'         => 'આબેહુબ અન્ય {{PLURAL:$1|ફાઈલ|ફાઈલો}}.',
+'api-error-empty-file'                    => 'તમે ચડાવેલ ફાઈલ ખાલી છે',
+'api-error-emptypage'                     => 'નવા ખાલી પાના રચવાની અપ્રવાનગી નથી',
+'api-error-fetchfileerror'                => 'આંતરીક ત્રુટી: ફાઈલ લાવતી વખતે અમુક ગડબડ થઈ',
+'api-error-file-too-large'                => 'તમે ચડાવેલી ફાઈલ ખૂબ મોટી છે',
+'api-error-filename-tooshort'             => 'ફાઇલ નામ ખૂબ ટૂંકું છે',
+'api-error-filetype-banned'               => 'આ પ્રકારની ફાઈલ પ્રતિબંધિત છે.',
+'api-error-filetype-missing'              => 'ફાઈલને ઍક્સટેન્શન નથી',
+'api-error-hookaborted'                   => 'તમે કરેલ ફેરફારો વિસ્તારીત ખૂંટા દ્વારા રોકી દેવાયા.',
+'api-error-http'                          => 'આંતરીક ક્ષતિ: સર્વસનો સંપર્ક કરવામાં નિષ્ફળતા',
+'api-error-illegal-filename'              => 'ફાઈલા નામને પરવાનગી નથી',
+'api-error-internal-error'                => 'આંતરીક ત્રુટિ : વિકિ પર ફાઈલ ચડાવતા કાંઈક ગડબડ થઈ',
+'api-error-invalid-file-key'              => 'આંતરીક ક્ષતિ: હંગામી સંગ્રહ સ્થળ પર ફાઈન ન મળી',
+'api-error-missingparam'                  => 'આંતરીક ત્રુટી: અરજીમાં માહિતી ખુટે છે',
+'api-error-missingresult'                 => 'આંતરીક ત્રુટી:  નકલ સફળ રહી કે કેમ તેની ખાત્રી ન કરી શકાઈ.',
+'api-error-mustbeloggedin'                => 'ફાઈલ ચઢાવવા તમારે લોગીન કરેલું હોવું જોઈએ.',
+'api-error-mustbeposted'                  => 'આંતરીક ત્રુટી: તમારી વિનંતિમાં HTTP POST હોવી જોઈએ',
+'api-error-noimageinfo'                   => 'ફાઈલ સફળતા પૂર્વક ચઢાવાઈ, પણ  ફાઈલ વિષે સર્વરે પૂરી માહિતી ન આપી',
+'api-error-nomodule'                      => 'આંતરીક ક્ષતિ: ફાઈલ ચઢાવવાનું મોડ્યુલ સેટ નથી',
+'api-error-ok-but-empty'                  => 'આંતરીક ત્રુટી: સર્વર તરફથી કોઈ પ્રત્યુત્તર નથી',
+'api-error-overwrite'                     => 'વિહરમાન ફાઇલ પર પુનર્લેખન કરવાની પરવાનગી નથી',
+'api-error-stashfailed'                   => 'આંતરીક ક્ષતિ: હંગામી ફાઈલ સંચયમાં સર્વર નિષ્ફળ',
+'api-error-timeout'                       => 'અપેક્ષિત સમય સુધી સર્વરે પ્રત્યુત્તર ન આપ્યો.',
+'api-error-unclassified'                  => 'અજ્ઞાત ચૂક થઈ.',
+'api-error-unknown-code'                  => 'અજ્ઞાત ક્ષતિ: "$1".',
+'api-error-unknown-error'                 => 'આંતરીક ત્રુટિ : તમારી ફાઈલ ચડાવાતા કાંઈક ગડબડ થઈ.',
+'api-error-unknown-warning'               => 'અજ્ઞાત ચેતચણી: "$1".',
+'api-error-unknownerror'                  => 'અજ્ઞાત ક્ષતિ: "$1".',
+'api-error-uploaddisabled'                => 'આ વીકી પર અપલોડ નિષ્ક્રિય કરવામાં આવેલ છે',
+'api-error-verification-error'            => 'ફાઈલ યાતો ખરાબ થઈ ગઈ છે યાતો તેનું ઍક્સટેન્શન (વિસ્તરક) ખોટો છે.',
 
 );

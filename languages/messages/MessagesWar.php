@@ -185,7 +185,7 @@ $messages = array(
 'about'         => 'Mahitungod han',
 'article'       => 'Pakli hin sulod',
 'newwindow'     => '(nabuklad hin bag-o nga tamboan o bintana)',
-'cancel'        => 'Igkanselar',
+'cancel'        => 'Pasagdi',
 'moredotdotdot' => 'Damo pa nga…',
 'mypage'        => 'Akon pakli',
 'mytalk'        => 'Akon paghingay',
@@ -477,7 +477,7 @@ Alayon pagutro pagbutang.',
 'retypenew'                 => 'Utroha pagbutang an bag-o nga tigaman-pagsulod:',
 'resetpass_forbidden'       => 'Diri mababalyoan an mga tigaman-pagsulod',
 'resetpass-submit-loggedin' => 'Igbal-iw an tigaman-pagsulod',
-'resetpass-submit-cancel'   => 'Waray ginbantad',
+'resetpass-submit-cancel'   => 'Pasagdi',
 'resetpass-temp-password'   => 'Temporaryo nga tigaman-pagsakob:',
 
 # Special:PasswordReset
@@ -490,7 +490,7 @@ Temporaryo nga tigaman han pagsakob: $2',
 'passwordreset-emailsent'    => 'Ginpadara hin usa ka pahinumdom nga e-mail.',
 
 # Special:ChangeEmail
-'changeemail-cancel' => 'Ayaw padayona',
+'changeemail-cancel' => 'Pasagdi',
 
 # Edit page toolbar
 'bold_sample'     => 'dakmola an agi',
@@ -597,9 +597,9 @@ Ini nga mga argumento in ginlaktawan.",
 'currentrevisionlink'    => 'Giurhii nga pagliwat',
 'cur'                    => 'yana',
 'next'                   => 'sunod',
-'last'                   => 'kataposan',
+'last'                   => 'urhi',
 'page_first'             => 'syahan',
-'page_last'              => 'kataposan',
+'page_last'              => 'katapusan',
 'histlegend'             => "Kaibhan nga pirilion: Igmarka an mga radyo nga kahon han mga pagbag-o para maikumpara ngan igu-a an ''enter'' o an piridlitan ha ubos.<br />
 Leyenda: '''({{int:cur}})''' = kaibhan ha giuurhii nga pag-bag-o, '''({{int:last}})''' = kaibhan ha nahiuna nga pag-bag-o, '''{{int:minoreditletter}}''' = gagmay nga pagliwat.",
 'history-fieldset-title' => 'Kaagi han panngaykay',

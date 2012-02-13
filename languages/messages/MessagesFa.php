@@ -543,7 +543,7 @@ $messages = array(
 
 # Categories related messages
 'pagecategories'                 => '{{PLURAL:$1|رده‌های صفحه|رده‌های صفحه}}',
-'category_header'                => 'مقاله‌های «$1»',
+'category_header'                => 'مقاله‌ها',
 'subcategories'                  => 'زیررده‌ها',
 'category-media-header'          => 'پرونده‌های ردهٔ «$1»',
 'category-empty'                 => "''این رده در حال حاضر حاوی هیچ صفحه یا پرونده‌ای نیست.''",
@@ -1676,8 +1676,8 @@ $1",
 'right-nominornewtalk'        => 'ویرایش جزئی صفحه‌های بحث به شکلی که باعث اعلان پیغام جدید نشود',
 'right-apihighlimits'         => 'سقف بالاتر استفاده از API',
 'right-writeapi'              => 'استفاده از API مربوط به نوشتن',
-'right-delete'                => 'حذف صفحه',
-'right-bigdelete'             => 'حذف صفحه‌هایی که تاریخچهٔ بزرگی دارند',
+'right-delete'                => 'حذف صفحه‌ها',
+'right-bigdelete'             => 'حذف صفحه‌های دارای تاریخچهٔ بزرگ',
 'right-deleterevision'        => 'حذف و احیای نسخه‌های خاصی از صفحه',
 'right-deletedhistory'        => 'مشاهدهٔ موارد حذف‌شده از تاریخچه، بدون دیدن متن آن‌ها',
 'right-deletedtext'           => 'مشاهدهٔ متن حذف‌شده و تغییرات بین نسخه‌های حذف‌شده',
@@ -1934,18 +1934,19 @@ $1',
 'upload-warning-subj'         => 'هشدار بارگذاری',
 'upload-warning-msg'          => 'فرم بارگذاری مشکلی داشت [$2]. شما می‌توانید به [[Special:Upload/stash/$1|فرم بارگذاری]] بازگردید تا این اشکال را رفع کنید.',
 
-'upload-proto-error'        => 'پروتکل نادرست',
-'upload-proto-error-text'   => 'بارگذاری از دوردست به نشانی‌هایی که با <code dir=ltr>http://</code> یا <code dir=ltr>ftp://</code> آغاز شوند نیاز دارد.',
-'upload-file-error'         => 'خطای داخلی',
-'upload-file-error-text'    => 'هنگام تلاش برای ایجاد یک پروندهٔ  موقت در کارگزار یک خطای داخلی رخ داد.
+'upload-proto-error'                => 'پروتکل نادرست',
+'upload-proto-error-text'           => 'بارگذاری از دوردست به نشانی‌هایی که با <code dir=ltr>http://</code> یا <code dir=ltr>ftp://</code> آغاز شوند نیاز دارد.',
+'upload-file-error'                 => 'خطای داخلی',
+'upload-file-error-text'            => 'هنگام تلاش برای ایجاد یک پروندهٔ  موقت در کارگزار یک خطای داخلی رخ داد.
 لطفاً با یک [[Special:ListUsers/sysop|مدیر]] تماس بگیرید.',
-'upload-misc-error'         => 'خطای نامعلوم در بارگذاری',
-'upload-misc-error-text'    => 'هنگام بارگذاری، خطایی نامعلوم رخ داد.
+'upload-misc-error'                 => 'خطای نامعلوم در بارگذاری',
+'upload-misc-error-text'            => 'هنگام بارگذاری، خطایی نامعلوم رخ داد.
 لطفاً اطمینان حاصل کنید که نشانی اینترنتی معتبر و قابل دسترسی است و بعد دوباره تلاش کنید.
 اگر مشکل همچنان برقرار بود با یکی از [[Special:ListUsers/sysop|مدیران]] تماس بگیرید.',
-'upload-too-many-redirects' => 'نشانی اینترتی حاوی تعداد بیش از اندازه‌ای تغییرمسیر است',
-'upload-unknown-size'       => 'اندازهٔ نامشخص',
-'upload-http-error'         => 'یک خطای اچ‌تی‌تی‌پی رخ داد: $1',
+'upload-too-many-redirects'         => 'نشانی اینترتی حاوی تعداد بیش از اندازه‌ای تغییرمسیر است',
+'upload-unknown-size'               => 'اندازهٔ نامشخص',
+'upload-http-error'                 => 'یک خطای اچ‌تی‌تی‌پی رخ داد: $1',
+'upload-copy-upload-invalid-domain' => 'بارگذاری کپی پرونده‌ها از این دامنه امکان‌پذیر نیست.',
 
 # File backend
 'backend-fail-stream'        => 'نمی‌توان پروندهٔ $1 را ارسال کرد.',
@@ -2005,7 +2006,7 @@ $1',
 'img-auth-nopathinfo'       => 'PATH_INFO موجود نیست.
 سرور شما برای ردکردن این مقدار تنظیم نشده‌است.
 ممکن است مبتنی بر سی‌جی‌آی باشد و از img_auth پشتیبانی نکند.
-[https://www.mediawiki.org/wiki/Manual:Image_Authorization اینجا] را ببینید.',
+https://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'img-auth-notindir'         => 'مسیر درخواست شده در شاخهٔ بارگذاری تنظیم‌شده قرار ندارد.',
 'img-auth-badtitle'         => 'امکان ایجاد یک عنوان مجاز از «$1» وجود ندارد.',
 'img-auth-nologinnWL'       => 'شما به سامانه وارد نشده‌اید و «$1» در فهرست سفید قرار ندارد.',

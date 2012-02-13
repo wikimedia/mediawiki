@@ -14,6 +14,7 @@
  * @author Guglani
  * @author Kaganer
  * @author Sukh
+ * @author Surinder.wadhawan
  * @author Ævar Arnfjörð Bjarmason
  * @author לערי ריינהארט
  */
@@ -135,12 +136,13 @@ $messages = array(
 'dec'           => 'ਦਸੰ',
 
 # Categories related messages
-'pagecategories'        => '{{PLURAL:$1|ਕੈਟਾਗਰੀ|ਕੈਟਾਗਰੀਆਂ}}',
-'category_header'       => 'ਕੈਟਾਗਰੀ "$1" ਵਿੱਚ ਲੇਖ',
-'subcategories'         => 'ਸਬ-ਕੈਟਾਗਰੀਆਂ',
-'category-media-header' => 'ਕੈਟਾਗਰੀ "$1" ਵਿੱਚ ਮੀਡਿਆ',
-'category-empty'        => "''ਇਹ ਕੈਟਾਗਰੀ ਵਿੱਚ ਇਸ ਵੇਲੇ ਕੋਈ ਲੇਖ (ਆਰਟੀਕਲ) ਜਾਂ ਮੀਡਿਆ ਨਹੀਂ ਹੈ।''",
-'hidden-categories'     => '{{PLURAL:$1|ਅਲੋਪ ਸ਼੍ਰੇਣੀ|ਅਲੋਪ ਸ਼੍ਰੇਣੀਆ}}',
+'pagecategories'         => '{{PLURAL:$1|ਕੈਟਾਗਰੀ|ਕੈਟਾਗਰੀਆਂ}}',
+'category_header'        => 'ਕੈਟਾਗਰੀ "$1" ਵਿੱਚ ਲੇਖ',
+'subcategories'          => 'ਸਬ-ਕੈਟਾਗਰੀਆਂ',
+'category-media-header'  => 'ਕੈਟਾਗਰੀ "$1" ਵਿੱਚ ਮੀਡਿਆ',
+'category-empty'         => "''ਇਹ ਕੈਟਾਗਰੀ ਵਿੱਚ ਇਸ ਵੇਲੇ ਕੋਈ ਲੇਖ (ਆਰਟੀਕਲ) ਜਾਂ ਮੀਡਿਆ ਨਹੀਂ ਹੈ।''",
+'hidden-categories'      => '{{PLURAL:$1|ਅਲੋਪ ਸ਼੍ਰੇਣੀ|ਅਲੋਪ ਸ਼੍ਰੇਣੀਆ}}',
+'listingcontinuesabbrev' => 'ਅਗੇ.',
 
 'about'         => 'ਇਸ ਬਾਰੇ',
 'article'       => 'ਸਮੱਗਰੀ ਪੇਜ',
@@ -536,6 +538,7 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'notextmatches'                    => 'ਕੋਈ ਪੇਜ ਟੈਕਸਟ ਨਹੀਂ ਮਿਲਦਾ',
 'prevn'                            => 'ਪਿੱਛੇ {{PLURAL:$1|$1}}',
 'nextn'                            => 'ਅੱਗੇ {{PLURAL:$1|$1}}',
+'prevn-title'                      => 'ਪਹਿਲਾ $1 {{PLURAL:$1|ਨਤੀਜਾ|ਨਤੀਜੇ}}',
 'nextn-title'                      => '↓
 ਅਗਲਾ $1 {{PLURAL:$1|ਨਤੀਜਾ|ਨਤੀਜੇ}}',
 'shown-title'                      => 'ਪ੍ਰਤੀ ਪੇਜ਼ $1 {{PLURAL:$1|ਨਤੀਜਾ|ਨਤੀਜੇ}} ਵੇਖਾਓ',
@@ -961,6 +964,7 @@ to upload files.',
 'ipbreasonotherlist' => 'ਹੋਰ ਕਾਰਨ',
 'ipbsubmit'          => 'ਇਹ ਯੂਜ਼ਰ ਲਈ ਪਾਬੰਦੀ',
 'ipbother'           => 'ਹੋਰ ਟਾਈਮ:',
+'ipboptions'         => '੨ ਘਂਟੇ:2 hours, ੧ ਦਿਨ:1 day, ੩ ਦਿਨ:3 days, ੧ ਹਫ੍ਤਾ:1 week, ੨ ਹਫ੍ਤੇ:2 weeks, ੧ ਮਹੀਨਾ:1 month, ੩ ਮਹੀਨੇ:3 months, ੬ ਮਹੀਨੇ:6 months, ੧ ਸਾਲ:1 year, ਹਮੇਸ਼ਾ ਲਈ:infinite',
 'ipbotheroption'     => 'ਹੋਰ',
 'ipbotherreason'     => 'ਹੋਰ/ਆਮ ਕਾਰਨ:',
 'badipaddress'       => 'ਗਲਤ IP ਐਡਰੈੱਸ',

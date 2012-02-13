@@ -40,6 +40,7 @@
  * @author Sannab
  * @author Sertion
  * @author Skalman
+ * @author Stefan2
  * @author StefanB
  * @author Steinninn
  * @author Str4nd
@@ -1856,7 +1857,7 @@ Den kan inte säkerhetskontrolleras ordentligt.',
 'img-auth-accessdenied'     => 'Åtkomst nekad',
 'img-auth-nopathinfo'       => 'PATH_INFO saknas.
 Din server är inte inställd för att ge denna information.
-Den kan vara CGI-baserad och stöttar inte img_auth.
+Den kan vara CGI-baserad och stöder inte img_auth.
 [https://www.mediawiki.org/wiki/Manual:Image_Authorization Se bildbehörighet.]',
 'img-auth-notindir'         => 'Den önskade sökvägen finns inte i den inställda uppladdningskatalogen.',
 'img-auth-badtitle'         => 'Kan inte skapa en giltig titel från "$1"',

@@ -1588,6 +1588,12 @@ Os yw'r broblem yn parhau, cysylltwch â [[Special:ListUsers/sysop|gweinyddwr]].
 'backend-fail-read'          => 'Wedi methu darllen y ffeil $1.',
 'backend-fail-create'        => "Wedi methu creu'r ffeil $1.",
 
+# Lock manager
+'lockmanager-notlocked'       => 'Wedi methu datgloi "$1"; nid yw ar glo.',
+'lockmanager-fail-closelock'  => 'Wedi methu cau\'r ffeil cloi mynediad at "$1".',
+'lockmanager-fail-deletelock' => 'Wedi methu dileu\'r ffeil cloi mynediad at "$1".',
+'lockmanager-fail-openlock'   => 'Wedi methu agor y ffeil cloi mynediad at "$1".',
+
 # ZipDirectoryReader
 'zip-file-open-error' => 'Cafwyd gwall wrth agor y ffeil er mwyn gwneud gwiriadau ZIP.',
 'zip-wrong-format'    => "Nid ffeil ZIP yw'r ffeil a enwyd.",
@@ -1835,6 +1841,7 @@ Gosodwyd <del>llinell</del> drwy'r eitemau sydd eisoes wedi eu datrys.",
 'mostimages'              => 'Ffeiliau yn nhrefn nifer y cysylltiadau iddynt',
 'mostrevisions'           => 'Tudalennau yn nhrefn nifer y newidiadau iddynt',
 'prefixindex'             => 'Pob tudalen yn ôl parth',
+'prefixindex-namespace'   => 'Pob tudalen â rhagddodiad penodol (y parth $1)',
 'shortpages'              => 'Erthyglau byr',
 'longpages'               => 'Tudalennau hirion',
 'deadendpages'            => 'Tudalennau heb gysylltiadau ynddynt',

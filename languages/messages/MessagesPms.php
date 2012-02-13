@@ -2369,9 +2369,9 @@ Ch'a consulta la [[Special:BlockList|lista dj'IP blocà]] për rivëdde ij bloca
 'blocklog-showlog'                => "St'utent-sì a l'é già stàit blocà ant ël passà. Ël registr dij blocagi a l'é disponìbil sì-sota 'me arferiment:",
 'blocklog-showsuppresslog'        => "St'utent-sì a l'é già stàit blocà e stërmà. Ël registr ëd j'eliminassion a l'é smonù sì-sota për arferiment:",
 'blocklogentry'                   => "«[[$1]]» a l'é stait blocà për $2 $3",
-'reblock-logentry'                => 'cambià le ampostassion dël blòch për [[$1]] con un temp ëd fin ëd $2 $3',
+'reblock-logentry'                => "a l'ha cambià j'ampostassion dël blocagi për [[$1]] con na scadensa ai $2 $3",
 'blocklogtext'                    => "Sossì a l'é ël registr dij blocagi e dësblocagi dj'Utent. J'adrësse che
-a son staite blocà n'automàtich ambelessì a së s-ciàiro nen.
+a son ëstàite blocà n'automàtich ambelessì a së s-ciàiro nen.
 Che a varda la [[Special:BlockList|lista dj'adrësse IP blocà]] për vëdde
 coj che sio ij blocagi ativ al dì d'ancheuj.",
 'unblocklogentry'                 => "a l'ha dësblocà $1",

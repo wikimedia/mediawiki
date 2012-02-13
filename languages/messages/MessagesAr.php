@@ -1628,7 +1628,7 @@ $1",
 
 # User rights
 'userrights'                   => 'إدارة صلاحيات المستخدم',
-'userrights-lookup-user'       => 'إدارة مجموعات المستخدم',
+'userrights-lookup-user'       => 'أدِر مجموعات المستخدم',
 'userrights-user-editname'     => 'أدخل اسم مستخدم:',
 'editusergroup'                => 'عدل مجموعات المستخدم',
 'editinguser'                  => "تغيير صلاحيات المستخدم '''[[User:$1|$1]]''' $2",
@@ -1774,6 +1774,7 @@ $1",
 'action-userrights'           => 'تعديل كل صلاحيات المستخدم',
 'action-userrights-interwiki' => 'تعديل صلاحيات المستخدم للمستخدمين في الويكيات الأخرى',
 'action-siteadmin'            => 'غلق أو رفع غلق قاعدة البيانات',
+'action-sendemail'            => 'إرسال رسائل بريد إلكتروني',
 
 # Recent changes
 'nchanges'                          => '{{PLURAL:$1|لا تغييرات|تغيير واحد|تغييران|$1 تغييرات|$1 تغييرا|$1 تغيير}}',
