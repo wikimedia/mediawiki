@@ -272,7 +272,7 @@ class MediaWiki {
 				 * @deprecated since 1.18
 				 */
 				global $wgArticle;
-				$wgArticle = $article;
+				$wgArticle = new DeprecatedGlobal( 'wgArticle', $article, '1.18' );
 
 				$this->performAction( $article );
 			} elseif ( is_string( $article ) ) {

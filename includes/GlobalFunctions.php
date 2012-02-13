@@ -1002,12 +1002,13 @@ function wfLogDBError( $text ) {
  * Throws a warning that $function is deprecated
  *
  * @param $function String
- * @param $version String|bool: Added in 1.19.
+ * @param $version String|bool: Version of MediaWiki that the function was deprecated in (Added in 1.19).
  * @param $component String|bool: Added in 1.19.
+ * @param $callerOffset integer: How far up the callstack is the original caller (Added in 1.20)
  * 
  * @return null
  */
-function wfDeprecated( $function, $version = false, $component = false ) {
+function wfDeprecated( $function, $version = false, $component = false, $callerOffset = 2 ) {
 	static $functionsWarned = array();
 
 	MWDebug::deprecated( $function, $version, $component );
@@ -1032,9 +1033,9 @@ function wfDeprecated( $function, $version = false, $component = false ) {
 			}
 			
 			$component = $component === false ? 'MediaWiki' : $component;
-			wfWarn( "Use of $function was deprecated in $component $version.", 2 );
+			wfWarn( "Use of $function was deprecated in $component $version.", $callerOffset );
 		} else {
-			wfWarn( "Use of $function is deprecated.", 2 );
+			wfWarn( "Use of $function is deprecated.", $callerOffset );
 		}
 	}
 }
