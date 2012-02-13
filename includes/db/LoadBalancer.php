@@ -91,7 +91,7 @@ class LoadBalancer {
 	/**
 	 * Get or set arbitrary data used by the parent object, usually an LBFactory
 	 * @param $x
-	 * @return \Mixed
+	 * @return Mixed
 	 */
 	function parentInfo( $x = null ) {
 		return wfSetVar( $this->mParentInfo, $x );

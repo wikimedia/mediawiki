@@ -136,7 +136,7 @@ class SpecialUnblock extends SpecialPage {
 
 	/**
 	 * Submit callback for an HTMLForm object
-	 * @return \Array( Array(message key, parameters)
+	 * @return Array( Array(message key, parameters)
 	 */
 	public static function processUIUnblock( array $data, HTMLForm $form ) {
 		return self::processUnblock( $data, $form->getContext() );

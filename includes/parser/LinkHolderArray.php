@@ -135,7 +135,7 @@ class LinkHolderArray {
 	/**
 	 * Get a subset of the current LinkHolderArray which is sufficient to
 	 * interpret the given text.
-	 * @return \LinkHolderArray
+	 * @return LinkHolderArray
 	 */
 	function getSubArray( $text ) {
 		$sub = new LinkHolderArray( $this->parent );

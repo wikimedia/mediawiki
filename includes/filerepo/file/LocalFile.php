@@ -1646,7 +1646,7 @@ class LocalFileDeleteBatch {
 
 	/**
 	 * Run the transaction
-	 * @return \FileRepoStatus
+	 * @return FileRepoStatus
 	 */
 	function execute() {
 		global $wgUseSquid;
@@ -1807,7 +1807,7 @@ class LocalFileRestoreBatch {
 	 * rows and there's no need to keep the image row locked while it's acquiring those locks
 	 * The caller may have its own transaction open.
 	 * So we save the batch and let the caller call cleanup()
-	 * @return \FileRepoStatus
+	 * @return FileRepoStatus
 	 */
 	function execute() {
 		global $wgLang;
@@ -2075,7 +2075,7 @@ class LocalFileRestoreBatch {
 	/**
 	 * Delete unused files in the deleted zone.
 	 * This should be called from outside the transaction in which execute() was called.
-	 * @return \FileRepoStatus|void
+	 * @return FileRepoStatus|void
 	 */
 	function cleanup() {
 		if ( !$this->cleanupBatch ) {
@@ -2196,7 +2196,7 @@ class LocalFileMoveBatch {
 
 	/**
 	 * Perform the move.
-	 * @return \FileRepoStatus
+	 * @return FileRepoStatus
 	 */
 	function execute() {
 		$repo = $this->file->repo;

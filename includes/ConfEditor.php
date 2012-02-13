@@ -731,7 +731,7 @@ class ConfEditor {
 
 	/**
 	 * Create a ConfEditorToken from an element of token_get_all()
-	 * @return \ConfEditorToken
+	 * @return ConfEditorToken
 	 */
 	function newTokenObj( $internalToken ) {
 		if ( is_array( $internalToken ) ) {
@@ -783,7 +783,7 @@ class ConfEditor {
 	/**
 	 * Get the token $offset steps ahead of the current position.
 	 * $offset may be negative, to get tokens behind the current position.
-	 * @return \ConfEditorToken
+	 * @return ConfEditorToken
 	 */
 	function getTokenAhead( $offset ) {
 		$pos = $this->pos + $offset;
