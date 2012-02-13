@@ -281,6 +281,8 @@ production.
   values is given as an array.
 * (bug 32948) {{REVISIONID}} and related variables are no longer blank after
   calling action=purge&forcelinkupdate.
+* (bug 34377) action=watch now parses messages using the correct title instead
+  of "API".
 
 === Languages updated in 1.19 ===
 
