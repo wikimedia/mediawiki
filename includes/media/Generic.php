@@ -188,7 +188,7 @@ abstract class MediaHandler {
 	 * @param $dstPath String: filesystem destination path
 	 * @param $dstUrl String: Destination URL to use in output HTML
 	 * @param $params Array: Arbitrary set of parameters validated by $this->validateParam()
-	 * @return \MediaTransformOutput
+	 * @return MediaTransformOutput
 	 */
 	final function getTransform( $image, $dstPath, $dstUrl, $params ) {
 		return $this->doTransform( $image, $dstPath, $dstUrl, $params, self::TRANSFORM_LATER );

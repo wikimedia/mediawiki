@@ -384,7 +384,7 @@ abstract class QueryPage extends SpecialPage {
 
 	/**
 	 * Somewhat deprecated, you probably want to be using execute()
-	 * @return \ResultWrapper
+	 * @return ResultWrapper
 	 */
 	function doQuery( $offset = false, $limit = false ) {
 		if ( $this->isCached() && $this->isCacheable() ) {

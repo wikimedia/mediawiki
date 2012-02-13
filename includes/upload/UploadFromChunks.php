@@ -242,7 +242,7 @@ class UploadFromChunks extends UploadFromFile {
 	 * Output the chunk to disk
 	 * 
 	 * @param $chunkPath string
-	 * @return \FileRepoStatus
+	 * @return FileRepoStatus
 	 */
 	private function outputChunk( $chunkPath ){
 		// Key is fileKey + chunk index

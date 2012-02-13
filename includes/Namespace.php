@@ -186,7 +186,7 @@ class MWNamespace {
 	 * Returns array of all defined namespaces with their canonical
 	 * (English) names.
 	 *
-	 * @return \array
+	 * @return array
 	 * @since 1.17
 	 */
 	public static function getCanonicalNamespaces() {
