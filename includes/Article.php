@@ -988,6 +988,18 @@ class Article extends Page {
 				'msgKey' => array( 'moveddeleted-notice' ) )
 		);
 
+		if ( !$this->mPage->hasViewableContent() && $wgSend404Code ) {
+			// If there's no backing content, send a 404 Not Found
+			// for better machine handling of broken links.
+			$wgRequest->response()->header( "HTTP/1.1 404 Not Found" );
+		}
+
+		$hookResult = wfRunHooks( 'BeforeDisplayNoArticleText', array( $this ) );
+
+		if ( ! $hookResult ) {
+			return;
+		}
+
 		# Show error message
 		$oldid = $this->getOldID();
 		if ( $oldid ) {
@@ -1009,12 +1021,6 @@ class Article extends Page {
 			}
 		}
 		$text = "<div class='noarticletext'>\n$text\n</div>";
-
-		if ( !$this->mPage->hasViewableContent() && $wgSend404Code ) {
-			// If there's no backing content, send a 404 Not Found
-			// for better machine handling of broken links.
-			$wgRequest->response()->header( "HTTP/1.1 404 Not Found" );
-		}
 
 		$wgOut->addWikiText( $text );
 	}
