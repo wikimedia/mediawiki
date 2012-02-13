@@ -3772,7 +3772,7 @@ $5
 'semicolon-separator' => '；​',
 'comma-separator'     => '、',
 'colon-separator'     => '：​',
-'pipe-separator'      => '&#8203;｜&#8203;',
+'pipe-separator'      => '​｜',
 'word-separator'      => '',
 
 # Multipage image navigation

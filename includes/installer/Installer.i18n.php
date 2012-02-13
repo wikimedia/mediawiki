@@ -4891,6 +4891,7 @@ $messages['fo'] = array(
  * @author Sherbrooke
  * @author Urhixidur
  * @author Verdy p
+ * @author Wyz
  * @author Yumeki
  */
 $messages['fr'] = array(
@@ -5417,6 +5418,7 @@ $3
 Lorsque c'est fait, vous pouvez '''[$2 accéder à votre wiki]'''.",
 	'config-download-localsettings' => 'Télécharger LocalSettings.php',
 	'config-help' => 'aide',
+	'config-nofile' => 'Le fichier « $1 » est introuvable. A-t-il été supprimé ?',
 	'mainpagetext' => "'''MediaWiki a été installé avec succès.'''",
 	'mainpagedocfooter' => 'Consultez le [//meta.wikimedia.org/wiki/Aide:Contenu Guide de l’utilisateur] pour plus d’informations sur l’utilisation de ce logiciel.
 
@@ -6234,9 +6236,11 @@ Cando faga todo isto, xa poderá '''[$2 entrar no seu wiki]'''.",
 );
 
 /** Ancient Greek (Ἀρχαία ἑλληνικὴ)
+ * @author Crazymadlover
  * @author Omnipaedista
  */
 $messages['grc'] = array(
+	'config-page-language' => 'Γλῶττα',
 	'mainpagetext' => "'''Ἡ ἐγκατάστασις τῆς MediaWiki ἦν ἐπιτυχής'''",
 	'mainpagedocfooter' => 'Βουλευθήσεσθε τὰς [//meta.wikimedia.org/wiki/Help:Contents βουλὰς τοῖς Χρωμένοις] ἵνα πληροφορηθῇτε περὶ τοῦ βίκιλογισμικοῦ.
 
@@ -8404,6 +8408,7 @@ $3
 Post facer isto, tu pote '''[$2 entrar in tu wiki]'''.",
 	'config-download-localsettings' => 'Discargar LocalSettings.php',
 	'config-help' => 'adjuta',
+	'config-nofile' => 'Le file "$1" non poteva esser trovate. Ha illo essite delite?',
 	'mainpagetext' => "'''MediaWiki ha essite installate con successo.'''",
 	'mainpagedocfooter' => 'Consulta le [//meta.wikimedia.org/wiki/Help:Contents Guida del usator] pro informationes super le uso del software wiki.
 
@@ -11321,6 +11326,7 @@ $3
 Откога ќе завршите со тоа, можете да '''[$2 влезете на вашето вики]'''.",
 	'config-download-localsettings' => 'Преземи го LocalSettings.php',
 	'config-help' => 'помош',
+	'config-nofile' => 'Податотеката „$1“ не е пронајдена. Да не е избришана?',
 	'mainpagetext' => "'''МедијаВики е успешно инсталиран.'''",
 	'mainpagedocfooter' => 'Погледнете го [//meta.wikimedia.org/wiki/Help:Contents Упатството за корисници] за подетални иформации како се користи вики-програмот.
 
@@ -12675,6 +12681,7 @@ $3
 Na het plaatsen van het bestand met instellingen kunt u '''[$2 uw wiki betreden]'''.",
 	'config-download-localsettings' => 'LocalSettings.php downloaden',
 	'config-help' => 'hulp',
+	'config-nofile' => 'Bestand "$1" werd niet gevonden. Is het verwijderd?',
 	'mainpagetext' => "'''De installatie van MediaWiki is geslaagd.'''",
 	'mainpagedocfooter' => 'Raadpleeg de [//meta.wikimedia.org/wiki/NL_Help:Inhoudsopgave handleiding] voor informatie over het gebruik van de wikisoftware.
 

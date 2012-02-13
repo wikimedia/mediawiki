@@ -104,6 +104,7 @@
  * @author Slomox
  * @author Sp5uhe
  * @author Srhat
+ * @author Subhashkataria21.90
  * @author Tedjuh10
  * @author Tgr
  * @author The Evil IP address
@@ -1787,7 +1788,7 @@ I guess that this should appear before an input box where you can specify that r
 'rc-change-size'                  => '{{optional}}
 
 Does not work under $wgMiserMode ([[mwr:48986|r48986]]).',
-'rc-change-size-new'              => 'Tooltip when overing a change list diff size. The tooltip show the resulting new size in bytes.',
+'rc-change-size-new'              => 'Tooltip when hovering a change list diff size. The tooltip shows the resulting new size in bytes.',
 'newsectionsummary'               => 'Default summary when adding a new section to a page.',
 
 # Recent changes linked
@@ -1922,13 +1923,19 @@ Extensions making use of it:
 'lockmanager-notlocked'        => 'Parameters:
 * $1 is a resource path (e.g. "mwstore://media-public/a/ab/file.jpg").',
 'lockmanager-fail-closelock'   => 'Parameters:
-* $1 is a resource path (e.g. "mwstore://media-public/a/ab/file.jpg").',
+* $1 is a resource path (e.g. "mwstore://media-public/a/ab/file.jpg").
+
+A "[http://en.wikipedia.org/wiki/File_locking#Lock_files lock file]" signals by its presence that some resource is locked.',
 'lockmanager-fail-deletelock'  => 'Parameters:
-* $1 is a resource path (e.g. "mwstore://media-public/a/ab/file.jpg").',
+* $1 is a resource path (e.g. "mwstore://media-public/a/ab/file.jpg").
+
+A "[http://en.wikipedia.org/wiki/File_locking#Lock_files lock file]" signals by its presence that some resource is locked.',
 'lockmanager-fail-acquirelock' => 'Parameters:
 * $1 is a resource path (e.g. "mwstore://media-public/a/ab/file.jpg").',
 'lockmanager-fail-openlock'    => 'Parameters:
-* $1 is a resource path (e.g. "mwstore://media-public/a/ab/file.jpg").',
+* $1 is a resource path (e.g. "mwstore://media-public/a/ab/file.jpg").
+
+A "[http://en.wikipedia.org/wiki/File_locking#Lock_files lock file]" signals by its presence that some resource is locked.',
 'lockmanager-fail-releaselock' => 'Parameters:
 * $1 is a resource path (e.g. "mwstore://media-public/a/ab/file.jpg").',
 'lockmanager-fail-db-bucket'   => 'Parameters:

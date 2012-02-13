@@ -692,8 +692,8 @@ Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 
 'nonefound'                        => "'''Hiwais:''' Es wern standardmässig nur oanige Nåmensraim durchsuacht. Setz ''all:'' vur dain Suachbegrif, um olle Saiten (inkl. Dischkrirsaiten, Vurlong usw.) z' durchsuacha oder züid 'n Nåmen vom z' durchsuachanden Nåmensraum.",
 'search-nonefound'                 => 'Fyr deih Suachåfrog san koane Ergebniss gfunden worn',
 'powersearch'                      => 'Suach',
-'powersearch-legend'               => 'Eaweitate Suach',
-'powersearch-ns'                   => 'Suach in Nãmensräume:',
+'powersearch-legend'               => 'Daweiterde Suach',
+'powersearch-ns'                   => 'Suach in Nåmensraim:',
 'powersearch-redir'                => 'Weiderloattung åzoang',
 'powersearch-field'                => 'Suach noch:',
 'search-external'                  => 'Externe Suach',
@@ -707,15 +707,15 @@ Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 
 'rows'                      => 'Zeiln:',
 'columns'                   => 'Spoiten',
 'searchresultshead'         => 'Suachen',
-'resultsperpage'            => 'Treffer pro Saiten:',
+'resultsperpage'            => 'Dreffer pró Seiten:',
 'savedprefs'                => 'Deine Eihstellungen san gspeicherd worn.',
 'timezonelegend'            => 'Zaidzone:',
 'localtime'                 => 'Ortszaid:',
 'timezoneuseserverdefault'  => 'Standardzeid vom Wiki nutzen ($1)',
-'guesstimezone'             => 'Vom Browser übanehma',
+'guesstimezone'             => 'Vom Browser ywernemmer',
 'allowemail'                => 'E-Mail-Empfång voh anderne Benutzer méglé mochen.',
 'prefs-searchoptions'       => 'Suachopziónen',
-'prefs-namespaces'          => 'Nåmensreim',
+'prefs-namespaces'          => 'Nåmensraim',
 'youremail'                 => 'E-Mail-Adress:',
 'username'                  => 'Benutzernåm:',
 'yourrealname'              => 'Da echte Nåm:',
@@ -732,7 +732,7 @@ Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 
 
 # Groups
 'group-sysop'      => 'Administratorn',
-'group-bureaucrat' => 'Bürokratn',
+'group-bureaucrat' => 'Byrókraaten',
 'group-suppress'   => 'Oversighter',
 'group-all'        => '(olle)',
 
@@ -918,7 +918,7 @@ A [[Special:WhatLinksHere/$2|voiständige Listn]] gibt's aa.",
 'unusedtemplateswlh' => 'Aundre Links',
 
 # Random page
-'randompage' => 'Zuaféllige Seiten',
+'randompage' => 'Zuafällige Seiten',
 
 # Statistics
 'statistics'               => 'Staatistik',

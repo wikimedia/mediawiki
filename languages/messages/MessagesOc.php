@@ -306,7 +306,7 @@ $messages = array(
 'tog-editsection'             => 'Modificar una seccion via los ligams [modificar]',
 'tog-editsectiononrightclick' => 'Modificar una seccion en fasent un clic drech sus son títol (JavaScript)',
 'tog-showtoc'                 => "Afichar l'ensenhador (per las paginas de mai de 3 seccions)",
-'tog-rememberpassword'        => 'Se remembrar de mon senhal sus aqueste ordenador (al maximum $1 {{PLURAL:$1|jorn|jorns}})',
+'tog-rememberpassword'        => 'Se remembrar de mon senhal sus aqueste ordinator (al mai $1 {{PLURAL:$1|jorn|jorns}})',
 'tog-watchcreations'          => 'Apondre las paginas que creï a ma lista de seguiment',
 'tog-watchdefault'            => 'Apondre las paginas que modifiqui a ma lista de seguiment',
 'tog-watchmoves'              => 'Apondre las paginas que tòrni nomenar a ma lista de seguiment',
@@ -322,7 +322,7 @@ $messages = array(
 'tog-shownumberswatching'     => "Afichar lo nombre d'utilizaires que seguisson aquesta pagina",
 'tog-oldsig'                  => 'Apercebut de la signatura existenta :',
 'tog-fancysig'                => 'Tractar la signatura coma de wikitèxte (sens ligam automatic)',
-'tog-externaleditor'          => 'Utilizar un editor extèrne per defaut (pels utilizaires avançats, necessita una configuracion especiala sus vòstre ordenador)',
+'tog-externaleditor'          => 'Utilizar un editor extèrne per defaut (pels utilizaires avançats, necessita una configuracion especiala sus vòstre ordinator)',
 'tog-externaldiff'            => 'Utilizar un comparator extèrne per defaut (pels utilizaires avançats, necessita una configuracion especiala sus vòstre ordenador)',
 'tog-showjumplinks'           => 'Activar los ligams « navigacion » e « recèrca » en naut de pagina (aparéncias Myskin e autres)',
 'tog-uselivepreview'          => 'Utilizar l’apercebut rapid (JavaScript) (experimental)',
@@ -648,8 +648,8 @@ Informatz-ne un [[Special:ListUsers/sysop|administrator]] aprèp aver notada l�
 Benlèu la supression ja es estada efectuada per qualqu’un mai.',
 'badtitle'             => 'Títol marrit',
 'badtitletext'         => 'Lo títol de la pagina demandada es invalid, void o s’agís d’un títol interlenga o interprojècte mal ligat. Benlèu conten un o maites caractèrs que pòdon pas èsser utilizats dins los títols.',
-'perfcached'           => 'Aquò es una version en escondedor e benlèu es pas a jorn.',
-'perfcachedts'         => 'Las donadas seguentas son en escondedor, son doncas pas obligatòriament a jorn. La darrièra actualizacion data del $1.',
+'perfcached'           => 'Aquò es una version en amagatal e es benlèu pas a jorn.',
+'perfcachedts'         => "Las donadas que segon son dins l'amagatal, son doncas pas forçadament a jorn. La darrièra actualizacion data del $1.",
 'querypage-no-updates' => 'Las mesas a jorn per aquesta pagina son actualamnt desactivadas. Las donadas çaijós son pas mesas a jorn.',
 'wrong_wfQuery_params' => 'Paramètres incorrèctes sus wfQuery()<br />
 Foncion : $1<br />
@@ -901,7 +901,7 @@ o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 
 'userpage-userdoesnotexist-view'   => "Lo compte d'utilizaire « $1 » es pas enregistrat.",
 'blocked-notice-logextract'        => 'Aqueste utilizaire es actualament blocat.
 La darrièra entrada del jornal dels blocatges es indicada çaijós a títol d’informacion :',
-'clearyourcache'                   => "'''Nòta :''' Aprèp aver publicat la pagina, vos cal forçar son recargament complet tot ignorant lo contengut actual de l'amagatal de vòstre navigador per veire los cambiaments : '''Mozilla / Firefox / Konqueror / Safari :''' mantenètz la tòca ''Majuscula'' (''Shift'') en clicant lo boton ''Actualizar'' (''Reload,'') o quichatz ''Maj-Ctrl-R'' (''Maj-Cmd-R'' sus Apple Mac) ; '''Internet Explorer / Opera :''' mantenètz la tòca ''Ctrl'' en clicant lo boton ''Actualizar'' o quichatz ''Ctrl-F5''.",
+'clearyourcache'                   => "'''Nòta :''' Aprèp aver publicat la pagina, vos cal forçar son recargament complet tot ignorant lo contengut actual de l'amagatal de vòstre navigador per veire los cambiaments : '''Mozilla / Firefox / Konqueror / Safari :''' mantenètz la tòca ''Majuscula'' (''Shift'') en clicant lo boton ''Actualizar'' (''Reload,'') o quichatz sus ''Maj-Ctrl-R'' (''Maj-Cmd-R'' sus Apple) ; '''Internet Explorer / Opera :''' mantenètz la tòca ''Ctrl'' en clicant lo boton ''Actualizar'' o quichatz sus ''Ctrl-F5''.",
 'usercssyoucanpreview'             => "'''Astúcia :''' Utilizatz lo boton 'Previsualizacion' per testar vòstre fuèlh css/js novèl abans de l'enregistrar.",
 'userjsyoucanpreview'              => "'''Astúcia :''' Utilizatz lo boton 'Previsualizacion' per testar vòstre fuèlh css/js novèl abans de l'enregistrar.",
 'usercsspreview'                   => "'''Remembratz-vos que sètz a previsualizar vòstre pròpri fuèlh CSS !'''
@@ -941,7 +941,7 @@ Vos va caler aportar vòstras modificacions al tèxte existent.
 'yourdiff'                         => 'Diferéncias',
 'copyrightwarning'                 => "Totas las contribucions a {{SITENAME}} son consideradas coma publicadas jols tèrmes de la $2 (vejatz $1 per mai de detalhs). Se desiratz pas que vòstres escriches sián modificats e distribuits a volontat, mercés de los sometre pas aicí.<br /> Nos prometètz tanben qu'avètz escrich aquò vos-meteis, o que l’avètz copiat d’una font provenent del domeni public, o d’una ressorsa liura.'''UTILIZETZ PAS DE TRABALHS JOS COPYRIGHT SENS AUTORIZACION EXPRÈSSA !'''",
 'copyrightwarning2'                => "Totas las contribucions a {{SITENAME}} pòdon èsser modificadas o suprimidas per d’autres utilizaires. Se desiratz pas que vòstres escriches sián modificats e distribuits a volontat, mercés de los sometre pas aicí.<br /> Tanben nos prometètz qu'avètz escrich aquò vos-meteis, o que l’avètz copiat d’una font provenent del domeni public, o d’una ressorsa liura. (vejatz $1 per mai de detalhs). '''UTILIZETZ PAS DE TRABALHS JOS COPYRIGHT SENS AUTORIZACION EXPRÈSSA !'''",
-'longpageerror'                    => "'''ERROR : Lo tèxte qu'avètz mandat es de $1 Ko, e depassa doncas lo limit autorizat dels $2 Ko. Lo tèxte pòt pas èsser salvat.'''",
+'longpageerror'                    => "'''ERROR : Lo tèxte qu'avètz mandat fa $1 Ko, que depassa doncas lo limit autorizat dels $2 Ko. Pòt pas èsser salvat.'''",
 'readonlywarning'                  => "'''AVERTIMENT : La banca de donadas es estada varrolhada per mantenença, doncas poiretz pas salvar vòstras modificacions ara.
 Podètz copiar lo tèxte dins un fichièr de tèxte e lo salvar per mai tard.'''
 
@@ -1389,7 +1389,7 @@ Tanben podètz causir de permetre a d’autres de vos contactar per vòstra pagi
 'userrights-no-interwiki'      => "Sètz pas abilitat per modificar los dreches dels utilizaires sus d'autres wikis.",
 'userrights-nodatabase'        => 'La banca de donadas « $1 » existís pas o es pas en local.',
 'userrights-nologin'           => "Vos cal [[Special:UserLogin|vos connectar]] amb un compte d'administrator per balhar los dreches d'utilizaire.",
-'userrights-notallowed'        => "Vòstre compte es pas abilitat per modificar de dreches d'utilizaire.",
+'userrights-notallowed'        => "Al vòstre compte li es pas permés de modificar de dreches d'utilizaire.",
 'userrights-changeable-col'    => 'Los gropes que podètz cambiar',
 'userrights-unchangeable-col'  => 'Los gropes que podètz pas cambiar',
 
@@ -1405,7 +1405,7 @@ Tanben podètz causir de permetre a d’autres de vos contactar per vòstra pagi
 
 'group-user-member'          => 'Utilizaire',
 'group-autoconfirmed-member' => 'Utilizaire enregistrat',
-'group-bot-member'           => 'Bòt',
+'group-bot-member'           => 'Robòt',
 'group-sysop-member'         => 'Administrator',
 'group-bureaucrat-member'    => 'Burocrata',
 'group-suppress-member'      => 'Supervisor',
@@ -1686,7 +1686,7 @@ PICT # misc.
 'upload-success-subj'         => 'Importacion capitada',
 'upload-success-msg'          => 'Çò mandat es disponible aicí : [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Problèma de mandadís',
-'upload-failure-msg'          => 'I a agut un problèma amb vòstre mandadís :$1',
+'upload-failure-msg'          => 'I a agut un problèma amb vòstre mandadís [$2]: $1',
 'upload-warning-subj'         => 'Avertiment al moment del telecargament',
 
 'upload-proto-error'        => 'Protocòl incorrècte',

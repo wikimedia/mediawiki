@@ -1903,7 +1903,7 @@ Als het probleem aanhoudt, neem dan contact op met een [[Special:ListUsers/sysop
 'backend-fail-read'          => 'Het was niet mogelijk het bestand $1 te lezen.',
 'backend-fail-create'        => 'Het was niet mogelijk het bestand $1 aan te maken.',
 'backend-fail-readonly'      => 'De opslagbackend "$1" kan op dit moment alleen gelezen worden. De opgegeven reden was: "$2"',
-'backend-fail-synced'        => 'Het bestand "$1" bevindt zich in een inconsistente toestand in het interne opslagbackends.',
+'backend-fail-synced'        => 'Het bestand "$1" bevindt zich in een inconsistente toestand in de interne opslagbackends.',
 'backend-fail-connect'       => 'Het was niet mogelijk een verbinding te maken met het opslagbackend "$1".',
 'backend-fail-internal'      => 'Er is een onbekende fout opgetreden in het opslagbackend "$1".',
 'backend-fail-contenttype'   => 'Kon het inhoudstype van het bestand om op "$1" op te slaan niet bepalen.',
@@ -1941,7 +1941,7 @@ De veiligheid kan niet worden gecontroleerd.',
 # img_auth script messages
 'img-auth-accessdenied'     => 'Toegang geweigerd',
 'img-auth-nopathinfo'       => 'PATH_INFO mist.
-Uw server is niet ingesteld om deze informatie door te geven.
+Uw server is niet ingesteld om deze gegevens door te geven.
 Misschien gebruikt deze CGI, en dan wordt img_auth niet ondersteund.
 Zie [https://www.mediawiki.org/wiki/Manual:Image_Authorization rechten voor afbeeldingen] voor meer informatie.',
 'img-auth-notindir'         => 'Het opgevraagde pad is niet de ingestelde uploadmap.',
@@ -4002,10 +4002,10 @@ Andere bestandstypen worden direct in het met het MIME-type verbonden programma 
 'revdelete-uname-unhid'               => 'gebruikersnaam zichtbaar gemaakt',
 'revdelete-restricted'                => 'heeft beperkingen aan beheerders opgelegd',
 'revdelete-unrestricted'              => 'heeft beperkingen voor beheerders opgeheven',
-'logentry-move-move'                  => '$1 hernoemde pagina $3 naar $4',
+'logentry-move-move'                  => '$1 heeft pagina $3 naar $4 hernoemd',
 'logentry-move-move-noredirect'       => '$1 hernoemde pagina $3 naar $4 zonder een doorverwijzing achter te laten',
 'logentry-move-move_redir'            => '$1 hernoemde pagina $3 naar $4 over een doorverwijzing',
-'logentry-move-move_redir-noredirect' => '$1 hernoemde pagina $3 naar $4 over een doorverwijzing zonder een doorverwijzing achter te laten',
+'logentry-move-move_redir-noredirect' => '$1 heeft pagina $3 naar $4 hernoemd over een doorverwijzing zonder een doorverwijzing achter te laten',
 'logentry-patrol-patrol'              => '$1 heeft versie $4 van pagina $3 als gecontroleerd gemarkeerd',
 'logentry-patrol-patrol-auto'         => '$1 heeft versie $4 van pagina $3 automatisch als gecontroleerd gemarkeerd',
 'logentry-newusers-newusers'          => '$1 heeft een gebruiker aangemaakt',

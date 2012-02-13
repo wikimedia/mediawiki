@@ -1778,18 +1778,19 @@ $1',
 'upload-warning-subj'         => 'Ostrzeżenie dotyczące przesyłania',
 'upload-warning-msg'          => 'Wystąpił problem z przesyłaniem z [$2]. Możesz wrócić do [[Special:Upload/stash/$1|formularza przesłania]] w celu rozwiązania tego problemu.',
 
-'upload-proto-error'        => 'Nieprawidłowy protokół',
-'upload-proto-error-text'   => 'Zdalne przesyłanie plików wymaga podania adresu URL zaczynającego się od <code>http://</code> lub <code>ftp://</code>.',
-'upload-file-error'         => 'Błąd wewnętrzny',
-'upload-file-error-text'    => 'Wystąpił błąd wewnętrzny podczas próby utworzenia tymczasowego pliku na serwerze.
+'upload-proto-error'                => 'Nieprawidłowy protokół',
+'upload-proto-error-text'           => 'Zdalne przesyłanie plików wymaga podania adresu URL zaczynającego się od <code>http://</code> lub <code>ftp://</code>.',
+'upload-file-error'                 => 'Błąd wewnętrzny',
+'upload-file-error-text'            => 'Wystąpił błąd wewnętrzny podczas próby utworzenia tymczasowego pliku na serwerze.
 Skontaktuj się z [[Special:ListUsers/sysop|administratorem systemu]].',
-'upload-misc-error'         => 'Nieznany błąd przesyłania',
-'upload-misc-error-text'    => 'Wystąpił nieznany błąd podczas przesyłania.
+'upload-misc-error'                 => 'Nieznany błąd przesyłania',
+'upload-misc-error-text'            => 'Wystąpił nieznany błąd podczas przesyłania.
 Sprawdź, czy podany adres URL jest poprawny i dostępny, a następnie spróbuj ponownie.
 Jeśli problem będzie się powtarzał, skontaktuj się z [[Special:ListUsers/sysop|administratorem systemu]].',
-'upload-too-many-redirects' => 'URL zawiera zbyt wiele przekierowań',
-'upload-unknown-size'       => 'Nieznany rozmiar',
-'upload-http-error'         => 'Wystąpił błąd protokołu HTTP – $1',
+'upload-too-many-redirects'         => 'URL zawiera zbyt wiele przekierowań',
+'upload-unknown-size'               => 'Nieznany rozmiar',
+'upload-http-error'                 => 'Wystąpił błąd protokołu HTTP – $1',
+'upload-copy-upload-invalid-domain' => 'Przesyłanie kopii z tej domeny nie jest dostępne.',
 
 # File backend
 'backend-fail-stream'        => 'Nie można odczytać pliku $1.',
@@ -1811,7 +1812,9 @@ Jeśli problem będzie się powtarzał, skontaktuj się z [[Special:ListUsers/sy
 'backend-fail-readonly'      => 'Interfejs magazynowania "$1" jest obecnie tylko do odczytu. Powód: "$2"',
 'backend-fail-synced'        => 'Plik "$1" jest w niespójnym stanie w ramach wewnętrznych funkcji magazynowania',
 'backend-fail-connect'       => 'Nie można nawiązać połączenia do wewnętrznych funkcji magazynowania "$1".',
-'backend-fail-internal'      => 'Wystąpił nieznany błąd w wewnętrznych procedurach magazynowania "$1".',
+'backend-fail-internal'      => 'Wystąpił nieznany błąd w wewnętrznych funkcjach magazynowania "$1".',
+'backend-fail-contenttype'   => 'Nie można określić typ zawartości pliku do przechowywania w "$1".',
+'backend-fail-batchsize'     => 'Wewnętrzne funkcje magazynowania otrzymały $1 {{PLURAL:$1|operację|operacje|operacji}} na pliku; limit wynosi $2 {{PLURAL:$2| operacja|operacje|operacji}}.',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Nie można odblokować "$1", ponieważ nie jest on zablokowany.',

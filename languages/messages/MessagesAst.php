@@ -1109,7 +1109,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'prefs-beta'                    => 'Carauterístiques beta',
 'prefs-datetime'                => 'Fecha y hora',
 'prefs-labs'                    => 'Carauterístiques esperimentales',
-'prefs-personal'                => 'Datos personales',
+'prefs-personal'                => 'Perfil del usuariu',
 'prefs-rc'                      => 'Cambeos recientes',
 'prefs-watchlist'               => 'Llista de vixilancia',
 'prefs-watchlist-days'          => "Númberu de díes qu'amosar na llista de vixilancia:",
@@ -1555,18 +1555,19 @@ $1',
 'upload-warning-subj'         => 'Avisu de xubía',
 'upload-warning-msg'          => 'Hebo un problema cola to xubía de [$2]. Pues volver al [[Special:Upload/stash/$1|formulariu de xubía]] pa iguar esti problema.',
 
-'upload-proto-error'        => 'Protocolu incorreutu',
-'upload-proto-error-text'   => "La xubida remota requier que l'URL entame por <code>http://</code> o <code>ftp://</code>.",
-'upload-file-error'         => 'Error internu',
-'upload-file-error-text'    => 'Hebo un error al intentar crear un ficheru temporal nel sirvidor.
+'upload-proto-error'                => 'Protocolu incorreutu',
+'upload-proto-error-text'           => "La xubida remota requier que l'URL entame por <code>http://</code> o <code>ftp://</code>.",
+'upload-file-error'                 => 'Error internu',
+'upload-file-error-text'            => 'Hebo un error al intentar crear un ficheru temporal nel sirvidor.
 Por favor contauta con un [[Special:ListUsers/sysop|alministrador]] del sistema.',
-'upload-misc-error'         => 'Error de xubida desconocíu',
-'upload-misc-error-text'    => "Hebo un error desconocíu na xubida del ficheru.
+'upload-misc-error'                 => 'Error de xubida desconocíu',
+'upload-misc-error-text'            => "Hebo un error desconocíu na xubida del ficheru.
 Por favor comprueba que l'URL ye válidu y accesible, y inténtalo otra vuelta.
 Si'l problema persiste, contauta con un [[Special:ListUsers/sysop|alministrador]] del sistema.",
-'upload-too-many-redirects' => 'La URL contenía demasiaes redireiciones',
-'upload-unknown-size'       => 'Tamañu desconocíu',
-'upload-http-error'         => 'Hebo un error HTTP: $1',
+'upload-too-many-redirects'         => 'La URL contenía demasiaes redireiciones',
+'upload-unknown-size'               => 'Tamañu desconocíu',
+'upload-http-error'                 => 'Hebo un error HTTP: $1',
+'upload-copy-upload-invalid-domain' => 'La xubida de copies nun ta disponible dende esti dominiu.',
 
 # File backend
 'backend-fail-stream'        => 'Nun se pudo tresmitir el ficheru $1.',
@@ -2428,7 +2429,7 @@ Pa ver los bloqueos qu'hai agora mesmo, mira na [[Special:BlockList|llista d'IP 
 'ipb_expiry_invalid'              => 'Tiempu incorrectu.',
 'ipb_expiry_temp'                 => "Los bloqueos de nome d'usuariu escondíos han ser permanentes.",
 'ipb_hide_invalid'                => 'Nun se pue desaniciar esta cuenta; seique tenga demasiaes ediciones.',
-'ipb_already_blocked'             => '"$1" yá ta bloqueáu',
+'ipb_already_blocked'             => '"$1" yá ta bloquiáu',
 'ipb-needreblock'                 => '$1 yá ta bloquiáu. ¿Quies camudar los parámetros?',
 'ipb-otherblocks-header'          => '{{PLURAL:$1|Otru bloquéu|Otros bloqueos}}',
 'unblock-hideuser'                => "Nun pues desbloquiar esti usuariu, porque tien el nome d'usuariu anubríu.",

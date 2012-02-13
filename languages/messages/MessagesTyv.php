@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Agilight
  * @author Andrijko Z.
  * @author Krice from Tyvanet.com
  * @author Sborsody
@@ -156,7 +157,7 @@ $messages = array(
 
 'errorpagetitle'    => 'Алдаг',
 'returnto'          => '$1 деп арынже эглири.',
-'tagline'           => '{{SITENAME}} деп веб-сайттен',
+'tagline'           => '{{SITENAME}} деп веб-сайттан',
 'help'              => 'Дуза',
 'search'            => 'Дилээри',
 'searchbutton'      => 'Дилээри',
@@ -187,7 +188,7 @@ $messages = array(
 'postcomment'       => 'Чаа салбыр',
 'articlepage'       => 'Допчу арынны көөрү',
 'talk'              => 'Чугаалажыры',
-'views'             => 'Көрүштер',
+'views'             => 'Көрүүшкүнү',
 'toolbox'           => 'Херекселдер',
 'userpage'          => 'Ажыглакчының арынын көөрү',
 'projectpage'       => 'Проект арынын көөрү',
@@ -208,8 +209,8 @@ $messages = array(
 'copyrightpage'        => '{{ns:project}}:Чогаалчының эргелери',
 'currentevents'        => 'Амгы үеде болуушкуннар',
 'currentevents-url'    => 'Project:Амгы үеде болуушкуннар',
-'disclaimers'          => 'Ажыглаарынка чомпээрежилдер',
-'disclaimerpage'       => 'Project:Ажыглаарынка чомпээрежил',
+'disclaimers'          => 'Ажыглаар харысаалгазын чөрчүүрү (ойталаары)',
+'disclaimerpage'       => 'Project:Ажыглаар харысаалгазын чөрчүүрү (ойталаары)',
 'edithelp'             => 'Өскертиринге дуза',
 'edithelppage'         => 'Help:Өскертири',
 'helppage'             => 'Help:Допчузу',
@@ -218,6 +219,8 @@ $messages = array(
 'policy-url'           => 'Project:Политика',
 'portal'               => 'Ниитилелдиң хаалгазы',
 'portal-url'           => 'Project:Ниитилелдиң хаалгазы',
+'privacy'              => 'Актыг бүзүрел дугуржулгазы',
+'privacypage'          => 'Project:Актыг бүзүрел дугуржулгазы',
 
 'ok'                  => 'Чөп',
 'retrievedfrom'       => '"$1" деп арынында парлаттынган',
@@ -391,6 +394,7 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 'history-title'           => '"$1" деп арынның үндүрери төөгүзү',
 'lineno'                  => 'Одуруг $1:',
 'compareselectedversions' => 'Шилип алган хевирлери деңнээри',
+'editundo'                => 'ойталаар (чөрчүүр)',
 
 # Search results
 'searchresults'             => 'Түңнелдер',
@@ -500,7 +504,8 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 'rc-enhanced-hide'                  => 'Тодаларны чажырары',
 
 # Recent changes linked
-'recentchangeslinked-page' => 'Арынның ады:',
+'recentchangeslinked-toolbox' => 'Хамааржыр эдиглер',
+'recentchangeslinked-page'    => 'Арынның ады:',
 
 # Upload
 'upload'            => 'Файлды салыры',
@@ -562,7 +567,7 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 'unusedtemplateswlh' => 'өске холбаалар',
 
 # Random page
-'randompage' => 'Даап арын',
+'randompage' => 'Душ арын',
 
 # Statistics
 'statistics' => 'Статистика',
@@ -778,36 +783,40 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 'import-logentry-upload-detail' => '$1 {{PLURAL:$1|үндүрери}}',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'       => 'Силерниң ажыглакчы арыныңнар',
-'tooltip-pt-mytalk'         => 'Силерниң чугаалажыр арыныңар',
-'tooltip-pt-mycontris'      => 'Силерниң немелделериңерның даңзызы',
-'tooltip-pt-logout'         => 'Үнери',
-'tooltip-ca-talk'           => 'Бо арын дугайында чыгаалажыры',
-'tooltip-ca-protect'        => 'Бо арынны камгалаары',
-'tooltip-ca-delete'         => 'Бо арынны ырадыры',
-'tooltip-ca-move'           => 'Бо арынны шимчээри',
-'tooltip-ca-watch'          => 'Силерниң хайгаарылга даңзызынга бо арынны немээри',
-'tooltip-ca-unwatch'        => 'Силерниң хайгаарылга даңзызындан бо арынны ырадыры',
-'tooltip-search'            => '{{grammar:locative|{{SITENAME}}}} дилээри',
-'tooltip-p-logo'            => 'Кол Арын',
-'tooltip-n-mainpage'        => 'Кол Арынны баары',
-'tooltip-n-recentchanges'   => 'Викиниң дээм чагы өскерлиишкиннери',
-'tooltip-feed-rss'          => 'Бо арының РСС медээ агымы',
-'tooltip-feed-atom'         => 'Бо арының Атом медээ агымы',
-'tooltip-t-contributions'   => 'Бо ажыглакчының немелделериниң даңзазын көөрү.',
-'tooltip-t-emailuser'       => 'Бо ажыглакчыга э-чагааны чорудаары',
-'tooltip-t-upload'          => 'Файлдарны салыры',
-'tooltip-t-specialpages'    => 'Шупту тускай арыннар даңзызы',
-'tooltip-ca-nstab-main'     => 'Допчы арынын көөрү',
-'tooltip-ca-nstab-user'     => 'Ажыглакчының арынын көөрү',
-'tooltip-ca-nstab-media'    => 'Медиа арынын көөрү',
-'tooltip-ca-nstab-project'  => 'Проект арнызын көөрү',
-'tooltip-ca-nstab-image'    => 'Файлдың арынын көөрү',
-'tooltip-ca-nstab-template' => 'Хээни көөрү',
-'tooltip-ca-nstab-help'     => 'Дуза арынын көөрү',
-'tooltip-ca-nstab-category' => 'Бөлүктүң арынын көөрү',
-'tooltip-save'              => 'Силерниң өскерлиишкиннериңерни шыгжаары',
-'tooltip-watch'             => 'Силерниң хайгаарылга даңзызынга бо арынны немээри',
+'tooltip-pt-userpage'            => 'Силерниң ажыглакчы арыныңнар',
+'tooltip-pt-mytalk'              => 'Силерниң чугаалажыр арыныңар',
+'tooltip-pt-mycontris'           => 'Силерниң немелделериңерның даңзызы',
+'tooltip-pt-logout'              => 'Үнери',
+'tooltip-ca-talk'                => 'Бо арын дугайында чыгаалажыры',
+'tooltip-ca-history'             => 'Арынның мурнуку өскерлиишкиннери',
+'tooltip-ca-protect'             => 'Бо арынны камгалаары',
+'tooltip-ca-delete'              => 'Бо арынны ырадыры',
+'tooltip-ca-move'                => 'Бо арынны шимчээри',
+'tooltip-ca-watch'               => 'Силерниң хайгаарылга даңзызынга бо арынны немээри',
+'tooltip-ca-unwatch'             => 'Силерниң хайгаарылга даңзызындан бо арынны ырадыры',
+'tooltip-search'                 => '{{grammar:locative|{{SITENAME}}}} дилээри',
+'tooltip-search-fulltext'        => 'Бо бижике арыннардан дилээри',
+'tooltip-p-logo'                 => 'Кол Арын',
+'tooltip-n-mainpage'             => 'Кол Арынны баары',
+'tooltip-n-mainpage-description' => 'Кол Арынче кирери',
+'tooltip-n-recentchanges'        => 'Викиниң энир өскерлиишкиннери',
+'tooltip-n-randompage'           => 'Душ арынны көөрү',
+'tooltip-feed-rss'               => 'Бо арының РСС медээ агымы',
+'tooltip-feed-atom'              => 'Бо арының Атом медээ агымы',
+'tooltip-t-contributions'        => 'Бо ажыглакчының немелделериниң даңзазын көөрү.',
+'tooltip-t-emailuser'            => 'Бо ажыглакчыга э-чагааны чорудаары',
+'tooltip-t-upload'               => 'Файлдарны киирери',
+'tooltip-t-specialpages'         => 'Шупту тускай арыннар даңзызы',
+'tooltip-ca-nstab-main'          => 'Допчы арынын көөрү',
+'tooltip-ca-nstab-user'          => 'Ажыглакчының арынын көөрү',
+'tooltip-ca-nstab-media'         => 'Медиа арынын көөрү',
+'tooltip-ca-nstab-project'       => 'Проект арнызын көөрү',
+'tooltip-ca-nstab-image'         => 'Файлдың арынын көөрү',
+'tooltip-ca-nstab-template'      => 'Хээни көөрү',
+'tooltip-ca-nstab-help'          => 'Дуза арынын көөрү',
+'tooltip-ca-nstab-category'      => 'Бөлүктүң арынын көөрү',
+'tooltip-save'                   => 'Силерниң өскерлиишкиннериңерни шыгжаары',
+'tooltip-watch'                  => 'Силерниң хайгаарылга даңзызынга бо арынны немээри',
 
 # Attribution
 'anonymous' => '{{grammar:genitive|{{SITENAME}}}} ат эвес {{PLURAL:$1|ажыглакчызы|ажыглакчылары}}',

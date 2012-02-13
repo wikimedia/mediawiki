@@ -2057,8 +2057,8 @@ $1',
 # E-mail user
 'mailnologin'          => '无电邮地址',
 'mailnologintext'      => '你必须[[Special:UserLogin|登录]]并在你的[[Special:Preferences|系统设置]]中拥有有效的电子邮件地址才能向其他用户发送电子邮件。',
-'emailuser'            => '给该用户发送电子邮件',
-'emailpage'            => '向用户发邮件',
+'emailuser'            => '电邮联系',
+'emailpage'            => '电邮联系',
 'emailpagetext'        => '您可以用下面的表格去寄一封电邮给这位用户。
 您在[[Special:Preferences|您参数设置]]中所输入的电子邮箱地址将出现在邮件"发件人"一栏中，这样该用户就可以回复您。',
 'usermailererror'      => 'Mail 对象返回错误：',

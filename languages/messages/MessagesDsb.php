@@ -1148,7 +1148,7 @@ Zaruc, až historija wersijow nastawka jo njepśetergnjona.',
 
 # Preferences page
 'preferences'                   => 'Nastajenja',
-'mypreferences'                 => 'móje nastajenja',
+'mypreferences'                 => 'nastajenja',
 'prefs-edits'                   => 'Licba wobźěłanjow:',
 'prefsnologin'                  => 'Njejsy pśizjawjony',
 'prefsnologintext'              => 'Musyš se <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} pśizjawiś]</span>, aby mógał swóje nastajenja změniś.',
@@ -1592,15 +1592,16 @@ $1',
 'upload-warning-subj'         => 'Nagrawańske warnowanje',
 'upload-warning-msg'          => 'Jo był problem z twójim nagraśim z [$2]. Wroś k [[Special:Upload/stash/$1|nagrawańskemu formularoju]], aby wótpórał toś ten problem.',
 
-'upload-proto-error'        => 'Njekorektny protokol',
-'upload-proto-error-text'   => 'URL musy zachopiś z <code>http://</code> abo <code>ftp://</code>.',
-'upload-file-error'         => 'Interna zmólka',
-'upload-file-error-text'    => 'Pśi napóranju temporarneje dataje na serwerje jo nastała interna zmólka. Pšosym staj se ze [[Special:ListUsers/sysop|systemowym administratorom]] do zwiska.',
-'upload-misc-error'         => 'Njeznata zmólka pśi nagrawanju.',
-'upload-misc-error-text'    => 'Pśi nagrawanju jo nastała njeznata zmólka. Kontrolěruj pšosym, lěc URL jo płaśiwy a pśistupny a wopytaj hyšći raz. Jolic problem dalej eksistěrujo, staj se z [[Special:ListUsers/sysop|administratorom]] do zwiska.',
-'upload-too-many-redirects' => 'URL jo pśewjele dalejpósrědnjenja wopśimjeł',
-'upload-unknown-size'       => 'Njeznata wjelikosć',
-'upload-http-error'         => 'HTTP-zmólka nastata: $1',
+'upload-proto-error'                => 'Njekorektny protokol',
+'upload-proto-error-text'           => 'URL musy zachopiś z <code>http://</code> abo <code>ftp://</code>.',
+'upload-file-error'                 => 'Interna zmólka',
+'upload-file-error-text'            => 'Pśi napóranju temporarneje dataje na serwerje jo nastała interna zmólka. Pšosym staj se ze [[Special:ListUsers/sysop|systemowym administratorom]] do zwiska.',
+'upload-misc-error'                 => 'Njeznata zmólka pśi nagrawanju.',
+'upload-misc-error-text'            => 'Pśi nagrawanju jo nastała njeznata zmólka. Kontrolěruj pšosym, lěc URL jo płaśiwy a pśistupny a wopytaj hyšći raz. Jolic problem dalej eksistěrujo, staj se z [[Special:ListUsers/sysop|administratorom]] do zwiska.',
+'upload-too-many-redirects'         => 'URL jo pśewjele dalejpósrědnjenja wopśimjeł',
+'upload-unknown-size'               => 'Njeznata wjelikosć',
+'upload-http-error'                 => 'HTTP-zmólka nastata: $1',
+'upload-copy-upload-invalid-domain' => 'Kopijowe nagraśa z toś teje domeny njestoje k dispoziciji.',
 
 # File backend
 'backend-fail-stream'        => 'Dataja $1 njedajo se pśenjasć.',
@@ -2048,7 +2049,7 @@ E-mailowa adresa, kótaruž sy zapódał w [[Special:Preferences|swójich wužyw
 
 # Watchlist
 'watchlist'            => 'Wobglědowańka',
-'mywatchlist'          => 'mója wobglědowańka',
+'mywatchlist'          => 'wobglědowańka',
 'watchlistfor2'        => 'Za wužywarja $1 $2',
 'nowatchlist'          => 'Žedne zapise w twójej wobglědowańce.',
 'watchlistanontext'    => 'Dejš $1, aby mógał swóju wobglědowańku wiźeś abo zapise w njej wobźěłaś.',
