@@ -1004,7 +1004,9 @@ function wfLogDBError( $text ) {
  * @param $function String
  * @param $version String|bool: Version of MediaWiki that the function was deprecated in (Added in 1.19).
  * @param $component String|bool: Added in 1.19.
- * @param $callerOffset integer: How far up the callstack is the original caller (Added in 1.20)
+ * @param $callerOffset integer: How far up the callstack is the original
+ *    caller. 2 = function that called the function that called
+ *    wfDeprecated (Added in 1.20) 
  * 
  * @return null
  */
