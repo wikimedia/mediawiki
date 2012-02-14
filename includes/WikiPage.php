@@ -2104,6 +2104,9 @@ class WikiPage extends Page {
 		# Clear caches
 		self::onArticleDelete( $this->mTitle );
 
+		# Reset this object
+		$this->clear();
+
 		# Clear the cached article id so the interface doesn't act like we exist
 		$this->mTitle->resetArticleID( 0 );
 	}
