@@ -266,6 +266,9 @@ abstract class DBTable {
 	 * Returns the amount of matching records.
 	 * Condition field names get prefixed.
 	 *
+	 * Note that this can be expensive on large tables.
+	 * In such cases you might want to use DatabaseBase::estimateRowCount instead.
+	 *
 	 * @since 1.20
 	 *
 	 * @param array $conditions
@@ -599,6 +602,19 @@ abstract class DBTable {
 	 */
 	public function getFieldNames() {
 		return array_keys( $this->getFieldTypes() );
+	}
+
+	/**
+	 * Gets if the object can take a certain field.
+	 *
+	 * @since 1.20
+	 *
+	 * @param string $name
+	 *
+	 * @return boolean
+	 */
+	public function canHaveField( $name ) {
+		return array_key_exists( $name, $this->getFieldTypes() );
 	}
 	
 }

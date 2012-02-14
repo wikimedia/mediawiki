@@ -552,19 +552,6 @@ abstract class DBDataObject {
 	}
 
 	/**
-	 * Gets if the object can take a certain field.
-	 *
-	 * @since 1.20
-	 *
-	 * @param string $name
-	 *
-	 * @return boolean
-	 */
-	public function canHaveField( $name ) {
-		return array_key_exists( $name, $this->table->getFieldTypes() );
-	}
-
-	/**
 	 * Add an amount (can be negative) to the specified field (needs to be numeric).
 	 *
 	 * @since 1.20
