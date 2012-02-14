@@ -129,7 +129,7 @@ abstract class DBDataObject {
 		}
 
 		if ( is_null( $fields ) ) {
-			$fields = array_keys( $this->getFieldTypes() );
+			$fields = array_keys( $this->table->getFieldTypes() );
 		}
 
 		if ( $skipLoaded ) {
@@ -137,14 +137,14 @@ abstract class DBDataObject {
 		}
 
 		if ( count( $fields ) > 0 ) {
-			$result = $this->rawSelectRow(
-				$this->getPrefixedFields( $fields ),
-				array( $this->getPrefixedField( 'id' ) => $this->getId() ),
+			$result = $this->table->rawSelectRow(
+				$this->table->getPrefixedFields( $fields ),
+				array( $this->table->getPrefixedField( 'id' ) => $this->getId() ),
 				array( 'LIMIT' => 1 )
 			);
 
 			if ( $result !== false ) {
-				$this->setFields( $this->getFieldsFromDBResult( $result ), $override );
+				$this->setFields( $this->table->getFieldsFromDBResult( $result ), $override );
 				return true;
 			}
 	
@@ -276,7 +276,7 @@ abstract class DBDataObject {
 	protected function getWriteValues() {
 		$values = array();
 
-		foreach ( $this->getFieldTypes() as $name => $type ) {
+		foreach ( $this->table->getFieldTypes() as $name => $type ) {
 			if ( array_key_exists( $name, $this->fields ) ) {
 				$value = $this->fields[$name];
 
@@ -287,7 +287,7 @@ abstract class DBDataObject {
 						$value = serialize( $value );
 				}
 
-				$values[$this->getFieldPrefix() . $name] = $value;
+				$values[$this->table->getPrefixedField( $name )] = $value;
 			}
 		}
 
@@ -336,7 +336,7 @@ abstract class DBDataObject {
 	 * @param boolean $override
 	 */
 	public function loadDefaults( $override = true ) {
-		$this->setFields( $this->getDefaults(), $override );
+		$this->setFields( $this->table->getDefaults(), $override );
 	}
 
 	/**
@@ -366,9 +366,9 @@ abstract class DBDataObject {
 		$dbw = wfGetDB( DB_MASTER );
 
 		$success = $dbw->update(
-			$this->getDBTable(),
+			$this->table->getDBTable(),
 			$this->getWriteValues(),
-			array( $this->getFieldPrefix() . 'id' => $this->getId() ),
+			array( $this->table->getPrefixedField( 'id' ) => $this->getId() ),
 			__METHOD__
 		);
 
@@ -386,7 +386,7 @@ abstract class DBDataObject {
 		$dbw = wfGetDB( DB_MASTER );
 
 		$result = $dbw->insert(
-			$this->getDBTable(),
+			$this->table->getDBTable(),
 			$this->getWriteValues(),
 			__METHOD__,
 			array( 'IGNORE' )
@@ -409,7 +409,7 @@ abstract class DBDataObject {
 	public function remove() {
 		$this->beforeRemove();
 		
-		$success = static::delete( array( 'id' => $this->getId() ) );
+		$success = $this->table->delete( array( 'id' => $this->getId() ) );
 
 		if ( $success ) {
 			$this->onRemoved();
@@ -588,12 +588,12 @@ abstract class DBDataObject {
 
 		$dbw = wfGetDB( DB_MASTER );
 
-		$fullField = $this->getPrefixedField( $field );
+		$fullField = $this->table->getPrefixedField( $field );
 
 		$success = $dbw->update(
-			$this->getDBTable(),
+			$this->table->getDBTable(),
 			array( "$fullField=$fullField" . ( $isNegative ? '-' : '+' ) . $absoluteAmount ),
-			array( $this->getPrefixedField( 'id' ) => $this->getId() ),
+			array( $this->table->getPrefixedField( 'id' ) => $this->getId() ),
 			__METHOD__
 		);
 
@@ -602,30 +602,6 @@ abstract class DBDataObject {
 		}
 
 		return $success;
-	}
-
-	/**
-	 * Selects the the specified fields of the records matching the provided
-	 * conditions. Field names do NOT get prefixed.
-	 *
-	 * @since 1.20
-	 *
-	 * @param array $fields
-	 * @param array $conditions
-	 * @param array $options
-	 *
-	 * @return ResultWrapper
-	 */
-	protected static function rawSelectRow( array $fields, array $conditions = array(), array $options = array() ) {
-		$dbr = wfGetDB( static::getReadDb() );
-
-		return $dbr->selectRow(
-			static::getDBTable(),
-			$fields,
-			$conditions,
-			__METHOD__,
-			$options
-		);
 	}
 
 	/**
@@ -684,7 +660,7 @@ abstract class DBDataObject {
 	 */
 	protected function fieldsChanged( DBDataObject $object, $excludeSummaryFields = false ) {
 		foreach ( $this->fields as $name => $value ) {
-			$excluded = $excludeSummaryFields && in_array( $name, $this->getSummaryFields() );
+			$excluded = $excludeSummaryFields && in_array( $name, $this->table->getSummaryFields() );
 
 			if ( !$excluded && $object->getField( $name ) !== $value ) {
 				return true;

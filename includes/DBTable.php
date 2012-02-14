@@ -201,6 +201,30 @@ abstract class DBTable {
 	}
 
 	/**
+	 * Selects the the specified fields of the records matching the provided
+	 * conditions. Field names do NOT get prefixed.
+	 *
+	 * @since 1.20
+	 *
+	 * @param array $fields
+	 * @param array $conditions
+	 * @param array $options
+	 *
+	 * @return ResultWrapper
+	 */
+	public function rawSelectRow( array $fields, array $conditions = array(), array $options = array() ) {
+		$dbr = wfGetDB( $this->getReadDb() );
+
+		return $dbr->selectRow(
+			$this->getDBTable(),
+			$fields,
+			$conditions,
+			__METHOD__,
+			$options
+		);
+	}
+
+	/**
 	 * Selects the the specified fields of the first record matching the provided
 	 * conditions and returns it as an associative array, or false when nothing matches.
 	 * This method makes use of selectFields and expects the same parameters and
