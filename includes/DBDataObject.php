@@ -54,6 +54,12 @@ abstract class DBDataObject {
 	protected $fields = array( 'id' => null );
 
 	/**
+	 * @since 1.20
+	 * @var DBTable
+	 */
+	protected $table;
+	
+	/**
 	 * If the object should update summaries of linked items when changed.
 	 * For example, update the course_count field in universities when a course in courses is deleted.
 	 * Settings this to false can prevent needless updating work in situations
@@ -73,7 +79,6 @@ abstract class DBDataObject {
 	 * @var bool
 	 */
 	protected $inSummaryMode = false;
-	
 
 	/**
 	 * The database connection to use for read operations.
@@ -82,80 +87,8 @@ abstract class DBDataObject {
 	 * @since 1.20
 	 * @var integer DB_ enum
 	 */
-	protected static $readDb = DB_SLAVE;
-
-	/**
-	 * Returns the name of the database table objects of this type are stored in.
-	 *
-	 * @since 1.20
-	 *
-	 * @throws MWException
-	 * @return string
-	 */
-	public static function getDBTable() {
-		throw new MWException( 'Class "' . get_called_class() . '" did not implement getDBTable' );
-	}
-
-	/**
-	 * Gets the db field prefix.
-	 *
-	 * @since 1.20
-	 *
-	 * @throws MWException
-	 * @return string
-	 */
-	protected static function getFieldPrefix() {
-		throw new MWException( 'Class "' . get_called_class() . '" did not implement getFieldPrefix' );
-	}
-
-	/**
-	 * Returns an array with the fields and their types this object contains.
-	 * This corresponds directly to the fields in the database, without prefix.
-	 *
-	 * field name => type
-	 *
-	 * Allowed types:
-	 * * id
-	 * * str
-	 * * int
-	 * * float
-	 * * bool
-	 * * array
-	 *
-	 * @since 1.20
-	 *
-	 * @throws MWException
-	 * @return array
-	 */
-	protected static function getFieldTypes() {
-		throw new MWException( 'Class did not implement getFieldTypes' );
-	}
-
-	/**
-	 * Returns a list of default field values.
-	 * field name => field value
-	 *
-	 * @since 1.20
-	 *
-	 * @return array
-	 */
-	public static function getDefaults() {
-		return array();
-	}
+	protected $readDb = DB_SLAVE;
 	
-	/**
-	 * Returns a list of the summary fields.
-	 * These are fields that cache computed values, such as the amount of linked objects of $type.
-	 * This is relevant as one might not want to do actions such as log changes when these get updated.
-	 *
-	 * @since 1.20
-	 *
-	 * @return array
-	 */
-	public static function getSummaryFields() {
-		return array();
-	}
-
 	/**
 	 * Constructor.
 	 *
@@ -164,13 +97,15 @@ abstract class DBDataObject {
 	 * @param array|null $fields
 	 * @param boolean $loadDefaults
 	 */
-	public function __construct( $fields = null, $loadDefaults = false ) {
+	public function __construct( DBTable $table, $fields = null, $loadDefaults = false ) {
+		$this->table = $table;
+		
 		if ( !is_array( $fields ) ) {
 			$fields = array();
 		}
 
 		if ( $loadDefaults ) {
-			$fields = array_merge( $this->getDefaults(), $fields );
+			$fields = array_merge( $this->table->getDefaults(), $fields );
 		}
 
 		$this->setFields( $fields );
@@ -549,7 +484,7 @@ abstract class DBDataObject {
 	 * @throws MWException
 	 */
 	public function setField( $name, $value ) {
-		$fields = $this->getFieldTypes();
+		$fields = $this->table->getFieldTypes();
 
 		if ( array_key_exists( $name, $fields ) ) {
 			switch ( $fields[$name] ) {
@@ -603,18 +538,19 @@ abstract class DBDataObject {
 	 *
 	 * @return DBDataObject
 	 */
-	public static function newFromArray( array $data, $loadDefaults = false ) {
-		return new static( $data, $loadDefaults );
+	public function newFromArray( array $data, $loadDefaults = false ) {
+		return new self( $data, $loadDefaults );
 	}
 
 	/**
 	 * Get the database type used for read operations.
 	 *
 	 * @since 1.20
+	 * 
 	 * @return integer DB_ enum
 	 */
-	public static function getReadDb() {
-		return self::$readDb;
+	public function getReadDb() {
+		return $this->readDb;
 	}
 
 	/**
@@ -624,8 +560,8 @@ abstract class DBDataObject {
 	 *
 	 * @since 1.20
 	 */
-	public static function setReadDb( $db ) {
-		self::$readDb = $db;
+	public function setReadDb( $db ) {
+		$this->readDb = $db;
 	}
 
 	/**
@@ -637,153 +573,8 @@ abstract class DBDataObject {
 	 *
 	 * @return boolean
 	 */
-	public static function canHaveField( $name ) {
-		return array_key_exists( $name, static::getFieldTypes() );
-	}
-
-	/**
-	 * Takes in a field or array of fields and returns an
-	 * array with their prefixed versions, ready for db usage.
-	 *
-	 * @since 1.20
-	 *
-	 * @param array|string $fields
-	 *
-	 * @return array
-	 */
-	public static function getPrefixedFields( array $fields ) {
-		foreach ( $fields as &$field ) {
-			$field = static::getPrefixedField( $field );
-		}
-
-		return $fields;
-	}
-
-	/**
-	 * Takes in a field and returns an it's prefixed version, ready for db usage.
-	 *
-	 * @since 1.20
-	 *
-	 * @param string|array $field
-	 *
-	 * @return string
-	 * @throws MWException
-	 */
-	public static function getPrefixedField( $field ) {
-		return static::getFieldPrefix() . $field;
-	}
-
-	/**
-	 * Takes in an associative array with field names as keys and
-	 * their values as value. The field names are prefixed with the
-	 * db field prefix.
-	 *
-	 * Field names can also be provided as an array with as first element a table name, such as
-	 * $conditions = array(
-	 *	 array( array( 'tablename', 'fieldname' ), $value ),
-	 * );
-	 *
-	 * @since 1.20
-	 *
-	 * @param array $values
-	 *
-	 * @return array
-	 */
-	public static function getPrefixedValues( array $values ) {
-		$prefixedValues = array();
-
-		foreach ( $values as $field => $value ) {
-			if ( is_integer( $field ) ) {
-				if ( is_array( $value ) ) {
-					$field = $value[0];
-					$value = $value[1];
-				}
-				else {
-					$value = explode( ' ', $value, 2 );
-					$value[0] = static::getPrefixedField( $value[0] );
-					$prefixedValues[] = implode( ' ', $value );
-					continue;
-				}
-			}
-
-			$prefixedValues[static::getPrefixedField( $field )] = $value;
-		}
-
-		return $prefixedValues;
-	}
-
-	/**
-	 * Get an array with fields from a database result,
-	 * that can be fed directly to the constructor or
-	 * to setFields.
-	 *
-	 * @since 1.20
-	 *
-	 * @param object $result
-	 *
-	 * @return array
-	 */
-	public static function getFieldsFromDBResult( $result ) {
-		$result = (array)$result;
-		return array_combine(
-			static::unprefixFieldNames( array_keys( $result ) ),
-			array_values( $result )
-		);
-	}
-
-	/**
-	 * Takes a field name with prefix and returns the unprefixed equivalent.
-	 *
-	 * @since 1.20
-	 *
-	 * @param string $fieldName
-	 *
-	 * @return string
-	 */
-	public static function unprefixFieldName( $fieldName ) {
-		return substr( $fieldName, strlen( static::getFieldPrefix() ) );
-	}
-
-	/**
-	 * Takes an array of field names with prefix and returns the unprefixed equivalent.
-	 *
-	 * @since 1.20
-	 *
-	 * @param array $fieldNames
-	 *
-	 * @return array
-	 */
-	public static function unprefixFieldNames( array $fieldNames ) {
-		return array_map( 'static::unprefixFieldName', $fieldNames );
-	}
-
-	/**
-	 * Get a new instance of the class from a database result.
-	 *
-	 * @since 1.20
-	 *
-	 * @param stdClass $result
-	 *
-	 * @return DBDataObject
-	 */
-	public static function newFromDBResult( stdClass $result ) {
-		return static::newFromArray( static::getFieldsFromDBResult( $result ) );
-	}
-
-	/**
-	 * Removes the object from the database.
-	 *
-	 * @since 1.20
-	 *
-	 * @param array $conditions
-	 *
-	 * @return boolean Success indicator
-	 */
-	public static function delete( array $conditions ) {
-		return wfGetDB( DB_MASTER )->delete(
-			static::getDBTable(),
-			static::getPrefixedValues( $conditions )
-		);
+	public function canHaveField( $name ) {
+		return array_key_exists( $name, $this->table->getFieldTypes() );
 	}
 
 	/**
@@ -796,12 +587,12 @@ abstract class DBDataObject {
 	 *
 	 * @return boolean Success indicator
 	 */
-	public static function addToField( $field, $amount ) {
+	public function addToField( $field, $amount ) {
 		if ( $amount == 0 ) {
 			return true;
 		}
 
-		if ( !static::hasIdField() ) {
+		if ( !$this->hasIdField() ) {
 			return false;
 		}
 
@@ -810,12 +601,12 @@ abstract class DBDataObject {
 
 		$dbw = wfGetDB( DB_MASTER );
 
-		$fullField = static::getPrefixedField( $field );
+		$fullField = $this->getPrefixedField( $field );
 
 		$success = $dbw->update(
-			static::getDBTable(),
+			$this->getDBTable(),
 			array( "$fullField=$fullField" . ( $isNegative ? '-' : '+' ) . $absoluteAmount ),
-			array( static::getPrefixedField( 'id' ) => static::getId() ),
+			array( $this->getPrefixedField( 'id' ) => $this->getId() ),
 			__METHOD__
 		);
 
@@ -824,171 +615,6 @@ abstract class DBDataObject {
 		}
 
 		return $success;
-	}
-
-	/**
-	 * Selects the the specified fields of the records matching the provided
-	 * conditions and returns them as DBDataObject. Field names get prefixed.
-	 *
-	 * @since 1.20
-	 *
-	 * @param array|string|null $fields
-	 * @param array $conditions
-	 * @param array $options
-	 *
-	 * @return array of self
-	 */
-	public static function select( $fields = null, array $conditions = array(), array $options = array() ) {
-		$result = static::selectFields( $fields, $conditions, $options, false );
-
-		$objects = array();
-
-		foreach ( $result as $record ) {
-			$objects[] = static::newFromArray( $record );
-		}
-
-		return $objects;
-	}
-
-	/**
-	 * Selects the the specified fields of the records matching the provided
-	 * conditions and returns them as associative arrays.
-	 * Provided field names get prefixed.
-	 * Returned field names will not have a prefix.
-	 *
-	 * When $collapse is true:
-	 * If one field is selected, each item in the result array will be this field.
-	 * If two fields are selected, each item in the result array will have as key
-	 * the first field and as value the second field.
-	 * If more then two fields are selected, each item will be an associative array.
-	 *
-	 * @since 1.20
-	 *
-	 * @param array|string|null $fields
-	 * @param array $conditions
-	 * @param array $options
-	 * @param boolean $collapse Set to false to always return each result row as associative array.
-	 *
-	 * @return array of array
-	 */
-	public static function selectFields( $fields = null, array $conditions = array(), array $options = array(), $collapse = true ) {
-		if ( is_null( $fields ) ) {
-			$fields = array_keys( static::getFieldTypes() );
-		}
-		else {
-			$fields = (array)$fields;
-		}
-		
-		$dbr = wfGetDB( static::getReadDb() );
-		$result = $dbr->select(
-			static::getDBTable(),
-			static::getPrefixedFields( $fields ),
-			static::getPrefixedValues( $conditions ),
-			__METHOD__,
-			$options
-		);
-
-		$objects = array();
-
-		foreach ( $result as $record ) {
-			$objects[] = static::getFieldsFromDBResult( $record );
-		}
-
-		if ( $collapse ) {
-			if ( count( $fields ) === 1 ) {
-				$objects = array_map( 'array_shift', $objects );
-			}
-			elseif ( count( $fields ) === 2 ) {
-				$o = array();
-
-				foreach ( $objects as $object ) {
-					$o[array_shift( $object )] = array_shift( $object );
-				}
-
-				$objects = $o;
-			}
-		}
-
-		return $objects;
-	}
-
-	/**
-	 * Selects the the specified fields of the first matching record.
-	 * Field names get prefixed.
-	 *
-	 * @since 1.20
-	 *
-	 * @param array|string|null $fields
-	 * @param array $conditions
-	 * @param array $options
-	 *
-	 * @return DBObject|bool False on failure
-	 */
-	public static function selectRow( $fields = null, array $conditions = array(), array $options = array() ) {
-		$options['LIMIT'] = 1;
-
-		$objects = static::select( $fields, $conditions, $options );
-
-		return count( $objects ) > 0 ? $objects[0] : false;
-	}
-
-	/**
-	 * Selects the the specified fields of the first record matching the provided
-	 * conditions and returns it as an associative array, or false when nothing matches.
-	 * This method makes use of selectFields and expects the same parameters and
-	 * returns the same results (if there are any, if there are none, this method returns false).
-	 * @see DBDataObject::selectFields
-	 *
-	 * @since 1.20
-	 *
-	 * @param array|string|null $fields
-	 * @param array $conditions
-	 * @param array $options
-	 * @param boolean $collapse Set to false to always return each result row as associative array.
-	 *
-	 * @return mixed|array|bool False on failure
-	 */
-	public static function selectFieldsRow( $fields = null, array $conditions = array(), array $options = array(), $collapse = true ) {
-		$options['LIMIT'] = 1;
-
-		$objects = static::selectFields( $fields, $conditions, $options, $collapse );
-
-		return count( $objects ) > 0 ? $objects[0] : false;
-	}
-
-	/**
-	 * Returns if there is at least one record matching the provided conditions.
-	 * Condition field names get prefixed.
-	 *
-	 * @since 1.20
-	 *
-	 * @param array $conditions
-	 *
-	 * @return boolean
-	 */
-	public static function has( array $conditions = array() ) {
-		return static::selectRow( array( 'id' ), $conditions ) !== false;
-	}
-
-	/**
-	 * Returns the amount of matching records.
-	 * Condition field names get prefixed.
-	 *
-	 * @since 1.20
-	 *
-	 * @param array $conditions
-	 * @param array $options
-	 *
-	 * @return integer
-	 */
-	public static function count( array $conditions = array(), array $options = array() ) {
-		$res = static::rawSelectRow(
-			array( 'COUNT(*) AS rowcount' ),
-			static::getPrefixedValues( $conditions ),
-			$options
-		);
-
-		return $res->rowcount;
 	}
 
 	/**
@@ -1016,99 +642,14 @@ abstract class DBDataObject {
 	}
 
 	/**
-	 * Update the records matching the provided conditions by
-	 * setting the fields that are keys in the $values param to
-	 * their corresponding values.
-	 *
-	 * @since 1.20
-	 *
-	 * @param array $values
-	 * @param array $conditions
-	 *
-	 * @return boolean Success indicator
-	 */
-	public static function update( array $values, array $conditions = array() ) {
-		$dbw = wfGetDB( DB_MASTER );
-
-		return $dbw->update(
-			static::getDBTable(),
-			static::getPrefixedValues( $values ),
-			static::getPrefixedValues( $conditions ),
-			__METHOD__
-		);
-	}
-
-	/**
 	 * Return the names of the fields.
 	 *
 	 * @since 1.20
 	 *
 	 * @return array
 	 */
-	public static function getFieldNames() {
-		return array_keys( static::getFieldTypes() );
-	}
-
-	/**
-	 * Returns an array with the fields and their descriptions.
-	 *
-	 * field name => field description
-	 *
-	 * @since 1.20
-	 *
-	 * @return array
-	 */
-	public static function getFieldDescriptions() {
-		return array();
-	}
-
-	/**
-	 * Get API parameters for the fields supported by this object.
-	 *
-	 * @since 1.20
-	 *
-	 * @param boolean $requireParams
-	 * @param boolean $setDefaults
-	 *
-	 * @return array
-	 */
-	public static function getAPIParams( $requireParams = false, $setDefaults = false ) {
-		$typeMap = array(
-			'id' => 'integer',
-			'int' => 'integer',
-			'float' => 'NULL',
-			'str' => 'string',
-			'bool' => 'integer',
-			'array' => 'string',
-			'blob' => 'string',
-		);
-
-		$params = array();
-		$defaults = static::getDefaults();
-
-		foreach ( static::getFieldTypes() as $field => $type ) {
-			if ( $field == 'id' ) {
-				continue;
-			}
-
-			$hasDefault = array_key_exists( $field, $defaults );
-
-			$params[$field] = array(
-				ApiBase::PARAM_TYPE => $typeMap[$type],
-				ApiBase::PARAM_REQUIRED => $requireParams && !$hasDefault
-			);
-
-			if ( $type == 'array' ) {
-				$params[$field][ApiBase::PARAM_ISMULTI] = true;
-			}
-
-			if ( $setDefaults && $hasDefault ) {
-				$default = is_array( $defaults[$field] ) ? implode( '|', $defaults[$field] ) : $defaults[$field];
-				$params[$field][ApiBase::PARAM_DFLT] = $default;
-			}
-		}
-
-		return $params;
+	public function getFieldNames() {
+		return array_keys( $this->table->getFieldTypes() );
 	}
 
 	/**
@@ -1120,26 +661,6 @@ abstract class DBDataObject {
 	 */
 	public function loadSummaryFields( $summaryFields = null ) {
 
-	}
-
-	/**
-	 * Computes the values of the summary fields of the objects matching the provided conditions.
-	 *
-	 * @since 1.20
-	 *
-	 * @param array|string|null $summaryFields
-	 * @param array $conditions
-	 */
-	public static function updateSummaryFields( $summaryFields = null, array $conditions = array() ) {
-		self::setReadDb( DB_MASTER );
-
-		foreach ( self::select( null, $conditions ) as /* DBDataObject */ $item ) {
-			$item->loadSummaryFields( $summaryFields );
-			$item->setSummaryMode( true );
-			$item->saveExisting();
-		}
-
-		self::setReadDb( DB_SLAVE );
 	}
 
 	/**
@@ -1184,6 +705,53 @@ abstract class DBDataObject {
 		}
 
 		return false;
+	}
+	
+	protected function getDBTable() {
+		return $this->table->getDBTable();
+	}
+	
+	/**
+	 * Get an array with fields from a database result,
+	 * that can be fed directly to the constructor or
+	 * to setFields.
+	 *
+	 * @since 1.20
+	 *
+	 * @param object $result
+	 *
+	 * @return array
+	 */
+	public function getFieldsFromDBResult( $result ) {
+		$result = (array)$result;
+		return array_combine(
+			$this->unprefixFieldNames( array_keys( $result ) ),
+			array_values( $result )
+		);
+	}
+	
+	/**
+	 * Get a new instance of the class from a database result.
+	 *
+	 * @since 1.20
+	 *
+	 * @param stdClass $result
+	 *
+	 * @return DBDataObject
+	 */
+	public function newFromDBResult( stdClass $result ) {
+		return $this->newFromArray( $this->getFieldsFromDBResult( $result ) );
+	}
+	
+	/**
+	 * Returns the table this DBDataObject is a row in.
+	 * 
+	 * @since 1.20
+	 * 
+	 * @return DBTable
+	 */
+	public function getTable() {
+		return $this->table;
 	}
 
 }
