@@ -232,6 +232,15 @@ class OutputPage extends ContextSource {
 	private $mRedirectedFrom = null;
 
 	/**
+	 * Name prefixes that can be used in addMeta
+	 */
+	public static $metaAttrPrefixes = array(
+		'http' => 'http-equiv',
+		'itemprop' => 'itemprop',
+		'property' => 'property',
+	);
+
+	/**
 	 * Constructor for OutputPage. This should not be called directly.
 	 * Instead a new RequestContext should be created and it will implicitly create
 	 * a OutputPage tied to that context.
@@ -278,6 +287,12 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add a new <meta> tag
 	 * To add an http-equiv meta tag, precede the name with "http:"
+	 * To add a Microdata itemprop meta tag, precede the name with "itemprop:"
+	 * To add a RDFa property meta tag, precede the name with "property:"
+	 *
+	 * itemprop: and property: were introduced in 1.20, you can feature
+	 * test for them by checking for the key in the new
+	 * OutputPage::$metaAttrPrefixes variable.
 	 *
 	 * @param $name String tag name
 	 * @param $val String tag value
@@ -2995,11 +3010,16 @@ $templates
 		}
 
 		foreach ( $this->mMetatags as $tag ) {
-			if ( 0 == strcasecmp( 'http:', substr( $tag[0], 0, 5 ) ) ) {
-				$a = 'http-equiv';
-				$tag[0] = substr( $tag[0], 5 );
-			} else {
-				$a = 'name';
+			$a = 'name'; // default attribute
+			foreach ( self::$metaAttrPrefixes as $prefix => $attribute ) {
+				// Check if the name starts with the prefix
+				if ( strpos( $tag[0], "$prefix:" ) === 0 ) {
+					// Set the attribute name we're using
+					$a = $attribute;
+					// Strip the prefix from the name
+					$tag[0] = substr( $tag[0], strlen( $prefix ) + 1 );
+					break;
+				}
 			}
 			$tags[] = Html::element( 'meta',
 				array(
