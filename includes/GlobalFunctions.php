@@ -2581,7 +2581,7 @@ function wfIncrStats( $key, $count = 1 ) {
 
 		if ( !$socket ) {
 			$socket = socket_create( AF_INET, SOCK_DGRAM, SOL_UDP );
-			$statline = "stats/{$id} - {$count} 1 1 1 1 -total\n";
+			$statline = "stats/{$id} - 1 1 1 1 1 -total\n";
 			socket_sendto(
 				$socket,
 				$statline,
