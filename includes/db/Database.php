@@ -666,6 +666,8 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @see ForeignDBRepo::getMasterDB()
 	 * @see WebInstaller_DBConnect::execute()
 	 *
+	 * @since 1.18
+	 *
 	 * @param $dbType String A possible DB type
 	 * @param $p Array An array of options to pass to the constructor.
 	 *    Valid options are: host, user, password, dbname, flags, tablePrefix

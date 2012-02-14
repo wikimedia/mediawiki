@@ -54,6 +54,10 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 	}
 
 	/**
+	 * @param $db DatabaseBase
+	 * @param $table string
+	 * @param $idCol
+	 * @param $prefix string
 	 * @return Integer Rows changed
 	 */
 	protected function doSha1Updates( $db, $table, $idCol, $prefix ) {
