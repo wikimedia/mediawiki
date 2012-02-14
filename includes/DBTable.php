@@ -29,7 +29,7 @@ abstract class DBTable {
 	 * 
 	 * @return string
 	 */
-	protected abstract function getDataObjectClass();
+	public abstract function getDataObjectClass();
 	
 	/**
 	 * Gets the db field prefix.
@@ -482,7 +482,7 @@ abstract class DBTable {
 	 * @return array
 	 */
 	public function unprefixFieldNames( array $fieldNames ) {
-		return array_map( '$this->unprefixFieldName', $fieldNames );
+		return array_map( array( $this, 'unprefixFieldName' ), $fieldNames );
 	}
 	
 	/**
@@ -517,6 +517,64 @@ abstract class DBTable {
 		}
 		
 		return $instance;
+	}
+
+	/**
+	 * Get an array with fields from a database result,
+	 * that can be fed directly to the constructor or
+	 * to setFields.
+	 *
+	 * @since 1.20
+	 *
+	 * @param stdClass $result
+	 *
+	 * @return array
+	 */
+	public function getFieldsFromDBResult( stdClass $result ) {
+		$result = (array)$result;
+		return array_combine(
+			$this->unprefixFieldNames( array_keys( $result ) ),
+			array_values( $result )
+		);
+	}
+
+	/**
+	 * Get a new instance of the class from a database result.
+	 *
+	 * @since 1.20
+	 *
+	 * @param stdClass $result
+	 *
+	 * @return DBDataObject
+	 */
+	public function newFromDBResult( stdClass $result ) {
+		return $this->newFromArray( $this->getFieldsFromDBResult( $result ) );
+	}
+
+	/**
+	 * Get a new instance of the class from an array.
+	 *
+	 * @since 1.20
+	 *
+	 * @param array $data
+	 * @param boolean $loadDefaults
+	 *
+	 * @return DBDataObject
+	 */
+	public function newFromArray( array $data, $loadDefaults = false ) {
+		$class = $this->getDataObjectClass();
+		return new $class( $this, $data, $loadDefaults );
+	}
+
+	/**
+	 * Return the names of the fields.
+	 *
+	 * @since 1.20
+	 *
+	 * @return array
+	 */
+	public function getFieldNames() {
+		return array_keys( $this->getFieldTypes() );
 	}
 	
 }

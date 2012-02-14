@@ -94,6 +94,7 @@ abstract class DBDataObject {
 	 *
 	 * @since 1.20
 	 *
+	 * @param DBTable $table
 	 * @param array|null $fields
 	 * @param boolean $loadDefaults
 	 */
@@ -529,20 +530,6 @@ abstract class DBDataObject {
 	}
 
 	/**
-	 * Get a new instance of the class from an array.
-	 *
-	 * @since 1.20
-	 *
-	 * @param array $data
-	 * @param boolean $loadDefaults
-	 *
-	 * @return DBDataObject
-	 */
-	public function newFromArray( array $data, $loadDefaults = false ) {
-		return new self( $data, $loadDefaults );
-	}
-
-	/**
 	 * Get the database type used for read operations.
 	 *
 	 * @since 1.20
@@ -706,43 +693,7 @@ abstract class DBDataObject {
 
 		return false;
 	}
-	
-	protected function getDBTable() {
-		return $this->table->getDBTable();
-	}
-	
-	/**
-	 * Get an array with fields from a database result,
-	 * that can be fed directly to the constructor or
-	 * to setFields.
-	 *
-	 * @since 1.20
-	 *
-	 * @param object $result
-	 *
-	 * @return array
-	 */
-	public function getFieldsFromDBResult( $result ) {
-		$result = (array)$result;
-		return array_combine(
-			$this->unprefixFieldNames( array_keys( $result ) ),
-			array_values( $result )
-		);
-	}
-	
-	/**
-	 * Get a new instance of the class from a database result.
-	 *
-	 * @since 1.20
-	 *
-	 * @param stdClass $result
-	 *
-	 * @return DBDataObject
-	 */
-	public function newFromDBResult( stdClass $result ) {
-		return $this->newFromArray( $this->getFieldsFromDBResult( $result ) );
-	}
-	
+
 	/**
 	 * Returns the table this DBDataObject is a row in.
 	 * 
