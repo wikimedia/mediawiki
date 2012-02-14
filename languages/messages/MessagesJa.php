@@ -969,7 +969,7 @@ $2
 「{{int:savearticle}}」をもう一度クリックすると、編集は要約なしで保存されます。",
 'missingcommenttext'               => '以下にコメントを入力してください。',
 'missingcommentheader'             => "'''注意:：'' このコメントに対する題名・見出しが空欄です。
-「{{int:savearticle}}」ボタンをもう一度押すと、編集は要約なしで保存されます。",
+「{{int:savearticle}}」ボタンをもう一度押すと、空のまま編集が保存されます。",
 'summary-preview'                  => '要約のプレビュー：',
 'subject-preview'                  => '題名・見出しのプレビュー：',
 'blockedtitle'                     => '利用者はブロックされています',
@@ -1083,7 +1083,7 @@ IPアドレスは複数の利用者の間で共有されていることがあり
 'nonunicodebrowser'                => "'''警告：使用中のブラウザがUnicodeに対応していません。'''
 安全にページを編集する回避策が表示されています：編集ボックス中の非ASCII文字は16進数文字コードによって表現されます。",
 'editingold'                       => "'''警告：このページの古い版を編集しています。'''
-この文章を保存すると、この版以降に追加されたすべての変更が失われます。",
+保存すると、この版以降に追加されていた変更がすべて失われます。",
 'yourdiff'                         => '差分',
 'copyrightwarning'                 => "{{SITENAME}}への投稿は、すべて$2（詳細は$1を参照）のもとで公開されたと見なされることにご注意ください。
 投稿されたものが、他人によって遠慮なく編集され、自由に配布されることを望まない場合は、ここには投稿しないでください。<br />
@@ -1099,7 +1099,7 @@ IPアドレスは複数の利用者の間で共有されていることがあり
 必要であれば文章をカットアンドペーストしてテキストファイルとして保存し、後ほど保存をやり直してください。
 
 データベースをロックした管理者による説明は以下の通りです：$1",
-'protectedpagewarning'             => "'''警告：このページは保護されているため、管理者しか編集できません。'''
+'protectedpagewarning'             => "'''警告：このページは保護されており、管理者権限のある利用者しか編集できないようになっています。'''
 参考として以下に一番最後の記録を表示します：",
 'semiprotectedpagewarning'         => "'''注意：'''このページは保護されているため、登録利用者しか編集できません。
 参考として以下に一番最後の記録を表示します：",
@@ -1117,7 +1117,7 @@ IPアドレスは複数の利用者の間で共有されていることがあり
 'nocreatetext'                     => '{{SITENAME}}ではページの新規作成を制限しています。
 元のページに戻って既存のページを編集するか、[[Special:UserLogin|ログインまたはアカウントの作成]]をしてください。',
 'nocreate-loggedin'                => '新しいページを作成する権限がありません。',
-'sectioneditnotsupported-title'    => '節単位編集は対応されていません',
+'sectioneditnotsupported-title'    => '節単位編集はサポートされていません',
 'sectioneditnotsupported-text'     => 'このページでは節単位編集はサポートされません。',
 'permissionserrors'                => '認証エラー',
 'permissionserrorstext'            => 'このページの編集権限がありません。{{PLURAL:$1|理由}}は以下の通りです：',
@@ -1164,7 +1164,7 @@ IPアドレスは複数の利用者の間で共有されていることがあり
 'cantcreateaccounttitle' => 'アカウントを作成できません',
 'cantcreateaccount-text' => "このIPアドレス('''$1''')からのアカウント作成は[[User:$3|$3]]によってブロックされています。
 
-$3による理由は以下の通りです：''$2''",
+$3が示した理由は ''$2'' です。",
 
 # History pages
 'viewpagelogs'           => 'このページに関する記録を表示',
@@ -1195,7 +1195,7 @@ $3による理由は以下の通りです：''$2''",
 'history-feed-description'    => 'このウィキのこのページに関する変更履歴',
 'history-feed-item-nocomment' => '$2に$1による',
 'history-feed-empty'          => '要求されたページは存在しません。
-ウィキから既に削除されたか、名前が変更された可能性があります。
+このウィキから既に削除されたか、名前が変更された可能性があります。
 [[Special:Search|このウィキの検索]]で関連する新しいページを探してみてください。',
 
 # Revision deletion
@@ -1256,7 +1256,7 @@ $3による理由は以下の通りです：''$2''",
 'revdelete-hide-comment'      => '編集の要約を隠す',
 'revdelete-hide-user'         => '投稿者の利用者名またはIPを隠す',
 'revdelete-hide-restricted'   => '他の利用者と同様に管理者からもデータを隠す',
-'revdelete-radio-same'        => '（変更なし）',
+'revdelete-radio-same'        => '（変更しない）',
 'revdelete-radio-set'         => 'はい',
 'revdelete-radio-unset'       => 'いいえ',
 'revdelete-suppress'          => '他の利用者と同様に管理者からもデータを隠す',
@@ -1281,7 +1281,7 @@ $1",
 'revdelete-modify-no-access'  => '$1$2の項目の修正に失敗しました：この項目は「制限付き」に設定されています。
 アクセス権限がありません。',
 'revdelete-modify-missing'    => 'ID$1の項目の変更に失敗しました：データベースに見当たりません！',
-'revdelete-no-change'         => "'''警告：''' $1$2の項目には既に要求された閲覧レベルが設定されています。",
+'revdelete-no-change'         => "'''警告：''' $1$2の項目には要求された閲覧レベルが既に設定されています。",
 'revdelete-concurrent-change' => '$1$2の項目の変更に失敗しました：変更を加えている間に、他の利用者によって設定が変更されたようです。
 記録を確認してください。',
 'revdelete-only-restricted'   => '$1$2の項目の版指定削除に失敗しました：他の閲覧レベルの選択肢のうちどれかをさらに選択しなければ、管理者から項目を秘匿することはできません。',
@@ -1301,8 +1301,8 @@ $1",
 
 # History merging
 'mergehistory'                     => 'ページ履歴の統合',
-'mergehistory-header'              => 'このページは、1つの元ページの履歴を新しいページに統合します。
-この変更を行っても履歴ページの連続性が保たれることを確認してください。',
+'mergehistory-header'              => 'このページでは、ある元ページの履歴を新しいページに統合することができます。
+この変更を行ってもページの履歴の連続性が確実に保たれるようにしてください。',
 'mergehistory-box'                 => '2ページの過去の版を統合する：',
 'mergehistory-from'                => '統合元となるページ：',
 'mergehistory-into'                => '統合先のページ：',
@@ -1314,7 +1314,7 @@ $1",
 'mergehistory-submit'              => '版を統合する',
 'mergehistory-empty'               => '統合できる版がありません。',
 'mergehistory-success'             => '[[:$1]]の$3{{PLURAL:$3|版}}を[[:$2]]へ統合しました。',
-'mergehistory-fail'                => '履歴の統合を行実効できません。統合を行うページと時刻の引数を再確認してください。',
+'mergehistory-fail'                => '履歴の統合を実行できません。ページと時刻の引数を再確認してください。',
 'mergehistory-no-source'           => '統合元ページ「$1」が存在しません。',
 'mergehistory-no-destination'      => '統合先のページ$1が存在しません。',
 'mergehistory-invalid-source'      => '統合元のページは有効な名前でなければなりません。',
@@ -1328,7 +1328,7 @@ $1",
 'mergelog'           => '統合記録',
 'pagemerge-logentry' => '[[$1]]を[[$2]]へ統合（$3版まで）',
 'revertmerge'        => '統合解除',
-'mergelogpagetext'   => '以下は、最近の1つのページ履歴のもう1つのページへの統合一覧です。',
+'mergelogpagetext'   => '以下は、最近行われたあるページから別のページへの統合の一覧です。',
 
 # Diffs
 'history-title'            => '「$1」の変更履歴',
@@ -1351,7 +1351,7 @@ $1",
 'titlematches'                     => 'ページ名と一致',
 'notitlematches'                   => 'ページ名とは一致しませんでした',
 'textmatches'                      => 'ページ本文と一致',
-'notextmatches'                    => 'ページ本文とは一致しませんでした',
+'notextmatches'                    => 'どのページ本文とも一致しませんでした',
 'prevn'                            => '前の$1件',
 'nextn'                            => '次の$1件',
 'prevn-title'                      => '前の$1結果',
@@ -1393,7 +1393,7 @@ $1",
 'showingresultsnum'                => "'''$2'''件目からの'''$3'''件を表示しています。",
 'showingresultsheader'             => "「'''$4'''」に対する{{PLURAL:$5|'''$3'''件中の'''$1'''件|'''$3'''件中の'''$1'''件から'''$2'''件までの}}結果",
 'nonefound'                        => "'''注意'''：既定では一部の名前空間しか検索されません。
-''all:''つけて全て（トークページやテンプレートなどを含む）を対象にするか、検索したい名前空間を先頭で使用してください。",
+''all:''を前につけると、全て（トークページやテンプレートなどを含む）を対象にできます。検索したい名前空間を前につけることもできます。",
 'search-nonefound'                 => '問い合わせに合致する結果はありませんでした。',
 'powersearch'                      => '高度な検索',
 'powersearch-legend'               => '高度な検索',
@@ -1405,8 +1405,8 @@ $1",
 'powersearch-togglenone'           => 'すべて外す',
 'search-external'                  => '外部検索',
 'searchdisabled'                   => '{{SITENAME}}の検索機能は無効化されています。
-代わりにGoogleなどの検索が利用できます。
-ただし外部の検索エンジンに蓄積されている{{SITENAME}}の情報は古い場合があります。',
+さしあたってはGoogleなどの検索が利用できます。
+ただし外部の検索エンジンの索引にある{{SITENAME}}の情報は古い場合があります。',
 
 # Quickbar
 'qbsettings'                => 'クイックバー',
@@ -1458,7 +1458,7 @@ $1",
 'recentchangesdays'             => '最近の更新に表示する日数：',
 'recentchangesdays-max'         => '（最大$1{{PLURAL:$1|日|日間}}）',
 'recentchangescount'            => '既定で表示する件数：',
-'prefs-help-recentchangescount' => 'この設定は最近の更新、ページ履歴、および記録に適用されます。',
+'prefs-help-recentchangescount' => 'この設定は最近の更新、ページの履歴、および記録に適用されます。',
 'prefs-help-watchlist-token'    => 'この欄に秘密鍵を入力すると、自身のウォッチリストのRSSフィードが生成されます。
 この欄に入力されている鍵を知っている人は誰でもこのウォッチリストを閲覧できるようになるため、他人に分からない値を選んでください。
 乱数によって生成された次の値を使うこともできます：$1',
@@ -1616,8 +1616,8 @@ HTMLタグを見直してください。',
 'right-undelete'              => 'ページの復帰',
 'right-suppressrevision'      => '管理者から隠された版の確認と復元',
 'right-suppressionlog'        => '非公開記録の閲覧',
-'right-block'                 => '他の利用者を編集からブロック',
-'right-blockemail'            => '電子メール送信から利用者をブロック',
+'right-block'                 => '他の利用者の編集をブロック',
+'right-blockemail'            => '利用者の電子メール送信をブロック',
 'right-hideuser'              => '利用者名ブロックし、公開記録から隠す',
 'right-ipblock-exempt'        => 'IPブロック、自動ブロック、広域ブロックを回避',
 'right-proxyunbannable'       => 'プロキシの自動ブロックを回避',
@@ -1635,7 +1635,7 @@ HTMLタグを見直してください。',
 'right-importupload'          => 'ファイルアップロードからのページの取り込み',
 'right-patrol'                => '他人の編集を巡回済みにする',
 'right-autopatrol'            => '自分の編集を自動的に巡回済みにする',
-'right-patrolmarks'           => '最近の更新で巡回済み印の閲覧',
+'right-patrolmarks'           => '最近の更新で巡回済み印を閲覧',
 'right-unwatchedpages'        => 'ウォッチされていないページ一覧の閲覧',
 'right-mergehistory'          => 'ページ履歴の統合',
 'right-userrights'            => '全利用者権限の編集',
@@ -1666,7 +1666,7 @@ HTMLタグを見直してください。',
 'action-upload'               => 'このファイルのアップロード',
 'action-reupload'             => 'このファイルの上書き',
 'action-reupload-shared'      => '共有リポジトリにあるこのファイルの上書き',
-'action-upload_by_url'        => 'URLからこのファイルのアップロード',
+'action-upload_by_url'        => 'URLからこのファイルをアップロード',
 'action-writeapi'             => '書き込みAPIを使用',
 'action-delete'               => 'このページの削除',
 'action-deleterevision'       => 'この版の削除',
@@ -1718,7 +1718,7 @@ HTMLタグを見直してください。',
 'boteditletter'                     => 'ボ',
 'unpatrolledletter'                 => '!',
 'number_of_watching_users_pageview' => '[$1人の利用者がウォッチしています]',
-'rc_categories'                     => 'カテゴリを制限（"|"区切り）',
+'rc_categories'                     => 'カテゴリを限定（「|」で区切る）',
 'rc_categories_any'                 => 'すべて',
 'rc-change-size-new'                => '変更後は$1バイト',
 'newsectionsummary'                 => '/* $1 */ 新しい節',
@@ -2080,7 +2080,7 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 'statistics-edits-average'     => '1ページあたりの編集回数',
 'statistics-views-total'       => '総閲覧回数',
 'statistics-views-total-desc'  => '存在しないページと特別ページに対する閲覧は含まれていません',
-'statistics-views-peredit'     => '閲覧回数に対する編集回数の割合',
+'statistics-views-peredit'     => '1編集あたりの閲覧回数',
 'statistics-users'             => '[[Special:ListUsers|利用者]]',
 'statistics-users-active'      => '活動中の利用者',
 'statistics-users-active-desc' => '過去$1{{PLURAL:$1|日間}}に何らかの操作を行った利用者',
@@ -2168,7 +2168,7 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 'move'                    => '移動',
 'movethispage'            => 'このページを移動',
 'unusedimagestext'        => '以下のファイルは存在していますが、どのページにも埋め込まれていません。
-ただし、他のウェブサイトが直接URLでファイルにリンクしている可能性があり、以下のファイル一覧には、そのような形で利用されているファイルが含まれているかもしれないことに注意してください。',
+ただし、他のウェブサイトが直接URLでファイルにリンクすることがあることに注意してください。以下のファイル一覧には、そのような形で利用中のファイルが含まれていることがあります。',
 'unusedcategoriestext'    => '以下のカテゴリはページが存在しますが、他のどのページおよびカテゴリでも使われていません。',
 'notargettitle'           => '対象が存在しません',
 'notargettext'            => 'この機能の実行対象となるページまたは利用者が指定されていません。',
@@ -2211,7 +2211,7 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 'allpagessubmit'    => '表示',
 'allpagesprefix'    => '次の文字列から始まるページを表示：',
 'allpagesbadtitle'  => '指定したページ名は無効か、言語間またはウィキ間接頭辞を含んでいます。
-ページ名に1つ以上の使用できない文字が含まれている可能性があります。',
+ページ名に使用できない文字が1つ以上含まれている可能性があります。',
 'allpages-bad-ns'   => '{{SITENAME}}に「$1」という名前空間はありません。',
 
 # Special:Categories
@@ -3772,7 +3772,7 @@ $5
 'semicolon-separator' => '；​',
 'comma-separator'     => '、',
 'colon-separator'     => '：​',
-'pipe-separator'      => '​｜',
+'pipe-separator'      => '​｜​',
 'word-separator'      => '',
 
 # Multipage image navigation

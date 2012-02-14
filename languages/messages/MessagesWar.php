@@ -1100,6 +1100,10 @@ Kitaa an $2 para hin talaan han mga gibag-ohi nga mga ginpamara.',
 'dellogpage'            => 'Talaan han mga ginpara',
 'deletecomment'         => 'Katadungan:',
 'deletereasonotherlist' => 'Lain nga katadungan',
+'deletereason-dropdown' => "*Agsob nga rason hin pagpara
+** Tugon han manunurat
+** Pagtalapas ha katungod hin pagtatag-iya (''copyright'')
+** Bandalismo",
 
 # Rollback
 'rollback'       => 'Mga libot-pabalik nga pagliwat',

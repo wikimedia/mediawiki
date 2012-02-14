@@ -1416,16 +1416,87 @@ Tulung digatekna nek situs web liyane ndeyan esih duwe pranala ming sawijining b
 'watchlist-options' => 'Opsi daftar pangawasan',
 
 # Delete
-'actioncomplete' => 'Proses rampung',
-'actionfailed'   => 'Tindakan gagal',
-'dellogpage'     => 'Log pambusakan',
+'delete-confirm'         => 'Busek "$1"',
+'delete-legend'          => 'Busek',
+'historywarning'         => "'''Pènget''': Kaca sing bakal Rika busek kuwe nduwe sajarahé kanthi $1 {{PLURAL:$1|révisi|révisi}}:",
+'confirmdeletetext'      => 'Rika arep mbusek kaca sisan karo kabeh sajarahe sekang basis data.
+Tulung di pastekna disit nek Rika pancen arep nglakokna kiye, Rika wis ngerti konsekuensine, lan nek sing Rika lakokna kiye wis cocog karo [[{{MediaWiki:Policy-url}}|kawicaksanan {{SITENAME}}]].',
+'actioncomplete'         => 'Proses rampung',
+'actionfailed'           => 'Tindakan gagal',
+'deletedtext'            => '"$1" uwis dibusek.
+Deleng $2 nggo log/cathetan pambusekan paling anyar.',
+'dellogpage'             => 'Log pambusakan',
+'dellogpagetext'         => 'Nang ngisor kiye kuwe daftar pambusekan sing paling anyar.',
+'deletionlog'            => 'Log pambusekan',
+'reverted'               => 'Balekna ming revisi sedurunge',
+'deletecomment'          => 'Alesan:',
+'deleteotherreason'      => 'Alesan liyane/tambahan:',
+'deletereasonotherlist'  => 'Alesan liyane',
+'deletereason-dropdown'  => '*Alesan pembusekan sing umum
+** Penjaluke sing nulis
+** Nglanggar Hak Cipta
+** Vandalisme',
+'delete-edit-reasonlist' => 'Sunting alesan pembusekan',
+'delete-toobig'          => 'Kaca kiye nduwe sejarah panyuntingan sing dawa, lewih sekang $1 {{PLURAL:$1|revisi|revisi}}.
+Mbusek kaca sing kaya kiye ora kena dilakokna nggo menggak karusakan nang {{SITENAME}}.',
+'delete-warning-toobig'  => 'Kaca kiye duwé sajarah panyuntingan sing dawa, lewih sekang $1 {{PLURAL:$1|révisi|révisi}}.
+Mbusek kaca kiye teyeng ngrusak operasi basis data nang {{SITENAME}};
+kudu ngati-ati.',
 
 # Rollback
-'rollbacklink' => 'balekna',
+'rollback'          => 'Mbalekna suntingan',
+'rollback_short'    => 'Balèkna',
+'rollbacklink'      => 'balekna',
+'rollbackfailed'    => 'Pambalèkan gagal dilakoni',
+'cantrollback'      => 'Ora teyeng mbatalna suntingan;
+kontributor pungkasane kuwe siji-sijine sing nulis artikel kiye.',
+'alreadyrolled'     => 'Ora teyeng mbalekna suntingan pungkasan [[:$1]] sekang [[User:$2|$2]] ([[User talk:$2|talk]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
+wis ana wong sejen sing nyunting utawa mbalekna artikel kuwe.
+
+Suntingan pungkasan kaca kiye digawe nang [[User:$3|$3]] ([[User talk:$3|talk]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
+'editcomment'       => "Ringkesan suntingan yakuwe: \"''\$1''\".",
+'revertpage'        => 'Suntingane [[Special:Contributions/$2|$2]] ([[User talk:$2|dhiskusi]]) dibalekna maring vèrsi pungkasan sekang [[User:$1|$1]]',
+'revertpage-nouser' => 'Mbalekna suntingan sekang (jeneng panganggo dibusek) ming revisi pungkasan sekang [[User:$1|$1]]',
+'rollback-success'  => 'Mbalekna suntingane $1;
+dibalekna ming revisi pungkasan sekang $2.',
+
+# Edit tokens
+'sessionfailure-title' => 'Sèsi gagal',
+'sessionfailure'       => 'Ketone lagi ana masalah karo sesi log-e Rika;
+loge Rika wis dibatalna nggo nyegah pambajakan.
+Monggo mbalik ming kaca sedurunge, dibaleni gole muatna kaca (reload) lan jajal diunggahna maning.',
 
 # Protect
-'protectlogpage'   => 'Log pangreksan',
-'protectedarticle' => 'ngreksa "[[$1]]"',
+'protectlogpage'              => 'Log pangreksan',
+'protectlogtext'              => 'Nang ngisor kiye isine daftar owah-owahane pangreksan kaca.
+Deleng [[Special:ProtectedPages|daftar kaca sing direksa]] kanggo daftar pangreksan kaca pungkasan.',
+'protectedarticle'            => 'ngreksa "[[$1]]"',
+'modifiedarticleprotection'   => 'ngowaih tingkat pangreksan kanggo "[[$1]]"',
+'unprotectedarticle'          => 'mbusek pangreksan sekang "[[$1]]"',
+'movedarticleprotection'      => 'mindahna pangaturan pangreksan sekang "[[$2]]" maring "[[$1]]"',
+'protect-title'               => 'ngowaih tingkat pangreksan kanggo "$1"',
+'prot_1movedto2'              => '[[$1]] dipindahna maring [[$2]]',
+'protect-legend'              => 'Konfirmasi pangreksan',
+'protectcomment'              => 'Alesan:',
+'protectexpiry'               => 'Kadaluwarsa:',
+'protect_expiry_invalid'      => 'Wektu kedaluwarsané ora sah.',
+'protect_expiry_old'          => 'Wektu kedaluwarsané kuwe ana nang jaman biyèn.',
+'protect-unchain-permissions' => 'Aktifna opsi pangreksan lanjutan',
+'protect-text'                => "Rika teyeng ndeleng lan ngowaih tingkat pangreksan nggo kaca '''$1''' nang kene.",
+'protect-locked-blocked'      => "Rika ora teyeng ngganti tingkat pangreksan nek lagi diblokir.
+Kiye konfigurasi sekiye nggo kaca '''$1''':",
+'protect-locked-access'       => "Akune Rika ora duwe hak nggo ngganti tingkat pangreksan kaca.
+Nang ngisor kiye kapacak konfigurasi sekiye kanggo kaca '''$1'''.",
+'protect-cascadeon'           => 'Kaca kie sekiye lagi direksa jalaran klebu nang {{PLURAL:$1|kaca|kaca-kaca}} sing direksa nganggo pilihan pangreksan runtun diaktifna. 
+Rika teyeng ngowaih tingkat pangreksan nggo kaca kiye, ningen perkara iku ora aweh pengaruh ming pangreksan runtun.',
+'protect-default'             => 'Ijinna kabeh panganggo',
+'protect-fallback'            => 'Merlokna hak akses "$1"',
+'protect-level-autoconfirmed' => 'Blokir panganggo anyar lan ora kedaftar',
+'protect-level-sysop'         => 'Mung pangurus thok',
+'protect-summary-cascade'     => 'runtun',
+'protect-expiring'            => 'kedaluwarsa $1 (UTC)',
+'protect-expiry-indefinite'   => 'selawasé',
+'protect-cascade'             => 'Reksanen kabeh kaca sing klebu nang kaca kiye (pangreksan runtun)',
 
 # Undelete
 'undeletelink'     => 'deleng/balekna',

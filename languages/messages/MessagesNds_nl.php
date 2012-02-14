@@ -1762,17 +1762,18 @@ $1',
 'upload-warning-msg'          => 'Der was n probleem mit t inlaojen van t bestaand [$2].
 Gao weerumme naor t [[Special:Upload/stash/$1|bestaandinlaodformulier]] um dit probleem te verhelpen.',
 
-'upload-proto-error'        => 'Verkeerd protokol',
-'upload-proto-error-text'   => 'Um op disse maniere bestaanden toe te voegen mutten webadressen beginnen mit <code>http://</code> of <code>ftp://</code>.',
-'upload-file-error'         => 'Interne fout',
-'upload-file-error-text'    => 'Bie ons gung der effen wat fout to n tiedelik bestaand op de server an-emaakt wörden. Neem kontakt op mit n [[Special:ListUsers/sysop|systeembeheerder]].',
-'upload-misc-error'         => 'Onbekende fout bie t inlaojen van joew bestaand',
-'upload-misc-error-text'    => 'Der is bie t inlaojen van t bestaand n onbekende fout op-etrejen. 
+'upload-proto-error'                => 'Verkeerd protokol',
+'upload-proto-error-text'           => 'Um op disse maniere bestaanden toe te voegen mutten webadressen beginnen mit <code>http://</code> of <code>ftp://</code>.',
+'upload-file-error'                 => 'Interne fout',
+'upload-file-error-text'            => 'Bie ons gung der effen wat fout to n tiedelik bestaand op de server an-emaakt wörden. Neem kontakt op mit n [[Special:ListUsers/sysop|systeembeheerder]].',
+'upload-misc-error'                 => 'Onbekende fout bie t inlaojen van joew bestaand',
+'upload-misc-error-text'            => 'Der is bie t inlaojen van t bestaand n onbekende fout op-etrejen. 
 Kiek effen nao of de verwiezing t wel döt en probeer t opniej. 
 As t probleem zo blif, neem dan kontakt op mit één van de [[Special:ListUsers/sysop|systeembeheerders]].',
-'upload-too-many-redirects' => 'Der zatten te veule deurverwiezingen in de URL.',
-'upload-unknown-size'       => 'Onbekende grootte',
-'upload-http-error'         => 'Der is n HTTP-fout op-etrejen: $1',
+'upload-too-many-redirects'         => 'Der zatten te veule deurverwiezingen in de URL.',
+'upload-unknown-size'               => 'Onbekende grootte',
+'upload-http-error'                 => 'Der is n HTTP-fout op-etrejen: $1',
+'upload-copy-upload-invalid-domain' => 'Bestaanden per kopie opsturen is niet beschikbaor vanuut dit domein.',
 
 # File backend
 'backend-fail-stream'        => 't Was niet meugelik t bestaand $1 te streumen.',
@@ -1792,7 +1793,11 @@ As t probleem zo blif, neem dan kontakt op mit één van de [[Special:ListUsers/
 'backend-fail-read'          => 'Kon t bestaand $1 niet lezen.',
 'backend-fail-create'        => 'Kon t bestaand $1 niet anmaken.',
 'backend-fail-readonly'      => 'Van de opslag "$1" kan op dit moment allinnig elezen wörden. De op-egeven reden was: "$2"',
+'backend-fail-synced'        => 't Bestaand "$1" bevient zich in n inkonsistente toestaand in de interne opslagbackends.',
+'backend-fail-connect'       => 'Kon gien verbiending maken mit t opslagbackend "$1".',
+'backend-fail-internal'      => 'Der is n onbekende fout op-etreden in t opslagbackend "$1".',
 'backend-fail-contenttype'   => 'Kon t inhoudstype van t bestaand um op "$1" op te slaon niet bepaolen.',
+'backend-fail-batchsize'     => 'Reeks van $1 bestaands{{PLURAL:$1|operasie|operasies}} in de opslagbackend; de limiet is $2 {{PLURAL:$2|operasie|operasies}}.',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Kon "$1" niet vriegeven; dit objekt is niet vergrendeld.',
@@ -1827,8 +1832,8 @@ De veiligheid kan niet ekontroleerd wörden.',
 'img-auth-accessdenied'     => 'Toegang eweigerd',
 'img-auth-nopathinfo'       => 'PATH_INFO ontbrik.
 Joew server is niet in-esteld um disse informasie deur te geven.
-Misschien gebruukt disse CGI, en dan wörden img_auth niet ondersteund.
-[https://www.mediawiki.org/wiki/Manual:Image_Authorization Zie aofbeeldingsauthorisasie.]',
+Misschien gebruukt t CGI, en dan wörden img_auth niet ondersteund.
+Zie [https://www.mediawiki.org/wiki/Manual:Image_Authorization rechten veur aofbeeldingen] veur meer informasie.',
 'img-auth-notindir'         => 't Op-evreugen pad is niet de in-estelde bestaandinlaodmap',
 'img-auth-badtitle'         => 'Kon gien geldige paginanaam maken van "$1".',
 'img-auth-nologinnWL'       => 'Je bin niet an-emeld en "$1" steet niet op de witte lieste.',

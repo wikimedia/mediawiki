@@ -9759,8 +9759,84 @@ $messages['kn'] = array(
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]',
 );
 
-/** Korean (한국어) */
+/** Korean (한국어)
+ * @author Kwj2772
+ */
 $messages['ko'] = array(
+	'config-desc' => '미디어위키 인스톨러',
+	'config-title' => '미디어위키 $1 설치',
+	'config-information' => '정보',
+	'config-wiki-language' => '위키 언어:',
+	'config-back' => '← 뒤로',
+	'config-continue' => '계속 →',
+	'config-page-language' => '언어',
+	'config-page-dbconnect' => '데이터베이스에 연결',
+	'config-page-name' => '이름',
+	'config-page-install' => '설치',
+	'config-page-complete' => '완료!',
+	'config-help-restart' => '당신이 입력한 모든 저장된 데이터를 지우고 설치 과정을 다시 시작하시겠습니까?',
+	'config-restart' => '예, 다시 시작합니다.',
+	'config-welcome' => '=== 사용 환경 검사 ===
+이 환경이 미디어위키 설치에 적합할 지 기본 검사를 실행합니다.
+설치 중 도움이 필요하다면 이 검사 결과를 함께 제공해주셔야 합니다.',
+	'config-env-php' => 'PHP $1가 설치되었습니다.',
+	'config-env-php-toolow' => 'PHP $1가 설치되었습니다.
+하지만 미디어위키는 PHP $2 이상이 필요합니다.',
+	'config-db-type' => '데이터베이스 종류:',
+	'config-db-host' => '데이터베이스 호스트:',
+	'config-db-name' => '데이터베이스 이름:',
+	'config-db-username' => '데이터베이스 사용자 이름:',
+	'config-db-password' => '데이터베이스 비밀번호:',
+	'config-db-prefix' => '데이터베이스 테이블 접두어:',
+	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 바이너리',
+	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
+	'config-header-mysql' => 'MySQL 설정',
+	'config-header-postgres' => 'PostgreSQL 설정',
+	'config-header-sqlite' => 'SQLite 설정',
+	'config-sqlite-readonly' => '파일 <code>$1</code>은 쓰기가 불가능합니다.',
+	'config-mysql-utf8' => 'UTF-8',
+	'config-site-name' => '위키의 이름:',
+	'config-site-name-help' => '이것이 브라우저 제목 표시줄과 다른 여러 곳에 나타날 것입니다.',
+	'config-site-name-blank' => '사이트 이름을 입력하세요.',
+	'config-project-namespace' => '프로젝트 이름공간:',
+	'config-ns-generic' => '프로젝트',
+	'config-admin-box' => '관리자 계정',
+	'config-admin-password' => '비밀번호:',
+	'config-admin-password-confirm' => '비밀번호 확인:',
+	'config-admin-password-blank' => '관리자 계정의 비밀번호를 입력하십시오.',
+	'config-admin-password-same' => '비밀번호는 계정 이름과 같아서는 안 됩니다.',
+	'config-admin-password-mismatch' => '당신이 입력한 비밀번호 두 개가 일치하지 않습니다.',
+	'config-admin-email' => '이메일 주소:',
+	'config-optional-skip' => '지겨워요, 그냥 위키를 설치할래요.',
+	'config-profile-wiki' => '평범한 위키',
+	'config-profile-no-anon' => '계정 생성 필요',
+	'config-profile-fishbowl' => '승인된 편집자만 이용 가능',
+	'config-profile-private' => '비공개 위키',
+	'config-license' => '저작권 및 라이선스:',
+	'config-license-cc-by-sa' => '크리에이티브 커먼즈 저작자표시-동일조건변경허락',
+	'config-license-cc-by' => '크리에이티브 커먼즈 저작자표시',
+	'config-license-cc-by-nc-sa' => '크리에이티브 커먼즈 저작자표시-비영리-동일조건변경허락',
+	'config-license-cc-0' => '크리에이티브 커먼즈 CC0 (퍼블릭 도메인)',
+	'config-license-gfdl' => 'GNU 자유 문서 사용 허가서 1.3 이상',
+	'config-license-pd' => '퍼블릭 도메인',
+	'config-license-cc-choose' => '다른 크리에이티브 커먼즈 라이선스 선택',
+	'config-email-settings' => '이메일 설정',
+	'config-logo' => '로고 URL:',
+	'config-logo-help' => '미디어위키 기본 스킨은 사이드바 메뉴 위에 135×160픽셀의 로고를 포함하고 있습니다.
+적당한 크기로 이미지를 올리고 URL을 여기 적어주세요.
+
+로고 사용을 원치 않으면 이 상자를 비워 두십시오.',
+	'config-extensions' => '확장 기능',
+	'config-extensions-help' => '위에 나열된 확장 기능이 <code>./extensions</code>에서 발견되었습니다.
+
+이들은 추가적인 설정이 필요할 수 있습니다만 지금 활성화시킬 수 있습니다.',
+	'config-install-user' => '데이터베이스 사용자 생성 중',
+	'config-install-tables' => '테이블을 생성하는 중',
+	'config-install-tables-exist' => "'''경고''': 미디어위키 테이블이 이미 있는 것 같습니다.
+테이블 생성을 생략합니다.",
+	'config-install-tables-failed' => "'''오류''': 다음 오류와 함께 테이블 생성에 실패했습니다: $1",
+	'config-install-interwiki' => '기본 인터위키 표를 채우는 중',
+	'config-nofile' => '파일 "$1"을 찾을 수 없습니다. 이미 삭제되었나요?',
 	'mainpagetext' => "'''미디어위키가 성공적으로 설치되었습니다.'''",
 	'mainpagedocfooter' => '[//meta.wikimedia.org/wiki/Help:Contents 이곳]에서 위키 프로그램에 대한 정보를 얻을 수 있습니다.
 

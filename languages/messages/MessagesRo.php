@@ -1893,7 +1893,7 @@ Când acestei pagini îi este aplicat filtrul de utilizator, sunt afișate doar 
 # File description page
 'file-anchor-link'          => 'Fișier',
 'filehist'                  => 'Istoricul fișierului',
-'filehist-help'             => "Apăsați pe '''Data și ora''' pentru a vedea versiunea trimisă atunci.",
+'filehist-help'             => "Apăsați pe '''Data și ora''' pentru a vedea versiunea fișierului trimisă la momentul respectiv.",
 'filehist-deleteall'        => 'șterge tot',
 'filehist-deleteone'        => 'șterge',
 'filehist-revert'           => 'revenire',
@@ -3193,7 +3193,7 @@ Altele vor fi ascunse implicit.
 'exif-shutterspeedvalue'           => 'Viteza obturatorului în APEX',
 'exif-aperturevalue'               => 'Diafragmă în APEX',
 'exif-brightnessvalue'             => 'Luminozitate în APEX',
-'exif-exposurebiasvalue'           => 'Ajustarea expunerii',
+'exif-exposurebiasvalue'           => 'Compensarea expunerii',
 'exif-maxaperturevalue'            => 'Apertura maximă',
 'exif-subjectdistance'             => 'Distanța față de subiect',
 'exif-meteringmode'                => 'Forma de măsurare',
@@ -3688,7 +3688,7 @@ Puteți folosi în schimb [[Special:EditWatchlist|editorul standard]].',
 'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|discuție]])',
 
 # Core parser functions
-'unknown_extension_tag' => 'Extensie etichetă necunoscută "$1"',
+'unknown_extension_tag' => 'Extensie etichetă necunoscută „$1”',
 'duplicate-defaultsort' => "'''Atenție:''' Cheia de sortare implicită („$2”) o înlocuiește pe precedenta („$1”).",
 
 # Special:Version
@@ -3697,7 +3697,7 @@ Puteți folosi în schimb [[Special:EditWatchlist|editorul standard]].',
 'version-specialpages'          => 'Pagini speciale',
 'version-parserhooks'           => 'Hook-uri parser',
 'version-variables'             => 'Variabile',
-'version-antispam'              => 'Prevenirea spam-ului',
+'version-antispam'              => 'Prevenirea spamului',
 'version-skins'                 => 'Aspect',
 'version-other'                 => 'Altele',
 'version-mediahandlers'         => 'Suport media',

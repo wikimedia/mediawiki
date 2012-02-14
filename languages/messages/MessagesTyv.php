@@ -127,6 +127,7 @@ $messages = array(
 'hidden-category-category'      => 'Чажыт бөлүктер',
 'category-subcat-count-limited' => 'Бо бөлүк {{PLURAL:$1|бир|$1}} бичии бөлүктүү.',
 'listingcontinuesabbrev'        => '(уланчы)',
+'noindex-category'              => 'Индекстелбес арынар',
 
 'about'         => 'Дугайында',
 'article'       => 'Допчу арын',
@@ -146,6 +147,7 @@ $messages = array(
 'qbpageoptions'  => 'Бо арын',
 'qbmyoptions'    => 'Мээң арыннарым',
 'qbspecialpages' => 'Тускай арыннар',
+'faq'            => 'Бо-ла салыр айтырыглар (БлСА)',
 
 # Vector skin
 'vector-action-delete'  => 'Ырадыры',
@@ -273,6 +275,7 @@ $messages = array(
 # Login and logout pages
 'yourname'                => 'Aжыглакчының ады',
 'yourpassword'            => 'Чажыт сөс',
+'yourpasswordagain'       => 'Чажыт сөзүңер катап бижиңер:',
 'remembermypassword'      => 'Мени бо компютерде сактып алыры (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'login'                   => 'Кирери',
 'nav-login-createaccount' => 'Кирери / бүрүткел бижикти бүдүрери',
@@ -306,7 +309,9 @@ $messages = array(
 
 # Edit page toolbar
 'bold_sample'     => 'Карартыр',
+'bold_tip'        => 'Кара бижик',
 'italic_sample'   => 'Ийлендирер',
+'italic_tip'      => 'Курсив бижик',
 'link_sample'     => 'Холбаадың ады',
 'link_tip'        => 'Иштики холбаа',
 'extlink_sample'  => 'http://www.example.com холбаадың ады',
@@ -402,6 +407,7 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 'nextn'                     => 'соонда {{PLURAL:$1|$1}}',
 'viewprevnext'              => '($1 {{int:pipe-separator}} $2) ($3) көөрү',
 'searchhelp-url'            => 'Help:Допчузу',
+'searchprofile-articles'    => 'үндезин арыннар',
 'searchprofile-images'      => 'Мультимедиа',
 'searchprofile-everything'  => 'Бүгүде',
 'search-result-size'        => '$1 ({{PLURAL:$2|$2 сөс}})',
@@ -409,6 +415,7 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 'search-interwiki-more'     => '(артык)',
 'search-mwsuggest-enabled'  => 'саналдар',
 'search-mwsuggest-disabled' => 'саналдар чок',
+'searchrelated'             => 'холбаалыг',
 'searchall'                 => 'шупту',
 'powersearch'               => 'Advanced search',
 'powersearch-toggleall'     => 'Шупту',
@@ -439,7 +446,7 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 'prefs-files'               => 'файлдар',
 'youremail'                 => 'Э-чагааңар:',
 'username'                  => 'Aжыглакчының ады:',
-'yourrealname'              => 'Шын адыңар *',
+'yourrealname'              => 'Шын адыңар:',
 'yourlanguage'              => 'Дылыңар:',
 'yournick'                  => 'Шола ат:',
 'gender-male'               => 'Эр',
@@ -522,6 +529,8 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 
 'upload-file-error' => 'Иштики алдаг',
 'upload-misc-error' => 'Билбес кииреринге алдаг',
+
+'license-header' => 'Хоойлужудары',
 
 # Special:ListFiles
 'imgfile'               => 'файл',
@@ -613,6 +622,7 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 'movethispage'            => 'Бо арынны шимчээри',
 
 # Book sources
+'booksources'    => 'Номнарның үнген дөзү',
 'booksources-go' => 'Күүcедири',
 
 # Special:Log
@@ -749,6 +759,7 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 'blocklogpage'               => 'Ниимиктээриге журнал',
 'blocklogentry'              => ', [[$1]] $2 дургузунда ниимиктээн: $3',
 'block-log-flags-anononly'   => 'чүгле ат эвес ажыглакчылар',
+'block-log-flags-nocreate'   => 'Кижилер бүрүткээри хоруглуг',
 'block-log-flags-hiddenname' => 'ажыглакчының ады чажырган',
 
 # Developer tools
@@ -766,6 +777,9 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 'movelogpage'      => 'Шимчээринге журнал',
 'movereason'       => 'Чылдагаан:',
 'delete_and_move'  => 'Ырадыры болгаш шимчээри',
+
+# Export
+'export' => 'Арынар үндүр дамчыдары',
 
 # Namespace 8 related
 'allmessages'               => 'Системниң дыңнадыглары',
@@ -801,6 +815,7 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 'tooltip-n-mainpage-description' => 'Кол Арынче кирери',
 'tooltip-n-recentchanges'        => 'Викиниң энир өскерлиишкиннери',
 'tooltip-n-randompage'           => 'Душ арынны көөрү',
+'tooltip-n-help'                 => 'Төлевилелдиң тайылбыры «{{SITENAME}}»',
 'tooltip-feed-rss'               => 'Бо арының РСС медээ агымы',
 'tooltip-feed-atom'              => 'Бо арының Атом медээ агымы',
 'tooltip-t-contributions'        => 'Бо ажыглакчының немелделериниң даңзазын көөрү.',

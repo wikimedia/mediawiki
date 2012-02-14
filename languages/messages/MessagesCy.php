@@ -3623,6 +3623,7 @@ Dangosir delweddau ar eu maint llawn, dechreuir ffeiliau o fathau eraill yn unio
 'api-error-ok-but-empty'                  => 'Gwall mewnol: dim ymateb gan y gweinydd.',
 'api-error-overwrite'                     => 'Ni chaniateir trosysgrifo ffeil sydd eisoes yn bod.',
 'api-error-stashfailed'                   => "Gwall mewnol: methodd y gweinydd â rhoi'r ffeil dros dro ar gadw.",
+'api-error-timeout'                       => 'Ni chafwyd ymateb gan y gweinydd mewn da bryd.',
 'api-error-unclassified'                  => 'Cafwyd gwall anhysbys',
 'api-error-unknown-code'                  => 'Gwall anhysbys: "$1"',
 'api-error-unknown-error'                 => "Gwall mewnol: aeth rhywbeth o'i le wrth geisio llwytho eich ffeil.",

@@ -13,6 +13,7 @@
  * @author Meursault2004
  * @author Pras
  * @author Rex
+ * @author StefanusRA
  * @author לערי ריינהארט
  */
 
@@ -1792,7 +1793,7 @@ Umpan balik lan pitulung sabanjuré:
 'delete-edit-reasonlist' => 'Sunting alesan pambusakan',
 'delete-toobig'          => 'Kaca iki ndarbèni sajarah panyuntingan sing dawa, yaiku ngluwihi $1 {{PLURAL:$1|revision|révisi}}.
 Pambusakan kaca sing kaya mangkono mau wis ora diparengaké kanggo menggak anané karusakan ing {{SITENAME}}.',
-'delete-warning-toobig'  => 'Kaca iki duwé sajarang panyuntingan sing dawa, luwih saka $1 {{PLURAL:$1|revision|révisi}}.
+'delete-warning-toobig'  => 'Kaca iki duwé sajarah panyuntingan sing dawa, luwih saka $1 {{PLURAL:$1|révisi|révisi}}.
 Mbusak kaca iki bisa ngrusak operasi basis data ing {{SITENAME}};
 kudu ngati-ati.',
 
