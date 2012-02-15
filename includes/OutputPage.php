@@ -2516,7 +2516,7 @@ $templates
 	 * @param $only String ResourceLoaderModule TYPE_ class constant
 	 * @param $useESI boolean
 	 * @param $extraQuery Array with extra query parameters to add to each request. array( param => value )
-	 * @param $loadCall boolean If true, output a mw.loader.load() call rather than a <script src="..."> tag
+	 * @param $loadCall boolean If true, output an (asynchronous) mw.loader.load() call rather than a <script src="..."> tag
 	 * @return string html <script> and <style> tags
 	 */
 	protected function makeResourceLoaderLink( $modules, $only, $useESI = false, array $extraQuery = array(), $loadCall = false ) {
@@ -2659,7 +2659,7 @@ $templates
 				} else if ( $loadCall ) { 
 					$link = Html::inlineScript(
 						ResourceLoader::makeLoaderConditionalScript(
-							Xml::encodeJsCall( 'mw.loader.load', array( $url ) )
+							Xml::encodeJsCall( 'mw.loader.load', array( $url, 'text/javascript', true ) )
 						)
 					);
 				} else {
@@ -2712,7 +2712,7 @@ $templates
 		if ( $modules ) {
 			$scripts .= Html::inlineScript(
 				ResourceLoader::makeLoaderConditionalScript(
-					Xml::encodeJsCall( 'mw.loader.load', array( $modules, null, true ) )
+					Xml::encodeJsCall( 'mw.loader.load', array( $modules ) )
 				)
 			);
 		}
@@ -2754,7 +2754,7 @@ $templates
 		if ( $modules ) {
 			$scripts .= Html::inlineScript(
 				ResourceLoader::makeLoaderConditionalScript(
-					Xml::encodeJsCall( 'mw.loader.load', array( $modules ) )
+					Xml::encodeJsCall( 'mw.loader.load', array( $modules, null, true ) )
 				)
 			);
 		}
