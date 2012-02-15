@@ -375,6 +375,10 @@ div.printfooter {
 	display: none;
 }
 
+#footer {
+	padding-left: 11.8em;
+}
+
 #n-portal,
 #n-currentevents,
 #n-help,
