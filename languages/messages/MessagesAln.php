@@ -43,7 +43,10 @@ $namespaceAliases = array(
 	'Kategori_Diskutim'   => NS_CATEGORY_TALK
 );
 
-$namespaceGenderAliases = array();
+$namespaceGenderAliases = array(
+	NS_USER      => array( 'male' => 'Përdoruesi', 'female' => 'Përdoruesja' ),
+	NS_USER_TALK => array( 'male' => 'Përdoruesi_diskutim', 'female' => 'Përdoruesja_diskutim' ),
+);
 
 $specialPageAliases = array(
 	'Popularpages'              => array( 'Faqe të famshme' ),
