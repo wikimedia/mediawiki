@@ -20,8 +20,9 @@ class Http {
 	 *    - timeout             Timeout length in seconds
 	 *    - postData            An array of key-value pairs or a url-encoded form data
 	 *    - proxy               The proxy to use.
-	 *                          Will use $wgHTTPProxy (if set) otherwise.
-	 *    - noProxy             Override $wgHTTPProxy (if set) and don't use any proxy at all.
+	 *                          Otherwise it will use $wgHTTPProxy (if set)
+	 *                          Otherwise it will use the environment variable "http_proxy" (if set)
+	 *    - noProxy             Don't use any proxy at all. Takes precedence over proxy value(s).
 	 *    - sslVerifyHost       (curl only) Verify hostname against certificate
 	 *    - sslVerifyCert       (curl only) Verify SSL certificate
 	 *    - caInfo              (curl only) Provide CA information
@@ -286,11 +287,11 @@ class MWHttpRequest {
 	public function proxySetup() {
 		global $wgHTTPProxy;
 
-		if ( $this->proxy ) {
+		if ( $this->proxy && !$this->noProxy ) {
 			return;
 		}
 
-		if ( Http::isLocalURL( $this->url ) ) {
+		if ( Http::isLocalURL( $this->url ) || $this->noProxy ) {
 			$this->proxy = '';
 		} elseif ( $wgHTTPProxy ) {
 			$this->proxy = $wgHTTPProxy ;
@@ -401,9 +402,11 @@ class MWHttpRequest {
 			$this->setReferer( wfExpandUrl( $wgTitle->getFullURL(), PROTO_CURRENT ) );
 		}
 
-		if ( !$this->noProxy ) {
-			$this->proxySetup();
-		}
+		/**
+		 * Set up the proxy, but
+		 * clear the proxy when $noProxy is set (takes precedence)
+		 */
+		$this->proxySetup();
 
 		if ( !$this->callback ) {
 			$this->setCallback( array( $this, 'read' ) );
