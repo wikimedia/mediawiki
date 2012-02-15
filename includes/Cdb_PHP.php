@@ -277,15 +277,14 @@ class CdbWriter_PHP extends CdbWriter {
 		$this->tmpFileName = $fileName . '.tmp.' . mt_rand( 0, 0x7fffffff );
 		$this->handle = fopen( $this->tmpFileName, 'wb' );
 		if ( !$this->handle ) {
-			throw new MWException(
+			$this->throwException(
 				'Unable to open CDB file "' . $this->tmpFileName . '" for write.' );
 		}
 		$this->hplist = array();
 		$this->numentries = 0;
 		$this->pos = 2048; // leaving space for the pointer array, 256 * 8
 		if ( fseek( $this->handle, $this->pos ) == -1 ) {
-			throw new MWException(
-				'fseek failed in file "' . $this->tmpFileName . '".' );
+			$this->throwException( 'fseek failed in file "' . $this->tmpFileName . '".' );
 		}
 	}
 
@@ -323,7 +322,7 @@ class CdbWriter_PHP extends CdbWriter {
 			unlink( $this->realFileName );
 		}
 		if ( !rename( $this->tmpFileName, $this->realFileName ) ) {
-			throw new MWException( 'Unable to move the new CDB file into place.' );
+			$this->throwException( 'Unable to move the new CDB file into place.' );
 		}
 		unset( $this->handle );
 	}
@@ -335,7 +334,7 @@ class CdbWriter_PHP extends CdbWriter {
 	protected function write( $buf ) {
 		$len = fwrite( $this->handle, $buf );
 		if ( $len !== strlen( $buf ) ) {
-			throw new MWException( 'Error writing to CDB file "'.$this->tmpFileName.'".' );
+			$this->throwException( 'Error writing to CDB file "'.$this->tmpFileName.'".' );
 		}
 	}
 
@@ -346,7 +345,7 @@ class CdbWriter_PHP extends CdbWriter {
 	protected function posplus( $len ) {
 		$newpos = $this->pos + $len;
 		if ( $newpos > 0x7fffffff ) {
-			throw new MWException( 
+			$this->throwException(
 				'A value in the CDB file "'.$this->tmpFileName.'" is too large.' );
 		}
 		$this->pos = $newpos;
@@ -376,10 +375,10 @@ class CdbWriter_PHP extends CdbWriter {
 	 */
 	protected function addbegin( $keylen, $datalen ) {
 		if ( $keylen > 0x7fffffff ) {
-			throw new MWException( 'Key length too long in file "'.$this->tmpFileName.'".' );
+			$this->throwException( 'Key length too long in file "'.$this->tmpFileName.'".' );
 		}
 		if ( $datalen > 0x7fffffff ) {
-			throw new MWException( 'Data length too long in file "'.$this->tmpFileName.'".' );
+			$this->throwException( 'Data length too long in file "'.$this->tmpFileName.'".' );
 		}
 		$buf = pack( 'VV', $keylen, $datalen );
 		$this->write( $buf );
@@ -454,8 +453,22 @@ class CdbWriter_PHP extends CdbWriter {
 		// Write the pointer array at the start of the file
 		rewind( $this->handle );
 		if ( ftell( $this->handle ) != 0 ) {
-			throw new MWException( 'Error rewinding to start of file "'.$this->tmpFileName.'".' );
+			$this->throwException( 'Error rewinding to start of file "'.$this->tmpFileName.'".' );
 		}
 		$this->write( $final );
+	}
+
+	/**
+	 * Clean up the temp file and throw an exception
+	 * 
+	 * @param $msg string
+	 * @throws MWException
+	 */
+	protected function throwException( $msg ) {
+		if ( $this->handle ) {
+			fclose( $this->handle );
+			unlink( $this->tmpFileName );
+		}
+		throw new MWException( $msg );
 	}
 }
