@@ -1732,7 +1732,7 @@ class EditPage {
 			$previewOutput = $this->getPreviewText();
 		}
 
-		wfRunHooks( 'EditPage::showEditForm:initial', array( &$this ) );
+		wfRunHooks( 'EditPage::showEditForm:initial', array( &$this, &$wgOut ) );
 
 		$this->setHeaders();
 

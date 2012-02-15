@@ -774,12 +774,13 @@ $request: Webrequest
 return value is ignored (should always return true)
 
 'EditPage::showEditForm:fields': allows injection of form field into edit form
-&$editor: the EditPage instance for reference
-&$out: an OutputPage instance to write to
+$editor: the EditPage instance for reference
+$out: an OutputPage instance to write to
 return value is ignored (should always return true)
 
 'EditPage::showEditForm:initial': before showing the edit form
 $editor: EditPage instance (object)
+$out: an OutputPage instance to write to
 
 Return false to halt editing; you'll need to handle error messages, etc.
 yourself. Alternatively, modifying $error and returning true will cause the
