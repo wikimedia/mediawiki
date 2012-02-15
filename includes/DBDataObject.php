@@ -553,8 +553,8 @@ abstract class DBDataObject {
 			__METHOD__
 		);
 
-		if ( $success && static::hasField( $field ) ) {
-			static::setField( $field, static::getField( $field ) + $amount );
+		if ( $success && $this->hasField( $field ) ) {
+			$this->setField( $field, $this->getField( $field ) + $amount );
 		}
 
 		return $success;
