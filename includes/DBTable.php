@@ -423,7 +423,7 @@ abstract class DBTable {
 		foreach ( $this->select( null, $conditions ) as /* DBDataObject */ $item ) {
 			$item->loadSummaryFields( $summaryFields );
 			$item->setSummaryMode( true );
-			$item->saveExisting();
+			$item->save();
 		}
 
 		$this->setReadDb( DB_SLAVE );

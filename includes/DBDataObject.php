@@ -81,15 +81,6 @@ abstract class DBDataObject {
 	protected $inSummaryMode = false;
 
 	/**
-	 * The database connection to use for read operations.
-	 * Can be changed via @see setReadDb.
-	 *
-	 * @since 1.20
-	 * @var integer DB_ enum
-	 */
-	protected $readDb = DB_SLAVE;
-	
-	/**
 	 * Constructor.
 	 *
 	 * @since 1.20
@@ -527,28 +518,6 @@ abstract class DBDataObject {
 		} else {
 			throw new MWException( 'Attempted to set unknown field ' . $name );
 		}
-	}
-
-	/**
-	 * Get the database type used for read operations.
-	 *
-	 * @since 1.20
-	 * 
-	 * @return integer DB_ enum
-	 */
-	public function getReadDb() {
-		return $this->readDb;
-	}
-
-	/**
-	 * Set the database type to use for read operations.
-	 *
-	 * @param integer $db
-	 *
-	 * @since 1.20
-	 */
-	public function setReadDb( $db ) {
-		$this->readDb = $db;
 	}
 
 	/**
