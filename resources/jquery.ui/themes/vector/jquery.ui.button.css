@@ -75,24 +75,24 @@ body .ui-button.ui-button-green {
 	color: white;
 	border-color: #97af7e !important;
 	/* @embed */
-	background: #85c940 url(images/button-off-green.png) repeat-x scroll 50% 100% !important;
+	background: #7acea3 url(images/button-off-green.png) repeat-x scroll 50% 100% !important;
 }
 body .ui-button.ui-button-green:hover {
 	border-color: #778e61;
 	/* @embed */
-	background: #77ad40 url(images/button-over-green.png) repeat-x scroll 50% 100% !important;
+	background: #63c693 url(images/button-over-green.png) repeat-x scroll 50% 100% !important;
 }
 body .ui-button.ui-button-green:active,
 body .ui-button.ui-button-green:focus {
 	border-color: #61b000;
 	/* @embed */
-	background: #54a800 url(images/button-down-green.png) repeat-x scroll 50% 100% !important;
+	background: #63c693 url(images/button-down-green.png) repeat-x scroll 50% 100% !important;
 }
 body .ui-button.ui-button-green.disabled {
 	color: #7f7f7f;
 	border-color: #b8d29f;
 	/* @embed */
-	background: #c9cfc3 url(images/button-disabled-green.png) repeat-x scroll 50% 100% !important;	
+	background: #b3d9c5 url(images/button-disabled-green.png) repeat-x scroll 50% 100% !important;	
 }
 
 /* Blue buttons */
