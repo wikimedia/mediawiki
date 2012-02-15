@@ -247,6 +247,7 @@ production.
 * (bug 31676) Group dynamically inserted CSS into a single <style> tag, to work
   around a bug where not all styles were applied in Internet Explorer
 * (bug 28936, bug 5280) Broken or invalid titles can't be removed from watchlist.
+* (Bug 33087) Exchange server rejected mail sent by MediaWiki
 
 === API changes in 1.19 ===
 * Made action=edit less likely to return "unknownerror", by returning the actual error
