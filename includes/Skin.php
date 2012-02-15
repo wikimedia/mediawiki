@@ -98,7 +98,7 @@ abstract class Skin extends ContextSource {
 
 		$skinNames = Skin::getSkinNames();
 
-		if ( $key == '' ) {
+		if ( $key == '' || $key == 'default' ) {
 			// Don't return the default immediately;
 			// in a misconfiguration we need to fall back.
 			$key = $wgDefaultSkin;
