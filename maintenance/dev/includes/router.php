@@ -62,7 +62,7 @@ if ( $mime ) {
 	# PHP webserver doesn't understand.
 	# ;) Nicely enough we just happen to bundle a mime.types file
 	$f = fopen($file, 'rb');
-	if ( preg_match( '^text/', $mime ) ) {
+	if ( preg_match( '#^text/#', $mime ) ) {
 		# Text should have a charset=UTF-8 (php's webserver does this too)
 		header("Content-Type: $mime; charset=UTF-8");
 	} else {
