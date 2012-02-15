@@ -159,7 +159,8 @@ CREATE UNIQUE INDEX /*i*/ug_user_group ON /*_*/user_groups (ug_user,ug_group);
 CREATE INDEX /*i*/ug_group ON /*_*/user_groups (ug_group);
 
 -- Stores the groups the user has once belonged to.
--- The user may still belong these groups. Check user_groups.
+-- The user may still belong these groups (check user_groups).
+-- Users are not autopromoted to groups from which they were removed.
 CREATE TABLE /*_*/user_former_groups (
   -- Key to user_id
   ufg_user int unsigned NOT NULL default 0,
@@ -1439,7 +1440,7 @@ CREATE TABLE /*_*/l10n_cache (
 ) /*$wgDBTableOptions*/;
 CREATE INDEX /*i*/lc_lang_key ON /*_*/l10n_cache (lc_lang, lc_key);
 
--- Table for storing JSON message blobs for the resource loader
+-- Table for caching JSON message blobs for the resource loader
 CREATE TABLE /*_*/msg_resource (
   -- Resource name
   mr_resource varbinary(255) NOT NULL,
@@ -1460,8 +1461,8 @@ CREATE TABLE /*_*/msg_resource_links (
 ) /*$wgDBTableOptions*/;
 CREATE UNIQUE INDEX /*i*/mrl_message_resource ON /*_*/msg_resource_links (mrl_message, mrl_resource);
 
--- Table for tracking which local files a module depends on that aren't
--- registered directly.
+-- Table caching which local files a module depends on that aren't
+-- registered directly, used for fast retrieval of file dependency.
 -- Currently only used for tracking images that CSS depends on
 CREATE TABLE /*_*/module_deps (
   -- Module name
