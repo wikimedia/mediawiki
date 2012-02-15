@@ -1223,17 +1223,6 @@ class EditPage {
 				return $status;
 			}
 
-			# Handle the user preference to force summaries here. Check if it's not a redirect.
-			if ( !$this->allowBlankSummary && !Title::newFromRedirect( $this->textbox1 ) ) {
-				if ( md5( $this->summary ) == $this->autoSumm ) {
-					$this->missingSummary = true;
-					$status->fatal( 'missingsummary' ); // or 'missingcommentheader' if $section == 'new'. Blegh
-					$status->value = self::AS_SUMMARY_NEEDED;
-					wfProfileOut( __METHOD__ );
-					return $status;
-				}
-			}
-
 			$text = $this->textbox1;
 			$result['sectionanchor'] = '';
 			if ( $this->section == 'new' ) {
