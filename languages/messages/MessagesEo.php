@@ -3856,6 +3856,7 @@ Aŭ vi povas uzi la facilan formularon sube. Via komento estos aldonita al la pa
 'api-error-unknown-code'                  => 'Nekonata eraro: "$1"',
 'api-error-unknown-error'                 => 'Interna eraro: io misokazis en la alŝuto de via dosiero.',
 'api-error-unknown-warning'               => 'Nekonata averto: $1',
+'api-error-unknownerror'                  => 'Nekonata eraro: "$1"',
 'api-error-uploaddisabled'                => 'Alŝutato estas malebligata en tiu ĉi vikio.',
 'api-error-verification-error'            => 'Tiu ĉi dosiero eble estas difektita, aŭ havas la malĝustan dosieran finaĵon.',
 

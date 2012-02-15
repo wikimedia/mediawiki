@@ -377,8 +377,8 @@ Faodaidh gun deach a sguabadh às le cuideigin eile mu thràth.',
 'badtitle'             => 'Droch thiotal',
 'badtitletext'         => "Bha an duilleag a dh'iarr thu mì-dhligheach, falamh no le tiotal eadar-chànanach no eadar-uici air a dhroch cheangal.
 Faodaidh gu bheil aon no barrachd charactairean ann nach urrainn dhut a chleachdadh ann an tiotalan.",
-'perfcached'           => "Chaidh an dàta a leanas a thasgadh 's faodaidh gu bheil e air dheireadh.",
-'perfcachedts'         => "Chaidh an dàta a leanas a thasgadh 's chaidh ùrachadh $1 turas mu dheireadh.",
+'perfcached'           => "Chaidh an dàta a leanas a thasgadh 's faodaidh gu bheil e air dheireadh. Tha {{PLURAL:$1|$1 toradh|$1 thoradh|$1 toraidhean|$1 toradh|$1 thoradh|$1 toraidhean|$1 toradh}} ri fhaighinn san tasgadan air a' char as motha.",
+'perfcachedts'         => "Chaidh an dàta a leanas a thasgadh agus chaidh ùradhadh $1 turas mu dheireadh. Tha {{PLURAL:$4|$4 toradh|$4 thoradh|$4 toraidhean|$4 toradh|$4 thoradh|$4 toraidhean|$4 toradh}} ri fhaighinn san tasgadan air a' char as motha.",
 'querypage-no-updates' => 'Tha ùrachadh air a chur à comas air an duilleag seo an-dràsta.
 Cha dèid an dàta an-seo ùrachadh aig an àm seo.',
 'wrong_wfQuery_params' => 'Paramatairean mì-cheart airson wfQuery()<br />
@@ -469,7 +469,24 @@ Cuir sùil air an litreachadh.',
 Am feuch thu ris a-rithist?',
 'wrongpasswordempty'         => 'Cha do chuir thu a-steach facal-faire.
 Feuch ris a-rithist.',
+'passwordtooshort'           => "Feumaidh faclan-faire a bhith {{PLURAL:$1|$1 charactar|$1 charactar|$1 caractaran|$1 charactar|$1 charactar|$1 caractaran|$1 caractar}} a dh'fhaid air a' char as lugha.",
+'password-name-match'        => "Chan fhaod am facal-faire 's an t-ainm-cleachdaiche agad a bhith co-ionnann.",
+'password-login-forbidden'   => "Tha an t-ainm-cleachdaiche 's am facal-faire seo toirmisgte.",
 'mailmypassword'             => "Cuir facal-faire ùr thugam air a' phost-dealain",
+'passwordremindertitle'      => 'Facal-faire sealach ùr airson {{SITENAME}}',
+'passwordremindertext'       => 'Dh\'iarr cuideigin (\'s mathaid gun do dh\'iarr thusa seo on t-seòladh IP $1) facal-fair ùr airson 
+{{SITENAME}} ($4). Chaidh facal-faire sealach a chruthachadh airson "$2" a tha \'na "$3".
+Ma bha sin fa-near dhut, bidh agad ri clàradh a-steach agus facal-faire ùr a thaghadh
+an-dràsta fhèin. Falbhaidh an ùine air an fhacal-fhaire sealach agad ann an {{PLURAL:$5|$5 latha|$5 latha|$5 làithean|$5 latha|$5 latha|$5 làithean|$5 latha}}.
+
+Ma dh\'iarr cuideigin eile seo no ma chuimhnich thu am facal-faire agad \'s mur eil thu
+airson atharrachadh tuilleadh, \'s urrainn dhut an teachdaireachd seo a leigeil seachad
+agus leantainn ort leis an t-seann fhacal-faire.',
+'noemail'                    => 'Cha deach post-d a chlàradh airson a\' chleachdaiche "$1".',
+'noemailcreate'              => 'Feumaidh tu post-d dligheach a chur ann',
+'passwordsent'               => 'Chaidh facal-faire ùr a chur dhan phost-d a chaidh a chlàradh airson "$1".
+Clàraich a-steach a-rithist nuair a gheibh thu e.',
+'blocked-mailpassword'       => "Chaidh bacadh a chur air an t-seòladh IP agad 's chan eil cead deasachaidh agad agus chan urrainn dhut an gleus a chum aiseag an fhacail-fhaire a chleachdadh gus casg a chur air mì-ghnàthachadh.",
 'acct_creation_throttle_hit' => "Chruthaich na h-aoighean air an Uici seo {{PLURAL:$1|chunntas|chunntas|chunntas|chunntas|cunntasan|cunntas}} fon IP agad an-dè agus sin an àireamh as motha a tha ceadaichte. Chan urrainn do dh'aoighean eile on IP seo barrachd chunntasan a chruthachadh air sgàth sin.",
 'accountcreated'             => 'Cunntas cruthaichte',
 'loginlanguagelabel'         => 'Cànan: $1',

@@ -1788,17 +1788,18 @@ $1',
 'upload-warning-subj'         => 'Uppladdningsvarning',
 'upload-warning-msg'          => 'Det uppstod ett problem med din uppladdning från [$2]. Du kan återvända till [[Special:Upload/stash/$1|uppladdningsformuläret]] för att rätta till detta problem.',
 
-'upload-proto-error'        => 'Felaktigt protokoll',
-'upload-proto-error-text'   => 'Fjärruppladdning kräver URL:ar som börjar med <code>http://</code> eller <code>ftp://</code>.',
-'upload-file-error'         => 'Internt fel',
-'upload-file-error-text'    => 'Ett internt fel inträffade när en temporär fil skulle skapas på servern. Kontakta en [[Special:ListUsers/sysop|systemadministratör]].',
-'upload-misc-error'         => 'Okänt uppladdningsfel',
-'upload-misc-error-text'    => 'Ett okänt fel inträffade under uppladdningen.
+'upload-proto-error'                => 'Felaktigt protokoll',
+'upload-proto-error-text'           => 'Fjärruppladdning kräver URL:ar som börjar med <code>http://</code> eller <code>ftp://</code>.',
+'upload-file-error'                 => 'Internt fel',
+'upload-file-error-text'            => 'Ett internt fel inträffade när en temporär fil skulle skapas på servern. Kontakta en [[Special:ListUsers/sysop|systemadministratör]].',
+'upload-misc-error'                 => 'Okänt uppladdningsfel',
+'upload-misc-error-text'            => 'Ett okänt fel inträffade under uppladdningen.
 Kontrollera att URL:en giltig och försök igen.
 Om problemet kvarstår, kontakta en [[Special:ListUsers/sysop|administratör]].',
-'upload-too-many-redirects' => 'URL-en innehöll för många omdirigeringar',
-'upload-unknown-size'       => 'Okänd storlek',
-'upload-http-error'         => 'Ett HTTP-fel uppstod: $1',
+'upload-too-many-redirects'         => 'URL-en innehöll för många omdirigeringar',
+'upload-unknown-size'               => 'Okänd storlek',
+'upload-http-error'                 => 'Ett HTTP-fel uppstod: $1',
+'upload-copy-upload-invalid-domain' => 'Uppladdning av kopior är inte tillgängligt från denna domän.',
 
 # File backend
 'backend-fail-stream'        => 'Kunde inte strömma filen $1.',

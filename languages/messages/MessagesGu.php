@@ -1190,7 +1190,7 @@ $1",
 'powersearch-field'                => 'નાં માટે શોધો',
 'powersearch-togglelabel'          => ' ચકાસો:',
 'powersearch-toggleall'            => 'બધા',
-'powersearch-togglenone'           => 'કાંઇ નહી',
+'powersearch-togglenone'           => 'એકે નહિ',
 'search-external'                  => 'બાહ્ય શોધ',
 'searchdisabled'                   => "{{SITENAME}} ઉપર શોધ બંધ કરી દેવામાં આવી છે.
 ત્યાં સુધી તમે ગુગલ દ્વારા શોધ કરી શકો.
