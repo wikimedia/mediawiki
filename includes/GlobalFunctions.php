@@ -1201,6 +1201,57 @@ function wfLogProfilingData() {
 }
 
 /**
+ * Increment a statistics counter
+ *
+ * @param $key String
+ * @param $count Int
+ */
+function wfIncrStats( $key, $count = 1 ) {
+	global $wgStatsMethod;
+
+	$count = intval( $count );
+
+	if( $wgStatsMethod == 'udp' ) {
+		global $wgUDPProfilerHost, $wgUDPProfilerPort, $wgDBname, $wgAggregateStatsID;
+		static $socket;
+
+		$id = $wgAggregateStatsID !== false ? $wgAggregateStatsID : $wgDBname;
+
+		if ( !$socket ) {
+			$socket = socket_create( AF_INET, SOCK_DGRAM, SOL_UDP );
+			$statline = "stats/{$id} - 1 1 1 1 1 -total\n";
+			socket_sendto(
+				$socket,
+				$statline,
+				strlen( $statline ),
+				0,
+				$wgUDPProfilerHost,
+				$wgUDPProfilerPort
+			);
+		}
+		$statline = "stats/{$id} - {$count} 1 1 1 1 {$key}\n";
+		wfSuppressWarnings();
+		socket_sendto(
+			$socket,
+			$statline,
+			strlen( $statline ),
+			0,
+			$wgUDPProfilerHost,
+			$wgUDPProfilerPort
+		);
+		wfRestoreWarnings();
+	} elseif( $wgStatsMethod == 'cache' ) {
+		global $wgMemc;
+		$key = wfMemcKey( 'stats', $key );
+		if ( is_null( $wgMemc->incr( $key, $count ) ) ) {
+			$wgMemc->add( $key, $count );
+		}
+	} else {
+		// Disabled
+	}
+}
+
+/**
  * Check if the wiki read-only lock file is present. This can be used to lock
  * off editing functions, but doesn't guarantee that the database will not be
  * modified.
@@ -2560,57 +2611,6 @@ function wfMkdirParents( $dir, $mode = null, $caller = null ) {
 		trigger_error( __FUNCTION__ . ": failed to mkdir \"$dir\" mode $mode", E_USER_WARNING );
 	}
 	return $ok;
-}
-
-/**
- * Increment a statistics counter
- *
- * @param $key String
- * @param $count Int
- */
-function wfIncrStats( $key, $count = 1 ) {
-	global $wgStatsMethod;
-
-	$count = intval( $count );
-
-	if( $wgStatsMethod == 'udp' ) {
-		global $wgUDPProfilerHost, $wgUDPProfilerPort, $wgDBname, $wgAggregateStatsID;
-		static $socket;
-
-		$id = $wgAggregateStatsID !== false ? $wgAggregateStatsID : $wgDBname;
-
-		if ( !$socket ) {
-			$socket = socket_create( AF_INET, SOCK_DGRAM, SOL_UDP );
-			$statline = "stats/{$id} - 1 1 1 1 1 -total\n";
-			socket_sendto(
-				$socket,
-				$statline,
-				strlen( $statline ),
-				0,
-				$wgUDPProfilerHost,
-				$wgUDPProfilerPort
-			);
-		}
-		$statline = "stats/{$id} - {$count} 1 1 1 1 {$key}\n";
-		wfSuppressWarnings();
-		socket_sendto(
-			$socket,
-			$statline,
-			strlen( $statline ),
-			0,
-			$wgUDPProfilerHost,
-			$wgUDPProfilerPort
-		);
-		wfRestoreWarnings();
-	} elseif( $wgStatsMethod == 'cache' ) {
-		global $wgMemc;
-		$key = wfMemcKey( 'stats', $key );
-		if ( is_null( $wgMemc->incr( $key, $count ) ) ) {
-			$wgMemc->add( $key, $count );
-		}
-	} else {
-		// Disabled
-	}
 }
 
 /**
