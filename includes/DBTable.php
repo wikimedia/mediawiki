@@ -536,7 +536,7 @@ abstract class DBTable {
 	 *
 	 * @return DBtable
 	 */
-	public static function &singleton() {
+	public static function singleton() {
 		static $instance;
 		
 		if ( !isset( $instance ) ) {
