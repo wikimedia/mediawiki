@@ -1026,7 +1026,6 @@ abstract class Maintenance {
 		if ( !self::$mCoreScripts ) {
 			$paths = array(
 				dirname( __FILE__ ),
-				dirname( __FILE__ ) . '/gearman',
 				dirname( __FILE__ ) . '/language',
 				dirname( __FILE__ ) . '/storage',
 			);
