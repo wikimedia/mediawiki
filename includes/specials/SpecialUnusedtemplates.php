@@ -68,17 +68,13 @@ class UnusedtemplatesPage extends QueryPage {
 			array( 'redirect' => 'no' )
 		);
 		$wlhLink = Linker::linkKnown(
-			SpecialPage::getTitleFor( 'Whatlinkshere' ),
-			wfMsgHtml( 'unusedtemplateswlh' ),
-			array(),
-			array( 'target' => $title->getPrefixedText() )
+			SpecialPage::getTitleFor( 'Whatlinkshere', $title->getPrefixedText() ),
+			$this->msg( 'unusedtemplateswlh' )->escaped()
 		);
 		return $this->getLanguage()->specialList( $pageLink, $wlhLink );
 	}
 
 	function getPageHeader() {
-		return wfMsgExt( 'unusedtemplatestext', array( 'parse' ) );
+		return $this->msg( 'unusedtemplatestext' )->parseAsBlock();
 	}
-
 }
-
