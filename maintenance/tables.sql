@@ -159,7 +159,7 @@ CREATE UNIQUE INDEX /*i*/ug_user_group ON /*_*/user_groups (ug_user,ug_group);
 CREATE INDEX /*i*/ug_group ON /*_*/user_groups (ug_group);
 
 -- Stores the groups the user has once belonged to.
--- The user may still belong these groups (check user_groups).
+-- The user may still belong to these groups (check user_groups).
 -- Users are not autopromoted to groups from which they were removed.
 CREATE TABLE /*_*/user_former_groups (
   -- Key to user_id
