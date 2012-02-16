@@ -7,7 +7,7 @@
 	/**
 	 * User object
 	 */
-	function User() {
+	function User( options, tokens ) {
 
 		/* Private Members */
 
@@ -15,9 +15,9 @@
 
 		/* Public Members */
 
-		this.options = new mw.Map();
+		this.options = options || new mw.Map();
 
-		this.tokens = new mw.Map();
+		this.tokens = tokens || new mw.Map();
 
 		/* Public Methods */
 
@@ -176,6 +176,8 @@
 		};
 	}
 
-	mw.user = new User();
+	// Extend the skeleton mw.user from mediawiki.js
+	// This is kind of ugly but we're stuck with this for b/c reasons
+	mw.user = new User( mw.user.options, mw.user.tokens );
 
 })(jQuery);
