@@ -1038,3 +1038,10 @@ table.floatleft {
 	position: absolute;
 	z-index: 99;
 }
+
+.editsection, .toctoggle {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

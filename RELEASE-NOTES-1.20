@@ -27,6 +27,8 @@ production.
 * (bug 32210) New edit emails for watched pages always provide a link to the
   edit which triggered the mail.
 * (bug 12021) Added user talk link on Special:Listusers
+* (bug 34445) section edit and TOC hide/show links are excluded from selection and
+  copy/paste on supporting browsers
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
