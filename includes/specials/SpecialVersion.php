@@ -180,34 +180,65 @@ class SpecialVersion extends SpecialPage {
 
 	/**
 	 * Return a wikitext-formatted string of the MediaWiki version with a link to
-	 * the SVN revision if available.
+	 * the SVN revision or the git SHA1 of head if available.
+	 * Git is prefered over Svn
+	 * The fallback is just $wgVersion
 	 *
 	 * @return mixed
 	 */
 	public static function getVersionLinked() {
-		global $wgVersion, $IP;
+		global $wgVersion;
 		wfProfileIn( __METHOD__ );
 
-		$info = self::getSvnInfo( $IP );
-
-		if ( isset( $info['checkout-rev'] ) ) {
-			$linkText = wfMsg(
-				'version-svn-revision',
-				isset( $info['directory-rev'] ) ? $info['directory-rev'] : '',
-				$info['checkout-rev']
-			);
-
-			if ( isset( $info['viewvc-url'] ) ) {
-				$version = "$wgVersion [{$info['viewvc-url']} $linkText]";
-			} else {
-				$version = "$wgVersion $linkText";
-			}
+		if( $gitVersion = self::getVersionLinkedGit() ) {
+			$v = $gitVersion;
+		} elseif( $svnVersion = self::getVersionLinkedSvn() ) {
+			$v = $svnVersion;
 		} else {
-			$version = $wgVersion;
+			$v = $wgVersion; // fallback
 		}
 
 		wfProfileOut( __METHOD__ );
+		return $v;
+	}
+
+	/**
+	 * @return string wgVersion + a link to subversion revision of svn BASE 
+	 */
+	private static function getVersionLinkedSvn() {
+		global $wgVersion, $IP;
+
+		$info = self::getSvnInfo( $IP );
+		if( !isset( $info['checkout-rev'] ) ) {
+			return false;
+		}
+
+		$linkText = wfMsg(
+			'version-svn-revision',
+			isset( $info['directory-rev'] ) ? $info['directory-rev'] : '',
+			$info['checkout-rev']
+		);
+
+		if ( isset( $info['viewvc-url'] ) ) {
+			$version = "$wgVersion [{$info['viewvc-url']} $linkText]";
+		} else {
+			$version = "$wgVersion $linkText";
+		}
+
 		return $version;
+	}
+
+	/**
+	 * @return false|string wgVersion + HEAD sha1 stripped to the first 7 chars
+	 */
+	private static function getVersionLinkedGit() {
+		global $wgVersion, $IP;
+		if( ! $sha1 = self::getGitHeadSha1( $IP) ) {
+			return false;
+		}
+		$short_sha1 = substr( $sha1, 0, 7 );
+
+		return "$wgVersion ($short_sha1)";
 	}
 
 	/**
@@ -677,6 +708,33 @@ class SpecialVersion extends SpecialPage {
 			return false;
 		}
 	}
+
+	/**
+	 * @param $dir String: directory of the git checkout
+	 * @return false|String sha1 of commit HEAD points to
+	 */
+	public static function getGitHeadSha1( $dir ) {
+		$BASEDIR  = "{$dir}/.git/";
+		$HEADfile = "{$BASEDIR}/HEAD";
+
+		if( !file_exists( $HEADfile ) ) {
+			return false;
+		}
+
+		preg_match( "/ref: (.*)/",
+		   	file_get_contents( $HEADfile), $m );
+
+		$REFfile = "{$BASEDIR}{$m[1]}";
+		if( !file_exists( $REFfile ) ) {
+			print "$REFfile doesnot exit?";
+			return false;
+		}
+
+		$sha1 = chop(file_get_contents( $REFfile ));
+
+		return $sha1;
+	}
+
 
 	function showEasterEgg() {
 		$rx = $rp = $xe = '';

@@ -122,6 +122,7 @@ production.
 * sha1 xml tag added to XML dump file. 
 * (bug 33646) Badtitle error page now emits a 400 HTTP status.
 * Special:MovePage now has a dropdown menu for namespaces.
+* (bug 34420) Special:Version now shows git HEAD sha1 when available
 
 === Bug fixes in 1.19 ===
 * $wgUploadNavigationUrl should be used for file redlinks if.
