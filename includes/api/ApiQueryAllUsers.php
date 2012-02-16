@@ -60,10 +60,15 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		$from = is_null( $params['from'] ) ? null : $this->keyToTitle( $params['from'] );
 		$to = is_null( $params['to'] ) ? null : $this->keyToTitle( $params['to'] );
 
-		$this->addWhereRange( 'user_name', $dir, $from, $to );
+		# MySQL doesn't seem to use 'equality propagation' here, so like the
+		# ActiveUsers special page, we have to use rc_user_text for some cases.
+		$userFieldToSort = $params['activeusers'] ? 'rc_user_text' : 'user_name';
+
+		$this->addWhereRange( $userFieldToSort, $dir, $from, $to );
 
 		if ( !is_null( $params['prefix'] ) ) {
-			$this->addWhere( 'user_name' . $db->buildLike( $this->keyToTitle( $params['prefix'] ), $db->anyString() ) );
+			$this->addWhere( $userFieldToSort .
+				$db->buildLike( $this->keyToTitle( $params['prefix'] ), $db->anyString() ) );
 		}
 
 		if ( !is_null( $params['rights'] ) ) {
@@ -143,7 +148,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			$timestamp = $db->timestamp( wfTimestamp( TS_UNIX ) - $wgActiveUserDays*24*3600 );
 			$this->addWhere( "rc_timestamp >= {$db->addQuotes( $timestamp )}" );
 
-			$this->addOption( 'GROUP BY', 'user_name' );
+			$this->addOption( 'GROUP BY', $userFieldToSort );
 		}
 
 		$this->addOption( 'LIMIT', $sqlLimit );
