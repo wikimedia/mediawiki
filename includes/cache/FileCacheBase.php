@@ -120,7 +120,7 @@ abstract class FileCacheBase {
 			$fh = gzopen( $this->cachePath(), 'rb' );
 			return stream_get_contents( $fh );
 		} else {
-			return file_get_contents( $this-cachePath() );
+			return file_get_contents( $this->cachePath() );
 		}
 	}
 
