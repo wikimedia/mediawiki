@@ -1931,6 +1931,8 @@ function wfViewPrevNext( $offset, $limit, $link, $query = '', $atend = false ) {
  * @deprecated since 1.19; use Language::specialList() instead
  */
 function wfSpecialList( $page, $details, $oppositedm = true ) {
+	wfDeprecated( __METHOD__, '1.19' );
+
 	global $wgLang;
 	return $wgLang->specialList( $page, $details, $oppositedm );
 }
