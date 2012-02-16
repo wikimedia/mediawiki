@@ -78,6 +78,8 @@ $mwExcludePaths = array(
 /** Variable to get user input */
 $input = '';
 $exclude_patterns = '';
+/** Whether to generates man pages: */
+$wgDoxyGenerateMan = false;
 
 #
 # Functions
