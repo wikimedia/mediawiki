@@ -753,7 +753,7 @@ class MessageCache {
 			$message = $revision->getText();
 			if ($message === false) {
 				// A possibly temporary loading failure.
-				wfDebugLog( 'MessageCache', __METHOD__ . ": failed to load message page text for {$title->getDbKey()} ($code)" );
+				wfDebugLog( 'MessageCache', __METHOD__ . ": failed to load message page text for {$title} ($code)" );
 			} else {
 				$this->mCache[$code][$title] = ' ' . $message;
 				$this->mMemc->set( $titleKey, ' ' . $message, $this->mExpiry );
