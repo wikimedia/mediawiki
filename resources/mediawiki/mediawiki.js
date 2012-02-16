@@ -648,17 +648,21 @@ var mw = ( function ( $, undefined ) {
 	
 								done = true;
 	
-								// Handle memory leak in IE
-								script.onload = script.onreadystatechange = null;
-	
 								callback();
 	
-								if ( script.parentNode ) {
-									script.parentNode.removeChild( script );
-								}
-	
-								// Dereference the script
-								script = undefined;
+								// Handle memory leak in IE. This seems to fail in
+								// IE7 sometimes (Permission Denied error when
+								// accessing script.parentNode) so wrap it in
+								// a try catch.
+								try {
+									script.onload = script.onreadystatechange = null;
+									if ( script.parentNode ) {
+										script.parentNode.removeChild( script );
+									}
+		
+									// Dereference the script
+									script = undefined;
+								} catch ( e ) { }
 							}
 						};
 					}
