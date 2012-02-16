@@ -520,7 +520,8 @@ class DiffHistoryBlob implements HistoryBlob {
 			$ofp = mhash( MHASH_ADLER32, $base );
 			if ( $ofp !== substr( $diff, 0, 4 ) ) {
 				wfDebug( __METHOD__. ": incorrect base checksum\n" );
-				return false;
+				// Temp patch for bug 34428: don't return false
+				//return false;
 			}
 		}
 		if ( $header['csize'] != strlen( $base ) ) {
