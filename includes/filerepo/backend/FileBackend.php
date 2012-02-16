@@ -1133,6 +1133,7 @@ abstract class FileBackendStore extends FileBackend {
 		wfProfileIn( __METHOD__ );
 		$path = self::normalizeStoragePath( $params['src'] );
 		if ( $path === null ) {
+			wfProfileOut( __METHOD__ );
 			return false; // invalid storage path
 		}
 		$latest = !empty( $params['latest'] );
