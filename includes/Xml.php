@@ -196,6 +196,7 @@ class Xml {
 	public static function languageSelector( $selected, $customisedOnly = true, $language = null ) {
 		global $wgLanguageCode;
 
+		// TODO: This should be replaced with a hook or something, from r107002
 		// If a specific language was requested and CLDR is installed, use it
 		if ( $language && is_callable( array( 'LanguageNames', 'getNames' ) ) ) {
 			if ( $customisedOnly ) {
