@@ -486,13 +486,13 @@ class XmlDumpWriter {
 				$out .= '    ' . Xml::element( 'redirect', array( 'title' => self::canonicalTitle( $redirect ) ) ) . "\n";
 			}
 		}
-		
+
 		if ( $row->rev_sha1 ) {
-			$out .= "      " . Xml::element('sha1', null, strval($row->rev_sha1) ) . "\n";
+			$out .= "      " . Xml::element('sha1', null, strval( $row->rev_sha1 ) ) . "\n";
 		} else {
 			$out .= "      <sha1/>\n";
 		}
-		
+
 		if ( $row->page_restrictions != '' ) {
 			$out .= '    ' . Xml::element( 'restrictions', array(),
 				strval( $row->page_restrictions ) ) . "\n";

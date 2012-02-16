@@ -297,6 +297,9 @@ abstract class Maintenance {
 		return rtrim( $input );
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function isQuiet() {
 		return $this->mQuiet;
 	}

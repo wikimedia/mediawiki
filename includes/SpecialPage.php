@@ -891,7 +891,7 @@ abstract class FormSpecialPage extends SpecialPage {
 		$this->checkPermissions();
 
 		if ( $this->requiresUnblock() && $user->isBlocked() ) {
-			$block = $user->mBlock;
+			$block = $user->getBlock();
 			throw new UserBlockedError( $block );
 		}
 

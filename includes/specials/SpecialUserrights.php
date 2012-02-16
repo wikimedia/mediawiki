@@ -72,7 +72,7 @@ class UserrightsPage extends SpecialPage {
 		 * allow them to use Special:UserRights.
 		 */
 		if( $user->isBlocked() && !$user->isAllowed( 'userrights' ) ) {
-			throw new UserBlockedError( $user->mBlock );
+			throw new UserBlockedError( $user->getBlock() );
 		}
 
 		$request = $this->getRequest();

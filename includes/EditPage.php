@@ -1019,7 +1019,7 @@ class EditPage {
 				return false;
 
 			case self::AS_BLOCKED_PAGE_FOR_USER:
-				throw new UserBlockedError( $wgUser->mBlock );
+				throw new UserBlockedError( $wgUser->getBlock() );
 
 			case self::AS_IMAGE_REDIRECT_ANON:
 			case self::AS_IMAGE_REDIRECT_LOGGED:
@@ -2959,7 +2959,7 @@ HTML
 		wfDeprecated( __METHOD__, '1.19' );
 		global $wgUser;
 
-		throw new UserBlockedError( $wgUser->mBlock );
+		throw new UserBlockedError( $wgUser->getBlock() );
 	}
 
 	/**
