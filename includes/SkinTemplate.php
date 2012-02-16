@@ -397,18 +397,23 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'bottomscripts', $this->bottomScripts() );
 		$tpl->set( 'printfooter', $this->printSource() );
 
-		# Add a <div class="mw-content-ltr/rtl"> around the body text
+		# An ID that includes the actual body text; without categories, contentSub, ...
+		$realBodyAttribs = array( 'id' => 'mw-content-text' );
+
+		# Add a mw-content-ltr/rtl class to be able to style based on text direction
+		# when the content is different from the UI language, i.e.:
 		# not for special pages or file pages AND only when viewing AND if the page exists
 		# (or is in MW namespace, because that has default content)
 		if( !in_array( $title->getNamespace(), array( NS_SPECIAL, NS_FILE ) ) &&
 			in_array( $request->getVal( 'action', 'view' ), array( 'view', 'historysubmit' ) ) &&
 			( $title->exists() || $title->getNamespace() == NS_MEDIAWIKI ) ) {
 			$pageLang = $title->getPageLanguage();
-			$realBodyAttribs = array( 'lang' => $pageLang->getHtmlCode(), 'dir' => $pageLang->getDir(),
-				'class' => 'mw-content-'.$pageLang->getDir() );
-			$out->mBodytext = Html::rawElement( 'div', $realBodyAttribs, $out->mBodytext );
+			$realBodyAttribs['lang'] = $pageLang->getHtmlCode();
+			$realBodyAttribs['dir'] = $pageLang->getDir();
+			$realBodyAttribs['class'] = 'mw-content-'.$pageLang->getDir();
 		}
 
+		$out->mBodytext = Html::rawElement( 'div', $realBodyAttribs, $out->mBodytext );
 		$tpl->setRef( 'bodytext', $out->mBodytext );
 
 		# Language links
