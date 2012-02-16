@@ -9,6 +9,7 @@ $wgAutoloadClasses += array(
 	'MediaWikiTestCase' => "$testFolder/phpunit/MediaWikiTestCase.php",
 	'MediaWikiPHPUnitCommand' => "$testFolder/phpunit/MediaWikiPHPUnitCommand.php",
 	'MediaWikiLangTestCase' => "$testFolder/phpunit/MediaWikiLangTestCase.php",
+	'NewParserTest' => "$testFolder/phpunit/includes/parser/NewParserTest.php",
 
 	//includes
 	'BlockTest' => "$testFolder/phpunit/includes/BlockTest.php",
