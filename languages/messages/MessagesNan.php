@@ -1911,8 +1911,8 @@ Téng 1 ūi siu-kái-chiá sī [[User:$3|$3]] ([[User talk:$3|talk]]{{int:pipe-s
 'undeletepage'        => 'Khoàⁿ kap kiù thâi tiāu ê ia̍h',
 'undeletepagetitle'   => "'''下跤包括[[:$1]]的刣掉修訂本'''",
 'viewdeletedpage'     => '看刣掉的頁',
-'undeletepagetext'    => '下跤的$1个頁已經予人刣掉，毋過猶佇檔案，而且會使救倒轉來，
-檔案庫可能會定時清理。',
+'undeletepagetext'    => '下跤的{{PLURAL:$1|篇頁|篇頁}}已經予人刣掉，毋過猶留佇檔案庫，而且會使救倒轉來。
+檔案庫內底可能會定時清掉。',
 'undeletelink'        => '看／恢復',
 'undeleteviewlink'    => 'Khoàⁿ',
 'undeletereset'       => '設便',
@@ -2016,6 +2016,7 @@ Téng 1 ūi siu-kái-chiá sī [[User:$3|$3]] ([[User talk:$3|talk]]{{int:pipe-s
 'lockdbsuccesssub'    => '資料庫封鎖成功',
 'unlockdbsuccesssub'  => '已經共資料庫的封鎖解除',
 'unlockdbsuccesstext' => '資料庫已經解除封鎖',
+'databasenotlocked'   => '資料庫無封鎖牢咧。',
 
 # Move page
 'move-page'              => '徙$1',

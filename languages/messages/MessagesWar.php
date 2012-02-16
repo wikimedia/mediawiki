@@ -1184,6 +1184,14 @@ Kitaa an $2 para hin talaan han mga gibag-ohi nga mga ginpamara.',
 'blockip'                  => 'Pugngi an gumaramit',
 'blockip-title'            => 'Pugngi an gumaramit',
 'blockip-legend'           => 'Pugngi an gumaramit',
+'ipbreason-dropdown'       => '*Agsob nga mga rason hit pagpugong
+** Pagsusuksok hin sayop nga pananabutan
+** Pagtatangtang hin sulod tikang ha mga pakli
+** Bisan la ano nga pansusumpay ngadto ha gawas nga mga dapit
+** Pansusuksok hin inamasang/buro-buro ngadto ha mga pakli
+** Panhahadlok nga pamatasan/makakalilisang nga pansamok
+** Pan-abusar hin dirudilain nga mga akawnt
+** Diri makakarawat nga agnay-hit-gumaramit',
 'ipbsubmit'                => 'Pugngi ini nga gumaramit',
 'ipboptions'               => '2 ka oras:2 hours,1 ka adlaw:1 day,3 ka adlaw:3 days,1 ka semana:1 week,2 ka semana:2 weeks,1 ka bulan:1 month,3 ka bulan:3 months,6 ka bulan:6 months,1 ka tuig:1 year,waray katapusan:infinite',
 'ipbotheroption'           => 'iba',

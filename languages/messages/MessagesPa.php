@@ -142,6 +142,8 @@ $messages = array(
 'category-media-header'  => 'ਕੈਟਾਗਰੀ "$1" ਵਿੱਚ ਮੀਡਿਆ',
 'category-empty'         => "''ਇਹ ਕੈਟਾਗਰੀ ਵਿੱਚ ਇਸ ਵੇਲੇ ਕੋਈ ਲੇਖ (ਆਰਟੀਕਲ) ਜਾਂ ਮੀਡਿਆ ਨਹੀਂ ਹੈ।''",
 'hidden-categories'      => '{{PLURAL:$1|ਅਲੋਪ ਸ਼੍ਰੇਣੀ|ਅਲੋਪ ਸ਼੍ਰੇਣੀਆ}}',
+'category-subcat-count'  => '{{ਕੁਲ   $2 ਸ਼੍ਰੇਣੀਆਂ ਵਿਚੌਂ , PLURAL:$2|ਇਸ ਸ਼੍ਰੇਣੀ ਵਿਚ ਸਿਰਫ਼ ਹੇਠ ਲਿਖੀ ਸ਼੍ਰੇਣੀ ਹੈ|ਇਸ ਸ਼੍ਰੇਣੀ ਵਿਚ ਨਿਮਿਨਲਿਖਿਤ {{PLURAL:$1|ਉਪ ਸ਼੍ਰੇਣੀ ਹੈ|$1ਉਪਸ਼੍ਰੇਣੀਆਂ ਹਨ}}  }}',
+'category-article-count' => '{{ ਕੁਲ $2 ਲੇਖਾਂ ਵਿਚੌਂ , PLURAL:$2| ਇਸ ਸ਼੍ਰੇਣੀ ਵਿਚ ਸਿਰਫ਼  ਨਿਮਨਲਿਖਿਤ  {{PLURAL:$1|ਲੇਖ ਹੈ|$1 ਲੇਖ ਹਨ}}, }}',
 'listingcontinuesabbrev' => 'ਅਗੇ.',
 
 'about'         => 'ਇਸ ਬਾਰੇ',
@@ -280,6 +282,7 @@ $messages = array(
 'feedlinks'               => 'ਫੀਡ:',
 'site-rss-feed'           => '$1 RSS ਫੀਡ',
 'site-atom-feed'          => '$1 ਐਟਮ ਫੀਡ',
+'page-atom-feed'          => '"$1" ਐਟਮ ਫੀਡ',
 'red-link-title'          => '$1 (ਇਸ ਨਾਂ ਦਾ ਪੇਜ ਨਹੀਂ ਹੈ)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -480,6 +483,7 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 # History pages
 'viewpagelogs'        => 'ਇਸ ਪੇਜ ਦੇ ਲਈ ਲਾਗ ਵੇਖੋ',
 'currentrev'          => 'ਮੌਜੂਦਾ ਰੀਵਿਜ਼ਨ',
+'currentrev-asof'     => '$1 ਦੇ ਸਮੇਂ ਦਾ ਵਰਨਣ',
 'revisionasof'        => '$1 ਦੇ ਰੀਵਿਜ਼ਨ ਵਾਂਗ',
 'revision-info'       => ' $1ਦ ਬਦਲਾਅ $2ਦਵਾਰਾ ਕੀਤਾ ਹੋਇਆ',
 'previousrevision'    => '←ਪੁਰਾਣਾ ਰੀਵਿਜ਼ਨ',
@@ -752,12 +756,14 @@ to upload files.',
 'filehist-current'          => 'ਮੌਜੂਦਾ',
 'filehist-datetime'         => 'ਮਿਤੀ/ਸਮਾਂ',
 'filehist-thumb'            => 'ਅੰਗੂਠਾਕਾਰ',
+'filehist-thumbtext'        => '$1 ਦੇ ਸਮੇਂ ਦੇ ਸੰਸਕਰਨ ਦਾ ਅੰਗੂਠਾਕਾਰ ਪ੍ਰਤੀਰੂਪ',
 'filehist-user'             => 'ਯੂਜ਼ਰ',
 'filehist-dimensions'       => 'ਮਾਪ',
 'filehist-filesize'         => 'ਫਾਇਲ ਆਕਾਰ',
 'filehist-comment'          => 'ਟਿੱਪਣੀ',
 'imagelinks'                => 'ਫ਼ਾਈਲ ਦੀ ਵਰਤੌਂ',
 'linkstoimage'              => 'ਹੇਠ ਲਿਖਿਤ {{PLURAL:$1|ਪੰਨੇ ਦਾ ਹਵਾਲਾ ਹੈ|$1 ਪੰਨੇ ਦੇ ਹਵਾਲੇ ਹਨ}} to this file:',
+'sharedupload-desc-here'    => 'ਇਹ ਮਿਸਲ $1 ਦੀ ਹੈ ਅਤੇ ਹੋਰ ਪ੍ਰਾਜੈਕਟਾਂ ਵਿਚ ਵੀ ਵਰਤੀ ਜਾ ਸਕਦੀ ਹੈ । ਇਸ ਦੇ [$2 ਮਿਸਲ ਵਾਲੇ ਬ੍ਰਿਤਾਂਤ ਪੰਨੇ] ਵਿਚ ਮੌਜੂਦ ਵਰਨਣ ਨਿਮਨ ਲਿਖਿਤ ਹੈ।',
 'uploadnewversion-linktext' => 'ਇਸ ਫਾਇਲ ਦਾ ਇੱਕ ਨਵਾਂ ਵਰਜਨ ਅੱਪਲੋਡ ਕਰੋ',
 
 # File reversion
@@ -1133,7 +1139,8 @@ to upload files.',
 ਪੰਕਤੀ ਵਿਚ ਪਹਿਲੀ ਕੜੀ ਗਲਤ ਫਾਈਲ ਦੀ ਕੜੀ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ।ਉਸ ਪੰਕਤੀ ਵਿਚ ਅੱਗੇ ਦਿਤੀਆਂ ਕੜੀਆਂ ਨੂੰ ਅਪਵਾਦ ਮੰਨਿਆ ਜਾਵੇਗਾ, ਭਾਵ ਉਹ ਪੰਨੇ ਜਿਨ੍ਹਾਂ ਵਿਚ ਫਾਈਲ ਕਿਸੇ ਪੰਕਤੀ ਵਿਚ ਸਥਿਤ ਹੋ ਸਕਦੀ ਹੇ।',
 
 # Metadata
-'metadata' => 'ਮੇਟਾ ਡੈਟਾ',
+'metadata'      => 'ਮੇਟਾ ਡੈਟਾ',
+'metadata-help' => 'ਇਸ ਮਿਸਲ ਵਿਚ ਵਾਧੂ ਜਾਨਕਾਰੀਆਂ ਹਨ , ਜੋ ਸ਼ਾਇਦ ਉਸ ਕੈਮਰੇ ਯਾ ਸਕੈਨਰ ਦੀ ਦੇਣ ਹਨ ਜੋਕਿ ਇਸ ਮਿਸਲ ਨੂੰ ਬਨਾਉਣ ਲਈ ਵਰਤਿਆ ਗਿਆ ਹੈ।ਅਗ਼ਰ ਇਹ ਮਿਸਲ ਬਦਲਾਈ ਗਈ ਹੈ ਤਾਂ ਹੋ ਸਕਦਾ ਹੈ ਕੁਝ ਵੇਰਵੇ ਬਦਲੀ ਮਿਸਲ ਦਾ ਸਹੀ ਰੂਪਮਾਨ ਨਾ ਹੋਣ।',
 
 # EXIF tags
 'exif-imagewidth'       => 'ਚੌੜਾਈ',

@@ -2658,8 +2658,10 @@ Mae ffolder dros dro yn eisiau.',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|diwygiad|diwygiad|ddiwygiad|diwygiad|diwygiad|diwygiad}} o $2',
 
 # JavaScriptTest
-'javascripttest'                => 'Profi JavaScript',
-'javascripttest-pagetext-skins' => 'Dewiswch wedd i gynnal profion arni:',
+'javascripttest'                      => 'Profi JavaScript',
+'javascripttest-title'                => 'Yn cynnal profion $1',
+'javascripttest-pagetext-noframework' => 'Neilltuwyd y dudalen hon at gynnal profion JavaScript.',
+'javascripttest-pagetext-skins'       => 'Dewiswch wedd i gynnal profion arni:',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'                 => 'Eich tudalen defnyddiwr',

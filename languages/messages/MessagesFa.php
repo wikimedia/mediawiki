@@ -543,7 +543,7 @@ $messages = array(
 
 # Categories related messages
 'pagecategories'                 => '{{PLURAL:$1|رده‌های صفحه|رده‌های صفحه}}',
-'category_header'                => 'مقاله‌ها',
+'category_header'                => 'صفحه‌های رده «$1»',
 'subcategories'                  => 'زیررده‌ها',
 'category-media-header'          => 'پرونده‌های ردهٔ «$1»',
 'category-empty'                 => "''این رده در حال حاضر حاوی هیچ صفحه یا پرونده‌ای نیست.''",
@@ -1152,8 +1152,8 @@ $2
 'storedversion'                    => 'نسخهٔ ذخیره شده',
 'nonunicodebrowser'                => "'''هشدار: مرورگر شما با استانداردهای یونیکد سازگار نیست.'''
 راه حلی به کار گرفته شده تا شما بتوانید صفحه‌ها را با امنیت ویرایش کنید: کاراکترهای غیر ASCII به صورت کدهایی در مبنای شانزده به شما نشان داده می‌شوند.",
-'editingold'                       => "'''هشدار: شما در حال ویرایش نسخه‌ای قدیمی از این صفحه هستید.'''
-چنان‌چه صفحه را ذخیره کنید، هر تغییری که پس از این نسخه انجام شده‌است از بین خواهد رفت.",
+'editingold'                       => "'''هشدار: شما در حال ویرایش نسخه‌ای قدیمی از این صفحه هستید.''
+اگر ذخیره‌اش کنید، هر تغییری که پس از این نسخه انجام شده‌است از بین خواهد رفت.",
 'yourdiff'                         => 'تفاوت‌ها',
 'copyrightwarning'                 => "لطفاً توجه داشته باشید که فرض می‌شود کلیهٔ مشارکت‌های شما با {{SITENAME}} تحت «$2» منتشر می‌شوند (برای جزئیات بیشتر به $1 مراجعه کنید).
 اگر نمی‌خواهید نوشته‌هایتان بی‌رحمانه ویرایش شده و به دلخواه توزیع شود، اینجا نفرستیدشان.<br />
@@ -1190,8 +1190,8 @@ $2
 'sectioneditnotsupported-title'    => 'ویرایش بخش‌ها پشتیبانی نمی‌شود',
 'sectioneditnotsupported-text'     => 'این صفحه از ویرایش بخش‌ها پشتیبانی نمی‌کند.',
 'permissionserrors'                => 'خطای سطح دسترسی',
-'permissionserrorstext'            => 'شما اجازهٔ انجام این کار را به {{PLURAL:$1|دلیل|دلایل}} زیر ندارید:',
-'permissionserrorstext-withaction' => 'شما اجازهٔ $2 را به {{PLURAL:$1|دلیل|دلایل}} زیر ندارید:',
+'permissionserrorstext'            => 'شما اجازهٔ انجام این کار را به این {{PLURAL:$1|دلیل|دلایل}} ندارید:',
+'permissionserrorstext-withaction' => 'شما اجازهٔ $2 را به این {{PLURAL:$1|دلیل|دلایل}} ندارید:',
 'recreate-moveddeleted-warn'       => "'''هشدار: شما در حال ایجاد صفحه‌ای هستید که قبلاً حذف شده‌است.'''
 
 در نظر داشته باشید که آیا ادامهٔ ویرایش این صفحه کار درستی‌است یا نه.
@@ -1535,7 +1535,7 @@ $1",
 'timezoneuseserverdefault'      => 'استفاده از پیش‌فرض ویکی ($1)',
 'timezoneuseoffset'             => 'دیگر (اختلاف را مشخص کنید)',
 'timezoneoffset'                => 'اختلاف¹:',
-'servertime'                    => 'زمان کارگزار:',
+'servertime'                    => 'زمان سرور:',
 'guesstimezone'                 => 'از مرورگر گرفته شود',
 'timezoneregion-africa'         => 'آفریقا',
 'timezoneregion-america'        => 'آمریکا',
@@ -1812,7 +1812,7 @@ $1",
 'uploadnologin'               => 'به سامانه وارد نشده‌اید',
 'uploadnologintext'           => 'برای بارگذاری پرونده‌ها باید [[Special:UserLogin|به سامانه وارد شوید]].',
 'upload_directory_missing'    => 'شاخهٔ بارگذاری ($1) وجود ندارد و قابل ایجاد نیست.',
-'upload_directory_read_only'  => 'شاخهٔ بارگذاری ($1) از طرف کارگزار وب قابل نوشتن نیست.',
+'upload_directory_read_only'  => 'شاخهٔ بارگذاری ($1) از طرف سرور وب قابل نوشتن نیست.',
 'uploaderror'                 => 'خطای بارگذاری',
 'upload-recreate-warning'     => "'''هشدار: پرونده‌ای با این نام حذف یا منتقل شده است.'''
 
@@ -1937,7 +1937,7 @@ $1',
 'upload-proto-error'                => 'پروتکل نادرست',
 'upload-proto-error-text'           => 'بارگذاری از دوردست به نشانی‌هایی که با <code dir=ltr>http://</code> یا <code dir=ltr>ftp://</code> آغاز شوند نیاز دارد.',
 'upload-file-error'                 => 'خطای داخلی',
-'upload-file-error-text'            => 'هنگام تلاش برای ایجاد یک پروندهٔ  موقت در کارگزار یک خطای داخلی رخ داد.
+'upload-file-error-text'            => 'هنگام تلاش برای ایجاد یک پروندهٔ  موقت در سرور یک خطای داخلی رخ داد.
 لطفاً با یک [[Special:ListUsers/sysop|مدیر]] تماس بگیرید.',
 'upload-misc-error'                 => 'خطای نامعلوم در بارگذاری',
 'upload-misc-error-text'            => 'هنگام بارگذاری، خطایی نامعلوم رخ داد.
@@ -2540,7 +2540,7 @@ $NEWPAGE
 [[Special:ProtectedPages|فهرست صفحه‌های محافظت‌شده]] را برای دیدن فهرست محافظت‌های مؤثر صفحه‌ها ببینید.',
 'protectedarticle'            => '«[[$1]]» را محافظت کرد',
 'modifiedarticleprotection'   => 'وضعیت محافظت «[[$1]]» را تغییر داد',
-'unprotectedarticle'          => 'صفحهٔ «[[$1]]» را از محافظت خارج کرد',
+'unprotectedarticle'          => 'صفحهٔ «[[$1]]» را از محافظت بیرون آورد',
 'movedarticleprotection'      => 'تنظیمات محافظت را از «[[$2]]» به «[[$1]]» منتقل کرد',
 'protect-title'               => 'تغییر وضعیت محافظت «$1»',
 'protect-title-notallowed'    => 'مشاهده سطح حفاظت  " $1 "',
@@ -2986,7 +2986,7 @@ $1',
 'allmessagesdefault'            => 'متن پیش‌فرض پیغام',
 'allmessagescurrent'            => 'متن کنونی پیغام',
 'allmessagestext'               => 'این فهرستی از پیغام‌های سامانه‌ای موجود در فضای نام مدیاویکی است.
-چنان‌چه مایل به مشارکت در محلی‌سازی مدیاویکی هستید لطفاً [//www.mediawiki.org/wiki/Localisation محلی‌سازی مدیاویکی] و [//translatewiki.net translatewiki.net] را ببینید.',
+چنانچه مایل به مشارکت در محلی‌سازی مدیاویکی هستید لطفاً [//www.mediawiki.org/wiki/Localisation محلی‌سازی مدیاویکی] و [//translatewiki.net translatewiki.net] را ببینید.',
 'allmessagesnotsupportedDB'     => "نمی‌توان از '''{{ns:special}}:همهٔ پیغام‌ها''' استفاده کرد چود '''&lrm;\$wgUseDatabaseMessages''' خاموش شده است.",
 'allmessages-filter-legend'     => 'پالایه',
 'allmessages-filter'            => 'پالودن بر اساس وضعیت شخصی‌سازی:',
@@ -3342,7 +3342,7 @@ $1',
 'exif-subsectimedigitized'         => 'کسر ثانیهٔ زمان دیجیتال',
 'exif-exposuretime'                => 'زمان نوردهی',
 'exif-exposuretime-format'         => '$1 ثانیه ($2)',
-'exif-fnumber'                     => 'ضریب F',
+'exif-fnumber'                     => 'ضریب اف',
 'exif-exposureprogram'             => 'برنامهٔ نوردهی',
 'exif-spectralsensitivity'         => 'حساسیت طیفی',
 'exif-isospeedratings'             => 'درجه‌بندی سرعت ایزو',
@@ -3352,7 +3352,7 @@ $1',
 'exif-exposurebiasvalue'           => 'خطای نوردهی',
 'exif-maxaperturevalue'            => 'حداکثر گشادگی زمین',
 'exif-subjectdistance'             => 'فاصلهٔ سوژه',
-'exif-meteringmode'                => 'حالت سنجش فاصله',
+'exif-meteringmode'                => 'حالت سنجش نور',
 'exif-lightsource'                 => 'منبع نور',
 'exif-flash'                       => 'فلاش',
 'exif-focallength'                 => 'فاصلهٔ کانونی عدسی',
@@ -3825,7 +3825,7 @@ $5
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'ممکن است تغییرات تازه‌تر از $1 {{PLURAL:$1|ثانیه|ثانیه}} در این فهرست نشان داده نشوند.',
-'lag-warn-high'   => 'ممکن است، به خاطر پس‌افتادگی زیاد کارگزار دادگان، تغییرات تازه‌تر از $1 {{PLURAL:$1|ثانیه|ثانیه}} در این فهرست نشان داده نشده باشند.',
+'lag-warn-high'   => 'ممکن است، به خاطر پس‌افتادگی زیاد سرور پایگاه داده، تغییرات تازه‌تر از $1 {{PLURAL:$1|ثانیه|ثانیه}} در این فهرست نشان داده نشده باشند.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'فهرست پی‌گیری‌های شما شامل {{PLURAL:$1|$1 صفحه|$1 صفحه}} به جز صفحه‌های بحث است.',
