@@ -383,7 +383,7 @@ class MovePageForm extends UnlistedSpecialPage {
 	}
 
 	function doSubmit() {
-		global $wgMaximumMovedPages, $wgFixDoubleRedirects, $wgDeleteRevisionsLimit;
+		global $wgMaximumMovedPages, $wgFixDoubleRedirects;
 
 		$user = $this->getUser();
 

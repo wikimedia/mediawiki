@@ -35,8 +35,6 @@ class Protect extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgUser;
-
 		$userName = $this->getOption( 'u', 'Maintenance script' );
 		$reason = $this->getOption( 'r', '' );
 

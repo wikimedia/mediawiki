@@ -214,8 +214,6 @@ class HtmlTest extends MediaWikiTestCase {
 	}
 
 	function testNamespaceSelector() {
-		global $wgContLang;
-
 		$this->assertEquals(
 			'<select id="namespace" name="namespace">' . "\n" .
 '<option value="0">(Main)</option>' . "\n" .

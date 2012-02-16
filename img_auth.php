@@ -43,7 +43,7 @@ wfImageAuthMain();
 wfLogProfilingData();
 
 function wfImageAuthMain() {
-	global $wgImgAuthPublicTest, $wgRequest, $wgUploadDirectory;
+	global $wgImgAuthPublicTest, $wgRequest;
 
 	// See if this is a public Wiki (no protections).
 	if ( $wgImgAuthPublicTest

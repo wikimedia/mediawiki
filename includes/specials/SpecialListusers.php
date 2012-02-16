@@ -157,7 +157,6 @@ class UsersPager extends AlphabeticPager {
 			$edits = '';
 		}
 
-		global $wgLang;
 		$userTalkPage = $userPage->getTalkPage();
 		$talk = ' (' . Linker::link( $userTalkPage, wfMessage( 'talkpagelinktext' )->escaped() ) . ')';
 

@@ -1127,7 +1127,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackend::getFileStat()
-	 * @return bool|void
+	 * @return bool
 	 */
 	final public function getFileStat( array $params ) {
 		wfProfileIn( __METHOD__ );
