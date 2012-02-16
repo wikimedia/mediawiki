@@ -282,8 +282,10 @@ class CoreParserFunctions {
 
 		// Some shortcuts to avoid loading user data unnecessarily
 		if ( count( $forms ) === 0 ) {
+			wfProfileOut( __METHOD__ );
 			return '';
 		} elseif ( count( $forms ) === 1 ) {
+			wfProfileOut( __METHOD__ );
 			return $forms[0];
 		}
 
