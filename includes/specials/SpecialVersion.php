@@ -726,7 +726,6 @@ class SpecialVersion extends SpecialPage {
 
 		$REFfile = "{$BASEDIR}{$m[1]}";
 		if( !file_exists( $REFfile ) ) {
-			print "$REFfile doesnot exit?";
 			return false;
 		}
 
