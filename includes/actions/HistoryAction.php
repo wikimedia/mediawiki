@@ -106,8 +106,8 @@ class HistoryAction extends FormlessAction {
 		// Handle atom/RSS feeds.
 		$feedType = $request->getVal( 'feed' );
 		if ( $feedType ) {
-			wfProfileOut( __METHOD__ );
 			$this->feed( $feedType );
+			wfProfileOut( __METHOD__ );
 			return;
 		}
 
