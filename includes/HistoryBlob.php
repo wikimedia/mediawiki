@@ -567,10 +567,11 @@ class DiffHistoryBlob implements HistoryBlob {
 	function xdiffAdler32( $s ) {
 		static $init;
 		if ( $init === null ) {
-			// The real Adler-32 checksum of this string is zero, so it 
-			// initialises the state to the LibXDiff initial value.
 			$init = str_repeat( "\xf0", 205 ) . "\xee" . str_repeat( "\xf0", 67 ) . "\x02";
 		}
+		// The real Adler-32 checksum of $init is zero, so it initialises the 
+		// state to zero, as it is at the start of LibXDiff's checksum 
+		// algorithm. Appending the subject string then simulates LibXDiff.
 		if ( function_exists( 'hash' ) ) {
 			$hash = hash( 'adler32', $init . $s, true );
 		} elseif ( function_exists( 'mhash' ) ) {
