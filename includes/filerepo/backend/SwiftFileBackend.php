@@ -792,7 +792,11 @@ class SwiftFileBackend extends FileBackendStore {
 	 */
 	protected function logException( Exception $e, $func, array $params ) {
 		wfDebugLog( 'SwiftBackend',
-			get_class( $e ) . " in '{$this->name}': '{$func}' with " . serialize( $params ) 
+			get_class( $e ) . " in '{$func}' (given '" . serialize( $params ) . "')" .
+			( $e instanceof InvalidResponseException
+				? ": {$e->getMessage()}"
+				: ""
+			)
 		);
 	}
 }

@@ -47,7 +47,7 @@ class PurgeList extends Maintenance {
 
 		while ( !feof( $stdin ) ) {
 			$page = trim( fgets( $stdin ) );
-			if ( substr( $page, 0, 7 ) == 'http://' ) {
+			if ( preg_match( '%^https?://%', $page ) ) {
 				$urls[] = $page;
 			} elseif ( $page !== '' ) {
 				$title = Title::newFromText( $page );
