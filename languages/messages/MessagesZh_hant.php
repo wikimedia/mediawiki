@@ -1350,7 +1350,7 @@ $1",
 'group-suppress'      => '監督',
 'group-all'           => '（全部）',
 
-'group-user-member'          => '用戶',
+'group-user-member'          => '{{GENDER:$1|用戶}}',
 'group-autoconfirmed-member' => '自動確認用戶',
 'group-bot-member'           => '機器人',
 'group-sysop-member'         => '{{GENDER:$1|管理員}}',

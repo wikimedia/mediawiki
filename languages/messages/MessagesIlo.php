@@ -489,7 +489,7 @@ Sakbay nga ania man nga e-surat ti maipatulod iti pakabilangan, masapul a surote
 'throttled-mailpassword'     => 'Ti palagip ti kontrasenias ket naipatuloden, iti napalabas nga {{PLURAL:$1|oras|$1 oras}}.
 Tapno maipawilan ti panag-abuso, maysa laeng a palagip ti kontrasenias ti maipatulod iti {{PLURAL:$1|oras|$1 oras}}.',
 'mailerror'                  => 'Biddut iti panagipatulod iti surat: $1',
-'acct_creation_throttle_hit' => 'Dagiti bisita daytoy wiki nga agususar ti IP a pagtaengan ket nakaaramid iti {{PLURAL:$1|1 pakabilangan|$ dagiti pakabilangan}} ti maysa nga aldaw, dagita laeng ti mabalin a mausar.
+'acct_creation_throttle_hit' => 'Dagiti bisita daytoy wiki nga agususar ti IP a pagtaengan ket nakaaramid iti {{PLURAL:$1|1 pakabilangan|$1 dagiti pakabilangan}} ti maysa nga aldaw, dagita laeng ti mabalin a mausar.
 Ti nagbanagan na, dagitoy bisita nga agususar ti IP a pagtaengan ket saan a makaaramid ti pakabilangan tatta.',
 'emailauthenticated'         => 'Napasingkedan ti e-surat a pagtaengan idi $2 ti oras nga $3.',
 'emailnotauthenticated'      => 'Saan pay a napasingkedan ti e-surat mo.

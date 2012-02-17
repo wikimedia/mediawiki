@@ -1541,7 +1541,7 @@ Pariksa heula jujutan hapusanana saméméh neruskeun ngamuat deui éta berkas.',
 
 # HTTP errors
 'http-invalid-url'      => 'URL teu bener: $1',
-'http-invalid-scheme'   => 'URL anu skémana "$ 1" teu karojong',
+'http-invalid-scheme'   => 'URL anu skémana "$1" teu karojong',
 'http-host-unreachable' => 'URL teu kahontal.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>

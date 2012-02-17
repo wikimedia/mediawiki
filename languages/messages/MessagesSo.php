@@ -812,7 +812,7 @@ E-mailkaada mala sheegaayo markii ee dadka kale kula soo xiriirayaan.',
 
 'group-user-member'  => '{{GENDER:$1|isticmaale}}',
 'group-bot-member'   => '{{GENDER:$1|bot}}',
-'group-sysop-member' => 'maamulaha',
+'group-sysop-member' => '{{GENDER:$1|maamulaha}}',
 
 'grouppage-user'  => '{{ns:project}}:Isticmaalada',
 'grouppage-sysop' => '{{ns:project}}:Maamulada',

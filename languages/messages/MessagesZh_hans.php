@@ -1358,7 +1358,7 @@ $1",
 'group-suppress'      => '监督',
 'group-all'           => '（全部）',
 
-'group-user-member'          => '用户',
+'group-user-member'          => '{{GENDER:$1|用户}}',
 'group-autoconfirmed-member' => '自动确认用户',
 'group-bot-member'           => '机器人',
 'group-sysop-member'         => '{{GENDER:$1|管理员}}',

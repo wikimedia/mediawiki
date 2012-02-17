@@ -202,7 +202,7 @@ $separatorTransformTable = array( ',' => '.', '.' => ',' );
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Nënvizo lidhjet:',
-'tog-highlightbroken'         => 'Formato lidhjet e prishura <a href="" class="new">si kjo </a> (zgjedhore: si kjo<a href="" class="internal">?</a>).',
+'tog-highlightbroken'         => 'Formato lidhjet e prishura <a href="" class="new">si kjo</a> (zgjedhore: si kjo<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Rregullo paragrafët',
 'tog-hideminor'               => 'Fshih redaktimet e vogla në ndryshimet e fundit',
 'tog-hidepatrolled'           => 'Fshih redaktimet e vrojtuara në ndryshimet e fundit',
@@ -719,11 +719,11 @@ Për të hyrë tërësisht duhet të vendosni një fjalëkalim të ri këtu:',
 'passwordreset-email'              => 'Posta elektronike',
 'passwordreset-emailtitle'         => 'Detajet e llogarisë në {{SITENAME}}',
 'passwordreset-emailtext-ip'       => 'Dikush (ndoshta ju, nga IP adresa $1) kërkoi një kujtesë për 
-detajet e llogarisë suaj {{SITENAME}} ($4).Përdoruesi në vijim {{PLURAL: $3 | llogari është | llogaritë janë}} të lidhur me këtë postë elektronike:
+detajet e llogarisë suaj {{SITENAME}} ($4).Përdoruesi në vijim {{PLURAL:$3|llogari është|llogaritë janë}} të lidhur me këtë postë elektronike:
 
 $2
 
-{{PLURAL: $ 3 | Ky fjalëkalim i përkohshëm | Këto fjalëkalime të përkohshme}} do të përfundojë për {{PLURAL: $5 | një ditë | $5 ditë}}.
+{{PLURAL:$3|Ky fjalëkalim i përkohshëm|Këto fjalëkalime të përkohshme}} do të përfundojë për {{PLURAL:$5|një ditë|$5 ditë}}.
 
 Ju duhet të kyçeni dhe të zgjidhni një fjalëkalim të ri tani. Nëse dikush tjetër e ka bërë këtë kërkesës, ose në qoftë se ju mbani mend fjalëkalimin tuaj origjinal, dhe ju nuk dëshirojni të ndryshoni atë, ju mund të injoroni këtë mesazh dhe do të vazhdoni përdorimin e fjalëkalimit tuaj të vjetër.',
 'passwordreset-emailtext-user'     => 'Përdoruesi  $1 në {{SITENAME }} ka kërkuar një kujtesë për të dhënat e llogarisë suaj për {{SITENAME }} ($4). Përdoruesi në vijim {{PLURAL: $3 | llogaria është | llogaritë janë}} të lidhur me këtë postë elektronike: 
@@ -2058,7 +2058,7 @@ Protokolle të mbështetura: <tt>$1<tt> (mos shtoni ndonjërin nga këta në kë
 
 # Special:ActiveUsers
 'activeusers'            => 'Lista e përdoruesve aktivë',
-'activeusers-intro'      => 'Kjo është një listë e përdoruesve që kanë qenë aktivë për $ {{PLURAL:$1|ditë|ditë}}.',
+'activeusers-intro'      => 'Kjo është një listë e përdoruesve që kanë qenë aktivë për $1 {{PLURAL:$1|ditë|ditë}}.',
 'activeusers-count'      => '$1 {{PLURAL:$1|redaktim|redaktime}} në {{PLURAL:$3|ditën|$3 ditët}} e fundit',
 'activeusers-from'       => 'Trego përdoruesit duke filluar prej te:',
 'activeusers-hidebots'   => 'Fshih robotët',

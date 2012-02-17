@@ -3574,6 +3574,20 @@ Također možete koristiti [[Special:EditWatchlist|standardni editor]].',
 'watchlisttools-edit' => 'Pregled i uređivanje praćenih stranica',
 'watchlisttools-raw'  => 'Uređivanje praćenih stranica u okviru za uređivanje',
 
+# Iranian month names
+'iranian-calendar-m1'  => 'farvardina',
+'iranian-calendar-m2'  => 'ardibehešta',
+'iranian-calendar-m3'  => 'hordada',
+'iranian-calendar-m4'  => 'tira',
+'iranian-calendar-m5'  => 'mordada',
+'iranian-calendar-m6'  => 'šaherevara',
+'iranian-calendar-m7'  => 'mihera',
+'iranian-calendar-m8'  => 'abana',
+'iranian-calendar-m9'  => 'adara',
+'iranian-calendar-m10' => 'daje',
+'iranian-calendar-m11' => 'bahmana',
+'iranian-calendar-m12' => 'asfanda',
+
 # Hijri month names
 'hijri-calendar-m1'  => 'muhàrem',
 'hijri-calendar-m2'  => 'sàfer',

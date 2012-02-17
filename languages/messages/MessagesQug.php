@@ -251,7 +251,7 @@ $1',
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}}manta',
 'aboutpage'            => 'Project:{{SITENAME}}manta',
-'copyright'            => 'Kay panka hawapi, $1$ killkakunapak hayñikunaka tiyanmi',
+'copyright'            => 'Kay panka hawapi, $1 killkakunapak hayñikunaka tiyanmi',
 'copyrightpage'        => '{{ns:project}}:Killkakpa hayñikuna',
 'currentevents'        => 'Kunan pacha',
 'currentevents-url'    => 'Project:Kunan pacha',

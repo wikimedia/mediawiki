@@ -28,6 +28,7 @@
  * @author Rahuldeshmukh101
  * @author Rdeshmuk
  * @author Sankalpdravid
+ * @author Shantanoo
  * @author Shreewiki
  * @author Shreyas19
  * @author Sudhanwa
@@ -554,7 +555,7 @@ $1',
 'currentevents-url'    => 'Project:सद्य घटना',
 'disclaimers'          => 'उत्तरदायित्वास नकार',
 'disclaimerpage'       => 'Project: सर्वसाधारण उत्तरदायकत्वास नकार',
-'edithelp'             => 'संपादन साहाय्य',
+'edithelp'             => 'संपादन सहाय्य',
 'edithelppage'         => 'Help:संपादन',
 'helppage'             => 'Help:आशय',
 'mainpage'             => 'मुखपृष्ठ',
@@ -880,7 +881,7 @@ $2',
 'showpreview'                      => 'झलक दाखवा',
 'showlivepreview'                  => 'थेट झलक',
 'showdiff'                         => 'बदल दाखवा',
-'anoneditwarning'                  => "'''ईशारा:''' तुम्ही विकिपीडियाचे सदस्य म्हणून प्रवेश (लॉग-इन) केलेला नाही. या पानाच्या संपादन इतिहासात तुमचा आयपी अंकपत्ता नोंदला जाईल.",
+'anoneditwarning'                  => "'''इशारा:''' तुम्ही विकिपीडियाचे सदस्य म्हणून प्रवेश (लॉग-इन) केलेला नाही. या पानाच्या संपादन इतिहासात तुमचा अंक पत्ता (आयपी) नोंदला जाईल.",
 'anonpreviewwarning'               => "\"'''सावधान:''' तुम्ही विकिपीडियाचे सदस्य म्हणून प्रवेश (लॉग-इन) केलेला नाही. या पानाच्या संपादन इतिहासात तुमचा आय.पी. अंकपत्ता (अ‍ॅड्रेस) नोंदला जाईल.\"",
 'missingsummary'                   => "'''आठवण:''' तूम्ही संपादन सारांश पुरवलेला नाही.आपण जतन करा वर पुन्हा टीचकी मारली तर तेत्या शिवाय जतन होईल.",
 'missingcommenttext'               => 'कृपया खाली प्रतिक्रीया भरा.',
@@ -3586,7 +3587,7 @@ $5
 
 # Watchlist editing tools
 'watchlisttools-view' => 'सुयोग्य बदल पहा',
-'watchlisttools-edit' => 'पहार्‍याची सूची पहा आणि संपादीत करा',
+'watchlisttools-edit' => 'पहाऱ्याची  सूची पहा आणि संपादित करा',
 'watchlisttools-raw'  => 'कच्ची पहार्‍याची सूची संपादीत करा',
 
 # Signatures

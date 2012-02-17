@@ -441,7 +441,7 @@ Ba\'d az dastras kardani on, marhamat karda vurud kuned.',
 'accountcreated'          => 'Hisobi çadid soxta şud',
 'accountcreatedtext'      => 'Hisobi korbar baroi $1 soxta şud.',
 'createaccount-title'     => 'Eçodi hisobi korbarī dar {{SITENAME}}',
-'createaccount-text'      => 'Jak nafare baroi 2$ jak hisobi korbarī dar {{SITENAME}} eçod kardaast ($4). Kalimai uburi "$2" cunin ast: "$3". Şumo bojad voridi sistem şaved to kalimai uburi xudro taƣjir bidihed.
+'createaccount-text'      => 'Jak nafare baroi $2 jak hisobi korbarī dar {{SITENAME}} eçod kardaast ($4). Kalimai uburi "$2" cunin ast: "$3". Şumo bojad voridi sistem şaved to kalimai uburi xudro taƣjir bidihed.
 
 Agar in hisob iştibohe soxta şudaast, in nomaro nodida bigired.',
 'usernamehasherror'       => 'Nomi korbarī nametavonad şomili alomathoi dar ham boşad',
