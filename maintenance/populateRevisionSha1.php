@@ -36,31 +36,33 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 
 	protected function doDBUpdates() {
 		$db = $this->getDB( DB_MASTER );
+
 		if ( !$db->tableExists( 'revision' ) ) {
 			$this->error( "revision table does not exist", true );
-		}
-		if ( !$db->tableExists( 'archive' ) ) {
+		} elseif ( !$db->tableExists( 'archive' ) ) {
 			$this->error( "archive table does not exist", true );
 		}
 
 		$this->output( "Populating rev_sha1 column\n" );
-		$rc = $this->doSha1Updates( $db, 'revision', 'rev_id', 'rev' );
+		$rc = $this->doSha1Updates( 'revision', 'rev_id', 'rev' );
 
 		$this->output( "Populating ar_sha1 column\n" );
-		$ac = $this->doSha1Updates( $db, 'archive', 'ar_rev_id', 'ar' );
+		$ac = $this->doSha1Updates( 'archive', 'ar_rev_id', 'ar' );
+		$this->output( "Populating ar_sha1 column legacy rows\n" );
+		$ac += $this->doSha1LegacyUpdates();
 
 		$this->output( "rev_sha1 and ar_sha1 population complete [$rc revision rows, $ac archive rows].\n" );
 		return true;
 	}
 
 	/**
-	 * @param $db DatabaseBase
 	 * @param $table string
 	 * @param $idCol
 	 * @param $prefix string
 	 * @return Integer Rows changed
 	 */
-	protected function doSha1Updates( $db, $table, $idCol, $prefix ) {
+	protected function doSha1Updates( $table, $idCol, $prefix ) {
+		$db = $this->getDB( DB_MASTER );
 		$start = $db->selectField( $table, "MIN($idCol)", false, __METHOD__ );
 		$end = $db->selectField( $table, "MAX($idCol)", false, __METHOD__ );
 		if ( !$start || !$end ) {
@@ -81,20 +83,7 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 
 			$db->begin();
 			foreach ( $res as $row ) {
-				if ( $table === 'archive' ) {
-					$rev = Revision::newFromArchiveRow( $row );
-				} else {
-					$rev = new Revision( $row );
-				}
-				$text = $rev->getRawText();
-				if ( !is_string( $text ) ) {
-					# This should not happen, but sometimes does (bug 20757)
-					$this->output( "Text of revision {$row->$idCol} unavailable!\n" );
-				} else {
-					$db->update( $table,
-						array( "{$prefix}_sha1" => Revision::base36Sha1( $text ) ),
-						array( $idCol => $row->$idCol ),
-						__METHOD__ );
+				if ( $this->upgradeRow( $row, $db, $table, $idCol, $prefix ) ) {
 					$count++;
 				}
 			}
@@ -105,6 +94,50 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 			wfWaitForSlaves();
 		}
 		return $count;
+	}
+	
+	protected function doSha1LegacyUpdates() {
+		$count = 0;
+		$db = $this->getDB( DB_MASTER );
+		$res = $db->select( 'archive', '*', array( 'ar_rev_id IS NULL' ), __METHOD__ );
+
+		$updateSize = 0;
+		$db->begin();
+		foreach ( $res as $row ) {
+			if ( $this->upgradeRow( $row, 'archive', 'ar_timestamp', 'ar' ) ) {
+				++$count;
+			}
+			if ( ++$updateSize >= 100 ) {
+				$updateSize = 0;
+				$db->commit();
+				$this->output( "Commited row with ar_timestamp={$row->ar_timestamp}\n" );
+				wfWaitForSlaves();
+				$db->begin();
+			}
+		}
+		$db->commit();
+	}
+
+	protected function upgradeRow( $row, $table, $idCol, $prefix ) {
+		$db = $this->getDB( DB_MASTER );
+		if ( $table === 'archive' ) {
+			$rev = Revision::newFromArchiveRow( $row );
+		} else {
+			$rev = new Revision( $row );
+		}
+		$text = $rev->getRawText();
+		if ( !is_string( $text ) ) {
+			# This should not happen, but sometimes does (bug 20757)
+			$this->output( "Text of revision with {$idCol}={$row->$idCol} unavailable!\n" );
+			return false;
+		} else {
+			$db->update( $table,
+				array( "{$prefix}_sha1" => Revision::base36Sha1( $text ) ),
+				array( $idCol => $row->$idCol ),
+				__METHOD__ 
+			);
+			return true;
+		}
 	}
 }
 
