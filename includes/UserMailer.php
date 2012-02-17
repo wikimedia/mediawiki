@@ -184,7 +184,6 @@ class UserMailer {
 			$headers['Reply-To'] = $replyto->toString();
 		}
 
-		$headers['Subject'] = self::quotedPrintable( $subject );
 		$headers['Date'] = date( 'r' );
 		$headers['MIME-Version'] = '1.0';
 		$headers['Content-type'] = ( is_null( $contentType ) ?
@@ -254,10 +253,11 @@ class UserMailer {
 
 			$safeMode = wfIniGetBool( 'safe_mode' );
 			foreach ( $dest as $recip ) {
+				$quoted_subject = self::quotedPrintable( $subject );
 				if ( $safeMode ) {
-					$sent = mail( $recip, self::quotedPrintable( $subject ), $body, $headers );
+					$sent = mail( $recip, $quoted_subject, $body, $headers );
 				} else {
-					$sent = mail( $recip, self::quotedPrintable( $subject ), $body, $headers, $wgAdditionalMailParams );
+					$sent = mail( $recip, $quoted_subject,  $body, $headers, $wgAdditionalMailParams );
 				}
 			}
 
