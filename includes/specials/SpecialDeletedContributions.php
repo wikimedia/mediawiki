@@ -288,7 +288,7 @@ class DeletedContributionsPage extends SpecialPage {
 		$options['limit'] = $request->getInt( 'limit', $wgQueryPageDefaultLimit );
 		$options['target'] = $target;
 
-		$userObj = User::newFromName( $target );
+		$userObj = User::newFromName( $target, false );
 		if ( !$userObj ) {
 			$out->addHTML( $this->getForm( '' ) );
 			return;
