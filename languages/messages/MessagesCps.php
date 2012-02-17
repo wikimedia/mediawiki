@@ -328,11 +328,9 @@ Ang nagligad nga database query mini:
 <blockquote><tt>$1</tt></blockquote>
 nga halin sa ulubrahon nga "<tt>$2</tt>".
 Nagbalik sang sala nga "<tt>$3: $4</tt>" ang MySQL.',
-'dberrortextcl'        => '',
 'laggedslavemode'      => 'Pahibalo: Posible nga wala unod ang pahina sang mga yanda nga bag-ong nadugang.',
 'readonly'             => 'Nakakandado ang database',
 'enterlockreason'      => 'Maghatag sang kabangdanan sa pagkakandado, upod ang bana-bana kung san-o ang kandado ibuy-an',
-'readonlytext'         => '',
 'missing-article'      => 'Indi makita ang teksto nga pahina sa database nga dapat nakita na , na nangalanan "$1" $2.
 
 Ang rason kung ngaa nagakatabo mini kay may mga nagasunod bilang daan nga diff o link nga kasaysayan sa may pahina nga napanas.
@@ -340,8 +338,8 @@ Ang rason kung ngaa nagakatabo mini kay may mga nagasunod bilang daan nga diff o
 Kung indi mini ang kaso, basi may nakita ka nga guba ukon diperensiya sa software.
 Palihog isugid sa [[Special:ListUsers/sysop|tagapamahala]], kag i-lista ang iya URL.',
 'missingarticle-rev'   => '(pagbag-o#: $1)',
-'missingarticle-diff'  => '',
-'readonly_lag'         => '',
+'missingarticle-diff'  => '(Ginkala-in: $1, $2)',
+'readonly_lag'         => 'Otomatiko nga ginkandaduhan samtang ang serbidor sang alila nga database ginakwa pakadto sa pinakapuno',
 'internalerror'        => 'Pangsulodlon nga diperensiya',
 'internalerror_info'   => 'Pangsulodlon nga diperensiya:  $1',
 'filecopyerror'        => 'Indi makopya ang file nga "$1" pakadto sa "$2".',
@@ -352,24 +350,30 @@ Palihog isugid sa [[Special:ListUsers/sysop|tagapamahala]], kag i-lista ang iya 
 'fileexistserror'      => 'Indi makasulat sa file nga "$1": buhi ang file',
 'unexpected'           => 'Wala naekspektaran nga bili: "$1"="$2"',
 'formerror'            => 'Kasal-anan: indi mapadala ang pormas',
-'badarticleerror'      => '',
-'cannotdelete'         => '',
+'badarticleerror'      => 'Ang mini nga aksyon indi mahimo sa mini nga pahina.',
+'cannotdelete'         => 'Indi mapanas ang pahina ukon ang file nga "$1" .
+Posible nga ginpanas na ini sang wala makilal-an.',
 'badtitle'             => 'Kala-in nga titulo',
 'badtitletext'         => 'Ang ginapangayo nga titulo sang pahina sala, wala unod, ukon may indi insakto nga koneksyon sa inter-language ukon sa titulo sang interwiki.
 Pwede nga naga-unod mini sang isa ukon madamo pa nga mga karakter nga indi pwede gamiton sa mga titulo.',
-'perfcached'           => '',
-'perfcachedts'         => '',
-'querypage-no-updates' => '',
-'wrong_wfQuery_params' => '',
+'perfcached'           => 'Naka-cache ang mga gasunod nga pahina kag posible nga wala ini natyempuhan. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'Na-cache ang gasunod nga data, kag katapusan nga na-update sang $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
+'querypage-no-updates' => 'Ginbawalan yanda ang mga update sa mini nga pahina .
+Ang data diya wala napreskuhan sang aktwal.',
+'wrong_wfQuery_params' => 'Sala nga parametro sa wfQuery()<br />',
 'viewsource'           => 'Lantawon ang ginhalinan',
 'actionthrottled'      => 'Ginpunggan ang ulubrahon',
-'actionthrottledtext'  => '',
+'actionthrottledtext'  => 'Bilang pangontra spam nga mga pagsulundan, ginalimitahan ikaw sa pag-ubra sang mini nga mga aksyon sang madamo nga beses sa manubo nga oras, kag nagsobra ka na sa limitasyon.
+Palihog tistingan liwat sa pila ka minutos.',
 'protectedpagetext'    => 'Ginkandaduhan ang mini nga pahina para indi ma-islan.',
 'viewsourcetext'       => 'Pwede mo makita kag makopya ang ginhalinan sang mini nga pahina:',
 'protectedinterface'   => "Nagahatag ang mini nga pahina sang teksto nga pangkatapusan (''interface'') para sa software, kag ikandado para mapunggan ang pag-abuso.",
-'editinginterface'     => '',
+'editinginterface'     => "'''Paandam:''' gin-islan mo ang pahina nga gina-usar nga nagahatag teksto sang interface sa sopwer.
+Makaapekto ang mga gin-islan sa mini nga pahina sa gwaan nga itsura ka interface sang manug-usar sa iban nga mga manug-usar.
+Para sa mga pagtransleyt, palihog konsidera gamit ang [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], ang MediaWiki proyekto sa paglokalisa.",
 'sqlhidden'            => '(nakatago ang pamangkot sang SQL)',
-'cascadeprotected'     => '',
+'cascadeprotected'     => 'Ginprotektahan ang mini nga pahina sa pagpangilis, tungod naupod ini sa mga gasunod nga {{PLURAL:$1|pahina, nga|mga pahina, nga}} protektado upod ang "cascading" nga pilili-an nga naga-andar:
+$2',
 'namespaceprotected'   => "Wala ka sang permiso nga magliwat sang mga pahina nga ara sa namespace nga '''$1'''.",
 'ns-specialprotected'  => 'Indi pwede bag-uhon ang mga pinasahi nga pahina.',
 'titleprotected'       => 'Naprotektahan ang mini nga titulo halin sa pag-ubra ni [[User:$1|$1]].
@@ -377,11 +381,14 @@ Mini ang ginhatag nga kabangdanan "\'\'$2\'\'".',
 
 # Virus scanner
 'virus-badscanner'     => "Sala nga konpigurasyon: wala nakilal-an nga manugsala sang virus: ''$1''",
-'virus-scanfailed'     => '',
-'virus-unknownscanner' => '',
+'virus-scanfailed'     => 'palpak ang pagscan (code $1)',
+'virus-unknownscanner' => 'wala makilal-an nga pangontra-bayrus:',
 
 # Login and logout pages
-'logouttext'              => '',
+'logouttext'              => "'''Nakagwa ka na.'''
+
+Pwede mo mapadayon usar ang {{SITENAME}}, ukon pwede ka [[Special:UserLogin|lmagsulod liwat]] bilang pareho ukon la-in nga manug-usar.
+Tandaan nga ang iban nga pahina magapadayon nga ipakita nga nakasulod ka man gyapon kuno abi, asta panason mo ang cache sang imo browser.",
 'welcomecreation'         => '==Malipayon nga pag-abot, $1! ==
 Nahimo na ang imo account.
 Indi pagkalimtan nga islan ang imo [[Special:Preferences|mga uyon mo sa {{SITENAME}}]].',
@@ -392,7 +399,7 @@ Indi pagkalimtan nga islan ang imo [[Special:Preferences|mga uyon mo sa {{SITENA
 'yourdomainname'          => 'Imo domain:',
 'login'                   => 'Mag sulod',
 'nav-login-createaccount' => 'Magsulod / maghimo account',
-'loginprompt'             => '',
+'loginprompt'             => 'Dapat nakabukas ang cookies para makasulod sa {{SITENAME}}.',
 'userlogin'               => 'Mag sulod / mag-ubra account',
 'userloginnocreate'       => 'Magsulod',
 'logout'                  => 'Maggwa',
