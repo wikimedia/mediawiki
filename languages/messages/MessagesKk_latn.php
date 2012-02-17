@@ -671,8 +671,8 @@ Bunı basqa birew aldaqaşan joýğan mümkin.',
 'badtitle'             => 'Jaramsız taqırıp atı',
 'badtitletext'         => 'Suralğan bet taqırıbınıñ atı jaramsız, bos, tilaralıq siltemesi ne wïkï-aralıq taqırıp atı burıs engizilgen.
 Mında taqırıp atında qoldalmaýtın birqatar tañbalar bolwı mümkin.',
-'perfcached'           => 'Kelesi derek bürkemelengen, sondıqtan tolıqtaý jañalanmağan bolwı mümkin.',
-'perfcachedts'         => 'Kelesi derek bürkemelengen, soñğı jañalanlğan kezi: $1.',
+'perfcached'           => 'Kelesi derek bürkemelengen, sondıqtan tolıqtaý jañalanmağan bolwı mümkin. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'Kelesi derek bürkemelengen, soñğı jañalanlğan kezi: $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Bul bettiñ jañartılwı ağımda öşirilgen. Derekteri qazir özgertilmeýdi.',
 'wrong_wfQuery_params' => 'wfQuery() fwnkcïyası üşin burıs baptalımdarı bar<br />
 Jete: $1<br />

@@ -477,7 +477,7 @@ Efallai fod rhywun arall eisoes wedi'i dileu.",
 'badtitle'             => 'Teitl gwael',
 'badtitletext'         => "Mae'r teitl a ofynnwyd amdano yn annilys, yn wag, neu cysylltu'n anghywir rhwng ieithoedd neu wicïau. Gall fod ynddo un nod neu ragor na ellir eu defnyddio mewn teitlau.",
 'perfcached'           => "Mae'r wybodaeth ganlynol yn gopi cadw; mae'n bosib nad y fersiwn diweddaraf ydyw. Cedwir hyd at {{PLURAL:$1||un canlyniad yn unig|ddau ganlyniad|dri canlyniad|$1 chanlyniad|$1 canlyniad}} yn y copi cadw.",
-'perfcachedts'         => 'Rhoddwyd y data canlynol ar gadw mewn celc a ddiweddarwyd ddiwethaf am $1. Cedwir hyd at {{PLURAL:$1||un canlyniad yn unig|ddau ganlyniad|dri canlyniad|$1 chanlyniad|$1 canlyniad}} yn y celc.',
+'perfcachedts'         => 'Rhoddwyd y data canlynol ar gadw mewn celc a ddiweddarwyd ddiwethaf am $1. Cedwir hyd at {{PLURAL:$4||un canlyniad yn unig|ddau ganlyniad|dri canlyniad|$4 chanlyniad|$4 canlyniad}} yn y celc.',
 'querypage-no-updates' => "Ar hyn o bryd, nid yw'r meddalwedd wedi ei osod i ddiweddaru data'r dudalen hon.",
 'wrong_wfQuery_params' => 'Paramedrau anghywir i wfQuery()<br />
 Ffwythiant: $1<br />

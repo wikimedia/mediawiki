@@ -500,8 +500,8 @@ Se prega de dìrghelo a un [[Special:ListUsers/sysop|aministradore]] indicando l
 Podaria esare sta zà scansełà da qualcun altro.',
 'badtitle'             => 'Titoło mia justo',
 'badtitletext'         => "El titoło de ła pajina richiesta xè vodo, erà o con carateri no amesi opure el deriva da n'erore ne i cołegamenti tra siti wiki diversi o version en łengue diverse de ło steso sito.",
-'perfcached'           => 'Sti dati qua no i vien mia azornà in tenpo reale, ma solo na olta ogni tanto.',
-'perfcachedts'         => "Sti dati qua i xe stà azornà l'ultima olta el $1.",
+'perfcached'           => 'Sti dati qua no i vien mia azornà in tenpo reale, ma solo na olta ogni tanto. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => "Sti dati qua i xe stà azornà l'ultima olta el $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.",
 'querypage-no-updates' => "L'azornamento periodico de sta pagina el xe sospeso. 
 I dati che ghè qua drento no i xe azornà.",
 'wrong_wfQuery_params' => 'Erore ne i parametri invià a ła funsion wfQuery()<br />

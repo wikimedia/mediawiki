@@ -490,8 +490,8 @@ V\'arringrazziamu si signaliati zoccu succidìu a nu [[Special:ListUsers/sysop|a
 'cannotdelete-title'   => 'Mpussibbili eliminari la pàggina "$1"',
 'badtitle'             => 'Tìtulu nun currettu',
 'badtitletext'         => "Lu tìtulu dâ pàggina addumannata è vacanti, erratu o cu caràttiri nun ammessi oppuru diriva di n'erruri ntê culligamenti tra siti wiki diversi o virsioni n lingui diversi dû stissu situ.",
-'perfcached'           => "'''Nota:''' li dati ca sèquinu sunnu stratti di na copia ''cache'' dû database, nun aggiurnati n tempu riali.",
-'perfcachedts'         => 'Li dati ccà sutta foru attruvati e sunnu aggiurnati ô $1.',
+'perfcached'           => "'''Nota:''' li dati ca sèquinu sunnu stratti di na copia ''cache'' dû database, nun aggiurnati n tempu riali. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.",
+'perfcachedts'         => 'Li dati ccà sutta foru attruvati e sunnu aggiurnati ô $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => "L'aggiurnamenti dâ pàggina sunnu timpuraniamenti suspisi. Li dati 'n chidda cuntinuti nun vèninu aggiurnati.",
 'wrong_wfQuery_params' => 'Paràmitri errati pi wfQuery()<br />
 Funzioni: $1<br />

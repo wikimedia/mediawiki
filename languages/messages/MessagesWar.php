@@ -402,8 +402,8 @@ Bangin na ini ginpara hin iba.',
 'badtitle'             => 'Maraot nga titulo',
 'badtitletext'         => 'An ginhangyo nga pakli diri puyde, waray sulod, o sayop nga nasumpay nga inter-pinunongan o inter-wiki nga titulo.
 Bangin mayda usa o damo nga mga agi nga diri puyde magamit ha mga titulo.',
-'perfcached'           => 'An nasunod nga data gin-cache ngan bangin diri amo an yana.',
-'perfcachedts'         => 'An nasunod nga data gin-cache, ngan kataposan ginbag-o dida han $1.',
+'perfcached'           => 'An nasunod nga data gin-cache ngan bangin diri amo an yana. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'An nasunod nga data gin-cache, ngan kataposan ginbag-o dida han $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'An mga kabag-ohan para hini nga pakli ha yana diri mahihimo.
 An data dini diri mahihimo nga bag-o.',
 'viewsource'           => 'Kitaa an ginkuhaan',

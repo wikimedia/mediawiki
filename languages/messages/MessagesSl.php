@@ -545,7 +545,7 @@ Morda jo je izbrisal že kdo drug.',
 'badtitletext'         => 'Navedeni naslov strani je neveljaven, prazen, napačno povezan k drugim jezikom oziroma wikiprojektom.
 Morda vsebuje enega ali več nepodprtih znakov.',
 'perfcached'           => 'Navedeni podatki so shranjeni v predpomnilniku in morda niso popolnoma posodobljeni. V predpomnilniku {{PLURAL:$1|je|sta|so|je}} na voljo največ $1 {{PLURAL:$1|rezultat|rezultata|rezultate|rezultatov}}.',
-'perfcachedts'         => 'Prikazani podatki so shranjeni v predpomnilniku in so bili nazadnje osveženi $1. V predpomnilniku {{PLURAL:$1|je|sta|so|je}} na voljo največ $1 {{PLURAL:$1|rezultat|rezultata|rezultate|rezultatov}}.',
+'perfcachedts'         => 'Prikazani podatki so shranjeni v predpomnilniku in so bili nazadnje osveženi $1. V predpomnilniku {{PLURAL:$4|je|sta|so|je}} na voljo največ $4 {{PLURAL:$4|rezultat|rezultata|rezultate|rezultatov}}.',
 'querypage-no-updates' => 'Posodobitve za to stran so trenutno onemogočene. Tukajšnji podatki se v kratkem ne bodo osvežili.',
 'wrong_wfQuery_params' => 'Nepravilni parametri za wfQuery()<br />
 Funkcija: $1<br />
@@ -1684,18 +1684,19 @@ $1',
 'upload-warning-subj'         => 'Opozorilo pri nalaganju',
 'upload-warning-msg'          => 'Prišlo je do težave pri nalaganju datoteke iz [$2]. Lahko se vrnete na [[Special:Upload/stash/$1|obrazec za nalaganje]], da odpravite težavo.',
 
-'upload-proto-error'        => 'Nepravilni protokol',
-'upload-proto-error-text'   => 'Oddaljeno nalaganje zahteva, da se URL začenja s <code>http://</code> ali <code>ftp://</code>.',
-'upload-file-error'         => 'Notranja napaka',
-'upload-file-error-text'    => 'Prišlo je do notranje napake pri poskusu ustvarjanja začasne datoteke na strežniku.
+'upload-proto-error'                => 'Nepravilni protokol',
+'upload-proto-error-text'           => 'Oddaljeno nalaganje zahteva, da se URL začenja s <code>http://</code> ali <code>ftp://</code>.',
+'upload-file-error'                 => 'Notranja napaka',
+'upload-file-error-text'            => 'Prišlo je do notranje napake pri poskusu ustvarjanja začasne datoteke na strežniku.
 Prosimo, obrnite se na [[Special:ListUsers/sysop|administratorja]].',
-'upload-misc-error'         => 'Neznana napaka pri nalaganju',
-'upload-misc-error-text'    => 'Med nalaganjem je prišlo do neznane napake.
+'upload-misc-error'                 => 'Neznana napaka pri nalaganju',
+'upload-misc-error-text'            => 'Med nalaganjem je prišlo do neznane napake.
 Prosimo, preverite veljavnost in dostopnost naslova URL ter poskusite ponovno.
 Če se težava ponavlja, kontaktirajte [[Special:ListUsers/sysop|administratorja]].',
-'upload-too-many-redirects' => 'URL vsebuje preveč preusmeritev',
-'upload-unknown-size'       => 'Neznana velikost',
-'upload-http-error'         => 'Prišlo je do napake HTTP: $1',
+'upload-too-many-redirects'         => 'URL vsebuje preveč preusmeritev',
+'upload-unknown-size'               => 'Neznana velikost',
+'upload-http-error'                 => 'Prišlo je do napake HTTP: $1',
+'upload-copy-upload-invalid-domain' => 'Nalaganje kopij s te domene ni na voljo.',
 
 # File backend
 'backend-fail-stream'        => 'Ne morem pretakati datoteke $1.',

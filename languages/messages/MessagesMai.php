@@ -384,8 +384,8 @@ $1',
 'cannotdelete-title'   => 'पन्ना "$1" नै मेटा सकल',
 'badtitle'             => 'खराप शीर्षक',
 'badtitletext'         => 'आग्रह कएल पन्नाक शीर्षक गलत, खाली, वा गलत सम्बन्धित अन्तर-न्हाषा अन्तर विकी शीर्षक छी। ई एक वा बेशी कलाकार युक्त भऽ सकैए जे शीर्षकमे प्रयुक्त नै कएल जा सकैए।',
-'perfcached'           => 'ई दत्तांश उपस्मृतिक आधारपर अछि आ भऽ सकैए जे अद्यतन नै हुअए।',
-'perfcachedts'         => 'ई दत्तांश उपस्मृतिमे अछि, आ एकर अन्तिम परिवर्धन भेल अछि $1 केँ।',
+'perfcached'           => 'ई दत्तांश उपस्मृतिक आधारपर अछि आ भऽ सकैए जे अद्यतन नै हुअए। A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'ई दत्तांश उपस्मृतिमे अछि, आ एकर अन्तिम परिवर्धन भेल अछि $1 केँ। A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'ऐ पन्नाक नवीनीकरण अखन बन्न अछि।
 एतुक्का दत्तांश अखन नवीकरण नै कएल जाएत।',
 'wrong_wfQuery_params' => 'अमान्य परिमिति ऐ लेल wfQuery()<br />

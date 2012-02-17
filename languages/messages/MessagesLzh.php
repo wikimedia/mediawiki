@@ -410,8 +410,8 @@ $1',
 'cannotdelete'         => '頁或檔"$1"刪矣，不復為之。',
 'badtitle'             => '無此題',
 'badtitletext'         => '或別、或缺、或違、或他山謬鏈，此題不存也。',
-'perfcached'           => '下為謄本，恐不新也。',
-'perfcachedts'         => '下為謄本，$1新之。',
+'perfcached'           => '下為謄本，恐不新也。 A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => '下為謄本，$1新之。 A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'wrong_wfQuery_params' => 'wfQuery（）參數謬然<br />
 函式： $1<br />
 問語： $2',

@@ -373,8 +373,8 @@ Kiye ndeyane anu wis dibusek nang wong sejen.',
 'badtitle'             => 'Judul ora sah',
 'badtitletext'         => 'Judul kaca sing dijaluk ora sah, kosong, utawa salah nyambungna judul antar-basa utawa antarwiki.
 Kiya ndeyane ana siji utawa lewih karakter sing ora teyeng digunakna nang judul.',
-'perfcached'           => "Data kiye dijikot sekang singgahan (''cache'') lan ndeyane dudu data pungkasan.",
-'perfcachedts'         => "Data kiye dijikot sekang singgahan (''cache''), lan dianyarna keri dhewek dong $1.",
+'perfcached'           => "Data kiye dijikot sekang singgahan (''cache'') lan ndeyane dudu data pungkasan. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.",
+'perfcachedts'         => "Data kiye dijikot sekang singgahan (''cache''), lan dianyarna keri dhewek dong $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.",
 'querypage-no-updates' => 'Update nggo kaca kiye lagi dipateni.
 Data sing ana nang kene sekiye ora teyeng dibaleni unggah maning.',
 'wrong_wfQuery_params' => 'Parameter salah maring wfQuery()<br />

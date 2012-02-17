@@ -339,8 +339,8 @@ MySQL a rtourné l' aroke «$3: $4».",
 'cannotdelete'         => "Dji n' sai disfacer l' pådje ou l' imådje dimandêye (ça s' pôreut k' ene ôte sakî l' a ddja disfacé).",
 'badtitle'             => 'Måva tite',
 'badtitletext'         => "Li tite del pådje dimandêye n' esteut nén valide, il estet vude, oudonbén c' esteut on cron loyén eterlingaedje ou eterwiki. Ça s' pout k' il åye onk ou sacwants caracteres ki n' polèt nén esse eployîs dins les tites.",
-'perfcached'           => "Les dnêyes ki shuvèt c' est ene copeye e muchete, et ça s' pout ki ça n' soeye nén ttafwaitmint a djoû.",
-'perfcachedts'         => "Les dnêyes ki shuvèt c' est ene copeye e muchete, ey elle ont stî metowes a djoû pol dierin côp li $1.",
+'perfcached'           => "Les dnêyes ki shuvèt c' est ene copeye e muchete, et ça s' pout ki ça n' soeye nén ttafwaitmint a djoû. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.",
+'perfcachedts'         => "Les dnêyes ki shuvèt c' est ene copeye e muchete, ey elle ont stî metowes a djoû pol dierin côp li $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.",
 'wrong_wfQuery_params' => 'Parametes incoreks po wfQuery()<br />
 Fonccion: $1<br />
 Cweraedje: $2',

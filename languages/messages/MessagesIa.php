@@ -3732,7 +3732,7 @@ Le imagines se monstra in plen resolution, le altere typos de file se executa di
 'dberr-cachederror' => 'Lo sequente es un copia del cache del pagina requestate, e pote esser obsolete.',
 
 # HTML forms
-'htmlform-invalid-input'       => 'Il ha problemas con alique que tu entrava',
+'htmlform-invalid-input'       => 'Il ha problemas con un parte del datos que tu ha entrate',
 'htmlform-select-badoption'    => 'Le valor que tu specificava non es un option valide.',
 'htmlform-int-invalid'         => 'Le valor que tu specificava non es un numero integre.',
 'htmlform-float-invalid'       => 'Le valor que tu specificava non es un numero.',

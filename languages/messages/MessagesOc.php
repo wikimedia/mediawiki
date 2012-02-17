@@ -648,8 +648,8 @@ Informatz-ne un [[Special:ListUsers/sysop|administrator]] aprèp aver notada l�
 Benlèu la supression ja es estada efectuada per qualqu’un mai.',
 'badtitle'             => 'Títol marrit',
 'badtitletext'         => 'Lo títol de la pagina demandada es invalid, void o s’agís d’un títol interlenga o interprojècte mal ligat. Benlèu conten un o maites caractèrs que pòdon pas èsser utilizats dins los títols.',
-'perfcached'           => 'Aquò es una version en amagatal e es benlèu pas a jorn.',
-'perfcachedts'         => "Las donadas que segon son dins l'amagatal, son doncas pas forçadament a jorn. La darrièra actualizacion data del $1.",
+'perfcached'           => 'Aquò es una version en amagatal e es benlèu pas a jorn. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => "Las donadas que segon son dins l'amagatal, son doncas pas forçadament a jorn. La darrièra actualizacion data del $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.",
 'querypage-no-updates' => 'Las mesas a jorn per aquesta pagina son actualamnt desactivadas. Las donadas çaijós son pas mesas a jorn.',
 'wrong_wfQuery_params' => 'Paramètres incorrèctes sus wfQuery()<br />
 Foncion : $1<br />

@@ -416,7 +416,7 @@ Biko chi ihe á na áká [[Special:ListUsers/sysop|onye íshí]], dètú URL.',
 'badtitle'             => 'Ishi edemede öjö',
 'badtitletext'         => 'Íshí ihü Í chọrọ à díghị ézíbóté, efù, mà ȯ dị jikodo di jikodo nke ojö na nke íshí asụsụ-mmékotárí ma wiki-mmékotárí.
 O nwèríkí nwé édé ótù ma nke ozor nke ékwéghị na íshí ihü.',
-'perfcached'           => 'Ómárí á kachẹrẹ na o nwẹrẹ ki a kugwaghị ya na ogẹ di nso',
+'perfcached'           => 'Ómárí á kachẹrẹ na o nwẹrẹ ki a kugwaghị ya na ogẹ di nso. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
 'wrong_wfQuery_params' => 'Okè nke défiere gá Ájújúwf()<br />
 Orürü: $1<br />
 Ájújú: $2',

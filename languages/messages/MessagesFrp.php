@@ -672,8 +672,8 @@ La suprèssion at pôt-étre ja étâ fêta per quârqu’un d’ôtro.',
 'badtitle'             => 'Crouyo titro',
 'badtitletext'         => 'Lo titro de pâge demandâ est fôx, vouedo, ou ben o est un titro entèrlengoua ou entèrvouiqui mâl-liyê.
 Contint sûrement yon ou ben un mouél de caractèros que pôvont pas étre utilisâs dens los titros.',
-'perfcached'           => 'Cetes balyês sont en cache et pôvont pas étre a jorn.',
-'perfcachedts'         => 'Cetes balyês sont en cache, sont vêr pas forciêment a jorn. La dèrriére actualisacion dâte du $1.',
+'perfcached'           => 'Cetes balyês sont en cache et pôvont pas étre a jorn. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'Cetes balyês sont en cache, sont vêr pas forciêment a jorn. La dèrriére actualisacion dâte du $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Ora, les mises a jorn por ceta pâge sont dèsactivâs.
 Les balyês ce-desot sont pas betâs a jorn.',
 'wrong_wfQuery_params' => 'Paramètres fôx dessus wfQuery()<br />

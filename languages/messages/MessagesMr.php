@@ -1795,7 +1795,7 @@ $1',
 'img-auth-nopathinfo'       => 'मार्ग महीती आढळले नाही.
 आपला सर्व्हर ही माहिती पोचवू शकत नाही.
 तो CGI-आधारित व img_auth ला समर्थन न देऊ शकणारा असू शकतो.
-[https://www.mediawiki.org/wiki/Manual:Image_Authorization कृपया हे पहा.]',
+https://www.mediawiki.org/wiki/Manual:Image_Authorization कृपया हे पहा.',
 'img-auth-notindir'         => 'मागितलेला मार्ग अपलोड निर्देशिकेकरीता जोडलेला नाही.',
 'img-auth-badtitle'         => '"$1" पासून वैध शीर्षक बनवण्यात अयशस्वी.',
 'img-auth-nologinnWL'       => 'तुम्ही प्रवेश घेतलेला नाही व "$1" श्वेतयादीत नाही.',

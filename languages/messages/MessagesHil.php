@@ -375,8 +375,8 @@ Mahimo nga napanas na ini sang iban.',
 'badtitle'             => 'Malain nga titulo',
 'badtitletext'         => 'Ang ginapangayo mo nga titulo ka pahina ay sala, blangko, ukon indi ensakto ang pagtabid sang inter-lengwahe o inter-wiki na titulo.
 Siguro may-ara ini sang isa ukon madamo nga karakter nga indi ginabaton kag ginagamit sa titulo.',
-'perfcached'           => 'Ang masunod nga datos nakatago lamang kag mahimo nga indi bag-o.',
-'perfcachedts'         => 'Ang masunod nga datos nakatago lamang, kag pinaka-ulihe nga ginbag-o sang $1.',
+'perfcached'           => 'Ang masunod nga datos nakatago lamang kag mahimo nga indi bag-o. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'Ang masunod nga datos nakatago lamang, kag pinaka-ulihe nga ginbag-o sang $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Ang mga pagbag-o sa sini nga panid karon ginpa-untat.
 Ang datos nga yari diri indi pagliwaton.',
 'wrong_wfQuery_params' => 'Indi insakto nga mga parametro sa wfQuery()<br />

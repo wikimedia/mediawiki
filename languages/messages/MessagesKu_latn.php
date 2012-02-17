@@ -410,8 +410,8 @@ Sedema girtinê ev e: $1',
 'badtitle'             => 'Sernivîsa nebaş',
 'badtitletext'         => 'Sernavê rûpelê yê xwestî ne derbasdar, vala an jî ne xwediyê girêdaneke rast e.
 Dibe ku di sernavê de karakterên nayên bikaranîn hatibin nivîsandin.',
-'perfcached'           => 'Ev dane hatine veşartin û belkî ne rojane bin.',
-'perfcachedts'         => 'Ev dane hatiye veşartin û cara paşîn $1 hatiye rojanekirin.',
+'perfcached'           => 'Ev dane hatine veşartin û belkî ne rojane bin. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'Ev dane hatiye veşartin û cara paşîn $1 hatiye rojanekirin. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Fonksiyona rojanekirinê ya vê rûpelê hatiye sekinandin. Daneyên vir nayên rojanekirin.',
 'wrong_wfQuery_params' => 'Parametreyên şaş ji bo wfQuery()<br />
 Fonksiyon: $1<br />

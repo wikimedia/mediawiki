@@ -391,8 +391,8 @@ Maek hiervon maldienge bie 'n [[Special:ListUsers/sysop|beheêrder]] von {{SITEN
 'cannotdelete'         => "Kan de bladzie of 't bestand nie wisse. Misschien is 't a deu iemand aors gewist.",
 'badtitle'             => 'Verkeerde titel',
 'badtitletext'         => "De bladzie die-a je angevrogen ei was ongeldig, leeg, of fout gelinkt vanuut 'n aore wiki. Mischien stae d'r eên of meer teêkens in die-an nie in titels gebruukt kunne ore.",
-'perfcached'           => "De hehevens komm'n uut een cache en zien meuhlijk nie actueel.",
-'perfcachedts'         => "De hehevens komm'n uut een cache en zien voe 't lèst biehewerkt op $1.",
+'perfcached'           => "De hehevens komm'n uut een cache en zien meuhlijk nie actueel. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.",
+'perfcachedts'         => "De hehevens komm'n uut een cache en zien voe 't lèst biehewerkt op $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.",
 'querypage-no-updates' => 'Deêze pagina kan nie biehewerkt worn. Deêze hehevens worn nie ververst.',
 'wrong_wfQuery_params' => 'Foute parameters voe wfQuery()<br />
 Functie: $1<br />

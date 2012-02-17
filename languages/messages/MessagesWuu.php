@@ -355,8 +355,8 @@ $1',
 渠作兴已经拨别人家删除脱哉。',
 'badtitle'             => '该只标题弗来三',
 'badtitletext'         => '所请求页面个标题是无效个、弗存在，跨语言或跨wiki链接个标题错误。渠作兴包含一只或多只弗好用拉标题里向字符。',
-'perfcached'           => '下底是缓存数据，箇咾作兴弗是顶新个：',
-'perfcachedts'         => '下头是缓存数据，压末一趟更新辰光是$1。',
+'perfcached'           => '下底是缓存数据，箇咾作兴弗是顶新个. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => '下头是缓存数据，压末一趟更新辰光是$1。 A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => '当前禁止对此页面进行更新。箇搭个数据弗好立即刷新。',
 'wrong_wfQuery_params' => '错误个参数拨传递到 wfQuery（）<br />
 函数：$1<br />

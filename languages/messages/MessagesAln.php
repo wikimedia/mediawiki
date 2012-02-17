@@ -420,8 +420,8 @@ Ndodh që âsht fshi prej dikujt tjetër.',
 'badtitle'             => 'Titull i keq',
 'badtitletext'         => 'Titulli i faqes që kërkuet ishte jovalid, bosh, apo ishte nji vegëz gabim e lidhun ndërgjuhesisht apo ndër-wiki.
 Ndodh që ka shêja që nuk munden me u përdorë në titull.',
-'perfcached'           => 'Informacioni i mâposhtëm âsht kopje e memorizueme, por mundet mos me qenë verzioni i fundit:',
-'perfcachedts'         => 'Shenimi i mâposhtëm âsht kopje e memorizueme dhe âsht rifreskue së fundit me $1.',
+'perfcached'           => 'Informacioni i mâposhtëm âsht kopje e memorizueme, por mundet mos me qenë verzioni i fundit. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'Shenimi i mâposhtëm âsht kopje e memorizueme dhe âsht rifreskue së fundit me $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Redaktimi i kësaj faqeje âsht ndalue për momentin.
 Shenimet këtu nuk do të rifreskohen.',
 'wrong_wfQuery_params' => 'Parametra gabim te wfQuery()<br />

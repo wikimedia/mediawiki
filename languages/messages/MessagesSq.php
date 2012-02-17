@@ -561,8 +561,8 @@ Mund të jetë fshirë nga dikush tjetër.',
 'badtitle'             => 'Titull i pasaktë',
 'badtitletext'         => 'Titulli i faqes që kërkuat nuk ishte i saktë, ishte bosh, ose ishte një titull ndër-gjuhësor/inter-wiki me lidhje të pasaktë.
 Mund të përmbajë një ose më shumë germa, të cilat nuk mund të përdoren në tituj.',
-'perfcached'           => 'Informacioni i mëposhtëm është kopje e ruajtur dhe mund të mos jetë i përditësuar.',
-'perfcachedts'         => 'Informacioni i mëposhtëm është një kopje e rifreskuar më $1.',
+'perfcached'           => 'Informacioni i mëposhtëm është kopje e ruajtur dhe mund të mos jetë i përditësuar. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'Informacioni i mëposhtëm është një kopje e rifreskuar më $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => "Përditësimet për këtë faqe për momentin janë të ç'aktivizuara.
 Këtu informacioni nuk do të jetë i përditësuar.",
 'wrong_wfQuery_params' => 'Parametrat gabim tek wfQuery()<br />

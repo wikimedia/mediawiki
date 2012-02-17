@@ -387,7 +387,7 @@ Ila ma kanṫċ, imken ikon ċi bog fe l-program.
 ymkn ikon ċi waḫd aĥor ḫdfo.',
 'badtitle'             => 'aanwan mamzyanch',
 'badtitletext'         => 'L-Ĝonwan li tlebṫi ġalet, ĥawi, ola waqila hada ĝonwan fe bezzaf de l-loġaṫ ola fe bezzaf de l-maċariĝ. Imken ikon fih ċi ḫrof li ma imken lekċ ṫesṫeĝmelhom fe l-ĝanawin.',
-'perfcached'           => 'l-bayanaṫ ṫ-ṫalia kayna f-lcache o-maymknċ ṫ-ḫddṫha.',
+'perfcached'           => 'l-bayanaṫ ṫ-ṫalia kayna f-lcache o-maymknċ ṫ-ḫddṫha. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
 'perfcachedts'         => 'l-bayanaṫ ṫ-ṫalia kayna f-lcache, o-ṫḫddṫaṫ aĥir mrra f-$1.',
 'querypage-no-updates' => 'ṫḫdiṫad dial had ṣfḫa ma ĥḍḍamaċ daba.
 l-bayanaṫ lli kayna hna daba maĥadiċ ṫṫḫḍḍṫ.',

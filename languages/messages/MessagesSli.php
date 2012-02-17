@@ -333,8 +333,8 @@ Falls dies nicht  zutrifft, hast du eventuell einen Fehler in der Software gefun
 Meeglicherweise wurde se bereits vu jemand anders entfernt.',
 'badtitle'             => 'Ungültiger Tittel',
 'badtitletext'         => 'Dar Tittel dar oagefurderta Seite ies ungieltig, laar oder a ungieltiger Sproachlink voo eenem andern Wiki.',
-'perfcached'           => 'De folgenden Daten stomma oaus damm Cache und sein meegliecherweise nee aktuell:',
-'perfcachedts'         => 'Diese Daten stomma oaus damm Cache, letztes Update: $1',
+'perfcached'           => 'De folgenden Daten stomma oaus damm Cache und sein meegliecherweise nee aktuell. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'Diese Daten stomma oaus damm Cache, letztes Update: $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => "'''De Aktualisierungsfunktion fier diese Seite ies zurzeit deaktiviert. De Daten waan bis uff Weiteres nee erneuert.'''",
 'wrong_wfQuery_params' => 'Foalsche Parameter fier wfQuery()<br />
 Funksjonn: $1<br />

@@ -494,8 +494,25 @@ Gus casg a chur air mì-ghnàthachadh, cha chuir sinn ach aon chuimhneachan faca
 'mailerror'                  => "Mearachd a' cur post: $1",
 'acct_creation_throttle_hit' => "Chruthaich na h-aoighean air an Uici seo {{PLURAL:$1|chunntas|chunntas|chunntas|chunntas|cunntasan|cunntas}} fon IP agad an-dè agus sin an àireamh as motha a tha ceadaichte. Chan urrainn do dh'aoighean eile on IP seo barrachd chunntasan a chruthachadh air sgàth sin.",
 'emailauthenticated'         => 'Chaidh an seòladh puist-dhealain agad a dhearbhadh $2 aig $3.',
+'emailnotauthenticated'      => 'Cha deach am post-d agad a dhearbhadh fhathast.
+Cha dèid post-d a chur airson gin dhe na feartan a leanas.',
+'noemailprefs'               => 'Sònraich post-d sna roghainnean agad gus na feartan seo a chur an comas.',
+'emailconfirmlink'           => 'Dearbh an seòladh puist-dhealain agad',
+'invalidemailaddress'        => "Chan urrainn dhuinn gabhail ris an t-seòladh seo a chionn 's gu bheil coltas cearr air.
+Cuir a-steach seòladh san fhòrmat cheart no falamhaich an raon sin.",
 'accountcreated'             => 'Cunntas cruthaichte',
+'accountcreatedtext'         => 'Chaidh an cunntas cleachdaiche airson $1 a chruthachadh.',
+'createaccount-title'        => 'Cruthachadh cunntais airson {{SITENAME}}',
+'createaccount-text'         => 'Chruthaich cuideigin cunntas airson a\' phost-d agad air {{SITENAME}} ($4) air a bheil "$2", leis an fhacal-fhaire "$3".
+Bu chòir dhut clàradh a-steach agus am facal-faire agad atharrachadh gu h-ìosal an-dràsta.
+
+\'S urrainn dhut an teachdaireachd seo a leigeil seachad ma chaidh an cunntas a chruthachadh air mhearachd.',
+'usernamehasherror'          => 'Chan fhaod hais a bhith ann an ainm cleachdaiche',
+'login-throttled'            => "Dh'fheuch thu ri clàradh a-steach ro thric o chionn ghoirid.
+Fuirich ort mus feuch thu ris a-rithist.",
+'login-abort-generic'        => "Cha do shoirbhich leat leis a' chlàradh a-steach - Chaidh sgur dheth",
 'loginlanguagelabel'         => 'Cànan: $1',
+'suspicious-userlogout'      => "Chaidh d' iarrtas airson clàradh a-mach a dhiùltadh a chionn 's gu bheil coltas gun deach a chur le brabhsair briste no le progsaidh tasglannaidh.",
 
 # Change password dialog
 'oldpassword'             => 'Seann fhacal-faire',

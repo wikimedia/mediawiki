@@ -686,6 +686,7 @@ Sinu konto on loodud.
 'yourpassword'               => 'Parool:',
 'yourpasswordagain'          => 'Sisesta parool uuesti:',
 'remembermypassword'         => 'Jäta parool meelde (kuni $1 {{PLURAL:$1|päevaks|päevaks}})',
+'securelogin-stick-https'    => 'Jätka pärast sisselogimist HTTPS-ühenduse kasutamist',
 'yourdomainname'             => 'Sinu domeen:',
 'externaldberror'            => 'Esines autentimistõrge või sul pole õigust konto andmeid muuta.',
 'login'                      => 'Logi sisse',
@@ -789,29 +790,33 @@ Võib-olla oled juba edukalt muudnud oma salasõna või taotlenud uut ajutist sa
 'resetpass-temp-password'   => 'Ajutine parool:',
 
 # Special:PasswordReset
-'passwordreset'                => 'Parooli lähtestamine',
-'passwordreset-text'           => 'Täida see vorm, et saada e-kiri oma konto andmetega.',
-'passwordreset-legend'         => 'Parooli lähtestamine',
-'passwordreset-disabled'       => 'Selles vikis on paroolide lähtestamine keelatud.',
-'passwordreset-username'       => 'Kasutajanimi:',
-'passwordreset-domain'         => 'Domeen:',
-'passwordreset-email'          => 'E-posti aadress:',
-'passwordreset-emailtitle'     => '{{GRAMMAR:genitive|{{SITENAME}}}} konto andmed',
-'passwordreset-emailtext-ip'   => 'Keegi, arvatavasti sina ise, IP-aadressilt $1 palus meelde tuletada sinu {{GRAMMAR:genitive|{{SITENAME}}}} ($4) konto üksikasjad. Selle e-posti aadressiga on seotud {{PLURAL:$3|järgmine konto|järgmised kontod}}:
+'passwordreset'                    => 'Parooli lähtestamine',
+'passwordreset-text'               => 'Täida see vorm, et saada e-kiri oma konto andmetega.',
+'passwordreset-legend'             => 'Parooli lähtestamine',
+'passwordreset-disabled'           => 'Selles vikis on paroolide lähtestamine keelatud.',
+'passwordreset-username'           => 'Kasutajanimi:',
+'passwordreset-domain'             => 'Domeen:',
+'passwordreset-capture'            => 'Näita lähetatavat e-kirja?',
+'passwordreset-capture-help'       => 'Kui valid selle märkeruudu, näidatakse sulle ajutist parooli sisaldavat e-kirja, mis ühtlasi kasutajale saadetakse.',
+'passwordreset-email'              => 'E-posti aadress:',
+'passwordreset-emailtitle'         => '{{GRAMMAR:genitive|{{SITENAME}}}} konto andmed',
+'passwordreset-emailtext-ip'       => 'Keegi, arvatavasti sina ise, IP-aadressilt $1 palus meelde tuletada sinu {{GRAMMAR:genitive|{{SITENAME}}}} ($4) konto üksikasjad. Selle e-posti aadressiga on seotud {{PLURAL:$3|järgmine konto|järgmised kontod}}:
 
 $2
 
 {{PLURAL:$3|See ajutine parool aegub|Need ajutised paroolid aeguvad}} {{PLURAL:$5|ühe|$5}} päeva pärast.
 Peaksid nüüd sisse logima ja uue parooli valima. Kui selle palve esitas keegi teine või kui sulle meenus su parool ja sa ei soovi seda enam muuta, võid teadet eirata ja jätkata vana parooli kasutamist.',
-'passwordreset-emailtext-user' => '{{GRAMMAR:genitive|{{SITENAME}}}} kasutaja $1 palus meelde tuletada sinu {{GRAMMAR:genitive|{{SITENAME}}}} ($4) konto üksikasjad. Selle e-posti aadressiga on seotud {{PLURAL:$3|järgmine konto|järgmised kontod}}:
+'passwordreset-emailtext-user'     => '{{GRAMMAR:genitive|{{SITENAME}}}} kasutaja $1 palus meelde tuletada sinu {{GRAMMAR:genitive|{{SITENAME}}}} ($4) konto üksikasjad. Selle e-posti aadressiga on seotud {{PLURAL:$3|järgmine konto|järgmised kontod}}:
 
 $2
 
 {{PLURAL:$3|See ajutine parool aegub|Need ajutised paroolid aeguvad}} {{PLURAL:$5|ühe|$5}} päeva pärast.
 Peaksid nüüd sisse logima ja uue parooli valima. Kui selle palve esitas keegi teine või kui sulle meenus su parool ja sa ei soovi seda enam muuta, võid teadet eirata ja jätkata vana parooli kasutamist.',
-'passwordreset-emailelement'   => 'Kasutajanimi: $1
+'passwordreset-emailelement'       => 'Kasutajanimi: $1
 Ajutine parool: $2',
-'passwordreset-emailsent'      => 'Meeldetuletuskiri on saadetud.',
+'passwordreset-emailsent'          => 'Meeldetuletuskiri on saadetud.',
+'passwordreset-emailsent-capture'  => 'E-kirjatsi on saadetud allpool näidatav meeldetuletus.',
+'passwordreset-emailerror-capture' => 'Koostati allpool näidatav meeldetuletus, aga selle e-kirjatsi kasutajale saatmine ebaõnnestus: $1',
 
 # Special:ChangeEmail
 'changeemail'          => 'E-posti aadressi muutmine',
@@ -1379,6 +1384,7 @@ Toimingut ei saa hiljem tühistada.',
 'prefs-registration'            => 'Registreerumise aeg:',
 'yourrealname'                  => 'Tegelik nimi:',
 'yourlanguage'                  => 'Keel:',
+'prefs-help-variant'            => 'Kiri või kirjaviis, milles eelistad selle viki sisulehekülgi kuvada.',
 'yournick'                      => 'Uus allkiri:',
 'prefs-help-signature'          => 'Kommentaarile tuleks aruteluleheküljel alla kirjutada märkidega <nowiki>~~~~</nowiki>, mis muutuvad sinu allkirjaks ja ajatempliks.',
 'badsig'                        => 'Sobimatu allkiri.
@@ -1734,21 +1740,23 @@ $1',
 'upload-warning-subj'         => 'Üleslaadimishoiatus',
 'upload-warning-msg'          => 'Üleslaadimisel allikast [$2] tekkis probleem. Probleemi eemaldamiseks võid naasta [[Special:Upload/stash/$1|üleslaadimisvormi]] juurde.',
 
-'upload-proto-error'        => 'Vigane protokoll',
-'upload-proto-error-text'   => 'Teiselt saidilt üleslaadimiseks peab URL algama <code>http://</code> või <code>ftp://</code>.',
-'upload-file-error'         => 'Sisemine viga',
-'upload-file-error-text'    => 'Sisemine viga ilmnes, kui üritati luua ajutist faili serveris.
+'upload-proto-error'                => 'Vigane protokoll',
+'upload-proto-error-text'           => 'Teiselt saidilt üleslaadimiseks peab URL algama <code>http://</code> või <code>ftp://</code>.',
+'upload-file-error'                 => 'Sisemine viga',
+'upload-file-error-text'            => 'Sisemine viga ilmnes, kui üritati luua ajutist faili serveris.
 Palun kontakteeru [[Special:ListUsers/sysop|administraatoriga]].',
-'upload-misc-error'         => 'Tundmatu viga üleslaadimisel',
-'upload-misc-error-text'    => 'Üleslaadimisel ilmnes tundmatu tõrge.
+'upload-misc-error'                 => 'Tundmatu viga üleslaadimisel',
+'upload-misc-error-text'            => 'Üleslaadimisel ilmnes tundmatu tõrge.
 Palun veendu, et internetiaadress on õige ja ligipääsetav ning proovi uuesti.
 Kui probleem ei kao, võta ühendust [[Special:ListUsers/sysop|administraatoriga]].',
-'upload-too-many-redirects' => 'URL sisaldas liiga palju ümbersuunamisi',
-'upload-unknown-size'       => 'Tundmatu suurus',
-'upload-http-error'         => 'HTTP-viga: $1',
+'upload-too-many-redirects'         => 'URL sisaldas liiga palju ümbersuunamisi',
+'upload-unknown-size'               => 'Tundmatu suurus',
+'upload-http-error'                 => 'HTTP-viga: $1',
+'upload-copy-upload-invalid-domain' => 'Sellest domeenist pole kopeerimise teel üleslaadimine võimalik.',
 
 # File backend
 'backend-fail-notexists'     => 'Faili $1 pole olemas.',
+'backend-fail-notsame'       => 'Asukohas $1 on juba olemas mitteidentne fail.',
 'backend-fail-invalidpath'   => '$1 pole sobiv talletustee.',
 'backend-fail-delete'        => 'Faili $1 ei saa kustutada.',
 'backend-fail-alreadyexists' => 'Fail $1 on juba olemas.',
@@ -1789,7 +1797,7 @@ Selle turvalisust ei saa kontrollida.',
 'img-auth-nopathinfo'       => 'PATH_INFO puudub.
 Sinu server pole seadistatud seda teavet edastama.
 See võib olla CGI-põhine ja ei toeta img_auth-i.
-Vaata lehekülge "[https://www.mediawiki.org/wiki/Manual:Image_Authorization Image Authorization]".',
+Vaata lehekülge https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'         => 'Soovitud salvestuskoht pole üleslaadimiskataloogi all.',
 'img-auth-badtitle'         => 'Väljendist "$1" ei saa sobivat pealkirja moodustada.',
 'img-auth-nologinnWL'       => 'Sa pole sisselogitud ja "$1" pole valges nimekirjas.',
@@ -2829,8 +2837,15 @@ Palun ürita uuesti.',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|redaktsioon|redaktsiooni}} asukohast $2',
 
 # JavaScriptTest
-'javascripttest'          => 'JavaScripti katsetamine',
-'javascripttest-disabled' => 'See toiming on keelatud.',
+'javascripttest'                           => 'JavaScripti katsetamine',
+'javascripttest-disabled'                  => 'See toiming on keelatud.',
+'javascripttest-title'                     => '$1-katse käitus',
+'javascripttest-pagetext-noframework'      => 'Seda lehekülge hoitakse JavaScripti katsete jaoks.',
+'javascripttest-pagetext-unknownframework' => 'Tundmatu katseraamistik "$1".',
+'javascripttest-pagetext-frameworks'       => 'Palun vali üks järgmistest katseraamistikest: $1',
+'javascripttest-pagetext-skins'            => 'Vali kujundus, millega katsetada:',
+'javascripttest-qunit-intro'               => 'Vaata [$1 katsetamise dokumentatsiooni] asukohas mediawiki.org.',
+'javascripttest-qunit-heading'             => 'MediaWiki JavaScripti QUnit-katsekomplekt',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'                 => 'Sinu kasutajaleht',

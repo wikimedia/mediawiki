@@ -407,8 +407,8 @@ Puyde kini gipapas na sa uban.',
 'badtitle'             => 'Bati nga titulo',
 'badtitletext'         => 'Ang gihangyong titulo sa panid mahimong inbalido, walay sulod, o nasayop og sumpay nga inter-pinulongan o inter-wiki nga titulo.
 Basin aduna kini usa o daghan pang mga karakter nga dili magamit isip titulo.',
-'perfcached'           => 'Ang mosunod nga data naka-cache ug mahimong dili ang labing bag-o.',
-'perfcachedts'         => 'Ang mosunod nga data naka-cache, ug kataposang nabag-o sa $1.',
+'perfcached'           => 'Ang mosunod nga data naka-cache ug mahimong dili ang labing bag-o. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'Ang mosunod nga data naka-cache, ug kataposang nabag-o sa $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Ang mga update alang sa kining panid naka-disable sa kasamtangan.
 Dili karon dayon ma-refresh ang data dinhi.',
 'wrong_wfQuery_params' => 'Sayop nga mga parametro sa wfQuery()<br />

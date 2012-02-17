@@ -374,8 +374,8 @@ Iske, URL ke likh ke, koi administrator ke report karo.',
 'cannotdelete'         => '{{PLURAL:$1|Template|Template}} ke ii jhalak me kaam me lawa gais hae:',
 'badtitle'             => 'Kharaab title',
 'badtitletext'         => 'Jon panna aap mangta hai uske page title invalid, galat, nai to an incorrectly linked inter-language or inter-wiki title. Isme sait ek yah jaada character hoi jon ki title me nai kaam me lawa jae sake hai.',
-'perfcached'           => 'Niche likha data ke cache karaa gais hai aur sait purana hoi.',
-'perfcachedts'         => 'Niche likha data ke cache kar dewa gais rahaa, aur pichhle time $1 ke badlaa gais rahaa.',
+'perfcached'           => 'Niche likha data ke cache karaa gais hai aur sait purana hoi. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'Niche likha data ke cache kar dewa gais rahaa, aur pichhle time $1 ke badlaa gais rahaa. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Ii panna me badlao abhi band hai. Data ke abhi nawaa nai karaa jaai.',
 'wrong_wfQuery_params' => 'Galat parameters to wfQuery()<br />
 Function: $1<br />

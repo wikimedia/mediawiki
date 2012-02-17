@@ -611,7 +611,7 @@ $1',
 'badtitle'             => '错误的标题',
 'badtitletext'         => '所请求页面的标题是无效的、不存在，跨语言或跨wiki链接的标题错误。它可能包含一个或更多的不能用于标题的字符。',
 'perfcached'           => '下列数据已缓存，但可能已过时。最高{{PLURAL:$1|一个结果|$1个结果}}在缓存中可用。',
-'perfcachedts'         => '下列数据已缓存，它们最后更新在$1。最高{{PLURAL:$4|一个结果|$4个结果}}在缓存中可用。',
+'perfcachedts'         => '下列数据已缓存，它们最后更新在$1。最高{{PLURAL:$4|一个结果|$4个结果}}在缓存中可用。 A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => '当前禁止对此页面进行更新。此处的数据将不能被立即刷新。',
 'wrong_wfQuery_params' => '错误的参数被传递到 wfQuery（）<br />
 函数：$1<br />

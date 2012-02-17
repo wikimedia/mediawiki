@@ -472,8 +472,8 @@ Møguliga hevur onkur annar longu strikað hana.',
 'cannotdelete-title'   => 'Kann ikki strika síðu "$1"',
 'badtitle'             => 'Ógyldugt heiti',
 'badtitletext'         => 'Umbidna síðan er ógyldugt, tómt ella skeivt tilslóðað heiti millum mál ella wikur.',
-'perfcached'           => 'Fylgjandi upplýsingar eru "cached" og eru møguliga ikki dagførdir.',
-'perfcachedts'         => 'Fylgjandi dáta er goymt, og var seinast goymt $1.',
+'perfcached'           => 'Fylgjandi upplýsingar eru "cached" og eru møguliga ikki dagførdir. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'Fylgjandi dáta er goymt, og var seinast goymt $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Tað ber í løtuni ikki til at dagføra hesa síðuna.
 Dáta higani verður í løtuni ikki endurnýggjað.',
 'wrong_wfQuery_params' => '↓ Skeiv parametir til wfQuery()<br />

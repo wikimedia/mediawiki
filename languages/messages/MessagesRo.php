@@ -664,7 +664,7 @@ S-ar putea ca acesta să fi fost deja șters de altcineva.',
 
 Poate conține unul sau mai multe caractere ce nu poate fi folosit în titluri.',
 'perfcached'           => 'Datele următoare au fost păstrate în cache și s-ar putea să nu fie actualizate. Un maxim de {{PLURAL:$1|un rezultat este disponibil|$1 rezultate sunt disponibile}} în cache.',
-'perfcachedts'         => 'Informațiile de mai jos provin din cache, ultima actualizare efectuându-se la $1. Un maxim de {{PLURAL:$1|un rezultat este disponibil|$1 rezultate sunt disponibile}} în cache.',
+'perfcachedts'         => 'Informațiile de mai jos provin din cache, ultima actualizare efectuându-se la $1. Un maxim de {{PLURAL:$4|un rezultat este disponibil|$4 rezultate sunt disponibile}} în cache.',
 'querypage-no-updates' => 'Actualizările acestei pagini sunt momentan dezactivate. Informațiile de aici nu sunt împrospătate.',
 'wrong_wfQuery_params' => 'Număr incorect de parametri pentru wfQuery()<br />
 Funcția: $1<br />

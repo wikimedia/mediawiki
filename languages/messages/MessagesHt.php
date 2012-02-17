@@ -497,8 +497,8 @@ Souple, kontakte yon [[Special:ListUsers/sysop|administratè]], epi ba li lyen a
 Yon lòt moun te gendwa efase l anvan ou.',
 'badtitle'             => 'Tit ou bay an pa bon, li pa koresponn nan sistèm an, eseye byen ekri li',
 'badtitletext'         => 'Tit, sijè paj ou mande a pa korèk oubyen li pa egziste oubyen li nan yon lòt pwojè wiki yo (gade nan lòt pwojè wiki yo pou wè toutbon). Li mèt genyen tou kèk karaktè ki pa rekonèt nan sistèm an, eseye itilize bon karaktè yo nan tit ou yo.',
-'perfcached'           => 'Sa se yon vèsyon ki sòti nan kach sistèm nou an. Li gendwa pa a jou.',
-'perfcachedts'         => 'Done sa yo sòti nan sistèm kach la, yo gendwa pa a jou. Dènye fwa nou mete yo a jou se te $1.',
+'perfcached'           => 'Sa se yon vèsyon ki sòti nan kach sistèm nou an. Li gendwa pa a jou. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'Done sa yo sòti nan sistèm kach la, yo gendwa pa a jou. Dènye fwa nou mete yo a jou se te $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Nou pa kapab mete paj sa yo a jou paske fonksyon mizajou dezaktive. Done w ap jwenn pi ba pap rafrechi.',
 'wrong_wfQuery_params' => 'Paramèt sa yo pa bon sou wfQuery()<br />
 Fonksyon : $1<br />

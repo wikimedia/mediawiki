@@ -298,8 +298,8 @@ Sysop zo locköx zo xuniim jan rae': $1",
 'badtitle'             => 'Ahisharliit',
 'badtitletext'         => 'Zo páhina coccebj ahisharliit zo.
 Jan pos-coccebj plusöxde 1 jöx 1 characterám jan nepos-coccebj usadas titlenám iti.',
-'perfcached'           => 'Jan data coccebj cache ö necoccebj updatenom.',
-'perfcachedts'         => "Jan data coccebj cache ö coccebjöx updatenom $1 'de.",
+'perfcached'           => 'Jan data coccebj cache ö necoccebj updatenom. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => "Jan data coccebj cache ö coccebjöx updatenom $1 'de. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.",
 'querypage-no-updates' => 'Updatenámde jan páhina coccebj disablenöx cmaa. Jan data necanj cmaa.',
 'wrong_wfQuery_params' => 'Parameterám incorrectámde wfQuery()<br />
 Funccion: $1<br />

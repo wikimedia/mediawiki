@@ -401,7 +401,7 @@ Forsan, ulu ja efacis ol.',
 'badtitle'            => 'Nekorekta titulo',
 'badtitletext'        => 'La solicitita pagino esas nevalida, vakua od esas
 nekorekta interlinguale od interwikale ligilo.',
-'perfcached'          => 'La sequanta datumi esas kashizita* e li povus ne aktualigesar nuntempe.',
+'perfcached'          => 'La sequanta datumi esas kashizita* e li povus ne aktualigesar nuntempe. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
 'viewsource'          => 'Vidar font-kodo',
 'protectedpagetext'   => 'Ica pagino esis protektita por preventar redaktar.',
 'viewsourcetext'      => 'Vu povas vidar ed kopiar la fonto-kodexo di ta pagino:',

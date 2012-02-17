@@ -400,8 +400,8 @@ MySQL回到錯誤“$3: $4”。',
 'cannotdelete'         => '揀正嗰頁面或圖像“$1”刪伓正。（佢可能拕人家刪吥哩。）',
 'badtitle'             => '錯誤嗰標題',
 'badtitletext'         => '所要求嗰頁面標題伓正確，伓存在，跨語言或跨wiki連結。標題錯誤，佢可能有隻或好幾隻伓合嗰標題字符。',
-'perfcached'           => '底下係緩存資料，可能伓係最新嗰。',
-'perfcachedts'         => '底下係緩存資料，佢最晏更新嗰時間係 $1。',
+'perfcached'           => '底下係緩存資料，可能伓係最新嗰。 A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => '底下係緩存資料，佢最晏更新嗰時間係 $1。 A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => '箇頁目前改伓正，佢嗰資料伓能仰上更新。',
 'wrong_wfQuery_params' => '參數錯誤斢到嘞 wfQuery()<br />
 函數： $1<br />

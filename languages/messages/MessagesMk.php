@@ -1835,18 +1835,19 @@ $1',
 'upload-warning-subj'         => 'Предупредување за подигањето',
 'upload-warning-msg'          => 'Се јави проблем при подигањето од [$2]. Можете да се вратите на [[Special:Upload/stash/$1|образецот]] за да го поправите проблемот.',
 
-'upload-proto-error'        => 'Погрешен протокол',
-'upload-proto-error-text'   => 'За далечинско подигање потребно е URL-то да почнува со <code>http://</code> или <code>ftp://</code>.',
-'upload-file-error'         => 'Внатрешна грешка',
-'upload-file-error-text'    => 'Се случи внатрешна грешка при обидот за создавање на помошна податотека на опслужувачот.
+'upload-proto-error'                => 'Погрешен протокол',
+'upload-proto-error-text'           => 'За далечинско подигање потребно е URL-то да почнува со <code>http://</code> или <code>ftp://</code>.',
+'upload-file-error'                 => 'Внатрешна грешка',
+'upload-file-error-text'            => 'Се случи внатрешна грешка при обидот за создавање на помошна податотека на опслужувачот.
 Молиме контактирајте некој [[Special:ListUsers/sysop|администратор]].',
-'upload-misc-error'         => 'Непозната грешка при подигањето',
-'upload-misc-error-text'    => 'Се појави грешка при подигањето.
+'upload-misc-error'                 => 'Непозната грешка при подигањето',
+'upload-misc-error-text'            => 'Се појави грешка при подигањето.
 Проверете дали URL-адресата е правилна и достапна, па обидете се повторно.
 Ако пак се појави проблем, обратете се кај некој [[Special:ListUsers/sysop|администратор]].',
-'upload-too-many-redirects' => 'Оваа URL адреса содржеше премногу пренасочувања',
-'upload-unknown-size'       => 'Непозната големина',
-'upload-http-error'         => 'HTTP грешка: $1',
+'upload-too-many-redirects'         => 'Оваа URL адреса содржеше премногу пренасочувања',
+'upload-unknown-size'               => 'Непозната големина',
+'upload-http-error'                 => 'HTTP грешка: $1',
+'upload-copy-upload-invalid-domain' => 'Примероци од подигањата не се достапни на овој домен.',
 
 # File backend
 'backend-fail-stream'        => 'Не можев да ја емитувам податотеката $1.',

@@ -674,7 +674,7 @@ Eble ĝi estis jam forigita de iu alia.',
 'badtitletext'         => 'La petita paĝotitolo estis malvalida, malplena, aŭ malĝuste ligita interlingva aŭ intervikia titolo.
 Ĝi eble enhavas unu aŭ pliaj signoj kiu ne povas esti uzata en titoloj.',
 'perfcached'           => 'La sekvantaj informoj venas el kaŝmemoro kaj eble ne estas ĝisdataj. Maksimumo de {{PLURAL:$1|unu rezulto estas disponebla|$1 rezultoj estas disponeblaj}} en la kaŝmemoro.',
-'perfcachedts'         => 'La jenaj datumoj estas el kaŝmemoro kaj estis laste ĝisdatigitaj $1. Maksimumo de {{PLURAL:$1|unu rezulto estas disponebla|$1 rezultoj estas disponeblaj}} en la kaŝmemoro.',
+'perfcachedts'         => 'La jenaj datumoj estas el kaŝmemoro kaj estis laste ĝisdatigitaj $1. Maksimumo de {{PLURAL:$4|unu rezulto estas disponebla|$4 rezultoj estas disponeblaj}} en la kaŝmemoro.',
 'querypage-no-updates' => 'Ĝisdatigoj por ĉi paĝo estas nune neebligitaj.
 Datenoj ĉi tie ne estos nune refreŝigitaj.',
 'wrong_wfQuery_params' => 'Malĝustaj parametroj por wfQuery()<br />

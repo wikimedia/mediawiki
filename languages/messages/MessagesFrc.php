@@ -305,8 +305,8 @@ L'administrateur qui l'a barrée a donné cette explication: $1",
 'cannotdelete'         => "Impossible d'ôter la page ou le dossier choisi.  (Il est possible que quèqu'une d'autre l'a déjà ôté.)",
 'badtitle'             => 'Mauvais titre',
 'badtitletext'         => 'Le titre que vous avez demandé était pas bon, vide, ou y avait un mauvais titre entre-langue ou entre-wiki.  Ça pourrait avoir des caractères qui pouvont pas être usés dans les titres.',
-'perfcached'           => 'Cette information est en cache et pourrait pas être courante.',
-'perfcachedts'         => 'Cette information est en cache et le dernier changement a été fait $1.',
+'perfcached'           => 'Cette information est en cache et pourrait pas être courante. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'Cette information est en cache et le dernier changement a été fait $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => "À présent, les renouvelages pour cette page sont barrés.  L'information ici va pas être renouvelée t'à l'heure.",
 'wrong_wfQuery_params' => 'Informaton incorrecte sus le wfQuery()<br />
 Fonction: $1<br />

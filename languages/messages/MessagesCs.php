@@ -1808,16 +1808,17 @@ $1',
 'upload-warning-subj'         => 'Upozornění k načítání',
 'upload-warning-msg'          => 'Při vašem načítání souboru z [$2] nastal problém. Pokud ho chcete vyřešit, můžete se vrátit do [[Special:Upload/stash/$1|načítacího formuláře]].',
 
-'upload-proto-error'        => 'Neplatný protokol',
-'upload-proto-error-text'   => 'Nahrání vzdáleného souboru vyžaduje zadání URLs začínající na <code>http://</code> nebo <code>ftp://</code>.',
-'upload-file-error'         => 'Vnitřní chyba',
-'upload-file-error-text'    => 'Při vytváření dočasného souboru na serveru nastala vnitřní chyba.
+'upload-proto-error'                => 'Neplatný protokol',
+'upload-proto-error-text'           => 'Nahrání vzdáleného souboru vyžaduje zadání URLs začínající na <code>http://</code> nebo <code>ftp://</code>.',
+'upload-file-error'                 => 'Vnitřní chyba',
+'upload-file-error-text'            => 'Při vytváření dočasného souboru na serveru nastala vnitřní chyba.
 Kontaktuje prosím [[Special:ListUsers/sysop|správce]].',
-'upload-misc-error'         => 'Neznámá chyba',
-'upload-misc-error-text'    => 'Neznámá chyba se vyskytla během nahrávání souboru.  Zkontrolujte zda je URL platná a přístupné a zkuste to znovu.  Pokud se chyba znovu objeví, kontaktuje administrátora systému.',
-'upload-too-many-redirects' => 'URL obsahovalo příliš mnoho přesměrování',
-'upload-unknown-size'       => 'Neznámá velikost',
-'upload-http-error'         => 'Došlo k chybě HTTP: $1',
+'upload-misc-error'                 => 'Neznámá chyba',
+'upload-misc-error-text'            => 'Neznámá chyba se vyskytla během nahrávání souboru.  Zkontrolujte zda je URL platná a přístupné a zkuste to znovu.  Pokud se chyba znovu objeví, kontaktuje administrátora systému.',
+'upload-too-many-redirects'         => 'URL obsahovalo příliš mnoho přesměrování',
+'upload-unknown-size'               => 'Neznámá velikost',
+'upload-http-error'                 => 'Došlo k chybě HTTP: $1',
+'upload-copy-upload-invalid-domain' => 'Načítání kopírováním není dostupné z této domény.',
 
 # File backend
 'backend-fail-stream'        => 'Soubor $1 nelze streamovat.',

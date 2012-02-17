@@ -381,8 +381,8 @@ Dåt as flicht ål straagen foon huum ouders.',
 'cannotdelete-title'   => 'Sidj „$1“ koon ei stregen wurd.',
 'badtitle'             => 'Ferkiirde tiitel',
 'badtitletext'         => 'Di tiitel foon jü anfrååged sid as üngülti, lääsi unti n üngültigen spräklink foon en ouder wiki.',
-'perfcached'           => 'Da füliende doote ståme üt di cache än san möölikerwise ai aktuäl.',
-'perfcachedts'         => 'Daheere doote ståme üt di cache, leest aktualisiiring: $2, klook $3.',
+'perfcached'           => 'Da füliende doote ståme üt di cache än san möölikerwise ai aktuäl. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'Daheere doote ståme üt di cache, leest aktualisiiring: $2, klook $3. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => "'''Jü aktualisiiringsfunksjoon for jüdeer sid as nütutids deaktiwiird. Da doote wårde tujarst ai fernaierd.'''",
 'wrong_wfQuery_params' => 'Ferkiirde parameetere for wfQuery()<br />
 Funksjoon: $1<br />

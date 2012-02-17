@@ -347,8 +347,8 @@ Madli pawakēis di [[Special:ListUsers/sysop|perwaldītaju]], preidāntei URL.',
 Mazīngi, kāi pastāi jāu āupausintan pra ainuntan kittan.',
 'badtitle'             => 'Nitikrōmiskas tītels',
 'badtitletext'         => 'Padāts pāusas tītels ni ast tikrōmiskan. Druwīminai ast pāustan anga turri ēn sen zentlins, kawīdan terpausnā ast drēuditan.',
-'perfcached'           => 'Šin dātan ast rānkas minīsnas kōpija be mazzi būtwei niaktuālin.',
-'perfcachedts'         => 'Šin dātan ast rānkas minīsnas kōpija. Panzdaums ernaunīnsenis bēi en $1.',
+'perfcached'           => 'Šin dātan ast rānkas minīsnas kōpija be mazzi būtwei niaktuālin. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'Šin dātan ast rānkas minīsnas kōpija. Panzdaums ernaunīnsenis bēi en $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Šisse pāusan etnaunīnsna tēntiskai ast izklāutan. Sēnti stwi dātan ni wīrst pastāwun etnaunīntan.',
 'wrong_wfQuery_params' => 'Nitikrōmiskai parāmeterei perlaīstan wfQuery()<br />
 Funkciōni: $1<br />

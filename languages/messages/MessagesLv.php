@@ -402,8 +402,8 @@ Par to varat ziņot [[Special:ListUsers/sysop|kādam administratoram]], norādot
 'cannotdelete-title'   => 'Nevar izdzēst lapu "$1"',
 'badtitle'             => 'Nepiemērots nosaukums',
 'badtitletext'         => 'Pieprasītā lapa ir kļūdaina, tukša, vai nepareizi saistīts starpvalodu vai starp-vikiju virsrakstas. Tas var saturēt vienu vai vairākus simbolus, ko nedrīkst izmantot nosaukumos.',
-'perfcached'           => 'Šie dati ir no servera kešatmiņas un var būt novecojuši:',
-'perfcachedts'         => "Šie dati ir no servera kešatmiņas (''cache''), kas pēdējo reizi bija atjaunota $1.",
+'perfcached'           => 'Šie dati ir no servera kešatmiņas un var būt novecojuši. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => "Šie dati ir no servera kešatmiņas (''cache''), kas pēdējo reizi bija atjaunota $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.",
 'querypage-no-updates' => 'Šīs lapas atjaunošana pagaidām ir atslēgta. Te esošie dati tuvākajā laikā netiks atjaunoti.',
 'wrong_wfQuery_params' => 'Nekorekti wfQuery() parametri<br />
 Funkcija: $1<br />

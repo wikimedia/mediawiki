@@ -1782,17 +1782,18 @@ $1',
 'upload-warning-subj'         => 'Opplastingsadvarsel',
 'upload-warning-msg'          => 'Det oppsto et problem med opplastingen din fra [$2]. Du kan gå tilbake til [[Special:Upload/stash/$1|opplastingsskjemaet]] for å løse dette problemet.',
 
-'upload-proto-error'        => 'Gal protokoll',
-'upload-proto-error-text'   => 'Fjernopplasting behøver adresser som begynner med <code>http://</code> eller <code>ftp://</code>.',
-'upload-file-error'         => 'Intern feil',
-'upload-file-error-text'    => 'En intern feil oppsto under forsøk på å lage en midlertidig fil på tjeneren. Vennligst kontakt en [[Special:ListUsers/sysop|administrator]].',
-'upload-misc-error'         => 'Ukjent opplastingsfeil',
-'upload-misc-error-text'    => 'En ukjent feil forekom under opplastingen.
+'upload-proto-error'                => 'Gal protokoll',
+'upload-proto-error-text'           => 'Fjernopplasting behøver adresser som begynner med <code>http://</code> eller <code>ftp://</code>.',
+'upload-file-error'                 => 'Intern feil',
+'upload-file-error-text'            => 'En intern feil oppsto under forsøk på å lage en midlertidig fil på tjeneren. Vennligst kontakt en [[Special:ListUsers/sysop|administrator]].',
+'upload-misc-error'                 => 'Ukjent opplastingsfeil',
+'upload-misc-error-text'            => 'En ukjent feil forekom under opplastingen.
 Bekreft at adressen er gyldig og tilgjengelig, og prøv igjen.
 Om problemet fortsetter, kontakt en [[Special:ListUsers/sysop|administrator]].',
-'upload-too-many-redirects' => 'URL-en inneholdt for mange omdirigeringer',
-'upload-unknown-size'       => 'Ukjent størrelse',
-'upload-http-error'         => 'En HTTP-feil oppstod: $1',
+'upload-too-many-redirects'         => 'URL-en inneholdt for mange omdirigeringer',
+'upload-unknown-size'               => 'Ukjent størrelse',
+'upload-http-error'                 => 'En HTTP-feil oppstod: $1',
+'upload-copy-upload-invalid-domain' => 'Opplasting av kopier er ikke tilgjengelig fra dette domenet.',
 
 # File backend
 'backend-fail-stream'        => 'Kunne ikke strømme filen $1.',
@@ -1852,7 +1853,7 @@ Den kan ikke sikkerhetskontrolleres.',
 'img-auth-nopathinfo'       => 'Manglende PATH_INFO.
 Tjeneren din er ikke satt opp til å gi denne informasjonen.
 Den er kanskje CGI-basert og støtter ikke img_auth.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization Se bildeautorisasjon.]',
+https://www.mediawiki.org/wiki/Manual:Image_Authorization Se bildeautorisasjon.',
 'img-auth-notindir'         => 'Den ønskede stien finnes ikke i den oppsatte opplastingsmappa.',
 'img-auth-badtitle'         => 'Kunne ikke lage en gyldig tittel ut fra «$1».',
 'img-auth-nologinnWL'       => 'Du er ikke logget inn, og «$1» er ikke på hvitelista.',

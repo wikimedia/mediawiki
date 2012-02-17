@@ -450,8 +450,8 @@ B\'fhéidir gur scrios duine eile é cheana féin.',
 'badtitle'             => 'Teideal neamhbhailí',
 'badtitletext'         => "Bhí teideal an leathanaigh a d'iarr tú ar neamhbhailí, folamh, nó
 teideal idirtheangach nó idirvicí nasctha go mícheart.",
-'perfcached'           => 'Fuarthas na sonraí a leanas as taisce, agus is dócha go bhfuil siad as dáta.',
-'perfcachedts'         => 'Tá na sonraí seo a leanas sa taisce, nuashonraithe $1.',
+'perfcached'           => 'Fuarthas na sonraí a leanas as taisce, agus is dócha go bhfuil siad as dáta. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'Tá na sonraí seo a leanas sa taisce, nuashonraithe $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'wrong_wfQuery_params' => 'Paraiméadair mhíchearta don wfQuery()<br />
 Feidhm: $1<br />
 Iarratas: $2',

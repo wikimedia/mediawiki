@@ -1686,7 +1686,7 @@ Prašome susisiekti su [[Special:ListUsers/sysop|sistemos administratoriumi]].',
 'img-auth-nopathinfo'       => 'Trūksta PATH_INFO.
 Jūsų serveris nenustatytas perduoti šią informaciją.
 Tai gali būti CGI paremta ir negali palaikyti img_auth.
-Daugiau informacijos [//www.mediawiki.org/wiki/Manual:Image_Authorization. žr.]',
+Daugiau informacijos https://www.mediawiki.org/wiki/Manual:Image_Authorization. žr.',
 'img-auth-notindir'         => 'Užklaustas kelias nėra sukonfigūruotame įkėlimo kataloge.',
 'img-auth-badtitle'         => 'Nepavyksta padaryti leistino pavadinimo iš „$1“.',
 'img-auth-nologinnWL'       => 'Jūs nesate prisijungęs ir „$1“ nėra baltajame sąraše.',

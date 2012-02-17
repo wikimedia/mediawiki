@@ -412,8 +412,8 @@ Silakan lapurakan ini ka saurang [[Special:ListUsers/sysop|pambakal]], ulah cata
 'badtitle'             => 'Judul buruk',
 'badtitletext'         => 'Judul tungkaran nang diminta kada sah, kada baisi, atawa kada pasnya tautan judul antar-bahasa atawa antar-wiki.
 Nangini bisa baisi satu atawa labih hurup nang saharusnya kadada di judul.',
-'perfcached'           => 'Data barikut adalah timbuluk wan pina kada mutakhir.',
-'perfcachedts'         => 'Data nang dudi ini adalah timbuluk, wan tauncit dihahanyari pada $1.',
+'perfcached'           => 'Data barikut adalah timbuluk wan pina kada mutakhir. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'Data nang dudi ini adalah timbuluk, wan tauncit dihahanyari pada $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Pamugaan matan tungkaran ini rahat dipajahkan. Data nang ada di sia wayahini kada akan dimuat ulang.',
 'wrong_wfQuery_params' => 'Kada bujur ukuran ka wfQuery ()<br />
 Pungsi: $1<br />

@@ -589,8 +589,8 @@ Líklegt er að einhver annar hafi gert það.',
 'cannotdelete-title'   => 'Gat ekki eytt síðunni $1',
 'badtitle'             => 'Slæmur titill',
 'badtitletext'         => 'Umbeðin síðutitill er ógildur.',
-'perfcached'           => 'Eftirfarandi er afrit af umbeðinni síðu og gæti því ekki verið nýjasta útgáfa hennar:',
-'perfcachedts'         => 'Eftirfarandi gögn eru í skyndiminninu, og voru síðast uppfærð $1.',
+'perfcached'           => 'Eftirfarandi er afrit af umbeðinni síðu og gæti því ekki verið nýjasta útgáfa hennar: A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'Eftirfarandi gögn eru í skyndiminninu, og voru síðast uppfærð $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Lokað er fyrir uppfærslur af þessari síðu. Gögn sett hér munu ekki vistast.',
 'wrong_wfQuery_params' => 'Röng færibreyta fyrir wfQuery()<br />
 Virkni: $1<br />

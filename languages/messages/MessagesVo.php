@@ -445,8 +445,8 @@ Atos kösömiko jenon sekü difa- u jenotemayüm dädik (o.b. lü pad pemoüköl
 Ba ya pemoükon fa geban votik.',
 'badtitle'             => 'Tiäd badik',
 'badtitletext'         => 'Padatiäd peflagöl äbinon nelonöfik, vägik, u ba yüm bevüpükik u bevüvükik dädik. Mögos, das ninädon malati(s), kel(s) no dalon(s) pagebön ad jafön tiädis.',
-'perfcached'           => 'Nüns sököl ekömons se el caché e ba no binons anuik.',
-'perfcachedts'         => 'Nüns sököl kömons se mem nelaidüpik e päbevobons lätiküno ün: $1.',
+'perfcached'           => 'Nüns sököl ekömons se el caché e ba no binons anuik. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'Nüns sököl kömons se mem nelaidüpik e päbevobons lätiküno ün: $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Atimükam pada at penemögükon. Nünods isik no poflifedükons suno.',
 'wrong_wfQuery_params' => 'Paramets neverätik lü wfQuery()<br />
 Dun: $1<br />

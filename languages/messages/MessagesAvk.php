@@ -393,8 +393,8 @@ MySQL va « $3 : $4 » rokla al dimstakser.',
 'cannotdelete'         => 'Sulara va bazenu bu oku ewava tir merotisa.',
 'badtitle'             => 'Rotaf vergumvelt',
 'badtitletext'         => 'Vergumvelt ke erunu bu tir volenafu ok vlardafu ike walavafi gluyasiki me tir enafi',
-'perfcached'           => 'Vlevef orig yo tid koe palsexo nume me zo ronusked.',
-'perfcachedts'         => 'Vlevef orig yo tid koe palsexo, ise ironokafa nuskera tir $1.',
+'perfcached'           => 'Vlevef orig yo tid koe palsexo nume me zo ronusked. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'Vlevef orig yo tid koe palsexo, ise ironokafa nuskera tir $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Nuskera va batu bu me noelon flir. Acum origeem me zo divneditir.',
 'wrong_wfQuery_params' => 'Mewadaf dor koe wfQuery() dirgara<br />
 Fliok : $1<br />

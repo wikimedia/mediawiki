@@ -75,6 +75,7 @@ $messages = array(
 'tog-previewonfirst'        => 'ਪਹਿਲੇ ਐਡਿਟ ਉੱਤੇ ਝਲਕ ਵੇਖਾਓ',
 'tog-nocache'               => 'ਬਰਾਊਜ਼ਰ ਸਫ਼ਾ ਕੈਸ਼ ਕਰਨਾ ਬੰਦ ਕਰੋ',
 'tog-enotifwatchlistpages'  => 'ਜਦੋਂ ਮੇਰੀ ਵਾਚ-ਲਿਸਟ ਵਿੱਚੋਂ ਸਫ਼ਾ ਬਦਲਿਆ ਜਾਵੇ ਤਾਂ ਮੈਨੂੰ ਈਮੇਲ ਭੇਜੋ',
+'tog-oldsig'                => 'ਮੌਜੂਦਾ ਦਸਤਖਤ:',
 'tog-watchlisthideown'      => 'ਮੇਰੀ ਵਾਚ-ਲਿਸਟ ਵਿੱਚੋਂ ਮੇਰੀਆਂ ਸੋਧਾਂ ਹਟਾਓ',
 'tog-watchlisthidebots'     => 'ਮੇਰੀ ਵਾਚ-ਲਿਸਟ ਵਿੱਚੋਂ ਰੋਬਾਟ ਦਿਆਂ ਸੋਧਾਂ ਹਟਾਓ',
 'tog-watchlisthideminor'    => 'ਛੋਟੇ ਸੋਧ ਵਾਚ-ਲਿਸਟ ਤੋਂ ਓਹਲੇ ਰੱਖੋ',
@@ -82,6 +83,9 @@ $messages = array(
 'underline-always'  => 'ਹਮੇਸ਼ਾਂ',
 'underline-never'   => 'ਕਦੇ ਨਹੀਂ',
 'underline-default' => 'ਬਰਾਊਜ਼ਰ ਡਿਫਾਲਟ',
+
+# Font style option in Special:Preferences
+'editfont-default' => 'ਬਰਾਊਜ਼ਰ ਡਿਫਾਲਟ',
 
 # Dates
 'sunday'        => 'ਐਤਵਾਰ',
@@ -209,14 +213,14 @@ $messages = array(
 'protect'           => 'ਸੁਰੱਖਿਆ',
 'protect_change'    => 'ਬਦਲੋ',
 'protectthispage'   => 'ਇਹ ਪੇਜ ਸੁਰੱਖਿਅਤ ਕਰੋ',
-'unprotect'         => 'ਅਣ-ਸੁਰੱਖਿਅਤ',
-'unprotectthispage' => 'ਇਹ ਪੇਜ ਅਣ-ਸੁਰੱਖਿਅਤ ਬਣਾਓ',
+'unprotect'         => 'ਸੁਰੱਖਿਆ ਬਦਲੋ',
+'unprotectthispage' => 'ਇਹ ਪੇਜ਼ ਦੀ ਸੁਰੱਖਿਆ ਬਦਲੋ',
 'newpage'           => 'ਨਵਾਂ ਪੇਜ',
 'talkpage'          => 'ਇਸ ਪੇਜ ਬਾਰੇ ਚਰਚਾ',
 'talkpagelinktext'  => 'ਗੱਲਬਾਤ',
 'specialpage'       => 'ਖਾਸ ਪੇਜ',
 'personaltools'     => 'ਨਿੱਜੀ ਟੂਲ',
-'postcomment'       => 'ਇੱਕ ਟਿੱਪਣੀ ਦਿਓ',
+'postcomment'       => 'ਨਵਾਂ ਭਾਗ',
 'articlepage'       => 'ਸਮੱਗਰੀ ਪੇਜ ਵੇਖੋ',
 'talk'              => 'ਚਰਚਾ',
 'views'             => 'ਵੇਖੋ',
@@ -238,6 +242,7 @@ $messages = array(
 'jumpto'            => 'ਜੰਪ ਕਰੋ:',
 'jumptonavigation'  => 'ਨੇਵੀਗੇਸ਼ਨ',
 'jumptosearch'      => 'ਖੋਜ',
+'pool-errorunknown' => 'ਅਣਜਾਣ ਗਲਤੀ',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} ਬਾਰੇ',
@@ -277,13 +282,18 @@ $messages = array(
 'toc'                     => 'ਸਮਗੱਰੀ',
 'showtoc'                 => 'ਵੇਖੋ',
 'hidetoc'                 => 'ਓਹਲੇ',
+'collapsible-collapse'    => 'ਸਮੇਟੋ',
+'collapsible-expand'      => 'ਫੈਲਾਓ',
 'thisisdeleted'           => 'ਵੇਖੋ ਜਾਂ $1 ਰੀਸਟੋਰ?',
 'viewdeleted'             => '$1 ਵੇਖਣਾ?',
 'feedlinks'               => 'ਫੀਡ:',
 'site-rss-feed'           => '$1 RSS ਫੀਡ',
 'site-atom-feed'          => '$1 ਐਟਮ ਫੀਡ',
+'page-rss-feed'           => '"$1" RSS ਫੀਡ',
 'page-atom-feed'          => '"$1" ਐਟਮ ਫੀਡ',
 'red-link-title'          => '$1 (ਇਸ ਨਾਂ ਦਾ ਪੇਜ ਨਹੀਂ ਹੈ)',
+'sort-descending'         => 'ਘੱਟਦਾ ਕ੍ਰਮ',
+'sort-ascending'          => 'ਵੱਧਦਾ ਕ੍ਰਮ',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'ਲੇਖ',
@@ -816,8 +826,9 @@ to upload files.',
 'pager-newer-n'     => '{{PLURAL:$1|੧ ਨਵਾਂ|$1 ਨਵੇਂ}}',
 
 # Book sources
-'booksources'    => 'ਕਿਤਾਬ ਸਰੋਤ',
-'booksources-go' => 'ਜਾਓ',
+'booksources'               => 'ਕਿਤਾਬ ਸਰੋਤ',
+'booksources-search-legend' => 'ਕਿਤਾਬ ਸਰੋਤ ਲਈ ਖੋਜ',
+'booksources-go'            => 'ਜਾਓ',
 
 # Special:Log
 'specialloguserlabel'  => 'ਯੂਜ਼ਰ:',
@@ -945,8 +956,11 @@ to upload files.',
 'contributions' => 'ਯੂਜ਼ਰ ਯੋਗਦਾਨ',
 'mycontris'     => 'ਮੇਰਾ ਯੋਗਦਾਨ',
 'contribsub2'   => '$1 ($2) ਲਈ',
+'uctop'         => '(ਉੱਤੇ)',
 
 'sp-contributions-newbies-sub' => 'ਨਵੇਂ ਅਕਾਊਂਟਾਂ ਲਈ',
+'sp-contributions-blocklog'    => 'ਪਾਬੰਦੀ ਲਾਗ',
+'sp-contributions-logs'        => 'ਲਾਗ',
 'sp-contributions-talk'        => 'ਗੱਲਬਾਤ',
 'sp-contributions-search'      => 'ਯੋਗਦਾਨ ਖੋਜੋ',
 'sp-contributions-username'    => 'IP ਐਡਰੈੱਸ ਜਾਂ ਯੂਜ਼ਰ ਨਾਂ:',

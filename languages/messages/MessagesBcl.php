@@ -406,8 +406,8 @@ Ini an eksplikasyon kan tagamató na nagkandado kaini: $1',
 'cannotdelete'         => 'Dai naparà an pahina o file na napilî. (Pwede na naparà na ini kan ibang paragamit.)',
 'badtitle'             => 'Salâ an titulo',
 'badtitletext'         => 'Dai pwede an hinagad na titulo nin pahina, o mayong laog, o sarong titulong pan-ibang tatarámon o pan-ibang wiki na sala an pagkatakód. Pwedengigwa ining sarô o iba pang mga karakter na dai pwedeng gamiton sa mga titulo.',
-'perfcached'           => 'Nakaabang an minasunod na mga datos, asin pwede ser na mga lumâ na.',
-'perfcachedts'         => 'Nakaabang an nagsusunod na mga datos, asin huring nabâgo sa $1.',
+'perfcached'           => 'Nakaabang an minasunod na mga datos, asin pwede ser na mga lumâ na. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'Nakaabang an nagsusunod na mga datos, asin huring nabâgo sa $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Pigpopogol mùna an mga pagbabàgo sa pahinang ini. Dai mùna mababàgo an mga datos digdi.',
 'wrong_wfQuery_params' => 'Salâ na parámetro sa wfQuery()<br />
 Acción: $1<br />

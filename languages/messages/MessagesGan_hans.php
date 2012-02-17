@@ -377,8 +377,8 @@ MySQL回到错误“$3: $4”。',
 'cannotdelete'         => '拣正𠮶页面或图像“$1”删伓正。（佢可能拕人家删吥哩。）',
 'badtitle'             => '错误𠮶标题',
 'badtitletext'         => '所要求𠮶页面标题伓正确，伓存在，跨语言或跨wiki链接。标题错误，佢可能有只或好几只伓合𠮶标题字符。',
-'perfcached'           => '底下系缓存资料，可能伓系最新𠮶。',
-'perfcachedts'         => '底下系缓存资料，佢最晏更新𠮶时间系 $1。',
+'perfcached'           => '底下系缓存资料，可能伓系最新𠮶。 A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => '底下系缓存资料，佢最晏更新𠮶时间系 $1。 A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => '个页目前改伓正，佢𠮶资料伓能仰上更新。',
 'wrong_wfQuery_params' => '参数错误斢到嘞 wfQuery()<br />
 函数： $1<br />

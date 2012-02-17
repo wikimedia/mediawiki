@@ -699,7 +699,7 @@ Las búsquedas producen más o munco a buscar biervos comunes como «la» o «de
 'prefs-rc'                  => 'Los Trocamientos de Alcabo',
 'prefs-watchlist'           => 'Lista de los Trocamientos Preferidos',
 'prefs-watchlist-days'      => 'El número de los días a mostrar en la lista de los trocamientos preferidos:',
-'prefs-watchlist-days-max'  => '7 días a lo más muncho',
+'prefs-watchlist-days-max'  => '$1 {{PLURAL:$1|días|días}} a lo más muncho',
 'prefs-resetpass'           => 'Trocar la parola',
 'prefs-rendering'           => 'Vista',
 'saveprefs'                 => 'Enrejistrar',

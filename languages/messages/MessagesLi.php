@@ -518,7 +518,7 @@ Mesjiens haet emes angers det al gedaon.',
 'badtitle'             => 'Óngeljige paginatitel',
 'badtitletext'         => 'De opgevraogde pagina is neet besjikbaar of laeg.',
 'perfcached'           => "De gegaeves koume oet 'n cache en zeen mäögelik neet actueel. 't Geuf {{PLURAL:$1|maximaal ei rizzeltaot|maximaal $1 rizzeltaote}} inne cache.",
-'perfcachedts'         => "De getuunde gegaeves komme oet 'n cache en zeen veur 't letst biejgewèrk op $1.",
+'perfcachedts'         => "De getuunde gegaeves komme oet 'n cache en zeen veur 't letst biejgewèrk op $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.",
 'querypage-no-updates' => "Deze pagina kin op 't memènt neet biegewirk waere. Deze gegaeves waere neet verfrisj.",
 'wrong_wfQuery_params' => 'Verkeerde paramaeters veur wfQuery()<br />
 Funksie: $1<br />

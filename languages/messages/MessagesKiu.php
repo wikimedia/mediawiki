@@ -378,8 +378,8 @@ Beno ke, verênde terefê kesê de bini ra esteriya.',
 'badtitle'             => 'Sernameo xırabın',
 'badtitletext'         => "Sernamê pela ke sıma wast, nêvêrde, thal, ya girê mabênê zoni ğelet ya ki sernamê mabênê ''wiki'' bi.
 Beno ke, tede jü ya ki jêdê isareti estê ke sernameu de nêgurinê.",
-'perfcached'           => 'Ni daey nımıteyê u beno ke rocaney niyê.',
-'perfcachedts'         => 'Ni daey nımıteyê, u tewr peyên $1 de biyê rocaniy.',
+'perfcached'           => 'Ni daey nımıteyê u beno ke rocaney niyê. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'Ni daey nımıteyê, u tewr peyên $1 de biyê rocaniy. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Rocane-biyaena na pele nıka cadaiyê.
 Daey ita nıka newe nêbenê.',
 'wrong_wfQuery_params' => 'Parametreo ğelet serba wfPers()<br />

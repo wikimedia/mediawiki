@@ -328,9 +328,11 @@ Ang nagligad nga database query mini:
 <blockquote><tt>$1</tt></blockquote>
 nga halin sa ulubrahon nga "<tt>$2</tt>".
 Nagbalik sang sala nga "<tt>$3: $4</tt>" ang MySQL.',
+'dberrortextcl'        => '',
 'laggedslavemode'      => 'Pahibalo: Posible nga wala unod ang pahina sang mga yanda nga bag-ong nadugang.',
 'readonly'             => 'Nakakandado ang database',
 'enterlockreason'      => 'Maghatag sang kabangdanan sa pagkakandado, upod ang bana-bana kung san-o ang kandado ibuy-an',
+'readonlytext'         => '',
 'missing-article'      => 'Indi makita ang teksto nga pahina sa database nga dapat nakita na , na nangalanan "$1" $2.
 
 Ang rason kung ngaa nagakatabo mini kay may mga nagasunod bilang daan nga diff o link nga kasaysayan sa may pahina nga napanas.

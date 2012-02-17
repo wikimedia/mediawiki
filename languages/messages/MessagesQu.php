@@ -625,7 +625,7 @@ P\'anqaqa pipapas qullusqanñachá.',
 'badtitle'             => "P'anqap sutinqa manam allinchu",
 'badtitletext'         => "Kay p'anqap sutinqa manam allinchu, mana allin interwiki t'inkichá icha ch'usaqchá, p'anqa sutipaq mana saqillasqa sananchayuqchá.",
 'perfcached'           => "Kay qatiq willakunaqa ''cache'' nisqa pakasqa hallch'apim kachkan, chayrayku manañachá musuqchasqachu. {{PLURAL:$1|Huklla|$1-lla}} taripasqam pakasqa hallch'api aypalla kachkan, manam aswanchu.",
-'perfcachedts'         => "Kay willakunaqa hallch'asqam. Qhipaq musuqchasqaqa $1 karqan. {{PLURAL:$1|Huklla|$1-lla}} taripasqam pakasqa hallch'api aypalla kachkan, manam aswanchu.",
+'perfcachedts'         => "Kay willakunaqa hallch'asqam. Qhipaq musuqchasqaqa $1 karqan. {{PLURAL:$4|Huklla|$4-lla}} taripasqam pakasqa hallch'api aypalla kachkan, manam aswanchu.",
 'querypage-no-updates' => "Kay p'anqata musuqchayqa manam atichkanchu. Kunanqa kaypi willakuna manam musuqchasqachu kanqa.",
 'wrong_wfQuery_params' => 'Kaypa pantasqa kuskanachina tupunkuna: wfQuery()<br />
 Ruray paqtachi: $1<br />

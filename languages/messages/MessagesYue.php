@@ -587,8 +587,8 @@ $1',
 可能已經畀另一位刪咗。',
 'badtitle'             => '錯嘅標題',
 'badtitletext'         => '要求嘅標題唔啱、空白，跨語言或者跨維基連結標題錯誤。亦可能係標題包括咗一個或多過一個字元。',
-'perfcached'           => '以下嘅資料係嚟自快取，可能唔係最新嘅。',
-'perfcachedts'         => '以下嘅資料係嚟自快取，上一次嘅更新喺$1。',
+'perfcached'           => '以下嘅資料係嚟自快取，可能唔係最新嘅。 A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => '以下嘅資料係嚟自快取，上一次嘅更新喺$1。 A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => '響呢一頁嘅更新現時停用。啲資料將唔會即時更新。',
 'wrong_wfQuery_params' => 'wfQuery() 嘅參數錯誤<br />
 函數： $1<br />

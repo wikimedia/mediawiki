@@ -345,8 +345,8 @@ Please lat an [[Special:ListUsers/sysop|administrator]] ken aboot this, makin no
 'cannotdelete'         => "Cuidna delete the page or eimage specifee'd. (It micht hae aareadies been delete bi some ither bodie.)",
 'badtitle'             => 'Bad teitle',
 'badtitletext'         => 'The requestit page teitle wis invalid, tuim, or a wranglie airtit inter-leid or inter-wiki teitle. It mibbe haes ane or mair chairacters that canna be uised in teitles.',
-'perfcached'           => 'The follaeing data is cached an michtna be richt up tae date:',
-'perfcachedts'         => 'The followin data is cached, an wis hindermaist chynged $1.',
+'perfcached'           => 'The follaeing data is cached an michtna be richt up tae date. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'The followin data is cached, an wis hindermaist chynged $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Updates for this page ar disablit at the meenit. Data here wilnae be refreshit at the meenit.',
 'wrong_wfQuery_params' => 'Wrang parameters tae wfQuery()<br />
 Exerce: $1<br />

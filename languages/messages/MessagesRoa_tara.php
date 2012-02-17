@@ -397,7 +397,7 @@ Pò essere ca ggià ha state scangellete da quacche otre.',
 'badtitletext'         => "'A pàgene ca è cerchete tène 'nu titele errete, vacande, o jè 'nu collegamende inter-lènghe o inter-uicchi errete.
 Pò essere ca tène une o cchiù carattere ca non ge ponne essere ausete jndr'à le titele.",
 'perfcached'           => "'U date seguende stè jndr'à cache e non ge pò essere aggiornate. 'Nu massime de {{PLURAL:$1|'nu resultate ste|$1 resultate stonne}} disponibbile jndr'à cache.",
-'perfcachedts'         => "'U date seguende stè jndr'à cache e, l'urteme aggiornamende ha state $1. 'Nu massime de {{PLURAL:$1|'nu resultate ste|$1 resultate stonne}} disponibbile jndr'à cache.",
+'perfcachedts'         => "'U date seguende stè jndr'à cache e, l'urteme aggiornamende ha state $1. 'Nu massime de {{PLURAL:$4|'nu resultate ste|$4 resultate stonne}} disponibbile jndr'à cache.",
 'querypage-no-updates' => "L'aggiornaminde pe sta pàgene sonde, pe mò, disabbilitete.
 Le date ca stonne aqquà jndre non ge sonde aggiornete.",
 'wrong_wfQuery_params' => "Parametre incorrette sus 'a wfQuery()<br />

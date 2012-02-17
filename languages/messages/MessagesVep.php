@@ -440,8 +440,8 @@ Sen om jo čutnu ken-se toine.',
 'badtitle'             => 'Hond nimi',
 'badtitletext'         => 'Ectud lehtpolen nimi om vär, vai mugošt nimed ei ole, vai kelidenkeskeline (interwiki) nimi om kirjutadud värin.
 Siš voib olda simvoloid, kudambid ei sa panda nimihe.',
-'perfcached'           => 'Nene andmused oma kešespäi i voidas olda vanhtunuzin.',
-'perfcachedts'         => "Nened andmused oma kešespäi, ned oma uzištadud jäl'gmäižel kerdal siloi: $1.",
+'perfcached'           => 'Nene andmused oma kešespäi i voidas olda vanhtunuzin. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => "Nened andmused oma kešespäi, ned oma uzištadud jäl'gmäižel kerdal siloi: $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.",
 'querypage-no-updates' => "Necen lehtpolen udištand ei ole nügüd' kävutamas.
 Anttud naku andmused ei udištugoi.",
 'wrong_wfQuery_params' => 'Värad parametrad necen funkcijan täht: wfQuery()<br />

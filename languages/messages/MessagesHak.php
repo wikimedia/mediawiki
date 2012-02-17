@@ -306,8 +306,8 @@ Chhiáng ki-liu̍k hâ URL thi-chí, pin hiong [[Special:ListUsers/sysop|Kón-l�
 'cannotdelete'         => 'Mò-fap chhù-thet sién-thin ke vùn-chông fe̍t-he thù-chhiong （Kí khó-nèn yí-kîn pûn khì-thâ-ngìn chhù-hi liáu）.',
 'badtitle'             => 'Chho-ngu ke phêu-thì',
 'badtitletext'         => 'Só chhiáng-khiù hong-mien ke phêu-thì he mò-háu ke, mò-chhùn-chhai, khiam-ko ngî-ngièn fe̍t-chá khiam-ko wiki lièn-kiet ke phêu-thì chho-ngu.',
-'perfcached'           => 'Yî-ha chṳ̂-liau lòi-chhṳ khoai-chhí, khó-nèn yû chho-ngu.',
-'perfcachedts'         => 'Yî-ha he khoai-chhí chṳ̂-liau, chui-heu kiên-sîn sṳ̀-kiên he $1.',
+'perfcached'           => 'Yî-ha chṳ̂-liau lòi-chhṳ khoai-chhí, khó-nèn yû chho-ngu. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'Yî-ha he khoai-chhí chṳ̂-liau, chui-heu kiên-sîn sṳ̀-kiên he $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Tông-chhièn  kim-chṳ́ tui chhṳ́-chông chin-hàng kiên-sîn. Chhṳ́-chhu ke chṳ̂-liau chiông put-nèn pûn chhùng-sîn chṳ́n-lî.',
 'wrong_wfQuery_params' => 'Chho-ngu ke chhâm-su thô-chṳ wfQuery（）<br />
 Chhṳ-su: $1<br />

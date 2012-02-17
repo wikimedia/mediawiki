@@ -478,8 +478,8 @@ $1',
 'badtitle'             => 'عنوان بد',
 'badtitletext'         => 'لوٹتگین عنوان صفحه نامعتبر ،هالیک یا یک عنوان هرابین لینک بین زبانی یا بین وی کی انت.
 آی شاید شامل یک یا گیشترین کاراکترانت که ته عناوین استفاده نه بنت.',
-'perfcached'           => 'جهلیگین دیتا ذخیره بیتگنت و شاید نوک می بنت.',
-'perfcachedts'         => 'جهلیگین دیتا ذخیره بیتگنت و اهرین په روچ بیگ $1.',
+'perfcached'           => 'جهلیگین دیتا ذخیره بیتگنت و شاید نوک می بنت. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'جهلیگین دیتا ذخیره بیتگنت و اهرین په روچ بیگ $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'په روچ بیگان په ای صفحه الان غیر فعالنت. دیتا ادان الان نوکین نهنت.',
 'wrong_wfQuery_params' => 'اشتباهین پارامتر به wfQuery()<br />
 Function: $1<br />

@@ -8,6 +8,7 @@
  * @file
  *
  * @author AlefZet
+ * @author Amire80
  * @author GaiJin
  * @author Lokal Profil
  * @author Urhixidur
@@ -703,8 +704,8 @@ MySQL قايتارعان قاتەسى «$3: $4»',
 'badtitle'             => 'جارامسىز تاقىرىپ اتى',
 'badtitletext'         => 'سۇرالعان بەت تاقىرىبىنىڭ اتى جارامسىز, بوس, تىلارالىق سىلتەمەسى نە ۋىيكىي-ارالىق تاقىرىپ اتى بۇرىس ەنگىزىلگەن.
 مىندا تاقىرىپ اتىندا قولدالمايتىن بىرقاتار تاڭبالار بولۋى مۇمكىن.',
-'perfcached'           => 'كەلەسى دەرەك بۇركەمەلەنگەن, سوندىقتان تولىقتاي جاڭالانماعان بولۋى مۇمكىن.',
-'perfcachedts'         => 'كەلەسى دەرەك بۇركەمەلەنگەن, سوڭعى جاڭالانلعان كەزى: $1.',
+'perfcached'           => 'كەلەسى دەرەك بۇركەمەلەنگەن, سوندىقتان تولىقتاي جاڭالانماعان بولۋى مۇمكىن. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'كەلەسى دەرەك بۇركەمەلەنگەن, سوڭعى جاڭالانلعان كەزى: $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'بۇل بەتتىڭ جاڭارتىلۋى اعىمدا وشىرىلگەن. دەرەكتەرى قازىر وزگەرتىلمەيدى.',
 'wrong_wfQuery_params' => 'wfQuery() فۋنكتسىيياسى ٴۇشىن بۇرىس باپتالىمدارى بار<br />
 جەتە: $1<br />
@@ -1370,12 +1371,12 @@ $3 كەلتىرىلگەن سەبەبى: ''$2''",
 'upload_directory_read_only'  => 'قوتارىپ بەرمەك قالتاسىنا ($1) ۆەب-سەرۆەر جازا المايدى.',
 'uploaderror'                 => 'قوتارىپ بەرۋ قاتەسى',
 'uploadtext'                  => "تومەندەگى ٴپىشىندى فايلداردى قوتارىپ بەرۋ ٴۇشىن قولدانىڭىز.
-الدىندا قوتارىلىپ بەرىلگەن فايلداردى قاراۋ نە ىزدەۋ ٴۇشىن [[Special:FileList|قوتارىپ بەرىلگەن فايلدار تىزىمىنە]] بارىڭىز, تاعى دا قوتارىپ بەرۋى مەن جويۋى  [[Special:Log/upload|قوتارىپ بەرۋ جۋرنالىنا]] جازىلىپ الىنادى.
+الدىندا قوتارىلىپ بەرىلگەن فايلداردى قاراۋ نە ىزدەۋ ٴۇشىن [[Special:FileList|قوتارىپ بەرىلگەن فايلدار تىزىمىنە]] بارىڭىز, تاعى دا قوتارىپ بەرۋى مەن جويۋى [[Special:Log/delete|قوتارىپ بەرۋ جۋرنالىنا]] جازىلىپ الىنادى.
 
 سۋرەتتى بەتكە كىرىستىرۋگە, فايلعا تۋرا سىلتەۋ ٴۇشىن مىنا پىشىندەگى سىلتەمەنى قولدانىڭىز:
-'''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''',
-'''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|بالاما ٴماتىن[[</nowiki></tt>''' نە
-'''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>'''.",
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>'''
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|بالاما ٴماتىن]]</nowiki></tt>''' نە
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>'''.",
 'upload-permitted'            => 'رۇقسات ەتىلگەن فايل تۇرلەرى: $1.',
 'upload-preferred'            => 'ۇنامدى فايل تۇرلەرى $1.',
 'upload-prohibited'           => 'رۇقسات ەتىلمەگەن فايل تۇرلەرى: $1.',

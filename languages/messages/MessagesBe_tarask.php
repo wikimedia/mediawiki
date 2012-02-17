@@ -1786,7 +1786,7 @@ $1',
 'img-auth-nopathinfo'       => 'Адсутнічае PATH_INFO.
 Ваш сэрвэр не ўстаноўлены на пропуск гэтай інфармацыі.
 Магчма, ён працуе праз CGI і не падтрымлівае img_auth.
-[https://www.mediawiki.org/wiki/Manual:Image_Authorization Глядзіце інфармацыю пра аўтарызацыю выяваў.]',
+Глядзіце https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'         => 'Неабходнага шляху няма ў дырэкторыі загрузкі, пазначанай у канфігурацыі.',
 'img-auth-badtitle'         => 'Немагчыма стварыць слушную назву з «$1».',
 'img-auth-nologinnWL'       => 'Вы не ўвайшлі ў сыстэму, а «$1» не знаходзіцца ў белым сьпісе.',
@@ -1841,41 +1841,42 @@ $1',
 'listfiles_count'       => 'Вэрсіі',
 
 # File description page
-'file-anchor-link'          => 'Файл',
-'filehist'                  => 'Гісторыя файла',
-'filehist-help'             => 'Націсьніце на дату/час, каб паглядзець, як тады выглядаў файл.',
-'filehist-deleteall'        => 'выдаліць усе',
-'filehist-deleteone'        => 'выдаліць',
-'filehist-revert'           => 'вярнуць',
-'filehist-current'          => 'цяперашняя',
-'filehist-datetime'         => 'Дата і час',
-'filehist-thumb'            => 'Мініятура',
-'filehist-thumbtext'        => 'Мініятура вэрсіі ад $1',
-'filehist-nothumb'          => 'Няма мініятуры',
-'filehist-user'             => 'Удзельнік',
-'filehist-dimensions'       => 'Памеры',
-'filehist-filesize'         => 'Памер файла',
-'filehist-comment'          => 'Камэнтар',
-'filehist-missing'          => 'Файл адсутнічае',
-'imagelinks'                => 'Выкарыстаньне файла',
-'linkstoimage'              => '{{PLURAL:$1|Наступная старонка спасылаецца|Наступныя старонкі спасылаюцца}} на гэты файл:',
-'linkstoimage-more'         => 'Больш чым $1 {{PLURAL:$1|старонка спасылаецца|старонкі спасылаюцца|старонак спасылаюцца}} на гэты файл.
+'file-anchor-link'                  => 'Файл',
+'filehist'                          => 'Гісторыя файла',
+'filehist-help'                     => 'Націсьніце на дату/час, каб паглядзець, як тады выглядаў файл.',
+'filehist-deleteall'                => 'выдаліць усе',
+'filehist-deleteone'                => 'выдаліць',
+'filehist-revert'                   => 'вярнуць',
+'filehist-current'                  => 'цяперашняя',
+'filehist-datetime'                 => 'Дата і час',
+'filehist-thumb'                    => 'Мініятура',
+'filehist-thumbtext'                => 'Мініятура вэрсіі ад $1',
+'filehist-nothumb'                  => 'Няма мініятуры',
+'filehist-user'                     => 'Удзельнік',
+'filehist-dimensions'               => 'Памеры',
+'filehist-filesize'                 => 'Памер файла',
+'filehist-comment'                  => 'Камэнтар',
+'filehist-missing'                  => 'Файл адсутнічае',
+'imagelinks'                        => 'Выкарыстаньне файла',
+'linkstoimage'                      => '{{PLURAL:$1|Наступная старонка спасылаецца|Наступныя старонкі спасылаюцца}} на гэты файл:',
+'linkstoimage-more'                 => 'Больш чым $1 {{PLURAL:$1|старонка спасылаецца|старонкі спасылаюцца|старонак спасылаюцца}} на гэты файл.
 У гэтым сьпісе толькі $1 {{PLURAL:$1|спасылка|спасылкі|спасылак}} на гэты файл.
 Даступны таксама [[Special:WhatLinksHere/$2|поўны сьпіс]].',
-'nolinkstoimage'            => 'Ніводная старонка не спасылаецца на гэты файл.',
-'morelinkstoimage'          => 'Паказаць [[Special:WhatLinksHere/$1|болей спасылак]] на гэты файл.',
-'linkstoimage-redirect'     => '$1 (перанакіраваньне на файл) $2',
-'duplicatesoffile'          => '{{PLURAL:$1|Наступны файл дублюе|Наступныя файлы дублююць}} гэты файл ([[Special:FileDuplicateSearch/$2|падрабязнасьці]]):',
-'sharedupload'              => 'Гэты файл паходзіць з $1 і можа выкарыстоўвацца іншымі праектамі.',
-'sharedupload-desc-there'   => 'Гэты файл паходзіць з $1 і можа выкарыстоўвацца іншымі праектамі.
+'nolinkstoimage'                    => 'Ніводная старонка не спасылаецца на гэты файл.',
+'morelinkstoimage'                  => 'Паказаць [[Special:WhatLinksHere/$1|болей спасылак]] на гэты файл.',
+'linkstoimage-redirect'             => '$1 (перанакіраваньне на файл) $2',
+'duplicatesoffile'                  => '{{PLURAL:$1|Наступны файл дублюе|Наступныя файлы дублююць}} гэты файл ([[Special:FileDuplicateSearch/$2|падрабязнасьці]]):',
+'sharedupload'                      => 'Гэты файл паходзіць з $1 і можа выкарыстоўвацца іншымі праектамі.',
+'sharedupload-desc-there'           => 'Гэты файл паходзіць з $1 і можа выкарыстоўвацца іншымі праектамі.
 Калі ласка, глядзіце падрабязнасьці на [$2 старонцы апісаньня файла].',
-'sharedupload-desc-here'    => 'Гэты файл паходзіць з $1 і можа выкарыстоўвацца іншымі праектамі.
+'sharedupload-desc-here'            => 'Гэты файл паходзіць з $1 і можа выкарыстоўвацца іншымі праектамі.
 Апісаньне са [$2 старонкі апісаньня файла] пададзенае ніжэй.',
-'filepage-nofile'           => 'Файл з гэтай назвай не існуе.',
-'filepage-nofile-link'      => 'Файл з гэтай назвай не існуе, але Вы можаце [$1 загрузіць яго].',
-'uploadnewversion-linktext' => 'Загрузіць новую вэрсію гэтага файла',
-'shared-repo-from'          => '$1',
-'shared-repo'               => 'агульнага сховішча',
+'filepage-nofile'                   => 'Файл з гэтай назвай не існуе.',
+'filepage-nofile-link'              => 'Файл з гэтай назвай не існуе, але Вы можаце [$1 загрузіць яго].',
+'uploadnewversion-linktext'         => 'Загрузіць новую вэрсію гэтага файла',
+'shared-repo-from'                  => '$1',
+'shared-repo'                       => 'агульнага сховішча',
+'shared-repo-name-wikimediacommons' => 'Вікісховішча',
 
 # File reversion
 'filerevert'                => 'Вярнуць $1',
@@ -3535,7 +3536,7 @@ $5
 'unit-pixel' => 'пкс',
 
 # action=purge
-'confirm_purge_button' => 'Добра',
+'confirm_purge_button' => 'Так',
 'confirm-purge-top'    => 'Ачысьціць кэш гэтай старонкі?',
 'confirm-purge-bottom' => 'Ачыстка кэшу старонкі прывядзе да адлюстраваньня яе апошняй вэрсіі.',
 
