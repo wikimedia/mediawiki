@@ -276,7 +276,7 @@ $messages = array(
 'otherlanguages'    => 'Otres llingües',
 'redirectedfrom'    => '(Redirixío dende $1)',
 'redirectpagesub'   => 'Páxina de redireición',
-'lastmodifiedat'    => "Esta páxina foi modificada per postrer vegada'l $1 a les $2.",
+'lastmodifiedat'    => "Esta páxina se camudó por cabera vegada'l $1 a les $2.",
 'viewcount'         => 'Esta páxina foi vista {{PLURAL:$1|una vegada|$1 vegaes}}.',
 'protectedpage'     => 'Páxina protexida',
 'jumpto'            => 'Saltar a:',
@@ -1131,7 +1131,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'rows'                          => 'Fileres:',
 'columns'                       => 'Columnes:',
 'searchresultshead'             => 'Guetar',
-'resultsperpage'                => "Resultaos p'amosar per páxina:",
+'resultsperpage'                => 'Resultaos por páxina:',
 'stub-threshold'                => 'Llímite superior pa considerar como <a href="#" class="stub">enllaz a entamu</a> (bytes):',
 'stub-threshold-disabled'       => 'Desactivao',
 'recentchangesdays'             => "Díes qu'amosar nos cambeos recientes:",
@@ -1784,7 +1784,7 @@ Alcuérdate de comprobar otros enllaces a les plantíes enantes d'esborrales.",
 'statistics-pages-desc'        => "Toles páxines de la wiki, incluyendo páxines d'alderique, redireiciones, etc.",
 'statistics-files'             => 'Archivos xubíos',
 'statistics-edits'             => "Ediciones de páxines dende qu'entamó {{SITENAME}}",
-'statistics-edits-average'     => "Media d'ediciones per páxina",
+'statistics-edits-average'     => "Media d'ediciones por páxina",
 'statistics-views-total'       => 'Visites totales',
 'statistics-views-total-desc'  => "Les vistes de páxines non-esistentes y especiales nun s'incluyen",
 'statistics-views-peredit'     => 'Visites por edición',
@@ -2013,7 +2013,7 @@ La direición de corréu electrónicu qu'especificasti nes [[Special:Preferences
 'emailccsubject'       => 'Copia del to mensaxe a $1: $2',
 'emailsent'            => 'Corréu unviáu',
 'emailsenttext'        => 'El to corréu foi unviáu.',
-'emailuserfooter'      => 'Esti corréu electrónicu foi unviáu por $1 a $2 per acidu de la funxión "Manda-y un corréu a un usuariu" de {{SITENAME}}.',
+'emailuserfooter'      => 'Esti corréu electrónicu unviolu $1 a $2 per aciu de la función "Manda-y un corréu a un usuariu" de {{SITENAME}}.',
 
 # User Messenger
 'usermessage-summary' => 'Dexar un mensaxe del sistema.',
@@ -2570,10 +2570,10 @@ Escueyi otru nome, por favor.",
 # Export
 'export'            => 'Esportar páxines',
 'exporttext'        => "Pues esportar el testu y l'historial d'ediciones d'una páxina en particular o d'una
-riestra páxines endolcaes nun documentu XML. Esti pue ser importáu depués n'otra wiki
+riestra páxines endolcaes nun documentu XML. Esti se pue importar depués n'otra wiki
 qu'use MediaWiki al traviés de la páxina [[Special:Import|importar]].
 
-Pa esportar páxines, pon los títulos na caxa de testu d'embaxo, un títulu per llinia,
+Pa esportar páxines, pon los títulos na caxa de testu d'embaxo, un títulu por llinia,
 y seleiciona si quies la versión actual xunto con toles versiones antigües, xunto col
 so historial, o namái la versión actual cola información de la postrer edición.
 
@@ -2670,7 +2670,7 @@ Guárdalu nel ordenador y xúbilu equí.",
 # Import log
 'importlogpage'                    => "Rexistru d'importaciones",
 'importlogpagetext'                => "Importaciones alministrativas de páxines con historial d'ediciones d'otres wikis.",
-'import-logentry-upload'           => "importada [[$1]] per aciud d'una xuba d'archivu",
+'import-logentry-upload'           => "importada [[$1]] per aciu d'una xuba d'archivu",
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|revisión|revisiones}}',
 'import-logentry-interwiki'        => 'treswikificada $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revisión|revisiones}} dende $2',
@@ -2797,7 +2797,7 @@ Guárdalu nel ordenador y xúbilu equí.",
 'anonymous'        => '{{PLURAL:$1|Usuariu anónimu|Usuarios anónimos}} de {{SITENAME}}',
 'siteuser'         => '{{SITENAME}} usuariu $1',
 'anonuser'         => 'usuariu anónimu de {{SITENAME}} $1',
-'lastmodifiedatby' => "Esta páxina foi modificada per postrer vegada'l $1 a les $2 por $3.",
+'lastmodifiedatby' => "Esta páxina se camudó por cabera vegada'l $1 a les $2 por $3.",
 'othercontribs'    => 'Basao nel trabayu fechu por $1.',
 'others'           => 'otros',
 'siteusers'        => '{{SITENAME}} {{PLURAL:$2|usuariu|usuarios}} $1',
@@ -2945,8 +2945,8 @@ Los demás tarán anubríos de mou predetermináu.
 'exif-xresolution'                 => 'Resolución horizontal',
 'exif-yresolution'                 => 'Resolución vertical',
 'exif-stripoffsets'                => 'Allugamientu de los datos de la imaxe',
-'exif-rowsperstrip'                => 'Númberu de files per banda',
-'exif-stripbytecounts'             => 'Bytes per banda comprimida',
+'exif-rowsperstrip'                => 'Númberu de fileres por banda',
+'exif-stripbytecounts'             => 'Bytes por banda comprimida',
 'exif-jpeginterchangeformat'       => 'Desplazamientu al JPEG SOI',
 'exif-jpeginterchangeformatlength' => 'Bytes de datos JPEG',
 'exif-whitepoint'                  => 'Cromacidá de puntu blancu',
@@ -3262,7 +3262,7 @@ Los demás tarán anubríos de mou predetermináu.
 'exif-gpsmeasuremode-3' => 'Midición tridimensional',
 
 # Pseudotags used for GPSSpeedRef
-'exif-gpsspeed-k' => 'Quilómetros per hora',
+'exif-gpsspeed-k' => 'Quilómetros por hora',
 'exif-gpsspeed-m' => 'Milles por hora',
 'exif-gpsspeed-n' => 'Nueyos',
 
@@ -3440,7 +3440,7 @@ Por favor confirma que daveres quies volver a crear esta páxina.",
 'table_pager_prev'         => 'Páxina anterior',
 'table_pager_first'        => 'Primer páxina',
 'table_pager_last'         => 'Postrer páxina',
-'table_pager_limit'        => 'Amosar $1 elementos per páxina',
+'table_pager_limit'        => 'Amosar $1 elementos por páxina',
 'table_pager_limit_label'  => 'Elementos por páxina:',
 'table_pager_limit_submit' => 'Dir',
 'table_pager_empty'        => 'Nun hai resultaos',

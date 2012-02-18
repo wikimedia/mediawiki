@@ -1739,6 +1739,9 @@ Sing liyane bakal diumpetna sacara ''default''.
 * gpslongitude
 * gpsaltitude",
 
+# EXIF tags
+'exif-lightsource' => 'Sumber cahya',
+
 'exif-meteringmode-6'   => 'Sebagiyan',
 'exif-meteringmode-255' => 'Liyane',
 
