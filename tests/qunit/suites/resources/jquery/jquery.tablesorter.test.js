@@ -1,4 +1,4 @@
-( function () {
+( function ( $ ) {
 
 var config = {
 	wgMonthNames: ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
@@ -549,4 +549,4 @@ test( 'bug 32888 - Tables inside a tableheader cell', function() {
 	);
 });
 
-})();
+})( jQuery );
