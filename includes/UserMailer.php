@@ -115,10 +115,11 @@ class UserMailer {
 	 * @return String
 	 */
 	static function arrayToHeaderString( $headers, $endl = "\n" ) {
+		$strings = array();
 		foreach( $headers as $name => $value ) {
-			$string[] = "$name: $value";
+			$strings[] = "$name: $value";
 		}
-		return implode( $endl, $string );
+		return implode( $endl, $strings );
 	}
 
 	/**

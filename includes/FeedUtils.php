@@ -114,6 +114,7 @@ class FeedUtils {
 			#	$wgLang->time( $timestamp ) ),
 			#	wfMsg( 'currentrev' ) );
 
+			$diffText = '';
 			// Don't bother generating the diff if we won't be able to show it
 			if ( $wgFeedDiffCutoff > 0 ) {
 				$de = new DifferenceEngine( $title, $oldid, $newid );
