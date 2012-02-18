@@ -577,7 +577,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		$prevSize = $prevRev ? $prevRev->getSize() : 0;
 		$sDiff = ChangesList::showCharacterDifference( $prevSize, $rev->getSize() );
 		$fSize = Linker::formatRevisionSize($rev->getSize());
-		$s .= "' . . $fSize $sDiff . . ";
+		$s .= " . . $fSize $sDiff . . ";
 
 		$s .= Linker::revComment( $rev, false, true );
 
