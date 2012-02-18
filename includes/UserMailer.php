@@ -244,6 +244,8 @@ class UserMailer {
 				$endl = "\n";
 			}
 
+			# Subject header is unneeded since it an argument of mail()
+			unset( $headers['Subject'] );
 			$headers = self::arrayToHeaderString( $headers, $endl );
 
 			wfDebug( "Sending mail via internal mail() function\n" );
