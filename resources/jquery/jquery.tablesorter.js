@@ -484,7 +484,7 @@
 		}
 		ts.rgx = {
 			IPAddress: [
-				new RegExp( /^\d{1,3}[\.]\d{1,3}[\.]\d{1,3}[\.]\d{1,3}$/)
+				new RegExp( /^\d{1,3}[\.]\d{1,3}[\.]\d{1,3}[\.]\d{1,3}(\/\d{1,3})?$/)
 			],
 			currency: [
 				new RegExp( /^[£$€?.]/),
@@ -767,9 +767,15 @@
 		},
 		format: function( s ) {
 			var	a = s.split( '.' ),
-				r = '',
-				l = a.length;
-			for ( var i = 0; i < l; i++ ) {
+				r = '';
+			if( a.length == 4 ) {
+				var cidr = a[3].split('/');
+				if (cidr.length > 1 ) {
+					a[3] = cidr[0];
+					a[4] = cidr[1];
+				} else a[4] = '000';
+			}
+			for ( var i = 0; i < a.length; i++ ) {
 				var item = a[i];
 				if ( item.length == 1 ) {
 					r += '00' + item;
