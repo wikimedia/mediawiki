@@ -1,7 +1,7 @@
 /*
  * JavaScript for Special:Preferences
  */
-( function( $, mw ) {
+jQuery( document ).ready( function( $ ) {
 $( '#prefsubmit' ).attr( 'id', 'prefcontrol' );
 var $preftoc = $('<ul id="preftoc"></ul>');
 var $preferences = $( '#preferences' )
@@ -137,4 +137,4 @@ if ( $tzSelect.length && $tzTextbox.length ) {
 	$tzTextbox.blur( function() { updateTimezoneSelection(); } );
 	updateTimezoneSelection();
 }
-} )( jQuery, mediaWiki );
+} );
