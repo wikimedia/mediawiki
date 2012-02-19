@@ -364,7 +364,7 @@ class Sanitizer {
 	 * @return string
 	 */
 	static function removeHTMLtags( $text, $processCallback = null, $args = array(), $extratags = array(), $removetags = array() ) {
-		global $wgUseTidy;
+		global $wgUseTidy, $wgHtml5, $wgAllowMicrodataAttributes;
 
 		static $htmlpairsStatic, $htmlsingle, $htmlsingleonly, $htmlnest, $tabletags,
 			$htmllist, $listtags, $htmlsingleallowed, $htmlelementsStatic, $staticInitialised;
@@ -381,12 +381,19 @@ class Sanitizer {
 				'ruby', 'rt' , 'rb' , 'rp', 'p', 'span', 'abbr', 'dfn',
 				'kbd', 'samp'
 			);
+			if ( $wgHtml5 ) {
+				$htmlpairsStatic = array_merge( $htmlpairsStatic, array( 'data', 'time' ) );
+			}
 			$htmlsingle = array(
 				'br', 'hr', 'li', 'dt', 'dd'
 			);
 			$htmlsingleonly = array( # Elements that cannot have close tags
 				'br', 'hr'
 			);
+			if ( $wgHtml5 && $wgAllowMicrodataAttributes ) {
+				$htmlsingle[] = $htmlsingleonly[] = 'meta';
+				$htmlsingle[] = $htmlsingleonly[] = 'link';
+			}
 			$htmlnest = array( # Tags that can be nested--??
 				'table', 'tr', 'td', 'th', 'div', 'blockquote', 'ol', 'ul',
 				'dl', 'font', 'big', 'small', 'sub', 'sup', 'span'
@@ -526,6 +533,10 @@ class Sanitizer {
 						# plaintext results.
 						if( is_callable( $processCallback ) ) {
 							call_user_func_array( $processCallback, array( &$params, $args ) );
+						}
+
+						if ( !Sanitizer::validateTag( $params, $t ) ) {
+							$badtag = true;
 						}
 
 						# Strip non-approved attributes from the tag
@@ -709,6 +720,37 @@ class Sanitizer {
 	}
 
 	/**
+	 * Takes attribute names and values for a tag and the tah name and
+	 * validates that the tag is allowed to be present.
+	 * This DOES NOT validate the attributes, nor does it validate the
+	 * tags themselves. This method only handles the special circumstances
+	 * where we may want to allow a tag within content but ONLY when it has
+	 * specific attributes set.
+	 *
+	 * @param $
+	 */
+	static function validateTag( $params, $element ) {
+		$params = Sanitizer::decodeTagAttributes( $params );
+		
+		if ( $element == 'meta' || $element == 'link' ) {
+			if ( !isset( $params['itemprop'] ) ) {
+				// <meta> and <link> must have an itemprop="" otherwise they are not valid or safe in content
+				return false;
+			}
+			if ( $element == 'meta' && !isset( $params['content'] ) ) {
+				// <meta> must have a content="" for the itemprop
+				return false;
+			}
+			if ( $element == 'link' && !isset( $params['href'] ) ) {
+				// <link> must have an associated href=""
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	/**
 	 * Take an array of attribute names and values and normalize or discard
 	 * illegal values for the given element type.
 	 *
@@ -809,7 +851,7 @@ class Sanitizer {
 				unset( $out['itemid'] );
 				unset( $out['itemref'] );
 			}
-			# TODO: Strip itemprop if we aren't descendants of an itemscope.
+			# TODO: Strip itemprop if we aren't descendants of an itemscope or pointed to by an itemref.
 		}
 		return $out;
 	}
@@ -1483,7 +1525,7 @@ class Sanitizer {
 
 		# Numbers refer to sections in HTML 4.01 standard describing the element.
 		# See: http://www.w3.org/TR/html4/
-		$whitelist = array (
+		$whitelist = array(
 			# 7.5.4
 			'div'        => $block,
 			'center'     => $common, # deprecated
@@ -1611,7 +1653,24 @@ class Sanitizer {
 			# 'title' may not be 100% valid here; it's XHTML
 			# http://www.w3.org/TR/REC-MathML/
 			'math'       => array( 'class', 'style', 'id', 'title' ),
+		);
+		
+		if ( $wgHtml5 ) {
+			# HTML5 elements, defined by:
+			# http://www.whatwg.org/specs/web-apps/current-work/multipage/
+			$whitelist += array(
+				'data' => array_merge( $common, array( 'value' ) ),
+				'time' => array_merge( $common, array( 'datetime' ) ),
+
+				// meta and link are only present when Microdata is allowed anyways
+				// so we don't bother adding another condition here
+				// meta and link are only valid for use as Microdata so we do not
+				// allow the common attributes here.
+				'meta' => array( 'itemprop', 'content' ),
+				'link' => array( 'itemprop', 'href' ),
 			);
+		}
+
 		return $whitelist;
 	}
 
