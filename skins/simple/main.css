@@ -345,6 +345,7 @@ a.stub {
 }
 a.new,
 #p-personal a.new {
+	color: #BA0000;
 	text-decoration: line-through;
 }
 li.new {

@@ -3231,7 +3231,6 @@ $wgDefaultUserOptions = array(
 	'gender'                  => 'unknown',
 	'hideminor'               => 0,
 	'hidepatrolled'           => 0,
-	'highlightbroken'         => 1,
 	'imagesize'               => 2,
 	'justify'                 => 0,
 	'math'                    => 1,

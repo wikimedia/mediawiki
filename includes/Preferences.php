@@ -638,11 +638,6 @@ class Preferences {
 		);
 
 		if ( $wgAllowUserCssPrefs ) {
-			$defaultPreferences['highlightbroken'] = array(
-				'type' => 'toggle',
-				'section' => 'rendering/advancedrendering',
-				'label' => $context->msg( 'tog-highlightbroken' )->text(), // Raw HTML
-			);
 			$defaultPreferences['showtoc'] = array(
 				'type' => 'toggle',
 				'section' => 'rendering/advancedrendering',

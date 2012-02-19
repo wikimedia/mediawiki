@@ -92,13 +92,6 @@ class ResourceLoaderUserCSSPrefsModule extends ResourceLoaderModule {
 				$rules[] = 'a:lang(ar), a:lang(ckb), a:lang(fa),a:lang(kk-arab), ' .
 				'a:lang(mzn), a:lang(ps), a:lang(ur) { text-decoration: none; }';
 			}
-			if ( $options['highlightbroken'] ) {
-				$rules[] = "a.new, #quickbar a.new { color: #ba0000; }\n";
-			} else {
-				$rules[] = "a.new, #quickbar a.new, a.stub, #quickbar a.stub { color: inherit; }";
-				$rules[] = "a.new:after, #quickbar a.new:after { content: '?'; color: #ba0000; }";
-				$rules[] = "a.stub:after, #quickbar a.stub:after { content: '!'; color: #772233; }";
-			}
 			if ( $options['justify'] ) {
 				$rules[] = "#article, #bodyContent, #mw_content { text-align: justify; }\n";
 			}
