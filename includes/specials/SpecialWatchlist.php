@@ -286,7 +286,7 @@ class SpecialWatchlist extends SpecialPage {
 		wfRunHooks('SpecialWatchlistQuery', array(&$conds,&$tables,&$join_conds,&$fields) );
 
 		$res = $dbr->select( $tables, $fields, $conds, __METHOD__, $options, $join_conds );
-		$numRows = $dbr->numRows( $res );
+		$numRows = $res->numRows();
 
 		/* Start bottom header */
 
