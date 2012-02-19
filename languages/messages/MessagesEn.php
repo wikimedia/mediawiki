@@ -628,7 +628,6 @@ XHTML id names.
 
 # User preference toggles
 'tog-underline'               => 'Link underlining:',
-'tog-highlightbroken'         => 'Format broken links <a href="" class="new">like this</a> (alternative: Like this<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Justify paragraphs',
 'tog-hideminor'               => 'Hide minor edits in recent changes',
 'tog-hidepatrolled'           => 'Hide patrolled edits in recent changes',
