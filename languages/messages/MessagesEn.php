@@ -2754,6 +2754,7 @@ The e-mail address you entered in [[Special:Preferences|your user preferences]] 
 
 # Watchlist
 'watchlist'            => 'My watchlist',
+'watchlist-summary'    => '', # do not translate or duplicate this message to other languages
 'mywatchlist'          => 'My watchlist',
 'watchlistfor2'        => 'For $1 $2',
 'nowatchlist'          => 'You have no items on your watchlist.',

@@ -161,6 +161,7 @@ $wgIgnoredMessages = array(
 	'wantedcategories-summary',
 	'wantedfiles-summary',
 	'wantedpages-summary',
+	'watchlist-summary',
 	'mostlinked-summary',
 	'mostlinkedcategories-summary',
 	'mostlinkedtemplates-summary',
