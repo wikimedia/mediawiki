@@ -40,8 +40,8 @@ abstract class FileOp {
 	/**
 	 * Build a new file operation transaction
 	 *
-	 * @params $backend FileBackendStore
-	 * @params $params Array
+	 * @param $backend FileBackendStore
+	 * @param $params Array
 	 * @throws MWException
 	 */
 	final public function __construct( FileBackendStore $backend, array $params ) {
