@@ -83,7 +83,7 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 
 			$db->begin();
 			foreach ( $res as $row ) {
-				if ( $this->upgradeRow( $row, $db, $table, $idCol, $prefix ) ) {
+				if ( $this->upgradeRow( $row, $table, $idCol, $prefix ) ) {
 					$count++;
 				}
 			}
