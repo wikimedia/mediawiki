@@ -575,6 +575,47 @@ tableTest( 'bug 8115: sort numbers with commas (descending)',
 );
 // TODO add numbers sorting tests for bug 8115 with a different language
 
+var fractions = [
+	[ '56'           ],
+	[ '1 3/8'        ],
+	[ '4 7/8'        ],
+	[ '2,000 1/6'    ],
+	[ '4 1/8'        ],
+	[ '-4 1/8'       ],
+	[ '−5 1/8'   ],
+	[ '56 45/500'    ],
+	[ '56 100/500'   ],
+	[ '100 / 500'    ]
+];
+var fractionsAsc = [
+	[ '−5 1/8'   ],
+	[ '-4 1/8'       ],
+	[ '100 / 500'    ],
+	[ '1 3/8'        ],
+	[ '4 1/8'        ],
+	[ '4 7/8'        ],
+	[ '56'           ],
+	[ '56 45/500'    ],
+	[ '56 100/500'   ],
+	[ '2,000 1/6'    ]
+];
+
+tableTest( 'sort fractional numbers in all sorts and forms (ascending)',
+        ['Fractional numbers'], fractions, fractionsAsc,
+        function( $table ) {
+                $table.tablesorter();
+                $table.find( '.headerSort:eq(0)' ).click();
+        }
+);
+
+tableTest( 'sort fractional numbers in all sorts and forms (descending)',
+        ['Fractional numbers'], fractions, reversed(fractionsAsc),
+        function( $table ) {
+                $table.tablesorter();
+                $table.find( '.headerSort:eq(0)' ).click().click();
+        }
+);
+
 test( 'bug 32888 - Tables inside a tableheader cell', function() {
 	expect(2);
 
