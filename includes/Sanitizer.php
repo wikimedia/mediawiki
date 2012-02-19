@@ -364,14 +364,17 @@ class Sanitizer {
 	 * @return string
 	 */
 	static function removeHTMLtags( $text, $processCallback = null, $args = array(), $extratags = array(), $removetags = array() ) {
-		global $wgUseTidy, $wgHtml5, $wgAllowMicrodataAttributes;
+		global $wgUseTidy, $wgHtml5, $wgAllowMicrodataAttributes, $wgAllowImageTag;
 
 		static $htmlpairsStatic, $htmlsingle, $htmlsingleonly, $htmlnest, $tabletags,
 			$htmllist, $listtags, $htmlsingleallowed, $htmlelementsStatic, $staticInitialised;
 
 		wfProfileIn( __METHOD__ );
 
-		if ( !$staticInitialised ) {
+		// Base our staticInitialised variable off of the global config state so that if the globals
+		// are changed (like in the secrewed up test system) we will re-initialise the settings.
+		$globalContext = implode( '-', compact( 'wgHtml5', 'wgAllowMicrodataAttributes', 'wgAllowImageTag' ) );
+		if ( !$staticInitialised || $staticInitialised != $globalContext ) {
 
 			$htmlpairsStatic = array( # Tags that must be closed
 				'b', 'del', 'i', 'ins', 'u', 'font', 'big', 'small', 'sub', 'sup', 'h1',
@@ -408,7 +411,6 @@ class Sanitizer {
 				'li',
 			);
 
-			global $wgAllowImageTag;
 			if ( $wgAllowImageTag ) {
 				$htmlsingle[] = 'img';
 				$htmlsingleonly[] = 'img';
@@ -423,7 +425,7 @@ class Sanitizer {
 			foreach ( $vars as $var ) {
 				$$var = array_flip( $$var );
 			}
-			$staticInitialised = true;
+			$staticInitialised = $globalContext;
 		}
 		# Populate $htmlpairs and $htmlelements with the $extratags and $removetags arrays
 		$extratags = array_flip( $extratags );
