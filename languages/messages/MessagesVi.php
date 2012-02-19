@@ -292,7 +292,6 @@ $separatorTransformTable = array( ',' => '.', '.' => ',' );
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Gạch chân liên kết:',
-'tog-highlightbroken'         => 'Liên kết đến trang chưa được viết sẽ <a href="" class="new">như thế này</a> (nếu không chọn: như thế này<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Căn đều hai bên đoạn văn',
 'tog-hideminor'               => 'Ẩn sửa đổi nhỏ trong thay đổi gần đây',
 'tog-hidepatrolled'           => 'Ẩn sửa đổi đã tuần tra trong trang thay đổi gần đây',

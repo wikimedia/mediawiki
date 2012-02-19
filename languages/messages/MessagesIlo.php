@@ -17,7 +17,6 @@
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Pinag-ugisan ti silpo:',
-'tog-highlightbroken'         => 'Simpaen dagiti nadadael a panilpo <a href="" class="new">A kas itoy</a> (wenno: kastoy<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Limpiaen dagiti parapo',
 'tog-hideminor'               => 'Ilemmeng dagiti babassit a panag-urnos idiay kinaudian a sinuk-sukatan',
 'tog-hidepatrolled'           => 'Ilemmeng dagiti napatruliaan nga inurnos idiay kinaudian a sinuk-sukatan',

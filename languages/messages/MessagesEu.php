@@ -126,7 +126,6 @@ $separatorTransformTable = array( ',' => '.', '.' => ',' ); /* Bug 15717 */
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Loturak azpimarratu:',
-'tog-highlightbroken'         => 'Lotura hautsiak <a href="" class="new">horrela</a> erakutsi (bestela, honela<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Paragrafoak justifikatu',
 'tog-hideminor'               => 'Azken aldaketetan aldaketa txikiak ezkutatu',
 'tog-hidepatrolled'           => 'Ezkutatu patruilatutako aldaketa azken aldaketetan',

@@ -303,7 +303,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'حط خط تحت اللينكات:',
-'tog-highlightbroken'         => 'بين اللينكات البايظه <a href="" class="new">كدا</a> (البديل: زى دا<a href="" class="internal">؟</a>).',
 'tog-justify'                 => 'ساوى الپاراجرافات',
 'tog-hideminor'               => 'خبى التعديلات الصغيره من اجدد التغييرات',
 'tog-hidepatrolled'           => 'خبى التعديلات المتراجعه من اخر التعديلات',

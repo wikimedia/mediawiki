@@ -150,7 +150,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Sotołinea i cołegamenti:',
-'tog-highlightbroken'         => 'Evidensia <a href="" class="new">cussita</a> i colegamenti che i punta a voxe \'ncora da scrìvar (se disativà vien fora <a href="" class="internal">cussita</a>).',
 'tog-justify'                 => 'Paragrafo: giustifegà',
 'tog-hideminor'               => 'Scondi i canbiamenti picenini in tei "Ultimi canbiamenti"',
 'tog-hidepatrolled'           => 'Scondi i canbiamenti verificà in tei "Ultimi canbiamenti"',

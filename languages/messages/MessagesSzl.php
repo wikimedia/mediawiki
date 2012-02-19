@@ -15,6 +15,7 @@
  * @author Kaganer
  * @author Lajsikonik
  * @author Leinad
+ * @author Lwh
  * @author Ozi64
  * @author Pimke
  * @author Przemub
@@ -27,7 +28,6 @@ $fallback = 'pl';
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Podsztrychńyńcy linkůw:',
-'tog-highlightbroken'         => 'Uoznocz <a href="" class="new">tak</a> linki do zajtůw kere ńy trefjům (abo: dołůncz pytajńik<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Wyrůwnowej tekst we akapitach (justowańy)',
 'tog-hideminor'               => 'Schow drobne pomjyńańa we ńydowno pomjyńanych',
 'tog-hidepatrolled'           => 'Schow sprowdzůne sprowjyńa we ńydowno pomjyńanych',
@@ -626,9 +626,9 @@ Možeš to zrobić we [[Special:Preferences|swojich štalowańach]].',
 Hasło można pomjyńyć [[Special:ChangePassword|tu]].',
 'newarticle'                       => '(Nowy)',
 'newarticletext'                   => 'Ńy mo sam jeszcze artikla uo takijj titli. Eli chcesz go sprowjać, naszkryflej niżyj jego tekst (wjyncy informacyj nojdźesz [[{{MediaWiki:Helppage}}|na zajće půmocy]]). Eli żeś chćoł zrobić cosik inksze, naćiś ino knefel "Nazod".',
-'anontalkpagetext'                 => "---- ''To jest zajta godki lo użytkowńikůw anůnimowych - takich, kerzi ńy majům jeszcze swojigo kůnta abo ńy chcům go terozki užywać.
+'anontalkpagetext'                 => "---- ''To je zajta godki lo anůnimowych używoczy  - takich, kerzi ńy majům jeszcze swojigo kůnta abo ńy chcům go terozki używać.
 By jeich idyntyfikować, używomy numerůw IP.
-Eli jeżeś anůnimowym użytkowńikym a wydowo Ći śe, aże zamjyszczůne sam kůmyntorze ńy sům skjyrowane do Ćebje, [[Special:UserLogin|utwůrz prosza kůnto]] abo [[Special:UserLogin|zalůguj śe]] - bez tůż uńikńesz potym podobnych ńyporozumjyń.''",
+Eli jeżeś anůnimowym używoczym a wydowo Ći śe, aże zamjyszczůne sam kůmyntorze ńy sům skjyrowane do Ćebje, [[Special:UserLogin|utwůrz prosza kůnto]] abo [[Special:UserLogin|zalůguj śe]] - bez tůż uńikńesz potym podobnych ńyporozumjyń.''",
 'noarticletext'                    => 'Ńy můmy zajta uo takij titli. Mogesz [{{fullurl:{{FULLPAGENAME}}|action=edit}} wćepać artikel {{FULLPAGENAME}}] abo [[Special:Search/{{PAGENAME}}|sznupać {{PAGENAME}} we inkszych]].',
 'noarticletext-nopermission'       => 'Na tyj zajće ńy mo jeszcze artikla.
 Mogesz [[Special:Search/{{PAGENAME}}|wysznupać ta titla]] we treśći inkszych zajtůw

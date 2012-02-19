@@ -96,7 +96,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Kurítan an mga takód:',
-'tog-highlightbroken'         => 'Pakarahayón an mga raot na takód <a href="" klase="bàgo">arog kaini</a> (panribay: arog kaini<a href="" klase="panlaog">?</a>).',
 'tog-justify'                 => 'Pantayón an mga talodtód',
 'tog-hideminor'               => 'Tagóon an mga saradít na paghirá sa nakakaági pa sanáng pagbabàgo',
 'tog-hidepatrolled'           => 'Tagóon an mga saradít na paghirá sa nakakaági pa sanáng pagbabàgo',

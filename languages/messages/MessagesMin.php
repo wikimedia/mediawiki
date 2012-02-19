@@ -19,7 +19,6 @@ $fallback = 'id';
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Garih bawahi link:',
-'tog-highlightbroken'         => 'Format link putuih <a href="" class="new">macam iko</a> (pilihan: macam iko<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Ratokan paragraf',
 'tog-hideminor'               => 'Suruakkan suntingan ketek di parubahan tabaru',
 'tog-hidepatrolled'           => 'Suruakkan suntingan nan lah dijago di parubahan tabaru',

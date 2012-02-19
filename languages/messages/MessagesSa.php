@@ -277,7 +277,6 @@ $digitGroupingPattern = "##,##,###";
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'सम्पर्कतन्तोः अधोरेखाङ्कनम्:',
-'tog-highlightbroken'         => 'विच्छिन्नाः सम्पर्कतन्तवः <a href="" class="new"> एवं दर्श्यन्ताम् </a> (अथवा : एवं दर्श्यन्ताम् <a href="" class="internal">?</a>)।',
 'tog-justify'                 => 'परिच्छेदाः समानाः क्रियन्ताम्',
 'tog-hideminor'               => 'सद्योजातानां परिवर्तनानां लघूनि सम्पादनानि गोप्यन्ताम्',
 'tog-hidepatrolled'           => 'सद्योजातानां परिवर्तनानां परिशीलितानि सम्पादनानि गोप्यन्ताम्',

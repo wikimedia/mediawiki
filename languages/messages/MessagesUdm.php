@@ -45,7 +45,6 @@ $separatorTransformTable = array( ',' => ' ', '.' => ',' );
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Линкъёс ултӥз гожен сызоно',
-'tog-highlightbroken'         => 'Кушкам чӧлсконъёсты <a href="" class="new">та кадь</a> возматыны (озьытэк: <a href="" class="internal">?</a>)',
 'tog-hideminor'               => 'Берпуметӥ тупатонъёслэн списоксэс ичи воштонъёстэк возьматыны',
 'tog-hidepatrolled'           => 'Берпуметӥ тупатонъёслэн списоксэс партрулировать каремын воштонъёстэк возьматыны',
 'tog-newpageshidepatrolled'   => 'Выль бамъёслэн списоксэс партрулировать каремын бамъёстэк возьматыны',

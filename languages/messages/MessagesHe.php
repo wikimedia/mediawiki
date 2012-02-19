@@ -354,7 +354,6 @@ $namespaceGenderAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'סימון קישורים בקו תחתי:',
-'tog-highlightbroken'         => 'סימון קישורים לדפים שלא נכתבו <a href="" class="new">כך</a> (או: כך<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'יישור פסקאות',
 'tog-hideminor'               => 'הסתרת שינויים משניים ברשימת השינויים האחרונים',
 'tog-hidepatrolled'           => 'הסתרת שינויים בדוקים ברשימת השינויים האחרונים',
@@ -2209,7 +2208,7 @@ $1',
 'allpagesnext'      => 'הבא',
 'allpagessubmit'    => 'הצגה',
 'allpagesprefix'    => 'הדפים ששמם מתחיל ב…:',
-'allpagesbadtitle'  => 'כותרת הדף שניתנה הייתה לבלתי־תקינה או שהייתה בה קידומת של קישור לשפה אחרת או לוויקי אחר.
+'allpagesbadtitle'  => 'כותרת הדף שניתנה הייתה בלתי־תקינה או שהייתה בה קידומת של קישור לשפה אחרת או לוויקי אחר.
 ייתכן שהיא מכילה תו אחד או יותר האסורים לשימוש בכותרות.',
 'allpages-bad-ns'   => 'אין מרחב שם בשם "$1".',
 

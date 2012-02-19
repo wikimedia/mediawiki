@@ -94,7 +94,6 @@ $linkTrail = '/^([a-zäçğıñöşü“»]+)(.*)$/sDu';
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Sıltamalarnıñ astına sızu:',
-'tog-highlightbroken'         => 'Tözelmägän sıltamalar <a href="" class="new">şuşılay</a> (yuqsa <a href="" class="internal">bolay</a>) kürsätelsen',
 'tog-justify'                 => 'Tekst kiñlek buyınça tigezlänsen',
 'tog-hideminor'               => 'Soñğı üzgärtülär isemlegendä keçe üzgärtülär yäşerelsen',
 'tog-hidepatrolled'           => 'Tikşerelgän üzgärtülär yaña üzgärtülär isemlegennän yäşerelsen.',

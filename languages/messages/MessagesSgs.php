@@ -60,7 +60,6 @@ $namespaceAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Pabrauktė nūruodas:',
-'tog-highlightbroken'         => 'Fuormoutė nasontiu poslapiu nūruodas <a href="#" class="new">šėtēp</a> (prīšėngā - šėtēp <a href="#" class="internal">?</a>).',
 'tog-justify'                 => 'Līgintė pastraipas palē abi poses',
 'tog-hideminor'               => 'Pakavuotė mažus pataisėmus vielībūju taisīmu sārašė',
 'tog-extendwatchlist'         => 'Ėšpliestė keravuojamu sāraša, kū ruodītu vėsus tėnkamus pakeitėmus',

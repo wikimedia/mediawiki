@@ -31,7 +31,6 @@ $namespaceNames = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Hlenċa undermearcian:',
-'tog-highlightbroken'         => 'Sete unfulfylede hlencan <a href="" class="new">sƿā þis</a> (þīn ōðer cyre is tō habbenne hīe sƿā þis:<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Macian cwidfloccas riht',
 'tog-hideminor'               => 'Lytla ādihtas hȳdan in nīƿum hƿeorfum',
 'tog-hidepatrolled'           => 'Ƿeardede ādihtas hȳdan in nīƿe hƿearfas',

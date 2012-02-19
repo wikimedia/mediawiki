@@ -108,7 +108,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Sotturìnia li cullegamenti:',
-'tog-highlightbroken'         => 'Fuimmadda <a href="" class="new">cussì</a> li cullegamenti a pàgini inesisthenti (si disattibaddu: cussì<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Alliniamentu di li paràgrafi giusthifiggaddu',
 'tog-hideminor'               => "Cua li mudìfigghi minori i' l'ulthimi mudìfigghi",
 'tog-extendwatchlist'         => "Musthra tutti li mudìfigghi a li abbaidaddi ippiziari, nò soru l'ulthimi.",

@@ -260,7 +260,6 @@ $linkTrail = '/^([a-zàéèíîìóòúù]+)(.*)$/sDu';
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Sottolinea i collegamenti:',
-'tog-highlightbroken'         => 'Evidenzia <a href="" class="new">così</a> i collegamenti a pagine inesistenti (se disattivato: così<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Allineamento dei paragrafi giustificato',
 'tog-hideminor'               => 'Nascondi le modifiche minori nelle ultime modifiche',
 'tog-hidepatrolled'           => 'Nascondi le modifiche verificate nelle ultime modifiche',
@@ -1721,12 +1720,12 @@ $1',
 'backend-fail-closetemp'     => 'Impossibile chiudere il file temporaneo.',
 'backend-fail-read'          => 'Impossibile leggere il file  $1 .',
 'backend-fail-create'        => 'Impossibile creare il file  $1 .',
-'backend-fail-readonly'      => 'Il sistema interno "$1" è attualmente di sola lettura. La ragione indicata è: "$2"',
-'backend-fail-synced'        => 'Il file "$1" è in uno stato non coerente nel sistema interno.',
-'backend-fail-connect'       => 'Impossibile connettersi al sistema interno per il file "$1".',
-'backend-fail-internal'      => 'Si è verificato un errore sconosciuto nel sistema interno per il file "$1".',
+'backend-fail-readonly'      => 'Il backend "$1" è attualmente di sola lettura. La ragione indicata è: "$2"',
+'backend-fail-synced'        => 'Il file "$1" è in uno stato non coerente nei backend di memoria interna.',
+'backend-fail-connect'       => 'Impossibile connettersi al backend di memoria "$1".',
+'backend-fail-internal'      => 'Si è verificato un errore sconosciuto nel backend di memoria "$1".',
 'backend-fail-contenttype'   => 'Impossibile determinare la tipologia del file da archiviare in "$1".',
-'backend-fail-batchsize'     => 'Il sistema interno avrebbe dovuto eseguire $1 {{PLURAL:$1|operazione|operazioni}} sui file ma il limite è di $2 {{PLURAL:$2|operazione|operazioni}}.',
+'backend-fail-batchsize'     => 'Il backend di memoria ha programmato una serie di $1 {{PLURAL:$1|operazione|operazioni}} su file; il limite è di $2 {{PLURAL:$2|operazione|operazioni}}.',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Impossibile sbloccare "$1"; non è bloccato.',
@@ -1849,7 +1848,7 @@ Di seguito viene mostrata la descrizione presente nella [$2 pagina di descrizion
 'uploadnewversion-linktext' => 'Carica una nuova versione di questo file',
 'shared-repo-from'          => 'da $1',
 'shared-repo'               => 'un archivio condiviso',
-'filepage.css'              => '/* Il CSS qui posto viene incluso nella pagina di descrizione del file, inclusa anche su wiki client stranieri */',
+'filepage.css'              => '/* Il CSS messo qui viene incluso nella pagina di descrizione del file, inclusa anche su wiki client esterni */',
 
 # File reversion
 'filerevert'                => 'Ripristina $1',
@@ -3202,6 +3201,7 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'exif-compression-2' => 'CCITT gruppo 3 monodimensionale - codifica run length di Huffman modificata',
 'exif-compression-3' => 'Codifica fax CCITT Group 3',
 'exif-compression-4' => 'Codifica fax CCITT gruppo 4',
+'exif-compression-6' => 'JPEG (vecchio)',
 
 'exif-copyrighted-true'  => 'Protetto da copyright',
 'exif-copyrighted-false' => 'Pubblico dominio',

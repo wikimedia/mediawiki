@@ -48,7 +48,6 @@ $namespaceNames = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'লিঙ্কর তলে দুরগ দিক:',
-'tog-highlightbroken'         => 'বাগা লিঙ্ক অতারে<a href="" class="new">এসারে</a> দেখাদে (নাইলে: এসারে<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'অনুচ্ছেদহানির দুরগি দ্বিয়পারাদেত্ত মান্নাকরিক',
 'tog-hideminor'               => 'হুরু পতানি গুর',
 'tog-hidepatrolled'           => 'পরীক্ষাইসে পতা অতা হাদিএহানর পতানিত আরুম কর',

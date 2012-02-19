@@ -353,7 +353,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Podtrhávat odkazy:',
-'tog-highlightbroken'         => 'Formátovat odkazy na neexistující stránky <a href="" class="new">takto</a> (alternativa: takto<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Zarovnat odstavce do bloku',
 'tog-hideminor'               => 'Skrýt malé editace v posledních změnách',
 'tog-hidepatrolled'           => 'Skrýt patrolované editace v posledních změnách',

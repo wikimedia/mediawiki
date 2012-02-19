@@ -377,7 +377,6 @@ $imageFiles = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Links unterstreichen:',
-'tog-highlightbroken'         => 'Links zu nicht vorhandenen Seiten hervorheben (<a href="" class="new">Beispielseite</a> oder alternativ Beispielseite<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Text als Blocksatz',
 'tog-hideminor'               => 'Kleine Änderungen in den „Letzten Änderungen“ ausblenden',
 'tog-hidepatrolled'           => 'Kontrollierte Änderungen in den „Letzten Änderungen“ ausblenden',

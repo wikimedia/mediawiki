@@ -18,7 +18,6 @@
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Ṣetter l-lyanaṫ:',
-'tog-highlightbroken'         => 'L-Lyanaṫ le ṣefḫaṫ li ma mojodinċ ka iṫ\'afiċaw <a href="" class="new">ḫomer</a> (ola :  bḫal haka<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Jusṫifyé l-paragrafaṫ',
 'tog-hideminor'               => 'Ĥebbi ṫ-ṫeĝdilaṫ l-leĥĥrin',
 'tog-hidepatrolled'           => 'Ĥebbi ṫ-ṫeĝdilaṫ l-mraqbin fe ṫ-ṫeĝdilaṫ l-leĥĥrin',

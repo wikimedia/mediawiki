@@ -238,7 +238,6 @@ $separatorTransformTable = array( ',' => "\xc2\xa0", '.' => ',' );
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Подчертаване на препратките:',
-'tog-highlightbroken'         => 'Показване на невалидните препратки <a href="#" class="new">така</a> (алтернативно: така<a href="#" class="internal">?</a>)',
 'tog-justify'                 => 'Двустранно подравняване на абзаците',
 'tog-hideminor'               => 'Скриване на малки редакции в последните промени',
 'tog-hidepatrolled'           => 'Скриване на патрулираните редакции от списъка с последните промени',

@@ -194,7 +194,6 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'සබැඳි යටීර කිරීම:',
-'tog-highlightbroken'         => 'භින්න වූ සබැඳියන් <a href="" class="new">මේ අයුරින්</a> ආකෘතිකරණය කරන්න  (විකල්පය: මේ අයුරින්<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'ඡේදයන් පේළ ගස්වන්න',
 'tog-hideminor'               => 'මෑත වෙනස් කිරීම්වල සුළු සංස්කරණ සඟවන්න',
 'tog-hidepatrolled'           => 'මෑත වෙනස් කිරීම්වල මුර සංචාරය කරන ලද සංස්කරණ සඟවන්න',

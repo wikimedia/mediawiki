@@ -15,7 +15,6 @@
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Lingk andalainin',
-'tog-highlightbroken'         => 'Faamat brok lingk <a href="" class="new">laik dis</a> (altoernativ: laik dis<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Jostifai paragraaf',
 'tog-hideminor'               => 'Aid maina edit ina riisant chienj',
 'tog-hidepatrolled'           => 'Aid pachruol edit ina riisant chienj',

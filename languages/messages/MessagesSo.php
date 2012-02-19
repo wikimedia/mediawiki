@@ -15,7 +15,6 @@
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Linkiga hoos ka calaamadeysan:',
-'tog-highlightbroken'         => 'Wax ka bedel linkiyada halaabay <a href="" class="new">Sidaan oo kale</a> (alternative: sidaan oo kale<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Geesdhig baaragaraafyada',
 'tog-hideminor'               => 'Qari bedelada yar ee isbedelada dhow',
 'tog-hidepatrolled'           => 'Qari wax bedelkii ugu danbeeyay oo la waardiyeeyay',

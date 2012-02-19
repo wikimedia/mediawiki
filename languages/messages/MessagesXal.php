@@ -58,7 +58,6 @@ $namespaceGenderAliases = array();
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Заалһиг татас татх:',
-'tog-highlightbroken'         => 'Бәәдг уга заалһс <a href="" class="new">иигәд</a> үзүлх (оңданар иигәд<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Зүүл тегшлтн',
 'tog-hideminor'               => 'Шидрә сольлһна сеткүлд баһ хүврлһиг бултулх',
 'tog-hidepatrolled'           => 'Шидрә сольлһна сеткүлд шүүсн хүврлһиг бултулх',

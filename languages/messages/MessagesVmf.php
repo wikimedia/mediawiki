@@ -60,7 +60,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'              => 'Linggs undârschdrajchn:',
-'tog-highlightbroken'        => 'Linggs auf sajdn, diis ned gajd, soo ôôdsajchn: <a href="" class="new">bajschbiil</a> (sunschd: soo<a href="" class="internal">?</a>)',
 'tog-justify'                => 'Dhägsd in Blogsads',
 'tog-hideminor'              => 'Glaane ändrungn ned ôôdsajchn',
 'tog-hidepatrolled'          => 'Ned dsajchn in dâ „Ledschdâ Ändrungn“, was an andrar schon brüüfd had',

@@ -66,7 +66,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Binadlisan nga mga sumpay:',
-'tog-highlightbroken'         => 'Ipormat ang mga buak nga sumpay <a href="" class="new">susama niini</a> (alternatibo: susama niini<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Ihusto ang mga parapo',
 'tog-hideminor'               => 'Ipakita ang gamayng pag-usab sa mga bag-ong giusab',
 'tog-hidepatrolled'           => 'Tagoa ang mga napatrol nga pag-usab sa mga bag-ong giusab',

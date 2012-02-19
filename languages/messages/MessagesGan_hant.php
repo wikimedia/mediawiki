@@ -57,7 +57,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => '下劃連結',
-'tog-highlightbroken'         => '非法連結格式<a href="" class="new">像咁樣</a> （或者像咁樣<a href="" class="internal">?</a>）.',
 'tog-justify'                 => '對到段落',
 'tog-hideminor'               => '該朝子嗰改動弆到嗰細修改',
 'tog-hidepatrolled'           => '到箇晝子嗰修改裡頭弆到巡查過嗰編輯',

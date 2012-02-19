@@ -45,7 +45,6 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Tsenya mothalafase go dihlomaganyo:',
-'tog-highlightbroken'         => 'Laetša dihlomaganyo tša go senyega <a href="" class="new">ga mokgwa wo</a> (goba: ka mokgwa wo<a href="" class="internal">?</a>).',
 'tog-hideminor'               => 'Fihla diphetogo tše nnyenyane',
 'tog-showtoolbar'             => "Bontšha ''toolbar'' yago fetola (JavaScript)",
 'tog-editondblclick'          => 'Fetola matlakala ka go thathapa gabedi (JavaScript)',

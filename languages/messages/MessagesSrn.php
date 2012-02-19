@@ -155,7 +155,6 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Poti strepi ondro den miti:',
-'tog-highlightbroken'         => 'Skrifi miti go na leygi papira <a href="" class="new">so</a> (tra fasi: leki disi<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Fiti na ala tu sey',
 'tog-hideminor'               => 'Kibri pikin kenki ini laste kenki',
 'tog-extendwatchlist'         => 'Moro langa "Tan luku" réy',

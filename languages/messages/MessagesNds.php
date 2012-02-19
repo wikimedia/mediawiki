@@ -216,7 +216,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Verwies ünnerstrieken',
-'tog-highlightbroken'         => 'Verwies op leddige Sieten hervörheven',
 'tog-justify'                 => 'Text as Blocksatz',
 'tog-hideminor'               => 'Kene lütten Ännern in letzte Ännern wiesen',
 'tog-hidepatrolled'           => 'Nakeken Ännern bi „Toletzt ännert“ nich wiesen',

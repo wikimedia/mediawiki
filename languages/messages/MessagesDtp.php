@@ -16,7 +16,6 @@ $fallback = 'ms';
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Mangagaris pioputan:',
-'tog-highlightbroken'         => 'Oturo noputan norumbak <a href="" class="new">miagal diti</a> (toi: miagal diti <a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Kasagaan kiparagrap',
 'tog-hideminor'               => 'Lisoko idit tokoro ih wagu kaalanai.',
 'tog-hidepatrolled'           => 'Lisoko idit tinamangan ih wagu kaalanai',

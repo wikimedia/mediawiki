@@ -18,7 +18,6 @@
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Jorr ke niche line khicho:',
-'tog-highlightbroken'         => 'Tuuta waala jorr ke format karo <a href="" class="new">ii rakam se</a> (nai to: ii rakam se<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Paragraphs ke justify karo',
 'tog-hideminor'               => 'Chhota aur nawaa badlao ke lukao',
 'tog-hidepatrolled'           => 'Pahraa dewa gais badlao ke nawaa badlao me se lukao',

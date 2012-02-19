@@ -21,7 +21,6 @@ $namespaceNames = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Surrayal atihus:',
-'tog-highlightbroken'         => 'Escribil atihus eschangaus <a href="" class="new">asina</a> (u desta otra horma<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Encahal párrafus',
 'tog-hideminor'               => 'Açonchal eicionis chiqueninas en "úrtimus chambus"',
 'tog-hidepatrolled'           => 'Açonchal eicionis vegilás en úrtimus chambus',

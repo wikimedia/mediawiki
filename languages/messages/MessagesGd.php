@@ -18,7 +18,6 @@
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Fo-loidhneadh nan ceanglaichean:',
-'tog-highlightbroken'         => 'An cleachdar am fòrmat <a href="" class="new">seo</a> airson ceanglaichean briste (no am fear seo<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Taobhaich na h-earrannan',
 'tog-hideminor'               => 'Falaich mùthaidhean beaga ann an liosta nam mùthaidhean ùra',
 'tog-hidepatrolled'           => 'Falaich mùthaidhean fo fhaire ann an liosta nam mùthaidhean ùra',

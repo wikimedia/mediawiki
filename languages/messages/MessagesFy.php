@@ -143,7 +143,6 @@ $linkTrail = '/^([a-zàáèéìíòóùúâêîôûäëïöü]+)(.*)$/sDu';
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Keppelings ûnderstreekje:',
-'tog-highlightbroken'         => 'Keppelings nei lege siden ta <a href="" class="new">read</a> (oars mei in fraachteken<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Paragrafen útfolje',
 'tog-hideminor'               => "Tekstwizigings wei litte út 'Koartlyn feroare'",
 'tog-hidepatrolled'           => 'Markearre feroarings ferskûlje yn resinte feroarings',

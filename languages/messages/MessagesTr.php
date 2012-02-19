@@ -316,7 +316,6 @@ $linkTrail = '/^([a-zÇĞçğİıÖöŞşÜüÂâÎîÛû]+)(.*)$/sDu';
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Bağlantıların altını çiz:',
-'tog-highlightbroken'         => 'Boş bağlantıları <a href="" class="new">bu şekilde</a> (seçenek: bu şekilde<a href="" class="internal">?</a>) göster.',
 'tog-justify'                 => 'Paragrafları iki yana yasla',
 'tog-hideminor'               => '"Son değişiklikler" sayfasında küçük değişiklikleri gizle',
 'tog-hidepatrolled'           => 'Son değişikliklerde gözlenmiş değişiklikleri gizle',

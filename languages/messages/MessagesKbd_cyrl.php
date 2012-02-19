@@ -19,7 +19,6 @@
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'ТехьэпIэхэр щIэтхъэн:',
-'tog-highlightbroken'         => 'ЩымыIэ техьэпIэхэр къэгъэлъэгъуэн <a href="" class="new">мыбы хуэду</a> (ар мыхъумэ мыпхуэдэу<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'БгъуагъкIэ напэкIуэцIыр зэгъэзэхуэн',
 'tog-hideminor'               => 'ГъэпщкIун: кIуэдкIэ зыхэмылэжьыхьа, щIэуэ яхъуэжа тхылъым',
 'tog-hidepatrolled'           => 'ГъэпшкIун гъэтэрэзыгъуэ щIэлъыплъахэм я тхылъ гъэтэрэзыгъуэщIэхэр',

@@ -15,7 +15,6 @@
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Kuritan sa idalum ang mga link',
-'tog-highlightbroken'         => 'I-pormat ang mga utod nga link nga <a href="" class="new"> parehos mini </a> (alternatibo: parehos mini<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Tadlungon ang mga talata',
 'tog-hideminor'               => 'Itago ang mga gamay nga ginliwat sang mini lang ginbag-o',
 'tog-hidepatrolled'           => 'Itago ang mga napatrolya nga mga na-islan sang mini lang ginbag-o',

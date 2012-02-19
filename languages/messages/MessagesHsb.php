@@ -155,7 +155,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Wotkazy podšmórnić:',
-'tog-highlightbroken'         => 'Wotkazy na njeeksistowace strony formatować <a href="" class="new">tak</a> (alternatiwa: tak<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Tekst w blokowej sadźbje',
 'tog-hideminor'               => 'Snadne změny w aktualnych změnach schować',
 'tog-hidepatrolled'           => 'Dohladawane změny w aktualnych změnach schować',

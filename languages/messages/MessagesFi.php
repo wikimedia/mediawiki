@@ -309,7 +309,6 @@ $linkTrail = '/^([a-zäö]+)(.*)$/sDu';
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Linkkien alleviivaus',
-'tog-highlightbroken'         => 'Näytä linkit puuttuville sivuille <a href="#" class="new">näin</a> (vaihtoehtoisesti näin: <a href="#" class="internal">?</a>).',
 'tog-justify'                 => 'Tasaa kappaleet',
 'tog-hideminor'               => 'Piilota pienet muutokset tuoreet muutokset -listasta',
 'tog-hidepatrolled'           => 'Piilota tarkastetut muutokset tuoreet muutokset -listasta',

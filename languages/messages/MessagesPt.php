@@ -310,7 +310,6 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Sublinhar links:',
-'tog-highlightbroken'         => 'Formatar links para páginas inexistentes <a href="" class="new">assim</a> (em alternativa: assim<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Justificar parágrafos',
 'tog-hideminor'               => 'Esconder edições menores nas mudanças recentes',
 'tog-hidepatrolled'           => 'Esconder edições patrulhadas nas mudanças recentes',

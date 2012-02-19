@@ -15,7 +15,6 @@
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'krrj du izdayn:',
-'tog-highlightbroken'         => 'sbaynd izdayn li khsrnin   <a href="" class="new">zod ghika</a> (nghd: zod ghika <a href="" class="internal">?</a>)',
 'tog-justify'                 => 'skr lɛrd n-stor ɣ togzimin aygiddi',
 'tog-hideminor'               => 'Ḥbu imbddl imaynutn lli fssusnin.',
 'tog-hidepatrolled'           => 'Hide patrolled edits in recent changes',

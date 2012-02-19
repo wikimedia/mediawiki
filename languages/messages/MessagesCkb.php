@@ -145,7 +145,6 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'ھێڵ ھێنان بەژێر بەستەرەکان:',
-'tog-highlightbroken'         => 'بەستەرە شکاوەکان <a href="" class="new">بەم جۆرە</a> بڕازێنەوە (یان: بەم جۆرە<a href="" class="internal">؟</a>)',
 'tog-justify'                 => 'پەرەگرافەکان پڕاوپر نیشان بدە',
 'tog-hideminor'               => 'دەستکارییە بچوکەکان بشارەوە لە دوا گۆڕانکارییەکاندا',
 'tog-hidepatrolled'           => 'لە دوایین گۆڕانکاریەکان، دەستکاریە پارێزراوەکان داشارە',

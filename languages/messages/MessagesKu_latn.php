@@ -85,7 +85,6 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Xetekê di bin girêdanê de çêke:',
-'tog-highlightbroken'         => 'Girêdanên gotarên vala biguherîne',
 'tog-justify'                 => 'Gotar bi forma "block"',
 'tog-hideminor'               => 'Guherandinên biçûk ji listêya guherandinên dawî veşêre',
 'tog-hidepatrolled'           => 'Guherandinên hatine kontrolkirin ji nav guherandinên dawî veşêre',

@@ -101,7 +101,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Levconhani gluyasiki se',
-'tog-highlightbroken'         => 'Gluyasiki va mekruldesaca keron',
 'tog-justify'                 => 'Emaven kuparkieem',
 'tog-hideminor'               => 'Palsera va <i>Noeltaf betakseem</i> mezolonaf',
 'tog-extendwatchlist'         => 'Divatcera va suzdasiki ta nedira va kot rorewan betaks',

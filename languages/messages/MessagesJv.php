@@ -49,7 +49,6 @@ $namespaceAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Garisen ngisoré pranala:',
-'tog-highlightbroken'         => 'Format pranala tugel <a href="" class="new">kaya iki</a> (pilihan: kaya iki<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Ratakna paragraf',
 'tog-hideminor'               => 'Delikna suntingan cilik ing owah-owahan pungkasan',
 'tog-hidepatrolled'           => 'Delikna suntingan sing wis dipatroli ing kaca owah-owahan',

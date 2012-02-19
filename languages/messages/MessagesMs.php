@@ -193,7 +193,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Gariskan pautan:',
-'tog-highlightbroken'         => 'Formatkan pautan rosak <a href="" class="new">seperti ini</a> (ataupun seperti ini<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Laraskan perenggan',
 'tog-hideminor'               => 'Sembunyikan suntingan kecil dalam laman perubahan terkini',
 'tog-hidepatrolled'           => 'Sorokkan suntingan yang telah dironda daripada senarai perubahan terkini',

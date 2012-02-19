@@ -41,7 +41,6 @@ $namespaceAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Derrer izdayen:',
-'tog-highlightbroken'         => 'Ssken izdayen imerẓa <a href="" class="new">akkagi</a> (neɣ: akkagi<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Err tehri ger wawalen kif-kif',
 'tog-hideminor'               => 'Ffer ibeddlen ifessasen deg yibeddlen imaynuten',
 'tog-extendwatchlist'         => 'Ssemɣer umuɣ n uɛessi iwakken ad muqleɣ akk n wayen zemreɣ ad beddleɣ',

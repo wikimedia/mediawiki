@@ -113,7 +113,6 @@ $digitGroupingPattern = "##,##,###";
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'সংযোগ সমূহ অধোৰেখিত কৰক:',
-'tog-highlightbroken'         => 'ভঙা সংযোগসমূহ <a href="" class="new">এনেকৈ</a> (বা এনেকৈ<a href="" class="internal">?</a>) দেখুৱাওক ।',
 'tog-justify'                 => 'দফাৰ সীমা সমান কৰাক',
 'tog-hideminor'               => 'সাম্প্ৰতিক সাল-সলনিত অগুৰুত্বপূৰ্ণ সম্পাদনা নেদেখুৱাব',
 'tog-hidepatrolled'           => 'সাম্প্ৰতিক সাল-সলনিত তহলদাৰী সম্পাদনা নেদেখুৱাব',

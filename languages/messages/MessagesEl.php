@@ -352,7 +352,6 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Υπογράμμιση συνδέσμων:',
-'tog-highlightbroken'         => 'Κατεστραμμένοι σύνδεσμοι μορφοποίησης <a href="" class="new">όπως αυτός</a> (εναλλακτικά: όπως αυτός<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Στοίχιση παραγράφων',
 'tog-hideminor'               => 'Απόκρυψη αλλαγών μικρής κλίμακας',
 'tog-hidepatrolled'           => 'Απόκρυψη ελεγμένων επεξεργασιών στις πρόσφατες αλλαγές',

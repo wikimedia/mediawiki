@@ -145,7 +145,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Сюлмафкснень алга китькстамс:',
-'tog-highlightbroken'         => 'Латцемс синьтьф сюлмафкснень <a href="" class="new">вага ста</a> (илякс: вага ста<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Тиемс сёрматфть фкакс ушедоматнень лопать кувалмова',
 'tog-hideminor'               => 'Од полафтоматнень эса кяшемс ёмланя видептематне',
 'tog-extendwatchlist'         => 'Келептемс мельгеваномать сембе полафтоматнень няфтемга, аф аньцек мекольценнет',

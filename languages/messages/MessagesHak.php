@@ -14,7 +14,6 @@
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Hâ-va̍k lièn-chiap:',
-'tog-highlightbroken'         => 'Fí-fái ke lièn-kiet kak-sṳt <a href="" class="new"> chhiong liá-yong </a> （fe̍t-chá chhiong liá-ke <a href="" class="internal">?</a>）',
 'tog-justify'                 => 'Thon-lo̍k tui-chhè',
 'tog-hideminor'               => 'Chui-khiûn ke kiên-kói chûng yún-chhòng séu siû-kói',
 'tog-extendwatchlist'         => 'Chen-kâ kam-sṳ chhîn-tân yî-khi̍p hién-sṳ só-yû khó chhái-yung ke kiên-kói',

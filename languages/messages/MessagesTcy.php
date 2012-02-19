@@ -17,7 +17,6 @@ $fallback = 'kn';
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'ಲಿಂಕ್’ಲೆದ ತಿರ್ತ್ ಗೆರೆ(ಅಂಡರ್ ಲೈನ್) ಪಾಡ್’ಲೆ',
-'tog-highlightbroken'         => 'ತುಂಡಾತಿನ ಲಿಂಕ್’ಲೆನ್ <a href="" class="new">ಈ ರೀತಿ</a> (ಅತ್ತ್’ನ್ಡ: ಈ ರೀತಿ<a href="" class="internal">?</a>) ಬದಲ್ ಮಲ್ಪುಲೆ.',
 'tog-justify'                 => 'ಪಾರಗ್ರಾಫ್’ದ ಕಡೆನ್ ಸರಿ ಮಲ್ಪುಲೆ',
 'tog-hideminor'               => 'ಎಲ್ಯೆಲ್ಯ ಬದಲಾವಣೆಲೆನ್ ದೆಂಗಾಲೆ',
 'tog-extendwatchlist'         => 'ಅನ್ವಯಿಸುನಂಚಿನ ಪೂರಾ ಬದಲಾವಣೆಲೆನ್ ತೊಜ್ಪಾಯೆರೆ ಪಟ್ಟಿನ್(ವಾಚ್ ಲಿಸ್ಟ್) ಬುಡ್ಪಾಲೆ.',

@@ -17,7 +17,6 @@ $fallback = 'jv, id';
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Garisen ngisoré pranala:',
-'tog-highlightbroken'         => 'Format pranala tugel <a href="" class="new">kaya kiye</a> (pilihan: Kaya kiye<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Ratakna paragraf',
 'tog-hideminor'               => 'Umpetna suntingan cilik nang owahan anyar',
 'tog-hidepatrolled'           => 'Umpetna suntingan sing wis dipatroli nang owahan anyar',

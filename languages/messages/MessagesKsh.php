@@ -213,7 +213,6 @@ $imageFiles = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Dun de Links ungerstriche:',
-'tog-highlightbroken'         => 'Zeich de Links op Sigge, die et noch nit jitt, esu met: „<a href="" class="new">Lemma</a>“ aan.<br />Wann De dat nit wells, weed et esu: „Lemma<a href="" class="internal">?</a>“ jezeich.',
 'tog-justify'                 => 'Dun de Avschnedde em Blocksatz aanzeije',
 'tog-hideminor'               => 'Dun de klein Mini-Änderunge (<strong>M</strong>) en de Liss  met „{{int:Recentchanges}}“ <strong>nit</strong> aanzeije',
 'tog-hidepatrolled'           => 'Dun de nohjeloorte Änderunge en de „{{int:recentchanges}}“ eez ens <strong>nit</strong> aanzeije',

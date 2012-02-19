@@ -99,7 +99,6 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Baalantıların altını çiz',
-'tog-highlightbroken'         => 'Boş baalantıları <a href="" class="new">bu formada</a> (alternativa: bu formada<a href="" class="internal">?</a>) göster.',
 'tog-justify'                 => 'Paragrafları düz',
 'tog-hideminor'               => 'Küçük diişmäkleri "Bitki diişmäkler" sayfasında sakla',
 'tog-extendwatchlist'         => 'İlerlemiş bakmaa listası',

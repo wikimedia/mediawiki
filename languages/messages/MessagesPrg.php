@@ -15,7 +15,6 @@
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Autengīnsenin paglaubasnā',
-'tog-highlightbroken'         => 'Ebzentlis <a href="" class="new">tīt</a> autengīnsenins prei nisātauwintins pāusans (alternatīwai: <a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Izlīginais tekstan prei abbans pāusans',
 'tog-hideminor'               => 'Kliptinais malkans tikrisnans en panzdaumamans kitawīdinsnans',
 'tog-hidepatrolled'           => 'Kliptinais izbandātans redigīsenins en panzdaumamans kitawīdinsnans',

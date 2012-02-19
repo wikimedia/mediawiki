@@ -21,7 +21,6 @@ $fallback = 'fr';
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Souligner les liens:',
-'tog-highlightbroken'         => 'Préparez les liens déconnectés <a href=""class="new">comme ça ici</a> (autrement: comme ça ici<a href=""class="internal">?</a>).',
 'tog-justify'                 => 'Égalisez les paragraphes',
 'tog-hideminor'               => 'Cachez les petits changements dans la liste des derniers changements',
 'tog-hidepatrolled'           => '↓ Cachez les petits changements dans la liste des derniers changements',

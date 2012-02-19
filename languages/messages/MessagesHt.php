@@ -144,7 +144,6 @@ $linkTrail = '/^([a-zàèòÀÈÒ]+)(.*)$/sDu';
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Souliyen lyen yo :',
-'tog-highlightbroken'         => 'Afiche <a href="" class="new">nan koulè wouj</a> lyen yo ki ap mene nan paj ki pa egziste (oubyen : tankou <a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Aliyen paragraf yo',
 'tog-hideminor'               => 'Kache tout modifikasyon resan yo ki tou piti',
 'tog-hidepatrolled'           => 'Kache modifikasyon yo ki fèk fèt pou moun ki ap veye yo',

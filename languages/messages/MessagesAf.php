@@ -210,7 +210,6 @@ $linkTrail = "/^([a-z]+)(.*)$/sD";
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Onderstreep skakels.',
-'tog-highlightbroken'         => 'Wys gebroke skakels <a href="" class="new">so</a> (andersins: so<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Justeer paragrawe.',
 'tog-hideminor'               => 'Moenie klein wysigings in die onlangse wysigingslys wys nie.',
 'tog-hidepatrolled'           => 'Versteek gepatrolleerde wysigings in onlangse wysigingslys',
@@ -571,8 +570,8 @@ Iemand anders het dit moontlik reeds geskrap.',
 'badtitle'             => 'Ongeldige titel',
 'badtitletext'         => "Die bladsytitel waarvoor gevra is, is ongeldig, leeg, of
 'n verkeerd geskakelde tussen-taal of tussen-wiki titel.",
-'perfcached'           => "Die volgende inligting is 'n gekaste kopie en mag dalk nie volledig op datum wees nie. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.",
-'perfcachedts'         => 'Die volgende data is gekas. Laaste opdatering: $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
+'perfcached'           => "Die volgende inligting is gekas en mag dalk nie op datum wees nie. 'n Maksimum van {{PLURAL:$1|een resultaat|$1 resultate}} is in die kas beskikbaar.",
+'perfcachedts'         => "Die volgende data is gekas en is laas op $1 bygewerk. 'n Maksimum van {{PLURAL:$4|een resultaat|$4 resultate}} is in die kas beskikbaar.",
 'querypage-no-updates' => 'Opdatering van hierdie bladsy is huidiglik afgeskakel. Inligting hier sal nie tans verfris word nie.',
 'wrong_wfQuery_params' => 'Foutiewe parameters na wfQuery()<br />
 Funksie: $1<br />
@@ -913,7 +912,7 @@ Hierdeur beloof u ons dat u die byvoegings self geskryf het, of gekopieer het va
 'copyrightwarning2'                => "Enige bydraes op {{SITENAME}} mag genadeloos gewysig of selfs verwyder word; indien u dit nie met u bydrae wil toelaat nie, moenie dit hier bylas nie.<br />
 Deur enigiets hier te plaas, beloof u dat u dit self geskryf het, of dat dit gekopieer is vanuit \"publieke domein\" of soortgelyke vrye bronne (sien \$1 vir details).
 '''MOENIE WERK WAT DEUR KOPIEREG BESKERM WORD HIER PLAAS SONDER TOESTEMMING NIE!'''",
-'longpageerror'                    => "'''FOUT: die teks wat u bygevoeg het is $1 kilogrepe groot, wat groter is as die maximum van $2 {{PLURAL:$2|kilogrepe|kilogrepe}}.'''
+'longpageerror'                    => "'''Fout: die teks wat u bygevoeg het is {{PLURAL:$1|een kilogreep|$1 kilogrepe}} groot, wat groter is as die maksimum van {{PLURAL:$2|een kilogreep|$2 kilogrepe}}.'''
 Die bladsy kan nie gestoor word nie.",
 'readonlywarning'                  => "'''WAARSKUWING: Die databasis is gesluit vir onderhoud. Dus sal u nie nou u wysigings kan stoor nie. Dalk wil u die teks plak in 'n lêer en stoor vir later.'''
 

@@ -38,7 +38,6 @@ $linkTrail = '/^([a-zÄäÇçĞğŇňÖöŞşÜüÝýŽž]+)(.*)$/sDu';
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Çykgytlaryň aşagyny çyz:',
-'tog-highlightbroken'         => 'Üzlem-saplam çykgytlary <a href="" class="new">ine şeýle</a> görkez (alternatiw: ine şeýle<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Teksti iki ýaňa deňle',
 'tog-hideminor'               => '"Soňky üýtgeşmeler" sahypasynda ujypsyzja özgerdişleri gizle',
 'tog-hidepatrolled'           => '"Soňky üýtgeşmeler" sahypasynda patrullyk edilen özgerdişleri gizle',

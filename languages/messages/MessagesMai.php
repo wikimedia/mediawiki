@@ -26,7 +26,6 @@ $fallback = 'hi';
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'लिंककेँ रेखांकित करू:',
-'tog-highlightbroken'         => 'टूटल श्रृंखला <a href="" class="new">एना देखाऊ</a> (आकि फेर: एना देखाऊ<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'सुगढ़ बनाऊ',
 'tog-hideminor'               => 'सन्निकट परिवर्त्तनमे छोट परिवर्त्तन नुकाऊ',
 'tog-hidepatrolled'           => 'सन्निकट परिवर्त्तनमे छोट परिवर्त्तन नुकाऊ',

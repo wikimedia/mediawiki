@@ -22,7 +22,6 @@ $rtl = true;
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'حوڑ تھلے لین:',
-'tog-highlightbroken'         => 'فارمیٹ ٹٹا جوڑ <a href="" class="new">like this</a> (alternative: like this<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'پیراگراف ثابت کرو',
 'tog-hideminor'               => 'چھوٹیاں تبدیلیاں چھپاؤ',
 'tog-hidepatrolled'           => 'ویکھیاں تبدیلیاں لکاؤ',

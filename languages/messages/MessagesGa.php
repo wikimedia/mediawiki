@@ -94,8 +94,6 @@ $namespaceAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Folínte faoi naisc:',
-'tog-highlightbroken'         => 'Formáidigh na naisc briste, <a href="" class="new">mar seo</a>
-(rogha malartach: mar seo<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Comhfhadaigh na paragraif',
 'tog-hideminor'               => 'Ná taispeáin mionathruithe i measc na n-athruithe is déanaí',
 'tog-hidepatrolled'           => 'Folaigh giotaí eagartha smachtaithe sna athruithe is déanaí',

@@ -20,7 +20,6 @@ $linkTrail = '/^([a-zäöüßåāđē]+)(.*)$/sDu';
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Linke unerstrike:',
-'tog-highlightbroken'         => 'Linke aw ai bestönjene side beklåme <a href="" class="new">biispel</a> (alternatiiwe: ås dideere<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Täkst ås blokseeting',
 'tog-hideminor'               => 'Latje änringe fersteege',
 'tog-hidepatrolled'           => 'Latje änringe fersteege',

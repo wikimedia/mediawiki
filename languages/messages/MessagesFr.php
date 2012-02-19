@@ -362,7 +362,6 @@ $separatorTransformTable = array( ',' => "\xc2\xa0", '.' => ',' );
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Souligner les liens :',
-'tog-highlightbroken'         => 'Afficher les liens vers les pages inexistantes <a href="" class="new">comme ceci</a> (alternative : comme cela <a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Justifier les paragraphes',
 'tog-hideminor'               => 'Masquer les modifications mineures parmi les modifications récentes',
 'tog-hidepatrolled'           => 'Masquer les modifications surveillées parmi les modifications récentes',

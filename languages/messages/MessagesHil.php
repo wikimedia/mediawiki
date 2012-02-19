@@ -17,7 +17,6 @@
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Kuritan sa idalom ang mga tabid:',
-'tog-highlightbroken'         => 'Dagwayi ang utod nga tabid <a href="" class="new">nga nagaka anggid sini </a> (alternatibo: anggid sini<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Tadlongon ang mga parapo',
 'tog-hideminor'               => 'Tagu-on ang menor nga gin-islan sa bag-o lang gid na-obra',
 'tog-hidepatrolled'           => 'Taguon ang mga nabantayan nga na islan na nga bag-o lang gin obra',

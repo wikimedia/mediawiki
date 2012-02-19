@@ -130,7 +130,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Gurat-handapan tutumbu',
-'tog-highlightbroken'         => 'Format tumbu pegat <a href="" class="new">kawas kieu</a> (atawa: kawas kieu<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Lempengkeun alinéa',
 'tog-hideminor'               => 'Sumputkeun éditan minor dina nu anyar robah',
 'tog-hidepatrolled'           => 'Sumputkeun anu geus diroris ti béréndélan nu anyar robah',

@@ -180,7 +180,6 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Suliñar los atamientos:',
-'tog-highlightbroken'         => 'Àmostrar los artícůlos vazíos <a href="" class="new">en colorado</a> , (si no: Este modo<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Arrimar los paraggrafos de dos vandas',
 'tog-hideminor'               => 'Esconder los trocamientos chiquiticos en la hoja de los "trocamientos freskos"',
 'tog-hidepatrolled'           => 'Esconder los trocamientos surveyados en la hoja de los "trocamientos freskos"',

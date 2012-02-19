@@ -16,7 +16,6 @@
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Gulisan lang panglalam deng suglung:',
-'tog-highlightbroken'         => 'Ayusan (i-format) la reng meputut a suglung <a href="" class="new">anti ini</a> (alternative: kalupa na niti<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Pipanten-panten la reng parapu (paragraph)',
 'tog-hideminor'               => 'Isalikut la reng mangalating edit kareng bayung mengayalili',
 'tog-hidepatrolled'           => "Isalikut la reng edit a babanten (''controlled edits'') kareng bayung mengayalili",

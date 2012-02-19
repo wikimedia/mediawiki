@@ -185,7 +185,6 @@ $linkTrail = '/^([a-z]+)(.*)\$/sD';
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'ขีดเส้นใต้ลิงก์',
-'tog-highlightbroken'         => 'จัดลิงก์ที่ไม่มีใน<a href="" class="new">ลักษณะนี้</a> (หรือลักษณะนี้<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'จัดย่อหน้าเต็มบรรทัด',
 'tog-hideminor'               => 'ไม่แสดงการแก้ไขเล็กน้อยในหน้าปรับปรุงล่าสุด',
 'tog-hidepatrolled'           => 'ซ่อนการแก้ไขที่ตรวจแล้วในหน้าปรับปรุงล่าสุด',

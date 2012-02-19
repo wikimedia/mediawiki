@@ -185,7 +185,6 @@ $separatorTransformTable = array( ',' => '.', '.' => ',' );
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Podčrtavanje povezav:',
-'tog-highlightbroken'         => 'Oblikuj pretrgane povezave <a href="" class="new">kot to</a> (druga možnost: kot to<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Poravnavaj odstavke',
 'tog-hideminor'               => 'Skrij manjše popravke v zadnjih spremembah',
 'tog-hidepatrolled'           => 'Skrij pregledana urejanja v zadnjih spremembah',

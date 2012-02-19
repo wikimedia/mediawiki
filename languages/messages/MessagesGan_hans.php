@@ -34,7 +34,6 @@ $namespaceNames = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => '下划链接',
-'tog-highlightbroken'         => '非法链接格式<a href="" class="new">像咁样</a> （或者像咁样<a href="" class="internal">?</a>）.',
 'tog-justify'                 => '对到段落',
 'tog-hideminor'               => '该朝子𠮶改动弆到𠮶细修改',
 'tog-hidepatrolled'           => '到个昼子𠮶修改里头弆到巡查过𠮶编辑',

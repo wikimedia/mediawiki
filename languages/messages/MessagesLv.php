@@ -51,7 +51,6 @@ $separatorTransformTable = array( ',' => "\xc2\xa0", '.' => ',' );
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Pasvītrot saites:',
-'tog-highlightbroken'         => 'Saites uz neesošām lapām rādīt <a href="" class="new">šādi</a> (alternatīva: šādi<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Izlīdzināt rindkopām abas malas',
 'tog-hideminor'               => 'Paslēpt maznozīmīgus labojumus pēdējo izmaiņu lapā',
 'tog-hidepatrolled'           => 'Slēpt apstiprinātās izmaņas pēdējo izmaiņu sarakstā',

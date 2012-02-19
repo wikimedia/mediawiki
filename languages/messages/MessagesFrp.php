@@ -311,7 +311,6 @@ $separatorTransformTable = array( ',' => "\xc2\xa0", '.' => ',' );
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Solegnér los lims :',
-'tog-highlightbroken'         => 'Fâre ressortir <a href="" class="new">en rojo</a> los lims de vers les pâges pas ègzistentes (ôtrament : d’ense<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Èxplicar los paragrafos',
 'tog-hideminor'               => 'Cachiér los petiôts changements des dèrriérs changements',
 'tog-hidepatrolled'           => 'Cachiér los changements survelyês des dèrriérs changements',

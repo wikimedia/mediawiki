@@ -178,7 +178,6 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'שטרייכט אונטער לינקען',
-'tog-highlightbroken'         => 'צייכן אן צובראכענע לינקען <a href="" class="new">אזוי</a> (אדער: אזוי<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'גראד אויס פאראגראפן',
 'tog-hideminor'               => 'באַהאַלטן מינערדיקע רעדאַקטירונגען אין לעצטע ענדערונגען',
 'tog-hidepatrolled'           => 'באַהאַלטן פאַטראלירטע רעדאַקטירונגען אין לעצטע ענדערונגען',

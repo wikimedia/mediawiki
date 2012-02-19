@@ -457,7 +457,6 @@ $imageFiles = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'ضع خطا تحت الوصلات:',
-'tog-highlightbroken'         => 'أظهر الوصلات المعطوبة <a href="" class="new">هكذا</a> (البديل: هكذا<a href="" class="internal">؟</a>).',
 'tog-justify'                 => 'ساو الفقرات',
 'tog-hideminor'               => 'أخف التعديلات الطفيفة في أحدث التغييرات',
 'tog-hidepatrolled'           => 'أخف التعديلات المراجعة في أحدث التغييرات',

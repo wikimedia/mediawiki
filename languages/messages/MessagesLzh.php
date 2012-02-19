@@ -69,7 +69,6 @@ $digitTransformTable = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => '鏈墊線：',
-'tog-highlightbroken'         => '<a href="" class="new">斷鏈</a>，以<a href="" class="internal">？</a>替',
 'tog-justify'                 => '齊段落',
 'tog-hideminor'               => '隱近校',
 'tog-hidepatrolled'           => '隱近巡',

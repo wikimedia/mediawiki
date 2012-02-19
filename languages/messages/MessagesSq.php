@@ -202,7 +202,6 @@ $separatorTransformTable = array( ',' => '.', '.' => ',' );
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Nënvizo lidhjet:',
-'tog-highlightbroken'         => 'Formato lidhjet e prishura <a href="" class="new">si kjo</a> (zgjedhore: si kjo<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Rregullo paragrafët',
 'tog-hideminor'               => 'Fshih redaktimet e vogla në ndryshimet e fundit',
 'tog-hidepatrolled'           => 'Fshih redaktimet e vrojtuara në ndryshimet e fundit',

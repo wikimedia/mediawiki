@@ -43,7 +43,6 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Lingiq ala tõmmadaq',
-'tog-highlightbroken'         => 'Parandaq vigadsõq lingiq <a href="" class="new">nii</a> (vai nii: <a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Lõiguveereq sirgõs',
 'tog-hideminor'               => 'Käkiq perämäidsin muutmiisin ärq väikuq parandusõq',
 'tog-hidepatrolled'           => 'Käkiq perämäidsi muutmiisi nimekirän ärq muutmisõq, miä ommaq perräkaemisnimekirän',

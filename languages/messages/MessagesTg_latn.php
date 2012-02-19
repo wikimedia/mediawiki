@@ -14,7 +14,6 @@
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Zerpajvandho xat kaşida şavand:',
-'tog-highlightbroken'         => 'Pajvandhoi şikastaro <a href="" class="new">hamin xel</a> qolabbandī kuned (Imkoni digar:ba in şakl<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Tamomcenkardani bandho',
 'tog-hideminor'               => "Nişon nadodani taƣjiroti çuz'i dar fehristi taƣjiroti oxir",
 'tog-hidepatrolled'           => 'Pinhon kardani viroişhoi gaştxūrda dar taƣjiroti oxir',

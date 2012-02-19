@@ -64,7 +64,6 @@ $fallback8bitEncoding =  'windows-1251';
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Æрвитæнты бын хахх',
-'tog-highlightbroken'         => 'Нысан кæнын саст æрвитæнтæ <a href="" class="new">куыд ай</a> (кæнæ та афтæ<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Æмвæз абзацтæ',
 'tog-hideminor'               => 'Чысыл ивддзинæдтæ фæстаг ивддзинæдты номхыгъды мауал æвдис',
 'tog-hidepatrolled'           => 'Айсын бæрæггонд ивдтытæ фæстаг ивдтытæй',

@@ -119,7 +119,6 @@ $separatorTransformTable = array( ',' => "\xc2\xa0", '.' => ',' );
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Sotlinee leams',
-'tog-highlightbroken'         => 'Mostre leams sbaliâts <a href="" class="new">cussì</a> (invezit di cussì<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Justifiche paragraf',
 'tog-hideminor'               => 'Plate lis piçulis modifichis tai ultins cambiaments',
 'tog-usenewrc'                => 'Dopre i ultins cambiaments avanzâts (covente JavaScript)',

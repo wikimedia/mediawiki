@@ -188,7 +188,6 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Сюлмавома петнень алга черькстамс:',
-'tog-highlightbroken'         => 'Петемс синдтрень сюлмавома петнень <a href="" class="new">вана  истя</a>(лиякс вана истя<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Вейкетстявтомс сёрмадовкс ушодоманть лопанть кувалмга',
 'tog-hideminor'               => 'Од полавтоматнесэ кекшемс вишинькине витевкстнэнь',
 'tog-hidepatrolled'           => 'Кекшемс лувонь кирдиень витнеметнень-петнематнень чыяконь полавтнематнестэ',

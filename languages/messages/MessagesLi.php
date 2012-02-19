@@ -158,7 +158,6 @@ $dateFormats = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Links óngersjtriepe',
-'tog-highlightbroken'         => 'Formatteer gebraoke links <a href="" class="new">op dees meneer</a> (angers: zoe<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Paragrafe oetvölle',
 'tog-hideminor'               => 'Versjtaek klein bewirkinge bie recènte verangeringe',
 'tog-hidepatrolled'           => 'Gemarkeerde wieziginge verberge in recente wieziginge',

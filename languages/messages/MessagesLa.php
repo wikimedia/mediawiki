@@ -158,7 +158,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Versores linea denotandi:',
-'tog-highlightbroken'         => 'Formare nexus fractos <a href="" class="new">sici</a> (alioqui: sic<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Iustificare paragrapha',
 'tog-hideminor'               => 'Celare recensiones minores in indice nuper mutatorum',
 'tog-hidepatrolled'           => 'Redactiones censae inter nuper mutatas celandae',

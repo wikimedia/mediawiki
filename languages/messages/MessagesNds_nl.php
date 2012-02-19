@@ -310,7 +310,6 @@ $linkTrail = '/^([a-zäöüïëéèà]+)(.*)$/sDu';
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Verwiezingen onderstrepen',
-'tog-highlightbroken'         => "Verwiezingen naor lege pagina's op laoten lochten",
 'tog-justify'                 => "Alinea's uutvullen",
 'tog-hideminor'               => 'Kleine wiezigingen verbargen in leste wiezigingen',
 'tog-hidepatrolled'           => 'Wiezigingen die emarkeerd bin verbargen in leste wiezigingen',

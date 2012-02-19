@@ -78,7 +78,6 @@ $separatorTransformTable = array( ',' => '.', '.' => ',' );
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Keçidlərin altını xətlə:',
-'tog-highlightbroken'         => 'Keçidsiz linkləri <a href="" class="new">bunun kimi</a> (alternativ: bunun kimi<a href="" class="internal">?</a>) işarələ.',
 'tog-justify'                 => 'Mətni səhifə boyu payla',
 'tog-hideminor'               => 'Son dəyişikliklərdə kiçik redaktələri gizlə',
 'tog-hidepatrolled'           => 'Yoxlanılmış redaktələri son dəyişikliklərdə göstərmə',

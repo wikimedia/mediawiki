@@ -264,7 +264,6 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'គូសបន្ទាត់ក្រោម​តំណភ្ជាប់៖',
-'tog-highlightbroken'         => 'តំណភ្ជាប់​ទៅ​ទំព័រ​មិនទាន់មាន អោយបង្ហាញ<a href="" class="new">បែបនេះ</a> (ឬ ៖ បង្ហាញជា<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'តំរឹម​កថាខណ្ឌ',
 'tog-hideminor'               => 'លាក់​កំណែប្រែតិចតួច​ក្នុងបញ្ជីបំលាស់ប្ដូរថ្មីៗ',
 'tog-hidepatrolled'           => 'លាក់​កំណែប្រែ​ដែល​បាន​ល្បាត នៅ​ក្នុង​បំលាស់ប្ដូរ​ថ្មីៗ',

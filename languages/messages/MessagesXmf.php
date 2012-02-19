@@ -25,7 +25,6 @@ $fallback = 'ka';
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'რცხუეფიშ ათოღაზუა:',
-'tog-highlightbroken'         => 'ქაძირი მესოფილ რცხუეფი <a href="" class="new">მუჭოთ თენა</a> (ალტერნატივა: მუჭოთ თენა<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'გამანგი აბზაცეფი',
 'tog-hideminor'               => 'დოფული ციქა რედაქტირაფა ეკონია თირაფეფს',
 'tog-hidepatrolled'           => 'დოფულით პატრულირებულ რედაქტირაფეფი ასერდეიან თირაფეფს',

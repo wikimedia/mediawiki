@@ -108,7 +108,6 @@ $dateFormats = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Багълантыларнынъ тюбюни сызув:',
-'tog-highlightbroken'         => 'Бош багълантыларны <a href="" class="new">бу шекильде</a> (альтернатив: <a href="" class="internal">бу шекильде</a>) косьтер.',
 'tog-justify'                 => 'Метинни эки янгъа тегизле',
 'tog-hideminor'               => '"Сонъки денъимелер" саифесинде кичик денъишмелерни гизле',
 'tog-hidepatrolled'           => 'Сонъки денъишмелер косьтергенде тешкерильген денъишмелерни гизле',

@@ -33,7 +33,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Putim lain ananit long ol link:',
-'tog-highlightbroken'         => 'Soim ol link long ol pes i no stap yet <a href="" class="new">olsem</a> (o: olsem<a href="" class="internal">?</a>).',
 'tog-justify'                 => "Soim ol paragraf i pulmapim sipes long lephan i go long raithan (''justify'')",
 'tog-hideminor'               => 'Noken soim ol liklik senis insait long ol nupela senis',
 'tog-hidepatrolled'           => 'Noken soim ol lukluk senis insait long ol nupela senis',

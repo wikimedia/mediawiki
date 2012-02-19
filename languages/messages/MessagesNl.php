@@ -345,7 +345,6 @@ $linkTrail = '/^([a-zäöüïëéèà]+)(.*)$/sDu';
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Verwijzingen onderstrepen:',
-'tog-highlightbroken'         => 'Verwijzingen naar lege pagina’s <a href="" class="new">zo weergeven</a> (alternatief: zo weergeven<a href="" class="internal">?</a>).',
 'tog-justify'                 => "Alinea's uitvullen",
 'tog-hideminor'               => 'Kleine wijzigingen verbergen in recente wijzigingen',
 'tog-hidepatrolled'           => 'Gemarkeerde wijzigingen verbergen in recente wijzigingen',

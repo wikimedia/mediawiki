@@ -58,7 +58,6 @@ $linkTrail = "/^([a-z]+)(.*)$/sD";
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Sutalìnea is cullegamentos',
-'tog-highlightbroken'         => 'Evidèntzia <a href="" class="new">de aici</a> is cullegamentos a pàginas inesistentes (si disativadu: de aici<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Alliniamentu paràgrafos giustificados',
 'tog-hideminor'               => 'Cua is acontzos minores in sa pàgina de is ùrtimas mudàntzias',
 'tog-hidepatrolled'           => 'Cua is acontzos verificados in is ùrtimas mudàntzias',

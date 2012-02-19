@@ -36,7 +36,6 @@ $namespaceNames = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'ئۇلانما ئاستى سىزىقى:',
-'tog-highlightbroken'         => 'ئۈزۈلگەن ئۇلانما فورماتى <a href="" class="new"> مۇشۇنىڭغا ئوخشاش </a> (ياكى بۇنىڭغا ئوخشاش<a href="" class="internal">؟</a>)',
 'tog-justify'                 => 'ئابزاس توغرىلا',
 'tog-hideminor'               => 'يېقىنقى ئۆزگەرتىشتە ئازراقلا تەھرىرنى يوشۇر',
 'tog-hidepatrolled'           => 'يېقىنقى ئۆزگەرتىشتە كۆزەتكەن تەھرىرنى يوشۇر',

@@ -55,7 +55,6 @@ $namespaceAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Garisi di bawah tautan',
-'tog-highlightbroken'         => 'Bantuk tautan pagat <a href="" class="puga">nangkaya ini</a> (pilihan: nangkaya ini<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Ratakan paragraf',
 'tog-hideminor'               => 'Sungkupakan babakan sapalih dalam parubahan tahanyar',
 'tog-hidepatrolled'           => 'Sungkupakan babakan taawasi dalam parubahan tahanyar',

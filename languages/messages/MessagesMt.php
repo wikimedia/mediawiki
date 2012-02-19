@@ -274,7 +274,6 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Ħoloq sottolinjati:',
-'tog-highlightbroken'         => 'Uri ħoloq miksura <a href="" class="new">hekk</a> (alternattiva: hekk<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Iġġustifika l-paragrafi',
 'tog-hideminor'               => 'Aħbi l-modifiki minuri fit-tibdil riċenti',
 'tog-hidepatrolled'           => 'Aħbi l-modifiki verifikati fit-tibdil riċenti',

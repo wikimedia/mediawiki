@@ -45,8 +45,6 @@ $namespaceNames = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'ربط کی خط کشیدگی:',
-'tog-highlightbroken'         => 'غیر فعال روابط کی شکلبندی <a href="" class="new">اس طرح</a> (alternative: اس طرح<a href="" class="internal">?</a>)
-کرو',
 'tog-justify'                 => 'سطور کی برابری',
 'tog-hideminor'               => 'حالیہ تبدیلیوں میں معمولی ترمیمات چُھپاؤ',
 'tog-hidepatrolled'           => 'حالیہ تبدیلیوں میں گشتی ترمیمات چُھپاؤ',

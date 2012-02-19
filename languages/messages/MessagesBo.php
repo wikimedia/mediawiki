@@ -27,7 +27,6 @@ $digitTransformTable = array(
 $messages = array(
 # User preference toggles
 'tog-underline'             => 'འོག་ཐིག་འཐེན་པ།',
-'tog-highlightbroken'       => 'ནང་འབྲེལ་མཚམས་ཐིག་<a hred="" class="new">ལྟ་བུ།</a>(ཡང་ན།<a href=""class="internal">?ལྟ་བུ།</a>)',
 'tog-justify'               => 'ཚིག་གི་ཚད་སྙོམས་པ།',
 'tog-hideminor'             => 'རྩོམ་སྒྲིག་ཆུང་ཚགས་སྦས་བ།',
 'tog-hidepatrolled'         => 'ལྟ་ཞིབ་བྱས་པའི་རྩོམ་སྒྲིག་སྦས་བ།',

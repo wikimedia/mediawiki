@@ -17,8 +17,6 @@ $rtl = true;
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'ربطو خط کشیدگی',
-'tog-highlightbroken'         => 'غیر فعال روابطان شکلبندی <a href="" class="new">ھموش</a> (alternative: ھموش<a href="" class="internal">?</a>)
-کورے',
 'tog-justify'                 => 'خطان  برابری',
 'tog-hideminor'               => 'موجودہ وختہ بیرو تبدیلیان موژار معمولی ترمیماتن کھوشتاؤے',
 'tog-hidepatrolled'           => 'موجودہ وختہ بیرو تبدیلیان موژار گشتی ترمیماتن کھوشتاؤے',

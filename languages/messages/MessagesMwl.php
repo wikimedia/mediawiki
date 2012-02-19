@@ -80,7 +80,6 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Sublinhar lhigaçones:',
-'tog-highlightbroken'         => 'Formatar lhigaçones para páiginas ineisistentes <a href="" class="new">assi</a> (altarnatiba: assi<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Justeficar parágrafos',
 'tog-hideminor'               => 'Scunder eidiçones mais pequeinhas nas redadeiras altaraçones',
 'tog-hidepatrolled'           => 'Scunder eidiçones patrulhadas nas redadeiras altaraçones',

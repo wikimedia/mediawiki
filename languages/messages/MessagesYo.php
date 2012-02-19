@@ -55,7 +55,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Ìfàlàsábẹ́ àwọn àjápọ̀:',
-'tog-highlightbroken'         => 'Ṣerú àjápọ̀ jíjá <a href="" class="new">bíi báyìí</a> (ọnà míràn: Bíi báyìí<a href="" class="internal">?</a>)',
 'tog-justify'                 => "Ṣ'àlàyé gbólóhùn ọ̀rọ̀",
 'tog-hideminor'               => 'Ìbòmọ́lẹ̀ àwọn àtúnṣe kékeré nínú àwọn àtúnse tuntun',
 'tog-hidepatrolled'           => 'Ìbòmọ́lẹ̀ àwọn àtúnṣe oníìṣọ́ nínú àwọn àtúnṣe tuntun',

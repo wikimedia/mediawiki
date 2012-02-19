@@ -44,7 +44,6 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'suttastritgar colliaziuns:',
-'tog-highlightbroken'         => 'Formatar colliaziuns betg existentas <a href="" class="new">uschia</a> (alternativa: uschia<a href="" class="internal">?</a>)',
 'tog-justify'                 => "Text en furma da 'bloc'",
 'tog-hideminor'               => 'Zuppentar pitschnas midadas en las ultimas midadas',
 'tog-hidepatrolled'           => 'Zuppentar midadas controlladas en las «ultimas midadas»',

@@ -88,7 +88,6 @@ $digitGroupingPattern = "##,##,###";
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'कड़ियाँ अधोरेखन:',
-'tog-highlightbroken'         => 'टूटी हुई कड़ियों को <a href="" class="new"> इस प्रकार </a> प्रारूपित करें (वैकल्पिक: इस प्रकार <a href="" class="internal">?</a>)',
 'tog-justify'                 => 'परिच्छेद समान करें',
 'tog-hideminor'               => 'हालिया परिवर्तनों में से छोटे सम्पादन छिपाएं',
 'tog-hidepatrolled'           => 'हालिया परिवर्तनों में से गश्तीकृत सम्पादन छिपाएं',

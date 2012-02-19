@@ -303,7 +303,6 @@ $dateFormats = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => '링크에 밑줄 표시하기:',
-'tog-highlightbroken'         => '없는 문서로 연결된 링크를 <a href="" class="new">이렇게</a> 보이기 (선택하지 않으면 이렇게<a href="" class="internal">?</a> 보임)',
 'tog-justify'                 => '문단 정렬하기',
 'tog-hideminor'               => '사소한 편집을 최근 바뀜에서 숨기기',
 'tog-hidepatrolled'           => '최근 바뀜에서 검토된 편집을 숨기기',

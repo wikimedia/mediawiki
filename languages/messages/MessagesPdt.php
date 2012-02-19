@@ -17,7 +17,6 @@ $fallback = 'de';
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Links unjastritje:',
-'tog-highlightbroken'         => 'Links opp ladje Siede besondasch wiese <a href="" class="new">soo aus dit</a> (Alternative: soo aus dit<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Tatjst em Blocksautz',
 'tog-hideminor'               => 'Tjliene Endarunge ute latste Tiet nich wiese',
 'tog-extendwatchlist'         => 'Moak dee Oppaussied-List jrata en wies aula Endarunge',

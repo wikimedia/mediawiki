@@ -136,7 +136,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Ultracatenun:',
-'tog-highlightbroken'         => 'Formater catenunes ruptet <a href="" class="new">quam ti</a> (alternative: quam ti<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Justificar paragrafes',
 'tog-hideminor'               => 'Ocultar redactiones minori in nov changes',
 'tog-hidepatrolled'           => 'Ocultar redactiones vigilat in nov changes',

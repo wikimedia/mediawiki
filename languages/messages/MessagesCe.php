@@ -211,7 +211,6 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Кlел сиз хьака хьажориган:',
-'tog-highlightbroken'         => 'Гайта йоцуш йолу хьажоригаш <a href="" class="new">ишта</a> (йа ишта<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Нисде йоза шораллий агlонца',
 'tog-hideminor'               => 'Къайладаха кигийра нисдарш оц могlама керла хийцамехь',
 'tog-hidepatrolled'           => 'Къайладаха гlаролладина нисдарш оц могlама керла нисдашкахь',

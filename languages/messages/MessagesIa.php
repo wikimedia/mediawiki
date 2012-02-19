@@ -144,7 +144,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Sublinear ligamines:',
-'tog-highlightbroken'         => 'Formatar ligamines rupte <a href="" class="new">assi</a> (alternativa: assi<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Justificar paragraphos',
 'tog-hideminor'               => 'Celar le modificationes minor in le modificationes recente',
 'tog-hidepatrolled'           => 'Celar le modificationes patruliate in le modificationes recente',

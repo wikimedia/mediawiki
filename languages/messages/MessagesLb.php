@@ -170,7 +170,6 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Linken ënnersträichen:',
-'tog-highlightbroken'         => 'Format vu futtise Linken <a href="" class="new">esou</a> (alternativ: <a href="" class="internal">?</a>).',
 'tog-justify'                 => "Ränner vum Text riichten (''justify'')",
 'tog-hideminor'               => 'Verstopp kleng Ännerungen an de rezenten Ännerungen',
 'tog-hidepatrolled'           => 'Iwwerkuckten Ännerungen an de "Rezenten Ännerungen" verstoppen',

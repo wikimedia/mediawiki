@@ -103,7 +103,6 @@ $linkTrail = '/^([a-zâçğıñöşüа-яё“»]+)(.*)$/sDu';
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Bağlantılarnıñ tübüni sızuv:',
-'tog-highlightbroken'         => 'Boş bağlantılarnı <a href="" class="new">bu şekilde</a> (alternativ: <a href="" class="internal">bu şekilde</a>) köster.',
 'tog-justify'                 => 'Metinni eki yanğa tegizle',
 'tog-hideminor'               => '"Soñki deñişmeler" saifesinde kiçik deñişmelerni gizle',
 'tog-hidepatrolled'           => 'Soñki deñişmeler köstergende teşkerilgen deñişmelerni gizle',

@@ -49,7 +49,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'በመያያዣ ስር አስምር',
-'tog-highlightbroken'         => 'የተሰበረ (ቀይ) መያያዣን <a href="" class="new">እንዲህ</a>? አለዚያ: እንዲህ<a href="" class="internal">?</a>',
 'tog-justify'                 => 'አንቀጾችን አስተካክል',
 'tog-hideminor'               => 'በቅርብ ጊዜ የተደረጉ አነስተኛ እርማቶችን ደብቅ',
 'tog-hidepatrolled'           => 'ተደጋጋሚ እርማቶችን ከቅርብ ጌዜ እርማቶች ዝርዝር ውስጥ ደብቅ',

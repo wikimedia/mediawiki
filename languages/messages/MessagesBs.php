@@ -278,7 +278,6 @@ $linkTrail = '/^([a-zćčžšđž]+)(.*)$/sDu';
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Podvuci veze:',
-'tog-highlightbroken'         => 'Formatiraj pokvarene veze <a href="" class="new">ovako</a> (alternativa: ovako<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Uravnjaj pasuse',
 'tog-hideminor'               => 'Sakrij male izmjene u spisku nedavnih izmjena',
 'tog-hidepatrolled'           => 'Sakrij patrolirane izmjene u nedavnim promjenama',

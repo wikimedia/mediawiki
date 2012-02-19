@@ -70,7 +70,6 @@ $digitGroupingPattern = "##,##,###";
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'সংযোগগুলির নিচে দাগ দেখানো হোক:',
-'tog-highlightbroken'         => 'ভাঙা সংযোগগুলোকে <a href="" class="new">এই ভাবে</a> (বিকল্পে এই ভাবে<a href="" class="internal">?</a>) দেখানো হোক।',
 'tog-justify'                 => 'অনুচ্ছেদগুলি যথাযথ ফাঁক দিয়ে সাজানো (justify) হোক',
 'tog-hideminor'               => 'অনুল্লেখ্য সম্পাদনাগুলো সাম্প্রতিক পরিবর্তনে না দেখানো হোক',
 'tog-hidepatrolled'           => 'পরীক্ষিত সম্পাদনা গুলো সাম্প্রতিক পরিবর্তনসমূহে আড়াল করো',

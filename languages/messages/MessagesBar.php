@@ -24,7 +24,6 @@ $fallback = 'de';
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Links unterstreichen:',
-'tog-highlightbroken'         => 'Links auf néd vurhåndane Seiten hervurhém: <a href="" class="new">Beispü</a> (sunst wia der dodan: <a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Text ois Blócksootz',
 'tog-hideminor'               => 'Kloane Änderrungen ausblenden',
 'tog-hidepatrolled'           => 'Kontroilirde Änderrungen in dé „Létzten Änderrungen“ ausblenden',

@@ -124,7 +124,6 @@ $linkTrail = '/^([äöüßa-z]+)(.*)$/sDu';
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Links unterstryche',
-'tog-highlightbroken'         => 'Links uf lääri Themene durestryche',
 'tog-justify'                 => 'Tekscht als Blocksatz',
 'tog-hideminor'               => 'Keini «chlyni Änderige» aazeige',
 'tog-hidepatrolled'           => 'Vum Fäldhieter aagluegti Änderige in dr „Letschte Änderige“ usblände',

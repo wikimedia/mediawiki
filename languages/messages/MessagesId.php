@@ -334,7 +334,6 @@ $dateFormats = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Garis bawahi pranala:',
-'tog-highlightbroken'         => 'Format pranala patah <a href="" class="new">seperti ini</a> (pilihan: seperti ini<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Ratakan paragraf',
 'tog-hideminor'               => 'Sembunyikan suntingan kecil di perubahan terbaru',
 'tog-hidepatrolled'           => 'Sembunyikan suntingan terpatroli di perubahan terbaru',

@@ -126,7 +126,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Sottolineâ i collegamenti',
-'tog-highlightbroken'         => 'Evidensia <a href="" class="new">coscì</a> i collegamenti a-e paggine inexisténti (se disattivou: coscì<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Alliniamento di paragrafi giustificòu',
 'tog-hideminor'               => 'asconde e modifiche minori inte ùrtime modifiche',
 'tog-hidepatrolled'           => 'Ascondi e modifiche verifichè inte ùrtime modifiche',

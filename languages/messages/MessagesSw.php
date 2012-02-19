@@ -125,7 +125,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Wekea mstari viungo:',
-'tog-highlightbroken'         => 'Muundo wa viungo vilivyovunjika <a href="" class="mpya">kama hii</a> (badala yake: kama hii<a href="" class="kwa ndani">?</a>).',
 'tog-justify'                 => 'Sawazisha ibara',
 'tog-hideminor'               => 'Ficha mabadilisho madogo ya hivi karibuni',
 'tog-hidepatrolled'           => 'Ficha kurasa zilizofanyiwa doria kwenye mabadiliko ya karibuni',

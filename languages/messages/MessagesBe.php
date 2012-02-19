@@ -84,7 +84,6 @@ $linkTrail = '/^([абвгґджзеёжзійклмнопрстуўфхцчшы
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Падкрэсліваць спасылкі:',
-'tog-highlightbroken'         => 'Афармляць зламаныя спасылкі <a href="" class="new">такім чынам</a> (іначай: такім чынам<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Разганяць абзацы',
 'tog-hideminor'               => 'Не паказваць дробных правак',
 'tog-hidepatrolled'           => 'Без паказу ўхваленых правак у нядаўніх змяненнях',

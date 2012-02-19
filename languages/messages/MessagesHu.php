@@ -312,7 +312,6 @@ $linkTrail = '/^([a-záéíóúöüőűÁÉÍÓÚÖÜŐŰ]+)(.*)$/sDu';
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Hivatkozások aláhúzása:',
-'tog-highlightbroken'         => 'A nem létező lapokra való hivatkozásokat <a href="" class="new">így</a> jelölje. (Alternatíva: így<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Sorkizárt fejezetek',
 'tog-hideminor'               => 'Apró változtatások elrejtése a friss változtatások lapon',
 'tog-hidepatrolled'           => 'Az ellenőrzött szerkesztések elrejtése a friss változtatások lapon',

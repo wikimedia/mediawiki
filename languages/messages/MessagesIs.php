@@ -231,7 +231,6 @@ $linkTrail = '/^([áðéíóúýþæöa-z-–]+)(.*)$/sDu';
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Undirstrika tengla:',
-'tog-highlightbroken'         => 'Sýna brotna tengla <a href="" class="new">svona</a> (annars: svona<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Jafna málsgreinar',
 'tog-hideminor'               => 'Fela minniháttar breytingar í nýlegum breytingum',
 'tog-hidepatrolled'           => 'Fela yfirfarnar breytingar í nýlegum breytingum',

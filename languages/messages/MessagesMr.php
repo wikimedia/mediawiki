@@ -319,7 +319,6 @@ $digitGroupingPattern = "##,##,###";
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'दुव्यांचे अधोरेखन:',
-'tog-highlightbroken'         => 'तुटके दुवे <a href="" class="new">असे दाखवा</a> (किंवा: असे दाखवा<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'परिच्छेद समान करा',
 'tog-hideminor'               => 'अलिकडील बदलांत छोटी संपादने दाखवू नका',
 'tog-hidepatrolled'           => 'पहारा दिलेली संपादने (नित्य पहाण्यात असलेली संपादने) अलीकडील बदलांमधून लपवा',

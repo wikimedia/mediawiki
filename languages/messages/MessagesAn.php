@@ -130,7 +130,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Subrayar os vinclos:',
-'tog-highlightbroken'         => 'Formateyar os vinclos trencatos <a href="" class="new"> d\'ista traza </a> (alternativa: asinas <a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Achustar parrafos',
 'tog-hideminor'               => 'Amagar edicions menors en a pachina de "zaguers cambeos"',
 'tog-hidepatrolled'           => 'Amagar as edicions patrullatas en os zaguers cambeos',

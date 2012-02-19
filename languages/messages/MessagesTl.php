@@ -134,7 +134,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Pagsasalungguhit ng kawing:',
-'tog-highlightbroken'         => 'Ayusin ang mga sirang kawing <a href="" class="new">nang ganito</a> (alternatibo: nang ganito<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Pantayin ang mga talata',
 'tog-hideminor'               => 'Itago ang mga maliliit na pagbabago sa mga huling binago',
 'tog-hidepatrolled'           => 'Ikubli ang napatrolyang mga pagbabagong nasa kamakailang mga pagbabago',

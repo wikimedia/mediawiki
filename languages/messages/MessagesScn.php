@@ -138,7 +138,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Suttalìnia li culligamenti:',
-'tog-highlightbroken'         => 'Furmatta <a href="" class="new">accussì</a> (o accussì<a href="" class="internal">?</a>) li culligamenti ca pùntanu a artìculi ancora a scrìviri.',
 'tog-justify'                 => 'Alliniamentu dû paràgrafu: giustificatu',
 'tog-hideminor'               => "Ammuccia li canciamenti nichi nta l'ùrtimi canciamenti",
 'tog-hidepatrolled'           => "Ammuccia li mudìfichi fatti ntâ l'ùrtimi canciamenti",

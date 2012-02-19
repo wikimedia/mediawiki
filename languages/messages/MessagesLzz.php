@@ -19,7 +19,6 @@ $fallback = 'tr';
 $messages = array(
 # User preference toggles
 'tog-underline'        => "Link'iş tude kogu3’uxaçki:",
-'tog-highlightbroken'  => 'Upşu linkepe <a href="" class="new">am şekilite</a> (alternatifi: am şekilite<a href="" class="internal">?</a>) ko3\'iri.',
 'tog-rememberpassword' => 'Parola-skani goişini (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-showhiddencats'   => "Şinaxeri k'at'egorepe ko3'iri",
 

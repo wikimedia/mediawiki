@@ -223,7 +223,6 @@ $separatorTransformTable = array( ',' => '.', '.' => ',' );
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Subliñar as ligazóns:',
-'tog-highlightbroken'         => 'Darlles formato ás ligazóns crebadas <a href="" class="new">deste xeito</a> (alternativa: así<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Xustificar os parágrafos',
 'tog-hideminor'               => 'Agochar as edicións pequenas na páxina de cambios recentes',
 'tog-hidepatrolled'           => 'Agochar as edicións patrulladas nos cambios recentes',

@@ -21,7 +21,6 @@
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Bınê gırey de xete bance:',
-'tog-highlightbroken'         => 'Gıreyanê vengan <a href="" class="new">wına</a> (alternatif: Wına<a href="" class="internal">?</a>) bımocne',
 'tog-justify'                 => 'Paragrafan eyar ke',
 'tog-hideminor'               => 'Vurnayışanê şenıkan pela vurnayışanê peyênan de bınımne',
 'tog-hidepatrolled'           => 'Vurnayışanê qontrolkerdeyan pela vurnayışê peyêni de bınımne',

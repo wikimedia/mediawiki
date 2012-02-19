@@ -160,7 +160,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Wótkaze pódšmarnuś:',
-'tog-highlightbroken'         => 'Wótkaze na njeeksistěrujuce boki formatěrowaś',
 'tog-justify'                 => 'Tekst do bloka zrownaś',
 'tog-hideminor'               => 'Małe změny schowaś',
 'tog-hidepatrolled'           => 'Doglědowane změny w aktualnych změnach schowaś',

@@ -306,7 +306,6 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Strek under lenker:',
-'tog-highlightbroken'         => 'Formater lenker til ikke-eksisterende sider <a href="" class="new">slik</a> (alternativt: slik<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Blokkjusterte avsnitt',
 'tog-hideminor'               => 'Skjul mindre redigeringer i siste endringer',
 'tog-hidepatrolled'           => 'Skjul patruljerte redigeringer i siste endringer',

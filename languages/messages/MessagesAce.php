@@ -156,7 +156,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Bôh garéh yup bak hubông:',
-'tog-highlightbroken'         => 'Beuntuk hubông reuloh <a href="" class="new">lagèë nyoë</a> (peuniléh: lagèë nyoë<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Peurata paragraf',
 'tog-hideminor'               => 'Peusom neuandam bacut bak neuubah paléng barô',
 'tog-hidepatrolled'           => 'Peusom neuandam teupatroli bak neuubah paléng barô',

@@ -15,7 +15,6 @@
 $messages = array(
 # User preference toggles
 'tog-underline'            => 'Ngaahi fehokotaki ʻoku laineʻi ʻi lalo:',
-'tog-highlightbroken'      => 'Ngaohi ʻa e ngaahi fehokotaki maumau ʻoku <a href="" class="new">pehē</a> (meʻa kehe ʻoku pehē <a href="" class="internal">?</a>).',
 'tog-rememberpassword'     => 'Manatuʻi ʻeku kau-ki-ai ʻi he komipiuta ʻeni (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'tog-watchcreations'       => 'Tānaki ngaahi peesi ʻoku fakatupu ʻe au ki he hokohoko leʻo',
 'tog-watchdefault'         => 'Tānaki ngaahi peesi ʻoku fatu ʻe au ki he hokohoko leʻo',

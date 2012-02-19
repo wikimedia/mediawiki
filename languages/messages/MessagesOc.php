@@ -293,7 +293,6 @@ $linkTrail = "/^([a-zàâçéèêîôû]+)(.*)$/sDu";
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Soslinhar los ligams :',
-'tog-highlightbroken'         => 'Afichar <a href="" class="new">en roge</a> los ligams cap a las paginas inexistentas (siquenon :  coma aquò<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Justificar los paragrafs',
 'tog-hideminor'               => 'Amagar los darrièrs cambiaments menors',
 'tog-hidepatrolled'           => 'Amagar las modificacions susvelhadas dels darrièrs cambiaments',

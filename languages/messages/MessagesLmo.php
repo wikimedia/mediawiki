@@ -104,7 +104,6 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Sutulinia i ligam',
-'tog-highlightbroken'         => 'Evidenzia <a href="" class="new">così</a> i ligam a paginn che esisten minga (se l\'è disativaa al vegn föra <a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Paràgraf: giüstifigaa',
 'tog-hideminor'               => 'Scund i mudifegh men impurtant in di "cambiament recent"',
 'tog-hidepatrolled'           => 'Scund i mudifegh verifegaa intra i ültem mudifegh',

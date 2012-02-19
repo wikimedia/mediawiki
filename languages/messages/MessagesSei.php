@@ -17,7 +17,6 @@
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Squóráam linkám:',
-'tog-highlightbroken'         => 'Formatan linkám broken <a href="" class="new">janpan</a> (alternative: janpan<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Icáitom paragraphám',
 'tog-hideminor'               => 'Camaát editicúnos pac-quimáaxat camjöx cmaa iti',
 'tog-extendwatchlist'         => 'Expand listade cáminot zo cohuatlöx jömde quíix applicablix',

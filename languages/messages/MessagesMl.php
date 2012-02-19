@@ -324,7 +324,6 @@ $digitGroupingPattern = "##,##,###";
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'കണ്ണികൾക്ക് അടിവരയിടുക:',
-'tog-highlightbroken'         => 'നിലവിലില്ലാത്ത കണ്ണികൾ <a href="" class="new">ഇങ്ങനെ</a> അടയാളപ്പെടുത്തുക (അഥവാ: ഇങ്ങനെ <a href="" class="internal">?</a>).',
 'tog-justify'                 => 'ഖണ്ഡികകളുടെ അരികുകൾ നേരെയാക്കുക',
 'tog-hideminor'               => 'പുതിയ മാറ്റങ്ങളുടെ പട്ടികയിൽ ചെറിയ തിരുത്തലുകൾ പ്രദർശിപ്പിക്കാതിരിക്കുക',
 'tog-hidepatrolled'           => 'റോന്തുചുറ്റിയ തിരുത്തുകൾ പുതിയമാറ്റങ്ങളിൽ പ്രദർശിപ്പിക്കാതിരിക്കുക',

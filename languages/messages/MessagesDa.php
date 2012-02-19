@@ -187,7 +187,6 @@ $dateFormats = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Understreg henvisninger:',
-'tog-highlightbroken'         => 'Brug røde henvisninger til tomme sider',
 'tog-justify'                 => 'Vis afsnit med lige marginer',
 'tog-hideminor'               => 'Skjul mindre ændringer i listen over seneste ændringer',
 'tog-hidepatrolled'           => 'Skjul patruljerede redigeringer i seneste ændringer',

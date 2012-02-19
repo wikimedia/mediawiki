@@ -359,7 +359,6 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'リンクの下線：',
-'tog-highlightbroken'         => '存在しないページへのリンクを<a href="" class="new">リンク</a>のように表示する（チェックなしの場合：リンク<a href="" class="internal">？</a>）',
 'tog-justify'                 => '段落を均等割り付けする',
 'tog-hideminor'               => '最近の更新に細部の編集を表示しない',
 'tog-hidepatrolled'           => '最近の更新に巡回済みの編集を表示しない',

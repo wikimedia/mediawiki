@@ -40,7 +40,6 @@ $namespaceNames = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Pòdsztrëchiwùjë lënczi:',
-'tog-highlightbroken'         => 'Fòrmatëje pùsti lënczi <a href="" class="new">jak nen</a> (alternatiwno: jak nen<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Wërównanié (justifikacëjô) paragrafów',
 'tog-hideminor'               => 'Zatacë môłi edicëje w slédnëch zmianach',
 'tog-hidepatrolled'           => 'Zatacë sprôdzoné edicëje slédnych zjinakach',

@@ -59,7 +59,6 @@ $fallback8bitEncoding = "windows-1251";
 
 $messages = array(
 # User preference toggles
-'tog-highlightbroken'    => '<a href="" class="new">Бо ышкаш</a> бузук холбааларны форматтап ирги.  (азы: бо ышкаш<a href="" class="internal">?</a>).',
 'tog-hideminor'          => 'Сөөлгү өскерлиишкиннер арында бичии өскерлиишкиннерни чажырар',
 'tog-showtoolbar'        => 'Өскертир херекселдерни көргүзер (JavaScript)',
 'tog-editondblclick'     => 'Арынны өскертирде ийи катап базар (JavaScript)',

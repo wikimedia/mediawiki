@@ -38,7 +38,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Sulinia lias:',
-'tog-highlightbroken'         => 'Forma lias rompeda <a href="" class="new">como esta</a> (alterna: como esta <a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Ajusta paragrafes',
 'tog-hideminor'               => 'Asconda editas minor en cambias resente',
 'tog-extendwatchlist'         => 'Grandi la lista oservada per mostra tota cambias aplicable',

@@ -180,7 +180,6 @@ $linkTrail = "/^((?:c\'h|C\'H|C\'h|c’h|C’H|C’h|[a-zA-Zàâçéèêîôûä
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Liammoù islinennet',
-'tog-highlightbroken'         => 'Furmad al liammoù torr <a href="" class="new">evel-mañ</a> (pe : evel-se<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Rannbennadoù marzekaet',
 'tog-hideminor'               => "Kuzhat ar c'hemmoù nevez dister",
 'tog-hidepatrolled'           => "Kuzhat ar c'hemmoù evezhiet e-touez ar c'hemmoù diwezhañ",

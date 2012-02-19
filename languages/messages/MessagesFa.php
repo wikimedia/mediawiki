@@ -431,7 +431,6 @@ $imageFiles = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'زیر پیوندها خط کشیده شود',
-'tog-highlightbroken'         => 'پیوندهای ناقص <a href="" class="new">به این شکل</a> قالب‌بندی شوند (امکان دیگر: به این شکل<a href="" class="internal">؟</a>).',
 'tog-justify'                 => 'بندها تمام‌چین نمایش یابند',
 'tog-hideminor'               => 'تغییرات جزئی از فهرست تغییرات اخیر پنهان شوند',
 'tog-hidepatrolled'           => 'ویرایش‌های گشت‌خورده از فهرست تغییرات اخیر پنهان شوند',

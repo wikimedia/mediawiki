@@ -209,7 +209,6 @@ $bookstoreList = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => '連結加底線：',
-'tog-highlightbroken'         => '損毀連結格式為<a href="" class="new">這樣</a>（否則：像這樣<a href="" class="internal">?</a>）',
 'tog-justify'                 => '段落對齊',
 'tog-hideminor'               => '最近更改中隱藏小修改',
 'tog-hidepatrolled'           => '於最近更改中隱藏巡查過的編輯',

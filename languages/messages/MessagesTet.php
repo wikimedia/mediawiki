@@ -73,7 +73,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'          => 'Subliña ligasaun sira:',
-'tog-highlightbroken'    => 'Formatu ligasaun sira-ne\'ebé bá pájina maka wiki la iha: <a href="" class="new">ne\'e</a> ka <a href="" class="internal">ne\'e</a>.',
 'tog-justify'            => 'Justifika parágrafu sira',
 'tog-hideminor'          => "Lá'os hatudu muda ki-ki'ik iha mudansa foufoun sira",
 'tog-usenewrc'           => 'Uza lista "Mudansa foufoun sira" di\'ak liu (JavaScript)',

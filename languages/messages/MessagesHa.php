@@ -13,7 +13,6 @@
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'A shaya zaruruwa',
-'tog-highlightbroken'         => 'A haskaka katsattsin zaruruwa <a href="" class="new">kamar haka</a> (koko: kamar haka<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'A daidaita sakin layuka',
 'tog-hideminor'               => 'A ɓoye ƙananan gyare-gyare na baya-bayan nan',
 'tog-hidepatrolled'           => 'A ɓoye gyare-gyaren kan ido a cikin gyare-gyare bayan-bayan nan',

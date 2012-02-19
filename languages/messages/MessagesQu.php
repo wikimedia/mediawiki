@@ -268,7 +268,6 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => "T'inkikunata uranpi sikwiy",
-'tog-highlightbroken'         => 'Ch\'usaq p\'anqaman t\'inkimuqkunata sananchay <a href="" class="new">kay hinam</a> (icha kay hinam<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Rakirikunata paqtachiy',
 'tog-hideminor'               => '«Ñaqha hukchasqa» nisqapi aslla hukchasqakunata pakay',
 'tog-hidepatrolled'           => "Patrullasqa llamk'apusqakunata ñaqha hukchasqapi pakay",

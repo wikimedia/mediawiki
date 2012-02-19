@@ -21,7 +21,6 @@ $linkTrail = '/^(:?[a-zàáâçčʒǯđðéèêëǧǥȟíìîïıǩŋñóòôõ�
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Liŋkkaid vuolláisárgun',
-'tog-highlightbroken'         => 'Čájet liŋkkaid siidduide mat váilot <a href="#" class="new">ná</a> (molssaeaktun ná: <a href="#" class="internal">?</a>).',
 'tog-hideminor'               => 'Čiega unna rievdadusaid varas rievdadusat -listtus',
 'tog-extendwatchlist'         => 'Viiddit čuovvunlisttu, nu ahte čájeha buot dahkon rievdadusaid, iige dušše ođđaseamos',
 'tog-usenewrc'                => 'Viiddiduvvon varas rievdadusat -listu (gáibida JavaScript)',

@@ -47,7 +47,6 @@ $digitTransformTable = array(
 $messages = array(
 # User preference toggles
 'tog-underline'        => 'लिंक के नीचे रेखा',
-'tog-highlightbroken'  => 'टूटल लिंक के प्रारुप ठिक करीं <a href="" class="new"> अईसे </a> (वैकल्पिक: चाहे अईसे<a href="" class="internal">?</a>)',
 'tog-justify'          => 'पैराग्राफ जस्टीफाई',
 'tog-hideminor'        => 'हाल के परिवर्तन में मामूली संपादन छुपाईं',
 'tog-numberheadings'   => 'स्वयं-सांख्यिकी शिर्षक',

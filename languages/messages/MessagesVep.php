@@ -89,7 +89,6 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Jonoštada kosketused:',
-'tog-highlightbroken'         => 'Ozutada rebitadud kosketused <a href="" class="new">muga,</a> (muite - muga<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Tazoitada tekst lehtpolen levedusen mödhe',
 'tog-hideminor'               => 'Peitta pened redakcijad veresiden toižetusiden nimikirjuteses',
 'tog-hidepatrolled'           => 'Peitta patruliruidud redakcijad veresiden toižetusiden nimikirjuteses',

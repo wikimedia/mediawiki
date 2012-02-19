@@ -128,7 +128,6 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'پیوندون زیر خط دکشی بواشه',
-'tog-highlightbroken'         => 'ناقص پیوندون قالب بندی<a href="" class="new">اینجوری</a>(امکان دیگه:اینجوری<a href="" class="internal">؟</a>).',
 'tog-justify'                 => 'بندون تموم چین هاکرد‌ن',
 'tog-hideminor'               => 'نشون‌ندائن کچیک تغییرات تازه دگاردسته‌ئون دله',
 'tog-hidepatrolled'           => 'جا بدائن دچی‌یه‌ئون پس بخارد تازه دگاردسته‌ئون ِدله',

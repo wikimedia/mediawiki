@@ -399,7 +399,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'سىلتەمەنىڭ استىن سىز:',
-'tog-highlightbroken'         => 'جارامسىز سىلتەمەلەردى <a href="" class="new">بىلاي سىيياقتى</a> پىشىمدە (بالاماسى: بىلاي سىيياقتى<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'ەجەلەردى ەنى بويىنشا تۋرالاۋ',
 'tog-hideminor'               => 'جۋىقتاعى وزگەرىستەردەن شاعىن وڭدەمەلەردى جاسىر',
 'tog-extendwatchlist'         => 'باقىلاۋ ٴتىزىمدى ۇلعايت (بارلىق جارامدى وزگەرىستەردى كورسەت)',

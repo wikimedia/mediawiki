@@ -24,7 +24,6 @@ $dateFormats = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Liân-kiat oē té-sûn:',
-'tog-highlightbroken'         => 'Khang-ia̍h ê liân-kiat <a href="" class="new">án-ne</a> hián-sī (mài chhiūⁿ án-ne<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'pâi-chê  tōaⁿ-lo̍h',
 'tog-hideminor'               => 'Am chòe-kīn ê sió kái-piàn',
 'tog-hidepatrolled'           => 'Am chòe-kīn sûn koè--ê  kái-piàn',

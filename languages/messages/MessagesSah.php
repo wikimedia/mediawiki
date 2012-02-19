@@ -44,7 +44,6 @@ $namespaceGenderAliases = array();
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Ыйынньыктары аннынан тардыы:',
-'tog-highlightbroken'         => 'Кураанах ыйынньыктары <a href="" class="new">маннык</a> (эбэтэр: маннык<a href="" class="internal">?</a>) көрдөр.',
 'tog-justify'                 => 'Сирэй кэтитинэн тарҕат',
 'tog-hideminor'               => 'Кыра көннөрүүлэри көрдөрбөккө',
 'tog-hidepatrolled'           => 'Ботурууллааччы көрбүт көннөрүүтүн саҥа көннөрүүлэр тиһиктэригэр көрдөрүмэ',

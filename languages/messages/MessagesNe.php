@@ -54,7 +54,6 @@ $digitTransformTable = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'सम्बन्ध निम्न रेखाङ्कन:',
-'tog-highlightbroken'         => 'प्रारूप टुटेको लिङ्क <a href="" class="new">यस्तो </a> (alternative: यस्तै<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'अनुच्छेद जस्टिफाइ(justify) गर्ने',
 'tog-hideminor'               => 'भर्खरका मामूली सम्पादनहरुलाई लुकाउने',
 'tog-hidepatrolled'           => 'गस्ती(patrolled)सम्पादनहरु हालका परिवर्तनहरुमा लुकाउने',

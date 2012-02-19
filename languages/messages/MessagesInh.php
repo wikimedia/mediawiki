@@ -17,7 +17,6 @@ $fallback = 'ru';
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Ӏинкаш белгалде:',
-'tog-highlightbroken'         => 'Йоаца Ӏинкаш хьахокха <a href="" class="new">ишта</a> (е вешта<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Яздам оагӀува шоралца хьанийсъе',
 'tog-hideminor'               => 'ЗӀамига хувцамаш керда дӀахувцама дагаршкахь къайлаяккха',
 'tog-hidepatrolled'           => 'Керда хувцама дагарчеча дӀанийсъя хувцамаш къайлаяккха',

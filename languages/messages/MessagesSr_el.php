@@ -305,7 +305,6 @@ $separatorTransformTable = array( ',' => '.', '.' => ',' );
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Podvlačenje veza:',
-'tog-highlightbroken'         => 'Istakni neispravne veze <a href="" class="new">ovako</a> (alternativno: <a href="" class="internal">ovako</a>)',
 'tog-justify'                 => 'Poravnaj pasuse',
 'tog-hideminor'               => 'Sakrij manje izmene u spisku skorašnjih izmena',
 'tog-hidepatrolled'           => 'Sakrij pregledane izmene u spisku skorašnjih izmena',
@@ -1898,7 +1897,7 @@ Bezbednosna provera ne može da se izvrši kako treba.',
 'img-auth-nopathinfo'       => 'Nedostaje PATH_INFO.
 Vaš server nije podešen da prosleđuje ovakve podatke.
 Možda je zasnovan na CGI-ju koji ne podržava img_auth.
-Pogledajte https://www.mediawiki.org/wiki/Manual:Image_Authorization?uselang=sr-ec odobravanje slika.',
+Pogledajte https://www.mediawiki.org/wiki/Manual:Image_Authorization?uselang=sr-ec.',
 'img-auth-notindir'         => 'Zahtevana putanja nije u podešenoj fascikli za slanje.',
 'img-auth-badtitle'         => 'Ne mogu da stvorim ispravan naslov za „$1“.',
 'img-auth-nologinnWL'       => 'Niste prijavljeni i „$1“ nije na spisku dozvoljenih.',

@@ -32,7 +32,6 @@ $namespaceNames = array(
 $messages = array(
 # User preference toggles
 'tog-underline'            => "Na'raya i inachetton:",
-'tog-highlightbroken'      => 'Tulaika na minayulang na links <a href="" class="new">taiguini</a> (Pat: taiguini<a href="" class="internal">?</a>).',
 'tog-hideminor'            => "Nå'na' i mandikike' na tinilaika siha gi påhinan tinilaika gi halacha",
 'tog-extendwatchlist'      => "Na'ladångkolu i listan pinilan para u na'annok i manaplikayon na tinilaika siha",
 'tog-usenewrc'             => "I manmana'lamaolek na tinilaika (JavaScript)",

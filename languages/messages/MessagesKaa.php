@@ -155,7 +155,6 @@ $linkTrail = "/^((?:[a-zıʼ’“»]|'(?!'))+)(.*)$/sDu";
 $messages = array(
 # User preference toggles
 'tog-underline'               => "Siltewdin' astın sız:",
-'tog-highlightbroken'         => 'Jaramsız siltewlerdi <a href="" class="new">usılay</a> tuwrıla (alternativ: usınday<a href="" class="internal">?</a>).',
 'tog-justify'                 => "Tekstti bettin' ken'ligi boyınsha tuwrılaw",
 'tog-hideminor'               => "Aqırg'ı o'zgerislerden kishilerin jasır",
 'tog-extendwatchlist'         => "Baqlaw dizimin barlıq o'zgerislerdi ko'rsetetug'ın qılıp ken'eyt (tek aqırg'ıların emes)",

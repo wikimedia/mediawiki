@@ -36,7 +36,6 @@ $namespaceNames = array(
 $messages = array(
 # User preference toggles
 'tog-underline'              => 'Tinkikunana uraypi aspishpa rikuchina',
-'tog-highlightbroken'        => 'Pakishka tinkikuna <a href="" class="new">kashna</a> (mana kashna munakpika, kashnami<a href="" class="internal">?</a>rikuchinata munapankimi)',
 'tog-justify'                => 'Aspinakunata alli paktachina',
 'tog-hideminor'              => 'mushuk killkaykunapak kamupi, uchilla killkaykunata pakana',
 'tog-hidepatrolled'          => 'mushuk killkaykunapak kamupi, ña rikushka killkaykunata pakana',

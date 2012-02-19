@@ -55,7 +55,6 @@ $namespaceAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => "Sottolinia 'e jonte:",
-'tog-highlightbroken'         => 'Formatta \'e jonte defettose <a href="" class="new">accussì</a> (oppure: accussì<a href="" class="internal">?</a>).',
 'tog-justify'                 => "Alliniamento d''e paracrafe mpare",
 'tog-hideminor'               => "Annascunne 'e cagne piccirille  'int'a ll'úrdeme cagne",
 'tog-extendwatchlist'         => "Spanne ll'asservate speciale pe fà vedé tutte 'e cagne possíbbele",

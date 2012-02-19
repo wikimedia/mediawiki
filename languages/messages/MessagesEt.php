@@ -284,7 +284,6 @@ $dateFormats = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Lingid alla kriipsutada',
-'tog-highlightbroken'         => 'Vorminda lingirikked <a href="" class="new">nii</a> (alternatiiv: nii<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Lõikude rööpjoondus',
 'tog-hideminor'               => 'Peida pisiparandused viimastes muudatustes',
 'tog-hidepatrolled'           => 'Peida viimaste muudatuste loetelus jälgimisloendis esitatavad muudatused',

@@ -119,7 +119,6 @@ $linkTrail = "/^([àáâèéêìíîïòóôûŵŷa-z]+)(.*)$/sDu";
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Tanlinellu cysylltiadau:',
-'tog-highlightbroken'         => 'Fformatio cysylltiadau wedi\'u torri <a href="" class="new">fel hyn</a> (dewis arall: fel hyn<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Unioni paragraffau',
 'tog-hideminor'               => 'Cuddio golygiadau bychain yn rhestr y newidiadau diweddar',
 'tog-hidepatrolled'           => 'Cuddio golygiadau sydd wedi derbyn ymweliad patrôl rhag y rhestr newidiadau diweddar',
@@ -1589,10 +1588,14 @@ Os yw'r broblem yn parhau, cysylltwch â [[Special:ListUsers/sysop|gweinyddwr]].
 'backend-fail-create'        => "Wedi methu creu'r ffeil $1.",
 
 # Lock manager
-'lockmanager-notlocked'       => 'Wedi methu datgloi "$1"; nid yw ar glo.',
-'lockmanager-fail-closelock'  => 'Wedi methu cau\'r ffeil cloi mynediad at "$1".',
-'lockmanager-fail-deletelock' => 'Wedi methu dileu\'r ffeil cloi mynediad at "$1".',
-'lockmanager-fail-openlock'   => 'Wedi methu agor y ffeil cloi mynediad at "$1".',
+'lockmanager-notlocked'        => 'Wedi methu datgloi "$1"; nid yw ar glo.',
+'lockmanager-fail-closelock'   => 'Wedi methu cau\'r ffeil cloi mynediad at "$1".',
+'lockmanager-fail-deletelock'  => 'Wedi methu dileu\'r ffeil cloi mynediad at "$1".',
+'lockmanager-fail-acquirelock' => 'Wedi methu cael clo ar "$1".',
+'lockmanager-fail-openlock'    => 'Wedi methu agor y ffeil cloi mynediad at "$1".',
+'lockmanager-fail-releaselock' => 'Wedi methu agor y clo ar "$1".',
+'lockmanager-fail-db-release'  => 'Wedi methu agor y cloion ar y gronfa ddata $1.',
+'lockmanager-fail-svr-release' => 'Wedi methu agor y cloion ar y gweinydd $1.',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'Cafwyd gwall wrth agor y ffeil er mwyn gwneud gwiriadau ZIP.',

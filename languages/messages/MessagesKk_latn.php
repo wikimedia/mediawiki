@@ -366,7 +366,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Siltemeniñ astın sız:',
-'tog-highlightbroken'         => 'Jaramsız siltemelerdi <a href="" class="new">bılaý sïyaqtı</a> pişimde (balaması: bılaý sïyaqtı<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Ejelerdi eni boýınşa twralaw',
 'tog-hideminor'               => 'Jwıqtağı özgeristerden şağın öñdemelerdi jasır',
 'tog-extendwatchlist'         => 'Baqılaw tizimdi ulğaýt (barlıq jaramdı özgeristerdi körset)',

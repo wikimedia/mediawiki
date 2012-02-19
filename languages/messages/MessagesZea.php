@@ -45,7 +45,6 @@ $namespaceNames = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Lienks onderstreepn:',
-'tog-highlightbroken'         => 'Lienks nae lehe pagina\'s <a href="" class="new">zò weerheven</a> (alternatief: zò weerheven<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Paragraeven uutvullen',
 'tog-hideminor'               => 'Kleine wijzigingen verbergen in recente wijzigingen',
 'tog-hidepatrolled'           => "Gemarkeerde wiezigiengen verbarg'n in juust angepast",

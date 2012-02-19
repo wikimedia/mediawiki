@@ -366,7 +366,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Сілтеменің астын сызу:',
-'tog-highlightbroken'         => 'Жарамсыз сілтемелерді <a href="" class="new">былай сияқты</a> пішімде (баламасы: былай сияқты<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Ежелерді ені бойынша туралау',
 'tog-hideminor'               => 'Жуықтағы өзгерістерден шағын өңдемелерді жасыр',
 'tog-hidepatrolled'           => 'Тексерілген өңдеулерді соңғы өзгерістер тізімінде көрсетпеу',

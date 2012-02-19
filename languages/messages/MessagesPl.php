@@ -290,7 +290,6 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Podkreślenie linków',
-'tog-highlightbroken'         => 'Oznacz <a href="" class="new">tak</a> linki do brakujących stron (alternatywa – dołączany znak zapytania<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Wyrównuj tekst w akapitach do obu marginesów',
 'tog-hideminor'               => 'Ukryj drobne modyfikacje w ostatnich zmianach',
 'tog-hidepatrolled'           => 'Ukryj sprawdzone edycje w ostatnich zmianach',
@@ -2824,7 +2823,7 @@ Odwiedź [//www.mediawiki.org/wiki/Localisation Tłumaczenie MediaWiki] oraz [//
 'allmessages-filter-all'        => 'Wszystkie',
 'allmessages-filter-modified'   => 'Zmodyfikowane',
 'allmessages-prefix'            => 'Tytuły rozpoczynające się od',
-'allmessages-language'          => 'Język',
+'allmessages-language'          => 'Język:',
 'allmessages-filter-submit'     => 'Pokaż',
 
 # Thumbnails

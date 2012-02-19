@@ -255,7 +255,6 @@ $digitGroupingPattern = "##,##,###";
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'ତଳେ ଥିବା ଲିଙ୍କ:',
-'tog-highlightbroken'         => '<a href="" class="new"> ଭଳି</a> (ବିକଳ୍ପ: <a href="" class="internal">?</a> ଭଳି) ଭଙ୍ଗା ଲିଙ୍କସବୁକୁ ସଜାଡ଼ିବେ',
 'tog-justify'                 => 'ପାରାଗ୍ରାଫଗୁଡ଼ିକର ବାଆଁ ଡାହାଣ ସମଭାବେ ସଜାଡ଼ିବେ',
 'tog-hideminor'               => 'ଛୋଟ ଛୋଟ ନଗଦ ବଦଳ ସବୁକୁ ଲୁଚାଇବେ',
 'tog-hidepatrolled'           => 'ନଗଦ ବଦଳରେ ଥିବା ଜଗାହୋଇଥିବା ବଦଳ ସବୁକୁ ଲୁଚାଇବେ',

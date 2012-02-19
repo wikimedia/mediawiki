@@ -26,7 +26,6 @@ $fallback = 'de';
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Verknipfonga unterstreeicha:',
-'tog-highlightbroken'         => 'Verknipfonga uff lääre Seeita harvurheeba <a href="" class="new">asu</a> (oder asu:<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Obschniete eim Block setza',
 'tog-hideminor'               => 'Klänne Änneronga ausblenda',
 'tog-hidepatrolled'           => 'Gepriefte Änneronga ausblenda',

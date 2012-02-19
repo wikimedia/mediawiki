@@ -76,7 +76,6 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Okpürụ ahiri jikodo:',
-'tog-highlightbroken'         => 'Rütá jikodo gbajịrị <a href="" class"ohúrù">otuá</a> (nke ozor: otuá<a href="" class="ime">?</a>)',
 'tog-justify'                 => 'Tinyé ndelita na ọkwa',
 'tog-hideminor'               => 'Zonari orü ntàkírí na nwerue mẹrẹ ogẹ nsó',
 'tog-hidepatrolled'           => 'Zonari orü ha hụrụ na nwerue mẹrẹ ogẹ nsó',

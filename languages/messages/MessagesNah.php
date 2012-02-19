@@ -76,7 +76,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'             => 'Mokìnxòîkuilòtzàswis tzòwilistìn:',
-'tog-highlightbroken'       => 'Monèxtis ìtzòwilis in iyỏka tlâkuilòpiltìn <a href="" class="new">kâxa kèn inìn</a> (noso iuhkìn: kâxa kèn inìn<a href="" class="internal">?</a>).',
 'tog-justify'               => 'Mokintêtènyèktlàlis in tlâkuilispaltìn',
 'tog-hideminor'             => 'Motlàtìs tepỉtzìn tlayèktlàlilistli ìpan welok tlapảtlalistli',
 'tog-hidepatrolled'         => 'Motlàtìs tlapîpialli tlayèktlàlilistli ìpan welok tlapảtlalistli',

@@ -43,8 +43,6 @@ $namespaceNames = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Anliure con la sotliniadura',
-'tog-highlightbroken'         => "Buta an evidensa j'anliure che a men-o a<br />
-dj'artìcoj ancó pa scrit",
 'tog-justify'                 => 'Paràgraf: giustificà',
 'tog-hideminor'               => 'Stërma le modìfiche cite<br />ant sla pàgina "Ùltime Modìfiche"',
 'tog-hidepatrolled'           => "Stërma le modìfiche verificà ant j'ùltime modìfiche",

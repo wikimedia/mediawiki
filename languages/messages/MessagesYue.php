@@ -232,7 +232,6 @@ $linkTrail = '/^([a-z]+)(.*)$/sD';
 $messages = array(
 # User preference toggles
 'tog-underline'               => '連結加底線：',
-'tog-highlightbroken'         => '格式化連結 <a href="" class="new">好似噉</a>（又或者: 好似噉<a href="" class="internal">?</a>）',
 'tog-justify'                 => '拍齊段落',
 'tog-hideminor'               => '最新更改唔顯示小修改',
 'tog-hidepatrolled'           => '響最近修改度隱藏巡查過嘅編輯',

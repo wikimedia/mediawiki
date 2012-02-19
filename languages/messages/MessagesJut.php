@@ -17,7 +17,6 @@ $fallback = 'da';
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Understreg henvesnenger',
-'tog-highlightbroken'         => 'Brug røde henvesnenger til tømme sider',
 'tog-justify'                 => 'Ves ertikler ve lege margener',
 'tog-hideminor'               => "Skjul mendre ændrenger i'n liste åver seneste ændrenger",
 'tog-extendwatchlist'         => 'Udvedet liste ve seneste ændrenger',

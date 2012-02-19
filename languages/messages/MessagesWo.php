@@ -82,7 +82,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Rëddaatu lëkkalekaay yi :',
-'tog-highlightbroken'         => 'Wone leen <a href="" class="new">ñu xonq</a> lëkkalekaay yiy yóbbe ciy xët yu amul (lu ko moy :  lu mel nii <a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Maaseel xise yi',
 'tog-hideminor'               => 'Nëbb coppite yu néewal yi mujj',
 'tog-hidepatrolled'           => 'Nëbb coppite yi ñuy fuglu ci coppite yu mujj yi',

@@ -18,7 +18,6 @@ $fallback = 'fa';
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'لینکهای خط به زیر',
-'tog-highlightbroken'         => 'شکل لینکهای شکسته <a href="" class="new">like this</a> (alternative: like this<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'فاصله نهادن سی پاراگرافها',
 'tog-hideminor'               => 'من ته نبیدن تغییرات کوچیک',
 'tog-extendwatchlist'         => 'گپ کردن لیستهای من ته سی دیدن همه تغییراتی که ابوه',

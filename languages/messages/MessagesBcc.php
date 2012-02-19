@@ -142,7 +142,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => ':لینکانآ خط کش',
-'tog-highlightbroken'         => 'پرشتگین لینکانآ فرمت کن <a href="" class="new">په داب شی</a> (یا: پی ای داب<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'پاراگرافنآ همتراز کن',
 'tog-hideminor'               => 'هوردین تغییراتآ ته نوکین تغییرات پناه کن',
 'tog-hidepatrolled'           => 'ته نوکین تغییرات اصلاحاتی که گردگ بیتگن پناه کن',

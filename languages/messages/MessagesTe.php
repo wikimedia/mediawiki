@@ -144,7 +144,6 @@ $digitGroupingPattern = "##,##,###";
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'లంకె క్రీగీత:',
-'tog-highlightbroken'         => 'తెగిపోయిన లింకులను <a href="" class="new">ఇలా చూపించు</a> (ఇంకో పధ్ధతి: <a href="" class="internal">?</a>).',
 'tog-justify'                 => 'పేరాలను ఇరు పక్కలా సమానంగా సర్దు',
 'tog-hideminor'               => 'ఇటీవలి మార్పులలో చిన్న మార్పులను దాచిపెట్టు',
 'tog-hidepatrolled'           => 'ఇటీవలి మార్పులలో నిఘా ఉన్న మార్పులను దాచిపెట్టు',

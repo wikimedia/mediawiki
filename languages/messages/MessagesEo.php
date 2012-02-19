@@ -309,7 +309,6 @@ $dateFormats = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Substreki ligilojn',
-'tog-highlightbroken'         => 'Ruĝigi ligilojn al neekzistantaj paĝoj',
 'tog-justify'                 => 'Alkadrigi liniojn',
 'tog-hideminor'               => 'Kaŝi malgrandajn redaktetojn ĉe <i>Lastaj ŝanĝoj</i>',
 'tog-hidepatrolled'           => 'Kaŝi patrolitajn redaktojn en lastaj ŝanĝoj',

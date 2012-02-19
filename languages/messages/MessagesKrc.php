@@ -42,7 +42,6 @@ $namespaceGenderAliases = array();
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Джибериулени черт:',
-'tog-highlightbroken'         => 'Болмагъан джибериулени <a href="" class="new">былай</a> (альтернатив: <a href="" class="internal">?</a>) кёргюз.',
 'tog-justify'                 => 'Текстни бетни кенглигине кёре тиз',
 'tog-hideminor'               => 'Джангы тюрлениулени списогунда гитче тюрлениулени кёргюзме',
 'tog-hidepatrolled'           => 'Джангы тюрлениулени списогунда тинтилген тюрлениулени кёргюзме',

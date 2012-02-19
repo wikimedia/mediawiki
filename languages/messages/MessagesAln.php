@@ -69,7 +69,6 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Nënvizoji vegzat',
-'tog-highlightbroken'         => 'Shkrueji vegzat për në faqe të zbrazëta <a href="" class="new">kështu </a> (ndryshe: kështu<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Drejto kryerreshtat',
 'tog-hideminor'               => 'Mshef redaktimet e vogla të bâme së voni',
 'tog-hidepatrolled'           => 'Mshef redaktimet e mbikëqyruna në ndryshimet e fundit',

@@ -63,7 +63,6 @@ $digitGroupingPattern = "##,##,###";
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'ಲಿಂಕುಗಳ ಕೆಳಗೆ ಗೆರೆ ತೋರಿಸಿ',
-'tog-highlightbroken'         => 'ಮುರಿದಿರುವ ಕೊಂಡಿಗಳನ್ನು <a href="" class="new">ಈ ರೀತಿ</a> (ಅಥವ: ಈ ರೀತಿ<a href="" class="internal">?</a>) ಬದಲಾಯಿಸು .',
 'tog-justify'                 => 'ಪರಿಚ್ಛೇದಗಳ ಬದಿಗಳನ್ನು ಸಮನಾಗಿಸು',
 'tog-hideminor'               => 'ಚಿಕ್ಕಪುಟ್ಟ ಬದಲಾವಣೆಗಳನ್ನು ಅಡಗಿಸಿ',
 'tog-hidepatrolled'           => 'ಪಹರೆಯಲ್ಲಿ ಆದ ಸಂಪಾದನೆಗಳನ್ನು ಇತ್ತೀಚೆಗಿನ ಬದಲಾವಣೆಗಳಲ್ಲಿ ಅಡಗಿಸು',

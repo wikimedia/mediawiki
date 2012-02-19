@@ -45,7 +45,6 @@ $namespaceAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Підчарковати одказы:',
-'tog-highlightbroken'         => 'Форматовати одказы на неекзістуючі сторінкы <a href="" class="new">так</a> (алтернатіва: так<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Зарівнати текст до блоку',
 'tog-hideminor'               => 'Сховати малы едітованя в списку послїднїх змін',
 'tog-hidepatrolled'           => 'Сховати патролёваны едітованя в списку послїднїх змін',

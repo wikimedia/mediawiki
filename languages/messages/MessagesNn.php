@@ -288,7 +288,6 @@ $linkTrail = '/^([æøåa-z]+)(.*)$/sDu';
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Strek under lenkjer:',
-'tog-highlightbroken'         => 'Vis lenkjer til tomme sider <a href="" class="new">slik</a> (alternativt slik<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Blokkjusterte avsnitt',
 'tog-hideminor'               => 'Gøym småplukk i lista over siste endringar',
 'tog-hidepatrolled'           => 'Gøym patruljerte endringar i lista over siste endringar',

@@ -113,7 +113,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Dislienükön yümis:',
-'tog-highlightbroken'         => 'Jonön yümis dädik <a href="" class="new">ön mod at</a> (voto: ön mod at<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Lonedükön bagafis',
 'tog-hideminor'               => 'Klänedön redakamis pülik su lised votükamas nulik',
 'tog-hidepatrolled'           => 'Klänedön redakamis pezepöl in lised votükamas nulik.',

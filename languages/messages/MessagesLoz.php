@@ -16,7 +16,6 @@
 $messages = array(
 # User preference toggles
 'tog-underline'            => "Tumana ling'ko:",
-'tog-highlightbroken'      => 'Kamukile ling\'ki bufosi <a href="" class="new">sa</a> (lyam: sa<a href="" class="internal">?</a>).',
 'tog-justify'              => 'Singanyekile silamina',
 'tog-usenewrc'             => 'Inenset petuho nca (JavaScript)',
 'tog-numberheadings'       => 'Auto-palo mukunguna',

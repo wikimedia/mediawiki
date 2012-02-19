@@ -25,7 +25,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Cullegaminde sottolinèete:',
-'tog-highlightbroken'         => 'Formete de collegamende sqausciete <a href="" class="new">cumme quiste</a> (in alternativa: cumme quiste<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Giustifeche le paragrafe',
 'tog-hideminor'               => "Scunne le cangiaminde stuédeche jndr'à le cangiaminde recende",
 'tog-hidepatrolled'           => "Scunne le cangiaminde condrollete jndr'à le cangiaminde recende",

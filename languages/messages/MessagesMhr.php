@@ -85,7 +85,6 @@ $magicWords = array(
 $messages = array(
 # User preference toggles
 'tog-underline'             => 'Кузе кылвер-влакым ӱлычын удыралаш?',
-'tog-highlightbroken'       => 'Лийдыме кылвер-влакым <a href="" class="new">тидын гай</a> ышташ (уке гын, тиде семын<a href="" class="internal">?</a>).',
 'tog-justify'               => 'Абзацым лопкыт дене тӧрлаш',
 'tog-hideminor'             => 'Пытартыш тӧрлатымаш-влак лӱмер гыч изирак тӧрлатымаш-влакым ончыкташ огыл',
 'tog-hidepatrolled'         => 'Тергыме тӧрлатымаш-влакым пытартыш тӧрлатымаш лӱмерыште шылташ',

@@ -299,7 +299,6 @@ $linkTrail = '/^([a-zăâîşţșțĂÂÎŞŢȘȚ]+)(.*)$/sDu';
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Sublinierea legăturilor:',
-'tog-highlightbroken'         => 'Afișează <a href="" class="new">așa</a> legăturile către paginile inexistente (alternativă: așa<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Aranjează justificat paragrafele',
 'tog-hideminor'               => 'Ascunde modificările minore în schimbări recente',
 'tog-hidepatrolled'           => 'Ascunde în schimbări recente editările patrulate',

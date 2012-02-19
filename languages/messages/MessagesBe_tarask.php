@@ -255,7 +255,6 @@ $imageFiles = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Падкрэсьліваць спасылкі:',
-'tog-highlightbroken'         => 'Фарматаваць няісныя спасылкі <a href="" class="new">такім чынам</a> (інакш: такім чынам<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Выраўноўваць тэкст па шырыні старонкі',
 'tog-hideminor'               => 'Хаваць дробныя зьмены ў сьпісе апошніх зьменаў',
 'tog-hidepatrolled'           => 'Хаваць патруляваныя зьмены ў сьпісе апошніх зьменаў',

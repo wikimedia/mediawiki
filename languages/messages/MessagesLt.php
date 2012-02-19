@@ -178,7 +178,6 @@ $dateFormats = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Pabraukti nuorodas:',
-'tog-highlightbroken'         => 'Formuoti nesančių puslapių nuorodas <a href="#" class="new">šitaip</a> (priešingai - šitaip <a href="#" class="internal">?</a>).',
 'tog-justify'                 => 'Lygiuoti pastraipas pagal abi puses',
 'tog-hideminor'               => 'Slėpti smulkius pakeitimus naujausių keitimų sąraše',
 'tog-hidepatrolled'           => 'Slėpti patikrintus keitimus paskutinių keitimų sąraše',

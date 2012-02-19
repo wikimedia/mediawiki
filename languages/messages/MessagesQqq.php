@@ -128,7 +128,6 @@
 $messages = array(
 # User preference toggles
 'tog-underline'               => "[[Special:Preferences]], tab 'Misc'. Offers user a choice how to underline links. {{Gender}}",
-'tog-highlightbroken'         => "[[Special:Preferences]], tab 'Appearance'. Offers user a choice how format internal links to non-existing pages. As red links or with a trailing question mark. {{Gender}}",
 'tog-justify'                 => "[[Special:Preferences]], tab 'Appearance'. Offers user a choice to justify paragraphs or not. {{Gender}}",
 'tog-hideminor'               => "[[Special:Preferences]], tab 'Recent changes'. Offers user to hide minor edits in recent changes or not. {{Gender}}",
 'tog-hidepatrolled'           => 'Option in Recent changes tab of [[Special:Preferences]] (if [[mw:Manual:$wgUseRCPatrol|$wgUseRCPatrol]] is enabled). {{Gender}}',

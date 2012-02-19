@@ -114,7 +114,6 @@ $linkTrail = '/^([áðíóúýæøa-z]+)(.*)$/sDu';
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Undurstrika ávísingar',
-'tog-highlightbroken'         => 'Brúka reyða ávísing til tómar síður',
 'tog-justify'                 => 'Stilla greinpart',
 'tog-hideminor'               => 'Goym minni broytingar í seinast broytt listanum',
 'tog-hidepatrolled'           => 'Goym eftirkannaðar rættingar í seinastu broytingum',

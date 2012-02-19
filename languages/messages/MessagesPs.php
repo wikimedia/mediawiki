@@ -159,7 +159,6 @@ $rtl = true;
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'کرښنې تړنې:',
-'tog-highlightbroken'         => 'د بڼې ماتې تړنې <a href="" class="new">لکه همدا</a> (بله چاره: لکه همدا<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'پاراګرافونه همجوليزول',
 'tog-hideminor'               => 'په وروستيو بدلونو کې واړه سمونونه پټول',
 'tog-hidepatrolled'           => 'په وروستيو بدلونونو کې څارل شوې سمونونه پټول',

@@ -328,7 +328,6 @@ $separatorTransformTable = array( ',' => '.', '.' => ',' );
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Потцртување на врски:',
-'tog-highlightbroken'         => 'Формат на неправилни врски <a href="" class="new">на овој начин</a> (алтернативно: вака<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Двостранично порамнување на параграфите',
 'tog-hideminor'               => 'Скривај ги ситните уредувања во скорешните промени',
 'tog-hidepatrolled'           => 'Скриј испатролирани уредувања во скорешните промени',

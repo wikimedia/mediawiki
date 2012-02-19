@@ -46,7 +46,6 @@ $namespaceGenderAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Ferwiese unnerstriekje:',
-'tog-highlightbroken'         => 'Ätterdruk lääse ap Ferwiese ätter loose Themen',
 'tog-justify'                 => 'Text as Bloksats',
 'tog-hideminor'               => 'Litje Annerengen uutbländje',
 'tog-hidepatrolled'           => 'Kontrollierde Annerengen in do "Lääste Annerengen" uutbländje',

@@ -110,7 +110,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Sub-strekizez ligili:',
-'tog-highlightbroken'         => 'Formatigez ruptita ligili <a href="" class="new">tale</a> (alternativo: tale<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Adjustigez paragrafi',
 'tog-hideminor'               => 'Celez mikra redaktaji de recenta chanji',
 'tog-hidepatrolled'           => 'Celez patroliita redakti en recenta chanji',

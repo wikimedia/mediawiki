@@ -77,7 +77,6 @@ $digitGroupingPattern = "##,##,###";
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'இணைப்புகளுக்கு அடிக்கோடிடு',
-'tog-highlightbroken'         => 'முறிந்த இணைப்புகளை வடிவமை <a href="" class="புதிது">இதைப் போல </a> (alternative: like this<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'பந்திகளை ஓரச் சீர்மைப் படுத்து',
 'tog-hideminor'               => 'அண்மைய மாற்றங்களில் சிறிய தொகுப்புகளை மறை',
 'tog-hidepatrolled'           => 'அண்மைய மாற்றங்களில் பலமுறை பார்வையிட்ட தொகுப்புக்களை மறைக்கவும்',

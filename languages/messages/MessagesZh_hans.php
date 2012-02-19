@@ -258,7 +258,6 @@ $bookstoreList = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => '链接下划线：',
-'tog-highlightbroken'         => '无效链接显示为<a href="" class="new">这样</a>（否则显示为<a href="" class="internal">?</a>）',
 'tog-justify'                 => '段落对齐',
 'tog-hideminor'               => '在最近更改中隐藏小编辑',
 'tog-hidepatrolled'           => '在最近更改中隐藏已巡查编辑',

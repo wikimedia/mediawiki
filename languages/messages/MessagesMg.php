@@ -219,7 +219,6 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Hanipika ny rohy:',
-'tog-highlightbroken'         => 'Aseho <a href="" class="new">toy izao</a> ny rohy tapaka (na koa: toy izao<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Hanitsy ny andiany',
 'tog-hideminor'               => "Hanitsika ny fanovana madinika ao amin'ny fanovana farany",
 'tog-hidepatrolled'           => "Hanitrika ny fanovana voaara-maso ao amin'ny fanovana farany",

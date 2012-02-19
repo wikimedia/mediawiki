@@ -13,7 +13,6 @@
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Enyunzi ebengako olukoloboze?',
-'tog-highlightbroken'         => 'Enyunzi ezigeza okugukka ku mpapula ezitaliwo <a href="" class="new">zifaanane bwezityi</a> (oba bwezityi: <a href="" class="internal">?</a>)',
 'tog-justify'                 => "Ennyiriri z'enkanankanye",
 'tog-hideminor'               => 'Kisa nkyukakyuka entono ezakakolebwa',
 'tog-hidepatrolled'           => "Kisa nkyukakyuka ezakakolebwa ezimaz'okulawunibwa",

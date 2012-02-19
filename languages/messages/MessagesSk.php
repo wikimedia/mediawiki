@@ -281,7 +281,6 @@ $linkTrail = '/^([a-záäčďéíľĺňóôŕšťúýž]+)(.*)$/sDu';
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Podčiarkovať odkazy:',
-'tog-highlightbroken'         => 'Neexistujúce odkazy formátovať <a href="" class="new">takto</a> (alternatívne: takto<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Zarovnávať okraje odstavcov',
 'tog-hideminor'               => 'V posledných úpravách nezobrazovať drobné úpravy',
 'tog-hidepatrolled'           => 'Skryť strážené úpravy v Posledných úpravách',

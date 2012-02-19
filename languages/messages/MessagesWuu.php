@@ -18,7 +18,6 @@ $fallback = 'zh-hans';
 $messages = array(
 # User preference toggles
 'tog-underline'               => '链接下划线：',
-'tog-highlightbroken'         => '无效链接格式显示成功<a href="" class="new">箇能介</a>（或者实梗<a href="" class="internal">？</a>）',
 'tog-justify'                 => '对齐段落',
 'tog-hideminor'               => '来许近段辰光个改动里向拿细改动囥脱',
 'tog-hidepatrolled'           => '来拉近段辰光个改动里向囥脱巡查过歇个改动',
