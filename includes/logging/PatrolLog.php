@@ -27,10 +27,12 @@ class PatrolLog {
 
 		$title = Title::makeTitleSafe( $rc->getAttribute( 'rc_namespace' ), $rc->getAttribute( 'rc_title' ) );
 		if( $title ) {
+			global $wgUser;
+
 			$entry = new ManualLogEntry( 'patrol', 'patrol' );
 			$entry->setTarget( $title );
 			$entry->setParameters( self::buildParams( $rc, $auto ) );
-			$entry->setPerformer( User::newFromName( $rc->getAttribute( 'rc_user_text' ), false ) );
+			$entry->setPerformer( $wgUser, false ) );
 			$logid = $entry->insert();
 			if ( !$auto ) {
 				$entry->publish( $logid, 'udp' );
