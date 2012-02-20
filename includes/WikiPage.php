@@ -118,7 +118,7 @@ class WikiPage extends Page {
 	 *
 	 * @param $id Int article ID to load
 	 *
-	 * @return WikiPage
+	 * @return WikiPage|null
 	 */
 	public static function newFromID( $id ) {
 		$t = Title::newFromID( $id );
