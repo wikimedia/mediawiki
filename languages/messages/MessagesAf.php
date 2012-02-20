@@ -1248,7 +1248,7 @@ U kan ook 'n naamruimte as voorvoegsel gebruik.",
 'prefs-rc'                      => 'Onlangse wysigings',
 'prefs-watchlist'               => 'Dophoulys',
 'prefs-watchlist-days'          => 'Aantal dae om in dophoulys te wys:',
-'prefs-watchlist-days-max'      => 'Maksimum 7 {{PLURAL:$1|dag|dae}}',
+'prefs-watchlist-days-max'      => 'Maksimum $1 {{PLURAL:$1|dag|dae}}',
 'prefs-watchlist-edits'         => 'Aantal wysigings om in uitgebreide dophoulys te wys:',
 'prefs-watchlist-edits-max'     => 'Maksimum aantal: 1000',
 'prefs-watchlist-token'         => 'Dophoulys-sleutel:',
@@ -2686,6 +2686,7 @@ Die eksportlêer kan daarna geïmporteer word na enige ander MediaWiki webwerf v
 Verskaf die name van die bladsye wat geëksporteer moet word in die onderstaande veld, een bladsy per lyn, en kies of u alle weergawes (met geskiedenis) of slegs die nuutste weergawe soek.
 
 In die laatste geval kan u ook \'n verwysing gebruik, byvoorbeeld [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] vir die bladsy "{{MediaWiki:Mainpage}}".',
+'exportall'         => 'Eksporteer alle bladsye',
 'exportcuronly'     => 'Slegs die nuutste weergawes, sonder volledige geskiedenis',
 'exportnohistory'   => "----
 '''Let op:''' as gevolg van werkverrigting is die uitvoer volledige geskiedenis gedeaktiveer.",

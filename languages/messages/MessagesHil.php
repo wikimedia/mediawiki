@@ -1087,7 +1087,7 @@ Tandai nga ang ila nga palasulundan sang mga unod sang {{SITENAME}} mahimo nga m
 'prefs-rc'                      => 'Mga Bag-o nga Inislan',
 'prefs-watchlist'               => 'Lista sang mga ginabantayan',
 'prefs-watchlist-days'          => 'Mga adlaw nga ipakita sa lista sang ginabantayan:',
-'prefs-watchlist-days-max'      => 'Indi magsobra 7 ka adlaw',
+'prefs-watchlist-days-max'      => 'Maximum $1 {{PLURAL:$1|day|days}}',
 'prefs-watchlist-edits'         => 'Ang pinakataas nga beses sang pag-ilis nga ipakita sa ginpalawig nga lista sang ginabantayan:',
 'prefs-watchlist-edits-max'     => 'Pinakataas nga numero: 1000',
 'prefs-watchlist-token'         => 'Token sang lista sang ginabantayan:',

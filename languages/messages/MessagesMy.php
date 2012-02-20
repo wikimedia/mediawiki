@@ -737,7 +737,7 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'prefs-rc'                      => 'လတ်​တ​လောအ​ပြောင်း​အ​လဲ​',
 'prefs-watchlist'               => 'စောင့်ကြည့်စာရင်း',
 'prefs-watchlist-days'          => 'စောင့်ကြည့်စာရင်းတွင် ပြရန်နေ့များ',
-'prefs-watchlist-days-max'      => 'အလွန်ဆုံး ၇ ရက်',
+'prefs-watchlist-days-max'      => 'Maximum $1 {{PLURAL:$1|day|days}}',
 'prefs-watchlist-edits'         => 'ချဲ့ထားသော စောင့်ကြည့်စာရင်းတွင် ပြရန် အပြောင်းအလဲတို့၏ အများဆုံး အရေအတွက်',
 'prefs-watchlist-edits-max'     => 'အများဆုံးအရေအတွက် - ၁ဝဝဝ',
 'prefs-watchlist-token'         => 'စောင့်ကြည့်စာရင်း တိုကင် -',

@@ -447,6 +447,7 @@ Başlıqlarda istifadə edilməsi qadağan olunan bir və ya daha çox simvol is
 Funksiya: $1<br />
 Sorğu: $2',
 'viewsource'           => 'Mənbə göstər',
+'viewsource-title'     => '$1 üçün mənbəyə bax',
 'actionthrottled'      => 'Sürət məhdudiyyəti',
 'actionthrottledtext'  => 'Anti-spam hərəkətləri səbəbilə, bir hərəkəti qısa bir zaman aralığında çoxetməniz əngəlləndi, və siz həddi aşmısınız. Lütfən bir neçə dəqiqə sonra yenidən yoxlayın.',
 'protectedpagetext'    => 'Bu səhifə redaktə üçün bağlıdır.',
@@ -2101,7 +2102,7 @@ Zəhmət olmasa başqa ad seçin.',
 
 "[[$1]]" məqaləsi mövcuddur. Bu dəyişikliyin yerinə yetirilə bilməsi üçün həmin məqalənin silinməsini istəyirsinizmi?',
 'delete_and_move_confirm'      => 'Bəli, səhifəni sil',
-'delete_and_move_reason'       => 'Ad dəyişməyə yer açmaq üçün silinmişdir',
+'delete_and_move_reason'       => '[[$1]] Ad dəyişməyə yer açmaq üçün silinmişdir',
 'selfmove'                     => 'Səhifənin hazırkı adı ilə dəyişmək istənilən ad eynidir. Bu əməliyyat yerinə yetirilə bilməz.',
 'immobile-source-namespace'    => '"$1" ad aralığında səhifə adları dəyişmir.',
 'immobile-target-namespace'    => 'Səhilərin "$1" ad aralığına daşınması qeyri-mümkündür',

@@ -779,7 +779,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'prefs-rc'                  => 'የቅርቡ ለውጦች ዝርዝር',
 'prefs-watchlist'           => 'የሚከታተሉ ገጾች',
 'prefs-watchlist-days'      => 'በሚከታተሉት ገጾች ዝርዝር ስንት ቀን ይታይ፤',
-'prefs-watchlist-days-max'  => '(ከ7 ቀን አይበልጥም)',
+'prefs-watchlist-days-max'  => 'Maximum $1 {{PLURAL:$1|day|days}}',
 'prefs-watchlist-edits'     => 'በተደረጁት ዝርዝር ስንት ለውጥ ይታይ፤',
 'prefs-watchlist-edits-max' => '(ከ1,000 ለውጥ በላይ አይሆንም)',
 'prefs-misc'                => 'ልዩ ልዩ ምርጫዎች',
@@ -871,7 +871,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'group-bureaucrat'    => 'አስተዳዳሪዎች',
 'group-all'           => '(ሁሉ)',
 
-'group-user-member'          => 'ተጠቃሚ',
+'group-user-member'          => '{{GENDER:$1|ተጠቃሚ}}',
 'group-autoconfirmed-member' => 'የተረጋገጠ ተጠቃሚ',
 'group-bot-member'           => 'BOT',
 'group-sysop-member'         => 'መጋቢ',

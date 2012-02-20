@@ -1529,10 +1529,11 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 'right-passwordreset'         => 'Vaadata parooli lähtestamise e-kirju',
 
 # User rights log
-'rightslog'      => 'Kasutaja õiguste logi',
-'rightslogtext'  => 'See on logi kasutajate õiguste muutuste kohta.',
-'rightslogentry' => 'muutis kasutaja $1 rühmast $2 rühma $3 liikmeks',
-'rightsnone'     => '(puudub)',
+'rightslog'                  => 'Kasutaja õiguste logi',
+'rightslogtext'              => 'See on logi kasutajate õiguste muutuste kohta.',
+'rightslogentry'             => 'andis kasutajale $1 järgmised õigused: $3; seni oli ta $2',
+'rightslogentry-autopromote' => 'sai automaatselt järgmised õigused: $3; seni oli ta $2',
+'rightsnone'                 => '(puudub)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'seda lehekülge lugeda',

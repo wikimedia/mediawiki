@@ -509,7 +509,7 @@ Hirmid sagsd, das Du den dhägsd '''selbâr gschriim''' hasd, das däär dhägsd
 'prefs-rc'                  => 'Ledschde Ändrungn',
 'prefs-watchlist'           => 'Beoobachdungs-lischdn',
 'prefs-watchlist-days'      => 'Wiifiil dääch dsrig in dr beoobachdungs-lischdn:',
-'prefs-watchlist-days-max'  => 'Hechschdns 7 dääch',
+'prefs-watchlist-days-max'  => 'Maximum $1 {{PLURAL:$1|day|days}}',
 'prefs-watchlist-edits'     => 'Wiifiil âjdrääch hechschdens:',
 'prefs-watchlist-edits-max' => 'Hegschd-dsôôl: 1000',
 'prefs-watchlist-token'     => "Token fir d'beoobachdungs-lisdn",

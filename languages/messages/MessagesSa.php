@@ -1139,7 +1139,7 @@ $2
 'prefs-rc'                  => 'सद्योजातानि परिवर्तनानि',
 'prefs-watchlist'           => 'दृष्टि सूची',
 'prefs-watchlist-days'      => 'दृष्टि सूची दर्शनार्थे  दिवसानि',
-'prefs-watchlist-days-max'  => 'अधिकतम ७ दिवसानि',
+'prefs-watchlist-days-max'  => 'Maximum $1 {{PLURAL:$1|day|days}}',
 'prefs-watchlist-edits-max' => 'अधिकतम संख्या: १०००',
 'prefs-misc'                => 'विविधः',
 'prefs-resetpass'           => 'कूटशब्दः परिवर्त्यताम्',

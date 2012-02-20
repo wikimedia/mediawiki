@@ -492,7 +492,7 @@ E ʻoluʻolu, e hōʻoia i ka hoʻokūkū ʻana i lalo, a laila, e mālama i nā
 'prefs-rc'                  => 'Nā loli hou',
 'prefs-watchlist'           => 'Helu nānā',
 'prefs-watchlist-days'      => 'Nā lā e hōʻike ana i ka helu nānā:',
-'prefs-watchlist-days-max'  => 'ʻEhiku lā ka palena nui',
+'prefs-watchlist-days-max'  => 'Maximum $1 {{PLURAL:$1|day|days}}',
 'saveprefs'                 => 'Mālama',
 'searchresultshead'         => 'Huli',
 'savedprefs'                => 'Ua mālama ‘ia kāu makemake',

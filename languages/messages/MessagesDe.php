@@ -13,6 +13,7 @@
  * @author Church of emacs
  * @author DaSch
  * @author Duesentrieb
+ * @author Geitost
  * @author Giftpflanze
  * @author Imre
  * @author Inkowik
@@ -639,7 +640,7 @@ Siehe die [[Special:Version|Versionsseite]]',
 'ok'                      => 'Okay',
 'pagetitle'               => '$1 – {{SITENAME}}',
 'retrievedfrom'           => 'Von „$1“',
-'youhavenewmessages'      => 'Du hast $1 auf deiner Diskussionsseite ($2).',
+'youhavenewmessages'      => 'Du hast $1 ($2).',
 'newmessageslink'         => 'neue Nachrichten',
 'newmessagesdifflink'     => 'Letzte Änderung',
 'youhavenewmessagesmulti' => 'Du hast neue Nachrichten: $1',
@@ -1108,7 +1109,7 @@ Zur Information folgt der aktuelle Logbucheintrag:",
 
 Bitte prüfe sorgfältig, ob die erneute Seitenerstellung den Richtlinien entspricht.
 Zu deiner Information folgt das Lösch- und Verschiebungs-Logbuch mit der Begründung für die vorhergehende Löschung:",
-'moveddeleted-notice'              => 'Diese Seite wurde gelöscht. Es folgt ein Auszug aus dem Lösch- und Verschiebungs-Logbuch dieser Seite.',
+'moveddeleted-notice'              => 'Diese Seite wurde gelöscht. Zur Information folgt das Lösch- und Verschiebungs-Logbuch dieser Seite.',
 'log-fulllog'                      => 'Alle Logbucheinträge ansehen',
 'edit-hook-aborted'                => 'Die Bearbeitung wurde ohne Erklärung durch eine Schnittstelle abgebrochen.',
 'edit-gone-missing'                => 'Die Seite konnte nicht aktualisiert werden.
@@ -1124,8 +1125,8 @@ Sie darf nicht mehr als $2 {{PLURAL:$2|Aufruf|Aufrufe}} haben, es {{PLURAL:$1|is
 'expensive-parserfunction-category'       => 'Seiten, die aufwändige Parserfunktionen zu oft aufrufen',
 'post-expand-template-inclusion-warning'  => 'Warnung: Die Größe eingebundener Vorlagen ist zu groß, einige Vorlagen können nicht eingebunden werden.',
 'post-expand-template-inclusion-category' => 'Seiten, in denen die maximale Größe eingebundener Vorlagen überschritten ist',
-'post-expand-template-argument-warning'   => "'''Warnung:''' Diese Seite enthält mindestens ein Argument in einer Vorlage, das expandiert zu groß ist. Diese Argumente werden ignoriert.",
-'post-expand-template-argument-category'  => 'Seiten, die ignorierte Vorlagenargumente enthalten',
+'post-expand-template-argument-warning'   => "'''Warnung:''' Diese Seite enthält mindestens einen Parameter in einer Vorlage, der expandiert zu groß ist. Diese Parameter werden ignoriert.",
+'post-expand-template-argument-category'  => 'Seiten mit ignorierten Vorlagenparametern',
 'parser-template-loop-warning'            => 'Vorlagenschleife entdeckt: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Vorlagenrekursionstiefengrenze überschritten ($1)',
 'language-converter-depth-warning'        => 'Sprachkonvertertiefenlimit überschritten ($1)',
@@ -1161,7 +1162,7 @@ Grund der Sperre: ''$2''",
 'histlegend'             => 'Zur Anzeige der Änderungen einfach die zu vergleichenden Versionen auswählen und die Schaltfläche „{{int:compareselectedversions}}“ klicken.<br />
 * ({{int:cur}}) = Unterschied zur aktuellen Version, ({{int:last}}) = Unterschied zur vorherigen Version
 * Uhrzeit/Datum = Version zu dieser Zeit, Benutzername/IP-Adresse des Bearbeiters, {{int:minoreditletter}} = Kleine Änderung',
-'history-fieldset-title' => 'Suche in der Versionsgeschichte',
+'history-fieldset-title' => 'In der Versionsgeschichte suchen',
 'history-show-deleted'   => 'nur gelöschte Versionen',
 'histfirst'              => 'Älteste',
 'histlast'               => 'Neueste',
@@ -2406,7 +2407,7 @@ Rückmeldungen und weitere Hilfe: {{canonicalurl:{{MediaWiki:Helppage}}}}',
 # Rollback
 'rollback'          => 'Zurücksetzen der Änderungen',
 'rollback_short'    => 'Zurücksetzen',
-'rollbacklink'      => 'Zurücksetzen',
+'rollbacklink'      => 'kommentarlos zurücksetzen',
 'rollbackfailed'    => 'Zurücksetzen gescheitert',
 'cantrollback'      => 'Die Änderung kann nicht zurückgesetzt werden, da es keine früheren Autoren gibt.',
 'alreadyrolled'     => 'Das Zurücksetzen der Änderungen von [[User:$2|$2]] ([[User talk:$2|Diskussion]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) an [[:$1]] ist gescheitert, da in der Zwischenzeit ein anderer Benutzer die Seite geändert hat.
@@ -3003,7 +3004,7 @@ Diese auf dem lokalen Rechner speichern und danach hier hochladen.',
 'tooltip-preview'                     => 'Vorschau der Änderungen an dieser Seite. Bitte vor dem Speichern benutzen!',
 'tooltip-diff'                        => 'Änderungen am Text zeigen',
 'tooltip-compareselectedversions'     => 'Unterschied zwischen zwei ausgewählten Versionen dieser Seite anzeigen',
-'tooltip-watch'                       => 'Füge diese Seite deiner Beobachtungsliste hinzu',
+'tooltip-watch'                       => 'Diese Seite zu deiner Beobachtungsliste hinzufügen',
 'tooltip-watchlistedit-normal-submit' => 'Einträge entfernen',
 'tooltip-watchlistedit-raw-submit'    => 'Beobachtungsliste aktualisieren',
 'tooltip-recreate'                    => 'Seite neu erstellen, obwohl sie gelöscht wurde',
@@ -3841,14 +3842,14 @@ Eine [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie der ''GNU General Public License'']
 'intentionallyblankpage' => 'Diese Seite ist absichtlich ohne Inhalt. Sie wird für Benchmarks verwendet.',
 
 # External image whitelist
-'external_image_whitelist' => ' #Diese Zeile nicht verändern<pre>
+'external_image_whitelist' => ' #Diese Zeile nicht verändern.<pre>
 #Untenstehend können Fragmente regulärer Ausdrücke (der Teil zwischen den //) eingegeben werden.
-#Diese werden mit den URLs von Bildern aus externen Quellen verglichen
-#Ein positiver Vergleich führt zur Anzeige des Bildes, andernfalls wird das Bild nur als Link angezeigt
-#Zeilen, die mit einem # beginnen, werden als Kommentar behandelt
-#Es wird nicht zwischen Groß- und Kleinschreibung unterschieden
+#Diese werden mit den URLs von Bildern aus externen Quellen verglichen.
+#Ein positiver Vergleich führt zur Anzeige des Bildes, andernfalls wird das Bild nur als Link angezeigt.
+#Zeilen, die mit einem # beginnen, werden als Kommentar behandelt.
+#Es wird nicht zwischen Groß- und Kleinschreibung unterschieden.
 
-#Fragmente regulärer Ausdrücke nach dieser Zeile eintragen. Diese Zeile nicht verändern</pre>',
+#Fragmente regulärer Ausdrücke nach dieser Zeile eintragen. Diese Zeile nicht verändern.</pre>',
 
 # Special:Tags
 'tags'                    => 'Gültige Änderungsmarkierungen',

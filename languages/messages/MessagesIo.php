@@ -708,7 +708,7 @@ Probez prefixizar vua demando kun ''all:'' por serchar omna kontenajo (inkluzant
 'prefs-rc'                      => 'Recenta chanji',
 'prefs-watchlist'               => 'Surveyo-listo',
 'prefs-watchlist-days'          => 'Dii montrata en surveyaji:',
-'prefs-watchlist-days-max'      => 'Maximo 7 dii',
+'prefs-watchlist-days-max'      => 'Maximum $1 {{PLURAL:$1|day|days}}',
 'prefs-watchlist-edits-max'     => 'Maxima nombro: 1000',
 'prefs-misc'                    => 'Mixaji',
 'prefs-resetpass'               => 'Chanjar pasovorto',

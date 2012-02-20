@@ -981,9 +981,9 @@ Quizá ha sido movida o borrada mientras visitabas la página.',
 'loginreqlink'                     => 'iniciar sesión',
 'loginreqpagetext'                 => 'Debes $1 para ver otras páginas.',
 'accmailtitle'                     => 'La contraseña ha sido enviada.',
-'accmailtext'                      => "Una contraseña generada aleatoriamente para [[User talk:$1|$1]] ha sido enviada a $2.
+'accmailtext'                      => 'Se ha enviado a $2 una contraseña generada aleatoriamente para [[User talk:$1|$1]].
 
-La contraseña para esta nueva cuenta puede ser cambiada en la página ''[[Special:ChangePassword|cambiar la contraseña]]'' después de haber iniciado sesión.",
+La contraseña para esta nueva cuenta puede cambiarse en [[Special:ChangePassword|la página destinada para ello]] después de haber iniciado sesión.',
 'newarticle'                       => '(Nuevo)',
 'newarticletext'                   => 'Has seguido un enlace a una página que aún no existe.
 Para crear esta página, escribe en el campo a continuación. Para más información, consulta la [[{{MediaWiki:Helppage}}|página de ayuda]].
@@ -2838,8 +2838,8 @@ Por favor visita [//www.mediawiki.org/wiki/Localisation Localización MediaWiki]
 'allmessages-filter-legend'     => 'Filtro',
 'allmessages-filter'            => 'Filtrar por estado de personalización:',
 'allmessages-filter-unmodified' => 'Sin modificar',
-'allmessages-filter-all'        => 'Todo',
-'allmessages-filter-modified'   => 'Modificado',
+'allmessages-filter-all'        => 'Todos',
+'allmessages-filter-modified'   => 'Modificados',
 'allmessages-prefix'            => 'Filtrar por prefijo:',
 'allmessages-language'          => 'Idioma:',
 'allmessages-filter-submit'     => 'Ir',
@@ -3650,6 +3650,7 @@ Este código de confirmación caducará el $4.',
 
 # Separators for various lists, etc.
 'comma-separator' => ',&#32;',
+'pipe-separator'  => '&#32;•&#32;',
 
 # Multipage image navigation
 'imgmultipageprev' => '← página anterior',

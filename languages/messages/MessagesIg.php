@@ -770,7 +770,7 @@ Nwàné ótù okwu íshí na ihe Í nè tú jí ''háníle:'' Í tuó ihe nílé
 'prefs-personal'            => "Nkówá ọ'bànifé",
 'prefs-rc'                  => 'Gbanwere mere ogẹ di nso',
 'prefs-watchlist'           => 'Ndétụnlé',
-'prefs-watchlist-days-max'  => 'Okè chi 7',
+'prefs-watchlist-days-max'  => 'Maximum $1 {{PLURAL:$1|day|days}}',
 'prefs-misc'                => 'Mcheta-ma-mchetaghim',
 'prefs-resetpass'           => 'Gbanwe okwu éjị à gáfe',
 'prefs-email'               => 'Màkà e-mail',

@@ -955,7 +955,7 @@ Jéemala bindaale ''all'' ngir seet ci biir ëmbit gépp (boolewaale ci xëti wa
 'prefs-rc'                      => 'Coppite yu mujj',
 'prefs-watchlist'               => 'Limu toppte',
 'prefs-watchlist-days'          => 'Limu bes yi nga koy ba ci sa limu toppte :',
-'prefs-watchlist-days-max'      => 'Du weesu 7 fan',
+'prefs-watchlist-days-max'      => 'Maximum $1 {{PLURAL:$1|day|days}}',
 'prefs-watchlist-edits'         => 'Limu coppite yi ngay wone ci limu toppte gees yaatal gi:',
 'prefs-misc'                    => 'Yeneeni tànneef',
 'prefs-resetpass'               => 'Soppi baatujàll',

@@ -374,7 +374,7 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 'datedefault'               => 'Nogat laik',
 'prefs-rc'                  => 'Nupela senis',
 'prefs-watchlist'           => 'Lukautbuk',
-'prefs-watchlist-days-max'  => 'No moa long 7 de',
+'prefs-watchlist-days-max'  => 'Maximum $1 {{PLURAL:$1|day|days}}',
 'prefs-watchlist-edits-max' => 'No moa long: 1000',
 'prefs-resetpass'           => 'Senis paswot',
 'saveprefs'                 => 'Holim long tingting',

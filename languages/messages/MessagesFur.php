@@ -817,7 +817,7 @@ La tô direzion di pueste no ven mostrade cuant che i utents ti contatin.',
 'group-sysop'         => 'Aministradôrs',
 'group-all'           => 'Utents',
 
-'group-user-member' => 'Utent',
+'group-user-member' => '{{GENDER:$1|Utent}}',
 
 'grouppage-sysop' => '{{ns:project}}:Aministradôrs',
 

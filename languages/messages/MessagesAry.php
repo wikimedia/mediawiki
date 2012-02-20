@@ -1011,7 +1011,7 @@ Laḫed ana imken ikono l-indexaṫ dial {{SITENAME}} qdam o ma bqaoċ ṣalḫi
 'prefs-rc'                      => 'Ṫ-Ṫeĝdilaṫ l-leĥĥra',
 'prefs-watchlist'               => "qa'imaṫ l-ṃoṛaqaba",
 'prefs-watchlist-days'          => 'adad kiyam alaard f qaimat lmoraqaba:',
-'prefs-watchlist-days-max'      => 'Maximmum 7 yam',
+'prefs-watchlist-days-max'      => 'Maximum $1 {{PLURAL:$1|day|days}}',
 'prefs-watchlist-edits'         => "maksimom ĝadad ṫ-ṫġyiraṫ lli ṫṫbyyen f-qa'imaṫ l-ṃoṛaqaba l-mowssaĝa:",
 'prefs-watchlist-edits-max'     => 'maximmum:1000',
 'prefs-watchlist-token'         => 'miftah qaimat lmoraqaba',
@@ -1127,7 +1127,7 @@ Laḫed ana imken ikono l-indexaṫ dial {{SITENAME}} qdam o ma bqaoċ ṣalḫi
 'group-suppress'      => 'noddar',
 'group-all'           => '(kolchi)',
 
-'group-user-member'          => 'Mosṫeĥdim',
+'group-user-member'          => '{{GENDER:$1|Mosṫeĥdim}}',
 'group-autoconfirmed-member' => "Mosṫeĥdim moakkad tilqa'iyan",
 'group-bot-member'           => 'bot',
 'group-sysop-member'         => 'Wébmodirin',

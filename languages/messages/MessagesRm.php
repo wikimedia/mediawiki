@@ -1028,7 +1028,7 @@ Considerescha che lur index da {{SITENAME}} po cuntegnair datas ch'èn betg pli 
 'prefs-rc'                    => 'Ultimas midadas',
 'prefs-watchlist'             => "Glista d'observaziun",
 'prefs-watchlist-days'        => "Dumber dals dis che vegnan inditgads sin la glista d'observaziun:",
-'prefs-watchlist-days-max'    => 'Maximalmain 7 dis',
+'prefs-watchlist-days-max'    => 'Maximum $1 {{PLURAL:$1|day|days}}',
 'prefs-watchlist-edits'       => 'Dumber da las midadas mussadas en la glista dad observaziun extendida:',
 'prefs-watchlist-edits-max'   => 'Dumber maximal: 1000',
 'prefs-watchlist-token'       => "Token da la glista d'observaziun",

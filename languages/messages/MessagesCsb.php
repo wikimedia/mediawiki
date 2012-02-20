@@ -683,7 +683,7 @@ Mòżesz zezwòlëc jinszim brëkòwniką na łączbã z Tobą przez Twòją sta
 'group-suppress'      => 'Rewizorzë',
 'group-all'           => '(wszëtcë)',
 
-'group-user-member'          => 'Brëkòwnik',
+'group-user-member'          => '{{GENDER:$1|Brëkòwnik}}',
 'group-autoconfirmed-member' => 'aùtomatno zacwierdzony brëkòwnik',
 'group-bot-member'           => 'bòt',
 'group-sysop-member'         => 'sprôwnik',

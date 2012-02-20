@@ -1441,7 +1441,7 @@ P'amiestar un archivu nuna páxina, usa un enllaz con ún de los siguientes form
 'uploadlogpage'               => 'Rexistru de xubíes',
 'uploadlogpagetext'           => "Abaxo amuésase una llista de les xubíes d'archivos más recientes.
 Mira la [[Special:NewFiles|galería d'archivos nuevos]] pa una güeyada más visual.",
-'filename'                    => "Nome d'archivu",
+'filename'                    => 'Nome del ficheru',
 'filedesc'                    => 'Resume',
 'fileuploadsummary'           => 'Resume:',
 'filereuploadsummary'         => 'Cambeos del ficheru:',
@@ -1933,7 +1933,7 @@ Ver tamién les [[Special:WantedCategories|categoríes más buscaes]].",
 # Special:DeletedContributions
 'deletedcontributions'             => "Contribuciones d'usuariu esborraes",
 'deletedcontributions-title'       => "Contribuciones d'usuariu desaniciaes",
-'sp-deletedcontributions-contribs' => 'contribuciones',
+'sp-deletedcontributions-contribs' => 'collaboraciones',
 
 # Special:LinkSearch
 'linksearch'       => "Gueta d'enllaces esternos",
@@ -3159,7 +3159,7 @@ Los demás tarán anubríos de mou predetermináu.
 'exif-subjectdistance-value' => '{{PLURAL:$1|$1 metru|$1 metros}}',
 
 'exif-meteringmode-0'   => 'Desconocíu',
-'exif-meteringmode-1'   => 'Promediáu',
+'exif-meteringmode-1'   => 'Media',
 'exif-meteringmode-2'   => 'Media ponderada centrada',
 'exif-meteringmode-3'   => 'Puntual',
 'exif-meteringmode-4'   => 'Multipuntu',
@@ -3543,7 +3543,7 @@ Les imáxenes amuésense a resolución completa; les demás tribes d'archivu exe
 'fileduplicatesearch'           => 'Buscar archivos duplicaos',
 'fileduplicatesearch-summary'   => 'Busca archivos duplicaos basándose nos sos valores fragmentarios.',
 'fileduplicatesearch-legend'    => 'Buscar duplicaos',
-'fileduplicatesearch-filename'  => "Nome d'archivu:",
+'fileduplicatesearch-filename'  => 'Nome del ficheru:',
 'fileduplicatesearch-submit'    => 'Guetar',
 'fileduplicatesearch-info'      => '$1 × $2 píxeles<br />Tamañu del archivu: $3<br />Triba MIME: $4',
 'fileduplicatesearch-result-1'  => 'L\'archivu "$1" nun tien duplicáu idénticu.',

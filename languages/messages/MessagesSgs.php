@@ -756,7 +756,7 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 'prefs-rc'                  => 'Vielībė̅jė pakeitėmā',
 'prefs-watchlist'           => 'Keravuojamu sārašos',
 'prefs-watchlist-days'      => 'Kėik dėinū ruodītė keravuojamu sārašė:',
-'prefs-watchlist-days-max'  => '(daugiausē 7 dėinas)',
+'prefs-watchlist-days-max'  => 'Maximum $1 {{PLURAL:$1|day|days}}',
 'prefs-watchlist-edits'     => 'Kėik pakeitėmu ruodītė ėšpliestiniam keravuojamu sārašė:',
 'prefs-watchlist-edits-max' => '(dėdliausias skaitlius: 1000)',
 'prefs-misc'                => 'Ivairė nustatīmā',

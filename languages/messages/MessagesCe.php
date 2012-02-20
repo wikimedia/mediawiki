@@ -820,7 +820,7 @@ $1',
 'group-suppress'   => 'Левисорхой',
 'group-all'        => '(массо)',
 
-'group-user-member'       => 'декъашхо',
+'group-user-member'       => '{{GENDER:$1|декъашхо}}',
 'group-bot-member'        => 'шаболххо',
 'group-sysop-member'      => 'адманкуьйгалхо',
 'group-bureaucrat-member' => 'даржахо',

@@ -1123,7 +1123,7 @@ Coba susud dimimitian ku ''all:'' pikeun nyusud sakabéh kandunganana (kaasup ka
 'prefs-rc'                      => 'Panémbong robahan anyar jeung tukung',
 'prefs-watchlist'               => 'Awaskeuneun',
 'prefs-watchlist-days'          => 'Jumlah poé anu ditémbongkeun dina daptar awaskeuneun:',
-'prefs-watchlist-days-max'      => 'Panglilana 7 poé',
+'prefs-watchlist-days-max'      => 'Maximum $1 {{PLURAL:$1|day|days}}',
 'prefs-watchlist-edits'         => 'Jumlah parobahan maksimum nu ditémbongkeun dina daptar panjang awaskeuneun:',
 'prefs-watchlist-edits-max'     => 'Panglobana: 1000',
 'prefs-misc'                    => 'Pangaturan rupa-rupa',

@@ -972,7 +972,7 @@ Barlıq alannarda (bäxäs bitläre, ürnäklär, h.b.) ezläw öçen ''all'' s�
 'prefs-rc'                      => 'Soñğı üzgärtülär',
 'prefs-watchlist'               => 'Küzätü isemlege',
 'prefs-watchlist-days'          => 'Küzätü isemlegendä kürsätelgän kön sanı:',
-'prefs-watchlist-days-max'      => '7 könnän artıq tügel',
+'prefs-watchlist-days-max'      => 'Maximum $1 {{PLURAL:$1|day|days}}',
 'prefs-watchlist-edits'         => 'Kiñäytelgän küzätü isemlegendä üzgärtülärneñ iñ yuğarı isäbe:',
 'prefs-watchlist-edits-max'     => 'Maksimum san: 1000',
 'prefs-watchlist-token'         => 'Küzätü isemlege toqenı:',
