@@ -104,7 +104,7 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 		$updateSize = 0;
 		$db->begin();
 		foreach ( $res as $row ) {
-			if ( $this->upgradeRow( $row, 'archive', 'ar_timestamp', 'ar' ) ) {
+			if ( $this->upgradeLegacyArchiveRow( $row ) ) {
 				++$count;
 			}
 			if ( ++$updateSize >= 100 ) {
@@ -134,6 +134,31 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 			$db->update( $table,
 				array( "{$prefix}_sha1" => Revision::base36Sha1( $text ) ),
 				array( $idCol => $row->$idCol ),
+				__METHOD__ 
+			);
+			return true;
+		}
+	}
+
+	protected function upgradeLegacyArchiveRow( $row ) {
+		$db = $this->getDB( DB_MASTER );
+		$rev = Revision::newFromArchiveRow( $row );
+		$text = $rev->getRawText();
+		if ( !is_string( $text ) ) {
+			# This should not happen, but sometimes does (bug 20757)
+			$this->output( "Text of revision with timestamp {$row->ar_timestamp} unavailable!\n" );
+			return false;
+		} else {
+			# Archive table as no PK, but (NS,title,time) should be near unique.
+			# Any duplicates on those should also have duplicated text anyway.
+			$db->update( 'archive',
+				array( 'ar_sha1' => Revision::base36Sha1( $text ) ),
+				array(
+					'ar_namespace' => $row->ar_namespace,
+					'ar_title'     => $row->ar_title,
+					'ar_timestamp' => $row->ar_timestamp,
+					'ar_len'       => $row->ar_len // extra sanity
+				),
 				__METHOD__ 
 			);
 			return true;
