@@ -3,7 +3,7 @@
 	var currentFocused = $( '#wpTextbox1' );
 
 	mw.toolbar = {
-		$toolbar : $( '#toolbar' ),
+		$toolbar : [],
 		buttons : [],
 		// If you want to add buttons, use
 		// mw.toolbar.addButton( imageFile, speedTip, tagOpen, tagClose, sampleText, imageId, selectText );
@@ -37,7 +37,12 @@
 				);
 			}
 		},
-		init : function() {
+
+		// For backwards compatibility
+		init : function() {},
+
+		onReady : function() {
+			mw.toolbar.$toolbar = $( '#toolbar' );
 			// Legacy
 			// Merge buttons from mwCustomEditButtons
 			var buttons = [].concat( this.buttons, window.mwCustomEditButtons );
@@ -59,10 +64,12 @@
 	window.addButton =  mw.toolbar.addButton;
 	window.insertTags = mw.toolbar.insertTags;
 
-	//make sure edit summary does not exceed byte limit
-	$( '#wpSummary' ).byteLimit( 250 );
-
 	$( document ).ready( function() {
+		mw.toolbar.onReady();
+
+		// Make sure edit summary does not exceed byte limit
+		$( '#wpSummary' ).byteLimit( 250 );
+
 		/**
 		 * Restore the edit box scroll state following a preview operation,
 		 * and set up a form submission handler to remember this state
