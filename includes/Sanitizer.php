@@ -564,16 +564,24 @@ class Sanitizer {
 				preg_match( '/^(\\/?)(\\w+)([^>]*?)(\\/{0,1}>)([^<]*)$/',
 				$x, $regs );
 				@list( /* $qbar */, $slash, $t, $params, $brace, $rest ) = $regs;
+				$badtag = false;
 				if ( isset( $htmlelements[$t = strtolower( $t )] ) ) {
 					if( is_callable( $processCallback ) ) {
 						call_user_func_array( $processCallback, array( &$params, $args ) );
 					}
+
+					if ( !Sanitizer::validateTag( $params, $t ) ) {
+						$badtag = true;
+					}
+
 					$newparams = Sanitizer::fixTagAttributes( $params, $t );
-					$rest = str_replace( '>', '&gt;', $rest );
-					$text .= "<$slash$t$newparams$brace$rest";
-				} else {
-					$text .= '&lt;' . str_replace( '>', '&gt;', $x);
+					if ( !$badtag ) {
+						$rest = str_replace( '>', '&gt;', $rest );
+						$text .= "<$slash$t$newparams$brace$rest";
+						continue;
+					}
 				}
+				$text .= '&lt;' . str_replace( '>', '&gt;', $x);
 			}
 		}
 		wfProfileOut( __METHOD__ );
