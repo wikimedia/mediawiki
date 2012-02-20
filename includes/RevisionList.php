@@ -270,7 +270,7 @@ class RevisionItem extends RevisionItemBase {
 	public function __construct( $list, $row ) {
 		parent::__construct( $list, $row );
 		$this->revision = new Revision( $row );
-		$this->context = $list->context;
+		$this->context = $list->getContext();
 	}
 
 	public function getIdField() {
