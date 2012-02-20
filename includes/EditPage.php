@@ -1451,13 +1451,13 @@ class EditPage {
 		global $wgUser;
 		if ( $this->watchthis xor $this->mTitle->userIsWatching() ) {
 			$dbw = wfGetDB( DB_MASTER );
-			$dbw->begin();
+			$dbw->begin( __METHOD__ );
 			if ( $this->watchthis ) {
 				WatchAction::doWatch( $this->mTitle, $wgUser );
 			} else {
 				WatchAction::doUnwatch( $this->mTitle, $wgUser );
 			}
-			$dbw->commit();
+			$dbw->commit( __METHOD__ );
 		}
 	}
 
