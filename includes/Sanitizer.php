@@ -1478,10 +1478,7 @@ class Sanitizer {
 	 * @return Array
 	 */
 	static function attributeWhitelist( $element ) {
-		static $list;
-		if( !isset( $list ) ) {
-			$list = Sanitizer::setupAttributeWhitelist();
-		}
+		$list = Sanitizer::setupAttributeWhitelist();
 		return isset( $list[$element] )
 			? $list[$element]
 			: array();
@@ -1494,6 +1491,13 @@ class Sanitizer {
 	 */
 	static function setupAttributeWhitelist() {
 		global $wgAllowRdfaAttributes, $wgHtml5, $wgAllowMicrodataAttributes;
+
+		static $whitelist, $staticInitialised;
+		$globalContext = implode( '-', compact( 'wgAllowRdfaAttributes', 'wgHtml5', 'wgAllowMicrodataAttributes' ) );
+
+		if ( isset( $whitelist ) && $staticInitialised == $globalContext ) {
+			return $whitelist;
+		}
 
 		$common = array( 'id', 'class', 'lang', 'dir', 'title', 'style' );
 
@@ -1672,6 +1676,8 @@ class Sanitizer {
 				'link' => array( 'itemprop', 'href' ),
 			);
 		}
+
+		$staticInitialised = $globalContext;
 
 		return $whitelist;
 	}
