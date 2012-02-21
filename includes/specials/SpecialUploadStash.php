@@ -330,7 +330,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		), $this->getContext(), 'clearStashedUploads' );
 		$form->setSubmitCallback( array( __CLASS__ , 'tryClearStashedUploads' ) );
 		$form->setTitle( $this->getTitle() );
-		$form->setSubmitText( wfMsg( 'uploadstash-clear' ) );
+		$form->setSubmitTextMsg( 'uploadstash-clear' );
 
 		$form->prepareForm();
 		$formResult = $form->tryAuthorizedSubmit();
@@ -338,7 +338,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		// show the files + form, if there are any, or just say there are none
 		$refreshHtml = Html::element( 'a',
 			array( 'href' => $this->getTitle()->getLocalURL() ),
-			wfMsg( 'uploadstash-refresh' ) );
+			$this->msg( 'uploadstash-refresh' )->text() );
 		$files = $this->stash->listFiles();
 		if ( $files && count( $files ) ) {
 			sort( $files );
@@ -355,7 +355,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 			$this->getOutput()->addHtml( Html::rawElement( 'p', array(), $refreshHtml ) );
 		} else {
 			$this->getOutput()->addHtml( Html::rawElement( 'p', array(),
-				Html::element( 'span', array(), wfMsg( 'uploadstash-nofiles' ) )
+				Html::element( 'span', array(), $this->msg( 'uploadstash-nofiles' )->text() )
 				. ' '
 				. $refreshHtml
 			) );
