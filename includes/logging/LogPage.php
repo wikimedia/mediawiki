@@ -100,7 +100,7 @@ class LogPage {
 			RecentChange::notifyLog(
 				$now, $titleObj, $this->doer, $this->getRcComment(), '',
 				$this->type, $this->action, $this->target, $this->comment,
-				$this->params, $newId
+				$this->params, $newId, $this->getRcCommentIRC()
 			);
 		} elseif( $this->sendToUDP ) {
 			# Don't send private logs to UDP
@@ -114,7 +114,7 @@ class LogPage {
 			$rc = RecentChange::newLogEntry(
 				$now, $titleObj, $this->doer, $this->getRcComment(), '',
 				$this->type, $this->action, $this->target, $this->comment,
-				$this->params, $newId
+				$this->params, $newId, $this->getRcCommentIRC()
 			);
 			$rc->notifyRC2UDP();
 		}
@@ -128,6 +128,25 @@ class LogPage {
 	 */
 	public function getRcComment() {
 		$rcComment = $this->actionText;
+
+		if( $this->comment != '' ) {
+			if ( $rcComment == '' ) {
+				$rcComment = $this->comment;
+			} else {
+				$rcComment .= wfMsgForContent( 'colon-separator' ) . $this->comment;
+			}
+		}
+
+		return $rcComment;
+	}
+
+	/**
+	 * Get the RC comment from the last addEntry() call for IRC
+	 *
+	 * @return string
+	 */
+	public function getRcCommentIRC() {
+		$rcComment = $this->ircActionText;
 
 		if( $this->comment != '' ) {
 			if ( $rcComment == '' ) {
@@ -459,6 +478,7 @@ class LogPage {
 		$formatter->setContext( $context );
 
 		$this->actionText = $formatter->getPlainActionText();
+		$this->ircActionText = $formatter->getPlainActionText();
 
 		return $this->saveContent();
 	}

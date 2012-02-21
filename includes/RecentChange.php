@@ -503,10 +503,11 @@ class RecentChange {
 	 * @param $logComment
 	 * @param $params
 	 * @param $newId int
+	 * @param $actionCommentIRC string
 	 * @return bool
 	 */
-	public static function notifyLog( $timestamp, &$title, &$user, $actionComment, $ip='', $type,
-		$action, $target, $logComment, $params, $newId=0 )
+	public static function notifyLog( $timestamp, &$title, &$user, $actionComment, $ip, $type,
+		$action, $target, $logComment, $params, $newId=0, $actionCommentIRC='' )
 	{
 		global $wgLogRestrictions;
 		# Don't add private logs to RC!
@@ -514,7 +515,7 @@ class RecentChange {
 			return false;
 		}
 		$rc = self::newLogEntry( $timestamp, $title, $user, $actionComment, $ip, $type, $action,
-			$target, $logComment, $params, $newId );
+			$target, $logComment, $params, $newId, $actionCommentIRC );
 		$rc->save();
 		return true;
 	}
@@ -531,10 +532,11 @@ class RecentChange {
 	 * @param $logComment
 	 * @param $params
 	 * @param $newId int
+	 * @param $actionCommentIRC string
 	 * @return RecentChange
 	 */
-	public static function newLogEntry( $timestamp, &$title, &$user, $actionComment, $ip='',
-		$type, $action, $target, $logComment, $params, $newId=0 ) {
+	public static function newLogEntry( $timestamp, &$title, &$user, $actionComment, $ip,
+		$type, $action, $target, $logComment, $params, $newId=0, $actionCommentIRC='' ) {
 		global $wgRequest;
 		if( !$ip ) {
 			$ip = $wgRequest->getIP();
@@ -575,6 +577,7 @@ class RecentChange {
 			'prefixedDBkey' => $title->getPrefixedDBkey(),
 			'lastTimestamp' => 0,
 			'actionComment' => $actionComment, // the comment appended to the action, passed from LogPage
+			'actionCommentIRC' => $actionCommentIRC
 		);
 		return $rc;
 	}
@@ -712,7 +715,7 @@ class RecentChange {
 
 		if ( $this->mAttribs['rc_type'] == RC_LOG ) {
 			$targetText = $this->getTitle()->getPrefixedText();
-			$comment = self::cleanupForIRC( str_replace( "[[$targetText]]", "[[\00302$targetText\00310]]", $this->mExtra['actionComment'] ) );
+			$comment = self::cleanupForIRC( str_replace( "[[$targetText]]", "[[\00302$targetText\00310]]", $this->mExtra['actionCommentIRC'] ) );
 			$flag = $this->mAttribs['rc_log_action'];
 		} else {
 			$comment = self::cleanupForIRC( $this->mAttribs['rc_comment'] );
