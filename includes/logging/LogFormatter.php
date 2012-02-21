@@ -149,7 +149,6 @@ class LogFormatter {
 	 * @return string text
 	 */
 	public function getIRCActionText() {
-		$this->irctext = true;
 		$this->plaintext = true;
 		$text = $this->getActionText();
 
@@ -171,7 +170,6 @@ class LogFormatter {
 		}
 
 		$this->plaintext = false;
-		$this->irctext = false;
 		return $text;
 	}
 
@@ -218,14 +216,8 @@ class LogFormatter {
 	protected function getMessageKey() {
 		$type = $this->entry->getType();
 		$subtype = $this->entry->getSubtype();
-		if( $this->irctext ) {
-			$key = "logentry-irc-$type-$subtype";
-		}
-		else {
-			$key = "logentry-$type-$subtype";
-		}
 
-		return $key;
+		return "logentry-$type-$subtype";
 	}
 
 	/**
