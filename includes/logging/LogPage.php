@@ -478,7 +478,7 @@ class LogPage {
 		$formatter->setContext( $context );
 
 		$this->actionText = $formatter->getPlainActionText();
-		$this->ircActionText = $formatter->getPlainActionText();
+		$this->ircActionText = $formatter->getIRCActionText();
 
 		return $this->saveContent();
 	}
