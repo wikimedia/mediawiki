@@ -462,14 +462,15 @@ class ManualLogEntry extends LogEntryBase {
 			$this->getTimestamp(),
 			$logpage,
 			$user,
-			$formatter->getIRCActionText(), // Used for IRC feeds
+			$formatter->getPlainActionText(),
 			$user->isAnon() ? $user->getName() : '',
 			$this->getType(),
 			$this->getSubtype(),
 			$this->getTarget(),
 			$this->getComment(),
 			serialize( (array) $this->getParameters() ),
-			$newId
+			$newId,
+			$formatter->getIRCActionText() // Used for IRC feeds
 		);
 
 		if ( $to === 'rc' || $to === 'rcandudp' ) {
