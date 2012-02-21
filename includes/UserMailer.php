@@ -162,29 +162,52 @@ class UserMailer {
 
 		wfDebug( __METHOD__ . ': sending mail to ' . implode( ', ', $to ) . "\n" );
 
-		$dest = array();
+		# Make sure we have at least one address
+		$has_address = false;
 		foreach ( $to as $u ) {
 			if ( $u->address ) {
-				$dest[] = $u->address;
+				$has_address = true;
+				break;
 			}
 		}
-		if ( count( $dest ) == 0 ) {
+		if ( !$has_address ) {
 			return Status::newFatal( 'user-mail-no-addy' );
 		}
 
+		# Forge email headers
+		# -------------------
+		#
+		# WARNING
+		#
+		# DO NOT add To: or Subject: headers at this step. They need to be
+		# handled differently depending upon the mailer we are going to use.
+		#
+		# To:
+		#  PHP mail() first argument is the mail receiver. The argument is
+		#  used as a recipient destination and as a To header.
+		#
+		#  PEAR mailer has a recipient argument which is only used to
+		#  send the mail. If no To header is given, PEAR will set it to
+		#  to 'undisclosed-recipients:'.
+		#
+		#  NOTE: To: is for presentation, the actual recipient is specified
+		#  by the mailer using the Rcpt-To: header.
+		#
+		# Subject: 
+		#  PHP mail() second argument to pass the subject, passing a Subject
+		#  as an additional header will result in a duplicate header.
+		#
+		#  PEAR mailer should be passed a Subject header.
+		#
+		# -- hashar 20120218
+
 		$headers['From'] = $from->toString();
 		$headers['Return-Path'] = $from->address;
-		if ( count( $to ) == 1 ) {
-			$headers['To'] = $to[0]->toString();
-		} else {
-			$headers['To'] = 'undisclosed-recipients:;';
-		}
 
 		if ( $replyto ) {
 			$headers['Reply-To'] = $replyto->toString();
 		}
 
-		$headers['Subject'] = self::quotedPrintable( $subject );
 		$headers['Date'] = date( 'r' );
 		$headers['MIME-Version'] = '1.0';
 		$headers['Content-type'] = ( is_null( $contentType ) ?
@@ -202,6 +225,10 @@ class UserMailer {
 		}
 
 		if ( is_array( $wgSMTP ) ) {
+			#
+			# PEAR MAILER
+			# 
+
 			if ( function_exists( 'stream_resolve_include_path' ) ) {
 				$found = stream_resolve_include_path( 'Mail.php' );
 			} else {
@@ -223,9 +250,20 @@ class UserMailer {
 			}
 
 			wfDebug( "Sending mail via PEAR::Mail\n" );
-			$chunks = array_chunk( $dest, $wgEnotifMaxRecips );
+
+			$headers['Subject'] = self::quotedPrintable( $subject );
+
+			# When sending only to one recipient, shows it its email using To:
+			if ( count( $to ) == 1 ) {
+				$headers['To'] = $to[0]->toString();
+			}
+
+			# Split jobs since SMTP servers tends to limit the maximum
+			# number of possible recipients.	
+			$chunks = array_chunk( $to, $wgEnotifMaxRecips );
 			foreach ( $chunks as $chunk ) {
 				$status = self::sendWithPear( $mail_object, $chunk, $headers, $body );
+				# FIXME : some chunks might be sent while others are not!
 				if ( !$status->isOK() ) {
 					wfRestoreWarnings();
 					return $status;
@@ -234,6 +272,10 @@ class UserMailer {
 			wfRestoreWarnings();
 			return Status::newGood();
 		} else	{
+			# 
+			# PHP mail()
+			#
+
 			# Line endings need to be different on Unix and Windows due to
 			# the bug described at http://trac.wordpress.org/ticket/2603
 			if ( wfIsWindows() ) {
@@ -243,6 +285,9 @@ class UserMailer {
 				$endl = "\n";
 			}
 
+			if( count($to) > 1 ) {
+				$headers['To'] = 'undisclosed-recipients:;';
+			}
 			$headers = self::arrayToHeaderString( $headers, $endl );
 
 			wfDebug( "Sending mail via internal mail() function\n" );
@@ -253,7 +298,7 @@ class UserMailer {
 			set_error_handler( 'UserMailer::errorHandler' );
 
 			$safeMode = wfIniGetBool( 'safe_mode' );
-			foreach ( $dest as $recip ) {
+			foreach ( $to as $recip ) {
 				if ( $safeMode ) {
 					$sent = mail( $recip, self::quotedPrintable( $subject ), $body, $headers );
 				} else {
