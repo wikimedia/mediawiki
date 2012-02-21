@@ -16389,6 +16389,7 @@ $messages['yi'] = array(
 	'config-back' => '→ צוריק',
 	'config-page-language' => 'שפראַך',
 	'config-admin-name' => 'אײַער נאָמען:',
+	'config-help' => 'הילף',
 	'mainpagetext' => "'''מעדיעוויקי אינסטאלירט מיט דערפאלג.'''",
 	'mainpagedocfooter' => "גיט זיך אן עצה מיט [//meta.wikimedia.org/wiki/Help:Contents באניצער'ס וועגווײַזער] פֿאר אינפֿארמאציע וויאזוי זיך באנוצן מיט וויקי ווייכוואַרג.
 
