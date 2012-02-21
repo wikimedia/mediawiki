@@ -1027,7 +1027,7 @@ table.floatleft {
 }
 
 /* Accessibility */
-.mw-jump {
+#jump-to-nav {
 	overflow: hidden;
 	height: 0;
 	zoom: 1; /* http://webaim.org/techniques/skipnav/#iequirk */
