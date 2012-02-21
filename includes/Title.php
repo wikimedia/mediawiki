@@ -3476,7 +3476,7 @@ class Title {
 			RepoGroup::singleton()->clearCache( $nt ); # clear false negative cache
 		}
 
-		$dbw->begin(); # If $file was a LocalFile, its transaction would have closed our own.
+		$dbw->begin( __METHOD__ ); # If $file was a LocalFile, its transaction would have closed our own.
 		$pageid = $this->getArticleID( self::GAID_FOR_UPDATE );
 		$protected = $this->isProtected();
 
@@ -3548,7 +3548,7 @@ class Title {
 			WatchedItem::duplicateEntries( $this, $nt );
 		}
 
-		$dbw->commit();
+		$dbw->commit( __METHOD__ );
 
 		wfRunHooks( 'TitleMoveComplete', array( &$this, &$nt, &$wgUser, $pageid, $redirid ) );
 		return true;
