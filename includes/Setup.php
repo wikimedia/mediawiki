@@ -361,7 +361,10 @@ if ( $wgCookieSecure === 'detect' ) {
 	$wgCookieSecure = ( substr( $wgServer, 0, 6 ) === 'https:' );
 }
 
-if ( $wgDebugToolbar ) {
+// Disable MWDebug for command line mode, this prevents MWDebug from eating up
+// all the memory from logging SQL queries on maintenance scripts
+global $wgCommandLineMode;
+if ( $wgDebugToolbar && !$wgCommandLineMode ) {
 	MWDebug::init();
 }
 
@@ -410,7 +413,6 @@ if( is_null( $wgLocalTZoffset ) ) {
 }
 
 # Useful debug output
-global $wgCommandLineMode;
 if ( $wgCommandLineMode ) {
 	$wgRequest = new FauxRequest( array() );
 
