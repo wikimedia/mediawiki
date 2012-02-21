@@ -77,6 +77,8 @@ class LogFormatter {
 	 */
 	protected $plaintext = false;
 
+	protected $irctext = false;
+
 	protected function __construct( LogEntry $entry ) {
 		$this->entry = $entry;
 		$this->context = RequestContext::getMain();
@@ -141,6 +143,39 @@ class LogFormatter {
 	}
 
 	/**
+	 * Even uglier hack to maintain backwards compatibilty with IRC bots
+	 * (bug 34508).
+	 * @see getActionText()
+	 * @return string text
+	 */
+	public function getIRCActionText() {
+		$this->irctext = true;
+		$this->plaintext = true;
+		$text = $this->getActionText();
+
+		// wfRunHooks( 'LogEntry::publish', array( $this, $formatter, &$actionText ) );
+		// function efLegacyLogsIrcFormat( $entry, $formatter, &$text ) {
+
+		$entry = $this->entry;
+		$parameters = $entry->getParameters();
+		switch ( $this->entry ) {
+			case 'move':
+				if ( $this->entry->getSubtype() === 'move_redir' ) {
+					$movesource =  $parameters['4::target'];
+					$movetarget = $entry->getTarget()->getText();
+					$text = wfMsg( '1movedto2_redir', $movesource, $movetarget );
+				}
+				break;
+			// case 'delete':
+			//	break
+		}
+
+		$this->plaintext = false;
+		$this->irctext = false;
+		return $text;
+	}
+
+	/**
 	 * Gets the log action, including username.
 	 * @return string HTML
 	 */
@@ -183,7 +218,13 @@ class LogFormatter {
 	protected function getMessageKey() {
 		$type = $this->entry->getType();
 		$subtype = $this->entry->getSubtype();
-		$key = "logentry-$type-$subtype";
+		if( $this->irctext ) {
+			$key = "logentry-irc-$type-$subtype";
+		}
+		else {
+			$key = "logentry-$type-$subtype";
+		}
+
 		return $key;
 	}
 

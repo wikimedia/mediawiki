@@ -462,7 +462,7 @@ class ManualLogEntry extends LogEntryBase {
 			$this->getTimestamp(),
 			$logpage,
 			$user,
-			$formatter->getPlainActionText(), // Used for IRC feeds
+			$formatter->getIRCActionText(), // Used for IRC feeds
 			$user->isAnon() ? $user->getName() : '',
 			$this->getType(),
 			$this->getSubtype(),
