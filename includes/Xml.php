@@ -213,13 +213,13 @@ class Xml {
 		} else {
 			$languages = Language::getLanguageNames( $customisedOnly );
 		}
-		
+
 		// Make sure the site language is in the list; a custom language code might not have a
 		// defined name...
 		if( !array_key_exists( $wgLanguageCode, $languages ) ) {
 			$languages[$wgLanguageCode] = $wgLanguageCode;
 		}
-		
+
 		ksort( $languages );
 
 		/**

@@ -495,6 +495,9 @@ class ManualLogEntry extends LogEntryBase {
 		return $this->parameters;
 	}
 
+	/**
+	 * @return User
+	 */
 	public function getPerformer() {
 		return $this->performer;
 	}

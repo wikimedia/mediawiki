@@ -229,7 +229,7 @@ class SpecialVersion extends SpecialPage {
 	}
 
 	/**
-	 * @return false|string wgVersion + HEAD sha1 stripped to the first 7 chars
+	 * @return bool|string wgVersion + HEAD sha1 stripped to the first 7 chars. False on failure
 	 */
 	private static function getVersionLinkedGit() {
 		global $wgVersion, $IP;
@@ -387,6 +387,8 @@ class SpecialVersion extends SpecialPage {
 
 	/**
 	 * Callback to sort extensions by type.
+	 * @param $a array
+	 * @param $b array
 	 * @return int
 	 */
 	function compare( $a, $b ) {
@@ -621,6 +623,7 @@ class SpecialVersion extends SpecialPage {
 	 *        url                   The subversion URL of the directory
 	 *        repo-url              The base URL of the repository
 	 *        viewvc-url            A ViewVC URL pointing to the checked-out revision
+	 * @param $dir string
 	 * @return array|bool
 	 */
 	public static function getSvnInfo( $dir ) {
@@ -711,7 +714,7 @@ class SpecialVersion extends SpecialPage {
 
 	/**
 	 * @param $dir String: directory of the git checkout
-	 * @return false|String sha1 of commit HEAD points to
+	 * @return bool|String sha1 of commit HEAD points to
 	 */
 	public static function getGitHeadSha1( $dir ) {
 		$BASEDIR  = "{$dir}/.git/";
@@ -722,18 +725,17 @@ class SpecialVersion extends SpecialPage {
 		}
 
 		preg_match( "/ref: (.*)/",
-		   	file_get_contents( $HEADfile), $m );
+			file_get_contents( $HEADfile), $m );
 
 		$REFfile = "{$BASEDIR}{$m[1]}";
 		if( !file_exists( $REFfile ) ) {
 			return false;
 		}
 
-		$sha1 = chop(file_get_contents( $REFfile ));
+		$sha1 = rtrim( file_get_contents( $REFfile ) );
 
 		return $sha1;
 	}
-
 
 	function showEasterEgg() {
 		$rx = $rp = $xe = '';

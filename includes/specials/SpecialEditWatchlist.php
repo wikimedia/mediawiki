@@ -297,9 +297,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * Attempts to clean up broken items
 	 */
 	private function cleanupWatchlist() {
-		if ( count( $this->badItems ) ) {
-			$dbw = wfGetDB( DB_MASTER );
-		}
+		$dbw = wfGetDB( DB_MASTER );
 		foreach ( $this->badItems as $row ) {
 			list( $title, $namespace, $dbKey ) = $row;
 			wfDebug( "User {$this->getUser()} has broken watchlist item ns($namespace):$dbKey, "

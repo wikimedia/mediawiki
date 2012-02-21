@@ -25,7 +25,6 @@
  * Implements Special:DeletedContributions to display archived revisions
  * @ingroup SpecialPage
  */
-
 class DeletedContribsPager extends IndexPager {
 	public $mDefaultDirection = true;
 	var $messages, $target;
@@ -54,9 +53,9 @@ class DeletedContribsPager extends IndexPager {
 		$user = $this->getUser();
 		// Paranoia: avoid brute force searches (bug 17792)
 		if( !$user->isAllowed( 'deletedhistory' ) ) {
-			$conds[] = $this->mDb->bitAnd('ar_deleted',Revision::DELETED_USER) . ' = 0';
+			$conds[] = $this->mDb->bitAnd( 'ar_deleted', Revision::DELETED_USER ) . ' = 0';
 		} elseif( !$user->isAllowed( 'suppressrevision' ) ) {
-			$conds[] = $this->mDb->bitAnd('ar_deleted',Revision::SUPPRESSED_USER) .
+			$conds[] = $this->mDb->bitAnd( 'ar_deleted', Revision::SUPPRESSED_USER ) .
 				' != ' . Revision::SUPPRESSED_USER;
 		}
 		return array(
@@ -130,6 +129,7 @@ class DeletedContribsPager extends IndexPager {
 	 * written by the target user.
 	 *
 	 * @todo This would probably look a lot nicer in a table.
+	 * @param $row
 	 * @return string
 	 */
 	function formatRow( $row ) {
@@ -346,6 +346,7 @@ class DeletedContributionsPage extends SpecialPage {
 		} else {
 			$user = Linker::link( $userObj->getUserPage(), htmlspecialchars( $userObj->getName() ) );
 		}
+		$links = '';
 		$nt = $userObj->getUserPage();
 		$id = $userObj->getID();
 		$talk = $nt->getTalkPage();
