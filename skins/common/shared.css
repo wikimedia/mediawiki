@@ -1027,6 +1027,7 @@ table.floatleft {
 }
 
 /* Accessibility */
+.mw-jump,
 #jump-to-nav {
 	overflow: hidden;
 	height: 0;
