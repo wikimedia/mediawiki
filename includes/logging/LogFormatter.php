@@ -158,9 +158,9 @@ class LogFormatter {
 
 		$entry = $this->entry;
 		$parameters = $entry->getParameters();
-		switch ( $this->entry ) {
+		switch ( $entry ) {
 			case 'move':
-				if ( $this->entry->getSubtype() === 'move_redir' ) {
+				if ( $entry->getSubtype() === 'move_redir' ) {
 					$movesource =  $parameters['4::target'];
 					$movetarget = $entry->getTarget()->getText();
 					$text = wfMsg( '1movedto2_redir', $movesource, $movetarget );
