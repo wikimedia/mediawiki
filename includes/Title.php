@@ -3484,7 +3484,7 @@ class Title {
 		$err = $this->moveToInternal( $nt, $reason, $createRedirect );
 		if ( is_array( $err ) ) {
 			# @todo FIXME: What about the File we have already moved?
-			$dbw->rollback();
+			$dbw->rollback( __METHOD__ );
 			return $err;
 		}
 
