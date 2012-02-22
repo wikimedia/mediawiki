@@ -261,6 +261,7 @@ class LogFormatter {
 		}
 
 		$this->plaintext = false;
+		$this->irctext = false;
 		return $text;
 	}
 
