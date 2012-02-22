@@ -470,7 +470,7 @@ class ManualLogEntry extends LogEntryBase {
 			$this->getComment(),
 			serialize( (array) $this->getParameters() ),
 			$newId,
-			$formatter->getIRCActionText() // Used for IRC feeds
+			$formatter->getIRCActionComment() // Used for IRC feeds
 		);
 
 		if ( $to === 'rc' || $to === 'rcandudp' ) {

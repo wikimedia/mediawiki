@@ -148,7 +148,28 @@ class LogFormatter {
 	 * @see getActionText()
 	 * @return string text
 	 */
-	public function getIRCActionText() {
+	public function getIRCActionComment() {
+		$actionComment = $this->getIRCActionText();
+		$comment = $this->entry->getComment();
+
+		if ( $comment != '' ) {
+			if ( $actionComment == '' ) {
+				$actionComment = $comment;
+			} else {
+				$actionComment .= wfMsgForContent( 'colon-separator' ) . $comment;
+			}
+		}
+
+		return $actionComment;
+	}
+
+	/**
+	 * Even uglier hack to maintain backwards compatibilty with IRC bots
+	 * (bug 34508).
+	 * @see getActionText()
+	 * @return string text
+	 */
+	protected function getIRCActionText() {
 		$this->plaintext = true;
 		$text = $this->getActionText();
 
