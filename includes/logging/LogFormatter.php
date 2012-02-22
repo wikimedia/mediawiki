@@ -165,11 +165,11 @@ class LogFormatter {
 				switch( $entry->getSubtype() ) {
 					case 'move':
 						$movesource =  $parameters['4::target'];
-						$text = wfMsg( '1movedto2', $movesource, $target );
+						$text = wfMsg( '1movedto2', $target, $movesource );
 						break;
 					case 'move_redir':
 						$movesource =  $parameters['4::target'];
-						$text = wfMsg( '1movedto2_redir', $movesource, $target  );
+						$text = wfMsg( '1movedto2_redir', $target, $movesource );
 						break;
 					case 'move-noredirect':
 						break;
