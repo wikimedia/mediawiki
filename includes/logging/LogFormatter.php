@@ -240,6 +240,17 @@ class LogFormatter {
 				}
 				break;
 
+			case 'upload':
+				switch( $entry->getSubtype() ) {
+					case 'upload':
+						$text = wfMsgExt( 'uploadedimage', $msgOpts, $target );
+						break;
+					case 'overwrite':
+						$text = wfMsgExt( 'overwroteimage', $msgOpts, $target );
+						break;
+				}
+				break;
+
 			// case 'suppress' --private log -- aaron  (sign your messages so we know who to blame in a few years :-D)
 			// default:
 		}

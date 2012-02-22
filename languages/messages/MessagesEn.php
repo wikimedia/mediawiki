@@ -4742,6 +4742,8 @@ This site is experiencing technical difficulties.',
 'newuserlog-autocreate-entry' => 'Account created automatically',
 'suppressedarticle'           => 'suppressed "[[$1]]"',
 'deletedarticle'              => 'deleted "[[$1]]"',
+'uploadedimage'               => 'uploaded "[[$1]]"',
+'overwroteimage'              => 'uploaded a new version of "[[$1]]"',
 
 # Feedback
 'feedback-bugornote' => 'If you are ready to describe a technical problem in detail please [$1 report a bug].
@@ -4796,5 +4798,4 @@ Otherwise, you can use the easy form below. Your comment will be added to the pa
 'api-error-unknownerror'                  => 'Unknown error: "$1".',
 'api-error-uploaddisabled'                => 'Uploading is disabled on this wiki.',
 'api-error-verification-error'            => 'This file might be corrupt, or have the wrong extension.',
-
 );
