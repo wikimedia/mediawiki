@@ -41,7 +41,7 @@ class RebuildLocalisationCache extends Maintenance {
 	}
 
 	public function memoryLimit() {
-		return '200M';
+		return '1000M';
 	}
 
 	public function execute() {
