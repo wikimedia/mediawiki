@@ -3604,6 +3604,8 @@ $wgMessageStructure = array(
 		'newuserlog-autocreate-entry',
 		'suppressedarticle',
 		'deletedarticle',
+		'uploadedimage',
+		'overwroteimage',
 	),
 	'feedback' => array(
 		'feedback-bugornote',

@@ -216,6 +216,8 @@ $wgIgnoredMessages = array(
 	'newuserlog-autocreate-entry',
 	'suppressedarticle',
 	'deletedarticle',
+	'uploadedimage',
+	'overwroteimage',
 );
 
 /** Optional messages, which may be translated only if changed in the target language. */
