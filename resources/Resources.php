@@ -537,7 +537,7 @@ return array(
 	),
 	'mediawiki.api.watch' => array( 
 		'scripts' => 'resources/mediawiki.api/mediawiki.api.watch.js',
-		'dependencies' => array('mediawiki.api', 'mediawiki.user'),
+		'dependencies' => array( 'mediawiki.api', 'mediawiki.user' ),
 	),
 	'mediawiki.debug' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.debug.js',
