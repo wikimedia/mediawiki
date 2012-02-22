@@ -169,7 +169,7 @@ class LogFormatter {
 	 * @see getActionText()
 	 * @return string text
 	 */
-	protected function getIRCActionText() {
+	public function getIRCActionText() {
 		$this->plaintext = true;
 		$text = $this->getActionText();
 
