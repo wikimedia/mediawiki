@@ -248,6 +248,7 @@ production.
 * (bug 31676) Group dynamically inserted CSS into a single <style> tag, to work
   around a bug where not all styles were applied in Internet Explorer
 * (bug 28936, bug 5280) Broken or invalid titles can't be removed from watchlist.
+* (bug 34600) Older skins using useHeadElement=false were broken in 1.18
 
 === API changes in 1.19 ===
 * Made action=edit less likely to return "unknownerror", by returning the actual error
