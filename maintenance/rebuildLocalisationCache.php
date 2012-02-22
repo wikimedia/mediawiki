@@ -36,6 +36,8 @@ class RebuildLocalisationCache extends Maintenance {
 		$this->mDescription = "Rebuild the localisation cache";
 		$this->addOption( 'force', 'Rebuild all files, even ones not out of date' );
 		$this->addOption( 'threads', 'Fork more than one thread', false, true );
+		$this->addOption( 'outdir', 'Override the output directory (normally $wgCacheDirectory)', 
+			false, true );
 	}
 
 	public function memoryLimit() {
@@ -64,6 +66,9 @@ class RebuildLocalisationCache extends Maintenance {
 		$conf['manualRecache'] = false; // Allow fallbacks to create CDB files
 		if ( $force ) {
 			$conf['forceRecache'] = true;
+		}
+		if ( $this->hasOption( 'outdir' ) ) {
+			$conf['storeDirectory'] = $this->getOption( 'outdir' );
 		}
 		$lc = new LocalisationCache_BulkLoad( $conf );
 
