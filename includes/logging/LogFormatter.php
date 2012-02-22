@@ -173,24 +173,23 @@ class LogFormatter {
 		$this->plaintext = true;
 		$text = $this->getActionText();
 
-		// wfRunHooks( 'LogEntry::publish', array( $this, $formatter, &$actionText ) );
-		// function efLegacyLogsIrcFormat( $entry, $formatter, &$text ) {
-
 		$entry = $this->entry;
 		$parameters = $entry->getParameters();
+		// @see LogPage::actionText()
+		$msgOpts = array( 'parsemag', 'escape', 'replaceafter', 'content' );
 		// Text of title the action is aimed at.
-		$target = $entry->getTarget()->getText() ;
+		$target = $entry->getTarget()->getPrefixedText() ;
 		$text = null;
 		switch( $entry->getType() ) {
 			case 'move':
 				switch( $entry->getSubtype() ) {
 					case 'move':
 						$movesource =  $parameters['4::target'];
-						$text = wfMsg( '1movedto2', $target, $movesource );
+						$text = wfMsgExt( '1movedto2', $msgOpts, $target, $movesource );
 						break;
 					case 'move_redir':
 						$movesource =  $parameters['4::target'];
-						$text = wfMsg( '1movedto2_redir', $target, $movesource );
+						$text = wfMsgExt( '1movedto2_redir', $msgOpts, $target, $movesource );
 						break;
 					case 'move-noredirect':
 						break;
@@ -202,10 +201,10 @@ class LogFormatter {
 			case 'delete':
 				switch( $entry->getSubtype() ) {
 					case 'delete':
-						$text = wfMsg( 'deletedarticle', $target );
+						$text = wfMsgExt( 'deletedarticle', $msgOpts, $target );
 						break;
 					case 'restore':
-						$text = wfMsg( 'undeletedarticle', $target );
+						$text = wfMsgExt( 'undeletedarticle', $msgOpts, $target );
 						break;
 					//case 'revision': // Revision deletion
 					//case 'event': // Log deletion
@@ -217,26 +216,10 @@ class LogFormatter {
 			case 'patrol':
 				// https://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/includes/PatrolLog.php?&pathrev=97495&r1=97494&r2=97495
 				// Create a diff link to the patrolled revision
-				$diffLink = Linker::link(
-					$target,
-					htmlspecialchars( wfMsg( 'patrol-log-diff', $parameters['4::curid']) ),
-					array(),
-					/*query parameters */ array( 'oldid'=>$parameters['4::curid'], 'diff' => 'prev' ),
-					array( 'known', 'noclasses' )
-				);
-				$link = Linker::link( $entry->getTarget() );
-
 				if ( $entry->getSubtype() === 'patrol' ) {
-					// 'patrol-log-line'             => 'marked $1 of $2 patrolled $3',
-					// 'logentry-irc-patrol-patrol'              => '$1 marked revision $4 of page $3 patrolled',
-
-					$text = wfMsg( 'patrol-log-line', $diffLink, $link );
-				} elseif ( $entry->getSubtype() === 'patrol-auto' ) {
-					// 'patrol-log-line'             => 'marked $1 of $2 patrolled $3',
-					// 'patrol-log-auto'             => '(automatic)',
-					// 'logentry-irc-patrol-patrol-auto'         => '$1 automatically marked revision $4 of page $3 patrolled',
-					// How is this done with old messages? Some abomination to man?
-					$text = wfMsg( 'patrol-log-line-auto', $diffLink, $link );
+					$diffLink = htmlspecialchars(
+						wfMsgForContent( 'patrol-log-diff', $parameters['4::curid'] ) );
+					$text = wfMsgForContent( 'patrol-log-line', $diffLink, "[[$target]]", "" );
 				} else {
 					// broken??
 				}
@@ -246,13 +229,13 @@ class LogFormatter {
 				switch( $entry->getSubtype() ) {
 					case 'newusers':
 					case 'create':
-						$text = wfMsg( 'newuserlog-create-entry' /* no params */ );
+						$text = wfMsgExt( 'newuserlog-create-entry', $msgOpts /* no params */ );
 						break;
 					case 'create2':
-						$text = wfMsg( 'newuserlog-create2-entry', $target );
+						$text = wfMsgExt( 'newuserlog-create2-entry', $msgOpts, $target );
 						break;
 					case 'autocreate':
-						$text = wfMsg( 'newuserlog-autocreate-entry' /* no params */ );
+						$text = wfMsgExt( 'newuserlog-autocreate-entry', $msgOpts /* no params */ );
 						break;
 				}
 				break;
