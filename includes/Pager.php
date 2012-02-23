@@ -925,22 +925,27 @@ abstract class TablePager extends IndexPager {
 
 	/**
 	 * @protected
-	 * @param $row Array
+	 * @param stdClass $row
 	 * @return String HTML
 	 */
 	function formatRow( $row ) {
-		$this->mCurrentRow = $row;  	# In case formatValue etc need to know
+		$this->mCurrentRow = $row; // In case formatValue etc need to know
 		$s = Xml::openElement( 'tr', $this->getRowAttrs( $row ) );
 		$fieldNames = $this->getFieldNames();
+
 		foreach ( $fieldNames as $field => $name ) {
 			$value = isset( $row->$field ) ? $row->$field : null;
 			$formatted = strval( $this->formatValue( $field, $value ) );
+
 			if ( $formatted == '' ) {
 				$formatted = '&#160;';
 			}
+
 			$s .= Xml::tags( 'td', $this->getCellAttrs( $field, $value ), $formatted );
 		}
+
 		$s .= "</tr>\n";
+
 		return $s;
 	}
 
