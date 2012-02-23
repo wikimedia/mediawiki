@@ -1146,7 +1146,9 @@ abstract class FileBackendStore extends FileBackend {
 				return $this->cache[$path]['stat'];
 			}
 		}
+		wfProfileIn( __METHOD__ . '-miss' );
 		$stat = $this->doGetFileStat( $params );
+		wfProfileOut( __METHOD__ . '-miss' );
 		if ( is_array( $stat ) ) { // don't cache negatives
 			$this->trimCache(); // limit memory
 			$this->cache[$path]['stat'] = $stat;
@@ -1190,7 +1192,9 @@ abstract class FileBackendStore extends FileBackend {
 			wfProfileOut( __METHOD__ );
 			return $this->cache[$path]['sha1'];
 		}
+		wfProfileIn( __METHOD__ . '-miss' );
 		$hash = $this->doGetFileSha1Base36( $params );
+		wfProfileOut( __METHOD__ . '-miss' );
 		if ( $hash ) { // don't cache negatives
 			$this->trimCache(); // limit memory
 			$this->cache[$path]['sha1'] = $hash;
