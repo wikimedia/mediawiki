@@ -905,7 +905,7 @@ class WikiPage extends Page {
 		if ( $wgUseSquid ) {
 			// Commit the transaction before the purge is sent
 			$dbw = wfGetDB( DB_MASTER );
-			$dbw->commit();
+			$dbw->commit( __METHOD__ );
 
 			// Send purge
 			$update = SquidUpdate::newSimplePurge( $this->mTitle );
@@ -1329,7 +1329,7 @@ class WikiPage extends Page {
 			$changed = ( strcmp( $text, $oldtext ) != 0 );
 
 			if ( $changed ) {
-				$dbw->begin();
+				$dbw->begin( __METHOD__ );
 				$revisionId = $revision->insertOn( $dbw );
 
 				# Update page
@@ -1351,7 +1351,7 @@ class WikiPage extends Page {
 					}
 
 					$revisionId = 0;
-					$dbw->rollback();
+					$dbw->rollback( __METHOD__ );
 				} else {
 					global $wgUseRCPatrol;
 					wfRunHooks( 'NewRevisionFromEditComplete', array( $this, $revision, $baseRevId, $user ) );
@@ -1372,7 +1372,7 @@ class WikiPage extends Page {
 						}
 					}
 					$user->incEditCount();
-					$dbw->commit();
+					$dbw->commit( __METHOD__ );
 				}
 			} else {
 				// Bug 32948: revision ID must be set to page {{REVISIONID}} and
@@ -1405,14 +1405,14 @@ class WikiPage extends Page {
 			# Create new article
 			$status->value['new'] = true;
 
-			$dbw->begin();
+			$dbw->begin( __METHOD__ );
 
 			# Add the page record; stake our claim on this title!
 			# This will return false if the article already exists
 			$newid = $this->insertOn( $dbw );
 
 			if ( $newid === false ) {
-				$dbw->rollback();
+				$dbw->rollback( __METHOD__ );
 				$status->fatal( 'edit-already-exists' );
 
 				wfProfileOut( __METHOD__ );
@@ -1453,7 +1453,7 @@ class WikiPage extends Page {
 				}
 			}
 			$user->incEditCount();
-			$dbw->commit();
+			$dbw->commit( __METHOD__ );
 
 			# Update links, etc.
 			$this->doEditUpdates( $revision, $user, array( 'created' => true ) );
@@ -1985,7 +1985,7 @@ class WikiPage extends Page {
 			$bitfield = 'rev_deleted';
 		}
 
-		$dbw->begin();
+		$dbw->begin( __METHOD__ );
 		// For now, shunt the revision data into the archive table.
 		// Text is *not* removed from the text table; bulk storage
 		// is left intact to avoid breaking block-compression or
@@ -2025,7 +2025,7 @@ class WikiPage extends Page {
 		$ok = ( $dbw->affectedRows() > 0 ); // getArticleId() uses slave, could be laggy
 
 		if ( !$ok ) {
-			$dbw->rollback();
+			$dbw->rollback( __METHOD__ );
 			return WikiPage::DELETE_NO_REVISIONS;
 		}
 
@@ -2042,7 +2042,7 @@ class WikiPage extends Page {
 		$logEntry->publish( $logid );
 
 		if ( $commit ) {
-			$dbw->commit();
+			$dbw->commit( __METHOD__ );
 		}
 
 		wfRunHooks( 'ArticleDeleteComplete', array( &$this, &$user, $reason, $id ) );
