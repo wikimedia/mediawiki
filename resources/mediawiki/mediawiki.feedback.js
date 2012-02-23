@@ -106,7 +106,7 @@
 					$( '<div class="feedback-mode feedback-submitting" style="text-align:center;margin:3em 0;"></div>' ).append(
 						mw.msg( 'feedback-adding' ),
 						$( '<br/>' ),
-						$( '<img src="http://upload.wikimedia.org/wikipedia/commons/4/42/Loading.gif" />' )
+						$( '<img src="//upload.wikimedia.org/wikipedia/commons/4/42/Loading.gif" />' )
 					),
 					$( '<div class="feedback-mode feedback-thanks" style="text-align:center;margin:1em"></div>' ).msg(
 						'feedback-thanks', _this.title.getNameText(), $feedbackPageLink.clone()
