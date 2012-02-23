@@ -837,7 +837,7 @@ abstract class TablePager extends IndexPager {
 	var $mSort;
 	var $mCurrentRow;
 
-	function __construct( IContextSource $context = null ) {
+	public function __construct( IContextSource $context = null ) {
 		if ( $context ) {
 			$this->setContext( $context );
 		}
@@ -855,6 +855,10 @@ abstract class TablePager extends IndexPager {
 		parent::__construct();
 	}
 
+	/**
+	 * @protected
+	 * @return string
+	 */
 	function getStartBody() {
 		global $wgStylePath;
 		$tableClass = htmlspecialchars( $this->getTableClass() );
@@ -901,10 +905,18 @@ abstract class TablePager extends IndexPager {
 		return $s;
 	}
 
+	/**
+	 * @protected
+	 * @return string
+	 */
 	function getEndBody() {
 		return "</tbody></table>\n";
 	}
 
+	/**
+	 * @protected
+	 * @return string
+	 */
 	function getEmptyBody() {
 		$colspan = count( $this->getFieldNames() );
 		$msgEmpty = wfMsgHtml( 'table_pager_empty' );
@@ -912,6 +924,7 @@ abstract class TablePager extends IndexPager {
 	}
 
 	/**
+	 * @protected
 	 * @param $row Array
 	 * @return String HTML
 	 */
@@ -934,6 +947,8 @@ abstract class TablePager extends IndexPager {
 	/**
 	 * Get a class name to be applied to the given row.
 	 *
+	 * @protected
+	 *
 	 * @param $row Object: the database result row
 	 * @return String
 	 */
@@ -943,6 +958,8 @@ abstract class TablePager extends IndexPager {
 
 	/**
 	 * Get attributes to be applied to the given row.
+	 *
+	 * @protected
 	 *
 	 * @param $row Object: the database result row
 	 * @return Array of <attr> => <value>
@@ -962,6 +979,8 @@ abstract class TablePager extends IndexPager {
 	 * take this as an excuse to hardcode styles; use classes and
 	 * CSS instead.  Row context is available in $this->mCurrentRow
 	 *
+	 * @protected
+	 *
 	 * @param $field String The column
 	 * @param $value String The cell contents
 	 * @return Array of attr => value
@@ -970,18 +989,34 @@ abstract class TablePager extends IndexPager {
 		return array( 'class' => 'TablePager_col_' . $field );
 	}
 
+	/**
+	 * @protected
+	 * @return string
+	 */
 	function getIndexField() {
 		return $this->mSort;
 	}
 
+	/**
+	 * @protected
+	 * @return string
+	 */
 	function getTableClass() {
 		return 'TablePager';
 	}
 
+	/**
+	 * @protected
+	 * @return string
+	 */
 	function getNavClass() {
 		return 'TablePager_nav';
 	}
 
+	/**
+	 * @protected
+	 * @return string
+	 */
 	function getSortHeaderClass() {
 		return 'TablePager_sort';
 	}
@@ -990,7 +1025,7 @@ abstract class TablePager extends IndexPager {
 	 * A navigation bar with images
 	 * @return String HTML
 	 */
-	function getNavigationBar() {
+	public function getNavigationBar() {
 		global $wgStylePath;
 
 		if ( !$this->isNavigationBarShown() ) {
@@ -1046,7 +1081,7 @@ abstract class TablePager extends IndexPager {
 	 *
 	 * @return String: HTML fragment
 	 */
-	function getLimitSelect() {
+	public function getLimitSelect() {
 		# Add the current limit from the query string
 		# to avoid that the limit is lost after clicking Go next time
 		if ( !in_array( $this->mLimit, $this->mLimitsShown ) ) {
@@ -1139,13 +1174,19 @@ abstract class TablePager extends IndexPager {
 	 * The current result row is available as $this->mCurrentRow, in case you
 	 * need more context.
 	 *
+	 * @protected
+	 *
 	 * @param $name String: the database field name
 	 * @param $value String: the value retrieved from the database
 	 */
 	abstract function formatValue( $name, $value );
 
 	/**
-	 * The database field name used as a default sort order
+	 * The database field name used as a default sort order.
+	 *
+	 * @protected
+	 *
+	 * @return string
 	 */
 	abstract function getDefaultSort();
 
