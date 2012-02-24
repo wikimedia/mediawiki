@@ -83,7 +83,7 @@ class FewestrevisionsPage extends QueryPage {
 
 		$nl = $this->msg( 'nrevisions' )->numParams( $result->value )->escaped();
 		$redirect = isset( $result->redirect ) && $result->redirect ?
-			' - ' . wfMsgHtml( 'isredirect' ) : '';
+			' - ' . $this->msg( 'isredirect' )->escaped() : '';
 		$nlink = Linker::linkKnown(
 			$nt,
 			$nl,
