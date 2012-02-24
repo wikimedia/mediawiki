@@ -1,3 +1,7 @@
+/**
+ * This style sheet is used by the classic (aka standard) skin
+ */
+
 #article {
 	padding: 4px;
 }
@@ -65,6 +69,10 @@ a.external {
 
 a.printable {
 	text-decoration: underline;
+}
+
+a.new {
+	color: #ba0000;
 }
 
 a.stub {
