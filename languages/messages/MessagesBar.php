@@ -236,7 +236,7 @@ $messages = array(
 'categorypage'      => 'Kategorieseiten åzoang',
 'viewtalkpage'      => 'Diskussion',
 'otherlanguages'    => 'Ånderne Sproochen',
-'redirectedfrom'    => '(voh $1 weider gschickd)',
+'redirectedfrom'    => '(Weidergloatt voh $1)',
 'redirectpagesub'   => 'Weiderloatung',
 'lastmodifiedat'    => 'Dé Seiten is zlétzd am $1 um $2 gänderd worn.',
 'viewcount'         => 'Dé Seiten do is bis iatz {{PLURAL:$1|oahmoi|$1-moi}} obgruaffm worn.',
@@ -375,6 +375,7 @@ Fois dés néd zuadrifft, host eventuö an Feeler in da Software gfunden. Bittsc
 'badarticleerror'      => 'Dé Akzión kå néd auf dé Seiten ågwendt wern.',
 'cannotdelete'         => 'Dé Seiten óder Daatei "$1" kå néd gléschd wern.
 Méglicherweis iss schoh vohram åndern gléschd worn.',
+'cannotdelete-title'   => 'Seiten „$1“ kå néd gléschd wern',
 'badtitle'             => 'néd gütiger Titel',
 'badtitletext'         => 'Da Titel voh da ågforderden Seiten is néd gütig, laar óder a ungütiger Sproochlink vohram åndern Wiki.',
 'perfcached'           => "Dé fóigernden Daaten staummern aus'm Cache und san méglicherweis nimmer aktuö. Maximoi {{PLURAL:$1|oah Ergebnis is|$1 Ergebniss san}} im Cache vafiagbor.",
@@ -390,6 +391,7 @@ Obfrog: $2',
 Bittscheh vasuachs in a por Minunten nuamoi.',
 'protectedpagetext'    => "Dé Seiten is gschytzd worn, um Beorweitungen z' vahindern.",
 'viewsourcetext'       => "Du kåst ower 'n Quötext åschaung und kópirn:",
+'viewyourtext'         => "Du kåst 'n Quejtext vah '''deiner Beorwatung''' derer Seiten betrochten und kópiern:",
 'protectedinterface'   => "Dé Seiten do enthoit Text fyr d' Benutzerówerflächen voh da Software und is gschytzd, um an Missbrauch vurzbeing.",
 'editinginterface'     => "'''Ówocht:''' Dé Seiten do enthoit voh da MediaWiki-Software gnutzden Text. 
 Änderrungen auf derer Seiten wirken sé auf d' Benutzerówerflächen aus.
@@ -448,6 +450,7 @@ Vagiss bittscheh néd, deine [[Special:Preferences|{{SITENAME}}-Eishtellungen]] 
 'nocookieslogin'             => '{{SITENAME}} nimmt Cookies zum Ailoggen vo de Benytzer her. Du host Cookies deaktivird, bittschee aktivir de und vasuchs nuamoi.',
 'nocookiesfornew'            => "Dés Benutzerkóntó is néd erstöd worn, wei d' Daatenherkumft néd damittelt wern hod kenner.
 Es muass sichergstöd seih, daas Cookies aktivierd san. Danoch bittscheh d' Seiten daneit loon und wieder vasuacher.",
+'noname'                     => 'Du muasst an gyting Benutzernåm ågeem.',
 'loginsuccesstitle'          => "D' Åmöidung is erfoigraich gween",
 'loginsuccess'               => 'Du bist jetzad ois „$1“ bai {{SITENAME}} ågmöidt.',
 'wrongpassword'              => 'Des Posswort is foisch! Bitschee prowirs nuamoi.',

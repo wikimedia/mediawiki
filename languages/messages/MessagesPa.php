@@ -972,6 +972,7 @@ to upload files.',
 'whatlinkshere-page'       => 'ਸਫਾ:',
 'nolinkshere'              => "'''[[:$1]]'''ਨਾਲ ਮਿਲਦਾ ਜੁਲਦਾ ਕੋਈ ਪੰਨਾ ਨਹੀਂ ਹੈ।",
 'whatlinkshere-links'      => '← ਲਿੰਕ',
+'whatlinkshere-hideredirs' => '$1 ਗੈਰਸਿਧਾ',
 'whatlinkshere-hidelinks'  => '$1 ਲਿੰਕ',
 'whatlinkshere-hideimages' => '$1 ਸੰਬੰਧਿਤ ਚਿਤਰ',
 'whatlinkshere-filters'    => 'ਫਿਲਟਰ',
@@ -1195,6 +1196,9 @@ to upload files.',
 # Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'ਕਿਲੋਮੀਟਰ ਪ੍ਰਤੀ ਘੰਟਾ',
 'exif-gpsspeed-m' => 'ਮੀਲ ਪ੍ਰਤੀ ਘੰਟਾ',
+
+# External editor support
+'edit-externally-help' => '(ਵਧੇਰੇ ਜਾਣਕਾਰੀ ਲਇ [//www.mediawiki.org/wiki/Manual:External_editors setup instructions] ਇਥੇ ਦਬੋ)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ਸਭ',

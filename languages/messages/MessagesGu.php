@@ -1249,7 +1249,7 @@ $1",
 'prefs-help-watchlist-token'    => 'ગુપ્ત સંજ્ઞા આ ખાનામાં ભરતા તમારી ધ્યાનસૂચિ માટે RSS માહિતીનું નિર્માણ થશે.
 જેની પાસે તમારી આ ગુપ્ત સંજ્ઞા હશે ત તમારી ધ્યાનસૂચિ વપરે શકશે. આથી સુરક્ષિત એવો શબ્દ પસંદ કરશો.
 તમે વાપરી શકો તેવી અસંગત રચાયેલી રીતે સંજ્ઞા અહીં અપેલ છે : $1',
-'savedprefs'                    => 'તમારી પસંદગી સાચવી નથી શકાઇ',
+'savedprefs'                    => 'તમારી પસંદગી સચવાઈ ગઈ છે.',
 'timezonelegend'                => 'સમય ક્ષેત્ર:',
 'localtime'                     => 'સ્થાનીક સમય:',
 'timezoneuseserverdefault'      => 'વીકીના મૂળ વિકલ્પો ગોઠવો ($1)',
@@ -1263,7 +1263,7 @@ $1",
 'timezoneregion-arctic'         => 'આર્કટિક',
 'timezoneregion-asia'           => 'એશિયા',
 'timezoneregion-atlantic'       => 'એટલાંટિક મહાસાગર',
-'timezoneregion-australia'      => 'ઔસ્ટ્રેલિયા',
+'timezoneregion-australia'      => 'ઓસ્ટ્રેલિયા',
 'timezoneregion-europe'         => 'યુરોપ',
 'timezoneregion-indian'         => 'હિંદ મહાસાગર',
 'timezoneregion-pacific'        => 'પ્રશાંત મહાસાગર',
@@ -1335,7 +1335,7 @@ HTML નાકું ચકાસો',
 'userrights-editusergroup'     => 'સભ્ય સમુહો સંપાદીત કરો',
 'saveusergroups'               => 'સભ્ય સમુહો સાચવો',
 'userrights-groupsmember'      => 'સભ્યપદ:',
-'userrights-groupsmember-auto' => 'નો અભિપ્રેત સભ્ય:',
+'userrights-groupsmember-auto' => 'આનો અભિપ્રેત સભ્ય:',
 'userrights-groups-help'       => 'અ સ્ભ્ય જેનો સભ્ય છે તે સમ્હૂહને બદલી શકો છો:
 * અંકિત કરેલું ખાનું બતાવે છે સભ્ય તેનો સમૂહમાં શામિલ છે.
 * જો ખાનું અંકિત ન હોય તો સભ્ય તે સમૂહમાં શામિલ નથી.

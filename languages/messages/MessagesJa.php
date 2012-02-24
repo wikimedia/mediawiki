@@ -16,6 +16,7 @@
  * @author Chinneeb
  * @author Emk
  * @author Fievarsty
+ * @author Fitoschido
  * @author Fryed-peach
  * @author Hatukanezumi
  * @author Hijiri
@@ -3771,8 +3772,9 @@ $5
 'semicolon-separator' => '；​',
 'comma-separator'     => '、',
 'colon-separator'     => '：​',
-'pipe-separator'      => '​｜​',
+'pipe-separator'      => '&#32;|&#32;',
 'word-separator'      => '',
+'parentheses'         => '（$1）',
 
 # Multipage image navigation
 'imgmultipageprev' => '&larr;前ページ',

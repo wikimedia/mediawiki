@@ -1788,12 +1788,12 @@ Nếu vẫn còn bị lỗi, xin hãy liên hệ với một [[Special:ListUsers
 'backend-fail-closetemp'     => 'Không thể đóng tập tin tạm thời.',
 'backend-fail-read'          => 'Không thể đọc tập tin $1.',
 'backend-fail-create'        => 'Không thể tạo tập tin $1.',
-'backend-fail-readonly'      => 'Phía sau “$1” bây giờ là chỉ-đọc. Lý do đưa ra là: “$2”',
-'backend-fail-synced'        => 'Tập tin “$1” đang có trạng thái không nhất quán đối với các phía sau nội bộ',
-'backend-fail-connect'       => 'Không thể kết nối đến phía sau tập tin “$1”.',
-'backend-fail-internal'      => 'Lỗi không rõ xuất hiện trong phía sau tập tin “$1”.',
+'backend-fail-readonly'      => 'Phía sau lưu trữ “$1” bây giờ là chỉ-đọc. Lý do đưa ra là: “$2”',
+'backend-fail-synced'        => 'Tập tin “$1” đang có trạng thái không nhất quán đối với các phía sau lưu trữ nội bộ',
+'backend-fail-connect'       => 'Không thể kết nối đến phía sau lưu trữ “$1”.',
+'backend-fail-internal'      => 'Lỗi không rõ xuất hiện trong phía sau lưu trữ “$1”.',
 'backend-fail-contenttype'   => 'Không thể xác định kiểu nội dung của tập tin để lưu giữ tại “$1”.',
-'backend-fail-batchsize'     => 'Phía sau đã nhận một loạt $1 thao tác tập tin; mức hạn là $2 thao tác.',
+'backend-fail-batchsize'     => 'Phía sau lưu trữ đã nhận một loạt $1 thao tác tập tin; mức hạn là $2 thao tác.',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Không thể mở khóa “$1”; nó chưa khóa.',

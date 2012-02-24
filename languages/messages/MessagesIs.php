@@ -588,8 +588,8 @@ Líklegt er að einhver annar hafi gert það.',
 'cannotdelete-title'   => 'Gat ekki eytt síðunni $1',
 'badtitle'             => 'Slæmur titill',
 'badtitletext'         => 'Umbeðin síðutitill er ógildur.',
-'perfcached'           => 'Eftirfarandi er afrit af umbeðinni síðu og gæti því ekki verið nýjasta útgáfa hennar: A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
-'perfcachedts'         => 'Eftirfarandi gögn eru í skyndiminninu, og voru síðast uppfærð $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
+'perfcached'           => 'Eftirfarandi er afrit af umbeðinni síðu og gæti því ekki verið nýjasta útgáfa hennar. Allt að {{PLURAL:$1|ein niðurstaða er aðgengileg|$1 niðurstöður eru aðgengilegar}} í skyndiminninu.',
+'perfcachedts'         => 'Eftirfarandi gögn eru í skyndiminninu, og voru síðast uppfærð $1. Allt að {{PLURAL:$1|ein niðurstaða er aðgengileg|$1 niðurstöður eru aðgengilegar}} í skyndiminninu.',
 'querypage-no-updates' => 'Lokað er fyrir uppfærslur af þessari síðu. Gögn sett hér munu ekki vistast.',
 'wrong_wfQuery_params' => 'Röng færibreyta fyrir wfQuery()<br />
 Virkni: $1<br />
@@ -938,7 +938,7 @@ Lausn er í gildi sem leyfir þér að breyta síðum: Stafatákn sem eru ekki �
 Ef þú vilt ekki að textanum verði breytt skaltu ekki senda hann inn hér.<br />
 Þú lofar okkur einnig að þú hafir skrifað þetta sjálfur, að efnið sé í almannaeigu eða að það heyri undir frjálst leyfi. (sjá $1).
 '''EKKI SENDA INN HÖFUNDARRÉTTARVARIÐ EFNI ÁN LEYFIS RÉTTHAFA!'''",
-'longpageerror'                    => "'''VILLA: Textinn sem þú sendir inn er $1 kílóbæti að lengd, en hámarkið er $2 kílóbæti. Ekki er hægt að vista textann.'''",
+'longpageerror'                    => "'''VILLA: Textinn sem þú sendir inn er {{PLURAL:$1|eitt kílóbæti|$1 kílóbæti}} að lengd, en hámarkið er {{PLURAL:$2|eitt kílóbæti|$2 kílóbæti}}. Ekki er hægt að vista textann.'''",
 'readonlywarning'                  => "'''AÐVÖRUN: Gagnagrunninum hefur verið læst til að unnt sé að framkvæma viðhaldsaðgerðir, svo þú getur ekki vistað breytingar þínar núna.
 Þú kannt að vilja að klippa og líma textann í textaskjal og vista hann fyrir síðar.'''
 
@@ -1205,7 +1205,7 @@ Athugaðu að skrár þeirra yfir {{SITENAME}}-efni kunna að vera úreltar.',
 'prefs-rc'                      => 'Nýlegar breytingar',
 'prefs-watchlist'               => 'Vaktlistinn',
 'prefs-watchlist-days'          => 'Fjöldi daga sem vaktlistinn nær yfir:',
-'prefs-watchlist-days-max'      => 'Maximum $1 {{PLURAL:$1|day|days}}',
+'prefs-watchlist-days-max'      => 'Hámark $1 {{PLURAL:$1|dagur|dagar}}',
 'prefs-watchlist-edits'         => 'Fjöldi breytinga sem vaktlistinn nær yfir:',
 'prefs-watchlist-edits-max'     => 'Hámarkstala: 1000',
 'prefs-watchlist-token'         => 'Tóki vaktlistans:',
@@ -1678,7 +1678,7 @@ Reyndu aftur.',
 'img-auth-nopathinfo'       => 'PATH_INFO vantar.
 Biðlarinn þínn er ekki stilltur til að gefa upp þessar upplýsingar.
 Þær mega vera CGI-byggðar og mega ekki styðja img_auth.
-[https://www.mediawiki.org/wiki/Manual:Image_Authorization Sjá mynda hópréttindi.]',
+https://www.mediawiki.org/wiki/Manual:Image_Authorization',
 'img-auth-nofile'           => 'Skráin "$1" er ekki til.',
 'img-auth-streaming'        => 'Streymi "$1".',
 'img-auth-noread'           => 'Notandinn hefur ekki rétt til að lesa "$1"',

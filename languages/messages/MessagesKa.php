@@ -1376,7 +1376,7 @@ $1",
 # User rights log
 'rightslog'      => 'მომხმარებლის უფლებების ჟურნალი',
 'rightslogtext'  => 'მომხმარებელთა უფლებების ცვლილებათა ჟურბალი',
-'rightslogentry' => 'შესწორდა მომხმარებლის ჯგუფები $1  $2-სთვის  $3-ზე',
+'rightslogentry' => 'შესწორდა მომხმარებლის ჯგუფები $1  $2-დან  $3-ზე',
 'rightsnone'     => '(არცერთი)',
 
 # Associated actions - in the sentence "You do not have permission to X"

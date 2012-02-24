@@ -544,6 +544,13 @@ $2
 {{PLURAL:$3|這个臨時密碼|遮的臨時密碼}}會佇{{PLURAL:$5|一工 |$5工}}內到期。
 你這馬應該登入，而且選擇一个新密碼。若是別人做的要求，抑是你已經記
 起來你的密碼，你閣無想欲改，你會當免管這个信息，而且繼續用你的密碼。',
+'passwordreset-emailtext-user'     => '佇{{SITENAME}}的用者$1要求發一个{{SITENAME}}（$4）口座詳情的提示。彼个用者{{PLURAL:$3|是|是}}佮下跤電子批地址有關係：
+
+$2
+
+{{PLURAL:$3|這个臨時密碼|遮的臨時密碼}}會佇{{PLURAL:$5|一工 |$5工}}內到期。
+你這馬應該登入，而且選一个新密碼。若是別人做的要求，抑是你已經記
+起來你的密碼，你閣無想欲改，你會當免管這个信息，而且繼續用你的密碼。',
 'passwordreset-emailelement'       => 'Iōng-chiá: $1
 Lîm-sî ê bi̍t-bé: $2',
 'passwordreset-emailsent'          => 'Chit hong thê-chhíⁿ ê  tiān-chú-phoe í-keng kià chhut.',
@@ -553,8 +560,10 @@ Lîm-sî ê bi̍t-bé: $2',
 # Special:ChangeEmail
 'changeemail'          => 'Kái tiān-chú-phoe ê tē-chí',
 'changeemail-header'   => '改口座的電子批地址。',
+'changeemail-text'     => '共這个表寫了，才通改你的電子批地址，你嘛愛拍密碼來確定你欲改。',
 'changeemail-oldemail' => 'Chit-má ê E-mail tē-chí:',
 'changeemail-newemail' => 'Sin E-mail ê chū-chí:',
+'changeemail-none'     => '（無）',
 'changeemail-submit'   => '改電子批',
 'changeemail-cancel'   => 'Chhú-siau',
 
@@ -905,7 +914,9 @@ $1",
 'revdelete-offender'          => '修訂本的編輯者：',
 
 # Suppression log
-'suppressionlog' => '隱藏記錄',
+'suppressionlog'     => '隱藏記錄',
+'suppressionlogtext' => '下跤是管理員為著隱藏文章所做的刣掉抑封鎖的清單。
+若欲看這馬禁止使用、封鎖的清單，請看[[Special:BlockList|IP封鎖清單]]。',
 
 # History merging
 'mergehistory'                     => '合併兩个頁的修改歷史:',
@@ -1012,12 +1023,13 @@ $1",
 'searchdisabled'                   => '{{SITENAME}}因為性能方面的原因，全文搜揣已經暫時停用。你會使暫時透過Google搜揣。請注意怹的索引可能過時。',
 
 # Quickbar
-'qbsettings'               => 'Quickbar ê siat-tēng',
-'qbsettings-none'          => '無',
-'qbsettings-fixedleft'     => '倒手爿固定',
-'qbsettings-fixedright'    => '正手爿固定',
-'qbsettings-floatingleft'  => '倒手爿無固定',
-'qbsettings-floatingright' => '正手爿無固定',
+'qbsettings'                => 'Quickbar ê siat-tēng',
+'qbsettings-none'           => '無',
+'qbsettings-fixedleft'      => '倒手爿固定',
+'qbsettings-fixedright'     => '正手爿固定',
+'qbsettings-floatingleft'   => '倒手爿無固定',
+'qbsettings-floatingright'  => '正手爿無固定',
+'qbsettings-directionality' => '固定，照你話語文字的方向。',
 
 # Preferences page
 'preferences'                   => 'Siat-tēng',
@@ -1029,7 +1041,9 @@ $1",
 'prefs-skin'                    => 'Phôe',
 'skin-preview'                  => 'Chhì khoàⁿ',
 'datedefault'                   => 'Chhìn-chhái',
+'prefs-beta'                    => 'Beta版功能',
 'prefs-datetime'                => 'Ji̍t-kî kap sî-kan',
+'prefs-labs'                    => '試驗中的功能',
 'prefs-personal'                => 'Iōng-chiá chu-liāu',
 'prefs-rc'                      => 'Chòe-kīn ê kái-piàn & stub ê hián-sī',
 'prefs-watchlist'               => 'Kàm-sī-toaⁿ',
@@ -1176,6 +1190,7 @@ Tī pat-lâng liân-lo̍k lí ê sî-chūn bē kā e-mail tsū-tsí siá chhut--
 'group-autoconfirmed-member' => '{{GENDER:$1|自動確認的用者}}',
 'group-bot-member'           => '{{GENDER:$1|機器人}}',
 'group-sysop-member'         => '{{GENDER:$1|管理員}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|監督人員}}',
 'group-suppress-member'      => '{{GENDER:$1|監督}}',
 
 'grouppage-user'          => '{{ns:project}}:用者',
@@ -1278,6 +1293,7 @@ Tī pat-lâng liân-lo̍k lí ê sî-chūn bē kā e-mail tsū-tsí siá chhut--
 'action-suppressionlog'       => '看這个私人記錄',
 'action-block'                => '封鎖這个用者，予伊袂當編輯',
 'action-protect'              => '改這頁的保護層級',
+'action-rollback'             => '共某一頁的頂一个用戶所做的編輯鉸轉去',
 'action-import'               => '對別个Wiki匯入這頁',
 'action-importupload'         => '對一个上載檔案匯入這頁',
 'action-patrol'               => '標示其它的編輯是巡過的',
@@ -1287,6 +1303,7 @@ Tī pat-lâng liân-lo̍k lí ê sî-chūn bē kā e-mail tsū-tsí siá chhut--
 'action-userrights'           => '編輯所有用者的權限',
 'action-userrights-interwiki' => '編輯對其它wiki來的用者權限',
 'action-siteadmin'            => '封鎖抑開鎖資料庫',
+'action-sendemail'            => '寄電子批',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|改|改}}',
@@ -1318,6 +1335,7 @@ Tī pat-lâng liân-lo̍k lí ê sî-chūn bē kā e-mail tsū-tsí siá chhut--
 'number_of_watching_users_pageview' => '[$1个愛注意的{{PLURAL:$1|用者|用者}}]',
 'rc_categories'                     => '分類界線（以"|"分開）',
 'rc_categories_any'                 => '任何',
+'rc-change-size-new'                => '改了後有$1 {{PLURAL:$1|字元|字元}} 。',
 'newsectionsummary'                 => '/* $1 */ 新段落',
 'rc-enhanced-expand'                => '看內容（愛有JavaScript）',
 'rc-enhanced-hide'                  => '藏內容',
@@ -1458,31 +1476,37 @@ $1',
 'upload-warning-subj'         => '上載警示',
 'upload-warning-msg'          => '你對[$2]遐的上載出問題，你會當回轉去[[Special:Upload/stash/$1|上載表]]修改問題。',
 
-'upload-proto-error'        => '毋著的協議(protocol)',
-'upload-proto-error-text'   => '遠程上載愛網址(URL)是以 <code>http://</code> 抑 <code>ftp://</code> 做頭。',
-'upload-file-error'         => '內部的錯誤',
-'upload-file-error-text'    => '佇伺服器欲開一个臨時檔案的時陣，發生一个內部錯誤，
+'upload-proto-error'                => '毋著的協議(protocol)',
+'upload-proto-error-text'           => '遠程上載愛網址(URL)是以 <code>http://</code> 抑 <code>ftp://</code> 做頭。',
+'upload-file-error'                 => '內部的錯誤',
+'upload-file-error-text'            => '佇伺服器欲開一个臨時檔案的時陣，發生一个內部錯誤，
 請佮[[Special:ListUsers/sysop|管理員]]聯絡。',
-'upload-misc-error'         => '毋知原因的上載錯誤',
-'upload-misc-error-text'    => '佇上載的時陣發生錯誤，毋知啥原因。
+'upload-misc-error'                 => '毋知原因的上載錯誤',
+'upload-misc-error-text'            => '佇上載的時陣發生錯誤，毋知啥原因。
 請確認網址(URL)是正確的，了才閣試。
 若猶閣有問題，請聯絡[[Special:ListUsers/sysop|管理員]]。',
-'upload-too-many-redirects' => '網址(URL)包傷濟个轉向',
-'upload-unknown-size'       => '大小毋知',
-'upload-http-error'         => '發生一个HTTP錯誤：$1',
+'upload-too-many-redirects'         => '網址(URL)包傷濟个轉向',
+'upload-unknown-size'               => '大小毋知',
+'upload-http-error'                 => '發生一个HTTP錯誤：$1',
+'upload-copy-upload-invalid-domain' => '無開放對這个網站(domain)上載檔案。',
 
 # File backend
-'backend-fail-stream'    => '無法度串流檔案$1',
-'backend-fail-backup'    => '無法度備份檔案$1',
-'backend-fail-notexists' => '無$1這个檔案',
-'backend-fail-hashes'    => '無法度讀著檔案散列值(hashe)通比並',
-'backend-fail-store'     => '無法度恢複佇$2的檔案$1。',
-'backend-fail-copy'      => '無法度共佇$1的檔案khop去$2。',
-'backend-fail-move'      => '無法度共佇$1的檔案徙去$2。',
-'backend-fail-opentemp'  => '無法度建立臨時檔案',
-'backend-fail-writetemp' => '無法度寫入去臨時檔案',
-'backend-fail-read'      => '無法度讀$1這个檔案',
-'backend-fail-create'    => '無法度建立$1這个檔案。',
+'backend-fail-stream'        => '無法度串流檔案$1',
+'backend-fail-backup'        => '無法度備份檔案$1',
+'backend-fail-notexists'     => '無$1這个檔案',
+'backend-fail-hashes'        => '無法度讀著檔案散列值(hashe)通比並',
+'backend-fail-notsame'       => '已經有$1仝名、無仝款的檔案。',
+'backend-fail-invalidpath'   => '$1這个囥的路徑怪怪',
+'backend-fail-delete'        => 'Bô-hoat-tō· kā tóng-àn "$1" thâi tiāu',
+'backend-fail-alreadyexists' => '已經有$1這个檔案。',
+'backend-fail-store'         => '無法度恢複佇$2的檔案$1。',
+'backend-fail-copy'          => '無法度共佇$1的檔案khop去$2。',
+'backend-fail-move'          => '無法度共佇$1的檔案徙去$2。',
+'backend-fail-opentemp'      => '無法度建立臨時檔案',
+'backend-fail-writetemp'     => '無法度寫入去臨時檔案',
+'backend-fail-closetemp'     => '無法度徙掉臨時檔案',
+'backend-fail-read'          => '無法度讀$1這个檔案',
+'backend-fail-create'        => '無法度建立$1這个檔案。',
 
 # img_auth script messages
 'img-auth-accessdenied'     => '拒絕讀寫',

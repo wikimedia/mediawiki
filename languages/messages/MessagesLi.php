@@ -517,7 +517,7 @@ Mesjiens haet emes angers det al gedaon.',
 'badtitle'             => 'Óngeljige paginatitel',
 'badtitletext'         => 'De opgevraogde pagina is neet besjikbaar of laeg.',
 'perfcached'           => "De gegaeves koume oet 'n cache en zeen mäögelik neet actueel. 't Geuf {{PLURAL:$1|maximaal ei rizzeltaot|maximaal $1 rizzeltaote}} inne cache.",
-'perfcachedts'         => "De getuunde gegaeves komme oet 'n cache en zeen veur 't letst biejgewèrk op $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.",
+'perfcachedts'         => "De getuunde gegaeves komme oet 'n cache en zeen veur 't letst biejgewèrk op $1. Maximaal guuef 't {{PLURAL:$4|ei rizzeltaot|$4 rizzeltaote}} inne cache.",
 'querypage-no-updates' => "Deze pagina kin op 't memènt neet biegewirk waere. Deze gegaeves waere neet verfrisj.",
 'wrong_wfQuery_params' => 'Verkeerde paramaeters veur wfQuery()<br />
 Funksie: $1<br />
@@ -844,8 +844,7 @@ De mós dien eige verangeringe dao-in inpasse.
 'copyrightwarning2'                => "Mèrk op dat alle biedrages aan {{SITENAME}} kinne weure verangerd, aangepas of weggehaold door anger luuj. As te neet wils dat dienen tèks zoemer kint weure aangepas mós te 't hie neet plaatsje.<br />
 De beluifs ós ouch dats te dezen tèks zelf höbs gesjreve, of gekopieerd van 'n brón in 't publiek domein of get vergliekbaars (zuug $1 veur details).
 '''HIE GEIN AUTEURSRECHTELIK BESJIRMP WERK ZÓNGER TOESJTUMMING!'''",
-'longpageerror'                    => "'''ERROR: De teks diese höbs toegevoegd haet is $1 kilobyte
-groot, wat groter is dan 't maximum van $2 kilobyte. Opslaon is neet meugelik.'''",
+'longpageerror'                    => "Fout: De teks diese höbs toegevoegd haet is {{PLURAL:$1|'ne kilobyte|$1 kilobyte}} groet, wat groeter is es 't maximum van {{PLURAL:$2|'ne kilobyte|$2 kilobyte}}. Opslaon is neet meugelik.'''",
 'readonlywarning'                  => "WAARSJUWING: De database is vasgezèt veur ongerhoud, dus op 't mement kins e dien verangeringe neet opsjlaon. De kins dien tèks 't biste opsjlaon in 'n tèksbesjtand om 't later hie nog es te prebere.
 
 t Is geslaote waenger: $1",
@@ -1602,15 +1601,16 @@ $1',
 'upload-warning-msg'          => 'dr Waas e perbleem mit dienen upload van [$2].
 Gank trök nao t [[Special:Upload/stash/$1|uploadformuleer]] om dit perbleem te verhelpe.',
 
-'upload-proto-error'        => 'Verkeerd protocol',
-'upload-proto-error-text'   => "Uploads via deze methode vereise URL's die beginne met <code>http://</code> of <code>ftp://</code>.",
-'upload-file-error'         => 'Interne fout',
-'upload-file-error-text'    => "'n Intern fuitje vonj plaats wie 'n tiedelik besjtandj op de server woort aangemaak. Num aub contac op met 'ne [[Special:ListUsers/sysop|systeemwèrker]].",
-'upload-misc-error'         => 'Onbekinde uploadfout',
-'upload-misc-error-text'    => "d'r Is tiedes 't uploade 'ne onbekinde fout opgetraeje. Controleer of de URL correc en besjikbaar is en probeer 't opnuuj. Es 't probleem aanhaojt, nöm dan contac op met 'ne [[Special:ListUsers/sysop|systeembeheerder]].",
-'upload-too-many-redirects' => 'De URL bevadde te väöl doorverwiezinge',
-'upload-unknown-size'       => 'Ónbekèndje gruuedje',
-'upload-http-error'         => 'dr Is n HTTP-fout opgetraoje: $1',
+'upload-proto-error'                => 'Verkeerd protocol',
+'upload-proto-error-text'           => "Uploads via deze methode vereise URL's die beginne met <code>http://</code> of <code>ftp://</code>.",
+'upload-file-error'                 => 'Interne fout',
+'upload-file-error-text'            => "'n Intern fuitje vonj plaats wie 'n tiedelik besjtandj op de server woort aangemaak. Num aub contac op met 'ne [[Special:ListUsers/sysop|systeemwèrker]].",
+'upload-misc-error'                 => 'Onbekinde uploadfout',
+'upload-misc-error-text'            => "d'r Is tiedes 't uploade 'ne onbekinde fout opgetraeje. Controleer of de URL correc en besjikbaar is en probeer 't opnuuj. Es 't probleem aanhaojt, nöm dan contac op met 'ne [[Special:ListUsers/sysop|systeembeheerder]].",
+'upload-too-many-redirects'         => 'De URL bevadde te väöl doorverwiezinge',
+'upload-unknown-size'               => 'Ónbekèndje gruuedje',
+'upload-http-error'                 => 'dr Is n HTTP-fout opgetraoje: $1',
+'upload-copy-upload-invalid-domain' => 'Kopië oplajen is neet besjikbaar in dit domein.',
 
 # File backend
 'backend-fail-stream'        => "'t Waes neet mäögelik  't besjtand $1 te streame.",
@@ -1630,7 +1630,11 @@ Gank trök nao t [[Special:Upload/stash/$1|uploadformuleer]] om dit perbleem te 
 'backend-fail-read'          => 'Kós bestjand $1 neet laeze.',
 'backend-fail-create'        => 'Kós bestjand $1 neet aanmake.',
 'backend-fail-readonly'      => 'Vannen opslaag "$1" kin op dit memènt allein gelaeze waere. De opgegaeve raeje is: "$2"',
-'backend-fail-connect'       => 'Kós de bestandjsbackend neet verbinje "$1".',
+'backend-fail-synced'        => '\'t Bestandj "$1" bevindj zich in \'nen ónsamehangendje toestandj inne intern opslaagbackends.',
+'backend-fail-connect'       => 'Kós de bestandjsbackend neet verbinje mitte opslaagbackend "$1".',
+'backend-fail-internal'      => '\'n Ónbekèndje fout is ópgetaoje innen opslaagbackend "$1".',
+'backend-fail-contenttype'   => 'Kós \'t inhawdtype van \'t bestnadj óm es "$1" op te slaon neet bepaole.',
+'backend-fail-batchsize'     => 'Reiks van $1 {{PLURAL:$1|bestandjsoperatie|bestandjsoperaties}} in de opslaagbackend; de limiet is $2 {{PLURAL:$2|operatie|operaties}}.',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Kós "$1" neet vrijgaeve; \'t waes neet vergrendeld.',
@@ -1666,7 +1670,7 @@ De veiligheid kin neet waere gekónterleerdj.",
 'img-auth-nopathinfo'       => 'PATH_INFO óntbrèk.
 Diene server is neet ingesteld om dees informatie door te gaeve.
 Misjien gebroek deze CGI, en dan wört img_auth neet ongersteund.
-Zuuch [https://www.mediawiki.org/wiki/Manual:Image_Authorization aafbeildingsrechte] veur mee informatie.',
+Zuuch https://www.mediawiki.org/wiki/Manual:Image_Authorization aafbeildingsrechte veur mee informatie.',
 'img-auth-notindir'         => "'t Ópgevraogdje paad is neet de ingestelde uploadmap.",
 'img-auth-badtitle'         => 'Kèn geine geldige paginanaam make van "$1".',
 'img-auth-nologinnWL'       => 'Doe bös neet aangemeld en "$1" steit neet op de witte lies.',
@@ -2673,6 +2677,9 @@ Slaon de oetveur op dien eige systeem op, en voeg dae dao nao hiej toe.',
 'import-invalid-interwiki'   => "'t Is neet mäögelik van de aangegeve wiki te importere.",
 'import-error-edit'          => 'De pagina "$1" is neet geïmporteerd omdes se neet de rechte hes óm dees te bewèrke.',
 'import-error-create'        => 'De pagina "$1" is neet geïmporteerd omdes se neet de rechte hes óm dees aan te make.',
+'import-error-interwiki'     => 'De pagina "$1" is neet geïmporteerd omdet deze naam is gereserveerd veur extern verwiezinge (interwiki).',
+'import-error-special'       => 'Pagina "$1" is neet geïmporteerd omdet deze is geplaats in \'n speciaal naamruumdje wo gein pagina\'s in geplaats kinne waere.',
+'import-error-invalid'       => 'De pagina" "$1" is neet geïmporteerd omdet de naam óngeljig is.',
 
 # Import log
 'importlogpage'                    => 'Importlogbook',

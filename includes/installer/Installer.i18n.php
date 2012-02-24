@@ -4217,6 +4217,7 @@ $messages['eo'] = array(
 );
 
 /** Spanish (Español)
+ * @author Armando-Martin
  * @author Crazymadlover
  * @author Danke7
  * @author Locos epraix
@@ -4232,6 +4233,20 @@ $messages['es'] = array(
 	'config-localsettings-upgrade' => 'Se ha encontrado un archivo <code>LocalSettings.php</code>.
 Para actualizar esta instalación, por favor ingresa el valor de <code>$wgUpgradeKey</code> en el cuadro de abajo.
 Lo encontrarás en LocalSettings.php.',
+	'config-localsettings-cli-upgrade' => 'Se ha detectado un archivo LocalSettings.php.
+Para actualizar la instalación, vuelva a ejecutar update.php',
+	'config-localsettings-key' => 'Clave de actualización:',
+	'config-localsettings-badkey' => 'La clave proporcionada es incorrecta.',
+	'config-upgrade-key-missing' => 'Se ha detectado una instalación existente de MediaWiki.
+Para actualizar la instalación, por favor, ponga la siguiente línea al final de su archivo LocalSettings.php:
+
+$1',
+	'config-localsettings-incomplete' => 'El archivo LocalSettings.php existente parece estar incompleto.
+La variable $1 no está definida.
+Cambie el archivo LocalSettings.php para que esta variable quede establecida y haga clic en "Continuar".',
+	'config-localsettings-connection-error' => 'Se detectó un error al conectarse a la base de datos utilizando la configuración especificada en los archivos LocalSettings.php o AdminSettings.php. Corrija estas opciones y vuelva a intentarlo.
+
+$1',
 	'config-session-error' => 'Error comenzando sesión: $1',
 	'config-session-expired' => 'Tus datos de sesión parecen haber expirado.
 Las sesiones están configuradas por una duración de $1.
@@ -4259,6 +4274,7 @@ Verifica tu php.ini y comprueba que <code>session.save_path</code> está estable
 	'config-page-releasenotes' => 'Notas de la versión',
 	'config-page-copying' => 'Copiando',
 	'config-page-upgradedoc' => 'Actualizando',
+	'config-page-existingwiki' => 'Wiki existente',
 	'config-help-restart' => '¿Deseas borrar todos los datos que has ingresado hasta ahora y reiniciar el proceso de instalación desde el principio?',
 	'config-restart' => 'Sí, reiniciarlo',
 	'config-welcome' => '=== Comprobación del entorno ===
@@ -4288,6 +4304,8 @@ Puedes instalar MediaWiki.',
 	'config-env-bad' => 'El entorno ha sido comprobado.
 No puedes instalar MediaWiki.',
 	'config-env-php' => 'PHP $1 está instalado.',
+	'config-env-php-toolow' => 'PHP $1 está instalado.
+Sin embargo, MediaWiki requiere PHP $2 o superior.',
 	'config-unicode-using-utf8' => 'Usando utf8_normalize.so de Brion Vibber para la normalización Unicode.',
 	'config-unicode-using-intl' => 'Usando la [http://pecl.php.net/intl extensión intl PECL] para la normalización Unicode.',
 	'config-unicode-pure-php-warning' => "'''Advertencia''': La [http://pecl.php.net/intl extensión intl] no está disponible para efectuar la normalización Unicode. Utilizando la implementación más lenta en PHP.
@@ -4299,6 +4317,7 @@ Las siguientes bases de datos son soportadas: $1.
 Si estás en alojamiento compartido, pregunta a tu proveedor el instalar un controlador de base de datos adecuado.
 Si estás compilando PHP por ti mismo, reconfigúralo con un cliente de base de datos disponible, por ejemplo usando <code>./configure --with-mysql</code>.
 Si instalaste PHP de un paquete Debian o Ubuntu, entonces también necesitas instalar el módulo php5-mysql.',
+	'config-outdated-sqlite' => "''' Advertencia ''': tiene la versión SQLite $1, que es inferior a la mínima versión requerida: $2 . SQLite no estará disponible.",
 	'config-no-fts3' => "'''Advertencia''': SQLite está compilado sin el [//sqlite.org/fts3.html módulo FTS3]. Las funcionalidades de búsqueda no estarán disponibles en esta instalación.",
 	'config-register-globals' => "'''Advertencia: La opción de <code>[http://php.net/register_globals register_globals]</code> de PHP está habilitada.'''
 '''Desactívela si puede.'''
@@ -4322,15 +4341,20 @@ MediaWiki necesita funciones en este módulo y no funcionará con esta configura
 Si está ejecutando Mandrake, instale el paquete php-xml.',
 	'config-pcre' => 'Parece faltar el módulo de compatibilidad PCRE.
 MediaWiki necesita que las funciones de expresiones regulares compatibles con Perl estén funcionando.',
+	'config-pcre-no-utf8' => "'''Error fatal ''': Parece que el módulo PCRE de PHP fue compilado sin el soporte PCRE_UTF8.
+MediaWiki requiere compatibilidad con UTF-8 para funcionar correctamente.",
 	'config-memory-raised' => 'el parámetro <code>memory_limit</code> de PHP es $1, aumentada a $2.',
 	'config-memory-bad' => "'''Advertencia:''' El parámetro <code>memory_limit</code> de PHP es $1.
 Probablemente este valor es demasiado bajo.
 ¡La instalación podrá fallar!",
+	'config-ctype' => "'''Fatal''': PHP debe ser compilado con soporte para la [http://www.php.net/manual/en/ctype.installation.php extensión Ctype].",
 	'config-xcache' => '[http://xcache.lighttpd.net/ XCache] está instalado',
 	'config-apc' => '[http://www.php.net/apc APC] está instalado',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] está instalado',
 	'config-no-cache' => "'''Advertencia:''' No pudo encontrarse [http://www.php.net/apc APC], [http://xcache.lighttpd.net/ XCache] o [http://www.iis.net/download/WinCacheForPhp WinCache].
 El caché de objetos no está habilitado.",
+	'config-mod-security' => "''' Advertencia ''': Su servidor web tiene [http://modsecurity.org/ mod_security] habilitado. Si la configuración es incorrecta, puede causar problemas a MediaWiki u otro software que permita a los usuarios publicar contenido arbitrarios.
+Consulte la [http://modsecurity.org/documentation/ documentación de mod_security] o contacte con el soporte de su servidor (''host'') si encuentra errores aleatorios.",
 	'config-diff3-bad' => 'GNU diff3 no se encuentra.',
 	'config-imagemagick' => 'ImageMagick encontrado: <code>$1</code>.
 La miniaturización de imágenes se habilitará si habilitas las cargas.',

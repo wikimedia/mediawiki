@@ -8,6 +8,7 @@
  * @file
  *
  * @author Avjoska
+ * @author Cylly1512
  * @author Hendrik
  * @author Hendrix
  * @author Jaan513
@@ -302,7 +303,7 @@ $messages = array(
 'tog-watchmoves'              => 'Lisa minu teisaldatud leheküljed jälgimisloendisse',
 'tog-watchdeletion'           => 'Lisa minu kustutatud leheküljed jälgimisloendisse',
 'tog-minordefault'            => 'Märgi kõik parandused vaikimisi pisiparandusteks',
-'tog-previewontop'            => 'Näita eelvaadet enne toimetamisakent',
+'tog-previewontop'            => 'Näita eelvaadet toimetamiskasti ees',
 'tog-previewonfirst'          => 'Näita eelvaadet esimesel redigeerimisel',
 'tog-nocache'                 => 'Keela võrgulehitsejal lehekülgede puhverdamine',
 'tog-enotifwatchlistpages'    => 'Teata e-posti teel minu jälgitava lehekülje muutmisest',
@@ -505,8 +506,8 @@ $messages = array(
 'jumptonavigation'  => 'navigeerimiskast',
 'jumptosearch'      => 'otsi',
 'view-pool-error'   => 'Serverid on hetkel üle koormatud.
-Liiga palju kasutajaid üritab korraga seda lehte vaadata.
-Palun oota hetk enne kui uuesti proovid.
+Liiga palju kasutajaid üritab seda lehte vaadata.
+Palun oota hetk, enne kui uuesti proovid.
 
 $1',
 'pool-errorunknown' => 'Teadmata tõrge',
@@ -2926,7 +2927,8 @@ Samuti võimaldab see resümee reale põhjenduse lisamist.',
 'tooltip-summary'                     => 'Kirjuta lühike kokkuvõte',
 
 # Stylesheets
-'common.css' => '/* Siinset CSS-i kasutavad kõik kujundused. */',
+'common.css'   => '/* Siin olevat CSS-i kasutavad kõik kujundused. */',
+'standard.css' => '/* Siin olev CSS puudutab Standard-kujunduse kasutajaid. */',
 
 # Scripts
 'common.js' => '/* Siinne JavaScript laaditakse igale kasutajatele igal laaditud leheküljel. */',
@@ -3413,6 +3415,8 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-dc-source'      => 'Allikmeediafail',
 'exif-dc-type'        => 'Meediafaili tüüp',
 
+'exif-rating-rejected' => 'Tagasi lükatud',
+
 'exif-isospeedratings-overflow' => 'Suurem kui 65535',
 
 'exif-iimcategory-ace' => 'Kunstid, kultuur ja meelelahutus',
@@ -3773,6 +3777,7 @@ Kui ei, kasuta allolevat lihtsat vormi. Sinu kommentaar lisatakse koos kasutajan
 
 # API errors
 'api-error-badaccess-groups'              => 'Sul pole selles vikis üleslaadimisõigust.',
+'api-error-badtoken'                      => 'Sisemine tõrge: Sobimatu nimi.',
 'api-error-copyuploaddisabled'            => 'URLi kaudu üleslaadimine on selles serveris keelatud.',
 'api-error-duplicate'                     => 'Siin on {{PLURAL:$1|[$2 teine samasisuline fail]|[$2 mõned teised samasisulised failid]}} juba olemas.',
 'api-error-duplicate-archive'             => 'Siin {{PLURAL:$1|on [$2 teine samasisuline fail]|olid [$2 mõned teised samasisulised failid]}} juba olemas, aga {{PLURAL:$1|see|need}} kustutati.',
@@ -3780,6 +3785,7 @@ Kui ei, kasuta allolevat lihtsat vormi. Sinu kommentaar lisatakse koos kasutajan
 'api-error-duplicate-popup-title'         => '{{PLURAL:$1|Duplikaatfail|Duplikaatfailid}}',
 'api-error-empty-file'                    => 'Üleslaaditav fail on tühi.',
 'api-error-emptypage'                     => 'Uute tühjade lehekülgede loomine pole lubatud.',
+'api-error-fetchfileerror'                => 'Sisemine tõrge: Midagi läks faili kättesaamisel valesti.',
 'api-error-file-too-large'                => 'Üleslaaditav fail on liiga suur.',
 'api-error-filename-tooshort'             => 'Failinimi on liiga lühike.',
 'api-error-filetype-banned'               => 'Antud failitüüp on keelatud.',

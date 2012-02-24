@@ -1562,7 +1562,7 @@ $1",
 'action-userrights'           => '모든 사용자의 권한을 조정',
 'action-userrights-interwiki' => '다른 위키의 사용자 권한을 조정',
 'action-siteadmin'            => '데이터베이스를 잠그거나 잠금 해제하기',
-'action-sendemail'            => '이메일을 보낼',
+'action-sendemail'            => '이메일 보내기',
 
 # Recent changes
 'nchanges'                          => '$1개 바뀜',

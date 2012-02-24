@@ -1811,7 +1811,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization कृपया हे
 
 # HTTP errors
 'http-invalid-url'      => 'अवैध आंतरजालपत्ता: $1',
-'http-invalid-scheme'   => 'URL सोबत "$1"पध्दत चालत नाही',
+'http-invalid-scheme'   => 'URL सोबत "$1" पद्धत चालत नाही',
 'http-request-error'    => 'एचटीटीपी मागणी अज्ञात कारणामुळे अयशस्वी.',
 'http-read-error'       => 'एचटीटीपी वाचन त्रुटी.',
 'http-timed-out'        => 'विनंती वेळ सपला आहे',

@@ -513,16 +513,38 @@ Fuirich ort mus feuch thu ris a-rithist.",
 'loginlanguagelabel'         => 'Cànan: $1',
 'suspicious-userlogout'      => "Chaidh d' iarrtas airson clàradh a-mach a dhiùltadh a chionn 's gu bheil coltas gun deach a chur le brabhsair briste no le progsaidh tasglannaidh.",
 
+# E-mail sending
+'php-mail-error-unknown' => 'Mearachd neo-aithichte san fheart mail() aig PHP.',
+
 # Change password dialog
-'oldpassword'             => 'Seann fhacal-faire',
-'newpassword'             => 'Facal-faire ùr',
-'retypenew'               => 'Ath-sgrìobh am facal-faire ùr',
-'resetpass-temp-password' => 'Facal-faire sealach:',
+'resetpass'                 => 'Atharraich am facal-faire',
+'resetpass_announce'        => "Chlàraich thu a-steach le còd sealach a fhuair thu air a' phost-d.
+Gus an clàradh a-steach a choileadh, tha agad ri facal-faire ùr a shuidheachadh an-seo:",
+'resetpass_header'          => "Atharraich facal-faire a' chunntais",
+'oldpassword'               => 'Seann fhacal-faire',
+'newpassword'               => 'Facal-faire ùr',
+'retypenew'                 => 'Ath-sgrìobh am facal-faire ùr',
+'resetpass_submit'          => "Suidhich am facal-faire 's clàraich a-steach",
+'resetpass_success'         => "Chaidh am facal-faire agad atharrachadh!
+'Gad chlàradh a-steach an-dràsta...",
+'resetpass_forbidden'       => 'Cha ghabh na faclan-faire atharrachadh',
+'resetpass-no-info'         => 'Feumaidh tu clàradh a-steach mus dèan thu inntrigeadh dìreach dhan duilleag seo.',
+'resetpass-submit-loggedin' => 'Atharraich am facal-faire',
+'resetpass-submit-cancel'   => 'Sguir dheth',
+'resetpass-wrong-oldpass'   => "Tha am facal-faire sealach no làithreach mì-dhligheach.
+Saoil an do dh'atharraich thu am facal-faire agad mu thràth no an do dh'iarr thu facal-faire sealach ùr?",
+'resetpass-temp-password'   => 'Facal-faire sealach:',
 
 # Special:PasswordReset
-'passwordreset'        => 'Ath-shuidhich am facal-faire',
-'passwordreset-text'   => "Lìon am foirm seo gus post-d fhaighinn sa bheil mion-fhiosrachadh a' chunntais agad.",
-'passwordreset-legend' => 'Ath-shuidhich am facal-faire',
+'passwordreset'            => 'Ath-shuidhich am facal-faire',
+'passwordreset-text'       => "Lìon am foirm seo gus post-d fhaighinn sa bheil mion-fhiosrachadh a' chunntais agad.",
+'passwordreset-legend'     => 'Ath-shuidhich am facal-faire',
+'passwordreset-disabled'   => 'Chaidh ath-shuidheachadh nam faclan-faire a chur à comas air an uicipeid seo.',
+'passwordreset-pretext'    => '{{PLURAL:$1||Cuir a-steach aon dhe na pìosan dàta gu h-ìosal}}',
+'passwordreset-username'   => 'Ainm-cleachdaiche:',
+'passwordreset-domain'     => 'Àrainn-lìn:',
+'passwordreset-email'      => 'Seòladh puist-d:',
+'passwordreset-emailtitle' => "Dàta a' chunntais air {{SITENAME}}",
 
 # Edit page toolbar
 'bold_sample'     => 'Teacs trom',
