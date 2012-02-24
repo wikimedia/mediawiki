@@ -4736,14 +4736,14 @@ This site is experiencing technical difficulties.',
 '1movedto2'                   => 'moved [[$1]] to [[$2]]',
 '1movedto2_redir'             => 'moved [[$1]] to [[$2]] over redirect',
 'move-redirect-suppressed'    => 'redirect suppressed',
-'newuserlog-byemail'          => 'password sent by e-mail',
+// 'newuserlog-byemail'          => 'password sent by e-mail', // Dupe in the "New logging system" section
 'newuserlog-create-entry'     => 'New user account',
 'newuserlog-create2-entry'    => 'created new account $1',
 'newuserlog-autocreate-entry' => 'Account created automatically',
 'suppressedarticle'           => 'suppressed "[[$1]]"',
 'deletedarticle'              => 'deleted "[[$1]]"',
-'uploadedimage'               => 'uploaded "[[$1]]"',
-'overwroteimage'              => 'uploaded a new version of "[[$1]]"',
+// 'uploadedimage'               => 'uploaded "[[$1]]"', // Dupe in the "Upload" section
+// 'overwroteimage'              => 'uploaded a new version of "[[$1]]"', // Dupe in the "Upload" section
 
 # Feedback
 'feedback-bugornote' => 'If you are ready to describe a technical problem in detail please [$1 report a bug].
