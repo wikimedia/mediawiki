@@ -16,7 +16,7 @@
  * Sharding can be accomplished by using FileRepo-style hash paths.
  *
  * Status messages should avoid mentioning the internal FS paths.
- * Likewise, error suppression should be used to avoid path disclosure.
+ * PHP warnings are assumed to be logged rather than output.
  *
  * @ingroup FileBackend
  * @since 1.19
@@ -41,14 +41,13 @@ class FSFileBackend extends FileBackendStore {
 		parent::__construct( $config );
 
 		// Remove any possible trailing slash from directories
-
 		if ( isset( $config['basePath'] ) ) {
 			$this->basePath = rtrim( $config['basePath'], '/' ); // remove trailing slash
 		} else {
 			$this->basePath = null; // none; containers must have explicit paths
 		}
 
-		if( isset( $config['containerPaths'] ) ) {
+		if ( isset( $config['containerPaths'] ) ) {
 			$this->containerPaths = (array)$config['containerPaths'];
 			foreach ( $this->containerPaths as &$path ) {
 				$path = rtrim( $path, '/' );  // remove trailing slash
@@ -140,13 +139,11 @@ class FSFileBackend extends FileBackendStore {
 		}
 		$parentDir = dirname( $fsPath );
 
-		wfSuppressWarnings();
 		if ( file_exists( $fsPath ) ) {
 			$ok = is_file( $fsPath ) && is_writable( $fsPath );
 		} else {
 			$ok = is_dir( $parentDir ) && is_writable( $parentDir );
 		}
-		wfRestoreWarnings();
 
 		return $ok;
 	}
@@ -166,9 +163,7 @@ class FSFileBackend extends FileBackendStore {
 
 		if ( file_exists( $dest ) ) {
 			if ( !empty( $params['overwrite'] ) ) {
-				wfSuppressWarnings();
 				$ok = unlink( $dest );
-				wfRestoreWarnings();
 				if ( !$ok ) {
 					$status->fatal( 'backend-fail-delete', $params['dst'] );
 					return $status;
@@ -179,9 +174,7 @@ class FSFileBackend extends FileBackendStore {
 			}
 		}
 
-		wfSuppressWarnings();
 		$ok = copy( $params['src'], $dest );
-		wfRestoreWarnings();
 		if ( !$ok ) {
 			$status->fatal( 'backend-fail-store', $params['src'], $params['dst'] );
 			return $status;
@@ -213,9 +206,7 @@ class FSFileBackend extends FileBackendStore {
 
 		if ( file_exists( $dest ) ) {
 			if ( !empty( $params['overwrite'] ) ) {
-				wfSuppressWarnings();
 				$ok = unlink( $dest );
-				wfRestoreWarnings();
 				if ( !$ok ) {
 					$status->fatal( 'backend-fail-delete', $params['dst'] );
 					return $status;
@@ -226,9 +217,7 @@ class FSFileBackend extends FileBackendStore {
 			}
 		}
 
-		wfSuppressWarnings();
 		$ok = copy( $source, $dest );
-		wfRestoreWarnings();
 		if ( !$ok ) {
 			$status->fatal( 'backend-fail-copy', $params['src'], $params['dst'] );
 			return $status;
@@ -262,9 +251,7 @@ class FSFileBackend extends FileBackendStore {
 			if ( !empty( $params['overwrite'] ) ) {
 				// Windows does not support moving over existing files
 				if ( wfIsWindows() ) {
-					wfSuppressWarnings();
 					$ok = unlink( $dest );
-					wfRestoreWarnings();
 					if ( !$ok ) {
 						$status->fatal( 'backend-fail-delete', $params['dst'] );
 						return $status;
@@ -276,10 +263,8 @@ class FSFileBackend extends FileBackendStore {
 			}
 		}
 
-		wfSuppressWarnings();
 		$ok = rename( $source, $dest );
 		clearstatcache(); // file no longer at source
-		wfRestoreWarnings();
 		if ( !$ok ) {
 			$status->fatal( 'backend-fail-move', $params['src'], $params['dst'] );
 			return $status;
@@ -308,9 +293,7 @@ class FSFileBackend extends FileBackendStore {
 			return $status; // do nothing; either OK or bad status
 		}
 
-		wfSuppressWarnings();
 		$ok = unlink( $source );
-		wfRestoreWarnings();
 		if ( !$ok ) {
 			$status->fatal( 'backend-fail-delete', $params['src'] );
 			return $status;
@@ -334,9 +317,7 @@ class FSFileBackend extends FileBackendStore {
 
 		if ( file_exists( $dest ) ) {
 			if ( !empty( $params['overwrite'] ) ) {
-				wfSuppressWarnings();
 				$ok = unlink( $dest );
-				wfRestoreWarnings();
 				if ( !$ok ) {
 					$status->fatal( 'backend-fail-delete', $params['dst'] );
 					return $status;
@@ -347,9 +328,7 @@ class FSFileBackend extends FileBackendStore {
 			}
 		}
 
-		wfSuppressWarnings();
 		$bytes = file_put_contents( $dest, $params['content'] );
-		wfRestoreWarnings();
 		if ( $bytes === false ) {
 			$status->fatal( 'backend-fail-create', $params['dst'] );
 			return $status;
@@ -390,9 +369,7 @@ class FSFileBackend extends FileBackendStore {
 		$dir = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
 		// Seed new directories with a blank index.html, to prevent crawling...
 		if ( !empty( $params['noListing'] ) && !file_exists( "{$dir}/index.html" ) ) {
-			wfSuppressWarnings();
 			$bytes = file_put_contents( "{$dir}/index.html", '' );
-			wfRestoreWarnings();
 			if ( !$bytes ) {
 				$status->fatal( 'backend-fail-create', $params['dir'] . '/index.html' );
 				return $status;
@@ -401,9 +378,7 @@ class FSFileBackend extends FileBackendStore {
 		// Add a .htaccess file to the root of the container...
 		if ( !empty( $params['noAccess'] ) ) {
 			if ( !file_exists( "{$contRoot}/.htaccess" ) ) {
-				wfSuppressWarnings();
 				$bytes = file_put_contents( "{$contRoot}/.htaccess", "Deny from all\n" );
-				wfRestoreWarnings();
 				if ( !$bytes ) {
 					$storeDir = "mwstore://{$this->name}/{$shortCont}";
 					$status->fatal( 'backend-fail-create', "{$storeDir}/.htaccess" );
@@ -441,7 +416,7 @@ class FSFileBackend extends FileBackendStore {
 			return false; // invalid storage path
 		}
 
-		$this->trapWarnings();
+		$this->trapWarnings(); // don't trust 'false' if there were errors
 		$stat = is_file( $source ) ? stat( $source ) : false; // regular files only
 		$hadError = $this->untrapWarnings();
 
@@ -472,16 +447,12 @@ class FSFileBackend extends FileBackendStore {
 		list( $b, $shortCont, $r ) = FileBackend::splitStoragePath( $params['dir'] );
 		$contRoot = $this->containerFSRoot( $shortCont, $fullCont ); // must be valid
 		$dir = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
-		wfSuppressWarnings();
 		$exists = is_dir( $dir );
-		wfRestoreWarnings();
 		if ( !$exists ) {
 			wfDebug( __METHOD__ . "() given directory does not exist: '$dir'\n" );
 			return array(); // nothing under this dir
 		}
-		wfSuppressWarnings();
 		$readable = is_readable( $dir );
-		wfRestoreWarnings();
 		if ( !$readable ) {
 			wfDebug( __METHOD__ . "() given directory is unreadable: '$dir'\n" );
 			return null; // bad permissions?
@@ -520,9 +491,7 @@ class FSFileBackend extends FileBackendStore {
 		$tmpPath = $tmpFile->getPath();
 
 		// Copy the source file over the temp file
-		wfSuppressWarnings();
 		$ok = copy( $source, $tmpPath );
-		wfRestoreWarnings();
 		if ( !$ok ) {
 			return null;
 		}
@@ -547,17 +516,18 @@ class FSFileBackend extends FileBackendStore {
 	}
 
 	/**
-	 * Suppress E_WARNING errors and track whether any happen
+	 * Listen for E_WARNING errors and track whether any happen
 	 *
-	 * @return void
+	 * @return bool
 	 */
 	protected function trapWarnings() {
 		$this->hadWarningErrors[] = false; // push to stack
 		set_error_handler( array( $this, 'handleWarning' ), E_WARNING );
+		return false; // invoke normal PHP error handler
 	}
 
 	/**
-	 * Unsuppress E_WARNING errors and return true if any happened
+	 * Stop listening for E_WARNING errors and return true if any happened
 	 *
 	 * @return bool
 	 */
