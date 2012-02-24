@@ -2616,6 +2616,29 @@ function wfMkdirParents( $dir, $mode = null, $caller = null ) {
 }
 
 /**
+ * Remove a directory and all its content.
+ * Does not hide error.
+ */
+function wfRecursiveRemoveDir( $dir ) {
+	wfDebug( __FUNCTION__ . "( $dir )\n" );
+	// taken from http://de3.php.net/manual/en/function.rmdir.php#98622
+	if ( is_dir( $dir ) ) {
+		$objects = scandir( $dir );
+		foreach ( $objects as $object ) {
+			if ( $object != "." && $object != ".." ) {
+				if ( filetype( $dir . '/' . $object ) == "dir" ) {
+					wfRecursiveRemoveDir( $dir . '/' . $object );
+				} else {
+					unlink( $dir . '/' . $object );
+				}
+			}
+		}
+		reset( $objects );
+		rmdir( $dir );
+	}
+}
+
+/**
  * @param $nr Mixed: the number to format
  * @param $acc Integer: the number of digits after the decimal point, default 2
  * @param $round Boolean: whether or not to round the value, default true
