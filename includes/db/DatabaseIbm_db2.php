@@ -791,9 +791,9 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	protected function applySchema() {
 		if ( !( $this->mSchemaSet ) ) {
 			$this->mSchemaSet = true;
-			$this->begin();
+			$this->begin( __METHOD__ );
 			$this->doQuery( "SET SCHEMA = $this->mSchema" );
-			$this->commit();
+			$this->commit( __METHOD__ );
 		}
 	}
 
@@ -1016,7 +1016,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 		$res = true;
 		// If we are not in a transaction, we need to be for savepoint trickery
 		if ( !$this->mTrxLevel ) {
-			$this->begin();
+			$this->begin( __METHOD__ );
 		}
 
 		$sql = "INSERT INTO $table ( " . implode( ',', $keys ) . ' ) VALUES ';
@@ -1031,7 +1031,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 		$stmt = $this->prepare( $sql );
 
 		// start a transaction/enter transaction mode
-		$this->begin();
+		$this->begin( __METHOD__ );
 
 		if ( !$ignore ) {
 			//$first = true;

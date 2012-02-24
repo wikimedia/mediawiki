@@ -514,9 +514,9 @@ class MysqlInstaller extends DatabaseInstaller {
 				$fullName = $this->buildFullUserName( $dbUser, $host );
 				if( !$this->userDefinitelyExists( $dbUser, $host ) ) {
 					try{
-						$this->db->begin();
+						$this->db->begin( __METHOD__ );
 						$this->db->query( "CREATE USER $fullName IDENTIFIED BY $escPass", __METHOD__ );
-						$this->db->commit();
+						$this->db->commit( __METHOD__ );
 						$grantableNames[] = $fullName;
 					} catch( DBQueryError $dqe ) {
 						if( $this->db->lastErrno() == 1396 /* ER_CANNOT_USER */ ) {
@@ -544,11 +544,11 @@ class MysqlInstaller extends DatabaseInstaller {
 		$dbAllTables = $this->db->addIdentifierQuotes( $dbName ) . '.*';
 		foreach( $grantableNames as $name ) {
 			try {
-				$this->db->begin();
+				$this->db->begin( __METHOD__ );
 				$this->db->query( "GRANT ALL PRIVILEGES ON $dbAllTables TO $name", __METHOD__ );
-				$this->db->commit();
+				$this->db->commit( __METHOD__ );
 			} catch( DBQueryError $dqe ) {
-				$this->db->rollback();
+				$this->db->rollback( __METHOD__ );
 				$status->fatal( 'config-install-user-grant-failed', $dbUser, $dqe->getText() );
 			}
 		}

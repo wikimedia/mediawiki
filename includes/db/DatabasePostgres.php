@@ -540,7 +540,7 @@ class DatabasePostgres extends DatabaseBase {
 		if ( $ignore ) {
 			$olde = error_reporting( $olde );
 			if ( $didbegin ) {
-				$this->commit();
+				$this->commit( __METHOD__ );
 			}
 
 			// Set the affected row count for the whole operation
@@ -587,7 +587,7 @@ class DatabasePostgres extends DatabaseBase {
 		$didbegin = 0;
 		if ( $ignore ) {
 			if( !$this->mTrxLevel ) {
-				$this->begin();
+				$this->begin( __METHOD__ );
 				$didbegin = 1;
 			}
 			$olde = error_reporting( 0 );
@@ -616,7 +616,7 @@ class DatabasePostgres extends DatabaseBase {
 			}
 			$olde = error_reporting( $olde );
 			if( $didbegin ) {
-				$this->commit();
+				$this->commit( __METHOD__ );
 			}
 
 			// Set the affected row count for the whole operation

@@ -147,7 +147,7 @@ class PostgresInstaller extends DatabaseInstaller {
 			 */
 			$conn = $status->value;
 			$conn->clearFlag( DBO_TRX );
-			$conn->commit();
+			$conn->commit( __METHOD__ );
 			$this->pgConns[$type] = $conn;
 		}
 		return $status;
@@ -478,7 +478,7 @@ class PostgresInstaller extends DatabaseInstaller {
 	}
 
 	function commitChanges() {
-		$this->db->commit();
+		$this->db->commit( __METHOD__ );
 		return Status::newGood();
 	}
 

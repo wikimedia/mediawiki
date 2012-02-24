@@ -954,7 +954,7 @@ abstract class Maintenance {
 	public function purgeRedundantText( $delete = true ) {
 		# Data should come off the master, wrapped in a transaction
 		$dbw = $this->getDB( DB_MASTER );
-		$dbw->begin();
+		$dbw->begin( __METHOD__ );
 
 		$tbl_arc = $dbw->tableName( 'archive' );
 		$tbl_rev = $dbw->tableName( 'revision' );
@@ -999,7 +999,7 @@ abstract class Maintenance {
 		}
 
 		# Done
-		$dbw->commit();
+		$dbw->commit( __METHOD__ );
 	}
 
 	/**

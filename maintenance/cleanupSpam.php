@@ -106,7 +106,7 @@ class CleanupSpam extends Maintenance {
 			$this->output( "False match\n" );
 		} else {
 			$dbw = wfGetDB( DB_MASTER );
-			$dbw->begin();
+			$dbw->begin( __METHOD__ );
 			$page = WikiPage::factory( $title );
 			if ( !$rev ) {
 				// Didn't find a non-spammy revision, blank the page
@@ -118,7 +118,7 @@ class CleanupSpam extends Maintenance {
 				$page->doEdit( $rev->getText(), wfMsgForContent( 'spam_reverting', $domain ),
 					EDIT_UPDATE, $rev->getId() );
 			}
-			$dbw->commit();
+			$dbw->commit( __METHOD__ );
 		}
 	}
 }

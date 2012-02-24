@@ -217,13 +217,13 @@ class RefreshLinks extends Maintenance {
 			return;
 		}
 
-		$dbw->begin();
+		$dbw->begin( __METHOD__ );
 
 		$options = new ParserOptions;
 		$parserOutput = $wgParser->parse( $revision->getText(), $title, $options, true, true, $revision->getId() );
 		$update = new LinksUpdate( $title, $parserOutput, false );
 		$update->doUpdate();
-		$dbw->commit();
+		$dbw->commit( __METHOD__ );
 	}
 
 	/**

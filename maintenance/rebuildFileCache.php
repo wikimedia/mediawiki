@@ -93,7 +93,7 @@ class RebuildFileCache extends Maintenance {
 				array( 'ORDER BY' => 'page_id ASC', 'USE INDEX' => 'PRIMARY' )
 			);
 
-			$dbw->begin(); // for any changes
+			$dbw->begin( __METHOD__ ); // for any changes
 			foreach ( $res as $row ) {
 				$rebuilt = false;
 				$wgRequestTime = microtime( true ); # bug 22852
@@ -139,7 +139,7 @@ class RebuildFileCache extends Maintenance {
 					$this->output( "Page {$row->page_id} not cacheable\n" );
 				}
 			}
-			$dbw->commit(); // commit any changes (just for sanity)
+			$dbw->commit( __METHOD__ ); // commit any changes (just for sanity)
 
 			$blockStart += $this->mBatchSize;
 			$blockEnd += $this->mBatchSize;

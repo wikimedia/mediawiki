@@ -27,7 +27,7 @@ function PurgeRedundantText( $delete = false ) {
 
 	# Data should come off the master, wrapped in a transaction
 	$dbw = wfGetDB( DB_MASTER );
-	$dbw->begin();
+	$dbw->begin( __METHOD__ );
 
 	$tbl_arc = $dbw->tableName( 'archive' );
 	$tbl_rev = $dbw->tableName( 'revision' );
@@ -73,6 +73,6 @@ function PurgeRedundantText( $delete = false ) {
 	}
 
 	# Done
-	$dbw->commit();
+	$dbw->commit( __METHOD__ );
 
 }

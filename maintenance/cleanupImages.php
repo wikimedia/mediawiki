@@ -156,7 +156,7 @@ class ImageCleanup extends TableCleanup {
 		} else {
 			$this->output( "renaming $path to $finalPath\n" );
 			// @todo FIXME: Should this use File::move()?
-			$db->begin();
+			$db->begin( __METHOD__ );
 			$db->update( 'image',
 				array( 'img_name' => $final ),
 				array( 'img_name' => $orig ),
@@ -178,10 +178,10 @@ class ImageCleanup extends TableCleanup {
 				}
 			}
 			if ( rename( $path, $finalPath ) ) {
-				$db->commit();
+				$db->commit( __METHOD__ );
 			} else {
 				$this->error( "RENAME FAILED" );
-				$db->rollback();
+				$db->rollback( __METHOD__ );
 			}
 		}
 	}

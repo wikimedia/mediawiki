@@ -959,7 +959,7 @@ class LocalFile extends File {
 		}
 
 		$dbw = $this->repo->getMasterDB();
-		$dbw->begin();
+		$dbw->begin( __METHOD__ );
 
 		if ( !$props ) {
 			$props = $this->repo->getFileProps( $this->getVirtualUrl() );
@@ -1111,7 +1111,7 @@ class LocalFile extends File {
 
 		# Commit the transaction now, in case something goes wrong later
 		# The most important thing is that files don't get lost, especially archives
-		$dbw->commit();
+		$dbw->commit( __METHOD__ );
 
 		# Save to cache and purge the squid
 		# We shall not saveToCache before the commit since otherwise
@@ -1409,7 +1409,7 @@ class LocalFile extends File {
 		$dbw = $this->repo->getMasterDB();
 
 		if ( !$this->locked ) {
-			$dbw->begin();
+			$dbw->begin( __METHOD__ );
 			$this->locked++;
 		}
 
@@ -1425,7 +1425,7 @@ class LocalFile extends File {
 			--$this->locked;
 			if ( !$this->locked ) {
 				$dbw = $this->repo->getMasterDB();
-				$dbw->commit();
+				$dbw->commit( __METHOD__ );
 			}
 		}
 	}
@@ -1436,7 +1436,7 @@ class LocalFile extends File {
 	function unlockAndRollback() {
 		$this->locked = false;
 		$dbw = $this->repo->getMasterDB();
-		$dbw->rollback();
+		$dbw->rollback( __METHOD__ );
 	}
 } // LocalFile class
 
@@ -2215,17 +2215,17 @@ class LocalFileMoveBatch {
 			return $statusMove;
 		}
 
-		$this->db->begin();
+		$this->db->begin( __METHOD__ );
 		$statusDb = $this->doDBUpdates();
 		wfDebugLog( 'imagemove', "Renamed {$this->file->getName()} in database: {$statusDb->successCount} successes, {$statusDb->failCount} failures" );
 		if ( !$statusDb->isGood() ) {
-			$this->db->rollback();
+			$this->db->rollback( __METHOD__ );
 			// Something went wrong with the DB updates, so remove the target files
 			$this->cleanupTarget( $triplets );
 			$statusDb->ok = false;
 			return $statusDb;
 		}
-		$this->db->commit();
+		$this->db->commit( __METHOD__ );
 
 		// Everything went ok, remove the source files
 		$this->cleanupSource( $triplets );

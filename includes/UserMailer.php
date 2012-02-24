@@ -448,7 +448,7 @@ class EmailNotification {
 			if ( $watchers ) {
 				// Update wl_notificationtimestamp for all watching users except
 				// the editor
-				$dbw->begin();
+				$dbw->begin( __METHOD__ );
 				$dbw->update( 'watchlist',
 					array( /* SET */
 						'wl_notificationtimestamp' => $dbw->timestamp( $timestamp )
@@ -458,7 +458,7 @@ class EmailNotification {
 						'wl_user' => $watchers
 					), __METHOD__
 				);
-				$dbw->commit();
+				$dbw->commit( __METHOD__ );
 			}
 		}
 

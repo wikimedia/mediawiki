@@ -56,7 +56,7 @@ abstract class Job {
 
 		$dbw = wfGetDB( DB_MASTER );
 
-		$dbw->begin();
+		$dbw->begin( __METHOD__ );
 
 		$row = $dbw->selectRow(
 			'job',
@@ -67,7 +67,7 @@ abstract class Job {
 		);
 
 		if ( $row === false ) {
-			$dbw->commit();
+			$dbw->commit( __METHOD__ );
 			wfProfileOut( __METHOD__ );
 			return false;
 		}
@@ -75,7 +75,7 @@ abstract class Job {
 		/* Ensure we "own" this row */
 		$dbw->delete( 'job', array( 'job_id' => $row->job_id ), __METHOD__ );
 		$affected = $dbw->affectedRows();
-		$dbw->commit();
+		$dbw->commit( __METHOD__ );
 
 		if ( $affected == 0 ) {
 			wfProfileOut( __METHOD__ );
@@ -146,7 +146,7 @@ abstract class Job {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->delete( 'job', array( 'job_id' => $row->job_id ), __METHOD__ );
 		$affected = $dbw->affectedRows();
-		$dbw->commit();
+		$dbw->commit( __METHOD__ );
 
 		if ( !$affected ) {
 			// Failed, someone else beat us to it
@@ -170,7 +170,7 @@ abstract class Job {
 			// Delete the random row
 			$dbw->delete( 'job', array( 'job_id' => $row->job_id ), __METHOD__ );
 			$affected = $dbw->affectedRows();
-			$dbw->commit();
+			$dbw->commit( __METHOD__ );
 
 			if ( !$affected ) {
 				// Random job gone before we exclusively deleted it
@@ -260,16 +260,16 @@ abstract class Job {
 			$rows[] = $job->insertFields();
 			if ( count( $rows ) >= 50 ) {
 				# Do a small transaction to avoid slave lag
-				$dbw->begin();
+				$dbw->begin( __METHOD__ );
 				$dbw->insert( 'job', $rows, __METHOD__, 'IGNORE' );
-				$dbw->commit();
+				$dbw->commit( __METHOD__ );
 				$rows = array();
 			}
 		}
 		if ( $rows ) { // last chunk
-			$dbw->begin();
+			$dbw->begin( __METHOD__ );
 			$dbw->insert( 'job', $rows, __METHOD__, 'IGNORE' );
-			$dbw->commit();
+			$dbw->commit( __METHOD__ );
 		}
 		wfIncrStats( 'job-insert', count( $jobs ) );
 	}
@@ -369,10 +369,10 @@ abstract class Job {
 		$fields = $this->insertFields();
 		unset( $fields['job_id'] );
 		$dbw = wfGetDB( DB_MASTER );
-		$dbw->begin();
+		$dbw->begin( __METHOD__ );
 		$dbw->delete( 'job', $fields, __METHOD__ );
 		$affected = $dbw->affectedRows();
-		$dbw->commit();
+		$dbw->commit( __METHOD__ );
 		if ( $affected ) {
 			wfIncrStats( 'job-dup-delete', $affected );
 		}
