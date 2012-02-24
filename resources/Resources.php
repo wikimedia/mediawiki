@@ -55,7 +55,7 @@ return array(
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 	),
 	'skins.standard' => array(
-		'styles' => array( 'common/wikistandard.css' => array( 'media' => 'screen' ) ),
+		'styles' => array( 'standard/main.css' => array( 'media' => 'screen' ) ),
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 	),
