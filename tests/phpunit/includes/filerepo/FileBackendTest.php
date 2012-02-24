@@ -200,6 +200,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->backend = $this->multiBackend;
 		$this->tearDownFiles();
 		$this->doTestStore( $op );
+		$this->filesToPrune[] = $op['src']; # avoid file leaking
 		$this->tearDownFiles();
 	}
 
@@ -662,6 +663,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->backend = $this->multiBackend;
 		$this->tearDownFiles();
 		$this->doTestConcatenate( $op, $srcs, $srcsContent, $alreadyExists, $okStatus );
+		$this->filesToPrune[] = $op['dst']; # avoid file leaking
 		$this->tearDownFiles();
 	}
 
