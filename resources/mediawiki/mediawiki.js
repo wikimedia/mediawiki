@@ -421,7 +421,7 @@ var mw = ( function ( $, undefined ) {
 				return s;
 			}
 
-			function addInlineCSS( css, media ) {
+			function addInlineCSS( css ) {
 				var $style, style, $newStyle;
 				$style = getMarker().prev();
 				if ( $style.is( 'style' ) && $style.data( 'ResourceLoaderDynamicStyleTag' ) === true ) {
@@ -435,7 +435,6 @@ var mw = ( function ( $, undefined ) {
 					}
 				} else {
 					$newStyle = $( addStyleTag( css, getMarker() ) )
-						.attr( 'media', media )
 						.data( 'ResourceLoaderDynamicStyleTag', true );
 				}
 			}
@@ -728,19 +727,19 @@ var mw = ( function ( $, undefined ) {
 	
 				// Add styles
 				if ( $.isPlainObject( registry[module].style ) ) {
+					// 'media' type ignored, see documentation of mw.loader.implement
 					for ( media in registry[module].style ) {
 						style = registry[module].style[media];
 						if ( $.isArray( style ) ) {
 							for ( i = 0; i < style.length; i += 1 ) {
 								getMarker().before( mw.html.element( 'link', {
 									'type': 'text/css',
-									'media': media,
 									'rel': 'stylesheet',
 									'href': style[i]
 								} ) );
 							}
 						} else if ( typeof style === 'string' ) {
-							addInlineCSS( style, media );
+							addInlineCSS( style );
 						}
 					}
 				}
@@ -1112,7 +1111,12 @@ var mw = ( function ( $, undefined ) {
 				 * @param script Mixed: Function of module code or String of URL to be used as the src
 				 *  attribute when adding a script element to the body
 				 * @param style Object: Object of CSS strings keyed by media-type or Object of lists of URLs
-				 *  keyed by media-type
+				 *  keyed by media-type. Media-type should be "all" or "", actual types are not supported
+				 *  right now due to the way execute() processes the stylesheets (they are concatenated
+				 *  into a single <style> tag). In the past these weren't concatenated together (which is
+				 *  these are keyed by media-type),  but bug 31676 forces us to. In practice this is not a
+				 *  problem because ResourceLoader only generates stylesheets for media-type all (e.g. print
+				 *  stylesheets are wrapped in @media print {} and concatenated with the others).
 				 * @param msgs Object: List of key/value pairs to be passed through mw.messages.set
 				 */
 				implement: function ( module, script, style, msgs ) {
