@@ -154,14 +154,14 @@ class FileDeleteForm {
 				if ( $page->doDeleteArticleReal( $reason, $suppress, 0, false, $error, $user ) >= WikiPage::DELETE_SUCCESS ) {
 					$status = $file->delete( $reason, $suppress );
 					if( $status->isOK() ) {
-						$dbw->commit();
+						$dbw->commit( __METHOD__ );
 					} else {
-						$dbw->rollback();
+						$dbw->rollback( __METHOD__ );
 					}
 				}
 			} catch ( MWException $e ) {
 				// rollback before returning to prevent UI from displaying incorrect "View or restore N deleted edits?"
-				$dbw->rollback();
+				$dbw->rollback( __METHOD__ );
 				throw $e;
 			}
 		}

@@ -38,7 +38,7 @@ abstract class RevDel_List extends RevisionListBase {
 		$this->res = false;
 		$dbw = wfGetDB( DB_MASTER );
 		$this->doQuery( $dbw );
-		$dbw->begin();
+		$dbw->begin( __METHOD__ );
 		$status = Status::newGood();
 		$missing = array_flip( $this->ids );
 		$this->clearFileOps();
@@ -137,7 +137,7 @@ abstract class RevDel_List extends RevisionListBase {
 			'authorIds' => $authorIds,
 			'authorIPs' => $authorIPs
 		) );
-		$dbw->commit();
+		$dbw->commit( __METHOD__ );
 
 		// Clear caches
 		$status->merge( $this->doPostCommitUpdates() );

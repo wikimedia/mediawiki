@@ -64,7 +64,7 @@ class LocalRepo extends FileRepo {
 		foreach ( $storageKeys as $key ) {
 			$hashPath = $this->getDeletedHashPath( $key );
 			$path = "$root/$hashPath$key";
-			$dbw->begin();
+			$dbw->begin( __METHOD__ );
 			// Check for usage in deleted/hidden files and pre-emptively
 			// lock the key to avoid any future use until we are finished.
 			$deleted = $this->deletedFileHasKey( $key, 'lock' );
@@ -80,7 +80,7 @@ class LocalRepo extends FileRepo {
 				wfDebug( __METHOD__ . ": $key still in use\n" );
 				$status->successCount++;
 			}
-			$dbw->commit();
+			$dbw->commit( __METHOD__ );
 		}
 		return $status;
 	}
