@@ -6,9 +6,9 @@ var mwTestIgnore, mwTester, addons;
 /**
  * Add bogus to url to prevent IE crazy caching
  *
- * @param value {String} a relative path (eg. 'data/defineTestCallback.js'
+ * @param value {String} a relative path (eg. 'data/foo.js'
  * or 'data/test.php?foo=bar').
- * @return {String} Such as 'data/defineTestCallback.js?131031765087663960'
+ * @return {String} Such as 'data/foo.js?131031765087663960'
  */
 QUnit.fixurl = function (value) {
 	return value + (/\?/.test( value ) ? '&' : '?')

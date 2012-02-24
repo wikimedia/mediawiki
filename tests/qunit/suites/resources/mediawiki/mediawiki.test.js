@@ -144,23 +144,31 @@ test( 'mw.msg', function() {
 });
 
 test( 'mw.loader', function() {
-	expect(1);
+	expect(2);
+
+	var isAwesomeDone;
 
 	// Asynchronous ahead
 	stop();
 
-	mw.loader.implement( 'is.awesome', [QUnit.fixurl( mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/defineTestCallback.js' )], {}, {} );
+	mw.loader.testCallback = function () {
+		start();
+		strictEqual( isAwesomeDone, undefined, 'Implementing module is.awesome: isAwesomeDone should still be undefined');
+		isAwesomeDone = true;
+	};
 
-	mw.loader.using( 'is.awesome', function() {
+	mw.loader.implement( 'is.awesome', [QUnit.fixurl( mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/callMwLoaderTestCallback.js' )], {}, {} );
+
+	mw.loader.using( 'is.awesome', function () {
 
 		// /sample/awesome.js declares the "mw.loader.testCallback" function
 		// which contains a call to start() and ok()
-		mw.loader.testCallback();
-		mw.loader.testCallback = undefined;
+		strictEqual(isAwesomeDone, true, "is.awesome module should've caused isAwesomeDone to be true")
+		delete mw.loader.testCallback;
 
-	}, function() {
+	}, function () {
 		start();
-		ok( false, 'Error callback fired while implementing "is.awesome" module' );
+		ok( false, 'Error callback fired while loader.using "is.awesome" module' );
 	});
 
 });
