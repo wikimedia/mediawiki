@@ -105,37 +105,45 @@ QUnit.config.urlConfig.push( 'mwlogenv' );
  * </code>
  */
 QUnit.newMwEnvironment = ( function () {
-	var liveConfig, freshConfigCopy, log;
+	var log, liveConfig, liveMsgs;
 
 	liveConfig = mw.config.values;
+	liveMsgs = mw.messages.values;
 
-	freshConfigCopy = function ( custom ) {
+	function freshConfigCopy( custom ) {
 		// "deep=true" is important here.
 		// Otherwise we just create a new object with values referring to live config.
 		// e.g. mw.config.set( 'wgFileExtensions', [] ) would not effect liveConfig,
 		// but mw.config.get( 'wgFileExtensions' ).push( 'png' ) would as the array
 		// was passed by reference in $.extend's loop.
 		return $.extend({}, liveConfig, custom, /*deep=*/true );
-	};
+	}
+
+	function freshMsgsCopy( custom ) {
+		return $.extend({}, liveMsgs, custom, /*deep=*/true );
+	}
 
 	log = QUnit.urlParams.mwlogenv ? mw.log : function () {};
 
-	return function ( override ) {
-		override = override || {};
+	return function ( overrideConfig, overrideMsgs ) {
+		overrideConfig = overrideConfig || {};
+		overrideMsgs = overrideMsgs || {};
 
 		return {
 			setup: function () {
 				log( 'MwEnvironment> SETUP    for "' + QUnit.config.current.module
 					+ ': ' + QUnit.config.current.testName + '"' );
-				// Greetings, mock configuration!
-				mw.config.values = freshConfigCopy( override );
+				// Greetings, mock environment!
+				mw.config.values = freshConfigCopy( overrideConfig );
+				mw.messages.values = freshMsgsCopy( overrideMsgs );
 			},
 
 			teardown: function () {
 				log( 'MwEnvironment> TEARDOWN for "' + QUnit.config.current.module
 					+ ': ' + QUnit.config.current.testName + '"' );
-				// Farewell, mock configuration!
+				// Farewell, mock environment!
 				mw.config.values = liveConfig;
+				mw.messages.values = liveMsgs;
 			}
 		};
 	};
