@@ -149,23 +149,24 @@
 		},
 
 		/**
-		 * Append a new style block to the head
+		 * Append a new style block to the head and return the CSSStyleSheet object.
+		 * Use .ownerNode to access the <style> element, or use mw.loader.addStyleTag.
+		 * This function returns the styleSheet object for convience (due to cross-browsers
+		 * difference as to where it is located).
+		 * @example
+		 * <code>
+		 * var sheet = mw.util.addCSS('.foobar { display: none; }');
+		 * $(foo).click(function () {
+		 *     // Toggle the sheet on and off
+		 *     sheet.disabled = !sheet.disabled;
+		 * });
+		 * </code>
 		 *
 		 * @param text string CSS to be appended
-		 * @return CSSStyleSheet
+		 * @return CSSStyleSheet (use .ownerNode to get to the <style> element)
 		 */
 		addCSS: function ( text ) {
-			var s = document.createElement( 'style' );
-			s.type = 'text/css';
-			s.rel = 'stylesheet';
-			// Insert into document before setting cssText (bug 33305)
-			document.getElementsByTagName('head')[0].appendChild( s );
-			if ( s.styleSheet ) {
-				s.styleSheet.cssText = text; // IE
-			} else {
-				// Safari sometimes borks on null
-				s.appendChild( document.createTextNode( String( text ) ) );
-			}
+			var s = mw.loader.addStyleTag( text );
 			return s.sheet || s;
 		},
 
