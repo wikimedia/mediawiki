@@ -533,7 +533,7 @@ abstract class ApiBase extends ContextSource {
 	 * Returns an array of parameter descriptions.
 	 * Don't call this functon directly: use getFinalParamDescription() to
 	 * allow hooks to modify descriptions as needed.
-	 * @return array or false
+	 * @return array|bool False on no parameter descriptions
 	 */
 	protected function getParamDescription() {
 		return false;
@@ -543,7 +543,7 @@ abstract class ApiBase extends ContextSource {
 	 * Get final list of parameters, after hooks have had a chance to
 	 * tweak it as needed.
 	 *
-	 * @return array or false
+	 * @return array|Bool False on no parameters
 	 */
 	public function getFinalParams() {
 		$params = $this->getAllowedParams();
@@ -555,7 +555,7 @@ abstract class ApiBase extends ContextSource {
 	 * Get final parameter descriptions, after hooks have had a chance to tweak it as
 	 * needed.
 	 *
-	 * @return array
+	 * @return array|bool False on no parameter descriptions
 	 */
 	public function getFinalParamDescription() {
 		$desc = $this->getParamDescription();
@@ -567,7 +567,7 @@ abstract class ApiBase extends ContextSource {
 	 * Get final module description, after hooks have had a chance to tweak it as
 	 * needed.
 	 *
-	 * @return array
+	 * @return array|bool False on no parameters
 	 */
 	public function getFinalDescription() {
 		$desc = $this->getDescription();
