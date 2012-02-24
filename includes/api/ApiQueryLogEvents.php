@@ -198,25 +198,26 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	 * @return array
 	 */
 	public static function addLogParams( $result, &$vals, $params, $type, $action, $ts ) {
-		$params = explode( "\n", $params );
 		switch ( $type ) {
 			case 'move':
-				if ( isset( $params[0] ) ) {
-					$title = Title::newFromText( $params[0] );
+				if ( isset( $params[ '4::target' ] ) ) {
+					$title = Title::newFromText( $params[ '4::target' ] );
 					if ( $title ) {
 						$vals2 = array();
 						ApiQueryBase::addTitleInfo( $vals2, $title, 'new_' );
 						$vals[$type] = $vals2;
 					}
 				}
-				if ( isset( $params[1] ) && $params[1] ) {
+				if ( isset( $params[ '5::noredir' ] ) && $params[ '5::noredir' ] ) {
 					$vals[$type]['suppressedredirect'] = '';
 				}
 				$params = null;
 				break;
 			case 'patrol':
 				$vals2 = array();
-				list( $vals2['cur'], $vals2['prev'], $vals2['auto'] ) = $params;
+				$vals2[ 'cur' ] = $params[ '4::curid' ];
+				$vals2[ 'prev' ] = $params[ '5::previd' ];
+				$vals2[ 'auto' ] = $params[ '6::auto' ];
 				$vals[$type] = $vals2;
 				$params = null;
 				break;
@@ -250,6 +251,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	}
 
 	private function extractRowInfo( $row ) {
+		$logEntry = DatabaseLogEntry::newFromRow( $row );
 		$vals = array();
 
 		if ( $this->fld_ids ) {
@@ -281,10 +283,10 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				self::addLogParams(
 					$this->getResult(),
 					$vals,
-					$row->log_params,
-					$row->log_type,
-					$row->log_action,
-					$row->log_timestamp
+					$logEntry->getParameters(),
+					$logEntry->getType(),
+					$logEntry->getSubtype(),
+					$logEntry->getTimestamp()
 				);
 			}
 		}
