@@ -894,7 +894,7 @@ class LoadBalancer {
 		foreach ( $this->mConns as $conns2 ) {
 			foreach ( $conns2 as $conns3 ) {
 				foreach ( $conns3 as $conn ) {
-					$conn->commit();
+					$conn->commit( __METHOD__ );
 				}
 			}
 		}

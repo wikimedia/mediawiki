@@ -122,7 +122,7 @@ class DatabaseSqlite extends DatabaseBase {
 	function close() {
 		$this->mOpened = false;
 		if ( is_object( $this->mConn ) ) {
-			if ( $this->trxLevel() ) $this->commit();
+			if ( $this->trxLevel() ) $this->commit( __METHOD__ );
 			$this->mConn = null;
 		}
 		return true;
@@ -636,7 +636,7 @@ class DatabaseSqlite extends DatabaseBase {
 
 	function begin( $fname = '' ) {
 		if ( $this->mTrxLevel == 1 ) {
-			$this->commit();
+			$this->commit( __METHOD__ );
 		}
 		$this->mConn->beginTransaction();
 		$this->mTrxLevel = 1;

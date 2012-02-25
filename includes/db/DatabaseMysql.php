@@ -158,7 +158,7 @@ class DatabaseMysql extends DatabaseBase {
 		$this->mOpened = false;
 		if ( $this->mConn ) {
 			if ( $this->trxLevel() ) {
-				$this->commit();
+				$this->commit( __METHOD__ );
 			}
 			return mysql_close( $this->mConn );
 		} else {
@@ -558,7 +558,7 @@ class DatabaseMysql extends DatabaseBase {
 
 		# Commit any open transactions
 		if ( $this->mTrxLevel ) {
-			$this->commit();
+			$this->commit( __METHOD__ );
 		}
 
 		if ( !is_null( $this->mFakeSlaveLag ) ) {

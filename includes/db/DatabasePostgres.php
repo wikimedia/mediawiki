@@ -466,7 +466,7 @@ class DatabasePostgres extends DatabaseBase {
 		$didbegin = 0;
 		if ( $ignore ) {
 			if ( !$this->mTrxLevel ) {
-				$this->begin();
+				$this->begin( __METHOD__ );
 				$didbegin = 1;
 			}
 			$olde = error_reporting( 0 );

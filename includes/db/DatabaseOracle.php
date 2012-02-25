@@ -292,7 +292,7 @@ class DatabaseOracle extends DatabaseBase {
 		$this->mOpened = false;
 		if ( $this->mConn ) {
 			if ( $this->mTrxLevel ) {
-				$this->commit();
+				$this->commit( __METHOD__ );
 			}
 			return oci_close( $this->mConn );
 		} else {

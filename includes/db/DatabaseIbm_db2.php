@@ -561,7 +561,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 		$this->mOpened = false;
 		if ( $this->mConn ) {
 			if ( $this->trxLevel() > 0 ) {
-				$this->commit();
+				$this->commit( __METHOD__ );
 			}
 			return db2_close( $this->mConn );
 		} else {
@@ -577,12 +577,12 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	public function lastError() {
 		$connerr = db2_conn_errormsg();
 		if ( $connerr ) {
-			//$this->rollback();
+			//$this->rollback( __METHOD__ );
 			return $connerr;
 		}
 		$stmterr = db2_stmt_errormsg();
 		if ( $stmterr ) {
-			//$this->rollback();
+			//$this->rollback( __METHOD__ );
 			return $stmterr;
 		}
 
@@ -1084,7 +1084,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 			$this->mAffectedRows = $numrowsinserted;
 		}
 		// commit either way
-		$this->commit();
+		$this->commit( __METHOD__ );
 		$this->freePrepared( $stmt );
 
 		return $res;
