@@ -17,6 +17,7 @@ This is a maintenance release of the MediaWiki 1.18 branch.
 * UserMailer could potentially throw a fatal error when a MailAddress object had
   an empty email address.
 * (Bug 33087) Exchange server rejected mail sent by MediaWiki
+* (bug 34528) Edit section tooltips show correction section name again
 
 == MediaWiki 1.18.1 ==
 2012-01-11

@@ -1516,7 +1516,7 @@ abstract class Skin extends ContextSource {
 		if ( !is_null( $tooltip ) ) {
 			# Bug 25462: undo double-escaping.
 			$tooltip = Sanitizer::decodeCharReferences( $tooltip );
-			$attribs['title'] = wfMsgExt( 'editsectionhint', array( 'language' => $lang, 'parsemag' ), $tooltip );
+			$attribs['title'] = wfMsgExt( 'editsectionhint', array( 'language' => $lang, 'parsemag', 'replaceafter' ), $tooltip );
 		}
 		$link = Linker::link( $nt, wfMsgExt( 'editsection', array( 'language' => $lang ) ),
 			$attribs,
@@ -1528,7 +1528,7 @@ abstract class Skin extends ContextSource {
 		# we can rid of it someday.
 		$attribs = '';
 		if ( $tooltip ) {
-			$attribs = wfMsgExt( 'editsectionhint', array( 'language' => $lang, 'parsemag', 'escape' ), $tooltip );
+			$attribs = wfMsgExt( 'editsectionhint', array( 'language' => $lang, 'parsemag', 'escape', 'replaceafter' ), $tooltip );
 			$attribs = " title=\"$attribs\"";
 		}
 		$result = null;
