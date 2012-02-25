@@ -10,6 +10,8 @@ Change notes from older releases. For current info see RELEASE-NOTES-1.20.
 * UserMailer could potentially throw a fatal error when a MailAddress object had
   an empty email address.
 * (bug 34528) Edit section tooltips show correction section name again
+* (bug 34246) MediaWiki:Whatlinkshere-summary message is displayed again in
+  Special:Whatlinkshere
 
 === MediaWiki 1.18.1 ===
 2012-01-11
