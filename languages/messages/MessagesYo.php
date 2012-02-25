@@ -413,8 +413,8 @@ Oníṣe mìíràn le ti paárẹ́.',
 'badtitle'             => 'Àkọ́lé búrurú',
 'badtitletext'         => 'Àkọlé ojúewé tí ẹ bèrè fún kò ní ìbáramu, jẹ́ òfo, tàbí áṣìṣe wà nínú ìjápọ̀ àkọlé láàrin èdè tàbí láàrin wiki.
 Ó ṣe é ṣe kó jẹ́pé ó ní ìkan tàbí ọ̀pọ̀ àmi-lẹ́tà tí kò ṣe é lò nínú àkọlé.',
-'perfcached'           => 'Ìwònyí jẹ́ dátà láti inú cache nítoríẹ̀ ó le mọ́ jẹ̀ẹ́ tuntun. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
-'perfcachedts'         => 'Ìwònyí jẹ́ ìpèsè láti inú cache, ọjọ́ tí a ṣe àtúnṣe rẹ̀ gbẹ̀yìn ni $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
+'perfcached'           => 'Ìwònyí jẹ́ dátà láti inú cache nítoríẹ̀ ó le mọ́ jẹ̀ẹ́ tuntun. Ó pọ̀jùlọ {{PLURAL:$1|èsì kan|èsì $1}} wà nínú cache.',
+'perfcachedts'         => 'Ìwònyí jẹ́ dátà láti inú cache, ọjọ́ tí a ṣe àtúnṣe rẹ̀ gbẹ̀yìn ni $1. Ó pọ̀jùlọ {{PLURAL:$4|èsì kan|èsì $4}} wà nínú cache.',
 'querypage-no-updates' => 'Àtúnṣe sí ojúewé yìí kò ṣe é ṣe lọ́wọ́lọ́wọ́.
 Àwọn ìpèsè tuntun kò ní hàn báyìí ná.',
 'wrong_wfQuery_params' => 'Àwọn pàrámítà àìtọ́ sí wfQuery()<br />
@@ -775,7 +775,7 @@ Bákannà ẹ tún ṣèlérí fún wa wípé ẹ̀yin lẹkọ́ fúnra arayín
 Tí ẹ kò bá fẹ́ kí ìkọọ́lẹ̀ yín ó jẹ́ títúnṣe bí kò ṣe wùyín, ẹ mọ́ mù wá síbí.<br />
 Bákannà ẹ tún ṣèlérí fún wa wípé ẹ̀yin lẹkọ́ fúnra arayín, tàbí ẹ wòókọ láti àbùgbé ìgboro tàbí irú ìtìlẹ́yín ọ̀fẹ́ bíi bẹ́ẹ̀ (ẹ wo $1 fún ẹkunrẹrẹ).
 '''Ẹ mọ́ mú iṣẹ́ tó ní ẹ̀tọ́àwòkọ sílẹ̀ láì gbàṣẹ!'''",
-'longpageerror'                    => "'''Àsìṣe: Ìkọ̀wé tí ẹ fisílẹ̀ gùn tó $1 Kilobytes, èyí gùn ju $2 kilobytes lọ tó jẹ́ àjà.'''
+'longpageerror'                    => "'''Àsìṣe: Ìkọ̀wé tí ẹ fisílẹ̀ gùn tó {{PLURAL:$1|kilobyte kan|$1 kilobytes}}, èyí gùn ju {{PLURAL:$2|kilobyte kan|$2 kilobytes}} lọ tó jẹ́ àjà.'''
 Kò ṣe é múpamọ́.",
 'readonlywarning'                  => "'''Ìkìlọ̀: Ibùdó dátà ti jẹ́ títìpàdé fún ìtọ́jú, nípa bẹ́ẹ̀ ẹ kò ní le fi àwọn àtúnṣe yín pamọ́ lásìkò yìí.'''
 Tí ẹ bá fẹ́ ẹ le fi ìkọ̀rọ̀ náà pamọ́ sínú fáìlì ìkọ̀rọ̀ (pẹ̀lú ìgékúrò-àti-ìlẹ̀mọ́) fún ìgbà míràn.
@@ -1596,7 +1596,7 @@ Kò ṣe é yẹ̀wò fún àbò.',
 'img-auth-nopathinfo'       => 'Kò sí PATH_INFO.
 Ẹ̀rọ-ìwọ̀fà yín kò létò láti mú dátà yìí kọjá.
 O ṣe é ṣe kó jẹ́ ti CGI tí kò ní ìtìlẹ́yìn fún img_auth.
-[https://www.mediawiki.org/wiki/Manual:Image_Authorization Ẹ wo àṣẹ àwòrán.]',
+Ẹ wo [https://www.mediawiki.org/wiki/Manual:Image_Authorization àṣẹ àwòrán.]',
 'img-auth-notindir'         => 'Ojúọ̀nà tí ẹ tọrọ kò ní nínú àpò ìrùsókè alátòsílẹ̀.',
 'img-auth-badtitle'         => 'Àkọlé oníìbámu kò ṣe é dá láti "$1".',
 'img-auth-nologinnWL'       => 'Ẹ kò tíì wọlẹ́ bẹ́ẹ̀sìni "$1" kò sí nínú àtòjọ funfun.',
@@ -2849,6 +2849,9 @@ Tóbájẹ́pé fáìlì ọ̀hún ti jẹ́ títúnṣe sí bóṣewà ní bẹ
 'watchlisttools-edit' => 'Ìwò àti àtúnṣe ìmójútó',
 'watchlisttools-raw'  => "Ẹ ṣ'àtúnṣe àkójọ ìmójútó látìbẹ̀rẹ̀",
 
+# Core parser functions
+'duplicate-defaultsort' => '\'\'\'Ìkìlọ̀:\'\'\' Bọ́tìnì ìtò àkọ́kọ́ṣe "$2" dípò Bọ́tìnì ìtò àkọ́kọ́ṣe "$1" tẹ́lẹ̀.',
+
 # Special:Version
 'version'                   => 'Àtẹ̀jáde',
 'version-specialpages'      => 'Àwọn ojúewé pàtàkì',
@@ -2882,6 +2885,17 @@ Tóbájẹ́pé fáìlì ọ̀hún ti jẹ́ títúnṣe sí bóṣewà ní bẹ
 
 # Special:BlankPage
 'blankpage' => 'Ojúewé òfo',
+
+# External image whitelist
+'external_image_whitelist' => ' #Ẹ fi ìlà yìí sílẹ̀ bó ṣe wà<pre>
+#Ẹ fi àwọn abala regular expression (èyunhùn apá tó wà ní àrin // nìkan) sísàlẹ̀
+#Àwọn wọ̀nyí yíò jẹ́ bíbámu mọ́ àwọn URL àwọn àwòrán òde (hotlinked)
+#Àwọn tó báramu yíò jẹ́ fífihàn bíi àwòrán, bíbẹ́ẹ̀kọ́ àjápọ̀ sí àwòrán náà nìkan ni yíò hàn
+#Àwọn ìlà tí wọ́n bẹ̀rẹ̀ pẹ̀lú # jẹ́ ṣíṣe bíi àròyé
+#Èyí jẹ́ bíbámu mọ́ ìtóbi lẹ́tà (case-insensitive)
+
+
+#Ẹ fi gbogbo àwọn abala regular expression sí òkè ìlà yí. Ẹ fi ìlà yìí sílẹ̀ bó ṣe wà</pre>',
 
 # Special:Tags
 'tag-filter'           => 'Ajọ̀ [[Special:Tags|àlẹ́mọ́]]:',

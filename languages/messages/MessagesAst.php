@@ -60,11 +60,11 @@ $messages = array(
 # User preference toggles
 'tog-underline'               => 'Sorrayar enllaces:',
 'tog-justify'                 => 'Xustificar parágrafos',
-'tog-hideminor'               => 'Esconder ediciones menores nos cambeos recientes',
-'tog-hidepatrolled'           => 'Atapecer les ediciones vixilaes nos cambeos recientes',
+'tog-hideminor'               => 'Anubrir les ediciones menores nos cambios recientes',
+'tog-hidepatrolled'           => 'Anubrir les ediciones vixilaes nos cambios recientes',
 'tog-newpageshidepatrolled'   => 'Atapecer les páxines vixilaes na llista de páxines nueves',
-'tog-extendwatchlist'         => "Espander la llista de vixilancia p'amosar tolos cambeos aplicables, nun sólo los recientes.",
-'tog-usenewrc'                => 'Cambeos recientes ameyoraos (necesita JavaScript)',
+'tog-extendwatchlist'         => "Espander la llista de vixilancia p'amosar tolos cambios, non sólo los recientes.",
+'tog-usenewrc'                => 'Cambios recientes ameyoraos (necesita JavaScript)',
 'tog-numberheadings'          => 'Autonumberar los encabezaos',
 'tog-showtoolbar'             => "Amosar la barra de ferramientes d'edición (JavaScript)",
 'tog-editondblclick'          => 'Editar páxines con doble clic (JavaScript)',
@@ -747,7 +747,7 @@ La cabera entrada del rexistru de bloqueos s'ufre darréu pa referencia:",
 'note'                             => "'''Nota:'''",
 'previewnote'                      => "'''Alcuérdate de qu'esto ye sólo una vista previa.'''
 ¡Los cambios entá nun se guardaron!",
-'previewconflict'                  => "Esta previsualización amuesa'l testu del área d'edición d'enriba talo y como apaecerá si guardes los cambeos.",
+'previewconflict'                  => "Esta vista previa amuesa'l testu del área d'edición d'arriba tal como apaecerá si escueyes guardar.",
 'session_fail_preview'             => "'''¡Sentímoslo muncho! Nun se pudo procesar la to edición porque hebo una perda de datos de la sesión.
 Inténtalo otra vuelta. Si nun se t'arregla, intenta salir y volver a rexistrate.'''",
 'session_fail_preview_html'        => "'''¡Sentímoslo! Nun se pudo procesar la to edición pola mor d'una perda de datos de sesión.'''
@@ -764,14 +764,14 @@ Dacuando esto pasa por usar un serviciu proxy anónimu basáu en web que tenga f
 'editingcomment'                   => 'Editando $1 (seición nueva)',
 'editconflict'                     => "Conflictu d'edición: $1",
 'explainconflict'                  => "Daquién más camudó esta páxina dende qu'empecipiasti a editala.
-Na área de testu d'enriba ta'l testu de la páxina como ta nestos momentos.
-Los tos cambeos amuésense na área de testu d'embaxo.
-Vas tener que fusionar los tos cambeos dientro del testu esistente.
-'''Namái''' va guardase'l testu de l'área d'enriba cuando calques en \"{{int:savearticle}}\".",
+L'área de testu d'arriba contién el testu de la páxina como ta nestos momentos.
+Los tos cambios s'amuesen nel área de testu d'abaxo.
+Vas tener que fusionar los tos cambios dientro del testu esistente.
+'''Namái''' va guardase'l testu del área d'arriba cuando calques \"{{int:savearticle}}\".",
 'yourtext'                         => 'El to testu',
 'storedversion'                    => 'Versión almacenada',
 'nonunicodebrowser'                => "'''AVISU: El to navegador nun cumple la norma unicode. Hai un sistema alternativu que te permite editar páxines de forma segura: los carauteres non-ASCII apaecerán na caxa d'edición como códigos hexadecimales.'''",
-'editingold'                       => "'''AVISU: Tas editando una revisión vieya d'esta páxina. Si la grabes, los cambeos que se ficieron dende esa revisión van perdese.'''",
+'editingold'                       => "'''AVISU: Tas editando una revisión vieya d'esta páxina. Si la grabes, los cambios que se ficieron dende esta revisión van perdese.'''",
 'yourdiff'                         => 'Diferencies',
 'copyrightwarning'                 => "Por favor, ten en cuenta que toles contribuciones de {{SITENAME}} se consideren espublizaes baxo la $2 (ver $1 pa más detalles). Si nun quies que'l to trabayu s'edite ensin midida y se distribuya al debalu, nun lu pongas equí.<br />
 Amás tas dexándonos afitao qu'escribisti esto tu mesmu o que lo copiasti d'una fonte llibre de dominiu públicu o asemeyao.
@@ -841,7 +841,7 @@ Estos parámetros s'omitieron.",
 
 # "Undo" feature
 'undo-success' => "La edición se pue esfacer.
-Por favor comprueba la comparanza d'embaxo pa verificar que ye eso lo que quies facer, y depués guarda los cambeos p'acabar d'esfacer la edición.",
+Por favor comprueba la comparanza d'abaxo pa confirmar que ye eso lo que quies facer, y depués guarda los cambios p'acabar d'esfacer la edición.",
 'undo-failure' => "Nun se pudo esfacer la edición pola mor d'ediciones intermedies conflictives.",
 'undo-norev'   => 'Nun se pudo esfacer la edición porque nun esiste o se desanició.',
 'undo-summary' => 'Esfacer la revisión $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|alderique]])',
@@ -1136,10 +1136,10 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'resultsperpage'                => 'Resultaos por páxina:',
 'stub-threshold'                => 'Llímite superior pa considerar como <a href="#" class="stub">enllaz a entamu</a> (bytes):',
 'stub-threshold-disabled'       => 'Desactivao',
-'recentchangesdays'             => "Díes qu'amosar nos cambeos recientes:",
+'recentchangesdays'             => "Díes que s'amuesen nos cambios recientes:",
 'recentchangesdays-max'         => '(máximo $1 {{PLURAL:$1|día|díes}})',
 'recentchangescount'            => "Númberu d'ediciones p'amosar de mou predetermináu:",
-'prefs-help-recentchangescount' => 'Esto incluye cambeos recientes, historiales de páxines y rexistros.',
+'prefs-help-recentchangescount' => 'Incluye los cambios recientes, los historiales de páxines y los rexistros.',
 'prefs-help-watchlist-token'    => "Rellenando esti campu con una clave secreta se xenerará una canal RSS pa la to llista de vixilancia.
 Quien sepa la clave d'esti campu podrá lleer la to llista de vixilancia, poro, escueyi un valor seguru.
 Equí tienes un valor al debalu que pues usar: $1",
@@ -1370,7 +1370,7 @@ Esta información sedrá pública.",
 'action-sendemail'            => 'unviar correos',
 
 # Recent changes
-'nchanges'                          => '{{PLURAL:$1|un cambéu|$1 cambeos}}',
+'nchanges'                          => '{{PLURAL:$1|un cambiu|$1 cambios}}',
 'recentchanges'                     => 'Cambios recientes',
 'recentchanges-legend'              => 'Opciones de cambios recientes',
 'recentchangestext'                 => 'Sigui los últimos cambios de la wiki nesta páxina.',
@@ -1444,7 +1444,7 @@ Mira la [[Special:NewFiles|galería d'archivos nuevos]] pa una güeyada más vis
 'filename'                    => 'Nome del ficheru',
 'filedesc'                    => 'Resume',
 'fileuploadsummary'           => 'Resume:',
-'filereuploadsummary'         => 'Cambeos del ficheru:',
+'filereuploadsummary'         => 'Cambios del ficheru:',
 'filestatus'                  => 'Estáu de Copyright:',
 'filesource'                  => 'Fonte:',
 'uploadedfiles'               => 'Archivos xubíos',
@@ -2045,8 +2045,8 @@ Si más tarde quies quitala de la llista de vixilancia calca en "Dexar de vixila
 'watchlist-details'    => "{{PLURAL:$1|$1 páxina|$1 páxines}} na to llista de vixilancia ensin cuntar les páxines d'alderique.",
 'wlheader-enotif'      => '* La notificación per corréu electrónicu ta activada.',
 'wlheader-showupdated' => "* Les páxines camudaes dende la to última visita amuésense en '''negrina'''",
-'watchmethod-recent'   => 'buscando páxines vixilaes nos cambeos recientes',
-'watchmethod-list'     => 'buscando cambeos recientes nes páxines vixilaes',
+'watchmethod-recent'   => 'comprobando páxines vixilaes nos cambios recientes',
+'watchmethod-list'     => 'comprobando ediciones recientes nes páxines vixilaes',
 'watchlistcontains'    => 'La to llista de vixilancia tien $1 {{PLURAL:$1|páxina|páxines}}.',
 'iteminvalidname'      => "Problema col elementu '$1', nome non válidu...",
 'wlnote'               => "Abaxo {{PLURAL:$1|ta'l caberu cambiu|tán los caberos '''$1''' cambios}} {{PLURAL:$2|na cabera hora|nes caberes '''$2''' hores}}, el día $3 a les $4.",
@@ -2065,7 +2065,7 @@ Si más tarde quies quitala de la llista de vixilancia calca en "Dexar de vixila
 'changed'                      => 'camudada',
 'created'                      => 'creada',
 'enotif_subject'               => 'La páxina de {{SITENAME}} $PAGETITLE foi $CHANGEDORCREATED por $PAGEEDITOR',
-'enotif_lastvisited'           => 'Mira en $1 tolos cambeos dende la to postrer visita.',
+'enotif_lastvisited'           => 'Mira en $1 pa ver tolos cambios dende la cabera visita.',
 'enotif_lastdiff'              => 'Mira en $1 pa ver esti cambéu.',
 'enotif_anon_editor'           => 'usuariu anónimu $1',
 'enotif_body'                  => 'Estimáu $WATCHINGUSERNAME,
@@ -2081,7 +2081,7 @@ Ponte\'n contautu col editor:
 corréu: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-En casu de producise más cambeos, nun habrá más notificaciones a nun ser que visites esta páxina. Tamién podríes reaniciar na to llista de vixilancia los marcadores de notificación de toles páxines que tengas vixilaes.
+En casu de producise más cambios, nun habrá más notificaciones a nun ser que visites esta páxina. Tamién podríes reaniciar na to llista de vixilancia los marcadores de notificación de toles páxines que tengas vixilaes.
 
 El to abertable sistema de notificación de {{SITENAME}}
 
@@ -2274,7 +2274,7 @@ $1",
 # Namespace form on various pages
 'namespace'                     => 'Espaciu de nomes:',
 'invert'                        => 'Invertir seleición',
-'tooltip-invert'                => "Marca esta caxella p'anubrir los cambeos de les páxines pertenecientes al espaciu de nomes esbilláu (y al espaciu de nomes asociáu si se marcó)",
+'tooltip-invert'                => "Marca esta caxella p'anubrir los cambios de les páxines pertenecientes al espaciu de nomes seleicionáu (y al espaciu de nomes asociáu si se marcó)",
 'namespace_association'         => 'Espaciu de nome asociáu',
 'tooltip-namespace_association' => "Marca esta caxella p'amestar tamién l'espaciu de nombres d'alderique o asuntu asociaos col espaciu de nomes seleicionáu",
 'blanknamespace'                => '(Principal)',
@@ -2455,15 +2455,8 @@ Como nun tienes permisos p'anubrir usuarios, nun pues ver o editar el bloquéu d
 # Developer tools
 'lockdb'              => 'Protexer la base de datos',
 'unlockdb'            => 'Desprotexer la base de datos',
-'lockdbtext'          => "Al protexer la base de datos suspenderáse la capacidá de tolos
-usuarios pa editar páxines, camudar les sos preferencies, editar
-les sos llistes de vixilancia y otres aiciones que requieran
-cambeos na base de datos. Por favor confirma que ye lo que quies facer,
-y que vas descandar la base de datos cuando fine'l so mantenimientu.",
-'unlockdbtext'        => 'Al desprotexer la base de datos restauraráse la capacida de tolos
-usuarios pa editar páxines, camudar les sos preferencies, editar
-les sos llistes de vixilancia y otres aiciones que requieren cambeos
-na base de datos. Por favor confirma que ye lo quies facer.',
+'lockdbtext'          => 'Al bloquiar la base de datos suspenderáse la capacidá de tolos usuarios pa editar páxines, camudar les sos preferencies, editar les llistes de vixilancia y otres aiciones que requieran cambios na base de datos. Por favor confirma que ye lo que quies facer, y que vas desbloquiar la base de datos cuando fines col mantenimientu.',
+'unlockdbtext'        => 'Al desbloquiar la base de datos restauraráse la capacidá de tolos usuarios pa editar páxines, camudar les sos preferencies, editar les sos llistes de vixilancia y otres aiciones que requieren cambios na base de datos. Por favor confirma que ye lo quies facer.',
 'lockconfirm'         => 'Si, quiero candar daveres la base de datos.',
 'unlockconfirm'       => 'Sí, quiero descandar daveres la base de datos.',
 'lockbtn'             => 'Protexer la base de datos',
@@ -2744,8 +2737,8 @@ Pues ver el so códigu fonte.',
 'tooltip-ca-nstab-help'               => "Amuesa la páxina d'ayuda",
 'tooltip-ca-nstab-category'           => 'Ver la páxina de categoría',
 'tooltip-minoredit'                   => 'Marcar como una edición menor',
-'tooltip-save'                        => 'Guarda los tos cambeos',
-'tooltip-preview'                     => 'Vista previa de los tos cambeos, ¡usa esto enantes de guardar!',
+'tooltip-save'                        => 'Guardar los cambios',
+'tooltip-preview'                     => 'Vista previa de los cambios, ¡usa esto enantes de guardar!',
 'tooltip-diff'                        => 'Amuesa los cambios que fixisti nel testu.',
 'tooltip-compareselectedversions'     => "Ver les diferencies ente les dos revisiones seleicionaes d'esta páxina.",
 'tooltip-watch'                       => 'Amiesta esta páxina na to llista de vixilancia',
@@ -2842,11 +2835,11 @@ Probablemente tea causao por un enllaz a un sitiu esternu de la llista prieta.',
 'markaspatrolledtext'                 => 'Marcar esta páxina como supervisada',
 'markedaspatrolled'                   => 'Marcar como supervisada',
 'markedaspatrolledtext'               => 'La revisión seleicionada de [[:$1]] se marcó como supervisada.',
-'rcpatroldisabled'                    => 'Supervisión de Cambeos Recientes desactivada',
-'rcpatroldisabledtext'                => 'La funcionalidá de Supervisión de Cambeos Recientes ta desactivada nestos momentos.',
+'rcpatroldisabled'                    => 'Supervisión de cambios recientes desactivada',
+'rcpatroldisabledtext'                => 'La función de supervisión de cambios recientes ta desactivada nestos momentos.',
 'markedaspatrollederror'              => 'Nun se pue marcar como supervisada',
 'markedaspatrollederrortext'          => 'Necesites conseñar una revisión pa marcala como supervisada.',
-'markedaspatrollederror-noautopatrol' => 'Nun pues marcar los tos propios cambeos como supervisaos.',
+'markedaspatrollederror-noautopatrol' => 'Nun tienes permisu pa marcar los cambios propios como supervisaos.',
 
 # Patrol log
 'patrol-log-page'      => 'Rexistru de supervisión',
@@ -3467,8 +3460,8 @@ Por favor confirma que daveres quies volver a crear esta páxina.",
 'livepreview-error'   => 'Nun se pudo coneutar: $1 "$2". Intenta la previsualización normal.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => "Los cambeos más recién de $1 {{PLURAL:$|segundu|segundos}} pue que nun s'amuesen nesta llista.",
-'lag-warn-high'   => "Pol mor d'un importante retrasu del sirvidor de la base de datos, los cambeos más recién de $1 {{PLURAL:$1|segundu|segundos}} pue que nun s'amuesen nesta llista.",
+'lag-warn-normal' => "Los cambios más nuevos que $1 {{PLURAL:$|segundu|segundos}} seique nun s'amuesen nesta llista.",
+'lag-warn-high'   => "Pola mor d'un importante retrasu nel sirvidor de la base de datos, los cambios más nuevos que $1 {{PLURAL:$1|segundu|segundos}} seique nun s'amuesen nesta llista.",
 
 # Watchlist editor
 'watchlistedit-numitems'       => "La to llista de vixilancia tien {{PLURAL:$1|1 títulu|$1 títulos}}, escluyendo les páxines d'alderique.",
@@ -3584,7 +3577,7 @@ Les imáxenes amuésense a resolución completa; les demás tribes d'archivu exe
 #Pon tolos fragmentos regex enantes d'esta llinia. Dexa esta llinia exautamente como ta</pre>",
 
 # Special:Tags
-'tags'                    => 'Etiquetes válides pa cambeos',
+'tags'                    => 'Etiquetes de cambiu válides',
 'tag-filter'              => "Filtru d'[[Special:Tags|etiquetes]]:",
 'tag-filter-submit'       => 'Peñera',
 'tags-title'              => 'Etiquetes',
@@ -3592,9 +3585,9 @@ Les imáxenes amuésense a resolución completa; les demás tribes d'archivu exe
 'tags-tag'                => "Nome d'etiqueta",
 'tags-display-header'     => 'Aspeutu nes llistes de cambios',
 'tags-description-header' => 'Descripción completa del significáu',
-'tags-hitcount-header'    => 'Cambeos etiquetaos',
+'tags-hitcount-header'    => 'Cambios etiquetaos',
 'tags-edit'               => 'editar',
-'tags-hitcount'           => '$1 {{PLURAL:$1|cambéu|cambeos}}',
+'tags-hitcount'           => '$1 {{PLURAL:$1|cambiu|cambios}}',
 
 # Special:ComparePages
 'comparepages'                => 'Comparar páxines',
@@ -3626,7 +3619,7 @@ Les imáxenes amuésense a resolución completa; les demás tribes d'archivu exe
 'htmlform-int-toohigh'         => "El valor que conseñasti ye mayor que'l máximu de $1",
 'htmlform-required'            => 'Se requier esti valor',
 'htmlform-submit'              => 'Unviar',
-'htmlform-reset'               => 'Esfacer cambeos',
+'htmlform-reset'               => 'Desfacer los cambios',
 'htmlform-selectorother-other' => 'Otros',
 
 # SQLite database support

@@ -4364,33 +4364,93 @@ La miniaturización de imágenes se habilitará si habilitas las subidas.',
 Se inhabilitará la miniaturización de imágenes.',
 	'config-no-uri' => "'''Error:''' No se pudo determinar el URI actual.
 Instalación abortada.",
+	'config-no-cli-uri' => "''' Advertencia ''': No se ha especificado ningún --scriptpath, por defecto, se usará: <code>$1</code> .",
+	'config-using-server' => 'Utilizando el nombre de servidor "<nowiki>$1</nowiki>".',
+	'config-using-uri' => 'Utilizando la dirección URL del servidor "<nowiki>$1$2</nowiki>".',
+	'config-uploads-not-safe' => "'''Atención:''' Su directorio por defecto para las cargas, <code>$1</code>, es vulnerable a la ejecución de scripts arbitrarios.
+Aunque MediaWiki comprueba todos los archivos cargados por si hubiese amenazas de seguridad, es altamente recomendable [//www.mediawiki.org/wiki/Manual:Security#Upload_security cerrar esta vulnerabilidad de seguridad] antes de activar las cargas.",
+	'config-no-cli-uploads-check' => "'''Atención:''' Su directorio predeterminado para cargas (<code>$1</code>) no está comprobado para la vulnerabilidad
+ de ejecución arbitraria de comandos script durante la instalación de CLI.",
+	'config-brokenlibxml' => 'El sistema tiene una combinación de versiones de PHP y de libxml2 que puede ser problemática y puede causar daños en datos ocultos de MediaWiki y otras aplicaciones web
+Actualizar a PHP 5.2.9 o posterior y a libxml2 2.7.3 o posterior ([//bugs.php.net/bug.php?id=45996 bug presentado con PHP]).
+Instalación anulada.',
+	'config-using531' => 'MediaWiki no puede utilizarse con PHP $1 debido a un error con los parámetros de referencia para <code>__call()</code> .
+Actualice el sistema a PHP 5.3.2 o superior, o vuelva a la versión PHP 5.3.0 para resolver este problema.
+Instalación anulada.',
+	'config-suhosin-max-value-length' => 'Suhosin está instalado y limita la longitud del parámetro GET a $1 bytes. El componente ResourceLoader de MediaWiki trabajará en este límite, pero eso degradará el rendimiento. Si es posible, debe establecer el valor de suhosin.get.max_value_length en 1024 o superior en el archivo php.ini y establecer $wgResourceLoaderMaxQueryLength en el mismo valor en LocalSettings.php.',
 	'config-db-type' => 'Tipo de base de datos',
 	'config-db-host' => 'Servidor de la base de datos:',
+	'config-db-host-help' => 'Si su servidor de base de datos está en otro servidor, escriba el nombre del host o su dirección IP aquí.
+Si está utilizando alojamiento web compartido, su proveedor de alojamiento debería darle el nombre correcto del servidor de alojamiento (host) en su documentación.
+Si va a instalarlo en un servidor Windows y utiliza MySQL, el uso de "localhost" como nombre del servidor puede no funcionar. Si no es así, intente poner "127.0.0.1" como dirección IP local.
+Si utiliza PostgreSQL, deje este campo en blanco para conectarse a través de un socket de Unix.',
+	'config-db-host-oracle' => 'TNS de la base de datos:',
+	'config-db-host-oracle-help' => 'Introduzca un [http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm nombre de conexión local] válido; un archivo tnsnames.ora debe ser visible para esta instalación.<br>Si está utilizando bibliotecas de cliente 10g o más recientes también puede utilizar el método de asignación de nombres [http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm Easy Connect].',
 	'config-db-wiki-settings' => 'Identifique este wiki',
 	'config-db-name' => 'Nombre de base de datos:',
+	'config-db-name-help' => 'Elija un nombre que identifique su wiki.
+No debe contener espacios.
+
+Si está utilizando alojamiento web compartido, su proveedor de alojamiento le dará un nombre específico de base de datos para que lo utilice, o bien le permitirá crear bases de datos a través de un panel de control.',
+	'config-db-name-oracle' => 'Esquema de base de datos:',
+	'config-db-account-oracle-warn' => 'Hay tres escenarios compatibles para la instalación de Oracle como base de datos back-end:
+
+Si desea crear una cuenta de base de datos como parte del proceso de instalación, por favor suministre una cuenta con función SYSDBA como cuenta de base de datos para la instalación y especifique las credenciales deseadas de la cuenta de acceso al web, de lo contrario puede crear manualmente la cuenta de acceso al web y suministrar sólo esa cuenta (si tiene los permisos necesarios para crear los objetos de esquema) o suministrar dos cuentas diferentes, una con privilegios de creación y otra con acceso restringido a la web
+
+La secuencia de comandos (script) para crear una cuenta con los privilegios necesarios puede encontrarse en el directorio "maintenance/oracle/" de esta instalación. Tenga en cuenta que utilizando una cuenta restringida desactivará todas las capacidades de mantenimiento con la cuenta predeterminada.',
 	'config-db-install-account' => 'Cuenta de usuario para instalación',
 	'config-db-username' => 'Nombre de usuario de base de datos:',
 	'config-db-password' => 'contraseña de base de datos:',
+	'config-db-password-empty' => 'Introduzca una contraseña para el nuevo usuario de base de datos:  $1.
+Aunque es posible crear usuarios sin contraseña, esto no es seguro.',
+	'config-db-install-username' => 'Introduzca el nombre de usuario que se utilizará para conectarse a la base de datos durante el proceso de instalación.
+Este no es el nombre de usuario de la cuenta de MediaWiki; Este es el nombre de usuario para la base de datos.',
+	'config-db-install-password' => 'Introduzca la contraseña que se utilizará para conectarse a la base de datos durante el proceso de instalación.
+Esta no es la contraseña para la cuenta de MediaWiki; esta es la contraseña para la base de datos.',
 	'config-db-install-help' => 'Ingresar el nombre de usuario y la contraseña que será usada para conectar a la base de datos durante el proceso de instalación.',
 	'config-db-account-lock' => 'Usar el mismo nombre de usuario y contraseña durante operación normal',
 	'config-db-wiki-account' => 'Usar cuenta para operación normal',
 	'config-db-wiki-help' => 'Introduce el nombre de usuario y la contraseña que serán usados para acceder a la base de datos durante la operación normal del wiki.
 Si esta cuenta no existe y la cuenta de instalación tiene suficientes privilegios, se creará esta cuenta de usuario con los privilegios mínimos necesarios para la operación normal del wiki.',
 	'config-db-prefix' => 'Prefijo para las tablas de la base de datos:',
+	'config-db-prefix-help' => 'Si necesita compartir una base de datos entre múltiples wikis, o entre MediaWiki y otra aplicación web, puede optar por agregar un prefijo a todos los nombres de tabla para evitar conflictos. 
+No utilice espacios.
+
+Normalmente se deja este campo vacío.',
 	'config-db-charset' => 'Conjunto de caracteres de la base de datos',
 	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 binario',
 	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
 	'config-charset-mysql4' => 'MySQL 4.0 retrocompatible UTF-8',
+	'config-charset-help' => "'''Atención:''' Si emplea '''backwards-compatible UTF-8''' en MySQL 4.1+ y posteriormente hace copia de seguridad de la base de datos con <code>mysqldump</code> , puede destruir todos los caracteres no-ASCII, ¡dañando irreversiblemente sus copias de seguridad!
+
+En '''modo binario''', MediaWiki almacena texto UTF-8 en la base de datos en campos binarios.
+Esto es más eficiente que el modo UTF-8 de MySQL, y le permite utilizar la gama completa de caracteres Unicode.
+En ''' modo UTF-8'' ', MySQL sabrá el juego de caracteres de sus datos y puede presentarlos y convertirlos apropiadamente,
+pero no le permitirá almacenar caracteres por encima del [//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes plano multilingüe básico].",
 	'config-mysql-old' => 'Se necesita MySQL $1 o una versión más reciente. Tienes la versión $2.',
 	'config-db-port' => 'Puerto de la base de datos:',
 	'config-db-schema' => 'Esquema para MediaWiki',
 	'config-db-schema-help' => 'Estos esquemas usualmente estarán bien.
 Altéralos sólo si tienes la seguridad de que necesitas hacerlo.',
+	'config-pg-test-error' => "No se puede conectar a la base de datos '''$1''': $2",
 	'config-sqlite-dir' => 'Directorio de datos SQLite:',
+	'config-sqlite-dir-help' => "SQLite almacena todos los datos en un único archivo.
+
+El directorio que proporcione debe ser escribible por el servidor Web durante la instalación.
+
+'''No''' debería ser accesible a través de Internet, por eso no vamos a ponerlo en el sitio donde están los archivos PHP.
+
+El instalador escribirá un archivo <code>.htaccess</code> junto con él, pero si falla alguien podría tener acceso a la base de datos en bloque.
+Eso incluye los datos de usuario en bloque (direcciones de correo electrónico, las contraseñas con hash) así como revisiones eliminadas y otros datos restringidos del wiki.
+
+Considere la posibilidad de poner la base de datos en algún otro sitio, por ejemplo en <code>/var/lib/mediawiki/yourwiki</code> .",
+	'config-oracle-def-ts' => 'Espacio de tablas por defecto:',
+	'config-oracle-temp-ts' => 'Espacio de tablas temporal:',
 	'config-type-mysql' => 'MySQL',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
+	'config-type-ibm_db2' => 'IBM DB2',
 	'config-support-info' => 'MediaWiki es compatible con los siguientes sistemas de bases de datos:
 
 $1
@@ -4400,12 +4460,17 @@ Si no encuentras en el listado el sistema de base de datos que estás intentando
 	'config-support-postgres' => '$1 es un popular sistema de base de datos de código abierto, alternativa a MySQL. ([http://www.php.net/manual/es/pgsql.installation.php cómo compilar PHP con compatibilidad PostgreSQL]). Puede haber algunos defectos menores destacables, y no es recomendable para uso en un entorno de producción.',
 	'config-support-sqlite' => '* $1 es una base de datos ligera con gran compatibilidad con MediaWiki. ([http://www.php.net/manual/es/pdo.installation.php Cómo compilar PHP con compatibilidad SQLite], usa PDO)',
 	'config-support-oracle' => '* $1 es una base de datos comercial a nivel empresarial ([http://www.php.net/manual/es/oci8.installation.php cómo compilar PHP con compatibilidad con OCI8])',
+	'config-support-ibm_db2' => ' $1  es una base de datos de empresa comercial.',
 	'config-header-mysql' => 'Configuración de MySQL',
 	'config-header-postgres' => 'Configuración de PostgreSQL',
 	'config-header-sqlite' => 'Configuración de SQLite',
 	'config-header-oracle' => 'Configuración de Oracle',
+	'config-header-ibm_db2' => 'Configuración de IBM DB2',
 	'config-invalid-db-type' => 'Tipo de base de datos inválida',
 	'config-missing-db-name' => 'Debes introducir un valor para "Nombre de la base de datos"',
+	'config-missing-db-host' => 'Debe introducir un valor para "Servidor (host) de base de datos"',
+	'config-missing-db-server-oracle' => 'Debe introducir un valor para "TNS de la base de datos"',
+	'config-invalid-db-server-oracle' => 'El TNS de la base de datos, "$1", es inválido.Use sólo carateres ASCII: letras (a-z, A-Z), números (0-9), guiones bajos (_) y guiones (-).Usa sólo caracteres ASCII: letras (a-z, A-Z), dígitos (0-9), guiones bajos (_) y puntos (.).',
 	'config-invalid-db-name' => 'El nombre de la base de datos "$1"  es inválido.
 Usa sólo caracteres ASCII: letras (a-z, A-Z), números (0-9), guiones bajos (_)y guiones (-).',
 	'config-invalid-db-prefix' => 'El prefijo de la base de datos "$1"  es inválido.
@@ -4415,10 +4480,22 @@ Use sólo carateres ASCII: letras (a-z, A-Z), números (0-9), guiones bajos (_) 
 Verifique el servidor, el nombre de usuario y la contraseña, e intente de nuevo.',
 	'config-invalid-schema' => 'El esquema de la base de datos "$1"  es inválido.
 Use sólo carateres ASCII: letras (a-z, A-Z), guarismos (0-9) y guiones bajos (_).',
+	'config-db-sys-create-oracle' => 'El instalador sólo admite el empleo de cuentas SYSDBA como método para crear una cuenta nueva.',
+	'config-db-sys-user-exists-oracle' => 'La cuenta de usuario "$1" ya existe. ¡SYSDBA sólo puede utilizarse para crear una nueva cuenta!',
 	'config-postgres-old' => 'Se necesita PostgreSQL $1 o una versión más reciente; tienes la versión $2.',
 	'config-sqlite-name-help' => 'Elige el nombre que identificará tu wiki.
 No uses espacios o guiones.
 Este nombre será usado como nombre del archivo de datos de SQLite.',
+	'config-sqlite-parent-unwritable-group' => 'No se puede crear el directorio de datos <code><nowiki>$1</nowiki></code> , porque el directorio padre <code><nowiki>$2</nowiki></code> no es accesible en escritura por el servidor Web.
+
+El instalador ha determinado el usuario cuyo servidor Web se está ejecutando.
+Conceda permisos de escritura en el directorio <code><nowiki>$3</nowiki></code> para continuar.
+En un sistema Unix/Linux haga:
+
+<pre>cd $2
+mkdir $3
+chgrp $4 $3
+chmod g+w $3</pre>',
 	'config-sqlite-mkdir-error' => 'Error al crear el directorio de datos "$1".
 Comprueba la ubicación e inténtalo de nuevo.',
 	'config-sqlite-dir-unwritable' => 'No se puede escribir en el directorio "$1".

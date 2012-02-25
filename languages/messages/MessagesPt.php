@@ -605,7 +605,7 @@ Consulte a página da [[Special:Version|versão do sistema]].',
 'nstab-user'      => 'Página d{{GENDER:{{#titleparts:{{PAGENAME}}|1|1}}|o utilizador|a utilizadora|e utilizador(a)}}',
 'nstab-media'     => 'Multimédia',
 'nstab-special'   => 'Página especial',
-'nstab-project'   => 'Página de projecto',
+'nstab-project'   => 'Página do projeto',
 'nstab-image'     => 'Ficheiro',
 'nstab-mediawiki' => 'Mensagem',
 'nstab-template'  => 'Predefinição',
@@ -1028,7 +1028,7 @@ Garante-nos também que isto é algo escrito por si, ou copiado do domínio púb
 Se não deseja que o seu texto seja inexoravelmente editado, não o envie.<br />
 Garante-nos também que isto é algo escrito por si, ou copiado do domínio público ou de outra fonte de teor livre (consulte $1 para mais detalhes).<br />
 '''Não envie conteúdos cujos direitos de autor estão protegidos, sem ter a devida permissão!'''",
-'longpageerror'                    => "'''Erro: O texto que submeteu ocupa $1 KB, um espaço superior ao máximo de $2 KB.'''
+'longpageerror'                    => "'''Erro: O texto que submeteu ocupa {{PLURAL:$1|um kilobyte|$1 kilobytes}}, que excede o máximo de {{PLURAL:$2|um kilobyte|$2 kilobytes}}.'''
 A página não pode ser gravada.",
 'readonlywarning'                  => "'''Aviso: A base de dados foi bloqueada para manutenção, pelo que não poderá gravar a sua edição neste momento.'''
 Pode, no entanto, copiar o seu texto para um editor externo e guardá-lo para posterior submissão.
@@ -1866,7 +1866,7 @@ A sua segurança não pode ser devidamente verificada.',
 'img-auth-nopathinfo'       => 'PATH_INFO em falta.
 O seu servidor não está configurado para passar esta informação.
 Pode ser baseado em CGI e não consegue suportar img_auth.
-Consulte a documentação em [https://www.mediawiki.org/wiki/Manual:Image_Authorization Image Authorization].',
+Consulte a documentação em [//www.mediawiki.org/wiki/Manual:Image_Authorization Image Authorization].',
 'img-auth-notindir'         => 'O endereço especificado não conduz ao directório de carregamento de ficheiros configurado.',
 'img-auth-badtitle'         => 'Não é possível construir um título válido a partir de "$1".',
 'img-auth-nologinnWL'       => 'Não está autenticado e o ficheiro "$1" não está na lista branca.',

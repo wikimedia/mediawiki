@@ -1758,7 +1758,10 @@ Kui probleem ei kao, võta ühendust [[Special:ListUsers/sysop|administraatoriga
 'upload-copy-upload-invalid-domain' => 'Sellest domeenist pole kopeerimise teel üleslaadimine võimalik.',
 
 # File backend
+'backend-fail-stream'        => 'Faili $1 ei saanud edastada.',
+'backend-fail-backup'        => 'Faili $1 ei saanud varundada.',
 'backend-fail-notexists'     => 'Faili $1 pole olemas.',
+'backend-fail-hashes'        => 'Võrdluseks ei saanud hankida faili räsiväärtusi.',
 'backend-fail-notsame'       => 'Asukohas $1 on juba olemas mitteidentne fail.',
 'backend-fail-invalidpath'   => '$1 pole sobiv talletustee.',
 'backend-fail-delete'        => 'Faili $1 ei saa kustutada.',
@@ -1771,6 +1774,7 @@ Kui probleem ei kao, võta ühendust [[Special:ListUsers/sysop|administraatoriga
 'backend-fail-closetemp'     => 'Ajutist faili ei saa sulgeda.',
 'backend-fail-read'          => 'Faili $1 ei saa lugeda.',
 'backend-fail-create'        => 'Faili $1 ei saa luua.',
+'backend-fail-contenttype'   => 'Faili, mida soovitakse talletada asukohas "$1", sisutüüpi saanud kindlaks teha.',
 
 # Lock manager
 'lockmanager-notlocked'       => 'Rada "$1" ei saa lukust lahti teha, sest see pole lukus.',
@@ -3408,6 +3412,7 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-gpsdirection-m' => 'Magneetiline suund',
 
 'exif-dc-contributor' => 'Asjaosalised',
+'exif-dc-coverage'    => 'Teabevahendi ruumiline või ajaline ulatus',
 'exif-dc-date'        => 'Kuupäevad',
 'exif-dc-publisher'   => 'Väljaandja',
 'exif-dc-relation'    => 'Seotud teabevahendid',
@@ -3790,6 +3795,7 @@ Kui ei, kasuta allolevat lihtsat vormi. Sinu kommentaar lisatakse koos kasutajan
 'api-error-filename-tooshort'             => 'Failinimi on liiga lühike.',
 'api-error-filetype-banned'               => 'Antud failitüüp on keelatud.',
 'api-error-filetype-missing'              => 'Failinime tagant puudub laiend.',
+'api-error-hookaborted'                   => 'Tarkvaralisa katkestas muudatuse tegemise.',
 'api-error-http'                          => 'Sisetõrge: Serveriga pole võimalik ühendust luua.',
 'api-error-illegal-filename'              => 'Failinimi pole lubatud.',
 'api-error-internal-error'                => 'Sisetõrge: Sinu faili vikisse üleslaadimise juures läks midagi valesti.',

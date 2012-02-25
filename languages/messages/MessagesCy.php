@@ -1560,22 +1560,26 @@ $1',
 'upload-warning-subj'         => 'Rhybudd uwchlwytho',
 'upload-warning-msg'          => 'Cafwyd problem wrth uwchlwytho o [$2]. Gallwch ddychwelyd at y [[Special:Upload/stash/$1|ffurflen uwchlwytho]] i ddatrys y broblem.',
 
-'upload-proto-error'        => 'Protocol gwallus',
-'upload-proto-error-text'   => "Rhaid cael URLs yn dechrau gyda <code>http://</code> neu <code>ftp://</code> wrth uwchlwytho'n bell.",
-'upload-file-error'         => 'Gwall mewnol',
-'upload-file-error-text'    => 'Cafwyd gwall mewnol wrth geisio creu ffeil dros dro ar y gweinydd.
+'upload-proto-error'                => 'Protocol gwallus',
+'upload-proto-error-text'           => "Rhaid cael URLs yn dechrau gyda <code>http://</code> neu <code>ftp://</code> wrth uwchlwytho'n bell.",
+'upload-file-error'                 => 'Gwall mewnol',
+'upload-file-error-text'            => 'Cafwyd gwall mewnol wrth geisio creu ffeil dros dro ar y gweinydd.
 Byddwch gystal â chysylltu â [[Special:ListUsers/sysop|gweinyddwr]].',
-'upload-misc-error'         => 'Gwall uwchlwytho anhysbys',
-'upload-misc-error-text'    => "Cafwyd gwall anghyfarwydd yn ystod yr uwchlwytho.
+'upload-misc-error'                 => 'Gwall uwchlwytho anhysbys',
+'upload-misc-error-text'            => "Cafwyd gwall anghyfarwydd yn ystod yr uwchlwytho.
 Sicrhewch bod yr URL yn ddilys ac yn hygyrch a cheisiwch eto.
 Os yw'r broblem yn parhau, cysylltwch â [[Special:ListUsers/sysop|gweinyddwr]].",
-'upload-too-many-redirects' => 'Roedd gormod o ailgyfeiriadau yn yr URL',
-'upload-unknown-size'       => 'Maint anhysbys',
-'upload-http-error'         => 'Digwyddodd gwall HTTP: $1',
+'upload-too-many-redirects'         => 'Roedd gormod o ailgyfeiriadau yn yr URL',
+'upload-unknown-size'               => 'Maint anhysbys',
+'upload-http-error'                 => 'Digwyddodd gwall HTTP: $1',
+'upload-copy-upload-invalid-domain' => "Ni ellir uwchlwytho ffeiliau o'r parth hwn.",
 
 # File backend
+'backend-fail-stream'        => "Wedi methu ffrydio'r ffeil $1.",
 'backend-fail-backup'        => "Wedi methu gwneud copi wrth gefn o'r ffeil $1.",
 'backend-fail-notexists'     => "Nid yw'r ffeil $1 ar gael.",
+'backend-fail-notsame'       => "Mae ffeil gwahanol a'r enw $1 arni eisoes ar gael.",
+'backend-fail-invalidpath'   => 'Nid yw $1 yn lwybr dilys i roi ffeil ar gadw.',
 'backend-fail-delete'        => "Wedi methu dileu'r ffeil $1.",
 'backend-fail-alreadyexists' => "Mae'r ffeil $1 ar gael yn barod.",
 'backend-fail-store'         => "Wedi methu rhoi'r ffeil $1 ar gadw yn $2.",
@@ -2661,10 +2665,13 @@ Mae ffolder dros dro yn eisiau.',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|diwygiad|diwygiad|ddiwygiad|diwygiad|diwygiad|diwygiad}} o $2',
 
 # JavaScriptTest
-'javascripttest'                      => 'Profi JavaScript',
-'javascripttest-title'                => 'Yn cynnal profion $1',
-'javascripttest-pagetext-noframework' => 'Neilltuwyd y dudalen hon at gynnal profion JavaScript.',
-'javascripttest-pagetext-skins'       => 'Dewiswch wedd i gynnal profion arni:',
+'javascripttest'                           => 'Profi JavaScript',
+'javascripttest-disabled'                  => 'Analluogwyd y swyddogaeth hon.',
+'javascripttest-title'                     => 'Yn cynnal profion $1',
+'javascripttest-pagetext-noframework'      => 'Neilltuwyd y dudalen hon at gynnal profion JavaScript.',
+'javascripttest-pagetext-unknownframework' => 'Ni nabyddwyd y fframwaith profi "$1".',
+'javascripttest-pagetext-frameworks'       => "Dewiswch un o'r fframweithiau profi canlynol: $1",
+'javascripttest-pagetext-skins'            => 'Dewiswch wedd i gynnal profion arni:',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'                 => 'Eich tudalen defnyddiwr',
@@ -3607,6 +3614,7 @@ Dangosir delweddau ar eu maint llawn, dechreuir ffeiliau o fathau eraill yn unio
 'api-error-badtoken'                      => 'Gwall mewnol: tocyn gwael.',
 'api-error-copyuploaddisabled'            => 'Nid oes modd uwchlwytho drwy URL ar y gweinydd hwn',
 'api-error-duplicate'                     => "Mae {{PLURAL:$1||[$2 ffeil arall]|[$2 ffeiliau eraill]|[$2 ffeiliau eraill]|[$2 ffeiliau eraill]|[$2 ffeiliau eraill]}} gyda'r un cynnwys {{PLURAL:$1||ynddi|ynddynt|ynddynt|ynddynt|ynddynt}} eisoes ar y wici hwn",
+'api-error-duplicate-archive'             => "Fe fu {{PLURAL:$1|[$2 ffeil arall gyda'r un cynnwys ynddi]|[$2 ffeiliau eraill gyda'r un cynnwys ynddynt]}} ar y safle, ond fe'{{PLURAL:$1|i|u}} dilëwyd.",
 'api-error-duplicate-archive-popup-title' => '{{PLURAL:$1|Ffeiliau|Ffeil|Ffeiliau|Ffeiliau|Ffeiliau|Ffeiliau}} dyblyg, sydd eisoes wedi eu dileu.',
 'api-error-duplicate-popup-title'         => '{{PLURAL:$1|Ffeiliau|ffeil|ffeiliau|ffeiliau|ffeiliau|ffeiliau}} dyblyg.',
 'api-error-empty-file'                    => "Mae'r ffeil a gyflwynwyd gennych yn wag.",

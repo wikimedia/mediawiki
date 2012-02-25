@@ -2083,7 +2083,7 @@ Sada je preusmerenje na [[$2]].',
 'double-redirect-fixed-maintenance' => 'Ispravljanje dvostrukih preusmerenja iz [[$1]] u [[$2]].',
 'double-redirect-fixer'             => 'Ispravljač preusmerenja',
 
-'brokenredirects'        => 'Neispravna preusmerenja',
+'brokenredirects'        => 'Pokvarena preusmerenja',
 'brokenredirectstext'    => 'Sledeća preusmerenja upućuju na nepostojeće stranice:',
 'brokenredirects-edit'   => 'uredi',
 'brokenredirects-delete' => 'obriši',
@@ -2769,7 +2769,7 @@ Da biste zaključali i otključali bazu, datoteka mora biti dostupna za pisanje 
 'movepagetext'                 => "Donji obrazac će preimenovati stranicu, premeštajući celu istoriju na novo ime.
 Stari naslov postaće preusmerenje na novi naslov.
 Možete automatski izmeniti preusmerenje do izvornog naslova.
-Pogledajte [[Special:DoubleRedirects|dvostruka]] ili [[Special:BrokenRedirects|neispravna]] preusmerenja.
+Pogledajte [[Special:DoubleRedirects|dvostruka]] ili [[Special:BrokenRedirects|pokvarena]] preusmerenja.
 Na vama je odgovornost da veze i dalje idu tamo gde bi trebalo da idu.
 
 Stranica '''neće''' biti premeštena ako već postoji stranica s tim imenom, osim ako je ona prazna, sadrži preusmerenje ili nema istoriju izmena.
@@ -2780,7 +2780,7 @@ Ovo može predstavljati drastičnu i neočekivanu izmenu za popularnu stranicu;
 dobro razmislite o posledicama pre nego što nastavite.",
 'movepagetext-noredirectfixer' => "Donji obrazac će preimenovati stranicu, premeštajući celu istoriju na novo ime.
 Stari naslov postaće preusmerenje na novi naslov.
-Pogledajte [[Special:DoubleRedirects|dvostruka]] ili [[Special:BrokenRedirects|neispravna]] preusmerenja.
+Pogledajte [[Special:DoubleRedirects|dvostruka]] ili [[Special:BrokenRedirects|pokvarena]] preusmerenja.
 Na vama je odgovornost da veze i dalje idu tamo gde bi trebalo da idu.
 
 Stranica '''neće''' biti premeštena ako već postoji stranica s tim imenom, osim ako je ona prazna, sadrži preusmerenje ili nema istoriju izmena.

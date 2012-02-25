@@ -600,7 +600,7 @@ Veja a [[Special:Version|página sobre a versão do sistema]].',
 'nstab-user'      => 'Página d{{GENDER:{{#titleparts:{{PAGENAME}}|1|1}}|o usuário|a usuária|e usuário(a)}}',
 'nstab-media'     => 'Página de mídia',
 'nstab-special'   => 'Página especial',
-'nstab-project'   => 'Página de projeto',
+'nstab-project'   => 'Página do projeto',
 'nstab-image'     => 'Arquivo',
 'nstab-mediawiki' => 'Mensagem',
 'nstab-template'  => 'Predefinição',
@@ -1006,7 +1006,8 @@ Você está, ao mesmo tempo, garantindo-nos que isto é algo escrito por você m
 'copyrightwarning2'                => "Por favor, note que todas as suas contribuições em {{SITENAME}} podem ser editadas, alteradas ou removidas por outros contribuidores. Se você não deseja que o seu texto seja inexoravelmente editado, não o envie.<br />
 Você está, ao mesmo tempo, a garantir-nos que isto é algo escrito por si, ou algo copiado de alguma fonte de textos em domínio público ou similarmente de teor livre (veja $1 para detalhes).
 '''NÃO ENVIE TRABALHO PROTEGIDO POR DIREITOS DE AUTOR SEM A DEVIDA PERMISSÃO!'''",
-'longpageerror'                    => "'''ERRO: O texto de página que você submeteu tem mais de $1 quilobytes em tamanho, que é maior que o máximo de $2 quilobytes. A página não pode ser salva.'''",
+'longpageerror'                    => "'''Erro: O texto que submeteu ocupa {{PLURAL:$1|um kilobyte|$1 kilobytes}}, que excede o máximo de {{PLURAL:$2|um kilobyte|$2 kilobytes}}.'''
+A página não pode ser salva.",
 'readonlywarning'                  => "'''Aviso: A base de dados foi bloqueada para manutenção, por isso você não poderá salvar a sua edição neste momento.'''
 Pode, no entanto, copiar o seu texto num editor externo e guardá-lo para posterior envio.
 
