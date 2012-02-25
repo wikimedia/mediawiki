@@ -19,18 +19,23 @@ class StreamFile {
 	 * @return bool Success
 	 */
 	public static function stream( $fname, $headers = array(), $sendErrors = true ) {
+		wfProfileIn( __METHOD__ );
+
 		wfSuppressWarnings();
 		$stat = stat( $fname );
 		wfRestoreWarnings();
 
 		$res = self::prepareForStream( $fname, $stat, $headers, $sendErrors );
 		if ( $res == self::NOT_MODIFIED ) {
-			return true; // use client cache
+			$ok = true; // use client cache
 		} elseif ( $res == self::READY_STREAM ) {
-			return readfile( $fname );
+			$ok = readfile( $fname );
 		} else {
-			return false; // failed
+			$ok = false; // failed
 		}
+
+		wfProfileOut( __METHOD__ );
+		return $ok;
 	}
 
 	/**
