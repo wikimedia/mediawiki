@@ -51,6 +51,7 @@ class SpecialWhatLinksHere extends SpecialPage {
 		$out = $this->getOutput();
 
 		$this->setHeaders();
+		$this->outputHeader();
 
 		$opts = new FormOptions();
 
