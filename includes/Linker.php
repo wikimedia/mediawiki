@@ -1399,7 +1399,8 @@ class Linker {
 			return '';
 		} else {
 			$formatted = self::formatComment( $comment, $title, $local );
-			return " <span class=\"comment\">($formatted)</span>";
+			$formatted = wfMessage( 'parentheses' )->rawParams( $formatted );
+			return " <span class=\"comment\">$formatted</span>";
 		}
 	}
 
