@@ -1267,7 +1267,9 @@ abstract class FileBackendStore extends FileBackend {
 		if ( $res == StreamFile::NOT_MODIFIED ) {
 			// do nothing; client cache is up to date
 		} elseif ( $res == StreamFile::READY_STREAM ) {
+			wfProfileIn( __METHOD__ . '-send' );
 			$status = $this->doStreamFile( $params );
+			wfProfileOut( __METHOD__ . '-send' );
 		} else {
 			$status->fatal( 'backend-fail-stream', $params['src'] );
 		}
