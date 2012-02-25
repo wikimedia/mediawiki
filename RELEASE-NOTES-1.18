@@ -18,6 +18,8 @@ This is a maintenance release of the MediaWiki 1.18 branch.
   an empty email address.
 * (Bug 33087) Exchange server rejected mail sent by MediaWiki
 * (bug 34528) Edit section tooltips show correction section name again
+* (bug 34246) MediaWiki:Whatlinkshere-summary message is displayed again in
+  Special:Whatlinkshere
 
 == MediaWiki 1.18.1 ==
 2012-01-11
