@@ -1440,7 +1440,7 @@ class Linker {
 		} else {
 			global $wgLang;
 			$stxt = wfMsgExt( 'nbytes', 'parsemag', $wgLang->formatNum( $size ) );
-			$stxt = "($stxt)";
+			$stxt = wfMessage( 'parentheses' )->rawParams( $stxt );
 		}
 		$stxt = htmlspecialchars( $stxt );
 		return "<span class=\"history-size\">$stxt</span>";
@@ -1869,7 +1869,7 @@ class Linker {
 		$html = $delete ? wfMsgHtml( 'rev-delundel' ) : wfMsgHtml( 'rev-showdeleted' );
 		$tag = $restricted ? 'strong' : 'span';
 		$link = self::link( $sp, $html, array(), $query, array( 'known', 'noclasses' ) );
-		return Xml::tags( $tag, array( 'class' => 'mw-revdelundel-link' ), "($link)" );
+		return Xml::tags( $tag, array( 'class' => 'mw-revdelundel-link' ), wfMessage( 'parentheses' )->rawParams( $link ) );
 	}
 
 	/**
@@ -1882,7 +1882,7 @@ class Linker {
 	 */
 	public static function revDeleteLinkDisabled( $delete = true ) {
 		$html = $delete ? wfMsgHtml( 'rev-delundel' ) : wfMsgHtml( 'rev-showdeleted' );
-		return Xml::tags( 'span', array( 'class' => 'mw-revdelundel-link' ), "($html)" );
+		return Xml::tags( 'span', array( 'class' => 'mw-revdelundel-link' ), wfMessage( 'parentheses' )->rawParams( $html ) );
 	}
 
 	/* Deprecated methods */

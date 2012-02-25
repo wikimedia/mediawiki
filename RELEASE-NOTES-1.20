@@ -34,6 +34,7 @@ production.
   copy/paste on supporting browsers
 * (bug 34428) Fixed incorrect hash mismatch errors in the DiffHistoryBlob 
   history compression method.
+* (bug 34702) Special:Contributions now uses localised parentheses.
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.

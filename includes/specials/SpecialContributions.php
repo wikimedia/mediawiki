@@ -251,9 +251,11 @@ class SpecialContributions extends SpecialPage {
 		// languages that want to put the "for" bit right after $user but before
 		// $links.  If 'contribsub' is around, use it for reverse compatibility,
 		// otherwise use 'contribsub2'.
+		// @todo Should this be removed at some point?
 		$oldMsg = $this->msg( 'contribsub' );
 		if ( $oldMsg->exists() ) {
-			return $oldMsg->rawParams( "$user ($links)" );
+			$linksWithParentheses = $this->msg( 'parenteses' )->rawParams( $links );
+			return $oldMsg->rawParams( "$user $linksWithParentheses" );
 		} else {
 			return $this->msg( 'contribsub2' )->rawParams( $user, $links );
 		}
@@ -837,7 +839,7 @@ class ContribsPager extends ReverseChronologicalPager {
 			$del .= ' ';
 		}
 
-		$diffHistLinks = '(' . $difftext . $this->messages['pipe-separator'] . $histlink . ')';
+		$diffHistLinks = $this->msg( 'parentheses' )->rawParams( $difftext . $this->messages['pipe-separator'] . $histlink );
 		$ret = "{$del}{$d} {$diffHistLinks}{$chardiff}{$nflag}{$mflag} {$link}{$userlink} {$comment} {$topmarktext}";
 
 		# Denote if username is redacted for this edit
