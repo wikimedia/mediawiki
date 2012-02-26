@@ -51,7 +51,9 @@ abstract class ApiBase extends ContextSource {
 	const PARAM_MIN = 5; // Lowest value allowed for a parameter. Only applies if TYPE='integer'
 	const PARAM_ALLOW_DUPLICATES = 6; // Boolean, do we allow the same value to be set more than once when ISMULTI=true
 	const PARAM_DEPRECATED = 7; // Boolean, is the parameter deprecated (will show a warning)
+	/// @since 1.17
 	const PARAM_REQUIRED = 8; // Boolean, is the parameter required?
+	/// @since 1.17
 	const PARAM_RANGE_ENFORCE = 9; // Boolean, if MIN/MAX are set, enforce (die) these? Only applies if TYPE='integer' Use with extreme caution
 
 	const LIMIT_BIG1 = 500; // Fast query, std user limit
