@@ -35,6 +35,7 @@ production.
 * (bug 34428) Fixed incorrect hash mismatch errors in the DiffHistoryBlob 
   history compression method.
 * (bug 34702) Special:Contributions now uses localised parentheses.
+* (bug 34723) When editing a script page on a RTL wiki the textbox should be LTR.
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
