@@ -12,10 +12,12 @@
 		 * @param success {Function} callback to which the watch object will be passed
 		 * watch object contains 'title' (full page name), 'watched' (boolean) and
 		 * 'message' (parsed HTML of the 'addedwatchtext' message).
+		 * @param _unwatch {Boolean} Internally used to re-use this logic for unwatch(),
+		 * do not use outside this module.
 		 * @param err {Function} callback if error (optional)
 		 * @return {jqXHR}
 		 */
-		watch: function( page, success, err ) {
+		watch: function( page, success, err, _unwatch ) {
 			var params, ok;
 			params = {
 				action: 'watch',
@@ -23,13 +25,16 @@
 				token: mw.user.tokens.get( 'watchToken' ),
 				uselang: mw.config.get( 'wgUserLanguage' )
 			};
+			if ( _unwatch ) {
+				params.unwatch = 1;
+			}
 			ok = function( data ) {
 				success( data.watch );
 			};
 			return this.post( params, { ok: ok, err: err } );
 		},
 		/**
-		 * Convinience method for 'action=watch&unwatch='.
+		 * Convinience method for 'action=watch&unwatch=1'.
 		 *
 		 * @param page {String|mw.Title} Full page name or instance of mw.Title
 		 * @param success {Function} callback to which the watch object will be passed
@@ -39,18 +44,7 @@
 		 * @return {jqXHR}
 		 */
 		unwatch: function( page, success, err ) {
-			var params, ok;
-			params = {
-				action: 'watch',
-				unwatch: 1,
-				title: String( page ),
-				token: mw.user.tokens.get( 'watchToken' ),
-				uselang: mw.config.get( 'wgUserLanguage' )
-			};
-			ok = function( data ) {
-				success( data.watch );
-			};
-			return this.post( params, { ok: ok, err: err } );
+			return this.watch( page, success, err, true );
 		}
 
 	} );
