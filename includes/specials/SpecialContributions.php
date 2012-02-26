@@ -254,7 +254,7 @@ class SpecialContributions extends SpecialPage {
 		// @todo Should this be removed at some point?
 		$oldMsg = $this->msg( 'contribsub' );
 		if ( $oldMsg->exists() ) {
-			$linksWithParentheses = $this->msg( 'parenteses' )->rawParams( $links );
+			$linksWithParentheses = $this->msg( 'parenteses' )->rawParams( $links )->plain();
 			return $oldMsg->rawParams( "$user $linksWithParentheses" );
 		} else {
 			return $this->msg( 'contribsub2' )->rawParams( $user, $links );
@@ -839,7 +839,7 @@ class ContribsPager extends ReverseChronologicalPager {
 			$del .= ' ';
 		}
 
-		$diffHistLinks = $this->msg( 'parentheses' )->rawParams( $difftext . $this->messages['pipe-separator'] . $histlink );
+		$diffHistLinks = $this->msg( 'parentheses' )->rawParams( $difftext . $this->messages['pipe-separator'] . $histlink )->plain();
 		$ret = "{$del}{$d} {$diffHistLinks}{$chardiff}{$nflag}{$mflag} {$link}{$userlink} {$comment} {$topmarktext}";
 
 		# Denote if username is redacted for this edit
