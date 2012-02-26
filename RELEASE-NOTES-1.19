@@ -120,6 +120,7 @@ production.
 * (bug 33646) Badtitle error page now emits a 400 HTTP status.
 * Special:MovePage now has a dropdown menu for namespaces.
 * (bug 34420) Special:Version now shows git HEAD sha1 when available
+* (bug 33952) Refactor mw.toolbar to allow dynamic additions at any time.
 
 === Bug fixes in 1.19 ===
 * BREAKING CHANGE:  Style rules for wikitable are now more specific and prevent
