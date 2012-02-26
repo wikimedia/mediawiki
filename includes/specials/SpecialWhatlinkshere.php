@@ -316,12 +316,12 @@ class SpecialWhatLinksHere extends SpecialPage {
 			$props[] = $msgcache['isimage'];
 
 		if ( count( $props ) ) {
-			$propsText = wfMessage( 'parentheses' )->rawParams( implode( $msgcache['semicolon-separator'], $props ) )->escaped();
+			$propsText = $this->msg( 'parentheses' )->rawParams( implode( $msgcache['semicolon-separator'], $props ) )->escaped();
 		}
 
 		# Space for utilities links, with a what-links-here link provided
 		$wlhLink = $this->wlhLink( $nt, $msgcache['whatlinkshere-links'] );
-		$wlh = Xml::wrapClass( wfMessage( 'parentheses' )->rawParams( $wlhLink )->escaped(), 'mw-whatlinkshere-tools' );
+		$wlh = Xml::wrapClass( $this->msg( 'parentheses' )->rawParams( $wlhLink )->escaped(), 'mw-whatlinkshere-tools' );
 
 		return $notClose ?
 			Xml::openElement( 'li' ) . "$link $propsText $dirmark $wlh\n" :

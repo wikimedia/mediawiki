@@ -95,7 +95,7 @@ class ShortPagesPage extends QueryPage {
 					: Linker::linkKnown( $title );
 		$size = $this->msg( 'nbytes' )->numParams( $result->value )->escaped();
 
-		$hlinkInParentheses = wfMessage( 'parentheses' )->rawParams( $hlink )->escaped();
+		$hlinkInParentheses = $this->msg( 'parentheses' )->rawParams( $hlink )->escaped();
 
 		return $title->exists()
 				? "${hlinkInParentheses} {$dm}{$plink} {$dm}[{$size}]"

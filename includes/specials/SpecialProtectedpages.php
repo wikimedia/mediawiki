@@ -137,7 +137,7 @@ class SpecialProtectedpages extends SpecialPage {
 			);
 		}
 
-		$changeProtection = ' ' . wfMessage( 'parentheses' )->rawParams( $changeProtection )->escaped();
+		$changeProtection = ' ' . $this->msg( 'parentheses' )->rawParams( $changeProtection )->escaped();
 
 		wfProfileOut( __METHOD__ );
 
