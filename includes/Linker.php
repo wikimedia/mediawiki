@@ -1399,7 +1399,7 @@ class Linker {
 			return '';
 		} else {
 			$formatted = self::formatComment( $comment, $title, $local );
-			$formatted = wfMessage( 'parentheses' )->rawParams( $formatted )->plain();
+			$formatted = wfMessage( 'parentheses' )->rawParams( $formatted )->escape();
 			return " <span class=\"comment\">$formatted</span>";
 		}
 	}
@@ -1441,7 +1441,7 @@ class Linker {
 		} else {
 			global $wgLang;
 			$stxt = wfMsgExt( 'nbytes', 'parsemag', $wgLang->formatNum( $size ) );
-			$stxt = wfMessage( 'parentheses' )->rawParams( $stxt )->plain();
+			$stxt = wfMessage( 'parentheses' )->rawParams( $stxt )->escape();
 		}
 		$stxt = htmlspecialchars( $stxt );
 		return "<span class=\"history-size\">$stxt</span>";
@@ -1870,7 +1870,7 @@ class Linker {
 		$html = $delete ? wfMsgHtml( 'rev-delundel' ) : wfMsgHtml( 'rev-showdeleted' );
 		$tag = $restricted ? 'strong' : 'span';
 		$link = self::link( $sp, $html, array(), $query, array( 'known', 'noclasses' ) );
-		return Xml::tags( $tag, array( 'class' => 'mw-revdelundel-link' ), wfMessage( 'parentheses' )->rawParams( $link )->plain() );
+		return Xml::tags( $tag, array( 'class' => 'mw-revdelundel-link' ), wfMessage( 'parentheses' )->rawParams( $link )->escape() );
 	}
 
 	/**
@@ -1883,7 +1883,7 @@ class Linker {
 	 */
 	public static function revDeleteLinkDisabled( $delete = true ) {
 		$html = $delete ? wfMsgHtml( 'rev-delundel' ) : wfMsgHtml( 'rev-showdeleted' );
-		return Xml::tags( 'span', array( 'class' => 'mw-revdelundel-link' ), wfMessage( 'parentheses' )->rawParams( $html )->plain() );
+		return Xml::tags( 'span', array( 'class' => 'mw-revdelundel-link' ), wfMessage( 'parentheses' )->rawParams( $html )->escape() );
 	}
 
 	/* Deprecated methods */

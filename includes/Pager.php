@@ -771,7 +771,7 @@ abstract class ReverseChronologicalPager extends IndexPager {
 		$limits = $this->getLanguage()->pipeList( $limitLinks );
 		$firstLastLinks = wfMessage( 'parentheses' )->rawParams( "{$pagingLinks['first']}" .
 			wfMsgExt( 'pipe-separator' , 'escapenoentities' ) .
-			"{$pagingLinks['last']}" )->plain();
+			"{$pagingLinks['last']}" )->escape();
 
 		$this->mNavigationBar = $firstLastLinks . ' ' .
 			wfMsgHTML(
