@@ -4475,7 +4475,7 @@ class Title {
 		if ( $this->isSpecialPage() ) {
 			// special pages are in the user language
 			return $wgLang;
-		} elseif ( $this->isCssOrJsPage() ) {
+		} elseif ( $this->isCssOrJsPage() || $this->isCssJsSubpage() ) {
 			// css/js should always be LTR and is, in fact, English
 			return wfGetLangObj( 'en' );
 		} elseif ( $this->getNamespace() == NS_MEDIAWIKI ) {
