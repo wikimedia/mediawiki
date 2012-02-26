@@ -118,15 +118,15 @@ class SpecialProtectedpages extends SpecialPage {
 
 		# Show a link to the change protection form for allowed users otherwise a link to the protection log
 		if( $this->getUser()->isAllowed( 'protect' ) ) {
-			$changeProtection = ' (' . Linker::linkKnown(
+			$changeProtection = Linker::linkKnown(
 				$title,
 				wfMsgHtml( 'protect_change' ),
 				array(),
 				array( 'action' => 'unprotect' )
-			) . ')';
+			);
 		} else {
 			$ltitle = SpecialPage::getTitleFor( 'Log' );
-			$changeProtection = ' (' . Linker::linkKnown(
+			$changeProtection = Linker::linkKnown(
 				$ltitle,
 				wfMsgHtml( 'protectlogpage' ),
 				array(),
@@ -134,8 +134,10 @@ class SpecialProtectedpages extends SpecialPage {
 					'type' => 'protect',
 					'page' => $title->getPrefixedText()
 				)
-			) . ')';
+			);
 		}
+
+		$changeProtection = ' ' . wfMessage( 'parentheses' )->rawParams( $changeProtection )->escaped();
 
 		wfProfileOut( __METHOD__ );
 

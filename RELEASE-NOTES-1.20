@@ -34,7 +34,7 @@ production.
   copy/paste on supporting browsers
 * (bug 34428) Fixed incorrect hash mismatch errors in the DiffHistoryBlob 
   history compression method.
-* (bug 34702) Special:Contributions now uses localised parentheses.
+* (bug 34702) Localised parentheses are now used in more special pages.
 * (bug 34723) When editing a script page on a RTL wiki the textbox should be LTR.
 
 === API changes in 1.20 ===

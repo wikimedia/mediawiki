@@ -679,11 +679,11 @@ abstract class AlphabeticPager extends IndexPager {
 		$limitLinks = $this->getLimitLinks();
 		$limits = $lang->pipeList( $limitLinks );
 
-		$this->mNavigationBar =
-			"(" . $lang->pipeList(
+		$this->mNavigationBar = wfMessage( 'parentheses' )->rawParams(
+			$lang->pipeList(
 				array( $pagingLinks['first'],
 				$pagingLinks['last'] )
-			) . ") " .
+			) )->escaped() . " " .
 			wfMsgHtml( 'viewprevnext', $pagingLinks['prev'],
 			$pagingLinks['next'], $limits );
 
@@ -713,7 +713,8 @@ abstract class AlphabeticPager extends IndexPager {
 		}
 
 		if( $extra !== '' ) {
-			$this->mNavigationBar .= " ($extra)";
+			$extra = ' ' . wfMessage( 'parentheses' )->rawParams( $extra )->escaped();
+			$this->mNavigationBar .= $extra;
 		}
 
 		return $this->mNavigationBar;
