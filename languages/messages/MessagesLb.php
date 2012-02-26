@@ -999,7 +999,7 @@ Dir kënnt dësen Ënnerscheed gesinn; Detailer fannt Dir am [{{fullurl:{{#Speci
 'revdelete-show-file-submit'  => 'Jo',
 'revdelete-selected'          => "'''{{PLURAL:$2|Gewielte Versioun|Gewielte Versioune}} vu(n) '''$1''' :'''",
 'logdelete-selected'          => "'''Ausgewielten {{PLURAL:$1|Evenement|Evenementer}} aus dem Logbuch:'''",
-'revdelete-text'              => "'''Geläschte Versiounen oder aner geäschte Bestanddeeler sinn net méi ëffentlech zougänglech, si stinn awer weiderhinn an der Versiounsgeschicht vun der Säit.'''
+'revdelete-text'              => "'''Geläschte Versiounen oder aner geläschte Bestanddeeler sinn net méi ëffentlech zougänglech, si stinn awer weiderhin an der Versiounsgeschicht vun der Säit.'''
 Aner {{SITENAME}}-Administrateure kënnen de geläschten Inhalt oder aner geläschte Bestanddeeler weiderhi gesinn a restauréieren, et sief, et gouf festgeluecht, datt déi Limitatioune vum Accès och fir Administrateure gëllen.",
 'revdelete-confirm'           => "Confirméiert w.e.g. datt Dir dat maache wëllt, datt Dir d'Konsequenze verstitt an datt Dir dëst an Aklang mat de [[{{MediaWiki:Policy-url}}|Richtlinne]] maacht.",
 'revdelete-suppress-text'     => "Ënnerdréckung sollt '''nëmmen''' an dëse Fäll benotzt ginn:

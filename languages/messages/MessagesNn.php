@@ -3506,11 +3506,15 @@ Skriv inn filnamnet utan «{{ns:file}}:»-prefikset.',
 'sqlite-no-fts'  => '$1 utan støtte for fulltekstsøk',
 
 # New logging system
-'revdelete-content-hid'  => 'innhald gøymt',
-'revdelete-summary-hid'  => 'endringsamandrag gøymt',
-'revdelete-restricted'   => 'la til avgrensingar for administratorar',
-'revdelete-unrestricted' => 'fjerna avgrensingar for administratorar',
-'newuserlog-byemail'     => 'passordet er sendt på e-post',
+'revdelete-content-hid'        => 'innhald gøymt',
+'revdelete-summary-hid'        => 'endringsamandrag gøymt',
+'revdelete-restricted'         => 'la til avgrensingar for administratorar',
+'revdelete-unrestricted'       => 'fjerna avgrensingar for administratorar',
+'logentry-newusers-newusers'   => '$1 oppretta ein brukarkonto',
+'logentry-newusers-create'     => '$1 oppretta ein brukarkonto',
+'logentry-newusers-create2'    => '$1 oppretta brukarkontoen $3',
+'logentry-newusers-autocreate' => 'Kontoen $1 vart oppretta av seg sjølv',
+'newuserlog-byemail'           => 'passordet er sendt på e-post',
 
 # Feedback
 'feedback-subject' => 'Emne:',
@@ -3547,6 +3551,7 @@ Skriv inn filnamnet utan «{{ns:file}}:»-prefikset.',
 'api-error-unknown-code'                  => 'Ukjend feil: «$1»',
 'api-error-unknown-error'                 => 'Intern feil: Noko gjekk gale då fila di vart freista lasta opp.',
 'api-error-unknown-warning'               => 'Ukjend åtvaring: $1',
+'api-error-unknownerror'                  => 'Ukjend feil: «$1».',
 'api-error-uploaddisabled'                => 'Det er ikkje høve til å lasta opp filer til wikien.',
 'api-error-verification-error'            => 'Fila kan vera øydelagd eller ha rang filending.',
 

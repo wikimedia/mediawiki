@@ -1258,7 +1258,7 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 
 # Search results
 'searchresults'                    => 'Rezultatele căutării',
-'searchresults-title'              => 'Caută rezultate pentru „$1”',
+'searchresults-title'              => 'Rezultatele căutării pentru „$1”',
 'searchresulttext'                 => 'Pentru mai multe detalii despre căutarea în {{SITENAME}}, vezi [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'                   => 'Ai căutat \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|toate paginile care încep cu "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|toate paginile care se leagă de "$1"]])',
 'searchsubtitleinvalid'            => 'Pentru căutarea "$1"',
@@ -1916,9 +1916,9 @@ O [[Special:WhatLinksHere/$2|listă completă]] este disponibilă.',
 'linkstoimage-redirect'     => '$1 (redirecționare de fișier) $2',
 'duplicatesoffile'          => '{{PLURAL:$1|Fișierul următor este duplicat|Următoarele $1 fișiere sunt duplicate}} ale acestui fișier ([[Special:FileDuplicateSearch/$2|mai multe detalii]]):',
 'sharedupload'              => 'Acest fișier provine de la $1 și poate fi folosit și de alte proiecte.',
-'sharedupload-desc-there'   => 'Fișierul acesta este de la $1 și poate fi folosit de alte proiecte.
-Vezi [$2 pagina de descriere a fișierului] pentru mai multe detalii.',
-'sharedupload-desc-here'    => 'Fișierul acesta este de la $1 și poate fi folosit de alte proiecte.
+'sharedupload-desc-there'   => 'Acest fișier provine de la $1 și poate fi folosit și în cadrul altor proiecte.
+Vizitați [$2 pagina de descriere a fișierului] pentru mai multe detalii.',
+'sharedupload-desc-here'    => 'Acest fișier provine de la $1 și poate fi folosit și în cadrul altor proiecte.
 Descrierea de mai jos poate fi consultată la [$2 pagina de descriere a fișierului].',
 'filepage-nofile'           => 'Nu există niciun fișier cu acest nume.',
 'filepage-nofile-link'      => 'Nu există niciun fișier cu acest nume, dar îl puteți [$1 încărca].',

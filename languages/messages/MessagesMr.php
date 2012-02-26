@@ -3579,8 +3579,8 @@ $5
 पहार्‍याची सूची अद्यावत करा येथे टिचकी मारा.
 तुम्ही [[Special:EditWatchlist|प्रस्थापित संपादकाचा उपयोग]] सुद्धा करू शकता.',
 'watchlistedit-raw-titles'     => 'शिर्षके:',
-'watchlistedit-raw-submit'     => 'पहार्‍याची सूची अद्यावत करा.',
-'watchlistedit-raw-done'       => 'तुमची पहार्‍याची सूची परिष्कृत करण्यात आली आहे.',
+'watchlistedit-raw-submit'     => 'पहाऱ्याची सूची अद्ययावत करा.',
+'watchlistedit-raw-done'       => 'तुमची पहाऱ्याची सूची परिष्कृत करण्यात आली आहे.',
 'watchlistedit-raw-added'      => '{{PLURAL:$1|1 शिर्षक होते |$1 शिर्षक होती }} भर घातली:',
 'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 शिर्षक होते |$1 शिर्षक होती }} वगळले:',
 

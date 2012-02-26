@@ -1348,8 +1348,8 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 'searcheverything-enable'          => 'Buscar en todos los espacios de nombres',
 'searchrelated'                    => 'relacionado',
 'searchall'                        => 'todos',
-'showingresults'                   => "Abajo se {{PLURAL:$1|muestra '''1''' resultado|muestran hasta '''$1''' resultados}} empezando por el nº '''$2'''.",
-'showingresultsnum'                => "Abajo se {{PLURAL:$3|muestra '''1''' resultado|muestran los '''$3''' resultados}} empezando por el nº '''$2'''.",
+'showingresults'                   => "Abajo se {{PLURAL:$1|muestra '''1''' resultado|muestran hasta '''$1''' resultados}} comenzando por el n.º '''$2'''.",
+'showingresultsnum'                => "Abajo se {{PLURAL:$3|muestra '''1''' resultado|muestran los '''$3''' resultados}} comenzando por el n.º '''$2'''.",
 'showingresultsheader'             => "{{PLURAL:$5|Resultado '''$1''' de '''$3'''|Resultados '''$1-$2''' de '''$3'''}} para '''$4'''",
 'nonefound'                        => "'''Nota''': De manera predeterminada solo se busca en algunos espacios de nombres.
 Prueba a usar el prefijo ''all:'' para buscar en todo el contenido (incluyendo páginas de discusión, plantillas, etc.) o usa el espacio de nombres que quieras como prefijo.",
@@ -3650,7 +3650,7 @@ Este código de confirmación caducará el $4.',
 
 # Separators for various lists, etc.
 'comma-separator' => ',&#32;',
-'pipe-separator'  => '&#32;•&#32;',
+'pipe-separator'  => '&#32;·&#32;',
 
 # Multipage image navigation
 'imgmultipageprev' => '← página anterior',
