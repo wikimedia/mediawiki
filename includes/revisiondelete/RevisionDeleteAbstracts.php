@@ -111,7 +111,7 @@ abstract class RevDel_List extends RevisionListBase {
 
 		if ( $status->successCount == 0 ) {
 			$status->ok = false;
-			$dbw->rollback();
+			$dbw->rollback( __METHOD__ );
 			return $status;
 		}
 
@@ -122,7 +122,7 @@ abstract class RevDel_List extends RevisionListBase {
 		$status->merge( $this->doPreCommitUpdates() );
 		if ( !$status->isOK() ) {
 			// Fatal error, such as no configured archive directory
-			$dbw->rollback();
+			$dbw->rollback( __METHOD__ );
 			return $status;
 		}
 

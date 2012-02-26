@@ -521,14 +521,14 @@ class MysqlInstaller extends DatabaseInstaller {
 					} catch( DBQueryError $dqe ) {
 						if( $this->db->lastErrno() == 1396 /* ER_CANNOT_USER */ ) {
 							// User (probably) already exists
-							$this->db->rollback();
+							$this->db->rollback( __METHOD__ );
 							$status->warning( 'config-install-user-alreadyexists', $dbUser );
 							$grantableNames[] = $fullName;
 							break;
 						} else {
 							// If we couldn't create for some bizzare reason and the
 							// user probably doesn't exist, skip the grant
-							$this->db->rollback();
+							$this->db->rollback( __METHOD__ );
 							$status->warning( 'config-install-user-create-failed', $dbUser, $dqe->getText() );
 						}
 					}

@@ -276,7 +276,7 @@ class DBLockManager extends LockManager {
 			$this->initConnection( $lockDb, $this->conns[$lockDb] );
 		}
 		if ( !$this->conns[$lockDb]->trxLevel() ) {
-			$this->conns[$lockDb]->begin(); // start transaction
+			$this->conns[$lockDb]->begin( __METHOD__ ); // start transaction
 		}
 		return $this->conns[$lockDb];
 	}
@@ -302,7 +302,7 @@ class DBLockManager extends LockManager {
 		foreach ( $this->conns as $lockDb => $db ) {
 			if ( $db->trxLevel() ) { // in transaction
 				try {
-					$db->rollback(); // finish transaction and kill any rows
+					$db->rollback( __METHOD__ ); // finish transaction and kill any rows
 				} catch ( DBError $e ) {
 					$status->fatal( 'lockmanager-fail-db-release', $lockDb );
 				}
@@ -391,7 +391,7 @@ class DBLockManager extends LockManager {
 		foreach ( $this->conns as $lockDb => $db ) {
 			if ( $db->trxLevel() ) { // in transaction
 				try {
-					$db->rollback(); // finish transaction and kill any rows
+					$db->rollback( __METHOD__ ); // finish transaction and kill any rows
 				} catch ( DBError $e ) {
 					// oh well
 				}

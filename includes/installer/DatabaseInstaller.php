@@ -141,7 +141,7 @@ abstract class DatabaseInstaller {
 			$this->db = $status->value;
 			// Enable autocommit
 			$this->db->clearFlag( DBO_TRX );
-			$this->db->commit();
+			$this->db->commit( __METHOD__ );
 		}
 		return $status;
 	}

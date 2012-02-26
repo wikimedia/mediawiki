@@ -447,7 +447,7 @@ class SqlBagOStuff extends BagOStuff {
 		}
 
 		try {
-			$db->rollback();
+			$db->rollback( __METHOD__ );
 		} catch ( DBQueryError $e ) {
 		}
 
