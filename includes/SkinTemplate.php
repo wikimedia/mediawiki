@@ -1000,7 +1000,9 @@ class SkinTemplate extends Skin {
 						$content_navigation['variants'][] = array(
 							'class' => ( $code == $preferred ) ? 'selected' : false,
 							'text' => $varname,
-							'href' => $title->getLocalURL( array( 'variant' => $code ) )
+							'href' => $title->getLocalURL( array( 'variant' => $code ) ),
+							'lang' => $code,
+							'hreflang' => $code
 						);
 					}
 				}
