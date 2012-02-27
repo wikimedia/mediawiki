@@ -226,6 +226,8 @@ class OracleInstaller extends DatabaseInstaller {
 			// user created or already existing, switching back to a normal connection
 			// as the new user has all needed privileges to setup the rest of the schema
 			// i will be using that user as _InstallUser from this point on
+			$this->db->close();
+			$this->db = false;
 			$this->parent->setVar( '_InstallUser', $this->getVar( 'wgDBuser' ) );
 			$this->parent->setVar( '_InstallPassword', $this->getVar( 'wgDBpassword' ) );
 			$this->parent->setVar( '_InstallDBname', $this->getVar( 'wgDBuser' ) );
@@ -240,8 +242,8 @@ class OracleInstaller extends DatabaseInstaller {
 	 */
 	public function createTables() {
 		$this->setupSchemaVars();
-		$this->db->selectDB( $this->getVar( 'wgDBuser' ) );
 		$this->db->setFlag( DBO_DDLMODE );
+		$this->parent->setVar( 'wgDBname', $this->getVar( 'wgDBuser' ) );
 		$status = parent::createTables();
 		$this->db->clearFlag( DBO_DDLMODE );
 
