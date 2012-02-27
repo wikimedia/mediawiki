@@ -3650,7 +3650,6 @@ Este código de confirmación caducará el $4.',
 
 # Separators for various lists, etc.
 'comma-separator' => ',&#32;',
-'pipe-separator'  => '&#32;·&#32;',
 
 # Multipage image navigation
 'imgmultipageprev' => '← página anterior',
