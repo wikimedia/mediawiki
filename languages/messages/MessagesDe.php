@@ -1909,7 +1909,7 @@ Sie kann daher keiner ordnungsgemäßen Sicherheitsüberprüfung unterzogen werd
 'img-auth-accessdenied'     => 'Zugriff verweigert',
 'img-auth-nopathinfo'       => 'PATH_INFO fehlt.
 Der Server ist nicht dafür eingerichtet, diese Information weiterzugeben.
-Sie könnte CGI-gestützt sein und unterstützt img_auth nicht.
+Sie könnte CGI-gestützt sein und kann daher img_auth nicht ermöglichen.
 Siehe hierzu die Seite https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'         => 'Der gewünschte Pfad ist nicht im konfigurierten Uploadverzeichnis.',
 'img-auth-badtitle'         => 'Aus „$1“ kann kein gültiger Titel erstellt werden.',
@@ -3012,7 +3012,7 @@ Diese auf dem lokalen Rechner speichern und danach hier hochladen.',
 'tooltip-rollback'                    => 'Macht alle letzten Änderungen der Seite, die vom gleichen Benutzer vorgenommen worden sind, durch nur einen Klick rückgängig.',
 'tooltip-undo'                        => 'Macht lediglich diese eine Änderung rückgängig und zeigt das Resultat in der Vorschau an, damit in der Zusammenfassungszeile eine Begründung angegeben werden kann.',
 'tooltip-preferences-save'            => 'Einstellungen speichern',
-'tooltip-summary'                     => 'Gib eine kurze Zusammenfassung ein',
+'tooltip-summary'                     => 'Gib eine kurze Zusammenfassung ein.',
 
 # Stylesheets
 'common.css'              => '/* Das folgende CSS wird für alle Benutzeroberflächen geladen. */',

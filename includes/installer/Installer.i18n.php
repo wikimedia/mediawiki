@@ -4496,6 +4496,15 @@ En un sistema Unix/Linux haga:
 mkdir $3
 chgrp $4 $3
 chmod g+w $3</pre>',
+	'config-sqlite-parent-unwritable-nogroup' => 'No se puede crear el directorio de datos <code><nowiki>$1</nowiki></code> , porque el directorio padre <code><nowiki>$2</nowiki></code> no es accesible en escritura por el servidor Web.
+
+El programa de instalación no pudo determinar el usuario que se ejecuta en el servidor Web
+Conceda permisos de escritura en el directorio <code><nowiki>$3</nowiki></code> para continuar.
+En un sistema Unix/Linux haga:
+
+<pre>cd $2
+mkdir $3
+chmod a+w $3</pre>',
 	'config-sqlite-mkdir-error' => 'Error al crear el directorio de datos "$1".
 Comprueba la ubicación e inténtalo de nuevo.',
 	'config-sqlite-dir-unwritable' => 'No se puede escribir en el directorio "$1".
@@ -4508,6 +4517,15 @@ Verifique el directório de datos y el nombre de la base de datos mostrada a con
 	'config-sqlite-fts3-downgrade' => 'El PHP no tiene compatibilidad FTS3. actualizando tablas a una versión anterior',
 	'config-can-upgrade' => "Esta base de datos contiene tablas de MediaWiki.
 Para actualizarlas a MediaWiki $1, haz clic en '''Continuar'''.",
+	'config-upgrade-done' => "Actualización completa.
+
+Usted puede ahora [ $1  empezar a usar su wiki].
+
+Si desea regenerar su archivo <code>LocalSettings.php</code> de archivo, haga clic en el botón de abajo.
+Esto '''no se recomienda''' a menos que esté teniendo problemas con su wiki.",
+	'config-upgrade-done-no-regenerate' => 'Actualización completa.
+
+Usted puede ahora [$1  empezar a usar su wiki].',
 	'config-regenerate' => 'Regenerar LocalSettings.php →',
 	'config-show-table-status' => 'SHOW TABLE STATUS ha fallado!',
 	'config-unknown-collation' => "'''Advertencia:''' La base de datos está utilizando una intercalación no reconocida.",
@@ -4520,6 +4538,13 @@ La cuenta que especifiques aquí debe existir.',
 	'config-mysql-engine' => 'Motor de almacenamiento:',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',
+	'config-mysql-myisam-dep' => "'''Atención''': Ha seleccionado MyISAM como motor de almacenamiento de MySQL, el cual no está recomendado para su uso con MediaWiki, porque:
+ * apenas soporta accesos simultáneos debido al bloqueo de tablas
+ * es más propenso a la corrupción que otros motores
+ * el código MediaWiki no siempre controla MyISAM como debiera
+
+Si su instalación de MySQL soporta InnoDB, es muy recomendable que lo elija en su lugar.
+Si la instalación de MySQL no admite InnoDB, quizás es el momento de una actualización.",
 	'config-mysql-engine-help' => "'''InnoDB''' es casi siempre la mejor opción, dado que soporta bien los accesos simultáneos.
 
 '''MyISAM''' es más rápido en instalaciones de usuario único o de sólo lectura.
@@ -4527,6 +4552,11 @@ Las bases de datos MyISAM tienden a corromperse más a menudo que las bases de d
 	'config-mysql-charset' => 'Conjunto de caracteres de la base de datos:',
 	'config-mysql-binary' => 'Binario',
 	'config-mysql-utf8' => 'UTF-8',
+	'config-mysql-charset-help' => "En '''modo binario''', MediaWiki almacena texto UTF-8 para la base de datos en campos binarios.
+Esto es más eficiente que el modo UTF-8 de MySQL y le permite utilizar la gama completa de caracteres Unicode.
+
+En '''modo UTF-8''', MySQL sabrá qué conjunto de caracteres emplean sus datos y puede presentarlos y convertirlos adecuadamente, pero no le permitirá almacenar caracteres por encima del [//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes plano multilingüe básico].",
+	'config-ibm_db2-low-db-pagesize' => "Su base de datos DB2 tiene un espacio de tablas por defecto con un tamaño de página insuficiente. El tamaño de página tiene que ser '''32 K''' o superior.",
 	'config-site-name' => 'Nombre del wiki:',
 	'config-site-name-help' => 'Esto aparecerá en la barra de título del navegador y en varios otros lugares.',
 	'config-site-name-blank' => 'Ingresar un nombre de sitio.',
@@ -4535,8 +4565,14 @@ Las bases de datos MyISAM tienden a corromperse más a menudo que las bases de d
 	'config-ns-site-name' => 'Igual como el nombre del wiki: $1',
 	'config-ns-other' => 'Otro (especificar)',
 	'config-ns-other-default' => 'MiWiki',
+	'config-project-namespace-help' => 'Siguiendo el ejemplo de  Wikipedia, muchos wikis mantienen sus páginas de políticas separadas de sus páginas de contenido, en un "\'\'\'espacio de nombres del proyecto\'\'\'".
+
+Todos los títulos de página en este espacio de nombres comienzan con un determinado prefijo, que usted puede especificar aquí.
+Tradicionalmente, este prefijo se deriva del nombre del wiki, pero no puede contener caracteres de puntuación como "#" o ":".',
 	'config-ns-invalid' => 'El espacio de nombre especificado "<nowiki>$1</nowiki>" no es válido.
 Especifica un espacio de nombre de proyecto diferente.',
+	'config-ns-conflict' => 'El espacio de nombres especificado "<nowiki>$1</nowiki>" entra en conflicto con un espacio de nombres predeterminado de MediaWiki.
+Especifique un espacio de nombres de proyecto diferente.',
 	'config-admin-box' => 'Cuenta de administrador',
 	'config-admin-name' => 'Su nombre:',
 	'config-admin-password' => 'Contraseña:',
@@ -4553,6 +4589,7 @@ Especifique un nombre de usuario diferente.',
 	'config-admin-email-help' => 'Introduce aquí un correo electrónico que te permita recibir mensajes de otros usuarios del wiki, vuelve a configurar tu contraseña y recibe notificaciones de cambios realizados a tus páginas vigiladas. Puedes dejar este campo vacío.',
 	'config-admin-error-user' => 'Error interno al crear un administrador con el nombre "<nowiki>$1</nowiki>".',
 	'config-admin-error-password' => 'Error interno al establecer una contraseña para el administrador " <nowiki>$1</nowiki> ": <pre>$2</pre>',
+	'config-admin-error-bademail' => 'Ha introducido una dirección de correo electrónico inválida.',
 	'config-subscribe' => 'Suscribirse para recibir [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce avisos de nuevas versiones].',
 	'config-subscribe-help' => 'Esta es una lista de divulgación de bajo volumen para anuncios de lanzamiento de versiones nuevas, incluyendo anuncios de seguridad importantes.
 Te recomendamos suscribirte y actualizar tu instalación MediaWiki cada vez que se lance una nueva versión.',

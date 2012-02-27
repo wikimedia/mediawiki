@@ -631,7 +631,7 @@ Ga re fane ka e-poso ya gago go bašumiši ba bangwe ge ba polela le wena ka yon
 
 # User rights
 'editusergroup'            => 'Fetola sehlopha sa bašomiši',
-'editinguser'              => "Fetola mošomiši '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'              => "O fetola mošomiši '''[[User:$1|$1]]''' $2",
 'userrights-editusergroup' => 'Fetola sehlopha sa bašomiši',
 'saveusergroups'           => 'Boloko Dihlopha tša bašomiši',
 'userrights-groupsmember'  => 'Leloko la:',
@@ -727,7 +727,7 @@ Matlakala ago ba [[Special:Watchlist|lenanong la gago la matlakala ditlhapetšo]
 'filehist'                  => 'Histori ya faele',
 'filehist-help'             => 'Pinyeletša go letšatšikgwedi/nako go bona faela ka tsela yeo ebego e le ka gona nakong yeo.',
 'filehist-deleteall'        => 'phumula ka moka',
-'filehist-deleteone'        => 'phumula ye',
+'filehist-deleteone'        => 'phumula',
 'filehist-revert'           => 'bušetša',
 'filehist-current'          => 'bjale',
 'filehist-datetime'         => 'LetšatšiKgwedi/Nako',
@@ -746,7 +746,7 @@ Matlakala ago ba [[Special:Watchlist|lenanong la gago la matlakala ditlhapetšo]
 'uploadnewversion-linktext' => 'Lokela peoletšo ye mphsa ya faele',
 
 # File reversion
-'filerevert-comment'        => 'Ahlaahla:',
+'filerevert-comment'        => 'Lebaka:',
 'filerevert-defaultcomment' => 'Boela go poeletšo ya go tloga go $2, $1',
 
 # File deletion
@@ -918,7 +918,7 @@ Ga eba o nyaka go hloša letlaka le go lenano la ditlhapetšo tša gago, šomiš
 'deletepage'            => 'Phumula letlakala',
 'excontent'             => "mateng ebe e le: '$1'",
 'delete-legend'         => 'Phumula',
-'historywarning'        => 'Temošo: Letlakala leo o lekago go lephumula le nale histori:',
+'historywarning'        => "'''Temošo:''' Letlakala leo o lekago go lephumula le nale histori le {{:$1|phetogo|diphetogo}}:",
 'confirmdeletetext'     => 'O phumula letlakala le histori ka moka ya lona.
 Ka kgopela sitlediša gore ke se o nyakago  go sedira, le gore o kwešiša ditla morago tša se, le gore seo o se dirago se latela melawana le ditaelo go ya ka [[{{MediaWiki:Policy-url}}|polisi]].',
 'actioncomplete'        => 'Kgopelo e phetilwe ka katlego',
@@ -971,7 +971,7 @@ Seemo sa go lota ga letlakala '''$1''':",
 'undeletebtn'            => 'Hlaphola',
 'undeletelink'           => 'Nyakorela/hlaphola',
 'undeleteviewlink'       => 'ponagalo',
-'undeletecomment'        => 'Ahlaahla:',
+'undeletecomment'        => 'Lebaka:',
 'undelete-search-prefix' => 'Laetśa matlakala a go thoma ka:',
 'undelete-search-submit' => 'Fetleka',
 
@@ -1161,7 +1161,7 @@ Ka kgopelo, kgetha leina le lengwe.',
 'siteuser'         => '{{SITENAME}} mošumiši $1',
 'lastmodifiedatby' => 'Letlakala le  fetotšwe la mafelelo ka $2, $1 ke $3.',
 'others'           => 'tše dingwe',
-'siteusers'        => '{{SITENAME}} mošumiši/bašumiši $1',
+'siteusers'        => '{{SITENAME}} {{PLURAL:$2|mošumiši|bašumiši}} $1',
 
 # Image deletion
 'filedeleteerror-short' => 'Phošo go phumuleng faele: $1',

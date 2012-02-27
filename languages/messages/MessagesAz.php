@@ -514,10 +514,10 @@ Kukların qoşulmasına əmin olduqdan sonra səhifəni yeniləyib bir daha sın
 'nocookiesforlogin'          => '{{int:nocookieslogin}}',
 'noname'                     => 'Siz mövcud olan istifadəçi adı daxil etməmisiniz.',
 'loginsuccesstitle'          => 'Daxil oldunuz',
-'loginsuccess'               => "'''\"\$1\" adı ilə {{SITENAME}} saytına daxil oldunuz.'''",
-'nosuchuser'                 => '"$1" adında istifadəçi mövcud deyil.
+'loginsuccess'               => "'''\"\$1\" adı ilə sistemə daxil oldunuz.'''",
+'nosuchuser'                 => '"$1" adlı istifadəçi mövcud deyil.
 İstifadəçi adları hərflərin böyük və ya kiçik olmasına həssasdırlar.
-Düzgün yazdığına əmin ol, yaxud [[Special:UserLogin/signup|yeni hesab aç]].',
+Düzgün yazdığınıza əmin olun, yaxud [[Special:UserLogin/signup|yeni hesab açın]].',
 'nosuchusershort'            => '"$1" adında istifadəçi mövcud deyil.
 Düzgün yazdığına əmin ol.',
 'nouserspecified'            => 'İstifadəçi adı daxil etməlisiniz.',
@@ -1078,7 +1078,7 @@ Həmçinin kimliyinizi gostərmədən belə, başqalarının sizinlə istifadə�
 'userrights-reason'              => 'Səbəb:',
 'userrights-no-interwiki'        => 'Sizə başqa vikilayihələrdəki istifadəçilərin statusunu dəyişməyə icazə verilməyib',
 'userrights-nodatabase'          => '$1 verilənlər bazası ya mövcud deyil, ya da lokal deyil.',
-'userrights-nologin'             => 'Siz  istifadəçilərin hüquqlarını dəyişmək üçün idarəçi olaraq sistemə [[Special:UserLogin|Daxil olmalısınız]].',
+'userrights-nologin'             => 'Siz istifadəçilərin hüquqlarını dəyişmək üçün sistemə idarəçi olaraq [[Special:UserLogin|daxil olmalısınız]].',
 'userrights-notallowed'          => 'Sizin istifadəçi hesabınıza digər istifadəçilərə hüquqlar vermək və ya almağa icazə verilməyib.',
 'userrights-changeable-col'      => 'Dəyişdirə bildiyiniz qruplar',
 'userrights-unchangeable-col'    => 'Dəyişdirə bilmədiyiniz qruplar',
