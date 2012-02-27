@@ -860,16 +860,7 @@ class EnhancedChangesList extends ChangesList {
 		$users = ' <span class="changedby">[' .
 			implode( $this->message['semicolon-separator'], $users ) . ']</span>';
 
-		# Title for <a> tags
-		$expandTitle = htmlspecialchars( wfMsg( 'rc-enhanced-expand' ) );
-		$closeTitle = htmlspecialchars( wfMsg( 'rc-enhanced-hide' ) );
-
-		$tl = "<span class='mw-collapsible-toggle'>"
-			. "<span class='mw-rc-openarrow'>"
-			. "<a href='#' title='$expandTitle'>{$this->sideArrow()}</a>"
-			. "</span><span class='mw-rc-closearrow'>"
-			. "<a href='#' title='$closeTitle'>{$this->downArrow()}</a>"
-			. "</span></span>";
+		$tl = '<span class="mw-collapsible-toggle mw-enhancedchanges-arrow"></span>';
 		$r .= "<td>$tl</td>";
 
 		# Main line
@@ -974,7 +965,6 @@ class EnhancedChangesList extends ChangesList {
 			$classes = array();
 			$type = $rcObj->mAttribs['rc_type'];
 
-			#$r .= '<tr><td valign="top">'.$this->spacerArrow();
 			$r .= '<tr><td></td><td class="mw-enhanced-rc">';
 			$r .= $this->recentChangesFlags( array(
 				'newpage' => $rcObj->mAttribs['rc_new'],
@@ -1119,7 +1109,7 @@ class EnhancedChangesList extends ChangesList {
 		$r = Html::openElement( 'table', array( 'class' => $classes ) ) .
 			Html::openElement( 'tr' );
 
-		$r .= '<td class="mw-enhanced-rc">' . $this->spacerArrow();
+		$r .= '<td class="mw-enhanced-rc"><span class="mw-enhancedchanges-arrow mw-enhancedchanges-arrow-space"></span>';
 		# Flag and Timestamp
 		if( $type == RC_MOVE || $type == RC_MOVE_OVER_REDIRECT ) {
 			$r .= '&#160;&#160;&#160;&#160;'; // 4 flags -> 4 spaces
