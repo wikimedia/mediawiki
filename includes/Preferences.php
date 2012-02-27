@@ -252,7 +252,7 @@ class Preferences {
 		}
 
 		// Language
-		$languages = Language::getLanguageNames( false );
+		$languages = Language::fetchLanguageNames( null, 'mw' );
 		if ( !array_key_exists( $wgLanguageCode, $languages ) ) {
 			$languages[$wgLanguageCode] = $wgLanguageCode;
 		}

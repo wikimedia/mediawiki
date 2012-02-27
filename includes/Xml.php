@@ -190,29 +190,13 @@ class Xml {
 	 * 
 	 * @param string $selected The language code of the selected language
 	 * @param boolean $customisedOnly If true only languages which have some content are listed
-	 * @param string $language The ISO code of the language to display the select list in (optional)
+	 * @param string $inLanguage The ISO code of the language to display the select list in (optional)
 	 * @return array containing 2 items: label HTML and select list HTML
 	 */
-	public static function languageSelector( $selected, $customisedOnly = true, $language = null ) {
+	public static function languageSelector( $selected, $customisedOnly = true, $inLanguage = null ) {
 		global $wgLanguageCode;
 
-		// TODO: This should be replaced with a hook or something, from r107002
-		// If a specific language was requested and CLDR is installed, use it
-		if ( $language && is_callable( array( 'LanguageNames', 'getNames' ) ) ) {
-			if ( $customisedOnly ) {
-				$listType = LanguageNames::LIST_MW_SUPPORTED; // Only pull names that have localisation in MediaWiki
-			} else {
-				$listType = LanguageNames::LIST_MW; // Pull all languages that are in Names.php
-			}
-			// Retrieve the list of languages in the requested language (via CLDR)
-			$languages = LanguageNames::getNames(
-				$language, // Code of the requested language
-				LanguageNames::FALLBACK_NORMAL, // Use fallback chain
-				$listType
-			);
-		} else {
-			$languages = Language::getLanguageNames( $customisedOnly );
-		}
+		$languages = Language::fetchLanguageNames( $inLanguage, $customisedOnly ? 'mwfile' : 'mw' );
 
 		// Make sure the site language is in the list; a custom language code might not have a
 		// defined name...
