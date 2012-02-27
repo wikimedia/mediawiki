@@ -1206,7 +1206,8 @@ var mw = ( function ( $, undefined ) {
 				 *  "text/javascript"; if no type is provided, text/javascript is assumed.
 				 * @param async {Boolean} (optional) If true, load modules asynchronously
 				 *  even if document ready has not yet occurred. If false (default),
-				 *  block before document ready and load async after
+				 *  block before document ready and load async after. If not set, true will
+				 *  be assumed if loading a URL, and false will be assumed otherwise.
 				 */
 				load: function ( modules, type, async ) {
 					var filtered, m;
@@ -1219,6 +1220,10 @@ var mw = ( function ( $, undefined ) {
 					if ( typeof modules === 'string' ) {
 						// Support adding arbitrary external scripts
 						if ( /^(https?:)?\/\//.test( modules ) ) {
+							if ( async === undefined ) {
+								// Assume async for bug 34542
+								async = true;
+							}
 							if ( type === 'text/css' ) {
 								$( 'head' ).append( $( '<link>', {
 									rel: 'stylesheet',
