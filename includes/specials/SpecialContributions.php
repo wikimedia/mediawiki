@@ -254,7 +254,7 @@ class SpecialContributions extends SpecialPage {
 		// @todo Should this be removed at some point?
 		$oldMsg = $this->msg( 'contribsub' );
 		if ( $oldMsg->exists() ) {
-			$linksWithParentheses = $this->msg( 'parenteses' )->rawParams( $links )->escaped();
+			$linksWithParentheses = $this->msg( 'parentheses' )->rawParams( $links )->escaped();
 			return $oldMsg->rawParams( "$user $linksWithParentheses" );
 		} else {
 			return $this->msg( 'contribsub2' )->rawParams( $user, $links );
