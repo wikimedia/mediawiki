@@ -43,9 +43,6 @@ class Http {
 		}
 
 		$req = MWHttpRequest::factory( $url, $options );
-		if( isset( $options['userAgent'] ) ) {
-			$req->setUserAgent( $options['userAgent'] );
-		}
 		$status = $req->execute();
 
 		if ( $status->isOK() ) {
@@ -209,6 +206,9 @@ class MWHttpRequest {
 			$this->timeout = $options['timeout'];
 		} else {
 			$this->timeout = $wgHTTPTimeout;
+		}
+		if( isset( $options['userAgent'] ) ) {
+			$this->setUserAgent( $options['userAgent'] );
 		}
 
 		$members = array( "postData", "proxy", "noProxy", "sslVerifyHost", "caInfo",
