@@ -68,6 +68,15 @@ body .ui-button.disabled {
 body button.ui-button::-moz-focus-inner { 
 	border: 0; 
 }
+/* Give large buttons some extra padding */
+body .ui-button-large {
+	padding: 5px;
+}
+/* Use white icons for colored buttons */
+.ui-button-green .ui-icon, .ui-button-blue .ui-icon, .ui-button-red .ui-icon, .ui-button-orange .ui-icon {
+	/* @embed */
+	background-image: url(images/ui-icons_ffffff_256x240.png) !important;
+}
 
 /* Green buttons */
 
@@ -82,18 +91,15 @@ body .ui-button.ui-button-green:hover {
 	/* @embed */
 	background: #339b65 url(images/button-green-hover.png) repeat-x scroll 50% 100% !important;
 }
-body .ui-button.ui-button-green-large {
-	color: white !important;
-	border-color: #97af7e !important;
+body .ui-button.ui-button-green.ui-button-large {
 	/* @embed */
 	background: #3cb677 url(images/button-green-large.png) repeat-x scroll 50% 100% !important;
 }
-body .ui-button.ui-button-green-large:hover {
-	border-color: #778e61 !important;
+body .ui-button.ui-button-green.ui-button-large:hover {
 	/* @embed */
 	background: #339b65 url(images/button-green-hover-large.png) repeat-x scroll 50% 100% !important;
 }
-body .ui-button.ui-button-green.disabled, body .ui-button.ui-button-green-large.disabled {
+body .ui-button.ui-button-green.disabled {
 	filter:alpha(opacity=50);
 	-moz-opacity:0.50;
 	-khtml-opacity: 0.50;
@@ -113,18 +119,15 @@ body .ui-button.ui-button-blue:hover {
 	/* @embed */
 	background: #2b569e url(images/button-blue-hover.png) repeat-x scroll 50% 100% !important;
 }
-body .ui-button.ui-button-blue-large {
-	color: white !important;
-	border-color: #628acb !important;
+body .ui-button.ui-button-blue.ui-button-large {
 	/* @embed */
 	background: #3365ba url(images/button-blue-large.png) repeat-x scroll 50% 100% !important;
 }
-body .ui-button.ui-button-blue-large:hover {
-	border-color: #5375ad !important;
+body .ui-button.ui-button-blue.ui-button-large:hover {
 	/* @embed */
 	background: #2b569e url(images/button-blue-hover-large.png) repeat-x scroll 50% 100% !important;
 }
-body .ui-button.ui-button-blue.disabled, body .ui-button.ui-button-blue-large.disabled {
+body .ui-button.ui-button-blue.disabled {
 	filter:alpha(opacity=50);
 	-moz-opacity:0.50;
 	-khtml-opacity: 0.50;
@@ -144,18 +147,15 @@ body .ui-button.ui-button-red:hover {
 	/* @embed */
 	background: #ad0000 url(images/button-red-hover.png) repeat-x scroll 50% 100% !important;
 }
-body .ui-button.ui-button-red-large {
-	color: white !important;
-	border-color: #af977e !important;
+body .ui-button.ui-button-red.ui-button-large {
 	/* @embed */
 	background: #cb0000 url(images/button-red.png) repeat-x scroll 50% 100% !important;
 }
-body .ui-button.ui-button-red-large:hover {
-	border-color: #8e7761 !important;
+body .ui-button.ui-button-red.ui-button-large:hover {
 	/* @embed */
 	background: #ad0000 url(images/button-red-hover.png) repeat-x scroll 50% 100% !important;
 }
-body .ui-button.ui-button-red.disabled, body .ui-button.ui-button-red-large.disabled {
+body .ui-button.ui-button-red.disabled {
 	filter:alpha(opacity=50);
 	-moz-opacity:0.50;
 	-khtml-opacity: 0.50;
@@ -175,18 +175,15 @@ body .ui-button.ui-button-orange:hover {
 	/* @embed */
 	background: #cc6c11 url(images/button-orange-hover.png) repeat-x scroll 50% 100% !important;
 }
-body .ui-button.ui-button-orange-large {
-	color: white !important;
-	border-color: #f3a863 !important;
+body .ui-button.ui-button-orange.ui-button-large {
 	/* @embed */
 	background: #f07f14 url(images/button-orange-large.png) repeat-x scroll 50% 100% !important;
 }
-body .ui-button.ui-button-orange-large:hover {
-	border-color: #ce9055 !important;
+body .ui-button.ui-button-orange.ui-button-large:hover {
 	/* @embed */
 	background: #cc6c11 url(images/button-orange-hover-large.png) repeat-x scroll 50% 100% !important;
 }
-body .ui-button.ui-button-orange.disabled, body .ui-button.ui-button-orange-large.disabled {
+body .ui-button.ui-button-orange.disabled {
 	filter:alpha(opacity=50);
 	-moz-opacity:0.50;
 	-khtml-opacity: 0.50;
