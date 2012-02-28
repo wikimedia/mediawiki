@@ -62,7 +62,7 @@ class MWDebug {
 	 */
 	public static function addModules( OutputPage $out ) {
 		if ( self::$enabled ) {
-			$out->addModules( 'mediawiki.debug' );
+			$out->addModules( 'mediawiki.debug.init' );
 		}
 	}
 
@@ -271,11 +271,14 @@ class MWDebug {
 			'memoryPeak' => $context->getLanguage()->formatSize( memory_get_peak_usage() ),
 			'includes' => self::getFilesIncluded( $context ),
 		);
-		// TODO: Clean this up
-		$html = Html::openElement( 'script' );
-		$html .= 'var debugInfo = ' . Xml::encodeJsVar( $debugInfo ) . ';';
-		$html .= " $(function() { mw.loader.using( 'mediawiki.debug', function() { mw.Debug.init( debugInfo ) } ); }); ";
-		$html .= Html::closeElement( 'script' );
+
+		// Cannot use OutputPage::addJsConfigVars because those are already outputted
+		// by the time this method is called.
+		$html = Html::inlineScript(
+			ResourceLoader::makeLoaderConditionalScript(
+				ResourceLoader::makeConfigSetScript( array( 'debugInfo' => $debugInfo ) )
+			)
+		);
 
 		return $html;
 	}

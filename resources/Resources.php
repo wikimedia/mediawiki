@@ -537,12 +537,20 @@ return array(
 	),
 	'mediawiki.api.watch' => array( 
 		'scripts' => 'resources/mediawiki.api/mediawiki.api.watch.js',
-		'dependencies' => 'mediawiki.api',
+		'dependencies' => array('mediawiki.api', 'mediawiki.user'),
 	),
 	'mediawiki.debug' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.debug.js',
 		'styles' => 'resources/mediawiki/mediawiki.debug.css',
 		'dependencies' => 'jquery.footHovzer',
+		'position' => 'bottom',
+	),
+	'mediawiki.debug.init' => array(
+		'scripts' => 'resources/mediawiki/mediawiki.debug.init.js',
+		'dependencies' => 'mediawiki.debug',
+		// Uses a custom mw.config variable that is set in debughtml,
+		// must be loaded on the bottom
+		'position' => 'bottom',
 	),
 	'mediawiki.feedback' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.feedback.js',
