@@ -383,7 +383,7 @@ class LogEventsList {
 		if( self::typeAction( $row, 'move', 'move', 'move' ) && !empty( $paramArray[0] ) ) {
 			$destTitle = Title::newFromText( $paramArray[0] );
 			if( $destTitle ) {
-				$revert = '(' . Linker::link(
+				$revert = Linker::link(
 					SpecialPage::getTitleFor( 'Movepage' ),
 					$this->message['revertmove'],
 					array(),
@@ -394,7 +394,8 @@ class LogEventsList {
 						'wpMovetalk' => 0
 					),
 					array( 'known', 'noclasses' )
-				) . ')';
+				);
+				$revert = wfMessage( 'parentheses' )->rawParams( $revert )->escaped();
 			}
 		// Show undelete link
 		} elseif( self::typeAction( $row, array( 'delete', 'suppress' ), 'delete', 'deletedhistory' ) ) {
@@ -403,17 +404,17 @@ class LogEventsList {
 			} else {
 				$viewdeleted = $this->message['undeletelink'];
 			}
-			$revert = '(' . Linker::link(
+			$revert = Linker::link(
 				SpecialPage::getTitleFor( 'Undelete' ),
 				$viewdeleted,
 				array(),
 				array( 'target' => $title->getPrefixedDBkey() ),
 				array( 'known', 'noclasses' )
-			 ) . ')';
+			 );
+			$revert = wfMessage( 'parentheses' )->rawParams( $revert )->escaped();
 		// Show unblock/change block link
 		} elseif( self::typeAction( $row, array( 'block', 'suppress' ), array( 'block', 'reblock' ), 'block' ) ) {
-			$revert = '(' .
-				Linker::link(
+			$revert = Linker::link(
 					SpecialPage::getTitleFor( 'Unblock', $row->log_title ),
 					$this->message['unblocklink'],
 					array(),
@@ -427,12 +428,11 @@ class LogEventsList {
 					array(),
 					array(),
 					'known'
-				) .
-				')';
+				);
+				$revert = wfMessage( 'parentheses' )->rawParams( $revert )->escaped();
 		// Show change protection link
 		} elseif( self::typeAction( $row, 'protect', array( 'modify', 'protect', 'unprotect' ) ) ) {
-			$revert .= ' (' .
-				Linker::link( $title,
+			$revert .= Linker::link( $title,
 					$this->message['hist'],
 					array(),
 					array(
@@ -448,10 +448,10 @@ class LogEventsList {
 						array( 'action' => 'protect' ),
 						'known' );
 			}
-			$revert .= ')';
+			$revert = ' ' . wfMessage( 'parentheses' )->rawParams( $revert )->escaped();
 		// Show unmerge link
 		} elseif( self::typeAction( $row, 'merge', 'merge', 'mergehistory' ) ) {
-			$revert = '(' . Linker::link(
+			$revert = Linker::link(
 				SpecialPage::getTitleFor( 'MergeHistory' ),
 				$this->message['revertmerge'],
 				array(),
@@ -461,7 +461,8 @@ class LogEventsList {
 					'mergepoint' => $paramArray[1]
 				),
 				array( 'known', 'noclasses' )
-			) . ')';
+			);
+			$revert = wfMessage( 'parentheses' )->rawParams( $revert )->escaped();
 		// If an edit was hidden from a page give a review link to the history
 		} elseif( self::typeAction( $row, array( 'delete', 'suppress' ), 'revision', 'deletedhistory' ) ) {
 			$revert = RevisionDeleter::getLogLinks( $title, $paramArray,
@@ -473,7 +474,7 @@ class LogEventsList {
 				// $paramArray[1] is a CSV of the IDs
 				$query = $paramArray[0];
 				// Link to each hidden object ID, $paramArray[1] is the url param
-				$revert = '(' . Linker::link(
+				$revert = Linker::link(
 					$revdel,
 					$this->message['revdel-restore'],
 					array(),
@@ -483,7 +484,8 @@ class LogEventsList {
 						'ids' => $query
 					),
 					array( 'known', 'noclasses' )
-				) . ')';
+				);
+				$revert = wfMessage( 'parentheses' )->rawParams( $revert )->escaped();
 			}
 		// Do nothing. The implementation is handled by the hook modifiying the passed-by-ref parameters.
 		} else {

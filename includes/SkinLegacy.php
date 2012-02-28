@@ -702,7 +702,7 @@ class LegacyTemplate extends BaseTemplate {
 		global $wgOut;
 
 		if ( !$wgOut->isArticleRelated() ) {
-			return '(' . wfMsg( 'notanarticle' ) . ')';
+			return wfMessage( 'parentheses', wfMessage( 'notanarticle' )->text() )->escaped();
 		} else {
 			return Linker::linkKnown(
 				SpecialPage::getTitleFor( 'Recentchangeslinked', $this->getSkin()->getTitle()->getPrefixedDBkey() ),
@@ -815,8 +815,9 @@ class LegacyTemplate extends BaseTemplate {
 
 				$talkLink = Linker::link( $wgUser->getTalkPage(),
 					$wgLang->getNsText( NS_TALK ) );
+				$talkLink = wfMessage( 'parentheses' )->rawParams( $talkLink )->escaped();
 
-				$ret .= "$name ($talkLink)";
+				$ret .= "$name $talkLink";
 			} else {
 				$ret .= wfMsg( 'notloggedin' );
 			}
@@ -837,10 +838,11 @@ class LegacyTemplate extends BaseTemplate {
 		} else {
 			$talkLink = Linker::link( $wgUser->getTalkPage(),
 				$wgLang->getNsText( NS_TALK ) );
+			$talkLink = wfMessage( 'parentheses' )->rawParams( $talkLink )->escaped();
 
 			$ret .= Linker::link( $wgUser->getUserPage(),
 				htmlspecialchars( $wgUser->getName() ) );
-			$ret .= " ($talkLink)<br />";
+			$ret .= " $talkLink<br />";
 			$ret .= $wgLang->pipeList( array(
 				Linker::link(
 					SpecialPage::getTitleFor( 'Userlogout' ), wfMsg( 'logout' ),
@@ -860,6 +862,4 @@ class LegacyTemplate extends BaseTemplate {
 
 		return $ret;
 	}
-
 }
-

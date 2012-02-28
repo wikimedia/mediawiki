@@ -706,6 +706,7 @@ class RecentChange {
 			} elseif($szdiff >= 0) {
 				$szdiff = '+' . $szdiff ;
 			}
+			// @todo i18n with parentheses in content language?
 			$szdiff = '(' . $szdiff . ')' ;
 		} else {
 			$szdiff = '';

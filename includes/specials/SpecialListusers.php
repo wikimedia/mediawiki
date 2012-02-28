@@ -158,14 +158,16 @@ class UsersPager extends AlphabeticPager {
 		}
 
 		$userTalkPage = $userPage->getTalkPage();
-		$talk = ' (' . Linker::link( $userTalkPage, wfMessage( 'talkpagelinktext' )->escaped() ) . ')';
+		$talk = Linker::link( $userTalkPage, wfMessage( 'talkpagelinktext' )->escaped() );
+		$talk = ' ' . wfMessage( 'parentheses' )->rawParams( $talk )->escaped();
 
 		$created = '';
 		# Some rows may be NULL
 		if( $row->creation ) {
 			$d = $lang->date( wfTimestamp( TS_MW, $row->creation ), true );
 			$t = $lang->time( wfTimestamp( TS_MW, $row->creation ), true );
-			$created = ' (' . wfMsgExt( 'usercreated', array( 'parsemag', 'escape' ), $d, $t, $row->user_name ) . ')';
+			$created = wfMsgExt( 'usercreated', array( 'parsemag', 'escape' ), $d, $t, $row->user_name );
+			$created = ' ' . wfMessage( 'parentheses' )->rawParams( $created )->escaped();
 		}
 
 		wfRunHooks( 'SpecialListusersFormatRow', array( &$item, $row ) );

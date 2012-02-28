@@ -370,7 +370,7 @@ class AllmessagesTablePager extends TablePager {
 						array( 'broken' )
 					);
 				}
-				return $title . ' (' . $talk . ')';
+				return $title . $this->msg( 'parentheses' )->rawParams( $talk )->escaped();
 
 			case 'am_default' :
 			case 'am_actual' :
