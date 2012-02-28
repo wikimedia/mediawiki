@@ -9,7 +9,7 @@
 		// If you want to add buttons, use
 		// mw.toolbar.addButton( imageFile, speedTip, tagOpen, tagClose, sampleText, imageId, selectText );
 		addButton : function() {
-			if ( isReady ) {
+			if ( this.isReady ) {
 				this.insertButton.apply( this, arguments );
 			} else {
 				this.buttons.push( [].slice.call( arguments ) );
@@ -48,7 +48,7 @@
 
 		onReady : function() {
 			this.$toolbar = $( '#toolbar' );
-			isReady = true;
+			this.isReady = true;
 			// Legacy
 			// Merge buttons from mwCustomEditButtons
 			var buttons = [].concat( this.buttons, window.mwCustomEditButtons );
