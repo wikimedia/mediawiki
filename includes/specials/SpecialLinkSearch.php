@@ -88,13 +88,13 @@ class LinkSearchPage extends QueryPage {
 		$s = Xml::openElement( 'form', array( 'id' => 'mw-linksearch-form', 'method' => 'get', 'action' => $GLOBALS['wgScript'] ) ) .
 			Html::hidden( 'title', $this->getTitle()->getPrefixedDbKey() ) .
 			'<fieldset>' .
-			Xml::element( 'legend', array(), wfMsg( 'linksearch' ) ) .
-			Xml::inputLabel( wfMsg( 'linksearch-pat' ), 'target', 'target', 50, $target ) . ' ';
+			Xml::element( 'legend', array(), $this->msg( 'linksearch' )->text() ) .
+			Xml::inputLabel( $this->msg( 'linksearch-pat' )->text(), 'target', 'target', 50, $target ) . ' ';
 		if ( !$wgMiserMode ) {
-			$s .= Xml::label( wfMsg( 'linksearch-ns' ), 'namespace' ) . ' ' .
+			$s .= Xml::label( $this->msg( 'linksearch-ns' )->text(), 'namespace' ) . ' ' .
 				Xml::namespaceSelector( $namespace, '' );
 		}
-		$s .=	Xml::submitButton( wfMsg( 'linksearch-ok' ) ) .
+		$s .=	Xml::submitButton( $this->msg( 'linksearch-ok' )->text() ) .
 			'</fieldset>' .
 			Xml::closeElement( 'form' );
 		$out->addHTML( $s );
@@ -181,7 +181,7 @@ class LinkSearchPage extends QueryPage {
 		$pageLink = Linker::linkKnown( $title );
 		$urlLink = Linker::makeExternalLink( $url, $url );
 
-		return wfMsgHtml( 'linksearch-line', $urlLink, $pageLink );
+		return $this->msg( 'linksearch-line' )->rawParams( $urlLink, $pageLink )->escaped();
 	}
 
 	/**
