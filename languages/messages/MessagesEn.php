@@ -4708,6 +4708,34 @@ This site is experiencing technical difficulties.',
 'logentry-newusers-autocreate'        => 'Account $1 was created automatically',
 'newuserlog-byemail'                  => 'password sent by e-mail',
 
+# For IRC, see bug 34508.  Do not change
+'revdelete-logentry'          => 'changed revision visibility of "[[$1]]"',
+'logdelete-logentry'          => 'changed event visibility of "[[$1]]"',
+'revdelete-content'           => 'content',
+'revdelete-summary'           => 'edit summary',
+'revdelete-uname'             => 'username',
+'revdelete-hid'               => 'hid $1',
+'revdelete-unhid'             => 'unhid $1',
+'revdelete-log-message'       => '$1 for $2 {{PLURAL:$2|revision|revisions}}',
+'logdelete-log-message'       => '$1 for $2 {{PLURAL:$2|event|events}}',
+'deletedarticle'              => 'deleted "[[$1]]"',
+'suppressedarticle'           => 'suppressed "[[$1]]"',
+'undeletedarticle'            => 'restored "[[$1]]"',
+'patrol-log-line'             => 'marked $1 of $2 patrolled $3',
+'patrol-log-auto'             => '(automatic)',
+'patrol-log-diff'             => 'revision $1',
+'1movedto2'                   => 'moved [[$1]] to [[$2]]',
+'1movedto2_redir'             => 'moved [[$1]] to [[$2]] over redirect',
+'move-redirect-suppressed'    => 'redirect suppressed',
+'newuserlog-byemail'          => 'password sent by e-mail',
+'newuserlog-create-entry'     => 'New user account',
+'newuserlog-create2-entry'    => 'created new account $1',
+'newuserlog-autocreate-entry' => 'Account created automatically',
+'suppressedarticle'           => 'suppressed "[[$1]]"',
+'deletedarticle'              => 'deleted "[[$1]]"',
+'uploadedimage'               => 'uploaded "[[$1]]"',
+'overwroteimage'              => 'uploaded a new version of "[[$1]]"',
+
 # Feedback
 'feedback-bugornote' => 'If you are ready to describe a technical problem in detail please [$1 report a bug].
 Otherwise, you can use the easy form below. Your comment will be added to the page "[$3 $2]", along with your username and what browser you are using.',
@@ -4761,5 +4789,4 @@ Otherwise, you can use the easy form below. Your comment will be added to the pa
 'api-error-unknownerror'                  => 'Unknown error: "$1".',
 'api-error-uploaddisabled'                => 'Uploading is disabled on this wiki.',
 'api-error-verification-error'            => 'This file might be corrupt, or have the wrong extension.',
-
 );

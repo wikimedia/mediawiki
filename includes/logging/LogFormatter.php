@@ -77,6 +77,8 @@ class LogFormatter {
 	 */
 	protected $plaintext = false;
 
+	protected $irctext = false;
+
 	protected function __construct( LogEntry $entry ) {
 		$this->entry = $entry;
 		$this->context = RequestContext::getMain();
@@ -141,6 +143,105 @@ class LogFormatter {
 	}
 
 	/**
+	 * Even uglier hack to maintain backwards compatibilty with IRC bots
+	 * (bug 34508).
+	 * @see getActionText()
+	 * @return string text
+	 */
+	public function getIRCActionText() {
+		$this->plaintext = true;
+		$text = $this->getActionText();
+
+		$entry = $this->entry;
+		$parameters = $entry->getParameters();
+		// @see LogPage::actionText()
+		$msgOpts = array( 'parsemag', 'escape', 'replaceafter', 'content' );
+		// Text of title the action is aimed at.
+		$target = $entry->getTarget()->getPrefixedText() ;
+		$text = null;
+		switch( $entry->getType() ) {
+			case 'move':
+				switch( $entry->getSubtype() ) {
+					case 'move':
+						$movesource =  $parameters['4::target'];
+						$text = wfMsgExt( '1movedto2', $msgOpts, $target, $movesource );
+						break;
+					case 'move_redir':
+						$movesource =  $parameters['4::target'];
+						$text = wfMsgExt( '1movedto2_redir', $msgOpts, $target, $movesource );
+						break;
+					case 'move-noredirect':
+						break;
+					case 'move_redir-noredirect':
+						break;
+				}
+				break;
+
+			case 'delete':
+				switch( $entry->getSubtype() ) {
+					case 'delete':
+						$text = wfMsgExt( 'deletedarticle', $msgOpts, $target );
+						break;
+					case 'restore':
+						$text = wfMsgExt( 'undeletedarticle', $msgOpts, $target );
+						break;
+					//case 'revision': // Revision deletion
+					//case 'event': // Log deletion
+						// see https://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/includes/LogPage.php?&pathrev=97044&r1=97043&r2=97044
+					//default:
+				}
+				break;
+
+			case 'patrol':
+				// https://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/includes/PatrolLog.php?&pathrev=97495&r1=97494&r2=97495
+				// Create a diff link to the patrolled revision
+				if ( $entry->getSubtype() === 'patrol' ) {
+					$diffLink = htmlspecialchars(
+						wfMsgForContent( 'patrol-log-diff', $parameters['4::curid'] ) );
+					$text = wfMsgForContent( 'patrol-log-line', $diffLink, "[[$target]]", "" );
+				} else {
+					// broken??
+				}
+				break;
+
+			case 'newusers':
+				switch( $entry->getSubtype() ) {
+					case 'newusers':
+					case 'create':
+						$text = wfMsgExt( 'newuserlog-create-entry', $msgOpts /* no params */ );
+						break;
+					case 'create2':
+						$text = wfMsgExt( 'newuserlog-create2-entry', $msgOpts, $target );
+						break;
+					case 'autocreate':
+						$text = wfMsgExt( 'newuserlog-autocreate-entry', $msgOpts /* no params */ );
+						break;
+				}
+				break;
+
+			case 'upload':
+				switch( $entry->getSubtype() ) {
+					case 'upload':
+						$text = wfMsgExt( 'uploadedimage', $msgOpts, $target );
+						break;
+					case 'overwrite':
+						$text = wfMsgExt( 'overwroteimage', $msgOpts, $target );
+						break;
+				}
+				break;
+
+			// case 'suppress' --private log -- aaron  (sign your messages so we know who to blame in a few years :-D)
+			// default:
+		}
+		if( is_null( $text ) ) {
+			$text = $this->getPlainActionText();
+		}
+
+		$this->plaintext = false;
+		return $text;
+	}
+
+	/**
 	 * Gets the log action, including username.
 	 * @return string HTML
 	 */
@@ -183,8 +284,8 @@ class LogFormatter {
 	protected function getMessageKey() {
 		$type = $this->entry->getType();
 		$subtype = $this->entry->getSubtype();
-		$key = "logentry-$type-$subtype";
-		return $key;
+
+		return "logentry-$type-$subtype";
 	}
 
 	/**
