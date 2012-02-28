@@ -160,7 +160,9 @@ class DatabaseMysql extends DatabaseBase {
 			if ( $this->trxLevel() ) {
 				$this->commit( __METHOD__ );
 			}
-			return mysql_close( $this->mConn );
+			$ret = mysql_close( $this->mConn );
+			$this->mConn = false;
+			return $ret;
 		} else {
 			return true;
 		}

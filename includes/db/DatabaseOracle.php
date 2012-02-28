@@ -294,7 +294,9 @@ class DatabaseOracle extends DatabaseBase {
 			if ( $this->mTrxLevel ) {
 				$this->commit( __METHOD__ );
 			}
-			return oci_close( $this->mConn );
+			$ret = oci_close( $this->mConn );
+			$this->mConn = null;
+			return null;
 		} else {
 			return true;
 		}

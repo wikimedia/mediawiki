@@ -563,7 +563,9 @@ class DatabaseIbm_db2 extends DatabaseBase {
 			if ( $this->trxLevel() > 0 ) {
 				$this->commit( __METHOD__ );
 			}
-			return db2_close( $this->mConn );
+			$ret = db2_close( $this->mConn );
+			$this->mConn = null;
+			return $ret;
 		} else {
 			return true;
 		}

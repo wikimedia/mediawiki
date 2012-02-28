@@ -243,7 +243,9 @@ class DatabasePostgres extends DatabaseBase {
 	function close() {
 		$this->mOpened = false;
 		if ( $this->mConn ) {
-			return pg_close( $this->mConn );
+			$ret = pg_close( $this->mConn );
+			$this->mConn = null;
+			return $ret;
 		} else {
 			return true;
 		}
