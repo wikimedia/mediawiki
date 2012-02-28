@@ -35,7 +35,7 @@ class BlockTest extends MediaWikiLangTestCase {
 			$oldBlock->delete();
 		}
 
-		$this->block = new Block( 'UTBlockee', 1, 0,
+		$this->block = new Block( 'UTBlockee', $user->getID(), 0,
 			'Parce que', 0, false, time() + 100500
 		);
 		$this->madeAt = wfTimestamp( TS_MW );
