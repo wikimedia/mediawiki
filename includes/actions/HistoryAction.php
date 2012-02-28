@@ -523,7 +523,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		$histLinks = Html::rawElement(
 				'span',
 				array( 'class' => 'mw-history-histlinks' ),
-				'(' . $curlink . $this->historyPage->message['pipe-separator'] . $lastlink . ') '
+				$this->msg( 'parentheses' )->rawParams( $curlink . $this->historyPage->message['pipe-separator'] . $lastlink )->escaped()
 		);
 		$s = $histLinks . $diffButtons;
 
@@ -619,7 +619,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		}
 
 		if ( $tools ) {
-			$s .= ' (' . $lang->pipeList( $tools ) . ')';
+			$s .= $this->msg( 'parentheses' )->rawParams( $lang->pipeList( $tools ) )->escaped();
 		}
 
 		# Tags

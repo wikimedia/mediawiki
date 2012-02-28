@@ -995,7 +995,7 @@ class Linker {
 		wfRunHooks( 'UserToolLinksEdit', array( $userId, $userText, &$items ) );
 
 		if ( $items ) {
-			return ' <span class="mw-usertoollinks">(' . $wgLang->pipeList( $items ) . ')</span>';
+			return ' <span class="mw-usertoollinks">' . wfMessage( 'parentheses' )->rawParams( $wgLang->pipeList( $items ) )->escaped() . '</span>';
 		} else {
 			return '';
 		}

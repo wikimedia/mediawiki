@@ -252,7 +252,7 @@ class ChangesList extends ContextSource {
 	public function insertLog( &$s, $title, $logtype ) {
 		$page = new LogPage( $logtype );
 		$logname = $page->getName()->escaped();
-		$s .= '(' . Linker::linkKnown( $title, $logname ) . ')';
+		$s .= $this->msg( 'parentheses' )->rawParams( Linker::linkKnown( $title, $logname ) )->escaped();
 	}
 
 	/**
@@ -284,9 +284,9 @@ class ChangesList extends ContextSource {
 				$query
 			);
 		}
-		$s .= '(' . $diffLink . $this->message['pipe-separator'];
+		$diffhist = $diffLink . $this->message['pipe-separator'];
 		# History link
-		$s .= Linker::linkKnown(
+		$diffhist .= Linker::linkKnown(
 			$rc->getTitle(),
 			$this->message['hist'],
 			array(),
@@ -295,7 +295,7 @@ class ChangesList extends ContextSource {
 				'action' => 'history'
 			)
 		);
-		$s .= ') . . ';
+		$s .= $this->msg( 'parentheses' )->rawParams( $diffhist )->escaped() . ' . . ';
 	}
 
 	/**
@@ -679,7 +679,7 @@ class EnhancedChangesList extends ChangesList {
 				$logtitle = SpecialPage::getTitleFor( 'Log', $logType );
 				$logpage = new LogPage( $logType );
 				$logname = $logpage->getName()->escaped();
-				$clink = '(' . Linker::linkKnown( $logtitle, $logname ) . ')';
+				$clink = $this->msg( 'parentheses' )->rawParams( Linker::linkKnown( $logtitle, $logname ) )->escaped();
 			} else {
 				$clink = Linker::link( $rc->getTitle() );
 			}
@@ -852,7 +852,7 @@ class EnhancedChangesList extends ChangesList {
 			$text = $userlink;
 			$text .= $this->getLanguage()->getDirMark();
 			if( $count > 1 ) {
-				$text .= ' (' . $this->getLanguage()->formatNum( $count ) . '×)';
+				$text .= ' ' . $this->msg( 'parentheses' )->rawParams( $this->getLanguage()->formatNum( $count ) . '×' )->escaped();
 			}
 			array_push( $users, $text );
 		}
@@ -894,18 +894,18 @@ class EnhancedChangesList extends ChangesList {
 		}
 		# Total change link
 		$r .= ' ';
+                $logtext = '';
 		if( !$allLogs ) {
-			$r .= '(';
 			if( !ChangesList::userCan( $rcObj, Revision::DELETED_TEXT, $this->getUser() ) ) {
-				$r .= $nchanges[$n];
+				$logtext .= $nchanges[$n];
 			} elseif( $isnew ) {
-				$r .= $nchanges[$n];
+				$logtext .= $nchanges[$n];
 			} else {
 				$params = $queryParams;
 				$params['diff'] = $currentRevision;
 				$params['oldid'] = $oldid;
 
-				$r .= Linker::link(
+				$logtext .= Linker::link(
 					$block[0]->getTitle(),
 					$nchanges[$n],
 					array(),
@@ -919,19 +919,24 @@ class EnhancedChangesList extends ChangesList {
 		if( $allLogs ) {
 			// don't show history link for logs
 		} elseif( $namehidden || !$block[0]->getTitle()->exists() ) {
-			$r .= $this->message['pipe-separator'] . $this->message['hist'] . ')';
+			$logtext .= $this->message['pipe-separator'] . $this->message['hist'];
 		} else {
 			$params = $queryParams;
 			$params['action'] = 'history';
 
-			$r .= $this->message['pipe-separator'] .
+			$logtext .= $this->message['pipe-separator'] .
 				Linker::linkKnown(
 					$block[0]->getTitle(),
 					$this->message['hist'],
 					array(),
 					$params
-				) . ')';
+				);
 		}
+
+		if( $logtext != '' ) {
+			$r .= $this->msg( 'parentheses' )->rawParams( $logtext )->escaped();
+		}
+
 		$r .= ' . . ';
 
 		# Character difference (does not apply if only log items)
@@ -1003,11 +1008,7 @@ class EnhancedChangesList extends ChangesList {
 			$r .= $link . '</span>';
 
 			if ( !$type == RC_LOG || $type == RC_NEW ) {
-				$r .= ' (';
-				$r .= $rcObj->curlink;
-				$r .= $this->message['pipe-separator'];
-				$r .= $rcObj->lastlink;
-				$r .= ')';
+				$r .= $this->msg( 'parentheses' )->rawParams( $rcObj->curlink . $this->message['pipe-separator'] . $rcObj->lastlink )->escaped();
 			}
 			$r .= ' . . ';
 
@@ -1126,20 +1127,19 @@ class EnhancedChangesList extends ChangesList {
 		if( $logType ) {
 			$logtitle = SpecialPage::getTitleFor( 'Log', $logType );
 			$logname = LogPage::logName( $logType );
-			$r .= '(' . Linker::linkKnown( $logtitle, htmlspecialchars( $logname ) ) . ')';
+			$r .= $this->msg( 'parentheses' )->rawParams( Linker::linkKnown( $logtitle, htmlspecialchars( $logname ) ) )->escaped();
 		} else {
 			$this->insertArticleLink( $r, $rcObj, $rcObj->unpatrolled, $rcObj->watched );
 		}
 		# Diff and hist links
 		if ( $type != RC_LOG ) {
-			$r .= ' ('. $rcObj->difflink . $this->message['pipe-separator'];
 			$query['action'] = 'history';
-			$r .= Linker::linkKnown(
+			$r .= $this->msg( 'parentheses' )->rawParams( $rcObj->difflink . $this->message['pipe-separator'] . Linker::linkKnown(
 				$rcObj->getTitle(),
 				$this->message['hist'],
 				array(),
 				$query
-			) . ')';
+			) )->escaped();
 		}
 		$r .= ' . . ';
 		# Character diff
