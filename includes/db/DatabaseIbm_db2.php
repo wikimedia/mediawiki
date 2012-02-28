@@ -557,18 +557,8 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	 * Returns success, true if already closed
 	 * @return bool
 	 */
-	public function close() {
-		$this->mOpened = false;
-		if ( $this->mConn ) {
-			if ( $this->trxLevel() > 0 ) {
-				$this->commit( __METHOD__ );
-			}
-			$ret = db2_close( $this->mConn );
-			$this->mConn = null;
-			return $ret;
-		} else {
-			return true;
-		}
+	protected function closeConnection() {
+		return db2_close( $this->mConn );
 	}
 
 	/**

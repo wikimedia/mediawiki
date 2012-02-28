@@ -154,18 +154,8 @@ class DatabaseMysql extends DatabaseBase {
 	/**
 	 * @return bool
 	 */
-	function close() {
-		$this->mOpened = false;
-		if ( $this->mConn ) {
-			if ( $this->trxLevel() ) {
-				$this->commit( __METHOD__ );
-			}
-			$ret = mysql_close( $this->mConn );
-			$this->mConn = false;
-			return $ret;
-		} else {
-			return true;
-		}
+	protected function closeConnection() {
+		return mysql_close( $this->mConn );
 	}
 
 	/**

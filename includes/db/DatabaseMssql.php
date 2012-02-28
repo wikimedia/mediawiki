@@ -110,15 +110,8 @@ class DatabaseMssql extends DatabaseBase {
 	 * Returns success, true if already closed
 	 * @return bool
 	 */
-	function close() {
-		$this->mOpened = false;
-		if ( $this->mConn ) {
-			$ret = sqlsrv_close( $this->mConn );
-			$this->mConn = null;
-			return $ret;
-		} else {
-			return true;
-		}
+	protected function closeConnection() {
+		return sqlsrv_close( $this->mConn );
 	}
 
 	protected function doQuery( $sql ) {

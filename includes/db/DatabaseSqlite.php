@@ -115,16 +115,11 @@ class DatabaseSqlite extends DatabaseBase {
 	}
 
 	/**
-	 * Close an SQLite database
-	 *
+	 * Does not actually close the connection, just destroys the reference for GC to do its work
 	 * @return bool
 	 */
-	function close() {
-		$this->mOpened = false;
-		if ( is_object( $this->mConn ) ) {
-			if ( $this->trxLevel() ) $this->commit( __METHOD__ );
-			$this->mConn = null;
-		}
+	protected function closeConnection() {
+		$this->mConn = null;
 		return true;
 	}
 

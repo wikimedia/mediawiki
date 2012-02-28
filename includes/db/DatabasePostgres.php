@@ -240,15 +240,8 @@ class DatabasePostgres extends DatabaseBase {
 	 * Returns success, true if already closed
 	 * @return bool
 	 */
-	function close() {
-		$this->mOpened = false;
-		if ( $this->mConn ) {
-			$ret = pg_close( $this->mConn );
-			$this->mConn = null;
-			return $ret;
-		} else {
-			return true;
-		}
+	protected function closeConnection() {
+		return pg_close( $this->mConn );
 	}
 
 	protected function doQuery( $sql ) {

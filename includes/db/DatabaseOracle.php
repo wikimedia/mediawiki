@@ -288,18 +288,8 @@ class DatabaseOracle extends DatabaseBase {
 	 * Returns success, true if already closed
 	 * @return bool
 	 */
-	function close() {
-		$this->mOpened = false;
-		if ( $this->mConn ) {
-			if ( $this->mTrxLevel ) {
-				$this->commit( __METHOD__ );
-			}
-			$ret = oci_close( $this->mConn );
-			$this->mConn = null;
-			return null;
-		} else {
-			return true;
-		}
+	protected function closeConnection() {
+		return oci_close( $this->mConn );
 	}
 
 	function execFlags() {

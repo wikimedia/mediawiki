@@ -733,10 +733,26 @@ abstract class DatabaseBase implements DatabaseType {
 	 *
 	 * @return Bool operation success. true if already closed.
 	 */
-	function close() {
-		# Stub, should probably be overridden
-		return true;
+	public function close() {
+		$this->mOpened = false;
+		if ( $this->mConn ) {
+			if ( $this->trxLevel() ) {
+				$this->commit( __METHOD__ );
+			}
+			$ret = $this->closeConnection();
+			$this->mConn = false;
+			return $ret;
+		} else {
+			return true;
+		}
 	}
+
+	/**
+	 * Closes underlying database connection
+	 * @since 1.20
+	 * @return bool: Whether connection was closed successfully
+	 */
+	protected abstract function closeConnection();
 
 	/**
 	 * @param $error String: fallback error message, used if none is given by DB
