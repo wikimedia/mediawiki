@@ -55,6 +55,13 @@ class MovePageForm extends UnlistedSpecialPage {
 		$oldTitleText = $request->getVal( 'wpOldTitle', $target );
 		$this->oldTitle = Title::newFromText( $oldTitleText );
 
+		if( is_null( $this->oldTitle ) ) {
+			throw new ErrorPageError( 'notargettitle', 'notargettext' );
+		}
+		if( !$this->oldTitle->exists() ) {
+			throw new ErrorPageError( 'nopagetitle', 'nopagetext' );
+		}
+
 		$newTitleTextMain = $request->getText( 'wpNewTitleMain' );
 		$newTitleTextNs = $request->getInt( 'wpNewTitleNs', $this->oldTitle->getNamespace() );
 		// Backwards compatibility for forms submitting here from other sources
@@ -64,12 +71,6 @@ class MovePageForm extends UnlistedSpecialPage {
 			? Title::newFromText( $newTitleText_bc )
 			: Title::makeTitleSafe( $newTitleTextNs, $newTitleTextMain );
 
-		if( is_null( $this->oldTitle ) ) {
-			throw new ErrorPageError( 'notargettitle', 'notargettext' );
-		}
-		if( !$this->oldTitle->exists() ) {
-			throw new ErrorPageError( 'nopagetitle', 'nopagetext' );
-		}
 
 		$user = $this->getUser();
 
