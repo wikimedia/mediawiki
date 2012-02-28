@@ -73,7 +73,7 @@ class NukePage extends Maintenance {
 				$this->output( "done.\n" );
 			}
 
-			$dbw->commit();
+			$dbw->commit( __METHOD__ );
 
 			# Delete revisions as appropriate
 			if ( $delete && $count ) {

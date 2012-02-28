@@ -173,7 +173,7 @@ class ImageCleanup extends TableCleanup {
 			if ( !file_exists( $dir ) ) {
 				if ( !wfMkdirParents( $dir, null, __METHOD__ ) ) {
 					$this->output( "RENAME FAILED, COULD NOT CREATE $dir" );
-					$db->rollback();
+					$db->rollback( __METHOD__ );
 					return;
 				}
 			}

@@ -98,7 +98,7 @@ class FixSlaveDesync extends Maintenance {
 			/*
 			if ( !$db->masterPosWait( $masterFile, $masterPos, 10 ) ) {
 				   $this->output( "Slave is too lagged, aborting\n" );
-				   $dbw->commit();
+				   $dbw->commit( __METHOD__ );
 				   sleep(10);
 				   return;
 			}*/
