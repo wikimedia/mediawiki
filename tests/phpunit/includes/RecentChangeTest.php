@@ -161,12 +161,15 @@ class RecentChangeTest extends MediaWikiTestCase {
 	 * @covers LogFormatter::getIRCActionText
 	 */
 	function testIrcMsgForLogTypeProtect() {
+		$protectParams = array(
+			'[edit=sysop] (indefinite) ‎[move=sysop] (indefinite)'
+		);
 
 		# protect/protect
 		$this->assertIRCComment(
-			wfMessage( 'protectedarticle', 'SomeTitle' )->plain() . ': ' .  $this->user_comment,
+			wfMessage( 'protectedarticle', 'SomeTitle ' . $protectParams[0] )->plain() . ': ' .  $this->user_comment,
 			'protect', 'protect',
-			array(),
+			$protectParams,
 			$this->user_comment
 		);
 
@@ -180,9 +183,9 @@ class RecentChangeTest extends MediaWikiTestCase {
 
 		# protect/modify
 		$this->assertIRCComment(
-			wfMessage( 'modifiedarticleprotection', 'SomeTitle' )->plain() . ': ' .  $this->user_comment,
+			wfMessage( 'modifiedarticleprotection', 'SomeTitle ' . $protectParams[0] )->plain() . ': ' .  $this->user_comment,
 			'protect', 'modify',
-			array(),
+			$protectParams,
 			$this->user_comment
 		);
 	}

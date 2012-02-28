@@ -226,6 +226,20 @@ class LogFormatter {
 				}
 				break;
 
+			case 'protect':
+				switch( $entry->getSubtype() ) {
+				case 'protect':
+					$text = wfMsgExt( 'protectedarticle', $msgOpts, $target . ' ' . $parameters[0] );
+						break;
+				case 'unprotect':
+					$text = wfMsgExt( 'unprotectedarticle', $msgOpts, $target );
+						break;
+				case 'modify':
+					$text = wfMsgExt( 'modifiedarticleprotection', $msgOpts, $target . ' ' . $parameters[0] );
+						break;
+				}
+				break;
+
 			case 'newusers':
 				switch( $entry->getSubtype() ) {
 					case 'newusers':
