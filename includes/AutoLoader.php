@@ -162,6 +162,7 @@ $wgAutoloadLocalClasses = array(
 	'Pager' => 'includes/Pager.php',
 	'PasswordError' => 'includes/User.php',
 	'PathRouter' => 'includes/PathRouter.php',
+	'PathRouterPatternReplacer' => 'includes/PathRouter.php',
 	'PermissionsError' => 'includes/Exception.php',
 	'PhpHttpRequest' => 'includes/HttpFunctions.php',
 	'PoolCounter' => 'includes/PoolCounter.php',

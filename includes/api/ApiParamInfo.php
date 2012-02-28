@@ -147,6 +147,9 @@ class ApiParamInfo extends ApiBase {
 		$examples = $obj->getExamples();
 		$retval['allexamples'] = array();
 		if ( $examples !== false ) {
+			if ( is_string( $examples ) ) {
+				$examples = array( $examples );
+			}
 			foreach( $examples as $k => $v ) {
 				if ( strlen( $retval['examples'] ) ) {
 					$retval['examples'] .= ' ';

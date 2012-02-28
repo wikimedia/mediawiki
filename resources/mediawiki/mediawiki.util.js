@@ -2,7 +2,7 @@
  * Implements mediaWiki.util library
  */
 ( function ( $, mw ) {
-"use strict";
+	"use strict";
 
 	// Local cache and alias
 	var util = {
@@ -121,19 +121,19 @@
 		 * @param str string String to be encoded
 		 */
 		wikiUrlencode: function ( str ) {
-			return this.rawurlencode( str )
+			return util.rawurlencode( str )
 				.replace( /%20/g, '_' ).replace( /%3A/g, ':' ).replace( /%2F/g, '/' );
 		},
 
 		/**
 		 * Get the link to a page name (relative to wgServer)
 		 *
-		 * @param str string Page name to get the link for.
-		 * @return string Location for a page with name of 'str' or boolean false on error.
+		 * @param str String: Page name to get the link for.
+		 * @return String: Location for a page with name of 'str' or boolean false on error.
 		 */
 		wikiGetlink: function ( str ) {
 			return mw.config.get( 'wgArticlePath' ).replace( '$1',
-				this.wikiUrlencode( str || mw.config.get( 'wgPageName' ) ) );
+				util.wikiUrlencode( typeof str === 'string' ? str : mw.config.get( 'wgPageName' ) ) );
 		},
 
 		/**
@@ -384,7 +384,7 @@
 					$link.attr( 'title', tooltip );
 				}
 				if ( accesskey && tooltip ) {
-					this.updateTooltipAccessKeys( $link );
+					util.updateTooltipAccessKeys( $link );
 				}
 
 				// Where to put our node ?

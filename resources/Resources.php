@@ -554,6 +554,7 @@ return array(
 	),
 	'mediawiki.feedback' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.feedback.js',
+		'styles' => 'resources/mediawiki/mediawiki.feedback.css',
 		'dependencies' => array( 
 			'mediawiki.api.edit', 
 			'mediawiki.Title',
