@@ -3,12 +3,17 @@
 	var currentFocused = $( '#wpTextbox1' );
 
 	mw.toolbar = {
-		$toolbar : [],
+		$toolbar : false,
 		buttons : [],
+		isReady : false,
 		// If you want to add buttons, use
 		// mw.toolbar.addButton( imageFile, speedTip, tagOpen, tagClose, sampleText, imageId, selectText );
 		addButton : function() {
-			this.buttons.push( [].slice.call( arguments ) );
+			if ( this.isReady ) {
+				this.insertButton.apply( this, arguments );
+			} else {
+				this.buttons.push( [].slice.call( arguments ) );
+			}	
 		},
 		insertButton : function( imageFile, speedTip, tagOpen, tagClose, sampleText, imageId, selectText ) {
 			var image = $('<img>', {
@@ -42,18 +47,20 @@
 		init : function() {},
 
 		onReady : function() {
-			mw.toolbar.$toolbar = $( '#toolbar' );
+			this.$toolbar = $( '#toolbar' );
+			this.isReady = true;
 			// Legacy
 			// Merge buttons from mwCustomEditButtons
 			var buttons = [].concat( this.buttons, window.mwCustomEditButtons );
 			for ( var i = 0; i < buttons.length; i++ ) {
 				if ( $.isArray( buttons[i] ) ) {
 					// Passes our button array as arguments
-					mw.toolbar.insertButton.apply( this, buttons[i] );
+					this.insertButton.apply( this, buttons[i] );
 				} else {
 					// Legacy mwCustomEditButtons is an object
 					var c = buttons[i];
-					mw.toolbar.insertButton( c.imageFile, c.speedTip, c.tagOpen, c.tagClose, c.sampleText, c.imageId, c.selectText );
+					this.insertButton( c.imageFile, c.speedTip, c.tagOpen, 
+						c.tagClose, c.sampleText, c.imageId, c.selectText );
 				}
 			}
 			return true;

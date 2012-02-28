@@ -122,11 +122,17 @@ production.
 * sha1 xml tag added to XML dump file. 
 * (bug 33646) Badtitle error page now emits a 400 HTTP status.
 * Special:MovePage now has a dropdown menu for namespaces.
+* (bug 33952) Refactor mw.toolbar to allow dynamic additions at any time.
 
 === Bug fixes in 1.19 ===
 * $wgUploadNavigationUrl should be used for file redlinks if.
   $wgUploadMissingFileUrl is not set. The first was used for this
   until the second was introduced in 1.17.
+* BREAKING CHANGE:  Style rules for wikitable are now more specific and prevent
+  inheritance to nested tables which caused various issues (bug 30485 and bug
+  33434). If your wiki has overriden rules for ".wikitable", please revise them and
+  adjust where neccecary. For comparison, use the "table.wikitable" section in
+  skins/common/shared.css as base.
 * (bug 27894) Move 'editondblclick' event listener down from body to
   div#bodyContent.
 * (bug 30172) The check for posix_isatty() in maintenance scripts did not detect
@@ -214,8 +220,6 @@ production.
   for backward compatibility.
 * (bug 31469) Make sure tracking category messages expand variables like
   {{NAMESPACE}} relative to correct title.
-* (bug 30485 and bug 33434) Style rules for wikitable are now more specific and
-  prevent inheritance to nested tables which caused various issues.
 * (bug 33454) ISO-8601 week-based year number (format character 'o') is now
   calculated correctly with respect to timezone.
 * (bug 32219) InstantCommons now fetches content from Wikimedia Commons using

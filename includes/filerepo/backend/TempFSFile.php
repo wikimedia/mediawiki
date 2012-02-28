@@ -11,7 +11,7 @@
  * @ingroup FileBackend
  */
 class TempFSFile extends FSFile {
-	protected $canDelete = true; // garbage collect the temp file
+	protected $canDelete = false; // bool; garbage collect the temp file
 
 	/** @var Array of active temp files to purge on shutdown */
 	protected static $instances = array();
@@ -41,6 +41,7 @@ class TempFSFile extends FSFile {
 			}
 		}
 		$tmpFile = new self( $path );
+		$tmpFile->canDelete = true; // safely instantiated
 		return $tmpFile;
 	}
 

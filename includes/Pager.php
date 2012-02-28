@@ -472,7 +472,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 		}
 
 		# Don't announce the limit everywhere if it's the default
-		$urlLimit = $this->mLimit == $this->mDefaultLimit ? '' : $this->mLimit;
+		$urlLimit = $this->mLimit == $this->mDefaultLimit ? null : $this->mLimit;
 
 		if ( $this->mIsFirst ) {
 			$prev = false;
