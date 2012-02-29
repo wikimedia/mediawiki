@@ -1,9 +1,11 @@
+/*jslint browser: true, continue: true, white: true, forin: true*/
+/*global jQuery*/
 /*
  * Core MediaWiki JavaScript Library
  */
 
 var mw = ( function ( $, undefined ) {
-"use strict";
+	"use strict";
 
 	/* Private Members */
 
@@ -49,7 +51,9 @@ var mw = ( function ( $, undefined ) {
 					results[selection[i]] = this.get( selection[i], fallback );
 				}
 				return results;
-			} else if ( typeof selection === 'string' ) {
+			}
+
+			if ( typeof selection === 'string' ) {
 				if ( this.values[selection] === undefined ) {
 					if ( fallback !== undefined ) {
 						return fallback;
@@ -58,11 +62,13 @@ var mw = ( function ( $, undefined ) {
 				}
 				return this.values[selection];
 			}
+
 			if ( selection === undefined ) {
 				return this.values;
-			} else {
-				return null; // invalid selection key
 			}
+
+			// invalid selection key
+			return null;
 		},
 
 		/**
@@ -80,7 +86,8 @@ var mw = ( function ( $, undefined ) {
 					this.values[s] = selection[s];
 				}
 				return true;
-			} else if ( typeof selection === 'string' && value !== undefined ) {
+			}
+			if ( typeof selection === 'string' && value !== undefined ) {
 				this.values[selection] = value;
 				return true;
 			}
@@ -103,9 +110,8 @@ var mw = ( function ( $, undefined ) {
 					}
 				}
 				return true;
-			} else {
-				return this.values[selection] !== undefined;
 			}
+			return this.values[selection] !== undefined;
 		}
 	};
 
@@ -308,7 +314,7 @@ var mw = ( function ( $, undefined ) {
 		 *  each a parameter for $N replacement in messages.
 		 * @return String.
 		 */
-		msg: function ( key, parameters ) {
+		msg: function ( /* key, parameter_1, parameter_2, .. */ ) {
 			return mw.message.apply( mw.message, arguments ).toString();
 		},
 	
@@ -379,15 +385,16 @@ var mw = ( function ( $, undefined ) {
 				// Cached ?
 				if ( $marker ) {
 					return $marker;
-				} else {
-					$marker = $( 'meta[name="ResourceLoaderDynamicStyles"]' );
-					if ( $marker.length ) {
-						return $marker;
-					}
-					mw.log( 'getMarker> No <meta name="ResourceLoaderDynamicStyles"> found, inserting dynamically.' );
-					$marker = $( '<meta>' ).attr( 'name', 'ResourceLoaderDynamicStyles' ).appendTo( 'head' );
+				}
+
+				$marker = $( 'meta[name="ResourceLoaderDynamicStyles"]' );
+				if ( $marker.length ) {
 					return $marker;
 				}
+				mw.log( 'getMarker> No <meta name="ResourceLoaderDynamicStyles"> found, inserting dynamically.' );
+				$marker = $( '<meta>' ).attr( 'name', 'ResourceLoaderDynamicStyles' ).appendTo( 'head' );
+
+				return $marker;
 			}
 
 			/**
@@ -531,11 +538,14 @@ var mw = ( function ( $, undefined ) {
 						}
 					}
 					return modules;
-				} else if ( typeof module === 'string' ) {
+				}
+
+				if ( typeof module === 'string' ) {
 					resolved = [];
 					recurse( module, resolved, [] );
 					return resolved;
 				}
+
 				throw new Error( 'Invalid module argument: ' + module );
 			}
 	
@@ -816,8 +826,9 @@ var mw = ( function ( $, undefined ) {
 						}
 					}
 				}
+
 				// Add ready and error callbacks if they were given
-				if ( arguments.length > 1 ) {
+				if ( ready !== undefined || error !== undefined ) {
 					jobs[jobs.length] = {
 						'dependencies': filter(
 							['registered', 'loading', 'loaded'],
@@ -827,6 +838,7 @@ var mw = ( function ( $, undefined ) {
 						'error': error
 					};
 				}
+
 				// Queue up any dependencies that are registered
 				dependencies = filter( ['registered'], dependencies );
 				for ( n = 0; n < dependencies.length; n += 1 ) {
@@ -838,6 +850,7 @@ var mw = ( function ( $, undefined ) {
 						}
 					}
 				}
+
 				// Work the queue
 				mw.loader.work();
 			}
@@ -1231,7 +1244,8 @@ var mw = ( function ( $, undefined ) {
 									href: modules
 								} ) );
 								return;
-							} else if ( type === 'text/javascript' || type === undefined ) {
+							}
+							if ( type === 'text/javascript' || type === undefined ) {
 								addScript( modules, null, async );
 								return;
 							}
@@ -1260,14 +1274,12 @@ var mw = ( function ( $, undefined ) {
 						return;
 					}
 					// If any modules have errors
-					else if ( filter( ['error'], filtered ).length ) {
+					if ( filter( ['error'], filtered ).length ) {
 						return;
 					}
 					// Since some modules are not yet ready, queue up a request
-					else {
-						request( filtered, null, null, async );
-						return;
-					}
+					request( filtered, null, null, async );
+					return;
 				},
 		
 				/**
@@ -1460,7 +1472,7 @@ var mw = ( function ( $, undefined ) {
 		}
 	};
 	
-})( jQuery );
+}( jQuery ) );
 
 // Alias $j to jQuery for backwards compatibility
 window.$j = jQuery;
@@ -1469,7 +1481,7 @@ window.$j = jQuery;
 window.mw = window.mediaWiki = mw;
 
 // Auto-register from pre-loaded startup scripts
-if ( typeof startUp !== 'undefined' && jQuery.isFunction( startUp ) ) {
-	startUp();
-	startUp = undefined;
+if ( jQuery.isFunction( window.startUp ) ) {
+	window.startUp();
+	window.startUp = undefined;
 }
