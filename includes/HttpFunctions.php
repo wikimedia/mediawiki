@@ -219,6 +219,10 @@ class MWHttpRequest {
 				$this->$o = $options[$o];
 			}
 		}
+
+		if ( $this->noProxy ) {
+			$this->proxy = ''; // noProxy takes precedence
+		}
 	}
 
 	/**
@@ -279,15 +283,14 @@ class MWHttpRequest {
 	}
 
 	/**
-	 * Take care of setting up the proxy
-	 * (override in subclass)
+	 * Take care of setting up the proxy (do nothing if "noProxy" is set)
 	 *
-	 * @return String
+	 * @return void
 	 */
 	public function proxySetup() {
 		global $wgHTTPProxy;
 
-		if ( $this->proxy && !$this->noProxy ) {
+		if ( $this->proxy || !$this->noProxy ) {
 			return;
 		}
 
@@ -402,11 +405,7 @@ class MWHttpRequest {
 			$this->setReferer( wfExpandUrl( $wgTitle->getFullURL(), PROTO_CURRENT ) );
 		}
 
-		/**
-		 * Set up the proxy, but
-		 * clear the proxy when $noProxy is set (takes precedence)
-		 */
-		$this->proxySetup();
+		$this->proxySetup(); // set up any proxy as needed
 
 		if ( !$this->callback ) {
 			$this->setCallback( array( $this, 'read' ) );
@@ -805,7 +804,7 @@ class PhpHttpRequest extends MWHttpRequest {
 		}
 
 		$options = array();
-		if ( $this->proxy && !$this->noProxy ) {
+		if ( $this->proxy ) {
 			$options['proxy'] = $this->urlToTCP( $this->proxy );
 			$options['request_fulluri'] = true;
 		}
