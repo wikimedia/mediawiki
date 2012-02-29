@@ -197,27 +197,44 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	 * @param $ts
 	 * @return array
 	 */
-	public static function addLogParams( $result, &$vals, $params, $type, $action, $ts ) {
+	public static function addLogParams( $result, &$vals, $params, $type, $action, $ts, $legacy = false ) {
 		switch ( $type ) {
 			case 'move':
-				if ( isset( $params[ '4::target' ] ) ) {
-					$title = Title::newFromText( $params[ '4::target' ] );
+				if ( $legacy ){
+					$targetKey = 0;
+					$noredirKey = 1;
+				} else {
+					$targetKey = '4::target';
+					$noredirKey = '5::noredir';
+				}
+
+				if ( isset( $params[ $targetKey ] ) ) {
+					$title = Title::newFromText( $params[ $targetKey ] );
 					if ( $title ) {
 						$vals2 = array();
 						ApiQueryBase::addTitleInfo( $vals2, $title, 'new_' );
 						$vals[$type] = $vals2;
 					}
 				}
-				if ( isset( $params[ '5::noredir' ] ) && $params[ '5::noredir' ] ) {
+				if ( isset( $params[ $noredirKey ] ) && $params[ $noredirKey ] ) {
 					$vals[$type]['suppressedredirect'] = '';
 				}
 				$params = null;
 				break;
 			case 'patrol':
+				if ( $legacy ){
+					$cur = 0;
+					$prev = 1;
+					$auto = 2;
+				} else {
+					$cur = '4::curid';
+					$prev = '5::previd';
+					$auto = '6::auto';
+				}
 				$vals2 = array();
-				$vals2[ 'cur' ] = $params[ '4::curid' ];
-				$vals2[ 'prev' ] = $params[ '5::previd' ];
-				$vals2[ 'auto' ] = $params[ '6::auto' ];
+				$vals2['cur'] = $params[$cur];
+				$vals2['prev'] = $params[$prev];
+				$vals2['auto'] = $params[$auto];
 				$vals[$type] = $vals2;
 				$params = null;
 				break;
@@ -286,7 +303,8 @@ class ApiQueryLogEvents extends ApiQueryBase {
 					$logEntry->getParameters(),
 					$logEntry->getType(),
 					$logEntry->getSubtype(),
-					$logEntry->getTimestamp()
+					$logEntry->getTimestamp(),
+					$logEntry->isLegacy()
 				);
 			}
 		}
