@@ -2655,6 +2655,8 @@ Mae ffolder dros dro yn eisiau.',
 'import-invalid-interwiki'   => "Ni ellir uwchlwytho o'r wici dewisedig.",
 'import-error-edit'          => 'Ni fewnforiwyd y dudalen "$1" oherwydd nad yw\'r gallu i\'w golygu gennych.',
 'import-error-create'        => 'Ni fewnforiwyd y dudalen "$1" oherwydd nad yw\'r gallu i\'w chreu gennych.',
+'import-error-interwiki'     => 'Ni fewnforwyd y dudalen "$1" oherwydd bod yr enw arni wedi ei neilltuo at ddiben cysylltu\'n allanol (rhyngwici).',
+'import-error-invalid'       => 'Ni fewnforwyd y dudalen "$1" oherwydd bod yr enw arni yn annilys.',
 
 # Import log
 'importlogpage'                    => 'Lòg mewnforio',
@@ -2672,6 +2674,7 @@ Mae ffolder dros dro yn eisiau.',
 'javascripttest-pagetext-unknownframework' => 'Ni nabyddwyd y fframwaith profi "$1".',
 'javascripttest-pagetext-frameworks'       => "Dewiswch un o'r fframweithiau profi canlynol: $1",
 'javascripttest-pagetext-skins'            => 'Dewiswch wedd i gynnal profion arni:',
+'javascripttest-qunit-heading'             => 'Cyfres brofi MediaWiki JavaScript QUnit',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'                 => 'Eich tudalen defnyddiwr',
@@ -3632,6 +3635,7 @@ Dangosir delweddau ar eu maint llawn, dechreuir ffeiliau o fathau eraill yn unio
 'api-error-missingresult'                 => 'Gwall mewnol: ni allem ddarganfod a lwyddodd y gwaith copïo ai pheidio.',
 'api-error-mustbeloggedin'                => 'Rhaid i chi fewngofnodi er mwyn uwchlwytho ffeiliau.',
 'api-error-mustbeposted'                  => 'Gwall mewnol: mae angen HTTP POST ar y cais hwn.',
+'api-error-noimageinfo'                   => 'Llwyddodd yr uwchlwytho, ond ni roddodd y gweinydd unrhyw wybodaeth i ni am y ffeil.',
 'api-error-nomodule'                      => 'Gwall mewnol: nid oes pecyn uwchlwytho wedi ei osod yn y meddalwedd.',
 'api-error-ok-but-empty'                  => 'Gwall mewnol: dim ymateb gan y gweinydd.',
 'api-error-overwrite'                     => 'Ni chaniateir trosysgrifo ffeil sydd eisoes yn bod.',

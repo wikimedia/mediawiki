@@ -47,6 +47,7 @@
  * @author Revolus
  * @author Rillke
  * @author SVG
+ * @author Saibo
  * @author Spacebirdy
  * @author Srhat
  * @author TMg
@@ -2557,7 +2558,7 @@ $1',
 'year'                => 'bis Jahr:',
 
 'sp-contributions-newbies'             => 'Zeige nur Beiträge neuer Benutzer',
-'sp-contributions-newbies-sub'         => 'Für Neulinge',
+'sp-contributions-newbies-sub'         => 'Von neuen Benutzern',
 'sp-contributions-newbies-title'       => 'Benutzerbeiträge von neuen Benutzern',
 'sp-contributions-blocklog'            => 'Sperr-Logbuch',
 'sp-contributions-deleted'             => 'Gelöschte Beiträge',

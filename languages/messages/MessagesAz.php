@@ -485,7 +485,7 @@ Hesabınız yaradıldı.
 'externaldberror'            => 'Verilənlər bazasının doğruluğunu yoxlamada xəta baş verib və yaxud sizin xarici istifadəçi qeydiyyatını yeniləmək hüququnuz yoxdur.',
 'login'                      => 'Daxil ol',
 'nav-login-createaccount'    => 'Daxil ol / hesab yarat',
-'loginprompt'                => '{{SITENAME}}-ya daxil olmaq üçün "veb kökələrinin" (cookies) istifadəsinə icazə verilməlidir.',
+'loginprompt'                => '{{SITENAME}} saytına daxil olmaq üçün "veb kökələrinin" (cookies) istifadəsinə icazə verilməlidir.',
 'userlogin'                  => 'Daxil ol və ya istifadəçi yarat',
 'userloginnocreate'          => 'Daxil ol',
 'logout'                     => 'Çıxış',

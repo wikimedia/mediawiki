@@ -2604,7 +2604,7 @@ Przejdź do [[Special:BlockList|listy zablokowanych adresów IP]], by przejrzeć
 'blocklist-userblocks'            => 'Ukryj blokady konta',
 'blocklist-tempblocks'            => 'Ukryj tymczasowe blokady',
 'blocklist-addressblocks'         => 'Ukryj blokady pojedynczych adresów IP',
-'blocklist-rangeblocks'           => 'Ukryj zakresy blokad',
+'blocklist-rangeblocks'           => 'Ukryj blokady zakresów',
 'blocklist-timestamp'             => 'Sygnatura czasowa',
 'blocklist-target'                => 'Cel',
 'blocklist-expiry'                => 'Upływa',

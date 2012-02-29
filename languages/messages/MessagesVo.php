@@ -1909,6 +1909,7 @@ $1',
 'sp-contributions-userrights'    => 'guvam gebanagitätas',
 'sp-contributions-search'        => 'Sukön keblünotis',
 'sp-contributions-username'      => 'Ladet-IP u gebananem:',
+'sp-contributions-toponly'       => 'Jonön te redakamis, kels binons revids lätik',
 'sp-contributions-submit'        => 'Suk',
 
 # What links here

@@ -1642,7 +1642,9 @@ $1',
 'unusedtemplateswlh' => '其他的連結',
 
 # Random page
-'randompage' => 'Sûi-chāi kéng ia̍h',
+'randompage'         => 'Sûi-chāi kéng ia̍h',
+'randompage-nopages' => '下面無頁
+{{PLURAL:$2|名空間|名空間}}：$1.',
 
 # Random redirect
 'randomredirect' => 'Sûi-chāi choán-ia̍h',

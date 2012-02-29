@@ -768,19 +768,6 @@ Ha ezzel készen van, '''[$2 beléphet a wikibe]'''.",
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-kiadások levelezőlistája]",
 );
 
-/** Moroccan Spoken Arabic (Maġribi)
- * @author Enzoreg
- */
-$messages['ary'] = array(
-	'mainpagetext' => "'''MediaWiki ṫ'instala be najaḫ.'''",
-	'mainpagedocfooter' => 'Ila bġiṫiw meĝlomaṫ ĥrin baċ ṫesṫeĝmlo had l-lojisyél siro ċofo [//meta.wikimedia.org/wiki/Aide:Contenu Gid dyal l-mosṫeĥdim]
-
-== L-bdaya mĝa MediaWiki ==
-* [//www.mediawiki.org/wiki/Manual:Configuration_settings Lista dyal l-paramétraṫ dyal l-konfigurasyon]
-* [//www.mediawiki.org/wiki/Manual:FAQ/fr FAQ fe MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista dyal l-modakaraṫ ĝla versyonaṫ jdad dyal MediaWiki]',
-);
-
 /** Español (formal) (Español (formal))
  * @author Dferg
  */
@@ -1082,6 +1069,19 @@ $messages['arc'] = array(
 	'config-admin-email' => 'ܦܪܫܓܢܐ ܕܒܝܠܕܪܐ ܐܠܩܛܪܘܢܝܐ:',
 	'config-profile-private' => 'ܘܝܩܝ ܦܪܨܘܦܝܐ',
 	'config-email-settings' => 'ܛܘܝܒ̈ܐ ܕܒܝܠܕܪܐ ܐܠܩܛܪܘܢܝܐ',
+);
+
+/** Moroccan Spoken Arabic (Maġribi)
+ * @author Enzoreg
+ */
+$messages['ary'] = array(
+	'mainpagetext' => "'''MediaWiki ṫ'instala be najaḫ.'''",
+	'mainpagedocfooter' => 'Ila bġiṫiw meĝlomaṫ ĥrin baċ ṫesṫeĝmlo had l-lojisyél siro ċofo [//meta.wikimedia.org/wiki/Aide:Contenu Gid dyal l-mosṫeĥdim]
+
+== L-bdaya mĝa MediaWiki ==
+* [//www.mediawiki.org/wiki/Manual:Configuration_settings Lista dyal l-paramétraṫ dyal l-konfigurasyon]
+* [//www.mediawiki.org/wiki/Manual:FAQ/fr FAQ fe MediaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista dyal l-modakaraṫ ĝla versyonaṫ jdad dyal MediaWiki]',
 );
 
 /** Egyptian Spoken Arabic (مصرى) */
@@ -4593,6 +4593,8 @@ Especifique un nombre de usuario diferente.',
 	'config-subscribe' => 'Suscribirse para recibir [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce avisos de nuevas versiones].',
 	'config-subscribe-help' => 'Esta es una lista de divulgación de bajo volumen para anuncios de lanzamiento de versiones nuevas, incluyendo anuncios de seguridad importantes.
 Te recomendamos suscribirte y actualizar tu instalación MediaWiki cada vez que se lance una nueva versión.',
+	'config-subscribe-noemail' => 'Ha intentado suscribirse a la lista de correo de anuncios de nuevos lanzamientos sin proporcionar una dirección de correo electrónico.
+Proporcione una dirección de correo electrónico si desea suscribirse a la lista de correo.',
 	'config-almost-done' => '¡Ya casi has terminado!
 Ahora puedes saltarte el resto de pasos e instalar el wiki con valores predeterminados.',
 	'config-optional-continue' => 'Hazme más preguntas.',
@@ -4602,12 +4604,36 @@ Ahora puedes saltarte el resto de pasos e instalar el wiki con valores predeterm
 	'config-profile-no-anon' => 'Creación de cuenta requerida',
 	'config-profile-fishbowl' => 'Sólo editores autorizados',
 	'config-profile-private' => 'Wiki privado',
+	'config-profile-help' => "Los wikis funcionan mejor cuando dejas que los edite tanta gente como sea posible.
+En MediaWiki, es fácil revisar los cambios recientes y revertir los daños realizados por usuarios malintencionados o novatos.
+Sin embargo, muchos han encontrado que MediaWiki es útil para una amplia variedad de funciones, y a veces no es fácil convencer a todos de los beneficios de la forma wiki.
+Por lo tanto tienes la elección.
+
+Un '''{{int:config-profile-wiki}}''' permite que cualquiera pueda editar, sin siquiera iniciar sesión.
+Un wiki con '''{{int:config-profile-no-anon}}''' ofrece rendición de cuentas adicional, pero puede disuadir a colaboradores.
+
+El escenario '''{{int:config-profile-fishbowl}}''' permite editar a los usuarios autorizados, pero el público puede ver las páginas, incluyendo el historial.
+Un '''{{int:config-profile-private}}''' sólo permite ver páginas a los usuarios autorizados, el mismo grupo al que le está permitido editar.
+
+Configuraciones más complejas de derechos de usuario están disponibles después de la instalación, consulte [//www.mediawiki.org/wiki/Manual:User_rights esta entrada en el manual].",
 	'config-license' => 'Copyright and licencia:',
 	'config-license-none' => 'Pie sin licencia',
 	'config-license-cc-by-sa' => 'Creative Commons Reconocimiento Compartir Igual',
+	'config-license-cc-by' => 'Creative Commons Reconocimiento',
 	'config-license-cc-by-nc-sa' => 'Creative Commons Reconocimiento Compartir Igual no comercial',
+	'config-license-cc-0' => 'Creative Commons Zero (dominio público)',
+	'config-license-gfdl' => 'Licencia de documentación libre de GNU 1.3 o posterior',
 	'config-license-pd' => 'Dominio Público',
 	'config-license-cc-choose' => 'Selecciona una licencia personalizada de Creative Commons',
+	'config-license-help' => "Muchos wikis públicos ponen todas las contribuciones bajo una [http://freedomdefined.org/Definition licencia libre].
+Esto ayuda a crear un sentido de propiedad comunitaria y alienta la contribución a largo plazo.
+Esto no es generalmente necesario para un wiki privado o corporativo.
+
+Si desea poder utilizar texto de Wikipedia, y desea que Wikipedia pueda aceptar el texto copiado de tu wiki, debe elegir '''Creative Commons Reconocimiento Compartir Igual'''.
+
+Wikipedia utilizaba anteriormente la licencia de documentación libre de GNU (GFDL).
+La GFDL es una licencia válida, pero es difícil de entender.
+También es difícil reutilizar el contenido licenciado bajo la GFDL.",
 	'config-email-settings' => 'Configuración de correo electrónico',
 	'config-enable-email' => 'Activar el envío de e-mails',
 	'config-enable-email-help' => 'Si quieres que el correo electrónico funcione, la [http://www.php.net/manual/en/mail.configuration.php configuración PHP de correo electrónico] debe ser la correcta.
@@ -4619,17 +4645,33 @@ Si no quieres la funcionalidad de correo electrónico, puedes desactivarla aquí
 	'config-email-watchlist' => 'Activar notificación de alteraciones a la páginas vigiladas',
 	'config-email-watchlist-help' => 'Permitir a los usuarios recibir notificaciones de cambios en la páginas que vigilan, si lo han activado en sus preferencias.',
 	'config-email-auth' => 'Activar autenticación del correo electrónico',
+	'config-email-auth-help' => "Si esta opción está habilitada, los usuarios tienen que confirmar su dirección de correo electrónico mediante un enlace que se les envía a ellos cuando éstos lo establecen o lo cambian.
+Solo las direcciones de correo electrónico autenticadas pueden recibir correos electrónicos de otros usuarios o correos electrónicos de notificación de cambios.
+Esta opción está '''recomendada''' para wikis públicos debido a posibles abusos de las características del correo electrónico.",
 	'config-email-sender' => 'Dirección de correo electrónico de retorno:',
 	'config-email-sender-help' => 'Introduce la dirección de correo electrónico que será usada como dirección de retorno en los mensajes electrónicos de salida.
 Aquí llegarán los correos electrónicos que no lleguen a su destino.
 Muchos servidores de correo electrónico exigen que por lo menos la parte del nombre del dominio sea válida.',
 	'config-upload-settings' => 'Cargas de imágenes y archivos',
 	'config-upload-enable' => 'Habilitar la subida de archivos',
+	'config-upload-help' => 'La carga de archivos expone potencialmente su servidor a riesgos de seguridad.
+Para obtener más información, lea la [//www.mediawiki.org/wiki/Manual:Security sección de seguridad] en el manual.
+
+Para habilitar la carga de archivos, cambie el modo en el subdirectorio <code>images</code> bajo el directorio raíz de MediaWiki para que el servidor web pueda escribir en él.
+A continuación, habilite esta opción.',
 	'config-upload-deleted' => '*Directório para los archivos eliminados:',
 	'config-upload-deleted-help' => 'Elige un directorio en el que guardar los archivos eliminados.
 Lo ideal es una carpeta no accesible desde la red.',
 	'config-logo' => 'URL del logo :',
+	'config-logo-help' => 'La apariencia por defecto de MediaWiki incluye espacio para un logotipo de 135x160 píxeles encima del menú de la barra lateral.
+Cargue una imagen de tamaño adecuado e introduzca la dirección URL aquí.
+
+Si no desea un logotipo, deje esta casilla en blanco.',
 	'config-instantcommons' => 'Habilitar Instant Commons',
+	'config-instantcommons-help' => '[//www.mediawiki.org/wiki/InstantCommons Instant Commons] es una característica que permite que los wikis puedan utilizar imágenes, sonidos y otros archivos multimedia que se encuentran en el sitio [//commons.wikimedia.org/ Wikimedia Commons].
+Para ello, MediaWiki requiere acceso a Internet.
+
+Para obtener más información sobre esta función, incluidas las instrucciones sobre cómo configurarlo para otras wikis distintas de Wikimedia Commons, consulte [//mediawiki.org/wiki/Manual:$wgForeignFileRepos el manual].',
 	'config-cc-error' => 'El selector de licencia de Creative Commons no dio resultado.
 Escribe el nombre de la licencia manualmente.',
 	'config-cc-again' => 'Elegir otra vez...',
@@ -4646,20 +4688,42 @@ A los sitios medianos y grandes se les recomienda que permitirlo. También es be
 Deben especificarse una por cada línea y especificar el puerto a utilizar. Por ejemplo:
 127.0.0.1:11211
 192.168.1.25:1234',
+	'config-memcache-needservers' => 'Ha seleccionado Memcached como su tipo de caché pero no especificó ninguno de los servidores.',
+	'config-memcache-badip' => 'Ha introducido una dirección IP no válida para Memcached:  $1 .',
+	'config-memcache-noport' => 'No ha especificado un puerto a usar en el servidor Memcached:  $1 .
+Si no conoce el puerto, el valor predeterminado es 11211.',
+	'config-memcache-badport' => 'Los números de puerto de Memcached deben estar entre  $1  y  $2.',
 	'config-extensions' => 'Extensiones',
 	'config-extensions-help' => 'Se ha detectado en tu directorio <code>./extensions</code>  las extensiones listadas arriba.
 
 Puede que necesiten configuraciones adicionales, pero puedes habilitarlas ahora.',
 	'config-install-alreadydone' => "'''Aviso:''' Parece que ya habías instalado MediaWiki y estás intentando instalarlo nuevamente.
 Pasa a la próxima página, por favor.",
+	'config-install-begin' => 'Pulsando "{{int:config-continue}}", se iniciará la instalación de MediaWiki.
+Si todavía desea realizar algún cambio, pulse atrás.',
 	'config-install-step-done' => 'hecho',
 	'config-install-step-failed' => 'falló',
 	'config-install-extensions' => 'Extensiones inclusive',
 	'config-install-database' => 'Configurando la base de datos',
+	'config-install-schema' => 'Creando el esquema',
+	'config-install-pg-schema-not-exist' => 'El esquema PostgreSQL no existe.',
 	'config-install-pg-schema-failed' => 'La creación de las tablas ha fallado.
 Asegúrate de que el usuario "$1" puede escribir en el esquema "$2".',
+	'config-install-pg-commit' => 'Validando los cambios',
+	'config-install-pg-plpgsql' => 'Comprobación de lenguaje PL/pgSQL',
+	'config-pg-no-plpgsql' => 'Necesita instalar el lenguaje PL/pgSQL en la base de datos $1',
+	'config-pg-no-create-privs' => 'La cuenta especificada para la instalación no tiene suficientes privilegios para crear una cuenta.',
+	'config-pg-not-in-role' => 'La cuenta especificada para el usuario web ya existe.
+La cuenta especificada para la instalación no es de un superusuario y no es miembro del grupo de usuarios con acceso a la web, por lo que es incapaz de crear objetos pertenecientes al usuario web.
+
+MediaWiki requiere actualmente que las tablas sean propiedad del usuario web. Especifique otro nombre de cuenta web, o haga clic en "atrás" y especifique un usuario de instalación con los privilegios convenientes.',
 	'config-install-user' => 'Creando el usuario de la base de datos',
+	'config-install-user-alreadyexists' => 'El usuario "$1" ya existe',
+	'config-install-user-create-failed' => 'La creación del usuario "$1" falló:  $2',
 	'config-install-user-grant-failed' => 'La concesión de permisos para el usuario "$1" ha fallado: $2',
+	'config-install-user-missing' => 'El usuario especificado "$1" no existe.',
+	'config-install-user-missing-create' => 'El usuario especificado "$1" no existe.
+Por favor, haga clic en la casilla "Crear cuenta" que aparece a continuación si desea crearlo.',
 	'config-install-tables' => 'Creando tablas',
 	'config-install-tables-exist' => "'''Advertencia''': Al parecer, las tablas de MediaWiki ya existen. Saltándose su creación.",
 	'config-install-tables-failed' => "'''Error''': La creación de las tablas falló con el siguiente error: $1",
@@ -4667,8 +4731,32 @@ Asegúrate de que el usuario "$1" puede escribir en el esquema "$2".',
 	'config-install-interwiki-list' => 'No se pudo encontrar el archivo <code>interwiki.list</code>.',
 	'config-install-interwiki-exists' => "'''Advertencia''': La tabla de interwikis parece ya contener entradas.
 Se omitirá la lista predeterminada.",
+	'config-install-stats' => 'Iniciando las estadísticas',
 	'config-install-keys' => 'Generación de claves secretas',
+	'config-insecure-keys' => "''' Atención:'' '  {{PLURAL:$2|Una clave de seguridad generada|Las claves de seguridad generadas}} ($1) durante la instalación no  {{PLURAL:$2|es totalmente segura|son totalmente seguras}}. Considere {{PLURAL:$2| cambiarla|cambiarlas}} manualmente.",
 	'config-install-sysop' => 'Creando cuenta de usuario del administrador',
+	'config-install-subscribe-fail' => 'No se ha podido suscribir a mediawiki-announce: $1',
+	'config-install-subscribe-notpossible' => 'cURL no está instalado y allow_url_fopen no está disponible.',
+	'config-install-mainpage' => 'Creando página principal con contenido predeterminado',
+	'config-install-extension-tables' => 'Creando las tablas para las extensiones habilitadas',
+	'config-install-mainpage-failed' => 'No se pudo insertar la página principal: $1',
+	'config-install-done' => "''' Felicidades!'''
+Ha instalado MediaWiki correctamente.
+
+El instalador ha generado un  archivo<code>LocalSettings.php</code>.
+Contiene toda su configuración.
+
+Deberá descargarlo y ponerlo en la base de la instalación de wiki (el mismo directorio que index.php). Debería haber comenzado automáticamente la descarga.
+
+Si no comenzó la descarga, o si se ha cancelado, puede reiniciar la descarga haciendo clic en el enlace siguiente:
+$3
+
+'''Nota''': Si no haces esto ahora, este archivo de configuración generado no estará disponible para usted más tarde si sale de la instalación sin descargarlo.
+
+Cuando lo haya hecho, usted puede '''[$2  entrar en su wiki]'''.",
+	'config-download-localsettings' => 'Descargar archivo LocalSettings.php',
+	'config-help' => 'Ayuda',
+	'config-nofile' => 'El archivo "$1" no se pudo encontrar. ¿Se ha eliminado?',
 	'mainpagetext' => "'''MediaWiki ha sido instalado con éxito.'''",
 	'mainpagedocfooter' => 'Consulta la [//meta.wikimedia.org/wiki/Ayuda:Contenido Guía de usuario] para obtener información sobre el uso del software wiki.
 
