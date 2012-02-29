@@ -65,386 +65,386 @@ div#mw-head h5 {
 	margin: 0;
 	padding: 0;
 }
-	/* Hide empty portlets */
-	div.emptyPortlet {
+/* Hide empty portlets */
+div.emptyPortlet {
 		display: none;
-	}
-	/* Personal */
-	#p-personal {
-		position: absolute;
-		top: 0;
-		right: 0.75em;
-	}
-	#p-personal h5 {
-		display: none;
-	}
-	#p-personal ul {
-		list-style: none;
-		margin: 0;
-		padding-left: 10em; /* Keep from overlapping logo */
-	}
-	/* @noflip */
-	#p-personal li {
-		line-height: 1.125em;
-		float: left;
-	}
-	/* This one flips! */
-	#p-personal li {
-		margin-left: 0.75em;
-		margin-top: 0.5em;
-		font-size: 0.75em;
-		white-space: nowrap;
-	}
-	/* Navigation Containers */
-	#left-navigation {
-		position: absolute;
-		left: 10em;
-		top: 2.5em;
-	}
-	#right-navigation {
-		float: right;
-		margin-top: 2.5em;
-	}
-	/* Navigation Labels */
-	div.vectorTabs h5,
-	div.vectorMenu h5 span {
-		display: none;
-	}
-	/* Namespaces and Views */
-	/* @noflip */
-	div.vectorTabs {
-		float: left;
-		height: 2.5em;
-	}
-	div.vectorTabs {
-		/* @embed */
-		background-image: url(images/tab-break.png);
-		background-position: bottom left;
-		background-repeat: no-repeat;
-		padding-left: 1px;
-	}
-	/* @noflip */
-	div.vectorTabs ul {
-		float: left;
-	}
-	div.vectorTabs ul {
-		height: 100%;
-		list-style: none;
-		margin: 0;
-		padding: 0;
-	}
-	/* @noflip */
-	div.vectorTabs ul li {
-		float: left;
-	}
-	/* OVERRIDDEN BY COMPLIANT BROWSERS */
-	div.vectorTabs ul li {
-		line-height: 1.125em;
-		display: inline-block;
-		height: 100%;
-		margin: 0;
-		padding: 0;
-		background-color: #f3f3f3;
-		/* @embed */
-		background-image: url(images/tab-normal-fade.png);
-		background-position: bottom left;
-		background-repeat: repeat-x;
-		white-space:nowrap;
-	}
-	/* IGNORED BY IE6 */
-	div.vectorTabs ul > li {
-		display: block;
-	}
-	div.vectorTabs li.selected {
-		/* @embed */
-		background-image: url(images/tab-current-fade.png);
-	}
-	/* OVERRIDDEN BY COMPLIANT BROWSERS */
-	div.vectorTabs li a {
-		display: inline-block;
-		height: 1.9em;
-		padding-left: 0.5em;
-		padding-right: 0.5em;
-		color: #0645ad;
-		cursor: pointer;
-		font-size: 0.8em;
-	}
-	/* IGNORED BY IE6 */
-	div.vectorTabs li > a {
-		display: block;
-	}
-	div.vectorTabs li.icon a {
-		background-position: bottom right;
-		background-repeat: no-repeat;
-	}
-	/* OVERRIDDEN BY COMPLIANT BROWSERS */
-	div.vectorTabs span a  {
-		display: inline-block;
-		padding-top: 1.25em;
-	}
-	/* IGNORED BY IE6 */
-	/* @noflip */
-	div.vectorTabs span > a {
-		float: left;
-		display: block;
-	}
-	div.vectorTabs span {
-		display: inline-block;
-		/* @embed */
-		background-image: url(images/tab-break.png);
-		background-position: bottom right;
-		background-repeat: no-repeat;
-	}
-	div.vectorTabs li.selected a,
-	div.vectorTabs li.selected a:visited{
-		color: #333333;
-		text-decoration: none;
-	}
-	div.vectorTabs li.new a,
-	div.vectorTabs li.new a:visited{
-		color: #a55858;
-	}
-	/* Variants and Actions */
-	/* @noflip */
-	div.vectorMenu {
-		direction: ltr;
-		float: left;
-		/* @embed */
-		background-image: url(images/arrow-down-icon.png);
-		background-position: 100% 60%;
-		background-repeat: no-repeat;
-		cursor: pointer;
-	}
-	div.vectorMenuFocus {
-		/* @embed */
-		background-image: url(images/arrow-down-focus-icon.png);
-		background-position: 100% 60%;
-	}
-	/* @noflip */
-	body.rtl div.vectorMenu {
-		direction: rtl;
-	}
-	/* OVERRIDDEN BY COMPLIANT BROWSERS */
-	/* @noflip */
-	div#mw-head div.vectorMenu h5 {
-		float: left;
-		/* @embed */
-		background-image: url(images/tab-break.png);
-		background-repeat: no-repeat;
-	}
-	/* This will be flipped - unlike the one above it */
-	div#mw-head div.vectorMenu h5 {
-		background-position: bottom left;
-		margin-left: -1px;
-	}
-	/* IGNORED BY IE6 */
-	div#mw-head div.vectorMenu > h5 {
-		background-image: none;
-	}
-	div#mw-head div.vectorMenu h4 {
-		display: inline-block;
-		float: left;
-		font-size: 0.8em;
-		padding-left: 0.5em;
-		padding-top: 1.375em;
-		font-weight: normal;
-		border: none;
-	}
-	/* OVERRIDDEN BY COMPLIANT BROWSERS */
-	/* @noflip */
-	div.vectorMenu h5 a {
-		display: inline-block;
-		width: 24px;
-		height: 2.5em;
-		text-decoration: none;
-		/* @embed */
-		background-image: url(images/tab-break.png);
-		background-repeat: no-repeat;
-	}
-	/* This will be flipped - unlike the one above it */
-	div.vectorMenu h5 a {
-		background-position: bottom right;
-	}
-	/* IGNORED BY IE6 */
-	div.vectorMenu h5 > a {
-		display: block;
-	}
-	div.vectorMenu div.menu {
-		position: relative;
-		display: none;
-		clear: both;
-		text-align: left;
-	}
-	/* OVERRIDDEN BY COMPLIANT BROWSERS */
-	/* @noflip */
-	body.rtl div.vectorMenu div.menu {
-		margin-left: 24px;
-	}
-	/* IGNORED BY IE6 */
-	/* @noflip */
-	body.rtl div.vectorMenu > div.menu {
-		margin-left: auto;
-	}
-	/* IGNORED BY IE6 */
-	/* Also fixes old versions of FireFox */
-	/* @noflip */
-	body.rtl div.vectorMenu > div.menu,
-	x:-moz-any-link {
-		margin-left: 23px;
-	}
-	/* Enable forcing showing of the menu for accessibility */
-	div.vectorMenu:hover div.menu,
-	div.vectorMenu div.menuForceShow {
-		display: block;
-	}
-	div.vectorMenu ul {
-		position: absolute;
-		background-color: white;
-		border: solid 1px silver;
-		border-top-width: 0;
-		list-style: none;
-		list-style-image: none;
-		list-style-type: none;
-		padding: 0;
-		margin: 0;
-		margin-left: -1px;
-		text-align: left;
-	}
-	/* Fixes old versions of FireFox */
-	div.vectorMenu ul,
-	x:-moz-any-link {
-		min-width: 5em;
-	}
-	/* Returns things back to normal in modern versions of FireFox */
-	div.vectorMenu ul,
-	x:-moz-any-link,
-	x:default {
-		min-width: 0;
-	}
-	div.vectorMenu li {
-		padding: 0;
-		margin: 0;
-		text-align: left;
-		line-height: 1em;
-	}
-	/* OVERRIDDEN BY COMPLIANT BROWSERS */
-	div.vectorMenu li a {
-		display: inline-block;
-		padding: 0.5em;
-		white-space: nowrap;
-		color: #0645ad;
-		cursor: pointer;
-		font-size: 0.8em;
-	}
-	/* IGNORED BY IE6 */
-	div.vectorMenu li > a {
-		display: block;
-	}
-	div.vectorMenu li.selected a,
-	div.vectorMenu li.selected a:visited {
-		color: #333333;
-		text-decoration: none;
-	}
-	/* Search */
-	#p-search h5 {
-		display: none;
-	}
-	/* @noflip */
-	#p-search {
-		float: left;
-	}
-	#p-search {
-		margin-right: 0.5em;
-		margin-left: 0.5em;
-	}
-	#p-search form,
-	#p-search input {
-		margin: 0;
-		margin-top: 0.4em;
-	}
-	div#simpleSearch {
-		display: block;
-		width: 14em;
-		height: 1.4em;
-		margin-top: 0.65em;
-		position: relative;
-		min-height: 1px; /* Gotta trigger hasLayout for IE7 */
-		border: solid 1px #AAAAAA;
-		color: black;
-		background-color: white;
-		/* @embed */
-		background-image: url(images/search-fade.png);
-		background-position: top left;
-		background-repeat: repeat-x;
-	}
-	div#simpleSearch label {
-		/*
-		 * DON'T PANIC! Browsers that won't scale this properly are the same browsers that have JS issues that prevent
-		 * this from ever being shown anyways.
-		*/
-		font-size: 13px;
-		top: 0.25em;
-		direction: ltr;
-	}
-	div#simpleSearch input {
-		color: black;
-		direction: ltr;
-	}
-	div#simpleSearch input:focus {
-		outline: none;
-	}
-	div#simpleSearch input.placeholder {
-		color: #999999;
-	}
-	div#simpleSearch input::-webkit-input-placeholder {
-		color: #999999;
-	}
-	div#simpleSearch input#searchInput {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 90%;
-		margin: 0;
-		padding: 0;
-		padding-left: 0.2em;
-		padding-top: 0.2em;
-		padding-bottom: 0.2em;
-		outline: none;
-		border: none;
-		/*
-		 * DON'T PANIC! Browsers that won't scale this properly are the same browsers that have JS issues that prevent
-		 * this from ever being shown anyways.
-		*/
-		font-size: 13px;
-		background-color: transparent;
-		direction: ltr;
-	}
-	div#simpleSearch button#searchButton {
-		position: absolute;
-		width: 10%;
-		right: 0;
-		top: 0;
-		padding: 0;
-		padding-top: 0.3em;
-		padding-bottom: 0.2em;
-		padding-right: 0.4em;
-		margin: 0;
-		border: none;
-		cursor: pointer;
-		background-color: transparent;
-		background-image: none;
-	}
-	/* OVERRIDDEN BY COMPLIANT BROWSERS */
-	div#simpleSearch button#searchButton img {
-		border: none;
-		margin: 0;
-		margin-top: -3px;
-		padding: 0;
-	}
-	/* IGNORED BY IE6 */
-	div#simpleSearch button#searchButton > img {
-		margin: 0;
-	}
+}
+/* Personal */
+#p-personal {
+	position: absolute;
+	top: 0;
+	right: 0.75em;
+}
+#p-personal h5 {
+	display: none;
+}
+#p-personal ul {
+	list-style: none;
+	margin: 0;
+	padding-left: 10em; /* Keep from overlapping logo */
+}
+/* @noflip */
+#p-personal li {
+	line-height: 1.125em;
+	float: left;
+}
+/* This one flips! */
+#p-personal li {
+	margin-left: 0.75em;
+	margin-top: 0.5em;
+	font-size: 0.75em;
+	white-space: nowrap;
+}
+/* Navigation Containers */
+#left-navigation {
+	position: absolute;
+	left: 10em;
+	top: 2.5em;
+}
+#right-navigation {
+	float: right;
+	margin-top: 2.5em;
+}
+/* Navigation Labels */
+div.vectorTabs h5,
+div.vectorMenu h5 span {
+	display: none;
+}
+/* Namespaces and Views */
+/* @noflip */
+div.vectorTabs {
+	float: left;
+	height: 2.5em;
+}
+div.vectorTabs {
+	/* @embed */
+	background-image: url(images/tab-break.png);
+	background-position: bottom left;
+	background-repeat: no-repeat;
+	padding-left: 1px;
+}
+/* @noflip */
+div.vectorTabs ul {
+	float: left;
+}
+div.vectorTabs ul {
+	height: 100%;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+/* @noflip */
+div.vectorTabs ul li {
+	float: left;
+}
+/* OVERRIDDEN BY COMPLIANT BROWSERS */
+div.vectorTabs ul li {
+	line-height: 1.125em;
+	display: inline-block;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	background-color: #f3f3f3;
+	/* @embed */
+	background-image: url(images/tab-normal-fade.png);
+	background-position: bottom left;
+	background-repeat: repeat-x;
+	white-space:nowrap;
+}
+/* IGNORED BY IE6 */
+div.vectorTabs ul > li {
+	display: block;
+}
+div.vectorTabs li.selected {
+	/* @embed */
+	background-image: url(images/tab-current-fade.png);
+}
+/* OVERRIDDEN BY COMPLIANT BROWSERS */
+div.vectorTabs li a {
+	display: inline-block;
+	height: 1.9em;
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+	color: #0645ad;
+	cursor: pointer;
+	font-size: 0.8em;
+}
+/* IGNORED BY IE6 */
+div.vectorTabs li > a {
+	display: block;
+}
+div.vectorTabs li.icon a {
+	background-position: bottom right;
+	background-repeat: no-repeat;
+}
+/* OVERRIDDEN BY COMPLIANT BROWSERS */
+div.vectorTabs span a  {
+	display: inline-block;
+	padding-top: 1.25em;
+}
+/* IGNORED BY IE6 */
+/* @noflip */
+div.vectorTabs span > a {
+	float: left;
+	display: block;
+}
+div.vectorTabs span {
+	display: inline-block;
+	/* @embed */
+	background-image: url(images/tab-break.png);
+	background-position: bottom right;
+	background-repeat: no-repeat;
+}
+div.vectorTabs li.selected a,
+div.vectorTabs li.selected a:visited{
+	color: #333333;
+	text-decoration: none;
+}
+div.vectorTabs li.new a,
+div.vectorTabs li.new a:visited{
+	color: #a55858;
+}
+/* Variants and Actions */
+/* @noflip */
+div.vectorMenu {
+	direction: ltr;
+	float: left;
+	/* @embed */
+	background-image: url(images/arrow-down-icon.png);
+	background-position: 100% 60%;
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
+div.vectorMenuFocus {
+	/* @embed */
+	background-image: url(images/arrow-down-focus-icon.png);
+	background-position: 100% 60%;
+}
+/* @noflip */
+body.rtl div.vectorMenu {
+	direction: rtl;
+}
+/* OVERRIDDEN BY COMPLIANT BROWSERS */
+/* @noflip */
+div#mw-head div.vectorMenu h5 {
+	float: left;
+	/* @embed */
+	background-image: url(images/tab-break.png);
+	background-repeat: no-repeat;
+}
+/* This will be flipped - unlike the one above it */
+div#mw-head div.vectorMenu h5 {
+	background-position: bottom left;
+	margin-left: -1px;
+}
+/* IGNORED BY IE6 */
+div#mw-head div.vectorMenu > h5 {
+	background-image: none;
+}
+div#mw-head div.vectorMenu h4 {
+	display: inline-block;
+	float: left;
+	font-size: 0.8em;
+	padding-left: 0.5em;
+	padding-top: 1.375em;
+	font-weight: normal;
+	border: none;
+}
+/* OVERRIDDEN BY COMPLIANT BROWSERS */
+/* @noflip */
+div.vectorMenu h5 a {
+	display: inline-block;
+	width: 24px;
+	height: 2.5em;
+	text-decoration: none;
+	/* @embed */
+	background-image: url(images/tab-break.png);
+	background-repeat: no-repeat;
+}
+/* This will be flipped - unlike the one above it */
+div.vectorMenu h5 a {
+	background-position: bottom right;
+}
+/* IGNORED BY IE6 */
+div.vectorMenu h5 > a {
+	display: block;
+}
+div.vectorMenu div.menu {
+	position: relative;
+	display: none;
+	clear: both;
+	text-align: left;
+}
+/* OVERRIDDEN BY COMPLIANT BROWSERS */
+/* @noflip */
+body.rtl div.vectorMenu div.menu {
+	margin-left: 24px;
+}
+/* IGNORED BY IE6 */
+/* @noflip */
+body.rtl div.vectorMenu > div.menu {
+	margin-left: auto;
+}
+/* IGNORED BY IE6 */
+/* Also fixes old versions of FireFox */
+/* @noflip */
+body.rtl div.vectorMenu > div.menu,
+x:-moz-any-link {
+	margin-left: 23px;
+}
+/* Enable forcing showing of the menu for accessibility */
+div.vectorMenu:hover div.menu,
+div.vectorMenu div.menuForceShow {
+	display: block;
+}
+div.vectorMenu ul {
+	position: absolute;
+	background-color: white;
+	border: solid 1px silver;
+	border-top-width: 0;
+	list-style: none;
+	list-style-image: none;
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	margin-left: -1px;
+	text-align: left;
+}
+/* Fixes old versions of FireFox */
+div.vectorMenu ul,
+x:-moz-any-link {
+	min-width: 5em;
+}
+/* Returns things back to normal in modern versions of FireFox */
+div.vectorMenu ul,
+x:-moz-any-link,
+x:default {
+	min-width: 0;
+}
+div.vectorMenu li {
+	padding: 0;
+	margin: 0;
+	text-align: left;
+	line-height: 1em;
+}
+/* OVERRIDDEN BY COMPLIANT BROWSERS */
+div.vectorMenu li a {
+	display: inline-block;
+	padding: 0.5em;
+	white-space: nowrap;
+	color: #0645ad;
+	cursor: pointer;
+	font-size: 0.8em;
+}
+/* IGNORED BY IE6 */
+div.vectorMenu li > a {
+	display: block;
+}
+div.vectorMenu li.selected a,
+div.vectorMenu li.selected a:visited {
+	color: #333333;
+	text-decoration: none;
+}
+/* Search */
+#p-search h5 {
+	display: none;
+}
+/* @noflip */
+#p-search {
+	float: left;
+}
+#p-search {
+	margin-right: 0.5em;
+	margin-left: 0.5em;
+}
+#p-search form,
+#p-search input {
+	margin: 0;
+	margin-top: 0.4em;
+}
+div#simpleSearch {
+	display: block;
+	width: 14em;
+	height: 1.4em;
+	margin-top: 0.65em;
+	position: relative;
+	min-height: 1px; /* Gotta trigger hasLayout for IE7 */
+	border: solid 1px #AAAAAA;
+	color: black;
+	background-color: white;
+	/* @embed */
+	background-image: url(images/search-fade.png);
+	background-position: top left;
+	background-repeat: repeat-x;
+}
+div#simpleSearch label {
+	/*
+	 * DON'T PANIC! Browsers that won't scale this properly are the same browsers that have JS issues that prevent
+	 * this from ever being shown anyways.
+	*/
+	font-size: 13px;
+	top: 0.25em;
+	direction: ltr;
+}
+div#simpleSearch input {
+	color: black;
+	direction: ltr;
+}
+div#simpleSearch input:focus {
+	outline: none;
+}
+div#simpleSearch input.placeholder {
+	color: #999999;
+}
+div#simpleSearch input::-webkit-input-placeholder {
+	color: #999999;
+}
+div#simpleSearch input#searchInput {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 90%;
+	margin: 0;
+	padding: 0;
+	padding-left: 0.2em;
+	padding-top: 0.2em;
+	padding-bottom: 0.2em;
+	outline: none;
+	border: none;
+	/*
+	 * DON'T PANIC! Browsers that won't scale this properly are the same browsers that have JS issues that prevent
+	 * this from ever being shown anyways.
+	*/
+	font-size: 13px;
+	background-color: transparent;
+	direction: ltr;
+}
+div#simpleSearch button#searchButton {
+	position: absolute;
+	width: 10%;
+	right: 0;
+	top: 0;
+	padding: 0;
+	padding-top: 0.3em;
+	padding-bottom: 0.2em;
+	padding-right: 0.4em;
+	margin: 0;
+	border: none;
+	cursor: pointer;
+	background-color: transparent;
+	background-image: none;
+}
+/* OVERRIDDEN BY COMPLIANT BROWSERS */
+div#simpleSearch button#searchButton img {
+	border: none;
+	margin: 0;
+	margin-top: -3px;
+	padding: 0;
+}
+/* IGNORED BY IE6 */
+div#simpleSearch button#searchButton > img {
+	margin: 0;
+}
 /* Panel */
 div#mw-panel {
 	position: absolute;
@@ -453,50 +453,50 @@ div#mw-panel {
 	width: 10em;
 	left: 0;
 }
-	div#mw-panel div.portal {
-		padding-bottom: 1.5em;
-		direction: ltr;
-	}
-	div#mw-panel div.portal h5 {
-		font-weight: normal;
-		color: #444444;
-		padding: 0.25em;
-		padding-top: 0;
-		padding-left: 1.75em;
-		cursor: default;
-		border: none;
-		font-size: 0.75em;
-	}
-	div#mw-panel div.portal div.body {
-		margin: 0;
-		padding-top: 0.5em;
-		margin-left: 1.25em;
-		/* @embed */
-		background-image: url(images/portal-break.png);
-		background-repeat: no-repeat;
-		background-position: top left;
-	}
-	div#mw-panel div.portal div.body ul {
-		list-style: none;
-		list-style-image: none;
-		list-style-type: none;
-		padding: 0;
-		margin: 0;
-	}
-	div#mw-panel div.portal div.body ul li {
-		line-height: 1.125em;
-		padding: 0;
-		padding-bottom: 0.5em;
-		margin: 0;
-		overflow: hidden;
-		font-size: 0.75em;
-	}
-	div#mw-panel div.portal div.body ul li a {
-		color: #0645ad;
-	}
-	div#mw-panel div.portal div.body ul li a:visited {
-		color: #0b0080;
-	}
+div#mw-panel div.portal {
+	padding-bottom: 1.5em;
+	direction: ltr;
+}
+div#mw-panel div.portal h5 {
+	font-weight: normal;
+	color: #444444;
+	padding: 0.25em;
+	padding-top: 0;
+	padding-left: 1.75em;
+	cursor: default;
+	border: none;
+	font-size: 0.75em;
+}
+div#mw-panel div.portal div.body {
+	margin: 0;
+	padding-top: 0.5em;
+	margin-left: 1.25em;
+	/* @embed */
+	background-image: url(images/portal-break.png);
+	background-repeat: no-repeat;
+	background-position: top left;
+}
+div#mw-panel div.portal div.body ul {
+	list-style: none;
+	list-style-image: none;
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+div#mw-panel div.portal div.body ul li {
+	line-height: 1.125em;
+	padding: 0;
+	padding-bottom: 0.5em;
+	margin: 0;
+	overflow: hidden;
+	font-size: 0.75em;
+}
+div#mw-panel div.portal div.body ul li a {
+	color: #0645ad;
+}
+div#mw-panel div.portal div.body ul li a:visited {
+	color: #0b0080;
+}
 /* Footer */
 div#footer {
 	margin-left: 10em;
