@@ -74,7 +74,10 @@ class PopulateImageSha1 extends LoggedUpdateMaintenance {
 		$imageTable = $dbw->tableName( 'image' );
 
 		if ( $method == 'pipe' ) {
-			// @todo FIXME: Kill this and replace with a second unbuffered DB connection.
+			// Opening a pipe allows the SHA-1 operation to be done in parallel 
+			// with the database write operation, because the writes are queued
+			// in the pipe buffer. This can improve performance by up to a 
+			// factor of 2. 
 			global $wgDBuser, $wgDBserver, $wgDBpassword, $wgDBname;
 			$cmd = 'mysql -u' . wfEscapeShellArg( $wgDBuser ) .
 				' -h' . wfEscapeShellArg( $wgDBserver ) .
