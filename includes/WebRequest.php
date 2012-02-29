@@ -379,6 +379,23 @@ class WebRequest {
 		return $ret;
 	}
 
+	
+	/**
+	 * Unset an arbitrary value from our get/post data.
+ 	 *
+	 * @param $key String: key name to use
+	 * @return Mixed: old value if one was present, null otherwise
+	 */
+	public function unsetVal( $key ) {
+		if ( !isset( $this->data[$key] ) ) {
+			$ret = null;
+		} else {
+			$ret = $this->data[$key];
+			unset( $this->data[$key] );
+		}
+		return $ret;
+	}
+
 	/**
 	 * Fetch an array from the input or return $default if it's not set.
 	 * If source was scalar, will return an array with a single element.
