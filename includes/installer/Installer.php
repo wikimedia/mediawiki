@@ -659,6 +659,7 @@ abstract class Installer {
 			return false;
 		}
 		$this->setVar( '_CompiledDBs', $databases );
+		return true;
 	}
 
 	/**
@@ -680,6 +681,7 @@ abstract class Installer {
 			$this->showError( 'config-brokenlibxml' );
 			return false;
 		}
+		return true;
 	}
 
 	/**
@@ -694,6 +696,7 @@ abstract class Installer {
 			$this->showError( 'config-using531', phpversion() );
 			return false;
 		}
+		return true;
 	}
 
 	/**
@@ -705,6 +708,7 @@ abstract class Installer {
 			$this->showError( 'config-magic-quotes-runtime' );
 			return false;
 		}
+		return true;
 	}
 
 	/**
@@ -716,6 +720,7 @@ abstract class Installer {
 			$this->showError( 'config-magic-quotes-sybase' );
 			return false;
 		}
+		return true;
 	}
 
 	/**
@@ -727,6 +732,7 @@ abstract class Installer {
 			$this->showError( 'config-mbstring' );
 			return false;
 		}
+		return true;
 	}
 
 	/**
@@ -738,16 +744,19 @@ abstract class Installer {
 			$this->showError( 'config-ze1' );
 			return false;
 		}
+		return true;
 	}
 
 	/**
 	 * Environment check for safe_mode.
+	 * @return bool
 	 */
 	protected function envCheckSafeMode() {
 		if ( wfIniGetBool( 'safe_mode' ) ) {
 			$this->setVar( '_SafeMode', true );
 			$this->showMessage( 'config-safe-mode' );
 		}
+		return true;
 	}
 
 	/**
@@ -759,6 +768,7 @@ abstract class Installer {
 			$this->showError( 'config-xml-bad' );
 			return false;
 		}
+		return true;
 	}
 
 	/**
@@ -777,6 +787,7 @@ abstract class Installer {
 			$this->showError( 'config-pcre-no-utf8' );
 			return false;
 		}
+		return true;
 	}
 
 	/**
@@ -801,9 +812,8 @@ abstract class Installer {
 				$this->showMessage( 'config-memory-raised', $limit, $newLimit );
 				$this->setVar( '_RaiseMemory', true );
 			}
-		} else {
-			return true;
 		}
+		return true;
 	}
 
 	/**
@@ -829,15 +839,18 @@ abstract class Installer {
 
 	/**
 	 * Scare user to death if they have mod_security
+	 * @return bool
 	 */
 	protected function envCheckModSecurity() {
 		if ( self::apacheModulePresent( 'mod_security' ) ) {
 			$this->showMessage( 'config-mod-security' );
 		}
+		return true;
 	}
 
 	/**
 	 * Search for GNU diff3.
+	 * @return bool
 	 */
 	protected function envCheckDiff3() {
 		$names = array( "gdiff3", "diff3", "diff3.exe" );
@@ -851,6 +864,7 @@ abstract class Installer {
 			$this->setVar( 'wgDiff3', false );
 			$this->showMessage( 'config-diff3-bad' );
 		}
+		return true;
 	}
 
 	/**
@@ -868,10 +882,11 @@ abstract class Installer {
 			return true;
 		} elseif ( function_exists( 'imagejpeg' ) ) {
 			$this->showMessage( 'config-gd' );
-			return true;
+
 		} else {
 			$this->showMessage( 'config-no-scaling' );
 		}
+		return true;
 	}
 
 	/**
@@ -881,6 +896,7 @@ abstract class Installer {
 		$server = $this->envGetDefaultServer();
 		$this->showMessage( 'config-using-server', $server );
 		$this->setVar( 'wgServer', $server );
+		return true;
 	}
 
 	/**
@@ -913,6 +929,7 @@ abstract class Installer {
 			$ext = 'php';
 		}
 		$this->setVar( 'wgScriptExtension', ".$ext" );
+		return true;
 	}
 
 	/**
@@ -1000,17 +1017,17 @@ abstract class Installer {
 		$url = $this->getVar( 'wgServer' ) . $this->getVar( 'wgScriptPath' ) . '/images/';
 		$safe = !$this->dirIsExecutable( $dir, $url );
 
-		if ( $safe ) {
-			return true;
-		} else {
+		if ( !$safe ) {
 			$this->showMessage( 'config-uploads-not-safe', $dir );
 		}
+		return true;
 	}
 
 	/**
 	 * Checks if suhosin.get.max_value_length is set, and if so, sets
 	 * $wgResourceLoaderMaxQueryLength to that value in the generated
 	 * LocalSettings file
+	 * @return bool
 	 */
 	protected function envCheckSuhosinMaxValueLength() {
 		$maxValueLength = ini_get( 'suhosin.get.max_value_length' );
@@ -1023,6 +1040,7 @@ abstract class Installer {
 			$maxValueLength = -1;
 		}
 		$this->setVar( 'wgResourceLoaderMaxQueryLength', $maxValueLength );
+		return true;
 	}
 
 	/**
@@ -1095,11 +1113,15 @@ abstract class Installer {
 		}
 	}
 
+	/**
+	 * @return bool
+	 */
 	protected function envCheckCtype() {
 		if ( !function_exists( 'ctype_digit' ) ) {
 			$this->showError( 'config-ctype' );
 			return false;
 		}
+		return true;
 	}
 
 	/**
@@ -1181,6 +1203,8 @@ abstract class Installer {
 	 * Checks if scripts located in the given directory can be executed via the given URL.
 	 *
 	 * Used only by environment checks.
+	 * @param $dir string
+	 * @param $url string
 	 * @return bool|int|string
 	 */
 	public function dirIsExecutable( $dir, $url ) {
