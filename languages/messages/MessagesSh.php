@@ -567,8 +567,8 @@ Moguće je da ju je neko drugi već obrisao.',
 'badtitle'             => 'Loš naslov',
 'badtitletext'         => 'Zatražena stranica je bila nevaljana, prazna ili neispravno povezana s među-jezičkim ili inter-wiki naslovom.
 Može sadržavati jedno ili više slova koja se ne mogu koristiti u naslovima.',
-'perfcached'           => 'Slijedeći podaci su keširani i možda neće biti u potpunosti ažurirani. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
-'perfcachedts'         => 'Slijedeći podaci se nalaze u memoriji i zadnji put su ažurirani $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
+'perfcached'           => 'Sledeći podaci su keširani i mogu biti zastareli. Keš sadrži najviše {{PLURAL:$1|jedan rezultat|$1 rezultata|$1 rezultata}}.',
+'perfcachedts'         => 'Sledeći podaci su keširani, a poslednji put su ažurirani $2 u $3. Keš sadrži najviše {{PLURAL:$4|jedan rezultat|$4 rezultata|$4 rezultata}}.',
 'querypage-no-updates' => 'Ažuriranje ove stranice je isključeno.
 Podaci koji se ovdje nalaze neće biti biti ažurirani.',
 'wrong_wfQuery_params' => 'Netačni parametri za wfQuery()<br />
@@ -873,12 +873,12 @@ Molimo provjerite da li želite napraviti/izmijeniti ovu stranicu.',
 'userpage-userdoesnotexist-view'   => 'Korisnički račun "$1" nije registrovan.',
 'blocked-notice-logextract'        => 'Ovaj korisnik je trenutno blokiran.
 Posljednje stavke evidencije blokiranja možete pogledati ispod:',
-'clearyourcache'                   => "'''Napomena:''' Nakon snimanja možda ćete trebate očistiti međuspremnik svog preglednika kako biste vidjeli promjene.
-* '''Firefox / Safari:''' držite ''Shift'' i kliknite ''Reload'', ili pritisnite bilo ''Ctrl-F5'' ili ''Ctrl-R'' (''Command-R'' na Macu)
-* '''Google Chrome:''' pritisnite ''Ctrl-Shift-R'' (''Command-Shift-R'' na Macu)
-* '''Internet Explorer:''' držite ''Ctrl'' i kliknite ''Refresh'', ili pritisnite ''Ctrl-F5''
-* '''Konqueror:''' kliknite ''Reload'' ili pritisnite ''F5''
-* '''Opera:''' očistite međuspremnik u ''Tools → Preferences''",
+'clearyourcache'                   => "'''Napomena:''' nakon čuvanja, možda ćete morati da očistite keš pregledača.
+*'''Firefox / Safari::''' držite ''Shift'' i kliknite na ''Osveži'', ili pritisnite ''Ctrl-F5'' ili Ctrl-R (''⌘-R'' na Makintošu)
+*'''Google Chrome:''' pritisnite ''Ctrl-Shift-R'' (''⌘-Shift-R'' na Makintošu)
+*'''Internet Explorer: '''držite ''Ctrl'' i kliknite na ''Osveži'', ili pritisnite ''Ctrl-F5''
+*'''Konqueror: '''kliknite na ''Osveži'' ili pritisnite ''F5''
+*'''Opera:''' očistite privremenu memoriju preko menija ''Alatke → Postavke''.",
 'usercssyoucanpreview'             => "'''Sugestija:''' Koristite 'Prikaži izgled' dugme da testirate svoj novi CSS prije nego što ga snimite.",
 'userjsyoucanpreview'              => "'''Sugestija:''' Koristite 'Prikaži izgled' dugme da testirate svoj novi JS prije nego što ga snimite.",
 'usercsspreview'                   => "'''Zapamtite ovo je samo izgled Vašeg CSS-a.'''
@@ -930,8 +930,8 @@ Također obećavate kako ste ga napisali sami ili kopirali iz izvora u javnoj do
 'copyrightwarning2'                => "Zapamtite da svaki doprinos na stranici {{SITENAME}} može biti izmijenjen, promijenjen ili uklonjen od strane ostalih korisnika. Ako ne želite da ovo desi sa Vašim tekstom, onda ga nemojte slati ovdje.<br />
 Također nam garantujete da ste ovo Vi napisali, ili da ste ga kopirali iz javne domene ili sličnog slobodnog izvora informacija (pogledajte $1 za više detalja).
 '''NE ŠALJITE DJELA ZAŠTIĆENA AUTORSKIM PRAVOM BEZ DOZVOLE!'''",
-'longpageerror'                    => "'''Greška: Tekst, koji ste poslali, je dug $1 kilobajta, što je veće od maksimuma, koji iznosi $2 kilobajta.
-Stranica ne može biti spremljena.'''",
+'longpageerror'                    => "'''Greška: tekst koji ste uneli je veličine {{PLURAL:$1|jedan kilobajt|$1 kilobajta|$1 kilobajta}}, što je veće od {{PLURAL:$2|dozvoljenog jednog kilobajta|dozvoljena $2 kilobajta|dozvoljenih $2 kilobajta}}.'''
+Stranica ne može biti sačuvana.",
 'readonlywarning'                  => "'''PAŽNJA: Baza je zaključana zbog održavanja, tako da nećete moći da snimite svoje izmjene za sada.
 Možda želite da kopirate i nalijepite tekst u tekst editor i sačuvate ga za kasnije.'''
 
@@ -1133,7 +1133,7 @@ Molimo provjerite zapise.',
 
 # Suppression log
 'suppressionlog'     => 'Registri sakrivanja',
-'suppressionlogtext' => 'Ispod je spisak brisanja i blokiranja koja su povezana sa sadržajem koji je sakriven od administratora. Vidi [[Special:IPBlockList|spisak IP blokiranja]] za pregled trenutno važećih zabrana i blokada.',
+'suppressionlogtext' => 'Ispod je spisak brisanja i blokiranja koja su povezana sa sadržajem koji je sakriven od administratora. Vidi [[Special:IPBlockList|spisak IP blokiranja]] za pregled trenutno važećih blokada.',
 
 # History merging
 'mergehistory'                     => 'Spoji historije stranice',
@@ -1269,7 +1269,7 @@ Uzmite u obzir da njegovi indeksi za ovu Wiki ne moraju biti ažurirani.',
 'prefs-rc'                      => 'Podešavanje nedavnih izmjena',
 'prefs-watchlist'               => 'Praćene stranice',
 'prefs-watchlist-days'          => 'Broj dana za prikaz u spisku praćenja:',
-'prefs-watchlist-days-max'      => 'Maximum $1 {{PLURAL:$1|day|days}}',
+'prefs-watchlist-days-max'      => '(najviše $1 {{PLURAL:$1|dan|dana}})',
 'prefs-watchlist-edits'         => 'Najveći broj izmjena za prikaz u proširenom spisku praćenja:',
 'prefs-watchlist-edits-max'     => 'Maksimalni broj: 1000',
 'prefs-watchlist-token'         => 'Token spiska za praćenje:',
@@ -1523,6 +1523,7 @@ Ako izaberete da date ime, biće korišteno za pripisivanje Vašeg rada.',
 'action-userrights'           => 'uređivanje svih korisničkih prava',
 'action-userrights-interwiki' => 'uređivanje korisničkih prava na drugim wikijima',
 'action-siteadmin'            => 'zaključavanje i otključavanje baze podataka',
+'action-sendemail'            => 'pošalji e-poštu',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|izmjena|izmjene|izmjena}}',
@@ -1554,6 +1555,7 @@ Ako izaberete da date ime, biće korišteno za pripisivanje Vašeg rada.',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|korisnik|korisnika}} koji pregledaju]',
 'rc_categories'                     => 'Ograniči na kategorije (razdvojene sa "|")',
 'rc_categories_any'                 => 'Sve',
+'rc-change-size-new'                => '$1 {{PLURAL:$1|bajt|bajta|bajtova}} posle izmene',
 'newsectionsummary'                 => '/* $1 */ nova sekcija',
 'rc-enhanced-expand'                => 'Pokaži detalje (neophodan JavaScript)',
 'rc-enhanced-hide'                  => 'Sakrij detalje',
@@ -1694,18 +1696,54 @@ $1',
 'upload-warning-subj'         => 'Upozorenje pri slanju',
 'upload-warning-msg'          => 'Nastao je problem sa vašim postavljanjem sa [$2]. Morate se vratiti na [[Special:Upload/stash/$1|formular za postavljanje]] kako biste riješili ovaj problem.',
 
-'upload-proto-error'        => 'Pogrešan protokol',
-'upload-proto-error-text'   => 'Postavljanje sa vanjske lokacije zahtjeva URL-ove koji počinju sa <code>http://</code> ili <code>ftp://</code>.',
-'upload-file-error'         => 'Interna pogreška',
-'upload-file-error-text'    => 'Desila se interna greška pri pokušaju kreiranja privremene datoteke na serveru.
+'upload-proto-error'                => 'Pogrešan protokol',
+'upload-proto-error-text'           => 'Postavljanje sa vanjske lokacije zahtjeva URL-ove koji počinju sa <code>http://</code> ili <code>ftp://</code>.',
+'upload-file-error'                 => 'Interna pogreška',
+'upload-file-error-text'            => 'Desila se interna greška pri pokušaju kreiranja privremene datoteke na serveru.
 Molimo kontaktirajte [[Special:ListUsers/sysop|administratora]].',
-'upload-misc-error'         => 'Nepoznata greška pri postavljanju',
-'upload-misc-error-text'    => 'Desila se nepoznata greška pri postavljanju.
+'upload-misc-error'                 => 'Nepoznata greška pri postavljanju',
+'upload-misc-error-text'            => 'Desila se nepoznata greška pri postavljanju.
 Molimo Vas provjerite da li je URL tačan i dostupan pa pokušajte ponovo.
 Ako se problem ne riješi, kontaktirajte [[Special:ListUsers/sysop|administratora]].',
-'upload-too-many-redirects' => 'URL sadrži previše preusmjerenja',
-'upload-unknown-size'       => 'Nepoznata veličina',
-'upload-http-error'         => 'Desila se HTTP greška: $1',
+'upload-too-many-redirects'         => 'URL sadrži previše preusmjerenja',
+'upload-unknown-size'               => 'Nepoznata veličina',
+'upload-http-error'                 => 'Desila se HTTP greška: $1',
+'upload-copy-upload-invalid-domain' => 'Kopije postavljanja nisu dostupni na ovom domenu.',
+
+# File backend
+'backend-fail-stream'        => 'Ne mogu da emitujem datoteku $1.',
+'backend-fail-backup'        => 'Ne mogu da napravim rezervu datoteke $1.',
+'backend-fail-notexists'     => 'Datoteka $1 ne postoji.',
+'backend-fail-hashes'        => 'Ne mogu da dobijem disperzije datoteke za upoređivanje.',
+'backend-fail-notsame'       => 'Već postoji neistovetna datoteka – $1.',
+'backend-fail-invalidpath'   => '$1 nije ispravna putanja za skladištenje.',
+'backend-fail-delete'        => 'Ne može se izbrisati datoteka "$1".',
+'backend-fail-alreadyexists' => 'Datoteka $1 već postoji.',
+'backend-fail-store'         => 'Ne mogu da smestim datoteku $1 u $2.',
+'backend-fail-copy'          => 'Ne može se kopirati "$1" na "$2".',
+'backend-fail-move'          => 'Ne mogu da premestim datoteku $1 u $2.',
+'backend-fail-opentemp'      => 'Nije moguće napraviti privremenu datoteku.',
+'backend-fail-writetemp'     => 'Ne mogu da pišem u privremenoj datoteci.',
+'backend-fail-closetemp'     => 'Ne mogu da zatvorim privremenu datoteku.',
+'backend-fail-read'          => 'Ne mogu da pročitam datoteku $1.',
+'backend-fail-create'        => 'Ne mogu da napravim datoteku $1.',
+'backend-fail-readonly'      => 'Skladišna osnova „$1“ trenutno ne može da se zapisuje. Navedeni razlog glasi: „$2“',
+'backend-fail-synced'        => 'Datoteka „$1“ je nedosledna između unutrašnjih skladišnih osnova',
+'backend-fail-connect'       => 'Ne mogu da se povežem sa skladišnom osnovom „$1“.',
+'backend-fail-internal'      => 'Došlo je do nepoznate greške u skladišnoj osnovi „$1“.',
+'backend-fail-contenttype'   => 'Ne mogu da utvrdim kakav sadržaj ima datoteka koju treba da smestim u „$1“.',
+'backend-fail-batchsize'     => 'Skladišna osnova je dobila blokadu od $1 {{PLURAL:$1|operacije|operacije|operacija}}; ograničenje je $2 {{PLURAL:$2|operacija|operacije|operacija}}.',
+
+# Lock manager
+'lockmanager-notlocked'        => 'Ne mogu da otključam „$1“ jer nije zaključan.',
+'lockmanager-fail-closelock'   => 'Ne mogu da zatvorim katanac za „$1“.',
+'lockmanager-fail-deletelock'  => 'Ne mogu da obrišem katanac za „$1“.',
+'lockmanager-fail-acquirelock' => 'Ne mogu da dobijem katanac za „$1“.',
+'lockmanager-fail-openlock'    => 'Ne mogu da otvorim katanac za „$1“.',
+'lockmanager-fail-releaselock' => 'Ne mogu da oslobodim katanac za „$1“.',
+'lockmanager-fail-db-bucket'   => 'Ne mogu da kontaktiram s dovoljno katanaca u kanti $1.',
+'lockmanager-fail-db-release'  => 'Ne mogu da oslobodim katance u bazi $1.',
+'lockmanager-fail-svr-release' => 'Ne mogu da oslobodim katance na serveru $1.',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'Desila se greška pri otvaranju datoteke za provjere ZIP-a.',
@@ -1723,13 +1761,14 @@ Ne može se dobro provjeriti u vezi sigurnosti.',
 'uploadstash-badtoken' => 'Izvršavanje ove akcije je bilo neuspješno, možda zato što su vaša uređivačka odobrenja istekla. Pokušajte ponovo.',
 'uploadstash-errclear' => 'Brisanje neobjavljenih datoteka nije uspjelo.',
 'uploadstash-refresh'  => 'Osvježi spisak datoteka',
+'invalid-chunk-offset' => 'Nevaljana točka nastavka snimanja',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Pristup onemogućen',
 'img-auth-nopathinfo'       => 'Nedostaje PATH_INFO.
-Vaš server nije podešen da daje ovakve informacije.
+Vaš server nije podešen da prosleđuje ovakve podatke.
 Možda je zasnovan na CGI-ju koji ne podržava img_auth.
-Pogledajte [https://www.mediawiki.org/wiki/Manual:Image_Authorization?uselang=sh odobravanje slika.]',
+Pogledajte https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'         => 'Zahtjevana putanja nije u direktorijumu podešenom za postavljanje.',
 'img-auth-badtitle'         => 'Ne mogu napraviti valjani naslov iz "$1".',
 'img-auth-nologinnWL'       => 'Niste prijavljeni i "$1" nije na spisku dozvoljenih.',
@@ -1947,6 +1986,8 @@ Svaki red sadrži veze na prvo i drugo preusmjerenje, kao i na prvu liniju tekst
 'wantedpages'             => 'Tražene stranice',
 'wantedpages-badtitle'    => 'Nevaljan naslov u setu rezultata: $1',
 'wantedfiles'             => 'Tražene datoteke',
+'wantedfiletext-cat'      => 'Sledeće datoteke se koriste, ali ne postoje. Datoteke iz drugih spremnika mogu biti navedene iako ne postoje. Takve datoteke će biti <del>izbačene</del> sa spiska. Pored toga, stranice koje sadrže nepostojeće datoteke se nalaze [[:$1|ovde]].',
+'wantedfiletext-nocat'    => 'Sledeće datoteke se koriste, ali ne postoje. Datoteke iz drugih spremnika mogu biti navedene iako ne postoje. Takve datoteke će biti <del>izbačene</del> sa spiska.',
 'wantedtemplates'         => 'Potrebni šabloni',
 'mostlinked'              => 'Stranice sa najviše linkova',
 'mostlinkedcategories'    => 'Kategorije sa najviše linkova',
@@ -1955,6 +1996,7 @@ Svaki red sadrži veze na prvo i drugo preusmjerenje, kao i na prvu liniju tekst
 'mostimages'              => 'Datoteke sa najviše linkova',
 'mostrevisions'           => 'Stranice sa najviše izmjena',
 'prefixindex'             => 'Sve stranice sa prefiksom',
+'prefixindex-namespace'   => 'Sve stranice s predmetkom (imenski prostor $1)',
 'shortpages'              => 'Kratke stranice',
 'longpages'               => 'Dugačke stranice',
 'deadendpages'            => 'Stranice bez internih linkova',
@@ -2592,7 +2634,7 @@ Ako želite otključati ili zaključati bazu, ova datoteka mora biti omogućena 
 'movepagetext'                 => "Korištenjem donjeg formulara možete preimenovati stranicu, preusmjerivši njenu historiju na novi naziv.
 Stari naslov će postati stranica za preusmjerenje na novi naslov.
 Možete updateirati preusmjerenja koja idu na originalni naslov automatski.
-Ako to ne učinite, budite sigurni da ste provjerili [[Special:DoubleRedirects|dupla]] ili [[Special:BrokenRedirects|mrtva prusmjerenja]].
+Ako to ne učinite, budite sigurni da ste provjerili [[Special:DoubleRedirects|dupla]] ili [[Special:BrokenRedirects|mrtva preusmjerenja]].
 Odgovorni ste za to da poveznice nastave povezivati stranice kojima su namijenjene.
 
 Uzmite u obzir da stranica '''neće''' biti preusmjerena ako već postoji stranica s novim naslovom, osim ako je prazna ili ako je preusmjerenje bez prethodne historije uređivanja.
@@ -2686,6 +2728,7 @@ Ovo se može uvesti u drugi wiki koristeći MediaWiki preko [[Special:Import|str
 Za izvoz stranica unesite njihove naslove u polje ispod, jedan naslov po retku, i označite želite li trenutnu verziju zajedno sa svim ranijim, ili samo trenutnu verziju sa informacijom o zadnjoj promjeni.
 
 U drugom slučaju možete koristiti i vezu, npr. [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] za stranicu [[{{MediaWiki:Mainpage}}]].',
+'exportall'         => 'Izvezi sve stranice',
 'exportcuronly'     => 'Uključite samo trenutnu reviziju, ne cijelu historiju',
 'exportnohistory'   => "----
 '''Pažnja:''' Izvoz cjelokupne historije stranica preko ovog obrasca je onemogućeno iz tehničkih razloga.",
@@ -2722,6 +2765,8 @@ Molimo posjetite [//www.mediawiki.org/wiki/Localisation MediaWiki lokalizaciju] 
 'thumbnail_error'          => 'Greška pri pravljenju umanjene slike: $1',
 'djvu_page_error'          => 'DjVu stranica je van opsega',
 'djvu_no_xml'              => 'Za XML-datoteku se ne može pozvati DjVu datoteka',
+'thumbnail-temp-create'    => 'Ne mogu da napravim privremenu smanjenu sliku',
+'thumbnail-dest-create'    => 'Spremanje smanjene slike ("thumbnail") na ponuđeno odredište nije moguće.',
 'thumbnail_invalid_params' => 'Pogrešne postavke smanjenog prikaza',
 'thumbnail_dest_directory' => 'Ne može se napraviti odredišni folder',
 'thumbnail_image-type'     => 'Tip slike nije podržan',
@@ -2772,6 +2817,9 @@ Molimo pokušajte ponovno.',
 'import-invalid-interwiki'   => 'Ne može se uvesti iz navedenog wikija.',
 'import-error-edit'          => 'Stranica „$1“ nije uvezena jer vam nije dozvoljeno da je uređujete.',
 'import-error-create'        => 'Stranica „$1“ nije uvezena jer vam nije dozvoljeno da je napravite.',
+'import-error-interwiki'     => 'Ne mogu da uvezem stranicu „$1“ jer je njen naziv rezervisan za spoljno povezivanje (interwiki).',
+'import-error-special'       => 'Ne mogu da uvezem stranicu „$1“ jer ona pripada posebnom imenskom prostoru koje ne prihvata stranice.',
+'import-error-invalid'       => 'Ne mogu da uvezem stranicu „$1“ jer je njen naziv neispravan.',
 
 # Import log
 'importlogpage'                    => 'Registar uvoza',
@@ -2781,75 +2829,88 @@ Molimo pokušajte ponovno.',
 'import-logentry-interwiki'        => 'uveženo ("transwikied") $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revizija|revizije|revizija}} sa $2',
 
+# JavaScriptTest
+'javascripttest'                           => 'Javaskript test',
+'javascripttest-disabled'                  => 'Ova funkcija je onemogućena.',
+'javascripttest-title'                     => 'Izvršavanje testova za $1',
+'javascripttest-pagetext-noframework'      => 'Ova stranica je rezervisana za izvršavanje javaskript testova.',
+'javascripttest-pagetext-unknownframework' => 'Nepoznati radni okvir „$1“.',
+'javascripttest-pagetext-frameworks'       => 'Izaberite jedan od sledećih radnih okvira: $1',
+'javascripttest-pagetext-skins'            => 'Izaberite s kojim skinom (interfejsom) želite da pokrenete probu:',
+'javascripttest-qunit-intro'               => 'Pogledajte [$1 dokumentaciju za testiranje] na mediawiki.org.',
+'javascripttest-qunit-heading'             => 'Medijavikijin paket za testiranje – QUnit',
+
 # Tooltip help for the actions
-'tooltip-pt-userpage'             => 'Vaša korisnička stranica',
-'tooltip-pt-anonuserpage'         => 'Korisnička stranica za ip koju Vi uređujete kao',
-'tooltip-pt-mytalk'               => 'Vaša stranica za razgovor',
-'tooltip-pt-anontalk'             => 'Razgovor o doprinosu sa ove IP adrese',
-'tooltip-pt-preferences'          => 'Vaše postavke',
-'tooltip-pt-watchlist'            => 'Spisak stranica koje pratite radi izmjena',
-'tooltip-pt-mycontris'            => 'Spisak vaših doprinosa',
-'tooltip-pt-login'                => 'Predlažem da se prijavite; međutim, to nije obavezno',
-'tooltip-pt-anonlogin'            => 'Predlažemo da se prijavite, ali nije obavezno.',
-'tooltip-pt-logout'               => 'Odjava sa projekta {{SITENAME}}',
-'tooltip-ca-talk'                 => 'Razgovor o sadržaju stranice',
-'tooltip-ca-edit'                 => 'Možete da uređujete ovu stranicu.
+'tooltip-pt-userpage'                 => 'Vaša korisnička stranica',
+'tooltip-pt-anonuserpage'             => 'Korisnička stranica za ip koju Vi uređujete kao',
+'tooltip-pt-mytalk'                   => 'Vaša stranica za razgovor',
+'tooltip-pt-anontalk'                 => 'Razgovor o doprinosu sa ove IP adrese',
+'tooltip-pt-preferences'              => 'Vaše postavke',
+'tooltip-pt-watchlist'                => 'Spisak stranica koje pratite radi izmjena',
+'tooltip-pt-mycontris'                => 'Spisak vaših doprinosa',
+'tooltip-pt-login'                    => 'Predlažem da se prijavite; međutim, to nije obavezno',
+'tooltip-pt-anonlogin'                => 'Predlažemo da se prijavite, ali nije obavezno.',
+'tooltip-pt-logout'                   => 'Odjava sa projekta {{SITENAME}}',
+'tooltip-ca-talk'                     => 'Razgovor o sadržaju stranice',
+'tooltip-ca-edit'                     => 'Možete da uređujete ovu stranicu.
 Molimo da prije snimanja koristite dugme za pretpregled',
-'tooltip-ca-addsection'           => 'Započnite novu sekciju.',
-'tooltip-ca-viewsource'           => 'Ova stranica je zaštićena.
+'tooltip-ca-addsection'               => 'Započnite novu sekciju.',
+'tooltip-ca-viewsource'               => 'Ova stranica je zaštićena.
 Možete vidjeti njen izvor',
-'tooltip-ca-history'              => 'Prethodne verzije ove stranice',
-'tooltip-ca-protect'              => 'Zaštiti ovu stranicu',
-'tooltip-ca-unprotect'            => 'Promijeni zaštitu za ovu stranicu',
-'tooltip-ca-delete'               => 'Izbriši ovu stranicu',
-'tooltip-ca-undelete'             => 'Vratite izmjene koje su načinjene prije brisanja stranice',
-'tooltip-ca-move'                 => 'Premjesti ovu stranicu',
-'tooltip-ca-watch'                => 'Dodajte ovu stranicu na Vaš spisak praćenja',
-'tooltip-ca-unwatch'              => 'Izbrišite ovu stranicu sa spiska praćenja',
-'tooltip-search'                  => 'Pretraži ovaj wiki',
-'tooltip-search-go'               => 'Idi na stranicu s upravo ovakvim imenom ako postoji',
-'tooltip-search-fulltext'         => 'Pretraga stranica sa ovim tekstom',
-'tooltip-p-logo'                  => 'Posjetite glavnu stranicu',
-'tooltip-n-mainpage'              => 'Posjetite glavnu stranu',
-'tooltip-n-mainpage-description'  => 'Posjetite glavnu stranicu',
-'tooltip-n-portal'                => 'O projektu, što možete učiniti, gdje možete naći stvari',
-'tooltip-n-currentevents'         => 'Pronađi dodatne informacije o trenutnim događajima',
-'tooltip-n-recentchanges'         => 'Spisak nedavnih izmjena na wikiju.',
-'tooltip-n-randompage'            => 'Otvorite slučajnu stranicu',
-'tooltip-n-help'                  => 'Mjesto gdje možete nešto da naučite',
-'tooltip-t-whatlinkshere'         => 'Spisak svih stranica povezanih sa ovim',
-'tooltip-t-recentchangeslinked'   => 'Nedavne izmjene ovdje povezanih stranica',
-'tooltip-feed-rss'                => 'RSS feed za ovu stranicu',
-'tooltip-feed-atom'               => 'Atom feed za ovu stranicu',
-'tooltip-t-contributions'         => 'Pogledajte listu doprinosa ovog korisnika',
-'tooltip-t-emailuser'             => 'Pošaljite e-mail ovom korisniku',
-'tooltip-t-upload'                => 'Postavi datoteke',
-'tooltip-t-specialpages'          => 'Popis svih posebnih stranica',
-'tooltip-t-print'                 => 'Verzija ove stranice za štampanje',
-'tooltip-t-permalink'             => 'Stalni link ove verzije stranice',
-'tooltip-ca-nstab-main'           => 'Pogledajte sadržaj stranice',
-'tooltip-ca-nstab-user'           => 'Pogledajte korisničku stranicu',
-'tooltip-ca-nstab-media'          => 'Pogledajte medijski fajl',
-'tooltip-ca-nstab-special'        => 'Ovo je posebna stranica, te je ne možete uređivati',
-'tooltip-ca-nstab-project'        => 'Pogledajte stranicu projekta',
-'tooltip-ca-nstab-image'          => 'Vidi stranicu datoteke/fajla',
-'tooltip-ca-nstab-mediawiki'      => 'Pogledajte sistemsku poruku',
-'tooltip-ca-nstab-template'       => 'Pogledajte šablon',
-'tooltip-ca-nstab-help'           => 'Pogledajte stranicu za pomoć',
-'tooltip-ca-nstab-category'       => 'Pogledajte stranicu kategorije',
-'tooltip-minoredit'               => 'Označite ovo kao manju izmjenu',
-'tooltip-save'                    => 'Snimite vaše izmjene',
-'tooltip-preview'                 => 'Prethodni pregled stranice, molimo koristiti prije snimanja!',
-'tooltip-diff'                    => 'Prikaz izmjena koje ste napravili u tekstu',
-'tooltip-compareselectedversions' => 'Pogledajte pazlike između dvije selektovane verzije ove stranice.',
-'tooltip-watch'                   => 'Dodajte ovu stranicu na Vaš spisak praćenja',
-'tooltip-recreate'                => 'Ponovno pravljenje stranice iako je već brisana',
-'tooltip-upload'                  => 'Započni postavljanje',
-'tooltip-rollback'                => '"Povrat" briše izmjenu/e posljednjeg uređivača ove stranice jednim klikom',
-'tooltip-undo'                    => 'Vraća ovu izmjenu i otvara formu uređivanja u modu pretpregleda.
+'tooltip-ca-history'                  => 'Prethodne verzije ove stranice',
+'tooltip-ca-protect'                  => 'Zaštiti ovu stranicu',
+'tooltip-ca-unprotect'                => 'Promijeni zaštitu za ovu stranicu',
+'tooltip-ca-delete'                   => 'Izbriši ovu stranicu',
+'tooltip-ca-undelete'                 => 'Vratite izmjene koje su načinjene prije brisanja stranice',
+'tooltip-ca-move'                     => 'Premjesti ovu stranicu',
+'tooltip-ca-watch'                    => 'Dodajte ovu stranicu na Vaš spisak praćenja',
+'tooltip-ca-unwatch'                  => 'Izbrišite ovu stranicu sa spiska praćenja',
+'tooltip-search'                      => 'Pretraži ovaj wiki',
+'tooltip-search-go'                   => 'Idi na stranicu s upravo ovakvim imenom ako postoji',
+'tooltip-search-fulltext'             => 'Pretraga stranica sa ovim tekstom',
+'tooltip-p-logo'                      => 'Posjetite glavnu stranicu',
+'tooltip-n-mainpage'                  => 'Posjetite glavnu stranu',
+'tooltip-n-mainpage-description'      => 'Posjetite glavnu stranicu',
+'tooltip-n-portal'                    => 'O projektu, što možete učiniti, gdje možete naći stvari',
+'tooltip-n-currentevents'             => 'Pronađi dodatne informacije o trenutnim događajima',
+'tooltip-n-recentchanges'             => 'Spisak nedavnih izmjena na wikiju.',
+'tooltip-n-randompage'                => 'Otvorite slučajnu stranicu',
+'tooltip-n-help'                      => 'Mjesto gdje možete nešto da naučite',
+'tooltip-t-whatlinkshere'             => 'Spisak svih stranica povezanih sa ovim',
+'tooltip-t-recentchangeslinked'       => 'Nedavne izmjene ovdje povezanih stranica',
+'tooltip-feed-rss'                    => 'RSS feed za ovu stranicu',
+'tooltip-feed-atom'                   => 'Atom feed za ovu stranicu',
+'tooltip-t-contributions'             => 'Pogledajte listu doprinosa ovog korisnika',
+'tooltip-t-emailuser'                 => 'Pošaljite e-mail ovom korisniku',
+'tooltip-t-upload'                    => 'Postavi datoteke',
+'tooltip-t-specialpages'              => 'Popis svih posebnih stranica',
+'tooltip-t-print'                     => 'Verzija ove stranice za štampanje',
+'tooltip-t-permalink'                 => 'Stalni link ove verzije stranice',
+'tooltip-ca-nstab-main'               => 'Pogledajte sadržaj stranice',
+'tooltip-ca-nstab-user'               => 'Pogledajte korisničku stranicu',
+'tooltip-ca-nstab-media'              => 'Pogledajte medijski fajl',
+'tooltip-ca-nstab-special'            => 'Ovo je posebna stranica, te je ne možete uređivati',
+'tooltip-ca-nstab-project'            => 'Pogledajte stranicu projekta',
+'tooltip-ca-nstab-image'              => 'Vidi stranicu datoteke/fajla',
+'tooltip-ca-nstab-mediawiki'          => 'Pogledajte sistemsku poruku',
+'tooltip-ca-nstab-template'           => 'Pogledajte šablon',
+'tooltip-ca-nstab-help'               => 'Pogledajte stranicu za pomoć',
+'tooltip-ca-nstab-category'           => 'Pogledajte stranicu kategorije',
+'tooltip-minoredit'                   => 'Označite ovo kao manju izmjenu',
+'tooltip-save'                        => 'Snimite vaše izmjene',
+'tooltip-preview'                     => 'Prethodni pregled stranice, molimo koristiti prije snimanja!',
+'tooltip-diff'                        => 'Prikaz izmjena koje ste napravili u tekstu',
+'tooltip-compareselectedversions'     => 'Pogledajte pazlike između dvije selektovane verzije ove stranice.',
+'tooltip-watch'                       => 'Dodajte ovu stranicu na Vaš spisak praćenja',
+'tooltip-watchlistedit-normal-submit' => 'Ukloni naslove',
+'tooltip-watchlistedit-raw-submit'    => 'Ažuriraj spisak praćenja',
+'tooltip-recreate'                    => 'Ponovno pravljenje stranice iako je već brisana',
+'tooltip-upload'                      => 'Započni postavljanje',
+'tooltip-rollback'                    => '"Povrat" briše izmjenu/e posljednjeg uređivača ove stranice jednim klikom',
+'tooltip-undo'                        => 'Vraća ovu izmjenu i otvara formu uređivanja u modu pretpregleda.
 Dozvoljava unošenje razloga za to u sažetku.',
-'tooltip-preferences-save'        => 'Snimi postavke',
-'tooltip-summary'                 => 'Unesite kratki sažetak',
+'tooltip-preferences-save'            => 'Snimi postavke',
+'tooltip-summary'                     => 'Unesite kratki sažetak',
 
 # Metadata
 'notacceptable' => 'Viki server ne može da pruži podatke u onom formatu koji Vaš klijent može da pročita.',
@@ -3710,5 +3771,59 @@ Slike su prikazane u punoj veličini, ostale vrste datoteka su prikazane direktn
 'logentry-newusers-create2'           => '$1 otvori korisnički račun $3',
 'logentry-newusers-autocreate'        => 'Račun $1 je samostalno otvoren',
 'newuserlog-byemail'                  => 'lozinka je poslana putem e-maila',
+
+# Feedback
+'feedback-bugornote' => 'Ako ste spremni da detaljno opišete tehnički problem, onda [$1 prijavite grešku].
+U suprotnom, poslužite se jednostavnim obrascem ispod. Vaš komentar će stajati na stranici „[$3 $2]“, zajedno s korisničkim imenom i pregledačem koji koristite.',
+'feedback-subject'   => 'Tema:',
+'feedback-message'   => 'Poruka:',
+'feedback-cancel'    => 'Odustani',
+'feedback-submit'    => 'Pošalji povratnu informaciju',
+'feedback-adding'    => 'Dodajem povratne informacije na stranicu...',
+'feedback-error1'    => 'Greška: neprepoznat rezultat od API-ja',
+'feedback-error2'    => 'Greška: Uređivanje nije uspjelo',
+'feedback-error3'    => 'Greška: nema odgovora od API-ja',
+'feedback-thanks'    => 'Hvala! Vaša povratna informacija je postavljena na stranicu „[$2 $1]“.',
+'feedback-close'     => 'Gotovo',
+'feedback-bugcheck'  => 'Izvrsno! Molimo provjerite da se ne radi o nekom [$1 poznatom "bugu"].',
+'feedback-bugnew'    => 'Provereno. Prijavi novu grešku',
+
+# API errors
+'api-error-badaccess-groups'              => 'Nemate ovlasti da postavljate datoteke na ovoj wiki.',
+'api-error-badtoken'                      => 'Unutrašnja greška: token nije ispravan.',
+'api-error-copyuploaddisabled'            => 'Postavljanja putem URL-a su onemogućena na ovom serveru.',
+'api-error-duplicate'                     => 'Već postoji {{PLURAL:$1|[$2 druga datoteka]|[$2 druge datoteke]}} na ovoj stranici sa istim sadržajem',
+'api-error-duplicate-archive'             => '{{PLURAL:$1|Postojala je [$2 druga datoteka]|Postojale su [$2 neke druge datoteke]}} na sajtu sa istim sadržajem, ali {{PLURAL:$1|je obrisana|su obrisane}}.',
+'api-error-duplicate-archive-popup-title' => '{{PLURAL:$1|Dupla datoteka|Duple datoteke}} koje su već obrisane',
+'api-error-duplicate-popup-title'         => '{{PLURAL:$1|Dvojna datoteka|Dvojne datoteke}}',
+'api-error-empty-file'                    => 'Datoteka koju ste poslali je bila prazna.',
+'api-error-emptypage'                     => 'Stvaranje novih praznih stranica nije dozvoljeno.',
+'api-error-fetchfileerror'                => 'Unutrašnja greška: pojavio se neki problem pri dobijanju podataka o datoteci.',
+'api-error-file-too-large'                => 'Datoteka koju ste poslali je bila prevelika.',
+'api-error-filename-tooshort'             => 'Ime datoteke je prekratko.',
+'api-error-filetype-banned'               => 'Ova vrsta datoteke je zabranjena.',
+'api-error-filetype-missing'              => 'Datoteci nedostaje nastavak.',
+'api-error-hookaborted'                   => 'Izmjena koji ste pokušali načiniti je otkazana preko "kuke" proširenja mediawiki softvera.',
+'api-error-http'                          => 'Unutrašnja greška: ne može se spojiti na server.',
+'api-error-illegal-filename'              => 'Ime datoteke nije dopušteno.',
+'api-error-internal-error'                => 'Unutrašnja greška: pojavio se neki problem sa obradom vašeg postavljanja na wiki.',
+'api-error-invalid-file-key'              => 'Unutrašnja greška: datoteka nije pronađena u privremenom skladištu.',
+'api-error-missingparam'                  => 'Unutrašnja greška: nedostaju parametri u zahtjevu.',
+'api-error-missingresult'                 => 'Unutrašnja greška: ne može se otkriti da li je kopiranje uspjelo.',
+'api-error-mustbeloggedin'                => 'Morate biti prijavljeni da biste postavljali datoteke.',
+'api-error-mustbeposted'                  => 'Unutrašnja greška: ne koristi se ispravan HTTP metod.',
+'api-error-noimageinfo'                   => 'Postavljanje je uspjelo, ali server nam nije dao nikakvu informaciju o datoteci.',
+'api-error-nomodule'                      => 'Unutrašnja greška: nije postavljen modul za postavljanje.',
+'api-error-ok-but-empty'                  => 'Unutrašnja greška: nema odgovora od servera.',
+'api-error-overwrite'                     => 'Pisanje preko postojeće datoteke nije dopušteno.',
+'api-error-stashfailed'                   => 'Unutrašnja greška: server nije mogao da spremi privremenu datoteku.',
+'api-error-timeout'                       => 'Server nije odgovorio unutar očekivanog vremena.',
+'api-error-unclassified'                  => 'Desila se nepoznata greška',
+'api-error-unknown-code'                  => 'Nepoznata greška: "$1"',
+'api-error-unknown-error'                 => 'Unutrašnja greška: desila se neka greška pri pokušaju postavljanja vaše datoteke.',
+'api-error-unknown-warning'               => 'Nepoznato upozorenje: $1',
+'api-error-unknownerror'                  => 'Nepoznata greška: "$1"',
+'api-error-uploaddisabled'                => 'Postavljanje je onemogućeno na ovoj wiki.',
+'api-error-verification-error'            => 'Ova datoteka je možda oštećenja ili ima pogrešan nastavak.',
 
 );

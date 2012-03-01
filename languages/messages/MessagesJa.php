@@ -30,6 +30,7 @@
  * @author Kkkdc
  * @author Klutzy
  * @author Koba-chan
+ * @author Liangent
  * @author Likibp
  * @author Lovekhmer
  * @author Marine-Blue
@@ -1093,7 +1094,7 @@ IPアドレスは複数の利用者の間で共有されていることがあり
 自信の投稿が他人によって遠慮なく編集されることを望まない場合は、ここには投稿しないでください。<br />
 また、投稿されるものは、自身によって書かれたものであるか、パブリック・ドメイン、またはそれに類するフリーな資料からの複製であることを約束してください（詳細は$1を参照）。
 '''著作権保護されている作品を、許諾なしに投稿してはいけません！'''",
-'longpageerror'                    => "'''エラー：投稿された文章はは$1キロバイトの長さがあります。これは投稿できる最大の長さである$2キロバイトを超えています。'''
+'longpageerror'                    => "'''エラー：投稿された文章は {{PLURAL:$1|1キロバイト|$1キロバイト}}の長さがあります。これは投稿できる最大の長さである{{PLURAL:$2|$2キロバイト|$2キロバイト}}を超えています。'''
 この編集は保存できません。",
 'readonlywarning'                  => "'''警告：データベースがメンテナンスのためにロックされているため、現在は編集を保存できません。'''
 必要であれば文章をカットアンドペーストしてテキストファイルとして保存し、後ほど保存をやり直してください。
@@ -1880,18 +1881,39 @@ $1',
 'upload-warning-subj'         => 'アップロードの警告',
 'upload-warning-msg'          => '[$2] からアップロードしようとしたデータに問題があります。 [[Special:Upload/stash/$1|アップロードのフォーム]]に戻って問題を修正してください。',
 
-'upload-proto-error'        => '不正なプロトコル',
-'upload-proto-error-text'   => '遠隔アップロード機能では、URLが<code>http://</code>か<code>ftp://</code>で始まっている必要があります。',
-'upload-file-error'         => '内部エラー',
-'upload-file-error-text'    => '内部エラーのため、サーバー上の一時ファイル作成に失敗しました。
+'upload-proto-error'                => '不正なプロトコル',
+'upload-proto-error-text'           => '遠隔アップロード機能では、URLが<code>http://</code>か<code>ftp://</code>で始まっている必要があります。',
+'upload-file-error'                 => '内部エラー',
+'upload-file-error-text'            => '内部エラーのため、サーバー上の一時ファイル作成に失敗しました。
 [[Special:ListUsers/sysop|管理者]]に連絡してください。',
-'upload-misc-error'         => '不明なアップロードのエラー',
-'upload-misc-error-text'    => 'アップロード時に不明なエラーが発生しました。
+'upload-misc-error'                 => '不明なアップロードのエラー',
+'upload-misc-error-text'            => 'アップロード時に不明なエラーが発生しました。
 指定したURLがアクセス可能で有効なものであるかを再度確認してください。
 それでもこのエラーが発生する場合は、[[Special:ListUsers/sysop|管理者]]に連絡してください。',
-'upload-too-many-redirects' => 'そのURLに含まれるリダイレクトが多すぎます',
-'upload-unknown-size'       => 'サイズ不明',
-'upload-http-error'         => 'HTTPエラー発生：$1',
+'upload-too-many-redirects'         => 'そのURLに含まれるリダイレクトが多すぎます',
+'upload-unknown-size'               => 'サイズ不明',
+'upload-http-error'                 => 'HTTPエラー発生：$1',
+'upload-copy-upload-invalid-domain' => 'このドメインからのアップロードは許可されていません。',
+
+# File backend
+'backend-fail-stream'        => 'ファイル $1 をストリームできませんでした。',
+'backend-fail-backup'        => 'ファイル $1 をバックアップできませんでした。',
+'backend-fail-notexists'     => 'ファイル $1 は存在しません。',
+'backend-fail-notsame'       => 'ファイル名 $1 はすでに違うファイルが使用しています。',
+'backend-fail-invalidpath'   => '$1 はストレージパスに使用することができません。',
+'backend-fail-delete'        => 'ファイル $1 を削除できませんでした。',
+'backend-fail-alreadyexists' => 'ファイル $1 はすでに存在します。',
+'backend-fail-store'         => 'ファイル $1 を $2 に格納できませんでした。',
+'backend-fail-copy'          => 'ファイル $1 を $2 にコピーできませんでした。',
+'backend-fail-move'          => 'ファイル $1 を $2 に移動できませんでした。',
+'backend-fail-opentemp'      => '一時ファイルを開けませんでした。',
+'backend-fail-writetemp'     => '一時ファイルに書き込めませんでした。',
+'backend-fail-closetemp'     => '一時ファイルを閉じることができませんでした。',
+'backend-fail-read'          => 'ファイル $1 を読み込めませんでした。',
+'backend-fail-create'        => 'ファイル $1 を作成できませんでした。',
+'backend-fail-readonly'      => 'ストレージバックエンド「$1」は現在読み取り専用です。理由:「$2」',
+'backend-fail-synced'        => 'ファイル「$1」は、ストレージバックエンド内部において不一致の状態にあります。',
+'backend-fail-contenttype'   => '「$1」に保存するコンテンツの種類が判断できませんでした。',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'ZIPのチェックを行った際にエラーが検出されました。',
@@ -2339,7 +2361,7 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 'watchmethod-list'     => 'ウォッチされているページ内の最近の更新を確認中',
 'watchlistcontains'    => 'ウォッチリストには、$1ページが登録されています。',
 'iteminvalidname'      => '項目「$1」は問題があります、名前が不正です・・・',
-'wlnote'               => "$3 $4までの{{PLURAL:$2|'''1'''日|'''$2'''日間}}になされた'''$1'''件の変更は以下のとおりです。",
+'wlnote'               => "$3 $4までの{{PLURAL:$2|'''$2'''時間}}になされた'''$1'''件の変更は以下のとおりです。",
 'wlshowlast'           => '次の期間で表示：$1時間、$2日間、$3',
 'watchlist-options'    => 'ウォッチリストのオプション',
 
@@ -3769,10 +3791,10 @@ $5
 'confirm-unwatch-top'    => 'このページをウォッチリストから除去しますか?',
 
 # Separators for various lists, etc.
-'semicolon-separator' => '；​',
+'semicolon-separator' => '；',
 'comma-separator'     => '、',
-'colon-separator'     => '：​',
-'pipe-separator'      => '​｜​',
+'colon-separator'     => '：',
+'pipe-separator'      => ' |',
 'word-separator'      => '',
 'parentheses'         => '（$1）',
 
@@ -3904,7 +3926,7 @@ $5
 'hebrew-calendar-m12-gen' => 'エルール',
 
 # Signatures
-'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|会話]])',
+'signature' => '[[{{ns:user}}:$1|$2]]（[[{{ns:user_talk}}:$1|会話]]）',
 
 # Core parser functions
 'unknown_extension_tag' => '不明な拡張機能タグ「$1」です',

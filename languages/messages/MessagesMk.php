@@ -1084,7 +1084,7 @@ $2
 'nocreate-loggedin'                => 'Немате дозвола да создавате нови страници.',
 'sectioneditnotsupported-title'    => 'Уредувањето на заглавија не е поддржано',
 'sectioneditnotsupported-text'     => 'На оваа станица не е поддржано уредувањето на заглавија.',
-'permissionserrors'                => 'Грешки во правата',
+'permissionserrors'                => 'Грешки со дозволите за пристап',
 'permissionserrorstext'            => 'Немате дозвола да го направите тоа, од {{PLURAL:$1|следнава причина|следниве причини}}:',
 'permissionserrorstext-withaction' => 'Немате дозвола за $2, од {{PLURAL:$1|следнава причина|следниве причини}}:',
 'recreate-moveddeleted-warn'       => "Внимание: Повторно создавате страница што претходно била бришена.'''

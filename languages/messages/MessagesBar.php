@@ -934,9 +934,10 @@ A [[Special:WhatLinksHere/$2|voiständige Listn]] gibt's aa.",
 'statistics-mostpopular'   => 'Dé am moastbsuachten Seiten',
 
 'disambiguationspage'  => 'Template:Begriffsklärung',
-'disambiguations-text' => 'De folgenden Seitn valinkn auf a Seitn zur Begriffsklärung.
-Sie solltn stattdessn auf de eigentlich gemoante Seitn valinkn.<br />A Seitn werd ois Begriffsklärungsseitn behandelt, wenn [[MediaWiki:Disambiguationspage]] auf sie valinkt.<br />
-Links aus Namensräume wern da net aufglistet.',
+'disambiguations-text' => "D' fóigernden Seiten valinken af a Seiten za ner Begiefsklärung. Du sóiderst stott dém af d' oagerntlich gmoahde Seiten valinken.
+
+A Seiten gijt ois Begriefsklärungsseiten, waunns oane vah dé af [[MediaWiki:Disambiguationspage]] afgfyrde Vurloog(ng) eihbindt.</br>
+Links as Naumensraim wern do néd afglistt.",
 
 'doubleredirects' => 'Doppede Weiderloatungen',
 
@@ -983,6 +984,7 @@ Links aus Namensräume wern da net aufglistet.',
 'protectedpages'          => 'Gschytzde Seiten',
 'protectedpages-indef'    => 'Netter néd bschränkde gschytzde Seiten zoang',
 'protectedpages-cascade'  => 'Netter Seiten mid Kaskadenschutz',
+'protectedtitles'         => 'Gschytzde Seitennaumen',
 'usercreated'             => '{{GENDER:$3|Erstöd}} am $1 um $2 Uar',
 'newpages'                => 'Neiche Seiten',
 'newpages-username'       => 'Benutzernåm:',

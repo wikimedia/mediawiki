@@ -4385,7 +4385,7 @@ Si está utilizando alojamiento web compartido, su proveedor de alojamiento debe
 Si va a instalarlo en un servidor Windows y utiliza MySQL, el uso de "localhost" como nombre del servidor puede no funcionar. Si no es así, intente poner "127.0.0.1" como dirección IP local.
 Si utiliza PostgreSQL, deje este campo en blanco para conectarse a través de un socket de Unix.',
 	'config-db-host-oracle' => 'TNS de la base de datos:',
-	'config-db-host-oracle-help' => 'Introduzca un [http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm nombre de conexión local] válido; un archivo tnsnames.ora debe ser visible para esta instalación.<br>Si está utilizando bibliotecas de cliente 10g o más recientes también puede utilizar el método de asignación de nombres [http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm Easy Connect].',
+	'config-db-host-oracle-help' => 'Introduzca un [http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm nombre de conexión local] válido; un archivo tnsnames.ora debe ser visible para esta instalación.<br />Si está utilizando bibliotecas de cliente 10g o más recientes también puede utilizar el método de asignación de nombres [http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm Easy Connect].',
 	'config-db-wiki-settings' => 'Identifique este wiki',
 	'config-db-name' => 'Nombre de base de datos:',
 	'config-db-name-help' => 'Elija un nombre que identifique su wiki.

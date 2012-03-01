@@ -3538,7 +3538,7 @@ $5
 'watchlisttools-raw'  => '编辑原始监视列表',
 
 # Signatures
-'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|留言]])',
+'signature' => '[[{{ns:user}}:$1|$2]]（[[{{ns:user_talk}}:$1|留言]]）',
 
 # Core parser functions
 'unknown_extension_tag' => '不明的扩展标签“$1”',

@@ -2516,7 +2516,7 @@ Possible alternatives to the word 'content' are 'subject matter' or 'wiki subjec
 'wlnote'               => 'Used on [[Special:Watchlist]] when the maximum number of days is specified.
 Similar to {{msg-mw|rcnote}} which is used on [[Special:RecentChanges]].
 * $1 is the number of changes shown,
-* $2 is the number of days for which the changes are shown,
+* $2 is the number of hours for which the changes are shown,
 * $3 is a date alone,
 * $4 is a time alone.',
 'wlshowlast'           => "Appears on [[Special:Watchlist]]. Variable $1 gives a choice of different numbers of hours, $2 gives a choice of different numbers of days and $3 is '{{int:watchlistall2}}' ([[Mediawiki:watchlistall2/{{SUBPAGENAME}}]]). Clicking on your choice changes the list of changes you see (without changing the default in my preferences).",

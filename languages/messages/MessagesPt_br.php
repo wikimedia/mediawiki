@@ -672,7 +672,7 @@ Talvez contenha um ou mais caracteres que não podem ser usados em títulos.',
 Função: $1<br />
 Consulta: $2',
 'viewsource'           => 'Ver código-fonte',
-'viewsource-title'     => 'Exibir código-fonte para$1',
+'viewsource-title'     => 'Exibir código-fonte para $1',
 'actionthrottled'      => 'Ação controlada',
 'actionthrottledtext'  => 'Como medida "anti-spam", você se encontra impedido de realizar esta operação muitas vezes em um curto espaço de tempo; você já excedeu esse limite.
 Tente novamente em alguns minutos.',
