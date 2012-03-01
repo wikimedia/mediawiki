@@ -2311,7 +2311,7 @@ HTML
 	function showDiff() {
 		global $wgUser, $wgContLang, $wgParser, $wgOut;
 
-		$oldtext = $this->getOriginalContent();
+		$oldtext = $this->mArticle->getRawText();
 		$newtext = $this->mArticle->replaceSection(
 			$this->section, $this->textbox1, $this->summary, $this->edittime );
 
