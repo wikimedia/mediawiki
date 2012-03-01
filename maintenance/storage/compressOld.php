@@ -70,7 +70,7 @@ class CompressOld extends Maintenance {
 
 		$type = $this->getOption( 'type', 'concat' );
 		$chunkSize = $this->getOption( 'chunksize', 20 );
-		$startId = $this->getOption( 'start-id', 0 );
+		$startId = $this->getOption( 'startid', 0 );
 		$beginDate = $this->getOption( 'begin-date', '' );
 		$endDate = $this->getOption( 'end-date', '' );
 		$extDB = $this->getOption( 'extdb', '' );
