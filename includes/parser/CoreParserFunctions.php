@@ -623,7 +623,7 @@ class CoreParserFunctions {
 	 * Gives language names.
 	 * @param $parser Parser
 	 * @param $code String  Language code (of which to get name)
-	 * @param $inLnguage String  Language code (in which to get name)
+	 * @param $inLanguage String  Language code (in which to get name)
 	 * @return String
 	 */
 	static function language( $parser, $code = '', $inLanguage = '' ) {
