@@ -712,7 +712,7 @@ abstract class DatabaseBase implements DatabaseType {
 		}
 		if ( $this->mPHPError ) {
 			$error = preg_replace( '!\[<a.*</a>\]!', '', $this->mPHPError );
-			$error = preg_replace( '!^.*?:(.*)$!', '$1', $error );
+			$error = preg_replace( '!^.*?:\s?(.*)$!', '$1', $error );
 			return $error;
 		} else {
 			return false;
