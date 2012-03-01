@@ -53,6 +53,7 @@ abstract class FileBackend {
 	 * $config includes:
 	 *     'name'        : The unique name of this backend.
 	 *                     This should consist of alphanumberic, '-', and '_' characters.
+	 *                     This name should not be changed after use.
 	 *     'wikiId'      : Prefix to container names that is unique to this wiki.
 	 *                     This should consist of alphanumberic, '-', and '_' characters.
 	 *     'lockManager' : Registered name of a file lock manager to use.
@@ -63,6 +64,9 @@ abstract class FileBackend {
 	 */
 	public function __construct( array $config ) {
 		$this->name = $config['name'];
+		if ( !preg_match( '!^[a-zA-Z0-9-_]{1,255}$!', $this->name ) ) {
+			throw new MWException( "Backend name `{$this->name}` is invalid." );
+		}
 		$this->wikiId = isset( $config['wikiId'] )
 			? $config['wikiId']
 			: wfWikiID(); // e.g. "my_wiki-en_"
