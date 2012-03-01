@@ -92,8 +92,6 @@ production.
   "target" query parameter (eg. Special:ActiveUsers/Username)
 * New JavaScript variable wgPageContentLanguage
 * Added new debugging toolbar, enabled with $wgDebugToolbar
-* (bug 11374) Differences in the history page now uses slightly better colors for people
-  perceiving colors differently.
 * (bug 32879) Upgrade jQuery to 1.7.1
 * jQuery UI upgraded to 1.8.17
 * Extensions can use the 'Language::getMessagesFileName' hook to define new
