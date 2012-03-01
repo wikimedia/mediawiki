@@ -742,11 +742,11 @@ class HTMLForm extends ContextSource {
 	 * Set the method used to submit the form
 	 * @param $method String
 	 */
-	public function setMethod( $method='post' ){
+	public function setMethod( $method = 'post' ) {
 		$this->mMethod = $method;
 	}
 
-	public function getMethod(){
+	public function getMethod() {
 		return $this->mMethod;
 	}
 
