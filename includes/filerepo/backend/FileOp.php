@@ -346,7 +346,7 @@ abstract class FileOp {
 		$params['failedAction'] = $action;
 		try {
 			wfDebugLog( 'FileOperation',
-				get_class( $this ) . ' failed:' . serialize( $params ) );
+				get_class( $this ) . ' failed:' . FormatJson::encode( $params ) );
 		} catch ( Exception $e ) {
 			// bad config? debug log error?
 		}
