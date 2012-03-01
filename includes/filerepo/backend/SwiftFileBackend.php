@@ -807,7 +807,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 */
 	protected function logException( Exception $e, $func, array $params ) {
 		wfDebugLog( 'SwiftBackend',
-			get_class( $e ) . " in '{$func}' (given '" . serialize( $params ) . "')" .
+			get_class( $e ) . " in '{$func}' (given '" . FormatJson::encode( $params ) . "')" .
 			( $e instanceof InvalidResponseException
 				? ": {$e->getMessage()}"
 				: ""
