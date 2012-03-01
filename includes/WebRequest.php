@@ -1353,6 +1353,7 @@ class FauxRequest extends WebRequest {
  * (cookies, session and headers).
  *
  * @ingroup HTTP
+ * @since 1.19
  */
 class DerivativeRequest extends FauxRequest {
 	private $base;
