@@ -627,13 +627,14 @@ class ContribsPager extends ReverseChronologicalPager {
 			# @todo FIXME: Other groups may have 'bot' rights
 			$join_conds['user_groups'] = array( 'LEFT JOIN', "ug_user = rev_user AND ug_group = 'bot'" );
 		} else {
-			if ( IP::isIPAddress( $this->target ) ) {
+			$uid = User::idFromName( $this->target );
+			if ( $uid ) {
+				$condition['rev_user'] = $uid;
+				$index = 'user_timestamp';
+			} else {
 				$condition['rev_user_text'] = $this->target;
 				$index = 'usertext_timestamp';
-			} else {
-				$condition['rev_user'] = User::idFromName( $this->target );
-				$index = 'user_timestamp';
-			}
+			} 
 		}
 		if ( $this->deletedOnly ) {
 			$condition[] = "rev_deleted != '0'";
