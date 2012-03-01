@@ -894,7 +894,7 @@ class EnhancedChangesList extends ChangesList {
 		}
 		# Total change link
 		$r .= ' ';
-                $logtext = '';
+		$logtext = '';
 		if( !$allLogs ) {
 			if( !ChangesList::userCan( $rcObj, Revision::DELETED_TEXT, $this->getUser() ) ) {
 				$logtext .= $nchanges[$n];
@@ -933,7 +933,7 @@ class EnhancedChangesList extends ChangesList {
 				);
 		}
 
-		if( $logtext != '' ) {
+		if( $logtext !== '' ) {
 			$r .= $this->msg( 'parentheses' )->rawParams( $logtext )->escaped();
 		}
 
@@ -1008,7 +1008,7 @@ class EnhancedChangesList extends ChangesList {
 			$r .= $link . '</span>';
 
 			if ( !$type == RC_LOG || $type == RC_NEW ) {
-				$r .= $this->msg( 'parentheses' )->rawParams( $rcObj->curlink . $this->message['pipe-separator'] . $rcObj->lastlink )->escaped();
+				$r .= ' ' . $this->msg( 'parentheses' )->rawParams( $rcObj->curlink . $this->message['pipe-separator'] . $rcObj->lastlink )->escaped();
 			}
 			$r .= ' . . ';
 
@@ -1134,7 +1134,7 @@ class EnhancedChangesList extends ChangesList {
 		# Diff and hist links
 		if ( $type != RC_LOG ) {
 			$query['action'] = 'history';
-			$r .= $this->msg( 'parentheses' )->rawParams( $rcObj->difflink . $this->message['pipe-separator'] . Linker::linkKnown(
+			$r .= ' ' . $this->msg( 'parentheses' )->rawParams( $rcObj->difflink . $this->message['pipe-separator'] . Linker::linkKnown(
 				$rcObj->getTitle(),
 				$this->message['hist'],
 				array(),

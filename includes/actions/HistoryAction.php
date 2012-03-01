@@ -619,7 +619,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		}
 
 		if ( $tools ) {
-			$s .= $this->msg( 'parentheses' )->rawParams( $lang->pipeList( $tools ) )->escaped();
+			$s .= ' '. $this->msg( 'parentheses' )->rawParams( $lang->pipeList( $tools ) )->escaped();
 		}
 
 		# Tags
