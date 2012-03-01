@@ -352,8 +352,6 @@ class ImportReporter extends ContextSource {
 	 * @return void
 	 */
 	function reportPage( $title, $origTitle, $revisionCount, $successCount, $pageInfo ) {
-		global $wgContLang;
-
 		$args = func_get_args();
 		call_user_func_array( $this->mOriginalPageOutCallback, $args );
 
@@ -364,19 +362,16 @@ class ImportReporter extends ContextSource {
 
 		$this->mPageCount++;
 
-		$localCount = $this->getLanguage()->formatNum( $successCount );
-		$contentCount = $wgContLang->formatNum( $successCount );
-
 		if( $successCount > 0 ) {
 			$this->getOutput()->addHTML( "<li>" . Linker::linkKnown( $title ) . " " .
-				$this->msg( 'import-revision-count', $localCount ) .
+				$this->msg( 'import-revision-count' )->numParams( $successCount )->escaped() .
 				"</li>\n"
 			);
 
 			$log = new LogPage( 'import' );
 			if( $this->mIsUpload ) {
-				$detail = $this->msg( 'import-logentry-upload-detail',
-					$contentCount )->inContentLanguage()->text();
+				$detail = $this->msg( 'import-logentry-upload-detail' )->numParams(
+					$successCount )->inContentLanguage()->text();
 				if ( $this->reason ) {
 					$detail .=  $this->msg( 'colon-separator' )->inContentLanguage()->text() . $this->reason;
 				}
@@ -384,8 +379,8 @@ class ImportReporter extends ContextSource {
 			} else {
 				$interwiki = '[[:' . $this->mInterwiki . ':' .
 					$origTitle->getPrefixedText() . ']]';
-				$detail = $this->msg( 'import-logentry-interwiki-detail',
-					$contentCount, $interwiki )->inContentLanguage()->text();
+				$detail = $this->msg( 'import-logentry-interwiki-detail' )->numParams(
+					$successCount )->params( $interwiki )->inContentLanguage()->text();
 				if ( $this->reason ) {
 					$detail .=  $this->msg( 'colon-separator' )->inContentLanguage()->text() . $this->reason;
 				}
