@@ -62,6 +62,8 @@ td.diff-addedline .diffchange {
 	background: #eaf5ff;
 	padding: 0.125em 0.25em;
 	border: solid 1px #5698d6;
+	border-top: none;
+	border-bottom: none;
 	border-radius: 0.33em;
 }
 
@@ -69,6 +71,8 @@ td.diff-deletedline .diffchange {
 	background: #feeec8;
 	padding: 0.125em 0.25em;
 	border: solid 1px #e0b141;
+	border-top: none;
+	border-bottom: none;
 	border-radius: 0.33em;
 }
 
