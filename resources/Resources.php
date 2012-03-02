@@ -203,6 +203,7 @@ return array(
 	),
 	'jquery.textSelection' => array(
 		'scripts' => 'resources/jquery/jquery.textSelection.js',
+		'dependencies' => 'jquery.client',
 	),
 	'jquery.validate' => array(
 		'scripts' => 'resources/jquery/jquery.validate.js',
