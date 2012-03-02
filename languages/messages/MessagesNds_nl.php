@@ -10,6 +10,7 @@
  * @author Erwin
  * @author Erwin85
  * @author Jens Frank
+ * @author Kaganer
  * @author Purodha
  * @author Servien
  * @author Slomox
@@ -2893,7 +2894,7 @@ $1',
 'imagemaxsize'         => "Maximale aofmetingen van aofbeeldingen:<br />
 ''(veur op de beschrievingspagina)''",
 'thumbsize'            => 'Grootte van de miniatuuraofbeelding:',
-'widthheightpage'      => "$1×$2, $3 {{PLURAL:$3|pagina|pagina's}}",
+'widthheightpage'      => "$1 × $2, $3 {{PLURAL:$3|pagina|pagina's}}",
 'file-info'            => 'Bestaandsgrootte: $1, MIME-type: $2',
 'file-info-size'       => '$1 × $2 beeldpunten, bestaandsgrootte: $3, MIME-type: $4',
 'file-nohires'         => '<small>Gien hogere resolusie beschikbaor.</small>',

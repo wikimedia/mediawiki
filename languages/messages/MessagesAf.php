@@ -12,6 +12,7 @@
  * @author Arnobarnard
  * @author Byeboer
  * @author Deadelf
+ * @author Kaganer
  * @author Manie
  * @author Naudefj
  * @author Purodha
@@ -2845,7 +2846,7 @@ $1',
 'mediawarning'         => "'''Waarskuwing''': hierdie lêertipe bevat moontlik programkode wat u stelsel skade kan berokken.",
 'imagemaxsize'         => "Beperk beeldgrootte tot:<br />''(vir lêerbeskrywingsbladsye)''",
 'thumbsize'            => 'Grootte van duimnaelskets:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|bladsy|bladsye}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|bladsy|bladsye}}',
 'file-info'            => 'lêergrootte: $1, MIME-tipe: $2',
 'file-info-size'       => '$1 × $2 pixels, lêergrootte: $3, MIME type: $4',
 'file-nohires'         => '<small>Geen hoër resolusie is beskikbaar nie.</small>',

@@ -8,6 +8,7 @@
  * @file
  *
  * @author Jarmanj Turtash
+ * @author Kaganer
  * @author Khazar II
  * @author Kranch
  * @author Numulunj pilgae
@@ -2356,7 +2357,7 @@ $1',
 Сонь нолдаманза тон коласак тонь системацень.",
 'imagemaxsize'         => "Архтофкснень келеснон оторсна:<br />''(файлонь шарьхкотьфтема лопатненди)''",
 'thumbsize'            => 'Миниатюронь кувалмоц:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|лопа|лопат}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|лопа|лопат}}',
 'file-info'            => 'файлонь кувалмоц: $1, MIME сортоц: $2',
 'file-info-size'       => '$1 × $2 пикселхть, файлть кувалмоц: $3, MIME сорт: $4',
 'file-nohires'         => '<small>Сяда лама анцяйнятнень мархта архтофкс аш.</small>',

@@ -11,6 +11,7 @@
  * @author Friðrik Bragi Dýrfjörð
  * @author Gott wisst
  * @author Jóna Þórunn
+ * @author Kaganer
  * @author Krun
  * @author Maxí
  * @author S.Örvarr.S
@@ -566,7 +567,7 @@ Gjörðu svo vel og tilkynntu atvikið til [[Special:ListUsers/sysop|stjórnanda
 'internalerror_info'   => 'Innri villa: $1',
 'fileappenderrorread'  => 'Mistókst að lesa "$1" á meðan skeytt var við síðuna.',
 'fileappenderror'      => 'Gat ekki bætt „$1“ við „$2“.',
-'filecopyerror'        => 'Gat ekki afritað skjal "$1" á "$2".',
+'filecopyerror'        => 'Mistókst að afrita skjal "$1" á "$2".',
 'filerenameerror'      => 'Gat ekki endurnefnt skrána „$1“ í „$2“.',
 'filedeleteerror'      => 'Gat ekki eytt skránni „$1“.',
 'directorycreateerror' => 'Gat ekki búið til efnisskrána "$1".',
@@ -832,8 +833,8 @@ Gjörðu svo vel og athugaðu hvort að þú viljir skapa/breyta þessari síðu
 'blocked-notice-logextract'        => 'Þessi notandi er í banni.
 Síðasta færsla notandans úr bönnunarskrá er sýnd hér fyrir neðan til skýringar:',
 'clearyourcache'                   => "Athugaðu - Eftir vistun, má vera að þú þurfir að komast hjá skyndiminni vafrans til að sjá breytingarnar.'''
-'''Mozilla / Firefox / Safari:''' haltu ''Shift'' og smelltu á ''Reload'', eða ýttu á annaðhvort ''Ctrl-F5'' eða ''Ctrl-R'' (''⌘-R'' á Mac)
-'''Google Chrome: '''smelltu á ''Ctrl-Shift-R'' (''⌘-Shift-R'' á Mac)
+'''Mozilla / Firefox / Safari:''' haltu ''Shift'' og smelltu á ''Reload'', eða ýttu á annaðhvort ''Ctrl-F5'' eða ''Ctrl-R'' (''Command-R'' á Mac)
+'''Google Chrome: '''smelltu á ''Ctrl-Shift-R'' (''Command-Shift-R'' á Mac)
 '''Konqueror: '''smelltu á ''Reload'' eða ýttu á ''F5'' 
 '''Opera:''' hreinsaðu skyndiminnið í ''Tools → Prefernces'';
 '''Internet Explorer:''' haltu ''Ctrl'' og smelltu á ''Refresh'', eða ýttu á ''Ctrl-F5''.",
@@ -1497,6 +1498,7 @@ Gjörðu svo vel og endurnefndu skrána og hladdu henni inn aftur.',
 'filename-tooshort'           => 'Skráarnafnið er of stutt',
 'filetype-banned'             => 'Þessi skráarending er bönnuð.',
 'verification-error'          => 'Þessi skrá stóðst ekki sannprófun.',
+'hookaborted'                 => 'Viðbót hætti við breytingu þína.',
 'illegal-filename'            => 'Þetta skráarnafn er ekki leyft.',
 'overwrite'                   => 'Óheimilt er að skrifa yfir skrá sem er þegar til.',
 'unknown-error'               => 'Óþekkt villa kom upp.',
@@ -1562,14 +1564,19 @@ Veldu lýsandi nafn fyrir skránna og reyndu aftur.",
 
 $1',
 'upload-warning-subj'         => 'Aðvörun',
+'upload-warning-msg'          => 'Upphal þitt [$2] mistókst. Þú getur farið aftur á [[Special:Upload/stash/$1|upphlaðsviðmótið]] og leiðrétt villuna.',
 
-'upload-proto-error'     => 'Vitlaus samskiptaregla',
-'upload-file-error'      => 'Innri villa',
-'upload-file-error-text' => 'Innri villa: Gat ekki búið til tímabundna skrá á vefþjóni.
+'upload-proto-error'        => 'Vitlaus samskiptaregla',
+'upload-file-error'         => 'Innri villa',
+'upload-file-error-text'    => 'Innri villa: Gat ekki búið til tímabundna skrá á vefþjóni.
 Vinsamlegast hafðu samband við [[Special:ListUsers/sysop|möppudýr]].',
-'upload-misc-error'      => 'Óþekkt innhleðsluvilla',
-'upload-unknown-size'    => 'Óþekkt stærð',
-'upload-http-error'      => 'HTTP villa kom upp við upphal skráarinnar: $1',
+'upload-misc-error'         => 'Óþekkt innhleðsluvilla',
+'upload-misc-error-text'    => 'Upphal þitt mistókst vegna óþekktrar villu.
+Athugaðu hvort vefslóðin sé rétt og aðgengileg og að því loknu reyndu aftur.
+Ef vandamálið lagast ekki, hafðu samband við [[Special:ListUsers/sysop|stjórnanda]].',
+'upload-too-many-redirects' => 'Vefslóðin inniheldur of margar tilvísanir.',
+'upload-unknown-size'       => 'Óþekkt stærð',
+'upload-http-error'         => 'HTTP villa kom upp við upphal skráarinnar: $1',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Aðgangur óheimill',
@@ -1589,10 +1596,13 @@ Vinsamlegast hafðu samband við [[Special:ListUsers/sysop|möppudýr]].',
 'http-bad-status'       => 'Mistök við HTTP beiðnina: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
-'upload-curl-error6'      => 'Gat ekki náð í slóðina',
-'upload-curl-error6-text' => 'Mistókst að sækja tilgreinda vefslóð.
+'upload-curl-error6'       => 'Gat ekki náð í slóðina',
+'upload-curl-error6-text'  => 'Mistókst að sækja tilgreinda vefslóð.
 Athugaðu hvort vefslóðin sé rétt og vefsíðan sé aðgengileg.',
-'upload-curl-error28'     => 'Innhleðslutími útrunninn',
+'upload-curl-error28'      => 'Innhleðslutími útrunninn',
+'upload-curl-error28-text' => 'Vefsvæðið tók of langan tíma til að svara.
+Athugaðu hvort síðan sé aðgengileg, bíddu í smástund og reyndu aftur.
+Þú gætir viljað reyna aftur þegar minna álag er á vefþjóninn.',
 
 'license'            => 'Leyfisupplýsingar:',
 'license-header'     => 'Leyfisupplýsingar:',
@@ -2691,7 +2701,7 @@ Vinsamlegast reyndu aftur.',
 'mediawarning'         => "'''AÐVÖRUN''': Þessi skrá kann að hafa meinfýsinn kóða, ef keyrður kann hann að stofna kerfinu þínu í hættu.",
 'imagemaxsize'         => "Takmarka myndastærð:<br />''(fyrir skráarsíður)''",
 'thumbsize'            => 'Stærð smámynda:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|síða|síður}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|síða|síður}}',
 'file-info'            => 'stærð skráar: $1, MIME-tegund: $2',
 'file-info-size'       => '$1 × $2 dílar, stærð skráar: $3, MIME-gerð: $4',
 'file-nohires'         => '<small>Það er engin hærri upplausn til.</small>',
@@ -2855,7 +2865,7 @@ Ef skránni hefur verið breytt, kann að vera að einhverjar upplýsingar eigi 
 'exif-componentsconfiguration-0' => 'er ekki til',
 
 'exif-exposureprogram-0' => 'Ekki skilgreind',
-'exif-exposureprogram-1' => 'Sjálfvirk',
+'exif-exposureprogram-1' => 'Handvirk',
 'exif-exposureprogram-2' => 'Hefðbundin stilling',
 'exif-exposureprogram-3' => 'Forgangur ljósops',
 'exif-exposureprogram-4' => 'Forgangur lokara',

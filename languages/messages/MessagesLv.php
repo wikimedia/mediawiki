@@ -10,6 +10,7 @@
  * @author Dark Eagle
  * @author FnTmLV
  * @author GreenZeb
+ * @author Kaganer
  * @author Kikos
  * @author Knakts
  * @author Marozols
@@ -2447,7 +2448,7 @@ $1',
 'mediawarning'         => "'''Brīdinājums''': Šis faila tips var saturēt ļaunprātīgu kodu, kuru izpildot, tava datora darbība var tikt traucēta.",
 'imagemaxsize'         => 'Attēlu apraksta lapās parādāmo attēlu maksimālais izmērs:',
 'thumbsize'            => 'Sīkbildes izmērs:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|lapa|lapas}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|lapa|lapas}}',
 'file-info'            => 'faila izmērs: $1, MIME tips: $2',
 'file-info-size'       => '$1 × $2 pikseļi, faila izmērs: $3, MIME tips: $4',
 'file-nohires'         => '<small>Augstāka izšķirtspēja nav pieejama.</small>',

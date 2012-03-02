@@ -2176,7 +2176,7 @@ L’adrèce èlèctronica que vos éd buchiê dens voutres [[Special:Preferences
 'nowikiemailtitle'     => 'Gins de mèssageria èlèctronica ôtorisâ',
 'nowikiemailtext'      => 'Ceti usanciér at chouèsi de pas recêvre de mèssâjo de la pârt d’ôtros usanciérs.',
 'email-legend'         => 'Mandar un mèssâjo a un ôtro usanciér de {{SITENAME}}',
-'emailfrom'            => 'Èxpèdior :',
+'emailfrom'            => 'De :',
 'emailto'              => 'Dèstinatèro :',
 'emailsubject'         => 'Sujèt :',
 'emailmessage'         => 'Mèssâjo :',

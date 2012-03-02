@@ -9,6 +9,7 @@
  *
  * @author Daoudata
  * @author Enzoreg
+ * @author Kaganer
  * @author MassNssen
  * @author Zanatos
  * @author زكريا
@@ -2129,7 +2130,7 @@ Imken lek ṫċof l-ĝin dyalha.',
 
 # Media information
 'thumbsize'            => 'ḫajm l-miniatur:',
-'widthheight'          => '$1×$2',
+'widthheight'          => '$1 × $2',
 'file-info'            => 'ḫajm l-milef: $1, n-noĝ dl-MIME: $2',
 'file-info-size'       => '$1 × $2 piksel, ṫqel l-fiċyé: $3, ċkel MIME : $4',
 'file-nohires'         => '<small>Ma kayenċ ċi rézolusyon kber men hadi.</small>',

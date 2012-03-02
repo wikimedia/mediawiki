@@ -11,6 +11,7 @@
  * @author Als-Holder
  * @author Hendergassler
  * @author J. 'mach' wust
+ * @author Kaganer
  * @author MaxSem
  * @author Melancholie
  * @author MichaelFrey
@@ -2669,7 +2670,7 @@ $1',
 'mediawarning'         => "'''Warnig:''' In däre Art Datei chennt s e beswillige Programmcode din ha. Wänn du die Datei uusfiersch, cha s syy, ass Dyy Syschtem bschädigt wird.",
 'imagemaxsize'         => "Maximali Gressi vu Bilder :<br />'' (uf Bildbschrybigs-Syte)''",
 'thumbsize'            => 'Bildvorschou-Gröössi:',
-'widthheightpage'      => '$1×$2, {{PLURAL:$3|1 Syte|$3 Syte}}',
+'widthheightpage'      => '$1 × $2, {{PLURAL:$3|1 Syte|$3 Syte}}',
 'file-info'            => 'Dateigressi: $1, MIME-Typ: $2',
 'file-info-size'       => '$1 × $2 Pixel, Dateigrößi: $3, MIME-Typ: $4',
 'file-nohires'         => '<small>Kei höcheri Uflösig verfüegbar.</small>',

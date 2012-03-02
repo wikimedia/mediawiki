@@ -12,6 +12,7 @@
  * @author Calcey
  * @author Chandana
  * @author Jiro Ono
+ * @author Kaganer
  * @author Meno25
  * @author Pasanbhathiya2
  * @author Romaine
@@ -2172,7 +2173,7 @@ Feedback and further assistance:
 මෑත මකාදැමීම් පිළිබඳ වාර්තාවක් සඳහා $2 බලන්න.',
 'deletedarticle'         => '"[[$1]]" මකා දමන ලදි',
 'suppressedarticle'      => '"[[$1]]" යටපත් කෙරිණි',
-'dellogpage'             => 'මකාදැමුම් ලඝු සටහන',
+'dellogpage'             => 'මකාදැමුම් ලොග් සටහන',
 'dellogpagetext'         => 'පහත දැක්වෙන්නේ ඉතා මෑතදී සිදු කර ඇති මකාදැමීම් ලැයිස්තුවකි.',
 'deletionlog'            => 'මකා-දැමුම් ලඝු-සටහන',
 'reverted'               => 'පෙර සංශෝධනය වෙත ප්‍රතිවර්තනය කෙරිණි',
@@ -2912,7 +2913,7 @@ $1',
 එය ක්‍රියාත්මක කිරීමෙන්, ඔබගේ පද්ධතියට හානිවිය හැක.",
 'imagemaxsize'         => "රූප ප්‍රමාණ සීමාව:<br />''(ගොනු විස්තර පිටු සඳහා)''",
 'thumbsize'            => 'සිඟිති-රූපයේ විශාලත්වය:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|පිටුව|පිටු}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|පිටුව|පිටු}}',
 'file-info'            => 'ගොනු විශාලත්වය: $1, MIME වර්ගය: $2',
 'file-info-size'       => '$1 × $2 පික්සල, ගොනු විශාලත්වය: $3, MIME ශෛලිය: $4',
 'file-nohires'         => '<small>මෙයට ඉහල විසර්ජනයක්(resolution) දක්වා එළඹිය නොහැක.</small>',

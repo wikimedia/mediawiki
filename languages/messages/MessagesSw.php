@@ -9,6 +9,7 @@
  *
  * @author Ikiwaner
  * @author Jagwar
+ * @author Kaganer
  * @author Lloffiwr
  * @author Malangali
  * @author Marcos
@@ -151,7 +152,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Pia nitumie barua pale mabadiliko ya ukurasa yanapokuwa madogo tu',
 'tog-enotifrevealaddr'        => 'Onyesha anwani ya barua pepe yangu katika barua pepe za taarifa',
 'tog-shownumberswatching'     => 'Onyesha idadi ya watumiaji waangalizi',
-'tog-oldsig'                  => 'Sahihi jinsi inayoonekana sasa:',
+'tog-oldsig'                  => 'Sahihi iliyopo:',
 'tog-fancysig'                => 'Weka sahihi tu (bila kujiweka kiungo yenyewe)',
 'tog-externaleditor'          => 'Tumia kiharirio cha nje inaposhindikana (kwa wataalamu tu, inahitaji marekebisho maalum kwenye tarakilishi yako. [http://www.mediawiki.org/wiki/Manual:External_editors Maelezo zaidi.])',
 'tog-externaldiff'            => 'Tumia diff za nje inaposhindikana (kwa wataalamu tu, inahitaji marekebisho maalum kwenye tarakilishi yako. [http://www.mediawiki.org/wiki/Manual:External_editors Maelezo zaidi.])',
@@ -358,6 +359,7 @@ Watumiaji wengi mno wanajaribu kutazama ukurasa huu.
 Tafadhali subiri kwa muda kadhaa kabla ya kujaribu kufungua tena.
 
 $1',
+'pool-timeout'      => 'Muda umeisha inasubiria kufunga',
 'pool-queuefull'    => 'Foleni ya michakato imejaa',
 'pool-errorunknown' => 'Hitilafu isiyojulikana',
 
@@ -611,6 +613,9 @@ Unaweza kupuuza ujumbe huu, endapo akaunti hii ilianzishwa kimakosa.',
 Tafadhali subiri kwanza kabla ya kujaribu tena.',
 'loginlanguagelabel'         => 'Lugha: $1',
 'suspicious-userlogout'      => 'Ombi lako la kutoka kwenye akaunti yako limehiniwa, kwa sababu inaonekana kwamba ombi lilitumwa na kivinjari kilichoharibika au seva ya kuwakilisha yenye kache.',
+
+# E-mail sending
+'php-mail-error-unknown' => 'Hitilafu isiyojulikana katika ufanyajikazi wa barua za PHP ().',
 
 # Password reset dialog
 'resetpass'                 => 'Kubadilisha neno la siri',
@@ -2479,7 +2484,7 @@ Tafadhali jaribu tena.',
 Ukilitekeleza faili, mashine yako huenda ikawa matatani.',
 'imagemaxsize'         => "Kikomo cha ukubwa wa picha:<br />''(cha kurasa za maelezo ya mafaili)''",
 'thumbsize'            => 'Ukubwa wa picha ndogo:',
-'widthheightpage'      => '$1×$2, {{PLURAL:$3|ukurasa|kurasa}} $3',
+'widthheightpage'      => '$1 × $2, {{PLURAL:$3|ukurasa|kurasa}} $3',
 'file-info'            => 'ukubwa wa faili: $1, aina ya MIME: $2',
 'file-info-size'       => 'piseli $1 × $2, saizi ya faili: $3, aina ya MIME: $4',
 'file-nohires'         => '<small>Hakuna saizi kubwa zaidi.</small>',

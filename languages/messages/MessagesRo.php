@@ -581,7 +581,7 @@ $1',
 'showtoc'                 => 'arată',
 'hidetoc'                 => 'ascunde',
 'thisisdeleted'           => 'Vizualizare sau recuperare $1?',
-'viewdeleted'             => 'Vizualizează $1?',
+'viewdeleted'             => 'Vizualizați $1?',
 'restorelink'             => '{{PLURAL:$1|o modificare ștearsă|$1 modificări șterse|$1 de modificări șterse}}',
 'feedlinks'               => 'Întreținere:',
 'feed-invalid'            => 'Tip de abonament invalid',
@@ -651,9 +651,9 @@ Te rog anunță acest aspect unui [[Special:ListUsers/sysop|administrator]], ind
 'filerenameerror'      => 'Fișierul "$1" nu a putut fi mutat la "$2".',
 'filedeleteerror'      => 'Fișierul "$1" nu a putut fi șters.',
 'directorycreateerror' => 'Nu se poate crea directorul "$1".',
-'filenotfound'         => 'Fișierul "$1" nu a putut fi găsit.',
-'fileexistserror'      => 'Imposibil de scris fișierul "$1": fișierul există deja',
-'unexpected'           => 'Valoare neașteptată: "$1"="$2".',
+'filenotfound'         => 'Fișierul „$1” nu a putut fi găsit.',
+'fileexistserror'      => 'Imposibil de scris fișierul „$1”: fișierul există deja.',
+'unexpected'           => 'Valoare neașteptată: „$1”=„$2”.',
 'formerror'            => 'Eroare: datele nu au putut fi trimise',
 'badarticleerror'      => 'Această acțiune nu poate fi efectuată pe această pagină.',
 'cannotdelete'         => 'Pagina sau fișierul „$1” nu a putut fi șters.
@@ -680,7 +680,7 @@ Vă rugăm să încercați din nou în câteva minute.',
 'sqlhidden'            => '(interogare SQL ascunsă)',
 'cascadeprotected'     => 'Această pagină a fost protejată la scriere deoarece este inclusă în {{PLURAL:$1|următoarea pagină|următoarele pagini}}, care {{PLURAL:$1|este protejată|sunt protejate}} în cascadă:
 $2',
-'namespaceprotected'   => "Nu ai permisiunea de a edita pagini în spațiul de nume '''$1'''.",
+'namespaceprotected'   => "Nu aveți permisiunea de a modifica pagini din spațiul de nume '''$1'''.",
 'customcssjsprotected' => 'Nu aveți permisiunea să editați această pagină, deoarece conține datele private ale unui alt utilizator.',
 'ns-specialprotected'  => 'Paginile din spațiul de nume {{ns:special}} nu pot fi editate.',
 'titleprotected'       => "Acest titlu a fos protejat la creare de [[User:$1|$1]].
@@ -692,7 +692,10 @@ Motivul invocat este ''$2''.",
 'virus-unknownscanner' => 'antivirus necunoscut:',
 
 # Login and logout pages
-'logouttext'                 => 'Sesiunea ta în {{SITENAME}} a fost încheiată. Poți continua să folosești {{SITENAME}} anonim, sau poți să te [[Special:UserLogin|reautentifici]] ca același sau ca alt utilizator.',
+'logouttext'                 => "'''Acum sunteți deconectat.'''
+
+Sesiunea dumneavoastră la {{SITENAME}} a fost închisă. Puteți continua să folosiți {{SITENAME}} ca utilizator anonim, sau puteți să vă [[Special:UserLogin|reautentificați]] ca același sau ca alt utilizator.
+Țineți minte că anumite pagini pot fi în continuare afișate ca și când ați fi autentificat până când curățați memoria cache a navigatorului.",
 'welcomecreation'            => '==Bun venit, $1!==
 
 Contul dumneavoatră a fost creat. Nu uitați să vă personalizați [[Special:Preferences|preferințele]] în {{SITENAME}}.',
@@ -940,22 +943,25 @@ Caseta de text de sus conține pagina așa cum este ea acum (după editarea cele
 Pagina cu modificările dumneavoastră (așa cum ați încercat să o salvați) se află în caseta de jos.
 Va trebui să editați manual caseta de sus pentru a reflecta modificările pe care tocmai le-ați făcut în cea de jos.
 '''Numai''' textul din caseta de sus va fi salvat atunci când veți apăsa pe „{{int:savearticle}}”.",
-'yourtext'                         => 'Textul tău',
+'yourtext'                         => 'Textul dumneavoastră',
 'storedversion'                    => 'Versiunea curentă',
-'nonunicodebrowser'                => "'''ATENŢIE: Browser-ul dumneavoastră nu este compilant unicode, vă rugăm să îl schimbați înainte de a începe modificarea unui articol.'''",
-'editingold'                       => "'''ATENŢIE! Modifici o variantă mai veche a acestei pagini! Orice modificări care s-au făcut de la această versiune și până la cea curentă se vor pierde!'''",
+'nonunicodebrowser'                => "'''Atenție: Navigatorul dumneavoastră nu este compatibil cu Unicode.'''
+În schimb, există o soluție care vă permite să modificați paginile în siguranță: caracterele non-ASCII vor fi afișate în caseta de editare drept coduri hexazecimale.",
+'editingold'                       => "'''Atenție: Modificați o versiune veche a acestei pagini.'''
+Dacă salvați pagina, toate modificările intermediare se vor pierde.",
 'yourdiff'                         => 'Diferențe',
 'copyrightwarning'                 => "Reține că toate contribuțiile la {{SITENAME}} sunt distribuite sub licența $2 (vezi $1 pentru detalii).
 Dacă nu doriți ca ceea ce scrieți să fie modificat fără milă și redistribuit în voie, atunci nu trimiteți materialele respective aici.<br />
 De asemenea, ne asigurați că ceea ce ați scris a fost compoziție proprie sau copie dintr-o resursă publică sau liberă.
-'''NU INTRODUCEŢI MATERIALE CU DREPTURI DE AUTOR FĂRĂ PERMISIUNE!'''",
+'''Nu introduceți materiale aflate sub incidența drepturilor de autor fără a avea permisiune!'''",
 'copyrightwarning2'                => "Rețineți că toate contribuțiile la {{SITENAME}} pot fi modificate, alterate sau șterse de alți contribuitori.
 Dacă nu doriți ca ceea ce scrieți să fie modificat fără milă și redistribuit în voie, atunci nu trimiteți materialele respective aici.<br />
 De asemenea, ne asigurați că ceea ce ați scris a fost compoziție proprie sau copie dintr-o resursă publică sau liberă (vedeți $1 pentru detalii).
-'''NU INTRODUCEŢI MATERIALE CU DREPTURI DE AUTOR FĂRĂ PERMISIUNE!'''",
+'''Nu introduceți materiale aflate sub incidența drepturilor de autor fără a avea permisiune!'''",
 'longpageerror'                    => "'''EROARE: Textul pe care vrei să-l salvezi are $1 kilobytes,
 ceea ce înseamnă mai mult decât maximum de $2 kilobytes. Salvarea nu este posibilă.'''",
-'readonlywarning'                  => "'''ATENŢIE: Baza de date a fost blocată pentru întreținere, deci nu veți putea salva modificările în acest moment. Puteți copia textul într-un fișier text local pentru a-l salva când va fi posibil.'''
+'readonlywarning'                  => "'''Atenție: Baza de date a fost blocată pentru întreținere, deci nu veți putea salva modificările în acest moment.'''
+Puteți copia textul într-un fișier text, păstrându-l pentru mai târziu.
 
 Administratorul care a efectuat blocarea a oferit următoarea explicație: $1",
 'protectedpagewarning'             => "'''Atenție: această pagină a fost protejată astfel încât poate fi modificată doar de către administratori.'''
@@ -1210,7 +1216,7 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 
 # Search results
 'searchresults'                    => 'Rezultatele căutării',
-'searchresults-title'              => 'Caută rezultate pentru „$1”',
+'searchresults-title'              => 'Rezultatele căutării pentru „$1”',
 'searchresulttext'                 => 'Pentru mai multe detalii despre căutarea în {{SITENAME}}, vezi [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'                   => 'Ai căutat \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|toate paginile care încep cu "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|toate paginile care se leagă de "$1"]])',
 'searchsubtitleinvalid'            => 'Pentru căutarea "$1"',
@@ -1257,8 +1263,8 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 'searchrelated'                    => 'relaționat',
 'searchall'                        => 'toate',
 'showingresults'                   => "Mai jos {{PLURAL:$1|apare '''1''' rezultat|apar '''$1''' rezultate|apar '''$1''' de rezultate}} începând cu nr. <b>$2</b>.",
-'showingresultsnum'                => "Mai jos {{PLURAL:$3|apare '''1''' rezultat|apar '''$3''' rezultate|apar '''$3''' de rezultate}} cu #<b>$2</b>.",
-'showingresultsheader'             => "{{PLURAL:$5|Rezultat '''$1'''|Resultate '''$1 - $2'''}} ale '''$3''' pentru '''$4'''",
+'showingresultsnum'                => "Mai jos {{PLURAL:$3|apare '''1''' rezultat|apar '''$3''' rezultate|apar '''$3''' de rezultate}} cu nr. <b>$2</b>.",
+'showingresultsheader'             => "{{PLURAL:$5|Rezultatul '''$1''' din '''$3'''|Rezultatele '''$1 - $2''' din '''$3'''}} pentru '''$4'''",
 'nonefound'                        => "'''Notă''': Numai unele spații de nume sunt căutate implicit.
 Încercați să puneți ca și prefix al căutării ''all:'' pentru a căuta în tot conținutul (incluzând și paginile de discuții, formate, etc), sau folosiți spațiul de nume dorit ca și prefix.",
 'search-nonefound'                 => 'Nu sunt rezultate conforme interogării.',
@@ -1470,7 +1476,7 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'right-writeapi'              => 'Utilizează API la scriere',
 'right-delete'                => 'Şterge pagini',
 'right-bigdelete'             => 'Şterge pagini cu istoric lung',
-'right-deleterevision'        => 'Şterge și recuperează versiuni specifice ale paginilor',
+'right-deleterevision'        => 'Șterge și recuperează versiuni specifice ale paginilor',
 'right-deletedhistory'        => 'Vezi intrările șterse din istoric, fără textul asociat',
 'right-deletedtext'           => 'Vizualizați textul șters și modificările dintre versiunile șterse',
 'right-browsearchive'         => 'Caută pagini șterse',
@@ -1792,7 +1798,7 @@ Când acestei pagini îi este aplicat filtrul de utilizator, sunt afișate doar 
 # File description page
 'file-anchor-link'          => 'Fișier',
 'filehist'                  => 'Istoricul fișierului',
-'filehist-help'             => "Apăsați pe '''Data și ora''' pentru a vedea versiunea trimisă atunci.",
+'filehist-help'             => "Apăsați pe '''Data și ora''' pentru a vedea versiunea fișierului trimisă la momentul respectiv.",
 'filehist-deleteall'        => 'șterge tot',
 'filehist-deleteone'        => 'șterge',
 'filehist-revert'           => 'revenire',
@@ -1806,7 +1812,7 @@ Când acestei pagini îi este aplicat filtrul de utilizator, sunt afișate doar 
 'filehist-filesize'         => 'Mărimea fișierului',
 'filehist-comment'          => 'Comentariu',
 'filehist-missing'          => 'Fișier lipsă',
-'imagelinks'                => 'Utilizare fișier',
+'imagelinks'                => 'Utilizarea fișierului',
 'linkstoimage'              => '{{PLURAL:$1|Următoarea pagină trimite spre|Următoarele $1 pagini trimit spre|Următoarele $1 de pagini trimit spre}} această imagine:',
 'linkstoimage-more'         => 'Mai mult de $1 {{PLURAL:$1|pagină este legată|pagini sunt legate}} de acest fișier.
 Următoarea listă arată {{PLURAL:$1|prima legătură|primele $1 legături}} către acest fișier.
@@ -1816,9 +1822,9 @@ O [[Special:WhatLinksHere/$2|listă completă]] este disponibilă.',
 'redirectstofile'           => '{{PLURAL:$1|Următorul fișier|Următoarele $1 fișiere}} redirecționează către acest fișier:',
 'duplicatesoffile'          => '{{PLURAL:$1|Fișierul următor este duplicat|Următoarele $1 fișiere sunt duplicate}} ale acestui fișier ([[Special:FileDuplicateSearch/$2|mai multe detalii]]):',
 'sharedupload'              => 'Acest fișier provine de la $1 și poate fi folosit și de alte proiecte.',
-'sharedupload-desc-there'   => 'Fișierul acesta este de la $1 și poate fi folosit de alte proiecte.
-Vezi [$2 pagina de descriere a fișierului] pentru mai multe detalii.',
-'sharedupload-desc-here'    => 'Fișierul acesta este de la $1 și poate fi folosit de alte proiecte.
+'sharedupload-desc-there'   => 'Acest fișier provine de la $1 și poate fi folosit și în cadrul altor proiecte.
+Vizitați [$2 pagina de descriere a fișierului] pentru mai multe detalii.',
+'sharedupload-desc-here'    => 'Acest fișier provine de la $1 și poate fi folosit și în cadrul altor proiecte.
 Descrierea de mai jos poate fi consultată la [$2 pagina de descriere a fișierului].',
 'filepage-nofile'           => 'Nu există niciun fișier cu acest nume.',
 'filepage-nofile-link'      => 'Nu există niciun fișier cu acest nume, dar îl puteți [$1 încărca].',
@@ -2785,8 +2791,8 @@ Un dosar temporar lipsește.',
 'tooltip-ca-watch'                => 'Adăugați la lista de pagini urmărite',
 'tooltip-ca-unwatch'              => 'Eliminați această pagină din lista dumneavoastră de monitorizare',
 'tooltip-search'                  => 'Căutare în {{SITENAME}}',
-'tooltip-search-go'               => 'Du-te la pagina cu acest nume dacă există',
-'tooltip-search-fulltext'         => 'Căutați paginile pentru acest text',
+'tooltip-search-go'               => 'Deschide pagina cu acest nume, dacă există',
+'tooltip-search-fulltext'         => 'Caută în pagini pentru acest text',
 'tooltip-p-logo'                  => 'Pagina principală',
 'tooltip-n-mainpage'              => 'Vedeți pagina principală',
 'tooltip-n-mainpage-description'  => 'Vizitați pagina principală',
@@ -2945,7 +2951,7 @@ Executându-l, sistemul dvs. poate fi compromis.",
 'imagemaxsize'         => "Limita mărimii imaginilor:<br />''(pentru paginile de descriere)''",
 'thumbsize'            => 'Dimensiunea miniaturii:',
 'widthheight'          => '$1x$2',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pagină|pagini}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|pagină|pagini|de pagini}}',
 'file-info'            => 'mărime fișier: $1, tip MIME: $2',
 'file-info-size'       => '$1 × $2 pixeli, mărime fișier: $3, tip MIME: $4',
 'file-nohires'         => '<small>Rezoluții mai mari nu sunt disponibile.</small>',
@@ -3051,7 +3057,7 @@ Altele vor fi ascunse implicit.
 'exif-shutterspeedvalue'           => 'Viteza obturatorului în APEX',
 'exif-aperturevalue'               => 'Diafragmă în APEX',
 'exif-brightnessvalue'             => 'Luminozitate în APEX',
-'exif-exposurebiasvalue'           => 'Ajustarea expunerii',
+'exif-exposurebiasvalue'           => 'Compensarea expunerii',
 'exif-maxaperturevalue'            => 'Apertura maximă',
 'exif-subjectdistance'             => 'Distanța față de subiect',
 'exif-meteringmode'                => 'Forma de măsurare',
@@ -3417,7 +3423,7 @@ Puteți folosi în schimb [[Special:Watchlist/edit|editorul standard]].',
 'watchlisttools-raw'  => 'Modifică lista brută a paginilor urmărite',
 
 # Core parser functions
-'unknown_extension_tag' => 'Extensie etichetă necunoscută "$1"',
+'unknown_extension_tag' => 'Extensie etichetă necunoscută „$1”',
 'duplicate-defaultsort' => "'''Atenție:''' Cheia de sortare implicită („$2”) o înlocuiește pe precedenta („$1”).",
 
 # Special:Version

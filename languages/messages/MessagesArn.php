@@ -230,6 +230,7 @@ $messages = array(
 'nstab-category'  => 'Trokiñ',
 
 # General errors
+'error'              => 'Welulkan',
 'missing-article'    => 'Feychi ngülümdunguwe kintulay feychi wülngiñ ñi wirin, welu nienuafulu. Ñi üy ta "$1" $2.
 
 Chi kiñe rakizuamün ta pünefalkülenuchi kalelu kam nülkükawlelu liftungepelu wülngiñ ñi rupañmael.
@@ -252,6 +253,7 @@ Nieafuy falinochi wirin püñamtuam wülngiñ ñi üy.',
 'nav-login-createaccount' => 'konkülen/dewman konün',
 'loginprompt'             => 'Müley "Cookies" ñi püneleael wirintukuwam {{SITENAME}} mew.',
 'userlogin'               => 'Konkülen/dewman konün',
+'userloginnocreate'       => 'Konün',
 'logout'                  => 'Tripan',
 'userlogout'              => 'Tripan',
 'notloggedin'             => 'Petu konlaymi.',
@@ -260,8 +262,12 @@ Nieafuy falinochi wirin püñamtuam wülngiñ ñi üy.',
 'createaccount'           => 'Dewmafinge konün',
 'gotaccount'              => 'Dew nieymi konün? $1.',
 'gotaccountlink'          => 'Konün',
+'createaccountreason'     => 'Dungu:',
 'mailmypassword'          => 'Amulün we nülawe werküwe mew',
 'loginlanguagelabel'      => 'Cezugun: $1',
+
+# Password reset dialog
+'resetpass-submit-cancel' => 'Katrüntukun',
 
 # Edit page toolbar
 'bold_sample'     => 'Kurükünualu wirin',

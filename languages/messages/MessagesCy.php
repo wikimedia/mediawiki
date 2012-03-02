@@ -8,6 +8,7 @@
  * @file
  *
  * @author Arwel Parry
+ * @author Kaganer
  * @author Lloffiwr
  * @author Malafaya
  * @author Reedy
@@ -2718,7 +2719,7 @@ $1",
 Mae'n bosib y bydd eich cyfrifiadur yn cael ei danseilio wrth ddefnyddio'r ffeil.",
 'imagemaxsize'         => "Maint mwyaf y delweddau:<br />''(ar y tudalennau disgrifiad)''",
 'thumbsize'            => 'Maint mân-lun :',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|tudalen|dudalen|dudalen|tudalen|thudalen|tudalen}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|tudalen|dudalen|dudalen|tudalen|thudalen|tudalen}}',
 'file-info'            => 'maint y ffeil: $1, ffurf MIME: $2',
 'file-info-size'       => '$1 × $2 picsel, maint y ffeil: $3, ffurf MIME: $4',
 'file-nohires'         => '<small>Wedi ei chwyddo hyd yr eithaf.</small>',

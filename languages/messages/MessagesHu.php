@@ -23,6 +23,7 @@
  * @author Glanthor Reviol
  * @author Gondnok
  * @author Hunyadym
+ * @author Kaganer
  * @author KossuthRad
  * @author Misibacsi
  * @author Samat
@@ -1116,7 +1117,7 @@ A(z) {{SITENAME}} adminisztrátorai továbbra is meg tudják tekinteni az elrejt
 *: ''otthoni címek és telefonszámok, társadalombiztosítási számok stb.''",
 'revdelete-legend'            => 'Korlátozások megadása:',
 'revdelete-hide-text'         => 'Változat szövegének elrejtése',
-'revdelete-hide-image'        => 'A fájl tartalomának elrejtése',
+'revdelete-hide-image'        => 'A fájl tartalmának elrejtése',
 'revdelete-hide-name'         => 'Művelet és cél elrejtése',
 'revdelete-hide-comment'      => 'Összefoglaló elrejtése',
 'revdelete-hide-user'         => 'A szerkesztő felhasználónevének/IP-címének elrejtése',
@@ -1149,7 +1150,7 @@ $1",
 'revdelete-hid'               => 'elrejtette $1',
 'revdelete-unhid'             => 'felfedte $1',
 'revdelete-log-message'       => '$1 {{PLURAL:$1|egy|$2}} változatnak',
-'logdelete-log-message'       => '$1 {{PLURAL:$2|egy|$2}} eseményt',
+'logdelete-log-message'       => '$1 {{PLURAL:$2|egy|$2}} eseménynek',
 'revdelete-hide-current'      => 'Nem sikerült elrejteni a $1 $2-kori elemet: ez a jelenlegi változat, amit nem lehet elrejteni.',
 'revdelete-show-no-access'    => 'Nem lehet megjeleníteni a $2 $1-kori elemet, mert „korlátozottnak” van jelölve.',
 'revdelete-modify-no-access'  => 'Nem lehet módosítani a $2 $1-kori elemet, mert „korlátozottnak” van jelölve.',
@@ -2943,7 +2944,7 @@ $1',
 A futtatása során kárt tehet a számítógépedben.",
 'imagemaxsize'         => "A képek mérete, legfeljebb:<br />''(a leírólapokon)''",
 'thumbsize'            => 'Bélyegkép mérete:',
-'widthheightpage'      => '$1×$2, {{PLURAL:$3|egy|$3}} oldal',
+'widthheightpage'      => '$1 × $2, {{PLURAL:$3|egy|$3}} oldal',
 'file-info'            => 'fájlméret: $1, MIME-típus: $2',
 'file-info-size'       => '$1 × $2 képpont, fájlméret: $3, MIME-típus: $4',
 'file-nohires'         => '<small>Nem érhető el nagyobb felbontású változat.</small>',

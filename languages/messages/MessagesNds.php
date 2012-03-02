@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Kaganer
  * @author Purodha
  * @author Slomox
  * @author The Evil IP address
@@ -242,7 +243,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Schriev mi en Nettbreef, ok wenn dat blots en lütte Ännern weer',
 'tog-enotifrevealaddr'        => 'Miene Nettbreefadress in Bestätigungsnettbreven wiesen',
 'tog-shownumberswatching'     => 'Wies de Tall vun Brukers, de op disse Siet oppasst',
-'tog-oldsig'                  => 'Vörschau von de Ünnerschrift, de nu gellt:',
+'tog-oldsig'                  => 'Gellen Ünnerschrift',
 'tog-fancysig'                => 'Signatur as Wikitext behanneln (ahn automaatsch Lenk)',
 'tog-externaleditor'          => 'Extern Editor as Standard bruken (Blots för Lüüd, de sik dormit utkennt. Dor mutt noch mehr op dien Reekner instellt warrn, dat dat geiht. [http://www.mediawiki.org/wiki/Manual:External_editors Wiedere Informatschonen hierto.])',
 'tog-externaldiff'            => 'Extern Warktüüch to’n Wiesen vun Ünnerscheden as Standard bruken (Blots för Lüüd, de sik dormit utkennt. Dor mutt noch mehr op dien Reekner instellt warrn, dat dat geiht. [http://www.mediawiki.org/wiki/Manual:External_editors Wiedere Informatschonen hierto.])',
@@ -537,7 +538,7 @@ De letzte Datenbankaffraag weer:
 ut de Funkschoon <tt>$2</tt>.
 MySQL mell den Fehler <tt>$3: $4</tt>.',
 'dberrortextcl'        => 'Dor weer en Syntaxfehler in de Datenbankaffraag.
-De letzte Datenbankaffraag weer: $1 ut de Funktschoon <tt>$2</tt>.
+De letzte Datenbankaffraag weer: $1 ut de Funkschoon <tt>$2</tt>.
 MySQL mell den Fehler: <tt>$3: $4</tt>.',
 'laggedslavemode'      => 'Wohrschau: Disse Siet is villicht nich mehr op den ne’esten Stand.',
 'readonly'             => 'Datenbank is sparrt',
@@ -555,6 +556,8 @@ Wenn dat nich de Fall is, denn hest du villicht en Fehler in de Software funnen.
 'readonly_lag'         => 'De Datenbank is automaatsch sperrt worrn, dat sik de opdeelten Datenbankservers mit den Hööft-Datenbankserver afglieken köönt.',
 'internalerror'        => 'Internen Fehler',
 'internalerror_info'   => 'Internen Fehler: $1',
+'fileappenderrorread'  => '$1 kunn nich leest warrn wiel dat Hentofögen.',
+'fileappenderror'      => 'Dat weer nich mööglich, "$1" an "$2" totofögen.',
 'filecopyerror'        => 'De Software kunn de Datei ‚$1‘ nich na ‚$2‘ koperen.',
 'filerenameerror'      => 'De Software kunn de Datei ‚$1‘ nich na ‚$2‘ ümnömen.',
 'filedeleteerror'      => 'De Software kunn de Datei ‚$1‘ nich wegsmieten.',
@@ -564,7 +567,7 @@ Wenn dat nich de Fall is, denn hest du villicht en Fehler in de Software funnen.
 'unexpected'           => 'Unvermoodten Weert: ‚$1‘=‚$2‘.',
 'formerror'            => 'Fehler: De Software kunn dat Formular nich verarbeiden',
 'badarticleerror'      => 'Disse Aktschoon kann op disse Siet nich anwennt warrn.',
-'cannotdelete'         => 'De Software kunn de angevene Siet nich wegsmieten. (Mööglicherwies is de al vun en annern wegsmeten worrn.)',
+'cannotdelete'         => 'De Software kunn "$1" nich wegsmieten. Mööglicherwies is de al vun en annern wegsmeten worrn.',
 'badtitle'             => 'Ungülligen Titel',
 'badtitletext'         => 'De Titel vun de opropene Siet weer ungüllig, leddig, oder en ungülligen Spraaklink vun en annern Wiki.',
 'perfcached'           => 'Disse Daten kamen ut den Cache un sünd mööglicherwies nich aktuell:',
@@ -677,6 +680,7 @@ Wenn du dat Brukerkonto gor nich hebben wullst, denn is disse Naricht egaal för
 'login-throttled'            => 'Du hest to faken versöcht, di ünner dissen Brukernaam antomellen.
 Tööv en Stoot, ehrdat du dat noch wedder versöchst.',
 'loginlanguagelabel'         => 'Spraak: $1',
+'suspicious-userlogout'      => 'Dien Anfraag, di aftomellen, worr aflehnt, wieldat se vermoodlich vun en Browser oder Cache-Proxy sennt worrn is, de nich mehr funkschoneert.',
 
 # E-mail sending
 'php-mail-error-unknown' => 'Unbekennten Fehler in PHP sien mail()-Funkschoon',
@@ -2603,7 +2607,7 @@ $1',
 'mediawarning'         => "'''Wohrschau:''' Disse Soort Datein kann bööswilligen Programmkood bargen. Dör dat Rünnerladen un Opmaken vun de Datei kann dien Reekner Schaden nehmen.",
 'imagemaxsize'         => 'Biller op de Bildsied begrenzen op:',
 'thumbsize'            => 'Grött vun dat Duumnagel-Bild:',
-'widthheightpage'      => '$1×$2, {{PLURAL:$3|Ene Siet|$3 Sieden}}',
+'widthheightpage'      => '$1 × $2, {{PLURAL:$3|Ene Siet|$3 Sieden}}',
 'file-info'            => 'Grött: $1, MIME-Typ: $2',
 'file-info-size'       => '$1 × $2 Pixel, Grött: $3, MIME-Typ: $4',
 'file-nohires'         => '<small>Gifft dat Bild nich grötter.</small>',

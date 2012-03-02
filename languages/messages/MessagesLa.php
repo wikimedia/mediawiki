@@ -10,6 +10,7 @@
  * @author Andrew Dalby
  * @author Dferg
  * @author Esteban97
+ * @author Kaganer
  * @author LeighvsOptimvsMaximvs
  * @author McDutchie
  * @author MissPetticoats
@@ -678,7 +679,7 @@ Nobis etiam spondes te esse ipsum horum verborum scriptorem primum, aut ex opere
 '''NOLI OPERIBUS SUB IURE DIVULGANDI UTI SINE POTESTATE!'''",
 'copyrightwarning2'                => "Nota bene omnia contributa apud {{grammar:accusative|{{SITENAME}}}} ab aliis recenseri, mutari vel removi posse.
 Nisi vis verba tua crudelissime recenseri, noli ea submittere.<br />
-Nobis etiam spondes te esse ipsum horum verborum scriptorem primum, aut ex opere in \"dominio publico\" vel ex  libere fonte simili exscripsisse (vide singula apud \$1).
+Nobis etiam spondes te esse ipsum horum verborum scriptorem primum, aut ex opere in \"dominio publico\" vel ex libere fonte simili exscripsisse (vide singula apud \$1).
 '''NOLI OPERIBUS SUB IURE DIVULGANDI UTI SINE POTESTATE!'''",
 'protectedpagewarning'             => "'''CAVE: Haec pagina protecta est ut magistratus soli eam recenseant.'''",
 'templatesused'                    => '{{PLURAL:$1|Formula hac in pagina adhibita:|Formulae hac in pagina adhibitae:}}',
@@ -1706,7 +1707,9 @@ Si pagina nova cum ipso nomine post deletionem creata est, emendationes restitut
 # Block/unblock
 'blockip'                      => 'Usorem obstruere',
 'blockip-legend'               => 'Usorem vel locum IP obstruere',
-'blockiptext'                  => 'Forma infera utere ut quendam usorem vel locum IP obstruas ne plus scribere potest. Hoc non nisi secundum [[{{MediaWiki:Policy-url}}|consilium]] fieri potest. Rationem certam subscribe (exempli gratia titulos paginarum quas iste usor modo vandalorum recensuit).',
+'blockiptext'                  => 'Forma infera utere ut quendam usorem vel locum IP obstruas ne plus scribere potest.
+Hoc non nisi secundum [[{{MediaWiki:Policy-url}}|consilium]] fieri potest.
+Rationem certam subscribe (exempli gratia titulos paginarum quas iste usor modo vandalorum recensuit).',
 'ipaddress'                    => 'Locus IP:',
 'ipadressorusername'           => 'Locus IP aut nomen usoris:',
 'ipbexpiry'                    => 'Exitus:',
@@ -2038,7 +2041,7 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 'imagemaxsize'         => "Magnitudo maxima fasciculorum:<br />
 ''(in pagina descriptionis fasciculi)''",
 'thumbsize'            => 'Magnitudo pollicisunguis:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pagina|paginae}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|pagina|paginae}}',
 'file-info'            => 'magnitudo fasciculi: $1, typus MIME: $2',
 'file-info-size'       => '$1 × $2 elementa imaginalia, magnitudo fasciculi: $3, typus MIME: $4',
 'file-nohires'         => '<small>Nulla maior resolutio exstat.</small>',

@@ -14,6 +14,7 @@
  * @author Diagramma Della Verita
  * @author Hydra
  * @author Izzudin
+ * @author Kaganer
  * @author Kurniasan
  * @author Meno25
  * @author Putera Luqman Tunku Andre
@@ -2003,7 +2004,7 @@ dan tajuk laman tersebut juga akan ditonjolkan dalam '''teks tebal''' di [[Speci
 untuk memudahkan anda.
 
 Jika anda mahu membuang laman tersebut daripada senarai pantau, klik \"Nyahpantau\" pada bar sisi.",
-'removedwatch'         => 'Dibuang daripada senarai pantau',
+'removedwatch'         => 'Dibuang dari senarai pantau',
 'removedwatchtext'     => 'Laman "[[:$1]]" telah dibuang daripada [[Special:Watchlist|senarai pantau anda]].',
 'watch'                => 'Pantau',
 'watchthispage'        => 'Pantau laman ini',
@@ -2302,7 +2303,7 @@ dirosakkan).',
 'ipbreason-dropdown'              => '*Sebab lazim
 ** Memasukkan maklumat palsu
 ** Membuang kandungan daripada laman
-** Memmasukkan pautan spam ke tapak web luar
+** Memasukkan pautan spam ke tapak web luar
 ** Memasukkan karut-marut ke dalam laman
 ** Mengugut/mengganggu pengguna lain
 ** Menyalahgunakan berbilang akaun
@@ -2793,7 +2794,7 @@ Dengan menjalankannya, komputer anda mungkin akan terjejas.",
 'imagemaxsize'         => "Had saiz imej:<br />''(untuk laman keterangan fail)''",
 'thumbsize'            => 'Saiz gambar kenit:',
 'widthheight'          => '$1 × $2',
-'widthheightpage'      => '$1×$2, $3 halaman',
+'widthheightpage'      => '$1 × $2, $3 halaman',
 'file-info'            => 'saiz file: $1, jenis MIME: $2',
 'file-info-size'       => '$1 × $2 piksel, saiz fail: $3, jenis MIME: $4',
 'file-nohires'         => '<small>Tiada leraian lebih besar.</small>',
@@ -3243,7 +3244,7 @@ Sila sahkan bahawa anda mahu mencipta semula laman ini.",
 'watchlistedit-numitems'       => 'Senarai pantau anda mengandungi $1 tajuk (tidak termasuk laman perbincangan).',
 'watchlistedit-noitems'        => 'Tiada tajuk dalam senarai pantau anda.',
 'watchlistedit-normal-title'   => 'Sunting senarai pantau',
-'watchlistedit-normal-legend'  => 'Buang tajuk daripada senarai pantau',
+'watchlistedit-normal-legend'  => 'Buang tajuk-tajuk ini dari senarai pantau',
 'watchlistedit-normal-explain' => 'Tajuk-tajuk dalam senarai pantau anda ditunjukkan di bawah.
 Untuk membuang mana-mana tajuk, tanda kotak yang terletak di sebelahnya, dan klik "Buang Tajuk". Anda juga boleh [[Special:Watchlist/raw|menyunting senarai mentah]].',
 'watchlistedit-normal-submit'  => 'Gugurkan tajuk-tajuk',

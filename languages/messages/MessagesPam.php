@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Kaganer
  * @author Katimawan2005
  * @author Urhixidur
  * @author Val2397
@@ -2028,7 +2029,7 @@ $1',
 'mediawarning'         => "'''Kapiadian''': Mapaliaring atin yang code a makarok (malicious) ing simpan (file) a ini, at nung paganan me, maliari yang masira ing kekang system.",
 'imagemaxsize'         => 'E la dapat migit king bilang a iti deng larawan kareng bulung pamilarawan simpan (file description pages):',
 'thumbsize'            => 'Kasindagul kuku (thumbnail size):',
-'widthheightpage'      => '$1×$2, $3 bulung',
+'widthheightpage'      => '$1 × $2, $3 bulung',
 'file-info'            => 'dagul ning simpan [file]: $1, MIME type: $2',
 'file-info-size'       => '$1 × $2 pixel, sukad ning simpan: $3, MIME type: $4',
 'file-nohires'         => '<small>Ala nang mas malino pa.</small>',

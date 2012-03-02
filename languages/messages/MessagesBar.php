@@ -244,7 +244,7 @@ $messages = array(
 'categorypage'      => 'Kategorieseiten åzoang',
 'viewtalkpage'      => 'Diskussion',
 'otherlanguages'    => 'Ånderne Sproochen',
-'redirectedfrom'    => '(voh $1 weider gschickd)',
+'redirectedfrom'    => '(Weidergloatt voh $1)',
 'redirectpagesub'   => 'Weiderloatung',
 'lastmodifiedat'    => 'Dé Seiten is zlétzd am $1 um $2 gänderd worn.',
 'viewcount'         => 'Dé Seiten do is bis iatz {{PLURAL:$1|oahmoi|$1-moi}} obgruaffm worn.',
@@ -447,6 +447,7 @@ Vagiss bittscheh néd, deine [[Special:Preferences|{{SITENAME}}-Eishtellungen]] 
 'createaccounterror'         => 'Des Benutzerkonto hod ned erstöd wern kenner: $1',
 'nocookiesnew'               => "Da Benytzerzuagång is erstöid worn, du bist ower ned ågmöidt. {{SITENAME}} benedigt fyr de Funkzion Cookies, bittschee aktiviar de und möidt de danoch mid daim naichn Benytzernåm und 'm dazuaghering Posswort å.",
 'nocookieslogin'             => '{{SITENAME}} nimmt Cookies zum Ailoggen vo de Benytzer her. Du host Cookies deaktivird, bittschee aktivir de und vasuchs nuamoi.',
+'noname'                     => 'Du muasst an gyting Benutzernåm ågeem.',
 'loginsuccesstitle'          => "D' Åmöidung is erfoigraich gween",
 'loginsuccess'               => 'Du bist jetzad ois „$1“ bai {{SITENAME}} ågmöidt.',
 'wrongpassword'              => 'Des Posswort is foisch! Bitschee prowirs nuamoi.',
@@ -621,9 +622,8 @@ Vielleicht is sie gelöscht oda verschom worn.
 # Revision deletion
 'rev-deleted-text-permission' => '<div class="mw-warning plainlinks"> De Version is glöscht worn und is nimma öffentlich zum einseng.
 Nähere Angaben zum Löschvorgang sowia a Begründung findn si im [{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}} Lösch-Logbuch].</div>',
-'rev-deleted-text-view'       => '<div class="mw-warning plainlinks">De Version is gelöscht worn und is nimma öffentlich einsehbar.
-Als Administrator kennan Sie weiterhin einseng.
-Nähere Angaben zum Löschvorgang sowia a Begründung finden si im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Lösch-Logbuach].</div>',
+'rev-deleted-text-view'       => "Dé Versión dodan is '''gléscht''' worn.
+Du kauhstas auhschauh, waunn du wüst. Nahernte Auhgoom steengern im [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lésch-Logbiaché].",
 'rev-deleted-no-diff'         => '<div class="mw-warning plainlinks">Du kannst diesen Unterschied nicht betrachten, da eine der Versionen aus den öffentlichen Archiven entfernt wurde.
 Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].</div>',
 'rev-delundel'                => 'zoang / vastecken',
@@ -695,8 +695,8 @@ Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 
 'nonefound'                        => "'''Hiwais:''' Es wern standardmässig nur oanige Nåmensraim durchsuacht. Setz ''all:'' vur dain Suachbegrif, um olle Saiten (inkl. Dischkrirsaiten, Vurlong usw.) z' durchsuacha oder züid 'n Nåmen vom z' durchsuachanden Nåmensraum.",
 'search-nonefound'                 => 'Fyr deih Suachåfrog san koane Ergebniss gfunden worn',
 'powersearch'                      => 'Suach',
-'powersearch-legend'               => 'Eaweitate Suach',
-'powersearch-ns'                   => 'Suach in Nãmensräume:',
+'powersearch-legend'               => 'Daweiterde Suach',
+'powersearch-ns'                   => 'Suach in Nåmensraim:',
 'powersearch-redir'                => 'Weiderloattung åzoang',
 'powersearch-field'                => 'Suach noch:',
 'search-external'                  => 'Externe Suach',
@@ -710,15 +710,15 @@ Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 
 'rows'                      => 'Zeiln:',
 'columns'                   => 'Spoiten',
 'searchresultshead'         => 'Suachen',
-'resultsperpage'            => 'Treffer pro Saiten:',
+'resultsperpage'            => 'Dreffer pró Seiten:',
 'savedprefs'                => 'Deine Eihstellungen san gspeicherd worn.',
 'timezonelegend'            => 'Zaidzone:',
 'localtime'                 => 'Ortszaid:',
 'timezoneuseserverdefault'  => 'Standardzaid vom Server',
-'guesstimezone'             => 'Vom Browser übanehma',
+'guesstimezone'             => 'Vom Browser ywernemmer',
 'allowemail'                => 'E-Mail-Empfång voh anderne Benutzer méglé mochen.',
 'prefs-searchoptions'       => 'Suachopziónen',
-'prefs-namespaces'          => 'Nåmensreim',
+'prefs-namespaces'          => 'Nåmensraim',
 'youremail'                 => 'E-Mail-Adress:',
 'username'                  => 'Benutzernåm:',
 'yourrealname'              => 'Da echte Nåm:',
@@ -735,7 +735,7 @@ Mid ånderne Benutzer kåst du aa ywer de Benutzerdischkrirsaiten an Kontakt auf
 
 # Groups
 'group-sysop'      => 'Administratorn',
-'group-bureaucrat' => 'Bürokratn',
+'group-bureaucrat' => 'Byrókraaten',
 'group-suppress'   => 'Oversighter',
 'group-all'        => '(olle)',
 
@@ -925,7 +925,7 @@ A [[Special:WhatLinksHere/$2|voiständige Listn]] gibt's aa.",
 'unusedtemplateswlh' => 'Aundre Links',
 
 # Random page
-'randompage' => 'Zuaféllige Seiten',
+'randompage' => 'Zuafällige Seiten',
 
 # Statistics
 'statistics'               => 'Staatistik',
@@ -939,9 +939,10 @@ A [[Special:WhatLinksHere/$2|voiständige Listn]] gibt's aa.",
 'statistics-mostpopular'   => 'Dé am moastbsuachten Seiten',
 
 'disambiguationspage'  => 'Template:Begriffsklärung',
-'disambiguations-text' => 'De folgenden Seitn valinkn auf a Seitn zur Begriffsklärung.
-Sie solltn stattdessn auf de eigentlich gemoante Seitn valinkn.<br />A Seitn werd ois Begriffsklärungsseitn behandelt, wenn [[MediaWiki:Disambiguationspage]] auf sie valinkt.<br />
-Links aus Namensräume wern da net aufglistet.',
+'disambiguations-text' => "D' fóigernden Seiten valinken af a Seiten za ner Begiefsklärung. Du sóiderst stott dém af d' oagerntlich gmoahde Seiten valinken.
+
+A Seiten gijt ois Begriefsklärungsseiten, waunns oane vah dé af [[MediaWiki:Disambiguationspage]] afgfyrde Vurloog(ng) eihbindt.</br>
+Links as Naumensraim wern do néd afglistt.",
 
 'doubleredirects' => 'Doppede Weiderloatungen',
 
@@ -988,6 +989,7 @@ Links aus Namensräume wern da net aufglistet.',
 'protectedpages'          => 'Gschytzde Seiten',
 'protectedpages-indef'    => 'Netter néd bschränkde gschytzde Seiten zoang',
 'protectedpages-cascade'  => 'Netter Seiten mid Kaskadenschutz',
+'protectedtitles'         => 'Gschytzde Seitennaumen',
 'usercreated'             => 'Erstöd am $1 um $2 Ur',
 'newpages'                => 'Neiche Seiten',
 'newpages-username'       => 'Benutzernåm:',

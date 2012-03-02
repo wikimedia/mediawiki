@@ -10,6 +10,7 @@
  * @author An13sa
  * @author Bengoa
  * @author Helix84
+ * @author Kaganer
  * @author Kaustubh
  * @author Kobazulo
  * @author Malafaya
@@ -335,7 +336,7 @@ $messages = array(
 'postcomment'       => 'Atal berria',
 'articlepage'       => 'Artikulua ikusi',
 'talk'              => 'Eztabaida',
-'views'             => 'Bistaratzeak',
+'views'             => 'Ikustaldiak',
 'toolbox'           => 'Tresnak',
 'userpage'          => 'Lankide orrialdea ikusi',
 'projectpage'       => 'Proiektuaren orrialdea ikusi',
@@ -2661,7 +2662,7 @@ $1',
 Zure sisteman exekutatzea arriskutsua izan liteke.",
 'imagemaxsize'         => "Irudiaren tamainaren muga:<br />''(fitxategi deskribapen-orrietarako)''",
 'thumbsize'            => 'Irudi txikiaren tamaina:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|orri|orri}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|orri|orri}}',
 'file-info'            => 'fitxategiaren tamaina: $1, MIME mota: $2',
 'file-info-size'       => '$1 × $2 pixel, fitxategiaren tamaina: $3, MIME mota: $4',
 'file-nohires'         => '<small>Ez dago bereizmen handiagorik.</small>',

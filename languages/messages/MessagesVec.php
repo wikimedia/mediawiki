@@ -10,6 +10,7 @@
  * @author BrokenArrow
  * @author Candalua
  * @author Frigotoni
+ * @author Kaganer
  * @author Nick1915
  * @author Omnipaedista
  * @author OrbiliusMagister
@@ -2688,7 +2689,7 @@ $1',
 La so esecuzion la podarìa danegiar el to computer.",
 'imagemaxsize'         => "Dimension massima de le imagini:<br />''(su le relative pagine de descrizion)''",
 'thumbsize'            => 'Grandeza de le miniature:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pagina|pagine}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|pagina|pagine}}',
 'file-info'            => 'Dimensioni: $1, tipo MIME: $2',
 'file-info-size'       => '$1 × $2 pixel, dimension del file: $3, tipo MIME: $4',
 'file-nohires'         => '<small>No ghe xe version a risolussion pì granda.</small>',

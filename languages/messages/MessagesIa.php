@@ -8,6 +8,7 @@
  * @file
  *
  * @author Julian Mendez
+ * @author Kaganer
  * @author Malafaya
  * @author McDutchie
  * @author Reedy
@@ -2857,7 +2858,7 @@ $1',
 Le execution de illo pote compromitter le securitate de tu systema.",
 'imagemaxsize'         => "Dimension maxime de imagines:<br />''(pro paginas de description de files)''",
 'thumbsize'            => 'Dimension del miniaturas:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pagina|paginas}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|pagina|paginas}}',
 'file-info'            => 'grandor del file: $1, typo MIME: $2',
 'file-info-size'       => '$1 × $2 pixel, grandor del file: $3, typo MIME: $4',
 'file-nohires'         => '<small>Non disponibile in resolution plus alte.</small>',
@@ -3454,7 +3455,7 @@ Entra le nomine del file sin le prefixo \"{{ns:file}}:\".",
 'dberr-cachederror' => 'Lo sequente es un copia del cache del pagina requestate, e pote esser obsolete.',
 
 # HTML forms
-'htmlform-invalid-input'       => 'Il ha problemas con alique que tu entrava',
+'htmlform-invalid-input'       => 'Il ha problemas con un parte del datos que tu ha entrate',
 'htmlform-select-badoption'    => 'Le valor que tu specificava non es un option valide.',
 'htmlform-int-invalid'         => 'Le valor que tu specificava non es un numero integre.',
 'htmlform-float-invalid'       => 'Le valor que tu specificava non es un numero.',

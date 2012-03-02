@@ -10,6 +10,7 @@
  * @author Antofa
  * @author Cornelia
  * @author Felis
+ * @author Kaganer
  */
 
 $namespaceNames = array(
@@ -1887,7 +1888,7 @@ $1",
 'mediawarning'         => "'''Attinzioni''': Chisthu file pó cuntinì còdizi marignu, chi si eseguiddu pó danniggià lu propriu sisthema infuimmatigu.",
 'imagemaxsize'         => "Misura màssima di l'immàgini i'li reratibi pàgini di dischussioni:",
 'thumbsize'            => 'Mannària di li miniadduri:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pàgina|pàgini}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|pàgina|pàgini}}',
 'file-info'            => 'Misuri: $1, tipu MIME: $2',
 'file-info-size'       => '$1 × $2 punti, misuri: $3, tipu MIME: $4',
 'file-nohires'         => '<small>Nò so dipunìbiri versioni a risoruzioni maggiori.</small>',

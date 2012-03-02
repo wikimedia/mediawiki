@@ -9,6 +9,7 @@
  *
  * @author Albonio
  * @author Artomo
+ * @author Kaganer
  * @author Lakaoso
  * @author Malafaya
  * @author Reedy
@@ -1455,7 +1456,7 @@ Vu darfos adjuntar kauso en la rezumo.',
 'nextdiff'     => 'Plu recenta versiono →',
 
 # Media information
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pagino|pagini}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|pagino|pagini}}',
 'file-nohires'         => '<small>Ne existas grandeso plu granda.</small>',
 'show-big-image'       => 'Grandeso kompleta',
 'show-big-image-thumb' => '<small>Dimensioni di ca previdajo: $1 × $2 pixel-i</small>',

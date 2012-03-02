@@ -9,6 +9,7 @@
  *
  * @author Danny B.
  * @author Helix84
+ * @author Kaganer
  * @author Kuvaly
  * @author Li-sung
  * @author Martin Kozák
@@ -1019,7 +1020,7 @@ Můžete se vrátit a editovat již existující stránku, nebo [[Special:UserLo
 'sectioneditnotsupported-text'     => 'Na této editační stránce není podporována editace jedné sekce.',
 'permissionserrors'                => 'Chyba povolení',
 'permissionserrorstext'            => 'Nemáte povoleno toto provést z {{PLURAL:$1|následujícího důvodu|následujících důvodů|následujících důvodů}}:',
-'permissionserrorstext-withaction' => 'Nemáte oprávnění „$2“. {{PLURAL:$1|Důvod:|Důvody:}}',
+'permissionserrorstext-withaction' => 'Z {{PLURAL:$1|následujícího důvodu|následujících důvodů}} nemáte oprávnění $2:',
 'recreate-moveddeleted-warn'       => "'''Upozornění: Pokoušíte se znovuzaložit stránku, která byla v minulosti smazána.'''
 
 Zvažte, zda je vhodné v editaci této stránky pokračovat.
@@ -2946,7 +2947,7 @@ Otevřením souboru můžete ohrozit svůj počítač.",
 'imagemaxsize'         => "Maximální velikost obrázku:<br />
 ''(na stránce s popisem souboru)''",
 'thumbsize'            => 'Velikost náhledu:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|stránka|stránky|stránek}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|stránka|stránky|stránek}}',
 'file-info'            => 'velikost souboru: $1, MIME typ: $2',
 'file-info-size'       => '$1 × $2 pixelů, velikost souboru: $3, MIME typ: $4',
 'file-nohires'         => '<small>Větší rozlišení není k dispozici.</small>',
@@ -3356,7 +3357,8 @@ Opravdu si přejete znovu tuto stránku založit?',
 'confirm-purge-bottom' => 'Aktualizace stránky vymaže cache a vynutí zobrazení nejaktuálnější verze.',
 
 # Separators for various lists, etc.
-'percent' => '$1&nbsp;%',
+'ellipsis' => '…',
+'percent'  => '$1&nbsp;%',
 
 # Multipage image navigation
 'imgmultipageprev' => '← předchozí stránka',

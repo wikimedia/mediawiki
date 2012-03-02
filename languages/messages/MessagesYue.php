@@ -8,6 +8,7 @@
  * @file
  *
  * @author Horacewai2
+ * @author Kaganer
  * @author KaiesTse
  * @author Mark85296341
  * @author Waihorace
@@ -2722,7 +2723,7 @@ $1',
 如果執行佢嘅話，你嘅系統可能會被波及。",
 'imagemaxsize'         => "圖像大細限制:<br />''(用響檔案描述頁)''",
 'thumbsize'            => '縮圖大細：',
-'widthheightpage'      => '$1×$2, $3版',
+'widthheightpage'      => '$1 × $2, $3版',
 'file-info'            => '檔案大細：$1 ，MIME類型：$2',
 'file-info-size'       => '$1 × $2 像素，檔案大細：$3 ，MIME類型：$4',
 'file-nohires'         => '<small>冇更高解像度嘅圖像。</small>',

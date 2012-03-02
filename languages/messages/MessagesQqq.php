@@ -36,6 +36,7 @@
  * @author Fryed-peach
  * @author Garas
  * @author GerardM
+ * @author Guglani
  * @author Gustronico
  * @author Hamilton Abreu
  * @author Helix84
@@ -452,7 +453,9 @@ See also [[MediaWiki:Lastmodifiedatby/{{SUBPAGENAME}}]].',
 'jumptosearch'      => 'Part of the "jump to" navigation links. Hidden by default in monobook skin. The format is: [[MediaWiki:Jumpto/{{SUBPAGENAME}}|{{int:jumpto}}]] [[MediaWiki:Jumptonavigation/{{SUBPAGENAME}}|{{int:jumptonavigation}}]], {{int:jumptosearch}}.
 
 {{Identical|Search}}',
-'pool-timeout'      => 'Part of {{msg-mw|view-pool-error}}.',
+'pool-timeout'      => "Part of {{msg-mw|view-pool-error}}.
+
+For explanation of 'lock' see [http://en.wikipedia.org/wiki/Lock_%28computer_science%29 wikipedia].",
 'pool-queuefull'    => 'Part of {{msg-mw|view-pool-error}}
 
 "Pool" refers to a pool of processes.',
@@ -939,7 +942,7 @@ When templates are expanded, there is a size limit for the number of bytes yield
 'undo-norev'   => 'Message appears if an attempt to revert an edit by clicking the "undo" link on the page history fails.
 
 {{Identical|Undo}}',
-'undo-summary' => '{{Identical|Undo}}',
+'undo-summary' => 'Edit summary for an undo action.{{Identical|Undo}}',
 
 # History pages
 'viewpagelogs'           => 'Link displayed in history of pages',
@@ -2399,7 +2402,10 @@ Possible alternatives to the word 'content' are 'subject matter' or 'wiki subjec
 'created'            => 'Possible value for $CHANGEDORCREATED in {{msg|enotif_subject}} and {{msg|enotif_body}}.',
 'enotif_subject'     => '$CHANGEDORCREATED can be one of {{msg|changed}} and {{msg|created}}. Can also be {{msg-mw|blog-added}} or {{msg-mw|blog-edited}} from Wikia.',
 'enotif_lastvisited' => '$1 is a URL address.',
-'enotif_lastdiff'    => '* $1 is a link to diff, shown as a plainlink',
+'enotif_lastdiff'    => 'E-mail notification text to the latest page differences. Parameters:
+* $1 is a link to a diff, shown as a plain link.',
+'enotif_anon_editor' => 'User name in an e-mail notification when referring to an anonymous user. Parameters:
+* $1 is the anonymous user name (i.e. an IP address).',
 'enotif_body'        => 'Text of a notification e-mail sent when a watched page has been edited or deleted.[[File:Screenshot_MediaWiki_e-mail_notifier.PNG|150px|right]]
 
 * <tt>$CHANGEDORCREATED</tt> can be one of {{msg-mw|changed}}, {{msg-mw|created}}, or {{msg-mw|deleted}}. Can also be {{msg-mw|blog-added}} or {{msg-mw|blog-edited}} from Wikia.',
@@ -2570,7 +2576,7 @@ This message was something like "unlock move protection" in the past.',
 
 {{Identical|View}}
 {{Identical|Restore}}',
-'undeleteviewlink'           => 'First part of {{msg-mw|undeletelink}}',
+'undeleteviewlink'           => 'ਦੇਖੋ',
 'undeletereset'              => 'Shown on [[Special:Undelete]] as button caption.
 {{Identical|Reset}}',
 'undeleteinvert'             => '{{Identical|Invert selection}}',
@@ -2660,11 +2666,14 @@ Example line:
 * [[Main Page]] ([[Special:WhatLinksHere/Main Page|{{int:whatlinkshere-links}}]])
 
 {{Identical|Links}}',
-'whatlinkshere-hideredirs' => 'Parameter $1 is the message "[[MediaWiki:Hide/{{SUBPAGENAME}}|hide]]" or "[[MediaWiki:Show/{{SUBPAGENAME}}|show]]".',
-'whatlinkshere-hidetrans'  => 'Parameter $1 is the message "[[MediaWiki:Hide/{{SUBPAGENAME}}|hide]]" or "[[MediaWiki:Show/{{SUBPAGENAME}}|show]]".',
-'whatlinkshere-hidelinks'  => 'Parameter $1 is the message "[[MediaWiki:Hide/{{SUBPAGENAME}}|hide]]" or "[[MediaWiki:Show/{{SUBPAGENAME}}|show]]".',
-'whatlinkshere-hideimages' => 'This is the text of the option on [[Special:WhatLinksHere]] for image pages, allowing to hide/show pages which display the file inline.
-Parameter $1 is the message "[[MediaWiki:Hide/{{SUBPAGENAME}}|hide]]" or "[[MediaWiki:Show/{{SUBPAGENAME}}|show]]".',
+'whatlinkshere-hideredirs' => 'Filter option in [[Special:WhatLinksHere]]. Parameters:
+* $1 is the {{msg-mw|hide}} or {{msg-mw|show}}',
+'whatlinkshere-hidetrans'  => 'First filter option in [[Special:WhatLinksHere]]. Parameters:
+* $1 is the {{msg-mw|hide}} or {{msg-mw|show}}',
+'whatlinkshere-hidelinks'  => 'Filter option in [[Special:WhatLinksHere]]. Parameters:
+* $1 is the {{msg-mw|hide}} or {{msg-mw|show}}',
+'whatlinkshere-hideimages' => 'Filter option in [[Special:WhatLinksHere]]. Parameters:
+* $1 is the {{msg-mw|hide}} or {{msg-mw|show}}',
 'whatlinkshere-filters'    => '{{Identical|Filter}}',
 
 # Block/unblock
@@ -2672,7 +2681,7 @@ Parameter $1 is the message "[[MediaWiki:Hide/{{SUBPAGENAME}}|hide]]" or "[[Medi
 
 {{Identical|Block user}}',
 'blockip-title'                => '{{Identical|Block user}}',
-'blockip-legend'               => 'Legend/Header for the fieldset around the input form of [[Special:BlockIP]].
+'blockip-legend'               => 'Legend/Header for the fieldset around the input form of [[Special:Block]].
 
 {{Identical|Block user}}',
 'ipaddress'                    => '{{Identical|IP Address}}',
@@ -2842,7 +2851,7 @@ See also {{msg-mw|Movepagetext-noredirectfixer|notext=1}}',
 '1movedto2_redir'              => "This is ''logentry'' message. $1 is the original page name, $2 is the destination page name.",
 'movelogpage'                  => 'Title of [[Special:Log/move]]. Used as heading on that page, and in the dropdown menu on log pages.',
 'movelogpagetext'              => "Text on the special page 'Move log'.",
-'movesubpage'                  => "This is a page header.
+'movesubpage'                  => "This is a section header on [[Special:MovePage]], below is a list of subpages.
 Parameters:
 *'''$1''' = number of subpages
 <!--{{Note|Plural is supported if you need it, the number of subpages is available in <code>$1</code>.}}-->",
@@ -2988,7 +2997,9 @@ Possible alternatives to the word 'content' are 'subject matter' or 'wiki subjec
 Possible alternatives to the word 'content' are 'subject matter' or 'wiki subject' or 'wiki purpose'.
 
 {{Identical|Content page}}",
-'tooltip-ca-nstab-user'           => 'Tooltip shown when hovering over {{msg|nstab-user}} (User namespace tab).',
+'tooltip-ca-nstab-user'           => 'Tooltip shown when hovering over {{msg|nstab-user}} (User namespace tab).
+
+No GENDER-Support for performance reason.',
 'tooltip-ca-nstab-image'          => 'Tooltip shown when hovering over {{msg|nstab-image}} (Image namespace tab).',
 'tooltip-ca-nstab-template'       => 'Tooltip shown when hovering over the {{msg|nstab-template}} tab.',
 'tooltip-ca-nstab-help'           => 'Tootip shown when hovering over the {{msg|nstab-help}} tab in the Help namespace.',
@@ -3090,7 +3101,8 @@ See also {{msg-mw|Anonuser}} and {{msg-mw|Siteusers}}.',
 'spam_reverting' => '{{Identical|Revert}}',
 
 # Skin names
-'skinname-standard'    => '{{optional}}',
+'skinname-standard'    => '{{optional}}
+{{Identical|Classic}}',
 'skinname-nostalgia'   => '{{optional}}',
 'skinname-cologneblue' => '{{optional}}',
 'skinname-monobook'    => '{{optional}}',

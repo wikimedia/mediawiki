@@ -16,6 +16,7 @@
  * @author Iradigalesc
  * @author Jordi Roqué
  * @author Juanpabl
+ * @author Kaganer
  * @author Martorell
  * @author McDutchie
  * @author Pasqual (ca)
@@ -226,10 +227,11 @@ $messages = array(
 'tog-watchlisthideliu'        => "Amaga a la llista les edicions d'usuaris registrats",
 'tog-watchlisthideanons'      => "Amaga a la llista les edicions d'usuaris anònims",
 'tog-watchlisthidepatrolled'  => 'Amaga edicions patrullades de la llista de seguiment',
-'tog-nolangconversion'        => 'Desactiva la conversió de variants',
+'tog-nolangconversion'        => 'Inhabilita la conversió de variants',
 'tog-ccmeonemails'            => "Envia'm còpies dels missatges que enviï als altres usuaris.",
 'tog-diffonly'                => 'Amaga el contingut de la pàgina davall de la taula de diferències',
 'tog-showhiddencats'          => 'Mostra les categories ocultes',
+'tog-noconvertlink'           => 'Inhabilita la conversió dels títols dels enllaços',
 'tog-norollbackdiff'          => 'Omet la pàgina de diferències després de realitzar una reversió',
 
 'underline-always'  => 'Sempre',
@@ -2785,7 +2787,7 @@ $1",
 Si l'executeu, podeu comprometre la seguretat del vostre sistema.",
 'imagemaxsize'         => "Límit de mida d'imatges:<br />''(per a pàgines de descripció de fitxers)''",
 'thumbsize'            => 'Mida de la miniatura:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pàgina|pàgines}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|pàgina|pàgines}}',
 'file-info'            => 'mida: $1, tipus MIME: $2',
 'file-info-size'       => '$1 × $2 píxels, mida del fitxer: $3, tipus MIME: $4',
 'file-nohires'         => '<small>No hi ha cap versió amb una resolució més gran.</small>',
@@ -3355,7 +3357,7 @@ Introduïu el nom del fitxer sense el prefix «{{ns:file}}:».",
 
 # Special:Tags
 'tags'                    => 'Etiquetes de canvi vàlides',
-'tag-filter'              => "Filtre d'[[Special:Tags|Etiquetes]]:",
+'tag-filter'              => "Filtre d'[[Special:Tags|etiquetes]]:",
 'tag-filter-submit'       => 'Filtra',
 'tags-title'              => 'Etiquetes',
 'tags-intro'              => 'Aquesta pàgina llista les etiquetes amb les què el programari pot marcar una modificació, i llur significat.',

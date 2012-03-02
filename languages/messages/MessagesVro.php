@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Kaganer
  * @author Niklas Laxström
  * @author Pikne
  * @author Sulev Iva (Võrok)
@@ -1913,11 +1914,11 @@ Kokkovõttõria pääle või kirotaq tagasivõtmisõ põhjusõ.',
 'imagemaxsize'         => 'Pildi seletüslehe pääl näütämise suuruspiir:',
 'thumbsize'            => 'Väikupildi suurus:',
 'file-info'            => '$1, MIME-tüüp: $2',
-'file-info-size'       => '$1×$2 pikslit, $3, MIME-tüüp: $4',
+'file-info-size'       => '$1 × $2 pikslit, $3, MIME-tüüp: $4',
 'file-nohires'         => '<small>Taast terävämpä pilti olõ-i saiaq.</small>',
 'svg-long-desc'        => 'SVG-teedüstü, põhisuurus $1 × $2 pikslit, teedüstü suurus $3',
 'show-big-image'       => 'Täüsterräv kujo',
-'show-big-image-thumb' => '<small>Proovikaemisõ suurus: $1×$2 pikslit</small>',
+'show-big-image-thumb' => '<small>Proovikaemisõ suurus: $1 × $2 pikslit</small>',
 
 # Special:NewFiles
 'newimages'             => 'Vahtsõq pildiq',

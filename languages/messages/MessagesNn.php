@@ -18,6 +18,7 @@
  * @author Harald Khan
  * @author Jon Harald Søby
  * @author Jorunn
+ * @author Kaganer
  * @author Marinsb
  * @author Najami
  * @author Nghtwlkr
@@ -1323,8 +1324,8 @@ Dette kan ikke tilbakestillast.',
 'yourgender'                    => 'Kjønn:',
 'gender-unknown'                => 'Ikkje oppgjeve',
 'gender-male'                   => 'Mann',
-'gender-female'                 => 'Kvinna',
-'prefs-help-gender'             => 'Valfritt: nytta for kjønnskorrekt referering frå mjukvara. Denne informasjonen vil vera offentleg.',
+'gender-female'                 => 'Kvinne',
+'prefs-help-gender'             => 'Valfritt: nytta for at programvara skal retta seg til brukaren med rett kjønn i systemmeldingar. Denne informasjonen vil vera offentleg.',
 'email'                         => 'E-post',
 'prefs-help-realname'           => '* Namn (valfritt): Om du vel å fylle ut dette feltet, vil informasjonen bli brukt til å godskrive arbeid du har gjort.',
 'prefs-help-email'              => 'Å oppgje e-postadresse er valfritt, men lar deg ta i mot nytt passord om du gløymer det gamle.
@@ -2835,7 +2836,7 @@ $1',
 'mediawarning'         => "'''Åtvaring''': Denne fila kan innehalda skadeleg programkode, ved å køyra programmet kan systemet ditt ta skade.",
 'imagemaxsize'         => "Avgrens storleiken for bilete:<br />''(for sider som skildrar filer)''",
 'thumbsize'            => 'Miniatyrstørrelse:',
-'widthheightpage'      => '$1×$2, {{PLURAL:$3|éi side|$3 sider}}',
+'widthheightpage'      => '$1 × $2, {{PLURAL:$3|éi side|$3 sider}}',
 'file-info'            => 'filstorleik: $1, MIME-type: $2',
 'file-info-size'       => '$1 × $2 pikslar, filstorleik: $3, MIME-type: $4',
 'file-nohires'         => '<small>Høgare oppløysing er ikkje tilgjengeleg.</small>',
@@ -3366,7 +3367,7 @@ Skriv inn filnamn utan «{{ns:file}}:»-prefikset.',
 'tag-filter'              => '[[Special:Tags|Merke]]filter:',
 'tag-filter-submit'       => 'Filtrer',
 'tags-title'              => 'Merke',
-'tags-intro'              => 'Denne sida listar opp merka som mjukvara kan merkja ei endring med, og kva desse tyder.',
+'tags-intro'              => 'Denne sida listar opp merka som programvara kan merkja ei endring med, og kva desse tyder.',
 'tags-tag'                => 'Merkenamn',
 'tags-display-header'     => 'Utsjånad på endringslister',
 'tags-description-header' => 'Fullstendig skildring av tyding',

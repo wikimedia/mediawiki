@@ -9,6 +9,7 @@
  *
  * @author Chrisportelli
  * @author Giangian15
+ * @author Kaganer
  * @author Malafaya
  * @author Roderick Mallia
  * @author Urhixidur
@@ -2882,7 +2883,7 @@ $1',
 'mediawarning'         => "'''Twissija''': Dan il-fajl jista' jinkludi ġo fih kodiċi malizzjuż. L-eżekuzzjoni tiegħu jista' jagħmel ħsara s-sistema informatika tiegħek.",
 'imagemaxsize'         => "Daqs massimu tal-istampa:<br />''(għall-paġni ta' deskrizzjoni tal-fajl)''",
 'thumbsize'            => 'Daqs tal-minjatura:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|paġna|paġni}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|paġna|paġni}}',
 'file-info'            => "Dimensjoni: $1, tip ta' MIME: $2",
 'file-info-size'       => "$1 × $2 pixel, dimensjoni: $3, tip ta' MIME: $4",
 'file-nohires'         => "<small>Mhux disponibli verżjonijiet b'risoluzzjoni akbar.</small>",

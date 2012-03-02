@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Kaganer
  * @author Nkosi ya Cabinda
  * @author Sab
  * @author Urhixidur
@@ -1959,7 +1960,7 @@ $1',
 
 # Media information
 'thumbsize'            => 'Aluklum :',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|bu|bu}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|bu|bu}}',
 'file-info'            => 'iyeltakaldo : $1, MIME ord : $2',
 'file-info-size'       => '$1 × $2 pixel, iyeltakaldo : $3, MIME ord : $4',
 'file-nohires'         => '<small>Me roderaykan logijaf lum.</small>',

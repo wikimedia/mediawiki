@@ -15,6 +15,7 @@
  * @author Homo
  * @author Hugo.arg
  * @author Ignas693
+ * @author Kaganer
  * @author Matasg
  * @author Meno25
  * @author Pdxx
@@ -1246,7 +1247,7 @@ Tai nebeatšaukiama.',
 'prefs-registration'            => 'Registravimosi laikas:',
 'yourrealname'                  => 'Tikrasis vardas:',
 'yourlanguage'                  => 'Sąsajos kalba:',
-'yourvariant'                   => 'Variantas:',
+'yourvariant'                   => 'Kalbos variantas:',
 'yournick'                      => 'Parašas:',
 'prefs-help-signature'          => 'Komentarai aptarimų puslapiuose turėtų būti pasirašyti su „<nowiki>~~~~</nowiki>“, kuris bus paverstas į jūsų parašą ir laiką.',
 'badsig'                        => 'Neteisingas parašas; patikrinkite HTML žymes.',
@@ -1301,7 +1302,7 @@ teisės",
 'userrights-no-interwiki'      => 'Jūs neturite leidimo keisti naudotojų teises kituose projektuose.',
 'userrights-nodatabase'        => 'Duomenų bazė $1 neegzistuoja arba yra ne vietinė.',
 'userrights-nologin'           => 'Jūs privalote [[Special:UserLogin|prisijungti]] kaip administratorius, kad galėtumėte priskirti naudotojų teises.',
-'userrights-notallowed'        => 'Jūsų paskyra neturi teisių priskirti naudotojų teises.',
+'userrights-notallowed'        => 'Jūsų paskyra neturi teisių priskirti ar panaikinti naudotojų teises.',
 'userrights-changeable-col'    => 'Grupės, kurias galite keisti',
 'userrights-unchangeable-col'  => 'Grupės, kurių negalite keisti',
 
@@ -1312,7 +1313,7 @@ teisės",
 'group-bot'           => 'Robotai',
 'group-sysop'         => 'Administratoriai',
 'group-bureaucrat'    => 'Biurokratai',
-'group-suppress'      => 'Peržiūros',
+'group-suppress'      => 'Peržiūrėtojai',
 'group-all'           => '(visi)',
 
 'group-user-member'          => 'Naudotojas',
@@ -1678,7 +1679,7 @@ When filtered by user, only files where that user uploaded the most recent versi
 'filehist-filesize'                 => 'Failo dydis',
 'filehist-comment'                  => 'Komentaras',
 'filehist-missing'                  => 'Failo nėra',
-'imagelinks'                        => 'Failų nuorodos',
+'imagelinks'                        => 'Failų panaudojimas',
 'linkstoimage'                      => '{{PLURAL:$1|Šis puslapis|Šie puslapiai}} nurodo į šį failą:',
 'linkstoimage-more'                 => 'Daugiau nei $1 {{PLURAL:$1|puslapis|puslapiai|puslapių}} rodo į šį failą.
 Šis sąrašas rodo tik {{PLURAL:$1|puslapio|pirmų $1 puslapių}} nuorodas į šį failą.
@@ -1774,7 +1775,7 @@ Informacija iš [$2 failo aprašymo puslapio] yra pateikiama žemiau.',
 'statistics-users-active-desc' => 'Naudotojai, kurie per {{PLURAL:$1|paskutinę dieną|paskutines $1 dienų}} padarė keitimų',
 'statistics-mostpopular'       => 'Daugiausiai rodyti puslapiai',
 
-'disambiguations'      => 'Daugiaprasmių žodžių puslapiai',
+'disambiguations'      => 'Puslapiai rodantys į daugiaprasmių žodžių puslapius',
 'disambiguationspage'  => 'Template:Daugiareikšmis',
 'disambiguations-text' => "Žemiau išvardinti puslapiai nurodo į '''daugiaprasmių žodžių puslapius'''.
 Nuorodos turėtų būti patikslintos, kad rodytų į konkretų puslapį.<br />
@@ -1916,8 +1917,9 @@ Taip pat žiūrėkite [[Special:WantedCategories|trokštamas kategorijas]].',
 'linksearch-pat'   => 'Ieškoti modulio:',
 'linksearch-ns'    => 'Vardų sritis:',
 'linksearch-ok'    => 'Ieškoti',
-'linksearch-text'  => 'Galima naudoti žvaigždutės, pvz., „*.wikipedia.org“.<br />
-Palaikomi protokolai: <tt>$1</tt>',
+'linksearch-text'  => 'Galima naudoti žvaigždutes, pvz., „*.wikipedia.org“.<br />
+Yra būtinas bent jau aukščiausio lygio domenas, pvz., „*.org“.<br />
+Palaikomi protokolai: <tt>$1</tt> (nei vieno iš jų nenurodykite paieškoje).',
 'linksearch-line'  => '$1 yra susietas iš $2',
 'linksearch-error' => 'Žvaigždutės gali būti tik adreso pradžioje.',
 
@@ -2804,7 +2806,7 @@ $1',
 Jį paleidus jūsų sistema gali būti pažeista.",
 'imagemaxsize'         => "Riboti paveikslėlių dydį:<br />''(failų aprašymo puslapiuose)''",
 'thumbsize'            => 'Sumažintų paveikslėlių dydis:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|puslapis|puslapiai|puslapių}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|puslapis|puslapiai|puslapių}}',
 'file-info'            => 'failo dydis: $1, MIME tipas: $2',
 'file-info-size'       => '$1 × $2 taškų, failo dydis: $3, MIME tipas: $4',
 'file-nohires'         => '<small>Geresnė raiška negalima.</small>',

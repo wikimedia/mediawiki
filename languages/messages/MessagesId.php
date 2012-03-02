@@ -17,6 +17,7 @@
  * @author IvanLanin
  * @author Iwan Novirion
  * @author J Subhi
+ * @author Kaganer
  * @author Kenrick95
  * @author McDutchie
  * @author Meursault2004
@@ -1885,7 +1886,7 @@ Cek dahulu pranala lain ke templat tersebut sebelum menghapusnya.',
 'statistics-users-active-desc' => 'Pengguna yang telah melakukan suatu aktivitas dalam {{PLURAL:$1|sehari|$1 hari}} terakhir.',
 'statistics-mostpopular'       => 'Halaman yang paling banyak ditampilkan',
 
-'disambiguations'      => 'Disambiguasi',
+'disambiguations'      => 'Halaman yang terhubung ke halaman disambiguasi',
 'disambiguationspage'  => 'Template:Disambig',
 'disambiguations-text' => "Halaman-halaman berikut memiliki pranala ke suatu '''halaman disambiguasi'''.
 Halaman-halaman tersebut seharusnya berpaut ke topik-topik yang sesuai.<br />
@@ -1983,7 +1984,7 @@ Harap perhatikan bahwa situs web lain mungkin memiliki pranala ke suatu berkas d
 
 # Special:Log
 'specialloguserlabel'  => 'Pengguna:',
-'speciallogtitlelabel' => 'Judul:',
+'speciallogtitlelabel' => 'Taget (judul atau pengguna):',
 'log'                  => 'Log',
 'all-logs-page'        => 'Semua log publik',
 'alllogstext'          => 'Gabungan tampilan semua log yang tersedia di {{SITENAME}}.
@@ -2027,7 +2028,9 @@ Lihat pula [[Special:WantedCategories|kategori yang diinginkan]].',
 'linksearch-pat'   => 'Pola pencarian:',
 'linksearch-ns'    => 'Ruang nama:',
 'linksearch-ok'    => 'Cari',
-'linksearch-text'  => "Bentuk pencarian ''wildcards'' seperti \"*.wikipedia.org\" dapat digunakan.<br />Protokol yang didukung: <tt>\$1</tt>",
+'linksearch-text'  => 'Kartu liar seperti "*.wikipedia.org" dapat digunakan.
+Membutuhkan sedikitnya satu ranah tingkat atas, misalnya "*.org".<br />
+Protokol yang didukung: <tt>$1</tt> (jangan tambahkan dalam pencarian Anda)',
 'linksearch-line'  => '$1 memiliki pranala dari $2',
 'linksearch-error' => "''Wildcards'' hanya dapat digunakan di bagian awal dari nama host.",
 
@@ -2895,7 +2898,7 @@ $1',
 Jika dijalankan, sistem Anda akan berisiko terserang.",
 'imagemaxsize'         => "Batas ukuran gambar:<br />''(untuk halaman deskripsi berkas)''",
 'thumbsize'            => 'Ukuran miniatur:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|halaman|halaman}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|halaman|halaman}}',
 'file-info'            => 'ukuran berkas: $1, tipe MIME: $2',
 'file-info-size'       => '$1 × $2 piksel, ukuran berkas: $3, tipe MIME: $4',
 'file-nohires'         => '<small>Tak tersedia resolusi yang lebih tinggi.</small>',

@@ -11,6 +11,7 @@
  * @author Don Alessandro
  * @author GerardM
  * @author Iltever
+ * @author Kaganer
  * @author Reedy
  * @author Къарачайлы
  */
@@ -2650,7 +2651,7 @@ $1',
 'imagemaxsize'         => "Суратны ёлчемини чеги:<br />''(файлны ангылытыу бетле ючюн)''",
 'thumbsize'            => 'Гитче ёлчем:',
 'widthheight'          => '$1 × $2',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|бет|бет}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|бет|бет}}',
 'file-info'            => 'файлны ёлчеми: $1, MIME типи: $2',
 'file-info-size'       => '$1 × $2 пиксель, файлны ёлчеми: $3, MIME типи: $4',
 'file-nohires'         => '<small>Мындан ары ачыкъланнган версиясы джокъду</small>',

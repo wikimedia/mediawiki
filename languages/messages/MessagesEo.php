@@ -13,6 +13,7 @@
  * @author ArnoLagrange
  * @author Castelobranco
  * @author Jens Liebenau
+ * @author Kaganer
  * @author Lucas
  * @author LyzTyphone
  * @author Malafaya
@@ -21,6 +22,7 @@
  * @author Mihxil
  * @author MinuteElectron
  * @author Omnipaedista
+ * @author Pedroca cerebral
  * @author Petrus Adamus
  * @author Smeira
  * @author Tlustulimu
@@ -591,7 +593,7 @@ $1',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Paĝo',
-'nstab-user'      => 'Paĝo de uzanto',
+'nstab-user'      => 'Uzantopaĝo',
 'nstab-media'     => 'Media paĝo',
 'nstab-special'   => 'Speciala paĝo',
 'nstab-project'   => 'Projektpaĝo',
@@ -2904,7 +2906,7 @@ $1',
 'mediawarning'         => "'''Atenton!''': Ĉi tiu dosiero eble enhavas malican kodadon, per ĝia ruligo via sistemo povus endanĝeriĝi.",
 'imagemaxsize'         => "Limo por bildoj:<br />''(por dosieraj priskribo-paĝoj)''",
 'thumbsize'            => 'Grandeco de bildetoj:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|paĝo|paĝoj}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|paĝo|paĝoj}}',
 'file-info'            => 'grando de dosiero: $1, MIME-tipo: $2',
 'file-info-size'       => '$1 × $2 rastrumeroj, dosiera grandeco: $3, MIME-tipo: $4',
 'file-nohires'         => '<small>Nenia pli granda distingivo havebla.</small>',

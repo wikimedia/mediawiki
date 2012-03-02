@@ -8,8 +8,10 @@
  * @file
  *
  * @author Ans
+ * @author Ariesanywhere
  * @author Harley Hartwell
  * @author Horus
+ * @author Kaganer
  * @author Korrawit
  * @author LMNOP at Thai Wikipedia (manop@itshee.com) since July 2007
  * @author Manop
@@ -209,7 +211,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'แม้ว่าการแก้ไขจะเป็นการแก้ไขเล็กน้อย',
 'tog-enotifrevealaddr'        => 'เผยที่อยู่อีเมลในอีเมลที่ชี้แจง',
 'tog-shownumberswatching'     => 'แสดงจำนวนผู้ใช้ที่เฝ้าดูหน้านี้',
-'tog-oldsig'                  => 'แสดงผลลายเซ็นเดิม:',
+'tog-oldsig'                  => 'ลายเซ็นต์เดิมที่ใช้อยู่:',
 'tog-fancysig'                => 'ใช้คำสั่งวิกิที่ปรากฏในลายเซ็นนี้ (ไม่มีการสร้างลิงก์อัตโนมัติ)',
 'tog-externaleditor'          => 'ใช้โปรแกรมแก้ไขภายนอกโดยปริยาย (สำหรับผู้เชี่ยวชาญเท่านั้น ต้องการการตั้งค่าพิเศษบนคอมพิวเตอร์ของคุณ [http://www.mediawiki.org/wiki/Manual:External_editors ข้อมูลเพิ่มเติม])',
 'tog-externaldiff'            => 'ใช้โปรแกรมเปรียบเทียบภายนอกโดยปริยาย (สำหรับผู้เชี่ยวชาญเท่านั้น ต้องการการตั้งค่าพิเศษบนคอมพิวเตอร์ของคุณ [http://www.mediawiki.org/wiki/Manual:External_editors ข้อมูลเพิ่มเติม])',
@@ -345,7 +347,7 @@ $messages = array(
 'vector-action-move'             => 'ย้าย',
 'vector-action-protect'          => 'ป้องกัน',
 'vector-action-undelete'         => 'ยกเลิกการลบ',
-'vector-action-unprotect'        => 'ยกเลิกการป้องกัน',
+'vector-action-unprotect'        => 'เปลี่ยนค่าการปกป้องข้อมูล',
 'vector-simplesearch-preference' => 'เปิดใช้งานคำแนะนำการค้นหาขั้นสูง (สำหรับสกิน Vector เท่านั้น)',
 'vector-view-create'             => 'สร้าง',
 'vector-view-edit'               => 'แก้ไข',
@@ -381,8 +383,8 @@ $messages = array(
 'protect'           => 'ล็อก',
 'protect_change'    => 'เปลี่ยน',
 'protectthispage'   => 'ล็อกหน้านี้',
-'unprotect'         => 'ปลดล็อก',
-'unprotectthispage' => 'ปลดล็อกหน้านี้',
+'unprotect'         => 'เปลี่ยนค่าการป้องกัน',
+'unprotectthispage' => 'แก้ไขการป้องกันหน้าเว็บนี้',
 'newpage'           => 'หน้าใหม่',
 'talkpage'          => 'พูดคุยหน้านี้',
 'talkpagelinktext'  => 'พูดคุย',
@@ -600,7 +602,7 @@ $1',
 'createaccountmail'          => 'ผ่านทางอีเมล',
 'createaccountreason'        => 'เหตุผล:',
 'badretype'                  => 'รหัสผ่านที่ใส่ไม่ถูกต้อง',
-'userexists'                 => 'ชื่อบัญชีที่ใส่มีผู้อื่นใช้แล้ว กรุณาเลือกชื่ออื่น',
+'userexists'                 => 'ชื่อผู้ใช้งานกรอกถูกใช้ไปแล้ว. กรุณาเลือกชื่ออื่น',
 'loginerror'                 => 'ล็อกอินผิดพลาด',
 'createaccounterror'         => 'ไม่สามารถสร้างบัญชีผู้ใช้: $1',
 'nocookiesnew'               => 'ชื่อบัญชีผู้ใช้ได้ถูกสร้างขึ้นแล้ว แต่ยังไม่ได้ล็อกอินเข้าสู่ {{SITENAME}} เนื่องจากว่าไม่ได้เปิดใช้คุกกี้ ถ้าต้องการล็อกอินให้เปิดใช้งานคุกกี้และทำการล็อกอินโดยใส่ชื่อผู้ใช้พร้อมรหัสผ่าน',
@@ -1166,7 +1168,7 @@ $1",
 'prefs-watchlist-days'          => 'จำนวนวันที่แสดงในรายการเฝ้าดู:',
 'prefs-watchlist-days-max'      => '(มากสุด 7 วัน)',
 'prefs-watchlist-edits'         => 'จำนวนการแก้ไขที่แสดงในรายการเฝ้าดูที่มีการคลี่ออก:',
-'prefs-watchlist-edits-max'     => '(จำนวนมากสุด: 1000)',
+'prefs-watchlist-edits-max'     => 'จำนวนสูงสุด: 1000',
 'prefs-watchlist-token'         => 'สัญลักษณ์รายการเฝ้าดู:',
 'prefs-misc'                    => 'เบ็ดเตล็ด',
 'prefs-resetpass'               => 'เปลี่ยนรหัสผ่าน',
@@ -1588,22 +1590,23 @@ $1',
 'upload-http-error'         => 'เกิดข้อผิดพลาด HTTP: $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'การเข้าถึงถูกจำกัด',
-'img-auth-nopathinfo'   => 'ค่า PATH_INFO สูญหาย
+'img-auth-accessdenied'     => 'การเข้าถึงถูกจำกัด',
+'img-auth-nopathinfo'       => 'ค่า PATH_INFO สูญหาย
 เซิร์ฟเวอร์ของคุณอาจไม่ได้ถูกตั้งให้ส่งข้อมูลนี้
 หรือเซิร์ฟเวอร์อาจจะเป็นแบบ CGI-based และไม่สนับสนุนข้อมูล img_auth
 ดูที่ http://www.mediawiki.org/wiki/Manual:Image_Authorization',
-'img-auth-notindir'     => 'ที่อยู่ที่ร้องขอไม่ได้อยู่ในไดเร็กทอรีอัพโหลดที่กำหนดไ้ว้',
-'img-auth-badtitle'     => 'ไม่สามารถสร้างชื่อเรื่องที่ถูกต้องจาก "$1" ได้',
-'img-auth-nologinnWL'   => 'คุณไม่ได้ลงชื่อเข้าใช้และ "$1" ไม่ได้อยู่ในรายชื่อผู้ใช้ที่ดี (whitelist)',
-'img-auth-nofile'       => 'ไม่มีไฟล์ "$1"',
-'img-auth-isdir'        => 'คุณกำลังพยายามเข้าถึงไดเร็กทอรี "$1"
+'img-auth-notindir'         => 'ที่อยู่ที่ร้องขอไม่ได้อยู่ในไดเร็กทอรีอัพโหลดที่กำหนดไ้ว้',
+'img-auth-badtitle'         => 'ไม่สามารถสร้างชื่อเรื่องที่ถูกต้องจาก "$1" ได้',
+'img-auth-nologinnWL'       => 'คุณไม่ได้ลงชื่อเข้าใช้และ "$1" ไม่ได้อยู่ในรายชื่อผู้ใช้ที่ดี (whitelist)',
+'img-auth-nofile'           => 'ไม่มีไฟล์ "$1"',
+'img-auth-isdir'            => 'คุณกำลังพยายามเข้าถึงไดเร็กทอรี "$1"
 ซึ่งคุณสามารถเข้าถึงได้เฉพาะไฟล์เท่านั้น',
-'img-auth-streaming'    => 'กำลังดึงข้อมูล "$1"',
-'img-auth-public'       => 'ฟังก็ชันของ img_auth.php คือเพื่อส่งไฟล์ขาออกจากวิกิส่วนตัว
+'img-auth-streaming'        => 'กำลังดึงข้อมูล "$1"',
+'img-auth-public'           => 'ฟังก็ชันของ img_auth.php คือเพื่อส่งไฟล์ขาออกจากวิกิส่วนตัว
 วิกินี้ถูกกำหนดเป็นวิกิส่วนตัว
 เพื่อความปลอดภัยสูงสุด img_auth.php จึงถูกปิด',
-'img-auth-noread'       => 'ผู้ใช้ไม่ได้รับสิทธิ์ในการอ่าน "$1"',
+'img-auth-noread'           => 'ผู้ใช้ไม่ได้รับสิทธิ์ในการอ่าน "$1"',
+'img-auth-bad-query-string' => 'ที่อยู่ URL ดังกล่าวมีชุดข้อความสตริงก์ที่ร้องขอไม่ถูกต้อง',
 
 # HTTP errors
 'http-invalid-url'      => 'URL ไม่ถูกต้อง: $1',
@@ -1852,7 +1855,7 @@ $1',
 'booksources-invalid-isbn'  => 'รหัส ISBN ที่ให้ไว้ไม่ถูกต้อง กรุณาตรวจสอบจากต้นฉบับอีกครั้ง',
 
 # Special:Log
-'specialloguserlabel'  => 'ผู้ใช้:',
+'specialloguserlabel'  => 'ผู้ดำเนินการ:',
 'speciallogtitlelabel' => 'ชื่อเรื่อง:',
 'log'                  => 'ปูม',
 'all-logs-page'        => 'ปูมสาธารณะทั้งหมด',
@@ -1893,7 +1896,7 @@ $1',
 'sp-deletedcontributions-contribs' => 'เรื่องที่เขียน',
 
 # Special:LinkSearch
-'linksearch'       => 'แหล่งข้อมูลอื่น',
+'linksearch'       => 'ค้นหาลิงก์จากภายนอกเว็บไซต์',
 'linksearch-pat'   => 'รูปแบบการค้นหา:',
 'linksearch-ns'    => 'เนมสเปซ:',
 'linksearch-ok'    => 'สืบค้น',
@@ -2105,7 +2108,7 @@ $UNWATCHURL
 'protectlogtext'              => 'รายการด้านล่างแสดงการล็อกหน้าและการปลดล็อก สำหรับหน้าที่โดนล็อกในปัจจุบันดูที่ [[Special:ProtectedPages|รายการหน้าที่ถูกล็อก]]',
 'protectedarticle'            => '"[[$1]]" ถูกล็อก',
 'modifiedarticleprotection'   => 'เปลี่ยนระดับการล็อกสำหรับ "[[$1]]"',
-'unprotectedarticle'          => '"[[$1]]" ถูกปลดล็อก',
+'unprotectedarticle'          => 'ลบการปกป้องข้อมูลออกจาก "[[$1]]" แล้ว',
 'movedarticleprotection'      => 'ย้ายการตั้งค่าการล็อกจาก "[[$2]]" ไปยัง "[[$1]]"',
 'protect-title'               => 'กำลังล็อกหน้า "$1"',
 'prot_1movedto2'              => '[[$1]] ถูกเปลี่ยนชื่อเป็น [[$2]]',
@@ -2248,7 +2251,7 @@ $1',
 'nolinkshere-ns'           => "ไม่มีหน้าใดลิงก์มาที่'''[[:$1]]''' ในเนมสเปซที่เลือกไว้",
 'isredirect'               => 'หน้าเปลี่ยนทาง',
 'istemplate'               => 'รวมอยู่',
-'isimage'                  => 'ลิงก์ภาพ',
+'isimage'                  => 'ไฟล์ ลิงค์',
 'whatlinkshere-prev'       => '{{PLURAL:$1|ก่อนหน้า|ก่อนหน้า $1 หน้า}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|ถัดไป|ถัดไป $1 หน้า}}',
 'whatlinkshere-links'      => '← ลิงก์',
@@ -2747,7 +2750,7 @@ $1',
 ระบบของท่านอาจเสียหายอันเนื่องจากโค้ดทำงาน",
 'imagemaxsize'         => "ขนาดภาพที่จำกัด:<br />''(สำหรับหน้าอธิบายภาพ)''",
 'thumbsize'            => 'ขนาดรูปย่อ:',
-'widthheightpage'      => '{{PLURAL:$3|หน้า|หน้า}} $1×$2, $3',
+'widthheightpage'      => '{{PLURAL:$3|หน้า|หน้า}} $1 × $2, $3',
 'file-info'            => 'ขนาดไฟล์: $1, ชนิดไมม์: $2',
 'file-info-size'       => '$1 × $2 พิกเซล, ขนาดไฟล์: $3, ชนิดไมม์: $4',
 'file-nohires'         => '<small>ไม่มีภาพความละเอียดสูงกว่านี้</small>',

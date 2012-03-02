@@ -8,6 +8,7 @@
  * @file
  *
  * @author Helix84
+ * @author Kaganer
  * @author Klenje
  * @author MF-Warburg
  * @author Urhixidur
@@ -1536,7 +1537,7 @@ Par plasê va su [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisat
 
 # Media information
 'thumbsize'            => 'Dimension miniature:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pagjine|pagjinis}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|pagjine|pagjinis}}',
 'file-info'            => 'Dimensions: $1, gjenar MIME: $2',
 'file-info-size'       => '$1 × $2 pixel, dimensions: $3, gjenar MIME: $4',
 'file-nohires'         => '<small>No son disponibilis versions cun risoluzion plui alte.</small>',

@@ -10,6 +10,7 @@
  * @author Abdul Kadir
  * @author Bihari
  * @author Girmitya
+ * @author Kaganer
  * @author Malafaya
  * @author Thakurji
  */
@@ -2650,7 +2651,7 @@ $1',
 Iske execute kare se aap ke system me garrbarr hoe sake hae.",
 'imagemaxsize'         => "Chapa jaada se jaada ketnaa barraahoe sake hai:<br />''(file ke baare me panna)''",
 'thumbsize'            => 'Anguutha ke nakkhuun etna barraa:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|panna|panna}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|panna|panna}}',
 'file-info'            => 'file etnaa barraa: $1, MIME rakam: $2',
 'file-info-size'       => '$1 × $2 pixel, file ke size: $3, MIME type: $4',
 'file-nohires'         => '<small>Aur achchha resolution nai hai.</small>',

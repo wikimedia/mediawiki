@@ -18,6 +18,7 @@
  * @author Habj
  * @author Habjchen
  * @author Jon Harald Søby
+ * @author Kaganer
  * @author LPfi
  * @author Lejonel
  * @author Leo Johannes
@@ -1221,7 +1222,7 @@ Se till att sidhistorikens kontinuitet behålls när du sammanfogar historik.',
 'showhideselectedversions' => 'Visa/dölj valda versioner',
 'editundo'                 => 'gör ogjord',
 'diff-multi'               => '({{PLURAL:$1|En mellanliggande version|$1 mellanliggande versioner}} av {{PLURAL:$2|en användare|$2 användare}} visas inte)',
-'diff-multi-manyusers'     => '({{PLURAL:$1|En mellanliggande version|$1 mellanliggande versioner}} av mer än $2 {{PLURAL:$2|en användare|$2 användare}} visas inte)',
+'diff-multi-manyusers'     => '({{PLURAL:$1|En mellanliggande version|$1 mellanliggande versioner}} av mer än $2 användare visas inte)',
 
 # Search results
 'searchresults'                    => 'Sökresultat',
@@ -2961,7 +2962,7 @@ $1',
 Om du kör den kan din dator skadas.",
 'imagemaxsize'         => "Begränsa bilders storlek:<br />''(för filbeskrivningssidor)''",
 'thumbsize'            => 'Storlek på minibild:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|sida|sidor}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|sida|sidor}}',
 'file-info'            => 'filstorlek: $1, MIME-typ: $2',
 'file-info-size'       => '$1 × $2 pixlar, filstorlek: $3, MIME-typ: $4',
 'file-nohires'         => '<small>Det finns ingen version med högre upplösning.</small>',

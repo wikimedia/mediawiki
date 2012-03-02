@@ -266,8 +266,8 @@ Als beheerder kun je [$1 de verschillen bekijken] als je wil.",
 'rev-suppressed-unhide-diff'  => "Een van de versies in deze verschillen is '''onderdrukt'''.
 Achtergronden zijn mogelijk te vinden in het [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} verbergingslogboek].
 Als beheerder kunt je [$1 deze versie bekijken] als je wil.",
-'rev-deleted-diff-view'       => "Een van de bewerkingen voor de verschillen die je hebt opgevraagd, is '''verwijderd'''.
-Als beheerder kunt je deze verschillen bekijken. Mogelijk zijn details zichtbaar in het [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} verwijderlogboek].",
+'rev-deleted-diff-view'       => "Een van de versies voor de verschillen die je hebt opgevraagd, is '''verwijderd'''.
+Jij kunt deze verschillen bekijken. Mogelijk zijn details zichtbaar in het [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} verwijderlogboek].",
 'rev-suppressed-diff-view'    => "Een van de bewerkingen voor de verschillen die je hebt opgevraagd, is '''onderdrukt'''.
 Als beheerder kun je deze verschillen bekijken. Mogelijk zijn details zichtbaar in het [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} verbergingslogboek].",
 'revdelete-nooldid-text'      => 'Je hebt geen doelversie(s) voor deze handeling opgegeven, de aangegeven versie bestaat niet of je probeert de laatste versie te verbergen.',

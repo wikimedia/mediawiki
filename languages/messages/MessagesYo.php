@@ -8,6 +8,7 @@
  * @file
  *
  * @author Demmy
+ * @author Kaganer
  * @author Meno25
  * @author Urhixidur
  */
@@ -2506,7 +2507,7 @@ kò le yípò ojúewé padà sí ara rẹ̀.',
 
 # Media information
 'thumbsize'            => 'Ìtóbi àwòrán kékeré:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|ojúewé|àwọn ojúewé}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|ojúewé|àwọn ojúewé}}',
 'file-info'            => 'ìtóbi faili: $1, irú MIME: $2',
 'file-info-size'       => '$1 × $2 pixel, ìtóbi faili: $3, irú MIME: $4',
 'file-nohires'         => '<small>Kò sí ìgbéhàn gíga jù báun lọ.</small>',
@@ -2677,6 +2678,9 @@ Tóbájẹ́pé fáìlì ọ̀hún ti jẹ́ títúnṣe sí bóṣewà ní bẹ
 'watchlisttools-edit' => 'Ìwò àti àtúnṣe ìmójútó',
 'watchlisttools-raw'  => "Ẹ ṣ'àtúnṣe àkójọ ìmójútó látìbẹ̀rẹ̀",
 
+# Core parser functions
+'duplicate-defaultsort' => '\'\'\'Ìkìlọ̀:\'\'\' Bọ́tìnì ìtò àkọ́kọ́ṣe "$2" dípò Bọ́tìnì ìtò àkọ́kọ́ṣe "$1" tẹ́lẹ̀.',
+
 # Special:Version
 'version'                  => 'Àtẹ̀jáde',
 'version-specialpages'     => 'Àwọn ojúewé pàtàkì',
@@ -2708,6 +2712,17 @@ Tóbájẹ́pé fáìlì ọ̀hún ti jẹ́ títúnṣe sí bóṣewà ní bẹ
 
 # Special:BlankPage
 'blankpage' => 'Ojúewé òfo',
+
+# External image whitelist
+'external_image_whitelist' => ' #Ẹ fi ìlà yìí sílẹ̀ bó ṣe wà<pre>
+#Ẹ fi àwọn abala regular expression (èyunhùn apá tó wà ní àrin // nìkan) sísàlẹ̀
+#Àwọn wọ̀nyí yíò jẹ́ bíbámu mọ́ àwọn URL àwọn àwòrán òde (hotlinked)
+#Àwọn tó báramu yíò jẹ́ fífihàn bíi àwòrán, bíbẹ́ẹ̀kọ́ àjápọ̀ sí àwòrán náà nìkan ni yíò hàn
+#Àwọn ìlà tí wọ́n bẹ̀rẹ̀ pẹ̀lú # jẹ́ ṣíṣe bíi àròyé
+#Èyí jẹ́ bíbámu mọ́ ìtóbi lẹ́tà (case-insensitive)
+
+
+#Ẹ fi gbogbo àwọn abala regular expression sí òkè ìlà yí. Ẹ fi ìlà yìí sílẹ̀ bó ṣe wà</pre>',
 
 # Special:Tags
 'tag-filter'           => 'Ajọ̀ [[Special:Tags|àlẹ́mọ́]]:',

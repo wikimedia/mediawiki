@@ -9,6 +9,7 @@
  *
  * @author Cesco
  * @author Jim-by
+ * @author Kaganer
  * @author LexArt
  * @author Maksim L.
  * @author Mienski
@@ -2620,7 +2621,7 @@ $1',
 'mediawarning'         => "'''Увага''': у гэтым тыпе файлаў бывае зламысны код, выкананне якога можа паставіць пад небяспеку вашую сістэму.",
 'imagemaxsize'         => "Мяжа памеру выяваў:<br />''(на тлумачальных старонках)''",
 'thumbsize'            => 'Памеры драбніцы:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|старонка|старонак}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|старонка|старонак}}',
 'file-info'            => "аб'ём файла: $1, тып MIME: $2",
 'file-info-size'       => "$1 × $2 кропак, аб'ём файла: $3, тып MIME: $4",
 'file-nohires'         => '<small>Без версіі ў лепшым разрозненні.</small>',

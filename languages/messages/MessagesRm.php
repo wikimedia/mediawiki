@@ -9,6 +9,7 @@
  *
  * @author Gion
  * @author Gion-andri
+ * @author Kaganer
  * @author Kazu89
  * @author Urhixidur
  * @author לערי ריינהארט
@@ -63,7 +64,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Trametta era in e-mail tar pitschnas midadas da las paginas',
 'tog-enotifrevealaddr'        => "Mussar mia adressa dad e-mail en e-mails d'avis",
 'tog-shownumberswatching'     => "Mussar il dumber d'utilisaders che obervan questa pagina",
-'tog-oldsig'                  => 'Prevista da la signatura actuala:',
+'tog-oldsig'                  => 'Signatura actuala:',
 'tog-fancysig'                => "Suttascripziun senza link automatic tar la pagina da l'utilisader.",
 'tog-externaleditor'          => 'Utilisar sco standard in editur extern (be per experts, basegna ina configuraziun speziala da des computer. [http://www.mediawiki.org/wiki/Manual:External_editors Dapli infurmaziuns.])',
 'tog-externaldiff'            => 'Utilisar sco standard in program extern per visualisar differenzas tranter versiuns (be per experts, basegna ina configuraziun speziala da des computer. [http://www.mediawiki.org/wiki/Manual:External_editors Dapli infurmaziuns.])',
@@ -645,11 +646,11 @@ Controllescha sch ti vuls propi crear/modiftgar questa pagina.',
 'blocked-notice-logextract'        => "Quai utilisader è bloccà actualmain. 
 L'ultima endataziun dal log da bloccar vegn mussà sutvart sco referenza:",
 'clearyourcache'                   => "'''Remartga''' Suenter memorisar las midadas stos ti eventualmain svidar il chache da tes navigatur per vesair las midadas.
-* '''Firefox / Safari:''' tegnair ''Shift'' durant cliccar ''chargiar danovamain'', u smatgar ''Ctrl-F5'' u ''Ctrl-R'' (''Command-R'' sin in Mac)
-* '''Google Chrome:''' smatgar ''Ctrl-Shift-R'' (''Command-Shift-R'' sin in Mac)
-* '''Internet Explorer:''' tegnair ''Ctrl'' durant cliccar ''Refresh,'' u smatgar ''Ctrl-F5''
-* '''Konqueror:''' cliccar ''Reload'' ni smatgar ''F5''
-* '''Opera:''' stizzar il cache sut ''Tools → Preferences''",
+* '''Firefox / Safari:''' Tegnair ''Shift'' durant cliccar ''chargiar danovamain'', u smatgar ''Ctrl-F5'' u ''Ctrl-R'' (''⌘-R'' sin in Mac)
+* '''Google Chrome:''' Smatgar ''Ctrl-Shift-R'' (''⌘-Shift-R'' sin in Mac)
+* '''Internet Explorer:''' Tegnair ''Ctrl'' durant cliccar ''Rechargiar,'' u smatgar ''Ctrl-F5''
+* '''Konqueror:''' Cliccar ''Rechargiar'' ni smatgar ''F5''
+* '''Opera:''' Stizzar il cache sut ''Tools → Preferences''",
 'usercssyoucanpreview'             => "'''Tip:''' Utilisescha il buttun \"{{int:showpreview}}\" per testar tes nov CSS avant che memorisar.",
 'userjsyoucanpreview'              => "'''Tip:''' Utilisescha il buttun \"{{int:showpreview}}\" per testar tes nov JavaScript avant che memorisar.",
 'usercsspreview'                   => "'''Fa stim che quai è be ina prevista da tes CSS d'utilisader.'''
@@ -816,12 +817,12 @@ Emprova da [[Special:Search|tschertgar]] novas paginas sumegliantas en la wiki."
 Detagls pon vegnir chattads en il [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log da stizzar].",
 'rev-deleted-text-unhide'     => "Questa versiun da la pagina è vegnida '''stizzada'''.
 Detagls pon vegnir chattads en il [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log da stizzar].
-Sco administratur pos ti anc adina [$1 contemplar questa versiun].",
+Ti sas anc adina [$1 contemplar questa versiun].",
 'rev-suppressed-text-unhide'  => "Questa versiun da la pagina è vegnida '''supprimida'''.
 Detagls pon vegnir chattads en il [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log da supprimer].
-Sco administratur pos ti anc adina [$1 contemplar questa versiun].",
+Ti pos anc adina [$1 contemplar questa versiun].",
 'rev-deleted-text-view'       => "Questa versiun da la pagina è vegnida '''stizzada'''.
-Sco administratur pos ti la vesair; detagls pon vegnir chattads en il [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log da stizzar].",
+Ti pos la vesair; detagls pon vegnir chattads en il [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log da stizzar].",
 'rev-suppressed-text-view'    => "Questa versiun da la pagina è vegnida '''supprimida'''.
 Sco administratur pos ti la vesair; detagls pon vegnir chattads en il [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}}  log da supprimer].",
 'rev-deleted-no-diff'         => "Ti na pos betg guardar quest diff perquai ch'ina da las versiuns è vegnida '''stizzada'''.
@@ -1059,7 +1060,7 @@ Questa operaziun na po betg vegnir revocada.',
 'prefs-registration'          => 'Temp da registraziun:',
 'yourrealname'                => 'Num real:',
 'yourlanguage'                => 'Lingua:',
-'yourvariant'                 => 'varianta',
+'yourvariant'                 => 'Varianta da la lingua:',
 'yournick'                    => 'Signatura:',
 'prefs-help-signature'        => 'Commentaris sin paginas da discussiun duessan vegnir signadas cun "<nowiki>~~~~</nowiki>". Quests segns vegnan lura convertids en tia signatura ed la data.',
 'badsig'                      => 'Signatura invalida. 
@@ -1466,11 +1467,13 @@ Sche la pagina vegn filtrada tenor utilisaders vegnan be datotecas nua che l'uti
 'filehist-filesize'         => 'grondezza da datoteca',
 'filehist-comment'          => 'commentari',
 'filehist-missing'          => 'Datoteca manca',
-'imagelinks'                => 'Paginas che cuntegnan la datoteca',
+'imagelinks'                => 'Utilisaziun da la datoteca',
 'linkstoimage'              => '{{PLURAL:$1|La suandanta pagina è colliada|Las suandantas $1 paginas èn colliadas}} cun questa datoteca:',
 'nolinkstoimage'            => 'Naginas paginas mussan sin questa datoteca.',
 'redirectstofile'           => '{{PLURAL:$1|Suandanta datoteca renviescha|Suandantas $1 datotecas renvieschan}} a questa datoteca:',
 'sharedupload'              => 'Quai è ina datoteca da $1 e vegn eventualmain utilisada dad auters projects.',
+'sharedupload-desc-here'    => 'Questa datoteca deriva da $1 e po vegnir utilisà dad auters projects.
+La descripziun da sia [$2 pagina da descripziun da datotecas] vegn mussada sutvart.',
 'filepage-nofile'           => "I n'exista nagina datoteca cun quest num.",
 'filepage-nofile-link'      => "I n'exista nagina datoteca cun quest num, ti la pos dentant [$1 chargiar si].",
 'uploadnewversion-linktext' => 'Chargiar si ina nova versiun da questa datoteca',
@@ -2456,7 +2459,7 @@ $1',
 Cun exequir questa datoteca po tes sistem vegnir donnegià.",
 'imagemaxsize'         => "Grondezza maximala da maletgs:<br />''(per paginas da descripziun da datotecas)''",
 'thumbsize'            => 'Grondezza dals maletgs da prevista:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pagina|paginas}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|pagina|paginas}}',
 'file-info'            => 'grondezza da datoteca: $1, tip da MIME: $2',
 'file-info-size'       => '$1 × $2 pixels, grondezza da datoteca: $3, tip da MIME: $4',
 'file-nohires'         => '<small>Nagina resuluziun pli auta disponibla.</small>',

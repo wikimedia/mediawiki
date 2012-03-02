@@ -8,6 +8,7 @@
  * @file
  *
  * @author Andrijko Z.
+ * @author Kaganer
  * @author Sura
  * @author Triple-ADHD-AS
  * @author Игорь Бродский
@@ -1047,6 +1048,8 @@ Otkat sil'mnägubale üks-se, miše {{SITENAME}}-saitan sädäimišt voib olda v
 'prefs-files'                   => 'Failad',
 'prefs-custom-css'              => 'Ičeze CSS',
 'prefs-custom-js'               => 'Ičeze JS',
+'prefs-reset-intro'             => "Tö sat kävutada nece lehtpol', miše pördutada teiden järgendused saitan ezijärgendusidennoks.
+Necidä tegendad ei sa toižetada.",
 'prefs-emailconfirm-label'      => 'E-počtan vahvištand:',
 'prefs-textboxsize'             => 'Redaktiruindan iknan suruz',
 'youremail'                     => 'E-počt:',
@@ -1158,6 +1161,7 @@ Ku tö kirjutat sen, nece nimi kävutadas, miše ozutada lehtpolen toižetajad.'
 'right-bigdelete'            => "Čuta poiš lehtpoled pit'kiden istorijoidenke",
 'right-deleterevision'       => 'Čuta poiš da endištada lehtpoliden konkretižed versijad',
 'right-deletedhistory'       => 'Ozutada čutud lehtpolid (ei sa lugeda čutud tekstad)',
+'right-deletedtext'          => 'Kacta čutud tekstad da toižetused čutud lehtpoliden versijoiden keskes',
 'right-browsearchive'        => 'Ectä čutud lehtpoled',
 'right-undelete'             => "Endištada lehtpol'",
 'right-suppressrevision'     => 'Administratorilpäi peittud lehtesiden versijoiden lugend da endištand.',
@@ -1486,23 +1490,24 @@ Informacijad sen [$2 andmusiden lehtpolelpäi] om anttud alemba.',
 'randomredirect-nopages' => '"$1"-nimiavaruses ei ole läbikosketusid.',
 
 # Statistics
-'statistics'               => 'Statistik',
-'statistics-header-pages'  => 'Lehtpoliden statistik',
-'statistics-header-edits'  => 'Redaktiruida statistikad',
-'statistics-header-views'  => 'Kacta statistikha',
-'statistics-header-users'  => 'Kävutajiden statistik',
-'statistics-header-hooks'  => 'Toine statistik',
-'statistics-articles'      => "Südäimištlehtpol't",
-'statistics-pages'         => "Lehtpol't",
-'statistics-pages-desc'    => 'Kaik lehtpoled wikiš, lodulehtpolid da läbioigendusid mülütaden, i m. e.',
-'statistics-files'         => 'Jügetoittud failad',
-'statistics-edits'         => 'Toižetusiden lugu {{SITENAME}}-saitan seižutamižessai.',
-'statistics-edits-average' => 'Toižetusiden keskmäine lugu lehtpolel',
-'statistics-views-total'   => 'Kaiked kacundoid',
-'statistics-views-peredit' => 'Kacundoid redakcijas',
-'statistics-users'         => 'Registriruidud [[Special:ListUsers|kävutajad]]',
-'statistics-users-active'  => 'Activižed kävutajad',
-'statistics-mostpopular'   => 'Kaikiš populärižembad lehtpoled',
+'statistics'                   => 'Statistik',
+'statistics-header-pages'      => 'Lehtpoliden statistik',
+'statistics-header-edits'      => 'Redaktiruida statistikad',
+'statistics-header-views'      => 'Kacta statistikha',
+'statistics-header-users'      => 'Kävutajiden statistik',
+'statistics-header-hooks'      => 'Toine statistik',
+'statistics-articles'          => "Südäimištlehtpol't",
+'statistics-pages'             => "Lehtpol't",
+'statistics-pages-desc'        => 'Kaik lehtpoled wikiš, lodulehtpolid da läbioigendusid mülütaden, i m. e.',
+'statistics-files'             => 'Jügetoittud failad',
+'statistics-edits'             => 'Toižetusiden lugu {{SITENAME}}-saitan seižutamižessai.',
+'statistics-edits-average'     => 'Toižetusiden keskmäine lugu lehtpolel',
+'statistics-views-total'       => 'Kaiked kacundoid',
+'statistics-views-peredit'     => 'Kacundoid redakcijas',
+'statistics-users'             => 'Registriruidud [[Special:ListUsers|kävutajad]]',
+'statistics-users-active'      => 'Activižed kävutajad',
+'statistics-users-active-desc' => "Kävutajad, kudambad ozutiba aktivižut {{PLURAL:$1|jäl’gmäižen päivän|$1 jäl'gmäižil päivil}}",
+'statistics-mostpopular'       => 'Kaikiš populärižembad lehtpoled',
 
 'disambiguations'     => 'Lehtpoled, kudambil om kosketusid lehtpolihe, kus om äiznamoičendusen laskendoid.',
 'disambiguationspage' => 'Template:Äiznamoičenduz',
@@ -2402,7 +2407,7 @@ $1',
 # Media information
 'imagemaxsize'         => "Kuvan suruden limit:<br />''(failan ümbrikirjutamižen lehtpolen täht)''",
 'thumbsize'            => 'Pičukuvan suruz:',
-'widthheightpage'      => "$1×$2, $3 {{PLURAL:$3|lehtpol'|lehtpol't}}",
+'widthheightpage'      => "$1 × $2, $3 {{PLURAL:$3|lehtpol'|lehtpol't}}",
 'file-info'            => 'failan suruz: $1, MIME-tip: $2',
 'file-info-size'       => '$1 × $2 pikselad, failan suruz: $3, MIME-tip: $4',
 'file-nohires'         => '<small>Ei ole versijad paremban tarkoiktusenke.</small>',

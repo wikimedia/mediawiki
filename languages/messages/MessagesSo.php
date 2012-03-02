@@ -149,7 +149,7 @@ $messages = array(
 'about'         => 'Ku saabsan',
 'article'       => 'Qoraalka bogga oo kooban',
 'newwindow'     => '(dariishad cusub aa furmeeyso)',
-'cancel'        => 'iska xir',
+'cancel'        => 'Kansal',
 'moredotdotdot' => 'wax kale',
 'mypage'        => 'Boggeyga',
 'mytalk'        => 'Wadahadalkeyga',
@@ -173,7 +173,7 @@ $messages = array(
 'vector-action-delete'           => 'Tirtir',
 'vector-action-move'             => 'Wareeji',
 'vector-action-protect'          => 'Difaac',
-'vector-action-undelete'         => 'La tirtirin',
+'vector-action-undelete'         => 'Ha tirtirin',
 'vector-action-unprotect'        => 'Bedel difaacida',
 'vector-simplesearch-preference' => 'Shid kuwa ugu fiican oo kuu soo jeedinaayo raadinta  (Jirka vector kaliya)',
 'vector-view-create'             => 'Sameey',
@@ -205,7 +205,7 @@ $messages = array(
 'create-this-page'  => 'Sameey boggaan',
 'delete'            => 'Tirtir',
 'deletethispage'    => 'Tirtir bogaan',
-'undelete_short'    => 'Inta la tirtirin {{PLURAL:$1|hal bedel|$1 wax laga bedelay}}',
+'undelete_short'    => 'Ha tirtirin {{PLURAL:$1|hal bedel|$1  bedelood}}',
 'protect'           => 'Difaac',
 'protect_change'    => 'Wax ka bedel',
 'protectthispage'   => 'Difaac boggaan',
@@ -290,7 +290,7 @@ fiiri [[Special:Version|nooca bogga]].',
 'toc'                     => 'Qoraalka gudaha oo kooban',
 'showtoc'                 => "I'tus",
 'hidetoc'                 => 'qari',
-'thisisdeleted'           => 'Fiiri ama dib u sooceli $1?',
+'thisisdeleted'           => 'Fiiri ama soo celi $1?',
 'viewdeleted'             => 'Fiiri $1?',
 'restorelink'             => '{{PLURAL:$1|halxabo oo bedelkii la tirtiray|$1 bedelyadii la tirtiray}}',
 'feedlinks'               => 'Quudinta wararka:',
@@ -469,7 +469,7 @@ Hadda gudaha ku gal',
 'resetpass_forbidden'       => 'ereyada sirta ah mala bedeli karo',
 'resetpass-no-info'         => 'Waa in aad gudaha u gashaa hadii aad rabto in aad si toos ah ugu soo gudubto boggaan.',
 'resetpass-submit-loggedin' => 'bedel ereysirka',
-'resetpass-submit-cancel'   => 'Iska xir',
+'resetpass-submit-cancel'   => 'Kansal',
 'resetpass-temp-password'   => 'Ereysir ku meel gaar ah:',
 
 # Edit page toolbar
@@ -581,13 +581,13 @@ Fadlan markale isku day. Hadii aysan weli shaqaynin, ka bax ee markale soo gudag
 'editingold'                       => "'''DIGNIIN: Waxaad wax ka bedeli rabtaa boggan caddadkiisa duqoobay.
 Hadii aad keydisid, waxaa dhumidoona caddadyadii kan ka dambeeyey.'''",
 'yourdiff'                         => 'Kala duwanaanshaha',
-'protectedpagewarning'             => "'''Digniin: Boggaan waa la difaacay si ee isticmaalada heesto maamulnimada kaliya wax uuga badali karaan'''
-Fariintii gudagalihii ugu danbeeyay hoostaan ee ku qorontahay:",
-'semiprotectedpagewarning'         => "'''Fiiro gaar ah:''' Boggaan waa difaacay si ee isticmaalada isdiiwaan geliyay kaliya wax uuga badalaan.
-Fariintii gudagalihii ugu danbeeyay hoostaan ee ku qorontahay:",
+'protectedpagewarning'             => "'''Digniin: Boggaan waa la difaacay si ee isticmaalada heesto maamulnimada kaliya wax uuga badalaan'''
+Fariinta gudagalihii ugu danbeeyay hoostaan ee ku qorontahay:",
+'semiprotectedpagewarning'         => "'''Fiiro gaar ah:''' Boggaan waa la difaacay si ee isticmaalada isdiiwaan geliyay kaliya wax uuga badalaan.
+Fariinta gudagalihii ugu danbeeyay hoostaan ee ku qorontahay:",
 'cascadeprotectedwarning'          => "'''Digniin:''' Boggaan waa la difaacay si ee maamulada kaliya wax uuga badalaan, sababtoo ah waxaa ku jirto kaskadyadaan la difaacay oo soo sosocoto {{PLURAL:$1|bog|boggaga}}:",
 'templatesused'                    => '{{PLURAL:$1|Tusmo|Tusmooyinka}} lagu isticmaalay boggaan:',
-'template-protected'               => '(waa la difaacay)',
+'template-protected'               => '(la difaacay)',
 'template-semiprotected'           => '(difaaca-fudud)',
 'hiddencategories'                 => 'Boggaan wuxuu ka mid yahay {{PLURAL:$1|1 qeyb oo qarsoon|$1 oo ah qeybaha qarsoon}}:',
 'nocreate-loggedin'                => 'Ma laguu ogolo in aad sameyso boggag cusub.',
@@ -609,34 +609,34 @@ Tusmooyinka qaar lagumo dari doono.",
 
 # Account creation failure
 'cantcreateaccounttitle' => "Ma' sameynkaro gudagal (akoon)",
-'cantcreateaccount-text' => "akoon'ka sameeyaha leh ciwaankaan  IP:ka ('''$1''') waxaa mamnuucay [[User:$3|$3]].
+'cantcreateaccount-text' => "Akoon'ka sameeyaha leh ciwaankaan  IP:ka ('''$1''') waxaa mamnuucay [[User:$3|$3]].
 
-Sababta neh waxaa qoray $3 waa ''$2''",
+Sababta uu qoray $3 waa ''$2''",
 
 # History pages
 'viewpagelogs'           => 'Fiiri guadagalayaasha boggaan',
-'currentrev'             => 'Cadadka cusub',
+'currentrev'             => 'Bedelkii ugu danbeeyay',
 'currentrev-asof'        => 'Kala duwanaanshihii ugu danbeeyay oo dhacay $1',
-'revisionasof'           => 'Muuqaalkii $1',
-'revision-info'          => 'Nuucii ahaa $1 ee $2',
-'previousrevision'       => '←Bedelaadka ka duqsan',
-'nextrevision'           => 'Caddad ka cusub→',
-'currentrevisionlink'    => 'Caddadka hada muuqda',
+'revisionasof'           => 'Bedelaadkkii ahaa $1',
+'revision-info'          => 'Bedelyadii ahaa $1 ee $2',
+'previousrevision'       => '←Bedelyada ka duqsan',
+'nextrevision'           => 'Bedelyada ka cusub→',
+'currentrevisionlink'    => 'Bedelkii ugu danbeeyay',
 'cur'                    => 'kan hadda',
-'next'                   => 'kan ku xiga',
+'next'                   => 'ku xiga',
 'last'                   => 'Ugu dambeeyo',
 'page_first'             => 'kan ugu horeeyo',
 'page_last'              => 'Kan ugu dambeeyo',
 'histlegend'             => "Xarafka Duwanaan : wuxuu isku fiirinaa bedelaadyada kadib neh riix soco ama batoonka kuyaalo hoosta.<br />
 Micnaha: '''({{int:cur}})''' = kala duwanaanshaha maqaaladii ugu danbeeyay, '''({{int:last}})''' = kala duwanaanshaha maqaaladii ka horeeyay, '''{{int:minoreditletter}}''' = bedelada yar.",
 'history-fieldset-title' => 'Soo raadi taariikhda',
-'history-show-deleted'   => 'Wixii la tirtiray kaliya',
-'histfirst'              => 'Kuwii ugu dhawaa',
-'histlast'               => 'Kuwii ugu cusbaa',
-'historyempty'           => '(waa ebar)',
+'history-show-deleted'   => 'la tirtiray kaliya',
+'histfirst'              => 'Ugu dhawaa',
+'histlast'               => 'Ugu cusb',
+'historyempty'           => '(ebar)',
 
 # Revision feed
-'history-feed-title' => 'Taariikhda caddadyaasha',
+'history-feed-title' => 'Taariikhda bedelyada',
 'history-feed-empty' => 'Beyjka aad dooneyso majiro.
 Waxaa lagayaabaa in laga tirtiray wikigan, ama magacii laga badalay.
 Iskuday in aad [[Special:Search|ka raadiso wikigaan]]  Beyjajka la heli karo oo cusub.',
@@ -654,7 +654,7 @@ sababteeda neh waxaa laga heli kartaa  [{{fullurl:{{#Special:Log}}/delete|page={
 'revdelete-log'               => 'Sababta:',
 'revdel-restore'              => 'badal muuqaalka',
 'revdel-restore-deleted'      => 'kuwii la tirtiray badalyadooda',
-'revdel-restore-visible'      => 'bedelaadka la arki karo',
+'revdel-restore-visible'      => 'bedelyadka la arki karo',
 'pagehist'                    => 'Taariikhda bogga',
 'revdelete-content'           => 'oo kooban',
 'revdelete-uname'             => 'Magaca isticmaalaha',
@@ -667,9 +667,9 @@ sababteeda neh waxaa laga heli kartaa  [{{fullurl:{{#Special:Log}}/delete|page={
 
 # Diffs
 'history-title'            => 'Taariikhda badalka "$1"',
-'difference'               => '(Qeybaha kala duwan)',
+'difference'               => '(Kala duwanaanshaha bedelyada)',
 'lineno'                   => 'Safka $1:',
-'compareselectedversions'  => 'Isku aadi bedelaadka aad dooratay',
+'compareselectedversions'  => 'Is barbardhig bedelyada aad dooratay',
 'showhideselectedversions' => 'Itusi/qari bedelaadyada aad dooratay',
 'editundo'                 => 'ka noqo',
 
@@ -680,12 +680,12 @@ sababteeda neh waxaa laga heli kartaa  [{{fullurl:{{#Special:Log}}/delete|page={
 'searchsubtitleinvalid'            => "Waxaa raadisay '''$1'''",
 'prevn'                            => 'Ka horeeya {{PLURAL:$1|$1}}',
 'nextn'                            => 'Ku xiga {{PLURAL:$1|$1}}',
-'prevn-title'                      => 'kan ka horeeyay  $1 {{PLURAL:$1|natiijo|natiijooyinka}}',
+'prevn-title'                      => 'ka horeeyay  $1 {{PLURAL:$1|natiijo|natiijooyinka}}',
 'nextn-title'                      => 'Kan ku xiga $1 {{PLURAL:$1|natiijo|natiijooyinka}}',
 'shown-title'                      => 'Itusi $1 {{PLURAL:$1|natiijo|natiijooyinka}} halkii bog',
 'viewprevnext'                     => 'Fiiri ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-legend'                => 'Raadi doorashooyinka',
-'searchmenu-exists'                => "'''Wikigaan woo ku jiraa bog la dhoho  \"[[:\$1]]\" .'''",
+'searchmenu-exists'                => "'''Wikigaan wuu ku jiraa bog la dhoho  \"[[:\$1]]\" .'''",
 'searchmenu-new'                   => "'''Ku sameey bogga  \"[[:\$1]]\" wikigaan!'''",
 'searchhelp-url'                   => 'Help:Caawinaad',
 'searchprofile-articles'           => 'Maqaalada kooban',
@@ -792,11 +792,11 @@ Waa in aysan ka badanin $1 {{PLURAL:$1|eray|erayo}}.',
 'right-read'          => 'Akhri maqaalada',
 'right-edit'          => 'Wax ka bedel bogyaalo',
 'right-move'          => 'Wareeji maqaalada',
-'right-upload'        => 'Soo geli waxyaabo',
+'right-upload'        => 'Soo geli fayl',
 'right-delete'        => 'Tirtir maqaalada',
 'right-bigdelete'     => 'Tirtir maqaalada taariikhda dheer leh',
 'right-browsearchive' => 'Raadi maqaalada la tirtiray',
-'right-undelete'      => 'Maqaalada la tirtirin',
+'right-undelete'      => 'Ha tirtirin bog',
 
 # User rights log
 'rightsnone' => '(waxna)',
@@ -908,7 +908,7 @@ ku saabsan: $1',
 'file-anchor-link'       => 'Fayl',
 'filehist'               => 'Taariikhda faylka',
 'filehist-help'          => 'Riix taariikhda/waqtiga si aad u argto faylka sida oo ahaa markiisa hore.',
-'filehist-deleteall'     => 'dirtir dhamaantood',
+'filehist-deleteall'     => 'tirtir dhamaan',
 'filehist-deleteone'     => 'tirtir',
 'filehist-revert'        => 'celi',
 'filehist-current'       => 'kan hadda',
@@ -928,7 +928,7 @@ Tafaasiishiisa waxee ku qorantahay [$2 bogga tafaasiisha faylka] oo ka arki kart
 
 # File deletion
 'filedelete'                  => 'Tirtir $1',
-'filedelete-legend'           => 'Tirtit faylka',
+'filedelete-legend'           => 'Tirtir fayl',
 'filedelete-intro'            => "Waxaad tirtiri rabtaa faylka '''[[Media:$1|$1]]''' iyo dhamaan taariikhdiisa.",
 'filedelete-comment'          => 'Sababta:',
 'filedelete-submit'           => 'Tirtir',
@@ -1070,7 +1070,7 @@ Hadii aad rabootid in aad boggan ka saartid wardiyeynta, dhagsii \"Ha' wardiyeyn
 'dellogpage'     => 'Tirtiraha guda galaheeda',
 
 # Rollback
-'rollback_short'    => 'Dib u soo celi',
+'rollback_short'    => 'Soo celi',
 'rollbacklink'      => 'dib u soo celi',
 'revertpage'        => 'Wuxuu dib u noqay badalkii oo sameeyay  [[Special:Contributions/$2|$2]] ([[User talk:$2|talk]]) kuna celiyay badalkii ka  danbeeyay oo sameeyay  [[User:$1|$1]]',
 'revertpage-nouser' => 'Wuxuu dib u noqay bedelyada (magaca isticmaalaha waa laga saaray) kuna celiyay  [[User:$1|$1]]',
@@ -1152,7 +1152,7 @@ Wuxuu ku badalay bedelkii ka danbeeyay oo sameeyay $2.',
 'linkshere'                => "Bogyaashaan waxey la xiriiraan  '''[[:$1]]''':",
 'nolinkshere'              => "Boggag la xiriiro   '''[[:$1]]''' ma jirto.",
 'isredirect'               => 'bogga loo sii toosiyay',
-'istemplate'               => 'ku soo derida',
+'istemplate'               => 'ku jiri kara',
 'isimage'                  => 'faylka la xiriiro',
 'whatlinkshere-prev'       => '{{PLURAL:$1|kii ka horeeyay|kii ka horeeyay $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|kan ku xiga|kan ku xiga $1}}',
@@ -1296,8 +1296,8 @@ Waxaa fiiri kartaa cadaadkiisa',
 'bydate'        => 'hab taariikheed',
 
 # Metadata
-'metadata-help' => 'Faylkaan wuxuu leeyahay  tafaasiil dheeraad ah,waxaa laga yaabaa in lagu  isticmaalay digital kaamiro ama skanner oo lagu sameeyo sawir ama lagu digitilays gareeyay.
-Hadii faylka wax laga badalay sida oo markiisa hore ahaa, waxaa laga yaabaa in ee  tafaasiisha faylkaan ee dhameestirneen.',
+'metadata-help' => 'Faylkaan wuxuu leeyahay  faah faahin dheeraad ah,waxaa laga yaabaa in lagu  isticmaalay digital kaamiro ama skanner oo lagu sameeyo sawir ama lagu digitilays gareeyay.
+Hadii faylka wax laga badalay sida oo markiisa hore ahaa, waxaa laga yaabaa in ee  faah faahinta faylkaan eesan dhameestirneen.',
 
 # External editor support
 'edit-externally'      => 'wax ka bedel faylkaan adiga oo isticmaalaya brogram dheeraad ah',

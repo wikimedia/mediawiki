@@ -7,6 +7,8 @@
  * @ingroup Language
  * @file
  *
+ * @author Kaganer
+ * @author Kghbln
  * @author Maartenvdbent
  * @author Mucalexx
  * @author Purodha
@@ -2601,7 +2603,7 @@ $1',
 'mediawarning'         => "'''Woarskauenge:''' Disse Oard fon Doatäi kon n skoadelken Programcode änthoolde. Truch dät Deelleeden un Eepenjen fon disse Doatäi kon dän Computer Skoade toubroacht wäide.",
 'imagemaxsize'         => "Maximoale Bieldegrööte:<br />''(foar Doatäibeskrieuwengssieden)''",
 'thumbsize'            => 'Grööte fon do Foarskaubielden (thumbnails):',
-'widthheightpage'      => '$1×$2, {{PLURAL:$3|1 Siede|$3 Sieden}}',
+'widthheightpage'      => '$1 × $2, {{PLURAL:$3|1 Siede|$3 Sieden}}',
 'file-info'            => 'Doatäigrööte: $1, MIME-Typ: $2',
 'file-info-size'       => '$1 × $2 Pixel, Doatäigrööte: $3, MIME-Typ: $4',
 'file-nohires'         => '<small>Neen haagere Aplöösenge foarhounden.</small>',

@@ -237,7 +237,8 @@ $messages = array(
 'privacy'              => "Politique d'éscrè",
 'privacypage'          => "Project:Politique d'éscrè",
 
-'badaccess' => 'Bérlure éd pérmission',
+'badaccess'        => 'Bérlure éd pérmission',
+'badaccess-group0' => 'Vos n’avez poin chés droéts pour foaire l’action dmindée.',
 
 'ok'                      => 'OK',
 'retrievedfrom'           => 'Érprind din  "$1"',

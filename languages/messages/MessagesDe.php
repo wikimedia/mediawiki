@@ -13,11 +13,13 @@
  * @author Church of emacs
  * @author DaSch
  * @author Duesentrieb
+ * @author Geitost
  * @author Giftpflanze
  * @author Imre
  * @author Jan Luca
  * @author Jens Liebenau
  * @author Jimmy Collins <jimmy.collins@web.de>
+ * @author Kaganer
  * @author Kghbln
  * @author Khaledelmansoury
  * @author Kwin
@@ -40,6 +42,7 @@
  * @author Remember the dot
  * @author Revolus
  * @author SVG
+ * @author Saibo
  * @author Spacebirdy
  * @author Srhat
  * @author TMg
@@ -51,6 +54,7 @@
  * @author Umherirrender
  * @author W (aka Wuzur)
  * @author Wikifan
+ * @author Xqt
  * @author Ziko
  * @author לערי ריינהארט
  * @author ✓
@@ -384,7 +388,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Auch bei kleinen Änderungen an Seiten E-Mails senden',
 'tog-enotifrevealaddr'        => 'Meine E-Mail-Adresse in Benachrichtigungs-E-Mails anzeigen',
 'tog-shownumberswatching'     => 'Anzahl der beobachtenden Benutzer anzeigen',
-'tog-oldsig'                  => 'Existierende Signatur:',
+'tog-oldsig'                  => 'Vorhandene Signatur:',
 'tog-fancysig'                => 'Signatur als Wikitext behandeln (ohne automatische Verlinkung)',
 'tog-externaleditor'          => 'Externen Editor standardmäßig nutzen (nur für Experten, erfordert spezielle Einstellungen auf dem eigenen Computer. [http://www.mediawiki.org/wiki/Manual:External_editors Weitere Informationen hierzu.])',
 'tog-externaldiff'            => 'Externes Programm für Versionsunterschiede standardmäßig nutzen (nur für Experten, erfordert spezielle Einstellungen auf dem eigenen Computer. [http://www.mediawiki.org/wiki/Manual:External_editors Weitere Informationen hierzu.])',
@@ -627,7 +631,7 @@ Siehe die [[Special:Version|Versionsseite]]',
 'ok'                      => 'Okay',
 'pagetitle'               => '$1 – {{SITENAME}}',
 'retrievedfrom'           => 'Von „$1“',
-'youhavenewmessages'      => 'Du hast $1 auf deiner Diskussionsseite ($2).',
+'youhavenewmessages'      => 'Du hast $1 ($2).',
 'newmessageslink'         => 'neue Nachrichten',
 'newmessagesdifflink'     => 'Letzte Änderung',
 'youhavenewmessagesmulti' => 'Du hast neue Nachrichten: $1',
@@ -1047,7 +1051,7 @@ Zur Information folgt der aktuelle Logbucheintrag:",
 
 Bitte prüfe sorgfältig, ob die erneute Seitenerstellung den Richtlinien entspricht.
 Zu deiner Information folgt das Lösch- und Verschiebungs-Logbuch mit der Begründung für die vorhergehende Löschung:",
-'moveddeleted-notice'              => 'Diese Seite wurde gelöscht. Es folgt ein Auszug aus dem Lösch- und Verschiebungs-Logbuch dieser Seite.',
+'moveddeleted-notice'              => 'Diese Seite wurde gelöscht. Zur Information folgt das Lösch- und Verschiebungs-Logbuch dieser Seite.',
 'log-fulllog'                      => 'Alle Logbucheinträge ansehen',
 'edit-hook-aborted'                => 'Die Bearbeitung wurde ohne Erklärung durch eine Schnittstelle abgebrochen.',
 'edit-gone-missing'                => 'Die Seite konnte nicht aktualisiert werden.
@@ -1063,8 +1067,8 @@ Sie darf nicht mehr als $2 {{PLURAL:$2|Aufruf|Aufrufe}} haben, es {{PLURAL:$1|is
 'expensive-parserfunction-category'       => 'Seiten, die aufwändige Parserfunktionen zu oft aufrufen',
 'post-expand-template-inclusion-warning'  => 'Warnung: Die Größe eingebundener Vorlagen ist zu groß, einige Vorlagen können nicht eingebunden werden.',
 'post-expand-template-inclusion-category' => 'Seiten, in denen die maximale Größe eingebundener Vorlagen überschritten ist',
-'post-expand-template-argument-warning'   => "'''Warnung:''' Diese Seite enthält mindestens ein Argument in einer Vorlage, das expandiert zu groß ist. Diese Argumente werden ignoriert.",
-'post-expand-template-argument-category'  => 'Seiten, die ignorierte Vorlagenargumente enthalten',
+'post-expand-template-argument-warning'   => "'''Warnung:''' Diese Seite enthält mindestens einen Parameter in einer Vorlage, der expandiert zu groß ist. Diese Parameter werden ignoriert.",
+'post-expand-template-argument-category'  => 'Seiten mit ignorierten Vorlagenparametern',
 'parser-template-loop-warning'            => 'Vorlagenschleife entdeckt: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Vorlagenrekursionstiefengrenze überschritten ($1)',
 'language-converter-depth-warning'        => 'Sprachkonvertertiefenlimit überschritten ($1)',
@@ -1100,7 +1104,7 @@ Grund der Sperre: ''$2''",
 'histlegend'             => 'Zur Anzeige der Änderungen einfach die zu vergleichenden Versionen auswählen und die Schaltfläche „{{int:compareselectedversions}}“ klicken.<br />
 * ({{int:cur}}) = Unterschied zur aktuellen Version, ({{int:last}}) = Unterschied zur vorherigen Version
 * Uhrzeit/Datum = Version zu dieser Zeit, Benutzername/IP-Adresse des Bearbeiters, {{int:minoreditletter}} = Kleine Änderung',
-'history-fieldset-title' => 'Suche in der Versionsgeschichte',
+'history-fieldset-title' => 'In der Versionsgeschichte suchen',
 'history-show-deleted'   => 'nur gelöschte Versionen',
 'histfirst'              => 'Älteste',
 'histlast'               => 'Neueste',
@@ -1344,7 +1348,7 @@ Stelle sicher, dass die Versionsgeschichte einer Seite historisch korrekt ist.',
 'changepassword'                => 'Passwort ändern',
 'prefs-skin'                    => 'Benutzeroberfläche',
 'skin-preview'                  => 'Vorschau',
-'prefs-math'                    => 'TeX',
+'prefs-math'                    => 'Math',
 'datedefault'                   => 'Standard',
 'prefs-datetime'                => 'Datum und Zeit',
 'prefs-personal'                => 'Benutzerdaten',
@@ -1959,7 +1963,7 @@ Eine [[Special:WhatLinksHere/$2|vollständige Liste]] ist verfügbar.',
 'statistics-views-peredit'     => 'Seitenaufrufe pro Bearbeitung',
 'statistics-users'             => 'Registrierte [[Special:ListUsers|Benutzer]]',
 'statistics-users-active'      => 'Aktive Benutzer',
-'statistics-users-active-desc' => 'Benutzer mit Bearbeitungen {{PLURAL:$1|in den letzten 24 Stunden|in den vergangenen $1 Tagen}}',
+'statistics-users-active-desc' => 'Benutzer mit Bearbeitungen {{PLURAL:$1|während der letzten 24 Stunden|während der vergangenen $1 Tage}}',
 'statistics-mostpopular'       => 'Meistbesuchte Seiten',
 
 'disambiguations'      => 'Seiten die auf Begriffsklärungsseiten verlinken',
@@ -1995,8 +1999,8 @@ Jede Zeile enthält Links zur ersten und zweiten Weiterleitung sowie dem Ziel de
 'nmembers'                => '{{PLURAL:$1|1 Eintrag|$1 Einträge}}',
 'nrevisions'              => '{{PLURAL:$1|1 Bearbeitung|$1 Bearbeitungen}}',
 'nviews'                  => '{{PLURAL:$1|1 Abfrage|$1 Abfragen}}',
-'nimagelinks'             => 'Verwendet auf $1 {{PLURAL:$1|Seite|Seiten}}',
-'ntransclusions'          => 'verwendet auf $1 {{PLURAL:$1|Seite|Seiten}}',
+'nimagelinks'             => 'Verwendet auf {{PLURAL:$1|einer Seite|$1 Seiten}}',
+'ntransclusions'          => 'verwendet auf {{PLURAL:$1|einer Seite|$1 Seiten}}',
 'specialpage-empty'       => 'Die Seite enthält aktuell keine Einträge.',
 'lonelypages'             => 'Verwaiste Seiten',
 'lonelypagestext'         => 'Die folgenden Seiten werden nicht eingebunden oder es wird nicht auf sie in {{SITENAME}} verwiesen.',
@@ -2434,7 +2438,7 @@ $1',
 'year'                => 'bis Jahr:',
 
 'sp-contributions-newbies'             => 'Zeige nur Beiträge neuer Benutzer',
-'sp-contributions-newbies-sub'         => 'Für Neulinge',
+'sp-contributions-newbies-sub'         => 'Von neuen Benutzern',
 'sp-contributions-newbies-title'       => 'Benutzerbeiträge von neuen Benutzern',
 'sp-contributions-blocklog'            => 'Sperr-Logbuch',
 'sp-contributions-deleted'             => 'Gelöschte Beiträge',
@@ -2850,13 +2854,13 @@ Diese auf dem lokalen Rechner speichern und danach hier hochladen.',
 'tooltip-preview'                 => 'Vorschau der Änderungen an dieser Seite. Bitte vor dem Speichern benutzen!',
 'tooltip-diff'                    => 'Änderungen am Text zeigen',
 'tooltip-compareselectedversions' => 'Unterschied zwischen zwei ausgewählten Versionen dieser Seite anzeigen',
-'tooltip-watch'                   => 'Füge diese Seite deiner Beobachtungsliste hinzu',
+'tooltip-watch'                   => 'Diese Seite zu deiner Beobachtungsliste hinzufügen',
 'tooltip-recreate'                => 'Seite neu erstellen, obwohl sie gelöscht wurde',
 'tooltip-upload'                  => 'Hochladen starten',
 'tooltip-rollback'                => 'Macht alle letzten Änderungen der Seite, die vom gleichen Benutzer vorgenommen worden sind, durch nur einen Klick rückgängig.',
 'tooltip-undo'                    => 'Macht lediglich diese eine Änderung rückgängig und zeigt das Resultat in der Vorschau an, damit in der Zusammenfassungszeile eine Begründung angegeben werden kann.',
 'tooltip-preferences-save'        => 'Einstellungen speichern',
-'tooltip-summary'                 => 'Gib eine kurze Zusammenfassung ein',
+'tooltip-summary'                 => 'Gib eine kurze Zusammenfassung ein.',
 
 # Stylesheets
 'common.css'      => '/* Das folgende CSS wird für alle Benutzeroberflächen geladen. */',
@@ -2897,7 +2901,7 @@ Diese auf dem lokalen Rechner speichern und danach hier hochladen.',
 'othercontribs'    => 'Basierend auf der Arbeit von $1.',
 'others'           => 'anderen',
 'siteusers'        => '{{SITENAME}}-{{PLURAL:$2|Benutzer|Benutzer}} $1',
-'anonusers'        => '{{PLURAL:$2|unangemeldeter|unangemeldete}} {{SITENAME}}-{{PLURAL:$2|Benutzer|Benutzer}} $1',
+'anonusers'        => '{{PLURAL:$2|unangemeldetem|unangemeldeten}} {{SITENAME}}-{{PLURAL:$2|Benutzer|Benutzern}} $1',
 'creditspage'      => 'Seiteninformationen',
 'nocredits'        => 'Für diese Seite sind keine Informationen vorhanden.',
 
@@ -2941,11 +2945,11 @@ Das liegt wahrscheinlich an einem Link auf eine externe Seite.',
 'math_failure'          => 'Fehler beim Parsen',
 'math_unknown_error'    => 'Unbekannter Fehler',
 'math_unknown_function' => 'Unbekannte Funktion ',
-'math_lexing_error'     => '„Lexing“-Fehler',
+'math_lexing_error'     => 'Lexikalischer Fehler',
 'math_syntax_error'     => 'Syntaxfehler',
 'math_image_error'      => 'PNG-Konvertierung fehlgeschlagen. Bitte die korrekte Installation von LaTeX und dvipng überprüfen (oder dvips + gs + convert)',
 'math_bad_tmpdir'       => 'Das temporäre Verzeichnis für mathematische Formeln kann nicht angelegt oder beschrieben werden.',
-'math_bad_output'       => 'Das Zielverzeichnis für mathematische Formeln kann nicht angelegt oder beschrieben werden.',
+'math_bad_output'       => 'Das Ausgabeverzeichnis für mathematische Formeln kann nicht angelegt oder beschrieben werden.',
 'math_notexvc'          => 'Das texvc-Programm wurde nicht gefunden. Bitte zur Konfiguration die Hinweise in der Datei math/README beachten.',
 
 # Patrolling
@@ -2987,7 +2991,7 @@ $1',
 Durch das Herunterladen und Öffnen der Datei kann dein Computer beschädigt werden.",
 'imagemaxsize'         => "Maximale Bildgröße:<br />''(für Dateibeschreibungsseiten)''",
 'thumbsize'            => 'Standardgröße der Vorschaubilder:',
-'widthheightpage'      => '$1×$2, {{PLURAL:$3|1 Seite|$3 Seiten}}',
+'widthheightpage'      => '$1 × $2, {{PLURAL:$3|1 Seite|$3 Seiten}}',
 'file-info'            => 'Dateigröße: $1, MIME-Typ: $2',
 'file-info-size'       => '$1 × $2 Pixel, Dateigröße: $3, MIME-Typ: $4',
 'file-nohires'         => '<small>Keine höhere Auflösung vorhanden.</small>',
@@ -3140,9 +3144,9 @@ Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Ko
 'exif-gpsimgdirection'             => 'Bildrichtung',
 'exif-gpsmapdatum'                 => 'Geodätisches Referenzsystem',
 'exif-gpsdestlatituderef'          => 'Referenz für die Breite',
-'exif-gpsdestlatitude'             => 'Breite',
+'exif-gpsdestlatitude'             => 'Geografische Breite Zielpunkt',
 'exif-gpsdestlongituderef'         => 'Referenz für die Länge',
-'exif-gpsdestlongitude'            => 'Länge',
+'exif-gpsdestlongitude'            => 'Geografische Länge Zielpunkt',
 'exif-gpsdestbearingref'           => 'Referenz für Motivrichtung',
 'exif-gpsdestbearing'              => 'Motivrichtung',
 'exif-gpsdestdistanceref'          => 'Referenz für die Motiventfernung',
@@ -3481,22 +3485,22 @@ Du kannst auch die [[Special:Watchlist/edit|Standard-Bearbeitungsseite]] benutze
 'hijri-calendar-m12' => 'Dhu l-hiddscha',
 
 # Core parser functions
-'unknown_extension_tag' => 'Unbekannter Extension-Tag „$1“',
+'unknown_extension_tag' => 'Unbekanntes Parsertag „$1“',
 'duplicate-defaultsort' => 'Achtung: Der Sortierungsschlüssel „$2“ überschreibt den vorher verwendeten Schlüssel „$1“.',
 
 # Special:Version
 'version'                          => 'Version',
 'version-extensions'               => 'Installierte Erweiterungen',
-'version-specialpages'             => 'Spezialseiten',
-'version-parserhooks'              => 'Parser-Hooks',
-'version-variables'                => 'Variablen',
+'version-specialpages'             => 'Erweiterungen mit Spezialseiten',
+'version-parserhooks'              => 'Parsererweiterungen',
+'version-variables'                => 'Erweiterungen mit Variablen',
 'version-skins'                    => 'Benutzeroberflächen',
-'version-other'                    => 'Anderes',
-'version-mediahandlers'            => 'Mediennutzung',
+'version-other'                    => 'Andere Erweiterungen',
+'version-mediahandlers'            => 'Mediennutzungserweiterungen',
 'version-hooks'                    => "Schnittstellen ''(Hooks)''",
 'version-extension-functions'      => 'Funktionsaufrufe',
-'version-parser-extensiontags'     => "Parsererweiterungen ''(tags)''",
-'version-parser-function-hooks'    => 'Parserfunktionen',
+'version-parser-extensiontags'     => "Parsererweiterungen ''(Tags)''",
+'version-parser-function-hooks'    => "Parsererweiterungen ''(Funktionen)''",
 'version-skin-extension-functions' => 'Funktionen zur Erweiterung der Benutzeroberfläche',
 'version-hook-name'                => 'Schnittstellenname',
 'version-hook-subscribedby'        => 'Aufruf von',
@@ -3555,14 +3559,14 @@ Die Eingabe muss ohne den Zusatz „{{ns:file}}:“ erfolgen.',
 'intentionallyblankpage' => 'Diese Seite ist absichtlich ohne Inhalt. Sie wird für Benchmarks verwendet.',
 
 # External image whitelist
-'external_image_whitelist' => ' #Diese Zeile nicht verändern<pre>
+'external_image_whitelist' => ' #Diese Zeile nicht verändern.<pre>
 #Untenstehend können Fragmente regulärer Ausdrücke (der Teil zwischen den //) eingegeben werden.
-#Diese werden mit den URLs von Bildern aus externen Quellen verglichen
-#Ein positiver Vergleich führt zur Anzeige des Bildes, andernfalls wird das Bild nur als Link angezeigt
-#Zeilen, die mit einem # beginnen, werden als Kommentar behandelt
-#Es wird nicht zwischen Groß- und Kleinschreibung unterschieden
+#Diese werden mit den URLs von Bildern aus externen Quellen verglichen.
+#Ein positiver Vergleich führt zur Anzeige des Bildes, andernfalls wird das Bild nur als Link angezeigt.
+#Zeilen, die mit einem # beginnen, werden als Kommentar behandelt.
+#Es wird nicht zwischen Groß- und Kleinschreibung unterschieden.
 
-#Fragmente regulärer Ausdrücke nach dieser Zeile eintragen. Diese Zeile nicht verändern</pre>',
+#Fragmente regulärer Ausdrücke nach dieser Zeile eintragen. Diese Zeile nicht verändern.</pre>',
 
 # Special:Tags
 'tags'                    => 'Gültige Änderungsmarkierungen',

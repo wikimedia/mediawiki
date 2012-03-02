@@ -8,6 +8,7 @@
  * @file
  *
  * @author Hugo.arg
+ * @author Kaganer
  * @author Reedy
  * @author Urhixidur
  * @author Zordsdavini
@@ -1758,7 +1759,7 @@ Paskėrties straipsnis „[[:$1]]“ jau īr. A nuorėt ana ėštrintė, kū gal
 'mediawarning'         => "'''Diemesė''': Šėts fails gal torietė kenksmėnga kuoda, anū palaidus Tamstas sėstėma gal būtė sogadinta.",
 'imagemaxsize'         => 'Rėbuotė abruozdieliu dėdoma anū aprašīma poslapī lėgė:',
 'thumbsize'            => 'Somažėntu pavēkslieliu didums:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|poslapis|poslapē|poslapiu}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|poslapis|poslapē|poslapiu}}',
 'file-info'            => 'faila dėdoms: $1, MIME tips: $2',
 'file-info-size'       => '$1 × $2 taškū, faila dėdoms: $3, MIME tips: $4',
 'file-nohires'         => '<small>Geresnis ėšraiškėms negalėms.</small>',
