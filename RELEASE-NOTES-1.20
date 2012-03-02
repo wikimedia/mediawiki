@@ -37,6 +37,7 @@ production.
 * (bug 34702) Localised parentheses are now used in more special pages.
 * (bug 34723) When editing a script page on a RTL wiki the textbox should be LTR.
 * (bug 34762) Calling close() on a DatabaseBase object now clears the connection.
+* (bug 34863) Show deletion log extract on non-existent file pages if applicable.
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.

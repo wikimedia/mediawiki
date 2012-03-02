@@ -468,6 +468,22 @@ EOT
 			}
 		} else {
 			# Image does not exist
+			if ( !$this->getID() ) {
+				# No article exists either
+				# Show deletion log to be consistent with normal articles
+				LogEventsList::showLogExtract(
+					$wgOut,
+					array( 'delete', 'move' ),
+					$this->getTitle()->getPrefixedText(),
+					'',
+					array(  'lim' => 10,
+						'conds' => array( "log_action != 'revision'" ),
+						'showIfEmpty' => false,
+						'msgKey' => array( 'moveddeleted-notice' )
+					)
+				);
+			}
+
 			if ( $wgEnableUploads && $wgUser->isAllowed( 'upload' ) ) {
 				// Only show an upload link if the user can upload
 				$uploadTitle = SpecialPage::getTitleFor( 'Upload' );
