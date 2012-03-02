@@ -22,6 +22,7 @@ production.
 * (bug 34475) Add support for IP/CIDR notation to tablesorter
 * (bug 27619) Remove preference option to display broken links as link?
 * (bug 15404) Add support for sorting fractions in jquery.tablesorter
+* jQuery.json updated 2.3 (2011-09-17).
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
