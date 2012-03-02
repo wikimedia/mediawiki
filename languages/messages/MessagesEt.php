@@ -8,9 +8,11 @@
  * @file
  *
  * @author Avjoska
+ * @author Cylly1512
  * @author Hendrik
  * @author Hendrix
  * @author Jaan513
+ * @author Kaganer
  * @author KaidoKikkas
  * @author KalmerE.
  * @author Ker
@@ -299,7 +301,7 @@ $messages = array(
 'tog-watchmoves'              => 'Lisa minu teisaldatud leheküljed jälgimisloendisse',
 'tog-watchdeletion'           => 'Lisa minu kustutatud leheküljed jälgimisloendisse',
 'tog-minordefault'            => 'Märgi kõik parandused vaikimisi pisiparandusteks',
-'tog-previewontop'            => 'Näita eelvaadet enne toimetamisakent',
+'tog-previewontop'            => 'Näita eelvaadet toimetamiskasti ees',
 'tog-previewonfirst'          => 'Näita eelvaadet esimesel redigeerimisel',
 'tog-nocache'                 => 'Keela võrgulehitsejal lehekülgede puhverdamine',
 'tog-enotifwatchlistpages'    => 'Teata e-posti teel minu jälgitava lehekülje muutmisest',
@@ -502,8 +504,8 @@ $messages = array(
 'jumptonavigation'  => 'navigeerimiskast',
 'jumptosearch'      => 'otsi',
 'view-pool-error'   => 'Serverid on hetkel üle koormatud.
-Liiga palju kasutajaid üritab korraga seda lehte vaadata.
-Palun oota hetk enne kui uuesti proovid.
+Liiga palju kasutajaid üritab seda lehte vaadata.
+Palun oota hetk, enne kui uuesti proovid.
 
 $1',
 'pool-errorunknown' => 'Teadmata tõrge',
@@ -680,6 +682,7 @@ Sinu konto on loodud.
 'yourpassword'               => 'Parool:',
 'yourpasswordagain'          => 'Sisesta parool uuesti:',
 'remembermypassword'         => 'Jäta parool meelde (kuni $1 {{PLURAL:$1|päevaks|päevaks}})',
+'securelogin-stick-https'    => 'Jätka pärast sisselogimist HTTPS-ühenduse kasutamist',
 'yourdomainname'             => 'Sinu domeen:',
 'externaldberror'            => 'Esines autentimistõrge või sul pole õigust konto andmeid muuta.',
 'login'                      => 'Logi sisse',
@@ -785,7 +788,9 @@ Võib-olla oled juba edukalt muudnud oma salasõna või taotlenud uut ajutist sa
 'passwordreset-text'           => 'Täida see vorm, et saada e-kiri oma konto andmetega.',
 'passwordreset-legend'         => 'Parooli lähtestamine',
 'passwordreset-disabled'       => 'Selles vikis on paroolide lähtestamine keelatud.',
+'passwordreset-pretext'        => '{{PLURAL:$1||Sisesta üks järgmistest andmeüksustest}}',
 'passwordreset-username'       => 'Kasutajanimi:',
+'passwordreset-domain'         => 'Domeen:',
 'passwordreset-email'          => 'E-posti aadress:',
 'passwordreset-emailtitle'     => '{{GRAMMAR:genitive|{{SITENAME}}}} konto andmed',
 'passwordreset-emailtext-ip'   => 'Keegi, arvatavasti sina ise, IP-aadressilt $1 palus meelde tuletada sinu {{GRAMMAR:genitive|{{SITENAME}}}} ($4) konto üksikasjad. Selle e-posti aadressiga on seotud {{PLURAL:$3|järgmine konto|järgmised kontod}}:
@@ -1371,6 +1376,7 @@ Toimingut ei saa hiljem tühistada.',
 'prefs-registration'            => 'Registreerumise aeg:',
 'yourrealname'                  => 'Tegelik nimi:',
 'yourlanguage'                  => 'Keel:',
+'yourvariant'                   => 'Kiri:',
 'yournick'                      => 'Uus allkiri:',
 'prefs-help-signature'          => 'Kommentaarile tuleks aruteluleheküljel alla kirjutada märkidega <nowiki>~~~~</nowiki>, mis muutuvad sinu allkirjaks ja ajatempliks.',
 'badsig'                        => 'Sobimatu allkiri.
@@ -1514,10 +1520,11 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 'right-sendemail'             => 'Saata teistele kasutajatele e-kirju',
 
 # User rights log
-'rightslog'      => 'Kasutaja õiguste logi',
-'rightslogtext'  => 'See on logi kasutajate õiguste muutuste kohta.',
-'rightslogentry' => 'muutis kasutaja $1 rühmast $2 rühma $3 liikmeks',
-'rightsnone'     => '(puudub)',
+'rightslog'                  => 'Kasutaja õiguste logi',
+'rightslogtext'              => 'See on logi kasutajate õiguste muutuste kohta.',
+'rightslogentry'             => 'andis kasutajale $1 järgmised õigused: $3; seni oli ta $2',
+'rightslogentry-autopromote' => 'sai automaatselt järgmised õigused: $3; seni oli ta $2',
+'rightsnone'                 => '(puudub)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'seda lehekülge lugeda',
@@ -1759,7 +1766,7 @@ Selle turvalisust ei saa kontrollida.',
 'img-auth-nopathinfo'       => 'PATH_INFO puudub.
 Sinu server pole seadistatud seda teavet edastama.
 See võib olla CGI-põhine ja ei toeta img_auth-i.
-Vaata lehekülge "[//www.mediawiki.org/wiki/Manual:Image_Authorization Image Authorization]".',
+Vaata lehekülge https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'         => 'Soovitud salvestuskoht pole üleslaadimiskataloogi all.',
 'img-auth-badtitle'         => 'Väljendist "$1" ei saa sobivat pealkirja moodustada.',
 'img-auth-nologinnWL'       => 'Sa pole sisselogitud ja "$1" pole valges nimekirjas.',
@@ -2491,7 +2498,7 @@ Täida ka põhjuse väli, näiteks viidates lehekülgedele, mis rikuti.',
 'badipaddress'                    => 'Vigane IP-aadress',
 'blockipsuccesssub'               => 'Blokeerimine õnnestus',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] on blokeeritud.<br />
-Kehtivaid blokeeringuid vaata [[Special:IPBlockList|blokeeringute loendist]].',
+Kehtivaid blokeeringuid vaata [[Special:BlockList|blokeeringute loendist]].',
 'ipb-blockingself'                => 'Sa blokeerid iseenda! Kas tahad tõesti seda teha?',
 'ipb-confirmhideuser'             => 'Avaldasid soovi kasutaja blokeerida ja peita. Kasutaja nimi peidetakse kõigist loenditest ja logisissekannetest. Kas oled kindel, et soovid seda teha?',
 'ipb-edit-dropdown'               => 'Muuda blokeeringu põhjuseid',
@@ -2744,8 +2751,8 @@ Kui soovid MediaWiki tarkvara tõlkimises osaleda siis vaata lehti [//www.mediaw
 'import'                     => 'Lehekülgede import',
 'importinterwiki'            => 'Vikidevaheline import',
 'import-interwiki-text'      => 'Vali importimiseks viki ja lehekülje pealkiri.
-Redigeerimisajad ja toimetajate nimed säilitatakse.
-Kõik vikide vahelised toimingud on [[Special:Log/import|impordilogis]].',
+Redigeerimisajad ja kaastööliste nimed säilitatakse.
+Kõik vikidevahelised toimingud on [[Special:Log/import|impordilogis]].',
 'import-interwiki-source'    => 'Lähteviki/lehekülg:',
 'import-interwiki-history'   => 'Kopeeri selle lehekülje kogu ajalugu',
 'import-interwiki-templates' => 'Liida kõik mallid',
@@ -2862,7 +2869,8 @@ Samuti võimaldab see resümee reale põhjenduse lisamist.',
 'tooltip-summary'                 => 'Kirjuta lühike kokkuvõte',
 
 # Stylesheets
-'common.css' => '/* Siinset CSS-i kasutavad kõik kujundused. */',
+'common.css'   => '/* Siin olevat CSS-i kasutavad kõik kujundused. */',
+'standard.css' => '/* Siin olev CSS puudutab Standard-kujunduse kasutajaid. */',
 
 # Scripts
 'common.js' => '/* Siinne JavaScript laaditakse igale kasutajatele igal laaditud leheküljel. */',
@@ -2954,7 +2962,7 @@ $1',
 Selle avamine võib su arvutit kahjustada.",
 'imagemaxsize'         => "Pildi suuruse ülemmäär:<br />''(faili kirjeldusleheküljel)''",
 'thumbsize'            => 'Pisipildi suurus:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|lehekülg|lehekülge}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|lehekülg|lehekülge}}',
 'file-info'            => 'faili suurus: $1, MIME tüüp: $2',
 'file-info-size'       => '$1 × $2 pikslit, faili suurus: $3, MIME tüüp: $4',
 'file-info-size-pages' => '$1 × $2 pikslit, faili suurus: $3 , MIME tüüp: $4, $5 {{PLURAL:$5|lehekülg|lehekülge}}',
@@ -3061,7 +3069,7 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-fnumber'                     => 'F-arv',
 'exif-exposureprogram'             => 'Säriprogramm',
 'exif-spectralsensitivity'         => 'Spektraalne tundlikkus',
-'exif-isospeedratings'             => 'Kiirus (ISO)',
+'exif-isospeedratings'             => 'Valgustundlikkus (ISO)',
 'exif-shutterspeedvalue'           => 'APEX-säriaeg',
 'exif-aperturevalue'               => 'APEX-avaarv',
 'exif-brightnessvalue'             => 'APEX-heledus',
@@ -3076,12 +3084,13 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-exposureindex'               => 'Särituse number',
 'exif-sensingmethod'               => 'Tundlikustamismeetod',
 'exif-filesource'                  => 'Faili päritolu',
-'exif-scenetype'                   => 'Stseeni tüüp',
+'exif-scenetype'                   => 'Võtte tüüp',
 'exif-customrendered'              => 'Kohandatud pilditöötlus',
 'exif-exposuremode'                => 'Särituse meetod',
 'exif-whitebalance'                => 'Valge tasakaal',
 'exif-digitalzoomratio'            => 'Digisuumi tegur',
 'exif-focallengthin35mmfilm'       => '35 mm-se filmi fookuskaugus',
+'exif-scenecapturetype'            => 'Ülesvõtte tüüp',
 'exif-gaincontrol'                 => 'Tundlikkus',
 'exif-contrast'                    => 'Kontrastsus',
 'exif-saturation'                  => 'Küllastus',
@@ -3150,6 +3159,7 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-datetimemetadata'            => 'Metaandmete viimane muutmisaeg',
 'exif-nickname'                    => 'Pildi vabas vormis nimi',
 'exif-rating'                      => 'Hinne (5 palli skaala)',
+'exif-rightscertificate'           => 'Õiguste haldamise sertifikaat',
 'exif-copyrighted'                 => 'Autoriõiguslik seisund',
 'exif-copyrightowner'              => 'Autoriõiguse valdaja',
 'exif-usageterms'                  => 'Kasutustingimused',
@@ -3165,6 +3175,7 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-giffilecomment'              => 'GIF-faili kommentaar',
 'exif-intellectualgenre'           => 'Üksuse tüüp',
 'exif-subjectnewscode'             => 'Teemakood',
+'exif-scenecode'                   => 'IPTC-võttekood',
 'exif-event'                       => 'Kujutatud sündmus',
 'exif-organisationinimage'         => 'Kujutatud organisatsioon',
 'exif-personinimage'               => 'Kujutatud isik',
@@ -3258,6 +3269,7 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 
 'exif-exposuremode-0' => 'Automaatne säritus',
 'exif-exposuremode-1' => 'Manuaalne säritus',
+'exif-exposuremode-2' => 'Automaatne särikahvel',
 
 'exif-whitebalance-0' => 'Automaatne valge tasakaal',
 'exif-whitebalance-1' => 'Manuaalne valge tasakaal',
@@ -3332,12 +3344,15 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-gpsdirection-m' => 'Magneetiline suund',
 
 'exif-dc-contributor' => 'Asjaosalised',
+'exif-dc-coverage'    => 'Teabevahendi ruumiline või ajaline ulatus',
 'exif-dc-date'        => 'Kuupäevad',
 'exif-dc-publisher'   => 'Väljaandja',
 'exif-dc-relation'    => 'Seotud teabevahendid',
 'exif-dc-rights'      => 'Õigused',
 'exif-dc-source'      => 'Allikmeediafail',
 'exif-dc-type'        => 'Meediafaili tüüp',
+
+'exif-rating-rejected' => 'Tagasi lükatud',
 
 'exif-isospeedratings-overflow' => 'Suurem kui 65535',
 
@@ -3539,7 +3554,7 @@ Sa võid [[Special:EditWatchlist|kasutada ka harilikku tekstiredaktorit]].',
 'version-hook-subscribedby'     => 'Tellijad',
 'version-version'               => '(Versioon $1)',
 'version-license'               => 'Litsents',
-'version-poweredby-credits'     => "See viki kasutab '''[//www.mediawiki.org/ MediaWiki]''' tarkvara. Autoriõigus © 2001-$1 $2.",
+'version-poweredby-credits'     => "See viki kasutab '''[//www.mediawiki.org/ MediaWiki]''' tarkvara. Autoriõigus © 2001–$1 $2.",
 'version-poweredby-others'      => 'teised',
 'version-license-info'          => "MediaWiki on vaba tarkvara; tohid seda taaslevitada ja/või selle põhjal teisendeid luua vastavalt Vaba Tarkvara Fondi avaldatud GNU Üldise Avaliku Litsentsi versioonis 2 või hilisemas seatud tingimustele.
 

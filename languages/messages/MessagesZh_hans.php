@@ -25,6 +25,7 @@
  * @author Jding2010
  * @author Jidanni
  * @author Jimmy xu wrk
+ * @author Kaganer
  * @author KaiesTse
  * @author Kuailong
  * @author Liangent
@@ -488,9 +489,9 @@ $1',
 'aboutsite'            => '关于{{SITENAME}}',
 'aboutpage'            => 'Project:关于',
 'copyright'            => '本站全部文字内容使用$1授权。',
-'copyrightpage'        => '{{ns:project}}:版权信息',
-'currentevents'        => '当前事件',
-'currentevents-url'    => 'Project:当前事件',
+'copyrightpage'        => '{{ns:project}}:著作权',
+'currentevents'        => '新闻动态',
+'currentevents-url'    => 'Project:新闻动态',
 'disclaimers'          => '免责声明',
 'disclaimerpage'       => 'Project:免责声明',
 'edithelp'             => '编辑帮助',
@@ -539,8 +540,8 @@ $1',
 'page-rss-feed'           => '“$1”的RSS订阅',
 'page-atom-feed'          => '“$1”的Atom订阅',
 'red-link-title'          => '$1（尚未撰写）',
-'sort-descending'         => '按降序排序',
-'sort-ascending'          => '升序排序',
+'sort-descending'         => '降序',
+'sort-ascending'          => '升序',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => '页面',
@@ -1156,7 +1157,7 @@ $1",
 'searchprofile-everything-tooltip' => '搜索所有内容（包括讨论页面）',
 'searchprofile-advanced-tooltip'   => '在自定义名字空间中搜索',
 'search-result-size'               => '$1（$2个字）',
-'search-result-category-size'      => '$1位成员（$2个子分类，$3个文件）',
+'search-result-category-size'      => '$1个成员（$2个子分类，$3个文件）',
 'search-result-score'              => '相关度：$1%',
 'search-redirect'                  => '（重定向自“$1”）',
 'search-section'                   => '（“$1”段落）',
@@ -1342,7 +1343,7 @@ $1",
 'group-suppress'      => '监督',
 'group-all'           => '（全部）',
 
-'group-user-member'          => '用户',
+'group-user-member'          => '{{GENDER:$1|用户}}',
 'group-autoconfirmed-member' => '自动确认用户',
 'group-bot-member'           => '机器人',
 'group-sysop-member'         => '{{GENDER:$1|管理员}}',
@@ -1533,7 +1534,7 @@ $1",
 'uploadlogpagetext'           => '以下是一个最近上传文件的列表。
 查看[[Special:NewFiles|新文件画廊]]去看更富图像的总览。',
 'filename'                    => '文件名',
-'filedesc'                    => '摘要',
+'filedesc'                    => '文件说明',
 'fileuploadsummary'           => '摘要：',
 'filereuploadsummary'         => '文件更改：',
 'filestatus'                  => '著作权状况：',
@@ -1649,7 +1650,7 @@ $1',
 
 # img_auth script messages
 'img-auth-accessdenied'     => '拒绝访问',
-'img-auth-nopathinfo'       => 'PATH_INFO缺失。您的服务器尚未设置传送该信息。它可能是基于CGI的，因而不支持img_auth。[//www.mediawiki.org/wiki/Manual:Image_Authorization 参见图片认证。]',
+'img-auth-nopathinfo'       => 'PATH_INFO缺失。您的服务器尚未设置传送该信息。它可能是基于CGI的，因而不支持img_auth。[https://www.mediawiki.org/wiki/Manual:Image_Authorization 参见图片认证。]',
 'img-auth-notindir'         => '在已设置的上传目录中找不到请求的路径。',
 'img-auth-badtitle'         => '无法为“$1”创建合法的标题。',
 'img-auth-nologinnWL'       => '您尚未登录，且“$1”不在白名单上。',
@@ -1714,7 +1715,7 @@ $1',
 'filehist-filesize'                 => '文件大小',
 'filehist-comment'                  => '注解',
 'filehist-missing'                  => '文件遗失',
-'imagelinks'                        => '文件使用情况',
+'imagelinks'                        => '文件用途',
 'linkstoimage'                      => '以下的$1个页面链接到本文件：',
 'linkstoimage-more'                 => '多于$1个页面连接到这个文件。
 下面的列表只列示了连去这个文件的最首$1个页面。
@@ -2002,8 +2003,8 @@ $1',
 # E-mail user
 'mailnologin'          => '无电邮地址',
 'mailnologintext'      => '你必须[[Special:UserLogin|登录]]并在你的[[Special:Preferences|系统设置]]中拥有有效的电子邮件地址才能向其他用户发送电子邮件。',
-'emailuser'            => '给该用户发送电子邮件',
-'emailpage'            => '向用户发邮件',
+'emailuser'            => '电邮联系',
+'emailpage'            => '电邮联系',
 'emailpagetext'        => '您可以用下面的表格去寄一封电邮给这位用户。
 您在[[Special:Preferences|您参数设置]]中所输入的电子邮箱地址将出现在邮件"发件人"一栏中，这样该用户就可以回复您。',
 'usermailererror'      => 'Mail 对象返回错误：',
@@ -2043,7 +2044,7 @@ $1',
 'watchnologin'         => '未登录',
 'watchnologintext'     => '您必须先[[Special:UserLogin|登录]]才能更改您的监视列表。',
 'addwatch'             => '添加至监视列表',
-'addedwatchtext'       => "页面“[[:$1]]”已添加至你的[[Special:Watchlist|监视列表]]。本页面及其讨论页面的新增更改将会列入监视列表，本页面将以'''粗体'''显示在[[Special:RecentChanges|最近更改列表]]中以便挑出。",
+'addedwatchtext'       => "页面“[[:$1]]”已添加至你的[[Special:Watchlist|监视列表]]。本页面及其讨论页面的新增更改将会列入监视列表，本页面将以'''粗体'''显示在[[Special:RecentChanges|最近更改列表]]中以方便识别。",
 'removewatch'          => '从监视列表中删除',
 'removedwatchtext'     => '页面“[[:$1]]”已从[[Special:Watchlist|你的监视列表]]中删除。',
 'watch'                => '监视',
@@ -2079,7 +2080,7 @@ $1',
 'enotif_lastvisited'           => '请浏览$1查看你上次访问后的所有更改。',
 'enotif_lastdiff'              => '请浏览$1查看该更改。',
 'enotif_anon_editor'           => '匿名用户$1',
-'enotif_body'                  => '亲爱的$WATCHINGUSERNAME:
+'enotif_body'                  => '亲爱的$WATCHINGUSERNAME：
 
 你好！
 
@@ -2095,7 +2096,8 @@ $NEWPAGE
 你也可以重设你的监视列表中所有监视页面的通知标志。
 
 友好的{{SITENAME}}通知系统
-----
+
+--
 更改邮件通知设置：
 {{canonicalurl:{{#special:Preferences}}}}
 更改监视列表设置：
@@ -2239,7 +2241,7 @@ $UNWATCHURL
 'undeletecomment'              => '原因：',
 'undeletedarticle'             => '已恢复“[[$1]]”',
 'undeletedrevisions'           => '$1个版本已恢复',
-'undeletedrevisions-files'     => '$1个版本和$2个文件被恢复',
+'undeletedrevisions-files'     => '$1个版本和$2个文件已恢复',
 'undeletedfiles'               => '$1个文件已经被恢复',
 'cannotundelete'               => '恢复删除失败；可能已有其他人先行恢复了此页面。',
 'undeletedpage'                => "'''$1已经被恢复'''
@@ -2355,7 +2357,7 @@ $1',
 'badipaddress'                    => '无效IP地址',
 'blockipsuccesssub'               => '封禁成功',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]]已被封禁。<br />
-参见[[Special:IPBlockList|封禁列表]]以复核封禁。',
+参见[[Special:BlockList|封禁列表]]以复核封禁。',
 'ipb-blockingself'                => '您将要封禁自己！确实要这样做吗？',
 'ipb-confirmhideuser'             => '您即将在封禁用户的同时启用“隐藏账户”功能。这将从所有列表和日志记录中隐藏这个用户名。您确认这样做吗？',
 'ipb-edit-dropdown'               => '编辑封禁理由',
@@ -2826,12 +2828,12 @@ $1',
 运行它可能对您的系统带来危险。",
 'imagemaxsize'           => "图像大小限制：<br />''（文件说明页面）''",
 'thumbsize'              => '缩略图大小：',
-'widthheightpage'        => '$1×$2，$3页',
+'widthheightpage'        => '$1 × $2，$3页',
 'file-info'              => '文件大小：$1，MIME类型：$2',
-'file-info-size'         => '$1×$2像素，文件大小：$3，MIME类型：$4',
+'file-info-size'         => '$1 × $2像素，文件大小：$3，MIME类型：$4',
 'file-info-size-pages'   => '$1×$2像素，文件大小：$3，MIME类型：$4，$5个页面',
 'file-nohires'           => '<small>没有更高的分辨率。</small>',
-'svg-long-desc'          => 'SVG文件，图像大小：$1×$2像素，文件大小：$3',
+'svg-long-desc'          => 'SVG文件，图像大小：$1 × $2像素，文件大小：$3',
 'show-big-image'         => '完整分辨率',
 'show-big-image-preview' => '<small>此预览的大小：$1.</small>',
 'show-big-image-other'   => '<small>其他解决方案：$1。</small>',

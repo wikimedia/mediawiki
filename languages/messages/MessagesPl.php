@@ -8,12 +8,14 @@
  * @file
  *
  * @author Beau
+ * @author BeginaFelicysym
  * @author Derbeth
  * @author Equadus
  * @author Fizykaa
  * @author Herr Kriss
  * @author Holek
  * @author Jwitos
+ * @author Kaganer
  * @author Lajsikonik
  * @author Lampak
  * @author Leinad
@@ -25,6 +27,7 @@
  * @author Mikołka
  * @author Nux
  * @author Odder
+ * @author Remedios44
  * @author Remember the dot
  * @author Rzuwig
  * @author Saper
@@ -250,8 +253,8 @@ $messages = array(
 # User preference toggles
 'tog-underline'               => 'Podkreślenie linków',
 'tog-highlightbroken'         => 'Oznacz <a href="" class="new">tak</a> linki do brakujących stron (alternatywa – dołączany znak zapytania<a href="" class="internal">?</a>).',
-'tog-justify'                 => 'Wyrównuj tekst w akapitach do obu stron',
-'tog-hideminor'               => 'Ukryj drobne zmiany w ostatnich zmianach',
+'tog-justify'                 => 'Wyrównuj tekst w akapitach do obu marginesów',
+'tog-hideminor'               => 'Ukryj drobne modyfikacje w ostatnich zmianach',
 'tog-hidepatrolled'           => 'Ukryj sprawdzone edycje w ostatnich zmianach',
 'tog-newpageshidepatrolled'   => 'Ukryj sprawdzone strony na liście nowych stron',
 'tog-extendwatchlist'         => 'Pokaż na liście obserwowanych wszystkie zmiany, nie tylko ostatnie',
@@ -672,7 +675,7 @@ Nie zapomnij dostosować [[Special:Preferences|preferencji dla {{GRAMMAR:D.lp|{{
 'badretype'                  => 'Wprowadzone hasła różnią się między sobą.',
 'userexists'                 => 'Wybrana przez Ciebie nazwa użytkownika jest już zajęta.
 Wybierz inną nazwę użytkownika.',
-'loginerror'                 => 'Błąd zalogowania',
+'loginerror'                 => 'Błąd logowania',
 'createaccounterror'         => 'Nie można utworzyć konta $1',
 'nocookiesnew'               => 'Konto użytkownika zostało utworzone, ale nie jesteś zalogowany.
 {{SITENAME}} używa ciasteczek do przechowywania informacji o zalogowaniu się.
@@ -1761,7 +1764,7 @@ Plik nie może zostać odpowiednio sprawdzony pod kątem bezpieczeństwa.',
 'img-auth-nopathinfo'       => 'Brak PATH_INFO.
 Serwer nie został skonfigurowany, tak aby przekazywał tę informację.
 Możliwe, że jest oparty na CGI i nie może obsługiwać img_auth.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization Zobacz informacje o autoryzacji grafik.]',
+Więcej o informacji o autoryzacji grafik na https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'         => 'Żądana ścieżka nie jest w obrębie katalogu skonfigurowanego do przesyłania plików.',
 'img-auth-badtitle'         => 'Nie można wygenerować prawidłowego tytuł z „$1”.',
 'img-auth-nologinnWL'       => 'Nie jesteś zalogowany, a „$1” nie jest na białej liście.',
@@ -1844,7 +1847,7 @@ Dostępna jest też [[Special:WhatLinksHere/$2|pełna lista]].',
 Więcej informacji odnajdziesz na [$2 stronie opisu pliku].',
 'sharedupload-desc-here'    => 'Ten plik znajduje się na $1 i może być używany w innych projektach.
 Poniżej znajdują się informacje ze [$2 strony opisu] tego pliku.',
-'filepage-nofile'           => 'Plik tej nazwie nie istnieje.',
+'filepage-nofile'           => 'Plik o tej nazwie nie istnieje.',
 'filepage-nofile-link'      => 'Plik o tej nazwie nie istnieje, ale możesz go [$1 przesłać].',
 'uploadnewversion-linktext' => 'Załaduj nowszą wersję tego pliku',
 'shared-repo-from'          => 'z $1',
@@ -2493,7 +2496,7 @@ Podaj powód (np. umieszczając nazwy stron, na których dopuszczono się wandal
 'badipaddress'                    => 'Niepoprawny adres IP',
 'blockipsuccesssub'               => 'Zablokowanie powiodło się',
 'blockipsuccesstext'              => '{{GENDER:$1|Użytkownik|Użytkowniczka}} [[Special:Contributions/$1|$1]] {{GENDER:$1|został zablokowany|została zablokowana}}.<br />
-Przejdź do [[Special:IPBlockList|listy zablokowanych adresów IP]], by przejrzeć blokady.',
+Przejdź do [[Special:BlockList|listy zablokowanych adresów IP]], by przejrzeć blokady.',
 'ipb-blockingself'                => 'Usiłujesz zablokować siebie samego! Czy na pewno chcesz to zrobić?',
 'ipb-confirmhideuser'             => 'Zamierzasz zablokować użytkownika z włączoną opcją „ukryj użytkownika”. Spowoduje to pominięcie nazwy użytkownika we wszystkich listach i rejestrach. Czy na pewno chcesz to zrobić?',
 'ipb-edit-dropdown'               => 'Edytuj listę przyczyn blokady',
@@ -2649,7 +2652,7 @@ W takich przypadkach treść dyskusji można przenieść tylko ręcznie.',
 'movepage-moved-noredirect'    => 'Nie zostało utworzone przekierowanie.',
 'articleexists'                => 'Strona o podanej nazwie już istnieje albo wybrana przez Ciebie nazwa nie jest poprawna.
 Wybierz inną nazwę.',
-'cantmove-titleprotected'      => 'Nie możesz przenieść strony, ponieważ nowa nazwa strony jest niedozwolona z powodu zabezpieczenia przed utworzeniem',
+'cantmove-titleprotected'      => 'Nie możesz przenieść strony, ponieważ nowa nazwa strony jest niedozwolona z powodu zabezpieczenia przed utworzeniem.',
 'talkexists'                   => "'''Strona treści została przeniesiona, natomiast strona dyskusji nie – strona dyskusji o nowym tytule już istnieje. Połącz teksty obu dyskusji ręcznie.'''",
 'movedto'                      => 'przeniesiono do',
 'movetalk'                     => 'Przenieś także stronę dyskusji, jeśli to możliwe.',
@@ -2667,7 +2670,7 @@ Wybierz inną nazwę.',
 'movesubpage'                  => '{{PLURAL:$1|Podstrona|Podstrony}}',
 'movesubpagetext'              => 'Ta strona posiada $1 {{PLURAL:$1|podstronę|podstrony|podstron}}:',
 'movenosubpage'                => 'Ta strona nie posiada podstron.',
-'movereason'                   => 'Powód',
+'movereason'                   => 'Powód:',
 'revertmove'                   => 'cofnij',
 'delete_and_move'              => 'Usuń i przenieś',
 'delete_and_move_text'         => '== Przeniesienie wymaga usunięcia innej strony ==
@@ -2731,7 +2734,7 @@ Odwiedź [//www.mediawiki.org/wiki/Localisation Tłumaczenie MediaWiki] oraz [//
 'allmessages-filter-all'        => 'Wszystkie',
 'allmessages-filter-modified'   => 'Zmodyfikowane',
 'allmessages-prefix'            => 'Tytuły rozpoczynające się od',
-'allmessages-language'          => 'Język',
+'allmessages-language'          => 'Język:',
 'allmessages-filter-submit'     => 'Pokaż',
 
 # Thumbnails
@@ -2976,7 +2979,7 @@ $1',
 Jeśli go otworzysz, możesz zarazić swój system.",
 'imagemaxsize'           => "Ograniczenie wielkości obrazków<br />''(na stronach opisu plików)''",
 'thumbsize'              => 'Rozmiar miniaturki',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|strona|strony|stron}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|strona|strony|stron}}',
 'file-info'              => 'rozmiar pliku: $1, typ MIME: $2',
 'file-info-size'         => '$1 × $2 pikseli, rozmiar pliku: $3, typ MIME: $4',
 'file-info-size-pages'   => '$1 × $2 pikseli, rozmiar pliku: $3, typ MIME: $4, $5 {{PLURAL:$5|strona|strony|stron}}',

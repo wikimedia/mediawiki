@@ -8,6 +8,7 @@
  * @file
  *
  * @author Arwel Parry
+ * @author Kaganer
  * @author Lloffiwr
  * @author Malafaya
  * @author Reedy
@@ -1584,7 +1585,7 @@ Ni all gael ei wirio'n ddigonol er sicrhau diogelwch.",
 'img-auth-nopathinfo'       => "PATH_INFO yn eisiau.
 Nid yw'ch gweinydd wedi ei osod i fedru pasio'r wybodaeth hon.
 Efallai ei fod wedi ei seilio ar CGI, ac heb fod yn gallu cynnal img_auth.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization Gweler y cyngor ar awdurdodi lluniau.]",
+Gweler https://www.mediawiki.org/wiki/Manual:Image_Authorization.",
 'img-auth-notindir'         => "Nid yw'r llwybr y gwneuthpwyd cais amdano yn y cyfeiriadur uwchlwytho ffurfweddedig.",
 'img-auth-badtitle'         => 'Ddim yn gallu gwneud teitl dilys o "$1".',
 'img-auth-nologinnWL'       => 'Nid ydych wedi mewngofnodi ac nid yw "$1" ar y rhestr wen.',
@@ -2767,7 +2768,7 @@ $1",
 Mae'n bosib y bydd eich cyfrifiadur yn cael ei danseilio wrth ddefnyddio'r ffeil.",
 'imagemaxsize'           => "Maint mwyaf y delweddau:<br />''(ar y tudalennau disgrifiad)''",
 'thumbsize'              => 'Maint mân-lun :',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|tudalen|dudalen|dudalen|tudalen|thudalen|tudalen}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|tudalen|dudalen|dudalen|tudalen|thudalen|tudalen}}',
 'file-info'              => 'maint y ffeil: $1, ffurf MIME: $2',
 'file-info-size'         => '$1 × $2 picsel, maint y ffeil: $3, ffurf MIME: $4',
 'file-info-size-pages'   => '$1 × $2 picsel, maint ffeil: $3, math MIME: $4, $5 {{PLURAL:$5|tudalen|tudalen}}',

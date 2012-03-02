@@ -9,6 +9,7 @@
  *
  * @author Ikiwaner
  * @author Jagwar
+ * @author Kaganer
  * @author Lloffiwr
  * @author Malangali
  * @author Marcos
@@ -151,7 +152,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Pia nitumie barua pale mabadiliko ya ukurasa yanapokuwa madogo tu',
 'tog-enotifrevealaddr'        => 'Onyesha anwani ya barua pepe yangu katika barua pepe za taarifa',
 'tog-shownumberswatching'     => 'Onyesha idadi ya watumiaji waangalizi',
-'tog-oldsig'                  => 'Sahihi jinsi inayoonekana sasa:',
+'tog-oldsig'                  => 'Sahihi iliyopo:',
 'tog-fancysig'                => 'Weka sahihi tu (bila kujiweka kiungo yenyewe)',
 'tog-externaleditor'          => 'Tumia kiharirio cha nje inaposhindikana (kwa wataalamu tu, inahitaji marekebisho maalum kwenye tarakilishi yako. [//www.mediawiki.org/wiki/Manual:External_editors Maelezo zaidi.])',
 'tog-externaldiff'            => 'Tumia diff za nje inaposhindikana (kwa wataalamu tu, inahitaji marekebisho maalum kwenye tarakilishi yako. [//www.mediawiki.org/wiki/Manual:External_editors Maelezo zaidi.])',
@@ -352,6 +353,7 @@ Watumiaji wengi mno wanajaribu kutazama ukurasa huu.
 Tafadhali subiri kwa muda kadhaa kabla ya kujaribu kufungua tena.
 
 $1',
+'pool-timeout'      => 'Muda umeisha inasubiria kufunga',
 'pool-queuefull'    => 'Foleni ya michakato imejaa',
 'pool-errorunknown' => 'Hitilafu isiyojulikana',
 
@@ -504,6 +506,8 @@ Kwa lengo la kutaka kutafsiri, tafadhali fikiria kutumia  [//translatewiki.net/w
 'cascadeprotected'     => 'Ukurasa huu umekingwa usihaririwe, kwa sababu umejumlishwa katika {{PLURAL:$1|ukurasa ufuatao, ambao umekingwa|kurasa zifuatazo, ambazo zimekingwa}} na chagua la "cascadi" iliwashwa:
 $2',
 'namespaceprotected'   => "Huna ruhusa ya kuhariri kurasa za eneo la wiki la '''$1'''.",
+'customcssprotected'   => 'Huna ruksa ya kuhariri ukurasa huu wa CSS, kwa sababu una mapendekezo ya binafsi ya mtumiaji mwingine.',
+'customjsprotected'    => 'Huna ruksa ya kuhariri ukurasa huu wa JavaScript, kwa sababu una mapendendekezo ya binafsi ya mtumiaji mwingine.',
 'ns-specialprotected'  => 'Kurasa maalumu haziwezi kuhaririwa.',
 'titleprotected'       => 'Jina hili limekingwa lisiumbwe na [[User:$1|$1]].
 Sababu zilizotolewa ni "\'\'$2\'\'".',
@@ -613,6 +617,9 @@ Tafadhali subiri kwanza kabla ya kujaribu tena.',
 'loginlanguagelabel'         => 'Lugha: $1',
 'suspicious-userlogout'      => 'Ombi lako la kutoka kwenye akaunti yako limehiniwa, kwa sababu inaonekana kwamba ombi lilitumwa na kivinjari kilichoharibika au seva ya kuwakilisha yenye kache.',
 
+# E-mail sending
+'php-mail-error-unknown' => 'Hitilafu isiyojulikana katika ufanyajikazi wa barua za PHP ().',
+
 # Change password dialog
 'resetpass'                 => 'Kubadilisha neno la siri',
 'resetpass_announce'        => 'Umeingia na kodi za barua pepe za muda tu.
@@ -638,6 +645,7 @@ Inawezekana ikawa tayari umefaulu kubadilisha neno lako la siri au neno la siri 
 'passwordreset-disabled'       => 'Kuweka neno la siri jipya kumeshitishwa katika wiki hii.',
 'passwordreset-pretext'        => '{{PLURAL:$1||Ingiza moja kati ya data hizi hapo chini}}',
 'passwordreset-username'       => 'Jina la mtumiaji:',
+'passwordreset-domain'         => 'Miliki',
 'passwordreset-email'          => 'Anwani ya barua pepe:',
 'passwordreset-emailtitle'     => 'Maelezo ya akaunti kwenye {{SITENAME}}',
 'passwordreset-emailtext-ip'   => 'Kuna mtu (huenda ikawa ni wewe, kutoka anwani ya IP $1) aliyeomba kukumbushwa kuhusu maelezo ya akaunti yako katika {{SITENAME}} ($4). {{PLURAL:$3|Akaunti inayofuata imeunganishwa|Akaunti zinazofuata zimeunganishwa}} na anwani ya barua pepe hii:
@@ -2521,7 +2529,7 @@ Tafadhali jaribu tena.',
 Ukilitekeleza faili, mashine yako huenda ikawa matatani.',
 'imagemaxsize'           => "Kikomo cha ukubwa wa picha:<br />''(cha kurasa za maelezo ya mafaili)''",
 'thumbsize'              => 'Ukubwa wa picha ndogo:',
-'widthheightpage'        => '$1×$2, {{PLURAL:$3|ukurasa|kurasa}} $3',
+'widthheightpage'        => '$1 × $2, {{PLURAL:$3|ukurasa|kurasa}} $3',
 'file-info'              => 'ukubwa wa faili: $1, aina ya MIME: $2',
 'file-info-size'         => 'piseli $1 × $2, saizi ya faili: $3, aina ya MIME: $4',
 'file-info-size-pages'   => 'Piseli $1 × $2, ukubwa wa faili: $3, aina ya MIME: $4, {{PLURAL:$5|ukurasa|kurasa}} $5',

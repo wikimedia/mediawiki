@@ -179,7 +179,7 @@ $messages = array(
 'editingcomment' => 'ca galfi le selcmene be zoi $1 (comment)',
 
 # History pages
-'revisionasof' => "velfarvi de'i",
+'revisionasof' => "velfarvi de'i $1",
 'cur'          => 'cab',
 'last'         => "prula'i",
 'page_first'   => 'pamoi',

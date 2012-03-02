@@ -1237,7 +1237,7 @@ De lèste bewerkienge wier gedaen deu [[User:$3|$3]] ([[User talk:$3|Overleggien
 'badipaddress'                => 'Ongeldig IP-adres',
 'blockipsuccesssub'           => 'Blokkaode is gelukt.',
 'blockipsuccesstext'          => "[[Special:Contributions/$1|$1]] is geblokkeerd.<br />
-Ziet de [[Special:IPBlockList|IP-blokliest]] vo 'n overzicht van blokkaodes.",
+Ziet de [[Special:BlockList|IP-blokliest]] vo 'n overzicht van blokkaodes.",
 'ipblocklist'                 => 'Geblokkeerde gebrukers',
 'anononlyblock'               => 'alleêne anon.',
 'blocklink'                   => 'blokkeer',

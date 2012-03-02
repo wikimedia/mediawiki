@@ -1271,7 +1271,7 @@ Chhiáng chhâm-kháu [[Special:Log/delete|chhù-hi ngit-ki]] lòi chhà-chhut c
 'ipbhidename'                 => 'Chhai chhà-fûng ngit-ki, fa̍t-chhiok chhà-fûng lie̍t-péu yî-khi̍p yung-fu lie̍t-péu chûng yún-chhòng yung-fu-miàng.',
 'badipaddress'                => 'IP-ke thi-tiám mò chṳn-khok.',
 'blockipsuccesssub'           => 'chhà-fûng sṳ̀n-kûng',
-'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] yí-kîn pûn chhà-fûng. <br />Chhâm-siòng [[Special:IPBlockList|pûn-fûng IP thi-tiám lie̍t-péu]] yî fu̍k-sṳ́m chhà-fûng.',
+'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] yí-kîn pûn chhà-fûng. <br />Chhâm-siòng [[Special:BlockList|pûn-fûng IP thi-tiám lie̍t-péu]] yî fu̍k-sṳ́m chhà-fûng.',
 'ipb-edit-dropdown'           => 'Phiên-siá chhà-fûng ngièn-yîn',
 'ipb-unblock-addr'            => 'Kié-chhù fûng-kim $1',
 'ipb-unblock'                 => 'Kié-chhù kim-fûng yung-fu miàng fe̍t-chá IP thi-tiám',

@@ -16,6 +16,7 @@
  * @author Iradigalesc
  * @author Jordi Roqué
  * @author Juanpabl
+ * @author Kaganer
  * @author Martorell
  * @author McDutchie
  * @author Pasqual (ca)
@@ -226,10 +227,11 @@ $messages = array(
 'tog-watchlisthideliu'        => "Amaga a la llista les edicions d'usuaris registrats",
 'tog-watchlisthideanons'      => "Amaga a la llista les edicions d'usuaris anònims",
 'tog-watchlisthidepatrolled'  => 'Amaga edicions patrullades de la llista de seguiment',
-'tog-nolangconversion'        => 'Desactiva la conversió de variants',
+'tog-nolangconversion'        => 'Inhabilita la conversió de variants',
 'tog-ccmeonemails'            => "Envia'm còpies dels missatges que enviï als altres usuaris.",
 'tog-diffonly'                => 'Amaga el contingut de la pàgina davall de la taula de diferències',
 'tog-showhiddencats'          => 'Mostra les categories ocultes',
+'tog-noconvertlink'           => 'Inhabilita la conversió dels títols dels enllaços',
 'tog-norollbackdiff'          => 'Omet la pàgina de diferències després de realitzar una reversió',
 
 'underline-always'  => 'Sempre',
@@ -1645,10 +1647,10 @@ No s'hi ha pogut comprovar la seguretat.",
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Accés denegat',
-'img-auth-nopathinfo'       => "Falta PATH_INFO.
+'img-auth-nopathinfo'       => 'Hi manca PATH_INFO.
 El servidor no està configurat per passar aquesta informació.
-Això pot ser basat en CGI i no és compatible amb img_auth.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization Vegeu l'auturització de la imatge.]",
+Pot estar basat en CGI i no ser compatible amb img_auth.
+Consulteu https://www.mediawiki.org/wiki/Manual:Image_Authorization',
 'img-auth-notindir'         => "No s'ha trobat la ruta sol·licitada al directori de càrrega configurat.",
 'img-auth-badtitle'         => 'No s\'ha pogut construir un títol vàlid a partir de "$1".',
 'img-auth-nologinnWL'       => 'No has iniciat sessió i "$1" no està a la llista blanca.',
@@ -2380,7 +2382,7 @@ quines pàgines en concret estan sent vandalitzades).",
 'badipaddress'                    => "L'adreça IP no té el format correcte.",
 'blockipsuccesssub'               => "S'ha blocat amb èxit",
 'blockipsuccesstext'              => "L'usuari «[[Special:Contributions/$1|$1]]» ha estat blocat.
-<br />Vegeu la [[Special:IPBlockList|llista d'IP blocades]] per revisar els bloquejos.",
+<br />Vegeu la [[Special:BlockList|llista d'IP blocades]] per revisar els bloquejos.",
 'ipb-blockingself'                => 'Esteu a punt de blocar-vos a vós mateix! Esteu segurs de voler-ho fer?',
 'ipb-confirmhideuser'             => "Esteu a punt de bloquejar un usuari que està marcat amb l'opció «amaga l'usuari». Això suprimirà el seu nom a totes les llistes i registres. Esteu segurs de voler-ho fer?",
 'ipb-edit-dropdown'               => 'Edita les raons per a blocar',
@@ -2834,7 +2836,7 @@ $1",
 Si l'executeu, podeu comprometre la seguretat del vostre sistema.",
 'imagemaxsize'           => "Límit de mida d'imatges:<br />''(per a pàgines de descripció de fitxers)''",
 'thumbsize'              => 'Mida de la miniatura:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|pàgina|pàgines}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|pàgina|pàgines}}',
 'file-info'              => 'mida: $1, tipus MIME: $2',
 'file-info-size'         => '$1 × $2 píxels, mida del fitxer: $3, tipus MIME: $4',
 'file-info-size-pages'   => '$1 × $2 píxels, mida del fitxer: $3, tipus MIME: $4, $5 {{PLURAL:$5|pàgina|pàgines}}',
@@ -3541,7 +3543,7 @@ Les imatges es mostren en plena resolució; altres tipus de fitxer s'inicien dir
 
 # Special:Tags
 'tags'                    => 'Etiquetes de canvi vàlides',
-'tag-filter'              => "Filtre d'[[Special:Tags|Etiquetes]]:",
+'tag-filter'              => "Filtre d'[[Special:Tags|etiquetes]]:",
 'tag-filter-submit'       => 'Filtra',
 'tags-title'              => 'Etiquetes',
 'tags-intro'              => 'Aquesta pàgina llista les etiquetes amb les què el programari pot marcar una modificació, i llur significat.',

@@ -10,7 +10,10 @@
  * @author Bugoslav
  * @author CERminator
  * @author Demicx
+ * @author DzWiki
+ * @author Edinwiki
  * @author Fulup
+ * @author Kaganer
  * @author Kal-El
  * @author Malafaya
  * @author Palapa
@@ -303,7 +306,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Pošalji mi e-poštu takođe za male izmjene stranica',
 'tog-enotifrevealaddr'        => 'Otkrij adresu moje e-pošte u porukama obaviještenja',
 'tog-shownumberswatching'     => 'Prikaži broj korisnika koji prate',
-'tog-oldsig'                  => 'Pregled postojećeg potpisa:',
+'tog-oldsig'                  => 'Postojeći potpis:',
 'tog-fancysig'                => 'Smatraj potpis kao wikitekst (bez automatskog linka)',
 'tog-externaleditor'          => 'Koristi vanjski program za uređivanje po postavkama (samo za naprednije korisnike, potrebne su posebne postavke na vašem računaru)',
 'tog-externaldiff'            => 'Koristi vanjski (diff) program po pretpostavljenom za prikaz razlika (samo za naprednije korisnike, potrebne su posebne postavke na vašem računaru)',
@@ -791,6 +794,7 @@ Možda ste već uspješno promijenili Vašu šifru ili ste tražili novu privrem
 'passwordreset-disabled'       => 'Poništavanje šifre  je onemogućeno na ovoj wiki.',
 'passwordreset-pretext'        => '{{PLURAL:$1||Unesite jedan dio podataka ispod}}',
 'passwordreset-username'       => 'Korisničko ime:',
+'passwordreset-domain'         => 'Domen:',
 'passwordreset-email'          => 'E-mail adresa:',
 'passwordreset-emailtitle'     => 'Detalji računa na {{SITENAME}}',
 'passwordreset-emailtext-ip'   => 'Neto (vjerovatno Vi, s IP adrese $1) je zatražio podsjetnik Vaših detalja računa
@@ -1096,7 +1100,7 @@ Detalje o tome možer vidjeti u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPA
 Kao administrator još je uvijek možete [$1 vidjeti ovu reviziju] ako želite.",
 'rev-suppressed-text-unhide'  => "Ova revizija stranice je '''uklonjena'''.
 Možete pogledati detalje u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} zapisu uklanjanja].
-Kao administrator Vi je i dalje možete [$1 vidjeti ovu reviziju] ako želite.",
+Vi je i dalje možete [$1 vidjeti ovu reviziju] ako želite.",
 'rev-deleted-text-view'       => "Revizija ove stranice je '''obrisana'''.
 Kao administrator, Vi je možete vidjeti; detalji o tome se mogu vidjeti u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} zapisu brisanja].",
 'rev-suppressed-text-view'    => "Ova revizija stranice je '''uklonjena'''.
@@ -1389,7 +1393,7 @@ Ovo se ne može vratiti unazad.',
 'prefs-registration'            => 'Vrijeme registracije:',
 'yourrealname'                  => 'Vaše pravo ime:',
 'yourlanguage'                  => 'Jezik:',
-'yourvariant'                   => 'Varijanta:',
+'yourvariant'                   => 'Varijanta jezika:',
 'yournick'                      => 'Nadimak (za potpise):',
 'prefs-help-signature'          => 'Komentari na stranicama za razgovor trebaju biti potpisani sa "<nowiki>~~~~</nowiki>" koje će biti pretvoreno u vaš potpis i vrijeme.',
 'badsig'                        => 'Loš sirovi potpis.
@@ -1458,12 +1462,12 @@ Ako izaberete da date ime, biće korišteno za pripisivanje za vaš rad.',
 'group-suppress'      => 'Nadzornici',
 'group-all'           => '(sve)',
 
-'group-user-member'          => 'Korisnik',
-'group-autoconfirmed-member' => 'Potvrđeni korisnici',
-'group-bot-member'           => 'Bot',
+'group-user-member'          => '{{GENDER:$1|korisnik|korisnica}}',
+'group-autoconfirmed-member' => 'Potvrđeni korisnik',
+'group-bot-member'           => 'bot',
 'group-sysop-member'         => 'Administrator',
 'group-bureaucrat-member'    => 'Birokrat',
-'group-suppress-member'      => 'Nadzornici',
+'group-suppress-member'      => 'Nadzornik',
 
 'grouppage-user'          => '{{ns:project}}:Korisnici',
 'grouppage-autoconfirmed' => '{{ns:project}}:Potvrđeni korisnici',
@@ -1789,7 +1793,7 @@ Ne može se dobro provjeriti u vezi sigurnosti.',
 'img-auth-nopathinfo'       => 'Nedostaje PATH_INFO.
 Vaš server nije postavljen da daje ovu informaciju.
 On je zasnovan na CGI i ne može podržavati img_auth.
-Pogledajte http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+Pogledajte https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'         => 'Zahtjevana putanje nije u direktorijumu podešenom za postavljanje.',
 'img-auth-badtitle'         => 'Ne mogu napraviti valjani naslov iz "$1".',
 'img-auth-nologinnWL'       => 'Niste prijavljeni i "$1" nije na spisku dozvoljenih.',
@@ -1861,7 +1865,7 @@ Klikom na zaglavlje kolone možete promjeniti način sortiranja.',
 'filehist-filesize'         => 'Veličina datoteke',
 'filehist-comment'          => 'Komentar',
 'filehist-missing'          => 'Datoteka nedostaje',
-'imagelinks'                => 'Linkovi datoteke',
+'imagelinks'                => 'Upotreba datoteke',
 'linkstoimage'              => '{{PLURAL:$1|Slijedeća stranica koristi|Slijedećih $1 stranica koriste}} ovu sliku:',
 'linkstoimage-more'         => 'Više od $1 {{PLURAL:$1|datoteke|datoteka}} je povezano s ovom datotekom.
 Slijedeći spisak pokazuje samo {{PLURAL:$1|prvu stranicu povezanu|prve $1 stranice povezane|prvih $1 stranica povezanih}} s ovom datotekom.
@@ -2059,7 +2063,7 @@ na kome bi se izvela ova funkcija.',
 
 # Special:Log
 'specialloguserlabel'  => 'Korisnik:',
-'speciallogtitlelabel' => 'Naslov:',
+'speciallogtitlelabel' => 'Cilj (naslov ili korisnik):',
 'log'                  => 'Protokoli',
 'all-logs-page'        => 'Svi javni registri',
 'alllogstext'          => 'Zajednički prikaz svih dostupnih zapisa sa {{SITENAME}}.
@@ -2196,9 +2200,11 @@ E-mail adresa koju ste unijeli u [[Special:Preferences|Vašim korisničkim posta
 'watchlistanontext'    => 'Molimo da $1 da možete vidjeti ili urediti stavke na Vašem spisku praćenja.',
 'watchnologin'         => 'Niste prijavljeni',
 'watchnologintext'     => 'Morate biti [[Special:UserLogin|prijavljeni]] da bi ste mijenjali spisak praćenih članaka.',
+'addwatch'             => 'Dodaj na spisak praćenja',
 'addedwatchtext'       => 'Stranica "[[:$1]]" je dodata vašem [[Special:Watchlist|spisku praćenih članaka]]. Buduće promjene ove stranice i njoj pridružene stranice za razgovor će biti navedene ovde, i stranica će biti <b>podebljana</b> u [[Special:RecentChanges|spisku]] nedavnih izmjena da bi se lakše uočila.
 
 Ako kasnije želite da uklonite stranicu sa vašeg spiska praćenih članaka, kliknite na "prekini praćenje" na paleti.',
+'removewatch'          => 'Ukloni sa spiska praćenja',
 'removedwatchtext'     => 'Stranica "[[:$1]]" je uklonjena iz [[Special:Watchlist|vašeg spiska praćenih članaka]].',
 'watch'                => 'Prati članak',
 'watchthispage'        => 'Prati ovu stranicu',
@@ -2525,7 +2531,7 @@ Posljednje stavke zapisnika blokiranja možete pogledati ispod:',
 'badipaddress'                    => 'Pogrešna IP adresa',
 'blockipsuccesssub'               => 'Blokiranje je uspjelo',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] je blokiran.
-<br />Pogledajte [[Special:IPBlockList|IP spisak blokiranih korisnika]] za pregled blokiranja.',
+<br />Pogledajte [[Special:BlockList|IP spisak blokiranih korisnika]] za pregled blokiranja.',
 'ipb-blockingself'                => 'Ovom akcijom ćete blokirati sebe! Da li ste sigurni da to želite?',
 'ipb-confirmhideuser'             => "Upravo ćete blokirati korisnika sa uključenom opcijom ''sakrij korisnika''. Ovim će korisničko ime biti sakriveno u svim spiskovima i stavkama zapisnika. Da li ste sigurni da to želite?",
 'ipb-edit-dropdown'               => 'Uredi razloge blokiranja',
@@ -3017,7 +3023,7 @@ $1',
 'mediawarning'           => "'''Upozorenje''': Ova datoteka sadrži loš kod, njegovim izvršavanjem možete da ugrozite Vaš sistem.",
 'imagemaxsize'           => "Ograničenje veličine slike:<br />''(za stranice opisa datoteke)''",
 'thumbsize'              => 'Veličina umanjenog prikaza:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|stranica|stranice|stranica}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|stranica|stranice|stranica}}',
 'file-info'              => 'veličina datoteke: $1, MIME tip: $2',
 'file-info-size'         => '$1 × $2 piksela, veličina datoteke: $3, MIME tip: $4',
 'file-info-size-pages'   => '$1 × $2 piksela, veličina datoteke: $3, MIME vrsta: $4, $5 {{PLURAL:$5|stranica|stranice|stranica}}',
@@ -3267,9 +3273,9 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 'exif-orientation-3' => 'Rotirano 180°',
 'exif-orientation-4' => 'Vertikalno preokrenuto',
 'exif-orientation-5' => 'Rotirano 90° suprotno kazaljke i vertikalno obrnuto',
-'exif-orientation-6' => 'Rotirano 90° u smijeru kazaljke',
+'exif-orientation-6' => 'Zaokrenuto 90° suprotno smjeru kazaljke',
 'exif-orientation-7' => 'Rotirano 90° u smijeru kazaljke i preokrenuto vertikalno',
-'exif-orientation-8' => 'Rotirano 90° suprotno kazaljke',
+'exif-orientation-8' => 'Zaokrenuto 90° u smjeru kazaljke',
 
 'exif-planarconfiguration-1' => 'grubi format',
 'exif-planarconfiguration-2' => 'format u ravni',
@@ -3561,8 +3567,10 @@ Molimo Vas da potvrdite da stvarno želite da ponovo napravite ovaj članak.",
 'confirm-purge-bottom' => 'Ispražnjava keš stranice i prikazuje najsvježiju verziju.',
 
 # action=watch/unwatch
-'confirm-watch-top'   => 'Dodajte ovu stranu na Vaš spisak praćenih članaka',
-'confirm-unwatch-top' => 'Izbrišite ovu stranu sa Vašeg spiska praćenih članaka',
+'confirm-watch-button'   => 'U redu',
+'confirm-watch-top'      => 'Dodajte ovu stranu na Vaš spisak praćenih članaka',
+'confirm-unwatch-button' => 'U redu',
+'confirm-unwatch-top'    => 'Izbrišite ovu stranu sa Vašeg spiska praćenih članaka',
 
 # Multipage image navigation
 'imgmultipageprev' => '← prethodna stranica',

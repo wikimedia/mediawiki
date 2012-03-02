@@ -14,6 +14,7 @@
  * @author Dori
  * @author Eagleal
  * @author Ergon
+ * @author Kaganer
  * @author Marinari
  * @author Mdupont
  * @author MicroBoy
@@ -196,7 +197,7 @@ $separatorTransformTable = array( ',' => '.', '.' => ',' );
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Nënvizo lidhjet:',
-'tog-highlightbroken'         => 'Formato lidhjet e prishura <a href="" class="new">si kjo </a> (zgjedhore: si kjo<a href="" class="internal">?</a>).',
+'tog-highlightbroken'         => 'Formato lidhjet e prishura <a href="" class="new">si kjo</a> (zgjedhore: si kjo<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Rregullo paragrafët',
 'tog-hideminor'               => 'Fshih redaktimet e vogla në ndryshimet e fundit',
 'tog-hidepatrolled'           => 'Fshih redaktimet e vrojtuara në ndryshimet e fundit',
@@ -707,11 +708,11 @@ Për të hyrë tërësisht duhet të vendosni një fjalëkalim të ri këtu:',
 'passwordreset-email'          => 'Posta elektronike',
 'passwordreset-emailtitle'     => 'Detajet e llogarisë në {{SITENAME}}',
 'passwordreset-emailtext-ip'   => 'Dikush (ndoshta ju, nga IP adresa $1) kërkoi një kujtesë për 
-detajet e llogarisë suaj {{SITENAME}} ($4).Përdoruesi në vijim {{PLURAL: $3 | llogari është | llogaritë janë}} të lidhur me këtë postë elektronike:
+detajet e llogarisë suaj {{SITENAME}} ($4).Përdoruesi në vijim {{PLURAL:$3|llogari është|llogaritë janë}} të lidhur me këtë postë elektronike:
 
 $2
 
-{{PLURAL: $ 3 | Ky fjalëkalim i përkohshëm | Këto fjalëkalime të përkohshme}} do të përfundojë për {{PLURAL: $5 | një ditë | $5 ditë}}.
+{{PLURAL:$3|Ky fjalëkalim i përkohshëm|Këto fjalëkalime të përkohshme}} do të përfundojë për {{PLURAL:$5|një ditë|$5 ditë}}.
 
 Ju duhet të kyçeni dhe të zgjidhni një fjalëkalim të ri tani. Nëse dikush tjetër e ka bërë këtë kërkesës, ose në qoftë se ju mbani mend fjalëkalimin tuaj origjinal, dhe ju nuk dëshirojni të ndryshoni atë, ju mund të injoroni këtë mesazh dhe do të vazhdoni përdorimin e fjalëkalimit tuaj të vjetër.',
 'passwordreset-emailtext-user' => 'Përdoruesi  $1 në {{SITENAME }} ka kërkuar një kujtesë për të dhënat e llogarisë suaj për {{SITENAME }} ($4). Përdoruesi në vijim {{PLURAL: $3 | llogaria është | llogaritë janë}} të lidhur me këtë postë elektronike: 
@@ -1682,7 +1683,7 @@ Ajo nuk mund të kontrollohet siç duhet për sigurinë.',
 'img-auth-nopathinfo'       => 'Mungon PATH_INFO.
 Shërbyesi juaj nuk e kalon këtë informacion.
 Mund të jetë CGI-bazuar dhe nuk mund të mbështesë img_auth.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization Shikoni autorizimin për figurat.]',
+[https://www.mediawiki.org/wiki/Manual:Image_Authorization Shikoni autorizimin për figurat.]',
 'img-auth-notindir'         => 'Kërkesa nuk është në drejtorinë e ngarkimeve të konfiguruara.',
 'img-auth-badtitle'         => 'Nuk mund të krihohej një titull i vlefshëm nga "$1".',
 'img-auth-nologinnWL'       => 'Ju nuk jeni i regjistruar dhe "$1" nuk është në listën e bardhë.',
@@ -2010,7 +2011,7 @@ Protokolle të mbështetura: <tt>$1<tt> (mos shtoni ndonjërin nga këta në kë
 
 # Special:ActiveUsers
 'activeusers'            => 'Lista e përdoruesve aktivë',
-'activeusers-intro'      => 'Kjo është një listë e përdoruesve që kanë qenë aktivë për $ {{PLURAL:$1|ditë|ditë}}.',
+'activeusers-intro'      => 'Kjo është një listë e përdoruesve që kanë qenë aktivë për $1 {{PLURAL:$1|ditë|ditë}}.',
 'activeusers-count'      => '$1 {{PLURAL:$1|redaktim|redaktime}} në {{PLURAL:$3|ditën|$3 ditët}} e fundit',
 'activeusers-from'       => 'Trego përdoruesit duke filluar prej te:',
 'activeusers-hidebots'   => 'Fshih robotët',
@@ -2437,7 +2438,7 @@ Plotësoni arsyen specifike më poshtë (p.sh., tregoni faqet specifike që u va
 'badipaddress'                    => 'Nuk ka asnjë përdorues me atë emër',
 'blockipsuccesssub'               => 'Bllokimi u bë me sukses',
 'blockipsuccesstext'              => 'Përdoruesi/IP-Adresa [[Special:Contributions/$1|$1]] u bllokua.<br />
-Shiko te [[Special:IPBlockList|Lista e përdoruesve dhe e IP adresave të bllokuara]] për të çbllokuar Përdorues/IP.',
+Shiko te [[Special:BlockList|Lista e përdoruesve dhe e IP adresave të bllokuara]] për të çbllokuar Përdorues/IP.',
 'ipb-blockingself'                => 'Ju jeni duke bllokuar vetëveten ! Jeni te sigurte qe doni te bëni këtë?',
 'ipb-confirmhideuser'             => 'Ju jeni gati për të bllokuar një përdorues me "përdorues të fshehur" të aktivizuar. Kjo do të shtypur emrin e përdoruesit në të gjitha listat dhe aktivitetet hyrëse. Jeni te sigurte qe doni ta bëni këtë ?',
 'ipb-edit-dropdown'               => 'Redakto arsyet e bllokimit',
@@ -2887,7 +2888,7 @@ $1',
 Duke e përdorur sistemi juaj mund të rrezikohet.",
 'imagemaxsize'         => "Kufizoni madhësinë e fotos:<br />''(për faqet e përshkrimit të skedave)''",
 'thumbsize'            => 'Madhësia fotove përmbledhëse:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|faqe|faqe}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|faqe|faqe}}',
 'file-info'            => 'madhësia skedës: $1, lloji MIME: $2',
 'file-info-size'       => '$1 × $2 pixela, madhësia e skedës: $3, tipi MIME: $4',
 'file-info-size-pages' => '$1 × $2 pixel, madhësia e dokumentit: $3 , MIME tipi: $4 , $5 {{PLURAL:$5| faqe | faqet}}',

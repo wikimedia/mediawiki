@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Kaganer
  * @author Litingatinga Silozi
  * @author Ooswesthoesbes
  * @author SF-Language
@@ -997,7 +998,7 @@ $1',
 'nextdiff'     => 'Lila petuho →',
 
 # Media information
-'widthheightpage' => '$1×$2, $3 petulo',
+'widthheightpage' => '$1 × $2, $3 petulo',
 'file-info-size'  => '$1 × $2 pixel, imegi: $3, MIME type: $4',
 'file-nohires'    => '<small>A sa risolusi aku balise.</small>',
 'svg-long-desc'   => 'SVG imegi, nominali $1 × $2 pixel, imega: $3',

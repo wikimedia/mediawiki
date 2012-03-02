@@ -8,6 +8,7 @@
  * @file
  *
  * @author Cgboeree
+ * @author Kaganer
  * @author Malafaya
  * @author Reedy
  * @author Urhixidur
@@ -901,7 +902,7 @@ En esta casos, tu va nesesa move o fusa la paje per mano, si desirada.",
 'nextdiff'     => 'Difere plu nova →',
 
 # Media information
-'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|paje|pajes}}',
+'widthheightpage' => '$1 × $2, $3 {{PLURAL:$3|paje|pajes}}',
 'file-info-size'  => '$1 × $2 pixel, grandia de fix: $3, MIME tipo: $4',
 'file-nohires'    => '<small>No plu densia posable.</small>',
 'svg-long-desc'   => 'SVG fix, per nom $1 × $2 pixeles, grandia de fix: $3',

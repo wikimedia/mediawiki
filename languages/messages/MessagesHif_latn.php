@@ -10,6 +10,7 @@
  * @author Abdul Kadir
  * @author Bihari
  * @author Girmitya
+ * @author Kaganer
  * @author Malafaya
  * @author Thakurji
  */
@@ -1501,7 +1502,7 @@ Ii sab panna khaali uu sadasya ke dekhae hae jon ki iske uplaod karis hae.',
 'img-auth-nopathinfo'       => 'PATH_INFO nai hae
 Aap ke server ke ii jankari de khatir set up nai karaa gais hae
 Saait ii CGI-based hoi aur img_auth ke nai support karat hoi.
-http://www.mediawiki.org/wiki/Manual:Image_Authorization ke dekho.',
+https://www.mediawiki.org/wiki/Manual:Image_Authorization ke dekho.',
 'img-auth-notindir'         => 'Maanga gais path configured upload directory me me nai hae.',
 'img-auth-badtitle'         => '"$1" se kanuni title ke nai banae sakaa hae.',
 'img-auth-nologinnWL'       => 'Aap logged in nai hae aur "$1" whitelist me nai hae.',
@@ -2236,7 +2237,7 @@ Niche ek khaas kaaran likho (jaise ki, citing particular pages that were vandali
 'badipaddress'                    => 'IP address kharaab hai',
 'blockipsuccesssub'               => 'Rukawat safal rahaa',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] ke rok dewa gais hai.<br />
-Ii rukawat pe fir se bichar kare ke khatir [[Special:IPBlockList|IP block list]] ke dekho.',
+Ii rukawat pe fir se bichar kare ke khatir [[Special:BlockList|IP block list]] ke dekho.',
 'ipb-edit-dropdown'               => 'Badlao ke roke ke kaaran',
 'ipb-unblock-addr'                => '$1 ke rukawat ke khalaas karo',
 'ipb-unblock'                     => 'Ek username nai to IP address ke rukawat ke khalaas karo',
@@ -2656,7 +2657,7 @@ $1',
 Iske execute kare se aap ke system me garrbarr hoe sake hae.",
 'imagemaxsize'         => "Chapa jaada se jaada ketnaa barraahoe sake hai:<br />''(file ke baare me panna)''",
 'thumbsize'            => 'Anguutha ke nakkhuun etna barraa:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|panna|panna}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|panna|panna}}',
 'file-info'            => 'file etnaa barraa: $1, MIME rakam: $2',
 'file-info-size'       => '$1 × $2 pixel, file ke size: $3, MIME type: $4',
 'file-nohires'         => '<small>Aur achchha resolution nai hai.</small>',

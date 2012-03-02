@@ -8,6 +8,7 @@
  * @file
  *
  * @author Jarmanj Turtash
+ * @author Kaganer
  * @author Khazar II
  * @author Kranch
  * @author Numulunj pilgae
@@ -1940,7 +1941,7 @@ $1',
 'badipaddress'                    => 'Аф кондясти IP адрес',
 'blockipsuccesssub'               => 'Сёлгома ётась лац',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] сёлгозь.<br />
-Ванк [[Special:IPBlockList|IP сёлгома лувомать]] сёлгомат ваноманкса.',
+Ванк [[Special:BlockList|IP сёлгома лувомать]] сёлгомат ваноманкса.',
 'ipb-edit-dropdown'               => 'Полафтомс сёлгома туфталхт',
 'ipb-unblock-addr'                => 'Валхтомс $1-нь сёлгома',
 'ipb-unblock'                     => 'Тиинь эли IP адресонь сёлгома валхтомс',
@@ -2296,7 +2297,7 @@ $1',
 Сонь нолдаманза тон коласак тонь системацень.",
 'imagemaxsize'    => "Архтофкснень келеснон оторсна:<br />''(файлонь шарьхкотьфтема лопатненди)''",
 'thumbsize'       => 'Миниатюронь кувалмоц:',
-'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|лопа|лопат}}',
+'widthheightpage' => '$1 × $2, $3 {{PLURAL:$3|лопа|лопат}}',
 'file-info'       => 'файлонь кувалмоц: $1, MIME сортоц: $2',
 'file-info-size'  => '$1 × $2 пикселхть, файлть кувалмоц: $3, MIME сорт: $4',
 'file-nohires'    => '<small>Сяда лама анцяйнятнень мархта архтофкс аш.</small>',

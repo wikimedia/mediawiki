@@ -11,6 +11,7 @@
  * @author FnTmLV
  * @author Geimeris
  * @author GreenZeb
+ * @author Kaganer
  * @author Karlis
  * @author Kikos
  * @author Knakts
@@ -1406,7 +1407,7 @@ Lūdzu, sazinieties ar [[Special:ListUsers/sysop|administratoru.]]',
 'img-auth-nopathinfo'   => 'Trūkst PATH_INFO.
 Jūsu serveris nav konfigurēts nodot šo informāciju.
 Tas var būt bāzēts uz CGI un neatbalstīt img_auth.
-Skatīt http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+Skatīt https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-nologinnWL'   => 'Jūs neesat iegājis un "$1" nav baltajā sarakstā.',
 'img-auth-nofile'       => 'Fails "$1" nepastāv.',
 'img-auth-isdir'        => 'Jūs mēģinājāt piekļūt direktorijai "$1".
@@ -2062,7 +2063,7 @@ Norādi konkrētu iemeslu (piemēram, linkus uz vandalizētajām lapām).',
 'badipaddress'                => 'Nederīga IP adrese',
 'blockipsuccesssub'           => 'Nobloķēts veiksmīgi',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] tika nobloķēts.<br />
-Visus blokus var apskatīties [[Special:IPBlockList|IP bloku sarakstā]].',
+Visus blokus var apskatīties [[Special:BlockList|IP bloku sarakstā]].',
 'ipb-edit-dropdown'           => 'Izmainīt bloķēšanas iemeslus',
 'ipb-unblock-addr'            => 'Atbloķēt $1',
 'ipb-unblock'                 => 'Atbloķēt lietotāju vai IP adresi',
@@ -2459,7 +2460,7 @@ $1',
 'mediawarning'           => "'''Brīdinājums''': Šis faila tips var saturēt ļaunprātīgu kodu, kuru izpildot, tava datora darbība var tikt traucēta.",
 'imagemaxsize'           => 'Attēlu apraksta lapās parādāmo attēlu maksimālais izmērs:',
 'thumbsize'              => 'Sīkbildes izmērs:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|lapa|lapas}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|lapa|lapas}}',
 'file-info'              => 'faila izmērs: $1, MIME tips: $2',
 'file-info-size'         => '$1 × $2 pikseļi, faila izmērs: $3, MIME tips: $4',
 'file-info-size-pages'   => '$1 × $2 pikseļi, faila izmērs: $3, MIME tips: $4, $5 {{PLURAL:$5|lapa|lapas}}',

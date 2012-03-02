@@ -8,6 +8,7 @@
  * @file
  *
  * @author Als-Holder
+ * @author M-sch
  * @author SPS
  * @author Xqt
  */
@@ -529,7 +530,7 @@ Der Schutzstatus vun derre Said kannscht ännere, awwer des hot kää Aifluss uf
 # Contributions
 'contributions'       => 'Was der gemacht hot',
 'contributions-title' => 'Benutzerbaidräch vun $1',
-'mycontris'           => 'Was du gemacht hoscht.',
+'mycontris'           => 'Was isch gemacht hab',
 'contribsub2'         => 'Fer $1 ($2)',
 'uctop'               => '(aktuell)',
 'month'               => 'un Monet (un frieher):',

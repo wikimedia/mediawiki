@@ -282,6 +282,7 @@ Sizni $1 chetlashtirdi. Bunga sabab: ''$2''.
 * Chetlashtirish muddati yakuni: $6
 
 Siz $1 yoki boshqa [[{{MediaWiki:Grouppage-sysop}}|administrator]] bilan bogʻlanib, arz qilishingiz mumkin.
+You cannot use the 'e-mail this user' feature unless a valid e-mail address is specified in your [[Special:Preferences|account preferences]] and you have not been blocked from using it.
 Sizning hozirgi IP manzilingiz - $3, chetlashtirish raqamingiz - #$5. Arizaga bularni ilova qilishingiz mumkin.",
 'newarticle'                 => '(Yangi)',
 'newarticletext'             => "Bu sahifa hali mavjud emas.
@@ -300,7 +301,7 @@ Siz shuningdek bu yozganlaringiz sizniki yoki erkin litsenziya ostida ekanligini
 'copyrightwarning2'          => "Iltimos, shuni esda tutingki, {{SITENAME}} sahifalaridagi barcha matnlar boshqa foydalanuvchilar tomonidan tahrirlanishi, almashtirilishi yoki o'chirilishi mumkin. Agar siz yozgan ma'lumotlaringizni bunday tartibda tahrirlanishiga rozi bo'lmasangiz, unda uni bu yerga joylashtirmang.<br />
 Bundan tashqari, siz ushbu ma'lumotlarni o'zingiz yozgan bo'lishingiz yoki ruxsat berilgan internet manzilidan yoki shu kabi erkin resursdan nusxa olgan bo'lishingiz lozim (Qo'shimcha ma'lumotlar ushun $1 sahifasiga murojaat qiling).
 '''MUALLIFLIK HUQUQI QO'YILGAN ISHLARNI RUXSATSIZ BU YERGA JOYLASHTIRMANG!'''",
-'templatesused'              => 'Ushbu sahifada ishlatilgan andozalar:',
+'templatesused'              => '{{PLURAL:$1|Template|Templates}} used on this page:',
 'template-protected'         => '(himoyalangan)',
 'template-semiprotected'     => '(yarim-himoyalangan)',
 'nocreatetext'               => 'Ushbu sayt yangi sahifa yaratishni taqiqlagan.
@@ -428,7 +429,7 @@ Bu yerda: (joriy) = hozirgi koʻrinish bilan farq,
 'imagelinks'                => 'Fayllarga ishoratlar',
 'linkstoimage'              => 'Bu faylga quyidagi {{PLURAL:$1|sahifa|$1 sahifalar}} bogʻlangan:',
 'nolinkstoimage'            => 'Bu faylga bogʻlangan sahifalar yoʻq.',
-'sharedupload'              => 'Ushbu fayl umumiy joyga yuklangandir va boshqa loyihalarda ishlatilishi mumkin.',
+'sharedupload'              => 'This file is from $1 and may be used by other projects.',
 'uploadnewversion-linktext' => 'Bu faylning yangi versiyasini yukla',
 
 # Unused templates
@@ -479,7 +480,7 @@ Bu yerda: (joriy) = hozirgi koʻrinish bilan farq,
 
 # Special:Categories
 'categories'         => 'Turkumlar',
-'categoriespagetext' => 'Ushbu turkumlarda sahifa yoki fayllar mavjud.
+'categoriespagetext' => 'The following {{PLURAL:$1|category contains|categories contain}} pages or media.
 [[Special:UnusedCategories|Unused categories]] are not shown here.
 Also see [[Special:WantedCategories|wanted categories]].',
 

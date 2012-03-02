@@ -638,7 +638,7 @@ folcliċum āgnunge oþþe ȝelīċum frēom horde (sēo $1 for āscungum).
 'group-suppress'   => 'Oferȝesihta',
 'group-all'        => '(eall)',
 
-'group-user-member'     => 'brūcend',
+'group-user-member'     => '{{GENDER:$1|brūcend}}',
 'group-bot-member'      => 'searuþræl',
 'group-sysop-member'    => 'beƿitend',
 'group-suppress-member' => 'oferȝesiht',

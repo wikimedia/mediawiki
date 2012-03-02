@@ -14,6 +14,7 @@
  * @author Diagramma Della Verita
  * @author Hydra
  * @author Izzudin
+ * @author Kaganer
  * @author Kurniasan
  * @author Meno25
  * @author Putera Luqman Tunku Andre
@@ -1677,10 +1678,10 @@ Ia tidak dapat diperiksa dengan betul demi keselamatan.',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Capaian ditolak',
-'img-auth-nopathinfo'       => 'Tiada PATH_INFO.
+'img-auth-nopathinfo'       => 'PATH_INFO tertinggal.
 Pelayan anda tidak ditetapkan untuk menyampaikan maklumat ini.
 Ia barangkali berdasarkan CGI dan tidak boleh menyokong img_auth.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization Lihat keizinan imej.]',
+Rujuk https://www.mediawiki.org/wiki/Manual:Image_Authorization',
 'img-auth-notindir'         => 'Laluan yang diminta tiada dalam direktori muat naik yang telah dikonfigurasikan.',
 'img-auth-badtitle'         => 'Tajuk yang sah tidak dapat dibina daripada "$1".',
 'img-auth-nologinnWL'       => 'Anda belum log masuk dan "$1" tiada dalam senarai putih.',
@@ -2087,7 +2088,7 @@ dan tajuk laman tersebut juga akan ditonjolkan dalam '''teks tebal''' di [[Speci
 untuk memudahkan anda.
 
 Jika anda mahu membuang laman tersebut daripada senarai pantau, klik \"Nyahpantau\" pada bar sisi.",
-'removewatch'          => 'Buang daripada senarai pantau',
+'removewatch'          => 'Buang dari senarai pantau',
 'removedwatchtext'     => 'Laman "[[:$1]]" telah dibuang daripada [[Special:Watchlist|senarai pantau anda]].',
 'watch'                => 'Pantau',
 'watchthispage'        => 'Pantau laman ini',
@@ -2392,7 +2393,7 @@ dirosakkan).',
 'ipbreason-dropdown'              => '*Sebab lazim
 ** Memasukkan maklumat palsu
 ** Membuang kandungan daripada laman
-** Memmasukkan pautan spam ke tapak web luar
+** Memasukkan pautan spam ke tapak web luar
 ** Memasukkan karut-marut ke dalam laman
 ** Mengugut/mengganggu pengguna lain
 ** Menyalahgunakan berbilang akaun
@@ -2414,7 +2415,7 @@ dirosakkan).',
 'badipaddress'                    => 'Alamat IP tidak sah',
 'blockipsuccesssub'               => 'Sekatan berjaya',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] telah disekat.
-<br />Sila lihat [[Special:IPBlockList|senarai sekatan IP]] untuk maklumat lanjut.',
+<br />Sila lihat [[Special:BlockList|senarai sekatan IP]] untuk maklumat lanjut.',
 'ipb-blockingself'                => 'Anda akan menyekat diri sendiri! Pastikah anda mahu berbuat demikian?',
 'ipb-confirmhideuser'             => 'Anda akan menyekat seorang pengguna yang menghidupkan "sorokkan pengguna". Ini akan menindaskan nama pengguna itu di semua senarai dan entri log. Pastikah anda mahu berbuat demikian?',
 'ipb-edit-dropdown'               => 'Sunting sebab sekatan',
@@ -2877,7 +2878,7 @@ Dengan menjalankannya, komputer anda mungkin akan terjejas.",
 'imagemaxsize'           => "Had saiz imej:<br />''(untuk laman keterangan fail)''",
 'thumbsize'              => 'Saiz gambar kenit:',
 'widthheight'            => '$1 × $2',
-'widthheightpage'        => '$1×$2, $3 halaman',
+'widthheightpage'        => '$1 × $2, $3 halaman',
 'file-info'              => 'saiz file: $1, jenis MIME: $2',
 'file-info-size'         => '$1 × $2 piksel, saiz fail: $3, jenis MIME: $4',
 'file-info-size-pages'   => '$1 × $2 piksel, saiz fail: $3, jenis MIME: $4, $5 laman',
@@ -3467,7 +3468,7 @@ Sila sahkan bahawa anda mahu mencipta semula laman ini.",
 'watchlistedit-numitems'       => 'Senarai pantau anda mengandungi $1 tajuk (tidak termasuk laman perbincangan).',
 'watchlistedit-noitems'        => 'Tiada tajuk dalam senarai pantau anda.',
 'watchlistedit-normal-title'   => 'Sunting senarai pantau',
-'watchlistedit-normal-legend'  => 'Buang tajuk daripada senarai pantau',
+'watchlistedit-normal-legend'  => 'Buang tajuk-tajuk ini dari senarai pantau',
 'watchlistedit-normal-explain' => 'Tajuk-tajuk dalam senarai pantau anda ditunjukkan di bawah.
 Untuk membuang mana-mana tajuk, tanda kotak yang terletak di sebelahnya, dan klik "Buang Tajuk". Anda juga boleh [[Special:EditWatchlist/raw|menyunting senarai mentah]].',
 'watchlistedit-normal-submit'  => 'Gugurkan tajuk-tajuk',

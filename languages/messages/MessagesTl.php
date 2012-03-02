@@ -9,6 +9,7 @@
  *
  * @author AnakngAraw
  * @author Felipe Aira
+ * @author Kaganer
  * @author Sky Harbor
  * @author tl.wikipedia.org sysops
  * @author לערי ריינהארט
@@ -1630,7 +1631,7 @@ Hindi ito maaaring suriin ng tama para sa kaligtasan.',
 'img-auth-nopathinfo'       => 'Nawawalang PATH_INFO.
 Ang tagapaghain mo ay hindi nakatakdang na maipasa ang kabatirang ito.
 Maaaring pang-CGI ito at hindi makatangkilik ng img_auth.
-Tingnan ang http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+Tingnan ang https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'         => 'Ang hiniling na daan ay wala sa loob ng isinaayos na direktoryo ng pagkarga.',
 'img-auth-badtitle'         => 'Hindi nagawang makabuo ng tanggap na pamagat mula sa "$1".',
 'img-auth-nologinnWL'       => 'Hindi ka nakalagda at ang "$1" ay wala sa puting talaan.',
@@ -2352,7 +2353,7 @@ Punan ang espesipikong dahilan sa ibaba (halimbawa, magbanggit ng partikular na 
 'badipaddress'                    => 'Hindi tanggap na adres ng IP',
 'blockipsuccesssub'               => 'Matagumpay ang pagharang/paghadlang',
 'blockipsuccesstext'              => 'Hinadlangan ang  [[Special:Contributions/$1|$1]].<br />
-Tingnan ang [[Special:IPBlockList|talaan ng mga hinadlangang IP]] upang makita ang mga paghadlang.',
+Tingnan ang [[Special:BlockList|talaan ng mga hinadlangang IP]] upang makita ang mga paghadlang.',
 'ipb-blockingself'                => 'Hahadlangan mo na ang sarili mo!  Nakatitiyak ka bang nais mong gawin iyan?',
 'ipb-confirmhideuser'             => 'Hahadlangan mo na ang isang tagagamit na pinagagana ang "ikubli ang tagagamit".  Susupilin nito ang pangalan ng tagagamit sa lahat ng mga pagpapasok sa mga tala at mga talaan.  Nakatitiyak ka bang nais mong gawin iyan?',
 'ipb-edit-dropdown'               => 'Baguhin ang mga dahilan sa pagharang',
@@ -2815,7 +2816,7 @@ $1',
 Maaaring manganib ang iyong sistema kapag ipinagana mo ito.",
 'imagemaxsize'           => "Takdang hangganan sa laki ng larawan: <br />''(para sa mga pahina ng paglalarawan ng talaksan)''",
 'thumbsize'              => 'Maliit na sukat (parang "kuko sa hinlalaki" lamang):',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|pahina|mga pahina}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|pahina|mga pahina}}',
 'file-info'              => 'sukat ng talaksan: $1, tipo ng MIME: $2',
 'file-info-size'         => '$1 × $2 piksel, sukat ng talaksan: $3, tipo ng MIME: $4',
 'file-info-size-pages'   => '$1 × $2 mga piksel, sukat ng talaksan: $3, uri ng MIME: $4, $5 {{PLURAL:$5|pahina|mga pahina}}',
@@ -2861,19 +2862,19 @@ Kapag nabago ang talaksan mula sa anyong orihinal nito, may ilang detalyeng hind
 'metadata-collapse' => 'Itago ang karugtong na mga detalye',
 'metadata-fields'   => 'Ang mga hanay ng pook ng metadato ng larawan na nakatala sa mensaheng ito ay masasama sa ipinapakitang pahina ng larawan kapag tumiklop ang tabla ng metadato.
 Likas na nakatakdang itago ang iba pa.
-* yari
-* modelo
-* orihinal na petsa at oras
-* panahon ng pagkakalantad
-* bilang ng f
-* antas ng bilis ng iso
-* haba ng tuon
-* artista
-* karapatang-ari
-* paglalarawan ng larawan
-* latitud ng gps
-* longhitud ng gps
-* altitud ng gps',
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* isospeedratings
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Lapad',

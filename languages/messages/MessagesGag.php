@@ -1069,7 +1069,6 @@ Herliim fayl diiştirildi yaratılıştan sora, bir takım parametrlär var nic�
 'metadata-expand'   => 'Detalları göster',
 'metadata-collapse' => 'Detalları gösterme',
 'metadata-fields'   => 'Bu listadaki meta bilgilerin eri, resim sayfasında sormadan gösterilecek, übürleri saklanacêk.
-
 * make
 * model
 * datetimeoriginal

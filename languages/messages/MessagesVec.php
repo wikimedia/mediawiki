@@ -10,6 +10,7 @@
  * @author BrokenArrow
  * @author Candalua
  * @author Frigotoni
+ * @author Kaganer
  * @author Nick1915
  * @author Omnipaedista
  * @author OrbiliusMagister
@@ -1240,12 +1241,12 @@ Co qualcheduni te scrivarà, nol vedarà mia el to indirizo.',
 'group-suppress'      => 'Supervisioni',
 'group-all'           => '(utenti)',
 
-'group-user-member'          => 'Utente',
-'group-autoconfirmed-member' => 'Utente autoconvalidà',
-'group-bot-member'           => 'Bot',
-'group-sysop-member'         => 'Aministrador',
-'group-bureaucrat-member'    => 'Burocrate',
-'group-suppress-member'      => 'Supervision',
+'group-user-member'          => 'utente',
+'group-autoconfirmed-member' => 'utente autoconvalidà',
+'group-bot-member'           => 'bot',
+'group-sysop-member'         => 'aministrador',
+'group-bureaucrat-member'    => 'burocrate',
+'group-suppress-member'      => 'supervision',
 
 'grouppage-user'          => '{{ns:project}}:Utenti',
 'grouppage-autoconfirmed' => '{{ns:project}}:Utenti autoconvalidà',
@@ -1532,7 +1533,7 @@ Se el problema el persiste, contatar un [[Special:ListUsers/sysop|aministrador]]
 'img-auth-nopathinfo'   => "Manca el PATH_INFO.
 El to server no'l xe mia configurà par passar sta informassion.
 Magari el xe basà su CGI e no'l suporta img_auth.
-Varda http://www.mediawiki.org/wiki/Manual:Image_Authorization.",
+Varda https://www.mediawiki.org/wiki/Manual:Image_Authorization.",
 'img-auth-notindir'     => "El percorso richiesto no'l se cata in te la cartèla de caricamento configurà.",
 'img-auth-badtitle'     => 'No se riesse a costruir un titolo valido da "$1".',
 'img-auth-nologinnWL'   => 'No te sì autenticà e "$1" no\'l xe mia in te la lista bianca.',
@@ -2223,7 +2224,7 @@ $1',
 'badipaddress'                    => "L'indirisso IP indicà no'l xè mìa coreto.",
 'blockipsuccesssub'               => 'Bloco eseguìo',
 'blockipsuccesstext'              => "[[Special:Contributions/$1|$1]] l'è sta bloccà.<br />
-Varda [[Special:IPBlockList|lista IP bloccati]] par védar tuti i blochi.",
+Varda [[Special:BlockList|lista IP bloccati]] par védar tuti i blochi.",
 'ipb-edit-dropdown'               => 'Motivi par el bloco',
 'ipb-unblock-addr'                => 'Sbloca $1',
 'ipb-unblock'                     => 'Sbloca un utente o un indirizo IP',
@@ -2629,7 +2630,7 @@ $1',
 La so esecuzion la podarìa danegiar el to computer.",
 'imagemaxsize'         => "Dimension massima de le imagini:<br />''(su le relative pagine de descrizion)''",
 'thumbsize'            => 'Grandeza de le miniature:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pagina|pagine}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|pagina|pagine}}',
 'file-info'            => 'Dimensioni: $1, tipo MIME: $2',
 'file-info-size'       => '$1 × $2 pixel, dimension del file: $3, tipo MIME: $4',
 'file-nohires'         => '<small>No ghe xe version a risolussion pì granda.</small>',
@@ -2665,7 +2666,7 @@ I colegamenti dopo, su la stessa riga, i xe considerai come ecession (cioè, pag
 'metadata-help'     => 'Sto file contien informasion zontive, probabilmente zonte da ła fotocamara o da ło scanner usai par crearlo o digitałizarlo. Se el file xè sta modifegà, alcuni detaji i podaria no corispondere a ła realtà.',
 'metadata-expand'   => 'Mostra detaji',
 'metadata-collapse' => 'Scondi detaji',
-'metadata-fields'   => "I canpi rełativi a i metadati EXIF elencai en sto mesajo i verà mostrai so ła pajina de l'imasine quando ła tabeła de i metadati xè presentà ne ła forma breve. Par inpostasion predefinia, i altri canpi i verà sconti.
+'metadata-fields'   => "I canpi rełativi a i metadati de l'imagine elencai en sto mesajo i verà mostrai so ła pajina de l'imasine quando ła tabeła de i metadati xè presentà ne ła forma breve. Par inpostasion predefinia, i altri canpi i verà sconti.
 * make
 * model
 * datetimeoriginal

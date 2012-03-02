@@ -20,6 +20,7 @@
  * @author Hylle
  * @author Jan Friberg
  * @author Jon Harald Søby
+ * @author Kaganer
  * @author Kwi
  * @author Lars J. Helbo <lars.helbo@gmail.com>
  * @author Leolaursen
@@ -229,6 +230,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Send mig kopier af e-mails som jeg sender til andre brugere',
 'tog-diffonly'                => 'Vis ved versionssammenligninger kun forskelle, ikke hele siden',
 'tog-showhiddencats'          => 'Vis skjulte kategorier',
+'tog-noconvertlink'           => 'Slå konvertering af sidetitler fra',
 'tog-norollbackdiff'          => 'Vis ikke forskel efter tilbagerulning',
 
 'underline-always'  => 'Altid',
@@ -479,7 +481,7 @@ $1',
 'nstab-user'      => 'brugerside',
 'nstab-media'     => 'medie',
 'nstab-special'   => 'speciel',
-'nstab-project'   => 'om',
+'nstab-project'   => 'Projektside',
 'nstab-image'     => 'Fil',
 'nstab-mediawiki' => 'besked',
 'nstab-template'  => 'skabelon',
@@ -1648,7 +1650,7 @@ Den kan ikke kontrolleres rigtigt for sikkerhed.',
 'img-auth-nopathinfo'       => 'PATH_INFO mangler.
 Din server er ikke sat op til at give denne information.
 Den bruger måske CGI og understøtter ikke img_auth.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization Se billedeautorisation].',
+Se https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'         => 'Den ønskede sti er ikke i det opsatte oplægningskatalog.',
 'img-auth-badtitle'         => 'Kan ikke lave en gyldig titel ud fra "$1".',
 'img-auth-nologinnWL'       => 'Du er ikke logget ind, og "$1" er ikke på hvidlisten.',
@@ -2371,7 +2373,7 @@ Angiv en konkret begrundelse herunder (for eksempel med angivelse af sider der h
 'badipaddress'                    => 'IP-adressen/brugernavnet er udformet forkert eller eksistere ikke.',
 'blockipsuccesssub'               => 'Blokeringen er gennemført.',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] er blevet blokeret.<br />
-Se [[Special:IPBlockList|IP-blokeringslisten]] for alle blokeringer.',
+Se [[Special:BlockList|IP-blokeringslisten]] for alle blokeringer.',
 'ipb-blockingself'                => 'Du er ved at blokere dig selv! Er du sikker på, du vil gøre det?',
 'ipb-confirmhideuser'             => 'Du er ved at blokere en bruger med "skjul bruger" aktiveret. Dette vil skjule brugerens navn på alle lister og logposter. Er du sikker på du vil gøre det?',
 'ipb-edit-dropdown'               => 'Ændre spærreårsager',
@@ -2814,7 +2816,7 @@ $1',
 Du kan beskadige dit system hvis du udfører den.",
 'imagemaxsize'           => "Maksimal billedstørrelse<br />''(på filbeskrivelsessider)''",
 'thumbsize'              => 'Thumbnailstørrelse :',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|side|sider}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|side|sider}}',
 'file-info'              => 'Filstørrelse: $1, MIME-Type: $2',
 'file-info-size'         => '$1 × $2 punkter, filstørrelse: $3, MIME-Type: $4',
 'file-info-size-pages'   => '$1 × $2 punkter, filstørrelse: $3, MIME-type: $4, $5 {{PLURAL:$5|side|sider}}',
@@ -3054,6 +3056,7 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'exif-compression-2' => 'CCITT Gruppe 3 1-dimensionel modificeret Huffman run length encoding',
 'exif-compression-3' => 'CCITT Gruppe 3 fax-kodning',
 'exif-compression-4' => 'CCITT Gruppe 4 fax-kodning',
+'exif-compression-6' => 'JPEG (gammel)',
 
 'exif-copyrighted-true'  => 'Ophavsretligt beskyttet',
 'exif-copyrighted-false' => 'Offentlig ejendom',

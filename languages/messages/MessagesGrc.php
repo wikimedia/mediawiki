@@ -9,6 +9,7 @@
  *
  * @author AndreasJS
  * @author Crazymadlover
+ * @author Kaganer
  * @author Lefcant
  * @author LeighvsOptimvsMaximvs
  * @author Neachili
@@ -993,7 +994,7 @@ $1",
 'group-suppress'      => 'Ἐπόπται',
 'group-all'           => '(ὅλοι)',
 
-'group-user-member'          => 'Χρώμενος',
+'group-user-member'          => '{{GENDER:$1|Χρώμενος}}',
 'group-autoconfirmed-member' => 'Αὐτομάτως ἐπιβεβαιωθεὶς χρώμενος',
 'group-bot-member'           => 'Μεταβάλλων μηχανικός',
 'group-sysop-member'         => 'Γέρων',
@@ -2188,7 +2189,7 @@ $1',
 # Media information
 'imagemaxsize'         => "Ὅριον μεγέθους εἰκόνος:<br />''(ἐν περιπτώσει δέλτων περιγραφῆς ἀρχείων)''",
 'thumbsize'            => 'Μέγεθος μικρογραφίας:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|δέλτος|δέλτοι}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|δέλτος|δέλτοι}}',
 'file-info'            => 'μέγεθος ἀρχείου: $1, τὐπος MIME: $2',
 'file-info-size'       => '$1 × $2 εἰκονοστοιχεῖα, μέγεθος ἀρχείου: $3, τύπος MIME: $4',
 'file-nohires'         => '<small>Οὐ διατίθεται ὑψηλοτέρα ἀνάλυσις.</small>',

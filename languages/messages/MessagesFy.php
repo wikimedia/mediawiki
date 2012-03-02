@@ -1107,7 +1107,7 @@ Jo kinne ek oaren de mûglikheid jaan kontakt mei jo op te nimmen troch in ferwi
 'group-suppress'      => 'tasichthâlders',
 'group-all'           => '(eltsenien)',
 
-'group-user-member'          => 'Meidogger',
+'group-user-member'          => '{{GENDER:$1|Meidogger}}',
 'group-autoconfirmed-member' => 'Registrearre brûker',
 'group-bot-member'           => 'Bot',
 'group-sysop-member'         => 'Behearder',
@@ -1958,7 +1958,7 @@ Meld de krekte reden! Neam bygelyks de siden dy't oantaaste waarden.",
 'badipaddress'        => 'Gjin jildige IP-adres',
 'blockipsuccesssub'   => 'Utsluting slagge',
 'blockipsuccesstext'  => 'Meidogger [[Special:Contributions/$1|$1]] is útsletten.<br />
-(List fan [[Special:IPBlockList|útslette meidoggers]].)',
+(List fan [[Special:BlockList|útslette meidoggers]].)',
 'ipb-unblock-addr'    => 'Lit $1 yn',
 'ipb-unblock'         => 'Lit in meidogger of IP-adres yn',
 'ipb-blocklist'       => 'Besteande útslutings besjen',

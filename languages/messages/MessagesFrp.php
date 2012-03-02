@@ -1853,7 +1853,7 @@ Pôt pas étre controlâ tot drêt por la sècuritât.',
 'img-auth-nopathinfo'       => 'PATH_INFO manquent.
 Voutron sèrvor est pas dèfeni por passar cela enformacion.
 Fonccione pôt-étre en CGI et pués recognêt pas img_auth.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization Vêde los drêts d’émâge.]',
+[https://www.mediawiki.org/wiki/Manual:Image_Authorization Vêde los drêts d’émâge.]',
 'img-auth-notindir'         => 'Lo chemin demandâ est pas lo rèpèrtouèro de tèlèchargement configurâ.',
 'img-auth-badtitle'         => 'Empossiblo de construire un titro valido dês « $1 ».',
 'img-auth-nologinnWL'       => 'Vos éte pas branchiê et pués « $1 » est pas dens la lista blanche.',
@@ -2236,7 +2236,7 @@ L’adrèce èlèctronica que vos éd buchiê dens voutres [[Special:Preferences
 'emailusername'        => 'Nom d’usanciér :',
 'emailusernamesubmit'  => 'Sometre',
 'email-legend'         => 'Mandar un mèssâjo a un ôtro usanciér de {{SITENAME}}',
-'emailfrom'            => 'Èxpèdior :',
+'emailfrom'            => 'De :',
 'emailto'              => 'Dèstinatèro :',
 'emailsubject'         => 'Sujèt :',
 'emailmessage'         => 'Mèssâjo :',

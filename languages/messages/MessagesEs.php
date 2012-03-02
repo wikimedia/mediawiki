@@ -14,6 +14,7 @@
  * @author Ascánder
  * @author Baiji
  * @author Bengoa
+ * @author Bernardom
  * @author Better
  * @author BicScope
  * @author Boivie
@@ -40,6 +41,7 @@
  * @author Jatrobat
  * @author Jens Liebenau
  * @author Jurock
+ * @author Kaganer
  * @author Lin linao
  * @author Linterweb
  * @author Locos epraix
@@ -956,9 +958,9 @@ Quizá ha sido movida o borrada mientras visitabas la página.',
 'loginreqlink'                     => 'iniciar sesión',
 'loginreqpagetext'                 => 'Debes $1 para ver otras páginas.',
 'accmailtitle'                     => 'La contraseña ha sido enviada.',
-'accmailtext'                      => "Una contraseña generada aleatoriamente para [[User talk:$1|$1]] ha sido enviada a $2.
+'accmailtext'                      => 'Se ha enviado a $2 una contraseña generada aleatoriamente para [[User talk:$1|$1]].
 
-La contraseña para esta nueva cuenta puede ser cambiada en la página ''[[Special:ChangePassword|cambiar la contraseña]]'' después de haber iniciado sesión.",
+La contraseña para esta nueva cuenta puede cambiarse en [[Special:ChangePassword|la página destinada para ello]] después de haber iniciado sesión.',
 'newarticle'                       => '(Nuevo)',
 'newarticletext'                   => 'Has seguido un enlace a una página que aún no existe.
 Para crear esta página, escribe en el campo a continuación. Para más información, consulta la [[{{MediaWiki:Helppage}}|página de ayuda]].
@@ -1333,8 +1335,8 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 'searcheverything-enable'          => 'Buscar en todos los espacios de nombres',
 'searchrelated'                    => 'relacionado',
 'searchall'                        => 'todos',
-'showingresults'                   => "Abajo se {{PLURAL:$1|muestra '''1''' resultado|muestran hasta '''$1''' resultados}} empezando por el nº '''$2'''.",
-'showingresultsnum'                => "Abajo se {{PLURAL:$3|muestra '''1''' resultado|muestran los '''$3''' resultados}} empezando por el nº '''$2'''.",
+'showingresults'                   => "Abajo se {{PLURAL:$1|muestra '''1''' resultado|muestran hasta '''$1''' resultados}} comenzando por el n.º '''$2'''.",
+'showingresultsnum'                => "Abajo se {{PLURAL:$3|muestra '''1''' resultado|muestran los '''$3''' resultados}} comenzando por el n.º '''$2'''.",
 'showingresultsheader'             => "{{PLURAL:$5|Resultado '''$1''' de '''$3'''|Resultados '''$1-$2''' de '''$3'''}} para '''$4'''",
 'nonefound'                        => "'''Nota''': De manera predeterminada solo se busca en algunos espacios de nombres.
 Prueba a usar el prefijo ''all:'' para buscar en todo el contenido (incluyendo páginas de discusión, plantillas, etc.) o usa el espacio de nombres que quieras como prefijo.",
@@ -1453,8 +1455,8 @@ Esto no se puede deshacer.',
 'email'                         => 'Correo electrónico',
 'prefs-help-realname'           => 'El nombre real es opcional. Si decides proporcionarlo, se usará para dar atribución a tu trabajo.',
 'prefs-help-email'              => 'La dirección de correo electrónico es opcional, pero es necesaria para el restablecimiento de tu contraseña, en caso de que la olvides.',
-'prefs-help-email-others'       => 'También puedes permitir que otros usuarios te contacten por correo-e a través de un enlace en tus páginas de usuario y discusión.
-Tu dirección de correo-e no se revela cuando otros usuarios te contactan.',
+'prefs-help-email-others'       => 'También puedes permitir que otros usuarios te contacten por correo a través de un enlace en tus páginas de usuario y de discusión.
+Tu dirección de correo no se revela cuando otros usuarios te contactan.',
 'prefs-help-email-required'     => 'Es necesario proporcionar una dirección de correo electrónico.',
 'prefs-info'                    => 'Información básica',
 'prefs-i18n'                    => 'Internacionalización',
@@ -1629,8 +1631,8 @@ Tu dirección de correo-e no se revela cuando otros usuarios te contactan.',
 'nchanges'                          => '$1 {{PLURAL:$1|cambio|cambios}}',
 'recentchanges'                     => 'Cambios recientes',
 'recentchanges-legend'              => 'Opciones sobre cambios recientes',
-'recentchangestext'                 => 'Sigue los cambios más recientes de la wiki en esta página.',
-'recentchanges-feed-description'    => 'Seguir los cambios más recientes en el wiki en este feed.',
+'recentchangestext'                 => 'Realiza un seguimiento de los cambios más recientes en el wiki en esta página.',
+'recentchanges-feed-description'    => 'Realiza un seguimiento de los cambios más recientes en el wiki en este canal.',
 'recentchanges-label-newpage'       => 'Esta edición creó una nueva página',
 'recentchanges-label-minor'         => 'Esta es una edición menor',
 'recentchanges-label-bot'           => 'Esta edición fue realizada por un robot',
@@ -1818,9 +1820,9 @@ No puede comprobarse adecuadamente su seguridad.',
 # img_auth script messages
 'img-auth-accessdenied'     => 'Acceso denegado',
 'img-auth-nopathinfo'       => 'Falta PATH_INFO.
-Tu servidor no está configurado para proporcionar esta información.
-Puede que esté basado en CGI y no sea compatible con img_auth.
-Véase [//www.mediawiki.org/wiki/Manual:Image_Authorization image authorization.]',
+El servidor no está configurado para proporcionar esta información.
+Es posible que esté basado en CGI y que no sea compatible con img_auth.
+Consulte https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'         => 'Ruta solicitad no esá en el directorio de cargas configurado',
 'img-auth-badtitle'         => 'Incapaz de construir un título válido de «$1».',
 'img-auth-nologinnWL'       => 'No has iniciado sesión y «$1» no está en la lista blanca.',
@@ -2546,7 +2548,7 @@ Explica la razón específica del bloqueo (por ejemplo, citando las páginas en 
 'badipaddress'                    => 'La dirección IP no tiene el formato correcto.',
 'blockipsuccesssub'               => 'Bloqueo realizado con éxito',
 'blockipsuccesstext'              => '"[[Special:Contributions/$1|$1]]" ha sido bloqueado.<br />
-Véase la [[Special:IPBlockList|lista de bloqueos]] para revisarlo.',
+Véase la [[Special:BlockList|lista de bloqueos]] para revisarlo.',
 'ipb-blockingself'                => '¡Estás a punto de bloquearte a ti mismo!  ¿Estás seguro de que quieres hacerlo?',
 'ipb-confirmhideuser'             => 'Estás a punto de bloquear un usuario con la opción de supresión activada. Esto suprimirá el nombre de usuario en todas las listas y entradas de registro. ¿Estás seguro de que deseas proceder?',
 'ipb-edit-dropdown'               => 'Editar motivo del bloqueo',
@@ -2776,8 +2778,8 @@ Por favor visita [//www.mediawiki.org/wiki/Localisation Localización MediaWiki]
 'allmessages-filter-legend'     => 'Filtro',
 'allmessages-filter'            => 'Filtrar por estado de personalización:',
 'allmessages-filter-unmodified' => 'Sin modificar',
-'allmessages-filter-all'        => 'Todo',
-'allmessages-filter-modified'   => 'Modificado',
+'allmessages-filter-all'        => 'Todos',
+'allmessages-filter-modified'   => 'Modificados',
 'allmessages-prefix'            => 'Filtrar por prefijo:',
 'allmessages-language'          => 'Idioma:',
 'allmessages-filter-submit'     => 'Ir',
@@ -3025,10 +3027,10 @@ $1',
 Ejecutarlo podría comprometer la seguridad de su equipo.",
 'imagemaxsize'           => "Límite de tamaño de imagen:<br />''(para páginas de descripción de archivo)''",
 'thumbsize'              => 'Tamaño de las vistas en miniatura:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:|página|páginas}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:|página|páginas}}',
 'file-info'              => 'tamaño de archivo: $1; tipo MIME: $2',
 'file-info-size'         => '$1 × $2 píxeles; tamaño de archivo: $3; tipo MIME: $4',
-'file-info-size-pages'   => '$1× $2 píxeles, tamaño de archivo: $3, tipo MIME: $4, $5 {{PLURAL:$5|página|páginas}}',
+'file-info-size-pages'   => '$1 × $2 píxeles, tamaño de archivo: $3, tipo MIME: $4, $5 {{PLURAL:$5|página|páginas}}',
 'file-nohires'           => '<small>No disponible a mayor resolución.</small>',
 'svg-long-desc'          => 'archivo SVG, nominalmente $1 × $2 píxeles, tamaño de archivo: $3',
 'show-big-image'         => 'Resolución original',
@@ -3493,7 +3495,7 @@ El correo incluirá un enlace con un código. Introdúcelo para confirmar la val
 'confirmemail_send'         => 'Envíar el código de confimación.',
 'confirmemail_sent'         => 'Confirmación de correo enviada.',
 'confirmemail_oncreate'     => 'Se ha enviado un código de confirmación a tu dirección de correo electrónico.
-Este código no es necesario para entrar, pero necesitarás darlo antes de activar cualquier función basada en correo electrónico en el wiki.',
+Este código no es necesario para iniciar sesión, pero necesitarás proporcionarlo antes de activar cualquier función basada en correo electrónico en el wiki.',
 'confirmemail_sendfailed'   => 'No fue posible enviar el correo de confirmación. Por favor, comprueba la validez de la dirección de correo.
 
 El servidor indicó el error: $1',
@@ -3556,7 +3558,9 @@ $1",
 
 # Delete conflict
 'deletedwhileediting'      => "'''Aviso''': ¡Esta página fue borrada después de que usted empezara a editar!",
-'confirmrecreate'          => "El usuario [[User:$1|$1]] ([[User talk:$1|discusión]]) borró este artículo después de que tú empezaces a editarlo y dio esta razón: ''$2'' Por favor, confirma que realmente deseas crear de nuevo el artículo.",
+'confirmrecreate'          => "El usuario [[User:$1|$1]] ([[User talk:$1|disc.]]) borró esta página después de que comenzaste a editarla, por el motivo:
+: ''$2''
+Confirma que realmente quieres volver a crear esta página.",
 'confirmrecreate-noreason' => 'El usuario [[User:$1|$1]] ([[User talk:$1|discusión]]) borró esta página después de que comenzaras a editarla. Por favor confirma que realmente quieres recrear esta página.',
 'recreate'                 => 'Crear de nuevo',
 

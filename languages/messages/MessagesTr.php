@@ -16,7 +16,9 @@
  * @author Erkan Yilmaz
  * @author Fryed-peach
  * @author Hanberke
+ * @author Incelemeelemani
  * @author Joseph
+ * @author Kaganer
  * @author Karduelis
  * @author Katpatuka
  * @author Khutuck
@@ -311,15 +313,15 @@ $messages = array(
 'tog-underline'               => 'Bağlantıların altını çiz:',
 'tog-highlightbroken'         => 'Boş bağlantıları <a href="" class="new">bu şekilde</a> (seçenek: bu şekilde<a href="" class="internal">?</a>) göster.',
 'tog-justify'                 => 'Paragrafları iki yana yasla',
-'tog-hideminor'               => '"Son değişiklikler" sayfasında küçük değişiklikleri gizle',
-'tog-hidepatrolled'           => 'Son değişikliklerde gözlenmiş değişiklikleri gizle',
-'tog-newpageshidepatrolled'   => 'Denetlenmiş sayfaları yeni sayfalar listesinde gizle',
-'tog-extendwatchlist'         => 'İzleme listesini, sadece son değil, tüm değişiklikleri görmek için genişlet',
+'tog-hideminor'               => 'Son değişiklikler sayfasında küçük değişiklikleri gizle',
+'tog-hidepatrolled'           => 'Son değişikliklerde gözden geçirilen düzenlemeleri gizle',
+'tog-newpageshidepatrolled'   => 'Kontrol edilmiş sayfaları yeni sayfalar listesinde gizle',
+'tog-extendwatchlist'         => 'İzleme listesini sadece son değil, tüm değişiklikleri görmek için genişlet',
 'tog-usenewrc'                => 'Gelişmiş son değişiklikleri kullan (JavaScript gerekir)',
 'tog-numberheadings'          => 'Başlıkları otomatik numaralandır',
-'tog-showtoolbar'             => 'Değişiklik yaparken araç çubuğunu göster (JavaScript)',
-'tog-editondblclick'          => 'Sayfayı çift tıklayarak değiştirmeye başla (JavaScript)',
-'tog-editsection'             => 'Bölümleri [değiştir] bağlantıları ile değiştirebilme olanağı ver',
+'tog-showtoolbar'             => 'Düzenleme yaparken araç çubuğunu göster (JavaScript gerekir)',
+'tog-editondblclick'          => 'Çift tıklayarak sayfayı düzenle (JavaScript gerekir)',
+'tog-editsection'             => 'Bölümleri [değiştir] bağlantıları ile düzenlemeyi etkinleştir',
 'tog-editsectiononrightclick' => 'Bölümleri bölüm başlığına sağ tıklayarak değiştirebilme olanağı ver (JavaScript)',
 'tog-showtoc'                 => 'İçindekiler tablosunu göster (3 taneden fazla başlığı olan sayfalar için)',
 'tog-rememberpassword'        => 'Girişimi bu tarayıcıda hatırla (en fazla $1 {{PLURAL:$1|gün|gün}} için)',
@@ -361,10 +363,10 @@ $messages = array(
 'underline-default' => 'Tarayıcı karar versin',
 
 # Font style option in Special:Preferences
-'editfont-style'     => 'Değişiklik alanı yazıtipi biçemi:',
+'editfont-style'     => 'Değişiklik alanı yazı tipi biçemi:',
 'editfont-default'   => 'Tarayıcı varsayılanı',
 'editfont-monospace' => 'Sabit yer kaplayan yazı tipi',
-'editfont-sansserif' => 'Sans-serif yazıtipi',
+'editfont-sansserif' => 'Sans-serif yazı tipi',
 'editfont-serif'     => 'Serif yazı tipi',
 
 # Dates
@@ -526,7 +528,7 @@ $messages = array(
 'otherlanguages'    => 'Diğer dillerde',
 'redirectedfrom'    => '($1 sayfasından yönlendirildi)',
 'redirectpagesub'   => 'Yönlendirme sayfası',
-'lastmodifiedat'    => 'Bu sayfa son olarak $2, $1 tarihinde güncellenmiştir.',
+'lastmodifiedat'    => 'Bu sayfa son olarak $1, $2 tarihinde güncellenmiştir.',
 'viewcount'         => 'Bu sayfaya {{PLURAL:$1|bir|$1 }} defa erişilmiş.',
 'protectedpage'     => 'Korumalı sayfa',
 'jumpto'            => 'Atla:',
@@ -709,7 +711,7 @@ Hesabınız açıldı.
 'yourname'                   => 'Kullanıcı adı:',
 'yourpassword'               => 'Parola:',
 'yourpasswordagain'          => 'Parolayı yeniden yaz:',
-'remembermypassword'         => 'Girişimi bu bilgisayarda hatırla (en fazla $1 {{PLURAL:$1|gün|gün}} için)',
+'remembermypassword'         => 'Girişimi bu tarayıcıda hatırla (en fazla $1 {{PLURAL:$1|gün|gün}} için)',
 'securelogin-stick-https'    => "Giriş yaptıktan sonra HTTPS'e bağlı kal",
 'yourdomainname'             => 'Alan adınız:',
 'externaldberror'            => 'Ya doğrulama veritabanı hatası var ya da kullanıcı hesabınızı güncellemeye yetkiniz yok.',
@@ -942,7 +944,12 @@ ya da <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}
 'userpage-userdoesnotexist-view'   => '"$1" kullanıcı hesabı kayıtlı değil.',
 'blocked-notice-logextract'        => 'Bu kullanıcı şuanda engellenmiş.
 Son engelleme günlüğü girdisi referans için aşağıda sağlanmıştır:',
-'clearyourcache'                   => "Not:''' Ayarlarınızı kaydettikten sonra, tarayıcınızın belleğini de temizlemeniz gerekmektedir: '''Mozilla / Firefox / Safari:''' ''Shift'' e basılıyken safyayı yeniden yükleyerek veya ''Ctrl-Shift-R'' yaparak (Apple Mac için ''Cmd-Shift-R'');, '''IE:''' ''Ctrl-F5'', '''Konqueror:''' Sadece sayfayı yeniden yükle tuşuna basarak.",
+'clearyourcache'                   => "'''Not:''' Kaydettikten sonra değişiklikleri görmek için tarayıcınızın önbelleğini temizlemeniz gerekebilir.
+* '''Firefox / Safari:''' ''Shift'' tuşuna basılıyken \"Yeniden yükle\"'ye tıklayın ya da \"Ctrl-F5\" ya da ''Ctrl-R'' yapın (Mac için '⌘-R'').
+* '''Google Chrome:''' ''Ctrl-Shift-R'''ye basın. (Mac için ''⌘-Shift-R'')
+* '''Internet Explorer:''' ''Ctrl'' basılıyken ''Yenile'''ye tıklayın ya da ''Ctrl-F5'' yapın.
+* '''Konqueror:''' 'Yeniden yükle'''ye ya da ''F5'''e basın.
+* '''Opera:''' ''Araçlar → Tercihler'''den önbelliği temizleyin.",
 'usercssyoucanpreview'             => "'''İpucu:''' Kaydetmeden önce \"{{int:showpreview}}\"e tıklayarak yeni CSSinizi deneyin.",
 'userjsyoucanpreview'              => "'''İpucu:''' Kaydetmeden önce \"{{int:showpreview}}\"e tıklayarak yeni JavaScript'inizi test edin.",
 'usercsspreview'                   => "'''Sadece kullanıcı CSS dosyanızın önizlemesini görüyorsun.''' '''Kullanıcı CSS dosyası henüz kaydolmadı!'''",
@@ -982,7 +989,7 @@ Sayfaları güvenle değiştirmenize izin vermek için: ASCII olmayan karakterle
 Kaydettiğinizde bu tarihli sürümden günümüze kadar olan değişiklikler yok olacaktır.'''",
 'yourdiff'                         => 'Karşılaştırma',
 'copyrightwarning'                 => "'''Lütfen dikkat:''' {{SITENAME}} sitesine yapılan bütün katkılar $2 sözleşmesi kapsamındadır (ayrıntılar için $1'a bakınız).
-Yaptığınız katkının başka katılımcılar tarafından acımasızca değiştirilmesini ya da özgürce ve sınırsızca başka yerlere dağıtılmasını istemiyorsanız, katkıda bulunmayınız.<br />
+Yaptığınız katkının başka katılımcılar tarafından acımasızca değiştirilmesini ve sınırsızca başka yerlere dağıtılmasını istemiyorsanız, katkıda bulunmayınız.<br />
 Ayrıca buraya katkıda bulunarak, bu katkının kendiniz tarafından yazıldığına ya da kamuya açık bir kaynaktan ya da başka bir özgür/ücretsiz kaynaktan kopyalandığına güvence vermiş oluyorsunuz. '''Buraya, telif sahibinin izni olmadan telif hakkı ile korunan eserleri eklemeyiz! '''",
 'copyrightwarning2'                => 'Lütfen, {{SITENAME}} sitesine bulunacağınız tüm katkıların diğer üyeler tarafından düzenlenebileceğini, değiştirilebileceğini ya da silinebileceğini hatırlayın. Yazılarınızın merhametsizce değiştirilebilmesine rıza göstermiyorsanız buraya katkıda bulunmayın. <br />
 Ayrıca bu ekleyeceğiniz yazıyı sizin yazdığınızı ya da serbest kopyalama izni veren bir kaynaktan kopyaladığınızı bize taahhüt etmektesiniz (ayrıntılar için referans: $1).',
@@ -1792,7 +1799,7 @@ Güvenlik denetimi uygun bir şekilde gerçekleştirilemiyor.',
 'img-auth-nopathinfo'       => 'Eksik PATH_INFO.
 Sunucunuz bu bilgiyi geçirmek için ayarlanmamış.
 CGI-tabanlı olabilir ve img_auth desteklenmiyor olabilir.
-http://www.mediawiki.org/wiki/Manual:Image_Authorization sayfasına bakın.',
+https://www.mediawiki.org/wiki/Manual:Image_Authorization sayfasına bakın.',
 'img-auth-notindir'         => 'İstenen yol yapılandırılmış yükleme dizininde değil.',
 'img-auth-badtitle'         => '"$1" ile geçerli bir başlık yapılamıyor.',
 'img-auth-nologinnWL'       => 'Giriş yapmadınız ve "$1" beyaz listede değil.',
@@ -1957,7 +1964,7 @@ Aşağıda [$2 dosya açıklama sayfasındaki] açıklama gösteriliyor.',
 'statistics-users-active-desc' => 'Son {{PLURAL:$1|gün|$1 günde}} çalışma yapan kullanıcılar',
 'statistics-mostpopular'       => 'En çok ziyaret edilen sayfalar',
 
-'disambiguations'      => 'Anlam ayrım sayfaları',
+'disambiguations'      => 'Anlam ayrım sayfalarına bağlantısı olan sayfalar',
 'disambiguationspage'  => 'Template:Anlam ayrımı',
 'disambiguations-text' => 'İlk satırda yer alan sayfalar bir anlam ayrım sayfasına iç bağlantı olduğunu gösterir. İkinci sırada yer alan sayfalar anlam ayrım sayfalarını gösterir. <br />Burada [[MediaWiki:Disambiguationspage]] tüm anlam ayrım şablonlarına bağlantılar verilmesi gerekmektedir.',
 
@@ -2055,7 +2062,7 @@ Lütfen unutmayın ki, diğer web siteleri bir dosyaya doğrudan bir URL ile ba�
 
 # Special:Log
 'specialloguserlabel'  => 'Kullanıcı:',
-'speciallogtitlelabel' => 'Başlık:',
+'speciallogtitlelabel' => 'Hedef (başlık ya da kullanıcı):',
 'log'                  => 'Kayıtlar',
 'all-logs-page'        => 'Tüm umumi kayıtlar',
 'alllogstext'          => '{{SITENAME}} için mevcut tüm günlüklerin birleşik gösterimi.
@@ -2095,7 +2102,7 @@ Ayrıca [[Special:WantedCategories|İstenen kategoriler]]'e bakınız.",
 'sp-deletedcontributions-contribs' => 'katkılar',
 
 # Special:LinkSearch
-'linksearch'       => 'Dış bağlantılar',
+'linksearch'       => 'Dış bağlantı arama',
 'linksearch-pat'   => 'Motif ara:',
 'linksearch-ns'    => 'Ad alanı:',
 'linksearch-ok'    => 'Ara',
@@ -2518,7 +2525,7 @@ Son engelleme günlüğü girdisi kaynak amacıyla aşağıda verilmiştir:',
 'badipaddress'                    => 'Geçersiz IP adresi',
 'blockipsuccesssub'               => 'IP adresi engelleme işlemi başarılı oldu',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] engellendi.
-<br />Engellemeleri gözden geçirmek için [[Special:IPBlockList|IP adresi engellenenler]] listesine bakınız.',
+<br />Engellemeleri gözden geçirmek için [[Special:BlockList|IP adresi engellenenler]] listesine bakınız.',
 'ipb-blockingself'                => 'Kendinizi engellemek üzeresiniz! Bunu yapmak istediğinizden emin misiniz?',
 'ipb-confirmhideuser'             => '"Kullanıcıyı gizle" seçiliyken bir kullanıcı engellemek üzeresiniz. Bu, kullanıcının adını tüm listeler ile günlük girişlerinde bastıracaktır. Bunu yapmak istediğinizden emin misiniz?',
 'ipb-edit-dropdown'               => 'Engelleme nedenleri düzenle',
@@ -2593,7 +2600,7 @@ Ancak, bu adres $2 aralığının parçası olarak engellenmiş, aralık engelle
 'ip_range_toolarge'               => '/$1 bloktan daha büyük aralık bloklarına izin verilmez.',
 'blockme'                         => 'Beni engelle',
 'proxyblocker'                    => 'Proxy engelleyici',
-'proxyblocker-disabled'           => 'Bu özellik engellenildi.',
+'proxyblocker-disabled'           => 'Bu işlev devre dışı bırakıldı.',
 'proxyblockreason'                => 'IP adresiniz açık bir proxy olduğu için engellendi.
 Lütfen İnternet sevis sağlayınız ile ya da teknik destek ile irtibat kurun ve bu ciddi güvenlik probleminden haberdar edin.',
 'proxyblocksuccess'               => 'Tamamlanmıştır.',
@@ -2968,10 +2975,10 @@ $1',
 
 # Media information
 'mediawarning'           => "'''Uyarı''': Bu dosya türü kötü niyetli kodlar içerebilir.
-Bunu çalıştırarak, sisteminiz tehlikeye atılabilir.",
+Bunu çalıştırmak, sisteminizi tehlikeye atabilir.",
 'imagemaxsize'           => "Resim boyutu sınırı:<br />''(dosya açıklama sayfaları için)''",
 'thumbsize'              => 'Küçük boyut:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|sayfa|sayfa}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|sayfa|sayfa}}',
 'file-info'              => 'dosya boyutu: $1, MIME tipi: $2',
 'file-info-size'         => '$1 × $2 piksel, dosya boyutu: $3, MIME tipi: $4',
 'file-info-size-pages'   => '$1 × $2 piksel, dosya boyutu: $3, MIME tipi: $4, $5 {{PLURAL:$5|sayfa|sayfa}}',
@@ -3177,11 +3184,13 @@ Diğerleri varsayılan olarak gizlenecektir.
 'exif-copyrightowner'              => 'Telif hakkı sahibi',
 'exif-usageterms'                  => 'Kullanım şartları',
 'exif-webstatement'                => 'Çevrimiçi telif hakkı bildirimi',
+'exif-licenseurl'                  => 'Telif hakkı lisansı için URL',
 'exif-morepermissionsurl'          => 'Alternatif lisans bilgileri',
 'exif-pngfilecomment'              => 'PNG dosyası yorumu',
 'exif-disclaimer'                  => 'Sorumluluk reddi',
 'exif-contentwarning'              => 'İçerik uyarısı',
 'exif-giffilecomment'              => 'GIF dosyası yorumu',
+'exif-subjectnewscode'             => 'Konu kodu',
 'exif-event'                       => 'Adı geçen olay',
 'exif-personinimage'               => 'Adı geçen kişi',
 
@@ -3374,6 +3383,7 @@ Diğerleri varsayılan olarak gizlenecektir.
 'exif-ycbcrpositioning-1' => 'Ortalanmış',
 
 'exif-dc-contributor' => 'Katkıda bulunanlar',
+'exif-dc-coverage'    => 'Medyanın konumsal ya da zamansal kapsamı',
 'exif-dc-date'        => 'Tarih(ler)',
 'exif-dc-publisher'   => 'Yayımcı',
 'exif-dc-relation'    => 'İlgili medya',
@@ -3436,7 +3446,7 @@ Giriş yapmak için bu kod gerekli değildir, ancak bu vikideki herhangi bir e-p
 Mail yazılımı iade etti:$1',
 'confirmemail_invalid'      => 'Geçersiz onay kodu. Onay kodunun son kullanma tarihi geçmiş olabilir.',
 'confirmemail_needlogin'    => 'E-posta adresinizi onaylamak için önce $1 yapmalısınız.',
-'confirmemail_success'      => "E-posta adresiniz onaylandı. Oturum açıp Viki'nin tadını çıkarabilirsiniz.",
+'confirmemail_success'      => "E-posta adresiniz doğrulandı. [[Special:UserLogin|Oturum açıp]] Viki'nin keyfini çıkarabilirsiniz.",
 'confirmemail_loggedin'     => 'E-posta adresiniz onaylandı.',
 'confirmemail_error'        => 'Onayınız bilinmeyen bir hata nedeniyle kaydedilemedi.',
 'confirmemail_subject'      => '{{SITENAME}} e-posta adres onayı.',
@@ -3578,6 +3588,12 @@ Ayrıca [[Special:EditWatchlist|standart düzenleme sayfasını]] da kullanabili
 'watchlisttools-view' => 'İlgili değişiklikleri göster',
 'watchlisttools-edit' => 'İzleme listesini gör ve düzenle',
 'watchlisttools-raw'  => 'Ham izleme listesini düzenle',
+
+# Hijri month names
+'hijri-calendar-m1'  => 'Muharrem',
+'hijri-calendar-m8'  => 'Şaban',
+'hijri-calendar-m9'  => 'Ramazan',
+'hijri-calendar-m10' => 'Şevval',
 
 # Core parser functions
 'unknown_extension_tag' => 'Bilinmeyen eklenti etiketi "$1"',

@@ -10,6 +10,7 @@
  * @author Apple
  * @author Arisa
  * @author DHN
+ * @author Kaganer
  * @author Minh Nguyen
  * @author Mxn
  * @author Neoneurone
@@ -1780,7 +1781,7 @@ Không thể kiểm tra nó về bảo mật.',
 'img-auth-nopathinfo'       => 'Thiếu PATH_INFO.
 Máy chủ của bạn không được thiết lập để truyền thông tin này.
 Có thể do nó dựa trên CGI và không hỗ trợ img_auth.
-Xem [//www.mediawiki.org/wiki/Manual:Image_Authorization hướng dẫn điều khiển truy cập hình ảnh].',
+Xem [https://www.mediawiki.org/wiki/Manual:Image_Authorization hướng dẫn điều khiển truy cập hình ảnh].',
 'img-auth-notindir'         => 'Đường dẫn yêu cầu không nằm trong thư mục cấu hình tải lên.',
 'img-auth-badtitle'         => 'Không thể tạo tựa đề hợp lệ từ “$1”.',
 'img-auth-nologinnWL'       => 'Bạn chưa đăng nhập và “$1” không nằm trong danh sách trắng.',
@@ -2510,7 +2511,7 @@ $1',
 'badipaddress'                    => 'Địa chỉ IP không hợp lệ',
 'blockipsuccesssub'               => 'Cấm thành công',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] đã bị cấm.
-<br />Xem lại những lần cấm tại [[Special:IPBlockList|danh sách cấm]].',
+<br />Xem lại những lần cấm tại [[Special:BlockList|danh sách cấm]].',
 'ipb-blockingself'                => 'Bạn sẽ tự bỏ cấm cho mình! Bạn có chắc chắn muốn làm vậy không?',
 'ipb-confirmhideuser'             => 'Bạn sẽ cấm người dùng với tùy chọn “ẩn người dùng”. Bạn có chắc chắn muốn dời tên người dùng khỏi tất cả mọi danh sách và nhật trình?',
 'ipb-edit-dropdown'               => 'Sửa đổi lý do cấm',
@@ -2853,7 +2854,7 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 'tooltip-ca-nstab-media'          => 'Xem trang phương tiện',
 'tooltip-ca-nstab-special'        => 'Đây là một trang đặc biệt, bạn không thể sửa đổi nó.',
 'tooltip-ca-nstab-project'        => 'Xem trang dự án',
-'tooltip-ca-nstab-image'          => 'Xem trang hình',
+'tooltip-ca-nstab-image'          => 'Xem trang miêu tả tập tin',
 'tooltip-ca-nstab-mediawiki'      => 'Xem thông báo hệ thống',
 'tooltip-ca-nstab-template'       => 'Xem bản mẫu',
 'tooltip-ca-nstab-help'           => 'Xem trang trợ giúp',
@@ -2991,12 +2992,12 @@ $1',
 Nếu thực thi nó máy tính của bạn có thể bị tiếm quyền.",
 'imagemaxsize'           => "Giới hạn cỡ hình:<br />''(trên trang miêu tả tập tin)''",
 'thumbsize'              => 'Cỡ hình thu nhỏ:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|trang|trang}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|trang|trang}}',
 'file-info'              => 'kích thước tập tin: $1, kiểu MIME: $2',
-'file-info-size'         => '$1×$2 điểm ảnh, kích thước tập tin: $3, kiểu MIME: $4',
-'file-info-size-pages'   => '$1×$2 điểm ảnh, kích thước tập tin: $3, kiểu MIME: $4, $5 trang',
+'file-info-size'         => '$1 × $2 điểm ảnh, kích thước tập tin: $3, kiểu MIME: $4',
+'file-info-size-pages'   => '$1 × $2 điểm ảnh, kích thước tập tin: $3, kiểu MIME: $4, $5 trang',
 'file-nohires'           => '<small>Không có độ phân giải cao hơn.</small>',
-'svg-long-desc'          => 'tập tin SVG, $1×$2 điểm ảnh trên danh nghĩa, kích thước: $3',
+'svg-long-desc'          => 'tập tin SVG, $1 × $2 điểm ảnh trên danh nghĩa, kích thước: $3',
 'show-big-image'         => 'Độ phân giải tối đa',
 'show-big-image-preview' => '<small>Kích thước của ảnh xem thử: $1.</small>',
 'show-big-image-other'   => '<small>Độ phân giải khác: $1.</small>',
@@ -3751,7 +3752,7 @@ Các hình ảnh được hiển thị ở kích thước tối đa, còn các l
 'fileduplicatesearch-legend'    => 'Tìm kiếm tập tin trùng lắp',
 'fileduplicatesearch-filename'  => 'Tên tập tin:',
 'fileduplicatesearch-submit'    => 'Tìm kiếm',
-'fileduplicatesearch-info'      => '$1×$2 điểm ảnh<br />Kích thước tập tin: $3<br />Kiểu MIME: $4',
+'fileduplicatesearch-info'      => '$1 × $2 điểm ảnh<br />Kích thước tập tin: $3<br />Kiểu MIME: $4',
 'fileduplicatesearch-result-1'  => 'Không có bản sao y hệt với tập tin “$1”.',
 'fileduplicatesearch-result-n'  => 'Có {{PLURAL:$2|1 bản sao|$2 bản sao}} y hệt với tập tin “$1”.',
 'fileduplicatesearch-noresults' => 'Không tìm thấy tập tin nào tên “$1”.',

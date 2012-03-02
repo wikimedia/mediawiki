@@ -189,7 +189,8 @@ Vu pove kontinua usa {{SITENAME}} anonimim, o vu pove riensignata kom li sami o 
 'loginsuccesstitle'          => 'Ensignato suksesosi',
 'loginsuccess'               => "'''Vu es nun ensignatat a {{SITENAME}} nomisat \"\$1\".'''",
 'mailmypassword'             => 'E-posta men pasa-vorde',
-'acct_creation_throttle_hit' => 'Vu ha ja krea $1 registres. Regretindim vu non pove krea plusu.',
+'acct_creation_throttle_hit' => 'Visitors to this wiki using your IP address have created {{PLURAL:$1|1 account|$1 accounts}} in the last day, which is the maximum allowed in this time period.
+As a result, visitors using this IP address cannot create any more accounts at the moment.',
 'accountcreated'             => 'Registre kreat',
 'accountcreatedtext'         => 'Li usere-registre por $1 ha bli krea.',
 

@@ -10,6 +10,7 @@
  * @author Erwin
  * @author Erwin85
  * @author Jens Frank
+ * @author Kaganer
  * @author Purodha
  * @author Servien
  * @author Slomox
@@ -1776,8 +1777,8 @@ De veiligheid kan niet ekontroleerd wörden.',
 'img-auth-accessdenied'     => 'Toegang eweigerd',
 'img-auth-nopathinfo'       => 'PATH_INFO ontbrik.
 Joew server is niet in-esteld um disse informasie deur te geven.
-Misschien gebruukt disse CGI, en dan wörden img_auth niet ondersteund.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization Zie aofbeeldingsauthorisasie.]',
+Misschien gebruukt t CGI, en dan wörden img_auth niet ondersteund.
+Zie https://www.mediawiki.org/wiki/Manual:Image_Authorization rechten veur aofbeeldingen veur meer informasie.',
 'img-auth-notindir'         => 't Op-evreugen pad is niet de in-estelde bestaandinlaodmap',
 'img-auth-badtitle'         => 'Kon gien geldige paginanaam maken van "$1".',
 'img-auth-nologinnWL'       => 'Je bin niet an-emeld en "$1" steet niet op de witte lieste.',
@@ -2953,7 +2954,7 @@ $1',
 'imagemaxsize'           => "Maximale aofmetingen van aofbeeldingen:<br />
 ''(veur op de beschrievingspagina)''",
 'thumbsize'              => 'Grootte van de miniatuuraofbeelding:',
-'widthheightpage'        => "$1×$2, $3 {{PLURAL:$3|pagina|pagina's}}",
+'widthheightpage'        => "$1 × $2, $3 {{PLURAL:$3|pagina|pagina's}}",
 'file-info'              => 'Bestaandsgrootte: $1, MIME-type: $2',
 'file-info-size'         => '$1 × $2 beeldpunten, bestaandsgrootte: $3, MIME-type: $4',
 'file-info-size-pages'   => "$1 × $2 beeldpunten, bestaandsgrootte: $3, MIME-type: $4, $5 {{PLURAL:$5|pagina|pagina's}}",

@@ -8,6 +8,8 @@
  * @file
  *
  * @author Ahmed-Najib-Biabani-Ibrahimkhel
+ * @author Kaganer
+ * @author Umherirrender
  */
 
 $namespaceNames = array(
@@ -714,6 +716,9 @@ $1',
 تاسې کولای شی چې په نورو مخونو کې [[Special:Search/{{PAGENAME}}|د دې مخ د سرليک پلټنه]] يا
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} د اړوندو يادښتونو پلټنه] وکړی.
 او يا [{{fullurl:{{FULLPAGENAME}}|action=edit}} همدا مخ سم کړی]</span>.',
+'noarticletext-nopermission'       => 'دم مهال په دې مخ کې څه نشته.
+تاسې کولای شی چې [[Special:Search/{{PAGENAME}}|همدا سرليک په نورو مخونو کې وپلټۍ]],
+يا هم <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} اړونده يادښتونه وپلټۍ]</span>.',
 'userpage-userdoesnotexist'        => 'د "<nowiki>$1</nowiki>" ګڼون نه دی ثبت شوی.
 لطفاً ځان ډاډه کړۍ چې آيا تاسې په رښتيا همدا مخ جوړول که سمول غواړۍ.',
 'userpage-userdoesnotexist-view'   => 'د "$1" ګڼون نه دی ثبت شوی.',
@@ -1079,10 +1084,10 @@ $1',
 'group-suppress'   => 'څارونکي',
 'group-all'        => '(ټول)',
 
-'group-user-member'       => '{{doc-group|کارن|غړی}}',
-'group-bot-member'        => '{{doc-group|روباټ|غړی}}',
-'group-sysop-member'      => '{{doc-group|پازوال|غړی}}',
-'group-bureaucrat-member' => '{{doc-group|بيوروکراټ|غړی}}',
+'group-user-member'       => 'کارن',
+'group-bot-member'        => 'روباټ',
+'group-sysop-member'      => 'پازوال',
+'group-bureaucrat-member' => 'بيوروکراټ',
 'group-suppress-member'   => '{{GENDER:$1|څارن}}',
 
 'grouppage-user'       => '{{ns:project}}:کارنان',
@@ -1461,8 +1466,8 @@ $1',
 'alphaindexline'    => '$1 نه تر $2 پورې',
 'nextpage'          => 'بل مخ ($1)',
 'prevpage'          => 'تېر مخ ($1)',
-'allpagesfrom'      => 'ښکاره دې شي هغه مخونه چې پېلېږي په:',
-'allpagesto'        => 'هغه مخونه ښکاره کول چې پای يې وي:',
+'allpagesfrom'      => 'هغه مخونه کتل چې پېلېږي په:',
+'allpagesto'        => 'هغه مخونه کتل چې پای يې وي:',
 'allarticles'       => 'ټول مخونه',
 'allinnamespace'    => 'ټول مخونه ($1 نوم-تشيال)',
 'allnotinnamespace' => 'ټولې پاڼې (د $1 په نوم-تشيال کې نشته)',
@@ -1478,7 +1483,7 @@ $1',
 'categoriespagetext'            => 'دا لاندينۍ {{PLURAL:$1|وېشنيزه|وېشنيزې}} مخونه يا رسنيزې دوتنې لري.
 دلته [[Special:UnusedCategories|ناکارېدلې وېشنيزې]] نه دي ښکاره شوي.
 [[Special:WantedCategories|غوښتلې وېشنيزې]] هم وګورۍ.',
-'categoriesfrom'                => 'هغه وېشنيزې دې ښکاره شي چې پېلېږي په:',
+'categoriesfrom'                => 'هغه وېشنيزې کتل چې پېلېږي په:',
 'special-categories-sort-count' => 'د شمېر له مخې اوډل',
 'special-categories-sort-abc'   => 'د ابېڅو له مخې اوډل',
 
@@ -1495,7 +1500,7 @@ $1',
 'linksearch-line' => '$1 د $2 سره تړل شوی',
 
 # Special:ListUsers
-'listusersfrom'      => 'هغه کارنان ښکاره کړه چې نومونه يې پېلېږي په:',
+'listusersfrom'      => 'هغه کارنان کتل چې نومونه يې پېلېږي په:',
 'listusers-submit'   => 'ښکاره کول',
 'listusers-noresult' => 'هېڅ کوم کارن و نه موندل شو.',
 'listusers-blocked'  => '(بنديز لګېدلی)',
@@ -1503,7 +1508,7 @@ $1',
 # Special:ActiveUsers
 'activeusers'            => 'د فعالو کارنانو لړليک',
 'activeusers-count'      => 'په {{PLURAL:$2|تېرې|تېرو}} {{PLURAL:$3|ورځ|$3 ورځو}} کې $1 {{PLURAL:$1|سمون|سمونونه}}',
-'activeusers-from'       => 'هغه کارنان ښکاره کړه چې نومونه يې پېلېږي په:',
+'activeusers-from'       => 'هغه کارنان کتل چې نومونه يې پېلېږي په:',
 'activeusers-hidesysops' => 'پازوالان پټول',
 'activeusers-noresult'   => 'کارن و نه موندل شو.',
 
@@ -1804,7 +1809,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'badipaddress'               => 'ناسمه IP پته',
 'blockipsuccesssub'          => 'بنديز په برياليتوب سره ولګېده',
 'blockipsuccesstext'         => 'د [[Special:Contributions/$1|$1]] مخه نيول شوې.
-<br />د مخنيول شويو خلکو د کتنې لپاره، د [[Special:IPBlockList|مخنيول شويو IP لړليک]] وګورۍ.',
+<br />د مخنيول شويو خلکو د کتنې لپاره، د [[Special:BlockList|مخنيول شويو IP لړليک]] وګورۍ.',
 'ipb-edit-dropdown'          => 'د بنديز سببونه سمول',
 'ipb-unblock-addr'           => 'له $1 بنديز ليرې کول',
 'ipb-unblock'                => 'له يوه کارن-نوم يا IP پتې بنديز ليري کول',
@@ -2064,7 +2069,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 
 # Media information
 'thumbsize'            => 'د بټنوک کچه:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|مخ|مخونه}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|مخ|مخونه}}',
 'file-info-size'       => '$1 × $2 پېکسل, د دوتنې کچه: $3, MIME بڼه: $4',
 'file-nohires'         => '<small>تر دې کچې لوړې بېلن نښې نشته.</small>',
 'svg-long-desc'        => 'SVG دوتنه، نومېنلي $1 × $2 پېکسل، د دوتنې کچه: $3',

@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Kaganer
  * @author Katimawan2005
  * @author Urhixidur
  * @author Val2397
@@ -1646,7 +1647,7 @@ mu nung sanu retang bulung a sinira da).',
 'badipaddress'                => 'E matatanggap ing IP address',
 'blockipsuccesssub'           => 'Ing sabat migtagumpe ya',
 'blockipsuccesstext'          => 'Mesabat ya ing [[Special:Contributions/$1|$1]]
-<br />Lon me ing [[Special:IPBlockList|IP block list]] ba mong akit detang mesabat.',
+<br />Lon me ing [[Special:BlockList|IP block list]] ba mong akit detang mesabat.',
 'ipb-edit-dropdown'           => 'Sangkan ning pamaniabat king pamag-edit',
 'ipb-unblock-addr'            => 'Ilako ya pangasabat ing $1',
 'ipb-unblock'                 => 'Ilako ya pangasabat ing lagyungtalagamit (username) o IP address',
@@ -1973,7 +1974,7 @@ $1',
 'mediawarning'    => "'''Kapiadian''': Mapaliaring atin yang code a makarok (malicious) ing simpan (file) a ini, at nung paganan me, maliari yang masira ing kekang system.",
 'imagemaxsize'    => 'E la dapat migit king bilang a iti deng larawan kareng bulung pamilarawan simpan (file description pages):',
 'thumbsize'       => 'Kasindagul kuku (thumbnail size):',
-'widthheightpage' => '$1×$2, $3 bulung',
+'widthheightpage' => '$1 × $2, $3 bulung',
 'file-info'       => 'dagul ning simpan [file]: $1, MIME type: $2',
 'file-info-size'  => '$1 × $2 pixel, sukad ning simpan: $3, MIME type: $4',
 'file-nohires'    => '<small>Ala nang mas malino pa.</small>',

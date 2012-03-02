@@ -9,6 +9,7 @@
  *
  * @author *Surak*
  * @author ChrisiPK
+ * @author Geitost
  * @author Imre
  * @author Jimmy Collins <jimmy.collins@web.de>
  * @author Kghbln
@@ -40,7 +41,7 @@ $1',
 
 'badaccess-group0' => 'Sie haben nicht die erforderliche Berechtigung für diese Aktion.',
 
-'youhavenewmessages'      => 'Sie haben $1 auf Ihrer Diskussionsseite ($2).',
+'youhavenewmessages'      => 'Sie haben $1 ($2).',
 'youhavenewmessagesmulti' => 'Sie haben neue Nachrichten: $1',
 
 # General errors
@@ -396,7 +397,7 @@ Wenn das Problem weiter besteht, informieren Sie einen [[Special:ListUsers/sysop
 # img_auth script messages
 'img-auth-nopathinfo' => 'PATH_INFO fehlt.
 Ihr Server ist nicht dafür eingerichtet, diese Information weiterzugeben.
-Es könnte CGI-basiert sein und unterstützt img_auth nicht.
+Sie könnte CGI-gestützt sein und kann daher img_auth nicht ermöglichen.
 Siehe http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-nologinnWL' => 'Sie sind nicht angemeldet und „$1“ ist nicht in der weißen Liste.',
 'img-auth-isdir'      => 'Sie versuchen, auf ein Verzeichnis „$1“ zuzugreifen.
@@ -602,7 +603,8 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'tooltip-n-mainpage'             => 'Besuchen Sie die Hauptseite',
 'tooltip-n-mainpage-description' => 'Besuchen Sie die Hauptseite',
 'tooltip-n-portal'               => 'Über das Projekt, was Sie tun können, wo was zu finden ist',
-'tooltip-watch'                  => 'Fügt diese Seite Ihrer Beobachtungsliste hinzu',
+'tooltip-watch'                  => 'Diese Seite zu Ihrer Beobachtungsliste hinzufügen',
+'tooltip-summary'                => 'Geben Sie eine kurze Zusammenfassung ein.',
 
 # Metadata
 'notacceptable' => 'Der Wiki-Server kann die Daten nicht für Ihr Ausgabegerät aufbereiten.',

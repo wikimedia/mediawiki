@@ -9,6 +9,7 @@
  *
  * @author Consta
  * @author Crazymadlover
+ * @author Kaganer
  * @author Omnipaedista
  * @author Reedy
  * @author Sinopeus
@@ -1286,7 +1287,7 @@ $messages = array(
 'nextdiff'     => 'Άλλον διαφορά →',
 
 # Media information
-'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|σελίδα|σελίδας}}',
+'widthheightpage' => '$1 × $2, $3 {{PLURAL:$3|σελίδα|σελίδας}}',
 'file-info-size'  => '$1 × $2 εικονοστοιχεία, μέγεθος αρχείου: $3, MIME τύπον: $4',
 'file-nohires'    => "<small>'Κ εχ κι άλλο ψηλόν ανάλυσην.</small>",
 'svg-long-desc'   => "Αρχείον SVG, κατ' όνομα $1 × $2 εικονοστοιχεία, μέγεθος αρχεί: $3",

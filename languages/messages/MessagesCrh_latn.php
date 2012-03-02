@@ -1628,7 +1628,7 @@ Bu saifeniñ qorçalav seviyesini deñiştirip olasıñız, amma kaskadlı qorç
 'badipaddress'             => 'Yañlış IP adresi',
 'blockipsuccesssub'        => 'Blok etme muvafaqiyetnen yapıldı',
 'blockipsuccesstext'       => '[[Special:Contributions/$1|$1]] blok etildi.<br />
-Blok etmelerni közden keçirmek içün [[Special:IPBlockList|IP adresi blok etilgenler]] cedveline baqıñız.',
+Blok etmelerni közden keçirmek içün [[Special:BlockList|IP adresi blok etilgenler]] cedveline baqıñız.',
 'unblockip'                => 'Qullanıcınıñ blok etmesini çıqar',
 'ipusubmit'                => 'Bu blok etmeni çıqar',
 'ipblocklist'              => 'Blok etilgen qullanıcılar ve IP adresleri',

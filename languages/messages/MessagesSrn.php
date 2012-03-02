@@ -9,6 +9,7 @@
  *
  * @author Adfokati
  * @author Jordi
+ * @author Kaganer
  * @author Ooswesthoesbes
  * @author Stretsh
  * @author Urhixidur
@@ -1171,7 +1172,7 @@ Yu ka luku a source.',
 'nextdiff'     => "A kenki d'e kon →",
 
 # Media information
-'widthheightpage' => '$1×$2, $3 peprewoysi',
+'widthheightpage' => '$1 × $2, $3 peprewoysi',
 'file-info-size'  => '$1 × $2 pixel, file marki: $3, MIME-type: $4',
 'file-nohires'    => '<small>Moro srapu no de.</small>',
 'svg-long-desc'   => 'SVG file, marki $1 × $2 pixel, bigi: $3',

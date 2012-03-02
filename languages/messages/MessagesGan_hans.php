@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Kaganer
  * @author Liangent
  * @author Lokal Profil
  * @author PhiLiP
@@ -1527,7 +1528,7 @@ $1',
 'ipbhidename'                 => '封锁日志、活跃封锁列表同用户列表里头弆到用户名',
 'badipaddress'                => 'IP位置伓对。',
 'blockipsuccesssub'           => '封锁正嘞',
-'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]]封卟嘞。 <br />望吖[[Special:IPBlockList|拖封IP列表]]来审过封锁。',
+'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]]封卟嘞。 <br />望吖[[Special:BlockList|拖封IP列表]]来审过封锁。',
 'ipb-edit-dropdown'           => '编写封锁原因',
 'ipb-unblock-addr'            => '解封$1',
 'ipb-unblock'                 => '解封用户名或IP地址',
@@ -1838,7 +1839,7 @@ $1',
 'mediawarning'    => "'''警告''': 话伓定个只档案含到恶意代码，执行佢话伓定会损坏倷𠮶系统。",
 'imagemaxsize'    => '档案解释页𠮶图像大细限制到:',
 'thumbsize'       => '缩略图大细:',
-'widthheightpage' => '$1×$2,$3页',
+'widthheightpage' => '$1 × $2,$3页',
 'file-info'       => '档案大细: $1, MIME 类型: $2',
 'file-info-size'  => '$1 × $2 像素，档案大细：$3 ，MIME类型：$4',
 'file-nohires'    => '<small>冇更高分辨率𠮶图像。</small>',

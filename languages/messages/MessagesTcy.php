@@ -538,7 +538,8 @@ $messages = array(
 'revdelete-offender'         => 'ಬದಲಾವಣೆದ ಸಂಪಾದಕೆ',
 
 # History merging
-'mergehistory-from' => 'ಮೂಲ ಪುಟ',
+'mergehistory-from'   => 'ಮೂಲ ಪುಟ',
+'mergehistory-reason' => 'ಕಾರಣ:',
 
 # Merge log
 'revertmerge' => 'ಅನ್-ಮರ್ಜ್ ಮಲ್ಪುಲೆ',
@@ -561,6 +562,7 @@ $messages = array(
 'prevn'                            => 'ದುಂಬುದ {{PLURAL:$1|$1}}',
 'nextn'                            => 'ಬೊಕ್ಕದ {{PLURAL:$1|$1}}',
 'viewprevnext'                     => 'ತೂಲೆ ($1 {{int:pipe-separator}} $2) ($3)',
+'searchmenu-legend'                => 'ನಾಡಾಟದ ಆಯ್ಕೆಲು',
 'searchhelp-url'                   => 'Help:ಪರಿವಿಡಿ',
 'searchprofile-articles'           => 'ಲೇಖನ ಪುಟೊ',
 'searchprofile-images'             => 'ಬಹುಮಾಧ್ಯಮ',
@@ -595,6 +597,8 @@ $messages = array(
 'prefs-resetpass'           => 'ಪ್ರವೇಶಪದೊನ್ ಬದಲಾವಣೆ ಮಲ್ಪುಲೆ',
 'saveprefs'                 => 'ಒರಿಪಾಲೆ',
 'rows'                      => 'ಸಾಲ್‘ಲು',
+'searchresultshead'         => ' 
+ನಾಡ್’ಲೆ',
 'localtime'                 => 'ಸ್ಥಳೀಯ ಸಮಯ:',
 'timezoneregion-africa'     => 'ಆಫ್ರಿಕ',
 'timezoneregion-america'    => 'ಅಮೇರಿಕ',
@@ -617,6 +621,7 @@ $messages = array(
 'prefs-signature'           => 'ಸಹಿ',
 
 # Groups
+'group'       => 'ಗುಂಪುಲು:',
 'group-user'  => 'ಬಳಕೆದಾರೆರ್',
 'group-sysop' => 'ನಿರ್ವಾಹಕೆರ್',
 'group-all'   => 'ಮಾತಾ',
@@ -624,7 +629,10 @@ $messages = array(
 'grouppage-sysop' => '{{ns:project}}:ನಿರ್ವಾಹಕೆರ್',
 
 # Rights
-'right-delete' => 'ಪುಟೊಕುಲೆನ್ ಮಾಜಾಲೆ',
+'right-read'     => 'ಪುಟಕ್‍ಲೆನ್ ಓದುಲೆ',
+'right-edit'     => 'ಪುಟೊನ್ ಸಂಪಾದನೆ ಮಲ್ಪುಲೆ',
+'right-delete'   => 'ಪುಟೊಕುಲೆನ್ ಮಾಜಾಲೆ',
+'right-undelete' => 'ಪುಟೊನ್ ಮಾಜಾವಡೆ',
 
 # User rights log
 'rightslog' => 'ಸದಸ್ಯೆರ್ನ ಹಕ್ಕು ದಾಖಲೆ',

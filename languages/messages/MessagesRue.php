@@ -9,6 +9,7 @@
  *
  * @author Gazeb
  * @author Gleb Borisov
+ * @author Kaganer
  * @author Nemo bis
  * @author Reedy
  * @author Tkalyn
@@ -1502,9 +1503,9 @@ $1',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Приступ одопертый',
-'img-auth-nopathinfo'       => 'Ваш сервер не є наставеный так, жебы давав тоту інформацію.
+'img-auth-nopathinfo'       => 'Ваш сервер не є наштелёваный так, жебы давав тоту інформацію.
 Може фунґує помочов CGI і img_auth на нім не може фунґовати.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization Посмотьте image authorization.]',
+Посмотьте https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'         => 'Пожадована стежка не є в конфіґурованім адресарю з начітаныма файлами.',
 'img-auth-badtitle'         => 'З „$1“  ся не дасть створити платна назва сторінкы.',
 'img-auth-nologinnWL'       => 'Не сьте приголошеный і „$1“ не є на білім списку.',
@@ -2224,7 +2225,7 @@ $1',
 'badipaddress'                    => 'Неправилна IP адреса',
 'blockipsuccesssub'               => 'Блокованя проведено',
 'blockipsuccesstext'              => 'Хоснователь „[[Special:Contributions/$1|$1]]“ є блокованый.<br />
-Можете собі посмотрити [[Special:IPBlockList|список блокованых хоснователїв]].',
+Можете собі посмотрити [[Special:BlockList|список блокованых хоснователїв]].',
 'ipb-blockingself'                => 'Зберате ся заблоковати {{gender:|сам|сама|самы}} себе! Сьте собі {{gender:|певный|певна|певны}}, же тото хочете зробити?',
 'ipb-confirmhideuser'             => 'Рыхтуєте ся заблоковати хоснователя зо запнутов вольбов "сховати імя хоснователя". То запрічінить же імя хоснователя счезне зо вшыткых списків і протоколёвачіх записів.  Сьте собі {{gender:|певный|певна|певны}}, же хочете тото зробити?',
 'ipb-edit-dropdown'               => 'Едітовати причіны блоковань',
@@ -2659,7 +2660,7 @@ $1',
 'imagemaxsize'           => "Максімалный розмір образку:<br />
 ''(на сторінцї з пописом файлу)''",
 'thumbsize'              => 'Великость нагляду:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|сторінка|сторінкы|сторінок}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|сторінка|сторінкы|сторінок}}',
 'file-info'              => 'розмір файлу: $1, MIME-тіп: $2',
 'file-info-size'         => '$1 × $2 пікселів, розмір файлу: $3, MIME-тип: $4',
 'file-info-size-pages'   => '$1 × $2 пікселів, великость файлу: $3, MIME тіп: $4, $5 {{PLURAL:$5|сторінка|сторінкы|сторінок}}',

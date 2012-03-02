@@ -12,6 +12,7 @@
  * @author ChrisPtDe
  * @author Fryed-peach
  * @author Jfblanc
+ * @author Kaganer
  * @author Spacebirdy
  * @author Горан Анђелковић
  * @author לערי ריינהארט
@@ -305,7 +306,7 @@ $messages = array(
 'tog-editsection'             => 'Modificar una seccion via los ligams [modificar]',
 'tog-editsectiononrightclick' => 'Modificar una seccion en fasent un clic drech sus son títol (JavaScript)',
 'tog-showtoc'                 => "Afichar l'ensenhador (per las paginas de mai de 3 seccions)",
-'tog-rememberpassword'        => 'Se remembrar de mon senhal sus aqueste ordenador (al maximum $1 {{PLURAL:$1|jorn|jorns}})',
+'tog-rememberpassword'        => 'Se remembrar de mon senhal sus aqueste ordinator (al mai $1 {{PLURAL:$1|jorn|jorns}})',
 'tog-watchcreations'          => 'Apondre las paginas que creï a ma lista de seguiment',
 'tog-watchdefault'            => 'Apondre las paginas que modifiqui a ma lista de seguiment',
 'tog-watchmoves'              => 'Apondre las paginas que tòrni nomenar a ma lista de seguiment',
@@ -321,7 +322,7 @@ $messages = array(
 'tog-shownumberswatching'     => "Afichar lo nombre d'utilizaires que seguisson aquesta pagina",
 'tog-oldsig'                  => 'Apercebut de la signatura existenta :',
 'tog-fancysig'                => 'Tractar la signatura coma de wikitèxte (sens ligam automatic)',
-'tog-externaleditor'          => 'Utilizar un editor extèrne per defaut (pels utilizaires avançats, necessita una configuracion especiala sus vòstre ordenador)',
+'tog-externaleditor'          => 'Utilizar un editor extèrne per defaut (pels utilizaires avançats, necessita una configuracion especiala sus vòstre ordinator)',
 'tog-externaldiff'            => 'Utilizar un comparator extèrne per defaut (pels utilizaires avançats, necessita una configuracion especiala sus vòstre ordenador)',
 'tog-showjumplinks'           => 'Activar los ligams « navigacion » e « recèrca » en naut de pagina (aparéncias Myskin e autres)',
 'tog-uselivepreview'          => 'Utilizar l’apercebut rapid (JavaScript) (experimental)',
@@ -894,7 +895,7 @@ o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 
 'userpage-userdoesnotexist-view'   => "Lo compte d'utilizaire « $1 » es pas enregistrat.",
 'blocked-notice-logextract'        => 'Aqueste utilizaire es actualament blocat.
 La darrièra entrada del jornal dels blocatges es indicada çaijós a títol d’informacion :',
-'clearyourcache'                   => "'''Nòta :''' Aprèp aver publicat la pagina, vos cal forçar son recargament complet tot ignorant lo contengut actual de l'amagatal de vòstre navigador per veire los cambiaments : '''Mozilla / Firefox / Konqueror / Safari :''' mantenètz la tòca ''Majuscula'' (''Shift'') en clicant lo boton ''Actualizar'' (''Reload,'') o quichatz ''Maj-Ctrl-R'' (''Maj-Cmd-R'' sus Apple Mac) ; '''Internet Explorer / Opera :''' mantenètz la tòca ''Ctrl'' en clicant lo boton ''Actualizar'' o quichatz ''Ctrl-F5''.",
+'clearyourcache'                   => "'''Nòta :''' Aprèp aver publicat la pagina, vos cal forçar son recargament complet tot ignorant lo contengut actual de l'amagatal de vòstre navigador per veire los cambiaments : '''Mozilla / Firefox / Konqueror / Safari :''' mantenètz la tòca ''Majuscula'' (''Shift'') en clicant lo boton ''Actualizar'' (''Reload,'') o quichatz sus ''Maj-Ctrl-R'' (''Maj-Cmd-R'' sus Apple) ; '''Internet Explorer / Opera :''' mantenètz la tòca ''Ctrl'' en clicant lo boton ''Actualizar'' o quichatz sus ''Ctrl-F5''.",
 'usercssyoucanpreview'             => "'''Astúcia :''' Utilizatz lo boton 'Previsualizacion' per testar vòstre fuèlh css/js novèl abans de l'enregistrar.",
 'userjsyoucanpreview'              => "'''Astúcia :''' Utilizatz lo boton 'Previsualizacion' per testar vòstre fuèlh css/js novèl abans de l'enregistrar.",
 'usercsspreview'                   => "'''Remembratz-vos que sètz a previsualizar vòstre pròpri fuèlh CSS !'''
@@ -1391,7 +1392,7 @@ Tanben podètz causir de permetre a d’autres de vos contactar per vòstra pagi
 'userrights-no-interwiki'      => "Sètz pas abilitat per modificar los dreches dels utilizaires sus d'autres wikis.",
 'userrights-nodatabase'        => 'La banca de donadas « $1 » existís pas o es pas en local.',
 'userrights-nologin'           => "Vos cal [[Special:UserLogin|vos connectar]] amb un compte d'administrator per balhar los dreches d'utilizaire.",
-'userrights-notallowed'        => "Vòstre compte es pas abilitat per modificar de dreches d'utilizaire.",
+'userrights-notallowed'        => "Al vòstre compte li es pas permés de modificar de dreches d'utilizaire.",
 'userrights-changeable-col'    => 'Los gropes que podètz cambiar',
 'userrights-unchangeable-col'  => 'Los gropes que podètz pas cambiar',
 
@@ -1407,7 +1408,7 @@ Tanben podètz causir de permetre a d’autres de vos contactar per vòstra pagi
 
 'group-user-member'          => 'Utilizaire',
 'group-autoconfirmed-member' => 'Utilizaire enregistrat',
-'group-bot-member'           => 'Bòt',
+'group-bot-member'           => 'Robòt',
 'group-sysop-member'         => 'Administrator',
 'group-bureaucrat-member'    => 'Burocrata',
 'group-suppress-member'      => 'Supervisor',
@@ -1689,7 +1690,7 @@ PICT # misc.
 'upload-success-subj'         => 'Importacion capitada',
 'upload-success-msg'          => 'Çò mandat es disponible aicí : [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Problèma de mandadís',
-'upload-failure-msg'          => 'I a agut un problèma amb vòstre mandadís :$1',
+'upload-failure-msg'          => 'I a agut un problèma amb vòstre mandadís [$2]: $1',
 'upload-warning-subj'         => 'Avertiment al moment del telecargament',
 
 'upload-proto-error'        => 'Protocòl incorrècte',
@@ -1709,7 +1710,7 @@ Se lo problèma persistís, contactatz un [[Special:ListUsers/sysop|administrato
 'img-auth-nopathinfo'   => 'PATH_INFO mancant.
 Vòstre servidor es pas parametrat per passar aquesta informacion.
 Benlèu que fonciona en CGI e supòrta pas img_atuh.
-Consultatz http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+Consultatz https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'     => 'Lo camin demandat es pas lo repertòri de telecargament configurat.',
 'img-auth-badtitle'     => 'Impossible de construire un títol valid a partir de « $1 ».',
 'img-auth-nologinnWL'   => 'Sètz pas connectat e « $1 » es pas dins la lista blanca.',
@@ -2418,7 +2419,7 @@ Donatz çaijós un motiu precís (per exemple en citant las paginas que son esta
 'badipaddress'                    => "L'adreça IP es incorrècta",
 'blockipsuccesssub'               => 'Blocatge capitat',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] es estat blocat.<br />
-Podètz consultar la [[Special:IPBlockList|lista dels comptes e de las adreças IP blocats]].',
+Podètz consultar la [[Special:BlockList|lista dels comptes e de las adreças IP blocats]].',
 'ipb-edit-dropdown'               => 'Modificar los motius de blocatge per defaut',
 'ipb-unblock-addr'                => 'Desblocar $1',
 'ipb-unblock'                     => "Desblocar un compte d'utilizaire o una adreça IP",
@@ -2848,7 +2849,7 @@ $1",
 Se l'executatz, vòstre sistèma pòt èsser compromés.",
 'imagemaxsize'         => "Format maximal dels imatges :<br />''(per las paginas de descripcion d’imatges)''",
 'thumbsize'            => 'Talha de la miniatura :',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pagina|paginas}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|pagina|paginas}}',
 'file-info'            => 'Talha del fichièr: $1, tipe MIME: $2',
 'file-info-size'       => '$1 × $2 pixèl, talha del fichièr: $3, tipe MIME: $4',
 'file-nohires'         => '<small>Pas de resolucion mai nauta disponibla.</small>',

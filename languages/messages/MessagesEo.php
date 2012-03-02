@@ -14,6 +14,7 @@
  * @author Castelobranco
  * @author Iketsi
  * @author Jens Liebenau
+ * @author Kaganer
  * @author Lucas
  * @author LyzTyphone
  * @author Malafaya
@@ -22,6 +23,7 @@
  * @author Mihxil
  * @author MinuteElectron
  * @author Omnipaedista
+ * @author Pedroca cerebral
  * @author Petrus Adamus
  * @author Smeira
  * @author Tlustulimu
@@ -592,7 +594,7 @@ $1',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Paĝo',
-'nstab-user'      => 'Paĝo de uzanto',
+'nstab-user'      => 'Uzantopaĝo',
 'nstab-media'     => 'Media paĝo',
 'nstab-special'   => 'Speciala paĝo',
 'nstab-project'   => 'Projektpaĝo',
@@ -1791,7 +1793,7 @@ Se la problemo kontinuas, kontaku [[Special:ListUsers/sysop|sisteman administran
 'img-auth-nopathinfo'       => 'Mankas PATH_INFO. (Informo pri dosiervojo.)
 Via servilo ne estas konfigurita por sendi ĉi tiun informon.
 Eble ĝi estas CGI-bazita kaj ne subtenas img_auth.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization Vidu permesigadon de bildojn.] (angle)',
+[https://www.mediawiki.org/wiki/Manual:Image_Authorization Vidu permesigadon de bildojn.] (angle)',
 'img-auth-notindir'         => 'Petita vojo ne estas en la konfigurita alŝuta dosierujo.',
 'img-auth-badtitle'         => 'Ne povas konstrui validan titolon de "$1".',
 'img-auth-nologinnWL'       => 'Vi ne estas ensalutita kaj "$1" ne estas en la blankalisto.',
@@ -2514,7 +2516,7 @@ Jen la lasta ero de la forbara protokolo:',
 'badipaddress'                    => 'Neniu uzanto, aŭ la IP-adreso estas misformita.',
 'blockipsuccesssub'               => 'Oni sukcese forbaris la adreson/nomon.',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] estas forbarita. <br />
-Vidu la [[Special:IPBlockList|liston de IP-forbaroj]] por kontroli.',
+Vidu la [[Special:BlockList|liston de IP-forbaroj]] por kontroli.',
 'ipb-blockingself'                => 'Vi preskaŭ forbaros vin mem! Ĉu vi certas ke vi volas fari ĉi tiel?',
 'ipb-confirmhideuser'             => 'Vi preskaŭ forbaras uzanto kun "kaŝi uzanton" ŝalta. Ĉi tiu kaŝi la nomon de uzanto en ĉiuj listoj ka protokoloj. Ĉu vi certas ke vi volas fari ĉi tiel?',
 'ipb-edit-dropdown'               => 'Redakti kialojn por forbaro.',
@@ -2966,7 +2968,7 @@ $1',
 'mediawarning'           => "'''Atenton!''': Ĉi tiu dosiero eble enhavas malican kodadon, per ĝia ruligo via sistemo povus endanĝeriĝi.",
 'imagemaxsize'           => "Limo por bildoj:<br />''(por dosieraj priskribo-paĝoj)''",
 'thumbsize'              => 'Grandeco de bildetoj:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|paĝo|paĝoj}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|paĝo|paĝoj}}',
 'file-info'              => 'grando de dosiero: $1, MIME-tipo: $2',
 'file-info-size'         => '$1 × $2 rastrumeroj, dosiera grandeco: $3, MIME-tipo: $4',
 'file-info-size-pages'   => '$1 × $2 rastrumeroj, dosiera grandeco: $3, MIME-tipo: $4, $5 {{PLURAL:$5|paĝo|paĝoj}}',

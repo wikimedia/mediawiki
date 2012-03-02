@@ -10,6 +10,7 @@
  * @author An13sa
  * @author Bengoa
  * @author Helix84
+ * @author Kaganer
  * @author Kaustubh
  * @author Kobazulo
  * @author Malafaya
@@ -251,6 +252,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'jarr.',
 'index-category'                 => 'Indexatutako orrialdeak',
 'noindex-category'               => 'Indexatugabeko orrialdeak',
+'broken-file-category'           => 'Fitxategiren baterako lotura hautsia duten orriak',
 
 'about'         => 'Honi buruz',
 'article'       => 'Artikulua',
@@ -327,7 +329,7 @@ $messages = array(
 'postcomment'       => 'Atal berria',
 'articlepage'       => 'Artikulua ikusi',
 'talk'              => 'Eztabaida',
-'views'             => 'Bistaratzeak',
+'views'             => 'Ikustaldiak',
 'toolbox'           => 'Tresnak',
 'userpage'          => 'Lankide orrialdea ikusi',
 'projectpage'       => 'Proiektuaren orrialdea ikusi',
@@ -1195,6 +1197,7 @@ $1 {{PLURAL:$1|karakteretik|karakteretik}} behera izan behar ditu.',
 'email'                         => 'E-posta',
 'prefs-help-realname'           => '* Benetako izena (aukerakoa): zehaztea erabakiz gero, zure lanarentzako atribuzio bezala balioko du.',
 'prefs-help-email'              => 'E-posta helbidea aukerakoa da, baina zure pasahitza ahaztekotan berriro zure e-postara bidaltzeko aukera ematen dizu.',
+'prefs-help-email-others'       => 'Besteak e-mail bidez zurekin harremanetan jartzea ahalbidetu dezakezu, zure lankide- edo eztabaida-orrietako loturaren bidez. Beste lankideak zurekin harremanetan jartzerakoan ez da ikusiko zure e-mail helbidea.',
 'prefs-help-email-required'     => 'E-mail helbidea derrigorrezkoa da.',
 'prefs-info'                    => 'Oinarrizko informazioa',
 'prefs-i18n'                    => 'Nazioartekotasuna',
@@ -1536,7 +1539,7 @@ $1',
 'img-auth-nopathinfo'   => 'PATH_INFO falta da.
 Zure zerbitzaria ez dago informazio hau pasatzeko konfiguratuta.
 CGI-oinarriduna izan daiteke, img_auth onartzen ez duena.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization Ikusi irudi-baimenak.]',
+[https://www.mediawiki.org/wiki/Manual:Image_Authorization Ikusi irudi-baimenak.]',
 'img-auth-notindir'     => 'Eskatutako bidea ez dago kofiguratutako igoera-direktorioan.',
 'img-auth-badtitle'     => 'Ezin izan da baleko izenbururik eraiki "$1" izenetik abiatuta',
 'img-auth-nologinnWL'   => 'Ez duzu saioa hasi eta "$1" ez dago zerrenda zurian.',
@@ -2227,7 +2230,7 @@ Blokeo erregistroa azken sarrera ematen da azpian erreferentziarako:',
 'badipaddress'                    => 'Baliogabeko IP helbidea',
 'blockipsuccesssub'               => 'Blokeoa burutu da',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] erabiltzaileari blokeoa ezarri zaio.<br />
-Ikus [[Special:IPBlockList|IP blokeoen zerrenda]] blokeoak aztertzeko.',
+Ikus [[Special:BlockList|IP blokeoen zerrenda]] blokeoak aztertzeko.',
 'ipb-edit-dropdown'               => 'Blokeatzeko arrazoiak aldatu',
 'ipb-unblock-addr'                => '$1 lankide edo IP helbideari blokeoa baliogabetu',
 'ipb-unblock'                     => 'Erabiltzaile izen edo IP helbide bati blokeoa kendu',
@@ -2589,7 +2592,7 @@ Baliteke zerrenda beltzean dagoen kanpo lotura batek sortzea arazo hori.',
 
 # Info page
 'pageinfo-header-edits' => 'Aldaketak',
-'pageinfo-header-views' => 'Bistaratzeak',
+'pageinfo-header-views' => 'Ikustaldiak',
 'pageinfo-subjectpage'  => 'Orrialdea',
 'pageinfo-talkpage'     => 'Eztabaida-orria',
 'pageinfo-edits'        => 'Aldaketa kopurua',
@@ -2641,7 +2644,7 @@ $1',
 Zure sisteman exekutatzea arriskutsua izan liteke.",
 'imagemaxsize'           => "Irudiaren tamainaren muga:<br />''(fitxategi deskribapen-orrietarako)''",
 'thumbsize'              => 'Irudi txikiaren tamaina:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|orri|orri}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|orri|orri}}',
 'file-info'              => 'fitxategiaren tamaina: $1, MIME mota: $2',
 'file-info-size'         => '$1 × $2 pixel, fitxategiaren tamaina: $3, MIME mota: $4',
 'file-nohires'           => '<small>Ez dago bereizmen handiagorik.</small>',

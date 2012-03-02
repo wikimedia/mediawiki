@@ -19,6 +19,7 @@
  * @author Habjchen
  * @author Hannibal
  * @author Jon Harald Søby
+ * @author Kaganer
  * @author LPfi
  * @author Lejonel
  * @author Leo Johannes
@@ -38,6 +39,7 @@
  * @author Sannab
  * @author Sertion
  * @author Skalman
+ * @author Stefan2
  * @author StefanB
  * @author Steinninn
  * @author Str4nd
@@ -1251,7 +1253,7 @@ Se till att sidhistorikens kontinuitet behålls när du sammanfogar historik.',
 'showhideselectedversions' => 'Visa/dölj valda versioner',
 'editundo'                 => 'gör ogjord',
 'diff-multi'               => '({{PLURAL:$1|En mellanliggande version|$1 mellanliggande versioner}} av {{PLURAL:$2|en användare|$2 användare}} visas inte)',
-'diff-multi-manyusers'     => '({{PLURAL:$1|En mellanliggande version|$1 mellanliggande versioner}} av mer än $2 {{PLURAL:$2|en användare|$2 användare}} visas inte)',
+'diff-multi-manyusers'     => '({{PLURAL:$1|En mellanliggande version|$1 mellanliggande versioner}} av mer än $2 användare visas inte)',
 
 # Search results
 'searchresults'                    => 'Sökresultat',
@@ -1806,8 +1808,8 @@ Den kan inte säkerhetskontrolleras ordentligt.',
 'img-auth-accessdenied'     => 'Åtkomst nekad',
 'img-auth-nopathinfo'       => 'PATH_INFO saknas.
 Din server är inte inställd för att ge denna information.
-Den kan vara CGI-baserad och stöttar inte img_auth.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization Se bildbehörighet.]',
+Den kan vara CGI-baserad och stöder inte img_auth.
+[https://www.mediawiki.org/wiki/Manual:Image_Authorization Se bildbehörighet.]',
 'img-auth-notindir'         => 'Den önskade sökvägen finns inte i den inställda uppladdningskatalogen.',
 'img-auth-badtitle'         => 'Kan inte skapa en giltig titel från "$1"',
 'img-auth-nologinnWL'       => 'Du är inte inloggad och "$1" finns inte i vitlistan.',
@@ -2531,7 +2533,7 @@ Ange orsak nedan (exempelvis genom att nämna sidor som blivit vandaliserade).',
 'badipaddress'                    => 'Du har inte skrivit IP-adressen korrekt.',
 'blockipsuccesssub'               => 'Blockeringen är utförd',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] har blockerats.
-<br />För att se alla aktuella blockeringar, gå till [[Special:IPBlockList|listan över blockeringar]].',
+<br />För att se alla aktuella blockeringar, gå till [[Special:BlockList|listan över blockeringar]].',
 'ipb-blockingself'                => 'Du håller på att blockera dig själv! Är du säker på att du vill göra det?',
 'ipb-confirmhideuser'             => 'Du är på väg att blockera en användare med "göm användare" aktiverat. Detta kommer upphäva användarens namn i alla listor och loggar. Är du säker på att du vill göra det?',
 'ipb-edit-dropdown'               => 'Redigera blockeringsanledningar',
@@ -3011,7 +3013,7 @@ $1',
 Om du kör den kan din dator skadas.",
 'imagemaxsize'           => "Begränsa bilders storlek:<br />''(för filbeskrivningssidor)''",
 'thumbsize'              => 'Storlek på minibild:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|sida|sidor}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|sida|sidor}}',
 'file-info'              => 'filstorlek: $1, MIME-typ: $2',
 'file-info-size'         => '$1 × $2 pixlar, filstorlek: $3, MIME-typ: $4',
 'file-info-size-pages'   => '$1 × $2 pixlar, filstorlek: $3, MIME-typ: $4, $5 {{PLURAL:$5|sida|sidor}}',

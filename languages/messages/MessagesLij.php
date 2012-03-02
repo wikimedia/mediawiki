@@ -1036,7 +1036,7 @@ $1',
 'badipaddress'                => 'Indirisso IP non valido',
 'blockipsuccesssub'           => 'Affermaçion arriescïa',
 'blockipsuccesstext'          => "[[Special:Contributions/$1|$1]] o l'è stæto affermoö.
-<br />Veddi [[Special:IPBlockList|Lista de i indirissi IP affermæ]] te cangia e affermaçioin.",
+<br />Veddi [[Special:BlockList|Lista de i indirissi IP affermæ]] te cangia e affermaçioin.",
 'ipblocklist'                 => 'Utenti blocæ',
 'anononlyblock'               => 'Non ti tè registroö. Non ti peu fanni de i cangiamenti! (Registräse o non vegne ninte!)',
 'emailblock'                  => 'posta elettronega affermaä',

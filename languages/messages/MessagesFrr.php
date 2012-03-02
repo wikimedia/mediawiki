@@ -994,7 +994,7 @@ Stal sääker, dåt jü färsjoonshistoori foon en sid histoorisch koräkt as.',
 'group-bureaucrat'    => 'Bürokraate',
 'group-suppress'      => 'Oversighter',
 
-'group-user-member'          => 'brüker',
+'group-user-member'          => '{{GENDER:$1|brüker}}',
 'group-autoconfirmed-member' => 'Registriirde brükere',
 'group-bot-member'           => 'bot',
 'group-sysop-member'         => 'administraator',
@@ -1439,7 +1439,6 @@ Deeraw föliende sidelinke önj dåtseelwi ra definiire ütnååme, önj di kont
 'metadata-expand'   => 'Ütbriidede detaile wise',
 'metadata-collapse' => 'Ütbriidede detaile fersteege',
 'metadata-fields'   => 'Da füliende fälje foon da EXIF-metadååte, da önj dideere MediaWiki-systeemtäkst önjjääwen san, wårde aw bilbeschriwingsside ma inklapede metadååtetabäle wist. Widere wårde standardmääsi ai wised.
-
 * make
 * model
 * datetimeoriginal

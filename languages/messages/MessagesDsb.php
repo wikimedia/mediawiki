@@ -10,6 +10,7 @@
  * @author Derbeth
  * @author Dunak
  * @author Dundak
+ * @author Kaganer
  * @author Michawiki
  * @author Murjarik
  * @author Nepl1
@@ -843,7 +844,7 @@ Nejnowšy protokolowy zapisk jo dołojce ako referenca pódany:",
 'sectioneditnotsupported-text'     => 'Wobźěłowanje wótrězka njepódpěra se na toś tom wobźěłowańskem boku.',
 'permissionserrors'                => 'Problem z pšawami',
 'permissionserrorstext'            => 'Njamaš pšawo to cyniś. {{PLURAL:$1|Pśicyna|Pśicynje|Pśicyny}}:',
-'permissionserrorstext-withaction' => 'Z {{PLURAL:$1|slědujuceje pśicyny|slědujuceju pśicynowu|slědujucych pśicynow|slědujucych pśicynow}} njamaš pšawo $2:',
+'permissionserrorstext-withaction' => 'Njamaš pšawo $2. {{PLURAL:$1|Pśicyna|Pśicynje|Pśicyny|Pśicyny}}:',
 'recreate-moveddeleted-warn'       => "'''Glědaj: Ty wótžywijoš bok, kótaryž jo pjerwjej se wulašował.'''
 
 Pšosym pśespytuj kradosćiwje, lěc jo gódnje z wobźěłowanim boka pokšacowaś.
@@ -1041,7 +1042,7 @@ Zaruc, až historija wersijow nastawka jo njepśetergnjona.',
 'mergehistory-empty'               => 'Njadaju se žedne wersije zjadnośiś.',
 'mergehistory-success'             => '$3 {{PLURAL:$3|wersija|wersiji|wersije|wersijow}} wót [[:$1]] wuspěšnje do [[:$2]] {{PLURAL:$3|zjadnośona|zjadnośonej|zjadnośone|zjadnośone}}.',
 'mergehistory-fail'                => 'Njemóžno stawizny zjadnośiś, pśeglědaj pšosym bok a casowe parametry.',
-'mergehistory-no-source'           => 'Žrědłowy bok $1 njeeksistěruje.',
+'mergehistory-no-source'           => 'Žrědłowy bok $1 njeeksistěrujo.',
 'mergehistory-no-destination'      => 'Celowy bok $1 njeeksistěruje.',
 'mergehistory-invalid-source'      => 'Žrědłowy bok musy měś dobre nadpismo.',
 'mergehistory-invalid-destination' => 'Celowy bok musy měś dobre nadpismo.',
@@ -1142,7 +1143,7 @@ Zaruc, až historija wersijow nastawka jo njepśetergnjona.',
 
 # Preferences page
 'preferences'                   => 'Nastajenja',
-'mypreferences'                 => 'móje nastajenja',
+'mypreferences'                 => 'nastajenja',
 'prefs-edits'                   => 'Licba wobźěłanjow:',
 'prefsnologin'                  => 'Njejsy pśizjawjony',
 'prefsnologintext'              => 'Musyš se <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} pśizjawiś]</span>, aby mógał swóje nastajenja změniś.',
@@ -1612,7 +1613,7 @@ Togodla njedajo se jeje wěstoty pśekontrolěrowaś.',
 'img-auth-nopathinfo'       => 'PATH_INFO felujo.
 Twój serwer njejo konfigurěrowany, aby toś te informacije dalej pósrědnił.
 Móžo na CGI bazěrowaś a njamóžo img_auth pódpěraś.
-Glědaj [//www.mediawiki.org/wiki/Manual:Image_Authorization image authorization].',
+Glědaj https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'         => 'Pominana šćažka njejo w konfigurěrowanem nagraśowem zapisu.',
 'img-auth-badtitle'         => 'Njejo móžno z "$1" płaśiwy titel twóriś.',
 'img-auth-nologinnWL'       => 'Njejsy pśizjawjony a "$1" njejo w běłej lisćinje.',
@@ -2000,7 +2001,7 @@ E-mailowa adresa, kótaruž sy zapódał w [[Special:Preferences|swójich wužyw
 
 # Watchlist
 'watchlist'            => 'Wobglědowańka',
-'mywatchlist'          => 'mója wobglědowańka',
+'mywatchlist'          => 'wobglědowańka',
 'watchlistfor2'        => 'Za wužywarja $1 $2',
 'nowatchlist'          => 'Žedne zapise w twójej wobglědowańce.',
 'watchlistanontext'    => 'Dejš $1, aby mógał swóju wobglědowańku wiźeś abo zapise w njej wobźěłaś.',
@@ -2323,7 +2324,7 @@ Nejnowšy zapisk protokola blokěrowanjow pódawa se dołojce ako referenca:',
 'badipaddress'                    => 'IP-adresa jo njekorektna',
 'blockipsuccesssub'               => 'Wuspěšnje blokěrowane',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] jo se blokěrował.<br />
-Glědaj do [[Special:IPBlockList|lisćiny aktiwnych blokěrowanjow]], aby blokěrowanja pśeglědał.',
+Glědaj do [[Special:BlockList|lisćiny aktiwnych blokěrowanjow]], aby blokěrowanja pśeglědał.',
 'ipb-blockingself'                => 'Coš samogo blokěrowaś! Coš to napšawdu cyniś?',
 'ipb-confirmhideuser'             => 'Coš rowno wužywarja z nastajenim "wužywarja schowaś" blokěrowaś. To k tomu dowjeźo, až mě wužywarja pódłocyjo se we wšych lisćinach a protokolowych zapiskach. Coš to napšawdu cyniś?',
 'ipb-edit-dropdown'               => 'Pśicyny blokěrowanja wobźěłaś',
@@ -2772,7 +2773,7 @@ $1',
 'mediawarning'           => "'''Warnowanje''': Toś ten datajowy typ móžo wopśimjeś złosny programowy kod. Gaž toś ten kod se wuwjeźo, twój system móžo se wobškóźeś.",
 'imagemaxsize'           => "Maksimalna wobrazowa wjelikosć:<br />'' (za boki datajowego wopisanja)''",
 'thumbsize'              => 'Rozměra miniaturow:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|bok|boka|boki|bokow}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|bok|boka|boki|bokow}}',
 'file-info'              => 'wjelikosć dataje: $1, MIME-Typ: $2',
 'file-info-size'         => '$1 × $2 pikselow, wjelikosć dataje: $3, MIME-Typ: $4',
 'file-info-size-pages'   => '$1 × $2 pikselow, wjelikosć dataje: $3, MIME-typ: $4, $5 {{PLURAL:$5|bok|boka|boki|bokow}}',

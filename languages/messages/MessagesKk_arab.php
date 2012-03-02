@@ -8,6 +8,7 @@
  * @file
  *
  * @author AlefZet
+ * @author Amire80
  * @author GaiJin
  * @author Lokal Profil
  * @author Urhixidur
@@ -1386,12 +1387,12 @@ $3 كەلتىرىلگەن سەبەبى: ''$2''",
 'upload_directory_read_only'  => 'قوتارىپ بەرمەك قالتاسىنا ($1) ۆەب-سەرۆەر جازا المايدى.',
 'uploaderror'                 => 'قوتارىپ بەرۋ قاتەسى',
 'uploadtext'                  => "تومەندەگى ٴپىشىندى فايلداردى قوتارىپ بەرۋ ٴۇشىن قولدانىڭىز.
-الدىندا قوتارىلىپ بەرىلگەن فايلداردى قاراۋ نە ىزدەۋ ٴۇشىن [[Special:FileList|قوتارىپ بەرىلگەن فايلدار تىزىمىنە]] بارىڭىز, تاعى دا قوتارىپ بەرۋى مەن جويۋى  [[Special:Log/upload|قوتارىپ بەرۋ جۋرنالىنا]] جازىلىپ الىنادى.
+الدىندا قوتارىلىپ بەرىلگەن فايلداردى قاراۋ نە ىزدەۋ ٴۇشىن [[Special:FileList|قوتارىپ بەرىلگەن فايلدار تىزىمىنە]] بارىڭىز, تاعى دا قوتارىپ بەرۋى مەن جويۋى [[Special:Log/delete|قوتارىپ بەرۋ جۋرنالىنا]] جازىلىپ الىنادى.
 
 سۋرەتتى بەتكە كىرىستىرۋگە, فايلعا تۋرا سىلتەۋ ٴۇشىن مىنا پىشىندەگى سىلتەمەنى قولدانىڭىز:
-'''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''',
-'''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|بالاما ٴماتىن[[</nowiki></tt>''' نە
-'''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>'''.",
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>'''
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|بالاما ٴماتىن]]</nowiki></tt>''' نە
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>'''.",
 'upload-permitted'            => 'رۇقسات ەتىلگەن فايل تۇرلەرى: $1.',
 'upload-preferred'            => 'ۇنامدى فايل تۇرلەرى $1.',
 'upload-prohibited'           => 'رۇقسات ەتىلمەگەن فايل تۇرلەرى: $1.',

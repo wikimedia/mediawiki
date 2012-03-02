@@ -8,6 +8,7 @@
  * @file
  *
  * @author Horacewai2
+ * @author Kaganer
  * @author KaiesTse
  * @author Mark85296341
  * @author Waihorace
@@ -1648,7 +1649,7 @@ $1',
 'img-auth-nopathinfo'   => 'PATH_INFO唔見咗。
 你嘅伺服器重未設定呢個資料。
 佢可能係CGI為本，唔支援img_auth。
-睇吓 http://www.mediawiki.org/wiki/Manual:Image_Authorization。',
+睇吓 https://www.mediawiki.org/wiki/Manual:Image_Authorization。',
 'img-auth-notindir'     => '所請求嘅路徑唔響個已經設定咗嘅上載目錄。',
 'img-auth-badtitle'     => '唔能夠由"$1"整一個有效標題。',
 'img-auth-nologinnWL'   => '你而家無登入，"$1"唔響個白名單度。',
@@ -2342,7 +2343,7 @@ $1',
 'badipaddress'                    => '無效嘅IP地址',
 'blockipsuccesssub'               => '封鎖成功',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]]已經封鎖。<br />
-去[[Special:IPBlockList|IP封鎖清單]]睇返封鎖名單。',
+去[[Special:BlockList|IP封鎖清單]]睇返封鎖名單。',
 'ipb-edit-dropdown'               => '改封鎖原因',
 'ipb-unblock-addr'                => '解封$1',
 'ipb-unblock'                     => '解封一個用戶名或IP地址',
@@ -2782,7 +2783,7 @@ $1',
 如果執行佢嘅話，你嘅系統可能會被波及。",
 'imagemaxsize'         => "圖像大細限制:<br />''(用響檔案描述頁)''",
 'thumbsize'            => '縮圖大細：',
-'widthheightpage'      => '$1×$2, $3版',
+'widthheightpage'      => '$1 × $2, $3版',
 'file-info'            => '檔案大細：$1 ，MIME類型：$2',
 'file-info-size'       => '$1 × $2 像素，檔案大細：$3 ，MIME類型：$4',
 'file-nohires'         => '<small>冇更高解像度嘅圖像。</small>',

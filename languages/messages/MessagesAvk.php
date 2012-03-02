@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Kaganer
  * @author Nkosi ya Cabinda
  * @author Sab
  * @author Urhixidur
@@ -884,7 +885,7 @@ Gotir le $1 {{PLURAL:$1|staa|staa}}.',
 'group-suppress'      => 'Rokla',
 'group-all'           => '(kot)',
 
-'group-user-member'          => 'Favesik',
+'group-user-member'          => '{{GENDER:$1|Favesik}}',
 'group-autoconfirmed-member' => 'Miv gruyeyen favesik',
 'group-bot-member'           => 'Stiernik',
 'group-sysop-member'         => 'Ristusik',
@@ -1614,7 +1615,7 @@ Va lazavanha (tulon ozwason va cidayanu bu se) vlevon bazel !',
 'ipbotherreason'           => 'Ardume/lodume :',
 'badipaddress'             => 'IP mane tir mewadafe.',
 'blockipsuccesssub'        => 'Elekanhara',
-'blockipsuccesstext'       => "L'adresse IP « $1 » a été bloquée.<br />Vous pouvez consulter sur cette [[Special:IPBlockList|page]] la liste des adresses IP bloquées.",
+'blockipsuccesstext'       => "L'adresse IP « $1 » a été bloquée.<br />Vous pouvez consulter sur cette [[Special:BlockList|page]] la liste des adresses IP bloquées.",
 'ipb-edit-dropdown'        => 'Betara va elekaralazava',
 'ipb-unblock-addr'         => 'Va $1 dimelekara',
 'ipb-unblock'              => 'Dimelekara va favesikyolt ok IP mane',
@@ -1910,7 +1911,7 @@ $1',
 
 # Media information
 'thumbsize'       => 'Aluklum :',
-'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|bu|bu}}',
+'widthheightpage' => '$1 × $2, $3 {{PLURAL:$3|bu|bu}}',
 'file-info'       => 'iyeltakaldo : $1, MIME ord : $2',
 'file-info-size'  => '$1 × $2 pixel, iyeltakaldo : $3, MIME ord : $4',
 'file-nohires'    => '<small>Me roderaykan logijaf lum.</small>',

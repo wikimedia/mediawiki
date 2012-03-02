@@ -11,6 +11,7 @@
  * @author Als-Holder
  * @author Hendergassler
  * @author J. 'mach' wust
+ * @author Kaganer
  * @author MaxSem
  * @author Melancholie
  * @author MichaelFrey
@@ -1599,7 +1600,7 @@ Si cha wäge däm nit richtig iberprieft wäre.',
 'img-auth-nopathinfo'       => 'PATH_INFO fählt.
 Dyy Server isch nit derfir yygrichtet, die Information wyterzgee.
 S chennt CGI-basiert syy un unterstitzt img_auth nit.
-Lueg http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+Lueg https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'         => 'Dr gwinscht Pfad isch nit im konfigurierte Uploadverzeichnis.',
 'img-auth-badtitle'         => 'Giltige Titel vu „$1“ cha nit aagleit wäre.',
 'img-auth-nologinnWL'       => 'Du bisch nit aagmäldet un „$1“ isch nit in dr wyße Lischt.',
@@ -2314,7 +2315,7 @@ Des sott numme erfolge go Vandalismus verhindere un in Ibereinstimmig mit in dr 
 'badipaddress'                    => 'D IP-Adräss het e falsch Format.',
 'blockipsuccesssub'               => 'Mit Erfolg gsperrt',
 'blockipsuccesstext'              => 'Dr Benutzer/d IP-Adräss [[Special:Contributions/$1|$1]] isch gsperrt wore.<br />
-Go d Sperri ufhebe lueg d [[Special:IPBlockList|Lisch vu allene aktive Sperrine]].',
+Go d Sperri ufhebe lueg d [[Special:BlockList|Lisch vu allene aktive Sperrine]].',
 'ipb-blockingself'                => 'Du bist grad am Sperre vu Dir sälber! Wettsch des wirkli mache?',
 'ipb-confirmhideuser'             => 'Du bist grad am Sperre vun eme Benutzer im Modus „Benutzer verstecke“. Des fiert derzue, ass dr Benutzername in allne Lischten un Logbiecher unterdruckt wird. Wettsch des wirkli mache?',
 'ipb-edit-dropdown'               => 'Sperrgrind bearbeite',
@@ -2730,7 +2731,7 @@ $1',
 'mediawarning'           => "'''Warnig:''' In däre Art Datei chennt s e beswillige Programmcode din ha. Wänn du die Datei uusfiersch, cha s syy, ass Dyy Syschtem bschädigt wird.",
 'imagemaxsize'           => "Maximali Gressi vu Bilder :<br />'' (uf Bildbschrybigs-Syte)''",
 'thumbsize'              => 'Bildvorschou-Gröössi:',
-'widthheightpage'        => '$1×$2, {{PLURAL:$3|1 Syte|$3 Syte}}',
+'widthheightpage'        => '$1 × $2, {{PLURAL:$3|1 Syte|$3 Syte}}',
 'file-info'              => 'Dateigressi: $1, MIME-Typ: $2',
 'file-info-size'         => '$1 × $2 Pixel, Dateigrößi: $3, MIME-Typ: $4',
 'file-info-size-pages'   => '$1 × $2 Pixel, Dateigreßi: $3, MIME-Typ: $4, $5 {{PLURAL:$5|Syte| Syte}}',
@@ -2773,7 +2774,6 @@ We die Datei isch veränderet worde, de cha's sy, das die zuesätzlechi Informat
 'metadata-collapse' => 'Erwytereti Details verstecke',
 'metadata-fields'   => 'Die Fälder vu dr EXIF-Metadate, wu in däm MediaWiki-Systemtext aagee sin, wäre uf Bildbschrybigssyte mit ere yyklappte Metadatetabälle aazeigt.
 Andri wäre standardmäßig nit aazeigt.
-
 * make
 * model
 * datetimeoriginal

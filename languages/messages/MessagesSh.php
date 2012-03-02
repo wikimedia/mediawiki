@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Kaganer
  * @author OC Ripper
  * @author לערי ריינהארט
  */
@@ -857,12 +858,12 @@ Molimo provjerite da li želite napraviti/izmijeniti ovu stranicu.',
 'userpage-userdoesnotexist-view'   => 'Korisnički račun "$1" nije registrovan.',
 'blocked-notice-logextract'        => 'Ovaj korisnik je trenutno blokiran.
 Posljednje stavke evidencije blokiranja možete pogledati ispod:',
-'clearyourcache'                   => "'''Napomena:''' Nakon snimanja možda ćete trebate očistiti međuspremnik svog preglednika kako biste vidjeli promjene.
-* '''Firefox / Safari:''' držite ''Shift'' i kliknite ''Reload'', ili pritisnite bilo ''Ctrl-F5'' ili ''Ctrl-R'' (''Command-R'' na Macu)
-* '''Google Chrome:''' pritisnite ''Ctrl-Shift-R'' (''Command-Shift-R'' na Macu)
-* '''Internet Explorer:''' držite ''Ctrl'' i kliknite ''Refresh'', ili pritisnite ''Ctrl-F5''
-* '''Konqueror:''' kliknite ''Reload'' ili pritisnite ''F5''
-* '''Opera:''' očistite međuspremnik u ''Tools → Preferences''",
+'clearyourcache'                   => "'''Napomena:''' nakon čuvanja, možda ćete morati da očistite keš pregledača.
+*'''Firefox / Safari::''' držite ''Shift'' i kliknite na ''Osveži'', ili pritisnite ''Ctrl-F5'' ili Ctrl-R (''⌘-R'' na Makintošu)
+*'''Google Chrome:''' pritisnite ''Ctrl-Shift-R'' (''⌘-Shift-R'' na Makintošu)
+*'''Internet Explorer: '''držite ''Ctrl'' i kliknite na ''Osveži'', ili pritisnite ''Ctrl-F5''
+*'''Konqueror: '''kliknite na ''Osveži'' ili pritisnite ''F5''
+*'''Opera:''' očistite privremenu memoriju preko menija ''Alatke → Postavke''.",
 'usercssyoucanpreview'             => "'''Sugestija:''' Koristite 'Prikaži izgled' dugme da testirate svoj novi CSS prije nego što ga snimite.",
 'userjsyoucanpreview'              => "'''Sugestija:''' Koristite 'Prikaži izgled' dugme da testirate svoj novi JS prije nego što ga snimite.",
 'usercsspreview'                   => "'''Zapamtite ovo je samo izgled Vašeg CSS-a.'''
@@ -1128,7 +1129,7 @@ Molimo provjerite zapise.',
 
 # Suppression log
 'suppressionlog'     => 'Registri sakrivanja',
-'suppressionlogtext' => 'Ispod je spisak brisanja i blokiranja koja su povezana sa sadržajem koji je sakriven od administratora. Vidi [[Special:IPBlockList|spisak IP blokiranja]] za pregled trenutno važećih zabrana i blokada.',
+'suppressionlogtext' => 'Ispod je spisak brisanja i blokiranja koja su povezana sa sadržajem koji je sakriven od administratora. Vidi [[Special:IPBlockList|spisak IP blokiranja]] za pregled trenutno važećih blokada.',
 
 # History merging
 'mergehistory'                     => 'Spoji historije stranice',
@@ -1718,9 +1719,9 @@ Ne može se dobro provjeriti u vezi sigurnosti.',
 # img_auth script messages
 'img-auth-accessdenied'     => 'Pristup onemogućen',
 'img-auth-nopathinfo'       => 'Nedostaje PATH_INFO.
-Vaš server nije podešen da daje ovakve informacije.
+Vaš server nije podešen da prosleđuje ovakve podatke.
 Možda je zasnovan na CGI-ju koji ne podržava img_auth.
-Pogledajte [//www.mediawiki.org/wiki/Manual:Image_Authorization?uselang=sh odobravanje slika.]',
+Pogledajte https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'         => 'Zahtjevana putanja nije u direktorijumu podešenom za postavljanje.',
 'img-auth-badtitle'         => 'Ne mogu napraviti valjani naslov iz "$1".',
 'img-auth-nologinnWL'       => 'Niste prijavljeni i "$1" nije na spisku dozvoljenih.',
@@ -2461,7 +2462,7 @@ Unesite konkretan razlog ispod (na primjer, navodeći koje konkretne stranice su
 'badipaddress'                    => 'Nevaljana IP adresa',
 'blockipsuccesssub'               => 'Blokiranje je uspjelo',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] je blokiran.
-<br />Pogledajte [[Special:IPBlockList|IP spisak blokiranih korisnika]] za pregled blokiranja.',
+<br />Pogledajte [[Special:BlockList|IP spisak blokiranih korisnika]] za pregled blokiranja.',
 'ipb-blockingself'                => 'Ovom akcijom ćete blokirati sebe! Da li ste sigurni da to želite?',
 'ipb-confirmhideuser'             => "Upravo ćete blokirati korisnika sa uključenom opcijom ''sakrij korisnika''. Ovim će korisničko ime biti sakriveno u svim spiskovima i stavkama zapisnika. Da li ste sigurni da to želite?",
 'ipb-edit-dropdown'               => 'Uredi razloge blokiranja',
@@ -2581,7 +2582,7 @@ Ako želite otključati ili zaključati bazu, ova datoteka mora biti omogućena 
 'movepagetext'                 => "Korištenjem donjeg formulara možete preimenovati stranicu, preusmjerivši njenu historiju na novi naziv.
 Stari naslov će postati stranica za preusmjerenje na novi naslov.
 Možete updateirati preusmjerenja koja idu na originalni naslov automatski.
-Ako to ne učinite, budite sigurni da ste provjerili [[Special:DoubleRedirects|dupla]] ili [[Special:BrokenRedirects|mrtva prusmjerenja]].
+Ako to ne učinite, budite sigurni da ste provjerili [[Special:DoubleRedirects|dupla]] ili [[Special:BrokenRedirects|mrtva preusmjerenja]].
 Odgovorni ste za to da poveznice nastave povezivati stranice kojima su namijenjene.
 
 Uzmite u obzir da stranica '''neće''' biti preusmjerena ako već postoji stranica s novim naslovom, osim ako je prazna ili ako je preusmjerenje bez prethodne historije uređivanja.
@@ -2916,7 +2917,7 @@ $1',
 Njegovim izvršavanjem možete da ugrozite Vaš sistem.",
 'imagemaxsize'           => "Ograničenje veličine slike:<br />''(za stranice opisa datoteke)''",
 'thumbsize'              => 'Veličina umanjenog prikaza:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|stranica|stranice|stranica}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|stranica|stranice|stranica}}',
 'file-info'              => 'veličina datoteke: $1, MIME tip: $2',
 'file-info-size'         => '$1 × $2 piksela, veličina datoteke/fajla: $3, MIME tip: $4',
 'file-info-size-pages'   => '$1 × $2 piksela, veličina datoteke: $3, MIME vrsta: $4, $5 {{PLURAL:$5|stranica|stranice|stranica}}',
@@ -2957,7 +2958,6 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 'metadata-expand'   => 'Pokaži dodatne detalje',
 'metadata-collapse' => 'Sakrij dodatne detalje',
 'metadata-fields'   => 'Polja metapodataka slika su prikazani ispod slike će biti uključeni u prikaz stranice slike kada je sakrivena tabela metapodataka. U suprotnom će biti sakrivena po postavkama.
-
 * make
 * model
 * datetimeoriginal

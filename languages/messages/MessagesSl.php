@@ -1708,7 +1708,7 @@ Ni mogoče ustrezno preveriti njene varnosti.',
 'img-auth-nopathinfo'       => 'Manjka PATH_INFO.
 Vaš strežnik ne poda te informacije.
 Morda temelji na CGI in ne more podpirati img_auth.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization Oglejte si slikovno avtorizacijo.]',
+Oglejte si  https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'         => 'Zahtevana pot ni v konfigurirani mapi za nalaganje.',
 'img-auth-badtitle'         => 'Ni mogoče sestaviti veljavnega naslova iz »$1«.',
 'img-auth-nologinnWL'       => 'Niste prijavljeni in »$1« ni na seznamu dovoljenih datotek.',
@@ -2449,7 +2449,7 @@ Vnesite tudi razlog (''na primer'' seznam strani, ki jih je uporabnik po nepotre
 'badipaddress'                    => 'Neveljaven IP-naslov ali uporabniško ime.',
 'blockipsuccesssub'               => 'Blokiranje je uspelo',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] je {{GENDER:$1|blokiran|blokirana|blokiran(-a)}}.<br />
-Oglejte si [[Special:IPBlockList|seznam blokiranih IP-naslovov]] za pregled blokad.',
+Oglejte si [[Special:BlockList|seznam blokiranih IP-naslovov]] za pregled blokad.',
 'ipb-blockingself'                => 'Nameravate se blokirati! Ste prepričani, da želite to storiti?',
 'ipb-confirmhideuser'             => 'Nameravate blokirati uporabnika z omogočeno možnostjo »skrij uporabnika«. To bo skrilo uporabnikovo ime na vseh seznamih in dnevniških vnosih. Ste prepričani, da želite to storiti?',
 'ipb-edit-dropdown'               => 'Uredi razloge blokade',

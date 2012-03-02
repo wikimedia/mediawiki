@@ -10,6 +10,7 @@
  * @author Chiak
  * @author Danny B.
  * @author Helix84
+ * @author Kaganer
  * @author Liso
  * @author Maros
  * @author Michawiki
@@ -924,11 +925,11 @@ alebo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}
 'blocked-notice-logextract'        => 'Tento používateľ je momentálne zablokovaný.
 Dolu je pre informáciu posledná položka zo záznamu blokovaní:',
 'clearyourcache'                   => "'''Poznámka:''' Aby sa zmeny prejavili, po uložení musíte vymazať vyrovnávaciu pamäť vášho prehliadača.
-* '''Mozilla / Firefox / Safari:''' držte stlačený ''Shift'' a kliknite na ''Reload'' alebo stlačte buď ''Ctrl-F5'' alebo ''Ctrl-R'' (''Comand-R'' na Mac)
-* '''Google Chrome:''' stlačte ''Ctrl-Shift-R'' (''Command-Shift-R'' na Mac)
-* '''Internet Explorer:''' držte ''Ctrl'' a kliknite na ''Refresh'' alebo stlačte ''Ctrl-F5''
-* '''Konqueror:''' kliknite na tlačidlo ''Reload'' alebo stlačte ''F5''
-* '''Opera:''' vymazať vyrovnávaciu pamäť prehliadača v ponuke ''Tools→Preferences''",
+* '''Mozilla / Firefox / Safari:''' Držte stlačený ''Shift'' a kliknite na ''Reload'' alebo stlačte buď ''Ctrl-F5'' alebo ''Ctrl-R'' (''⌘-R'' na Mac)
+* '''Google Chrome:''' Stlačte ''Ctrl-Shift-R'' (''⌘-Shift-R'' na Mac)
+* '''Internet Explorer:''' Držte ''Ctrl'' a kliknite na ''Refresh'' alebo stlačte ''Ctrl-F5''
+* '''Konqueror:''' Kliknite na tlačidlo ''Reload'' alebo stlačte ''F5''
+* '''Opera:''' Vymazať vyrovnávaciu pamäť prehliadača v ponuke ''Tools→Preferences''",
 'usercssyoucanpreview'             => "'''Tip:''' Váš nový CSS pred uložením otestujete stlačením tlačidla „{{int:showpreview}}“.",
 'userjsyoucanpreview'              => "'''Tip:''' Váš nový JS pred uložením otestujete stlačením tlačidla „{{int:showpreview}}“.",
 'usercsspreview'                   => "'''Nezabudnite, že toto je iba náhľad vášho používateľského CSS, ešte nebolo uložené!'''",
@@ -1779,7 +1780,7 @@ Nie je možné správne skontrolovať jeho bezpečnosť.',
 'img-auth-accessdenied'     => 'Prístup zamietnutý',
 'img-auth-nopathinfo'       => 'Váš server nie je nastavený tak, aby poskytoval tieto informácie.
 Môže byť založený na CGI a nedokáže podporovať img_auth.
-Pozri http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+Pozri https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'         => 'Požadovaná cesta nie je v nastavenom adresári na nahrávanie.',
 'img-auth-badtitle'         => 'Nepodarilo sa zostaviť platný názov z „$1“.',
 'img-auth-nologinnWL'       => 'Nie ste prihlásený a „$1“ nie je na bielej listine.',
@@ -2498,7 +2499,7 @@ Nižšie uveďte konkrétny dôvod (napríklad uveďte konkrétne stránky, ktor
 'badipaddress'                    => 'IP adresa má nesprávny formát.',
 'blockipsuccesssub'               => 'Zablokovanie bolo úspešné',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] bol zablokovaný.<br />
-[[Special:IPBlockList|IP block list]] obsahuje zoznam blokovaní.',
+[[Special:BlockList|IP block list]] obsahuje zoznam blokovaní.',
 'ipb-blockingself'                => 'Chystáte sa zablokovať sám seba! Ste si istí, že to chcete urobiť?',
 'ipb-confirmhideuser'             => 'Chystáte sa zablokovať používateľa so zapnutou funkciou „skryť používateľa“. Tým sa potlačí meno používateľa vo všetkých zoznamoch a záznamoch. Ste si istí, že chcete urobiť?',
 'ipb-edit-dropdown'               => 'Upraviť dôvody pre blokovanie',
@@ -2988,7 +2989,7 @@ $1',
 Jeho spustením môžete kompromitovať svoj systém.",
 'imagemaxsize'           => "Obmedziť veľkosť obrázka:<br />''(na popisnej stránke súboru)''",
 'thumbsize'              => 'Veľkosť náhľadu:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|stránka|stránky|stránok}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|stránka|stránky|stránok}}',
 'file-info'              => 'veľkosť súboru: $1, MIME typ: $2',
 'file-info-size'         => '$1 × $2 pixelov, veľkosť súboru: $3, MIME typ: $4',
 'file-info-size-pages'   => '$1 × $2 pixlov, veľkosť súboru: $3, typ MIME: $4, $5 {{PLURAL:$5|stránka|stránky|stránok}}',

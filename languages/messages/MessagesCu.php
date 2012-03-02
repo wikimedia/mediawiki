@@ -427,7 +427,7 @@ $messages = array(
 'group-sysop'      => 'съмотритєлє',
 'group-bureaucrat' => 'чинодатєлє',
 
-'group-user-member'       => 'польꙃєватєл҄ь',
+'group-user-member'       => '{{GENDER:$1|польꙃєватєл҄ь}}',
 'group-bot-member'        => 'аѵтоматъ',
 'group-sysop-member'      => 'съмотритєл҄ь',
 'group-bureaucrat-member' => 'чинодатєл҄ь',

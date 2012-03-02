@@ -1099,7 +1099,7 @@ Mundeni me zgjedhe që të tjerët me ju kontaktue përmjet faqe së diskutimit 
 'group-suppress'      => 'Kujdestari',
 'group-all'           => '(të gjitha)',
 
-'group-user-member'          => 'Përdorues',
+'group-user-member'          => '{{GENDER:$1|Përdorues}}',
 'group-autoconfirmed-member' => 'Përdorues i vërtetuar automatikisht',
 'group-bot-member'           => 'Robot',
 'group-sysop-member'         => 'Administrues',

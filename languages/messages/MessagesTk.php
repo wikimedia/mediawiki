@@ -10,6 +10,7 @@
  * @author Cekli829
  * @author Flrn
  * @author Hanberke
+ * @author Kaganer
  * @author Runningfridgesrule
  * @author The Evil IP address
  */
@@ -1461,7 +1462,7 @@ Eger-de problema gaýtalansa, onda bir [[Special:ListUsers/sysop|administrator]]
 'img-auth-nopathinfo'   => 'PATH_INFO ýok.
 Serweriňiz bu maglumaty geçirmeklik üçin sazlanmandyr.
 CGI esaslanýan hem-de img_auth-y goldamaýan bolmagy mümkin.
-http://www.mediawiki.org/wiki/Manual:Image_Authorization sahypasyna serediň.',
+https://www.mediawiki.org/wiki/Manual:Image_Authorization sahypasyna serediň.',
 'img-auth-notindir'     => 'Talap edlýän ýol sazlanan ýükleme direktoriýasynda däl.',
 'img-auth-badtitle'     => '"$1" bilen dogry bir at gurup bolanok.',
 'img-auth-nologinnWL'   => 'Sessiýa açmansyňyz, "$1" bolsa ak sanawda däl.',
@@ -2178,7 +2179,7 @@ Aşakda blokirlemäniň takyk sebäbini ýazyň (meselem: wandalizm eden sahypal
 'badipaddress'                    => 'Nädogry IP adresi',
 'blockipsuccesssub'               => 'Blokirleme amala aşdy',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] blokirlendi.
-<br /> Blokirlemeleri gözden geçirmek üçin [[Special:IPBlockList|IP blokirleme sanawyna]] serediň.',
+<br /> Blokirlemeleri gözden geçirmek üçin [[Special:BlockList|IP blokirleme sanawyna]] serediň.',
 'ipb-edit-dropdown'               => 'Blokirleme sebäplerini redaktirle',
 'ipb-unblock-addr'                => '$1 üçin blokirlemäni aýyr',
 'ipb-unblock'                     => 'Ulanyjy adynyň ýa-da IP adresiniň blokirlemesini aýyr',
@@ -2581,7 +2582,7 @@ $1',
 Ony işletseňiz iş ulgamyňyza howp astyna salmagyňyz mümkin.",
 'imagemaxsize'         => "Surat ölçeginiň çägi:<br />''(faýl düşündiriş sahypalary üçin)''",
 'thumbsize'            => 'Miniatýura ölçegi:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|sahypa|sahypa}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|sahypa|sahypa}}',
 'file-info'            => 'faýl ölçegi: $1, MIME tipi: $2',
 'file-info-size'       => '$1 × $2 piksel, faýlyň ölçegi: $3, MIME tipli: $4',
 'file-nohires'         => '<small>Wersiýanyň mundan uly ölçegi ýok.</small>',

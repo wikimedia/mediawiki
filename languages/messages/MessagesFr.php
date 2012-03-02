@@ -399,7 +399,7 @@ $messages = array(
 'tog-watchlisthidepatrolled'  => 'Masquer les modifications surveillées dans la liste de suivi',
 'tog-nolangconversion'        => 'Désactiver la conversion des variantes linguistiques',
 'tog-ccmeonemails'            => 'M’envoyer une copie des courriels que j’envoie aux autres utilisateurs',
-'tog-diffonly'                => 'Ne pas montrer le contenu des pages sous les diffs',
+'tog-diffonly'                => 'Ne pas afficher le contenu des pages sous les diffs',
 'tog-showhiddencats'          => 'Afficher les catégories cachées',
 'tog-noconvertlink'           => 'Désactiver la conversion des titres',
 'tog-norollbackdiff'          => 'Ne pas afficher le diff lors d’une révocation',
@@ -616,7 +616,7 @@ $1',
 'versionrequired'     => 'Version $1 de MediaWiki nécessaire',
 'versionrequiredtext' => 'La version $1 de MediaWiki est nécessaire pour utiliser cette page. Consultez [[Special:Version|la page des versions]]',
 
-'ok'                      => 'OK',
+'ok'                      => 'Valider',
 'retrievedfrom'           => 'Récupérée de « $1 »',
 'youhavenewmessages'      => 'Vous avez $1 ($2).',
 'newmessageslink'         => 'de nouveaux messages',
@@ -1389,7 +1389,7 @@ Essayez en utilisant le préfixe ''all:'' pour rechercher dans tout le contenu (
 'saveprefs'                     => 'Enregistrer les préférences',
 'resetprefs'                    => 'Rétablir les préférences',
 'restoreprefs'                  => 'Restaurer toutes les valeurs par défaut',
-'prefs-editing'                 => 'Fenêtre de modification',
+'prefs-editing'                 => 'Modification',
 'prefs-edit-boxsize'            => 'Taille de la fenêtre de modification.',
 'rows'                          => 'Rangées :',
 'columns'                       => 'Colonnes :',
@@ -1440,7 +1440,7 @@ Voici une valeur générée aléatoirement que vous pouvez utiliser : $1',
 'prefs-memberingroups'          => 'Membre {{PLURAL:$1|du groupe|des groupes}} :',
 'prefs-registration'            => 'Date d’inscription :',
 'yourrealname'                  => 'Nom réel :',
-'yourlanguage'                  => 'Langue de l’interface :',
+'yourlanguage'                  => 'Langue :',
 'yourvariant'                   => 'Variante de la langue du contenu:',
 'yournick'                      => 'Signature pour les discussions :',
 'prefs-help-signature'          => 'Les commentaires sur les pages de discussion doivent être signés avec « <nowiki>~~~~</nowiki> », qui sera converti par votre signature et un horodatage.',
@@ -1837,10 +1837,10 @@ Il ne peut pas être correctement vérifé pour la sécurité.',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Accès refusé',
-'img-auth-nopathinfo'       => "PATH_INFO manquant.
+'img-auth-nopathinfo'       => 'PATH_INFO manquant.
 Votre serveur n’est pas paramétré pour passer cette information.
 Il fonctionne peut-être en CGI et ne supporte pas img_auth.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization Voyez les droits d'image.]",
+Voyez https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'         => "Le chemin demandé n’est pas le répertoire d'import configuré.",
 'img-auth-badtitle'         => 'Impossible de construire un titre valide à partir de « $1 ».',
 'img-auth-nologinnWL'       => 'Vous n’êtes pas connecté et « $1 » n’est pas dans la liste blanche.',
@@ -2220,7 +2220,7 @@ L’adresse électronique que vous avez indiquée dans [[Special:Preferences|vos
 'emailusernamesubmit'  => 'Soumettre',
 'email-legend'         => 'Envoyer un courriel à un autre utilisateur de {{SITENAME}}',
 'emailfrom'            => 'De :',
-'emailto'              => 'Destinataire :',
+'emailto'              => 'À :',
 'emailsubject'         => 'Objet :',
 'emailmessage'         => 'Message :',
 'emailsend'            => 'Envoyer',
@@ -2576,7 +2576,7 @@ Donnez ci-dessous un motif précis (par exemple en citant les pages qui ont ét�
 'badipaddress'                    => 'Adresse IP incorrecte',
 'blockipsuccesssub'               => 'Blocage réussi',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] a été bloqué{{GENDER:$1||e|}}.<br />
-Consultez la [[Special:IPBlockList|liste des adresses IP et comptes bloqués]] pour revoir les blocages.',
+Consultez la [[Special:BlockList|liste des adresses IP et comptes bloqués]] pour revoir les blocages.',
 'ipb-blockingself'                => 'Vous êtes sur le point de bloquer votre propre compte ! Êtes-vous certain de vouloir faire cela ?',
 'ipb-confirmhideuser'             => 'Vous êtes sur le point de bloquer un utilisateur avec « cacher l’utilisateur » activé. Cela supprime le nom de l’utilisateur dans toutes les listes et les entrées du journal. Êtes-vous sûr de vouloir le faire ?',
 'ipb-edit-dropdown'               => 'Modifier les motifs de blocage par défaut',
@@ -3608,9 +3608,9 @@ Veuillez confirmer que vous désirez réellement recréer cette page.",
 'confirm-purge-bottom' => 'Purger une page l’efface du cache de rendu et force sa dernière version à être régénérée et affichée.',
 
 # action=watch/unwatch
-'confirm-watch-button'   => 'OK',
+'confirm-watch-button'   => 'Valider',
 'confirm-watch-top'      => 'Ajouter cette page à votre liste de suivi ?',
-'confirm-unwatch-button' => 'OK',
+'confirm-unwatch-button' => 'Valider',
 'confirm-unwatch-top'    => 'Supprimer cette page de votre liste de suivi ?',
 
 # Separators for various lists, etc.

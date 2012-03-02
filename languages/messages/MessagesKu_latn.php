@@ -13,6 +13,7 @@
  * @author Ferhengvan
  * @author George Animal
  * @author Gomada
+ * @author Kaganer
  * @author Krinkle
  * @author Liangent
  * @author The Evil IP address
@@ -1606,7 +1607,7 @@ Sedemekê binivîse!',
 'badipaddress'                => 'Bikarhêner bi vî navî tune',
 'blockipsuccesssub'           => 'Astengkirin serkeftî bû',
 'blockipsuccesstext'          => '"$1" hat asteng kirin.
-<br />Bibîne [[Special:IPBlockList|Lîsteya IP\'yan hatî asteng kirin]] ji bo lîsteya blokan.',
+<br />Bibîne [[Special:BlockList|Lîsteya IP\'yan hatî asteng kirin]] ji bo lîsteya blokan.',
 'ipb-edit-dropdown'           => 'Sedemên astengkirinê',
 'ipb-unblock-addr'            => 'Astengkirinê $1 rake',
 'ipb-unblock'                 => "Astengkirina bikarhênerekî ya adrêsa IP'yekê rake",
@@ -1860,7 +1861,7 @@ Rûpela "[[:$1]]" berê heye. Tu rast dixazê wê jêbibê ji bo navguherandinê
 # Media information
 'thumbsize'       => 'Mezinahiya wêne:',
 'widthheight'     => '$1 x $2',
-'widthheightpage' => '$1×$2, $3 rûpel',
+'widthheightpage' => '$1 × $2, $3 rûpel',
 'file-info'       => 'mezinbûnê data: $1, MIME-typ: $2',
 'file-info-size'  => '$1 × $2 pixel, mezinbûnê data: $3, MIME-typ: $4',
 'file-nohires'    => '<small>Versyonekî jê mezintir tune.</small>',

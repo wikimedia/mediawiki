@@ -9,6 +9,7 @@
  *
  * @author Chrisportelli
  * @author Giangian15
+ * @author Kaganer
  * @author Malafaya
  * @author Roderick Mallia
  * @author Urhixidur
@@ -1752,7 +1753,7 @@ Ma jistax jiġi kkontrollat għas-sigurtà b'mod adegwat.",
 'img-auth-nopathinfo'       => "PATH_INFO nieqes.
 Is-server tiegħek mhuwiex issettjat sabiex jgħaddi din l-informazzjoni.
 Jista' jkun ibbażat fuq CGI u ma jistax isostni img_auth.
-Ikkonsulta lil http://www.mediawiki.org/wiki/Manual:Image_Authorization.",
+Ikkonsulta lil https://www.mediawiki.org/wiki/Manual:Image_Authorization.",
 'img-auth-notindir'         => 'Id-destinazzjoni rikjesta mhijiex fid-direttorju tat-tlugħ konfigurat.',
 'img-auth-badtitle'         => 'Ma setax jinbena titlu validu minn "$1".',
 'img-auth-nologinnWL'       => 'M\'intix fil-kont tiegħek u "$1" mhuwiex fil-lista l-bajda.',
@@ -2476,7 +2477,7 @@ Indika r-raġuni speċifika għalfejn tixtieq tipproċedi bil-blokk (per eżempj
 'badipaddress'                    => "Indirizz ta' IP invalidu",
 'blockipsuccesssub'               => 'Il-blokk irnexxa',
 'blockipsuccesstext'              => 'L-utent [[Special:Contributions/$1|$1]] ġie imblukkat.<br />
-Ara l-[[Special:IPBlockList|lista tal-IP imblukkati]] biex tara l-blokki attivi.',
+Ara l-[[Special:BlockList|lista tal-IP imblukkati]] biex tara l-blokki attivi.',
 'ipb-blockingself'                => 'Inti se timblokka lilek innifsek! Inti ċert li trid tagħmel dan?',
 'ipb-confirmhideuser'             => 'Inti se timblokka utent bl-opzjoni "Aħbi l-utent" magħżula. B\'dan il-mod jiġi evitat li jidher l-isem tal-utent fl-elenki u fid-daħliet rar-reġistri kollha. Inti ċert li trid tagħmel dan?',
 'ipb-edit-dropdown'               => 'Immodifika r-raġunijiet tal-imblukkar',
@@ -2936,7 +2937,7 @@ $1',
 'mediawarning'         => "'''Twissija''': Dan il-fajl jista' jinkludi ġo fih kodiċi malizzjuż. L-eżekuzzjoni tiegħu jista' jagħmel ħsara s-sistema informatika tiegħek.",
 'imagemaxsize'         => "Daqs massimu tal-istampa:<br />''(għall-paġni ta' deskrizzjoni tal-fajl)''",
 'thumbsize'            => 'Daqs tal-minjatura:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|paġna|paġni}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|paġna|paġni}}',
 'file-info'            => "Dimensjoni: $1, tip ta' MIME: $2",
 'file-info-size'       => "$1 × $2 pixel, dimensjoni: $3, tip ta' MIME: $4",
 'file-info-size-pages' => '$1 × $2 pixels, daqs tal-fajl: $3, tip MIME: $4, $5 {{PLURAL:$5|paġna|paġni}}',

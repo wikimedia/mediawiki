@@ -731,7 +731,7 @@ $NEWPAGE
 'ipbhidename'                 => '在封鎖日誌、活躍封鎖列表以及使用者列表中隱藏使用者名／IP',
 'blockipsuccesssub'           => '封鎖成功',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]]已經被封鎖。
-<br />參看[[Special:IPBlockList|被封IP地址列表]]以覆審封鎖。',
+<br />參看[[Special:BlockList|被封IP地址列表]]以覆審封鎖。',
 'ipb-edit-dropdown'           => '編輯封鎖原因',
 'ipb-unblock-addr'            => '解除封鎖$1',
 'ipb-unblock'                 => '解除禁封使用者名或IP地址',

@@ -597,7 +597,7 @@ Gwrewgh assaya dhe rag-gorra agas govyn gen ''all:'' rag whilas en pub le (a-bar
 'group-sysop' => 'Menysteryon',
 'group-all'   => '(oll)',
 
-'group-user-member'  => 'Devnydhyer',
+'group-user-member'  => '{{GENDER:$1|Devnydhyer}}',
 'group-bot-member'   => 'Bot',
 'group-sysop-member' => 'Menyster',
 

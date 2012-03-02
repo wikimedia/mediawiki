@@ -13,6 +13,7 @@
  * @author Ruben Vardanyan (me@RubenVardanyan.com)
  * @author Teak
  * @author Togaed
+ * @author Vacio
  * @author Xelgen
  * @author לערי ריינהארט
  */
@@ -398,6 +399,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'շարունակ.',
 'index-category'                 => 'Ինդեքսավորված էջեր',
 'noindex-category'               => 'Ինդեքսավորված էջեր չկան',
+'broken-file-category'           => 'Կոտրված ֆայլի հղումով էջեր',
 
 'about'         => 'Էությունը',
 'article'       => 'Հոդված',
@@ -675,6 +677,7 @@ $2',
 'createaccount'              => 'Ստեղծել նոր մասնակցային հաշիվ',
 'gotaccount'                 => "Դուք արդեն գրանցվա՞ծ եք։ '''$1'''։",
 'gotaccountlink'             => 'Մուտք գործեք համակարգ',
+'userlogin-resetlink'        => 'Մոռացե՞լ եք Ձեր լոգին տվյալները։',
 'createaccountmail'          => 'էլ-փոստով',
 'badretype'                  => 'Ձեր մուտքագրած գաղտնաբառերը չեն համընկնում։',
 'userexists'                 => 'Այս մասնակցի անունը արդեն զբաղված է։ Խնդրում ենք ընտրել մեկ այլ անուն։',
@@ -1896,7 +1899,7 @@ $1',
 'badipaddress'                => 'Սխալ IP-հասցե',
 'blockipsuccesssub'           => 'Արգելափակումը կատարված է',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|«$1»]] արգելափակված է։
-<br />Տես [[Special:IPBlockList|արգելափակված IP-հասցեների ցանկը]]։',
+<br />Տես [[Special:BlockList|արգելափակված IP-հասցեների ցանկը]]։',
 'ipb-edit-dropdown'           => 'Խմբագրել արգելափակման պատճառները',
 'ipb-unblock-addr'            => 'Անարգելել $1 մասնակցին',
 'ipb-unblock'                 => 'Անարգելել որևէ մասնակից կամ IP-հասցե',

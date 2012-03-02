@@ -14,6 +14,7 @@
  * @author Harriv
  * @author Jaakonam
  * @author Jack Phoenix
+ * @author Kaganer
  * @author Mobe
  * @author Nedergard
  * @author Nike
@@ -414,17 +415,17 @@ $messages = array(
 
 # Categories related messages
 'pagecategories'                 => '{{PLURAL:$1|Luokka|Luokat}}',
-'category_header'                => 'Sivut, jotka ovat luokassa $1',
+'category_header'                => "Luokan ''$1'' sisältämät sivut",
 'subcategories'                  => 'Alaluokat',
 'category-media-header'          => 'Luokan ”$1” sisältämät tiedostot',
 'category-empty'                 => "''Tässä luokassa ei ole sivuja eikä tiedostoja.''",
 'hidden-categories'              => '{{PLURAL:$1|Piilotettu luokka|Piilotetut luokat}}',
 'hidden-category-category'       => 'Piilotetut luokat',
-'category-subcat-count'          => '{{PLURAL:$2|Tässä luokassa on vain seuraava alaluokka.|{{PLURAL:$1|Seuraava alaluokka kuuluu|Seuraavat $1 alaluokkaa kuuluvat}} tähän luokkaan. Alaluokkien kokonaismäärä luokassa on $2.}}',
+'category-subcat-count'          => '{{PLURAL:$2|Tässä luokassa on seuraava alaluokka.|{{PLURAL:$1|Seuraava alaluokka kuuluu|Seuraavat $1 alaluokkaa kuuluvat}} tähän luokkaan. Alaluokkien kokonaismäärä luokassa on $2.}}',
 'category-subcat-count-limited'  => 'Tässä luokassa on {{PLURAL:$1|yksi alaluokka|$1 alaluokkaa}}.',
-'category-article-count'         => '{{PLURAL:$2|Tässä luokassa on vain seuraava sivu.|{{PLURAL:$1|Seuraava sivu kuuluu|Seuraavat $1 sivua kuuluvat}} tähän luokkaan. Sivujen kokonaismäärä luokassa on $2.}}',
+'category-article-count'         => '{{PLURAL:$2|Tässä luokassa on seuraava sivu.|{{PLURAL:$1|Seuraava sivu kuuluu|Seuraavat $1 sivua kuuluvat}} tähän luokkaan. Sivujen kokonaismäärä luokassa on $2.}}',
 'category-article-count-limited' => '{{PLURAL:$1|Tämä sivu kuuluu|Nämä $1 sivua kuuluvat}} nykyiseen luokkaan.',
-'category-file-count'            => '{{PLURAL:$2|Tässä luokassa on vain seuraava tiedosto.|{{PLURAL:$1|Seuraava tiedosto kuuluu|Seuraavat $1 tiedostoa kuuluvat}} tähän luokkaan. Tiedostoja luokassa on yhteensä $2.}}',
+'category-file-count'            => '{{PLURAL:$2|Tässä luokassa on seuraava tiedosto.|{{PLURAL:$1|Seuraava tiedosto kuuluu|Seuraavat $1 tiedostoa kuuluvat}} tähän luokkaan. Tiedostoja luokassa on yhteensä $2.}}',
 'category-file-count-limited'    => 'Tässä luokassa on {{PLURAL:$1|yksi tiedosto|$1 tiedostoa}}.',
 'listingcontinuesabbrev'         => 'jatkuu',
 'index-category'                 => 'Indeksoidut sivut',
@@ -964,7 +965,8 @@ Sinun täytyy yhdistää muutoksesi olemassa olevaan tekstiin.
 'copyrightwarning'                 => "'''Muutoksesi astuvat voimaan välittömästi.''' Kaikki {{GRAMMAR:illative|{{SITENAME}}}} tehtävät tuotokset katsotaan julkaistuksi $2 -lisenssin mukaisesti ($1). Jos et halua, että kirjoitustasi muokataan armottomasti ja uudelleenkäytetään vapaasti, älä tallenna kirjoitustasi. Tallentamalla muutoksesi lupaat, että kirjoitit tekstisi itse, tai kopioit sen jostain vapaasta lähteestä. '''ÄLÄ KÄYTÄ TEKIJÄNOIKEUDEN ALAISTA MATERIAALIA ILMAN LUPAA!'''",
 'copyrightwarning2'                => "Huomaa, että kuka tahansa voi muokata, muuttaa ja poistaa kaikkia sivustolle tekemiäsi lisäyksiä ja muutoksia. Muokkaamalla sivustoa luovutat sivuston käyttäjille tämän oikeuden ja takaat, että lisäämäsi aineisto on joko itse kirjoittamaasi tai peräisin jostain vapaasta lähteestä. Lisätietoja sivulla $1. '''TEKIJÄNOIKEUDEN ALAISEN MATERIAALIN KÄYTTÄMINEN ILMAN LUPAA ON EHDOTTOMASTI KIELLETTYÄ!'''",
 'longpageerror'                    => "'''Sivun koko on $1 binäärikilotavua. Sivua ei voida tallentaa, koska enimmäiskoko on $2 binäärikilotavua.'''",
-'readonlywarning'                  => "'''Varoitus: Tietokanta on lukittu huoltoa varten, joten voi olla ettet pysty tallentamaan muokkauksiasi juuri nyt.''' Saattaa olla paras leikata ja liimata tekstisi omaan tekstitiedostoosi ja tallentaa se tänne myöhemmin.
+'readonlywarning'                  => "'''Varoitus: Tietokanta on lukittu huoltoa varten, joten et pysty tallentamaan muokkauksiasi juuri nyt.'''
+Saattaa olla paras leikata ja liimata tekstisi omaan tekstitiedostoosi ja tallentaa se tänne myöhemmin.
 
 Lukitsemisen syy: $1",
 'protectedpagewarning'             => "'''Varoitus: Tämä sivu on lukittu siten, että vain ylläpitäjät voivat muokata sitä.'''
@@ -1747,7 +1749,7 @@ Sitä ei voida tarkistaa tietoturvan varalta kunnolla.',
 'img-auth-nopathinfo'       => 'PATH_INFO puuttuu.
 Palvelintasi ei ole asetettu välittämään tätä tietoa.
 Se saattaa olla CGI-pohjainen eikä voi tukea img_authia.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization Katso lisätietoja].',
+Lisätietoja löytyy sivulta https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'         => 'Pyydetty polku ei ole asetuksissa tiedostojen tallennushakemistona.',
 'img-auth-badtitle'         => '”$1” ei kelpaa oikean otsikon muodostamiseen.',
 'img-auth-nologinnWL'       => 'Et ole kirjautunut sisään ja tiedosto ”$1” ei ole sallittujen tiedostojen luettelossa.',
@@ -2454,7 +2456,7 @@ Alla on viimeisin estolokin tapahtuma:',
 'badipaddress'                    => 'IP-osoite on väärin muotoiltu.',
 'blockipsuccesssub'               => 'Esto onnistui',
 'blockipsuccesstext'              => 'Käyttäjä tai IP-osoite [[Special:Contributions/$1|$1]] on estetty.<br />
-Nykyiset estot löytyvät [[Special:IPBlockList|estolistalta]].',
+Nykyiset estot löytyvät [[Special:BlockList|estolistalta]].',
 'ipb-blockingself'                => 'Olet estämässä itseäsi. Oletko varma, että haluat tehdä niin?',
 'ipb-confirmhideuser'             => 'Olet estämässä käyttäjää ”piilota käyttäjä” -toiminnon kanssa.  Tämä piilottaa käyttäjän nimen kaikissa luetteloissa ja lokitapahtumissa.  Oletko varma, että haluat tehdä näin?',
 'ipb-edit-dropdown'               => 'Muokkaa estosyitä',
@@ -2924,16 +2926,16 @@ $1',
 Suorittamalla sen järjestelmäsi voi muuttua epäluotettavaksi.",
 'imagemaxsize'           => 'Kuvien enimmäiskoko kuvaussivuilla',
 'thumbsize'              => 'Pienoiskuvien koko',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|sivu|sivua}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|sivu|sivua}}',
 'file-info'              => '$1, MIME-tyyppi: $2',
-'file-info-size'         => '$1×$2 kuvapistettä, $3, MIME-tyyppi: $4',
-'file-info-size-pages'   => '$1×$2 kuvapistettä, tiedoston koko $3, MIME-tyyppi $4, $5 {{PLURAL:$5|sivu|sivua}}',
+'file-info-size'         => '$1 × $2 kuvapistettä, $3, MIME-tyyppi: $4',
+'file-info-size-pages'   => '$1 × $2 kuvapistettä, tiedoston koko $3, MIME-tyyppi $4, $5 {{PLURAL:$5|sivu|sivua}}',
 'file-nohires'           => '<small>Tarkempaa kuvaa ei ole saatavilla.</small>',
-'svg-long-desc'          => 'SVG-tiedosto; oletustarkkuus $1×$2 kuvapistettä; tiedostokoko $3',
+'svg-long-desc'          => 'SVG-tiedosto; oletustarkkuus $1 × $2 kuvapistettä; tiedostokoko $3',
 'show-big-image'         => 'Korkeatarkkuuksinen versio',
 'show-big-image-preview' => '<small>Tämän esikatselun koko: $1.</small>',
 'show-big-image-other'   => '<small>Muut resoluutiot: $1.</small>',
-'show-big-image-size'    => '$1×$2 kuvapistettä',
+'show-big-image-size'    => '$1 × $2 kuvapistettä',
 'file-info-gif-looped'   => 'toistuva',
 'file-info-gif-frames'   => '$1 {{PLURAL:$1|kehys|kehystä}}',
 'file-info-png-looped'   => 'toistuva',
@@ -3581,7 +3583,7 @@ Kuvat näytetään täysikokoisina. Muut tiedostot avataan niille määritetyss�
 'fileduplicatesearch-legend'    => 'Etsi kaksoiskappaleita',
 'fileduplicatesearch-filename'  => 'Tiedostonimi',
 'fileduplicatesearch-submit'    => 'Etsi',
-'fileduplicatesearch-info'      => '$1×$2 kuvapistettä<br />Tiedostokoko: $3<br />MIME-tyyppi: $4',
+'fileduplicatesearch-info'      => '$1 × $2 kuvapistettä<br />Tiedostokoko: $3<br />MIME-tyyppi: $4',
 'fileduplicatesearch-result-1'  => 'Tiedostolla ”$1” ei ole identtisiä kaksoiskappaleita.',
 'fileduplicatesearch-result-n'  => 'Tiedostolla ”$1” on {{PLURAL:$2|yksi identtinen kaksoiskappale|$2 identtistä kaksoiskappaletta}}.',
 'fileduplicatesearch-noresults' => 'Tiedostoa nimeltä ”$1” ei löytynyt.',

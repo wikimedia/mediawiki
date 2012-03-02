@@ -1361,7 +1361,7 @@ $1',
 'img-auth-nopathinfo'   => 'PATH_INFO失之。
 爾之伺服器無此資料也。
 以CGI之本耳，無img_auth矣。
-閱http://www.mediawiki.org/wiki/Manual:Image_Authorization。',
+閱https://www.mediawiki.org/wiki/Manual:Image_Authorization。',
 'img-auth-notindir'     => '求之徑無存貢錄中。',
 'img-auth-badtitle'     => '於「$1」無建效題也。',
 'img-auth-nologinnWL'   => '爾未登簿，「$1」無在白名中。',
@@ -2025,7 +2025,7 @@ $1',
 'ipb-change-block'                => '用此設重禁此簿',
 'badipaddress'                    => 'IP不格',
 'blockipsuccesssub'               => '禁焉',
-'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]]禁焉。表禁<br />見[[Special:IPBlockList|此]]。',
+'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]]禁焉。表禁<br />見[[Special:BlockList|此]]。',
 'ipb-edit-dropdown'               => '改證',
 'ipb-unblock-addr'                => '赦$1',
 'ipb-unblock'                     => '赦簿、址',

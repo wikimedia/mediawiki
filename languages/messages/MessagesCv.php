@@ -1007,7 +1007,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'badipaddress'             => 'IP-адрес формачĕ тĕрĕс мар, е ку ятлă хутшăнакан кунта çук.',
 'blockipsuccesssub'        => 'Ĕçлеме чартăмăр',
 'blockipsuccesstext'       => '[[Special:Contributions/$1|«$1»]] ĕçлеме чарнă.
-<br />[[Special:IPBlockList|ĕçлеме чарнă IP-адрессен списокне]] пăх.',
+<br />[[Special:BlockList|ĕçлеме чарнă IP-адрессен списокне]] пăх.',
 'unblockip'                => 'IP-адреса блокировкăран калар',
 'unblocked-id'             => '$1 чарса лартнине ирĕке кăларнă',
 'ipblocklist'              => 'Чарнă IP-адрессемпе хутшăнакансен списокĕ',

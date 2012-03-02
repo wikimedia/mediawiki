@@ -28,6 +28,7 @@
  * @author FollowTheMedia
  * @author Gianfranco
  * @author HalphaZ
+ * @author Kaganer
  * @author Klutzy
  * @author Marco 27
  * @author Martorell
@@ -797,7 +798,7 @@ Password temporanea: $2',
 'nowiki_sample'   => 'Inserire qui il testo non formattato',
 'nowiki_tip'      => 'Ignora la formattazione wiki',
 'image_sample'    => 'Esempio.jpg',
-'image_tip'       => 'File incorporato',
+'image_tip'       => 'Incorpora file',
 'media_sample'    => 'Esempio.ogg',
 'media_tip'       => 'Collegamento a file multimediale',
 'sig_tip'         => 'Firma con data e ora',
@@ -1079,7 +1080,7 @@ Gli altri amministratori di {{SITENAME}} potranno accedere comunque ai contenuti
 'revdelete-hide-text'         => 'Nascondi il testo della versione',
 'revdelete-hide-image'        => 'Nascondi i contenuti del file',
 'revdelete-hide-name'         => 'Nascondi azione e oggetto della stessa',
-'revdelete-hide-comment'      => "Nascondi l'oggetto della modifica",
+'revdelete-hide-comment'      => "Nascondi l'oggetto della modifica o la motivazione dell'azione",
 'revdelete-hide-user'         => "Nascondi il nome o l'indirizzo IP dell'autore",
 'revdelete-hide-restricted'   => 'Nascondi le informazioni indicate anche agli amministratori',
 'revdelete-radio-same'        => '(non cambiare)',
@@ -1707,7 +1708,7 @@ Non può essere adeguatamente controllato per la sicurezza.',
 'img-auth-nopathinfo'       => 'PATH_INFO mancante.
 Il server non è impostato per passare questa informazione.
 Potrebbe essere basato su CGI e non può supportare img_auth.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization Consultare la documentazione.]',
+Vedi https://www.mediawiki.org/wiki/Manual:Image_Authorization',
 'img-auth-notindir'         => 'Il percorso richiesto non si trova nella directory di upload configurata.',
 'img-auth-badtitle'         => 'Impossibile costruire un titolo valido da "$1".',
 'img-auth-nologinnWL'       => 'Non si è effettuato l\'accesso e "$1" non è nella whitelist.',
@@ -1794,7 +1795,7 @@ Di seguito viene mostrata la descrizione presente nella [$2 pagina di descrizion
 'uploadnewversion-linktext' => 'Carica una nuova versione di questo file',
 'shared-repo-from'          => 'da $1',
 'shared-repo'               => 'un archivio condiviso',
-'filepage.css'              => '/* Il CSS qui posto viene incluso nella pagina di descrizione del file, inclusa anche su wiki client stranieri */',
+'filepage.css'              => '/* Il CSS messo qui viene incluso nella pagina di descrizione del file, inclusa anche su wiki client esterni */',
 
 # File reversion
 'filerevert'                => 'Ripristina $1',
@@ -2053,14 +2054,14 @@ Potrebbero esserci [[{{MediaWiki:Listgrouprights-helppage}}|ulteriori informazio
 'listgrouprights-rights'               => 'Diritti',
 'listgrouprights-helppage'             => 'Help:Diritti del gruppo',
 'listgrouprights-members'              => '(Elenco dei membri)',
-'listgrouprights-addgroup'             => 'Può aggiungere {{PLURAL:$2|il gruppo|i gruppi}}: $1',
-'listgrouprights-removegroup'          => 'Può rimuovere {{PLURAL:$2|il gruppo|i gruppi}}: $1',
+'listgrouprights-addgroup'             => 'Può aggiungere {{PLURAL:$2|al gruppo|ai gruppi}}: $1',
+'listgrouprights-removegroup'          => 'Può rimuovere {{PLURAL:$2|dal gruppo|dai gruppi}}: $1',
 'listgrouprights-addgroup-all'         => 'Può aggiungere a tutti i gruppi',
-'listgrouprights-removegroup-all'      => 'Può rimuovere tutti i gruppi',
-'listgrouprights-addgroup-self'        => 'Può aggiungere {{PLURAL:$2|un gruppo|gruppi}} al proprio account: $1',
-'listgrouprights-removegroup-self'     => 'Può rimuovere {{PLURAL:$2|un gruppo|gruppi}} dal proprio account: $1',
-'listgrouprights-addgroup-self-all'    => 'Può aggiungere tutti i gruppi al proprio account',
-'listgrouprights-removegroup-self-all' => 'Può rimuovere tutti i gruppi dal proprio account',
+'listgrouprights-removegroup-all'      => 'Può rimuovere da tutti i gruppi',
+'listgrouprights-addgroup-self'        => 'Può aggiungersi {{PLURAL:$2|al gruppo|ai gruppi}}: $1',
+'listgrouprights-removegroup-self'     => 'Può rimuoversi {{PLURAL:$2|dal gruppo|dai gruppi}}: $1',
+'listgrouprights-addgroup-self-all'    => 'Può aggiungersi a tutti i gruppi',
+'listgrouprights-removegroup-self-all' => 'Può rimuoversi da tutti i gruppi',
 
 # E-mail user
 'mailnologin'          => 'Nessun indirizzo cui inviare il messaggio',
@@ -2424,7 +2425,7 @@ Indicare il motivo specifico per il quale si procede al blocco (per esempio, cit
 'badipaddress'                    => 'Indirizzo IP non valido.',
 'blockipsuccesssub'               => 'Blocco eseguito',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] è stato bloccato. <br />
-Consultare la [[Special:IPBlockList|lista degli IP bloccati]] per vedere i blocchi attivi.',
+Consultare la [[Special:BlockList|lista degli IP bloccati]] per vedere i blocchi attivi.',
 'ipb-blockingself'                => 'Stai per bloccare te stesso! Sei sicuro di volerlo fare?',
 'ipb-confirmhideuser'             => 'Si sta per bloccare un utente con l\'opzione "Nascondi utente" abilitata.
 In questo modo si evita che il nome utente compaia in tutte le liste e le voci di registro.
@@ -2882,10 +2883,10 @@ $1',
 'mediawarning'           => "'''Attenzione''': Questo file potrebbe contenere codice maligno. La sua esecuzione potrebbe danneggiare il tuo sistema.",
 'imagemaxsize'           => "Dimensione massima delle immagini:<br />''(per le pagine di descrizione del file)''",
 'thumbsize'              => 'Grandezza delle miniature:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|pagina|pagine}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|pagina|pagine}}',
 'file-info'              => 'dimensione del file: $1, tipo MIME: $2',
 'file-info-size'         => '$1 × $2 pixel, dimensione del file: $3, tipo MIME: $4',
-'file-info-size-pages'   => '$1× $2 pixel, dimensione del file: $3, tipo MIME: $4, $5 {{PLURAL:$5|pagina|pagine}}',
+'file-info-size-pages'   => '$1 × $2 pixel, dimensione del file: $3, tipo MIME: $4, $5 {{PLURAL:$5|pagina|pagine}}',
 'file-nohires'           => '<small>Non sono disponibili versioni a risoluzione più elevata.</small>',
 'svg-long-desc'          => 'file in formato SVG, dimensioni nominali $1 × $2 pixel, dimensione del file: $3',
 'show-big-image'         => 'Versione ad alta risoluzione',
@@ -3119,6 +3120,7 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'exif-compression-2' => 'CCITT gruppo 3 monodimensionale - codifica run length di Huffman modificata',
 'exif-compression-3' => 'Codifica fax CCITT Group 3',
 'exif-compression-4' => 'Codifica fax CCITT gruppo 4',
+'exif-compression-6' => 'JPEG (vecchio)',
 
 'exif-copyrighted-true'  => 'Protetto da copyright',
 'exif-copyrighted-false' => 'Pubblico dominio',
@@ -3528,13 +3530,13 @@ Si noti che è anche possibile [[Special:EditWatchlist|modificare la lista con l
 'version-hook-subscribedby'     => 'Sottoscrizioni',
 'version-version'               => '(Versione $1)',
 'version-license'               => 'Licenza',
-'version-poweredby-credits'     => "Questo wiki è alimentato da '''[//www.mediawiki.org/ MediaWiki ]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits'     => "Questo wiki è realizzato con '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'      => 'altri',
-'version-license-info'          => 'MediaWiki è software libero; è lecito redistribuirlo e/o modificarlo secondo i termini della GNU General Public License, come pubblicata dalla Free Software Foundation; o la versione 2 della Licenza o (a propria scelta) qualunque versione successiva.
+'version-license-info'          => 'MediaWiki è un software libero; puoi redistribuirlo e/o modificarlo secondo i termini della GNU General Public License, come pubblicata dalla Free Software Foundation; o la versione 2 della Licenza o (a propria scelta) qualunque versione successiva.
 
 MediaWiki è distribuito nella speranza che sia utile, ma SENZA ALCUNA GARANZIA; senza neppure la garanzia implicita di NEGOZIABILITÀ o di APPLICABILITÀ PER UN PARTICOLARE SCOPO. Si veda la GNU General Public License per maggiori dettagli.
 
-Questo programma deve essere distribuito assieme ad [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia di una copia della GNU General Public License]; in caso contrario, in caso contrario, se ne può ottenere una scrivendo alla Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA oppure [//www.softwarelibero.it/gnudoc/gpl.it.txt leggerla in rete].',
+Questo programma deve essere distribuito assieme ad [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia della GNU General Public License]; in caso contrario, se ne può ottenere una scrivendo alla Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA oppure [//www.softwarelibero.it/gnudoc/gpl.it.txt leggerla in rete].',
 'version-software'              => 'Software installato',
 'version-software-product'      => 'Prodotto',
 'version-software-version'      => 'Versione',

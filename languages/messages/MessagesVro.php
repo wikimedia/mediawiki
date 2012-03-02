@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Kaganer
  * @author Niklas Laxström
  * @author Pikne
  * @author Sulev Iva (Võrok)
@@ -1561,7 +1562,7 @@ Perämäidsi kistutuisi ja tagasitegemiisi saat kaiaq [[Special:Log/delete|kistu
 'badipaddress'                => 'Puutri võrgoaadrõs om võlssi kirotõt.',
 'blockipsuccesssub'           => 'Kinniqpidämine läts kõrda',
 'blockipsuccesstext'          => 'Puutri võrgoaadrõs "$1" om kinniq peet.
-<br />Kõik parhilladsõq kinniqpidämiseq lövvät [[Special:IPBlockList|kinniqpidämiisi nimekiräst]].',
+<br />Kõik parhilladsõq kinniqpidämiseq lövvät [[Special:BlockList|kinniqpidämiisi nimekiräst]].',
 'ipb-edit-dropdown'           => 'Toimõndaq kinniqpidämise põhjuisi',
 'ipb-unblock-addr'            => 'Lõpõdaq pruukja $1 kinniqpidämine ärq',
 'ipb-unblock'                 => 'Lõpõdaq pruukja vai puutri võrgoaadrõasi kinniqpidämine ärq',
@@ -1866,7 +1867,7 @@ Kokkovõttõria pääle või kirotaq tagasivõtmisõ põhjusõ.',
 'imagemaxsize'   => 'Pildi seletüslehe pääl näütämise suuruspiir:',
 'thumbsize'      => 'Väikupildi suurus:',
 'file-info'      => '$1, MIME-tüüp: $2',
-'file-info-size' => '$1×$2 pikslit, $3, MIME-tüüp: $4',
+'file-info-size' => '$1 × $2 pikslit, $3, MIME-tüüp: $4',
 'file-nohires'   => '<small>Taast terävämpä pilti olõ-i saiaq.</small>',
 'svg-long-desc'  => 'SVG-teedüstü, põhisuurus $1 × $2 pikslit, teedüstü suurus $3',
 'show-big-image' => 'Täüsterräv kujo',

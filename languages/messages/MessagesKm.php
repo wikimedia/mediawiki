@@ -9,6 +9,7 @@
  *
  * @author Bunly
  * @author Chhorran
+ * @author Kaganer
  * @author Kiensvay
  * @author Lovekhmer
  * @author Sovichet
@@ -2913,7 +2914,7 @@ $1',
 'mediawarning'         => "'''ប្រយ័ត្ន''' ៖ ឯកសារនេះអាចមានផ្ទុកកូដពិសពុល។ កុំព្យូទ័ររបស់អ្នកអាចមានគ្រោះថ្នាក់បើឱ្យវាមានដំណើរការ។",
 'imagemaxsize'         => "កំណត់ទំហំរូបភាព៖<br />''(លើទំព័រពិពណ៌នារូបភាព)''",
 'thumbsize'            => 'ទំហំកូនរូបភាព៖',
-'widthheightpage'      => '$1×$2, $3{{PLURAL:$3|ទំព័រ|ទំព័រ}}',
+'widthheightpage'      => '$1 × $2, $3{{PLURAL:$3|ទំព័រ|ទំព័រ}}',
 'file-info'            => 'ទំហំឯកសារ៖ $1, ប្រភេទ MIME ៖ $2',
 'file-info-size'       => '$1 × $2 ភីកសែល ទំហំឯកសារ៖ $3 ប្រភេទ MIME៖ $4',
 'file-nohires'         => '<small>គ្មានភាពម៉ត់ ដែលខ្ពស់ជាង។</small>',

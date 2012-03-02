@@ -321,6 +321,9 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 'histfirst'        => 'Nambawan',
 'histlast'         => 'Bilong nau',
 
+# Revision feed
+'history-feed-item-nocomment' => '$1 long $2',
+
 # Revision deletion
 'rev-delundel'               => 'soim/haitim',
 'revdelete-show-file-submit' => 'Yes',
@@ -683,7 +686,7 @@ Sapos yu laik rausim dispela pes long lukautbuk bilong yu bihain, paitim \"Pinis
 'whatlinkshere'            => 'Ol link ikam long hia',
 'whatlinkshere-page'       => 'Pes:',
 'isredirect'               => 'nupela rot',
-'isimage'                  => 'link bilong piksa',
+'isimage'                  => 'link long piksa',
 'whatlinkshere-links'      => '← ol link',
 'whatlinkshere-hideredirs' => '$1 ol nupela rot',
 'whatlinkshere-hidelinks'  => '$1 ol link',

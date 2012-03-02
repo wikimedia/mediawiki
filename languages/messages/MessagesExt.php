@@ -8,8 +8,10 @@
  * @file
  *
  * @author Better
+ * @author Kaganer
  * @author The Evil IP address
  * @author Urhixidur
+ * @author Xuacu
  */
 
 $namespaceNames = array(
@@ -935,7 +937,7 @@ Amás premiti qu'otrus ussuárius contatin contigu pol mé la tu página d'ussu�
 'group-bureaucrat'    => 'Alministraoris',
 'group-all'           => '(tó)',
 
-'group-user-member'          => 'Usuáriu',
+'group-user-member'          => '{{GENDER:$1|Usuáriu}}',
 'group-autoconfirmed-member' => 'Usuáriu autuconfirmau',
 'group-bot-member'           => 'Bot',
 'group-sysop-member'         => 'Çahoril',
@@ -1687,7 +1689,7 @@ Escrebi una razón concreta embahu (pol sabulugal, almientandu páhinas qu'aigan
 'badipaddress'                => 'Direción IP nu premitia',
 'blockipsuccesssub'           => 'Usuáriu atarugau!',
 'blockipsuccesstext'          => "La direción IP [[Special:Contributions/$1|$1]] á siu atarugá.
-<br />Consurta la [[Special:IPBlockList|lista d'IP atarugás]] pa visoreal los tarugus.",
+<br />Consurta la [[Special:BlockList|lista d'IP atarugás]] pa visoreal los tarugus.",
 'ipb-edit-dropdown'           => 'Eital las razonis el tarugu',
 'ipb-unblock-addr'            => 'Desatarugal $1',
 'ipb-unblock'                 => 'Desatarugal un nombri d´usuáriu u direción IP',
@@ -2000,7 +2002,7 @@ $1',
 
 # Media information
 'thumbsize'       => 'Grandol el cuairu:',
-'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|página|páginas}}',
+'widthheightpage' => '$1 × $2, $3 {{PLURAL:$3|página|páginas}}',
 'file-info'       => 'grandol el archivu: $1, MIME type: $2',
 'file-info-size'  => '$1 × $2 pixel, grandol el archivu: $3, MIME type: $4',
 'file-nohires'    => '<small>Nu disponibri a mayol resolución.</small>',

@@ -23,6 +23,7 @@
  * @author Glanthor Reviol
  * @author Gondnok
  * @author Hunyadym
+ * @author Kaganer
  * @author KossuthRad
  * @author Misibacsi
  * @author Samat
@@ -679,7 +680,7 @@ Lekérdezés: $2',
 'protectedpagetext'    => 'Ez egy védett lap, nem szerkeszthető.',
 'viewsourcetext'       => 'Megtekintheted és másolhatod a lap forrását:',
 'protectedinterface'   => 'Ez a lap a szoftver felületéhez szolgáltat szöveget, és a visszaélések elkerülése miatt le van zárva.',
-'editinginterface'     => "'''Vigyázat:''' egy olyan lapot szerkesztesz, ami a MediaWiki szoftver felületéthez tarzozik. A lap megváltoztatása hatással lesz más szerkesztők számára is. Fordításra inkább használd a MediaWiki fordítására indított kezdeményezést, a [//translatewiki.net/wiki/Main_Page?setlang=hu translatewiki.net-et].",
+'editinginterface'     => "'''Vigyázat:''' egy olyan lapot szerkesztesz, ami a MediaWiki szoftver felületéhez tartozik. A lap megváltoztatása hatással lesz más szerkesztők számára is. Fordításra inkább használd a MediaWiki fordítására indított kezdeményezést, a [//translatewiki.net/wiki/Main_Page?setlang=hu translatewiki.net-et].",
 'sqlhidden'            => '(rejtett SQL lekérdezés)',
 'cascadeprotected'     => 'Ez a lap szerkesztés elleni védelemmel lett ellátva, mert a következő {{PLURAL:$1|lapon|lapokon}} be van kapcsolva a „kaszkádolt” védelem:
 $2',
@@ -1148,7 +1149,7 @@ A(z) {{SITENAME}} adminisztrátorai továbbra is meg tudják tekinteni az elrejt
 *: ''otthoni címek és telefonszámok, társadalombiztosítási számok stb.''",
 'revdelete-legend'            => 'Korlátozások megadása:',
 'revdelete-hide-text'         => 'Változat szövegének elrejtése',
-'revdelete-hide-image'        => 'A fájl tartalomának elrejtése',
+'revdelete-hide-image'        => 'A fájl tartalmának elrejtése',
 'revdelete-hide-name'         => 'Művelet és cél elrejtése',
 'revdelete-hide-comment'      => 'Összefoglaló elrejtése',
 'revdelete-hide-user'         => 'A szerkesztő felhasználónevének/IP-címének elrejtése',
@@ -1181,7 +1182,7 @@ $1",
 'revdelete-hid'               => 'elrejtette $1',
 'revdelete-unhid'             => 'felfedte $1',
 'revdelete-log-message'       => '$1 {{PLURAL:$1|egy|$2}} változatnak',
-'logdelete-log-message'       => '$1 {{PLURAL:$2|egy|$2}} eseményt',
+'logdelete-log-message'       => '$1 {{PLURAL:$2|egy|$2}} eseménynek',
 'revdelete-hide-current'      => 'Nem sikerült elrejteni a $1 $2-kori elemet: ez a jelenlegi változat, amit nem lehet elrejteni.',
 'revdelete-show-no-access'    => 'Nem lehet megjeleníteni a $2 $1-kori elemet, mert „korlátozottnak” van jelölve.',
 'revdelete-modify-no-access'  => 'Nem lehet módosítani a $2 $1-kori elemet, mert „korlátozottnak” van jelölve.',
@@ -1791,7 +1792,7 @@ Nem lehet megfelelően ellenőrizni a biztonságosságát.',
 'img-auth-nopathinfo'       => 'Hiányzó PATH_INFO.
 A szerver nincs beállítva, hogy továbbítsa ezt az információt.
 Lehet, hogy CGI-alapú, és nem támogatja az img_auth-ot.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization Lásd kép hitelesítési lapot.]',
+Lásd https://www.mediawiki.org/wiki/Manual:Image_Authorization!',
 'img-auth-notindir'         => 'A kért elérési út nincs a beállított feltöltési könyvtárban.',
 'img-auth-badtitle'         => 'Nem sikerült érvényes címet készíteni a(z) „$1” szövegből.',
 'img-auth-nologinnWL'       => 'Nem vagy bejelentkezve, és a(z) „$1” nincs az engedélyezési listán.',
@@ -2521,7 +2522,7 @@ Add meg a blokkolás okát is (például idézd a blokkolandó személy által v
 'badipaddress'                    => 'Érvénytelen IP-cím',
 'blockipsuccesssub'               => 'Sikeres blokkolás',
 'blockipsuccesstext'              => '„[[Special:Contributions/$1|$1]]” felhasználót blokkoltad.
-<br />Lásd a [[Special:IPBlockList|blokkolt IP-címek listáját]] az érvényben lévő blokkok áttekintéséhez.',
+<br />Lásd a [[Special:BlockList|blokkolt IP-címek listáját]] az érvényben lévő blokkok áttekintéséhez.',
 'ipb-blockingself'                => 'Saját magad blokkolására készülsz! Biztos, hogy ezt szeretnéd tenni?',
 'ipb-confirmhideuser'             => 'Egy felhasználó blokkolására készülsz, úgy, hogy a „felhasználó elrejtése” funkció be van kapcsolva. Ez elrejti a felhasználó nevét az összes listában és naplóbejegyzésben. Biztosan ezt szeretnéd tenni?',
 'ipb-edit-dropdown'               => 'Blokkolási okok szerkesztése',
@@ -3010,7 +3011,7 @@ $1',
 A futtatása során kárt tehet a számítógépedben.",
 'imagemaxsize'           => "A képek mérete, legfeljebb:<br />''(a leírólapokon)''",
 'thumbsize'              => 'Bélyegkép mérete:',
-'widthheightpage'        => '$1×$2, {{PLURAL:$3|egy|$3}} oldal',
+'widthheightpage'        => '$1 × $2, {{PLURAL:$3|egy|$3}} oldal',
 'file-info'              => 'fájlméret: $1, MIME-típus: $2',
 'file-info-size'         => '$1 × $2 képpont, fájlméret: $3, MIME-típus: $4',
 'file-info-size-pages'   => '$1 × $2 képpont, fájlméret: $3, MIME típus: $4, $5 oldal',

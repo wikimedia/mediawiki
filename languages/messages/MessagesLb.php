@@ -9,6 +9,7 @@
  *
  * @author Hercule
  * @author Kaffi
+ * @author Kaganer
  * @author Les Meloures
  * @author Purodha
  * @author Reedy
@@ -383,7 +384,7 @@ $messages = array(
 'viewhelppage'      => 'Hëllefssäit weisen',
 'categorypage'      => 'Kategoriesäit weisen',
 'viewtalkpage'      => 'Diskussioun weisen',
-'otherlanguages'    => 'Aner Sproochen',
+'otherlanguages'    => 'An anere Sproochen',
 'redirectedfrom'    => '(Virugeleet vu(n) $1)',
 'redirectpagesub'   => 'Viruleedungssäit',
 'lastmodifiedat'    => "Dës Säit gouf den $1 ëm $2 Auer fir d'lescht geännert.",
@@ -432,7 +433,7 @@ $1",
 'retrievedfrom'           => 'Vun „$1“',
 'youhavenewmessages'      => 'Dir hutt $1 ($2).',
 'newmessageslink'         => 'nei Messagen',
-'newmessagesdifflink'     => 'Nei Messagen',
+'newmessagesdifflink'     => 'Lescht Ännerung',
 'youhavenewmessagesmulti' => 'Dir hutt nei Messagen op $1',
 'editsection'             => 'änneren',
 'editold'                 => 'änneren',
@@ -572,7 +573,7 @@ Denkt drun, Är [[Special:Preferences|{{SITENAME}}-Astellungen]] unzepassen.',
 'yourdomainname'             => 'Ären Domain',
 'externaldberror'            => 'Entweder ass e Feeler bei der externer Authentifizéierung geschitt, oder Dir däerft Ären externe Benotzerkont net aktualiséieren.',
 'login'                      => 'Umellen',
-'nav-login-createaccount'    => 'Aloggen',
+'nav-login-createaccount'    => 'Aloggen / Benotzerkont uleeën',
 'loginprompt'                => "Fir sech op {{SITENAME}} umellen ze kënnen, mussen d'Cookien aktivéiert sinn.",
 'userlogin'                  => 'Aloggen / Benotzerkont uleeën',
 'userloginnocreate'          => 'Umellen',
@@ -717,9 +718,10 @@ Temporärt Passwuert: $2',
 'showpreview'                      => 'Kucken ouni ofzespäicheren',
 'showlivepreview'                  => 'Live-Kucken ouni ofzespäicheren',
 'showdiff'                         => 'Ännerunge weisen',
-'anoneditwarning'                  => 'Dir sidd net ageloggt. Dowéinst gëtt amplaz vun engem Benotzernumm Är IP Adress am Historique vun dëser Säit gespäichert.',
+'anoneditwarning'                  => "'''Opgepasst:''' Dir sidd net ageloggt. Dowéinst gëtt amplaz vun engem Benotzernumm Är IP Adress am Historique vun dëser Säit gespäichert.",
 'anonpreviewwarning'               => "''Dir sidd net ageloggt. Wann Dir ofspäichert gëtt Är IP-Adress an der Lëscht vun de Versioune vun dëser Säit enregistréiert.''",
-'missingsummary'                   => "'''Erënnerung:''' Dir hutt kee Resumé aginn. Wann Dir nachemol op \"Säit ofspäicheren\" klickt, gëtt är Ännerung ouni Resumé ofgespäichert.",
+'missingsummary'                   => "'''Erënnerung:''' Dir hutt kee Resumé aginn.
+Wann Dir nacheemol op \"{{int:savearticle}}\" klickt, gëtt Är Ännerung ouni Resumé ofgespäichert.",
 'missingcommenttext'               => 'Gitt w.e.g. eng Bemierkung an.',
 'missingcommentheader'             => "'''Denkt drun:''' Dir hutt keen Titel/Sujet fir dës Bemierkung aginn.
 Wann Dir nach en Kéier op \"{{int:savearticle}}\" klickt da gëtt Är Ännerung ouni Titel gespäichert.",
@@ -776,7 +778,7 @@ Et ka sinn datt e geännert oder geläscht gouf iwwerdm wou Dir d'Säit gekuckt 
 
 D'Passwuert fir dësen neie Benotzerkont kann op der ''[[Special:ChangePassword|Passwuert ännere]]'' Säit beim Alogge geännert ginn.",
 'newarticle'                       => '(Nei)',
-'newarticletext'                   => "Dir hutt op e Link vun enger Säit geklickt, déi et nach net gëtt. Fir déi Säit unzeleeën, gitt w.e.g. Ären Text an déi Këscht hei drënner an (kuckt d'[[{{MediaWiki:Helppage}}|Hëllef Säit]] fir méi Informatiounen). Wann Dir duerch een Iertum heihi komm sidd, da klickt einfach op de Knäppchen '''Zréck''' vun ärem Browser.",
+'newarticletext'                   => "Dir hutt op e Link vun enger Säit geklickt, déi et nach net gëtt. Fir déi Säit unzeleeën, gitt w.e.g. Ären Text an déi Këscht hei drënner an (kuckt d'[[{{MediaWiki:Helppage}}|Hëllef Säit]] fir méi Informatiounen). Wann Dir duerch een Iertum heihi komm sidd, da klickt einfach op de Knäppchen '''Zréck''' vun Ärem Browser.",
 'anontalkpagetext'                 => "---- ''Dëst ass d'Diskussiounssäit fir en anonyme Benotzer deen nach kee Kont opgemaach huet oder en net benotzt. Dowéinst musse mir d'IP Adress benotzen, fir de Benotzer z'identifizéieren. Sou eng IP Adress ka vun e puer Benotzer gedeelt ginn. Wann Dir en anonyme Benotzer sidd an Dir irrelevant Kommentäre krut, [[Special:UserLogin/signup|maacht w.e.g. e Kont op]] oder [[Special:UserLogin|loggt Iech an]], fir weider Verwiesselunge mat anonyme Benotzer ze verhënneren.''",
 'noarticletext'                    => 'Dës Säit huet momentan keen Text.
 Dir kënnt op anere Säiten no [[Special:Search/{{PAGENAME}}|dësem Säitentitel sichen]],
@@ -982,7 +984,7 @@ Dir kënnt dësen Ënnerscheed gesinn; Detailer fannt Dir am [{{fullurl:{{#Speci
 'revdelete-show-file-submit'  => 'Jo',
 'revdelete-selected'          => "'''{{PLURAL:$2|Gewielte Versioun|Gewielte Versioune}} vu(n) '''$1''' :'''",
 'logdelete-selected'          => "'''Ausgewielten {{PLURAL:$1|Evenement|Evenementer}} aus dem Logbuch:'''",
-'revdelete-text'              => "'''Geläschte Versiounen oder aner geäschte Bestanddeeler sinn net méi ëffentlech zougänglech, si stinn awer weiderhinn an der Versiounsgeschicht vun der Säit.'''
+'revdelete-text'              => "'''Geläschte Versiounen oder aner geläschte Bestanddeeler sinn net méi ëffentlech zougänglech, si stinn awer weiderhin an der Versiounsgeschicht vun der Säit.'''
 Aner {{SITENAME}}-Administrateure kënnen de geläschten Inhalt oder aner geläschte Bestanddeeler weiderhi gesinn a restauréieren, et sief, et gouf festgeluecht, datt déi Limitatioune vum Accès och fir Administrateure gëllen.",
 'revdelete-confirm'           => "Confirméiert w.e.g. datt Dir dat maache wëllt, datt Dir d'Konsequenze verstitt an datt Dir dëst an Aklang mat de [[{{MediaWiki:Policy-url}}|Richtlinne]] maacht.",
 'revdelete-suppress-text'     => "Ënnerdréckung sollt '''nëmmen''' an dëse Fäll benotzt ginn:
@@ -1631,7 +1633,7 @@ E kann net op d'Sécherheet nogekuckt ginn.",
 'img-auth-nopathinfo'       => 'PATH_INFO feelt.
 Äre Server ass net agestallt fir déi Informatioun weiderzeginn.
 Et kann u CGI leien an datt imag_auth net ënnerstëtzt gëtt.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization Kuckt Autorisatioun vum Bild.]',
+Kuckt  https://www.mediawiki.org/wiki/Manual:Image_Authorization',
 'img-auth-notindir'         => 'De gefrote Pad ass net am Upload-Repertoire agestallt.',
 'img-auth-badtitle'         => 'Aus "$1" ka kee valabelen Titel gemaach ginn.',
 'img-auth-nologinnWL'       => 'Dir sidd net ageloggt a(n) "$1" ass net op der Wäisser Lëscht.',
@@ -2364,7 +2366,7 @@ $1',
 'blockipsuccesssub'               => 'Gouf gespaart',
 'blockipsuccesstext'              => "[[Special:Contributions/$1|$1]] gouf gespaart. <br />
 
-Kuckt d'[[Special:IPBlockList|IP Spär-Lëscht]] fir all Spären ze gesin.",
+Kuckt d'[[Special:BlockList|IP Spär-Lëscht]] fir all Spären ze gesin.",
 'ipb-blockingself'                => 'Dir sidd am gaang Iech selwer ze spären! Sidd Dir sécher datt Dir dat maache wëllt?',
 'ipb-confirmhideuser'             => 'Dir sidd am gaang e Benotzer ze späre mat der Fonctioun "Benotzer verstoppen" ageschalt. Dëst hëlt den Numm vum Benotzer aus alle Lëschten a Logbicher eraus. Sidd Dir sécher datt Dir dat maache wëllt?',
 'ipb-edit-dropdown'               => 'Spärgrënn änneren',
@@ -2827,9 +2829,9 @@ $1',
 Duerch d'Opmaache vum Fichier kann Äre System beschiedegt ginn.",
 'imagemaxsize'           => "Maximal Gréisst fir Biller:<br />''(fir Billerbeschreiwungssäiten)''",
 'thumbsize'              => 'Gréisst vun der Miniatur:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|Säit|Säiten}}',
-'file-info'              => 'Dateigréisst: $1, MIME-Typ: $2',
-'file-info-size'         => '$1 × $2 Pixel, Dateigréisst: $3, MIME-Typ: $4',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|Säit|Säiten}}',
+'file-info'              => 'Fichiersgréisst: $1, MIME-Typ: $2',
+'file-info-size'         => '$1 × $2 Pixel, Fichiersgréisst: $3, MIME-Typ: $4',
 'file-info-size-pages'   => '$1 × $2 Pixelen, Gréisst vum Fichier: $3, MIME Typ: $4, $5 {{PLURAL:$5|Säit|Säiten}}',
 'file-nohires'           => '<small>Et gëtt keng méi héich Opléisung.</small>',
 'svg-long-desc'          => 'SVG-Fichier, Basisgréisst: $1 × $2 Pixel, Gréisst vum Fichier: $3',
@@ -2837,9 +2839,9 @@ Duerch d'Opmaache vum Fichier kann Äre System beschiedegt ginn.",
 'show-big-image-preview' => '<small>Gréisst vun dësem Preview: $1.</small>',
 'show-big-image-other'   => '<small>Aner Gréissten: $1.</small>',
 'show-big-image-size'    => '$1 × $2 Pixel',
-'file-info-gif-looped'   => 'Endloosschleef',
+'file-info-gif-looped'   => 'endlos Schleef',
 'file-info-gif-frames'   => '$1 {{PLURAL:$1|Bild|Biller}}',
-'file-info-png-looped'   => 'Endlossschleef',
+'file-info-png-looped'   => 'endlos Schleef',
 'file-info-png-repeat'   => 'gouf $1 {{PLURAL:$1|mol|mol}} gespillt',
 'file-info-png-frames'   => '$1 {{PLURAL:$1|Frame|Framen}}',
 

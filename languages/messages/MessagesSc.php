@@ -1239,7 +1239,7 @@ Scrivi un motivo specifico per il quale questo indirizzo IP dovrebbe a tuo avvis
 'badipaddress'             => "S'indiritzu IP indicadu non est currègidu.",
 'blockipsuccesssub'        => 'Bloccu esecutivu',
 'blockipsuccesstext'       => '[[Special:Contributions/$1|$1]] è stadu bloccadu. <br />
-Abbàida sa [[Special:IPBlockList|lista de IP bloccados]] pro bìder sas bloccaduras.',
+Abbàida sa [[Special:BlockList|lista de IP bloccados]] pro bìder sas bloccaduras.',
 'ipb-edit-dropdown'        => 'Acontza su motivu de su bloccu',
 'ipb-unblock-addr'         => 'Sblocca $1',
 'ipb-blocklist-contribs'   => 'Contributziones de $1',

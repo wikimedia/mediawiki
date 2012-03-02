@@ -882,7 +882,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'group-bureaucrat'    => 'አስተዳዳሪዎች',
 'group-all'           => '(ሁሉ)',
 
-'group-user-member'          => 'ተጠቃሚ',
+'group-user-member'          => '{{GENDER:$1|ተጠቃሚ}}',
 'group-autoconfirmed-member' => 'የተረጋገጠ ተጠቃሚ',
 'group-bot-member'           => 'BOT',
 'group-sysop-member'         => 'መጋቢ',
@@ -1611,7 +1611,7 @@ $1',
 'badipaddress'                => 'የማይሆን የቁ. አድራሻ',
 'blockipsuccesssub'           => 'ማገጃ ተከናወነ',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] ታግዷል።<br />
-ማገጃዎች ለማመልከት [[Special:IPBlockList|የማገጃ ዝርዝሩን]] ይዩ።',
+ማገጃዎች ለማመልከት [[Special:BlockList|የማገጃ ዝርዝሩን]] ይዩ።',
 'ipb-edit-dropdown'           => "'ተራ የማገጃ ምክንያቶች' ለማስተካከል",
 'ipb-unblock-addr'            => 'ከ$1 መገጃ ለማንሣት',
 'ipb-unblock'                 => 'ከብዕር ስም ወይም ከቁ. አድራሻ ማገጃ ለማንሣት',

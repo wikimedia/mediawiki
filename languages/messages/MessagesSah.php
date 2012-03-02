@@ -10,6 +10,7 @@
  * @author Andrijko Z.
  * @author Bert Jickty
  * @author HalanTul
+ * @author Kaganer
  * @author Meno25
  * @author Urhixidur
  */
@@ -679,12 +680,12 @@ IP-аадырыһа эрэ көстөр.
 'userpage-userdoesnotexist-view'   => '"$1" кыттааччы аата бэлиэтэниллибэтэх.',
 'blocked-notice-logextract'        => 'Бу кыттааччы билигин бобуллубут.
 Манна бобуу сурунаалын бүтэһик суруга көстөр:',
-'clearyourcache'                   => "'''Болҕой''' - Уларыппыт сирэйгин сөпкө көрөргө браузер кээһин ыраастыаххын наада буолуо.
-'''Firefox / Safari.''' ''Shift'' кунуопканы тутан туран ''Reload'' баттаа, эбэтэр ''Ctrl-F5'', ''Ctrl-R'' дуу (Mac-ка ''Command-R'') баттаа;
-'''Google Chrome.''' ''Ctrl-Shift-R'' баттаа (Mac-ка ''Command-Shift-R'')
-'''Internet Explorer.''' ''Ctrl'' тутан туран ''Refresh'' баттаа, эбэтэр ''Ctrl-F5'' баттаа.
-'''Konqueror.''' ''Reload'' эбэтэр ''F5'' баттаа;
-'''Opera.''' Манна ''Tools → Preferences'' киирэн кээһин ыраастаа;",
+'clearyourcache'                   => "'''Болҕой:''' Уларыппыт сирэйгин сөпкө көрөргө браузер кээһин ыраастыаххын наада буолуо.
+*'''Firefox / Safari.''' ''Shift'' кунуопканы тутан туран ''Reload'' баттаа, эбэтэр ''Ctrl-F5'', ''Ctrl-R'' дуу (Mac-ка ''⌘-R'') баттаа;
+*'''Google Chrome:''' ''Ctrl-Shift-R'' баттаа (Mac-ка ''⌘-Shift-R'')
+*'''Internet Explorer:''' ''Ctrl'' тутан туран ''Refresh'' баттаа, эбэтэр ''Ctrl-F5'' баттаа.
+*'''Konqueror:''' ''Reload'' эбэтэр ''F5'' баттаа;
+*'''Opera:''' Манна ''Tools → Preferences'' киирэн кээһин ыраастаа",
 'usercssyoucanpreview'             => "'''Көмө.''' CSS-билэ саҥа барылын бигэргэтиэҥ иннинэ бу тимэҕи «{{int:showpreview}}»  баттаан тургутан көр.",
 'userjsyoucanpreview'              => "'''Көмө.''' JS-билэ саҥа барылын бигэргэтиэҥ иннинэ бу тимэҕи «{{int:showpreview}}»  баттаан тургутан көр.",
 'usercsspreview'                   => "'''Умнума: бу CSS тургутуута эрэ.
@@ -1046,7 +1047,7 @@ $1",
 'powersearch'                      => 'Бу бөлөхтөргө көрдөө',
 'powersearch-legend'               => 'Дириҥэтэн көрдөөһүн',
 'powersearch-ns'                   => 'Аат далыгар көрдөө:',
-'powersearch-redir'                => 'Утаарыылар испииһэктэрэ',
+'powersearch-redir'                => 'Утаарыылар тиһиликтэрэ',
 'powersearch-field'                => 'Көрдөөһүн',
 'powersearch-togglelabel'          => 'Бэлиэтээ:',
 'powersearch-toggleall'            => 'Барытын',
@@ -1541,7 +1542,7 @@ $1',
 'img-auth-nopathinfo'       => 'PATH_INFO суох.
 Эн сиэбэриҥ маннык сибидиэнньэни ыытар курдук туруоруута суох.
 Баҕар кини CGI олоҕурара буолуо ол иһин img_auth өйөөбөтө буолуо.
-[http://www.mediawiki.org/wiki/Manual:Image_Authorization Ойууну бигэргэтиини] көр.',
+[https://www.mediawiki.org/wiki/Manual:Image_Authorization Ойууну бигэргэтиини] көр.',
 'img-auth-notindir'         => 'Көрдөөбүт суолуҥ эрдэттэн туруоруллубут хачайдыыр паапкаҕа сыһыана суох.',
 'img-auth-badtitle'         => 'Мантан «$1» сөптөөх ааты оҥорор кыах суох.',
 'img-auth-nologinnWL'       => 'Эн тиһиликкэ киирбэтэххин, уонна «$1» үрүҥ (көҥүллэммит) тиһиккэ киирбэт эбит.',
@@ -1848,8 +1849,8 @@ $1',
 'linksearch-ns'    => 'Аат хочото (namespace):',
 'linksearch-ok'    => 'Бул',
 'linksearch-text'  => 'Туруоран биэрэр бэлиэлэри туһаныахха сөп, холобур, "*.wikipedia.org".
-
-Өйүүр боротокуол: <tt>$1</tt>',
+Саатар үрдүкү таһымнаах домен наада эбит, холобур "*.org".<br />
+Өйүүр боротокуоллар: <tt>$1</tt> (көрдүүргэр балартан ханныгын да эбимэ)',
 'linksearch-line'  => 'Мантан $2 манна $1 ыйынньык',
 'linksearch-error' => 'Туруоран биэрэр бэлиэлэри аадырыс/hostname саҕаланыытыгар эрэ туттуохха сөп.',
 
@@ -2266,7 +2267,7 @@ $1',
 'badipaddress'                    => 'IP аадырыһа сыыһа',
 'blockipsuccesssub'               => 'Тохтотулунна',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|«$1»]] бобуллубут/тохтотуллубут.<br />
-[[Special:IPBlockList|Бобуллубут IP-лар испииһэктэрин]] көр.',
+[[Special:BlockList|Бобуллубут IP-лар испииһэктэрин]] көр.',
 'ipb-blockingself'                => 'Эн бэйэҕин хааччахтаан эрэҕин! Ону өйдүүгүн дуо?',
 'ipb-confirmhideuser'             => 'Кытааччыны хааччахтаан уонна аатын кистээн эрэҕин. Аата мантан инньэ тиһиктэргэ уонна сурунаалларга көстүбэт буолуо. Бигэргэтэҕин дуо?',
 'ipb-edit-dropdown'               => 'Бобуу биричиинэтин уларыт',
@@ -2727,7 +2728,7 @@ $1',
 Куһаҕан буоллаҕына систиэмэни алдьатыан сөп.",
 'imagemaxsize'           => "Ойуу улаханын хааччахтааһын:<br />''(билэ туһунан сирэйгэ аналлаах)''",
 'thumbsize'              => 'Кыра ойуу (миниатюра) кээмэйэ:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|сирэй|сирэй}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|сирэй|сирэй}}',
 'file-info'              => 'билэ кээмэйэ: $1, MIME тиибэ: $2',
 'file-info-size'         => '$1 × $2 пииксэл, билэ кээмэйэ: $3, MIME тиибэ: $4',
 'file-info-size-pages'   => '$1 × $2 пиксель, билэ кээмэйэ: $3, MIME-көрүҥ: $4, $5 сирэйдээх',

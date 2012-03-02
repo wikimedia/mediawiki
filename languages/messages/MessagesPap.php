@@ -340,7 +340,7 @@ Si despues bo ke kita e página for di bo lista di observashon, primi \"Stop di 
 'badipaddress'       => 'IP adrès ta inválido',
 'blockipsuccesssub'  => 'Blokeo eksitoso',
 'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] tabata blokiá.<br />
-Wak e [[Special:IPBlockList|lista di blokeonan]] pa wak tur blokeo aktivo.',
+Wak e [[Special:BlockList|lista di blokeonan]] pa wak tur blokeo aktivo.',
 'unblockip'          => 'Desblokia uzadó',
 'blocklink'          => 'blokia',
 'unblocklink'        => 'desblokia',

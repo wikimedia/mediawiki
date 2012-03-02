@@ -723,7 +723,7 @@ Có̤i âu gì siŭ-gāi sê [[User:$3|$3]] ([[User talk:$3|Tō̤-lâung]]) sū 
 'ipbotherreason'           => 'Gì-tă nguòng-ĭng:',
 'blockipsuccesssub'        => 'Hŭng-sō̤ sìng-gŭng',
 'blockipsuccesstext'       => '[[Special:Contributions/$1|$1]] ké̤ṳk hŭng-sō̤ lāu.
-<br />Kó̤ [[Special:IPBlockList|IP hŭng-sō̤ dăng-dăng]] káng hŭng-sō̤ séng-sék.',
+<br />Kó̤ [[Special:BlockList|IP hŭng-sō̤ dăng-dăng]] káng hŭng-sō̤ séng-sék.',
 'ipb-edit-dropdown'        => 'Siŭ-gāi hŭng-sō̤ nguòng-ĭng',
 'ipb-unblock-addr'         => 'Gāi-hŭng $1',
 'ipb-unblock'              => 'Gāi-hŭng siŏh ciáh ê̤ṳng-hô hĕ̤k IP dê-cī',

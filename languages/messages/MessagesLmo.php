@@ -1160,7 +1160,7 @@ Scrivee chì de suta 'l mutiv specifegh per el bloch (presempi, a pudii scriv i 
 'badipaddress'             => 'Adrèss IP mia valid',
 'blockipsuccesssub'        => 'Blucagg bel-e faa',
 'blockipsuccesstext'       => "[[Special:Contributions/$1|$1]] a l'è staa blucaa.<br />
-Varda [[Special:IPBlockList|lista di IP blucaa]] per vidè anmò i bloch.",
+Varda [[Special:BlockList|lista di IP blucaa]] per vidè anmò i bloch.",
 'ipb-edit-dropdown'        => 'Resón del bloch',
 'ipb-unblock-addr'         => 'Desblòca $1',
 'ipb-unblock'              => 'Desbloca un duvrat o un adress IP',

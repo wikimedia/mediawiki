@@ -8,6 +8,7 @@
  * @file
  *
  * @author Huji
+ * @author Kaganer
  * @author Mostafadaneshvar
  * @author ZxxZxxZ
  */
@@ -2096,7 +2097,7 @@ $1',
 'badipaddress'                    => 'نامعتبر آدرس آی پی',
 'blockipsuccesssub'               => 'محدودیت موفق بوت',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] محدود بوتت..<br />
-بچار [[Special:IPBlockList|لیست آی پی محدود]] په بازبینی محدودیتان.',
+بچار [[Special:BlockList|لیست آی پی محدود]] په بازبینی محدودیتان.',
 'ipb-edit-dropdown'               => 'اصلاح کن دلایل محدودیت',
 'ipb-unblock-addr'                => 'رفع محدودیت  $1',
 'ipb-unblock'                     => 'نام کاربری یا آدرس آی پی رفع محدودیت کن',
@@ -2494,7 +2495,7 @@ $1',
 'mediawarning'    => "''''هوژاری:'''' ای فایل شاید شامل بد واهین کد بوت،اجرای آیی ته وتی سیستم شاید توافقی بیت.",
 'imagemaxsize'    => "محدودیت تصاویر: <br />''(په صفحات توضیح فایل)''",
 'thumbsize'       => 'اندازه پیج انگشتی',
-'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|صفحه|صفحات}}',
+'widthheightpage' => '$1 × $2, $3 {{PLURAL:$3|صفحه|صفحات}}',
 'file-info'       => 'اندازه فایل: $1, مایم نوع: $2',
 'file-info-size'  => '$1 × $2 پیکسل, اندازه فایل: $3, مایم نوع: $4',
 'file-nohires'    => '<small>مزنترین رزلوشن نیست.</small>',

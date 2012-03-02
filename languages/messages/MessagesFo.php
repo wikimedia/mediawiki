@@ -1803,7 +1803,7 @@ Vinarliga vitja [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] o
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Tín brúkarasíða',
 'tooltip-pt-mytalk'               => 'Tín kjaksíða',
-'tooltip-pt-preferences'          => 'Tínir innstillingar',
+'tooltip-pt-preferences'          => 'Tínar innstillingar',
 'tooltip-pt-watchlist'            => 'Ein listi við síðum sum tú eftiransar fyri broytingum',
 'tooltip-pt-mycontris'            => 'Yvirlit yvir títt íkast',
 'tooltip-pt-login'                => 'Vit mæla til at tú ritar inn, men tað er ikki neyðugt.',

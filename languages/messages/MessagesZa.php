@@ -206,7 +206,7 @@ $messages = array(
 'searchresultshead' => 'Cwmh',
 'username'          => 'Ciu bouxdeiz:',
 
-'group-user-member' => 'Bouxsawjyungq',
+'group-user-member' => '{{GENDER:$1|Bouxsawjyungq}}',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'gaij yieb neix',

@@ -12,6 +12,7 @@
  * @author Arnobarnard
  * @author Byeboer
  * @author Deadelf
+ * @author Kaganer
  * @author Manie
  * @author Naudefj
  * @author Purodha
@@ -1708,7 +1709,7 @@ Dit kan nie behoorlik vir sekuriteit nagegaan word nie.",
 'img-auth-nopathinfo'       => 'PATH_INFO word vermis.
 U bediener is nie ingestel om hierdie inligting deur te stuur nie.
 Miskien gebruik dit CGI, waartydens img_auth nie ondersteun word nie.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization Sien regte vir beelde] vir meer inligting.',
+[https://www.mediawiki.org/wiki/Manual:Image_Authorization Sien regte vir beelde] vir meer inligting.',
 'img-auth-notindir'         => 'Die aangevraagde pad is nie die ingestelde oplaaigids nie.',
 'img-auth-badtitle'         => 'Dit was nie moontlik om \'n geldige bladsynaam van "$1" te maak nie.',
 'img-auth-nologinnWL'       => 'U is nie aangeteken en "$1" is nie op die witlys nie.',
@@ -2444,7 +2445,7 @@ Vul 'n spesifieke rede hier onder in (haal byvoorbeeld spesifieke bladsye wat ge
 'badipaddress'                    => 'Die IP-adres is nie in die regte formaat nie.',
 'blockipsuccesssub'               => 'Blokkering het geslaag',
 'blockipsuccesstext'              => "[[Special:Contributions/$1|$1]] is geblokkeer.<br />
-Sien die [[Special:IPBlockList|IP-bloklys]] vir 'n oorsig van blokkerings.",
+Sien die [[Special:BlockList|IP-bloklys]] vir 'n oorsig van blokkerings.",
 'ipb-blockingself'                => 'U is besig om uself te blokkeer! Is u seker u wil dit doen?',
 'ipb-confirmhideuser'             => 'U staan op die punt om \'n "versteekte gebruiker" te blokkeer. Dit sal die gebruiker se naam vanaf alle lyste en logboeke onderdruk. Is u seker u wil om dit te doen?',
 'ipb-edit-dropdown'               => 'Werk lys van redes by',
@@ -2898,7 +2899,7 @@ $1',
 'mediawarning'           => "'''Waarskuwing''': hierdie lêertipe bevat moontlik programkode wat u stelsel skade kan berokken.",
 'imagemaxsize'           => "Beperk beeldgrootte tot:<br />''(vir lêerbeskrywingsbladsye)''",
 'thumbsize'              => 'Grootte van duimnaelskets:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|bladsy|bladsye}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|bladsy|bladsye}}',
 'file-info'              => 'lêergrootte: $1, MIME-tipe: $2',
 'file-info-size'         => '$1 × $2 pixels, lêergrootte: $3, MIME type: $4',
 'file-info-size-pages'   => '$1 × $2 pikels, lêergrootte: $3, MIME-tipe: $4, $5 {{PLURAL:$5|bladsy|bladsye}}',

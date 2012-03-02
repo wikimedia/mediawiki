@@ -12,8 +12,10 @@
  * @author Djpalar
  * @author Gaj777
  * @author Herr Kriss
+ * @author Kaganer
  * @author Lajsikonik
  * @author Leinad
+ * @author Lwh
  * @author Ozi64
  * @author Pimke
  * @author Przemub
@@ -612,9 +614,9 @@ Možeš to zrobić we [[Special:Preferences|swojich štalowańach]].',
 Hasło można pomjyńyć [[Special:ChangePassword|tu]].',
 'newarticle'                       => '(Nowy)',
 'newarticletext'                   => 'Ńy mo sam jeszcze artikla uo takijj titli. Eli chcesz go sprowjać, naszkryflej niżyj jego tekst (wjyncy informacyj nojdźesz [[{{MediaWiki:Helppage}}|na zajće půmocy]]). Eli żeś chćoł zrobić cosik inksze, naćiś ino knefel "Nazod".',
-'anontalkpagetext'                 => "---- ''To jest zajta godki lo użytkowńikůw anůnimowych - takich, kerzi ńy majům jeszcze swojigo kůnta abo ńy chcům go terozki užywać.
+'anontalkpagetext'                 => "---- ''To je zajta godki lo anůnimowych używoczy  - takich, kerzi ńy majům jeszcze swojigo kůnta abo ńy chcům go terozki używać.
 By jeich idyntyfikować, używomy numerůw IP.
-Eli jeżeś anůnimowym użytkowńikym a wydowo Ći śe, aże zamjyszczůne sam kůmyntorze ńy sům skjyrowane do Ćebje, [[Special:UserLogin|utwůrz prosza kůnto]] abo [[Special:UserLogin|zalůguj śe]] - bez tůż uńikńesz potym podobnych ńyporozumjyń.''",
+Eli jeżeś anůnimowym używoczym a wydowo Ći śe, aże zamjyszczůne sam kůmyntorze ńy sům skjyrowane do Ćebje, [[Special:UserLogin|utwůrz prosza kůnto]] abo [[Special:UserLogin|zalůguj śe]] - bez tůż uńikńesz potym podobnych ńyporozumjyń.''",
 'noarticletext'                    => 'Ńy můmy zajta uo takij titli. Mogesz [{{fullurl:{{FULLPAGENAME}}|action=edit}} wćepać artikel {{FULLPAGENAME}}] abo [[Special:Search/{{PAGENAME}}|sznupać {{PAGENAME}} we inkszych]].',
 'noarticletext-nopermission'       => 'Na tyj zajće ńy mo jeszcze artikla.
 Mogesz [[Special:Search/{{PAGENAME}}|wysznupać ta titla]] we treśći inkszych zajtůw
@@ -1917,7 +1919,7 @@ Podej powůd (np. umješčajůnc mjana zajtůw, na kerych dopuščůno śe wanda
 'badipaddress'                    => 'Felerny adres IP',
 'blockipsuccesssub'               => 'Zawarće uod sprowjyń udane',
 'blockipsuccesstext'              => 'Užytkowńik [[Special:Contributions/$1|$1]] zostou zawarty uod sprowjyń.<br />
-Přyńdź do [[Special:IPBlockList|listy zawartych adresůw IP]] coby přejřeć zawarća.',
+Přyńdź do [[Special:BlockList|listy zawartych adresůw IP]] coby přejřeć zawarća.',
 'ipb-edit-dropdown'               => 'Sprowjej powody zawjyrańo uod sprowjyń',
 'ipb-unblock-addr'                => 'Uodymknij $1',
 'ipb-unblock'                     => 'Uodymknij užytkowńika abo adres IP',
@@ -2270,7 +2272,7 @@ $1',
 'mediawarning'    => "'''Pozůr!''' Tyn plik može zawjerać zuośliwy kod. Jak go uodymkńyš možeš zaraźić swůj systym.",
 'imagemaxsize'    => 'Na zajtach uopisu plikůw uůgrańič rozmjar uobrazkůw do:',
 'thumbsize'       => 'Rozmjar mińjatůrki',
-'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|zajta|zajty|zajtůw}}',
+'widthheightpage' => '$1 × $2, $3 {{PLURAL:$3|zajta|zajty|zajtůw}}',
 'file-info'       => 'rozmjor plika: $1, typ MIME: $2',
 'file-info-size'  => '$1 × $2 pikselůw, wjelgość plika: $3, zorta MIME: $4',
 'file-nohires'    => '<small>Uobrozek we wjynkšej rozdźelčośći ńy je dostympny.</small>',

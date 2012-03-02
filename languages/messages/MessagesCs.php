@@ -11,6 +11,7 @@
  * @author Dontlietome7
  * @author Helix84
  * @author Jkjk
+ * @author Kaganer
  * @author Kuvaly
  * @author Li-sung
  * @author Martin Kozák
@@ -1054,7 +1055,7 @@ Můžete se vrátit a editovat již existující stránku, nebo [[Special:UserLo
 'sectioneditnotsupported-text'     => 'Na této editační stránce není podporována editace jedné sekce.',
 'permissionserrors'                => 'Chyba povolení',
 'permissionserrorstext'            => 'Nemáte povoleno toto provést z {{PLURAL:$1|následujícího důvodu|následujících důvodů|následujících důvodů}}:',
-'permissionserrorstext-withaction' => 'Nemáte oprávnění „$2“. {{PLURAL:$1|Důvod:|Důvody:}}',
+'permissionserrorstext-withaction' => 'Z {{PLURAL:$1|následujícího důvodu|následujících důvodů}} nemáte oprávnění $2:',
 'recreate-moveddeleted-warn'       => "'''Upozornění: Pokoušíte se znovuzaložit stránku, která byla v minulosti smazána.'''
 
 Zvažte, zda je vhodné v editaci této stránky pokračovat.
@@ -1824,7 +1825,7 @@ Nelze náležitě zkontrolovat jeho bezpečnost.',
 'img-auth-nopathinfo'       => 'Chybí PATH_INFO.
 Váš server není nastaven tak, aby tuto informaci poskytoval.
 Možná funguje pomocí CGI a img_auth na něm nemůže fungovat.
-Vizte [//www.mediawiki.org/wiki/Manual:Image_Authorization Manual:Image Authorization].',
+Vizte https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'         => 'Požadovaná cesta nespadá pod nakonfigurovaný adresář s načtenými soubory.',
 'img-auth-badtitle'         => 'Z „$1“ nelze vytvořit platný název stránky.',
 'img-auth-nologinnWL'       => 'Nejste přihlášen(a) a „$1“ není na bílé listině.',
@@ -2541,7 +2542,7 @@ Udejte přesný důvod níže (například ocitujte, které stránky byly poško
 'badipaddress'                    => 'Neplatná IP adresa',
 'blockipsuccesssub'               => 'Zablokování uspělo',
 'blockipsuccesstext'              => 'Uživatel „[[Special:Contributions/$1|$1]]“ je zablokován.<br />
-Můžete si prohlédnout [[Special:IPBlockList|seznam zablokovaných uživatelů]].',
+Můžete si prohlédnout [[Special:BlockList|seznam zablokovaných uživatelů]].',
 'ipb-blockingself'                => 'Chystáte se zablokovat {{gender:|sám|sama|sami}} sebe! Jste si {{gender:|jist|jista|jisti}}, že to chcete udělat?',
 'ipb-confirmhideuser'             => 'Chystáte se zablokovat uživatele se zapnutou volbou „skrýt uživatelské jméno“. To způsobí, že jméno uživatele zmizí ze všech seznamů a protokolovacích záznamů. Jste si {{gender:|jist|jista|jisti}}, že to chcete udělat?',
 'ipb-edit-dropdown'               => 'Editace seznamu důvodů zablokování',
@@ -3006,7 +3007,7 @@ Otevřením souboru můžete ohrozit svůj počítač.",
 'imagemaxsize'           => "Maximální velikost obrázku:<br />
 ''(na stránce s popisem souboru)''",
 'thumbsize'              => 'Velikost náhledu:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|stránka|stránky|stránek}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|stránka|stránky|stránek}}',
 'file-info'              => 'velikost souboru: $1, MIME typ: $2',
 'file-info-size'         => '$1 × $2 pixelů, velikost souboru: $3, MIME typ: $4',
 'file-info-size-pages'   => '$1 × $2 pixelů, velikost souboru: $3, MIME typ: $4, $5 {{PLURAL:$5|stránka|stránky|stránek}}',
@@ -3553,7 +3554,8 @@ Opravdu si přejete znovu tuto stránku založit?',
 'confirm-unwatch-top'    => 'Vyjmout tuto stránku ze sledovaných?',
 
 # Separators for various lists, etc.
-'percent' => '$1&nbsp;%',
+'ellipsis' => '…',
+'percent'  => '$1&nbsp;%',
 
 # Multipage image navigation
 'imgmultipageprev' => '← předchozí stránka',

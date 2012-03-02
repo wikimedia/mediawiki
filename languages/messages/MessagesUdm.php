@@ -237,7 +237,7 @@ $messages = array(
 'searchresults'      => 'Шедьтэмын',
 'searchresulttext'   => 'Проектлэн бамъёстӥз утчан сярысь тыро-быдогес тодэмды потӥз ке, учке [[{{MediaWiki:Helppage}}|«Юан-веран» люкетэз]].',
 'searchhelp-url'     => 'Help:Валэктон',
-'search-result-size' => '$1 кыл',
+'search-result-size' => '$1 кыл({{PLURAL:$2|1 word|$2 words}})',
 
 # Preferences page
 'preferences'     => 'настройкаос',

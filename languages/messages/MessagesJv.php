@@ -9,9 +9,11 @@
  *
  * @author Anggoro
  * @author Helix84
+ * @author Kaganer
  * @author Meursault2004
  * @author Pras
  * @author Rex
+ * @author StefanusRA
  * @author לערי ריינהארט
  */
 
@@ -1814,7 +1816,7 @@ Umpan balik lan pitulung sabanjuré:
 'delete-edit-reasonlist' => 'Sunting alesan pambusakan',
 'delete-toobig'          => 'Kaca iki ndarbèni sajarah panyuntingan sing dawa, yaiku ngluwihi $1 {{PLURAL:$1|revision|révisi}}.
 Pambusakan kaca sing kaya mangkono mau wis ora diparengaké kanggo menggak anané karusakan ing {{SITENAME}}.',
-'delete-warning-toobig'  => 'Kaca iki duwé sajarang panyuntingan sing dawa, luwih saka $1 {{PLURAL:$1|revision|révisi}}.
+'delete-warning-toobig'  => 'Kaca iki duwé sajarah panyuntingan sing dawa, luwih saka $1 {{PLURAL:$1|révisi|révisi}}.
 Mbusak kaca iki bisa ngrusak operasi basis data ing {{SITENAME}};
 kudu ngati-ati.',
 
@@ -2030,7 +2032,7 @@ Lebokna alesan panjenengan ing ngisor iki (contoné njupuk conto kaca sing wis t
 'badipaddress'                    => 'Alamat IP klèntu',
 'blockipsuccesssub'               => 'Pemblokiran suksès',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] wis diblokir.<br />
-Pirsani [[Special:IPBlockList|Daftar blokir IP]] kanggo ninjo ulang pamblokiran.',
+Pirsani [[Special:BlockList|Daftar blokir IP]] kanggo ninjo ulang pamblokiran.',
 'ipb-edit-dropdown'               => 'Sunting alesan pamblokiran',
 'ipb-unblock-addr'                => 'Ilangna blokir $1',
 'ipb-unblock'                     => 'Ilangna blokir sawijining panganggo utawa alamat IP',
@@ -2403,7 +2405,7 @@ $1',
 'mediawarning'         => "'''Pènget:''' Berkas iki mbokmenawa ngandhut kode sing bebayani, yèn dilakokaké sistém panjenengan bisa kena pangaruh ala.",
 'imagemaxsize'         => "Wates ukuran gambar:<br />''(kanggo kaca dhèskripsi berkas)''",
 'thumbsize'            => 'Ukuran gambar cilik (thumbnail):',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|kaca|kaca}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|kaca|kaca}}',
 'file-info'            => 'ukuran berkas: $1, tipe MIME: $2',
 'file-info-size'       => '$1 × $2 piksel, ukuran berkas: $3, tipe MIME: $4',
 'file-nohires'         => '<small>Ora ana résolusi sing luwih dhuwur.</small>',

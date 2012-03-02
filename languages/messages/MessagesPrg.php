@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Kaganer
  * @author Nertiks
  * @author Peteris
  */
@@ -333,7 +334,7 @@ Madli pawakēis di [[Special:ListUsers/sysop|perwaldītaju]], preidāntei URL.',
 'missingarticle-diff'  => '(šlaitīntan: $1, $2)',
 'internalerror'        => 'Ēntrewingi blānda',
 'internalerror_info'   => 'Ēntrewingi blānda: $1',
-'filecopyerror'        => 'Ni bēi mazīngi kōpitun zūrbrukin $1$ en $2$.',
+'filecopyerror'        => 'Ni bēi mazīngi kōpitun zūrbrukin $1 en $2.',
 'filerenameerror'      => 'Ni bēi mazīngi kitawīdintun zūrbrukes pabilīsnan "$1" na "$2"',
 'filedeleteerror'      => 'Ni mazīngi āupausintun zūrbrukin "$1"',
 'directorycreateerror' => 'Ni mazīngi teīktun fōlderan "$1"',
@@ -1870,7 +1871,7 @@ Padāis brewīnslin zemmais (p. endījanei tītelins stēisan wandalizītan pāu
 'badipaddress'                    => 'Nitikrōmiska IP adressi',
 'blockipsuccesssub'               => 'Blōkisenis izpalla',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] pastāi blōkitan.<br />
-Jaīs en [[Special:IPBlockList|listin stēisan IP adressin]] kai widālai blōkisenins.',
+Jaīs en [[Special:BlockList|listin stēisan IP adressin]] kai widālai blōkisenins.',
 'ipb-edit-dropdown'               => 'Redigīs blōkisenes brewīnslins',
 'ipb-unblock-addr'                => 'Etblōkis $1',
 'ipb-unblock'                     => 'Etblōkis tērpautajas pabilīsnan anga IP adressin',
@@ -2247,7 +2248,7 @@ $1',
 Enskatināntei din,  tū mazzi ārditun twajjan sistēman.",
 'imagemaxsize'         => "Arāikinais bildin debban:<br />''(per zūrbrukes ebpeisāsenes pāusans)''",
 'thumbsize'            => 'Miniatūris debban:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pāusan|pāusai}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|pāusan|pāusai}}',
 'file-info'            => 'zūrbrukes debban: $1, MIME tīps: $2',
 'file-info-size'       => '$1 × $2 pikselai, zūrbrukes debban: $3, MIME tīps: $4',
 'file-nohires'         => '<small>Mūisesa rezōluciōni ni ast preiēiminan.</small>',

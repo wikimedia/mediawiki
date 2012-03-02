@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Kaganer
  * @author Malafaya
  * @author Reedy
  * @author Smeira
@@ -1929,6 +1930,7 @@ $1',
 'sp-contributions-userrights'    => 'guvam gebanagitätas',
 'sp-contributions-search'        => 'Sukön keblünotis',
 'sp-contributions-username'      => 'Ladet-IP u gebananem:',
+'sp-contributions-toponly'       => 'Jonön te redakamis, kels binons revids lätik',
 'sp-contributions-submit'        => 'Suk',
 
 # What links here
@@ -1983,7 +1985,7 @@ $1',
 'badipaddress'                    => 'Ladet-IP no lonöfon',
 'blockipsuccesssub'               => 'Blokam eplöpon',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] peblokon.
-<br />Logolös [[Special:IPBlockList|lisedi ladetas-IP pebloköl]] ad vestigön blokamis.',
+<br />Logolös [[Special:BlockList|lisedi ladetas-IP pebloköl]] ad vestigön blokamis.',
 'ipb-edit-dropdown'               => 'Redakön kodis blokama',
 'ipb-unblock-addr'                => 'Säblokön eli $1',
 'ipb-unblock'                     => 'Säblokön gebananemi u ladeti-IP',
@@ -2363,7 +2365,7 @@ $1',
 If ojäfidükol oni, nünömasit olik ba podämükon.",
 'imagemaxsize'    => 'Miedükön magodis su pads magodis bepenöls ad:',
 'thumbsize'       => 'Gretot magodüla:',
-'widthheightpage' => '$1×$2, {{PLURAL:$3|pad|pads}} $3',
+'widthheightpage' => '$1 × $2, {{PLURAL:$3|pad|pads}} $3',
 'file-info'       => 'ragivagretot: $1, MIME-pated: $2',
 'file-info-size'  => '$1 × $2 pixel, ragivagret: $3, pated MIME: $4',
 'file-nohires'    => '<small>Gretot gudikum no pagebidon.</small>',

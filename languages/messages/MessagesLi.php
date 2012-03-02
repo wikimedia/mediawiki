@@ -10,6 +10,7 @@
  * @author Aelske
  * @author Benopat
  * @author Cicero
+ * @author Kaganer
  * @author Matthias
  * @author Ooswesthoesbes
  * @author Pahles
@@ -1623,7 +1624,7 @@ De veiligheid kin neet waere gekónterleerdj.",
 'img-auth-nopathinfo'       => 'PATH_INFO óntbrèk.
 Diene server is neet ingesteld om dees informatie door te gaeve.
 Misjien gebroek deze CGI, en dan wört img_auth neet ongersteund.
-Zuuch [//www.mediawiki.org/wiki/Manual:Image_Authorization aafbeildingsrechte] veur mee informatie.',
+Zuuch https://www.mediawiki.org/wiki/Manual:Image_Authorization aafbeildingsrechte veur mee informatie.',
 'img-auth-notindir'         => "'t Ópgevraogdje paad is neet de ingestelde uploadmap.",
 'img-auth-badtitle'         => 'Kèn geine geldige paginanaam make van "$1".',
 'img-auth-nologinnWL'       => 'Doe bös neet aangemeld en "$1" steit neet op de witte lies.',
@@ -2340,7 +2341,7 @@ De leste bloklogregel wuuertj hiejónger t'r raodpleging gegaeve:",
 'badipaddress'                    => "'t IP-adres haet 'n ongeldige opmaak.",
 'blockipsuccesssub'               => 'Blokkaad gelök',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] is geblokkeerd.<br />
-Zuug de [[Special:IPBlockList|lies van geblokkeerde IP-adresse]].',
+Zuug de [[Special:BlockList|lies van geblokkeerde IP-adresse]].',
 'ipb-blockingself'                => "Doe steis óp 't pöntj dichzelf te blokke! Wèts se zeker desse det wils doon?",
 'ipb-confirmhideuser'             => "Doe steis óp 't pöntj 'ne verbórge gebroeker te blokke. Hieveur waere gebroekersname in alle liesre en logbookregels verbórge. Wèts se zeker desse door wils gaon?",
 'ipb-edit-dropdown'               => 'Bewerk lies van rejer',
@@ -2779,7 +2780,7 @@ $1",
 'mediawarning'         => "'''Waorsjuwing''': Dit bestandj kin 'n anger kood höbbe, door 't te doorveure in dien systeem kin 't gecompromeerde dinger oplevere.",
 'imagemaxsize'         => "Meximale aafbeildjingsaafmaeting:<b r/>''(veur besjrievingspaasj)''",
 'thumbsize'            => 'Gruutde vanne thumbnail:',
-'widthheightpage'      => "$1×$2, $3 {{PLURAL:$3|pazjena|pazjena's}}",
+'widthheightpage'      => "$1 × $2, $3 {{PLURAL:$3|pazjena|pazjena's}}",
 'file-info'            => 'bestandsgruutde: $1, MIME-type: $2',
 'file-info-size'       => '$1 × $2 pixels, besjtandjgruutde: $3, MIME-type: $4',
 'file-info-size-pages' => "$1 × $2 pixels, bestandjsgreudje: $3, MIME-type: $4, $5 {{PLURAL:$5|pagina|pagina's}}",

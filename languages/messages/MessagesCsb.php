@@ -697,7 +697,7 @@ Mòżesz zezwòlëc jinszim brëkòwniką na łączbã z Tobą przez Twòją sta
 'group-suppress'      => 'Rewizorzë',
 'group-all'           => '(wszëtcë)',
 
-'group-user-member'          => 'Brëkòwnik',
+'group-user-member'          => '{{GENDER:$1|Brëkòwnik}}',
 'group-autoconfirmed-member' => 'aùtomatno zacwierdzony brëkòwnik',
 'group-bot-member'           => 'bòt',
 'group-sysop-member'         => 'sprôwnik',
@@ -1066,7 +1066,7 @@ Mòżesz zmienic légã zazychrowaniô, nie bãdze to równak miało cëskù na 
 'badipaddress'             => 'IP-adresa nie je richtich pòdónô.',
 'blockipsuccesssub'        => 'Zascëgónié dało sã',
 'blockipsuccesstext'       => 'Brëkòwnik [[Special:Contributions/$1|$1]] òstał zascëgóny.<br />
-Biéj do [[Special:IPBlockList|lëstë zascëgónëch adresów IP]] abë òbaczëc zascëdżi.',
+Biéj do [[Special:BlockList|lëstë zascëgónëch adresów IP]] abë òbaczëc zascëdżi.',
 'ipblocklist'              => 'Lësta zablokòwónëch adresów IP ë mionów brëkòwników',
 'blocklink'                => 'blokùjë',
 'unblocklink'              => 'òdblokùjë',

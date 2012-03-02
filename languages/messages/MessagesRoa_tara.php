@@ -8,6 +8,7 @@
  * @file
  *
  * @author Joetaras
+ * @author Kaganer
  * @author McDutchie
  */
 
@@ -1575,7 +1576,7 @@ Non g'è possibbele verificà pa securezze.",
 'img-auth-nopathinfo'       => "No se iacchie PATH_INFO.
 'U server tune non g'è 'mbostate o non ge passe st'mbormazione.
 Pò essere ca jè basate sus a 'u CGI e non ge pò supportà img_auth.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization Vide autorizzazzione de le immaggine.]",
+[https://www.mediawiki.org/wiki/Manual:Image_Authorization Vide autorizzazzione de le immaggine.]",
 'img-auth-notindir'         => "'U percorse richieste non ge stè jndr'à cartelle de carecamende configurate",
 'img-auth-badtitle'         => 'Non ge se pò costruì \'nu titele valide da "$1".',
 'img-auth-nologinnWL'       => 'Tu non ge sì collegate e "$1" non ge stè jndr\'à lista vianghe.',
@@ -2330,7 +2331,7 @@ Mitte pure 'nu mutive specifiche aqquà sotte (pe esembije, nnomene 'a pàgene a
 'badipaddress'                    => 'Indirizze IP invalide',
 'blockipsuccesssub'               => 'Blocche effettuate',
 'blockipsuccesstext'              => "[[Special:Contributions/$1|$1]] ha state bloccate.<br />
-Vide [[Special:IPBlockList|'a liste de le IP bloccate]] pe revedè le blocche.",
+Vide [[Special:BlockList|'a liste de le IP bloccate]] pe revedè le blocche.",
 'ipb-blockingself'                => "Te stè bluecche da sule, si secure ca 'u vuè ccu face?",
 'ipb-confirmhideuser'             => "Tu ste bluècche 'n'utende cu l'opzione \"scunne utende\" abbilitate. St'operazione pò leve 'u nome de l'utende jndr'à tutte l'elenghe e le vôsce de l'archivije. Tu si secure ca 'u vuè ccu face?",
 'ipb-edit-dropdown'               => "Cange le mutive d'u blocche",
@@ -2832,7 +2833,7 @@ Ce l'esegue sus a 'u sisteme tue pò essere ca se combromette.",
 'imagemaxsize'           => "Limite d'a dimenzione e l'immaggine:<br />''(pe le pàggene de descrizione d'u file)''",
 'thumbsize'              => "Dimenziona d'a miniature:",
 'widthheight'            => '$1 × $2',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|pàgene|pàggene}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|pàgene|pàggene}}',
 'file-info'              => "dimenzione d'u fail: $1, tipe de MIME: $2",
 'file-info-size'         => "$1 × $2 pixel, dimenzione d'u fail: $3, tipe de MIME: $4",
 'file-info-size-pages'   => "$1 × $2 pixel, dimenzione d'u file: $3, tipe de MIME: $4, $5 {{PLURAL:$5|pàgene|pàggene}}",

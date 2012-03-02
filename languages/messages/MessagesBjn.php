@@ -10,6 +10,7 @@
  * @author Alamnirvana
  * @author Ezagren
  * @author J Subhi
+ * @author Kaganer
  */
 
 $fallback = 'id';
@@ -1015,7 +1016,7 @@ Catatan bahwasa mamuruk tautan napigasi akan mambulikakan setelan kolum ngini.',
 'nextn'                            => '{{PLURAL:$1|$1}} dudinya',
 'prevn-title'                      => 'Tadahulu $1 {{PLURAL:$1|kulihan|kulihan-kulihan}}',
 'nextn-title'                      => 'Tadudi $1 {{PLURAL:$1|kulihan|kulihan-kulihan}}',
-'shown-title'                      => 'Tampaiakan $1 {{PLURAL:$ 1|kulihan|kukulihan}} par tungkatan',
+'shown-title'                      => 'Tampaiakan $1 {{PLURAL:$1|kulihan|kukulihan}} par tungkatan',
 'viewprevnext'                     => 'Tiringi ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-legend'                => 'Papilihan manggagai',
 'searchmenu-exists'                => "'''Ada tungkaran bangaran \"[[:\$1]]\" dalam wiki ini.'''",
@@ -1550,7 +1551,7 @@ Babarakas ngini kada kawa dilihat ka siapa pun kacuali pamuruk nang mahunggahnya
 'img-auth-nopathinfo'       => 'PATH_INFO hilang.
 Server Pian kada disetel hagan malimpatakan panjalasan ngini.
 Ngini karana CGI-based wan kada manyukung img_auth.
-Janaki http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+Janaki https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'         => "Jalur nang diminta kada ta'atur lawan direktori hunggahan.",
 'img-auth-badtitle'         => 'Kada kawa mambangun sabuah judul sah matan "$1".',
 'img-auth-nologinnWL'       => 'Pian kada kawa babuat log wan \'$1" kadada dalam daptar putih.',
@@ -1860,7 +1861,7 @@ Janaki jua [[Special:WantedCategories|tutumbung nang dihandaki]].',
 'sp-deletedcontributions-contribs' => 'Sumbangan',
 
 # Special:LinkSearch
-'linksearch'       => 'Tautan luar',
+'linksearch'       => 'Manggagai tautan luar',
 'linksearch-pat'   => 'Gagai bapola:',
 'linksearch-ns'    => 'Ngaran-kamar:',
 'linksearch-ok'    => 'Gagai',
@@ -2730,7 +2731,7 @@ $1',
 Manarusakan ngini, kawa manyarang sistem Pian.",
 'imagemaxsize'         => "Watas takaran gambar: <br />''(gasan barakas tutungkaran diskripsi)''",
 'thumbsize'            => 'Ukuran kuku-uma-jari:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|tungkaran|tutungkaran}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|tungkaran|tutungkaran}}',
 'file-info'            => 'takaran barakas: $1, macam MIME: $2',
 'file-info-size'       => '$1 × $2 piksel, ukuran barakas: $3, tipe MIME: $4',
 'file-info-size-pages' => '$1 × $2 piksal, takaran barakas: $3, macam MIME: $4, $5 {{PLURAL:$5|tungkaran|tutungkaran}}',

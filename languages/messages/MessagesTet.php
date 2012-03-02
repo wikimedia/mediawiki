@@ -453,7 +453,7 @@ Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',
 'group-all'        => '(hotu)',
 
 'group-user-member'       => "{{GENDER:$1|Uza-na'in}}",
-'group-bot-member'        => 'Bot',
+'group-bot-member'        => '{{GENDER:$1|Bot}}',
 'group-sysop-member'      => '{{GENDER:$1|Administradór|Administradóra}}',
 'group-bureaucrat-member' => '{{GENDER:$1|Burokrata}}',
 'group-suppress-member'   => "{{GENDER:$1|Oversight-na'in}}",

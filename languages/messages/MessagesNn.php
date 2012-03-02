@@ -18,6 +18,7 @@
  * @author Harald Khan
  * @author Jon Harald Søby
  * @author Jorunn
+ * @author Kaganer
  * @author Marinsb
  * @author Najami
  * @author Nghtwlkr
@@ -1347,8 +1348,8 @@ Dette kan ikke tilbakestillast.',
 'yourgender'                    => 'Kjønn:',
 'gender-unknown'                => 'Ikkje oppgjeve',
 'gender-male'                   => 'Mann',
-'gender-female'                 => 'Kvinna',
-'prefs-help-gender'             => 'Valfritt: nytta for kjønnskorrekt referering frå mjukvara. Denne informasjonen vil vera offentleg.',
+'gender-female'                 => 'Kvinne',
+'prefs-help-gender'             => 'Valfritt: nytta for at programvara skal retta seg til brukaren med rett kjønn i systemmeldingar. Denne informasjonen vil vera offentleg.',
 'email'                         => 'E-post',
 'prefs-help-realname'           => '* Namn (valfritt): Om du vel å fylle ut dette feltet, vil informasjonen bli brukt til å godskrive arbeid du har gjort.',
 'prefs-help-email'              => 'Å oppgje e-postadresse er valfritt, men lar deg ta i mot nytt passord om du gløymer det gamle.',
@@ -1709,7 +1710,7 @@ $1',
 'img-auth-nopathinfo'   => 'PATH_INFO manglar.
 Filtenaren din er ikkje sett opp for å gje denne informasjonen.
 Han kan vera CGI-basert og stør ikkje img_auth.
-Sjå http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+Sjå https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'     => 'Den ynskte filstien er ikkje i den oppsette opplastingskatalogen',
 'img-auth-badtitle'     => 'Kan ikkje laga ein gyldig ttitel ut frå "$1".',
 'img-auth-nologinnWL'   => 'Du er ikkje logga inn, og "$1" er ikkje på kvitlista.',
@@ -2404,7 +2405,7 @@ $1',
 'badipaddress'                    => 'IP-adressa er ugyldig eller blokkering av brukarar er slått av på tenaren.',
 'blockipsuccesssub'               => 'Blokkeringa er utførd',
 'blockipsuccesstext'              => '«[[Special:Contributions/$1|$1]]» er blokkert.<br />
-Sjå [[Special:IPBlockList|blokkeringslista]] for alle blokkeringane.',
+Sjå [[Special:BlockList|blokkeringslista]] for alle blokkeringane.',
 'ipb-blockingself'                => 'Du er i ferd med å blokkera deg sjølv. Er du viss på at du ynskjer gjera dette?',
 'ipb-confirmhideuser'             => 'Du er i ferd med å blokkere ein brukar med "skjult brukar" aktivert. Brukarens namn vil verte skjult i alle lister og loggoppføringar. Er du sikker på at du vil gjere dette?',
 'ipb-edit-dropdown'               => 'Endre grunnane for blokkering',
@@ -2858,7 +2859,7 @@ $1',
 'mediawarning'         => "'''Åtvaring''': Denne fila kan innehalda skadeleg programkode, ved å køyra programmet kan systemet ditt ta skade.",
 'imagemaxsize'         => "Avgrens storleiken for bilete:<br />''(for sider som skildrar filer)''",
 'thumbsize'            => 'Miniatyrstørrelse:',
-'widthheightpage'      => '$1×$2, {{PLURAL:$3|éi side|$3 sider}}',
+'widthheightpage'      => '$1 × $2, {{PLURAL:$3|éi side|$3 sider}}',
 'file-info'            => 'filstorleik: $1, MIME-type: $2',
 'file-info-size'       => '$1 × $2 pikslar, filstorleik: $3, MIME-type: $4',
 'file-nohires'         => '<small>Høgare oppløysing er ikkje tilgjengeleg.</small>',
@@ -3310,11 +3311,12 @@ $1',
 'trackbackdeleteok' => 'Attendelenkja vart sletta.',
 
 # Delete conflict
-'deletedwhileediting' => "'''Åtvaring:''' Denne sida har vorte sletta etter du starta å endre henne!",
-'confirmrecreate'     => "Brukaren «[[User:$1|$1]]» ([[User talk:$1|brukardiskusjon]]) sletta denne sida medan du endra henne, og gav denne grunnen: ''$2''
+'deletedwhileediting'      => "'''Åtvaring:''' Denne sida har vorte sletta etter du starta å endre henne!",
+'confirmrecreate'          => "Brukaren «[[User:$1|$1]]» ([[User talk:$1|brukardiskusjon]]) sletta denne sida medan du endra henne, og gav denne grunnen: ''$2''
 
 Du må stadfeste at du verkeleg vil nyopprette denne sida.",
-'recreate'            => 'Attopprett',
+'confirmrecreate-noreason' => 'Brukaren [[User:$1|$1]] ([[User talk:$1|diskusjon]]) sletta sida etter at du byrja å endra henne. Stadfest at du verkeleg ynskjer å oppretta sida på nytt.',
+'recreate'                 => 'Attopprett',
 
 # action=purge
 'confirm_purge_button' => 'OK',
@@ -3471,7 +3473,7 @@ Skriv inn filnamnet utan «{{ns:file}}:»-prefikset.',
 'tag-filter'              => '[[Special:Tags|Merke]]filter:',
 'tag-filter-submit'       => 'Filtrer',
 'tags-title'              => 'Merke',
-'tags-intro'              => 'Denne sida listar opp merka som mjukvara kan merkja ei endring med, og kva desse tyder.',
+'tags-intro'              => 'Denne sida listar opp merka som programvara kan merkja ei endring med, og kva desse tyder.',
 'tags-tag'                => 'Merkenamn',
 'tags-display-header'     => 'Utsjånad på endringslister',
 'tags-description-header' => 'Fullstendig skildring av tyding',

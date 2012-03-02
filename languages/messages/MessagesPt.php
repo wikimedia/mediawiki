@@ -11,6 +11,7 @@
  * @author Capmo
  * @author Crazymadlover
  * @author Daemorris
+ * @author Francisco Leandro
  * @author Giro720
  * @author GoEThe
  * @author Hamilton Abreu
@@ -18,6 +19,7 @@
  * @author Indech
  * @author Jens Liebenau
  * @author Jorge Morais
+ * @author Kaganer
  * @author Leonardo.stabile
  * @author Lijealso
  * @author Lugusto
@@ -593,10 +595,10 @@ Consulte a página da [[Special:Version|versão do sistema]].',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Página',
-'nstab-user'      => 'Página de utilizador',
+'nstab-user'      => 'Página d{{GENDER:{{#titleparts:{{PAGENAME}}|1|1}}|o utilizador|a utilizadora|e utilizador(a)}}',
 'nstab-media'     => 'Multimédia',
 'nstab-special'   => 'Página especial',
-'nstab-project'   => 'Página de projecto',
+'nstab-project'   => 'Página do projeto',
 'nstab-image'     => 'Ficheiro',
 'nstab-mediawiki' => 'Mensagem',
 'nstab-template'  => 'Predefinição',
@@ -943,12 +945,13 @@ Verifique se deseja realmente criar ou editar esta página, por favor.',
 'userpage-userdoesnotexist-view'   => 'A conta de utilizador "$1" não está registada.',
 'blocked-notice-logextract'        => 'Este utilizador encontra-se actualmente bloqueado.
 Para referência, o último registo de bloqueio é apresentado abaixo:',
-'clearyourcache'                   => "'''Nota:''' após gravar, terá de limpar a ''cache'' do seu browser para ver as alterações.'''
-'''Firefox / Safari:''' pressione ''Shift'' enquanto clica ''Recarregar'', ou pressione ''Ctrl-F5'' ou ''Ctrl-R'' (''⌘-Shift-R'' no Mac)
-'''Google Chrome:''': pressione ''Ctrl-Shift-R'' (''⌘-R'' no Mac)
-'''Internet Explorer:''' pressione ''Ctrl'' enquanto clica ''Recarregar'', ou pressione ''Ctrl-F5''
-'''Konqueror:''': clique ''Recarregar'' ou pressione ''F5''
-'''Opera:''' limpe a ''cache'' em ''Ferramentas → Preferências'' (''Tools → Preferences'')",
+'clearyourcache'                   => "'''Nota:''' Após gravar, terá de limpar a ''cache'' do seu browser para ver as alterações.'''
+
+*'''Firefox / Safari:''' Pressione ''Shift'' enquanto clica ''Recarregar'', ou pressione ''Ctrl-F5'' ou ''Ctrl-R'' (''⌘-R'' no Mac)
+*'''Google Chrome:''' Pressione ''Ctrl-Shift-R'' (''⌘-Shift-R'' no Mac)
+*'''Internet Explorer:''' Pressione ''Ctrl'' enquanto clica ''Recarregar'', ou pressione ''Ctrl-F5''
+*'''Konqueror:''' Clique ''Recarregar'' ou pressione ''F5''
+*'''Opera:''' Limpe a ''cache'' em ''Ferramentas → Preferências'' (''Tools → Preferences'')",
 'usercssyoucanpreview'             => "'''Dica:''' Use o botão \"{{int:showpreview}}\" para testar o seu novo CSS antes de gravar.",
 'userjsyoucanpreview'              => "'''Dica:''' Use o botão \"{{int:showpreview}}\" para testar o seu novo JavaScript antes de gravar.",
 'usercsspreview'                   => "'''Lembre-se de que está apenas a antever o seu CSS particular.
@@ -2189,7 +2192,7 @@ Encontram-se disponíveis [[{{MediaWiki:Listgrouprights-helppage}}|informações
 # E-mail user
 'mailnologin'          => 'Nenhum endereço de envio',
 'mailnologintext'      => 'Precisa de estar [[Special:UserLogin|autenticado]] e possuir um endereço de correio válido nas suas [[Special:Preferences|preferências]], para poder enviar correio electrónico a outros utilizadores.',
-'emailuser'            => 'Contactar este utilizador',
+'emailuser'            => 'Enviar-lhe um e-mail',
 'emailpage'            => 'Contactar utilizador',
 'emailpagetext'        => 'Pode usar o formulário abaixo para enviar uma mensagem por correio electrónico para este utilizador.
 O endereço de correio que introduziu nas suas [[Special:Preferences|preferências]] irá aparecer no campo do remetente da mensagem "De:", para que o destinatário lhe possa responder directamente.',
@@ -2479,7 +2482,7 @@ $1',
 # Contributions
 'contributions'       => 'Contribuições do utilizador',
 'contributions-title' => 'Contribuições {{GENDER:$1|do utilizador|da utilizadora}} $1',
-'mycontris'           => 'Contribuições',
+'mycontris'           => 'Minhas contribuições',
 'contribsub2'         => 'Para $1 ($2)',
 'nocontribs'          => 'Não foram encontradas alterações com este critério.',
 'uctop'               => ' (edição actual)',
@@ -2561,7 +2564,7 @@ Isto só deve ser feito para prevenir vandalismo e de acordo com a [[{{MediaWiki
 'badipaddress'                    => 'Endereço IP inválido',
 'blockipsuccesssub'               => 'Bloqueio bem sucedido',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] foi bloqueado.<br />
-Consulte a [[Special:IPBlockList|lista de IPs bloqueados]] para rever os bloqueios.',
+Consulte a [[Special:BlockList|lista de IPs bloqueados]] para rever os bloqueios.',
 'ipb-blockingself'                => 'Está prestes a bloquear-se a si próprio. Tem a certeza de que pretende fazê-lo?',
 'ipb-confirmhideuser'             => 'Está prestes a bloquear um utilizador com "Ocultar nome de utilizador/IP" activado. Isto irá suprimir o nome do utilizador de todas as listas e entradas dos registos. Tem a certeza de que pretende fazê-lo?',
 'ipb-edit-dropdown'               => 'Editar motivos de bloqueio',
@@ -2609,8 +2612,8 @@ Consulte a [[Special:IPBlockList|lista de IPs bloqueados]] para rever os bloquei
 O registo de bloqueios é fornecido abaixo para referência:',
 'blocklog-showsuppresslog'        => 'Este utilizador foi bloqueado e ocultado anteriomente.
 O registo de supressão é fornecido abaixo para referência:',
-'blocklogentry'                   => 'bloqueou "[[$1]]" com expiração em $2 $3',
-'reblock-logentry'                => 'modificou parâmetros de bloqueio de [[$1]] com expiração em $2 $3',
+'blocklogentry'                   => 'bloqueou "[[$1]]" $3. O bloqueio expira em $2.',
+'reblock-logentry'                => 'modificou parâmetros de bloqueio de [[$1]] $3. O bloqueio expira em $2.',
 'blocklogtext'                    => 'Este é um registo de acções de bloqueio e desbloqueio.
 Endereços IP sujeitos a bloqueio automático não são listados.
 Consulte a [[Special:BlockList|lista de IPs bloqueados]] para obter a lista de bloqueios e banimentos actualmente válidos.',
@@ -2870,7 +2873,7 @@ Não há um directório temporário.',
 'tooltip-pt-anontalk'             => 'Discussão sobre edições feitas a partir deste endereço IP',
 'tooltip-pt-preferences'          => 'Configuração dos comportamentos que prefere da wiki',
 'tooltip-pt-watchlist'            => 'Lista de mudanças nas páginas que está a vigiar',
-'tooltip-pt-mycontris'            => 'Lista das suas edições de páginas',
+'tooltip-pt-mycontris'            => 'Lista das suas contribuições',
 'tooltip-pt-login'                => 'É encorajado a autenticar-se, apesar de não ser obrigatório.',
 'tooltip-pt-anonlogin'            => 'É encorajado a autenticar-se, apesar de não ser obrigatório.',
 'tooltip-pt-logout'               => 'Terminar esta sessão na wiki',
@@ -3045,7 +3048,7 @@ $1',
 Executá-lo poderá comprometer a segurança do seu sistema.",
 'imagemaxsize'           => "Limite de tamanho de imagens:<br />''(para páginas de descrição)''",
 'thumbsize'              => 'Tamanho de miniaturas:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|página|páginas}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|página|páginas}}',
 'file-info'              => 'tamanho: $1, tipo MIME: $2',
 'file-info-size'         => '$1 × $2 pixels, tamanho: $3, tipo MIME: $4',
 'file-info-size-pages'   => '$1 × $2 pixels, tamanho do ficheiro: $3, tipo MIME: $4, $5 {{PLURAL:$5|página|páginas}}',

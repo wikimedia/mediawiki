@@ -10,6 +10,7 @@
  * @author Amdf
  * @author Botuzhaleny-sodamo
  * @author Erzianj jurnalist
+ * @author Kaganer
  * @author MF-Warburg
  * @author Spacebirdy
  * @author Sura
@@ -1822,7 +1823,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 
 # Media information
 'thumbsize'            => 'Кенжешканть покшолмазо:',
-'widthheightpage'      => '$1×$2, {{PLURAL:$3|лопа|$3 лопат}}',
+'widthheightpage'      => '$1 × $2, {{PLURAL:$3|лопа|$3 лопат}}',
 'file-info'            => 'файлонть-путовксонть сталмозо: $1, MIME типезе: $2',
 'file-info-size'       => '$1 × $2 пиксельть, файлонть-путовксонть сталмозо: $3, MIME типезе: $4',
 'file-nohires'         => '<small>Арась версия покш разрешения марто.</small>',

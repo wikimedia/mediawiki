@@ -121,6 +121,7 @@ $messages = array(
 'category-file-count'            => "{{PLURAL:$2|Chol catégorie o seulemint chol fichié-lo.|{{PLURAL:$1|Ech fichier-lo est|$1 Chés fichiés-lo sont}} din l'catégorie-lo, pou un total éd $2 fichiés.}}",
 'category-file-count-limited'    => "{{PLURAL:$1|Ech fichié d'apré est|Chés $1 fichiés d'apré sont}} dins l'catégorie-lo.",
 'listingcontinuesabbrev'         => 'cont.',
+'broken-file-category'           => "Paches aveuc des loïens d'fichiés bérzillés",
 
 'about'         => 'À pérpos',
 'article'       => 'Étnu del pache',
@@ -236,7 +237,8 @@ $messages = array(
 'privacy'              => "Politique d'éscrè",
 'privacypage'          => "Project:Politique d'éscrè",
 
-'badaccess' => 'Bérlure éd pérmission',
+'badaccess'        => 'Bérlure éd pérmission',
+'badaccess-group0' => 'Vos n’avez poin chés droéts pour foaire l’action dmindée.',
 
 'ok'                      => 'OK',
 'retrievedfrom'           => 'Érprind din  "$1"',

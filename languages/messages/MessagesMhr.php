@@ -10,6 +10,7 @@
  * @author Amdf
  * @author Azim
  * @author Jose77
+ * @author Kaganer
  * @author Lifeway
  * @author Сай
  */
@@ -1011,7 +1012,7 @@ $messages = array(
 'nextdiff'     => 'Вес тӧрлатымаш →',
 
 # Media information
-'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|лаштык|лаштык}}',
+'widthheightpage' => '$1 × $2, $3 {{PLURAL:$3|лаштык|лаштык}}',
 'file-info-size'  => '$1 × $2 пиксел, файлын кугытшо: $3, MIME-тип: $4',
 'file-nohires'    => '<small>Кугурак чаплык уке.</small>',
 'svg-long-desc'   => 'SVG файл, шкенжын кугытшо: $1 × $2 пиксел, файлын кугытшо: $3',

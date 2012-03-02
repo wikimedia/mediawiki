@@ -12,6 +12,7 @@
  * @author Calcey
  * @author Chandana
  * @author Jiro Ono
+ * @author Kaganer
  * @author Meno25
  * @author Pasanbhathiya2
  * @author Romaine
@@ -1720,10 +1721,10 @@ $1',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'ප්‍රවේශය තහනම් කර ඇත',
-'img-auth-nopathinfo'       => 'PATH_INFO වැරදී ඇත.
-මෙම තොරතුරු යැවීම සඳහා ඔබගේ සේවා දායකය පිහිටුවා නැත.
+'img-auth-nopathinfo'       => 'PATH_INFO සපයා නොමැත.
+මෙම තොරතුරු සැපයීම සඳහා ඔබගේ සේවා දායකයේ පරිස්ථිතීන් සකසා නොමැත.
 එය CGI-පාදක වූවක් විය හැකි අතර img_auth සඳහා සහය නොදක්වයි.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization image authorization බලන්න.]',
+https://www.mediawiki.org/wiki/Manual:Image_Authorization බලන්න.',
 'img-auth-notindir'         => 'ඉල්ලුම් කළ පෙත වින්‍යසගත උඩුගත කිරීම් නාමාවලියේ නැත.',
 'img-auth-badtitle'         => '"$1" මඟින් වලංගු මාතෘකාවක් ගොඩනැගිය නොහැකිය.',
 'img-auth-nologinnWL'       => 'ඔබ ඇතුල් වී නොමැති අතර "$1" සුදු ලැයිස්තුවේ නොමැත.',
@@ -2217,7 +2218,7 @@ Feedback and further assistance:
 මෑත මකාදැමීම් පිළිබඳ වාර්තාවක් සඳහා $2 බලන්න.',
 'deletedarticle'         => '"[[$1]]" මකා දමන ලදි',
 'suppressedarticle'      => '"[[$1]]" යටපත් කෙරිණි',
-'dellogpage'             => 'මකාදැමුම් ලඝු සටහන',
+'dellogpage'             => 'මකාදැමුම් ලොග් සටහන',
 'dellogpagetext'         => 'පහත දැක්වෙන්නේ ඉතා මෑතදී සිදු කර ඇති මකාදැමීම් ලැයිස්තුවකි.',
 'deletionlog'            => 'මකා-දැමුම් ලඝු-සටහන',
 'reverted'               => 'පෙර සංශෝධනය වෙත ප්‍රතිවර්තනය කෙරිණි',
@@ -2469,7 +2470,7 @@ $1',
 'badipaddress'                    => 'අනීතික අන්තර්ජාල ලිපිනයකි',
 'blockipsuccesssub'               => 'වාරණය සාර්ථක විය',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] වාරණයට ලක් කර ඇත.<br />
-වාරණයන් සමාලෝචනය සඳහා  [[Special:IPBlockList|අන්තර්ජාල වාරණ ලැයිස්තුව]] බලන්න.',
+වාරණයන් සමාලෝචනය සඳහා  [[Special:BlockList|අන්තර්ජාල වාරණ ලැයිස්තුව]] බලන්න.',
 'ipb-blockingself'                => 'ඔබ විසින් ඔබවම වාරණය කිරමට උත්සහ දරයි! ඔබට විශ්වාසද මෙය කල යුතුමයි කියා?',
 'ipb-edit-dropdown'               => 'සංස්කරණ වාරණ හේතූන්',
 'ipb-unblock-addr'                => '$1වාරණය අත්හිටුවන්න',
@@ -2950,7 +2951,7 @@ $1',
 එය ක්‍රියාත්මක කිරීමෙන්, ඔබගේ පද්ධතියට හානිවිය හැක.",
 'imagemaxsize'         => "රූප ප්‍රමාණ සීමාව:<br />''(ගොනු විස්තර පිටු සඳහා)''",
 'thumbsize'            => 'සිඟිති-රූපයේ විශාලත්වය:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|පිටුව|පිටු}}',
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|පිටුව|පිටු}}',
 'file-info'            => 'ගොනු විශාලත්වය: $1, MIME වර්ගය: $2',
 'file-info-size'       => '$1 × $2 පික්සල, ගොනු විශාලත්වය: $3, MIME ශෛලිය: $4',
 'file-info-size-pages' => '$1 × $2 පික්සල, ගොනු තරම: $3, MIME වර්ගය: $4, $5 {{PLURAL:$5|පිටුව|පිටු}}',

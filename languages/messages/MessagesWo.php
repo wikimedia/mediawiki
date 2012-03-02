@@ -582,7 +582,7 @@ Xèj-na baatujàll bi soppi nga ko ba noppi, walla xéj-na it dangaa laaj beneen
 'blockedtitle'                     => 'Bii jëfandikukat dañ kaa téye',
 'blockedtext'                      => '\'\'\'Sa sàqum jëfandikukat walla sa màkkaanu IP dañ koo téye .\'\'\'
 
-Ki def téye gi mooy $ te lii mooy ngirte li : \'\'$2\'\'.
+Ki def téye gi mooy $1 te lii mooy ngirte li : \'\'$2\'\'.
 
 * Ndorteelu téye gi : $8
 * Njeextalu téye gi : $6
@@ -1876,7 +1876,7 @@ $1',
 'badipaddress'                    => 'Màkkaanu IP bi baaxul.',
 'blockipsuccesssub'               => 'Téye gi antu na',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] dees koo téye.<br />
-Xoolal [[Special:IPBlockList|limu IP yees téye]] ngir gis ñees téye ñépp.',
+Xoolal [[Special:BlockList|limu IP yees téye]] ngir gis ñees téye ñépp.',
 'ipb-edit-dropdown'               => 'Soppi ngirtey téye gi',
 'ipb-unblock-addr'                => 'Téyedi $1',
 'ipb-unblock'                     => 'Téyedi ab turu jëfandikukat walla ab màkkaanub IP',

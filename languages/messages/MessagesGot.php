@@ -8,6 +8,7 @@
  * @file
  *
  * @author Jocke Pirat
+ * @author Michawiki
  * @author Node ue
  * @author Zylbath
  */
@@ -158,6 +159,7 @@ $messages = array(
 'newmessagesdifflink' => '𐍃𐍀𐌴𐌳𐌿𐌼𐌹𐍃𐍄𐍃 𐌼𐌰𐌹𐌳𐌴𐌹𐌽𐍃',
 'editsection'         => '𐌼𐌰𐌹𐌳𐌾𐌰𐌽',
 'editold'             => '𐌼𐌰𐌹𐌳𐌾𐌰𐌽',
+'editlink'            => 'máidjan',
 'editsectionhint'     => '𐌼𐌰𐌹𐌳𐌾𐌰𐌽 𐌰𐍆 𐍆𐌴𐍂𐌰: $1',
 'toc'                 => '𐌹𐌽𐌽𐌰𐌽𐌰',
 'showtoc'             => '𐌰𐌿𐌲𐌾𐌰',

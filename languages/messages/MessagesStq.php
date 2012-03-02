@@ -7,6 +7,8 @@
  * @ingroup Language
  * @file
  *
+ * @author Kaganer
+ * @author Kghbln
  * @author Maartenvdbent
  * @author Mucalexx
  * @author Purodha
@@ -1471,7 +1473,7 @@ Ju kon deeruum nit ap Sicherhaid wröiged wäide.',
 'img-auth-nopathinfo'   => 'PATH_INFO failt.
 Dien Server is nit deerfoar iengjucht, disse Information fääretoureeken.
 Dät kuud CGI-basierd weese un unnerstutset img_auth nit.
-Sjuch http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+Sjuch https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'     => 'Dät wonskede Paad is nit in dät konfigurierde Uploadferteeknis.',
 'img-auth-badtitle'     => 'Uut „$1“ kon naan gultigen Tittel moaked wäide.',
 'img-auth-nologinnWL'   => 'Du bäst nit anmälded un „$1“ is nit in ju wiete Lieste.',
@@ -2173,7 +2175,7 @@ Reek dän Gruund foar ju Speere oun.',
 'badipaddress'                    => 'Dissen Benutser bestoant nit, d.h. die Noome is falsk',
 'blockipsuccesssub'               => 'Blokkoade geloangen',
 'blockipsuccesstext'              => 'Ju IP-Adrässe [[Special:Contributions/$1|$1]] wuude blokkierd.
-<br />[[Special:IPBlockList|Lieste fon Blokkoaden]].',
+<br />[[Special:BlockList|Lieste fon Blokkoaden]].',
 'ipb-blockingself'                => 'Du bäst tougong, die sälwen tou speeren! Moatest dät wuudelk dwo?',
 'ipb-confirmhideuser'             => 'Du bäst tougong n Benutser in dän Modus "Benutser fersteete" tou speeren. Dät fiert deertou, dät die Benutsernoome in aal Liesten un Logbouke unnerdrukt wäd. Moatest dät wuudelk dwo?',
 'ipb-edit-dropdown'               => 'Speergruunde beoarbaidje',
@@ -2599,7 +2601,7 @@ $1',
 'mediawarning'           => "'''Woarskauenge:''' Disse Oard fon Doatäi kon n skoadelken Programcode änthoolde. Truch dät Deelleeden un Eepenjen fon disse Doatäi kon dän Computer Skoade toubroacht wäide.",
 'imagemaxsize'           => "Maximoale Bieldegrööte:<br />''(foar Doatäibeskrieuwengssieden)''",
 'thumbsize'              => 'Grööte fon do Foarskaubielden (thumbnails):',
-'widthheightpage'        => '$1×$2, {{PLURAL:$3|1 Siede|$3 Sieden}}',
+'widthheightpage'        => '$1 × $2, {{PLURAL:$3|1 Siede|$3 Sieden}}',
 'file-info'              => 'Doatäigrööte: $1, MIME-Typ: $2',
 'file-info-size'         => '$1 × $2 Pixel, Doatäigrööte: $3, MIME-Typ: $4',
 'file-nohires'           => '<small>Neen haagere Aplöösenge foarhounden.</small>',

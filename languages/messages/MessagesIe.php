@@ -8,6 +8,7 @@
  * @file
  *
  * @author Jmb
+ * @author Kaganer
  * @author Malafaya
  * @author Reedy
  * @author Remember the dot
@@ -1282,7 +1283,7 @@ Pleser fuse les manualmen.'''",
 
 # Media information
 'thumbsize'       => 'Mesura de miniatura:',
-'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|págine|págines}}',
+'widthheightpage' => '$1 × $2, $3 {{PLURAL:$3|págine|págines}}',
 'file-info-size'  => '$1 × $2 pixeles, dimension de file: $3, tip MIME: $4',
 'file-nohires'    => '<small>Nequant resolution max alt disponibil.</small>',
 'svg-long-desc'   => '(file SVG, nominalmen $1 × $2 pixeles, mesura de file: $3)',

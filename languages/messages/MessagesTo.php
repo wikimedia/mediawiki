@@ -889,7 +889,7 @@ Vakai ki he [[Special:Log/delete|hokohoko tāmateʻi]] ki he lekooti ʻo e ngaah
 'badipaddress'         => 'Tuʻasila IP taʻeʻaongaʻi',
 'blockipsuccesssub'    => 'Ola ʻo e taʻofi',
 'blockipsuccesstext'   => 'Kuo taʻofia ʻa [[Special:Contributions/$1|$1]]
-<br />Vakai ki he [[Special:IPBlockList|hokohoko ʻo e taʻofi]] ʻo toe fakakaukau ʻi ai.',
+<br />Vakai ki he [[Special:BlockList|hokohoko ʻo e taʻofi]] ʻo toe fakakaukau ʻi ai.',
 'unblockip'            => 'Taʻetaʻofia ʻetita',
 'unblockiptext'        => 'Ngāueʻaki ʻa e foomu ʻi lalo ke fakafoki e ngofua tohi maʻa e tuʻasila IP pe hingoa ʻo e kau-ki-ai ʻosi taʻofi.',
 'ipusubmit'            => 'Taʻetaʻofia ʻa e ʻetitá ni',

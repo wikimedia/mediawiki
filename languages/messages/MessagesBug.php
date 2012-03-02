@@ -272,7 +272,7 @@ $messages = array(
 'group-sysop' => 'Puŋgawa',
 'group-all'   => '(sininna)',
 
-'group-user-member'  => 'Pappaké',
+'group-user-member'  => '{{GENDER:$1|Pappaké}}',
 'group-sysop-member' => 'Puŋgawa',
 
 'grouppage-user'  => '{{ns:project}}:Pappaké',

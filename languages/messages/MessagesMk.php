@@ -14,7 +14,9 @@
  * @author FlavrSavr
  * @author Glupav
  * @author INkubusse
+ * @author Kaganer
  * @author Misos
+ * @author Rancher
  * @author Spacebirdy
  * @author Urhixidur
  * @author לערי ריינהארט
@@ -1058,7 +1060,7 @@ $2
 'nocreate-loggedin'                => 'Немате дозвола да создавате нови страници.',
 'sectioneditnotsupported-title'    => 'Уредувањето на заглавија не е поддржано',
 'sectioneditnotsupported-text'     => 'На оваа станица не е поддржано уредувањето на заглавија.',
-'permissionserrors'                => 'Грешки во правата',
+'permissionserrors'                => 'Грешки со дозволите за пристап',
 'permissionserrorstext'            => 'Немате дозвола да го направите тоа, од {{PLURAL:$1|следнава причина|следниве причини}}:',
 'permissionserrorstext-withaction' => 'Немате дозвола за $2, од {{PLURAL:$1|следнава причина|следниве причини}}:',
 'recreate-moveddeleted-warn'       => "Внимание: Повторно создавате страница што претходно била бришена.'''
@@ -1296,7 +1298,7 @@ $1",
 'notitlematches'                   => 'Ниеден наслов на страница не одговара',
 'textmatches'                      => 'Совпаднат текст во страниците',
 'notextmatches'                    => 'Ниеден текст во статиите не одговара',
-'prevn'                            => '{{PLURAL:претходна $1| претходни $1}}',
+'prevn'                            => '{{PLURAL:$1|претходна $1| претходни $1}}',
 'nextn'                            => '{{PLURAL:следна $1|следни $1}}',
 'prevn-title'                      => '{{PLURAL:$1|Претходен|Претходни}} $1 {{PLURAL:$1|резултат|резултати}}',
 'nextn-title'                      => '{{PLURAL:$1|Следен|Следни}} $1 {{PLURAL:$1|резултат|резултати}}',
@@ -1849,7 +1851,7 @@ $1',
 'img-auth-nopathinfo'       => 'Недостасува PATH_INFO.
 Вашиот опслужувач не е нагоден за да ја предаде оваа информација.
 Можеби се заснова на CGI, и така не подржува img_auth.
-Погл. [//www.mediawiki.org/wiki/Manual:Image_Authorization?uselang=mk Одобрување на слики]',
+Погл. https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'         => 'Бараниот пат не води кон зададената папка за подигање.',
 'img-auth-badtitle'         => 'Не може да се конструира важечки наслов од „$1“.',
 'img-auth-nologinnWL'       => 'Не сте најавени и „$1“ не е на списокот на допуштени.',
@@ -2837,7 +2839,7 @@ $1',
 'allmessagesnotsupportedDB'     => "Оваа страница не може да се користи бидејќи '''\$wgUseDatabaseMessages''' е исклучено.",
 'allmessages-filter-legend'     => 'Филтер',
 'allmessages-filter'            => 'Филтрирај по состојба на прилагодувањето:',
-'allmessages-filter-unmodified' => 'Непроменети',
+'allmessages-filter-unmodified' => 'Неизменети',
 'allmessages-filter-all'        => 'Сите',
 'allmessages-filter-modified'   => 'Изменети',
 'allmessages-prefix'            => 'Филтрирај по префикс:',
@@ -2847,10 +2849,10 @@ $1',
 # Thumbnails
 'thumbnail-more'           => 'Зголеми',
 'filemissing'              => 'Недостасува податотека',
-'thumbnail_error'          => 'Грешка при создавање минијатурата: $1',
+'thumbnail_error'          => 'Грешка при создавање на минијатурата: $1',
 'djvu_page_error'          => 'Недостапна DjVu страница',
 'djvu_no_xml'              => 'Не е можно да се излачи XML за DjVu податотеки',
-'thumbnail_invalid_params' => 'Погрешни параметри за минијатурата',
+'thumbnail_invalid_params' => 'Параметрите на минијатурата се погрешни',
 'thumbnail_dest_directory' => 'Целниот именик не може да се создаде',
 'thumbnail_image-type'     => 'Неподдржан тип на слика',
 'thumbnail_gd-library'     => 'Нецелосни поставки на графичката библиотека: недостасува функцијата $1',
@@ -3097,7 +3099,7 @@ $1',
 'imagemaxsize'           => "Ограничување на големина на слика:<br />''(на нивните описни страници)''",
 'thumbsize'              => 'Големина на минијатурата:',
 'widthheight'            => '$1 × $2',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|страница|страници}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|страница|страници}}',
 'file-info'              => 'големина: $1, MIME-тип: $2',
 'file-info-size'         => '$1 × $2 пиксели, големина: $3, MIME-тип: $4',
 'file-info-size-pages'   => '$1 × $2 пиксели, големина: $3, MIME-тип: $4, $5 {{PLURAL:$5|страница|страници}}',

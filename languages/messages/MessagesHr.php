@@ -16,6 +16,7 @@
  * @author Ex13
  * @author Excaliboor
  * @author Herr Mlinka
+ * @author Kaganer
  * @author Luka Krstulovic
  * @author MayaSimFan
  * @author Meno25
@@ -1769,7 +1770,7 @@ Ne može biti ispravno sigurnosno označena.',
 'img-auth-nopathinfo'       => 'Nedostaje PATH_INFO.
 Vaš poslužitelj nije postavljen da prosljeđuje ovu informaciju.
 Možda se temelji na CGI skripti i ne može podržavati img_auth.
-[http://www.mediawiki.org/wiki/Manual:Image_Authorization?uselang=hr Pogledajte stranicu o autorizaciji slika]',
+[https://www.mediawiki.org/wiki/Manual:Image_Authorization?uselang=hr Pogledajte stranicu o autorizaciji slika]',
 'img-auth-notindir'         => 'Zahtjevana putanja nije u direktoriju podešenom za postavljanje.',
 'img-auth-badtitle'         => 'Ne mogu stvoriti valjani naslov iz "$1".',
 'img-auth-nologinnWL'       => 'Niste prijavljeni i "$1" nije na popisu dozvoljenih.',
@@ -2495,7 +2496,7 @@ vandalizirane).',
 'badipaddress'                    => 'Nevaljana IP adresa.',
 'blockipsuccesssub'               => 'Uspješno blokirano',
 'blockipsuccesstext'              => 'Suradnik [[Special:Contributions/$1|$1]] je blokiran.<br />
-Pogledaj [[Special:IPBlockList|popis blokiranih IP adresa]] za pregled.',
+Pogledaj [[Special:BlockList|popis blokiranih IP adresa]] za pregled.',
 'ipb-blockingself'                => 'Blokirat ćete se! Jeste li sigurni da to želite?',
 'ipb-confirmhideuser'             => 'Upravo ćete blokirati suradnika koji ima mogućnost "sakrij suradnika" omogućenu. To će sakriti suradničko ime na svim popisima i evidencijama. Jeste li sigurni da želite to učiniti?',
 'ipb-edit-dropdown'               => 'Uredi razloge blokiranja',
@@ -2948,7 +2949,7 @@ $1',
 Njegovim izvršavanjem mogli biste oštetiti svoj sustav.",
 'imagemaxsize'           => "Ograniči veličinu slike:<br />''(za stranicu s opisom datoteke)''",
 'thumbsize'              => 'Veličina sličice (umanjene inačice slike):',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|stranica|stranice}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|stranica|stranice}}',
 'file-info'              => 'veličina datoteke: $1, MIME tip: $2',
 'file-info-size'         => '$1 × $2 piksela, veličina datoteke: $3, MIME tip: $4',
 'file-info-size-pages'   => '$1 × $2 piksela, veličina datoteke: $3, MIME vrsta: $4, $5 {{PLURAL:$5|stranica|stranice|stranica}}',
@@ -3560,6 +3561,20 @@ Također možete koristiti [[Special:EditWatchlist|standardni editor]].',
 'watchlisttools-view' => 'Pregled promjena praćenih stranica',
 'watchlisttools-edit' => 'Pregled i uređivanje praćenih stranica',
 'watchlisttools-raw'  => 'Uređivanje praćenih stranica u okviru za uređivanje',
+
+# Iranian month names
+'iranian-calendar-m1'  => 'farvardina',
+'iranian-calendar-m2'  => 'ardibehešta',
+'iranian-calendar-m3'  => 'hordada',
+'iranian-calendar-m4'  => 'tira',
+'iranian-calendar-m5'  => 'mordada',
+'iranian-calendar-m6'  => 'šaherevara',
+'iranian-calendar-m7'  => 'mihera',
+'iranian-calendar-m8'  => 'abana',
+'iranian-calendar-m9'  => 'adara',
+'iranian-calendar-m10' => 'daje',
+'iranian-calendar-m11' => 'bahmana',
+'iranian-calendar-m12' => 'asfanda',
 
 # Hijri month names
 'hijri-calendar-m1'  => 'muhàrem',

@@ -8,6 +8,7 @@
  * @file
  *
  * @author Julian Mendez
+ * @author Kaganer
  * @author Malafaya
  * @author McDutchie
  * @author Reedy
@@ -1675,7 +1676,7 @@ Un verification correcte de su securitate es impossibile.',
 'img-auth-nopathinfo'       => 'PATH_INFO manca.
 Le servitor non ha essite configurate pro passar iste information.
 Illo pote esser basate super CGI e non pote supportar img_auth.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization Vide: Autorisation de imagines.]',
+Vide https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'         => 'Le cammino requestate non es in le directorio de incargamentos configurate.',
 'img-auth-badtitle'         => 'Impossibile construer un titulo valide ex "$1".',
 'img-auth-nologinnWL'       => 'Tu non ha aperite un session e "$1" non es in le lista blanc.',
@@ -2428,7 +2429,7 @@ specific que ha essite vandalisate).',
 'badipaddress'                    => 'Adresse IP mal formate.',
 'blockipsuccesssub'               => 'Blocada succedite',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] ha essite blocate.<br />
-Vide le [[Special:IPBlockList|lista de adresses IP blocate]] pro revider le blocadas.',
+Vide le [[Special:BlockList|lista de adresses IP blocate]] pro revider le blocadas.',
 'ipb-blockingself'                => 'Tu sta super le puncto de blocar te mesme! Es tu secur de voler facer isto?',
 'ipb-confirmhideuser'             => 'Tu es super le puncto de blocar un usator con le option "celar usator" activate. Isto supprimera le nomine del usator in tote le listas e entratas de registro. Es tu secur de voler facer isto?',
 'ipb-edit-dropdown'               => 'Modificar le motivos pro blocar',
@@ -2915,7 +2916,7 @@ $1',
 Le execution de illo pote compromitter le securitate de tu systema.",
 'imagemaxsize'           => "Dimension maxime de imagines:<br />''(pro paginas de description de files)''",
 'thumbsize'              => 'Dimension del miniaturas:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|pagina|paginas}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|pagina|paginas}}',
 'file-info'              => 'grandor del file: $1, typo MIME: $2',
 'file-info-size'         => '$1 × $2 pixel, grandor del file: $3, typo MIME: $4',
 'file-info-size-pages'   => '$1 × $2 pixels, dimension del file: $3, typo MIME: $4, $5 {{PLURAL:$5|pagina|paginas}}',
@@ -3649,7 +3650,7 @@ Le imagines se monstra in plen resolution, le altere typos de file se executa di
 'dberr-cachederror' => 'Lo sequente es un copia del cache del pagina requestate, e pote esser obsolete.',
 
 # HTML forms
-'htmlform-invalid-input'       => 'Il ha problemas con alique que tu entrava',
+'htmlform-invalid-input'       => 'Il ha problemas con un parte del datos que tu ha entrate',
 'htmlform-select-badoption'    => 'Le valor que tu specificava non es un option valide.',
 'htmlform-int-invalid'         => 'Le valor que tu specificava non es un numero integre.',
 'htmlform-float-invalid'       => 'Le valor que tu specificava non es un numero.',

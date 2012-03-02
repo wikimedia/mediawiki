@@ -11,6 +11,7 @@
  * @author Dipin
  * @author HPN
  * @author Hari Prasad Nadig <hpnadig@gmail.com> http://en.wikipedia.org/wiki/User:Hpnadig
+ * @author Kaganer
  * @author Ktkaushik
  * @author M G Harish
  * @author Mana
@@ -21,6 +22,7 @@
  * @author Shankar
  * @author Shushruth
  * @author The Evil IP address
+ * @author VASANTH S.N.
  * @author לערי ריינהארט
  */
 
@@ -213,6 +215,7 @@ $messages = array(
 'vector-action-delete'           => 'ಅಳಿಸು',
 'vector-action-move'             => 'ಸ್ಥಳಾಂತರಿಸಿ',
 'vector-action-protect'          => 'ಸಂರಕ್ಷಿಸು',
+'vector-action-undelete'         => 'ಅಳಿಸಬೇಡ',
 'vector-action-unprotect'        => 'ರಕ್ಷಣೆಯನ್ನು ಬದಲಾವಣೆ',
 'vector-simplesearch-preference' => 'ವರ್ಧಿಸಿದ ಹುಡುಕು ಸಲಹೆಗಳನ್ನು (ಕೇವಲ ವೆಕ್ಟರ್ ಚರ್ಮ) ಸಕ್ರಿಯಗೊಳಿಸಿ',
 'vector-view-create'             => 'ಸೃಷ್ಟಿಸು',
@@ -339,6 +342,8 @@ $messages = array(
 'page-rss-feed'           => '"$1" RSS ಫೀಡು',
 'page-atom-feed'          => '"$1" ಪುಟದ Atom ಫೀಡು',
 'red-link-title'          => '$1 (ಪುಟವು ಇನ್ನೂ ಸೃಷ್ಟಿತವಾಗಿಲ್ಲ)',
+'sort-descending'         => 'ಇಳಿಕೆ ಕ್ರಮದಲ್ಲಿ ಜೋಡಿಸು',
+'sort-ascending'          => 'ಏರಿಕೆ ಕ್ರಮದಲ್ಲಿ ಜೋಡಿಸು',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'ಲೇಖನ',
@@ -391,6 +396,8 @@ MySQL ಹಿಂದಿರುಗಿಸಿದ ದೋಷ "$3: $4"',
 'readonly_lag'         => 'ಅಡಿಯಲ್ಲಿರುವ ಡೇಟಾಬೇಸ್ ಸರ್ವರ್‍ಗಳು ಮೂಲ ಸರ್ವರ್ ಒಂದಿಗೆ ಸಮಾನತೆಗೆ ಬರುವವರೆಗೂ ಡೇಟಾಬೇಸ್ ಅನ್ನು ಯಾಂತ್ರಿಕವಾಗಿ ಮುಚ್ಚಲಾಗಿದೆ',
 'internalerror'        => 'ಆಂತರಿಕ ದೋಷ',
 'internalerror_info'   => 'ಆಂತರಿಕ ದೋಷ: $1',
+'fileappenderrorread'  => 'ಸೇರಿಸುವಾಗ "$1" ನ್ನು ಓದಲಾಗಿಲ್ಲ',
+'fileappenderror'      => '"$1"ನ್ನು"$2" ರೊಂದಿಗೆ ಸೇರಿಸಲಾಗಿಲ್ಲ',
 'filecopyerror'        => '"$1" ಫೈಲ್ ಅನ್ನು "$2" ಗೆ ನಕಲಿಸಲಾಗಲಿಲ್ಲ.',
 'filerenameerror'      => '"$1" ಫೈಲನ್ನು "$2" ಎಂದು ಮರುನಾಮಕರಣ ಮಾಡಲು ಆಗಲಿಲ್ಲ.',
 'filedeleteerror'      => '"$1" ಫೈಲ್ ಅನ್ನು ಅಳಿಸಲಾಗಲಿಲ್ಲ.',
@@ -666,7 +673,9 @@ $2',
 ಪುಟದ ಅಳಿಸುವಿಕೆ ದಿನಚರಿಯನ್ನು ಈ ಕೆಳಗೆ ನೀಡಲಾಗಿದೆ:",
 'moveddeleted-notice'              => 'ಈ ಪುಟವು ಅಳಿಸಲ್ಪಟ್ಟಿದೆ.
 ಈ ಪುಟದ ಅಳಿಸುವಿಕೆಯ ದಾಖಲೆಯನ್ನು ಕೆಳಗೆ ತೋರಿಸಲಾಗಿದೆ.',
+'edit-gone-missing'                => 'ಪುಟವನ್ನು ಪ್ರಸ್ತುತಗೊಳಿಸಲು ಸಾದ್ಯವಿಲ್ಲ, ಪುಟವು ಬಹುಶ: ಅಳಿಸಲ್ಪಟ್ಟಿರಬಹುದು',
 'edit-conflict'                    => 'ಸಂಪಾದನಾ ಘರ್ಷಣೆ.',
+'edit-no-change'                   => 'ನಿಮ್ಮ ಸಂಪಾದನೆಯನ್ನು ಕಡೆಗಣಿಸಲಾಗಿದೆ ಏಕೆಂದರೆ ಪಠ್ಯದಲ್ಲಿ ಯಾವುದೇ ಬದಲಾವಣೆ ಮಾಡಲಾಗಿಲ್ಲ್ಲ',
 'edit-already-exists'              => 'ಹೊಸ ಪುಟವನ್ನು ಸೃಷ್ಟಿಸಲಾಗಲಿಲ್ಲ.
 ಅದು ಆಗಲೆ ಅಸ್ಥಿತ್ವದಲ್ಲಿದೆ.',
 
@@ -679,6 +688,13 @@ $2',
 ಕೆಲವು ಟೆಂಪ್ಲೇಟುಗಳು ಹಕಲಗುದಿಲ್ಲ.",
 'post-expand-template-inclusion-category' => 'ಪುಟದಲ್ಲಿ  ಚಿತ್ರ  ಹಗಲ ಯೆರಿದೆ',
 'parser-template-loop-warning'            => 'ಟೆಂಪ್ಲೇಟು ಆವರ್ತನೆ ಪತ್ತೆಯಾಗಿದೆ: [[$1]]',
+'language-converter-depth-warning'        => 'ಭಾಷಾಂತರಕದ ಆಳದ ಮಿತಿಮೀರಿದೆ($1)',
+
+# "Undo" feature
+'undo-success' => 'ಸಂಪಾದನೆಯನ್ನು ವಜಾ ಮಾಡಬಹುದು. ದಯವಿಟ್ಟು ಕೆಳಗಿರುವ ತುಲನೆಯನ್ನು ಪರೀಕ್ಷಿಸಿ ನೀವು ಮಾಡಲು ಇಚ್ಚಿಸಿರುವುದನ್ನು ಖಾತ್ರಿ ಮಾಡಿಕೊಂಡು ವಜಾಗೊಳಿಸುವ ಕ್ರಿಯೆಯನ್ನು 
+ಪೂರ್ಣಗೊಳಿಸಲು ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಿ.',
+'undo-norev'   => 'ಸಂಪಾದನೆಯನ್ನು ವಜಾಗೊಳಿಸಲು ಸಾದ್ಯವಿಲ್ಲ ಏಕೆಂದರೆ ಒಂದೊ ಇದು ಅಸ್ತಿತ್ವದಲ್ಲಿ ಇಲ್ಲ ಅಧವಾ ಇದು ಅಳಿಸಲ್ಪಟ್ಟಿದೆ',
+'undo-summary' => '[[Special:Contributions/$2|$2]] ([[User talk:$2|talk]]) ರ $1 ಪರಿಷ್ಕರಣೆಯನ್ನು ವಜಾ ಮಾಡಿ',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'ಖಾತೆಯನ್ನು ಸೃಷ್ಟಿಸಲಾಗುತ್ತಿಲ್ಲ',
@@ -1576,7 +1592,7 @@ $2',
 'ipbotherreason'           => 'ಇತರ/ಹೆಚ್ಚುವರಿ ಕಾರಣ:',
 'badipaddress'             => 'ಸರಿಯಿಲ್ಲದ IP ವಿಳಾಸ',
 'blockipsuccesssub'        => 'ತಡೆಹಿಡಿಯುವಿಕೆ ಯಶಸ್ವಿಯಾಯಿತು.',
-'blockipsuccesstext'       => '"$1" ಐಪಿ ಸಂಖ್ಯೆಯನ್ನು ತಡೆ ಹಿಡಿಯಲಾಗಿದೆ. <br /> ತಡೆಗಳನ್ನು ಪರಿಶೀಲಿಸಲು [[Special:IPBlockList|ತಡೆ ಹಿಡಿಯಲಾಗಿರುವ ಐಪಿ ಸಂಖ್ಯೆಗಳ ಪಟ್ಟಿ]] ನೋಡಿ.',
+'blockipsuccesstext'       => '"$1" ಐಪಿ ಸಂಖ್ಯೆಯನ್ನು ತಡೆ ಹಿಡಿಯಲಾಗಿದೆ. <br /> ತಡೆಗಳನ್ನು ಪರಿಶೀಲಿಸಲು [[Special:BlockList|ತಡೆ ಹಿಡಿಯಲಾಗಿರುವ ಐಪಿ ಸಂಖ್ಯೆಗಳ ಪಟ್ಟಿ]] ನೋಡಿ.',
 'ipb-edit-dropdown'        => 'ತಡೆಹಿಡಿಯುವಿಕೆ ಕಾರಣಗಳನ್ನು ಸಂಪಾದಿಸು',
 'ipb-unblock-addr'         => '$1 ಖಾತೆಯ ತಡೆಯನ್ನು ತೆಗೆ',
 'ipb-unblock'              => 'ಬಳಕೆದಾರರ ಅಥವ IP ವಿಳಾಸದ ತಡೆಯನ್ನು ತೆಗೆ',
@@ -1805,7 +1821,7 @@ $1',
 
 # Media information
 'thumbsize'       => 'ಕಿರುನೋಟದ ಗಾತ್ರ:',
-'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|ಪುಟ|ಪುಟಗಳು}}',
+'widthheightpage' => '$1 × $2, $3 {{PLURAL:$3|ಪುಟ|ಪುಟಗಳು}}',
 'file-info'       => 'ಫೈಲಿನ ಗಾತ್ರ: $1, MIME ಪ್ರಕಾರ: $2',
 'file-info-size'  => '$1 × $2 ಚಿತ್ರಬಿಂದು, ಫೈಲಿನ ಗಾತ್ರ: $3, MIME ಪ್ರಕಾರ: $4',
 'file-nohires'    => '<small>ಇದಕ್ಕಿಂತ ಹೆಚ್ಚಿನ ವಿವರವಾದ ನೋಟ ಇಲ್ಲ.</small>',

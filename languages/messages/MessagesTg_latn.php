@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Kaganer
  * @author Liangent
  */
 
@@ -441,7 +442,7 @@ Ba\'d az dastras kardani on, marhamat karda vurud kuned.',
 'accountcreated'          => 'Hisobi çadid soxta şud',
 'accountcreatedtext'      => 'Hisobi korbar baroi $1 soxta şud.',
 'createaccount-title'     => 'Eçodi hisobi korbarī dar {{SITENAME}}',
-'createaccount-text'      => 'Jak nafare baroi 2$ jak hisobi korbarī dar {{SITENAME}} eçod kardaast ($4). Kalimai uburi "$2" cunin ast: "$3". Şumo bojad voridi sistem şaved to kalimai uburi xudro taƣjir bidihed.
+'createaccount-text'      => 'Jak nafare baroi $2 jak hisobi korbarī dar {{SITENAME}} eçod kardaast ($4). Kalimai uburi "$2" cunin ast: "$3". Şumo bojad voridi sistem şaved to kalimai uburi xudro taƣjir bidihed.
 
 Agar in hisob iştibohe soxta şudaast, in nomaro nodida bigired.',
 'usernamehasherror'       => 'Nomi korbarī nametavonad şomili alomathoi dar ham boşad',
@@ -1529,7 +1530,7 @@ Daleli muşaxxas baroi in korro dar zer zikr kuned (baroi misol, zikri sahifahoe
 'badipaddress'                => "IP nişonai nomū'tabar",
 'blockipsuccesssub'           => 'Bastan muvaffaq щud',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] basta şudaast.<br />
-Baroi barrasī ba [[Special:IPBlockList|fehristi nişonahoi IP va nomhoi korbariji basta şuda]] nigared.',
+Baroi barrasī ba [[Special:BlockList|fehristi nişonahoi IP va nomhoi korbariji basta şuda]] nigared.',
 'ipb-edit-dropdown'           => "Daleli qat'i dastrasī",
 'ipb-unblock-addr'            => 'Boz kardani $1',
 'ipb-unblock'                 => 'Boz kardani nomi korbarī jo nişonai IP',
@@ -1865,7 +1866,7 @@ $1',
 'mediawarning'    => "'''Huşdor''': In parvanda mumkin ast ramzhoi badqasdro dar bar girad.
 Bo içroi on, sistemai şumo şojad oseb bubinad.",
 'thumbsize'       => 'Andozai anguştdona (thumbnail):',
-'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|sahifa|sahifaho}}',
+'widthheightpage' => '$1 × $2, $3 {{PLURAL:$3|sahifa|sahifaho}}',
 'file-info'       => "andozai parvanda: $1, nav'i MIME: $2",
 'file-info-size'  => "$1 × $2 piksel, haçmi parvanda: $3, nav'i MIME: $4",
 'file-nohires'    => '<small>Nusxai haçman va sifatan balandtar dastras nest.</small>',

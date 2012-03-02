@@ -821,7 +821,7 @@ $1',
 'group-suppress'   => 'Левисорхой',
 'group-all'        => '(массо)',
 
-'group-user-member'       => 'декъашхо',
+'group-user-member'       => '{{GENDER:$1|декъашхо}}',
 'group-bot-member'        => 'шаболххо',
 'group-sysop-member'      => 'адманкуьйгалхо',
 'group-bureaucrat-member' => 'даржахо',
@@ -1213,7 +1213,7 @@ PICT # тайп тайпан
 'ipboptions'               => '2 сахьат:2 hours,1 де:1 day,3 де:3 days,1 кlиран:1 week,2 кlиран:2 weeks,1 бутт:1 month,3 бутт:3 months,6 бутт:6 months,1 шо:1 year,цlкъа:infinite',
 'blockipsuccesssub'        => 'Сацавар чакхдели',
 'blockipsuccesstext'       => '[[Special:Contributions/$1|«$1»]] сацийна ву.<br />
-Хьажа. [[Special:IPBlockList|могlам сацийна IP-долу меттигаш]].',
+Хьажа. [[Special:BlockList|могlам сацийна IP-долу меттигаш]].',
 'ipb-blocklist-contribs'   => 'Декъашхон къинхьегам $1',
 'unblocked'                => '[[User:$1|$1]] хьайаьстина.',
 'ipblocklist'              => 'Сацийна IP-долу меттиг а дlалаьрра язбаларш',

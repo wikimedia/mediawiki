@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Kaganer
  * @author Mark85296341
  * @author Reedy
  * @author Symane
@@ -1552,7 +1553,7 @@ $1',
 'ipbhidename'                 => '封鎖日誌、活躍封鎖列表同用戶列表裡頭弆到用戶名',
 'badipaddress'                => 'IP位置伓對。',
 'blockipsuccesssub'           => '封鎖正嘞',
-'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]]封卟嘞。 <br />望吖[[Special:IPBlockList|拕封IP列表]]來審過封鎖。',
+'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]]封卟嘞。 <br />望吖[[Special:BlockList|拕封IP列表]]來審過封鎖。',
 'ipb-edit-dropdown'           => '編寫封鎖原因',
 'ipb-unblock-addr'            => '解封$1',
 'ipb-unblock'                 => '解封用戶名或IP地址',
@@ -1863,7 +1864,7 @@ $1',
 'mediawarning'    => "'''警告''': 話伓定箇隻檔案含到惡意代碼，執行佢話伓定會損壞倷嗰系統。",
 'imagemaxsize'    => '檔案解釋頁嗰圖像大細限制到:',
 'thumbsize'       => '縮略圖大細:',
-'widthheightpage' => '$1×$2,$3頁',
+'widthheightpage' => '$1 × $2,$3頁',
 'file-info'       => '檔案大細: $1, MIME 類型: $2',
 'file-info-size'  => '$1 × $2 像素，檔案大細：$3 ，MIME類型：$4',
 'file-nohires'    => '<small>冇更高解像度嗰圖像。</small>',

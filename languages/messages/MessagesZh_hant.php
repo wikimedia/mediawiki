@@ -19,10 +19,13 @@
  * @author Hydra
  * @author Jidanni
  * @author Jimmy xu wrk
+ * @author Kaganer
  * @author KaiesTse
+ * @author Kuailong
  * @author Lauhenry
  * @author Liangent
  * @author Mark85296341
+ * @author Oapbtommy
  * @author Pbdragonwang
  * @author PhiLiP
  * @author Philip
@@ -375,7 +378,7 @@ $messages = array(
 'errorpagetitle'    => '錯誤',
 'returnto'          => '返回到$1。',
 'tagline'           => '出自{{SITENAME}}',
-'help'              => '幫助',
+'help'              => '說明',
 'search'            => '搜尋',
 'searchbutton'      => '搜尋',
 'go'                => '進入',
@@ -441,8 +444,8 @@ $1',
 'aboutpage'            => 'Project:關於',
 'copyright'            => '本站的全部文本內容在$1之條款下提供。',
 'copyrightpage'        => '{{ns:project}}:版權訊息',
-'currentevents'        => '現時事件',
-'currentevents-url'    => 'Project:現時事件',
+'currentevents'        => '新聞動態',
+'currentevents-url'    => 'Project:新聞動態',
 'disclaimers'          => '免責聲明',
 'disclaimerpage'       => 'Project:一般免責聲明',
 'edithelp'             => '編輯幫助',
@@ -452,7 +455,7 @@ $1',
 'mainpage-description' => '首頁',
 'policy-url'           => 'Project:方針',
 'portal'               => '社群入口',
-'portal-url'           => 'Project:社群入口',
+'portal-url'           => 'Project:社區主頁',
 'privacy'              => '隱私權政策',
 'privacypage'          => 'Project:隱私權政策',
 
@@ -504,7 +507,7 @@ $1',
 'nstab-mediawiki' => '訊息',
 'nstab-template'  => '模板',
 'nstab-help'      => '幫助頁面',
-'nstab-category'  => '分類',
+'nstab-category'  => '類別',
 
 # Main script and global functions
 'nosuchaction'      => '這個命令不存在',
@@ -1148,7 +1151,7 @@ $1",
 'searchprofile-everything-tooltip' => '搜尋全部（包括討論頁面）',
 'searchprofile-advanced-tooltip'   => '在自定名字空間中度搜尋',
 'search-result-size'               => '$1 （$2個字）',
-'search-result-category-size'      => '$1位成員（$2個子分類，$3個檔案）',
+'search-result-category-size'      => '$1個成員（$2個子分類，$3個檔案）',
 'search-result-score'              => '相關度: $1%',
 'search-redirect'                  => '（重定向 $1）',
 'search-section'                   => '（段落 $1）',
@@ -1220,7 +1223,7 @@ $1",
 'prefs-edit-boxsize'            => '編輯框尺寸',
 'rows'                          => '列:',
 'columns'                       => '欄:',
-'searchresultshead'             => '搜尋結果設定',
+'searchresultshead'             => '搜尋',
 'resultsperpage'                => '每頁顯示連結數',
 'stub-threshold'                => '<a href="#" class="stub">短頁面連結</a>格式門檻值 （位元組）:',
 'stub-threshold-disabled'       => '已停用',
@@ -1327,7 +1330,7 @@ $1",
 'userrights-unchangeable-col'  => '您不可以更改的群組',
 
 # Groups
-'group'               => '群組:',
+'group'               => '群組：',
 'group-user'          => '用戶',
 'group-autoconfirmed' => '自動確認用戶',
 'group-bot'           => '機器人',
@@ -1336,7 +1339,7 @@ $1",
 'group-suppress'      => '監督',
 'group-all'           => '（全部）',
 
-'group-user-member'          => '用戶',
+'group-user-member'          => '{{GENDER:$1|用戶}}',
 'group-autoconfirmed-member' => '自動確認用戶',
 'group-bot-member'           => '機器人',
 'group-sysop-member'         => '{{GENDER:$1|管理員}}',
@@ -1642,7 +1645,7 @@ $1',
 
 # img_auth script messages
 'img-auth-accessdenied'     => '拒絕存取',
-'img-auth-nopathinfo'       => 'PATH_INFO缺失。您的服務器尚未設置傳送該信息。它可能是基於CGI的，因而不支持img_auth。[//www.mediawiki.org/wiki/Manual:Image_Authorization 參見圖片認證。]',
+'img-auth-nopathinfo'       => 'PATH_INFO缺失。您的服務器尚未設置傳送該信息。它可能是基於CGI的，因而不支持img_auth。[https://www.mediawiki.org/wiki/Manual:Image_Authorization 參見圖片認證。]',
 'img-auth-notindir'         => '所請求的路徑不在已經設定的上載目錄。',
 'img-auth-badtitle'         => '不能夠由"$1"建立一個有效標題。',
 'img-auth-nologinnWL'       => '您而家並未登入，"$1"不在白名單上。',
@@ -2084,28 +2087,28 @@ Template:消除歧義',
 'enotif_lastvisited'           => '檢視您上次訪問後的所有更改請參閱$1。',
 'enotif_lastdiff'              => '檢視更改請參閱$1。',
 'enotif_anon_editor'           => '匿名用戶$1',
-'enotif_body'                  => '親愛的 $WATCHINGUSERNAME，
+'enotif_body'                  => '親愛的$WATCHINGUSERNAME：
 
-{{SITENAME}}的頁面$PAGETITLE 已經於$PAGEEDITDATE 由$PAGEEDITOR 進行了CHANGEDORCREATED ，請見$PAGETITLE_URL 瀏覽現在的版本。 
+
+{{SITENAME}}的頁面$PAGETITLE已經於$PAGEEDITDATE由$PAGEEDITOR$CHANGEDORCREATED，請見 $PAGETITLE_URL 瀏覽現在的版本。
 
 $NEWPAGE
 
-編輯摘要: $PAGESUMMARY $PAGEMINOREDIT
+編輯摘要：$PAGESUMMARY $PAGEMINOREDIT
 
-聯繫此編輯者:
+聯繫此編輯者：
 
-郵件: $PAGEEDITOR_EMAIL
-本站: $PAGEEDITOR_WIKI
+郵件：$PAGEEDITOR_EMAIL
+本站：$PAGEEDITOR_WIKI
 
 在您訪問此頁之前，將來的更改將不會向您發通知。
-您也可以重設您所有監視頁面的通知標記。
+您也可以在監視列表中重設您所有監視頁面的通知標記。
 
-                {{SITENAME}}通知系統
+			 友好的{{SITENAME}}通知系統
 
 --
 要改變您的電郵設定，請參閱
 {{canonicalurl:{{#special:Preferences}}}}
-
 
 要改變您的監視列表設定，請參閱
 {{canonicalurl:{{#special:EditWatchlist}}}}
@@ -2113,7 +2116,7 @@ $NEWPAGE
 要刪除您監視清單中的該頁面，請參閱
 $UNWATCHURL
 
-回饋和進一步的幫助:
+回饋和進一步的幫助：
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
@@ -2292,7 +2295,7 @@ $1',
 'mycontris'           => '我的貢獻',
 'contribsub2'         => '$1的貢獻 （$2）',
 'nocontribs'          => '沒有找到符合特徵的更改。',
-'uctop'               => '(最新修改)',
+'uctop'               => '（最新修改）',
 'month'               => '從該月份 （或更早）:',
 'year'                => '從該年份 （或更早）:',
 
@@ -2301,7 +2304,7 @@ $1',
 'sp-contributions-newbies-title'       => '新手的用戶貢獻',
 'sp-contributions-blocklog'            => '封禁記錄',
 'sp-contributions-deleted'             => '已刪除的用戶貢獻',
-'sp-contributions-uploads'             => '上載',
+'sp-contributions-uploads'             => '上傳',
 'sp-contributions-logs'                => '日誌',
 'sp-contributions-talk'                => '對話',
 'sp-contributions-userrights'          => '用戶權限管理',
@@ -2372,7 +2375,7 @@ $1',
 'badipaddress'                    => '無效IP地址',
 'blockipsuccesssub'               => '查封成功',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]]已經被查封。
-<br />參看[[Special:IPBlockList|被封IP地址列表]]以覆審查封。',
+<br />參看[[Special:BlockList|被封IP地址列表]]以覆審查封。',
 'ipb-blockingself'                => '你要封禁自己！確認要這樣做嗎？',
 'ipb-confirmhideuser'             => '你要封禁用戶並隱藏其用戶名，這會隱藏在所有列表及日誌中涉及此用戶之用戶名。你確定要這樣做嗎？',
 'ipb-edit-dropdown'               => '編輯查封原因',
@@ -2591,9 +2594,9 @@ $1被封禁的理由是“$2”',
 '''注意:''' 由於性能原因，從此表單匯出頁面的全部歷史已被停用。",
 'export-submit'     => '匯出',
 'export-addcattext' => '由分類中加入頁面:',
-'export-addcat'     => '加入',
+'export-addcat'     => '新增',
 'export-addnstext'  => '由名字空間中加入頁面:',
-'export-addns'      => '加入',
+'export-addns'      => '新增',
 'export-download'   => '另存為檔案',
 'export-templates'  => '包含模板',
 'export-pagelinks'  => '包含到這個深度連結之頁面:',
@@ -2850,7 +2853,7 @@ $1',
 執行它可能對您的系統帶來危險。",
 'imagemaxsize'           => "影像大小限制:<br />''（用在檔案描述頁面中）''",
 'thumbsize'              => '縮略圖大小：',
-'widthheightpage'        => '$1×$2, $3頁',
+'widthheightpage'        => '$1 × $2, $3頁',
 'file-info'              => '檔案大小: $1, MIME 類型: $2',
 'file-info-size'         => '$1 × $2 像素，檔案大小：$3，MIME類型：$4',
 'file-info-size-pages'   => '$1 × $2像素，檔案大小: $3，檔案類型: $4, $5 {{PLURAL:$5|頁|頁}}',
@@ -2859,7 +2862,7 @@ $1',
 'show-big-image'         => '完整解像度',
 'show-big-image-preview' => '<small>此預覽的大小：$1.</small>',
 'show-big-image-other'   => '<small>其他大小：$1。</small>',
-'show-big-image-size'    => '$1× $2 像素',
+'show-big-image-size'    => '$1 × $2 像素',
 'file-info-gif-looped'   => '循環',
 'file-info-gif-frames'   => '$1幀',
 'file-info-png-looped'   => '循環',
@@ -3064,7 +3067,7 @@ Variants for Chinese language
 'exif-writer'                      => '作家',
 'exif-languagecode'                => '語言',
 'exif-iimversion'                  => 'IIM版本',
-'exif-iimcategory'                 => '分類',
+'exif-iimcategory'                 => '類別',
 'exif-iimsupplementalcategory'     => '補充分類',
 'exif-datetimeexpires'             => '這個日期後不要使用',
 'exif-datetimereleased'            => '發表日',
@@ -3523,7 +3526,7 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'fileduplicatesearch-summary'   => '用重覆檔案的切細值去找出檔案是否重覆。',
 'fileduplicatesearch-legend'    => '找重覆',
 'fileduplicatesearch-filename'  => '檔案名稱：',
-'fileduplicatesearch-submit'    => '找',
+'fileduplicatesearch-submit'    => '搜尋',
 'fileduplicatesearch-info'      => '$1 × $2 像素<br />檔案大小：$3<br />MIME 類型：$4',
 'fileduplicatesearch-result-1'  => '檔案 "$1" 無完全相同的重覆。',
 'fileduplicatesearch-result-n'  => '檔案 "$1" 有$2項完全相同的重覆。',
@@ -3602,7 +3605,7 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'htmlform-int-toolow'          => '您所指定的值低於最小值$1',
 'htmlform-int-toohigh'         => '您所指定的值高於最大值$1',
 'htmlform-required'            => '此值是必填項',
-'htmlform-submit'              => '遞交',
+'htmlform-submit'              => '提交',
 'htmlform-reset'               => '撤銷更改',
 'htmlform-selectorother-other' => '其他',
 

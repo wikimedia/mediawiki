@@ -18,6 +18,7 @@
  * @author IvanLanin
  * @author Iwan Novirion
  * @author J Subhi
+ * @author Kaganer
  * @author Kenrick95
  * @author McDutchie
  * @author Meursault2004
@@ -1790,9 +1791,9 @@ Berkas tersebut tidak dapat diperiksa keamanannya dengan baik.',
 # img_auth script messages
 'img-auth-accessdenied'     => 'Akses ditolak',
 'img-auth-nopathinfo'       => 'PATH_INFO hilang.
-Server anda tidak diatur untuk melewatkan informasi ini.
-Ini mungkin CGI-based dan tidak ditunjang img_auth.
-Lihat http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+Server Anda tidak diatur untuk melewatkan informasi ini.
+Server tersebut mungkin berbasis CGI dan tidak dapat mendukung img_auth.
+[https://www.mediawiki.org/wiki/Manual:Image_Authorization Lihat otorisasi gambar.]',
 'img-auth-notindir'         => 'Alur yang diminta tidak diatur dalam direktori ungahan.',
 'img-auth-badtitle'         => 'Tidak dapat membangun judul yang sah dari "$1".',
 'img-auth-nologinnWL'       => 'Anda tidak masuk log dan "$1" tidak dalam daftar putih.',
@@ -1957,7 +1958,7 @@ Cek dahulu pranala lain ke templat tersebut sebelum menghapusnya.',
 'statistics-users-active-desc' => 'Pengguna yang telah melakukan suatu aktivitas dalam {{PLURAL:$1|sehari|$1 hari}} terakhir.',
 'statistics-mostpopular'       => 'Halaman yang paling banyak ditampilkan',
 
-'disambiguations'      => 'Disambiguasi',
+'disambiguations'      => 'Halaman yang terhubung ke halaman disambiguasi',
 'disambiguationspage'  => 'Template:Disambig',
 'disambiguations-text' => "Halaman-halaman berikut memiliki pranala ke suatu '''halaman disambiguasi'''.
 Halaman-halaman tersebut seharusnya berpaut ke topik-topik yang sesuai.<br />
@@ -2057,7 +2058,7 @@ Harap perhatikan bahwa situs web lain mungkin memiliki pranala ke suatu berkas d
 
 # Special:Log
 'specialloguserlabel'  => 'Pengguna:',
-'speciallogtitlelabel' => 'Judul:',
+'speciallogtitlelabel' => 'Taget (judul atau pengguna):',
 'log'                  => 'Log',
 'all-logs-page'        => 'Semua log publik',
 'alllogstext'          => 'Gabungan tampilan semua log yang tersedia di {{SITENAME}}.
@@ -2101,7 +2102,9 @@ Lihat pula [[Special:WantedCategories|kategori yang diinginkan]].',
 'linksearch-pat'   => 'Pola pencarian:',
 'linksearch-ns'    => 'Ruang nama:',
 'linksearch-ok'    => 'Cari',
-'linksearch-text'  => "Bentuk pencarian ''wildcards'' seperti \"*.wikipedia.org\" dapat digunakan.<br />Protokol yang didukung: <tt>\$1</tt>",
+'linksearch-text'  => 'Kartu liar seperti "*.wikipedia.org" dapat digunakan.
+Membutuhkan sedikitnya satu ranah tingkat atas, misalnya "*.org".<br />
+Protokol yang didukung: <tt>$1</tt> (jangan tambahkan dalam pencarian Anda)',
 'linksearch-line'  => '$1 memiliki pranala dari $2',
 'linksearch-error' => "''Wildcards'' hanya dapat digunakan di bagian awal dari nama host.",
 
@@ -2512,7 +2515,7 @@ Masukkan alasan Anda di bawah (contoh, menuliskan nama halaman yang telah divand
 'badipaddress'                    => 'Format alamat IP atau nama pengguna salah.',
 'blockipsuccesssub'               => 'Pemblokiran sukses',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] telah diblokir.<br />
-Lihat [[Special:IPBlockList|Daftar IP]] untuk meninjau kembali pemblokiran.',
+Lihat [[Special:BlockList|Daftar IP]] untuk meninjau kembali pemblokiran.',
 'ipb-blockingself'                => 'Anda akan memblokir diri sendiri! Apakah Anda yakin akan melakukannya?',
 'ipb-confirmhideuser'             => 'Anda akan memblokir pengguna dengan mengaktifkan "sembunyikan pengguna" diaktifkan. Ini akan menyembunyikan nama pengguna pada semua daftar dan entri log. Apakah Anda yakin ingin melakukannya?',
 'ipb-edit-dropdown'               => 'Sunting alasan pemblokiran',
@@ -2972,7 +2975,7 @@ $1',
 Jika dijalankan, sistem Anda akan berisiko terserang.",
 'imagemaxsize'           => "Batas ukuran gambar:<br />''(untuk halaman deskripsi berkas)''",
 'thumbsize'              => 'Ukuran miniatur:',
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|halaman|halaman}}',
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|halaman|halaman}}',
 'file-info'              => 'ukuran berkas: $1, tipe MIME: $2',
 'file-info-size'         => '$1 × $2 piksel, ukuran berkas: $3, tipe MIME: $4',
 'file-info-size-pages'   => '$1 × $2 piksel, ukuran berkas: $3, jenis MIME: $4, $5 {{PLURAL:$5|halaman|halaman}}',

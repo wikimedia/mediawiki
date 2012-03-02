@@ -1244,7 +1244,7 @@ afore it wis delete. The actual text o thir deletit reveisions is available tae 
 'badipaddress'                => 'That IP address is nae guid',
 'blockipsuccesssub'           => 'Block succeedit',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] haes been blockit.
-<br />See [[Special:IPBlockList|IP block leet]] tae review blocks.',
+<br />See [[Special:BlockList|IP block leet]] tae review blocks.',
 'ipb-unblock-addr'            => 'Unblock $1',
 'unblockip'                   => 'Unblock uiser',
 'unblockiptext'               => 'Uise the form ablo tae restore screivin richts
