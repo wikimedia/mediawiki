@@ -834,13 +834,8 @@ class MessageCache {
 
 		$parser = $this->getParser();
 		$popts = $this->getParserOptions();
-
-		if ( $interface ) {
-			$popts->setInterfaceMessage( true );
-		}
-		if ( $language !== null ) {
-			$popts->setTargetLanguage( $language );
-		}
+		$popts->setInterfaceMessage( $interface );
+		$popts->setTargetLanguage( $language );
 
 		wfProfileIn( __METHOD__ );
 		if ( !$title || !$title instanceof Title ) {
