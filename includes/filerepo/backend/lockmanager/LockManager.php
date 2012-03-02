@@ -56,7 +56,10 @@ abstract class LockManager {
 	 * @return Status 
 	 */
 	final public function lock( array $paths, $type = self::LOCK_EX ) {
-		return $this->doLock( array_unique( $paths ), $this->lockTypeMap[$type] );
+		wfProfileIn( __METHOD__ );
+		$status = $this->doLock( array_unique( $paths ), $this->lockTypeMap[$type] );
+		wfProfileOut( __METHOD__ );
+		return $status;
 	}
 
 	/**
@@ -67,7 +70,10 @@ abstract class LockManager {
 	 * @return Status 
 	 */
 	final public function unlock( array $paths, $type = self::LOCK_EX ) {
-		return $this->doUnlock( array_unique( $paths ), $this->lockTypeMap[$type] );
+		wfProfileIn( __METHOD__ );
+		$status = $this->doUnlock( array_unique( $paths ), $this->lockTypeMap[$type] );
+		wfProfileOut( __METHOD__ );
+		return $status;
 	}
 
 	/**
