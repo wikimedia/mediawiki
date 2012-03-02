@@ -380,8 +380,8 @@ Belka yewna ten kerdo hewn a.',
 'badtitle'             => 'Sernameo xırabın',
 'badtitletext'         => 'Sernamey pela ke şıma waşt, nêvêrd, thalo/vengo ya ki zıwano miyanêno ğelet gırêdae ya ki sernamey wiki.
 Beno ke, tede yew ya zi zêdê işareti estê ke sernaman de nêxebetiyenê.',
-'perfcached'           => 'Datayi cıwa ver hazır biye. No semedê ra nıkayin niyo!',
-'perfcachedts'         => 'Cêr de malumatê nımıteyi esti, wextê newe kerdışo peyın: $1.',
+'perfcached'           => 'Datayi cıwa ver hazır biye. No semedê ra nıkayin niyo! A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'Cêr de malumatê nımıteyi esti, wextê newe kerdışo peyın: $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Nıka newe kerdış nêbeno. no datayi ca de newe nêbeni .',
 'wrong_wfQuery_params' => 'wfQuery() parametreyo şaş<br />
 Fonksiyon: $1<br />
@@ -984,7 +984,7 @@ Pe verbendi ''all:'', vaceyê xo bıvurni ki contenti hemi cıgeyro (pelanê mı
 'prefs-rc'                      => 'Vurnayışê peyêni',
 'prefs-watchlist'               => 'Lista seyr-kerdışi',
 'prefs-watchlist-days'          => 'Rocê ke lista seyrkerdışi de bêrê ramocnaene',
-'prefs-watchlist-days-max'      => 'Tewr zêde/vêşi 7 roci',
+'prefs-watchlist-days-max'      => 'Maximum $1 {{PLURAL:$1|day|days}}',
 'prefs-watchlist-edits'         => 'tewr zêde amarê vurnayışi ke lista seyrkerdışia herakerdiye de bıasê:',
 'prefs-watchlist-edits-max'     => 'Amerê tewr zafî: 1000',
 'prefs-watchlist-token'         => 'Lista seyrkerdışia nışani:',
@@ -1399,10 +1399,10 @@ Eke problem dewam kerd [[Special:ListUsers/sysop|serkari]] de irtibat kewe.',
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Cıkewtış red biyo',
-'img-auth-nopathinfo'   => 'PATH_INFO kemio.
-Pêşkêşwanê şıma seba ravurnayışê nê malumati eyar nêkerdo.
-Beno ke be CGI-bıngeyın bo u img_auth destek nêbeno.
-[https://www.mediawiki.org/wiki/Manual:Image_Authorization Selahiyetê resımi bıvêne.]',
+'img-auth-nopathinfo'   => 'MELUMATÊ_RAYE kemio.
+Teqdimkerê şıma seba ravurnayışê nê melumati eyar nêkerdo.
+Beno ke be CGI-bıngeyın bo u img_auth rê destek nêbeno.
+https://www.mediawiki.org/wiki/Manual:Image_Authorization Selahiyetê resımi bıvêne.',
 'img-auth-notindir'     => 'Patikayê ke ti wazeno direktorê bar biyayişî de çin o.',
 'img-auth-badtitle'     => '"$1" ra nieşkeno yew seroğê raştî virazî.',
 'img-auth-nologinnWL'   => 'Ti cikewte ni yo u "$1" listeyo sipê de çin o.',

@@ -185,7 +185,7 @@ $messages = array(
 'about'         => 'Mahitungod han',
 'article'       => 'Pakli hin sulod',
 'newwindow'     => '(nabuklad hin bag-o nga tamboan o bintana)',
-'cancel'        => 'Igkanselar',
+'cancel'        => 'Pasagdi',
 'moredotdotdot' => 'Damo pa nga…',
 'mypage'        => 'Akon pakli',
 'mytalk'        => 'Akon paghingay',
@@ -402,8 +402,8 @@ Bangin na ini ginpara hin iba.',
 'badtitle'             => 'Maraot nga titulo',
 'badtitletext'         => 'An ginhangyo nga pakli diri puyde, waray sulod, o sayop nga nasumpay nga inter-pinunongan o inter-wiki nga titulo.
 Bangin mayda usa o damo nga mga agi nga diri puyde magamit ha mga titulo.',
-'perfcached'           => 'An nasunod nga data gin-cache ngan bangin diri amo an yana.',
-'perfcachedts'         => 'An nasunod nga data gin-cache, ngan kataposan ginbag-o dida han $1.',
+'perfcached'           => 'An nasunod nga data gin-cache ngan bangin diri amo an yana. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'An nasunod nga data gin-cache, ngan kataposan ginbag-o dida han $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'An mga kabag-ohan para hini nga pakli ha yana diri mahihimo.
 An data dini diri mahihimo nga bag-o.',
 'viewsource'           => 'Kitaa an ginkuhaan',
@@ -477,7 +477,7 @@ Alayon pagutro pagbutang.',
 'retypenew'                 => 'Utroha pagbutang an bag-o nga tigaman-pagsulod:',
 'resetpass_forbidden'       => 'Diri mababalyoan an mga tigaman-pagsulod',
 'resetpass-submit-loggedin' => 'Igbal-iw an tigaman-pagsulod',
-'resetpass-submit-cancel'   => 'Waray ginbantad',
+'resetpass-submit-cancel'   => 'Pasagdi',
 'resetpass-temp-password'   => 'Temporaryo nga tigaman-pagsakob:',
 
 # Special:PasswordReset
@@ -490,7 +490,7 @@ Temporaryo nga tigaman han pagsakob: $2',
 'passwordreset-emailsent'    => 'Ginpadara hin usa ka pahinumdom nga e-mail.',
 
 # Special:ChangeEmail
-'changeemail-cancel' => 'Ayaw padayona',
+'changeemail-cancel' => 'Pasagdi',
 
 # Edit page toolbar
 'bold_sample'     => 'dakmola an agi',
@@ -597,10 +597,10 @@ Ini nga mga argumento in ginlaktawan.",
 'currentrevisionlink'    => 'Giurhii nga pagliwat',
 'cur'                    => 'yana',
 'next'                   => 'sunod',
-'last'                   => 'kataposan',
+'last'                   => 'urhi',
 'page_first'             => 'syahan',
-'page_last'              => 'kataposan',
-'histlegend'             => "Kaibhan nga pirilion: Igmarka an mga radyo nga kahon han mga pagbag-o para maikumpara ngan sabura an ''enter' o an piridlitan ha ubos.<br />
+'page_last'              => 'katapusan',
+'histlegend'             => "Kaibhan nga pirilion: Igmarka an mga radyo nga kahon han mga pagbag-o para maikumpara ngan igu-a an ''enter'' o an piridlitan ha ubos.<br />
 Leyenda: '''({{int:cur}})''' = kaibhan ha giuurhii nga pag-bag-o, '''({{int:last}})''' = kaibhan ha nahiuna nga pag-bag-o, '''{{int:minoreditletter}}''' = gagmay nga pagliwat.",
 'history-fieldset-title' => 'Kaagi han panngaykay',
 'history-show-deleted'   => 'Ginpara la',
@@ -1100,6 +1100,10 @@ Kitaa an $2 para hin talaan han mga gibag-ohi nga mga ginpamara.',
 'dellogpage'            => 'Talaan han mga ginpara',
 'deletecomment'         => 'Katadungan:',
 'deletereasonotherlist' => 'Lain nga katadungan',
+'deletereason-dropdown' => "*Agsob nga rason hin pagpara
+** Tugon han manunurat
+** Pagtalapas ha katungod hin pagtatag-iya (''copyright'')
+** Bandalismo",
 
 # Rollback
 'rollback'       => 'Mga libot-pabalik nga pagliwat',
@@ -1180,6 +1184,14 @@ Kitaa an $2 para hin talaan han mga gibag-ohi nga mga ginpamara.',
 'blockip'                  => 'Pugngi an gumaramit',
 'blockip-title'            => 'Pugngi an gumaramit',
 'blockip-legend'           => 'Pugngi an gumaramit',
+'ipbreason-dropdown'       => '*Agsob nga mga rason hit pagpugong
+** Pagsusuksok hin sayop nga pananabutan
+** Pagtatangtang hin sulod tikang ha mga pakli
+** Bisan la ano nga pansusumpay ngadto ha gawas nga mga dapit
+** Pansusuksok hin inamasang/buro-buro ngadto ha mga pakli
+** Panhahadlok nga pamatasan/makakalilisang nga pansamok
+** Pan-abusar hin dirudilain nga mga akawnt
+** Diri makakarawat nga agnay-hit-gumaramit',
 'ipbsubmit'                => 'Pugngi ini nga gumaramit',
 'ipboptions'               => '2 ka oras:2 hours,1 ka adlaw:1 day,3 ka adlaw:3 days,1 ka semana:1 week,2 ka semana:2 weeks,1 ka bulan:1 month,3 ka bulan:3 months,6 ka bulan:6 months,1 ka tuig:1 year,waray katapusan:infinite',
 'ipbotheroption'           => 'iba',

@@ -897,7 +897,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'prefs-personal'            => 'Теицядо',
 'prefs-rc'                  => 'Чиень полавтнемат',
 'prefs-watchlist'           => 'Ванома лемрисьме',
-'prefs-watchlist-days-max'  => 'Весемеде куватьс 7 чис',
+'prefs-watchlist-days-max'  => 'Maximum $1 {{PLURAL:$1|day|days}}',
 'prefs-watchlist-edits-max' => 'Весемеде покш цётось: 1000',
 'prefs-misc'                => 'Минеть-сюнот',
 'prefs-resetpass'           => 'Салава валонь полавтома',

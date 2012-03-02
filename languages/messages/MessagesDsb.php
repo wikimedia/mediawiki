@@ -1148,7 +1148,7 @@ Zaruc, až historija wersijow nastawka jo njepśetergnjona.',
 
 # Preferences page
 'preferences'                   => 'Nastajenja',
-'mypreferences'                 => 'móje nastajenja',
+'mypreferences'                 => 'nastajenja',
 'prefs-edits'                   => 'Licba wobźěłanjow:',
 'prefsnologin'                  => 'Njejsy pśizjawjony',
 'prefsnologintext'              => 'Musyš se <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} pśizjawiś]</span>, aby mógał swóje nastajenja změniś.',
@@ -2048,7 +2048,7 @@ E-mailowa adresa, kótaruž sy zapódał w [[Special:Preferences|swójich wužyw
 
 # Watchlist
 'watchlist'            => 'Wobglědowańka',
-'mywatchlist'          => 'mója wobglědowańka',
+'mywatchlist'          => 'wobglědowańka',
 'watchlistfor2'        => 'Za wužywarja $1 $2',
 'nowatchlist'          => 'Žedne zapise w twójej wobglědowańce.',
 'watchlistanontext'    => 'Dejš $1, aby mógał swóju wobglědowańku wiźeś abo zapise w njej wobźěłaś.',

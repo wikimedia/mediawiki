@@ -450,8 +450,8 @@ Zinhar öçen, URLnı kürsätep, bu turıda [[Special:ListUsers/sysop|idaräçe
 'cannotdelete'         => '«$1» isemle bitne yäki faylnı beterep bulmıy. Anı bütän qullanuçı betergän bulırğa mömkin.',
 'badtitle'             => 'Yaraqsız isem',
 'badtitletext'         => 'Bitneñ soralğan iseme döres tügel, buş yäisä telara yäki interwiki iseme döres kürsätelmägän. İsemdä tıyılğan simvollar qullanılğan bulırğa mömkin.',
-'perfcached'           => 'Bu mäğlümatlar keştan alınğan, alarda soñğı üzgärtülär bulmasqa mömkin.',
-'perfcachedts'         => 'Bu mäğlümatlar keştan alınğan, ul soñğı tapqır $1 yañartıldı.',
+'perfcached'           => 'Bu mäğlümatlar keştan alınğan, alarda soñğı üzgärtülär bulmasqa mömkin. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'Bu mäğlümatlar keştan alınğan, ul soñğı tapqır $1 yañartıldı. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Xäzer bu bitne yañartıp bulmıy. Monda kürsätelgän mäğlümatlar qabul itelmäyäçäk.',
 'wrong_wfQuery_params' => 'wfQuery() funksiä öçen yaramağan parametrlar<br />
 Funksiä: $1<br />
@@ -973,7 +973,7 @@ Barlıq alannarda (bäxäs bitläre, ürnäklär, h.b.) ezläw öçen ''all'' s�
 'prefs-rc'                      => 'Soñğı üzgärtülär',
 'prefs-watchlist'               => 'Küzätü isemlege',
 'prefs-watchlist-days'          => 'Küzätü isemlegendä kürsätelgän kön sanı:',
-'prefs-watchlist-days-max'      => '7 könnän artıq tügel',
+'prefs-watchlist-days-max'      => 'Maximum $1 {{PLURAL:$1|day|days}}',
 'prefs-watchlist-edits'         => 'Kiñäytelgän küzätü isemlegendä üzgärtülärneñ iñ yuğarı isäbe:',
 'prefs-watchlist-edits-max'     => 'Maksimum san: 1000',
 'prefs-watchlist-token'         => 'Küzätü isemlege toqenı:',

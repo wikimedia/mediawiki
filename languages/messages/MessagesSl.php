@@ -545,7 +545,7 @@ Morda jo je izbrisal že kdo drug.',
 'badtitletext'         => 'Navedeni naslov strani je neveljaven, prazen, napačno povezan k drugim jezikom oziroma wikiprojektom.
 Morda vsebuje enega ali več nepodprtih znakov.',
 'perfcached'           => 'Navedeni podatki so shranjeni v predpomnilniku in morda niso popolnoma posodobljeni. V predpomnilniku {{PLURAL:$1|je|sta|so|je}} na voljo največ $1 {{PLURAL:$1|rezultat|rezultata|rezultate|rezultatov}}.',
-'perfcachedts'         => 'Prikazani podatki so shranjeni v predpomnilniku in so bili nazadnje osveženi $1. V predpomnilniku {{PLURAL:$1|je|sta|so|je}} na voljo največ $1 {{PLURAL:$1|rezultat|rezultata|rezultate|rezultatov}}.',
+'perfcachedts'         => 'Prikazani podatki so shranjeni v predpomnilniku in so bili nazadnje osveženi $1. V predpomnilniku {{PLURAL:$4|je|sta|so|je}} na voljo največ $4 {{PLURAL:$4|rezultat|rezultata|rezultate|rezultatov}}.',
 'querypage-no-updates' => 'Posodobitve za to stran so trenutno onemogočene. Tukajšnji podatki se v kratkem ne bodo osvežili.',
 'wrong_wfQuery_params' => 'Nepravilni parametri za wfQuery()<br />
 Funkcija: $1<br />

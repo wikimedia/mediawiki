@@ -1901,12 +1901,12 @@ Als het probleem aanhoudt, neem dan contact op met een [[Special:ListUsers/sysop
 'backend-fail-closetemp'     => 'Het was niet mogelijk een tijdelijk bestand te sluiten.',
 'backend-fail-read'          => 'Het was niet mogelijk het bestand $1 te lezen.',
 'backend-fail-create'        => 'Het was niet mogelijk het bestand $1 aan te maken.',
-'backend-fail-readonly'      => 'Van de backend "$1" kan op dit moment alleen gelezen worden. De opgegeven reden is: "$2"',
-'backend-fail-synced'        => 'Het bestand "$1" bevindt zich in een inconsistente toestand in het interne backend.',
-'backend-fail-connect'       => 'Het was niet mogelijk een verbinding te maken met het bestandsbackend "$1".',
-'backend-fail-internal'      => 'Er is een onbekende fout opgetreden in het bestandsbackend "$1".',
+'backend-fail-readonly'      => 'Het opslagbackend "$1" kan op dit moment alleen gelezen worden. De opgegeven reden was: "$2"',
+'backend-fail-synced'        => 'Het bestand "$1" bevindt zich in een inconsistente toestand in de interne opslagbackends.',
+'backend-fail-connect'       => 'Het was niet mogelijk een verbinding te maken met het opslagbackend "$1".',
+'backend-fail-internal'      => 'Er is een onbekende fout opgetreden in het opslagbackend "$1".',
 'backend-fail-contenttype'   => 'Kon het inhoudstype van het bestand om op "$1" op te slaan niet bepalen.',
-'backend-fail-batchsize'     => 'Reeks van $1 bestands{{PLURAL:$1|operatie|operaties}} in de backend; de limiet is $2 {{PLURAL:$2|operatie|operaties}}.',
+'backend-fail-batchsize'     => 'Reeks van $1 bestands{{PLURAL:$1|operatie|operaties}} in de opslagbackend; de limiet is $2 {{PLURAL:$2|operatie|operaties}}.',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Het was niet mogelijk "$1" vrij te geven; dit object is niet vergrendeld.',
@@ -1940,9 +1940,9 @@ De veiligheid kan niet worden gecontroleerd.',
 # img_auth script messages
 'img-auth-accessdenied'     => 'Toegang geweigerd',
 'img-auth-nopathinfo'       => 'PATH_INFO mist.
-Uw server is niet ingesteld om deze informatie door te geven.
+Uw server is niet ingesteld om deze gegevens door te geven.
 Misschien gebruikt deze CGI, en dan wordt img_auth niet ondersteund.
-Zie [https://www.mediawiki.org/wiki/Manual:Image_Authorization rechten voor afbeeldingen] voor meer informatie.',
+Zie https://www.mediawiki.org/wiki/Manual:Image_Authorization voor meer informatie.',
 'img-auth-notindir'         => 'Het opgevraagde pad is niet de ingestelde uploadmap.',
 'img-auth-badtitle'         => 'Het was niet mogelijk een geldige paginanaam te maken van "$1".',
 'img-auth-nologinnWL'       => 'U bent niet aangemeld en "$1" staat niet op de witte lijst.',
@@ -2846,7 +2846,7 @@ Houd er rekening mee dat alleen de pagina wordt hernoemd, ''niet'' de gebruiker.
 'cant-move-user-page'          => "U hebt geen rechten om gebruikerspagina's te hernoemen (met uitzondering van subpagina's).",
 'cant-move-to-user-page'       => 'U hebt geen rechten om een pagina naar een gebruikerspagina te hernoemen. Hernoemen naar een subpagina is wel mogelijk.',
 'newtitle'                     => 'Naar de nieuwe paginanaam:',
-'move-watch'                   => 'Deze pagina volgen',
+'move-watch'                   => 'Bronpagina en doelpagina volgen',
 'movepagebtn'                  => 'Pagina hernoemen',
 'pagemovedsub'                 => 'De pagina is hernoemd',
 'movepage-moved'               => '\'\'\'"$1" is hernoemd naar "$2"\'\'\'',
@@ -2987,7 +2987,7 @@ Het bestand is groter dan de ingestelde limiet.',
 'importuploaderrorpartial'   => 'Upload van het importbestand in mislukt.
 Het bestand is slechts gedeeltelijk aangekomen.',
 'importuploaderrortemp'      => 'Upload van het importbestand in mislukt.
-De tijdelijke map is niet aanwezig.',
+Een tijdelijke map is niet aanwezig.',
 'import-parse-failure'       => 'Fout bij het verwerken van de XML-import',
 'import-noarticle'           => "Er zijn geen te importeren pagina's!",
 'import-nonewrevisions'      => 'Alle versies zijn al eerder geïmporteerd.',
@@ -4001,10 +4001,10 @@ Andere bestandstypen worden direct in het met het MIME-type verbonden programma 
 'revdelete-uname-unhid'               => 'gebruikersnaam zichtbaar gemaakt',
 'revdelete-restricted'                => 'heeft beperkingen aan beheerders opgelegd',
 'revdelete-unrestricted'              => 'heeft beperkingen voor beheerders opgeheven',
-'logentry-move-move'                  => '$1 hernoemde pagina $3 naar $4',
+'logentry-move-move'                  => '$1 heeft pagina $3 naar $4 hernoemd',
 'logentry-move-move-noredirect'       => '$1 hernoemde pagina $3 naar $4 zonder een doorverwijzing achter te laten',
 'logentry-move-move_redir'            => '$1 hernoemde pagina $3 naar $4 over een doorverwijzing',
-'logentry-move-move_redir-noredirect' => '$1 hernoemde pagina $3 naar $4 over een doorverwijzing zonder een doorverwijzing achter te laten',
+'logentry-move-move_redir-noredirect' => '$1 heeft pagina $3 naar $4 hernoemd over een doorverwijzing zonder een doorverwijzing achter te laten',
 'logentry-patrol-patrol'              => '$1 heeft versie $4 van pagina $3 als gecontroleerd gemarkeerd',
 'logentry-patrol-patrol-auto'         => '$1 heeft versie $4 van pagina $3 automatisch als gecontroleerd gemarkeerd',
 'logentry-newusers-newusers'          => '$1 heeft een gebruiker aangemaakt',

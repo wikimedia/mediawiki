@@ -245,8 +245,8 @@ Ko e pule, naʻe lokaʻi ia, ʻoku pehē: $1',
 'cannotdelete'         => 'Naʻe ʻikai lava tāmateʻi ʻa e peesi pe faile naʻe tala. Mahalo pē kuo tāmateʻi ʻuluaki ia ʻe he ʻetita kehe.',
 'badtitle'             => 'Hingoa ʻikai sai',
 'badtitletext'         => "Naʻe taʻeʻaonga ʻa e hingoa ʻo e peesi naʻa ke fili, pe naʻe ʻi ai ha fehokotaki māhehei fakalea kehe pe fehokotaki māhehei faka''wiki'' kehe. Mahalo pe ʻoku ʻi loto ha ʻū mataʻitohi ʻoku ʻikai lava ngāueʻaki ʻi ha hingoa.",
-'perfcached'           => 'ʻOku fafaʻo ʻa e meʻaʻilo ʻi lalo, pea mahalo pē ʻoku ʻikai fakafoʻoua.',
-'perfcachedts'         => 'ʻOku fafaʻo ʻa e meʻaʻilo ʻi lalo, naʻe fakaonopooni fakamuimui ia $1.',
+'perfcached'           => 'ʻOku fafaʻo ʻa e meʻaʻilo ʻi lalo, pea mahalo pē ʻoku ʻikai fakafoʻoua. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'ʻOku fafaʻo ʻa e meʻaʻilo ʻi lalo, naʻe fakaonopooni fakamuimui ia $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'wrong_wfQuery_params' => "Ngaahi mahuʻinga ʻikai totonu ki he ''wfQuery()''<br />
 Lakanga: $1<br />
 Eke: $2",

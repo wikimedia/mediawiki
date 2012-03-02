@@ -606,7 +606,7 @@ Consulte a página da [[Special:Version|versão do sistema]].',
 'nstab-user'      => 'Página d{{GENDER:{{#titleparts:{{PAGENAME}}|1|1}}|o utilizador|a utilizadora|e utilizador(a)}}',
 'nstab-media'     => 'Multimédia',
 'nstab-special'   => 'Página especial',
-'nstab-project'   => 'Página de projecto',
+'nstab-project'   => 'Página do projeto',
 'nstab-image'     => 'Ficheiro',
 'nstab-mediawiki' => 'Mensagem',
 'nstab-template'  => 'Predefinição',
@@ -672,7 +672,7 @@ Pode já ter sido eliminado por outro utilizador.',
 'badtitletext'         => 'O título de página solicitado era inválido, vazio, ou um link interlínguas ou interwikis incorrecto.
 Talvez contenha um ou mais caracteres que não podem ser usados em títulos.',
 'perfcached'           => "Os seguintes dados encontram-se armazenados na ''cache'' e podem não estar actualizados. No máximo {{PLURAL:$1|um resultado é disponível|$1 resultados são disponíveis}} na ''cache''.",
-'perfcachedts'         => "Os seguintes dados encontram-se armazenados na ''cache'' e foram actualizados pela última vez a $1.",
+'perfcachedts'         => "Os seguintes dados encontram-se armazenados na ''cache'' e foram actualizados pela última vez a $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.",
 'querypage-no-updates' => 'As actualizações estão presentemente desactivadas para esta página.
 Por enquanto, os dados aqui presentes não poderão ser actualizados.',
 'wrong_wfQuery_params' => 'Parâmetros incorrectos para wfQuery()<br />
@@ -1029,7 +1029,7 @@ Garante-nos também que isto é algo escrito por si, ou copiado do domínio púb
 Se não deseja que o seu texto seja inexoravelmente editado, não o envie.<br />
 Garante-nos também que isto é algo escrito por si, ou copiado do domínio público ou de outra fonte de teor livre (consulte $1 para mais detalhes).<br />
 '''Não envie conteúdos cujos direitos de autor estão protegidos, sem ter a devida permissão!'''",
-'longpageerror'                    => "'''Erro: O texto que submeteu ocupa $1 KB, um espaço superior ao máximo de $2 KB.'''
+'longpageerror'                    => "'''Erro: O texto que submeteu ocupa {{PLURAL:$1|um kilobyte|$1 kilobytes}}, que excede o máximo de {{PLURAL:$2|um kilobyte|$2 kilobytes}}.'''
 A página não pode ser gravada.",
 'readonlywarning'                  => "'''Aviso: A base de dados foi bloqueada para manutenção, pelo que não poderá gravar a sua edição neste momento.'''
 Pode, no entanto, copiar o seu texto para um editor externo e guardá-lo para posterior submissão.
@@ -1373,7 +1373,7 @@ Note, no entanto, que a indexação da {{SITENAME}} neste motor de busca pode es
 'prefs-rc'                      => 'Mudanças recentes',
 'prefs-watchlist'               => 'Páginas vigiadas',
 'prefs-watchlist-days'          => 'Dias a mostrar nas mudanças às páginas vigiadas:',
-'prefs-watchlist-days-max'      => 'Máximo: 7 dias',
+'prefs-watchlist-days-max'      => 'Maximum $1 {{PLURAL:$1|day|days}}',
 'prefs-watchlist-edits'         => 'Número de edições a mostrar na listagem expandida:',
 'prefs-watchlist-edits-max'     => 'Máximo: 1000',
 'prefs-watchlist-token'         => 'Senha secreta da lista de {{lc:{{int:watchlist}}}}:',
@@ -1867,7 +1867,7 @@ A sua segurança não pode ser devidamente verificada.',
 'img-auth-nopathinfo'       => 'PATH_INFO em falta.
 O seu servidor não está configurado para passar esta informação.
 Pode ser baseado em CGI e não consegue suportar img_auth.
-Consulte a documentação em [https://www.mediawiki.org/wiki/Manual:Image_Authorization Image Authorization].',
+Consulte a documentação em [//www.mediawiki.org/wiki/Manual:Image_Authorization Image Authorization].',
 'img-auth-notindir'         => 'O endereço especificado não conduz ao directório de carregamento de ficheiros configurado.',
 'img-auth-badtitle'         => 'Não é possível construir um título válido a partir de "$1".',
 'img-auth-nologinnWL'       => 'Não está autenticado e o ficheiro "$1" não está na lista branca.',
@@ -2519,7 +2519,7 @@ $1',
 # Contributions
 'contributions'       => 'Contribuições do utilizador',
 'contributions-title' => 'Contribuições {{GENDER:$1|do utilizador|da utilizadora}} $1',
-'mycontris'           => 'Contribuições',
+'mycontris'           => 'Minhas contribuições',
 'contribsub2'         => 'Para $1 ($2)',
 'nocontribs'          => 'Não foram encontradas alterações com este critério.',
 'uctop'               => ' (edição actual)',
@@ -2927,7 +2927,7 @@ Não há um directório temporário.',
 'tooltip-pt-anontalk'                 => 'Discussão sobre edições feitas a partir deste endereço IP',
 'tooltip-pt-preferences'              => 'Configuração dos comportamentos que prefere da wiki',
 'tooltip-pt-watchlist'                => 'Lista de mudanças nas páginas que está a vigiar',
-'tooltip-pt-mycontris'                => 'Lista das suas edições de páginas',
+'tooltip-pt-mycontris'                => 'Lista das suas contribuições',
 'tooltip-pt-login'                    => 'É encorajado a autenticar-se, apesar de não ser obrigatório.',
 'tooltip-pt-anonlogin'                => 'É encorajado a autenticar-se, apesar de não ser obrigatório.',
 'tooltip-pt-logout'                   => 'Terminar esta sessão na wiki',

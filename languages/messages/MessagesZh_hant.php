@@ -27,6 +27,7 @@
  * @author Lauhenry
  * @author Liangent
  * @author Mark85296341
+ * @author Oapbtommy
  * @author Pbdragonwang
  * @author PhiLiP
  * @author Philip
@@ -379,7 +380,7 @@ $messages = array(
 'errorpagetitle'    => '錯誤',
 'returnto'          => '返回到$1。',
 'tagline'           => '出自{{SITENAME}}',
-'help'              => '幫助',
+'help'              => '說明',
 'search'            => '搜尋',
 'searchbutton'      => '搜尋',
 'go'                => '進入',
@@ -508,7 +509,7 @@ $1',
 'nstab-mediawiki' => '訊息',
 'nstab-template'  => '模板',
 'nstab-help'      => '幫助頁面',
-'nstab-category'  => '分類',
+'nstab-category'  => '類別',
 
 # Main script and global functions
 'nosuchaction'      => '這個命令不存在',
@@ -568,7 +569,7 @@ $1',
 'badtitle'             => '錯誤的標題',
 'badtitletext'         => '所請求頁面的標題是無效的、不存在，跨語言或跨wiki連結的標題錯誤。它可能包含一個或更多的不能用於標題的字符。',
 'perfcached'           => '下列是快取資料，因此可能不是最新的。最多{{PLURAL:$1|只有1個結果|$1個結果}}可用。',
-'perfcachedts'         => '下列是快取資料，其最後更新時間是$1。只有{{PLURAL:$4|一個結果|$4個結果}}會被顯示。',
+'perfcachedts'         => '下列是快取資料，其最後更新時間是$1。只有{{PLURAL:$4|一個結果|$4個結果}}會被顯示。 A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => '目前禁止對此頁面進行更新。此處的資料將不能被立即重新整理。',
 'wrong_wfQuery_params' => '錯誤的參數被傳遞到 wfQuery（）<br />
 函數：$1<br />
@@ -1232,7 +1233,7 @@ $1",
 'prefs-edit-boxsize'            => '編輯框尺寸',
 'rows'                          => '列:',
 'columns'                       => '欄:',
-'searchresultshead'             => '搜尋結果設定',
+'searchresultshead'             => '搜尋',
 'resultsperpage'                => '每頁顯示連結數',
 'stub-threshold'                => '<a href="#" class="stub">短頁面連結</a>格式門檻值 （位元組）:',
 'stub-threshold-disabled'       => '已停用',
@@ -1340,7 +1341,7 @@ $1",
 'userrights-unchangeable-col'  => '您不可以更改的群組',
 
 # Groups
-'group'               => '群組:',
+'group'               => '群組：',
 'group-user'          => '用戶',
 'group-autoconfirmed' => '自動確認用戶',
 'group-bot'           => '機器人',
@@ -1349,7 +1350,7 @@ $1",
 'group-suppress'      => '監督',
 'group-all'           => '（全部）',
 
-'group-user-member'          => '用戶',
+'group-user-member'          => '{{GENDER:$1|用戶}}',
 'group-autoconfirmed-member' => '自動確認用戶',
 'group-bot-member'           => '機器人',
 'group-sysop-member'         => '{{GENDER:$1|管理員}}',
@@ -2347,7 +2348,7 @@ $1',
 'mycontris'           => '我的貢獻',
 'contribsub2'         => '$1的貢獻 （$2）',
 'nocontribs'          => '沒有找到符合特徵的更改。',
-'uctop'               => '(最新修改)',
+'uctop'               => '（最新修改）',
 'month'               => '從該月份 （或更早）:',
 'year'                => '從該年份 （或更早）:',
 
@@ -2356,7 +2357,7 @@ $1',
 'sp-contributions-newbies-title'       => '新手的用戶貢獻',
 'sp-contributions-blocklog'            => '封禁記錄',
 'sp-contributions-deleted'             => '已刪除的用戶貢獻',
-'sp-contributions-uploads'             => '上載',
+'sp-contributions-uploads'             => '上傳',
 'sp-contributions-logs'                => '日誌',
 'sp-contributions-talk'                => '對話',
 'sp-contributions-userrights'          => '用戶權限管理',
@@ -2647,9 +2648,9 @@ $1被封禁的理由是“$2”',
 'exportlistauthors' => '為每個頁面包含貢獻者的完整列表',
 'export-submit'     => '匯出',
 'export-addcattext' => '由分類中加入頁面:',
-'export-addcat'     => '加入',
+'export-addcat'     => '新增',
 'export-addnstext'  => '由名字空間中加入頁面:',
-'export-addns'      => '加入',
+'export-addns'      => '新增',
 'export-download'   => '另存為檔案',
 'export-templates'  => '包含模板',
 'export-pagelinks'  => '包含到這個深度連結之頁面:',
@@ -3144,7 +3145,7 @@ Variants for Chinese language
 'exif-writer'                      => '作家',
 'exif-languagecode'                => '語言',
 'exif-iimversion'                  => 'IIM版本',
-'exif-iimcategory'                 => '分類',
+'exif-iimcategory'                 => '類別',
 'exif-iimsupplementalcategory'     => '補充分類',
 'exif-datetimeexpires'             => '這個日期後不要使用',
 'exif-datetimereleased'            => '發表日',
@@ -3553,7 +3554,7 @@ $5
 'watchlisttools-raw'  => '編輯原始監視列表',
 
 # Signatures
-'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|留言]])',
+'signature' => '[[{{ns:user}}:$1|$2]]（[[{{ns:user_talk}}:$1|留言]]）',
 
 # Core parser functions
 'unknown_extension_tag' => '不明的擴展標籤 "$1"',
@@ -3599,7 +3600,7 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'fileduplicatesearch-summary'   => '用重覆檔案的切細值去找出檔案是否重覆。',
 'fileduplicatesearch-legend'    => '找重覆',
 'fileduplicatesearch-filename'  => '檔案名稱：',
-'fileduplicatesearch-submit'    => '找',
+'fileduplicatesearch-submit'    => '搜尋',
 'fileduplicatesearch-info'      => '$1 × $2 像素<br />檔案大小：$3<br />MIME 類型：$4',
 'fileduplicatesearch-result-1'  => '檔案 "$1" 無完全相同的重覆。',
 'fileduplicatesearch-result-n'  => '檔案 "$1" 有$2項完全相同的重覆。',
@@ -3681,7 +3682,7 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'htmlform-int-toolow'          => '您所指定的值低於最小值$1',
 'htmlform-int-toohigh'         => '您所指定的值高於最大值$1',
 'htmlform-required'            => '此值是必填項',
-'htmlform-submit'              => '遞交',
+'htmlform-submit'              => '提交',
 'htmlform-reset'               => '撤銷更改',
 'htmlform-selectorother-other' => '其他',
 

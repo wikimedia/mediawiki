@@ -621,7 +621,7 @@ $1',
 'versionrequired'     => 'Version $1 de MediaWiki nécessaire',
 'versionrequiredtext' => 'La version $1 de MediaWiki est nécessaire pour utiliser cette page. Consultez [[Special:Version|la page des versions]]',
 
-'ok'                      => 'OK',
+'ok'                      => 'Valider',
 'retrievedfrom'           => 'Récupérée de « $1 »',
 'youhavenewmessages'      => 'Vous avez $1 ($2).',
 'newmessageslink'         => 'de nouveaux messages',
@@ -2273,7 +2273,7 @@ L’adresse électronique que vous avez indiquée dans [[Special:Preferences|vos
 'emailusernamesubmit'  => 'Soumettre',
 'email-legend'         => 'Envoyer un courriel à un autre utilisateur de {{SITENAME}}',
 'emailfrom'            => 'De :',
-'emailto'              => 'Destinataire :',
+'emailto'              => 'À :',
 'emailsubject'         => 'Objet :',
 'emailmessage'         => 'Message :',
 'emailsend'            => 'Envoyer',
@@ -3682,9 +3682,9 @@ Veuillez confirmer que vous désirez réellement recréer cette page.",
 'confirm-purge-bottom' => 'Purger une page l’efface du cache de rendu et force sa dernière version à être régénérée et affichée.',
 
 # action=watch/unwatch
-'confirm-watch-button'   => 'OK',
+'confirm-watch-button'   => 'Valider',
 'confirm-watch-top'      => 'Ajouter cette page à votre liste de suivi ?',
-'confirm-unwatch-button' => 'OK',
+'confirm-unwatch-button' => 'Valider',
 'confirm-unwatch-top'    => 'Supprimer cette page de votre liste de suivi ?',
 
 # Separators for various lists, etc.

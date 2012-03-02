@@ -403,8 +403,8 @@ Eventualmain ha gia insatgi auter stizza quest element.',
 'badtitle'             => "Il num da titel endatà n'è betg valid",
 'badtitletext'         => 'Il titel da pagina era betg valid, vids u in titel inter-lingua u inter-wiki betg correct.
 El po cuntegnair in u plirs segns che na pon betg vegnir utilisads en titels.',
-'perfcached'           => 'Las suandantas datas vegnan ord il cache ed èn eventualmain betg cumplettamain actualas:',
-'perfcachedts'         => 'Las suandantas datas derivan dal cache, ultima actualisaziun ils $2 las $3.',
+'perfcached'           => 'Las suandantas datas vegnan ord il cache ed èn eventualmain betg cumplettamain actualas. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'Las suandantas datas derivan dal cache, ultima actualisaziun ils $2 las $3. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Las actualisaziuns da questa pagina èn deactivadas. 
 Las datas qua vegnan da preschent betg actualisadas.',
 'wrong_wfQuery_params' => 'Parameters fauss per wfQuery()<br />
@@ -1029,7 +1029,7 @@ Considerescha che lur index da {{SITENAME}} po cuntegnair datas ch'èn betg pli 
 'prefs-rc'                    => 'Ultimas midadas',
 'prefs-watchlist'             => "Glista d'observaziun",
 'prefs-watchlist-days'        => "Dumber dals dis che vegnan inditgads sin la glista d'observaziun:",
-'prefs-watchlist-days-max'    => 'Maximalmain 7 dis',
+'prefs-watchlist-days-max'    => 'Maximum $1 {{PLURAL:$1|day|days}}',
 'prefs-watchlist-edits'       => 'Dumber da las midadas mussadas en la glista dad observaziun extendida:',
 'prefs-watchlist-edits-max'   => 'Dumber maximal: 1000',
 'prefs-watchlist-token'       => "Token da la glista d'observaziun",

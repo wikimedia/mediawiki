@@ -289,7 +289,7 @@ $messages = array(
 'cancel'        => 'Přetorhnyć',
 'moredotdotdot' => 'Wjace…',
 'mypage'        => 'Moja strona',
-'mytalk'        => 'Moja diskusija',
+'mytalk'        => 'moja diskusija',
 'anontalk'      => 'Diskusijna strona tuteje IP.adresy',
 'navigation'    => 'Nawigacija',
 'and'           => '&#32;a',
@@ -1146,7 +1146,7 @@ Spytaj swoje naprašowanje z prefiksom ''all:'' wužiwać, zo by wšón wobsah (
 
 # Preferences page
 'preferences'                   => 'Nastajenja',
-'mypreferences'                 => 'moje nastajenja',
+'mypreferences'                 => 'nastajenja',
 'prefs-edits'                   => 'Ličba změnow:',
 'prefsnologin'                  => 'Njepřizjewjeny',
 'prefsnologintext'              => 'Dyrbiš <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} přizjewjeny]</span>  być, zo by móhł nastajenja postajić.',

@@ -221,7 +221,7 @@ $messages = array(
 # Groups
 'group-user' => 'Алахәылацәа',
 
-'group-user-member' => 'алахәыла',
+'group-user-member' => '{{GENDER:$1|алахәыла}}',
 
 'grouppage-sysop' => '{{ns:project}}:Администраторцәа',
 

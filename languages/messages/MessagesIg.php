@@ -416,7 +416,7 @@ Biko chi ihe á na áká [[Special:ListUsers/sysop|onye íshí]], dètú URL.',
 'badtitle'             => 'Ishi edemede öjö',
 'badtitletext'         => 'Íshí ihü Í chọrọ à díghị ézíbóté, efù, mà ȯ dị jikodo di jikodo nke ojö na nke íshí asụsụ-mmékotárí ma wiki-mmékotárí.
 O nwèríkí nwé édé ótù ma nke ozor nke ékwéghị na íshí ihü.',
-'perfcached'           => 'Ómárí á kachẹrẹ na o nwẹrẹ ki a kugwaghị ya na ogẹ di nso',
+'perfcached'           => 'Ómárí á kachẹrẹ na o nwẹrẹ ki a kugwaghị ya na ogẹ di nso. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
 'wrong_wfQuery_params' => 'Okè nke défiere gá Ájújúwf()<br />
 Orürü: $1<br />
 Ájújú: $2',
@@ -771,7 +771,7 @@ Nwàné ótù okwu íshí na ihe Í nè tú jí ''háníle:'' Í tuó ihe nílé
 'prefs-personal'            => "Nkówá ọ'bànifé",
 'prefs-rc'                  => 'Gbanwere mere ogẹ di nso',
 'prefs-watchlist'           => 'Ndétụnlé',
-'prefs-watchlist-days-max'  => 'Okè chi 7',
+'prefs-watchlist-days-max'  => 'Maximum $1 {{PLURAL:$1|day|days}}',
 'prefs-misc'                => 'Mcheta-ma-mchetaghim',
 'prefs-resetpass'           => 'Gbanwe okwu éjị à gáfe',
 'prefs-email'               => 'Màkà e-mail',

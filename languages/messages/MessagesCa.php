@@ -1658,12 +1658,12 @@ $1',
 'backend-fail-closetemp'     => "No s'ha pogut tancar el fitxer temporal.",
 'backend-fail-read'          => "No s'ha pogut llegir el fitxer $1.",
 'backend-fail-create'        => "No s'ha pogut crear el fitxer $1.",
-'backend-fail-readonly'      => 'El rerefons «$1» actualment només és de lectura. El motiu que es dóna és: «$2»',
-'backend-fail-synced'        => 'El fitxer «$1» es troba en un estat inconsistent amb els rerefons interns.',
-'backend-fail-connect'       => "No s'ha pogut connectar al fitxer de rerefons «$1».",
-'backend-fail-internal'      => "S'ha produït un error desconegut en el fitxer de rerefons «$1».",
+'backend-fail-readonly'      => "El rerefons d'emmagatzemament «$1» actualment només és de lectura. Es va donar el motiu: «$2»",
+'backend-fail-synced'        => "El fitxer «$1» es troba en un estat inconsistent amb els rerefons d'emmagatzemament interns.",
+'backend-fail-connect'       => "No s'ha pogut connectar al fitxer de rerefons d'emmagatzemament «$1».",
+'backend-fail-internal'      => "S'ha produït un error desconegut en el fitxer de rerefons d'emmagatzemament «$1».",
 'backend-fail-contenttype'   => 'No es pot determinar el tipus de contingut del fitxer per emmagatzemar a «$1».',
-'backend-fail-batchsize'     => "El rerefons ha rebut un lot {{PLURAL:$1|d'$1 operació|de $1 operacions}} de fitxer; el límit és $2 {{PLURAL:$2|operació|operacions}}.",
+'backend-fail-batchsize'     => "El rerefons d'emmagatzemament ha rebut un lot {{PLURAL:$1|d'$1 operació|de $1 operacions}} de fitxer; el límit és $2 {{PLURAL:$2|operació|operacions}}.",
 
 # Lock manager
 'lockmanager-notlocked'        => "No s'ha pogut desbloquejar «$1»; no és bloquejat.",
@@ -1695,10 +1695,10 @@ No s'hi ha pogut comprovar la seguretat.",
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Accés denegat',
-'img-auth-nopathinfo'       => "Falta PATH_INFO.
+'img-auth-nopathinfo'       => 'Hi manca PATH_INFO.
 El servidor no està configurat per passar aquesta informació.
-Això pot ser basat en CGI i no és compatible amb img_auth.
-[https://www.mediawiki.org/wiki/Manual:Image_Authorization Vegeu l'auturització de la imatge.]",
+Pot estar basat en CGI i no ser compatible amb img_auth.
+Consulteu https://www.mediawiki.org/wiki/Manual:Image_Authorization',
 'img-auth-notindir'         => "No s'ha trobat la ruta sol·licitada al directori de càrrega configurat.",
 'img-auth-badtitle'         => 'No s\'ha pogut construir un títol vàlid a partir de "$1".',
 'img-auth-nologinnWL'       => 'No has iniciat sessió i "$1" no està a la llista blanca.',

@@ -625,7 +625,7 @@ P\'anqaqa pipapas qullusqanñachá.',
 'badtitle'             => "P'anqap sutinqa manam allinchu",
 'badtitletext'         => "Kay p'anqap sutinqa manam allinchu, mana allin interwiki t'inkichá icha ch'usaqchá, p'anqa sutipaq mana saqillasqa sananchayuqchá.",
 'perfcached'           => "Kay qatiq willakunaqa ''cache'' nisqa pakasqa hallch'apim kachkan, chayrayku manañachá musuqchasqachu. {{PLURAL:$1|Huklla|$1-lla}} taripasqam pakasqa hallch'api aypalla kachkan, manam aswanchu.",
-'perfcachedts'         => "Kay willakunaqa hallch'asqam. Qhipaq musuqchasqaqa $1 karqan. {{PLURAL:$1|Huklla|$1-lla}} taripasqam pakasqa hallch'api aypalla kachkan, manam aswanchu.",
+'perfcachedts'         => "Kay willakunaqa hallch'asqam. Qhipaq musuqchasqaqa $1 karqan. {{PLURAL:$4|Huklla|$4-lla}} taripasqam pakasqa hallch'api aypalla kachkan, manam aswanchu.",
 'querypage-no-updates' => "Kay p'anqata musuqchayqa manam atichkanchu. Kunanqa kaypi willakuna manam musuqchasqachu kanqa.",
 'wrong_wfQuery_params' => 'Kaypa pantasqa kuskanachina tupunkuna: wfQuery()<br />
 Ruray paqtachi: $1<br />
@@ -1710,12 +1710,12 @@ $1',
 'backend-fail-closetemp'     => "Manam atinichu mit'alla willañiqita wichq'ayta.",
 'backend-fail-read'          => 'Manam atinichu $1 sutiyuq willañiqita ñawiriyta.',
 'backend-fail-create'        => 'Manam atinichu $1 sutiyuq willañiqita kamariyta.',
-'backend-fail-readonly'      => '"$1" sutiyuq willañiqi sirwiqqa ñawirinallapaqmi kachkan, kayrayku: "$2"',
-'backend-fail-synced'        => '"$1" sutiyuq willañiqiqa manam sinchichu kachkan ukhupi willañiqi sirwiqkunapi',
-'backend-fail-connect'       => 'Manam atinichu "$1" sutiyuq willañiqi sirwiqwan t\'inkinakuyta.',
-'backend-fail-internal'      => '"$1" sutiyuq willañiqi sirwiqpi mana riqsisqa pantasqam tukurqan.',
+'backend-fail-readonly'      => '"$1" sutiyuq willañiqi hallch\'ana sirwiqqa ñawirinallapaqmi kachkan, kayrayku: "$2"',
+'backend-fail-synced'        => '"$1" sutiyuq willañiqiqa manam sinchichu kachkan ukhupi willañiqi hallch\'ana sirwiqkunapi',
+'backend-fail-connect'       => 'Manam atinichu "$1" sutiyuq willañiqi hallch\'ana sirwiqwan t\'inkinakuyta.',
+'backend-fail-internal'      => '"$1" sutiyuq willañiqi hallch\'ana sirwiqpi mana riqsisqa pantasqam tukurqan.',
 'backend-fail-contenttype'   => 'Manam atinichu "$1" nisqapi hallch\'ana willañiqip samiqninpa layanta yuqanchayta.',
-'backend-fail-batchsize'     => 'Willañiqi sirwiqmanqa $1 willañiqi {{PLURAL:$1|ruranayuq|ruranayuq}} tawqam qusqa; saywataq $2 {{PLURAL:$1|ruranam|ruranam}}.',
+'backend-fail-batchsize'     => "Willañiqi hallch'ana sirwiqmanqa $1 willañiqi {{PLURAL:$1|ruranayuq|ruranayuq}} tawqam qusqa; saywataq $2 {{PLURAL:$1|ruranam|ruranam}}.",
 
 # Lock manager
 'lockmanager-notlocked'        => 'Manam atinichu "$1" nisqata paskayta; manam hark\'asqachu.',
@@ -1751,7 +1751,7 @@ Manam allin qasikanapaq llanchinachu.",
 'img-auth-nopathinfo'       => "Manam kanchu PATH_INFO.
 Sirwiqniykiqa manam churasqachu kaymanta willananpaq.
 CGI nisqawanchá tiksichasqa, chayrayku manachá img_auth nisqata q'imiyta atinchu.
-[https://www.mediawiki.org/wiki/Manual:Image_Authorization Image authorization] nisqata qhaway.",
+https://www.mediawiki.org/wiki/Manual:Image_Authorization nisqata qhaway.",
 'img-auth-notindir'         => 'Mañakusqa ñanqa manam churaykusqa churkuna churanapi kachkanchu.',
 'img-auth-badtitle'         => 'Manam atinichu "$1" nisqamanta chaniyuq sutita rurayta.',
 'img-auth-nologinnWL'       => 'Manam yaykusqa kachkankichu, "$1" nisqataq manam yuraq sutisuyupi kachkanchu.',

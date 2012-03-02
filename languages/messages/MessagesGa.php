@@ -450,8 +450,8 @@ B\'fhéidir gur scrios duine eile é cheana féin.',
 'badtitle'             => 'Teideal neamhbhailí',
 'badtitletext'         => "Bhí teideal an leathanaigh a d'iarr tú ar neamhbhailí, folamh, nó
 teideal idirtheangach nó idirvicí nasctha go mícheart.",
-'perfcached'           => 'Fuarthas na sonraí a leanas as taisce, agus is dócha go bhfuil siad as dáta.',
-'perfcachedts'         => 'Tá na sonraí seo a leanas sa taisce, nuashonraithe $1.',
+'perfcached'           => 'Fuarthas na sonraí a leanas as taisce, agus is dócha go bhfuil siad as dáta. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'Tá na sonraí seo a leanas sa taisce, nuashonraithe $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'wrong_wfQuery_params' => 'Paraiméadair mhíchearta don wfQuery()<br />
 Feidhm: $1<br />
 Iarratas: $2',
@@ -836,7 +836,7 @@ Bain triail as ''all:'' a chur roimh d'iarratas chun an t-inneachar ar fad (leat
 'prefs-rc'                    => 'Athruithe is déanaí',
 'prefs-watchlist'             => 'Liosta faire',
 'prefs-watchlist-days'        => 'Líon na laethanta le taispeáint sa liosta faire:',
-'prefs-watchlist-days-max'    => 'Uasmhéid 7 lá',
+'prefs-watchlist-days-max'    => 'Maximum $1 {{PLURAL:$1|day|days}}',
 'prefs-watchlist-edits'       => 'Líon na n-athruithe le taispeáint sa liosta leathnaithe faire:',
 'prefs-watchlist-edits-max'   => 'Uasmhéid: 1000',
 'prefs-misc'                  => 'Éagsúla',
@@ -928,7 +928,7 @@ do chuid dreachtaí a chur i leith tusa.',
 'group-bureaucrat' => 'Maorlathaigh',
 'group-all'        => '(iad uile)',
 
-'group-user-member'       => 'Úsáideoir',
+'group-user-member'       => '{{GENDER:$1|Úsáideoir}}',
 'group-bot-member'        => 'Róbó',
 'group-sysop-member'      => 'Riarthóir',
 'group-bureaucrat-member' => 'Maorlathach',

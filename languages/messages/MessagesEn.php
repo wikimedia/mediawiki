@@ -4708,34 +4708,6 @@ This site is experiencing technical difficulties.',
 'logentry-newusers-autocreate'        => 'Account $1 was created automatically',
 'newuserlog-byemail'                  => 'password sent by e-mail',
 
-# For IRC, see bug 34508. Do not change
-'revdelete-logentry'          => 'changed revision visibility of "[[$1]]"', # do not translate or duplicate this message to other languages
-'logdelete-logentry'          => 'changed event visibility of "[[$1]]"', # do not translate or duplicate this message to other languages
-'revdelete-content'           => 'content', # do not translate or duplicate this message to other languages
-'revdelete-summary'           => 'edit summary', # do not translate or duplicate this message to other languages
-'revdelete-uname'             => 'username', # do not translate or duplicate this message to other languages
-'revdelete-hid'               => 'hid $1', # do not translate or duplicate this message to other languages
-'revdelete-unhid'             => 'unhid $1', # do not translate or duplicate this message to other languages
-'revdelete-log-message'       => '$1 for $2 {{PLURAL:$2|revision|revisions}}', # do not translate or duplicate this message to other languages
-'logdelete-log-message'       => '$1 for $2 {{PLURAL:$2|event|events}}', # do not translate or duplicate this message to other languages
-'deletedarticle'              => 'deleted "[[$1]]"', # do not translate or duplicate this message to other languages
-'suppressedarticle'           => 'suppressed "[[$1]]"', # do not translate or duplicate this message to other languages
-'undeletedarticle'            => 'restored "[[$1]]"', # do not translate or duplicate this message to other languages
-'patrol-log-line'             => 'marked $1 of $2 patrolled $3', # do not translate or duplicate this message to other languages
-'patrol-log-auto'             => '(automatic)', # do not translate or duplicate this message to other languages
-'patrol-log-diff'             => 'revision $1', # do not translate or duplicate this message to other languages
-'1movedto2'                   => 'moved [[$1]] to [[$2]]', # do not translate or duplicate this message to other languages
-'1movedto2_redir'             => 'moved [[$1]] to [[$2]] over redirect', # do not translate or duplicate this message to other languages
-'move-redirect-suppressed'    => 'redirect suppressed', # do not translate or duplicate this message to other languages
-'newuserlog-byemail'          => 'password sent by e-mail',
-'newuserlog-create-entry'     => 'New user account', # do not translate or duplicate this message to other languages
-'newuserlog-create2-entry'    => 'created new account $1', # do not translate or duplicate this message to other languages
-'newuserlog-autocreate-entry' => 'Account created automatically', # do not translate or duplicate this message to other languages
-'suppressedarticle'           => 'suppressed "[[$1]]"',
-'deletedarticle'              => 'deleted "[[$1]]"',
-'uploadedimage'               => 'uploaded "[[$1]]"',
-'overwroteimage'              => 'uploaded a new version of "[[$1]]"',
-
 # Feedback
 'feedback-bugornote' => 'If you are ready to describe a technical problem in detail please [$1 report a bug].
 Otherwise, you can use the easy form below. Your comment will be added to the page "[$3 $2]", along with your username and what browser you are using.',
@@ -4789,4 +4761,5 @@ Otherwise, you can use the easy form below. Your comment will be added to the pa
 'api-error-unknownerror'                  => 'Unknown error: "$1".',
 'api-error-uploaddisabled'                => 'Uploading is disabled on this wiki.',
 'api-error-verification-error'            => 'This file might be corrupt, or have the wrong extension.',
+
 );

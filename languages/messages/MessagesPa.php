@@ -14,6 +14,7 @@
  * @author Guglani
  * @author Kaganer
  * @author Sukh
+ * @author Surinder.wadhawan
  * @author Ævar Arnfjörð Bjarmason
  * @author לערי ריינהארט
  */
@@ -74,6 +75,7 @@ $messages = array(
 'tog-previewonfirst'        => 'ਪਹਿਲੇ ਐਡਿਟ ਉੱਤੇ ਝਲਕ ਵੇਖਾਓ',
 'tog-nocache'               => 'ਬਰਾਊਜ਼ਰ ਸਫ਼ਾ ਕੈਸ਼ ਕਰਨਾ ਬੰਦ ਕਰੋ',
 'tog-enotifwatchlistpages'  => 'ਜਦੋਂ ਮੇਰੀ ਵਾਚ-ਲਿਸਟ ਵਿੱਚੋਂ ਸਫ਼ਾ ਬਦਲਿਆ ਜਾਵੇ ਤਾਂ ਮੈਨੂੰ ਈਮੇਲ ਭੇਜੋ',
+'tog-oldsig'                => 'ਮੌਜੂਦਾ ਦਸਤਖਤ:',
 'tog-watchlisthideown'      => 'ਮੇਰੀ ਵਾਚ-ਲਿਸਟ ਵਿੱਚੋਂ ਮੇਰੀਆਂ ਸੋਧਾਂ ਹਟਾਓ',
 'tog-watchlisthidebots'     => 'ਮੇਰੀ ਵਾਚ-ਲਿਸਟ ਵਿੱਚੋਂ ਰੋਬਾਟ ਦਿਆਂ ਸੋਧਾਂ ਹਟਾਓ',
 'tog-watchlisthideminor'    => 'ਛੋਟੇ ਸੋਧ ਵਾਚ-ਲਿਸਟ ਤੋਂ ਓਹਲੇ ਰੱਖੋ',
@@ -81,6 +83,9 @@ $messages = array(
 'underline-always'  => 'ਹਮੇਸ਼ਾਂ',
 'underline-never'   => 'ਕਦੇ ਨਹੀਂ',
 'underline-default' => 'ਬਰਾਊਜ਼ਰ ਡਿਫਾਲਟ',
+
+# Font style option in Special:Preferences
+'editfont-default' => 'ਬਰਾਊਜ਼ਰ ਡਿਫਾਲਟ',
 
 # Dates
 'sunday'        => 'ਐਤਵਾਰ',
@@ -135,12 +140,15 @@ $messages = array(
 'dec'           => 'ਦਸੰ',
 
 # Categories related messages
-'pagecategories'        => '{{PLURAL:$1|ਕੈਟਾਗਰੀ|ਕੈਟਾਗਰੀਆਂ}}',
-'category_header'       => 'ਕੈਟਾਗਰੀ "$1" ਵਿੱਚ ਲੇਖ',
-'subcategories'         => 'ਸਬ-ਕੈਟਾਗਰੀਆਂ',
-'category-media-header' => 'ਕੈਟਾਗਰੀ "$1" ਵਿੱਚ ਮੀਡਿਆ',
-'category-empty'        => "''ਇਹ ਕੈਟਾਗਰੀ ਵਿੱਚ ਇਸ ਵੇਲੇ ਕੋਈ ਲੇਖ (ਆਰਟੀਕਲ) ਜਾਂ ਮੀਡਿਆ ਨਹੀਂ ਹੈ।''",
-'hidden-categories'     => '{{PLURAL:$1|ਅਲੋਪ ਸ਼੍ਰੇਣੀ|ਅਲੋਪ ਸ਼੍ਰੇਣੀਆ}}',
+'pagecategories'         => '{{PLURAL:$1|ਕੈਟਾਗਰੀ|ਕੈਟਾਗਰੀਆਂ}}',
+'category_header'        => 'ਕੈਟਾਗਰੀ "$1" ਵਿੱਚ ਲੇਖ',
+'subcategories'          => 'ਸਬ-ਕੈਟਾਗਰੀਆਂ',
+'category-media-header'  => 'ਕੈਟਾਗਰੀ "$1" ਵਿੱਚ ਮੀਡਿਆ',
+'category-empty'         => "''ਇਹ ਕੈਟਾਗਰੀ ਵਿੱਚ ਇਸ ਵੇਲੇ ਕੋਈ ਲੇਖ (ਆਰਟੀਕਲ) ਜਾਂ ਮੀਡਿਆ ਨਹੀਂ ਹੈ।''",
+'hidden-categories'      => '{{PLURAL:$1|ਅਲੋਪ ਸ਼੍ਰੇਣੀ|ਅਲੋਪ ਸ਼੍ਰੇਣੀਆ}}',
+'category-subcat-count'  => '{{ਕੁਲ   $2 ਸ਼੍ਰੇਣੀਆਂ ਵਿਚੌਂ , PLURAL:$2|ਇਸ ਸ਼੍ਰੇਣੀ ਵਿਚ ਸਿਰਫ਼ ਹੇਠ ਲਿਖੀ ਸ਼੍ਰੇਣੀ ਹੈ|ਇਸ ਸ਼੍ਰੇਣੀ ਵਿਚ ਨਿਮਿਨਲਿਖਿਤ {{PLURAL:$1|ਉਪ ਸ਼੍ਰੇਣੀ ਹੈ|$1ਉਪਸ਼੍ਰੇਣੀਆਂ ਹਨ}}  }}',
+'category-article-count' => '{{ ਕੁਲ $2 ਲੇਖਾਂ ਵਿਚੌਂ , PLURAL:$2| ਇਸ ਸ਼੍ਰੇਣੀ ਵਿਚ ਸਿਰਫ਼  ਨਿਮਨਲਿਖਿਤ  {{PLURAL:$1|ਲੇਖ ਹੈ|$1 ਲੇਖ ਹਨ}}, }}',
+'listingcontinuesabbrev' => 'ਅਗੇ.',
 
 'about'         => 'ਇਸ ਬਾਰੇ',
 'article'       => 'ਸਮੱਗਰੀ ਪੇਜ',
@@ -205,14 +213,14 @@ $messages = array(
 'protect'           => 'ਸੁਰੱਖਿਆ',
 'protect_change'    => 'ਬਦਲੋ',
 'protectthispage'   => 'ਇਹ ਪੇਜ ਸੁਰੱਖਿਅਤ ਕਰੋ',
-'unprotect'         => 'ਅਣ-ਸੁਰੱਖਿਅਤ',
-'unprotectthispage' => 'ਇਹ ਪੇਜ ਅਣ-ਸੁਰੱਖਿਅਤ ਬਣਾਓ',
+'unprotect'         => 'ਸੁਰੱਖਿਆ ਬਦਲੋ',
+'unprotectthispage' => 'ਇਹ ਪੇਜ਼ ਦੀ ਸੁਰੱਖਿਆ ਬਦਲੋ',
 'newpage'           => 'ਨਵਾਂ ਪੇਜ',
 'talkpage'          => 'ਇਸ ਪੇਜ ਬਾਰੇ ਚਰਚਾ',
 'talkpagelinktext'  => 'ਗੱਲਬਾਤ',
 'specialpage'       => 'ਖਾਸ ਪੇਜ',
 'personaltools'     => 'ਨਿੱਜੀ ਟੂਲ',
-'postcomment'       => 'ਇੱਕ ਟਿੱਪਣੀ ਦਿਓ',
+'postcomment'       => 'ਨਵਾਂ ਭਾਗ',
 'articlepage'       => 'ਸਮੱਗਰੀ ਪੇਜ ਵੇਖੋ',
 'talk'              => 'ਚਰਚਾ',
 'views'             => 'ਵੇਖੋ',
@@ -234,6 +242,7 @@ $messages = array(
 'jumpto'            => 'ਜੰਪ ਕਰੋ:',
 'jumptonavigation'  => 'ਨੇਵੀਗੇਸ਼ਨ',
 'jumptosearch'      => 'ਖੋਜ',
+'pool-errorunknown' => 'ਅਣਜਾਣ ਗਲਤੀ',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} ਬਾਰੇ',
@@ -273,12 +282,18 @@ $messages = array(
 'toc'                     => 'ਸਮਗੱਰੀ',
 'showtoc'                 => 'ਵੇਖੋ',
 'hidetoc'                 => 'ਓਹਲੇ',
+'collapsible-collapse'    => 'ਸਮੇਟੋ',
+'collapsible-expand'      => 'ਫੈਲਾਓ',
 'thisisdeleted'           => 'ਵੇਖੋ ਜਾਂ $1 ਰੀਸਟੋਰ?',
 'viewdeleted'             => '$1 ਵੇਖਣਾ?',
 'feedlinks'               => 'ਫੀਡ:',
 'site-rss-feed'           => '$1 RSS ਫੀਡ',
 'site-atom-feed'          => '$1 ਐਟਮ ਫੀਡ',
+'page-rss-feed'           => '"$1" RSS ਫੀਡ',
+'page-atom-feed'          => '"$1" ਐਟਮ ਫੀਡ',
 'red-link-title'          => '$1 (ਇਸ ਨਾਂ ਦਾ ਪੇਜ ਨਹੀਂ ਹੈ)',
+'sort-descending'         => 'ਘੱਟਦਾ ਕ੍ਰਮ',
+'sort-ascending'          => 'ਵੱਧਦਾ ਕ੍ਰਮ',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'ਲੇਖ',
@@ -478,6 +493,7 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 # History pages
 'viewpagelogs'        => 'ਇਸ ਪੇਜ ਦੇ ਲਈ ਲਾਗ ਵੇਖੋ',
 'currentrev'          => 'ਮੌਜੂਦਾ ਰੀਵਿਜ਼ਨ',
+'currentrev-asof'     => '$1 ਦੇ ਸਮੇਂ ਦਾ ਵਰਨਣ',
 'revisionasof'        => '$1 ਦੇ ਰੀਵਿਜ਼ਨ ਵਾਂਗ',
 'revision-info'       => ' $1ਦ ਬਦਲਾਅ $2ਦਵਾਰਾ ਕੀਤਾ ਹੋਇਆ',
 'previousrevision'    => '←ਪੁਰਾਣਾ ਰੀਵਿਜ਼ਨ',
@@ -536,6 +552,7 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'notextmatches'                    => 'ਕੋਈ ਪੇਜ ਟੈਕਸਟ ਨਹੀਂ ਮਿਲਦਾ',
 'prevn'                            => 'ਪਿੱਛੇ {{PLURAL:$1|$1}}',
 'nextn'                            => 'ਅੱਗੇ {{PLURAL:$1|$1}}',
+'prevn-title'                      => 'ਪਹਿਲਾ $1 {{PLURAL:$1|ਨਤੀਜਾ|ਨਤੀਜੇ}}',
 'nextn-title'                      => '↓
 ਅਗਲਾ $1 {{PLURAL:$1|ਨਤੀਜਾ|ਨਤੀਜੇ}}',
 'shown-title'                      => 'ਪ੍ਰਤੀ ਪੇਜ਼ $1 {{PLURAL:$1|ਨਤੀਜਾ|ਨਤੀਜੇ}} ਵੇਖਾਓ',
@@ -749,12 +766,14 @@ to upload files.',
 'filehist-current'          => 'ਮੌਜੂਦਾ',
 'filehist-datetime'         => 'ਮਿਤੀ/ਸਮਾਂ',
 'filehist-thumb'            => 'ਅੰਗੂਠਾਕਾਰ',
+'filehist-thumbtext'        => '$1 ਦੇ ਸਮੇਂ ਦੇ ਸੰਸਕਰਨ ਦਾ ਅੰਗੂਠਾਕਾਰ ਪ੍ਰਤੀਰੂਪ',
 'filehist-user'             => 'ਯੂਜ਼ਰ',
 'filehist-dimensions'       => 'ਮਾਪ',
 'filehist-filesize'         => 'ਫਾਇਲ ਆਕਾਰ',
 'filehist-comment'          => 'ਟਿੱਪਣੀ',
 'imagelinks'                => 'ਫ਼ਾਈਲ ਦੀ ਵਰਤੌਂ',
 'linkstoimage'              => 'ਹੇਠ ਲਿਖਿਤ {{PLURAL:$1|ਪੰਨੇ ਦਾ ਹਵਾਲਾ ਹੈ|$1 ਪੰਨੇ ਦੇ ਹਵਾਲੇ ਹਨ}} to this file:',
+'sharedupload-desc-here'    => 'ਇਹ ਮਿਸਲ $1 ਦੀ ਹੈ ਅਤੇ ਹੋਰ ਪ੍ਰਾਜੈਕਟਾਂ ਵਿਚ ਵੀ ਵਰਤੀ ਜਾ ਸਕਦੀ ਹੈ । ਇਸ ਦੇ [$2 ਮਿਸਲ ਵਾਲੇ ਬ੍ਰਿਤਾਂਤ ਪੰਨੇ] ਵਿਚ ਮੌਜੂਦ ਵਰਨਣ ਨਿਮਨ ਲਿਖਿਤ ਹੈ।',
 'uploadnewversion-linktext' => 'ਇਸ ਫਾਇਲ ਦਾ ਇੱਕ ਨਵਾਂ ਵਰਜਨ ਅੱਪਲੋਡ ਕਰੋ',
 
 # File reversion
@@ -807,8 +826,9 @@ to upload files.',
 'pager-newer-n'     => '{{PLURAL:$1|੧ ਨਵਾਂ|$1 ਨਵੇਂ}}',
 
 # Book sources
-'booksources'    => 'ਕਿਤਾਬ ਸਰੋਤ',
-'booksources-go' => 'ਜਾਓ',
+'booksources'               => 'ਕਿਤਾਬ ਸਰੋਤ',
+'booksources-search-legend' => 'ਕਿਤਾਬ ਸਰੋਤ ਲਈ ਖੋਜ',
+'booksources-go'            => 'ਜਾਓ',
 
 # Special:Log
 'specialloguserlabel'  => 'ਯੂਜ਼ਰ:',
@@ -936,8 +956,11 @@ to upload files.',
 'contributions' => 'ਯੂਜ਼ਰ ਯੋਗਦਾਨ',
 'mycontris'     => 'ਮੇਰਾ ਯੋਗਦਾਨ',
 'contribsub2'   => '$1 ($2) ਲਈ',
+'uctop'         => '(ਉੱਤੇ)',
 
 'sp-contributions-newbies-sub' => 'ਨਵੇਂ ਅਕਾਊਂਟਾਂ ਲਈ',
+'sp-contributions-blocklog'    => 'ਪਾਬੰਦੀ ਲਾਗ',
+'sp-contributions-logs'        => 'ਲਾਗ',
 'sp-contributions-talk'        => 'ਗੱਲਬਾਤ',
 'sp-contributions-search'      => 'ਯੋਗਦਾਨ ਖੋਜੋ',
 'sp-contributions-username'    => 'IP ਐਡਰੈੱਸ ਜਾਂ ਯੂਜ਼ਰ ਨਾਂ:',
@@ -949,6 +972,7 @@ to upload files.',
 'whatlinkshere-page'       => 'ਸਫਾ:',
 'nolinkshere'              => "'''[[:$1]]'''ਨਾਲ ਮਿਲਦਾ ਜੁਲਦਾ ਕੋਈ ਪੰਨਾ ਨਹੀਂ ਹੈ।",
 'whatlinkshere-links'      => '← ਲਿੰਕ',
+'whatlinkshere-hideredirs' => '$1 ਗੈਰਸਿਧਾ',
 'whatlinkshere-hidelinks'  => '$1 ਲਿੰਕ',
 'whatlinkshere-hideimages' => '$1 ਸੰਬੰਧਿਤ ਚਿਤਰ',
 'whatlinkshere-filters'    => 'ਫਿਲਟਰ',
@@ -961,6 +985,7 @@ to upload files.',
 'ipbreasonotherlist' => 'ਹੋਰ ਕਾਰਨ',
 'ipbsubmit'          => 'ਇਹ ਯੂਜ਼ਰ ਲਈ ਪਾਬੰਦੀ',
 'ipbother'           => 'ਹੋਰ ਟਾਈਮ:',
+'ipboptions'         => '੨ ਘਂਟੇ:2 hours, ੧ ਦਿਨ:1 day, ੩ ਦਿਨ:3 days, ੧ ਹਫ੍ਤਾ:1 week, ੨ ਹਫ੍ਤੇ:2 weeks, ੧ ਮਹੀਨਾ:1 month, ੩ ਮਹੀਨੇ:3 months, ੬ ਮਹੀਨੇ:6 months, ੧ ਸਾਲ:1 year, ਹਮੇਸ਼ਾ ਲਈ:infinite',
 'ipbotheroption'     => 'ਹੋਰ',
 'ipbotherreason'     => 'ਹੋਰ/ਆਮ ਕਾਰਨ:',
 'badipaddress'       => 'ਗਲਤ IP ਐਡਰੈੱਸ',
@@ -1129,7 +1154,8 @@ to upload files.',
 ਪੰਕਤੀ ਵਿਚ ਪਹਿਲੀ ਕੜੀ ਗਲਤ ਫਾਈਲ ਦੀ ਕੜੀ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ।ਉਸ ਪੰਕਤੀ ਵਿਚ ਅੱਗੇ ਦਿਤੀਆਂ ਕੜੀਆਂ ਨੂੰ ਅਪਵਾਦ ਮੰਨਿਆ ਜਾਵੇਗਾ, ਭਾਵ ਉਹ ਪੰਨੇ ਜਿਨ੍ਹਾਂ ਵਿਚ ਫਾਈਲ ਕਿਸੇ ਪੰਕਤੀ ਵਿਚ ਸਥਿਤ ਹੋ ਸਕਦੀ ਹੇ।',
 
 # Metadata
-'metadata' => 'ਮੇਟਾ ਡੈਟਾ',
+'metadata'      => 'ਮੇਟਾ ਡੈਟਾ',
+'metadata-help' => 'ਇਸ ਮਿਸਲ ਵਿਚ ਵਾਧੂ ਜਾਨਕਾਰੀਆਂ ਹਨ , ਜੋ ਸ਼ਾਇਦ ਉਸ ਕੈਮਰੇ ਯਾ ਸਕੈਨਰ ਦੀ ਦੇਣ ਹਨ ਜੋਕਿ ਇਸ ਮਿਸਲ ਨੂੰ ਬਨਾਉਣ ਲਈ ਵਰਤਿਆ ਗਿਆ ਹੈ।ਅਗ਼ਰ ਇਹ ਮਿਸਲ ਬਦਲਾਈ ਗਈ ਹੈ ਤਾਂ ਹੋ ਸਕਦਾ ਹੈ ਕੁਝ ਵੇਰਵੇ ਬਦਲੀ ਮਿਸਲ ਦਾ ਸਹੀ ਰੂਪਮਾਨ ਨਾ ਹੋਣ।',
 
 # EXIF tags
 'exif-imagewidth'       => 'ਚੌੜਾਈ',
@@ -1170,6 +1196,9 @@ to upload files.',
 # Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'ਕਿਲੋਮੀਟਰ ਪ੍ਰਤੀ ਘੰਟਾ',
 'exif-gpsspeed-m' => 'ਮੀਲ ਪ੍ਰਤੀ ਘੰਟਾ',
+
+# External editor support
+'edit-externally-help' => '(ਵਧੇਰੇ ਜਾਣਕਾਰੀ ਲਇ [//www.mediawiki.org/wiki/Manual:External_editors setup instructions] ਇਥੇ ਦਬੋ)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ਸਭ',

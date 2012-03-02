@@ -415,8 +415,8 @@ Ndodh që âsht fshi prej dikujt tjetër.',
 'badtitle'             => 'Titull i keq',
 'badtitletext'         => 'Titulli i faqes që kërkuet ishte jovalid, bosh, apo ishte nji vegëz gabim e lidhun ndërgjuhesisht apo ndër-wiki.
 Ndodh që ka shêja që nuk munden me u përdorë në titull.',
-'perfcached'           => 'Informacioni i mâposhtëm âsht kopje e memorizueme, por mundet mos me qenë verzioni i fundit:',
-'perfcachedts'         => 'Shenimi i mâposhtëm âsht kopje e memorizueme dhe âsht rifreskue së fundit me $1.',
+'perfcached'           => 'Informacioni i mâposhtëm âsht kopje e memorizueme, por mundet mos me qenë verzioni i fundit. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'Shenimi i mâposhtëm âsht kopje e memorizueme dhe âsht rifreskue së fundit me $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Redaktimi i kësaj faqeje âsht ndalue për momentin.
 Shenimet këtu nuk do të rifreskohen.',
 'wrong_wfQuery_params' => 'Parametra gabim te wfQuery()<br />
@@ -978,7 +978,7 @@ Vini re se indeksat e tyne të përmbajtjes së {{SITENAME}} munden me qenë të
 'prefs-rc'                      => 'Ndryshimet e freskëta',
 'prefs-watchlist'               => 'Lista e mbikëqyrjeve',
 'prefs-watchlist-days'          => 'Numri i ditëve me i tregue në listën e mbikëqyrjeve:',
-'prefs-watchlist-days-max'      => 'Maksimalisht 7 ditë',
+'prefs-watchlist-days-max'      => 'Maximum $1 {{PLURAL:$1|day|days}}',
 'prefs-watchlist-edits'         => 'Numri maksimal i ndryshimeve që tregohen në listën e zgjânueme të mbikëqyrjes:',
 'prefs-watchlist-edits-max'     => 'Numri maksimal: 1000',
 'prefs-misc'                    => 'Të ndryshme',
@@ -1084,7 +1084,7 @@ Mundeni me zgjedhe që të tjerët me ju kontaktue përmjet faqe së diskutimit 
 'group-suppress'      => 'Kujdestari',
 'group-all'           => '(të gjitha)',
 
-'group-user-member'          => 'Përdorues',
+'group-user-member'          => '{{GENDER:$1|Përdorues}}',
 'group-autoconfirmed-member' => 'Përdorues i vërtetuar automatikisht',
 'group-bot-member'           => 'Robot',
 'group-sysop-member'         => 'Administrues',

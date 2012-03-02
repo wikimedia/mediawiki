@@ -367,8 +367,8 @@ Kisoboka nti waliwo eyakwesoose.',
 'badtitle'             => 'Buzibu ku linnya lya lupapula',
 'badtitletext'         => "Onoonyezza erinnya ly'olupapula eritakkirizibwa, oba ery'olupapula olwereere, oba ery'oluli ku wiki endala nga teruyungidwa ku eno obulungi.<br />
 Erinnya eryo liyinza ate okubaamu ennukuta oba obubonero ebitakkirizibwa mu mannya ga mpapula.",
-'perfcached'           => "Data eddako wano eva mu ggwanika zzibizi era eyinz'obutatuukana n'eyennono.",
-'perfcachedts'         => "Data eddako wano eva mu ggwanika zzibizi, yasemba okutuukanizibwa n'ey'ennono ku saawa $3, nga $2.",
+'perfcached'           => "Data eddako wano eva mu ggwanika zzibizi era eyinz'obutatuukana n'eyennono. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.",
+'perfcachedts'         => "Data eddako wano eva mu ggwanika zzibizi, yasemba okutuukanizibwa n'ey'ennono ku saawa $3, nga $2. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.",
 'querypage-no-updates' => 'Ku ssaawa eno olupapula luno terukkiriza kukyusibwamu.<br />
 Data eruliko ejjakugira nga tekyuka.',
 'wrong_wfQuery_params' => 'wfQuery() kirimu paramita ensobu zino<br />

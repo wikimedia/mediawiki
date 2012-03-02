@@ -3793,7 +3793,7 @@ As imaxes móstranse na súa resolución completa; outros tipos de ficheiros in�
 'htmlform-required'            => 'Este valor é obrigatorio',
 'htmlform-submit'              => 'Enviar',
 'htmlform-reset'               => 'Desfacer os cambios',
-'htmlform-selectorother-other' => 'Outra',
+'htmlform-selectorother-other' => 'Outro',
 
 # SQLite database support
 'sqlite-has-fts' => '$1 con soporte para procuras de texto completo',

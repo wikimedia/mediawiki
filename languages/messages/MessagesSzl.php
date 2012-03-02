@@ -15,6 +15,7 @@
  * @author Kaganer
  * @author Lajsikonik
  * @author Leinad
+ * @author Lwh
  * @author Ozi64
  * @author Pimke
  * @author Przemub
@@ -375,8 +376,8 @@ Eli tak ńy je, możno śe trefił feler we softwaru MediaWiki. Kej ja, pedz uo 
 'cannotdelete'         => 'Ńy idźe wyćepać podanyj zajty abo grafiki $1.',
 'badtitle'             => 'Felerno tytůua',
 'badtitletext'         => 'Podano felerny titel zajty. Prawdopodańy sům w ńim znoki, kerych ńy wolno užywać we titlach abo je pusty.',
-'perfcached'           => 'To co sam je naškryflane, to ino kopja s pamjyńći podrynčnyj a može ńy być aktualne.',
-'perfcachedts'         => 'To co sam je naškryflane, to ino kopja s pamjyńći podrynčnyj a bůuo uaktualńůne $1.',
+'perfcached'           => 'To co sam je naškryflane, to ino kopja s pamjyńći podrynčnyj a može ńy być aktualne. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'To co sam je naškryflane, to ino kopja s pamjyńći podrynčnyj a bůuo uaktualńůne $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Uaktualńyńo lo tyj zajty sům terozki zawarte. Dane, kere sam sům, ńy zostouy uodśwjyžůne.',
 'wrong_wfQuery_params' => 'Felerne parametry překozane do wfQuery()<br />
 Funkcyjo: $1<br />
@@ -626,9 +627,9 @@ Možeš to zrobić we [[Special:Preferences|swojich štalowańach]].',
 Hasło można pomjyńyć [[Special:ChangePassword|tu]].',
 'newarticle'                       => '(Nowy)',
 'newarticletext'                   => 'Ńy mo sam jeszcze artikla uo takijj titli. Eli chcesz go sprowjać, naszkryflej niżyj jego tekst (wjyncy informacyj nojdźesz [[{{MediaWiki:Helppage}}|na zajće půmocy]]). Eli żeś chćoł zrobić cosik inksze, naćiś ino knefel "Nazod".',
-'anontalkpagetext'                 => "---- ''To jest zajta godki lo użytkowńikůw anůnimowych - takich, kerzi ńy majům jeszcze swojigo kůnta abo ńy chcům go terozki užywać.
+'anontalkpagetext'                 => "---- ''To je zajta godki lo anůnimowych używoczy  - takich, kerzi ńy majům jeszcze swojigo kůnta abo ńy chcům go terozki używać.
 By jeich idyntyfikować, używomy numerůw IP.
-Eli jeżeś anůnimowym użytkowńikym a wydowo Ći śe, aże zamjyszczůne sam kůmyntorze ńy sům skjyrowane do Ćebje, [[Special:UserLogin|utwůrz prosza kůnto]] abo [[Special:UserLogin|zalůguj śe]] - bez tůż uńikńesz potym podobnych ńyporozumjyń.''",
+Eli jeżeś anůnimowym używoczym a wydowo Ći śe, aże zamjyszczůne sam kůmyntorze ńy sům skjyrowane do Ćebje, [[Special:UserLogin|utwůrz prosza kůnto]] abo [[Special:UserLogin|zalůguj śe]] - bez tůż uńikńesz potym podobnych ńyporozumjyń.''",
 'noarticletext'                    => 'Ńy můmy zajta uo takij titli. Mogesz [{{fullurl:{{FULLPAGENAME}}|action=edit}} wćepać artikel {{FULLPAGENAME}}] abo [[Special:Search/{{PAGENAME}}|sznupać {{PAGENAME}} we inkszych]].',
 'noarticletext-nopermission'       => 'Na tyj zajće ńy mo jeszcze artikla.
 Mogesz [[Special:Search/{{PAGENAME}}|wysznupać ta titla]] we treśći inkszych zajtůw
@@ -959,7 +960,7 @@ $1',
 'prefs-rc'                      => 'Ńydowno pomjyńane',
 'prefs-watchlist'               => 'Pozůrlista',
 'prefs-watchlist-days'          => 'Ličba dńi widočnych na liśće artikli, na kere dowoš pozůr:',
-'prefs-watchlist-days-max'      => 'Maksimum 7 dńi',
+'prefs-watchlist-days-max'      => 'Maximum $1 {{PLURAL:$1|day|days}}',
 'prefs-watchlist-edits'         => 'Ličba půmjyńań pokazywanych we rozšyřůnyj liśće artiklůw, na kere dowoš pozůr:',
 'prefs-watchlist-edits-max'     => 'Maksymalno liczba: 1000',
 'prefs-watchlist-token'         => 'ID půzorlisty:',

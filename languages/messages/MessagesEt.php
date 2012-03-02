@@ -8,6 +8,7 @@
  * @file
  *
  * @author Avjoska
+ * @author Cylly1512
  * @author Hendrik
  * @author Hendrix
  * @author Jaan513
@@ -303,7 +304,7 @@ $messages = array(
 'tog-watchmoves'              => 'Lisa minu teisaldatud leheküljed jälgimisloendisse',
 'tog-watchdeletion'           => 'Lisa minu kustutatud leheküljed jälgimisloendisse',
 'tog-minordefault'            => 'Märgi kõik parandused vaikimisi pisiparandusteks',
-'tog-previewontop'            => 'Näita eelvaadet enne toimetamisakent',
+'tog-previewontop'            => 'Näita eelvaadet toimetamiskasti ees',
 'tog-previewonfirst'          => 'Näita eelvaadet esimesel redigeerimisel',
 'tog-nocache'                 => 'Keela võrgulehitsejal lehekülgede puhverdamine',
 'tog-enotifwatchlistpages'    => 'Teata e-posti teel minu jälgitava lehekülje muutmisest',
@@ -506,8 +507,8 @@ $messages = array(
 'jumptonavigation'  => 'navigeerimiskast',
 'jumptosearch'      => 'otsi',
 'view-pool-error'   => 'Serverid on hetkel üle koormatud.
-Liiga palju kasutajaid üritab korraga seda lehte vaadata.
-Palun oota hetk enne kui uuesti proovid.
+Liiga palju kasutajaid üritab seda lehte vaadata.
+Palun oota hetk, enne kui uuesti proovid.
 
 $1',
 'pool-errorunknown' => 'Teadmata tõrge',
@@ -686,6 +687,7 @@ Sinu konto on loodud.
 'yourpassword'               => 'Parool:',
 'yourpasswordagain'          => 'Sisesta parool uuesti:',
 'remembermypassword'         => 'Jäta parool meelde (kuni $1 {{PLURAL:$1|päevaks|päevaks}})',
+'securelogin-stick-https'    => 'Jätka pärast sisselogimist HTTPS-ühenduse kasutamist',
 'yourdomainname'             => 'Sinu domeen:',
 'externaldberror'            => 'Esines autentimistõrge või sul pole õigust konto andmeid muuta.',
 'login'                      => 'Logi sisse',
@@ -789,29 +791,34 @@ Võib-olla oled juba edukalt muudnud oma salasõna või taotlenud uut ajutist sa
 'resetpass-temp-password'   => 'Ajutine parool:',
 
 # Special:PasswordReset
-'passwordreset'                => 'Parooli lähtestamine',
-'passwordreset-text'           => 'Täida see vorm, et saada e-kiri oma konto andmetega.',
-'passwordreset-legend'         => 'Parooli lähtestamine',
-'passwordreset-disabled'       => 'Selles vikis on paroolide lähtestamine keelatud.',
-'passwordreset-username'       => 'Kasutajanimi:',
-'passwordreset-domain'         => 'Domeen:',
-'passwordreset-email'          => 'E-posti aadress:',
-'passwordreset-emailtitle'     => '{{GRAMMAR:genitive|{{SITENAME}}}} konto andmed',
-'passwordreset-emailtext-ip'   => 'Keegi, arvatavasti sina ise, IP-aadressilt $1 palus meelde tuletada sinu {{GRAMMAR:genitive|{{SITENAME}}}} ($4) konto üksikasjad. Selle e-posti aadressiga on seotud {{PLURAL:$3|järgmine konto|järgmised kontod}}:
+'passwordreset'                    => 'Parooli lähtestamine',
+'passwordreset-text'               => 'Täida see vorm, et saada e-kiri oma konto andmetega.',
+'passwordreset-legend'             => 'Parooli lähtestamine',
+'passwordreset-disabled'           => 'Selles vikis on paroolide lähtestamine keelatud.',
+'passwordreset-pretext'            => '{{PLURAL:$1||Sisesta üks järgmistest andmeüksustest}}',
+'passwordreset-username'           => 'Kasutajanimi:',
+'passwordreset-domain'             => 'Domeen:',
+'passwordreset-capture'            => 'Näita lähetatavat e-kirja?',
+'passwordreset-capture-help'       => 'Kui valid selle märkeruudu, näidatakse sulle ajutist parooli sisaldavat e-kirja, mis ühtlasi kasutajale saadetakse.',
+'passwordreset-email'              => 'E-posti aadress:',
+'passwordreset-emailtitle'         => '{{GRAMMAR:genitive|{{SITENAME}}}} konto andmed',
+'passwordreset-emailtext-ip'       => 'Keegi, arvatavasti sina ise, IP-aadressilt $1 palus meelde tuletada sinu {{GRAMMAR:genitive|{{SITENAME}}}} ($4) konto üksikasjad. Selle e-posti aadressiga on seotud {{PLURAL:$3|järgmine konto|järgmised kontod}}:
 
 $2
 
 {{PLURAL:$3|See ajutine parool aegub|Need ajutised paroolid aeguvad}} {{PLURAL:$5|ühe|$5}} päeva pärast.
 Peaksid nüüd sisse logima ja uue parooli valima. Kui selle palve esitas keegi teine või kui sulle meenus su parool ja sa ei soovi seda enam muuta, võid teadet eirata ja jätkata vana parooli kasutamist.',
-'passwordreset-emailtext-user' => '{{GRAMMAR:genitive|{{SITENAME}}}} kasutaja $1 palus meelde tuletada sinu {{GRAMMAR:genitive|{{SITENAME}}}} ($4) konto üksikasjad. Selle e-posti aadressiga on seotud {{PLURAL:$3|järgmine konto|järgmised kontod}}:
+'passwordreset-emailtext-user'     => '{{GRAMMAR:genitive|{{SITENAME}}}} kasutaja $1 palus meelde tuletada sinu {{GRAMMAR:genitive|{{SITENAME}}}} ($4) konto üksikasjad. Selle e-posti aadressiga on seotud {{PLURAL:$3|järgmine konto|järgmised kontod}}:
 
 $2
 
 {{PLURAL:$3|See ajutine parool aegub|Need ajutised paroolid aeguvad}} {{PLURAL:$5|ühe|$5}} päeva pärast.
 Peaksid nüüd sisse logima ja uue parooli valima. Kui selle palve esitas keegi teine või kui sulle meenus su parool ja sa ei soovi seda enam muuta, võid teadet eirata ja jätkata vana parooli kasutamist.',
-'passwordreset-emailelement'   => 'Kasutajanimi: $1
+'passwordreset-emailelement'       => 'Kasutajanimi: $1
 Ajutine parool: $2',
-'passwordreset-emailsent'      => 'Meeldetuletuskiri on saadetud.',
+'passwordreset-emailsent'          => 'Meeldetuletuskiri on saadetud.',
+'passwordreset-emailsent-capture'  => 'E-kirjatsi on saadetud allpool näidatav meeldetuletus.',
+'passwordreset-emailerror-capture' => 'Koostati allpool näidatav meeldetuletus, aga selle e-kirjatsi kasutajale saatmine ebaõnnestus: $1',
 
 # Special:ChangeEmail
 'changeemail'          => 'E-posti aadressi muutmine',
@@ -1379,6 +1386,8 @@ Toimingut ei saa hiljem tühistada.',
 'prefs-registration'            => 'Registreerumise aeg:',
 'yourrealname'                  => 'Tegelik nimi:',
 'yourlanguage'                  => 'Keel:',
+'yourvariant'                   => 'Kiri:',
+'prefs-help-variant'            => 'Kiri või kirjaviis, milles eelistad selle viki sisulehekülgi kuvada.',
 'yournick'                      => 'Uus allkiri:',
 'prefs-help-signature'          => 'Kommentaarile tuleks aruteluleheküljel alla kirjutada märkidega <nowiki>~~~~</nowiki>, mis muutuvad sinu allkirjaks ja ajatempliks.',
 'badsig'                        => 'Sobimatu allkiri.
@@ -1522,10 +1531,11 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 'right-passwordreset'         => 'Vaadata parooli lähtestamise e-kirju',
 
 # User rights log
-'rightslog'      => 'Kasutaja õiguste logi',
-'rightslogtext'  => 'See on logi kasutajate õiguste muutuste kohta.',
-'rightslogentry' => 'muutis kasutaja $1 rühmast $2 rühma $3 liikmeks',
-'rightsnone'     => '(puudub)',
+'rightslog'                  => 'Kasutaja õiguste logi',
+'rightslogtext'              => 'See on logi kasutajate õiguste muutuste kohta.',
+'rightslogentry'             => 'andis kasutajale $1 järgmised õigused: $3; seni oli ta $2',
+'rightslogentry-autopromote' => 'sai automaatselt järgmised õigused: $3; seni oli ta $2',
+'rightsnone'                 => '(puudub)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'seda lehekülge lugeda',
@@ -1748,7 +1758,11 @@ Kui probleem ei kao, võta ühendust [[Special:ListUsers/sysop|administraatoriga
 'upload-http-error'         => 'HTTP-viga: $1',
 
 # File backend
+'backend-fail-stream'        => 'Faili $1 ei saanud edastada.',
+'backend-fail-backup'        => 'Faili $1 ei saanud varundada.',
 'backend-fail-notexists'     => 'Faili $1 pole olemas.',
+'backend-fail-hashes'        => 'Võrdluseks ei saanud hankida faili räsiväärtusi.',
+'backend-fail-notsame'       => 'Asukohas $1 on juba olemas mitteidentne fail.',
 'backend-fail-invalidpath'   => '$1 pole sobiv talletustee.',
 'backend-fail-delete'        => 'Faili $1 ei saa kustutada.',
 'backend-fail-alreadyexists' => 'Fail $1 on juba olemas.',
@@ -1760,6 +1774,7 @@ Kui probleem ei kao, võta ühendust [[Special:ListUsers/sysop|administraatoriga
 'backend-fail-closetemp'     => 'Ajutist faili ei saa sulgeda.',
 'backend-fail-read'          => 'Faili $1 ei saa lugeda.',
 'backend-fail-create'        => 'Faili $1 ei saa luua.',
+'backend-fail-contenttype'   => 'Faili, mida soovitakse talletada asukohas "$1", sisutüüpi saanud kindlaks teha.',
 
 # Lock manager
 'lockmanager-notlocked'       => 'Rada "$1" ei saa lukust lahti teha, sest see pole lukus.',
@@ -1789,7 +1804,7 @@ Selle turvalisust ei saa kontrollida.',
 'img-auth-nopathinfo'       => 'PATH_INFO puudub.
 Sinu server pole seadistatud seda teavet edastama.
 See võib olla CGI-põhine ja ei toeta img_auth-i.
-Vaata lehekülge "[https://www.mediawiki.org/wiki/Manual:Image_Authorization Image Authorization]".',
+Vaata lehekülge https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'         => 'Soovitud salvestuskoht pole üleslaadimiskataloogi all.',
 'img-auth-badtitle'         => 'Väljendist "$1" ei saa sobivat pealkirja moodustada.',
 'img-auth-nologinnWL'       => 'Sa pole sisselogitud ja "$1" pole valges nimekirjas.',
@@ -2004,6 +2019,8 @@ Igal real on ära toodud esimene ja teine ümbersuunamisleht ning samuti teise �
 'wantedpages'             => 'Kõige oodatumad leheküljed',
 'wantedpages-badtitle'    => 'Tulemuste seas on vigane pealkiri: $1',
 'wantedfiles'             => 'Kõige oodatumad failid',
+'wantedfiletext-cat'      => 'Järgmised failid puuduvad, aga on lehekülgedel kasutuses. Siin võivad olla loetletud ka välistes hoidlates asuvad failid, hoolimata sellest, et nad tegelikult olemas on. Loendi sellised valeliikmed on <del>läbi kriipsutatud</del>. Lisaks on puuduvaid faile sisaldavad leheküljed loetletud asukohas [[:$1]].',
+'wantedfiletext-nocat'    => 'Järgmised failid puuduvad, aga on lehekülgedel kasutuses. Siin võivad olla loetletud ka välistes hoidlates asuvad failid, hoolimata sellest, et nad tegelikult olemas on. Loendi sellised valeliikmed on <del>läbi kriipsutatud</del>.',
 'wantedtemplates'         => 'Kõige oodatumad mallid',
 'mostlinked'              => 'Kõige viidatumad leheküljed',
 'mostlinkedcategories'    => 'Kõige viidatumad kategooriad',
@@ -2819,6 +2836,9 @@ Palun ürita uuesti.',
 'import-invalid-interwiki'   => 'Määratud vikist ei saa importida.',
 'import-error-edit'          => 'Lehekülge "$1" ei imporditud, sest sul pole õigust seda muuta.',
 'import-error-create'        => 'Lehekülge "$1" ei imporditud, sest sul pole õigust seda luua.',
+'import-error-interwiki'     => 'Lehekülge "$1" ei impordita, sest selle pealkirja hoitakse välislinkide (interviki) jaoks.',
+'import-error-special'       => 'Lehekülge "$1" ei impordita, sest see kuulub erinimeruumi, kus pole leheküljed lubatud.',
+'import-error-invalid'       => 'Lehekülge "$1" ei impordita, sest selle pealkiri on vigane.',
 
 # Import log
 'importlogpage'                    => 'Impordilogi',
@@ -2829,8 +2849,15 @@ Palun ürita uuesti.',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|redaktsioon|redaktsiooni}} asukohast $2',
 
 # JavaScriptTest
-'javascripttest'          => 'JavaScripti katsetamine',
-'javascripttest-disabled' => 'See toiming on keelatud.',
+'javascripttest'                           => 'JavaScripti katsetamine',
+'javascripttest-disabled'                  => 'See toiming on keelatud.',
+'javascripttest-title'                     => '$1-katse käitus',
+'javascripttest-pagetext-noframework'      => 'Seda lehekülge hoitakse JavaScripti katsete jaoks.',
+'javascripttest-pagetext-unknownframework' => 'Tundmatu katseraamistik "$1".',
+'javascripttest-pagetext-frameworks'       => 'Palun vali üks järgmistest katseraamistikest: $1',
+'javascripttest-pagetext-skins'            => 'Vali kujundus, millega katsetada:',
+'javascripttest-qunit-intro'               => 'Vaata [$1 katsetamise dokumentatsiooni] asukohas mediawiki.org.',
+'javascripttest-qunit-heading'             => 'MediaWiki JavaScripti QUnit-katsekomplekt',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'                 => 'Sinu kasutajaleht',
@@ -2904,7 +2931,8 @@ Samuti võimaldab see resümee reale põhjenduse lisamist.',
 'tooltip-summary'                     => 'Kirjuta lühike kokkuvõte',
 
 # Stylesheets
-'common.css' => '/* Siinset CSS-i kasutavad kõik kujundused. */',
+'common.css'   => '/* Siin olevat CSS-i kasutavad kõik kujundused. */',
+'standard.css' => '/* Siin olev CSS puudutab Standard-kujunduse kasutajaid. */',
 
 # Scripts
 'common.js' => '/* Siinne JavaScript laaditakse igale kasutajatele igal laaditud leheküljel. */',
@@ -3124,12 +3152,13 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-exposureindex'               => 'Särituse number',
 'exif-sensingmethod'               => 'Tundlikustamismeetod',
 'exif-filesource'                  => 'Faili päritolu',
-'exif-scenetype'                   => 'Stseeni tüüp',
+'exif-scenetype'                   => 'Võtte tüüp',
 'exif-customrendered'              => 'Kohandatud pilditöötlus',
 'exif-exposuremode'                => 'Särituse meetod',
 'exif-whitebalance'                => 'Valge tasakaal',
 'exif-digitalzoomratio'            => 'Digisuumi tegur',
 'exif-focallengthin35mmfilm'       => '35 mm-se filmi fookuskaugus',
+'exif-scenecapturetype'            => 'Ülesvõtte tüüp',
 'exif-gaincontrol'                 => 'Tundlikkus',
 'exif-contrast'                    => 'Kontrastsus',
 'exif-saturation'                  => 'Küllastus',
@@ -3198,6 +3227,7 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-datetimemetadata'            => 'Metaandmete viimane muutmisaeg',
 'exif-nickname'                    => 'Pildi vabas vormis nimi',
 'exif-rating'                      => 'Hinne (5 palli skaala)',
+'exif-rightscertificate'           => 'Õiguste haldamise sertifikaat',
 'exif-copyrighted'                 => 'Autoriõiguslik seisund',
 'exif-copyrightowner'              => 'Autoriõiguse valdaja',
 'exif-usageterms'                  => 'Kasutustingimused',
@@ -3213,6 +3243,7 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-giffilecomment'              => 'GIF-faili kommentaar',
 'exif-intellectualgenre'           => 'Üksuse tüüp',
 'exif-subjectnewscode'             => 'Teemakood',
+'exif-scenecode'                   => 'IPTC-võttekood',
 'exif-event'                       => 'Kujutatud sündmus',
 'exif-organisationinimage'         => 'Kujutatud organisatsioon',
 'exif-personinimage'               => 'Kujutatud isik',
@@ -3306,6 +3337,7 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 
 'exif-exposuremode-0' => 'Automaatne säritus',
 'exif-exposuremode-1' => 'Manuaalne säritus',
+'exif-exposuremode-2' => 'Automaatne särikahvel',
 
 'exif-whitebalance-0' => 'Automaatne valge tasakaal',
 'exif-whitebalance-1' => 'Manuaalne valge tasakaal',
@@ -3380,12 +3412,15 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-gpsdirection-m' => 'Magneetiline suund',
 
 'exif-dc-contributor' => 'Asjaosalised',
+'exif-dc-coverage'    => 'Teabevahendi ruumiline või ajaline ulatus',
 'exif-dc-date'        => 'Kuupäevad',
 'exif-dc-publisher'   => 'Väljaandja',
 'exif-dc-relation'    => 'Seotud teabevahendid',
 'exif-dc-rights'      => 'Õigused',
 'exif-dc-source'      => 'Allikmeediafail',
 'exif-dc-type'        => 'Meediafaili tüüp',
+
+'exif-rating-rejected' => 'Tagasi lükatud',
 
 'exif-isospeedratings-overflow' => 'Suurem kui 65535',
 
@@ -3587,7 +3622,7 @@ Sa võid [[Special:EditWatchlist|kasutada ka harilikku tekstiredaktorit]].',
 'version-hook-subscribedby'     => 'Tellijad',
 'version-version'               => '(Versioon $1)',
 'version-license'               => 'Litsents',
-'version-poweredby-credits'     => "See viki kasutab '''[//www.mediawiki.org/ MediaWiki]''' tarkvara. Autoriõigus © 2001-$1 $2.",
+'version-poweredby-credits'     => "See viki kasutab '''[//www.mediawiki.org/ MediaWiki]''' tarkvara. Autoriõigus © 2001–$1 $2.",
 'version-poweredby-others'      => 'teised',
 'version-license-info'          => "MediaWiki on vaba tarkvara; tohid seda taaslevitada ja/või selle põhjal teisendeid luua vastavalt Vaba Tarkvara Fondi avaldatud GNU Üldise Avaliku Litsentsi versioonis 2 või hilisemas seatud tingimustele.
 
@@ -3747,6 +3782,7 @@ Kui ei, kasuta allolevat lihtsat vormi. Sinu kommentaar lisatakse koos kasutajan
 
 # API errors
 'api-error-badaccess-groups'              => 'Sul pole selles vikis üleslaadimisõigust.',
+'api-error-badtoken'                      => 'Sisemine tõrge: Sobimatu nimi.',
 'api-error-copyuploaddisabled'            => 'URLi kaudu üleslaadimine on selles serveris keelatud.',
 'api-error-duplicate'                     => 'Siin on {{PLURAL:$1|[$2 teine samasisuline fail]|[$2 mõned teised samasisulised failid]}} juba olemas.',
 'api-error-duplicate-archive'             => 'Siin {{PLURAL:$1|on [$2 teine samasisuline fail]|olid [$2 mõned teised samasisulised failid]}} juba olemas, aga {{PLURAL:$1|see|need}} kustutati.',
@@ -3754,10 +3790,12 @@ Kui ei, kasuta allolevat lihtsat vormi. Sinu kommentaar lisatakse koos kasutajan
 'api-error-duplicate-popup-title'         => '{{PLURAL:$1|Duplikaatfail|Duplikaatfailid}}',
 'api-error-empty-file'                    => 'Üleslaaditav fail on tühi.',
 'api-error-emptypage'                     => 'Uute tühjade lehekülgede loomine pole lubatud.',
+'api-error-fetchfileerror'                => 'Sisemine tõrge: Midagi läks faili kättesaamisel valesti.',
 'api-error-file-too-large'                => 'Üleslaaditav fail on liiga suur.',
 'api-error-filename-tooshort'             => 'Failinimi on liiga lühike.',
 'api-error-filetype-banned'               => 'Antud failitüüp on keelatud.',
 'api-error-filetype-missing'              => 'Failinime tagant puudub laiend.',
+'api-error-hookaborted'                   => 'Tarkvaralisa katkestas muudatuse tegemise.',
 'api-error-http'                          => 'Sisetõrge: Serveriga pole võimalik ühendust luua.',
 'api-error-illegal-filename'              => 'Failinimi pole lubatud.',
 'api-error-internal-error'                => 'Sisetõrge: Sinu faili vikisse üleslaadimise juures läks midagi valesti.',

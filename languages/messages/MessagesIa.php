@@ -3731,7 +3731,7 @@ Le imagines se monstra in plen resolution, le altere typos de file se executa di
 'dberr-cachederror' => 'Lo sequente es un copia del cache del pagina requestate, e pote esser obsolete.',
 
 # HTML forms
-'htmlform-invalid-input'       => 'Il ha problemas con alique que tu entrava',
+'htmlform-invalid-input'       => 'Il ha problemas con un parte del datos que tu ha entrate',
 'htmlform-select-badoption'    => 'Le valor que tu specificava non es un option valide.',
 'htmlform-int-invalid'         => 'Le valor que tu specificava non es un numero integre.',
 'htmlform-float-invalid'       => 'Le valor que tu specificava non es un numero.',
@@ -3789,7 +3789,7 @@ Si non, tu pote usar le formulario facile hic infra. Tu commento essera addite a
 'feedback-error1'    => 'Error: Resultato del API non recognoscite',
 'feedback-error2'    => 'Error: Modification fallite',
 'feedback-error3'    => 'Error: Nulle responsa del API',
-'feedback-thanks'    => 'Gratias! Tu retroaction ha essite publicate in le pagina "[$2 $1]".',
+'feedback-thanks'    => 'Gratias! Tu evalutation ha essite publicate in le pagina "[$2 $1]".',
 'feedback-close'     => 'Finite',
 'feedback-bugcheck'  => 'Bon! Ma per favor verifica que iste falta non es [$1 jam cognoscite].',
 'feedback-bugnew'    => 'Si, io lo ha verificate; reportar un nove falta',

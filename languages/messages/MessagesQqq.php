@@ -104,6 +104,7 @@
  * @author Slomox
  * @author Sp5uhe
  * @author Srhat
+ * @author Subhashkataria21.90
  * @author Tedjuh10
  * @author Tgr
  * @author The Evil IP address
@@ -1787,7 +1788,7 @@ I guess that this should appear before an input box where you can specify that r
 'rc-change-size'                  => '{{optional}}
 
 Does not work under $wgMiserMode ([[mwr:48986|r48986]]).',
-'rc-change-size-new'              => 'Tooltip when overing a change list diff size. The tooltip show the resulting new size in bytes.',
+'rc-change-size-new'              => 'Tooltip when hovering a change list diff size. The tooltip shows the resulting new size in bytes.',
 'newsectionsummary'               => 'Default summary when adding a new section to a page.',
 
 # Recent changes linked
@@ -1921,13 +1922,19 @@ Extensions making use of it:
 'lockmanager-notlocked'        => 'Parameters:
 * $1 is a resource path (e.g. "mwstore://media-public/a/ab/file.jpg").',
 'lockmanager-fail-closelock'   => 'Parameters:
-* $1 is a resource path (e.g. "mwstore://media-public/a/ab/file.jpg").',
+* $1 is a resource path (e.g. "mwstore://media-public/a/ab/file.jpg").
+
+A "[http://en.wikipedia.org/wiki/File_locking#Lock_files lock file]" signals by its presence that some resource is locked.',
 'lockmanager-fail-deletelock'  => 'Parameters:
-* $1 is a resource path (e.g. "mwstore://media-public/a/ab/file.jpg").',
+* $1 is a resource path (e.g. "mwstore://media-public/a/ab/file.jpg").
+
+A "[http://en.wikipedia.org/wiki/File_locking#Lock_files lock file]" signals by its presence that some resource is locked.',
 'lockmanager-fail-acquirelock' => 'Parameters:
 * $1 is a resource path (e.g. "mwstore://media-public/a/ab/file.jpg").',
 'lockmanager-fail-openlock'    => 'Parameters:
-* $1 is a resource path (e.g. "mwstore://media-public/a/ab/file.jpg").',
+* $1 is a resource path (e.g. "mwstore://media-public/a/ab/file.jpg").
+
+A "[http://en.wikipedia.org/wiki/File_locking#Lock_files lock file]" signals by its presence that some resource is locked.',
 'lockmanager-fail-releaselock' => 'Parameters:
 * $1 is a resource path (e.g. "mwstore://media-public/a/ab/file.jpg").',
 'lockmanager-fail-db-bucket'   => 'Parameters:
@@ -2509,7 +2516,7 @@ Possible alternatives to the word 'content' are 'subject matter' or 'wiki subjec
 'wlnote'               => 'Used on [[Special:Watchlist]] when the maximum number of days is specified.
 Similar to {{msg-mw|rcnote}} which is used on [[Special:RecentChanges]].
 * $1 is the number of changes shown,
-* $2 is the number of days for which the changes are shown,
+* $2 is the number of hours for which the changes are shown,
 * $3 is a date alone,
 * $4 is a time alone.',
 'wlshowlast'           => "Appears on [[Special:Watchlist]]. Variable $1 gives a choice of different numbers of hours, $2 gives a choice of different numbers of days and $3 is '{{int:watchlistall2}}' ([[Mediawiki:watchlistall2/{{SUBPAGENAME}}]]). Clicking on your choice changes the list of changes you see (without changing the default in my preferences).",
@@ -3179,10 +3186,10 @@ CSS applied to users using Monobook skin.',
 'handheld.css'            => '{{optional}}
 Style that can be applied on [[w:handheld devices|handheld devices]] (e.g. mobile phones), <code>$wgHandheldStyle</code> is an optional configuration variable which specifies a style sheet file for handheld devices.',
 'noscript.css'            => '{{optional}}',
-'group-autoconfirmed.css' => '{{optional}}',
-'group-bot.css'           => '{{optional}}',
-'group-sysop.css'         => '{{optional}}',
-'group-bureaucrat.css'    => '{{optional}}',
+'group-autoconfirmed.css' => '{{doc-group|autoconfirmed|css}}',
+'group-bot.css'           => '{{doc-group|bot|css}}',
+'group-sysop.css'         => '{{doc-group|sysop|css}}',
+'group-bureaucrat.css'    => '{{doc-group|bureaucrat|css}}',
 
 # Scripts
 'common.js'              => '{{optional}}
@@ -3197,10 +3204,10 @@ JS for users using Monobook skin.',
 'simple.js'              => '{{optional}}',
 'modern.js'              => '{{optional}}',
 'vector.js'              => '{{optional}}',
-'group-autoconfirmed.js' => '{{optional}}',
-'group-bot.js'           => '{{optional}}',
-'group-sysop.js'         => '{{optional}}',
-'group-bureaucrat.js'    => '{{optional}}',
+'group-autoconfirmed.js' => '{{doc-group|autoconfirmed|js}}',
+'group-bot.js'           => '{{doc-group|bot|js}}',
+'group-sysop.js'         => '{{doc-group|sysop|js}}',
+'group-bureaucrat.js'    => '{{doc-group|bureaucrat|js}}',
 
 # Attribution
 'anonymous'        => 'This message is shown when viewing the credits of a page (example: {{fullurl:Main Page|action=credits}}). Note that this action is disabled by default (currently enabled on translatewiki.net).
@@ -4324,7 +4331,8 @@ Name of month in Hebrew calender.',
 # Signatures
 'signature'    => "This will be substituted in the signature (~<nowiki></nowiki>~~ or ~~<nowiki></nowiki>~~ excluding timestamp)
 * $1: the username that is currently login
-* $2: the customized signature which is specified in [[Special:Preferences|user's preferences]] as non-raw",
+* $2: the customized signature which is specified in [[Special:Preferences|user's preferences]] as non-raw
+Use your language default parentheses ({{msg-mw|parentheses}}), but not use the message direct.",
 'timezone-utc' => '{{optional}}',
 
 # Core parser functions

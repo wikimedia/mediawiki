@@ -371,8 +371,8 @@ Di piej ar fail "$1" kudn diliit.
 Imaita aredi diliit bai smadi els.',
 'badtitle'             => 'Bad taikl',
 'badtitletext'         => 'Di piej taikl yu rikwes invalid, emti, ar a inkarek lingk inta-langwij ar inta-wiki taikl. Imaita kantien wan ar muo kiarakta we kyaahn yuuz ina taikl.',
-'perfcached'           => 'Di falarin dieta kiash ahn maita no op tu diet.',
-'perfcachedts'         => 'Di falarin dieta kiash, ahn laas opdiet $1.',
+'perfcached'           => 'Di falarin dieta kiash ahn maita no op tu diet. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'Di falarin dieta kiash, ahn laas opdiet $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Opdiet fi dis piej korantli disiebl.
 Dieta ya no go rifresh fi nou.',
 'wrong_wfQuery_params' => 'Inkarek paramita tu wfQuery()<br />

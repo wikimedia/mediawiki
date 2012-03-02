@@ -481,9 +481,9 @@ Wänn s des nit isch, hesch villicht e Fähler in dr Software gfunde. Bitte mäl
 'cannotdelete'         => 'D Syte oder d Datei „$1“ cha nit glescht wäre. Si isch villicht scho vu eber anderem glescht wore.',
 'badtitle'             => 'Ugültiger Titel',
 'badtitletext'         => 'Dr Titel vu dr agforderte Syte isch nit giltig gsi, leer, oder e nit giltig Sprochgleich vun eme andre Wiki.',
-'perfcached'           => 'Die Informatione chömme us em Zwüschespeicher un sin derwiil villicht nid aktuell.
+'perfcached'           => 'Die Informatione chömme us em Zwüschespeicher un sin derwiil villicht nid aktuell. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.
 ----',
-'perfcachedts'         => 'Die Date stamme us em Cache un sin am $1 s letscht Mol aktualisiert wore.',
+'perfcachedts'         => 'Die Date stamme us em Cache un sin am $1 s letscht Mol aktualisiert wore. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => "'''D Aktualisierigsfunktion fir die Syte isch im Momänt deaktiviert. D Date wäre vorerscht nit ernejert.'''",
 'wrong_wfQuery_params' => 'Falschi Parameter fir wfQuery()<br />
 Funktion: $1<br />
@@ -1156,7 +1156,7 @@ Stell sicher, ass d Versionsgschicht vun eme Artikel historisch korrekt isch.',
 'prefs-rc'                      => 'Letschti Änderige',
 'prefs-watchlist'               => 'Beobachtigslischte',
 'prefs-watchlist-days'          => 'Aazahl vu dr Täg, wu d Beobchtigslischt standardmässig soll umfasse:',
-'prefs-watchlist-days-max'      => 'Maximal 7 Täg',
+'prefs-watchlist-days-max'      => 'Maximum $1 {{PLURAL:$1|day|days}}',
 'prefs-watchlist-edits'         => 'Maximali Zahl vu dr Yyträg:',
 'prefs-watchlist-edits-max'     => 'Maximali Aazahl: 1000',
 'prefs-watchlist-token'         => 'Beobachtigslischte-Chännzeiche:',

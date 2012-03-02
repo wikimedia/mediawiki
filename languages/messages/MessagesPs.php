@@ -9,6 +9,7 @@
  *
  * @author Ahmed-Najib-Biabani-Ibrahimkhel
  * @author Kaganer
+ * @author Umherirrender
  */
 
 $namespaceNames = array(
@@ -1088,10 +1089,10 @@ $1',
 'group-suppress'   => 'څارونکي',
 'group-all'        => '(ټول)',
 
-'group-user-member'       => '{{doc-group|کارن|غړی}}',
-'group-bot-member'        => '{{doc-group|روباټ|غړی}}',
-'group-sysop-member'      => '{{doc-group|پازوال|غړی}}',
-'group-bureaucrat-member' => '{{doc-group|بيوروکراټ|غړی}}',
+'group-user-member'       => 'کارن',
+'group-bot-member'        => 'روباټ',
+'group-sysop-member'      => 'پازوال',
+'group-bureaucrat-member' => 'بيوروکراټ',
 'group-suppress-member'   => '{{GENDER:$1|څارن}}',
 
 'grouppage-user'       => '{{ns:project}}:کارنان',

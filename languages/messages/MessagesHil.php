@@ -375,8 +375,8 @@ Mahimo nga napanas na ini sang iban.',
 'badtitle'             => 'Malain nga titulo',
 'badtitletext'         => 'Ang ginapangayo mo nga titulo ka pahina ay sala, blangko, ukon indi ensakto ang pagtabid sang inter-lengwahe o inter-wiki na titulo.
 Siguro may-ara ini sang isa ukon madamo nga karakter nga indi ginabaton kag ginagamit sa titulo.',
-'perfcached'           => 'Ang masunod nga datos nakatago lamang kag mahimo nga indi bag-o.',
-'perfcachedts'         => 'Ang masunod nga datos nakatago lamang, kag pinaka-ulihe nga ginbag-o sang $1.',
+'perfcached'           => 'Ang masunod nga datos nakatago lamang kag mahimo nga indi bag-o. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'Ang masunod nga datos nakatago lamang, kag pinaka-ulihe nga ginbag-o sang $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Ang mga pagbag-o sa sini nga panid karon ginpa-untat.
 Ang datos nga yari diri indi pagliwaton.',
 'wrong_wfQuery_params' => 'Indi insakto nga mga parametro sa wfQuery()<br />
@@ -1088,7 +1088,7 @@ Tandai nga ang ila nga palasulundan sang mga unod sang {{SITENAME}} mahimo nga m
 'prefs-rc'                      => 'Mga Bag-o nga Inislan',
 'prefs-watchlist'               => 'Lista sang mga ginabantayan',
 'prefs-watchlist-days'          => 'Mga adlaw nga ipakita sa lista sang ginabantayan:',
-'prefs-watchlist-days-max'      => 'Indi magsobra 7 ka adlaw',
+'prefs-watchlist-days-max'      => 'Maximum $1 {{PLURAL:$1|day|days}}',
 'prefs-watchlist-edits'         => 'Ang pinakataas nga beses sang pag-ilis nga ipakita sa ginpalawig nga lista sang ginabantayan:',
 'prefs-watchlist-edits-max'     => 'Pinakataas nga numero: 1000',
 'prefs-watchlist-token'         => 'Token sang lista sang ginabantayan:',

@@ -488,8 +488,8 @@ Sigana geus dihapus ku nu séjén.',
 'cannotdelete-title'   => 'Hanteu bisa ngahapus kaca "$1"',
 'badtitle'             => 'Judul goréng',
 'badtitletext'         => 'Judul kaca nu dipénta teu bener, kosong, atawa judul antarbasa atawa antarwikina salah tutumbu.',
-'perfcached'           => 'Data di handap ieu sindangan sahingga--meureun--teu mutahir:',
-'perfcachedts'         => 'Data di handap ieu mah sindangan, panungtungan diropéa téh $1.',
+'perfcached'           => 'Data di handap ieu sindangan sahingga--meureun--teu mutahir. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'Data di handap ieu mah sindangan, panungtungan diropéa téh $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Pangrobahan ahir ti kaca ieu keur dipaéhkeun. Data anu aya di dieu ayeuna moal dimuat deui.',
 'wrong_wfQuery_params' => 'Parameter salah ka wfQuery()<br />Fungsi: $1<br />Pamenta: $2',
 'viewsource'           => 'Témbongkeun sumber',
@@ -1124,7 +1124,7 @@ Coba susud dimimitian ku ''all:'' pikeun nyusud sakabéh kandunganana (kaasup ka
 'prefs-rc'                      => 'Panémbong robahan anyar jeung tukung',
 'prefs-watchlist'               => 'Awaskeuneun',
 'prefs-watchlist-days'          => 'Jumlah poé anu ditémbongkeun dina daptar awaskeuneun:',
-'prefs-watchlist-days-max'      => 'Panglilana 7 poé',
+'prefs-watchlist-days-max'      => 'Maximum $1 {{PLURAL:$1|day|days}}',
 'prefs-watchlist-edits'         => 'Jumlah parobahan maksimum nu ditémbongkeun dina daptar panjang awaskeuneun:',
 'prefs-watchlist-edits-max'     => 'Panglobana: 1000',
 'prefs-misc'                    => 'Pangaturan rupa-rupa',
@@ -1541,7 +1541,7 @@ Pariksa heula jujutan hapusanana saméméh neruskeun ngamuat deui éta berkas.',
 
 # HTTP errors
 'http-invalid-url'      => 'URL teu bener: $1',
-'http-invalid-scheme'   => 'URL anu skémana "$ 1" teu karojong',
+'http-invalid-scheme'   => 'URL anu skémana "$1" teu karojong',
 'http-host-unreachable' => 'URL teu kahontal.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>

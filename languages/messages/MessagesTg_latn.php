@@ -353,8 +353,8 @@ Lutfan inro ba [[Special:ListUsers/sysop|mudir]] bo işora kardani nişonai URL 
 'badarticleerror'      => 'Nametavon in amalro bar in sahifa ançom dod.',
 'badtitle'             => 'Unvoni nomunosib',
 'badtitletext'         => "Unvoni sahifai darxostşuda nomū'tabar, xolī, jo pajvandi bajnizaboni jo bajnivikiji nodurust bud. On metavonad jak jo jakcand alomathoero dar bar girad, ki dar unvonho istifoda şuda nametavonand.",
-'perfcached'           => 'Dodahoi zerin az hofizai muvaqqatī faroxonī şudaand va mumkin ast, komilan ba rūz naşudaand.',
-'perfcachedts'         => 'Dodahoi zerin az hofizai muvaqqatī faroxonī şudaand va mumkin ast, oxirin ba rūzrasonī $1 ast.',
+'perfcached'           => 'Dodahoi zerin az hofizai muvaqqatī faroxonī şudaand va mumkin ast, komilan ba rūz naşudaand. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'Dodahoi zerin az hofizai muvaqqatī faroxonī şudaand va mumkin ast, oxirin ba rūzrasonī $1 ast. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => "Imkoni ba rūzrasoniji in sahifa fe'lan ƣajrifa'ol şudaast.",
 'wrong_wfQuery_params' => 'Parametrhoi nodurust ba wfQuery()<br />
 Amal: $1<br />
@@ -441,7 +441,7 @@ Ba\'d az dastras kardani on, marhamat karda vurud kuned.',
 'accountcreated'          => 'Hisobi çadid soxta şud',
 'accountcreatedtext'      => 'Hisobi korbar baroi $1 soxta şud.',
 'createaccount-title'     => 'Eçodi hisobi korbarī dar {{SITENAME}}',
-'createaccount-text'      => 'Jak nafare baroi 2$ jak hisobi korbarī dar {{SITENAME}} eçod kardaast ($4). Kalimai uburi "$2" cunin ast: "$3". Şumo bojad voridi sistem şaved to kalimai uburi xudro taƣjir bidihed.
+'createaccount-text'      => 'Jak nafare baroi $2 jak hisobi korbarī dar {{SITENAME}} eçod kardaast ($4). Kalimai uburi "$2" cunin ast: "$3". Şumo bojad voridi sistem şaved to kalimai uburi xudro taƣjir bidihed.
 
 Agar in hisob iştibohe soxta şudaast, in nomaro nodida bigired.',
 'usernamehasherror'       => 'Nomi korbarī nametavonad şomili alomathoi dar ham boşad',

@@ -371,8 +371,8 @@ Nopugas no kaanto do tulun suai.',
 'badtitle'             => 'Sosomu tuluhon',
 'badtitletext'         => 'Tuluhon bobolikon di pinokianu nopo nga nokosilap, aiso, nakasala pinioputan boros toi pinioputan tuluhon wiki.
 Haro kaanto sokukuri do iso pimato it awu milo gunoon id pongkotuluhon.',
-'perfcached'           => 'Data sumusuhut namadangkob om okon ko noinwoguan.',
-'perfcachedts'         => 'Data sumusuhut namadangkob, om nopinwoguan ontok $1.',
+'perfcached'           => 'Data sumusuhut namadangkob om okon ko noinwoguan. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'Data sumusuhut namadangkob, om nopinwoguan ontok $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Pinisok ponginwoguan id bolikon diti.
 Awu nodi posikapon do popointalang iri data kawawagu.',
 'wrong_wfQuery_params' => 'Nokosilap tangaparamito mongoi wfQuery()<br />

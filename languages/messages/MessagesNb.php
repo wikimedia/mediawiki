@@ -561,7 +561,7 @@ $1',
 'badaccess-group0' => 'Du har ikke tilgang til å utføre handlingen du prøvde på.',
 'badaccess-groups' => 'Handlingen du prøvde å utføre kan kun utføres av brukere i {{PLURAL:$2|gruppa|gruppene}} $1.',
 
-'versionrequired'     => 'Versjon $1 av MediaWiki påtrengt',
+'versionrequired'     => 'Versjon $1 av MediaWiki er påkrevd',
 'versionrequiredtext' => 'Versjon $1 av MediaWiki er nødvendig for å bruke denne siden. Se [[Special:Version|versjonsiden]]',
 
 'ok'                      => 'OK',
@@ -598,7 +598,7 @@ $1',
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Side',
 'nstab-user'      => 'Brukerside',
-'nstab-media'     => 'Mediaside',
+'nstab-media'     => 'Medieside',
 'nstab-special'   => 'Spesialside',
 'nstab-project'   => 'Prosjektside',
 'nstab-image'     => 'Fil',
@@ -780,7 +780,7 @@ Som et resultat kan det ikke opprettes flere kontoer fra denne IP-adressen.',
 Skriv inn en fungerende e-postadresse eller tøm feltet.',
 'cannotchangeemail'          => 'E-postadresser knyttet til brukerkontoer kan ikke endres på denne wikien.',
 'accountcreated'             => 'Konto opprettet',
-'accountcreatedtext'         => 'Brukerkonto for $1 har blitt opprettet.',
+'accountcreatedtext'         => 'Brukerkontoen for $1 har blitt opprettet.',
 'createaccount-title'        => 'Kontooppretting på {{SITENAME}}',
 'createaccount-text'         => 'Noen opprettet en konto for din e-postadresse på {{SITENAME}} ($4) med navnet «$2», med «$3» som passord. Du burde logge inn og endre passordet nå.
 
@@ -1852,7 +1852,7 @@ Den kan ikke sikkerhetskontrolleres.',
 'img-auth-nopathinfo'       => 'Manglende PATH_INFO.
 Tjeneren din er ikke satt opp til å gi denne informasjonen.
 Den er kanskje CGI-basert og støtter ikke img_auth.
-[//www.mediawiki.org/wiki/Manual:Image_Authorization Se bildeautorisasjon.]',
+https://www.mediawiki.org/wiki/Manual:Image_Authorization Se bildeautorisasjon.',
 'img-auth-notindir'         => 'Den ønskede stien finnes ikke i den oppsatte opplastingsmappa.',
 'img-auth-badtitle'         => 'Kunne ikke lage en gyldig tittel ut fra «$1».',
 'img-auth-nologinnWL'       => 'Du er ikke logget inn, og «$1» er ikke på hvitelista.',
@@ -2113,7 +2113,7 @@ Merk at andre sider kanskje lenker til en fil med en direkte lenke, så filen li
 # Book sources
 'booksources'               => 'Bokkilder',
 'booksources-search-legend' => 'Søk etter bokkilder',
-'booksources-go'            => 'Gå',
+'booksources-go'            => 'Søk',
 'booksources-text'          => 'Under er en liste over lenker til andre sider som selger nye og brukte bøker, og kan også ha videre informasjon om bøker du leter etter:',
 'booksources-invalid-isbn'  => 'Det gitte ISBN-nummeret er ugyldig; sjekk om du har angitt det riktig.',
 
@@ -2172,7 +2172,7 @@ Støttede protokoller: <tt>$1</tt> (ikke legg til noen av disse i søket ditt).'
 # Special:ListUsers
 'listusersfrom'      => 'Vis brukere fra og med:',
 'listusers-submit'   => 'Vis',
-'listusers-noresult' => 'Ingen bruker funnet.',
+'listusers-noresult' => 'Ingen brukere funnet.',
 'listusers-blocked'  => '(konto blokkert)',
 
 # Special:ActiveUsers
@@ -2676,7 +2676,7 @@ Bekreft at du har til hensikt å gjøre dette.',
 'unlockbtn'           => 'Åpne databasen',
 'locknoconfirm'       => 'Du har ikke bekreftet handlingen.',
 'lockdbsuccesssub'    => 'Databasen er nå låst',
-'unlockdbsuccesssub'  => 'Databasen er nå lås opp',
+'unlockdbsuccesssub'  => 'Databasen er nå låst opp',
 'lockdbsuccesstext'   => 'Databasen er låst.<br />Husk å [[Special:UnlockDB|låse den opp]] når du er ferdig med vedlikeholdet.',
 'unlockdbsuccesstext' => 'Databasen er låst opp.',
 'lockfilenotwritable' => 'Kan ikke skrive til databasen. For å låse eller åpne databasen, må denne kunne skrives til av tjeneren.',
@@ -3081,7 +3081,7 @@ Ved å åpne den kan systemet ditt kompromitteres.",
 
 # Special:NewFiles
 'newimages'             => 'Galleri over nye filer',
-'imagelisttext'         => "Dete er en liste med '''$1''' {{PLURAL:$1|fil|filer}} sortert $2.",
+'imagelisttext'         => "Dette er en liste med '''$1''' {{PLURAL:$1|fil|filer}} sortert $2.",
 'newimages-summary'     => 'Denne spesialsiden viser de sist opplastede filene.',
 'newimages-legend'      => 'Filnavn',
 'newimages-label'       => 'Filnavn (helt eller delvis):',
@@ -3763,7 +3763,7 @@ Bilder vises med full oppløsning, mens andre filtyper startes direkte gjennom s
 'specialpages-group-other'       => 'Andre spesialsider',
 'specialpages-group-login'       => 'Innlogging / registrering',
 'specialpages-group-changes'     => 'Siste endringer og logger',
-'specialpages-group-media'       => 'Mediarapporter og opplastinger',
+'specialpages-group-media'       => 'Medierapporter og opplastinger',
 'specialpages-group-users'       => 'Brukere og rettigheter',
 'specialpages-group-highuse'     => 'Ofte brukte sider',
 'specialpages-group-pages'       => 'Sidelister',

@@ -400,8 +400,8 @@ Mäld dit n [[Special:ListUsers/sysop|Administrator]] unner Naamenge fon ju URL.
 Fielicht is ju al fon uurswál läsked wuuden.',
 'badtitle'             => 'Uungultige Tittel.',
 'badtitletext'         => 'Die anfräigede Tittel waas uungultich, loos, of n uungultigen Sproaklink fon n uur Wiki.',
-'perfcached'           => 'Do foulgjende Doaten stamme uut dän Cache un sunt muugelkerwiese nit aktuäl:',
-'perfcachedts'         => 'Disse Doaten stamme uut dän Cache, lääste Update: $1',
+'perfcached'           => 'Do foulgjende Doaten stamme uut dän Cache un sunt muugelkerwiese nit aktuäl. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'Disse Doaten stamme uut dän Cache, lääste Update: $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => "'''Ju Aktualisierengsfunktion foar disse Siede is apstuuns deaktivierd. Do Doaten wäide toueerst nit fernäierd.'''",
 'wrong_wfQuery_params' => 'Falske Parameter foar wfQuery()<br />
 Funktion: $1<br />
@@ -1010,7 +1010,7 @@ Staal deertruch sicher, dät ju Versionsgeskichte fon n Artikkel historisk akroa
 'prefs-rc'                      => 'Bekoandreekenge fon "Lääste Annerengen"',
 'prefs-watchlist'               => 'Beooboachtengslieste',
 'prefs-watchlist-days'          => 'Antaal fon Deege, do ju Beooboachtengslieste standoardmäitich uumfoatje skäl:',
-'prefs-watchlist-days-max'      => 'Maximoal 7 Deege',
+'prefs-watchlist-days-max'      => 'Maximum $1 {{PLURAL:$1|day|days}}',
 'prefs-watchlist-edits'         => 'Maximoale Antaal fon Iendraage in ju fergratterde Beooboachtengslieste:',
 'prefs-watchlist-edits-max'     => 'Maximoale Antaal: 1000',
 'prefs-watchlist-token'         => 'Beooboachtengslieste-Token:',

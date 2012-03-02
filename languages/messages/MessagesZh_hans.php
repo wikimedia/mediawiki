@@ -611,7 +611,7 @@ $1',
 'badtitle'             => '错误的标题',
 'badtitletext'         => '所请求页面的标题是无效的、不存在，跨语言或跨wiki链接的标题错误。它可能包含一个或更多的不能用于标题的字符。',
 'perfcached'           => '下列数据已缓存，但可能已过时。最高{{PLURAL:$1|一个结果|$1个结果}}在缓存中可用。',
-'perfcachedts'         => '下列数据已缓存，它们最后更新在$1。最高{{PLURAL:$4|一个结果|$4个结果}}在缓存中可用。',
+'perfcachedts'         => '下列数据已缓存，它们最后更新在$1。最高{{PLURAL:$4|一个结果|$4个结果}}在缓存中可用。 A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => '当前禁止对此页面进行更新。此处的数据将不能被立即刷新。',
 'wrong_wfQuery_params' => '错误的参数被传递到 wfQuery（）<br />
 函数：$1<br />
@@ -1358,7 +1358,7 @@ $1",
 'group-suppress'      => '监督',
 'group-all'           => '（全部）',
 
-'group-user-member'          => '用户',
+'group-user-member'          => '{{GENDER:$1|用户}}',
 'group-autoconfirmed-member' => '自动确认用户',
 'group-bot-member'           => '机器人',
 'group-sysop-member'         => '{{GENDER:$1|管理员}}',
@@ -2057,8 +2057,8 @@ $1',
 # E-mail user
 'mailnologin'          => '无电邮地址',
 'mailnologintext'      => '你必须[[Special:UserLogin|登录]]并在你的[[Special:Preferences|系统设置]]中拥有有效的电子邮件地址才能向其他用户发送电子邮件。',
-'emailuser'            => '给该用户发送电子邮件',
-'emailpage'            => '向用户发邮件',
+'emailuser'            => '电邮联系',
+'emailpage'            => '电邮联系',
 'emailpagetext'        => '您可以用下面的表格去寄一封电邮给这位用户。
 您在[[Special:Preferences|您参数设置]]中所输入的电子邮箱地址将出现在邮件"发件人"一栏中，这样该用户就可以回复您。',
 'usermailererror'      => 'Mail 对象返回错误：',
@@ -3538,7 +3538,7 @@ $5
 'watchlisttools-raw'  => '编辑原始监视列表',
 
 # Signatures
-'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|留言]])',
+'signature' => '[[{{ns:user}}:$1|$2]]（[[{{ns:user_talk}}:$1|留言]]）',
 
 # Core parser functions
 'unknown_extension_tag' => '不明的扩展标签“$1”',

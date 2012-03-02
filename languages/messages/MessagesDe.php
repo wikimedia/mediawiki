@@ -13,6 +13,7 @@
  * @author Church of emacs
  * @author DaSch
  * @author Duesentrieb
+ * @author Geitost
  * @author Giftpflanze
  * @author Imre
  * @author Inkowik
@@ -46,6 +47,7 @@
  * @author Revolus
  * @author Rillke
  * @author SVG
+ * @author Saibo
  * @author Spacebirdy
  * @author Srhat
  * @author TMg
@@ -640,7 +642,7 @@ Siehe die [[Special:Version|Versionsseite]]',
 'ok'                      => 'Okay',
 'pagetitle'               => '$1 – {{SITENAME}}',
 'retrievedfrom'           => 'Von „$1“',
-'youhavenewmessages'      => 'Du hast $1 auf deiner Diskussionsseite ($2).',
+'youhavenewmessages'      => 'Du hast $1 ($2).',
 'newmessageslink'         => 'neue Nachrichten',
 'newmessagesdifflink'     => 'Letzte Änderung',
 'youhavenewmessagesmulti' => 'Du hast neue Nachrichten: $1',
@@ -1109,7 +1111,7 @@ Zur Information folgt der aktuelle Logbucheintrag:",
 
 Bitte prüfe sorgfältig, ob die erneute Seitenerstellung den Richtlinien entspricht.
 Zu deiner Information folgt das Lösch- und Verschiebungs-Logbuch mit der Begründung für die vorhergehende Löschung:",
-'moveddeleted-notice'              => 'Diese Seite wurde gelöscht. Es folgt ein Auszug aus dem Lösch- und Verschiebungs-Logbuch dieser Seite.',
+'moveddeleted-notice'              => 'Diese Seite wurde gelöscht. Zur Information folgt das Lösch- und Verschiebungs-Logbuch dieser Seite.',
 'log-fulllog'                      => 'Alle Logbucheinträge ansehen',
 'edit-hook-aborted'                => 'Die Bearbeitung wurde ohne Erklärung durch eine Schnittstelle abgebrochen.',
 'edit-gone-missing'                => 'Die Seite konnte nicht aktualisiert werden.
@@ -1125,8 +1127,8 @@ Sie darf nicht mehr als $2 {{PLURAL:$2|Aufruf|Aufrufe}} haben, es {{PLURAL:$1|is
 'expensive-parserfunction-category'       => 'Seiten, die aufwändige Parserfunktionen zu oft aufrufen',
 'post-expand-template-inclusion-warning'  => 'Warnung: Die Größe eingebundener Vorlagen ist zu groß, einige Vorlagen können nicht eingebunden werden.',
 'post-expand-template-inclusion-category' => 'Seiten, in denen die maximale Größe eingebundener Vorlagen überschritten ist',
-'post-expand-template-argument-warning'   => "'''Warnung:''' Diese Seite enthält mindestens ein Argument in einer Vorlage, das expandiert zu groß ist. Diese Argumente werden ignoriert.",
-'post-expand-template-argument-category'  => 'Seiten, die ignorierte Vorlagenargumente enthalten',
+'post-expand-template-argument-warning'   => "'''Warnung:''' Diese Seite enthält mindestens einen Parameter in einer Vorlage, der expandiert zu groß ist. Diese Parameter werden ignoriert.",
+'post-expand-template-argument-category'  => 'Seiten mit ignorierten Vorlagenparametern',
 'parser-template-loop-warning'            => 'Vorlagenschleife entdeckt: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Vorlagenrekursionstiefengrenze überschritten ($1)',
 'language-converter-depth-warning'        => 'Sprachkonvertertiefenlimit überschritten ($1)',
@@ -1162,7 +1164,7 @@ Grund der Sperre: ''$2''",
 'histlegend'             => 'Zur Anzeige der Änderungen einfach die zu vergleichenden Versionen auswählen und die Schaltfläche „{{int:compareselectedversions}}“ klicken.<br />
 * ({{int:cur}}) = Unterschied zur aktuellen Version, ({{int:last}}) = Unterschied zur vorherigen Version
 * Uhrzeit/Datum = Version zu dieser Zeit, Benutzername/IP-Adresse des Bearbeiters, {{int:minoreditletter}} = Kleine Änderung',
-'history-fieldset-title' => 'Suche in der Versionsgeschichte',
+'history-fieldset-title' => 'In der Versionsgeschichte suchen',
 'history-show-deleted'   => 'nur gelöschte Versionen',
 'histfirst'              => 'Älteste',
 'histlast'               => 'Neueste',
@@ -1908,7 +1910,7 @@ Sie kann daher keiner ordnungsgemäßen Sicherheitsüberprüfung unterzogen werd
 'img-auth-accessdenied'     => 'Zugriff verweigert',
 'img-auth-nopathinfo'       => 'PATH_INFO fehlt.
 Der Server ist nicht dafür eingerichtet, diese Information weiterzugeben.
-Sie könnte CGI-gestützt sein und unterstützt img_auth nicht.
+Sie könnte CGI-gestützt sein und kann daher img_auth nicht ermöglichen.
 Siehe hierzu die Seite https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'         => 'Der gewünschte Pfad ist nicht im konfigurierten Uploadverzeichnis.',
 'img-auth-badtitle'         => 'Aus „$1“ kann kein gültiger Titel erstellt werden.',
@@ -2279,9 +2281,9 @@ Als Absender wird die E-Mail-Adresse aus deinen [[Special:Preferences|Einstellun
 'nowikiemailtitle'     => 'E-Mail-Versand nicht möglich',
 'nowikiemailtext'      => 'Dieser Benutzer möchte keine E-Mails von anderen Benutzern erhalten.',
 'emailnotarget'        => 'Nicht vorhandener oder ungültiger Benutzername für den Empfang einer E-Mail.',
-'emailtarget'          => 'Den Benutzer eingeben, um E-Mails erhalten zu können.',
+'emailtarget'          => 'Benutzernamen des Empfängers eingeben',
 'emailusername'        => 'Benutzername:',
-'emailusernamesubmit'  => 'Speichern',
+'emailusernamesubmit'  => 'Weiter',
 'email-legend'         => 'E-Mail an einen anderen {{SITENAME}}-Benutzer senden',
 'emailfrom'            => 'Von:',
 'emailto'              => 'An:',
@@ -2541,7 +2543,7 @@ $1',
 'namespace'                     => 'Namensraum:',
 'invert'                        => 'Auswahl umkehren',
 'tooltip-invert'                => 'Dieses Auswahlfeld anklicken, um Änderungen im gewählten Namensraum und, sofern ausgewählt, dem entsprechenden zugehörigen Namensraum auszublenden',
-'namespace_association'         => 'Zugeordneter Namensraum',
+'namespace_association'         => 'Zugehöriger Namensraum',
 'tooltip-namespace_association' => 'Dieses Auswahlfeld anklicken, um den deiner Auswahl zugehörigen Diskussionsnamensraum, oder im umgekehrten Fall, den zugehörigen Namensraum, mit einzubeziehen',
 'blanknamespace'                => '(Seiten)',
 
@@ -2556,7 +2558,7 @@ $1',
 'year'                => 'bis Jahr:',
 
 'sp-contributions-newbies'             => 'Zeige nur Beiträge neuer Benutzer',
-'sp-contributions-newbies-sub'         => 'Für Neulinge',
+'sp-contributions-newbies-sub'         => 'Von neuen Benutzern',
 'sp-contributions-newbies-title'       => 'Benutzerbeiträge von neuen Benutzern',
 'sp-contributions-blocklog'            => 'Sperr-Logbuch',
 'sp-contributions-deleted'             => 'Gelöschte Beiträge',
@@ -3003,7 +3005,7 @@ Diese auf dem lokalen Rechner speichern und danach hier hochladen.',
 'tooltip-preview'                     => 'Vorschau der Änderungen an dieser Seite. Bitte vor dem Speichern benutzen!',
 'tooltip-diff'                        => 'Änderungen am Text zeigen',
 'tooltip-compareselectedversions'     => 'Unterschied zwischen zwei ausgewählten Versionen dieser Seite anzeigen',
-'tooltip-watch'                       => 'Füge diese Seite deiner Beobachtungsliste hinzu',
+'tooltip-watch'                       => 'Diese Seite zu deiner Beobachtungsliste hinzufügen',
 'tooltip-watchlistedit-normal-submit' => 'Einträge entfernen',
 'tooltip-watchlistedit-raw-submit'    => 'Beobachtungsliste aktualisieren',
 'tooltip-recreate'                    => 'Seite neu erstellen, obwohl sie gelöscht wurde',
@@ -3011,7 +3013,7 @@ Diese auf dem lokalen Rechner speichern und danach hier hochladen.',
 'tooltip-rollback'                    => 'Macht alle letzten Änderungen der Seite, die vom gleichen Benutzer vorgenommen worden sind, durch nur einen Klick rückgängig.',
 'tooltip-undo'                        => 'Macht lediglich diese eine Änderung rückgängig und zeigt das Resultat in der Vorschau an, damit in der Zusammenfassungszeile eine Begründung angegeben werden kann.',
 'tooltip-preferences-save'            => 'Einstellungen speichern',
-'tooltip-summary'                     => 'Gib eine kurze Zusammenfassung ein',
+'tooltip-summary'                     => 'Gib eine kurze Zusammenfassung ein.',
 
 # Stylesheets
 'common.css'              => '/* Das folgende CSS wird für alle Benutzeroberflächen geladen. */',
@@ -3841,14 +3843,14 @@ Eine [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie der ''GNU General Public License'']
 'intentionallyblankpage' => 'Diese Seite ist absichtlich ohne Inhalt. Sie wird für Benchmarks verwendet.',
 
 # External image whitelist
-'external_image_whitelist' => ' #Diese Zeile nicht verändern<pre>
+'external_image_whitelist' => ' #Diese Zeile nicht verändern.<pre>
 #Untenstehend können Fragmente regulärer Ausdrücke (der Teil zwischen den //) eingegeben werden.
-#Diese werden mit den URLs von Bildern aus externen Quellen verglichen
-#Ein positiver Vergleich führt zur Anzeige des Bildes, andernfalls wird das Bild nur als Link angezeigt
-#Zeilen, die mit einem # beginnen, werden als Kommentar behandelt
-#Es wird nicht zwischen Groß- und Kleinschreibung unterschieden
+#Diese werden mit den URLs von Bildern aus externen Quellen verglichen.
+#Ein positiver Vergleich führt zur Anzeige des Bildes, andernfalls wird das Bild nur als Link angezeigt.
+#Zeilen, die mit einem # beginnen, werden als Kommentar behandelt.
+#Es wird nicht zwischen Groß- und Kleinschreibung unterschieden.
 
-#Fragmente regulärer Ausdrücke nach dieser Zeile eintragen. Diese Zeile nicht verändern</pre>',
+#Fragmente regulärer Ausdrücke nach dieser Zeile eintragen. Diese Zeile nicht verändern.</pre>',
 
 # Special:Tags
 'tags'                    => 'Gültige Änderungsmarkierungen',
@@ -3904,14 +3906,14 @@ Eine [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie der ''GNU General Public License'']
 'logentry-delete-delete'              => '$1 löschte Seite $3',
 'logentry-delete-restore'             => '$1 stellte Seite $3 wieder her',
 'logentry-delete-event'               => '$1 änderte die Sichtbarkeit {{PLURAL:$5|eines Logbucheintrags|von $5 Logbucheinträgen}} auf $3: $4',
-'logentry-delete-revision'            => '$1 änderte die Sichtbarkeit {{PLURAL:$5|einer Version|von $5 Versionen}} auf $3: $4',
+'logentry-delete-revision'            => '$1 änderte die Sichtbarkeit {{PLURAL:$5|einer Version|von $5 Versionen}} der Seite $3: $4',
 'logentry-delete-event-legacy'        => '$1 änderte die Sichtbarkeit von Logbucheinträgen auf $3',
-'logentry-delete-revision-legacy'     => '$1 änderte die Sichtbarkeit von Versionen auf $3',
+'logentry-delete-revision-legacy'     => '$1 änderte die Sichtbarkeit von Versionen der Seite $3',
 'logentry-suppress-delete'            => '$1 unterdrückte Seite $3',
 'logentry-suppress-event'             => '$1 änderte diskret die Sichtbarkeit {{PLURAL:$5|eines Logbucheintrags|von $5 Logbucheinträgen}} auf $3: $4',
-'logentry-suppress-revision'          => '$1 änderte diskret die Sichtbarkeit {{PLURAL:$5|einer Version|von $5 Versionen}} auf $3: $4',
+'logentry-suppress-revision'          => '$1 änderte diskret die Sichtbarkeit {{PLURAL:$5|einer Version|von $5 Versionen}} der Seite $3: $4',
 'logentry-suppress-event-legacy'      => '$1 änderte diskret die Sichtbarkeit von Logbucheinträgen auf $3',
-'logentry-suppress-revision-legacy'   => '$1 änderte diskret die Sichtbarkeit von Versionen auf $3',
+'logentry-suppress-revision-legacy'   => '$1 änderte diskret die Sichtbarkeit von Versionen der Seite $3',
 'revdelete-content-hid'               => 'Inhalt versteckt',
 'revdelete-summary-hid'               => 'Zusammenfassung versteckt',
 'revdelete-uname-hid'                 => 'Benutzername versteckt',

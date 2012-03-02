@@ -201,8 +201,8 @@ $messages = array(
 
 Sō̤ kī só-gé̤ṳ-kó gì guāng-lī-uòng cūng-kuāng gāi-sék: $1',
 'cannotdelete'         => 'Mò̤ nièng-ngài chēng lâi ciā hiĕk-miêng hĕ̤k ùng-giông. (Kō̤-nèng ī-gĭng ké̤ṳk nè̤ng chēng lâi go̤ lāu.)',
-'perfcached'           => "Â-dā̤ gì só-gé̤ṳ ké̤ṳk ká̤-chṳ̄ (''cashed'') guó, kō̤-nèng ī-gĭng guó-gĭ.",
-'perfcachedts'         => "Â-dā̤ gì só-gé̤ṳ ké̤ṳk ká̤-chṳ̄ (''cashed'') guó, sèng siŏh huòi huăng-sĭng gì sì-găng sê $1.",
+'perfcached'           => "Â-dā̤ gì só-gé̤ṳ ké̤ṳk ká̤-chṳ̄ (''cashed'') guó, kō̤-nèng ī-gĭng guó-gĭ. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.",
+'perfcachedts'         => "Â-dā̤ gì só-gé̤ṳ ké̤ṳk ká̤-chṳ̄ (''cashed'') guó, sèng siŏh huòi huăng-sĭng gì sì-găng sê $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.",
 'querypage-no-updates' => 'Cī-buàng buōng hiĕk-miêng mâ̤ huăng-sĭng. Só-gé̤ṳ iâ mâ̤ huăng-sĭng.',
 'viewsource'           => 'Káng nguòng-dâi-mā',
 'protectedpagetext'    => 'Cī hiĕk ī-gĭng ké̤ṳk sō̤ kī lāu, mâ̤-sāi siŭ-gāi.',

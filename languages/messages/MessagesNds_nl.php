@@ -1792,7 +1792,11 @@ As t probleem zo blif, neem dan kontakt op mit één van de [[Special:ListUsers/
 'backend-fail-read'          => 'Kon t bestaand $1 niet lezen.',
 'backend-fail-create'        => 'Kon t bestaand $1 niet anmaken.',
 'backend-fail-readonly'      => 'Van de opslag "$1" kan op dit moment allinnig elezen wörden. De op-egeven reden was: "$2"',
+'backend-fail-synced'        => 't Bestaand "$1" bevient zich in n inkonsistente toestaand in de interne opslagbackends.',
+'backend-fail-connect'       => 'Kon gien verbiending maken mit t opslagbackend "$1".',
+'backend-fail-internal'      => 'Der is n onbekende fout op-etreden in t opslagbackend "$1".',
 'backend-fail-contenttype'   => 'Kon t inhoudstype van t bestaand um op "$1" op te slaon niet bepaolen.',
+'backend-fail-batchsize'     => 'Reeks van $1 bestaands{{PLURAL:$1|operasie|operasies}} in de opslagbackend; de limiet is $2 {{PLURAL:$2|operasie|operasies}}.',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Kon "$1" niet vriegeven; dit objekt is niet vergrendeld.',
@@ -1827,8 +1831,8 @@ De veiligheid kan niet ekontroleerd wörden.',
 'img-auth-accessdenied'     => 'Toegang eweigerd',
 'img-auth-nopathinfo'       => 'PATH_INFO ontbrik.
 Joew server is niet in-esteld um disse informasie deur te geven.
-Misschien gebruukt disse CGI, en dan wörden img_auth niet ondersteund.
-[https://www.mediawiki.org/wiki/Manual:Image_Authorization Zie aofbeeldingsauthorisasie.]',
+Misschien gebruukt t CGI, en dan wörden img_auth niet ondersteund.
+Zie https://www.mediawiki.org/wiki/Manual:Image_Authorization rechten veur aofbeeldingen veur meer informasie.',
 'img-auth-notindir'         => 't Op-evreugen pad is niet de in-estelde bestaandinlaodmap',
 'img-auth-badtitle'         => 'Kon gien geldige paginanaam maken van "$1".',
 'img-auth-nologinnWL'       => 'Je bin niet an-emeld en "$1" steet niet op de witte lieste.',

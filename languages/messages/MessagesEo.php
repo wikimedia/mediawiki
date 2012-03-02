@@ -674,7 +674,7 @@ Eble ĝi estis jam forigita de iu alia.',
 'badtitletext'         => 'La petita paĝotitolo estis malvalida, malplena, aŭ malĝuste ligita interlingva aŭ intervikia titolo.
 Ĝi eble enhavas unu aŭ pliaj signoj kiu ne povas esti uzata en titoloj.',
 'perfcached'           => 'La sekvantaj informoj venas el kaŝmemoro kaj eble ne estas ĝisdataj. Maksimumo de {{PLURAL:$1|unu rezulto estas disponebla|$1 rezultoj estas disponeblaj}} en la kaŝmemoro.',
-'perfcachedts'         => 'La jenaj datumoj estas el kaŝmemoro kaj estis laste ĝisdatigitaj $1. Maksimumo de {{PLURAL:$1|unu rezulto estas disponebla|$1 rezultoj estas disponeblaj}} en la kaŝmemoro.',
+'perfcachedts'         => 'La jenaj datumoj estas el kaŝmemoro kaj estis laste ĝisdatigitaj $1. Maksimumo de {{PLURAL:$4|unu rezulto estas disponebla|$4 rezultoj estas disponeblaj}} en la kaŝmemoro.',
 'querypage-no-updates' => 'Ĝisdatigoj por ĉi paĝo estas nune neebligitaj.
 Datenoj ĉi tie ne estos nune refreŝigitaj.',
 'wrong_wfQuery_params' => 'Malĝustaj parametroj por wfQuery()<br />
@@ -1023,7 +1023,7 @@ Vi ankaŭ ĵuras, ke vi mem verkis la tekston, aŭ ke vi kopiis ĝin el fonto se
 'copyrightwarning2'                => "Bonvolu noti ke ĉiuj kontribuoj al {{SITENAME}} povas esti reredaktita, ŝanĝita aŭ forigita de aliaj kontribuantoj. Se vi ne deziras ke viaj verkoj estu senkompate reredaktitaj, ne publikigu ilin ĉi tie.<br />
 Vi ankaŭ promesu al ni ke vi verkis tion mem aŭ kopiis el publika domajno aŭ simila libera fonto (vidu $1 por detaloj).
 '''NE PROPONU KOPIRAJTITAJN VERKOJN SEN PERMESO!'''",
-'longpageerror'                    => "'''Eraro: La teksto, kiun vi prezentis, longas $1 kilobajtojn, kio estas pli longa ol la maksimumo de $2 kilobajtoj. Ĝi ne povas esti konservita.'''",
+'longpageerror'                    => "'''Eraro: La teksto, kiun vi prezentis, longas {{PLURAL:$1|$1}} kilobajtojn, kio estas pli longa ol la maksimumo de {{PLURAL:$2|$2}} kilobajtoj. Ĝi ne povas esti konservita.'''",
 'readonlywarning'                  => "'''AVERTO: La datumbazo estas ŝlosita por teknika laboro, do vi ne povas konservi viajn redaktojn ĉi-momente.
 Vi eble volus elkopii kaj englui la tekston al tekstdosiero por konservi ĝin por posta uzo.'''
 
@@ -3856,6 +3856,7 @@ Aŭ vi povas uzi la facilan formularon sube. Via komento estos aldonita al la pa
 'api-error-unknown-code'                  => 'Nekonata eraro: "$1"',
 'api-error-unknown-error'                 => 'Interna eraro: io misokazis en la alŝuto de via dosiero.',
 'api-error-unknown-warning'               => 'Nekonata averto: $1',
+'api-error-unknownerror'                  => 'Nekonata eraro: "$1"',
 'api-error-uploaddisabled'                => 'Alŝutato estas malebligata en tiu ĉi vikio.',
 'api-error-verification-error'            => 'Tiu ĉi dosiero eble estas difektita, aŭ havas la malĝustan dosieran finaĵon.',
 

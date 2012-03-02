@@ -331,8 +331,8 @@ Pakisabi ya iti king metung a  [[Special:ListUsers/sysop|administrator]], at pak
 'cannotdelete'         => "E mebura ing bulung o file a pinili mu.  (Mapalyaring ati'nang aliwang memura kaniti.)",
 'badtitle'             => 'Matsurang pamansag',
 'badtitletext'         => 'E ya matatanggap o ala yang laman, o bansag yang inter-language o inter-wiki a e ustu pamisuglung, ing bansag ning bulung a paintunan mu. Mapalyaring atin yang metung o maygit pang letra o kulit (character) a e malyaring gamitan kareng bansag/pamagat.',
-'perfcached'           => 'Makasimpan (cached) ya iting makatuking data, at mapalyaring e ne makapanaun.',
-'perfcachedts'         => 'Makasimpan (cached) ya ing makatuking data, at tauli yang mibayu kanitang $1.',
+'perfcached'           => 'Makasimpan (cached) ya iting makatuking data, at mapalyaring e ne makapanaun. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'Makasimpan (cached) ya ing makatuking data, at tauli yang mibayu kanitang $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Updates for this page are currently disabled. Data here will not presently be refreshed.
 Kasalungsungan yang makapatda ing pamagbayu (update) king bulung a ini. E la miyalilan ketang pekatauli (refreshed) deng makabiling data keti.',
 'wrong_wfQuery_params' => 'E la ustu deng sukad (parameter) king wfQuery()<br />

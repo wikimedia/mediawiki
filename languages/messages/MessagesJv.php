@@ -13,6 +13,7 @@
  * @author Meursault2004
  * @author Pras
  * @author Rex
+ * @author StefanusRA
  * @author לערי ריינהארט
  */
 
@@ -397,8 +398,8 @@ Yèn dudu iki panyebabé, panjenengan manawa bisa nemokaké kasalahan (''bug'') 
 Manawa wis dibusak déning wong liya.',
 'badtitle'             => 'Judhulé ora sah',
 'badtitletext'         => 'Judhul kaca sing panjenengan ora bisa dituduhaké, kosong, utawa dadi judhul antar-basa utawa judhul antar-wiki. Iku bisa uga ana  sawijining utawa luwih aksara sing ora bisa didadèkaké judhul.',
-'perfcached'           => 'Data iki dijupuk saka <em>cache</em> lan mbokmenawa dudu data pungkasan:',
-'perfcachedts'         => 'Data iki dijupuk saka <em>cache</em>, lan dianyaraké ing pungkasan ing $1.',
+'perfcached'           => 'Data iki dijupuk saka <em>cache</em> lan mbokmenawa dudu data pungkasan. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'Data iki dijupuk saka <em>cache</em>, lan dianyaraké ing pungkasan ing $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Update saka kaca iki lagi dipatèni. Data sing ana ing kéné saiki ora bisa bakal dibalèni unggah manèh.',
 'wrong_wfQuery_params' => 'Parameter salah menyang wfQuery()<br />Fungsi: $1<br />Panyuwunan: $2',
 'viewsource'           => 'Tuduhna sumber',
@@ -960,7 +961,7 @@ Gunakna tombol radio kanggo nggabungaké révisi-révisi sing digawé sadurungé
 'prefs-rc'                      => 'Owah-owahan pungkasan',
 'prefs-watchlist'               => 'Dhaftar pangawasan',
 'prefs-watchlist-days'          => 'Cacahé dina sing dituduhaké ing dhaftar pangawasan:',
-'prefs-watchlist-days-max'      => 'Maksimum 7 dina',
+'prefs-watchlist-days-max'      => 'Maximum $1 {{PLURAL:$1|day|days}}',
 'prefs-watchlist-edits'         => 'Cacahé suntingan maksimum sing dituduhaké ing dhaftar pangawasan sing luwih jangkep:',
 'prefs-watchlist-edits-max'     => 'Gunggung maksimum: 1000',
 'prefs-watchlist-token'         => 'Token pantauan:',
@@ -1792,7 +1793,7 @@ Umpan balik lan pitulung sabanjuré:
 'delete-edit-reasonlist' => 'Sunting alesan pambusakan',
 'delete-toobig'          => 'Kaca iki ndarbèni sajarah panyuntingan sing dawa, yaiku ngluwihi $1 {{PLURAL:$1|revision|révisi}}.
 Pambusakan kaca sing kaya mangkono mau wis ora diparengaké kanggo menggak anané karusakan ing {{SITENAME}}.',
-'delete-warning-toobig'  => 'Kaca iki duwé sajarang panyuntingan sing dawa, luwih saka $1 {{PLURAL:$1|revision|révisi}}.
+'delete-warning-toobig'  => 'Kaca iki duwé sajarah panyuntingan sing dawa, luwih saka $1 {{PLURAL:$1|révisi|révisi}}.
 Mbusak kaca iki bisa ngrusak operasi basis data ing {{SITENAME}};
 kudu ngati-ati.',
 

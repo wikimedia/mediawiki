@@ -601,7 +601,7 @@ Veja a [[Special:Version|página sobre a versão do sistema]].',
 'nstab-user'      => 'Página d{{GENDER:{{#titleparts:{{PAGENAME}}|1|1}}|o usuário|a usuária|e usuário(a)}}',
 'nstab-media'     => 'Página de mídia',
 'nstab-special'   => 'Página especial',
-'nstab-project'   => 'Página de projeto',
+'nstab-project'   => 'Página do projeto',
 'nstab-image'     => 'Arquivo',
 'nstab-mediawiki' => 'Mensagem',
 'nstab-template'  => 'Predefinição',
@@ -666,14 +666,14 @@ Por favor, reporte este fato a um administrador, fazendo notar a URL.',
 'badtitle'             => 'Título inválido',
 'badtitletext'         => 'O título de página solicitado era inválido, vazio, ou um link interlínguas ou interwikis incorreto.
 Talvez contenha um ou mais caracteres que não podem ser usados em títulos.',
-'perfcached'           => 'Os dados seguintes encontram-se na cache e podem não estar atualizados.',
-'perfcachedts'         => 'Os seguintes dados encontram-se armazenados na cache e foram atualizados pela última vez às $1.',
+'perfcached'           => "Os seguintes dados encontram-se armazenados na ''cache'' e podem não estar atualizados. No máximo {{PLURAL:$1|um resultado é disponível|$1 resultados são disponíveis}} na ''cache''.",
+'perfcachedts'         => 'Os seguintes dados encontram-se armazenados na cache e foram atualizados pela última vez às $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Momentaneamente as atualizações para esta página estão desativadas. Por enquanto, os dados aqui presentes não poderão ser atualizados.',
 'wrong_wfQuery_params' => 'Parâmetros incorretos para wfQuery()<br />
 Função: $1<br />
 Consulta: $2',
 'viewsource'           => 'Ver código-fonte',
-'viewsource-title'     => 'Exibir código-fonte para$1',
+'viewsource-title'     => 'Exibir código-fonte para $1',
 'actionthrottled'      => 'Ação controlada',
 'actionthrottledtext'  => 'Como medida "anti-spam", você se encontra impedido de realizar esta operação muitas vezes em um curto espaço de tempo; você já excedeu esse limite.
 Tente novamente em alguns minutos.',
@@ -1007,7 +1007,8 @@ Você está, ao mesmo tempo, garantindo-nos que isto é algo escrito por você m
 'copyrightwarning2'                => "Por favor, note que todas as suas contribuições em {{SITENAME}} podem ser editadas, alteradas ou removidas por outros contribuidores. Se você não deseja que o seu texto seja inexoravelmente editado, não o envie.<br />
 Você está, ao mesmo tempo, a garantir-nos que isto é algo escrito por si, ou algo copiado de alguma fonte de textos em domínio público ou similarmente de teor livre (veja $1 para detalhes).
 '''NÃO ENVIE TRABALHO PROTEGIDO POR DIREITOS DE AUTOR SEM A DEVIDA PERMISSÃO!'''",
-'longpageerror'                    => "'''ERRO: O texto de página que você submeteu tem mais de $1 quilobytes em tamanho, que é maior que o máximo de $2 quilobytes. A página não pode ser salva.'''",
+'longpageerror'                    => "'''Erro: O texto que submeteu ocupa {{PLURAL:$1|um kilobyte|$1 kilobytes}}, que excede o máximo de {{PLURAL:$2|um kilobyte|$2 kilobytes}}.'''
+A página não pode ser salva.",
 'readonlywarning'                  => "'''Aviso: A base de dados foi bloqueada para manutenção, por isso você não poderá salvar a sua edição neste momento.'''
 Pode, no entanto, copiar o seu texto num editor externo e guardá-lo para posterior envio.
 
@@ -1342,7 +1343,7 @@ Note que os índices do sistema de busca externo poderão conter referências de
 'prefs-rc'                      => 'Mudanças recentes',
 'prefs-watchlist'               => 'Lista de páginas vigiadas',
 'prefs-watchlist-days'          => 'Dias a mostrar na lista de páginas vigiadas:',
-'prefs-watchlist-days-max'      => 'No máximo 7 dias',
+'prefs-watchlist-days-max'      => 'Máximo $1 {{PLURAL:$1|dia|dias}}',
 'prefs-watchlist-edits'         => 'Número de edições mostradas na lista de páginas vigiadas expandida:',
 'prefs-watchlist-edits-max'     => 'Número máximo: 1000',
 'prefs-watchlist-token'         => 'Senha para a lista de páginas vigiadas:',
@@ -1626,6 +1627,7 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 'number_of_watching_users_pageview' => '[{{PLURAL:$1|$1 usuário|$1 usuários}} a vigiar]',
 'rc_categories'                     => 'Limite para categorias (separar com "|")',
 'rc_categories_any'                 => 'Qualquer',
+'rc-change-size-new'                => '$1 {{PLURAL:$1|byte|bytes}} após mudança',
 'newsectionsummary'                 => '/* $1 */ nova seção',
 'rc-enhanced-expand'                => 'Mostrar detalhes (requer JavaScript)',
 'rc-enhanced-hide'                  => 'Esconder detalhes',
@@ -2964,7 +2966,7 @@ Tal bloqueio foi provavelmente causado por uma ligação para um ''website'' ext
 'skinname-modern'      => 'Moderno',
 
 # Patrolling
-'markaspatrolleddiff'                 => 'Marcar como verificado',
+'markaspatrolleddiff'                 => 'Marcar como patrulhada',
 'markaspatrolledtext'                 => 'Marcar esta página como verificada',
 'markedaspatrolled'                   => 'Marcado como verificado',
 'markedaspatrolledtext'               => 'A revisão selecionada de [[:$1]] foi marcada como patrulhada.',

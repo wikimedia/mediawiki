@@ -579,7 +579,7 @@ $1',
 'collapsible-collapse'    => 'Restrânge',
 'collapsible-expand'      => 'Extinde',
 'thisisdeleted'           => 'Vizualizare sau recuperare $1?',
-'viewdeleted'             => 'Vizualizează $1?',
+'viewdeleted'             => 'Vizualizați $1?',
 'restorelink'             => '{{PLURAL:$1|o modificare ștearsă|$1 modificări șterse|$1 de modificări șterse}}',
 'feedlinks'               => 'Întreținere:',
 'feed-invalid'            => 'Tip de abonament invalid',
@@ -664,7 +664,7 @@ S-ar putea ca acesta să fi fost deja șters de altcineva.',
 
 Poate conține unul sau mai multe caractere ce nu poate fi folosit în titluri.',
 'perfcached'           => 'Datele următoare au fost păstrate în cache și s-ar putea să nu fie actualizate. Un maxim de {{PLURAL:$1|un rezultat este disponibil|$1 rezultate sunt disponibile}} în cache.',
-'perfcachedts'         => 'Informațiile de mai jos provin din cache, ultima actualizare efectuându-se la $1. Un maxim de {{PLURAL:$1|un rezultat este disponibil|$1 rezultate sunt disponibile}} în cache.',
+'perfcachedts'         => 'Informațiile de mai jos provin din cache, ultima actualizare efectuându-se la $1. Un maxim de {{PLURAL:$4|un rezultat este disponibil|$4 rezultate sunt disponibile}} în cache.',
 'querypage-no-updates' => 'Actualizările acestei pagini sunt momentan dezactivate. Informațiile de aici nu sunt împrospătate.',
 'wrong_wfQuery_params' => 'Număr incorect de parametri pentru wfQuery()<br />
 Funcția: $1<br />
@@ -1259,7 +1259,7 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 
 # Search results
 'searchresults'                    => 'Rezultatele căutării',
-'searchresults-title'              => 'Caută rezultate pentru „$1”',
+'searchresults-title'              => 'Rezultatele căutării pentru „$1”',
 'searchresulttext'                 => 'Pentru mai multe detalii despre căutarea în {{SITENAME}}, vezi [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'                   => 'Ai căutat \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|toate paginile care încep cu "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|toate paginile care se leagă de "$1"]])',
 'searchsubtitleinvalid'            => 'Pentru căutarea "$1"',
@@ -1893,7 +1893,7 @@ Când acestei pagini îi este aplicat filtrul de utilizator, sunt afișate doar 
 # File description page
 'file-anchor-link'          => 'Fișier',
 'filehist'                  => 'Istoricul fișierului',
-'filehist-help'             => "Apăsați pe '''Data și ora''' pentru a vedea versiunea trimisă atunci.",
+'filehist-help'             => "Apăsați pe '''Data și ora''' pentru a vedea versiunea fișierului trimisă la momentul respectiv.",
 'filehist-deleteall'        => 'șterge tot',
 'filehist-deleteone'        => 'șterge',
 'filehist-revert'           => 'revenire',
@@ -1907,7 +1907,7 @@ Când acestei pagini îi este aplicat filtrul de utilizator, sunt afișate doar 
 'filehist-filesize'         => 'Mărimea fișierului',
 'filehist-comment'          => 'Comentariu',
 'filehist-missing'          => 'Fișier lipsă',
-'imagelinks'                => 'Utilizare fișier',
+'imagelinks'                => 'Utilizarea fișierului',
 'linkstoimage'              => '{{PLURAL:$1|Următoarea pagină trimite spre|Următoarele $1 pagini trimit spre|Următoarele $1 de pagini trimit spre}} această imagine:',
 'linkstoimage-more'         => 'Mai mult de $1 {{PLURAL:$1|pagină este legată|pagini sunt legate}} de acest fișier.
 Următoarea listă arată {{PLURAL:$1|prima legătură|primele $1 legături}} către acest fișier.
@@ -1917,9 +1917,9 @@ O [[Special:WhatLinksHere/$2|listă completă]] este disponibilă.',
 'linkstoimage-redirect'     => '$1 (redirecționare de fișier) $2',
 'duplicatesoffile'          => '{{PLURAL:$1|Fișierul următor este duplicat|Următoarele $1 fișiere sunt duplicate}} ale acestui fișier ([[Special:FileDuplicateSearch/$2|mai multe detalii]]):',
 'sharedupload'              => 'Acest fișier provine de la $1 și poate fi folosit și de alte proiecte.',
-'sharedupload-desc-there'   => 'Fișierul acesta este de la $1 și poate fi folosit de alte proiecte.
-Vezi [$2 pagina de descriere a fișierului] pentru mai multe detalii.',
-'sharedupload-desc-here'    => 'Fișierul acesta este de la $1 și poate fi folosit de alte proiecte.
+'sharedupload-desc-there'   => 'Acest fișier provine de la $1 și poate fi folosit și în cadrul altor proiecte.
+Vizitați [$2 pagina de descriere a fișierului] pentru mai multe detalii.',
+'sharedupload-desc-here'    => 'Acest fișier provine de la $1 și poate fi folosit și în cadrul altor proiecte.
 Descrierea de mai jos poate fi consultată la [$2 pagina de descriere a fișierului].',
 'filepage-nofile'           => 'Nu există niciun fișier cu acest nume.',
 'filepage-nofile-link'      => 'Nu există niciun fișier cu acest nume, dar îl puteți [$1 încărca].',
@@ -2932,8 +2932,8 @@ Un dosar temporar lipsește.',
 'tooltip-ca-watch'                    => 'Adăugați la lista de pagini urmărite',
 'tooltip-ca-unwatch'                  => 'Eliminați această pagină din lista dumneavoastră de monitorizare',
 'tooltip-search'                      => 'Căutare în {{SITENAME}}',
-'tooltip-search-go'                   => 'Du-te la pagina cu acest nume dacă există',
-'tooltip-search-fulltext'             => 'Căutați paginile pentru acest text',
+'tooltip-search-go'                   => 'Deschide pagina cu acest nume, dacă există',
+'tooltip-search-fulltext'             => 'Caută în pagini pentru acest text',
 'tooltip-p-logo'                      => 'Pagina principală',
 'tooltip-n-mainpage'                  => 'Vedeți pagina principală',
 'tooltip-n-mainpage-description'      => 'Vizitați pagina principală',
@@ -3193,7 +3193,7 @@ Altele vor fi ascunse implicit.
 'exif-shutterspeedvalue'           => 'Viteza obturatorului în APEX',
 'exif-aperturevalue'               => 'Diafragmă în APEX',
 'exif-brightnessvalue'             => 'Luminozitate în APEX',
-'exif-exposurebiasvalue'           => 'Ajustarea expunerii',
+'exif-exposurebiasvalue'           => 'Compensarea expunerii',
 'exif-maxaperturevalue'            => 'Apertura maximă',
 'exif-subjectdistance'             => 'Distanța față de subiect',
 'exif-meteringmode'                => 'Forma de măsurare',
@@ -3688,7 +3688,7 @@ Puteți folosi în schimb [[Special:EditWatchlist|editorul standard]].',
 'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|discuție]])',
 
 # Core parser functions
-'unknown_extension_tag' => 'Extensie etichetă necunoscută "$1"',
+'unknown_extension_tag' => 'Extensie etichetă necunoscută „$1”',
 'duplicate-defaultsort' => "'''Atenție:''' Cheia de sortare implicită („$2”) o înlocuiește pe precedenta („$1”).",
 
 # Special:Version
@@ -3697,7 +3697,7 @@ Puteți folosi în schimb [[Special:EditWatchlist|editorul standard]].',
 'version-specialpages'          => 'Pagini speciale',
 'version-parserhooks'           => 'Hook-uri parser',
 'version-variables'             => 'Variabile',
-'version-antispam'              => 'Prevenirea spam-ului',
+'version-antispam'              => 'Prevenirea spamului',
 'version-skins'                 => 'Aspect',
 'version-other'                 => 'Altele',
 'version-mediahandlers'         => 'Suport media',

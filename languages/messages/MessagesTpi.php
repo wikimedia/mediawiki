@@ -321,6 +321,9 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 'histfirst'        => 'Nambawan',
 'histlast'         => 'Bilong nau',
 
+# Revision feed
+'history-feed-item-nocomment' => '$1 long $2',
+
 # Revision deletion
 'rev-delundel'               => 'soim/haitim',
 'revdelete-show-file-submit' => 'Yes',
@@ -375,7 +378,7 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 'datedefault'               => 'Nogat laik',
 'prefs-rc'                  => 'Nupela senis',
 'prefs-watchlist'           => 'Lukautbuk',
-'prefs-watchlist-days-max'  => 'No moa long 7 de',
+'prefs-watchlist-days-max'  => 'Maximum $1 {{PLURAL:$1|day|days}}',
 'prefs-watchlist-edits-max' => 'No moa long: 1000',
 'prefs-resetpass'           => 'Senis paswot',
 'saveprefs'                 => 'Holim long tingting',
@@ -676,7 +679,7 @@ Sapos yu laik rausim dispela pes long lukautbuk bilong yu bihain, paitim \"Pinis
 'whatlinkshere'            => 'Ol link ikam long hia',
 'whatlinkshere-page'       => 'Pes:',
 'isredirect'               => 'nupela rot',
-'isimage'                  => 'link bilong piksa',
+'isimage'                  => 'link long piksa',
 'whatlinkshere-links'      => '← ol link',
 'whatlinkshere-hideredirs' => '$1 ol nupela rot',
 'whatlinkshere-hidelinks'  => '$1 ol link',

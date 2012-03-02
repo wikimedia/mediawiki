@@ -407,8 +407,8 @@ Puyde kini gipapas na sa uban.',
 'badtitle'             => 'Bati nga titulo',
 'badtitletext'         => 'Ang gihangyong titulo sa panid mahimong inbalido, walay sulod, o nasayop og sumpay nga inter-pinulongan o inter-wiki nga titulo.
 Basin aduna kini usa o daghan pang mga karakter nga dili magamit isip titulo.',
-'perfcached'           => 'Ang mosunod nga data naka-cache ug mahimong dili ang labing bag-o.',
-'perfcachedts'         => 'Ang mosunod nga data naka-cache, ug kataposang nabag-o sa $1.',
+'perfcached'           => 'Ang mosunod nga data naka-cache ug mahimong dili ang labing bag-o. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'Ang mosunod nga data naka-cache, ug kataposang nabag-o sa $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Ang mga update alang sa kining panid naka-disable sa kasamtangan.
 Dili karon dayon ma-refresh ang data dinhi.',
 'wrong_wfQuery_params' => 'Sayop nga mga parametro sa wfQuery()<br />
@@ -763,7 +763,7 @@ Hinumdomi nga ang ilang indeks sa sulod sa {{SITENAME}} mahimong dugay-dugay na.
 'prefs-rc'                      => 'Mga bag-ong pag-usab',
 'prefs-watchlist'               => 'Gibantayan',
 'prefs-watchlist-days'          => 'Mga adlaw nga ipakita sa gibantayan:',
-'prefs-watchlist-days-max'      => 'Maximum 7 ka adlaw',
+'prefs-watchlist-days-max'      => 'Maximum $1 {{PLURAL:$1|day|days}}',
 'prefs-watchlist-edits'         => 'Maximum nga numero sa pag-usab nga ipakita sa ekspanded nga gibantayan:',
 'prefs-watchlist-edits-max'     => 'Maximum nga numero: 1000',
 'prefs-watchlist-token'         => 'Token sa gibantayan',

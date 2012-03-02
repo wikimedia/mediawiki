@@ -10,6 +10,7 @@
  * @author Bartek50003
  * @author BdgwksxD
  * @author Beau
+ * @author BeginaFelicysym
  * @author Cysioland
  * @author Derbeth
  * @author Equadus
@@ -649,7 +650,7 @@ Możliwe, że zostały już usunięte przez kogoś innego.',
 'badtitle'             => 'Niepoprawny tytuł',
 'badtitletext'         => 'Podano niepoprawny tytuł strony. Prawdopodobnie jest pusty lub zawiera znaki, których użycie jest zabronione.',
 'perfcached'           => 'Poniższe dane są kopią z pamięci podręcznej i mogą być nieaktualne. Maksymalnie {{PLURAL:$1|jeden wynik jest|$1 wyniki są|$1 wyników jest}} w pamięci podręcznej.',
-'perfcachedts'         => 'Poniższe dane są kopią z pamięci podręcznej. Ostatnia aktualizacja odbyła się $1. Maksymalnie {{PLURAL:$1|jeden wynik jest|$1 wyniki są|$1 wyników jest}} w pamięci podręcznej.',
+'perfcachedts'         => 'Poniższe dane są kopią z pamięci podręcznej. Ostatnia aktualizacja odbyła się $1. Maksymalnie {{PLURAL:$4|jeden wynik jest|$4 wyniki są|$4 wyników jest}} w pamięci podręcznej.',
 'querypage-no-updates' => 'Uaktualnienia dla tej strony są obecnie wyłączone. Znajdujące się tutaj dane nie zostaną odświeżone.',
 'wrong_wfQuery_params' => 'Nieprawidłowe parametry przekazane do wfQuery()<br />
 Funkcja: $1<br />
@@ -714,7 +715,7 @@ Nie zapomnij dostosować [[Special:Preferences|preferencji dla {{GRAMMAR:D.lp|{{
 'badretype'                  => 'Wprowadzone hasła różnią się między sobą.',
 'userexists'                 => 'Wybrana przez Ciebie nazwa użytkownika jest już zajęta.
 Wybierz inną nazwę użytkownika.',
-'loginerror'                 => 'Błąd zalogowania',
+'loginerror'                 => 'Błąd logowania',
 'createaccounterror'         => 'Nie można utworzyć konta $1',
 'nocookiesnew'               => 'Konto użytkownika zostało utworzone, ale nie jesteś zalogowany.
 {{SITENAME}} używa ciasteczek do przechowywania informacji o zalogowaniu się.
@@ -1807,10 +1808,12 @@ Jeśli problem będzie się powtarzał, skontaktuj się z [[Special:ListUsers/sy
 'backend-fail-closetemp'     => 'Nie można zamknąć pliku tymczasowego.',
 'backend-fail-read'          => 'Nie można odczytać pliku $1.',
 'backend-fail-create'        => 'Nie można utworzyć pliku $1.',
-'backend-fail-readonly'      => 'Interfejs „$1” jest obecnie tylko do odczytu. Powód: „$2”',
-'backend-fail-synced'        => 'Plik „$1” jest w niespójnym stanie w ramach wewnętrznych funkcji',
-'backend-fail-connect'       => 'Nie można nawiązać połączenia z pliku wewnętrznej bazy danych „$1”.',
-'backend-fail-internal'      => 'Wystąpił nieznany błąd w pliku wewnętrznej bazy danych „$1”.',
+'backend-fail-readonly'      => 'Interfejs magazynowania "$1" jest obecnie tylko do odczytu. Powód: "$2"',
+'backend-fail-synced'        => 'Plik "$1" jest w niespójnym stanie w ramach wewnętrznych funkcji magazynowania',
+'backend-fail-connect'       => 'Nie można nawiązać połączenia do wewnętrznych funkcji magazynowania "$1".',
+'backend-fail-internal'      => 'Wystąpił nieznany błąd w wewnętrznych funkcjach magazynowania "$1".',
+'backend-fail-contenttype'   => 'Nie można określić typ zawartości pliku do przechowywania w "$1".',
+'backend-fail-batchsize'     => 'Wewnętrzne funkcje magazynowania otrzymały $1 {{PLURAL:$1|operację|operacje|operacji}} na pliku; limit wynosi $2 {{PLURAL:$2| operacja|operacje|operacji}}.',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Nie można odblokować "$1", ponieważ nie jest on zablokowany.',
@@ -1846,7 +1849,7 @@ Plik nie może zostać odpowiednio sprawdzony pod kątem bezpieczeństwa.',
 'img-auth-nopathinfo'       => 'Brak PATH_INFO.
 Serwer nie został skonfigurowany, tak aby przekazywał tę informację.
 Możliwe, że jest oparty na CGI i nie może obsługiwać img_auth.
-[https://www.mediawiki.org/wiki/Manual:Image_Authorization Zobacz informacje o autoryzacji grafik.]',
+Więcej o informacji o autoryzacji grafik na https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'         => 'Żądana ścieżka nie jest w obrębie katalogu skonfigurowanego do przesyłania plików.',
 'img-auth-badtitle'         => 'Nie można wygenerować prawidłowego tytuł z „$1”.',
 'img-auth-nologinnWL'       => 'Nie jesteś zalogowany, a „$1” nie jest na białej liście.',
@@ -1929,7 +1932,7 @@ Dostępna jest też [[Special:WhatLinksHere/$2|pełna lista]].',
 Więcej informacji odnajdziesz na [$2 stronie opisu pliku].',
 'sharedupload-desc-here'    => 'Ten plik znajduje się na $1 i może być używany w innych projektach.
 Poniżej znajdują się informacje ze [$2 strony opisu] tego pliku.',
-'filepage-nofile'           => 'Plik tej nazwie nie istnieje.',
+'filepage-nofile'           => 'Plik o tej nazwie nie istnieje.',
 'filepage-nofile-link'      => 'Plik o tej nazwie nie istnieje, ale możesz go [$1 przesłać].',
 'uploadnewversion-linktext' => 'Załaduj nowszą wersję tego pliku',
 'shared-repo-from'          => 'z $1',
@@ -2601,7 +2604,7 @@ Przejdź do [[Special:BlockList|listy zablokowanych adresów IP]], by przejrzeć
 'blocklist-userblocks'            => 'Ukryj blokady konta',
 'blocklist-tempblocks'            => 'Ukryj tymczasowe blokady',
 'blocklist-addressblocks'         => 'Ukryj blokady pojedynczych adresów IP',
-'blocklist-rangeblocks'           => 'Ukryj zakresy blokad',
+'blocklist-rangeblocks'           => 'Ukryj blokady zakresów',
 'blocklist-timestamp'             => 'Sygnatura czasowa',
 'blocklist-target'                => 'Cel',
 'blocklist-expiry'                => 'Upływa',
@@ -2754,7 +2757,7 @@ Wybierz inną nazwę.',
 'movesubpage'                  => '{{PLURAL:$1|Podstrona|Podstrony}}',
 'movesubpagetext'              => 'Ta strona posiada $1 {{PLURAL:$1|podstronę|podstrony|podstron}}:',
 'movenosubpage'                => 'Ta strona nie posiada podstron.',
-'movereason'                   => 'Powód',
+'movereason'                   => 'Powód:',
 'revertmove'                   => 'cofnij',
 'delete_and_move'              => 'Usuń i przenieś',
 'delete_and_move_text'         => '== Przeniesienie wymaga usunięcia innej strony ==
@@ -2820,7 +2823,7 @@ Odwiedź [//www.mediawiki.org/wiki/Localisation Tłumaczenie MediaWiki] oraz [//
 'allmessages-filter-all'        => 'Wszystkie',
 'allmessages-filter-modified'   => 'Zmodyfikowane',
 'allmessages-prefix'            => 'Tytuły rozpoczynające się od',
-'allmessages-language'          => 'Język',
+'allmessages-language'          => 'Język:',
 'allmessages-filter-submit'     => 'Pokaż',
 
 # Thumbnails

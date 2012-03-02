@@ -237,7 +237,7 @@ $messages = array(
 'categorypage'      => 'Kategorieseiten åzoang',
 'viewtalkpage'      => 'Diskussion',
 'otherlanguages'    => 'Ånderne Sproochen',
-'redirectedfrom'    => '(voh $1 weider gschickd)',
+'redirectedfrom'    => '(Weidergloatt voh $1)',
 'redirectpagesub'   => 'Weiderloatung',
 'lastmodifiedat'    => 'Dé Seiten is zlétzd am $1 um $2 gänderd worn.',
 'viewcount'         => 'Dé Seiten do is bis iatz {{PLURAL:$1|oahmoi|$1-moi}} obgruaffm worn.',
@@ -376,6 +376,7 @@ Fois dés néd zuadrifft, host eventuö an Feeler in da Software gfunden. Bittsc
 'badarticleerror'      => 'Dé Akzión kå néd auf dé Seiten ågwendt wern.',
 'cannotdelete'         => 'Dé Seiten óder Daatei "$1" kå néd gléschd wern.
 Méglicherweis iss schoh vohram åndern gléschd worn.',
+'cannotdelete-title'   => 'Seiten „$1“ kå néd gléschd wern',
 'badtitle'             => 'néd gütiger Titel',
 'badtitletext'         => 'Da Titel voh da ågforderden Seiten is néd gütig, laar óder a ungütiger Sproochlink vohram åndern Wiki.',
 'perfcached'           => "Dé fóigernden Daaten staummern aus'm Cache und san méglicherweis nimmer aktuö. Maximoi {{PLURAL:$1|oah Ergebnis is|$1 Ergebniss san}} im Cache vafiagbor.",
@@ -391,6 +392,7 @@ Obfrog: $2',
 Bittscheh vasuachs in a por Minunten nuamoi.',
 'protectedpagetext'    => "Dé Seiten is gschytzd worn, um Beorweitungen z' vahindern.",
 'viewsourcetext'       => "Du kåst ower 'n Quötext åschaung und kópirn:",
+'viewyourtext'         => "Du kåst 'n Quejtext vah '''deiner Beorwatung''' derer Seiten betrochten und kópiern:",
 'protectedinterface'   => "Dé Seiten do enthoit Text fyr d' Benutzerówerflächen voh da Software und is gschytzd, um an Missbrauch vurzbeing.",
 'editinginterface'     => "'''Ówocht:''' Dé Seiten do enthoit voh da MediaWiki-Software gnutzden Text. 
 Änderrungen auf derer Seiten wirken sé auf d' Benutzerówerflächen aus.
@@ -449,6 +451,7 @@ Vagiss bittscheh néd, deine [[Special:Preferences|{{SITENAME}}-Eishtellungen]] 
 'nocookieslogin'             => '{{SITENAME}} nimmt Cookies zum Ailoggen vo de Benytzer her. Du host Cookies deaktivird, bittschee aktivir de und vasuchs nuamoi.',
 'nocookiesfornew'            => "Dés Benutzerkóntó is néd erstöd worn, wei d' Daatenherkumft néd damittelt wern hod kenner.
 Es muass sichergstöd seih, daas Cookies aktivierd san. Danoch bittscheh d' Seiten daneit loon und wieder vasuacher.",
+'noname'                     => 'Du muasst an gyting Benutzernåm ågeem.',
 'loginsuccesstitle'          => "D' Åmöidung is erfoigraich gween",
 'loginsuccess'               => 'Du bist jetzad ois „$1“ bai {{SITENAME}} ågmöidt.',
 'wrongpassword'              => 'Des Posswort is foisch! Bitschee prowirs nuamoi.',
@@ -692,8 +695,8 @@ Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 
 'nonefound'                        => "'''Hiwais:''' Es wern standardmässig nur oanige Nåmensraim durchsuacht. Setz ''all:'' vur dain Suachbegrif, um olle Saiten (inkl. Dischkrirsaiten, Vurlong usw.) z' durchsuacha oder züid 'n Nåmen vom z' durchsuachanden Nåmensraum.",
 'search-nonefound'                 => 'Fyr deih Suachåfrog san koane Ergebniss gfunden worn',
 'powersearch'                      => 'Suach',
-'powersearch-legend'               => 'Eaweitate Suach',
-'powersearch-ns'                   => 'Suach in Nãmensräume:',
+'powersearch-legend'               => 'Daweiterde Suach',
+'powersearch-ns'                   => 'Suach in Nåmensraim:',
 'powersearch-redir'                => 'Weiderloattung åzoang',
 'powersearch-field'                => 'Suach noch:',
 'search-external'                  => 'Externe Suach',
@@ -707,15 +710,15 @@ Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 
 'rows'                      => 'Zeiln:',
 'columns'                   => 'Spoiten',
 'searchresultshead'         => 'Suachen',
-'resultsperpage'            => 'Treffer pro Saiten:',
+'resultsperpage'            => 'Dreffer pró Seiten:',
 'savedprefs'                => 'Deine Eihstellungen san gspeicherd worn.',
 'timezonelegend'            => 'Zaidzone:',
 'localtime'                 => 'Ortszaid:',
 'timezoneuseserverdefault'  => 'Standardzeid vom Wiki nutzen ($1)',
-'guesstimezone'             => 'Vom Browser übanehma',
+'guesstimezone'             => 'Vom Browser ywernemmer',
 'allowemail'                => 'E-Mail-Empfång voh anderne Benutzer méglé mochen.',
 'prefs-searchoptions'       => 'Suachopziónen',
-'prefs-namespaces'          => 'Nåmensreim',
+'prefs-namespaces'          => 'Nåmensraim',
 'youremail'                 => 'E-Mail-Adress:',
 'username'                  => 'Benutzernåm:',
 'yourrealname'              => 'Da echte Nåm:',
@@ -732,7 +735,7 @@ Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 
 
 # Groups
 'group-sysop'      => 'Administratorn',
-'group-bureaucrat' => 'Bürokratn',
+'group-bureaucrat' => 'Byrókraaten',
 'group-suppress'   => 'Oversighter',
 'group-all'        => '(olle)',
 
@@ -918,7 +921,7 @@ A [[Special:WhatLinksHere/$2|voiständige Listn]] gibt's aa.",
 'unusedtemplateswlh' => 'Aundre Links',
 
 # Random page
-'randompage' => 'Zuaféllige Seiten',
+'randompage' => 'Zuafällige Seiten',
 
 # Statistics
 'statistics'               => 'Staatistik',
@@ -932,9 +935,10 @@ A [[Special:WhatLinksHere/$2|voiständige Listn]] gibt's aa.",
 'statistics-mostpopular'   => 'Dé am moastbsuachten Seiten',
 
 'disambiguationspage'  => 'Template:Begriffsklärung',
-'disambiguations-text' => 'De folgenden Seitn valinkn auf a Seitn zur Begriffsklärung.
-Sie solltn stattdessn auf de eigentlich gemoante Seitn valinkn.<br />A Seitn werd ois Begriffsklärungsseitn behandelt, wenn [[MediaWiki:Disambiguationspage]] auf sie valinkt.<br />
-Links aus Namensräume wern da net aufglistet.',
+'disambiguations-text' => "D' fóigernden Seiten valinken af a Seiten za ner Begiefsklärung. Du sóiderst stott dém af d' oagerntlich gmoahde Seiten valinken.
+
+A Seiten gijt ois Begriefsklärungsseiten, waunns oane vah dé af [[MediaWiki:Disambiguationspage]] afgfyrde Vurloog(ng) eihbindt.</br>
+Links as Naumensraim wern do néd afglistt.",
 
 'doubleredirects' => 'Doppede Weiderloatungen',
 
@@ -981,6 +985,7 @@ Links aus Namensräume wern da net aufglistet.',
 'protectedpages'          => 'Gschytzde Seiten',
 'protectedpages-indef'    => 'Netter néd bschränkde gschytzde Seiten zoang',
 'protectedpages-cascade'  => 'Netter Seiten mid Kaskadenschutz',
+'protectedtitles'         => 'Gschytzde Seitennaumen',
 'usercreated'             => '{{GENDER:$3|Erstöd}} am $1 um $2 Uar',
 'newpages'                => 'Neiche Seiten',
 'newpages-username'       => 'Benutzernåm:',

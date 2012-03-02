@@ -252,6 +252,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'jarr.',
 'index-category'                 => 'Indexatutako orrialdeak',
 'noindex-category'               => 'Indexatugabeko orrialdeak',
+'broken-file-category'           => 'Fitxategiren baterako lotura hautsia duten orriak',
 
 'about'         => 'Honi buruz',
 'article'       => 'Artikulua',
@@ -477,8 +478,8 @@ Mesedez, bidali gertakar hau administradore bati, URLaren izena jarriz.',
 Baliteke beste norbaitek ezabatu izana.',
 'badtitle'             => 'Izenburu ezegokia',
 'badtitletext'         => 'Eskatutako orrialde izenburua ez da baliozkoa, hutsik dago, edo gaizki lotutako hizkuntzen arteko lotura da. Baliteke izenburuetan erabili ezin den karaktereren bat izatea.',
-'perfcached'           => 'Hurrengo datuak katxean gordeta daude eta litekeena da guztiz eguneratuta ez egotea:',
-'perfcachedts'         => 'Hurrengo datuak katxean daude, $1 eguneratu zen azkenekoz.',
+'perfcached'           => 'Hurrengo datuak katxean gordeta daude eta litekeena da guztiz eguneratuta ez egotea. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'Hurrengo datuak katxean daude, $1 eguneratu zen azkenekoz. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Orrialde honen berritzeak ez dira baimentzen. Hemen dagoen data ez da zuzenean berrituko.',
 'wrong_wfQuery_params' => 'Baliogabeko parametroak eman zaizkio wfQuery() funtzioari<br />
 Funtzioa: $1<br />
@@ -1114,7 +1115,7 @@ Saia zaitez zure eskeraren aurretik ''all:'' jartzen eduki guztien artean bilatz
 'prefs-rc'                      => 'Azken aldaketak',
 'prefs-watchlist'               => 'Jarraipen zerrenda',
 'prefs-watchlist-days'          => 'Jarraipen zerrendan erakutsi beharreko egun kopurua:',
-'prefs-watchlist-days-max'      => 'Gehienez 7 egun',
+'prefs-watchlist-days-max'      => 'Maximum $1 {{PLURAL:$1|day|days}}',
 'prefs-watchlist-edits'         => 'Jarraipen zerrendan erakutsi beharreko aldaketa kopurua:',
 'prefs-watchlist-edits-max'     => 'Gehenezko zenbakia: 1000',
 'prefs-watchlist-token'         => 'Jarraipen zerrendaren tokena:',

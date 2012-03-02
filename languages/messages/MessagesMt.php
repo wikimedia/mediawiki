@@ -632,8 +632,8 @@ Jista\' jkun li diġà ġie mħassar minn xi ħaddieħor.',
 'cannotdelete-title'   => 'Il-paġna "$1" ma setgħetx titħassar',
 'badtitle'             => 'Titlu ħażin',
 'badtitletext'         => "It-titlu tal-paġna rikjesta huwa invalidu, vojt, jew ġej minn żball fil-ħolqa bejn siti wiki differenti jew verżjonijiet ta' lingwi differenti tal-istess sit. Jista' wkoll ikollu wieħed jew aktar karattri li ma jistgħux jintużaw għat-titli.",
-'perfcached'           => "L-informazzjoni li jmiss huwa kopja ''cache'' u jista' ma jkunx aġġornat.",
-'perfcachedts'         => "Id-dati segwenti huma estratt ta' kopja cache tad-database. L-aħħar aġġornament: $1.",
+'perfcached'           => "L-informazzjoni li jmiss huwa kopja ''cache'' u jista' ma jkunx aġġornat. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.",
+'perfcachedts'         => "Id-dati segwenti huma estratt ta' kopja cache tad-database. L-aħħar aġġornament: $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.",
 'querypage-no-updates' => 'Aġġornamenti għal din il-paġna huma temporalment sospesi. L-Informazzjoni hawnhekk preżentament mhux qiegħed jiġi aġġornat.',
 'wrong_wfQuery_params' => 'Parametri skoretti għal wfQuery()<br />
 Funżjoni: $1<br />
@@ -2177,7 +2177,7 @@ Jekk f'xi ħin tkun tixtieq tneħħi l-paġna mil-lista ta' osservazzjoni tiegħ
 'watchmethod-list'     => 'Kontroll tal-osservati speċjali għal modifiki riċenti',
 'watchlistcontains'    => "Il-lista ta' osservazzjoni fiha {{PLURAL:$1|paġna|$1 paġni}}.",
 'iteminvalidname'      => "Problema bil-paġna'$1', l-isem mhux validu...",
-'wlnote'               => "Hawn taħt hawn {{PLURAL:$1|l-aħħar modifika|l-aħħar '''$1''' modifiki}} fl-aħħar {{PLURAL:$2|siegħa|'''$2''' siegħat}}.",
+'wlnote'               => "Hawn taħt hawn {{PLURAL:$1|l-aħħar modifika|l-aħħar '''$1''' modifiki}} fl-aħħar {{PLURAL:$2|siegħa|'''$2''' siegħat}}, sal-$3, fil-$4.",
 'wlshowlast'           => 'Uri l-aħħar $1 siegħat $2 ġranet $3',
 'watchlist-options'    => "Opzjonijiet tal-lista ta' osservazzjoni",
 

@@ -13,6 +13,7 @@
  * @author Ruben Vardanyan (me@RubenVardanyan.com)
  * @author Teak
  * @author Togaed
+ * @author Vacio
  * @author Xelgen
  * @author לערי ריינהארט
  */
@@ -398,6 +399,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'շարունակ.',
 'index-category'                 => 'Ինդեքսավորված էջեր',
 'noindex-category'               => 'Ինդեքսավորված էջեր չկան',
+'broken-file-category'           => 'Կոտրված ֆայլի հղումով էջեր',
 
 'about'         => 'Էությունը',
 'article'       => 'Հոդված',
@@ -621,8 +623,8 @@ $1',
 Հավանաբար այն արդեն ջնջվել է մեկ այլ մասնակցի կողմից։',
 'badtitle'             => 'Անընդունելի անվանում',
 'badtitletext'         => 'Հարցված էջի անվանումը անընդունելի է, դատարկ է կամ սխալ միջ-լեզվական կամ ինտերվիքի անվանում է։ Հնարավոր է, որ այն պարունակում է անթույլատրելի սիմվոլներ։',
-'perfcached'           => 'Հետևյալ տվյալները վերցված են քեշից և հնարավոր է չարտացոլեն վերջին փոփոխությունները։',
-'perfcachedts'         => 'Հետևյալ տվյալները վերցված են քեշից և վերջին անգամ թարմացվել են $1։',
+'perfcached'           => 'Հետևյալ տվյալները վերցված են քեշից և հնարավոր է չարտացոլեն վերջին փոփոխությունները։ A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'Հետևյալ տվյալները վերցված են քեշից և վերջին անգամ թարմացվել են $1։ A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Այս էջի փոփոխությունները ներկայումս արգելված են։ Այստեղի տվյալները այժմ չեն թարմացվի։',
 'wrong_wfQuery_params' => 'Անթույլատրելի պարամետրեր wfQuery() ֆունկցիայի համար<br />
 Ֆունկցիա. $1<br />
@@ -674,6 +676,7 @@ $2',
 'createaccount'              => 'Ստեղծել նոր մասնակցային հաշիվ',
 'gotaccount'                 => "Դուք արդեն գրանցվա՞ծ եք։ '''$1'''։",
 'gotaccountlink'             => 'Մուտք գործեք համակարգ',
+'userlogin-resetlink'        => 'Մոռացե՞լ եք Ձեր լոգին տվյալները։',
 'createaccountmail'          => 'էլ-փոստով',
 'badretype'                  => 'Ձեր մուտքագրած գաղտնաբառերը չեն համընկնում։',
 'userexists'                 => 'Այս մասնակցի անունը արդեն զբաղված է։ Խնդրում ենք ընտրել մեկ այլ անուն։',
@@ -1089,7 +1092,7 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'prefs-rc'                      => 'Վերջին փոփոխություններ',
 'prefs-watchlist'               => 'Հսկացանկ',
 'prefs-watchlist-days'          => 'Հսկացանկում ցուցադրվող օրերի թիվը՝',
-'prefs-watchlist-days-max'      => '(7 օրից ոչ ավել)',
+'prefs-watchlist-days-max'      => 'Maximum $1 {{PLURAL:$1|day|days}}',
 'prefs-watchlist-edits'         => 'Ընդարձակված հսկացանկում ցուցադրվող օրերի թիվը՝',
 'prefs-watchlist-edits-max'     => '(1000-ից ոչ ավել)',
 'prefs-watchlist-token'         => 'Հսկացանկի կտրոն.',
@@ -2405,5 +2408,10 @@ $3
 'dberr-header'   => 'Այս վիքիում խնդիրներ են առաջացել',
 'dberr-problems' => 'Այս կայքում առաջացել են տեխնիկական խնդիրներ։ Հայցում ենք ձեր ներողությունը։',
 'dberr-again'    => 'Փորձեք մի քանի րոպե սպասել և վերաբեռնել էջը։',
+
+# New logging system
+'logentry-delete-delete'    => '$1 ջնջեց էջը $3',
+'logentry-delete-restore'   => '$1 վերականգնեց էջը $3',
+'logentry-newusers-create2' => '$1 Ստեղծեց նոր հաշիվ $3',
 
 );

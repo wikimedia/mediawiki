@@ -423,8 +423,8 @@ Di la sakku nga yegge ko ab [[Special:ListUsers/sysop|yorkat]] , jox ko màkkaan
 'cannotdelete'         => 'Farug xët walla dencukaay bi antuwul. (xayna  keneen def na ko ba noppi.)',
 'badtitle'             => 'Koj bu baaxul',
 'badtitletext'         => 'Kojug xët wi nga laaj baaxul, amul dara walla  day di kojjug diggantelàkk walla diggantesémb yu seen lonkoo baaxul. Xayna it dafa am benn walla ay araf yu ñu manuta jëfandikoo cib koj.',
-'perfcached'           => 'Lii ab duppitu ndencitu sumb mi la, kon xéj-na beesul.',
-'perfcachedts'         => 'Njoxe yii di toftal ab duppitu nëbbitu dàttub njoxe bi la, te yeesalam gu mujj mi ngi am ci: $1',
+'perfcached'           => 'Lii ab duppitu ndencitu sumb mi la, kon xéj-na beesul. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'Njoxe yii di toftal ab duppitu nëbbitu dàttub njoxe bi la, te yeesalam gu mujj mi ngi am ci: $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Yeesal yu xët wii dañ leen a doxadil fi mu ne nii. Xibaar yi ne fii ci suuf beesuñu.',
 'wrong_wfQuery_params' => 'Njuumte ci xibaar yi ci wfQuery()<br />
 Solo : $1<br />
@@ -581,7 +581,7 @@ Xèj-na baatujàll bi soppi nga ko ba noppi, walla xéj-na it dangaa laaj beneen
 'blockedtitle'                     => 'Bii jëfandikukat dañ kaa téye',
 'blockedtext'                      => '\'\'\'Sa sàqum jëfandikukat walla sa màkkaanu IP dañ koo téye .\'\'\'
 
-Ki def téye gi mooy $ te lii mooy ngirte li : \'\'$2\'\'.
+Ki def téye gi mooy $1 te lii mooy ngirte li : \'\'$2\'\'.
 
 * Ndorteelu téye gi : $8
 * Njeextalu téye gi : $6
@@ -956,7 +956,7 @@ Jéemala bindaale ''all'' ngir seet ci biir ëmbit gépp (boolewaale ci xëti wa
 'prefs-rc'                      => 'Coppite yu mujj',
 'prefs-watchlist'               => 'Limu toppte',
 'prefs-watchlist-days'          => 'Limu bes yi nga koy ba ci sa limu toppte :',
-'prefs-watchlist-days-max'      => 'Du weesu 7 fan',
+'prefs-watchlist-days-max'      => 'Maximum $1 {{PLURAL:$1|day|days}}',
 'prefs-watchlist-edits'         => 'Limu coppite yi ngay wone ci limu toppte gees yaatal gi:',
 'prefs-misc'                    => 'Yeneeni tànneef',
 'prefs-resetpass'               => 'Soppi baatujàll',

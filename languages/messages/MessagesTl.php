@@ -495,8 +495,8 @@ Maaaring ibinura na ito ng iba.',
 'badtitle'             => 'Hindi kanais-nais na pamagat',
 'badtitletext'         => 'Ang hiniling na pamagat ng pahina ay hindi katanggap-tanggap, wala, o isang may-maling kawing na pamagat na pangugnayang-wika (interwika) o pangugnayang wiki (interwiki).
 Maaaring naglalaman ito ng isa o higit pang mga panitik (karakter) na hindi maaaring gamitin para sa mga pamagat.',
-'perfcached'           => 'Ang sumusunod na datos ay nakaligpit at maaaring wala na sa panahon.',
-'perfcachedts'         => 'Ang sumusunod na datos ay nakaligpit, at dating isinapanahon noong $1.',
+'perfcached'           => 'Ang sumusunod na datos ay nakaligpit at maaaring wala na sa panahon. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts'         => 'Ang sumusunod na datos ay nakaligpit, at dating isinapanahon noong $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Kasulukuyang hindi gumagana ang mga pagbabago para sa pahinang ito.
 Ang mga dato dito ay hindi pa masasariwa sa kasalukuyan.',
 'wrong_wfQuery_params' => 'Maling mga parametro sa wfQuery()<br />
@@ -1184,7 +1184,7 @@ Subuking lagyan ng unlapi/paunang ''all:'' upang hanapin ang lahat ng mga nialal
 'prefs-rc'                      => 'Kamakailan lamang na mga pagbabago',
 'prefs-watchlist'               => 'Talaan ng mga binabantayan',
 'prefs-watchlist-days'          => 'Mga araw na ipapakita sa talaan ng mga binabantayan:',
-'prefs-watchlist-days-max'      => 'Pinakamarami ang 7 mga araw',
+'prefs-watchlist-days-max'      => 'Maximum $1 {{PLURAL:$1|day|days}}',
 'prefs-watchlist-edits'         => 'Pinakamaraming bilang ng mga pagbabagong ipapakita sa pinalawak na talaan ng mga binabantayan:',
 'prefs-watchlist-edits-max'     => 'Pinakamataas na bilang: 1000',
 'prefs-watchlist-token'         => 'Balap ng talaan ng mga binabantayan:',

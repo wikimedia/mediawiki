@@ -478,8 +478,8 @@ Meitsje dêr melding fan by in [[Special:ListUsers/sysop|systeembehearder]] fan 
 'cannotdelete'         => 'Koe de oantsjutte side of it oantsjutte ôfbyld net wiskje. (Faaks hat in oar dat al dien.)',
 'badtitle'             => 'Misse titel',
 'badtitletext'         => 'De opfrege sidetitel wie ûnjildich, leech, of in miskeppele yntertaal of ynterwiki titel.',
-'perfcached'           => "Dit is bewarre ynformaasje dy't mooglik ferâldere is.",
-'perfcachedts'         => 'De neikommende gegevens komme út de bewarre ynformaasje, dizze is it lêst fernijd op $1.',
+'perfcached'           => "Dit is bewarre ynformaasje dy't mooglik ferâldere is. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.",
+'perfcachedts'         => 'De neikommende gegevens komme út de bewarre ynformaasje, dizze is it lêst fernijd op $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Dizze side kin net bywurke wurde. Dizze gegevens wurde net ferfarske.',
 'wrong_wfQuery_params' => 'Ferkearde parameters foar wfQuery()<br />
 Funksje: $1<br />
@@ -992,7 +992,7 @@ Jo kinne ek in nammerûmte as foarheaksel brûke.",
 'prefs-rc'                  => 'Koartlyn feroare',
 'prefs-watchlist'           => 'Folchlist',
 'prefs-watchlist-days'      => 'Oantal dagen yn folchlist sjen litte:',
-'prefs-watchlist-days-max'  => 'Maksimaal 7 dagen',
+'prefs-watchlist-days-max'  => 'Maximum $1 {{PLURAL:$1|day|days}}',
 'prefs-watchlist-edits'     => 'Tal wizigings om sjen te litten yn de útwreide folchlist:',
 'prefs-watchlist-edits-max' => 'Maksimum oantal: 1000',
 'prefs-misc'                => 'Ferskaat',
@@ -1092,7 +1092,7 @@ Jo kinne ek oaren de mûglikheid jaan kontakt mei jo op te nimmen troch in ferwi
 'group-suppress'      => 'tasichthâlders',
 'group-all'           => '(eltsenien)',
 
-'group-user-member'          => 'Meidogger',
+'group-user-member'          => '{{GENDER:$1|Meidogger}}',
 'group-autoconfirmed-member' => 'Registrearre brûker',
 'group-bot-member'           => 'Bot',
 'group-sysop-member'         => 'Behearder',

@@ -152,7 +152,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Pia nitumie barua pale mabadiliko ya ukurasa yanapokuwa madogo tu',
 'tog-enotifrevealaddr'        => 'Onyesha anwani ya barua pepe yangu katika barua pepe za taarifa',
 'tog-shownumberswatching'     => 'Onyesha idadi ya watumiaji waangalizi',
-'tog-oldsig'                  => 'Sahihi jinsi inayoonekana sasa:',
+'tog-oldsig'                  => 'Sahihi iliyopo:',
 'tog-fancysig'                => 'Weka sahihi tu (bila kujiweka kiungo yenyewe)',
 'tog-externaleditor'          => 'Tumia kiharirio cha nje inaposhindikana (kwa wataalamu tu, inahitaji marekebisho maalum kwenye tarakilishi yako. [//www.mediawiki.org/wiki/Manual:External_editors Maelezo zaidi.])',
 'tog-externaldiff'            => 'Tumia diff za nje inaposhindikana (kwa wataalamu tu, inahitaji marekebisho maalum kwenye tarakilishi yako. [//www.mediawiki.org/wiki/Manual:External_editors Maelezo zaidi.])',
@@ -353,7 +353,7 @@ Watumiaji wengi mno wanajaribu kutazama ukurasa huu.
 Tafadhali subiri kwa muda kadhaa kabla ya kujaribu kufungua tena.
 
 $1',
-'pool-timeout'      => 'Muda wa kusubiri kufunguliwa imezidishwa',
+'pool-timeout'      => 'Muda umeisha inasubiria kufunga',
 'pool-queuefull'    => 'Foleni ya michakato imejaa',
 'pool-errorunknown' => 'Hitilafu isiyojulikana',
 
@@ -482,11 +482,11 @@ Tafadhali ripoti hili kwa [[Special:ListUsers/sysop|mkabidhi]], na uache jina la
 'badarticleerror'      => 'Ukurasa huu hauwezi kutendewa kitendo hiki.',
 'cannotdelete'         => 'Haikuweza kufuta kurasa au faili linaloitwa "$1".
 Huenda likawa tayari lishafutwa na mtu mwingine.',
-'cannotdelete-title'   => 'Ukurasa "$1" hauwezi kufutwa',
+'cannotdelete-title'   => 'Wezi futa ukurasa "$1"',
 'badtitle'             => 'Jina halifai',
 'badtitletext'         => 'Jina la ukurasa ulilotaka ni batilifu, tupu, au limeungwa vibaya na jina la lugha nyingine au Wiki nyingine.  Labda linazo herufi moja au zaidi ambazo hazitumiki katika majina.',
-'perfcached'           => 'Data zifuatazo zinatoka kwenye kache na huenda si ya kisasa.',
-'perfcachedts'         => 'Data zifuatazo zimetoka kwenye kache iliobadilishwa mara ya mwisho saa $3, tarehe $2.',
+'perfcached'           => 'Data zifuatazo zimekachewa na huenda zisiwe za kisasa. Mwisho wa {{PLURAL:$1|jibu moja linapatikana|majibu $1 yanapatikana}} katika kache.',
+'perfcachedts'         => 'Data zifuatazo zimetoka kwenye kache iliobadilishwa mara ya mwisho saa $3, tarehe $2. Mwisho wa {{PLURAL:$1|jibu moja linapatikana|majibu $1 yanapatikana}} katika kache.',
 'querypage-no-updates' => 'Mabadiliko kwa ajili ya ukurasa huu yamesimamishwa.
 Data za hapa haziwezi kunawirishwa kwa sasa.',
 'wrong_wfQuery_params' => 'Parameta za ulizio zilizoingizwa wfQuery() na zisizo sahihi ni<br />
@@ -499,7 +499,7 @@ Ulizio: $2',
 Tafadhali jaribu tena baada ya muda mfupi.',
 'protectedpagetext'    => 'Ukurasa huu umefungwa ili kuepuka uhariri.',
 'viewsourcetext'       => 'Unaweza kutazama na kuiga chanzo cha ukurasa huu:',
-'viewyourtext'         => "Unaweza kutazama na kuiga chanzo cha ''maharirio yako'' katika ukurasa huu:",
+'viewyourtext'         => "Unaweza kutazama na kunakili chanzo cha ''maharirio yako'' katika ukurasa huu:",
 'protectedinterface'   => 'Ukurasa huu unatoa maelezo ya msingi ya bidhaa pepe, na pia umefungwa ili kuzuiya uharibifu.',
 'editinginterface'     => "'''Ilani:''' Una hariri ukurasa unaotumika kutoa maelezo ya msingi ya bidhaa pepe.
 Mabadiliko katika ukurasa huu yataathiri mwonekano mzima wa viungo vya watumiaji wengine.
@@ -508,8 +508,8 @@ Kwa lengo la kutaka kutafsiri, tafadhali fikiria kutumia  [//translatewiki.net/w
 'cascadeprotected'     => 'Ukurasa huu umekingwa usihaririwe, kwa sababu umejumlishwa katika {{PLURAL:$1|ukurasa ufuatao, ambao umekingwa|kurasa zifuatazo, ambazo zimekingwa}} na chagua la "cascadi" iliwashwa:
 $2',
 'namespaceprotected'   => "Huna ruhusa ya kuhariri kurasa za eneo la wiki la '''$1'''.",
-'customcssprotected'   => 'Huruhusiwi kuhariri ukurasa huu wa CSS, kwa sababu una mapendendekezo ya binafsi ya mtumiaji mwingine ndani wake.',
-'customjsprotected'    => 'Huruhusiwi kuhariri ukurasa huu wa JavaScript, kwa sababu una mapendendekezo ya binafsi ya mtumiaji mwingine ndani wake.',
+'customcssprotected'   => 'Huna ruksa ya kuhariri ukurasa huu wa CSS, kwa sababu una mapendekezo ya binafsi ya mtumiaji mwingine.',
+'customjsprotected'    => 'Huna ruksa ya kuhariri ukurasa huu wa JavaScript, kwa sababu una mapendendekezo ya binafsi ya mtumiaji mwingine.',
 'ns-specialprotected'  => 'Kurasa maalumu haziwezi kuhaririwa.',
 'titleprotected'       => 'Jina hili limekingwa lisiumbwe na [[User:$1|$1]].
 Sababu zilizotolewa ni "\'\'$2\'\'".',
@@ -621,7 +621,8 @@ Tafadhali subiri kwanza kabla ya kujaribu tena.',
 'suspicious-userlogout'      => 'Ombi lako la kutoka kwenye akaunti yako limehiniwa, kwa sababu inaonekana kwamba ombi lilitumwa na kivinjari kilichoharibika au seva ya kuwakilisha yenye kache.',
 
 # E-mail sending
-'user-mail-no-addy' => 'Umejaribu kutuma barua pepe bila anwani ya barua pepe.',
+'php-mail-error-unknown' => 'Hitilafu isiyojulikana katika ufanyajikazi wa barua za PHP ().',
+'user-mail-no-addy'      => 'Umejaribu kutuma barua pepe bila anwani ya barua pepe.',
 
 # Change password dialog
 'resetpass'                 => 'Kubadilisha neno la siri',
@@ -648,7 +649,9 @@ Inawezekana ikawa tayari umefaulu kubadilisha neno lako la siri au neno la siri 
 'passwordreset-disabled'           => 'Kuweka neno la siri jipya kumeshitishwa katika wiki hii.',
 'passwordreset-pretext'            => '{{PLURAL:$1||Ingiza moja kati ya data hizi hapo chini}}',
 'passwordreset-username'           => 'Jina la mtumiaji:',
-'passwordreset-capture'            => 'Kutazama barua pepe itakayotumwa',
+'passwordreset-domain'             => 'Miliki',
+'passwordreset-capture'            => 'Ioneshe barua-pepe itakayotumwa?',
+'passwordreset-capture-help'       => 'Iwapo utatia alama kisanduku hiki, barua-pepe (pamoja na nenosiri la muda) litaoneshwa kwako na vilevile litatumwa kwa mtumiaji.',
 'passwordreset-email'              => 'Anwani ya barua pepe:',
 'passwordreset-emailtitle'         => 'Maelezo ya akaunti kwenye {{SITENAME}}',
 'passwordreset-emailtext-ip'       => 'Kuna mtu (huenda ikawa ni wewe, kutoka anwani ya IP $1) aliyeomba kukumbushwa kuhusu maelezo ya akaunti yako katika {{SITENAME}} ($4). {{PLURAL:$3|Akaunti inayofuata imeunganishwa|Akaunti zinazofuata zimeunganishwa}} na anwani ya barua pepe hii:
@@ -666,8 +669,8 @@ Tafadhali ingia sasa na uchague neno jipya la siri. Kama mtu mwingine ameomba hi
 'passwordreset-emailelement'       => 'Jina la mtumiaji: $1
 Neno la siri la muda: $2',
 'passwordreset-emailsent'          => 'Barua pepe ya ukumbusho imetumwa.',
-'passwordreset-emailsent-capture'  => 'Barua pepe ya kukumbusha ilitumwa, na inaonekana chini.',
-'passwordreset-emailerror-capture' => 'Barua pepe ya kukumbusha iliandikwa, kama inayoonekana chini, lakini kuipeleka kwa mtumiaji ilishindikana: $1',
+'passwordreset-emailsent-capture'  => 'Barua pepe ya ukukumbusho imetumwa, ambayo inaonekana hapo chini.',
+'passwordreset-emailerror-capture' => 'Barua pepe ya ukukumbusho imetengenezwa, ambayo inaonekana hapo chini, lakini kuituma kwa mtumiaji imeshindikana: $1',
 
 # Special:ChangeEmail
 'changeemail'          => 'Badilisha anwani ya barua pepe',
@@ -833,7 +836,7 @@ Unakuwa unaahidi kwamba maandishi unayoyaingia ni yako tu, au uliyapata kutoka b
 Ikiwa hutaki maandishi yako yasihaririwe na yeyote, basi usiyaweke hapa.<br />
 Pia una tuahidi kwamba umeandika haya wewe mwenyewe, au umenakili kutoka katika tovuti ya umma au chanzo cha wazi sawa na hiki (tazama  $1 kwa maelezo).
 '''Usiandike makala yenye hakimiliki bila ya ruhusa halali!'''",
-'longpageerror'                    => "'''Hitilafu: Maandishi uliyoyaweka yana urefu wa kilobati $1, ambayo ni marefu kuliko kiwango cha kawaida cha kilobaiti $2.'''
+'longpageerror'                    => "'''Hitilafu: Maandishi uliyoyaweka yana kilobaiti $1, ambayo ni urefu kuliko kiwango cha kawaida cha kilobaiti $2.'''
 Hayawezi kuhifadhiwa.",
 'readonlywarning'                  => "'''Onyo: Hifadhidata imefungwa kwa ajili ya matengenezo, kwa hiyo hautakuwa na uwezo wa kuhifadhi maharirio yako kwa sasa.'''
 Unaweza kukata-na-kabandika maandishi yako kwenye faili na kulihifadhi kwa ajili ya baadaye.
