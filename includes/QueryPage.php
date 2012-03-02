@@ -295,7 +295,7 @@ abstract class QueryPage extends SpecialPage {
 		$res = $this->reallyDoQuery( $limit, false );
 		$num = false;
 		if ( $res ) {
-			$num = $dbr->numRows( $res );
+			$num = $res->numRows();
 			# Fetch results
 			$vals = array();
 			while ( $res && $row = $dbr->fetchObject( $res ) ) {
@@ -733,6 +733,10 @@ abstract class WantedQueryPage extends QueryPage {
 	 * Cache page existence for performance
 	 */
 	function preprocessResults( $db, $res ) {
+		if ( !$res->numRows() ) {
+			return;
+		}
+
 		$batch = new LinkBatch;
 		foreach ( $res as $row ) {
 			$batch->add( $row->namespace, $row->title );
@@ -740,9 +744,7 @@ abstract class WantedQueryPage extends QueryPage {
 		$batch->execute();
 
 		// Back to start for display
-		if ( $db->numRows( $res ) > 0 )
-			// If there are no rows we get an error seeking.
-			$db->dataSeek( $res, 0 );
+		$res->seek( 0 );
 	}
 
 	/**
