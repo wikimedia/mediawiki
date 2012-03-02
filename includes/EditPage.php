@@ -837,7 +837,8 @@ class EditPage {
 						$undoMsg = 'norev';
 					}
 
-					$this->editFormPageTop .= $wgOut->parse( "<div class=\"error mw-undo-{$undoMsg}\">" .
+					$class = ( $undoMsg == 'success' ? '' : 'error ' ) . "mw-undo-{$undoMsg}";
+					$this->editFormPageTop .= $wgOut->parse( "<div class=\"{$class}\">" .
 						wfMsgNoTrans( 'undo-' . $undoMsg ) . '</div>', true, /* interface */true );
 				}
 
