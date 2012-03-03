@@ -3639,6 +3639,10 @@ class Title {
 
 		$newpage->doEditUpdates( $nullRevision, $wgUser, array( 'changed' => false ) );
 
+		if ( !$moveOverRedirect ) {
+			WikiPage::onArticleCreate( $nt );
+		}
+
 		# Recreate the redirect, this time in the other direction.
 		if ( $redirectSuppressed ) {
 			WikiPage::onArticleDelete( $this );
