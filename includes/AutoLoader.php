@@ -500,9 +500,9 @@ $wgAutoloadLocalClasses = array(
 	# includes/filerepo/backend
 	'FileBackendGroup' => 'includes/filerepo/backend/FileBackendGroup.php',
 	'FileBackend' => 'includes/filerepo/backend/FileBackend.php',
-	'FileBackendStore' => 'includes/filerepo/backend/FileBackend.php',
+	'FileBackendStore' => 'includes/filerepo/backend/FileBackendStore.php',
+	'FileBackendStoreShardListIterator' => 'includes/filerepo/backend/FileBackendStore.php',
 	'FileBackendMultiWrite' => 'includes/filerepo/backend/FileBackendMultiWrite.php',
-	'FileBackendStoreShardListIterator' => 'includes/filerepo/backend/FileBackend.php',
 	'FSFileBackend' => 'includes/filerepo/backend/FSFileBackend.php',
 	'FSFileBackendFileList' => 'includes/filerepo/backend/FSFileBackend.php',
 	'SwiftFileBackend' => 'includes/filerepo/backend/SwiftFileBackend.php',
