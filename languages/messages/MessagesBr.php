@@ -1495,6 +1495,7 @@ Ma skrivit anezhañ e vo implijet evit lakaat war wel ar pezh a vo bet degaset g
 'newsectionsummary'                 => '/* $1 */ rann nevez',
 'rc-enhanced-expand'                => 'Diskouez ar munudoù (JavaScript rekis)',
 'rc-enhanced-hide'                  => 'Kuzhat munudoù',
+'rc-old-title'                      => 'bet krouet da gentañ gant an anv "$1"',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Heuliañ al liammoù',

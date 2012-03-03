@@ -1507,6 +1507,7 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'newsectionsummary'                 => '/* $1 */ nove section',
 'rc-enhanced-expand'                => 'Revelar detalios (require JavaScript)',
 'rc-enhanced-hide'                  => 'Celar detalios',
+'rc-old-title'                      => 'originalmente create como "$1"',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Modificationes ligate',

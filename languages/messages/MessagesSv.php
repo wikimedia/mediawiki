@@ -1641,6 +1641,7 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'newsectionsummary'                 => '/* $1 */ nytt avsnitt',
 'rc-enhanced-expand'                => 'Visa detaljer (kräver JavaScript)',
 'rc-enhanced-hide'                  => 'Göm detaljer',
+'rc-old-title'                      => 'skapades ursprungligen som "$1"',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Relaterade ändringar',

@@ -935,12 +935,12 @@ Jaribu [[Special:Search|kutafuta kurasa mpya zinazohusika kwenye wiki]].',
 'rev-deleted-user-contribs'   => '[jina la mtumiaji au anwani wa IP umetolewa - sahihisho lilifichwa kutoka kwa orodha ya michango]',
 'rev-deleted-text-permission' => "Pitio hilo la ukurasa '''lilifutwa'''.
 Maelezo mengine yapo kwenye [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} kumbukumbu ya kufuta].",
-'rev-deleted-text-unhide'     => "Pitio hilo la ukurasa '''lilifutwa'''.
-Maelezo mengine yapo kwenye [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} kumbukumbu ya kufuta].
-Kwa sababu u mkabidhi, bado unaweza [$1 kulitazama sahihisho hilo] ukitaka.",
-'rev-suppressed-text-unhide'  => "Pitio hilo la ukurasa '''lilifichwa'''.
-Maelezo mengine yapo kwenye [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} kumbukumbu ya kuficha].
-Kwa sababu u mkabidhi, bado unaweza [$1 kulitazama sahihisho hilo] ukitaka.",
+'rev-deleted-text-unhide'     => "Pitio la ukurasa huu '''limefutwa'''.
+Maelezo yanaweza kupatikana kwenye [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} kumbukumbu ya ufutaji].
+Bado unaweza [$1 kutazama sahihisho hili] iwapo utapenda kuendelea.",
+'rev-suppressed-text-unhide'  => "Pitio la ukurasa huu '''limefichwa'''.
+Maelezo yanaweza kupatikana kwenye [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} kumbukumbu ya ufichaji].
+Bado unaweza [$1 kutazama sahihisho hili] iwapo utapenda kuendelea.",
 'rev-deleted-text-view'       => "Pitio hilo la ukurasa '''lilifutwa'''.
 Kwa sababu u mkabidhi, bado unaweza kulitazama; maelezo mengine yapo kwenye [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} kumbukumbu ya kufuta].",
 'rev-suppressed-text-view'    => "Pitio hilo la ukurasa '''lilifichwa'''.

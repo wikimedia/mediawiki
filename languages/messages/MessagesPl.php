@@ -2757,7 +2757,7 @@ Wybierz inną nazwę.',
 'movesubpage'                  => '{{PLURAL:$1|Podstrona|Podstrony}}',
 'movesubpagetext'              => 'Ta strona posiada $1 {{PLURAL:$1|podstronę|podstrony|podstron}}:',
 'movenosubpage'                => 'Ta strona nie posiada podstron.',
-'movereason'                   => 'Powód',
+'movereason'                   => 'Powód:',
 'revertmove'                   => 'cofnij',
 'delete_and_move'              => 'Usuń i przenieś',
 'delete_and_move_text'         => '== Przeniesienie wymaga usunięcia innej strony ==

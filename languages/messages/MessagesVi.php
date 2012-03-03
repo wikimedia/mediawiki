@@ -3931,7 +3931,7 @@ Các hình ảnh được hiển thị ở kích thước tối đa, còn các l
 'revdelete-summary-hid'               => 'đã ẩn tóm lược sửa đổi',
 'revdelete-uname-hid'                 => 'đã ẩn tên người dùng',
 'revdelete-content-unhid'             => 'đã hiện nội dung',
-'revdelete-summary-unhid'             => 'đã hiện tom lược sửa đổi',
+'revdelete-summary-unhid'             => 'đã hiện tóm lược sửa đổi',
 'revdelete-uname-unhid'               => 'đã hiện tên người dùng',
 'revdelete-restricted'                => 'đã áp dụng hạn chế cho bảo quản viên',
 'revdelete-unrestricted'              => 'đã gỡ bỏ hạn chế cho bảo quản viên',

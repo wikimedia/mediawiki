@@ -3794,7 +3794,7 @@ $5
 'semicolon-separator' => '；',
 'comma-separator'     => '、',
 'colon-separator'     => '：',
-'pipe-separator'      => ' |',
+'pipe-separator'      => ' |&#32;',
 'word-separator'      => '',
 'parentheses'         => '（$1）',
 
@@ -3926,7 +3926,7 @@ $5
 'hebrew-calendar-m12-gen' => 'エルール',
 
 # Signatures
-'signature' => '[[{{ns:user}}:$1|$2]]（[[{{ns:user_talk}}:$1|会話]]）',
+'signature' => '[[{{ns:user}}:$1|$2]]（[[{{ns:user_talk}}:$1|トーク]]）',
 
 # Core parser functions
 'unknown_extension_tag' => '不明な拡張機能タグ「$1」です',
@@ -4104,6 +4104,7 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'feedback-error1'  => 'エラー：APIから認識されない結果が返ってきました',
 'feedback-error2'  => 'エラー：編集に失敗しました',
 'feedback-error3'  => 'エラー：APIからの応答がありません',
+'feedback-thanks'  => 'ありがとうございます。あなたのフィードバックは「[$2 $1]」のページに投稿されました。',
 'feedback-close'   => '完了',
 
 # API errors
@@ -4115,6 +4116,7 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'api-error-duplicate-archive-popup-title' => 'すでに削除された重複{{PLURAL:$1|ファイル|ファイル}}',
 'api-error-duplicate-popup-title'         => '重複ファイル{{PLURAL:$1|}}',
 'api-error-empty-file'                    => '送信されたファイルは空でした。',
+'api-error-emptypage'                     => '内容がないページの新規作成は許可されていません。',
 'api-error-fetchfileerror'                => '内部エラー：ファイルの取得中に問題が発生しました。',
 'api-error-file-too-large'                => '送信されたファイルは大きすぎます。',
 'api-error-filename-tooshort'             => 'ファイル名が短すぎます。',
@@ -4139,6 +4141,7 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'api-error-unknown-code'                  => '不明なエラー：「$1」',
 'api-error-unknown-error'                 => '内部エラー：ファイルのアップロードの途中で問題が発生しました。',
 'api-error-unknown-warning'               => '原因不明の警告:$1',
+'api-error-unknownerror'                  => '原因不明のエラー: 「$1」',
 'api-error-uploaddisabled'                => 'このウィキではアップロードは無効になっています。',
 'api-error-verification-error'            => 'このファイルは壊れているか、間違った拡張子になっています。',
 

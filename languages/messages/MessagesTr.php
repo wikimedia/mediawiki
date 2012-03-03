@@ -367,10 +367,10 @@ $messages = array(
 'underline-default' => 'Tarayıcı karar versin',
 
 # Font style option in Special:Preferences
-'editfont-style'     => 'Değişiklik alanı yazıtipi biçemi:',
+'editfont-style'     => 'Değişiklik alanı yazı tipi biçemi:',
 'editfont-default'   => 'Tarayıcı varsayılanı',
 'editfont-monospace' => 'Sabit yer kaplayan yazı tipi',
-'editfont-sansserif' => 'Sans-serif yazıtipi',
+'editfont-sansserif' => 'Sans-serif yazı tipi',
 'editfont-serif'     => 'Serif yazı tipi',
 
 # Dates
@@ -717,7 +717,7 @@ Hesabınız açıldı.
 'yourname'                   => 'Kullanıcı adı:',
 'yourpassword'               => 'Parola:',
 'yourpasswordagain'          => 'Parolayı yeniden yaz:',
-'remembermypassword'         => 'Girişimi bu bilgisayarda hatırla (en fazla $1 {{PLURAL:$1|gün|gün}} için)',
+'remembermypassword'         => 'Girişimi bu tarayıcıda hatırla (en fazla $1 {{PLURAL:$1|gün|gün}} için)',
 'securelogin-stick-https'    => "Giriş yaptıktan sonra HTTPS'e bağlı kal",
 'yourdomainname'             => 'Alan adınız:',
 'externaldberror'            => 'Ya doğrulama veritabanı hatası var ya da kullanıcı hesabınızı güncellemeye yetkiniz yok.',
@@ -1348,7 +1348,7 @@ Aramanızın başına '''all:''' önekini ekleyerek tüm içeriği aramayı (tar
 'prefs-rc'                      => 'Son değişiklikler',
 'prefs-watchlist'               => 'İzleme listesi',
 'prefs-watchlist-days'          => 'İzleme listesinde görüntülenecek gün sayısı:',
-'prefs-watchlist-days-max'      => 'Maximum $1 {{PLURAL:$1|day|days}}',
+'prefs-watchlist-days-max'      => 'en fazla $1 {{PLURAL:$1|gün|gün}}',
 'prefs-watchlist-edits'         => 'Genişletilmiş izleme listesinde gösterilecek değişiklik sayısı:',
 'prefs-watchlist-edits-max'     => 'En fazla sayı: 1000',
 'prefs-watchlist-token'         => 'İzleme listesi nişanı:',
@@ -1790,6 +1790,13 @@ Eğer sorun tekrarlanırsa, bir [[Special:ListUsers/sysop|hizmetli]] ile temasa 
 'upload-unknown-size'       => 'Bilinmeyen boyut',
 'upload-http-error'         => 'Bir HTTP hatası oluştu: $1',
 
+# File backend
+'backend-fail-delete'    => '"$1" dosyası silinemedi.',
+'backend-fail-opentemp'  => 'Geçici dosya açılamadı.',
+'backend-fail-closetemp' => 'Geçici dosya kapanamadı.',
+'backend-fail-read'      => '$1 dosyası okunamadı.',
+'backend-fail-create'    => '$1 dosyası oluşturulamadı.',
+
 # ZipDirectoryReader
 'zip-file-open-error' => 'Dosya ZIP denetimleri için açılırken bir hata ile karşılaşıldı.',
 'zip-wrong-format'    => 'Belirtilen dosya ZIP dosyası değil.',
@@ -1977,7 +1984,7 @@ Aşağıda [$2 dosya açıklama sayfasındaki] açıklama gösteriliyor.',
 'statistics-users-active-desc' => 'Son {{PLURAL:$1|gün|$1 günde}} çalışma yapan kullanıcılar',
 'statistics-mostpopular'       => 'En çok ziyaret edilen sayfalar',
 
-'disambiguations'      => 'Anlam ayrım sayfaları',
+'disambiguations'      => 'Anlam ayrım sayfalarına bağlantısı olan sayfalar',
 'disambiguationspage'  => 'Template:Anlam ayrımı',
 'disambiguations-text' => 'İlk satırda yer alan sayfalar bir anlam ayrım sayfasına iç bağlantı olduğunu gösterir. İkinci sırada yer alan sayfalar anlam ayrım sayfalarını gösterir. <br />Burada [[MediaWiki:Disambiguationspage]] tüm anlam ayrım şablonlarına bağlantılar verilmesi gerekmektedir.',
 
@@ -2229,7 +2236,7 @@ Sayfayı izleme listenizden çıkarmak istediğinizde "sayfayı izlemeyi durdur"
 'watchmethod-list'     => 'izlediğiniz sayfalarda yapılan son değişiklikler kontrol ediliyor',
 'watchlistcontains'    => 'İzleme listenizde $1 tane {{PLURAL:$1|sayfa|sayfa}} var.',
 'iteminvalidname'      => "'$1' öğesi ile sorun, geçersiz isim...",
-'wlnote'               => "Son {{PLURAL:$2|bir saatte|'''$2''' saatte}} yapılan {{PLURAL:$1|son değişiklik|son '''$1''' değişiklik}} aşağıdadır.",
+'wlnote'               => "$3 saat $4 itibariyle son {{PLURAL:$2|bir saatte|'''$2''' saatte}} yapılan {{PLURAL:$1|son değişiklik|son '''$1''' değişiklik}} aşağıdadır.",
 'wlshowlast'           => 'Son $1 saati $2 günü göster $3',
 'watchlist-options'    => 'İzleme listesi seçenekleri',
 
@@ -2609,7 +2616,7 @@ Ancak, bu adres $2 aralığının parçası olarak engellenmiş, aralık engelle
 'ip_range_toolarge'               => '/$1 bloktan daha büyük aralık bloklarına izin verilmez.',
 'blockme'                         => 'Beni engelle',
 'proxyblocker'                    => 'Proxy engelleyici',
-'proxyblocker-disabled'           => 'Bu özellik engellenildi.',
+'proxyblocker-disabled'           => 'Bu işlev devre dışı bırakıldı.',
 'proxyblockreason'                => 'IP adresiniz açık bir proxy olduğu için engellendi.
 Lütfen İnternet sevis sağlayınız ile ya da teknik destek ile irtibat kurun ve bu ciddi güvenlik probleminden haberdar edin.',
 'proxyblocksuccess'               => 'Tamamlanmıştır.',
@@ -2738,6 +2745,7 @@ Bu, MedyaViki kullanan başka bir vikide [[Special:Import|içe aktarım sayfası
 Sayfaları dışa aktarmak için, başlıkları aşağıdaki metin kutusuna girin, her satıra bir tane, ve eski sürümlerle beraber şimdiki sürümü, sayfa geçmişi satırlarını, ya da son değişiklik bilgisiyle beraber güncel sürümü isteyip istemediğinizi belirtin.
 
 Sonuncu durumda, bir link de kullanabilirsiniz, ör: "[[{{MediaWiki:Mainpage}}]]" sayfası için [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]].',
+'exportall'         => 'Tüm sayfaları dışa aktar',
 'exportcuronly'     => 'Geçmiş sürümleri almadan sadece son sürümü al',
 'exportnohistory'   => "----
 '''Not:''' Sayfaların tüm geçmişini bu formla dışa aktarmak, performans nedenlerinden ötürü devre dışı bırakılmıştır.",
@@ -2830,7 +2838,8 @@ Geçici dosya kayıp.',
 'import-logentry-interwiki-detail' => '$2 sayfasından $1 {{PLURAL:$1|revizyon|revizyon}}',
 
 # JavaScriptTest
-'javascripttest' => 'JavaScript denemesi',
+'javascripttest'          => 'JavaScript denemesi',
+'javascripttest-disabled' => 'Bu işlev devre dışı bırakıldı.',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'                 => 'Kullanıcı sayfanız',
@@ -2983,7 +2992,7 @@ $1',
 
 # Media information
 'mediawarning'           => "'''Uyarı''': Bu dosya türü kötü niyetli kodlar içerebilir.
-Bunu çalıştırarak, sisteminiz tehlikeye atılabilir.",
+Bunu çalıştırmak, sisteminizi tehlikeye atabilir.",
 'imagemaxsize'           => "Resim boyutu sınırı:<br />''(dosya açıklama sayfaları için)''",
 'thumbsize'              => 'Küçük boyut:',
 'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|sayfa|sayfa}}',
@@ -3173,11 +3182,14 @@ Diğerleri varsayılan olarak gizlenecektir.
 'exif-gpsdifferential'             => 'GPS differential correction',
 'exif-jpegfilecomment'             => 'JPEG dosyası yorumu',
 'exif-keywords'                    => 'Anahtar kelimeler',
+'exif-countrycreated'              => 'Resmin alındığı ülke',
+'exif-citycreated'                 => 'Resmin alındığı şehir',
 'exif-worldregiondest'             => 'Gösterilen bölge',
 'exif-countrydest'                 => 'Gösterilen ülke',
 'exif-countrycodedest'             => 'Gösterilen ülke kodu',
 'exif-citydest'                    => 'Gösterilen Şehir',
 'exif-objectname'                  => 'Kısa başlık',
+'exif-specialinstructions'         => 'Özel talimatlar',
 'exif-headline'                    => 'Başlık',
 'exif-source'                      => 'Kaynak',
 'exif-urgency'                     => 'Aciliyet',
@@ -3197,11 +3209,13 @@ Diğerleri varsayılan olarak gizlenecektir.
 'exif-copyrightowner'              => 'Telif hakkı sahibi',
 'exif-usageterms'                  => 'Kullanım şartları',
 'exif-webstatement'                => 'Çevrimiçi telif hakkı bildirimi',
+'exif-licenseurl'                  => 'Telif hakkı lisansı için URL',
 'exif-morepermissionsurl'          => 'Alternatif lisans bilgileri',
 'exif-pngfilecomment'              => 'PNG dosyası yorumu',
 'exif-disclaimer'                  => 'Sorumluluk reddi',
 'exif-contentwarning'              => 'İçerik uyarısı',
 'exif-giffilecomment'              => 'GIF dosyası yorumu',
+'exif-subjectnewscode'             => 'Konu kodu',
 'exif-event'                       => 'Adı geçen olay',
 'exif-personinimage'               => 'Adı geçen kişi',
 
@@ -3735,14 +3749,20 @@ Resimler tam çözünürlükte görüntülenir, diğer dosya tipleri ilgili prog
 'sqlite-no-fts'  => '$1 tam-metin arama desteği olmaksızın',
 
 # New logging system
-'revdelete-content-hid'   => 'Gizli içerik',
-'revdelete-uname-hid'     => 'kullanıcı adı gizli',
-'revdelete-content-unhid' => 'içerik gösterildi',
-'revdelete-summary-unhid' => 'değişiklik özeti gösterildi',
-'revdelete-uname-unhid'   => 'kullanıcı adı gösterildi',
-'revdelete-restricted'    => 'hizmetliler için uygulanmış kısıtlamalar',
-'revdelete-unrestricted'  => 'hizmetliler için kaldırılmış kısıtlamalar',
-'newuserlog-byemail'      => 'e-posta yoluyla şifre gönderilmiştir',
+'logentry-delete-delete'       => '$1 $3 sayfasını sildi',
+'revdelete-content-hid'        => 'Gizli içerik',
+'revdelete-summary-hid'        => 'değişiklik özeti gizlenmiş',
+'revdelete-uname-hid'          => 'kullanıcı adı gizli',
+'revdelete-content-unhid'      => 'içerik gösterildi',
+'revdelete-summary-unhid'      => 'değişiklik özeti gösterildi',
+'revdelete-uname-unhid'        => 'kullanıcı adı gösterildi',
+'revdelete-restricted'         => 'hizmetliler için uygulanmış kısıtlamalar',
+'revdelete-unrestricted'       => 'hizmetliler için kaldırılmış kısıtlamalar',
+'logentry-newusers-newusers'   => '$1 kullanıcı hesabı oluşturdu',
+'logentry-newusers-create'     => '$1 kullanıcı hesabı oluşturdu',
+'logentry-newusers-create2'    => '$1 kullanıcı hesabı oluşturdu $3',
+'logentry-newusers-autocreate' => '$1 hesabı otomatik olarak oluşturuldu',
+'newuserlog-byemail'           => 'e-posta yoluyla şifre gönderilmiştir',
 
 # Feedback
 'feedback-subject'  => 'Konu:',

@@ -3881,6 +3881,7 @@ Ce nò, tu puè ausà 'u module facile aqquà sotte. 'U commende tune avène agg
 'api-error-unknown-code'          => 'Errore scanusciute: "$1"',
 'api-error-unknown-error'         => "Errore inderne: Quacche cose ha sciute storte quanne ste pruvave a carecà 'u file tune.",
 'api-error-unknown-warning'       => 'Avvertimende scanusciute: $1',
+'api-error-unknownerror'          => 'Errore scanusciute: "$1"',
 'api-error-uploaddisabled'        => 'Le carecaminde sonde disabbilitate sus a sta Uicchi.',
 'api-error-verification-error'    => "Stu file pò essere scuasciate, o ave 'n'estenzione sbagliate.",
 

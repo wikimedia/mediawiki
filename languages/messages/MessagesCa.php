@@ -1502,6 +1502,7 @@ Ha de tenir com a molt {{PLURAL:$1|un caràcter|$1 caràcters}}.',
 'newsectionsummary'                 => '/* $1 */ secció nova',
 'rc-enhanced-expand'                => 'Mostra detalls (requereix JavaScript)',
 'rc-enhanced-hide'                  => 'Amagar detalls',
+'rc-old-title'                      => 'originàriament creada com «$1»',
 
 # Recent changes linked
 'recentchangeslinked'          => "Seguiment d'enllaços",

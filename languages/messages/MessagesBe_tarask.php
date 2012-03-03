@@ -1580,6 +1580,7 @@ $1",
 'newsectionsummary'                 => '/* $1 */ новая сэкцыя',
 'rc-enhanced-expand'                => 'Паказаць падрабязнасьці (патрабуе JavaScript)',
 'rc-enhanced-hide'                  => 'Схаваць падрабязнасьці',
+'rc-old-title'                      => 'зь першапачатковай назвай «$1»',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Зьвязаныя праўкі',

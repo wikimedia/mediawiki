@@ -812,7 +812,8 @@ Used on [[Special:ResetPass]]',
 {{Identical|Reset password}}',
 'passwordreset-text'               => 'Text on [[Special:PasswordReset]]',
 'passwordreset-legend'             => '{{Identical|Reset password}}',
-'passwordreset-pretext'            => '$1 is the number of password reset routes. Apparently, this is never 1, but always two or more. Thus, the first plural option is empty in English.',
+'passwordreset-pretext'            => 'Parameters:
+* $1 is the number of password reset routes. This is never 1, but always two or more. Thus, the first plural option is empty in English.',
 'passwordreset-username'           => '{{Identical|Username}}',
 'passwordreset-domain'             => 'A domain like used in Domain Name System (DNS) or more specifically like a domain component in the Lightweight Directory Access Protocol (LDAP)',
 'passwordreset-capture'            => 'Label for checkbox asking the user whether they want to see the contents of the password reset email (only shown if they have the <tt>passwordreset</tt> permission',
@@ -1003,7 +1004,9 @@ Please report at [[Support]] if you are unable to properly translate this messag
 'expensive-parserfunction-warning'        => 'On some (expensive) [[MetaWikipedia:Help:ParserFunctions|parser functions]] (e.g. <code><nowiki>{{#ifexist:}}</nowiki></code>) there is a limit of how many times it may be used. This is an error message shown when the limit is exceeded.
 
 * $1 is the current number of parser function calls.
-* $2 is the allowed number of parser function calls.',
+* $2 is the allowed number of parser function calls.
+
+See also [[:mw:Manual:$wgExpensiveParserFunctionLimit|$wgExpensiveParserFunctionLimit in the MediaWiki manual]].',
 'expensive-parserfunction-category'       => 'This message is used as a category name for a [[mw:Help:Tracking categories|tracking category]] where pages are placed automatically if they contain too many calls to expensive parser functions.',
 'post-expand-template-inclusion-warning'  => 'When templates are expanded, there is a size limit for the number of bytes yielded. Usually that occurs from excessively nested templates, recursive templates, or ones having x-zillion of #if #case or similar contructs in them. When the wikicode parser detects this, it outputs a red warning message to the page.',
 'post-expand-template-inclusion-category' => 'This message is used as a category name for a [[mw:Help:Tracking categories|tracking category]] where pages are placed automatically if the expanded size of the templates they contain exceeds the limit.
@@ -1225,7 +1228,9 @@ See also {{msg-mw|difference}}.',
 'compareselectedversions'  => 'Used as button in history pages.',
 'showhideselectedversions' => 'Text of the button which brings up the [[mw:RevisionDelete|RevisionDelete]] menu.',
 'editundo'                 => 'Undo link when viewing diffs
-{{Identical|Undo}}',
+{{Identical|Undo}}
+
+This message has sometimes a tooltip {{msg-mw|tooltip-undo}}',
 'diff-multi'               => "This message appears in the revision history of a page when comparing two versions which aren't consecutive.
 
 *Parameter $1 is the number of revisions
@@ -2581,7 +2586,8 @@ $1 is the <b>approximate</b> number of revisions that the page has, the message 
 # Rollback
 'rollback'          => '{{Identical|Rollback}}',
 'rollback_short'    => '{{Identical|Rollback}}',
-'rollbacklink'      => '{{Identical|Rollback}}',
+'rollbacklink'      => '{{Identical|Rollback}}
+This message has a tooltip {{msg-mw|tooltip-rollback}}',
 'rollbackfailed'    => '{{Identical|Rollback}}',
 'cantrollback'      => '{{Identical|Revert}}
 {{Identical|Rollback}}',
@@ -2724,9 +2730,13 @@ This message was something like "unlock move protection" in the past.',
 'namespace'                     => 'This message is located at [[Special:Contributions]].',
 'invert'                        => 'Displayed in [[Special:RecentChanges|RecentChanges]], [[Special:RecentChangesLinked|RecentChangesLinked]] and [[Special:Watchlist|Watchlist]]
 
-{{Identical|Invert selection}}',
+{{Identical|Invert selection}}
+
+This message has a tooltip {{msg-mw|tooltip-invert}}',
 'tooltip-invert'                => 'Used in [[Special:Recentchanges]] as a tooltip for the invert checkbox. See also the message {{msg-mw|invert}}',
-'namespace_association'         => 'Used in [[Special:Recentchanges]] with a checkbox which selects the associated namespace to be added to the selected namespace, so that both are searched (or excluded depending on another checkbox selection). The association is between a namespace and its talk namespace.',
+'namespace_association'         => 'Used in [[Special:Recentchanges]] with a checkbox which selects the associated namespace to be added to the selected namespace, so that both are searched (or excluded depending on another checkbox selection). The association is between a namespace and its talk namespace.
+
+This message has a tooltip {{msg-mw|tooltip-namespace association}}',
 'tooltip-namespace_association' => 'Used in [[Special:Recentchanges]] as a tooltip for the associated namespace checkbox. See also the message {{msg-mw|namespace_association}}',
 'blanknamespace'                => 'Name for main namespace (blank namespace) in drop-down menus at [[Special:RecentChanges]] and other special pages.',
 
@@ -3164,10 +3174,10 @@ If the length of the translated message is over 60 characters (including spaces)
 'tooltip-watch'                       => '{{Identical|Add this page to your watchlist}}',
 'tooltip-watchlistedit-normal-submit' => 'Tooltip for {{msg|watchlistedit-normal-submit}} (used as button on [[Special:EditWatchlist]]).',
 'tooltip-watchlistedit-raw-submit'    => 'Tooltip for {{msg|watchlistedit-raw-submit}} (used as button on [[Special:EditWatchlist/raw]]).',
-'tooltip-rollback'                    => 'Tooltip of the rollback link on the history page and the diff view
+'tooltip-rollback'                    => 'Tooltip of the rollback link on the history page and the diff view {{msg-mw|rollbacklink}}
 {{Identical|Rollback}}
 {{Identical|Revert}}',
-'tooltip-undo'                        => 'Tooltip of the undo link on the history page and the diff view
+'tooltip-undo'                        => 'Tooltip of the undo link on the history page and the diff view {{msg-mw|editundo}}
 {{Identical|Undo}}{{Identical|Revert}}',
 
 # Stylesheets
@@ -4332,7 +4342,8 @@ Name of month in Hebrew calender.',
 # Signatures
 'signature'    => "This will be substituted in the signature (~<nowiki></nowiki>~~ or ~~<nowiki></nowiki>~~ excluding timestamp)
 * $1: the username that is currently login
-* $2: the customized signature which is specified in [[Special:Preferences|user's preferences]] as non-raw",
+* $2: the customized signature which is specified in [[Special:Preferences|user's preferences]] as non-raw
+Use your language default parentheses ({{msg-mw|parentheses}}), but not use the message direct.",
 'timezone-utc' => '{{optional}}',
 
 # Core parser functions

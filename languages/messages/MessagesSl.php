@@ -1531,6 +1531,7 @@ Podatek bo javno prikazan.',
 'newsectionsummary'                 => '/* $1 */ nov razdelek',
 'rc-enhanced-expand'                => 'Pokaži podrobnosti (potrebuje JavaScript)',
 'rc-enhanced-hide'                  => 'Skrij podrobnosti',
+'rc-old-title'                      => 'prvotno ustvarjeno kot »$1«',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Sorodne spremembe',

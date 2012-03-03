@@ -1219,9 +1219,11 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'grouppage-suppress'      => '{{ns:project}}:Հսկիչ',
 
 # Rights
-'right-edit'   => 'էջերի խմբագրում',
-'right-upload' => 'Նիշքերի բեռնում',
-'right-delete' => 'Էջերի ջնջում',
+'right-edit'          => 'էջերի խմբագրում',
+'right-move'          => 'Տեղափոխել էջերը',
+'right-move-subpages' => 'Տեղափոխել էջերն իրենց ենթաէջերով',
+'right-upload'        => 'Նիշքերի բեռնում',
+'right-delete'        => 'Էջերի ջնջում',
 
 # User rights log
 'rightslog'      => 'Մասնակցի իրավունքների տեղեկամատյան',
@@ -1991,6 +1993,7 @@ $1',
 'movetalk'                => 'Տեղափոխել զուգակցված քննարկման էջը',
 'movelogpage'             => 'Տեղափոխման տեղեկամատյան',
 'movelogpagetext'         => 'Ստորև բերված է վերանվանված էջերի ցանկը։',
+'movenosubpage'           => 'Այս էջը ենթաէջեր չունի',
 'movereason'              => 'Պատճառ.',
 'revertmove'              => 'հետ շրջել',
 'delete_and_move'         => 'Ջնջել և տեղափոխել',
@@ -2409,8 +2412,14 @@ $3
 'dberr-again'    => 'Փորձեք մի քանի րոպե սպասել և վերաբեռնել էջը։',
 
 # New logging system
-'logentry-delete-delete'    => '$1 ջնջեց էջը $3',
-'logentry-delete-restore'   => '$1 վերականգնեց էջը $3',
-'logentry-newusers-create2' => '$1 Ստեղծեց նոր հաշիվ $3',
+'logentry-delete-delete'              => '$1 ջնջեց էջը $3',
+'logentry-delete-restore'             => '$1 վերականգնեց էջը $3',
+'logentry-move-move'                  => '$1 տեղափոխեց էջը «$3»-ից «$4»',
+'logentry-move-move-noredirect'       => '$1 տեղափոխեց էջը «$3»-ից «$4» առանց վերահղում թողնելու',
+'logentry-move-move_redir'            => '$1 տեղափոխեց էջը «$3»-ից «$4» վերահղման վրայով',
+'logentry-move-move_redir-noredirect' => '$1 տեղափոխեց էջը «$3»-ից «$4» վերահղման վրայով, առանց վերահղում թողնելու',
+'logentry-newusers-newusers'          => '$1 մասնակիցը ստեղծեց նոր հաշիվ',
+'logentry-newusers-create'            => '$1 մասնակիցը ստեղծեց նոր հաշիվ',
+'logentry-newusers-create2'           => '$1 Ստեղծեց նոր հաշիվ $3',
 
 );

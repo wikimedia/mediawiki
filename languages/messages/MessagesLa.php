@@ -2296,6 +2296,9 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 'watchlisttools-edit' => 'Indicem paginarum custoditarum inspicere vel recensere',
 'watchlisttools-raw'  => 'Indicem paginarum custoditarum quasi textum recensere',
 
+# Signatures
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|disputatio]])',
+
 # Special:Version
 'version'                       => 'Versio',
 'version-specialpages'          => 'Paginae speciales',

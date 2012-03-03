@@ -1695,6 +1695,7 @@ Stand: $4, $5 Uhr.",
 'newsectionsummary'                 => 'Neuer Abschnitt /* $1 */',
 'rc-enhanced-expand'                => 'Details anzeigen (benötigt JavaScript)',
 'rc-enhanced-hide'                  => 'Details verstecken',
+'rc-old-title'                      => 'ursprünglich erstellt als „$1“',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Änderungen an verlinkten Seiten',
@@ -2311,9 +2312,7 @@ Als Absender wird die E-Mail-Adresse aus deinen [[Special:Preferences|Einstellun
 'watchnologintext'     => 'Du musst [[Special:UserLogin|angemeldet]] sein, um deine Beobachtungsliste bearbeiten zu können.',
 'addwatch'             => 'Zur Beobachtungsliste hinzufügen',
 'addedwatchtext'       => 'Die Seite „[[:$1]]“ wurde zu deiner [[Special:Watchlist|Beobachtungsliste]] hinzugefügt.
-
-Spätere Änderungen an dieser Seite und der dazugehörigen Diskussionsseite werden dort gelistet und
-in der Übersicht der [[Special:RecentChanges|letzten Änderungen]] in Fettschrift dargestellt.',
+Spätere Änderungen an dieser Seite und der zugehörigen Diskussionsseite werden dort gelistet und die Seite wird in der [[Special:RecentChanges|Liste der letzten Änderungen]] in Fettschrift angezeigt.',
 'removewatch'          => 'Von der Beobachtungsliste entfernen',
 'removedwatchtext'     => 'Die Seite „[[:$1]]“ wurde von deiner [[Special:Watchlist|Beobachtungsliste]] entfernt.',
 'watch'                => 'Beobachten',
@@ -2543,7 +2542,7 @@ $1',
 'namespace'                     => 'Namensraum:',
 'invert'                        => 'Auswahl umkehren',
 'tooltip-invert'                => 'Dieses Auswahlfeld anklicken, um Änderungen im gewählten Namensraum und, sofern ausgewählt, dem entsprechenden zugehörigen Namensraum auszublenden',
-'namespace_association'         => 'Zugeordneter Namensraum',
+'namespace_association'         => 'Zugehöriger Namensraum',
 'tooltip-namespace_association' => 'Dieses Auswahlfeld anklicken, um den deiner Auswahl zugehörigen Diskussionsnamensraum, oder im umgekehrten Fall, den zugehörigen Namensraum, mit einzubeziehen',
 'blanknamespace'                => '(Seiten)',
 

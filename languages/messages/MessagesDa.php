@@ -1501,6 +1501,7 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'newsectionsummary'                 => '/* $1 */ nyt afsnit',
 'rc-enhanced-expand'                => 'Vis detaljer (kræver JavaScript)',
 'rc-enhanced-hide'                  => 'Skjul detaljer',
+'rc-old-title'                      => 'oprindeligt oprettet som "$1"',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Relaterede ændringer',

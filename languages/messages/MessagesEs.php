@@ -15,6 +15,7 @@
  * @author Ascánder
  * @author Baiji
  * @author Bea.miau
+ * @author Benfutbol10
  * @author Bengoa
  * @author Bernardom
  * @author Better
@@ -1678,6 +1679,7 @@ Tu dirección de correo no se revela cuando otros usuarios te contactan.',
 'newsectionsummary'                 => 'Nueva sección: /* $1 */',
 'rc-enhanced-expand'                => 'Mostrar detalles (requiere JavaScript)',
 'rc-enhanced-hide'                  => 'Ocultar detalles',
+'rc-old-title'                      => 'originalmente creado como "$1"',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Cambios relacionados',
@@ -3633,7 +3635,9 @@ Este código de confirmación caducará el $4.',
 
 # Delete conflict
 'deletedwhileediting'      => "'''Aviso''': ¡Esta página fue borrada después de que usted empezara a editar!",
-'confirmrecreate'          => "El usuario [[User:$1|$1]] ([[User talk:$1|discusión]]) borró este artículo después de que tú empezaces a editarlo y dio esta razón: ''$2'' Por favor, confirma que realmente deseas crear de nuevo el artículo.",
+'confirmrecreate'          => "El usuario [[User:$1|$1]] ([[User talk:$1|disc.]]) borró esta página después de que comenzaste a editarla, por el motivo:
+: ''$2''
+Confirma que realmente quieres volver a crear esta página.",
 'confirmrecreate-noreason' => 'El usuario [[User:$1|$1]] ([[User talk:$1|discusión]]) borró esta página después de que comenzaras a editarla. Por favor confirma que realmente quieres recrear esta página.',
 'recreate'                 => 'Crear de nuevo',
 

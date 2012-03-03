@@ -10,6 +10,7 @@
  * @author Bugoslav
  * @author CERminator
  * @author Demicx
+ * @author DzWiki
  * @author Edinwiki
  * @author Fulup
  * @author Kaganer
@@ -1115,7 +1116,7 @@ Detalje o tome možer vidjeti u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPA
 Kao administrator još je uvijek možete [$1 vidjeti ovu reviziju] ako želite.",
 'rev-suppressed-text-unhide'  => "Ova revizija stranice je '''uklonjena'''.
 Možete pogledati detalje u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} zapisu uklanjanja].
-Kao administrator Vi je i dalje možete [$1 vidjeti ovu reviziju] ako želite.",
+Vi je i dalje možete [$1 vidjeti ovu reviziju] ako želite.",
 'rev-deleted-text-view'       => "Revizija ove stranice je '''obrisana'''.
 Kao administrator, Vi je možete vidjeti; detalji o tome se mogu vidjeti u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} zapisu brisanja].",
 'rev-suppressed-text-view'    => "Ova revizija stranice je '''uklonjena'''.
@@ -1333,7 +1334,7 @@ Pokušajte u Vaš upit uključiti prefiks ''all:'' da bi ste pretražili sav sad
 'prefs-rc'                      => 'Podešavanja nedavnih izmjena',
 'prefs-watchlist'               => 'Moji praćeni članci',
 'prefs-watchlist-days'          => 'Broj dana za prikaz u spisku praćenja:',
-'prefs-watchlist-days-max'      => 'Maximum $1 {{PLURAL:$1|day|days}}',
+'prefs-watchlist-days-max'      => 'Maximum $1 {{PLURAL:$1|dan|dana}}',
 'prefs-watchlist-edits'         => 'Najveći broj izmjena za prikaz u proširenom spisku praćenja:',
 'prefs-watchlist-edits-max'     => 'Najveći broj: 1000',
 'prefs-watchlist-token'         => 'Token spiska za praćenje:',
@@ -1399,7 +1400,7 @@ Ovo se ne može vratiti unazad.',
 'prefs-registration'            => 'Vrijeme registracije:',
 'yourrealname'                  => 'Vaše pravo ime:',
 'yourlanguage'                  => 'Jezik:',
-'yourvariant'                   => 'Varijanta:',
+'yourvariant'                   => 'Varijanta jezika:',
 'yournick'                      => 'Nadimak (za potpise):',
 'prefs-help-signature'          => 'Komentari na stranicama za razgovor trebaju biti potpisani sa "<nowiki>~~~~</nowiki>" koje će biti pretvoreno u vaš potpis i vrijeme.',
 'badsig'                        => 'Loš sirovi potpis.
@@ -1468,12 +1469,12 @@ Ako izaberete da date ime, biće korišteno za pripisivanje za vaš rad.',
 'group-suppress'      => 'Nadzornici',
 'group-all'           => '(sve)',
 
-'group-user-member'          => '{{GENDER:$1|Korisnik}}',
-'group-autoconfirmed-member' => 'Potvrđeni korisnici',
-'group-bot-member'           => 'Bot',
+'group-user-member'          => '{{GENDER:$1|korisnik|korisnica}}',
+'group-autoconfirmed-member' => 'Potvrđeni korisnik',
+'group-bot-member'           => 'bot',
 'group-sysop-member'         => 'Administrator',
 'group-bureaucrat-member'    => 'Birokrat',
-'group-suppress-member'      => 'Nadzornici',
+'group-suppress-member'      => 'Nadzornik',
 
 'grouppage-user'          => '{{ns:project}}:Korisnici',
 'grouppage-autoconfirmed' => '{{ns:project}}:Potvrđeni korisnici',
@@ -1776,6 +1777,10 @@ Ako se problem ne riješi, kontaktirajte [[Special:ListUsers/sysop|administrator
 'upload-unknown-size'       => 'Nepoznata veličina',
 'upload-http-error'         => 'Desila se HTTP greška: $1',
 
+# File backend
+'backend-fail-notexists'     => 'Datoteka $1 ne postoji.',
+'backend-fail-alreadyexists' => 'Datoteka $1 već postoji.',
+
 # ZipDirectoryReader
 'zip-file-open-error' => 'Desila se greška pri otvaranju datoteke za provjere ZIP-a.',
 'zip-wrong-format'    => 'Navedena datoteka ni bila ZIP datoteka.',
@@ -2070,7 +2075,7 @@ na kome bi se izvela ova funkcija.',
 
 # Special:Log
 'specialloguserlabel'  => 'Korisnik:',
-'speciallogtitlelabel' => 'Naslov:',
+'speciallogtitlelabel' => 'Cilj (naslov ili korisnik):',
 'log'                  => 'Protokoli',
 'all-logs-page'        => 'Svi javni registri',
 'alllogstext'          => 'Zajednički prikaz svih dostupnih zapisa sa {{SITENAME}}.
@@ -2915,6 +2920,7 @@ Nedostaje privremeni folder.',
 'tooltip-compareselectedversions'     => 'Pogledajte pazlike između dvije selektovane verzije ove stranice.',
 'tooltip-watch'                       => 'Dodajte ovu stranicu na Vaš spisak praćenih članaka',
 'tooltip-watchlistedit-normal-submit' => 'Ukloni naslove',
+'tooltip-watchlistedit-raw-submit'    => 'Ažuriraj spisak praćenja',
 'tooltip-recreate'                    => 'Ponovno pravljenje stranice iako je već brisana',
 'tooltip-upload'                      => 'Započni postavljanje',
 'tooltip-rollback'                    => 'Brzo vraćanje izmjene(izmjena) ove stranice posljednjeg uređivača jednim klikom.',
@@ -3037,7 +3043,7 @@ $1',
 'svg-long-desc'          => 'SVG fajl, dozvoljeno $1 × $2 piksela, veličina fajla: $3',
 'show-big-image'         => 'Vidi sliku u punoj veličini (rezoluciji)',
 'show-big-image-preview' => 'Veličina ovog prikaza: $1.',
-'show-big-image-other'   => 'Ostale rezolucije: $1.',
+'show-big-image-other'   => '{{PLURAL:$2|Druga rezolucija|Ostale rezolucije}}: $1.',
 'show-big-image-size'    => '$1 × $2 piksela',
 'file-info-gif-looped'   => 'stalno iznova',
 'file-info-gif-frames'   => '$1 {{PLURAL:$1|sličica|sličice|sličica}}',
@@ -3056,6 +3062,13 @@ $1',
 'ilsubmit'              => 'Traži',
 'bydate'                => 'po datumu',
 'sp-newimages-showfrom' => 'Prikaz novih datoteka počev od $2, $1',
+
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'seconds' => '{{PLURAL:$1|$1 sekunda|$1 sekunde|$1 sekundi}}',
+'minutes' => '{{PLURAL:$1|$1 minuta|$1 minute|$1 minuta}}',
+'hours'   => '{{PLURAL:$1|$1 sat|$1 sata|$1 sati}}',
+'days'    => '{{PLURAL:$1|$1 dan|$1 dana|$1 dana}}',
+'ago'     => 'prije $1',
 
 # Bad image list
 'bad_image_list' => "Koristi se sljedeći format:
@@ -3755,8 +3768,7 @@ Slike su prikazane u punoj veličini, ostale vrste datoteka su prikazane direktn
 'specialpages'                   => 'Posebne stranice',
 'specialpages-note'              => '----
 * Normalne posebne stranice.
-* <strong class="mw-specialpagerestricted">Zaštićene posebne stranice.</strong>
-* <span class="mw-specialpagecached">Samo keširane posebne stranice.</span>',
+* <strong class="mw-specialpagerestricted">Zaštićene posebne stranice.</strong>',
 'specialpages-group-maintenance' => 'Izvještaji za održavanje',
 'specialpages-group-other'       => 'Ostale posebne stranice',
 'specialpages-group-login'       => 'Prijava / Otvaranje računa',
@@ -3798,13 +3810,15 @@ Slike su prikazane u punoj veličini, ostale vrste datoteka su prikazane direktn
 'tags-hitcount'           => '$1 {{PLURAL:$1|izmjena|izmjene|izmjena}}',
 
 # Special:ComparePages
-'comparepages'     => 'Usporedi stranice',
-'compare-selector' => 'Usporedi ispravljanje stranica',
-'compare-page1'    => 'Stranica 1',
-'compare-page2'    => 'Stranica 2',
-'compare-rev1'     => 'Ispravljanje 1',
-'compare-rev2'     => 'Ispravljanje 2',
-'compare-submit'   => 'Usporedi',
+'comparepages'             => 'Usporedi stranice',
+'compare-selector'         => 'Usporedi ispravljanje stranica',
+'compare-page1'            => 'Stranica 1',
+'compare-page2'            => 'Stranica 2',
+'compare-rev1'             => 'Ispravljanje 1',
+'compare-rev2'             => 'Ispravljanje 2',
+'compare-submit'           => 'Usporedi',
+'compare-invalid-title'    => 'Naslov koji ste unijeli je nevaljan.',
+'compare-title-not-exists' => 'Naslov koji ste naveli ne postoji.',
 
 # Database error messages
 'dberr-header'      => 'Ovaj wiki ima problem',
@@ -3832,6 +3846,8 @@ Slike su prikazane u punoj veličini, ostale vrste datoteka su prikazane direktn
 'sqlite-no-fts'  => '$1 bez podrške pretrage cijelog teksta',
 
 # New logging system
+'logentry-delete-delete'        => '$1 je obrisao stranicu $3',
+'logentry-delete-restore'       => '$1 je vratio stranicu $3',
 'revdelete-content-hid'         => 'skriveni sadržaj',
 'revdelete-summary-hid'         => 'sažetak izmjene je sakriven',
 'revdelete-uname-hid'           => 'sažetak izmjene je sakriven',
@@ -3842,6 +3858,10 @@ Slike su prikazane u punoj veličini, ostale vrste datoteka su prikazane direktn
 'revdelete-unrestricted'        => 'uklonjena ograničenja za administratore',
 'logentry-move-move'            => '$1 premjesti stranicu $3 na $4',
 'logentry-move-move-noredirect' => '$1 premjesti stranicu $3 na $4 bez ostavljanja preusmjerenja',
+'logentry-newusers-newusers'    => '$1 je napravio korisnički račun',
+'logentry-newusers-create'      => '$1 je napravio korisnički račun',
+'logentry-newusers-create2'     => '$1 je napravio korisnički račun $3',
+'logentry-newusers-autocreate'  => 'Korisnički račun $1 je automatski napravljen',
 'newuserlog-byemail'            => 'šifra je poslana putem e-maila',
 
 # Feedback
@@ -3853,6 +3873,8 @@ Slike su prikazane u punoj veličini, ostale vrste datoteka su prikazane direktn
 'feedback-error1'  => 'Greška: Neprepoznati rezultat od API',
 'feedback-error2'  => 'Greška: Uređivanje nije uspjelo',
 'feedback-error3'  => 'Greška: Nema odgovora od API',
+'feedback-close'   => 'Završeno',
+'feedback-bugnew'  => 'Provjereno. Prijavi novu grešku',
 
 # API errors
 'api-error-badaccess-groups'              => 'Nemate ovlasti da postavljate datoteke na ovoj wiki.',
@@ -3863,6 +3885,7 @@ Slike su prikazane u punoj veličini, ostale vrste datoteka su prikazane direktn
 'api-error-duplicate-archive-popup-title' => '{{PLURAL:$1|Dupla datoteka|Duple datoteke}} koje su već obrisane',
 'api-error-duplicate-popup-title'         => '{{PLURAL:$1|Dvojna datoteka|Dvojne datoteke}}',
 'api-error-empty-file'                    => 'Datoteka koju ste poslali je bila prazna.',
+'api-error-emptypage'                     => 'Stvaranje novih praznih stranica nije dozvoljeno.',
 'api-error-fetchfileerror'                => 'Unutrašnja greška: pojavio se neki problem pri dobijanju podataka o datoteci.',
 'api-error-file-too-large'                => 'Datoteka koju ste poslali je bila prevelika.',
 'api-error-filename-tooshort'             => 'Ime datoteke je prekratko.',
@@ -3887,6 +3910,7 @@ Slike su prikazane u punoj veličini, ostale vrste datoteka su prikazane direktn
 'api-error-unknown-code'                  => 'Nepoznata greška: "$1"',
 'api-error-unknown-error'                 => 'Unutrašnja greška: desila se neka greška pri pokušaju postavljanja vaše datoteke.',
 'api-error-unknown-warning'               => 'Nepoznato upozorenje: $1',
+'api-error-unknownerror'                  => 'Nepoznata greška: "$1"',
 'api-error-uploaddisabled'                => 'Postavljanje je onemogućeno na ovoj wiki.',
 'api-error-verification-error'            => 'Ova datoteka je možda oštećenja ili ima pogrešan nastavak.',
 

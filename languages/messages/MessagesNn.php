@@ -1353,8 +1353,8 @@ Dette kan ikke tilbakestillast.',
 'yourgender'                    => 'Kjønn:',
 'gender-unknown'                => 'Ikkje oppgjeve',
 'gender-male'                   => 'Mann',
-'gender-female'                 => 'Kvinna',
-'prefs-help-gender'             => 'Valfritt: nytta for kjønnskorrekt referering frå mjukvara. Denne informasjonen vil vera offentleg.',
+'gender-female'                 => 'Kvinne',
+'prefs-help-gender'             => 'Valfritt: nytta for at programvara skal retta seg til brukaren med rett kjønn i systemmeldingar. Denne informasjonen vil vera offentleg.',
 'email'                         => 'E-post',
 'prefs-help-realname'           => '* Namn (valfritt): Om du vel å fylle ut dette feltet, vil informasjonen bli brukt til å godskrive arbeid du har gjort.',
 'prefs-help-email'              => 'Å oppgje e-postadresse er valfritt, men lar deg ta i mot nytt passord om du gløymer det gamle.',
@@ -1969,8 +1969,8 @@ Merk at andre internettsider kan ha direkte lenkjer til filer, og difor kan file
 'booksources-invalid-isbn'  => 'Det oppgjevne ISBN-nummeret er ugyldig; sjekk med kjelda di om du har oppgjeve det rett.',
 
 # Special:Log
-'specialloguserlabel'  => 'Brukar:',
-'speciallogtitlelabel' => 'Tittel:',
+'specialloguserlabel'  => 'Utøvar:',
+'speciallogtitlelabel' => 'Mål (tittel eller brukar):',
 'log'                  => 'Loggar',
 'all-logs-page'        => 'Alle offentlege loggar',
 'alllogstext'          => 'Kombinert vising av alle loggane på {{SITENAME}}. Du kan avgrense resultatet ved å velje loggtype, brukarnamn eller den sida som er påverka (hugs å skilje mellom store og små bokstavar)',
@@ -2009,7 +2009,7 @@ Sjå òg [[Special:WantedCategories|ønska kategoriar]].',
 'sp-deletedcontributions-contribs' => 'bidrag',
 
 # Special:LinkSearch
-'linksearch'       => 'Eksterne lenkjer',
+'linksearch'       => 'Søk i eksterne lenkjer',
 'linksearch-pat'   => 'Søkemønster:',
 'linksearch-ns'    => 'Namnerom:',
 'linksearch-ok'    => 'Søk',
@@ -3302,11 +3302,12 @@ Denne stadfestingskoden vert forelda $4.',
 'scarytranscludetoolong'  => '[URL-en er for lang]',
 
 # Delete conflict
-'deletedwhileediting' => "'''Åtvaring:''' Denne sida har vorte sletta etter du starta å endre henne!",
-'confirmrecreate'     => "Brukaren «[[User:$1|$1]]» ([[User talk:$1|brukardiskusjon]]) sletta denne sida medan du endra henne, og gav denne grunnen: ''$2''
+'deletedwhileediting'      => "'''Åtvaring:''' Denne sida har vorte sletta etter du starta å endre henne!",
+'confirmrecreate'          => "Brukaren «[[User:$1|$1]]» ([[User talk:$1|brukardiskusjon]]) sletta denne sida medan du endra henne, og gav denne grunnen: ''$2''
 
 Du må stadfeste at du verkeleg vil nyopprette denne sida.",
-'recreate'            => 'Attopprett',
+'confirmrecreate-noreason' => 'Brukaren [[User:$1|$1]] ([[User talk:$1|diskusjon]]) sletta sida etter at du byrja å endra henne. Stadfest at du verkeleg ynskjer å oppretta sida på nytt.',
+'recreate'                 => 'Attopprett',
 
 # action=purge
 'confirm_purge_button' => 'OK',
@@ -3379,6 +3380,9 @@ Du kan òg [[Special:EditWatchlist|nytte standardverktøyet]].',
 'watchlisttools-view' => 'Vis relevante endringar',
 'watchlisttools-edit' => 'Vis og endre overvakingslista',
 'watchlisttools-raw'  => 'Endre på overvakingslista i råformat',
+
+# Signatures
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|diskusjon]])',
 
 # Core parser functions
 'unknown_extension_tag' => 'Ukjend tilleggsmerking «$1»',
