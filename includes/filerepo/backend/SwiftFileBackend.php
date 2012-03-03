@@ -7,7 +7,7 @@
  */
 
 /**
- * Class for an OpenStack Swift based file backend.
+ * @brief Class for an OpenStack Swift based file backend.
  *
  * This requires the SwiftCloudFiles MediaWiki extension, which includes
  * the php-cloudfiles library (https://github.com/rackspace/php-cloudfiles).
@@ -856,14 +856,26 @@ class SwiftFileBackendFileList implements Iterator {
 		}
 	}
 
+	/**
+	 * @see Iterator::current()
+	 * @return string|bool String or false
+	 */
 	public function current() {
 		return substr( current( $this->bufferIter ), $this->suffixStart );
 	}
 
+	/**
+	 * @see Iterator::key()
+	 * @return integer
+	 */
 	public function key() {
 		return $this->pos;
 	}
 
+	/**
+	 * @see Iterator::next()
+	 * @return void
+	 */
 	public function next() {
 		// Advance to the next file in the page
 		next( $this->bufferIter );
@@ -878,6 +890,10 @@ class SwiftFileBackendFileList implements Iterator {
 		}
 	}
 
+	/**
+	 * @see Iterator::rewind()
+	 * @return void
+	 */
 	public function rewind() {
 		$this->pos = 0;
 		$this->bufferAfter = null;
@@ -886,6 +902,10 @@ class SwiftFileBackendFileList implements Iterator {
 		);
 	}
 
+	/**
+	 * @see Iterator::valid()
+	 * @return bool
+	 */
 	public function valid() {
 		return ( current( $this->bufferIter ) !== false ); // no paths can have this value
 	}

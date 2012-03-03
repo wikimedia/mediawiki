@@ -11,7 +11,7 @@
  */
 
 /**
- * Class for handling resource locking.
+ * @brief Class for handling resource locking.
  *
  * Locks on resource keys can either be shared or exclusive.
  *
@@ -178,10 +178,18 @@ class ScopedLock {
  * @since 1.19
  */
 class NullLockManager extends LockManager {
+	/**
+	 * @see LockManager::doLock()
+	 * @return Status
+	 */
 	protected function doLock( array $paths, $type ) {
 		return Status::newGood();
 	}
 
+	/**
+	 * @see LockManager::doUnlock()
+	 * @return Status
+	 */
 	protected function doUnlock( array $paths, $type ) {
 		return Status::newGood();
 	}

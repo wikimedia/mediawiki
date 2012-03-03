@@ -38,6 +38,10 @@ class FSLockManager extends LockManager {
 		$this->lockDir = $config['lockDirectory'];
 	}
 
+	/**
+	 * @see LockManager::doLock()
+	 * @return Status
+	 */
 	protected function doLock( array $paths, $type ) {
 		$status = Status::newGood();
 
@@ -56,6 +60,10 @@ class FSLockManager extends LockManager {
 		return $status;
 	}
 
+	/**
+	 * @see LockManager::doUnlock()
+	 * @return Status
+	 */
 	protected function doUnlock( array $paths, $type ) {
 		$status = Status::newGood();
 

@@ -68,6 +68,10 @@ class LSLockManager extends LockManager {
 		$this->session = wfBaseConvert( sha1( $this->session ), 16, 36, 31 );
 	}
 
+	/**
+	 * @see LockManager::doLock()
+	 * @return Status
+	 */
 	protected function doLock( array $paths, $type ) {
 		$status = Status::newGood();
 
@@ -117,6 +121,10 @@ class LSLockManager extends LockManager {
 		return $status;
 	}
 
+	/**
+	 * @see LockManager::doUnlock()
+	 * @return Status
+	 */
 	protected function doUnlock( array $paths, $type ) {
 		$status = Status::newGood();
 

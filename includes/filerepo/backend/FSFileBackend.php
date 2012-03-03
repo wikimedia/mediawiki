@@ -6,7 +6,7 @@
  */
 
 /**
- * Class for a file system (FS) based file backend.
+ * @brief Class for a file system (FS) based file backend.
  * 
  * All "containers" each map to a directory under the backend's base directory.
  * For backwards-compatibility, some container paths can be set to custom paths.
@@ -579,6 +579,10 @@ class FSFileBackendFileList implements Iterator {
 		}
 	}
 
+	/**
+	 * @see Iterator::current()
+	 * @return string|bool String or false
+	 */
 	public function current() {
 		// Return only the relative path and normalize slashes to FileBackend-style
 		// Make sure to use the realpath since the suffix is based upon that
@@ -586,10 +590,18 @@ class FSFileBackendFileList implements Iterator {
 			substr( realpath( $this->iter->current() ), $this->suffixStart ) );
 	}
 
+	/**
+	 * @see Iterator::key()
+	 * @return integer
+	 */
 	public function key() {
 		return $this->pos;
 	}
 
+	/**
+	 * @see Iterator::next()
+	 * @return void
+	 */
 	public function next() {
 		try {
 			$this->iter->next();
@@ -599,6 +611,10 @@ class FSFileBackendFileList implements Iterator {
 		++$this->pos;
 	}
 
+	/**
+	 * @see Iterator::rewind()
+	 * @return void
+	 */
 	public function rewind() {
 		$this->pos = 0;
 		try {
@@ -608,6 +624,10 @@ class FSFileBackendFileList implements Iterator {
 		}
 	}
 
+	/**
+	 * @see Iterator::valid()
+	 * @return bool
+	 */
 	public function valid() {
 		return $this->iter && $this->iter->valid();
 	}

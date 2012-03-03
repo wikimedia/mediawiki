@@ -14,7 +14,7 @@
  */
 
 /**
- * Base class for all file backend classes (including multi-write backends).
+ * @brief Base class for all file backend classes (including multi-write backends).
  *
  * This class defines the methods as abstract that subclasses must implement.
  * Outside callers can assume that all backends will have these functions.
@@ -658,6 +658,31 @@ abstract class FileBackend {
 	}
 
 	/**
+	 * Get the parent storage directory of a storage path.
+	 * This returns a path like "mwstore://backend/container",
+	 * "mwstore://backend/container/...", or null if there is no parent.
+	 * 
+	 * @param $storagePath string
+	 * @return string|null
+	 */
+	final public static function parentStoragePath( $storagePath ) {
+		$storagePath = dirname( $storagePath );
+		list( $b, $cont, $rel ) = self::splitStoragePath( $storagePath );
+		return ( $rel === null ) ? null : $storagePath;
+	}
+
+	/**
+	 * Get the final extension from a storage or FS path
+	 * 
+	 * @param $path string
+	 * @return string
+	 */
+	final public static function extensionFromPath( $path ) {
+		$i = strrpos( $path, '.' );
+		return strtolower( $i ? substr( $path, $i + 1 ) : '' );
+	}
+
+	/**
 	 * Validate and normalize a relative storage path.
 	 * Null is returned if the path involves directory traversal.
 	 * Traversal is insecure for FS backends and broken for others.
@@ -686,30 +711,5 @@ abstract class FileBackend {
 			}
 		}
 		return $path;
-	}
-
-	/**
-	 * Get the parent storage directory of a storage path.
-	 * This returns a path like "mwstore://backend/container",
-	 * "mwstore://backend/container/...", or null if there is no parent.
-	 * 
-	 * @param $storagePath string
-	 * @return string|null
-	 */
-	final public static function parentStoragePath( $storagePath ) {
-		$storagePath = dirname( $storagePath );
-		list( $b, $cont, $rel ) = self::splitStoragePath( $storagePath );
-		return ( $rel === null ) ? null : $storagePath;
-	}
-
-	/**
-	 * Get the final extension from a storage or FS path
-	 * 
-	 * @param $path string
-	 * @return string
-	 */
-	final public static function extensionFromPath( $path ) {
-		$i = strrpos( $path, '.' );
-		return strtolower( $i ? substr( $path, $i + 1 ) : '' );
 	}
 }
