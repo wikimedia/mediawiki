@@ -3595,7 +3595,6 @@ class Title {
 		$comment = $wgContLang->truncate( $comment, 255 );
 
 		$oldid = $this->getArticleID();
-		$latest = $this->getLatestRevID();
 
 		$dbw = wfGetDB( DB_MASTER );
 
@@ -3636,7 +3635,7 @@ class Title {
 		$newpage->updateRevisionOn( $dbw, $nullRevision );
 
 		wfRunHooks( 'NewRevisionFromEditComplete',
-			array( $newpage, $nullRevision, $latest, $wgUser ) );
+			array( $newpage, $nullRevision, $nullRevision->getParentId(), $wgUser ) );
 
 		$newpage->doEditUpdates( $nullRevision, $wgUser, array( 'changed' => false ) );
 
