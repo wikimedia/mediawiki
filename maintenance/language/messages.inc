@@ -1229,6 +1229,7 @@ $wgMessageStructure = array(
 		'newsectionsummary',
 		'rc-enhanced-expand',
 		'rc-enhanced-hide',
+		'rc-old-title',
 	),
 	'recentchangeslinked' => array(
 		'recentchangeslinked',
