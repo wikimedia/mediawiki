@@ -3443,17 +3443,28 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
-	 * Encode an expiry time
+	 * Encode an expiry time into the DBMS dependent format
 	 *
 	 * @param $expiry String: timestamp for expiry, or the 'infinity' string
 	 * @return String
 	 */
 	public function encodeExpiry( $expiry ) {
-		if ( $expiry == '' || $expiry == $this->getInfinity() ) {
-			return $this->getInfinity();
-		} else {
-			return $this->timestamp( $expiry );
-		}
+		return ( $expiry == '' || $expiry == 'infinity' || $expiry == $this->getInfinity() )
+			? $this->getInfinity()
+			: $this->timestamp( $expiry );
+	}
+
+	/**
+	 * Decode an expiry time into a DBMS independent format
+	 *
+	 * @param $expiry String: DB timestamp field value for expiry
+	 * @param $format integer: TS_* constant, defaults to TS_MW
+	 * @return String
+	 */
+	public function decodeExpiry( $expiry, $format = TS_MW ) {
+		return ( $expiry == '' || $expiry == $this->getInfinity() )
+			? 'infinity'
+			: wfTimestamp( $format, $expiry );
 	}
 
 	/**
