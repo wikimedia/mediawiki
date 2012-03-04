@@ -50,6 +50,8 @@ class LSLockManager extends LockManager {
 	 * @param Array $config 
 	 */
 	public function __construct( array $config ) {
+		parent::__construct( $config );
+
 		$this->lockServers = $config['lockServers'];
 		// Sanitize srvsByBucket config to prevent PHP errors
 		$this->srvsByBucket = array_filter( $config['srvsByBucket'], 'is_array' );

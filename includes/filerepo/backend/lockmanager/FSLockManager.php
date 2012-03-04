@@ -35,6 +35,7 @@ class FSLockManager extends LockManager {
 	 */
 	function __construct( array $config ) {
 		parent::__construct( $config );
+
 		$this->lockDir = $config['lockDirectory'];
 	}
 
