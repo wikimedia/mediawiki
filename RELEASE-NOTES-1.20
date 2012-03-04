@@ -39,6 +39,8 @@ production.
 * (bug 34723) When editing a script page on a RTL wiki the textbox should be LTR.
 * (bug 34762) Calling close() on a DatabaseBase object now clears the connection.
 * (bug 34863) Show deletion log extract on non-existent file pages if applicable.
+* (bug 28019) Let ?preloadtitle=foo be passed on to target of
+  Special:MyPage and Special:MyTalk
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
