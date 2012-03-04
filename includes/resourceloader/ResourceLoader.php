@@ -980,7 +980,7 @@ class ResourceLoader {
 	 * @return string
 	 */
 	public static function makeLoaderConditionalScript( $script ) {
-		return "if(window.mw){\n".trim( $script )."\n}";
+		return "if(window.mw){\n" . trim( $script ) . "\n}";
 	}
 
 	/**

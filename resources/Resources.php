@@ -4,15 +4,22 @@ return array(
 
 	/* Special modules who have their own classes */
 
+	// Scripts managed by the local wiki (stored in the MediaWiki namespace)
 	'site' => array( 'class' => 'ResourceLoaderSiteModule' ),
 	'noscript' => array( 'class' => 'ResourceLoaderNoscriptModule' ),
 	'startup' => array( 'class' => 'ResourceLoaderStartUpModule' ),
-	'user' => array( 'class' => 'ResourceLoaderUserModule' ),
-	'user.groups' => array( 'class' => 'ResourceLoaderUserGroupsModule' ),
-	'user.options' => array( 'class' => 'ResourceLoaderUserOptionsModule' ),
-	'user.cssprefs' => array( 'class' => 'ResourceLoaderUserCSSPrefsModule' ),
-	'user.tokens' => array( 'class' => 'ResourceLoaderUserTokensModule' ),
 	'filepage' => array( 'class' => 'ResourceLoaderFilePageModule' ),
+	'user.groups' => array( 'class' => 'ResourceLoaderUserGroupsModule' ),
+
+	// Scripts managed by the current user (stored in their user space)
+	'user' => array( 'class' => 'ResourceLoaderUserModule' ),
+
+	// Scripts generated based on the current user's preferences
+	'user.cssprefs' => array( 'class' => 'ResourceLoaderUserCSSPrefsModule' ),
+
+	// Populate mediawiki.user placeholders with information about the current user
+	'user.options' => array( 'class' => 'ResourceLoaderUserOptionsModule' ),
+	'user.tokens' => array( 'class' => 'ResourceLoaderUserTokensModule' ),
 
 	/* Skins */
 
