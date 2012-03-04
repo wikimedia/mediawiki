@@ -1448,6 +1448,7 @@ Móžoš toś ten bok wužywaś, aby slědk stajił swóje nastajenja na standar
 'newsectionsummary'                 => 'Nowy wótrězk /* $1 */',
 'rc-enhanced-expand'                => 'Drobnosći pokazaś (pomina se JavaScript)',
 'rc-enhanced-hide'                  => 'Drobnosći schowaś',
+'rc-old-title'                      => 'spócetnje napórany ako "$1"',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Změny w zwězanych bokach',

@@ -2360,7 +2360,7 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 'watchmethod-recent'   => '最近の更新内のウォッチされているページを確認中',
 'watchmethod-list'     => 'ウォッチされているページ内の最近の更新を確認中',
 'watchlistcontains'    => 'ウォッチリストには、$1ページが登録されています。',
-'iteminvalidname'      => '項目「$1」は問題があります、名前が不正です・・・',
+'iteminvalidname'      => '項目「$1」は問題があります、名前が不正です。',
 'wlnote'               => "$3 $4までの{{PLURAL:$2|'''$2'''時間}}になされた'''$1'''件の変更は以下のとおりです。",
 'wlshowlast'           => '次の期間で表示：$1時間、$2日間、$3',
 'watchlist-options'    => 'ウォッチリストのオプション',

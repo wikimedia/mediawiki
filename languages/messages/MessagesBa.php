@@ -1364,6 +1364,7 @@ $1",
 'newsectionsummary'                 => '/* $1 */ яңы бүлек',
 'rc-enhanced-expand'                => 'Ваҡлыҡтарҙы күрһәтергә (JavaScript кәрәкле)',
 'rc-enhanced-hide'                  => 'Ваҡлыҡтарҙы йәшерергә',
+'rc-old-title'                      => 'төп нөхсә исеме "$1"',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Бәйле үҙгәртеүҙәр',
@@ -1566,7 +1567,7 @@ $1',
 'img-auth-nopathinfo'       => 'PATH_INFO юҡ.
 Һеҙҙең сервер был мәғлүмәтте ебәреү өсөн көйләнмәгән.
 Уның CGI нигеҙендә эшләүе һәм img_auth ҡулланмауы мөмкин.
-Тулыраҡ мәғлүмәт: [https://www.mediawiki.org/wiki/Manual:Image_Authorization Рәсемдәр рөхсәте.]',
+Тулыраҡ мәғлүмәт: https://www.mediawiki.org/wiki/Manual:Image_Authorization',
 'img-auth-notindir'         => 'Һоралған юл көйләнгән тейәүҙәр директорияһына ҡарамай.',
 'img-auth-badtitle'         => '"$1" исеменән дөрөҫ исем төҙөп булмай.',
 'img-auth-nologinnWL'       => 'Һеҙ танылыу үтмәнегеҙ, "$1" аҡ исемлеккә кермәй.',

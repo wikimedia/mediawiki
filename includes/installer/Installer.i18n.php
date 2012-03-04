@@ -12984,7 +12984,7 @@ $3
 Na het plaatsen van het bestand met instellingen kunt u '''[$2 uw wiki betreden]'''.",
 	'config-download-localsettings' => 'LocalSettings.php downloaden',
 	'config-help' => 'hulp',
-	'config-nofile' => 'Bestand "$1" werd niet gevonden. Is het verwijderd?',
+	'config-nofile' => 'Het bestand "$1" is niet gevonden. Is het verwijderd?',
 	'mainpagetext' => "'''De installatie van MediaWiki is geslaagd.'''",
 	'mainpagedocfooter' => 'Raadpleeg de [//meta.wikimedia.org/wiki/NL_Help:Inhoudsopgave handleiding] voor informatie over het gebruik van de wikisoftware.
 

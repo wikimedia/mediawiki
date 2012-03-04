@@ -1639,6 +1639,7 @@ $3',
 'newsectionsummary'                 => '/* $1 */ secțiune nouă',
 'rc-enhanced-expand'                => 'Arată detalii (necesită JavaScript)',
 'rc-enhanced-hide'                  => 'Ascunde detaliile',
+'rc-old-title'                      => 'inițial creată cu titlul „$1”',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Modificări corelate',

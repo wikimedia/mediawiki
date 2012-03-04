@@ -1638,6 +1638,7 @@ $1",
 'newsectionsummary'                 => '/* $1 */ новая тема',
 'rc-enhanced-expand'                => 'Показать подробности (используется JavaScript)',
 'rc-enhanced-hide'                  => 'Скрыть подробности',
+'rc-old-title'                      => 'первоначально созданная как «$1»',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Связанные правки',

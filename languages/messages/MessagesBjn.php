@@ -1332,7 +1332,7 @@ Amun Pian mamilih manyadiakan ini, ini akan dipuruk gasan paminanduan kulihan ga
 'action-writeapi'             => 'puruk panulisan API',
 'action-delete'               => 'hapus tungkaran ini',
 'action-deleterevision'       => 'hapus ralatan ini',
-'action-deletedhistory'       => 'tiringi halam tahapus tungkaran ini',
+'action-deletedhistory'       => 'tiringi sajarah tungkaran tahapus naya',
 'action-browsearchive'        => 'gagai tutungkaran tahapus',
 'action-undelete'             => 'kada jadi mahapus tungkaran ini',
 'action-suppressrevision'     => 'tilik wan bulikakan ralatan tasungkup ini',
@@ -3529,7 +3529,7 @@ Situs ngini mangalami kangalihan teknik.',
 'sqlite-no-fts'  => '$1 kada-awan sukungan panggagaian naskah-hibak',
 
 # New logging system
-'logentry-delete-delete'              => '$1 tahapus tungkaran $3',
+'logentry-delete-delete'              => '$1 mahapus tungkaran $3',
 'logentry-delete-restore'             => '$1 dibulikakan tungkaran $3',
 'logentry-delete-event'               => '$1 mangganti kakawaan dijanaki {{PLURAL:$5|sabuah log kajadian|$5 log kajadian}} pintangan $3: $4',
 'logentry-delete-revision'            => '$1 mangganti kakawaan dijanaki {{PLURAL:$5|sabuah ralatan|$5 ralatan}} pintangan tungkaran $3: $4',

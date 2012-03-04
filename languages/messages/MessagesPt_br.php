@@ -1807,6 +1807,7 @@ Por gentileza, entre em contato com um [[Special:ListUsers/sysop|administrador]]
 'backend-fail-readonly'      => 'O servidor de armazenamento "$1" está atualmente no modo "somente leitura". A razão dada foi: "$2"',
 'backend-fail-synced'        => 'O arquivo "$1" está em um estado inconsistente dentro do sistema de armazenamento interno',
 'backend-fail-connect'       => 'Não foi possível conectar com o servidor de armazenamento "$1".',
+'backend-fail-contenttype'   => 'Não foi possível determinar o tipo de conteúdo do arquivo para armazenar em "$1".',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'Foi encontrado um erro ao abrir o arquivo ZIP para verificação.',
@@ -1827,10 +1828,10 @@ A sua segurança não pode ser devidamente verificada.',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Acesso negado',
-'img-auth-nopathinfo'       => 'Falta PATH_INFO
-Seu servidor não está configurado para passar essa informação.
-Pode ser baseado em CGI e não suportar img_auth.
-[https://www.mediawiki.org/wiki/Manual:Image_Authorization Veja a autorização de imagem].',
+'img-auth-nopathinfo'       => 'PATH_INFO em falta.
+O seu servidor não está configurado para passar esta informação.
+Pode ser baseado em CGI e não consegue suportar img_auth.
+Consulte a documentação em [//www.mediawiki.org/wiki/Manual:Image_Authorization Image Authorization].',
 'img-auth-notindir'         => 'O caminho requerido não está no directório de carregamento configurado.',
 'img-auth-badtitle'         => 'Não é possível criar um título válido a partir de "$1".',
 'img-auth-nologinnWL'       => 'Você não está logado e "$1" não está na lista branca.',
@@ -3807,6 +3808,7 @@ As imagens serão exibidas em sua resolução máxima, outros tipos de arquivos 
 'feedback-error1'  => 'Erro: O resultado da API não foi reconhecido',
 'feedback-error2'  => 'Erro: A edição falhou',
 'feedback-error3'  => 'Erro: A API não responde',
+'feedback-close'   => 'Feito',
 
 # API errors
 'api-error-badaccess-groups'              => 'Você não tem permissão para enviar arquivos para esta wiki.',

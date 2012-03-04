@@ -399,10 +399,11 @@ Annunzia per plaschair la URL ad in [[Special:ListUsers/sysop|administratur]].',
 'badarticleerror'      => 'Questa acziun na po betg vegnir exequida sin questa pagina.',
 'cannotdelete'         => 'Betg pussaivel da stizzar la pagina u datoteca "$1".
 Eventualmain ha gia insatgi auter stizza quest element.',
+'cannotdelete-title'   => 'Impussibel da stizzar la pagina "$1"',
 'badtitle'             => "Il num da titel endatà n'è betg valid",
 'badtitletext'         => 'Il titel da pagina era betg valid, vids u in titel inter-lingua u inter-wiki betg correct.
 El po cuntegnair in u plirs segns che na pon betg vegnir utilisads en titels.',
-'perfcached'           => 'Las suandantas datas vegnan ord il cache ed èn eventualmain betg cumplettamain actualas. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcached'           => 'Las suandantas datas vegnan ord il cache ed èn eventualmain betg cumplettamain actualas. Maximalmain {{PLURAL:$1|in resultat è|$1 resultats èn}} disponibels en il cache.',
 'perfcachedts'         => 'Las suandantas datas derivan dal cache, ultima actualisaziun ils $2 las $3. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'Las actualisaziuns da questa pagina èn deactivadas. 
 Las datas qua vegnan da preschent betg actualisadas.',

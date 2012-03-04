@@ -1448,6 +1448,7 @@ Smě mjenje hač $1 {{PLURAL:$1|znamješko|znamješce|znamješka|znamješkow}} d
 'newsectionsummary'                 => 'Nowy wotrězk: /* $1 */',
 'rc-enhanced-expand'                => 'Podrobnosće pokazać (wužaduje sej JavaScript)',
 'rc-enhanced-hide'                  => 'Podrobnosće schować',
+'rc-old-title'                      => 'prěnjotnje wutworjeny jako "$1"',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Změny zwjazanych stron',

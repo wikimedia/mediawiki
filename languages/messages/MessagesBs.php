@@ -1585,6 +1585,7 @@ Ako izaberete da date ime, biće korišteno za pripisivanje za vaš rad.',
 'action-userrights'           => 'uređujete sva korisnička prava',
 'action-userrights-interwiki' => 'uređujete korisnička prava korisnika na drugim wikijima',
 'action-siteadmin'            => 'zaključavate ili otključavate bazu podataka',
+'action-sendemail'            => 'pošalji e-mail poruke',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|promjena|promjene|promjena}}',
@@ -1619,6 +1620,7 @@ Ako izaberete da date ime, biće korišteno za pripisivanje za vaš rad.',
 'newsectionsummary'                 => '/* $1 */ nova sekcija',
 'rc-enhanced-expand'                => 'Pokaži detalje (neophodna JavaScript)',
 'rc-enhanced-hide'                  => 'Sakrij detalje',
+'rc-old-title'                      => 'prvobitno kreirano kao "$1"',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Srodne izmjene',
@@ -1668,6 +1670,7 @@ Da bi ste prikazali datoteku na stranici, koristite link na jedan od slijedećih
 'minlength1'                  => 'Ime datoteke mora imati barem jedno slovo.',
 'illegalfilename'             => 'Ime datoteke "$1" sadrži simbol koji nije dozvoljen u imenu datoteke.
 Molimo Vas da promijenite ime datoteke i pokušate da je ponovo postavite.',
+'filename-toolong'            => 'Imena datoteka ne mogu biti duža od 240 bajtova.',
 'badfilename'                 => 'Ime datoteke je promijenjeno u "$1".',
 'filetype-mime-mismatch'      => 'Proširenje datoteke "$1" ne odgovara MIME tipu ($2).',
 'filetype-badmime'            => 'Datoteke MIME vrste "$1" nije dopušteno postavljati.',
@@ -1726,7 +1729,7 @@ Ako i dalje želite da postavite ovu datoteku, molimo Vas da se vratite i pošal
 'uploaddisabledtext'          => 'Postavljanje datoteka je onemogućeno.',
 'php-uploaddisabledtext'      => 'Postavljanje datoteka preko PHP je onemogućeno. Molimo provjerite postavku file_uploads.',
 'uploadscripted'              => 'Ova datoteka sadrži HTML ili skriptni kod koji može izazvati grešku kod internet preglednika.',
-'uploadvirus'                 => 'Fajl sadrži virus!  Detalji:  $1',
+'uploadvirus'                 => 'Datoteka sadrži virus!  Detalji:  $1',
 'uploadjava'                  => 'Datoteka je ZIP datoteka koja sadrži Java .class datoteku.
 Postavljanje Java datoteka nije dopušteno, jer one mogu prouzrokovati da se zaobiđu sigurnosne zabrane.',
 'upload-source'               => 'Izvorna datoteka',
@@ -1778,12 +1781,18 @@ Ako se problem ne riješi, kontaktirajte [[Special:ListUsers/sysop|administrator
 'upload-http-error'         => 'Desila se HTTP greška: $1',
 
 # File backend
+'backend-fail-backup'        => 'Ne može sigurnosno kopirati datoteku $1.',
 'backend-fail-notexists'     => 'Datoteka $1 ne postoji.',
 'backend-fail-alreadyexists' => 'Datoteka $1 već postoji.',
+'backend-fail-read'          => 'Ne mogu čitati datoteku $1.',
+'backend-fail-create'        => 'Ne mogu napraviti datoteku $1.',
+
+# Lock manager
+'lockmanager-fail-svr-release' => 'Ne mogu se otključati katanci na serveru file $1.',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'Desila se greška pri otvaranju datoteke za provjere ZIP-a.',
-'zip-wrong-format'    => 'Navedena datoteka ni bila ZIP datoteka.',
+'zip-wrong-format'    => 'Navedena datoteka nije bila ZIP datoteka.',
 'zip-bad'             => 'Datoteka je oštećena ili je na drugi način nečitljiva ZIP datoteka.
 Ne može se dobro provjeriti u vezi sigurnosti.',
 'zip-unsupported'     => 'Datoteka je ZIP datoteka koja koristi ZIP osobine koje nisu podržane od strane MediaWiki.
@@ -2857,7 +2866,12 @@ Nedostaje privremeni folder.',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revizija|revizije|revizija}} od $2',
 
 # JavaScriptTest
-'javascripttest-qunit-intro' => 'Pogledajte [$1 dokumentaciju za testiranje] na mediawiki.org.',
+'javascripttest'                           => 'Testiranje JavaScript-e',
+'javascripttest-disabled'                  => 'Ova funkcija je onemogućena.',
+'javascripttest-title'                     => 'Pokretanje $1 testova',
+'javascripttest-pagetext-noframework'      => 'Ova stranica je određena za pokretanje JavaScript testova.',
+'javascripttest-pagetext-unknownframework' => 'Nepoznat radni okvir testiranja"$1".',
+'javascripttest-qunit-intro'               => 'Pogledajte [$1 dokumentaciju za testiranje] na mediawiki.org.',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'                 => 'Vaša korisnička stranica',

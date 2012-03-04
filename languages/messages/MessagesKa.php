@@ -1373,6 +1373,7 @@ $1",
 'right-siteadmin'             => 'მონაცემთა ბაზის დაბლოკვა და განბლოკვა',
 'right-override-export-depth' => 'გვერდების ექსპორტირება, დაკავშირებული გვერდების ჩათვლით 5-მდე სიიღრმით',
 'right-sendemail'             => 'გაგუგზავნე ელექტრონული ფოსტა სხვა მომხმარებლებს',
+'right-passwordreset'         => 'ელ.ფოსტის ნახვა პაროლის შეცვლით',
 
 # User rights log
 'rightslog'                  => 'მომხმარებლის უფლებების ჟურნალი',
@@ -1452,6 +1453,7 @@ $1",
 'newsectionsummary'                 => '/* $1 */ ახალი სექცია',
 'rc-enhanced-expand'                => 'დამატებითი ინფორმაციის ჩვენება (მოითხოვს ჯავასკრიპტს)',
 'rc-enhanced-hide'                  => 'დამატებითი ინფორმაციის დამალვა',
+'rc-old-title'                      => 'თავდაპირველად შექმნილი როგორც "$1"',
 
 # Recent changes linked
 'recentchangeslinked'          => 'დაკავშირებული ცვლილებები',
@@ -1582,17 +1584,18 @@ $1',
 'upload-warning-subj'         => 'ატვირთვისთვის გაფრთხილება',
 'upload-warning-msg'          => '[$2]-ის ატვირთვისას დაფიქსირდა შეცდომა. შეცდომის გამოსასწორებლად დაბრუნდით [[Special:Upload/stash/$1|ატვირთვის ფორმა]]ზე.',
 
-'upload-proto-error'        => 'არასწორი პროტოკოლი',
-'upload-proto-error-text'   => 'ატვირთვის წასაშლელად საჭიროა მისამართი, რომელიც იწყება <code>http://</code> or <code>ftp://</code>-ით.',
-'upload-file-error'         => 'შიდა შეცდომა',
-'upload-file-error-text'    => 'შიდა შეცდომა სერვერზე დროებითი ფაილის შექმნისას. გთხოვთ მიმართოთ [[Special:ListUsers/sysop|სისტემურ ადმინისტრატორს]].',
-'upload-misc-error'         => 'უცნობია ატვირთვის შეცდომა',
-'upload-misc-error-text'    => 'ატვირთვისას უცნობი სახის შეცდომა გაიპარა.
+'upload-proto-error'                => 'არასწორი პროტოკოლი',
+'upload-proto-error-text'           => 'ატვირთვის წასაშლელად საჭიროა მისამართი, რომელიც იწყება <code>http://</code> or <code>ftp://</code>-ით.',
+'upload-file-error'                 => 'შიდა შეცდომა',
+'upload-file-error-text'            => 'შიდა შეცდომა სერვერზე დროებითი ფაილის შექმნისას. გთხოვთ მიმართოთ [[Special:ListUsers/sysop|სისტემურ ადმინისტრატორს]].',
+'upload-misc-error'                 => 'უცნობია ატვირთვის შეცდომა',
+'upload-misc-error-text'            => 'ატვირთვისას უცნობი სახის შეცდომა გაიპარა.
 გთხოვთ შეამოწმოთ თუ URL სწორია და ხელმისაწვდომია და ისევ სცადოთ.
 თუ პრობლემა ვერ გადაიჭრა, მიმართეთ [[Special:ListUsers/sysop|ადმინისტრატორს]].',
-'upload-too-many-redirects' => 'URL შეიცავს ძალიან ბევრ გადამისამართებებს',
-'upload-unknown-size'       => 'უცნობი ზომა',
-'upload-http-error'         => 'მოხდა HTTP შეცდომა: $1',
+'upload-too-many-redirects'         => 'URL შეიცავს ძალიან ბევრ გადამისამართებებს',
+'upload-unknown-size'               => 'უცნობი ზომა',
+'upload-http-error'                 => 'მოხდა HTTP შეცდომა: $1',
+'upload-copy-upload-invalid-domain' => 'ამ დომენში ატვირთვების კოპირება არ არის ხელმისაწვდომი.',
 
 # File backend
 'backend-fail-stream'        => 'ფაილი $1 ტრანსლირება ვერ მოხერხდა.',
@@ -1609,8 +1612,12 @@ $1',
 'backend-fail-create'        => 'ფაილი $1-ის შექმნა ვერ მოხერხდა.',
 
 # Lock manager
-'lockmanager-fail-closelock'  => 'ბლოკირების ფაილის დახურვა "$1"–თვის ვერ მოხერხდა.',
-'lockmanager-fail-deletelock' => 'ბლოკირების ფაილის წაშლა "$1"–თვის ვერ მოხერხდა.',
+'lockmanager-notlocked'        => '"$1"–ის განბლოკვა ვერ მოხერხდა; ის არ არის დაბლოკილი.',
+'lockmanager-fail-closelock'   => 'ბლოკირების ფაილის დახურვა "$1"–თვის ვერ მოხერხდა.',
+'lockmanager-fail-deletelock'  => 'ბლოკირების ფაილის წაშლა "$1"–თვის ვერ მოხერხდა.',
+'lockmanager-fail-acquirelock' => '"$1"–ის ბლოკირება ვერ მოხერხდა.',
+'lockmanager-fail-openlock'    => 'ბლოკირების ფაილის გახსნა "$1"–თვის ვერ მოხერხდა.',
+'lockmanager-fail-releaselock' => '"$1"–ის განბლოკვა ვერ მოხერხდა.',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'წარმოიქმნა შეცდომა ფაილის ZIP შემოწმებისათვის გახსნისას.',
@@ -2169,6 +2176,7 @@ $UNWATCHURL
 'protect-title-notallowed'    => 'დაცვის დონის ხილვა გვერდისთვის „$1“',
 'prot_1movedto2'              => '[[$1]] გადატანილია გვერდზე [[$2]]',
 'protect-badnamespace-title'  => 'დაუცველი სახელთა სივრცე',
+'protect-badnamespace-text'   => 'ამ სახელთა სივრცის გვერდების დაცვა შეუძლებელია.',
 'protect-legend'              => 'დაცვის დადასტურება',
 'protectcomment'              => 'მიზეზი:',
 'protectexpiry'               => 'ვადა',
@@ -2638,6 +2646,9 @@ $1',
 'import-upload'              => 'XML მონაცემების ატვირთვა',
 'import-token-mismatch'      => 'სეანსის მონაცემები დაიკარგა. კიდევ ერთხელ სცადეთ!',
 'import-invalid-interwiki'   => 'შეუძლებელია იმპორტირება მოცემული ვიკიდან.',
+'import-error-edit'          => 'გვერდი "$1" იმპორტირება არ მოხდა, რადგან თქვენ არ გაქვთ მისი რედაქტირების უფლება.',
+'import-error-create'        => 'გვერდი "$1" იმპორტირება არ მოხდა, რადგან თქვენ არ გაქვთ მისი შექმნის უფლება.',
+'import-error-invalid'       => 'გვერდი "$1" იმპორტირება არ მოხდა მიუღებელი სახელის გამო.',
 
 # Import log
 'importlogpage'                    => 'იმპორტის ჟურნალი',

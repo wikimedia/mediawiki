@@ -3931,7 +3931,7 @@ Les images sont montrées dans leur pleine résolution, les autres fichiers sont
 'logentry-patrol-patrol'              => '$1 a marqué la révision $4 de la page $3 comme contrôlée',
 'logentry-patrol-patrol-auto'         => '$1 a automatiquement marqué la révision $4 de la page $3 comme contrôlée',
 'logentry-newusers-newusers'          => '$1 a créé un compte utilisateur',
-'logentry-newusers-create'            => '$1 a créé un compte utilisateur',
+'logentry-newusers-create'            => '$1 a créé son compte utilisateur',
 'logentry-newusers-create2'           => '$1 a créé un compte utilisateur $3',
 'logentry-newusers-autocreate'        => 'Le compte $1 a été créé automatiquement',
 'newuserlog-byemail'                  => 'mot de passe envoyé par courriel',

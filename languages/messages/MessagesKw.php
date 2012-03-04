@@ -260,7 +260,7 @@ $messages = array(
 'copyrightpage'        => '{{ns:project}}:Gwirbryntyansow',
 'currentevents'        => 'Darvosow a-lebmen',
 'currentevents-url'    => 'Project:Darvosow a-lebmen',
-'disclaimers'          => 'Avisyanjow',
+'disclaimers'          => 'Avisyansow',
 'disclaimerpage'       => 'Project:Avisyans ollgebmen',
 'edithelp'             => 'Gweres gen chanjya',
 'edithelppage'         => 'Help:Chanjya',
@@ -544,7 +544,7 @@ Gwrewgh assaya dhe rag-gorra agas govyn gen ''all:'' rag whilas en pub le (a-bar
 
 # Preferences page
 'preferences'                 => 'Dowisyanjow',
-'mypreferences'               => 'Ow dowisyanjow',
+'mypreferences'               => 'Ow dowisyansow',
 'changepassword'              => 'Chanjya an ger-tremena',
 'prefs-skin'                  => 'Crohen',
 'prefs-datetime'              => 'Dedhyans hag eur',

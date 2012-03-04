@@ -1627,6 +1627,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'newsectionsummary'                 => '/* $1 */ nowa sekcja',
 'rc-enhanced-expand'                => 'Pokaż szczegóły (wymagana JavaScript)',
 'rc-enhanced-hide'                  => 'Ukryj szczegóły',
+'rc-old-title'                      => 'oryginalnie utworzono jako "$1"',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Zmiany w dolinkowanych',

@@ -1403,6 +1403,7 @@ Esta información sedrá pública.",
 'newsectionsummary'                 => '/* $1 */ nueva seición',
 'rc-enhanced-expand'                => 'Amosar detalles (requier JavaScript)',
 'rc-enhanced-hide'                  => 'Anubrir los detalles',
+'rc-old-title'                      => 'creada orixinalmente como «$1»',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Cambios rellacionaos',
