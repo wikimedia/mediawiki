@@ -290,7 +290,7 @@ $pageInfo: associative array of page information
 of the javascript ajax engine. The hook is only called when ajax
 is enabled ( $wgUseAjax = true; ).
 
-'AlternateEdit': before checking if an user can edit a page and
+'AlternateEdit': before checking if a user can edit a page and
 before showing the edit form ( EditPage::edit() ). This is triggered
 on &action=edit.
 $EditPage: the EditPage object
