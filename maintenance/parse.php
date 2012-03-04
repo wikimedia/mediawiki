@@ -14,8 +14,8 @@
  *
  * Example2:
  * @code
- * $ echo "'''bold'''" > /tmp/foo
- * $ php parse.php --file /tmp/foo
+ * $ echo "'''bold'''" > /tmp/foo.txt
+ * $ php parse.php /tmp/foo.txt
  * <p><b>bold</b>
  * </p>$
  * @endcode
@@ -37,10 +37,10 @@ class CLIParser extends Maintenance {
 	protected $parser;
 
 	public function __construct() {
+		parent::__construct();
 		$this->mDescription = "Parse a given wikitext";
 		$this->addOption( 'title', 'Title name for the given wikitext (Default: \'CLIParser\')', false, true );
-		$this->addOption( 'file', 'File containing wikitext (Default: stdin)', false, true );
-		parent::__construct();
+		$this->addArg( 'file', 'File containing wikitext (Default: stdin)', false );
 	}
 
 	public function execute() {
@@ -57,13 +57,19 @@ class CLIParser extends Maintenance {
 	}
 
 	/**
-	 * Get wikitext from --file or from STDIN
+	 * Get wikitext from a the file passed as argument or STDIN
 	 * @return string Wikitext
 	 */
 	protected function Wikitext() {
-		return file_get_contents(
-			$this->getOption( 'file', 'php://stdin' )
-		);
+
+		$php_stdin  = 'php://stdin';
+		$input_file = $this->getArg( 0, $php_stdin );
+
+		if( $input_file === $php_stdin ) {
+			fwrite( STDERR, basename(__FILE__) .": warning: reading wikitext from STDIN\n" );
+		}
+
+		return file_get_contents( $input_file );
 	}
 
 	protected function initParser() {
