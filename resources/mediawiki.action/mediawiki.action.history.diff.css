@@ -45,7 +45,7 @@ td.diff-deletedline {
 }
 
 td.diff-context {
-	background: #F2F2F2;
+	background: #f3f3f3;
 	color: #333333;
 	border-style: solid;
 	border-width: 1px 1px 1px 4px;
