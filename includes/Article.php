@@ -38,6 +38,7 @@ class Article extends Page {
 	public $mParserOptions;
 
 	var $mContent;                    // !<  #FIXME: use Content object!
+    var $mContentObject;              // !<
 	var $mContentLoaded = false;      // !<
 	var $mOldId;                      // !<
 
@@ -189,8 +190,25 @@ class Article extends Page {
 	 * only want the real revision text if any.
 	 *
 	 * @return Return the text of this revision
+     * @deprecated in 1.20; use getContentObject() instead
 	 */
-	public function getContent() {
+	public function getContent() { #FIXME: deprecated! replace usage! use content object!
+        wfDeprecated( __METHOD__, '1.20' );
+        $content = $this->getContentObject();
+        return ContentHandler::getContentText( $content );
+    }
+
+    /**
+     * Note that getContent/loadContent do not follow redirects anymore.
+     * If you need to fetch redirectable content easily, try
+     * the shortcut in WikiPage::getRedirectTarget()
+     *
+     * This function has side effects! Do not use this function if you
+     * only want the real revision text if any.
+     *
+     * @return Return the content of this revision
+     */
+   public function getContentObject() {
 		global $wgUser;
 
 		wfProfileIn( __METHOD__ );
@@ -208,12 +226,12 @@ class Article extends Page {
 			}
 			wfProfileOut( __METHOD__ );
 
-			return $text;
+			return new WikitextContent( $text, $this->getTitle() );
 		} else {
-			$this->fetchContent();
+			$this->fetchContentObject();
 			wfProfileOut( __METHOD__ );
 
-			return $this->mContent;
+			return $this->mContentObject;
 		}
 	}
 
@@ -292,60 +310,88 @@ class Article extends Page {
 	 * Does *NOT* follow redirects.
 	 *
 	 * @return mixed string containing article contents, or false if null
+     * @deprecated in 1.20, use getContentObject() instead
 	 */
-	function fetchContent() {
-		if ( $this->mContentLoaded ) {
+	function fetchContent() { #BC cruft! #FIXME: deprecated, replace usage
+        wfDeprecated( __METHOD__, '1.20' );
+
+		if ( $this->mContentLoaded && $this->mContent ) {
 			return $this->mContent;
 		}
 
 		wfProfileIn( __METHOD__ );
 
-		$this->mContentLoaded = true;
+        $content = $this->fetchContentObject();
 
-		$oldid = $this->getOldID();
-
-		# Pre-fill content with error message so that if something
-		# fails we'll have something telling us what we intended.
-		$t = $this->getTitle()->getPrefixedText();
-		$d = $oldid ? wfMsgExt( 'missingarticle-rev', array( 'escape' ), $oldid ) : '';
-		$this->mContent = wfMsgNoTrans( 'missing-article', $t, $d ) ;
-
-		if ( $oldid ) {
-			# $this->mRevision might already be fetched by getOldIDFromRequest()
-			if ( !$this->mRevision ) {
-				$this->mRevision = Revision::newFromId( $oldid );
-				if ( !$this->mRevision ) {
-					wfDebug( __METHOD__ . " failed to retrieve specified revision, id $oldid\n" );
-					wfProfileOut( __METHOD__ );
-					return false;
-				}
-			}
-		} else {
-			if ( !$this->mPage->getLatest() ) {
-				wfDebug( __METHOD__ . " failed to find page data for title " . $this->getTitle()->getPrefixedText() . "\n" );
-				wfProfileOut( __METHOD__ );
-				return false;
-			}
-
-			$this->mRevision = $this->mPage->getRevision();
-			if ( !$this->mRevision ) {
-				wfDebug( __METHOD__ . " failed to retrieve current page, rev_id " . $this->mPage->getLatest() . "\n" );
-				wfProfileOut( __METHOD__ );
-				return false;
-			}
-		}
-
-		// @todo FIXME: Horrible, horrible! This content-loading interface just plain sucks.
-		// We should instead work with the Revision object when we need it...
-		$this->mContent = $this->mRevision->getText( Revision::FOR_THIS_USER ); // Loads if user is allowed
-		$this->mRevIdFetched = $this->mRevision->getId();
-
-		wfRunHooks( 'ArticleAfterFetchContent', array( &$this, &$this->mContent ) );
+        $this->mContent = ContentHandler::getContentText( $content );
+		wfRunHooks( 'ArticleAfterFetchContent', array( &$this, &$this->mContent ) ); #BC cruft!
 
 		wfProfileOut( __METHOD__ );
 
 		return $this->mContent;
 	}
+
+
+    /**
+     * Get text content object
+     * Does *NOT* follow redirects.
+     *
+     * @return Content object containing article contents, or null
+     */
+    function fetchContentObject() {
+        if ( $this->mContentLoaded ) {
+            return $this->mContentObject;
+        }
+
+        wfProfileIn( __METHOD__ );
+
+        $this->mContentLoaded = true;
+        $this->mContent = null;
+
+        $oldid = $this->getOldID();
+
+        # Pre-fill content with error message so that if something
+        # fails we'll have something telling us what we intended.
+        $t = $this->getTitle()->getPrefixedText();
+        $d = $oldid ? wfMsgExt( 'missingarticle-rev', array( 'escape' ), $oldid ) : '';
+        $this->mContentObject = new MessageContent( 'missing-article', array($t, $d), array() ) ;
+
+        if ( $oldid ) {
+            # $this->mRevision might already be fetched by getOldIDFromRequest()
+            if ( !$this->mRevision ) {
+                $this->mRevision = Revision::newFromId( $oldid );
+                if ( !$this->mRevision ) {
+                    wfDebug( __METHOD__ . " failed to retrieve specified revision, id $oldid\n" );
+                    wfProfileOut( __METHOD__ );
+                    return false;
+                }
+            }
+        } else {
+            if ( !$this->mPage->getLatest() ) {
+                wfDebug( __METHOD__ . " failed to find page data for title " . $this->getTitle()->getPrefixedText() . "\n" );
+                wfProfileOut( __METHOD__ );
+                return false;
+            }
+
+            $this->mRevision = $this->mPage->getRevision();
+            if ( !$this->mRevision ) {
+                wfDebug( __METHOD__ . " failed to retrieve current page, rev_id " . $this->mPage->getLatest() . "\n" );
+                wfProfileOut( __METHOD__ );
+                return false;
+            }
+        }
+
+        // @todo FIXME: Horrible, horrible! This content-loading interface just plain sucks.
+        // We should instead work with the Revision object when we need it...
+        $this->mContentObject = $this->mRevision->getContent( Revision::FOR_THIS_USER ); // Loads if user is allowed
+        $this->mRevIdFetched = $this->mRevision->getId();
+
+        wfRunHooks( 'ArticleAfterFetchContentObject', array( &$this, &$this->mContentObject ) ); #FIXME: register new hook
+
+        wfProfileOut( __METHOD__ );
+
+        return $this->mContentObject;
+    }
 
 	/**
 	 * No-op

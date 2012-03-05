@@ -161,6 +161,7 @@ class WikiPage extends Page {
 			'page_touched',
 			'page_latest',
 			'page_len',
+            'page_content_model',
 		);
 	}
 
@@ -383,6 +384,23 @@ class WikiPage extends Page {
 		return null;
 	}
 
+    /**
+     * Get the content of the current revision. No side-effects...
+     *
+     * @param $audience Integer: one of:
+     *      Revision::FOR_PUBLIC       to be displayed to all users
+     *      Revision::FOR_THIS_USER    to be displayed to $wgUser
+     *      Revision::RAW              get the text regardless of permissions
+     * @return String|null The content of the current revision
+     */
+    public function getContent( $audience = Revision::FOR_PUBLIC ) {
+        $this->loadLastEdit();
+        if ( $this->mLastRevision ) {
+            return $this->mLastRevision->getContent( $audience );
+        }
+        return false;
+    }
+
 	/**
 	 * Get the text of the current revision. No side-effects...
 	 *
@@ -391,8 +409,10 @@ class WikiPage extends Page {
 	 *      Revision::FOR_THIS_USER    to be displayed to $wgUser
 	 *      Revision::RAW              get the text regardless of permissions
 	 * @return String|false The text of the current revision
+     * @deprecated as of 1.20, getContent() should be used instead.
 	 */
-	public function getText( $audience = Revision::FOR_PUBLIC ) {
+	public function getText( $audience = Revision::FOR_PUBLIC ) { #FIXME: deprecated, replace usage!
+        wfDeprecated( __METHOD__, '1.20' );
 		$this->loadLastEdit();
 		if ( $this->mLastRevision ) {
 			return $this->mLastRevision->getText( $audience );
@@ -405,12 +425,8 @@ class WikiPage extends Page {
 	 *
 	 * @return String|false The text of the current revision
 	 */
-	public function getRawText() {
-		$this->loadLastEdit();
-		if ( $this->mLastRevision ) {
-			return $this->mLastRevision->getRawText();
-		}
-		return false;
+	public function getRawText() { #FIXME: deprecated, replace usage!
+		return $this->getText( Revision::RAW );
 	}
 
 	/**
@@ -1293,7 +1309,7 @@ class WikiPage extends Page {
 				'page'       => $this->getId(),
 				'comment'    => $summary,
 				'minor_edit' => $isminor,
-				'text'       => $text,
+				'text'       => $text, #FIXME: set content instead, leavfe serialization to revision?!
 				'parent_id'  => $oldid,
 				'user'       => $user->getId(),
 				'user_text'  => $user->getName(),
@@ -1963,7 +1979,9 @@ class WikiPage extends Page {
 				'ar_len'        => 'rev_len',
 				'ar_page_id'    => 'page_id',
 				'ar_deleted'    => $bitfield,
-				'ar_sha1'       => 'rev_sha1'
+				'ar_sha1'       => 'rev_content_model',
+				'ar_content_format'       => 'rev_content_format',
+				'ar_content_format'       => 'rev_sha1'
 			), array(
 				'page_id' => $id,
 				'page_id = rev_page'

@@ -68,6 +68,8 @@ class TextContent extends Content {
         $html = $this->getHtml( $options );
         $po = new ParserOutput( $html );
 
+        if ( $this->mTitle ) $po->setTitleText( $this->mTitle->getText() );
+
         #TODO: cache settings, etc?
 
         return $po;
@@ -84,8 +86,6 @@ class TextContent extends Content {
 
 
     public function getRawData( ) {
-        global $wgParser, $wgUser;
-
         $text = $this->mText;
         return $text;
     }
@@ -128,6 +128,35 @@ class WikitextContent extends TextContent {
 
 }
 
+class MessageContent extends TextContent {
+    public function __construct( $msg_key, $params = null, $options = null ) {
+        parent::__construct(null, null, null, CONTENT_MODEL_WIKITEXT);
+
+        $this->mMessageKey = $msg_key;
+
+        $this->mParameters = $params;
+
+        if ( !$options ) $options = array();
+        $this->mOptions = $options;
+
+        $this->mHtmlOptions = null;
+    }
+
+
+    public function getHtml( ParserOptions $options ) {
+        $opt = array_merge( $this->mOptions, array('parse') );
+        return wfMsgExt( $this->mMessageKey, $this->mParameters, $opt );
+    }
+
+
+    public function getRawData( ) {
+        $opt = array_diff( $this->mOptions, array('parse', 'parseinline') );
+
+        return wfMsgExt( $this->mMessageKey, $this->mParameters, $opt );
+    }
+
+}
+
 
 class JavaScriptContent extends TextContent {
     public function __construct( $text, Title $title, $revId = null ) {
@@ -159,6 +188,9 @@ class CssContent extends TextContent {
         return $html;
     }
 }
+
+#FIXME: special type for redirects?!
+#FIXME: special type for message-based pseudo-content? with raw html?
 
 #TODO: MultipartMultipart < WikipageContent (Main + Links + X)
 #TODO: LinksContent < LanguageLinksContent, CategoriesContent

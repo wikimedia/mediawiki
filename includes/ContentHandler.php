@@ -13,6 +13,18 @@
  */
 abstract class ContentHandler {
 
+    public static function getContentText( Content $content ) {
+        if ( !$content ) return '';
+
+        if ( $content instanceof TextContent ) {
+            #XXX: or check by model name?
+            #XXX: or define $content->allowRawData()?
+            return $content->getRawData();
+        }
+
+        return null;
+    }
+
     public static function getDefaultModelFor( Title $title ) {
         global $wgNamespaceContentModels;
 
