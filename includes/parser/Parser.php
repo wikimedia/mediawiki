@@ -376,7 +376,7 @@ class Parser {
 			# The position of the convert() call should not be changed. it
 			# assumes that the links are all replaced and the only thing left
 			# is the <nowiki> mark.
-			$text = $this->getFunctionLang()->convert( $text );
+			$text = $this->getTargetLanguage()->convert( $text );
 		}
 
 		/**
@@ -392,11 +392,11 @@ class Parser {
 				|| isset( $this->mDoubleUnderscores['notitleconvert'] )
 				|| $this->mOutput->getDisplayTitle() !== false ) )
 		{
-			$convruletitle = $this->getFunctionLang()->getConvRuleTitle();
+			$convruletitle = $this->getTargetLanguage()->getConvRuleTitle();
 			if ( $convruletitle ) {
 				$this->mOutput->setTitleText( $convruletitle );
 			} else {
-				$titleText = $this->getFunctionLang()->convertTitle( $title );
+				$titleText = $this->getTargetLanguage()->convertTitle( $title );
 				$this->mOutput->setTitleText( $titleText );
 			}
 		}
@@ -693,9 +693,18 @@ class Parser {
 	}
 
 	/**
+	 * Get a language object for use in parser functions such as {{FORMATNUM:}}
 	 * @return Language
 	 */
 	function getFunctionLang() {
+		return $this->getTargetLanguage();
+	}
+
+	/**
+	 * Get the target language for the content being parsed. This is usually the 
+	 * language that the content is in. 
+	 */
+	function getTargetLanguage() {
 		$target = $this->mOptions->getTargetLanguage();
 		if ( $target !== null ) {
 			return $target;
@@ -1227,7 +1236,8 @@ class Parser {
 		$text = $this->maybeMakeExternalImage( $url );
 		if ( $text === false ) {
 			# Not an image, make a link
-			$text = Linker::makeExternalLink( $url, $this->getFunctionLang()->markNoConversion($url), true, 'free',
+			$text = Linker::makeExternalLink( $url, 
+				$this->getTargetLanguage()->markNoConversion($url), true, 'free',
 				$this->getExternalLinkAttribs( $url ) );
 			# Register it in the output object...
 			# Replace unnecessary URL escape codes with their equivalent characters
@@ -1491,7 +1501,7 @@ class Parser {
 			# No link text, e.g. [http://domain.tld/some.link]
 			if ( $text == '' ) {
 				# Autonumber
-				$langObj = $this->getFunctionLang();
+				$langObj = $this->getTargetLanguage();
 				$text = '[' . $langObj->formatNum( ++$this->mAutonumber ) . ']';
 				$linktype = 'autonumber';
 			} else {
@@ -1500,7 +1510,7 @@ class Parser {
 				list( $dtrail, $trail ) = Linker::splitTrail( $trail );
 			}
 
-			$text = $this->getFunctionLang()->markNoConversion( $text );
+			$text = $this->getTargetLanguage()->markNoConversion( $text );
 
 			$url = Sanitizer::cleanUrl( $url );
 
@@ -1680,7 +1690,7 @@ class Parser {
 		$line = $a->current(); # Workaround for broken ArrayIterator::next() that returns "void"
 		$s = substr( $s, 1 );
 
-		$useLinkPrefixExtension = $this->getFunctionLang()->linkPrefixExtension();
+		$useLinkPrefixExtension = $this->getTargetLanguage()->linkPrefixExtension();
 		$e2 = null;
 		if ( $useLinkPrefixExtension ) {
 			# Match the end of a line for a word that's not followed by whitespace,
@@ -1706,8 +1716,9 @@ class Parser {
 			$prefix = '';
 		}
 
-		if ( $this->getFunctionLang()->hasVariants() ) {
-			$selflink = $this->getFunctionLang()->autoConvertToAllVariants( $this->mTitle->getPrefixedText() );
+		if ( $this->getTargetLanguage()->hasVariants() ) {
+			$selflink = $this->getTargetLanguage()->autoConvertToAllVariants( 
+				$this->mTitle->getPrefixedText() );
 		} else {
 			$selflink = array( $this->mTitle->getPrefixedText() );
 		}
@@ -1925,7 +1936,7 @@ class Parser {
 					}
 					$sortkey = Sanitizer::decodeCharReferences( $sortkey );
 					$sortkey = str_replace( "\n", '', $sortkey );
-					$sortkey = $this->getFunctionLang()->convertCategoryKey( $sortkey );
+					$sortkey = $this->getTargetLanguage()->convertCategoryKey( $sortkey );
 					$this->mOutput->addCategory( $nt->getDBkey(), $sortkey );
 
 					/**
@@ -3024,7 +3035,7 @@ class Parser {
 	 * @private
 	 */
 	function braceSubstitution( $piece, $frame ) {
-		global $wgNonincludableNamespaces;
+		global $wgNonincludableNamespaces, $wgContLang;
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( __METHOD__.'-setup' );
 
@@ -3127,7 +3138,7 @@ class Parser {
 					$function = $this->mFunctionSynonyms[1][$function];
 				} else {
 					# Case insensitive functions
-					$function = $this->getFunctionLang()->lc( $function );
+					$function = $wgContLang->lc( $function );
 					if ( isset( $this->mFunctionSynonyms[0][$function] ) ) {
 						$function = $this->mFunctionSynonyms[0][$function];
 					} else {
@@ -3203,8 +3214,8 @@ class Parser {
 			if ( $title ) {
 				$titleText = $title->getPrefixedText();
 				# Check for language variants if the template is not found
-				if ( $this->getFunctionLang()->hasVariants() && $title->getArticleID() == 0 ) {
-					$this->getFunctionLang()->findVariantLink( $part1, $title, true );
+				if ( $this->getTargetLanguage()->hasVariants() && $title->getArticleID() == 0 ) {
+					$this->getTargetLanguage()->findVariantLink( $part1, $title, true );
 				}
 				# Do recursion depth check
 				$limit = $this->mOptions->getMaxTemplateDepth();
@@ -4036,7 +4047,7 @@ class Parser {
 					if ( $dot ) {
 						$numbering .= '.';
 					}
-					$numbering .= $this->getFunctionLang()->formatNum( $sublevelCount[$i] );
+					$numbering .= $this->getTargetLanguage()->formatNum( $sublevelCount[$i] );
 					$dot = 1;
 				}
 			}
