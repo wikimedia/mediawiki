@@ -1236,7 +1236,7 @@ abstract class FileBackendStore extends FileBackend {
 		}
 
 		// Set output buffer and HTTP headers for stream
-		$extraHeaders = $params['headers'] ? $params['headers'] : array();
+		$extraHeaders = isset( $params['headers'] ) ? $params['headers'] : array();
 		$res = StreamFile::prepareForStream( $params['src'], $info, $extraHeaders );
 		if ( $res == StreamFile::NOT_MODIFIED ) {
 			// do nothing; client cache is up to date
