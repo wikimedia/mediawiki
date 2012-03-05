@@ -4,6 +4,7 @@ class RecentChangeTest extends MediaWikiTestCase {
 	protected $target;
 	protected $user;
 	protected $user_comment;
+	protected $context;
 
 	function __construct() {
 		parent::__construct();
@@ -13,6 +14,7 @@ class RecentChangeTest extends MediaWikiTestCase {
 		$this->user   = User::newFromName( 'UserName' );
 
 		$this->user_comment = '<User comment about action>';
+		$this->context = RequestContext::newExtraneousContext( $this->title );
 	}
 
 	/**
@@ -54,14 +56,14 @@ class RecentChangeTest extends MediaWikiTestCase {
 	function testIrcMsgForLogTypeBlock() {
 		# block/block
 		$this->assertIRCComment(
-			wfMessage( 'blocklogentry', 'SomeTitle' )->plain() . ': ' .  $this->user_comment,
+			$this->context->msg( 'blocklogentry', 'SomeTitle' )->plain() . ': ' .  $this->user_comment,
 			'block', 'block',
 			array(),
 			$this->user_comment
 		);
 		# block/unblock
 		$this->assertIRCComment(
-			wfMessage( 'unblocklogentry', 'SomeTitle' )->plain() . ': ' .  $this->user_comment,
+			$this->context->msg( 'unblocklogentry', 'SomeTitle' )->plain() . ': ' .  $this->user_comment,
 			'block', 'unblock',
 			array(),
 			$this->user_comment
@@ -74,7 +76,7 @@ class RecentChangeTest extends MediaWikiTestCase {
 	function testIrcMsgForLogTypeDelete() {
 		# delete/delete
 		$this->assertIRCComment(
-			wfMessage( 'deletedarticle', 'SomeTitle' )->plain() . ': ' .  $this->user_comment,
+			$this->context->msg( 'deletedarticle', 'SomeTitle' )->plain() . ': ' .  $this->user_comment,
 			'delete', 'delete',
 			array(),
 			$this->user_comment
@@ -82,7 +84,7 @@ class RecentChangeTest extends MediaWikiTestCase {
 
 		# delete/restore
 		$this->assertIRCComment(
-			wfMessage( 'undeletedarticle', 'SomeTitle' )->plain() . ': ' .  $this->user_comment,
+			$this->context->msg( 'undeletedarticle', 'SomeTitle' )->plain() . ': ' .  $this->user_comment,
 			'delete', 'restore',
 			array(),
 			$this->user_comment
@@ -126,7 +128,7 @@ class RecentChangeTest extends MediaWikiTestCase {
 
 		# move/move
 		$this->assertIRCComment(
-			wfMessage( '1movedto2', 'SomeTitle', 'TestTarget' )->plain() . ': ' .  $this->user_comment,
+			$this->context->msg( '1movedto2', 'SomeTitle', 'TestTarget' )->plain() . ': ' .  $this->user_comment,
 			'move', 'move',
 			$move_params,
 			$this->user_comment
@@ -134,7 +136,7 @@ class RecentChangeTest extends MediaWikiTestCase {
 
 		# move/move_redir
 		$this->assertIRCComment(
-			wfMessage( '1movedto2_redir', 'SomeTitle', 'TestTarget' )->plain() . ': ' .  $this->user_comment,
+			$this->context->msg( '1movedto2_redir', 'SomeTitle', 'TestTarget' )->plain() . ': ' .  $this->user_comment,
 			'move', 'move_redir',
 			$move_params,
 			$this->user_comment
@@ -147,7 +149,7 @@ class RecentChangeTest extends MediaWikiTestCase {
 	function testIrcMsgForLogTypePatrol() {
 		# patrol/patrol
 		$this->assertIRCComment(
-			wfMessage( 'patrol-log-line', 'revision 777', '[[SomeTitle]]', '' )->plain(),
+			$this->context->msg( 'patrol-log-line', 'revision 777', '[[SomeTitle]]', '' )->plain(),
 			'patrol', 'patrol',
 			array(
 				'4::curid'  => '777',
@@ -167,7 +169,7 @@ class RecentChangeTest extends MediaWikiTestCase {
 
 		# protect/protect
 		$this->assertIRCComment(
-			wfMessage( 'protectedarticle', 'SomeTitle ' . $protectParams[0] )->plain() . ': ' .  $this->user_comment,
+			$this->context->msg( 'protectedarticle', 'SomeTitle ' . $protectParams[0] )->plain() . ': ' .  $this->user_comment,
 			'protect', 'protect',
 			$protectParams,
 			$this->user_comment
@@ -175,7 +177,7 @@ class RecentChangeTest extends MediaWikiTestCase {
 
 		# protect/unprotect
 		$this->assertIRCComment(
-			wfMessage( 'unprotectedarticle', 'SomeTitle' )->plain() . ': ' .  $this->user_comment,
+			$this->context->msg( 'unprotectedarticle', 'SomeTitle' )->plain() . ': ' .  $this->user_comment,
 			'protect', 'unprotect',
 			array(),
 			$this->user_comment
@@ -183,7 +185,7 @@ class RecentChangeTest extends MediaWikiTestCase {
 
 		# protect/modify
 		$this->assertIRCComment(
-			wfMessage( 'modifiedarticleprotection', 'SomeTitle ' . $protectParams[0] )->plain() . ': ' .  $this->user_comment,
+			$this->context->msg( 'modifiedarticleprotection', 'SomeTitle ' . $protectParams[0] )->plain() . ': ' .  $this->user_comment,
 			'protect', 'modify',
 			$protectParams,
 			$this->user_comment
@@ -196,7 +198,7 @@ class RecentChangeTest extends MediaWikiTestCase {
 	function testIrcMsgForLogTypeUpload() {
 		# upload/upload
 		$this->assertIRCComment(
-			wfMessage( 'uploadedimage', 'SomeTitle' )->plain() . ': ' .  $this->user_comment,
+			$this->context->msg( 'uploadedimage', 'SomeTitle' )->plain() . ': ' .  $this->user_comment,
 			'upload', 'upload',
 			array(),
 			$this->user_comment
@@ -204,7 +206,7 @@ class RecentChangeTest extends MediaWikiTestCase {
 
 		# upload/overwrite
 		$this->assertIRCComment(
-			wfMessage( 'overwroteimage', 'SomeTitle' )->plain() . ': ' .  $this->user_comment,
+			$this->context->msg( 'overwroteimage', 'SomeTitle' )->plain() . ': ' .  $this->user_comment,
 			'upload', 'overwrite',
 			array(),
 			$this->user_comment
@@ -217,19 +219,19 @@ class RecentChangeTest extends MediaWikiTestCase {
 	 * --
 
 	function testIrcMsgForBlankingAES() {
-		// wfMessage( 'autosumm-blank', .. );
+		// $this->context->msg( 'autosumm-blank', .. );
 	}
 
 	function testIrcMsgForReplaceAES() {
-		// wfMessage( 'autosumm-replace', .. );
+		// $this->context->msg( 'autosumm-replace', .. );
 	}
 
 	function testIrcMsgForRollbackAES() {
-		// wfMessage( 'revertpage', .. );
+		// $this->context->msg( 'revertpage', .. );
 	}
 
 	function testIrcMsgForUndoAES() {
-		// wfMessage( 'undo-summary', .. );
+		// $this->context->msg( 'undo-summary', .. );
 	}
 
 	 * --
@@ -253,7 +255,7 @@ class RecentChangeTest extends MediaWikiTestCase {
 		$logEntry->setParameters( $params );
 
 		$formatter = LogFormatter::newFromEntry( $logEntry );
-		$formatter->setContext( RequestContext::newExtraneousContext( $this->title ) );
+		$formatter->setContext( $this->context );
 
 		// Apply the same transformation as done in RecentChange::getIRCLine for rc_comment
 		$ircRcComment = RecentChange::cleanupForIRC( $formatter->getIRCActionComment() );
