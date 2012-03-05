@@ -151,23 +151,23 @@ class UsersPager extends AlphabeticPager {
 
 		global $wgEdititis;
 		if ( $wgEdititis ) {
-			$editCount = $lang->formatNum( $row->edits );
-			$edits = ' [' . wfMsgExt( 'usereditcount', array( 'parsemag', 'escape' ), $editCount ) . ']';
+			$edits = ' [' . $this->msg( 'usereditcount' )->numParams( $row->edits )->escaped() . ']';
 		} else {
 			$edits = '';
 		}
 
 		$userTalkPage = $userPage->getTalkPage();
-		$talk = Linker::link( $userTalkPage, wfMessage( 'talkpagelinktext' )->escaped() );
-		$talk = ' ' . wfMessage( 'parentheses' )->rawParams( $talk )->escaped();
+		$talk = Linker::link( $userTalkPage, $this->msg( 'talkpagelinktext' )->escaped() );
+		$talk = ' ' . $this->msg( 'parentheses' )->rawParams( $talk )->escaped();
 
 		$created = '';
 		# Some rows may be NULL
 		if( $row->creation ) {
-			$d = $lang->date( wfTimestamp( TS_MW, $row->creation ), true );
-			$t = $lang->time( wfTimestamp( TS_MW, $row->creation ), true );
-			$created = wfMsgExt( 'usercreated', array( 'parsemag', 'escape' ), $d, $t, $row->user_name );
-			$created = ' ' . wfMessage( 'parentheses' )->rawParams( $created )->escaped();
+			$user = $this->getUser();
+			$d = $lang->userDate( $row->creation, $user );
+			$t = $lang->userTime( $row->creation, $user );
+			$created = $this->msg( 'usercreated', $d, $t, $row->user_name )->escaped();
+			$created = ' ' . $this->msg( 'parentheses' )->rawParams( $created )->escaped();
 		}
 
 		wfRunHooks( 'SpecialListusersFormatRow', array( &$item, $row ) );
@@ -195,30 +195,30 @@ class UsersPager extends AlphabeticPager {
 
 		# Form tag
 		$out  = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript, 'id' => 'mw-listusers-form' ) ) .
-			Xml::fieldset( wfMsg( 'listusers' ) ) .
+			Xml::fieldset( $this->msg( 'listusers' )->text() ) .
 			Html::hidden( 'title', $self );
 
 		# Username field
-		$out .= Xml::label( wfMsg( 'listusersfrom' ), 'offset' ) . ' ' .
+		$out .= Xml::label( $this->msg( 'listusersfrom' )->text(), 'offset' ) . ' ' .
 			Xml::input( 'username', 20, $this->requestedUser, array( 'id' => 'offset' ) ) . ' ';
 
 		# Group drop-down list
-		$out .= Xml::label( wfMsg( 'group' ), 'group' ) . ' ' .
+		$out .= Xml::label( $this->msg( 'group' )->text(), 'group' ) . ' ' .
 			Xml::openElement('select',  array( 'name' => 'group', 'id' => 'group' ) ) .
-			Xml::option( wfMsg( 'group-all' ), '' );
+			Xml::option( $this->msg( 'group-all' )->text(), '' );
 		foreach( $this->getAllGroups() as $group => $groupText )
 			$out .= Xml::option( $groupText, $group, $group == $this->requestedGroup );
 		$out .= Xml::closeElement( 'select' ) . '<br />';
-		$out .= Xml::checkLabel( wfMsg('listusers-editsonly'), 'editsOnly', 'editsOnly', $this->editsOnly );
+		$out .= Xml::checkLabel( $this->msg( 'listusers-editsonly' )->text(), 'editsOnly', 'editsOnly', $this->editsOnly );
 		$out .= '&#160;';
-		$out .= Xml::checkLabel( wfMsg('listusers-creationsort'), 'creationSort', 'creationSort', $this->creationSort );
+		$out .= Xml::checkLabel( $this->msg( 'listusers-creationsort' )->text(), 'creationSort', 'creationSort', $this->creationSort );
 		$out .= '<br />';
 
 		wfRunHooks( 'SpecialListusersHeaderForm', array( $this, &$out ) );
 
 		# Submit button and form bottom
 		$out .= Html::hidden( 'limit', $this->mLimit );
-		$out .= Xml::submitButton( wfMsg( 'allpagessubmit' ) );
+		$out .= Xml::submitButton( $this->msg( 'allpagessubmit' )->text() );
 		wfRunHooks( 'SpecialListusersHeader', array( $this, &$out ) );
 		$out .= Xml::closeElement( 'fieldset' ) .
 			Xml::closeElement( 'form' );
@@ -309,7 +309,7 @@ class SpecialListUsers extends SpecialPage {
 			$s .= Html::rawElement( 'ul', array(), $usersbody );
 			$s .= $up->getNavigationBar();
 		} else {
-			$s .= wfMessage( 'listusers-noresult' )->parseAsBlock();
+			$s .= $this->msg( 'listusers-noresult' )->parseAsBlock();
 		}
 
 		$this->getOutput()->addHTML( $s );
