@@ -429,6 +429,11 @@ class WikiPage extends Page {
 		return $this->getText( Revision::RAW );
 	}
 
+    protected function getRawData() {
+        $content = $this->getContent( Revision::RAW );
+        return $content->getRawData();
+    }
+
 	/**
 	 * @return string MW timestamp of last article revision
 	 */
@@ -542,7 +547,7 @@ class WikiPage extends Page {
 	 *        if false, the current database state will be used
 	 * @return Boolean
 	 */
-	public function isCountable( $editInfo = false ) {
+	public function isCountable( $editInfo = false ) { #FIXME: move this to Content object
 		global $wgArticleCountMethod;
 
 		if ( !$this->mTitle->isContentPage() ) {
@@ -620,7 +625,7 @@ class WikiPage extends Page {
 	 */
 	public function insertRedirect() {
 		// recurse through to only get the final target
-		$retval = Title::newFromRedirectRecurse( $this->getRawText() );
+		$retval = Title::newFromRedirectRecurse( $this->getRawText() ); #FIXME: move this to Content object
 		if ( !$retval ) {
 			return null;
 		}
@@ -904,7 +909,7 @@ class WikiPage extends Page {
 
 		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
 			if ( $this->mTitle->exists() ) {
-				$text = $this->getRawText();
+				$text = $this->getRawData();
 			} else {
 				$text = false;
 			}
@@ -1093,7 +1098,7 @@ class WikiPage extends Page {
 	 * @param $undoafter Revision Must be an earlier revision than $undo
 	 * @return mixed string on success, false on failure
 	 */
-	public function getUndoText( Revision $undo, Revision $undoafter = null ) {
+	public function getUndoText( Revision $undo, Revision $undoafter = null ) { #FIXME: move undo logic to ContentHandler
 		$cur_text = $this->getRawText();
 		if ( $cur_text === false ) {
 			return false; // no page
@@ -1122,7 +1127,7 @@ class WikiPage extends Page {
 	 * @param $edittime String: revision timestamp or null to use the current revision
 	 * @return string Complete article text, or null if error
 	 */
-	public function replaceSection( $section, $text, $sectionTitle = '', $edittime = null ) {
+	public function replaceSection( $section, $text, $sectionTitle = '', $edittime = null ) { #FIXME: move to Content object!
 		wfProfileIn( __METHOD__ );
 
 		if ( strval( $section ) == '' ) {
@@ -1233,7 +1238,7 @@ class WikiPage extends Page {
 	 *
 	 *  Compatibility note: this function previously returned a boolean value indicating success/failure
 	 */
-	public function doEdit( $text, $summary, $flags = 0, $baseRevId = false, $user = null ) {
+	public function doEdit( $text, $summary, $flags = 0, $baseRevId = false, $user = null ) { #FIXME: change $text to $content
 		global $wgUser, $wgDBtransactions, $wgUseAutomaticEditSummaries;
 
 		# Low-level sanity check
@@ -1268,7 +1273,7 @@ class WikiPage extends Page {
 		$isminor = ( $flags & EDIT_MINOR ) && $user->isAllowed( 'minoredit' );
 		$bot = $flags & EDIT_FORCE_BOT;
 
-		$oldtext = $this->getRawText(); // current revision
+		$oldtext = $this->getRawData(); // current revision
 		$oldsize = strlen( $oldtext );
 		$oldid = $this->getLatest();
 		$oldIsRedirect = $this->isRedirect();
@@ -1276,7 +1281,7 @@ class WikiPage extends Page {
 
 		# Provide autosummaries if one is not provided and autosummaries are enabled.
 		if ( $wgUseAutomaticEditSummaries && $flags & EDIT_AUTOSUMMARY && $summary == '' ) {
-			$summary = self::getAutosummary( $oldtext, $text, $flags );
+			$summary = self::getAutosummary( $oldtext, $text, $flags ); #FIXME: auto-summary from ContentHandler
 		}
 
 		$editInfo = $this->prepareTextForEdit( $text, null, $user );
@@ -1309,7 +1314,7 @@ class WikiPage extends Page {
 				'page'       => $this->getId(),
 				'comment'    => $summary,
 				'minor_edit' => $isminor,
-				'text'       => $text, #FIXME: set content instead, leavfe serialization to revision?!
+				'text'       => $text, #FIXME: set content instead, leave serialization to revision?!
 				'parent_id'  => $oldid,
 				'user'       => $user->getId(),
 				'user_text'  => $user->getName(),
@@ -1512,7 +1517,7 @@ class WikiPage extends Page {
 		$edit->pst = $wgParser->preSaveTransform( $text, $this->mTitle, $user, $popts );
 		$edit->popts = $this->makeParserOptions( 'canonical' );
 		$edit->output = $wgParser->parse( $edit->pst, $this->mTitle, $edit->popts, true, true, $revid );
-		$edit->oldText = $this->getRawText();
+		$edit->oldText = $this->getRawText(); #FIXME: $oldcontent instead?!
 
 		$this->mPreparedEdit = $edit;
 
@@ -2820,14 +2825,18 @@ class PoolWorkArticleView extends PoolCounterWork {
 	 * @param $revid Integer: ID of the revision being parsed
 	 * @param $useParserCache Boolean: whether to use the parser cache
 	 * @param $parserOptions parserOptions to use for the parse operation
-	 * @param $text String: text to parse or null to load it
+	 * @param $content Content|String: content to parse or null to load it; may also be given as a wikitext string, for BC
 	 */
-	function __construct( Page $page, ParserOptions $parserOptions, $revid, $useParserCache, $text = null ) {
+	function __construct( Page $page, ParserOptions $parserOptions, $revid, $useParserCache, $content = null ) {
+        if ( is_string($content) ) { #BC: old style call
+            $content = ContentHandler::makeContent( $content, $page->getTitle(), null, $this->revid ); #FIXME: format? from revision?
+        }
+
 		$this->page = $page;
 		$this->revid = $revid;
 		$this->cacheable = $useParserCache;
 		$this->parserOptions = $parserOptions;
-		$this->text = $text;
+		$this->content = $content;
 		$this->cacheKey = ParserCache::singleton()->getKey( $page, $parserOptions );
 		parent::__construct( 'ArticleView', $this->cacheKey . ':revid:' . $revid );
 	}
@@ -2867,21 +2876,20 @@ class PoolWorkArticleView extends PoolCounterWork {
 
 		$isCurrent = $this->revid === $this->page->getLatest();
 
-		if ( $this->text !== null ) {
-			$text = $this->text;
+		if ( $this->content !== null ) {
+			$content = $this->content;
 		} elseif ( $isCurrent ) {
-			$text = $this->page->getRawText();
+            $content = $this->page->getContent( Revision::RAW ); #XXX: why use RAW audience here, and PUBLIC (default) below?
 		} else {
 			$rev = Revision::newFromTitle( $this->page->getTitle(), $this->revid );
 			if ( $rev === null ) {
 				return false;
 			}
-			$text = $rev->getText();
+            $content = $rev->getContent(); #XXX: why use PUBLIC audience here (default), and RAW above?
 		}
 
 		$time = - wfTime();
-		$this->parserOutput = $wgParser->parse( $text, $this->page->getTitle(),
-			$this->parserOptions, true, true, $this->revid );
+		$this->parserOutput = $content->getParserOutput( $this->parserOptions );
 		$time += wfTime();
 
 		# Timing hack

@@ -245,20 +245,20 @@ class ImagePage extends Article {
 		return $r;
 	}
 
-	/**
-	 * Overloading Article's getContent method.
-	 *
-	 * Omit noarticletext if sharedupload; text will be fetched from the
-	 * shared upload server if possible.
-	 * @return string
-	 */
-	public function getContent() {
-		$this->loadFile();
-		if ( $this->mPage->getFile() && !$this->mPage->getFile()->isLocal() && 0 == $this->getID() ) {
-			return '';
-		}
-		return parent::getContent();
-	}
+    /**
+     * Overloading Article's getContentObject method.
+     *
+     * Omit noarticletext if sharedupload; text will be fetched from the
+     * shared upload server if possible.
+     * @return string
+     */
+    public function getContentObject() {
+        $this->loadFile();
+        if ( $this->mPage->getFile() && !$this->mPage->getFile()->isLocal() && 0 == $this->getID() ) {
+            return null;
+        }
+        return parent::getContentObject();
+    }
 
 	protected function openShowImage() {
 		global $wgOut, $wgUser, $wgImageLimits, $wgRequest,

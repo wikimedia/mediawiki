@@ -108,21 +108,22 @@ class ApiEditPage extends ApiBase {
 			// We do want getContent()'s behavior for non-existent
 			// MediaWiki: pages, though
 			if ( $articleObj->getID() == 0 && $titleObj->getNamespace() != NS_MEDIAWIKI ) {
-				$content = '';
+				$content = null;
+                $text = '';
 			} else {
-				$content = $articleObj->getContent();
+                $content = $articleObj->getContentObject();
+                $text = $content->getRawData();
 			}
 
 			if ( !is_null( $params['section'] ) ) {
 				// Process the content for section edits
-				global $wgParser;
 				$section = intval( $params['section'] );
-				$content = $wgParser->getSection( $content, $section, false );
-				if ( $content === false ) {
+                $text = $content->getSection( $section, false );
+				if ( $text === false || $text === null ) {
 					$this->dieUsage( "There is no section {$section}.", 'nosuchsection' );
 				}
 			}
-			$params['text'] = $params['prependtext'] . $content . $params['appendtext'];
+			$params['text'] = $params['prependtext'] . $text . $params['appendtext'];
 			$toMD5 = $params['prependtext'] . $params['appendtext'];
 		}
 

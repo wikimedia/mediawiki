@@ -25,6 +25,13 @@ abstract class ContentHandler {
         return null;
     }
 
+    public static function makeContent( $text, Title $title, $format = null, $revId = null ) {
+        $handler = ContentHandler::getForTitle( $title );
+
+        #FIXME: pass revid?
+        return $handler->unserialize( $text, $title, $format );
+    }
+
     public static function getDefaultModelFor( Title $title ) {
         global $wgNamespaceContentModels;
 
@@ -130,32 +137,14 @@ abstract class ContentHandler {
         return $this->mSupportedFormats[0];
     }
 
-    public abstract function serialize( $obj, $format = null );
+    public abstract function serialize( $obj, Title $title, $format = null );
             # for wikitext, do nothing (in the future: serialise ast/dom)
             # for wikidata: serialize arrays to json
 
-    public abstract function unserialize( $blob, $format = null );
+    public abstract function unserialize( $blob, Title $title, $format = null ); #FIXME: ...and revId?
             # for wikitext, do nothing (in the future: parse into ast/dom)
             # for wikidata: serialize arrays to json
 
-
-    public function getSearchText( $obj ) {
-            # for wikitext, return wikitext
-            # for wikidata, return pseudo-wikitext composed of property values (or some such)
-        $text = $this->serialize( $obj ); 
-        return $text; # return the default serialization.
-    }
-
-    public function getWikitextForTransclusion( $obj ) {
-        # for wikitext, return text
-        # for wikidata, return false, or some generated wikitext
-        $text = $this->serialize( $obj ); 
-        return '<pre>' . $text . '</pre>'; # return a pre-formatted block containing the default serialization.
-    }
-
-    public abstract function render( $obj, Title $title, ParserOptions $options, $revid = null );
-            # returns a ParserOutput instance!
-            # are parser options, generic?!
 
     public abstract function doPreSaveTransform( $title, $obj );
 

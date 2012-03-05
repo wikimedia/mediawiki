@@ -80,7 +80,7 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		if ( !$revision ) {
 			return null;
 		}
-		return $revision->getRawText();
+		return $revision->getRawText(); #FIXME: get raw data from content object after checking the type;
 	}
 
 	/* Methods */

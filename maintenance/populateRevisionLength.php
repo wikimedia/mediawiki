@@ -67,7 +67,7 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 			# Go through and update rev_len from these rows.
 			foreach ( $res as $row ) {
 				$rev = new Revision( $row );
-				$text = $rev->getRawText();
+				$text = $rev->getRawText(); #FIXME: go via Content object; #FIXME: get size via Content object
 				if ( !is_string( $text ) ) {
 					# This should not happen, but sometimes does (bug 20757)
 					$this->output( "Text of revision {$row->rev_id} unavailable!\n" );

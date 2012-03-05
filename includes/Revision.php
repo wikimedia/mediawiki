@@ -496,7 +496,7 @@ class Revision {
 			$this->mCurrent   = false;
 			# If we still have no length, see it we have the text to figure it out
 			if ( !$this->mSize ) {
-				$this->mSize = is_null( $this->mText ) ? null : strlen( $this->mText );
+				$this->mSize = is_null( $this->mText ) ? null : strlen( $this->mText ); #FIXME: do strlen in Content object
 			}
 			# Same for sha1
 			if ( $this->mSha1 === null ) {
@@ -779,7 +779,7 @@ class Revision {
 	 * @return String
      * @deprectaed in 1.20, use getContent() instead
 	 */
-	public function getText( $audience = self::FOR_PUBLIC, User $user = null ) { #FIXME: deprecated, replace usage!
+	public function getText( $audience = self::FOR_PUBLIC, User $user = null ) { #FIXME: deprecated, replace usage! #FIXME: used a LOT!
         wfDeprecated( __METHOD__, '1.20' );
 
         $content = $this->getContent();

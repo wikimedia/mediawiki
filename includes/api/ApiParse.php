@@ -320,7 +320,7 @@ class ApiParse extends ApiBase {
 
 		if ( $this->section !== false ) {
 			$this->text = $this->getSectionText( $page->getRawText(), !is_null( $pageId )
-					? 'page id ' . $pageId : $titleObj->getText() );
+					? 'page id ' . $pageId : $titleObj->getText() ); #FIXME: get section...
 
 			// Not cached (save or load)
 			return $wgParser->parse( $this->text, $titleObj, $popts );
@@ -329,7 +329,8 @@ class ApiParse extends ApiBase {
 			// getParserOutput will save to Parser cache if able
 			$pout = $page->getParserOutput( $popts );
 			if ( $getWikitext ) {
-				$this->text = $page->getRawText();
+                $this->content = $page->getContent( Revision::RAW ); #FIXME: use $this->content everywhere
+				$this->text = $this->content->getRawData(); #FIXME: change $this->text to $this->data?!
 			}
 			return $pout;
 		}

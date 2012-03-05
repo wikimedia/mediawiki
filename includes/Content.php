@@ -6,7 +6,7 @@
  */
 abstract class Content {
     
-    public function __construct( Title $title, $revId, $modelName ) {
+    public function __construct( Title $title, $revId, $modelName ) { #FIXME: really need revId? annoying! #FIXME: really $title? or just when parsing, every time?
         $this->mModelName = $modelName;
         $this->mTitle = $title;
         $this->mRevId = $revId;
@@ -41,6 +41,14 @@ abstract class Content {
         $po = $this->getParserOutput( $options );
         $update = new LinksUpdate( $this->mTitle, $po, $recursive );
         return $update;
+    }
+
+    public function getRedirectChain() {
+        return null;
+    }
+
+    public function getSection( $section ) { #FIXME: should this return text? or a Content object? or what??
+        return null;
     }
 
     #XXX: is the native model for wikitext a string or the parser output? parse early or parse late?
@@ -90,6 +98,11 @@ class TextContent extends Content {
         return $text;
     }
 
+    public function getRedirectChain() {
+        #XXX: really do this for all text, or just in WikitextContent
+        $text = $this->getRawData();
+        return Title::newFromRedirectArray( $text );
+    }
 }
 
 class WikitextContent extends TextContent {
@@ -121,9 +134,16 @@ class WikitextContent extends TextContent {
             $options = $this->getDefaultParserOptions();
         }
 
-        $po = $wgParser->parse( $this->mText, $this->getTitle(), $options );
+        $po = $wgParser->parse( $this->mText, $this->getTitle(), $options, true, true, $this->mRevId );
 
         return $po;
+    }
+
+    public function getSection( $section ) {
+        global $wgParser;
+
+        $text = $this->getRawData();
+        return $wgParser->getSection( $text, $section, false );
     }
 
 }

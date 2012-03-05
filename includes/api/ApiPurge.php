@@ -90,7 +90,7 @@ class ApiPurge extends ApiBase {
 
 					$popts = ParserOptions::newFromContext( $this->getContext() );
 					$p_result = $wgParser->parse( $page->getRawText(), $title, $popts,
-						true, true, $page->getLatest() );
+						true, true, $page->getLatest() ); #FIXME: content!
 
 					# Update the links tables
 					$u = new LinksUpdate( $title, $p_result );

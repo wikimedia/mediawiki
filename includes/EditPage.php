@@ -864,7 +864,9 @@ class EditPage {
 		if ( $revision === null ) {
 			return '';
 		}
-		return $this->mArticle->getContent();
+
+        $content = $this->mArticle->getContentObject();
+		return $content->getRawData(); # this editor is for editing the raw text. so use the raw text.
 	}
 
 	/**
@@ -900,7 +902,7 @@ class EditPage {
 	 * @param $preload String: representing the title to preload from.
 	 * @return String
 	 */
-	protected function getPreloadedText( $preload ) {
+	protected function getPreloadedText( $preload ) { #FIXME: change to getPreloadedContent()
 		global $wgUser, $wgParser;
 
 		if ( !empty( $this->mPreloadText ) ) {
@@ -928,7 +930,7 @@ class EditPage {
 		}
 
 		$parserOptions = ParserOptions::newFromUser( $wgUser );
-		return $wgParser->getPreloadText( $page->getRawText(), $title, $parserOptions );
+		return $wgParser->getPreloadText( $page->getRawText(), $title, $parserOptions ); #FIXME: create Content::getPreloadCopy
 	}
 
 	/**

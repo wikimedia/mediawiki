@@ -37,7 +37,7 @@ class Article extends Page {
 	 */
 	public $mParserOptions;
 
-	var $mContent;                    // !<  #FIXME: use Content object!
+	var $mContent;                    // !< #BC cruft
     var $mContentObject;              // !<
 	var $mContentLoaded = false;      // !<
 	var $mOldId;                      // !<
@@ -192,7 +192,7 @@ class Article extends Page {
 	 * @return Return the text of this revision
      * @deprecated in 1.20; use getContentObject() instead
 	 */
-	public function getContent() { #FIXME: deprecated! replace usage! use content object!
+	public function getContent() {
         wfDeprecated( __METHOD__, '1.20' );
         $content = $this->getContentObject();
         return ContentHandler::getContentText( $content );
@@ -226,7 +226,7 @@ class Article extends Page {
 			}
 			wfProfileOut( __METHOD__ );
 
-			return new WikitextContent( $text, $this->getTitle() );
+			return ContentHandler::makeContent( $text, $this->getTitle() );
 		} else {
 			$this->fetchContentObject();
 			wfProfileOut( __METHOD__ );
@@ -312,7 +312,7 @@ class Article extends Page {
 	 * @return mixed string containing article contents, or false if null
      * @deprecated in 1.20, use getContentObject() instead
 	 */
-	function fetchContent() { #BC cruft! #FIXME: deprecated, replace usage
+	protected function fetchContent() { #BC cruft!
         wfDeprecated( __METHOD__, '1.20' );
 
 		if ( $this->mContentLoaded && $this->mContent ) {
@@ -338,7 +338,7 @@ class Article extends Page {
      *
      * @return Content object containing article contents, or null
      */
-    function fetchContentObject() {
+    protected function fetchContentObject() {
         if ( $this->mContentLoaded ) {
             return $this->mContentObject;
         }
@@ -423,7 +423,7 @@ class Article extends Page {
 	 * @return Revision|null
 	 */
 	public function getRevisionFetched() {
-		$this->fetchContent();
+		$this->fetchContentObject();
 
 		return $this->mRevision;
 	}
@@ -582,7 +582,7 @@ class Article extends Page {
 					break;
 				case 3:
 					# This will set $this->mRevision if needed
-					$this->fetchContent();
+					$this->fetchContentObject();
 
 					# Are we looking at an old revision
 					if ( $oldid && $this->mRevision ) {
@@ -603,7 +603,7 @@ class Article extends Page {
 
 					# Pages containing custom CSS or JavaScript get special treatment
 					if ( $this->getTitle()->isCssOrJsPage() || $this->getTitle()->isCssJsSubpage() ) {
-                        #FIXME: use Content object instead!
+                        #FIXME: use ContentHandler for specialized actions insetad.
 						wfDebug( __METHOD__ . ": showing CSS/JS source\n" );
 						$this->showCssOrJsPage();
 						$outputDone = true;
@@ -611,14 +611,14 @@ class Article extends Page {
 						# Allow extensions do their own custom view for certain pages
 						$outputDone = true;
 					} else {
-						$text = $this->getContent();
-						$rt = Title::newFromRedirectArray( $text );
+						$content = $this->getContentObject();
+						$rt = $content->getRedirectChain();
 						if ( $rt ) {
 							wfDebug( __METHOD__ . ": showing redirect=no page\n" );
 							# Viewing a redirect page (e.g. with parameter redirect=no)
 							$wgOut->addHTML( $this->viewRedirect( $rt ) );
 							# Parse just to get categories, displaytitle, etc.
-							$this->mParserOutput = $wgParser->parse( $text, $this->getTitle(), $parserOptions );
+							$this->mParserOutput = $content->getParserOutput( $parserOptions );
 							$wgOut->addParserOutputNoText( $this->mParserOutput );
 							$outputDone = true;
 						}
@@ -629,7 +629,7 @@ class Article extends Page {
 					wfDebug( __METHOD__ . ": doing uncached parse\n" );
 
 					$poolArticleView = new PoolWorkArticleView( $this, $parserOptions,
-						$this->getRevIdFetched(), $useParserCache, $this->getContent() );
+						$this->getRevIdFetched(), $useParserCache, $this->getContentObject() );
 
 					if ( !$poolArticleView->execute() ) {
 						$error = $poolArticleView->getError();
@@ -741,24 +741,18 @@ class Article extends Page {
 	 * This is hooked by SyntaxHighlight_GeSHi to do syntax highlighting of these
 	 * page views.
 	 */
-	protected function showCssOrJsPage() { #FIXME: deprecate, keep for BC
+	protected function showCssOrJsPage() { #FIXME: move this to handler!
 		global $wgOut;
 
 		$dir = $this->getContext()->getLanguage()->getDir();
 		$lang = $this->getContext()->getLanguage()->getCode();
 
 		$wgOut->wrapWikiMsg( "<div id='mw-clearyourcache' lang='$lang' dir='$dir' class='mw-content-$dir'>\n$1\n</div>",
-			'clearyourcache' ); #FIXME: get this from handler
+			'clearyourcache' ); #FIXME: do this in handler
 
 		// Give hooks a chance to customise the output
 		if ( wfRunHooks( 'ShowRawCssJs', array( $this->mContent, $this->getTitle(), $wgOut ) ) ) {
-            #FIXME: use content object instead
-			// Wrap the whole lot in a <pre> and don't parse
-			$m = array();
-			preg_match( '!\.(css|js)$!u', $this->getTitle()->getText(), $m );
-			$wgOut->addHTML( "<pre class=\"mw-code mw-{$m[1]}\" dir=\"ltr\">\n" );
-			$wgOut->addHTML( htmlspecialchars( $this->mContent ) );
-			$wgOut->addHTML( "\n</pre>\n" );
+			$wgOut->addHTML( $this->mContentObject->getHTML() );
 		}
 	}
 
