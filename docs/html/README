@@ -1,0 +1,4 @@
+This directory is for the auto-generated doxygen documentation.
+Run 'php mwdocgen.php' in the maintenance subdirectory to build the docs.
+
+Get Doxygen from http://www.doxygen.org/

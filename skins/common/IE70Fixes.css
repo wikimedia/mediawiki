@@ -1,0 +1,12 @@
+/**
+ * Fixes sister projects box moving down the extract 
+ * of the first result (bug #16886).
+ * It only happens when the window is small and 
+ * This changes slightly the layout for big screens 
+ * where there was space for the extracts and the 
+ * sister projects and thus it showed like in any 
+ * other browser.
+ */
+.searchresult {
+	display: inline;
+}

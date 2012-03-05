@@ -1,0 +1,9 @@
+#mw_portlets,
+#p-cactions,
+#p-personal,
+#jump-to-nav,
+#footer,
+span.editsection,
+.noprint {
+	display: none;
+}

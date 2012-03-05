@@ -1,0 +1,28 @@
+09 Oct 2003:
+   1455 UTC:
+      Released version 0.1.2
+      Fixed bug in get_multi; when debugging was enabled but no keys were fetched,
+        script execution would halt (uninitialized $val)
+
+08 Oct 2003:
+   1848 UTC:
+      Released version 0.1.1
+
+   1825 UTC:
+      Fixed bug in memcached::memcached; was attempting to initialize 
+        memcached::_dead_sock (function) instead of memcached::_dead_hosts
+        (oops!)
+
+   1812 UTC:
+      Fixed memcached::enable_compression; 
+        thanks to Justin Matlock <jmat@shutdown.net> for pointing it out
+
+07 Oct 2003:
+   1635 UTC:
+      Fixed call to memcached::_dead_sock in memcached::delete
+      Added documentation for class variable $_buckets
+
+06 Oct 2003:
+   2039 UTC:
+      Initial release of memcached-client-php; version 0.1
+

@@ -1,0 +1,168 @@
+.env-check {
+	font-size: 90%;
+	margin: 1em 0 1em 2.5em;
+}
+
+.config-section {
+	margin-top: 2em;
+}
+
+.config-label {
+	clear: left;
+	font-weight: bold;
+	width: 10em;
+	float: left;
+	text-align: right;
+	padding-right: 1em;
+	padding-top: .2em;
+}
+
+.config-input {
+	clear: left;
+	zoom: 100%; /* IE hack */
+}
+
+.config-page-wrapper {
+	padding: 0.5em;
+}
+
+.config-page-list {
+	float: right;
+	width: 12em;
+	border: 1px solid #aaa;
+	padding: 0.5em;
+	margin: 0.5em;
+}
+
+.config-page {
+	padding: 0.5em 2em 0.5em 2em;
+	/* 15em right margin to leave space for 12em page list */
+	margin: 0.5em 15em 0.5em 0.5em;
+	border: 1px solid #aaa;
+}
+
+.config-submit {
+	clear: left;
+	text-align: center;
+	padding: 1em;
+}
+
+.config-submit input {
+	margin-left: 0.5em;
+	margin-right: 0.5em;
+}
+
+.config-page-disabled {
+	color: #aaa;
+}
+
+.config-error-box {
+	border: 2px solid #f00;
+	margin: 0.4em;
+	clear: left;
+}
+
+.config-warning-box {
+	border: 2px solid #ff7f00;
+	margin: 0.4em;
+	clear: left;
+}
+
+.config-info-left {
+	margin: 7px;
+	float: left;
+	width: 35px;
+}
+
+.config-info-right {
+	margin: 0.5em 0.5em 0.5em 49px;
+}
+
+.config-page-current {
+	font-weight: bold;
+}
+
+.config-help-wrapper {
+	clear: left;
+	margin: 0 0 2em 12em;
+	padding-top: 1em;
+}
+.config-show-help, .config-hide-help {
+	margin-left: 14em;
+}
+.config-hide-help { display: none; }
+.config-show-help a, .config-hide-help a {
+	background-image: url(images/help-22.png);
+	background-position: 0 0;
+	background-repeat: no-repeat;
+	display: inline-block;
+	height: 26px;
+	padding-left: 26px;
+}
+
+.config-help-message {
+	font-size: 85%;
+	display: none;
+}
+
+.config-message {
+	display: list-item;
+	line-height: 1.5em;
+	list-style-image: url(../skins/common/images/bullet.gif);
+	list-style-type: square;
+}
+
+.config-input-text {
+	width: 20em;
+	margin-right: 1em;
+}
+
+.config-input-check {
+	margin-left: 10em;
+}
+
+.error {
+	color: red;
+	background-color: #fff;
+	font-weight: bold;
+	left: 1em;
+	font-size: 100%;
+}
+
+.config-settings-block {
+	list-style-type: none;
+	list-style-image: none;
+	float: left;
+	margin: 0;
+	padding: 0;
+}
+
+.btn-install {
+	font-weight: bold;
+	font-size: 110%;
+	padding: .2em .3em;
+}
+
+.success-message {
+	font-weight: bold;
+	font-size: 110%;
+	color: green;
+}
+.success-box {
+	font-size: 130%;
+}
+
+.config-cc-wrapper {
+	clear: left;
+	/* If you change this height, also change it in WebInstaller_Options::submitCC() */
+	height: 54em; 
+}
+
+.config-plainlink a {
+	background: none !important;
+	padding: 0 !important;
+}
+
+#config-memcachewrapper {
+	display: none;
+}

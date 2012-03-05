@@ -1,0 +1,3 @@
+== See also ==
+*[http://www.mediawiki.org/wiki/Manual:IBM_DB2 Installation instructions]
+*[http://ca.php.net/manual/en/function.db2-connect.php PHP Manual for DB2 functions]

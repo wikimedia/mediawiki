@@ -1,0 +1,134 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.4/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.4/ http://www.mediawiki.org/xml/export-0.4.xsd" version="0.4" xml:lang="en">
+
+<!-- Optional global configuration info -->
+<siteinfo>
+  <!-- Site name, as set in $wgSitename -->
+  <sitename>DemoWiki</sitename>
+  
+  <!-- Forgot where you got this set? -->
+  <base>http://example.com/wiki/Main_Page</base>
+  
+  <!-- Source software version -->
+  <generator>MediaWiki 1.5.0</generator>
+  
+  <!-- Title case sensitivity options of the wiki this data came from -->
+  <!-- May be 'first-letter', 'case-sensitive', or 'case-insensitive' -->
+  <case>first-letter</case>
+  
+  <!-- Defined namespace keys on the source wiki. -->
+  <!-- Titles can be substring-split to obtain the symbolic numeric key -->
+  <namespaces>
+    <namespace key="-2">Media</namespace>
+    <namespace key="-1">Special</namespace>
+    <namespace key="0"></namespace>
+    <namespace key="1">Talk</namespace>
+    <namespace key="2">User</namespace>
+    <namespace key="3">User talk</namespace>
+    <namespace key="4">DemoWiki</namespace>
+    <namespace key="5">DemoWIki talk</namespace>
+    <namespace key="6">Image</namespace>
+    <namespace key="7">Image talk</namespace>
+    <namespace key="8">MediaWiki</namespace>
+    <namespace key="9">MediaWiki talk</namespace>
+    <namespace key="10">Template</namespace>
+    <namespace key="11">Template talk</namespace>
+    <namespace key="12">Help</namespace>
+    <namespace key="13">Help talk</namespace>
+    <namespace key="14">Category</namespace>
+    <namespace key="15">Category talk</namespace>
+  </namespaces>
+</siteinfo>
+
+<!-- The rest of the data will be a series of page records -->
+<page>
+  <!-- Titles are listed here in text form, with namespace prefix   -->
+  <!-- if any, and spaces rather than the underscores used in URLs. -->
+  <title>Page title</title>
+  
+  <!-- The page's immutable page_id number in the source database.  -->
+  <!-- Page ID numbers are kept across page moves, but may change   -->
+  <!-- if a page is deleted and recreated.                          -->
+  <id>1</id>
+
+  <!-- Tag wether this article is a redirect -->
+  <!-- This corresponds to the page_is_redirect in the page table -->
+  <redirect />
+  
+  <!-- If restricted, the ACL is listed here raw. -->
+  <restrictions>edit=sysop:move=sysop</restrictions>
+  
+  <!-- With a series of revision records... -->
+  
+  <!-- Remember this is XML; if you must use a regex-based extractor -->
+  <!-- in place of a standard XML parser, be very careful.           -->
+  <!-- * Don't forget to decode character entities!                  -->
+  <!-- * If using a 'loose' XML parser, ensure that whitespace is    -->
+  <!--    preserved in the <text> elements.                          -->
+  <revision>
+    <!-- Unique revision ID number (rev_id) in the source database.  -->
+    <!-- This number uniquely identifies the revision on that wiki.  -->
+    <id>100</id>
+    
+    <timestamp>2001-01-15T13:15:00Z</timestamp>
+    <contributor><username>Foobar</username><id>42</id></contributor>
+    <minor />
+    <comment>I have just one thing to say!</comment>
+    <text xml:space="preserve">A bunch of [[text]] here.</text>
+  </revision>
+  
+  <revision>
+    <timestamp>2001-01-15T13:10:27Z</timestamp>
+    <contributor><ip>10.0.0.2</ip></contributor>
+    <comment>new!</comment>
+    <text xml:space="preserve">An earlier [[revision]].</text>
+  </revision>
+</page>
+
+<page>
+  <title>Talk:Page title</title>
+  <id>2</id>
+  <revision>
+    <id>101</id>
+    <timestamp>2001-01-15T14:03:00Z</timestamp>
+    <contributor><ip>10.0.0.2</ip></contributor>
+    <comment>hey</comment>
+    <text xml:space="preserve">WHYD YOU LOCK PAGE??!!! i was editing that jerk</text>
+  </revision>
+</page>
+
+<page>
+  <title>Image:Some image.jpg</title>
+  <id>3</id>
+  <revision>
+    <id>102</id>
+    <timestamp>2001-01-15T20:34:12Z</timestamp>
+    <contributor><username>Foobar</username><id>42</id></contributor>
+    <comment>My awesomeest image!</comment>
+    <text xml:space="preserve">This is an awesome little imgae. I lurves it. {{PD}}</text>
+  </revision>
+  <upload>
+    <timestamp>2001-01-15T20:34:12Z</timestamp>
+    <contributor><username>Foobar</username><id>42</id></contributor>
+    <comment>My awesomeest image!</comment>
+    <filename>Some_image.jpg</filename>
+    <src>http://upload.wikimedia.org/commons/2/22/Some_image.jpg</src>
+    <size>12345</size>
+  </upload>
+</page>
+
+<logitem>
+  <id>15</id>
+  <timestamp>2008-10-23T03:20:32Z</timestamp>
+  <contributor>
+  <username>Wikimedian</username>
+  <id>12345</id>
+  </contributor>
+  <comment>content was: 'I think this was a silly edit'</comment>
+  <type>delete</type>
+  <action>delete</action>
+  <logtitle>Silly page name</logtitle>
+  <params xml:space="preserve" />
+</logitem>
+
+
+</mediawiki>

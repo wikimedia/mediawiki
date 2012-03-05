@@ -1,0 +1,910 @@
+/**
+ * CSS in this file is used by *all* skins (that have any CSS at all).  Be
+ * careful what you put in here, since what looks good in one skin may not in
+ * another, but don't ignore the poor non-Monobook users either.
+ */
+
+/* Colored watchlist and recent changes numbers */
+.mw-plusminus-pos { color: #006400; } /* dark green */
+.mw-plusminus-neg { color: #8b0000; } /* dark red */
+.mw-plusminus-null { color: #aaa; } /* gray */
+
+/* Comment and username portions of RC entries */
+span.comment {
+	font-style: italic;
+}
+
+span.changedby {
+	font-size: 95%;
+}
+
+/* Math */
+.texvc {
+	direction: ltr;
+	unicode-bidi: embed;
+}
+img.tex { vertical-align: middle; }
+span.texhtml { font-family: serif; }
+
+/* add a bit of margin space between the preview and the toolbar */
+/* this replaces the ugly <p><br /></p> we used to insert into the page source */
+#wikiPreview.ontop { margin-bottom: 1em; }
+
+/* Stop floats from intruding into edit area in previews */
+#editform, #toolbar, #wpTextbox1 {
+	clear: both;
+}
+
+div#mw-js-message {
+	margin: 1em 5%;
+	padding: 0.5em 2.5%;
+	border: solid 1px #ddd;
+	background-color: #fcfcfc;
+}
+
+/* Edit section links */
+.editsection {
+	float: right;
+	margin-left: 5px;
+}
+
+/**
+ * File histories
+ */
+h2#filehistory {
+	clear: both;
+}
+
+table.filehistory th,
+table.filehistory td {
+	vertical-align: top;
+}
+table.filehistory th {
+	text-align: left;
+}
+table.filehistory td.mw-imagepage-filesize,
+table.filehistory th.mw-imagepage-filesize {
+	white-space: nowrap;
+}
+
+table.filehistory td.filehistory-selected {
+	font-weight: bold;
+}
+
+/*
+ * rev_deleted stuff
+ */
+li span.deleted, span.history-deleted {
+	text-decoration: line-through;
+	color: #888;
+	font-style: italic;
+}
+
+/**
+ * Patrol stuff
+ */
+.not-patrolled {
+	background-color: #ffa;
+}
+
+.unpatrolled {
+	font-weight: bold;
+	color: red;
+}
+
+div.patrollink {
+	font-size: 75%;
+	text-align: right;
+}
+
+/**
+ * Forms
+ */
+body.ltr td.mw-label { text-align: right; }
+body.ltr td.mw-input { text-align: left; }
+body.ltr td.mw-submit { text-align: left; }
+body.rtl td.mw-label { text-align: left; }
+body.rtl td.mw-input { text-align: right; }
+body.rtl td.mw-submit { text-align: right; }
+
+td.mw-label { vertical-align: top; }
+.prefsection td.mw-label { width: 20%; }
+.prefsection table { width: 100%; }
+td.mw-submit { white-space: nowrap; }
+
+table.mw-htmlform-nolabel td.mw-label {
+	width: 0 !important;
+}
+
+tr.mw-htmlform-vertical-label td.mw-label {
+	text-align: left !important;
+}
+
+input#wpSummary {
+	width: 80%;
+}
+
+/**
+ * Image captions
+ */
+body.rtl .thumbcaption { text-align: right; }
+body.rtl .magnify { float: left; }
+
+body.ltr .thumbcaption { text-align: left; }
+body.ltr .magnify { float: right; }
+
+/**
+ * Hidden categories
+ */
+.mw-hidden-cats-hidden { display: none; }
+.catlinks-allhidden { display: none; }
+
+/* Convenience links to edit block, delete and protect reasons */
+p.mw-ipb-conveniencelinks, p.mw-protect-editreasons,
+p.mw-filedelete-editreasons, p.mw-delete-editreasons,
+p.mw-revdel-editreasons {
+	font-size: 90%;
+	float: right;
+}
+
+/* Search results */
+.searchresults {
+}
+
+.searchresults p {
+	margin-left: 0.4em;
+	margin-top: 1em;
+	margin-bottom: 1.2em;
+}
+
+div.searchresult {
+	font-size: 95%;
+	width: 38em;
+}
+
+.mw-search-results {
+	margin-left: 0.4em;
+}
+
+.mw-search-results li {
+	padding-bottom: 1em;
+	list-style: none;
+	list-style-image: none;
+}
+.mw-search-results li a {
+	font-size: 108%;
+}
+
+.mw-search-result-data {
+	color: green;
+	font-size: 97%;
+}
+
+.mw-search-formheader {
+	background-color: #f3f3f3;
+	margin-top: 1em;
+	border: 1px solid silver;
+}
+.mw-search-formheader div.search-types {
+	float: left;
+	padding-left: 0.25em;
+}
+.rtl .mw-search-formheader div.search-types {
+	float: right;
+}
+.mw-search-formheader div.search-types ul {
+	margin: 0 !important;
+	padding: 0 !important;
+	list-style: none !important;
+}
+.mw-search-formheader div.search-types ul li {
+	float: left;
+	margin: 0;
+	padding: 0;
+}
+.mw-search-formheader div.search-types ul li a {
+	display: block;
+	padding: 0.5em;
+}
+.mw-search-formheader div.search-types ul li.current a {
+	color: #333333;
+	cursor: default;
+}
+.mw-search-formheader div.search-types ul li.current a:hover {
+	text-decoration: none;
+}
+.mw-search-formheader div.results-info {
+	float: right;
+	padding: 0.5em;
+	padding-right: 0.75em;
+}
+.mw-search-formheader div.results-info ul {
+	margin: 0 !important;
+	padding: 0 !important;
+	list-style: none !important;
+}
+.mw-search-formheader div.results-info ul li {
+	float: right;
+	margin: 0;
+	padding: 0;
+}
+fieldset#mw-searchoptions {
+	margin: 0;
+	padding-left: 0.75em !important;
+	padding-right: 0.75em !important;
+	padding-bottom: 0.5em !important;
+	padding-top: 0.5em !important;
+	border: none;
+	background-color: #f9f9f9;
+	border: 1px solid silver !important;
+	border-top-width: 0 !important;
+}
+fieldset#mw-searchoptions legend {
+	display: none;
+}
+fieldset#mw-searchoptions h4 {
+	padding: 0;
+	margin: 0;
+	float: left;
+}
+.rtl fieldset#mw-searchoptions h4 {
+	float: right;
+}
+fieldset#mw-searchoptions div#mw-search-togglebox {
+	float: right;
+}
+.rtl fieldset#mw-searchoptions div#mw-search-togglebox {
+	float: left;
+}
+
+fieldset#mw-searchoptions div#mw-search-togglebox label {
+	margin-right: 0.25em;
+}
+fieldset#mw-searchoptions div#mw-search-togglebox input {
+	margin-left: 0.25em;
+}
+fieldset#mw-searchoptions table {
+	float: left;
+	margin-right: 3em;
+}
+fieldset#mw-searchoptions table td {
+	padding-right: 1em;
+}
+.rtl fieldset#mw-searchoptions table td {
+	padding-left: 1em;
+	padding-right: 0;
+}
+body.rtl fieldset#mw-searchoptions table {
+	margin-right: 0;
+	margin-left: 3em;
+	float: right;
+}
+fieldset#mw-searchoptions div.divider {
+	clear: both;
+	border-bottom: 1px solid #DDDDDD;
+	padding-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+td#mw-search-menu {
+	padding-left:6em;
+	font-size:85%;
+}
+
+div#mw-search-interwiki {
+	float: right;
+	width: 18em;
+	border-style: solid;
+	border-color: #AAAAAA;
+	border-width: 1px;
+	margin-top: 2ex;
+}
+
+.rtl div#mw-search-interwiki {
+	float: left;
+}
+
+div#mw-search-interwiki li {
+	font-size: 95%;
+}
+
+.mw-search-interwiki-more {
+	float: right;
+	font-size: 90%;
+}
+
+.rtl .mw-search-interwiki-more {
+	float: left;
+}
+
+div#mw-search-interwiki-caption {
+	text-align: center;
+	font-weight: bold;
+	font-size: 95%;
+}
+
+.mw-search-interwiki-project {
+	font-size: 97%;
+	text-align: left;
+	padding-left: 0.2em;
+	padding-right: 0.15em;
+	padding-bottom: 0.2em;
+	padding-top: 0.15em;
+	background-color: #ececec;
+	border-top: 1px solid #BBBBBB;
+}
+
+.rtl .mw-search-interwiki-project {
+	text-align: right;
+}
+
+span.searchalttitle {
+	font-size: 95%;
+}
+
+div.searchdidyoumean {
+	font-size: 127%;
+	margin-top: 0.8em;
+	/* Note that this color won't affect the link, as desired. */
+	color: #c00;
+}
+
+div.searchdidyoumean em {
+	font-weight: bold;
+}
+
+.searchmatch {
+	font-weight: bold;
+}
+
+table#mw-search-top-table {
+	background-color: transparent;
+}
+
+
+/*
+ * Advanced PowerSearch box
+ */
+td#mw-search-togglebox {
+	text-align: right;
+}
+
+table#mw-search-powertable {
+	width: 100%;
+}
+
+form#powersearch {
+	clear: both;
+}
+
+/*
+ * UserRights stuff
+ */
+.mw-userrights-disabled {
+	color: #888;
+}
+
+table.mw-userrights-groups * td,table.mw-userrights-groups * th {
+	padding-right: 1.5em;
+}
+
+/*
+ * OpenSearch ajax suggestions
+ */
+.os-suggest {
+	overflow: auto;
+	overflow-x: hidden;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 0px;
+	background-color: white;
+	background-color: Window;
+	border-style: solid;
+	border-color: #AAAAAA;
+	border-width: 1px;
+	z-index:99;
+	font-size:95%;
+}
+
+table.os-suggest-results {
+	font-size: 95%;
+	cursor: pointer;
+	border: 0;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+.os-suggest-result, .os-suggest-result-hl {
+	white-space: nowrap;
+	background-color: white;
+	background-color: Window;
+	color: black;
+	color: WindowText;
+	padding: 2px;
+}
+.os-suggest-result-hl,
+.os-suggest-result-hl-webkit {
+	background-color: #4C59A6;
+	color: white;
+}
+.os-suggest-result-hl {
+	/* System colors are misimplemented in Safari 3.0 and earlier,
+	   making highlighted text illegible... */
+	background-color: Highlight;
+	color: HighlightText;
+}
+
+.os-suggest-toggle {
+	position: relative;
+	left: 1ex;
+	font-size: 65%;
+}
+.os-suggest-toggle-def {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	font-size: 65%;
+	visibility: hidden;
+}
+
+/* Page history styling */
+/* the auto-generated edit comments */
+.autocomment { color: gray; }
+#pagehistory .history-user {
+	margin-left: 0.4em;
+	margin-right: 0.2em;
+}
+#pagehistory span.minor {
+	font-weight: bold;
+}
+#pagehistory li {
+	border: 1px solid white;
+}
+#pagehistory li.selected {
+	background-color: #f9f9f9;
+	border: 1px dashed #aaa;
+}
+
+/** Generic minor/bot/newpage styling */
+.newpage, .minor, .bot {
+	font-weight: bold;
+}
+
+/* Special:Contributions styling */
+.mw-uctop {
+	font-weight: bold;
+}
+
+/* Special:ListGroupRights styling */
+table.mw-listgrouprights-table tr {
+	vertical-align: top;
+}
+.listgrouprights-revoked {
+	text-decoration: line-through;
+}
+
+/* Special:Statistics styling */
+td.mw-statistics-numbers {
+	text-align: right;
+}
+
+/* Special:SpecialPages styling */
+h4.mw-specialpagesgroup {
+	background-color: #dcdcdc;
+	padding: 2px;
+	margin: .3em 0em 0em 0em;
+}
+.mw-specialpagerestricted {
+	font-weight: bold;
+}
+
+#shared-image-dup, #shared-image-conflict {
+	font-style: italic;
+}
+
+/* Special:EmailUser styling */
+table.mw-emailuser-table {
+	width: 98%;
+}
+td#mw-emailuser-sender, td#mw-emailuser-recipient {
+	font-weight: bold;
+}
+
+/* Special:Allpages styling */
+table.allpageslist {
+	background-color: transparent;
+}
+table.mw-allpages-table-form, table.mw-allpages-table-chunk {
+	background-color: transparent;
+	width: 100%;
+}
+td.mw-allpages-alphaindexline {
+	text-align: right;
+}
+td.mw-allpages-nav, p.mw-allpages-nav {
+	text-align: right;
+	font-size: smaller;
+	margin-bottom: 1em;
+}
+table.mw-allpages-table-form tr {
+	vertical-align: top;
+}
+
+/* Special:Prefixindex styling */
+table#mw-prefixindex-list-table,
+table#mw-prefixindex-nav-table {
+	width: 98%;
+	background-color: transparent;
+}
+td#mw-prefixindex-nav-form {
+	font-size: smaller;
+	margin-bottom: 1em;
+	text-align: right;
+	vertical-align: top;
+}
+
+/*
+ * Recreating deleted page warning
+ * Reupload file warning
+ * Page protection warning
+ * incl. log entries for these warnings
+ */
+div.mw-warning-with-logexcerpt {
+	padding: 3px;
+	margin-bottom: 3px;
+	border: 2px solid #2F6FAB;
+	clear: both;
+}
+div.mw-warning-with-logexcerpt ul li {
+	font-size: 90%;
+}
+
+/* (show/hide) revision deletion links */
+span.mw-revdelundel-link,
+strong.mw-revdelundel-link {
+	font-size: 90%;
+}
+span.mw-revdelundel-hidden,
+input.mw-revdelundel-hidden {
+	visibility: hidden;
+}
+
+td.mw-revdel-checkbox, th.mw-revdel-checkbox {
+	padding-right: 10px;
+	text-align: center;
+}
+
+/* feed links */
+a.feedlink {
+	background: url("images/feed-icon.png") center left no-repeat;
+	padding-left: 16px;
+}
+
+/* Plainlinks - this can be used to switch
+ * off special external link styling */
+.plainlinks a {
+	background: none !important;
+	padding: 0 !important;
+}
+
+/* wikitable class for skinning normal tables
+ * keep on sync with commonPrint.css
+ */
+table.wikitable {
+	margin: 1em 1em 1em 0;
+	background: #f9f9f9;
+	border: 1px #aaa solid;
+	border-collapse: collapse;
+}
+.wikitable th, .wikitable td {
+	border: 1px #aaa solid;
+	padding: 0.2em;
+}
+.wikitable th {
+	background: #f2f2f2;
+	text-align: center;
+}
+.wikitable caption {
+	font-weight: bold;
+}
+
+/* hide initially collapsed collapsable tables */
+table.collapsed tr.collapsable {
+	display: none;
+}
+
+/* success and error messages */
+.success {
+	color: green;
+	font-size: larger;
+}
+.error {
+	color: red;
+	font-size: larger;
+}
+.errorbox, .successbox {
+	font-size: larger;
+	border: 2px solid;
+	padding: .5em 1em;
+	float: left;
+	margin-bottom: 2em;
+	color: #000;
+}
+.errorbox {
+	border-color: red;
+	background-color: #fff2f2;
+}
+.successbox {
+	border-color: green;
+	background-color: #dfd;
+}
+.errorbox h2, .successbox h2 {
+	font-size: 1em;
+	font-weight: bold;
+	display: inline;
+	margin: 0 .5em 0 0;
+	border: none;
+}
+
+/* Note on preview page */
+.previewnote {
+	color: #c00;
+	margin-bottom: 1em;
+}
+
+.previewnote p {
+	text-indent: 3em;
+	margin: 0.8em 0;
+}
+
+.visualClear {
+	clear: both;
+}
+
+#mw_trackbacks {
+	border: solid 1px #bbbbff;
+	background-color: #eeeeff;
+	padding: 0.2em;
+}
+
+/*
+	Table pager (e.g. Special:ListFiles)
+	- remove underlines from the navigation link
+	- collapse borders
+	- set the borders to outsets (similar to Special:AllMessages)
+	- remove line wrapping for all td and th, set background color
+	- restore line wrapping for the last two table cells (description and size)
+*/
+.TablePager {
+	min-width: 80%;
+	border-collapse: collapse;
+}
+.TablePager_nav a {
+	text-decoration: none;
+}
+.TablePager, .TablePager td, .TablePager th {
+	border: 1px solid #aaaaaa;
+	padding: 0 0.15em 0 0.15em;
+}
+.TablePager th {
+	background-color: #eeeeff;
+}
+.TablePager td {
+	background-color: #ffffff;
+}
+.TablePager tr:hover td {
+	background-color: #eeeeff;
+}
+
+.imagelist td, .imagelist th {
+	white-space: nowrap;
+}
+.imagelist .TablePager_col_links {
+	background-color: #eeeeff;
+}
+.imagelist .TablePager_col_img_description {
+	white-space: normal;
+}
+.imagelist th.TablePager_sort {
+	background-color: #ccccff;
+}
+
+ /* Allmessages table */
+#mw-allmessagestable .allmessages-customised td.am_default {
+	background-color: #fcffc4;
+}
+
+#mw-allmessagestable tr.allmessages-customised:hover td.am_default {
+	background-color: #faff90;
+}
+
+#mw-allmessagestable td.am_actual {
+	background-color: #e2ffe2;
+}
+
+#mw-allmessagestable tr.allmessages-customised:hover + tr.allmessages-customised td.am_actual {
+	background-color: #b1ffb1;
+}
+
+/* filetoc */
+ul#filetoc {
+	text-align: center;
+	border: 1px solid #aaaaaa;
+	background-color: #f9f9f9;
+	padding: 5px;
+	font-size: 95%;
+	margin-bottom: 0.5em;
+	margin-left: 0;
+	margin-right: 0;
+}
+
+#filetoc li {
+	display: inline;
+	list-style-type: none;
+	padding-right: 2em;
+}
+
+/* Classes for EXIF data display */
+table.mw_metadata {
+	font-size: 0.8em;
+	margin-left: 0.5em;
+	margin-bottom: 0.5em;
+	width: 300px;
+}
+
+table.mw_metadata caption {
+	font-weight: bold;
+}
+
+table.mw_metadata th {
+	font-weight: normal;
+}
+
+table.mw_metadata td {
+	padding: 0.1em;
+}
+
+table.mw_metadata {
+	border: none;
+	border-collapse: collapse;
+}
+
+table.mw_metadata td, table.mw_metadata th {
+	text-align: center;
+	border: 1px solid #aaaaaa;
+	padding-left: 0.1em;
+	padding-right: 0.1em;
+}
+
+table.mw_metadata th {
+	background-color: #f9f9f9;
+}
+
+table.mw_metadata td {
+	background-color: #fcfcfc;
+}
+
+/* Galleries */
+table.gallery {
+	border: 1px solid #ccc;
+	margin: 2px;
+	padding: 2px;
+	background-color: white;
+}
+
+table.gallery tr {
+	vertical-align: top;
+}
+
+table.gallery td {
+	vertical-align: top;
+	background-color: #f9f9f9;
+	border: solid 2px white;
+}
+table.gallery caption {
+	font-weight: bold;
+}
+
+div.gallerybox {
+	margin: 2px;
+}
+
+div.gallerybox div.thumb {
+	text-align: center;
+	border: 1px solid #ccc;
+	margin: 2px;
+}
+
+div.gallerytext {
+	overflow: hidden;
+	font-size: 94%;
+	padding: 2px 4px;
+}
+
+table.mw-enhanced-rc {
+	background: none;
+	border:0;
+	border-spacing:0;
+}
+td.mw-enhanced-rc {
+	white-space:nowrap;
+	padding:0;
+	vertical-align:top;
+	font-family:monospace
+}
+
+#mw-addcategory-prompt {
+	display: inline;
+	margin-left: 1em;
+}
+
+#mw-addcategory-prompt input {
+	margin-left: 0.5em;
+	margin-right: 0.5em;
+}
+
+.mw-remove-category {
+	padding: 8px;
+	background-image: url(images/remove.png);
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.mw-ajax-addcategory {
+	padding-left: 20px;
+	background-image: url(images/add.png);
+	background-position: left center;
+	background-repeat: no-repeat;
+}
+
+.mw-ajax-loader {
+	background-image: url(images/ajax-loader.gif);
+	background-position: center center;
+	background-repeat: no-repeat;
+	padding: 16px;
+	position: relative;
+	top: -16px;
+}
+
+.mw-small-spinner {
+	padding: 10px !important;
+	margin-right: 0.6em;
+	background-image: url(images/spinner.gif);
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+/* Sort arrows added by SortableTables */
+a.sortheader {
+	margin: 0 0.3em;
+}
+
+.grid-table {
+	display: table;
+}
+
+.grid-row {
+	display: table-row;
+}
+
+.grid-cell {
+	display: table-cell;
+	padding: 0.33ex;
+}
+
+/* Localised ordered list numbering for some languages */
+ol:lang(bcc) li,
+ol:lang(bqi) li,
+ol:lang(fa) li,
+ol:lang(glk) li,
+ol:lang(kk-arab) li,
+ol:lang(mzn) li {
+	list-style-type: -moz-persian;
+	list-style-type: persian;
+}
+
+ol:lang(ckb-arab) li {
+	list-style-type: -moz-arabic-indic;
+	list-style-type: arabic-indic;
+}

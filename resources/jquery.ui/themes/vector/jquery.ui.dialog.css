@@ -1,0 +1,61 @@
+/* Dialog
+----------------------------------*/
+.ui-dialog { position: absolute; padding: 0; width: 300px; }
+.ui-dialog .ui-dialog-titlebar { padding: .75em; position: relative;  }
+.ui-dialog .ui-dialog-title { float: left; margin: 0; } 
+.ui-dialog .ui-dialog-titlebar-close { position: absolute; right: .75em; top: 50%; width: 19px; margin: -10px 0 0 0; padding: 1px; height: 18px; }
+.ui-dialog .ui-dialog-titlebar-close span { display: block; margin: 1px; }
+.ui-dialog .ui-dialog-titlebar-close:hover, .ui-dialog .ui-dialog-titlebar-close:focus { padding: 0; }
+.ui-dialog .ui-dialog-content { border: 0; padding: .5em 1em; background: none; overflow: auto; zoom: 1; }
+.ui-dialog .ui-dialog-buttonpane { text-align: left; border-width: 1px 0 0 0; background-image: none; margin: .5em 0 0 0; padding: .3em 1em .5em .4em; }
+.ui-dialog .ui-dialog-buttonpane button { float: right; margin: .5em .4em .5em 0; cursor: pointer; padding: .2em .6em .3em .6em; line-height: 1.4em; width:auto; overflow:visible; }
+.ui-dialog .ui-resizable-se { width: 14px; height: 14px; right: 3px; bottom: 3px; }
+.ui-draggable .ui-dialog-titlebar { cursor: move; }
+/* Customizations */
+body .ui-dialog .ui-dialog-titlebar-close:hover {
+	text-decoration: none;
+}
+body .ui-dialog .ui-dialog-content .status-invalid input {
+	border: 2px solid red;
+	padding: 2px 1px;
+}
+body .ui-dialog .ui-dialog-titlebar {
+	padding: 0.9em 1.4em 0.6em !important;
+}
+body .ui-dialog .ui-dialog-buttonpane button {
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	padding: 0.2em 0.6em 0.15em !important;
+	margin: 0.5em 0 0.5em 0.4em !important;
+	border: 1px solid #a6a6a6 !important;
+	background: #f2f2f2 url(images/button-off.png) repeat-x scroll 50% 100% !important;
+}
+body .ui-dialog .ui-dialog-buttonpane button:hover {
+	border-color: #6e7273;
+	background: #e1e1e1 url(images/button-over.png) repeat-x scroll 50% 100% !important;
+}
+body .ui-dialog .ui-dialog-buttonpane button:active,
+body .ui-dialog .ui-dialog-buttonpane button:focus {
+	border-color: #707271;
+	background: #bfbfbf url(images/button-down.png) repeat-x scroll 50% 100% !important;
+}
+body .ui-dialog .ui-dialog-buttonpane button.disabled {
+	color: #7f7f7f;
+	border-color: #cccccc;
+	background: #f2f2f2 url(images/button-disabled.png) repeat-x scroll 50% 100% !important;	
+}
+/* Disables the annoying dashed border Firefox puts on active buttons */
+body .ui-dialog .ui-dialog-buttonpane button::-moz-focus-inner { 
+	border: 0; 
+}
+body .ui-dialog .ui-widget-header {
+	background: #f0f0f0 url(images/titlebar-fade.png) repeat-x scroll 50% 100% !important;
+}
+/* FIXME: Should just update the icon sprite if we're keeping this X */
+body .ui-dialog .ui-icon-closethick {
+	background: url(images/close-x.png) no-repeat 50% 50% !important;
+}
+body .ui-dialog .ui-dialog-buttonpane {
+	margin-top: 0 !important;
+	padding:0.3em 1.4em 0.5em 1.4em !important;
+}

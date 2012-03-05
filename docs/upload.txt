@@ -1,0 +1,2 @@
+This document describes how the current uploading system is build up and how
+custom backends can be built. (At least someday it will).

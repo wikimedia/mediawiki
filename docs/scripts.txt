@@ -1,0 +1,62 @@
+scripts.txt
+
+MediaWiki primary scripts are in the root directory of the software. Users
+should only use these scripts to access the wiki. There are also some .php that
+aren't primary scripts but helper files and won't work if they are accessed
+directly by the web.
+
+Primary scripts:
+
+  index.php
+    Main access point. It handles the most of requests.
+    See http://www.mediawiki.org/wiki/Manual:Index.php
+
+  api.php
+    Script to provide an API for bots to fetch content and informations about
+    the site and also modify it. See http://www.mediawiki.org/wiki/API
+    for more informations.
+
+  img_auth.php
+    Script that only serve images to logged in users. To configure the wiki
+    to use that script, see http://www.mediawiki.org/wiki/Manual:Image_Authorisation.
+
+  opensearch_desc.php
+    Returns a OpenSearch description document (see http://www.opensearch.org/)
+    that points to the search engines of the wiki.
+
+  profileinfo.php
+    Allow users to see the profiling information that are stored in the
+    database.
+
+    To save the profiling information in the database (required to use this
+    script), you have to modify StartProfiler.php to use the Profiler class and
+    not the stub profiler which is enabled by default.
+    You will also need to set $wgProfileToDatabase to true in LocalSettings.php
+    to force the profiler to save the informations in the database and apply the
+    maintenance/archives/patch-profiling.sql patch to the database.
+
+    To enable the profileinfo.php itself, you'll need to set $wgDBadminuser
+    and $wgDBadminpassword in your LocalSettings.php, as well as $wgEnableProfileInfo 
+    See also http://www.mediawiki.org/wiki/How_to_debug#Profiling.
+
+  redirect.php
+    Script that only redirect to the article passed in the wpDropdown parameter
+    of the request. Used by the nostalgia skin to access special pages with the
+    dropdown box at the top of the page.
+
+  thumb.php
+    Script used to resize images if it is configured to be done when the web
+    browser requests the image and not when generating the page. This script can
+    be used as a 404 handler to generate image thumbs when they don't exist.
+
+  trackback.php
+    Allow to add a new trackback to the database. This script returns XML
+    and require a POST request to work, thus it should only be accessed by some
+    specific programs and won't work with normal web browsers.
+
+There is also a file with a .php5 extension for each script. They can be used if
+the web server needs a .php5 to run the file with the PHP 5 engine and runs .php
+scripts with PHP 4. To use these files, you have to modify $wgScriptExtension to
+'.php5' is LocalSettings.php but it is already done by the config script if you
+used the config/index.php5 script.
+

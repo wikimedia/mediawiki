@@ -1,0 +1,162 @@
+body {
+	direction: rtl;
+	unicode-bidi: embed;
+}
+
+.editsection {
+	float: left;
+	margin-right: 5px;
+	margin-left: 0; /* bug 9122: undo default LTR */
+}
+
+/* Fix alignment */
+.documentByLine,
+.portletDetails,
+.portletMore {
+	text-align: left;
+}
+
+div div.thumbcaption {
+	text-align: right;
+}
+
+div.magnify {
+	left: auto;
+	right: 0;
+}
+
+/* Fix margins for non-css2 browsers */
+/* top right bottom left */
+
+dd {
+	margin-left: 0;
+	margin-right: 1.6em;
+}
+.tocindent {
+	margin-left: 0;
+	margin-right: 2em;
+}
+div.tright, div.floatright, table.floatright {
+	clear: none;
+}
+div.tleft, div.floatleft, table.floatleft {
+	clear: left;
+}
+
+/* Fix link icons */
+.external, a.feedlink {
+	padding: 0 !important;
+	background: none !important;
+}
+
+/* js pref toc */
+
+#preftoc {
+	margin-right: 1em;
+}
+
+.errorbox, .successbox, #preftoc li, .prefsection fieldset {
+	float: right;
+}
+
+.prefsection {
+	padding-right: 2em;
+}
+
+/* workaround for moz bug, displayed bullets on left side */
+
+#toc ul {
+	text-align: right;
+}
+
+#toc ul ul {
+	margin: 0 2em 0 0;
+}
+
+input#wpSave, input#wpDiff {
+	margin-right: 0;
+	margin-left: .33em;
+}
+
+#userlogin {
+	margin: 0 0 1em 3em;
+}
+/* Convenience links to edit block, delete and protect reasons */
+p.mw-ipb-conveniencelinks, p.mw-protect-editreasons,
+p.mw-filedelete-editreasons, p.mw-delete-editreasons {
+	float: left;
+}
+
+.toggle {
+	margin-left: 0em;
+	margin-right: 2em;
+}
+table.filehistory th {
+	text-align: right;
+}
+
+#mw_contentwrapper {
+	margin: 0 -15em 0 0;
+	float: left;
+}
+
+#mw_content {
+	margin: 0 14em 0 0;
+	border-left: none;
+	border-right: solid 1px #bbbbbb;
+}
+
+.portlet ul {
+	margin: 0 1.5em 0 0;
+	padding: 0 0 0 0;
+}
+
+.portlet h5 {
+	padding: 0.1em 1em 0.3em 0;
+}
+
+#p-cactions li {
+	float: right;
+}
+
+#p-personal li {
+	float: right;
+}
+
+#p-cactions {
+	margin: 0 14em 0 0;
+}
+
+#mw_portlets {
+	border-right: none;
+	border-left: solid 1px #bbbbbb;
+}
+
+/**
+ * Lists:
+ * The following lines don't have a visible effect on non-Gecko browsers
+ * They fix a problem ith Gecko browsers rendering lists to the right of
+ * left-floated objects in an RTL layout.
+ */
+html > body div#mw_contentholder ul {
+	display: table;
+}
+html > body div#mw_contentholder ul li {
+	margin-right:10px;
+}
+html > body div.pBody ul li {
+	margin-right:4px;
+}
+html > body div#mw_contentholder ul#filetoc {
+	display: block;
+}
+
+/* Special:Allpages styling */
+td.mw-allpages-nav, p.mw-allpages-nav, td.mw-allpages-alphaindexline {
+	text-align: left;
+}
+
+/* Special:PrefixIndex styling */
+td#mw-prefixindex-nav-form {
+	text-align: left;
+}

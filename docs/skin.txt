@@ -1,0 +1,84 @@
+skin.txt
+
+MediaWiki's default skin is called Monobook, after the black-and-white photo of
+a book, in the page background. This skin has been the default since MediaWiki 
+1.3 (2004). It is used on Wikipedia, and is popular on other sites.
+
+There are three legacy skins which were introduced before MediaWiki 1.3:
+
+* Standard (a.k.a. Classic): The old default skin written by Lee Crocker 
+during the phase 3 rewrite, in 2002.
+
+* Nostalgia: A skin which looks like Wikipedia did in its first year (2001). 
+This skin is now used for the old Wikipedia snapshot at
+http://nostalgia.wikipedia.org/
+
+* Cologne Blue: A nicer-looking alternative to Standard.
+
+
+And there are four Monobook-derived skins which have been introduced since 1.3:
+
+* MySkin: Monobook without the CSS. The idea is that you customise it using user
+or site CSS (see below)
+
+* Chick: A lightweight Monobook skin with no sidebar, the sidebar links are
+given at the bottom of the page instead, as in the unstyled MySkin.
+
+* Simple: A lightweight skin with a simple white-background sidebar and no
+top bar.
+
+* Modern: An attractive blue/grey theme with sidebar and top bar.
+
+
+== Custom CSS/JS ==
+
+It is possible to customise the site CSS and JavaScript without editing any
+source files. This is done by editing some pages on the wiki:
+
+* [[MediaWiki:Common.css]] -- for skin-independent CSS
+* [[MediaWiki:Monobook.css]], [[MediaWiki:Simple.css]], etc. -- for
+skin-dependent CSS
+* [[MediaWiki:Common.js]], [[MediaWiki:Monobook.js]], etc. -- for custom
+site JavaScript
+
+These can also be customised on a per-user basis, by editing
+[[User:<name>/monobook.css]], [[User:<name>/monobook.js]], etc.
+
+This feature has led to a wide variety of "user styles" becoming available,
+which change the appearance of Monobook or MySkin:
+
+http://www.mediawiki.org/wiki/Manual:Gallery_of_user_styles
+
+If you want a different look for your wiki, that gallery is a good place to start.
+
+== Drop-in custom skins ==
+
+If you put a file in MediaWiki's skins directory, ending in .php, the name of 
+the file will automatically be added as a skin name, and the file will be
+expected to contain a class called Skin<name> with the skin class. You can then
+make that skin the default by adding to LocalSettings.php:
+
+$wgDefaultSkin = '<name>';
+
+You can also disable dropped-in or core skins using:
+
+$wgSkipSkins[] = '<name>';
+
+This technique is used by the more ambitious MediaWiki site operators, to 
+create complex custom skins for their wikis. It should be preferred over 
+editing the core Monobook skin directly. 
+
+See http://www.mediawiki.org/wiki/Manual:Skinning for more information.
+
+== Extension skins ==
+
+It is now possible (since MediaWiki 1.12) to write a skin as a standard
+MediaWiki extension, enabled via LocalSettings.php. This is done by adding 
+it to $wgValidSkinNames, for example:
+
+$wgValidSkinNames['mycoolskin'] = 'My cool skin';
+
+and then registering a class in $wgAutoloadClasses called SkinMycoolskin, which 
+derives from Skin. This technique is apparently not yet used (as of 2008) 
+outside the DumpHTML extension.
+

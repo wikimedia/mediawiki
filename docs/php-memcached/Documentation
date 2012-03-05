@@ -1,0 +1,258 @@
+Ryan Gilfether <hotrodder@rocketmail.com>
+http://www.gilfether.com
+This module is Copyright (c) 2003 Ryan Gilfether.
+All rights reserved.
+
+You may distribute under the terms of the GNU General Public License
+This is free software. IT COMES WITHOUT WARRANTY OF ANY KIND.
+
+See the memcached website: http://www.danga.com/memcached/
+
+
+// Takes one parameter, a array of options.  The most important key is
+// options["servers"], but that can also be set later with the set_servers()
+// method.  The servers must be an array of hosts, each of which is
+// either a scalar of the form <10.0.0.10:11211> or an array of the
+// former and an integer weight value.  (the default weight if
+// unspecified is 1.)  It's recommended that weight values be kept as low
+// as possible, as this module currently allocates memory for bucket
+// distribution proportional to the total host weights.
+// $options["debug"] turns the debugging on if set to true
+MemCachedClient::MemCachedClient($options);
+
+// sets up the list of servers and the ports to connect to
+// takes an array of servers in the same format as in the constructor
+MemCachedClient::set_servers($servers);
+
+// Retrieves a key from the memcache.  Returns the value (automatically
+// unserialized, if necessary) or FALSE if it fails.
+// The $key can optionally be an array, with the first element being the
+// hash value, if you want to avoid making this module calculate a hash
+// value.  You may prefer, for example, to keep all of a given user's
+// objects on the same memcache server, so you could use the user's
+// unique id as the hash value.
+// Possible errors set are:
+// 		MC_ERR_GET
+MemCachedClient::get($key);
+
+// just like get(), but takes an array of keys, returns FALSE on error
+// Possible errors set are:
+// 		MC_ERR_NOT_ACTIVE
+MemCachedClient::get_multi($keys)
+
+// Unconditionally sets a key to a given value in the memcache.  Returns true
+// if it was stored successfully.
+// The $key can optionally be an arrayref, with the first element being the
+// hash value, as described above.
+// returns TRUE on success else FALSE
+// Possible errors set are:
+// 		MC_ERR_NOT_ACTIVE
+// 		MC_ERR_GET_SOCK
+// 		MC_ERR_SOCKET_WRITE
+// 		MC_ERR_SOCKET_READ
+// 		MC_ERR_SET
+MemCachedClient::set($key, $value, $exptime);
+
+// Like set(), but only stores in memcache if the key doesn't already exist.
+// returns TRUE on success else FALSE
+// Possible errors set are:
+// 		MC_ERR_NOT_ACTIVE
+// 		MC_ERR_GET_SOCK
+// 		MC_ERR_SOCKET_WRITE
+// 		MC_ERR_SOCKET_READ
+// 		MC_ERR_SET
+MemCachedClient::add($key, $value, $exptime);
+
+// Like set(), but only stores in memcache if the key already exists.
+// returns TRUE on success else FALSE
+// Possible errors set are:
+// 		MC_ERR_NOT_ACTIVE
+// 		MC_ERR_GET_SOCK
+// 		MC_ERR_SOCKET_WRITE
+// 		MC_ERR_SOCKET_READ
+// 		MC_ERR_SET
+MemCachedClient::replace($key, $value, $exptime);
+
+// removes the key from the MemCache
+// $time is the amount of time in seconds (or Unix time) until which
+// the client wishes the server to refuse "add" and "replace" commands
+// with this key. For this amount of item, the item is put into a
+// delete queue, which means that it won't possible to retrieve it by
+// the "get" command, but "add" and "replace" command with this key
+// will also fail (the "set" command will succeed, however). After the
+// time passes, the item is finally deleted from server memory.
+// The parameter $time is optional, and, if absent, defaults to 0
+// (which means that the item will be deleted immediately and further
+// storage commands with this key will succeed).
+// returns TRUE on success else returns FALSE
+// Possible errors set are:
+// 		MC_ERR_NOT_ACTIVE
+// 		MC_ERR_GET_SOCK
+// 		MC_ERR_SOCKET_WRITE
+// 		MC_ERR_SOCKET_READ
+// 		MC_ERR_DELETE
+MemCachedClient::delete($key, $time = 0);
+
+// Sends a command to the server to atomically increment the value for
+// $key by $value, or by 1 if $value is undefined.  Returns FALSE if $key
+// doesn't exist on server, otherwise it returns the new value after
+// incrementing.  Value should be zero or greater.  Overflow on server
+// is not checked.  Be aware of values approaching 2**32.  See decr.
+// Possible errors set are:
+// 		MC_ERR_NOT_ACTIVE
+// 		MC_ERR_GET_SOCK
+// 		MC_ERR_SOCKET_WRITE
+// 		MC_ERR_SOCKET_READ
+// returns new value on success, else returns FALSE
+// ONLY WORKS WITH NUMERIC VALUES
+MemCachedClient::incr($key[, $value]);
+
+// Like incr, but decrements.  Unlike incr, underflow is checked and new
+// values are capped at 0.  If server value is 1, a decrement of 2
+// returns 0, not -1.
+// Possible errors set are:
+// 		MC_ERR_NOT_ACTIVE
+// 		MC_ERR_GET_SOCK
+// 		MC_ERR_SOCKET_WRITE
+// 		MC_ERR_SOCKET_READ
+// returns new value on success, else returns FALSE
+// ONLY WORKS WITH NUMERIC VALUES
+MemCachedClient::decr($key[, $value]);
+
+// disconnects from all servers
+MemCachedClient::disconnect_all();
+
+// if $do_debug is set to true, will print out
+// debugging info, else debug is turned off
+MemCachedClient::set_debug($do_debug);
+
+// remove all cached hosts that are no longer good
+MemCachedClient::forget_dead_hosts();
+
+// When a function returns FALSE, an error code is set.
+// This funtion will return the error code.
+// See error_string()
+// returns last error code set
+MemCachedClient::error()
+
+// Returns a string describing the error set in error()
+// See error()
+// returns a string describing the error code given
+MemCachedClient::error_string()
+
+// Resets the error number and error string
+MemCachedClient::error_clear()
+
+Error codes are as follows:
+MC_ERR_NOT_ACTIVE		// no active servers
+MC_ERR_SOCKET_WRITE		// socket_write() failed
+MC_ERR_SOCKET_READ		// socket_read() failed
+MC_ERR_SOCKET_CONNECT	// failed to connect to host
+MC_ERR_DELETE			// delete() did not recieve DELETED command
+MC_ERR_HOST_FORMAT		// sock_to_host() invalid host format
+MC_ERR_HOST_DEAD		// sock_to_host() host is dead
+MC_ERR_GET_SOCK			// get_sock() failed to find a valid socket
+MC_ERR_SET				// _set() failed to receive the STORED response
+MC_ERR_LOADITEM_HEADER	// _load_items failed to receive valid data header
+MC_ERR_LOADITEM_END		// _load_items failed to receive END response
+MC_ERR_LOADITEM_BYTES	// _load_items bytes read larger than bytes available
+MC_ERR_GET				// failed to get value associated with key
+
+// Turns compression on or off; 0=off, 1=on
+MemCacheClient::set_compression($setting)
+
+EXAMPLE:
+<?php
+require("MemCachedClient.inc.php");
+
+// set the servers, with the last one having an integer weight value of 3
+$options["servers"] = array("10.0.0.15:11000","10.0.0.16:11001",array("10.0.0.17:11002", 3));
+$options["debug"] = false;
+
+$memc = new MemCachedClient($options);
+
+
+/***********************
+ * STORE AN ARRAY
+ ***********************/
+$myarr = array("one","two", 3);
+$memc->set("key_one", $myarr);
+$val = $memc->get("key_one");
+print $val[0]."\n";	// prints 'one'
+print $val[1]."\n";	// prints 'two'
+print $val[2]."\n";	// prints 3
+
+
+print "\n";
+
+
+/***********************
+ * STORE A CLASS
+ ***********************/
+class tester
+{
+	var $one;
+	var $two;
+	var $three;
+}
+
+$t = new tester;
+$t->one = "one";
+$t->two = "two";
+$t->three = 3;
+$memc->set("key_two", $t);
+$val = $memc->get("key_two");
+print $val->one."\n";
+print $val->two."\n";
+print $val->three."\n";
+
+
+print "\n";
+
+
+/***********************
+ * STORE A STRING
+ ***********************/
+$memc->set("key_three", "my string");
+$val = $memc->get("key_three");
+print $val;		// prints 'my string'
+
+$memc->delete("key_one");
+$memc->delete("key_two");
+$memc->delete("key_three");
+
+$memc->disconnect_all();
+
+
+
+print "\n";
+
+
+/***********************
+ * STORE A BINARY FILE
+ ***********************/
+
+ // first read the file and save it in memcache
+$fp = fopen( "./image.jpg", "rb" ) ;
+if ( !$fp )
+{
+	print "Could not open ./file.dat!\n" ;
+	exit ;
+}
+$data = fread( $fp, filesize( "./image.jpg" ) ) ;
+fclose( $fp ) ;
+print "Data length is " . strlen( $data ) . "\n" ;
+$memc->set( "key", $data ) ;
+
+// now open a file for writing and write the data
+// retrieved from memcache
+$fp = fopen("./test.jpg","wb");
+$data = $memc->get( "key" ) ;
+print "Data length is " . strlen( $data ) . "\n" ;
+fwrite($fp,$data,strlen( $data ));
+fclose($fp);
+
+
+?>
+
+

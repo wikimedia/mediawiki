@@ -1,0 +1,12 @@
+SQLite shares the MySQL schema file at maintenance/tables.sql, with a set of 
+compatibility regexes to convert MySQL syntax to SQLite syntax:
+
+* BINARY() and VARBINARY() fields are converted to BLOB
+* the UNSIGNED modifier is removed
+* "INT" fields are converted to "INTEGER"
+* ENUM is converted to BLOB
+* the BINARY collation modifier is removed
+* AUTO_INCREMENT is converted to AUTOINCREMENT
+* Any table options are removed
+* Truncated indexes are upgraded to full-width indexes
+* FULLTEXT indexes are converted to ordinary indexes

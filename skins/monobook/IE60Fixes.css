@@ -1,0 +1,98 @@
+/* 6.0 - only fixes */
+/* content area */
+/* workaround for various ie float bugs */
+div#column-content {
+	float: none;
+	margin-left: 0;
+	height: 1%;
+}
+div#column-content div#content {
+	margin-left: 12.2em;
+	margin-top: 3em;
+	height: 1%;
+}
+div#column-one {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 4;
+}
+div#footer {
+	margin-left: 13.6em;
+	border-left: 1px solid #fabd23;
+}
+
+/* the tabs */
+
+#p-cactions {
+	z-index: 3;
+}
+
+#p-cactions li {
+	padding-bottom: 0 !important;
+	border: none;
+	background-color: transparent;
+	cursor: default;
+	float: none !important;
+}
+#p-cactions li a {
+	display: inline-block !important;
+	vertical-align: top;
+	padding-bottom: 0;
+	border: solid #aaa;
+	border-width: 1px 1px 0;
+}
+#p-cactions li.selected a {
+	border-color: #fabd23;
+	padding-bottom: 0.17em;
+}
+#p-cactions li a:hover {
+	padding-bottom: 0.17em;
+}
+#p-navigation a {
+	display: inline-block;
+	width: 100%;
+}
+#portal-personaltools {
+	padding-bottom: 0.1em;
+}
+#bodyContent a.external {
+	background: url(external.png) center right no-repeat;
+	padding-right: 13px;
+}
+
+.rtl #bodyContent a.external {
+	background-image: url(external-rtl.png);
+	padding-right: 13px;
+}
+
+.rtl a.feedlink {
+	background-position: right;
+	padding-right: 0;
+	padding-left: 16px;
+}
+
+/* show the hand */
+#p-logo a,
+#p-logo a:hover {
+	cursor: pointer;
+}
+div.visualClear {
+	width:100%;
+	line-height: 0;
+}
+textarea {
+	width: 96%;
+}
+
+div.editsection,
+#catlinks,
+div.tright,
+div.tleft {
+	position: relative;
+}
+
+/* bug 12846 */
+body.rtl #preftoc a, body.rtl #preftoc a:active {
+	float: left;
+}
