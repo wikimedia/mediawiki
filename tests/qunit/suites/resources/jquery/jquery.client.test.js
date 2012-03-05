@@ -205,6 +205,24 @@ var uas = (function() {
 				ltr: true,
 				rtl: true
 			}
+		},
+		// Bug #34924
+		'Mozilla/5.0 (X11; Linux i686) AppleWebKit/534.34 (KHTML, like Gecko) rekonq Safari/534.34': {
+			title: 'Rekonq',
+			platform: 'Linux i686',
+			profile: {
+				"name": "rekonq",
+				"layout": "webkit",
+				"layoutVersion": 534,
+				"platform": "linux",
+				"version": "534.34",
+				"versionBase": "534",
+				"versionNumber": 534.34
+			},
+			wikiEditor: {
+				ltr: true,
+				rtl: true
+			}
 		}
 	};
 	$.each( uas, function() { uacount++ });
