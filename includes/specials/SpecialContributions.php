@@ -792,9 +792,16 @@ class ContribsPager extends ReverseChronologicalPager {
 			array( 'action' => 'history' )
 		);
 
-		$parentLen = isset( $this->mParentLens[$row->rev_parent_id] ) ? $this->mParentLens[$row->rev_parent_id] : 0;
-		$chardiff = ' . . ' . ChangesList::showCharacterDifference(
-				$parentLen, $row->rev_len ) . ' . . ';
+		if ( $row->rev_parent_id === null ) {
+			// For some reason rev_parent_id isn't populated for this row.
+			// Its rumoured this is true on wikipedia for some revisions (bug 34922).
+			// Next best thing is to have the total number of bytes.
+			$chardiff = ' . . ' . Linker::formatRevisionSize( $row->rev_len ) . ' . . ';
+		} else {
+			$parentLen = isset( $this->mParentLens[$row->rev_parent_id] ) ? $this->mParentLens[$row->rev_parent_id] : 0;
+			$chardiff = ' . . ' . ChangesList::showCharacterDifference(
+					$parentLen, $row->rev_len ) . ' . . ';
+		}
 
 		$lang = $this->getLanguage();
 		$comment = $lang->getDirMark() . Linker::revComment( $rev, false, true );
