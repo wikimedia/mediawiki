@@ -196,6 +196,7 @@ class KuConverter extends LanguageConverter {
 	 * @param $text string
 	 * @param $toVariant bool
 	 *
+	 * @throws MWException
 	 * @return string
 	 */
 	function translate( $text, $toVariant ) {

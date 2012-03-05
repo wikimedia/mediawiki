@@ -158,6 +158,7 @@ class Language {
 	/**
 	 * Create a language object for a given language code
 	 * @param $code String
+	 * @throws MWException
 	 * @return Language
 	 */
 	protected static function newFromCode( $code ) {
@@ -559,7 +560,7 @@ class Language {
 		if ( $usemsg && wfMessage( $msg )->exists() ) {
 			return $this->getMessageFromDB( $msg );
 		}
-		$name = self::getLanguageName( $code );
+		$name = self::fetchLanguageName( $code );
 		if ( $name ) {
 			return $name; # if it's defined as a language name, show that
 		} else {
@@ -2538,6 +2539,7 @@ class Language {
 	 * @param $file string
 	 * @param $string string
 	 *
+	 * @throws MWException
 	 * @return string
 	 */
 	function transformUsingPairFile( $file, $string ) {
@@ -3576,6 +3578,7 @@ class Language {
 	 * @param $prefix string Prepend this to the filename
 	 * @param $code string Language code
 	 * @param $suffix string Append this to the filename
+	 * @throws MWException
 	 * @return string $prefix . $mangledCode . $suffix
 	 */
 	public static function getFileName( $prefix = 'Language', $code, $suffix = '.php' ) {

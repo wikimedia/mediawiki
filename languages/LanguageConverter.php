@@ -72,7 +72,7 @@ class LanguageConverter {
 		$this->mMainLanguageCode = $maincode;
 		$this->mVariants = array_diff( $variants, $wgDisabledVariants );
 		$this->mVariantFallbacks = $variantfallbacks;
-		$this->mVariantNames = Language::getLanguageNames();
+		$this->mVariantNames = Language::fetchLanguageNames();
 		$this->mCacheKey = wfMemcKey( 'conversiontables', $maincode );
 		$defaultflags = array(
 			// 'S' show converted text
@@ -626,6 +626,7 @@ class LanguageConverter {
 	 * @param $startPos int
 	 * @param $depth Integer: depth of recursion
 	 *
+	 * @throws MWException
 	 * @return String: converted text
 	 */
 	protected function recursiveConvertRule( $text, $variant, &$startPos, $depth = 0 ) {
@@ -796,6 +797,7 @@ class LanguageConverter {
 	 * This method must be implemented in derived class.
 	 *
 	 * @private
+	 * @throws MWException
 	 */
 	function loadDefaultTables() {
 		$name = get_class( $this );
