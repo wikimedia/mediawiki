@@ -34,6 +34,9 @@ class AjaxResponse {
 	/** Content of our HTTP response */
 	private $mText;
 
+	/**
+	 * @param $text string|null
+	 */
 	function __construct( $text = null ) {
 		$this->mCacheDuration = null;
 		$this->mVary = null;
@@ -69,21 +72,28 @@ class AjaxResponse {
 		$this->mDisabled = true;
 	}
 
-	/** Add content to the response */
+	/**
+	 * Add content to the response
+	 * @param $text string
+	 */
 	function addText( $text ) {
 		if ( ! $this->mDisabled && $text ) {
 			$this->mText .= $text;
 		}
 	}
 
-	/** Output text */
+	/**
+	 * Output text
+	 */
 	function printText() {
 		if ( ! $this->mDisabled ) {
 			print $this->mText;
 		}
 	}
 
-	/** Construct the header and output it */
+	/**
+	 * Construct the header and output it
+	 */
 	function sendHeaders() {
 		global $wgUseSquid, $wgUseESI;
 
@@ -139,9 +149,10 @@ class AjaxResponse {
 	/**
 	 * checkLastModified tells the client to use the client-cached response if
 	 * possible. If sucessful, the AjaxResponse is disabled so that
-	 * any future call to AjaxResponse::printText() have no effect. The method
-	 * returns true iff the response code was set to 304 Not Modified.
-	 * @return bool
+	 * any future call to AjaxResponse::printText() have no effect.
+	 *
+	 * @param $timestamp string
+	 * @return bool Returns true if the response code was set to 304 Not Modified.
 	 */
 	function checkLastModified ( $timestamp ) {
 		global $wgCachePages, $wgCacheEpoch, $wgUser;
@@ -149,17 +160,17 @@ class AjaxResponse {
 
 		if ( !$timestamp || $timestamp == '19700101000000' ) {
 			wfDebug( "$fname: CACHE DISABLED, NO TIMESTAMP\n" );
-			return;
+			return false;
 		}
 
 		if ( !$wgCachePages ) {
 			wfDebug( "$fname: CACHE DISABLED\n", false );
-			return;
+			return false;
 		}
 
 		if ( $wgUser->getOption( 'nocache' ) ) {
 			wfDebug( "$fname: USER DISABLED CACHE\n", false );
-			return;
+			return false;
 		}
 
 		$timestamp = wfTimestamp( TS_MW, $timestamp );
@@ -192,6 +203,7 @@ class AjaxResponse {
 			wfDebug( "$fname: client did not send If-Modified-Since header\n", false );
 			$this->mLastModified = $lastmod;
 		}
+		return false;
 	}
 
 	/**

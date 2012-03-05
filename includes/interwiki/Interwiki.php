@@ -130,6 +130,7 @@ class Interwiki {
 			$value = '';
 		}
 
+
 		return $value;
 	}
 

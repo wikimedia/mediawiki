@@ -195,6 +195,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	 * @param $type string
 	 * @param $action string
 	 * @param $ts
+	 * @param $legacy bool
 	 * @return array
 	 */
 	public static function addLogParams( $result, &$vals, $params, $type, $action, $ts, $legacy = false ) {
