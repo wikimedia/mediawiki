@@ -72,7 +72,7 @@
 				// Names of known browsers
 				var names = [
 					'camino', 'chrome', 'firefox', 'netscape', 'konqueror', 'lynx', 'msie', 'opera', 'safari', 'ipod',
-					'iphone', 'blackberry', 'ps3'
+					'iphone', 'blackberry', 'ps3', 'rekonq'
 				];
 				// Tanslations for conforming browser names
 				var nameTranslations = [];
