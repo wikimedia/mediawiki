@@ -217,6 +217,10 @@ class HTMLForm extends ContextSource {
 
 		$descriptor['fieldname'] = $fieldname;
 
+		# TODO
+		# This will throw a fatal error whenever someone try to use
+		# 'class' to feed a CSS class instead of 'cssclass'. Would be
+		# great to avoid the fatal error and show a nice error.
 		$obj = new $class( $descriptor );
 
 		return $obj;
