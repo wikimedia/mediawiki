@@ -370,13 +370,16 @@ class Parser {
 		 */
 		if ( !( $wgDisableLangConversion
 				|| isset( $this->mDoubleUnderscores['nocontentconvert'] )
-				|| $this->mTitle->isConversionTable()
-				|| $this->mOptions->getInterfaceMessage() ) ) {
-
-			# The position of the convert() call should not be changed. it
-			# assumes that the links are all replaced and the only thing left
-			# is the <nowiki> mark.
-			$text = $this->getTargetLanguage()->convert( $text );
+				|| $this->mTitle->isConversionTable() ) )
+		{
+			# Run convert unconditionally in 1.18-compatible mode
+			global $wgBug34832TransitionalRollback;
+			if ( $wgBug34832TransitionalRollback || !$this->mOptions->getInterfaceMessage() ) {
+				# The position of the convert() call should not be changed. it
+				# assumes that the links are all replaced and the only thing left
+				# is the <nowiki> mark.
+				$text = $this->getConverterLanguage()->convert( $text );
+			}
 		}
 
 		/**
@@ -392,11 +395,11 @@ class Parser {
 				|| isset( $this->mDoubleUnderscores['notitleconvert'] )
 				|| $this->mOutput->getDisplayTitle() !== false ) )
 		{
-			$convruletitle = $this->getTargetLanguage()->getConvRuleTitle();
+			$convruletitle = $this->getConverterLanguage()->getConvRuleTitle();
 			if ( $convruletitle ) {
 				$this->mOutput->setTitleText( $convruletitle );
 			} else {
-				$titleText = $this->getTargetLanguage()->convertTitle( $title );
+				$titleText = $this->getConverterLanguage()->convertTitle( $title );
 				$this->mOutput->setTitleText( $titleText );
 			}
 		}
@@ -714,6 +717,18 @@ class Parser {
 			throw new MWException( __METHOD__.': $this->mTitle is null' );
 		}
 		return $this->mTitle->getPageLanguage();
+	}
+
+	/**
+	 * Get the language object for language conversion
+	 */
+	function getConverterLanguage() {
+		global $wgBug34832TransitionalRollback, $wgContLang;
+		if ( $wgBug34832TransitionalRollback ) {
+			return $wgContLang;
+		} else {
+			return $this->getTargetLanguage();
+		}
 	}
 
 	/**
@@ -1237,7 +1252,7 @@ class Parser {
 		if ( $text === false ) {
 			# Not an image, make a link
 			$text = Linker::makeExternalLink( $url, 
-				$this->getTargetLanguage()->markNoConversion($url), true, 'free',
+				$this->getConverterLanguage()->markNoConversion($url), true, 'free',
 				$this->getExternalLinkAttribs( $url ) );
 			# Register it in the output object...
 			# Replace unnecessary URL escape codes with their equivalent characters
@@ -1510,7 +1525,7 @@ class Parser {
 				list( $dtrail, $trail ) = Linker::splitTrail( $trail );
 			}
 
-			$text = $this->getTargetLanguage()->markNoConversion( $text );
+			$text = $this->getConverterLanguage()->markNoConversion( $text );
 
 			$url = Sanitizer::cleanUrl( $url );
 
@@ -1716,8 +1731,8 @@ class Parser {
 			$prefix = '';
 		}
 
-		if ( $this->getTargetLanguage()->hasVariants() ) {
-			$selflink = $this->getTargetLanguage()->autoConvertToAllVariants( 
+		if ( $this->getConverterLanguage()->hasVariants() ) {
+			$selflink = $this->getConverterLanguage()->autoConvertToAllVariants( 
 				$this->mTitle->getPrefixedText() );
 		} else {
 			$selflink = array( $this->mTitle->getPrefixedText() );
@@ -1936,7 +1951,7 @@ class Parser {
 					}
 					$sortkey = Sanitizer::decodeCharReferences( $sortkey );
 					$sortkey = str_replace( "\n", '', $sortkey );
-					$sortkey = $this->getTargetLanguage()->convertCategoryKey( $sortkey );
+					$sortkey = $this->getConverterLanguage()->convertCategoryKey( $sortkey );
 					$this->mOutput->addCategory( $nt->getDBkey(), $sortkey );
 
 					/**
@@ -3214,8 +3229,8 @@ class Parser {
 			if ( $title ) {
 				$titleText = $title->getPrefixedText();
 				# Check for language variants if the template is not found
-				if ( $this->getTargetLanguage()->hasVariants() && $title->getArticleID() == 0 ) {
-					$this->getTargetLanguage()->findVariantLink( $part1, $title, true );
+				if ( $this->getConverterLanguage()->hasVariants() && $title->getArticleID() == 0 ) {
+					$this->getConverterLanguage()->findVariantLink( $part1, $title, true );
 				}
 				# Do recursion depth check
 				$limit = $this->mOptions->getMaxTemplateDepth();
