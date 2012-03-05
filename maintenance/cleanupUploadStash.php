@@ -51,7 +51,7 @@ class UploadStashCleanup extends Maintenance {
 		);
 
 		if( !is_object( $res ) || $res->numRows() == 0 ) {
-			$this->output( 'No files to cleanup!' );
+			$this->output( "No files to cleanup!\n" );
 			// nothing to do.
 			return;
 		}
