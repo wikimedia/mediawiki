@@ -72,6 +72,8 @@ production.
   in outdated text browsers.
 * New common*.css files usable by skins instead of having to copy piles
   of generic styles from MonoBook or Vector's css.
+* Some deprecated presentational html attributes will now be automatically
+  converted to css.
 * (bug 31297) Add support for namespaces in Special:RecentChanges subpage filter
   syntax.
 * The default user signature now contains a talk link in addition to the user link.
@@ -84,6 +86,7 @@ production.
   for an IP address redirects to the contributions list for that IP.
 * (bug 8859) Database::update should take array of tables too.
 * (bug 19698) Add "Inverse namespaces" option to Special:Contributions.
+* (bug 24037) Add byte length of revision to Special:Contributions.
 * (bug 1672) Added $wgDisableUploadScriptChecks to allow uploading of files
   containing HTML or JS. DISABLING THESE CHECKS IS VERY DANGEROUS.
 * New path mappings can be added using the WebRequestPathInfoRouter hook
@@ -92,6 +95,8 @@ production.
   "target" query parameter (eg. Special:ActiveUsers/Username)
 * New JavaScript variable wgPageContentLanguage
 * Added new debugging toolbar, enabled with $wgDebugToolbar
+* Differences in the history page now uses slightly better colors for people
+  perceiving colors differently.
 * (bug 32879) Upgrade jQuery to 1.7.1
 * jQuery UI upgraded to 1.8.17
 * Extensions can use the 'Language::getMessagesFileName' hook to define new
@@ -121,6 +126,9 @@ production.
 * (bug 33952) Refactor mw.toolbar to allow dynamic additions at any time.
 
 === Bug fixes in 1.19 ===
+* $wgUploadNavigationUrl should be used for file redlinks if.
+  $wgUploadMissingFileUrl is not set. The first was used for this
+  until the second was introduced in 1.17.
 * BREAKING CHANGE:  Style rules for wikitable are now more specific and prevent
   inheritance to nested tables which caused various issues (bug 30485 and bug
   33434). If your wiki has overriden rules for ".wikitable", please revise them and
