@@ -29,19 +29,28 @@ td.diff-context {
 	white-space: pre-wrap;
 }
 
-td.diff-addedline {
-	border: solid 4px #a3d3ff;
+td.diff-addedline,
+td.diff-deletedline {
+	border-style: solid;
+	border-width: 1px 1px 1px 4px;
 	border-radius: 0.33em;
 }
 
+td.diff-addedline {
+	border-color: #a3d3ff;
+}
+
 td.diff-deletedline {
-	border: solid 4px #ffe49c;
-	border-radius: 0.33em;
+	border-color: #ffe49c;
 }
 
 td.diff-context {
 	background: #F2F2F2;
 	color: #333333;
+	border-style: solid;
+	border-width: 1px 1px 1px 4px;
+	border-color: #e6e6e6;
+	border-radius: 0.33em;
 }
 
 .diffchange {
@@ -58,22 +67,18 @@ table.diff {
 	table-layout: fixed;
 }
 
-td.diff-addedline .diffchange {
-	background: #eaf5ff;
-	padding: 0.125em 0.25em;
-	border: solid 1px #5698d6;
-	border-top: none;
-	border-bottom: none;
+td.diff-addedline .diffchange,
+td.diff-deletedline .diffchange {
 	border-radius: 0.33em;
+	padding: 0.25em 0;
+}
+
+td.diff-addedline .diffchange {
+	background: #d8ecff;
 }
 
 td.diff-deletedline .diffchange {
 	background: #feeec8;
-	padding: 0.125em 0.25em;
-	border: solid 1px #e0b141;
-	border-top: none;
-	border-bottom: none;
-	border-radius: 0.33em;
 }
 
 table.diff td {
