@@ -1556,6 +1556,7 @@ Il tuo indirizzo non viene rivelato quando gli altri utenti ti contattano.',
 'newsectionsummary'                 => '/* $1 */ nuova sezione',
 'rc-enhanced-expand'                => 'Mostra dettagli (richiede JavaScript)',
 'rc-enhanced-hide'                  => 'Nascondi dettagli',
+'rc-old-title'                      => 'originariamente creata come "$1"',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Modifiche correlate',

@@ -1572,6 +1572,7 @@ Ha de ter menos {{PLURAL:$1|dun carácter|de $1 caracteres}}.',
 'newsectionsummary'                 => 'Nova sección: /* $1 */',
 'rc-enhanced-expand'                => 'Mostrar os detalles (cómpre JavaScript)',
 'rc-enhanced-hide'                  => 'Agochar os detalles',
+'rc-old-title'                      => 'creada orixinalmente como "$1"',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Cambios relacionados',
@@ -2843,7 +2844,7 @@ Gárdeo no seu disco duro e cárgueo aquí.',
 
 # JavaScriptTest
 'javascripttest'                           => 'Proba de JavaScript',
-'javascripttest-disabled'                  => 'Esta función está desactivada.',
+'javascripttest-disabled'                  => 'Esta función está desactivada neste wiki.',
 'javascripttest-title'                     => 'Executando probas de $1',
 'javascripttest-pagetext-noframework'      => 'Esta páxina está reservada para executar probas do JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Descoñécese a infraestrutura dixital "$1" de probas.',

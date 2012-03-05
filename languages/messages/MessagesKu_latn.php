@@ -2037,6 +2037,9 @@ Xêra xwe zanibe ku tu bi rastî dixwazê vê rûpelê dîsa çêkê",
 # Watchlist editing tools
 'watchlisttools-edit' => 'Lîsteya şopandinê bibîne û biguherîne',
 
+# Signatures
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|nîqaş]])',
+
 # Special:Version
 'version'                  => 'Versiyon',
 'version-specialpages'     => 'Rûpelên taybet',

@@ -2667,7 +2667,7 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 
 # JavaScriptTest
 'javascripttest'                           => 'JavaScriptowy test',
-'javascripttest-disabled'                  => 'Tuta funkcija je znjemóžnjena.',
+'javascripttest-disabled'                  => 'Tuta funkcija njeje na tutym wikiju zmóžnjena.',
 'javascripttest-title'                     => 'Testy $1 so přewjedu',
 'javascripttest-pagetext-noframework'      => 'Tuta strona je za přewjedźenje javascriptowych testow přewostajena.',
 'javascripttest-pagetext-unknownframework' => 'Njeznaty wobłuk "$1".',

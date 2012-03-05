@@ -350,7 +350,7 @@ $messages = array(
 'tog-extendwatchlist'         => 'Expandir la lista de seguimiento a todos los cambios, no sólo a los más recientes.',
 'tog-usenewrc'                => 'Cambios recientes mejorados (requiere JavaScript)',
 'tog-numberheadings'          => 'Numerar automáticamente los encabezados',
-'tog-showtoolbar'             => 'Mostrar la barra de edición',
+'tog-showtoolbar'             => 'Mostrar la barra de edición (requiere JavaScript)',
 'tog-editondblclick'          => 'Editar páginas con doble clic (requiere JavaScript)',
 'tog-editsection'             => 'Habilitar la edición de secciones usando el enlace [editar]',
 'tog-editsectiononrightclick' => 'Habilitar la edición de secciones presionando el botón de la derecha en los títulos de secciones (requiere JavaScript)',
@@ -2916,7 +2916,7 @@ No hay un directorio temporal.',
 
 # JavaScriptTest
 'javascripttest'                           => 'Pruebas de JavaScript',
-'javascripttest-disabled'                  => 'Esta función está deshabilitada.',
+'javascripttest-disabled'                  => 'Esta función no ha sido activada en este wiki.',
 'javascripttest-title'                     => 'Pruebas de $1 en ejecución',
 'javascripttest-pagetext-noframework'      => 'Esta página está reservada para ejecutar pruebas de JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Marco de pruebas desconocido "$1".',

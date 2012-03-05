@@ -499,6 +499,7 @@ Cha dèid post-d a chur airson gin dhe na feartan a leanas.',
 'emailconfirmlink'           => 'Dearbh an seòladh puist-dhealain agad',
 'invalidemailaddress'        => "Chan urrainn dhuinn gabhail ris an t-seòladh seo a chionn 's gu bheil coltas cearr air.
 Cuir a-steach seòladh san fhòrmat cheart no falamhaich an raon sin.",
+'cannotchangeemail'          => 'Cha ghabh na puist-d a tha co-cheangailte ri cunntas atharrachadh air an uicipeid seo.',
 'accountcreated'             => 'Cunntas cruthaichte',
 'accountcreatedtext'         => 'Chaidh an cunntas cleachdaiche airson $1 a chruthachadh.',
 'createaccount-title'        => 'Cruthachadh cunntais airson {{SITENAME}}',
@@ -515,6 +516,7 @@ Fuirich ort mus feuch thu ris a-rithist.",
 
 # E-mail sending
 'php-mail-error-unknown' => 'Mearachd neo-aithichte san fheart mail() aig PHP.',
+'user-mail-no-addy'      => 'Cha do ghabh am post-d a chur leis nach robh seòladh puist-d ann.',
 
 # Change password dialog
 'resetpass'                 => 'Atharraich am facal-faire',

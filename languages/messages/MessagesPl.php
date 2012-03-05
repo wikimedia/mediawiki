@@ -2896,7 +2896,7 @@ Brak katalogu dla plików tymczasowych.',
 
 # JavaScriptTest
 'javascripttest'                           => 'Testowanie JavaScript',
-'javascripttest-disabled'                  => 'Ta funkcja jest wyłączona.',
+'javascripttest-disabled'                  => 'Ta funkcja nie została włączona na tej wiki.',
 'javascripttest-title'                     => 'Uruchamianie testów $1',
 'javascripttest-pagetext-noframework'      => 'Ta strona jest zarezerwowana dla wykonywania testów JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Nieznany framework testowania „$1”.',

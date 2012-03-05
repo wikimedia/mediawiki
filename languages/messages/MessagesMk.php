@@ -2972,7 +2972,7 @@ $1',
 
 # JavaScriptTest
 'javascripttest'                           => 'Проба на JavaScript',
-'javascripttest-disabled'                  => 'Оваа функција е оневозможена.',
+'javascripttest-disabled'                  => 'Функцијата не е овозможена на ова вики.',
 'javascripttest-title'                     => 'Вршам $1 проби',
 'javascripttest-pagetext-noframework'      => 'Оваа страница е резервирана за вршење на проби со JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Непозната рамка „$1“.',

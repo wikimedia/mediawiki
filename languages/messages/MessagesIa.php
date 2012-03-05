@@ -2803,7 +2803,7 @@ Salveguarda lo in tu computator e incarga lo hic.',
 
 # JavaScriptTest
 'javascripttest'                           => 'Test de JavaScript',
-'javascripttest-disabled'                  => 'Iste function es disactivate.',
+'javascripttest-disabled'                  => 'Iste function non ha essite activate in iste wiki.',
 'javascripttest-title'                     => 'Execution de $1 tests',
 'javascripttest-pagetext-noframework'      => 'Iste pagina es reservate pro le execution de tests de JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Structura de test "$1" incognite.',

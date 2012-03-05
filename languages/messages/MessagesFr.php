@@ -1675,6 +1675,7 @@ Elle ne doit pas dépasser $1 caractère{{PLURAL:$1||s}}.',
 'newsectionsummary'                 => '/* $1 */ nouvelle section',
 'rc-enhanced-expand'                => 'Voir les détails (nécessite JavaScript)',
 'rc-enhanced-hide'                  => 'Masquer les détails',
+'rc-old-title'                      => 'créé avec le titre « $1 »',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Suivi des pages liées',
@@ -2938,7 +2939,7 @@ Un dossier temporaire est manquant.",
 
 # JavaScriptTest
 'javascripttest'                           => 'Test de JavaScript',
-'javascripttest-disabled'                  => 'Cette fonction est désactivée.',
+'javascripttest-disabled'                  => "Cette fonction n'a pas été activée sur ce wiki.",
 'javascripttest-title'                     => 'Exécution des tests $1',
 'javascripttest-pagetext-noframework'      => "Cette page est réservée pour l'exécution des tests JavaScript.",
 'javascripttest-pagetext-unknownframework' => 'Structure "$1" inconnue.',

@@ -732,11 +732,11 @@ $1',
 'blocked-notice-logextract'        => 'دم مهال په دې کارن بنديز لګېدلی.
 دلته لاندې د بنديز تازه يادښت د سرچينې په توګه ورکړ شوی:',
 'clearyourcache'                   => "'''يادونه:''' د غوره توبونو د خوندي کولو وروسته، ددې لپاره چې تاسو خپل سر ته رسولي ونجونه وګورۍ نو پکار ده چې د خپل بروزر ساتل شوې حافظه تازه کړی. 
-* د '''Mozilla / Firefox / Safari:''' لپاره د ''Shift'' تڼۍ نيولې وساتی کله مو چې په ''Reload''، ټک واهه، او يا هم ''Ctrl-Shift-R'' تڼۍ کېښکاږۍ (په Apple Mac کمپيوټر باندې ''Cmd-Shift-R'' کېښکاږۍ)
-* '''د ګووګل کروم:''' لپاره د ''Ctrl-Shift-R'' تڼۍ کېښکاږۍ (د مک لپاره ''Command-Shift-R'')
-* د '''IE:''' د ''Ctrl'' تڼۍ کېښکاږۍ کله مو چې په ''Refresh'' ټک واهه، او يا هم د ''Ctrl-F5'' تڼۍ کېښکاږۍ
-* د '''Konqueror:''' بروزر کې يواځې ''Reload'' ته ټک ورکړۍ، او يا په ''F5''
-* د '''Opera''' کارنانو ته پکار ده چې په بشپړه توګه د خپل کمپيوټر ساتل شوې حافظه تازه کړي چې پدې توګه کېږي ''Tools→Preferences''.",
+* '''موزېلا/ فايرفاکس/ سفري:''' په دې کتنمل کې د ''Reload'' د ټکوهلو په وخت د ''Shift'' تڼۍ نيولې وساتی، او يا هم ''Ctrl-F5'' يا ''Ctrl-R'' تڼۍ کېښکاږۍ (په Apple Mac کمپيوټر باندې ''⌘-R'' کېښکاږۍ)
+* '''ګووګل کروم:''' په دې کتنمل کې د ''Ctrl-Shift-R'' تڼۍ کېښکاږۍ (د مک لپاره ''⌘-Shift-R'')
+* '''انټرنټ اېکسپلورر:''' په دې کتنمل کې د ''Refresh'' د ټکوهلو په وخت کې د ''Ctrl'' تڼۍ کېښکاږلې ونيسۍ، او يا هم د ''Ctrl-F5'' تڼۍ کېښکاږۍ
+* '''کانکوېرور:''' په دې کتنمل کې د يواځې د ''Reload'' تڼۍ ټکوهۍ، او يا ''F5'' کېښکاږۍ
+* '''اوپرا''': په دې کتنمل کې د خپل براوزر ساتل شوې حافظه پدې توګه سپينولی شی ''Tools→Preferences''",
 'usercsspreview'                   => "'''هېر مو نشي چې دا يوازې ستاسې د کارن CSS مخليدنه ده.'''
 '''تر اوسه پورې لا ستاسې بدلونونه نه دي خوندي شوي!'''",
 'userjspreview'                    => "'''هېر مو نشي چې دا يوازې ستاسې د کارن د جاوا سکرېپټ آزمېيل/مخليدنه ده.'''
@@ -1080,25 +1080,28 @@ $1',
 'userrights-unchangeable-col' => 'هغه ډلې چې تاسې يې نه شی بدلولی',
 
 # Groups
-'group'            => 'ډله:',
-'group-user'       => 'کارنان',
-'group-bot'        => 'روباټونه',
-'group-sysop'      => 'پازوالان',
-'group-bureaucrat' => 'بيوروکراټان',
-'group-suppress'   => 'څارونکي',
-'group-all'        => '(ټول)',
+'group'               => 'ډله:',
+'group-user'          => 'کارنان',
+'group-autoconfirmed' => 'تاييد شوي کارنان',
+'group-bot'           => 'روباټونه',
+'group-sysop'         => 'پازوالان',
+'group-bureaucrat'    => 'بيوروکراټان',
+'group-suppress'      => 'څارونکي',
+'group-all'           => '(ټول)',
 
-'group-user-member'       => 'کارن',
-'group-bot-member'        => 'روباټ',
-'group-sysop-member'      => 'پازوال',
-'group-bureaucrat-member' => 'بيوروکراټ',
-'group-suppress-member'   => '{{GENDER:$1|څارن}}',
+'group-user-member'          => '{{GENDER:$1|کارن}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|تاييد شوی کارن}}',
+'group-bot-member'           => '{{GENDER:$1|روباټ}}',
+'group-sysop-member'         => '{{GENDER:$1|پازوال}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|بيوروکراټ}}',
+'group-suppress-member'      => '{{GENDER:$1|څارن}}',
 
-'grouppage-user'       => '{{ns:project}}:کارنان',
-'grouppage-bot'        => '{{ns:project}}:روباټان',
-'grouppage-sysop'      => '{{ns:project}}:پازوالان',
-'grouppage-bureaucrat' => '{{ns:project}}:بيوروکراټان',
-'grouppage-suppress'   => '{{ns:project}}:څارن',
+'grouppage-user'          => '{{ns:project}}:کارنان',
+'grouppage-autoconfirmed' => '{{ns:project}}:تاييد شوي کارنان',
+'grouppage-bot'           => '{{ns:project}}:روباټان',
+'grouppage-sysop'         => '{{ns:project}}:پازوالان',
+'grouppage-bureaucrat'    => '{{ns:project}}:بيوروکراټان',
+'grouppage-suppress'      => '{{ns:project}}:څارن',
 
 # Rights
 'right-read'                 => 'مخونه لوستل',
@@ -1268,6 +1271,9 @@ $1',
 'upload-unknown-size' => 'ناڅرګنده کچه',
 'upload-http-error'   => 'د HTTP يوه ستونزه رامېنځ ته شوې: $1',
 
+# File backend
+'backend-fail-alreadyexists' => 'د $1 دوتنه له پخوا نه شته.',
+
 # ZipDirectoryReader
 'zip-wrong-format' => 'ځانګړې شوې دوتنه يوه ZIP دوتنه نه وه.',
 
@@ -1410,6 +1416,7 @@ $1',
 'nrevisions'              => '$1 {{PLURAL:$1|بڼه|بڼې}}',
 'nviews'                  => '$1 {{PLURAL:$1|کتنه|کتنې}}',
 'nimagelinks'             => 'په $1 {{PLURAL:$1|کارېدلی مخ|کارېدلي مخونه}}',
+'ntransclusions'          => 'په $1 {{PLURAL:$1|مخ|مخونو}} کارېدلی',
 'specialpage-empty'       => 'د دې راپور لپاره کومې پايلې نشته.',
 'lonelypages'             => 'يتيم مخونه',
 'uncategorizedpages'      => 'په وېشنيزو ناوېشلي مخونه',
@@ -1430,6 +1437,7 @@ $1',
 'mostimages'              => 'د ډېرو تړنو انځورونه',
 'mostrevisions'           => 'ډېر کتلي مخونه',
 'prefixindex'             => 'د مختاړيو ټول مخونه',
+'prefixindex-namespace'   => 'د مختاړي ټول مخونه ($1 نومتشيال)',
 'shortpages'              => 'لنډ مخونه',
 'longpages'               => 'اوږده مخونه',
 'deadendpages'            => 'بې پايه مخونه',
@@ -1706,6 +1714,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'restriction-type'            => 'اجازه:',
 'restriction-level'           => 'د بنديز کچه:',
 'minimum-size'                => 'وړه کچه',
+'maximum-size'                => 'د حد اکثر کچه:',
 'pagesize'                    => '(بايټونه)',
 
 # Restrictions (nouns)
@@ -2133,6 +2142,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'exif-pixelydimension'     => 'د انځور سور',
 'exif-pixelxdimension'     => 'د انځور جګوالی',
 'exif-usercomment'         => 'د کارونکي تبصرې',
+'exif-relatedsoundfile'    => 'اړونده غږيزه دوتنه',
 'exif-datetimedigitized'   => 'د ګڼياليز کېدنې وخت او نېټه',
 'exif-fnumber'             => 'F شمېره',
 'exif-lightsource'         => 'د رڼا سرچينه',

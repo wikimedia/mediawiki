@@ -26,6 +26,7 @@
  * @author Kaganer
  * @author KossuthRad
  * @author Misibacsi
+ * @author R-Joe
  * @author Samat
  * @author Sucy
  * @author Terik
@@ -1625,6 +1626,7 @@ A műveletet nem lehet visszavonni.',
 'newsectionsummary'                 => '/* $1 */ (új szakasz)',
 'rc-enhanced-expand'                => 'Részletek megjelenítése (JavaScript szükséges)',
 'rc-enhanced-hide'                  => 'Részletek elrejtése',
+'rc-old-title'                      => 'eredetileg létrehozott " $1 "',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Kapcsolódó változtatások',

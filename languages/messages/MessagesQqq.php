@@ -3090,13 +3090,13 @@ See also:
 
 # Import log
 'importlogpage'          => '',
-'importlogpagetext'      => 'This text appears at the top of the [http://translatewiki.net/w/i.php?title=Special%3ALog&type=import&user=&page=&year=&month=-1 import log] special page.',
+'importlogpagetext'      => 'This text appears at the top of the [//translatewiki.net/w/i.php?title=Special:Log&type=import import log] special page.',
 'import-logentry-upload' => 'This is the text of an entry in the Import log (and Recent Changes), after hour (and date, only in the Import log) and sysop name:
 * $1 is the name of the imported file',
 
 # JavaScriptTest
 'javascripttest'                           => 'Title of [[Special:JavaScriptTest|the special page]]',
-'javascripttest-disabled'                  => '{{Identical|Function disabled}}.',
+'javascripttest-disabled'                  => 'Message displayed on [[Special:JavaScriptTest]] if this feature is disabled (it is disabled by default).',
 'javascripttest-title'                     => 'Title of the special page when running a test suite. Parameters:
 * $1 is the name of the framework, for example QUnit.',
 'javascripttest-pagetext-unknownframework' => 'Error message when given framework id is not found. $1 is the id of the framework.',

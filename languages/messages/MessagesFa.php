@@ -471,7 +471,7 @@ $messages = array(
 'tog-watchlisthideanons'      => 'ویرایش‌های کاربران ناشناس در فهرست پی‌گیری‌های من پنهان شود',
 'tog-watchlisthidepatrolled'  => 'ویرایش‌های گشت‌خورده در فهرست پی‌گیری‌ها پنهان شود',
 'tog-nolangconversion'        => 'تبدیل گویش‌ها غیرفعال شود',
-'tog-ccmeonemails'            => 'رونوشت نامه‌های الکترونیکی که به دیگران ارسال می‌کنم برای خودم هم فرستاده شود',
+'tog-ccmeonemails'            => 'رونوشتی از نامه‌های الکترونیکی که به دیگران ارسال می‌کنم برای خودم هم فرستاده شود',
 'tog-diffonly'                => 'محتوای صفحه، زیر تفاوت نمایش داده نشود',
 'tog-showhiddencats'          => 'رده‌های پنهان نمایش داده شود',
 'tog-noconvertlink'           => 'تبدیل عنوان پیوند غیرفعال شود',
@@ -484,7 +484,7 @@ $messages = array(
 # Font style option in Special:Preferences
 'editfont-style'     => 'سبک قلم جعبهٔ ویرایش:',
 'editfont-default'   => 'پیش‌فرض مرورگر',
-'editfont-monospace' => 'قلم با فاصله ثابت',
+'editfont-monospace' => 'قلم با فاصلهٔ ثابت',
 'editfont-sansserif' => 'قلم بدون گوشه',
 'editfont-serif'     => 'قلم گوشه‌دار',
 
@@ -555,7 +555,7 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|این رده تنها حاوی پروندهٔ زیر است.|{{PLURAL:$1|این پرونده|این $1 پرونده}} در این رده قرار {{PLURAL:$1|دارد|دارند}}؛ این رده در کل حاوی $2 پرونده است.}}',
 'category-file-count-limited'    => '{{PLURAL:$1|پروندهٔ|$1 پروندهٔ}} زیر در ردهٔ فعلی قرار دارند.',
 'listingcontinuesabbrev'         => '(ادامه)',
-'index-category'                 => 'صفحه‌های نمایه شده',
+'index-category'                 => 'صفحه‌های نمایه‌شده',
 'noindex-category'               => 'صفحه‌های نمایه‌نشده',
 'broken-file-category'           => 'صفحه‌های دارای پیوندهای پروندهٔ خراب',
 
@@ -588,7 +588,7 @@ $messages = array(
 'vector-action-protect'          => 'محافظت',
 'vector-action-undelete'         => 'احیا',
 'vector-action-unprotect'        => 'تغییر سطح حفاظت',
-'vector-simplesearch-preference' => 'فعال کردن پیشنهادهای جستجوی پیشرفته (فقط در پوسته برداری)',
+'vector-simplesearch-preference' => 'فعال کردن پیشنهادهای جستجوی پیشرفته (فقط در پوستهٔ برداری)',
 'vector-view-create'             => 'ایجاد',
 'vector-view-edit'               => 'ویرایش',
 'vector-view-history'            => 'نمایش تاریخچه',
@@ -608,7 +608,7 @@ $messages = array(
 'searcharticle'     => 'برو',
 'history'           => 'تاریخچهٔ صفحه',
 'history_short'     => 'تاریخچه',
-'updatedmarker'     => 'به‌روزشده از پس از آخرین باری که سرزده‌ام',
+'updatedmarker'     => 'به‌روزشده از آخرین باری که سرزده‌ام',
 'printableversion'  => 'نسخهٔ قابل چاپ',
 'permalink'         => 'پیوند پایدار',
 'print'             => 'چاپ',
@@ -620,7 +620,7 @@ $messages = array(
 'delete'            => 'حذف',
 'deletethispage'    => 'حذف این صفحه',
 'undelete_short'    => 'احیای {{PLURAL:$1|یک ویرایش|$1 ویرایش}}',
-'viewdeleted_short' => 'نمایش {{PLURAL:$1|یک ویرایش حذف شده|$1 ویرایش حذف شده}}',
+'viewdeleted_short' => 'نمایش {{PLURAL:$1|یک ویرایش حذف‌شده|$1 ویرایش حذف‌شده}}',
 'protect'           => 'محافظت',
 'protect_change'    => 'تغییر',
 'protectthispage'   => 'محافظت از این صفحه',
@@ -647,14 +647,14 @@ $messages = array(
 'otherlanguages'    => 'زبان‌های دیگر',
 'redirectedfrom'    => '(تغییرمسیر از $1)',
 'redirectpagesub'   => 'صفحهٔ تغییرمسیر',
-'lastmodifiedat'    => 'این صفحه آخرین بار در $1 ساعت $2 تغییر یافته‌است.',
-'viewcount'         => 'از این صفحه {{PLURAL:$1|یک|$1}} بار بازدید شده است.',
+'lastmodifiedat'    => 'این صفحه آخرین‌بار در $1 ساعت $2 تغییر یافته‌است.',
+'viewcount'         => 'از این صفحه {{PLURAL:$1|یک‌بار|$1بار}} بازدید شده‌است.',
 'protectedpage'     => 'صفحهٔ محافظت‌شده',
 'jumpto'            => 'پرش به:',
 'jumptonavigation'  => 'ناوبری',
 'jumptosearch'      => 'جستجو',
-'view-pool-error'   => 'متاسفانه سرورها در حال حاضر دچار بار اضافی هستند.
-تعداد زیادی از کاربران تلاش می‌کنند که این صفحه را ببینند.
+'view-pool-error'   => 'متأسفانه سرورها در حال حاضر دچار بار اضافی هستند.
+تعداد زیادی از کاربران دارند تلاش می‌کنند که این صفحه را ببینند.
 لطفاً قبل از تلاش دوباره برای دیدن این صفحه مدتی صبر کنید.
 
 $1',
@@ -680,7 +680,7 @@ $1',
 'portal'               => 'ورودی کاربران',
 'portal-url'           => 'Project:ورودی کاربران',
 'privacy'              => 'سیاست حفظ اسرار',
-'privacypage'          => 'Project:سیاست_حفظ_اسرار',
+'privacypage'          => 'Project:سیاست حفظ اسرار',
 
 'badaccess'        => 'خطای دسترسی',
 'badaccess-group0' => 'شما اجازهٔ اجرای عملی که درخواست کرده‌اید را ندارید.',
@@ -742,7 +742,7 @@ $1',
 ممکن است نشانی اینترنتی را اشتباه وارد کرده باشید یا پیوند مشکل‌داری را دنبال کرده باشید.
 همچنین ممکن است ایرادی در نرم‌افزار استفاده‌شده در {{SITENAME}} وجود داشته باشد.',
 'nosuchspecialpage' => 'چنین صفحهٔ ویژه‌ای وجود ندارد',
-'nospecialpagetext' => '<strong>شما صفحهٔ ویژهٔ غیرمجازی را درخواست کرده‌اید.</strong>
+'nospecialpagetext' => '<strong>شما یک صفحهٔ ویژهٔ غیرمجاز را درخواست کرده‌اید.</strong>
 
 فهرستی از صفحه‌های ویژهٔ مجاز در [[Special:SpecialPages|{{int:specialpages}}]] وجود دارد.',
 
@@ -3066,7 +3066,7 @@ $1',
 
 # JavaScriptTest
 'javascripttest'                           => 'آزمایش جاوا اسکریپت',
-'javascripttest-disabled'                  => 'این عملکرد غیرفعال شده‌است.',
+'javascripttest-disabled'                  => 'این عملکرد در این ویکی فعال نشده‌است.',
 'javascripttest-title'                     => 'در حال اجرای آزمایش‌های $1',
 'javascripttest-pagetext-noframework'      => 'این صفحه برای اجرای آزمایش‌های جاوا اسکریپت کنار گذاشته شده‌است.',
 'javascripttest-pagetext-unknownframework' => 'چارچوب آزمایشی ناشناخته «$1».',

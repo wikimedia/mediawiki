@@ -559,6 +559,8 @@ $1',
 'sqlhidden'            => '(คำสั่ง SQL ซ่อนอยู่)',
 'cascadeprotected'     => 'หน้านี้ได้รับการป้องกันจากการแก้ไข เนื่องจากหน้านี้ถูกใช้เป็นส่วนหนึ่งใน{{PLURAL:$1|หน้า $2 ซึ่งได้รับการป้องกันแบบ "ทบทุกลำดับขั้น"|หน้าซึ่งได้รับการป้องกันแบบ "ทบทุกลำดับขั้น" ดังต่อไปนี้: $2}}',
 'namespaceprotected'   => "คุณไม่มีสิทธิแก้ไขหน้าในเนมสเปซ '''$1'''",
+'customcssprotected'   => 'คุณไม่มีสิทธิ์ในการแก้ไขหน้าสไตล์ CSS หน้านี้ได้ เนื่องจากหน้านี้ประกอบด้วยการตั้งค่าส่วนบุคคลของผู้ใช้อื่น',
+'customjsprotected'    => 'คุณไม่มีสิทธิ์ในการแก้ไขหน้า JavaScript หน้านี้ได้ เนื่องจากหน้านี้ประกอบด้วยการตั้งค่าส่วนบุคคลของผู้ใช้อื่น',
 'ns-specialprotected'  => 'หน้าพิเศษไม่สามารถแก้ไขได้',
 'titleprotected'       => "หัวเรื่องนี้ได้รับการป้องกันไม่ให้สร้างใหม่ โดย [[User:$1|$1]] 
 เหตุผลที่ให้ไว้ คือ ''$2''",
@@ -2341,7 +2343,7 @@ $1',
 'blockipsuccesssub'               => 'บล็อกสำเร็จ',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] ถูกบล็อก
 <br />ดู  [[Special:BlockList|รายการไอพีที่ถูกบล็อก]] เพื่อตรวจสอบการบล็อก',
-'ipb-blockingself'                => 'คุณกำลังทำการบล๊อคตัวคุณเอง! คุณแน่ใจแล้วหรือว่าต้องการทำเช่นนั้น?',
+'ipb-blockingself'                => 'คุณกำลังทำการบล็อคตัวคุณเอง คุณแน่ใจแล้วหรือว่าต้องการทำเช่นนั้น',
 'ipb-edit-dropdown'               => 'แก้ไขสาเหตุการบล็อก',
 'ipb-unblock-addr'                => 'เลิกบล็อก $1',
 'ipb-unblock'                     => 'เลิกบล็อกผู้ใช้หรือหมายเลขไอพี',
@@ -3419,17 +3421,24 @@ $5
 'sqlite-no-fts'  => 'รุ่น $1 โดยไม่มีการสนับสนุนการค้นหาข้อความแบบเต็ม',
 
 # New logging system
-'logentry-delete-delete'        => '$1 ลบหน้า $3',
-'logentry-delete-restore'       => '$1 กู้คืนหน้า $3',
-'revdelete-restricted'          => 'จำกัดให้เฉพาะผู้ดูแลระบบขั้นพื้นฐาน',
-'revdelete-unrestricted'        => 'ยกเลิกการจำกัดให้เฉพาะผู้ดูแลระบบขั้นพื้นฐาน',
-'logentry-move-move'            => '$1 ย้ายหน้า $3 ไปยัง $4',
-'logentry-move-move-noredirect' => '$1 ย้ายหน้า $3 ไปยัง $4 โดยไม่ทิ้งการเปลี่ยนทาง',
-'logentry-newusers-newusers'    => '$1 สร้าง บัญชีผู้ใช้',
-'logentry-newusers-create'      => '$1 สร้าง บัญชีผู้ใช้',
-'logentry-newusers-create2'     => '$1 สร้างบัญชีผู้ใช้ $3',
-'logentry-newusers-autocreate'  => 'บัญชี $1 ถูกสร้างขึ้นอัตโนมัติ',
-'newuserlog-byemail'            => 'รหัสผ่านถูกส่งทางอีเมล',
+'logentry-delete-delete'              => '$1 ลบหน้า $3',
+'logentry-delete-restore'             => '$1 กู้คืนหน้า $3',
+'revdelete-content-hid'               => 'เนื้อหาถูกซ่อน',
+'revdelete-summary-hid'               => 'คำอธิบายอย่างย่อถูกซ่อน',
+'revdelete-uname-hid'                 => 'ชื่อผู้ใช้ถูกซ่อน',
+'revdelete-restricted'                => 'จำกัดให้เฉพาะผู้ดูแลระบบขั้นพื้นฐาน',
+'revdelete-unrestricted'              => 'ยกเลิกการจำกัดให้เฉพาะผู้ดูแลระบบขั้นพื้นฐาน',
+'logentry-move-move'                  => '$1 ย้ายหน้า $3 ไปยัง $4',
+'logentry-move-move-noredirect'       => '$1 ย้ายหน้า $3 ไปยัง $4 (ไม่สร้างหน้าเปลี่ยนทางตามมา)',
+'logentry-move-move_redir'            => '$1 ย้ายหน้า $3 ไปยัง $4 ทับหน้าเปลี่ยนทาง',
+'logentry-move-move_redir-noredirect' => '$1 ย้ายหน้า $3 ไปยัง $4 ทับหน้าเปลี่ยนทาง (ไม่สร้างหน้าเปลี่ยนทางตามมา)',
+'logentry-patrol-patrol'              => '$1 ทำเครื่องหมายว่ารุ่น $4 ของหน้า $3 ได้รับการตรวจสอบแล้ว',
+'logentry-patrol-patrol-auto'         => '$1 ทำเครื่องหมายโดยอัตโนมัติว่ารุ่น $4 ของหน้า $3 ได้รับการตรวจสอบแล้ว',
+'logentry-newusers-newusers'          => '$1 สร้างบัญชีผู้ใช้',
+'logentry-newusers-create'            => '$1 สร้างบัญชีผู้ใช้',
+'logentry-newusers-create2'           => '$1 สร้างบัญชีผู้ใช้ $3',
+'logentry-newusers-autocreate'        => 'บัญชี $1 ถูกสร้างขึ้นอัตโนมัติ',
+'newuserlog-byemail'                  => 'รหัสผ่านถูกส่งทางอีเมล',
 
 # Feedback
 'feedback-message' => 'ข้อความ:',
@@ -3437,5 +3446,8 @@ $5
 'feedback-submit'  => 'ส่งคำติชม',
 'feedback-adding'  => 'เพิ่มคำติชมเข้าไปที่หน้า...',
 'feedback-close'   => 'เสร็จสิ้น',
+
+# API errors
+'api-error-mustbeloggedin' => 'กรุณาลงชื่อเข้าใช้เพื่อทำการอัพโหลดไฟล์',
 
 );

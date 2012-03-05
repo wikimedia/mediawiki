@@ -2899,7 +2899,7 @@ Un dosar temporar lipsește.',
 
 # JavaScriptTest
 'javascripttest'                           => 'Testare JavaScript',
-'javascripttest-disabled'                  => 'Această funcție este dezactivată.',
+'javascripttest-disabled'                  => 'Această funcție nu a fost activată pe acest wiki.',
 'javascripttest-title'                     => 'Rulare teste pentru $1',
 'javascripttest-pagetext-noframework'      => 'Această pagină este rezervată rulării testelor JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Cadru de testare „$1” necunoscut.',

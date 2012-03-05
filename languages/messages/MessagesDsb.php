@@ -2674,7 +2674,7 @@ Wšykne transwiki-importowe akcije protokolěruju se w [[Special:Log/import|log-
 
 # JavaScriptTest
 'javascripttest'                           => 'JavaScriptowy test',
-'javascripttest-disabled'                  => 'Toś ta funkcija jo znjemóžnjona.',
+'javascripttest-disabled'                  => 'Toś ta funkcija njejo na toś tom wikiju zmóžnjona.',
 'javascripttest-title'                     => 'Testy $1 se pśewjeduju',
 'javascripttest-pagetext-noframework'      => 'Toś ten bok jo pśewjedowanjeju javascriptowych testow pśewóstajony.',
 'javascripttest-pagetext-unknownframework' => 'Njeznaty wobłuk "$1".',

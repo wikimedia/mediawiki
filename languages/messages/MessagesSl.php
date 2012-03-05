@@ -2818,7 +2818,7 @@ Prosimo, poskusite znova.',
 
 # JavaScriptTest
 'javascripttest'                           => 'Preizkušanje JavaScripta',
-'javascripttest-disabled'                  => 'Funkcija je onemogočena.',
+'javascripttest-disabled'                  => 'Funkcija na tem wikiju ni omogočena.',
 'javascripttest-title'                     => 'Poganjanje $1 preizkusov',
 'javascripttest-pagetext-noframework'      => 'Stran je rezervirana za poganjanje preizkusov JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Neznano ogrodje za preizkušanje »$1«.',

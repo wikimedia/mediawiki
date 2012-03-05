@@ -1516,6 +1516,7 @@ Tindakan ini tidak boleh dibatalkan.',
 'newsectionsummary'                 => '/* $1 */ bahagian baru',
 'rc-enhanced-expand'                => 'Papar butiran (JavaScript diperlukan)',
 'rc-enhanced-hide'                  => 'Sorokkan butiran',
+'rc-old-title'                      => 'asalnya diwujudkan sebagai "$1"',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Perubahan berkaitan',
@@ -2769,7 +2770,7 @@ Simpan dalam komputer anda dan muat naiknya di sini.',
 
 # JavaScriptTest
 'javascripttest'                           => 'Ujian JavaScript',
-'javascripttest-disabled'                  => 'Fungsi ini dimatikan.',
+'javascripttest-disabled'                  => 'Fungsi ini belum dapat dihidupkan di wki ini.',
 'javascripttest-title'                     => 'Ujian $1 sedang dijalankan',
 'javascripttest-pagetext-noframework'      => 'Laman ini ditempah untuk menjalankan ujian JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Kerangka "$1" tidak dikenali.',
