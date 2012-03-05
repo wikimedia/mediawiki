@@ -167,11 +167,14 @@ class LoginForm extends SpecialPage {
 			return;
 		} elseif( $this->mPosted ) {
 			if( $this->mCreateaccount ) {
-				return $this->addNewAccount();
+				$this->addNewAccount();
+				return;
 			} elseif ( $this->mCreateaccountMail ) {
-				return $this->addNewAccountMailPassword();
+				$this->addNewAccountMailPassword();
+				return;
 			} elseif ( ( 'submitlogin' == $this->mAction ) || $this->mLoginattempt ) {
-				return $this->processLogin();
+				$this->processLogin();
+				return;
 			}
 		}
 		$this->mainLoginForm( '' );
@@ -213,7 +216,7 @@ class LoginForm extends SpecialPage {
 
 	/**
 	 * @private
-	 * @return bool|void
+	 * @return bool
 	 */
 	function addNewAccount() {
 		global $wgUser, $wgEmailAuthentication, $wgLoginLanguageSelector;
@@ -221,7 +224,7 @@ class LoginForm extends SpecialPage {
 		# Create the account and abort if there's a problem doing so
 		$u = $this->addNewAccountInternal();
 		if( $u == null ) {
-			return;
+			return false;
 		}
 
 		# If we showed up language selection links, and one was in use, be
@@ -258,9 +261,9 @@ class LoginForm extends SpecialPage {
 			wfRunHooks( 'AddNewAccount', array( $u, false ) );
 			$u->addNewUserLogEntry();
 			if( $this->hasSessionCookie() ) {
-				return $this->successfulCreation();
+				$this->successfulCreation();
 			} else {
-				return $this->cookieRedirectCheck( 'new' );
+				$this->cookieRedirectCheck( 'new' );
 			}
 		} else {
 			# Confirm that the account was created
@@ -269,8 +272,8 @@ class LoginForm extends SpecialPage {
 			$out->returnToMain( false, $this->getTitle() );
 			wfRunHooks( 'AddNewAccount', array( $u, false ) );
 			$u->addNewUserLogEntry( false, $this->mReason );
-			return true;
 		}
+		return true;
 	}
 
 	/**
@@ -746,9 +749,9 @@ class LoginForm extends SpecialPage {
 					$userLang = Language::factory( $code );
 					$wgLang = $userLang;
 					$this->getContext()->setLanguage( $userLang );
-					return $this->successfulLogin();
+					$this->successfulLogin();
 				} else {
-					return $this->cookieRedirectCheck( 'login' );
+					$this->cookieRedirectCheck( 'login' );
 				}
 				break;
 
@@ -768,7 +771,7 @@ class LoginForm extends SpecialPage {
 			case self::NOT_EXISTS:
 				if( $this->getUser()->isAllowed( 'createaccount' ) ) {
 					$this->mainLoginForm( $this->msg( 'nosuchuser',
-					   wfEscapeWikiText( $this->mUsername ) )->parse() );
+						wfEscapeWikiText( $this->mUsername ) )->parse() );
 				} else {
 					$this->mainLoginForm( $this->msg( 'nosuchusershort',
 						wfEscapeWikiText( $this->mUsername ) )->text() );
@@ -899,6 +902,8 @@ class LoginForm extends SpecialPage {
 
 	/**
 	 * Display a "login successful" page.
+	 * @param $msgname string
+	 * @param $injected_html string
 	 */
 	private function displaySuccessfulLogin( $msgname, $injected_html ) {
 		$out = $this->getOutput();
@@ -1185,7 +1190,6 @@ class LoginForm extends SpecialPage {
 
 	/**
 	 * @private
-	 * @return void
 	 */
 	function cookieRedirectCheck( $type ) {
 		$titleObj = SpecialPage::getTitleFor( 'Userlogin' );
@@ -1195,7 +1199,7 @@ class LoginForm extends SpecialPage {
 		}
 		$check = $titleObj->getFullURL( $query );
 
-		return $this->getOutput()->redirect( $check );
+		$this->getOutput()->redirect( $check );
 	}
 
 	/**
@@ -1204,15 +1208,15 @@ class LoginForm extends SpecialPage {
 	function onCookieRedirectCheck( $type ) {
 		if ( !$this->hasSessionCookie() ) {
 			if ( $type == 'new' ) {
-				return $this->mainLoginForm( $this->msg( 'nocookiesnew' )->parse() );
+				$this->mainLoginForm( $this->msg( 'nocookiesnew' )->parse() );
 			} elseif ( $type == 'login' ) {
-				return $this->mainLoginForm( $this->msg( 'nocookieslogin' )->parse() );
+				$this->mainLoginForm( $this->msg( 'nocookieslogin' )->parse() );
 			} else {
 				# shouldn't happen
-				return $this->mainLoginForm( $this->msg( 'error' )->text() );
+				$this->mainLoginForm( $this->msg( 'error' )->text() );
 			}
 		} else {
-			return $this->successfulLogin();
+			$this->successfulLogin();
 		}
 	}
 
