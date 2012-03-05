@@ -20,6 +20,8 @@ class Revision {
 	protected $mTextRow;
 	protected $mTitle;
 	protected $mCurrent;
+    protected $mContentModelName;
+    protected $mContentType;
 
 	const DELETED_TEXT = 1;
 	const DELETED_COMMENT = 2;
@@ -125,6 +127,8 @@ class Revision {
 			'deleted'    => $row->ar_deleted,
 			'len'        => $row->ar_len,
 			'sha1'       => isset( $row->ar_sha1 ) ? $row->ar_sha1 : null,
+            'content_model' => isset( $row->ar_content_model ) ? $row->ar_content_model : null,
+            'content_type'  => isset( $row->ar_content_type ) ? $row->ar_content_type : null,
 		);
 		if ( isset( $row->ar_text ) && !$row->ar_text_id ) {
 			// Pre-1.5 ar_text row
@@ -412,6 +416,18 @@ class Revision {
 				$this->mTitle = null;
 			}
 
+            if( !isset( $row->rev_content_model ) || is_null( $row->rev_content_model ) ) {
+                $this->mContentModelName = null; # determine on demand if needed
+            } else {
+                $this->mContentModelName = strval( $row->rev_content_model );
+            }
+
+            if( !isset( $row->rev_content_type ) || is_null( $row->rev_content_type ) ) {
+                $this->mContentType = null; # determine on demand if needed
+            } else {
+                $this->mContentType = strval( $row->rev_content_type );
+            }
+
 			// Lazy extraction...
 			$this->mText      = null;
 			if( isset( $row->old_text ) ) {
@@ -445,6 +461,15 @@ class Revision {
 			$this->mParentId  = isset( $row['parent_id']  ) ? intval( $row['parent_id']  ) : null;
 			$this->mSha1      = isset( $row['sha1']  )      ? strval( $row['sha1']  )      : null;
 
+            $this->mContentModelName = isset( $row['content_model']  )  ? strval( $row['content_model'] ) : null;
+            $this->mContentType      = isset( $row['content_type']  )   ? strval( $row['content_type'] ) : null;
+
+            if( !isset( $row->rev_content_type ) || is_null( $row->rev_content_type ) ) {
+                $this->mContentType = null; # determine on demand if needed
+            } else {
+                $this->mContentType = $row->rev_content_type;
+            }
+
 			// Enforce spacing trimming on supplied text
 			$this->mComment   = isset( $row['comment']    ) ?  trim( strval( $row['comment'] ) ) : null;
 			$this->mText      = isset( $row['text']       ) ? rtrim( strval( $row['text']    ) ) : null;
@@ -460,6 +485,9 @@ class Revision {
 			if ( $this->mSha1 === null ) {
 				$this->mSha1 = is_null( $this->mText ) ? null : self::base36Sha1( $this->mText );
 			}
+
+            $this->getContentModelName(); # force lazy init
+            $this->getContentType();      # force lazy init
 		} else {
 			throw new MWException( 'Revision constructor passed invalid row format.' );
 		}
@@ -723,16 +751,47 @@ class Revision {
 	 * @param $user User object to check for, only if FOR_THIS_USER is passed
 	 *              to the $audience parameter
 	 * @return String
+     * @deprectaed in 1.20, use getContent() instead
 	 */
-	public function getText( $audience = self::FOR_PUBLIC, User $user = null ) {
-		if( $audience == self::FOR_PUBLIC && $this->isDeleted( self::DELETED_TEXT ) ) {
-			return '';
-		} elseif( $audience == self::FOR_THIS_USER && !$this->userCan( self::DELETED_TEXT, $user ) ) {
-			return '';
-		} else {
-			return $this->getRawText();
-		}
+	public function getText( $audience = self::FOR_PUBLIC, User $user = null ) { #FIXME: deprecated, replace usage!
+        wfDeprecated( __METHOD__, '1.20' );
+        $content = $this->getContent();
+
+        if ( $content == null ) {
+            return ""; # not allowed
+        }
+
+        if ( $content instanceof TextContent ) {
+            #FIXME: or check by model name? or define $content->allowRawData()?
+            return $content->getRawData();
+        }
+
+        #TODO: log this failure!
+        return null;
 	}
+
+    /**
+     * Fetch revision content if it's available to the specified audience.
+     * If the specified audience does not have the ability to view this
+     * revision, null will be returned.
+     *
+     * @param $audience Integer: one of:
+     *      Revision::FOR_PUBLIC       to be displayed to all users
+     *      Revision::FOR_THIS_USER    to be displayed to $wgUser
+     *      Revision::RAW              get the text regardless of permissions
+     * @param $user User object to check for, only if FOR_THIS_USER is passed
+     *              to the $audience parameter
+     * @return Content
+     */
+    public function getContent( $audience = self::FOR_PUBLIC, User $user = null ) {
+        if( $audience == self::FOR_PUBLIC && $this->isDeleted( self::DELETED_TEXT ) ) {
+            return null;
+        } elseif( $audience == self::FOR_THIS_USER && !$this->userCan( self::DELETED_TEXT, $user ) ) {
+            return null;
+        } else {
+            return $this->getContentInternal();
+        }
+    }
 
 	/**
 	 * Alias for getText(Revision::FOR_THIS_USER)
@@ -750,13 +809,54 @@ class Revision {
 	 *
 	 * @return String
 	 */
-	public function getRawText() {
-		if( is_null( $this->mText ) ) {
-			// Revision text is immutable. Load on demand:
-			$this->mText = $this->loadText();
-		}
-		return $this->mText;
+	public function getRawText() { #FIXME: deprecated, replace usage!
+		return $this->getText( self::RAW );
 	}
+
+    protected function getContentInternal() {
+        if( is_null( $this->mContent ) ) {
+            // Revision is immutable. Load on demand:
+
+            $handler = $this->getContentHandler();
+            $type = $this->getContentType();
+
+            if( is_null( $this->mText ) ) {
+                // Load text on demand:
+                $this->mText = $this->loadText();
+            }
+
+            $this->mContent = $handler->unserialize( $this->mText, $type );
+        }
+
+        return $this->mContent;
+    }
+
+    public function getContentModelName() {
+        if ( !$this->mContentModelName ) {
+            $title = $this->getTitle(); #XXX: never null?
+            $this->mContentModelName = $title->getContentModelName();
+        }
+
+        return $this->mContentModelName;
+    }
+
+    public function getContentType() {
+        if ( !$this->mContentType ) {
+            $handler = $this->getContentHandler();
+            $this->mContentType = $handler->getDefaultFormat();
+        }
+
+        return $this->mContentType;
+    }
+
+    public function getContentHandler() {
+        if ( !$this->mContentHandler ) {
+            $m = $this->getModelName();
+            $this->mContentHandler = ContentHandler::getForModelName( $m );
+        }
+
+        return $this->mContentHandler;
+    }
 
 	/**
 	 * @return String
@@ -996,7 +1096,9 @@ class Revision {
 					: $this->mParentId,
 				'rev_sha1'       => is_null( $this->mSha1 )
 					? Revision::base36Sha1( $this->mText )
-					: $this->mSha1
+					: $this->mSha1,
+                'rev_content_model'       => $this->getContentModelName(),
+                'rev_content_type'        => $this->getContentType(),
 			), __METHOD__
 		);
 
@@ -1096,7 +1198,8 @@ class Revision {
 
 		$current = $dbw->selectRow(
 			array( 'page', 'revision' ),
-			array( 'page_latest', 'rev_text_id', 'rev_len', 'rev_sha1' ),
+			array( 'page_latest', 'rev_text_id', 'rev_len', 'rev_sha1',
+                    'rev_content_model', 'rev_content_type' ),
 			array(
 				'page_id' => $pageId,
 				'page_latest=rev_id',
@@ -1111,7 +1214,9 @@ class Revision {
 				'text_id'    => $current->rev_text_id,
 				'parent_id'  => $current->page_latest,
 				'len'        => $current->rev_len,
-				'sha1'       => $current->rev_sha1
+				'sha1'       => $current->rev_sha1,
+				'content_model'  => $current->rev_content_model,
+				'content_type'   => $current->rev_content_type
 				) );
 		} else {
 			$revision = null;

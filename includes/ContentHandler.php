@@ -12,7 +12,90 @@
  *  
  */
 abstract class ContentHandler {
-    
+
+    public static function getDefaultModelFor( Title $title ) {
+        global $wgNamespaceContentModels;
+
+        # NOTE: this method must not rely on $title->getContentModelName() directly or indirectly,
+        #       because it is used to initialized the mContentModelName memebr.
+
+        $ns = $title->getNamespace();
+
+        $ext = false;
+        $m = null;
+        $model = null;
+
+        if ( !empty( $wgNamespaceContentModels[ $ns ] ) ) {
+            $model = $wgNamespaceContentModels[ $ns ];
+        }
+
+        # hook can determin default model
+        if ( !wfRunHooks( 'DefaultModelFor', array( $title, &$model ) ) ) { #FIXME: document new hook!
+            if ( $model ) return $model;
+        }
+
+        # Could this page contain custom CSS or JavaScript, based on the title?
+        $isCssOrJsPage = ( NS_MEDIAWIKI == $ns && preg_match( "!\.(css|js)$!u", $title->getText(), $m ) );
+        if ( $isCssOrJsPage ) $ext = $m[1];
+
+        # hook can force js/css
+        wfRunHooks( 'TitleIsCssOrJsPage', array( $title, &$isCssOrJsPage, &$ext ) ); #FIXME: add $ext to hook interface spec
+
+        # Is this a .css subpage of a user page?
+        $isJsCssSubpage = ( NS_USER == $ns && !$isCssOrJsPage && preg_match( "/\\/.*\\.(js|css)$/", $title->getText(), $m ) );
+        if ( $isJsCssSubpage ) $ext = $m[1];
+
+        # is this wikitext, according to $wgNamespaceContentModels or the DefaultModelFor hook?
+        $isWikitext = ( $model == CONTENT_MODEL_WIKITEXT || $model === null );
+        $isWikitext = ( $isWikitext && !$isCssOrJsPage && !$isJsCssSubpage );
+
+        # hook can override $isWikitext
+        wfRunHooks( 'TitleIsWikitextPage', array( $title, &$isWikitext ) );
+
+        if ( !$isWikitext ) {
+
+            if ( $ext == 'js' )
+                return CONTENT_MODEL_JAVASCRIPT;
+            else if ( $ext == 'css' )
+                return CONTENT_MODEL_CSS;
+
+            if ( $model )
+                return $model;
+            else
+                return CONTENT_MODEL_TEXT;
+        }
+
+        # we established that is must be wikitext
+        return CONTENT_MODEL_WIKITEXT;
+    }
+
+    public static function getForTitle( Title $title ) {
+        $modelName = $title->getContentModelName();
+        return ContenteHandler::getForModelName( $modelName );
+    }
+
+    public static function getForContent( Content $content ) {
+        $modelName = $content->getModelName();
+        return ContenteHandler::getForModelName( $modelName );
+    }
+
+    public static function getForModelName( $modelName ) {
+        global $wgContentHandlers;
+
+        if ( empty( $wgContentHandlers[$modelName] ) ) {
+            #FIXME: hook here!
+            throw new MWException( "No handler for model $modelName registered in \$wgContentHandlers" );
+        }
+
+        if ( is_string( $wgContentHandlers[$modelName] ) ) {
+            $class = $wgContentHandlers[$modelName];
+            $wgContentHandlers[$modelName] = new $class( $modelName );
+        }
+
+        return $wgContentHandlers[$modelName];
+    }
+
+
     public function __construct( $modelName, $formats ) {
         $this->mModelName = $modelName;
         $this->mSupportedFormats = $formats;
@@ -62,7 +145,7 @@ abstract class ContentHandler {
             # returns a ParserOutput instance!
             # are parser options, generic?!
 
-    public function doPreSaveTransform( $title, $obj );
+    public abstract function doPreSaveTransform( $title, $obj );
 
     # TODO: getPreloadText()
     # TODO: preprocess()

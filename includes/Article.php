@@ -37,7 +37,7 @@ class Article extends Page {
 	 */
 	public $mParserOptions;
 
-	var $mContent;                    // !<
+	var $mContent;                    // !<  #FIXME: use Content object!
 	var $mContentLoaded = false;      // !<
 	var $mOldId;                      // !<
 
@@ -557,6 +557,7 @@ class Article extends Page {
 
 					# Pages containing custom CSS or JavaScript get special treatment
 					if ( $this->getTitle()->isCssOrJsPage() || $this->getTitle()->isCssJsSubpage() ) {
+                        #FIXME: use Content object instead!
 						wfDebug( __METHOD__ . ": showing CSS/JS source\n" );
 						$this->showCssOrJsPage();
 						$outputDone = true;
@@ -694,17 +695,18 @@ class Article extends Page {
 	 * This is hooked by SyntaxHighlight_GeSHi to do syntax highlighting of these
 	 * page views.
 	 */
-	protected function showCssOrJsPage() {
+	protected function showCssOrJsPage() { #FIXME: deprecate, keep for BC
 		global $wgOut;
 
 		$dir = $this->getContext()->getLanguage()->getDir();
 		$lang = $this->getContext()->getLanguage()->getCode();
 
 		$wgOut->wrapWikiMsg( "<div id='mw-clearyourcache' lang='$lang' dir='$dir' class='mw-content-$dir'>\n$1\n</div>",
-			'clearyourcache' );
+			'clearyourcache' ); #FIXME: get this from handler
 
 		// Give hooks a chance to customise the output
 		if ( wfRunHooks( 'ShowRawCssJs', array( $this->mContent, $this->getTitle(), $wgOut ) ) ) {
+            #FIXME: use content object instead
 			// Wrap the whole lot in a <pre> and don't parse
 			$m = array();
 			preg_match( '!\.(css|js)$!u', $this->getTitle()->getText(), $m );

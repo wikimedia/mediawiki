@@ -2552,6 +2552,7 @@ HTML
 		# don't parse non-wikitext pages, show message about preview
 		# XXX: stupid php bug won't let us use $this->getContextTitle()->isCssJsSubpage() here -- This note has been there since r3530. Sure the bug was fixed time ago?
 
+        #FIXME: get appropriate content handler!
 		if ( $this->isCssJsSubpage || !$this->mTitle->isWikitextPage() ) {
 			if( $this->mTitle->isCssJsSubpage() ) {
 				$level = 'user';
@@ -2564,6 +2565,7 @@ HTML
 			# Used messages to make sure grep find them:
 			# Messages: usercsspreview, userjspreview, sitecsspreview, sitejspreview
 			if( $level ) {
+			    #FIXME: move this crud into ContentHandler class!
 				if (preg_match( "/\\.css$/", $this->mTitle->getText() ) ) {
 					$previewtext = "<div id='mw-{$level}csspreview'>\n" . wfMsg( "{$level}csspreview" ) . "\n</div>";
 					$class = "mw-code mw-css";

@@ -30,7 +30,7 @@ class CacheTime {
 	 */
 	function setCacheTime( $t )          { return wfSetVar( $this->mCacheTime, $t ); }
 
-	/**
+	/**abstract
 	 * Sets the number of seconds after which this object should expire.
 	 * This value is used with the ParserCache.
 	 * If called with a value greater than the value provided at any previous call,

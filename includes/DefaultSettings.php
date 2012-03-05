@@ -637,6 +637,17 @@ $wgMediaHandlers = array(
 );
 
 /**
+ * Plugins for page content model handling.
+ * Each entry in the array maps a model name type to a class name
+ */
+$wgContentHandlers = array(
+    CONTENT_MODEL_WIKITEXT => 'WikitextContentHandler', // the usual case
+    CONTENT_MODEL_JAVASCRIPT => 'JavaScriptContentHandler', // dumb version, no syntax highlighting
+    CONTENT_MODEL_CSS => 'CssContentHandler', // dumb version, no syntax highlighting
+    CONTENT_MODEL_TEXT => 'TextContentHandler', // dumb plain text in <pre>
+);
+
+/**
  * Resizing can be done using PHP's internal image libraries or using
  * ImageMagick or another third-party converter, e.g. GraphicMagick.
  * These support more file formats than PHP, which only supports PNG,

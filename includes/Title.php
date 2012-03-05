@@ -272,12 +272,17 @@ class Title {
 			if ( isset( $row->page_is_redirect ) )
 				$this->mRedirect = (bool)$row->page_is_redirect;
 			if ( isset( $row->page_latest ) )
-				$this->mLatestID = (int)$row->page_latest;
+				$this->mLatestID = (int)$row->page_latest; # FIXME: whene3ver page_latest is updated, also update page_content_model
+            if ( isset( $row->page_content_model ) )
+                $this->mContentModelName = $row->page_content_model;
+            else
+                $this->mContentModelName = null; # initialized lazily in getContentModelName()
 		} else { // page not found
 			$this->mArticleID = 0;
 			$this->mLength = 0;
 			$this->mRedirect = false;
 			$this->mLatestID = 0;
+            $this->mContentModelName = null; # initialized lazily in getContentModelName()
 		}
 	}
 
@@ -303,6 +308,7 @@ class Title {
 		$t->mArticleID = ( $ns >= 0 ) ? -1 : 0;
 		$t->mUrlform = wfUrlencode( $t->mDbkeyform );
 		$t->mTextform = str_replace( '_', ' ', $title );
+        $t->mContentModelName = null; # initialized lazily in getContentModelName()
 		return $t;
 	}
 
@@ -688,6 +694,29 @@ class Title {
 		return $this->mNamespace;
 	}
 
+    /**
+     * Get the page's content model name
+     *
+     * @return Integer: Namespace index
+     */
+    public function getContentModelName() {
+        if ( empty( $this->mContentModelName ) ) {
+            $this->mContentModelName = ContentHandler::getDefaultModelFor( $this );
+        }
+
+        return $this->mContentModelName;
+    }
+
+    /**
+     * Conveniance method for checking a title's content model name
+     *
+     * @param $name
+     * @return true if $this->getContentModelName() == $name
+     */
+    public function hasContentModel( $name ) {
+        return $this->getContentModelName() == $name;
+    }
+
 	/**
 	 * Get the namespace text
 	 *
@@ -937,9 +966,7 @@ class Title {
 	 * @return Bool
 	 */
 	public function isWikitextPage() {
-		$retval = !$this->isCssOrJsPage() && !$this->isCssJsSubpage();
-		wfRunHooks( 'TitleIsWikitextPage', array( $this, &$retval ) );
-		return $retval;
+		return $this->hasContentModel( CONTENT_MODEL_WIKITEXT );
 	}
 
 	/**
@@ -949,10 +976,8 @@ class Title {
 	 * @return Bool
 	 */
 	public function isCssOrJsPage() {
-		$retval = $this->mNamespace == NS_MEDIAWIKI
-			&& preg_match( '!\.(?:css|js)$!u', $this->mTextform ) > 0;
-		wfRunHooks( 'TitleIsCssOrJsPage', array( $this, &$retval ) );
-		return $retval;
+		return $this->hasContentModel( CONTENT_MODEL_CSS )
+            || $this->hasContentModel( CONTENT_MODEL_JAVASCRIPT );
 	}
 
 	/**
@@ -960,7 +985,8 @@ class Title {
 	 * @return Bool
 	 */
 	public function isCssJsSubpage() {
-		return ( NS_USER == $this->mNamespace and preg_match( "/\\/.*\\.(?:css|js)$/", $this->mTextform ) );
+		return ( NS_USER == $this->mNamespace && $this->isSubpage()
+            && $this->isCssOrJsPage() );
 	}
 
 	/**
@@ -983,7 +1009,8 @@ class Title {
 	 * @return Bool
 	 */
 	public function isCssSubpage() {
-		return ( NS_USER == $this->mNamespace && preg_match( "/\\/.*\\.css$/", $this->mTextform ) );
+        return ( NS_USER == $this->mNamespace && $this->isSubpage()
+            && $this->hasContentModel( CONTENT_MODEL_CSS ) );
 	}
 
 	/**
@@ -992,7 +1019,8 @@ class Title {
 	 * @return Bool
 	 */
 	public function isJsSubpage() {
-		return ( NS_USER == $this->mNamespace && preg_match( "/\\/.*\\.js$/", $this->mTextform ) );
+        return ( NS_USER == $this->mNamespace && $this->isSubpage()
+            && $this->hasContentModel( CONTENT_MODEL_JAVASCRIPT ) );
 	}
 
 	/**
