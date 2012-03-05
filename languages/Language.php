@@ -678,8 +678,7 @@ class Language {
 		return self::fetchLanguageNames( $code, 'all' );
 	}
 
-
-	/*
+	/**
 	 * Get an array of language names, indexed by code.
 	 * @param $inLanguage null|string: Code of language in which to return the names
 	 *									Use null for autonyms (native names)
@@ -687,7 +686,7 @@ class Language {
 	 *		'all' all available languages
 	 *		'mw' only if the language is defined in MediaWiki or wgExtraLanguageNames
 	 *		'mwfile' only if the language is in 'mw' *and* has a message file
-	 * @return array|false: language code => language name, false if $include is wrong
+	 * @return array|bool: language code => language name, false if $include is wrong
 	 */
 	public static function fetchLanguageNames( $inLanguage = null, $include = 'all' ) {
 		global $wgExtraLanguageNames;
