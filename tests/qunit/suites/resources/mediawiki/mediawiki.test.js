@@ -190,8 +190,7 @@ test( 'mw.loader.implement', function () {
 
 			equal( mw.loader.getState( 'test.implement' ), 'loaded', 'module state is "loaded" while implement() is executing javascript' );
 			
-			$element = $( '<div class="mw-test-loaderimplement">Foo bar</div>' );
-			$element.appendTo( 'body' );
+			$element = $( '<div class="mw-test-loaderimplement">Foo bar</div>' ).appendTo( '#qunit-fixture' );
 
 			// @broken: equal( $element.css( 'text-align' ),'center', 'CSS stylesheet was applied in time. ("text-align: center")' );
 
