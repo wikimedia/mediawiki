@@ -10,6 +10,7 @@
  * @author BrokenArrow
  * @author Candalua
  * @author Frigotoni
+ * @author GatoSelvadego
  * @author Kaganer
  * @author Nick1915
  * @author Omnipaedista
@@ -276,7 +277,7 @@ $messages = array(
 'noindex-category'               => 'Pajine no indicisae',
 'broken-file-category'           => "Pajine co' i link roti",
 
-'about'         => 'Informaxion',
+'about'         => 'Informasion',
 'article'       => 'Voxe',
 'newwindow'     => '(se verze in te na finestra nova)',
 'cancel'        => 'Lassa star',
@@ -384,7 +385,7 @@ $1',
 'copyrightpage'        => '{{ns:project}}:Copyright',
 'currentevents'        => 'Atuałità',
 'currentevents-url'    => 'Project:Atuałità',
-'disclaimers'          => 'Avertenxe',
+'disclaimers'          => 'Avertense',
 'disclaimerpage'       => 'Project:Avertense xenerali',
 'edithelp'             => 'Guida',
 'edithelppage'         => 'Help:Modifega',

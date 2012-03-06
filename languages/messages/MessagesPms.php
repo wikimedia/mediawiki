@@ -1364,6 +1364,7 @@ Costa anformassion a sarà pùblica.",
 'newsectionsummary'                 => '/* $1 */ session neuva',
 'rc-enhanced-expand'                => 'Mostré ij detaj (a-i é da manca ëd JavaScript)',
 'rc-enhanced-hide'                  => 'Stërmé ij detaj',
+'rc-old-title'                      => 'originalment creà com "$1"',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Modìfiche colegà',
@@ -2401,9 +2402,9 @@ Për piasì che a contata sò fornitor ëd conession e che a lo anforma. As trat
 'sorbsreason'                     => "Soa adrëssa IP a l'é listà coma arpetitor duvert (open proxy) ansima al DNSBL dovrà da {{SITENAME}}.",
 'sorbs_create_account_reason'     => "Soa adrëssa IP a l'é listà coma arpetitor duvèrt (open proxy) ansima al DNSBL dovrà da {{SITENAME}}. A peul nen creésse un cont.",
 'cant-block-while-blocked'        => "A peul pa bloché d'àutri utent antramentre che chiel a l'é blocà.",
-'cant-see-hidden-user'            => "L'utent che të stas provand a bloché a l'é già stàit blocà e stërmà. Da già ch'it l'has pa ël drit hideuser, it peule pa vëdde o modifiché ël blòch ëd l'utent.",
+'cant-see-hidden-user'            => "L'utent ch'a l'é an camin ch'a preuva a bloché a l'é già stàit blocà e stërmà. Da già ch'a l'ha pa ël drit hideuser, a peul pa vëdde o modifiché ël blocagi ëd cost utent.",
 'ipbblocked'                      => "A peul pa bloché o dësbloché d'àutri utent, përchè a l'é blocà chiel-midem",
-'ipbnounblockself'                => 'It peule pa dësbloché ti midem',
+'ipbnounblockself'                => "A l'é nen autorisà a dësblochesse da sol",
 
 # Developer tools
 'lockdb'              => 'Blòca la base dat',
@@ -2630,7 +2631,7 @@ Për piasì preuva torna.',
 
 # JavaScriptTest
 'javascripttest'                           => 'Preuva ëd JavaScript',
-'javascripttest-disabled'                  => "Sta funsion-sì a l'é pa abilità.",
+'javascripttest-disabled'                  => "Sta funsion-sì a l'é pa stàita abilità dzora sta wiki-sì.",
 'javascripttest-title'                     => 'Fé dle preuve $1',
 'javascripttest-pagetext-noframework'      => "Costa pàgina a l'é arservà për fé dle preuve JavaScript.",
 'javascripttest-pagetext-unknownframework' => 'Utiss ëd preuva pa conossù "$1".',

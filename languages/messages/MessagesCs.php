@@ -23,6 +23,7 @@
  * @author Mr. Richard Bolla
  * @author Ragimiri
  * @author Reaperman
+ * @author Spiffyk
  * @author Urhixidur
  * @author Utar
  * @author לערי ריינהארט
@@ -1668,6 +1669,7 @@ $3',
 'newsectionsummary'                 => 'Nová sekce /* $1 */',
 'rc-enhanced-expand'                => 'Zobrazit detaily (vyžaduje JavaScript)',
 'rc-enhanced-hide'                  => 'Skrýt detaily',
+'rc-old-title'                      => 'původně vytvořeno jako "$1"',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Související změny',
@@ -2893,7 +2895,7 @@ Uložte jej na svůj disk a nahrajte ho sem.',
 
 # JavaScriptTest
 'javascripttest'                           => 'Testování JavaScriptu',
-'javascripttest-disabled'                  => 'Tato funkce je vypnuta.',
+'javascripttest-disabled'                  => 'Tato funkce nebyla na této wiki povolena',
 'javascripttest-title'                     => 'Spouštějí se testy v $1',
 'javascripttest-pagetext-noframework'      => 'Tato stránka je vyhrazena pro spouštění testů JavaScriptu.',
 'javascripttest-pagetext-unknownframework' => 'Neznámá testovací knihovna „$1“.',

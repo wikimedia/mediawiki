@@ -2886,7 +2886,7 @@ Mentsd el a számítógépedre, majd töltsd fel ide.',
 
 # JavaScriptTest
 'javascripttest'                           => 'JavaScript tesztelés',
-'javascripttest-disabled'                  => 'Ez a funkció le van tiltva.',
+'javascripttest-disabled'                  => 'Ez a funkció nincs engedélyezve ebben a wikiben.',
 'javascripttest-title'                     => '$1 tesztek futtatása',
 'javascripttest-pagetext-noframework'      => 'Ez az oldal JavaStript tesztek futtatására van fenntartva.',
 'javascripttest-pagetext-unknownframework' => 'Ismeretlen teszt keretrendszer: $1.',

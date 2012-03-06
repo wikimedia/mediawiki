@@ -1496,7 +1496,7 @@ Kjo informatë është publike.',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|ndryshim|ndryshime}}',
-'recentchanges'                     => 'Ndryshimet e fundit',
+'recentchanges'                     => 'Ndryshime së fundmi',
 'recentchanges-legend'              => 'Zgjedhjet e ndryshimeve momentale',
 'recentchangestext'                 => 'Ndiqni ndryshime së fundmi tek kjo faqe.',
 'recentchanges-feed-description'    => 'Ndjek ndryshimet më të fundit në wiki tek kjo fushë.',

@@ -30,6 +30,7 @@
  * @author Kkkdc
  * @author Klutzy
  * @author Koba-chan
+ * @author Krinkle
  * @author Liangent
  * @author Likibp
  * @author Lovekhmer
@@ -3196,7 +3197,7 @@ $1',
 'file-nohires'           => '高解像度版はありません。',
 'svg-long-desc'          => 'SVGファイル、$1×$2ピクセル、ファイルサイズ：$3',
 'show-big-image'         => '高解像度での画像',
-'show-big-image-preview' => ' このプレビューのサイズ: $1。',
+'show-big-image-preview' => 'このプレビューのサイズ: $1。',
 'show-big-image-other'   => 'その他の{{PLURAL:$2|解像度}}: $1。',
 'show-big-image-size'    => '$1 × $2 ピクセル',
 'file-info-gif-looped'   => 'ループします',
@@ -3802,7 +3803,7 @@ $5
 'semicolon-separator' => '；',
 'comma-separator'     => '、',
 'colon-separator'     => '：',
-'pipe-separator'      => ' |&#32;',
+'pipe-separator'      => '&#32;|&#32;',
 'word-separator'      => '',
 'parentheses'         => '（$1）',
 

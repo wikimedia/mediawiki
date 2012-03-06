@@ -1614,6 +1614,7 @@ $1",
 'upload-http-error'         => 'א HTTP גרײַז האט פאַסירט: $1',
 
 # File backend
+'backend-fail-delete'        => 'קען נישט אויסמעקן טעקע $1.',
 'backend-fail-alreadyexists' => 'די טעקע $1 עקזיסטירט שוין.',
 'backend-fail-store'         => "מ'קען נישט שפייכלערן טעקע $1 בײַ $2.",
 'backend-fail-copy'          => 'האט נישט געקענט קאפירן "$1" צו "$2".',
@@ -2518,9 +2519,11 @@ $1',
 צו עקספארטירן בלעטער, לייגט אריין די טיטלען אין דעם טעקסט קעסטל פון אונטן, איין טיטל פאר א שורה, און קלויבט אויס צי איר דארפט די לויפיגע ווערסיע, ווי אויך די אלטע ווערסיעס, מיט די בלאט היסטאריע שורות, אדער בלויז די איצטיגע ווערסיע מיט דער קורץ ווארט אינפארמאציע פון דער לעצטער ענדערונג.
 
 אין דעם לעצטן פאל קענט איר אויך ניצן א לינק, למשל [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] פארן בלאט [[{{MediaWiki:Mainpage}}]].',
+'exportall'         => 'עקספארטירן אלע בלעטער',
 'exportcuronly'     => 'רעכן אריין בלויז די איצטיגע רע-ווערסיע, נישט די פולער היסטאריע',
 'exportnohistory'   => "----
 '''באמערקונג:''' עקספארטירן די פולער היסטאריע פון בלעטער דורך די פארעם איז געווארן אומ-ערמעגליכט צוליב פערפארמענס סיבות.",
+'exportlistauthors' => 'כולל זיין א פולשטענדיקע ליסטע פון ביישטייערער פאר יעדן בלאט',
 'export-submit'     => 'עקספארט',
 'export-addcattext' => 'צולייגן בלעטער פֿון דער קאַטעגאריע:',
 'export-addcat'     => 'צולייגן',
@@ -2556,6 +2559,8 @@ $1',
 'thumbnail_error'          => 'גרײַז בײַם באשאפֿן דאס קליינבילד: $1',
 'djvu_page_error'          => 'DjVu בלאט ארויס פֿון גרייך',
 'djvu_no_xml'              => "מ'קען נישט באקומען דעם XML פֿאַר דער DjVu טעקע",
+'thumbnail-temp-create'    => "מ'קען נישט שאפן א פראוויזארישע פארקלענערטע טעקע",
+'thumbnail-dest-create'    => "מ'קען נישט שפייכלערן פארקלענערונג צום ציל",
 'thumbnail_invalid_params' => 'אומגילטיגע קליינבילד פאראמעטערס',
 'thumbnail_dest_directory' => "מ'קען נישט שאפֿן דעם ציל קארטאטעק",
 'thumbnail_image-type'     => 'בילד טיפ נישט געשטיצט',
@@ -3001,11 +3006,38 @@ $1',
 'exif-gpsspeed-m' => 'מייל פער שעה',
 'exif-gpsspeed-n' => 'ים מײַלן א שעה',
 
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'קילאמעטער',
+'exif-gpsdestdistance-m' => 'מייל',
+'exif-gpsdestdistance-n' => 'ים־מייל',
+
+'exif-gpsdop-excellent' => 'אויסגעצייכנט ($1)',
+'exif-gpsdop-good'      => 'גוט ($1)',
+'exif-gpsdop-moderate'  => 'מיטלמעסיק ($1)',
+'exif-gpsdop-fair'      => 'נישקשהדיק ($1)',
+'exif-gpsdop-poor'      => 'שוואך ($1)',
+
+'exif-objectcycle-a' => 'נאר אינדערפרי',
+'exif-objectcycle-p' => 'נאר אוונד',
+'exif-objectcycle-b' => 'סיי אינדערפרי סיי אין אוונט',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'ריכטיגע דירעקציע',
 'exif-gpsdirection-m' => 'מאגנאטיק ריכטונג',
 
-'exif-dc-publisher' => 'פֿאַרלעגער',
+'exif-ycbcrpositioning-1' => 'צענטרירט',
+'exif-ycbcrpositioning-2' => 'אין זעלבן ארט',
+
+'exif-dc-contributor' => 'בײַשטײַערער',
+'exif-dc-coverage'    => 'ערטלעכער אדער צייטלעכער פארנעם פון מעדיע',
+'exif-dc-date'        => 'דאטע(ס)',
+'exif-dc-publisher'   => 'פֿאַרלעגער',
+'exif-dc-relation'    => 'ענלעכע מעדיע',
+'exif-dc-rights'      => 'רעכט',
+'exif-dc-source'      => 'אריגינעלע מעדיע',
+'exif-dc-type'        => 'סארט מעדיע',
+
+'exif-rating-rejected' => 'אפגעווארפֿן',
 
 'exif-isospeedratings-overflow' => 'גרעסער פֿון 65535',
 
@@ -3030,6 +3062,7 @@ $1',
 'exif-urgency-normal' => 'נאָרמאַל ($1)',
 'exif-urgency-low'    => 'נידעריק ($1)',
 'exif-urgency-high'   => 'הויך ($1)',
+'exif-urgency-other'  => 'באניצער־דעפינירטע פריאריטעט ($1)',
 
 # External editor support
 'edit-externally'      => 'רעדאַקטירט די טעקע מיט א דרויסנדיגער אַפליקאַציע',
@@ -3083,6 +3116,18 @@ $3
 $5
 
 דער באשטעטיגונג קאד גייט אויס $4.',
+'confirmemail_body_set'     => 'עמעצער, ווארשיינליך איר, פֿון IP אַדרעס $1, 
+האט געענדערט דעם ע־פאסט אַדרעס פֿון דער קאנטע "$2" צו דעם אדרעס אויף {{SITENAME}}.
+
+צו באַשטעטיקן אַז די קאנטע געהערט טאקע צו אייך און ווידער אַקטיווירן ע־פאסט דינסטן אויף {{SITENAME}}, ביטע טוט עפֿענען דעם לינק אין אייער בלעטערער:
+
+$3
+
+אויב די קאנטע געהערט *נישט* אײַך, פאלגט די דאָזיגע לינק מבטל צו זיין די ע-פאסט אדרעס באשטעטיגונג:
+
+$5
+
+די באשטעטיגונג קאד גייט אויס $4.',
 'confirmemail_invalidated'  => 'בליצפאסט אדרעס באשטעטיקונג אַנולירט',
 'invalidateemail'           => 'אַנולירן בליצפאסט באַשטעטיקונג',
 
@@ -3201,6 +3246,7 @@ $5
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'זוכן דופליקאַטע טעקעס',
+'fileduplicatesearch-summary'   => 'זוכן דופליקאטע טעקעס באזירט אויף האש־ווערטן.',
 'fileduplicatesearch-legend'    => 'זוכן א דופליקאַט',
 'fileduplicatesearch-filename'  => 'טעקע:',
 'fileduplicatesearch-submit'    => 'זוכן',
@@ -3249,17 +3295,21 @@ $5
 'tags-tag'                => 'טאַג נאָמען',
 'tags-display-header'     => 'אויסזען אין ענדערונג רשימות',
 'tags-description-header' => 'פֿולי באַשרייַבונג פון באַטײַט',
+'tags-hitcount-header'    => 'מארקירטע ענדערונגען',
 'tags-edit'               => 'רעדאַקטירן',
 'tags-hitcount'           => ' {{PLURAL:$1|ענדערונג|$1 ענדערונגען}}',
 
 # Special:ComparePages
-'comparepages'     => 'פאַרגלייַכן בלעטער',
-'compare-selector' => 'פאַרגלייַכן בלאַט רעוויזיעס',
-'compare-page1'    => 'עמוד 1',
-'compare-page2'    => 'עמוד 2',
-'compare-rev1'     => 'רעוויזיע 1',
-'compare-rev2'     => 'רעוויזיע 2',
-'compare-submit'   => 'פֿאַרגלייַכן',
+'comparepages'                => 'פאַרגלייַכן בלעטער',
+'compare-selector'            => 'פאַרגלייַכן בלאַט רעוויזיעס',
+'compare-page1'               => 'עמוד 1',
+'compare-page2'               => 'עמוד 2',
+'compare-rev1'                => 'רעוויזיע 1',
+'compare-rev2'                => 'רעוויזיע 2',
+'compare-submit'              => 'פֿאַרגלייַכן',
+'compare-invalid-title'       => 'דעם טיטל איר האט ספעציפֿירט איז אומגילטיק.',
+'compare-title-not-exists'    => 'דעם טיטל וואס איר האט ספעציפֿירט עקזיסטירט נישט',
+'compare-revision-not-exists' => 'די רעוויזיע וואס איר האט ספעציפֿירט עקזיסטירט נישט.',
 
 # Database error messages
 'dberr-header'      => 'די וויקי האט א פראבלעם',
@@ -3287,19 +3337,46 @@ $5
 'sqlite-no-fts'  => '$1 אָן פֿולן-טעקסט זוכן שטיץ',
 
 # New logging system
-'revdelete-restricted'   => 'פארמערט באגרעניצונגען פאר סיסאפן',
-'revdelete-unrestricted' => 'אוועקגענומען באגרעניצונגען פאר סיסאפן',
-'newuserlog-byemail'     => 'פאַסווארט געשיקט דורך ע-פאסט',
+'logentry-delete-delete'              => '$1 האט אויסגעמעקט בלאט $3',
+'logentry-delete-restore'             => '$1 האט צוריקגעשטעלט בלאט $3',
+'logentry-delete-event'               => '$1 האט געענדערט די זעבארקייט פון {{PLURAL:$5|א לאגבוך אקטיוויטעט|$5 לאגבוך אקטיוויטעטן}} אויף $3: $4',
+'logentry-delete-revision'            => '$1 האט געענדערט די זעבארקייט פון  {{PLURAL:$5|א רעוויזיע|$5 רעוויזיעס}} אויף בלאט $3: $4',
+'logentry-delete-event-legacy'        => '$1 האט געענדערט די זעבארקייט פון לאגבוך אקטיוויטעטן אויף $3',
+'logentry-delete-revision-legacy'     => '$1 האט געענדערט די זעבארקייט פון רעוויזיעס אויף בלאט $3',
+'logentry-suppress-delete'            => '$1 האט אונטערדריקט בלאט $3',
+'revdelete-content-hid'               => 'אינהאלט פארהוילן',
+'revdelete-summary-hid'               => 'רעדאקטירונג קאנספעקט פארהוילן',
+'revdelete-uname-hid'                 => 'באניצער־נאמען פארהוילן',
+'revdelete-content-unhid'             => 'אינהאלט ארויסגעגעבן',
+'revdelete-summary-unhid'             => 'רעדאקטירונג קאנספעקט ארויסגעגעבן',
+'revdelete-uname-unhid'               => 'באַניצער נאָמען ארויסגעגעבן',
+'revdelete-restricted'                => 'צוגעלייגט באגרעניצונגען פאר סיסאפן',
+'revdelete-unrestricted'              => 'אוועקגענומען באגרעניצונגען פאר סיסאפן',
+'logentry-move-move'                  => '$1 האט באוועגט בלאט $3 צו $4',
+'logentry-move-move-noredirect'       => '$1 האט באוועגט בלאט $3 צו $4 אן לאזן א ווייטערפירונג',
+'logentry-move-move_redir'            => '$1 האט באוועגט $3 צו $4 אריבער ווייטערפירונג',
+'logentry-move-move_redir-noredirect' => '$1 האט באוועגט $3 צו $4 אריבער א ווייטערפירונג אן לאזן א  ווייטערפירונג',
+'logentry-patrol-patrol'              => '$1 האט מארקירט רעוויזיע $4 פון בלאט $3 ווי קאנטראלירט',
+'logentry-patrol-patrol-auto'         => '$1 האט אויטאמאטיש מארקירט רעוויזיע $4 פון בלאט $3 ווי קאנטראלירט',
+'logentry-newusers-newusers'          => '$1 האט געשאפן א באניצער קאנטע',
+'logentry-newusers-create'            => '$1 האט געשאפן א באניצער קאנטע',
+'logentry-newusers-create2'           => '$1 האט געשאפן א באניצער קאנטע $3',
+'logentry-newusers-autocreate'        => 'קאנטע $1 באשאפן אויטאמאטיש',
+'newuserlog-byemail'                  => 'פאַסווארט געשיקט דורך ע-פאסט',
 
 # Feedback
-'feedback-subject' => 'טעמע:',
-'feedback-message' => 'מעלדונג:',
-'feedback-cancel'  => 'אַנולירן',
-'feedback-submit'  => 'ארײַנגעבן פֿידבעק',
-'feedback-adding'  => 'צולייגן פֿידבעק צו בלאַט...',
-'feedback-error1'  => 'טעות: אומבאַקאַנטער רעזולטאַט פון API',
-'feedback-error2'  => 'טעות: רעדאַקטירן דורכפֿאַל',
-'feedback-error3'  => 'טעות: קיין ענטפ\\ער פון API',
+'feedback-bugornote' => 'ווען איר זענט גרייט צו באשרייבן א טעכנישן פראבלעם ביטע [$1 מעלדט א פעלער].
+אנדערש, קענט איר ניצן די גרינגע פארעם אונטן. מען וועט צולייגן אייער הערה צום בלאט "[$3 $2]", צוזאמען מיט אייער באניצער נאמען און וועלכן בלעטערער איר ניצט.',
+'feedback-subject'   => 'טעמע:',
+'feedback-message'   => 'מעלדונג:',
+'feedback-cancel'    => 'אַנולירן',
+'feedback-submit'    => 'ארײַנגעבן פֿידבעק',
+'feedback-adding'    => 'צולייגן פֿידבעק צו בלאַט...',
+'feedback-error1'    => 'טעות: אומבאַקאַנטער רעזולטאַט פון API',
+'feedback-error2'    => 'טעות: רעדאַקטירן דורכפֿאַל',
+'feedback-error3'    => 'טעות: קיין ענטפֿער פון API',
+'feedback-thanks'    => 'ייש"כ! אײַער פֿידבעק איז געווארן ארויפגעלעגט צום בלאט "[$2 $1]".',
+'feedback-close'     => 'ערליידיקט',
 
 # API errors
 'api-error-badaccess-groups'              => 'איר האט נישט קיין רעכטן אַרויפֿלאָדן טעקעס אויף דער וויקי.',
@@ -3310,11 +3387,13 @@ $5
 'api-error-duplicate-archive-popup-title' => 'פֿאַרטאפלטע {{PLURAL:$1| טעקע | טעקעס}} וואָס זענען שוין געווארן אויסגעמעקט',
 'api-error-duplicate-popup-title'         => 'פֿאַרטאפלטע {{PLURAL:$1| טעקע | טעקעס}}',
 'api-error-empty-file'                    => 'די טעקע וואָס איר האט אײַנגעגעבן איז ליידיג.',
+'api-error-emptypage'                     => 'שאפן נייע ליידיקע בלעטער איז נישט ערלויבט.',
 'api-error-fetchfileerror'                => 'אינערלעכער גרײַז: עפעס איז קאַליע געווארן בײַם ברענגען די טעקע.',
 'api-error-file-too-large'                => 'די טעקע וואָס איר האט אײַנגעגעבן איז צו גרויס.',
 'api-error-filename-tooshort'             => 'דער טעקע־נאָמען איז צו קורץ.',
 'api-error-filetype-banned'               => 'דער טיפ טעקע איז געאַסרט.',
 'api-error-filetype-missing'              => 'די טעקע פֿעלט אַן ענדונג.',
+'api-error-hookaborted'                   => 'די מאדיפיצירונג איר האט פרובירט קען נישט ווערן דורכגעפירט צוליב א פארברייטערונג.',
 'api-error-http'                          => 'אינערלעכער גרײַז: נישט געקענט פֿאַרבינדן צום סערווירער.',
 'api-error-illegal-filename'              => 'דער טעקע־נאָמען איז נישט ערלויבט.',
 'api-error-internal-error'                => 'אינערלעכער גרײַז: עפעס איז קאַליע געווארן בײַם פראצעסירן אײַער אַרופֿלאָד אויף דער וויקי.',
@@ -3333,6 +3412,7 @@ $5
 'api-error-unknown-code'                  => 'אומבאַקאַנט טעות: " $1 "',
 'api-error-unknown-error'                 => 'אינערלעכער גרײַז: עפעס איז קאַליע געווארן בײַם אַרויפֿלאָדן אײַער טעקע.',
 'api-error-unknown-warning'               => 'אומבאַקאַנטע ווארענונג: $1',
+'api-error-unknownerror'                  => 'אומבאַקאַנט טעות: " $1 "',
 'api-error-uploaddisabled'                => 'ארויפֿלאָדן איז אומאַקטיווירט אויף דער וויקי',
 'api-error-verification-error'            => 'די טעקע איז מעגלעך פֿארדארבן, אדער האט א פֿאַלשע ענדונג.',
 

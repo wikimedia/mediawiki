@@ -550,7 +550,7 @@ $2',
 'login'                      => 'ప్రవేశించండి',
 'nav-login-createaccount'    => 'లోనికి ప్రవేశించండి / ఖాతాని సృష్టించుకోండి',
 'loginprompt'                => '{{SITENAME}}లోకి ప్రవేశించాలంటే మీ విహారిణిలో కూకీలు చేతనమై ఉండాలి.',
-'userlogin'                  => 'ప్రవేశంచు / ఖాతా సృష్టించు',
+'userlogin'                  => 'ప్రవేశించండి / ఖాతాను సృష్టించుకోండి',
 'userloginnocreate'          => 'ప్రవేశించండి',
 'logout'                     => 'నిష్క్రమించు',
 'userlogout'                 => 'నిష్క్రమించు',
@@ -2224,7 +2224,7 @@ $UNWATCHURL కి వెళ్ళండి.
 # Namespace form on various pages
 'namespace'             => 'పేరుబరి:',
 'invert'                => 'ఎంపికను తిరగవెయ్యి',
-'namespace_association' => 'సంబంధిత పేరుబరి (నేమ్ స్పేసు)',
+'namespace_association' => 'సంబంధిత పేరుబరి',
 'blanknamespace'        => '(మొదటి)',
 
 # Contributions

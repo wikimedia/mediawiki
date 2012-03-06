@@ -37,6 +37,7 @@ $messages = array(
 'tog-watchdeletion'           => 'За алуднавай ччинар зи гуьзетунин сиягьдиз алава авун',
 'tog-previewontop'            => 'Сифтедин килигун дуьзар хъувундин дакIардин вилик эцига',
 'tog-enotifusertalkpages'     => 'КЬилди жуван веревирдрин ччина хьанвай дегишвилерикай э-почтадиз чар ракъурун.',
+'tog-showhiddencats'          => 'Чуьнуьхай категорияр къалурун',
 
 'underline-always'  => 'Гьамиша',
 'underline-never'   => 'Садрани',
@@ -46,6 +47,7 @@ $messages = array(
 'editfont-style'     => 'Дуьзар хъувунин чкадин шрифтдин жуьре',
 'editfont-monospace' => 'Моногьяркьуьвилер авай шрифт',
 'editfont-sansserif' => 'КЬацI авачир шрифт',
+'editfont-serif'     => 'КьацI авай кхьин',
 
 # Dates
 'sunday'        => 'Гьяд',
@@ -200,9 +202,11 @@ $messages = array(
 'redirectedfrom'    => '($1-кай рахкъурнава )',
 'redirectpagesub'   => 'Рахкъурунин ччин',
 'lastmodifiedat'    => 'Ччинин эхиримжи дегиш хьун:  $1,  $2',
+'protectedpage'     => 'Хвенвай ччин',
 'jumpto'            => 'ЭлячIун иниз:',
 'jumptonavigation'  => 'Навигация',
 'jumptosearch'      => 'Жугъурун',
+'pool-queuefull'    => 'ТIалабар кIватзавайди ацIа я',
 'pool-errorunknown' => 'Малумтушир гъалатI',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).

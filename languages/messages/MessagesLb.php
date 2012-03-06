@@ -2712,7 +2712,7 @@ Späichert en op Ärem Computer of a luet en hei nees erop.',
 
 # JavaScriptTest
 'javascripttest'                           => 'JavaScript-Test',
-'javascripttest-disabled'                  => 'Dës Funktioun ass ausgeschalt.',
+'javascripttest-disabled'                  => 'Dës Funktioun gouf an dëser Wiki net aktivéiert.',
 'javascripttest-title'                     => '$1-Tester ginn elo gemaach',
 'javascripttest-pagetext-noframework'      => 'Dës Säit ass fir Java-Script-Tester reservéiert.',
 'javascripttest-pagetext-unknownframework' => 'Onbekannten Test-Framework "$1".',

@@ -2622,7 +2622,7 @@ $1',
 
 # JavaScriptTest
 'javascripttest'                           => 'JavaScript тургутуу',
-'javascripttest-disabled'                  => 'Бу дьайыы араарыллыбыт.',
+'javascripttest-disabled'                  => 'Дьайыы бу биикигэ араарыллыбат эбит.',
 'javascripttest-title'                     => '$1 тургутуу бара турар',
 'javascripttest-pagetext-noframework'      => 'Бу сирэй JavaScript тургутууларга анаммыт.',
 'javascripttest-pagetext-unknownframework' => '"$1" тургутуу биллибэт эйгэтэ.',

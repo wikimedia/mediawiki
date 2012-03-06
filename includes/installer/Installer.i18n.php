@@ -13323,6 +13323,11 @@ To pole zwykle pozostawiane jest puste.',
 	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 binarny',
 	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
 	'config-charset-mysql4' => 'MySQL 4.0 kompatybilny wstecz UTF-8',
+	'config-charset-help' => "'''Ostrzeżenie:''' użycie '''UTF-8 zgodnego ze starszymi wersjami''' na MySQL 4.1 +, a następnie wykonanie kopii zapasowej bazy danych przy użyciu <code>mysqldump</code>, może zniszczyć wszystkie znaki inne niż ASCII, nieodwracalnie uszkkadzając kopię zapasową!
+
+W '''trybie binarnym''', MediaWiki zapisuje tekst UTF-8 do bazy danych w polach binarnych.
+To jest bardziej wydajne niż tryb UTF-8 w MySQL i pozwala na używanie pełnego zakresu znaków Unicode.
+W ''' trybie UTF-8''', MySQL będzie wiedzieć, w jakim zestawie znaków są dane i umożliwia ich prezentowanie i odpowiednią konwersję, ale nie pozwoli Ci przechowywać znaków spoza [//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes podstawowej płaszczyzny wielojęzyczności].",
 	'config-mysql-old' => 'Wymagany jest MySQL $1 lub nowszy; korzystasz z $2.',
 	'config-db-port' => 'Port bazy danych',
 	'config-db-schema' => 'Schemat dla MediaWiki',
@@ -13330,6 +13335,16 @@ To pole zwykle pozostawiane jest puste.',
 Zmień go wyłącznie jeśli jesteś pewien, że powinieneś.',
 	'config-pg-test-error' => "Nie można połączyć się z bazą danych''' $1 ''': $2",
 	'config-sqlite-dir' => 'Katalog danych SQLite',
+	'config-sqlite-dir-help' => "SQLite przechowuje wszystkie dane w pojedynczym pliku.
+
+Wskazany katalog musi być dostępny do zapisu przez webserver podczas instalacji.
+
+Powinien '''nie''' być dostępny za z sieci web, dlatego nie umieszczamy ich tam, gdzie znajdują się pliki PHP.
+
+Instalator zapisze plik <code>.htaccess</code> obokniego, ale jeśli to zawiedzie, ktoś może uzyskać dostęp do nieprzetworzonej bazy danych.
+Zawiera ona nieopracowane dane użytkownika (adresy e-mail, zahaszowane hasła) jak również usunięte wersje oraz inne dane o ograniczonym dostępie na wiki.
+
+Warto rozważyć umieszczenie w bazie danych zupełnie gdzie indziej, na przykład w <code>/var/lib/mediawiki/yourwiki</code> .",
 	'config-oracle-def-ts' => 'Domyślna przestrzeń tabel',
 	'config-oracle-temp-ts' => 'Przestrzeń tabel tymczasowych',
 	'config-type-ibm_db2' => 'IBM DB2',
@@ -13369,6 +13384,25 @@ Używaj wyłącznie liter ASCII (a-z, A-Z), cyfr (0-9) i podkreślenia (_).',
 	'config-sqlite-name-help' => 'Wybierz nazwę, która będzie identyfikować Twoją wiki.
 Nie wolno używać spacji ani myślników.
 Zostanie ona użyta jako nazwa pliku danych SQLite.',
+	'config-sqlite-parent-unwritable-group' => 'Nie można utworzyć katalogu danych <code><nowiki>$1</nowiki></code> , ponieważ katalog nadrzędny <code><nowiki>$2</nowiki></code> nie jest dostępny do zapisu przez webserwer.
+
+Instalator nie może określić, jako kttóry użytkownik działa webserwer.
+Zezwól by katalog <code><nowiki>$3</nowiki></code> był dostępny do zapisu przez niego, aby przejść dalej.
+W systemie Unix/Linux wykonaj:
+
+<pre>cd $2
+mkdir $3
+chgrp $4 $3
+chmod g+w $3</pre>',
+	'config-sqlite-parent-unwritable-nogroup' => 'Nie można utworzyć katalogu danych <code><nowiki>$1</nowiki></code> , ponieważ katalog nadrzędny <code><nowiki>$2</nowiki></code> nie jest dostępny do zapisu przez webserwer.
+
+Instalator nie może określić, jako kttóry użytkownik działa webserwer.
+Zezwól by katalog <code><nowiki>$3</nowiki></code> był globalnie modyfikowalny przez niego (i innych!) aby przejść dalej.
+W systemie Unix/Linux wykonaj:
+
+<pre>cd $2
+mkdir $3
+chmod a+w $3</pre>',
 	'config-sqlite-mkdir-error' => 'Błąd podczas tworzenia katalogu dla danych „$1”.
 Sprawdź lokalizację i spróbuj ponownie.',
 	'config-sqlite-dir-unwritable' => 'Nie można zapisać do katalogu „$1”.
@@ -13402,6 +13436,13 @@ Konto, które wskazałeś tutaj musi już istnieć.',
 	'config-mysql-engine' => 'Silnik przechowywania',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',
+	'config-mysql-myisam-dep' => "'''Ostrzeżenie''': wybrano MyISIAM jako silnik  składowania danych MySQL, co nie jest zalecane do użytku w MediaWiki, ponieważ:
+ * ledwo obsługuje współbieżnośći ze względu na blokowanie tabel
+ * jest bardziej podatna na uszkodzenie niż inne silniki
+ * kod źródłowy MediaWiki nie zawsze obsługuje MyISAM tak, jak powinien
+
+Jeśli instalacja MySQL obsługuje InnoDB, jest wysoce zalecane, by to je wybrać.
+Jeśli instalacja MySQL nie obsługuje InnoDB, być może nadszedł czas na jej uaktualnienie.",
 	'config-mysql-engine-help' => "'''InnoDB''' jest prawie zawsze najlepszą opcją, ponieważ posiada dobrą obsługę współbieżności.
 
 '''MyISAM''' może być szybsze w instalacjach pojedynczego użytkownika lub tylko do odczytu.
@@ -13409,6 +13450,10 @@ Bazy danych MyISAM mają tendencję do ulegania uszkodzeniom częściej niż baz
 	'config-mysql-charset' => 'Zestaw znaków bazy danych',
 	'config-mysql-binary' => 'binarny',
 	'config-mysql-utf8' => 'UTF‐8',
+	'config-mysql-charset-help' => "W '''trybie binarnym''', MediaWiki zapisuje tekst UTF-8 do bazy danych w polach binarnych.
+Jest on bardziej wydajny niż tryb UTF-8 w MySQL i pozwala na używanie znaków pełnego zakresu Unicode.
+
+W '''trybie UTF-8''', MySQL będzie znać zestaw znaków w jakim zakodowano dane, można też przedstawić i przekonwertuj je odpowiednio, ale nie pozwoli Ci przechowywać znaków spoza [//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes podstawowej płaszczyzny wielojęzyczności].",
 	'config-ibm_db2-low-db-pagesize' => "Baza danych DB2 posiada domyślny obszar tabel z niewystarczającym rozmiarem strony. Wartość rozmiaru strony musi być równa lub powyżej  '''32 K'''.",
 	'config-site-name' => 'Nazwa wiki',
 	'config-site-name-help' => 'Ten napis pojawi się w pasku tytułowym przeglądarki oraz w różnych innych miejscach.',
@@ -13445,6 +13490,8 @@ Podaj inną nazwę.',
 	'config-subscribe' => 'Zapisz się na [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce listę pocztową z ogłaszaniami o nowych wersjach].',
 	'config-subscribe-help' => 'Jest to lista o małej liczbie wiadomości, wykorzystywana do przesyłania informacji o udostępnieniu nowej wersji oraz istotnych sprawach dotyczących bezpieczeństwa.
 Powinieneś zapisać się na tę listę i aktualizować zainstalowane oprogramowanie MediaWiki gdy pojawia się nowa wersja.',
+	'config-subscribe-noemail' => 'Próbowano subskrybować listę mailingową ogłoszeń wersji bez podania adresu e-mail.
+Proszę podać adres e-mail, jeśli chcesz subskrybować listę wysyłkową.',
 	'config-almost-done' => 'To już prawie koniec!
 Możesz pominąć pozostałe czynności konfiguracyjne i zainstalować wiki.',
 	'config-optional-continue' => 'Zadaj mi więcej pytań.',
@@ -13454,6 +13501,18 @@ Możesz pominąć pozostałe czynności konfiguracyjne i zainstalować wiki.',
 	'config-profile-no-anon' => 'Wymagane utworzenie konta',
 	'config-profile-fishbowl' => 'Wyłącznie zatwierdzeni edytorzy',
 	'config-profile-private' => 'Prywatna wiki',
+	'config-profile-help' => "Strony typu wiki działają najlepiej, gdy pozwolisz je edytować tak wielu osobom, jak to możliwie.
+W MediaWiki, jest łatwe sprawdzenie ostatnich zmian i wycofać szkody, które są spowodowane przez naiwnych lub złośliwych użytkowników.
+
+Jednakże wielu uznało MediaWiki użytecznymi w różnorodnych rolach, a czasami nie jest łatwo przekonać wszystkich do korzyści ze sposobu działania wiki.
+
+Ustawienie '''{{int:config-profil-wiki}}''' pozwala każdemu na edycję, nawet bez logowania się.
+Wiki z '''{{int:config-profile-no-anon}}''' zawiera dodatkowe funkcje rozliczania się, ale może powstrzymać dorywczych współpracowników.
+
+Scenariusz '''{{int:config-profile-fishbowl}}''' umożliwia zatwierdzonym użytkownikom edycję, ale wyświetlanie stron jest powszechnie dostępne, włącznie z historią.
+Ustawienie '''{{int:config-profile-private}}'' ' pozwala na wyświetlanie stron tylko zatwierdzonym użytkownikom, ta sama grupa może edytować.
+
+Bardziej skomplikowane konfiguracje uprawnień użytkowników są dostępne po zakończeniu instalacji, zobacz [//www.mediawiki.org/wiki/Manual:User_rights odpowiednią część podręcznika].",
 	'config-license' => 'Prawa autorskie i licencja',
 	'config-license-none' => 'Brak stopki z licencją',
 	'config-license-cc-by-sa' => 'Creative Commons – za uznaniem autora, na tych samych zasadach',
@@ -13463,6 +13522,15 @@ Możesz pominąć pozostałe czynności konfiguracyjne i zainstalować wiki.',
 	'config-license-gfdl' => 'GNU licencja wolnej dokumentacji 1.3 lub nowsza',
 	'config-license-pd' => 'Domena publiczna',
 	'config-license-cc-choose' => 'Wybierz własną licencję Creative Commons',
+	'config-license-help' => "Wiele publicznych wiki umieszcza wszystkie dopisane treści na [http://freedomdefined.org/Definition wolnej licencji].
+To pomaga tworzyć poczucie wspólnoty i zachęca do długoterminowego wkładu.
+Nie jest to zazwyczaj konieczne w prywatnych lub firmowych wiki.
+
+Jeśli chcesz móc użyć tekstu z Wikipedii i chcesz Wikipedia mogła zaakceptować tekst skopiowany z twojej wiki, należy wybrać '''Creative Commons Attribution Share Alike'''.
+
+Wikipedia używała poprzednio GNU Free Documentation License.
+GFDL jest poprawną licencję, ale trudno ją zrozumieć.
+Trudno także ponowne użyć zawartości na licencji GFDL.",
 	'config-email-settings' => 'Ustawienia e-maili',
 	'config-enable-email' => 'Włącz wychodzące wiadomości e–mail',
 	'config-enable-email-help' => 'Jeśli chcesz, aby działał e-mail, [http://www.php.net/manual/en/mail.configuration.php Ustawienia poczty PHP] muszą być poprawnie wprowadzone.
@@ -13474,14 +13542,33 @@ Jeśli nie chcesz jakichś funkcji poczty e-mail, można je wyłączyć tutaj.',
 	'config-email-watchlist' => 'Włącz powiadomienie o zmianach stron obserwowanych',
 	'config-email-watchlist-help' => 'Pozwól użytkownikom otrzymywać powiadomienia o zmianach na stronach obserwowanych, jeśli będą mieć włączoną tę funkcję w swoich preferencjach.',
 	'config-email-auth' => 'Włącz uwierzytelnianie e‐mailem',
+	'config-email-auth-help' => "Jeśli ta opcja jest włączona, użytkownicy będą musieli potwierdzić swoje adresy e-mail przy użyciu wysłanego do nich łącza, gdy będą je ustawiać lub zmieniać.
+Tylko uwierzytelnione adresy e-mail mogą otrzymywać wiadomości od innych użytkowników lub mailowe powiadomienia o zmianach.
+Ustawienie tej opcji jest'''zalecane''' na publicznych wiki ze względu na potencjalne nadużycia funkcji poczty e-mail.",
 	'config-email-sender' => 'Zwrotny adres e‐mail',
+	'config-email-sender-help' => 'Wprowadź adres e-mail używany jako adres zwrotny wiadomości wychodzących.
+To tam będą wysyłane szturchnięcia.
+Wiele serwerów poczty wymaga, by co najmniej część nazwy domeny była prawidłowa.',
 	'config-upload-settings' => 'Przesyłanie obrazków i plików',
 	'config-upload-enable' => 'Włącz przesyłanie plików na serwer',
+	'config-upload-help' => 'Przesyłanie plików potencjalnie wystawia serwer na zagrożenia.
+Więcej informacji na ten temat można znaleźć w [//www.mediawiki.org/wiki/Manual:Security sekcji zabezpieczeń] podręcznika.
+
+Aby włączyć przesyłanie plików, zmień właściwości podkatalogu <code>images</code> katalogu głównego MediaWiki tak, aby serwer sieci web mógł zapisywać do niego.
+Następnie włącz tę opcję.',
 	'config-upload-deleted' => 'Katalog dla usuniętych plików',
 	'config-upload-deleted-help' => 'Wybierz katalog, w którym będzie archiwum usuniętych plików.
 Najlepiej, aby nie był on dostępny z internetu.',
 	'config-logo' => 'Adres URL logo',
+	'config-logo-help' => 'Domyślny motyw MediaWiki zawiera miejsce na logo wielkości 135 x 160 pikseli powyżej menu na pasku bocznym.
+Prześlij obrazek o odpowiednim rozmiarze, a następnie wpisz jego URL tutaj.
+
+Jeśli nie chcesz logo, pozostaw to pole puste.',
 	'config-instantcommons' => 'Włącz Instant Commons',
+	'config-instantcommons-help' => '[//www.mediawiki.org/wiki/InstantCommons Instant Commons] jest funkcją, która pozwala wiki używać obrazów, dźwięków i innych mediów znalezionych na  witrynie [//commons.wikimedia.org/ Wikimedia Commons].
+Aby to zrobić, MediaWiki wymaga dostępu do internetu.
+
+Aby uzyskać więcej informacji na temat tej funkcji, w tym instrukcje dotyczące sposobu ustawiania go na wiki innych niż Wikimedia Commons, sprawdź w [//mediawiki.org/wiki/Manual:$wgForeignFileRepos podręczniku].',
 	'config-cc-error' => 'Wybieranie licencji Creative Commons nie dało wyniku.
 Wpisz nazwę licencji ręcznie.',
 	'config-cc-again' => 'Wybierz jeszcze raz...',

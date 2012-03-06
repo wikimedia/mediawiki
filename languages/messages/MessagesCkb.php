@@ -324,6 +324,7 @@ $messages = array(
 'printableversion'  => 'وەشانی ئامادەی چاپ',
 'permalink'         => 'بەستەری ھەمیشەیی',
 'print'             => 'چاپ',
+'view'              => 'بینین',
 'edit'              => 'دەستکاری',
 'create'            => 'دروستکردن',
 'editthispage'      => 'دەستکاری ئەم پەڕەیە بکە‌',
@@ -493,7 +494,7 @@ $1',
 'badtitle'             => 'ناونیشانی خراپ',
 'badtitletext'         => 'سەرناوی پەڕەی داواکراو بەتاڵە، واڵایە یان سەرناوێکی نێوان-زمانی یان نێوانی-ویکییە کە بە شێوەیەکی ھەڵە بەستەری بۆ دراوە.
 ڕەنگە یەک یان چەند کاراکتەری تێدا بێت کە ناکرێت لە سەرناوەکاندا بەکار بھێنرێت.',
-'perfcached'           => 'ئەم داتای خوارەوە پاشەکەوتی کەشە وە ناکرێ تازەی بکەیەوە. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcached'           => 'داتای خوارەوە پاشەکەوتکراوەیە و لەوانەیە بەڕۆژنەکرابێتەوە. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
 'perfcachedts'         => 'ئەم داتای خوارەوە کەش کراوە، و دوایین جار لە $1 تازە کراوەتەوە A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'تازەکردنەوەی ئەم لاپەڕە لە حاڵی ئێستا دا ناچالاک کراو.
 داتای ئەم شوێنە بەم زووانە تازە ناکرێتەوە.',

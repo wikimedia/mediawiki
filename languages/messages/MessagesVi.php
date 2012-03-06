@@ -1612,6 +1612,7 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'newsectionsummary'                 => 'Đề mục mới: /* $1 */',
 'rc-enhanced-expand'                => 'Xem chi tiết (cần JavaScript)',
 'rc-enhanced-hide'                  => 'Giấu chi tiết',
+'rc-old-title'                      => 'tên ban đầu là “$1”',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Thay đổi liên quan',
@@ -2866,7 +2867,7 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 
 # JavaScriptTest
 'javascripttest'                           => 'Kiểm thử JavaScript',
-'javascripttest-disabled'                  => 'Chức năng này đã bị tắt.',
+'javascripttest-disabled'                  => 'Chức năng này chưa được kích hoạt trên wiki này.',
 'javascripttest-title'                     => 'Đang chạy $1 ca kiểm thử',
 'javascripttest-pagetext-noframework'      => 'Trang này dành cho việc chạy các ca kiểm thử JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Nền tảng kiểm thử không rõ “$1”.',

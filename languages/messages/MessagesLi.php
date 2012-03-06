@@ -1469,6 +1469,7 @@ Deze informatie is zichbaar veur angere gebroekers.',
 'newsectionsummary'                 => '/* $1 */ nuje subkop',
 'rc-enhanced-expand'                => 'Details weergaeve (JavaScript verplich)',
 'rc-enhanced-hide'                  => 'Details verberge',
+'rc-old-title'                      => 'oearsprónkelik aangemaak es "$1"',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Volg links',
@@ -2691,7 +2692,7 @@ Slaon de oetveur op dien eige systeem op, en voeg dae dao nao hiej toe.',
 
 # JavaScriptTest
 'javascripttest'                           => 'Tes JavaScript',
-'javascripttest-disabled'                  => 'Dees funksje steit oet.',
+'javascripttest-disabled'                  => 'Dees funksje steit oet op deze wiki.',
 'javascripttest-title'                     => 'Veur tes oet veur $1',
 'javascripttest-pagetext-noframework'      => "Dees pagina is gerizzerveerd veur 't oetveure van JavaScriptteste.",
 'javascripttest-pagetext-unknownframework' => 'Ónbekèndje testframework "$1".',

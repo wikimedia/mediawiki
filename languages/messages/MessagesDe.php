@@ -59,6 +59,7 @@
  * @author Umherirrender
  * @author W (aka Wuzur)
  * @author Wikifan
+ * @author Wikinaut
  * @author Xqt
  * @author Ziko
  * @author Zylbath
@@ -612,7 +613,7 @@ $1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Über {{SITENAME}}',
-'aboutpage'            => 'Project:Über',
+'aboutpage'            => 'Project:Über_{{SITENAME}}',
 'copyright'            => 'Der Inhalt ist verfügbar unter der Lizenz $1.',
 'copyrightpage'        => '{{ns:project}}:Urheberrechte',
 'currentevents'        => 'Aktuelle Ereignisse',

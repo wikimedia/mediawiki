@@ -988,7 +988,7 @@ Pe verbendi ''all:'', vaceyê xo bıvurni ki contenti hemi cıgeyro (pelanê mı
 'prefs-watchlist-edits-max'     => 'Amerê tewr zafî: 1000',
 'prefs-watchlist-token'         => 'Lista seyrkerdışia nışani:',
 'prefs-misc'                    => 'ê bini',
-'prefs-resetpass'               => 'Parala bivurne',
+'prefs-resetpass'               => 'Parola bıvurne',
 'prefs-email'                   => 'Tercihê e-maili',
 'prefs-rendering'               => 'Asayış',
 'saveprefs'                     => 'Qeyd ke',
