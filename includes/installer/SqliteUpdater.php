@@ -71,6 +71,14 @@ class SqliteUpdater extends DatabaseUpdater {
 			array( 'modifyField', 'user', 'ug_group', 'patch-ug_group-length-increase.sql' ),
 			array( 'addField',	'uploadstash',	'us_chunk_inx',		'patch-uploadstash_chunk.sql' ),
 			array( 'addfield', 'job',           'job_timestamp',    'patch-jobs-add-timestamp.sql' ),
+
+            // 1.20
+            // content model stuff for WikiData
+            array( 'addField',	'revision',	'rev_content_format',		'patch-revision-rev_content_format.sql' ),
+            array( 'addField',	'revision',	'rev_content_model',		'patch-revision-rev_content_model.sql' ),
+            array( 'addField',	'archive',	'ar_content_format',		'patch-archive-ar_content_format.sql' ),
+            array( 'addField',	'archive',	'ar_content_model',		    'patch-archive-ar_content_model.sql' ),
+            array( 'addField',	'page',     'page_content_model',		'patch-page-page_content_model.sql' ),
 		);
 	}
 
