@@ -797,7 +797,7 @@ class LoginForm extends SpecialPage {
 	function resetLoginForm( $error ) {
 		$this->getOutput()->addHTML( Xml::element('p', array( 'class' => 'error' ), $error ) );
 		$reset = new SpecialChangePassword();
-		$reset->setContext( $this );
+		$reset->setContext( $this->getContext() );
 		$reset->execute( null );
 	}
 

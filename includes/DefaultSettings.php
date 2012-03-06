@@ -2176,6 +2176,17 @@ $wgLocaltimezone = null;
  */
 $wgLocalTZoffset = null;
 
+/**
+ * If set to true, this will roll back a few bug fixes introduced in 1.19,
+ * emulating the 1.18 behaviour, to avoid introducing bug 34832. In 1.19,
+ * language variant conversion is disabled in interface messages. Setting this
+ * to true re-enables it.
+ *
+ * This variable should be removed (implicitly false) in 1.20 or earlier.
+ */
+$wgBug34832TransitionalRollback = true;
+
+
 /** @} */ # End of language/charset settings
 
 /*************************************************************************//**

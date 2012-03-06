@@ -71,6 +71,9 @@ class Block {
 		}
 
 		$this->setTarget( $address );
+		if ( $this->target instanceof User && $user ) {
+			$this->target->setId( $user ); // needed for foreign users
+		}
 		if ( $by ) { // local user
 			$this->setBlocker( User::newFromID( $by ) );
 		} else { // foreign user
