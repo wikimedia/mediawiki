@@ -402,13 +402,12 @@
 				digits.push( $.escapeRE( localised[i] ) );
 			}
 		}
-		ts.digitClass = '[' + digits.join( '', digits ) + ']';
+		var digitClass = '[' + digits.join( '', digits ) + ']';
 
 		// We allow a trailing percent sign, which we just strip. This works fine
 		// if percents and regular numbers aren't being mixed.
 		ts.numberRegex = new RegExp("^(" + "[-+\u2212]?[0-9][0-9,]*(\\.[0-9,]*)?(E[-+\u2212]?[0-9][0-9,]*)?" + // Fortran-style scientific
-		"|" + "[-+\u2212]?" + ts.digitClass + "+[\\s\\xa0]*%?" + // Generic localised
-		"|([-+\u2212]?" + ts.digitClass + "+[\\s\\xa0]+)*" + ts.digitClass + "+[\\s\\xa0]*[\\/][\\s\\xa0]*" + ts.digitClass + "+" + // Fractions
+		"|" + "[-+\u2212]?" + digitClass + "+[\\s\\xa0]*%?" + // Generic localised
 		")$", "i");
 	}
 
@@ -485,7 +484,7 @@
 		}
 		ts.rgx = {
 			IPAddress: [
-				new RegExp( /^\d{1,3}[\.]\d{1,3}[\.]\d{1,3}[\.]\d{1,3}(\/\d{1,3})?$/)
+				new RegExp( /^\d{1,3}[\.]\d{1,3}[\.]\d{1,3}[\.]\d{1,3}$/)
 			],
 			currency: [
 				new RegExp( /^[£$€?.]/),
@@ -503,9 +502,6 @@
 			],
 			time: [
 				new RegExp( /^(([0-2]?[0-9]:[0-5][0-9])|([0-1]?[0-9]:[0-5][0-9]\s(am|pm)))$/)
-			],
-			fractions: [
-				new RegExp( "^(?:([-+\u2212]?" + ts.digitClass + "+)[\\s\\xa0]+)*(" + ts.digitClass + "+)[\\s\\xa0]*[\\/][\\s\\xa0]*(" + ts.digitClass + "+)" )
 			]
 		};
 	}
@@ -771,15 +767,9 @@
 		},
 		format: function( s ) {
 			var	a = s.split( '.' ),
-				r = '';
-			if( a.length == 4 ) {
-				var cidr = a[3].split('/');
-				if (cidr.length > 1 ) {
-					a[3] = cidr[0];
-					a[4] = cidr[1];
-				} else a[4] = '000';
-			}
-			for ( var i = 0; i < a.length; i++ ) {
+				r = '',
+				l = a.length;
+			for ( var i = 0; i < l; i++ ) {
 				var item = a[i];
 				if ( item.length == 1 ) {
 					r += '00' + item;
@@ -913,19 +903,6 @@
 			return $.tablesorter.numberRegex.test( $.trim( s ));
 		},
 		format: function( s ) {
-			var values = ts.rgx.fractions[0].exec($.trim(s));
-			if( values != null ) {
-				// A fraction
-				var retVal = 0;
-				var decimal = $.tablesorter.formatDigit(values[2]) / $.tablesorter.formatDigit(values[3]);
-				if( values[1] != undefined ) {
-					retVal = $.tablesorter.formatDigit(values[1]);
-				}
-				if( !isNaN(decimal) && isFinite(decimal) ) {
-					retVal += decimal;
-				}
-				return retVal;
-			}
 			return $.tablesorter.formatDigit(s);
 		},
 		type: 'numeric'

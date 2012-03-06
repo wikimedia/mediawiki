@@ -236,38 +236,6 @@ var ipv4Sorted = [
 	['204.204.132.158'],
 	['247.240.82.209']
 ];
-var ipv4CIDR = [
-	// Some randomly generated fake IPs
-	['45.238.27.109/36'],
-	['170.38.91.162/36'],
-	['247.240.82.209/36'],
-	['204.204.132.158/24'],
-	['170.38.91.162/24']
-];
-var ipv4CIDRSorted = [
-	// Sort order should go octet by octet
-	['45.238.27.109/36'],
-	['170.38.91.162/24'],
-	['170.38.91.162/36'],
-	['204.204.132.158/24'],
-	['247.240.82.209/36']
-];
-var ipv4Mixed = [
-	// Some randomly generated fake IPs
-	['45.238.27.109'],
-	['170.38.91.162'],
-	['247.240.82.209'],
-	['204.204.132.158/24'],
-	['170.38.91.162/24']
-];
-var ipv4MixedSorted = [
-	// Sort order should go octet by octet
-	['45.238.27.109'],
-	['170.38.91.162'],
-	['170.38.91.162/24'],
-	['204.204.132.158/24'],
-	['247.240.82.209']
-];
 
 tableTest(
 	'Bug 17141: IPv4 address sorting',
@@ -287,27 +255,6 @@ tableTest(
 	function( $table ) {
 		$table.tablesorter();
 		$table.find( '.headerSort:eq(0)' ).click().click();
-	}
-);
-tableTest(
-	'Bug 34475: IPv4/CIDR address sorting',
-	['IP'],
-	ipv4CIDR,
-	ipv4CIDRSorted,
-	function( $table ) {
-		$table.tablesorter();
-		$table.find( '.headerSort:eq(0)' ).click();
-	}
-);
-
-tableTest(
-	'Bug 34475: Mixed IPv4 and IP/CIDR address sorting',
-	['IP'],
-	ipv4Mixed,
-	ipv4MixedSorted,
-	function( $table ) {
-		$table.tablesorter();
-		$table.find( '.headerSort:eq(0)' ).click();
 	}
 );
 
@@ -574,47 +521,6 @@ tableTest( 'bug 8115: sort numbers with commas (descending)',
 	}
 );
 // TODO add numbers sorting tests for bug 8115 with a different language
-
-var fractions = [
-	[ '56'           ],
-	[ '1 3/8'        ],
-	[ '4 7/8'        ],
-	[ '2,000 1/6'    ],
-	[ '4 1/8'        ],
-	[ '-4 1/8'       ],
-	[ '−5 1/8'   ],
-	[ '56 45/500'    ],
-	[ '56 100/500'   ],
-	[ '100 / 500'    ]
-];
-var fractionsAsc = [
-	[ '−5 1/8'   ],
-	[ '-4 1/8'       ],
-	[ '100 / 500'    ],
-	[ '1 3/8'        ],
-	[ '4 1/8'        ],
-	[ '4 7/8'        ],
-	[ '56'           ],
-	[ '56 45/500'    ],
-	[ '56 100/500'   ],
-	[ '2,000 1/6'    ]
-];
-
-tableTest( 'sort fractional numbers in all sorts and forms (ascending)',
-        ['Fractional numbers'], fractions, fractionsAsc,
-        function( $table ) {
-                $table.tablesorter();
-                $table.find( '.headerSort:eq(0)' ).click();
-        }
-);
-
-tableTest( 'sort fractional numbers in all sorts and forms (descending)',
-        ['Fractional numbers'], fractions, reversed(fractionsAsc),
-        function( $table ) {
-                $table.tablesorter();
-                $table.find( '.headerSort:eq(0)' ).click().click();
-        }
-);
 
 test( 'bug 32888 - Tables inside a tableheader cell', function() {
 	expect(2);

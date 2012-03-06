@@ -19,9 +19,7 @@ production.
   preference for the non-default skin to look at something using the default skin.
 * (bug 31417) New ID mw-content-text around the actual page text, without categories,
   contentSub, ... The same div often also contains the class mw-content-ltr/rtl.
-* (bug 34475) Add support for IP/CIDR notation to tablesorter
 * (bug 27619) Remove preference option to display broken links as link?
-* (bug 15404) Add support for sorting fractions in jquery.tablesorter
 * (bug 34896) Update jQuery JSON plugin to v2.3 (2011-09-17)
 
 === Bug fixes in 1.20 ===
