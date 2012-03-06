@@ -447,7 +447,10 @@ class SpecialContributions extends SpecialPage {
 				Html::namespaceSelector( array(
 					'selected' => $this->opts['namespace'],
 					'all'      => '',
+					'label'    => null,
 				), array(
+					'name'  => 'namespace',
+					'id'    => 'namespace',
 					'class' => 'namespaceselector',
 				) ) .
 				'&#160;' .
