@@ -326,6 +326,7 @@ CREATE INDEX /*i*/rev_timestamp ON /*_*/revision (rev_timestamp);
 CREATE INDEX /*i*/page_timestamp ON /*_*/revision (rev_page,rev_timestamp);
 CREATE INDEX /*i*/user_timestamp ON /*_*/revision (rev_user,rev_timestamp);
 CREATE INDEX /*i*/usertext_timestamp ON /*_*/revision (rev_user_text,rev_timestamp);
+CREATE INDEX /*i*/page_user_timestamp ON /*_*/revision  (rev_page,rev_user,rev_timestamp);
 
 --
 -- Holds text of individual page revisions.
