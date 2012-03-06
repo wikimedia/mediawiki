@@ -475,6 +475,11 @@ class User {
 			return null;
 		}
 
+		if ( User::isIP( $name ) ) {
+			# Cannot exist
+			return null;
+		}
+
 		if ( isset( self::$idCacheByName[$name] ) ) {
 			return self::$idCacheByName[$name];
 		}
