@@ -2830,7 +2830,7 @@ $templates
 	 * @return array
 	 */
 	public function getJSVars() {
-		global $wgUseAjax, $wgEnableMWSuggest;
+		global $wgUseAjax, $wgEnableMWSuggest, $wgContLang;
 
 		$latestRevID = 0;
 		$pageID = 0;
@@ -2882,8 +2882,8 @@ $templates
 			'wgSeparatorTransformTable' => $compactSeparatorTransTable,
 			'wgDigitTransformTable' => $compactDigitTransTable,
 		);
-		if ( $lang->hasVariants() ) {
-			$vars['wgUserVariant'] = $lang->getPreferredVariant();
+		if ( $wgContLang->hasVariants() ) {
+			$vars['wgUserVariant'] = $wgContLang->getPreferredVariant();
  		}
 		foreach ( $title->getRestrictionTypes() as $type ) {
 			$vars['wgRestriction' . ucfirst( $type )] = $title->getRestrictions( $type );
