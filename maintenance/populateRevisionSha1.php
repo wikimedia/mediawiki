@@ -67,7 +67,7 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 		$end = $db->selectField( $table, "MAX($idCol)", false, __METHOD__ );
 		if ( !$start || !$end ) {
 			$this->output( "...$table table seems to be empty.\n" );
-			return true;
+			return 0;
 		}
 
 		$count = 0;
@@ -95,7 +95,10 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 		}
 		return $count;
 	}
-	
+
+	/**
+	 * @return int
+	 */
 	protected function doSha1LegacyUpdates() {
 		$count = 0;
 		$db = $this->getDB( DB_MASTER );
@@ -116,8 +119,16 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 			}
 		}
 		$db->commit( __METHOD__ );
+		return $count;
 	}
 
+	/**
+	 * @param $row
+	 * @param $table
+	 * @param $idCol
+	 * @param $prefix
+	 * @return bool
+	 */
 	protected function upgradeRow( $row, $table, $idCol, $prefix ) {
 		$db = $this->getDB( DB_MASTER );
 		if ( $table === 'archive' ) {
@@ -140,6 +151,10 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 		}
 	}
 
+	/**
+	 * @param $row
+	 * @return bool
+	 */
 	protected function upgradeLegacyArchiveRow( $row ) {
 		$db = $this->getDB( DB_MASTER );
 		$rev = Revision::newFromArchiveRow( $row );
