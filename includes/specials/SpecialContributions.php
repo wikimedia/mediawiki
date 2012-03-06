@@ -444,7 +444,16 @@ class SpecialContributions extends SpecialPage {
 				)
 			) .
 			Xml::tags( 'td', null,
-				Xml::namespaceSelector( $this->opts['namespace'], '' ) . '&#160;' .
+				Html::namespaceSelector( array(
+					'selected' => $this->opts['namespace'],
+					'all'      => '',
+					'label'    => null,
+				), array(
+					'name'  => 'namespace',
+					'id'    => 'namespace',
+					'class' => 'namespaceselector',
+				) ) .
+				'&#160;' .
 				Html::rawElement( 'span', array( 'style' => 'white-space: nowrap' ),
 					Xml::checkLabel(
 						$this->msg( 'invert' )->text(),
