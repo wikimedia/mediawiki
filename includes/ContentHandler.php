@@ -114,7 +114,7 @@ abstract class ContentHandler {
         return $wgContentHandlers[$modelName];
     }
 
-
+    # ----------------------------------------------------------------------------------------------------------
     public function __construct( $modelName, $formats ) {
         $this->mModelName = $modelName;
         $this->mSupportedFormats = $formats;
@@ -137,21 +137,13 @@ abstract class ContentHandler {
         return $this->mSupportedFormats[0];
     }
 
-    public abstract function serialize( $obj, Title $title, $format = null );
-            # for wikitext, do nothing (in the future: serialise ast/dom)
-            # for wikidata: serialize arrays to json
+    public abstract function serialize( Content $content, Title $title, $format = null );
 
     public abstract function unserialize( $blob, Title $title, $format = null ); #FIXME: ...and revId?
-            # for wikitext, do nothing (in the future: parse into ast/dom)
-            # for wikidata: serialize arrays to json
 
+    # public abstract function doPreSaveTransform( $title, $obj ); #TODO...
 
-    public abstract function doPreSaveTransform( $title, $obj );
-
-    # TODO: getPreloadText()
-    # TODO: preprocess()
-
-    /** 
+    /**
      * Return an Article object suitable for viewing the given object
      * 
      * @param type $title
@@ -159,7 +151,7 @@ abstract class ContentHandler {
      * @return \Article 
      * @todo Article is being refactored into an action class, keep track of that
      */
-    public function createArticle( $title, $obj ) {
+    public function createArticle( Title $title, $obj ) { #TODO: use this!
         $article = new Article($title);
         return $article;
     }
@@ -172,7 +164,7 @@ abstract class ContentHandler {
      * @param type $article
      * @return \EditPage 
      */
-    public function createEditPage( $title, $obj, $article ) {
+    public function createEditPage( Title $title, $obj, Article $article ) { #TODO: use this!
         $editPage = new EditPage($article);
         return $editPage;
     }
@@ -182,12 +174,12 @@ abstract class ContentHandler {
     }
     **/
     
-    public function getDiffEngine( $article ) {
+    public function getDiffEngine( Article $article ) {
         $de = new DifferenceEngine( $article->getContext() );
         return $de;
     }
 
-    public function getIndexUpdateJobs( $title, $parserOutput, $recursive = true ) {
+    public function getIndexUpdateJobs( Title $title, ParserOutput $parserOutput, $recursive = true ) {
             # for wikitext, create a LinksUpdate object
             # for wikidata: serialize arrays to json
         $update = new LinksUpdate( $title, $parserOutput, $recursive );
@@ -197,11 +189,50 @@ abstract class ContentHandler {
     #XXX: is the native model for wikitext a string or the parser output? parse early or parse late?
 }
 
-abstract class WikitextContentHandler extends ContentHandler {
+
+abstract class TextContentHandler extends ContentHandler {
+
+    public function __construct( $modelName, $formats ) {
+        super::__construct( $modelName, $formats );
+    }
+
+    public function serialize( Content $content, Title $title, $format = null ) {
+        return $content->getRawData();
+    }
+
+}
+class WikitextContentHandler extends TextContentHandler {
+
+    public function __construct( $modelName = CONTENT_MODEL_WIKITEXT ) {
+        super::__construct( $modelName, array( 'application/x-wikitext' ) ); #FIXME: mime
+    }
+
+    public function unserialize( $text, Title $title, $format = null ) {
+        return new WikitextContent($text, $title);
+    }
+
 }
 
-abstract class JavaScriptContentHandler extends WikitextHandler {
+class JavaScriptContentHandler extends TextContentHandler {
+
+    public function __construct( $modelName = CONTENT_MODEL_WIKITEXT ) {
+        super::__construct( $modelName, array( 'text/javascript' ) );
+    }
+
+    public function unserialize( $text, Title $title, $format = null ) {
+        return new JavaScriptContent($text, $title);
+    }
+
 }
 
-abstract class CssContentHandler extends WikitextHandler {
+class CssContentHandler extends TextContentHandler {
+
+    public function __construct( $modelName = CONTENT_MODEL_WIKITEXT ) {
+        super::__construct( $modelName, array( 'text/css' ) );
+    }
+
+    public function unserialize( $text, Title $title, $format = null ) {
+        return new CssContent($text, $title);
+    }
+
 }

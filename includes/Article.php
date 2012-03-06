@@ -374,6 +374,7 @@ class Article extends Page {
             }
 
             $this->mRevision = $this->mPage->getRevision();
+
             if ( !$this->mRevision ) {
                 wfDebug( __METHOD__ . " failed to retrieve current page, rev_id " . $this->mPage->getLatest() . "\n" );
                 wfProfileOut( __METHOD__ );

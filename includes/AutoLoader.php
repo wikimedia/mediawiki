@@ -252,6 +252,18 @@ $wgAutoloadLocalClasses = array(
 	'ZhClient' => 'includes/ZhClient.php',
 	'ZipDirectoryReader' => 'includes/ZipDirectoryReader.php',
 
+    # content handler
+    'Content' => 'includes/Content.php',
+    'ContentHandler' => 'includes/ContentHandler.php',
+    'CssContent' => 'includes/Content.php',
+    'CssContentHandler' => 'includes/ContentHandler.php',
+    'JavaScriptContent' => 'includes/Content.php',
+    'JavaScriptContentHandler' => 'includes/ContentHandler.php',
+    'MessageContent' => 'includes/Content.php',
+    'TextContent' => 'includes/Content.php',
+    'WikitextContent' => 'includes/Content.php',
+    'WikitextContentHandler' => 'includes/ContentHandler.php',
+
 	# includes/actions
 	'CreditsAction' => 'includes/actions/CreditsAction.php',
 	'DeleteAction' => 'includes/actions/DeleteAction.php',

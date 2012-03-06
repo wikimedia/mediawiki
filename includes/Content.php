@@ -6,7 +6,7 @@
  */
 abstract class Content {
     
-    public function __construct( Title $title, $revId, $modelName ) { #FIXME: really need revId? annoying! #FIXME: really $title? or just when parsing, every time?
+    public function __construct( Title $title = null, $revId = null, $modelName = null ) { #FIXME: really need revId? annoying! #FIXME: really $title? or just when parsing, every time?
         $this->mModelName = $modelName;
         $this->mTitle = $title;
         $this->mRevId = $revId;
@@ -55,7 +55,7 @@ abstract class Content {
 }
 
 class TextContent extends Content {
-    public function __construct( $text, Title $title, $revId, $modelName ) {
+    public function __construct( $text, Title $title = null, $revId = null, $modelName = null ) {
         parent::__construct($title, $revId, $modelName);
 
         $this->mText = $text;

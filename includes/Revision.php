@@ -849,8 +849,8 @@ class Revision {
 
     public function getContentModelName() {
         if ( !$this->mContentModelName ) {
-            $title = $this->getTitle(); #XXX: never null?
-            $this->mContentModelName = $title->getContentModelName();
+            $title = $this->getTitle();
+            $this->mContentModelName = ( $title ? $title->getContentModelName() : CONTENT_MODEL_WIKITEXT );
         }
 
         return $this->mContentModelName;

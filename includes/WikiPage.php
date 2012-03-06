@@ -431,6 +431,8 @@ class WikiPage extends Page {
 
     protected function getRawData() {
         $content = $this->getContent( Revision::RAW );
+        if ( !$content ) return null;
+
         return $content->getRawData();
     }
 
