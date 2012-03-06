@@ -107,7 +107,15 @@ class SpecialPrefixindex extends SpecialAllpages {
 					Xml::label( wfMsg( 'namespace' ), 'namespace' ) .
 				"</td>
 				<td class='mw-input'>" .
-					Xml::namespaceSelector( $namespace, null ) . ' ' .
+					Html::namespaceSelector( array(
+						'selected' => $namespace,
+						'all'      => null,
+						'label'    => null,
+					), array(
+						'name'  => 'namespace',
+						'id'    => 'namespace',
+						'class' => 'namespaceselector',
+					) ) .
 					Xml::submitButton( wfMsg( 'allpagessubmit' ) ) .
 				"</td>
 				</tr>";
