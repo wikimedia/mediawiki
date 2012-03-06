@@ -30,13 +30,14 @@
  *	                         the message.
  *	'label'               -- alternatively, a raw text message. Overridden by
  *	                         label-message
+ *	'help'                -- message text for a message to use as a help text.
  *	'help-message'        -- message key for a message to use as a help text.
  *	                         can be an array of msg key and then parameters to
  *	                         the message.
- *	                         Overwrites 'help-messages'.
+ *	                         Overwrites 'help-messages' and 'help'.
  *	'help-messages'       -- array of message key. As above, each item can
  *	                         be an array of msg key and then parameters.
- *	                         Overwrites 'help-message'.
+ *	                         Overwrites 'help'.
  *	'required'            -- passed through to the object, indicating that it
  *	                         is a required field.
  *	'size'                -- the length of text fields
@@ -1086,31 +1087,29 @@ abstract class HTMLFormField {
 		$helptext = null;
 
 		if ( isset( $this->mParams['help-message'] ) ) {
-			$helpMessage = (array)$this->mParams['help-message'];
-			$msg = wfMessage( array_shift( $helpMessage ), $helpMessage );
+			$this->mParams['help-messages'] = (array)$this->mParams['help-message'];
+		}
 
-			if ( $msg->exists() ) {
-				$helptext = $msg->parse();
-			}
-		} elseif ( isset( $this->mParams['help-messages'] ) ) {
-			# help-message can be passed a message key (string) or an array containing
-			# a message key and additional parameters. This makes it impossible to pass
-			# an array of message key
+		if ( isset( $this->mParams['help-messages'] ) ) {
 			foreach( $this->mParams['help-messages'] as $name ) {
 				$helpMessage = (array)$name;
 				$msg = wfMessage( array_shift( $helpMessage ), $helpMessage );
 
 				if( $msg->exists() ) {
-					$helptext .= $msg->parse(); // append message
+					$helptext .= $msg->parse(); // Append message
 				}
 			}
-		} elseif ( isset( $this->mParams['help'] ) ) {
+		}
+		elseif ( isset( $this->mParams['help'] ) ) {
 			$helptext = $this->mParams['help'];
 		}
 
 		if ( !is_null( $helptext ) ) {
-			$row = Html::rawElement( 'td', array( 'colspan' => 2, 'class' => 'htmlform-tip' ),
-				$helptext );
+			$row = Html::rawElement(
+				'td',
+				array( 'colspan' => 2, 'class' => 'htmlform-tip' ),
+				$helptext
+			);
 			$row = Html::rawElement( 'tr', array(), $row );
 			$html .= "$row\n";
 		}
