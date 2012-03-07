@@ -90,8 +90,7 @@
  *         ->plain();
  * @endcode
  *
- * @note You cannot parse the text except in the content or interface
- * @note languages
+ * @note You can parse the text only in the content or interface languages
  *
  * @section message_compare_old Comparison with old wfMsg* functions:
  *
@@ -338,6 +337,18 @@ class Message {
 		global $wgContLang;
 		$this->interface = false;
 		$this->language = $wgContLang;
+		return $this;
+	}
+
+	/**
+	 * Allows manipulating the interface message flag directly.
+	 * Can be used to restore the flag after setting a language.
+	 * @param $value bool
+	 * @return Message: $this
+	 * @since 1.20
+	 */
+	public function setInterfaceMessageFlag( $value ) {
+		$this->interface = (bool) $value;
 		return $this;
 	}
 

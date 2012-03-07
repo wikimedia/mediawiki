@@ -768,7 +768,15 @@ class SpecialPage {
 		// Works fine as the first parameter, which appears elsewhere in the
 		// code base. Sighhhh.
 		$args = func_get_args();
-		return call_user_func_array( array( $this->getContext(), 'msg' ), $args );
+		$message = call_user_func_array( array( $this->getContext(), 'msg' ), $args );
+		// RequestContext passes context to wfMessage, and the language is set from
+		// the context, but setting the language for Message class removes the
+		// interface message status, which breaks for example usernameless gender
+		// invokations. Restore the flag when not including special page in content.
+		if ( !$this->including() ) {
+			$message->setInterfaceMessageFlag( true );
+		}
+		return $message;
 	}
 
 	/**
