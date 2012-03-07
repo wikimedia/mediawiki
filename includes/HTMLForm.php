@@ -1087,7 +1087,7 @@ abstract class HTMLFormField {
 		$helptext = null;
 
 		if ( isset( $this->mParams['help-message'] ) ) {
-			$this->mParams['help-messages'] = (array)$this->mParams['help-message'];
+			$this->mParams['help-messages'] = array( $this->mParams['help-message'] );
 		}
 
 		if ( isset( $this->mParams['help-messages'] ) ) {
