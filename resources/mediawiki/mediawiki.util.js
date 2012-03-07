@@ -29,9 +29,17 @@
 
 			// Chrome on any platform
 			} else if ( profile.name === 'chrome' ) {
-				// Chrome on Mac or Chrome on other platform ?
-				util.tooltipAccessKeyPrefix = ( profile.platform === 'mac'
-					? 'ctrl-option-' : 'alt-' );
+				
+				util.tooltipAccessKeyPrefix = (
+					// Chrome on Mac
+					profile.platform === 'mac' ? 'ctrl-option-' :
+					// Chrome on Windows
+					// (both alt- and alt-shift work, but alt-f triggers Chrome wrench menu
+					// which alt-shift-f does not)
+					profile.platform === 'win' ? 'alt-shift-' :
+					// Chrome on Ubuntu (and other?)
+					'alt-'
+				);
 
 			// Non-Windows Safari with webkit_version > 526
 			} else if ( profile.platform !== 'win'
