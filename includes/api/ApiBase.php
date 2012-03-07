@@ -1269,6 +1269,7 @@ abstract class ApiBase extends ContextSource {
 	 * @return array('code' => code, 'info' => info)
 	 */
 	public function parseMsg( $error ) {
+		$error = (array)$error; // It seems strings sometimes make their way in here
 		$key = array_shift( $error );
 
 		// Check whether the error array was nested

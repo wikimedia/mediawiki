@@ -134,13 +134,12 @@ abstract class FileOp {
 			} else {
 				$status->success[$index] = false;
 				++$status->failCount;
-				if ( !$ignoreErrors ) {
-					// Log remaining ops as failed for recovery...
-					for ( $i = ($index + 1); $i < count( $performOps ); $i++ ) {
-						$performOps[$i]->logFailure( 'attempt_aborted' );
-					}
-					return $status; // bail out
+				// We can't continue (even with $ignoreErrors) as $predicates is wrong.
+				// Log the remaining ops as failed for recovery...
+				for ( $i = ($index + 1); $i < count( $performOps ); $i++ ) {
+					$performOps[$i]->logFailure( 'attempt_aborted' );
 				}
+				return $status; // bail out
 			}
 		}
 
