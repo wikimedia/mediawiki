@@ -1017,13 +1017,11 @@ class LocalFile extends File {
 		);
 
 		if ( $dbw->affectedRows() == 0 ) {
-			if ( $oldver == '' ) { // XXX
-				# (bug 34993) publish() can displace the current file and yet fail to save 
-				# a new one. The next publish attempt will treat the file as a brand new file 
-				# and pass an empty $oldver. Allow this bogus value so we can displace the 
-				# `image` row to `oldimage`, leaving room for the new current file `image` row.
-				#throw new MWException( "Empty oi_archive_name. Database and storage out of sync?" );
-			}
+			# (bug 34993) Note: $oldver can be empty here, if the previous 
+			# version of the file was broken. Allow registration of the new 
+			# version to continue anyway, because that's better than having 
+			# an image that's not fixable by user operations.
+
 			$reupload = true;
 			# Collision, this is an update of a file
 			# Insert previous contents into oldimage
