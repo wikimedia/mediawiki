@@ -915,7 +915,10 @@ class LocalFile extends File {
 		$this->lock(); // begin
 		$status = $this->publish( $srcPath, $flags );
 
-		if ( $status->ok ) {
+		if ( $status->successCount > 0 ) {
+			# Essentially we are displacing any existing current file and saving
+			# a new current file at the old location. If just the first succeeded,
+			# we still need to displace the current DB entry and put in a new one.
 			if ( !$this->recordUpload2( $status->value, $comment, $pageText, $props, $timestamp, $user ) ) {
 				$status->fatal( 'filenotfound', $srcPath );
 			}
@@ -1014,8 +1017,12 @@ class LocalFile extends File {
 		);
 
 		if ( $dbw->affectedRows() == 0 ) {
-			if ( $oldver == '' ) {
-				throw new MWException( "Empty oi_archive_name. Database and storage out of sync?" );
+			if ( $oldver == '' ) { // XXX
+				# (bug 34993) publish() can displace the current file and yet fail to save 
+				# a new one. The next publish attempt will treat the file as a brand new file 
+				# and pass an empty $oldver. Allow this bogus value so we can displace the 
+				# `image` row to `oldimage`, leaving room for the new current file `image` row.
+				#throw new MWException( "Empty oi_archive_name. Database and storage out of sync?" );
 			}
 			$reupload = true;
 			# Collision, this is an update of a file
