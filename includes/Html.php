@@ -718,11 +718,6 @@ class Html {
 	public static function namespaceSelector( Array $params = array(), Array $selectAttribs = array() ) {
 		global $wgContLang;
 
-		// Default 'id' & 'name' <select> attributes
-		$selectAttribs = $selectAttribs + array(
-			'id'   => 'namespace',
-			'name' => 'namespace',
-		);
 		ksort( $selectAttribs );
 
 		// Is a namespace selected?
@@ -768,14 +763,22 @@ class Html {
 				// main we don't use "" but the user message descripting it (e.g. "(Main)" or "(Article)")
 				$nsName = wfMsg( 'blanknamespace' );
 			}
-			$optionsHtml[] = Xml::option( $nsName, $nsId, $nsId === $params['selected'], array(
-				'disabled' => in_array( $nsId, $params['disable'] ),
-			) );
+			$optionsHtml[] = Html::element(
+				'option', array(
+					'disabled' => in_array( $nsId, $params['disable'] ),
+					'value' => $nsId,
+					'selected' => $nsId === $params['selected'],
+				), $nsName
+			);
 		}
 
 		$ret = '';
 		if ( isset( $params['label'] ) ) {
-			$ret .= Xml::label( $params['label'], $selectAttribs['id'] ) . '&#160;';
+			$ret .= Html::element(
+				'label', array(
+					'for' => isset( $selectAttribs['id'] ) ? $selectAttribs['id'] : null,
+				), $params['label']
+			) . '&#160;';
 		}
 
 		// Wrap options in a <select>

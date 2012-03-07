@@ -109,8 +109,6 @@ class SpecialPrefixindex extends SpecialAllpages {
 				<td class='mw-input'>" .
 					Html::namespaceSelector( array(
 						'selected' => $namespace,
-						'all'      => null,
-						'label'    => null,
 					), array(
 						'name'  => 'namespace',
 						'id'    => 'namespace',
