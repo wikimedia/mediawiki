@@ -445,7 +445,7 @@ class SpecialWhatLinksHere extends SpecialPage {
 			$types[] = 'hideimages';
 
 		// Combined message keys: 'whatlinkshere-hideredirs', 'whatlinkshere-hidetrans', 'whatlinkshere-hidelinks', 'whatlinkshere-hideimages'
-		// To be sure they will be find by grep
+		// To be sure they will be found by grep
 		foreach( $types as $type ) {
 			$chosen = $this->opts->getValue( $type );
 			$msg = $chosen ? $show : $hide;
