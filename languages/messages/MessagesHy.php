@@ -523,8 +523,8 @@ $1',
 'badaccess-group0' => 'Ձեզ չի թույլատրվում կատարել տվյալ գործողությունը։',
 'badaccess-groups' => 'Տվյալ գործողությունը կարող են կատարել միայն $1 {{PLURAL:$2|խմբի|խմբերի}} մասնակիցները։',
 
-'versionrequired'     => 'Պահանջվում է MediaWiki ծրագրի $1 տարբերակը',
-'versionrequiredtext' => 'Այս էջի օգտագործման համար պահանջվում է MediaWiki ծրագրի $1 տարբերակը։ Տես [[Special:Version|տարբերակի էջը]]։',
+'versionrequired'     => 'Պահանջվում է ՄեդիաՎիքի ծրագրի $1 տարբերակը',
+'versionrequiredtext' => 'Այս էջի օգտագործման համար պահանջվում է ՄեդիաՎիքի ծրագրի $1 տարբերակը։ Տես [[Special:Version|տարբերակի էջը]]։',
 
 'ok'                      => 'OK',
 'pagetitle'               => '$1 — {{SITENAME}}',
@@ -1820,9 +1820,10 @@ $NEWPAGE
 $1',
 
 # Namespace form on various pages
-'namespace'      => 'Անվանատարածք.',
-'invert'         => 'շրջել ընտրությունը',
-'blanknamespace' => '(Գլխավոր)',
+'namespace'             => 'Անվանատարածք.',
+'invert'                => 'շրջել ընտրությունը',
+'namespace_association' => 'Կից անվատարածք',
+'blanknamespace'        => '(Գլխավոր)',
 
 # Contributions
 'contributions'       => 'Մասնակցի ներդրում',
@@ -1838,11 +1839,13 @@ $1',
 'sp-contributions-newbies-sub' => 'Նոր մասնակցային հաշիվներից',
 'sp-contributions-blocklog'    => 'Արգելափակման տեղեկամատյան',
 'sp-contributions-deleted'     => 'Մասնակցի ջնջված ներդրում',
+'sp-contributions-uploads'     => 'Բեռնումներ',
 'sp-contributions-logs'        => 'տեղեկամատյաններ',
 'sp-contributions-talk'        => 'Քննարկում',
 'sp-contributions-userrights'  => 'Մասնակիցների իրավունքների կառավարում',
 'sp-contributions-search'      => 'Որոնել ներդրումները',
 'sp-contributions-username'    => 'IP-հասե կամ մասնակցի անուն.',
+'sp-contributions-toponly'     => 'Ցույց տալ միայն այն խմբագրումները, որոնք վերջին փոփոխություն են',
 'sp-contributions-submit'      => 'Որոնել',
 
 # What links here
@@ -2015,7 +2018,7 @@ $1',
 
 # Export
 'export'            => 'Արտածել էջերը',
-'exporttext'        => 'Դուք կարող եք արտածել որևէ էջի կամ էջերի ամբողջության տեքստերը և փոփոխումների պատմությունները XML ֆորմատով, որը այնուհետև կարող է ներմուծվել այլ վիքի՝ օգտագործելով MediaWiki ծրագրի [[Special:Import|ներմուծման էջը]]։
+'exporttext'        => 'Դուք կարող եք արտածել որևէ էջի կամ էջերի ամբողջության տեքստերը և փոփոխումների պատմությունները XML ֆորմատով, որը այնուհետև կարող է ներմուծվել այլ վիքի՝ օգտագործելով ՄեդիաՎիքի ծրագրի [[Special:Import|ներմուծման էջը]]։
 
 Էջեր արտածելու համար մուտքագրեք դրանց անվանումները խմբագրման դաշտում՝ մեկ անվանում ամեն տողում, և ընտրեք՝ ցանկանում եք արտածել ամբողջ պատմությունները, թե միայն ընթացիկ տարբերակները, վերջին խմբագրումների մասին տեղեկությունների հետ միասին։
 
@@ -2387,7 +2390,7 @@ $3
 'watchlisttools-raw'  => 'Խմբագրել հում հսկացանկը',
 
 # Special:Version
-'version' => 'MediaWiki տարբերակը',
+'version' => 'ՄեդիաՎիքի տարբերակը',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-submit' => 'Որոնել',

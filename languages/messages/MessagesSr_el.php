@@ -1670,6 +1670,7 @@ Ako izaberete da ga unesete, ono će biti korišćeno za pripisivanje vašeg rad
 'newsectionsummary'                 => '/* $1 */ novi odeljak',
 'rc-enhanced-expand'                => 'Prikaži detalje (javaskript)',
 'rc-enhanced-hide'                  => 'Sakrij detalje',
+'rc-old-title'                      => 'prvobitno napravljeno kao „$1“',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Srodne izmene',
@@ -2969,7 +2970,7 @@ Pokušajte ponovo.',
 
 # JavaScriptTest
 'javascripttest'                           => 'Javaskript test',
-'javascripttest-disabled'                  => 'Ova funkcija je onemogućena.',
+'javascripttest-disabled'                  => 'Ova funkcija nije omogućena na ovom vikiju.',
 'javascripttest-title'                     => 'Izvršavanje testova za $1',
 'javascripttest-pagetext-noframework'      => 'Ova stranica je rezervisana za izvršavanje javaskript testova.',
 'javascripttest-pagetext-unknownframework' => 'Nepoznati radni okvir „$1“.',

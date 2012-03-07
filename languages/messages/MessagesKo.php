@@ -767,9 +767,9 @@ $2',
 'accountcreated'             => '계정 만들어짐',
 'accountcreatedtext'         => '‘$1’ 사용자 계정이 만들어졌습니다.',
 'createaccount-title'        => '{{SITENAME}} 계정 만들기',
-'createaccount-text'         => '{{SITENAME}}($4)에서 계정 이름 ‘$2’, 비밀번호 ‘$3’으로 계정을 만들었습니다. 로그인을 한 다음 암호를 바꾸어 주세요.
+'createaccount-text'         => '누군가가 {{SITENAME}} ($4)에서 계정 이름 ‘$2’, 비밀번호 ‘$3’로 당신의 이메일 주소가 등록된 계정을 만들었습니다. 지금 로그인하여 비밀번호를 바꾸십시오.
 
-계정을 잘못 만들었다면 이 메시지는 무시해도 됩니다.',
+계정을 실수로 만들었다면 이 메시지는 무시해도 됩니다.',
 'usernamehasherror'          => '계정 이름에는 해시 문자가 들어가서는 안 됩니다.',
 'login-throttled'            => '로그인에 연속으로 실패하였습니다.
 잠시 후에 다시 시도해주세요.',
@@ -2771,7 +2771,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'allmessages'                   => '시스템 메시지 목록',
 'allmessagesname'               => '이름',
 'allmessagesdefault'            => '기본 내용',
-'allmessagescurrent'            => '현재 메시지 글자',
+'allmessagescurrent'            => '현재 문자열',
 'allmessagestext'               => '미디어위키 이름공간에 있는 모든 시스템 메시지의 목록입니다. 미디어위키의 번역 작업에 관심이 있으면 [//www.mediawiki.org/wiki/Localisation 미디어위키 지역화]나 [//translatewiki.net translatewiki.net]에 참가해주세요.',
 'allmessagesnotsupportedDB'     => "'''\$wgUseDatabaseMessages'''가 해제되어 있어서 이 문서는 쓸 수 없습니다.",
 'allmessages-filter-legend'     => '필터',

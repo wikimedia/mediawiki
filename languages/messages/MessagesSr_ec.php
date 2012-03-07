@@ -1769,6 +1769,7 @@ $1",
 'newsectionsummary'                 => '/* $1 */ нови одељак',
 'rc-enhanced-expand'                => 'Прикажи детаље (јаваскрипт)',
 'rc-enhanced-hide'                  => 'Сакриј детаље',
+'rc-old-title'                      => 'првобитно направљено као „$1“',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Сродне измене',
@@ -3068,7 +3069,7 @@ $1',
 
 # JavaScriptTest
 'javascripttest'                           => 'Јаваскрипт тест',
-'javascripttest-disabled'                  => 'Ова функција је онемогућена.',
+'javascripttest-disabled'                  => 'Ова функција није омогућена на овом викију.',
 'javascripttest-title'                     => 'Извршавање тестова за $1',
 'javascripttest-pagetext-noframework'      => 'Ова страница је резервисана за извршавање јаваскрипт тестова.',
 'javascripttest-pagetext-unknownframework' => 'Непознати радни оквир „$1“.',

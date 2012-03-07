@@ -2076,7 +2076,7 @@ Każdy wiersz zawiera linki do pierwszego i drugiego przekierowania oraz link, d
 'mostimages'              => 'Najczęściej linkowane pliki',
 'mostrevisions'           => 'Strony o największej liczbie wersji',
 'prefixindex'             => 'Wszystkie strony o prefiksie',
-'prefixindex-namespace'   => 'Wszystkie strony z prefiksem ( $1 przestrzeń nazw)',
+'prefixindex-namespace'   => 'Wszystkie strony z prefiksem (przestrzeń nazw $1)',
 'shortpages'              => 'Najkrótsze strony',
 'longpages'               => 'Najdłuższe strony',
 'deadendpages'            => 'Strony bez linków wewnętrznych',
@@ -3929,8 +3929,8 @@ Grafiki są pokazywane w pełnej rozdzielczości. Inne typy plików są otwieran
 'newuserlog-byemail'                  => 'hasło zostało wysłane e‐mailem',
 
 # Feedback
-'feedback-bugornote' => 'Jeśli jesteś gotów szczegółowo opisać problem techniczny proszę [ $1  Zgłoś].
-W przeciwnym wypadku można użyć prostego formularza poniżej. Komentarz zostanie dodany do strony "[ $3  $2 ]", wraz z nazwą użytkownika i nazwą  przeglądarki.',
+'feedback-bugornote' => 'Jeśli jesteś {{GENDER:|gotów|gotowa}} szczegółowo opisać problem techniczny proszę [$1 zgłoś błąd].
+W przeciwnym wypadku można użyć prostego formularza poniżej. Komentarz zostanie dodany do strony "[$3  $2]", wraz z nazwą użytkownika i nazwą przeglądarki.',
 'feedback-subject'   => 'Temat',
 'feedback-message'   => 'Wiadomość:',
 'feedback-cancel'    => 'Anuluj',
@@ -3939,10 +3939,10 @@ W przeciwnym wypadku można użyć prostego formularza poniżej. Komentarz zosta
 'feedback-error1'    => 'Błąd – nierozpoznana odpowiedź API',
 'feedback-error2'    => 'Błąd – edycja nieudana',
 'feedback-error3'    => 'Błąd – brak odpowiedzi API',
-'feedback-thanks'    => 'Dziękujemy! Twoja opinia została opublikowana na stronie "[ $2  $1 ]".',
+'feedback-thanks'    => 'Dziękujemy! Twoja opinia została opublikowana na stronie "[$2 $1]".',
 'feedback-close'     => 'Gotowe',
-'feedback-bugcheck'  => 'Świetnie! Tylko sprawdzić, czy nie jest już jednym z [$1 znanych błędów].',
-'feedback-bugnew'    => 'Sprawdziłem. Zgłoś nowy błąd',
+'feedback-bugcheck'  => 'Świetnie! Tylko sprawdź, czy nie jest już jednym ze [$1 znanych błędów].',
+'feedback-bugnew'    => '{{GENDER:|Sprawdziłem|Sprawdziłam}}. Zgłoś nowy błąd',
 
 # API errors
 'api-error-badaccess-groups'              => 'Nie masz uprawnień aby przesyłać pliki do tej wiki.',

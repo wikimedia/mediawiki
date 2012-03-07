@@ -2022,9 +2022,11 @@ Téng 1 ūi siu-kái-chiá sī [[User:$3|$3]] ([[User talk:$3|talk]]{{int:pipe-s
 'ipbother'                    => '其他時間：',
 'ipboptions'                  => '兩點鐘:2 hours,一工:1 day,三工:3 days,一禮拜:1 week,兩禮拜:2 weeks,一個月:1 month,兩個月:3 months,六個月:6 months,一年:1 year,永久:infinite',
 'ipbotherreason'              => '其他／另外的理由：',
+'ipb-confirm'                 => '確定封鎖',
 'badipaddress'                => 'Bô-hāu ê IP chū-chí',
 'blockipsuccesssub'           => 'Hong-só sêng-kong',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] í-keng pī hong-só. <br />Khì [[Special:BlockList|IP hong-só lia̍t-toaⁿ]] review hong-só ê IP.',
+'ipb-blockingself'            => '你欲封鎖你家己！你敢確定欲按呢做？',
 'unblockip'                   => '解除對用者的封鎖',
 'ipusubmit'                   => 'Chhú-siau chit ê hong-só',
 'ipblocklist'                 => 'Siū hong-só ê iōng-chiá',
@@ -2330,10 +2332,13 @@ Chit tiuⁿ phoe ê khak-jīn-bé ē chū-tōng tī $4 kòe-kî.',
 'table_pager_first'        => 'Thâu-chi̍t-ia̍h',
 'table_pager_last'         => 'Siāng-bóe-ia̍h',
 'table_pager_limit'        => 'Múi 1 ia̍h hián-sī $1 hāng',
+'table_pager_limit_label'  => '每頁的項目：',
 'table_pager_limit_submit' => 'Lâi-khì',
+'table_pager_empty'        => '無結果',
 
 # Auto-summaries
 'autosumm-blank'   => 'Kā ia̍h ê loē-iông the̍h tiāu',
+'autosumm-replace' => '用"$1"共內容換掉',
 'autoredircomment' => 'Choán khì [[$1]]',
 'autosumm-new'     => 'Sin ia̍h: $1...',
 
@@ -2343,6 +2348,9 @@ Chit tiuⁿ phoe ê khak-jīn-bé ē chū-tōng tī $4 kòe-kî.',
 
 # Watchlist editor
 'watchlistedit-numitems'      => 'Lí ê kàm-sī-toaⁿ ū $1 ia̍h, thó-lūn-ia̍h bô sǹg chāi-lāi.',
+'watchlistedit-noitems'       => '你的監視單無半項。',
+'watchlistedit-normal-title'  => '改監視單',
+'watchlistedit-normal-legend' => '共文章標題對監視單徙走',
 'watchlistedit-normal-submit' => 'Mài kàm-sī',
 'watchlistedit-normal-done'   => 'Í-keng ū {{PLURAL:$1| ia̍h| ia̍h}} ùi lí ê kám-sī-toaⁿ soá cháu:',
 'watchlistedit-raw-titles'    => '標題：',
@@ -2359,16 +2367,22 @@ Chit tiuⁿ phoe ê khak-jīn-bé ē chū-tōng tī $4 kòe-kî.',
 # Special:Version
 'version'                  => 'Pán-pún',
 'version-specialpages'     => '特殊頁',
+'version-variables'        => '變數',
 'version-skins'            => '皮',
+'version-other'            => '其他',
 'version-license'          => '授權',
+'version-poweredby-others' => '其他',
 'version-software-version' => '版本',
 
 # Special:FilePath
 'filepath'        => 'Tóng-àn ê soàⁿ-lō·',
+'filepath-page'   => '檔案：',
 'filepath-submit' => '來去',
 
 # Special:FileDuplicateSearch
+'fileduplicatesearch-legend'   => '揣仝款的',
 'fileduplicatesearch-filename' => '檔案名稱：',
+'fileduplicatesearch-submit'   => '揣',
 
 # Special:SpecialPages
 'specialpages'                   => 'Te̍k-sû-ia̍h',
@@ -2376,6 +2390,8 @@ Chit tiuⁿ phoe ê khak-jīn-bé ē chū-tōng tī $4 kòe-kî.',
 'specialpages-group-other'       => '其他的特殊頁',
 'specialpages-group-login'       => '登入',
 'specialpages-group-changes'     => '最近改的記錄',
+'specialpages-group-pages'       => '頁的清單',
+'specialpages-group-pagetools'   => '頁的家私',
 'specialpages-group-wiki'        => 'Wiki資料佮家私',
 
 # Special:BlankPage
@@ -2393,15 +2409,18 @@ Chit tiuⁿ phoe ê khak-jīn-bé ē chū-tōng tī $4 kòe-kî.',
 #佇這行面頂拍所有的正規表示式部份，留佮這行仝款的字</pre>',
 
 # Special:Tags
-'tag-filter' => '[[Special:Tags|標籤]]過濾器:',
-'tags-edit'  => '修改',
+'tag-filter'        => '[[Special:Tags|標籤]]過濾器:',
+'tag-filter-submit' => '過濾器',
+'tags-edit'         => '修改',
 
 # Special:ComparePages
-'compare-page1'  => '第一頁',
-'compare-page2'  => '第二頁',
-'compare-rev1'   => '第一修訂本',
-'compare-rev2'   => '第二修訂本',
-'compare-submit' => '比較',
+'comparepages'     => '比並頁',
+'compare-selector' => '比並頁的修訂本',
+'compare-page1'    => '第一頁',
+'compare-page2'    => '第二頁',
+'compare-rev1'     => '第一修訂本',
+'compare-rev2'     => '第二修訂本',
+'compare-submit'   => '比較',
 
 # Database error messages
 'dberr-header'   => '這个Wiki遇著問題',

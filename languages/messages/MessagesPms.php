@@ -2407,12 +2407,12 @@ Për piasì che a contata sò fornitor ëd conession e che a lo anforma. As trat
 'ipbnounblockself'                => "A l'é nen autorisà a dësblochesse da sol",
 
 # Developer tools
-'lockdb'              => 'Blòca la base dat',
-'unlockdb'            => 'Dësblòca la base dat',
-'lockdbtext'          => "Ën blocand la base dat as fërma la possibilità che tuti j'Utent a peulo modifiché le pàgine ò pura fene 'd neuve, che a peulo cambiesse ij \"sò gust\", che a peulo modifichesse soe liste dla ròba da tnì sot euj, e an general gnun a podrà pì fé dj'operassion che a ciamo dë modifiché la base dat.<br /><br />
-Për piasì, che an conferma che sossì a l'é pròpe lòn che a veul fé, e dzortut che a sblocherà la base dat pì ampressa che a peul, an manera che tut a funsion-a torna coma che as dev, pen-a che a l'avrà finisse soa manutension.",
-'unlockdbtext'        => "Ën dësblocand la base dat as darà andaré a tuti j'Utent la possibilità dë fé 'd modìfiche a le pàgine ò dë fene ëd neuve, ëd cangé ij \"sò gust\", ëd modifiché soe liste 'd ròba da tnì sot euj, e pì an general dë fé tute cole operassion che a l'han da manca dë fé 'd modìfiche a la base dat.
-Për piasì, che an conferma che sòn a l'é da bon lòn che chiel (chila) a veul fé.",
+'lockdb'              => 'Bloché la base ëd dat',
+'unlockdb'            => 'Dësbloché la base ëd dat',
+'lockdbtext'          => "Ën blocand la base dat as fërma la possibilità che tuti j'Utent a peulo modifiché le pàgine ò pura fene 'd neuve, che a peulo cambiesse ij «sò gust», che a peulo modifichesse soe liste dla ròba da tnì sot euj, e an general gnun a podrà pì fé dj'operassion che a ciamo dë modifiché la base dat.<br /><br />
+Për piasì, che an conferma che sossì a l'é pròpe lòn che a veul fé, e dzortut che a dësblocherà la base dat pì ampressa che a peul, an manera che tut a funsion-a torna coma che as dev, pen-a che a l'avrà finisse soa manutension.",
+'unlockdbtext'        => "Ën dësblocand la base dat as darà andaré a tuti j'Utent la possibilità dë fé 'd modìfiche a le pàgine ò dë fene ëd neuve, ëd cangé ij «sò gust», ëd modifiché soe liste 'd ròba da tnì sot euj, e pì an general dë fé tute cole operassion che a l'han da manca dë fé 'd modìfiche a la base dat.
+Për piasì, che an conferma che sòn a l'é da bon lòn che chiel a veul fé.",
 'lockconfirm'         => 'É, i veuj da bon, e sota mia responsabilità, bloché la base dat.',
 'unlockconfirm'       => ' É, da bon i veuj dësbloché la base dat, sota mia responsabilità personal.',
 'lockbtn'             => 'Blòca la base dat',
