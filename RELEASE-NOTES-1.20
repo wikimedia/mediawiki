@@ -21,6 +21,7 @@ production.
   contentSub, ... The same div often also contains the class mw-content-ltr/rtl.
 * (bug 27619) Remove preference option to display broken links as link?
 * (bug 34896) Update jQuery JSON plugin to v2.3 (2011-09-17)
+* (bug 34302) Add CSS classes to email fields in user preferences
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.

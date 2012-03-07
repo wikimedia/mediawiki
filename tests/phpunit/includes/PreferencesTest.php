@@ -31,9 +31,10 @@ class PreferencesTest extends MediaWikiTestCase {
 	 */
 	function testEmailFieldsWhenUserHasNoEmail() {
 		$prefs = $this->prefsFor( 'noemail' );
-		$this->assertArrayNotHasKey( 'class',
+		$this->assertArrayHasKey( 'cssclass',
 			$prefs['emailaddress']
 		);
+		$this->assertEquals( 'mw-email-none', $prefs['emailaddress']['cssclass'] );
 	}
 	/**
 	 * Placeholder to verify bug 34302
@@ -41,9 +42,10 @@ class PreferencesTest extends MediaWikiTestCase {
 	 */
 	function testEmailFieldsWhenUserEmailNotAuthenticated() {
 		$prefs = $this->prefsFor( 'notauth' );
-		$this->assertArrayNotHasKey( 'class',
+		$this->assertArrayHasKey( 'cssclass',
 			$prefs['emailaddress']
 		);
+		$this->assertEquals( 'mw-email-not-authenticated', $prefs['emailaddress']['cssclass'] );
 	}
 	/**
 	 * Placeholder to verify bug 34302
@@ -51,9 +53,10 @@ class PreferencesTest extends MediaWikiTestCase {
 	 */
 	function testEmailFieldsWhenUserEmailIsAuthenticated() {
 		$prefs = $this->prefsFor( 'auth' );
-		$this->assertArrayNotHasKey( 'class',
+		$this->assertArrayHasKey( 'cssclass',
 			$prefs['emailaddress']
 		);
+		$this->assertEquals( 'mw-email-authenticated', $prefs['emailaddress']['cssclass'] );
 	}
 
 

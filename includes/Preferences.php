@@ -354,16 +354,19 @@ class Preferences {
 				$emailAddress .= $emailAddress == '' ? $link : " ($link)";
 			}
 
+
 			$defaultPreferences['emailaddress'] = array(
 				'type' => 'info',
 				'raw' => true,
 				'default' => $emailAddress,
 				'label-message' => 'youremail',
 				'section' => 'personal/email',
+				# 'cssclass' chosen below
 			);
 
 			$disableEmailPrefs = false;
 
+			$emailauthenticationclass = 'mw-email-not-authenticated';
 			if ( $wgEmailAuthentication ) {
 				if ( $user->getEmail() ) {
 					if ( $user->getEmailAuthenticationTimestamp() ) {
@@ -378,6 +381,7 @@ class Preferences {
 						$emailauthenticated = $context->msg( 'emailauthenticated',
 							$time, $d, $t )->parse() . '<br />';
 						$disableEmailPrefs = false;
+						$emailauthenticationclass = 'mw-email-authenticated';
 					} else {
 						$disableEmailPrefs = true;
 						$emailauthenticated = $context->msg( 'emailnotauthenticated' )->parse() . '<br />' .
@@ -385,10 +389,12 @@ class Preferences {
 								SpecialPage::getTitleFor( 'Confirmemail' ),
 								$context->msg( 'emailconfirmlink' )->escaped()
 							) . '<br />';
+						$emailauthenticationclass="mw-email-not-authenticated";
 					}
 				} else {
 					$disableEmailPrefs = true;
 					$emailauthenticated = $context->msg( 'noemailprefs' )->escaped();
+					$emailauthenticationclass = 'mw-email-none';
 				}
 
 				$defaultPreferences['emailauthentication'] = array(
@@ -397,9 +403,11 @@ class Preferences {
 					'section' => 'personal/email',
 					'label-message' => 'prefs-emailconfirm-label',
 					'default' => $emailauthenticated,
+					# Apply the same CSS class used on the input to the message:
+					'cssclass' => $emailauthenticationclass,
 				);
-
 			}
+			$defaultPreferences['emailaddress']['cssclass'] = $emailauthenticationclass;
 
 			if ( $wgEnableUserEmail && $user->isAllowed( 'sendemail' ) ) {
 				$defaultPreferences['disablemail'] = array(
