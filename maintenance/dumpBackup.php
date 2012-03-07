@@ -88,6 +88,10 @@ XML interchange wrapper format for export or backup.
 
 XML output is sent to stdout; progress reports are sent to stderr.
 
+WARNING: this is not a full database dump! It is merely for public export
+		 of your wiki. For full backup, see our online help at:
+         https://www.mediawiki.org/wiki/Backup
+
 Usage: php dumpBackup.php <action> [<options>]
 Actions:
   --full      Dump all revisions of every page.
