@@ -29,7 +29,7 @@ abstract class FileBackendStore extends FileBackend {
 	/** @var Array Map of container names to sharding settings */
 	protected $shardViaHashLevels = array(); // (container name => config array)
 
-	protected $maxFileSize = 1000000000; // integer bytes (1GB)
+	protected $maxFileSize = 4294967296; // integer bytes (4GiB)
 
 	/**
 	 * Get the maximum allowable file size given backend
