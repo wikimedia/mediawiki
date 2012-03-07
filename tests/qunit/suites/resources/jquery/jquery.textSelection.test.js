@@ -253,6 +253,8 @@ var caretTest = function(options) {
 
 var caretSample = "Some big text that we like to work with. Nothing fancy... you know what I mean?";
 
+/*
+ // @broken: Disabled per bug 34820
 caretTest({
 	description: 'getCaretPosition with original/empty selection - bug 31847 with IE 6/7/8',
 	text: caretSample,
@@ -260,6 +262,7 @@ caretTest({
 	end: [0, caretSample.length], // Other browsers default it to the beginning (0), so check both.
 	mode: 'get'
 });
+*/
 
 caretTest({
 	description: 'set/getCaretPosition with forced empty selection',
