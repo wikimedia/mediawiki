@@ -356,11 +356,11 @@ class SpecialNewpages extends IncludableSpecialPage {
 
 		$css = count( $classes ) ? ' class="' . implode( ' ', $classes ) . '"' : '';
 
-		# Display the old title if the namespace has been changed
+		# Display the old title if the namespace/title has been changed
 		$oldTitleText = '';
-		if ( $result->page_namespace !== $result->rc_namespace ) {
-			$oldTitleText = wfMessage( 'rc-old-title' )->params( Title::makeTitle( $result->rc_namespace, $result->rc_title )
-			                                           ->getPrefixedText() )->escaped();	
+		$oldTitle = Title::makeTitle( $result->rc_namespace, $result->rc_title );
+		if ( !$title->equals( $oldTitle ) ) {
+			$oldTitleText = wfMessage( 'rc-old-title' )->params( $oldTitle->getPrefixedText() )->escaped();	
 		}
 
 		return "<li{$css}>{$time} {$dm}{$plink} {$hist} {$dm}{$length} {$dm}{$ulink} {$comment} {$tagDisplay} {$oldTitleText}</li>\n";
