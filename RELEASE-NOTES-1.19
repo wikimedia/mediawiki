@@ -295,6 +295,8 @@ production.
   calling action=purge&forcelinkupdate.
 * (bug 34377) action=watch now parses messages using the correct title instead
   of "API".
+* (bug 35036) WikiLove messages were not automatically updated in JavaScript
+  after having been changed on-wiki due to a bug in core
 
 === Languages updated in 1.19 ===
 
