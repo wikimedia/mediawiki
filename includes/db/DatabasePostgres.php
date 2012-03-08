@@ -159,7 +159,6 @@ class DatabasePostgres extends DatabaseBase {
 			return;
 		}
 
-		$this->close();
 		$this->mServer = $server;
 		$port = $wgDBport;
 		$this->mUser = $user;
@@ -177,10 +176,14 @@ class DatabasePostgres extends DatabaseBase {
 		if ( $port != false && $port != '' ) {
 			$connectVars['port'] = $port;
 		}
-		$connectString = $this->makeConnectionString( $connectVars, PGSQL_CONNECT_FORCE_NEW );
+		$this->connectString = $this->makeConnectionString( $connectVars, PGSQL_CONNECT_FORCE_NEW );
+		$this->reOpen();
+	}
 
+	function reOpen() {
+		$this->close();
 		$this->installErrorHandler();
-		$this->mConn = pg_connect( $connectString );
+		$this->mConn = pg_connect( $this->connectString );
 		$phpError = $this->restoreErrorHandler();
 
 		if ( !$this->mConn ) {
@@ -252,6 +255,13 @@ class DatabasePostgres extends DatabaseBase {
 		$this->mAffectedRows = null; // use pg_affected_rows(mLastResult)
 		return $this->mLastResult;
 	}
+
+	function reportQueryError( $error, $errno, $sql, $fname, $tempIgnore = false ) {
+		$this->rollback( __METHOD__ );
+		$this->reOpen();
+		parent::reportQueryError( $error, $errno, $sql, $fname, $tempIgnore );
+	}
+
 
 	function queryIgnore( $sql, $fname = 'DatabasePostgres::queryIgnore' ) {
 		return $this->query( $sql, $fname, true );
