@@ -72,7 +72,7 @@ class RebuildLocalisationCache extends Maintenance {
 		}
 		$lc = new LocalisationCache_BulkLoad( $conf );
 
-		$codes = array_keys( Language::getLanguageNames( true ) );
+		$codes = array_keys( Language::fetchLanguageNames( null, 'mwfile' ) );
 		sort( $codes );
 
 		// Initialise and split into chunks

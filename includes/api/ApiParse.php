@@ -399,7 +399,7 @@ class ApiParse extends ApiBase {
 		$langs = array();
 		foreach ( $languages as $l ) {
 			$nt = Title::newFromText( $l );
-			$text = $wgContLang->getLanguageName( $nt->getInterwiki() );
+			$text = Language::fetchLanguageName( $nt->getInterwiki() );
 
 			$langs[] = Html::element( 'a',
 				array( 'href' => $nt->getFullURL(), 'title' => $nt->getText(), 'class' => "external" ),

@@ -348,7 +348,7 @@ class LegacyTemplate extends BaseTemplate {
 	}
 
 	function otherLanguages() {
-		global $wgOut, $wgLang, $wgContLang, $wgHideInterlanguageLinks;
+		global $wgOut, $wgLang, $wgHideInterlanguageLinks;
 
 		if ( $wgHideInterlanguageLinks ) {
 			return '';
@@ -375,7 +375,7 @@ class LegacyTemplate extends BaseTemplate {
 			$first = false;
 
 			$nt = Title::newFromText( $l );
-			$text = $wgContLang->getLanguageName( $nt->getInterwiki() );
+			$text = Language::fetchLanguageName( $nt->getInterwiki() );
 
 			$s .= Html::element( 'a',
 				array( 'href' => $nt->getFullURL(), 'title' => $nt->getText(), 'class' => "external" ),

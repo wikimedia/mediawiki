@@ -402,7 +402,6 @@ ENDS;
 	 * Output the checks results as wiki text.
 	 */
 	function outputWiki() {
-		global $wgContLang;
 		$detailText = '';
 		$rows[] = '! Language !! Code !! Total !! ' . implode( ' !! ', array_diff( $this->checks, $this->nonMessageChecks() ) );
 		foreach ( $this->results as $code => $results ) {
@@ -438,7 +437,7 @@ ENDS;
 				# Don't list languages without problems
 				continue;
 			}
-			$language = $wgContLang->getLanguageName( $code );
+			$language = Language::fetchLanguageName( $code );
 			$rows[] = "| $language || $code || $problems || " . implode( ' || ', $numbers );
 		}
 

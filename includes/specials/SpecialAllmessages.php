@@ -146,7 +146,7 @@ class AllmessagesTablePager extends TablePager {
 	function buildForm() {
 		global $wgScript;
 
-		$languages = Language::getLanguageNames( false );
+		$languages = Language::fetchLanguageNames( null, 'mw' );
 		ksort( $languages );
 
 		$out  = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript, 'id' => 'mw-allmessages-form' ) ) .

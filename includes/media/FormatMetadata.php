@@ -800,7 +800,7 @@ class FormatMetadata {
 					break;
 
 				case 'LanguageCode':
-					$lang = $wgLang->getLanguageName( strtolower( $val ) );
+					$lang = Language::fetchLanguageName( strtolower( $val ), $wgLang );
 					if ($lang) {
 						$val = htmlspecialchars( $lang );
 					} else {
@@ -941,7 +941,6 @@ class FormatMetadata {
 	 * 	this is treated as wikitext not html).
 	 */
 	private static function langItem( $value, $lang, $default = false, $noHtml = false ) {
-		global $wgContLang;
 		if ( $lang === false && $default === false) {
 			throw new MWException('$lang and $default cannot both '
 				. 'be false.');
@@ -966,11 +965,11 @@ class FormatMetadata {
 		}
 
 		$lowLang = strtolower( $lang );
-		$langName = $wgContLang->getLanguageName( $lowLang );
+		$langName = Language::fetchLanguageName( $lowLang );
 		if ( $langName === '' ) {
 			//try just the base language name. (aka en-US -> en ).
 			list( $langPrefix ) = explode( '-', $lowLang, 2 );
-			$langName = $wgContLang->getLanguageName( $langPrefix );
+			$langName = Language::fetchLanguageName( $langPrefix );
 			if ( $langName === '' ) {
 				// give up.
 				$langName = $lang;

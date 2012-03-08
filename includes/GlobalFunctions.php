@@ -1322,7 +1322,7 @@ function wfGetLangObj( $langcode = false ) {
 		return $wgLang;
 	}
 
-	$validCodes = array_keys( Language::getLanguageNames() );
+	$validCodes = array_keys( Language::fetchLanguageNames() );
 	if( in_array( $langcode, $validCodes ) ) {
 		# $langcode corresponds to a valid language.
 		return Language::factory( $langcode );

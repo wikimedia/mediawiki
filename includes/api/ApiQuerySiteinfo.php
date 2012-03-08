@@ -273,12 +273,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 		$params = $this->extractRequestParams();
 		$langCode = isset( $params['inlanguagecode'] ) ? $params['inlanguagecode'] : '';
-
-		if( $langCode ) {
-			$langNames = Language::getTranslatedLanguageNames( $langCode );
-		} else {
-			$langNames = Language::getLanguageNames();
-		}
+		$langNames = Language::fetchLanguageNames( $langCode );
 
 		$getPrefixes = Interwiki::getAllPrefixes( $local );
 		$data = array();
@@ -479,12 +474,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	public function appendLanguages( $property ) {
 		$params = $this->extractRequestParams();
 		$langCode = isset( $params['inlanguagecode'] ) ? $params['inlanguagecode'] : '';
-
-		if( $langCode ) {
-			$langNames = Language::getTranslatedLanguageNames( $langCode );
-		} else {
-			$langNames = Language::getLanguageNames();
-		}
+		$langNames = Language::getLanguageNames( $langCode );
 
 		$data = array();
 
