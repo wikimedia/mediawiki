@@ -75,8 +75,8 @@ class ObjectCache {
 	 * CACHE_ANYTHING means that stuff has to be cached, not caching is not an option.
 	 * If a caching method is configured for any of the main caches ($wgMainCacheType,
 	 * $wgMessageCacheType, $wgParserCacheType), then CACHE_ANYTHING will effectively
-	 * be an alias to the configured cache choise for that.
-	 * If no cache choise is configured (by default $wgMainCacheType is CACHE_NONE),
+	 * be an alias to the configured cache choice for that.
+	 * If no cache choice is configured (by default $wgMainCacheType is CACHE_NONE),
 	 * then CACHE_ANYTHING will forward to CACHE_DB.
 	 */
 	static function newAnything( $params ) {
