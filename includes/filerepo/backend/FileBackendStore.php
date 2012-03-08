@@ -67,7 +67,7 @@ abstract class FileBackendStore extends FileBackend {
 	final public function createInternal( array $params ) {
 		wfProfileIn( __METHOD__ );
 		if ( strlen( $params['content'] ) > $this->maxFileSizeInternal() ) {
-			$status = Status::newFatal( 'backend-fail-create', $params['dst'] );
+			$status = Status::newFatal( 'backend-fail-maxsize', $params['dst'] );
 		} else {
 			$status = $this->doCreateInternal( $params );
 			$this->clearCache( array( $params['dst'] ) );

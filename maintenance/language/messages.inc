@@ -1365,6 +1365,7 @@ $wgMessageStructure = array(
 		'backend-fail-closetemp',
 		'backend-fail-read',
 		'backend-fail-create',
+		'backend-fail-maxsize',
 		'backend-fail-readonly',
 		'backend-fail-synced',
 		'backend-fail-connect',
