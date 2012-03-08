@@ -617,6 +617,7 @@ class EmailNotification {
 		# simply editing the Meta pages
 
 		$keys = array();
+		$postTransformKeys = array();
 
 		if ( $this->oldid ) {
 			if ( $wgEnotifImpersonal ) {
@@ -639,7 +640,6 @@ class EmailNotification {
 		$keys['$PAGETITLE'] = $this->title->getPrefixedText();
 		$keys['$PAGETITLE_URL'] = $this->title->getCanonicalUrl();
 		$keys['$PAGEMINOREDIT'] = $this->minorEdit ? wfMsgForContent( 'minoredit' ) : '';
-		$keys['$PAGESUMMARY'] = $this->summary == '' ? ' - ' : $this->summary;
 		$keys['$UNWATCHURL'] = $this->title->getCanonicalUrl( 'action=unwatch' );
 
 		if ( $this->editor->isAnon() ) {
@@ -654,16 +654,20 @@ class EmailNotification {
 
 		$keys['$PAGEEDITOR_WIKI'] = $this->editor->getUserPage()->getCanonicalUrl();
 
+		# Replace this after transforming the message, bug 35019
+		$postTransformKeys['$PAGESUMMARY'] = $this->summary == '' ? ' - ' : $this->summary;
+
 		# Now build message's subject and body
 
 		$subject = wfMsgExt( 'enotif_subject', 'content' );
 		$subject = strtr( $subject, $keys );
-		$this->subject = MessageCache::singleton()->transform( $subject, false, null, $this->title );
+		$subject = MessageCache::singleton()->transform( $subject, false, null, $this->title );
+		$this->subject = strtr( $subject, $postTransformKeys );
 
 		$body = wfMsgExt( 'enotif_body', 'content' );
 		$body = strtr( $body, $keys );
 		$body = MessageCache::singleton()->transform( $body, false, null, $this->title );
-		$this->body = wordwrap( $body, 72 );
+		$this->body = wordwrap( strtr( $body, $postTransformKeys ), 72 );
 
 		# Reveal the page editor's address as REPLY-TO address only if
 		# the user has not opted-out and the option is enabled at the

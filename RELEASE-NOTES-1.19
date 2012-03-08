@@ -14,6 +14,7 @@ production.
 === Changes since 1.19 beta 1 ===
 * (bug 35014) Including a special page no longer sets the page's title to the
   included page
+* (bug 35019) Edit summaries are no longer transformed in notification e-mails
 
 === Configuration changes in 1.19 ===
 * Removed SkinTemplateSetupPageCss hook; use BeforePageDisplay instead.
