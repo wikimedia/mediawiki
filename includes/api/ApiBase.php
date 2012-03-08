@@ -811,8 +811,8 @@ abstract class ApiBase extends ContextSource {
 
 		if ( $type == 'boolean' ) {
 			if ( isset( $default ) && $default !== false ) {
-				// Having a default value of anything other than 'false' is pointless
-				ApiBase::dieDebug( __METHOD__, "Boolean param $encParamName's default is set to '$default'" );
+				// Having a default value of anything other than 'false' is not allowed
+				ApiBase::dieDebug( __METHOD__, "Boolean param $encParamName's default is set to '$default'. Boolean parameters must default to false." );
 			}
 
 			$value = $this->getRequest()->getCheck( $encParamName );
