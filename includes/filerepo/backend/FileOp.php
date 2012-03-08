@@ -81,6 +81,10 @@ abstract class FileOp {
 	 * 'allowStale' : Don't require the latest available data.
 	 *                This can increase performance for non-critical writes.
 	 *                This has no effect unless the 'force' flag is set.
+	 *
+	 * The resulting Status will be "OK" unless:
+	 *     a) unexpected operation errors occurred (network partitions, disk full...)
+	 *     b) significant operation errors occured and 'force' was not set
 	 * 
 	 * @param $performOps Array List of FileOp operations
 	 * @param $opts Array Batch operation options
@@ -113,6 +117,11 @@ abstract class FileOp {
 					return $status; // abort
 				}
 			}
+		}
+
+		if ( $ignoreErrors ) {
+			# Treat all precheck() fatals as merely warnings
+			$status->setResult( true, $status->value );
 		}
 
 		// Restart PHP's execution timer and set the timeout to safe amount.
