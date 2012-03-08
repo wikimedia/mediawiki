@@ -11,6 +11,10 @@ This is a beta release of the MediaWiki 1.19 branch. Please test it and let us
 know what you think of it. Beta releases are not recommended for use in
 production.
 
+=== Changes since 1.19 beta 1 ===
+* (bug 35014) Including a special page no longer sets the page's title to the
+  included page
+
 === Configuration changes in 1.19 ===
 * Removed SkinTemplateSetupPageCss hook; use BeforePageDisplay instead.
 * (bug 27132) movefile right granted by default to registered users.

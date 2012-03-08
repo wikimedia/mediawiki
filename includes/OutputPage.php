@@ -3433,7 +3433,7 @@ $templates
 	 * @param $args array
 	 */
 	public function addWikiMsgArray( $name, $args ) {
-		$this->addWikiText( $this->msg( $name, $args )->plain() );
+		$this->addHTML( $this->msg( $name, $args )->parseAsBlock() );
 	}
 
 	/**
