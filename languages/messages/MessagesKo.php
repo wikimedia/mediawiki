@@ -9,12 +9,14 @@
  *
  * @author Albamhandae
  * @author Chanhee
+ * @author Chulki Lee
  * @author Cwt96
  * @author Devunt
  * @author Ficell
  * @author Freebiekr
  * @author Gapo
  * @author Gjue
+ * @author Ha98574
  * @author IRTC1015
  * @author ITurtle
  * @author Idh0854
@@ -769,7 +771,7 @@ $2',
 'createaccount-title'        => '{{SITENAME}} 계정 만들기',
 'createaccount-text'         => '누군가가 {{SITENAME}} ($4)에서 계정 이름 ‘$2’, 비밀번호 ‘$3’로 당신의 이메일 주소가 등록된 계정을 만들었습니다. 지금 로그인하여 비밀번호를 바꾸십시오.
 
-계정을 실수로 만들었다면 이 메시지는 무시해도 됩니다.',
+실수로 계정을 잘못 만들었다면 이 메시지는 무시해도 됩니다.',
 'usernamehasherror'          => '계정 이름에는 해시 문자가 들어가서는 안 됩니다.',
 'login-throttled'            => '로그인에 연속으로 실패하였습니다.
 잠시 후에 다시 시도해주세요.',
@@ -2854,7 +2856,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 
 # JavaScriptTest
 'javascripttest'                           => '자바스크립트 테스트',
-'javascripttest-disabled'                  => '이 기능은 비활성화돼 있습니다.',
+'javascripttest-disabled'                  => '이 기능은 비활성되어 있습니다.',
 'javascripttest-title'                     => '$1 테스트 실행',
 'javascripttest-pagetext-noframework'      => '이 페이지는 자바스크립트 테스트를 실행하기 위한 용도로 할당되어 있습니다.',
 'javascripttest-pagetext-unknownframework' => '실험용 프레임워크 "$1"를 알 수 없습니다.',

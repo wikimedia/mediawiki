@@ -8,6 +8,7 @@
  * @file
  *
  * @author Ianbu
+ * @author Kaihsu
  */
 
 $datePreferences = array(
@@ -1071,7 +1072,7 @@ $1",
 'stub-threshold'                => '<a href="#" class="stub">短頁連結</a>的門檻值 （位元組）:',
 'stub-threshold-disabled'       => '莫用',
 'recentchangesdays'             => 'Hián-sī kúi ji̍t chòe-kīn ê kái-piàn:',
-'recentchangesdays-max'         => '上濟$1{{PLURAL:$1|工|工}}',
+'recentchangesdays-max'         => 'siōng-choē $1 {{PLURAL:$1|kang|kang}}',
 'recentchangescount'            => 'Beh hián-sī kúi tiâu chòe-kīn kái--ê:',
 'prefs-help-recentchangescount' => '這包括最近改的、頁的歷史佮記錄',
 'prefs-help-watchlist-token'    => '佇這个欄位加入一个密鑰，伊佇你訂看監視清單 RSS內底嘛會產生。
@@ -1307,7 +1308,7 @@ Tī pat-lâng liân-lo̍k lí ê sî-chūn bē kā e-mail tsū-tsí siá chhut--
 'action-sendemail'            => '寄電子批',
 
 # Recent changes
-'nchanges'                          => '$1 {{PLURAL:$1|改|改}}',
+'nchanges'                          => '$1 {{PLURAL:$1|kái|kái}}',
 'recentchanges'                     => 'Chòe-kīn ê kái-piàn',
 'recentchanges-legend'              => '最近編輯的選項',
 'recentchangestext'                 => '佇這頁，看阮這个Wiki最近改的',
@@ -1678,6 +1679,7 @@ $1',
 'statistics-articles'     => '內容頁',
 'statistics-pages-desc'   => '佇Wiki所有的頁，包括討論頁、轉頁等等。',
 'statistics-files'        => '上載檔案',
+'statistics-users-active' => '猶咧出工的用者',
 'statistics-mostpopular'  => '上濟人看的頁',
 
 'disambiguations'     => 'Khu-pia̍t-ia̍h',
@@ -1731,6 +1733,7 @@ Template:Khu-pia̍t-ia̍h',
 'protectedpages'          => 'Siū pó-hō͘ ê ia̍h',
 'protectedpagestext'      => 'Ē-kha ê ia̍h siū pó-hō͘, bē-tit soá-ūi ia̍h pian-chi̍p',
 'listusers'               => 'Iōng-chiá lia̍t-toaⁿ',
+'listusers-creationsort'  => '照開始寫的日期排',
 'usercreated'             => ' {{GENDER:$3|}}佇$1 $2創建',
 'newpages'                => 'Sin ia̍h',
 'newpages-username'       => 'Iōng-chiá miâ-chheng:',
@@ -1778,8 +1781,9 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'deletedcontributions-title' => 'Hō͘ lâng thâi tiāu ê kòng-hiàn',
 
 # Special:LinkSearch
-'linksearch'      => 'Chhiau-chhoē chām-goā liân-kiat',
+'linksearch'      => 'Chhoē chām-goā ê liân-kiat',
 'linksearch-ns'   => '名空間：',
+'linksearch-ok'   => '揣',
 'linksearch-line' => '$1 是對$2連接來的',
 
 # Special:ListUsers
@@ -1791,6 +1795,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'activeusers-intro'      => '這是佇過去$1 {{PLURAL:$1|工y|工}}有做過一寡活動的用者清單。',
 'activeusers-hidebots'   => '掩機器人',
 'activeusers-hidesysops' => '掩管理員',
+'activeusers-noresult'   => '揣無用者',
 
 # Special:Log/newusers
 'newuserlogpage'     => '用者建立的記錄',
@@ -1801,23 +1806,25 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listgrouprights-members' => '(成員列單)',
 
 # E-mail user
-'mailnologin'     => 'Bô siu-phoe ê chū-chí',
-'mailnologintext' => 'Lí it-tēng ài [[Special:UserLogin|teng-ji̍p]] jī-chhiáⁿ ū 1 ê ū-hāu ê e-mail chū-chí tī lí ê [[Special:Preferences|iōng-chiá siat-tēng]] chiah ē-tàng kià e-mail hō· pa̍t-ūi iōng-chiá.',
-'emailuser'       => 'Kià e-mail hō· iōng-chiá',
-'emailpage'       => 'E-mail iōng-chiá',
-'emailpagetext'   => 'Ká-sú chit ê iōng-chiá ū siat-tēng 1 ê ū-hāu ê e-mail chū-chí, lí tō ē-tàng ēng ē-kha chit tiuⁿ FORM hoat sìn-sek hō· i. Lí siat-tēng ê e-mail chū-chí ē chhut-hiān tī e-mail ê "Kià-phoe-jîn" (From) hit ūi. Án-ne siu-phoe-jîn chiah ū hoat-tō· kā lí hôe-phoe.',
-'noemailtitle'    => 'Bô e-mail chū-chí',
-'noemailtext'     => 'Chit ūi iōng-chiá pēng-bô lâu ū-hāu ê e-mail chū-chí.',
-'nowikiemailtext' => '這个用者無欲收電子批。',
-'emailusername'   => '用者名稱：',
-'emailfrom'       => 'Lâi chū:',
-'emailto'         => 'Khì hō·:',
-'emailsubject'    => 'Tê-bo̍k:',
-'emailmessage'    => 'Sìn-sit:',
-'emailsend'       => 'Sàng chhut-khì',
-'emailccme'       => '共我的訊息用電子批寄一份予我',
-'emailsent'       => 'E-mail sàng chhut-khì ah',
-'emailsenttext'   => 'Lí ê e-mail í-keng sàng chhut-khì ah.',
+'mailnologin'          => 'Bô siu-phoe ê chū-chí',
+'mailnologintext'      => 'Lí it-tēng ài [[Special:UserLogin|teng-ji̍p]] jī-chhiáⁿ ū 1 ê ū-hāu ê e-mail chū-chí tī lí ê [[Special:Preferences|iōng-chiá siat-tēng]] chiah ē-tàng kià e-mail hō· pa̍t-ūi iōng-chiá.',
+'emailuser'            => 'Kià e-mail hō· iōng-chiá',
+'emailpage'            => 'E-mail iōng-chiá',
+'emailpagetext'        => 'Ká-sú chit ê iōng-chiá ū siat-tēng 1 ê ū-hāu ê e-mail chū-chí, lí tō ē-tàng ēng ē-kha chit tiuⁿ FORM hoat sìn-sek hō· i. Lí siat-tēng ê e-mail chū-chí ē chhut-hiān tī e-mail ê "Kià-phoe-jîn" (From) hit ūi. Án-ne siu-phoe-jîn chiah ū hoat-tō· kā lí hôe-phoe.',
+'usermaildisabled'     => '你的電子批已經停掉',
+'usermaildisabledtext' => '你袂當佇這个wiki寄批予別人',
+'noemailtitle'         => 'Bô e-mail chū-chí',
+'noemailtext'          => 'Chit ūi iōng-chiá pēng-bô lâu ū-hāu ê e-mail chū-chí.',
+'nowikiemailtext'      => '這个用者無欲收電子批。',
+'emailusername'        => '用者名稱：',
+'emailfrom'            => 'Lâi chū:',
+'emailto'              => 'Khì hō·:',
+'emailsubject'         => 'Tê-bo̍k:',
+'emailmessage'         => 'Sìn-sit:',
+'emailsend'            => 'Sàng chhut-khì',
+'emailccme'            => '共我的訊息用電子批寄一份予我',
+'emailsent'            => 'E-mail sàng chhut-khì ah',
+'emailsenttext'        => 'Lí ê e-mail í-keng sàng chhut-khì ah.',
 
 # User Messenger
 'usermessage-summary' => '留系統信息',
@@ -2186,15 +2193,26 @@ Lí ē-sái khoàⁿ i ê goân-sú-bé.',
 'tooltip-summary'                 => 'Siá chi̍t-ê kán-tan soat-bêng',
 
 # Attribution
-'anonymous'     => '{{SITENAME}} bô kì-miâ ê iōng-chiá',
+'anonymous'     => '{{SITENAME}} ê {{PLURAL:$1|ê bô kì-miâ ê iōng-chiá|ê bô kì-miâ ê iōng-chiá}} .',
 'siteuser'      => '{{SITENAME}} iōng-chiá $1',
 'othercontribs' => 'Kin-kù $1 ê kòng-hiàn.',
 'siteusers'     => '{{SITENAME}} iōng-chiá $1',
 
+# Info page
+'pageinfo-title'            => '"$1"的資訊',
+'pageinfo-header-edits'     => '修改',
+'pageinfo-header-watchlist' => '監視單',
+'pageinfo-header-views'     => '看',
+'pageinfo-talkpage'         => '討論頁',
+'pageinfo-watchers'         => '監視的人數',
+'pageinfo-edits'            => '編輯幾擺',
+'pageinfo-authors'          => '幾个作者',
+'pageinfo-views'            => '看幾擺',
+
 # Patrolling
 'markaspatrolleddiff'                 => 'Phiau-sī sûn--kòe',
-'markaspatrolledtext'                 => '共這頁記號做巡過',
-'markedaspatrolled'                   => '記號做巡過',
+'markaspatrolledtext'                 => 'kā chit ia̍h kì-hō chò sûn--koè = 共這頁記號做巡過',
+'markedaspatrolled'                   => 'kì-hō chò sûn--koè = 記號做巡過',
 'markedaspatrolledtext'               => 'Soán-te̍k  ê siu-tēng-pún [[:$1]]  í-keng kì-hō chò sûn--kòe.',
 'rcpatroldisabled'                    => '巡最近改的功能已經關掉',
 'markedaspatrollederror'              => '袂使記號做巡查過',
@@ -2207,8 +2225,10 @@ Lí ē-sái khoàⁿ i ê goân-sú-bé.',
 'log-show-hide-patrol' => '$1巡查記錄',
 
 # Image deletion
-'deletedrevision'       => 'Kū siu-tēng-pún $1 thâi-tiāu ā.',
-'filedeleteerror-short' => '欲刣掉檔案的時陣有錯誤：$1',
+'deletedrevision'             => 'Kū siu-tēng-pún $1 thâi-tiāu ā.',
+'filedeleteerror-short'       => '欲刣掉檔案的時陣有錯誤：$1',
+'filedelete-missing'          => '"$1"這个檔案袂當刣掉，無彼个檔案。',
+'filedelete-old-unregistered' => '指定的"$1"檔案修訂本無佇資料庫內底。',
 
 # Browsing diffs
 'previousdiff' => '← Khì chêng 1 ê siu-kái',
@@ -2223,10 +2243,13 @@ Lí ē-sái khoàⁿ i ê goân-sú-bé.',
 'show-big-image' => '檔案解析度',
 
 # Special:NewFiles
-'newimages'     => 'Sin iáⁿ-siōng oē-lóng',
-'imagelisttext' => "Í-hā sī '''$1''' tiuⁿ iáⁿ-siōng ê lia̍t-toaⁿ, $2 pâi-lia̍t.",
-'ilsubmit'      => 'Kiám-sek',
-'bydate'        => 'chiàu ji̍t-kî',
+'newimages'         => 'Sin iáⁿ-siōng oē-lóng',
+'imagelisttext'     => "Í-hā sī '''$1''' tiuⁿ iáⁿ-siōng ê lia̍t-toaⁿ, $2 pâi-lia̍t.",
+'newimages-summary' => '這个特殊頁顯示頂一个上載的檔案。',
+'newimages-legend'  => '過濾器',
+'newimages-label'   => '檔案名稱（抑伊的部份名稱）',
+'ilsubmit'          => 'Kiám-sek',
+'bydate'            => 'chiàu ji̍t-kî',
 
 # Bad image list
 'bad_image_list' => '規格照下跤：
@@ -2258,11 +2281,21 @@ Lí ē-sái khoàⁿ i ê goân-sú-bé.',
 * gpsaltitude',
 
 # EXIF tags
-'exif-imagedescription' => '影相標題',
-'exif-make'             => '相機製造商',
-'exif-model'            => '相機款式',
-'exif-artist'           => '著作者',
-'exif-copyright'        => '著作權所有人',
+'exif-imagewidth'                => '闊',
+'exif-imagelength'               => '懸',
+'exif-bitspersample'             => '代表每一个像素色水的位元數',
+'exif-compression'               => '壓縮方式',
+'exif-photometricinterpretation' => '像素合成',
+'exif-orientation'               => '方向',
+'exif-samplesperpixel'           => '像素數目',
+'exif-planarconfiguration'       => '資料排列',
+'exif-xresolution'               => '水平方向數目',
+'exif-yresolution'               => '直的方向數目',
+'exif-imagedescription'          => '影相標題',
+'exif-make'                      => '相機製造商',
+'exif-model'                     => '相機款式',
+'exif-artist'                    => '著作者',
+'exif-copyright'                 => '著作權所有人',
 
 # External editor support
 'edit-externally'      => 'Iōng gōa-pō· èng-iōng nńg-thé pian-chi̍p chit-ê tóng-àn',

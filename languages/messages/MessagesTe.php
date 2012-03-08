@@ -2624,7 +2624,7 @@ $UNWATCHURL కి వెళ్ళండి.
 'tooltip-ca-viewsource'               => 'ఈ పుటని సంరక్షించారు. మీరు దీని మూలాన్ని చూడవచ్చు',
 'tooltip-ca-history'                  => 'ఈ పేజీ యొక్క గత కూర్పులు.',
 'tooltip-ca-protect'                  => 'ఈ పేజీని సంరక్షించండి',
-'tooltip-ca-unprotect'                => 'ఈ పేజీకి సంరక్షణ తీసివేయండి',
+'tooltip-ca-unprotect'                => 'ఈ పేజీ సంరక్షణను మార్చండి',
 'tooltip-ca-delete'                   => 'ఈ పేజీని తొలగించండి',
 'tooltip-ca-undelete'                 => 'ఈ పేజీని తొలగించడానికి ముందు చేసిన మార్పులను పునఃస్థాపించు',
 'tooltip-ca-move'                     => 'ఈ పేజీని తరలించండి',
@@ -3489,6 +3489,7 @@ $5
 'feedback-bugnew'   => 'చూసాను. కొత్త బగ్గును నివేదించు',
 
 # API errors
+'api-error-badaccess-groups'   => 'ఈ వికీ లోనికి దస్త్రాలను ఎక్కించే అనుమతి మీకు లేదు.',
 'api-error-empty-file'         => 'మీరు దాఖలుచేసిన ఫైల్ ఖాళీది.',
 'api-error-filename-tooshort'  => 'దస్త్రపు పేరు మరీ చిన్నగా ఉంది.',
 'api-error-filetype-banned'    => 'ఈ రకపు దస్త్రాలని నిషేధించారు.',

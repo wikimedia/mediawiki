@@ -2347,6 +2347,7 @@ Lütfen "geri" gidin ve geldiğiniz sayfayı yeniden yükleyin, sonra tekrar den
 'movedarticleprotection'      => 'koruma ayarları "[[$2]]" sayfasından "[[$1]]" sayfasına taşındı',
 'protect-title'               => '"$1" için bir koruma seviyesi seçiniz',
 'prot_1movedto2'              => '[[$1]] sayfasının yeni adı: [[$2]]',
+'protect-badnamespace-text'   => 'Bu ad alanındaki sayfalar korunamaz.',
 'protect-legend'              => 'Korumayı onayla',
 'protectcomment'              => 'Sebep:',
 'protectexpiry'               => 'Bitiş tarihi:',
@@ -2648,6 +2649,7 @@ Bakımın işleriniz bittiğinde veritabanının [[Special:UnlockDB|kilidini aç
 'lockfilenotwritable' => 'Veritabanı kilitleme dosyası yazılabilir değil.
 Bu, veritabanını kilitleyip açabilmek için, web sunucusu tarafından yazılabilir olmalıdır.',
 'databasenotlocked'   => 'Veritabanı kilitli değil.',
+'lockedbyandtime'     => '({{GENDER:$1|$1}} tarafından $2 $3 itibariyle)',
 
 # Move page
 'move-page'                    => '$1 taşınıyor',
@@ -2839,7 +2841,7 @@ Geçici dosya kayıp.',
 
 # JavaScriptTest
 'javascripttest'          => 'JavaScript denemesi',
-'javascripttest-disabled' => 'Bu işlev devre dışı bırakıldı.',
+'javascripttest-disabled' => 'Bu işlev, bu viki üzerinde etkinleştirilmedi.',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'                 => 'Kullanıcı sayfanız',
@@ -3374,6 +3376,7 @@ Diğerleri varsayılan olarak gizlenecektir.
 
 # Pseudotags used for GPSAltitudeRef
 'exif-gpsaltitude-above-sealevel' => 'Deniz seviyesinden $1 {{PLURAL:$1|metre|metre}} yukarıda',
+'exif-gpsaltitude-below-sealevel' => 'Deniz seviyesinden $1 {{PLURAL:$1|metre|metre}} aşağıda',
 
 'exif-gpsstatus-a' => 'Ölçüm devam ediyor',
 'exif-gpsstatus-v' => 'Ölçüm işlerliği',
@@ -3749,20 +3752,25 @@ Resimler tam çözünürlükte görüntülenir, diğer dosya tipleri ilgili prog
 'sqlite-no-fts'  => '$1 tam-metin arama desteği olmaksızın',
 
 # New logging system
-'logentry-delete-delete'       => '$1 $3 sayfasını sildi',
-'revdelete-content-hid'        => 'Gizli içerik',
-'revdelete-summary-hid'        => 'değişiklik özeti gizlenmiş',
-'revdelete-uname-hid'          => 'kullanıcı adı gizli',
-'revdelete-content-unhid'      => 'içerik gösterildi',
-'revdelete-summary-unhid'      => 'değişiklik özeti gösterildi',
-'revdelete-uname-unhid'        => 'kullanıcı adı gösterildi',
-'revdelete-restricted'         => 'hizmetliler için uygulanmış kısıtlamalar',
-'revdelete-unrestricted'       => 'hizmetliler için kaldırılmış kısıtlamalar',
-'logentry-newusers-newusers'   => '$1 kullanıcı hesabı oluşturdu',
-'logentry-newusers-create'     => '$1 kullanıcı hesabı oluşturdu',
-'logentry-newusers-create2'    => '$1 kullanıcı hesabı oluşturdu $3',
-'logentry-newusers-autocreate' => '$1 hesabı otomatik olarak oluşturuldu',
-'newuserlog-byemail'           => 'e-posta yoluyla şifre gönderilmiştir',
+'logentry-delete-delete'          => '$1 $3 sayfasını sildi',
+'logentry-delete-restore'         => '$1 $3 sayfasını geri getirdi',
+'logentry-delete-revision-legacy' => '$1 $3 sayfasındaki sürümlerin görünürlüğünü değiştirdi',
+'revdelete-content-hid'           => 'Gizli içerik',
+'revdelete-summary-hid'           => 'değişiklik özeti gizlenmiş',
+'revdelete-uname-hid'             => 'kullanıcı adı gizli',
+'revdelete-content-unhid'         => 'içerik gösterildi',
+'revdelete-summary-unhid'         => 'değişiklik özeti gösterildi',
+'revdelete-uname-unhid'           => 'kullanıcı adı gösterildi',
+'revdelete-restricted'            => 'hizmetliler için uygulanmış kısıtlamalar',
+'revdelete-unrestricted'          => 'hizmetliler için kaldırılmış kısıtlamalar',
+'logentry-move-move'              => '$1 $3 sayfasını $4 sayfasına taşıdı',
+'logentry-move-move-noredirect'   => '$1 $3 sayfasını $4 sayfasına yönlendirme olmaksızın taşıdı',
+'logentry-move-move_redir'        => '$1 $3 sayfasını $4 sayfasına yönlendirme üzerinden taşıdı',
+'logentry-newusers-newusers'      => '$1 kullanıcı hesabı oluşturdu',
+'logentry-newusers-create'        => '$1 kullanıcı hesabı oluşturdu',
+'logentry-newusers-create2'       => '$1 kullanıcı hesabı oluşturdu $3',
+'logentry-newusers-autocreate'    => '$1 hesabı otomatik olarak oluşturuldu',
+'newuserlog-byemail'              => 'e-posta yoluyla şifre gönderilmiştir',
 
 # Feedback
 'feedback-subject'  => 'Konu:',

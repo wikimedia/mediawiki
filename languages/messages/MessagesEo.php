@@ -11,6 +11,7 @@
  * @author Airon90
  * @author Amikeco
  * @author ArnoLagrange
+ * @author Blahma
  * @author Castelobranco
  * @author Iketsi
  * @author Jens Liebenau
@@ -350,7 +351,7 @@ $messages = array(
 'tog-watchlisthideanons'      => 'Kaŝi redaktojn de anonimuloj de la atentaro',
 'tog-watchlisthidepatrolled'  => 'Kaŝi patrolitajn redaktojn de la atentaro',
 'tog-nolangconversion'        => 'Malŝalti konvertadon de variantoj',
-'tog-ccmeonemails'            => 'Sendi al mi kopiojn de retpoŝtaĵoj, kiujn mi sendis al aliaj uzuloj.',
+'tog-ccmeonemails'            => 'Sendi al mi kopiojn de retpoŝtaĵoj, kiujn mi sendis al aliaj uzantoj.',
 'tog-diffonly'                => 'Ne montri paĝan enhavon sub la ŝanĝoj',
 'tog-showhiddencats'          => 'Montri kaŝitajn kategoriojn',
 'tog-norollbackdiff'          => 'Preterlasi ŝanĝoelmontron post malfaro',
@@ -562,7 +563,7 @@ $1',
 
 'badaccess'        => 'Vi ne havas sufiĉe da redaktorajtoj por tiu paĝo.',
 'badaccess-group0' => 'Vi ne rajtas plenumi la agon, kiun vi petis.',
-'badaccess-groups' => 'La ago, kiun vi petis, estas limigita al uzuloj en {{PLURAL:$2|la grupo|unu el la grupoj}}: $1.',
+'badaccess-groups' => 'La ago, kiun vi petis, estas limigita al uzantoj en {{PLURAL:$2|la grupo|unu el la grupoj}}: $1.',
 
 'versionrequired'     => 'Versio $1 de MediaWiki nepras',
 'versionrequiredtext' => 'La versio $1 de MediaWiki estas necesa por uzi ĉi tiun paĝon. Vidu [[Special:Version|paĝon pri versio]].',
@@ -741,7 +742,7 @@ Bonvolu elekti alian nomon.',
 'createaccounterror'         => 'Ne eblis krei konton: $1',
 'nocookiesnew'               => 'La uzantokonto estis kreita sed vi ne estas ensalutinta. *** E-igo lcfirst {{SITENAME}} uzas kuketojn por akcepti uzantojn. Kuketoj esta malaktivigitaj ĉe vi. Bonvolu aktivigi ilin kaj ensalutu per viaj novaj salutnomo kaj pasvorto.',
 'nocookieslogin'             => '{{SITENAME}} uzas kuketojn por akcepti uzantojn. Kuketoj esta malaktivigitaj ĉe vi. Bonvolu aktivigi ilin kaj provu denove.',
-'nocookiesfornew'            => 'La uzula konto ne estis kreita, ĉar ne konfirmeblas ĝia fonto. Certiginte ke kuketoj estas ebligitaj, reŝargu tiun ĉi pagon kaj reprovu.',
+'nocookiesfornew'            => 'La uzantokonto ne estis kreita, ĉar ne konfirmeblas ĝia fonto. Certiginte ke kuketoj estas ebligitaj, reŝargu tiun ĉi pagon kaj reprovu.',
 'noname'                     => 'Vi ne tajpis validan salutnomon.',
 'loginsuccesstitle'          => 'Ensalutado sukcesis',
 'loginsuccess'               => 'Vi ensalutis ĉe {{SITENAME}} kiel uzanto "$1".',
@@ -755,7 +756,7 @@ Kontrolu vian literumadon, aŭ [[Special:UserLogin/signup|kreu novan konton]].',
 'wrongpasswordempty'         => 'Vi tajpis malplenan pasvorton. Bonvolu provi denove.',
 'passwordtooshort'           => 'Pasvortoj devas esti almenaŭ  $1 {{PLURAL:$1|1 signon|$1 signojn}}.',
 'password-name-match'        => 'Via pasvorto devas nepre malsami vian salutnomon.',
-'password-login-forbidden'   => 'Estas malpermesite uzi tiun ĉi uzulnomon kaj pasvorton.',
+'password-login-forbidden'   => 'Estas malpermesite uzi tiun ĉi salutnomon kaj pasvorton.',
 'mailmypassword'             => 'Retpoŝti novan pasvorton',
 'passwordremindertitle'      => 'Rememorigo el {{SITENAME}} pri perdita pasvorto',
 'passwordremindertext'       => 'Iu (probable vi, el IP-adreso $1) petis novan
@@ -1545,7 +1546,7 @@ Jen hazarde generita valoro por via uzo: $1',
 'right-unblockself'           => 'Malforbari oni mem',
 'right-protect'               => 'Ŝanĝi protektniveloj kaj redakti protektitajn paĝojn',
 'right-editprotected'         => 'Redakti protektitajn paĝojn (sen kaskada protektado)',
-'right-editinterface'         => 'Redakti la uzulan interfacon',
+'right-editinterface'         => 'Redakti la uzantointerfacon',
 'right-editusercssjs'         => 'Redaktu CSS- kaj JS-dosierojn de aliaj uzantoj',
 'right-editusercss'           => 'Redaktu CSS-dosierojn de aliaj uzantoj',
 'right-edituserjs'            => 'Redaktu JS-dosierojn de aliaj uzantoj',
@@ -1606,7 +1607,7 @@ Jen hazarde generita valoro por via uzo: $1',
 'action-unwatchedpages'       => 'vidi la liston de neatentitaj paĝoj',
 'action-mergehistory'         => 'kunigi la historion de ĉi tiu paĝo',
 'action-userrights'           => 'redakti ĉiujn rajtojn de uzantoj',
-'action-userrights-interwiki' => 'redakti uzulrajtojn de uzantoj en aliaj vikioj',
+'action-userrights-interwiki' => 'redakti la rajtojn de uzantoj en aliaj vikioj',
 'action-siteadmin'            => 'ŝlosi aŭ malŝlosi la datumbazon',
 'action-sendemail'            => 'sendi retpoŝtojn',
 
@@ -2205,7 +2206,7 @@ Estas [[{{MediaWiki:Listgrouprights-helppage}}|aldona informo]] pri individuaj r
 La retadreso kiun vi enigis en [[Special:Preferences|viaj preferoj]] aperos kiel la "De" adreso de la retpoŝto, do la ricevonto eblos respondi rekte al vi.',
 'usermailererror'      => 'Resendita retmesaĝa erarsubjekto:',
 'defemailsubject'      => '{{SITENAME}} retmesaĝo de uzanto "$1"',
-'usermaildisabled'     => 'Uzula retpoŝto malŝaltis',
+'usermaildisabled'     => 'Retpoŝto de uzantoj estas malŝaltita',
 'usermaildisabledtext' => 'Vi ne povas sendi retpoŝton al aliaj uzantoj en ĉi tiu vikio',
 'noemailtitle'         => 'Neniu retpoŝtadreso',
 'noemailtext'          => 'Ĉi tiu uzanto ne donis validan retadreson.',
@@ -2483,7 +2484,7 @@ $1',
 
 # Contributions
 'contributions'       => 'Kontribuoj de uzanto',
-'contributions-title' => 'Uzulaj kontribuoj de $1',
+'contributions-title' => 'Kontribuoj de uzanto $1',
 'mycontris'           => 'Miaj kontribuoj',
 'contribsub2'         => 'De $1 ($2)',
 'nocontribs'          => 'Trovis neniajn redaktojn laŭ tiu kriterio.',
@@ -2493,7 +2494,7 @@ $1',
 
 'sp-contributions-newbies'             => 'Montri nur kontribuojn de novaj kontoj',
 'sp-contributions-newbies-sub'         => 'Kontribuoj de novaj uzantoj. Forigitaj paĝoj ne estas montritaj.',
-'sp-contributions-newbies-title'       => 'Uzulaj kontribuoj de novaj kontoj',
+'sp-contributions-newbies-title'       => 'Kontribuoj de novaj uzantoj',
 'sp-contributions-blocklog'            => 'Protokolo de forbaroj',
 'sp-contributions-deleted'             => 'forigitaj kontribuoj de uzantoj',
 'sp-contributions-uploads'             => 'alŝutoj',

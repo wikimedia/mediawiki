@@ -32,6 +32,7 @@
  * @author KaiesTse
  * @author Kuailong
  * @author Liangent
+ * @author Linforest
  * @author Mark85296341
  * @author MarkAHershberger
  * @author Mys 721tx
@@ -1510,6 +1511,7 @@ $1",
 'newsectionsummary'                 => '/* $1 */ 新段落',
 'rc-enhanced-expand'                => '显示细节（需JavaScript支持）',
 'rc-enhanced-hide'                  => '隐藏细节',
+'rc-old-title'                      => '最初被创建为" $1 "',
 
 # Recent changes linked
 'recentchangeslinked'          => '链出更改',
@@ -1667,11 +1669,11 @@ $1',
 'backend-fail-read'          => '找不到文件“$1”。',
 'backend-fail-create'        => '找不到文件“$1”。',
 'backend-fail-readonly'      => '“$1”存储后端目前在只读模式，因为：“$2”',
-'backend-fail-synced'        => '文件“$1”在内部后端是不一致的区域。',
-'backend-fail-connect'       => '无法连接到文件后端“$1”。',
-'backend-fail-internal'      => '文件后端“$1”发生了一个未知错误。',
+'backend-fail-synced'        => '文件"$1"在内部存储后端之中处于不一致状态',
+'backend-fail-connect'       => '无法连接到存储后端“$1。',
+'backend-fail-internal'      => '存储后端“$1”发生了一个未知错误。',
 'backend-fail-contenttype'   => '无法判断文件的内容类型来储存于“$1”。',
-'backend-fail-batchsize'     => '鉴于一批后端 $1 文件 {{PLURAL:$1| operation|operations}} ；限制是 $2   {{PLURAL:$2| operation|operations}}。',
+'backend-fail-batchsize'     => '存储后端被给予了一批$1个文件{{PLURAL:$1|操作|操作}}；限值为$2个{{PLURAL:$2|操作|操作}}。',
 
 # Lock manager
 'lockmanager-notlocked'        => '无法解锁“$1”；它没有被锁定。',
@@ -1704,7 +1706,10 @@ $1',
 
 # img_auth script messages
 'img-auth-accessdenied'     => '拒绝访问',
-'img-auth-nopathinfo'       => 'PATH_INFO缺失。您的服务器尚未设置传送该信息。它可能是基于CGI的，因而不支持img_auth。[https://www.mediawiki.org/wiki/Manual:Image_Authorization 参见图片认证。]',
+'img-auth-nopathinfo'       => 'PATH_INFO缺失。
+您的服务器尚未设置传送该信息。
+它可能基于CGI，因而不支持img_auth。
+请参见 [https://www.mediawiki.org/wiki/Manual:Image_Authorization 图片授权]。',
 'img-auth-notindir'         => '在已设置的上传目录中找不到请求的路径。',
 'img-auth-badtitle'         => '无法为“$1”创建合法的标题。',
 'img-auth-nologinnWL'       => '您尚未登录，且“$1”不在白名单上。',
@@ -2719,7 +2724,7 @@ $1被封禁的理由是：“$2”',
 
 # JavaScriptTest
 'javascripttest'                           => 'JavaScript测试',
-'javascripttest-disabled'                  => '此功能已禁用。',
+'javascripttest-disabled'                  => '该维基站点上尚未启用此功能。',
 'javascripttest-title'                     => '运行$1测试',
 'javascripttest-pagetext-noframework'      => '此页面被保留用于运行JavaScript测试。',
 'javascripttest-pagetext-unknownframework' => '未知的框架“$1”。',

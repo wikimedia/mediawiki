@@ -6453,12 +6453,12 @@ Cando faga todo isto, xa poderá '''[$2 entrar no seu wiki]'''.",
 	'config-help' => 'axuda',
 	'config-nofile' => 'Non se puido atopar o ficheiro "$1". Se cadra, foi borrado?',
 	'mainpagetext' => "'''MediaWiki instalouse correctamente.'''",
-	'mainpagedocfooter' => 'Consulte a [//meta.wikimedia.org/wiki/Help:Contents Guía do usuario] para máis información sobre como usar o software wiki.
+	'mainpagedocfooter' => 'Consulte a [//meta.wikimedia.org/wiki/Help:Contents guía de usuario] para obter máis información sobre como usar o software wiki.
 
-== Comezando ==
-* [//www.mediawiki.org/wiki/Manual:Configuration_settings Lista de opcións de configuración]
-* [//www.mediawiki.org/wiki/Manual:FAQ Preguntas frecuentes sobre MediaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de correo das edicións de MediaWiki]',
+== Primeiros pasos ==
+* [//www.mediawiki.org/wiki/Manual:Configuration_settings Lista das opcións de configuración]
+* [//www.mediawiki.org/wiki/Manual:FAQ Preguntas máis frecuentes sobre MediaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de correo dos lanzamentos de MediaWiki]',
 );
 
 /** Ancient Greek (Ἀρχαία ἑλληνικὴ)
