@@ -682,14 +682,15 @@ class Language {
 	/**
 	 * Get an array of language names, indexed by code.
 	 * @param $inLanguage null|string: Code of language in which to return the names
-	 *									Use null for autonyms (native names)
+	 *		Use null for autonyms (native names)
 	 * @param $include string:
 	 *		'all' all available languages
 	 *		'mw' only if the language is defined in MediaWiki or wgExtraLanguageNames
 	 *		'mwfile' only if the language is in 'mw' *and* has a message file
 	 * @return array|bool: language code => language name, false if $include is wrong
+	 * @since 1.20
 	 */
-	public static function fetchLanguageNames( $inLanguage = null, $include = 'all' ) {
+	public static function fetchLanguageNames( $inLanguage = null, $include = 'mw' ) {
 		global $wgExtraLanguageNames;
 		static $coreLanguageNames;
 
@@ -743,11 +744,12 @@ class Language {
 	/**
 	 * @param $code string: The code of the language for which to get the name
 	 * @param $inLanguage null|string: Code of language in which to return the name (null for autonyms)
+	 * @param $include string: 'all', 'mw' or 'mwfile'; see fetchLanguageNames()
 	 * @return string: Language name or empty
 	 * @since 1.20
 	 */
-	public static function fetchLanguageName( $code, $inLanguage = null ) {
-		$array = self::fetchLanguageNames( $inLanguage, 'all' );
+	public static function fetchLanguageName( $code, $inLanguage = null, $include = 'all' ) {
+		$array = self::fetchLanguageNames( $inLanguage, $include );
 		return !array_key_exists( $code, $array ) ? '' : $array[$code];
 	}
 

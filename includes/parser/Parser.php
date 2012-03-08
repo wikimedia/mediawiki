@@ -1901,11 +1901,9 @@ class Parser {
 
 			# Link not escaped by : , create the various objects
 			if ( $noforce ) {
-				global $wgContLang;
-
 				# Interwikis
 				wfProfileIn( __METHOD__."-interwiki" );
-				if ( $iw && $this->mOptions->getInterwikiMagic() && $nottalk && $wgContLang->getLanguageName( $iw ) ) {
+				if ( $iw && $this->mOptions->getInterwikiMagic() && $nottalk && Language::fetchLanguageName( $iw, null, 'mw' ) ) {
 					$this->mOutput->addLanguageLink( $nt->getFullText() );
 					$s = rtrim( $s . $prefix );
 					$s .= trim( $trail, "\n" ) == '' ? '': $prefix . $trail;
