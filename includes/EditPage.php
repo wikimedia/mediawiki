@@ -3043,9 +3043,7 @@ HTML
 		$wgOut->addHTML( '</div>' );
 
 		$wgOut->wrapWikiMsg( '<h2>$1</h2>', "yourdiff" );
-		$de = new DifferenceEngine( $this->mArticle->getContext() );
-		$de->setText( $this->getCurrentText(), $this->textbox2 );
-		$de->showDiff( wfMsg( "storedversion" ), wfMsgExt( 'yourtext', 'parseinline' ) );
+		$this->showDiff();
 
 		$wgOut->wrapWikiMsg( '<h2>$1</h2>', "yourtext" );
 		$this->showTextbox2();
