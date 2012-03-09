@@ -1094,12 +1094,16 @@ abstract class Installer {
 		if( $utf8 ) {
 			$useNormalizer = 'utf8';
 			$utf8 = utf8_normalize( $not_normal_c, UtfNormal::UNORM_NFC );
-			if ( $utf8 !== $normal_c ) $needsUpdate = true;
+			if ( $utf8 !== $normal_c ) {
+				$needsUpdate = true;
+			}
 		}
 		if( $intl ) {
 			$useNormalizer = 'intl';
 			$intl = normalizer_normalize( $not_normal_c, Normalizer::FORM_C );
-			if ( $intl !== $normal_c ) $needsUpdate = true;
+			if ( $intl !== $normal_c ) {
+				$needsUpdate = true;
+			}
 		}
 
 		// Uses messages 'config-unicode-using-php', 'config-unicode-using-utf8', 'config-unicode-using-intl'

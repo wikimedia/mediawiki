@@ -220,6 +220,7 @@ class SpecialContributions extends SpecialPage {
 		}
 		$nt = $userObj->getUserPage();
 		$talk = $userObj->getTalkPage();
+		$links = '';
 		if ( $talk ) {
 			$tools = $this->getUserLinks( $nt, $talk, $userObj );
 			$links = $this->getLanguage()->pipeList( $tools );
@@ -545,6 +546,11 @@ class ContribsPager extends ReverseChronologicalPager {
 	var $namespace = '', $mDb;
 	var $preventClickjacking = false;
 
+	/**
+	 * @var array
+	 */
+	protected $mParentLens;
+
 	function __construct( IContextSource $context, array $options ) {
 		parent::__construct( $context );
 
@@ -709,6 +715,7 @@ class ContribsPager extends ReverseChronologicalPager {
 
 	/**
 	 * Do a batched query to get the parent revision lengths
+	 * @param $revIds array
 	 * @return array
 	 */
 	private function getParentLengths( array $revIds ) {
@@ -751,6 +758,7 @@ class ContribsPager extends ReverseChronologicalPager {
 	 * was not written by the target user.
 	 *
 	 * @todo This would probably look a lot nicer in a table.
+	 * @param $row
 	 * @return string
 	 */
 	function formatRow( $row ) {
@@ -902,6 +910,9 @@ class ContribsPager extends ReverseChronologicalPager {
 		$this->preventClickjacking = true;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function getPreventClickjacking() {
 		return $this->preventClickjacking;
 	}

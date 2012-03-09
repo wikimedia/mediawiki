@@ -725,7 +725,7 @@ class SpecialVersion extends SpecialPage {
 		}
 
 		preg_match( "/ref: (.*)/",
-			file_get_contents( $HEADfile), $m );
+			file_get_contents( $HEADfile ), $m );
 
 		$REFfile = "{$BASEDIR}{$m[1]}";
 		if( !file_exists( $REFfile ) ) {
