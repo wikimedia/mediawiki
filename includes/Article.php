@@ -1089,7 +1089,7 @@ class Article extends Page {
 
 		# Cascade unhide param in links for easy deletion browsing
 		$extraParams = array();
-		if ( $wgRequest->getVal( 'unhide' ) ) {
+		if ( $unhide ) {
 			$extraParams['unhide'] = 1;
 		}
 
