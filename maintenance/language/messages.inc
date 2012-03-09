@@ -431,6 +431,7 @@ $wgMessageStructure = array(
 		'userloginnocreate',
 		'logout',
 		'userlogout',
+		'userlogout-summary',
 		'notloggedin',
 		'nologin',
 		'nologinlink',
@@ -538,6 +539,7 @@ $wgMessageStructure = array(
 	),
 	'changeemail' => array(
 		'changeemail',
+		'changeemail-summary',
 		'changeemail-header',
 		'changeemail-text',
 		'changeemail-no-info',
@@ -925,6 +927,7 @@ $wgMessageStructure = array(
 		'prefsnologin',
 		'prefsnologintext',
 		'changepassword',
+		'changepassword-summary',
 		'prefs-skin',
 		'skin-preview',
 		'datedefault',
@@ -1628,7 +1631,9 @@ $wgMessageStructure = array(
 		'uncategorizedtemplates',
 		'uncategorizedtemplates-summary',
 		'unusedcategories',
+		'unusedcategories-summary',
 		'unusedimages',
+		'unusedimages-summary',
 		'popularpages',
 		'popularpages-summary',
 		'wantedcategories',
@@ -1748,11 +1753,13 @@ $wgMessageStructure = array(
 	),
 	'deletedcontribs' => array(
 		'deletedcontributions',
+		'deletedcontributions-summary',
 		'deletedcontributions-title',
 		'sp-deletedcontributions-contribs',
 	),
 	'linksearch' => array(
 		'linksearch',
+		'linksearch-summary',
 		'linksearch-pat',
 		'linksearch-ns',
 		'linksearch-ok',
@@ -1805,6 +1812,7 @@ $wgMessageStructure = array(
 		'mailnologin',
 		'mailnologintext',
 		'emailuser',
+		'emailuser-summary',
 		'emailpage',
 		'emailpagetext',
 		'usermailererror',
@@ -1987,6 +1995,7 @@ $wgMessageStructure = array(
 	),
 	'undelete' => array(
 		'undelete',
+		'undelete-summary',
 		'undeletepage',
 		'undeletepagetitle',
 		'viewdeletedpage',
@@ -2037,6 +2046,7 @@ $wgMessageStructure = array(
 	),
 	'contributions' => array(
 		'contributions',
+		'contributions-summary',
 		'contributions-title',
 		'mycontris',
 		'contribsub2',
@@ -2089,6 +2099,7 @@ $wgMessageStructure = array(
 		'autoblockid',
 		'block',
 		'unblock',
+		'unblock-summary',
 		'blockip',
 		'blockip-title',
 		'blockip-legend',
@@ -2220,6 +2231,7 @@ $wgMessageStructure = array(
 	),
 	'movepage' => array(
 		'move-page',
+		'movepage-summary',
 		'move-page-legend',
 		'movepagetext',
 		'movepagetext-noredirectfixer',
@@ -2281,6 +2293,7 @@ $wgMessageStructure = array(
 	),
 	'export' => array(
 		'export',
+		'export-summary',
 		'exporttext',
 		'exportall',
 		'exportcuronly',
@@ -2327,6 +2340,7 @@ $wgMessageStructure = array(
 	),
 	'import' => array(
 		'import',
+		'import-summary',
 		'importinterwiki',
 		'import-interwiki-text',
 		'import-interwiki-source',
@@ -3340,6 +3354,7 @@ $wgMessageStructure = array(
 		'confirm-watch-button',
 	),
 	'watchlisteditor' => array(
+		'editwatchlist-summary',
 		'watchlistedit-numitems',
 		'watchlistedit-noitems',
 		'watchlistedit-normal-title',
@@ -3430,6 +3445,7 @@ $wgMessageStructure = array(
 	),
 	'version' => array(
 		'version',
+		'version-summary',
 		'version-extensions',
 		'version-specialpages',
 		'version-parserhooks',
@@ -3498,6 +3514,7 @@ $wgMessageStructure = array(
 	),
 	'special-tags' => array(
 		'tags',
+		'tags-summary',
 		'tag-filter',
 		'tag-filter-submit',
 		'tags-title',
@@ -3511,6 +3528,7 @@ $wgMessageStructure = array(
 	),
 	'comparepages' => array(
 		'comparepages',
+		'comparepages-summary',
 		'compare-selector',
 		'compare-page1',
 		'compare-page2',

@@ -1062,6 +1062,7 @@ Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
 'userloginnocreate'          => 'Log in',
 'logout'                     => 'Log out',
 'userlogout'                 => 'Log out',
+'userlogout-summary'         => '', # do not translate or duplicate this message to other languages
 'notloggedin'                => 'Not logged in',
 'nologin'                    => "Don't have an account? $1.",
 'nologinlink'                => 'Create an account',
@@ -1228,6 +1229,7 @@ Temporary password: $2',
 
 # Special:ChangeEmail
 'changeemail'          => 'Change e-mail address',
+'changeemail-summary'  => '', # do not translate or duplicate this message to other languages
 'changeemail-header'   => 'Change account e-mail address',
 'changeemail-text'     => 'Complete this form to change your e-mail address. You will need to enter your password to confirm this change.',
 'changeemail-no-info'  => 'You must be logged in to access this page directly.',
@@ -1764,6 +1766,7 @@ Note that their indexes of {{SITENAME}} content may be out of date.',
 'prefsnologin'                  => 'Not logged in',
 'prefsnologintext'              => 'You must be <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} logged in]</span> to set user preferences.',
 'changepassword'                => 'Change password',
+'changepassword-summary'        => '', # do not translate or duplicate this message to other languages
 'prefs-skin'                    => 'Skin',
 'skin-preview'                  => 'Preview',
 'datedefault'                   => 'No preference',
@@ -2537,7 +2540,9 @@ It now redirects to [[$2]].',
 'uncategorizedtemplates'          => 'Uncategorized templates',
 'uncategorizedtemplates-summary'  => '', # do not translate or duplicate this message to other languages
 'unusedcategories'                => 'Unused categories',
+'unusedcategories-summary'        => '', # do not translate or duplicate this message to other languages
 'unusedimages'                    => 'Unused files',
+'unusedimages-summary'            => '', # do not translate or duplicate this message to other languages
 'popularpages'                    => 'Popular pages',
 'popularpages-summary'            => '', # do not translate or duplicate this message to other languages
 'wantedcategories'                => 'Wanted categories',
@@ -2662,19 +2667,21 @@ Also see [[Special:WantedCategories|wanted categories]].',
 
 # Special:DeletedContributions
 'deletedcontributions'             => 'Deleted user contributions',
+'deletedcontributions-summary'     => '', # do not translate or duplicate this message to other languages
 'deletedcontributions-title'       => 'Deleted user contributions',
 'sp-deletedcontributions-contribs' => 'contributions',
 
 # Special:LinkSearch
-'linksearch'       => 'External links search',
-'linksearch-pat'   => 'Search pattern:',
-'linksearch-ns'    => 'Namespace:',
-'linksearch-ok'    => 'Search',
-'linksearch-text'  => 'Wildcards such as "*.wikipedia.org" may be used.
+'linksearch'         => 'External links search',
+'linksearch-summary' => '', # do not translate or duplicate this message to other languages
+'linksearch-pat'     => 'Search pattern:',
+'linksearch-ns'      => 'Namespace:',
+'linksearch-ok'      => 'Search',
+'linksearch-text'    => 'Wildcards such as "*.wikipedia.org" may be used.
 Needs at least a top-level domain, for example "*.org".<br />
 Supported protocols: <tt>$1</tt> (do not add any of these in your search).',
-'linksearch-line'  => '$1 is linked from $2',
-'linksearch-error' => 'Wildcards may appear only at the start of the hostname.',
+'linksearch-line'    => '$1 is linked from $2',
+'linksearch-error'   => 'Wildcards may appear only at the start of the hostname.',
 
 # Special:ListUsers
 'listusersfrom'      => 'Display users starting at:',
@@ -2721,6 +2728,7 @@ There may be [[{{MediaWiki:Listgrouprights-helppage}}|additional information]] a
 'mailnologin'          => 'No send address',
 'mailnologintext'      => 'You must be [[Special:UserLogin|logged in]] and have a valid e-mail address in your [[Special:Preferences|preferences]] to send e-mail to other users.',
 'emailuser'            => 'E-mail this user',
+'emailuser-summary'    => '', # do not translate or duplicate this message to other languages
 'emailpage'            => 'E-mail user',
 'emailpagetext'        => 'You can use the form below to send an e-mail message to this user.
 The e-mail address you entered in [[Special:Preferences|your user preferences]] will appear as the "From" address of the e-mail, so the recipient will be able to reply directly to you.',
@@ -2957,6 +2965,7 @@ You can change this page's protection level, but it will not affect the cascadin
 
 # Undelete
 'undelete'                     => 'View deleted pages',
+'undelete-summary'             => '', # do not translate or duplicate this message to other languages
 'undeletepage'                 => 'View and restore deleted pages',
 'undeletepagetitle'            => "'''The following consists of deleted revisions of [[:$1|$1]]'''.",
 'viewdeletedpage'              => 'View deleted pages',
@@ -3019,14 +3028,15 @@ $1',
 'blanknamespace'                => '(Main)',
 
 # Contributions
-'contributions'       => 'User contributions',
-'contributions-title' => 'User contributions for $1',
-'mycontris'           => 'My contributions',
-'contribsub2'         => 'For $1 ($2)',
-'nocontribs'          => 'No changes were found matching these criteria.',
-'uctop'               => '(top)',
-'month'               => 'From month (and earlier):',
-'year'                => 'From year (and earlier):',
+'contributions'         => 'User contributions',
+'contributions-summary' => '', # do not translate or duplicate this message to other languages
+'contributions-title'   => 'User contributions for $1',
+'mycontris'             => 'My contributions',
+'contribsub2'           => 'For $1 ($2)',
+'nocontribs'            => 'No changes were found matching these criteria.',
+'uctop'                 => '(top)',
+'month'                 => 'From month (and earlier):',
+'year'                  => 'From year (and earlier):',
 
 'sp-contributions-newbies'             => 'Show contributions of new accounts only',
 'sp-contributions-newbies-sub'         => 'For new accounts',
@@ -3073,6 +3083,7 @@ The latest block log entry is provided below for reference:',
 'autoblockid'                     => 'Autoblock #$1',
 'block'                           => 'Block user',
 'unblock'                         => 'Unblock user',
+'unblock-summary'                 => '', # do not translate or duplicate this message to other languages
 'blockip'                         => 'Block user',
 'blockip-title'                   => 'Block user',
 'blockip-legend'                  => 'Block user',
@@ -3226,6 +3237,7 @@ To lock or unlock the database, this needs to be writable by the web server.',
 
 # Move page
 'move-page'                    => 'Move $1',
+'movepage-summary'             => '', # do not translate or duplicate this message to other languages
 'move-page-legend'             => 'Move page',
 'movepagetext'                 => "Using the form below will rename a page, moving all of its history to the new name.
 The old title will become a redirect page to the new title.
@@ -3320,6 +3332,7 @@ Please choose another name.',
 
 # Export
 'export'            => 'Export pages',
+'export-summary'    => '', # do not translate or duplicate this message to other languages
 'exporttext'        => 'You can export the text and editing history of a particular page or set of pages wrapped in some XML.
 This can be imported into another wiki using MediaWiki via the [[Special:Import|import page]].
 
@@ -3373,6 +3386,7 @@ Please visit [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and 
 
 # Special:Import
 'import'                     => 'Import pages',
+'import-summary'             => '', # do not translate or duplicate this message to other languages
 'importinterwiki'            => 'Transwiki import',
 'import-interwiki-text'      => "Select a wiki and page title to import.
 Revision dates and editors' names will be preserved.
@@ -4461,6 +4475,7 @@ Try normal preview.',
 'lag-warn-high'   => 'Due to high database server lag, changes newer than $1 {{PLURAL:$1|second|seconds}} may not be shown in this list.',
 
 # Watchlist editor
+'editwatchlist-summary'        => '', # do not translate or duplicate this message to other languages
 'watchlistedit-numitems'       => 'Your watchlist contains {{PLURAL:$1|1 title|$1 titles}}, excluding talk pages.',
 'watchlistedit-noitems'        => 'Your watchlist contains no titles.',
 'watchlistedit-normal-title'   => 'Edit watchlist',
@@ -4556,6 +4571,7 @@ You can also [[Special:EditWatchlist|use the standard editor]].',
 
 # Special:Version
 'version'                       => 'Version',
+'version-summary'               => '', # do not translate or duplicate this message to other languages
 'version-extensions'            => 'Installed extensions',
 'version-specialpages'          => 'Special pages',
 'version-parserhooks'           => 'Parser hooks',
@@ -4638,6 +4654,7 @@ Images are shown in full resolution, other file types are started with their ass
 
 # Special:Tags
 'tags'                    => 'Valid change tags',
+'tags-summary'            => '', # do not translate or duplicate this message to other languages
 'tag-filter'              => '[[Special:Tags|Tag]] filter:',
 'tag-filter-submit'       => 'Filter',
 'tags-title'              => 'Tags',
@@ -4651,6 +4668,7 @@ Images are shown in full resolution, other file types are started with their ass
 
 # Special:ComparePages
 'comparepages'                => 'Compare pages',
+'comparepages-summary'        => '', # do not translate or duplicate this message to other languages
 'compare-selector'            => 'Compare page revisions',
 'compare-page1'               => 'Page 1',
 'compare-page2'               => 'Page 2',

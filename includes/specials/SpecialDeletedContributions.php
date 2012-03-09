@@ -260,6 +260,7 @@ class DeletedContributionsPage extends SpecialPage {
 	function execute( $par ) {
 		global $wgQueryPageDefaultLimit;
 		$this->setHeaders();
+		$this->outputHeader();
 
 		$user = $this->getUser();
 
