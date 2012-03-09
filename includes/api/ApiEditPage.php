@@ -240,7 +240,9 @@ class ApiEditPage extends ApiBase {
 		// TODO: Make them not or check if they still do
 		$wgTitle = $titleObj;
 
-		$ep = new EditPage( $articleObj );
+        $handler = ContentHandler::getForTitle( $titleObj );
+		$ep = $handler->createEditPage( $articleObj );
+
 		$ep->setContextTitle( $titleObj );
 		$ep->importFormData( $req );
 

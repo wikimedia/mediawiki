@@ -19,8 +19,12 @@ abstract class ContentHandler {
         if ( $content instanceof TextContent ) {
             #XXX: or check by model name?
             #XXX: or define $content->allowRawData()?
+            #XXX: or define $content->getDefaultWikiText()?
             return $content->getRawData();
         }
+
+        #XXX: this must not be used for editing, otherwise we may loose data:
+        #XXX:      e.g. if this returns the "main" text from a multipart page, all attachments would be lost
 
         return null;
     }
@@ -90,12 +94,12 @@ abstract class ContentHandler {
 
     public static function getForTitle( Title $title ) {
         $modelName = $title->getContentModelName();
-        return ContenteHandler::getForModelName( $modelName );
+        return ContentHandler::getForModelName( $modelName );
     }
 
     public static function getForContent( Content $content ) {
         $modelName = $content->getModelName();
-        return ContenteHandler::getForModelName( $modelName );
+        return ContentHandler::getForModelName( $modelName );
     }
 
     public static function getForModelName( $modelName ) {
@@ -145,13 +149,16 @@ abstract class ContentHandler {
 
     /**
      * Return an Article object suitable for viewing the given object
-     * 
+     *
+     * NOTE: does *not* do special handling for Image and Category pages!
+     *       Use Article::newFromTitle() for that!
+     *
      * @param type $title
-     * @param type $obj
-     * @return \Article 
+     * @return \Article
      * @todo Article is being refactored into an action class, keep track of that
      */
-    public function createArticle( Title $title, $obj ) { #TODO: use this!
+    public function createArticle( Title $title ) {
+        #XXX: assert that $title->getContentModelName() == $this->getModelname()?
         $article = new Article($title);
         return $article;
     }
@@ -159,14 +166,25 @@ abstract class ContentHandler {
     /**
      * Return an EditPage object suitable for editing the given object
      * 
-     * @param type $title
-     * @param type $obj
      * @param type $article
      * @return \EditPage 
      */
-    public function createEditPage( Title $title, $obj, Article $article ) { #TODO: use this!
-        $editPage = new EditPage($article);
+    public function createEditPage( Article $article ) {
+        #XXX: assert that $article->getContentObject()->getModelName() == $this->getModelname()?
+        $editPage = new EditPage( $article );
         return $editPage;
+    }
+
+    /**
+     * Return an ExternalEdit object suitable for editing the given object
+     *
+     * @param type $article
+     * @return \ExternalEdit
+     */
+    public function createExternalEdit( IContextSource $context ) {
+        #XXX: assert that $article->getContentObject()->getModelName() == $this->getModelname()?
+        $externalEdit = new ExternalEdit( $context );
+        return $externalEdit;
     }
 
     /**
@@ -187,6 +205,9 @@ abstract class ContentHandler {
     }
 
     #XXX: is the native model for wikitext a string or the parser output? parse early or parse late?
+
+    #TODO: how to handle extra message for JS/CSS previews??
+    #TODO: Article::showCssOrJsPage ---> specialized classes!
 }
 
 

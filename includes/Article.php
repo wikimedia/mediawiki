@@ -113,13 +113,14 @@ class Article extends Page {
 		if ( !$page ) {
 			switch( $title->getNamespace() ) {
 				case NS_FILE:
-					$page = new ImagePage( $title );
+					$page = new ImagePage( $title ); #FIXME: teach ImagePage to use ContentHandler
 					break;
 				case NS_CATEGORY:
-					$page = new CategoryPage( $title );
+					$page = new CategoryPage( $title ); #FIXME: teach ImagePage to use ContentHandler
 					break;
 				default:
-					$page = new Article( $title );
+                    $handler = ContentHandler::getForTitle( $title );
+					$page = $handler->createArticle( $title );
 			}
 		}
 		$page->setContext( $context );
@@ -742,7 +743,7 @@ class Article extends Page {
 	 * This is hooked by SyntaxHighlight_GeSHi to do syntax highlighting of these
 	 * page views.
 	 */
-	protected function showCssOrJsPage() { #FIXME: move this to handler!
+	protected function showCssOrJsPage() { #FIXME: move this to ContentHandler!
 		global $wgOut;
 
 		$dir = $this->getContext()->getLanguage()->getDir();

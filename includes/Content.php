@@ -52,6 +52,21 @@ abstract class Content {
     }
 
     #XXX: is the native model for wikitext a string or the parser output? parse early or parse late?
+
+
+    # TODO: EditPage::mergeChanges( Content $a, Content $b )
+    # TODO: Wikipage::isCountable(Content $a)
+    # TODO: Title::newFromRedirectRecurse( $this->getRawText() );
+
+    # TODO: isCacheable( )
+    # TODO: getSize( )
+
+    # TODO: WikiPage::getUndoText( Revision $undo, Revision $undoafter = null )
+    # TODO: WikiPage::replaceSection( $section, $text, $sectionTitle = '', $edittime = null )
+    # TODO: WikiPage::getAutosummary( $oldtext, $text, $flags )
+
+    # TODO: EditPage::getPreloadedText( $preload ) // $wgParser->getPreloadText
+
 }
 
 class TextContent extends Content {
