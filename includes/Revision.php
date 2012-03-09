@@ -835,13 +835,14 @@ class Revision {
 
             $handler = $this->getContentHandler();
             $format = $this->getContentFormat();
+            $title = $this->getTitle();
 
             if( is_null( $this->mText ) ) {
                 // Load text on demand:
                 $this->mText = $this->loadText();
             }
 
-            $this->mContent = $handler->unserialize( $this->mText, $format );
+            $this->mContent = $handler->unserialize( $this->mText, $title, $format );
         }
 
         return $this->mContent;
@@ -867,8 +868,12 @@ class Revision {
 
     public function getContentHandler() {
         if ( !$this->mContentHandler ) {
-            $m = $this->getModelName();
-            $this->mContentHandler = ContentHandler::getForModelName( $m );
+            $title = $this->getTitle();
+
+            if ( $title ) $model = $title->getContentModelName();
+            else $model = CONTENT_MODEL_WIKITEXT;
+
+            $this->mContentHandler = ContentHandler::getForModelName( $model );
 
             #XXX: do we need to verify that mContentHandler supports mContentFormat?
             #     otherwise, a fixed content format may cause problems on insert.

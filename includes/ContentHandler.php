@@ -193,7 +193,7 @@ abstract class ContentHandler {
 abstract class TextContentHandler extends ContentHandler {
 
     public function __construct( $modelName, $formats ) {
-        super::__construct( $modelName, $formats );
+        parent::__construct( $modelName, $formats );
     }
 
     public function serialize( Content $content, Title $title, $format = null ) {
@@ -204,7 +204,7 @@ abstract class TextContentHandler extends ContentHandler {
 class WikitextContentHandler extends TextContentHandler {
 
     public function __construct( $modelName = CONTENT_MODEL_WIKITEXT ) {
-        super::__construct( $modelName, array( 'application/x-wikitext' ) ); #FIXME: mime
+        parent::__construct( $modelName, array( 'application/x-wikitext' ) ); #FIXME: mime
     }
 
     public function unserialize( $text, Title $title, $format = null ) {
@@ -216,7 +216,7 @@ class WikitextContentHandler extends TextContentHandler {
 class JavaScriptContentHandler extends TextContentHandler {
 
     public function __construct( $modelName = CONTENT_MODEL_WIKITEXT ) {
-        super::__construct( $modelName, array( 'text/javascript' ) );
+        parent::__construct( $modelName, array( 'text/javascript' ) );
     }
 
     public function unserialize( $text, Title $title, $format = null ) {
@@ -228,7 +228,7 @@ class JavaScriptContentHandler extends TextContentHandler {
 class CssContentHandler extends TextContentHandler {
 
     public function __construct( $modelName = CONTENT_MODEL_WIKITEXT ) {
-        super::__construct( $modelName, array( 'text/css' ) );
+        parent::__construct( $modelName, array( 'text/css' ) );
     }
 
     public function unserialize( $text, Title $title, $format = null ) {

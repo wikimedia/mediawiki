@@ -1310,7 +1310,7 @@ class EditPage {
 				$text = $this->textbox1; // do not try to merge here!
 			} elseif ( $this->isConflict ) {
 				# Attempt merge
-				if ( $this->mergeChangesInto( $text ) ) {
+				if ( $this->mergeChangesInto( $text ) ) { #FIXME: use ContentHandler
 					// Successful merge! Maybe we should tell the user the good news?
 					$this->isConflict = false;
 					wfDebug( __METHOD__ . ": Suppressing edit conflict, successful merge.\n" );
