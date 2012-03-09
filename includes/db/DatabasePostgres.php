@@ -814,7 +814,9 @@ class DatabasePostgres extends DatabaseBase {
 			$limit = strlen( $text )-1;
 			$output = array();
 		}
-		if( '{}' != $text )
+		if( '{}' == $text ) {
+			return $output;
+		}
 		do {
 			if ( '{' != $text{$offset} ) {
 				preg_match( "/(\\{?\"([^\"\\\\]|\\\\.)*\"|[^,{}]+)+([,}]+)/",
@@ -823,10 +825,12 @@ class DatabasePostgres extends DatabaseBase {
 				$output[] = ( '"' != $match[1]{0} 
 						? $match[1] 
 						: stripcslashes( substr( $match[1], 1, -1 ) ) );
-				if ( '},' == $match[3] )
+				if ( '},' == $match[3] ) {
 					return $output;
-			} else  
-				$offset = $this->pg_array_parse( $text, $output[], $limit, $offset+1 );
+				}
+			} else {
+				$offset = $this->pg_array_parse( $text, $output, $limit, $offset+1 );
+			}
 		} while ( $limit > $offset );
 		return $output;
 	}
