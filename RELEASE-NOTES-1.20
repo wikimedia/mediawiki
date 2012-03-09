@@ -22,6 +22,7 @@ production.
 * (bug 27619) Remove preference option to display broken links as link?
 * (bug 34896) Update jQuery JSON plugin to v2.3 (2011-09-17)
 * (bug 34302) Add CSS classes to email fields in user preferences
+* Introduced $wgDebugDBTransactions to trace transaction status (currently PostgreSQL only)
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
@@ -42,6 +43,7 @@ production.
   Special:MyPage and Special:MyTalk
 * (bug 34929) Show the correct diff when a section edit is rejected by the spam 
   filter
+* (bug 15816) Add a switch for SETting the search_path (Postgres)
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.

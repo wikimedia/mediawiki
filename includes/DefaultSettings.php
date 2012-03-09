@@ -4060,6 +4060,11 @@ $wgDebugRawPage = false;
 $wgDebugComments = false;
 
 /**
+ * Extensive database transaction state debugging
+ */
+$wgDebugDBTransactions = false;
+
+/**
  * Write SQL queries to the debug log
  */
 $wgDebugDumpSql = false;

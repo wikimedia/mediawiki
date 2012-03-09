@@ -431,10 +431,6 @@ class PostgresInstaller extends DatabaseInstaller {
 		$conn = $status->value;
 
 		$dbName = $this->getVar( 'wgDBname' );
-		//$schema = $this->getVar( 'wgDBmwschema' );
-		//$user = $this->getVar( 'wgDBuser' );
-		//$safeschema = $conn->addIdentifierQuotes( $schema );
-		//$safeuser = $conn->addIdentifierQuotes( $user );
 
 		$exists = $conn->selectField( '"pg_catalog"."pg_database"', '1',
 			array( 'datname' => $dbName ), __METHOD__ );
@@ -466,14 +462,8 @@ class PostgresInstaller extends DatabaseInstaller {
 			}
 		}
 
-		// If we created a user, alter it now to search the new schema by default
-		if ( $this->getVar( '_CreateDBAccount' ) ) {
-			$conn->query( "ALTER ROLE $safeuser SET search_path = $safeschema, public",
-				__METHOD__ );
-		}
-
 		// Select the new schema in the current connection
-		$conn->query( "SET search_path = $safeschema" );
+		$conn->determineCoreSchema( $schema );
 		return Status::newGood();
 	}
 
@@ -493,10 +483,8 @@ class PostgresInstaller extends DatabaseInstaller {
 		}
 		$conn = $status->value;
 
-		//$schema = $this->getVar( 'wgDBmwschema' );
 		$safeuser = $conn->addIdentifierQuotes( $this->getVar( 'wgDBuser' ) );
 		$safepass = $conn->addQuotes( $this->getVar( 'wgDBpassword' ) );
-		//$safeschema = $conn->addIdentifierQuotes( $schema );
 
 		// Check if the user already exists
 		$userExists = $conn->roleExists( $this->getVar( 'wgDBuser' ) );

@@ -270,7 +270,6 @@ class PostgresUpdater extends DatabaseUpdater {
 	}
 
 	protected function describeTable( $table ) {
-		global $wgDBmwschema;
 		$q = <<<END
 SELECT attname, attnum FROM pg_namespace, pg_class, pg_attribute
 	WHERE pg_class.relnamespace = pg_namespace.oid
@@ -279,7 +278,7 @@ SELECT attname, attnum FROM pg_namespace, pg_class, pg_attribute
 END;
 		$res = $this->db->query( sprintf( $q,
 				$this->db->addQuotes( $table ),
-				$this->db->addQuotes( $wgDBmwschema ) ) );
+				$this->db->addQuotes( $this->db->getCoreSchema() ) ) );
 		if ( !$res ) {
 			return null;
 		}
@@ -295,8 +294,6 @@ END;
 	}
 
 	function describeIndex( $idx ) {
-		global $wgDBmwschema;
-
 		// first fetch the key (which is a list of columns ords) and
 		// the table the index applies to (an oid)
 		$q = <<<END
@@ -309,7 +306,7 @@ END;
 		$res = $this->db->query(
 			sprintf(
 				$q,
-				$this->db->addQuotes( $wgDBmwschema ),
+				$this->db->addQuotes( $this->db->getCoreSchea() ),
 				$this->db->addQuotes( $idx )
 			)
 		);
@@ -346,7 +343,6 @@ END;
 	}
 
 	function fkeyDeltype( $fkey ) {
-		global $wgDBmwschema;
 		$q = <<<END
 SELECT confdeltype FROM pg_constraint, pg_namespace
 	WHERE connamespace=pg_namespace.oid
@@ -356,7 +352,7 @@ END;
 		$r = $this->db->query(
 			sprintf(
 				$q,
-				$this->db->addQuotes( $wgDBmwschema ),
+				$this->db->addQuotes( $this->db->getCoreSchema() ),
 				$this->db->addQuotes( $fkey )
 			)
 		);
@@ -367,7 +363,6 @@ END;
 	}
 
 	function ruleDef( $table, $rule ) {
-		global $wgDBmwschema;
 	$q = <<<END
 SELECT definition FROM pg_rules
 	WHERE schemaname = %s
@@ -377,7 +372,7 @@ END;
 		$r = $this->db->query(
 			sprintf(
 				$q,
-				$this->db->addQuotes( $wgDBmwschema ),
+				$this->db->addQuotes( $this->db->getCoreSchema() ),
 				$this->db->addQuotes( $table ),
 				$this->db->addQuotes( $rule )
 			)
