@@ -213,7 +213,7 @@ class DatabasePostgres extends DatabaseBase {
 
 	function hasConstraint( $name ) {
 		$SQL = "SELECT 1 FROM pg_catalog.pg_constraint c, pg_catalog.pg_namespace n WHERE c.connamespace = n.oid AND conname = '" .
-				pg_escape_string( $this->mConn, $name ) . "' AND n.nspname = '" . pg_escape_string( $this->mConn, $this->mConn->getCoreSchema() ) ."'";
+				pg_escape_string( $this->mConn, $name ) . "' AND n.nspname = '" . pg_escape_string( $this->mConn, $this->getCoreSchema() ) ."'";
 		$res = $this->doQuery( $SQL );
 		return $this->numRows( $res );
 	}
