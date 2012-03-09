@@ -929,7 +929,7 @@ class DatabasePostgres extends DatabaseBase {
 				wfDebug("Schema \"" . $desired_schema . "\" already in the search path\n");
 			} else {
 				/**
-				 * Apped our schema (e.g. 'mediawiki') in front
+				 * Append our schema (e.g. 'mediawiki') in front
 				 * of the search path
 				 * Fixes bug 15816 
 				 */
@@ -937,6 +937,7 @@ class DatabasePostgres extends DatabaseBase {
 				array_unshift( $search_path, 
 					$this->addIdentifierQuotes( $desired_schema ));
 				$this->setSearchPath( $search_path );	
+				$this->mCoreSchema = $desired_schema;
 				wfDebug("Schema \"" . $desired_schema . "\" added to the search path\n");
 			}
 		} else {
