@@ -10,6 +10,9 @@
  *     We accomplish this using a database table, with ownership checking as you might expect. See SpecialUploadStash, which
  *     implements a web interface to some files stored this way.
  *
+ * UploadStash right now is *mostly* intended to show you one user's slice of the entire stash. The user parameter is only optional
+ * because there are few cases where we clean out the stash from an automated script. In the future we might refactor this.
+ *
  * UploadStash represents the entire stash of temporary files.
  * UploadStashFile is a filestore for the actual physical disk files.
  * UploadFromStash extends UploadBase, and represents a single stashed file as it is moved from the stash to the regular file repository
@@ -18,13 +21,6 @@ class UploadStash {
 
 	// Format of the key for files -- has to be suitable as a filename itself (e.g. ab12cd34ef.jpg)
 	const KEY_FORMAT_REGEX = '/^[\w-\.]+\.\w*$/';
-
-	// When a given stashed file can't be loaded, wait for the slaves to catch up.  If they're more than MAX_LAG
-	// behind, throw an exception instead. (at what point is broken better than slow?)
-	const MAX_LAG = 30;
-
-	// Age of the repository in hours.  That is, after how long will files be assumed abandoned and deleted?
-	const REPO_AGE = 6;
 
 	/**
 	 * repository that this uses to store temp files
@@ -73,6 +69,7 @@ class UploadStash {
 
 	/**
 	 * Get a file and its metadata from the stash.
+	 * The noAuth param is a bit janky but is required for automated scripts which clean out the stash.
 	 *
 	 * @param $key String: key under which file information is stored
 	 * @param $noAuth Boolean (optional) Don't check authentication. Used by maintenance scripts.
@@ -94,26 +91,10 @@ class UploadStash {
 			}
 		}
 
-		$dbr = $this->repo->getSlaveDb();
-
 		if ( !isset( $this->fileMetadata[$key] ) ) {
-			// try this first.  if it fails to find the row, check for lag, wait, try again. if its still missing, throw an exception.
-			// this more complex solution keeps things moving for page loads with many requests
-			// (ie. validating image ownership) when replag is high
 			if ( !$this->fetchFileMetadata( $key ) ) {
-				$lag = $dbr->getLag();
-				if ( $lag > 0 && $lag <= self::MAX_LAG ) {
-					// if there's not too much replication lag, just wait for the slave to catch up to our last insert.
-					sleep( ceil( $lag ) );
-				} elseif ( $lag > self::MAX_LAG ) {
-					// that's a lot of lag to introduce into the middle of the UI.
-					throw new UploadStashMaxLagExceededException(
-						'Couldn\'t load stashed file metadata, and replication lag is above threshold: (MAX_LAG=' . self::MAX_LAG . ')'
-					);
-				}
-
-				// now that the waiting has happened, try again
-				$this->fetchFileMetadata( $key );
+				// If nothing was received, it's likely due to replication lag.  Check the master to see if the record is there.
+				$this->fetchFileMetadata( $key, DB_MASTER );
 			}
 
 			if ( !isset( $this->fileMetadata[$key] ) ) {
@@ -172,13 +153,12 @@ class UploadStash {
 	 *
 	 * @param $path String: path to file you want stashed
 	 * @param $sourceType String: the type of upload that generated this file (currently, I believe, 'file' or null)
-	 * @param $key String: optional, unique key for this file. Used for directory hashing when storing, otherwise not important
 	 * @throws UploadStashBadPathException
 	 * @throws UploadStashFileException
 	 * @throws UploadStashNotLoggedInException
 	 * @return UploadStashFile: file, or null on failure
 	 */
-	public function stashFile( $path, $sourceType = null, $key = null ) {
+	public function stashFile( $path, $sourceType = null ) {
 		if ( ! file_exists( $path ) ) {
 			wfDebug( __METHOD__ . " tried to stash file at '$path', but it doesn't exist\n" );
 			throw new UploadStashBadPathException( "path doesn't exist" );
@@ -198,17 +178,16 @@ class UploadStash {
 		}
 
 		// If no key was supplied, make one.  a mysql insertid would be totally reasonable here, except
-		// that some users of this function might expect to supply the key instead of using the generated one.
-		if ( is_null( $key ) ) {
-			// some things that when combined will make a suitably unique key.
-			// see: http://www.jwz.org/doc/mid.html
-			list ($usec, $sec) = explode( ' ', microtime() );
-			$usec = substr($usec, 2);
-			$key = wfBaseConvert( $sec . $usec, 10, 36 ) . '.' .
-				wfBaseConvert( mt_rand(), 10, 36 ) . '.'.
-				$this->userId . '.' . 
-				$extension;
-		}
+		// that for historical reasons, the key is this random thing instead.  At least it's not guessable.
+		//
+		// some things that when combined will make a suitably unique key.
+		// see: http://www.jwz.org/doc/mid.html
+		list ($usec, $sec) = explode( ' ', microtime() );
+		$usec = substr($usec, 2);
+		$key = wfBaseConvert( $sec . $usec, 10, 36 ) . '.' .
+			wfBaseConvert( mt_rand(), 10, 36 ) . '.'.
+			$this->userId . '.' .
+			$extension;
 
 		$this->fileProps[$key] = $fileProps;
 
@@ -249,31 +228,8 @@ class UploadStash {
 		wfDebug( __METHOD__ . " inserting $stashPath under $key\n" );
 		$dbw = $this->repo->getMasterDb();
 
-		// select happens on the master so this can all be in a transaction, which
-		// avoids a race condition that's likely with multiple people uploading from the same
-		// set of files
-		$dbw->begin();
-		// first, check to see if it's already there.
-		$row = $dbw->selectRow(
-			'uploadstash',
-			'us_user, us_timestamp',
-			array( 'us_key' => $key ),
-			__METHOD__
-		);
-
-		// The current user can't have this key if:
-		// - the key is owned by someone else and
-		// - the age of the key is less than REPO_AGE
-		if ( is_object( $row ) ) {
-			if ( $row->us_user != $this->userId &&
-				$row->wfTimestamp( TS_UNIX, $row->us_timestamp ) > time() - UploadStash::REPO_AGE * 3600
-			) {
-				$dbw->rollback();
-				throw new UploadStashWrongOwnerException( "Attempting to upload a duplicate of a file that someone else has stashed" );
-			}
-		}
-
 		$this->fileMetadata[$key] = array(
+			'us_id' => $dbw->nextSequenceValue( 'uploadstash_us_id_seq' ),
 			'us_user' => $this->userId,
 			'us_key' => $key,
 			'us_orig_path' => $path,
@@ -290,14 +246,11 @@ class UploadStash {
 			'us_status' => 'finished'
 		);
 
-		// if a row exists but previous checks on it passed, let the current user take over this key.
-		$dbw->replace(
+		$dbw->insert(
 			'uploadstash',
-			'us_key',
 			$this->fileMetadata[$key],
 			__METHOD__
 		);
-		$dbw->commit();
 
 		// store the insertid in the class variable so immediate retrieval (possibly laggy) isn't necesary.
 		$this->fileMetadata[$key]['us_id'] = $dbw->insertId();
@@ -320,7 +273,7 @@ class UploadStash {
 			throw new UploadStashNotLoggedInException( __METHOD__ . ' No user is logged in, files must belong to users' );
 		}
 
-		wfDebug( __METHOD__ . " clearing all rows for user $userId\n" );
+		wfDebug( __METHOD__ . ' clearing all rows for user ' . $this->userId . "\n" );
 		$dbw = $this->repo->getMasterDb();
 		$dbw->delete(
 			'uploadstash',
@@ -414,7 +367,7 @@ class UploadStash {
 		$res = $dbr->select(
 			'uploadstash',
 			'us_key',
-			array( 'us_key' => $key ),
+			array( 'us_user' => $this->userId ),
 			__METHOD__
 		);
 
@@ -468,9 +421,16 @@ class UploadStash {
 	 * @param $key String: key
 	 * @return boolean
 	 */
-	protected function fetchFileMetadata( $key ) {
+	protected function fetchFileMetadata( $key, $readFromDB = DB_SLAVE ) {
 		// populate $fileMetadata[$key]
-		$dbr = $this->repo->getSlaveDb();
+		$dbr = null;
+		if( $readFromDB === DB_MASTER ) {
+			// sometimes reading from the master is necessary, if there's replication lag.
+			$dbr = $this->repo->getMasterDb();
+		} else {
+			$dbr = $this->repo->getSlaveDb();
+		}
+
 		$row = $dbr->selectRow(
 			'uploadstash',
 			'*',
@@ -483,22 +443,7 @@ class UploadStash {
 			return false;
 		}
 
-		$this->fileMetadata[$key] = array(
-			'us_user' => $row->us_user,
-			'us_key' => $row->us_key,
-			'us_orig_path' => $row->us_orig_path,
-			'us_path' => $row->us_path,
-			'us_size' => $row->us_size,
-			'us_sha1' => $row->us_sha1,
-			'us_mime' => $row->us_mime,
-			'us_media_type' => $row->us_media_type,
-			'us_image_width' => $row->us_image_width,
-			'us_image_height' => $row->us_image_height,
-			'us_image_bits' => $row->us_image_bits,
-			'us_source_type' => $row->us_source_type,
-			'us_timestamp' => $row->us_timestamp,
-			'us_status' => $row->us_status
-		);
+		$this->fileMetadata[$key] = (array)$row;
 
 		return true;
 	}
@@ -698,5 +643,4 @@ class UploadStashFileException extends MWException {};
 class UploadStashZeroLengthFileException extends MWException {};
 class UploadStashNotLoggedInException extends MWException {};
 class UploadStashWrongOwnerException extends MWException {};
-class UploadStashMaxLagExceededException extends MWException {};
 class UploadStashNoSuchKeyException extends MWException {};

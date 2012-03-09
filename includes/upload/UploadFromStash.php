@@ -9,13 +9,18 @@
 
 class UploadFromStash extends UploadBase {
 	protected $mFileKey, $mVirtualTempPath, $mFileProps, $mSourceType;
-	
+
 	// an instance of UploadStash
 	private $stash;
-	
+
 	//LocalFile repo
 	private $repo;
-	
+
+	/**
+	 * @param $user User
+	 * @param $stash UploadStash
+	 * @param $repo FileRepo
+	 */
 	public function __construct( $user = false, $stash = false, $repo = false ) {
 		// user object. sometimes this won't exist, as when running from cron.
 		$this->user = $user;
@@ -29,16 +34,25 @@ class UploadFromStash extends UploadBase {
 		if( $stash ) {
 			$this->stash = $stash;
 		} else {
-			wfDebug( __METHOD__ . " creating new UploadStash instance for " . $user->getId() . "\n" );
+			if( $user ) {
+				wfDebug( __METHOD__ . " creating new UploadStash instance for " . $user->getId() . "\n" );
+			} else {
+				wfDebug( __METHOD__ . " creating new UploadStash instance with no user\n" );
+			}
+
 			$this->stash = new UploadStash( $this->repo, $this->user );
 		}
 
 		return true;
 	}
-	
+
+	/**
+	 * @param $key string
+	 * @return bool
+	 */
 	public static function isValidKey( $key ) {
 		// this is checked in more detail in UploadStash
-		return preg_match( UploadStash::KEY_FORMAT_REGEX, $key );
+		return (bool)preg_match( UploadStash::KEY_FORMAT_REGEX, $key );
 	}
 
 	/**
@@ -47,16 +61,23 @@ class UploadFromStash extends UploadBase {
 	 * @return Boolean
 	 */
 	public static function isValidRequest( $request ) {
-		return self::isValidKey( $request->getText( 'wpFileKey' ) || $request->getText( 'wpSessionKey' ) );
+		// this passes wpSessionKey to getText() as a default when wpFileKey isn't set.
+		// wpSessionKey has no default which guarantees failure if both are missing
+		// (though that should have been caught earlier)
+		return self::isValidKey( $request->getText( 'wpFileKey', $request->getText( 'wpSessionKey' ) ) );
 	}
 
+	/**
+	 * @param $key string
+	 * @param $name string
+	 */
 	public function initialize( $key, $name = 'upload_file' ) {
 		/**
 		 * Confirming a temporarily stashed upload.
 		 * We don't want path names to be forged, so we keep
 		 * them in the session on the server and just give
 		 * an opaque key to the user agent.
-		 */		
+		 */
 		$metadata = $this->stash->getMetadata( $key );
 		$this->initializePathInfo( $name,
 			$this->getRealPath ( $metadata['us_path'] ),
@@ -74,17 +95,20 @@ class UploadFromStash extends UploadBase {
 	 * @param $request WebRequest
 	 */
 	public function initializeFromRequest( &$request ) {
-		$fileKey = $request->getText( 'wpFileKey' ) || $request->getText( 'wpSessionKey' );
+		// sends wpSessionKey as a default when wpFileKey is missing
+		$fileKey = $request->getText( 'wpFileKey', $request->getText( 'wpSessionKey' ) );
 
-		$desiredDestName = $request->getText( 'wpDestFile' );
-		if( !$desiredDestName ) {
-			$desiredDestName = $request->getText( 'wpUploadFile' ) || $request->getText( 'filename' );
-		}
+		// chooses one of wpDestFile, wpUploadFile, filename in that order.
+		$desiredDestName = $request->getText( 'wpDestFile', $request->getText( 'wpUploadFile', $request->getText( 'filename' ) ) );
+
 		return $this->initialize( $fileKey, $desiredDestName );
 	}
 
-	public function getSourceType() { 
-		return $this->mSourceType; 
+	/**
+	 * @return string
+	 */
+	public function getSourceType() {
+		return $this->mSourceType;
 	}
 
 	/**
@@ -97,20 +121,23 @@ class UploadFromStash extends UploadBase {
 	}
 
 	/**
-	 * There is no need to stash the image twice
+	 * Stash the file.
+	 *
+	 * @return UploadStashFile
 	 */
-	public function stashFile( $key = null ) {
-		if ( !empty( $this->mLocalFile ) ) {
-			return $this->mLocalFile;
-		}
-		return parent::stashFile( $key );
+	public function stashFile() {
+		// replace mLocalFile with an instance of UploadStashFile, which adds some methods
+		// that are useful for stashed files.
+		$this->mLocalFile = parent::stashFile();
+		return $this->mLocalFile;
 	}
 
 	/**
-	 * Alias for stashFile
+	 * This should return the key instead of the UploadStashFile instance, for backward compatibility.
+	 * @return String
 	 */
-	public function stashSession( $key = null ) {
-		return $this->stashFile( $key );
+	public function stashSession() {
+		return $this->stashFile()->getFileKey();
 	}
 
 	/**
@@ -123,11 +150,15 @@ class UploadFromStash extends UploadBase {
 
 	/**
 	 * Perform the upload, then remove the database record afterward.
+	 * @param $comment string
+	 * @param $pageText string
+	 * @param $watch bool
+	 * @param $user User
+	 * @return Status
 	 */
 	public function performUpload( $comment, $pageText, $watch, $user ) {
 		$rv = parent::performUpload( $comment, $pageText, $watch, $user );
 		$this->unsaveUploadedFile();
 		return $rv;
 	}
-
 }
