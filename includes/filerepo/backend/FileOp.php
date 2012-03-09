@@ -63,12 +63,13 @@ abstract class FileOp {
 	}
 
 	/**
-	 * Allow stale data for file reads and existence checks
+	 * Whether to allow stale data for file reads and stat checks
 	 *
+	 * @param $allowStale bool
 	 * @return void
 	 */
-	final protected function allowStaleReads() {
-		$this->useLatest = false;
+	final protected function allowStaleReads( $allowStale ) {
+		$this->useLatest = !$allowStale;
 	}
 
 	/**
@@ -105,9 +106,7 @@ abstract class FileOp {
 		$predicates = FileOp::newPredicates(); // account for previous op in prechecks
 		// Do pre-checks for each operation; abort on failure...
 		foreach ( $performOps as $index => $fileOp ) {
-			if ( $allowStale ) {
-				$fileOp->allowStaleReads(); // allow potentially stale reads
-			}
+			$fileOp->allowStaleReads( $allowStale );
 			$subStatus = $fileOp->precheck( $predicates );
 			$status->merge( $subStatus );
 			if ( !$subStatus->isOK() ) { // operation failed?
