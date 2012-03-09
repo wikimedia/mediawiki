@@ -1093,7 +1093,12 @@ class Article extends Page {
 			$extraParams['unhide'] = 1;
 		}
 
-		$revision = Revision::newFromId( $oldid );
+		if ( $this->mRevision && $this->mRevision->getId() === $oldid ) {
+			$revision = $this->mRevision;
+		} else {
+			$revision = Revision::newFromId( $oldid );
+		}
+
 		$timestamp = $revision->getTimestamp();
 
 		$current = ( $oldid == $this->mPage->getLatest() );
