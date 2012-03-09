@@ -248,12 +248,16 @@ class Article extends Page {
 		if ( $oldid !== 0 ) {
 			# Load the given revision and check whether the page is another one.
 			# In that case, update this instance to reflect the change.
-			$this->mRevision = Revision::newFromId( $oldid );
-			if ( $this->mRevision !== null ) {
-				// Revision title doesn't match the page title given?
-				if ( $this->mPage->getID() != $this->mRevision->getPage() ) {
-					$function = array( get_class( $this->mPage ), 'newFromID' );
-					$this->mPage = call_user_func( $function, $this->mRevision->getPage() );
+			if ( $oldid === $this->mPage->getLatest() ) {
+				$this->mRevision = $this->mPage->getRevision();
+			} else {
+				$this->mRevision = Revision::newFromId( $oldid );
+				if ( $this->mRevision !== null ) {
+					// Revision title doesn't match the page title given?
+					if ( $this->mPage->getID() != $this->mRevision->getPage() ) {
+						$function = array( get_class( $this->mPage ), 'newFromID' );
+						$this->mPage = call_user_func( $function, $this->mRevision->getPage() );
+					}
 				}
 			}
 		}
