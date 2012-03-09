@@ -5117,7 +5117,7 @@ class Parser {
 			$params['frame']['title'] = $this->stripAltText( $caption, $holders );
 		}
 
-		wfRunHooks( 'ParserMakeImageParams', array( $title, $file, &$params ) );
+		wfRunHooks( 'ParserMakeImageParams', array( $title, $file, &$params, $this ) );
 
 		# Linker does the rest
 		$time = isset( $options['time'] ) ? $options['time'] : false;

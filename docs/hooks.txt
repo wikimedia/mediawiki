@@ -1478,6 +1478,7 @@ to modify the parameters of the image.
 $title: title object representing the file
 $file: file object that will be used to create the image
 &$params: 2-D array of parameters
+$parser: Parser object that called the hook
 
 'ParserSectionCreate': Called each time the parser creates a document section
 from wikitext.  Use this to apply per-section modifications to HTML (like
