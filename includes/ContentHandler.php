@@ -145,6 +145,8 @@ abstract class ContentHandler {
 
     public abstract function unserialize( $blob, Title $title, $format = null ); #FIXME: ...and revId?
 
+    public abstract function newContent( Title $title );
+
     # public abstract function doPreSaveTransform( $title, $obj ); #TODO...
 
     /**
@@ -208,6 +210,8 @@ abstract class ContentHandler {
 
     #TODO: how to handle extra message for JS/CSS previews??
     #TODO: Article::showCssOrJsPage ---> specialized classes!
+
+    #XXX: ImagePage and CategoryPage... wrappers that use ContentHandler? or ContentHandler creates wrappers?
 }
 
 
@@ -232,6 +236,10 @@ class WikitextContentHandler extends TextContentHandler {
         return new WikitextContent($text, $title);
     }
 
+    public function newContent( Title $title) {
+        return new WikitextContent("", $title);
+    }
+
 }
 
 class JavaScriptContentHandler extends TextContentHandler {
@@ -244,6 +252,9 @@ class JavaScriptContentHandler extends TextContentHandler {
         return new JavaScriptContent($text, $title);
     }
 
+    public function newContent( Title $title) {
+        return new JavaScriptContent("", $title);
+    }
 }
 
 class CssContentHandler extends TextContentHandler {
@@ -254,6 +265,10 @@ class CssContentHandler extends TextContentHandler {
 
     public function unserialize( $text, Title $title, $format = null ) {
         return new CssContent($text, $title);
+    }
+
+    public function newContent( Title $title) {
+        return new CssContent("", $title);
     }
 
 }

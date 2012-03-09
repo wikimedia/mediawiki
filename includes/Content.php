@@ -47,8 +47,28 @@ abstract class Content {
         return null;
     }
 
-    public function getSection( $section ) { #FIXME: should this return text? or a Content object? or what??
+    /**
+     * Returns the section with the given id.
+     *
+     * The default implementation returns null.
+     *
+     * @param String $sectionId the section's id
+     * @return Content|Boolean|null the section, or false if no such section exist, or null if sections are not supported
+     */
+    public function getSection( $sectionId ) {
         return null;
+    }
+
+    /**
+     * Replaces the section with the given id.
+     *
+     * The default implementation returns $this.
+     *
+     * @param String $sectionId the section's id
+     * @param Content $with the section's new content
+     * @return Content a new content object with the section replaced, or this content object if the section couldn't be replaced.
+     */
+    public function replaceSection( $sectionId ) {
     }
 
     #XXX: is the native model for wikitext a string or the parser output? parse early or parse late?
@@ -66,6 +86,11 @@ abstract class Content {
     # TODO: WikiPage::getAutosummary( $oldtext, $text, $flags )
 
     # TODO: EditPage::getPreloadedText( $preload ) // $wgParser->getPreloadText
+
+
+    # TODO: tie into API to provide contentModel for Revisions
+    # TODO: tie into API to provide serialized version and contentFormat for Revisions
+    # TODO: tie into API edit interface
 
 }
 
@@ -114,7 +139,7 @@ class TextContent extends Content {
     }
 
     public function getRedirectChain() {
-        #XXX: really do this for all text, or just in WikitextContent
+        #XXX: really do this for all text, or just in WikitextContent?
         $text = $this->getRawData();
         return Title::newFromRedirectArray( $text );
     }
@@ -154,12 +179,85 @@ class WikitextContent extends TextContent {
         return $po;
     }
 
+    /**
+     * Returns the section with the given id.
+     *
+     * @param String $sectionId the section's id
+     * @return Content|false|null the section, or false if no such section exist, or null if sections are not supported
+     */
     public function getSection( $section ) {
         global $wgParser;
 
         $text = $this->getRawData();
-        return $wgParser->getSection( $text, $section, false );
+        $sect = $wgParser->getSection( $text, $section, false );
+        $title = Title::newFromDBkey( $this->mTitle->getText() . '#' . $section, $this->mTitle->getNamespace() ); #FIXME: get rid of titles here
+
+        return  new WikitextContent( $sect, $title );
     }
+
+    /**
+     * Replaces the section with the given id.
+     *
+     * @param String $sectionId the section's id
+     * @param Content $with the section's new content
+     * @return Boolean true if te section was replaced sucessfully, false otherwise
+     */
+    #FIXME: implement replaceSection(), use in WikiPage
+
+    /**
+     * @param $section empty/null/false or a section number (0, 1, 2, T1, T2...)
+     * @param $text String: new text of the section
+     * @param $sectionTitle String: new section's subject, only if $section is 'new'
+     * @param $edittime String: revision timestamp or null to use the current revision
+     * @return string Complete article text, or null if error
+     */
+    /*public function replaceSection( $section, $text, $sectionTitle = '', $edittime = null ) { #FIXME: adopt this!
+        wfProfileIn( __METHOD__ );
+
+        if ( strval( $section ) == '' ) {
+            // Whole-page edit; let the whole text through
+        } else {
+            // Bug 30711: always use current version when adding a new section
+            if ( is_null( $edittime ) || $section == 'new' ) {
+                $oldtext = $this->getRawText();
+                if ( $oldtext === false ) {
+                    wfDebug( __METHOD__ . ": no page text\n" );
+                    wfProfileOut( __METHOD__ );
+                    return null;
+                }
+            } else {
+                $dbw = wfGetDB( DB_MASTER );
+                $rev = Revision::loadFromTimestamp( $dbw, $this->mTitle, $edittime );
+
+                if ( !$rev ) {
+                    wfDebug( "WikiPage::replaceSection asked for bogus section (page: " .
+                        $this->getId() . "; section: $section; edittime: $edittime)\n" );
+                    wfProfileOut( __METHOD__ );
+                    return null;
+                }
+
+                $oldtext = $rev->getText();
+            }
+
+            if ( $section == 'new' ) {
+                # Inserting a new section
+                $subject = $sectionTitle ? wfMsgForContent( 'newsectionheaderdefaultlevel', $sectionTitle ) . "\n\n" : '';
+                if ( wfRunHooks( 'PlaceNewSection', array( $this, $oldtext, $subject, &$text ) ) ) {
+                    $text = strlen( trim( $oldtext ) ) > 0
+                        ? "{$oldtext}\n\n{$subject}{$text}"
+                        : "{$subject}{$text}";
+                }
+            } else {
+                # Replacing an existing section; roll out the big guns
+                global $wgParser;
+
+                $text = $wgParser->replaceSection( $oldtext, $section, $text );
+            }
+        }
+
+        wfProfileOut( __METHOD__ );
+        return $text;
+    } */
 
 }
 
