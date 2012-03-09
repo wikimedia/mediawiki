@@ -117,8 +117,9 @@ class ForkController {
 
 	protected function prepareEnvironment() {
 		global $wgMemc;
-		// Don't share DB or memcached connections
+		// Don't share DB, storage, or memcached connections
 		wfGetLBFactory()->destroyInstance();
+		FileBackendGroup::destroySingleton();
 		ObjectCache::clear();
 		$wgMemc = null;
 	}
