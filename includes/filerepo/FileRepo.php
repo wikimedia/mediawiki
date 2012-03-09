@@ -733,9 +733,11 @@ class FileRepo {
 	 * It will try to delete each file, but ignores any errors that may occur.
 	 *
 	 * @param $pairs array List of files to delete
+	 * @param $flags Integer: bitwise combination of the following flags:
+	 *     self::SKIP_LOCKING      Skip any file locking when doing the deletions
 	 * @return void
 	 */
-	public function cleanupBatch( $files ) {
+	public function cleanupBatch( $files, $flags = 0 ) {
 		$operations = array();
 		$sourceFSFilesToDelete = array(); // cleanup for disk source files
 		foreach ( $files as $file ) {
@@ -765,6 +767,9 @@ class FileRepo {
 		}
 		// Actually delete files from storage...
 		$opts = array( 'force' => true );
+		if ( $flags & self::SKIP_LOCKING ) {
+			$opts['nonLocking'] = true;
+		}
 		$this->backend->doOperations( $operations, $opts );
 		// Cleanup for disk source files...
 		foreach ( $sourceFSFilesToDelete as $file ) {
