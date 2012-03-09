@@ -265,8 +265,10 @@ production.
 * (bug 34600) Older skins using useHeadElement=false were broken in 1.18.
 * (bug 34604) [mw.config] wgActionPaths should be an object instead of a numeral
   array.
-* (bug 29753) mw.util.tooltipAccessKeyPrefix should be alt-shift for Chrome on Windows
-* (bug 25095) Special:Categories doesn't show first relevant item when "from" is filled.
+* (bug 29753) mw.util.tooltipAccessKeyPrefix should be alt-shift for Chrome
+   on Windows
+* (bug 25095) Special:Categories should also include the first relevant item
+   when "from" is filled.
 
 === API changes in 1.19 ===
 * Made action=edit less likely to return "unknownerror", by returning the actual error
