@@ -791,26 +791,24 @@ class DatabasePostgres extends DatabaseBase {
 		return wfTimestamp( TS_POSTGRES, $ts );
 	}
 
-
 	/* 
 	 * Posted by cc[plus]php[at]c2se[dot]com on 25-Mar-2009 09:12
 	 * to http://www.php.net/manual/en/ref.pgsql.php
-         *
-         * Parsing a postgres array can be a tricky problem, he's my
-         * take on this, it handles multi-dimensional arrays plus
-         * escaping using a nasty regexp to determine the limits of each
-         * data-item.
+	 *
+	 * Parsing a postgres array can be a tricky problem, he's my
+	 * take on this, it handles multi-dimensional arrays plus
+	 * escaping using a nasty regexp to determine the limits of each
+	 * data-item.
 	 *
 	 * This should really be handled by PHP PostgreSQL module
 	 *
 	 * @since 1.20
-	 * @param  text   string: postgreql array returned in a text form like {a,b}
-	 * @param  output string
-	 * @param  limit  int
-	 * @param  offset int
+	 * @param $text   string: postgreql array returned in a text form like {a,b}
+	 * @param $output string
+	 * @param $limit  int
+	 * @param $offset int
 	 * @return string
 	 */
-
 	function pg_array_parse( $text, &$output, $limit = false, $offset = 1 ) {
 		if( false === $limit ) {
 			$limit = strlen( $text )-1;
@@ -895,14 +893,14 @@ class DatabasePostgres extends DatabaseBase {
 		return explode(",", $row[0]);
 	}
 
-	function setSearchPath( $search_path ) {
 	/**
 	 * Update search_path, values should already be sanitized
 	 * Values may contain magic keywords like "$user"
 	 * @since 1.20
 	 *
-	 * @param array list of schemas to be searched by default
+	 * @param $search_path array list of schemas to be searched by default
 	 */
+	function setSearchPath( $search_path ) {
 		$this->query( "SET search_path = " . implode(", ", $search_path) );
 	}
 
