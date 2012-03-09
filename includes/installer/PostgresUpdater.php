@@ -306,7 +306,7 @@ END;
 		$res = $this->db->query(
 			sprintf(
 				$q,
-				$this->db->addQuotes( $this->db->getCoreSchea() ),
+				$this->db->addQuotes( $this->db->getCoreSchema() ),
 				$this->db->addQuotes( $idx )
 			)
 		);
