@@ -1818,6 +1818,7 @@ Om problemet kvarstår, kontakta en [[Special:ListUsers/sysop|administratör]].'
 'backend-fail-closetemp'     => 'Kunde inte stänga temporär fil.',
 'backend-fail-read'          => 'Kunde inte läsa filen $1.',
 'backend-fail-create'        => 'Kunde inte skapa filen $1.',
+'backend-fail-maxsize'       => 'Kunde inte skapa filen $1, eftersom den är större än {{PLURAL:$2|$2|$2}} byte.',
 'backend-fail-readonly'      => 'Lagrings-backend "$1" är för närvarande skrivskyddad. Den angivna anledningen är: "$2"',
 'backend-fail-synced'        => 'Filen "$1" är i ett inkonsekvent tillstånd inom de interna lagrings-backends',
 'backend-fail-connect'       => 'Kunde inte ansluta till lagrings-backend "$1".',

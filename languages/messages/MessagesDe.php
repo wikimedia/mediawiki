@@ -1872,6 +1872,7 @@ Wenn das Problem weiter besteht, informiere einen [[Special:ListUsers/sysop|Syst
 'backend-fail-closetemp'     => 'Die temporäre Datei konnte nicht geschlossen werden.',
 'backend-fail-read'          => 'Die Datei $1 konnte nicht gelesen werden.',
 'backend-fail-create'        => 'Die Datei $1 konnte nicht erstellt werden.',
+'backend-fail-maxsize'       => 'Die Datei $1 konnte nicht erstellt werden, da sie größer als {{PLURAL:$2|ein Byte|$2 Byte}} ist.',
 'backend-fail-readonly'      => 'Das Speicher-Backend „$1“ befindet sich derzeit im Lesemodus. Der angegebene Grund lautet: „$2“',
 'backend-fail-synced'        => 'Die Datei „$1“ befindet sich, innerhalb des internen Speicher-Backends, in einem inkonsistenten Zustand.',
 'backend-fail-connect'       => 'Es konnte keine Verbindung zum Speicher-Backend „$1“ hergestellt werden.',

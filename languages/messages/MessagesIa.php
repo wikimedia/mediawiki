@@ -1690,6 +1690,7 @@ Si le problema persiste, contacta un [[Special:ListUsers/sysop|administrator]].'
 'backend-fail-closetemp'     => 'Non poteva clauder file temporari.',
 'backend-fail-read'          => 'Non poteva leger le file $1',
 'backend-fail-create'        => 'Non poteva crear le file $1',
+'backend-fail-maxsize'       => 'Impossibile crear le file $1 perque illo es plus grande que {{PLURAL:$2|$2 byte|$2 bytes}}.',
 'backend-fail-readonly'      => 'Le systema de immagazinage "$1" es actualmente in lectura sol. Le sequente motivo esseva specificate: "$2"',
 'backend-fail-synced'        => 'Le file "$1" es in un stato inconsistente inter le systemas interne de immagazinage',
 'backend-fail-connect'       => 'Impossibile connecter al systema de immagazinage "$1".',

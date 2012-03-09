@@ -1902,6 +1902,7 @@ Als het probleem aanhoudt, neem dan contact op met een [[Special:ListUsers/sysop
 'backend-fail-closetemp'     => 'Het was niet mogelijk een tijdelijk bestand te sluiten.',
 'backend-fail-read'          => 'Het was niet mogelijk het bestand $1 te lezen.',
 'backend-fail-create'        => 'Het was niet mogelijk het bestand $1 aan te maken.',
+'backend-fail-maxsize'       => 'Het was niet mogelijk het bestand $1 aan te maken omdat het groter is dan {{PLURAL:$2|één byte|$2 bytes}}.',
 'backend-fail-readonly'      => 'Het opslagbackend "$1" kan op dit moment alleen gelezen worden. De opgegeven reden was: "$2"',
 'backend-fail-synced'        => 'Het bestand "$1" bevindt zich in een inconsistente toestand in de interne opslagbackends.',
 'backend-fail-connect'       => 'Het was niet mogelijk een verbinding te maken met het opslagbackend "$1".',

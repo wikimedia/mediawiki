@@ -1853,6 +1853,7 @@ Si le problème persiste, contactez un [[Special:ListUsers/sysop|administrateur]
 'backend-fail-closetemp'     => 'Impossible de fermer le fichier temporaire.',
 'backend-fail-read'          => 'Impossible de lire le fichier $1.',
 'backend-fail-create'        => 'Impossible de créer le fichier $1.',
+'backend-fail-maxsize'       => "Impossible de créer le fichier $1 parce qu'il est plus grand que  {{PLURAL:$2|$2 octet| $2 octets}}.",
 'backend-fail-readonly'      => 'Le support de stockage "$1" est actuellement en lecture seule. La raison indiquée est: "$2"',
 'backend-fail-synced'        => 'Le fichier "$1" est dans un état incohérent dans les supports de stockage internes',
 'backend-fail-connect'       => 'Impossible de se connecter au support de stockage "$1".',

@@ -1715,6 +1715,7 @@ Prosimo, preverite veljavnost in dostopnost naslova URL ter poskusite ponovno.
 'backend-fail-closetemp'     => 'Ne morem zapreti začasne datoteke.',
 'backend-fail-read'          => 'Ne morem brati datoteke $1.',
 'backend-fail-create'        => 'Ne morem ustvariti datoteke $1.',
+'backend-fail-maxsize'       => 'Ne morem ustvariti datoteke $1, kjer je večja od {{PLURAL:$2|$2 bajta|$2 bajtov}}.',
 'backend-fail-readonly'      => 'Skladiščno zaledje »$1« je trenutno označeno samo za branje. Podan razlog je: »$2«',
 'backend-fail-synced'        => 'Datoteka »$1« je v neskladnem stanju z notranjimi skladiščnimi zaledji',
 'backend-fail-connect'       => 'Ne morem se povezati s skladiščnim zaledjem »$1«.',

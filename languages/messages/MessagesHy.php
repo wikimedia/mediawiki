@@ -498,6 +498,7 @@ $messages = array(
 Խնդրում ենք սպասել որոշ ժամանակ էջը դիտելու կրկին հայցում անելուց առաջ։
 
 $1',
+'pool-errorunknown' => 'Անհայտ սխալ',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{grammar:genitive|{{SITENAME}}}} մասին',
@@ -542,6 +543,8 @@ $1',
 'toc'                     => 'Բովանդակություն',
 'showtoc'                 => 'ցույց տալ',
 'hidetoc'                 => 'թաքցնել',
+'collapsible-collapse'    => 'Ծալել',
+'collapsible-expand'      => 'Բացել',
 'thisisdeleted'           => 'Դիտե՞լ կամ վերականգնե՞լ $1։',
 'viewdeleted'             => 'Դիտե՞լ $1։',
 'restorelink'             => '{{PLURAL:$1|մեկ ջնջված խմբագրում|$1 ջնջված խմբագրում}}',
@@ -553,6 +556,8 @@ $1',
 'page-rss-feed'           => '«$1» RSS Սնուցում',
 'page-atom-feed'          => '«$1» Atom Սնուցում',
 'red-link-title'          => '$1 (էջը գոյություն չունի)',
+'sort-descending'         => 'Դասավորել՝ մեծից փոքր',
+'sort-ascending'          => 'Դասավորել՝ փոքրից մեծ',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Էջ',
@@ -620,6 +625,7 @@ $1',
 'badarticleerror'      => 'Տվյալ գործողությունը չի կարող կատարվել այս էջում։',
 'cannotdelete'         => 'Չհաջողվեց ջնջել «$1» էջը կամ ֆայլը։
 Հավանաբար այն արդեն ջնջվել է մեկ այլ մասնակցի կողմից։',
+'cannotdelete-title'   => 'Հնարավոր չէ ջնջել $1 էջը',
 'badtitle'             => 'Անընդունելի անվանում',
 'badtitletext'         => 'Հարցված էջի անվանումը անընդունելի է, դատարկ է կամ սխալ միջ-լեզվական կամ ինտերվիքի անվանում է։ Հնարավոր է, որ այն պարունակում է անթույլատրելի սիմվոլներ։',
 'perfcached'           => 'Հետևյալ տվյալները վերցված են քեշից և հնարավոր է չարտացոլեն վերջին փոփոխությունները։ A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
@@ -629,10 +635,12 @@ $1',
 Ֆունկցիա. $1<br />
 Հայցում. $2',
 'viewsource'           => 'Դիտել ելատեքստը',
+'viewsource-title'     => 'Դիտել $1 էջի աղբյուրը',
 'actionthrottled'      => 'Գործողությունը արգելափակվեց',
 'actionthrottledtext'  => 'Որպես հակա-սպամային միջոց, այս գործողության չափից շատ կատարումը կարճ ժամանակահատվածի ընթացքում սահմանափակված է։ Խնդրում ենք փորձել կրկին մի քանի րոպե անց։',
 'protectedpagetext'    => 'Այս էջը կողպված խմբագրման համար։',
 'viewsourcetext'       => 'Դուք կարող եք դիտել և պատճենել այս էջի ելատեքստը.',
+'viewyourtext'         => 'Դուք կարող եք դիտել «ձեր ներդրումների» աղբյուրը և պատճենել այս էջ',
 'protectedinterface'   => 'Այս էջը պարունակում է ծրագրային ապահովման ինտերֆեյսի ուզերձ և կողպված է չարաշահումների կանխարգելման նպատակով։.',
 'editinginterface'     => "'''Զգուշացում.''' Դուք խմբագրում եք ծրագրային ապահովման ինտերֆեյսի տեքստ պարունակող էջ։ Այս էջի փոփոխությունը կանդրադառնա այլ մասնակիցներին տեսանելի ինտերֆեյսի տեսքի վրա։
 Թարգմանությունների համար նախընտրելի է օգտագործել [//translatewiki.net/wiki/Main_Page?setlang=hy translatewiki.net]՝ MediaWiki ծրագրի տեղայնացման նախագիծը։",
@@ -677,6 +685,7 @@ $2',
 'gotaccountlink'             => 'Մուտք գործեք համակարգ',
 'userlogin-resetlink'        => 'Մոռացե՞լ եք Ձեր լոգին տվյալները։',
 'createaccountmail'          => 'էլ-փոստով',
+'createaccountreason'        => 'Պատճառ.',
 'badretype'                  => 'Ձեր մուտքագրած գաղտնաբառերը չեն համընկնում։',
 'userexists'                 => 'Այս մասնակցի անունը արդեն զբաղված է։ Խնդրում ենք ընտրել մեկ այլ անուն։',
 'loginerror'                 => 'Մասնակցի մուտքի սխալ',
@@ -747,7 +756,12 @@ $2',
 'resetpass-temp-password'   => 'Ժամանակավոր գաղտնաբառ.',
 
 # Special:PasswordReset
-'passwordreset-username' => 'Մասնակցի անուն.',
+'passwordreset-username'     => 'Մասնակցի անուն.',
+'passwordreset-emailelement' => 'Մասնակցային անուն. $1
+Ժամանակավոր գաղտնաբառ. $2',
+
+# Special:ChangeEmail
+'changeemail' => 'Փոխել էլ. հասցեն',
 
 # Edit page toolbar
 'bold_sample'     => 'Թավատառ տեքստ',
@@ -831,10 +845,14 @@ $2',
 Համակարգ մուտք գործելուն պես կարող եք ''[[Special:ChangePassword|փոխել գաղտնաբառը]]''։",
 'newarticle'                       => '(Նոր)',
 'newarticletext'                   => "Դուք հղվել եք դեռևս գոյություն չունեցող էջի։ Էջը ստեղծելու համար սկսեք տեքստի մուտքագրումը ներքևի արկղում (այցելեք [[{{MediaWiki:Helppage}}|օգնության էջը]]՝ մանրամասն տեղեկությունների համար)։ Եթե դուք սխալմամբ եք այստեղ հայտնվել, ապա մատնահարեք ձեր զննարկիչի '''back''' կոճակը։",
-'anontalkpagetext'                 => "----''Այս քննարկման էջը պատկանում է անանուն մասնակցին, որը դեռ չի ստեղծել մասնակցային հաշիվ կամ չի մտել համակարգ մասնակցի անունով։
-Այդ իսկ պատճառով օգտագործվում է թվային IP-հասցեն։
-Նման IP-հասցեից կարող են օգտվել մի քանի մասնակիցներ։
-Եթե դուք անանուն մասնակից եք, բայց կարծում եք, որ ուրիշներին վերաբերող դիտողությունները արվում են ձեր հասցեով, ապա խնդրում ենք պարզապես [[Special:UserLogin/signup|գրանցվել]] կամ [[Special:UserLogin|մտնել համակարգ]], որպեսզի հետագայում ձեզ չշփոթեն այլ անանուն մասնակիցների հետ։''",
+'anontalkpagetext'                 => "{| style=\"background-repeat:no-repeat; background-position:800px -20px; margin:0.5em 0 0.5em 0; clear:both;\" width=100% class=toccolours
+|- 
+| <span class=\"plainlinksneverexpand\">''Այս քննարկման էջը պատկանում է չգրանցված կամ համակարգ չմտած մասնակցի, ով խմբագրում կատարելիս օգտվել է {{BASEPAGENAME}} ԱյՓի հասցեից։''
+Քանի որ միևնույն ԱյՓի հասցեից տարբեր մարդիկ կարող են օգտվել, հնարավոր է որ այստեղ գտնեք զգուշացումներ և հաղորդագրություններ, որոնք ձեզ չեն վերաբերում։ Դրանից խուսափելու համար առաջարկում ենք [[Special:UserLogin/signup|գրանցվել]] կամ, եթե արդեն գրանցված եք, պարզապես [[Special:UserLogin|մուտք գործել համակարգ]]։''
+----
+Հավելյալ տեղեկություններ ԱյՓիի մասին. [http://toolserver.org/~overlordq/cgi-bin/whois.cgi?lookup={{BASEPAGENAME}} WHOIS] · [http://www.robtex.com/ip/{{BASEPAGENAME}}.html#ip rDNS] · [http://www.dnsstuff.com/tools/tracert/?tool_id=68&ip={{BASEPAGENAME}} Traceroute] · [http://whatismyipaddress.com/ip/{{BASEPAGENAME}} Geolocate] · [http://toolserver.org/~luxo/contributions/contributions.php?user={{BASEPAGENAME}}&blocks=true Գլոբալ ներդրումներ] · [http://hy.wikipedia.org/wiki/Սպասարկող:DeletedContributions/{{BASEPAGENAME}} Ջնջված ներդրումներ] · [http://hy.wikipedia.org/w/index.php?title=Special:BlockList&ip={{BASEPAGENAME}} Արգելափակումներ]
+</small></span>
+|}",
 'noarticletext'                    => 'Ներկայումս այս էջում որևէ տեքստ չկա։
 Դուք կարող եք [[Special:Search/{{PAGENAME}}|որոնել այս անվանումը]] այլ էջերում, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} որոնել համապատասխան տեղեկամատյանները] կամ [{{fullurl:{{FULLPAGENAME}}|action=edit}} ստեղծել նոր էջ այս անվանմամբ]</span>։',
 'noarticletext-nopermission'       => 'Ներկայումս այս էջում որևէ տեքստ չկա։
@@ -2242,6 +2260,11 @@ $1',
 'seconds-abbrev' => '$1 վ',
 'minutes-abbrev' => '$1 ր',
 'hours-abbrev'   => '$1 ժ',
+'seconds'        => '{{PLURAL:$1|$1 վայրկյան|$1 վայրկյան}}',
+'minutes'        => '{{PLURAL:$1|$1 րոպե|$1 րոպե}}',
+'hours'          => '{{PLURAL:$1|$1 ժամ|$1 ժամ}}',
+'days'           => '{{PLURAL:$1|$1 օր|$1 օր}}',
+'ago'            => '$1 առաջ',
 
 # Bad image list
 'bad_image_list' => 'Գրաձևը հետևյալն է.
@@ -2332,10 +2355,15 @@ $3
 'confirm_purge_button' => 'OK',
 'confirm-purge-top'    => 'Մաքրե՞լ այս էջի քեշը։',
 
+# action=watch/unwatch
+'confirm-watch-top'   => 'Ավելացնե՞լ ձեր հսկացանկին',
+'confirm-unwatch-top' => 'Հեռացնե՞լ ձեր հսկացանկից։',
+
 # Multipage image navigation
 'imgmultipageprev' => '← նախորդ էջ',
 'imgmultipagenext' => 'հաջորդ էջ →',
-'imgmultigo'       => 'Անցնե՜լ',
+'imgmultigo'       => 'Անցնե՛լ',
+'imgmultigoto'     => 'Անցնել $1 էջը',
 
 # Table pager
 'ascending_abbrev'         => 'աճմ. կարգ.',

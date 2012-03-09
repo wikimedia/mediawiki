@@ -477,8 +477,8 @@ Mesedez, bidali gertakar hau administradore bati, URLaren izena jarriz.',
 Baliteke beste norbaitek ezabatu izana.',
 'badtitle'             => 'Izenburu ezegokia',
 'badtitletext'         => 'Eskatutako orrialde izenburua ez da baliozkoa, hutsik dago, edo gaizki lotutako hizkuntzen arteko lotura da. Baliteke izenburuetan erabili ezin den karaktereren bat izatea.',
-'perfcached'           => 'Hurrengo datuak katxean gordeta daude eta litekeena da guztiz eguneratuta ez egotea. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
-'perfcachedts'         => 'Hurrengo datuak katxean daude, $1 eguneratu zen azkenekoz. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
+'perfcached'           => 'Hurrengo datuak katxean gordeta daude eta litekeena da guztiz eguneratuta ez egotea. Gehienez {{PLURAL:$1|emaitza 1 dago|$1 emaitza daude}} eskuragarri katxean.',
+'perfcachedts'         => 'Hurrengo datuak katxean daude, $1 eguneratu zen azkenekoz. {{PLURAL:$1|emaitza 1 dago|$1 emaitza daude}} eskuragarri katxean.',
 'querypage-no-updates' => 'Orrialde honen berritzeak ez dira baimentzen. Hemen dagoen data ez da zuzenean berrituko.',
 'wrong_wfQuery_params' => 'Baliogabeko parametroak eman zaizkio wfQuery() funtzioari<br />
 Funtzioa: $1<br />
@@ -784,7 +784,8 @@ Era berean, bidaltzen ari zaren edukia zuk zeuk idatzitakoa dela edo jabetza pub
 'copyrightwarning2'                => "Mesedez, kontuan izan {{SITENAME}}(e)n egindako ekarpen guztiak besteek aldatu edo ezabatu ditzaketela. Ez baduzu besteek aldaketak egitea nahi, ez ezazu bidali.<br />
 Era berean, bidaltzen ari zaren edukia zuk zeuk idatzitakoa dela edo jabetza publikoko edo baliabide aske batetik kopiatu duzula zin egin ari zara (ikus $1 informazio gehiagorako).
 '''EZ BIDALI BAIMENIK GABEKO COPYRIGHTDUN EDUKIRIK!'''",
-'longpageerror'                    => "'''ERROREA: Bidali duzun testuak $1 kilobyteko luzera du, eta $2 kilobyteko maximoa baino luzeagoa da. Ezin da gorde.'''",
+'longpageerror'                    => "'''Errorea: Bidali duzun testuak {{PLURAL:$1|kilobyte 1eko|$1 kilobyteko}} luzera du, eta {{PLURAL:$2|kilobyte 1eko|$2 kilobyteko}} maximoa baino luzeagoa da.'''
+Ezin da gorde.",
 'readonlywarning'                  => "'''OHARRA: Datu-basea blokeatu egin da mantenu lanak burutzeko, beraz ezingo dituzu orain zure aldaketak gorde. Testua fitxategi baten kopiatu dezakezu, eta beranduago erabiltzeko gorde.
 
 Blokeatu zuen administratzaileak honako azalpena eman zuen: $1'''",
@@ -1114,7 +1115,7 @@ Saia zaitez zure eskeraren aurretik ''all:'' jartzen eduki guztien artean bilatz
 'prefs-rc'                      => 'Azken aldaketak',
 'prefs-watchlist'               => 'Jarraipen zerrenda',
 'prefs-watchlist-days'          => 'Jarraipen zerrendan erakutsi beharreko egun kopurua:',
-'prefs-watchlist-days-max'      => 'Maximum $1 {{PLURAL:$1|day|days}}',
+'prefs-watchlist-days-max'      => 'Gehienez $1 {{PLURAL:$1|egun|egun}}',
 'prefs-watchlist-edits'         => 'Jarraipen zerrendan erakutsi beharreko aldaketa kopurua:',
 'prefs-watchlist-edits-max'     => 'Gehenezko zenbakia: 1000',
 'prefs-watchlist-token'         => 'Jarraipen zerrendaren tokena:',
@@ -1241,7 +1242,7 @@ $1 {{PLURAL:$1|karakteretik|karakteretik}} behera izan behar ditu.',
 'group-all'           => '(guztiak)',
 
 'group-user-member'          => '{{GENDER:$1|lankidea}}',
-'group-autoconfirmed-member' => '{{GENDER:$1|erabiltzaile autokonfirmatua}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|baieztatutako erabiltzailea}}',
 'group-bot-member'           => '{{GENDER:$1|bot-a}}',
 'group-sysop-member'         => '{{GENDER:$1|administratzailea}}',
 'group-bureaucrat-member'    => '{{GENDER:$1|burokrata}}',
@@ -1744,7 +1745,7 @@ Ondorengo zerrendak fitxategira dauden {{PLURAL:$1|lehen lotura|lehen $1 loturak
 'listusers-editsonly'     => 'Aldaketak egin dituzten erabiltzaileak soilik erakutsi',
 'listusers-creationsort'  => 'Sorrera dataren arabera sailkatu',
 'usereditcount'           => '{{PLURAL:$1|aldaketa $1|$1 aldaketa}}',
-'usercreated'             => '$2-(e)tan $1-(a)n sortua',
+'usercreated'             => '$2-(e)tan $1-(a)n {{GENDER:$3|sortua}},',
 'newpages'                => 'Orrialde berriak',
 'newpages-username'       => 'Erabiltzaile izena:',
 'ancientpages'            => 'Orrialde zaharrenak',
@@ -2014,7 +2015,8 @@ edukia $2 wikilariaren azken bertsiora itzuli da.',
 
 # Protect
 'protectlogpage'              => 'Babes erregistroa',
-'protectlogtext'              => 'Orrialdeen blokeo eta desblokeo zerrenda azaltzen da jarraian.',
+'protectlogtext'              => 'Orrialdeen blokeo eta desblokeo zerrenda azaltzen da jarraian.
+Ikusi [[Special:ProtectedPages|babestutako orrialdeen zerrenda]] orrialde babes informazio ikusteko.',
 'protectedarticle'            => '"[[$1]]" babestu da"',
 'modifiedarticleprotection'   => '"[[$1]]"(r)en babes maila aldatu da',
 'unprotectedarticle'          => '"[[$1]]"-(r)i babesa kendu zaio',

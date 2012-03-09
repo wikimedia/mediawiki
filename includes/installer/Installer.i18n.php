@@ -3623,10 +3623,10 @@ Dieser kann durch Anhebung des Parameters <code>session.gc_maxlifetime</code> in
 Den Installationsvorgang erneut starten.',
 	'config-no-session' => 'Die Sitzungsdaten sind verloren gegangen!
 Die Datei <code>php.ini</code> muss geprüft und es muss dabei sichergestellt werden, dass der Parameter <code>session.save_path</code> auf das richtige Verzeichnis verweist.',
-	'config-your-language' => 'Sprache:',
+	'config-your-language' => 'Sprache während des Installierens:',
 	'config-your-language-help' => 'Bitte die Sprache auswählen, die während des Installationsvorgangs verwendet werden soll.',
 	'config-wiki-language' => 'Sprache des Wikis:',
-	'config-wiki-language-help' => 'Bitte die Hauptbearbeitungssprache des Wikis auswählen.',
+	'config-wiki-language-help' => 'Bitte die Sprache auswählen, die überwiegend beim Erstellen der Inhalte verwendet werden soll.',
 	'config-back' => '← Zurück',
 	'config-continue' => 'Weiter →',
 	'config-page-language' => 'Sprache',
@@ -13120,6 +13120,7 @@ $messages['pdc'] = array(
 /** Polish (Polski)
  * @author BeginaFelicysym
  * @author Holek
+ * @author Saper
  * @author Sp5uhe
  * @author Woytecr
  */
@@ -13167,13 +13168,13 @@ Sprawdź plik php.ini i upewnij się, że <code>session.save_path</code> wskazuj
 	'config-page-options' => 'Opcje',
 	'config-page-install' => 'Instaluj',
 	'config-page-complete' => 'Zakończono!',
-	'config-page-restart' => 'Ponowne uruchomienie instalacji',
+	'config-page-restart' => 'Rozpoczęcie instalacji od nowa',
 	'config-page-readme' => 'Podstawowe informacje',
 	'config-page-releasenotes' => 'Informacje o wersji',
 	'config-page-copying' => 'Kopiowanie',
 	'config-page-upgradedoc' => 'Uaktualnienie',
 	'config-page-existingwiki' => 'Istniejąca wiki',
-	'config-help-restart' => 'Czy chcesz usunąć wszystkie zapisane dane, które podałeś i uruchomić ponownie proces instalacji?',
+	'config-help-restart' => 'Czy chcesz usunąć wszystkie zapisane dane i uruchomić ponownie proces instalacji?',
 	'config-restart' => 'Tak, zacznij od nowa',
 	'config-welcome' => '=== Sprawdzenie środowiska instalacji ===
 Wykonywane są podstawowe testy sprawdzające czy to środowisko jest odpowiednie dla instalacji MediaWiki.
@@ -13250,22 +13251,18 @@ Instalacja może się nie udać!",
 	'config-xcache' => '[Http://trac.lighttpd.net/xcache/ XCache] jest zainstalowany',
 	'config-apc' => '[Http://www.php.net/apc APC] jest zainstalowany',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] jest zainstalowany',
-	'config-no-cache' => "'''Uwaga:''' Nie można odnaleźć [http://www.php.net/apc APC], [http://xcache.lighttpd.net/ XCache] lub [http://www.iis.net/download/WinCacheForPhp WinCache].
-Buforowanie obiektów nie będzie możliwe.",
+	'config-no-cache' => "'''Uwaga:''' Pamięć podręczna dla kodu MediaWiki nie będzie uruchomiona., gdyż nie ma żadnego z następujących narzędzi: [http://www.php.net/apc APC], [http://xcache.lighttpd.net/ XCache] lub [http://www.iis.net/download/WinCacheForPhp WinCache].",
 	'config-mod-security' => "''' Ostrzeżenie ''': Serwer sieci web ma włączone [http://modsecurity.org/ mod_security]. Jeśli niepoprawnie skonfigurowane, może być przyczyną problemów MediaWiki lub innego oprogramowania, które pozwala użytkownikom na wysyłanie dowolnej zawartości.
 Sprawdź w [http://modsecurity.org/documentation/ dokumentacji mod_security] lub skontaktuj się z obsługa hosta, jeśli wystąpią losowe błędy.",
 	'config-diff3-bad' => 'Nie znaleziono GNU diff3.',
-	'config-imagemagick' => 'Odnaleziono ImageMagick <code>$1</code>.
-Miniatury grafik będą generowane jeśli włączysz przesyłanie plików.',
-	'config-gd' => 'Odnaleziono wbudowaną bibliotekę graficzną GD.
-Miniatury grafik będą generowane jeśli włączysz przesyłanie plików.',
-	'config-no-scaling' => 'Nie można odnaleźć biblioteki GD lub ImageMagick.
-Tworzenie miniatur grafik będzie wyłączone.',
+	'config-imagemagick' => 'Mamy zainstalowany ImageMagick <code>$1</code>, dzięki czemu będzie można pomniejszać załadowane grafiki.',
+	'config-gd' => 'Mamy wbudowaną bibliotekę graficzną GD, dzięki ceymu będzie można pomniejszać załadowane grafiki.',
+	'config-no-scaling' => 'Nie można odnaleźć biblioteki GD lub ImageMagick. Nie będzie działać pomniejszanie załadowane grafiki.',
 	'config-no-uri' => "'''Błąd.''' Nie można określić aktualnego URI.
 Instalacja została przerwana.",
 	'config-no-cli-uri' => "''' Ostrzeżenie ''': nie wskazano --scriptpath,  użycie wartości domyślnej: <code>$1</code> .",
-	'config-using-server' => 'Przy użyciu nazwy serwera „<nowiki>$1</nowiki>“.',
-	'config-using-uri' => 'Użycie adresu URL serwera "<nowiki>$1$2</nowiki>".',
+	'config-using-server' => '„<nowiki>$1</nowiki>“ jest adresem serwera, na którym instalowana jest wiki.',
+	'config-using-uri' => 'Wiki będzie zainstalowana pod adresem "<nowiki>$1$2</nowiki>".',
 	'config-uploads-not-safe' => "'''Uwaga''' – domyślny katalog do którego zapisywane są przesyłane pliki <code>$1</code> jest podatny na wykonanie dowolnego skryptu.
 Chociaż MediaWiki sprawdza wszystkie przesłane pliki pod kątem bezpieczeństwa, zaleca się jednak, aby [//www.mediawiki.org/wiki/Manual:Security#Upload_security zamknąć tę lukę w zabezpieczeniach] przed włączeniem przesyłania plików.",
 	'config-no-cli-uploads-check' => "'''Ostrzeżenie:''' Katalog domyślny przesyłanych plików ( <code>$1</code> ) nie jest sprawdzona względem luki
@@ -13286,7 +13283,7 @@ Jeśli korzystasz ze współdzielonego hostingu, operator serwera powinien poda�
 Jeśli instalujesz oprogramowanie na serwerze Windowsowym i korzystasz z MySQL, użycie „localhost” może nie zadziałać jako nazwa hosta. Jeśli wystąpi ten problem użyj „127.0.0.1” jako lokalnego adresu IP.
 
 Jeżeli korzystasz z PostgreSQL, pozostaw to pole puste, aby połączyć się poprzez gniazdo Unix‐a.',
-	'config-db-host-oracle' => 'TNS bazy danych',
+	'config-db-host-oracle' => 'Nazwa instancji bazy danych (TNS):',
 	'config-db-host-oracle-help' => 'Wprowadź prawidłową [http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm nazwę połączenia lokalnego]. Plik „tnsnames.ora” musi być widoczny dla instalatora.<br />Jeśli używasz biblioteki klienckiej 10g lub nowszej możesz również skorzystać z metody nazw [http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm łatwego łączenia].',
 	'config-db-wiki-settings' => 'Zidentyfikuj tę wiki',
 	'config-db-name' => 'Nazwa bazy danych',
@@ -13294,12 +13291,14 @@ Jeżeli korzystasz z PostgreSQL, pozostaw to pole puste, aby połączyć się po
 Nie może ona zawierać spacji.
 
 Jeśli korzystasz ze współdzielonego hostingu, dostawca usługi hostingowej może wymagać użycia konkretnej nazwy bazy danych lub pozwalać na tworzenie baz danych za pośrednictwem panelu użytkownika.',
-	'config-db-name-oracle' => 'Schemat bazy danych',
-	'config-db-account-oracle-warn' => 'Istnieją trzy obsługiwane scenariusze instalacji Oracle jako wewnętrznej bazy danych:
+	'config-db-name-oracle' => 'Nazwa schematu bazy danych:',
+	'config-db-account-oracle-warn' => 'Bazę danych Oracle można przygotować do pracy z MediaWIki na trzy sposoby:
 
-Jeśli chcesz utworzyć konto bazy danych jako część procesu instalacji, proszę dostarczyć konta z rolą SYSDBA jako konto bazy danych dla instalacji i określić żądane poświadczenia dla konta dostępu do sieci web, w przeciwnym razie można ręcznie utworzyć konta dostępu do sieci web i dostarczać tylko to konto (jeśli ma wymagane uprawnienia do tworzenia obiektów schematu) lub dostarczyć dwa różne konta - jedno z uprawnieniami do tworzenia i drugie ograniczone dla dostępu do sieci.
+Możesz utworzyć konto użytkownika bazy danych podczas instalacji MediaWiki. Wówczas należy podać nazwę i hasło użytkownika z rolą SYSDBA w celu użycia go przez instalator do utworzenia nowe konta użytkownika, z którego korzystać będzie MediaWiki.
 
-Skrypt do tworzenia konta z uprawnieniami wymagane można znaleźć w folderze "maintenance/oracle/" tej instalacji. Należy pamiętać, że użycie konta z ograniczeniami spowoduje wyłączenie wszystkich możliwości konserwacji przy użyciu domyślnego konta.',
+Możesz również skorzystać z konta użytkownika bazy danych utworzonego bezpośrednio w Oracle i wówczas wystarczy podać tylko nazwę i hasło tego użytkownika. Konto z rolą SYSDBA nie będzie potrzebne, jednak konto użytkownika powinno mieć uprawnienia do utworzenia obiektów w schemacie bazy danych. Możesz też podać dwa konta - konto dla instalatora, z pomocą którego zostaną obiekty w schemacie bazy danych i drugie konto, z którego będzie MediaWiki korzystać będzie do pracy. 
+
+W podkatalogu "maintenance/oracle" znajduje się skrypt do tworzenia konta użytkownika. Korzystanie z konta użytkownika z ograniczonymi uprawnieniami spowoduje wyłączenie funkcji związanych z aktualizacją oprogramowania MediaWiki.',
 	'config-db-install-account' => 'Konto użytkownika dla instalatora',
 	'config-db-username' => 'Nazwa użytkownika bazy danych',
 	'config-db-password' => 'Hasło bazy danych',
@@ -13323,16 +13322,15 @@ To pole zwykle pozostawiane jest puste.',
 	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 binarny',
 	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
 	'config-charset-mysql4' => 'MySQL 4.0 kompatybilny wstecz UTF-8',
-	'config-charset-help' => "'''Ostrzeżenie:''' użycie '''UTF-8 zgodnego ze starszymi wersjami''' na MySQL 4.1 +, a następnie wykonanie kopii zapasowej bazy danych przy użyciu <code>mysqldump</code>, może zniszczyć wszystkie znaki inne niż ASCII, nieodwracalnie uszkkadzając kopię zapasową!
+	'config-charset-help' => "'''Ostrzeżenie:''' W przypadku użycia opcji '''UTF-8 zgodnego ze starszymi wersjami''' podczas korzystania z wersji MySQL nowszych niż 4.1 kopie zapasowe wykonane przy użyciu programu <code>mysqldump</code> będą bezużyteczne - wszystkie znaki inne niż ASCII zostaną zapisane nieprawidłowo.
 
 W '''trybie binarnym''', MediaWiki zapisuje tekst UTF-8 do bazy danych w polach binarnych.
 To jest bardziej wydajne niż tryb UTF-8 w MySQL i pozwala na używanie pełnego zakresu znaków Unicode.
 W ''' trybie UTF-8''', MySQL będzie wiedzieć, w jakim zestawie znaków są dane i umożliwia ich prezentowanie i odpowiednią konwersję, ale nie pozwoli Ci przechowywać znaków spoza [//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes podstawowej płaszczyzny wielojęzyczności].",
 	'config-mysql-old' => 'Wymagany jest MySQL $1 lub nowszy; korzystasz z $2.',
-	'config-db-port' => 'Port bazy danych',
-	'config-db-schema' => 'Schemat dla MediaWiki',
-	'config-db-schema-help' => 'Ten schemat jest zazwyczaj właściwy.
-Zmień go wyłącznie jeśli jesteś pewien, że powinieneś.',
+	'config-db-port' => 'Numer portu TCP dla połączeń do bazy danych',
+	'config-db-schema' => 'Nazwa schematu bazy danych, z którego ma korzystać MediaWiki',
+	'config-db-schema-help' => 'Zaproponowana nazwa schematu jest odpowiednia dla większości sytuacji i przeważnie nie trzeba jej zmieniać.',
 	'config-pg-test-error' => "Nie można połączyć się z bazą danych''' $1 ''': $2",
 	'config-sqlite-dir' => 'Katalog danych SQLite',
 	'config-sqlite-dir-help' => "SQLite przechowuje wszystkie dane w pojedynczym pliku.
@@ -13352,10 +13350,10 @@ Warto rozważyć umieszczenie w bazie danych zupełnie gdzie indziej, na przykł
 
 $1
 
-Jeśli system baz danych, z którego chcesz skorzystać nie jest wymieniony, postępuj zgodnie z instrukcjami aby móc z niego skorzystać.',
-	'config-support-mysql' => '* $1 jest domyślną bazą danych dla MediaWiki i jest najlepiej wspierane ([http://www.php.net/manual/en/mysql.installation.php jak skompilować PHP ze wsparciem dla MySQL])',
-	'config-support-postgres' => '* $1 jest popularnym systemem baz danych z otwartym kodem alternatywnym dla MySQL ([http://www.php.net/manual/en/pgsql.installation.php jak skompilować PHP ze wsparciem dla PostgreSQL]). Z powodu możliwości wystąpienia drobnych błędów, nie jest zalecane użycie go w środowisku produkcyjnym.',
-	'config-support-sqlite' => '* $1 jest lekkim systemem bazy danych, który jest bardzo dobrze wspierany. ([http://www.php.net/manual/en/pdo.installation.php Jak skompilować PHP ze wsparciem dla SQLite], korzystając z PDO)',
+Poniżej wyświetlone są systemy baz danych gotowe do użycia. Jeżeli poniżej brakuje bazy danych, z której chcesz skorzystać, oznacza to, że brakuje odpowiedniego oprogramowania lub zostało ono niepoprawnie skonfigurowane. Powyżej znajdziesz odnośniki do dokumentacji, która pomoże w konfiguracji odpowiednich komponentów.',
+	'config-support-mysql' => '* $1 jest bazą danych, na której rozwijane jest oprogramowanie MediaWiki. Ewentualne błędy w współpracy z bazą danych są odnajdowane i naprawiane dość szybko. ([http://www.php.net/manual/en/mysql.installation.php zobacz, jak skompilować PHP ze wsparciem dla MySQL])',
+	'config-support-postgres' => '* $1 jest popularnym systemem baz danych, często stosowanym zamiast MySQL  ([http://www.php.net/manual/en/pgsql.installation.php Zobacz, jak skompilować PHP ze wsparciem dla PostgreSQL]). Z powodu możliwości wystąpienia drobnych błędów, nie jest zalecana do wymagających wdrożeń.',
+	'config-support-sqlite' => '* $1 jest niewielkim systemem bazy danych, z którym MediaWiki bardzo dobrze współpracuje. ([http://www.php.net/manual/en/pdo.installation.php Jak skompilować PHP ze wsparciem dla SQLite], korzystając z PDO)',
 	'config-support-oracle' => '* $1 jest komercyjną profesjonalną bazą danych. ([http://www.php.net/manual/en/oci8.installation.php Jak skompilować PHP ze wsparciem dla OCI8])',
 	'config-support-ibm_db2' => '* $1 jest komercyjną zaawansowaną bazą danych.',
 	'config-header-mysql' => 'Ustawienia MySQL',
@@ -13366,9 +13364,9 @@ Jeśli system baz danych, z którego chcesz skorzystać nie jest wymieniony, pos
 	'config-invalid-db-type' => 'Nieprawidłowy typ bazy danych',
 	'config-missing-db-name' => 'Należy wpisać wartość w polu „Nazwa bazy danych”',
 	'config-missing-db-host' => 'Musisz wpisać wartość w polu „Serwer bazy danych”',
-	'config-missing-db-server-oracle' => 'Należy wpisać wartość w polu „Baza danych TNS”',
-	'config-invalid-db-server-oracle' => 'Nieprawidłowa baza danych TNS „$1”.
-Używaj wyłącznie liter ASCII (a-z, A-Z), cyfr (0-9), podkreślenia (_) i kropek (.).',
+	'config-missing-db-server-oracle' => 'Należy wpisać wartość w polu „Nazwa instancji bazy danych (TNS)”',
+	'config-invalid-db-server-oracle' => 'Nieprawidłowa nazwa instancji bazy danych (TNS) „$1”.
+W nazwie można użyć wyłącznie liter ASCII (a-z, A-Z), cyfr (0-9), podkreślenia (_) i kropek (.).',
 	'config-invalid-db-name' => 'Nieprawidłowa nazwa bazy danych „$1”.
 Używaj wyłącznie liter ASCII (a-z, A-Z), cyfr (0-9), podkreślenia (_) lub znaku odejmowania (-).',
 	'config-invalid-db-prefix' => 'Nieprawidłowy prefiks bazy danych „$1”.
@@ -13376,11 +13374,11 @@ Używaj wyłącznie liter ASCII (a-z, A-Z), cyfr (0-9), podkreślenia (_) lub zn
 	'config-connection-error' => '$1.
 
 Sprawdź adres serwera, nazwę użytkownika i hasło, a następnie spróbuj ponownie.',
-	'config-invalid-schema' => 'Nieprawidłowy schemat dla MediaWiki „$1”.
-Używaj wyłącznie liter ASCII (a-z, A-Z), cyfr (0-9) i podkreślenia (_).',
+	'config-invalid-schema' => 'Nieprawidłowa nazwa schematu dla MediaWiki „$1”.
+Nazwa może zawierać wyłącznie liter ASCII (a-z, A-Z), cyfr (0-9) i podkreślenia (_).',
 	'config-db-sys-create-oracle' => 'Instalator może wykorzystać wyłącznie konto SYSDBA do tworzenia nowych kont użytkowników.',
 	'config-db-sys-user-exists-oracle' => 'Konto użytkownika „$1“ już istnieje. SYSDBA można użyć tylko do utworzenia nowego konta!',
-	'config-postgres-old' => 'Wymagany jest PostgreSQL $1 lub nowszy; korzystasz z $2.',
+	'config-postgres-old' => 'Korzystasz z wersji $2 oprogramowania PostgreSQL, a potrzebna jest wersja co najmniej $1.',
 	'config-sqlite-name-help' => 'Wybierz nazwę, która będzie identyfikować Twoją wiki.
 Nie wolno używać spacji ani myślników.
 Zostanie ona użyta jako nazwa pliku danych SQLite.',
@@ -13613,7 +13611,7 @@ Upewnij się, że użytkownik „$1” może zapisywać do schematu „$2”.',
 	'config-pg-not-in-role' => 'Konto określone dla użytkownika sieci już istnieje.
 Konto określone dla instalacji nie ma uprawnień administratora ani nie jest przynależy do roli użytkownika sieci web, więc nie można utworzyć obiektów stanowiących własność użytkownika sieci.
 
-MediaWiki wymaga obecnie, by tabele należały do użytkownika sieci web. Podaj inną nazwę konta sieciOWEGO, lub kliknij przycisk "Wstecz" i określ użytkownika instalacji posiadającegoodpowiednie uprawnienia.',
+MediaWiki wymaga obecnie, by tabele były własnością konta zwykłego użytkownika. Podaj inną nazwę konta użytkownika, lub kliknij przycisk "Wstecz" i podaj nazwę konta użytkownika instalatora, które posiada odpowiednie uprawnienia.',
 	'config-install-user' => 'Tworzenie użytkownika bazy danych',
 	'config-install-user-alreadyexists' => 'Konto użytkownika „$1“ już istnieje',
 	'config-install-user-create-failed' => 'Tworzenie użytkownika "$1" nie powiodło się: $2',
@@ -13631,18 +13629,17 @@ Pomijam tworzenie tabel.",
 Tworzenie domyślnej listy pominięto.",
 	'config-install-stats' => 'Inicjowanie statystyki',
 	'config-install-keys' => 'Generowanie tajnych kluczy',
-	'config-insecure-keys' => "'''Ostrzaeżenie:''' {{PLURAL:$2|Klucz bezpieczeństwa|Klucze bezpieczeństwa|Klucze bezpieczeństwa}} ($1) utworzone podczas instalacji {{PLURAL:$2|utworzony podczas instalacji nie jest|utworzone podczas instalacji nie są|utworzone podczas instalacji nie są}} w pełni bezpieczne. Rozważ {{PLURAL:$2|jego|ich|ich}} ręczną zmianę.",
+	'config-insecure-keys' => "'''Ostrzeżenie:''' {{PLURAL:$2|Klucz bezpieczeństwa|Klucze bezpieczeństwa|Klucze bezpieczeństwa}} ($1) utworzone podczas instalacji {{PLURAL:$2|utworzony podczas instalacji nie jest|utworzone podczas instalacji nie są|utworzone podczas instalacji nie są}} w pełni bezpieczne. Być może warto wygenerować {{PLURAL:$2|własny klucz|własne klucze|własne klucze}}.",
 	'config-install-sysop' => 'Tworzenie konta administratora',
 	'config-install-subscribe-fail' => 'Nie można zapisać na listę „mediawiki-announce“ – $1',
 	'config-install-subscribe-notpossible' => 'cURL nie jest zainstalowany, więc allow_url_fopen nie jest dostępne.',
 	'config-install-mainpage' => 'Tworzenie strony głównej z domyślną zawartością',
 	'config-install-extension-tables' => 'Tworzenie tabel dla aktywnych rozszerzeń',
 	'config-install-mainpage-failed' => 'Nie udało się wstawić strony głównej – $1',
-	'config-install-done' => "''' Gratulacje!'' '
-Udałi ci się zainstalować MediaWiki.
+	'config-install-done' => "'''Gratulacje!'''
+Udało ci się zainstalować MediaWiki.
 
-Instalator wygenerował plik <code>LocalSettings.php</code>.
-Zawiera on całość konfiguracji.
+Instalator wygenerował plik konfiguracyjny <code>LocalSettings.php</code>.
 
 Musisz go pobrać i umieścić go w korzeniu twojej instalacji wiki (tym samym katalogu co index.php). Pobieranie powinno zacząć się automatycznie.
 
@@ -13650,9 +13647,9 @@ Jeżeli pobieranie nie zostało zaproponowane, lub jeśli użytkownik anulował 
 
 $3
 
-'''Uwaga''': Jeśli tego nie zrobisz tego teraz, wygenerowany plik konfiguracyjny nie będzie dostępny po zakończeniu instalacji bez pobierania go.
+'''Uwaga''': Jeśli tego nie zrobisz tego teraz, wygenerowany plik konfiguracyjny nie będzie już dostępny po zakończeniu instalacji.
 
-Gdy już to zrobisz, możesz '''[ $2  wejść na wiki]'''.",
+Po załadowaniu pliku konfiguracyjnego możesz '''[ $2  wejść na wiki]'''.",
 	'config-download-localsettings' => 'Pobierz LocalSettings.php',
 	'config-help' => 'pomoc',
 	'config-nofile' => 'Nie udało się odnaleźć pliku "$1". Czy nie został usunięty?',
