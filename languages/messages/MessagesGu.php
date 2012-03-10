@@ -2631,7 +2631,7 @@ To perform a selective restoration, check the boxes corresponding to the revisio
 'pagemovedsub'                 => 'પાનું સફળતા પૂર્વક ખસેડવામાં આવ્યું છે',
 'movepage-moved'               => '\'\'\'"$1" નું નામ બદલીને "$2" કરવામાં આવ્યું છે\'\'\'',
 'movepage-moved-redirect'      => 'દિશાનિર્દેશના રચાયું',
-'movepage-moved-noredirect'    => 'દિશા નિર્દેશનોની રચના ને સંતાડી દેવાઇ છે',
+'movepage-moved-noredirect'    => 'દિશાનિર્દેશન ટાળવામાં આવ્યું છે',
 'articleexists'                => 'આ નામનું પાનું અસ્તિત્વમાં છે, અથવાતો તમે પસંદ કરેલું નામ અસ્વિકાર્ય છો.
 કૃપા કરી અન્ય નામ પસંદ કરો.',
 'cantmove-titleprotected'      => 'આ સ્થાને તમે પાનું નહીં હટાવી શકો કેમ કે નવું શીર્ષક રચના કરવા પહેલેથી આરક્ષીત છે',
@@ -3692,7 +3692,7 @@ $5
 'sqlite-no-fts'  => '$1 પૂર્ણ શબ્દ  શોધ વિકલ્પ વગર',
 
 # New logging system
-'logentry-delete-delete'              => '$1 કાઢી પાનું $3',
+'logentry-delete-delete'              => '$1 દ્વારા પાનું $3 દૂર કરવામાં આવ્યું',
 'logentry-delete-restore'             => '$1 પુનઃસંગ્રહ પાનું $3',
 'logentry-delete-event'               => '$1 બદલાઈ ના દૃશ્યતા {{PLURAL: $5 | લોગ ઘટના | $5 લોગ}} $3 ઘટનાઓ પર $4',
 'logentry-delete-revision'            => '$1 બદલાઈ ના દૃશ્યતા {{PLURAL: $5 | સુધારણા | $5 આવૃત્તિઓ}} $3 પાનાં પર: $4',

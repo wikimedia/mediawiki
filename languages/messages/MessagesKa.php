@@ -181,6 +181,7 @@ $messages = array(
 'tog-watchlisthideliu'        => 'დამალეთ დარეგისტრირებულ მოხმარებელთა ცვლილებები ჩემი კონტროლის სიიდან',
 'tog-watchlisthideanons'      => 'დამალეთ ანონიმურ მომხმარებელთა შესწორებები ჩემი კონტროლის სიიდან',
 'tog-watchlisthidepatrolled'  => 'დამალეთ საკონტროლო სიიდან პატრულირებული რედაქტირებები',
+'tog-nolangconversion'        => 'წერილების სისტემის გარდაქმნის გამორთვა',
 'tog-ccmeonemails'            => 'გამომიგზავნე ელფოსტების ასლები, რომლებსაც მე სხვა მომხმარებლებს ვუგზავნი',
 'tog-diffonly'                => 'დამალე გვერდის შიგთავსი ცვლილების ქვევით',
 'tog-showhiddencats'          => 'დამალული კატეგორიების ჩვენება',
@@ -268,7 +269,7 @@ $messages = array(
 'noindex-category'               => 'არ არსებობს ინდექსირებული გვერდები',
 'broken-file-category'           => 'გვერდები ფაილების არასწორი ბმულებით',
 
-'linkprefix' => '/^(.*?)(„|«)$/sD',
+'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
 
 'about'         => 'შესახებ',
 'article'       => 'სტატია',
@@ -401,12 +402,16 @@ $1',
 'versionrequiredtext' => 'მოცემული გვერდის გამოსაყენებლად საჭიროა მედიავიკის ვერსია $1. იხილეთ [[Special:Version|სპეციალური:ვერსია]]',
 
 'ok'                      => 'კარგი',
+'pagetitle'               => '$1 - {{SITENAME}}',
+'pagetitle-view-mainpage' => '{{SITENAME}}',
+'backlinksubtitle'        => '← $1',
 'retrievedfrom'           => 'მოძიებულია „$1-დან“',
 'youhavenewmessages'      => 'თქვენ გაქვთ $1 ($2).',
 'newmessageslink'         => 'ახალი შეტყობინებები',
 'newmessagesdifflink'     => 'განსხვავება წინა ვერსიასთან',
 'youhavenewmessagesmulti' => 'თქვენ გაქვთ ახალი შეტყობინება $1-ზე',
 'editsection'             => 'რედაქტირება',
+'editsection-brackets'    => '[$1]',
 'editold'                 => 'რედაქტირება',
 'viewsourceold'           => 'წყაროს ჩვენება',
 'editlink'                => 'რედაქტირება',
@@ -427,6 +432,8 @@ $1',
 'site-atom-feed'          => '$1-ის არხი Atom',
 'page-rss-feed'           => '„$1-ის“ არხი RSS',
 'page-atom-feed'          => '„$1-ის“ არხი Atom',
+'feed-atom'               => 'Atom',
+'feed-rss'                => 'RSS',
 'red-link-title'          => '$1 (გვერდი არ არსებობს)',
 'sort-descending'         => 'კლების მიხედვით დალაგება',
 'sort-ascending'          => 'ზრდის მიხედვით დალაგება',
@@ -572,6 +579,7 @@ $2',
 'nocookieslogin'             => '{{SITENAME}} მომხმარებლების შესვლისთვის იყენებს "ქუქის ჩანაწერს". თქვენ იგი გათიშეთ. გთხოვთ, ჩართოთ ისინი და ხელმეორედ მოსინჯოთ.',
 'nocookiesfornew'            => 'მომხმარებლის ანგარიში არ შექმნილა, რადგან მისი წყარო ვერ დადასტურდა.
 უზრუნველყოფილი უნდა იყოს ჭდეების აქტიურობა. შემდეგ განაახლეთ გვერდი და სცადეთ ხელახლა',
+'nocookiesforlogin'          => '{{int:nocookieslogin}}',
 'noname'                     => 'თქვენს მიერ მითითებული მომხმარებლის სახელი ქმედითი არ არის.',
 'loginsuccesstitle'          => 'სისტემაში შესვლა განხორციელდა.',
 'loginsuccess'               => "'''ამჟამად შესული ხართ {{SITENAME}}-ში როგორც „$1“.'''",
@@ -639,7 +647,7 @@ $1 საათში.',
 # Change password dialog
 'resetpass'                 => 'შეცვალეთ პაროლი',
 'resetpass_announce'        => 'თქვენ შემოხვედით დროებით ელ-ფოსტის კოდით. რეგისტრაციის დასრულებისთვის, უნდა შექმნათ ახალი პაროლი აქ:',
-'resetpass_text'            => '<!-- დამატებითი ტექსტი აქ -->',
+'resetpass_text'            => '<!-- აქ დაამატეთ ტექსტი -->',
 'resetpass_header'          => 'შეცვალეთ ანგარიშის პაროლი',
 'oldpassword'               => 'ძველი პაროლი:',
 'newpassword'               => 'ახალი პაროლი:',
@@ -655,20 +663,22 @@ $1 საათში.',
 'resetpass-temp-password'   => 'დროებითი პაროლი:',
 
 # Special:PasswordReset
-'passwordreset'                   => 'პაროლის აღდგენა',
-'passwordreset-text'              => 'შეავსეთ ეს ფორმა, რათა ელ.ფოსტით მიიღოთ შეხსენება თქვენი ანგარიშის პარამეტრების შესახებ.',
-'passwordreset-legend'            => 'პაროლის აღდგენა',
-'passwordreset-disabled'          => 'ამ ვიკიში პაროლის კვლავ დაყენების ფუნქცია გამორთულია.',
-'passwordreset-pretext'           => '{{PLURAL:$1||შეიყვანეთ ქვემოთ მოცემულ მონაცემთა ერთ-ერთი ნაწილი.}}',
-'passwordreset-username'          => 'მომხმარებლის სახელი:',
-'passwordreset-domain'            => 'დომენი:',
-'passwordreset-capture'           => 'გამოსული ელ-ფოსტის ხილვა?',
-'passwordreset-email'             => 'ელ. ფოსტის მისამართი:',
-'passwordreset-emailtitle'        => 'ანგარიშის მონაცემები {{SITENAME}}-თვის',
-'passwordreset-emailelement'      => 'მომხმარებლის სახელი: $1
+'passwordreset'                    => 'პაროლის აღდგენა',
+'passwordreset-text'               => 'შეავსეთ ეს ფორმა, რათა ელ.ფოსტით მიიღოთ შეხსენება თქვენი ანგარიშის პარამეტრების შესახებ.',
+'passwordreset-legend'             => 'პაროლის აღდგენა',
+'passwordreset-disabled'           => 'ამ ვიკიში პაროლის კვლავ დაყენების ფუნქცია გამორთულია.',
+'passwordreset-pretext'            => '{{PLURAL:$1||შეიყვანეთ ქვემოთ მოცემულ მონაცემთა ერთ-ერთი ნაწილი.}}',
+'passwordreset-username'           => 'მომხმარებლის სახელი:',
+'passwordreset-domain'             => 'დომენი:',
+'passwordreset-capture'            => 'გამოსული ელ-ფოსტის ხილვა?',
+'passwordreset-capture-help'       => 'თუ მონიშნავთ ამ უჯრას, მაშინ თქვენ შეგეძლებათ მომხმარებლისათვის გაგზავნილი ელ.ფოსტის ნახვა (დროებითი პაროლით).',
+'passwordreset-email'              => 'ელ. ფოსტის მისამართი:',
+'passwordreset-emailtitle'         => 'ანგარიშის მონაცემები {{SITENAME}}-თვის',
+'passwordreset-emailelement'       => 'მომხმარებლის სახელი: $1
 დროებითი პაროლი: $2',
-'passwordreset-emailsent'         => 'შესახსენებელი ელ.ფოსტა გაიგზავნა.',
-'passwordreset-emailsent-capture' => 'ქვემოთ ნაჩვენები შესახსენებელი წერილი გაიგზავნა.',
+'passwordreset-emailsent'          => 'შესახსენებელი ელ.ფოსტა გაიგზავნა.',
+'passwordreset-emailsent-capture'  => 'ქვემოთ ნაჩვენები შესახსენებელი წერილი გაიგზავნა.',
+'passwordreset-emailerror-capture' => 'ქვემოთ მოცემულია შექმნილი შესახსენებელი წერილი, რომლის გაგზავნაც ვერ მოხერხდა: $1 გამო',
 
 # Special:ChangeEmail
 'changeemail'          => 'ელ-ფოსტის მისამართის შეცვლა',
@@ -852,6 +862,8 @@ $1 საათში.',
 'template-protected'               => '(დაცული)',
 'template-semiprotected'           => '(ნახევრად დაცული)',
 'hiddencategories'                 => 'ეს გვერდი გაერთიანებულია $1 დამალულ კატეგორიაში.',
+'edittools'                        => '<!-- აქ განთავსებული ტექსტი ნაჩვენები იქნება რედაქტირებისა და ატვირთვის ფორმების ქვეშ. -->',
+'edittools-upload'                 => '-',
 'nocreatetitle'                    => 'გვერდის შექმნა ლიმიტირებულია',
 'nocreatetext'                     => 'ამ გვერდზე შეუძლებელია ახალი გვერდის შექმნა არსებული აკრძალვის გამო. თქვენ შეგიძლიათ უკან დაბრუნება და არსებული გვერდის რედაქტირება ან [[სპეციალური:Userlogin|შესვლა და ანგარიშის შექმნა]]',
 'nocreate-loggedin'                => 'თქვენ არ გაქვთ ახალი გვერდების შექმნის უფლება.',
@@ -1229,7 +1241,9 @@ $1",
 'username'                      => 'მომხმარებლის სახელი:',
 'uid'                           => 'მომხმარებლის იდენტიფიკაცია:',
 'prefs-memberingroups'          => '{{PLURAL:$1|ჯგუფის|ჯგუფების}} წევრი:',
+'prefs-memberingroups-type'     => '$1',
 'prefs-registration'            => 'რეგისტრაციის თარიღი',
+'prefs-registration-date-time'  => '$1',
 'yourrealname'                  => 'ნამდვილი სახელი:',
 'yourlanguage'                  => 'ენა:',
 'yourvariant'                   => 'შინაარსის ენის ვარიანტი:',
@@ -1269,26 +1283,27 @@ $1",
 'email-address-validity-invalid' => 'მიუთითეთ სწორი ელ-ფოსტის მისამართი',
 
 # User rights
-'userrights'                   => 'მომხმარებელთა უფლებების მართვა',
-'userrights-lookup-user'       => 'მომხმარებელთა ჯგუფების მართვა',
-'userrights-user-editname'     => 'მომხმარებლის სახელის შეტანა:',
-'editusergroup'                => 'მომხმარებელთა ჯგუფების რედაქტირება',
-'editinguser'                  => "მომხმარებლის უფლებების შეცვლა მომხმარებლისთვის '''[[User:$1|$1]]''' $2",
-'userrights-editusergroup'     => 'რედაქტირება გაუკეთეთ მომხმარებელთა ჯგუფებს',
-'saveusergroups'               => 'მომხმარებელთა ჯგუფების შენახვა',
-'userrights-groupsmember'      => 'ჯგუფის წევრი:',
-'userrights-groupsmember-auto' => 'გაუგებარი წევრი:',
-'userrights-groups-help'       => 'თქვენ შეგიძლიათ შეცვალოთ ჯგუფები, რომელშიც შედის ეს მომხმარებელი.
+'userrights'                     => 'მომხმარებელთა უფლებების მართვა',
+'userrights-lookup-user'         => 'მომხმარებელთა ჯგუფების მართვა',
+'userrights-user-editname'       => 'მომხმარებლის სახელის შეტანა:',
+'editusergroup'                  => 'მომხმარებელთა ჯგუფების რედაქტირება',
+'editinguser'                    => "მომხმარებლის უფლებების შეცვლა მომხმარებლისთვის '''[[User:$1|$1]]''' $2",
+'userrights-editusergroup'       => 'რედაქტირება გაუკეთეთ მომხმარებელთა ჯგუფებს',
+'saveusergroups'                 => 'მომხმარებელთა ჯგუფების შენახვა',
+'userrights-groupsmember'        => 'ჯგუფის წევრი:',
+'userrights-groupsmember-auto'   => 'გაუგებარი წევრი:',
+'userrights-groups-help'         => 'თქვენ შეგიძლიათ შეცვალოთ ჯგუფები, რომელშიც შედის ეს მომხმარებელი.
 * თუ ჯგუფის სახელწოდებასთან გაკეთებულია ნიშნული, ე.ი მომხმარებელი შედის ამ ჯგუფში.
 * თუ ნიშნული არ არის – მომხმარებელი არ განეკუთვნება არსებულ ჯგუფს.
 * ნიშანი * ნიშნავს, რომ თქვენ არ შეგიძლიათ მომხმარებლის ჯგუფიდან წაშლა, თუ დაამატებთ მას იქ ან პირიქით.',
-'userrights-reason'            => 'მიზეზი:',
-'userrights-no-interwiki'      => 'თქვენ არ გაქვთ მომხმარებლის უფლებების რედაქტირების უფლება სხვა ვიკი-ებში.',
-'userrights-nodatabase'        => 'მონაცემთა ბაზა $1 არ არსებობს, ან არ არის ლოკალური.',
-'userrights-nologin'           => 'თქვენ უნდა [[Special:UserLogin|წარადგინოთ თავი სისტემისადმი]] ადმინისისტრატორის ანგარიშით იმისთვის, რომ გასცეთ მომხმარებელთა უფლებები.',
-'userrights-notallowed'        => 'თქვენ არ გაქვთ მომხმარებელთა უფლებების შეცვლის უფლება.',
-'userrights-changeable-col'    => 'ჯგუფები, რომლებიც შეგიძლიათ შეცვალოთ',
-'userrights-unchangeable-col'  => 'ჯგუფები, რომლებიც არ შეგიძლიათ შეცვალოთ',
+'userrights-reason'              => 'მიზეზი:',
+'userrights-no-interwiki'        => 'თქვენ არ გაქვთ მომხმარებლის უფლებების რედაქტირების უფლება სხვა ვიკი-ებში.',
+'userrights-nodatabase'          => 'მონაცემთა ბაზა $1 არ არსებობს, ან არ არის ლოკალური.',
+'userrights-nologin'             => 'თქვენ უნდა [[Special:UserLogin|წარადგინოთ თავი სისტემისადმი]] ადმინისისტრატორის ანგარიშით იმისთვის, რომ გასცეთ მომხმარებელთა უფლებები.',
+'userrights-notallowed'          => 'თქვენ არ გაქვთ მომხმარებელთა უფლებების შეცვლის უფლება.',
+'userrights-changeable-col'      => 'ჯგუფები, რომლებიც შეგიძლიათ შეცვალოთ',
+'userrights-unchangeable-col'    => 'ჯგუფები, რომლებიც არ შეგიძლიათ შეცვალოთ',
+'userrights-irreversible-marker' => '$1*',
 
 # Groups
 'group'               => 'ჯგუფი:',
@@ -1446,9 +1461,11 @@ $1",
 'minoreditletter'                   => 'მ',
 'newpageletter'                     => 'ა',
 'boteditletter'                     => 'რ',
+'unpatrolledletter'                 => '!',
 'number_of_watching_users_pageview' => '[$1 მომხმარებლის/ები კონტროლი]',
 'rc_categories'                     => 'მხოლოდ კატეგორიებიდან (განაცალკევეთ "|"-ის მიხედვით)',
 'rc_categories_any'                 => 'ნებისმიერი',
+'rc-change-size'                    => '$1',
 'rc-change-size-new'                => 'ზომა ცვლილების შემდეგ არის: {{PLURAL:$1|ბაიტი|ბაიტი}}',
 'newsectionsummary'                 => '/* $1 */ ახალი სექცია',
 'rc-enhanced-expand'                => 'დამატებითი ინფორმაციის ჩვენება (მოითხოვს ჯავასკრიპტს)',
@@ -1601,6 +1618,7 @@ $1',
 'backend-fail-stream'        => 'ფაილი $1 ტრანსლირება ვერ მოხერხდა.',
 'backend-fail-backup'        => 'ფაილი $1 სარეზერვო ასლის გაკეთება ვერ მოხერხდა.',
 'backend-fail-notexists'     => 'ფაილი $1 არ არსებობს.',
+'backend-fail-hashes'        => 'შედარებისათვის ფაილების ჰეშების მიღება ვერ მოხერხდა.',
 'backend-fail-notsame'       => 'უკვე არსებობს  ფაილი $1, რომელიც არაა იდენტური.',
 'backend-fail-invalidpath'   => '$1 არ წარმოადგენს შენახვის ხელმისაწვდომ გზას.',
 'backend-fail-delete'        => 'ფაილი $1-ის წაშლა ვერ მოხერხდა.',
@@ -1613,6 +1631,12 @@ $1',
 'backend-fail-closetemp'     => 'დროებითი ფაილის დახურვა ვერ ხერხდება.',
 'backend-fail-read'          => 'ფაილი $1-ის წაკითხვა ვერ მოხერხდა.',
 'backend-fail-create'        => 'ფაილი $1-ის შექმნა ვერ მოხერხდა.',
+'backend-fail-maxsize'       => 'ფაილი $1-ის შექმნა ვერ მოხერხდა, რადგანაც მისი ზომა აჭარბებს {{PLURAL:$2|$2 ბაიტს|$2 ბაიტს}}.',
+'backend-fail-readonly'      => 'საცავი "$1" ამჟამად ხელმისაწვდომია მხოლოდ წაკითხვის რეჟიმში. მიზეზი: "$2"',
+'backend-fail-synced'        => 'ფაილი "$1" იმყოფება შიდა საცავის შეუთანხმებელ მდგომარეობაში',
+'backend-fail-connect'       => '"$1" საცავთან დაკავშირება ვერ მოხერხდა.',
+'backend-fail-internal'      => '"$1" საცავში მოხდა დაუდგენელი შეცდომა.',
+'backend-fail-contenttype'   => 'ფაილის შემადგენლობის ტიპის დადგენა ვერ მოხერხდა, "$1"-ში შესანახად.',
 
 # Lock manager
 'lockmanager-notlocked'        => '"$1"–ის განბლოკვა ვერ მოხერხდა; ის არ არის დაბლოკილი.',
@@ -1621,6 +1645,7 @@ $1',
 'lockmanager-fail-acquirelock' => '"$1"–ის ბლოკირება ვერ მოხერხდა.',
 'lockmanager-fail-openlock'    => 'ბლოკირების ფაილის გახსნა "$1"–თვის ვერ მოხერხდა.',
 'lockmanager-fail-releaselock' => '"$1"–ის განბლოკვა ვერ მოხერხდა.',
+'lockmanager-fail-db-bucket'   => '$1 სეგმენტში ბლოკირებების ბაზების საკმარის რაოდენობასთან დაკავშირება ვერ მოხერხდა.',
 'lockmanager-fail-db-release'  => '$1 მონაცემთა ბაზაზე ბლოკის მოხსნა ვერ მოხერხდა.',
 'lockmanager-fail-svr-release' => '$1 სერვერზე ბლოკის მოხსნა ვერ მოხერხდა.',
 
@@ -1702,41 +1727,42 @@ $1',
 'listfiles_count'       => 'ვერსიები',
 
 # File description page
-'file-anchor-link'          => 'ფაილი',
-'filehist'                  => 'ფაილის ისტორია',
-'filehist-help'             => 'დააწკაპუნეთ თარიღზე/დროზე, რათა იხილოთ ფაილი, როგორც ის მაშინ გამოიყურებოდა.',
-'filehist-deleteall'        => 'წაშალე ყველა',
-'filehist-deleteone'        => 'წაშლა',
-'filehist-revert'           => 'დააბრუნე',
-'filehist-current'          => 'მიმდინარე',
-'filehist-datetime'         => 'თარიღი/დრო',
-'filehist-thumb'            => 'მინიატურა',
-'filehist-thumbtext'        => 'მინიატურა $1 ვერსიისთვის',
-'filehist-nothumb'          => 'არ არის მინიატურა',
-'filehist-user'             => 'მომხმარებელი',
-'filehist-dimensions'       => 'განზომილებები',
-'filehist-filesize'         => 'ფაილის ზომა',
-'filehist-comment'          => 'კომენტარი',
-'filehist-missing'          => 'ფაილი ვერ მოიძებნა',
-'imagelinks'                => 'ფაილის გამოყენება',
-'linkstoimage'              => 'მომდევნო {{PLURAL:$1|გვერდი|გვერდები}} ებმის ამ ფაილს:',
-'linkstoimage-more'         => '$1-ზე მეტი {{PLURAL:$1|გვერდები|ფვერდების|გვერდები}} რომლებსაც აქვთ ბმულები ამ ფაილზე.
+'file-anchor-link'                  => 'ფაილი',
+'filehist'                          => 'ფაილის ისტორია',
+'filehist-help'                     => 'დააწკაპუნეთ თარიღზე/დროზე, რათა იხილოთ ფაილი, როგორც ის მაშინ გამოიყურებოდა.',
+'filehist-deleteall'                => 'წაშალე ყველა',
+'filehist-deleteone'                => 'წაშლა',
+'filehist-revert'                   => 'დააბრუნე',
+'filehist-current'                  => 'მიმდინარე',
+'filehist-datetime'                 => 'თარიღი/დრო',
+'filehist-thumb'                    => 'მინიატურა',
+'filehist-thumbtext'                => 'მინიატურა $1 ვერსიისთვის',
+'filehist-nothumb'                  => 'არ არის მინიატურა',
+'filehist-user'                     => 'მომხმარებელი',
+'filehist-dimensions'               => 'განზომილებები',
+'filehist-filesize'                 => 'ფაილის ზომა',
+'filehist-comment'                  => 'კომენტარი',
+'filehist-missing'                  => 'ფაილი ვერ მოიძებნა',
+'imagelinks'                        => 'ფაილის გამოყენება',
+'linkstoimage'                      => 'მომდევნო {{PLURAL:$1|გვერდი|გვერდები}} ებმის ამ ფაილს:',
+'linkstoimage-more'                 => '$1-ზე მეტი {{PLURAL:$1|გვერდები|ფვერდების|გვერდები}} რომლებსაც აქვთ ბმულები ამ ფაილზე.
 В данном списке {{PLURAL:$1|წარმოდგენილია მხოლოდ $1 ბმული|წარმოდგენილია მხოლოდ $1 ბმულები|წარმოდგენილია მხოლოდ $1 ბმულების}} ამ ფაილზე
 შეგიძლიათ ნახოთ ასევე [[Special:WhatLinksHere/$2|სრული სია]].',
-'nolinkstoimage'            => 'არ არსებობს ამ ფაილთან დაკავშირებული გვერდები.',
-'morelinkstoimage'          => 'იხილეთ [[Special:WhatLinksHere/$1|სხვა ბმულები]] ამ ფაილზე.',
-'linkstoimage-redirect'     => '$1 (ფაილის გადამისამართება) $2',
-'duplicatesoffile'          => '{{PLURAL:$1|შემდეგი $1 ფაილი არის დუბლიკატი|შემდეგი $1 ფაილები არიან დუბლიკატები|შემდეგი $1 ფაილები არიან დუბლიკატები}} ამ ფაილისა ([[Special:FileDuplicateSearch/$2|დამატებითი ინფორმაცია]]):',
-'sharedupload'              => 'ეს ფაილი $1-დანაა და შეიძლება სხვა პროექტებიც იყენებდეს.',
-'sharedupload-desc-there'   => 'ეს ფაილი $1-დან შეიძლება გამოყენებული იქნას სხვა პროექტებშიც.
+'nolinkstoimage'                    => 'არ არსებობს ამ ფაილთან დაკავშირებული გვერდები.',
+'morelinkstoimage'                  => 'იხილეთ [[Special:WhatLinksHere/$1|სხვა ბმულები]] ამ ფაილზე.',
+'linkstoimage-redirect'             => '$1 (ფაილის გადამისამართება) $2',
+'duplicatesoffile'                  => '{{PLURAL:$1|შემდეგი $1 ფაილი არის დუბლიკატი|შემდეგი $1 ფაილები არიან დუბლიკატები|შემდეგი $1 ფაილები არიან დუბლიკატები}} ამ ფაილისა ([[Special:FileDuplicateSearch/$2|დამატებითი ინფორმაცია]]):',
+'sharedupload'                      => 'ეს ფაილი $1-დანაა და შეიძლება სხვა პროექტებიც იყენებდეს.',
+'sharedupload-desc-there'           => 'ეს ფაილი $1-დან შეიძლება გამოყენებული იქნას სხვა პროექტებშიც.
 დამატებითი ინფორმაციის მოპოვება შეიძლება [$2 ფაილის აღწერის გვერდზე].',
-'sharedupload-desc-here'    => 'ეს ფაილი $1-დან შეიძლება გამოყენებული იქნას სხვა პროექტებშიც.
+'sharedupload-desc-here'            => 'ეს ფაილი $1-დან შეიძლება გამოყენებული იქნას სხვა პროექტებშიც.
 მისი [$2 აღწერის გვერდიდან] ინფორმაცია წარმოდგენილია ქვევით.',
-'filepage-nofile'           => 'ამ სახელით ფაილი არ არსებობს.',
-'filepage-nofile-link'      => 'ამ სახელით ფაილი არ არსებობს, [$1 თუმცა თქვენ მისი ატვირთვა შეგიძლიათ].',
-'uploadnewversion-linktext' => 'ატვირთეთ ამ ფაილის ახალი ვერსია',
-'shared-repo-from'          => ' $1-დან',
-'shared-repo'               => 'საერთო საცავიდან',
+'filepage-nofile'                   => 'ამ სახელით ფაილი არ არსებობს.',
+'filepage-nofile-link'              => 'ამ სახელით ფაილი არ არსებობს, [$1 თუმცა თქვენ მისი ატვირთვა შეგიძლიათ].',
+'uploadnewversion-linktext'         => 'ატვირთეთ ამ ფაილის ახალი ვერსია',
+'shared-repo-from'                  => ' $1-დან',
+'shared-repo'                       => 'საერთო საცავიდან',
+'shared-repo-name-wikimediacommons' => 'ვიკისაწყობი',
 
 # File reversion
 'filerevert'                => 'დააბრუნე $1',
@@ -1912,6 +1938,7 @@ $1',
 # Book sources
 'booksources'               => 'წიგნის წყაროები',
 'booksources-search-legend' => 'წიგნის წყაროს ძებნა',
+'booksources-isbn'          => 'ISBN:',
 'booksources-go'            => 'გადასვლა',
 'booksources-text'          => 'ქვემოთ არის ვებ გვერდების ბმულების სია სადაც იყიდება ახალი და ნახმარი წიგნები, და შესაძლოა შეიცავდნენ დამატებით ინფორმაციას წიგნების შესახებ, რომლებსაც ეძებთ:',
 'booksources-invalid-isbn'  => 'თქვენს მიერ მითითებული ISBN, შეცდომას შეიცავს.  შეამოწმეთ, თუ თავდაპირველი წყარო სწორადაა აკრეფილი.',
@@ -1997,6 +2024,8 @@ $1',
 'listgrouprights-rights'               => 'უფლებები',
 'listgrouprights-helppage'             => 'Help:ჯგუფების უფლებები',
 'listgrouprights-members'              => '(წევრების სია)',
+'listgrouprights-right-display'        => '<span class="listgrouprights-granted">$1 <tt>($2)</tt></span>',
+'listgrouprights-right-revoked'        => '<span class="listgrouprights-revoked">$1 <tt>($2)</tt></span>',
 'listgrouprights-addgroup'             => 'შემდეგი {{PLURAL:$2|ჯგუფის|ჯგუფების}} დამატება: $1',
 'listgrouprights-removegroup'          => 'შემდეგი {{PLURAL:$2|ჯგუფის|ჯგუფების}} ამოღება: $1',
 'listgrouprights-addgroup-all'         => 'ჩაამატეთ ყველა ჯგუფი',
@@ -2090,27 +2119,29 @@ $1',
 'enotif_anon_editor'           => 'ანონიმური მომხმარებელი $1',
 'enotif_body'                  => 'პატივცემულო $WATCHINGUSERNAME,
 
-
-პროექტ "{{SITENAME}}"-ის გვერდო $PAGETITLE შეიცვალა $CHANGEDORCREATED  $PAGEEDITDATE  $PAGEEDITOR-ის მიერ. იხილეთ $PAGETITLE_URL მოქმედი ვერსიისთვის.
+პროექტ "{{SITENAME}}"-ის გვერდი $PAGETITLE შეიცვალა $CHANGEDORCREATED $PAGEEDITDATE მომხმარებელ $PAGEEDITOR-ის მიერ, მინდინარე ვერსიის სანახავად იხილეთ $PAGETITLE_URL.
 
 $NEWPAGE
 
-რედაქტორის სიტყვა: $PAGESUMMARY $PAGEMINOREDIT
+ცვლილების მოკლე აღწერა: $PAGESUMMARY $PAGEMINOREDIT
 
 დაუკავშირდით რედაქტორს:
-ფოსტა: $PAGEEDITOR_EMAIL
+ელ.ფოსტა: $PAGEEDITOR_EMAIL
 ვიკი: $PAGEEDITOR_WIKI
 
 შემდგომი ცვლილებების შესახებ შეტყობინებების მისაღებად ამ გვერდს კვლავ უნდა ესტუმროთ.
 აგრეთვე შეგიძლიათ აღადგინოთ შეტყობინებათა პარამეტრები თქვენს კონტროლის სიაში შეტანილი ყველა საკონტროლო გვერდისათვის.
 
-             ღრმა პატივისცემით, {{SITENAME}} შეტყობინებათა სისტემა
+             {{SITENAME}} შეტყობინებათა სისტემა
 
 --
-თქვენი კონტროლის სიის შესასწორებლად იხილეთ
+შეტყობინების პარამეტრების ცვლილება
+{{canonicalurl:{{#special:Preferences}}}}
+
+თქვენი კონტროლის სიის პარამეტრების ცვლილება
 {{canonicalurl:{{#special:EditWatchlist}}}}
 
-თქვენი კონტროლის სიიდან გვერდის ამოშლა
+გვერდების ამოშლა თქვენი კონტროლის სიიდან
 $UNWATCHURL
 
 დამატებითი ინფორმაცია
@@ -2400,6 +2431,7 @@ $1',
 'blocklist-userblocks'            => 'დამალე ანგარიშის ბლოკირებები',
 'blocklist-tempblocks'            => 'დამალე დროებითი ბლოკირებები',
 'blocklist-addressblocks'         => 'დამალე გარკვეული IP მისამართის ბლოკირებები',
+'blocklist-rangeblocks'           => 'დიაპაზონების ბლოკირებების დამალვა',
 'blocklist-timestamp'             => 'ნიშნული',
 'blocklist-target'                => 'სამიზნე',
 'blocklist-expiry'                => 'ბლოკირების ხანგრძლივობა',
@@ -2457,6 +2489,7 @@ $1',
 'proxyblocker-disabled'           => 'ეს ფუნქცია გაუქმებულია.',
 'proxyblockreason'                => 'თქვენი IP მისამართი დაიბლოკა, ვინაიდან ის ღია პროქსია. გთხოვთ დაუკავშირდეთ თქვენ ინტერნეტ პროვაიდერს ან ტექ. სამსახურს და აცნობოთ მათ ამ სერიოზული უსაფრთხოების პრობლემის შესახებ.',
 'proxyblocksuccess'               => 'შესრულებულია.',
+'sorbs'                           => 'DNSBL',
 'sorbsreason'                     => 'თქვენი IP-მისამართი მიჩნევა ღია პროქსიდ DNSBL-ის თანახმად.',
 'sorbs_create_account_reason'     => 'თქვენი IP-მისამართი ითვლება ღია პროქსიდ DNSBL-ის ანახმად. თქვენ ვერ შექმნით ანგარიშს.',
 'cant-block-while-blocked'        => 'თქვენ ვერ დაბლოკავთ სხვა მომხმარებლებს, რადგანაც თავად ხართ დაბლოკილი.',
@@ -2577,6 +2610,7 @@ $1',
 'exportcuronly'     => 'მიუთითეთ მხოლოდ მიმდინარე ცვლილება, და არა სრული ისტორია',
 'exportnohistory'   => "----
 '''ყურადღება:''' გვერდის ყველა ვერსიის ექსპორტირება გათიშუკია სერვერზე დატვირტვის გამო.",
+'exportlistauthors' => 'ყველა გვერდის მთლიანი წვლილის სიის ჩართვა',
 'export-submit'     => 'ექსპორტი',
 'export-addcattext' => 'გვერდების დამატება კატეგორიიდან:',
 'export-addcat'     => 'დამატება',
@@ -2609,6 +2643,8 @@ $1',
 'thumbnail_error'          => 'ესკიზის შექმნის შეცდომა: $1',
 'djvu_page_error'          => 'DjVu გვერდის ნომერი',
 'djvu_no_xml'              => 'შეუძლებელია XML-ის მიღება DjVu-სთვის',
+'thumbnail-temp-create'    => 'დროებითი ესკიზის ფაილის შექმნა ვერ ხერხდება',
+'thumbnail-dest-create'    => 'ესკიზის დანიშნულების ადგილას შენახვა ვერ ხერხდება',
 'thumbnail_invalid_params' => 'მინიატურის არასწორი პარამეტრი',
 'thumbnail_dest_directory' => 'შეუძლებელია სამიზნე დირექტორიის შექმნა',
 'thumbnail_image-type'     => 'გამოსახულების მოცემული ტიპი არ არის მხარდაჭერილი',
@@ -2654,6 +2690,8 @@ $1',
 'import-invalid-interwiki'   => 'შეუძლებელია იმპორტირება მოცემული ვიკიდან.',
 'import-error-edit'          => 'გვერდი "$1" იმპორტირება არ მოხდა, რადგან თქვენ არ გაქვთ მისი რედაქტირების უფლება.',
 'import-error-create'        => 'გვერდი "$1" იმპორტირება არ მოხდა, რადგან თქვენ არ გაქვთ მისი შექმნის უფლება.',
+'import-error-interwiki'     => 'გვერდი "$1" არ იქნა იმპორტირებული, რადგანაც მისი სახელი დარეგისტრირებულია გარე ბმულებისათვის (interwiki).',
+'import-error-special'       => 'გვერდი "$1" არ იქნა იმპორტირებული, რადგანაც ის განეკუთვნება განსაკუთრებულ სახელთა სივრცეს, რომელიც კრძალავს გვერდების შექმნას.',
 'import-error-invalid'       => 'გვერდი "$1" იმპორტირება არ მოხდა მიუღებელი სახელის გამო.',
 
 # Import log
@@ -2665,10 +2703,15 @@ $1',
 'import-logentry-interwiki-detail' => '$1 ცვლილება $2-დან',
 
 # JavaScriptTest
-'javascripttest'             => 'JavaScript-ის ტესტირება',
-'javascripttest-disabled'    => 'ეს ფუნქცია ამ ვიკიში არ ჩართულა.',
-'javascripttest-title'       => 'მიმდინარეობს $1-ის ტესტირება',
-'javascripttest-qunit-intro' => 'იხილეთ [$1 ტესტირების დოკუმენტები] mediawiki.org-ზე.',
+'javascripttest'                           => 'JavaScript-ის ტესტირება',
+'javascripttest-disabled'                  => 'ეს ფუნქცია ამ ვიკიში არ ჩართულა.',
+'javascripttest-title'                     => 'მიმდინარეობს $1-ის ტესტირება',
+'javascripttest-pagetext-noframework'      => 'ეს გვერდი დარეგისტრირებულია JavaScript-ის ტესტების გასაშვებად.',
+'javascripttest-pagetext-unknownframework' => '"$1"-ის ტესტირების უცნობი გარემო.',
+'javascripttest-pagetext-frameworks'       => 'გთხოვთ, აირჩიეთ ტესტირების ერთ-ერთი შემდეგი გარემო: $1',
+'javascripttest-pagetext-skins'            => 'ტესტების გასაშვებად აირჩიეთ გაფორმების თემა:',
+'javascripttest-qunit-intro'               => 'იხილეთ [$1 ტესტირების დოკუმენტები] mediawiki.org-ზე.',
+'javascripttest-qunit-heading'             => 'MediaWiki JavaScript QUnit-ის ტესტების კრებული',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'                 => 'თქვენი მომხმარებლის გვერდი',
@@ -2740,8 +2783,20 @@ $1',
 'tooltip-summary'                     => 'შეიყვანეთ მოკლე სქოლიო',
 
 # Stylesheets
-'common.css'   => '/** აქ ჩასმული CSS ყველა გარეკანზე იმოქმედებს */',
-'monobook.css' => '/* აქ ჩასმული CSS გავლენას იქონიებს Monobook ინტერფეისის მომხმარებლებზე */',
+'common.css'              => '/** აქ ჩასმული CSS გამოყენებული იქნება გაფორმების ყველა გარეკანზე */',
+'standard.css'            => '/* აქ ჩასმული CSS გამოყენებული იქნება სტანდარტული გაფორმების თემაში */',
+'nostalgia.css'           => '/* აქ ჩასმული CSS გამოყენებული იქნება ნოსტალგიური გაფორმების თემაში */',
+'cologneblue.css'         => '/* აქ ჩასმული CSS გამოყენებული იქნება კელნის ლურჯი გაფორმების თემაში */',
+'monobook.css'            => '/* აქ ჩასმული CSS გავლენას იქონიებს Monobook ინტერფეისის მომხმარებლებზე */',
+'myskin.css'              => '/* აქ ჩასმული CSS გამოყენებული იქნება ჩემი იერსახის გაფორმების თემაში */',
+'chick.css'               => '/* აქ ჩასმული CSS გამოყენებული იქნება წიწილის გაფორმების თემაში */',
+'simple.css'              => '/* აქ ჩასმული CSS გამოყენებული იქნება მარტივი გაფორმების თემაში */',
+'modern.css'              => '/* აქ ჩასმული CSS გამოყენებული იქნება თანამედროვე გაფორმების თემაში */',
+'vector.css'              => '/* აქ ჩასმული CSS გამოყენებული იქნება ვექტორული გაფორმების თემაში */',
+'group-autoconfirmed.css' => '/* აქ განთავსებული CSS გამოყენებული იქნება მხოლოდ ავტომატურად დადასტურებული მომხმარებლებისათვის */',
+'group-bot.css'           => '/* აქ განთავსებული CSS გამოყენებული იქნება მხოლოდ ბოტებისათვის */',
+'group-sysop.css'         => '/* აქ განთავსებული CSS გამოყენებული იქნება მხოლოდ ადმინისტრატორებისათვის */',
+'group-bureaucrat.css'    => '/* აქ განთავსებული CSS გამოყენებული იქნება მხოლოდ ბიუროკრატებისათვის */',
 
 # Scripts
 'common.js' => '/* აქ ნებისმიერი ჯავასკრიპტი ყველა მომხმარებლისთვის ჩაიტვირთება ყველა გვერდზე. */',
@@ -2830,6 +2885,7 @@ $1',
 მისმა ჩატვირთვამ შესაძლოა თქვენი სისტემა დააზიანოს.",
 'imagemaxsize'           => "სურათის მაქსიმალური ზომა <br />''აღწერილობის გვერდზე:''",
 'thumbsize'              => 'შემცირებული ზომა:',
+'widthheight'            => '$1 × $2',
 'widthheightpage'        => '$1 × $2, $3 გვერდი',
 'file-info'              => 'ფაილის ზომა: $1, MIME ტიპი: $2',
 'file-info-size'         => '$1 × $2 პიქსელი, ფაილის ზომა: $3, MIME ტიპი: $4',
@@ -2859,11 +2915,16 @@ $1',
 'sp-newimages-showfrom' => 'ახალი ფაილების ჩვენება დაწყებული $2, $1-იდან',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
-'seconds' => '$1 წამის',
-'minutes' => '$1 წუთის',
-'hours'   => '$1 საათის',
-'days'    => '$1 დღის',
-'ago'     => '$1 წინ',
+'video-dims'     => '$1, $2 × $3',
+'seconds-abbrev' => '$1 წმ',
+'minutes-abbrev' => '$1 წთ',
+'hours-abbrev'   => '$1 სთ',
+'days-abbrev'    => '$1 დღე',
+'seconds'        => '$1 წამის',
+'minutes'        => '$1 წუთის',
+'hours'          => '$1 საათის',
+'days'           => '$1 დღის',
+'ago'            => '$1 წინ',
 
 # Bad image list
 'bad_image_list' => 'ფორმატი შემდეგია:
@@ -2873,11 +2934,11 @@ $1',
 ნებისმიერი შემდგომი ბმული იმავე ხაზზე მიჩნეულია, როგორც გამონაკლისი, მაგ. გვერდები, სადაც ფაილი შეიძლება ხაზებს შორის იყოს ჩასმული.',
 
 # Metadata
-'metadata'          => 'მეტამონაცემები',
-'metadata-help'     => 'ეს ფაილი შეიცავს დამატებით ინფორმაციას, სავარაუდოდ ციფრული კამერიდან ან სკანერიდან, რომელიც მის შესაქმნელად გამოიყენეს. თუ ფაილის ორიგინალი შეცვლილია, ზოგიერთი დეტალი შესაძლოა სრულად არ ასახავდეს ფაილში შეტანილ ცვლილებებს.',
-'metadata-expand'   => 'დამატებითი ინფორმაციის ჩვენება',
-'metadata-collapse' => 'დამატებითი ინფორმაციის დამალვა',
-'metadata-fields'   => 'მეტამონაცემების ჩამონათვალი ამ შეტყობინებაში დამატებული იქნება სურათის გვერდზე, როცა მეტამონაცემების ცხრილი გახსნილია.
+'metadata'                  => 'მეტამონაცემები',
+'metadata-help'             => 'ეს ფაილი შეიცავს დამატებით ინფორმაციას, სავარაუდოდ ციფრული კამერიდან ან სკანერიდან, რომელიც მის შესაქმნელად გამოიყენეს. თუ ფაილის ორიგინალი შეცვლილია, ზოგიერთი დეტალი შესაძლოა სრულად არ ასახავდეს ფაილში შეტანილ ცვლილებებს.',
+'metadata-expand'           => 'დამატებითი ინფორმაციის ჩვენება',
+'metadata-collapse'         => 'დამატებითი ინფორმაციის დამალვა',
+'metadata-fields'           => 'მეტამონაცემების ჩამონათვალი ამ შეტყობინებაში დამატებული იქნება სურათის გვერდზე, როცა მეტამონაცემების ცხრილი გახსნილია.
 სხვები უპირობოდ დამალული იქნება.
 * make
 * model
@@ -2892,6 +2953,8 @@ $1',
 * gpslatitude
 * gpslongitude
 * gpsaltitude',
+'metadata-langitem'         => "'''$2:''' $1",
+'metadata-langitem-default' => '$1',
 
 # EXIF tags
 'exif-imagewidth'                  => 'სიგანე',
@@ -2939,6 +3002,7 @@ $1',
 'exif-exposuretime'                => 'ექსპოზიციის დრო',
 'exif-exposuretime-format'         => '$1 წამ ($2)',
 'exif-fnumber'                     => 'F ნომერი',
+'exif-fnumber-format'              => 'f/$1',
 'exif-exposureprogram'             => 'ექსპოზიციის პროგრამა',
 'exif-spectralsensitivity'         => 'სპექტრული გრძNობადობა',
 'exif-isospeedratings'             => 'ISO ფერისგრძნობადობა',
@@ -3007,6 +3071,7 @@ $1',
 'exif-gpsareainformation'          => 'GPS მხარის სახელწოდება',
 'exif-gpsdatestamp'                => 'GPS-ის მონაცემი',
 'exif-gpsdifferential'             => 'დიფერენციალური შესწორება',
+'exif-coordinate-format'           => '$1° $2′ $3″ $4',
 'exif-jpegfilecomment'             => 'JPEG-ფაილის კომენტარი',
 'exif-keywords'                    => 'საძიებო სიტყვები',
 'exif-worldregioncreated'          => 'მსოფლიოს რეგიონი, სადაც გადაღებულია ფოტო',
@@ -3072,13 +3137,36 @@ $1',
 'exif-originalimageheight'         => 'სურათის სიმაღლე კადრირებამდე',
 'exif-originalimagewidth'          => 'სურათის სიგანე კადრირებამდე',
 
+# Make & model, can be wikified in order to link to the camera and model name
+'exif-contact-value'         => '$1
+
+$2
+<div class="adr">
+$3
+
+$4, $5, $6 $7
+</div>
+$8',
+'exif-subjectnewscode-value' => '$2 ($1)',
+
 # EXIF attributes
-'exif-compression-1' => 'შეუკუმშავი',
-'exif-compression-3' => 'CCITT Group 3 ფაქსის კოდირება',
-'exif-compression-4' => 'CCITT Group 4 ფაქსის კოდირება',
+'exif-compression-1'     => 'შეუკუმშავი',
+'exif-compression-2'     => 'CCITT Group 3, ჰაფმანის სერიის სიგრძის კოდირების 1-განზომილებიანი მოდიფიკაცია',
+'exif-compression-3'     => 'CCITT Group 3 ფაქსის კოდირება',
+'exif-compression-4'     => 'CCITT Group 4 ფაქსის კოდირება',
+'exif-compression-5'     => 'LZW',
+'exif-compression-6'     => 'JPEG (ძველი)',
+'exif-compression-7'     => 'JPEG',
+'exif-compression-8'     => 'Deflate (Adobe)',
+'exif-compression-32773' => 'PackBits (Macintosh RLE)',
+'exif-compression-32946' => 'Deflate (PKZIP)',
+'exif-compression-34712' => 'JPEG2000',
 
 'exif-copyrighted-true'  => 'საავტორო უფლებებით დაცული',
 'exif-copyrighted-false' => 'საზოგადოებრივი დომენი',
+
+'exif-photometricinterpretation-2' => 'RGB',
+'exif-photometricinterpretation-6' => 'YCbCr',
 
 'exif-unknowndate' => 'უცნობი თარიღი',
 
@@ -3094,6 +3182,10 @@ $1',
 'exif-planarconfiguration-1' => 'ფორმატი «chunky»',
 'exif-planarconfiguration-2' => 'ფორმატი «planar»',
 
+'exif-xyresolution-i' => '$1 dpi',
+'exif-xyresolution-c' => '$1 dpc',
+
+'exif-colorspace-1'     => 'sRGB',
 'exif-colorspace-65535' => 'არაკალიბრირებული',
 
 'exif-componentsconfiguration-0' => 'არ არსებობს',
@@ -3260,6 +3352,8 @@ $1',
 
 'exif-isospeedratings-overflow' => '65535-ზე მეტი',
 
+'exif-maxaperturevalue-value' => '$1 APEX (f/$2)',
+
 'exif-iimcategory-ace' => 'ხელოვნება, კულტურა და გართობა',
 'exif-iimcategory-clj' => 'დანაშაული და კანონი',
 'exif-iimcategory-dis' => 'კატასტროფები და ავარიები',
@@ -3376,6 +3470,8 @@ $5
 'confirmrecreate-noreason' => 'მომხმარებელმა [[User:$1|$1]] ([[User talk:$1|განხილვა]]) წაშალა ეს გვერდი მას შემდეგ, რაც თქვენ დაიწყეთ მისი რედაქტირება. გთხოვთ, დარწმუნდით, რომ თქვენ ნამდვილად გსურთ ამ გვერდის ხელახლა შექმნა.',
 'recreate'                 => 'აღადგინე',
 
+'unit-pixel' => 'პქ',
+
 # action=purge
 'confirm_purge_button' => 'კარგი',
 'confirm-purge-top'    => 'გსურთ ამ გვერდის ქეშის წაშლა?',
@@ -3386,6 +3482,17 @@ $5
 'confirm-watch-top'      => 'დავამატო ეს გვერდი თქვენი კონტროლის სიას?',
 'confirm-unwatch-button' => 'კარგი',
 'confirm-unwatch-top'    => 'მოვხსნა ეს გვერდი თქვენი კონტროლის სიიდან?',
+
+# Separators for various lists, etc.
+'semicolon-separator' => ';&#32;',
+'comma-separator'     => ',&#32;',
+'colon-separator'     => ':&#32;',
+'autocomment-prefix'  => '-&#32;',
+'pipe-separator'      => '&#32;|&#32;',
+'word-separator'      => '&#32;',
+'ellipsis'            => '...',
+'percent'             => '$1%',
+'parentheses'         => '($1)',
 
 # Multipage image navigation
 'imgmultipageprev' => '&larr; წინა გვერდი',
@@ -3416,6 +3523,17 @@ $5
 'size-kilobytes' => '$1 კბ',
 'size-megabytes' => '$1 მბ',
 'size-gigabytes' => '$1 გბ',
+
+# Bitrate units
+'bitrate-bits'      => '$1 ბ/წმ',
+'bitrate-kilobits'  => '$1 კბ/წმ',
+'bitrate-megabits'  => '$1 მბ/წმ',
+'bitrate-gigabits'  => '$1 გბ/წმ',
+'bitrate-terabits'  => '$1 ტბ/წმ',
+'bitrate-petabits'  => '$1 პბ/წმ',
+'bitrate-exabits'   => '$1 ებ/წმ',
+'bitrate-zetabits'  => '$1 ზბ/წმ',
+'bitrate-yottabits' => '$1 იბ/წმ',
 
 # Live preview
 'livepreview-loading' => 'იტვირთება…',
@@ -3455,7 +3573,8 @@ $5
 'watchlisttools-raw'  => 'კონტროლის სიის რედაქტირება ტექსტის ფორმატში',
 
 # Signatures
-'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|განხილვა]])',
+'signature'    => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|განხილვა]])',
+'timezone-utc' => 'UTC',
 
 # Core parser functions
 'unknown_extension_tag' => 'უცნობი დამატების «$1» თეგი',
@@ -3469,6 +3588,7 @@ $5
 'version-variables'             => 'смфдуифвуиш',
 'version-antispam'              => 'სპამის პრევენცია',
 'version-skins'                 => 'იერსახე',
+'version-api'                   => 'API',
 'version-other'                 => 'სხვა',
 'version-mediahandlers'         => 'მედია დამუშავება',
 'version-hooks'                 => 'ჰუკებш',
@@ -3478,6 +3598,7 @@ $5
 'version-hook-name'             => 'ჰუკის სახელი',
 'version-hook-subscribedby'     => 'ჩაწერილია',
 'version-version'               => '(ვერსია $1)',
+'version-svn-revision'          => '(r$2)',
 'version-license'               => 'ლიცენზია',
 'version-poweredby-credits'     => "ეს ვიკი მუშაობს '''[//www.mediawiki.org/ MediaWiki]'''-ს ძრავზე, copyright © 2001-$1 $2.",
 'version-poweredby-others'      => 'სხვები',
@@ -3588,25 +3709,34 @@ MediaWiki ვრცელდება იმ იმედით, რომ ი�
 'sqlite-no-fts'  => '$1 სრული ტექსტის ძიების მხარდაჭერის გარეშე',
 
 # New logging system
-'logentry-delete-delete'          => '$1 წაშალა გვერდი: $3',
-'logentry-delete-restore'         => '$1 აღადგინა გვერდი $3',
-'logentry-delete-event'           => '$1 შეცვალა {{PLURAL:$5|ჟურნალის ჩანაწერის|$5 ჟურნალის ჩანაწერების}} ხილვადობა $3-ზე: $4',
-'logentry-delete-revision-legacy' => '$1 შეცვალა რედაქტირების კომენტარი გვერდზე $3',
-'logentry-suppress-event'         => '$1 ფარულად შეცვალა {{PLURAL:$5|ჟურნალის ჩანაწერის|$5 ჟურნალის ჩანაწერების}} ხილვადობა $3-ზე: $4',
-'revdelete-content-hid'           => 'შინაარსი დამალულია',
-'revdelete-summary-hid'           => 'რედაქტირების აღწერა დამალულია',
-'revdelete-uname-hid'             => 'მომხმარებლის სახელი დაფარულია',
-'revdelete-content-unhid'         => 'შინაარსი გახსნილია',
-'revdelete-summary-unhid'         => 'რედაქტირების აღწერა გახსნილია',
-'revdelete-uname-unhid'           => 'მომხმარებლის სახელი გახსნილია',
-'revdelete-restricted'            => 'შეზღუდვა ადმინისტრატორთადმი',
-'revdelete-unrestricted'          => 'შეზღუდვები მოხსნილია ადმინისტრატორთადმი',
-'logentry-move-move'              => '$1 გადაიტანა გვერდი $3 → $4-ზე',
-'logentry-newusers-newusers'      => '$1 შექმნა მომხმარებლის ანგარიში',
-'logentry-newusers-create'        => '$1 შექმნა მომხმარებლის ანგარიში',
-'logentry-newusers-create2'       => '$1 შექმნა მომხმარებელ $3 ანგარიში',
-'logentry-newusers-autocreate'    => 'ანგარიში $1 ავტომატურად შეიქმნა',
-'newuserlog-byemail'              => 'პაროლი ელ-ფოსტითაა გამოგზავნილი',
+'logentry-delete-delete'            => '$1 წაშალა გვერდი: $3',
+'logentry-delete-restore'           => '$1 აღადგინა გვერდი $3',
+'logentry-delete-event'             => '$1 შეცვალა {{PLURAL:$5|ჟურნალის ჩანაწერის|$5 ჟურნალის ჩანაწერების}} ხილვადობა $3-ზე: $4',
+'logentry-delete-revision'          => '$1 შეცვალა {{PLURAL:$5|$5 ვერსიის|$5 ვერსიის}} ხილვადობა $3 გვერდზე: $4',
+'logentry-delete-event-legacy'      => '$1 შეცვალა ჩანაწერების ჟურნალის ხილვადობა $3-ზე',
+'logentry-delete-revision-legacy'   => '$1 შეცვალა რედაქტირების კომენტარი გვერდზე $3',
+'logentry-suppress-delete'          => '$1 ჩაახშო $3 გვერდი',
+'logentry-suppress-event'           => '$1 ფარულად შეცვალა {{PLURAL:$5|ჟურნალის ჩანაწერის|$5 ჟურნალის ჩანაწერების}} ხილვადობა $3-ზე: $4',
+'logentry-suppress-revision'        => '$1 ფარულად შეცვალა {{PLURAL:$5|$5 ვერსიის|$5 ვერსიის}} ხილვადობა $3 გვერდზე: $4',
+'logentry-suppress-event-legacy'    => '$1 ფარულად შეცვალა $3 ჩანაწერების ჟურნალის ხილვადობა',
+'logentry-suppress-revision-legacy' => '$1 ფარულად შეცვალა ვერსიის ხილვადობა $3 გვერდზე',
+'revdelete-content-hid'             => 'შინაარსი დამალულია',
+'revdelete-summary-hid'             => 'რედაქტირების აღწერა დამალულია',
+'revdelete-uname-hid'               => 'მომხმარებლის სახელი დაფარულია',
+'revdelete-content-unhid'           => 'შინაარსი გახსნილია',
+'revdelete-summary-unhid'           => 'რედაქტირების აღწერა გახსნილია',
+'revdelete-uname-unhid'             => 'მომხმარებლის სახელი გახსნილია',
+'revdelete-restricted'              => 'შეზღუდვა ადმინისტრატორთათვის',
+'revdelete-unrestricted'            => 'ადმინისტრატორთათვის შეზღუდვები მოხსნილია',
+'logentry-move-move'                => '$1 გადაიტანა გვერდი $3 → $4-ზე',
+'logentry-move-move-noredirect'     => '$1 გადაიტანა გვერდი $3 $4-ში გადამისამართების დატოვების გარეშე',
+'logentry-patrol-patrol'            => '$1 გააკეთა გვერდი $3-ის $4 ვერსიის პატრულირება',
+'logentry-patrol-patrol-auto'       => '$1 ავტომატურად გააკეთა გვერდი $3-ის $4 ვერსიის პატრულირება',
+'logentry-newusers-newusers'        => '$1 შექმნა მომხმარებლის ანგარიში',
+'logentry-newusers-create'          => '$1 შექმნა მომხმარებლის ანგარიში',
+'logentry-newusers-create2'         => '$1 შექმნა მომხმარებელ $3 ანგარიში',
+'logentry-newusers-autocreate'      => 'ანგარიში $1 ავტომატურად შეიქმნა',
+'newuserlog-byemail'                => 'პაროლი ელ-ფოსტითაა გამოგზავნილი',
 
 # Feedback
 'feedback-subject'  => 'თემა:',
@@ -3623,38 +3753,41 @@ MediaWiki ვრცელდება იმ იმედით, რომ ი�
 'feedback-bugnew'   => 'მე შევამოწმე. ახალი შეცდომის შეტყობინება',
 
 # API errors
-'api-error-badaccess-groups'      => 'თქვენ არ გაქვთ ამ ვიკიში ფაილების ატვირთვის უფლება.',
-'api-error-badtoken'              => 'შიდა შეცდომა: ცუდი ტოკენი.',
-'api-error-copyuploaddisabled'    => 'ამ სერვერზე URL-მისამართის საშუალებით ატვირთვა გამორთულია.',
-'api-error-duplicate'             => 'უკვე {{PLURAL:$1|არსებობს [$2 სხვა ფაილი]|არსებობს [$2 სხვა მსგავსი ფაილი]}} ანალოგიური შინაარსით.',
-'api-error-duplicate-popup-title' => '{{PLURAL:$1|ფაილის|ფაილის}} დუბლიკატი.',
-'api-error-empty-file'            => 'არჩეული ფაილი ცარიელია.',
-'api-error-emptypage'             => 'ახალი, ცარიელი გვერდების შექმნა აკრძალულია.',
-'api-error-fetchfileerror'        => 'შიდა შეცდომა: ფაილის მიღებისას მოხდა რაღაც შეცდომა.',
-'api-error-file-too-large'        => 'არჩეული ფაილი ძალიან დიდია.',
-'api-error-filename-tooshort'     => 'ფაილის სახელი ზედმეტად მოკლეა',
-'api-error-filetype-banned'       => 'ფაილის ეს ტიპი აკრძალულია',
-'api-error-filetype-missing'      => 'ფაილს აკლია გაფართოვება.',
-'api-error-hookaborted'           => 'თქვენ მიერ შემოთავაზებული ცვლილება მოინიშნა გაფართოების დოკუმენტაციაში.',
-'api-error-http'                  => 'აღმოჩენილია შეცდომა სერვერთან დაკავშირებისას.',
-'api-error-illegal-filename'      => 'ფაილის ეს სახელი აკრძალულია.',
-'api-error-internal-error'        => 'შიდა შეცდომა: ვიკიში თქვენი ატვირთვის დამუშავებისას მოხდა შეცდომა.',
-'api-error-invalid-file-key'      => 'სერვერმა ვერ იპოვა თქვენ მიერ მითითებული ფაილი',
-'api-error-missingparam'          => 'შიდა შეცდომა: მოთხოვნილი პარამეტრები დაიკარგა.',
-'api-error-missingresult'         => 'შიდა შეცდომა. ვერ მოხერხდა იმის დადგენა, იყო თუ არა კოპირება წარმატებული.',
-'api-error-mustbeloggedin'        => 'ფაილების ასატვირთად თქვენ უნდა შეხვიდეთ სისტემაში.',
-'api-error-mustbeposted'          => 'პროგრამული შეცდომა; გამოყენებულია არასწორი HTTP-მეთოდი.',
-'api-error-nomodule'              => 'შიდა შეცდომა. ატვირთვის მოდული არ არის კონფიგურირებული.',
-'api-error-ok-but-empty'          => 'შიდა შეცდომა. სერვერს არ დაუბრუნებია ინფორმაცია ატვირთვადი ფაილის შესახებ.',
-'api-error-overwrite'             => 'არსებული ფაილის შეცვლა მიუღებელია.',
-'api-error-stashfailed'           => 'შიდა შეცდომა. ვიკიმ ვერ შეძლო დროებით ფაილის შენახვა.',
-'api-error-timeout'               => 'სერვერმა არ მოახდინა რეაგირება მოსალოდნელ დროში.',
-'api-error-unclassified'          => 'აღმოჩენილია უცნობი შეცდომა.',
-'api-error-unknown-code'          => 'უცნობი შეცდომა : „$1“',
-'api-error-unknown-error'         => 'შიდა შეცდომა: ფაილის ატვირთვისას აღმოჩენილია უცნობი შეცდომა.',
-'api-error-unknown-warning'       => 'უცნობი გაფრთხილება: „$1“.',
-'api-error-unknownerror'          => 'უცნობი შეცდომა: „$1“.',
-'api-error-uploaddisabled'        => 'ატვირთვის მექანიზმი ამ ვიკიზე გამორთულია',
-'api-error-verification-error'    => 'ეს ფაილი ან რაიმე შეცდომას შეიცავს, ან არ აქვს სახელის გაფართოება.',
+'api-error-badaccess-groups'              => 'თქვენ არ გაქვთ ამ ვიკიში ფაილების ატვირთვის უფლება.',
+'api-error-badtoken'                      => 'შიდა შეცდომა: ცუდი ტოკენი.',
+'api-error-copyuploaddisabled'            => 'ამ სერვერზე URL-მისამართის საშუალებით ატვირთვა გამორთულია.',
+'api-error-duplicate'                     => 'უკვე {{PLURAL:$1|არსებობს [$2 სხვა ფაილი]|არსებობს [$2 სხვა მსგავსი ფაილი]}} ანალოგიური შინაარსით.',
+'api-error-duplicate-archive'             => 'საიტზე ადრე {{PLURAL:$1|უკვე იყო [$2 ფაილი]}} ანალოგიური შინაარსით, მაგრამ {{PLURAL:$1|ის წაიშალა|ისინი წაიშალა}}.',
+'api-error-duplicate-archive-popup-title' => 'უკვე წაშლილი {{PLURAL:$1|ფაილის|ფაილის}} დუბლიკატი.',
+'api-error-duplicate-popup-title'         => '{{PLURAL:$1|ფაილის|ფაილის}} დუბლიკატი.',
+'api-error-empty-file'                    => 'არჩეული ფაილი ცარიელია.',
+'api-error-emptypage'                     => 'ახალი, ცარიელი გვერდების შექმნა აკრძალულია.',
+'api-error-fetchfileerror'                => 'შიდა შეცდომა: ფაილის მიღებისას მოხდა რაღაც შეცდომა.',
+'api-error-file-too-large'                => 'არჩეული ფაილი ძალიან დიდია.',
+'api-error-filename-tooshort'             => 'ფაილის სახელი ზედმეტად მოკლეა',
+'api-error-filetype-banned'               => 'ფაილის ეს ტიპი აკრძალულია',
+'api-error-filetype-missing'              => 'ფაილს აკლია გაფართოვება.',
+'api-error-hookaborted'                   => 'თქვენ მიერ შემოთავაზებული ცვლილება მოინიშნა გაფართოების დოკუმენტაციაში.',
+'api-error-http'                          => 'აღმოჩენილია შეცდომა სერვერთან დაკავშირებისას.',
+'api-error-illegal-filename'              => 'ფაილის ეს სახელი აკრძალულია.',
+'api-error-internal-error'                => 'შიდა შეცდომა: ვიკიში თქვენი ატვირთვის დამუშავებისას მოხდა შეცდომა.',
+'api-error-invalid-file-key'              => 'სერვერმა ვერ იპოვა თქვენ მიერ მითითებული ფაილი',
+'api-error-missingparam'                  => 'შიდა შეცდომა: მოთხოვნილი პარამეტრები დაიკარგა.',
+'api-error-missingresult'                 => 'შიდა შეცდომა. ვერ მოხერხდა იმის დადგენა, იყო თუ არა კოპირება წარმატებული.',
+'api-error-mustbeloggedin'                => 'ფაილების ასატვირთად თქვენ უნდა შეხვიდეთ სისტემაში.',
+'api-error-mustbeposted'                  => 'პროგრამული შეცდომა; გამოყენებულია არასწორი HTTP-მეთოდი.',
+'api-error-noimageinfo'                   => 'ატვირთვა წარმატებით განხორციელდა, მაგრამ სერვერმა არ აჩვენა ფაილის შესახებ არანაირი ინფორმაცია.',
+'api-error-nomodule'                      => 'შიდა შეცდომა. ატვირთვის მოდული არ არის კონფიგურირებული.',
+'api-error-ok-but-empty'                  => 'შიდა შეცდომა. სერვერს არ დაუბრუნებია ინფორმაცია ატვირთვადი ფაილის შესახებ.',
+'api-error-overwrite'                     => 'არსებული ფაილის შეცვლა მიუღებელია.',
+'api-error-stashfailed'                   => 'შიდა შეცდომა. ვიკიმ ვერ შეძლო დროებით ფაილის შენახვა.',
+'api-error-timeout'                       => 'სერვერმა არ მოახდინა რეაგირება მოსალოდნელ დროში.',
+'api-error-unclassified'                  => 'აღმოჩენილია უცნობი შეცდომა.',
+'api-error-unknown-code'                  => 'უცნობი შეცდომა : „$1“',
+'api-error-unknown-error'                 => 'შიდა შეცდომა: ფაილის ატვირთვისას აღმოჩენილია უცნობი შეცდომა.',
+'api-error-unknown-warning'               => 'უცნობი გაფრთხილება: „$1“.',
+'api-error-unknownerror'                  => 'უცნობი შეცდომა: „$1“.',
+'api-error-uploaddisabled'                => 'ატვირთვის მექანიზმი ამ ვიკიზე გამორთულია',
+'api-error-verification-error'            => 'ეს ფაილი ან რაიმე შეცდომას შეიცავს, ან არ აქვს სახელის გაფართოება.',
 
 );

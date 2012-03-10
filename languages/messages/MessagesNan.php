@@ -1510,6 +1510,7 @@ $1',
 'backend-fail-closetemp'     => '無法度徙掉臨時檔案',
 'backend-fail-read'          => '無法度讀$1這个檔案',
 'backend-fail-create'        => '無法度建立$1這个檔案。',
+'backend-fail-maxsize'       => '無法度建立$1檔案，因為伊超過{{PLURAL:$2|$2位元|$2位元}}。',
 'backend-fail-readonly'      => '囥「$1」的位，這馬只會當讀，因為「$2」。',
 'backend-fail-synced'        => '"$1"這个檔案佇內部的囥位無一致。',
 'backend-fail-connect'       => '無法度連接到囥"$1"的位。',
@@ -1529,8 +1530,30 @@ $1',
 'lockmanager-fail-db-release'  => '無法度共佇伺服器$1的套牢釋放掉。',
 'lockmanager-fail-svr-release' => '無法度共佇伺服器$1的套牢釋放掉。',
 
+# ZipDirectoryReader
+'zip-file-open-error' => '佇拍開檔案的ZIP檢查時陣，拄著一个問題。',
+'zip-wrong-format'    => '指定的檔案毋是一个ZIP檔案。',
+'zip-bad'             => '檔案已經歹去抑是無法度讀的ZIP檔案，
+伊無法正確來檢查，看有妥當無。',
+'zip-unsupported'     => '這个是一个 ZIP 檔案，伊用著 MediaWiki 無支持的ZIP功能，
+伊袂當正確檢查看有妥當無。',
+
+# Special:UploadStash
+'uploadstash'          => '上載囥位',
+'uploadstash-summary'  => '這个頁面提供的檔案已經上載（抑是當咧上載），毋過猶未佇wiki發布，遮的檔案除了上載的用者以外，別人看袂著。',
+'uploadstash-clear'    => '清掉囥咧的檔案',
+'uploadstash-nofiles'  => '你無囥咧的檔案。',
+'uploadstash-badtoken' => '彼个動作做無成功，可能是你的編輯資料已經過期，請閣試一擺。',
+'uploadstash-errclear' => '欲清掉檔案無成功。',
+'uploadstash-refresh'  => '更新檔案清單。',
+'invalid-chunk-offset' => '無效的區位偏移量',
+
 # img_auth script messages
 'img-auth-accessdenied'     => '拒絕讀寫',
+'img-auth-nopathinfo'       => '欠PATH_INFO，
+你的伺服器無設講免這个資料，
+伊它可能是因為是CGI的，而且不支源img_auth，
+會使參考[https://www.mediawiki.org/wiki/Manual:Image_Authorization 圖片認證。]',
 'img-auth-notindir'         => '你欲用的路徑無佇事先設定的上載目錄當中。',
 'img-auth-badtitle'         => '無法度對"$1"產生一个有效的標題',
 'img-auth-nologinnWL'       => '你猶未登入，"$1"無佇白名單(whitelist)面頂。',
@@ -1608,6 +1631,7 @@ $1',
 有一个[[Special:WhatLinksHere/$2|全部的清單]]。',
 'nolinkstoimage'            => 'Bô poàⁿ ia̍h liân kàu chit tiuⁿ iáⁿ-siōng.',
 'morelinkstoimage'          => '看連接到這个檔案的[[Special:WhatLinksHere/$1|其他連結]]',
+'linkstoimage-redirect'     => '$1 （檔案轉向） $2',
 'duplicatesoffile'          => '下跤{{PLURAL:$1|个|个}}檔案佮這个仝款（[[Special:FileDuplicateSearch/$2|詳細]]）：',
 'sharedupload'              => '這个檔案是對$1遐來的，伊可能用佇別个事工。',
 'sharedupload-desc-there'   => '這个檔案對$1遐來的，伊可能用佇別个事工，
@@ -1631,26 +1655,31 @@ $1',
 'filerevert-badversion'     => '這个檔案所提供的時間截記，無進前的本地版本。',
 
 # File deletion
-'filedelete'                  => '刣掉$1',
-'filedelete-legend'           => '刣掉檔案',
-'filedelete-intro'            => "你當咧刣掉檔案'''[[Media:$1|$1]]'''，佮伊的歷史。",
-'filedelete-intro-old'        => "你當咧刣掉'''[[Media:$1|$1]]'''佇[$4 $2 $3]的版本",
-'filedelete-comment'          => '理由：',
-'filedelete-submit'           => '刣掉',
-'filedelete-success'          => "'''$1'''已經刣掉",
-'filedelete-success-old'      => "'''[[Media:$1|$1]]'''佇$2 $3 的版本已經刣掉",
-'filedelete-nofile'           => "無'''$1'''這个",
-'filedelete-nofile-old'       => "揣無'''$1'''指定的保存版本",
-'filedelete-otherreason'      => '其他／另外的理由：',
-'filedelete-reason-otherlist' => '其他理由',
-'filedelete-reason-dropdown'  => '*一般刣掉的理由
+'filedelete'                   => '刣掉$1',
+'filedelete-legend'            => '刣掉檔案',
+'filedelete-intro'             => "你當咧刣掉檔案'''[[Media:$1|$1]]'''，佮伊的歷史。",
+'filedelete-intro-old'         => "你當咧刣掉'''[[Media:$1|$1]]'''佇[$4 $2 $3]的版本",
+'filedelete-comment'           => '理由：',
+'filedelete-submit'            => '刣掉',
+'filedelete-success'           => "'''$1'''已經刣掉",
+'filedelete-success-old'       => "'''[[Media:$1|$1]]'''佇$2 $3 的版本已經刣掉",
+'filedelete-nofile'            => "無'''$1'''這个",
+'filedelete-nofile-old'        => "揣無'''$1'''指定的保存版本",
+'filedelete-otherreason'       => '其他／另外的理由：',
+'filedelete-reason-otherlist'  => '其他理由',
+'filedelete-reason-dropdown'   => '*一般刣掉的理由
 ** 違反著作權
 ** 相仝',
-'filedelete-edit-reasonlist'  => '編輯刣掉的理由',
+'filedelete-edit-reasonlist'   => '編輯刣掉的理由',
+'filedelete-maintenance'       => '佇維護的時陣，暫時袂當刣掉檔案佮救倒轉來檔案。',
+'filedelete-maintenance-title' => '袂當刣掉檔案',
 
 # MIME search
-'mimesearch' => 'MIME chhiau-chhoē',
-'download'   => '下載',
+'mimesearch'         => 'MIME chhiau-chhoē',
+'mimesearch-summary' => '這个頁面有用MIME類型的檔案過濾器，
+輸入︰內容類型/次類型，親像 <tt>image/jpeg</tt>。',
+'mimetype'           => 'MIME 類型：',
+'download'           => '下載',
 
 # Unwatched pages
 'unwatchedpages' => 'Bô lâng kàm-sī ê ia̍h',
@@ -1659,8 +1688,10 @@ $1',
 'listredirects' => 'Lia̍t-chhut choán-ia̍h',
 
 # Unused templates
-'unusedtemplates'    => 'Bô iōng ê pang-bô·',
-'unusedtemplateswlh' => '其他的連結',
+'unusedtemplates'     => 'Bô iōng ê pang-bô·',
+'unusedtemplatestext' => '這个頁面排列出佇{{ns:template}}名空間內底，閣無予別頁面用著的頁。
+請會記得佇刣掉遮的枋模進前，看有別的連接鏈連著。',
+'unusedtemplateswlh'  => '其他的連結',
 
 # Random page
 'randompage'         => 'Sûi-chāi kéng ia̍h',
@@ -1849,6 +1880,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'notanarticle'       => '毋是內容頁面',
 'watchnochange'      => 'Lí kàm-sī ê hāng-bo̍k tī hián-sī ê sî-kî í-lāi lóng bô siu-kái kòe.',
 'watchlist-details'  => 'Kàm-sī-toaⁿ ū {{PLURAL:$1|$1 ia̍h|$1 ia̍h}}, thó-lūn-ia̍h bô sǹg chāi-lāi.',
+'wlheader-enotif'    => '*會當用電子批通知',
 'watchmethod-recent' => 'tng teh kíam-cha choè-kīn ê siu-kái, khoàⁿ ū kàm-sī ê ia̍h bô',
 'watchmethod-list'   => 'tng teh kiám-cha kàm-sī ê ia̍h khoàⁿ chòe-kīn ū siu-kái bô',
 'watchlistcontains'  => 'Lí ê kàm-sī-toaⁿ siu {{PLURAL:$1|ia̍h|ia̍h}} .',
@@ -1861,14 +1893,15 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'unwatching'     => '莫監視',
 'watcherrortext' => '佇你改"$1"監視設定的時陣，發生一个問題',
 
-'enotif_reset'       => '共全部的頁攏當做巡過',
-'enotif_newpagetext' => '這是新的一頁',
-'changed'            => '改過',
-'created'            => '寫過',
-'enotif_subject'     => '佇{{SITENAME}}的$PAGETITLE這頁捌予$CHANGEDORCREATED$PAGEEDITOR',
-'enotif_lastvisited' => '看$1，自你頂回來到今所有改的',
-'enotif_lastdiff'    => '看$1這回改的',
-'enotif_anon_editor' => '無名氏用者$1',
+'enotif_reset'                 => '共全部的頁攏當做巡過',
+'enotif_newpagetext'           => '這是新的一頁',
+'enotif_impersonal_salutation' => '{{SITENAME}}用者',
+'changed'                      => '改過',
+'created'                      => '寫過',
+'enotif_subject'               => '佇{{SITENAME}}的$PAGETITLE這頁捌予$CHANGEDORCREATED$PAGEEDITOR',
+'enotif_lastvisited'           => '看$1，自你頂回來到今所有改的',
+'enotif_lastdiff'              => '看$1這回改的',
+'enotif_anon_editor'           => '無名氏用者$1',
 
 # Delete
 'deletepage'             => 'Thâi ia̍h',
@@ -1936,6 +1969,9 @@ Téng 1 ūi siu-kái-chiá sī [[User:$3|$3]] ([[User talk:$3|talk]]{{int:pipe-s
 'protect-unchain-permissions' => '解除更加保護的選項',
 'protect-locked-blocked'      => "你袂當佇封鎖的時陣改保護等級，
 下跤是'''$1'''這馬的保護等級:",
+'protect-default'             => '所有用者攏會當',
+'protect-fallback'            => '要求會當"$1"',
+'protect-level-sysop'         => '干焦管理員',
 'protect-expiring-local'      => '佇$1到期',
 'protect-cascade'             => 'Cascading protection - pó-hō͘ jīm-hô pau-hâm tī chit ia̍h ê ia̍h.',
 'protect-othertime'           => '其他的時間：',

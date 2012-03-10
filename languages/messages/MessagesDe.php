@@ -1614,7 +1614,7 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 'right-siteadmin'             => 'Datenbank sperren und entsperren',
 'right-override-export-depth' => 'Exportiere Seiten einschließlich verlinkter Seiten bis zu einer Tiefe von 5',
 'right-sendemail'             => 'E-Mails an andere Benutzer senden',
-'right-passwordreset'         => 'Passwort eines Benutzers zurücksetzen',
+'right-passwordreset'         => 'Passwort eines Benutzers zurücksetzen und die dazu verschickte E-Mail einsehen',
 
 # User rights log
 'rightslog'                  => 'Rechte-Logbuch',
@@ -3929,9 +3929,9 @@ Eine [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie der ''GNU General Public License'']
 'logentry-move-move_redir-noredirect' => '$1 verschob Seite $3 nach $4 und überschrieb dabei eine Weiterleitung ohne selbst eine Weiterleitung anzulegen',
 'logentry-patrol-patrol'              => '$1 markierte Version $4 von Seite $3 als kontrolliert',
 'logentry-patrol-patrol-auto'         => '$1 markierte automatisch Version $4 von Seite $3 als kontrolliert',
-'logentry-newusers-newusers'          => '$1 erstellte ein Benutzerkonto',
-'logentry-newusers-create'            => '$1 erstellte ein Benutzerkonto',
-'logentry-newusers-create2'           => '$1 erstellte ein Benutzerkonto $3',
+'logentry-newusers-newusers'          => 'Benutzerkonto $1 wurde erstellt',
+'logentry-newusers-create'            => 'Benutzerkonto $1 wurde erstellt',
+'logentry-newusers-create2'           => 'Benutzerkonto $3 wurde von $1 erstellt',
 'logentry-newusers-autocreate'        => 'Benutzerkonto $1 wurde automatisch erstellt',
 'newuserlog-byemail'                  => 'das Passwort wurde per E-Mail versandt',
 

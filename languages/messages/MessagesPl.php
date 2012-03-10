@@ -1809,6 +1809,7 @@ Jeśli problem będzie się powtarzał, skontaktuj się z [[Special:ListUsers/sy
 'backend-fail-closetemp'     => 'Nie można zamknąć pliku tymczasowego.',
 'backend-fail-read'          => 'Nie można odczytać pliku $1.',
 'backend-fail-create'        => 'Nie można utworzyć pliku $1.',
+'backend-fail-maxsize'       => 'Nie udało utworzyć pliku $1 ponieważ jest on większy niż {{PLURAL:$2|$2 bajt| $2 bajty| $2 bajtów}}.',
 'backend-fail-readonly'      => 'Interfejs magazynowania "$1" jest obecnie tylko do odczytu. Powód: "$2"',
 'backend-fail-synced'        => 'Plik "$1" jest w niespójnym stanie w ramach wewnętrznych funkcji magazynowania',
 'backend-fail-connect'       => 'Nie można nawiązać połączenia do wewnętrznych funkcji magazynowania "$1".',

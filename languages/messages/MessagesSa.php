@@ -15,6 +15,7 @@
  * @author Hrishikesh.kb
  * @author Htt
  * @author Kaustubh
+ * @author Krinkle
  * @author Mahitgar
  * @author Naveen Sankar
  * @author Omnipaedista
@@ -1177,7 +1178,7 @@ $2
 'prefs-registration'        => 'पंजीकरण कालः:',
 'yourrealname'              => 'वास्तविकं नाम:',
 'yourlanguage'              => 'भाषा:',
-'yournick'                  => ' नूतनाः हस्ताक्षराः:',
+'yournick'                  => 'नूतनाः हस्ताक्षराः:',
 'prefs-help-signature'      => 'संभाषणपृष्ठगताः संवादाः "<nowiki>~~~~</nowiki>" इति लिखित्वा हस्ताक्षरोपेताः कर्त्तव्याः। एतानि चिह्नानि पृष्ठरक्षणपश्चात् भवतः हस्ताक्षरान् समयमुद्रां च प्रदर्शयिष्यन्ति।',
 'badsig'                    => 'अमान्याः (त्रुटिपूर्णाः) हि एते अपक्वाः हस्ताक्षराः।
 एचटीएमएल्-टैग इत्येतानि पुनरीक्षितव्यानि भवता।',

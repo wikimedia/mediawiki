@@ -1370,16 +1370,19 @@ $1',
 'uploadstash-refresh' => 'Fayl siyahısını yenilə',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Giriş qadağandır',
-'img-auth-nofile'       => 'Fayl "$1" mövcud deyil.',
-'img-auth-streaming'    => '"$1" axını.',
-'img-auth-noread'       => 'İstifadəçinin "$1"i oxumaq hüququ yoxdur.',
+'img-auth-accessdenied'     => 'Giriş qadağandır',
+'img-auth-nofile'           => 'Fayl "$1" mövcud deyil.',
+'img-auth-streaming'        => '"$1" axını.',
+'img-auth-noread'           => 'İstifadəçinin "$1"i oxumaq hüququ yoxdur.',
+'img-auth-bad-query-string' => 'URL ünvanda yanlış axtarış sətri var.',
 
 # HTTP errors
 'http-invalid-url'      => 'Səhv URL: $1',
 'http-read-error'       => 'HTTP oxuma xətası',
 'http-timed-out'        => 'HTTP istəyinin vaxtı bitdi.',
+'http-curl-error'       => 'URL-ə yanlış müraciət: $1',
 'http-host-unreachable' => 'URL-ə çatmaq olmadı.',
+'http-bad-status'       => 'HTTP müraciətin yoxlanması zamanı problem aşkarlanmışdır: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'  => 'URL-ə çatmaq olmadı',
@@ -1427,6 +1430,7 @@ $1',
 'sharedupload'                      => 'Bu fayl $1-dandır və ola bilsin ki, başqa layihələrdə də istifadə edilir.',
 'uploadnewversion-linktext'         => 'Bu faylın yeni versiyasını yüklə',
 'shared-repo-from'                  => '$1-dən',
+'shared-repo'                       => 'ümumi anbar',
 'shared-repo-name-wikimediacommons' => 'Wikimedia Commons',
 
 # File reversion

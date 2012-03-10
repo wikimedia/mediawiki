@@ -941,11 +941,12 @@ Molimo provjerite da li želite napraviti/izmijeniti ovu stranicu.',
 'userpage-userdoesnotexist-view'   => 'Korisnički račun "$1" nije registrovan.',
 'blocked-notice-logextract'        => 'Ovaj korisnik je trenutno blokiran.
 Posljednje stavke zapisnika blokiranja možete pogledati ispod:',
-'clearyourcache'                   => "'''Pažnja: Nakon što sačuvate izmjene, morate \"osvježiti\" keš memoriju vašeg pretraživača da bi ste vidjeli nova podešenja.'''
-'''Mozilla / Firefox / Safari:''' držite ''Shift'' tipku i kliknite na ''Reload'' dugme ili ''Ctrl-R'' ili ''Ctrl-F5'' (''Command-R'' na Macu);
-'''Konqueror:''' klikni na ''Reload'' ili pritisnite dugme ''F5'';
-'''Opera:''' očistite \"keš\" preko izbornika ''Tools → Preferences'';
-'''Internet Explorer:''' držite tipku ''Ctrl'' i kliknite na ''Refresh'' ili pritisnite ''Ctrl-F5''.",
+'clearyourcache'                   => "'''Pažnja:''' Nakon što sačuvate izmjene, morate \"osvježiti\" keš memoriju vašeg pretraživača da bi ste vidjeli nova podešenja.'''
+*'''Firefox / Safari:''' držite ''Shift'' tipku i kliknite na ''Reload'' dugme ili pritisnite ''Ctrl-F5'' ili ''Ctrl-R'' (''⌘-R'' na Macu)
+*'''Google Chrome:''' pritisnite ''Ctrl-Shift-R'' (''⌘-Shift-R'' na Macu)
+*'''Internet Explorer:''' držite tipku ''Ctrl'' i kliknite na ''Refresh'' ili pritisnite ''Ctrl-F5''
+*'''Konqueror:''' klikni na ''Reload'' ili pritisnite dugme ''F5''
+*'''Opera:''' očistite \"keš\" preko izbornika ''Tools → Preferences''",
 'usercssyoucanpreview'             => "'''Pažnja:''' Koristite dugme \"{{int:showpreview}}\" da testirate svoj novi CSS prije nego što sačuvate.",
 'userjsyoucanpreview'              => "'''Pažnja:''' Koristite dugme \"{{int:showpreview}}\" da testirate svoj novi JavaScript prije nego što sačuvate.",
 'usercsspreview'                   => "'''Zapamtite ovo je samo izgled Vašeg CSS-a.'''
@@ -998,8 +999,8 @@ nemojte ih slati ovdje. Takođe, slanje članka podrazumijeva i vašu izjavu da 
 'copyrightwarning2'                => "Zapamtite da svi doprinosi na stranici {{SITENAME}} može biti izmijenjen, promijenjen ili uklonjen od strane ostalih korisnika. Ako ne želite da ovo desi sa Vašim tekstom, onda ga nemojte slati ovdje.<br />
 Također nam garantujete da ste ovo Vi napisali, ili da ste ga kopirali iz javne domene ili sličnog slobodnog izvora informacija (pogledajte $1 za više detalja).
 '''NE ŠALJITE AUTORSKIM PRAVOM ZAŠTIĆENE TEKSTOVE BEZ DOZVOLE!'''",
-'longpageerror'                    => "'''Greška: Tekst, koji ste poslali, je dug $1 kilobajta, što je veće od maksimuma, koji iznosi $2 kilobajta.
-Stranica ne može biti spremljena.'''",
+'longpageerror'                    => "'''Greška: Tekst, koji ste poslali, je dug {{PLURAL:$1|jedan kilobajt|$1 kilobajta}}, što je veće od maksimuma, koji iznosi {{PLURAL:$2|jedan kilobajt|$2 kilobajta}}.'''
+Stranica ne može biti sačuvana.",
 'readonlywarning'                  => "'''PAŽNJA: Baza je zaključana zbog održavanja, tako da nećete moći da sačuvate svoje izmjene za sada.
 Možda želite da kopirate i nalijepite tekst u tekst editor i sačuvate ga za kasnije.'''
 
@@ -1112,28 +1113,28 @@ Pokušajte [[Special:Search|pretražiti wiki]] za slične stranice.',
 'rev-deleted-text-permission' => "Revizija ove stranice je '''obrisana'''.
 Detalje možete vidjeti u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} zapisu brisanja].",
 'rev-deleted-text-unhide'     => "Revizija ove stranice je '''obrisana'''.
-Detalje o tome možer vidjeti u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} zapisniku brisanja].
-Kao administrator još je uvijek možete [$1 vidjeti ovu reviziju] ako želite.",
+Detalje o tome može se vidjeti u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} zapisniku brisanja].
+Vi je i dalje možete [$1 vidjeti ovu reviziju] ako želite da nastavite.",
 'rev-suppressed-text-unhide'  => "Ova revizija stranice je '''uklonjena'''.
 Možete pogledati detalje u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} zapisu uklanjanja].
 Vi je i dalje možete [$1 vidjeti ovu reviziju] ako želite.",
 'rev-deleted-text-view'       => "Revizija ove stranice je '''obrisana'''.
-Kao administrator, Vi je možete vidjeti; detalji o tome se mogu vidjeti u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} zapisu brisanja].",
+Vi je možete vidjeti; detalji o tome se mogu vidjeti u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} zapisu brisanja].",
 'rev-suppressed-text-view'    => "Ova revizija stranice je '''uklonjena'''.
-Kao administrator Vi je možete vidjeti; možete pogledati detalje u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} zapisu uklanjanja].",
+Vi je možete vidjeti; možete pogledati detalje u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} zapisu uklanjanja].",
 'rev-deleted-no-diff'         => "Ne možete vidjeti ove razlike jer je jedna od revizija '''obrisana'''.
 Možete pregledati detalje u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} zapisima brisanja].",
 'rev-suppressed-no-diff'      => "Ne možete vidjeti ove razlike jer je jedna od revizija '''obrisana'''.",
 'rev-deleted-unhide-diff'     => "Jedna od revizija u ovom pregledu razlika je '''obrisana'''.
 Možete pregledati detalje u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} zapisniku brisanja].
-Kao administrator Vi još uvijek možete [$1 vidjeti ove razlike] ako želite da nastavite.",
-'rev-suppressed-unhide-diff'  => "Jedna od revizija ove razlike je '''uklonjena'''.
-Postoji mnogo detalja u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} zapisniku uklanjanja].
-Kao administrator i dalje možete [$1 vidjeti ove razlike] ako želite da nastavite.",
+Vi još uvijek možete [$1 vidjeti ove razlike] ako želite da nastavite.",
+'rev-suppressed-unhide-diff'  => "edna od revizija ove razlike je '''uklonjena'''.
+Možete pogledati detalje u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} zapisniku uklanjanja].
+Vi i dalje možete [$1 vidjeti ove razlike] ako želite da nastavite.",
 'rev-deleted-diff-view'       => "Jedna od revizija u ovoj razlici je '''obrisana'''.
-Kao administrator možete vidjeti ovu razliku, možda ima još detalja u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} zapisniku brisanja].",
+Vi možete vidjeti ovu razliku; detalji o tome se mogu vidjeti u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} zapisniku brisanja].",
 'rev-suppressed-diff-view'    => "Jedna od revizija u ovoj razlici je '''sakrivena'''.
-Kao administrator možete vidjeti ovu razliku, možda ima još detalja u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} zapisniku sakrivanja].",
+Vi možete vidjeti ovu razliku; detalji se mogu vidjeti u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} zapisniku sakrivanja].",
 'rev-delundel'                => 'pokaži/sakrij',
 'rev-showdeleted'             => 'Pokaži',
 'revisiondelete'              => 'Obriši/vrati revizije',
@@ -1200,7 +1201,8 @@ Molimo provjerite zapise.',
 
 # Suppression log
 'suppressionlog'     => 'Zapisi sakrivanja',
-'suppressionlogtext' => 'Ispod je spisak brisanja i blokiranja koja su povezana sa sadržajem koji je sakriven od administratora. Vidi [[Special:IPBlockList|spisak IP blokiranja]] za pregled trenutno važećih blokada.',
+'suppressionlogtext' => 'Ispod je spisak brisanja i blokiranja koja su povezana sa sadržajem koji je sakriven od administratora. 
+Vidi [[Special:BlockList|spisak IP blokiranja]] za pregled trenutno važećih blokada.',
 
 # History merging
 'mergehistory'                     => 'Spoji historije stranice',
@@ -1811,7 +1813,7 @@ Ne može se dobro provjeriti u vezi sigurnosti.',
 'img-auth-accessdenied'     => 'Pristup onemogućen',
 'img-auth-nopathinfo'       => 'Nedostaje PATH_INFO.
 Vaš server nije postavljen da daje ovu informaciju.
-On je zasnovan na CGI i ne može podržavati img_auth.
+Možda je zasnovan na CGI koji ne podržava img_auth.
 Pogledajte https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'         => 'Zahtjevana putanje nije u direktorijumu podešenom za postavljanje.',
 'img-auth-badtitle'         => 'Ne mogu napraviti valjani naslov iz "$1".',
@@ -2182,7 +2184,7 @@ da biste slali e-poštu drugim korisnicima.',
 'emailpagetext'        => 'Možete korisiti formu ispod za slanje e-mail poruka ovom korisniku.
 E-mail adresa koju ste unijeli u [[Special:Preferences|Vašim korisničkim postavkama]] će biti prikazana kao adresa pošiljaoca, tako da će primaoc poruke moći da Vam odgovori.',
 'usermailererror'      => 'Objekat pošte je vratio grešku:',
-'defemailsubject'      => '{{SITENAME}} e-pošta',
+'defemailsubject'      => '{{SITENAME}} e-pošta od {{GENDER:$1|korisnika|korisnice|korisnika}} $1',
 'usermaildisabled'     => 'Korisnički e-mail onemogućen',
 'usermaildisabledtext' => 'Ne možete poslati e-mail drugim korisnicima na ovoj wiki',
 'noemailtitle'         => 'Nema adrese e-pošte',
@@ -3879,16 +3881,18 @@ Slike su prikazane u punoj veličini, ostale vrste datoteka su prikazane direktn
 'newuserlog-byemail'            => 'šifra je poslana putem e-maila',
 
 # Feedback
-'feedback-subject' => 'Tema:',
-'feedback-message' => 'Poruka:',
-'feedback-cancel'  => 'Odustani',
-'feedback-submit'  => 'Pošalji povratnu informaciju',
-'feedback-adding'  => 'Dodajem povratne informacije na stranicu...',
-'feedback-error1'  => 'Greška: Neprepoznati rezultat od API',
-'feedback-error2'  => 'Greška: Uređivanje nije uspjelo',
-'feedback-error3'  => 'Greška: Nema odgovora od API',
-'feedback-close'   => 'Završeno',
-'feedback-bugnew'  => 'Provjereno. Prijavi novu grešku',
+'feedback-subject'  => 'Tema:',
+'feedback-message'  => 'Poruka:',
+'feedback-cancel'   => 'Odustani',
+'feedback-submit'   => 'Pošalji povratnu informaciju',
+'feedback-adding'   => 'Dodajem povratne informacije na stranicu...',
+'feedback-error1'   => 'Greška: Neprepoznati rezultat od API',
+'feedback-error2'   => 'Greška: Uređivanje nije uspjelo',
+'feedback-error3'   => 'Greška: Nema odgovora od API',
+'feedback-thanks'   => 'Hvala! Vaša povratna informacija je postavljena na stranicu „[$2 $1]“.',
+'feedback-close'    => 'Završeno',
+'feedback-bugcheck' => 'Odlično! Molimo provjerite da se ne radi o nekom [$1 poznatom "bugu"].',
+'feedback-bugnew'   => 'Provjereno. Prijavi novu grešku',
 
 # API errors
 'api-error-badaccess-groups'              => 'Nemate ovlasti da postavljate datoteke na ovoj wiki.',
@@ -3913,7 +3917,7 @@ Slike su prikazane u punoj veličini, ostale vrste datoteka su prikazane direktn
 'api-error-missingparam'                  => 'Unutrašnja greška: nedostaju parametri u zahtjevu.',
 'api-error-missingresult'                 => 'Unutrašnja greška: ne može se otkriti da li je kopiranje uspjelo.',
 'api-error-mustbeloggedin'                => 'Morate biti prijavljeni da biste postavljali datoteke.',
-'api-error-mustbeposted'                  => 'Postoji greška u ovom softverz; ne koristi pravilan HTTP metod.',
+'api-error-mustbeposted'                  => 'Postoji greška u ovom softveru; ne koristi pravilan HTTP metod.',
 'api-error-noimageinfo'                   => 'Postavljanje je uspjelo, ali server nam nije dao nikakvu informaciju o datoteci.',
 'api-error-nomodule'                      => 'Unutrašnja greška: nije postavljen modul za postavljanje.',
 'api-error-ok-but-empty'                  => 'Unutrašnja greška: nema odgovora od servera.',

@@ -3618,7 +3618,7 @@ Dangosir delweddau ar eu maint llawn, dechreuir ffeiliau o fathau eraill yn unio
 'api-error-copyuploaddisabled'            => 'Nid oes modd uwchlwytho drwy URL ar y gweinydd hwn',
 'api-error-duplicate'                     => "Mae {{PLURAL:$1||[$2 ffeil arall]|[$2 ffeiliau eraill]|[$2 ffeiliau eraill]|[$2 ffeiliau eraill]|[$2 ffeiliau eraill]}} gyda'r un cynnwys {{PLURAL:$1||ynddi|ynddynt|ynddynt|ynddynt|ynddynt}} eisoes ar y wici hwn",
 'api-error-duplicate-archive'             => "Fe fu {{PLURAL:$1|[$2 ffeil arall gyda'r un cynnwys ynddi]|[$2 ffeiliau eraill gyda'r un cynnwys ynddynt]}} ar y safle, ond fe'{{PLURAL:$1|i|u}} dilëwyd.",
-'api-error-duplicate-archive-popup-title' => '{{PLURAL:$1|Ffeiliau|Ffeil|Ffeiliau|Ffeiliau|Ffeiliau|Ffeiliau}} dyblyg, sydd eisoes wedi eu dileu.',
+'api-error-duplicate-archive-popup-title' => '{{PLURAL:$1|Ffeiliau|Ffeil|Ffeiliau|Ffeiliau|Ffeiliau|Ffeiliau}} dyblyg, sydd eisoes wedi {{PLURAL:$1|eu|ei|eu|eu|eu|eu}} dileu.',
 'api-error-duplicate-popup-title'         => '{{PLURAL:$1|Ffeiliau|ffeil|ffeiliau|ffeiliau|ffeiliau|ffeiliau}} dyblyg.',
 'api-error-empty-file'                    => "Mae'r ffeil a gyflwynwyd gennych yn wag.",
 'api-error-emptypage'                     => "Ni chaniateir dechrau tudalen newydd, a honno'n wag.",
