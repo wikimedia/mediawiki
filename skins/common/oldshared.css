@@ -55,12 +55,6 @@ div.floatleft p {
 	font-style: italic;
 }
 
-
-/* Print-specific things to hide */
-.printfooter {
-	display: none;
-}
-
 /* table standards */
 table.rimage {
 	float: right;

@@ -1034,6 +1034,11 @@ table.floatleft {
 	zoom: 1; /* http://webaim.org/techniques/skipnav/#iequirk */
 }
 
+/* Print footer should be hidden by default in screen. */
+.printfooter {
+	display: none;
+}
+
 /* For developpers */
 .xdebug-error {
 	position: absolute;

@@ -762,9 +762,6 @@ div#content a.external[href *=".pdf?"], div#content a.external[href *=".PDF?"],
 	padding-right: 13px;
 }
 
-div#content .printfooter {
-	display: none;
-}
 /* Icon for Usernames */
 #pt-userpage,
 #pt-anonuserpage,
