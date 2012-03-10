@@ -474,7 +474,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	public function appendLanguages( $property ) {
 		$params = $this->extractRequestParams();
 		$langCode = isset( $params['inlanguagecode'] ) ? $params['inlanguagecode'] : '';
-		$langNames = Language::getLanguageNames( $langCode );
+		$langNames = Language::fetchLanguageNames( $langCode );
 
 		$data = array();
 
