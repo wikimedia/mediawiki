@@ -535,7 +535,7 @@ class WebRequest {
 
 		$retVal = array();
 		foreach ( $names as $name ) {
-			$value = $this->getGPCVal( $this->data, $name );
+			$value = $this->getGPCVal( $this->data, $name, null );
 			if ( !is_null( $value ) ) {
 				$retVal[$name] = $value;
 			}
