@@ -269,6 +269,7 @@ production.
    on Windows
 * (bug 25095) Special:Categories should also include the first relevant item
    when "from" is filled.
+* (bug 12262) Indents and lists are now aligned
 
 === API changes in 1.19 ===
 * Made action=edit less likely to return "unknownerror", by returning the actual error
