@@ -60,6 +60,7 @@ regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
 
 * (bug 34192) Namespace gender aliases for Albanian languages (sq & aln)
+* Mizo (lus) added
 
 === Other changes in 1.20 ===
 

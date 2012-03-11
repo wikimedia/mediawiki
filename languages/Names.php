@@ -206,6 +206,7 @@
 	'loz' => 'Silozi', # Lozi
 	'lt' => 'Lietuvių',	# Lithuanian
 	'ltg' => 'Latgaļu', 	# Latgalian
+	'lus' => 'Mizo ţawng', # Mizo/Lushai
 	'lv' => 'Latviešu',	# Latvian
 	'lzh' => '文言',	# Literary Chinese -- (bug 8217) lzh instead of zh-classical, http://www.sil.org/iso639-3/codes.asp?order=639_3&letter=l
 	'lzz' => 'Lazuri',	# Laz
