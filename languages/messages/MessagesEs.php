@@ -63,6 +63,7 @@
  * @author Remember the dot
  * @author Richard Wolf VI
  * @author Sanbec
+ * @author Savh
  * @author Spacebirdy
  * @author Technorum
  * @author The Evil IP address
@@ -698,7 +699,7 @@ Por favor, avisa a un [[Special:ListUsers/sysop|administrador]], tomando nota de
 'badarticleerror'      => 'Esta acción no se puede llevar a cabo en esta página.',
 'cannotdelete'         => 'La página o archivo «$1» no se pudo borrar.
 Puede que ya haya sido borrado por alguien más.',
-'cannotdelete-title'   => 'No se pudede borrar la página «$1»',
+'cannotdelete-title'   => 'No se puede borrar la página «$1»',
 'badtitle'             => 'Título incorrecto',
 'badtitletext'         => 'El título de la página solicitada está vacío, no es válido, o es un enlace interidioma o interwiki incorrecto.
 Puede que contenga uno o más caracteres que no se pueden usar en los títulos.',
@@ -1206,10 +1207,10 @@ Aún tiene la posibilidad de verla; puede ampliar los detalles en el [{{fullurl:
 'revdelete-text'              => "Las revisiones borradas aún aparecerán en el historial de la página y en los registros, pero sus contenidos no serán accesibles al público.'''
 Otros administradores de {{SITENAME}} aún podrán acceder al contenido oculto y podrán deshacer el borrado a través de la misma interfaz, a menos que se establezcan restricciones adicionales.",
 'revdelete-confirm'           => 'Por favor confirma que deseas realizar la operación, que entiendes las consecuencias y que estás ejecutando dicha acción acorde con [[{{MediaWiki:Policy-url}}|las políticas]].',
-'revdelete-suppress-text'     => "La eliminación '''solamente''' debería usarse en los siguientes casos:
-* Información potencialmente difamatoria
-* Información personal inapropiada
-* domicilios y números de teléfono, números de seguridad social, etc.",
+'revdelete-suppress-text'     => "La herramienta de supresión '''sólo''' debería usarse en los siguientes casos:
+* Información potencialmente injuriosa o calumniante.
+* Información personal inapropiada, tal como:
+*: ''nombres, domicilios, números de teléfono, números de la seguridad social e información análoga.",
 'revdelete-legend'            => 'Establecer restricciones de revisión:',
 'revdelete-hide-text'         => 'Ocultar el texto de la revisión',
 'revdelete-hide-image'        => 'Ocultar el contenido del archivo',
@@ -1256,8 +1257,8 @@ No tiene acceso a él.',
 
 # Suppression log
 'suppressionlog'     => 'Registro de supresiones',
-'suppressionlogtext' => 'Debajo hay una lista con los borrados y bloqueos recientes, que incluyen contenido oculto de los administradores.
-Mire la [[Special:BlockList|lista de bloqueos activos]] para ver una lista de prohibiciones actualmente operativas.',
+'suppressionlogtext' => 'Debajo hay una lista con los borrados y bloqueos recientes cuyo contenido se encuentra oculto para administradores.
+Mire la [[Special:BlockList|lista de bloqueos activos]] para ver la lista de bloqueos actualmente operativos.',
 
 # History merging
 'mergehistory'                     => 'Fusionar historiales de páginas',
@@ -2581,8 +2582,8 @@ A continuación se muestra la última entrada del registro de bloqueos para mayo
 'blockiptext'                     => 'Usa el siguiente formulario para bloquear el acceso de escritura desde una dirección IP específica o nombre de usuario.
 Esto debería hacerse sólo para prevenir vandalismos, y de acuerdo a las [[{{MediaWiki:Policy-url}}|políticas]].
 Explica la razón específica del bloqueo (por ejemplo, citando las páginas en particular que han sido objeto de vandalismo).',
-'ipadressorusername'              => 'Dirección IP o nombre de usuario',
-'ipbexpiry'                       => 'Caduca dentro de',
+'ipadressorusername'              => 'Dirección IP o nombre de usuario:',
+'ipbexpiry'                       => 'Caducidad:',
 'ipbreason'                       => 'Motivo:',
 'ipbreasonotherlist'              => 'Otra razón',
 'ipbreason-dropdown'              => '*Motivos comunes de bloqueo
@@ -2591,7 +2592,7 @@ Explica la razón específica del bloqueo (por ejemplo, citando las páginas en 
 ** Publicitar enlaces a otras páginas web
 ** Añadir basura a las páginas
 ** Comportamiento intimidatorio u hostil
-** Abusar de múltiples cuentas
+** Abuso de múltiples cuentas
 ** Nombre de usuario inaceptable',
 'ipb-hardblock'                   => 'Impedir que los usuarios identificados editen desde esta dirección IP',
 'ipbcreateaccount'                => 'Prevenir la creación de cuentas de usuario',
@@ -2634,7 +2635,7 @@ Véase la [[Special:BlockList|lista de bloqueos]] para revisarlo.',
 'blocklist-timestamp'             => 'Marca de tiempo',
 'blocklist-target'                => 'Destino',
 'blocklist-expiry'                => 'Caduca',
-'blocklist-by'                    => 'Bloqueo de administrador',
+'blocklist-by'                    => 'Administrador bloqueante',
 'blocklist-params'                => 'Parámetros de bloqueo',
 'blocklist-reason'                => 'Motivo',
 'ipblocklist-submit'              => 'Buscar',
@@ -3670,7 +3671,7 @@ Confirma que realmente quieres volver a crear esta página.",
 'table_pager_first'        => 'Primera página',
 'table_pager_last'         => 'Última página',
 'table_pager_limit'        => 'Mostrar $1 elementos por página',
-'table_pager_limit_label'  => 'Items por página:',
+'table_pager_limit_label'  => 'Elementos por página:',
 'table_pager_limit_submit' => 'Ir',
 'table_pager_empty'        => 'No hay resultados',
 

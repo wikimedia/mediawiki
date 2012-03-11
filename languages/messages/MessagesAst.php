@@ -1589,6 +1589,7 @@ Si'l problema persiste, contauta con un [[Special:ListUsers/sysop|alministrador]
 'backend-fail-closetemp'     => 'Nun se pudo zarrar el ficheru temporal.',
 'backend-fail-read'          => 'Nun se pudo lleer el ficheru $1.',
 'backend-fail-create'        => 'Nun se pudo crear el ficheru $1.',
+'backend-fail-maxsize'       => 'Nun se pudo crear el ficheru  $1  porque ye mayor de {{PLURAL:$2|$2 byte|$2 bytes}}.',
 'backend-fail-readonly'      => 'Nesti momentu el motor d\'almacenamientu "$1" ta en mou de sólo llectura. El motivu dau foi: "$2"',
 'backend-fail-synced'        => 'El ficheru "$1" ta nún estáu inconsistente colos motores d\'almacenamientu internos',
 'backend-fail-connect'       => 'Nun se pudo coneutar col motor d\'almacenamientu "$1".',

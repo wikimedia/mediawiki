@@ -540,7 +540,7 @@ $2',
 আপুনি কুকি নিষ্ক্ৰিয় কৰি থৈছে।
 অনুগ্ৰহ কৰি কুকি সক্ৰিয় কৰক, আৰু তাৰ পাছত আপোনাৰ সদস্যনামেৰে প্ৰৱেশ কৰক।',
 'nocookieslogin'             => '{{SITENAME}} ত প্ৰৱেশ কৰিবলৈ কুকি সক্ৰিয় থাকিব লাগিব।
-আপুনি কুকি নিস্ক্ৰিয় কৰি থৈছে।
+আপুনি কুকি নিষ্ক্ৰিয় কৰি থৈছে।
 অনুগ্ৰহ কৰি কুকি সক্ৰিয় কৰক, আৰু তাৰ পাছত চেষ্টা কৰক।',
 'nocookiesfornew'            => 'সদস্য একাউন্ট সৃষ্টি কৰা নহল, কাৰণ তাৰ উৎস অনিশ্চিত ।
 আপোনাৰ কুকি সক্ৰিয় ৰাখক, এই পৃষ্ঠা ৰি-লোড কৰি পুনৰ চেষ্টা কৰক ।',
@@ -2073,8 +2073,8 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization চাওক।",
 'watchnologin'         => 'প্ৰৱেশ কৰা নাই',
 'watchnologintext'     => 'নিৰীক্ষণ তালিকা পৰিৱৰ্তন কৰিবলৈ আপুনি আগতে [[Special:UserLogin|লগ-ইন]] কৰিব লাগিব ।',
 'addwatch'             => 'লক্ষ্য-তালিকাত অন্তৰ্ভুক্ত কৰক',
-'addedwatchtext'       => "আপোনাৰ [[Special:Watchlist|লক্ষ্য তালিকাত ]] \"[[:\$1]]\" অন্তৰ্ভুক্তি কৰা হ'ল ।
-ভৱিষ্যতে ইয়াত হোৱা সাল-সলনি আপুনি আপোনাৰ লক্ষ্য তালিকাত দেখিব, লগতে [[Special:RecentChanges|সাম্প্ৰতিক সাল-সলনিৰ তালিকাত]] এই পৃষ্ঠাটো '''গাঢ়''' আখৰত দেখিব যাতে আপুনি সহজে ধৰিব পাৰে ।",
+'addedwatchtext'       => "আপোনাৰ [[Special:Watchlist|লক্ষ্য তালিকাত ]] \"[[:\$1]]\" অন্তৰ্ভুক্ত কৰা হ'ল।
+ভৱিষ্যতে ইয়াত হোৱা সাল-সলনি আপুনি আপোনাৰ লক্ষ্য তালিকাত দেখিব, লগতে [[Special:RecentChanges|সাম্প্ৰতিক সাল-সলনিৰ তালিকাত]] এই পৃষ্ঠাখন '''গাঢ়''' আখৰত দেখিব যাতে আপুনি সহজে ধৰিব পাৰে।",
 'removewatch'          => 'লক্ষ্য-তালিকাৰ পৰা আঁতৰাওক',
 'removedwatchtext'     => '"[[:$1]]" পৃষ্ঠাখন [[Special:Watchlist|আপোনাৰ লক্ষ্য-তালিকা]]ৰ পৰা আতৰোৱা হৈছে ।',
 'watch'                => 'চকু ৰাখক',
@@ -2102,18 +2102,18 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization চাওক।",
 
 'enotif_mailer'                => '{{SITENAME}} জাননী ই-পত্ৰ প্ৰেৰক',
 'enotif_reset'                 => 'সকলো পৃষ্ঠা পৰিদৰ্শিত বুলি চিহ্নিত কৰক',
-'enotif_newpagetext'           => 'এইটো এক নতুন পৃষ্ঠা',
+'enotif_newpagetext'           => 'এইখন এখন নতুন পৃষ্ঠা।',
 'enotif_impersonal_salutation' => '{{SITENAME}} সদস্য',
 'changed'                      => 'সলোৱা হ’ল',
 'created'                      => 'সৃষ্টি কৰা হ’ল',
-'enotif_subject'               => '{{SITENAME}} ৰ $PAGETITLE পৃষ্ঠাখন $PAGEEDITOR ৰ দ্বাৰা $CHANGEDORCREATED কৰা হৈছে',
+'enotif_subject'               => '{{SITENAME}}ৰ $PAGETITLE পৃষ্ঠাখন $PAGEEDITORৰ দ্বাৰা $CHANGEDORCREATED',
 'enotif_lastvisited'           => 'আপোনাৰ শেষ পৰিদৰ্শনৰ পিছত হোৱা সকলো সালসলনিৰ বাবে $1 চাওক ।',
 'enotif_lastdiff'              => 'এই পৰিৱৰ্তনটো চাবৰ বাবে $1 চাওক ।',
 'enotif_anon_editor'           => 'বেনামী সদস্য $1',
 'enotif_body'                  => 'প্ৰিয় $WATCHINGUSERNAME,
 
 
-{{SITENAME}}ৰ $PAGETITLE শিৰোনামাৰ পৃষ্ঠাটি $PAGEEDITDATE তাৰিখত $PAGEEDITORএ $CHANGEDORCREATED কৰিছে, সাম্প্ৰতিক সংশোধনৰ বাবে $PAGETITLE_URL চাওক ।
+{{SITENAME}}ৰ $PAGETITLE শিৰোনামাৰ পৃষ্ঠাখন $PAGEEDITDATE তাৰিখে $PAGEEDITORৰ দ্বাৰা $CHANGEDORCREATED। সাম্প্ৰতিক সংশোধনৰ বাবে $PAGETITLE_URL চাওক।
 
 $NEWPAGE
 

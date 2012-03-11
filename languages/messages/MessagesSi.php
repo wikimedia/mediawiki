@@ -1344,7 +1344,7 @@ HTML ටැගයන් පිරික්සන්න.',
 'prefs-signature'               => 'අත්සන',
 'prefs-dateformat'              => 'දින ආකෘතිය',
 'prefs-timeoffset'              => 'වේලා හිලව්ව',
-'prefs-advancedediting'         => 'ප්‍රගත විකල්පයන්',
+'prefs-advancedediting'         => 'වැඩිදුර තෝරාගැනීම් සැකසුම්',
 'prefs-advancedrc'              => 'ප්‍රගත විකල්පයන්',
 'prefs-advancedrendering'       => 'ප්‍රගත විකල්පයන්',
 'prefs-advancedsearchoptions'   => 'ප්‍රගත විකල්පයන්',
@@ -2330,11 +2330,11 @@ $2 ගේ අවසන් අනුවාදය වෙතට යළි වෙන
 'protect-existing-expiry'     => 'සංස්කරණ කල්ඉකුත්වීම් කාලය time: $3, $2',
 'protect-otherreason'         => 'අනෙකුත්/අමතර හේතුව:',
 'protect-otherreason-op'      => 'අනෙකුත් හේතුව',
-'protect-dropdown'            => '*සාමන්‍ය රක්ෂණ හේතූන්
-** අත්‍යන්ත වන්ධ්‍යලය
-** අත්‍යන්ත අයාචිත-තැපෑල
+'protect-dropdown'            => '*බහුල ආරක්ෂණ හේතු
+** අධිකලෙස සිදුකරන විනාශකිරීම් (vandalism)
+** අධිකලෙස ස්පෑම් කිරීම
 ** නිෂ්ඵලදායී සංස්කරණ පොරකෑම්
-** අධික අතුරුමාරු සහිත පිටුව',
+** අධිකව භාවිතකරන පිටු',
 'protect-edit-reasonlist'     => 'සංස්කරණ ආරක්ෂණ හේතූන්',
 'protect-expiry-options'      => 'පැය 1:1 hour,දින 1:1 day, සති 1:1 week, සති 2:2 weeks, මාස 1:1 month, මාස 3:3 months, මාස 6:6 months, වසර 1:1 year, අනන්තය:infinite',
 'restriction-type'            => 'අවසරය:',

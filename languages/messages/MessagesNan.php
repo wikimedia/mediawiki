@@ -1699,28 +1699,46 @@ $1',
 {{PLURAL:$2|名空間|名空間}}：$1.',
 
 # Random redirect
-'randomredirect' => 'Sûi-chāi choán-ia̍h',
+'randomredirect'         => 'Sûi-chāi choán-ia̍h',
+'randomredirect-nopages' => '佇 "$1" 名空間內底無轉向的頁。',
 
 # Statistics
-'statistics'              => 'Thóng-kè',
-'statistics-header-pages' => '頁的統計',
-'statistics-header-edits' => '改的統計',
-'statistics-header-views' => '看的統計',
-'statistics-header-users' => 'Iōng-chiá thóng-kè sò·-ba̍k',
-'statistics-header-hooks' => '其他的統計',
-'statistics-articles'     => '內容頁',
-'statistics-pages-desc'   => '佇Wiki所有的頁，包括討論頁、轉頁等等。',
-'statistics-files'        => '上載檔案',
-'statistics-users-active' => '猶咧出工的用者',
-'statistics-mostpopular'  => '上濟人看的頁',
+'statistics'                   => 'Thóng-kè',
+'statistics-header-pages'      => '頁的統計',
+'statistics-header-edits'      => '改的統計',
+'statistics-header-views'      => '看的統計',
+'statistics-header-users'      => 'Iōng-chiá thóng-kè sò·-ba̍k',
+'statistics-header-hooks'      => '其他的統計',
+'statistics-articles'          => '內容頁',
+'statistics-pages'             => '文章',
+'statistics-pages-desc'        => '佇Wiki所有的頁，包括討論頁、轉頁等等。',
+'statistics-files'             => '上載檔案',
+'statistics-edits'             => '自設立{{SITENAME}}以後，對頁的編輯總數',
+'statistics-edits-average'     => '每頁的平均編輯數量',
+'statistics-views-total'       => '看的總量',
+'statistics-views-total-desc'  => '看空頁抑是特殊頁的數量無算在內。',
+'statistics-views-peredit'     => '佇編輯的時陣看的數量',
+'statistics-users'             => '已經註冊[[Special:ListUsers|用者]]',
+'statistics-users-active'      => '猶咧出工的用者',
+'statistics-users-active-desc' => '佇前{{PLURAL:$1|一工|$1工}}有操作過的用者。',
+'statistics-mostpopular'       => '上濟人看的頁',
 
-'disambiguations'     => 'Khu-pia̍t-ia̍h',
-'disambiguationspage' => 'Template:disambig
+'disambiguations'      => 'Khu-pia̍t-ia̍h',
+'disambiguationspage'  => 'Template:disambig
 Template:KhPI
 Template:Khu-pia̍t-iah
 Template:Khu-pia̍t-ia̍h',
+'disambiguations-text' => "下面的頁攏有連接到'''區別頁'''，
+In應該連接到適當的頁面。<br />一个頁面若有用[[MediaWiki:Disambiguationspage]]內底的枋模，就會算做是區別頁。",
 
-'doubleredirects' => 'Siang-thâu choán-ia̍h',
+'doubleredirects'                   => 'Siang-thâu choán-ia̍h',
+'doubleredirectstext'               => '這个頁排列出所有轉向到捌个轉向頁，
+每一列有轉向去第一个佮第二个轉向頁的連結，佮第二个轉向頁的目標，彼个目標一般著是應該的頁面， 第一个轉向連結應該指的所在。
+<del>拍叉的</del>是已經處理好的項目。',
+'double-redirect-fixed-move'        => '[[$1]]已經徙位，
+伊這馬轉去[[$2]]。',
+'double-redirect-fixed-maintenance' => '修改對[[$1]]到[[$2]]的兩擺轉向。',
+'double-redirect-fixer'             => '轉向的改向',
 
 'brokenredirects'        => 'Choán-ia̍h kò·-chiòng',
 'brokenredirectstext'    => 'Í-hā ê choán-ia̍h liân kàu bô chûn-chāi ê ia̍h:',
@@ -1729,6 +1747,7 @@ Template:Khu-pia̍t-ia̍h',
 
 'withoutinterwiki'         => 'Bô gí-giân liân-kiat ê ia̍h',
 'withoutinterwiki-summary' => 'Ē-kha ê ia̍h bô kî-thaⁿ gí-giân pán-pún ê liân-kiat:',
+'withoutinterwiki-legend'  => '前綴',
 'withoutinterwiki-submit'  => '顯示',
 
 'fewestrevisions' => 'Siōng bô siu-tēng ê bûn-chiuⁿ',

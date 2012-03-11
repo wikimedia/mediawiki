@@ -2451,6 +2451,7 @@ Alasan penghapusan diberikan pada ringkasan di bawah ini, berikut rincian penggu
 
 Lihat [[Special:Log/delete|log penghapusan]] untuk data penghapusan dan pengembalian.",
 'undelete-header'              => 'Lihat [[Special:Log/delete|log penghapusan]] untuk daftar halaman yang baru dihapus.',
+'undelete-search-title'        => 'Cari halaman yang dihapus',
 'undelete-search-box'          => 'Cari halaman yang dihapus',
 'undelete-search-prefix'       => 'Tampilkan halaman dimulai dari:',
 'undelete-search-submit'       => 'Cari',
@@ -2727,7 +2728,7 @@ Dalam kasus tersebut, apabila diinginkan, Anda dapat memindahkan atau menggabung
 'delete_and_move_text'         => '==Penghapusan diperlukan==
 Halaman yang dituju, "[[:$1]]", telah mempunyai isi. Apakah Anda hendak menghapusnya untuk memberikan ruang bagi pemindahan?',
 'delete_and_move_confirm'      => 'Ya, hapus halaman tersebut',
-'delete_and_move_reason'       => 'Dihapus untuk mengantisipasikan pemindahan halaman',
+'delete_and_move_reason'       => 'Dihapus untuk mengantisipasikan pemindahan halaman dari "[[$1]]"',
 'selfmove'                     => 'Pemindahan halaman tidak dapat dilakukan karena judul sumber dan judul tujuan sama.',
 'immobile-source-namespace'    => 'Tidak dapat memindahkan halaman dalam ruang nama "$1"',
 'immobile-target-namespace'    => 'Tidak dapat memindahkan halaman ke ruang nama "$1"',
