@@ -680,7 +680,7 @@ abstract class DatabaseBase implements DatabaseType {
 		$dbType = strtolower( $dbType );
 		$class = 'Database' . ucfirst( $dbType );
 
-		if( in_array( $dbType, $canonicalDBTypes ) ) {
+		if( in_array( $dbType, $canonicalDBTypes ) || ( class_exists( $class ) && is_subclass_of( $class, 'DatabaseBase' ) ) ) {
 			return new $class(
 				isset( $p['host'] ) ? $p['host'] : false,
 				isset( $p['user'] ) ? $p['user'] : false,
@@ -689,8 +689,6 @@ abstract class DatabaseBase implements DatabaseType {
 				isset( $p['flags'] ) ? $p['flags'] : 0,
 				isset( $p['tablePrefix'] ) ? $p['tablePrefix'] : 'get from global'
 			);
-		} elseif ( class_exists( $class ) && is_subclass_of( $class, 'DatabaseBase' ) ) {
-			return new $class( $p );
 		} else {
 			return null;
 		}
