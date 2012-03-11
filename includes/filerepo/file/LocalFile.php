@@ -1094,7 +1094,7 @@ class LocalFile extends File {
 			$latest = $descTitle->getLatestRevID();
 			$nullRevision = Revision::newNullRevision(
 				$dbw,
-				$descTitle->getArticleId(),
+				$descTitle->getArticleID(),
 				$log->getRcComment(),
 				false
 			);

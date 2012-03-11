@@ -432,7 +432,7 @@ class ManualLogEntry extends LogEntryBase {
 			'log_user_text' => $this->getPerformer()->getName(),
 			'log_namespace' => $this->getTarget()->getNamespace(),
 			'log_title' => $this->getTarget()->getDBkey(),
-			'log_page' => $this->getTarget()->getArticleId(),
+			'log_page' => $this->getTarget()->getArticleID(),
 			'log_comment' => $comment,
 			'log_params' => serialize( (array) $this->getParameters() ),
 		);
@@ -503,6 +503,9 @@ class ManualLogEntry extends LogEntryBase {
 		return $this->performer;
 	}
 
+	/**
+	 * @return Title
+	 */
 	public function getTarget() {
 		return $this->target;
 	}

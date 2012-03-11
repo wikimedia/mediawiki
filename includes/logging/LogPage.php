@@ -86,7 +86,7 @@ class LogPage {
 			'log_user_text' => $this->doer->getName(),
 			'log_namespace' => $this->target->getNamespace(),
 			'log_title' => $this->target->getDBkey(),
-			'log_page' => $this->target->getArticleId(),
+			'log_page' => $this->target->getArticleID(),
 			'log_comment' => $this->comment,
 			'log_params' => $this->params
 		);

@@ -88,7 +88,7 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 		 */
 
 		$dbr = wfGetDB( DB_SLAVE, 'recentchangeslinked' );
-		$id = $title->getArticleId();
+		$id = $title->getArticleID();
 		$ns = $title->getNamespace();
 		$dbkey = $title->getDBkey();
 

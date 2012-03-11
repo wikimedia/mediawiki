@@ -232,7 +232,7 @@ class UploadFromUrlTest extends ApiTestCase {
 			$page->doDeleteArticle( '' );
 		}
 
-		$this->assertFalse( (bool)$talk->getArticleId( Title::GAID_FOR_UPDATE ), 'User talk does not exist' );
+		$this->assertFalse( (bool)$talk->getArticleID( Title::GAID_FOR_UPDATE ), 'User talk does not exist' );
 
 		$data = $this->doApiRequest( array(
 			'action' => 'upload',
@@ -249,7 +249,7 @@ class UploadFromUrlTest extends ApiTestCase {
 		$job->run();
 
 		$this->assertTrue( wfLocalFile( 'UploadFromUrlTest.png' )->exists() );
-		$this->assertTrue( (bool)$talk->getArticleId( Title::GAID_FOR_UPDATE ), 'User talk exists' );
+		$this->assertTrue( (bool)$talk->getArticleID( Title::GAID_FOR_UPDATE ), 'User talk exists' );
 
 		$this->deleteFile( 'UploadFromUrlTest.png' );
 

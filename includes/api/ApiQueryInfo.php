@@ -394,8 +394,8 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 
 		if ( $this->fld_displaytitle ) {
-			if ( isset( $this->displaytitles[$title->getArticleId()] ) ) {
-				$pageInfo['displaytitle'] = $this->displaytitles[$title->getArticleId()];
+			if ( isset( $this->displaytitles[$title->getArticleID()] ) ) {
+				$pageInfo['displaytitle'] = $this->displaytitles[$title->getArticleID()];
 			} else {
 				$pageInfo['displaytitle'] = $title->getPrefixedText();
 			}

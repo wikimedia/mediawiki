@@ -296,7 +296,7 @@ class SpecialMergeHistory extends SpecialPage {
 		if( is_null( $targetTitle ) || is_null( $destTitle ) ) {
 			return false; // validate these
 		}
-		if( $targetTitle->getArticleId() == $destTitle->getArticleId() ) {
+		if( $targetTitle->getArticleID() == $destTitle->getArticleID() ) {
 			return false;
 		}
 		# Verify that this timestamp is valid

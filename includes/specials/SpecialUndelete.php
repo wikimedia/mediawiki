@@ -195,7 +195,7 @@ class PageArchive {
 					'ar_timestamp' => $dbr->timestamp( $timestamp ) ),
 			__METHOD__ );
 		if( $row ) {
-			return Revision::newFromArchiveRow( $row, array( 'page' => $this->title->getArticleId() ) );
+			return Revision::newFromArchiveRow( $row, array( 'page' => $this->title->getArticleID() ) );
 		} else {
 			return null;
 		}
@@ -1160,7 +1160,7 @@ class SpecialUndelete extends SpecialPage {
 
 	private function formatRevisionRow( $row, $earliestLiveTime, $remaining ) {
 		$rev = Revision::newFromArchiveRow( $row,
-			array( 'page' => $this->mTargetObj->getArticleId() ) );
+			array( 'page' => $this->mTargetObj->getArticleID() ) );
 		$stxt = '';
 		$ts = wfTimestamp( TS_MW, $row->ar_timestamp );
 		// Build checkboxen...

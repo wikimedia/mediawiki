@@ -300,7 +300,7 @@ class RevDel_ArchiveItem extends RevDel_RevisionItem {
 	public function __construct( $list, $row ) {
 		RevDel_Item::__construct( $list, $row );
 		$this->revision = Revision::newFromArchiveRow( $row,
-			array( 'page' => $this->list->title->getArticleId() ) );
+			array( 'page' => $this->list->title->getArticleID() ) );
 	}
 
 	public function getIdField() {
@@ -377,7 +377,7 @@ class RevDel_ArchivedRevisionItem extends RevDel_ArchiveItem {
 		RevDel_Item::__construct( $list, $row );
 
 		$this->revision = Revision::newFromArchiveRow( $row,
-			array( 'page' => $this->list->title->getArticleId() ) );
+			array( 'page' => $this->list->title->getArticleID() ) );
 	}
 
 	public function getIdField() {
