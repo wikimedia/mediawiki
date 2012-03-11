@@ -662,7 +662,7 @@ abstract class Skin extends ContextSource {
 		$action = $this->getRequest()->getVal( 'action', 'view' );
 
 		if ( $this->getUser()->isAllowed( 'deletedhistory' ) &&
-			( $this->getTitle()->getArticleId() == 0 || $action == 'history' ) ) {
+			( $this->getTitle()->getArticleID() == 0 || $action == 'history' ) ) {
 			$n = $this->getTitle()->isDeleted();
 
 

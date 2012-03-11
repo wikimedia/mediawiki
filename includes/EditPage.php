@@ -376,7 +376,7 @@ class EditPage {
 				wfProfileOut( __METHOD__ );
 				return;
 			}
-			if ( !$this->mTitle->getArticleId() )
+			if ( !$this->mTitle->getArticleID() )
 				wfRunHooks( 'EditFormPreloadText', array( &$this->textbox1, &$this->mTitle ) );
 			else
 				wfRunHooks( 'EditFormInitialText', array( $this ) );
@@ -805,7 +805,7 @@ class EditPage {
 					# Otherwise, $text will be left as-is.
 					if ( !is_null( $undorev ) && !is_null( $oldrev ) &&
 						$undorev->getPage() == $oldrev->getPage() &&
-						$undorev->getPage() == $this->mTitle->getArticleId() &&
+						$undorev->getPage() == $this->mTitle->getArticleID() &&
 						!$undorev->isDeleted( Revision::DELETED_TEXT ) &&
 						!$oldrev->isDeleted( Revision::DELETED_TEXT ) ) {
 
@@ -1478,7 +1478,7 @@ class EditPage {
 		$res = $dbw->select( 'revision',
 			'rev_user',
 			array(
-				'rev_page' => $this->mTitle->getArticleId(),
+				'rev_page' => $this->mTitle->getArticleID(),
 				'rev_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $edittime ) )
 			),
 			__METHOD__,

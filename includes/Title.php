@@ -2538,7 +2538,7 @@ class Title {
 
 		if ( $oldFashionedRestrictions === null ) {
 			$oldFashionedRestrictions = $dbr->selectField( 'page', 'page_restrictions',
-				array( 'page_id' => $this->getArticleId() ), __METHOD__ );
+				array( 'page_id' => $this->getArticleID() ), __METHOD__ );
 		}
 
 		if ( $oldFashionedRestrictions != '' ) {
@@ -2609,7 +2609,7 @@ class Title {
 				$res = $dbr->select(
 					'page_restrictions',
 					'*',
-					array( 'pr_page' => $this->getArticleId() ),
+					array( 'pr_page' => $this->getArticleID() ),
 					__METHOD__
 				);
 
@@ -3167,7 +3167,7 @@ class Title {
 	 * @return Array of Title objects linking here
 	 */
 	public function getLinksFrom( $options = array(), $table = 'pagelinks', $prefix = 'pl' ) {
-		$id = $this->getArticleId();
+		$id = $this->getArticleID();
 
 		# If the page doesn't exist; there can't be any link from this page
 		if ( !$id ) {
@@ -3231,7 +3231,7 @@ class Title {
 	 * @return Array of Title the Title objects
 	 */
 	public function getBrokenLinksFrom() {
-		if ( $this->getArticleId() == 0 ) {
+		if ( $this->getArticleID() == 0 ) {
 			# All links from article ID 0 are false positives
 			return array();
 		}
@@ -3241,7 +3241,7 @@ class Title {
 			array( 'page', 'pagelinks' ),
 			array( 'pl_namespace', 'pl_title' ),
 			array(
-				'pl_from' => $this->getArticleId(),
+				'pl_from' => $this->getArticleID(),
 				'page_namespace IS NULL'
 			),
 			__METHOD__, array(),
@@ -3714,8 +3714,8 @@ class Title {
 			// We don't know whether this function was called before
 			// or after moving the root page, so check both
 			// $this and $nt
-			if ( $oldSubpage->getArticleId() == $this->getArticleId() ||
-					$oldSubpage->getArticleID() == $nt->getArticleId() )
+			if ( $oldSubpage->getArticleID() == $this->getArticleID() ||
+					$oldSubpage->getArticleID() == $nt->getArticleID() )
 			{
 				// When moving a page to a subpage of itself,
 				// don't move it twice
@@ -3839,7 +3839,7 @@ class Title {
 
 		$data = array();
 
-		$titleKey = $this->getArticleId();
+		$titleKey = $this->getArticleID();
 
 		if ( $titleKey === 0 ) {
 			return $data;
@@ -3917,7 +3917,7 @@ class Title {
 		$db = ( $flags & self::GAID_FOR_UPDATE ) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
 		return $db->selectField( 'revision', 'rev_id',
 			array(
-				'rev_page' => $this->getArticleId( $flags ),
+				'rev_page' => $this->getArticleID( $flags ),
 				'rev_id < ' . intval( $revId )
 			),
 			__METHOD__,
@@ -3936,7 +3936,7 @@ class Title {
 		$db = ( $flags & self::GAID_FOR_UPDATE ) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
 		return $db->selectField( 'revision', 'rev_id',
 			array(
-				'rev_page' => $this->getArticleId( $flags ),
+				'rev_page' => $this->getArticleID( $flags ),
 				'rev_id > ' . intval( $revId )
 			),
 			__METHOD__,
@@ -3951,7 +3951,7 @@ class Title {
 	 * @return Revision|Null if page doesn't exist
 	 */
 	public function getFirstRevision( $flags = 0 ) {
-		$pageId = $this->getArticleId( $flags );
+		$pageId = $this->getArticleID( $flags );
 		if ( $pageId ) {
 			$db = ( $flags & self::GAID_FOR_UPDATE ) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
 			$row = $db->selectRow( 'revision', '*',
@@ -4016,7 +4016,7 @@ class Title {
 		if ( $this->mEstimateRevisions === null ) {
 			$dbr = wfGetDB( DB_SLAVE );
 			$this->mEstimateRevisions = $dbr->estimateRowCount( 'revision', '*',
-				array( 'rev_page' => $this->getArticleId() ), __METHOD__ );
+				array( 'rev_page' => $this->getArticleID() ), __METHOD__ );
 		}
 
 		return $this->mEstimateRevisions;
@@ -4043,7 +4043,7 @@ class Title {
 		$dbr = wfGetDB( DB_SLAVE );
 		return (int)$dbr->selectField( 'revision', 'count(*)',
 			array(
-				'rev_page' => $this->getArticleId(),
+				'rev_page' => $this->getArticleID(),
 				'rev_timestamp > ' . $dbr->addQuotes( $dbr->timestamp( $old->getTimestamp() ) ),
 				'rev_timestamp < ' . $dbr->addQuotes( $dbr->timestamp( $new->getTimestamp() ) )
 			),
@@ -4117,7 +4117,7 @@ class Title {
 	 * @return Bool
 	 */
 	public function exists() {
-		return $this->getArticleId() != 0;
+		return $this->getArticleID() != 0;
 	}
 
 	/**

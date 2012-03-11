@@ -216,7 +216,7 @@ class SkinTemplate extends Skin {
 		$tpl->setRef( 'thispage', $this->thispage );
 		$tpl->setRef( 'titleprefixeddbkey', $this->thispage );
 		$tpl->set( 'titletext', $title->getText() );
-		$tpl->set( 'articleid', $title->getArticleId() );
+		$tpl->set( 'articleid', $title->getArticleID() );
 
 		$tpl->set( 'isarticle', $out->isArticle() );
 
@@ -1173,7 +1173,7 @@ class SkinTemplate extends Skin {
 			$nav_urls['whatlinkshere'] = array(
 				'href' => SpecialPage::getTitleFor( 'Whatlinkshere', $this->thispage )->getLocalUrl()
 			);
-			if ( $this->getTitle()->getArticleId() ) {
+			if ( $this->getTitle()->getArticleID() ) {
 				$nav_urls['recentchangeslinked'] = array(
 					'href' => SpecialPage::getTitleFor( 'Recentchangeslinked', $this->thispage )->getLocalUrl()
 				);

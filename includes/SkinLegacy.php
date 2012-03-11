@@ -324,7 +324,7 @@ class LegacyTemplate extends BaseTemplate {
 
 			$s = implode( $element, $sep );
 
-			if ( $title->getArticleId() ) {
+			if ( $title->getArticleID() ) {
 				$s .= "\n<br />";
 
 				// Delete/protect/move links for privileged users
@@ -573,7 +573,7 @@ class LegacyTemplate extends BaseTemplate {
 		$diff = $wgRequest->getVal( 'diff' );
 		$title = $this->getSkin()->getTitle();
 
-		if ( $title->getArticleId() && ( !$diff ) && $wgUser->isAllowed( 'delete' ) ) {
+		if ( $title->getArticleID() && ( !$diff ) && $wgUser->isAllowed( 'delete' ) ) {
 			$t = wfMsg( 'deletethispage' );
 
 			$s = Linker::linkKnown(
@@ -595,7 +595,7 @@ class LegacyTemplate extends BaseTemplate {
 		$diff = $wgRequest->getVal( 'diff' );
 		$title = $this->getSkin()->getTitle();
 
-		if ( $title->getArticleId() && ( ! $diff ) && $wgUser->isAllowed( 'protect' ) ) {
+		if ( $title->getArticleID() && ( ! $diff ) && $wgUser->isAllowed( 'protect' ) ) {
 			if ( $title->isProtected() ) {
 				$text = wfMsg( 'unprotectthispage' );
 				$query = array( 'action' => 'unprotect' );
