@@ -263,6 +263,7 @@ production.
 * (bug 34600) Older skins using useHeadElement=false were broken in 1.18.
 * (bug 34604) [mw.config] wgActionPaths should be an object instead of a numeral
   array.
+* (bug 12262) Indents and lists are now aligned
 
 === API changes in 1.19 ===
 * Made action=edit less likely to return "unknownerror", by returning the actual error
