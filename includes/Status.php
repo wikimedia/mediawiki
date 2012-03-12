@@ -357,4 +357,11 @@ class Status {
 	public function getMessage() {
 		return $this->getWikiText();
 	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getValue() {
+		return $this->value;
+	}
 }
