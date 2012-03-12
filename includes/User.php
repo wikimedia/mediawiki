@@ -2890,6 +2890,7 @@ class User {
 			'user_token' => $user->mToken,
 			'user_registration' => $dbw->timestamp( $user->mRegistration ),
 			'user_editcount' => 0,
+			'user_touched' => self::newTouchedTimestamp(),
 		);
 		foreach ( $params as $name => $value ) {
 			$fields["user_$name"] = $value;
@@ -2908,6 +2909,9 @@ class User {
 	 */
 	public function addToDatabase() {
 		$this->load();
+
+		$this->mTouched = self::newTouchedTimestamp();
+
 		$dbw = wfGetDB( DB_MASTER );
 		$seqVal = $dbw->nextSequenceValue( 'user_user_id_seq' );
 		$dbw->insert( 'user',
@@ -2923,6 +2927,7 @@ class User {
 				'user_token' => $this->mToken,
 				'user_registration' => $dbw->timestamp( $this->mRegistration ),
 				'user_editcount' => 0,
+				'user_touched' => $this->mTouched,
 			), __METHOD__
 		);
 		$this->mId = $dbw->insertId();
