@@ -166,7 +166,7 @@ class User {
 	var $mId, $mName, $mRealName, $mPassword, $mNewpassword, $mNewpassTime,
 		$mEmail, $mTouched, $mToken, $mEmailAuthenticated,
 		$mEmailToken, $mEmailTokenExpires, $mRegistration, $mGroups, $mOptionOverrides,
-		$mCookiePassword, $mEditCount, $mAllowUsertalk;
+		$mEditCount, $mAllowUsertalk;
 	//@}
 
 	/**
@@ -2048,16 +2048,6 @@ class User {
 		} else {
 			$this->mToken = $token;
 		}
-	}
-
-	/**
-	 * Set the cookie password
-	 *
-	 * @param $str String New cookie password
-	 */
-	private function setCookiePassword( $str ) {
-		$this->load();
-		$this->mCookiePassword = md5( $str );
 	}
 
 	/**
