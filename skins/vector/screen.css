@@ -40,6 +40,7 @@ div#content {
 /* Head */
 #mw-page-base {
 	height: 5em;
+	background-color: white;
 	/* @embed */
 	background-image: url(images/page-fade.png);
 	background-position: bottom left;
@@ -155,7 +156,6 @@ div.vectorTabs ul > li {
 	display: block;
 }
 div.vectorTabs li.selected {
-	background-color: white;
 	/* @embed */
 	background-image: url(images/tab-current-fade.png);
 }
