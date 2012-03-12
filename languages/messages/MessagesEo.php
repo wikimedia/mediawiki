@@ -930,11 +930,11 @@ La donita kialo estas:
 
 *Komenco de forbaro: $8
 *Limdato de la blokado: $6
-*Intencias forbari uzanton: $7
+*Intencis forbari uzanton: $7
 
-Vi povas kontakti $1 aux iun ajn el la aliaj [[{{MediaWiki:Grouppage-sysop}}|administrantojn]] por diskuti la blokon.
+Vi povas kontakti $1 aŭ iun ajn el la aliaj [[{{MediaWiki:Grouppage-sysop}}|administrantojn]] por diskuti la blokon.
 
-Notu, ke vi ne povas uzi la servon "Retpoŝtu ĉi tiu uzanton" krom se vi havas validan retpost-adreson registritan en viaj [[Special:Preferences|preferojn]], kaj vi estas ne blokita kontraŭ ĝia uzado.
+Notu, ke vi ne povas uzi la servon "Retpoŝtu ĉi tiu uzanton" krom se vi havas validan retpoŝt-adreson registritan en viaj [[Special:Preferences|preferojn]], kaj vi estas ne blokita kontraŭ ĝia uzado.
 
 Via nuna IP-adreso estas $3, kaj la forbaro-identigo estas $5.
 Bonvolu inkluzivi tiujn detalojn en iuj ajn demandoj kiun vi farus.',
@@ -1766,7 +1766,7 @@ Alŝutante Java-dosieron estas malpermesita, ĉar ili povas kaŭzi sekureco-limi
 'upload-description'          => 'Dosiera priskribo',
 'upload-options'              => 'Alŝutaj agordoj',
 'watchthisupload'             => 'Atenti ĉi tiun dosieron',
-'filewasdeleted'              => 'Dosiero de ĉi nomo estis antaŭe alŝutita kaj poste redaktita. Vi kontrolu la $1 antaux alŝutante ĝin denove.',
+'filewasdeleted'              => 'Dosiero de ĉi tiu nomo estis antaŭe alŝutita kaj poste forigita. Bonvolu kontroli en la $1 antaŭ alŝuti ĝin denove.',
 'filename-bad-prefix'         => "La nomo de la dosiero kiun vi alŝutas komencas kun '''\"\$1\"''', kiu estas nepriskriba nomo ofte aŭtomate donata de ciferecaj fotiloj. Bonvolu elekti pli priskriban nomon por via bildo.",
 'upload-success-subj'         => 'Alŝuto sukcesis!',
 'upload-success-msg'          => 'Via alŝuto el [$2] sukcesis. Ĝi disponeblas ĉi tie [[:{{ns:file}}:$1]]',
@@ -3072,7 +3072,7 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 
 # Metadata
 'metadata'          => 'Metadatenoj',
-'metadata-help'     => 'Ĉi tiu dosiero enhavas plian informon, verŝajne aldonitan de la cifereca fotilo aŭ skanilo uzita por krei aux skani ĝin. Se la dosiero estis modifita de sia originala stato, iuj detaloj eble ne konformos al efektiva stato de la modifita bildo.',
+'metadata-help'     => 'Ĉi tiu dosiero enhavas plian informon, verŝajne aldonitan de la cifereca fotilo aŭ skanilo uzita por krei aŭ skani ĝin. Se la dosiero estis modifita de sia originala stato, iuj detaloj eble ne konformos al efektiva stato de la modifita bildo.',
 'metadata-expand'   => 'Montri etendajn detalojn',
 'metadata-collapse' => 'Kaŝi etendajn detalojn',
 'metadata-fields'   => 'Metadatumaj kampoj de ĉi tiu mesaĝo estos inkluzivita en la paĝoj de bidloj kiam la metadatuma tabelo estas disfaldigita. 

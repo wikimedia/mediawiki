@@ -1794,8 +1794,13 @@ In應該連接到適當的頁面。<br />一个頁面若有用[[MediaWiki:Disamb
 'unusedimagestext'        => 'Ē-kha ê tóng-àn bô poàⁿ ia̍h ū teh iōng. M̄-koh ia̍h lâu leh. 
 Chhiáⁿ chù-ì: kî-thaⁿ ê bāng-chām ū khó-lêng iōng URL ti̍t-chiap liân kàu iáⁿ-siōng, só·-í sui-jiân bô teh iōng, mā sī ē lia̍t tī chia.',
 'unusedcategoriestext'    => 'Ū ē-kha chiah-ê lūi-pia̍t-ia̍h, m̄-koh bô kî-thaⁿ ê bûn-chiuⁿ a̍h-sī lūi-pia̍t lī-iōng.',
+'notargettitle'           => '無目標',
+'notargettext'            => '你無指定目標頁面抑是用者通做這个動作',
+'nopagetitle'             => '無這个目標頁',
+'nopagetext'              => '無你指定的目標頁。',
 'pager-newer-n'           => '{{PLURAL:$1|較新一个|較新$1个 }}',
 'pager-older-n'           => '{{PLURAL:$1|較舊一个|較舊$1个}}',
+'suppress'                => '監督',
 
 # Book sources
 'booksources'               => 'Tô͘-su chu-liāu',
@@ -1814,12 +1819,14 @@ Chhiáⁿ chù-ì: kî-thaⁿ ê bāng-chām ū khó-lêng iōng URL ti̍t-chiap
 'nextpage'          => 'Āu 1 ia̍h ($1)',
 'prevpage'          => '前一頁（$1）',
 'allpagesfrom'      => 'Tùi chit ia̍h khai-sí hián-sī:',
+'allpagesto'        => '顯示到這頁：',
 'allarticles'       => 'Só·-ū ê bûn-chiuⁿ',
 'allinnamespace'    => 'Só·-ū ê ia̍h ($1 miâ-khong-kan)',
 'allnotinnamespace' => 'Só·-ū ê ia̍h (bô tī $1 miâ-khong-kan)',
 'allpagesprev'      => 'Téng 1 ê',
 'allpagesnext'      => 'ē 1 ê',
 'allpagessubmit'    => 'Lâi-khì',
+'allpagesprefix'    => '顯示頁標題有：',
 
 # Special:Categories
 'categories'         => 'Lūi-pia̍t',
@@ -2020,6 +2027,7 @@ Téng 1 ūi siu-kái-chiá sī [[User:$3|$3]] ([[User talk:$3|talk]]{{int:pipe-s
 'viewdeletedpage'     => '看刣掉的頁',
 'undeletepagetext'    => '下跤的{{PLURAL:$1|篇頁|篇頁}}已經予人刣掉，毋過猶留佇檔案庫，而且會使救倒轉來。
 檔案庫內底可能會定時清掉。',
+'undeletebtn'         => '恢復',
 'undeletelink'        => '看／恢復',
 'undeleteviewlink'    => 'Khoàⁿ',
 'undeletereset'       => '設便',
@@ -2094,7 +2102,9 @@ Téng 1 ūi siu-kái-chiá sī [[User:$3|$3]] ([[User talk:$3|talk]]{{int:pipe-s
 'ipusubmit'                   => 'Chhú-siau chit ê hong-só',
 'ipblocklist'                 => 'Siū hong-só ê iōng-chiá',
 'ipblocklist-legend'          => '揣一个封鎖的用者',
+'blocklist-timestamp'         => '戳印的時間',
 'blocklist-target'            => '目標',
+'blocklist-expiry'            => '到期',
 'ipblocklist-submit'          => '揣',
 'blocklink'                   => 'hong-só',
 'unblocklink'                 => '取消封鎖',
@@ -2119,6 +2129,11 @@ Téng 1 ūi siu-kái-chiá sī [[User:$3|$3]] ([[User talk:$3|talk]]{{int:pipe-s
 'proxyblocker-disabled'       => '這个功能袂當用。',
 
 # Developer tools
+'lockdb'              => '封鎖資料庫',
+'unlockdb'            => '解除對資料庫的封鎖',
+'unlockdbtext'        => '解除封鎖會予所有的用者通編輯、改設定、改監視單佮其他通改資料庫的代誌，
+請確認這是你欲做的動作。',
+'lockconfirm'         => '是，我確實欲封鎖資料庫。',
 'lockbtn'             => '封鎖資料庫',
 'unlockbtn'           => '解除對資料庫的封鎖',
 'locknoconfirm'       => 'Lí bô kau "khak-tēng" ê keh-á.',
@@ -2165,6 +2180,8 @@ Liâu--lo̍h-khì chìn-chêng, chhiáⁿ seng khak-tēng lí ū liáu-kái chia
 'movereason'             => 'Lí-iû:',
 'revertmove'             => '回轉',
 'selfmove'               => 'Goân piau-tê kap sin piau-tê sio-siâng; bô hoat-tō· sóa.',
+'immobile-target-page'   => '無法度徙去指定的標題',
+'imageinvalidfilename'   => '目標的檔案名稱無適當',
 
 # Export
 'export'        => 'Su-chhut ia̍h',

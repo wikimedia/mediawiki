@@ -3182,6 +3182,7 @@ $1',
 'exif-urgency-normal' => 'సాధారణం ($1)',
 'exif-urgency-low'    => 'తక్కువ ($1)',
 'exif-urgency-high'   => 'ఎక్కువ ($1)',
+'exif-urgency-other'  => 'వాడుకరి-నిర్వచిత ప్రాథాన్యత ($1)',
 
 # External editor support
 'edit-externally'      => 'బయటి అప్లికేషను వాడి ఈ ఫైలును మార్చు',

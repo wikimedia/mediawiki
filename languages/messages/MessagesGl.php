@@ -1755,6 +1755,7 @@ Se o problema persiste, póñase en contacto cun [[Special:ListUsers/sysop|admin
 'backend-fail-closetemp'     => 'Non se puido pechar o ficheiro temporal.',
 'backend-fail-read'          => 'Non se puido ler o ficheiro "$1".',
 'backend-fail-create'        => 'Non se puido crear o ficheiro "$1".',
+'backend-fail-maxsize'       => 'Non se puido crear o ficheiro "$1" porque {{PLURAL:$2|é de máis de $2 byte|supera os $2 bytes}}.',
 'backend-fail-readonly'      => 'Nestes intres, o sistema de almacenamento "$1" está en modo de só lectura. A razón dada é: "$2"',
 'backend-fail-synced'        => 'O ficheiro "$1" está nun estado inconsistente dentro do sistema de almacenamento interno',
 'backend-fail-connect'       => 'Non se puido conectar co sistema de almacenamento "$1".',

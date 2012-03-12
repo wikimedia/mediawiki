@@ -1973,6 +1973,7 @@ $1',
 
 # File backend
 'backend-fail-notexists' => 'الملف $1 غير موجود.',
+'backend-fail-copy'      => 'لا يمكن نسخ الملف  $1  إلى  $2 .',
 'backend-fail-opentemp'  => 'تعذّر فتح ملف مؤقت.',
 'backend-fail-writetemp' => 'تعذّرت كتابة ملف مؤقت.',
 'backend-fail-closetemp' => 'تعذّر إغلاق ملف مؤقت.',
@@ -3047,7 +3048,8 @@ $1',
 'import-logentry-interwiki-detail' => '{{PLURAL:$1||مراجعة واحدة|مراجعتان|$1 مراجعات|$1 مراجعة}} من $2',
 
 # JavaScriptTest
-'javascripttest' => 'اختبار جافاسكربت',
+'javascripttest'          => 'اختبار جافاسكربت',
+'javascripttest-disabled' => 'هذه الخاصية معطلة.',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'                 => 'صفحة المستخدم الخاصة بك',
@@ -4176,6 +4178,7 @@ $5
 'api-error-unknown-code'                  => 'خطأ غير معروف : " $1 "',
 'api-error-unknown-error'                 => 'خطأ داخلي: قد حدث خطأ عند محاولة تحميل الملف الخاص بك.',
 'api-error-unknown-warning'               => 'تحذير غير معروف:$1',
+'api-error-unknownerror'                  => 'خطأ غير معروف : " $1 "',
 'api-error-uploaddisabled'                => 'تم تعطيل تحميل على هذا الويكي.',
 'api-error-verification-error'            => 'هذا الملف قد يكون معطوباً أو يحتوي على ملحق غير صحيح.',
 

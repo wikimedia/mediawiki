@@ -1747,7 +1747,8 @@ $NEWPAGE
 'rollback-success' => 'Հետ են շրջվել $1 մասնակցի խմբագրումները. վերադարձվել է $2 մասնակցի վերջին տարբերակին։',
 
 # Edit tokens
-'sessionfailure' => 'Կարծես խնդիր է առաջացել կապված ձեր ընթացիկ աշխատանքային սեսիայի հետ.
+'sessionfailure-title' => 'Սեսիայի խափանում',
+'sessionfailure'       => 'Կարծես խնդիր է առաջացել կապված ձեր ընթացիկ աշխատանքային սեսիայի հետ.
 այս գործողությունը բեկանվել է սեսիայի հափշտակման կանխման նպատակով։
 Խնդրում ենք սեղմել «back» կոճակը և վերբեռնել այն էջը որտեղից եկել եք ու փորձել կրկին։',
 
@@ -1756,9 +1757,13 @@ $NEWPAGE
 'protectlogtext'              => 'Ստորև բերված է պաշտպանված և պաշտպանումից հանված էջերի ցանկը։ Տես նաև [[Special:ProtectedPages|ներկայումս պաշտպանված էջերի ցանկը]]։',
 'protectedarticle'            => 'պաշտպանվեց «[[$1]]» էջը',
 'modifiedarticleprotection'   => 'փոխվեց պաշտպանման մակարդակը «[[$1]]» էջի համար',
-'unprotectedarticle'          => 'պաշտպանումը հանված է «[[$1]]» էջից',
+'unprotectedarticle'          => 'պաշտպանումից հանված է «[[$1]]» էջը',
+'movedarticleprotection'      => 'Փոխվեց պաշտպանության կարգավորումը [[$2]]-ից [[$1]]',
 'protect-title'               => '«$1» էջի պաշտպանման մակարդակի հաստատում',
+'protect-title-notallowed'    => 'Դիտել $1 էջի պաշտպանության մակարդակը',
 'prot_1movedto2'              => '«[[$1]]» վերանվանված է «[[$2]]»',
+'protect-badnamespace-title'  => 'Ոչ պաշտպանելի անվանատարածք',
+'protect-badnamespace-text'   => 'Այս անվանատարածքի էջերը չեն կարող պաշտպանվել',
 'protect-legend'              => 'Հաստատել պաշտպանումը',
 'protectcomment'              => 'Պատճառ.',
 'protectexpiry'               => 'Մարում.',
@@ -1776,8 +1781,17 @@ $NEWPAGE
 'protect-level-sysop'         => 'Միայն ադմինիստրատորներ',
 'protect-summary-cascade'     => 'կասկադային',
 'protect-expiring'            => 'մարում՝ $1 (UTC)',
+'protect-expiring-local'      => 'լրանում է՝ $1',
+'protect-expiry-indefinite'   => 'անժամկետ',
 'protect-cascade'             => 'Պաշտպանել այս էջում ընդգրկված էջերը (կասկադային պաշտպանում)',
 'protect-cantedit'            => 'Դուք չեք կարող փոխել այս էջի պաշտպանության մակարդակը, քանի որ ձեզ չի թույլատրվում խմբագրել այն։',
+'protect-othertime'           => 'Այլ ժամկետ',
+'protect-othertime-op'        => 'այլ ժամկետ',
+'protect-dropdown'            => '* Ամենահաճախ նշվող պատճառներ
+** Հաճախակի վանդալություններ
+** Հաճախակի սփամ
+** Ոչ կառուցողական խմբագրական պատերազմ
+** Հաճախելիության բարձր աստիճան',
 'protect-edit-reasonlist'     => 'Խմբագրել պաշտպանման պատճառների ցանկը',
 'protect-expiry-options'      => '2 ժամ:2 hours,1 օր:1 day,3 օր:3 days,1 շաբաթ:1 week,2 շաբաթ:2 weeks,1 ամիս:1 month,3 ամիս:3 months,6 ամիս:6 months,1 տարի:1 year,անժամկետ:infinite',
 'restriction-type'            => 'Իրավունքներ.',
@@ -1811,8 +1825,10 @@ $NEWPAGE
 'undeletehistorynoadmin'       => 'Էջը ջնջվել է։ Ջնջման պատճառը և էջը խմբագրած մասնակիցների անունները բերված են ստորև։ Այս ջնջված տարբերակների բուն տեքստերը կարող են դիտել միայն ադմինիստրատորները։',
 'undelete-revision'            => '«$1» էջի $3 մասնակցի կողմից ջնջված տարբերակ ($2 պահով).',
 'undeleterevision-missing'     => 'Սխալ կամ գոյություն չունեցող տարբերակ։ Հնարավոր է դուք անցել եք սխալ հղմամբ, կամ տարբերակը վերականգնվել է, կամ էլ ջնջվել արխիվից։',
+'undelete-nodiff'              => 'Ավելի հին տարբերակներ չեն գտնվել',
 'undeletebtn'                  => 'Վերականգնել',
 'undeletelink'                 => 'դիտել/վերականգնել',
+'undeleteviewlink'             => 'դիտել',
 'undeletereset'                => 'Մաքրել',
 'undeleteinvert'               => 'Շրջել ընտրությունը',
 'undeletecomment'              => 'Մեկնաբանություն.',
@@ -1824,6 +1840,7 @@ $NEWPAGE
 
 Տես [[Special:Log/delete|ջնջման տեղեկամատյանը]]` վերջին ջնջումների և վերականգնումների համար։",
 'undelete-header'              => 'Տես [[Special:Log/delete|ջնջման տեղեկամատյանը]]՝ վերջին ջնջումների և վերականգնումների համար։',
+'undelete-search-title'        => 'Որոնել ջնջված էջեր',
 'undelete-search-box'          => 'Որոնել ջնջված էջերը',
 'undelete-search-prefix'       => 'Ցուց տալ էջերը նախածանցով.',
 'undelete-search-submit'       => 'Որոնել',
@@ -1853,18 +1870,19 @@ $1',
 'month'               => 'Սկսած ամսից (և վաղ)՝',
 'year'                => 'Սկսած տարեթվից (և վաղ)՝',
 
-'sp-contributions-newbies'     => 'Ցույց տալ միայն նորաստեղծ հաշիվներից կատարված ներդրումները',
-'sp-contributions-newbies-sub' => 'Նոր մասնակցային հաշիվներից',
-'sp-contributions-blocklog'    => 'Արգելափակման տեղեկամատյան',
-'sp-contributions-deleted'     => 'Մասնակցի ջնջված ներդրում',
-'sp-contributions-uploads'     => 'Բեռնումներ',
-'sp-contributions-logs'        => 'տեղեկամատյաններ',
-'sp-contributions-talk'        => 'Քննարկում',
-'sp-contributions-userrights'  => 'Մասնակիցների իրավունքների կառավարում',
-'sp-contributions-search'      => 'Որոնել ներդրումները',
-'sp-contributions-username'    => 'IP-հասե կամ մասնակցի անուն.',
-'sp-contributions-toponly'     => 'Ցույց տալ միայն այն խմբագրումները, որոնք վերջին փոփոխություն են',
-'sp-contributions-submit'      => 'Որոնել',
+'sp-contributions-newbies'       => 'Ցույց տալ միայն նորաստեղծ հաշիվներից կատարված ներդրումները',
+'sp-contributions-newbies-sub'   => 'Նոր մասնակցային հաշիվներից',
+'sp-contributions-newbies-title' => 'Նոր մասնակիցների ներդրումներ',
+'sp-contributions-blocklog'      => 'Արգելափակման տեղեկամատյան',
+'sp-contributions-deleted'       => 'Մասնակցի ջնջված ներդրում',
+'sp-contributions-uploads'       => 'Բեռնումներ',
+'sp-contributions-logs'          => 'տեղեկամատյաններ',
+'sp-contributions-talk'          => 'Քննարկում',
+'sp-contributions-userrights'    => 'Մասնակիցների իրավունքների կառավարում',
+'sp-contributions-search'        => 'Որոնել ներդրումները',
+'sp-contributions-username'      => 'IP-հասե կամ մասնակցի անուն.',
+'sp-contributions-toponly'       => 'Ցույց տալ միայն այն խմբագրումները, որոնք վերջին փոփոխություն են',
+'sp-contributions-submit'        => 'Որոնել',
 
 # What links here
 'whatlinkshere'            => 'Այստեղ հղվող էջերը',

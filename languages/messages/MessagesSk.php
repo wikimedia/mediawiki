@@ -22,6 +22,7 @@
  * @author Rudko
  * @author Sp5uhe
  * @author Tchoř
+ * @author Teslaton
  * @author Urhixidur
  * @author Valasek
  * @author Wizzard
@@ -658,8 +659,8 @@ Požiadavka: $2',
 'cascadeprotected'     => 'Táto stránka bola zamknutá proti úpravám, pretože je použitá na {{PLURAL:$1|nasledovnej stránke, ktorá je zamknutá|nasledovných stránkach, ktoré sú zamknuté}} voľbou „kaskádového zamknutia“:
 $2',
 'namespaceprotected'   => "Nemáte povolenie upravovať stránky v mennom priestore '''$1'''.",
-'customcssprotected'   => 'Nemáte právo upravovať túto CSS stránku, pretože obsahuje osobné nastavenie iného užívateľa.',
-'customjsprotected'    => 'Nemáte právo upravovať túto JavaScript stránku, pretože obsahuje osobné nastavenie iného užívateľa.',
+'customcssprotected'   => 'Nemáte právo upravovať túto CSS stránku, pretože obsahuje osobné nastavenie iného používateľa.',
+'customjsprotected'    => 'Nemáte právo upravovať túto JavaScript stránku, pretože obsahuje osobné nastavenie iného používateľa.',
 'ns-specialprotected'  => 'Stránky v mennom pristore {{ns:special}} nie je možné upravovať.',
 'titleprotected'       => "Používateľ [[User:$1|$1]] zabránil vytváraniu stránky s týmto názvom.
 Udaný dôvod: ''$2''.",
@@ -752,7 +753,7 @@ Z tohto dôvodu nemôžu návštevníci z tejto IP adresy momentálne vytvoriť 
 'noemailprefs'               => 'Tieto nástroje budú prístupné po vyplnení emailovej adresy vo vašich nastaveniach.',
 'emailconfirmlink'           => 'Potvrďte vašu e-mailovú adresu',
 'invalidemailaddress'        => 'Emailovú adresu nemožno akceptovať, pretože sa zdá, že má neplatný formát. Zadajte adresu v správnom tvare alebo nechajte príslušné políčko prázdne.',
-'cannotchangeemail'          => 'Na tejto wiki nie je možné meniť e-mailové adresy užívateľského konta.',
+'cannotchangeemail'          => 'Na tejto wiki nie je možné meniť e-mailové adresy používateľského konta.',
 'accountcreated'             => 'Účet vytvorený',
 'accountcreatedtext'         => 'Používateľský účet $1 bol vytvorený.',
 'createaccount-title'        => 'Vytvorenie účtu na {{GRAMMAR:lokál|{{SITENAME}}}}',
@@ -798,7 +799,7 @@ Je možné, že sa vám už podarilo úspešne zmeniť svoje heslo alebo ste si 
 'passwordreset-username'           => 'Používateľské meno:',
 'passwordreset-domain'             => 'Doména:',
 'passwordreset-capture'            => 'Zobraziť výsledný e-mail?',
-'passwordreset-capture-help'       => 'Ak označíte toto políčko, bude e-mail (s dočasným heslom) okrem zaslania užívateľovi zobrazený aj vám.',
+'passwordreset-capture-help'       => 'Ak označíte toto políčko, bude e-mail (s dočasným heslom) okrem zaslania používateľovi zobrazený aj vám.',
 'passwordreset-email'              => 'Emailová adresa:',
 'passwordreset-emailtitle'         => 'Podrobnosti o účte na {{GRAMMAR:lokál|{{SITENAME}}}}',
 'passwordreset-emailtext-ip'       => 'Niekto (pravdepodobne vy z IP adresy $1) požiadal pripomenutie podrobností o vašom
@@ -825,7 +826,7 @@ ignorovať a ďalej používať vaše staré heslo.',
 Dočasné heslo:$2',
 'passwordreset-emailsent'          => 'Email s heslom bol odoslaný.',
 'passwordreset-emailsent-capture'  => 'Bol vytvorený pripomienkový e-mail, ktorý je zobrazený nižšie.',
-'passwordreset-emailerror-capture' => 'Bol vytvorený pripomienkový e-mail, ktorý je zobrazený nižšie, ale nepodarilo sa ho odoslať užívateľovi: $1',
+'passwordreset-emailerror-capture' => 'Bol vytvorený pripomienkový e-mail, ktorý je zobrazený nižšie, ale nepodarilo sa ho odoslať používateľovi: $1',
 
 # Special:ChangeEmail
 'changeemail'          => 'Zmena e-mailovej adresy',
@@ -1611,6 +1612,7 @@ Musí obsahovať menej ako $1 {{PLURAL:$1|znak|znaky|znakov}}.',
 'newsectionsummary'                 => '/* $1 */ nová sekcia',
 'rc-enhanced-expand'                => 'Zobraziť podrobnosti (vyžaduje JavaScript)',
 'rc-enhanced-hide'                  => 'Skryť podrobnosti',
+'rc-old-title'                      => 'pôvodne vytvorené ako "$1"',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Súvisiace úpravy',
@@ -1787,6 +1789,7 @@ Ak problém pretrváva, kontaktujte [[Special:ListUsers/sysop|správcu systému]
 'backend-fail-closetemp'     => 'Nebolo možné zatvoriť dočasný súbor.',
 'backend-fail-read'          => 'Nebolo možné prečítať súbor „$1“.',
 'backend-fail-create'        => 'Nebolo možné vytvoriť súbor „$1“.',
+'backend-fail-maxsize'       => 'Súbor $1 nie je možné vytvoriť, pretože je väčší ako {{PLURAL:$2|$2 bajtov|$2 bajt}}.',
 'backend-fail-readonly'      => 'Úložisko „$1“ je momentálne v režime len na čítanie. Udaný dôvod: „$2“',
 'backend-fail-synced'        => 'Súbor „$1“ je v nekonzistentnom stave v rámci vnútorného úložiska',
 'backend-fail-connect'       => 'Nepodarilo sa pripojiť k úložisku „$1“.',
@@ -2963,7 +2966,7 @@ Umožnuje do zhrnutia pridanie dôvodu.',
 'handheld.css'    => '/* Tu umiestnené CSS bude ovplyvňovať prenosné zariadenia vychádzajúceho zo štýlu nastaveného v $wgHandheldStyle */',
 
 # Scripts
-'common.js'      => '/* Tu uvedený JavaScript sa nahrá všetkým užívateľom pri každom nahraní stránky. */',
+'common.js'      => '/* Tu uvedený JavaScript sa nahrá všetkým používateľom pri každom nahraní stránky. */',
 'standard.js'    => '/* Tu sa nachádzajúci JavaScript sa načíta používateľom vzhľadu Klasický */',
 'nostalgia.js'   => '/* Tu sa nachádzajúci JavaScript sa načíta používateľom vzhľadu Nostalgia */',
 'cologneblue.js' => '/* Tu sa nachádzajúci JavaScript sa načíta používateľom vzhľadu Kolínska modrá */',

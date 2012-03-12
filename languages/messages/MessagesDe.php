@@ -2532,7 +2532,7 @@ Im [[Special:Log/delete|Lösch-Logbuch]] findest du eine Übersicht der gelösch
 'undelete-bad-store-key'       => 'Die Dateiversion mit dem Zeitstempel $1 konnte nicht wiederhergestellt werden: Die Datei war bereits vor dem Löschen nicht mehr vorhanden.',
 'undelete-cleanup-error'       => 'Fehler beim Löschen der unbenutzten Archiv-Version $1.',
 'undelete-missing-filearchive' => 'Die Datei mit der Archiv-ID $1 kann nicht wiederhergestellt werden, da sie nicht in der Datenbank vorhanden ist. Möglicherweise wurde sie bereits wiederhergestellt.',
-'undelete-error'               => 'Es beim Wiederherstellen der Seite ein Fehler aufgetreten.',
+'undelete-error'               => 'Es ist beim Wiederherstellen der Seite ein Fehler aufgetreten.',
 'undelete-error-short'         => 'Fehler beim Wiederherstellen der Datei $1',
 'undelete-error-long'          => 'Es wurden Fehler beim Wiederherstellen einer Datei festgestellt:
 

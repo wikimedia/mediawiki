@@ -24,6 +24,7 @@
  * @author Ragimiri
  * @author Reaperman
  * @author Spiffyk
+ * @author Tchoř
  * @author Urhixidur
  * @author Utar
  * @author לערי ריינהארט
@@ -1838,6 +1839,7 @@ Kontaktuje prosím [[Special:ListUsers/sysop|správce]].',
 'backend-fail-closetemp'     => 'Dočasný soubor nelze zavřít.',
 'backend-fail-read'          => 'Soubor $1 nelze číst.',
 'backend-fail-create'        => 'Soubor $1 nelze vytvořit.',
+'backend-fail-maxsize'       => 'Nelze vytvořit soubor  $1,  protože je větší než {{PLURAL:$2|jeden bajt|$2 bajty|$2 bajtů}}.',
 'backend-fail-readonly'      => 'Koncový úložný systém „$1“ je momentálně pouze pro čtení. Udaným důvodem je: „$2“',
 'backend-fail-synced'        => 'Soubor „$1“ je v interních koncových úložných systémech v nekonzistentním stavu',
 'backend-fail-connect'       => 'Nepodařilo se připojit ke koncovému úložnému systému „$1“.',

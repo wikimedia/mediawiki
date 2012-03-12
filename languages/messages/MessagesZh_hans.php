@@ -17,6 +17,7 @@
  * @author Chinalace
  * @author Dingyuang
  * @author Fantasticfears
+ * @author Fengchao
  * @author Franklsf95
  * @author Gaoxuewei
  * @author Gzdavidwong
@@ -986,7 +987,7 @@ $3的理由是''$2''",
 'viewpagelogs'           => '查看本页面的日志',
 'nohistory'              => '本页面没有编辑历史记录。',
 'currentrev'             => '最后版本',
-'currentrev-asof'        => '$1的最后版本',
+'currentrev-asof'        => '$1的最新版本',
 'revisionasof'           => '$1的版本',
 'revision-info'          => '在$1由$2所做的修订版本',
 'previousrevision'       => '←上一版本',
@@ -1138,7 +1139,7 @@ $1",
 
 # Search results
 'searchresults'                    => '搜索结果',
-'searchresults-title'              => '对“$1”的搜索结果',
+'searchresults-title'              => '“$1”的搜索结果',
 'searchresulttext'                 => '有关搜索{{SITENAME}}的更多信息，参见[[{{MediaWiki:Helppage}}|{{int:help}}]]。',
 'searchsubtitle'                   => '搜索\'\'\'[[:$1]]\'\'\'（[[Special:Prefixindex/$1|所有以 "$1" 开头的页面]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|所有链接到“$1”的页面]]）',
 'searchsubtitleinvalid'            => "搜索'''$1'''",

@@ -576,7 +576,7 @@ Denkt drun, Är [[Special:Preferences|{{SITENAME}}-Astellungen]] unzepassen.',
 'externaldberror'            => 'Entweder ass e Feeler bei der externer Authentifizéierung geschitt, oder Dir däerft Ären externe Benotzerkont net aktualiséieren.',
 'login'                      => 'Umellen',
 'nav-login-createaccount'    => 'Aloggen / Benotzerkont uleeën',
-'loginprompt'                => "Fir sech op {{SITENAME}} umellen ze kënnen, mussen d'Cookien aktivéiert sinn.",
+'loginprompt'                => "Fir sech op {{SITENAME}} aloggen ze kënnen, mussen d'Cookien aktivéiert sinn.",
 'userlogin'                  => 'Aloggen / Benotzerkont uleeën',
 'userloginnocreate'          => 'Umellen',
 'logout'                     => 'Ofmellen',
@@ -599,7 +599,9 @@ Sicht Iech een anere Benotzernumm.',
 {{SITENAME}} brauch fir dës Funktioun Cookien.
 Dir hutt d'Cookien desaktivéiert.
 Aktivéiert déi w.e.g. a loggt Iech da mat Ärem neie Benotzernomm a mat dem respektive Passwuert an.",
-'nocookieslogin'             => "{{SITENAME}} benotzt Cookië beim Umelle vun de Benotzer. Dir hutt Cookien ausgeschalt, w.e.g aktivéiert d'Cookien a versicht et nach eng Kéier.",
+'nocookieslogin'             => "{{SITENAME}} benotzt Cookië beim Umelle vun de Benotzer.
+Dir hutt Cookien ausgeschalt.
+Aktivéiert d'Cookien w.e.g. a versicht et nach eng Kéier.",
 'nocookiesfornew'            => 'De Benotzerkont gouf net ugeluecht, well mir seng Quell net bestëmme konnten.
 Vergewëssert Iech datt Dir Cookien zouloosst, luet dës Säit nei a probéiert nach emol.',
 'noname'                     => 'Dir hutt kee gëltege Benotzernumm uginn.',
@@ -613,7 +615,8 @@ Kuckt w.e.g. op d\'Schreifweis richteg ass.',
 'nouserspecified'            => 'Gitt w.e.g. e Benotzernumm un.',
 'login-userblocked'          => 'Dëse Benotzer ass gespaart. Aloggen ass net erlaabt.',
 'wrongpassword'              => 'Dir hutt e falscht (oder kee) Passwuert aginn. Probéiert w.e.g. nach eng Kéier.',
-'wrongpasswordempty'         => "D'Passwuert dat Dir aginn hutt war eidel. Probéiert w.e.g. nach eng Kéier.",
+'wrongpasswordempty'         => "D'Passwuert dat Dir aginn hutt war eidel.
+Probéiert w.e.g. nach eng Kéier.",
 'passwordtooshort'           => 'Passwierder musse mindestens {{PLURAL:$1|1 Zeeche|$1 Zeeche}} laang sinn.',
 'password-name-match'        => 'Äert Passwuert muss verschidde vun Ärem Benotzernumm sinn.',
 'password-login-forbidden'   => "D'Benotze vun dësem Benotzernumm a Passwuert gouf verbueden.",
@@ -670,7 +673,8 @@ Fir är Umeldung ofzeschléissen, musst Dir elo hei een neit Passwuert uginn:',
 'newpassword'               => 'Neit Passwuert:',
 'retypenew'                 => 'Neit Passwuert nach eemol antippen:',
 'resetpass_submit'          => 'Passwuert aginn an umellen',
-'resetpass_success'         => 'Äert Passwuert gouf geännert. Loggt Iech elo an ...',
+'resetpass_success'         => 'Äert Passwuert gouf geännert!
+Loggt Iech elo an ...',
 'resetpass_forbidden'       => 'Passwierder kënnen net geännert ginn.',
 'resetpass-no-info'         => 'Dir musst ageloggt sinn, fir direkt op dës Säit ze kommen.',
 'resetpass-submit-loggedin' => 'Passwuert änneren',
@@ -784,9 +788,9 @@ Gitt dës Donnéeë w.e.g bei allen Ufroen zu dëser Spär un.',
 'whitelistedittext'                => 'Dir musst Iech $1, fir Säiten änneren ze kënnen.',
 'confirmedittext'                  => 'Dir musst är E-Mail-Adress confirméieren, ier Dir Ännerunge maache kënnt.
 Gitt w.e.g. eng E-Mailadrss a validéiert se op äre [[Special:Preferences|Benotzerastellungen]].',
-'nosuchsectiontitle'               => 'Et gëtt keen esou enn Abschnitt',
-'nosuchsectiontext'                => "Dir hutt versicht een Abschnitt z'änneren den et net gëtt.
-Et ka sinn datt e geännert oder geläscht gouf iwwerdm wou Dir d'Säit gekuckt hutt.",
+'nosuchsectiontitle'               => 'Et gëtt keen esou en Abschnitt',
+'nosuchsectiontext'                => "Dir hutt versicht en Abschnitt z'änneren deen et net gëtt.
+Et ka sinn datt e geännert oder geläscht gouf iwwerdeems wou Dir d'Säit gekuckt hutt.",
 'loginreqtitle'                    => 'Umeldung néideg',
 'loginreqlink'                     => 'aloggen',
 'loginreqpagetext'                 => 'Dir musst Iech $1, fir aner Säite liesen zu kënnen.',
@@ -818,7 +822,8 @@ Déi lescht Entrée am Logbuch vun de Späre steet als Referenz hei drënner:',
 'userjsyoucanpreview'              => "'''Tipp:''' Benotzt de ''{{int:showpreview}}''-Knäppchen, fir Ären neie JavaScript virum Späicheren ze testen.",
 'usercsspreview'                   => "'''Bedenkt: Dir kuckt just är Benotzer CSS.
 Si gouf nach net gespäichert!'''",
-'userjspreview'                    => "'''Denkt drun datt Dir äre Javascript nëmmen test, nach ass näischt gespäichert!'''",
+'userjspreview'                    => "'''Denkt drun datt Dir Äre Javascript nëmmen test.'''
+'''En ass nach net gespäichert!'''",
 'sitecsspreview'                   => "'''Denkt drun datt Dir dësen CSS just kuckt.
 E gouf nach net gespäichert!'''",
 'sitejspreview'                    => "'''Denkt drun datt Dir dëse JavaScript-Code just kuckt.
@@ -900,9 +905,9 @@ Si gouf anscheinend geläscht.",
 'edit-already-exists'              => 'Déi nei Säit konnt net ugeluecht ginn, well et se scho gëtt.',
 
 # Parser/template warnings
-'expensive-parserfunction-warning'        => 'Opgepasst: Dës Säit huet zevill Ufroe vu komplexe Parserfunktiounen.
+'expensive-parserfunction-warning'        => "'''Opgepasst:'' Dës Säit huet ze vill Ufroe vu komplexe Parserfunktiounen.
 
-Et däerfen net méi wéi $2 {{PLURAL:$2|Ufro|Ufroe}} sinn, aktuell {{PLURAL:$2|ass et $1 Ufro|sinn et $1 Ufroe}}.',
+Et däerfen net méi wéi $2 {{PLURAL:$2|Ufro|Ufroe}} sinn, aktuell {{PLURAL:$2|ass et $1 Ufro|sinn et $1 Ufroe}}.",
 'expensive-parserfunction-category'       => 'Säiten, déi komplex Parserfunktiounen ze dacks opruffen',
 'post-expand-template-inclusion-warning'  => "Opgepasst: D'Gréisst vun den agebonnene Schablounen ass ze grouss, e puer Schabloune kënnen net agebonne ginn.",
 'post-expand-template-inclusion-category' => "Säiten, op denen d'maximal Gréist vun agebonnene Schablounen iwwerschratt ass",
@@ -932,7 +937,7 @@ De Benotzer $3 huet "$2" als Grond uginn.',
 'revisionasof'           => 'Versioun vum $1',
 'revision-info'          => 'Versioun vum $1 vum $2.',
 'previousrevision'       => '← Méi al Versioun',
-'nextrevision'           => 'Méi rezent Ännerung→',
+'nextrevision'           => 'Méi rezent Versioun →',
 'currentrevisionlink'    => 'Aktuell Versioun',
 'cur'                    => 'aktuell',
 'next'                   => 'nächst',
@@ -1121,7 +1126,7 @@ Denkt w.e.g drunn datt d'Navigatiounslinken d'Wiel vun de Versiounen nees zréck
 'searchmenu-legend'                => 'Sichoptiounen',
 'searchmenu-exists'                => "* Säit '''[[$1]]'''",
 'searchmenu-new'                   => "'''Opmaache vun der Säit ''[[:$1|$1]]'' op dëser Wiki!'''",
-'searchhelp-url'                   => 'Help:Hëllef',
+'searchhelp-url'                   => 'Help:Inhalter',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|All Säite weisen, déi mat dem Begrëff ufänken nodeem Dir sicht]]',
 'searchprofile-articles'           => 'Säite mat Inhalt',
 'searchprofile-project'            => 'Hëllef a Projetssäiten',
@@ -1355,7 +1360,7 @@ Si muss manner wéi $1 {{PLURAL:$1|Zeechen|Zeechen}} hunn.',
 'right-reupload'              => 'E Fichier iwwerschreiwen',
 'right-reupload-own'          => 'E Fichier iwwerschreiwen deen Dir selwer eropgelueden hutt',
 'right-reupload-shared'       => 'Lokalt Iwwerschreiwe vun engem Fichier deen an engem gemeinsam benotzte Repertoire steet',
-'right-upload_by_url'         => 'E Fichier vun enger URL-Adress eroplueden',
+'right-upload_by_url'         => 'Fichiere vun enger URL-Adress eroplueden',
 'right-purge'                 => 'De Säitecache eidel maachen ouni nozefroen',
 'right-autoconfirmed'         => 'Hallef-gespaarte Säiten änneren',
 'right-bot'                   => 'Als automatesche Prozess behandelen (Bot)',
@@ -1382,7 +1387,7 @@ Si muss manner wéi $1 {{PLURAL:$1|Zeechen|Zeechen}} hunn.',
 'right-editinterface'         => 'De Benotzerinterface änneren',
 'right-editusercssjs'         => 'Anere Benotzer hir CSS a JS Fichieren änneren',
 'right-editusercss'           => 'Anere Benotzer hir CSS Fichieren änneren',
-'right-edituserjs'            => 'Anere Benotzer hir JS Fichieren änneren',
+'right-edituserjs'            => 'Anere Benotzer hir JavaScript Fichieren änneren',
 'right-rollback'              => "Ännerunge vum läschte Benotzer vun enger spezieller Säit séier z'récksetzen ''(rollback)''",
 'right-markbotedits'          => 'Annuléiert Ännerungen als Botännerunge weisen',
 'right-noratelimit'           => 'Net limitéiert duerch Zäitlimitatiounen um Server',
@@ -1456,7 +1461,7 @@ Si muss manner wéi $1 {{PLURAL:$1|Zeechen|Zeechen}} hunn.',
 'recentchanges-label-unpatrolled'   => 'Dës Ännerung gouf nach net nogekuckt',
 'rcnote'                            => "Hei {{PLURAL:$1|ass déi lescht Ännerung|sinn déi lescht '''$1''' Ännerungen}} {{PLURAL:$2|vum leschten Dag|vun de leschten '''$2''' Deeg}}, Stand: $4 ëm $5 Auer.",
 'rcnotefrom'                        => "Ugewise ginn d'Ännerunge vum '''$2''' un (maximal '''$1''' Ännerunge gi gewisen).",
-'rclistfrom'                        => 'Ännerunge vu(n) $1 u weisen',
+'rclistfrom'                        => 'Nei Ännerunge vu(n) $1 u weisen',
 'rcshowhideminor'                   => 'Kleng Ännerunge $1',
 'rcshowhidebots'                    => 'Botte $1',
 'rcshowhideliu'                     => 'Ugemellte Benotzer $1',
@@ -1479,6 +1484,7 @@ Si muss manner wéi $1 {{PLURAL:$1|Zeechen|Zeechen}} hunn.',
 'newsectionsummary'                 => 'Neien Abschnitt /* $1 */',
 'rc-enhanced-expand'                => 'Detailer weisen (erfuedert JavaScript)',
 'rc-enhanced-hide'                  => 'Detailer verstoppen',
+'rc-old-title'                      => 'original als "$1" ugeluecht',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Ännerungen op verlinkte Säiten',
@@ -1917,7 +1923,7 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi d\'Zil vun d
 'usercreated'             => "{{GENDER:$3|De(n)|D'}} $1 ëm $2 Auer ugeluecht",
 'newpages'                => 'Nei Säiten',
 'newpages-username'       => 'Benotzernumm:',
-'ancientpages'            => 'Al Säiten',
+'ancientpages'            => 'Eelste Säiten',
 'move'                    => 'Réckelen',
 'movethispage'            => 'Dës Säit réckelen',
 'unusedimagestext'        => 'Dës Fichieren gëtt et, si sinn awer a kenger Säit agebonn.
@@ -2584,7 +2590,9 @@ Wielt w.e.g. en aneren Numm.',
 'movereason'                   => 'Grond:',
 'revertmove'                   => 'zréck réckelen',
 'delete_and_move'              => 'Läschen a réckelen',
-'delete_and_move_text'         => '== Läsche vun der Destinatiounssäit néideg == D\'Säit "[[:$1]]" existéiert schonn. Wëll der se läsche fir d\'Réckelen ze erméiglechen?',
+'delete_and_move_text'         => '== Läsche vun der Destinatiounssäit néideg ==
+D\'Säit "[[:$1]]" existéiert schonn. 
+Wëll Dir se läsche fir d\'Réckelen ze erméiglechen?',
 'delete_and_move_confirm'      => "Jo, läsch d'Säit",
 'delete_and_move_reason'       => 'Geläscht fir Plaz ze maache fir "[[$1]]" heihin ze réckelen',
 'selfmove'                     => 'Source- an Destinatiounsnumm sinn dselwecht; eng Säit kann net op sech selwer geréckelt ginn.',
@@ -2904,7 +2912,7 @@ Duerch d'Opmaache vum Fichier kann Äre System beschiedegt ginn.",
 # Special:NewFiles
 'newimages'             => 'Gallerie vun den neie Biller',
 'imagelisttext'         => "Hei ass eng Lëscht vu(n) '''$1''' {{PLURAL:$1|Fichier|Fichieren}}, zortéiert $2.",
-'newimages-summary'     => 'Dës Spezialsäit weist eng Lëscht mat de Biller a Fichieren déi als läscht eropgeluede goufen.',
+'newimages-summary'     => 'Dës Spezialsäit weist eng Lëscht mat de Fichieren déi als lescht eropgeluede goufen.',
 'newimages-legend'      => 'Filter',
 'newimages-label'       => 'Numm vum Fichier (oder en Deel dovun):',
 'showhidebots'          => '($1 Botten)',
@@ -3327,7 +3335,7 @@ Déi aner sinn am Standard verstoppt.
 'exif-urgency-other'  => 'Benotzerdefinéiert Prioritéit ($1)',
 
 # External editor support
-'edit-externally'      => 'Dëse Fichier mat engem externe Programm veränneren',
+'edit-externally'      => 'Dëse Fichier mat engem externe Programm änneren',
 'edit-externally-help' => "(Fir gewuer ze gi wéi dat genee geet liest d'[//www.mediawiki.org/wiki/Manual:External_editors Installatiounsinstruktiounen].)",
 
 # 'all' in various places, this might be different for inflected languages
@@ -3597,7 +3605,7 @@ Den ugefrote Fichier gëtt direkt gewise respektiv mat enger verbonner Applikati
 'dberr-cachederror' => 'Dëst ass eng tëschegespäichert Kopie vun der gefroter Säit, a si kann eventuell net aktuell sinn.',
 
 # HTML forms
-'htmlform-invalid-input'       => 'Et gëtt Problemer mat de Wäerter déi dir aginn hutt.',
+'htmlform-invalid-input'       => 'Et gëtt Problemer mat de Wäerter déi Dir aginn hutt.',
 'htmlform-select-badoption'    => 'De Wäert deen Dir aginn hutt ass keng valabel Optioun.',
 'htmlform-int-invalid'         => 'De Wäert deen Dir aginn hutt ass keng ganz Zuel.',
 'htmlform-float-invalid'       => 'De Wäert deen Dir uginn hutt ass keng Zuel.',
@@ -3642,18 +3650,20 @@ Den ugefrote Fichier gëtt direkt gewise respektiv mat enger verbonner Applikati
 'newuserlog-byemail'                  => "d'Passwuert gouf per E-Mail geschéckt",
 
 # Feedback
-'feedback-subject'  => 'Sujet:',
-'feedback-message'  => 'Message:',
-'feedback-cancel'   => 'Ofbriechen',
-'feedback-submit'   => 'Feedback schécken',
-'feedback-adding'   => "Feedback gëtt bäi d'Säit derbäigesat...",
-'feedback-error1'   => 'Feeler: Resultat vum API gouf net erkannt',
-'feedback-error2'   => "Feeler: D'Ännerung gouf net gespäichert",
-'feedback-error3'   => 'Feeler: Keng Äntwert vum API',
-'feedback-thanks'   => 'Merci! Äre Feedback gouf op der Säit "[$2 $1]" gespäichert.',
-'feedback-close'    => 'Fäerdeg',
-'feedback-bugcheck' => 'Super! Kuckt just no ob et net ee vun de schonns [$1 bekannte Feeler] ass.',
-'feedback-bugnew'   => 'Ech hunn et nogekuckt. Den neie Bug mellen',
+'feedback-bugornote' => 'Wann Dir bereet sidd fir en technesche Problem am Detail ze beschreiwen da [$1 mellt w.e.g. e Feeler (Bug)].
+Soss kënnt Dir den einfache Formulär hei drënner benotzen. Är Bemierkung gëtt op d\'Säit "[$3 $2]" derbäigesat, zesumme mat Ärem Benotzernumm an dem Numm vum Browser deen Dir benotzt.',
+'feedback-subject'   => 'Sujet:',
+'feedback-message'   => 'Message:',
+'feedback-cancel'    => 'Ofbriechen',
+'feedback-submit'    => 'Feedback schécken',
+'feedback-adding'    => "Feedback gëtt bäi d'Säit derbäigesat...",
+'feedback-error1'    => 'Feeler: Resultat vum API gouf net erkannt',
+'feedback-error2'    => "Feeler: D'Ännerung gouf net gespäichert",
+'feedback-error3'    => 'Feeler: Keng Äntwert vum API',
+'feedback-thanks'    => 'Merci! Äre Feedback gouf op der Säit "[$2 $1]" gespäichert.',
+'feedback-close'     => 'Fäerdeg',
+'feedback-bugcheck'  => 'Super! Kuckt just no ob et net ee vun de schonns [$1 bekannte Feeler] ass.',
+'feedback-bugnew'    => 'Ech hunn et nogekuckt. Den neie Bug mellen',
 
 # API errors
 'api-error-badaccess-groups'              => 'Et ass Iech net erlaabt fir Fichieren op dës Wiki eropzelueden.',
