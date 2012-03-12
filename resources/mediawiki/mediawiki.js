@@ -611,11 +611,12 @@ var mw = ( function ( $, undefined ) {
 							filter( 'ready', jobs[j].dependencies ),
 							jobs[j].dependencies ) )
 						{
-							if ( $.isFunction( jobs[j].ready ) ) {
-								jobs[j].ready();
-							}
+							var callback = jobs[j].ready;
 							jobs.splice( j, 1 );
 							j -= 1;
+							if ( $.isFunction( callback ) ) {
+								callback();
+							}
 						}
 					}
 					// Execute modules whose dependencies have just been met
