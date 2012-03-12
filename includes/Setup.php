@@ -421,16 +421,16 @@ if ( $wgCommandLineMode ) {
 	# Can't stub this one, it sets up $_GET and $_REQUEST in its constructor
 	$wgRequest = new WebRequest;
 
-	$debug = "Start request\n\n{$_SERVER['REQUEST_METHOD']} {$wgRequest->getRequestURL()}";
+	$debug = "\n\nStart request\n{$_SERVER['REQUEST_METHOD']} {$wgRequest->getRequestURL()}\n";
 
 	if ( $wgDebugPrintHttpHeaders ) {
-		$debug .= "\nHTTP HEADERS:\n";
+		$debug .= "HTTP HEADERS:\n";
 
 		foreach ( $wgRequest->getAllHeaders() as $name => $value ) {
 			$debug .= "$name: $value\n";
 		}
 	}
-	wfDebug( "$debug\n" );
+	wfDebug( $debug );
 }
 
 wfProfileOut( $fname . '-misc1' );
