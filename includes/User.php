@@ -165,8 +165,8 @@ class User {
 	//@{
 	var $mId, $mName, $mRealName, $mPassword, $mNewpassword, $mNewpassTime,
 		$mEmail, $mTouched, $mToken, $mEmailAuthenticated,
-		$mEmailToken, $mEmailTokenExpires, $mRegistration, $mGroups, $mOptionOverrides,
-		$mEditCount, $mAllowUsertalk;
+		$mEmailToken, $mEmailTokenExpires, $mRegistration, $mEditCount,
+		$mGroups, $mOptionOverrides;
 	//@}
 
 	/**
@@ -208,6 +208,11 @@ class User {
 	 * @var Block
 	 */
 	var $mBlock;
+
+	/**
+	 * @var bool
+	 */
+	var $mAllowUsertalk;
 
 	/**
 	 * @var Block
