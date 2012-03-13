@@ -16,6 +16,8 @@ production.
   included page
 * (bug 35019) Edit summaries are no longer transformed in notification e-mails
 * (bug 35152) Help message for e-mail is shown again in user preferences
+* (bug 34887) $3 and $4 parameters are now substituted correctly in message
+  "movepage-moved"
 
 === Configuration changes in 1.19 ===
 * Removed SkinTemplateSetupPageCss hook; use BeforePageDisplay instead.
