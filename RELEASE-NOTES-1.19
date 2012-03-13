@@ -273,6 +273,8 @@ production.
 * (bug 25095) Special:Categories should also include the first relevant item
    when "from" is filled.
 * (bug 12262) Indents and lists are now aligned
+* (bug 34972) An error occurred while changing your watchlist settings for 
+  [[Special:WhatLinksHere/Example]]
 
 === API changes in 1.19 ===
 * Made action=edit less likely to return "unknownerror", by returning the actual error
