@@ -1378,6 +1378,11 @@ $wgMessageStructure = array(
 		'backend-fail-batchsize'
 	),
 
+	'filejournal-errors' => array(
+		'filejournal-fail-dbconnect',
+		'filejournal-fail-dbquery'
+	),
+
 	'lockmanager-errors' => array(
 		'lockmanager-notlocked',
 		'lockmanager-fail-closelock',
