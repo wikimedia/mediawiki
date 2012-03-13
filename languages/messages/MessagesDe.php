@@ -1880,6 +1880,9 @@ Wenn das Problem weiter besteht, informiere einen [[Special:ListUsers/sysop|Syst
 'backend-fail-contenttype'   => 'Der Inhaltstyp, der im Pfad „$1“ zu speichernden Datei, konnte nicht bestimmt werden.',
 'backend-fail-batchsize'     => 'Eine Stapelverarbeitungsdatei, die {{PLURAL:$1|eine Operation|$1 Operationen}} enthält, wurde an das Speicher-Backend gesandt. Die Begrenzung liegt allerdings bei {{PLURAL:$2|einer Operation|$2 Operationen}}.',
 
+'filejournal-fail-dbconnect' => 'Es konnte keine Verbindung zur Journaldatenbank des Speicher-Backends „$1“ hergestellt werden.',
+'filejournal-fail-dbquery'   => 'Die Journaldatenbank des Speicher-Backends „$1“ konnte nicht aktualisiert werden.',
+
 # Lock manager
 'lockmanager-notlocked'        => '„$1“ konnte nicht entsperrt werden, da keine Sperrung besteht.',
 'lockmanager-fail-closelock'   => 'Die Sperrdatei für „$1“ konnte nicht geschlossen werden.',

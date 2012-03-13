@@ -415,7 +415,9 @@ Hapót: $2',
 'protectedpagetext'    => 'An pahinang ini pigsará tangarig pogolon an paghirá.',
 'viewsourcetext'       => 'Pwede mong hilingón asin arógon an ginikanan kan pahinang ini:',
 'protectedinterface'   => 'An pahinang ini nagtatao nin interface para sa software, asin sarado tangarig mapondo an pag-abuso.',
-'editinginterface'     => "'''Patanid:''' An pighihira mong pahina piggagamit para sa tekstong interface kan software. An mga pagbabàgo sa pahinang ini makakaapektar sa hitsura kan interface nin parágamit kan mga ibang parágamit.",
+'editinginterface'     => "'''Warning:''' You are editing a page which is used to provide interface text for the software.
+Changes to this page will affect the appearance of the user interface for other users.
+For translations, please consider using [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], the MediaWiki localisation project.",
 'sqlhidden'            => '(nakatagô an hapót nin SQL)',
 'cascadeprotected'     => 'Pinoprotehirán ining páhina sa mga paghirá, ta sarô ini sa mga minasunod na {{PLURAL:$1|páhina|mga páhina}} na pinoprotehiran kan opsyón na "katarata" na nakabuká:
 $2',

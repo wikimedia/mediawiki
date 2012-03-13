@@ -346,7 +346,9 @@ Cweraedje: $2',
 'viewsource'           => 'Vey côde sourdant',
 'viewsourcetext'       => 'Loukîz li contnou di l’ årtike, et s’ li rcopyî si vos vloz, por vos bouter dsu foû des fyis :',
 'protectedinterface'   => "Cisse pådje ci dene on tecse d' eterface pol programe, eyet elle a stî protedjeye po s' waeranti siconte des abus.",
-'editinginterface'     => "'''Asteme:''' Vos candjîz ene pådje k' est eployeye po dner on tecse d' eterface pol programe. Les candjmints a cisse pådje ci vont-st aveur èn efet so l' eterface d' uzeu des ôtes uzeus.",
+'editinginterface'     => "'''Warning:''' You are editing a page which is used to provide interface text for the software.
+Changes to this page will affect the appearance of the user interface for other users.
+For translations, please consider using [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], the MediaWiki localisation project.",
 
 # Login and logout pages
 'logouttext'                 => "'''Vos vs avoz dislodjî.'''

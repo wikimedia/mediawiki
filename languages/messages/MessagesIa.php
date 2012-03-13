@@ -1698,6 +1698,9 @@ Si le problema persiste, contacta un [[Special:ListUsers/sysop|administrator]].'
 'backend-fail-contenttype'   => 'Non poteva determinar le typo de contento del file a immagazinar in "$1".',
 'backend-fail-batchsize'     => 'Le systema de immagazinage ha recipite un lot de $1 {{PLURAL:$1|operation|operationes}} de file; le limite es $2 {{PLURAL:$2|operation|operationes}}.',
 
+'filejournal-fail-dbconnect' => 'Non poteva connecter al base de datos de jornal pro le systema de immagazinage "$1".',
+'filejournal-fail-dbquery'   => 'Non poteva actualisar le base de datos de jornal pro le systema de immagazinage "$1".',
+
 # Lock manager
 'lockmanager-notlocked'        => 'Impossibile disblocar "$1"; illo non es blocate.',
 'lockmanager-fail-closelock'   => 'Non poteva clauder le file de serratura pro "$1".',

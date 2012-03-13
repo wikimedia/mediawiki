@@ -514,12 +514,16 @@ ikhssak ola kiyi ador tnqilt ɣtamani yadni.
 # Parser/template warnings
 'post-expand-template-inclusion-warning'  => 'Han:  tasna yad illa gis tuggut n tmuḍimin. Kra gitsnt ur ran illint.',
 'post-expand-template-inclusion-category' => 'Tisniwin lli bahra ittafn tuggut n tmuḍimin',
+'post-expand-template-argument-warning'   => 'Balak: Tasna ivɣ gis uggar n iɣwar n tmudimt lli ur tti ttajjan an gis tilli
+Tigira n ujbbad ns, ar takka yat tayafut bahra imqqurn,  ɣayan afan ur ttili.',
+'post-expand-template-argument-category'  => 'Tisna lliɣ llan iɣwarn n tmudimt urta lan atig',
 'parser-template-loop-warning'            => 'Tamuḍimt ikrknnin ttyufa ɣid : [[$1]]',
 
 # History pages
 'viewpagelogs'           => 'Ẓr timhlin lli ittuskarn ɣ tasna yad',
 'currentrev-asof'        => 'Amseggar amǧuru  n $1',
 'revisionasof'           => 'Askttay yaḍn f $1',
+'revision-info'          => 'Imsurritn n $1 s $2',
 'previousrevision'       => 'Iẓṛi daɣ aqbur',
 'nextrevision'           => 'Amẓr amaynu',
 'currentrevisionlink'    => 'Amcggr amggaṛu',
@@ -610,6 +614,7 @@ ikhssak ola kiyi ador tnqilt ɣtamani yadni.
 'shown-title'                      => 'Fsr $1 tayafut{{PLURAL:$1||s}} s tasna',
 'viewprevnext'                     => 'Mel ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-legend'                => 'Istayn ucnubc',
+'searchmenu-exists'                => '"\'Tlla yat tasna lli ilan assaɣ « [[:$1]] » ɣ wiki yad',
 'searchmenu-new'                   => "'''Skr Tasna « [[:$1|$1]] » ɣ wiki !'''",
 'searchhelp-url'                   => 'Help:Mayllan',
 'searchprofile-articles'           => 'Mayllan ɣ tasna',
@@ -729,6 +734,8 @@ Izdar ad urtili ɣ isbidn n mayllan ɣ {{SITENAME}} .',
 'gender-male'               => 'dkr',
 'gender-female'             => 'lont',
 'email'                     => 'email',
+'prefs-help-email'          => 'Tansa n tbratin ur tga bzzez, mac trwa ad taft taguri n uzray d ar ak tskar ast tsbadlt iɣ tti tuut.',
+'prefs-help-email-others'   => 'Tẓḍart ad tstit ad tajt wiyyaḍ ad ak ttaran, snḥkmn dik ɣ, mlinak iwnnan nsn ɣ tasna lli sik iẓlin bla ssn assaɣ nk d mad tgit.',
 'prefs-signature'           => 'sinyator',
 'prefs-dateformat'          => 'sight n loqt',
 
@@ -757,7 +764,9 @@ Izdar ad urtili ɣ isbidn n mayllan ɣ {{SITENAME}} .',
 'recentchanges-label-newpage'       => 'Ambddl ad ar iskar yakka yat tasna tamaynut.',
 'recentchanges-label-minor'         => 'Imbddl ifssusn',
 'recentchanges-label-bot'           => 'Ambddl ad iskr robot',
+'recentchanges-label-unpatrolled'   => 'Ambddl ad ura jju ittmẓra',
 'rcnote'                            => 'Γid {{PLURAL:$1|ambddl amggaru lli ittuysgarn| $1 Imbddln imggura lli ittuyskarn}} ɣ {{PLURAL:$2|was amggaru| <b>$2</b> Ussan imggura}} ar $5 n $4.',
+'rcnotefrom'                        => "Had imbddln lli ittuyskarn z '''$2''' ('''$1''' ɣ uggar).",
 'rclistfrom'                        => 'Mel imbdeltn imaynutn z $1',
 'rcshowhideminor'                   => '$1 iẓṛign fssusnin',
 'rcshowhidebots'                    => '$1 butn',
@@ -801,6 +810,7 @@ Mel imbddeln z tisniwin li ittuyzdayni bla tasna li trit.',
 'uploadnologintext'        => 'Mel zwar mat git [[Special:UserLogin|Mel mat git]] iɣ trit ad tsrbut isddawn.',
 'upload_directory_missing' => 'Akaram n w-affay ($1) ur ittyufa d urt iskr uqadac web (serveur)',
 'uploadlogpage'            => 'Anɣmis n isrbuṭn',
+'filedesc'                 => 'ⵜⴰⵍⵓⵙⵉ',
 'uploadedimage'            => 'Issrba "[[$1]]"',
 
 'license'        => 'Tlla s izrfan',
@@ -822,6 +832,8 @@ Mel imbddeln z tisniwin li ittuyzdayni bla tasna li trit.',
 'linkstoimage'              => 'Tasna yad {{PLURAL:$1|izdayn n tasna|$1 azday n tasniwin}} s usdaw:',
 'nolinkstoimage'            => 'Ḥtta kra n tasna ur tra asdaw ad',
 'sharedupload'              => 'Asdawad z $1 tẓḍart at tsxdmt gr iswirn yaḍnin',
+'sharedupload-desc-here'    => 'ⴰⵙⴷⴰⵡ ⴰⴷ ⵉⴽⴽⴰⴷ ⵣ : $1.  ⵜⵥⴹⴰⵔⵜ ⴰⵙⵙⵉ ⵜⵙⵡⵡⵓⵔ ⵖ ⵜⵉⵡⵓⵔⵉⵡⵉⵏ ⵜⴰⴹⵏ.
+ⵓⴳⴳⴰⵔ ⴼⵍⵍⴰⵙ ⵍⵍⴰⵏ ⵖ [$2 ⵜⴰⵙⵏⴰ ⵏ ⵉⵎⵍⵓⵣⵣⵓⵜⵏ] ⵍⵍⵉ ⵉⵍⵍⴰⵏ ⵖⵉⴷ.',
 'uploadnewversion-linktext' => 'Srbud tunɣilt tamaynut n usdaw ad',
 
 # Random page
@@ -829,6 +841,8 @@ Mel imbddeln z tisniwin li ittuyzdayni bla tasna li trit.',
 
 # Statistics
 'statistics' => 'Tisnaddanin',
+
+'disambiguationspage' => 'Template:Homonymie',
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|byt|byt}}',
@@ -843,7 +857,7 @@ Mel imbddeln z tisniwin li ittuyzdayni bla tasna li trit.',
 'uncategorizedpages'      => 'Tisnawinad ur llant ɣ graygan taggayt',
 'uncategorizedcategories' => 'Taggayin ur ittuyzlayn ɣ kraygan taggayt',
 'prefixindex'             => 'Tisniwin lli izwarn s ...',
-'usercreated'             => 'Tuyskar z $1 ar $2',
+'usercreated'             => '{{GENDER:$3|tuyskar}}  z $1 ar $2',
 'newpages'                => 'Tisniwin timaynutin',
 'move'                    => 'Smmatti',
 'movethispage'            => 'Smmatti tasna yad',
@@ -1258,6 +1272,9 @@ Wiyyaḍ raggis ḥbun s ɣiklli sttin kkan gantn.
 'watchlisttools-view' => 'Umuɣ n imtfrn',
 'watchlisttools-edit' => 'Ẓr tẓṛgt umuɣ lli tuytfarn',
 'watchlisttools-raw'  => 'Ẓṛig umuɣ n tisniwin',
+
+# Core parser functions
+'duplicate-defaultsort' => 'Balak: tasarut n ustay « $2 » ar tbj tallit izwarn« $1 ».',
 
 # Special:Version
 'version'                       => 'noskha',

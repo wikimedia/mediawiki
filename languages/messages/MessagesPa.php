@@ -460,6 +460,9 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'accmailtitle'               => 'ਪਾਸਵਰਡ ਭੇਜਿਆ।',
 'accmailtext'                => '"$1" ਲਈ ਪਾਸਵਰਡ $2 ਨੂੰ ਭੇਜਿਆ ਗਿਆ।',
 'newarticle'                 => '(ਨਵਾਂ)',
+'newarticletext'             => "ਤੁਸੀਂ ਕਿਸੇ ਐਸੇ ਲਿੰਕ ਰਾਹੀਂ ਉਸ ਪੰਨੇ ਤੇ ਪੁੱਜੇ ਹੋ ਜੋ ਅਜੇ ਬਣਾਇਆ ਨਹੀਂ ਗਿਆ।
+ਪੰਨਾ ਬਨਾਉਣ ਲਈ  ਹੇਠ ਦਿੱਤੇ ਖਾਨੇ ਵਿਚ ਪਾਠ ਲਿਖੋ।(ਵਧੇਰੇ ਜਾਣਕਾਰੀ ਲਈ [[{{MediaWiki:Helppage}}|ਮੱਦਦ ਪੰਨਾ]] ਦੇਖੋ)
+ਜੇ ਤੁਸੀਂ ਇੱਥੇ ਗਲਤੀ ਨਾਲ ਆਏ ਹੋ ਤਾਂ ਆਪਣੇ ਬਰਾਊਜ਼ਰ ਦੇ ਬੈਕ ('''back''') ਬਟਨ ਪਰ ਕਲਿਕ ਕਰੋ।",
 'noarticletext'              => 'ਫਿਲਹਾਲ ਇਸ ਪੰਨੇ ਤੇ ਐਸਾ ਕੋਈ ਪਾਠ ਨਹੀਂ ਹੈ।ਤੁਸੀਂ ਦੂਸਰੇ ਪੰਨਿਆਂ ਤੇ [[Special:Search/{{PAGENAME}}|ਇਸ ਪਾਠ ਦੀ ਖੋਜ]] ਕਰ ਸਕਦੇ ਹੋ।,<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ਸੰਭੰਧਿਤ ਖਾਤਿਆਂ ਵਿਚ ਖੋਜ ਸਕਦੇ ਹੋ],
 ਯਾ [{{fullurl:{{FULLPAGENAME}}|action=edit}} ਇਸ ਪੰਨੇ ਨੂੰ ਸੰਪਾਦਨ ਕਰ ਸਕਦੇ ਹੋ]</span>।',
 'noarticletext-nopermission' => '↓
@@ -698,6 +701,7 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'recentchangeslinked-title'   => '"$1" ਨਾਲ ਸੰਬੰਧਿਤ ਬਦਲਾਅ',
 'recentchangeslinked-summary' => 'ਇਹ ਸੂਚੀ ਊਨ੍ਹਾਂ ਪੰਨਿਆਂ ,ਜੋ ਇਕ ਖਾਸ ਪੰਨੇ ਨਾਲ ਸੰਬੰਧਿਤ ਹਨ, (ਯਾ ਕਿਸੇ ਖਾਸ ਸ਼੍ਰੇਣੀ ਦੇ ਮੈਂਬਰਾਂ) ਦੇ ਹਾਲ ਵਿਚ ਹੋਏ ਬਦਲਾਵਾਂ ਨੂੰ ਦਰਸ਼ਾਂਦੀ ਹੈ [[Special:Watchlist|ਤੁਹਾਡੀ ਦ੍ਰਿਸ਼ਟੀ ਗੋਚਰ ਸੂਚੀ]] ਵਿਚ ਮੌਜੂਦ ਪੰਨੇ ਮੋਟੇ ਅਖਰਾਂ ਵਿਚ ਦਿਖਾਈ ਦੇਣਗੇ।',
 'recentchangeslinked-page'    => 'ਸਫ਼ਾ ਨਾਂ:',
+'recentchangeslinked-to'      => 'ਇਸ ਦੇ ਬਦਲੇ ਇਸ ਪੰਨੇ ਨਾਲ ਜੁੜੇ ਪੰਨਿਆਂ ਵਿਚ ਹੋਏ ਬਦਲਾਅ ਦਿਖਾਓ',
 
 # Upload
 'upload'               => 'ਫਾਇਲ ਅੱਪਲੋਡ ਕਰੋ',
@@ -970,7 +974,13 @@ to upload files.',
 'whatlinkshere'            => 'ਇੱਥੇ ਕਿਹੜੇ ਲਿੰਕ',
 'whatlinkshere-title'      => '$1 ਨਾਲ ਜੁੜੇ ਹੋਏ ਪੰਨੇ',
 'whatlinkshere-page'       => 'ਸਫਾ:',
+'linkshere'                => "ਹੇਠ ਦਿੱਤੇ ਪੰਨੇ '''[[:$1]]''' ਨਾਲ ਜੋੜਦੇ ਹਨ।",
 'nolinkshere'              => "'''[[:$1]]'''ਨਾਲ ਮਿਲਦਾ ਜੁਲਦਾ ਕੋਈ ਪੰਨਾ ਨਹੀਂ ਹੈ।",
+'isredirect'               => 'ਰੀ-ਡਿਰੈਕਟ ਪੇਜ',
+'istemplate'               => 'ਟਾਕਰਾ ਕਰੋ',
+'isimage'                  => 'ਮਿਸਲ ਦੀ ਕੜੀ',
+'whatlinkshere-prev'       => '{{PLURAL:$1|ਪਿਛਲਾ|ਪਿਛਲੇ $1}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|ਅਗਲਾ|ਅਗਲੇ $1}}',
 'whatlinkshere-links'      => '← ਲਿੰਕ',
 'whatlinkshere-hideredirs' => '$1 ਗੈਰਸਿਧਾ',
 'whatlinkshere-hidelinks'  => '$1 ਲਿੰਕ',
@@ -1139,6 +1149,7 @@ to upload files.',
 'widthheightpage' => '$1 × $2, $3 ਪੇਜ਼',
 'file-info'       => 'ਫਾਇਲ ਆਕਾਰ: $1, MIME ਕਿਸਮ: $2',
 'file-info-size'  => '$1 × $2 ਪਿਕਸਲ, ਫਾਇਲ ਆਕਾਰ: $3, MIME ਕਿਸਮ: $4',
+'file-nohires'    => 'ਇਸ ਤੌਂ ਜ਼ਿਆਦਾ ਰੈਜ਼ੋਲਊਸ਼ਨ ਮੌਜੂਦ ਨਹੀਂ ਹੈ।',
 'svg-long-desc'   => 'SVG ਫਾਇਲ, nominally $1 × $2 pixels, file size: $3',
 'show-big-image'  => 'ਪੂਰਾ ਰੈਜ਼ੋਲੇਸ਼ਨ',
 
@@ -1198,6 +1209,7 @@ to upload files.',
 'exif-gpsspeed-m' => 'ਮੀਲ ਪ੍ਰਤੀ ਘੰਟਾ',
 
 # External editor support
+'edit-externally'      => 'ਬਾਹਰੀ ਫਾਰਮੂਲਾ ਲਗਾ ਕੇ ਇਸ ਮਿਸਲ ਨੂੰ ਸੰਪਾਦਨ ਕਰੋ।',
 'edit-externally-help' => '(ਵਧੇਰੇ ਜਾਣਕਾਰੀ ਲਇ [//www.mediawiki.org/wiki/Manual:External_editors setup instructions] ਇਥੇ ਦਬੋ)',
 
 # 'all' in various places, this might be different for inflected languages

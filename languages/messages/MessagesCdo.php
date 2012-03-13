@@ -207,7 +207,9 @@ Sō̤ kī só-gé̤ṳ-kó gì guāng-lī-uòng cūng-kuāng gāi-sék: $1',
 'viewsource'           => 'Káng nguòng-dâi-mā',
 'protectedpagetext'    => 'Cī hiĕk ī-gĭng ké̤ṳk sō̤ kī lāu, mâ̤-sāi siŭ-gāi.',
 'viewsourcetext'       => 'Nṳ̄ â̤-sāi káng gâe̤ng hók-cié ciā hiĕk gì nguòng-dâi-mā:',
-'editinginterface'     => "'''Gīng-gó̤:''' Nṳ̄ hiêng-câi lā̤ siŭ-gāi hiê-tūng gái-miêng gì hiĕk. Dó̤i ciā hiĕk gì gāi-biéng â̤ īng-hiōng gì-tă ê̤ṳng-hô gì gái-miêng.",
+'editinginterface'     => "'''Warning:''' You are editing a page which is used to provide interface text for the software.
+Changes to this page will affect the appearance of the user interface for other users.
+For translations, please consider using [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], the MediaWiki localisation project.",
 
 # Login and logout pages
 'logouttext'                 => "'''Nṳ̄ hiêng-câi láuk-chók lāu.'''

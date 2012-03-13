@@ -2668,7 +2668,7 @@ Mae ffolder dros dro yn eisiau.',
 
 # JavaScriptTest
 'javascripttest'                           => 'Profi JavaScript',
-'javascripttest-disabled'                  => 'Analluogwyd y swyddogaeth hon.',
+'javascripttest-disabled'                  => 'Ni alluogwyd y swyddogaeth hon ar y wici hwn.',
 'javascripttest-title'                     => 'Yn cynnal profion $1',
 'javascripttest-pagetext-noframework'      => 'Neilltuwyd y dudalen hon at gynnal profion JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Ni nabyddwyd y fframwaith profi "$1".',

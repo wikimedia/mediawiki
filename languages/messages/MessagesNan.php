@@ -1526,7 +1526,7 @@ $1',
 'lockmanager-fail-acquirelock' => '無法度套牢檔案 "$1"。',
 'lockmanager-fail-openlock'    => '無法度開"$1"這个hông套牢的檔案。',
 'lockmanager-fail-releaselock' => '無法度解套 "$1"。',
-'lockmanager-fail-db-bucket'   => '佇資料桶，提無夠愛套牢的資料。',
+'lockmanager-fail-db-bucket'   => '佇$1資料桶，提無夠愛套牢的資料。',
 'lockmanager-fail-db-release'  => '無法度共佇伺服器$1的套牢釋放掉。',
 'lockmanager-fail-svr-release' => '無法度共佇伺服器$1的套牢釋放掉。',
 
@@ -2021,18 +2021,22 @@ Téng 1 ūi siu-kái-chiá sī [[User:$3|$3]] ([[User talk:$3|talk]]{{int:pipe-s
 'restriction-level-all'           => '任何一級',
 
 # Undelete
-'undelete'            => 'Kiù thâi tiāu ê ia̍h',
-'undeletepage'        => 'Khoàⁿ kap kiù thâi tiāu ê ia̍h',
-'undeletepagetitle'   => "'''下跤包括[[:$1]]的刣掉修訂本'''",
-'viewdeletedpage'     => '看刣掉的頁',
-'undeletepagetext'    => '下跤的{{PLURAL:$1|篇頁|篇頁}}已經予人刣掉，毋過猶留佇檔案庫，而且會使救倒轉來。
+'undelete'                 => 'Kiù thâi tiāu ê ia̍h',
+'undeletepage'             => 'Khoàⁿ kap kiù thâi tiāu ê ia̍h',
+'undeletepagetitle'        => "'''下跤包括[[:$1]]的刣掉修訂本'''",
+'viewdeletedpage'          => '看刣掉的頁',
+'undeletepagetext'         => '下跤的{{PLURAL:$1|篇頁|篇頁}}已經予人刣掉，毋過猶留佇檔案庫，而且會使救倒轉來。
 檔案庫內底可能會定時清掉。',
-'undeletebtn'         => '恢復',
-'undeletelink'        => '看／恢復',
-'undeleteviewlink'    => 'Khoàⁿ',
-'undeletereset'       => '設便',
-'undeletecomment'     => '理由：',
-'undelete-search-box' => '揣刣掉的頁',
+'undelete-revision'        => '$1予$3（佇$4 $5）刣掉的修訂本。',
+'undeleterevision-missing' => '毋著抑是無去的修訂本，
+你的連結毋著，抑是彼个修訂本己經對保管庫轉回抑徙掉。',
+'undelete-nodiff'          => '無頂一个修訂本。',
+'undeletebtn'              => '恢復',
+'undeletelink'             => '看／恢復',
+'undeleteviewlink'         => 'Khoàⁿ',
+'undeletereset'            => '設便',
+'undeletecomment'          => '理由：',
+'undelete-search-box'      => '揣刣掉的頁',
 
 # Namespace form on various pages
 'namespace'      => 'Miâ-khong-kan:',
@@ -2143,9 +2147,9 @@ Téng 1 ūi siu-kái-chiá sī [[User:$3|$3]] ([[User talk:$3|talk]]{{int:pipe-s
 'databasenotlocked'   => '資料庫無封鎖牢咧。',
 
 # Move page
-'move-page'              => '徙$1',
-'move-page-legend'       => 'Sóa ia̍h',
-'movepagetext'           => "Ē-kha chit ê form> iōng lâi kái 1 ê ia̍h ê piau-tê (miâ-chheng); só·-ū siong-koan ê le̍k-sú ē tòe leh sóa khì sin piau-tê.
+'move-page'                    => '徙$1',
+'move-page-legend'             => 'Sóa ia̍h',
+'movepagetext'                 => "Ē-kha chit ê form> iōng lâi kái 1 ê ia̍h ê piau-tê (miâ-chheng); só·-ū siong-koan ê le̍k-sú ē tòe leh sóa khì sin piau-tê.
 Kū piau-tê ē chiâⁿ-chò 1 ia̍h choán khì sin piau-tê ê choán-ia̍h.
 Liân khì kū piau-tê ê liân-kiat (link) bē khì tāng--tio̍h; ē-kì-tit chhiau-chhōe siang-thâu (double) ê a̍h-sī kò·-chiòng ê choán-ia̍h.
 Lí ū chek-jīm khak-tēng liân-kiat kè-sio̍k liân tio̍h ūi.
@@ -2156,32 +2160,55 @@ Che piaú-sī nā ū têng-tâⁿ, ē-sái kā sin ia̍h soà tńg-khì goân-l�
 '''SÈ-JĪ!'''
 Tùi chē lâng tha̍k ê ia̍h lâi kóng, soá-ūi sī toā tiâu tāi-chì.
 Liâu--lo̍h-khì chìn-chêng, chhiáⁿ seng khak-tēng lí ū liáu-kái chiah-ê hiō-kó.",
-'movepagetalktext'       => "Siong-koan ê thó-lūn-ia̍h (chún ū) oân-nâ ē chū-tōng tòe leh sóa-ūi. Í-hā ê chêng-hêng '''bô chún-sǹg''': *Beh kā chit ia̍h tùi 1 ê miâ-khong-kan (namespace) soá khì lēng-gōa 1 ê miâ-khong-kan, *Sin piau-tê í-keng ū iōng--kòe ê thó-lūn-ia̍h, he̍k-chiá *Ē-kha ê sió-keh-á bô phah-kau. Í-siōng ê chêng-hêng nā-chún tī leh, lí chí-hó iōng jîn-kang ê hong-sek sóa ia̍h a̍h-sī kā ha̍p-pèng (nā ū su-iàu).",
-'movearticle'            => 'Sóa ia̍h:',
-'movenologin'            => 'Bô teng-ji̍p',
-'movenologintext'        => 'Lí it-tēng ài sī chù-chheh ê iōng-chiá jī-chhiáⁿ ū [[Special:UserLogin|teng-ji̍p]] chiah ē-tàng sóa ia̍h.',
-'movenotallowed'         => '你無授權通去徙頁',
-'movenotallowedfile'     => '你無授權通去徙檔案',
-'cant-move-user-page'    => '你無授權通去徙用者頁（無包括伊的下頁）',
-'cant-move-to-user-page' => '你無授權通去徙用者頁（下頁例外）',
-'newtitle'               => 'Khì sin piau-tê:',
-'move-watch'             => 'Kàm-sī chit ia̍h',
-'movepagebtn'            => 'Sóa ia̍h',
-'pagemovedsub'           => 'Sóa-ūi sêng-kong',
-'articleexists'          => 'Kāng miâ ê ia̍h í-keng tī leh, a̍h-sī lí kéng ê miâ bô-hāu. Chhiáⁿ kéng pa̍t ê miâ.',
-'talkexists'             => "'''Ia̍h ê loē-bûn ū soá cháu, m̄-koh siong-koan ê thó-lūn-ia̍h bô toè leh soá, in-ūi sin piau-tê pun-té tō ū hit ia̍h. Chhiáⁿ iōng jîn-kang ê hoat-tō· kā ha̍p-pèng.'''",
-'movedto'                => 'sóa khì tī',
-'movetalk'               => 'Sūn-sòa sóa thó-lūn-ia̍h',
-'movepage-page-moved'    => '$1 í-keng sóa khì tī $2.',
-'movepage-page-unmoved'  => '$1這頁袂當徙去$2',
-'movelogpage'            => '徙位記錄',
-'movelogpagetext'        => 'Ē-kha lia̍t-chhut hông soá-ūi ê ia̍h.',
-'movenosubpage'          => '這頁無下頁',
-'movereason'             => 'Lí-iû:',
-'revertmove'             => '回轉',
-'selfmove'               => 'Goân piau-tê kap sin piau-tê sio-siâng; bô hoat-tō· sóa.',
-'immobile-target-page'   => '無法度徙去指定的標題',
-'imageinvalidfilename'   => '目標的檔案名稱無適當',
+'movepagetalktext'             => "Siong-koan ê thó-lūn-ia̍h (chún ū) oân-nâ ē chū-tōng tòe leh sóa-ūi. Í-hā ê chêng-hêng '''bô chún-sǹg''': *Beh kā chit ia̍h tùi 1 ê miâ-khong-kan (namespace) soá khì lēng-gōa 1 ê miâ-khong-kan, *Sin piau-tê í-keng ū iōng--kòe ê thó-lūn-ia̍h, he̍k-chiá *Ē-kha ê sió-keh-á bô phah-kau. Í-siōng ê chêng-hêng nā-chún tī leh, lí chí-hó iōng jîn-kang ê hong-sek sóa ia̍h a̍h-sī kā ha̍p-pèng (nā ū su-iàu).",
+'movearticle'                  => 'Sóa ia̍h:',
+'movenologin'                  => 'Bô teng-ji̍p',
+'movenologintext'              => 'Lí it-tēng ài sī chù-chheh ê iōng-chiá jī-chhiáⁿ ū [[Special:UserLogin|teng-ji̍p]] chiah ē-tàng sóa ia̍h.',
+'movenotallowed'               => '你無授權通去徙頁',
+'movenotallowedfile'           => '你無授權通去徙檔案',
+'cant-move-user-page'          => '你無授權通去徙用者頁（無包括伊的下頁）',
+'cant-move-to-user-page'       => '你無授權通去徙用者頁（下頁例外）',
+'newtitle'                     => 'Khì sin piau-tê:',
+'move-watch'                   => 'Kàm-sī chit ia̍h',
+'movepagebtn'                  => 'Sóa ia̍h',
+'pagemovedsub'                 => 'Sóa-ūi sêng-kong',
+'articleexists'                => 'Kāng miâ ê ia̍h í-keng tī leh, a̍h-sī lí kéng ê miâ bô-hāu. Chhiáⁿ kéng pa̍t ê miâ.',
+'talkexists'                   => "'''Ia̍h ê loē-bûn ū soá cháu, m̄-koh siong-koan ê thó-lūn-ia̍h bô toè leh soá, in-ūi sin piau-tê pun-té tō ū hit ia̍h. Chhiáⁿ iōng jîn-kang ê hoat-tō· kā ha̍p-pèng.'''",
+'movedto'                      => 'sóa khì tī',
+'movetalk'                     => 'Sūn-sòa sóa thó-lūn-ia̍h',
+'movepage-page-moved'          => '$1 í-keng sóa khì tī $2.',
+'movepage-page-unmoved'        => '$1這頁袂當徙去$2',
+'movelogpage'                  => '徙位記錄',
+'movelogpagetext'              => 'Ē-kha lia̍t-chhut hông soá-ūi ê ia̍h.',
+'movenosubpage'                => '這頁無下頁',
+'movereason'                   => 'Lí-iû:',
+'revertmove'                   => '回轉',
+'delete_and_move'              => '刣掉而且徙走',
+'delete_and_move_text'         => '==需要刣掉==
+目標頁面"[[:$1]]"已經有矣，
+你敢真正欲為著徙頁共彼頁刣掉？',
+'delete_and_move_confirm'      => '無毋著，共刣掉彼頁。',
+'delete_and_move_reason'       => '為著徙位，[[$1]]已經刣掉。',
+'selfmove'                     => 'Goân piau-tê kap sin piau-tê sio-siâng; bô hoat-tō· sóa.',
+'immobile-source-namespace'    => '佇"$1"名空間內底袂使徙頁。',
+'immobile-target-namespace'    => '袂當共頁徙去$1名空間。',
+'immobile-target-namespace-iw' => '跨維基的連結袂當用佇徙頁。',
+'immobile-source-page'         => '這頁袂當徙振動。',
+'immobile-target-page'         => '無法度徙去指定的標題',
+'imagenocrossnamespace'        => '檔案只會當佇"檔案"名空間內底徙位。',
+'nonfile-cannot-move-to-file'  => '袂當共毋是檔案的物件徙來"檔案"名空間。',
+'imagetypemismatch'            => '新檔案尾的類型無符合伊的類型。',
+'imageinvalidfilename'         => '目標的檔案名稱無適當',
+'fix-double-redirects'         => '改新所有指到原本標題的轉向。',
+'move-leave-redirect'          => '留一个轉向',
+'protectedpagemovewarning'     => "'''KÉNG-KÒ: Pún ia̍h só tiâu leh. Kan-taⁿ ū hêng-chèng te̍k-koân ê iōng-chiá (sysop) ē-sái soá tín-tāng.'''
+Ē-kha ū choè-kīn ê kì-lio̍k thang chham-khó:",
+'semiprotectedpagemovewarning' => "'''注意：'''這頁予人保護牢咧，只有有註冊的用者通徙振動，
+下跤有最近的記錄通參考：",
+'move-over-sharedrepo'         => '== 檔案已經存在 ==
+[[:$1]]已經佇共享資源，共檔案徙到這个標題會蓋掉共享的檔案。',
+'file-exists-sharedrepo'       => '仝名的檔案已經佇共享資源，
+請用另外一个檔案名稱。',
 
 # Export
 'export'        => 'Su-chhut ia̍h',

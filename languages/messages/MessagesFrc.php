@@ -314,7 +314,9 @@ Demande: $2',
 'protectedpagetext'    => 'Cette page est barrée pour empêcher des changements.',
 'viewsourcetext'       => 'Vous pouvez voir et copier la source de cette page:',
 'protectedinterface'   => "Cette page crée le texte de l'interface pour le software, et est barrée pour empêcher l'abus.",
-'editinginterface'     => "'''Attention:'''  Vous êtes après changer une page qu'est usée pour créer le texte de l'interface pour le software.  Si vous changerait cette page, vous changerait des autres pages aussi.",
+'editinginterface'     => "'''Warning:''' You are editing a page which is used to provide interface text for the software.
+Changes to this page will affect the appearance of the user interface for other users.
+For translations, please consider using [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], the MediaWiki localisation project.",
 'sqlhidden'            => '(Demande SQL cachée)',
 'cascadeprotected'     => 'Cette page est protégée parce qu’elle est incluse par {{PLURAL:$1|la page suivante, qui est protégée|les pages suivantes, qui sont protégées}} avec l’option « protection en cascade » activée :
 $2',
