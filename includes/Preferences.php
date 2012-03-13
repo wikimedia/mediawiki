@@ -360,6 +360,7 @@ class Preferences {
 				'default' => $emailAddress,
 				'label-message' => 'youremail',
 				'section' => 'personal/email',
+				'help-messages' => $helpMessages,
 			);
 
 			$disableEmailPrefs = false;
