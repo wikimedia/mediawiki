@@ -316,6 +316,10 @@ class HistoryPager extends ReverseChronologicalPager {
 	public $lastRow = false, $counter, $historyPage, $buttons, $conds;
 	protected $oldIdChecked;
 	protected $preventClickjacking = false;
+	/**
+	 * @var array
+	 */
+	protected $parentLens;
 
 	function __construct( $historyPage, $year = '', $month = '', $tagFilter = '', $conds = array() ) {
 		parent::__construct( $historyPage->getContext() );
@@ -384,7 +388,11 @@ class HistoryPager extends ReverseChronologicalPager {
 		# Do a link batch query
 		$this->mResult->seek( 0 );
 		$batch = new LinkBatch();
+		$revIds = array();
 		foreach ( $this->mResult as $row ) {
+			if( $row->rev_parent_id ) {
+				$revIds[] = $row->rev_parent_id;
+			}
 			if( !is_null( $row->user_name ) ) {
 				$batch->add( NS_USER, $row->user_name );
 				$batch->add( NS_USER_TALK, $row->user_name );
@@ -393,8 +401,32 @@ class HistoryPager extends ReverseChronologicalPager {
 				$batch->add( NS_USER_TALK, $row->rev_user_text );
 			}
 		}
+		$this->parentLens = $this->getParentLengths( $revIds );
 		$batch->execute();
 		$this->mResult->seek( 0 );
+	}
+
+	/**
+	 * Do a batched query to get the parent revision lengths
+	 * @param $revIds array
+	 * @return array
+	 * @TODO: stolen from Contributions, refactor
+	 */
+	private function getParentLengths( array $revIds ) {
+		$revLens = array();
+		if ( !$revIds ) {
+			return $revLens; // empty
+		}
+		wfProfileIn( __METHOD__ );
+		$res = $this->mDb->select( 'revision',
+			array( 'rev_id', 'rev_len' ),
+			array( 'rev_id' => $revIds ),
+			__METHOD__ );
+		foreach ( $res as $row ) {
+			$revLens[$row->rev_id] = $row->rev_len;
+		}
+		wfProfileOut( __METHOD__ );
+		return $revLens;
 	}
 
 	/**
@@ -574,7 +606,9 @@ class HistoryPager extends ReverseChronologicalPager {
 		}
 
 		# Size is always public data
-		$prevSize = $prevRev ? $prevRev->getSize() : 0;
+		$prevSize = isset( $this->parentLens[$row->rev_parent_id] )
+			? $this->parentLens[$row->rev_parent_id]
+			: 0;
 		$sDiff = ChangesList::showCharacterDifference( $prevSize, $rev->getSize() );
 		$fSize = Linker::formatRevisionSize($rev->getSize());
 		$s .= " . . $fSize $sDiff . . ";
