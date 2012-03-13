@@ -131,8 +131,58 @@ encapsulateSelection: function( options ) {
 		var isSample = false;
 		if ( this.style.display == 'none' ) {
 			// Do nothing
+		} else if ( document.selection && document.selection.createRange ) {
+			// IE
+
+			// Note that IE9 will trigger the next section unless we check this first.
+			// See bug 35201.
+
+			activateElementOnIE( this );
+			if ( context ) {
+				context.fn.restoreCursorAndScrollTop();
+			}
+			if ( options.selectionStart !== undefined ) {
+				$(this).textSelection( 'setSelection', { 'start': options.selectionStart, 'end': options.selectionEnd } );
+			}
+
+			var selText = $(this).textSelection( 'getSelection' );
+			var scrollTop = this.scrollTop;
+			var range = document.selection.createRange();
+
+			checkSelectedText();
+			var insertText = pre + selText + post;
+			if ( options.splitlines ) {
+				insertText = doSplitLines( selText, pre, post );
+			}
+			if ( options.ownline && range.moveStart ) {
+				var range2 = document.selection.createRange();
+				range2.collapse();
+				range2.moveStart( 'character', -1 );
+				// FIXME: Which check is correct?
+				if ( range2.text != "\r" && range2.text != "\n" && range2.text != "" ) {
+					insertText = "\n" + insertText;
+					pre += "\n";
+				}
+				var range3 = document.selection.createRange();
+				range3.collapse( false );
+				range3.moveEnd( 'character', 1 );
+				if ( range3.text != "\r" && range3.text != "\n" && range3.text != "" ) {
+					insertText += "\n";
+					post += "\n";
+				}
+			}
+
+			range.text = insertText;
+			if ( isSample && options.selectPeri && range.moveStart ) {
+				range.moveStart( 'character', - post.length - selText.length );
+				range.moveEnd( 'character', - post.length );
+			}
+			range.select();
+			// Restore the scroll position
+			this.scrollTop = scrollTop;
 		} else if ( this.selectionStart || this.selectionStart == '0' ) {
 			// Mozilla/Opera
+
 			$(this).focus();
 			if ( options.selectionStart !== undefined ) {
 				$(this).textSelection( 'setSelection', { 'start': options.selectionStart, 'end': options.selectionEnd } );
@@ -182,51 +232,6 @@ encapsulateSelection: function( options ) {
 				this.selectionStart = startPos + insertText.length;
 				this.selectionEnd = this.selectionStart;
 			}
-		} else if ( document.selection && document.selection.createRange ) {
-			// IE
-			activateElementOnIE( this );
-			if ( context ) {
-				context.fn.restoreCursorAndScrollTop();
-			}
-			if ( options.selectionStart !== undefined ) {
-				$(this).textSelection( 'setSelection', { 'start': options.selectionStart, 'end': options.selectionEnd } );
-			}
-			
-			var selText = $(this).textSelection( 'getSelection' );
-			var scrollTop = this.scrollTop;
-			var range = document.selection.createRange();
-
-			checkSelectedText();
-			var insertText = pre + selText + post;
-			if ( options.splitlines ) {
-				insertText = doSplitLines( selText, pre, post );
-			}
-			if ( options.ownline && range.moveStart ) {
-				var range2 = document.selection.createRange();
-				range2.collapse();
-				range2.moveStart( 'character', -1 );
-				// FIXME: Which check is correct?
-				if ( range2.text != "\r" && range2.text != "\n" && range2.text != "" ) {
-					insertText = "\n" + insertText;
-					pre += "\n";
-				}
-				var range3 = document.selection.createRange();
-				range3.collapse( false );
-				range3.moveEnd( 'character', 1 );
-				if ( range3.text != "\r" && range3.text != "\n" && range3.text != "" ) {
-					insertText += "\n";
-					post += "\n";
-				}
-			}
-
-			range.text = insertText;
-			if ( isSample && options.selectPeri && range.moveStart ) {
-				range.moveStart( 'character', - post.length - selText.length );
-				range.moveEnd( 'character', - post.length );
-			}
-			range.select();
-			// Restore the scroll position
-			this.scrollTop = scrollTop;
 		}
 		$(this).trigger( 'encapsulateSelection', [ options.pre, options.peri, options.post, options.ownline,
 			options.replace, options.spitlines ] );
