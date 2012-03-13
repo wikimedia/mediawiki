@@ -361,6 +361,7 @@ class Preferences {
 				'default' => $emailAddress,
 				'label-message' => 'youremail',
 				'section' => 'personal/email',
+				'help-messages' => $helpMessages,
 				# 'cssclass' chosen below
 			);
 
