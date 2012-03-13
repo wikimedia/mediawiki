@@ -1193,7 +1193,7 @@ class Linker {
 		}
 		if ( $pre ) {
 			# written summary $presep autocomment (summary /* section */)
-			$auto = wfMsgExt( 'autocomment-prefix', array( 'escapenoentities', 'content' ) ) . $auto;
+			$pre .= wfMsgExt( 'autocomment-prefix', array( 'escapenoentities', 'content' ) );
 		}
 		if ( $post ) {
 			# autocomment $postsep written summary (/* section */ summary)
