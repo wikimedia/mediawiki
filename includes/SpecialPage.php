@@ -773,8 +773,8 @@ class SpecialPage {
 		// the context, but setting the language for Message class removes the
 		// interface message status, which breaks for example usernameless gender
 		// invokations. Restore the flag when not including special page in content.
-		if ( !$this->including() ) {
-			$message->setInterfaceMessageFlag( true );
+		if ( $this->including() ) {
+			$message->setInterfaceMessageFlag( false );
 		}
 		return $message;
 	}

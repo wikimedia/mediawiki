@@ -294,6 +294,7 @@ class Message {
 	public function setContext( IContextSource $context ) {
 		$this->inLanguage( $context->getLanguage() );
 		$this->title( $context->getTitle() );
+		$this->interface = true;
 
 		return $this;
 	}
