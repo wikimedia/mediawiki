@@ -708,7 +708,7 @@ abstract class FileBackendStore extends FileBackend {
 		$this->clearCache();
 
 		// Actually attempt the operation batch...
-		$subStatus = FileOp::attemptBatch( $performOps, $opts );
+		$subStatus = FileOp::attemptBatch( $performOps, $opts, $this->fileJournal );
 
 		// Merge errors into status fields
 		$status->merge( $subStatus );

@@ -45,6 +45,8 @@ abstract class FileBackend {
 	protected $readOnly; // string; read-only explanation message
 	/** @var LockManager */
 	protected $lockManager;
+	/** @var FileJournal */
+	protected $fileJournal;
 
 	/**
 	 * Create a new backend instance from configuration.
@@ -73,6 +75,9 @@ abstract class FileBackend {
 		$this->lockManager = ( $config['lockManager'] instanceof LockManager )
 			? $config['lockManager']
 			: LockManagerGroup::singleton()->get( $config['lockManager'] );
+		$this->fileJournal = isset( $config['fileJournal'] )
+			? FileJournal::factory( $config['fileJournal'], $this->name )
+			: FileJournal::factory( array( 'class' => 'NullFileJournal' ), $this->name );
 		$this->readOnly = isset( $config['readOnly'] )
 			? (string)$config['readOnly']
 			: '';
@@ -177,6 +182,8 @@ abstract class FileBackend {
 	 * 'allowStale'          : Don't require the latest available data.
 	 *                         This can increase performance for non-critical writes.
 	 *                         This has no effect unless the 'force' flag is set.
+	 * 'nonJournaled'        : Don't log this operation batch in the file journal.
+	 *                         This limits the ability of recovery scripts.
 	 * 
 	 * Remarks on locking:
 	 * File system paths given to operations should refer to files that are
