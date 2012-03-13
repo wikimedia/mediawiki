@@ -47,6 +47,8 @@ production.
 * (bug 15816) Add a switch for SETting the search_path (Postgres)
 * (bug 34521) Returning to the previous page after logging in loses any array-
   valued parameters in the query string
+* (bug 34972) An error occurred while changing your watchlist settings for 
+  [[Special:WhatLinksHere/Example]]
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
