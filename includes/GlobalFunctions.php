@@ -2929,8 +2929,8 @@ function wfShellMaintenanceCmd( $script, array $parameters = array(), array $opt
 		$cmd[] = $options['wrapper'];
 	}
 	$cmd[] = $script;
-	// Escape each parameter for shell
-	return implode( " ", array_map( 'wfEscapeShellArg', array_merge( $cmd, $parameters ) ) );
+	// Build up the full command, shell escaping each parameter
+	return implode( ' ', array_merge( $cmd, array_map( 'wfEscapeShellArg', $parameters ) ) );
 }
 
 /**
