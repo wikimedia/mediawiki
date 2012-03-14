@@ -89,9 +89,8 @@ class RecentChange {
 	 */
 	public static function newFromId( $rcid ) {
 		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select( 'recentchanges', '*', array( 'rc_id' => $rcid ), __METHOD__ );
-		if( $res && $dbr->numRows( $res ) > 0 ) {
-			$row = $dbr->fetchObject( $res );
+		$row = $dbr->selectRow( 'recentchanges', '*', array( 'rc_id' => $rcid ), __METHOD__ );
+		if( $row !== false ) {
 			return self::newFromRow( $row );
 		} else {
 			return null;
