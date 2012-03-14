@@ -1723,6 +1723,9 @@ Prosimo, preverite veljavnost in dostopnost naslova URL ter poskusite ponovno.
 'backend-fail-contenttype'   => 'Ne morem določiti vrsto vsebine datoteke za shranjevanje pri »$1«.',
 'backend-fail-batchsize'     => 'Skladiščnemu zaledju je dana vrsta $1 {{PLURAL:$1|datotečne operacije|datotečnih operacij}}; omejitev {{PLURAL:$2|je $2 operacija|sta $2 operaciji|so $2 operacije|je $2 operacij}}.',
 
+'filejournal-fail-dbconnect' => 'Ne morem se povezati z listovno zbirko podatkov za skladiščno zaledje »$1«.',
+'filejournal-fail-dbquery'   => 'Ne morem posodobiti listovne zbirke podatkov za skladiščno zaledje »$1«.',
+
 # Lock manager
 'lockmanager-notlocked'        => 'Ne morem odkleniti »$1«, saj ni zaklenjeno.',
 'lockmanager-fail-closelock'   => 'Ne morem zapreti zaklenitvene datoteke »$1«.',

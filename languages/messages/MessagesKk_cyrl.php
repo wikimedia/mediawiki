@@ -1566,6 +1566,7 @@ URL дұрыс екендігін және торап істеп тұрғаны�
 'listfiles_user'        => 'Қатысушы',
 'listfiles_size'        => 'Мөлшері',
 'listfiles_description' => 'Сипаттамасы',
+'listfiles_count'       => 'Нұсқалары',
 
 # File description page
 'file-anchor-link'          => 'Файл беті',

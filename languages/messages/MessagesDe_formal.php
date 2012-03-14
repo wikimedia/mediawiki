@@ -400,10 +400,6 @@ Prüfen Sie die URL auf Fehler, den Online-Status der Seite und versuchem Sie er
 Wenn das Problem weiter besteht, informieren Sie einen [[Special:ListUsers/sysop|System-Administrator]].',
 
 # img_auth script messages
-'img-auth-nopathinfo' => 'PATH_INFO fehlt.
-Ihr Server ist nicht dafür eingerichtet, diese Information weiterzugeben.
-Sie könnte CGI-gestützt sein und kann daher img_auth nicht ermöglichen.
-Siehe http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-nologinnWL' => 'Sie sind nicht angemeldet und „$1“ ist nicht in der weißen Liste.',
 'img-auth-isdir'      => 'Sie versuchen, auf ein Verzeichnis „$1“ zuzugreifen.
 Nur Dateizugriff ist erlaubt.',
@@ -610,8 +606,6 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'tooltip-pt-anonuserpage'        => 'Benutzerseite der IP-Adresse, von der aus Sie Änderungen durchführen',
 'tooltip-pt-mytalk'              => 'Ihre Diskussionsseite',
 'tooltip-pt-mycontris'           => 'Liste Ihrer Beiträge',
-'tooltip-n-mainpage'             => 'Besuchen Sie die Hauptseite',
-'tooltip-n-mainpage-description' => 'Besuchen Sie die Hauptseite',
 'tooltip-n-portal'               => 'Über das Projekt, was Sie tun können, wo was zu finden ist',
 'tooltip-watch'                  => 'Diese Seite zu Ihrer Beobachtungsliste hinzufügen',
 'tooltip-summary'                => 'Geben Sie eine kurze Zusammenfassung ein.',

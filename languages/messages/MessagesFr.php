@@ -1861,6 +1861,9 @@ Si le problème persiste, contactez un [[Special:ListUsers/sysop|administrateur]
 'backend-fail-contenttype'   => 'Impossible de déterminer le type de contenu du fichier à stocker en "$1".',
 'backend-fail-batchsize'     => 'Le support de stockage a fourni un lot de $1 {{PLURAL:$1|opération|opérations}} de fichier; la limite est $2 {{PLURAL:$2|opération|opérations}}.',
 
+'filejournal-fail-dbconnect' => 'Impossible de se connecter à la base de données du journal pour le terminal de stockage "$1".',
+'filejournal-fail-dbquery'   => 'Impossible de mettre à jour la base de données du journal pour le terminal de stockage "$1".',
+
 # Lock manager
 'lockmanager-notlocked'        => 'Impossible de déverrouiller « $1 » ; elle n’est pas verrouillée.',
 'lockmanager-fail-closelock'   => 'Impossible de fermer le fichier de verrou pour « $1 ».',

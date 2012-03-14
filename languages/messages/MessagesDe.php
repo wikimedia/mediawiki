@@ -3891,7 +3891,7 @@ Eine [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie der ''GNU General Public License'']
 'dberr-cachederror' => 'Folgendes ist eine Kopie des Caches der angeforderten Seite und kann veraltet sein.',
 
 # HTML forms
-'htmlform-invalid-input'       => 'Mit einigen Eingaben gibt es Probleme',
+'htmlform-invalid-input'       => 'Mit einer oder mehreren Eingaben gibt es Probleme',
 'htmlform-select-badoption'    => 'Der angegebene Wert ist keine gültige Option.',
 'htmlform-int-invalid'         => 'Der angegebene Wert ist keine Ganzzahl.',
 'htmlform-float-invalid'       => 'Der angegebene Wert ist keine Zahl.',

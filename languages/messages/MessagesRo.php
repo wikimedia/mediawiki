@@ -1800,6 +1800,7 @@ Dacă problema persistă, contactați un [[Special:ListUsers/sysop|administrator
 'backend-fail-closetemp'     => 'Imposibil de închis fișierul temporar.',
 'backend-fail-read'          => 'Imposibil de citit fișierul $1.',
 'backend-fail-create'        => 'Imposibil de creat fișierul $1.',
+'backend-fail-maxsize'       => 'Nu s-a putut crea fișierul $1 pentru că acesta este mai mare de {{PLURAL:$2|un octet|$2 octeți|$2 de octeți}}.',
 'backend-fail-contenttype'   => 'Nu s-a putut determina tipul de conținut al fișierului de stocat la „$1”.',
 
 # Lock manager

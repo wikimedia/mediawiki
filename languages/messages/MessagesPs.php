@@ -319,6 +319,7 @@ $messages = array(
 'vector-view-viewsource'   => 'سرچينه کتل',
 'actions'                  => 'کړنې',
 'namespaces'               => 'نوم-تشيالونه',
+'variants'                 => 'ډولونه',
 
 'errorpagetitle'    => 'تېروتنه',
 'returnto'          => 'بېرته $1 ته وګرځه.',
@@ -515,6 +516,7 @@ $1',
 
 # Virus scanner
 'virus-badscanner'     => "بده سازېدنه: د ويروس ناڅرګنده ځيرڅار: ''$1''",
+'virus-scanfailed'     => 'ځيرڅارنه بريالۍ نه شوه (کوډ $1)',
 'virus-unknownscanner' => 'ناڅرګند ضدويروس:',
 
 # Login and logout pages
@@ -626,19 +628,22 @@ $1',
 'resetpass-temp-password'   => 'لنډمهالی پټنوم:',
 
 # Special:PasswordReset
-'passwordreset'              => 'پټنوم بياپرځايول',
-'passwordreset-text'         => 'د دې لپاره چې ستاسې د ګڼون بشپړې څرګندنې دربرېښليک شي نو دا فورمه ډکه کړۍ.',
-'passwordreset-legend'       => 'پټنوم بياپرځايول',
-'passwordreset-username'     => 'کارن-نوم:',
-'passwordreset-domain'       => 'شپول:',
-'passwordreset-email'        => 'برېښليک پته:',
-'passwordreset-emailtitle'   => 'د {{SITENAME}} د ګڼون څرګندنې',
-'passwordreset-emailelement' => 'کارن-نوم: $1
+'passwordreset'                   => 'پټنوم بياپرځايول',
+'passwordreset-text'              => 'د دې لپاره چې ستاسې د ګڼون بشپړې څرګندنې دربرېښليک شي نو دا فورمه ډکه کړۍ.',
+'passwordreset-legend'            => 'پټنوم بياپرځايول',
+'passwordreset-username'          => 'کارن-نوم:',
+'passwordreset-domain'            => 'شپول:',
+'passwordreset-capture'           => 'د پايلې برېښليک کتل غواړې؟',
+'passwordreset-email'             => 'برېښليک پته:',
+'passwordreset-emailtitle'        => 'د {{SITENAME}} د ګڼون څرګندنې',
+'passwordreset-emailelement'      => 'کارن-نوم: $1
 لنډمهاله پټنوم: $2',
-'passwordreset-emailsent'    => 'يو يادښتي برېښليک ولېږل شو.',
+'passwordreset-emailsent'         => 'يو يادښتي برېښليک ولېږل شو.',
+'passwordreset-emailsent-capture' => 'د يادونې لپاره يو برېښليک ولېږل شو، برېښليک په لاندې توګه ښودل شوی.',
 
 # Special:ChangeEmail
 'changeemail'          => 'برېښليک پته بدلول',
+'changeemail-header'   => 'د ګڼون برېښليک پته بدلول',
 'changeemail-oldemail' => 'اوسنۍ برېښليک پته:',
 'changeemail-newemail' => 'نوې برېښليک پته:',
 'changeemail-none'     => '(هېڅ)',
@@ -755,8 +760,8 @@ $1',
 'yourdiff'                         => 'توپيرونه',
 'copyrightwarning'                 => "لطفاً په پام کې وساتۍ چې ټولې هغه ونډې چې تاسې يې {{SITENAME}} کې ترسره کوی هغه د $2 له مخې د خپرولو لپاره ګڼل کېږي (د لانورو تفصيلاتو لپاره $1 وګورۍ). که تاسې نه غواړۍ چې په ليکنو کې مو په بې رحمۍ سره لاسوهنې (سمونې) وشي او د نورو په غوښتنه پسې لانورې هم خپرې شي، نو دلته يې مه ځای پر ځای کوی..<br />
 تاسې زمونږ سره دا ژمنه هم کوی چې تاسې پخپله دا ليکنه کښلې، او يا مو د ټولګړو پاڼو او يا ورته وړيا سرچينو نه کاپي کړې ده '''لطفاً د ليکوال د اجازې نه پرته د خوندي رښتو ليکنې مه خپروی!'''",
-'longpageerror'                    => "'''ستونزه: کوم متن چې دلته تاسو ليکلی، $1 کيلوبايټه اوږد دی او دا د همدې مخ د لوړترين ټاکلي بريده، $2 کيلوبايټه، څخه اوږد دی.
-ستاسو متن نه شي خوندي کېدلای.'''",
+'longpageerror'                    => "'''تېروتنه: کوم متن چې مو ليکلی {{PLURAL:$1|يو کيلوبايټه|$1 کيلوبايټه}} اوږد دی، چې دا پخپله د حد اکثر نه {{PLURAL:$2|يو کيلوبايټه|$2 کيلوبايټه}} اوږد دی.'''
+ستاسې متن نه شي خوندي کېدلای.",
 'protectedpagewarning'             => "'''ګواښنه: همدا مخ تړل شوی او يوازې هغه کارنان په دې مخ کې بدلونونه راوستلای شي چې د پازوالۍ د آسانتياوو نه برخمن دي.'''
 ستاسې د مالوماتو لپاره د وروستني يادښت متن دلته په دې توګه راوړل شوی:",
 'semiprotectedpagewarning'         => "'''پاملرنه:''' دا مخ تړل شوی او يواځې ثبت شوي کارنان کولای شي چې په دې مخ کې بدلونونه راولي.
@@ -794,8 +799,9 @@ $1',
 پدې نوم د پخوا نه يو مخ شته.',
 
 # Parser/template warnings
-'post-expand-template-inclusion-warning' => "'''ګواښنه:''' دا کينډۍ د خپل ټاکلي بريد نه ډېره لويه ده.
+'post-expand-template-inclusion-warning'  => "'''ګواښنه:''' دا کينډۍ د خپل ټاکلي بريد نه ډېره لويه ده.
 ځينې کينډۍ به په کې ګډې نه شي.",
+'post-expand-template-inclusion-category' => 'هغه مخونه چې په کې د کارېدلو کينډيو شمېر له ټاکلې کچې ډېر دی',
 
 # "Undo" feature
 'undo-norev' => 'دا سمون ناکړ کېدلای نه شي دا ځکه چې دا سمون نشته او يا هم ړنګ شوی.',
@@ -1114,6 +1120,7 @@ $1',
 'right-move-subpages'        => 'مخونه د خپلو څېرمه مخونو سره لېږدول',
 'right-movefile'             => 'دوتنې لېږدول',
 'right-upload'               => 'دوتنې پورته کول',
+'right-upload_by_url'        => 'د يو URL نه دوتنې پورته کول',
 'right-writeapi'             => 'د API کښنې کارېدنه',
 'right-delete'               => 'مخونه ړنګول',
 'right-bigdelete'            => 'د اوږدو پېښليکونو مخونه ړنګول',
@@ -2458,6 +2465,7 @@ $5
 #ټولې regex ټوټې د دغې کرښې نه پورته ځای پر ځای کړی. دا کرښه چې څنګه ده، همداسې يې پرېږدۍ</pre>',
 
 # Special:Tags
+'tag-filter'              => '[[Special:Tags|نښلن]] چاڼګر:',
 'tag-filter-submit'       => 'چاڼګر',
 'tags-display-header'     => 'د بدلون په لړليکونو کې ښکارېدنه',
 'tags-description-header' => 'د مانا بشپړه څرګندونه',

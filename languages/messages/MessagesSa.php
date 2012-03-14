@@ -536,6 +536,7 @@ $1',
 'versionrequiredtext' => 'एतत्पृष्ठं प्रयोक्तुं मीडियाविकि इत्येतस्य $1तमा आवृत्तिः आवश्यकी। पश्यतु [[Special:Version|आवृत्ति-सूचिका]]',
 
 'ok'                      => 'अस्तु',
+'pagetitle'               => '',
 'retrievedfrom'           => '"$1" इत्यस्माद् उद्धृतम्',
 'youhavenewmessages'      => 'भवदर्थम् $1 सन्ति। ($2).',
 'newmessageslink'         => 'नूतनाः सन्देशाः',
@@ -1831,6 +1832,13 @@ $2
 'htmlform-int-invalid'         => 'भवता निर्दिष्टं मौल्यं पूर्णाङ्कः न ।',
 'htmlform-float-invalid'       => 'भवता निर्दिष्टं मौल्यं संख्या न ।',
 'htmlform-selectorother-other' => 'अन्य',
+
+# New logging system
+'logentry-move-move'                  => '$1 इति प्रयोक्त्रा $3 इत्येतत् $4 इत्येतत् प्रति चालितम्',
+'logentry-move-move-noredirect'       => '$1 इति प्रयोक्त्रा $3 इति पृष्ठम् $4 इत्येतत् प्रति चालितं, अनुप्रेषणेन विना',
+'logentry-move-move_redir'            => '↓
+$1 इत्यनेन $3 इति पृष्ठम् $4 इत्येतत् प्रति चालितं, अनुप्रेषणम् अतिक्रम्य',
+'logentry-move-move_redir-noredirect' => '$1 इति प्रयोक्त्रा $3 इति पृष्ठं $4 इत्येतत् प्रति चालितम्, अनुप्रेषणम् अतिक्रम्य, अनुप्रेषणमोचनेन च विना।',
 
 # Feedback
 'feedback-subject' => 'विषय:',
