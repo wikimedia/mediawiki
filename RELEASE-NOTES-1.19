@@ -18,6 +18,7 @@ production.
 * (bug 35152) Help message for e-mail is shown again in user preferences
 * (bug 34887) $3 and $4 parameters are now substituted correctly in message
   "movepage-moved"
+* (bug 34841) Edit links are no longer displayed when display old page versions
 
 === Configuration changes in 1.19 ===
 * Removed SkinTemplateSetupPageCss hook; use BeforePageDisplay instead.
