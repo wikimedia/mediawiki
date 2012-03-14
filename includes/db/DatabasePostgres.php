@@ -708,12 +708,17 @@ class DatabasePostgres extends DatabaseBase {
 		# Replace reserved words with better ones
 		switch( $name ) {
 			case 'user':
-				return 'mwuser';
+				return $this->realTableName( 'mwuser', $format );
 			case 'text':
-				return 'pagecontent';
+				return $this->realTableName( 'pagecontent', $format );
 			default:
-				return parent::tableName( $name, $format );
+				return $this->realTableName( $name, $format );
 		}
+	}
+
+	/* Don't cheat on installer */
+	function realTableName( $name, $format = 'quoted' ) {
+		return parent::tableName( $name, $format );
 	}
 
 	/**
@@ -990,7 +995,7 @@ class DatabasePostgres extends DatabaseBase {
 		if ( !$schema ) {
 			$schema = $this->getCoreSchema();
 		}
-		$table = $this->tableName( $table, 'raw' );
+		$table = $this->realTableName( $table, 'raw' );
 		$etable = $this->addQuotes( $table );
 		$eschema = $this->addQuotes( $schema );
 		$SQL = "SELECT 1 FROM pg_catalog.pg_class c, pg_catalog.pg_namespace n "
