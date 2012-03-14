@@ -203,6 +203,30 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
+	 *
+	 * @since 1.20
+	 *
+	 * @param $tableName string
+	 * @param $columnName string
+	 * @param $sqlPath string
+	 */
+	public function dropExtensionField( $tableName, $columnName, $sqlPath ) {
+		$this->extensionUpdates[] = array( 'dropField', $tableName, $columnName, $sqlPath, true );
+	}
+
+	/**
+	 *
+	 * @since 1.20
+	 *
+	 * @param $tableName string
+	 * @param $sqlPath string
+	 */
+	public function dropExtensionTable( $tableName, $patch, $fullpath = false ) {
+		$this->extensionUpdates[] = array( 'dropTable', $tableName, $sqlPath, true );
+	}
+
+
+	/**
 	 * Add a maintenance script to be run after the database updates are complete.
 	 * 
 	 * @since 1.19
