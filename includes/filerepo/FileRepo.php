@@ -120,9 +120,18 @@ class FileRepo {
 	}
 
 	/**
+	 * Get an explanatory message if this repo is read-only
+	 *
+	 * @return string|bool Returns false if the repo is not read-only
+	 */
+	public function getReadOnlyReason() {
+		return $this->backend->getReadOnlyReason();
+	}
+
+	/**
 	 * Prepare a single zone or list of zones for usage.
 	 * See initDeletedDir() for additional setup needed for the 'deleted' zone.
-	 * 
+	 *
 	 * @param $doZones Array Only do a particular zones
 	 * @return Status
 	 */
