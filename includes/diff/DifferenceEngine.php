@@ -1003,23 +1003,17 @@ class DifferenceEngine extends ContextSource {
 		$this->loadRevisionIds();
 
 		// Load the new revision object
-		if ( $this->mNewid && ( !$this->canUseWikiPage()
-			|| $this->mNewid !== $this->getWikiPage()->getLatest() ) )
-		{
-			$this->mNewRev = Revision::newFromId( $this->mNewid );
-		} else {
-			$this->mNewRev = $this->getWikiPage()->getRevision();
-			$this->mNewPage = $this->getTitle();
-		}
+		$this->mNewRev = $this->mNewid
+			? Revision::newFromId( $this->mNewid )
+			: Revision::newFromTitle( $this->getTitle() );
 
 		if ( !$this->mNewRev instanceof Revision ) {
 			return false;
 		}
-		if ( !$this->mNewPage instanceof Title ) {
-			$this->mNewPage = $this->mNewRev->getTitle();
-		}
+
 		// Update the new revision ID in case it was 0 (makes life easier doing UI stuff)
 		$this->mNewid = $this->mNewRev->getId();
+		$this->mNewPage = $this->mNewRev->getTitle();
 
 		// Load the old revision object
 		$this->mOldRev = false;
