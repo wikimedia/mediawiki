@@ -19,6 +19,7 @@ production.
 * (bug 34887) $3 and $4 parameters are now substituted correctly in message
   "movepage-moved"
 * (bug 34841) Edit links are no longer displayed when display old page versions
+* (bug 34889) User name should be normalized on Special:Contributions
 
 === Configuration changes in 1.19 ===
 * Removed SkinTemplateSetupPageCss hook; use BeforePageDisplay instead.

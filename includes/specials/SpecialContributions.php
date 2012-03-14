@@ -71,12 +71,16 @@ class SpecialContributions extends SpecialPage {
 		$this->opts['target'] = $target;
 		$this->opts['topOnly'] = $request->getBool( 'topOnly' );
 
-		$userObj = User::newFromName( $target, false );
+		$nt = Title::makeTitleSafe( NS_USER, $target );
+		if ( !$nt ) {
+			$out->addHTML( $this->getForm() );
+			return;
+		}
+		$userObj = User::newFromName( $nt->getText(), false );
 		if ( !$userObj ) {
 			$out->addHTML( $this->getForm() );
 			return;
 		}
-		$nt = $userObj->getUserPage();
 		$id = $userObj->getID();
 
 		if ( $this->opts['contribs'] != 'newbie' ) {
