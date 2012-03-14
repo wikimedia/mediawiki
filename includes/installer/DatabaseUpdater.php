@@ -221,7 +221,7 @@ abstract class DatabaseUpdater {
 	 * @param $tableName string
 	 * @param $sqlPath string
 	 */
-	public function dropExtensionTable( $tableName, $patch, $fullpath = false ) {
+	public function dropExtensionTable( $tableName, $sqlPath ) {
 		$this->extensionUpdates[] = array( 'dropTable', $tableName, $sqlPath, true );
 	}
 
