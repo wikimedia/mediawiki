@@ -27,6 +27,11 @@ class PostgresUpdater extends DatabaseUpdater {
 	 */
 	protected function getCoreUpdateList() {
 		return array(
+			# rename tables 1.7.3
+			# r15791 Change reserved word table names "user" and "text"
+			array( 'renameTable', 'user', 'mwuser'),
+			array( 'renameTable', 'text', 'pagecontent'),
+
 			# new sequences
 			array( 'addSequence', 'logging_log_id_seq'          ),
 			array( 'addSequence', 'page_restrictions_pr_id_seq' ),
@@ -406,7 +411,8 @@ END;
 	protected function renameTable( $old, $new ) {
 		if ( $this->db->tableExists( $old ) ) {
 			$this->output( "Renaming table $old to $new\n" );
-			$old = $this->db->addQuotes( $old );
+			$old = $this->db->realTableName( $old, "quoted" );
+			$new = $this->db->realTableName( $new, "quoted" );
 			$this->db->query( "ALTER TABLE $old RENAME TO $new" );
 		}
 	}
