@@ -108,7 +108,7 @@ abstract class FileBackend {
 	/**
 	 * Get an explanatory message if this backend is read-only
 	 * 
-	 * @return string|bool Returns falls if the backend is not read-only
+	 * @return string|bool Returns false if the backend is not read-only
 	 */
 	final public function getReadOnlyReason() {
 		return ( $this->readOnly != '' ) ? $this->readOnly : false;
