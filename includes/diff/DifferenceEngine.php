@@ -261,7 +261,7 @@ class DifferenceEngine extends ContextSource {
 				$samePage = false;
 			}
 
-			if ( $samePage && $this->mNewPage->userCan( 'edit', $user ) ) {
+			if ( $samePage && $this->mNewPage->quickUserCan( 'edit', $user ) ) {
 				if ( $this->mNewRev->isCurrent() && $this->mNewPage->userCan( 'rollback', $user ) ) {
 					$out->preventClickjacking();
 					$rollback = '&#160;&#160;&#160;' . Linker::generateRollback( $this->mNewRev );
@@ -403,7 +403,7 @@ class DifferenceEngine extends ContextSource {
 
 		if ( $this->mMarkPatrolledLink === null ) {
 			// Prepare a change patrol link, if applicable
-			if ( $wgUseRCPatrol && $this->mNewPage->userCan( 'patrol', $this->getUser() ) ) {
+			if ( $wgUseRCPatrol && $this->mNewPage->quickUserCan( 'patrol', $this->getUser() ) ) {
 				// If we've been given an explicit change identifier, use it; saves time
 				if ( $this->mRcidMarkPatrolled ) {
 					$rcid = $this->mRcidMarkPatrolled;
@@ -867,7 +867,7 @@ class DifferenceEngine extends ContextSource {
 				$editQuery['oldid'] = $rev->getID();
 			}
 
-			$msg = $this->msg( $title->userCan( 'edit', $user ) ? 'editold' : 'viewsourceold' )->escaped();
+			$msg = $this->msg( $title->quickUserCan( 'edit', $user ) ? 'editold' : 'viewsourceold' )->escaped();
 			$header .= ' (' . Linker::linkKnown( $title, $msg, array(), $editQuery ) . ')';
 			if ( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
 				$header = Html::rawElement( 'span', array( 'class' => 'history-deleted' ), $header );
