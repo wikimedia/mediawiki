@@ -225,6 +225,15 @@ abstract class DatabaseUpdater {
 		$this->extensionUpdates[] = array( 'dropTable', $tableName, $sqlPath, true );
 	}
 
+	/**
+	 *
+	 * @since 1.20
+	 *
+	 * @param $tableName string
+	 */
+	public function extensionTableExists( $tableName ) {
+		return ( $this->db->tableExists( $tableName, __METHOD__ ) );
+	}
 
 	/**
 	 * Add a maintenance script to be run after the database updates are complete.
