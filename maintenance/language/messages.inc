@@ -408,6 +408,7 @@ $wgMessageStructure = array(
 		'customjsprotected',
 		'ns-specialprotected',
 		'titleprotected',
+		'filereadonlyerror'
 	),
 	'virus' => array(
 		'virus-badscanner',
