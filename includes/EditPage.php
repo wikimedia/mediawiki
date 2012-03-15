@@ -1867,7 +1867,7 @@ class EditPage {
 	 * @return Mixed|string or false
 	 */
 	public static function extractSectionTitle( $text ) {
-		preg_match( "/^(=+)(.+)\\1(\n|$)/i", $text, $matches );
+		preg_match( "/^(=+)(.+)\\1\\s*(\n|$)/i", $text, $matches );
 		if ( !empty( $matches[2] ) ) {
 			global $wgParser;
 			return $wgParser->stripSectionName(trim($matches[2]));
