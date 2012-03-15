@@ -221,7 +221,7 @@ function wfMergeErrorArrays( /*...*/ ) {
  * @param $after Mixed: The key to insert after
  * @return Array
  */
-function wfArrayInsertAfter( $array, $insert, $after ) {
+function wfArrayInsertAfter( array $array, array $insert, $after ) {
 	// Find the offset of the element to insert after.
 	$keys = array_keys( $array );
 	$offsetByKey = array_flip( $keys );
