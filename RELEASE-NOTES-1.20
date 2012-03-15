@@ -17,8 +17,6 @@ production.
 * (bug 32341) Add upload by URL domain limitation.
 * &useskin=default will now always display the default skin. Useful for users with a
   preference for the non-default skin to look at something using the default skin.
-* (bug 31417) New ID mw-content-text around the actual page text, without categories,
-  contentSub, ... The same div often also contains the class mw-content-ltr/rtl.
 * (bug 27619) Remove preference option to display broken links as link?
 * (bug 34896) Update jQuery JSON plugin to v2.3 (2011-09-17)
 * (bug 34302) Add CSS classes to email fields in user preferences
