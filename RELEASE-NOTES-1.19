@@ -20,6 +20,8 @@ production.
   "movepage-moved"
 * (bug 34841) Edit links are no longer displayed when display old page versions
 * (bug 34889) User name should be normalized on Special:Contributions
+* (bug 35051) If heading has a trailing space after == then its name is not 
+  preloaded into edit summary on section edit
 
 === Configuration changes in 1.19 ===
 * Removed SkinTemplateSetupPageCss hook; use BeforePageDisplay instead.
