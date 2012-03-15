@@ -555,7 +555,6 @@ class RecentChange {
 			'rc_log_action' => $action,
 			'rc_params'     => $params
 		);
-		wfDebug(__METHOD__ . ": " . var_export($rc->mAttribs, TRUE) . "\n");
 
 		$rc->mExtra =  array(
 			'prefixedDBkey' => $title->getPrefixedDBkey(),
