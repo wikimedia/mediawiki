@@ -1,7 +1,7 @@
 /**
  * User-agent detection
  */
-( function( $ ) {
+( function ( $ ) {
 
 	/* Private Members */
 
@@ -18,7 +18,7 @@
 		/**
 		 * Get an object containing information about the client.
 		 *
-		 * @param nav {Object} An object with atleast a 'userAgent' and 'platform' key.=
+		 * @param nav {Object} An object with atleast a 'userAgent' and 'platform' key.
 		 * Defaults to the global Navigator object.
 		 * @return {Object} The resulting client object will be in the following format:
 		 *  {
@@ -31,7 +31,7 @@
 		 *   'versionNumber': 3.5,
 		 *  }
 		 */
-		profile: function( nav ) {
+		profile: function ( nav ) {
 			if ( nav === undefined ) {
 				nav = window.navigator;
 			}
@@ -64,15 +64,15 @@
 				// Strings which precede a version number in a user agent string - combined and used as match 1 in
 				// version detectection
 				var versionPrefixes = [
-					'camino', 'chrome', 'firefox', 'netscape', 'netscape6', 'opera', 'version', 'konqueror', 'lynx',
-					'msie', 'safari', 'ps3'
+					'camino', 'chrome', 'firefox', 'netscape', 'netscape6', 'opera', 'version', 'konqueror',
+					'lynx', 'msie', 'safari', 'ps3'
 				];
 				// Used as matches 2, 3 and 4 in version extraction - 3 is used as actual version number
 				var versionSuffix = '(\\/|\\;?\\s|)([a-z0-9\\.\\+]*?)(\\;|dev|rel|\\)|\\s|$)';
 				// Names of known browsers
 				var names = [
-					'camino', 'chrome', 'firefox', 'netscape', 'konqueror', 'lynx', 'msie', 'opera', 'safari', 'ipod',
-					'iphone', 'blackberry', 'ps3', 'rekonq'
+					'camino', 'chrome', 'firefox', 'netscape', 'konqueror', 'lynx', 'msie', 'opera',
+					'safari', 'ipod', 'iphone', 'blackberry', 'ps3', 'rekonq'
 				];
 				// Tanslations for conforming browser names
 				var nameTranslations = [];
@@ -89,9 +89,12 @@
 
 				/* Methods */
 
-				// Performs multiple replacements on a string
-				var translate = function( source, translations ) {
-					for ( var i = 0; i < translations.length; i++ ) {
+				/**
+				 * Performs multiple replacements on a string
+				 */
+				var translate = function ( source, translations ) {
+					var i;
+					for ( i = 0; i < translations.length; i++ ) {
 						source = source.replace( translations[i][0], translations[i][1] );
 					}
 					return source;
@@ -147,13 +150,13 @@
 				/* Caching */
 
 				profileCache[nav.userAgent] = {
-					'name': name,
-					'layout': layout,
-					'layoutVersion': layoutversion,
-					'platform': platform,
-					'version': version,
-					'versionBase': ( version !== x ? Math.floor( versionNumber ).toString() : x ),
-					'versionNumber': versionNumber
+					name: name,
+					layout: layout,
+					layoutVersion: layoutversion,
+					platform: platform,
+					version: version,
+					versionBase: ( version !== x ? Math.floor( versionNumber ).toString() : x ),
+					versionNumber: versionNumber
 				};
 			}
 			return profileCache[nav.userAgent];
@@ -185,26 +188,28 @@
 		 *
 		 * @return Boolean true if browser known or assumed to be supported, false if blacklisted
 		 */
-		test: function( map, profile ) {
+		test: function ( map, profile ) {
+			var conditions, dir, i, op, val;
 			profile = $.isPlainObject( profile ) ? profile : $.client.profile();
 
-			var dir = $( 'body' ).is( '.rtl' ) ? 'rtl' : 'ltr';
+			dir = $( 'body' ).is( '.rtl' ) ? 'rtl' : 'ltr';
 			// Check over each browser condition to determine if we are running in a compatible client
-			if ( typeof map[dir] !== 'object' || typeof map[dir][profile.name] === 'undefined' ) {
+			if ( typeof map[dir] !== 'object' || map[dir][profile.name] === undefined ) {
 				// Unknown, so we assume it's working
 				return true;
 			}
-			var conditions = map[dir][profile.name];
-			for ( var i = 0; i < conditions.length; i++ ) {
-				var op = conditions[i][0];
-				var val = conditions[i][1];
+			conditions = map[dir][profile.name];
+			for ( i = 0; i < conditions.length; i++ ) {
+				op = conditions[i][0];
+				val = conditions[i][1];
 				if ( val === false ) {
 					return false;
-				} else if ( typeof val == 'string' ) {
+				}
+				if ( typeof val === 'string' ) {
 					if ( !( eval( 'profile.version' + op + '"' + val + '"' ) ) ) {
 						return false;
 					}
-				} else if ( typeof val == 'number' ) {
+				} else if ( typeof val === 'number' ) {
 					if ( !( eval( 'profile.versionNumber' + op + val ) ) ) {
 						return false;
 					}
@@ -213,4 +218,4 @@
 			return true;
 		}
 	};
-} )( jQuery );
+}( jQuery ) );
