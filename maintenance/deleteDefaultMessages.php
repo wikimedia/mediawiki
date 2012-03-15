@@ -74,7 +74,7 @@ class DeleteDefaultMessages extends Maintenance {
 			$dbw->commit( __METHOD__ );
 		}
 
-		$this->output( 'done!', 'msg' );
+		$this->output( 'done!\n', 'msg' );
 	}
 }
 

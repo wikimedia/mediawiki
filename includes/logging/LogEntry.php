@@ -458,12 +458,22 @@ class ManualLogEntry extends LogEntryBase {
 
 		$logpage = SpecialPage::getTitleFor( 'Log', $this->getType() );
 		$user = $this->getPerformer();
+		$ip = "";
+		if ( $user->isAnon() ) {
+			/*
+			 * "MediaWiki default" and friends may have
+			 * no IP address in their name
+			 */
+			if ( IP::isIPAddress( $user->getName() ) ) {
+				$ip = $user->getName();
+			}
+		}
 		$rc = RecentChange::newLogEntry(
 			$this->getTimestamp(),
 			$logpage,
 			$user,
 			$formatter->getPlainActionText(),
-			$user->isAnon() ? $user->getName() : '',
+			$ip,
 			$this->getType(),
 			$this->getSubtype(),
 			$this->getTarget(),

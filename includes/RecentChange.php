@@ -382,12 +382,6 @@ class RecentChange {
 	 */
 	public static function notifyEdit( $timestamp, &$title, $minor, &$user, $comment, $oldId,
 		$lastTimestamp, $bot, $ip='', $oldSize=0, $newSize=0, $newId=0, $patrol=0 ) {
-		global $wgRequest;
-		if( !$ip ) {
-			$ip = $wgRequest->getIP();
-			if( !$ip ) $ip = '';
-		}
-
 		$rc = new RecentChange;
 		$rc->mAttribs = array(
 			'rc_timestamp'  => $timestamp,
@@ -405,7 +399,7 @@ class RecentChange {
 			'rc_bot'        => $bot ? 1 : 0,
 			'rc_moved_to_ns' => 0,
 			'rc_moved_to_title' => '',
-			'rc_ip'         => $ip,
+			'rc_ip'         => self::checkIPAddress( $ip ),
 			'rc_patrolled'  => intval($patrol),
 			'rc_new'        => 0,  # obsolete
 			'rc_old_len'    => $oldSize,
@@ -446,14 +440,6 @@ class RecentChange {
 	 */
 	public static function notifyNew( $timestamp, &$title, $minor, &$user, $comment, $bot,
 		$ip='', $size=0, $newId=0, $patrol=0 ) {
-		global $wgRequest;
-		if( !$ip ) {
-			$ip = $wgRequest->getIP();
-			if( !$ip ) {
-				$ip = '';
-			}
-		}
-
 		$rc = new RecentChange;
 		$rc->mAttribs = array(
 			'rc_timestamp'      => $timestamp,
@@ -471,7 +457,7 @@ class RecentChange {
 			'rc_bot'            => $bot ? 1 : 0,
 			'rc_moved_to_ns'    => 0,
 			'rc_moved_to_title' => '',
-			'rc_ip'             => $ip,
+			'rc_ip'             => self::checkIPAddress( $ip ),
 			'rc_patrolled'      => intval($patrol),
 			'rc_new'            => 1, # obsolete
 			'rc_old_len'        => 0,
@@ -540,12 +526,6 @@ class RecentChange {
 	public static function newLogEntry( $timestamp, &$title, &$user, $actionComment, $ip,
 		$type, $action, $target, $logComment, $params, $newId=0, $actionCommentIRC='' ) {
 		global $wgRequest;
-		if( !$ip ) {
-			$ip = $wgRequest->getIP();
-			if( !$ip ) {
-				$ip = '';
-			}
-		}
 
 		$rc = new RecentChange;
 		$rc->mAttribs = array(
@@ -564,7 +544,7 @@ class RecentChange {
 			'rc_bot'        => $user->isAllowed( 'bot' ) ? $wgRequest->getBool( 'bot', true ) : 0,
 			'rc_moved_to_ns' => 0,
 			'rc_moved_to_title' => '',
-			'rc_ip'         => $ip,
+			'rc_ip'         => self::checkIPAddress( $ip ),
 			'rc_patrolled'  => 1,
 			'rc_new'        => 0, # obsolete
 			'rc_old_len'    => null,
@@ -575,6 +555,8 @@ class RecentChange {
 			'rc_log_action' => $action,
 			'rc_params'     => $params
 		);
+		wfDebug(__METHOD__ . ": " . var_export($rc->mAttribs, TRUE) . "\n");
+
 		$rc->mExtra =  array(
 			'prefixedDBkey' => $title->getPrefixedDBkey(),
 			'lastTimestamp' => 0,
@@ -768,5 +750,19 @@ class RecentChange {
 			return '';
 		}
 		return ChangesList::showCharacterDifference( $old, $new );
+	}
+
+	public static function checkIPAddress( $ip ) {
+		global $wgRequest;
+		if ( $ip ) {
+			if ( !IP::isIPAddress( $ip ) ) {
+				throw new MWException( "Attempt to write \"" . $ip . "\" as an IP address into recent changes" );
+			}
+		} else {
+			$ip = $wgRequest->getIP();
+			if( !$ip ) 
+				$ip = '';
+		}
+		return $ip;
 	}
 }
