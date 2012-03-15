@@ -997,9 +997,6 @@ Please report this to an [[Special:ListUsers/sysop|administrator]], making note 
 'directorycreateerror' => 'Could not create directory "$1".',
 'filenotfound'         => 'Could not find file "$1".',
 'fileexistserror'      => 'Unable to write to file "$1": File exists.',
-'filereadonlyerror'    => 'Unable to the modify the file "$1" because the file repository "$2" is in read-only mode.
-	
-The administrator who locked it offered this explanation: "$3".',
 'unexpected'           => 'Unexpected value: "$1"="$2".',
 'formerror'            => 'Error: Could not submit form.',
 'badarticleerror'      => 'This action cannot be performed on this page.',
@@ -1037,6 +1034,9 @@ $2',
 'ns-specialprotected'  => 'Special pages cannot be edited.',
 'titleprotected'       => 'This title has been protected from creation by [[User:$1|$1]].
 The reason given is "\'\'$2\'\'".',
+'filereadonlyerror'    => 'Unable to the modify the file "$1" because the file repository "$2" is in read-only mode.
+	
+The administrator who locked it offered this explanation: "$3".',
 
 # Virus scanner
 'virus-badscanner'     => "Bad configuration: Unknown virus scanner: ''$1''",

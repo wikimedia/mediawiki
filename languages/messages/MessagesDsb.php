@@ -538,6 +538,9 @@ Wótpšašanje: $2',
 'customjsprotected'    => 'Njamaš pšawo, aby toś ten JavaScriptowy bok wobźěłał, dokulaž wopśimujo  wósobinske nastajenja drugego wužywarja.',
 'ns-specialprotected'  => 'Njejo móžno, boki w rumje {{ns:special}} wobźěłaś.',
 'titleprotected'       => "Bok z toś tym mjenim bu wót [[User:$1|$1]] pśeśiwo napóranjeju šćitany. Pśicyna jo ''$2''.",
+'filereadonlyerror'    => 'Njejo móžno dataju "$1" změniś, dokulaž datajowy repozitorium "$2" jo jano cytajobny.
+
+Administrator, kenž jo jen zastajił, jo toś tu pśicynu pódał: "$3".',
 
 # Virus scanner
 'virus-badscanner'     => "Špatna konfiguracija: njeznaty wirusowy scanner: ''$1''",

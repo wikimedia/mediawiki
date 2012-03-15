@@ -664,6 +664,9 @@ $2',
 'ns-specialprotected'  => 'Stránky v mennom pristore {{ns:special}} nie je možné upravovať.',
 'titleprotected'       => "Používateľ [[User:$1|$1]] zabránil vytváraniu stránky s týmto názvom.
 Udaný dôvod: ''$2''.",
+'filereadonlyerror'    => 'Nebolo možné modifikovať súbor „$1“, protože úložisko „$2“ je momentálne v režime len na čítanie.
+
+Správca serveru, ktorý úložisko zamkol, uviedol nasledovný dôvod: „$3“.',
 
 # Virus scanner
 'virus-badscanner'     => "Chybná konfigurácia: neznámy antivírus: ''$1''",
@@ -1796,6 +1799,9 @@ Ak problém pretrváva, kontaktujte [[Special:ListUsers/sysop|správcu systému]
 'backend-fail-internal'      => 'Vyskytla sa neznáma chyba v úložisku „$1“.',
 'backend-fail-contenttype'   => 'Nebolo možné určiť typ obsahu súboru, ktorý sa má uložiť na „$1“.',
 'backend-fail-batchsize'     => 'Do úložiska bola zaslaná dávka s $1 {{PLURAL:$1|operáciou|operáciami}}; limit je $2 {{PLURAL:$2|operácia|operácie|operácií}}.',
+
+'filejournal-fail-dbconnect' => 'Nepodarilo sa pripojiť k žurnálovej databáze úložiska „$1“.',
+'filejournal-fail-dbquery'   => 'Nepodarilo sa aktualizovať žurnálovú databázu úložiska „$1“.',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Nepodarilo sa odomknúť zámok „$1“; nie je zamknutý.',

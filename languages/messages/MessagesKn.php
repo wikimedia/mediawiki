@@ -187,7 +187,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'ಮುಂದು.',
 'index-category'                 => 'ಸೂಚಿನಾಮದ ಪುತಗಳು',
 'noindex-category'               => 'ಅಸುಚಿನಾಮದ ಪುತಗಳು',
-'broken-file-category'           => 'ಪುತಗಲ್ಲಿ ಮುರುದಿರುವ ಕಡತ ಕೊಂಡಿಗಳು',
+'broken-file-category'           => 'ಕಡತ ಕೊಂಡಿಗಳು ಮುರಿದಿರುವ ಪುಟಗಳು',
 
 'about'         => 'ನಮ್ಮ ಬಗ್ಗೆ',
 'article'       => 'ಲೇಖನ ಪುಟ',

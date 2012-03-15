@@ -764,6 +764,9 @@ $2',
 'ns-specialprotected'  => 'Spezialseiten können nicht bearbeitet werden.',
 'titleprotected'       => "Eine Seite mit diesem Namen kann nicht angelegt werden.
 Die Sperre wurde durch [[User:$1|$1]] mit der Begründung ''„$2“'' eingerichtet.",
+'filereadonlyerror'    => 'Die Datei „$1“ kann nicht verändert werden, da auf das Dateirepositorium „$2“ nur Lesezugriff möglich ist.
+
+Der Administrator, der den Schreibzugriff sperrte, gab folgenden Grund an: „$3“.',
 
 # Virus scanner
 'virus-badscanner'     => "Fehlerhafte Konfiguration: unbekannter Virenscanner: ''$1''",

@@ -602,13 +602,13 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'javascripttest-pagetext-skins' => 'Wählen Sie eine Benutzeroberfläche zur Durchführung der Tests aus:',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'            => 'Ihre Benutzerseite',
-'tooltip-pt-anonuserpage'        => 'Benutzerseite der IP-Adresse, von der aus Sie Änderungen durchführen',
-'tooltip-pt-mytalk'              => 'Ihre Diskussionsseite',
-'tooltip-pt-mycontris'           => 'Liste Ihrer Beiträge',
-'tooltip-n-portal'               => 'Über das Projekt, was Sie tun können, wo was zu finden ist',
-'tooltip-watch'                  => 'Diese Seite zu Ihrer Beobachtungsliste hinzufügen',
-'tooltip-summary'                => 'Geben Sie eine kurze Zusammenfassung ein.',
+'tooltip-pt-userpage'     => 'Ihre Benutzerseite',
+'tooltip-pt-anonuserpage' => 'Benutzerseite der IP-Adresse, von der aus Sie Änderungen durchführen',
+'tooltip-pt-mytalk'       => 'Ihre Diskussionsseite',
+'tooltip-pt-mycontris'    => 'Liste Ihrer Beiträge',
+'tooltip-n-portal'        => 'Über das Projekt, was Sie tun können, wo was zu finden ist',
+'tooltip-watch'           => 'Diese Seite zu Ihrer Beobachtungsliste hinzufügen',
+'tooltip-summary'         => 'Geben Sie eine kurze Zusammenfassung ein.',
 
 # Metadata
 'notacceptable' => 'Der Wiki-Server kann die Daten nicht für Ihr Ausgabegerät aufbereiten.',

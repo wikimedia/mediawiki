@@ -745,6 +745,9 @@ $2',
 'ns-specialprotected'  => 'Les pages dans l’espace de noms « {{ns:special}} » ne peuvent pas être modifiées.',
 'titleprotected'       => "Ce titre a été protégé à la création par [[User:$1|$1]].
 Le motif avancé est « ''$2'' ».",
+'filereadonlyerror'    => 'Impossible de modifier le fichier "$1" parce que le répertoire de fichiers "$2" est en lecture seule.
+
+L\'administrateur qui l\'a verrouillé a fourni cette explication: "$3".',
 
 # Virus scanner
 'virus-badscanner'     => "Mauvaise configuration : scanneur de virus inconnu : ''$1''",

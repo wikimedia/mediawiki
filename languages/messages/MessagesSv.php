@@ -698,6 +698,9 @@ $2',
 'ns-specialprotected'  => 'Specialsidor kan inte redigeras.',
 'titleprotected'       => 'Denna sidtitel har skyddats från att skapas av [[User:$1|$1]].
 Den uppgivna anledningen är "\'\'$2\'\'".',
+'filereadonlyerror'    => 'Det går inte att ändra filen "$1", eftersom fildatabasen "$2" är i skrivskyddat läge.
+
+Administratören som låste den framförde denna förklaring: "$3".',
 
 # Virus scanner
 'virus-badscanner'     => "Dålig konfigurering: okänd virusskanner: ''$1''",
@@ -1819,12 +1822,15 @@ Om problemet kvarstår, kontakta en [[Special:ListUsers/sysop|administratör]].'
 'backend-fail-read'          => 'Kunde inte läsa filen $1.',
 'backend-fail-create'        => 'Kunde inte skapa filen $1.',
 'backend-fail-maxsize'       => 'Kunde inte skapa filen $1, eftersom den är större än {{PLURAL:$2|$2|$2}} byte.',
-'backend-fail-readonly'      => 'Lagrings-backend "$1" är för närvarande skrivskyddad. Den angivna anledningen är: "$2"',
-'backend-fail-synced'        => 'Filen "$1" är i ett inkonsekvent tillstånd inom de interna lagrings-backends',
-'backend-fail-connect'       => 'Kunde inte ansluta till lagrings-backend "$1".',
-'backend-fail-internal'      => 'Ett okänt fel uppstod i lagrings-backend "$1".',
+'backend-fail-readonly'      => 'Lagringssystemet "$1" är för närvarande skrivskyddad. Den angivna anledningen är: "$2"',
+'backend-fail-synced'        => 'Filen "$1" är i ett inkonsekvent tillstånd inom de interna lagringssystemen',
+'backend-fail-connect'       => 'Kunde inte ansluta till lagringssystemet "$1".',
+'backend-fail-internal'      => 'Ett okänt fel uppstod i lagringssystemet "$1".',
 'backend-fail-contenttype'   => 'Kunde inte bestämma innehållstypen för filen att spara på "$1".',
-'backend-fail-batchsize'     => 'Lagrings-backend gavs en batch på $1 fil{{PLURAL:$1|operation|operationer}}; gränsen är $2 {{PLURAL:$2|operation|operationer}}.',
+'backend-fail-batchsize'     => 'Lagringssystemet gav en batch på $1 fil{{PLURAL:$1|operation|operationer}}; gränsen är $2 {{PLURAL:$2|operation|operationer}}.',
+
+'filejournal-fail-dbconnect' => 'Kunde inte ansluta till journaldatabasen för lagringssystemet "$1".',
+'filejournal-fail-dbquery'   => 'Kunde inte uppdatera journaldatabasen för lagringssystemet "$1".',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Kunde inte låsa upp "$1"; den är inte låst.',

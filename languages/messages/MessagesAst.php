@@ -1597,6 +1597,9 @@ Si'l problema persiste, contauta con un [[Special:ListUsers/sysop|alministrador]
 'backend-fail-contenttype'   => 'Non se pudo determinar la triba de conteníu de ficheru a guardar en "$1".',
 'backend-fail-batchsize'     => "El motor d'almacenamientu dio un llote de $1 {{PLURAL:$1|operación|operaciones}} en ficheros; el llímite ye de $2 {{PLURAL:$2|operación|operaciones}}.",
 
+'filejournal-fail-dbconnect' => 'Nun se pudo coneutar cola base de datos del diariu pal sofitu d\'almacenamientu "$1".',
+'filejournal-fail-dbquery'   => 'Nun se pudo anovar la base de datos del diariu pal sofitu d\'almacenamientu "$1".',
+
 # Lock manager
 'lockmanager-notlocked'        => 'Nun se pudo desbloquiar "$1"; nun ta bloquiáu.',
 'lockmanager-fail-closelock'   => 'Nun se pudo zarrar el ficheru de bloquéu pa "$1".',

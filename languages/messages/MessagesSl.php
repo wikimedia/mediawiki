@@ -570,6 +570,9 @@ $2',
 'ns-specialprotected'  => 'Posebnih strani ni mogoče urejati.',
 'titleprotected'       => "Uporabnik [[User:$1|$1]] je preprečil ustvarjanje strani s takim naslovom.
 Podani razlog je bil »''$2''«.",
+'filereadonlyerror'    => 'Ne morem spremeniti datoteke »$1«, ker je skladišče datotek »$2« v načinu, ki dovoljuje samo branje.
+
+Skrbnik, ki ga je zaklenil, je navedel naslednje pojasnilo: »$3«.',
 
 # Virus scanner
 'virus-badscanner'     => "Slaba konfiguracija: neznani virus skener: ''$1''",

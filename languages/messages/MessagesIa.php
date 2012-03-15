@@ -531,6 +531,9 @@ $2',
 'ns-specialprotected'  => 'Le paginas special non es modificabile.',
 'titleprotected'       => "Iste titulo ha essite protegite contra creation per [[User:$1|$1]].
 Le motivo specificate es ''$2''.",
+'filereadonlyerror'    => 'Impossibile modificar le file "$1" perque le deposito de files "$2" es in modo de lectura sol.
+
+Le administrator qui lo blocava offereva iste explication: "$3".',
 
 # Virus scanner
 'virus-badscanner'     => "Configuration incorrecte: programma antivirus non cognoscite: ''$1''",

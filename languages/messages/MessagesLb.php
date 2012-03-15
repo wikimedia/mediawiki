@@ -530,7 +530,7 @@ Et ka sinn datt et scho vun engem Anere geläscht gouf.',
 'badtitle'             => 'Schlechten Titel',
 'badtitletext'         => 'De gewënschten Titel ass net valabel, eidel, oder een net korrekten Interwiki Link.',
 'perfcached'           => 'Dës Date kommen aus dem Tëschespäicher a si méiglecherweis net aktuell. Maximal {{PLURAL:$1|ee Resultat ass|$1 Resultater sinn}} am Tësche späicher disponibel.',
-'perfcachedts'         => "Dës Donnéeë kommen aus dem Tësche späicher, a goufe fir d'lescht den $1 aktualiséiert. Maximal {{PLURAL:$4|ee Resultat ass|$4 Resultater sinn}} am Tësche späicher disponibel.",
+'perfcachedts'         => "Dës Donnéeë kommen aus dem Tëschespäicher, a goufe fir d'lescht den $1 aktualiséiert. Maximal {{PLURAL:$4|ee Resultat ass|$4 Resultater sinn}} am Tëschespäicher disponibel.",
 'querypage-no-updates' => "D'Aktualiséierung vun dëser Säit ass zur Zäit ausgeschalt. D'Date gi bis op weideres net aktualiséiert.'''",
 'wrong_wfQuery_params' => 'Falsche Parameter fir wfQuery()<br />
 Funktioun: $1<br />

@@ -930,6 +930,7 @@ $2',
 Խնդրում ենք վերանայել ձեր խմբագրման նպատակահարմարությունը։ Հարմարության համար ստորև բերված են այս էջի ջնջման և տեղափոխման տեղեկամատյանները։",
 'moveddeleted-notice'              => 'Այս էջը հեռացված է։
 Էջի մասին գրառումները տեղափոխման և ջնջման տեղեկամատյանից բերված են ստորև տեղեկության համար։',
+'log-fulllog'                      => 'Դիտել ամբողջական տեղեկամատյանը',
 'edit-conflict'                    => 'Խմբագրման ընհարում։',
 'edit-no-change'                   => 'Ձեր խմբագրումը անտեսվել է, քանի որ ոչ մի փոփոխություն չի կատարվել տեքստի մեջ։',
 
@@ -1253,7 +1254,10 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'rightsnone'     => '(ոչ մի)',
 
 # Associated actions - in the sentence "You do not have permission to X"
-'action-edit' => 'խմբագրել այս էջը',
+'action-edit'           => 'խմբագրել այս էջը',
+'action-delete'         => 'Ջնջել այս էջը',
+'action-deleterevision' => 'Ջնջել այս փոփոխությունը',
+'action-deletedhistory' => 'Դիտել այս էջի ջնջված պատմությունը',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|փոփոխություն|փոփոխություն}}',
@@ -2224,6 +2228,19 @@ Please visit [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and 
 'spam_reverting'      => 'Հետ է շրջվում վերջին տարբերակի, որը չի պարունակում հղումներ դեպի $1',
 'spam_blanking'       => 'Բոլոր տարբերակները պարունակում են հղումներ դեպի $1, մաքրում',
 
+# Info page
+'pageinfo-title'            => 'Տեղեկություններ $1-ի վերաբերյալ',
+'pageinfo-header-edits'     => 'Խմբագրումներ',
+'pageinfo-header-watchlist' => 'Հսկացանկ',
+'pageinfo-header-views'     => 'Դիտումներ',
+'pageinfo-subjectpage'      => 'Էջ',
+'pageinfo-talkpage'         => 'Քննարկման էջ',
+'pageinfo-watchers'         => 'Դիտողների քանակ',
+'pageinfo-edits'            => 'Խմբագրումների քանակ',
+'pageinfo-authors'          => 'Տարբեր հեղինակների քանակ',
+'pageinfo-views'            => 'Դիտումների քանակ',
+'pageinfo-viewsperedit'     => 'Դիտումները ըստ խմբագրումների',
+
 # Skin names
 'skinname-standard'    => 'Դասական',
 'skinname-nostalgia'   => 'Հայրենաբաղձություն',
@@ -2237,7 +2254,7 @@ Please visit [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and 
 'markaspatrolleddiff'                 => 'Նշել որպես ստուգված',
 'markaspatrolledtext'                 => 'Նշել այս էջը որպես ստուգված',
 'markedaspatrolled'                   => 'Նշված է որպես ստուգված',
-'markedaspatrolledtext'               => 'Ընտրված տարբերակը նշված է որպես ստուգված։',
+'markedaspatrolledtext'               => '[[:$1]] ընտրված տարբերակը նշված է որպես ստուգված։',
 'rcpatroldisabled'                    => 'Վերջին Փոփոխությունների Պարեկումն անջատված է',
 'rcpatroldisabledtext'                => 'Վերջին Փոփոխությունների Պարեկման հնարավորությունը անջատված է:',
 'markedaspatrollederror'              => 'Չհաջողվեց նշել որպես ստուգված',
