@@ -580,6 +580,9 @@ Pertanyaan: $2',
 'customjsprotected'    => 'Anda tidak dibenarkan menyunting laman JavaScript ini kerana ia mengandungi tetapan peribadi pengguna lain.',
 'ns-specialprotected'  => 'Laman khas tidak boleh disunting.',
 'titleprotected'       => "Tajuk ini telah dilindungi oleh [[User:$1|$1]] daripada dicipta. Sebab yang diberikan ialah ''$2''.",
+'filereadonlyerror'    => 'Fail "$1" tidak dapat diubah suai kerana repositori fail "$2" berada dalam ragam baca sahaja.
+
+Sebab yang diberikan ialah "\'\'$3\'\'".',
 
 # Virus scanner
 'virus-badscanner'     => "Konfigurasi rosak: pengimbas virus yang tidak diketahui: ''$1''",

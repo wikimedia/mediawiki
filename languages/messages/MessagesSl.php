@@ -9,6 +9,7 @@
  *
  * @author Dbc334
  * @author Freakolowsky
+ * @author Irena Plahuta
  * @author McDutchie
  * @author Smihael
  * @author XJamRastafire

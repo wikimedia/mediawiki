@@ -734,9 +734,9 @@ $2',
 دەتوانی بۆ ئەم ناوە لە [[Special:Search/{{PAGENAME}}|پەڕەکانی تردا بگەڕێی]] یان <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} لە لۆگە پەیوەندیدارەکاندا بگەڕێی]</span>.',
 'userpage-userdoesnotexist'        => 'هەژماری بەکارهێنەری "<nowiki>$1</nowiki>" تۆمار نەکراوە.<br />
 گەر دەتەوێ ئەم لاپەڕە درووست‌کەی یان دەستکاری بکەی تکایە تاقی‌بکەوە .',
-'clearyourcache'                   => "'''ئاگاداری:''' لە دوای پاشەکەوت کردن، لەوانەیە  بۆ بینینی گۆڕانکارییەکان پێویست بێ کاشی وێبگەڕەکەت دەور لێ‌دەیتەوە.
-* '''Firefox / Safari:''' دوگمەی ''Shift'' بگرە کاتێک لەسەر ''Reload''دا کرتە دەکەی، یان ھەرکام لە ''Ctrl-F5'' یان ''Ctrl-R'' لێبدە (''Command-R'' لەسەر Mac دا)
-* '''Google Chrome:''' دوگمەکانی ''Ctrl-Shift-R'' لێبدە  (''Command-Shift-R'' لەسەر Mac دا)
+'clearyourcache'                   => "'''ئاگاداری:''' لە دوای پاشەکەوت کردن، لەوانەیە  بۆ بینینی گۆڕانکارییەکان پێویست بێ کاشی وێبگەڕەکەت پاکبکەیتەوە.
+* '''Firefox / Safari:''' دوگمەی ''Shift'' بگرە کاتێک لەسەر ''Reload''دا کرتە دەکەی، یان ھەرکام لە ''Ctrl-F5'' یان ''Ctrl-R'' لێبدە (''⌘-R'' لەسەر Mac دا)
+* '''Google Chrome:''' دوگمەکانی ''Ctrl-Shift-R'' لێبدە  (''⌘-Shift-R'' لەسەر Mac دا)
 * '''Internet Explorer:''' دوگمەی ''Ctrl'' بگرە کاتێک لەسەر  ''Refresh''دا کرتە دەکەی، یان ''Ctrl-F5'' لێبدە
 * '''Konqueror:''' کرتە بکە لەسەر ''Reload'' یان دوگمەی ''F5'' لێبدە
 * '''Opera:''' کاشەکە لە ڕێگەی ''Tools → Preferences'' بسڕەوە.",
@@ -1118,12 +1118,13 @@ $1",
 'prefs-rc'                      => 'دوایین گۆڕانکارییەکان',
 'prefs-watchlist'               => 'لیستی چاودێری',
 'prefs-watchlist-days'          => 'ژمارەی ڕۆژەکان بۆ نیشاندان لە لیستی چاودێری:',
-'prefs-watchlist-days-max'      => 'Maximum $1 {{PLURAL:$1|day|days}}',
+'prefs-watchlist-days-max'      => 'ئەوپەڕی $1 {{PLURAL:$1|ڕۆژە|ڕۆژە}}',
 'prefs-watchlist-edits'         => 'ئەوپەڕی ژمارەی گۆڕانکارییەکان بۆ نیشاندان لە لیستی چاودێریی پەرەپێدراو:',
 'prefs-watchlist-edits-max'     => 'ئەوپەڕی ژمارە: ١٠٠٠',
 'prefs-watchlist-token'         => 'ڕەمزی لیستی چاودێری:',
 'prefs-misc'                    => 'جۆراوجۆر',
 'prefs-resetpass'               => 'تێپەڕوشە بگۆڕە',
+'prefs-changeemail'             => 'ئەدرەسی ئیمەیل بگۆڕە',
 'prefs-email'                   => 'ھەڵبژاردەکانی ئیمەیل',
 'prefs-rendering'               => 'ڕواڵەت',
 'saveprefs'                     => 'پاشەکەوت',
@@ -1216,7 +1217,7 @@ $1",
 'userrights-lookup-user'      => 'بەڕێوەبردنی گرووپەکانی بەکارهێنەران',
 'userrights-user-editname'    => 'ناوی بەکارهێنەرێک بنووسە:',
 'editusergroup'               => 'گرووپەکانی بەکارهێنەر بگۆڕە',
-'editinguser'                 => "گۆڕینی مافەکانی بەکارهێنەر بۆ '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                 => "گۆڕینی مافەکانی بەکارهێنەر '''[[User:$1|$1]]''' $2",
 'userrights-editusergroup'    => 'دەستکاری کردنی گرووپەکانی بەکارهێنەران',
 'saveusergroups'              => 'گرووپی بەکارهێنەران پاشەکەوت بکە',
 'userrights-groupsmember'     => 'ئەندامە لە:',
@@ -1353,6 +1354,7 @@ $1",
 'action-userrights'           => 'دەستکاری مافەکانی هەموو بەکارهێنەران',
 'action-userrights-interwiki' => 'دەستکاری مافەکانی بەکارهێنەریی بەکارهێنەران لە ویکی‌یەکانی دیکە‌دا',
 'action-siteadmin'            => 'داخستن یا کردنەوەی بنکەدراو',
+'action-sendemail'            => 'ناردنی ئیمەیلەکان',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|گۆڕانکاری|گۆڕانکاری}}',

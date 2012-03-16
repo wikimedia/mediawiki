@@ -503,6 +503,9 @@ ikhssak ola kiyi ador tnqilt ɣtamani yadni.
 'template-semiprotected'           => 'Azin-ugdal',
 'hiddencategories'                 => '{{PLURAL:$1|Taggayt iḥban|Taggayin ḥbanin}} lli ɣtlla tasba yad :',
 'permissionserrorstext-withaction' => 'Urak ittuyskar  {{IGGUT:||e|(e)}} s $2, bac {{PLURAL:$1|s wacku yad|iwackutn ad}} :',
+'recreate-moveddeleted-warn'       => '"Balak z ɣin: tmmaɣt addaɣ tskrt tasna lli yad ittuykkasn."
+Ẓr zwar is ifulki ad tfrt imbddln ɣ tasna yad. Tanɣmast n mad ittuykkasn d mad ibddln ttla ɣid ɣ uzddar.',
+'moveddeleted-notice'              => 'Tasna yad ttuykkas. inɣmas n tuyykkas d issmmattayn nsn llan ɣ ɣ ufflla i tusna.',
 'log-fulllog'                      => 'Zṛ anɣmas izun (usmmid)',
 'edit-hook-aborted'                => 'Imbddln ur ttuyskarnin.. Ur ittuyssan maɣ',
 'edit-gone-missing'                => 'Ur iga as f was tasnayad
@@ -810,8 +813,15 @@ Mel imbddeln z tisniwin li ittuyzdayni bla tasna li trit.',
 'uploadnologintext'        => 'Mel zwar mat git [[Special:UserLogin|Mel mat git]] iɣ trit ad tsrbut isddawn.',
 'upload_directory_missing' => 'Akaram n w-affay ($1) ur ittyufa d urt iskr uqadac web (serveur)',
 'uploadlogpage'            => 'Anɣmis n isrbuṭn',
-'filedesc'                 => 'ⵜⴰⵍⵓⵙⵉ',
+'filename'                 => 'Assaɣ n usdaw',
+'filedesc'                 => 'Talusi',
+'fileuploadsummary'        => 'Talusi',
+'filereuploadsummary'      => 'Imbddln n usdaw',
+'filestatus'               => 'Izrfan ḥbanin',
+'filesource'               => 'Aɣbalu',
 'uploadedimage'            => 'Issrba "[[$1]]"',
+'upload-source'            => 'Aɣbalu n usdaw',
+'sourcefilename'           => 'Aɣbalu n ussaɣ n usdaw',
 
 'license'        => 'Tlla s izrfan',
 'license-header' => 'Tẓrg ddu n izrfan',
@@ -1315,6 +1325,16 @@ Wiyyaḍ raggis ḥbun s ɣiklli sttin kkan gantn.
 
 # Special:BlankPage
 'blankpage' => 'tawriqt orgiss walo',
+
+# External image whitelist
+'external_image_whitelist' => '# Ajji aṣṭtar nna ɣiklli iga. <pre>
+# Ml igzman n tannayin (ɣir imi lli illan gr//) ɣ uzddar ɣid.
+# Rad tmiqqirn d tansiwin URL n tiwlaf n brra.
+# Tilli dis tmiqqirnin rad baynt zund tiwlaf, niɣd yan uzday s tawlaft arad ibayn.
+# Isṭṭarn lli ittizwirn s # rad gin zund iwnnan.
+# Tasna yad tfta d ugmmaḍ ad
+
+# Gatn igzman n iwnnan ɣ uflla n usṭṭar ad. Ajji yataṣṭṭar amggaru ɣiklli iga. </pre>',
 
 # Special:Tags
 'tag-filter'           => 'Astay n [[Special:Tags|balises]] :',

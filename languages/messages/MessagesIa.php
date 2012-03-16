@@ -533,7 +533,7 @@ $2',
 Le motivo specificate es ''$2''.",
 'filereadonlyerror'    => 'Impossibile modificar le file "$1" perque le deposito de files "$2" es in modo de lectura sol.
 
-Le administrator qui lo blocava offereva iste explication: "$3".',
+Le motivo fornite es "\'\'$3\'\'".',
 
 # Virus scanner
 'virus-badscanner'     => "Configuration incorrecte: programma antivirus non cognoscite: ''$1''",

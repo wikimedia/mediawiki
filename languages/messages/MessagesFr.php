@@ -747,7 +747,7 @@ $2',
 Le motif avancé est « ''$2'' ».",
 'filereadonlyerror'    => 'Impossible de modifier le fichier "$1" parce que le répertoire de fichiers "$2" est en lecture seule.
 
-L\'administrateur qui l\'a verrouillé a fourni cette explication: "$3".',
+Le motif fourni est "\'\'$3\'\'".',
 
 # Virus scanner
 'virus-badscanner'     => "Mauvaise configuration : scanneur de virus inconnu : ''$1''",

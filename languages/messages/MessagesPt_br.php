@@ -2191,7 +2191,7 @@ Pode haver [[{{MediaWiki:Listgrouprights-helppage}}|informações adicionais]] s
 'emailpagetext'        => 'Você pode usar o formulário abaixo para enviar uma mensagem por correio eletrônico para este usuário.
 O endereço eletrônico que você inseriu em [[Special:Preferences|suas preferências de usuário]] irá aparecer como o endereço do remetente da mensagem, então o destinatário poderá responder diretamente para você.',
 'usermailererror'      => 'Erro no email:',
-'defemailsubject'      => '{{SITENAME}} e-mail do usuário "$1"',
+'defemailsubject'      => 'E-mail do usuário "$1" da {{SITENAME}}',
 'usermaildisabled'     => 'O e-mail do usuário foi desativado',
 'usermaildisabledtext' => 'Você não tem como enviar e-mails a outros usuários deste wiki.',
 'noemailtitle'         => 'Sem endereço de e-mail',
@@ -3796,7 +3796,7 @@ As imagens serão exibidas em sua resolução máxima, outros tipos de arquivos 
 'logentry-newusers-newusers'          => '$1 criou uma conta de usuário',
 'logentry-newusers-create'            => '$1 criou uma conta de usuário',
 'logentry-newusers-create2'           => '$1 criou uma conta de usuário $3',
-'logentry-newusers-autocreate'        => 'A conta $1 foi criada automaticalmente',
+'logentry-newusers-autocreate'        => 'A conta $1 foi criada automaticamente',
 'newuserlog-byemail'                  => 'senha enviada por correio-eletrônico',
 
 # Feedback

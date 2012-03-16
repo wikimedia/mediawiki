@@ -664,9 +664,9 @@ $2',
 'ns-specialprotected'  => 'Stránky v mennom pristore {{ns:special}} nie je možné upravovať.',
 'titleprotected'       => "Používateľ [[User:$1|$1]] zabránil vytváraniu stránky s týmto názvom.
 Udaný dôvod: ''$2''.",
-'filereadonlyerror'    => 'Nebolo možné modifikovať súbor „$1“, protože úložisko „$2“ je momentálne v režime len na čítanie.
+'filereadonlyerror'    => "Nebolo možné modifikovať súbor „$1“, protože úložisko „$2“ je momentálne v režime len na čítanie.
 
-Správca serveru, ktorý úložisko zamkol, uviedol nasledovný dôvod: „$3“.',
+Udaný dôvod: „''$3''“.",
 
 # Virus scanner
 'virus-badscanner'     => "Chybná konfigurácia: neznámy antivírus: ''$1''",

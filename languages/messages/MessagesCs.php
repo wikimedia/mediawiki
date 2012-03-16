@@ -736,9 +736,9 @@ $2',
 'customjsprotected'    => 'Nemáte povoleno editovat tuto stránku s JavaScriptem, protože obsahuje osobní nastavení jiného uživatele.',
 'ns-specialprotected'  => 'Stránky ve jmenném prostoru {{ns:special}} nelze editovat.',
 'titleprotected'       => "Stránku s tímto názvem nelze založit, protože název zamknul uživatel [[User:$1|$1]] s odůvodněním: ''$2''.",
-'filereadonlyerror'    => 'Nelze změnit soubor „$1“, protože úložiště souborů „$2“ je momentálně pouze pro čtení.
+'filereadonlyerror'    => "Nelze změnit soubor „$1“, protože úložiště souborů „$2“ je momentálně pouze pro čtení.
 
-Správce serveru, který úložiště zamkl, poskytl toto zdůvodnění: „$3“.',
+Udaný důvod: „''$3''“.",
 
 # Virus scanner
 'virus-badscanner'     => "Špatná konfigurace: neznámý antivirový program: ''$1''",
@@ -1849,6 +1849,9 @@ Kontaktuje prosím [[Special:ListUsers/sysop|správce]].',
 'backend-fail-internal'      => 'V koncovém úložném systému „$1“ došlo k neznámé chybě.',
 'backend-fail-contenttype'   => 'Nelze určit typ obsahu souboru k uložení do „$1“.',
 'backend-fail-batchsize'     => 'Koncový úložný systém přijal dávku s $1 {{PLURAL:souborovou operací|souborovými operacemi}}; maximum je {{PLURAL:$2|$2}}.',
+
+'filejournal-fail-dbconnect' => 'Nelze se připojit k žurnálové databázi pro koncový úložný systém „$1“.',
+'filejournal-fail-dbquery'   => 'Nepodařilo se aktualizovat žurnálovou databázi pro koncový úložný systém „$1“.',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Soubor „$1“ nelze odemknout, neboť není zamčen.',

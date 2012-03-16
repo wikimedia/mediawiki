@@ -2233,7 +2233,7 @@ Encontram-se disponíveis [[{{MediaWiki:Listgrouprights-helppage}}|informações
 'emailpagetext'        => 'Pode usar o formulário abaixo para enviar uma mensagem por correio electrónico para este utilizador.
 O endereço de correio que introduziu nas suas [[Special:Preferences|preferências]] irá aparecer no campo do remetente da mensagem "De:", para que o destinatário lhe possa responder directamente.',
 'usermailererror'      => 'O sistema de correio devolveu o erro:',
-'defemailsubject'      => '{{SITENAME}} e-mail do usuário "$1"',
+'defemailsubject'      => 'E-mail do usuário "$1" da {{SITENAME}}',
 'usermaildisabled'     => 'Correio electrónico do utilizador foi desactivado',
 'usermaildisabledtext' => 'Não pode enviar correio electrónico aos outros utilizadores desta wiki',
 'noemailtitle'         => 'Sem endereço de correio electrónico',

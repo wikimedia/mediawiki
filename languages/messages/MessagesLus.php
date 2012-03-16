@@ -591,6 +591,7 @@ I rawn tùrin siamm-danglamna chanchin ziaka kan dahţhat thar ber a hnuaiah khu
 'sectioneditnotsupported-title'    => 'Hlawm siamţhat bing theih loh',
 'sectioneditnotsupported-text'     => 'He phêkah hian hlawm siamţhat bing theih a ni lo.',
 'permissionserrors'                => 'Phalna dikhlel',
+'permissionserrorstext'            => 'He thil tih phalna hi i nei lo, a chhan{{PLURAL:$1||-te}} chu:',
 'permissionserrorstext-withaction' => '$2: he thil tih phalna hi i nei lo, a chhan{{PLURAL:$1||-te}} chu:',
 'recreate-moveddeleted-warn'       => "'''Vaukhanna: A hmaa paih tawh phêk i thar thawh leh a.'''
 He phêk buaipui chhunzawm hi a remchang nge chang lo tih inbihchiang rawh.
@@ -1094,17 +1095,26 @@ A hming thlâk la bei ţha leh rawh.',
 'log' => 'Chanchin-ziak',
 
 # Special:AllPages
-'allpages'       => 'Phek zawng zawngte',
-'alphaindexline' => '$1 aţanga $2',
-'nextpage'       => 'Phek dawt ($1)',
-'prevpage'       => 'Phêk hmasa ($1)',
-'allarticles'    => 'Phek zawng zawngte',
-'allpagesprev'   => 'Hma',
-'allpagesnext'   => 'Dawt',
-'allpagessubmit' => 'Kal rawh le',
+'allpages'          => 'Phek zawng zawngte',
+'alphaindexline'    => '$1 aţanga $2',
+'nextpage'          => 'Phek dawt ($1)',
+'prevpage'          => 'Phêk hmasa ($1)',
+'allarticles'       => 'Phek zawng zawngte',
+'allinnamespace'    => 'Phêk zawng zawng (hminghmun $1-a mi)',
+'allnotinnamespace' => 'Phêk zawng zawng (hminghmun $1-a awm lo)',
+'allpagesprev'      => 'Hma',
+'allpagesnext'      => 'Dawt',
+'allpagessubmit'    => 'Kal rawh le',
+'allpagesprefix'    => 'Hemi thuhmabeta neih zawng hi pholang rawh:',
+'allpagesbadtitle'  => 'Phêk hming dik lo emaw ţawng dang/wiki dang thuhmabet a hmang palh a nih hmel.
+Phêk hminga hman awih loh hawrawp a hmang palh a ni mai thei bawk.',
 
 # Special:Categories
-'categories' => 'Pawlte',
+'categories'                  => 'Pawlte',
+'special-categories-sort-abc' => 'a-aw-b indawtin',
+
+# Special:DeletedContributions
+'sp-deletedcontributions-contribs' => 'kutthawhnate',
 
 # Special:LinkSearch
 'linksearch-ok'   => 'Zawng rawh',
@@ -1240,8 +1250,45 @@ A hming thlâk la bei ţha leh rawh.',
 'block-log-flags-nocreate' => 'siangchan siam khap hrih a ni',
 
 # Move page
-'movelogpage' => 'Chanchin-ziak sawnna',
-'revertmove'  => 'tihlêtna',
+'move-page'                    => '$1 hming thlâkna',
+'move-page-legend'             => 'Phêk hming thlâkna',
+'movepagetext-noredirectfixer' => "Hei hi phêk hming thlâkna a ni. A phêk chanchin-hlui zawng zawng pawh a sawn nghâl vek ang.
+A hming hlui kha hming thara hruailuhna phêkah chantir nghal a ni bawk dawn a ni.
+[[Special:DoubleRedirects|Hming thlâk nawn]] leh [[Special:BrokenRedirects|Hming thlâk chhumbung]] a awm loh nan fimkhur ang che.
+He phêk hlui zawmtute a hmun dik taka hruailuh a nih leh nih lohvah mawh i phur ang.
+
+I hming thar vuah ang hmingpu dang phêk a awm tawh chuan he phêk hming i thlak tum hi a thlak theih loh vang, a ruak emaw, hruailuhna phêk a ni emaw, siamţhat a la ni lo emaw te a nih ngawt loh chuan.
+Chumi awmzia chu, phêk awmsa i luahlantir thei lo va, mahsé a phêk hming hlui ngai i puttir leh thei thung tihna a ni.
+
+'''Vaukhanna!'''
+Phêk lar deuh tan chuan hei hi danglamna râpthlâk leh beisei loh tak i thlen thut thei tih hrechiang ang che;
+phêk hming thlâkina a nghawng theih thilte i hrechiang tih infiah ang che.",
+'movearticle'                  => 'Phêk hming thlâk tùr:',
+'moveuserpage-warning'         => "'''Vaukhanna:''' Hmangtu phêk i thlak dawn mek. A hmangtu phêk i thlak ringawt ang a, hmangtu hming erawh i thlâk dawn lo tih hria ang che.",
+'movenologin'                  => 'I la lût lo',
+'movenologintext'              => 'Phêk hming thlâk tùrin  [[Special:UserLogin|i (inziah)luh]] a ngai.',
+'movenotallowed'               => 'Phêk sawn phalna i nei lo.',
+'newtitle'                     => 'Hming thar:',
+'move-watch'                   => 'Phêk hnar leh phêk thar vil rawh',
+'movepagebtn'                  => 'A hming thlâk rawh le',
+'pagemovedsub'                 => 'A hming i thlâk fel ta',
+'movepage-moved'               => '\'\'\'"$1" kha "$2" tia thlâk a ni ta\'\'\'',
+'movepage-moved-redirect'      => 'Hruailuhna phêk siam nghal a ni.',
+'movelogpage'                  => 'Chanchin-ziak sawnna',
+'movenosubpage'                => 'He phêk hian phêkpéng a nei lo.',
+'movereason'                   => 'A chhan:',
+'revertmove'                   => 'tihlêtna',
+'delete_and_move'              => 'Nuaibo paha sawnna',
+'delete_and_move_text'         => '==Paih ngai a awm==
+"[[:$1]]" tih hming pu phêk a awm tawh.
+Hming thlâk thei tùra phêk awmsa paih i duh em?',
+'delete_and_move_confirm'      => 'Aw, a phêk awmsa chu paih ka duh',
+'delete_and_move_reason'       => '"[[$1]]" hming putu hmasa paih a ni ta.',
+'selfmove'                     => 'Hming hlui leh hming thar a inang reng nia;
+Amah leh amah inluahlantir a theih loh.',
+'immobile-source-namespace'    => '"$1" hminghmun chhunga phêkte sawn theih a ni lo',
+'immobile-target-namespace'    => '"$1" hminghmun chhungah phêk sawn luh theih a ni lo',
+'immobile-source-page'         => 'He phêk hming hi a thlâk theih loh.',
 
 # Export
 'export' => 'Phek thawnchhuahna',

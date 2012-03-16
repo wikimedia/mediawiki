@@ -674,6 +674,9 @@ $2',
 'ns-specialprotected'  => 'Không thể sửa chữa các trang trong không gian tên {{ns:special}}.',
 'titleprotected'       => "Tựa đề này đã bị [[User:$1|$1]] khóa không cho tạo ra.
 Lý do được cung cấp là ''$2''.",
+'filereadonlyerror'    => 'Không thể sửa đổi tập tin “$1” vì kho tập tin “$2” đang ở chế độ chỉ-đọc.
+
+Quản lý viên khóa với lý do: “$3”.',
 
 # Virus scanner
 'virus-badscanner'     => "Cấu hình sau: không nhận ra bộ quét virus: ''$1''",
@@ -1790,12 +1793,15 @@ Nếu vẫn còn bị lỗi, xin hãy liên hệ với một [[Special:ListUsers
 'backend-fail-read'          => 'Không thể đọc tập tin $1.',
 'backend-fail-create'        => 'Không thể tạo tập tin $1.',
 'backend-fail-maxsize'       => 'Không thể tạo tập tin $1 vì nó lớn hơn $2 byte.',
-'backend-fail-readonly'      => 'Phía sau lưu trữ “$1” bây giờ là chỉ-đọc. Lý do đưa ra là: “$2”',
+'backend-fail-readonly'      => 'Phía sau lưu trữ “$1” đang ở chế độ chỉ-đọc. Lý do đưa ra là: “$2”',
 'backend-fail-synced'        => 'Tập tin “$1” đang có trạng thái không nhất quán đối với các phía sau lưu trữ nội bộ',
 'backend-fail-connect'       => 'Không thể kết nối đến phía sau lưu trữ “$1”.',
 'backend-fail-internal'      => 'Lỗi không rõ xuất hiện trong phía sau lưu trữ “$1”.',
 'backend-fail-contenttype'   => 'Không thể xác định kiểu nội dung của tập tin để lưu giữ tại “$1”.',
 'backend-fail-batchsize'     => 'Phía sau lưu trữ đã nhận một loạt $1 thao tác tập tin; mức hạn là $2 thao tác.',
+
+'filejournal-fail-dbconnect' => 'Không thể kết nối với cơ sở dữ liệu nhật ký của phía sau lưu trữ “$1”.',
+'filejournal-fail-dbquery'   => 'Không thể cập nhật cơ sở dữ liệu nhật ký của phía sau lưu trữ “$1”.',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Không thể mở khóa “$1”; nó chưa khóa.',

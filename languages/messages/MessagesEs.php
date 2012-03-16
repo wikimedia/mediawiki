@@ -727,6 +727,8 @@ $2',
 'ns-specialprotected'  => 'Las páginas especiales no se pueden editar',
 'titleprotected'       => 'Esta página ha sido protegida contra creación por [[User:$1|$1]].
 El motivo dado fue: "\'\'$2\'\'".',
+'filereadonlyerror'    => 'No se puede modificar el archivo "$1" porque el repositorio de archivos "$2" está en modo de sólo lectura.
+El motivo suministrado es "$3".',
 
 # Virus scanner
 'virus-badscanner'     => "Error de configuración: Antivirus desconocido: ''$1''",

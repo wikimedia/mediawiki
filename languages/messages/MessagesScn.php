@@ -1711,7 +1711,7 @@ Protucolli suppurtati: <tt>$1</tt>',
 
 # Special:ActiveUsers
 'activeusers'            => 'Lista dî utenti attivi',
-'activeusers-count'      => '$1 recent {{PLURAL:$1|canciamento|canciamenti ricenti}}',
+'activeusers-count'      => "$1 {{PLURAL:$1|canciamentu|canciamenti}} nti {{PLURAL:$3|l'ùrtimu jornu| nti l'ùrtimi $3 jorna}}",
 'activeusers-from'       => 'Ammustra li utenti a pàrtiri da:',
 'activeusers-hidebots'   => 'Bot ammucciati',
 'activeusers-hidesysops' => 'Amministratura ammucciati',
@@ -2945,7 +2945,7 @@ Mèttiri lu nomu dû file senza lu prifissu "{{ns:file}}:"',
 'tags-description-header' => 'Discrizzioni cumpleta dô significatu',
 'tags-hitcount-header'    => 'Canciamenti che hanno tag',
 'tags-edit'               => 'cancia',
-'tags-hitcount'           => '1 {{PLURAL:$1|canciamento|canciamenti}}',
+'tags-hitcount'           => '$1 {{PLURAL:$1|canciamentu|canciamenti}}',
 
 # Database error messages
 'dberr-header'      => 'Sta wiki havi nu prublema',

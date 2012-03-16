@@ -537,7 +537,7 @@ $2',
 Podata přičina je \'\'"$2"\'\'.',
 'filereadonlyerror'    => 'Njeje móžno dataju "$1" změnić, dokelž datajowy repozitorij "$2" je jenož čitajomny.
 
-Administrator, kiž je jón zawrěł, je tule přičinu podał: "$3".',
+Podata přičina je "\'\'$3\'\'".',
 
 # Virus scanner
 'virus-badscanner'     => "Špatna konfiguracija: Njeznaty wirusowy skener: ''$1''",
