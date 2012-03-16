@@ -405,13 +405,12 @@ class PageArchive {
 		$article->loadPageData( 'fromdbmaster' );
 		$oldcountable = $article->isCountable();
 
-		$options = 'FOR UPDATE'; // lock page
 		$page = $dbw->selectRow( 'page',
 			array( 'page_id', 'page_latest' ),
 			array( 'page_namespace' => $this->title->getNamespace(),
 				   'page_title'     => $this->title->getDBkey() ),
 			__METHOD__,
-			$options
+			array( 'FOR UPDATE' ) // lock page
 		);
 		if( $page ) {
 			$makepage = false;

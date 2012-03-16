@@ -357,6 +357,10 @@ abstract class ResourceLoaderModule {
 	 * timestamps. Whenever anything happens that changes the module's
 	 * contents for these parameters, the mtime should increase.
 	 *
+	 * NOTE: The mtime of the module's messages is NOT automatically included.
+	 * If you want this to happen, you'll need to call getMsgBlobMtime()
+	 * yourself and take its result into consideration.
+	 * 
 	 * @param $context ResourceLoaderContext: Context object
 	 * @return Integer: UNIX timestamp
 	 */

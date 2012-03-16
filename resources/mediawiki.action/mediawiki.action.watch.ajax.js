@@ -5,6 +5,11 @@
 ( function ( $, mw, undefined ) {
 
 /**
+ * The name of the page to watch or unwatch.
+ */
+var title = mw.config.get( 'wgRelevantPageName', mw.config.get( 'wgPageName' ) );
+
+/**
  * Update the link text, link href attribute and (if applicable)
  * "loading" class.
  *
@@ -24,7 +29,7 @@ function updateWatchLink( $link, action, state ) {
 			( accesskeyTip ? ' ' + accesskeyTip[0] : '' )
 		)
 		.attr( 'href', mw.util.wikiScript() + '?' + $.param({
-				title: mw.config.get( 'wgPageName' ),
+				title: title,
 				action: action
 			})
 		);
@@ -98,7 +103,7 @@ $( document ).ready( function() {
 
 		api = new mw.Api();
 		api[action](
-			mw.config.get( 'wgPageName' ),
+			title,
 			// Success
 			function( watchResponse ) {
 				var	otherAction = action === 'watch' ? 'unwatch' : 'watch',
@@ -129,10 +134,10 @@ $( document ).ready( function() {
 				updateWatchLink( $link, action );
 				
 				// Format error message
-				var cleanTitle = mw.config.get( 'wgPageName' ).replace( /_/g, ' ' );
+				var cleanTitle = title.replace( /_/g, ' ' );
 				var link = mw.html.element(
 					'a', {
-						'href': mw.util.wikiGetlink( mw.config.get( 'wgPageName' ) ),
+						'href': mw.util.wikiGetlink( title ),
 						'title': cleanTitle
 					}, cleanTitle
 				);

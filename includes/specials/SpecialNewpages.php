@@ -356,7 +356,14 @@ class SpecialNewpages extends IncludableSpecialPage {
 
 		$css = count( $classes ) ? ' class="' . implode( ' ', $classes ) . '"' : '';
 
-		return "<li{$css}>{$time} {$dm}{$plink} {$hist} {$dm}{$length} {$dm}{$ulink} {$comment} {$tagDisplay}</li>\n";
+		# Display the old title if the namespace has been changed
+		$oldTitleText = '';
+		if ( $result->page_namespace !== $result->rc_namespace ) {
+			$oldTitleText = wfMessage( 'rc-old-title' )->params( Title::makeTitle( $result->rc_namespace, $result->rc_title )
+			                                           ->getPrefixedText() )->escaped();	
+		}
+
+		return "<li{$css}>{$time} {$dm}{$plink} {$hist} {$dm}{$length} {$dm}{$ulink} {$comment} {$tagDisplay} {$oldTitleText}</li>\n";
 	}
 
 	/**

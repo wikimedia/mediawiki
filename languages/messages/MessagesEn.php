@@ -2066,6 +2066,7 @@ Your e-mail address is not revealed when other users contact you.',
 'newsectionsummary'                 => '/* $1 */ new section',
 'rc-enhanced-expand'                => 'Show details (requires JavaScript)',
 'rc-enhanced-hide'                  => 'Hide details',
+'rc-old-title'                      => 'originally created as "$1"',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Related changes',

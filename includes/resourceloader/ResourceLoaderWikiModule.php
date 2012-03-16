@@ -157,6 +157,7 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		if ( count( $mtimes ) ) {
 			$modifiedTime = max( $modifiedTime, max( $mtimes ) );
 		}
+		$modifiedTime = max( $modifiedTime, $this->getMsgBlobMtime( $context->getLanguage() ) );
 		return $modifiedTime;
 	}
 

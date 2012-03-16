@@ -271,8 +271,13 @@ production.
 * (bug 28936, bug 5280) Broken or invalid titles can't be removed from watchlist.
 * (bug 34600) Older skins using useHeadElement=false were broken in 1.18.
 * (bug 34604) [mw.config] wgActionPaths should be an object instead of a numeral
-  array.
-* (bug 12262) Indents and lists are now aligned
+  array.* (bug 12262) Indents and lists are now aligned
+* (bug 29753) mw.util.tooltipAccessKeyPrefix should be alt-shift for Chrome
+   on Windows
+* (bug 25095) Special:Categories should also include the first relevant item
+   when "from" is filled.
+* (bug 34972) An error occurred while changing your watchlist settings for 
+  [[Special:WhatLinksHere/Example]]
 
 === API changes in 1.19 ===
 * Made action=edit less likely to return "unknownerror", by returning the actual error
@@ -309,6 +314,8 @@ production.
   calling action=purge&forcelinkupdate.
 * (bug 34377) action=watch now parses messages using the correct title instead
   of "API".
+* (bug 35036) WikiLove messages were not automatically updated in JavaScript
+  after having been changed on-wiki due to a bug in core
 
 === Languages updated in 1.19 ===
 

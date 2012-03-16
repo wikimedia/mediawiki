@@ -2839,6 +2839,10 @@ $templates
 		$ns = $title->getNamespace();
 		$nsname = MWNamespace::exists( $ns ) ? MWNamespace::getCanonicalName( $ns ) : $title->getNsText();
 
+		// Get the relevant title so that AJAX features can use the correct page name
+		// when making API requests from certain special pages (bug 34972).
+		$relevantTitle = $this->getSkin()->getRelevantTitle();
+
 		if ( $ns == NS_SPECIAL ) {
 			list( $canonicalName, /*...*/ ) = SpecialPageFactory::resolveAlias( $title->getDBkey() );
 		} elseif ( $this->canUseWikiPage() ) {
@@ -2880,6 +2884,7 @@ $templates
 			'wgPageContentLanguage' => $lang->getCode(),
 			'wgSeparatorTransformTable' => $compactSeparatorTransTable,
 			'wgDigitTransformTable' => $compactDigitTransTable,
+			'wgRelevantPageName' => $relevantTitle->getPrefixedDBKey(),
 		);
 		if ( $lang->hasVariants() ) {
 			$vars['wgUserVariant'] = $lang->getPreferredVariant();
