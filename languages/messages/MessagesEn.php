@@ -1034,9 +1034,9 @@ $2',
 'ns-specialprotected'  => 'Special pages cannot be edited.',
 'titleprotected'       => 'This title has been protected from creation by [[User:$1|$1]].
 The reason given is "\'\'$2\'\'".',
-'filereadonlyerror'    => 'Unable to the modify the file "$1" because the file repository "$2" is in read-only mode.
-	
-The administrator who locked it offered this explanation: "$3".',
+'filereadonlyerror'    => 'Unable to modify the file "$1" because the file repository "$2" is in read-only mode.
+
+The reason given is "\'\'$3\'\'".',
 
 # Virus scanner
 'virus-badscanner'     => "Bad configuration: Unknown virus scanner: ''$1''",
@@ -1297,7 +1297,7 @@ You cannot use the 'e-mail this user' feature unless a valid e-mail address is s
 Your current IP address is $3, and the block ID is #$5.
 Please include all above details in any queries you make.",
 'autoblockedtext'                  => 'Your IP address has been automatically blocked because it was used by another user, who was blocked by $1.
-The reason given is this:
+The reason given is:
 
 :\'\'$2\'\'
 
@@ -2270,7 +2270,7 @@ If the problem persists, contact an [[Special:ListUsers/sysop|administrator]].',
 'backend-fail-read'          => 'Could not read file $1.',
 'backend-fail-create'        => 'Could not create file $1.',
 'backend-fail-maxsize'       => 'Could not create file $1 because it is larger than {{PLURAL:$2|one byte|$2 bytes}}.',
-'backend-fail-readonly'      => 'The storage backend "$1" is currently read-only. The reason given was: "$2"',
+'backend-fail-readonly'      => 'The storage backend "$1" is currently read-only. The reason given is: "\'\'$2\'\'"',
 'backend-fail-synced'        => 'The file "$1" is in an inconsistent state within the internal storage backends',
 'backend-fail-connect'       => 'Could not connect to storage backend "$1".',
 'backend-fail-internal'      => 'An unknown error occurred in storage backend "$1".',
@@ -3171,7 +3171,7 @@ See [[Special:BlockList|IP block list]] to review blocks.',
 'contribslink'                    => 'contribs',
 'emaillink'                       => 'send e-mail',
 'autoblocker'                     => 'Autoblocked because your IP address has been recently used by "[[User:$1|$1]]".
-The reason given for $1\'s block is: "$2"',
+The reason given for $1\'s block is "\'\'$2\'\'"',
 'blocklogpage'                    => 'Block log',
 'blocklog-showlog'                => 'This user has been blocked previously.
 The block log is provided below for reference:',
