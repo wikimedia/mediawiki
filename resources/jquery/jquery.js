@@ -6447,6 +6447,7 @@ var ralpha = /alpha\([^)]*\)/i,
 	rupper = /([A-Z]|^ms)/g,
 	rnumpx = /^-?\d+(?:px)?$/i,
 	rnum = /^-?\d/,
+	rnumnonpx = /^-?(?:\d*\.)?\d+(?!px)[^\d\s]+$/i,
 	rrelNum = /^([\-+])=([\-+.\de]+)/,
 
 	cssShow = { position: "absolute", visibility: "hidden", display: "block" },
@@ -6794,6 +6795,12 @@ function getWH( elem, name, extra ) {
 	if ( val < 0 || val == null ) {
 		val = elem.style[ name ] || 0;
 	}
+
+	// Computed unit is not pixels. Stop here and return.
+	if ( rnumnonpx.test(val) ) {
+		return val;
+	}
+
 	// Normalize "", auto, and prepare for extra
 	val = parseFloat( val ) || 0;
 
