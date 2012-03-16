@@ -1055,7 +1055,7 @@ class ApiMain extends ApiBase {
  *
  * @ingroup API
  */
-class UsageException extends Exception {
+class UsageException extends MWException {
 
 	private $mCodestr;
 	private $mExtraData;
