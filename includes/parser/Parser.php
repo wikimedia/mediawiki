@@ -273,8 +273,6 @@ class Parser {
 		 * Must not consist of all title characters, or else it will change
 		 * the behaviour of <nowiki> in a link.
 		 */
-		# $this->mUniqPrefix = "\x07UNIQ" . Parser::getRandomString();
-		# Changed to \x7f to allow XML double-parsing -- TS
 		$this->mUniqPrefix = "\x7fUNIQ" . self::getRandomString();
 		$this->mStripState = new StripState( $this->mUniqPrefix );
 
@@ -327,6 +325,11 @@ class Parser {
 		wfProfileIn( $fname );
 
 		$this->startParse( $title, $options, self::OT_HTML, $clearState );
+
+		# Remove the strip marker tag prefix from the input, if present.
+		if ( $clearState ) {
+			$text = str_replace( $this->mUniqPrefix, '', $text );
+		}
 
 		$oldRevisionId = $this->mRevisionId;
 		$oldRevisionObject = $this->mRevisionObject;
