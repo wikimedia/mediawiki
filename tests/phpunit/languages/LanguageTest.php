@@ -23,12 +23,12 @@ class LanguageTest extends MediaWikiTestCase {
 			'convertDoubleWidth() with the full alphabet and digits'
 		);
 	}
-	
+
 	/** @dataProvider provideFormattableTimes */
 	function testFormatTimePeriod( $seconds, $format, $expected, $desc ) {
 		$this->assertEquals( $expected, $this->lang->formatTimePeriod( $seconds, $format ), $desc );
 	}
-	
+
 	function provideFormattableTimes() {
 		return array(
 			array( 9.45, array(), '9.5s', 'formatTimePeriod() rounding (<10s)' ),
@@ -62,7 +62,7 @@ class LanguageTest extends MediaWikiTestCase {
 			array( 176460.55, array(), '2d 1h 1m 1s', 'formatTimePeriod() rounding, recursion, (>48h)' ),
 			array( 176460.55, array( 'noabbrevs' => true ), '2 days 1 hour 1 minute 1 second', 'formatTimePeriod() rounding, recursion, (>48h)' ),
 		);
-		
+
 	}
 
 	function testTruncate() {
@@ -224,7 +224,7 @@ class LanguageTest extends MediaWikiTestCase {
 			"sprintfDate('$format', '$ts'): $msg"
 		);
 
-		date_default_timezone_set( $oldTZ );		
+		date_default_timezone_set( $oldTZ );
 	}
 
 	function provideSprintfDateSamples() {
