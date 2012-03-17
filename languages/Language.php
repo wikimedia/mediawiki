@@ -1940,7 +1940,8 @@ class Language {
 
 			if ( $value > 0 || ( $name == 'seconds' && empty( $segments ) ) ) {
 				$seconds -= $value * $length;
-				$segments[] = wfMsgExt( 'duration-' . $name, 'parsemag', $value );
+				$message = new Message( 'duration-' . $name, array( $value ) );
+				$segments[] = $message->inLanguage( $this )->escaped();
 			}
 		}
 
