@@ -537,48 +537,48 @@ class LanguageTest extends MediaWikiTestCase {
 		return array(
 			array(
 				0,
-				"0 B",
-				"Zero bytes"
+				'0 B',
+				'Zero bytes'
 			),
 			array(
 				1024,
-				"1 KB",
-				"1 kilobyte"
+				'1 KB',
+				'1 kilobyte'
 			),
 			array(
 				1024 * 1024,
-				"1 MB",
-				"1,024 megabytes"
+				'1 MB',
+				'1,024 megabytes'
 			),
 			array(
 				1024 * 1024 * 1024,
-				"1 GB",
-				"1 gigabytes"
+				'1 GB',
+				'1 gigabytes'
 			),
 			array(
 				pow( 1024, 4 ),
-				"1 TB",
-				"1 terabyte"
+				'1 TB',
+				'1 terabyte'
 			),
 			array(
 				pow( 1024, 5 ),
-				"1 PB",
-				"1 petabyte"
+				'1 PB',
+				'1 petabyte'
 			),
 			array(
 				pow( 1024, 6 ),
-				"1 EB",
-				"1,024 exabyte"
+				'1 EB',
+				'1,024 exabyte'
 			),
 			array(
 				pow( 1024, 7 ),
-				"1 ZB",
-				"1 zetabyte"
+				'1 ZB',
+				'1 zetabyte'
 			),
 			array(
 				pow( 1024, 8 ),
-				"1 YB",
-				"1 yottabyte"
+				'1 YB',
+				'1 yottabyte'
 			),
 			// How big!? THIS BIG!
 		);
@@ -599,58 +599,58 @@ class LanguageTest extends MediaWikiTestCase {
 		return array(
 			array(
 				0,
-				"0bps",
-				"0 bits per second"
+				'0bps',
+				'0 bits per second'
 			),
 			array(
 				999,
-				"999bps",
-				"999 bits per second"
+				'999bps',
+				'999 bits per second'
 			),
 			array(
 				1000,
-				"1kbps",
-				"1 kilobit per second"
+				'1kbps',
+				'1 kilobit per second'
 			),
 			array(
 				1000 * 1000,
-				"1Mbps",
-				"1 megabit per second"
+				'1Mbps',
+				'1 megabit per second'
 			),
 			array(
 				pow( 10, 9 ),
-				"1Gbps",
-				"1 gigabit per second"
+				'1Gbps',
+				'1 gigabit per second'
 			),
 			array(
 				pow( 10, 12 ),
-				"1Tbps",
-				"1 terabit per second"
+				'1Tbps',
+				'1 terabit per second'
 			),
 			array(
 				pow( 10, 15 ),
-				"1Pbps",
-				"1 petabit per second"
+				'1Pbps',
+				'1 petabit per second'
 			),
 			array(
 				pow( 10, 18 ),
-				"1Ebps",
-				"1 exabit per second"
+				'1Ebps',
+				'1 exabit per second'
 			),
 			array(
 				pow( 10, 21 ),
-				"1Zbps",
-				"1 zetabit per second"
+				'1Zbps',
+				'1 zetabit per second'
 			),
 			array(
 				pow( 10, 24 ),
-				"1Ybps",
-				"1 yottabit per second"
+				'1Ybps',
+				'1 yottabit per second'
 			),
 			array(
 				pow( 10, 27 ),
-				"1,000Ybps",
-				"1,000 yottabits per second"
+				'1,000Ybps',
+				'1,000 yottabits per second'
 			),
 		);
 	}
@@ -670,71 +670,87 @@ class LanguageTest extends MediaWikiTestCase {
 		return array(
 			array(
 				0,
-				"0 seconds",
+				'0 seconds',
 			),
 			array(
 				1,
-				"1 second",
+				'1 second',
 			),
 			array(
 				2,
-				"2 seconds",
+				'2 seconds',
 			),
 			array(
 				60,
-				"1 minute",
+				'1 minute',
 			),
 			array(
 				2 * 60,
-				"2 minutes",
+				'2 minutes',
 			),
 			array(
 				3600,
-				"1 hour",
+				'1 hour',
 			),
 			array(
 				2 * 3600,
-				"2 hours",
+				'2 hours',
 			),
 			array(
 				24 * 3600,
-				"1 day",
+				'1 day',
 			),
 			array(
 				2 * 86400,
-				"2 days",
+				'2 days',
 			),
 			array(
 				365.25 * 86400, // 365.25 * 86400 = 31557600
-				"1 year",
+				'1 year',
 			),
 			array(
 				2 * 31557600,
-				"2 years",
+				'2 years',
 			),
 			array(
 				10 * 31557600,
-				"1 decade",
+				'1 decade',
 			),
 			array(
 				20 * 31557600,
-				"2 decades",
+				'2 decades',
 			),
 			array(
 				100 * 31557600,
-				"1 century",
+				'1 century',
 			),
 			array(
 				200 * 31557600,
-				"2 centuries",
+				'2 centuries',
 			),
 			array(
 				1000 * 31557600,
-				"1 millennium",
+				'1 millennium',
 			),
 			array(
 				2000 * 31557600,
-				"2 millennia",
+				'2 millennia',
+			),
+			array(
+				9001,
+				'2 hours, 30 minutes and 1 second'
+			),
+			array(
+				3601,
+				'1 hour and 1 second'
+			),
+			array(
+				31557600 + 2 * 86400 + 9000,
+				'1 year, 2 days, 2 hours and 30 minutes'
+			),
+			array(
+				42 * 1000 * 31557600 + 42,
+				'42 millennia and 42 seconds'
 			),
 		);
 	}
