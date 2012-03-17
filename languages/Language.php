@@ -1919,8 +1919,11 @@ class Language {
 	 *
 	 * @return string
 	 */
-	public function duration( $seconds, array $chosenIntervals = array( 'years', 'days', 'hours', 'minutes', 'seconds' ) ) {
+	public function duration( $seconds, array $chosenIntervals = array( 'millennia', 'centuries', 'decades', 'years', 'days', 'hours', 'minutes', 'seconds' ) ) {
 		$intervals = array(
+			'millennia' => 1000 * 31557600,
+			'centuries' => 100 * 31557600,
+			'decades' => 10 * 31557600,
 			'years' => 31557600, // 86400 * 365.25
 			'weeks' => 604800,
 			'days' => 86400,
