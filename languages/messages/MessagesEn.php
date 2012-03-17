@@ -4824,6 +4824,7 @@ Otherwise, you can use the easy form below. Your comment will be added to the pa
 'duration-days' => '$1 {{PLURAL:$1|day|days}}',
 'duration-weeks' => '$1 {{PLURAL:$1|week|weeks}}',
 'duration-years' => '$1 {{PLURAL:$1|year|years}}',
+'duration-decades' => '$1 {{PLURAL:$1|decade|decades}}',
 'duration-centuries' => '$1 {{PLURAL:$1|century|centuries}}',
-
+'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennia}}',
 );
