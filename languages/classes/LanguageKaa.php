@@ -41,11 +41,11 @@ class LanguageKaa extends Language {
 	}
 
 	/**
-	 * It fixes issue with  lcfirst for transforming 'I' to 'ı'
+	 * It fixes issue with lcfirst for transforming 'I' to 'ı'
 	 *
 	 * @param $string string
 	 *
-	 * @return string
+	 * @return mixed|string
 	 */
 	function lcfirst ( $string ) {
 		if ( substr( $string, 0, 1 ) === 'I' ) {
