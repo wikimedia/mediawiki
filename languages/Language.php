@@ -1919,7 +1919,7 @@ class Language {
 	 *
 	 * @return string
 	 */
-	public function duration( $seconds, array $chosenIntervals = array( 'millennia', 'centuries', 'decades', 'years', 'days', 'hours', 'minutes', 'seconds' ) ) {
+	public function formatDuration( $seconds, array $chosenIntervals = array( 'millennia', 'centuries', 'decades', 'years', 'days', 'hours', 'minutes', 'seconds' ) ) {
 		$intervals = array(
 			'millennia' => 1000 * 31557600,
 			'centuries' => 100 * 31557600,
