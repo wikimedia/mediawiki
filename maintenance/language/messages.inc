@@ -1749,6 +1749,11 @@ $wgMessageStructure = array(
 		'allpagesbadtitle',
 		'allpages-bad-ns',
 	),
+	'cachedspecial' => array(
+		'cachedspecial-viewing-cached-ttl',
+		'cachedspecial-viewing-cached-ts',
+		'cachedspecial-refresh-now',
+	),
 	'categories' => array(
 		'categories',
 		'categories-summary',
@@ -3935,4 +3940,5 @@ Variants for Chinese language",
 	'feedback'              => 'Feedback',
 	'apierrors'             => 'API errors',
 	'duration'              => 'Durations',
+	'cachedspecial'         => 'SpecialCachedPage',
 );
