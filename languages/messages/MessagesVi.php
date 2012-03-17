@@ -674,9 +674,9 @@ $2',
 'ns-specialprotected'  => 'Không thể sửa chữa các trang trong không gian tên {{ns:special}}.',
 'titleprotected'       => "Tựa đề này đã bị [[User:$1|$1]] khóa không cho tạo ra.
 Lý do được cung cấp là ''$2''.",
-'filereadonlyerror'    => 'Không thể sửa đổi tập tin “$1” vì kho tập tin “$2” đang ở chế độ chỉ-đọc.
+'filereadonlyerror'    => "Không thể sửa đổi tập tin “$1” vì kho tập tin “$2” đang ở chế độ chỉ-đọc.
 
-Quản lý viên khóa với lý do: “$3”.',
+Lý do đưa ra là: “''$3''”.",
 
 # Virus scanner
 'virus-badscanner'     => "Cấu hình sau: không nhận ra bộ quét virus: ''$1''",

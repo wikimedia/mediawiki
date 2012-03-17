@@ -1315,7 +1315,7 @@ Amah leh amah inluahlantir a theih loh.',
 'tooltip-pt-logout'                   => 'Chhuahna',
 'tooltip-ca-talk'                     => 'He phêk chungchang sawihona',
 'tooltip-ca-edit'                     => 'Hemi phek hi i siamţha thei.
-Khawngaihin i dahţhat hmain endikna hmehkhep hi hmang ang che (hei hi i hmet la a phek mawng lamah a lo lang mai ang)',
+Khawngaihin i dahţhat/tlangzarh hmain endikna hmehkhep khu hmang ang che (hei hi hmet la a phek mawng lamah a lo lang mai ang)',
 'tooltip-ca-addsection'               => 'Hlawm thar ţanna',
 'tooltip-ca-viewsource'               => 'He phêk hi vènhim a ni
 A hnar i en thei ang.',

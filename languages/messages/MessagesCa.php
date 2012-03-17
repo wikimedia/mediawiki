@@ -570,6 +570,8 @@ $2",
 'ns-specialprotected'  => 'No es poden modificar les pàgines especials.',
 'titleprotected'       => "La creació d'aquesta pàgina està protegida per [[User:$1|$1]].
 Els seus motius han estat: «''$2''».",
+'filereadonlyerror'    => "No s'ha pogut modificar el fitxer «$1» perquè el repositori de fitxers «$2» està en mode només de lectura.
+El motiu donat és «''$3''».",
 
 # Virus scanner
 'virus-badscanner'     => "Mala configuració: antivirus desconegut: ''$1''",
@@ -1659,6 +1661,7 @@ $1',
 'backend-fail-closetemp'     => "No s'ha pogut tancar el fitxer temporal.",
 'backend-fail-read'          => "No s'ha pogut llegir el fitxer $1.",
 'backend-fail-create'        => "No s'ha pogut crear el fitxer $1.",
+'backend-fail-maxsize'       => "No s'ha pogut crear el fitxer $1 perquè és més gran que {{PLURAL:$2|un byte|$2 bytes}}.",
 'backend-fail-readonly'      => "El rerefons d'emmagatzemament «$1» actualment només és de lectura. Es va donar el motiu: «$2»",
 'backend-fail-synced'        => "El fitxer «$1» es troba en un estat inconsistent amb els rerefons d'emmagatzemament interns.",
 'backend-fail-connect'       => "No s'ha pogut connectar al fitxer de rerefons d'emmagatzemament «$1».",
@@ -2742,7 +2745,7 @@ Deseu-lo al vostre ordinador i carregueu-ne una còpia ací.",
 
 # JavaScriptTest
 'javascripttest'                           => 'Proves de JavaScript',
-'javascripttest-disabled'                  => 'La funció està inhabilitada.',
+'javascripttest-disabled'                  => "No s'ha inhabilitat la funció en el wiki.",
 'javascripttest-title'                     => "S'estan executant $1 proves",
 'javascripttest-pagetext-noframework'      => "Es reserva la pàgina per a l'execució de tests amb JavaScript.",
 'javascripttest-pagetext-unknownframework' => "L'entorn de proves «$1» és desconegut.",

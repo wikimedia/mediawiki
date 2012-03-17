@@ -737,7 +737,7 @@ $2",
 De gegeven reden is ''$2''.",
 'filereadonlyerror'    => 'Het was niet mogelijk het bestand "$1" aan te passen omdat de bestandsrepository "$2" op dit moment alleen-lezen is.
 
-De beheerder die de repository alleen-lezen heeft gemaakt heeft hiervoor de volgende reden opgegeven: "$3".',
+De opgegeven reden is "\'\'$3\'\'".',
 
 # Virus scanner
 'virus-badscanner'     => "Onjuiste configuratie: onbekende virusscanner: ''$1''.",
