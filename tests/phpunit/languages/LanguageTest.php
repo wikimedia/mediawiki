@@ -654,4 +654,88 @@ class LanguageTest extends MediaWikiTestCase {
 			),
 		);
 	}
+
+	/**
+	 * @dataProvider provideFormatDuration
+	 */
+	function testFormatDuration( $duration, $expected ) {
+		$this->assertEquals(
+			$expected,
+			$this->lang->formatDuration( $duration ),
+			"formatDuration('$duration'): $expected"
+		);
+	}
+
+	function provideFormatDuration() {
+		return array(
+			array(
+				0,
+				"0 seconds",
+			),
+			array(
+				1,
+				"1 second",
+			),
+			array(
+				2,
+				"2 seconds",
+			),
+			array(
+				60,
+				"1 minute",
+			),
+			array(
+				2 * 60,
+				"2 minutes",
+			),
+			array(
+				3600,
+				"1 hour",
+			),
+			array(
+				2 * 3600,
+				"2 hours",
+			),
+			array(
+				24 * 3600,
+				"1 day",
+			),
+			array(
+				2 * 86400,
+				"2 days",
+			),
+			array(
+				365.25 * 86400,
+				"1 year",
+			),
+			array(
+				2 * 31557600,
+				"2 years",
+			),
+			array(
+				10 * 31557600,
+				"1 decade",
+			),
+			array(
+				2 * 10 * 31557600,
+				"2 decades",
+			),
+			array(
+				100 * 31557600,
+				"1 century",
+			),
+			array(
+				200 * 31557600,
+				"2 centuries",
+			),
+			array(
+				1000 * 31557600,
+				"1 millennium",
+			),
+			array(
+				2 * 1000 * 31557600,
+				"2 millennia",
+			),
+		);
+	}
 }
