@@ -43,55 +43,68 @@ class ApiFeedContributions extends ApiBase {
 	}
 
 	public function execute() {
-		$params = $this->extractRequestParams();
 
 		global $wgFeed, $wgFeedClasses, $wgSitename, $wgLanguageCode;
 
-		if( !$wgFeed ) {
-			$this->dieUsage( 'Syndication feeds are not available', 'feed-unavailable' );
-		}
+		try {
+			$params = $this->extractRequestParams();
 
-		if( !isset( $wgFeedClasses[ $params['feedformat'] ] ) ) {
-			$this->dieUsage( 'Invalid subscription feed type', 'feed-invalid' );
-		}
+			if( !$wgFeed ) {
+				$this->dieUsage( 'Syndication feeds are not available', 'feed-unavailable' );
+			}
 
-		global $wgMiserMode;
-		if ( $params['showsizediff'] && $wgMiserMode ) {
-			$this->dieUsage( 'Size difference is disabled in Miser Mode', 'sizediffdisabled' );
+			if( !isset( $wgFeedClasses[ $params['feedformat'] ] ) ) {
+				$this->dieUsage( 'Invalid subscription feed type', 'feed-invalid' );
+			}
+
+			global $wgMiserMode;
+			if ( $params['showsizediff'] && $wgMiserMode ) {
+				$this->dieUsage( 'Size difference is disabled in Miser Mode', 'sizediffdisabled' );
+			}
+
+			$target = $params['user'] == 'newbies'
+					? 'newbies'
+					: Title::makeTitleSafe( NS_USER, $params['user'] )->getText();
+
+			$pager = new ContribsPager( $this->getContext(), array(
+				'target' => $target,
+				'namespace' => $params['namespace'],
+				'year' => $params['year'],
+				'month' => $params['month'],
+				'tagFilter' => $params['tagfilter'],
+				'deletedOnly' => $params['deletedonly'],
+				'topOnly' => $params['toponly'],
+				'showSizeDiff' => $params['showsizediff'],
+			) );
+
+			$feedItems = array();
+			if( $pager->getNumRows() > 0 ) {
+				foreach ( $pager->mResult as $row ) {
+					$feedItems[] = $this->feedItem( $row );
+				}
+			}
+
+		} catch ( Exception $e ) {
+			// Error results should not be cached
+			$this->getMain()->setCacheMaxAge( 0 );
+
+			if ( $e instanceof UsageException ) {
+				$errorCode = $e->getCodeString();
+			} else {
+				// Something is seriously wrong
+				$errorCode = 'internal_api_error';
+			}
+
+			$errorText = $e->getMessage();
+			$feedItems[] = new FeedItem( "Error ($errorCode)", $errorText, '', '', '' );
 		}
 
 		$msg = wfMsgForContent( 'Contributions' );
-		$feedTitle = $wgSitename . ' - ' . $msg . ' [' . $wgLanguageCode . ']';
-		$feedUrl = SpecialPage::getTitleFor( 'Contributions', $params['user'] )->getFullURL();
-
-		$target = $params['user'] == 'newbies'
-				? 'newbies'
-				: Title::makeTitleSafe( NS_USER, $params['user'] )->getText();
-
 		$feed = new $wgFeedClasses[$params['feedformat']] (
-			$feedTitle,
-			htmlspecialchars( $msg ),
-			$feedUrl
+				$feedTitle = $wgSitename . ( isset( $errorText ) ? ' - Error - ' : ' - ' ) . $msg . ' [' . $wgLanguageCode . ']',
+				htmlspecialchars( $msg ),
+				SpecialPage::getTitleFor( 'Contributions', $params['user'] )->getFullURL()
 		);
-
-		$pager = new ContribsPager( $this->getContext(), array(
-			'target' => $target,
-			'namespace' => $params['namespace'],
-			'year' => $params['year'],
-			'month' => $params['month'],
-			'tagFilter' => $params['tagfilter'],
-			'deletedOnly' => $params['deletedonly'],
-			'topOnly' => $params['toponly'],
-			'showSizeDiff' => $params['showsizediff'],
-		) );
-
-		$feedItems = array();
-		if( $pager->getNumRows() > 0 ) {
-			foreach ( $pager->mResult as $row ) {
-				$feedItems[] = $this->feedItem( $row );
-			}
-		}
-
 		ApiFormatFeedWrapper::setResult( $this->getResult(), $feed, $feedItems );
 	}
 
