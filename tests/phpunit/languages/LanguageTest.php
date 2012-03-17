@@ -705,7 +705,7 @@ class LanguageTest extends MediaWikiTestCase {
 				"2 days",
 			),
 			array(
-				365.25 * 86400,
+				365.25 * 86400, // 365.25 * 86400 = 31557600
 				"1 year",
 			),
 			array(
@@ -717,7 +717,7 @@ class LanguageTest extends MediaWikiTestCase {
 				"1 decade",
 			),
 			array(
-				2 * 10 * 31557600,
+				20 * 31557600,
 				"2 decades",
 			),
 			array(
@@ -733,7 +733,7 @@ class LanguageTest extends MediaWikiTestCase {
 				"1 millennium",
 			),
 			array(
-				2 * 1000 * 31557600,
+				2000 * 31557600,
 				"2 millennia",
 			),
 		);
