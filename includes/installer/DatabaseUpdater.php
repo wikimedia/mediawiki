@@ -231,7 +231,7 @@ abstract class DatabaseUpdater {
 	 *
 	 * @param $tableName string
 	 */
-	public function extensionTableExists( $tableName ) {
+	public function tableExists( $tableName ) {
 		return ( $this->db->tableExists( $tableName, __METHOD__ ) );
 	}
 
