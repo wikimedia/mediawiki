@@ -1399,9 +1399,7 @@ class SpecialUndelete extends SpecialPage {
 		// Show file deletion warnings and errors
 		$status = $archive->getFileStatus();
 		if( $status && !$status->isGood() ) {
-			$out->addHTML( '<div class="error">' );
-			$out->addWikiText( $status->getWikiText( 'undelete-error-short', 'undelete-error-long' ) );
-			$out->addHTML( '</div>' );
+			$out->addWikiText( '<div class="error">' . $status->getWikiText( 'undelete-error-short', 'undelete-error-long' ) . '</div>' );
 		}
 	}
 }
