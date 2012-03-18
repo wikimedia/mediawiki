@@ -202,4 +202,51 @@
 		expected: 'User:Sample'
 	});
 
+	test( 'Confirm properties and attributes set', function () {
+		var $el, $elA, $elB;
+
+		expect(5);
+
+		$el = $( '<input>' )
+			.attr( 'type', 'text' )
+			.prop( 'maxLength', '7' )
+			.appendTo( '#qunit-fixture' )
+			.byteLimit();
+
+		strictEqual( $el.prop( 'maxLength' ), 7, 'Pre-set maxLength property unchanged' );
+
+		$el = $( '<input>' )
+			.attr( 'type', 'text' )
+			.prop( 'maxLength', '7' )
+			.appendTo( '#qunit-fixture' )
+			.byteLimit( 12 );
+
+		strictEqual( $el.prop( 'maxLength' ), 12, 'maxLength property updated if value was passed to $.fn.byteLimit' );
+
+		$elA = $( '<input>' )
+			.addClass( 'mw-test-byteLimit-foo' )
+			.attr( 'type', 'text' )
+			.prop( 'maxLength', '7' )
+			.appendTo( '#qunit-fixture' );
+
+		$elB = $( '<input>' )
+			.addClass( 'mw-test-byteLimit-foo' )
+			.attr( 'type', 'text' )
+			.prop( 'maxLength', '12' )
+			.appendTo( '#qunit-fixture' );
+
+		$el = $( '.mw-test-byteLimit-foo' );
+
+		strictEqual( $el.length, 2, 'Verify that there are no other elements clashing with this test suite' );
+
+		$el.byteLimit();
+
+		// Before bug 35294 was fixed, both $elA and $elB had maxLength set to 7,
+		// because $.fn.byteLimit sets:
+		// `limit = limitArg || this.prop( 'maxLength' ); this.prop( 'maxLength', limit )`
+		// and did so outside the each() loop.
+		strictEqual( $elA.prop( 'maxLength' ), 7, 'maxLength was not incorrectly set on #1 when calling byteLimit on multiple elements (bug 35294)' );
+		strictEqual( $elB.prop( 'maxLength' ), 12, 'maxLength was not incorrectly set on #2 when calling byteLimit on multiple elements (bug 35294)' );
+	});
+
 }( jQuery ) );

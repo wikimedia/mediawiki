@@ -281,6 +281,8 @@ production.
 * (bug 12262) Indents and lists are now aligned
 * (bug 34972) An error occurred while changing your watchlist settings for 
   [[Special:WhatLinksHere/Example]]
+* (bug 35294) jquery.byteLimit shouldn't set element specific variables outside
+  the "return this.each" loop.
 
 === API changes in 1.19 ===
 * Made action=edit less likely to return "unknownerror", by returning the actual error
