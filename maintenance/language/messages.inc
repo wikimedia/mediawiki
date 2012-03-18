@@ -3700,7 +3700,7 @@ $wgMessageStructure = array(
 		'duration-years',
 		'duration-decades',
 		'duration-centuries',
-		'duration-millenniums'
+		'duration-millennia'
 	),
 );
 
