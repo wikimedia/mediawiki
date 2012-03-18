@@ -94,7 +94,7 @@ abstract class SpecialCachedPage extends SpecialPage {
 		if ( $this->cacheExpiry < 1000000000 ) {
 			$message = $this->msg(
 				'cachedspecial-viewing-cached-ttl',
-				$this->getLanguage()->duration( $this->cacheExpiry )
+				$this->getLanguage()->formatDuration( $this->cacheExpiry )
 			)->escaped();
 		}
 		else {
