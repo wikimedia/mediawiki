@@ -433,6 +433,10 @@ Nur Dateizugriff ist erlaubt.',
 'booksources-invalid-isbn' => 'Vermutlich ist die ISBN ungültig.
 Bitte prüfen Sie, ob sie korrekt von der Quelle übertragen wurde.',
 
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Sie sehen die gecachte Version dieser Seite, die bis zu $1 alt sein kann.',
+'cachedspecial-viewing-cached-ts'  => 'Sie sehen die gecachte Version dieser Seite, die möglicherweise nicht aktuell ist.',
+
 # E-mail user
 'mailnologintext' => 'Sie müssen [[Special:UserLogin|angemeldet sein]] und eine bestätigte E-Mail-Adresse in Ihren [[Special:Preferences|Einstellungen]] eingetragen haben, um anderen Benutzern E-Mails schicken zu können.',
 'emailpagetext'   => 'Sie könnent dem Benutzer mit dem unten stehenden Formular eine E-Mail senden.

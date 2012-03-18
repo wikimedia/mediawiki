@@ -2356,7 +2356,7 @@ $1',
 'enotif_impersonal_salutation' => 'Википедија корисник',
 'changed'                      => 'изменета',
 'created'                      => 'создадена',
-'enotif_subject'               => '{{SITENAME}} страницата $PAGETITLE беше $CHANGEDORCREATED од $PAGEEDITOR',
+'enotif_subject'               => 'Страницата $PAGETITLE на {{SITENAME}} беше $CHANGEDORCREATED од $PAGEEDITOR',
 'enotif_lastvisited'           => 'Видете $1 за сите промени од вашата последна посета.',
 'enotif_lastdiff'              => 'Видете $1 за да ја видите оваа промена.',
 'enotif_anon_editor'           => 'анонимен корисник $1',
@@ -2369,7 +2369,7 @@ $NEWPAGE
 
 Опис од уредникот: $PAGESUMMARY $PAGEMINOREDIT
 
-Конакт на уредувачот:
+Конакт на уредникот:
 е-пошта: $PAGEEDITOR_EMAIL
 вики: $PAGEEDITOR_WIKI
 

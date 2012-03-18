@@ -425,7 +425,7 @@ Ayaw paghingalimot hin pagbalyo han imo [[Special:Preferences|{{SITENAME}} mga g
 'remembermypassword'      => "Hinumdumi an akon pan-sakob dinhi nga panngaykay ''(browser)'' (para ha pinakamaiha $1 {{PLURAL:$1|ka adlaw|ka mga adlaw}})",
 'yourdomainname'          => 'Imo dominyo:',
 'login'                   => 'Sakob',
-'nav-login-createaccount' => 'Magpasabot nga masakob / paghimo hin bag-o nga akawnt',
+'nav-login-createaccount' => 'Magpalista nga masakob / paghimo hin bag-o nga akawnt',
 'loginprompt'             => "Kinahanglan mo hin mga kuki (''cookie'') para makapag log-in ha {{SITENAME}}.",
 'userlogin'               => 'Magpasabot nga masakob / paghimo hin akawnt',
 'userloginnocreate'       => 'Magpasabot nga masakob',

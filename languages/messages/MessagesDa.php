@@ -1994,6 +1994,9 @@ Du kan afgrænse visningen ved at vælge en logtype, brugernavn eller påvirket 
 'allpagesbadtitle'  => 'Det indtastede sidenavn er ugyldigt: Det har enten et foranstillet sprog-, en Interwiki-forkortelse eller indeholder et eller flere tegn, som ikke må anvendes i sidenavne.',
 'allpages-bad-ns'   => 'Navnerummet $1 findes ikke på {{SITENAME}}.',
 
+# SpecialCachedPage
+'cachedspecial-refresh-now' => 'Vis seneste.',
+
 # Special:Categories
 'categories'                    => 'Kategorier',
 'categoriespagetext'            => 'Følgende {{PLURAL:$1|kategori|kategorier}} indeholder sider eller media.
@@ -3716,5 +3719,15 @@ Ellers kan du bruge den enkle formular nedenfor. Din kommentar vil blive tilføj
 'api-error-unknownerror'                  => 'Ukendt fejl: "$1".',
 'api-error-uploaddisabled'                => 'Oplægning af filer er slået fra på denne wiki.',
 'api-error-verification-error'            => 'Denne fil kan være beskadiget, eller den har måske en forkert filendelse.',
+
+# Durations
+'duration-seconds'   => '$1 {{PLURAL:$1|sekund|sekunder}}',
+'duration-minutes'   => '$1 {{PLURAL:$1|minut|minutter}}',
+'duration-hours'     => '$1 {{PLURAL:$1|time|timer}}',
+'duration-days'      => '$1 {{PLURAL:$1|dag|dage}}',
+'duration-weeks'     => '$1 {{PLURAL:$1|uge|uger}}',
+'duration-years'     => '$1 {{PLURAL:$1|år|år}}',
+'duration-decades'   => '$1 {{PLURAL:$1|årti|årtier}}',
+'duration-centuries' => '$1 {{PLURAL:$1|århundrede|århundreder}}',
 
 );

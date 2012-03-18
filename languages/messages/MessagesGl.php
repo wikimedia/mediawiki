@@ -3890,4 +3890,14 @@ En caso contrario, pode empregar o formulario sinxelo inferior. O seu comentario
 'api-error-uploaddisabled'                => 'As cargas están desactivadas neste wiki.',
 'api-error-verification-error'            => 'Este ficheiro podería estar corrupto ou ter unha extensión incorrecta.',
 
+# Durations
+'duration-seconds'   => '$1 {{PLURAL:$1|segundo|segundos}}',
+'duration-minutes'   => '$1 {{PLURAL:$1|minuto|minutos}}',
+'duration-hours'     => '$1 {{PLURAL:$1|hora|horas}}',
+'duration-days'      => '$1 {{PLURAL:$1|día|días}}',
+'duration-weeks'     => '$1 {{PLURAL:$1|semana|semanas}}',
+'duration-years'     => '$1 {{PLURAL:$1|ano|anos}}',
+'duration-decades'   => '$1 {{PLURAL:$1|década|décadas}}',
+'duration-centuries' => '$1 {{PLURAL:$1|século|séculos}}',
+
 );

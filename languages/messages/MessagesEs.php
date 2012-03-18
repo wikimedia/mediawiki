@@ -2182,6 +2182,11 @@ Puedes filtrar la vista seleccionando un tipo de registro, el nombre del usuario
 'allpagesbadtitle'  => 'El título dado era inválido o tenía un prefijo de enlace inter-idioma o inter-wiki. Puede contener uno o más caracteres que no se pueden usar en títulos.',
 'allpages-bad-ns'   => '{{SITENAME}} no tiene un espacio de nombres llamado «$1».',
 
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Usted está viendo una versión en caché de esta página, que puede tener hasta  $1 días de antigüedad.',
+'cachedspecial-viewing-cached-ts'  => 'Está viendo una versión en caché de esta página, que puede no estar completamente actualizada.',
+'cachedspecial-refresh-now'        => 'Ver lo más reciente.',
+
 # Special:Categories
 'categories'                    => 'Categorías',
 'categoriespagetext'            => 'Las siguientes {{PLURAL:$1|categoría contiene|categorías contienen}} páginas o medios.
@@ -3949,5 +3954,15 @@ En otro caso, puedes usar el siguiente formulario. Tu comentario será añadido 
 'api-error-unknownerror'                  => 'Error desconocido: «$1».',
 'api-error-uploaddisabled'                => 'Las subidas están desactivadas en este wiki.',
 'api-error-verification-error'            => 'Este archivo puede estar dañado, o tiene una extensión incorrecta.',
+
+# Durations
+'duration-seconds'   => '$1 {{PLURAL:$1|segundo|segundos}}',
+'duration-minutes'   => '$1 {{PLURAL:$1|minuto|minutos}}',
+'duration-hours'     => '$1 {{PLURAL:$1|hora|horas}}',
+'duration-days'      => '$1 {{PLURAL:$1|día|días}}',
+'duration-weeks'     => '$1 {{PLURAL:$1|semana|semanas}}',
+'duration-years'     => '$1 {{PLURAL: $1|año|años}}',
+'duration-decades'   => '$1 {{PLURAL:$1|década|décadas}}',
+'duration-centuries' => '$1 {{PLURAL:$1|siglo|siglos}}',
 
 );

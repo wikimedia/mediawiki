@@ -4065,4 +4065,13 @@ $5
 'api-error-uploaddisabled'                => 'ההעלאה מבוטלת באתר הוויקי הזה.',
 'api-error-verification-error'            => 'קובץ זה עשוי להיות פגום או בעל סיומת שגויה.',
 
+# Durations
+'duration-seconds'   => '{{PLURAL:$1|שנייה|$1 שניות}}',
+'duration-minutes'   => '{{PLURAL:$1|דקה|$1 דקות}}',
+'duration-hours'     => '{{PLURAL:$1|שעה|$1 שעות|שעתיים}}',
+'duration-days'      => '{{PLURAL:$1|יום|$1 ימים|יומיים}}',
+'duration-weeks'     => '{{PLURAL:$1|שבוע|$1 שבועות|שבועיים}}',
+'duration-years'     => '{{PLURAL:$1|שנה|$1 שנים|שנתיים}}',
+'duration-centuries' => '{{PLURAL:$1|מאה שנה|$1 מאות שנים|מאתיים שנה}}',
+
 );

@@ -2024,6 +2024,11 @@ serta mungkin mempunyai maklumat lanjut mengenai buku yang anda cari:',
 'allpagesbadtitle'  => 'Tajuk laman yang dinyatakan tidak sah atau mempunyai awalam antara bahasa atau antara wiki. Ia mungkin mengandungi aksara yang tidak boleh digunakan dalam tajuk laman.',
 'allpages-bad-ns'   => '{{SITENAME}} tidak mempunyai ruang nama "$1".',
 
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Anda sedang melihat versi dalam cache laman ini yang mungkin selama $1.',
+'cachedspecial-viewing-cached-ts'  => 'Anda sedang melihat versi dalam cache laman ini yang mungkin tidak lengkap sepenuhnya.',
+'cachedspecial-refresh-now'        => 'Lihat yang terkini.',
+
 # Special:Categories
 'categories'                    => 'Kategori',
 'categoriespagetext'            => '{{PLURAL:$1|Kategori|Kategori-kategori}} berikut mengandungi laman-laman atau media.
@@ -3796,5 +3801,15 @@ Ataupun, anda boleh menggunakan borang yang mudah di bawah. Ulasan anda akan dic
 'api-error-unknownerror'                  => 'Ralat tidak dikenali: "$1".',
 'api-error-uploaddisabled'                => 'Ciri muat naik dimatikan di wiki ini.',
 'api-error-verification-error'            => 'Fail ini mungkin tercemar atau tersalah sambungannya.',
+
+# Durations
+'duration-seconds'   => '$1 saat',
+'duration-minutes'   => '$1 minit',
+'duration-hours'     => '$1 jam',
+'duration-days'      => '$1 hari',
+'duration-weeks'     => '$1 minggu',
+'duration-years'     => '$1 tahun',
+'duration-decades'   => '$1 dekad',
+'duration-centuries' => '$1 abad',
 
 );

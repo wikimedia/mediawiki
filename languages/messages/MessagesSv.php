@@ -700,7 +700,7 @@ $2',
 Den uppgivna anledningen är "\'\'$2\'\'".',
 'filereadonlyerror'    => 'Det går inte att ändra filen "$1", eftersom fildatabasen "$2" är i skrivskyddat läge.
 
-Administratören som låste den framförde denna förklaring: "$3".',
+Den angivna anledningen var "\'\'$3\'\'".',
 
 # Virus scanner
 'virus-badscanner'     => "Dålig konfigurering: okänd virusskanner: ''$1''",

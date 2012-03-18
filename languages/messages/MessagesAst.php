@@ -446,6 +446,9 @@ $2',
 'ns-specialprotected'  => 'Les páxines especiales nun se puen editar.',
 'titleprotected'       => "Esti títulu foi protexíu de la so creación por [[User:$1|$1]].
 El motivu conseñáu ye ''$2''.",
+'filereadonlyerror'    => "Nun se pudo camudar el ficheru «$1» porque l'almacén de ficheros «$2» ta en mou de sólo llectura.
+
+El motivu dau ye «''$3''».",
 
 # Virus scanner
 'virus-badscanner'     => "Error de configuración: escáner de virus desconocíu: ''$1''",
@@ -1925,6 +1928,11 @@ Pues filtrar la visualización seleicionando una mena de rexistru, el nome d'usu
 'allpagesprefix'    => 'Amosar páxines col prefixu:',
 'allpagesbadtitle'  => "El títulu dau a esta páxina nun yera válidu o tenía un prefixu d'enllaz interllingua o interwiki. Pue contener ún o más carauteres que nun se puen usar nos títulos.",
 'allpages-bad-ns'   => '{{SITENAME}} nun tien l\'espaciu de nomes "$1".',
+
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => "Tas viendo una versión en caché d'esta páxina, que pue llegar a tener $1 d'antigüedá.",
+'cachedspecial-viewing-cached-ts'  => "Tas viendo una versión en caché d'esta páxina, que pue nun tar anovada dafechu.",
+'cachedspecial-refresh-now'        => 'Ver la más nueva.',
 
 # Special:Categories
 'categories'                    => 'Categoríes',
@@ -3716,5 +3724,15 @@ D\'otra miente, pues usar el formulariu cenciellu d\'abaxo. El to comentariu apa
 'api-error-unknownerror'                  => 'Fallu desconocíu: «$1».',
 'api-error-uploaddisabled'                => 'Les xubíes tan desactivaes nesta wiki.',
 'api-error-verification-error'            => 'Esti ficheru pudiera tar corrompíu, o tien una estensión incorreuta.',
+
+# Durations
+'duration-seconds'   => '$1 {{PLURAL: $1|segundu|segundos}}',
+'duration-minutes'   => '$1 {{PLURAL: $1|minutu|minutos}}',
+'duration-hours'     => '$1 {{PLURAL: $1|hora|hores}}',
+'duration-days'      => '$1 {{PLURAL: $1|día|díes}}',
+'duration-weeks'     => '$1 {{PLURAL: $1|selmana|selmanes}}',
+'duration-years'     => '$1 {{PLURAL: $1|añu|años}}',
+'duration-decades'   => '$1 {{PLURAL:$1|década|décades}}',
+'duration-centuries' => '$1 {{PLURAL:$1|sieglu|sieglos}}',
 
 );

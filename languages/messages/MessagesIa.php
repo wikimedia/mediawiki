@@ -2037,6 +2037,11 @@ Pro restringer le presentation, selige un typo de registro, le nomine de usator 
 Es possibile que illo contine un o plus characteres que non pote esser usate in titulos.',
 'allpages-bad-ns'   => '{{SITENAME}} non ha un spatio e nomines "$1".',
 
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Tu vide un version in cache de iste pagina, que pote haber usque a $1 de etate.',
+'cachedspecial-viewing-cached-ts'  => 'Tu vide un version in cache de iste pagina, que pote non esser completemente actual.',
+'cachedspecial-refresh-now'        => 'Vider le plus recente.',
+
 # Special:Categories
 'categories'                    => 'Categorias',
 'categoriespagetext'            => 'Le sequente {{PLURAL:$1|categoria|categorias}} contine paginas o multimedia.
@@ -3839,5 +3844,15 @@ Si non, tu pote usar le formulario facile hic infra. Tu commento essera addite a
 'api-error-unknownerror'                  => 'Error incognite: "$1".',
 'api-error-uploaddisabled'                => 'Le incargamento es disactivate in iste wiki.',
 'api-error-verification-error'            => 'Le file pote esser corrumpite o su nomine pote haber un extension errate.',
+
+# Durations
+'duration-seconds'   => '$1 {{PLURAL:$1|secunda|secundas}}',
+'duration-minutes'   => '$1 {{PLURAL:$1|minuta|minutas}}',
+'duration-hours'     => '$1 {{PLURAL:$1|hora|horas}}',
+'duration-days'      => '$1 {{PLURAL:$1|die|dies}} retro',
+'duration-weeks'     => '$1 {{PLURAL:$1|septimana|septimanas}}',
+'duration-years'     => '$1 {{PLURAL:$1|anno|annos}}',
+'duration-decades'   => '$1 {{PLURAL:$1|decennio|decennios}}',
+'duration-centuries' => '$1 {{PLURAL:$1|seculo|seculos}}',
 
 );
