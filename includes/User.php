@@ -1273,10 +1273,6 @@ class User {
 		// overwriting mBlockedby, surely?
 		$this->load();
 
-		$this->mBlockedby = 0;
-		$this->mHideName = 0;
-		$this->mAllowUsertalk = 0;
-
 		# We only need to worry about passing the IP address to the Block generator if the
 		# user is not immune to autoblocks/hardblocks, and they are the current user so we
 		# know which IP address they're actually coming from
@@ -1287,30 +1283,37 @@ class User {
 		}
 
 		# User/IP blocking
-		$this->mBlock = Block::newFromTarget( $this->getName(), $ip, !$bFromSlave );
-		if ( $this->mBlock instanceof Block ) {
-			wfDebug( __METHOD__ . ": Found block.\n" );
-			$this->mBlockedby = $this->mBlock->getByName();
-			$this->mBlockreason = $this->mBlock->mReason;
-			$this->mHideName = $this->mBlock->mHideName;
-			$this->mAllowUsertalk = !$this->mBlock->prevents( 'editownusertalk' );
-		}
+		$block = Block::newFromTarget( $this->getName(), $ip, !$bFromSlave );
 
 		# Proxy blocking
-		if ( $ip !== null && !$this->isAllowed( 'proxyunbannable' ) && !in_array( $ip, $wgProxyWhitelist ) ) {
+		if ( !$block instanceof Block && $ip !== null && !$this->isAllowed( 'proxyunbannable' )
+			&& !in_array( $ip, $wgProxyWhitelist ) ) 
+		{
 			# Local list
 			if ( self::isLocallyBlockedProxy( $ip ) ) {
-				$this->mBlockedby = wfMsg( 'proxyblocker' );
-				$this->mBlockreason = wfMsg( 'proxyblockreason' );
+				$block = new Block;
+				$block->setBlocker( wfMsg( 'proxyblocker' ) );
+				$block->mReason = wfMsg( 'proxyblockreason' );
+				$block->setTarget( $ip );
+			} elseif ( $this->isAnon() && $this->isDnsBlacklisted( $ip ) ) {
+				$block = new Block;
+				$block->setBlocker( wfMsg( 'sorbs' ) );
+				$block->mReason = wfMsg( 'sorbsreason' );
+				$block->setTarget( $ip );
 			}
+		}
 
-			# DNSBL
-			if ( !$this->mBlockedby && !$this->getID() ) {
-				if ( $this->isDnsBlacklisted( $ip ) ) {
-					$this->mBlockedby = wfMsg( 'sorbs' );
-					$this->mBlockreason = wfMsg( 'sorbsreason' );
-				}
-			}
+		if ( $block instanceof Block ) {
+			wfDebug( __METHOD__ . ": Found block.\n" );
+			$this->mBlock = $block;
+			$this->mBlockedby = $block->getByName();
+			$this->mBlockreason = $block->mReason;
+			$this->mHideName = $block->mHideName;
+			$this->mAllowUsertalk = !$block->prevents( 'editownusertalk' );
+		} else {
+			$this->mBlockedby = '';
+			$this->mHideName = 0;
+			$this->mAllowUsertalk = false;
 		}
 
 		# Extensions

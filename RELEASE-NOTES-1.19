@@ -24,6 +24,7 @@ production.
   preloaded into edit summary on section edit
 * (bug 31417) New ID mw-content-text around the actual page text, without categories,
   contentSub, ... The same div often also contains the class mw-content-ltr/rtl.
+* (bug 35303) Proxy and DNS blacklist blocking works again
 
 === Configuration changes in 1.19 ===
 * Removed SkinTemplateSetupPageCss hook; use BeforePageDisplay instead.
