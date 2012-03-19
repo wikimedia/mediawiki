@@ -237,7 +237,16 @@ class SpecialNewpages extends IncludableSpecialPage {
 					Xml::label( wfMsg( 'namespace' ), 'namespace' ) .
 				'</td>
 				<td class="mw-input">' .
-					Xml::namespaceSelector( $namespace, 'all' ) .
+					Html::namespaceSelector(
+						array(
+							'selected' => $namespace,
+							'all' => 'all',
+						), array(
+							'name'  => 'namespace',
+							'id'    => 'namespace',
+							'class' => 'namespaceselector',
+						)
+					) .
 				'</td>
 			</tr>' . ( $tagFilter ? (
 			'<tr>

@@ -138,9 +138,17 @@ class SpecialProtectedtitles extends SpecialPage {
 	 * @return string
 	 */
 	function getNamespaceMenu( $namespace = null ) {
-		return Xml::label( wfMsg( 'namespace' ), 'namespace' )
-			. '&#160;'
-			. Xml::namespaceSelector( $namespace, '' );
+		return Html::namespaceSelector(
+			array(
+				'selected' => $namespace,
+				'all' => '',
+				'label' => $this->msg( 'namespace' )->text()
+			), array(
+				'name'  => 'namespace',
+				'id'    => 'namespace',
+				'class' => 'namespaceselector',
+			)
+		);
 	}
 
 	/**

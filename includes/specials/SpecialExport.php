@@ -185,7 +185,16 @@ class SpecialExport extends SpecialPage {
 		$form .= Xml::submitButton( $this->msg( 'export-addcat' )->text(), array( 'name' => 'addcat' ) ) . '<br />';
 
 		if ( $wgExportFromNamespaces ) {
-			$form .= Xml::namespaceSelector( $nsindex, null, 'nsindex', $this->msg( 'export-addnstext' )->text() ) . '&#160;';
+			$form .= Html::namespaceSelector(
+				array(
+					'selected' => $nsindex,
+					'label' => $this->msg( 'export-addnstext' )->text()
+				), array(
+					'name'  => 'nsindex',
+					'id'    => 'namespace',
+					'class' => 'namespaceselector',
+				)
+			) . '&#160;';
 			$form .= Xml::submitButton( $this->msg( 'export-addns' )->text(), array( 'name' => 'addns' ) ) . '<br />';
 		}
 

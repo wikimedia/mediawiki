@@ -492,8 +492,17 @@ class DeletedContributionsPage extends SpecialPage {
 				'size' => '20',
 				'required' => ''
 			) + ( $options['target'] ? array() : array( 'autofocus' ) ) ) . ' '.
-			Xml::label( $this->msg( 'namespace' )->text(), 'namespace' ) . ' ' .
-			Xml::namespaceSelector( $options['namespace'], '' ) . ' ' .
+			Html::namespaceSelector(
+				array(
+					'selected' => $options['namespace'],
+					'all' => '',
+					'label' => $this->msg( 'namespace' )->text()
+				), array(
+					'name'  => 'namespace',
+					'id'    => 'namespace',
+					'class' => 'namespaceselector',
+				)
+			) . ' ' .
 			Xml::submitButton( $this->msg( 'sp-contributions-submit' )->text() ) .
 			Xml::closeElement( 'fieldset' ) .
 			Xml::closeElement( 'form' );

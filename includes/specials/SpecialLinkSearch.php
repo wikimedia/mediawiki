@@ -91,8 +91,17 @@ class LinkSearchPage extends QueryPage {
 			Xml::element( 'legend', array(), $this->msg( 'linksearch' )->text() ) .
 			Xml::inputLabel( $this->msg( 'linksearch-pat' )->text(), 'target', 'target', 50, $target ) . ' ';
 		if ( !$wgMiserMode ) {
-			$s .= Xml::label( $this->msg( 'linksearch-ns' )->text(), 'namespace' ) . ' ' .
-				Xml::namespaceSelector( $namespace, '' );
+			$s .= Html::namespaceSelector(
+				array(
+					'selected' => $namespace,
+					'all' => '',
+					'label' => $this->msg( 'linksearch-ns' )->text()
+				), array(
+					'name'  => 'namespace',
+					'id'    => 'namespace',
+					'class' => 'namespaceselector',
+				)
+			);
 		}
 		$s .=	Xml::submitButton( $this->msg( 'linksearch-ok' )->text() ) .
 			'</fieldset>' .
