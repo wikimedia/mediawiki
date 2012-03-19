@@ -1312,7 +1312,7 @@ class EditPage {
 				$text = $this->textbox1; // do not try to merge here!
 			} elseif ( $this->isConflict ) {
 				# Attempt merge
-				if ( $this->mergeChangesInto( $text ) ) { #FIXME: use ContentHandler
+				if ( $this->mergeChangesInto( $text ) ) { #FIXME: passe/receive Content object
 					// Successful merge! Maybe we should tell the user the good news?
 					$this->isConflict = false;
 					wfDebug( __METHOD__ . ": Suppressing edit conflict, successful merge.\n" );
@@ -1515,7 +1515,7 @@ class EditPage {
 			wfProfileOut( __METHOD__ );
 			return false;
 		}
-		$baseText = $baseRevision->getText();
+		$baseContent = $baseRevision->getContent();
 
 		// The current state, we want to merge updates into it
 		$currentRevision = Revision::loadFromTitle( $db, $this->mTitle );
@@ -1523,11 +1523,14 @@ class EditPage {
 			wfProfileOut( __METHOD__ );
 			return false;
 		}
-		$currentText = $currentRevision->getText();
+		$currentContent = $currentRevision->getContent();
 
-		$result = '';
-		if ( wfMerge( $baseText, $editText, $currentText, $result ) ) {
-			$editText = $result;
+        $handler = ContentHandler::getForModelName( $baseContent->getModelName() );
+        $editContent = $handler->unserialize( $editText ); #FIXME: supply serialization fomrat from edit form!
+
+		$result = $handler->merge3( $baseContent, $editContent, $currentContent );
+		if ( $result ) {
+			$editText = ContentHandler::getContentText($result);  #FIXME: supply serialization fomrat from edit form!
 			wfProfileOut( __METHOD__ );
 			return true;
 		} else {

@@ -201,7 +201,22 @@ abstract class ContentHandler {
         return $de;
     }
 
-    #XXX: is the native model for wikitext a string or the parser output? parse early or parse late?
+    /**
+     * attempts to merge differences between three versions.
+     * Returns a new Content object for a clean merge and false for failure or a conflict.
+     *
+     * This default implementation always returns false.
+     *
+     * @param $oldContent String
+     * @param $myContent String
+     * @param $yourContent String
+     * @return Content|Bool
+     */
+    public function merge3( Content $oldContent, Content $myContent, Content $yourContent ) {
+        return false;
+    }
+
+    #TODO: cover patch/undo just like merge3.
 
     #TODO: how to handle extra message for JS/CSS previews??
     #TODO: Article::showCssOrJsPage ---> specialized classes!
@@ -220,6 +235,34 @@ abstract class TextContentHandler extends ContentHandler {
         #FIXME: assert format
         return $content->getRawData();
     }
+
+    /**
+     * attempts to merge differences between three versions.
+     * Returns a new Content object for a clean merge and false for failure or a conflict.
+     *
+     * This text-based implementation uses wfMerge().
+     *
+     * @param $oldContent String
+     * @param $myContent String
+     * @param $yourContent String
+     * @return Content|Bool
+     */
+    public function merge3( Content $oldContent, Content $myContent, Content $yourContent ) {
+        $format = $this->getDefaultFormat();
+
+        $old = $this->serialize( $oldContent, $format );
+        $mine = $this->serialize( $myContent, $format );
+        $yours = $this->serialize( $yourContent, $format );
+
+        $ok = wfMerge( $old, $mine, $yours, $result );
+
+        if ( !$ok ) return false;
+        if ( !$result ) return $this->emptyContent();
+
+        $mergedContent = $this->unserialize( $result, $format );
+        return $mergedContent;
+    }
+
 
 }
 class WikitextContentHandler extends TextContentHandler {
