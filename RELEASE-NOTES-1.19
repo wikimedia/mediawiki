@@ -25,6 +25,8 @@ production.
 * (bug 31417) New ID mw-content-text around the actual page text, without categories,
   contentSub, ... The same div often also contains the class mw-content-ltr/rtl.
 * (bug 35303) Proxy and DNS blacklist blocking works again
+* (bug 35294) jquery.byteLimit shouldn't set element specific variables outside
+  the "return this.each" loop.
 
 === Configuration changes in 1.19 ===
 * Removed SkinTemplateSetupPageCss hook; use BeforePageDisplay instead.
@@ -282,8 +284,6 @@ production.
 * (bug 12262) Indents and lists are now aligned
 * (bug 34972) An error occurred while changing your watchlist settings for 
   [[Special:WhatLinksHere/Example]]
-* (bug 35294) jquery.byteLimit shouldn't set element specific variables outside
-  the "return this.each" loop.
 
 === API changes in 1.19 ===
 * Made action=edit less likely to return "unknownerror", by returning the actual error
