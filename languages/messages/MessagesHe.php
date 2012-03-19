@@ -2222,6 +2222,11 @@ $1',
 ייתכן שהיא מכילה תו אחד או יותר האסורים לשימוש בכותרות.',
 'allpages-bad-ns'   => 'אין מרחב שם בשם "$1".',
 
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'זוהי גרסה שמורה בזיכרון המטמון של דף זה, שעשויה להיות בת $1.',
+'cachedspecial-viewing-cached-ts'  => 'זוהי גרסה שמורה בזיכרון המטמון של דף זה, שעשויה שלא להיות מעודכנת.',
+'cachedspecial-refresh-now'        => 'צפייה באחרון.',
+
 # Special:Categories
 'categories'                    => 'קטגוריות',
 'categoriespagetext'            => '{{PLURAL:$1|הקטגוריה הבאה כוללת|הקטגוריות הבאות כוללות}} דפים או קובצי מדיה.
@@ -4072,6 +4077,8 @@ $5
 'duration-days'      => '{{PLURAL:$1|יום|$1 ימים|יומיים}}',
 'duration-weeks'     => '{{PLURAL:$1|שבוע|$1 שבועות|שבועיים}}',
 'duration-years'     => '{{PLURAL:$1|שנה|$1 שנים|שנתיים}}',
+'duration-decades'   => '{{PLURAL:$1|עשור|$1 עשורים}}',
 'duration-centuries' => '{{PLURAL:$1|מאה שנה|$1 מאות שנים|מאתיים שנה}}',
+'duration-millennia' => '{{PLURAL:$1|אלף שנה|$1 אלפי שנים|אלפיים שנה}}',
 
 );

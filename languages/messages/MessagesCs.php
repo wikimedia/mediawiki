@@ -2179,6 +2179,11 @@ Zobrazení můžete zúžit výběrem typu záznamu, uživatelského jména (zá
 'allpagesbadtitle'  => 'Zadaný název stránky nebyl platný nebo obsahoval předponu mezijazykového či interwiki odkazu. Možná obsahoval znaky, které v názvu nejsou dovoleny.',
 'allpages-bad-ns'   => '{{SITENAME}} nemá jmenný prostor "$1".',
 
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Prohlížíte si cachovanou verzi této stránky, která může být až $1 stará.',
+'cachedspecial-viewing-cached-ts'  => 'Prohlížíte si cachovanou verzi této stránky, která nemusí být zcela aktuální.',
+'cachedspecial-refresh-now'        => 'Zobrazit nejnovější.',
+
 # Special:Categories
 'categories'                    => 'Kategorie',
 'categoriespagetext'            => 'Následující kategorie {{PLURAL:$1|obsahuje|obsahují}} stránky nebo soubory.
@@ -3992,5 +3997,16 @@ Jinak můžete využít jednoduchý formulář níže. Váš komentář bude př
 'api-error-unknownerror'                  => 'Neznámá chyba: „$1“.',
 'api-error-uploaddisabled'                => 'Načítání souborů je na této wiki vypnuto.',
 'api-error-verification-error'            => 'Soubor je možná poškozen nebo má špatnou příponu.',
+
+# Durations
+'duration-seconds'   => '$1 {{PLURAL:$1|sekunda|sekundy|sekund}}',
+'duration-minutes'   => '$1 {{PLURAL:$1|minuta|minuty|minut}}',
+'duration-hours'     => '$1 {{PLURAL:$1|hodina|hodiny|hodin}}',
+'duration-days'      => '$1 {{PLURAL:$1|den|dny|dní}}',
+'duration-weeks'     => '$1 {{PLURAL:$1|týden|týdny|týdnů}}',
+'duration-years'     => '$1 {{PLURAL:$1|rok|roky|let}}',
+'duration-decades'   => '$1 {{PLURAL:$1|dekáda|dekády|dekád}}',
+'duration-centuries' => '$1 {{PLURAL:$1|století}}',
+'duration-millennia' => '$1 {{PLURAL:$1|tisíciletí}}',
 
 );

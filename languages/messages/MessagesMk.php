@@ -2216,6 +2216,11 @@ $1',
 'allpagesbadtitle'  => 'Дадениот наслов е неважечки или има меѓујазичен или интервики префикс. Може да содржи повеќе знаци кои не смеат да се користат во наслови.',
 'allpages-bad-ns'   => 'Википедија не содржи именски простор „$1“.',
 
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Гледате кеширана верзија на оваа страница, која може да е стара $1.',
+'cachedspecial-viewing-cached-ts'  => 'Гледате кеширана верзија на оваа страница, која може да се разликува од тековната.',
+'cachedspecial-refresh-now'        => 'Погл. најновата.',
+
 # Special:Categories
 'categories'                    => 'Категории',
 'categoriespagetext'            => '{{PLURAL:$1|Следната категорија содржи|Следните категории содржат}} страници или мултимедијални податотеки.
@@ -4171,5 +4176,16 @@ $5
 'api-error-unknownerror'                  => 'Непозната грешка: „$1“.',
 'api-error-uploaddisabled'                => 'Подигањето е оневозможено на ова вики.',
 'api-error-verification-error'            => 'Податотеката е оштетена или има погрешна наставка.',
+
+# Durations
+'duration-seconds'   => '$1 {{PLURAL:$1|секунда|секунди}}',
+'duration-minutes'   => '$1 {{PLURAL:$1|минута|минути}}',
+'duration-hours'     => '$1 {{PLURAL:$1|час|часа}}',
+'duration-days'      => '$1 {{PLURAL:$1|ден|дена}}',
+'duration-weeks'     => '$1 {{PLURAL:$1|недела|недели}}',
+'duration-years'     => '{{PLURAL: $1|година|години}}',
+'duration-decades'   => '$1 {{PLURAL:$1|деценија|децении}}',
+'duration-centuries' => '$1 {{PLURAL:$1|век|века}}',
+'duration-millennia' => '$1 {{PLURAL:$1|милениум|милениуми}}',
 
 );

@@ -3702,4 +3702,15 @@ Soss kënnt Dir den einfache Formulär hei drënner benotzen. Är Bemierkung gë
 'api-error-uploaddisabled'                => "D'Eroplueden ass op dëser Wiki ausgeschalt.",
 'api-error-verification-error'            => 'Dëse Fichier kéint korrupt sinn, oder en huet eng falsch Erweiderung.',
 
+# Durations
+'duration-seconds'   => '$1 {{PLURAL:$1|Sekonn|Sekonnen}}',
+'duration-minutes'   => '$1 {{PLURAL:$1|Minutt|Minutten}}',
+'duration-hours'     => '$1 {{PLURAL:$1|Stonn|Stonnen}}',
+'duration-days'      => '$1 {{PLURAL:$1|Dag|Deeg}}',
+'duration-weeks'     => '$1 {{PLURAL: $1|Woch|Wochen}}',
+'duration-years'     => '$1 {{PLURAL:$1|Joer|Joer}}',
+'duration-decades'   => '$1 {{PLURAL:$1|Joerzéngt|Joerzéngten}}',
+'duration-centuries' => '$1 {{PLURAL:$1|Joerhonnert|Joerhonnerten}}',
+'duration-millennia' => '$1 {{PLURAL:$1|Millenaire|Millenairen}}',
+
 );

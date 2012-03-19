@@ -76,6 +76,11 @@ $messages = array(
 'faq'            => 'FAQ',
 'faqpage'        => 'Project:FAQ',
 
+# Vector skin
+'vector-action-delete'  => 'Sula',
+'vector-action-protect' => 'Sirhelela',
+'vector-view-create'    => 'Tumbuluxa',
+
 'errorpagetitle'   => 'Xihoxo',
 'returnto'         => 'Thlelela e $1.',
 'tagline'          => 'Kusuka e {{SITENAME}}',
@@ -94,6 +99,7 @@ $messages = array(
 'delete'           => 'Sula',
 'deletethispage'   => 'Sula tluka leri',
 'protect'          => 'Sirhelela',
+'protect_change'   => 'Cinca',
 'newpage'          => 'Tluka rintswa',
 'talkpagelinktext' => 'Mbulavulo',
 'talk'             => 'Mbulavuriswano',
@@ -119,6 +125,11 @@ $messages = array(
 
 'badaccess'        => 'Xihoxo hita mpfumelelo',
 'badaccess-group0' => 'U hava mpumelelo wo endla xikombelo lexi.',
+'badaccess-groups' => 'The action you have requested is limited to users in one of the groups $1.',
+
+'versionrequired'     => 'Version $1 of MediaWiki required',
+'versionrequiredtext' => 'Version $1 of MediaWiki is required to use this page.
+See [[Special:Version|version page]].',
 
 'ok'                      => 'Hiswona',
 'retrievedfrom'           => 'ku suka e "$1"',
@@ -129,6 +140,7 @@ $messages = array(
 'editsection'             => 'Lulamisa',
 'editold'                 => 'Lulamisa',
 'viewsourceold'           => 'Languta vutsari-ntumbuluko',
+'editlink'                => 'Lulamisa',
 'editsectionhint'         => 'Lulamisa xiphemu: $1',
 'toc'                     => 'Leswinga ndzeni',
 'showtoc'                 => 'Kombisa',
@@ -136,6 +148,13 @@ $messages = array(
 'thisisdeleted'           => 'Langutisa kumbe Thlerisela $1?',
 'viewdeleted'             => 'Langutisa $1?',
 'restorelink'             => '{{PLURAL:$1|ndzulamiso lowu suriweke|$1 mindzulamiso leyi suriweke}}',
+'feedlinks'               => 'Feed:',
+'feed-invalid'            => 'Invalid subscription feed type.',
+'feed-unavailable'        => 'Syndication feeds are not available on {{SITENAME}}',
+'site-rss-feed'           => '$1 RSS Feed',
+'site-atom-feed'          => '$1 Atom Feed',
+'page-rss-feed'           => '"$1" RSS Feed',
+'page-atom-feed'          => '"$1" Atom Feed',
 'red-link-title'          => '$1 (Arisi tsariwa)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -159,12 +178,59 @@ $messages = array(
 Vona nxaxamelo wa ma tluka yo hlawuleka e [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
-'error'         => 'Xihoxo',
-'databaseerror' => 'Xihoxo xo Database',
-'internalerror' => 'Xihoxo xa le ndzeni',
-'viewsource'    => 'Vona tsalwa-tumbuluxa',
+'error'                => 'Xihoxo',
+'databaseerror'        => 'Xihoxo xo Database',
+'dberrortext'          => 'A database query syntax error has occurred.
+This may indicate a bug in the software.
+The last attempted database query was:
+<blockquote><tt>$1</tt></blockquote>
+from within function "<tt>$2</tt>".
+MySQL returned error "<tt>$3: $4</tt>".',
+'dberrortextcl'        => 'A database query syntax error has occurred.
+The last attempted database query was:
+"$1"
+from within function "$2".
+MySQL returned error "$3: $4"',
+'laggedslavemode'      => 'Warning: Page may not contain recent updates.',
+'readonly'             => 'Database locked',
+'enterlockreason'      => 'Enter a reason for the lock, including an estimate of when the lock will be released',
+'readonlytext'         => 'The database is currently locked to new entries and other modifications, probably for routine database maintenance, after which it will be back to normal.
+
+The administrator who locked it offered this explanation: $1',
+'missing-article'      => 'The database did not find the text of a page that it should have found, named "$1" $2.
+
+This is usually caused by following an outdated diff or history link to a page that has been deleted.
+
+If this is not the case, you may have found a bug in the software.
+Please report this to an administrator, making note of the URL.',
+'missingarticle-rev'   => '(revision#: $1)',
+'missingarticle-diff'  => '(Diff: $1, $2)',
+'readonly_lag'         => 'The database has been automatically locked while the slave database servers catch up to the master',
+'internalerror'        => 'Xihoxo xa le ndzeni',
+'internalerror_info'   => 'Internal error: $1',
+'filecopyerror'        => 'Could not copy file "$1" to "$2".',
+'filerenameerror'      => 'Could not rename file "$1" to "$2".',
+'filedeleteerror'      => 'Could not delete file "$1".',
+'directorycreateerror' => 'Could not create directory "$1".',
+'filenotfound'         => 'Could not find file "$1".',
+'fileexistserror'      => 'Unable to write to file "$1": file exists',
+'unexpected'           => 'Unexpected value: "$1"="$2".',
+'formerror'            => 'Error: could not submit form',
+'badarticleerror'      => 'This action cannot be performed on this page.',
+'cannotdelete'         => 'Could not delete the page or file specified.
+It may have already been deleted by someone else.',
+'badtitle'             => 'Bad title',
+'badtitletext'         => 'The requested page title was invalid, empty, or an incorrectly linked inter-language or inter-wiki title.
+It may contain one or more characters which cannot be used in titles.',
+'querypage-no-updates' => 'Updates for this page are currently disabled.
+Data here will not presently be refreshed.',
+'wrong_wfQuery_params' => 'Incorrect parameters to wfQuery()<br />
+Function: $1<br />
+Query: $2',
+'viewsource'           => 'Vona tsalwa-tumbuluxa',
 
 # Login and logout pages
+'yourname'                => 'Vito ra vutirhisi',
 'yourpassword'            => 'Vito-mpfungulo:',
 'login'                   => 'Pfula u nghena',
 'nav-login-createaccount' => 'Pfula unghena / Tumbuluxa akhawunti',
@@ -190,14 +256,18 @@ U hi tshembisa nakambe leswaku hi wena mutsari wa leswi nyikeriwaka laha, kumbe 
 '''UNGA RHUMERI MATSALWA LA MA SIRHELERIWEKE HANDLE KA MPFUMELELO!'''",
 
 # History pages
-'next'       => 'Leswilandzelaka',
-'last'       => 'Swo hetelela',
-'page_first' => 'Xo sungula',
+'next'                 => 'Leswilandzelaka',
+'last'                 => 'Swo hetelela',
+'page_first'           => 'Xo sungula',
+'history-show-deleted' => 'Leswi suriweke ntsena',
 
 # Revision deletion
 'rev-delundel' => 'Komba/Tumbeta',
 'pagehist'     => 'Matimu ya tluka',
 'deletedhist'  => 'Matimu lamasuriweke',
+
+# Merge log
+'revertmerge' => 'Hambanisa',
 
 # Search results
 'searchhelp-url'        => 'Help:Leswinga ndzeni',
@@ -226,10 +296,14 @@ U hi tshembisa nakambe leswaku hi wena mutsari wa leswi nyikeriwaka laha, kumbe 
 'right-createpage' => 'Tumbuluxa matluka (mangariki eka matluka ya mbulavulo)',
 'right-createtalk' => 'Tumbuluxa matluka ya mbulavulo',
 
+# Associated actions - in the sentence "You do not have permission to X"
+'action-edit' => 'Lulamisa tluka leri',
+
 # Recent changes
-'recentchanges' => 'Ku cinca ka sweswi-nyana',
-'hide'          => 'Tumbeta',
-'show'          => 'Komba',
+'recentchanges'    => 'Ku cinca ka sweswi-nyana',
+'hide'             => 'Tumbeta',
+'show'             => 'Komba',
+'rc-enhanced-hide' => 'Tumbeta vuxokoxoko',
 
 # Recent changes linked
 'recentchangeslinked'         => 'Kuncica loku yelanaka',
@@ -250,7 +324,11 @@ U hi tshembisa nakambe leswaku hi wena mutsari wa leswi nyikeriwaka laha, kumbe 
 'filehist-deleteall' => 'sula hinkwaswo',
 'filehist-deleteone' => 'Dlaya',
 'filehist-revert'    => 'thlerisela',
+'filehist-datetime'  => 'Siku/Nkarhi',
 'filehist-user'      => 'Mutirhisi',
+
+# Statistics
+'statistics' => 'Mintsengo',
 
 # Miscellaneous special pages
 'newpages'     => 'Matluka mantswa',
@@ -306,6 +384,9 @@ U hi tshembisa nakambe leswaku hi wena mutsari wa leswi nyikeriwaka laha, kumbe 
 # Block/unblock
 'contribslink' => 'Minyikelo',
 
+# Namespace 8 related
+'allmessagesname' => 'Vito',
+
 # Tooltip help for the actions
 'tooltip-pt-userpage'     => 'Tluka ra vutirhisi',
 'tooltip-pt-mytalk'       => 'Mbulavulo namina',
@@ -315,6 +396,7 @@ U hi tshembisa nakambe leswaku hi wena mutsari wa leswi nyikeriwaka laha, kumbe 
 'tooltip-ca-protect'      => 'Sirhelela tluka leri',
 'tooltip-ca-delete'       => 'Sula tluka leri',
 'tooltip-ca-move'         => 'Veka tluka endhzawini yinwana',
+'tooltip-ca-watch'        => 'Hoxa tluka leri eka leswi uswilanguteke',
 'tooltip-n-mainpage'      => 'Endzela tlukankulu',
 'tooltip-t-whatlinkshere' => 'Nxaxamelo wa matluka lama khwekelaka laha',
 'tooltip-t-upload'        => 'Khandziyisa tifayili',
@@ -322,6 +404,7 @@ U hi tshembisa nakambe leswaku hi wena mutsari wa leswi nyikeriwaka laha, kumbe 
 'tooltip-ca-nstab-user'   => 'Vona tluka ra mutirhisi',
 'tooltip-save'            => 'Hlayiso ku cinca ka wena',
 'tooltip-preview'         => 'Ringanisa ku cinca loku uku endleke, Tirhisa Xitirhisiwa lexi ungasi hlayisa tluka leri!',
+'tooltip-summary'         => 'Tsala nkomiso',
 
 # Special:SpecialPages
 'specialpages' => 'Matluka yo hlawuleka',

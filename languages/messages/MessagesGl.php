@@ -608,7 +608,10 @@ $2',
 'customjsprotected'    => 'Non dispón de permisos para modificar esta páxina de JavaScript, dado que contén a configuración persoal doutro usuario.',
 'ns-specialprotected'  => 'Non se poden editar as páxinas no espazo de nomes {{ns:special}}.',
 'titleprotected'       => "Este título foi protexido da creación por [[User:$1|$1]].
-A razón dada foi ''$2''.",
+O motivo achegado é ''$2''.",
+'filereadonlyerror'    => 'Non se puido modificar o ficheiro "$1" porque o repositorio "$2" está en modo de só lectura.
+
+O motivo achegado é "\'\'$3\'\'".',
 
 # Virus scanner
 'virus-badscanner'     => "Configuración errónea: escáner de virus descoñecido: ''$1''",
@@ -2096,6 +2099,11 @@ Pode precisar máis a vista seleccionando o tipo de rexistro, o nome do usuario 
 'allpagesprefix'    => 'Mostrar as páxinas que comezan co prefixo:',
 'allpagesbadtitle'  => 'O título dado á páxina non era válido ou contiña un prefixo inter-linguas ou inter-wikis. Pode que conteña un ou máis caracteres que non se poden empregar nos títulos.',
 'allpages-bad-ns'   => '{{SITENAME}} carece do espazo de nomes "$1".',
+
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Está a ver unha versión da páxina gardada na caché, que pode ser de hai $1.',
+'cachedspecial-viewing-cached-ts'  => 'Está a ver unha versión da páxina gardada na caché, que pode non estar completamente actualizada.',
+'cachedspecial-refresh-now'        => 'Ir á versión máis recente.',
 
 # Special:Categories
 'categories'                    => 'Categorías',
@@ -3899,5 +3907,6 @@ En caso contrario, pode empregar o formulario sinxelo inferior. O seu comentario
 'duration-years'     => '$1 {{PLURAL:$1|ano|anos}}',
 'duration-decades'   => '$1 {{PLURAL:$1|década|décadas}}',
 'duration-centuries' => '$1 {{PLURAL:$1|século|séculos}}',
+'duration-millennia' => '$1 {{PLURAL:$1|milenio|milenios}}',
 
 );

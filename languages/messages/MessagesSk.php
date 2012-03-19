@@ -2127,6 +2127,11 @@ Môžete zúžiť rozsah, ak zvolíte typ záznamu, používateľské meno alebo
 'allpagesbadtitle'  => 'Zadaný názov stránky je neplatný alebo mal medzijazykový alebo interwiki prefix. Môže obsahovať jeden alebo viac znakov, ktoré nie je možné použiť v názve stránky.',
 'allpages-bad-ns'   => '{{SITENAME}} nemá menný priestor „$1“.',
 
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Prezeráte si kópiu stránky z vyrovnávacej pamäte, môže byť stará až $1.',
+'cachedspecial-viewing-cached-ts'  => 'Prezeráte si kópiu stránky z vyrovnávacej pamäte, nemusí byť úplne aktuálna.',
+'cachedspecial-refresh-now'        => 'Zobraziť aktuálnu.',
+
 # Special:Categories
 'categories'                    => 'Kategórie',
 'categoriespagetext'            => '{{PLURAL:$1|Nasledovná kategória obsahuje|Nasledovné kategórie obsahujú}} stránky alebo multimediálne súbory.
@@ -3806,7 +3811,7 @@ Obrázky sa zobrazia v plnom rozlíšení, ostatné typy súborov sa spustia v p
 'dberr-info'        => '(Spojenie s databázovým serverom neúspešné: $1)',
 'dberr-usegoogle'   => 'Zatiaľ môžete skúsiť hľadať pomocou Google.',
 'dberr-outofdate'   => 'Pamätajte, že ich indexy nemusia byť aktuálne.',
-'dberr-cachederror' => 'Toto je kópia požadovanej ztránky z vyrovnávacej pamäte a nemusí byť aktuálna.',
+'dberr-cachederror' => 'Toto je kópia požadovanej stránky z vyrovnávacej pamäte a nemusí byť aktuálna.',
 
 # HTML forms
 'htmlform-invalid-input'       => 'Niekotrý z údajov, ktoré ste zadali je problematický',
@@ -3909,5 +3914,16 @@ V opačnom prípade môžete použiť zjednodušený formulár nižšie. Váš k
 'api-error-unknownerror'                  => 'Neznáma chyba: „$1“',
 'api-error-uploaddisabled'                => 'Nahrávanie je na tejto wiki zakázané.',
 'api-error-verification-error'            => 'Tento súbor môže byť poškodený, alebo má zlú príponu.',
+
+# Durations
+'duration-seconds'   => '$1 {{PLURAL:$1|sekunda|sekundy|sekúnd}}',
+'duration-minutes'   => '$1 {{PLURAL:$1|minúta|minúty|minút}}',
+'duration-hours'     => '$1 {{PLURAL:$1|hodina|hodiny|hodín}}',
+'duration-days'      => '$1 {{PLURAL:$1|deň|dni|dní}}',
+'duration-weeks'     => '$1 {{PLURAL:$1|týždeň|týždne|týždňov}}',
+'duration-years'     => '$1 {{PLURAL:$1|rok|roky|rokov}}',
+'duration-decades'   => '$1 {{PLURAL:$1|dekáda|dekády|dekád}}',
+'duration-centuries' => '$1 {{PLURAL:$1|storočie|storočia|storočí}}',
+'duration-millennia' => '$1 {{PLURAL:$1|tisícročie|tisícročia|tisícročí}}',
 
 );

@@ -2349,8 +2349,8 @@ The title is {{msg-mw|nopagetitle}}.',
 'allpagesprefix'    => "Used for the label of the input box of [[Special:PrefixIndex]]. On this page you can either write 'Name of namespace:string from which to begin display in alphabetical order' in the top box, or you can choose a namespace in the bottom box and put 'string from which to begin display in alphabetical order' in the top box. The result will be the same.",
 
 # SpecialCachedPage
-'cachedspecial-viewing-cached-ttl' => 'Message notifying they are watching a cached page. $1 is a duration (ie "1 hour and 30 minutes")',
-'cachedspecial-viewing-cached-ts'  => 'Message notifying they are watching a cached page.',
+'cachedspecial-viewing-cached-ttl' => 'Message notifying they are viewing a cached page. $1 is a duration (ie "1 hour and 30 minutes")',
+'cachedspecial-viewing-cached-ts'  => 'Message notifying they are viewing a cached page.',
 'cachedspecial-refresh-now'        => 'Link text pointing to the most recent version of the page.',
 
 # Special:Categories

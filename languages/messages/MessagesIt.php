@@ -643,9 +643,9 @@ $2',
 'ns-specialprotected'  => 'Non è possibile modificare le pagine speciali.',
 'titleprotected'       => "La creazione di una pagina con questo titolo è stata bloccata da [[User:$1|$1]].
 La motivazione è la seguente: ''$2''.",
-'filereadonlyerror'    => 'Non è stato possibile modificare il file "$1" perché il repository di file "$2" è in modalità di sola lettura.
+'filereadonlyerror'    => 'Non è stato possibile modificare il file "$1" poiché il repository di file "$2" è in modalità di sola lettura.
 
-L\'amministratore che lo ha bloccato ha dato questa motivazione: "$3".',
+La motivazione è "\'\'$3\'\'".',
 
 # Virus scanner
 'virus-badscanner'     => "Errore di configurazione: antivirus sconosciuto: ''$1''",
@@ -2057,6 +2057,9 @@ Potrebbero essere presenti immagini che sono usate da altri siti con un collegam
 'allpagesprefix'    => 'Mostra le pagine che iniziano con:',
 'allpagesbadtitle'  => 'Il titolo indicato per la pagina non è valido o contiene prefissi interlingua o interwiki. Potrebbe inoltre contenere uno o più caratteri il cui uso non è ammesso nei titoli.',
 'allpages-bad-ns'   => 'Il namespace "$1" non esiste su {{SITENAME}}.',
+
+# SpecialCachedPage
+'cachedspecial-refresh-now' => 'Mostra la più recente.',
 
 # Special:Categories
 'categories'                    => 'Categorie',
@@ -3808,5 +3811,16 @@ Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri
 'api-error-unknownerror'                  => 'Errore sconosciuto: "$1".',
 'api-error-uploaddisabled'                => 'Il caricamento è disabilitato su questa wiki.',
 'api-error-verification-error'            => "Questo file potrebbe essere danneggiato, o avere l'estensione sbagliata.",
+
+# Durations
+'duration-seconds'   => '$1 {{PLURAL:$1|secondo|secondi}}',
+'duration-minutes'   => '$1 {{PLURAL:$1|minuto|minuti}}',
+'duration-hours'     => '$1 {{PLURAL:$1|ora|ore}}',
+'duration-days'      => '$1 {{PLURAL:$1|giorno|giorni}}',
+'duration-weeks'     => '$1 {{PLURAL:$1|settimana|settimane}}',
+'duration-years'     => '$1 {{PLURAL:$1|anno|anni}}',
+'duration-decades'   => '$1 {{PLURAL:$1|decade|decadi}}',
+'duration-centuries' => '$1 {{PLURAL:$1|secolo|secoli}}',
+'duration-millennia' => '$1 {{PLURAL:$1|millennio|millenni}}',
 
 );

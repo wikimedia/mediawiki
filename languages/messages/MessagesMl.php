@@ -2113,6 +2113,11 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization കാണുക.',
 തലക്കെട്ടിൽ ഉപയോഗിക്കാൻ പാടില്ലാത്ത ഒന്നോ അതിലധികമോ ലിപികൾ ഇതിലുണ്ടാകാം.',
 'allpages-bad-ns'   => '{{SITENAME}} സംരംഭത്തിൽ "$1" എന്ന നാമമേഖല നിലവിലില്ല.',
 
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'ഈ താളിന്റെ ശേഖരിച്ചുവച്ചിരിക്കുന്ന പതിപ്പാണ് നിങ്ങൾ കാണുന്നത്, ഇത് $1 വരെ പഴക്കമുള്ളതായിരിക്കാം.',
+'cachedspecial-viewing-cached-ts'  => 'ഈ താളിന്റെ ശേഖരിച്ചുവച്ചിരിക്കുന്ന പതിപ്പാണ് നിങ്ങൾ കാണുന്നത്, ഇത് യഥാർത്ഥപതിപ്പിൽനിന്നും വ്യത്യസ്തമായിരിക്കാം.',
+'cachedspecial-refresh-now'        => 'ഏറ്റവും പുതിയ പതിപ്പ് കാണുക.',
+
 # Special:Categories
 'categories'                    => 'വർഗ്ഗങ്ങൾ',
 'categoriespagetext'            => 'താഴെ കൊടുത്തിരിക്കുന്ന {{PLURAL:$1|വർഗ്ഗത്തിൽ|വർഗ്ഗങ്ങളിൽ}} താളുകളും പ്രമാണങ്ങളുമുണ്ട്.
@@ -2147,7 +2152,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization കാണുക.',
 # Special:ActiveUsers
 'activeusers'            => 'സജീവ ഉപയോക്താക്കളുടെ പട്ടിക',
 'activeusers-intro'      => 'ഇത് കഴിഞ്ഞ {{PLURAL:$1|ദിവസം|$1 ദിവസങ്ങളിൽ}} ഏതെങ്കിലും വിധത്തിലുള്ള പ്രവർത്തനങ്ങൾ ചെയ്ത ഉപയോക്താക്കളുടെ പട്ടികയാണ്.',
-'activeusers-count'      => 'അവസാനത്തെ {{PLURAL:$3|ഒരു ദിവസം|$3 ദിവസങ്ങളിൽ}} {{PLURAL:$1|ഒരു തിരുത്തൽ|$1 തിരുത്തലുകൾ}}',
+'activeusers-count'      => 'കഴിഞ്ഞ {{PLURAL:$3|ഒരു ദിവസം|$3 ദിവസങ്ങളിൽ}} {{PLURAL:$1|ഒരു തിരുത്തൽ|$1 തിരുത്തലുകൾ}}',
 'activeusers-from'       => 'ഇങ്ങനെ തുടങ്ങുന്ന ഉപയോക്താക്കളെ കാട്ടുക:',
 'activeusers-hidebots'   => 'യന്ത്രങ്ങളെ മറയ്ക്കുക',
 'activeusers-hidesysops' => 'കാര്യനിർവാഹകരെ മറയ്ക്കുക',

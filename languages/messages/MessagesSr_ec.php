@@ -3546,7 +3546,7 @@ Variants for Chinese language
 'exif-datetimeexpires'             => 'Не користи након',
 'exif-datetimereleased'            => 'Објављено',
 'exif-originaltransmissionref'     => 'Изворни пренос кôда локације',
-'exif-identifier'                  => 'Ознака',
+'exif-identifier'                  => 'Назнака',
 'exif-lens'                        => 'Коришћени објектив',
 'exif-serialnumber'                => 'Серијски број камере',
 'exif-cameraownername'             => 'Власник камере',

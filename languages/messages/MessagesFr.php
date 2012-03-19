@@ -2197,6 +2197,11 @@ Vous pouvez personnaliser l’affichage en sélectionnant le type de journal, le
 'allpagesbadtitle'  => 'Le titre de page indiqué est incorrect : il contient un préfixe inter-langue ou inter-wiki réservé, ou contient un ou plusieurs caractères inutilisables dans les titres.',
 'allpages-bad-ns'   => '{{SITENAME}} n’a pas d’espace de noms « $1 ».',
 
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => "Vous visualisez une version de cette page mise en cache, qui peut être dater d'au plus $1.",
+'cachedspecial-viewing-cached-ts'  => 'Vous visualisez une version de cette page mise en cache, qui pourrait ne pas être complètement à jour.',
+'cachedspecial-refresh-now'        => 'Voir le plus récent.',
+
 # Special:Categories
 'categories'                    => 'Liste des catégories',
 'categoriespagetext'            => '{{PLURAL:$1|La catégorie suivante est utilisée|Les catégories suivantes sont utilisées}} par des pages ou fichiers.
@@ -3997,5 +4002,16 @@ Sinon, vous pouvez utiliser le formulaire simplifié ci-dessous. Votre commentai
 'api-error-unknownerror'                  => 'Erreur inconnue : « $1 ».',
 'api-error-uploaddisabled'                => 'Le versement est désactivé sur ce wiki.',
 'api-error-verification-error'            => 'Ce fichier peut être corrompu, ou son extension est incorrecte.',
+
+# Durations
+'duration-seconds'   => '$1 {{PLURAL:$1|seconde|secondes}}',
+'duration-minutes'   => '$1 {{PLURAL:$1|minute|minutes}}',
+'duration-hours'     => '$1 {{PLURAL:$1|heure|heures}}',
+'duration-days'      => '$1 {{PLURAL:$1|jour|jours}}',
+'duration-weeks'     => '$1 {{PLURAL:$1|semaine|semaines}}',
+'duration-years'     => '$1 {{PLURAL:$1|année|années}}',
+'duration-decades'   => '$1 {{PLURAL:$1|décennie|décennies}}',
+'duration-centuries' => '$1 {{PLURAL:$1|siècle|siècles}}',
+'duration-millennia' => '$1 {{PLURAL:$1|millénaire|millénaires}}',
 
 );

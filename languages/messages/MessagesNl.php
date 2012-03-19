@@ -2254,6 +2254,11 @@ U kunt ook kiezen voor specifieke logboeken en filteren op gebruiker (hoofdlette
 Mogelijk bevatte de naam karakters die niet gebruikt mogen worden in paginanamen.',
 'allpages-bad-ns'   => '{{SITENAME}} heeft geen naamruimte "$1".',
 
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'U bekijkt een cacheversie van deze pagina, die maximaal $1 oud is.',
+'cachedspecial-viewing-cached-ts'  => 'U bekijkt een cacheversie van deze pagina, die mogelijk niet volledig is bijgewerkt.',
+'cachedspecial-refresh-now'        => 'Meest recente weergeven.',
+
 # Special:Categories
 'categories'                    => 'Categorieën',
 'categoriespagetext'            => "De volgende {{PLURAL:$1|categorie bevat|categorieën bevatten}} pagina's of mediabestanden.
@@ -4074,5 +4079,15 @@ Anders kunt u ook het eenvoudige formulier hieronder gebruiken. Uw commentaar za
 'api-error-unknownerror'                  => 'Onbekende fout: "$1"',
 'api-error-uploaddisabled'                => 'Uploaden is niet mogelijk in deze wiki.',
 'api-error-verification-error'            => 'Dit bestand is mogelijk beschadigd of heeft een onjuiste extensie.',
+
+# Durations
+'duration-seconds'   => '$1 {{PLURAL:$1|seconde|seconden}}',
+'duration-minutes'   => '$1 {{PLURAL:$1|minuut|minuten}}',
+'duration-hours'     => '$1 {{PLURAL:$1|uur|uren}}',
+'duration-days'      => '$1 {{PLURAL:$1|dag|dagen}}',
+'duration-weeks'     => '$1 {{PLURAL:$1|week|weken}}',
+'duration-years'     => '$1 {{PLURAL:$1|jaar|jaar}}',
+'duration-decades'   => '$1 {{PLURAL:$1|decennium|decennia}}',
+'duration-centuries' => '$1 {{PLURAL:$1|eeuw|eeuwen}}',
 
 );

@@ -3079,6 +3079,9 @@ Nota che te pol anca [[Special:EditWatchlist|modificar la lista con l'interfacia
 'watchlisttools-edit' => "Varda e canbia le pagine tegnùe d'ocio",
 'watchlisttools-raw'  => 'Canbia la lista in formato testo',
 
+# Signatures
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|msj]])',
+
 # Core parser functions
 'unknown_extension_tag' => 'Tag estension sconossiùo: "$1"',
 'duplicate-defaultsort' => 'Ocio: la ciave de ordinamento predefinìa "$2" la va in conflito co\' quela de prima "$1".',

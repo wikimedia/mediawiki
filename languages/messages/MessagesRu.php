@@ -2159,7 +2159,9 @@ $1',
 'allpages-bad-ns'   => '{{SITENAME}} не содержит пространства имён «$1».',
 
 # SpecialCachedPage
-'cachedspecial-viewing-cached-ts' => 'Вы просматриваете кэшированную версию этой страницы, которая может серьёзно отличаться от текущей версии.',
+'cachedspecial-viewing-cached-ttl' => 'Вы просматриваете закэшированную версию страницы, она могла быть обновлена $1 назад.',
+'cachedspecial-viewing-cached-ts'  => 'Вы просматриваете кэшированную версию этой страницы, которая может серьёзно отличаться от текущей версии.',
+'cachedspecial-refresh-now'        => 'Просмотреть последнюю версию.',
 
 # Special:Categories
 'categories'                    => 'Категории',
@@ -4016,5 +4018,6 @@ MediaWiki распространяется в надежде, что она бу
 'duration-years'     => '$1 {{PLURAL:$1|год|года|лет}}',
 'duration-decades'   => '$1 {{PLURAL:$1|декада|декады|декад}}',
 'duration-centuries' => '$1 {{PLURAL:$1|век|века|веков}}',
+'duration-millennia' => '$1 {{PLURAL:$1|тысячелетие|тысячелетия|тысячелетий}}',
 
 );

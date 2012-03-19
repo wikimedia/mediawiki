@@ -2130,6 +2130,11 @@ Bạn có thể thu hẹp kết quả bằng cách chọn loại nhật trình, 
 'allpagesbadtitle'  => 'Tựa trang không hợp lệ hay chứa tiền tố liên kết ngôn ngữ hoặc liên kết wiki. Nó có thể chứa một hoặc nhiều ký tự không dùng được ở tựa trang.',
 'allpages-bad-ns'   => '{{SITENAME}} không có không gian tên “$1”',
 
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Bạn đang xem phiên bản vùng nhớ đệm của trang này có thể lỗi thời cho tới $1.',
+'cachedspecial-viewing-cached-ts'  => 'Bạn đang xem phiên bản vùng nhớ đệm của trang này có thể không đúng thời hoàn toàn.',
+'cachedspecial-refresh-now'        => 'Xem phiên bản mới nhất.',
+
 # Special:Categories
 'categories'                    => 'Thể loại',
 'categoriespagetext'            => '{{PLURAL:$1|Thể loại|Các thể loại}} dưới đây có trang hoặc tập tin phương tiện.
@@ -4008,5 +4013,16 @@ Nếu không thì bạn có thể điền biểu mẫu đơn giản ở dưới.
 'api-error-unknownerror'                  => 'Lỗi không rõ: “$1”.',
 'api-error-uploaddisabled'                => 'Chức năng tải lên đã bị tắt trên wiki này.',
 'api-error-verification-error'            => 'Tập tin này có thể bị hỏng hoặc có phần mở rộng sai.',
+
+# Durations
+'duration-seconds'   => '$1 giây',
+'duration-minutes'   => '$1 phút',
+'duration-hours'     => '$1 giờ',
+'duration-days'      => '$1 ngày',
+'duration-weeks'     => '$1 tuần',
+'duration-years'     => '$1 năm',
+'duration-decades'   => '$1 thập niên',
+'duration-centuries' => '$1 thế kỷ',
+'duration-millennia' => '$1 thiên niên kỷ',
 
 );
