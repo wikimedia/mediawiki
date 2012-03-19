@@ -186,8 +186,7 @@ class SpecialProtectedpages extends SpecialPage {
 	 * @return String
 	 */
 	protected function getNamespaceMenu( $namespace = null ) {
-		return "<span style='white-space: nowrap'>" .
-		Html::rawElement( 'span', array( 'style' => 'white-space:nowrap' ),
+		return Html::rawElement( 'span', array( 'style' => 'white-space: nowrap;' ),
 			Html::namespaceSelector(
 				array(
 					'selected' => $namespace,
