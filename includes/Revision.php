@@ -496,7 +496,8 @@ class Revision {
 			$this->mCurrent   = false;
 			# If we still have no length, see it we have the text to figure it out
 			if ( !$this->mSize ) {
-				$this->mSize = is_null( $this->mText ) ? null : strlen( $this->mText ); #FIXME: do strlen in Content object
+                #XXX: my be inconsistent with the notion of "size" use for the present content model
+				$this->mSize = is_null( $this->mText ) ? null : strlen( $this->mText );
 			}
 			# Same for sha1
 			if ( $this->mSha1 === null ) {

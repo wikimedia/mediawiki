@@ -27,12 +27,28 @@ abstract class Content {
      */
     public abstract function getNativeData( );
 
-    public abstract function getSize( );
+    /**
+     * returns the content's nominal size in bogo-bytes.
+     */
+    public abstract function getSize( ); #XXX: do we really need/want this here? we could just use the byte syse of the serialized form...
+
+    /**
+     * Returns true if this content is countable as a "real" wiki page, provided
+     * that it's also in a countable location (e.g. a current revision in the main namespace).
+     *
+     * @param $hasLinks Bool: if it is known whether this content contains links, provide this information here,
+     *                        to avoid redundant parsing to find out.
+     */
+    public abstract function isCountable( $hasLinks = null ) ;
 
     public abstract function getParserOutput( Title $title = null, $revId = null, ParserOptions $options = NULL );
 
     public function getRedirectChain() {
         return null;
+    }
+
+    public function isRedirect() {
+        return false;
     }
 
     /**
@@ -62,10 +78,7 @@ abstract class Content {
     #TODO: implement specialized ParserOutput for Wikidata model
     #TODO: provide "combined" ParserOutput for Multipart... somehow.
 
-    # TODO: Wikipage::isCountable(Content $a)
-
-    # TODO: isCacheable( )
-    # TODO: getSize( )
+    # XXX: isCacheable( ) # can/should we do this here?
 
     # TODO: WikiPage::getUndoText( Revision $undo, Revision $undoafter = null )
     # TODO: WikiPage::getAutosummary( $oldtext, $text, $flags )
@@ -91,6 +104,34 @@ abstract class TextContent extends Content {
         parent::__construct($modelName);
 
         $this->mText = $text;
+    }
+
+    /**
+     * returns the content's nominal size in bogo-bytes.
+     */
+    public function getSize( ) { #FIXME: use! replace strlen in WikiPage.
+        $text = $this->getNativeData( );
+        return strlen( $text );
+    }
+
+    /**
+     * Returns true if this content is not a redirect, and $wgArticleCountMethod is "any".
+     *
+     * @param $hasLinks Bool: if it is known whether this content contains links, provide this information here,
+     *                        to avoid redundant parsing to find out.
+     */
+    public function isCountable( $hasLinks = null ) {
+        global $wgArticleCountMethod;
+
+        if ( $this->isRedirect( ) ) {
+            return false;
+        }
+
+        if (  $wgArticleCountMethod === 'any' ) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -243,6 +284,46 @@ class WikitextContent extends TextContent {
     public function getRedirectChain() {
         $text = $this->getNativeData();
         return Title::newFromRedirectArray( $text );
+    }
+
+    public function isRedirect() {
+        $text = $this->getNativeData();
+        return Title::newFromRedirect( $text ) !== null;
+    }
+
+    /**
+     * Returns true if this content is not a redirect, and this content's text is countable according to
+     * the criteria defiend by $wgArticleCountMethod.
+     *
+     * @param $hasLinks Bool: if it is known whether this content contains links, provide this information here,
+     *                        to avoid redundant parsing to find out.
+     */
+    public function isCountable( $hasLinks = null ) {
+        global $wgArticleCountMethod;
+
+        if ( $this->isRedirect( ) ) {
+            return false;
+        }
+
+        $text = $this->getNativeData();
+
+        switch ( $wgArticleCountMethod ) {
+            case 'any':
+                return true;
+            case 'comma':
+                if ( $text === false ) {
+                    $text = $this->getRawText();
+                }
+                return strpos( $text,  ',' ) !== false;
+            case 'link':
+                if ( $hasLinks === null ) { # not know, find out
+                    $po = $this->getParserOutput();
+                    $links = $po->getLinks();
+                    $hasLinks = !empty( $links );
+                }
+
+                return $hasLinks;
+        }
     }
 
 }

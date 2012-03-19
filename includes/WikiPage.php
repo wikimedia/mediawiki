@@ -300,15 +300,10 @@ class WikiPage extends Page {
 	 * @return bool
 	 */
 	public function isRedirect( $text = false ) {
-		if ( $text === false ) {
-			if ( !$this->mDataLoaded ) {
-				$this->loadPageData();
-			}
+        if ( $text === false ) $content = $this->getContent();
+        else $content = ContentHandler::makeContent( $text, $this->mTitle ); # TODO: allow model and format to be provided; or better, expect a Content object
 
-			return (bool)$this->mIsRedirect;
-		} else {
-			return Title::newFromRedirect( $text ) !== null;
-		}
+        return $content->isRedirect();
 	}
 
 	/**
@@ -391,7 +386,7 @@ class WikiPage extends Page {
      *      Revision::FOR_PUBLIC       to be displayed to all users
      *      Revision::FOR_THIS_USER    to be displayed to $wgUser
      *      Revision::RAW              get the text regardless of permissions
-     * @return String|null The content of the current revision
+     * @return Content|null The content of the current revision
      */
     public function getContent( $audience = Revision::FOR_PUBLIC ) {
         $this->loadLastEdit();
@@ -549,39 +544,42 @@ class WikiPage extends Page {
 	 *        if false, the current database state will be used
 	 * @return Boolean
 	 */
-	public function isCountable( $editInfo = false ) { #FIXME: move this to Content object
+	public function isCountable( $editInfo = false ) {
 		global $wgArticleCountMethod;
 
 		if ( !$this->mTitle->isContentPage() ) {
 			return false;
 		}
 
-		$text = $editInfo ? $editInfo->pst : false;
+        if ( $editInfo ) {
+            $content = ContentHandler::makeContent( $editInfo->pst, $this->mTitle );
+            # TODO: take model and format from edit info!
+        } else {
+            $content = $this->getContent();
+        }
 
-		if ( $this->isRedirect( $text ) ) {
+		if ( $content->isRedirect( ) ) {
 			return false;
 		}
 
-		switch ( $wgArticleCountMethod ) {
-		case 'any':
-			return true;
-		case 'comma':
-			if ( $text === false ) {
-				$text = $this->getRawText();
-			}
-			return strpos( $text,  ',' ) !== false;
-		case 'link':
-			if ( $editInfo ) {
-				// ParserOutput::getLinks() is a 2D array of page links, so
-				// to be really correct we would need to recurse in the array
-				// but the main array should only have items in it if there are
-				// links.
-				return (bool)count( $editInfo->output->getLinks() );
-			} else {
-				return (bool)wfGetDB( DB_SLAVE )->selectField( 'pagelinks', 1,
-					array( 'pl_from' => $this->getId() ), __METHOD__ );
-			}
-		}
+        $hasLinks = null;
+
+        if ( $wgArticleCountMethod === 'link' ) {
+            # nasty special case to avoid re-parsing to detect links
+
+            if ( $editInfo ) {
+                // ParserOutput::getLinks() is a 2D array of page links, so
+                // to be really correct we would need to recurse in the array
+                // but the main array should only have items in it if there are
+                // links.
+                $hasLinks = (bool)count( $editInfo->output->getLinks() );
+            } else {
+                $hasLinks = (bool)wfGetDB( DB_SLAVE )->selectField( 'pagelinks', 1,
+                    array( 'pl_from' => $this->getId() ), __METHOD__ );
+            }
+        }
+
+		return $content->isCountable( $hasLinks );
 	}
 
 	/**
