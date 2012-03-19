@@ -193,52 +193,6 @@ class XmlTest extends MediaWikiTestCase {
 		);
 	}
 
-	function testNamespaceSelector() {
-		$this->assertEquals(
-			'<select class="namespaceselector" id="namespace" name="namespace">' . "\n" .
-'<option value="0">(Main)</option>' . "\n" .
-'<option value="1">Talk</option>' . "\n" .
-'<option value="2">User</option>' . "\n" .
-'<option value="3">User talk</option>' . "\n" .
-'<option value="4">MyWiki</option>' . "\n" .
-'<option value="5">MyWiki Talk</option>' . "\n" .
-'<option value="6">File</option>' . "\n" .
-'<option value="7">File talk</option>' . "\n" .
-'<option value="8">MediaWiki</option>' . "\n" .
-'<option value="9">MediaWiki talk</option>' . "\n" .
-'<option value="10">Template</option>' . "\n" .
-'<option value="11">Template talk</option>' . "\n" .
-'<option value="100">Custom</option>' . "\n" .
-'<option value="101">Custom talk</option>' . "\n" .
-'</select>',
-			Xml::namespaceSelector(),
-			'Basic namespace selector without custom options'
-		);
-		$this->assertEquals(
-			'<label for="namespace">Select a namespace:</label>' .
-'&#160;<select class="namespaceselector" id="namespace" name="myname">' . "\n" .
-'<option value="all">all</option>' . "\n" .
-'<option value="0">(Main)</option>' . "\n" .
-'<option value="1">Talk</option>' . "\n" .
-'<option value="2" selected="">User</option>' . "\n" .
-'<option value="3">User talk</option>' . "\n" .
-'<option value="4">MyWiki</option>' . "\n" .
-'<option value="5">MyWiki Talk</option>' . "\n" .
-'<option value="6">File</option>' . "\n" .
-'<option value="7">File talk</option>' . "\n" .
-'<option value="8">MediaWiki</option>' . "\n" .
-'<option value="9">MediaWiki talk</option>' . "\n" .
-'<option value="10">Template</option>' . "\n" .
-'<option value="11">Template talk</option>' . "\n" .
-'<option value="100">Custom</option>' . "\n" .
-'<option value="101">Custom talk</option>' . "\n" .
-'</select>',
-			Xml::namespaceSelector( $selected = '2', $all = 'all', $element_name = 'myname', $label = 'Select a namespace:' ),
-			'Basic namespace selector with custom values'
-		);
-	}
-
-
 	#
 	# textarea
 	#
