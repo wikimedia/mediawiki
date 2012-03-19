@@ -185,8 +185,8 @@ class _DiffEngine {
 		$edits = array();
 		$xi = $yi = 0;
 		while ( $xi < $n_from || $yi < $n_to ) {
-			assert( $yi < $n_to || $this->xchanged[$xi] );
-			assert( $xi < $n_from || $this->ychanged[$yi] );
+			assert( '$yi < $n_to || $this->xchanged[$xi]' );
+			assert( '$xi < $n_from || $this->ychanged[$yi]' );
 
 			// Skip matching "snake".
 			$copy = array();
@@ -374,14 +374,14 @@ class _DiffEngine {
 				while ( list( , $y ) = each( $matches ) ) {
 					if ( empty( $this->in_seq[$y] ) ) {
 						$k = $this->_lcs_pos( $y );
-						assert( $k > 0 );
+						assert( '$k > 0' );
 						$ymids[$k] = $ymids[$k -1];
 						break;
 					}
 				}
 				while ( list ( , $y ) = each( $matches ) ) {
 					if ( $y > $this->seq[$k -1] ) {
-						assert( $y < $this->seq[$k] );
+						assert( '$y < $this->seq[$k]' );
 						// Optimization: this is a common case:
 						//	next match is just replacing previous match.
 						$this->in_seq[$this->seq[$k]] = false;
@@ -389,7 +389,7 @@ class _DiffEngine {
 						$this->in_seq[$y] = 1;
 					} elseif ( empty( $this->in_seq[$y] ) ) {
 						$k = $this->_lcs_pos( $y );
-						assert( $k > 0 );
+						assert( '$k > 0' );
 						$ymids[$k] = $ymids[$k -1];
 					}
 				}
@@ -430,7 +430,7 @@ class _DiffEngine {
 			}
 		}
 
-		assert( $ypos != $this->seq[$end] );
+		assert( '$ypos != $this->seq[$end]' );
 
 		$this->in_seq[$this->seq[$end]] = false;
 		$this->seq[$end] = $ypos;
@@ -814,8 +814,8 @@ class MappedDiff extends Diff {
 		$mapped_from_lines, $mapped_to_lines ) {
 		wfProfileIn( __METHOD__ );
 
-		assert( sizeof( $from_lines ) == sizeof( $mapped_from_lines ) );
-		assert( sizeof( $to_lines ) == sizeof( $mapped_to_lines ) );
+		assert( 'sizeof( $from_lines ) == sizeof( $mapped_from_lines )' );
+		assert( 'sizeof( $to_lines ) == sizeof( $mapped_to_lines )' );
 
 		parent::__construct( $mapped_from_lines, $mapped_to_lines );
 
@@ -1205,7 +1205,7 @@ class _HWLDF_WordAccumulator {
 				$this->_flushLine( $tag );
 				$word = substr( $word, 1 );
 			}
-			assert( !strstr( $word, "\n" ) );
+			assert( '!strstr( $word, "\n" )' );
 			$this->_group .= $word;
 		}
 	}
