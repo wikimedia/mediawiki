@@ -135,7 +135,7 @@ abstract class SpecialCachedPage extends SpecialPage {
 	 * @since 1.20
 	 */
 	protected function initCaching() {
-		if ( is_null( $this->hasCached ) ) {
+		if ( $this->cacheEnabled && is_null( $this->hasCached ) ) {
 			$cachedChunks = wfGetCache( CACHE_ANYTHING )->get( $this->getCacheKeyString() );
 
 			$this->hasCached = is_array( $cachedChunks );
