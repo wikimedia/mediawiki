@@ -421,7 +421,7 @@ if ( $wgCommandLineMode ) {
 	# Can't stub this one, it sets up $_GET and $_REQUEST in its constructor
 	$wgRequest = new WebRequest;
 
-	$debug = "\n\nStart request\n{$_SERVER['REQUEST_METHOD']} {$wgRequest->getRequestURL()}\n";
+	$debug = "\n\nStart request {$_SERVER['REQUEST_METHOD']} {$wgRequest->getRequestURL()}\n";
 
 	if ( $wgDebugPrintHttpHeaders ) {
 		$debug .= "HTTP HEADERS:\n";
