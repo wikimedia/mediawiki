@@ -80,7 +80,7 @@ abstract class SpecialCachedPage extends SpecialPage {
 	 * @return string
 	 */
 	protected function getCachedNotice( $subPage ) {
-		$refreshArgs = $_GET;
+		$refreshArgs = $this->getRequest()->getQueryValues();
 		unset( $refreshArgs['title'] );
 		$refreshArgs['action'] = 'purge';
 
