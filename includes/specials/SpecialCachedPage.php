@@ -78,19 +78,21 @@ abstract class SpecialCachedPage extends SpecialPage {
 	 * @param boolean|null $cacheEnabled Sets if the cache should be enabled or not.
 	 */
 	public function startCache( $cacheExpiry = null, $cacheEnabled = null ) {
-		if ( !is_null( $cacheExpiry ) ) {
-			$this->cacheExpiry = $cacheExpiry;
-		}
+		if ( is_null( $this->hasCached ) ) {
+			if ( !is_null( $cacheExpiry ) ) {
+				$this->cacheExpiry = $cacheExpiry;
+			}
 
-		if ( !is_null( $cacheEnabled ) ) {
-			$this->setCacheEnabled( $cacheEnabled );
-		}
+			if ( !is_null( $cacheEnabled ) ) {
+				$this->setCacheEnabled( $cacheEnabled );
+			}
 
-		if ( $this->getRequest()->getText( 'action' ) === 'purge' ) {
-			$this->hasCached = false;
-		}
+			if ( $this->getRequest()->getText( 'action' ) === 'purge' ) {
+				$this->hasCached = false;
+			}
 
-		$this->initCaching();
+			$this->initCaching();
+		}
 	}
 
 	/**
