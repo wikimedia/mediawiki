@@ -112,7 +112,7 @@ class ApiEditPage extends ApiBase {
                 $text = '';
 			} else {
                 $content = $articleObj->getContentObject();
-                $text = $content->getRawData();
+                $text = $content->getNativeData();
 			}
 
 			if ( !is_null( $params['section'] ) ) {

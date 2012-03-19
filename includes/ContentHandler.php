@@ -20,7 +20,7 @@ abstract class ContentHandler {
             #XXX: or check by model name?
             #XXX: or define $content->allowRawData()?
             #XXX: or define $content->getDefaultWikiText()?
-            return $content->getRawData();
+            return $content->getNativeData();
         }
 
         #XXX: this must not be used for editing, otherwise we may loose data:
@@ -233,7 +233,7 @@ abstract class TextContentHandler extends ContentHandler {
 
     public function serialize( Content $content, $format = null ) {
         #FIXME: assert format
-        return $content->getRawData();
+        return $content->getNativeData();
     }
 
     /**

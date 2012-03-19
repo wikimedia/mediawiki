@@ -25,7 +25,9 @@ abstract class Content {
      * as given by getDataModel().
      *
      */
-    public abstract function getRawData( );
+    public abstract function getNativeData( );
+
+    public abstract function getSize( );
 
     public abstract function getParserOutput( Title $title = null, $revId = null, ParserOptions $options = NULL );
 
@@ -58,11 +60,9 @@ abstract class Content {
     }
 
     #TODO: implement specialized ParserOutput for Wikidata model
-    #TODO: provide addToParserOutput fule Multipart... somehow.
+    #TODO: provide "combined" ParserOutput for Multipart... somehow.
 
-    # TODO: EditPage::mergeChanges( Content $a, Content $b )
     # TODO: Wikipage::isCountable(Content $a)
-    # TODO: Title::newFromRedirectRecurse( $this->getRawText() );
 
     # TODO: isCacheable( )
     # TODO: getSize( )
@@ -71,7 +71,11 @@ abstract class Content {
     # TODO: WikiPage::getAutosummary( $oldtext, $text, $flags )
 
     # TODO: EditPage::getPreloadedText( $preload ) // $wgParser->getPreloadText
+    # TODO: tie into EditPage, make it use Content-objects throughout, make edit form aware of content model and format
+    # TODO: make model-aware diff view!
+    # TODO: handle ImagePage and CategoryPage
 
+    # TODO: Title::newFromRedirectRecurse( $this->getRawText() );
 
     # TODO: tie into API to provide contentModel for Revisions
     # TODO: tie into API to provide serialized version and contentFormat for Revisions
@@ -94,7 +98,7 @@ abstract class TextContent extends Content {
      *
      * @return String the raw text
      */
-    public function getRawData( ) {
+    public function getNativeData( ) {
         $text = $this->mText;
         return $text;
     }
@@ -105,7 +109,7 @@ abstract class TextContent extends Content {
      * @return String the raw text
      */
     public function getSearchText( ) { #FIXME: use!
-        return $this->getRawData();
+        return $this->getNativeData();
     }
 
     /**
@@ -114,7 +118,7 @@ abstract class TextContent extends Content {
      * @return String the raw text
      */
     public function getWikitextForTransclusion( ) { #FIXME: use!
-        return $this->getRawData();
+        return $this->getNativeData();
     }
 
     /**
@@ -186,7 +190,7 @@ class WikitextContent extends TextContent {
     public function getSection( $section ) {
         global $wgParser;
 
-        $text = $this->getRawData();
+        $text = $this->getNativeData();
         $sect = $wgParser->getSection( $text, $section, false );
 
         return  new WikitextContent( $sect );
@@ -212,8 +216,8 @@ class WikitextContent extends TextContent {
             throw new MWException( "Incompatible content model for section: document uses $myModelName, section uses $sectionModelName." );
         }
 
-        $oldtext = $this->getRawData();
-        $text = $with->getRawData();
+        $oldtext = $this->getNativeData();
+        $text = $with->getNativeData();
 
         if ( $section == 'new' ) {
             # Inserting a new section
@@ -237,7 +241,7 @@ class WikitextContent extends TextContent {
     }
 
     public function getRedirectChain() {
-        $text = $this->getRawData();
+        $text = $this->getNativeData();
         return Title::newFromRedirectArray( $text );
     }
 
@@ -270,7 +274,7 @@ class MessageContent extends TextContent {
     /**
      * Returns the message as raw text, using the options supplied to the constructor minus "parse" and "parseinline".
      */
-    public function getRawData( ) {
+    public function getNativeData( ) {
         $opt = array_diff( $this->mOptions, array('parse', 'parseinline') );
 
         return wfMsgExt( $this->mMessageKey, $this->mParameters, $opt );
@@ -287,7 +291,7 @@ class JavaScriptContent extends TextContent {
     protected function getHtml( ) {
         $html = "";
         $html .= "<pre class=\"mw-code mw-js\" dir=\"ltr\">\n";
-        $html .= htmlspecialchars( $this->getRawData() );
+        $html .= htmlspecialchars( $this->getNativeData() );
         $html .= "\n</pre>\n";
 
         return $html;
@@ -303,7 +307,7 @@ class CssContent extends TextContent {
     protected function getHtml( ) {
         $html = "";
         $html .= "<pre class=\"mw-code mw-css\" dir=\"ltr\">\n";
-        $html .= htmlspecialchars( $this->getRawData() );
+        $html .= htmlspecialchars( $this->getNativeData() );
         $html .= "\n</pre>\n";
 
         return $html;

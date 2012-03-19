@@ -866,7 +866,7 @@ class EditPage {
 		}
 
         $content = $this->mArticle->getContentObject();
-		return $content->getRawData(); # this editor is for editing the raw text. so use the raw text.
+		return $content->getNativeData(); # this editor is for editing the raw text. so use the raw text.
 	}
 
 	/**

@@ -330,7 +330,7 @@ class ApiParse extends ApiBase {
 			$pout = $page->getParserOutput( $popts );
 			if ( $getWikitext ) {
                 $this->content = $page->getContent( Revision::RAW ); #FIXME: use $this->content everywhere
-				$this->text = $this->content->getRawData(); #FIXME: change $this->text to $this->data?!
+				$this->text = $this->content->getNativeData(); #FIXME: change $this->text to $this->data?!
 			}
 			return $pout;
 		}

@@ -429,11 +429,11 @@ class WikiPage extends Page {
 		return $this->getText( Revision::RAW );
 	}
 
-    protected function getRawData() {
+    protected function getNativeData() {
         $content = $this->getContent( Revision::RAW );
         if ( !$content ) return null;
 
-        return $content->getRawData();
+        return $content->getNativeData();
     }
 
 	/**
@@ -911,7 +911,7 @@ class WikiPage extends Page {
 
 		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
 			if ( $this->mTitle->exists() ) {
-				$text = $this->getRawData();
+				$text = $this->getNativeData();
 			} else {
 				$text = false;
 			}
@@ -1265,7 +1265,7 @@ class WikiPage extends Page {
 		$isminor = ( $flags & EDIT_MINOR ) && $user->isAllowed( 'minoredit' );
 		$bot = $flags & EDIT_FORCE_BOT;
 
-		$oldtext = $this->getRawData(); // current revision
+		$oldtext = $this->getNativeData(); // current revision
 		$oldsize = strlen( $oldtext );
 		$oldid = $this->getLatest();
 		$oldIsRedirect = $this->isRedirect();
