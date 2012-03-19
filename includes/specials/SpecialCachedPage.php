@@ -164,15 +164,33 @@ abstract class SpecialCachedPage extends SpecialPage {
 	 *
 	 * @since 1.20
 	 *
-	 * @param {function} $callback
+	 * @param {function} $computeFunction
 	 * @param array $args
 	 * @param string|null $key
 	 */
-	public function addCachedHTML( $callback, $args = array(), $key = null ) {
+	public function addCachedHTML( $computeFunction, $args = array(), $key = null ) {
+		$this->getOutput()->addHTML( $this->getCachedValue( $computeFunction, $args, $key ) );
+	}
+
+	/**
+	 * Get a cached value if available or compute it if not and then cache it if possible.
+	 * The provided $computeFunction is only called when the computation needs to happen
+	 * and should return a result value. $args are arguments that will be passed to the
+	 * compute function when called.
+	 *
+	 * @since 1.20
+	 *
+	 * @param {function} $computeFunction
+	 * @param array|mixed $args
+	 * @param string|null $key
+	 *
+	 * @return mixed
+	 */
+	protected function getCachedValue( $computeFunction, $args = array(), $key = null ) {
 		$this->initCaching();
 
 		if ( $this->cacheEnabled && $this->hasCached ) {
-			$html = '';
+			$value = null;
 
 			if ( is_null( $key ) ) {
 				$itemKey = array_keys( array_slice( $this->cachedChunks, 0, 1 ) );
@@ -185,12 +203,12 @@ abstract class SpecialCachedPage extends SpecialPage {
 					wfWarn( "Attempted to get an item while the queue is empty in " . __METHOD__ );
 				}
 				else {
-					$html = array_shift( $this->cachedChunks );
+					$value = array_shift( $this->cachedChunks );
 				}
 			}
 			else {
 				if ( array_key_exists( $key, $this->cachedChunks ) ) {
-					$html = $this->cachedChunks[$key];
+					$value = $this->cachedChunks[$key];
 					unset( $this->cachedChunks[$key] );
 				}
 				else {
@@ -199,19 +217,23 @@ abstract class SpecialCachedPage extends SpecialPage {
 			}
 		}
 		else {
-			$html = call_user_func_array( $callback, $args );
+			if ( !is_array( $args ) ) {
+				$args = array( $args );
+			}
+
+			$value = call_user_func_array( $computeFunction, $args );
 
 			if ( $this->cacheEnabled ) {
 				if ( is_null( $key ) ) {
-					$this->cachedChunks[] = $html;
+					$this->cachedChunks[] = $value;
 				}
 				else {
-					$this->cachedChunks[$key] = $html;
+					$this->cachedChunks[$key] = $value;
 				}
 			}
 		}
 
-		$this->getOutput()->addHTML( $html );
+		return $value;
 	}
 
 	/**
@@ -246,7 +268,13 @@ abstract class SpecialCachedPage extends SpecialPage {
 	 * @return string
 	 */
 	protected function getCacheKeyString() {
-		return call_user_func_array( 'wfMemcKey', $this->getCacheKey() );
+		$keyArgs = $this->getCacheKey();
+
+		if ( array_key_exists( 'action', $keyArgs ) && $keyArgs['action'] === 'purge' ) {
+			unset( $keyArgs['action'] );
+		}
+
+		return call_user_func_array( 'wfMemcKey', $keyArgs );
 	}
 
 	/**
