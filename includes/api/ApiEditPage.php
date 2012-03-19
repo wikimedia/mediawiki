@@ -112,13 +112,14 @@ class ApiEditPage extends ApiBase {
                 $text = '';
 			} else {
                 $content = $articleObj->getContentObject();
-                $text = $content->getNativeData();
+                $text = ContentHandler::getContentText( $content ); #FIXME: serialize?! get format from params?...
 			}
 
 			if ( !is_null( $params['section'] ) ) {
 				// Process the content for section edits
 				$section = intval( $params['section'] );
-                $text = $content->getSection( $section, false );
+                $sectionContent = $content->getSection( $section );
+                $text = ContentHandler::getContentText( $sectionContent ); #FIXME: serialize?! get format from params?...
 				if ( $text === false || $text === null ) {
 					$this->dieUsage( "There is no section {$section}.", 'nosuchsection' );
 				}

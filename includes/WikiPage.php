@@ -911,7 +911,7 @@ class WikiPage extends Page {
 
 		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
 			if ( $this->mTitle->exists() ) {
-				$text = $this->getNativeData();
+				$text = $this->getNativeData(); #FIXME: may not be a string. check Content model!
 			} else {
 				$text = false;
 			}
@@ -1265,7 +1265,7 @@ class WikiPage extends Page {
 		$isminor = ( $flags & EDIT_MINOR ) && $user->isAllowed( 'minoredit' );
 		$bot = $flags & EDIT_FORCE_BOT;
 
-		$oldtext = $this->getNativeData(); // current revision
+		$oldtext = $this->getNativeData(); // current revision #FIXME: may not be a string. check Content model!
 		$oldsize = strlen( $oldtext );
 		$oldid = $this->getLatest();
 		$oldIsRedirect = $this->isRedirect();

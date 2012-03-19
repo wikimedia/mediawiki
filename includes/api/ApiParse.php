@@ -318,7 +318,7 @@ class ApiParse extends ApiBase {
 
 		$page = WikiPage::factory( $titleObj );
 
-		if ( $this->section !== false ) {
+		if ( $this->section !== false ) { #FIXME: get section Content, get parser output, ...
 			$this->text = $this->getSectionText( $page->getRawText(), !is_null( $pageId )
 					? 'page id ' . $pageId : $titleObj->getText() ); #FIXME: get section...
 
@@ -330,13 +330,13 @@ class ApiParse extends ApiBase {
 			$pout = $page->getParserOutput( $popts );
 			if ( $getWikitext ) {
                 $this->content = $page->getContent( Revision::RAW ); #FIXME: use $this->content everywhere
-				$this->text = $this->content->getNativeData(); #FIXME: change $this->text to $this->data?!
+				$this->text = ContentHandler::getContentText( $this->content ); #FIXME: serialize, get format from params; or use object structure in result?
 			}
 			return $pout;
 		}
 	}
 
-	private function getSectionText( $text, $what ) {
+	private function getSectionText( $text, $what ) { #FIXME: replace with Content::getSection
 		global $wgParser;
 		// Not cached (save or load)
 		$text = $wgParser->getSection( $text, $this->section, false );
