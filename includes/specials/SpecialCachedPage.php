@@ -108,8 +108,12 @@ abstract class SpecialCachedPage extends SpecialPage {
 		unset( $refreshArgs['title'] );
 		$refreshArgs['action'] = 'purge';
 
+		$subPage = $this->getTitle()->getFullText();
+		$subPage = explode( '/', $subPage, 2 );
+		$subPage = count( $subPage ) > 1 ? $subPage[1] : false;
+
 		$refreshLink = Linker::link(
-			$this->getTitle( $this->getTitle()->getSubpageText() ),
+			$this->getTitle( $subPage ),
 			$this->msg( 'cachedspecial-refresh-now' )->escaped(),
 			array(),
 			$refreshArgs
