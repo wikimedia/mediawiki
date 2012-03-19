@@ -4,11 +4,12 @@
  * Abstract special page class with scaffolding for caching the HTML output.
  *
  * To enable the caching functionality, the cacheExpiry field should be set
- * in the constructor.
+ * before parent::execute is called (and it should be called from execute).
  *
  * To add HTML that should be cached, use addCachedHTML like this:
  * $this->addCachedHTML( array( $this, 'displayCachedContent' ) );
  *
+ * Before the first addCachedHTML call, you should call $this->startCache();
  * After adding the last HTML that should be cached, call $this->saveCache();
  *
  * @since 1.20
@@ -25,9 +26,9 @@ abstract class SpecialCachedPage extends SpecialPage {
 	 * The time to live for the cache, in seconds or a unix timestamp indicating the point of expiry.
 	 *
 	 * @since 1.20
-	 * @var integer|null
+	 * @var integer
 	 */
-	protected $cacheExpiry = null;
+	protected $cacheExpiry = 3600;
 
 	/**
 	 * List of HTML chunks to be cached (if !hasCached) or that where cashed (of hasCached).
@@ -49,24 +50,46 @@ abstract class SpecialCachedPage extends SpecialPage {
 	protected $hasCached = null;
 
 	/**
-	 * Main method.
+	 * If the cache is enabled or not.
+	 *
+	 * @since 1.20
+	 * @var boolean
+	 */
+	protected $cacheEnabled = true;
+
+	/**
+	 * Sets if the cache should be enabled or not.
+	 *
+	 * @since 1.20
+	 * @param boolean $cacheEnabled
+	 */
+	public function setCacheEnabled( $cacheEnabled ) {
+		$this->cacheEnabled = $cacheEnabled;
+	}
+
+	/**
+	 * Initializes the caching.
+	 * Should be called before the first time anything is added via addCachedHTML.
 	 *
 	 * @since 1.20
 	 *
-	 * @param string|null $subPage
+	 * @param integer|null $cacheExpiry Sets the cache expirty, either ttl in seconds or unix timestamp.
+	 * @param boolean|null $cacheEnabled Sets if the cache should be enabled or not.
 	 */
-	public function execute( $subPage ) {
+	public function startCache( $cacheExpiry = null, $cacheEnabled = null ) {
+		if ( !is_null( $cacheExpiry ) ) {
+			$this->cacheExpiry = $cacheExpiry;
+		}
+
+		if ( !is_null( $cacheEnabled ) ) {
+			$this->setCacheEnabled( $cacheEnabled );
+		}
+
 		if ( $this->getRequest()->getText( 'action' ) === 'purge' ) {
 			$this->hasCached = false;
 		}
 
-		if ( !is_null( $this->cacheExpiry ) ) {
-			$this->initCaching();
-
-			if ( $this->hasCached === true ) {
-				$this->getOutput()->setSubtitle( $this->getCachedNotice( $subPage ) );
-			}
-		}
+		$this->initCaching();
 	}
 
 	/**
@@ -75,17 +98,15 @@ abstract class SpecialCachedPage extends SpecialPage {
 	 *
 	 * @since 1.20
 	 *
-	 * @param string|null $subPage
-	 *
 	 * @return string
 	 */
-	protected function getCachedNotice( $subPage ) {
+	protected function getCachedNotice() {
 		$refreshArgs = $this->getRequest()->getQueryValues();
 		unset( $refreshArgs['title'] );
 		$refreshArgs['action'] = 'purge';
 
 		$refreshLink = Linker::link(
-			$this->getTitle( $subPage ),
+			$this->getTitle( $this->getTitle()->getSubpageText() ),
 			$this->msg( 'cachedspecial-refresh-now' )->escaped(),
 			array(),
 			$refreshArgs
@@ -114,10 +135,18 @@ abstract class SpecialCachedPage extends SpecialPage {
 	 */
 	protected function initCaching() {
 		if ( is_null( $this->hasCached ) ) {
-			$cachedChunks = wfGetCache( CACHE_ANYTHING )->get( $this->getCacheKey() );
+			$cachedChunks = wfGetCache( CACHE_ANYTHING )->get( $this->getCacheKeyString() );
 
 			$this->hasCached = is_array( $cachedChunks );
 			$this->cachedChunks = $this->hasCached ? $cachedChunks : array();
+
+			$this->onCacheInitialized();
+		}
+	}
+
+	protected function onCacheInitialized() {
+		if ( $this->hasCached ) {
+			$this->getOutput()->setSubtitle( $this->getCachedNotice() );
 		}
 	}
 
@@ -136,7 +165,7 @@ abstract class SpecialCachedPage extends SpecialPage {
 	public function addCachedHTML( $callback, $args = array(), $key = null ) {
 		$this->initCaching();
 
-		if ( $this->hasCached ) {
+		if ( $this->cacheEnabled && $this->hasCached ) {
 			$html = '';
 
 			if ( is_null( $key ) ) {
@@ -166,11 +195,13 @@ abstract class SpecialCachedPage extends SpecialPage {
 		else {
 			$html = call_user_func_array( $callback, $args );
 
-			if ( is_null( $key ) ) {
-				$this->cachedChunks[] = $html;
-			}
-			else {
-				$this->cachedChunks[$key] = $html;
+			if ( $this->cacheEnabled ) {
+				if ( is_null( $key ) ) {
+					$this->cachedChunks[] = $html;
+				}
+				else {
+					$this->cachedChunks[$key] = $html;
+				}
 			}
 		}
 
@@ -184,8 +215,8 @@ abstract class SpecialCachedPage extends SpecialPage {
 	 * @since 1.20
 	 */
 	public function saveCache() {
-		if ( $this->hasCached === false && !empty( $this->cachedChunks ) ) {
-			wfGetCache( CACHE_ANYTHING )->set( $this->getCacheKey(), $this->cachedChunks, $this->cacheExpiry );
+		if ( $this->cacheEnabled && $this->hasCached === false && !empty( $this->cachedChunks ) ) {
+			wfGetCache( CACHE_ANYTHING )->set( $this->getCacheKeyString(), $this->cachedChunks, $this->cacheExpiry );
 		}
 	}
 
@@ -208,8 +239,22 @@ abstract class SpecialCachedPage extends SpecialPage {
 	 *
 	 * @return string
 	 */
+	protected function getCacheKeyString() {
+		return call_user_func_array( 'wfMemcKey', $this->getCacheKey() );
+	}
+
+	/**
+	 * Returns the variables used to constructed the cache key in an array.
+	 *
+	 * @since 1.20
+	 *
+	 * @return array
+	 */
 	protected function getCacheKey() {
-		return wfMemcKey( $this->mName, $this->getLanguage()->getCode() );
+		return array(
+			$this->mName,
+			$this->getLanguage()->getCode()
+		);
 	}
 
 }
