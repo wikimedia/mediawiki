@@ -1700,7 +1700,7 @@ class Parser {
 
 		$holders = new LinkHolderArray( $this );
 
-		# split the entire text string on occurences of [[
+		# split the entire text string on occurrences of [[
 		$a = StringUtils::explode( '[[', ' ' . $s );
 		# get the first element (all text up to first [[), and remove the space we added
 		$s = $a->current();
@@ -2384,7 +2384,7 @@ class Parser {
 	}
 
 	/**
-	 * Split up a string on ':', ignoring any occurences inside tags
+	 * Split up a string on ':', ignoring any occurrences inside tags
 	 * to prevent illegal overlapping.
 	 *
 	 * @param $str String the string to split

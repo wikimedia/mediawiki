@@ -14,9 +14,9 @@ class IPTest extends MediaWikiTestCase {
 		$this->assertFalse( IP::isIPAddress( "" ), 'Empty string is not an IP' );
 		$this->assertFalse( IP::isIPAddress( 'abc' ), 'Garbage IP string' );
 		$this->assertFalse( IP::isIPAddress( ':' ), 'Single ":" is not an IP' );
-		$this->assertFalse( IP::isIPAddress( '2001:0DB8::A:1::1'), 'IPv6 with a double :: occurence' );
-		$this->assertFalse( IP::isIPAddress( '2001:0DB8::A:1::'), 'IPv6 with a double :: occurence, last at end' );
-		$this->assertFalse( IP::isIPAddress( '::2001:0DB8::5:1'), 'IPv6 with a double :: occurence, firt at beginning' );
+		$this->assertFalse( IP::isIPAddress( '2001:0DB8::A:1::1'), 'IPv6 with a double :: occurrence' );
+		$this->assertFalse( IP::isIPAddress( '2001:0DB8::A:1::'), 'IPv6 with a double :: occurrence, last at end' );
+		$this->assertFalse( IP::isIPAddress( '::2001:0DB8::5:1'), 'IPv6 with a double :: occurrence, firt at beginning' );
 		$this->assertFalse( IP::isIPAddress( '124.24.52' ), 'IPv4 not enough quads' );
 		$this->assertFalse( IP::isIPAddress( '24.324.52.13' ), 'IPv4 out of range' );
 		$this->assertFalse( IP::isIPAddress( '.24.52.13' ), 'IPv4 starts with period' );
