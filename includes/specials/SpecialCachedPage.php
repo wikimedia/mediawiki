@@ -3,11 +3,12 @@
 /**
  * Abstract special page class with scaffolding for caching the HTML output.
  *
- * To enable the caching functionality, the cacheExpiry field should be set
- * before parent::execute is called (and it should be called from execute).
- *
  * To add HTML that should be cached, use addCachedHTML like this:
- * $this->addCachedHTML( array( $this, 'displayCachedContent' ) );
+ * $this->addCachedHTML( $callback );
+ *
+ * The callback function is only called when needed, so do all your expensive
+ * computations here. This function should returns the HTML to be cached.
+ * It should not add anything to the PageOutput object!
  *
  * Before the first addCachedHTML call, you should call $this->startCache();
  * After adding the last HTML that should be cached, call $this->saveCache();
@@ -144,6 +145,11 @@ abstract class SpecialCachedPage extends SpecialPage {
 		}
 	}
 
+	/**
+	 * Gets called after the cache got initialized.
+	 *
+	 * @since 1.20
+	 */
 	protected function onCacheInitialized() {
 		if ( $this->hasCached ) {
 			$this->getOutput()->setSubtitle( $this->getCachedNotice() );
