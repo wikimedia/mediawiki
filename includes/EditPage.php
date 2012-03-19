@@ -1299,10 +1299,12 @@ class EditPage {
 			
 			if ( $this->isConflict ) {
 				wfDebug( __METHOD__ . ": conflict! getting section '$this->section' for time '$this->edittime' (article time '{$timestamp}')\n" );
-				$text = $this->mArticle->replaceSection( $this->section, $this->textbox1, $sectionTitle, $this->edittime );
+				$cnt = $this->mArticle->replaceSection( $this->section, $this->textbox1, $sectionTitle, $this->edittime );
+                $text = ContentHandler::getContentText($cnt); #FIXME: use Content object throughout, make edit form aware of content model and serialization format
 			} else {
 				wfDebug( __METHOD__ . ": getting section '$this->section'\n" );
-				$text = $this->mArticle->replaceSection( $this->section, $this->textbox1, $sectionTitle );
+                $cnt = $this->mArticle->replaceSection( $this->section, $this->textbox1, $sectionTitle );
+                $text = ContentHandler::getContentText($cnt); #FIXME: use Content object throughout, make edit form aware of content model and serialization format
 			}
 			if ( is_null( $text ) ) {
 				wfDebug( __METHOD__ . ": activating conflict; section replace failed.\n" );

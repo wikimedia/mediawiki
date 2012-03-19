@@ -29,11 +29,13 @@ abstract class ContentHandler {
         return null;
     }
 
-    public static function makeContent( $text, Title $title, $format = null, $revId = null ) {
-        $handler = ContentHandler::getForTitle( $title );
+    public static function makeContent( $text, Title $title, $modelName = null, $format = null ) {
+        if ( !$modelName ) {
+            $modelName = $title->getContentModelName();
+        }
 
-        #FIXME: pass revid?
-        return $handler->unserialize( $text, $title, $format );
+        $handler = ContentHandler::getForModelName( $modelName );
+        return $handler->unserialize( $text, $format );
     }
 
     public static function getDefaultModelFor( Title $title ) {
@@ -141,11 +143,11 @@ abstract class ContentHandler {
         return $this->mSupportedFormats[0];
     }
 
-    public abstract function serialize( Content $content, Title $title, $format = null );
+    public abstract function serialize( Content $content, $format = null );
 
-    public abstract function unserialize( $blob, Title $title, $format = null ); #FIXME: ...and revId?
+    public abstract function unserialize( $blob, $format = null );
 
-    public abstract function newContent( Title $title );
+    public abstract function emptyContent();
 
     # public abstract function doPreSaveTransform( $title, $obj ); #TODO...
 
@@ -199,13 +201,6 @@ abstract class ContentHandler {
         return $de;
     }
 
-    public function getIndexUpdateJobs( Title $title, ParserOutput $parserOutput, $recursive = true ) {
-            # for wikitext, create a LinksUpdate object
-            # for wikidata: serialize arrays to json
-        $update = new LinksUpdate( $title, $parserOutput, $recursive );
-        return $update;
-    }
-
     #XXX: is the native model for wikitext a string or the parser output? parse early or parse late?
 
     #TODO: how to handle extra message for JS/CSS previews??
@@ -221,7 +216,8 @@ abstract class TextContentHandler extends ContentHandler {
         parent::__construct( $modelName, $formats );
     }
 
-    public function serialize( Content $content, Title $title, $format = null ) {
+    public function serialize( Content $content, $format = null ) {
+        #FIXME: assert format
         return $content->getRawData();
     }
 
@@ -232,12 +228,13 @@ class WikitextContentHandler extends TextContentHandler {
         parent::__construct( $modelName, array( 'application/x-wikitext' ) ); #FIXME: mime
     }
 
-    public function unserialize( $text, Title $title, $format = null ) {
-        return new WikitextContent($text, $title);
+    public function unserialize( $text, $format = null ) {
+        #FIXME: assert format
+        return new WikitextContent($text);
     }
 
-    public function newContent( Title $title) {
-        return new WikitextContent("", $title);
+    public function emptyContent() {
+        return new WikitextContent("");
     }
 
 }
@@ -248,12 +245,12 @@ class JavaScriptContentHandler extends TextContentHandler {
         parent::__construct( $modelName, array( 'text/javascript' ) );
     }
 
-    public function unserialize( $text, Title $title, $format = null ) {
-        return new JavaScriptContent($text, $title);
+    public function unserialize( $text, $format = null ) {
+        return new JavaScriptContent($text);
     }
 
-    public function newContent( Title $title) {
-        return new JavaScriptContent("", $title);
+    public function emptyContent() {
+        return new JavaScriptContent("");
     }
 }
 
@@ -263,12 +260,12 @@ class CssContentHandler extends TextContentHandler {
         parent::__construct( $modelName, array( 'text/css' ) );
     }
 
-    public function unserialize( $text, Title $title, $format = null ) {
-        return new CssContent($text, $title);
+    public function unserialize( $text, $format = null ) {
+        return new CssContent($text);
     }
 
-    public function newContent( Title $title) {
-        return new CssContent("", $title);
+    public function emptyContent() {
+        return new CssContent("");
     }
 
 }

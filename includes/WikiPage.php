@@ -1127,18 +1127,21 @@ class WikiPage extends Page {
 	 * @param $text String: new text of the section
 	 * @param $sectionTitle String: new section's subject, only if $section is 'new'
 	 * @param $edittime String: revision timestamp or null to use the current revision
-	 * @return string Complete article text, or null if error
+	 * @return Content new complete article content, or null if error
 	 */
-	public function replaceSection( $section, $text, $sectionTitle = '', $edittime = null ) { #FIXME: move to Content object!
+	public function replaceSection( $section, $text, $sectionTitle = '', $edittime = null ) {
 		wfProfileIn( __METHOD__ );
+
+        $sectionContent = ContentHandler::makeContent( $text, $this->getTitle() ); #XXX: could make section title, but that's not required.
 
 		if ( strval( $section ) == '' ) {
 			// Whole-page edit; let the whole text through
+            $newContent = $sectionContent;
 		} else {
 			// Bug 30711: always use current version when adding a new section
 			if ( is_null( $edittime ) || $section == 'new' ) {
-				$oldtext = $this->getRawText();
-				if ( $oldtext === false ) {
+				$oldContent = $this->getContent();
+				if ( ! $oldContent ) {
 					wfDebug( __METHOD__ . ": no page text\n" );
 					wfProfileOut( __METHOD__ );
 					return null;
@@ -1154,27 +1157,14 @@ class WikiPage extends Page {
 					return null;
 				}
 
-				$oldtext = $rev->getText();
+                $oldContent = $rev->getContent();
 			}
 
-			if ( $section == 'new' ) {
-				# Inserting a new section
-				$subject = $sectionTitle ? wfMsgForContent( 'newsectionheaderdefaultlevel', $sectionTitle ) . "\n\n" : '';
-				if ( wfRunHooks( 'PlaceNewSection', array( $this, $oldtext, $subject, &$text ) ) ) {
-					$text = strlen( trim( $oldtext ) ) > 0
-						? "{$oldtext}\n\n{$subject}{$text}"
-						: "{$subject}{$text}";
-				}
-			} else {
-				# Replacing an existing section; roll out the big guns
-				global $wgParser;
-
-				$text = $wgParser->replaceSection( $oldtext, $section, $text );
-			}
+            $newContent = $oldContent->replaceSection( $section, $sectionContent, $sectionTitle );
 		}
 
 		wfProfileOut( __METHOD__ );
-		return $text;
+		return $newContent;
 	}
 
 	/**
@@ -2831,7 +2821,9 @@ class PoolWorkArticleView extends PoolCounterWork {
 	 */
 	function __construct( Page $page, ParserOptions $parserOptions, $revid, $useParserCache, $content = null ) {
         if ( is_string($content) ) { #BC: old style call
-            $content = ContentHandler::makeContent( $content, $page->getTitle(), null, $this->revid ); #FIXME: format? from revision?
+            $modelName = $page->getRevision()->getContentModelName();
+            $format = $page->getRevision()->getContentFormat();
+            $content = ContentHandler::makeContent( $content, $page->getTitle(), $modelName, $format );
         }
 
 		$this->page = $page;
