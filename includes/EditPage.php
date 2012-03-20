@@ -1299,17 +1299,15 @@ class EditPage {
 			
 			if ( $this->isConflict ) {
 				wfDebug( __METHOD__ . ": conflict! getting section '$this->section' for time '$this->edittime' (article time '{$timestamp}')\n" );
-				$cnt = $this->mArticle->replaceSection( $this->section, $this->textbox1, $sectionTitle, $this->edittime );
-                $text = ContentHandler::getContentText($cnt); #FIXME: use Content object throughout, make edit form aware of content model and serialization format
+                $text = $this->mArticle->replaceSection( $this->section, $this->textbox1, $sectionTitle, $this->edittime ); #FIXME: use Content object throughout, make edit form aware of content model and serialization format
 			} else {
 				wfDebug( __METHOD__ . ": getting section '$this->section'\n" );
-                $cnt = $this->mArticle->replaceSection( $this->section, $this->textbox1, $sectionTitle );
-                $text = ContentHandler::getContentText($cnt); #FIXME: use Content object throughout, make edit form aware of content model and serialization format
+                $text = $this->mArticle->replaceSection( $this->section, $this->textbox1, $sectionTitle ); #FIXME: use Content object throughout, make edit form aware of content model and serialization format
 			}
 			if ( is_null( $text ) ) {
 				wfDebug( __METHOD__ . ": activating conflict; section replace failed.\n" );
 				$this->isConflict = true;
-				$text = $this->textbox1; // do not try to merge here!
+				$text = $this->textbox1; // do not try to merge here! #FIXME: unserialize Content
 			} elseif ( $this->isConflict ) {
 				# Attempt merge
 				if ( $this->mergeChangesInto( $text ) ) { #FIXME: passe/receive Content object
@@ -2315,7 +2313,7 @@ HTML
 
 		$oldtext = $this->getOriginalContent();
 		$newtext = $this->mArticle->replaceSection(
-			$this->section, $this->textbox1, $this->summary, $this->edittime );
+			$this->section, $this->textbox1, $this->summary, $this->edittime ); #FIXME: use Content::replaceSection
 
 		wfRunHooks( 'EditPageGetDiffText', array( $this, &$newtext ) );
 

@@ -303,7 +303,9 @@ class WikiPage extends Page {
         if ( $text === false ) $content = $this->getContent();
         else $content = ContentHandler::makeContent( $text, $this->mTitle ); # TODO: allow model and format to be provided; or better, expect a Content object
 
-        return $content->isRedirect();
+
+        if ( empty( $content ) ) return false;
+        else return $content->isRedirect();
 	}
 
 	/**
@@ -429,7 +431,7 @@ class WikiPage extends Page {
      *
      * @return Contet|false The text of the current revision
      */
-    protected function getNativeData() {
+    protected function getNativeData() { #FIXME: examine all uses carefully! caller must be aware of content model!
         $content = $this->getContent( Revision::RAW );
         if ( !$content ) return null;
 
@@ -563,7 +565,7 @@ class WikiPage extends Page {
             $content = $this->getContent();
         }
 
-		if ( $content->isRedirect( ) ) {
+		if ( !$content || $content->isRedirect( ) ) {
 			return false;
 		}
 
@@ -1111,7 +1113,11 @@ class WikiPage extends Page {
             $handler = ContentHandler::getForTitle( $this->getTitle() );
             $undone = $handler->getUndoContent( $this->mLastRevision, $undo, $undoafter );
 
-            return ContentHandler::getContentText( $undone );
+            if ( !$undone ) {
+                return false;
+            } else {
+                return ContentHandler::getContentText( $undone );
+            }
         }
 
         return false;
@@ -1123,8 +1129,9 @@ class WikiPage extends Page {
 	 * @param $sectionTitle String: new section's subject, only if $section is 'new'
 	 * @param $edittime String: revision timestamp or null to use the current revision
 	 * @return Content new complete article content, or null if error
+     * @deprecated since 1.20: use Content::replaceSection () instead.
 	 */
-	public function replaceSection( $section, $text, $sectionTitle = '', $edittime = null ) {
+	public function replaceSection( $section, $text, $sectionTitle = '', $edittime = null ) { #FIXME: create a Content-based version (take and return Content object)
 		wfProfileIn( __METHOD__ );
 
         $sectionContent = ContentHandler::makeContent( $text, $this->getTitle() ); #XXX: could make section title, but that's not required.
@@ -1159,7 +1166,7 @@ class WikiPage extends Page {
 		}
 
 		wfProfileOut( __METHOD__ );
-		return $newContent;
+		return ContentHandler::getContentText( $newContent ); #XXX: unclear what will happen for non-wikitext!
 	}
 
 	/**
@@ -2762,7 +2769,7 @@ class PoolWorkArticleView extends PoolCounterWork {
 		}
 
 		$time = - wfTime();
-		$this->parserOutput = $content->getParserOutput( $this->parserOptions );
+		$this->parserOutput = $content->getParserOutput( $this->page->getTitle(), $this->revid, $this->parserOptions );
 		$time += wfTime();
 
 		# Timing hack

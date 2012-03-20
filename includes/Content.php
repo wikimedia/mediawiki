@@ -8,7 +8,7 @@
  */
 abstract class Content {
     
-    public function __construct( $modelName = null ) { #FIXME: really need revId? annoying! #FIXME: really $title? or just when parsing, every time?
+    public function __construct( $modelName = null ) {
         $this->mModelName = $modelName;
     }
 
@@ -99,8 +99,6 @@ abstract class Content {
     #TODO: provide "combined" ParserOutput for Multipart... somehow.
 
     # XXX: isCacheable( ) # can/should we do this here?
-
-    # TODO: WikiPage::getUndoText( Revision $undo, Revision $undoafter = null )
 
     # TODO: EditPage::getPreloadedText( $preload ) // $wgParser->getPreloadText
     # TODO: tie into EditPage, make it use Content-objects throughout, make edit form aware of content model and format
@@ -205,10 +203,6 @@ abstract class TextContent extends Content {
         $html = $this->getHtml( $options );
         $po = new ParserOutput( $html );
 
-        if ( $this->mTitle ) $po->setTitleText( $this->mTitle->getText() );
-
-        #TODO: cache settings, etc?
-
         return $po;
     }
 
@@ -249,7 +243,7 @@ class WikitextContent extends TextContent {
             $options = $this->getDefaultParserOptions();
         }
 
-        $po = $wgParser->parse( $this->mText, $this->getTitle(), $options, true, true, $this->mRevId );
+        $po = $wgParser->parse( $this->mText, $title, $options, true, true, $revId );
 
         return $po;
     }

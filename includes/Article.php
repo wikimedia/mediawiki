@@ -620,7 +620,7 @@ class Article extends Page {
 							# Viewing a redirect page (e.g. with parameter redirect=no)
 							$wgOut->addHTML( $this->viewRedirect( $rt ) );
 							# Parse just to get categories, displaytitle, etc.
-							$this->mParserOutput = $content->getParserOutput( $parserOptions );
+							$this->mParserOutput = $content->getParserOutput( $this->getTitle(), $oldid, $parserOptions );
 							$wgOut->addParserOutputNoText( $this->mParserOutput );
 							$outputDone = true;
 						}
@@ -754,7 +754,8 @@ class Article extends Page {
 
 		// Give hooks a chance to customise the output
 		if ( wfRunHooks( 'ShowRawCssJs', array( $this->mContent, $this->getTitle(), $wgOut ) ) ) {
-			$wgOut->addHTML( $this->mContentObject->getHTML() );
+            $po = $this->mContentObject->getParserOutput();
+			$wgOut->addHTML( $po->getText() );
 		}
 	}
 
