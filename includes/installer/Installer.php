@@ -1347,8 +1347,7 @@ abstract class Installer {
 	}
 
 	/**
-	 * Generate $wgSecretKey. Will warn if we had to use mt_rand() instead of
-	 * /dev/urandom
+	 * Generate $wgSecretKey. Will warn if we had to use an insecure random source.
 	 *
 	 * @return Status
 	 */
@@ -1361,8 +1360,8 @@ abstract class Installer {
 	}
 
 	/**
-	 * Generate a secret value for variables using either
-	 * /dev/urandom or mt_rand(). Produce a warning in the later case.
+	 * Generate a secret value for variables using our CryptRand generator.
+	 * Produce a warning if the random source was insecure.
 	 *
 	 * @param $keys Array
 	 * @return Status
@@ -1370,28 +1369,18 @@ abstract class Installer {
 	protected function doGenerateKeys( $keys ) {
 		$status = Status::newGood();
 
-		wfSuppressWarnings();
-		$file = fopen( "/dev/urandom", "r" );
-		wfRestoreWarnings();
-
+		$strong = true;
 		foreach ( $keys as $name => $length ) {
-			if ( $file ) {
-					$secretKey = bin2hex( fread( $file, $length / 2 ) );
-			} else {
-				$secretKey = '';
-
-				for ( $i = 0; $i < $length / 8; $i++ ) {
-					$secretKey .= dechex( mt_rand( 0, 0x7fffffff ) );
-				}
+			$secretKey = MWCryptRand::generateHex( $length, true );
+			if ( !MWCryptRand::wasStrong() ) {
+				$strong = false;
 			}
 
 			$this->setVar( $name, $secretKey );
 		}
 
-		if ( $file ) {
-			fclose( $file );
-		} else {
-			$names = array_keys ( $keys );
+		if ( !$strong ) {
+			$names = array_keys( $keys );
 			$names = preg_replace( '/^(.*)$/', '\$$1', $names );
 			global $wgLang;
 			$status->warning( 'config-insecure-keys', $wgLang->listToText( $names ), count( $names ) );

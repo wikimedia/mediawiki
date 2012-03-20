@@ -150,6 +150,7 @@ $wgAutoloadLocalClasses = array(
 	'Message' => 'includes/Message.php',
 	'MessageBlobStore' => 'includes/MessageBlobStore.php',
 	'MimeMagic' => 'includes/MimeMagic.php',
+	'MWCryptRand' => 'includes/CryptRand.php',
 	'MWException' => 'includes/Exception.php',
 	'MWExceptionHandler' => 'includes/Exception.php',
 	'MWFunction' => 'includes/MWFunction.php',
