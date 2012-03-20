@@ -114,8 +114,6 @@ class TextPassDumper extends BackupDumper {
 		} catch (Exception $e) {
 			throw new MWException( __METHOD__ . " rotating DB failed to obtain new database (" . $e->getMessage() . ")" );
 		}
-			
-		assert( 'isset( $this->lb ) && isset( $this->db ) && $this->db->isOpen() /* rotating the DB worked */' );
 	}
 	
 
