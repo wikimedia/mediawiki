@@ -3,6 +3,10 @@
 # Router for the php cli-server built-in webserver
 # http://ca2.php.net/manual/en/features.commandline.webserver.php
 
+if ( php_sapi_name() != 'cli-server' ) {
+	die( "This script can only be run by php's cli-server sapi." );
+}
+
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
