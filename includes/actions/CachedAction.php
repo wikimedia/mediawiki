@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Abstract special page class with scaffolding for caching HTML and other values
+ * Abstract action class with scaffolding for caching HTML and other values
  * in a single blob.
  *
  * Before using any of the cahing functionality, call startCache.
@@ -19,13 +19,13 @@
  *
  * @since 1.20
  *
- * @file SpecialCachedPage.php
- * @ingroup SpecialPage
+ * @file CachedAction.php
+ * @ingroup Action
  *
  * @licence GNU GPL v2 or later
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-abstract class SpecialCachedPage extends SpecialPage implements ICacheHelper {
+abstract class CachedAction extends FormlessAction implements ICacheHelper {
 
 	/**
 	 * CacheHelper object to which we foreward the non-SpecialPage specific caching work.
@@ -139,7 +139,8 @@ abstract class SpecialCachedPage extends SpecialPage implements ICacheHelper {
 	 */
 	protected function getCacheKey() {
 		return array(
-			$this->mName,
+			get_class( $this->page ),
+			$this->getName(),
 			$this->getLanguage()->getCode()
 		);
 	}
