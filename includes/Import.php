@@ -829,7 +829,7 @@ class UploadSourceAdapter {
 	 * @return string
 	 */
 	static function registerSource( $source ) {
-		$id = wfGenerateToken();
+		$id = wfRandomString();
 
 		self::$sourceRegistrations[$id] = $source;
 

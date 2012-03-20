@@ -22,6 +22,8 @@ production.
 * (bug 34302) Add CSS classes to email fields in user preferences
 * Introduced $wgDebugDBTransactions to trace transaction status (currently PostgreSQL only)
 * (bug 23795) Add parser itself to ParserMakeImageParams hook.
+* Introduce a cryptographic random number generator source api for use when
+  generating various tokens.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
@@ -61,6 +63,9 @@ changes to languages because of Bugzilla reports.
 * Mizo (lus) added
 
 === Other changes in 1.20 ===
+* The user_token field is now left empty until a user attempts to login and
+  cookies need to be set. It is also now possible to reset every user's
+  user_token simply by clearing the values in the user_token column.
 
 == Compatibility ==
 

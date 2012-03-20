@@ -295,6 +295,24 @@ function wfRandom() {
 }
 
 /**
+ * Get a random string containing a number of pesudo-random hex
+ * characters.
+ * @note This is not secure, if you are trying to generate some sort
+ *       of token please use MWCryptRand instead.
+ *
+ * @param $length int The length of the string to generate
+ * @return String
+ * @since 1.20
+ */
+function wfRandomString( $length = 32 ) {
+	$str = '';
+	while ( strlen( $str ) < $length ) {
+		$str .= dechex( mt_rand() );
+	}
+	return substr( $str, 0, $length );
+}
+
+/**
  * We want some things to be included as literal characters in our title URLs
  * for prettiness, which urlencode encodes by default.  According to RFC 1738,
  * all of the following should be safe:
@@ -3323,6 +3341,33 @@ function wfHttpOnlySafe() {
 }
 
 /**
+ * Override session_id before session startup if php's built-in
+ * session generation code is not secure.
+ */
+function wfFixSessionID() {
+	// If the cookie or session id is already set we already have a session and should abort
+	if ( isset( $_COOKIE[ session_name() ] ) || session_id() ) {
+		return;
+	}
+
+	// PHP's built-in session entropy is enabled if:
+	// - entropy_file is set or you're on Windows with php 5.3.3+
+	// - AND entropy_length is > 0
+	// We treat it as disabled if it doesn't have an entropy length of at least 32
+	$entropyEnabled = (
+			( wfIsWindows() && version_compare( PHP_VERSION, '5.3.3', '>=' ) )
+			|| ini_get( 'session.entropy_file' )
+		)
+		&& intval( ini_get( 'session.entropy_length' ) ) >= 32;
+	
+	// If built-in entropy is not enabled or not sufficient override php's built in session id generation code
+	if ( !$entropyEnabled ) {
+		wfDebug( __METHOD__ . ": PHP's built in entropy is disabled or not sufficient, overriding session id generation using our cryptrand source.\n" );
+		session_id( MWCryptRand::generateHex( 32, __METHOD__ ) );
+	}
+}
+
+/**
  * Initialise php session
  *
  * @param $sessionId Bool
@@ -3361,6 +3406,8 @@ function wfSetupSession( $sessionId = false ) {
 	session_cache_limiter( 'private, must-revalidate' );
 	if ( $sessionId ) {
 		session_id( $sessionId );
+	} else {
+		wfFixSessionID();
 	}
 	wfSuppressWarnings();
 	session_start();
@@ -3681,8 +3728,11 @@ function wfCountDown( $n ) {
  *              characters before hashing.
  * @return string
  * @codeCoverageIgnore
+ * @deprecated since 1.20; Please use MWCryptRand for security purposes and wfRandomString for pesudo-random strings
+ * @warning This method is NOT secure. Additionally it has many callers that use it for pesudo-random purposes.
  */
 function wfGenerateToken( $salt = '' ) {
+	wfDeprecated( __METHOD__, '1.20' );
 	$salt = serialize( $salt );
 	return md5( mt_rand( 0, 0x7fffffff ) . $salt );
 }

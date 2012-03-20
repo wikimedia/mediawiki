@@ -43,7 +43,7 @@ class SpecialWatchlist extends SpecialPage {
 		// Add feed links
 		$wlToken = $user->getOption( 'watchlisttoken' );
 		if ( !$wlToken ) {
-			$wlToken = sha1( mt_rand() . microtime( true ) );
+			$wlToken = MWCryptRand::generateHex( 40 );
 			$user->setOption( 'watchlisttoken', $wlToken );
 			$user->saveSettings();
 		}

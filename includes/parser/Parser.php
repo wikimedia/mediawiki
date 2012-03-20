@@ -561,7 +561,7 @@ class Parser {
 	 * @return string
 	 */
 	static public function getRandomString() {
-		return dechex( mt_rand( 0, 0x7fffffff ) ) . dechex( mt_rand( 0, 0x7fffffff ) );
+		return wfRandomString( 16 );
 	}
 
 	/**
