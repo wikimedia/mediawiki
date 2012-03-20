@@ -658,10 +658,10 @@ class LanguageTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideFormatDuration
 	 */
-	function testFormatDuration( $duration, $expected ) {
+	function testFormatDuration( $duration, $expected, $intervals = array() ) {
 		$this->assertEquals(
 			$expected,
-			$this->lang->formatDuration( $duration ),
+			$this->lang->formatDuration( $duration, $intervals ),
 			"formatDuration('$duration'): $expected"
 		);
 	}
@@ -751,6 +751,41 @@ class LanguageTest extends MediaWikiTestCase {
 			array(
 				42 * 1000 * 31557600 + 42,
 				'42 millennia and 42 seconds'
+			),
+			array(
+				60,
+				'60 seconds',
+				array( 'seconds' ),
+			),
+			array(
+				61,
+				'61 seconds',
+				array( 'seconds' ),
+			),
+			array(
+				1,
+				'1 second',
+				array( 'seconds' ),
+			),
+			array(
+				31557600 + 2 * 86400 + 9000,
+				'1 year, 2 days and 150 minutes',
+				array( 'years', 'days', 'minutes' ),
+			),
+			array(
+				42,
+				'0 days',
+				array( 'years', 'days' ),
+			),
+			array(
+				31557600 + 2 * 86400 + 9000,
+				'1 year, 2 days and 150 minutes',
+				array( 'minutes', 'days', 'years' ),
+			),
+			array(
+				42,
+				'0 days',
+				array( 'days', 'years' ),
 			),
 		);
 	}
