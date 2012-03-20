@@ -1894,7 +1894,9 @@ class Article extends Page {
 	 * @return mixed
 	 */
 	public function generateReason( &$hasHistory ) {
-		return $this->mPage->getAutoDeleteReason( $hasHistory );
+        $title = $this->mPage->getTitle();
+        $handler = ContentHandler::getForTitle( $title );
+		return $handler->getAutoDeleteReason( $title, $hasHistory );
 	}
 
 	// ****** B/C functions for static methods ( __callStatic is PHP>=5.3 ) ****** //
@@ -1932,6 +1934,7 @@ class Article extends Page {
 	 * @param $newtext
 	 * @param $flags
 	 * @return string
+     * @deprecated since 1.20, use ContentHandler::getAutosummary() instead
 	 */
 	public static function getAutosummary( $oldtext, $newtext, $flags ) {
 		return WikiPage::getAutosummary( $oldtext, $newtext, $flags );

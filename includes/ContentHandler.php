@@ -104,6 +104,12 @@ abstract class ContentHandler {
         return ContentHandler::getForModelName( $modelName );
     }
 
+    /**
+     * @static
+     * @param $modelName String the name of the content model for which to get a handler. Use CONTENT_MODEL_XXX constants.
+     * @return ContentHandler
+     * @throws MWException
+     */
     public static function getForModelName( $modelName ) {
         global $wgContentHandlers;
 
@@ -143,8 +149,20 @@ abstract class ContentHandler {
         return $this->mSupportedFormats[0];
     }
 
+    /**
+     * @abstract
+     * @param Content $content
+     * @param null $format
+     * @return String
+     */
     public abstract function serialize( Content $content, $format = null );
 
+    /**
+     * @abstract
+     * @param $blob String
+     * @param null $format
+     * @return Content
+     */
     public abstract function unserialize( $blob, $format = null );
 
     public abstract function emptyContent();
@@ -216,6 +234,153 @@ abstract class ContentHandler {
         return false;
     }
 
+    /**
+     * Return an applicable autosummary if one exists for the given edit.
+     *
+     * @param $oldContent Content: the previous text of the page.
+     * @param $newContent Content: The submitted text of the page.
+     * @param $flags Int bitmask: a bitmask of flags submitted for the edit.
+     *
+     * @return string An appropriate autosummary, or an empty string.
+     */
+    public function getAutosummary( Content $oldContent, Content $newContent, $flags ) {
+        global $wgContLang;
+
+        # Decide what kind of autosummary is needed.
+
+        # Redirect autosummaries
+        $ot = $oldContent->getRedirectTarget();
+        $rt = $newContent->getRedirectTarget();
+
+        if ( is_object( $rt ) && ( !is_object( $ot ) || !$rt->equals( $ot ) || $ot->getFragment() != $rt->getFragment() ) ) {
+
+            $truncatedtext = $newContent->getTextForSummary(
+                250
+                    - strlen( wfMsgForContent( 'autoredircomment' ) )
+                    - strlen( $rt->getFullText() ) );
+
+            return wfMsgForContent( 'autoredircomment', $rt->getFullText(), $truncatedtext );
+        }
+
+        # New page autosummaries
+        if ( $flags & EDIT_NEW && $newContent->getSize() > 0 ) {
+            # If they're making a new article, give its text, truncated, in the summary.
+
+            $truncatedtext = $newContent->getTextForSummary(
+                200 - strlen( wfMsgForContent( 'autosumm-new' ) ) );
+
+            return wfMsgForContent( 'autosumm-new', $truncatedtext );
+        }
+
+        # Blanking autosummaries
+        if ( $oldContent->getSize() > 0 && $newContent->getSize() == 0 ) {
+            return wfMsgForContent( 'autosumm-blank' );
+        } elseif ( $oldContent->getSize() > 10 * $newContent->getSize() && $newContent->getSize() < 500 ) {
+            # Removing more than 90% of the article
+
+            $truncatedtext = $newContent->getTextForSummary(
+                200 - strlen( wfMsgForContent( 'autosumm-replace' ) ) );
+
+            return wfMsgForContent( 'autosumm-replace', $truncatedtext );
+        }
+
+        # If we reach this point, there's no applicable autosummary for our case, so our
+        # autosummary is empty.
+        return '';
+    }
+
+    /**
+     * Auto-generates a deletion reason
+     *
+     * @param $title Title: the page's title
+     * @param &$hasHistory Boolean: whether the page has a history
+     * @return mixed String containing deletion reason or empty string, or boolean false
+     *    if no revision occurred
+     */
+    public function getAutoDeleteReason( Title $title, &$hasHistory ) {
+        global $wgContLang;
+
+        $dbw = wfGetDB( DB_MASTER );
+
+        // Get the last revision
+        $rev = Revision::newFromTitle( $title );
+
+        if ( is_null( $rev ) ) {
+            return false;
+        }
+
+        // Get the article's contents
+        $content = $rev->getContent();
+        $blank = false;
+
+        // If the page is blank, use the text from the previous revision,
+        // which can only be blank if there's a move/import/protect dummy revision involved
+        if ( $content->getSize() == 0 ) {
+            $prev = $rev->getPrevious();
+
+            if ( $prev )	{
+                $content = $rev->getContent();
+                $blank = true;
+            }
+        }
+
+        // Find out if there was only one contributor
+        // Only scan the last 20 revisions
+        $res = $dbw->select( 'revision', 'rev_user_text',
+            array( 'rev_page' => $title->getArticleID(), $dbw->bitAnd( 'rev_deleted', Revision::DELETED_USER ) . ' = 0' ),
+            __METHOD__,
+            array( 'LIMIT' => 20 )
+        );
+
+        if ( $res === false ) {
+            // This page has no revisions, which is very weird
+            return false;
+        }
+
+        $hasHistory = ( $res->numRows() > 1 );
+        $row = $dbw->fetchObject( $res );
+
+        if ( $row ) { // $row is false if the only contributor is hidden
+            $onlyAuthor = $row->rev_user_text;
+            // Try to find a second contributor
+            foreach ( $res as $row ) {
+                if ( $row->rev_user_text != $onlyAuthor ) { // Bug 22999
+                    $onlyAuthor = false;
+                    break;
+                }
+            }
+        } else {
+            $onlyAuthor = false;
+        }
+
+        // Generate the summary with a '$1' placeholder
+        if ( $blank ) {
+            // The current revision is blank and the one before is also
+            // blank. It's just not our lucky day
+            $reason = wfMsgForContent( 'exbeforeblank', '$1' );
+        } else {
+            if ( $onlyAuthor ) {
+                $reason = wfMsgForContent( 'excontentauthor', '$1', $onlyAuthor );
+            } else {
+                $reason = wfMsgForContent( 'excontent', '$1' );
+            }
+        }
+
+        if ( $reason == '-' ) {
+            // Allow these UI messages to be blanked out cleanly
+            return '';
+        }
+
+        // Max content length = max comment length - length of the comment (excl. $1)
+        $text = $content->getTextForSummary( 255 - ( strlen( $reason ) - 2 ) );
+
+        // Now replace the '$1' placeholder
+        $reason = str_replace( '$1', $text, $reason );
+
+        return $reason;
+    }
+
+
     #TODO: cover patch/undo just like merge3.
 
     #TODO: how to handle extra message for JS/CSS previews??
@@ -279,6 +444,7 @@ class WikitextContentHandler extends TextContentHandler {
     public function emptyContent() {
         return new WikitextContent("");
     }
+
 
 }
 

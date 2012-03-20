@@ -16,21 +16,29 @@ abstract class Content {
         return $this->mModelName;
     }
 
-    public abstract function getSearchText( );
+    public abstract function getTextForSearchIndex( );
 
     public abstract function getWikitextForTransclusion( );
+
+    public abstract function getTextForSummary( $maxlength = 250 );
 
     /**
      * Returns native represenation of the data. Interpretation depends on the data model used,
      * as given by getDataModel().
      *
+     * @return mixed the native representation of the content. Could be a string, a nested array
+     *         structure, an object, a binary blob... anything, really.
      */
-    public abstract function getNativeData( );
+    public abstract function getNativeData( ); #FIXME: review all calls carefully, caller must be aware of content model!
 
     /**
      * returns the content's nominal size in bogo-bytes.
      */
     public abstract function getSize( ); #XXX: do we really need/want this here? we could just use the byte syse of the serialized form...
+
+    public function isEmpty() {
+        return $this->getSize() == 0;
+    }
 
     /**
      * Returns true if this content is countable as a "real" wiki page, provided
@@ -43,12 +51,16 @@ abstract class Content {
 
     public abstract function getParserOutput( Title $title = null, $revId = null, ParserOptions $options = NULL );
 
-    public function getRedirectChain() {
+    public function getRedirectChain() { #TODO: document!
+        return null;
+    }
+
+    public function getRedirectTarget() {
         return null;
     }
 
     public function isRedirect() {
-        return false;
+        return $this->getRedirectTarget() != null;
     }
 
     /**
@@ -64,7 +76,7 @@ abstract class Content {
     }
 
     /**
-     * Replaces a section of the content.
+     * Replaces a section of the content and returns a Content object with the section replaced.
      *
      * @param $section empty/null/false or a section number (0, 1, 2, T1, T2...), or "new"
      * @param $with Content: new content of the section
@@ -85,6 +97,7 @@ abstract class Content {
 
     # TODO: EditPage::getPreloadedText( $preload ) // $wgParser->getPreloadText
     # TODO: tie into EditPage, make it use Content-objects throughout, make edit form aware of content model and format
+    # TODO: tie into WikiPage, make it use Content-objects throughout, especially in doEdit(), doDelete(), etc
     # TODO: make model-aware diff view!
     # TODO: handle ImagePage and CategoryPage
 
@@ -104,6 +117,18 @@ abstract class TextContent extends Content {
         parent::__construct($modelName);
 
         $this->mText = $text;
+    }
+
+    public function getTextForSummary( $maxlength = 250 ) {
+        global $wgContLang;
+
+        $text = $this->getNativeData();
+
+        $truncatedtext = $wgContLang->truncate(
+            preg_replace( "/[\n\r]/", ' ', $text ),
+            max( 0, $maxlength ) );
+
+        return $truncatedtext;
     }
 
     /**
@@ -149,7 +174,7 @@ abstract class TextContent extends Content {
      *
      * @return String the raw text
      */
-    public function getSearchText( ) { #FIXME: use!
+    public function getTextForSearchIndex( ) { #FIXME: use!
         return $this->getNativeData();
     }
 
@@ -286,9 +311,9 @@ class WikitextContent extends TextContent {
         return Title::newFromRedirectArray( $text );
     }
 
-    public function isRedirect() {
+    public function getRedirectTarget() {
         $text = $this->getNativeData();
-        return Title::newFromRedirect( $text ) !== null;
+        return Title::newFromRedirect( $text );
     }
 
     /**
@@ -324,6 +349,16 @@ class WikitextContent extends TextContent {
 
                 return $hasLinks;
         }
+    }
+
+    public function getTextForSummary( $maxlength = 250 ) {
+        $truncatedtext = parent::getTextForSummary( $maxlength );
+
+        #clean up unfinished links
+        #XXX: make this optional? wasn't there in autosummary, but required for deletion summary.
+        $truncatedtext = preg_replace( '/\[\[([^\]]*)\]?$/', '$1', $truncatedtext );
+
+        return $truncatedtext;
     }
 
 }
