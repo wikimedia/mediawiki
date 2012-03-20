@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * Interface for all classes implementing CacheHelper functionality.
+ *
+ * @since 1.20
+ *
+ * @licence GNU GPL v2 or later
+ * @author Jeroen De Dauw < jeroendedauw@gmail.com >
+ */
 interface ICacheHelper {
 
 	/**
@@ -22,18 +30,20 @@ interface ICacheHelper {
 	function startCache( $cacheExpiry = null, $cacheEnabled = null );
 
 	/**
-	 * Add some HTML to be cached.
-	 * This is done by providing a callback function that should
-	 * return the HTML to be added. It will only be called if the
-	 * item is not in the cache yet or when the cache has been invalidated.
+	 * Get a cached value if available or compute it if not and then cache it if possible.
+	 * The provided $computeFunction is only called when the computation needs to happen
+	 * and should return a result value. $args are arguments that will be passed to the
+	 * compute function when called.
 	 *
 	 * @since 1.20
 	 *
 	 * @param {function} $computeFunction
-	 * @param array $args
+	 * @param array|mixed $args
 	 * @param string|null $key
+	 *
+	 * @return mixed
 	 */
-	function addCachedHTML( $computeFunction, $args = array(), $key = null );
+	function getCachedValue( $computeFunction, $args = array(), $key = null );
 
 	/**
 	 * Saves the HTML to the cache in case it got recomputed.
@@ -73,7 +83,6 @@ interface ICacheHelper {
  * @since 1.20
  *
  * @file CacheHelper.php
- * @ingroup SpecialPage
  *
  * @licence GNU GPL v2 or later
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
@@ -214,24 +223,6 @@ class CacheHelper implements ICacheHelper {
 				call_user_func( $this->onInitHandler, $this->hasCached );
 			}
 		}
-	}
-
-
-
-	/**
-	 * Add some HTML to be cached.
-	 * This is done by providing a callback function that should
-	 * return the HTML to be added. It will only be called if the
-	 * item is not in the cache yet or when the cache has been invalidated.
-	 *
-	 * @since 1.20
-	 *
-	 * @param {function} $computeFunction
-	 * @param array $args
-	 * @param string|null $key
-	 */
-	public function addCachedHTML( $computeFunction, $args = array(), $key = null ) {
-		$this->getOutput()->addHTML( $this->getCachedValue( $computeFunction, $args, $key ) );
 	}
 
 	/**

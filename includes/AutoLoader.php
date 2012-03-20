@@ -259,6 +259,7 @@ $wgAutoloadLocalClasses = array(
 	'ZipDirectoryReader' => 'includes/ZipDirectoryReader.php',
 
 	# includes/actions
+	'CachedAction' => 'includes/actions/CachedAction.php',
 	'CreditsAction' => 'includes/actions/CreditsAction.php',
 	'DeleteAction' => 'includes/actions/DeleteAction.php',
 	'EditAction' => 'includes/actions/EditAction.php',
