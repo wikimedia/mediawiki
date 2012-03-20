@@ -3038,6 +3038,33 @@ function wfHttpOnlySafe() {
 }
 
 /**
+ * Override session_id before session startup if php's built-in
+ * session generation code is not secure.
+ */
+function wfFixSessionID() {
+	// If the cookie or session id is already set we already have a session and should abort
+	if ( isset( $_COOKIE[ session_name() ] ) || session_id() ) {
+		return;
+	}
+
+	// PHP's built-in session entropy is enabled if:
+	// - entropy_file is set or you're on Windows with php 5.3.3+
+	// - AND entropy_length is > 0
+	// We treat it as disabled if it doesn't have an entropy length of at least 32
+	$entropyEnabled = (
+			( wfIsWindows() && version_compare( PHP_VERSION, '5.3.3', '>=' ) )
+			|| ini_get( 'session.entropy_file' )
+		)
+		&& intval( ini_get( 'session.entropy_length' ) ) >= 32;
+	
+	// If built-in entropy is not enabled or not sufficient override php's built in session id generation code
+	if ( !$entropyEnabled ) {
+		wfDebug( __METHOD__ . ": PHP's built in entropy is disabled or not sufficient, overriding session id generation using our cryptrand source.\n" );
+		session_id( MWCryptRand::generateHex( 32, __METHOD__ ) );
+	}
+}
+
+/**
  * Initialise php session
  */
 function wfSetupSession( $sessionId = false ) {
@@ -3068,6 +3095,8 @@ function wfSetupSession( $sessionId = false ) {
 	session_cache_limiter( 'private, must-revalidate' );
 	if ( $sessionId ) {
 		session_id( $sessionId );
+	} else {
+		wfFixSessionID();
 	}
 	wfSuppressWarnings();
 	session_start();

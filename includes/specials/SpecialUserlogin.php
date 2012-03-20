@@ -1099,9 +1099,9 @@ class LoginForm {
 	 */
 	public static function setLoginToken() {
 		global $wgRequest;
-		// Use User::generateToken() instead of $user->editToken()
+		// Generate a token directly instead of using $user->editToken()
 		// because the latter reuses $_SESSION['wsEditToken']
-		$wgRequest->setSessionData( 'wsLoginToken', User::generateToken() );
+		$wgRequest->setSessionData( 'wsLoginToken', MWCryptRand::generateHex( 32, __METHOD__ ) );
 	}
 
 	/**
@@ -1125,7 +1125,7 @@ class LoginForm {
 	 */
 	public static function setCreateaccountToken() {
 		global $wgRequest;
-		$wgRequest->setSessionData( 'wsCreateaccountToken', User::generateToken() );
+		$wgRequest->setSessionData( 'wsCreateaccountToken', MWCryptRand::generateHex( 32, __METHOD__ ) );
 	}
 
 	/**
