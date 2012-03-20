@@ -187,6 +187,7 @@ class MWCryptRand {
 	 * @return String A hash algorithm
 	 */
 	protected function hashAlgo() {
+		static $algo;
 		if ( !is_null( $algo ) ) {
 			return $algo;
 		}
@@ -217,6 +218,7 @@ class MWCryptRand {
 	 * @return int Number of bytes the hash outputs
 	 */
 	protected function hashLength() {
+		static $hashLength;
 		if ( is_null( $hashLength ) ) {
 			$hashLength = strlen( $this->hash( '' ) );
 		}
