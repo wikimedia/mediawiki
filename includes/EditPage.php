@@ -1433,7 +1433,7 @@ class EditPage {
 			( ( $this->minoredit && !$this->isNew ) ? EDIT_MINOR : 0 ) |
 			( $bot ? EDIT_FORCE_BOT : 0 );
 
-		$doEditStatus = $this->mArticle->doEdit( $text, $this->summary, $flags );
+		$doEditStatus = $this->mArticle->doEdit( $text, $this->summary, $flags ); # FIXME: use WikiPage::doEditContent()
 
 		if ( $doEditStatus->isOK() ) {
 			$result['redirect'] = Title::newFromRedirect( $text ) !== null;

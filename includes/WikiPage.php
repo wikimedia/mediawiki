@@ -1231,8 +1231,64 @@ class WikiPage extends Page {
 	 *     revision:                The revision object for the inserted revision, or null
 	 *
 	 *  Compatibility note: this function previously returned a boolean value indicating success/failure
+     * @deprecated since 1.20: use doEditContent() instead.
 	 */
-	public function doEdit( $text, $summary, $flags = 0, $baseRevId = false, $user = null ) { #FIXME: change $text to $content
+    public function doEdit( $text, $summary, $flags = 0, $baseRevId = false, $user = null ) { #FIXME: use doEditContent() instead
+        #TODO: log use of deprecated function
+        $content = ContentHandler::makeContent( $text, $this->getTitle() );
+
+        return $this->doEditContent( $content, $summary, $flags, $baseRevId, $user );
+    }
+
+    /**
+     * Change an existing article or create a new article. Updates RC and all necessary caches,
+     * optionally via the deferred update array.
+     *
+     * @param $content Content: new content
+     * @param $summary String: edit summary
+     * @param $flags Integer bitfield:
+     *      EDIT_NEW
+     *          Article is known or assumed to be non-existent, create a new one
+     *      EDIT_UPDATE
+     *          Article is known or assumed to be pre-existing, update it
+     *      EDIT_MINOR
+     *          Mark this edit minor, if the user is allowed to do so
+     *      EDIT_SUPPRESS_RC
+     *          Do not log the change in recentchanges
+     *      EDIT_FORCE_BOT
+     *          Mark the edit a "bot" edit regardless of user rights
+     *      EDIT_DEFER_UPDATES
+     *          Defer some of the updates until the end of index.php
+     *      EDIT_AUTOSUMMARY
+     *          Fill in blank summaries with generated text where possible
+     *
+     * If neither EDIT_NEW nor EDIT_UPDATE is specified, the status of the article will be detected.
+     * If EDIT_UPDATE is specified and the article doesn't exist, the function will return an
+     * edit-gone-missing error. If EDIT_NEW is specified and the article does exist, an
+     * edit-already-exists error will be returned. These two conditions are also possible with
+     * auto-detection due to MediaWiki's performance-optimised locking strategy.
+     *
+     * @param $baseRevId the revision ID this edit was based off, if any
+     * @param $user User the user doing the edit
+     * @param $serialisation_format String: format for storing the content in the database
+     *
+     * @return Status object. Possible errors:
+     *     edit-hook-aborted:       The ArticleSave hook aborted the edit but didn't set the fatal flag of $status
+     *     edit-gone-missing:       In update mode, but the article didn't exist
+     *     edit-conflict:           In update mode, the article changed unexpectedly
+     *     edit-no-change:          Warning that the text was the same as before
+     *     edit-already-exists:     In creation mode, but the article already exists
+     *
+     *  Extensions may define additional errors.
+     *
+     *  $return->value will contain an associative array with members as follows:
+     *     new:                     Boolean indicating if the function attempted to create a new article
+     *     revision:                The revision object for the inserted revision, or null
+     *
+     *  Compatibility note: this function previously returned a boolean value indicating success/failure
+     */
+	public function doEditContent( Content $content, $summary, $flags = 0, $baseRevId = false,
+                                   User $user = null, $serialisation_format = null ) { #FIXME: use this
 		global $wgUser, $wgDBtransactions, $wgUseAutomaticEditSummaries;
 
 		# Low-level sanity check
@@ -1250,10 +1306,25 @@ class WikiPage extends Page {
 
 		$flags = $this->checkFlags( $flags );
 
-		if ( !wfRunHooks( 'ArticleSave', array( &$this, &$user, &$text, &$summary,
-			$flags & EDIT_MINOR, null, null, &$flags, &$status ) ) )
-		{
-			wfDebug( __METHOD__ . ": ArticleSave hook aborted save!\n" );
+        # call legacy hook
+        $hook_ok = wfRunHooks( 'ArticleContentSave', array( &$this, &$user, &$content, &$summary, #FIXME: document new hook!
+            $flags & EDIT_MINOR, null, null, &$flags, &$status ) );
+
+        if ( $hook_ok && !empty( $wgHooks['ArticleSave'] ) ) { # avoid serialization overhead if the hook isn't present
+            $content_text = $content->serialize();
+            $txt = $content_text; # clone
+
+            $hook_ok = wfRunHooks( 'ArticleSave', array( &$this, &$user, &$txt, &$summary, #FIXME: deprecate legacy hook!
+                $flags & EDIT_MINOR, null, null, &$flags, &$status ) );
+
+            if ( $txt !== $content_text ) {
+                # if the text changed, unserialize the new version to create an updated Content object.
+                $content = $content->getContentHandler()->unserialize( $txt );
+            }
+        }
+
+		if ( !$hook_ok ) {
+			wfDebug( __METHOD__ . ": ArticleSave or ArticleSaveContent hook aborted save!\n" );
 
 			if ( $status->isOK() ) {
 				$status->fatal( 'edit-hook-aborted' );
@@ -1267,20 +1338,24 @@ class WikiPage extends Page {
 		$isminor = ( $flags & EDIT_MINOR ) && $user->isAllowed( 'minoredit' );
 		$bot = $flags & EDIT_FORCE_BOT;
 
-		$oldtext = $this->getNativeData(); // current revision #FIXME: may not be a string. check Content model!
-		$oldsize = strlen( $oldtext );
+		$old_content = $this->getContent( Revision::RAW ); // current revision's content
+
+		$oldsize = $old_content ? $old_content->getSize() : 0;
 		$oldid = $this->getLatest();
 		$oldIsRedirect = $this->isRedirect();
 		$oldcountable = $this->isCountable();
 
+        $handler = $content->getContentHandler();
+
 		# Provide autosummaries if one is not provided and autosummaries are enabled.
 		if ( $wgUseAutomaticEditSummaries && $flags & EDIT_AUTOSUMMARY && $summary == '' ) {
-			$summary = self::getAutosummary( $oldtext, $text, $flags ); #FIXME: ContentHandler::getAutosummary()
+			$summary = $handler->getAutosummary( $old_content, $content, $flags );
 		}
 
-		$editInfo = $this->prepareTextForEdit( $text, null, $user );
-		$text = $editInfo->pst;
-		$newsize = strlen( $text );
+		$editInfo = $this->prepareContentForEdit( $content, null, $user, $serialisation_format );
+		$serialized = $editInfo->pst;
+        $content = $editInfo->pstContent;
+		$newsize =  $content->getSize();
 
 		$dbw = wfGetDB( DB_MASTER );
 		$now = wfTimestampNow();
@@ -1308,14 +1383,15 @@ class WikiPage extends Page {
 				'page'       => $this->getId(),
 				'comment'    => $summary,
 				'minor_edit' => $isminor,
-				'text'       => $text, #FIXME: set content instead, leave serialization to revision?!
+				'text'       => $serialized,
+                'len'        => $newsize,
 				'parent_id'  => $oldid,
 				'user'       => $user->getId(),
 				'user_text'  => $user->getName(),
 				'timestamp'  => $now
 			) );
 
-			$changed = ( strcmp( $text, $oldtext ) != 0 );
+			$changed = !$content->equals( $old_content );
 
 			if ( $changed ) {
 				$dbw->begin();
@@ -1413,7 +1489,8 @@ class WikiPage extends Page {
 				'page'       => $newid,
 				'comment'    => $summary,
 				'minor_edit' => $isminor,
-				'text'       => $text,
+				'text'       => $serialized,
+                'len'        => $newsize,
 				'user'       => $user->getId(),
 				'user_text'  => $user->getName(),
 				'timestamp'  => $now
@@ -1434,7 +1511,7 @@ class WikiPage extends Page {
 					$this->mTitle->getUserPermissionsErrors( 'autopatrol', $user ) );
 				# Add RC row to the DB
 				$rc = RecentChange::notifyNew( $now, $this->mTitle, $isminor, $user, $summary, $bot,
-					'', strlen( $text ), $revisionId, $patrolled );
+					'', $content->getSize(), $revisionId, $patrolled );
 
 				# Log auto-patrolled edits
 				if ( $patrolled ) {
@@ -1447,8 +1524,11 @@ class WikiPage extends Page {
 			# Update links, etc.
 			$this->doEditUpdates( $revision, $user, array( 'created' => true ) );
 
-			wfRunHooks( 'ArticleInsertComplete', array( &$this, &$user, $text, $summary,
+			wfRunHooks( 'ArticleInsertComplete', array( &$this, &$user, $serialized, $summary, #FIXME: deprecate legacy hook
 				$flags & EDIT_MINOR, null, null, &$flags, $revision ) );
+
+            wfRunHooks( 'ArticleContentInsertComplete', array( &$this, &$user, $content, $summary, #FIXME: document new hook
+                $flags & EDIT_MINOR, null, null, &$flags, $revision ) );
 		}
 
 		# Do updates right now unless deferral was requested
@@ -1459,8 +1539,11 @@ class WikiPage extends Page {
 		// Return the new revision (or null) to the caller
 		$status->value['revision'] = $revision;
 
-		wfRunHooks( 'ArticleSaveComplete', array( &$this, &$user, $text, $summary,
+		wfRunHooks( 'ArticleSaveComplete', array( &$this, &$user, $serialized, $summary,  #FIXME: deprecate legacy hook
 			$flags & EDIT_MINOR, null, null, &$flags, $revision, &$status, $baseRevId ) );
+
+        wfRunHooks( 'ArticleContentSaveComplete', array( &$this, &$user, $content, $summary, #FIXME: document new hook
+            $flags & EDIT_MINOR, null, null, &$flags, $revision, &$status, $baseRevId ) );
 
 		# Promote user to any groups they meet the criteria for
 		$user->addAutopromoteOnceGroups( 'onEdit' );
@@ -1489,14 +1572,35 @@ class WikiPage extends Page {
 	/**
 	 * Prepare text which is about to be saved.
 	 * Returns a stdclass with source, pst and output members
+     * @deprecated in 1.20: use prepareContentForEdit instead.
 	 */
-	public function prepareTextForEdit( $text, $revid = null, User $user = null ) {
+    public function prepareTextForEdit( $text, $revid = null, User $user = null ) {  #FIXME: use prepareContentForEdit() instead #XXX: who uses this?!
+        #TODO: log use of deprecated function
+        $content = ContentHandler::makeContent( $text, $this->getTitle() );
+        return $this->prepareContentForEdit( $content, $revid , $user );
+    }
+
+    /**
+     * Prepare content which is about to be saved.
+     * Returns a stdclass with source, pst and output members
+     *
+     * @param \Content $content
+     * @param null $revid
+     * @param null|\User $user
+     * @param null $serialization_format
+     * @return bool|object
+     */
+	public function prepareContentForEdit( Content $content, $revid = null, User $user = null, $serialization_format = null ) { #FIXME: use this #XXX: really public?!
 		global $wgParser, $wgContLang, $wgUser;
 		$user = is_null( $user ) ? $wgUser : $user;
 		// @TODO fixme: check $user->getId() here???
+
 		if ( $this->mPreparedEdit
-			&& $this->mPreparedEdit->newText == $text
+			&& $this->mPreparedEdit->newContent
+            && $this->mPreparedEdit->newContent->equals( $content )
 			&& $this->mPreparedEdit->revid == $revid
+            && $this->mPreparedEdit->format == $serialization_format
+            #XXX: also check $user here?
 		) {
 			// Already prepared
 			return $this->mPreparedEdit;
@@ -1507,11 +1611,19 @@ class WikiPage extends Page {
 
 		$edit = (object)array();
 		$edit->revid = $revid;
-		$edit->newText = $text;
-		$edit->pst = $wgParser->preSaveTransform( $text, $this->mTitle, $user, $popts );
+
+		$edit->pstContent = $content->preSaveTransform( $this->mTitle, $user, $popts );
+        $edit->pst = $edit->pstContent->serialize( $serialization_format );
+        $edit->format = $serialization_format;
+
 		$edit->popts = $this->makeParserOptions( 'canonical' );
-		$edit->output = $wgParser->parse( $edit->pst, $this->mTitle, $edit->popts, true, true, $revid );
-		$edit->oldText = $this->getRawText(); #FIXME: $oldcontent instead?!
+		$edit->output = $edit->pstContent->getParserOutput( $this->mTitle, $revid, $edit->popts );
+
+        $edit->newContent = $content;
+		$edit->oldContent = $this->getContent( Revision::RAW );
+
+        $edit->newText = ContentHandler::getContentText( $edit->newContent ); #FIXME: B/C only! don't use this field!
+        $edit->oldText = $edit->oldContent ? ContentHandler::getContentText( $edit->oldContent ) : ''; #FIXME: B/C only! don't use this field!
 
 		$this->mPreparedEdit = $edit;
 
@@ -1653,13 +1765,33 @@ class WikiPage extends Page {
 	 * @param $comment String: comment submitted
 	 * @param $minor Boolean: whereas it's a minor modification
 	 */
-	public function doQuickEdit( $text, User $user, $comment = '', $minor = 0 ) {
+    public function doQuickEdit( $text, User $user, $comment = '', $minor = 0 ) {
+        #TODO: log use of deprecated function
+        $content = ContentHandler::makeContent( $text, $this->getTitle() );
+        return $this->doQuickEdit( $content, $user, $comment , $minor );
+    }
+
+    /**
+     * Edit an article without doing all that other stuff
+     * The article must already exist; link tables etc
+     * are not updated, caches are not flushed.
+     *
+     * @param $content Content: content submitted
+     * @param $user User The relevant user
+     * @param $comment String: comment submitted
+     * @param $serialisation_format String: format for storing the content in the database
+     * @param $minor Boolean: whereas it's a minor modification
+     */
+	public function doQuickEditContent( Content $content, User $user, $comment = '', $minor = 0, $serialisation_format = null ) {
 		wfProfileIn( __METHOD__ );
+
+        $serialized = $content->serialize( $serialisation_format );
 
 		$dbw = wfGetDB( DB_MASTER );
 		$revision = new Revision( array(
 			'page'       => $this->getId(),
-			'text'       => $text,
+			'text'       => $serialized,
+            'length'     => $content->getSize(),
 			'comment'    => $comment,
 			'minor_edit' => $minor ? 1 : 0,
 		) );

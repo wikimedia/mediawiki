@@ -16,6 +16,14 @@ abstract class Content {
         return $this->mModelName;
     }
 
+    public function getContentHandler() {
+        return ContentHandler::getForContent( $this );
+    }
+
+    public function serialize( $format = null ) {
+        return $this->getContentHandler()->serialize( $this, $format );
+    }
+
     public abstract function getTextForSearchIndex( );
 
     public abstract function getWikitextForTransclusion( );
@@ -33,8 +41,10 @@ abstract class Content {
 
     /**
      * returns the content's nominal size in bogo-bytes.
+     *
+     * @return int
      */
-    public abstract function getSize( ); #XXX: do we really need/want this here? we could just use the byte syse of the serialized form...
+    public abstract function getSize( );
 
     public function isEmpty() {
         return $this->getSize() == 0;
@@ -95,6 +105,18 @@ abstract class Content {
         return $this;
     }
 
+    /**
+     * Returns a Content object with pre-save transformations applied (or this object if no transformations apply).
+     *
+     * @param Title $title
+     * @param User $user
+     * @param null|ParserOptions $popts
+     * @return Content
+     */
+    public function preSaveTransform( Title $title, User $user, ParserOptions $popts = null ) {
+        return $this;
+    }
+
     #TODO: implement specialized ParserOutput for Wikidata model
     #TODO: provide "combined" ParserOutput for Multipart... somehow.
 
@@ -102,7 +124,7 @@ abstract class Content {
 
     # TODO: EditPage::getPreloadedText( $preload ) // $wgParser->getPreloadText
     # TODO: tie into EditPage, make it use Content-objects throughout, make edit form aware of content model and format
-    # TODO: tie into WikiPage, make it use Content-objects throughout, especially in doEdit(), doDelete(), updateRevisionOn(), etc
+    # TODO: tie into WikiPage, make it use Content-objects throughout, especially in doEditUpdates(), doDelete(), updateRevisionOn(), etc
     # TODO: make model-aware diff view!
     # TODO: handle ImagePage and CategoryPage
 
@@ -305,6 +327,23 @@ class WikitextContent extends TextContent {
 
         wfProfileOut( __METHOD__ );
         return $newContent;
+    }
+
+    /**
+     * Returns a Content object with pre-save transformations applied (or this object if no transformations apply).
+     *
+     * @param Title $title
+     * @param User $user
+     * @param null|ParserOptions $popts
+     * @return Content
+     */
+    public function preSaveTransform( Title $title, User $user, ParserOptions $popts = null ) {
+        global $wgParser;
+
+        $text = $this->getNativeData();
+        $pst = $wgParser->preSaveTransform( $text, $title, $user, $popts );
+
+        return new WikitextContent( $pst );
     }
 
     public function getRedirectChain() {

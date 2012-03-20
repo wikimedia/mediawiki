@@ -13,7 +13,7 @@
  */
 abstract class ContentHandler {
 
-    public static function getContentText( Content $content ) {
+    public static function getContentText( Content $content = null ) {
         if ( !$content ) return '';
 
         if ( $content instanceof TextContent ) {
@@ -26,6 +26,7 @@ abstract class ContentHandler {
         #XXX: this must not be used for editing, otherwise we may loose data:
         #XXX:      e.g. if this returns the "main" text from a multipart page, all attachments would be lost
 
+        #TODO: log this incident!
         return null;
     }
 
@@ -166,8 +167,6 @@ abstract class ContentHandler {
     public abstract function unserialize( $blob, $format = null );
 
     public abstract function emptyContent();
-
-    # public abstract function doPreSaveTransform( $title, $obj ); #TODO...
 
     /**
      * Return an Article object suitable for viewing the given object
@@ -385,10 +384,10 @@ abstract class ContentHandler {
      * between $undo and $undoafter. Revisions must belong to the same page,
      * must exist and must not be deleted
      * @param $undo Revision
-     * @param $undoafter Revision Must be an earlier revision than $undo
+     * @param $undoafter null|Revision Must be an earlier revision than $undo
      * @return mixed string on success, false on failure
      */
-    public function getUndoContent( Revision $current, Revision $undo, Revision $undoafter ) {
+    public function getUndoContent( Revision $current, Revision $undo, Revision $undoafter = null ) {
         $cur_content = $current->getContent();
 
         if ( empty( $cur_content ) ) {
