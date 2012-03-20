@@ -37,6 +37,14 @@ abstract class CachedAction extends FormlessAction implements ICacheHelper {
 	protected $cacheHelper;
 
 	/**
+	 * If the cache is enabled or not.
+	 *
+	 * @since 1.20
+	 * @var boolean
+	 */
+	protected $cacheEnabled = true;
+
+	/**
 	 * Sets if the cache should be enabled or not.
 	 *
 	 * @since 1.20
@@ -56,8 +64,9 @@ abstract class CachedAction extends FormlessAction implements ICacheHelper {
 	 * @param boolean|null $cacheEnabled Sets if the cache should be enabled or not.
 	 */
 	public function startCache( $cacheExpiry = null, $cacheEnabled = null ) {
-		$this->cacheHelper = new CacheHelper( $this->get );
+		$this->cacheHelper = new CacheHelper();
 
+		$this->cacheHelper->setCacheEnabled( $this->cacheEnabled );
 		$this->cacheHelper->setOnInitializedHandler( array( $this, 'onCacheInitialized' ) );
 
 		$keyArgs = $this->getCacheKey();
