@@ -424,6 +424,11 @@ class WikiPage extends Page {
 		return $this->getText( Revision::RAW );
 	}
 
+    /**
+     * Get the content of the current revision. No side-effects...
+     *
+     * @return Contet|false The text of the current revision
+     */
     protected function getNativeData() {
         $content = $this->getContent( Revision::RAW );
         if ( !$content ) return null;
@@ -1097,27 +1102,19 @@ class WikiPage extends Page {
 	 * @param $undo Revision
 	 * @param $undoafter Revision Must be an earlier revision than $undo
 	 * @return mixed string on success, false on failure
+     * @deprecated since 1.20: use ContentHandler::getUndoContent() instead.
 	 */
-	public function getUndoText( Revision $undo, Revision $undoafter = null ) { #FIXME: move undo logic to ContentHandler
-		$cur_text = $this->getRawText();
-		if ( $cur_text === false ) {
-			return false; // no page
-		}
-		$undo_text = $undo->getText();
-		$undoafter_text = $undoafter->getText();
+	public function getUndoText( Revision $undo, Revision $undoafter = null ) { #FIXME: replace usages.
+        $this->loadLastEdit();
 
-		if ( $cur_text == $undo_text ) {
-			# No use doing a merge if it's just a straight revert.
-			return $undoafter_text;
-		}
+        if ( $this->mLastRevision ) {
+            $handler = ContentHandler::getForTitle( $this->getTitle() );
+            $undone = $handler->getUndoContent( $this->mLastRevision, $undo, $undoafter );
 
-		$undone_text = '';
+            return ContentHandler::getContentText( $undone );
+        }
 
-		if ( !wfMerge( $undo_text, $undoafter_text, $cur_text, $undone_text ) ) {
-			return false;
-		}
-
-		return $undone_text;
+        return false;
 	}
 
 	/**

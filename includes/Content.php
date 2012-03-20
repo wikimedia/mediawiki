@@ -40,6 +40,14 @@ abstract class Content {
         return $this->getSize() == 0;
     }
 
+    public function equals( Content $that ) {
+        if ( empty( $that ) ) return false;
+        if ( $that === $this ) return true;
+        if ( $that->getModelName() !== $this->getModelName() ) return false;
+
+        return $this->getNativeData() == $that->getNativeData();
+    }
+
     /**
      * Returns true if this content is countable as a "real" wiki page, provided
      * that it's also in a countable location (e.g. a current revision in the main namespace).
@@ -93,11 +101,10 @@ abstract class Content {
     # XXX: isCacheable( ) # can/should we do this here?
 
     # TODO: WikiPage::getUndoText( Revision $undo, Revision $undoafter = null )
-    # TODO: WikiPage::getAutosummary( $oldtext, $text, $flags )
 
     # TODO: EditPage::getPreloadedText( $preload ) // $wgParser->getPreloadText
     # TODO: tie into EditPage, make it use Content-objects throughout, make edit form aware of content model and format
-    # TODO: tie into WikiPage, make it use Content-objects throughout, especially in doEdit(), doDelete(), etc
+    # TODO: tie into WikiPage, make it use Content-objects throughout, especially in doEdit(), doDelete(), updateRevisionOn(), etc
     # TODO: make model-aware diff view!
     # TODO: handle ImagePage and CategoryPage
 

@@ -380,8 +380,33 @@ abstract class ContentHandler {
         return $reason;
     }
 
+    /**
+     * Get the Content object that needs to be saved in order to undo all revisions
+     * between $undo and $undoafter. Revisions must belong to the same page,
+     * must exist and must not be deleted
+     * @param $undo Revision
+     * @param $undoafter Revision Must be an earlier revision than $undo
+     * @return mixed string on success, false on failure
+     */
+    public function getUndoContent( Revision $current, Revision $undo, Revision $undoafter ) {
+        $cur_content = $current->getContent();
 
-    #TODO: cover patch/undo just like merge3.
+        if ( empty( $cur_content ) ) {
+            return false; // no page
+        }
+
+        $undo_content = $undo->getContent();
+        $undoafter_content = $undoafter->getContent();
+
+        if ( $cur_content->equals( $undo_content ) ) {
+            # No use doing a merge if it's just a straight revert.
+            return $undoafter_content;
+        }
+
+        $undone_content = $this->merge3( $undo_content, $undoafter_content, $cur_content );
+
+        return $undone_content;
+    }
 
     #TODO: how to handle extra message for JS/CSS previews??
     #TODO: Article::showCssOrJsPage ---> specialized classes!
