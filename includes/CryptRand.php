@@ -187,9 +187,8 @@ class MWCryptRand {
 	 * @return String A hash algorithm
 	 */
 	protected function hashAlgo() {
-		static $algo;
-		if ( !is_null( $algo ) ) {
-			return $algo;
+		if ( !is_null( $this->algo ) ) {
+			return $this->algo;
 		}
 
 		$algos = hash_algos();
@@ -197,9 +196,9 @@ class MWCryptRand {
 
 		foreach ( $preference as $algorithm ) {
 			if ( in_array( $algorithm, $algos ) ) {
-				$algo = $algorithm; # assign to static
-				wfDebug( __METHOD__ . ": Using the $algo hash algorithm.\n" );
-				return $algo;
+				$this->algo = $algorithm;
+				wfDebug( __METHOD__ . ": Using the {$this->algo} hash algorithm.\n" );
+				return $this->algo;
 			}
 		}
 
@@ -218,11 +217,10 @@ class MWCryptRand {
 	 * @return int Number of bytes the hash outputs
 	 */
 	protected function hashLength() {
-		static $hashLength;
-		if ( is_null( $hashLength ) ) {
-			$hashLength = strlen( $this->hash( '' ) );
+		if ( is_null( $this->hashLength ) ) {
+			$this->hashLength = strlen( $this->hash( '' ) );
 		}
-		return $hashLength;
+		return $this->hashLength;
 	}
 
 	/**
