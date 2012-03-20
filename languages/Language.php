@@ -1919,7 +1919,7 @@ class Language {
 	 *
 	 * @return string
 	 */
-	public function formatDuration( $seconds, array $chosenIntervals = array( 'millennia', 'centuries', 'decades', 'years', 'days', 'hours', 'minutes', 'seconds' ) ) {
+	public function formatDuration( $seconds, array $chosenIntervals = array() ) {
 		$intervals = array(
 			'millennia' => 1000 * 31557600,
 			'centuries' => 100 * 31557600,
@@ -1932,16 +1932,20 @@ class Language {
 			'seconds' => 1,
 		);
 
-		if ( !empty( $chosenIntervals ) ) {
-			$intervals = array_intersect_key( $intervals, array_flip( $chosenIntervals ) );
+		if ( empty( $chosenIntervals ) ) {
+			$chosenIntervals = array( 'millennia', 'centuries', 'decades', 'years', 'days', 'hours', 'minutes', 'seconds' );
 		}
+
+		$intervals = array_intersect_key( $intervals, array_flip( $chosenIntervals ) );
+		$sortedNames = array_keys( $intervals );
+		$smallestInterval = array_pop( $sortedNames );
 
 		$segments = array();
 
 		foreach ( $intervals as $name => $length ) {
 			$value = floor( $seconds / $length );
 
-			if ( $value > 0 || ( $name == 'seconds' && empty( $segments ) ) ) {
+			if ( $value > 0 || ( $name == $smallestInterval && empty( $segments ) ) ) {
 				$seconds -= $value * $length;
 				$message = new Message( 'duration-' . $name, array( $value ) );
 				$segments[] = $message->inLanguage( $this )->escaped();
