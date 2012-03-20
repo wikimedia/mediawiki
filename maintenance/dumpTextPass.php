@@ -87,7 +87,12 @@ class TextPassDumper extends BackupDumper {
 			$this->lb->closeAll();
 			unset( $this->lb );
 		}
-		assert( '! isset( $this->db ) || ! $this->db->isOpen() /* DB is either unset, or been closed via LB */' );
+		
+		if ( isset( $this->db ) && $this->db->isOpen() )
+		  {
+			  throw new MWException( 'DB is set and has not been closed by the Load Balancer' );
+		  }
+
 
 		unset( $this->db );
 
@@ -435,7 +440,6 @@ class TextPassDumper extends BackupDumper {
 					throw new MWException( "Generic error while obtaining text for id " . $id );
 				}
 
-				assert( '$text !== false' );
 				// We received a good candidate for the text of $id via some method
 				
 				// Step 2: Checking for plausibility and return the text if it is
@@ -452,11 +456,8 @@ class TextPassDumper extends BackupDumper {
 					return $text;
 				}
 				
-				assert( 'strlen( $text ) != $revLength /* Obtained text unplausible */' );
 				$text = false;
 				throw new MWException( "Received text is unplausible for id " . $id );
-
-				assert( 'false /* text is either returned or exception has been thrown */' );
 
 			} catch (Exception $e) {
 				$msg = "getting/checking text " . $id . " failed (".$e->getMessage().")";
