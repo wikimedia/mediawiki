@@ -4069,14 +4069,16 @@ class Parser {
 			}
 
 			# The safe header is a version of the header text safe to use for links
-			# Avoid insertion of weird stuff like <math> by expanding the relevant sections
-			$safeHeadline = $this->mStripState->unstripBoth( $headline );
 
 			# Remove link placeholders by the link text.
 			#     <!--LINK number-->
 			# turns into
 			#     link text with suffix
-			$safeHeadline = $this->replaceLinkHoldersText( $safeHeadline );
+			# Do this before unstrip since link text can contain strip markers
+			$safeHeadline = $this->replaceLinkHoldersText( $headline );
+
+			# Avoid insertion of weird stuff like <math> by expanding the relevant sections
+			$safeHeadline = $this->mStripState->unstripBoth( $safeHeadline );
 
 			# Strip out HTML (first regex removes any tag not allowed)
 			# Allowed tags are <sup> and <sub> (bug 8393), <i> (bug 26375) and <b> (r105284)
@@ -5644,6 +5646,16 @@ class Parser {
 			}
 		}
 		return $out;
+	}
+
+	/**
+	 * Remove any strip markers found in the given text.
+	 *
+	 * @param $text Input string
+	 * @return string
+	 */
+	function killMarkers( $text ) {
+		return $this->mStripState->killMarkers( $text );
 	}
 
 	/**
