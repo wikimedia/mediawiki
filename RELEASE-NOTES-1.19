@@ -27,8 +27,8 @@ production.
 * (bug 35303) Proxy and DNS blacklist blocking works again
 * (bug 35294) jquery.byteLimit shouldn't set element specific variables outside
   the "return this.each" loop.
-* (bug 21054) Remove or skip strip markers from tag hooks like &lt;nowiki&gt; in 
-  core parser functions which operate on strings, such as formatnum.
+* (bug 22555) Remove or skip strip markers from tag hooks like &lt;nowiki&gt; in 
+  core parser functions which operate on strings, such as padleft.
 * (bug 18295) Don't expose strip markers when a tag appears inside a link 
   inside a heading.
 
