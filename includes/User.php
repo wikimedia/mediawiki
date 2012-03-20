@@ -3943,7 +3943,7 @@ class User {
 			return true; // disabled
 		}
 		$log = new LogPage( 'newusers', false );
-		$log->addEntry( 'autocreate', $this->getUserPage(), '', array( $this->getId() ) );
+		$log->addEntry( 'autocreate', $this->getUserPage(), '', array( $this->getId() ), $this );
 		return true;
 	}
 
