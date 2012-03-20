@@ -59,17 +59,19 @@ class MIMEsearchPage extends QueryPage {
 	}
 
 	function execute( $par ) {
+		global $wgScript;
+
 		$mime = $par ? $par : $this->getRequest()->getText( 'mime' );
 
 		$this->setHeaders();
 		$this->outputHeader();
 		$this->getOutput()->addHTML(
-			Xml::openElement( 'form', array( 'id' => 'specialmimesearch', 'method' => 'get', 'action' => SpecialPage::getTitleFor( 'MIMEsearch' )->getLocalUrl() ) ) .
+			Xml::openElement( 'form', array( 'id' => 'specialmimesearch', 'method' => 'get', 'action' => $wgScript ) ) .
 			Xml::openElement( 'fieldset' ) .
-			Html::hidden( 'title', SpecialPage::getTitleFor( 'MIMEsearch' )->getPrefixedText() ) .
-			Xml::element( 'legend', null, wfMsg( 'mimesearch' ) ) .
-			Xml::inputLabel( wfMsg( 'mimetype' ), 'mime', 'mime', 20, $mime ) . ' ' .
-			Xml::submitButton( wfMsg( 'ilsubmit' ) ) .
+			Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) .
+			Xml::element( 'legend', null, $this->msg( 'mimesearch' )->text() ) .
+			Xml::inputLabel( $this->msg( 'mimetype' )->text(), 'mime', 'mime', 20, $mime ) . ' ' .
+			Xml::submitButton( $this->msg( 'ilsubmit' )->text() ) .
 			Xml::closeElement( 'fieldset' ) .
 			Xml::closeElement( 'form' )
 		);
@@ -93,15 +95,13 @@ class MIMEsearchPage extends QueryPage {
 			htmlspecialchars( $text )
 		);
 
-		$download = Linker::makeMediaLinkObj( $nt, wfMsgHtml( 'download' ) );
+		$download = Linker::makeMediaLinkObj( $nt, $this->msg( 'download' )->escaped() );
 		$lang = $this->getLanguage();
 		$bytes = htmlspecialchars( $lang->formatSize( $result->img_size ) );
-		$dimensions = htmlspecialchars( wfMsg( 'widthheight',
-			$lang->formatNum( $result->img_width ),
-			$lang->formatNum( $result->img_height )
-		) );
+		$dimensions = $this->msg( 'widthheight' )->numParams( $result->img_width,
+			$result->img_height )->escaped();
 		$user = Linker::link( Title::makeTitle( NS_USER, $result->img_user_text ), htmlspecialchars( $result->img_user_text ) );
-		$time = htmlspecialchars( $lang->timeanddate( $result->img_timestamp ) );
+		$time = htmlspecialchars( $lang->userTimeAndDate( $result->img_timestamp, $this->getUser() ) );
 
 		return "($download) $plink . . $dimensions . . $bytes . . $user . . $time";
 	}
