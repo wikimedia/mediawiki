@@ -17,8 +17,9 @@
  *  -c <chunk-size>     maximum number of revisions in a concat chunk
  *  -b <begin-date>     earliest date to check for uncompressed revisions
  *  -e <end-date>       latest revision date to compress
- *  -s <startid>        the old_id to start from
- *  -n <endid>          the old_id to stop at
+ *  -s <startid>        the id to start from (referring to the text table for
+ *                      type gzip, and to the page table for type concat)
+ *  -n <endid>          the page_id to stop at (only when using concat compression type)
  *  --extdb <cluster>   store specified revisions in an external cluster (untested)
  *
  * This program is free software; you can redistribute it and/or modify
@@ -56,9 +57,9 @@ class CompressOld extends Maintenance {
 		$this->addOption( 'chunksize', 'Maximum number of revisions in a concat chunk', false, true, 'c' );
 		$this->addOption( 'begin-date', 'Earliest date to check for uncompressed revisions', false, true, 'b' );
 		$this->addOption( 'end-date', 'Latest revision date to compress', false, true, 'e' );
-		$this->addOption( 'startid', 'The old_id to start from', false, true, 's' );
+		$this->addOption( 'startid', 'The id to start from (gzip -> text table, concat -> page table)', false, true, 's' );
 		$this->addOption( 'extdb', 'Store specified revisions in an external cluster (untested)', false, true );
-		$this->addOption( 'endid', 'Stop at this old_id', false, true, 'n' );
+		$this->addOption( 'endid', 'The page_id to stop at (only when using concat compression type)', false, true, 'n' );
 	}
 
 	public function execute() {
