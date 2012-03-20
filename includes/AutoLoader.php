@@ -49,6 +49,7 @@ $wgAutoloadLocalClasses = array(
 	'ConfEditorToken' => 'includes/ConfEditor.php',
 	'Cookie' => 'includes/Cookie.php',
 	'CookieJar' => 'includes/Cookie.php',
+	'MWCryptRand' => 'includes/CryptRand.php',
 	'CurlHttpRequest' => 'includes/HttpFunctions.php',
 	'DeferrableUpdate' => 'includes/DeferredUpdates.php',
 	'DeferredUpdates' => 'includes/DeferredUpdates.php',
