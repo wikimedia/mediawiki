@@ -1116,7 +1116,7 @@ class LoginForm extends SpecialPage {
 		global $wgRequest;
 		// Generate a token directly instead of using $user->editToken()
 		// because the latter reuses $_SESSION['wsEditToken']
-		$wgRequest->setSessionData( 'wsLoginToken', MWCryptRand::generateHex( 32, __METHOD__ ) );
+		$wgRequest->setSessionData( 'wsLoginToken', MWCryptRand::generateHex( 32 ) );
 	}
 
 	/**
@@ -1140,7 +1140,7 @@ class LoginForm extends SpecialPage {
 	 */
 	public static function setCreateaccountToken() {
 		global $wgRequest;
-		$wgRequest->setSessionData( 'wsCreateaccountToken', MWCryptRand::generateHex( 32, __METHOD__ ) );
+		$wgRequest->setSessionData( 'wsCreateaccountToken', MWCryptRand::generateHex( 32 ) );
 	}
 
 	/**
