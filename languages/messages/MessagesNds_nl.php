@@ -23,35 +23,30 @@ $fallback = 'nl';
 
 $namespaceNames = array(
 	NS_MEDIA            => 'Media',
-	NS_SPECIAL          => 'Spesiaal',
+	NS_SPECIAL          => 'Speciaal',
 	NS_TALK             => 'Overleg',
 	NS_USER             => 'Gebruker',
 	NS_USER_TALK        => 'Overleg_gebruker',
 	NS_PROJECT_TALK     => 'Overleg_$1',
-	NS_FILE             => 'Bestaand',
-	NS_FILE_TALK        => 'Overleg_bestaand',
+	NS_FILE             => 'Ofbeelding',
+	NS_FILE_TALK        => 'Overleg_ofbeelding',
 	NS_MEDIAWIKI        => 'MediaWiki',
 	NS_MEDIAWIKI_TALK   => 'Overleg_MediaWiki',
 	NS_TEMPLATE         => 'Mal',
 	NS_TEMPLATE_TALK    => 'Overleg_mal',
 	NS_HELP             => 'Hulpe',
 	NS_HELP_TALK        => 'Overleg_hulpe',
-	NS_CATEGORY         => 'Kategorie',
-	NS_CATEGORY_TALK    => 'Overleg_kategorie',
+	NS_CATEGORY         => 'Kattegerie',
+	NS_CATEGORY_TALK    => 'Overleg_kattegerie',
 );
 
 $namespaceAliases = array(
-	'Speciaol'           => NS_SPECIAL,
-	'Speciaal'           => NS_SPECIAL,
-	'Sjabloon'           => NS_TEMPLATE,
-	'Overleg_sjabloon'   => NS_TEMPLATE_TALK,
-	'Ofbeelding'         => NS_FILE,
-	'Overleg_ofbeelding' => NS_FILE_TALK,
-	'Categorie'          => NS_CATEGORY,
-	'Overleg_categorie'  => NS_CATEGORY_TALK,
-	'Kattegerie'         => NS_CATEGORY,
-	'Overleg_categorie'  => NS_CATEGORY_TALK,
-	'Overleg_kattegerie' => NS_HELP_TALK,
+	'Speciaol'          => NS_SPECIAL,
+	'Sjabloon'          => NS_TEMPLATE,
+	'Overleg_sjabloon'  => NS_TEMPLATE_TALK,
+	'Categorie'         => NS_CATEGORY,
+	'Overleg_categorie' => NS_CATEGORY_TALK,
+	'Overleg_help'      => NS_HELP_TALK,
 );
 
 $dateFormats = array(

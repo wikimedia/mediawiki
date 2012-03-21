@@ -45,8 +45,6 @@ abstract class FileBackend {
 	protected $readOnly; // string; read-only explanation message
 	/** @var LockManager */
 	protected $lockManager;
-	/** @var FileJournal */
-	protected $fileJournal;
 
 	/**
 	 * Create a new backend instance from configuration.
@@ -57,10 +55,8 @@ abstract class FileBackend {
 	 *                     This should consist of alphanumberic, '-', and '_' characters.
 	 *                     This name should not be changed after use.
 	 *     'wikiId'      : Prefix to container names that is unique to this wiki.
-	 *                     It should only consist of alphanumberic, '-', and '_' characters.
+	 *                     This should consist of alphanumberic, '-', and '_' characters.
 	 *     'lockManager' : Registered name of a file lock manager to use.
-	 *     'fileJournal' : File journal configuration; see FileJournal::factory().
-	 *                     Journals simply log changes to files stored in the backend.
 	 *     'readOnly'    : Write operations are disallowed if this is a non-empty string.
 	 *                     It should be an explanation for the backend being read-only.
 	 * 
@@ -77,9 +73,6 @@ abstract class FileBackend {
 		$this->lockManager = ( $config['lockManager'] instanceof LockManager )
 			? $config['lockManager']
 			: LockManagerGroup::singleton()->get( $config['lockManager'] );
-		$this->fileJournal = isset( $config['fileJournal'] )
-			? FileJournal::factory( $config['fileJournal'], $this->name )
-			: FileJournal::factory( array( 'class' => 'NullFileJournal' ), $this->name );
 		$this->readOnly = isset( $config['readOnly'] )
 			? (string)$config['readOnly']
 			: '';
@@ -184,8 +177,6 @@ abstract class FileBackend {
 	 * 'allowStale'          : Don't require the latest available data.
 	 *                         This can increase performance for non-critical writes.
 	 *                         This has no effect unless the 'force' flag is set.
-	 * 'nonJournaled'        : Don't log this operation batch in the file journal.
-	 *                         This limits the ability of recovery scripts.
 	 * 
 	 * Remarks on locking:
 	 * File system paths given to operations should refer to files that are

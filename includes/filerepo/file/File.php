@@ -760,27 +760,16 @@ abstract class File {
 	 * @param $thumbUrl string Thumbnail URL
 	 * @param $params Array
 	 * @param $flags integer
-	 * @param $status Status Optional status object to use for errors
 	 * @return MediaTransformOutput
 	 */
-	protected function transformErrorOutput(
-		$thumbPath, $thumbUrl, $params, $flags, Status $status = null
-	) {
+	protected function transformErrorOutput( $thumbPath, $thumbUrl, $params, $flags ) {
 		global $wgIgnoreImageErrors;
 
 		if ( $wgIgnoreImageErrors && !( $flags & self::RENDER_NOW ) ) {
 			return $this->handler->getTransform( $this, $thumbPath, $thumbUrl, $params );
 		} else {
-			$badStatus = Status::newFatal( 'thumbnail-dest-create' );
-			if ( $status ) { // additional, more detailed errors
-				$badStatus->merge( $status );
-			}
-			$err = array();
-			foreach ( $badStatus->getErrorsArray() as $item ) {
-				$err[] = wfMsg( $item[0], array_slice( $item, 1 ) );
-			}
 			return new MediaTransformError( 'thumbnail_error',
-				$params['width'], 0, implode( "\n", $err ) ); // MTO does "\n" => "<br/>"
+				$params['width'], 0, wfMsg( 'thumbnail-dest-create' ) );
 		}
 	}
 
@@ -886,8 +875,7 @@ abstract class File {
 				if ( $status->isOK() ) {
 					$thumb->setStoragePath( $thumbPath );
 				} else {
-					$thumb = $this->transformErrorOutput(
-						$thumbPath, $thumbUrl, $params, $flags, $status );
+					$thumb = $this->transformErrorOutput( $thumbPath, $thumbUrl, $params, $flags );
 				}
 			}
 

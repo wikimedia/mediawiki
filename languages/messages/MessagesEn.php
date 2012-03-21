@@ -2277,9 +2277,6 @@ If the problem persists, contact an [[Special:ListUsers/sysop|administrator]].',
 'backend-fail-contenttype'   => 'Could not determine the content type of the file to store at "$1".',
 'backend-fail-batchsize'     => 'Storage backend given a batch of $1 file {{PLURAL:$1|operation|operations}}; the limit is $2 {{PLURAL:$2|operation|operations}}.',
 
-'filejournal-fail-dbconnect' => 'Could not connect to the journal database for storage backend "$1".',
-'filejournal-fail-dbquery'   => 'Could not update the journal database for storage backend "$1".',
-
 # Lock manager
 'lockmanager-notlocked'        => 'Could not unlock "$1"; it is not locked.',
 'lockmanager-fail-closelock'   => 'Could not close lock file for "$1".',

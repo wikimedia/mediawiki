@@ -908,13 +908,9 @@ class LocalFile extends File {
 	 */
 	function upload( $srcPath, $comment, $pageText, $flags = 0, $props = false, $timestamp = false, $user = null ) {
 		global $wgContLang;
-
-		if ( $this->getRepo()->getReadOnlyReason() !== false ) {
-			return $this->readOnlyFatalStatus();
-		}
-
 		// truncate nicely or the DB will do it for us
-		// non-nicely (dangling multi-byte chars, non-truncated version in cache).
+		// non-nicely (dangling multi-byte chars, non-truncated
+		// version in cache).
 		$comment = $wgContLang->truncate( $comment, 255 );
 		$this->lock(); // begin
 		$status = $this->publish( $srcPath, $flags );
@@ -1179,10 +1175,6 @@ class LocalFile extends File {
 	 *     archive name, or an empty string if it was a new file.
 	 */
 	function publishTo( $srcPath, $dstRel, $flags = 0 ) {
-		if ( $this->getRepo()->getReadOnlyReason() !== false ) {
-			return $this->readOnlyFatalStatus();
-		}
-
 		$this->lock(); // begin
 
 		$archiveName = wfTimestamp( TS_MW ) . '!'. $this->getName();
@@ -1219,10 +1211,6 @@ class LocalFile extends File {
 	 * @return FileRepoStatus object.
 	 */
 	function move( $target ) {
-		if ( $this->getRepo()->getReadOnlyReason() !== false ) {
-			return $this->readOnlyFatalStatus();
-		}
-
 		wfDebugLog( 'imagemove', "Got request to move {$this->name} to " . $target->getText() );
 		$this->lock(); // begin
 
@@ -1262,10 +1250,6 @@ class LocalFile extends File {
 	 * @return FileRepoStatus object.
 	 */
 	function delete( $reason, $suppress = false ) {
-		if ( $this->getRepo()->getReadOnlyReason() !== false ) {
-			return $this->readOnlyFatalStatus();
-		}
-
 		$this->lock(); // begin
 
 		$batch = new LocalFileDeleteBatch( $this, $reason, $suppress );
@@ -1282,7 +1266,7 @@ class LocalFile extends File {
 		}
 		$status = $batch->execute();
 
-		if ( $status->isOK() ) {
+		if ( $status->ok ) {
 			// Update site_stats
 			$site_stats = $dbw->tableName( 'site_stats' );
 			$dbw->query( "UPDATE $site_stats SET ss_images=ss_images-1", __METHOD__ );
@@ -1309,10 +1293,6 @@ class LocalFile extends File {
 	 * @return FileRepoStatus object.
 	 */
 	function deleteOld( $archiveName, $reason, $suppress = false ) {
-		if ( $this->getRepo()->getReadOnlyReason() !== false ) {
-			return $this->readOnlyFatalStatus();
-		}
-
 		$this->lock(); // begin
 
 		$batch = new LocalFileDeleteBatch( $this, $reason, $suppress );
@@ -1322,7 +1302,7 @@ class LocalFile extends File {
 
 		$this->unlock(); // done
 
-		if ( $status->isOK() ) {
+		if ( $status->ok ) {
 			$this->purgeDescription();
 			$this->purgeHistory();
 		}
@@ -1342,12 +1322,6 @@ class LocalFile extends File {
 	 * @return FileRepoStatus
 	 */
 	function restore( $versions = array(), $unsuppress = false ) {
-		if ( $this->getRepo()->getReadOnlyReason() !== false ) {
-			return $this->readOnlyFatalStatus();
-		}
-
-		$this->lock(); // begin
-
 		$batch = new LocalFileRestoreBatch( $this, $unsuppress );
 
 		if ( !$versions ) {
@@ -1358,14 +1332,14 @@ class LocalFile extends File {
 
 		$status = $batch->execute();
 
-		if ( $status->isGood() ) {
-			$cleanupStatus = $batch->cleanup();
-			$cleanupStatus->successCount = 0;
-			$cleanupStatus->failCount = 0;
-			$status->merge( $cleanupStatus );
+		if ( !$status->isGood() ) {
+			return $status;
 		}
 
-		$this->unlock(); // done
+		$cleanupStatus = $batch->cleanup();
+		$cleanupStatus->successCount = 0;
+		$cleanupStatus->failCount = 0;
+		$status->merge( $cleanupStatus );
 
 		return $status;
 	}
@@ -1469,14 +1443,6 @@ class LocalFile extends File {
 		$this->locked = false;
 		$dbw = $this->repo->getMasterDB();
 		$dbw->rollback( __METHOD__ );
-	}
-
-	/**
-	 * @return Status 
-	 */
-	protected function readOnlyFatalStatus() {
-		return $this->getRepo()->newFatal( 'filereadonlyerror', $this->getName(),
-			$this->getRepo()->getName(), $this->getRepo()->getReadOnlyReason() );
 	}
 } // LocalFile class
 
@@ -1745,7 +1711,7 @@ class LocalFileDeleteBatch {
 			$this->status->merge( $status );
 		}
 
-		if ( !$this->status->isOK() ) {
+		if ( !$this->status->ok ) {
 			// Critical file deletion error
 			// Roll back inserts, release lock and abort
 			// TODO: delete the defunct filearchive rows if we are using a non-transactional DB

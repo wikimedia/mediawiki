@@ -14,25 +14,6 @@
  * @author לערי ריינהארט
  */
 
-$namespaceNames = array(
-	NS_MEDIA            => 'Medya',
-	NS_SPECIAL          => 'Pinaurog',
-	NS_TALK             => 'Hiruhimangraw',
-	NS_USER             => 'Gumaramit',
-	NS_USER_TALK        => 'Hiruhimangaw_hiton_gumaramit',
-	NS_PROJECT_TALK     => 'Hiruhimangraw_hiton_$1',
-	NS_FILE             => 'Fayl',
-	NS_FILE_TALK        => 'Hiruhimangraw_hiton_fayl',
-	NS_MEDIAWIKI        => 'MediaWiki',
-	NS_MEDIAWIKI_TALK   => 'Hiruhimangraw_hiton_MediaWiki',
-	NS_TEMPLATE         => 'Batakan',
-	NS_TEMPLATE_TALK    => 'Hiruhimangraw_hiton_batakan',
-	NS_HELP             => 'Bulig',
-	NS_HELP_TALK        => 'Hiruhimangaw_hiton_bulig',
-	NS_CATEGORY         => 'Kaarangay',
-	NS_CATEGORY_TALK    => 'Hiruhimangraw_hiton_kaarangay',
-);
-
 $specialPageAliases = array(
 	'Allpages'                  => array( 'NgatananngaPakli' ),
 	'Categories'                => array( 'Mga_kaarangay' ),

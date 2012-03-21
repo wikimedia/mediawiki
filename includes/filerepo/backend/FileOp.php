@@ -24,7 +24,6 @@ abstract class FileOp {
 	protected $state = self::STATE_NEW; // integer
 	protected $failed = false; // boolean
 	protected $useLatest = true; // boolean
-	protected $batchId; // string
 
 	protected $sourceSha1; // string
 	protected $destSameAsSource; // boolean
@@ -64,16 +63,6 @@ abstract class FileOp {
 	}
 
 	/**
-	 * Set the batch UUID this operation belongs to
-	 *
-	 * @param $batchId string
-	 * @return void
-	 */
-	final protected function setBatchId( $batchId ) {
-		$this->batchId = $batchId;
-	}
-
-	/**
 	 * Whether to allow stale data for file reads and stat checks
 	 *
 	 * @param $allowStale bool
@@ -84,30 +73,29 @@ abstract class FileOp {
 	}
 
 	/**
-	 * Attempt to perform a series of file operations.
+	 * Attempt a series of file operations.
 	 * Callers are responsible for handling file locking.
 	 * 
 	 * $opts is an array of options, including:
-	 * 'force'        : Errors that would normally cause a rollback do not.
-	 *                  The remaining operations are still attempted if any fail.
-	 * 'allowStale'   : Don't require the latest available data.
-	 *                  This can increase performance for non-critical writes.
-	 *                  This has no effect unless the 'force' flag is set.
-	 * 'nonJournaled' : Don't log this operation batch in the file journal.
-	 * 
+	 * 'force'      : Errors that would normally cause a rollback do not.
+	 *                The remaining operations are still attempted if any fail.
+	 * 'allowStale' : Don't require the latest available data.
+	 *                This can increase performance for non-critical writes.
+	 *                This has no effect unless the 'force' flag is set.
+	 *
 	 * The resulting Status will be "OK" unless:
 	 *     a) unexpected operation errors occurred (network partitions, disk full...)
 	 *     b) significant operation errors occured and 'force' was not set
 	 * 
 	 * @param $performOps Array List of FileOp operations
 	 * @param $opts Array Batch operation options
-	 * @param $journal FileJournal Journal to log operations to
 	 * @return Status 
 	 */
-	final public static function attemptBatch(
-		array $performOps, array $opts, FileJournal $journal
-	) {
+	final public static function attemptBatch( array $performOps, array $opts ) {
 		$status = Status::newGood();
+
+		$allowStale = !empty( $opts['allowStale'] );
+		$ignoreErrors = !empty( $opts['force'] );
 
 		$n = count( $performOps );
 		if ( $n > self::MAX_BATCH_SIZE ) {
@@ -115,26 +103,13 @@ abstract class FileOp {
 			return $status;
 		}
 
-		$batchId = $journal->getTimestampedUUID();
-		$allowStale = !empty( $opts['allowStale'] );
-		$ignoreErrors = !empty( $opts['force'] );
-		$journaled = empty( $opts['nonJournaled'] );
-
-		$entries = array(); // file journal entries
 		$predicates = FileOp::newPredicates(); // account for previous op in prechecks
 		// Do pre-checks for each operation; abort on failure...
 		foreach ( $performOps as $index => $fileOp ) {
-			$fileOp->setBatchId( $batchId );
 			$fileOp->allowStaleReads( $allowStale );
-			$oldPredicates = $predicates;
-			$subStatus = $fileOp->precheck( $predicates ); // updates $predicates
+			$subStatus = $fileOp->precheck( $predicates );
 			$status->merge( $subStatus );
-			if ( $subStatus->isOK() ) {
-				if ( $journaled ) { // journal log entry
-					$entries = array_merge( $entries,
-						self::getJournalEntries( $fileOp, $oldPredicates, $predicates ) );
-				}
-			} else { // operation failed?
+			if ( !$subStatus->isOK() ) { // operation failed?
 				$status->success[$index] = false;
 				++$status->failCount;
 				if ( !$ignoreErrors ) {
@@ -143,15 +118,8 @@ abstract class FileOp {
 			}
 		}
 
-		// Log the operations in file journal...
-		if ( count( $entries ) ) {
-			$subStatus = $journal->logChangeBatch( $entries, $batchId );
-			if ( !$subStatus->isOK() ) {
-				return $subStatus; // abort
-			}
-		}
-
-		if ( $ignoreErrors ) { // treat precheck() fatals as mere warnings
+		if ( $ignoreErrors ) {
+			# Treat all precheck() fatals as merely warnings
 			$status->setResult( true, $status->value );
 		}
 
@@ -184,46 +152,6 @@ abstract class FileOp {
 		}
 
 		return $status;
-	}
-
-	/**
-	 * Get the file journal entries for a single file operation
-	 * 
-	 * @param $fileOp FileOp
-	 * @param $oPredicates Array Pre-op information about files
-	 * @param $nPredicates Array Post-op information about files
-	 * @return Array
-	 */
-	final protected static function getJournalEntries(
-		FileOp $fileOp, array $oPredicates, array $nPredicates
-	) {
-		$nullEntries = array();
-		$updateEntries = array();
-		$deleteEntries = array();
-		$pathsUsed = array_merge( $fileOp->storagePathsRead(), $fileOp->storagePathsChanged() );
-		foreach ( $pathsUsed as $path ) {
-			$nullEntries[] = array( // assertion for recovery
-				'op'      => 'null',
-				'path'    => $path,
-				'newSha1' => $fileOp->fileSha1( $path, $oPredicates )
-			);
-		}
-		foreach ( $fileOp->storagePathsChanged() as $path ) {
-			if ( $nPredicates['sha1'][$path] === false ) { // deleted
-				$deleteEntries[] = array(
-					'op'      => 'delete',
-					'path'    => $path,
-					'newSha1' => ''
-				);
-			} else { // created/updated
-				$updateEntries[] = array(
-					'op'      => $fileOp->fileExists( $path, $oPredicates ) ? 'update' : 'create',
-					'path'    => $path,
-					'newSha1' => $nPredicates['sha1'][$path]
-				);
-			}
-		}
-		return array_merge( $nullEntries, $updateEntries, $deleteEntries );
 	}
 
 	/**
@@ -424,8 +352,8 @@ abstract class FileOp {
 		$params = $this->params;
 		$params['failedAction'] = $action;
 		try {
-			wfDebugLog( 'FileOperation', get_class( $this ) .
-				" failed (batch #{$this->batchId}): " . FormatJson::encode( $params ) );
+			wfDebugLog( 'FileOperation',
+				get_class( $this ) . ' failed: ' . FormatJson::encode( $params ) );
 		} catch ( Exception $e ) {
 			// bad config? debug log error?
 		}
