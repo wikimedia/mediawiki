@@ -5216,6 +5216,16 @@ class Parser {
 	}
 
 	/**
+	 * Remove any strip markers found in the given text.
+	 *
+	 * @param $text Input string
+	 * @return string
+	 */
+	function killMarkers( $text ) {
+		return preg_replace( "/{$this->mUniqPrefix}[^\x7f]+" . self::MARKER_SUFFIX . '/', '', $text );
+	}
+
+	/**
 	 * TODO: document
 	 * @param $data Array
 	 * @param $intPrefix String unique identifying prefix

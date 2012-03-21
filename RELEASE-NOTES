@@ -8,27 +8,6 @@ setting since version 1.2.0. If you have it on, turn it '''off''' if you can.
 
 This a maintenance and security release of the MediaWiki 1.17 branch.
 
-=== Security changes ===
-* (bug 33117) prop=revisions allows deleted text to be exposed through cache pollution.
-
-=== Changes since 1.17.1 ===
-* (bug 32709) Private Wiki users were always taken to Special:Badtitle on login.
-
-== MediaWiki 1.17.1 ==
-
-2011-11-24
-
-This a maintenance and security release of the MediaWiki 1.17 branch.
-
-=== Security changes ===
-* (bug 32276) Skins were generating output using the internal page title which
-  would allow anonymous users to determine wheter a page exists, potentially
-  leaking private data. In fact, the curid and oldid request parameters would
-  allow page titles to be enumerated even when they are not guessable.
-* (bug 32616) action=ajax requests were dispatched to the relevant internal
-  functions without any read permission checks being done. This could lead to
-  data leakage on private wikis.
-
 === Summary of selected changes in 1.17 ===
 
 Selected changes since MediaWiki 1.16 that may be of interest:
@@ -55,6 +34,15 @@ Selected changes since MediaWiki 1.16 that may be of interest:
 
 * The lowest supported version of PHP is now 5.2.3. If necessary, please
   upgrade PHP prior to upgrading MediaWiki.
+
+=== Changes since 1.17.2 ===
+
+* (bug 22555) Remove or skip strip markers from tag hooks like &lt;nowiki&gt; in
+  core parser functions which operate on strings, such as padleft.
+
+=== Changes since 1.17.1 ===
+* (bug 33117) prop=revisions allows deleted text to be exposed through cache pollution.
+* (bug 32709) Private Wiki users were always taken to Special:Badtitle on login.
 
 === Changes since 1.17.0 ===
 
@@ -89,6 +77,13 @@ Selected changes since MediaWiki 1.16 that may be of interest:
 * Hardcoded NLS_NUMERIC_CHARACTERS for Oracle DB to prevent type conversion errors.
 * Fixed recentchanges FK violation on page delete and cache purge error in updater
   for Oracle DB.
+* (bug 32276) Skins were generating output using the internal page title which
+  would allow anonymous users to determine wheter a page exists, potentially
+  leaking private data. In fact, the curid and oldid request parameters would
+  allow page titles to be enumerated even when they are not guessable.
+* (bug 32616) action=ajax requests were dispatched to the relevant internal
+  functions without any read permission checks being done. This could lead to
+  data leakage on private wikis.
 
 === Changes since 1.17.0rc1 ===
 

@@ -149,17 +149,21 @@ class CoreParserFunctions {
 
 			// Encode as though it's a wiki page, '_' for ' '.
 			case 'url_wiki':
-				return wfUrlencode( str_replace( ' ', '_', $s ) );
+				$func = 'wfUrlencode';
+				$s = str_replace( ' ', '_', $s );
+				break;
 
 			// Encode for an HTTP Path, '%20' for ' '.
 			case 'url_path':
-				return rawurlencode( $s );
+				$func = 'rawurlencode';
+				break;
 
 			// Encode for HTTP query, '+' for ' '.
 			case 'url_query':
 			default:
-				return urlencode( $s );
+				$func = 'urlencode';
 		}
+		return $parser->markerSkipCallback( $s, $func );
 	}
 
 	static function lcfirst( $parser, $s = '' ) {
@@ -174,20 +178,12 @@ class CoreParserFunctions {
 
 	static function lc( $parser, $s = '' ) {
 		global $wgContLang;
-		if ( is_callable( array( $parser, 'markerSkipCallback' ) ) ) {
-			return $parser->markerSkipCallback( $s, array( $wgContLang, 'lc' ) );
-		} else {
-			return $wgContLang->lc( $s );
-		}
+		return $parser->markerSkipCallback( $s, array( $wgContLang, 'lc' ) );
 	}
 
 	static function uc( $parser, $s = '' ) {
 		global $wgContLang;
-		if ( is_callable( array( $parser, 'markerSkipCallback' ) ) ) {
-			return $parser->markerSkipCallback( $s, array( $wgContLang, 'uc' ) );
-		} else {
-			return $wgContLang->uc( $s );
-		}
+		return $parser->markerSkipCallback( $s, array( $wgContLang, 'uc' ) );
 	}
 
 	static function localurl( $parser, $s = '', $arg = null ) { return self::urlFunction( 'getLocalURL', $s, $arg ); }
@@ -219,15 +215,17 @@ class CoreParserFunctions {
 		}
 	}
 
-	static function formatNum( $parser, $num = '', $raw = null) {
-		if ( self::israw( $raw ) ) {
-			return $parser->getFunctionLang()->parseFormattedNumber( $num );
+	static function formatnum( $parser, $num = '', $raw = null) {
+		if ( self::isRaw( $raw ) ) {
+			$func = array( $parser->getFunctionLang(), 'parseFormattedNumber' );
 		} else {
-			return $parser->getFunctionLang()->formatNum( $num );
+			$func = array( $parser->getFunctionLang(), 'formatNum' );
 		}
+		return $parser->markerSkipCallback( $num, $func );
 	}
 
 	static function grammar( $parser, $case = '', $word = '' ) {
+		$word = $parser->killMarkers( $word );
 		return $parser->getFunctionLang()->convertGrammar( $word, $case );
 	}
 
@@ -555,7 +553,8 @@ class CoreParserFunctions {
 	/**
 	 * Unicode-safe str_pad with the restriction that $length is forced to be <= 500
  	 */
-	static function pad( $string, $length, $padding = '0', $direction = STR_PAD_RIGHT ) {
+	static function pad( $parser, $string, $length, $padding = '0', $direction = STR_PAD_RIGHT ) {
+		$padding = $parser->killMarkers( $padding );
 		$lengthOfPadding = mb_strlen( $padding );
 		if ( $lengthOfPadding == 0 ) return $string;
 
@@ -579,14 +578,15 @@ class CoreParserFunctions {
 	}
 
 	static function padleft( $parser, $string = '', $length = 0, $padding = '0' ) {
-		return self::pad( $string, $length, $padding, STR_PAD_LEFT );
+		return self::pad( $parser, $string, $length, $padding, STR_PAD_LEFT );
 	}
 
 	static function padright( $parser, $string = '', $length = 0, $padding = '0' ) {
-		return self::pad( $string, $length, $padding );
+		return self::pad( $parser, $string, $length, $padding );
 	}
 
 	static function anchorencode( $parser, $text ) {
+		$text = $parser->killMarkers( $text );
 		return substr( $parser->guessSectionNameFromWikiText( $text ), 1);
 	}
 
