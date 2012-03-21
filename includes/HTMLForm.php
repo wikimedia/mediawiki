@@ -271,7 +271,7 @@ class HTMLForm extends ContextSource {
 
 	/**
 	 * The here's-one-I-made-earlier option: do the submission if
-	 * posted, or display the form with or without funky valiation
+	 * posted, or display the form with or without funky validation
 	 * errors
 	 * @return Bool or Status whether submission was successful.
 	 */
@@ -279,7 +279,7 @@ class HTMLForm extends ContextSource {
 		$this->prepareForm();
 
 		$result = $this->tryAuthorizedSubmit();
-		if ( $result === true || ( $result instanceof Status && $result->isGood() ) ){
+		if ( $result === true || ( $result instanceof Status && $result->isGood() ) ) {
 			return $result;
 		}
 
