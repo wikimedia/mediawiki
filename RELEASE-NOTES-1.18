@@ -20,16 +20,11 @@ This is a maintenance release of the MediaWiki 1.18 branch.
 * (bug 34528) Edit section tooltips show correction section name again
 * (bug 34246) MediaWiki:Whatlinkshere-summary message is displayed again in
   Special:Whatlinkshere
-
-== MediaWiki 1.18.1 ==
-2012-01-11
-
-This a maintenance and security release of the MediaWiki 1.18 branch.
-
-=== Security changes ===
-* (bug 33117) prop=revisions allows deleted text to be exposed through cache pollution.
+* (bug 22555) Remove or skip strip markers from tag hooks like &lt;nowiki&gt; in
+  core parser functions which operate on strings, such as formatnum.
 
 === Changes since 1.18.0 ===
+
 * (bug 32712) Fix for search indexing of pages with certain unicode chars following URL.
 * (bug 3901) Lang, hreflang attribs added to sidebar interlanguage links for screen readers.
 * (bug 30774) mediawiki.html: Add support for numbers and booleans in the
@@ -55,6 +50,7 @@ This a maintenance and security release of the MediaWiki 1.18 branch.
   all pages.
 * Fixed recentchanges FK violation on page delete and cache purge error in updater
   for Oracle DB.
+* (bug 33117) prop=revisions allows deleted text to be exposed through cache pollution.
 
 == MediaWiki 1.18 ==
 2011-11-24

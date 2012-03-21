@@ -8815,6 +8815,87 @@ title=[[Main Page]]
 
 !! end
 
+!! test
+Strip marker in urlencode
+!! input
+{{urlencode:x<nowiki/>y}}
+{{urlencode:x<nowiki/>y|wiki}}
+{{urlencode:x<nowiki/>y|path}}
+!! result
+<p>xy
+xy
+xy
+</p>
+!! end
+
+!! test
+Strip marker in lc
+!! input
+{{lc:x<nowiki/>y}}
+!! result
+<p>xy
+</p>
+!! end
+
+!! test
+Strip marker in uc
+!! input
+{{uc:x<nowiki/>y}}
+!! result
+<p>XY
+</p>
+!! end
+
+!! test
+Strip marker in formatNum
+!! input
+{{formatnum:1<nowiki/>2}}
+{{formatnum:1<nowiki/>2|R}}
+!! result
+<p>12
+12
+</p>
+!! end
+
+!! test
+Strip marker in grammar
+!! options
+language=fi
+!! input
+{{grammar:elative|foo<nowiki/>bar}}
+!! result
+<p>foobarista
+</p>
+!! end
+
+!! test
+Strip marker in padleft
+!! input
+{{padleft:|2|x<nowiki/>y}}
+!! result
+<p>xy
+</p>
+!! end
+
+!! test
+Strip marker in padright
+!! input
+{{padright:|2|x<nowiki/>y}}
+!! result
+<p>xy
+</p>
+!! end
+
+!! test
+Strip marker in anchorencode
+!! input
+{{anchorencode:x<nowiki/>y}}
+!! result
+<p>xy
+</p>
+!! end
+
+
 TODO:
 more images
 more tables

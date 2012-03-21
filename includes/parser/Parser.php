@@ -5403,6 +5403,16 @@ class Parser {
 	}
 
 	/**
+	 * Remove any strip markers found in the given text.
+	 *
+	 * @param $text Input string
+	 * @return string
+	 */
+	function killMarkers( $text ) {
+		return $this->mStripState->killMarkers( $text );
+	}
+
+	/**
 	 * Save the parser state required to convert the given half-parsed text to
 	 * HTML. "Half-parsed" in this context means the output of
 	 * recursiveTagParse() or internalParse(). This output has strip markers

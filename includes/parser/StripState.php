@@ -174,5 +174,15 @@ class StripState {
 		$key = $m[1];
 		return "{$this->prefix}{$this->tempMergePrefix}-$key" . Parser::MARKER_SUFFIX;
 	}
+
+	/**
+	 * Remove any strip markers found in the given text.
+	 *
+	 * @param $text Input string
+	 * @return string
+	 */
+	function killMarkers( $text ) {
+		return preg_replace( $this->regex, '', $text );
+	}
 }
 
