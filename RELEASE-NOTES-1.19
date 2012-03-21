@@ -25,6 +25,10 @@ production.
 * (bug 31417) New ID mw-content-text around the actual page text, without categories,
   contentSub, ... The same div often also contains the class mw-content-ltr/rtl.
 * (bug 35303) Proxy and DNS blacklist blocking works again
+* (bug 22555) Remove or skip strip markers from tag hooks like &lt;nowiki&gt; in 
+  core parser functions which operate on strings, such as padleft.
+* (bug 18295) Don't expose strip markers when a tag appears inside a link 
+  inside a heading.
 
 === Configuration changes in 1.19 ===
 * Removed SkinTemplateSetupPageCss hook; use BeforePageDisplay instead.
