@@ -797,7 +797,7 @@ class User {
  		// Multiply by 1.25 to get the number of hex characters we need
  		$length = $length * 1.25;
  		// Generate random hex chars
- 		$hex = MWCryptRand::generateHex( $length, __METHOD__ );
+ 		$hex = MWCryptRand::generateHex( $length );
  		// Convert from base 16 to base 32 to get a proper password like string
  		return wfBaseConvert( $hex, 16, 32 );
 	}
@@ -1863,7 +1863,7 @@ class User {
 		global $wgSecretKey, $wgProxyKey;
 		$this->load();
 		if ( !$token ) {
-			$this->mToken = MWCryptRand::generateHex( USER_TOKEN_LENGTH, __METHOD__ );
+			$this->mToken = MWCryptRand::generateHex( USER_TOKEN_LENGTH );
 		} else {
 			$this->mToken = $token;
 		}
@@ -2886,7 +2886,7 @@ class User {
 			return EDIT_TOKEN_SUFFIX;
 		} else {
 			if( !isset( $_SESSION['wsEditToken'] ) ) {
-				$token = MWCryptRand::generateHex( 32, __METHOD__ );
+				$token = MWCryptRand::generateHex( 32 );
 				$_SESSION['wsEditToken'] = $token;
 			} else {
 				$token = $_SESSION['wsEditToken'];
@@ -2905,7 +2905,7 @@ class User {
 	 * @return \string The new random token
 	 */
 	public static function generateToken( $salt = '' ) {
-		return MWCryptRand::generateHex( 32, __METHOD__ );
+		return MWCryptRand::generateHex( 32 );
 	}
 
 	/**
@@ -3010,7 +3010,7 @@ class User {
 		$now = time();
 		$expires = $now + 7 * 24 * 60 * 60;
 		$expiration = 
-		$token = MWCryptRand::generateHex( 32, __METHOD__ );
+		$token = MWCryptRand::generateHex( 32 );
 		$hash = md5( $token );
 		$this->load();
 		$this->mEmailToken = $hash;
@@ -3564,7 +3564,7 @@ class User {
 
 		if( $wgPasswordSalt ) {
 			if ( $salt === false ) {
-				$salt = MWCryptRand::generateHex( 8, __METHOD__ );
+				$salt = MWCryptRand::generateHex( 8 );
 			}
 			return ':B:' . $salt . ':' . md5( $salt . '-' . md5( $password ) );
 		} else {

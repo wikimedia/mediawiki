@@ -256,17 +256,10 @@ class MWCryptRand {
 	/**
 	 * @see self::generate()
 	 */
-	public function realGenerate( $bytes, $forceStrong = false, $method = null ) {
+	public function realGenerate( $bytes, $forceStrong = false ) {
 		wfProfileIn( __METHOD__ );
-		if ( is_string( $forceStrong ) && is_null( $method ) ) {
-			// If $forceStrong is a string then it's really $method
-			$method = $forceStrong;
-			$forceStrong = false;
-		}
 
-		if ( !is_null( $method ) ) {
-			wfDebug( __METHOD__ . ": Generating cryptographic random bytes for $method\n" );
-		}
+		wfDebug( __METHOD__ . ": Generating cryptographic random bytes for " . wfGetAllCallers( 5 ) . "\n" );
 
 		$bytes = floor( $bytes );
 		static $buffer = '';
@@ -285,7 +278,6 @@ class MWCryptRand {
 			if ( function_exists( 'mcrypt_create_iv' ) ) {
 				wfProfileIn( __METHOD__ . '-mcrypt' );
 				$rem = $bytes - strlen( $buffer );
-				wfDebug( __METHOD__ . ": Trying to generate $rem bytes of randomness using mcrypt_create_iv.\n" );
 				$iv = mcrypt_create_iv( $rem, MCRYPT_DEV_URANDOM );
 				if ( $iv === false ) {
 					wfDebug( __METHOD__ . ": mcrypt_create_iv returned false.\n" );
@@ -306,7 +298,6 @@ class MWCryptRand {
 			) {
 				wfProfileIn( __METHOD__ . '-openssl' );
 				$rem = $bytes - strlen( $buffer );
-				wfDebug( __METHOD__ . ": Trying to generate $rem bytes of randomness using openssl_random_pseudo_bytes.\n" );
 				$openssl_bytes = openssl_random_pseudo_bytes( $rem, $openssl_strong );
 				if ( $openssl_bytes === false ) {
 					wfDebug( __METHOD__ . ": openssl_random_pseudo_bytes returned false.\n" );
@@ -327,7 +318,6 @@ class MWCryptRand {
 		if ( strlen( $buffer ) < $bytes && ( function_exists( 'stream_set_read_buffer' ) || $forceStrong ) ) {
 			wfProfileIn( __METHOD__ . '-fopen-urandom' );
 			$rem = $bytes - strlen( $buffer );
-			wfDebug( __METHOD__ . ": Trying to generate $rem bytes of randomness using /dev/urandom.\n" );
 			if ( !function_exists( 'stream_set_read_buffer' ) && $forceStrong ) {
 				wfDebug( __METHOD__ . ": Was forced to read from /dev/urandom without control over the buffer size.\n" );
 			}
@@ -351,7 +341,6 @@ class MWCryptRand {
 					stream_set_read_buffer( $urandom, $rem );
 					$chunk_size = $rem;
 				}
-				wfDebug( __METHOD__ . ": Reading from /dev/urandom with a buffer size of $chunk_size.\n" );
 				$random_bytes = fread( $urandom, max( $chunk_size, $rem ) );
 				$buffer .= $random_bytes;
 				fclose( $urandom );
@@ -399,13 +388,13 @@ class MWCryptRand {
 	/**
 	 * @see self::generateHex()
 	 */
-	public function realGenerateHex( $chars, $forceStrong = false, $method = null ) {
+	public function realGenerateHex( $chars, $forceStrong = false ) {
 		// hex strings are 2x the length of raw binary so we divide the length in half
 		// odd numbers will result in a .5 that leads the generate() being 1 character
 		// short, so we use ceil() to ensure that we always have enough bytes
 		$bytes = ceil( $chars / 2 );
 		// Generate the data and then convert it to a hex string
-		$hex = bin2hex( $this->generate( $bytes, $forceStrong, $method ) );
+		$hex = bin2hex( $this->generate( $bytes, $forceStrong ) );
 		// A bit of paranoia here, the caller asked for a specific length of string
 		// here, and it's possible (eg when given an odd number) that we may actually
 		// have at least 1 char more than they asked for. Just in case they made this
@@ -449,11 +438,10 @@ class MWCryptRand {
 	 * @param $forceStrong bool Pass true if you want generate to prefer cryptographically
 	 *                          strong sources of entropy even if reading from them may steal
 	 *                          more entropy from the system than optimal.
-	 * @param $method The calling method, for debug info. May be the second argument if you are not using forceStrong
 	 * @return String Raw binary random data
 	 */
-	public static function generate( $bytes, $forceStrong = false, $method = null ) {
-		return self::singleton()->realGenerate( $bytes, $forceStrong, $method );
+	public static function generate( $bytes, $forceStrong = false ) {
+		return self::singleton()->realGenerate( $bytes, $forceStrong );
 	}
 
 	/**
@@ -466,11 +454,10 @@ class MWCryptRand {
 	 * @param $forceStrong bool Pass true if you want generate to prefer cryptographically
 	 *                          strong sources of entropy even if reading from them may steal
 	 *                          more entropy from the system than optimal.
-	 * @param $method The calling method, for debug info. May be the second argument if you are not using forceStrong
 	 * @return String Hexadecimal random data
 	 */
-	public static function generateHex( $chars, $forceStrong = false, $method = null ) {
-		return self::singleton()->realGenerateHex( $chars, $forceStrong, $method );
+	public static function generateHex( $chars, $forceStrong = false ) {
+		return self::singleton()->realGenerateHex( $chars, $forceStrong );
 	}
 
 }
