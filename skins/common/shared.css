@@ -861,6 +861,12 @@ ol:lang(ckb) li {
 	list-style-type: arabic-indic;
 }
 
+ol:lang(hi) li,
+ol:lang(mr) li {
+	list-style-type: -moz-devanagari;
+	list-style-type: devanagari;
+}
+
 ol:lang(as) li,
 ol:lang(bn) li {
 	list-style-type: -moz-bengali;

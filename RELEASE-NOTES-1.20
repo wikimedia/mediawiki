@@ -49,6 +49,7 @@ production.
   valued parameters in the query string
 * (bug 34735) Updated compressOld.php documentation to mention the different
   usages of -s and -n parameters depending on compression type
+* (bug 13896) Rendering of devanagari numbers in automatic '#' number lists
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
