@@ -1180,7 +1180,6 @@ Pass på at den nye sida også har innhald frå den innfletta sida.',
 
 # Diffs
 'history-title' => 'Historikken til «$1»',
-'difference' => '(Skilnad mellom versjonar)',
 'difference-multipage' => '(Skilnad mellom sider)',
 'lineno' => 'Line $1:',
 'compareselectedversions' => 'Samanlikn valde versjonar',

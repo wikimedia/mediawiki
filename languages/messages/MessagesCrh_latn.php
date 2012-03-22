@@ -821,7 +821,6 @@ Vikide bu saifege oşağan saifelerni [[Special:Search|tapıp baqıñız]].',
 
 # Diffs
 'history-title' => '"$1" saifesiniñ deñişmeler tarihı',
-'difference' => '(Versiyalar arası farqlar)',
 'difference-multipage' => '(Saifeler arasındaki farq)',
 'lineno' => '$1 satır:',
 'compareselectedversions' => 'Saylanğan versiyalarnı teñeştir',

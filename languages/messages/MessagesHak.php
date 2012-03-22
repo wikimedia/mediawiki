@@ -599,7 +599,6 @@ Tông-tsûng pûn $3 fûng-só ke ngièn-yîn he ''$2''",
 
 # Diffs
 'history-title' => '"$1" ke siû-thin li̍t-sṳ́',
-'difference' => '（Siû-thin pán-pún-kiên ke chhâ-yi）',
 'lineno' => 'Thi $1-hàng：',
 'compareselectedversions' => 'Pí-káu sién-thin ke pán-pún',
 'editundo' => 'Chhat-sêu',

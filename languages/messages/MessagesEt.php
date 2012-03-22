@@ -1223,7 +1223,6 @@ Navigeerimislinkide kasutamine tühistab redaktsioonide valiku.',
 
 # Diffs
 'history-title' => 'Lehekülje "$1" muudatuste ajalugu',
-'difference' => '(Erinevused redaktsioonide vahel)',
 'difference-multipage' => '(Lehekülgede erinevus)',
 'lineno' => 'Rida $1:',
 'compareselectedversions' => 'Võrdle valitud redaktsioone',

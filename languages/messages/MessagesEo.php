@@ -1263,7 +1263,6 @@ Certigu ke ĉi tiu ŝanĝo tenos kontinuecon de la historia paĝo.',
 
 # Diffs
 'history-title' => 'Redakto-historio de "$1"',
-'difference' => '(Malsamoj inter versioj)',
 'difference-multipage' => '(Diferenco inter paĝoj)',
 'lineno' => 'Linio $1:',
 'compareselectedversions' => 'Kompari la elektitajn versiojn',

@@ -277,7 +277,6 @@ Ná radbadal ák deskáne atíko matano.",
 
 # Diffs
 'history-title' => '$1 aŧí radbadal ná lekav',
-'difference'    => '(Badal droşum teŧí fark)',
 'lineno'        => 'Lík $1:',
 'editundo'      => 'ságí',
 

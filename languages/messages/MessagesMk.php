@@ -1302,7 +1302,6 @@ $1",
 
 # Diffs
 'history-title' => 'Историја на измените на „$1“',
-'difference' => '(Разлика меѓу ревизија)',
 'difference-multipage' => '(Разлики помеѓу страници)',
 'lineno' => 'Ред $1:',
 'compareselectedversions' => 'Спореди избрани ревизии',

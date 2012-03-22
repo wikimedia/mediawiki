@@ -1006,7 +1006,6 @@ Vide Bbuene ca ausanne le collegaminde de navigazzione sta culonne avène azzera
 
 # Diffs
 'history-title' => 'Liste de le versiune de "$1"',
-'difference' => "(Differenze 'mbrà versiune)",
 'difference-multipage' => "(Differenze 'mbrà le pàggene)",
 'lineno' => 'Linea $1:',
 'compareselectedversions' => 'Combronde le versiune selezionete',

@@ -245,7 +245,6 @@ Reikotevẽvérõ marandu, emoñe'ẽ kuatiarogue ñepytyvõ rehegua. Oiméramo 
 'logdelete-selected' => "'''Seleccionados $1 eventos de registro:'''",
 
 # Diffs
-'difference' => "(Mba'épe ojaovy oñemyatyrõva'ekue)",
 'lineno'     => 'Jehai $1:',
 'editundo'   => 'embyai',
 'diff-multi' => '($1 ediciones intermedias no se muestran.)',

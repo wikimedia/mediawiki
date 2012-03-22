@@ -781,7 +781,6 @@ Nawigaciōnis autengīsenin terpausnā naikinna etrīnksenin en kōlunei.',
 
 # Diffs
 'history-title' => 'Redigīsnas istōrija stesse "$1"',
-'difference' => '(Šlaitīntai sirzdau wersiōnins)',
 'lineno' => 'Rindā $1:',
 'compareselectedversions' => 'Paligīnais etrīnktans wersiōnins',
 'editundo' => 'Naikinnais redigīsenin',

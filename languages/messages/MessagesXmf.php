@@ -391,7 +391,6 @@ $messages = array(
 
 # Diffs
 'history-title' => '"$1"–იშ თირაფეფიშ ისტორია',
-'difference' => '(ვერსიეფშკას შხვაოფეფ)',
 'lineno' => 'ღოზი $1:',
 'compareselectedversions' => 'გიშაგორილ ვერსიეფიშ მეზიმაფა',
 'editundo' => 'გოუქვაფა',

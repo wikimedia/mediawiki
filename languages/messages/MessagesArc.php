@@ -556,7 +556,6 @@ $1',
 
 # Diffs
 'history-title' => 'ܬܫܥܝܬܐ ܕܬܢܝܬܐ ܕ "$1"',
-'difference' => '(ܦܪܝܫܘܬܐ ܒܝܬ ܬܢܝܬ̈ܐ)',
 'lineno' => 'ܣܪܛܐ $1:',
 'compareselectedversions' => 'ܦܚܘܡ ܒܝܬ ܬܪܝܢ ܬܢܝܬ̈ܐ ܓܒܝܬ̈ܐ',
 'showhideselectedversions' => 'ܚܘܝ/ܛܫܝ ܬܢܝܬ̈ܐ ܓܒܝܬ̈ܐ',

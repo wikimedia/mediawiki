@@ -386,7 +386,6 @@ $1',
 
 # Diffs
 'history-title'           => 'گزارش تاریخی نسخه زه "$1"',
-'difference'              => '(تفاوت بین نسخه ها)',
 'lineno'                  => 'سطر $1:',
 'compareselectedversions' => 'مقایسه نسخه‌های انتخاب‌ وابیده',
 'editundo'                => 'لغو اصلاح آخر',

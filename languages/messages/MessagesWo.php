@@ -861,7 +861,6 @@ Soo jëfandikoo lëkkalekaayu joow yi day neenal boyot yi nga jotoon a fal.',
 
 # Diffs
 'history-title' => 'Jaar-jaaru sumbi « $1 »',
-'difference' => '(Wuute gi ci sumb yi)',
 'lineno' => 'Rëdd $1 :',
 'compareselectedversions' => 'Méngale sumb yi nga fal',
 'editundo' => 'neenal',

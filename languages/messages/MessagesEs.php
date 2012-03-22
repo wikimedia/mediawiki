@@ -1304,7 +1304,6 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 
 # Diffs
 'history-title' => 'Historial de revisiones para «$1»',
-'difference' => '(Diferencias entre revisiones)',
 'difference-multipage' => '(Diferencia entre las páginas)',
 'lineno' => 'Línea $1:',
 'compareselectedversions' => 'Comparar versiones seleccionadas',

@@ -261,7 +261,6 @@ Zã [[Special:Search|nuwo didi le wiki sia dzi]] kpɔ na axa yeyeawo.',
 
 # Diffs
 'history-title'           => '"$1" ƒe tata xoxoawo',
-'difference'              => '(Vovototowo le tata xoxoawo me)',
 'lineno'                  => 'Fli $1:',
 'compareselectedversions' => 'Kpɔ tata siwo wotia la',
 

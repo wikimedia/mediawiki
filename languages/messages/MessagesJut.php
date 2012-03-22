@@ -432,7 +432,6 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 
 # Diffs
 'history-title' => 'Hersengsskigte før "$1"',
-'difference' => '(Førskelle mellem hersenenger)',
 'lineno' => 'Lenje $1:',
 'compareselectedversions' => 'Sammenlign valgte hersenenger',
 'editundo' => 'baĝgøt',

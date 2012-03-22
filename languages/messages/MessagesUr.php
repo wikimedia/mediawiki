@@ -745,7 +745,6 @@ $1",
 
 # Diffs
 'history-title' => '"$1" کا نظرثانی تاریخچہ',
-'difference' => '(اصلاحات میں فرق)',
 'lineno' => 'لکیر $1:',
 'compareselectedversions' => 'منتخب متـن کا موازنہ',
 'editundo' => 'استرجع',

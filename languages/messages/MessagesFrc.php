@@ -593,7 +593,6 @@ Des autres administrateurs sus ce wiki ont la permission de voir et de rétablir
 'logdelete-success'           => "'''Vous avez bien changé la visibilité des événements.'''",
 
 # Diffs
-'difference'              => '(Différences entre les versions)',
 'lineno'                  => 'Ligne $1:',
 'compareselectedversions' => 'Comparer les versions choisies',
 'editundo'                => 'renverser',

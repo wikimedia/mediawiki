@@ -925,7 +925,6 @@ Nawigasiýa çykgytlaryny ulanmaklygyň bu sütüni başky ýagdaýyna getirjekd
 
 # Diffs
 'history-title' => '"$1" sahypasynyň geçmişi',
-'difference' => '(Wersiýalaryň aratapawudy)',
 'difference-multipage' => '(Sahypalaryň arasyndaky tapawut)',
 'lineno' => 'Setir $1:',
 'compareselectedversions' => 'Saýlanan wersiýalary deňeşdir',

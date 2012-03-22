@@ -1136,7 +1136,6 @@ Sila pastikan bahawa perubahan ini akan mengekalkan kesinambungan sejarah laman.
 
 # Diffs
 'history-title' => 'Sejarah semakan bagi "$1"',
-'difference' => '(Perbezaan antara semakan)',
 'difference-multipage' => '(Perbezaan antara laman)',
 'lineno' => 'Baris $1:',
 'compareselectedversions' => 'Bandingkan versi-versi yang dipilih',

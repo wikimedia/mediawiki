@@ -243,7 +243,6 @@ Võitta loovva tšüľľee tširjuttamall alla õlõvasõõ tilaa. Kui että tah
 
 # Diffs
 'history-title'           => 'Tšüľľee $1 muutuzistori',
-'difference'              => '(Vahõd verzijoďďee väliz)',
 'lineno'                  => 'Viiru $1:',
 'compareselectedversions' => 'Võrrõõ valitsõttuit verzijoit',
 'editundo'                => 'kummut',

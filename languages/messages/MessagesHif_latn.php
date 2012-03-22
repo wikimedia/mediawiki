@@ -970,7 +970,6 @@ Ii baat ke dhyan me rakhna ki navigation jorr ke kaam me laae se ii column reset
 
 # Diffs
 'history-title' => '"$1" ke sansodhan ke itihaas',
-'difference' => '(Badlao me farak)',
 'difference-multipage' => '(Panna ke biich ke antar)',
 'lineno' => 'Rekha $1:',
 'compareselectedversions' => 'Chuna gae version ke compare karo',

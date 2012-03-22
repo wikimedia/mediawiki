@@ -801,7 +801,6 @@ Ta ropasusu warzafu bu yo va [[Special:Search|aneyara ko wiki]] yawal.',
 
 # Diffs
 'history-title' => 'Va "$1" betarizvot',
-'difference' => '(Siatosamidaceem)',
 'difference-multipage' => '(Amiduca wal batu bu isu banu)',
 'lineno' => 'Conya $1:',
 'compareselectedversions' => 'Dodisukera va toloy reban siatos',

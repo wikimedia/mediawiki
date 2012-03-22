@@ -1242,7 +1242,6 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 
 # Diffs
 'history-title' => 'A(z) „$1” laptörténete',
-'difference' => '(Változatok közti eltérés)',
 'difference-multipage' => '(Lapok közti eltérés)',
 'lineno' => '$1. sor:',
 'compareselectedversions' => 'Kiválasztott változatok összehasonlítása',

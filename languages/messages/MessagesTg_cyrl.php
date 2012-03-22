@@ -798,7 +798,6 @@ $1',
 
 # Diffs
 'history-title' => 'Таърихчаи вироишҳои "$1"',
-'difference' => '(Фарқияти байни нусхаҳо)',
 'lineno' => 'Сатри $1:',
 'compareselectedversions' => 'Нусхаҳои интихобшударо муқоиса кунед',
 'editundo' => 'ботил',

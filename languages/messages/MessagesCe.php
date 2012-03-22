@@ -719,7 +719,6 @@ $1',
 
 # Diffs
 'history-title' => '$1 — хийцаман исторе',
-'difference' => '(Тайпанара юкъар башхалла)',
 'lineno' => 'Могlа $1:',
 'compareselectedversions' => 'Хаьржиначуьна башхо муха ю хьажа',
 'showhideselectedversions' => 'Гайта/къайлайаха хаьржина башхонаш',

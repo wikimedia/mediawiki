@@ -1277,7 +1277,6 @@ Note que, se usar os links de navegação, os botões de opção voltarão aos v
 
 # Diffs
 'history-title' => 'Histórico de edições de "$1"',
-'difference' => '(Diferença entre edições)',
 'difference-multipage' => '(Diferenças entre páginas)',
 'lineno' => 'Linha $1:',
 'compareselectedversions' => 'Comparar as versões seleccionadas',

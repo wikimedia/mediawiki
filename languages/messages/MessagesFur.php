@@ -646,7 +646,6 @@ Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la ve
 
 # Diffs
 'history-title' => 'Storic dai cambiaments di "$1"',
-'difference' => '(Difarence jenfri des revisions)',
 'lineno' => 'Rie $1:',
 'compareselectedversions' => 'Confronte versions selezionadis',
 'editundo' => 'anule',

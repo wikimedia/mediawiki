@@ -1265,7 +1265,6 @@ Pastikan bahwa perubahan ini tetap mempertahankan kontinuitas versi terdahulu ha
 
 # Diffs
 'history-title' => 'Riwayat revisi dari "$1"',
-'difference' => '(Perbedaan antarrevisi)',
 'difference-multipage' => '(Perbedaan antarhalaman)',
 'lineno' => 'Baris $1:',
 'compareselectedversions' => 'Bandingkan versi terpilih',

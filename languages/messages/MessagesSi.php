@@ -1153,7 +1153,6 @@ $1",
 
 # Diffs
 'history-title' => '"$1"හි සංශෝධන ඉතිහාසය',
-'difference' => '(අනුවාද අතර වෙනස්කම්)',
 'difference-multipage' => 'පිටු අතර වෙනස',
 'lineno' => 'පේළිය $1:',
 'compareselectedversions' => 'තෝරාගත් සංශෝධන සසඳන්න',

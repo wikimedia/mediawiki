@@ -696,7 +696,6 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 
 # Diffs
 'history-title' => 'የ«$1» እትሞች ታሪክ',
-'difference' => '(በ2ቱ እትሞቹ ዘንድ ያለው ልዩነት)',
 'lineno' => 'መስመር፡ $1፦',
 'compareselectedversions' => 'የተመረጡትን እትሞች ለማነፃፀር',
 'editundo' => 'ለውጡ ይገለበጥ',

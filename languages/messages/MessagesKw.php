@@ -491,7 +491,6 @@ Alhwedh: '''({{int:cur}})''' = dyffrans gans an amendyans diwettha, '''({{int:la
 
 # Diffs
 'history-title' => 'Istori an folen "$1"',
-'difference' => '(Dyffrans ynter an amendyansow)',
 'difference-multipage' => '(Dyffrans ynter an folednow)',
 'lineno' => 'Linen $1:',
 'compareselectedversions' => 'Keheveli an amendyansow dowisyes',

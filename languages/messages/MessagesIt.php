@@ -1182,7 +1182,6 @@ Vedi l'[[Special:BlockList|elenco dei blocchi]] per l'elenco dei bandi e dei blo
 
 # Diffs
 'history-title' => 'Cronologia delle modifiche di "$1"',
-'difference' => '(Differenze fra le revisioni)',
 'difference-multipage' => '(Differenze fra le pagine)',
 'lineno' => 'Riga $1:',
 'compareselectedversions' => 'Confronta le versioni selezionate',

@@ -861,7 +861,6 @@ $1',
 
 # Diffs
 'history-title' => 'Historyjo sprowjyń "$1"',
-'difference' => '(Růžńice mjyndzy škryflańami)',
 'difference-multipage' => '(Porůwnańje zajt)',
 'lineno' => 'Lińijo $1:',
 'compareselectedversions' => 'zrůwnej uobrane wersyje',

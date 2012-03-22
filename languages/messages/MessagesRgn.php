@@ -342,7 +342,6 @@ Lezenda: '''({{int:cur}})''' = difarenzi cun la versiòn d'adès; '''({{int:last
 
 # Diffs
 'history-title'           => 'Elench d\'j cambiamént sora "$1"',
-'difference'              => "(Difarénza fra'l versiòn)",
 'lineno'                  => 'Riga $1:',
 'compareselectedversions' => "Fa e' paragon tra 'l versiòn seleziunèdi",
 'editundo'                => 'Scanzèla',

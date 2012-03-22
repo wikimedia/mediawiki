@@ -848,7 +848,6 @@ Intaai [[Special:BlockList|lis IP nantaban]] montok lis kawawagu karaja mogoduh 
 
 # Diffs
 'history-title' => 'Susuyan sinimakan do "$1"',
-'difference' => '(Pisuaian mantad sinimakan)',
 'lineno' => 'Baris $1:',
 'compareselectedversions' => 'Popitimbang sinimakan nopili',
 'showhideselectedversions' => 'Pokitono/polisoko sinimakan nopili',

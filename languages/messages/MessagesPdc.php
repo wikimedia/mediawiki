@@ -386,7 +386,6 @@ Paesswatt fer nau: $2',
 'mergehistory-reason' => 'Grund:',
 
 # Diffs
-'difference' => '(Unnerschidd zwische Versione)',
 'lineno'     => 'Lein $1:',
 'editundo'   => 'losmache',
 

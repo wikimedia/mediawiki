@@ -870,7 +870,6 @@ $1",
 
 # Diffs
 'history-title' => '"$1" səhifəsinin tarixçəsi',
-'difference' => '(Versiyalar arasındakı fərq)',
 'difference-multipage' => '(Səhifələr arasında fərq)',
 'lineno' => 'Sətir $1:',
 'compareselectedversions' => 'Seçilən versiyaları müqayisə et',

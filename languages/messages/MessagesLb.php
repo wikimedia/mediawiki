@@ -1102,7 +1102,6 @@ Denkt w.e.g drunn datt d'Navigatiounslinken d'Wiel vun de Versiounen nees zréck
 
 # Diffs
 'history-title' => 'Versiounshistorique vun „$1“',
-'difference' => '(Ennerscheed tëscht Versiounen)',
 'difference-multipage' => '(Ënnerscheed tëschent Säiten)',
 'lineno' => 'Linn $1:',
 'compareselectedversions' => 'Ausgewielte Versioune vergläichen',

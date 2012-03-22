@@ -1261,7 +1261,6 @@ $1",
 
 # Diffs
 'history-title' => '$1 — история изменений',
-'difference' => '(Различия между версиями)',
 'difference-multipage' => '(Различия между страницами)',
 'lineno' => 'Строка $1:',
 'compareselectedversions' => 'Сравнить выбранные версии',

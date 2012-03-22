@@ -1119,7 +1119,6 @@ $1",
 
 # Diffs
 'history-title' => '"$1"ના ફેરફારોનો ઇતિહાસ',
-'difference' => '(પુનરાવર્તનો વચ્ચેનો તફાવત)',
 'difference-multipage' => '(પાનાઓ વચ્ચેનો ફેરફાર)',
 'lineno' => 'લીટી $1:',
 'compareselectedversions' => 'પસંદ કરેલા સરખાવો',

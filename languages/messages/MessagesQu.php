@@ -1187,7 +1187,6 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 
 # Diffs
 'history-title' => '"$1" p\'anqata hukchasqakunap wiñay kawsaynin',
-'difference' => '(Hukchasqapura wak kaynin)',
 'difference-multipage' => "(P'anqakunaqa manam kaqllachu)",
 'lineno' => "Siq'i $1:",
 'compareselectedversions' => "Akllasqa llamk'apusqakunata wakichay",

@@ -1024,7 +1024,6 @@ Pastikeun yén ieu parobahan bisa miara jujutan kaca sagemblengna.',
 
 # Diffs
 'history-title' => 'Jujutan révisi "$1"',
-'difference' => '(Béda antarrévisi)',
 'difference-multipage' => '(béda antarkaca)',
 'lineno' => 'Baris ka-$1:',
 'compareselectedversions' => 'Bandingkeun vérsi nu dipilih',

@@ -957,7 +957,6 @@ $1",
 
 # Diffs
 'history-title' => '改"$1"的歷史',
-'difference' => '(Bô kâng pán-pún ê cheng-chha)',
 'difference-multipage' => '（頁中間的精差）',
 'lineno' => 'Tē $1 chōa:',
 'compareselectedversions' => 'Pí-phēng soán-te̍k ê pán-pún',

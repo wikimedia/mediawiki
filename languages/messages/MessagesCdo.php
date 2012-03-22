@@ -348,7 +348,6 @@ Siók-mìng: (dāng) = gâe̤ng dék sĭng bēng-buōng bī-piâng, (sèng) = g�
 
 # Diffs
 'history-title' => '"$1" gì siŭ-gāi lĭk-sṳ̄',
-'difference' => '(Bēng-buōng cĭ-găng gì chă-biék)',
 'lineno' => 'Dâ̤ $1 hòng:',
 'compareselectedversions' => 'Bī-piâng gēng-sōng bēng-buōng',
 'editundo' => 'chṳ̄-siĕu',

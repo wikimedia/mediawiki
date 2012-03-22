@@ -1041,7 +1041,6 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 
 # Diffs
 'history-title' => 'Historial de revisiones de "$1"',
-'difference' => '(Diferencia ente revisiones)',
 'difference-multipage' => '(Diferencia ente páxines)',
 'lineno' => 'Llinia $1:',
 'compareselectedversions' => 'Comparar les revisiones seleicionaes',

@@ -409,7 +409,6 @@ $messages = array(
 
 # Diffs
 'history-title' => 'Дәгишон тарых "$1"',
-'difference' => '(Рәвојәтон мијонәдә фәрғ)',
 'lineno' => 'Сәтыр $1:',
 'compareselectedversions' => 'Сәчын кардә быә рәвојәтон мығојисә кардеј.',
 'editundo' => 'ләғв кардеј',

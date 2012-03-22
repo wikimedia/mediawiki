@@ -1083,7 +1083,6 @@ Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal be
 
 # Diffs
 'history-title' => 'Gesjiedenis van "$1"',
-'difference' => '(Versjil tösje bewirkinge)',
 'difference-multipage' => '(Versjil tösje paazjes)',
 'lineno' => 'Tekslien $1:',
 'compareselectedversions' => 'Vergeliek geselecteerde versies',

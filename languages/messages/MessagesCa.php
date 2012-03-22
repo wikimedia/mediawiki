@@ -1122,7 +1122,6 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 
 # Diffs
 'history-title' => 'Historial de versions de «$1»',
-'difference' => '(Diferència entre revisions)',
 'difference-multipage' => '(Diferència entre pàgines)',
 'lineno' => 'Línia $1:',
 'compareselectedversions' => 'Compara les versions seleccionades',

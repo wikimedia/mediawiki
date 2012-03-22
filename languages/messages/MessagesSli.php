@@ -756,7 +756,6 @@ Stelle sicher, doaß de Versionsgeschichte anner Seite historisch korrekt ies.',
 
 # Diffs
 'history-title' => 'Versionsgeschichte vun „$1“',
-'difference' => '(Underschied zwischa Versiona)',
 'lineno' => 'Zeile $1:',
 'compareselectedversions' => 'Gewählte Versiona vergleichen',
 'editundo' => 'rieckgängig',

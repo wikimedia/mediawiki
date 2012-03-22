@@ -319,7 +319,6 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:UserLogin|logge s�
 
 # Diffs
 'history-title'           => 'Gïehtjedamme histovrije ihke "$1"',
-'difference'              => '(Joekehts gaskesne gïehtjedammeh)',
 'lineno'                  => 'Sïeve $1:',
 'compareselectedversions' => 'Mohtedidh veeljeme låhkoeh',
 'editundo'                => 'ov-darjodh',

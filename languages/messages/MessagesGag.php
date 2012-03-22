@@ -564,7 +564,6 @@ Nışannar: (bitki) = şindiki versiyalan aradaki fark,
 
 # Diffs
 'history-title' => '"$1" yapraın istoriyası',
-'difference' => '(Versiyalar arası farklar)',
 'lineno' => '$1. liniya:',
 'compareselectedversions' => 'Karşılaştır versiyaları ani seçildi',
 'editundo' => 'geeri al',

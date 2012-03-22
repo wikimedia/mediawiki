@@ -1045,7 +1045,6 @@ Pan yn gwneud hyn dylid sicrhau nad yw dilyniant hanes tudalennau yn cael ei ddi
 
 # Diffs
 'history-title' => "Hanes golygu '$1'",
-'difference' => '(Gwahaniaethau rhwng diwygiadau)',
 'difference-multipage' => '(Y gwahaniaeth rhwng y tudalennau)',
 'lineno' => 'Llinell $1:',
 'compareselectedversions' => 'Cymharer y fersiynau dewisedig',

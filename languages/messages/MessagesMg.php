@@ -1149,7 +1149,6 @@ $3 santiôna{{PLURAL:}} natsonika tamin'ny [[:$2]]",
 
 # Diffs
 'history-title' => "Tantara ny endrik'i « $1 »",
-'difference' => "(Fahasamihafan'ny pejy)",
 'difference-multipage' => "(Fahasamihafan'ny pejy)",
 'lineno' => 'Andalana $1:',
 'compareselectedversions' => 'Ampitahao ireo version voafidy',

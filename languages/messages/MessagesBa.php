@@ -980,7 +980,6 @@ $1",
 
 # Diffs
 'history-title' => '$1 битенең үҙгәртеү тарихы',
-'difference' => '(Өлгөләр араһында айырма)',
 'difference-multipage' => '(Биттәр араһындағы айырма)',
 'lineno' => '$1 юл:',
 'compareselectedversions' => 'Һайланған версияларҙы сағыштырыу',

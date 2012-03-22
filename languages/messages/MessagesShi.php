@@ -590,7 +590,6 @@ Tigira n ujbbad ns, ar takka yat tayafut bahra imqqurn,  ɣayan afan ur ttili.',
 
 # Diffs
 'history-title' => 'Asakud n umcggr n « $1 »',
-'difference' => 'laḥna gr tamzwarut d tamǧarut',
 'difference-multipage' => 'Amzaray (laḥna) gr tisniwin',
 'lineno' => 'Izriri $1:',
 'compareselectedversions' => 'Snahya gr ilqmn lli tuystaynin',

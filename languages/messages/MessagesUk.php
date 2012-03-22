@@ -1217,7 +1217,6 @@ $1",
 
 # Diffs
 'history-title' => 'Історія змін сторінки «$1»',
-'difference' => '(відмінності між версіями)',
 'difference-multipage' => '(Різниця між сторінками)',
 'lineno' => 'Рядок $1:',
 'compareselectedversions' => 'Порівняти вибрані версії',

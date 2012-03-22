@@ -297,7 +297,6 @@ $messages = array(
 
 # Diffs
 'history-title'           => '"$1" གི་བསྐྱར་ཞིབ་སྤྱོད་ཤུལ།',
-'difference'              => '(བསྐྱར་ཞིབ་བར་ནའི་ཁྱད་པར)',
 'lineno'                  => 'གྲལ་ཐིག་ $1:',
 'compareselectedversions' => 'སེལ་འཐུ་འབད་ཡོད་པའི་ཐོན་རིམ་ཚུ་ ག་བསྡུར་རྐྱབས།',
 'editundo'                => 'འབད་བཤོལ།',

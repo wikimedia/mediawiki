@@ -1067,7 +1067,6 @@ $1",
 
 # Diffs
 'history-title' => '"$1" ৰ সাল-সলনিৰ ইতিহাস',
-'difference' => 'বিভিন্ন সংস্কৰণৰ প্ৰভেদ',
 'difference-multipage' => '(পৃষ্ঠাসমূহৰ মাজত তফাৎ)',
 'lineno' => '$1 নং শাৰীঃ',
 'compareselectedversions' => 'নিৰ্বাচিত কৰা সংকলন সমূহৰ মাজত পাৰ্থক্য চাওক',

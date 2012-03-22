@@ -936,7 +936,6 @@ $1",
 
 # Diffs
 'history-title' => 'تاریح بازبینی "$1"',
-'difference' => '(تفاوتان بین نسخه یان)',
 'lineno' => 'خط$1:',
 'compareselectedversions' => 'مقایسه انتخاب بوتگین نسخه یان',
 'showhideselectedversions' => 'نمایش/پنهان کتن نسخ انتخابی',

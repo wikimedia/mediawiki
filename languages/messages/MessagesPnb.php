@@ -952,7 +952,6 @@ $1",
 
 # Diffs
 'history-title' => '"$1" دا ریکارڈ',
-'difference' => '(صفحیاں وچ فرق)',
 'difference-multipage' => '(صفیاں چ فرق)',
 'lineno' => 'لیک $1:',
 'compareselectedversions' => 'چنے صفحے آپنے سامنے کرو',

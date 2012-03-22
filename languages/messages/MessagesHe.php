@@ -1316,7 +1316,6 @@ $1",
 
 # Diffs
 'history-title' => 'היסטוריית הגרסאות של $1',
-'difference' => '(הבדלים בין גרסאות)',
 'difference-multipage' => '(הבדלים בין דפים)',
 'lineno' => 'שורה $1:',
 'compareselectedversions' => 'השוואת הגרסאות שנבחרו',

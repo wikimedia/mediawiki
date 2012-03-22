@@ -912,7 +912,6 @@ Staal deertruch sicher, dät ju Versionsgeskichte fon n Artikkel historisk akroa
 
 # Diffs
 'history-title' => 'Versionsgeskichte fon "$1"',
-'difference' => '(Unnerskeed twiske Versione)',
 'difference-multipage' => '(Unnerskeed twiske Sieden)',
 'lineno' => 'Riege $1:',
 'compareselectedversions' => 'Wäälde Versione ferglieke',

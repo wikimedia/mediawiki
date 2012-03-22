@@ -279,7 +279,6 @@ $messages = array(
 'next' => 'ކުރިޔަށް',
 
 # Diffs
-'difference'              => '(އިސްލާހުތަކުގައި ހުރި ފަރަގު)',
 'compareselectedversions' => 'އިހުތިޔާރު ކުރެވިފައިވާ ނުސްހާތައް އަޅައިކިޔުއްވާ',
 
 # Search results

@@ -1242,7 +1242,6 @@ Primijetite da uporaba navigacijskih poveznica resetira Vaše izbore u stupcu.',
 
 # Diffs
 'history-title' => 'Povijest izmjena stranice "$1"',
-'difference' => '(Usporedba među inačicama)',
 'difference-multipage' => '(Razlika između stranica)',
 'lineno' => 'Redak $1:',
 'compareselectedversions' => 'Usporedi odabrane inačice',

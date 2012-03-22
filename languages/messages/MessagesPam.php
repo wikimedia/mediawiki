@@ -729,7 +729,6 @@ Gamitan me ing radio button column bang bukud mung detang miyalilan aniang o bay
 
 # Diffs
 'history-title' => 'Amlat ning pamagbayu king "$1"',
-'difference' => '(Pamiyaliwa da reng pamibayu)',
 'lineno' => 'Gulis $1:',
 'compareselectedversions' => 'Pikumpara/piyanti la reng mepiling bersion',
 'editundo' => 'iurung',

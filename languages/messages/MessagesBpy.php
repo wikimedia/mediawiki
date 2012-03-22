@@ -813,7 +813,6 @@ $2',
 
 # Diffs
 'history-title' => '"$1"-র রিভিসন ইতিহাসহান',
-'difference' => '(রিভিসনহানির ফারাকহান)',
 'lineno' => 'লাইন $1:',
 'compareselectedversions' => 'বাসাইল সংস্করণহানি তুলনা কর',
 'showhideselectedversions' => 'বাসিসি রিভিশনহানি দেখাদে/গুর',

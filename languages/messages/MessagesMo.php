@@ -235,7 +235,6 @@ $messages = array(
 
 # Diffs
 'history-title'           => 'Историкул ревизиилор пентру «$1»',
-'difference'              => '(Диференца динтре версиунь)',
 'lineno'                  => 'Линия $1:',
 'compareselectedversions' => 'Компарэ версиуниле селектате',
 'editundo'                => 'десфаче',

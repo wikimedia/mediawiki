@@ -1133,7 +1133,6 @@ $1",
 
 # Diffs
 'history-title' => 'רעוויזיע היסטאריע פֿון $1',
-'difference' => '(אונטערשייד צווישן ווערסיעס)',
 'difference-multipage' => '(אונטערשייד צווישן בלעטער)',
 'lineno' => 'שורה $1:',
 'compareselectedversions' => 'פארגלייך סעלעקטירטע ווערסיעס',

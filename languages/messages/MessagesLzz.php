@@ -302,7 +302,6 @@ Oxo3ʼonapape: (a3ʼineri) = a3ʼineri versiyoni kʼala na ren farkʼi,
 
 # Diffs
 'history-title'           => '"$1" butʼkʼaşi tarixi',
-'difference'              => '(Versiyonepeşi farkʼepe)',
 'lineno'                  => '$1. satʼiri:',
 'compareselectedversions' => 'Na goşiğen versiyonepe okʼo3ʼiri',
 'editundo'                => 'ukʼuni',

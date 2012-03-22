@@ -1142,7 +1142,6 @@ Kini kujdes se përdorimi i lidhjeve të shfletimit do të ndryshojë përzgjedh
 
 # Diffs
 'history-title' => 'Historiku i redaktimeve te "$1"',
-'difference' => '(Ndryshime midis versioneve)',
 'difference-multipage' => '(Ndryshimi midis faqeve)',
 'lineno' => 'Rreshti $1:',
 'compareselectedversions' => 'Krahasoni versionet e zgjedhura',

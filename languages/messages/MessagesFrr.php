@@ -961,7 +961,6 @@ A nawigatsjuun links saat ales weder turag üüb di ual stant.',
 
 # Diffs
 'history-title' => 'Färsjoonshistoori foon "$1"',
-'difference' => '(Ferschääl twasche Färsjoone)',
 'difference-multipage' => '(Ferschääl twasche side)',
 'lineno' => 'Ra $1:',
 'compareselectedversions' => 'Wäälde färsjoone ferglike',

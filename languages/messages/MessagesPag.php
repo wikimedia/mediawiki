@@ -145,7 +145,6 @@ San ipropromisam met ya insulat mo yan dili o kinopyam ya manlapo ed sakey ya pu
 'histlast'  => 'Sankautetan',
 
 # Diffs
-'difference' => '(Say niduma diad saray revision)',
 
 # Search results
 'searchsubtitle'        => "'''[[:$1]]''' so inanap mo.",

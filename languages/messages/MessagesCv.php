@@ -574,7 +574,6 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 'suppressionlog' => 'Пытару журналĕ',
 
 # Diffs
-'difference' => '(Версисем хушшинчи улшăнусем)',
 'lineno' => '$1-мĕш йĕрке:',
 'editundo' => 'пăрахăçла',
 

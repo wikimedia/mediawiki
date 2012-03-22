@@ -300,7 +300,6 @@ Tasarut: (cur) = imṣebḍiyen ag tunɣilt n ruxa,
 
 # Diffs
 'history-title'           => 'Amezruy n ufegged n "$1"',
-'difference'              => '(Amsebḍi jar ifeggiden)',
 'lineno'                  => 'Tabrit $1:',
 'compareselectedversions' => 'Smequdda tunɣilin a',
 'editundo'                => 'kkes min ggigh',

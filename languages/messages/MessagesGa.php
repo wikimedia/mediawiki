@@ -758,7 +758,6 @@ Treoir: (rth) = difríocht ón leagan reatha, (rmh) = difríocht ón leagan roim
 
 # Diffs
 'history-title' => 'Stair leasú "$1"',
-'difference' => '(Difríochtaí idir leaganacha)',
 'lineno' => 'Líne $1:',
 'compareselectedversions' => 'Cuir na leagain roghnaithe i gcomparáid',
 'editundo' => 'cealaigh',

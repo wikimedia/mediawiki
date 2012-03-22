@@ -700,7 +700,6 @@ sababteeda neh waxaa laga heli kartaa  [{{fullurl:{{#Special:Log}}/delete|page={
 
 # Diffs
 'history-title' => 'Taariikhda badalka "$1"',
-'difference' => '(Kala duwanaanshaha bedelyada)',
 'lineno' => 'Safka $1:',
 'compareselectedversions' => 'Is barbardhig bedelyada aad dooratay',
 'showhideselectedversions' => 'Itusi/qari bedelaadyada aad dooratay',

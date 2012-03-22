@@ -1074,7 +1074,6 @@ Zawěsć, zo tuta změna stawiznisku kontinuitu strony wobchowuje.',
 
 # Diffs
 'history-title' => 'Stawizny wersijow strony „$1“',
-'difference' => '(rozdźěl mjez wersijomaj)',
 'difference-multipage' => '(Rozdźěl mjez stronami)',
 'lineno' => 'Rjadka $1:',
 'compareselectedversions' => 'Wubranej wersiji přirunać',

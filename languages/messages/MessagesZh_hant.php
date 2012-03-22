@@ -1124,7 +1124,6 @@ $1",
 
 # Diffs
 'history-title' => '「$1」的修訂歷史',
-'difference' => '（修訂版本間的差異）',
 'difference-multipage' => '（頁面間的差異）',
 'lineno' => '第$1行：',
 'compareselectedversions' => '比較選定的修訂版本',

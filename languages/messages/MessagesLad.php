@@ -633,7 +633,6 @@ Leyenda: (act) = diferencias con la versión actual,
 
 # Diffs
 'history-title' => 'Istoria de revisiones para «$1»',
-'difference' => '(Diferencias entre rêvisiones)',
 'lineno' => 'Shurá $1:',
 'compareselectedversions' => 'Comparar versiones escogidas',
 'editundo' => 'deshaze',

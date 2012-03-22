@@ -880,7 +880,6 @@ Lejand : ({{MediaWiki:Cur}}) = diferans ak vèsyon kounye a, ({{MediaWiki:Last}}
 
 # Diffs
 'history-title' => 'Istorik pou vèsyon « $1 » yo',
-'difference' => '(Diferans ant vèsyon yo)',
 'lineno' => 'Liy $1 :',
 'compareselectedversions' => 'Konpare vèsyon ki seleksyone yo',
 'editundo' => 'Revoke',

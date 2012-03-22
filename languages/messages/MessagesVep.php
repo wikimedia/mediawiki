@@ -906,7 +906,6 @@ Tö ei voigoi kävutada sidä.',
 
 # Diffs
 'history-title' => '"$1"-lehtpolen toižetusiden istorii',
-'difference' => '(Erod versijoiden keskes)',
 'difference-multipage' => '(Lehtpoliden erinend)',
 'lineno' => 'Rivi $1:',
 'compareselectedversions' => 'Rindatada valitud versijad',

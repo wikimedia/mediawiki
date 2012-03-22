@@ -337,7 +337,6 @@ Bu yerda: (joriy) = hozirgi koʻrinish bilan farq,
 
 # Diffs
 'history-title'           => '"$1"ning tarixi',
-'difference'              => '(Koʻrinishlar orasidagi farq)',
 'lineno'                  => 'Qator $1:',
 'compareselectedversions' => 'Tanlangan versiyalarni solishtir',
 'editundo'                => 'qaytar',

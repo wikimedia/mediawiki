@@ -1085,7 +1085,6 @@ Tiyakin na ang pagbabago ay makapagpapanatili ng pagkakatuluy-tuloy ng pahinang 
 
 # Diffs
 'history-title' => 'Kasaysayan ng pagbabago ng "$1"',
-'difference' => '(Pagkakaiba sa pagitan ng mga pagbabago)',
 'difference-multipage' => '(Pagkakaiba sa pagitan ng mga pahina)',
 'lineno' => 'Linya $1:',
 'compareselectedversions' => 'Paghambingin ang mga napiling bersyon',

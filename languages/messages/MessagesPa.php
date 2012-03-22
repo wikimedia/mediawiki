@@ -541,7 +541,6 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 
 # Diffs
 'history-title' => '"$1" ਦੀ ਸ਼ੋਧ ਤਵਾਰੀਖ',
-'difference' => '(ਰੀਵਿਜ਼ਨ ਵਿੱਚ ਅੰਤਰ)',
 'lineno' => 'ਲਾਈਨ $1:',
 'compareselectedversions' => 'ਚੁਣੇ ਵਰਜਨਾਂ ਦੀ ਤੁਲਨਾ',
 'editundo' => 'ਵਾਪਸ(undo)',

@@ -993,7 +993,6 @@ $1",
 
 # Diffs
 'history-title' => '"$1" को पुनरावलोकन इतिहास',
-'difference' => '(पुनरावलोकनहरुको बीचमा भिन्नता)',
 'difference-multipage' => '(पृष्ठहरुमा भिन्नता)',
 'lineno' => 'पंक्ति $1:',
 'compareselectedversions' => 'छानिएका संस्करणहरू दाँज्नुहोस्',

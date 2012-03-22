@@ -692,7 +692,6 @@ there micht be parteeculars in the [{{fullurl:{{#Special:Log}}/suppress|page={{F
 
 # Diffs
 'history-title' => 'Revision history of "$1"',
-'difference' => '(Difference atween revisions)',
 'lineno' => 'Line $1:',
 'compareselectedversions' => 'Compare selectit versions',
 'editundo' => 'undo',

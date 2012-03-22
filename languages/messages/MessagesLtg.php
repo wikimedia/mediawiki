@@ -371,7 +371,6 @@ n = nasvareigs lobuojums.',
 
 # Diffs
 'history-title' => '"$1" verseju viesture',
-'difference' => '(Versiju saleidzynuojums)',
 'lineno' => '$1 aiļa',
 'compareselectedversions' => 'Saleidzynuot ituos versejis',
 'editundo' => 'atsaukt',

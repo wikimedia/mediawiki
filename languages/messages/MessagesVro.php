@@ -752,7 +752,6 @@ Lisateedüst või ollaq [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAME
 
 # Diffs
 'history-title' => '"$1" muutmiisi nimekiri',
-'difference' => '(Kujjõ lahkominegiq)',
 'lineno' => 'Rida $1:',
 'compareselectedversions' => 'Võrdõlõq valituid kujjõ',
 'editundo' => 'võtaq tagasi',

@@ -1406,7 +1406,6 @@ $1",
 
 # Diffs
 'history-title' => 'تاریخچهٔ ویرایش‌های «$1»',
-'difference' => '(تفاوت بین نسخه‌ها)',
 'difference-multipage' => '(تفاوت بین صفحه‌ها)',
 'lineno' => 'سطر $1:',
 'compareselectedversions' => 'مقایسهٔ نسخه‌های انتخاب‌شده',
