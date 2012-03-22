@@ -65,6 +65,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * New getCreator and getOldestRevision methods added to WikiPage class
 * (bug 4220) the XML dump format schema now have unique identity constraints
   for page and revision identifiers. Patch by Elvis Stansvik.
+* (bug 35378) Support multiple collations at the same time.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
