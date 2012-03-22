@@ -61,6 +61,12 @@ abstract class Collation {
 
 		if ( in_array( $name, $wgCategoryCollations ) ) {
 			; // $name is already a valid collation name. No need to touch it.
+		} elseif ( ( $defaultcollation = wfGetDB( DB_SLAVE )->selectField(
+			'page_props', 'pp_value',
+			array( 'pp_page' => $title->getArticleId(), 'pp_propname' => 'defaultcollation' ),
+			__METHOD__ ) ) !== false && in_array( $defaultcollation, $wgCategoryCollations ) ) {
+
+			$name = $defaultcollation;
 		} elseif ( in_array(
 			$context->getUser()->getOption( 'collation' ), $wgCategoryCollations
 		) ) {
