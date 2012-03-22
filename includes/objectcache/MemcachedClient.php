@@ -344,11 +344,20 @@ class MWMemcached {
 		return false;
 	}
 
+	/**
+	 * @param $key
+	 * @param $timeout int
+	 * @return bool
+	 */
 	public function lock( $key, $timeout = 0 ) {
 		/* stub */
 		return true;
 	}
 
+	/**
+	 * @param $key
+	 * @return bool
+	 */
 	public function unlock( $key ) {
 		/* stub */
 		return true;
@@ -471,7 +480,7 @@ class MWMemcached {
 			$this->stats['get_multi'] = 1;
 		}
 		$sock_keys = array();
-
+		$socks = array();
 		foreach ( $keys as $key ) {
 			$sock = $this->get_sock( $key );
 			if ( !is_resource( $sock ) ) {
@@ -485,6 +494,7 @@ class MWMemcached {
 			$sock_keys[$sock][] = $key;
 		}
 
+		$gather = array();
 		// Send out the requests
 		foreach ( $socks as $sock ) {
 			$cmd = 'get';
@@ -579,6 +589,7 @@ class MWMemcached {
 			return array();
 		}
 
+		$ret = array();
 		while ( true ) {
 			$res = fgets( $sock );
 			$ret[] = $res;
@@ -744,6 +755,9 @@ class MWMemcached {
 		$this->_dead_host( $host );
 	}
 
+	/**
+	 * @param $host
+	 */
 	function _dead_host( $host ) {
 		$parts = explode( ':', $host );
 		$ip = $parts[0];
@@ -774,8 +788,8 @@ class MWMemcached {
 		}
 
 		$hv = is_array( $key ) ? intval( $key[0] ) : $this->_hashfunc( $key );
-
 		if ( $this->_buckets === null ) {
+			$bu = array();
 			foreach ( $this->_servers as $v ) {
 				if ( is_array( $v ) ) {
 					for( $i = 0; $i < $v[1]; $i++ ) {
@@ -851,7 +865,8 @@ class MWMemcached {
 			$this->stats[$cmd] = 1;
 		}
 		if ( !$this->_safe_fwrite( $sock, "$cmd $key $amt\r\n" ) ) {
-			return $this->_dead_sock( $sock );
+			$this->_dead_sock( $sock );
+			return null;
 		}
 
 		$line = fgets( $sock );
@@ -998,7 +1013,8 @@ class MWMemcached {
 			}
 		}
 		if ( !$this->_safe_fwrite( $sock, "$cmd $key $flags $exp $len\r\n$val\r\n" ) ) {
-			return $this->_dead_sock( $sock );
+			$this->_dead_sock( $sock );
+			return false;
 		}
 
 		$line = trim( fgets( $sock ) );
@@ -1038,7 +1054,8 @@ class MWMemcached {
 		}
 
 		if ( !$this->_connect_sock( $sock, $host ) ) {
-			return $this->_dead_host( $host );
+			$this->_dead_host( $host );
+			return null;
 		}
 
 		// Do not buffer writes
@@ -1049,6 +1066,9 @@ class MWMemcached {
 		return $this->_cache_sock[$host];
 	}
 
+	/**
+	 * @param $str string
+	 */
 	function _debugprint( $str ) {
 		print( $str );
 	}
@@ -1080,6 +1100,9 @@ class MWMemcached {
 
 	/**
 	 * Original behaviour
+	 * @param $f
+	 * @param $buf
+	 * @param $len bool
 	 * @return int
 	 */
 	function _safe_fwrite( $f, $buf, $len = false ) {
@@ -1093,6 +1116,7 @@ class MWMemcached {
 
 	/**
 	 * Flush the read buffer of a stream
+	 * @param $f Resource
 	 */
 	function _flush_read_buffer( $f ) {
 		if ( !is_resource( $f ) ) {
