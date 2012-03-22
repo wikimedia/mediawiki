@@ -231,6 +231,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			// 1.22
 			array( 'doIwlinksIndexNonUnique' ),
 			array( 'addIndex', 'iwlinks', 'iwl_prefix_from_title',  'patch-iwlinks-from-title-index.sql' ),
+			array( 'doCategorylinksCollationIndicesUpdate' ),
 		);
 	}
 
@@ -768,6 +769,15 @@ class MysqlUpdater extends DatabaseUpdater {
 	protected function doCategorylinksIndicesUpdate() {
 		if ( !$this->indexHasField( 'categorylinks', 'cl_sortkey', 'cl_from' ) ) {
 			$this->applyPatch( 'patch-categorylinksindex.sql', false, "Updating categorylinks Indices" );
+		}
+	}
+
+	protected function doCategorylinksCollationIndicesUpdate() {
+		if ( !$this->indexHasField( 'categorylinks', 'cl_from', 'cl_collation' ) ||
+			!$this->indexHasField( 'categorylinks', 'cl_sortkey', 'cl_collation' )
+		) {
+			$this->applyPatch( 'patch-categorylinks-multiple-collations.sql' );
+			$this->output( "...categorylinks collation indices updated\n" );
 		}
 	}
 
