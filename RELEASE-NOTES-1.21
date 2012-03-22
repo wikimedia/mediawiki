@@ -19,6 +19,7 @@ production.
 * (bug 34876) jquery.makeCollapsible has been improved in performance.
 * Added ContentHandler facility to allow extensions to support other content than wikitext.
   See docs/contenthandler.txt for details.
+* (bug 35378) Support multiple collations at the same time.
 
 === Bug fixes in 1.21 ===
 * (bug 40353) SpecialDoubleRedirect should support interwiki redirects.

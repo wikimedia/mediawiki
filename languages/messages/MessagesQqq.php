@@ -297,6 +297,7 @@ Is only shown if {{msg-mw|tog-enotifusertalkpages}} or/and {{msg-mw|tog-enotifwa
 'category-empty' => 'The text displayed in category page when that category is empty',
 'hidden-categories' => 'Used in the categories section of pages. Is followed by a colon and a list of categories.',
 'hidden-category-category' => 'Name of the [[mw:Help:Tracking categories|tracking category]] where hidden categories will be listed.',
+'category-collation' => 'Label of the collation selector on category pages when multiple collations are configured on a wiki.',
 'category-subcat-count' => 'This message is displayed at the top of a category page showing the number of pages in the category. Parameters:
 * $1: number of subcategories shown
 * $2: total number of subcategories in category',
@@ -1549,6 +1550,11 @@ Used in [[Special:Preferences]]. Parameters are:
 {{Identical|Language}}',
 'yourvariant' => 'Used in [[Special:Preferences]], first tab, when the wiki content language has variants only.',
 'prefs-help-variant' => 'Explanation of the LanguageConverter feature. It is shown next to a dropdown box where you can choose a variant to convert content to (e.g. Serbian Latin vs. Serbian Cyrillic, or Chinese Traditional vs. Chinese Simplified).',
+'prefs-collation' => 'Used in [[Special:Preferences]], first tab.'
+'prefs-help-collation' => 'Used in [[Special:Preferences]], tab User profile.',
+'collation-uppercase' => 'Name of the a collation.',
+'collation-identity' => 'Name of the a collation.',
+'collation-uca-default' => 'Name of the a collation.',
 'yournick' => 'Used in [[Special:Preferences]], first tab.
 
 {{Identical|Signature}}',

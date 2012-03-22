@@ -5470,6 +5470,14 @@ $wgCategoryPagingLimit = 200;
  */
 $wgCategoryCollation = 'uppercase';
 
+/**
+ * List of all collations to use on this site.
+ *
+ * If $wgCategoryCollation is not an element in this, it will be inserted as
+ * the first element of this array.
+ */
+$wgCategoryCollations = array();
+
 /** @} */ # End categories }
 
 /*************************************************************************//**

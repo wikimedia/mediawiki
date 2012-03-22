@@ -703,11 +703,11 @@ abstract class DatabaseUpdater {
 	 * Update CategoryLinks collation
 	 */
 	protected function doCollationUpdate() {
-		global $wgCategoryCollation;
+		global $wgCategoryCollations;
 		if ( $this->db->selectField(
 			'categorylinks',
 			'COUNT(*)',
-			'cl_collation != ' . $this->db->addQuotes( $wgCategoryCollation ),
+			'cl_collation NOT IN (' . $this->db->makeList( $wgCategoryCollations ) . ')',
 			__METHOD__
 		) == 0 ) {
 			$this->output( "...collations up-to-date.\n" );
