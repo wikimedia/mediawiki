@@ -926,7 +926,7 @@ class DifferenceEngine extends ContextSource {
 	/**
 	 * Use specified text instead of loading from the database
 	 */
-	function setText( $oldText, $newText ) {
+	function setText( $oldText, $newText ) { #FIXME: deprecate, use Content objects instead!
 		$this->mOldtext = $oldText;
 		$this->mNewtext = $newText;
 		$this->mTextLoaded = 2;

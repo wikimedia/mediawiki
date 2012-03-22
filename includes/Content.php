@@ -24,10 +24,25 @@ abstract class Content {
         return $this->getContentHandler()->serialize( $this, $format );
     }
 
+    /**
+     * @return String a string representing the content in a way useful for building a full text search index.
+     *         If no useful representation exists, this method returns an empty string.
+     */
     public abstract function getTextForSearchIndex( );
 
-    public abstract function getWikitextForTransclusion( );
+    /**
+     * @return String the wikitext to include when another page includes this  content, or false if the content is not
+     *         includable in a wikitext page.
+     */
+    #TODO: allow native handling, bypassing wikitext representation, like for includable special pages.
+    public abstract function getWikitextForTransclusion( ); #FIXME: use in parser, etc!
 
+    /**
+     * Returns a textual representation of the content suitable for use in edit summaries and log messages.
+     *
+     * @param int $maxlength maximum length of the summary text
+     * @return String the summary text
+     */
     public abstract function getTextForSummary( $maxlength = 250 );
 
     /**
@@ -67,13 +82,47 @@ abstract class Content {
      */
     public abstract function isCountable( $hasLinks = null ) ;
 
+    /**
+     * @param null|Title $title
+     * @param null $revId
+     * @param null|ParserOptions $options
+     * @return ParserOutput
+     */
     public abstract function getParserOutput( Title $title = null, $revId = null, ParserOptions $options = NULL );
 
-    public function getRedirectChain() { #TODO: document!
+    /**
+     * Construct the redirect destination from this content and return an
+     * array of Titles, or null if this content doesn't represent a redirect.
+     * The last element in the array is the final destination after all redirects
+     * have been resolved (up to $wgMaxRedirects times).
+     *
+     * @return Array of Titles, with the destination last
+     */
+    public function getRedirectChain() {
         return null;
     }
 
+    /**
+     * Construct the redirect destination from this content and return an
+     * array of Titles, or null if this content doesn't represent a redirect.
+     * This will only return the immediate redirect target, useful for
+     * the redirect table and other checks that don't need full recursion.
+     *
+     * @return Title: The corresponding Title
+     */
     public function getRedirectTarget() {
+        return null;
+    }
+
+    /**
+     * Construct the redirect destination from this content and return the
+     * Title, or null if this content doesn't represent a redirect.
+     * This will recurse down $wgMaxRedirects times or until a non-redirect target is hit
+     * in order to provide (hopefully) the Title of the final destination instead of another redirect.
+     *
+     * @return Title
+     */
+    public function getUltimateRedirectTarget() {
         return null;
     }
 
@@ -117,6 +166,17 @@ abstract class Content {
         return $this;
     }
 
+    /**
+     * Returns a Content object with preload transformations applied (or this object if no transformations apply).
+     *
+     * @param Title $title
+     * @param null|ParserOptions $popts
+     * @return Content
+     */
+    public function preloadTransform( Title $title, ParserOptions $popts = null ) {
+        return $this;
+    }
+
     #TODO: implement specialized ParserOutput for Wikidata model
     #TODO: provide "combined" ParserOutput for Multipart... somehow.
 
@@ -124,7 +184,6 @@ abstract class Content {
 
     # TODO: EditPage::getPreloadedText( $preload ) // $wgParser->getPreloadText
     # TODO: tie into EditPage, make it use Content-objects throughout, make edit form aware of content model and format
-    # TODO: tie into WikiPage, make it use Content-objects throughout, especially in doEditUpdates(), doDelete(), updateRevisionOn(), etc
     # TODO: make model-aware diff view!
     # TODO: handle ImagePage and CategoryPage
 
@@ -340,10 +399,30 @@ class WikitextContent extends TextContent {
     public function preSaveTransform( Title $title, User $user, ParserOptions $popts = null ) {
         global $wgParser;
 
+        if ( $popts == null ) $popts = $this->getDefaultParserOptions();
+
         $text = $this->getNativeData();
         $pst = $wgParser->preSaveTransform( $text, $title, $user, $popts );
 
         return new WikitextContent( $pst );
+    }
+
+    /**
+     * Returns a Content object with preload transformations applied (or this object if no transformations apply).
+     *
+     * @param Title $title
+     * @param null|ParserOptions $popts
+     * @return Content
+     */
+    public function preloadTransform( Title $title, ParserOptions $popts = null ) {
+        global $wgParser;
+
+        if ( $popts == null ) $popts = $this->getDefaultParserOptions();
+
+        $text = $this->getNativeData();
+        $plt = $wgParser->getPreloadText( $text, $title, $popts );
+
+        return new WikitextContent( $plt );
     }
 
     public function getRedirectChain() {
@@ -354,6 +433,11 @@ class WikitextContent extends TextContent {
     public function getRedirectTarget() {
         $text = $this->getNativeData();
         return Title::newFromRedirect( $text );
+    }
+
+    public function getUltimateRedirectTarget() {
+        $text = $this->getNativeData();
+        return Title::newFromRedirectRecurse( $text );
     }
 
     /**
@@ -405,7 +489,7 @@ class WikitextContent extends TextContent {
 
 class MessageContent extends TextContent {
     public function __construct( $msg_key, $params = null, $options = null ) {
-        parent::__construct(null, CONTENT_MODEL_WIKITEXT);
+        parent::__construct(null, CONTENT_MODEL_WIKITEXT); #XXX: messages may be wikitext, html or plain text! and maybe even something else entirely.
 
         $this->mMessageKey = $msg_key;
 

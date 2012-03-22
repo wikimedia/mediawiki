@@ -632,7 +632,8 @@ class WikiPage extends Page {
 	 */
 	public function insertRedirect() {
 		// recurse through to only get the final target
-		$retval = Title::newFromRedirectRecurse( $this->getRawText() ); #FIXME: move this to Content object
+        $content = $this->getContent();
+		$retval = $content ? $content->getUltimateRedirectTarget() : null;
 		if ( !$retval ) {
 			return null;
 		}
@@ -983,9 +984,9 @@ class WikiPage extends Page {
 	public function updateRevisionOn( $dbw, $revision, $lastRevision = null, $lastRevIsRedirect = null ) {
 		wfProfileIn( __METHOD__ );
 
-		$text = $revision->getText();
-		$len = strlen( $text );
-		$rt = Title::newFromRedirectRecurse( $text );
+        $content = $revision->getContent();
+		$len = $content->getSize();
+		$rt = $content->getUltimateRedirectTarget();
 
 		$conditions = array( 'page_id' => $this->getId() );
 
@@ -1129,45 +1130,53 @@ class WikiPage extends Page {
 	 * @param $sectionTitle String: new section's subject, only if $section is 'new'
 	 * @param $edittime String: revision timestamp or null to use the current revision
 	 * @return Content new complete article content, or null if error
-     * @deprecated since 1.20: use Content::replaceSection () instead.
+     * @deprected since 1.20, use replaceSectionContent() instead
 	 */
-	public function replaceSection( $section, $text, $sectionTitle = '', $edittime = null ) { #FIXME: create a Content-based version (take and return Content object)
-		wfProfileIn( __METHOD__ );
+	public function replaceSection( $section, $text, $sectionTitle = '', $edittime = null ) { #FIXME: use replaceSectionContent() instead!
+        wfDeprecated( __METHOD__, '1.20' );
 
         $sectionContent = ContentHandler::makeContent( $text, $this->getTitle() ); #XXX: could make section title, but that's not required.
 
-		if ( strval( $section ) == '' ) {
-			// Whole-page edit; let the whole text through
-            $newContent = $sectionContent;
-		} else {
-			// Bug 30711: always use current version when adding a new section
-			if ( is_null( $edittime ) || $section == 'new' ) {
-				$oldContent = $this->getContent();
-				if ( ! $oldContent ) {
-					wfDebug( __METHOD__ . ": no page text\n" );
-					wfProfileOut( __METHOD__ );
-					return null;
-				}
-			} else {
-				$dbw = wfGetDB( DB_MASTER );
-				$rev = Revision::loadFromTimestamp( $dbw, $this->mTitle, $edittime );
+        $newContent = $this->replaceSectionContent( $section, $sectionContent, $sectionTitle, $edittime );
 
-				if ( !$rev ) {
-					wfDebug( "WikiPage::replaceSection asked for bogus section (page: " .
-						$this->getId() . "; section: $section; edittime: $edittime)\n" );
-					wfProfileOut( __METHOD__ );
-					return null;
-				}
-
-                $oldContent = $rev->getContent();
-			}
-
-            $newContent = $oldContent->replaceSection( $section, $sectionContent, $sectionTitle );
-		}
-
-		wfProfileOut( __METHOD__ );
 		return ContentHandler::getContentText( $newContent ); #XXX: unclear what will happen for non-wikitext!
 	}
+
+    public function replaceSectionContent( $section, $sectionContent, $sectionTitle = '', $edittime = null ) {
+        wfProfileIn( __METHOD__ );
+
+        if ( strval( $section ) == '' ) {
+            // Whole-page edit; let the whole text through
+            $newContent = $sectionContent;
+        } else {
+            // Bug 30711: always use current version when adding a new section
+            if ( is_null( $edittime ) || $section == 'new' ) {
+                $oldContent = $this->getContent();
+                if ( ! $oldContent ) {
+                    wfDebug( __METHOD__ . ": no page text\n" );
+                    wfProfileOut( __METHOD__ );
+                    return null;
+                }
+            } else {
+                $dbw = wfGetDB( DB_MASTER );
+                $rev = Revision::loadFromTimestamp( $dbw, $this->mTitle, $edittime );
+
+                if ( !$rev ) {
+                    wfDebug( "WikiPage::replaceSection asked for bogus section (page: " .
+                        $this->getId() . "; section: $section; edittime: $edittime)\n" );
+                    wfProfileOut( __METHOD__ );
+                    return null;
+                }
+
+                $oldContent = $rev->getContent();
+            }
+
+            $newContent = $oldContent->replaceSection( $section, $sectionContent, $sectionTitle );
+        }
+
+        wfProfileOut( __METHOD__ );
+        return $newContent;
+    }
 
 	/**
 	 * Check flags and add EDIT_NEW or EDIT_UPDATE to them as needed.
@@ -1653,13 +1662,13 @@ class WikiPage extends Page {
 		wfProfileIn( __METHOD__ );
 
 		$options += array( 'changed' => true, 'created' => false, 'oldcountable' => null );
-		$text = $revision->getText();
+        $content = $revision->getContent();
 
 		# Parse the text
 		# Be careful not to double-PST: $text is usually already PST-ed once
 		if ( !$this->mPreparedEdit || $this->mPreparedEdit->output->getFlag( 'vary-revision' ) ) {
 			wfDebug( __METHOD__ . ": No prepared edit or vary-revision is set...\n" );
-			$editInfo = $this->prepareTextForEdit( $text, $revision->getId(), $user );
+			$editInfo = $this->prepareContentForEdit( $content, $revision->getId(), $user );
 		} else {
 			wfDebug( __METHOD__ . ": No vary-revision, using prepared edit...\n" );
 			$editInfo = $this->mPreparedEdit;
@@ -1717,7 +1726,7 @@ class WikiPage extends Page {
 		}
 
 		DeferredUpdates::addUpdate( new SiteStatsUpdate( 0, 1, $good, $total ) );
-		DeferredUpdates::addUpdate( new SearchUpdate( $id, $title, $text ) );
+        DeferredUpdates::addUpdate( new SearchUpdate( $id, $title, $content->getTextForSearchIndex() ) );
 
 		# If this is another user's talk page, update newtalk.
 		# Don't do this if $options['changed'] = false (null-edits) nor if
@@ -1743,7 +1752,10 @@ class WikiPage extends Page {
 		}
 
 		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
-			MessageCache::singleton()->replace( $shortTitle, $text );
+            $msgtext = ContentHandler::getContentText( $content ); #XXX: could skip pseudo-messages like js/css here, based on content model.
+            if ( $msgtext === false || $msgtext === null ) $msgtext = '';
+
+			MessageCache::singleton()->replace( $shortTitle, $msgtext );
 		}
 
 		if( $options['created'] ) {
@@ -2371,7 +2383,7 @@ class WikiPage extends Page {
 		}
 
 		# Actually store the edit
-		$status = $this->doEdit( $target->getText(), $summary, $flags, $target->getId(), $guser );
+		$status = $this->doEditContent( $target->getContent(), $summary, $flags, $target->getId(), $guser );
 		if ( !empty( $status->value['revision'] ) ) {
 			$revId = $status->value['revision']->getId();
 		} else {

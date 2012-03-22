@@ -213,7 +213,7 @@ abstract class ContentHandler {
     }
     **/
     
-    public function getDiffEngine( Article $article ) {
+    public function getDiffEngine( Article $article ) { #FIXME: change interface of diff engine? or accept content objects here=?
         $de = new DifferenceEngine( $article->getContext() );
         return $de;
     }
