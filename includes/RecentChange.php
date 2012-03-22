@@ -751,7 +751,7 @@ class RecentChange {
 		return ChangesList::showCharacterDifference( $old, $new );
 	}
 
-	public static function checkIPAddress( $ip ) {
+	private static function checkIPAddress( $ip ) {
 		global $wgRequest;
 		if ( $ip ) {
 			if ( !IP::isIPAddress( $ip ) ) {
