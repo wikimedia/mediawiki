@@ -41,9 +41,7 @@ class TextPassDumper extends BackupDumper {
 	var $prefetchCountLast = 0;
 	var $fetchCountLast = 0;
 
-	var $failures = 0;
 	var $maxFailures = 5;
-	var $failedTextRetrievals = 0;
 	var $maxConsecutiveFailedTextRetrievals = 200;
 	var $failureTimeout = 5; // Seconds to sleep after db failure
 
@@ -71,6 +69,52 @@ class TextPassDumper extends BackupDumper {
 	 */
 	protected $db;
 
+
+	/**
+	 * Drop the database connection $this->db and try to get a new one.
+	 *
+	 * This function tries to get a /different/ connection if this is
+	 * possible. Hence, (if this is possible) it switches to a different
+	 * failover upon each call.
+	 *
+	 * This function resets $this->lb and closes all connections on it.
+	 *
+	 * @throws MWException
+	 */
+	function rotateDb() {
+		// Cleaning up old connections
+		if ( isset( $this->lb ) ) {
+			$this->lb->closeAll();
+			unset( $this->lb );
+		}
+
+		if ( isset( $this->db ) && $this->db->isOpen() ) {
+			throw new MWException( 'DB is set and has not been closed by the Load Balancer' );
+		}
+
+		unset( $this->db );
+
+		// Trying to set up new connection.
+		// We do /not/ retry upon failure, but delegate to encapsulating logic, to avoid
+		// individually retrying at different layers of code.
+
+		// 1. The LoadBalancer.
+		try {
+			$this->lb = wfGetLBFactory()->newMainLB();
+		} catch ( Exception $e ) {
+			throw new MWException( __METHOD__ . " rotating DB failed to obtain new load balancer (" . $e->getMessage() . ")" );
+		}
+
+
+		// 2. The Connection, through the load balancer.
+		try {
+			$this->db = $this->lb->getConnection( DB_SLAVE, 'backup' );
+		} catch ( Exception $e ) {
+			throw new MWException( __METHOD__ . " rotating DB failed to obtain new database (" . $e->getMessage() . ")" );
+		}
+	}
+
+
 	function initProgress( $history ) {
 		parent::initProgress();
 		$this->timeOfCheckpoint = $this->startTime;
@@ -87,7 +131,19 @@ class TextPassDumper extends BackupDumper {
 
 		$this->initProgress( $this->history );
 
-		$this->db = $this->backupDb();
+		// We are trying to get an initial database connection to avoid that the
+		// first try of this request's first call to getText fails. However, if
+		// obtaining a good DB connection fails it's not a serious issue, as
+		// getText does retry upon failure and can start without having a working
+		// DB connection.
+		try {
+			$this->rotateDb();
+		} catch ( Exception $e ) {
+			// We do not even count this as failure. Just let eventual
+			// watchdogs know.
+			$this->progress( "Getting initial DB connection failed (" .
+				$e->getMessage() . ")" );
+		}
 
 		$this->egress = new ExportProgressFilter( $this->sink, $this );
 
@@ -124,7 +180,7 @@ class TextPassDumper extends BackupDumper {
 			$this->input = $url;
 			break;
 		case 'maxtime':
-			$this->maxTimeAllowed = intval($val)*60;
+			$this->maxTimeAllowed = intval( $val ) * 60;
 			break;
 		case 'checkpointfile':
 			$this->checkpointFiles[] = $val;
@@ -145,7 +201,7 @@ class TextPassDumper extends BackupDumper {
 	}
 
 	function processFileOpt( $val, $param ) {
-		$fileURIs = explode(';',$param);
+		$fileURIs = explode( ';', $param );
 		foreach ( $fileURIs as $URI ) {
 			switch( $val ) {
 				case "file":
@@ -240,19 +296,19 @@ class TextPassDumper extends BackupDumper {
 	function finalOptionCheck() {
 		if ( ( $this->checkpointFiles && ! $this->maxTimeAllowed ) ||
 			( $this->maxTimeAllowed && !$this->checkpointFiles ) ) {
-			throw new MWException("Options checkpointfile and maxtime must be specified together.\n");
+			throw new MWException( "Options checkpointfile and maxtime must be specified together.\n" );
 		}
-		foreach ($this->checkpointFiles as $checkpointFile) {
-			$count = substr_count ( $checkpointFile,"%s" );
+		foreach ( $this->checkpointFiles as $checkpointFile ) {
+			$count = substr_count ( $checkpointFile, "%s" );
 			if ( $count != 2 ) {
-				throw new MWException("Option checkpointfile must contain two '%s' for substitution of first and last pageids, count is $count instead, file is $checkpointFile.\n");
+				throw new MWException( "Option checkpointfile must contain two '%s' for substitution of first and last pageids, count is $count instead, file is $checkpointFile.\n" );
 			}
 		}
 
 		if ( $this->checkpointFiles ) {
 			$filenameList = (array)$this->egress->getFilenames();
 			if ( count( $filenameList ) != count( $this->checkpointFiles ) ) {
-				throw new MWException("One checkpointfile must be specified for each output option, if maxtime is used.\n");
+				throw new MWException( "One checkpointfile must be specified for each output option, if maxtime is used.\n" );
 			}
 		}
 	}
@@ -275,7 +331,7 @@ class TextPassDumper extends BackupDumper {
 		$offset = 0; // for context extraction on error reporting
 		$bufferSize = 512 * 1024;
 		do {
-			if ($this->checkIfTimeExceeded()) {
+			if ( $this->checkIfTimeExceeded() ) {
 				$this->setTimeExceeded();
 			}
 			$chunk = fread( $input, $bufferSize );
@@ -285,27 +341,27 @@ class TextPassDumper extends BackupDumper {
 			}
 			$offset += strlen( $chunk );
 		} while ( $chunk !== false && !feof( $input ) );
-		if ($this->maxTimeAllowed) {
+		if ( $this->maxTimeAllowed ) {
 			$filenameList = (array)$this->egress->getFilenames();
 			// we wrote some stuff after last checkpoint that needs renamed
-			if (file_exists($filenameList[0])) {
+			if ( file_exists( $filenameList[0] ) ) {
 				$newFilenames = array();
 				# we might have just written the header and footer and had no
 				# pages or revisions written... perhaps they were all deleted
 				# there's no pageID 0 so we use that. the caller is responsible
 				# for deciding what to do with a file containing only the
 				# siteinfo information and the mw tags.
-				if (! $this->firstPageWritten) {
-					$firstPageID = str_pad(0,9,"0",STR_PAD_LEFT);
-					$lastPageID = str_pad(0,9,"0",STR_PAD_LEFT);
+				if ( ! $this->firstPageWritten ) {
+					$firstPageID = str_pad( 0, 9, "0", STR_PAD_LEFT );
+					$lastPageID = str_pad( 0, 9, "0", STR_PAD_LEFT );
 				}
 				else {
-					$firstPageID = str_pad($this->firstPageWritten,9,"0",STR_PAD_LEFT);
-					$lastPageID = str_pad($this->lastPageWritten,9,"0",STR_PAD_LEFT);
+					$firstPageID = str_pad( $this->firstPageWritten, 9, "0", STR_PAD_LEFT );
+					$lastPageID = str_pad( $this->lastPageWritten, 9, "0", STR_PAD_LEFT );
 				}
 				for ( $i = 0; $i < count( $filenameList ); $i++ ) {
 					$checkpointNameFilledIn = sprintf( $this->checkpointFiles[$i], $firstPageID, $lastPageID );
-					$fileinfo = pathinfo($filenameList[$i]);
+					$fileinfo = pathinfo( $filenameList[$i] );
 					$newFilenames[] = $fileinfo['dirname'] . '/' . $checkpointNameFilledIn;
 				}
 				$this->egress->closeAndRename( $newFilenames );
@@ -316,98 +372,142 @@ class TextPassDumper extends BackupDumper {
 		return true;
 	}
 
+	/**
+	 * Tries to get the revision text for a revision id.
+	 *
+	 * Upon errors, retries (Up to $this->maxFailures tries each call).
+	 * If still no good revision get could be found even after this retrying, "" is returned.
+	 * If no good revision text could be returned for
+	 * $this->maxConsecutiveFailedTextRetrievals consecutive calls to getText, MWException
+	 * is thrown.
+	 *
+	 * @param $id string The revision id to get the text for
+	 *
+	 * @return string The revision text for $id, or ""
+	 * @throws MWException
+	 */
 	function getText( $id ) {
+		$prefetchNotTried = true; // Whether or not we already tried to get the text via prefetch.
+		$text = false; // The candidate for a good text. false if no proper value.
+		$failures = 0; // The number of times, this invocation of getText already failed.
+
+		static $consecutiveFailedTextRetrievals = 0; // The number of times getText failed without
+		                                             // yielding a good text in between.
+
 		$this->fetchCount++;
-		if ( isset( $this->prefetch ) ) {
-			$text = $this->prefetch->prefetch( $this->thisPage, $this->thisRev );
-			if ( $text !== null ) { // Entry missing from prefetch dump
-				$dbr = wfGetDB( DB_SLAVE );
+
+		// To allow to simply return on success and do not have to worry about book keeping,
+		// we assume, this fetch works (possible after some retries). Nevertheless, we koop
+		// the old value, so we can restore it, if problems occur (See after the while loop).
+		$oldConsecutiveFailedTextRetrievals = $consecutiveFailedTextRetrievals;
+		$consecutiveFailedTextRetrievals = 0;
+
+		while ( $failures < $this->maxFailures ) {
+
+			// As soon as we found a good text for the $id, we will return immediately.
+			// Hence, if we make it past the try catch block, we know that we did not
+			// find a good text.
+
+			try {
+				// Step 1: Get some text (or reuse from previous iteratuon if checking
+				//         for plausibility failed)
+
+				// Trying to get prefetch, if it has not been tried before
+				if ( $text === false && isset( $this->prefetch ) && $prefetchNotTried ) {
+					$prefetchNotTried = false;
+					$tryIsPrefetch = true;
+					$text = $this->prefetch->prefetch( $this->thisPage, $this->thisRev );
+					if ( $text === null ) {
+						$text = false;
+					}
+				}
+
+				if ( $text === false ) {
+					// Fallback to asking the database
+					$tryIsPrefetch = false;
+					if ( $this->spawn ) {
+						$text = $this->getTextSpawned( $id );
+					} else {
+						$text = $this->getTextDb( $id );
+					}
+				}
+
+				if ( $text === false ) {
+					throw new MWException( "Generic error while obtaining text for id " . $id );
+				}
+
+				// We received a good candidate for the text of $id via some method
+
+				// Step 2: Checking for plausibility and return the text if it is
+				//         plausible
 				$revID = intval( $this->thisRev );
-				$revLength = $dbr->selectField( 'revision', 'rev_len', array( 'rev_id' => $revID ) );
-				// if length of rev text in file doesn't match length in db, we reload
-				// this avoids carrying forward broken data from previous xml dumps
-				if( strlen( $text ) == $revLength ) {
-					$this->prefetchCount++;
+				if ( ! isset( $this->db ) ) {
+					throw new MWException( "No database available" );
+				}
+				$revLength = $this->db->selectField( 'revision', 'rev_len', array( 'rev_id' => $revID ) );
+				if ( strlen( $text ) == $revLength ) {
+					if ( $tryIsPrefetch ) {
+						$this->prefetchCount++;
+					}
 					return $text;
 				}
-			}
-		}
-		return $this->doGetText( $id );
-	}
 
-	private function doGetText( $id ) {
-		$id = intval( $id );
-		$this->failures = 0;
-		$ex = new MWException( "Graceful storage failure" );
-		while (true) {
-			if ( $this->spawn ) {
-				if ($this->failures) {
-					// we don't know why it failed, could be the child process
-					// borked, could be db entry busted, could be db server out to lunch,
-					// so cover all bases
+				$text = false;
+				throw new MWException( "Received text is unplausible for id " . $id );
+
+			} catch ( Exception $e ) {
+				$msg = "getting/checking text " . $id . " failed (" . $e->getMessage() . ")";
+				if ( $failures + 1 < $this->maxFailures ) {
+					$msg .= " (Will retry " . ( $this->maxFailures - $failures - 1 ) . " more times)";
+				}
+				$this->progress( $msg );
+			}
+
+			// Something went wrong; we did not a text that was plausible :(
+			$failures++;
+
+
+			// After backing off for some time, we try to reboot the whole process as
+			// much as possible to not carry over failures from one part to the other
+			// parts
+			sleep( $this->failureTimeout );
+			try {
+				$this->rotateDb();
+				if ( $this->spawn ) {
 					$this->closeSpawn();
 					$this->openSpawn();
 				}
-				$text = $this->getTextSpawned( $id );
-			} else {
-				$text = $this->getTextDbSafe( $id );
-			}
-			if ( $text === false ) {
-				$this->failures++;
-				if ( $this->failures > $this->maxFailures) {
-					$this->progress( "Failed to retrieve revision text for text id ".
-									 "$id after $this->maxFailures tries, giving up" );
-					// were there so many bad retrievals in a row we want to bail?
-					// at some point we have to declare the dump irretrievably broken
-					$this->failedTextRetrievals++;
-					if ($this->failedTextRetrievals > $this->maxConsecutiveFailedTextRetrievals) {
-						throw $ex;
-					} else {
-						// would be nice to return something better to the caller someday,
-						// log what we know about the failure and about the revision
-						return "";
-					}
-				} else {
-					$this->progress( "Error $this->failures " .
-								 "of allowed $this->maxFailures retrieving revision text for text id $id! " .
-								 "Pausing $this->failureTimeout seconds before retry..." );
-					sleep( $this->failureTimeout );
-				}
-			} else {
-				$this->failedTextRetrievals= 0;
-				return $text;
+			} catch ( Exception $e ) {
+				$this->progress( "Rebooting getText infrastructure failed (" . $e->getMessage() . ")" .
+					" Trying to continue anyways" );
 			}
 		}
-		return '';
+
+		// Retirieving a good text for $id failed (at least) maxFailures times.
+		// We abort for this $id.
+
+		// Restoring the consecutive failures, and maybe aborting, if the dump
+		// is too broken.
+		$consecutiveFailedTextRetrievals = $oldConsecutiveFailedTextRetrievals + 1;
+		if ( $consecutiveFailedTextRetrievals > $this->maxConsecutiveFailedTextRetrievals ) {
+			throw new MWException( "Graceful storage failure" );
+		}
+
+		return "";
 	}
 
-	/**
-	 * Fetch a text revision from the database, retrying in case of failure.
-	 * This may survive some transitory errors by reconnecting, but
-	 * may not survive a long-term server outage.
-	 *
-	 * FIXME: WTF? Why is it using a loop and then returning unconditionally?
-	 * @param $id int
-	 * @return bool|string
-	 */
-	private function getTextDbSafe( $id ) {
-		while ( true ) {
-			try {
-				$text = $this->getTextDb( $id );
-			} catch ( DBQueryError $ex ) {
-				$text = false;
-			}
-			return $text;
-		}
-	}
 
 	/**
 	 * May throw a database error if, say, the server dies during query.
 	 * @param $id
 	 * @return bool|string
+	 * @throws MWException
 	 */
 	private function getTextDb( $id ) {
 		global $wgContLang;
+		if ( ! isset( $this->db ) ) {
+			throw new MWException( __METHOD__ . "No database available" );
+		}
 		$row = $this->db->selectRow( 'text',
 			array( 'old_text', 'old_flags' ),
 			array( 'old_id' => $id ),
@@ -517,7 +617,7 @@ class TextPassDumper extends BackupDumper {
 
 		$nbytes = intval( $len );
 		// actual error, not zero-length text
-		if ($nbytes < 0 ) return false;
+		if ( $nbytes < 0 ) return false;
 
 		$text = "";
 
@@ -584,15 +684,15 @@ class TextPassDumper extends BackupDumper {
 			$this->buffer = "";
 			$this->thisRev = "";
 		} elseif ( $name == 'page' ) {
-			if (! $this->firstPageWritten) {
-				$this->firstPageWritten = trim($this->thisPage);
+			if ( ! $this->firstPageWritten ) {
+				$this->firstPageWritten = trim( $this->thisPage );
 			}
-			$this->lastPageWritten = trim($this->thisPage);
-			if ($this->timeExceeded) {
+			$this->lastPageWritten = trim( $this->thisPage );
+			if ( $this->timeExceeded ) {
 				$this->egress->writeClosePage( $this->buffer );
 				// nasty hack, we can't just write the chardata after the
 				// page tag, it will include leading blanks from the next line
-				$this->egress->sink->write("\n");
+				$this->egress->sink->write( "\n" );
 
 				$this->buffer = $this->xmlwriterobj->closeStream();
 				$this->egress->writeCloseStream( $this->buffer );
@@ -603,11 +703,11 @@ class TextPassDumper extends BackupDumper {
 
 				$filenameList = (array)$this->egress->getFilenames();
 				$newFilenames = array();
-				$firstPageID = str_pad($this->firstPageWritten,9,"0",STR_PAD_LEFT);
-				$lastPageID = str_pad($this->lastPageWritten,9,"0",STR_PAD_LEFT);
+				$firstPageID = str_pad( $this->firstPageWritten, 9, "0", STR_PAD_LEFT );
+				$lastPageID = str_pad( $this->lastPageWritten, 9, "0", STR_PAD_LEFT );
 				for ( $i = 0; $i < count( $filenameList ); $i++ ) {
 					$checkpointNameFilledIn = sprintf( $this->checkpointFiles[$i], $firstPageID, $lastPageID );
-					$fileinfo = pathinfo($filenameList[$i]);
+					$fileinfo = pathinfo( $filenameList[$i] );
 					$newFilenames[] = $fileinfo['dirname'] . '/' . $checkpointNameFilledIn;
 				}
 				$this->egress->closeRenameAndReopen( $newFilenames );
@@ -640,9 +740,9 @@ class TextPassDumper extends BackupDumper {
 		}
 		// have to skip the newline left over from closepagetag line of
 		// end of checkpoint files. nasty hack!!
-		if ($this->checkpointJustWritten) {
-			if ($data[0] == "\n") {
-				$data = substr($data,1);
+		if ( $this->checkpointJustWritten ) {
+			if ( $data[0] == "\n" ) {
+				$data = substr( $data, 1 );
 			}
 			$this->checkpointJustWritten = false;
 		}
