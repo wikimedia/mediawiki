@@ -340,6 +340,7 @@ $magicWords = array(
 	'special'                 => array( 0,    'special' ),
 	'speciale'                => array( 0,    'speciale' ),
 	'defaultsort'             => array( 1,    'DEFAULTSORT:', 'DEFAULTSORTKEY:', 'DEFAULTCATEGORYSORT:' ),
+	'defaultcollation'        => array( 1,    'DEFAULTCOLLATION:'      ),
 	'filepath'                => array( 0,    'FILEPATH:' ),
 	'tag'                     => array( 0,    'tag' ),
 	'hiddencat'               => array( 1,    '__HIDDENCAT__' ),
@@ -356,6 +357,8 @@ $magicWords = array(
 	'url_query'               => array( 0,    'QUERY' ),
 	'defaultsort_noerror'     => array( 0,    'noerror' ),
 	'defaultsort_noreplace'   => array( 0,    'noreplace' ),
+	'defaultcollation_noerror' => array( 0,   'noerror' ),
+	'defaultcollation_noreplace' => array( 0, 'noreplace' ),
 	'pagesincategory_all'     => array( 0,    'all' ),
 	'pagesincategory_pages'   => array( 0,    'pages' ),
 	'pagesincategory_subcats' => array( 0,    'subcats' ),
@@ -4679,8 +4682,10 @@ You can also [[Special:EditWatchlist|use the standard editor]].',
 'timezone-utc'   => 'UTC', # only translate this message to other languages if you have to change it
 
 # Core parser functions
-'unknown_extension_tag' => 'Unknown extension tag "$1"',
-'duplicate-defaultsort' => '\'\'\'Warning:\'\'\' Default sort key "$2" overrides earlier default sort key "$1".',
+'unknown_extension_tag'        => 'Unknown extension tag "$1"',
+'duplicate-defaultsort'        => '\'\'\'Warning:\'\'\' Default sort key "$2" overrides earlier default sort key "$1".',
+'duplicate-defaultcollation'   => '\'\'\'Warning:\'\'\' Default collation "$2" overrides earlier default collation "$1".',
+'defaultcollation-notcategory' => '\'\'\'Warning:\'\'\' Default collation should be set in category pages.',
 
 # Special:Version
 'version'                               => 'Version',

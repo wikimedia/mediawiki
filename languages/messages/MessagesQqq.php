@@ -4608,6 +4608,8 @@ Use your language default parentheses ({{msg-mw|parentheses}}), but not use the 
 'unknown_extension_tag' => '* Description: This is an error shown when you use an unknown extension tag name. This feature allows tags like <tt><nowiki><pre></nowiki></tt> to be called with a parser like <tt><nowiki>{{#tag:pre}}</nowiki></tt>.
 * Parameter $1: This is the unknown extension tag name.',
 'duplicate-defaultsort' => 'Definition of [http://en.wikipedia.org/wiki/Sorting sort key] on Wikipedia.',
+'duplicate-defaultcollation' => 'Error message to show when there is another default collation defined.',
+'defaultcollation-notcategory' => 'Error message when {{DEFAULTCOLLATION: }} is used on a non-category page.',
 
 # Special:Version
 'version' => 'Name of special page displayed in [[Special:SpecialPages]]
