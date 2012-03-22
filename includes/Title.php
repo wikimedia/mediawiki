@@ -3718,16 +3718,22 @@ class Title {
 		foreach ( $prefixes as $prefixRow ) {
 			$prefix = $prefixRow->cl_sortkey_prefix;
 			$catTo = $prefixRow->cl_to;
-			$dbw->update( 'categorylinks',
-				array(
-					'cl_sortkey' => Collation::singleton()->getSortKey(
-						$nt->getCategorySortkey( $prefix ) ),
-					'cl_timestamp=cl_timestamp' ),
-				array(
-					'cl_from' => $pageid,
-					'cl_to' => $catTo ),
-				__METHOD__
-			);
+			foreach ( Collation::getInstances() as $collationName => $collation ) {
+				$dbw->update( 'categorylinks',
+					array(
+						'cl_sortkey' => $collation->getSortKey(
+							$nt->getCategorySortkey( $prefix )
+						),
+						'cl_timestamp=cl_timestamp',
+					),
+					array(
+						'cl_from' => $pageid,
+						'cl_to' => $catTo,
+						'cl_collation' => $collationName,
+					),
+					__METHOD__
+				);
+			}
 		}
 
 		$redirid = $this->getArticleID();

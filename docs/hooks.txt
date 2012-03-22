@@ -859,7 +859,7 @@ $name: name of the special page, e.g. 'Watchlist'
 &$join_conds: join conditions for the tables
 $opts: FormOptions for this request
 
-'Collation::factory': Called if $wgCategoryCollation is an unknown collation.
+'Collation::factory': Called if $wgCategoryCollations contains an unknown collation.
 $collationName: Name of the collation in question
 &$collationObject: Null. Replace with a subclass of the Collation class that
   implements the collation given in $collationName.

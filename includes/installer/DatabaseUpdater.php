@@ -998,18 +998,21 @@ abstract class DatabaseUpdater {
 	 * Update CategoryLinks collation
 	 */
 	protected function doCollationUpdate() {
-		global $wgCategoryCollation;
-		if ( $this->db->fieldExists( 'categorylinks', 'cl_collation', __METHOD__ ) ) {
-			if ( $this->db->selectField(
-				'categorylinks',
-				'COUNT(*)',
-				'cl_collation != ' . $this->db->addQuotes( $wgCategoryCollation ),
-				__METHOD__
-				) == 0
-			) {
-				$this->output( "...collations up-to-date.\n" );
+		global $wgCategoryCollations;
 
-				return;
+		if ( $this->db->fieldExists( 'categorylinks', 'cl_collation', __METHOD__ ) ) {
+			$collations = $this->db->selectField( 'updatelog', 'ul_value', array( 'ul_key' => 'collations' ), __METHOD__ );
+			if ( $collations !== false ) {
+				$collations = unserialize( $collations );
+				if ( $collations !== false ) {
+					$currentCollations = $wgCategoryCollations;
+					sort( $currentCollations );
+					sort( $collations );
+					if ( $collations == $currentCollations ) {
+						$this->output( "...collations up-to-date.\n" );
+						return;
+					}
+				}
 			}
 
 			$this->output( "Updating category collations..." );

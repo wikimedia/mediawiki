@@ -196,7 +196,7 @@ class Preferences {
 			$wgDisableLangConversion, $wgMaxSigChars,
 			$wgEnableEmail, $wgEmailConfirmToEdit, $wgEnableUserEmail, $wgEmailAuthentication,
 			$wgEnotifWatchlist, $wgEnotifUserTalk, $wgEnotifRevealEditorAddress,
-			$wgSecureLogin;
+			$wgSecureLogin, $wgCategoryCollations;
 
 		// retrieving user name for GENDER and misc.
 		$userName = $user->getName();
@@ -379,6 +379,22 @@ class Preferences {
 					);
 				}
 			}
+		}
+
+		/* Check if there are more than one collations configured on this site */
+		if ( count( $wgCategoryCollations ) > 1 ) {
+			$options = array();
+			foreach ( $wgCategoryCollations as $collation ) {
+				$options[$context->msg( "collation-$collation" )->text()] = $collation;
+			}
+			$defaultPreferences['collation'] = array(
+				'label-message' => 'prefs-collation',
+				// @todo Switch to 'select' once we find good enough wording of collation names.
+				'type' => 'api',
+				'options' => $options,
+				'section' => 'personal/i18n',
+				'help-message' => 'prefs-help-collation',
+			);
 		}
 
 		// Stuff from Language::getExtraUserToggles()

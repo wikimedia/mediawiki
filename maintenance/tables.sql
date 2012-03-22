@@ -552,7 +552,7 @@ CREATE TABLE /*_*/categorylinks (
   -- sorting method by approximate addition time.
   cl_timestamp timestamp NOT NULL,
 
-  -- Stores $wgCategoryCollation at the time cl_sortkey was generated.  This
+  -- Stores collation name of the collation used to generate this sortkey. This
   -- can be used to install new collation versions, tracking which rows are not
   -- yet updated.  '' means no collation, this is a legacy row that needs to be
   -- updated by updateCollation.php.  In the future, it might be possible to
@@ -566,12 +566,12 @@ CREATE TABLE /*_*/categorylinks (
   cl_type ENUM('page', 'subcat', 'file') NOT NULL default 'page'
 ) /*$wgDBTableOptions*/;
 
-CREATE UNIQUE INDEX /*i*/cl_from ON /*_*/categorylinks (cl_from,cl_to);
+CREATE UNIQUE INDEX /*i*/cl_from ON /*_*/categorylinks (cl_from,cl_to,cl_collation);
 
 -- We always sort within a given category, and within a given type.  FIXME:
 -- Formerly this index didn't cover cl_type (since that didn't exist), so old
 -- callers won't be using an index: fix this?
-CREATE INDEX /*i*/cl_sortkey ON /*_*/categorylinks (cl_to,cl_type,cl_sortkey,cl_from);
+CREATE INDEX /*i*/cl_sortkey ON /*_*/categorylinks (cl_to,cl_type,cl_collation,cl_sortkey,cl_from);
 
 -- Used by the API (and some extensions)
 CREATE INDEX /*i*/cl_timestamp ON /*_*/categorylinks (cl_to,cl_timestamp);

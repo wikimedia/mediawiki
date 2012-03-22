@@ -6258,6 +6258,11 @@ $wgCategoryMagicGallery = true;
 $wgCategoryPagingLimit = 200;
 
 /**
+ * Deprecated. Use $wgCategoryCollations instead.
+ */
+$wgCategoryCollation = 'uppercase';
+
+/**
  * Specify how category names should be sorted, when listed on a category page.
  * A sorting scheme is also known as a collation.
  *
@@ -6282,7 +6287,7 @@ $wgCategoryPagingLimit = 200;
  * Extensions can define there own collations by subclassing Collation
  * and using the Collation::factory hook.
  */
-$wgCategoryCollation = 'uppercase';
+$wgCategoryCollations = array();
 
 /** @} */ # End categories }
 

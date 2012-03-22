@@ -292,6 +292,9 @@ $magicWords = array(
 	'img_link'                => array( 1,    'link=$1' ),
 	'img_alt'                 => array( 1,    'alt=$1' ),
 	'img_class'               => array( 1,    'class=$1' ),
+	'collation_uppercase'     => array( 1,    'uppercase' ),
+	'collation_identity'      => array( 1,    'identity' ),
+	'collation_uca_default'   => array( 1,    'uca-default' ),
 	'int'                     => array( 0,    'INT:' ),
 	'sitename'                => array( 1,    'SITENAME' ),
 	'ns'                      => array( 0,    'NS:' ),
@@ -632,4 +635,3 @@ $preloadedMessages = array(
 	'views',
 	'whatlinkshere',
 );
-
