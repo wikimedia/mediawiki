@@ -3111,6 +3111,11 @@ Used in [[Special:Preferences]]. Parameters are:
 {{Identical|Language}}',
 'yourvariant' => 'Used in [[Special:Preferences]], first tab, when the wiki content language has variants only.',
 'prefs-help-variant' => 'Explanation of the LanguageConverter feature. It is shown next to a dropdown box where you can choose a variant to convert content to (e.g. Serbian Latin vs. Serbian Cyrillic, or Chinese Traditional vs. Chinese Simplified).',
+'prefs-collation' => 'Used in [[Special:Preferences]], first tab.',
+'prefs-help-collation' => 'Explanation of the collation selection. It is shown next to a dropdown box where you can choose a default collation to sort items on category pages.',
+'collation-uppercase' => 'A collation that converts the category name to upper case, and sorts by that.',
+'collation-identity' => 'A collation that does no conversion. Sorts by binary value of the string.',
+'collation-uca-default' => 'A collation that provides access to the Unicode Collation Algorithm with the default element table.',
 'yournick' => 'Used in [[Special:Preferences]], first tab.
 
 {{Identical|Signature}}',
