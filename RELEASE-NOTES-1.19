@@ -31,6 +31,8 @@ production.
   core parser functions which operate on strings, such as padleft.
 * (bug 18295) Don't expose strip markers when a tag appears inside a link 
   inside a heading.
+* (bug 34907) Fixed exposure of tokens through load.php that could have facilitated
+  CSRF attacks
 
 === Configuration changes in 1.19 ===
 * Removed SkinTemplateSetupPageCss hook; use BeforePageDisplay instead.
@@ -45,6 +47,7 @@ production.
 * (bug 32239) Removed $wgEnableTooltipsAndAccesskeys.
 * Removed $wgVectorShowVariantName.
 * Removed $wgExtensionAliasesFiles. Use $wgExtensionMessagesFiles.
+* Removed $wgResourceLoaderInlinePrivateModules, now always enabled.
 
 === New features in 1.19 ===
 * (bug 19838) Add ability to get all interwiki prefixes also if the interwiki
