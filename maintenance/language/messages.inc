@@ -830,6 +830,7 @@ $wgMessageStructure = array(
 	),
 	'diffs' => array(
 		'history-title',
+		'difference-title',
 		'difference',
 		'difference-multipage',
 		'lineno',
