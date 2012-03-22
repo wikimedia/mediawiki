@@ -537,12 +537,12 @@ CREATE TABLE /*_*/categorylinks (
   cl_type ENUM('page', 'subcat', 'file') NOT NULL default 'page'
 ) /*$wgDBTableOptions*/;
 
-CREATE UNIQUE INDEX /*i*/cl_from ON /*_*/categorylinks (cl_from,cl_to);
+CREATE UNIQUE INDEX /*i*/cl_from ON /*_*/categorylinks (cl_from,cl_to,cl_collation);
 
 -- We always sort within a given category, and within a given type.  FIXME:
 -- Formerly this index didn't cover cl_type (since that didn't exist), so old
 -- callers won't be using an index: fix this?
-CREATE INDEX /*i*/cl_sortkey ON /*_*/categorylinks (cl_to,cl_type,cl_sortkey,cl_from);
+CREATE INDEX /*i*/cl_sortkey ON /*_*/categorylinks (cl_to,cl_type,cl_collation,cl_sortkey,cl_from);
 
 -- Not really used?
 CREATE INDEX /*i*/cl_timestamp ON /*_*/categorylinks (cl_to,cl_timestamp);

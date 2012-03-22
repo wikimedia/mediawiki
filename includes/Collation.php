@@ -1,17 +1,26 @@
 <?php
 
 abstract class Collation {
-	static $instance;
+	static $instance = array();
 
 	/**
-	 * @return Collation
+	 * @return Collation if $name is set, otherwise Array of Collations
 	 */
-	static function singleton() {
-		if ( !self::$instance ) {
-			global $wgCategoryCollation;
-			self::$instance = self::factory( $wgCategoryCollation );
+	static function singleton( $name = null ) {
+		global $wgCategoryCollation;
+
+		if ( !isset( $name ) ) {
+			foreach ( $wgCategoryCollation as $name ) {
+				self::singleton( $name );
+			}
+			return self::$instance;
 		}
-		return self::$instance;
+		if ( !isset( self::$instance[$name] ) ) {
+			if ( in_array( $name, $wgCategoryCollation ) ) {
+				self::$instance[$name] = self::factory( $name );
+			}
+		}
+		return self::$instance[$name];
 	}
 
 	/**

@@ -32,6 +32,11 @@ class CategoryViewer extends ContextSource {
 	var $collation;
 
 	/**
+	 * @var Collation name
+	 */
+	var $collationName;
+
+	/**
 	 * @var ImageGallery
 	 */
 	var $gallery;
@@ -59,7 +64,7 @@ class CategoryViewer extends ContextSource {
 	 * @param $query Array
 	 */
 	function __construct( $title, IContextSource $context, $from = '', $until = '', $query = array() ) {
-		global $wgCategoryPagingLimit;
+		global $wgCategoryPagingLimit, $wgCategoryCollation;
 		$this->title = $title;
 		$this->setContext( $context );
 		$this->from = $from;
@@ -67,7 +72,14 @@ class CategoryViewer extends ContextSource {
 		$this->limit = $wgCategoryPagingLimit;
 		$this->cat = Category::newFromTitle( $title );
 		$this->query = $query;
-		$this->collation = Collation::singleton();
+		if ( isset( $query['collation'] ) && in_array( $query['collation'], $wgCategoryCollation ) ) {
+			$this->collationName = $query['collation'];
+		} else if ( in_array( $context->getUser()->getOption( 'collation' ), $wgCategoryCollation ) ) {
+			$this->collationName = $context->getUser()->getOption( 'collation' );
+		} else {
+			$this->collationName = $wgCategoryCollation[0];
+		}
+		$this->collation = Collation::singleton( $this->collationName );
 		unset( $this->query['title'] );
 	}
 
@@ -106,6 +118,8 @@ class CategoryViewer extends ContextSource {
 		// Give a proper message if category is empty
 		if ( $r == '' ) {
 			$r = wfMsgExt( 'category-empty', array( 'parse' ) );
+		} else {
+			$r = $this->getCollationSelector() . $r;
 		}
 
 		$lang = $this->getLanguage();
@@ -285,7 +299,11 @@ class CategoryViewer extends ContextSource {
 					'page_is_redirect', 'cl_sortkey', 'cat_id', 'cat_title',
 					'cat_subcats', 'cat_pages', 'cat_files',
 					'cl_sortkey_prefix', 'cl_collation' ),
-				array_merge( array( 'cl_to' => $this->title->getDBkey() ),  $extraConds ),
+				array_merge(
+					array( 'cl_to' => $this->title->getDBkey() ),
+					array( 'cl_collation IN (' . $dbr->makeList( array( '', $this->collationName ) ) . ')' ),
+					$extraConds
+				),
 				__METHOD__,
 				array(
 					'USE INDEX' => array( 'categorylinks' => 'cl_sortkey' ),
@@ -337,6 +355,42 @@ class CategoryViewer extends ContextSource {
 		return $r === ''
 			? $r
 			: "<br style=\"clear:both;\"/>\n" . $r;
+	}
+
+	/**
+	 * @return string
+	 */
+	function getCollationSelector() {
+		global $wgCategoryCollation;
+
+		if ( count( $wgCategoryCollation ) > 1 ) {
+			$this->getContext()->getOutput()->addModules( 'mediawiki.page.category' );
+			$items = array();
+			foreach ( $wgCategoryCollation as $collation ) {
+				$items[] = Html::element( 'option', array(
+					'value' => $collation,
+				) + (
+					$this->collationName === $collation ? array( 'selected' ) : array()
+				), $this->getContext()->msg( "collation-$collation" )->text() );
+			}
+			$html = Html::rawElement( 'label', array( 'for' => 'mw-collation-select' ),
+				$this->getContext()->msg( 'category-collation' ) );
+			$html .= Html::input( 'title', $this->title->getPrefixedText(), 'hidden' );
+			$html .= Html::rawElement( 'select', array(
+				'name' => 'collation',
+				'id' => 'mw-collation-select',
+			), implode( $items ) );
+			$html .= Html::input( 'go', $this->getContext()->msg( 'go' )->text(), 'submit', array(
+				'id' => 'mw-collation-go',
+			) );
+			return Html::rawElement( 'form', array(
+				'action' => wfScript(),
+				'method' => 'get',
+				'id' => 'mw-collation-selector'
+			), $html );
+		} else {
+			return '';
+		}
 	}
 
 	/**
