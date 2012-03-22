@@ -160,10 +160,14 @@ class SpecialVersion extends SpecialPage {
 		global $wgVersion, $IP;
 		wfProfileIn( __METHOD__ );
 
-		$info = self::getSvnInfo( $IP );
-		if ( !$info ) {
+		$gitInfo = self::getGitHeadSha1( $IP );
+		$svnInfo = self::getSvnInfo( $IP );
+		if ( !$svnInfo && !$gitInfo ) {
 			$version = $wgVersion;
-		} elseif( $flags === 'nodb' ) {
+		} elseif ( $gitInfo ) {
+			$shortSha1 = substr( $gitInfo, 0, 7 );
+			$version = "$wgVersion ($shortSha1)";
+		} elseif ( $flags === 'nodb' ) {
 			$version = "$wgVersion (r{$info['checkout-rev']})";
 		} else {
 			$version = $wgVersion . ' ' .
