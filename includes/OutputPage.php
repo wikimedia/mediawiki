@@ -2340,8 +2340,7 @@ class OutputPage {
 	 * @return string html <script> and <style> tags
 	 */
 	protected function makeResourceLoaderLink( Skin $skin, $modules, $only, $useESI = false ) {
-		global $wgUser, $wgLang, $wgLoadScript, $wgResourceLoaderUseESI,
-			$wgResourceLoaderInlinePrivateModules, $wgRequest;
+		global $wgUser, $wgLang, $wgLoadScript, $wgResourceLoaderUseESI, $wgRequest;
 		// Lazy-load ResourceLoader
 		// TODO: Should this be a static function of ResourceLoader instead?
 		$baseQuery = array(
@@ -2414,8 +2413,11 @@ class OutputPage {
 			
 			$query['modules'] = ResourceLoader::makePackedModulesString( array_keys( $modules ) );
 			
-			// Support inlining of private modules if configured as such
-			if ( $group === 'private' && $wgResourceLoaderInlinePrivateModules ) {
+			// Inline private modules. These can't be loaded through load.php for security
+			// reasons, see bug 34907. Note that these modules should be loaded from
+			// getHeadScripts() before the first loader call. Otherwise other modules can't
+			// properly use them as dependencies (bug 30914)
+			if ( $group === 'private' ) {
 				if ( $only == 'styles' ) {
 					$links .= Html::inlineStyle(
 						$resourceLoader->makeModuleResponse( $context, $modules )

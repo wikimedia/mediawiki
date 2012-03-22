@@ -39,41 +39,20 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 
 		global $wgUser;
 
-		if ( $context->getUser() === $wgUser->getName() ) {
-			return $this->modifiedTime[$hash] = wfTimestamp( TS_UNIX, $wgUser->getTouched() );
-		} else {
-			return 1;
-		}
-	}
-
-	/**
-	 * Fetch the context's user options, or if it doesn't match current user,
-	 * the default options.
-	 * 
-	 * @param $context ResourceLoaderContext: Context object
-	 * @return Array: List of user options keyed by option name
-	 */
-	protected function contextUserOptions( ResourceLoaderContext $context ) {
-		global $wgUser;
-
-		// Verify identity -- this is a private module
-		if ( $context->getUser() === $wgUser->getName() ) {
-			return $wgUser->getOptions();
-		} else {
-			return User::getDefaultOptions();
-		}
+		return $this->modifiedTime[$hash] = wfTimestamp( TS_UNIX, $wgUser->getTouched() );
 	}
 
 	public function getScript( ResourceLoaderContext $context ) {
+		global $wgUser;
 		return Xml::encodeJsCall( 'mediaWiki.user.options.set', 
-			array( $this->contextUserOptions( $context ) ) );
+			array( $wgUser->getOptions() ) );
 	}
 
 	public function getStyles( ResourceLoaderContext $context ) {
-		global $wgAllowUserCssPrefs;
+		global $wgAllowUserCssPrefs, $wgUser;
 
 		if ( $wgAllowUserCssPrefs ) {
-			$options = $this->contextUserOptions( $context );
+			$options = $wgUser->getOptions();
 
 			// Build CSS rules
 			$rules = array();

@@ -34,7 +34,7 @@ if ( !defined( 'MW_PHP4' ) ) {
 /** @endcond */
 
 /** MediaWiki version number */
-$wgVersion = '1.17.2';
+$wgVersion = '1.17.3';
 
 /** Name of the site. It must be changed in LocalSettings.php */
 $wgSitename         = 'MediaWiki';
@@ -2412,13 +2412,6 @@ $wgResourceLoaderMaxage = array(
 		'client' => 5 * 60, // 5 minutes
 	),
 );
-
-/**
- * Whether to embed private modules inline with HTML output or to bypass
- * caching and check the user parameter against $wgUser to prevent
- * unauthorized access to private modules.
- */
-$wgResourceLoaderInlinePrivateModules = true;
 
 /**
  * The default debug mode (on/off) for of ResourceLoader requests. This will still
