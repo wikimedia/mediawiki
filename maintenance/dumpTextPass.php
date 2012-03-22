@@ -73,7 +73,7 @@ class TextPassDumper extends BackupDumper {
 	/**
 	 * Drop the database connection $this->db and try to get a new one.
 	 *
-	 * This function tries to get a /different/ connection if this is 
+	 * This function tries to get a /different/ connection if this is
 	 * possible. Hence, (if this is possible) it switches to a different
 	 * failover upon each call.
 	 *
@@ -87,7 +87,7 @@ class TextPassDumper extends BackupDumper {
 			$this->lb->closeAll();
 			unset( $this->lb );
 		}
-		
+
 		if ( isset( $this->db ) && $this->db->isOpen() ) {
 			throw new MWException( 'DB is set and has not been closed by the Load Balancer' );
 		}
@@ -100,20 +100,20 @@ class TextPassDumper extends BackupDumper {
 
 		// 1. The LoadBalancer.
 		try {
-			$this->lb = wfGetLBFactory()->newMainLB();			
-		} catch (Exception $e) {
+			$this->lb = wfGetLBFactory()->newMainLB();
+		} catch ( Exception $e ) {
 			throw new MWException( __METHOD__ . " rotating DB failed to obtain new load balancer (" . $e->getMessage() . ")" );
 		}
 
 
 		// 2. The Connection, through the load balancer.
 		try {
-			$this->db = $this->lb->getConnection( DB_SLAVE, 'backup' );				
-		} catch (Exception $e) {
+			$this->db = $this->lb->getConnection( DB_SLAVE, 'backup' );
+		} catch ( Exception $e ) {
 			throw new MWException( __METHOD__ . " rotating DB failed to obtain new database (" . $e->getMessage() . ")" );
 		}
 	}
-	
+
 
 	function initProgress( $history ) {
 		parent::initProgress();
@@ -138,10 +138,10 @@ class TextPassDumper extends BackupDumper {
 		// DB connection.
 		try {
 			$this->rotateDb();
-		} catch (Exception $e) {
+		} catch ( Exception $e ) {
 			// We do not even count this as failure. Just let eventual
 			// watchdogs know.
-			$this->progress( "Getting initial DB connection failed (" . 
+			$this->progress( "Getting initial DB connection failed (" .
 				$e->getMessage() . ")" );
 		}
 
@@ -180,7 +180,7 @@ class TextPassDumper extends BackupDumper {
 			$this->input = $url;
 			break;
 		case 'maxtime':
-			$this->maxTimeAllowed = intval($val)*60;
+			$this->maxTimeAllowed = intval( $val ) * 60;
 			break;
 		case 'checkpointfile':
 			$this->checkpointFiles[] = $val;
@@ -201,7 +201,7 @@ class TextPassDumper extends BackupDumper {
 	}
 
 	function processFileOpt( $val, $param ) {
-		$fileURIs = explode(';',$param);
+		$fileURIs = explode( ';', $param );
 		foreach ( $fileURIs as $URI ) {
 			switch( $val ) {
 				case "file":
@@ -296,19 +296,19 @@ class TextPassDumper extends BackupDumper {
 	function finalOptionCheck() {
 		if ( ( $this->checkpointFiles && ! $this->maxTimeAllowed ) ||
 			( $this->maxTimeAllowed && !$this->checkpointFiles ) ) {
-			throw new MWException("Options checkpointfile and maxtime must be specified together.\n");
+			throw new MWException( "Options checkpointfile and maxtime must be specified together.\n" );
 		}
-		foreach ($this->checkpointFiles as $checkpointFile) {
-			$count = substr_count ( $checkpointFile,"%s" );
+		foreach ( $this->checkpointFiles as $checkpointFile ) {
+			$count = substr_count ( $checkpointFile, "%s" );
 			if ( $count != 2 ) {
-				throw new MWException("Option checkpointfile must contain two '%s' for substitution of first and last pageids, count is $count instead, file is $checkpointFile.\n");
+				throw new MWException( "Option checkpointfile must contain two '%s' for substitution of first and last pageids, count is $count instead, file is $checkpointFile.\n" );
 			}
 		}
 
 		if ( $this->checkpointFiles ) {
 			$filenameList = (array)$this->egress->getFilenames();
 			if ( count( $filenameList ) != count( $this->checkpointFiles ) ) {
-				throw new MWException("One checkpointfile must be specified for each output option, if maxtime is used.\n");
+				throw new MWException( "One checkpointfile must be specified for each output option, if maxtime is used.\n" );
 			}
 		}
 	}
@@ -331,7 +331,7 @@ class TextPassDumper extends BackupDumper {
 		$offset = 0; // for context extraction on error reporting
 		$bufferSize = 512 * 1024;
 		do {
-			if ($this->checkIfTimeExceeded()) {
+			if ( $this->checkIfTimeExceeded() ) {
 				$this->setTimeExceeded();
 			}
 			$chunk = fread( $input, $bufferSize );
@@ -341,27 +341,27 @@ class TextPassDumper extends BackupDumper {
 			}
 			$offset += strlen( $chunk );
 		} while ( $chunk !== false && !feof( $input ) );
-		if ($this->maxTimeAllowed) {
+		if ( $this->maxTimeAllowed ) {
 			$filenameList = (array)$this->egress->getFilenames();
 			// we wrote some stuff after last checkpoint that needs renamed
-			if (file_exists($filenameList[0])) {
+			if ( file_exists( $filenameList[0] ) ) {
 				$newFilenames = array();
 				# we might have just written the header and footer and had no
 				# pages or revisions written... perhaps they were all deleted
 				# there's no pageID 0 so we use that. the caller is responsible
 				# for deciding what to do with a file containing only the
 				# siteinfo information and the mw tags.
-				if (! $this->firstPageWritten) {
-					$firstPageID = str_pad(0,9,"0",STR_PAD_LEFT);
-					$lastPageID = str_pad(0,9,"0",STR_PAD_LEFT);
+				if ( ! $this->firstPageWritten ) {
+					$firstPageID = str_pad( 0, 9, "0", STR_PAD_LEFT );
+					$lastPageID = str_pad( 0, 9, "0", STR_PAD_LEFT );
 				}
 				else {
-					$firstPageID = str_pad($this->firstPageWritten,9,"0",STR_PAD_LEFT);
-					$lastPageID = str_pad($this->lastPageWritten,9,"0",STR_PAD_LEFT);
+					$firstPageID = str_pad( $this->firstPageWritten, 9, "0", STR_PAD_LEFT );
+					$lastPageID = str_pad( $this->lastPageWritten, 9, "0", STR_PAD_LEFT );
 				}
 				for ( $i = 0; $i < count( $filenameList ); $i++ ) {
 					$checkpointNameFilledIn = sprintf( $this->checkpointFiles[$i], $firstPageID, $lastPageID );
-					$fileinfo = pathinfo($filenameList[$i]);
+					$fileinfo = pathinfo( $filenameList[$i] );
 					$newFilenames[] = $fileinfo['dirname'] . '/' . $checkpointNameFilledIn;
 				}
 				$this->egress->closeAndRename( $newFilenames );
@@ -421,7 +421,7 @@ class TextPassDumper extends BackupDumper {
 						$text = false;
 					}
 				}
-				
+
 				if ( $text === false ) {
 					// Fallback to asking the database
 					$tryIsPrefetch = false;
@@ -437,32 +437,32 @@ class TextPassDumper extends BackupDumper {
 				}
 
 				// We received a good candidate for the text of $id via some method
-				
+
 				// Step 2: Checking for plausibility and return the text if it is
 				//         plausible
 				$revID = intval( $this->thisRev );
 				if ( ! isset( $this->db ) ) {
 					throw new MWException( "No database available" );
 				}
-				$revLength = $this->db->selectField( 'revision', 'rev_len', array( 'rev_id' => $revID ) );				
-				if( strlen( $text ) == $revLength ) {
+				$revLength = $this->db->selectField( 'revision', 'rev_len', array( 'rev_id' => $revID ) );
+				if ( strlen( $text ) == $revLength ) {
 					if ( $tryIsPrefetch ) {
 						$this->prefetchCount++;
 					}
 					return $text;
 				}
-				
+
 				$text = false;
 				throw new MWException( "Received text is unplausible for id " . $id );
 
-			} catch (Exception $e) {
-				$msg = "getting/checking text " . $id . " failed (".$e->getMessage().")";
+			} catch ( Exception $e ) {
+				$msg = "getting/checking text " . $id . " failed (" . $e->getMessage() . ")";
 				if ( $failures + 1 < $this->maxFailures ) {
-					$msg .= " (Will retry " . ( $this->maxFailures - $failures - 1) . " more times)";
+					$msg .= " (Will retry " . ( $this->maxFailures - $failures - 1 ) . " more times)";
 				}
 				$this->progress( $msg );
 			}
-			
+
 			// Something went wrong; we did not a text that was plausible :(
 			$failures++;
 
@@ -477,8 +477,8 @@ class TextPassDumper extends BackupDumper {
 					$this->closeSpawn();
 					$this->openSpawn();
 				}
-			} catch (Exception $e) {
-				$this->progress( "Rebooting getText infrastructure failed (".$e->getMessage().")" .
+			} catch ( Exception $e ) {
+				$this->progress( "Rebooting getText infrastructure failed (" . $e->getMessage() . ")" .
 					" Trying to continue anyways" );
 			}
 		}
@@ -617,7 +617,7 @@ class TextPassDumper extends BackupDumper {
 
 		$nbytes = intval( $len );
 		// actual error, not zero-length text
-		if ($nbytes < 0 ) return false;
+		if ( $nbytes < 0 ) return false;
 
 		$text = "";
 
@@ -684,15 +684,15 @@ class TextPassDumper extends BackupDumper {
 			$this->buffer = "";
 			$this->thisRev = "";
 		} elseif ( $name == 'page' ) {
-			if (! $this->firstPageWritten) {
-				$this->firstPageWritten = trim($this->thisPage);
+			if ( ! $this->firstPageWritten ) {
+				$this->firstPageWritten = trim( $this->thisPage );
 			}
-			$this->lastPageWritten = trim($this->thisPage);
-			if ($this->timeExceeded) {
+			$this->lastPageWritten = trim( $this->thisPage );
+			if ( $this->timeExceeded ) {
 				$this->egress->writeClosePage( $this->buffer );
 				// nasty hack, we can't just write the chardata after the
 				// page tag, it will include leading blanks from the next line
-				$this->egress->sink->write("\n");
+				$this->egress->sink->write( "\n" );
 
 				$this->buffer = $this->xmlwriterobj->closeStream();
 				$this->egress->writeCloseStream( $this->buffer );
@@ -703,11 +703,11 @@ class TextPassDumper extends BackupDumper {
 
 				$filenameList = (array)$this->egress->getFilenames();
 				$newFilenames = array();
-				$firstPageID = str_pad($this->firstPageWritten,9,"0",STR_PAD_LEFT);
-				$lastPageID = str_pad($this->lastPageWritten,9,"0",STR_PAD_LEFT);
+				$firstPageID = str_pad( $this->firstPageWritten, 9, "0", STR_PAD_LEFT );
+				$lastPageID = str_pad( $this->lastPageWritten, 9, "0", STR_PAD_LEFT );
 				for ( $i = 0; $i < count( $filenameList ); $i++ ) {
 					$checkpointNameFilledIn = sprintf( $this->checkpointFiles[$i], $firstPageID, $lastPageID );
-					$fileinfo = pathinfo($filenameList[$i]);
+					$fileinfo = pathinfo( $filenameList[$i] );
 					$newFilenames[] = $fileinfo['dirname'] . '/' . $checkpointNameFilledIn;
 				}
 				$this->egress->closeRenameAndReopen( $newFilenames );
@@ -740,9 +740,9 @@ class TextPassDumper extends BackupDumper {
 		}
 		// have to skip the newline left over from closepagetag line of
 		// end of checkpoint files. nasty hack!!
-		if ($this->checkpointJustWritten) {
-			if ($data[0] == "\n") {
-				$data = substr($data,1);
+		if ( $this->checkpointJustWritten ) {
+			if ( $data[0] == "\n" ) {
+				$data = substr( $data, 1 );
 			}
 			$this->checkpointJustWritten = false;
 		}
