@@ -1656,6 +1656,7 @@ Note that using the navigation links will reset this column.',
 
 # Diffs
 'history-title'            => 'Revision history of "$1"',
+'difference-title'	    => 'Difference between revisions of "$1"',
 'difference'               => '(Difference between revisions)',
 'difference-multipage'     => '(Difference between pages)',
 'lineno'                   => 'Line $1:',
