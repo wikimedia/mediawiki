@@ -7,7 +7,8 @@
  */
 
 class PostgresField implements Field {
-	private $name, $tablename, $type, $nullable, $max_length, $deferred, $deferrable, $conname;
+	private $name, $tablename, $type, $nullable, $max_length, $deferred, $deferrable, $conname, 
+		$has_default, $default;
 
 	/**
 	 * @param $db DatabaseBase
@@ -19,6 +20,8 @@ class PostgresField implements Field {
 		$q = <<<SQL
 SELECT
  attnotnull, attlen, COALESCE(conname, '') AS conname,
+ atthasdef,
+ adsrc,
  COALESCE(condeferred, 'f') AS deferred,
  COALESCE(condeferrable, 'f') AS deferrable,
  CASE WHEN typname = 'int2' THEN 'smallint'
@@ -31,6 +34,7 @@ JOIN pg_namespace n ON (n.oid = c.relnamespace)
 JOIN pg_attribute a ON (a.attrelid = c.oid)
 JOIN pg_type t ON (t.oid = a.atttypid)
 LEFT JOIN pg_constraint o ON (o.conrelid = c.oid AND a.attnum = ANY(o.conkey) AND o.contype = 'f')
+LEFT JOIN pg_attrdef d on c.oid=d.adrelid and a.attnum=d.adnum 
 WHERE relkind = 'r'
 AND nspname=%s
 AND relname=%s
@@ -58,6 +62,8 @@ SQL;
 		$n->deferrable = ( $row->deferrable == 't' );
 		$n->deferred = ( $row->deferred == 't' );
 		$n->conname = $row->conname;
+		$n->has_default = ( $row->atthasdef === 't' );
+		$n->default = $row->adsrc;
 		return $n;
 	}
 
@@ -91,6 +97,16 @@ SQL;
 
 	function conname() {
 		return $this->conname;
+	}
+	/**
+	 * @since 1.19
+	 */
+	function defaultValue() {
+		if( $this->has_default ) {
+			return $this->default;
+		} else {
+			return false;
+		}
 	}
 
 }
@@ -483,6 +499,68 @@ class DatabasePostgres extends DatabaseBase {
 		}
 		return false;
 	}
+
+	/**
+	 * Returns is of attributes used in index
+	 *
+	 * @since 1.20
+	 * @return Array
+	 */
+	function indexAttributes ( $index, $schema = false ) {
+		if ( $schema === false )
+			$schema = $this->getCoreSchema();
+		/* 
+		 * A subquery would be not needed if we didn't care about the order
+		 * of attributes, but we do
+		 */
+		$sql = <<<__INDEXATTR__
+
+			SELECT opcname, 
+				attname, 
+				i.indoption[s.g] as option,
+				pg_am.amname
+			FROM 
+				(SELECT generate_subscripts(isub.indkey, 1) AS g
+					FROM
+						pg_index isub
+					JOIN pg_class cis
+						ON cis.oid=isub.indexrelid
+					JOIN pg_namespace ns
+						ON cis.relnamespace = ns.oid
+					WHERE cis.relname='$index' AND ns.nspname='$schema') AS s,
+				pg_attribute,
+				pg_opclass opcls, 
+				pg_am,
+				pg_class ci 
+				JOIN pg_index i 
+					ON ci.oid=i.indexrelid
+				JOIN pg_class ct 
+					ON ct.oid = i.indrelid
+				JOIN pg_namespace n
+					ON ci.relnamespace = n.oid
+				WHERE 
+					ci.relname='$index' AND n.nspname='$schema'
+					AND	attrelid = ct.oid 
+					AND	i.indkey[s.g] = attnum
+					AND	i.indclass[s.g] = opcls.oid
+					AND	pg_am.oid = opcls.opcmethod
+__INDEXATTR__;
+		$res = $this->query($sql, __METHOD__);
+		$a = array(); 
+		if ( $res ) {
+			foreach ( $res as $row ) {
+				$a[] = array( 
+					$row->attname, 
+					$row->opcname, 
+					$row->amname,
+					$row->option);
+			}
+		} else {
+			return null;
+		}
+		return $a;
+	}
+
 
 	function indexUnique( $table, $index, $fname = 'DatabasePostgres::indexUnique' ) {
 		$sql = "SELECT indexname FROM pg_indexes WHERE tablename='{$table}'".

@@ -541,7 +541,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		 */
 		$conn = $status->value;
 
-		if( $conn->tableExists( 'user' ) ) {
+		if( $conn->tableExists( 'archive' ) ) {
 			$status->warning( 'config-install-tables-exist' );
 			$this->enableLB();
 			return $status;
