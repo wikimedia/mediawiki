@@ -4,9 +4,9 @@ Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it '''off''' if you can.
 
 == MediaWiki 1.18.2 ==
-XXXX-XX-XX
+2012-03-21
 
-This is a maintenance release of the MediaWiki 1.18 branch.
+This is a maintenance and security release of the MediaWiki 1.18 branch.
 
 == Changes since 1.18.1 ==
 
@@ -22,6 +22,11 @@ This is a maintenance release of the MediaWiki 1.18 branch.
   Special:Whatlinkshere
 * (bug 22555) Remove or skip strip markers from tag hooks like &lt;nowiki&gt; in
   core parser functions which operate on strings, such as formatnum.
+* (bug 34212) ApiBlock/ApiUnblock allow action to take place without a token
+  parameter present.
+* (bug 34907) Fixed exposure of tokens through load.php that could have facilitated
+  CSRF attacks.
+* (bug 35317) CSRF in Special:Upload.
 
 === Changes since 1.18.0 ===
 

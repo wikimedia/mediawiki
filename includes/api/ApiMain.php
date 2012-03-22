@@ -581,7 +581,7 @@ class ApiMain extends ApiBase {
 
 		// Die if token required, but not provided (unless there is a gettoken parameter)
 		$salt = $module->getTokenSalt();
-		if ( $salt !== false && !isset( $moduleParams['gettoken'] ) ) {
+		if ( $salt !== false && !$moduleParams['gettoken'] ) {
 			if ( !isset( $moduleParams['token'] ) ) {
 				$this->dieUsageMsg( array( 'missingparam', 'token' ) );
 			} else {

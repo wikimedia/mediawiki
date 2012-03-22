@@ -119,14 +119,7 @@ class SpecialUpload extends SpecialPage {
 
 		// If it was posted check for the token (no remote POST'ing with user credentials)
 		$token = $request->getVal( 'wpEditToken' );
-		if( $this->mSourceType == 'file' && $token == null ) {
-			// Skip token check for file uploads as that can't be faked via JS...
-			// Some client-side tools don't expect to need to send wpEditToken
-			// with their submissions, as that's new in 1.16.
-			$this->mTokenOk = true;
-		} else {
-			$this->mTokenOk = $wgUser->matchEditToken( $token );
-		}
+		$this->mTokenOk = $wgUser->matchEditToken( $token );
 
 		$this->uploadFormTextTop = '';
 		$this->uploadFormTextAfterSummary = '';

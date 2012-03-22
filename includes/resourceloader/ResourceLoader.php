@@ -164,7 +164,7 @@ class ResourceLoader {
 			$cache->set( $key, $result );
 		} catch ( Exception $exception ) {
 			// Return exception as a comment
-			$result = "/*\n{$exception->__toString()}\n*/\n";
+			$result = $this->makeComment( $exception->__toString() );
 		}
 
 		wfProfileOut( __METHOD__ );
@@ -309,13 +309,20 @@ class ResourceLoader {
 		ob_start();
 
 		wfProfileIn( __METHOD__ );
-		$exceptions = '';
+		$errors = '';
 
 		// Split requested modules into two groups, modules and missing
 		$modules = array();
 		$missing = array();
 		foreach ( $context->getModules() as $name ) {
 			if ( isset( $this->moduleInfos[$name] ) ) {
+				$module = $this->getModule( $name );
+				// Do not allow private modules to be loaded from the web.
+				// This is a security issue, see bug 34907.
+				if ( $module->getGroup() === 'private' ) {
+					$errors .= $this->makeComment( "Cannot show private module \"$name\"" );
+					continue;
+				}
 				$modules[$name] = $this->getModule( $name );
 			} else {
 				$missing[] = $name;
@@ -340,26 +347,21 @@ class ResourceLoader {
 			$this->preloadModuleInfo( array_keys( $modules ), $context );
 		} catch( Exception $e ) {
 			// Add exception to the output as a comment
-			$exceptions .= "/*\n{$e->__toString()}\n*/\n";
+			$errors .= $this->makeComment( $e->__toString() );
 		}
 
 		wfProfileIn( __METHOD__.'-getModifiedTime' );
 
-		$private = false;
 		// To send Last-Modified and support If-Modified-Since, we need to detect
 		// the last modified time
 		$mtime = wfTimestamp( TS_UNIX, $wgCacheEpoch );
 		foreach ( $modules as $module ) {
 			try {
-				// Bypass Squid and other shared caches if the request includes any private modules
-				if ( $module->getGroup() === 'private' ) {
-					$private = true;
-				}
 				// Calculate maximum modified time
 				$mtime = max( $mtime, $module->getModifiedTime( $context ) );
 			} catch ( Exception $e ) {
 				// Add exception to the output as a comment
-				$exceptions .= "/*\n{$e->__toString()}\n*/\n";
+				$errors .= $this->makeComment( $e->__toString() );
 			}
 		}
 
@@ -376,13 +378,8 @@ class ResourceLoader {
 			header( 'Cache-Control: private, no-cache, must-revalidate' );
 			header( 'Pragma: no-cache' );
 		} else {
-			if ( $private ) {
-				header( "Cache-Control: private, max-age=$maxage" );
-				$exp = $maxage;
-			} else {
-				header( "Cache-Control: public, max-age=$maxage, s-maxage=$smaxage" );
-				$exp = min( $maxage, $smaxage );
-			}
+			header( "Cache-Control: public, max-age=$maxage, s-maxage=$smaxage" );
+			$exp = min( $maxage, $smaxage );
 			header( 'Expires: ' . wfTimestamp( TS_RFC2822, $exp + time() ) );
 		}
 
@@ -422,12 +419,12 @@ class ResourceLoader {
 		$response = $this->makeModuleResponse( $context, $modules, $missing );
 
 		// Prepend comments indicating exceptions
-		$response = $exceptions . $response;
+		$response = $errors . $response;
 
 		// Capture any PHP warnings from the output buffer and append them to the
 		// response in a comment if we're in debug mode.
 		if ( $context->getDebug() && strlen( $warnings = ob_get_contents() ) ) {
-			$response = "/*\n$warnings\n*/\n" . $response;
+			$response = $this->makeComment( $warnings ) . $response;
 		}
 
 		// Remove the output buffer and output the response
@@ -435,6 +432,11 @@ class ResourceLoader {
 		echo $response;
 
 		wfProfileOut( __METHOD__ );
+	}
+
+	protected function makeComment( $text ) {
+		$encText = str_replace( '*/', '* /', $text );
+		return "/*\n$encText\n*/\n";
 	}
 
 	/**
@@ -461,7 +463,7 @@ class ResourceLoader {
 				$blobs = MessageBlobStore::get( $this, $modules, $context->getLanguage() );
 			} catch ( Exception $e ) {
 				// Add exception to the output as a comment
-				$exceptions .= "/*\n{$e->__toString()}\n*/\n";
+				$exceptions .= $this->makeComment( $e->__toString() );
 			}
 		} else {
 			$blobs = array();
@@ -534,7 +536,7 @@ class ResourceLoader {
 				}
 			} catch ( Exception $e ) {
 				// Add exception to the output as a comment
-				$exceptions .= "/*\n{$e->__toString()}\n*/\n";
+				$exceptions .= $this->makeComment( $e->__toString() );
 
 				// Register module as missing
 				$missing[] = $name;
