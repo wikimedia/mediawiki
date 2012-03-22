@@ -154,9 +154,9 @@ class Preferences {
 	 */
 	static function profilePreferences( $user, IContextSource $context, &$defaultPreferences ) {
 		global $wgAuth, $wgContLang, $wgParser, $wgCookieExpiration, $wgLanguageCode,
-			$wgDisableTitleConversion, $wgDisableLangConversion, $wgMaxSigChars,
-			$wgEnableEmail, $wgEmailConfirmToEdit, $wgEnableUserEmail, $wgEmailAuthentication,
-			$wgEnotifWatchlist, $wgEnotifUserTalk, $wgEnotifRevealEditorAddress;
+			$wgDisableTitleConversion, $wgDisableLangConversion, $wgMaxSigChars, $wgEnableEmail,
+			$wgEmailConfirmToEdit, $wgEnableUserEmail, $wgEmailAuthentication, $wgEnotifWatchlist,
+			$wgEnotifUserTalk, $wgEnotifRevealEditorAddress, $wgCategoryCollations;
 
 		## User info #####################################
 		// Information panel
@@ -315,6 +315,21 @@ class Preferences {
 					'help-message' => 'prefs-help-variant',
 				);
 			}
+		}
+
+		/* Check if there are more than one collations configured on this site */
+		if ( count( $wgCategoryCollations ) > 1 ) {
+			$options = array();
+			foreach ( $wgCategoryCollations as $collation ) {
+				$options[$context->msg( "collation-$collation" )->text()] = $collation;
+			}
+			$defaultPreferences['collation'] = array(
+				'label-message' => 'prefs-collation',
+				'type' => 'select',
+				'options' => $options,
+				'section' => 'personal/i18n',
+				'help-message' => 'prefs-help-collation',
+			);
 		}
 
 		if ( count( $variantArray ) > 1 && !$wgDisableLangConversion && !$wgDisableTitleConversion ) {
