@@ -1658,15 +1658,17 @@ Note that using the navigation links will reset this column.',
 'mergelogpagetext'   => 'Below is a list of the most recent merges of one page history into another.',
 
 # Diffs
-'history-title'            => 'Revision history of "$1"',
-'difference'               => '(Difference between revisions)',
-'difference-multipage'     => '(Difference between pages)',
-'lineno'                   => 'Line $1:',
-'compareselectedversions'  => 'Compare selected revisions',
-'showhideselectedversions' => 'Show/hide selected revisions',
-'editundo'                 => 'undo',
-'diff-multi'               => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} by {{PLURAL:$2|one user|$2 users}} not shown)',
-'diff-multi-manyusers'     => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} by more than $2 {{PLURAL:$2|user|users}} not shown)',
+'history-title'              => 'Revision history of "$1"',
+'difference-title'           => 'Difference between revisions of "$1"',
+'difference-title-multipage' => 'Difference between pages "$1" and "$2"',
+'difference'                 => '(Difference between revisions)',
+'difference-multipage'       => '(Difference between pages)',
+'lineno'                     => 'Line $1:',
+'compareselectedversions'    => 'Compare selected revisions',
+'showhideselectedversions'   => 'Show/hide selected revisions',
+'editundo'                   => 'undo',
+'diff-multi'                 => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} by {{PLURAL:$2|one user|$2 users}} not shown)',
+'diff-multi-manyusers'       => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} by more than $2 {{PLURAL:$2|user|users}} not shown)',
 
 # Search results
 'search-summary'                   => '', # do not translate or duplicate this message to other languages

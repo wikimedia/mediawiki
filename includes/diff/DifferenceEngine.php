@@ -239,7 +239,7 @@ class DifferenceEngine extends ContextSource {
 		# a diff between a version V and its previous version V' AND the version V
 		# is the first version of that article. In that case, V' does not exist.
 		if ( $this->mOldRev === false ) {
-			$out->setPageTitle( $this->mNewPage->getPrefixedText() );
+			$out->setPageTitle( $this->msg( 'difference-title', $this->mNewPage->getPrefixedText() ) );
 			$out->addSubtitle( $this->msg( 'difference' ) );
 			$samePage = true;
 			$oldHeader = '';
@@ -252,11 +252,12 @@ class DifferenceEngine extends ContextSource {
 			}
 
 			if ( $this->mNewPage->equals( $this->mOldPage ) ) {
-				$out->setPageTitle( $this->mNewPage->getPrefixedText() );
+				$out->setPageTitle( $this->msg( 'difference-title', $this->mNewPage->getPrefixedText() ) );
 				$out->addSubtitle( $this->msg( 'difference' ) );
 				$samePage = true;
 			} else {
-				$out->setPageTitle( $this->mOldPage->getPrefixedText() . ', ' . $this->mNewPage->getPrefixedText() );
+				$out->setPageTitle( $this->msg( 'difference-title-multipage', $this->mOldPage->getPrefixedText(),
+					$this->mNewPage->getPrefixedText() ) );
 				$out->addSubtitle( $this->msg( 'difference-multipage' ) );
 				$samePage = false;
 			}
