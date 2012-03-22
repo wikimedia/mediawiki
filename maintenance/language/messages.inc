@@ -1743,6 +1743,11 @@ $wgMessageStructure = array(
 		'allpagesbadtitle',
 		'allpages-bad-ns',
 	),
+	'cachedspecial' => array(
+		'cachedspecial-viewing-cached-ttl',
+		'cachedspecial-viewing-cached-ts',
+		'cachedspecial-refresh-now',
+	),
 	'categories' => array(
 		'categories',
 		'categories-summary',
@@ -3680,6 +3685,17 @@ $wgMessageStructure = array(
 		'api-error-uploaddisabled',
 		'api-error-verification-error',
 	),
+	'duration' => array(
+		'duration-seconds',
+		'duration-minutes',
+		'duration-hours',
+		'duration-days',
+		'duration-weeks',
+		'duration-years',
+		'duration-decades',
+		'duration-centuries',
+		'duration-millennia'
+	),
 );
 
 /** Comments for each block */
@@ -3917,4 +3933,6 @@ Variants for Chinese language",
 	'logging-irc'           => 'For IRC, see bug 34508. Do not change',
 	'feedback'              => 'Feedback',
 	'apierrors'             => 'API errors',
+	'duration'              => 'Durations',
+	'cachedspecial'         => 'SpecialCachedPage',
 );
