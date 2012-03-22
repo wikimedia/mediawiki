@@ -1222,6 +1222,7 @@ Please note that the parameters in a log entry will appear in the log only in th
 # Diffs
 'history-title'            => 'Displayed as page title when you click on the "history" tab. The parameter $1 is the normal page title.',
 'difference'               => 'Displayed under the title when viewing the difference between two or more edits.',
+'difference-title'         => 'Displayed as page title when viewing the difference between two or more edits. The parameter $1 is the normal page title.',
 'difference-multipage'     => 'Displayed under the title when viewing the difference between two or more pages.
 See also {{msg-mw|difference}}.',
 'lineno'                   => 'Message used when comparing different versions of a page (diff). $1 is a line number.',
