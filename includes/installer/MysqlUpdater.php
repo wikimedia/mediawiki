@@ -224,6 +224,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'addField',	'page',     'page_content_model',		'patch-page-page_content_model.sql' ),
 			array( 'dropField', 'site_stats',   'ss_admins',        'patch-drop-ss_admins.sql' ),
 			array( 'dropField', 'recentchanges', 'rc_moved_to_title',            'patch-rc_moved.sql' ),
+			array( 'doCategorylinksCollationIndicesUpdate' ),
 		);
 	}
 
@@ -738,6 +739,15 @@ class MysqlUpdater extends DatabaseUpdater {
 	protected function doCategorylinksIndicesUpdate() {
 		if ( !$this->indexHasField( 'categorylinks', 'cl_sortkey', 'cl_from' ) ) {
 			$this->applyPatch( 'patch-categorylinksindex.sql', false, "Updating categorylinks Indices" );
+		}
+	}
+
+	protected function doCategorylinksCollationIndicesUpdate() {
+		if ( !$this->indexHasField( 'categorylinks', 'cl_from', 'cl_collation' ) ||
+			!$this->indexHasField( 'categorylinks', 'cl_sortkey', 'cl_collation' )
+		) {
+			$this->applyPatch( 'patch-categorylinks-multiple-collations.sql' );
+			$this->output( "...categorylinks collation indices updated\n" );
 		}
 	}
 
