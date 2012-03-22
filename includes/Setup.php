@@ -348,6 +348,14 @@ if ( $wgAjaxUploadDestCheck ) {
 	$wgAjaxExportList[] = 'SpecialUpload::ajaxGetExistsWarning';
 }
 
+if ( !is_array( $wgCategoryCollation ) ) {
+	$wgCategoryCollation = array( $wgCategoryCollation );
+}
+
+if ( !isset( $wgDefaultUserOptions['collation'] ) ) {
+	$wgDefaultUserOptions['collation'] = $wgCategoryCollation[0];
+}
+
 if ( $wgNewUserLog ) {
 	# Add a new log type
 	$wgLogTypes[]                        = 'newusers';

@@ -5022,7 +5022,7 @@ $wgCategoryPagingLimit = 200;
  * Extensions can define there own collations by subclassing Collation
  * and using the Collation::factory hook.
  */
-$wgCategoryCollation = 'uppercase';
+$wgCategoryCollation = array( 'uppercase' );
 
 /** @} */ # End categories }
 

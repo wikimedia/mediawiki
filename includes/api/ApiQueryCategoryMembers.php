@@ -52,6 +52,8 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 	 * @return void
 	 */
 	private function run( $resultPageSet = null ) {
+		global $wgCategoryCollation;
+
 		$params = $this->extractRequestParams();
 
 		$this->requireOnlyOneParameter( $params, 'title', 'pageid' );
@@ -72,6 +74,13 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			}
 		}
 
+		if ( isset( $params['collation'] ) ) {
+			$collation = $params['collation'];
+		} else if ( in_array( $this->getContext()->getUser()->getOption( 'collation' ), $wgCategoryCollation ) ) {
+			$collation = $this->getContext()->getUser()->getOption( 'collation' );
+		} else {
+			$collation = $wgCategoryCollation[0];
+		}
 		$prop = array_flip( $params['prop'] );
 		$fld_ids = isset( $prop['ids'] );
 		$fld_title = isset( $prop['title'] );
@@ -94,6 +103,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		$this->addTables( array( 'page', 'categorylinks' ) );	// must be in this order for 'USE INDEX'
 
 		$this->addWhereFld( 'cl_to', $categoryTitle->getDBkey() );
+		$this->addWhere( 'cl_collation IN (' . $this->getDB()->makeList( array( '', $collation ) ) . ')' );
 		$queryTypes = $params['type'];
 		$contWhere = false;
 
@@ -143,10 +153,10 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 				$this->addWhereRange( 'cl_from', $dir, null, null );
 			} else {
 				$startsortkey = $params['startsortkeyprefix'] !== null ?
-					Collation::singleton()->getSortkey( $params['startsortkeyprefix'] ) :
+					Collation::singleton( $collation )->getSortkey( $params['startsortkeyprefix'] ) :
 					$params['startsortkey'];
 				$endsortkey = $params['endsortkeyprefix'] !== null ?
-					Collation::singleton()->getSortkey( $params['endsortkeyprefix'] ) :
+					Collation::singleton( $collation )->getSortkey( $params['endsortkeyprefix'] ) :
 					$params['endsortkey'];
 
 				// The below produces ORDER BY cl_sortkey, cl_from, possibly with DESC added to each of them
@@ -265,6 +275,8 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 	}
 
 	public function getAllowedParams() {
+		global $wgCategoryCollation;
+
 		return array(
 			'title' => array(
 				ApiBase::PARAM_TYPE => 'string',
@@ -283,6 +295,9 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 					'type',
 					'timestamp',
 				)
+			),
+			'collation' => array(
+				ApiBase::PARAM_TYPE => $wgCategoryCollation
 			),
 			'namespace' => array (
 				ApiBase::PARAM_ISMULTI => true,
@@ -347,6 +362,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 				' type          - Adds the type that the page has been categorised as (page, subcat or file)',
 				' timestamp     - Adds the timestamp of when the page was included',
 			),
+			'collation' => 'Collation to use',
 			'namespace' => 'Only include pages in these namespaces',
 			'type' => "What type of category members to include. Ignored when {$p}sort=timestamp is set",
 			'sort' => 'Property to sort by',
