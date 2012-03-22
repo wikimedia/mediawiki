@@ -1910,6 +1910,52 @@ class Language {
 	}
 
 	/**
+	 * Takes a number of seconds and turns it into a text using values such as hours and minutes.
+	 *
+	 * @since 1.20
+	 *
+	 * @param integer $seconds The amount of seconds.
+	 * @param array $chosenIntervals The intervals to enable.
+	 *
+	 * @return string
+	 */
+	public function formatDuration( $seconds, array $chosenIntervals = array() ) {
+		$intervals = array(
+			'millennia' => 1000 * 31557600,
+			'centuries' => 100 * 31557600,
+			'decades' => 10 * 31557600,
+			'years' => 31557600, // 86400 * 365.25
+			'weeks' => 604800,
+			'days' => 86400,
+			'hours' => 3600,
+			'minutes' => 60,
+			'seconds' => 1,
+		);
+
+		if ( empty( $chosenIntervals ) ) {
+			$chosenIntervals = array( 'millennia', 'centuries', 'decades', 'years', 'days', 'hours', 'minutes', 'seconds' );
+		}
+
+		$intervals = array_intersect_key( $intervals, array_flip( $chosenIntervals ) );
+		$sortedNames = array_keys( $intervals );
+		$smallestInterval = array_pop( $sortedNames );
+
+		$segments = array();
+
+		foreach ( $intervals as $name => $length ) {
+			$value = floor( $seconds / $length );
+
+			if ( $value > 0 || ( $name == $smallestInterval && empty( $segments ) ) ) {
+				$seconds -= $value * $length;
+				$message = new Message( 'duration-' . $name, array( $value ) );
+				$segments[] = $message->inLanguage( $this )->escaped();
+			}
+		}
+
+		return $this->listToText( $segments );
+	}
+
+	/**
 	 * Internal helper function for userDate(), userTime() and userTimeAndDate()
 	 *
 	 * @param $type String: can be 'date', 'time' or 'both'
