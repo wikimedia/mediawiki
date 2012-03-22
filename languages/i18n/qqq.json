@@ -3380,6 +3380,8 @@
 	"timezone-utc": "{{optional}}",
 	"unknown_extension_tag": "This is an error shown when you use an unknown extension tag name.\n\nThis feature allows tags like <code><nowiki><pre></nowiki></code> to be called with a parser like <code><nowiki>{{#tag:pre}}</nowiki></code>.\n\nParameters:\n* $1 - the unknown extension tag name",
 	"duplicate-defaultsort": "See definition of [[w:Sorting|sort key]] on Wikipedia. Parameters:\n* $1 - old default sort key\n* $2 - new default sort key",
+	"duplicate-defaultcollation": "Error message to show when there is another default collation defined.",
+	"defaultcollation-notcategory": "Error message when {{DEFAULTCOLLATION: }} is used on a non-category page",
 	"version": "{{doc-special|Version}}\n{{Identical|Version}}",
 	"version-summary": "{{doc-specialpagesummary|version}}",
 	"version-extensions": "Header on [[Special:Version]].",

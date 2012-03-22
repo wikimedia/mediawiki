@@ -35,6 +35,29 @@ abstract class Collation {
 	}
 
 	/**
+	 * @since 1.21
+	 * @return Array
+	 */
+	static function getInstanceByContext( $name = null, $title = null, $context = null ) {
+		global $wgCategoryCollations;
+
+		if ( in_array( $name, $wgCategoryCollations ) ) {
+		} elseif ( ( $defaultcollation = wfGetDB( DB_SLAVE )->selectField(
+			'page_props', 'pp_value',
+			array( 'pp_page' => $title->getArticleId(), 'pp_propname' => 'defaultcollation' ),
+			__METHOD__
+		) ) !== false && in_array( $defaultcollation, $wgCategoryCollations ) ) {
+			$name = $defaultcollation;
+		} elseif ( in_array( $context->getUser()->getOption( 'collation' ), $wgCategoryCollations ) ) {
+			$name = $context->getUser()->getOption( 'collation' );
+		} else {
+			$name = $wgCategoryCollations[0];
+		}
+
+		return array( $name, self::getInstance( $name ) );
+	}
+
+	/**
 	 * @throws MWException
 	 * @param string $collationName
 	 * @return Collation

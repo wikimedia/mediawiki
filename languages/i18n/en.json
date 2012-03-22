@@ -3218,6 +3218,8 @@
 	"timezone-utc": "UTC",
 	"unknown_extension_tag": "Unknown extension tag \"$1\"",
 	"duplicate-defaultsort": "<strong>Warning:</strong> Default sort key \"$2\" overrides earlier default sort key \"$1\".",
+	"duplicate-defaultcollation": "\'\'\'Warning:\'\'\' Default collation "$2" overrides earlier default collation \"$1\".",
+	"defaultcollation-notcategory": "\'\'\'Warning:\'\'\' Default collation should be set in category pages.",
 	"version": "Version",
 	"version-summary": "",
 	"version-extensions": "Installed extensions",
