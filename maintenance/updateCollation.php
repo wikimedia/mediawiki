@@ -1,7 +1,7 @@
 <?php
 /**
  * Script will find all rows in the categorylinks table whose collation is
- * out-of-date (cl_collation != $wgCategoryCollation) and repopulate cl_sortkey
+ * out-of-date (cl_collation NOT IN $wgCategoryCollations) and repopulate cl_sortkey
  * using the page title and cl_sortkey_prefix.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -35,69 +35,53 @@ class UpdateCollation extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 
-		global $wgCategoryCollation;
+		global $wgCategoryCollations;
 		$this->mDescription = <<<TEXT
 This script will find all rows in the categorylinks table whose collation is
-out-of-date (cl_collation != '$wgCategoryCollation') and repopulate cl_sortkey
+out-of-date (cl_collation NOT IN $wgCategoryCollations) and repopulate cl_sortkey
 using the page title and cl_sortkey_prefix.  If everything's collation is
 up-to-date, it will do nothing.
 TEXT;
 
 		$this->addOption( 'force', 'Run on all rows, even if the collation is ' .
 			'supposed to be up-to-date.' );
-		$this->addOption( 'previous-collation', 'Set the previous value of ' .
-			'$wgCategoryCollation here to speed up this script, especially if your ' .
-			'categorylinks table is large. This will only update rows with that ' .
-			'collation, though, so it may miss out-of-date rows with a different, ' .
-			'even older collation.', false, true );
 	}
 
 	public function execute() {
-		global $wgCategoryCollation, $wgMiserMode;
+		global $wgCategoryCollations;
 
 		$dbw = $this->getDB( DB_MASTER );
 		$force = $this->getOption( 'force' );
 
-		$options = array( 'LIMIT' => self::BATCH_SIZE, 'STRAIGHT_JOIN' );
+		$options = array( 'LIMIT' => self::BATCH_SIZE, 'DISTINCT', 'STRAIGHT_JOIN' );
+
+		$collationConds = array();
 
 		if ( $force ) {
 			$options['ORDER BY'] = 'cl_from, cl_to';
-			$collationConds = array();
 		} else {
-			if ( $this->hasOption( 'previous-collation' ) ) {
-				$collationConds['cl_collation'] = $this->getOption( 'previous-collation' );
-			} else {
-				$collationConds = array( 0 =>
-					'cl_collation != ' . $dbw->addQuotes( $wgCategoryCollation )
-				);
-			}
-
-			if ( !$wgMiserMode ) {
-				$count = $dbw->selectField(
-					'categorylinks',
-					'COUNT(*)',
-					$collationConds,
-					__METHOD__
-				);
-
-				if ( $count == 0 ) {
-					$this->output( "Collations up-to-date.\n" );
-					return;
-				}
-				$this->output( "Fixing collation for $count rows.\n" );
-			}
+			$collationConds[] = '(' . $dbw->selectSQLText(
+				array( 'cli' => 'categorylinks' ),
+				'COUNT(*)',
+				array(
+					'cli.cl_from = clo.cl_from',
+					'cli.cl_to = clo.cl_to',
+					'cli.cl_collation' => $wgCategoryCollations,
+				),
+				__METHOD__
+			) . ') < ' . count( $wgCategoryCollations );
 		}
 
 		$count = 0;
 		$batchCount = 0;
 		$batchConds = array();
 		do {
-			$this->output( "Selecting next " . self::BATCH_SIZE . " rows..." );
+			$this->output( "Selecting next " . self::BATCH_SIZE . " pairs..." );
+
+			# Select from/to pairs that don't have enough categorylinks rows
 			$res = $dbw->select(
-				array( 'categorylinks', 'page' ),
-				array( 'cl_from', 'cl_to', 'cl_sortkey_prefix', 'cl_collation',
-					'cl_sortkey', 'page_namespace', 'page_title'
-				),
+				array( 'clo' => 'categorylinks', 'page' ),
+				array( 'cl_from', 'cl_to', 'page_namespace', 'page_title' ),
 				array_merge( $collationConds, $batchConds, array( 'cl_from = page_id' ) ),
 				__METHOD__,
 				$options
@@ -107,19 +91,44 @@ TEXT;
 			$dbw->begin( __METHOD__ );
 			foreach ( $res as $row ) {
 				$title = Title::newFromRow( $row );
-				if ( !$row->cl_collation ) {
-					# This is an old-style row, so the sortkey needs to be
-					# converted.
-					if ( $row->cl_sortkey == $title->getText()
-						|| $row->cl_sortkey == $title->getPrefixedText() ) {
-						$prefix = '';
+				# Try to extract some data about the given pair
+				$res2 = $dbw->select(
+					'categorylinks',
+					array( 'cl_sortkey_prefix', 'cl_collation', 'cl_sortkey', 'cl_timestamp' ),
+					array( 'cl_from' => $row->cl_from, 'cl_to' => $row->cl_to ),
+					__METHOD__
+				);
+
+				$prefix = null;
+				$prefix2 = null;
+				$timestamp = null;
+				$collations = array();
+				foreach ( $res2 as $row2 ) {
+					$collations[] = $row2->cl_collation;
+					if ( !$row2->cl_collation ) {
+						# This is an old-style row, so the sortkey needs to be
+						# converted.
+						if ( $row2->cl_sortkey == $title->getText()
+							|| $row2->cl_sortkey == $title->getPrefixedText() ) {
+							$prefix = '';
+						} else {
+							# Custom sortkey, use it as a prefix
+							$prefix = $row2->cl_sortkey;
+						}
 					} else {
-						# Custom sortkey, use it as a prefix
-						$prefix = $row->cl_sortkey;
+						$prefix2 = $row2->cl_sortkey_prefix;
 					}
-				} else {
-					$prefix = $row->cl_sortkey_prefix;
+					if ( isset( $timestamp ) ) {
+						# Should we compare timestamp values more carefully?
+						$timestamp = min( $timestamp, $row2->cl_timestamp );
+					} else {
+						$timestamp = $row2->cl_timestamp;
+					}
 				}
+				if ( isset( $prefix2 ) ) {
+					$prefix = $prefix2;
+				}
+
 				# cl_type will be wrong for lots of pages if cl_collation is 0,
 				# so let's update it while we're here.
 				if ( $title->getNamespace() == NS_CATEGORY ) {
@@ -129,19 +138,52 @@ TEXT;
 				} else {
 					$type = 'page';
 				}
-				$dbw->update(
+
+				$dbw->delete(
 					'categorylinks',
 					array(
-						'cl_sortkey' => Collation::singleton()->getSortKey(
-							$title->getCategorySortkey( $prefix ) ),
-						'cl_sortkey_prefix' => $prefix,
-						'cl_collation' => $wgCategoryCollation,
-						'cl_type' => $type,
-						'cl_timestamp = cl_timestamp',
+						'cl_from' => $row->cl_from,
+						'cl_to' => $row->cl_to,
+						'cl_collation NOT IN (' . $dbw->makeList( $wgCategoryCollations ) . ')',
 					),
-					array( 'cl_from' => $row->cl_from, 'cl_to' => $row->cl_to ),
 					__METHOD__
 				);
+
+				foreach ( Collation::getInstances() as $collationName => $collation ) {
+					if ( !in_array( $collationName, $collations ) ) {
+						$dbw->insert(
+							'categorylinks',
+							array(
+								'cl_from' => $row->cl_from,
+								'cl_to' => $row->cl_to,
+								'cl_sortkey' => $collation->getSortKey(
+									$title->getCategorySortkey( $prefix ) ),
+								'cl_sortkey_prefix' => $prefix,
+								'cl_collation' => $collationName,
+								'cl_type' => $type,
+								'cl_timestamp' => $timestamp,
+							),
+							__METHOD__
+						);
+					} else if ( $force ) {
+						$dbw->update(
+							'categorylinks',
+							array(
+								'cl_sortkey' => $collation->getSortKey(
+									$title->getCategorySortkey( $prefix ) ),
+								'cl_sortkey_prefix' => $prefix,
+								'cl_type' => $type,
+								'cl_timestamp' => $timestamp,
+							),
+							array(
+								'cl_from' => $row->cl_from,
+								'cl_to' => $row->cl_to,
+								'cl_collation' => $collationName,
+							),
+							__METHOD__
+						);
+					}
+				}
 			}
 			$dbw->commit( __METHOD__ );
 

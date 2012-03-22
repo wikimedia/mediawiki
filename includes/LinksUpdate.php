@@ -477,7 +477,7 @@ class LinksUpdate {
 	 * @return array
 	 */
 	private function getCategoryInsertions( $existing = array() ) {
-		global $wgContLang, $wgCategoryCollation;
+		global $wgContLang;
 		$diffs = array_diff_assoc( $this->mCategories, $existing );
 		$arr = array();
 		foreach ( $diffs as $name => $prefix ) {
@@ -492,22 +492,24 @@ class LinksUpdate {
 				$type = 'page';
 			}
 
-			# Treat custom sortkeys as a prefix, so that if multiple
-			# things are forced to sort as '*' or something, they'll
-			# sort properly in the category rather than in page_id
-			# order or such.
-			$sortkey = Collation::singleton()->getSortKey(
-				$this->mTitle->getCategorySortkey( $prefix ) );
+			foreach ( Collation::getInstances() as $collationName => $collation ) {
+				# Treat custom sortkeys as a prefix, so that if multiple
+				# things are forced to sort as '*' or something, they'll
+				# sort properly in the category rather than in page_id
+				# order or such.
+				$sortkey = $collation->getSortKey(
+					$this->mTitle->getCategorySortkey( $prefix ) );
 
-			$arr[] = array(
-				'cl_from'    => $this->mId,
-				'cl_to'      => $name,
-				'cl_sortkey' => $sortkey,
-				'cl_timestamp' => $this->mDb->timestamp(),
-				'cl_sortkey_prefix' => $prefix,
-				'cl_collation' => $wgCategoryCollation,
-				'cl_type' => $type,
-			);
+				$arr[] = array(
+					'cl_from'    => $this->mId,
+					'cl_to'      => $name,
+					'cl_sortkey' => $sortkey,
+					'cl_timestamp' => $this->mDb->timestamp(),
+					'cl_sortkey_prefix' => $prefix,
+					'cl_collation' => $collationName,
+					'cl_type' => $type,
+				);
+			}
 		}
 		return $arr;
 	}

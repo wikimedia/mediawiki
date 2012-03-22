@@ -1,17 +1,70 @@
 <?php
 
 abstract class Collation {
-	static $instance;
+	static $instances = array();
 
 	/**
 	 * @return Collation
 	 */
 	static function singleton() {
-		if ( !self::$instance ) {
-			global $wgCategoryCollation;
-			self::$instance = self::factory( $wgCategoryCollation );
+		global $wgCategoryCollations;
+
+		return self::getInstance( $wgCategoryCollations[0] );
+	}
+
+	/**
+	 * @since 1.20
+	 * @return Collation
+	 */
+	static function getInstance( $name ) {
+		global $wgCategoryCollations;
+
+		if ( !isset( self::$instances[$name] ) ) {
+			if ( in_array( $name, $wgCategoryCollations ) ) {
+				self::$instances[$name] = self::factory( $name );
+			} else {
+				throw new MWException( __METHOD__.": invalid collation type \"$name\"" );
+			}
 		}
-		return self::$instance;
+
+		return self::$instances[$name];
+	}
+
+	/**
+	 * @since 1.20
+	 * @return Array
+	 */
+	static function getInstanceByContext( $name, $title = null, $context = null ) {
+		global $wgCategoryCollations;
+
+		if ( is_array( $name ) ) {
+			if ( isset( $name['collation'] )
+				&& in_array( $name['collation'], $wgCategoryCollations ) ) {
+				$name = $name['collation'];
+			} else if ( in_array( $context->getUser()->getOption( 'collation' ),
+				$wgCategoryCollations ) ) {
+				$name = $context->getUser()->getOption( 'collation' );
+			} else {
+				$name = $wgCategoryCollations[0];
+			}
+		}
+
+		return array( $name, self::getInstance( $name ) );
+	}
+
+	/**
+	 * @since 1.20
+	 * @return Array
+	 */
+	static function getInstances() {
+		global $wgCategoryCollations;
+
+		foreach ( $wgCategoryCollations as $name ) {
+			if ( !isset( self::$instances[$name] ) ) {
+				self::$instances[$name] = self::factory( $name );
+			}
+		}
+		return self::$instances;
 	}
 
 	/**
