@@ -49,6 +49,11 @@ class CategoryViewer extends ContextSource {
 	var $collation;
 
 	/**
+	 * @var Collation name
+	 */
+	var $collationName;
+
+	/**
 	 * @var ImageGallery
 	 */
 	var $gallery;
@@ -79,7 +84,7 @@ class CategoryViewer extends ContextSource {
 	function __construct( $title, IContextSource $context, $from = array(),
 		$until = array(), $query = array()
 	) {
-		global $wgCategoryPagingLimit;
+		global $wgCategoryPagingLimit, $wgCategoryCollations;
 		$this->title = $title;
 		$this->setContext( $context );
 		$this->from = $from;
@@ -87,7 +92,8 @@ class CategoryViewer extends ContextSource {
 		$this->limit = $wgCategoryPagingLimit;
 		$this->cat = Category::newFromTitle( $title );
 		$this->query = $query;
-		$this->collation = Collation::singleton();
+		list( $this->collationName, $this->collation ) = Collation::getInstanceByContext(
+			isset( $query['collation'] ) ? $query['collation'] : null, $title, $context );
 		unset( $this->query['title'] );
 	}
 
@@ -288,13 +294,17 @@ class CategoryViewer extends ContextSource {
 		foreach ( array( 'page', 'subcat', 'file' ) as $type ) {
 			# Get the sortkeys for start/end, if applicable.  Note that if
 			# the collation in the database differs from the one
-			# set in $wgCategoryCollation, pagination might go totally haywire.
-			$extraConds = array( 'cl_type' => $type );
+			# set in $wgCategoryCollations, pagination might go totally haywire.
+			$conds = array(
+				'cl_type' => $type,
+				'cl_to' => $this->title->getDBkey(),
+				'cl_collation' => array( '', $this->collationName ),
+			);
 			if ( isset( $this->from[$type] ) && $this->from[$type] !== null ) {
-				$extraConds[] = 'cl_sortkey >= '
+				$conds[] = 'cl_sortkey >= '
 					. $dbr->addQuotes( $this->collation->getSortKey( $this->from[$type] ) );
 			} elseif ( isset( $this->until[$type] ) && $this->until[$type] !== null ) {
-				$extraConds[] = 'cl_sortkey < '
+				$conds[] = 'cl_sortkey < '
 					. $dbr->addQuotes( $this->collation->getSortKey( $this->until[$type] ) );
 				$this->flip[$type] = true;
 			}
@@ -305,7 +315,7 @@ class CategoryViewer extends ContextSource {
 					'page_is_redirect', 'cl_sortkey', 'cat_id', 'cat_title',
 					'cat_subcats', 'cat_pages', 'cat_files',
 					'cl_sortkey_prefix', 'cl_collation' ),
-				array_merge( array( 'cl_to' => $this->title->getDBkey() ), $extraConds ),
+				$conds,
 				__METHOD__,
 				array(
 					'USE INDEX' => array( 'categorylinks' => 'cl_sortkey' ),
