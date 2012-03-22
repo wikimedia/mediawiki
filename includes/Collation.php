@@ -4,9 +4,12 @@ abstract class Collation {
 	static $instance = array();
 
 	/**
-	 * @return Collation if $name is set, otherwise Array of Collations
+	 * If $name is an array, an array( collationName, collation ) will be
+	 * returned for given $name['collation'], $title (of the category) and $context.
+	 * If $name is a string, the specified collation will be returned.
+	 * Otherwise a full array( name => collation ) will be returned.
 	 */
-	static function singleton( $name = null ) {
+	static function singleton( $name = null, $title, $context ) {
 		global $wgCategoryCollation;
 
 		if ( !isset( $name ) ) {
@@ -15,12 +18,28 @@ abstract class Collation {
 			}
 			return self::$instance;
 		}
+		$array = is_array( $name );
+		if ( $array ) {
+			if ( isset( $name['collation'] ) && in_array( $name['collation'], $wgCategoryCollation ) ) {
+				$name = $name['collation'];
+			} else if ( ( $defaultcollation = wfGetDB( DB_SLAVE )->selectField(
+				'page_props', 'pp_value',
+				array( 'pp_page' => $title->getArticleId(), 'pp_propname' => 'defaultcollation' ),
+				__METHOD__
+			) ) !== false && in_array( $defaultcollation, $wgCategoryCollation ) ) {
+				$name = $defaultcollation;
+			} else if ( in_array( $context->getUser()->getOption( 'collation' ), $wgCategoryCollation ) ) {
+				$name = $context->getUser()->getOption( 'collation' );
+			} else {
+				$name = $wgCategoryCollation[0];
+			}
+		}
 		if ( !isset( self::$instance[$name] ) ) {
 			if ( in_array( $name, $wgCategoryCollation ) ) {
 				self::$instance[$name] = self::factory( $name );
 			}
 		}
-		return self::$instance[$name];
+		return $array ? array( $name, self::$instance[$name] ) : self::$instance[$name];
 	}
 
 	/**

@@ -56,6 +56,7 @@ class CoreParserFunctions {
 		$parser->setFunctionHook( 'anchorencode',     array( __CLASS__, 'anchorencode'     ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'special',          array( __CLASS__, 'special'          ) );
 		$parser->setFunctionHook( 'defaultsort',      array( __CLASS__, 'defaultsort'      ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'defaultcollation', array( __CLASS__, 'defaultcollation' ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'filepath',         array( __CLASS__, 'filepath'         ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'pagesincategory',  array( __CLASS__, 'pagesincategory'  ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'pagesize',         array( __CLASS__, 'pagesize'         ), SFH_NO_HASH );
@@ -715,6 +716,48 @@ class CoreParserFunctions {
 		} else {
 			return( '<span class="error">' .
 				wfMsgForContent( 'duplicate-defaultsort',
+						 htmlspecialchars( $old ),
+						 htmlspecialchars( $text ) ) .
+				'</span>' );
+		}
+	}
+
+	/**
+	 * @param $parser Parser
+	 * @param $text String The collation to use
+	 * @param $uarg String Either "noreplace" or "noerror" (in en)
+	 *   both suppress errors, and noreplace does nothing if
+	 *   a default collation already exists.
+	 * @return string
+	 */
+	public static function defaultcollation( $parser, $text, $uarg = '' ) {
+		static $magicWords = null;
+		if ( is_null( $magicWords ) ) {
+			$magicWords = new MagicWordArray( array( 'defaultcollation_noerror', 'defaultcollation_noreplace' ) );
+		}
+		$arg = $magicWords->matchStartToEnd( $uarg );
+
+		if ( $parser->getTitle()->getNamespace() != NS_CATEGORY ) {
+			if ( $arg ) {
+				return '';
+			} else {
+				return '<span class="error">' . wfMsgForContent( 'defaultcollation-notcategory' ) . '</span>';
+			}
+		}
+
+		$text = trim( $text );
+		if( strlen( $text ) == 0 )
+			return '';
+		$old = $parser->getOutput()->getProperty( 'defaultcollation' );
+		if ( $old === false || $arg !== 'defaultcollation_noreplace' ) {
+			$parser->getOutput()->setProperty( 'defaultcollation', $text );
+		}
+
+		if( $old === false || $old == $text || $arg ) {
+			return '';
+		} else {
+			return( '<span class="error">' .
+				wfMsgForContent( 'duplicate-defaultcollation',
 						 htmlspecialchars( $old ),
 						 htmlspecialchars( $text ) ) .
 				'</span>' );

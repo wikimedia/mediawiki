@@ -74,13 +74,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			}
 		}
 
-		if ( isset( $params['collation'] ) ) {
-			$collation = $params['collation'];
-		} else if ( in_array( $this->getContext()->getUser()->getOption( 'collation' ), $wgCategoryCollation ) ) {
-			$collation = $this->getContext()->getUser()->getOption( 'collation' );
-		} else {
-			$collation = $wgCategoryCollation[0];
-		}
+		list( $collationName, $collation ) = Collation::singleton( $params, $categoryTitle, $this->getContext() );
 		$prop = array_flip( $params['prop'] );
 		$fld_ids = isset( $prop['ids'] );
 		$fld_title = isset( $prop['title'] );
@@ -103,7 +97,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		$this->addTables( array( 'page', 'categorylinks' ) );	// must be in this order for 'USE INDEX'
 
 		$this->addWhereFld( 'cl_to', $categoryTitle->getDBkey() );
-		$this->addWhere( 'cl_collation IN (' . $this->getDB()->makeList( array( '', $collation ) ) . ')' );
+		$this->addWhere( 'cl_collation IN (' . $this->getDB()->makeList( array( '', $collationName ) ) . ')' );
 		$queryTypes = $params['type'];
 		$contWhere = false;
 
@@ -153,10 +147,10 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 				$this->addWhereRange( 'cl_from', $dir, null, null );
 			} else {
 				$startsortkey = $params['startsortkeyprefix'] !== null ?
-					Collation::singleton( $collation )->getSortkey( $params['startsortkeyprefix'] ) :
+					$collation->getSortkey( $params['startsortkeyprefix'] ) :
 					$params['startsortkey'];
 				$endsortkey = $params['endsortkeyprefix'] !== null ?
-					Collation::singleton( $collation )->getSortkey( $params['endsortkeyprefix'] ) :
+					$collation->getSortkey( $params['endsortkeyprefix'] ) :
 					$params['endsortkey'];
 
 				// The below produces ORDER BY cl_sortkey, cl_from, possibly with DESC added to each of them

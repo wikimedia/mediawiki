@@ -72,14 +72,7 @@ class CategoryViewer extends ContextSource {
 		$this->limit = $wgCategoryPagingLimit;
 		$this->cat = Category::newFromTitle( $title );
 		$this->query = $query;
-		if ( isset( $query['collation'] ) && in_array( $query['collation'], $wgCategoryCollation ) ) {
-			$this->collationName = $query['collation'];
-		} else if ( in_array( $context->getUser()->getOption( 'collation' ), $wgCategoryCollation ) ) {
-			$this->collationName = $context->getUser()->getOption( 'collation' );
-		} else {
-			$this->collationName = $wgCategoryCollation[0];
-		}
-		$this->collation = Collation::singleton( $this->collationName );
+		list( $this->collationName, $this->collation ) = Collation::singleton( $query, $title, $context );
 		unset( $this->query['title'] );
 	}
 

@@ -25,6 +25,8 @@ production.
 * Introduce a cryptographic random number generator source api for use when
   generating various tokens.
 * (bug 35378) Support multiple collations at the same time.
+* (bug 28397) New magic word "{{DEFAULTCOLLATION:}}" to specify the default
+  collation to use for a category.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
