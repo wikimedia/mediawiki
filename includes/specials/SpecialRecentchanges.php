@@ -568,15 +568,15 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		$submit = ' ' . Xml::submitbutton( wfMsg( 'allpagessubmit' ) );
 
 		$out = Xml::openElement( 'table', array( 'class' => 'mw-recentchanges-table' ) );
-		foreach( $extraOpts as $optionRow ) {
+		foreach( $extraOpts as $name=>$optionRow ) {
 			# Add submit button to the last row only
 			++$count;
-			$addSubmit = $count === $extraOptsCount ? $submit : '';
+			$addSubmit = ( $count === $extraOptsCount ) ? $submit : '';
 
 			$out .= Xml::openElement( 'tr' );
 			if( is_array( $optionRow ) ) {
 				$out .= Xml::tags( 'td', array( 'class' => 'mw-label' ), $optionRow[0] );
-				$out .= Xml::tags( 'td', array( 'class' => 'mw-input' ), $optionRow[1] . $addSubmit );
+				$out .= Xml::tags( 'td', array( 'class' => 'mw-label ' . $name . '-label' ), $optionRow[0] );
 			} else {
 				$out .= Xml::tags( 'td', array( 'class' => 'mw-input', 'colspan' => 2 ), $optionRow . $addSubmit );
 			}
