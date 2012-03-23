@@ -721,24 +721,8 @@ class SpecialVersion extends SpecialPage {
 	 * @return bool|String sha1 of commit HEAD points to
 	 */
 	public static function getGitHeadSha1( $dir ) {
-		$BASEDIR  = "{$dir}/.git/";
-		$HEADfile = "{$BASEDIR}/HEAD";
-
-		if( !file_exists( $HEADfile ) ) {
-			return false;
-		}
-
-		preg_match( "/ref: (.*)/",
-			file_get_contents( $HEADfile ), $m );
-
-		$REFfile = "{$BASEDIR}{$m[1]}";
-		if( !file_exists( $REFfile ) ) {
-			return false;
-		}
-
-		$sha1 = rtrim( file_get_contents( $REFfile ) );
-
-		return $sha1;
+		$repo = new GitInfo( $dir );
+		return $repo->getHeadSHA1();
 	}
 
 	function showEasterEgg() {
