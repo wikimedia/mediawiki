@@ -479,13 +479,7 @@ class Revision {
 			$this->mSha1      = isset( $row['sha1']  )      ? strval( $row['sha1']  )      : null;
 
             $this->mContentModelName = isset( $row['content_model']  )  ? strval( $row['content_model'] ) : null;
-            $this->mContentFormat      = isset( $row['content_format']  )   ? strval( $row['content_format'] ) : null;
-
-            if( !isset( $row->rev_content_format ) || is_null( $row->rev_content_format ) ) {
-                $this->mContentFormat = null; # determine on demand if needed
-            } else {
-                $this->mContentFormat = $row->rev_content_format;
-            }
+            $this->mContentFormat    = isset( $row['content_format']  )   ? strval( $row['content_format'] ) : null;
 
 			// Enforce spacing trimming on supplied text
 			$this->mComment   = isset( $row['comment']    ) ?  trim( strval( $row['comment'] ) ) : null;
@@ -843,7 +837,7 @@ class Revision {
                 $this->mText = $this->loadText();
             }
 
-            $this->mContent = $handler->unserialize( $this->mText, $title, $format );
+            $this->mContent = is_null( $this->mText ) ? null : $handler->unserialize( $this->mText, $format );
         }
 
         return $this->mContent;
@@ -1104,28 +1098,29 @@ class Revision {
 		$rev_id = isset( $this->mId )
 			? $this->mId
 			: $dbw->nextSequenceValue( 'revision_rev_id_seq' );
-		$dbw->insert( 'revision',
-			array(
-				'rev_id'         => $rev_id,
-				'rev_page'       => $this->mPage,
-				'rev_text_id'    => $this->mTextId,
-				'rev_comment'    => $this->mComment,
-				'rev_minor_edit' => $this->mMinorEdit ? 1 : 0,
-				'rev_user'       => $this->mUser,
-				'rev_user_text'  => $this->mUserText,
-				'rev_timestamp'  => $dbw->timestamp( $this->mTimestamp ),
-				'rev_deleted'    => $this->mDeleted,
-				'rev_len'        => $this->mSize,
-				'rev_parent_id'  => is_null( $this->mParentId )
-					? $this->getPreviousRevisionId( $dbw )
-					: $this->mParentId,
-				'rev_sha1'       => is_null( $this->mSha1 )
-					? Revision::base36Sha1( $this->mText )
-					: $this->mSha1,
-                'rev_content_model'       => $this->getContentModelName(),
-                'rev_content_format'        => $this->getContentFormat(),
-			), __METHOD__
-		);
+
+        $row = array(
+            'rev_id'         => $rev_id,
+            'rev_page'       => $this->mPage,
+            'rev_text_id'    => $this->mTextId,
+            'rev_comment'    => $this->mComment,
+            'rev_minor_edit' => $this->mMinorEdit ? 1 : 0,
+            'rev_user'       => $this->mUser,
+            'rev_user_text'  => $this->mUserText,
+            'rev_timestamp'  => $dbw->timestamp( $this->mTimestamp ),
+            'rev_deleted'    => $this->mDeleted,
+            'rev_len'        => $this->mSize,
+            'rev_parent_id'  => is_null( $this->mParentId )
+                ? $this->getPreviousRevisionId( $dbw )
+                : $this->mParentId,
+            'rev_sha1'       => is_null( $this->mSha1 )
+                ? Revision::base36Sha1( $this->mText )
+                : $this->mSha1,
+            'rev_content_model'       => $this->getContentModelName(),
+            'rev_content_format'        => $this->getContentFormat(),
+        );
+
+		$dbw->insert( 'revision', $row, __METHOD__ );
 
 		$this->mId = !is_null( $rev_id ) ? $rev_id : $dbw->insertId();
 

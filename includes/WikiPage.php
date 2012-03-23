@@ -1397,7 +1397,9 @@ class WikiPage extends Page {
 				'parent_id'  => $oldid,
 				'user'       => $user->getId(),
 				'user_text'  => $user->getName(),
-				'timestamp'  => $now
+				'timestamp'  => $now,
+                'content_model' => $content->getModelName(),
+                'content_format' => $serialisation_format,
 			) );
 
 			$changed = !$content->equals( $old_content );
@@ -1502,7 +1504,9 @@ class WikiPage extends Page {
                 'len'        => $newsize,
 				'user'       => $user->getId(),
 				'user_text'  => $user->getName(),
-				'timestamp'  => $now
+				'timestamp'  => $now,
+                'content_model' => $content->getModelName(),
+                'content_format' => $serialisation_format,
 			) );
 			$revisionId = $revision->insertOn( $dbw );
 

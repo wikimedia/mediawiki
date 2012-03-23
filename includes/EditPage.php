@@ -706,6 +706,9 @@ class EditPage {
 		$this->content_model = $request->getText( 'model', $content_handler->getModelName() ); #may be overridden by revision
         $this->content_format = $request->getText( 'format', $content_handler->getDefaultFormat() ); #may be overridden by revision
 
+        #TODO: check if the desired model is allowed in this namespace, and if a transition from the page's current model to the new model is allowed
+        #TODO: check if the desired content model supports the given content format!
+
 		$this->live = $request->getCheck( 'live' );
 		$this->editintro = $request->getText( 'editintro',
 			// Custom edit intro for new sections
@@ -920,7 +923,7 @@ class EditPage {
 	 */
 	private function getCurrentContent() {
         $rev = $this->mArticle->getRevision();
-		$content = $rev->getContent( Revision::RAW );
+		$content = $rev ? $rev->getContent( Revision::RAW ) : null;
 
 		if ( $content  === false || $content === null ) {
             if ( !$this->content_model ) $this->content_model = $this->getTitle()->getContentModelName();
@@ -1520,7 +1523,7 @@ class EditPage {
 			( ( $this->minoredit && !$this->isNew ) ? EDIT_MINOR : 0 ) |
 			( $bot ? EDIT_FORCE_BOT : 0 );
 
-		$doEditStatus = $this->mArticle->doEditContent( $content, $this->summary, $flags );
+		$doEditStatus = $this->mArticle->doEditContent( $content, $this->summary, $flags, false, null, $this->content_format );
 
 		if ( $doEditStatus->isOK() ) {
 			$result['redirect'] = $content->isRedirect();
@@ -1918,6 +1921,9 @@ class EditPage {
 
 		$wgOut->addHTML( Html::hidden( 'oldid', $this->oldid ) );
 
+        $wgOut->addHTML( Html::hidden( 'format', $this->content_format ) );
+        $wgOut->addHTML( Html::hidden( 'model', $this->content_model ) );
+
 		if ( $this->section == 'new' ) {
 			$this->showSummaryInput( true, $this->summary );
 			$wgOut->addHTML( $this->getSummaryPreview( true, $this->summary ) );
@@ -1947,6 +1953,9 @@ class EditPage {
 		$wgOut->addHTML( $this->editFormTextAfterContent );
 
 		$wgOut->addWikiText( $this->getCopywarn() );
+
+        $wgOut->addHTML( Html::element( 'p', null, "model: " . $this->content_model ) ); #FIXME: content handler debug stuff, DELETE!
+        $wgOut->addHTML( Html::element( 'p', null, "format: " . $this->content_format ) ); #FIXME: content handler debug stuff, DELETE!
 
 		$wgOut->addHTML( $this->editFormTextAfterWarn );
 
@@ -2692,8 +2701,7 @@ HTML
 		# don't parse non-wikitext pages, show message about preview
 		# XXX: stupid php bug won't let us use $this->getContextTitle()->isCssJsSubpage() here -- This note has been there since r3530. Sure the bug was fixed time ago?
 
-        #FIXME: get appropriate content handler!
-		if ( $this->isCssJsSubpage || !$this->mTitle->isWikitextPage() ) {
+		if ( $this->isCssJsSubpage || $this->mTitle->isCssOrJsPage() ) { #TODO: kill all special case handling for CSS/JS content!
 			if( $this->mTitle->isCssJsSubpage() ) {
 				$level = 'user';
 			} elseif( $this->mTitle->isCssOrJsPage() ) {
@@ -2715,30 +2723,39 @@ HTML
 				} else {
 					throw new MWException( 'A CSS/JS (sub)page but which is not css nor js!' );
 				}
-			}
+			} #FIXME: else $previewtext is undefined!
 
 			$parserOutput = $wgParser->parse( $previewtext, $this->mTitle, $parserOptions );
 			$previewHTML = $parserOutput->mText;
-			$previewHTML .= "<pre class=\"$class\" dir=\"ltr\">\n" . htmlspecialchars( $this->textbox1 ) . "\n</pre>\n";
+			$previewHTML .= "<pre class=\"$class\" dir=\"ltr\">\n" . htmlspecialchars( $this->textbox1 ) . "\n</pre>\n"; #FIXME: use content object!
 		} else {
 			$rt = Title::newFromRedirectArray( $this->textbox1 );
 			if ( $rt ) {
 				$previewHTML = $this->mArticle->viewRedirect( $rt, false );
 			} else {
-				$toparse = $this->textbox1;
+				$content = ContentHandler::makeContent( $this->textbox1, $this->getTitle(), $this->content_model, $this->content_format );
 
 				# If we're adding a comment, we need to show the
 				# summary as the headline
 				if ( $this->section == "new" && $this->summary != "" ) {
-					$toparse = wfMsgForContent( 'newsectionheaderdefaultlevel', $this->summary ) . "\n\n" . $toparse;
+                    $content = $content->addSectionHeader( $this->summary );
 				}
 
+                $toparse_orig = $content->serialize( $this->content_format );
+                $toparse = $toparse_orig;
 				wfRunHooks( 'EditPageGetPreviewText', array( $this, &$toparse ) );
+
+                if ( $toparse !== $toparse_orig ) {
+                    #hook changed the text, create new Content object
+                    $content = ContentHandler::makeContent( $toparse, $this->getTitle(), $this->content_model, $this->content_format );
+                }
+
+                wfRunHooks( 'EditPageGetPreviewContent', array( $this, &$content ) ); # FIXME: document new hook
 
 				$parserOptions->enableLimitReport();
 
-				$toparse = $wgParser->preSaveTransform( $toparse, $this->mTitle, $wgUser, $parserOptions );
-				$parserOutput = $wgParser->parse( $toparse, $this->mTitle, $parserOptions );
+				$content = $content->preSaveTransform( $this->mTitle, $wgUser, $parserOptions );
+				$parserOutput = $content->getParserOutput( $this->mTitle, null, $parserOptions );
 
 				$previewHTML = $parserOutput->getText();
 				$this->mParserOutput = $parserOutput;
