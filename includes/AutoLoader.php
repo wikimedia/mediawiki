@@ -95,6 +95,7 @@ $wgAutoloadLocalClasses = array(
 	'FormAction' => 'includes/Action.php',
 	'FormOptions' => 'includes/FormOptions.php',
 	'FormSpecialPage' => 'includes/SpecialPage.php',
+	'GitInfo' => 'includes/GitInfo.php',
 	'HashtableReplacer' => 'includes/StringUtils.php',
 	'HistoryBlob' => 'includes/HistoryBlob.php',
 	'HistoryBlobCurStub' => 'includes/HistoryBlob.php',
