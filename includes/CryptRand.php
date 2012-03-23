@@ -120,7 +120,7 @@ class MWCryptRand {
 	/**
 	 * Randomly hash data while mixing in clock drift data for randomness
 	 *
-	 * @param $data The data to randomly hash.
+	 * @param $data string The data to randomly hash.
 	 * @return String The hashed bytes
 	 * @author Tim Starling
 	 */
@@ -166,7 +166,7 @@ class MWCryptRand {
 
 	/**
 	 * Return a rolling random state initially build using data from unstable sources
-	 * @return A new weak random state
+	 * @return string A new weak random state
 	 */
 	protected function randomState() {
 		static $state = null;
@@ -184,6 +184,7 @@ class MWCryptRand {
 
 	/**
 	 * Decide on the best acceptable hash algorithm we have available for hash()
+	 * @throws MWException
 	 * @return String A hash algorithm
 	 */
 	protected function hashAlgo() {
@@ -227,6 +228,7 @@ class MWCryptRand {
 	 * Generate an acceptably unstable one-way-hash of some text
 	 * making use of the best hash algorithm that we have available.
 	 *
+	 * @param $data string
 	 * @return String A raw hash of the data
 	 */
 	protected function hash( $data ) {
@@ -237,6 +239,8 @@ class MWCryptRand {
 	 * Generate an acceptably unstable one-way-hmac of some text
 	 * making use of the best hash algorithm that we have available.
 	 *
+	 * @param $data string
+	 * @param $key string
 	 * @return String A raw hash of the data
 	 */
 	protected function hmac( $data, $key ) {
@@ -282,7 +286,7 @@ class MWCryptRand {
 				if ( $iv === false ) {
 					wfDebug( __METHOD__ . ": mcrypt_create_iv returned false.\n" );
 				} else {
-					$bytes .= $iv;
+					$buffer .= $iv;
 					wfDebug( __METHOD__ . ": mcrypt_create_iv generated " . strlen( $iv ) . " bytes of randomness.\n" );
 				}
 				wfProfileOut( __METHOD__ . '-mcrypt' );
@@ -409,6 +413,7 @@ class MWCryptRand {
 
 	/**
 	 * Return a singleton instance of MWCryptRand
+	 * @return MWCryptRand
 	 */
 	protected static function singleton() {
 		if ( is_null( self::$singleton ) ) {
