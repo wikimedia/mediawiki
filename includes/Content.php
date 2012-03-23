@@ -167,6 +167,17 @@ abstract class Content {
     }
 
     /**
+     * Returns a new WikitextContent object with the given section heading prepended, if supported.
+     * The default implementation just returns this Content object unmodified, ignoring the section header.
+     *
+     * @param $header String
+     * @return Content
+     */
+    public function addSectionHeader( $header ) {
+        return $this;
+    }
+
+    /**
      * Returns a Content object with preload transformations applied (or this object if no transformations apply).
      *
      * @param Title $title
@@ -386,6 +397,18 @@ class WikitextContent extends TextContent {
 
         wfProfileOut( __METHOD__ );
         return $newContent;
+    }
+
+    /**
+     * Returns a new WikitextContent object with the given section heading prepended.
+     *
+     * @param $header String
+     * @return Content
+     */
+    public function addSectionHeader( $header ) {
+        $text = wfMsgForContent( 'newsectionheaderdefaultlevel', $this->sectiontitle ) . "\n\n" . $this->getNativeData();
+
+        return new WikitextContent( $text );
     }
 
     /**

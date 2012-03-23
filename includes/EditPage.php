@@ -920,7 +920,7 @@ class EditPage {
 	 */
 	private function getCurrentContent() {
         $rev = $this->mArticle->getRevision();
-		$content = $rev->getContentObject( Revision::RAW );
+		$content = $rev->getContent( Revision::RAW );
 
 		if ( $content  === false || $content === null ) {
             if ( !$this->content_model ) $this->content_model = $this->getTitle()->getContentModelName();
@@ -1309,10 +1309,9 @@ class EditPage {
 
 			$result['sectionanchor'] = '';
 			if ( $this->section == 'new' ) {
-                .........FIXME...............
 				if ( $this->sectiontitle !== '' ) {
 					// Insert the section title above the content.
-					$T_E_X_T = wfMsgForContent( 'newsectionheaderdefaultlevel', $this->sectiontitle ) . "\n\n" . $T_E_X_T;
+					$content = $content->addSectionHeader( $this->sectiontitle );
 					
 					// Jump to the new section
 					$result['sectionanchor'] = $wgParser->guessLegacySectionNameFromWikiText( $this->sectiontitle );
@@ -1326,7 +1325,7 @@ class EditPage {
 					}
 				} elseif ( $this->summary !== '' ) {
 					// Insert the section title above the content.
-					$T_E_X_T = wfMsgForContent( 'newsectionheaderdefaultlevel', $this->summary ) . "\n\n" . $T_E_X_T;
+                    $content = $content->addSectionHeader( $this->sectiontitle );
 					
 					// Jump to the new section
 					$result['sectionanchor'] = $wgParser->guessLegacySectionNameFromWikiText( $this->summary );
@@ -1376,27 +1375,34 @@ class EditPage {
 			} else {
 				$sectionTitle = $this->summary;
 			}
-			
+
+            $textbox_content = ContentHandler::makeContent( $this->textbox1, $this->getTitle(), $this->content_model, $this->content_format );
+            $content = false;
+
 			if ( $this->isConflict ) {
 				wfDebug( __METHOD__ . ": conflict! getting section '$this->section' for time '$this->edittime' (article time '{$timestamp}')\n" );
-                $T_E_X_T = $this->mArticle->replaceSection( $this->section, $this->textbox1, $sectionTitle, $this->edittime ); #FIXME: use Content object throughout, make edit form aware of content model and serialization format
+
+                $content = $this->mArticle->replaceSectionContent( $this->section, $textbox_content, $sectionTitle, $this->edittime );
 			} else {
 				wfDebug( __METHOD__ . ": getting section '$this->section'\n" );
-                $T_E_X_T = $this->mArticle->replaceSection( $this->section, $this->textbox1, $sectionTitle ); #FIXME: use Content object throughout, make edit form aware of content model and serialization format
+
+                $content = $this->mArticle->replaceSectionContent( $this->section, $textbox_content, $sectionTitle );
 			}
-			if ( is_null( $T_E_X_T ) ) {
+
+			if ( is_null( $content ) ) {
 				wfDebug( __METHOD__ . ": activating conflict; section replace failed.\n" );
 				$this->isConflict = true;
-				$T_E_X_T = $this->textbox1; // do not try to merge here! #FIXME: unserialize Content
+				$content = $textbox_content; // do not try to merge here!
 			} elseif ( $this->isConflict ) {
 				# Attempt merge
-				if ( $this->mergeChangesInto( $T_E_X_T ) ) { #FIXME: passe/receive Content object
+				if ( $this->mergeChangesIntoContent( $textbox_content ) ) {
 					// Successful merge! Maybe we should tell the user the good news?
+                    $content = $textbox_content;
 					$this->isConflict = false;
 					wfDebug( __METHOD__ . ": Suppressing edit conflict, successful merge.\n" );
 				} else {
 					$this->section = '';
-					$this->textbox1 = $T_E_X_T;
+					#$this->textbox1 = $text; #redundant, nothing to do here?
 					wfDebug( __METHOD__ . ": Keeping edit conflict, failed merge.\n" );
 				}
 			}
@@ -1408,7 +1414,8 @@ class EditPage {
 			}
 
 			// Run post-section-merge edit filter
-			if ( !wfRunHooks( 'EditFilterMerged', array( $this, $T_E_X_T, &$this->hookError, $this->summary ) ) ) {
+			if ( !wfRunHooks( 'EditFilterMerged', array( $this, $content->serialize( $this->content_format ), &$this->hookError, $this->summary ) )
+                || !wfRunHooks( 'EditFilterMergedContent', array( $this, $content, &$this->hookError, $this->summary ) ) ) { #FIXME: document new hook
 				# Error messages etc. could be handled within the hook...
 				$status->fatal( 'hookaborted' );
 				$status->value = self::AS_HOOK_ERROR;
@@ -1424,8 +1431,8 @@ class EditPage {
 
 			# Handle the user preference to force summaries here, but not for null edits
 			if ( $this->section != 'new' && !$this->allowBlankSummary
-				&& $this->getOriginalContent()... != $T_E_X_T
-				&& !Title::newFromRedirect( $T_E_X_T ) ) # check if it's not a redirect
+				&& !$content->equals( $this->getOriginalContent() )
+				&& !$content->isRedirect() ) # check if it's not a redirect
 			{
 				if ( md5( $this->summary ) == $this->autoSumm ) {
 					$this->missingSummary = true;
@@ -1493,14 +1500,14 @@ class EditPage {
 			// merged the section into full text. Clear the section field
 			// so that later submission of conflict forms won't try to
 			// replace that into a duplicated mess.
-			$this->textbox1 = $T_E_X_T;
+			$this->textbox1 = $content->serialize( $this->content_format );
 			$this->section = '';
 
 			$status->value = self::AS_SUCCESS_UPDATE;
 		}
 
 		// Check for length errors again now that the section is merged in
-		$this->kblength = (int)( strlen( $T_E_X_T ) / 1024 );
+		$this->kblength = (int)( strlen( $content->serialize( $this->content_format ) ) / 1024 );
 		if ( $this->kblength > $wgMaxArticleSize ) {
 			$this->tooBig = true;
 			$status->setResult( false, self::AS_MAX_ARTICLE_SIZE_EXCEEDED );
@@ -1513,10 +1520,10 @@ class EditPage {
 			( ( $this->minoredit && !$this->isNew ) ? EDIT_MINOR : 0 ) |
 			( $bot ? EDIT_FORCE_BOT : 0 );
 
-		$doEditStatus = $this->mArticle->doEdit( $T_E_X_T, $this->summary, $flags ); # FIXME: use WikiPage::doEditContent()
+		$doEditStatus = $this->mArticle->doEditContent( $content, $this->summary, $flags );
 
 		if ( $doEditStatus->isOK() ) {
-			$result['redirect'] = Title::newFromRedirect( $T_E_X_T ) !== null;
+			$result['redirect'] = $content->isRedirect();
 			$this->commitWatch();
 			wfProfileOut( __METHOD__ );
 			return $status;
@@ -1581,8 +1588,34 @@ class EditPage {
 	 * @parma $editText string
 	 *
 	 * @return bool
+     * @deprecated since 1.20
 	 */
-	function mergeChangesInto( &$editText ){
+    function mergeChangesInto( &$editText ){
+        wfDebug( __METHOD__, "1.20" );
+
+        $handler = ContentHandler::getForModelName( $this->content_model );
+        $editContent = $handler->unserialize( $editText, $this->content_format );
+
+        $ok = $this->mergeChangesIntoContent( $editContent );
+
+        if ( $ok ) {
+            $editText = $editContent->serialize( $this->content_format ); #XXX: really serialize?!
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * @private
+     * @todo document
+     *
+     * @parma $editText string
+     *
+     * @return bool
+     * @since since 1.20
+     */
+	private function mergeChangesIntoContent( &$editContent ){
 		wfProfileIn( __METHOD__ );
 
 		$db = wfGetDB( DB_MASTER );
@@ -1604,11 +1637,11 @@ class EditPage {
 		$currentContent = $currentRevision->getContent();
 
         $handler = ContentHandler::getForModelName( $baseContent->getModelName() );
-        $editContent = $handler->unserialize( $editText, $this->content_format ); #FIXME: supply serialization fomrat from edit form!
 
 		$result = $handler->merge3( $baseContent, $editContent, $currentContent );
+
 		if ( $result ) {
-			$editText = ContentHandler::getContentText($result, $this->content_format );  #FIXME: supply serialization fomrat from edit form!
+            $editContent = $result;
 			wfProfileOut( __METHOD__ );
 			return true;
 		} else {
@@ -2421,8 +2454,9 @@ HTML
 			$oldtitle = wfMsgExt( 'currentrev', array( 'parseinline' ) );
 			$newtitle = wfMsgExt( 'yourtext', array( 'parseinline' ) );
 
-			$de = new DifferenceEngine( $this->mArticle->getContext() );
-			$de->setText( $oldContent, $newContent ); #FIXME: content-based diff!
+			$de = $oldContent->getContentHandler()->getDifferenceEngine( $this->mArticle->getContext() );
+			$de->setContent( $oldContent, $newContent );
+
 			$difftext = $de->getDiff( $oldtitle, $newtitle );
 			$de->showDiffStyle();
 		} else {
@@ -2512,8 +2546,12 @@ HTML
 		if ( wfRunHooks( 'EditPageBeforeConflictDiff', array( &$this, &$wgOut ) ) ) {
 			$wgOut->wrapWikiMsg( '<h2>$1</h2>', "yourdiff" );
 
-			$de = new DifferenceEngine( $this->mArticle->getContext() );
-			$de->setText( $this->textbox2, $this->textbox1 );
+            $content1 = ContentHandler::makeContent( $this->textbox1, $this->getTitle(), $this->content_model, $this->content_format );
+            $content2 = ContentHandler::makeContent( $this->textbox2, $this->getTitle(), $this->content_model, $this->content_format );
+
+            $handler = ContentHandler::getForModelName( $this->content_model );
+			$de = $handler->getDifferenceEngine( $this->mArticle->getContext() );
+			$de->setContent( $content2, $content1 );
 			$de->showDiff( wfMsgExt( 'yourtext', 'parseinline' ), wfMsg( 'storedversion' ) );
 
 			$wgOut->wrapWikiMsg( '<h2>$1</h2>', "yourtext" );
@@ -3140,9 +3178,12 @@ HTML
 		$wgOut->addHTML( '</div>' );
 
 		$wgOut->wrapWikiMsg( '<h2>$1</h2>', "yourdiff" );
-		$de = new DifferenceEngine( $this->mArticle->getContext() ); #FIXME: get from content handler!
 
-		$de->setText( $this->getCurrentText(), $this->textbox2 ); #FIXME: make Content based
+        $handler = ContentHandler::getForTitle( $this->getTitle() );
+		$de = $handler->getDifferenceEngine( $this->mArticle->getContext() );
+
+        $content2 = ContentHandler::makeContent( $this->textbox2, $this->getTitle(), $this->content_model, $this->content_format );
+		$de->setContent( $this->getCurrentContent(), $content2 );
 
         $de->showDiff( wfMsg( "storedversion" ), wfMsgExt( 'yourtext', 'parseinline' ) );
 

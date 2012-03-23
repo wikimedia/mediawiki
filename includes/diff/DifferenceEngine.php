@@ -67,7 +67,7 @@ class DifferenceEngine extends ContextSource {
 	 * @param $refreshCache boolean If set, refreshes the diff cache
 	 * @param $unhide boolean If set, allow viewing deleted revs
 	 */
-	function __construct( $context = null, $old = 0, $new = 0, $rcid = 0,
+	function __construct( $context = null, $old = 0, $new = 0, $rcid = 0,  # FIXME: use Contenthandler::getDifferenceEngine everywhere!
 		$refreshCache = false, $unhide = false )
 	{
 		if ( $context instanceof IContextSource ) {
@@ -925,13 +925,34 @@ class DifferenceEngine extends ContextSource {
 
 	/**
 	 * Use specified text instead of loading from the database
+     * @deprecated since 1.20
 	 */
-	function setText( $oldText, $newText ) { #FIXME: deprecate, use Content objects instead!
+	function setText( $oldText, $newText ) {
+        wfDeprecated( __METHOD__, "1.20" );
+        $this->setText_internal( $oldText, $newText );
+    }
+
+    /**
+     * @private
+     * Use specified text instead of loading from the database
+     */
+    private function setText_internal( $oldText, $newText ) {
 		$this->mOldtext = $oldText;
 		$this->mNewtext = $newText;
 		$this->mTextLoaded = 2;
 		$this->mRevisionsLoaded = true;
 	}
+
+    /**
+     * Use specified text instead of loading from the database
+     * @since 1.20
+     */
+    function setContent( Content $oldContent, Content $newContent, $format = null ) { #FIXME: use this!
+        $oldText = $oldContent->serialize( $format );
+        $newText = $newContent->serialize( $format );
+
+        return $this->setText_internal( $oldText, $newText );
+    }
 
 	/**
 	 * Set the language in which the diff text is written

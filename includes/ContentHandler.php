@@ -209,12 +209,19 @@ abstract class ContentHandler {
     }
 
     /**
-    public function updatePage( $title, $obj ) {
-    }
-    **/
-    
-    public function getDiffEngine( Article $article ) { #FIXME: change interface of diff engine? or accept content objects here=?
-        $de = new DifferenceEngine( $article->getContext() );
+     * Factory
+     * @param $context IContextSource context to use, anything else will be ignored
+     * @param $old Integer old ID we want to show and diff with.
+     * @param $new String either 'prev' or 'next'.
+     * @param $rcid Integer ??? FIXME (default 0)
+     * @param $refreshCache boolean If set, refreshes the diff cache
+     * @param $unhide boolean If set, allow viewing deleted revs
+     */
+    public function getDifferenceEngine( IContextSource $context, $old = 0, $new = 0, $rcid = 0, #FIMXE: use everywhere!
+                                         $refreshCache = false, $unhide = false ) {
+
+        $de = new DifferenceEngine( $context, $old, $new, $rcid, $refreshCache, $unhide );
+
         return $de;
     }
 

@@ -1142,7 +1142,7 @@ class WikiPage extends Page {
 		return ContentHandler::getContentText( $newContent ); #XXX: unclear what will happen for non-wikitext!
 	}
 
-    public function replaceSectionContent( $section, $sectionContent, $sectionTitle = '', $edittime = null ) {
+    public function replaceSectionContent( $section, Content $sectionContent, $sectionTitle = '', $edittime = null ) {
         wfProfileIn( __METHOD__ );
 
         if ( strval( $section ) == '' ) {
