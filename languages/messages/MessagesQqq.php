@@ -2347,6 +2347,7 @@ The title is {{msg-mw|nopagetitle}}.',
 
 {{Identical|Go}}',
 'allpagesprefix'    => "Used for the label of the input box of [[Special:PrefixIndex]]. On this page you can either write 'Name of namespace:string from which to begin display in alphabetical order' in the top box, or you can choose a namespace in the bottom box and put 'string from which to begin display in alphabetical order' in the top box. The result will be the same.",
+'allpages-hide-redirects' => 'Label for a checkbox. If the checkbox is checked redirects will not be shown in the list. Used in [[Special:PrefixIndex]] and [[Special:Allpages]].',
 
 # SpecialCachedPage
 'cachedspecial-viewing-cached-ttl' => 'Message notifying they are viewing a cached page. $1 is a duration (ie "1 hour and 30 minutes")',
