@@ -1517,7 +1517,7 @@ class User {
 			$count = $wgMemc->get( $key );
 			// Already pinged?
 			if( $count ) {
-				if( $count > $max ) {
+				if( $count >= $max ) {
 					wfDebug( __METHOD__ . ": tripped! $key at $count $summary\n" );
 					if( $wgRateLimitLog ) {
 						wfSuppressWarnings();
