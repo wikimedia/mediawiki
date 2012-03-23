@@ -13,15 +13,15 @@ production.
 
 === Changes since 1.19 beta 1 ===
 * (bug 35014) Including a special page no longer sets the page's title to the
-  included page
-* (bug 35019) Edit summaries are no longer transformed in notification e-mails
-* (bug 35152) Help message for e-mail is shown again in user preferences
+  included page.
+* (bug 35019) Edit summaries are no longer transformed in notification e-mails.
+* (bug 35152) Help message for e-mail is shown again in user preferences.
 * (bug 34887) $3 and $4 parameters are now substituted correctly in message
-  "movepage-moved"
+  "movepage-moved".
 * (bug 34841) Edit links are no longer displayed when display old page versions
-* (bug 34889) User name should be normalized on Special:Contributions
-* (bug 35051) If heading has a trailing space after == then its name is not 
-  preloaded into edit summary on section edit
+* (bug 34889) User name should be normalized on Special:Contributions.
+* (bug 35051) If heading has a trailing space after == then its name is not
+  preloaded into edit summary on section edit.
 * (bug 31417) New ID mw-content-text around the actual page text, without categories,
   contentSub, ... The same div often also contains the class mw-content-ltr/rtl.
 * (bug 35303) Proxy and DNS blacklist blocking works again
@@ -31,6 +31,8 @@ production.
   core parser functions which operate on strings, such as padleft.
 * (bug 18295) Don't expose strip markers when a tag appears inside a link 
   inside a heading.
+* (bug 34907) Fixed exposure of tokens through load.php that could have facilitated
+  CSRF attacks
 
 === Configuration changes in 1.19 ===
 * Removed SkinTemplateSetupPageCss hook; use BeforePageDisplay instead.
@@ -45,6 +47,7 @@ production.
 * (bug 32239) Removed $wgEnableTooltipsAndAccesskeys.
 * Removed $wgVectorShowVariantName.
 * Removed $wgExtensionAliasesFiles. Use $wgExtensionMessagesFiles.
+* Removed $wgResourceLoaderInlinePrivateModules, now always enabled.
 
 === New features in 1.19 ===
 * (bug 19838) Add ability to get all interwiki prefixes also if the interwiki
@@ -128,8 +131,8 @@ production.
   200 status code instead of 404 for nonexistent articles.
 * (bug 33447) Link to the broken image tracking category from Special:Wantedfiles.
 * (bug 27724) Add timestamp to job queue.
-* (bug 30339) Implement SpecialPage for running javascript tests. Disabled by default, due to
-  tests potentially being harmful, not to be run on a production wiki.
+* (bug 30339) Implement SpecialPage for running javascript tests. Disabled by default,
+  due to tests potentially being harmful, not to be run on a production wiki.
   Enable by setting $wgEnableJavaScriptTest to true.
 * Extensions can use the RequestContextCreateSkin hook to override what skin is
   loaded in some contexts.
@@ -146,8 +149,8 @@ production.
 * Special:MovePage now has a dropdown menu for namespaces.
 * (bug 34420) Special:Version now shows git HEAD sha1 when available.
 * (bug 33952) Refactor mw.toolbar to allow dynamic additions at any time.
-* Now possible to specify separate section title and edit summary when adding a new section to a
-  page via the edit API action.
+* Now possible to specify separate section title and edit summary when adding
+  a new section to a page via the edit API action.
 
 === Bug fixes in 1.19 ===
 * $wgUploadNavigationUrl should be used for file redlinks if.
