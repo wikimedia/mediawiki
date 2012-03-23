@@ -10,7 +10,7 @@ define( 'MEDIAWIKI_INSTALL', true );
 
 chdir( dirname( dirname( __FILE__ ) ) );
 if ( isset( $_SERVER['MW_COMPILED'] ) ) {
-	require ( 'phase3/includes/WebStart.php' );
+	require ( 'core/includes/WebStart.php' );
 } else {
 	require( dirname( dirname( __FILE__ ) ) . '/includes/WebStart.php' );
 }
