@@ -451,17 +451,13 @@ class EditPage {
 		# If the user made changes, preserve them when showing the markup
 		# (This happens when a user is blocked during edit, for instance)
 		if ( !$this->firsttime ) {
-            $handler = ContentHandler::getForModelName( $this->content_model );
-
-            if ( empty( $this->textbox1 ) ) $content = $handler->emptyContent();
-			else $content = $handler->unserialize( $this->textbox1 );
-
+            $text = $this->textbox1;
 			$wgOut->addWikiMsg( 'viewyourtext' );
 		} else {
+            $text = $content->serialize( $this->content_format );
 			$wgOut->addWikiMsg( 'viewsourcetext' );
 		}
 
-        $text = $content->serialize( $this->content_format );
 		$this->showTextbox( $text, 'wpTextbox1', array( 'readonly' ) );
 
 		$wgOut->addHTML( Html::rawElement( 'div', array( 'class' => 'templatesUsed' ),
@@ -576,7 +572,7 @@ class EditPage {
 				wfProfileIn( get_class($this)."::importContentFormData" );
 				$textbox1 = $this->importContentFormData( $request ); #FIXME: what should this return??
 				if ( isset($textbox1) )
-					$this->textbox1 = $textbox1; #XXX: unserialize to Content-object... when?
+					$this->textbox1 = $textbox1;
 				wfProfileOut( get_class($this)."::importContentFormData" );
 			}
 
@@ -1308,7 +1304,7 @@ class EditPage {
 				}
 			}
 
-			$content = ContentHandler::makeContent( $this->textbox1, $this->getTitle(), $this->content_model, $this->content_format );
+			$content = ContentHandler::makeContent( $this->textbox1, $this->getTitle(), $this->content_model, $this->content_format ); #FIXME: handle parse errors
 
 			$result['sectionanchor'] = '';
 			if ( $this->section == 'new' ) {
@@ -1379,7 +1375,7 @@ class EditPage {
 				$sectionTitle = $this->summary;
 			}
 
-            $textbox_content = ContentHandler::makeContent( $this->textbox1, $this->getTitle(), $this->content_model, $this->content_format );
+            $textbox_content = ContentHandler::makeContent( $this->textbox1, $this->getTitle(), $this->content_model, $this->content_format ); #FIXME: handle parse errors
             $content = false;
 
 			if ( $this->isConflict ) {
@@ -1596,8 +1592,7 @@ class EditPage {
     function mergeChangesInto( &$editText ){
         wfDebug( __METHOD__, "1.20" );
 
-        $handler = ContentHandler::getForModelName( $this->content_model );
-        $editContent = $handler->unserialize( $editText, $this->content_format );
+        $editContent = ContentHandler::makeContent( $editText, $this->getTitle(), $this->content_model, $this->content_format );
 
         $ok = $this->mergeChangesIntoContent( $editContent );
 
@@ -2438,7 +2433,7 @@ HTML
 		$oldContent = $this->getOriginalContent();
 
         $textboxContent = ContentHandler::makeContent( $this->textbox1, $this->getTitle(),
-                                                        $this->content_model, $this->content_format );
+                                                        $this->content_model, $this->content_format ); #FIXME: handle parse errors
 
 		$newContent = $this->mArticle->replaceSectionContent(
 			                                $this->section, $textboxContent,
@@ -2451,7 +2446,7 @@ HTML
 
         if ( $newtext != $newtext_orig ) {
             #if the hook changed the text, create a new Content object accordingly.
-            $newContent = ContentHandler::makeContent( $newtext, $this->getTitle(), $newContent->getModelName() );
+            $newContent = ContentHandler::makeContent( $newtext, $this->getTitle(), $newContent->getModelName() ); #FIXME: handle parse errors
         }
 
    		wfRunHooks( 'EditPageGetDiffContent', array( $this, &$newContent ) ); #FIXME: document new hook
@@ -2555,8 +2550,8 @@ HTML
 		if ( wfRunHooks( 'EditPageBeforeConflictDiff', array( &$this, &$wgOut ) ) ) {
 			$wgOut->wrapWikiMsg( '<h2>$1</h2>', "yourdiff" );
 
-            $content1 = ContentHandler::makeContent( $this->textbox1, $this->getTitle(), $this->content_model, $this->content_format );
-            $content2 = ContentHandler::makeContent( $this->textbox2, $this->getTitle(), $this->content_model, $this->content_format );
+            $content1 = ContentHandler::makeContent( $this->textbox1, $this->getTitle(), $this->content_model, $this->content_format ); #FIXME: handle parse errors
+            $content2 = ContentHandler::makeContent( $this->textbox2, $this->getTitle(), $this->content_model, $this->content_format ); #FIXME: handle parse errors
 
             $handler = ContentHandler::getForModelName( $this->content_model );
 			$de = $handler->getDifferenceEngine( $this->mArticle->getContext() );
@@ -2733,7 +2728,7 @@ HTML
 			if ( $rt ) {
 				$previewHTML = $this->mArticle->viewRedirect( $rt, false );
 			} else {
-				$content = ContentHandler::makeContent( $this->textbox1, $this->getTitle(), $this->content_model, $this->content_format );
+				$content = ContentHandler::makeContent( $this->textbox1, $this->getTitle(), $this->content_model, $this->content_format ); #FIXME: handle parse errors
 
 				# If we're adding a comment, we need to show the
 				# summary as the headline
@@ -3199,7 +3194,7 @@ HTML
         $handler = ContentHandler::getForTitle( $this->getTitle() );
 		$de = $handler->getDifferenceEngine( $this->mArticle->getContext() );
 
-        $content2 = ContentHandler::makeContent( $this->textbox2, $this->getTitle(), $this->content_model, $this->content_format );
+        $content2 = ContentHandler::makeContent( $this->textbox2, $this->getTitle(), $this->content_model, $this->content_format ); #FIXME: handle parse errors
 		$de->setContent( $this->getCurrentContent(), $content2 );
 
         $de->showDiff( wfMsg( "storedversion" ), wfMsgExt( 'yourtext', 'parseinline' ) );

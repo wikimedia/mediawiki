@@ -1,5 +1,10 @@
 <?php
 
+class MWContentSerializationException extends MWException {
+
+}
+
+
 /**
  * A content handler knows how do deal with a specific type of content on a wiki page.
  * Content is stored in the database in a serialized form (using a serialization format aka mime type)
