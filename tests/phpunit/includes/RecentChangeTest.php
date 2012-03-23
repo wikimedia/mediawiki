@@ -1,4 +1,7 @@
 <?php
+/**
+ * @group Database
+ */
 class RecentChangeTest extends MediaWikiTestCase {
 	protected $title;
 	protected $target;
