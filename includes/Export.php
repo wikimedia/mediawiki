@@ -487,12 +487,6 @@ class XmlDumpWriter {
 			}
 		}
 
-		if ( $row->rev_sha1 ) {
-			$out .= "      " . Xml::element('sha1', null, strval( $row->rev_sha1 ) ) . "\n";
-		} else {
-			$out .= "      <sha1/>\n";
-		}
-
 		if ( $row->page_restrictions != '' ) {
 			$out .= '    ' . Xml::element( 'restrictions', array(),
 				strval( $row->page_restrictions ) ) . "\n";
@@ -558,6 +552,12 @@ class XmlDumpWriter {
 			$out .= "      " . Xml::element( 'text',
 				array( 'id' => $row->rev_text_id, 'bytes' => intval( $row->rev_len ) ),
 				"" ) . "\n";
+		}
+
+		if ( $row->rev_sha1 ) {
+			$out .= "      " . Xml::element('sha1', null, strval( $row->rev_sha1 ) ) . "\n";
+		} else {
+			$out .= "      <sha1/>\n";
 		}
 
 		wfRunHooks( 'XmlDumpWriterWriteRevision', array( &$this, &$out, $row, $text ) );
