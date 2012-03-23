@@ -14,19 +14,17 @@
 abstract class ContentHandler {
 
     public static function getContentText( Content $content = null ) {
+        global $wgContentHandlerTextFallback;
+
         if ( !$content ) return '';
 
         if ( $content instanceof TextContent ) {
-            #XXX: or check by model name?
-            #XXX: or define $content->allowRawData()?
-            #XXX: or define $content->getDefaultWikiText()?
             return $content->getNativeData();
         }
 
-        #XXX: this must not be used for editing, otherwise we may loose data:
-        #XXX:      e.g. if this returns the "main" text from a multipart page, all attachments would be lost
+        if ( $wgContentHandlerTextFallback == 'fail' ) throw new MWException( "Attempt to get text from Content with model " . $content->getModelName() );
+        if ( $wgContentHandlerTextFallback == 'serialize' ) return $content->serialize();
 
-        #TODO: log this incident!
         return null;
     }
 
