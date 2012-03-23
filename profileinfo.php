@@ -56,16 +56,20 @@ header( 'Content-Type: text/html; charset=utf-8' );
 		text-align: right;
 	}
 	td.timep, td.tpc, td.tpr {
-		background-color: #fffff0;
+		background-color: #ffff80;
 	}
 	td.memoryp, td.mpc, td.mpr {
-		background-color: #f0f8ff;
+		background-color: #80f8ff;
 	}
 	td.count, td,cpr {
-		background-color: #f0fff0;
+		background-color: #80ff80;
 	}
 	td.name {
-		background-color: #f9f9f9;
+		background-color: #89f9f9;
+	}
+
+	tr:hover {
+		font-weight: bold;
 	}
 </style>
 </head>
