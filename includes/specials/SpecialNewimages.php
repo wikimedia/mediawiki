@@ -123,7 +123,7 @@ class NewFilesPager extends ReverseChronologicalPager {
 		$this->gallery->add(
 			$title,
 			"$ul<br />\n<i>"
-				. htmlspecialchars( $this->getLanguage()->timeanddate( $row->img_timestamp, true ) )
+				. htmlspecialchars( $this->getLanguage()->userTimeAndDate( $row->img_timestamp, $this->getUser() ) )
 				. "</i><br />\n"
 		);
 	}
@@ -139,7 +139,7 @@ class NewFilesPager extends ReverseChronologicalPager {
 			),
 			'showbots' => array(
 				'type' => 'check',
-				'label' => wfMessage( 'showhidebots', wfMsg( 'show' ) ),
+				'label' => $this->msg( 'showhidebots', $this->msg( 'show' )->plain() )->escaped(),
 				'name' => 'showbots',
 			#	'default' => $this->getRequest()->getBool( 'showbots', 0 ),
 			),
@@ -161,9 +161,9 @@ class NewFilesPager extends ReverseChronologicalPager {
 
 		$form = new HTMLForm( $fields, $this->getContext() );
 		$form->setTitle( $this->getTitle() );
-		$form->setSubmitText( wfMsg( 'ilsubmit' ) );
+		$form->setSubmitTextMsg( 'ilsubmit' );
 		$form->setMethod( 'get' );
-		$form->setWrapperLegend( wfMsg( 'newimages-legend' ) );
+		$form->setWrapperLegendMsg( 'newimages-legend' );
 
 		return $form;
 	}
