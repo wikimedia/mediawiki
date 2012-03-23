@@ -48,14 +48,7 @@ class Profiler {
 			$this->mProfileID = $params['profileID'];
 		}
 
-		// Push an entry for the pre-profile setup time onto the stack
-		$initial = $this->getInitialTime();
-		if ( $initial !== null ) {
-			$this->mWorkStack[] = array( '-total', 0, $initial, 0 );
-			$this->mStack[] = array( '-setup', 1, $initial, 0, $this->getTime(), 0 );
-		} else {
-			$this->profileIn( '-total' );
-		}
+		$this->addInitialStack();
 	}
 
 	/**
@@ -111,6 +104,20 @@ class Profiler {
 			return wfWikiID();
 		} else {
 			return $this->mProfileID;
+		}
+	}
+
+	/**
+	 * Add the inital item in the stack.
+	 */
+	protected function addInitialStack() {
+		// Push an entry for the pre-profile setup time onto the stack
+		$initial = $this->getInitialTime();
+		if ( $initial !== null ) {
+			$this->mWorkStack[] = array( '-total', 0, $initial, 0 );
+			$this->mStack[] = array( '-setup', 1, $initial, 0, $this->getTime(), 0 );
+		} else {
+			$this->profileIn( '-total' );
 		}
 	}
 
