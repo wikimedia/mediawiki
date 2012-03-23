@@ -86,8 +86,8 @@ The official website for MediaWiki is located at:
 
 	http://www.mediawiki.org/
 
-The code is currently maintained in a Subversion repository at
-svn.wikimedia.org. See http://www.mediawiki.org/wiki/Subversion for details.
+The code is currently maintained in a Git repository at
+gerrit.wikimedia.org. See http://www.mediawiki.org/wiki/Git for details.
 
 Please report bugs and make feature requests in our Bugzilla system:
 

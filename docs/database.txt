@@ -8,7 +8,7 @@ By Tim Starling, January 2006.
 For information about the MediaWiki database layout, such as a 
 description of the tables and their contents, please see:
   http://www.mediawiki.org/wiki/Manual:Database_layout
-  http://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/maintenance/tables.sql?view=markup
+  https://gerrit.wikimedia.org/r/gitweb?p=mediawiki/core.git;a=blob_plain;f=maintenance/tables.sql;hb=HEAD
 
 
 ------------------------------------------------------------------------
