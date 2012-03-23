@@ -19,3 +19,5 @@ cache/*.cdb
 images/[0-9a-f]
 images/temp
 images/thumb
+maintenance/dev/data/
+maintenance/.mweval_history
