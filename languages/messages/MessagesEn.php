@@ -997,6 +997,9 @@ Please report this to an [[Special:ListUsers/sysop|administrator]], making note 
 'directorycreateerror' => 'Could not create directory "$1".',
 'filenotfound'         => 'Could not find file "$1".',
 'fileexistserror'      => 'Unable to write to file "$1": File exists.',
+'filereadonlyerror'    => 'Unable to the modify the file "$1" because the file repository "$2" is in read-only mode.
+
+The administrator who locked it offered this explanation: "$3".',
 'unexpected'           => 'Unexpected value: "$1"="$2".',
 'formerror'            => 'Error: Could not submit form.',
 'badarticleerror'      => 'This action cannot be performed on this page.',
