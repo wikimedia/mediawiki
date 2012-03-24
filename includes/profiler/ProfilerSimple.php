@@ -15,32 +15,20 @@ class ProfilerSimple extends Profiler {
 	var $zeroEntry = array('cpu'=> 0.0, 'cpu_sq' => 0.0, 'real' => 0.0, 'real_sq' => 0.0, 'count' => 0);
 	var $errorEntry;
 
-	function __construct( $params ) {
+	protected function addInitialStack() {
 		global $wgRequestTime, $wgRUstart;
-		parent::__construct( $params );
 
 		$this->errorEntry = $this->zeroEntry;
 		$this->errorEntry['count'] = 1;
 
-		if (!empty($wgRequestTime) && !empty($wgRUstart)) {
-			# Remove the -total entry from parent::__construct
-			$this->mWorkStack = array();
+		if ( !empty( $wgRequestTime ) && !empty( $wgRUstart ) ) {
+			$initialCpu = $this->getCpuTime( $wgRUstart );
+			$this->mWorkStack[] = array( '-total', 0, $wgRequestTime, $initialCpu );
+			$this->mWorkStack[] = array( '-setup', 1, $wgRequestTime, $initialCpu );
 
-			$this->mWorkStack[] = array( '-total', 0, $wgRequestTime,$this->getCpuTime($wgRUstart));
-
-			$elapsedcpu = $this->getCpuTime() - $this->getCpuTime($wgRUstart);
-			$elapsedreal = microtime(true) - $wgRequestTime;
-
-			$entry =& $this->mCollated["-setup"];
-			if (!is_array($entry)) {
-				$entry = $this->zeroEntry;
-				$this->mCollated["-setup"] =& $entry;
-			}
-			$entry['cpu'] += $elapsedcpu;
-			$entry['cpu_sq'] += $elapsedcpu*$elapsedcpu;
-			$entry['real'] += $elapsedreal;
-			$entry['real_sq'] += $elapsedreal*$elapsedreal;
-			$entry['count']++;
+			$this->profileOut( '-setup' );
+		} else {
+			$this->profileIn( '-total' );
 		}
 	}
 
