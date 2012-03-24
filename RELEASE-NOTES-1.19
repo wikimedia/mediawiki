@@ -33,6 +33,7 @@ production.
   inside a heading.
 * (bug 34907) Fixed exposure of tokens through load.php that could have facilitated
   CSRF attacks
+* Special:Watchlist no longer sets links to feed when the user is anonymous
 
 === Configuration changes in 1.19 ===
 * Removed SkinTemplateSetupPageCss hook; use BeforePageDisplay instead.
