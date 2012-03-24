@@ -98,7 +98,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 	}
 
 	public function alterForm( HTMLForm $form ) {
-		$form->setSubmitText( wfMessage( "mailmypassword" ) );
+		$form->setSubmitTextMsg( 'mailmypassword' );
 	}
 
 	protected function preText() {
@@ -113,7 +113,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 		if ( isset( $wgPasswordResetRoutes['domain'] ) && $wgPasswordResetRoutes['domain'] ) {
 			$i++;
 		}
-		return wfMessage( 'passwordreset-pretext', $i )->parseAsBlock();
+		return $this->msg( 'passwordreset-pretext', $i )->parseAsBlock();
 	}
 
 	/**
@@ -234,14 +234,14 @@ class SpecialPasswordReset extends FormSpecialPage {
 			$password = $user->randomPassword();
 			$user->setNewpassword( $password );
 			$user->saveSettings();
-			$passwords[] = wfMessage( 'passwordreset-emailelement', $user->getName(), $password )->plain(); // We'll escape the whole thing later
+			$passwords[] = $this->msg( 'passwordreset-emailelement', $user->getName(), $password )->plain(); // We'll escape the whole thing later
 		}
 		$passwordBlock = implode( "\n\n", $passwords );
 
 		// Send in the user's language; which should hopefully be the same
 		$userLanguage = $firstUser->getOption( 'language' );
 
-		$this->email = wfMessage( $msg )->inLanguage( $userLanguage );
+		$this->email = $this->msg( $msg )->inLanguage( $userLanguage );
 		$this->email->params(
 			$username,
 			$passwordBlock,
@@ -250,7 +250,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 			round( $wgNewPasswordExpiry / 86400 )
 		);
 
-		$title = wfMessage( 'passwordreset-emailtitle' );
+		$title = $this->msg( 'passwordreset-emailtitle' );
 
 		$this->result = $firstUser->sendMail( $title->escaped(), $this->email->escaped() );
 
