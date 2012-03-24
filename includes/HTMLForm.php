@@ -516,7 +516,7 @@ class HTMLForm extends ContextSource {
 	 * @return String HTML.
 	 */
 	function getHiddenFields() {
-		global $wgUsePathInfo;
+		global $wgArticlePath;
 
 		$html = '';
 		if( $this->getMethod() == 'post' ){
@@ -524,7 +524,7 @@ class HTMLForm extends ContextSource {
 			$html .= Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) . "\n";
 		}
 
-		if ( !$wgUsePathInfo && $this->getMethod() == 'get' ) {
+		if ( strpos( $wgArticlePath, '?' ) !== false && $this->getMethod() == 'get' ) {
 			$html .= Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) . "\n";
 		}
 

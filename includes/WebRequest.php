@@ -77,6 +77,7 @@ class WebRequest {
 	 * @return Array: Any query arguments found in path matches.
 	 */
 	static public function getPathInfo( $want = 'all' ) {
+		global $wgUsePathInfo;
 		// PATH_INFO is mangled due to http://bugs.php.net/bug.php?id=31892
 		// And also by Apache 2.x, double slashes are converted to single slashes.
 		// So we will use REQUEST_URI if possible.
@@ -134,15 +135,17 @@ class WebRequest {
 
 				$matches = $router->parse( $path );
 			}
-		} elseif ( isset( $_SERVER['ORIG_PATH_INFO'] ) && $_SERVER['ORIG_PATH_INFO'] != '' ) {
-			// Mangled PATH_INFO
-			// http://bugs.php.net/bug.php?id=31892
-			// Also reported when ini_get('cgi.fix_pathinfo')==false
-			$matches['title'] = substr( $_SERVER['ORIG_PATH_INFO'], 1 );
+		} elseif ( $wgUsePathInfo ) {
+			if ( isset( $_SERVER['ORIG_PATH_INFO'] ) && $_SERVER['ORIG_PATH_INFO'] != '' ) {
+				// Mangled PATH_INFO
+				// http://bugs.php.net/bug.php?id=31892
+				// Also reported when ini_get('cgi.fix_pathinfo')==false
+				$matches['title'] = substr( $_SERVER['ORIG_PATH_INFO'], 1 );
 
-		} elseif ( isset( $_SERVER['PATH_INFO'] ) && ($_SERVER['PATH_INFO'] != '') ) {
-			// Regular old PATH_INFO yay
-			$matches['title'] = substr( $_SERVER['PATH_INFO'], 1 );
+			} elseif ( isset( $_SERVER['PATH_INFO'] ) && ($_SERVER['PATH_INFO'] != '') ) {
+				// Regular old PATH_INFO yay
+				$matches['title'] = substr( $_SERVER['PATH_INFO'], 1 );
+			}
 		}
 
 		return $matches;
@@ -206,18 +209,14 @@ class WebRequest {
 	 * available variant URLs.
 	 */
 	public function interpolateTitle() {
-		global $wgUsePathInfo;
-
 		// bug 16019: title interpolation on API queries is useless and sometimes harmful
 		if ( defined( 'MW_API' ) ) {
 			return;
 		}
 
-		if ( $wgUsePathInfo ) {
-			$matches = self::getPathInfo( 'title' );
-			foreach( $matches as $key => $val) {
-				$this->data[$key] = $_GET[$key] = $_REQUEST[$key] = $val;
-			}
+		$matches = self::getPathInfo( 'title' );
+		foreach( $matches as $key => $val) {
+			$this->data[$key] = $_GET[$key] = $_REQUEST[$key] = $val;
 		}
 	}
 
