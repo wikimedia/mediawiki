@@ -40,6 +40,20 @@ class SpecialWatchlist extends SpecialPage {
 		$user = $this->getUser();
 		$output = $this->getOutput();
 
+		# Anons don't get a watchlist
+		if( $user->isAnon() ) {
+			$output->setPageTitle( $this->msg( 'watchnologin' ) );
+			$output->setRobotPolicy( 'noindex,nofollow' );
+			$llink = Linker::linkKnown(
+				SpecialPage::getTitleFor( 'Userlogin' ),
+				$this->msg( 'loginreqlink' )->escaped(),
+				array(),
+				array( 'returnto' => $this->getTitle()->getPrefixedText() )
+			);
+			$output->addHTML( $this->msg( 'watchlistanontext' )->rawParams( $llink )->parse() );
+			return;
+		}
+
 		// Add feed links
 		$wlToken = $user->getOption( 'watchlisttoken' );
 		if ( !$wlToken ) {
@@ -50,21 +64,6 @@ class SpecialWatchlist extends SpecialPage {
 
 		$this->addFeedLinks( array( 'action' => 'feedwatchlist', 'allrev' => 'allrev',
 							'wlowner' => $user->getName(), 'wltoken' => $wlToken ) );
-
-		$output->setRobotPolicy( 'noindex,nofollow' );
-
-		# Anons don't get a watchlist
-		if( $user->isAnon() ) {
-			$output->setPageTitle( $this->msg( 'watchnologin' ) );
-			$llink = Linker::linkKnown(
-				SpecialPage::getTitleFor( 'Userlogin' ),
-				$this->msg( 'loginreqlink' )->escaped(),
-				array(),
-				array( 'returnto' => $this->getTitle()->getPrefixedText() )
-			);
-			$output->addHTML( $this->msg( 'watchlistanontext' )->rawParams( $llink )->parse() );
-			return;
-		}
 
 		$this->setHeaders();
 		$this->outputHeader();

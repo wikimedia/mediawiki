@@ -29,12 +29,9 @@ production.
   core parser functions which operate on strings, such as padleft.
 * (bug 18295) Don't expose strip markers when a tag appears inside a link 
   inside a heading.
-* (bug 34212) ApiBlock/ApiUnblock allow action to take place without a token
-  parameter present.
 * (bug 34907) Fixed exposure of tokens through load.php that could have facilitated
-  CSRF attacks.
-* (bug 35317) CSRF in Special:Upload.
-
+  CSRF attacks
+* Special:Watchlist no longer sets links to feed when the user is anonymous
 
 === Configuration changes in 1.19 ===
 * Removed SkinTemplateSetupPageCss hook; use BeforePageDisplay instead.
