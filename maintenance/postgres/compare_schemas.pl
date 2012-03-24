@@ -38,7 +38,7 @@ while (<DATA>) {
 
 my $datatype = join '|' => qw(
 bool
-tinyint int bigint real float
+tinyint smallint int bigint real float
 tinytext mediumtext text char varchar varbinary binary
 timestamp datetime
 tinyblob mediumblob blob
@@ -94,7 +94,7 @@ sub parse_sql {
 		next if /^\s*\-\-/ or /^\s+$/;
 		s/\s*\-\- [\w ]+$//;
 		chomp;
-	
+
 		if (/CREATE\s*TABLE/i) {
 			if (m{^CREATE TABLE /\*_\*/(\w+) \($}) {
 				$table = $1;
@@ -158,16 +158,17 @@ for my $table (sort keys %{$old{$oldfile}}) {
 	}
 }
 
-my $dtype = join '|' => qw(
+my $dtypelist = join '|' => qw(
 SMALLINT INTEGER BIGINT NUMERIC SERIAL
 TEXT CHAR VARCHAR
 BYTEA
 TIMESTAMPTZ
 CIDR
 );
-$dtype = qr{($dtype)};
+my $dtype = qr{($dtypelist)};
 my %new;
 my ($infunction,$inview,$inrule,$lastcomma) = (0,0,0,0);
+my %custom_type;
 seek $newfh, 0, 0;
 while (<$newfh>) {
 	next if /^\s*\-\-/ or /^\s*$/;
@@ -182,6 +183,11 @@ while (<$newfh>) {
 	next if /^DROP SEQUENCE/;
 	next if /^DROP FUNCTION/;
 
+	if (/^CREATE TYPE (\w+)/) {
+		die "Type $1 declared more than once!\n" if $custom_type{$1}++;
+		$dtype = qr{($dtypelist|$1)};
+		next;
+	}
 
 	chomp;
 
@@ -233,6 +239,7 @@ my $COLMAP = q{
 ## INTS:
 tinyint SMALLINT
 int INTEGER SERIAL
+smallint SMALLINT
 bigint BIGINT
 real NUMERIC
 float NUMERIC
@@ -276,6 +283,9 @@ rc_log_type     varbinary(255) TEXT
 
 ## Simple text-only strings:
 ar_flags          tinyblob       TEXT
+cf_name           varbinary(255) TEXT
+cf_value          blob           TEXT
+ar_sha1           varbinary(32)  TEXT
 cl_collation      varbinary(32)  TEXT
 cl_sortkey        varbinary(230) TEXT
 ct_params         blob           TEXT
@@ -298,8 +308,13 @@ log_params        blob           TEXT # LF separated list of args
 log_type          varbinary(10)  TEXT
 ls_field          varbinary(32)  TEXT
 md_deps           mediumblob     TEXT # JSON
+md_module         varbinary(255) TEXT
+md_skin           varbinary(32)  TEXT
 mr_blob           mediumblob     TEXT # JSON
 mr_lang           varbinary(32)  TEXT
+mr_resource       varbinary(255) TEXT
+mrl_message       varbinary(255) TEXT
+mrl_resource      varbinary(255) TEXT
 oi_minor_mime     varbinary(100) TEXT
 oi_sha1           varbinary(32)  TEXT
 old_flags         tinyblob       TEXT
@@ -316,12 +331,17 @@ qc_type           varbinary(32)  TEXT
 qcc_type          varbinary(32)  TEXT
 qci_type          varbinary(32)  TEXT
 rc_params         blob           TEXT
+rev_sha1          varbinary(32)  TEXT
 rlc_to_blob       blob           TEXT
 ts_tags           blob           TEXT
-ug_group          varbinary(16)  TEXT
+ufg_group         varbinary(32)  TEXT
+ug_group          varbinary(32)  TEXT
 ul_value          blob           TEXT
-up_property       varbinary(32)  TEXT
+up_property       varbinary(255) TEXT
 up_value          blob           TEXT
+us_sha1           varchar(31)    TEXT
+us_source_type    varchar(50)    TEXT
+us_status         varchar(50)    TEXT
 user_email_token  binary(32)     TEXT
 user_ip           varbinary(40)  TEXT
 user_newpassword  tinyblob       TEXT
@@ -434,6 +454,9 @@ for my $t (sort keys %{$old{$oldfile}}) {
 		next if exists $colmapok{$c}{$old}{$new};
 
 		$old =~ s/ENUM.*/ENUM/;
+
+		next if $old eq 'ENUM' and $new eq 'media_type';
+
 		if (! exists $colmap{$old}{$new}) {
 			print "Column types for $t.$c do not match: $old does not map to $new\n";
 		}

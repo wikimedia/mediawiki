@@ -36,7 +36,6 @@ CREATE TABLE mwuser ( -- replace reserved word 'user'
   user_email_token          TEXT,
   user_email_token_expires  TIMESTAMPTZ,
   user_email_authenticated  TIMESTAMPTZ,
-  user_options              TEXT,
   user_touched              TIMESTAMPTZ,
   user_registration         TIMESTAMPTZ,
   user_editcount            INTEGER
@@ -378,7 +377,7 @@ CREATE TABLE uploadstash (
   us_media_type   media_type DEFAULT NULL,
   us_image_width  INTEGER,
   us_image_height INTEGER,
-  us_image_bits   INTEGER
+  us_image_bits   SMALLINT
 );
 
 CREATE INDEX us_user_idx ON uploadstash (us_user);
@@ -683,3 +682,9 @@ CREATE TABLE module_deps (
   md_deps    TEXT  NOT NULL
 );
 CREATE UNIQUE INDEX md_module_skin ON module_deps (md_module, md_skin);
+
+CREATE TABLE config (
+  cf_name   TEXT  NOT NULL  PRIMARY KEY,
+  cf_value  TEXT  NOT NULL
+);
+CREATE INDEX cf_name_value ON config (cf_name, cf_value);
