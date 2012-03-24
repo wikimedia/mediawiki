@@ -767,7 +767,9 @@ div#content a.external[href *=".pdf?"], div#content a.external[href *=".PDF?"],
 #pt-anonuserpage,
 #pt-login {
 	/* @embed */
-	background: url(images/user-icon.png) left top no-repeat;
+	background: url(images/user-icon.png) left top no-repeat; /* Fallback */
+	background: none, url(images/user-icon.svg) left top no-repeat; /* SVG */
+	background-size: 14px 13px;
 	padding-left: 15px !important;
 	text-transform: none;
 }
