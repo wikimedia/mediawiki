@@ -47,6 +47,8 @@ class BackupDumper {
 	var $skipFooter = false; // don't output </mediawiki>
 	var $startId    = 0;
 	var $endId      = 0;
+	var $revStartId = 0;
+	var $revEndId   = 0;
 	var $sink       = null; // Output filters
 	var $stubText   = false; // include rev_text_id instead of text; for 2-pass dump
 	var $dumpUploads = false;
