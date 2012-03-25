@@ -11,6 +11,9 @@ This is a beta release of the MediaWiki 1.19 branch. Please test it and let us
 know what you think of it. Beta releases are not recommended for use in
 production.
 
+=== Changes since 1.19 beta 2 ===
+* Special:Watchlist no longer sets links to feed when the user is anonymous.
+
 === Changes since 1.19 beta 1 ===
 * (bug 35014) Including a special page no longer sets the page's title to the
   included page
@@ -29,9 +32,11 @@ production.
   core parser functions which operate on strings, such as padleft.
 * (bug 18295) Don't expose strip markers when a tag appears inside a link 
   inside a heading.
+* (bug 34212) ApiBlock/ApiUnblock allow action to take place without a token
+  parameter present.
 * (bug 34907) Fixed exposure of tokens through load.php that could have facilitated
-  CSRF attacks
-* Special:Watchlist no longer sets links to feed when the user is anonymous
+  CSRF attacks.
+* (bug 35317) CSRF in Special:Upload.
 
 === Configuration changes in 1.19 ===
 * Removed SkinTemplateSetupPageCss hook; use BeforePageDisplay instead.
