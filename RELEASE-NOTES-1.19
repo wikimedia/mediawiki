@@ -34,7 +34,7 @@ production.
 * (bug 34907) Fixed exposure of tokens through load.php that could have facilitated
   CSRF attacks.
 * (bug 35317) CSRF in Special:Upload.
-
+* (bug 15816) Add a switch for SETting the search_path (Postgres)
 
 === Configuration changes in 1.19 ===
 * Removed SkinTemplateSetupPageCss hook; use BeforePageDisplay instead.
@@ -50,6 +50,7 @@ production.
 * Removed $wgVectorShowVariantName.
 * Removed $wgExtensionAliasesFiles. Use $wgExtensionMessagesFiles.
 * Removed $wgResourceLoaderInlinePrivateModules , now always enabled.
+* Introduced $wgDebugDBTransactions to trace transaction status (currently PostgreSQL only)
 
 === New features in 1.19 ===
 * (bug 19838) Add ability to get all interwiki prefixes also if the interwiki
