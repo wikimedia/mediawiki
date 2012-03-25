@@ -138,6 +138,14 @@ class SpecialJavaScriptTest extends SpecialPage {
 HTML;
 		$out->addHtml( $this->wrapSummaryHtml( $summary, 'frameworkfound' ) . $baseHtml );
 
+		// This special page is disabled by default ($wgEnableJavaScriptTest), and contains
+		// no sensitive data. In order to allow TestSwarm to embed it into a test client window,
+		// we need to allow iframing of this page.
+		$out->allowClickjacking();
+
+		// Used in ./tests/qunit/data/testrunner.js, see also documentation of
+		// $wgJavaScriptTestConfig in DefaultSettings.php
+		$out->addJsConfigVars( 'QUnitTestSwarmInjectJSPath', $wgJavaScriptTestConfig['qunit']['testswarm-injectjs'] );
 	}
 
 	public function isListed(){
