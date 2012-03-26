@@ -3842,9 +3842,7 @@ class User {
 	 * Make a new-style password hash
 	 *
 	 * @param $password String Plain-text password
-	 * @param bool|string $salt Optional salt, may be random or the user ID.
-
-	 *                     If unspecified or false, will generate one automatically
+	 * @param bool|string $salt Deprecated argument, ignored
 	 * @return String Password hash
 	 */
 	public static function crypt( $password, $salt = false ) {
@@ -3855,14 +3853,7 @@ class User {
 			return $hash;
 		}
 
-		if( $wgPasswordSalt ) {
-			if ( $salt === false ) {
-				$salt = MWCryptRand::generateHex( 8 );
-			}
-			return ':B:' . $salt . ':' . md5( $salt . '-' . md5( $password ) );
-		} else {
-			return ':A:' . md5( $password );
-		}
+		return Password::crypt( $password );
 	}
 
 	/**
@@ -3883,16 +3874,16 @@ class User {
 			return $result;
 		}
 
-		if ( $type == ':A:' ) {
-			# Unsalted
-			return md5( $password ) === substr( $hash, 3 );
-		} elseif ( $type == ':B:' ) {
-			# Salted
-			list( $salt, $realHash ) = explode( ':', substr( $hash, 3 ), 2 );
-			return md5( $salt.'-'.md5( $password ) ) == $realHash;
-		} else {
-			# Old-style
+		if ( preg_match( '/^[0-9a-f]{32}$/', $hash ) ) {
+			// If this is a 32 character hexadecimal string than it's an oldCrypt style password
 			return self::oldCrypt( $password, $userId ) === $hash;
+		} else {
+			// Otherwise drop into the new password class system
+			$status = Password::compare( $hash, $password );
+			// @fixme comparePasswords only supports boolean returns so we can't tell the system
+			//        to output a different error message if something was wrong with the data
+			//        or configuration instead of saying the user entered an invalid password.
+			return $status->isGood() && $status->getValue();
 		}
 	}
 

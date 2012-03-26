@@ -645,6 +645,9 @@ $image: File
 &$params: Array of parameters
 &$checkImageAreaHookResult: null, set to true or false to override the $wgMaxImageArea check result
 
+'PasswordClassInit': Called when initializing the Password class. Can be used to register new PasswordType impementations with Password::registerType(). And can be used to change the preferred type by modifying the $preferredType argument.
+&$preferredType: The preferred type.
+
 'PerformRetroactiveAutoblock': called before a retroactive autoblock is applied to a user
 $block: Block object (which is set to be autoblocking)
 &$blockIds: Array of block IDs of the autoblock
