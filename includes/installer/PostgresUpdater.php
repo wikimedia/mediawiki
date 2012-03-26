@@ -398,7 +398,7 @@ END;
 
 	protected function renameSequence( $old, $new ) {
 		if ( $this->db->sequenceExists( $new ) ) {
-			$this->output( "WARNING sequence $new already exists\n" );
+			$this->output( "...sequence $new already exists.\n" );
 			return;
 		}
 		if ( $this->db->sequenceExists( $old ) ) {
@@ -418,7 +418,7 @@ END;
 	protected function addPgField( $table, $field, $type ) {
 		$fi = $this->db->fieldInfo( $table, $field );
 		if ( !is_null( $fi ) ) {
-			$this->output( "... column '$table.$field' already exists\n" );
+			$this->output( "...column '$table.$field' already exists\n" );
 			return;
 		} else {
 			$this->output( "Adding column '$table.$field'\n" );
@@ -429,12 +429,12 @@ END;
 	protected function changeField( $table, $field, $newtype, $default ) {
 		$fi = $this->db->fieldInfo( $table, $field );
 		if ( is_null( $fi ) ) {
-			$this->output( "... error: expected column $table.$field to exist\n" );
+			$this->output( "...ERROR: expected column $table.$field to exist\n" );
 			exit( 1 );
 		}
 
 		if ( $fi->type() === $newtype )
-			$this->output( "... column '$table.$field' is already of type '$newtype'\n" );
+			$this->output( "...column '$table.$field' is already of type '$newtype'\n" );
 		else {
 			$this->output( "Changing column type of '$table.$field' from '{$fi->type()}' to '$newtype'\n" );
 			$sql = "ALTER TABLE $table ALTER $field TYPE $newtype";
@@ -456,7 +456,7 @@ END;
 	protected function changeNullableField( $table, $field, $null ) {
 		$fi = $this->db->fieldInfo( $table, $field );
 		if ( is_null( $fi ) ) {
-			$this->output( "... error: expected column $table.$field to exist\n" );
+			$this->output( "...ERROR: expected column $table.$field to exist\n" );
 			exit( 1 );
 		}
 		if ( $fi->isNullable() ) {
@@ -465,7 +465,7 @@ END;
 				$this->output( "Changing '$table.$field' to not allow NULLs\n" );
 				$this->db->query( "ALTER TABLE $table ALTER $field SET NOT NULL" );
 			} else {
-				$this->output( "... column '$table.$field' is already set as NULL\n" );
+				$this->output( "...column '$table.$field' is already set as NULL\n" );
 			}
 		} else {
 			# # It's NOT NULL - does it need to be NULL?
@@ -474,14 +474,14 @@ END;
 				$this->db->query( "ALTER TABLE $table ALTER $field DROP NOT NULL" );
 			}
 			else {
-				$this->output( "... column '$table.$field' is already set as NOT NULL\n" );
+				$this->output( "...column '$table.$field' is already set as NOT NULL\n" );
 			}
 		}
 	}
 
 	public function addPgIndex( $table, $index, $type ) {
 		if ( $this->db->indexExists( $table, $index ) ) {
-			$this->output( "... index '$index' on table '$table' already exists\n" );
+			$this->output( "...index '$index' on table '$table' already exists\n" );
 		} else {
 			$this->output( "Creating index '$index' on table '$table' $type\n" );
 			$this->db->query( "CREATE INDEX $index ON $table $type" );
@@ -490,7 +490,7 @@ END;
 
 	public function addPgExtIndex( $table, $index, $type ) {
 		if ( $this->db->indexExists( $table, $index ) ) {
-			$this->output( "... index '$index' on table '$table' already exists\n" );
+			$this->output( "...index '$index' on table '$table' already exists\n" );
 		} else {
 			$this->output( "Creating index '$index' on table '$table'\n" );
 			if ( preg_match( '/^\(/', $type ) ) {
@@ -531,7 +531,7 @@ END;
 			}
 			$this->applyPatch( 'patch-remove-archive2.sql' );
 		} else {
-			$this->output( "... obsolete table 'archive2' does not exist\n" );
+			$this->output( "...obsolete table 'archive2' does not exist\n" );
 		}
 	}
 
@@ -542,13 +542,13 @@ END;
 			$this->db->query( "ALTER TABLE oldimage ALTER oi_deleted TYPE SMALLINT USING (oi_deleted::smallint)" );
 			$this->db->query( "ALTER TABLE oldimage ALTER oi_deleted SET DEFAULT 0" );
 		} else {
-			$this->output( "... column 'oldimage.oi_deleted' is already of type 'smallint'\n" );
+			$this->output( "...column 'oldimage.oi_deleted' is already of type 'smallint'\n" );
 		}
 	}
 
 	protected function checkOiNameConstraint() {
 		if ( $this->db->hasConstraint( "oldimage_oi_name_fkey_cascaded" ) ) {
-			$this->output( "... table 'oldimage' has correct cascading delete/update foreign key to image\n" );
+			$this->output( "...table 'oldimage' has correct cascading delete/update foreign key to image\n" );
 		} else {
 			if ( $this->db->hasConstraint( "oldimage_oi_name_fkey" ) ) {
 				$this->db->query( "ALTER TABLE oldimage DROP CONSTRAINT oldimage_oi_name_fkey" );
@@ -567,7 +567,7 @@ END;
 			$this->output( "Adding function and trigger 'page_deleted' to table 'page'\n" );
 			$this->applyPatch( 'patch-page_deleted.sql' );
 		} else {
-			$this->output( "... table 'page' has 'page_deleted' trigger\n" );
+			$this->output( "...table 'page' has 'page_deleted' trigger\n" );
 		}
 	}
 
@@ -577,7 +577,7 @@ END;
 			$this->output( "Removing NOT NULL constraint from 'recentchanges.rc_cur_id'\n" );
 			$this->applyPatch( 'patch-rc_cur_id-not-null.sql' );
 		} else {
-			$this->output( "... column 'recentchanges.rc_cur_id' has a NOT NULL constraint\n" );
+			$this->output( "...column 'recentchanges.rc_cur_id' has a NOT NULL constraint\n" );
 		}
 	}
 
@@ -588,20 +588,20 @@ END;
 			$this->db->query( 'DROP INDEX pagelink_unique' );
 			$pu = null;
 		} else {
-			$this->output( "... obsolete version of index 'pagelink_unique index' does not exist\n" );
+			$this->output( "...obsolete version of index 'pagelink_unique index' does not exist\n" );
 		}
 
 		if ( is_null( $pu ) ) {
 			$this->output( "Creating index 'pagelink_unique index'\n" );
 			$this->db->query( 'CREATE UNIQUE INDEX pagelink_unique ON pagelinks (pl_from,pl_namespace,pl_title)' );
 		} else {
-			$this->output( "... index 'pagelink_unique_index' already exists\n" );
+			$this->output( "...index 'pagelink_unique_index' already exists\n" );
 		}
 	}
 
 	protected function checkRevUserFkey() {
 		if ( $this->fkeyDeltype( 'revision_rev_user_fkey' ) == 'r' ) {
-			$this->output( "... constraint 'revision_rev_user_fkey' is ON DELETE RESTRICT\n" );
+			$this->output( "...constraint 'revision_rev_user_fkey' is ON DELETE RESTRICT\n" );
 		} else {
 			$this->output( "Changing constraint 'revision_rev_user_fkey' to ON DELETE RESTRICT\n" );
 			$this->applyPatch( 'patch-revision_rev_user_fkey.sql' );
@@ -614,7 +614,7 @@ END;
 			$this->db->query( 'DROP INDEX ipb_address' );
 		}
 		if ( $this->db->indexExists( 'ipblocks', 'ipb_address_unique' ) ) {
-			$this->output( "... have ipb_address_unique\n" );
+			$this->output( "...have ipb_address_unique\n" );
 		} else {
 			$this->output( "Adding ipb_address_unique index\n" );
 			$this->applyPatch( 'patch-ipb_address_unique.sql' );
