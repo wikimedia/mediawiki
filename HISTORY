@@ -1,6 +1,10 @@
 Change notes from older releases. For current info see RELEASE-NOTES-1.20.
 
 == MediaWiki 1.18 ==
+=== Changes since 1.18.2 ===
+* (bug 35446) Using "{{nse:}}" with an invalid namespace name no longer throws
+  a PHP warning.
+
 === Changes since 1.18.1 ===
 
 * (bug 33686) could not get a list of contributor for an article when using

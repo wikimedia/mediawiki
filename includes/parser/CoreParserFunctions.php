@@ -141,7 +141,11 @@ class CoreParserFunctions {
 	}
 
 	static function nse( $parser, $part1 = '' ) {
-		return wfUrlencode( str_replace( ' ', '_', self::ns( $parser, $part1 ) ) );
+		$ret = self::ns( $parser, $part1 );
+		if ( is_string( $ret ) ) {
+			$ret = wfUrlencode( str_replace( ' ', '_', $ret ) );
+		}
+		return $ret;
 	}
 
 	/**
