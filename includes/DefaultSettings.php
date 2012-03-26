@@ -3170,6 +3170,24 @@ $wgActiveUserDays = 30;
 $wgPasswordSalt = true;
 
 /**
+ * Specifies the configuration for PBKDF2-HMAC-??? password hashing
+ * - saltbits: The number of bits of salt to generate. The spec recommends at least 64 bits.
+ * - iterations: The number of PBKDF2 iterations to run. The spec recommends at least 1000.
+ * - hash: The hash function to use for PBKDF2-HMAC.
+ * - hashedbits: The number of bits to output in the derived key / hash from the password.
+ *               Default is the number of bits outputted by the hash function.
+ *
+ * We store the actual values used along with the hash so you can safely changes these values
+ * to more secure ones without causing user passwords to become invalid.
+ */
+$wgPasswordPbkdf2Hmac = array(
+	'saltbits'   => 64,
+	'iterations' => 10000,
+	'hash'       => 'sha256',
+	'hashedbits' => false,
+);
+
+/**
  * Specifies the minimal length of a user password. If set to 0, empty pass-
  * words are allowed.
  */

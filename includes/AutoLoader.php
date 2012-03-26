@@ -171,6 +171,7 @@ $wgAutoloadLocalClasses = array(
 	'PasswordType' => 'includes/Password.php',
 	'Password_TypeA' => 'includes/Password.php',
 	'Password_TypeB' => 'includes/Password.php',
+	'Password_TypePBKHM' => 'includes/Password.php',
 	'PathRouter' => 'includes/PathRouter.php',
 	'PathRouterPatternReplacer' => 'includes/PathRouter.php',
 	'PermissionsError' => 'includes/Exception.php',
