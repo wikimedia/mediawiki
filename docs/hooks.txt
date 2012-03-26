@@ -746,6 +746,11 @@ to a user.
 $block: Block object (which is set to be autoblocking)
 &$blockIds: Array of block IDs of the autoblock
 
+'PasswordClassInit': Called when initializing the Password class. Can be used to
+register new PasswordType impementations with Password::registerType(). And can
+be used to change the preferred type by modifying the $preferredType argument.
+&$preferredType: The preferred type.
+
 'BlockIp': Before an IP address or user is blocked.
 $block: the Block object about to be saved
 $user: the user _doing_ the block (not the one being blocked)

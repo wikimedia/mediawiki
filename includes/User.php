@@ -3614,6 +3614,7 @@ class User {
 	 * Check to see if the given clear-text password is one of the accepted passwords
 	 * @param string $password user password.
 	 * @return boolean: True if the given password is correct, otherwise False.
+	 * @throws PasswordDataError
 	 */
 	public function checkPassword( $password ) {
 		global $wgAuth, $wgLegacyEncoding;
@@ -3638,6 +3639,11 @@ class User {
 			return false;
 		}
 		if ( self::comparePasswords( $this->mPassword, $password, $this->mId ) ) {
+			// If password is correct check if the password hash needs a rehash
+			if ( self::passwordNeedsUpdate( $this->mPassword ) ) {
+				$this->mPassword = Password::crypt( $password );
+				$this->saveSettings();
+			}
 			return true;
 		} elseif ( $wgLegacyEncoding ) {
 			// Some wikis were converted from ISO 8859-1 to UTF-8, the passwords can't be converted
@@ -3646,6 +3652,11 @@ class User {
 			if ( $cp1252Password != $password &&
 				self::comparePasswords( $this->mPassword, $cp1252Password, $this->mId ) )
 			{
+				// If password is correct check if the password hash needs a rehash
+				if ( self::passwordNeedsUpdate( $this->mPassword ) ) {
+					$this->mPassword = Password::crypt( $password );
+					$this->saveSettings();
+				}
 				return true;
 			}
 		}
@@ -3664,13 +3675,19 @@ class User {
 		global $wgNewPasswordExpiry;
 
 		$this->load();
-		if ( self::comparePasswords( $this->mNewpassword, $plaintext, $this->getId() ) ) {
-			if ( is_null( $this->mNewpassTime ) ) {
-				return true;
+		try {
+			if( self::comparePasswords( $this->mNewpassword, $plaintext, $this->getId() ) ) {
+				if ( is_null( $this->mNewpassTime ) ) {
+					return true;
+				}
+				$expiry = wfTimestamp( TS_UNIX, $this->mNewpassTime ) + $wgNewPasswordExpiry;
+				return ( time() < $expiry );
+			} else {
+				return false;
 			}
-			$expiry = wfTimestamp( TS_UNIX, $this->mNewpassTime ) + $wgNewPasswordExpiry;
-			return ( time() < $expiry );
-		} else {
+		} catch ( PasswordDataError $e ) {
+			// For temporary passwords we don't care about the unlikely case where the temporary
+			// password data is corrupt. Just say it's wrong and let the user generate a new one.
 			return false;
 		}
 	}
@@ -4457,8 +4474,7 @@ class User {
 	 * Make a new-style password hash
 	 *
 	 * @param string $password Plain-text password
-	 * @param bool|string $salt Optional salt, may be random or the user ID.
-	 *  If unspecified or false, will generate one automatically
+	 * @param bool|string $salt Deprecated argument, ignored
 	 * @return string Password hash
 	 */
 	public static function crypt( $password, $salt = false ) {
@@ -4469,14 +4485,7 @@ class User {
 			return $hash;
 		}
 
-		if ( $wgPasswordSalt ) {
-			if ( $salt === false ) {
-				$salt = MWCryptRand::generateHex( 8 );
-			}
-			return ':B:' . $salt . ':' . md5( $salt . '-' . md5( $password ) );
-		} else {
-			return ':A:' . md5( $password );
-		}
+		return Password::crypt( $password );
 	}
 
 	/**
@@ -4488,6 +4497,7 @@ class User {
 	 * @param string|bool $userId User ID for old-style password salt
 	 *
 	 * @return boolean
+	 * @throws PasswordDataError
 	 */
 	public static function comparePasswords( $hash, $password, $userId = false ) {
 		$type = substr( $hash, 0, 3 );
@@ -4497,16 +4507,28 @@ class User {
 			return $result;
 		}
 
-		if ( $type == ':A:' ) {
-			// Unsalted
-			return md5( $password ) === substr( $hash, 3 );
-		} elseif ( $type == ':B:' ) {
-			// Salted
-			list( $salt, $realHash ) = explode( ':', substr( $hash, 3 ), 2 );
-			return md5( $salt . '-' . md5( $password ) ) === $realHash;
-		} else {
-			// Old-style
+		if ( preg_match( '/^[0-9a-f]{32}$/', $hash ) ) {
+			// If this is a 32 character hexadecimal string than it's an oldCrypt style password
 			return self::oldCrypt( $password, $userId ) === $hash;
+		} else {
+			// Otherwise drop into the new password class system
+			return Password::verify( $hash, $password );
+		}
+	}
+
+	/**
+	 * Check if a password hash should be rehashed on login.
+	 *
+	 * @param $hash String Password hash
+	 *
+	 * @return Boolean
+	 */
+	public static function passwordNeedsUpdate( $hash ) {
+		if ( preg_match( '/^[0-9a-f]{32}$/', $hash ) ) {
+			// If this is an old style hash then it inevitably needs an update
+			return true;
+		} else {
+			return Password::needsUpdate( $hash );
 		}
 	}
 
