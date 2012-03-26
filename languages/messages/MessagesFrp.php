@@ -26,8 +26,8 @@ $namespaceNames = array(
 	NS_MEDIA            => 'Mèdia',
 	NS_SPECIAL          => 'Spèciâl',
 	NS_TALK             => 'Discussion',
-	NS_USER             => 'Utilisator',
-	NS_USER_TALK        => 'Discussion_utilisator',
+	NS_USER             => 'Usanciér',
+	NS_USER_TALK        => 'Discussion_usanciér',
 	NS_PROJECT_TALK     => 'Discussion_$1',
 	NS_FILE             => 'Fichiér',
 	NS_FILE_TALK        => 'Discussion_fichiér',
@@ -42,13 +42,14 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-	'Discutar' => NS_TALK,
+	'Discutar'              => NS_TALK,
+	'Utilisator'            => NS_USER,
 	'Discussion_Utilisator' => NS_USER_TALK,
-	'Émâge' => NS_FILE,
-	'Discussion_Émâge' => NS_FILE_TALK,
-	'Discussion_Modèlo' => NS_TEMPLATE_TALK,
-	'Discussion_Éde' => NS_HELP_TALK,
-	'Discussion_Catègorie' => NS_CATEGORY_TALK
+	'Émâge'                 => NS_FILE,
+	'Discussion_Émâge'      => NS_FILE_TALK,
+	'Discussion_Modèlo'     => NS_TEMPLATE_TALK,
+	'Discussion_Éde'        => NS_HELP_TALK,
+	'Discussion_Catègorie'  => NS_CATEGORY_TALK
 );
 
 $specialPageAliases = array(

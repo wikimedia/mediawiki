@@ -44,7 +44,7 @@ $linkPrefixExtension = false;
 
 $namespaceNames = array(
 	NS_MEDIA            => 'माध्यमम्',
-	NS_SPECIAL          => 'विशेष',
+	NS_SPECIAL          => 'विशेषम्',
 	NS_TALK             => 'सम्भाषणम्',
 	NS_USER             => 'योजकः',
 	NS_USER_TALK        => 'योजकसम्भाषणम्',
@@ -63,6 +63,7 @@ $namespaceNames = array(
 
 $namespaceAliases = array(
 	'माध्यम'             => NS_MEDIA,
+	'विशेष'              => NS_SPECIAL,
 	'संभाषणं'            => NS_TALK,
 	'योजकसंभाषणं'        => NS_USER_TALK,
 	'$1संभाषणं'         => NS_PROJECT_TALK,
