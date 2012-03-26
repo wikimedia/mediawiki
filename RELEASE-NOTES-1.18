@@ -12,8 +12,7 @@ setting since version 1.2.0. If you have it on, turn it '''off''' if you can.
 
 This is a maintenance and security release of the MediaWiki 1.18 branch.
 
-== Changes since 1.18.1 ==
-
+=== Changes since 1.18.1 ===
 * (bug 33686) could not get a list of contributor for an article when using
  a SQLite database.
 * (Bug 33865) Exception thrown in action=parse when attempting to use the title
@@ -32,8 +31,12 @@ This is a maintenance and security release of the MediaWiki 1.18 branch.
   CSRF attacks.
 * (bug 35317) CSRF in Special:Upload.
 
-=== Changes since 1.18.0 ===
+== MediaWiki 1.18.1 ==
+2012-01-11
 
+This a maintenance and security release of the MediaWiki 1.18 branch.
+
+=== Changes since 1.18.0 ===
 * (bug 32712) Fix for search indexing of pages with certain unicode chars following URL.
 * (bug 3901) Lang, hreflang attribs added to sidebar interlanguage links for screen readers.
 * (bug 30774) mediawiki.html: Add support for numbers and booleans in the
@@ -61,7 +64,7 @@ This is a maintenance and security release of the MediaWiki 1.18 branch.
   for Oracle DB.
 * (bug 33117) prop=revisions allows deleted text to be exposed through cache pollution.
 
-== MediaWiki 1.18 ==
+== MediaWiki 1.18.0 ==
 2011-11-24
 
 This is the first stable release of the MediaWiki 1.18 branch.
