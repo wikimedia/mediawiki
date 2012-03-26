@@ -3027,12 +3027,16 @@ HTML
 	/**
 	 * Show "your edit contains spam" page with your diff and text
 	 *
-	 * @param $match string|bool Text which triggered one or more filters
+	 * @param $match string|bool Text (or array of texts) which triggered one or more filters
 	 */
 	public function spamPageWithContent( $match = false ) {
-		global $wgOut;
+		global $wgOut, $wgLang;
 		$this->textbox2 = $this->textbox1;
 
+		if( is_array( $match ) ){
+			$match = $wgLang->listToText( $match );
+		}
+		
 		$wgOut->prepareErrorPage( wfMessage( 'spamprotectiontitle' ) );
 
 		$wgOut->addHTML( '<div id="spamprotected">' );
