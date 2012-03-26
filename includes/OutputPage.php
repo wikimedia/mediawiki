@@ -22,7 +22,7 @@ class OutputPage extends ContextSource {
 	/// Should be private. Used with addMeta() which adds <meta>
 	var $mMetatags = array();
 
-	/// <meta keyworkds="stuff"> most of the time the first 10 links to an article
+	/// <meta keywords="stuff"> most of the time the first 10 links to an article
 	var $mKeywords = array();
 
 	var $mLinktags = array();
