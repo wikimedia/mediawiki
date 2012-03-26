@@ -30,24 +30,37 @@ class SpecialAllpages extends IncludableSpecialPage {
 
 	/**
 	 * Maximum number of pages to show on single subpage.
+	 *
+	 * @var int $maxPerPage
 	 */
 	protected $maxPerPage = 345;
 
 	/**
 	 * Maximum number of pages to show on single index subpage.
+	 *
+	 * @var int $maxLineCount
 	 */
 	protected $maxLineCount = 100;
 
 	/**
 	 * Maximum number of chars to show for an entry.
+	 *
+	 * @var int $maxPageLength
 	 */
 	protected $maxPageLength = 70;
 
 	/**
 	 * Determines, which message describes the input field 'nsfrom'.
+	 *
+	 * @var string $nsfromMsg
 	 */
 	protected $nsfromMsg = 'allpagesfrom';
 
+	/**
+	 * Constructor
+	 *
+	 * @param $name string: name of the special page, as seen in links and URLs (default: 'Allpages')
+	 */
 	function __construct( $name = 'Allpages' ){
 		parent::__construct( $name );
 	}
