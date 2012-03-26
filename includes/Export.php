@@ -794,6 +794,11 @@ class DumpFileOutput extends DumpOutput {
 		$this->filename = $file;
 	}
 
+	function writeCloseStream( $string ) {
+		parent::writeCloseStream( $string );
+		fclose( $this->handle );
+	}
+
 	function write( $string ) {
 		fputs( $this->handle, $string );
 	}
@@ -852,6 +857,11 @@ class DumpPipeOutput extends DumpFileOutput {
 		$this->startCommand( $command );
 		$this->command = $command;
 		$this->filename = $file;
+	}
+
+	function writeCloseStream( $string ) {
+		parent::writeCloseStream( $string );
+		proc_close( $this->procOpenResource );
 	}
 
 	function startCommand( $command ) {
