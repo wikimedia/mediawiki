@@ -55,10 +55,17 @@ abstract class DBTable {
 	 * * array
 	 *
 	 * @since 1.20
-	 *
 	 * @return array
 	 */
 	public abstract function getFieldTypes();
+
+	/**
+	 * Cache for instances, used by the singleton method.
+	 *
+	 * @since 1.20
+	 * @var array of DBTable
+	 */
+	protected static $instanceCache = array();
 
 	/**
 	 * The database connection to use for read operations.
@@ -105,9 +112,26 @@ abstract class DBTable {
 	 * @param array $options
 	 * @param string|null $functionName
 	 *
-	 * @return array of self
+	 * @return DBResult
 	 */
 	public function select( $fields = null, array $conditions = array(), array $options = array(), $functionName  = null ) {
+		return new DBResult( $this, $this->rawSelect( $fields, $conditions, $options, $functionName ) );
+	}
+
+	/**
+	 * Selects the the specified fields of the records matching the provided
+	 * conditions and returns them as DBDataObject. Field names get prefixed.
+	 *
+	 * @since 1.20
+	 *
+	 * @param array|string|null $fields
+	 * @param array $conditions
+	 * @param array $options
+	 * @param string|null $functionName
+	 *
+	 * @return array of self
+	 */
+	public function selectObjects( $fields = null, array $conditions = array(), array $options = array(), $functionName  = null ) {
 		$result = $this->selectFields( $fields, $conditions, $options, false, $functionName );
 
 		$objects = array();
@@ -117,6 +141,35 @@ abstract class DBTable {
 		}
 
 		return $objects;
+	}
+
+	/**
+	 * Do the actual select.
+	 *
+	 * @since 1.20
+	 *
+	 * @param null|string|array $fields
+	 * @param array $conditions
+	 * @param array $options
+	 * @param null|string $functionName
+	 *
+	 * @return ResultWrapper
+	 */
+	public function rawSelect( $fields = null, array $conditions = array(), array $options = array(), $functionName  = null ) {
+		if ( is_null( $fields ) ) {
+			$fields = array_keys( $this->getFieldTypes() );
+		}
+		else {
+			$fields = (array)$fields;
+		}
+
+		return wfGetDB( $this->getReadDb() )->select(
+			$this->getDBTable(),
+			$this->getPrefixedFields( $fields ),
+			$this->getPrefixedValues( $conditions ),
+			is_null( $functionName ) ? __METHOD__ : $functionName,
+			$options
+		);
 	}
 
 	/**
@@ -142,23 +195,9 @@ abstract class DBTable {
 	 * @return array of array
 	 */
 	public function selectFields( $fields = null, array $conditions = array(), array $options = array(), $collapse = true, $functionName  = null ) {
-		if ( is_null( $fields ) ) {
-			$fields = array_keys( $this->getFieldTypes() );
-		}
-		else {
-			$fields = (array)$fields;
-		}
-		
-		$dbr = wfGetDB( $this->getReadDb() );
-		$result = $dbr->select(
-			$this->getDBTable(),
-			$this->getPrefixedFields( $fields ),
-			$this->getPrefixedValues( $conditions ),
-			is_null( $functionName ) ? __METHOD__ : $functionName,
-			$options
-		);
-
 		$objects = array();
+
+		$result = $this->rawSelect( $fields, $conditions, $options, $functionName );
 
 		foreach ( $result as $record ) {
 			$objects[] = $this->getFieldsFromDBResult( $record );
@@ -200,7 +239,7 @@ abstract class DBTable {
 
 		$objects = $this->select( $fields, $conditions, $options, $functionName );
 
-		return empty( $objects ) ? false : $objects[0];
+		return $objects->isEmpty() ? false : $objects->current();
 	}
 
 	/**
@@ -531,11 +570,7 @@ abstract class DBTable {
 	public function unprefixFieldName( $fieldName ) {
 		return substr( $fieldName, strlen( $this->getFieldPrefix() ) );
 	}
-	
-	public function __construct() {
-	
-	}
-	
+
 	/**
 	 * Get an instance of this class.
 	 *
@@ -544,14 +579,13 @@ abstract class DBTable {
 	 * @return DBtable
 	 */
 	public static function singleton() {
-		static $instance;
-		
-		if ( !isset( $instance ) ) {
-			$class = function_exists( 'get_called_class' ) ? get_called_class() : self::get_called_class();
-			$instance = new $class;
+		$class = function_exists( 'get_called_class' ) ? get_called_class() : self::get_called_class();
+
+		if ( !array_key_exists( $class, self::$instanceCache ) ) {
+			self::$instanceCache[$class] = new $class;
 		}
 		
-		return $instance;
+		return self::$instanceCache[$class];
 	}
 
 	/**
