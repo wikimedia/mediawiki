@@ -3303,11 +3303,12 @@ class User {
 		global $wgUserEmailConfirmationTokenExpiry;
 		$now = time();
 		$expires = $now + $wgUserEmailConfirmationTokenExpiry;
+		$expiration = wfTimestamp( TS_MW, $expires );
 		$this->load();
 		$token = MWCryptRand::generateHex( 32 );
 		$hash = md5( $token );
 		$this->mEmailToken = $hash;
-		$this->mEmailTokenExpires = wfTimestamp( TS_MW, $expires );
+		$this->mEmailTokenExpires = $expiration;
 		return $token;
 	}
 
