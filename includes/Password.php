@@ -5,6 +5,21 @@
  * @file
  */
 
+class PasswordStatusException extends Exception {
+
+	protected $status;
+
+	public function __construct( $status ) {
+		$this->status = $status;
+		parent::__construct( $status->getWikiText() );
+	}
+
+	public function getStatus() {
+		return $this->status;
+	}
+
+}
+
 class Password {
 
 	/**
@@ -144,7 +159,11 @@ class Password {
 			return $status;
 		}
 		list( $cryptType, $remainingData ) = $status;
-		return $cryptType->compare( $remainingData, $password );
+		try {
+			return $cryptType->compare( $remainingData, $password );
+		} catch( PasswordStatusException $e ) {
+			return $e->getStatus();
+		}
 	}
 
 	/**
@@ -159,7 +178,7 @@ class Password {
 	 * @param $data string The raw hashed password data with all params and types stuck on the front.
 	 * @return bool
 	 */
-	public static function isPreferredFormat( $hash ) {
+	public static function isPreferredFormat( $data ) {
 		$status = self::parseHash( $data );
 		if ( $status instanceof Status ) {
 			// If parseHash had issues then this is naturally not preferred
@@ -172,8 +191,13 @@ class Password {
 			return false;
 		}
 
-		if ( $cryptType->isPreferredFormat( $remainingData ) === false ) {
-			// If cryptType's isPreferredFormat returns false it's not preferred
+		try {
+			if ( $cryptType->isPreferredFormat( $remainingData ) === false ) {
+				// If cryptType's isPreferredFormat returns false it's not preferred
+				return false;
+			}
+		} catch( PasswordStatusException $e ) {
+			// If there was an issue with the data, it's not preferred
 			return false;
 		}
 
@@ -274,8 +298,7 @@ abstract class BasePasswordType implements PasswordType {
 	 */
 	protected static function params( $params, $length ) {
 		if ( count( $params ) != $length ) {
-			// XXX: @fixme use a special type to indicate the invalidity which we can catch
-			throw Status::newFatal( 'password-crypt-invalidparamlength' );
+			throw new PasswordStatusException( Status::newFatal( 'password-crypt-invalidparamlength' ) );
 		}
 		return $params;
 	}
@@ -292,7 +315,7 @@ abstract class BasePasswordType implements PasswordType {
 	 *        Status object indicating an error in the params that will be
 	 *        handled by compare().
 	 */
-	abstract public function run( $params, $password );
+	abstract protected function run( $params, $password );
 
 	/**
 	 * Abstract method to be defined by password type implementations.
@@ -301,7 +324,19 @@ abstract class BasePasswordType implements PasswordType {
 	 *
 	 * @return Array
 	 */
-	abstract public function cryptParams();
+	abstract protected function cryptParams();
+
+	/**
+	 * Semi-abstract method to be defined by password type implementations.
+	 * @param $params The params to the hashing implementation
+	 * @return bool
+	 * @see PasswordType::isPreferredFormat
+	 */
+	protected function preferredFormat( $params ) {
+		// Basic implementations don't have internal parameter preferences
+		// so we just return true.
+		return true;
+	}
 
 	/**
 	 * @see PasswordType::crypt
@@ -348,34 +383,43 @@ abstract class BasePasswordType implements PasswordType {
 	 * @see PasswordType::isPreferredFormat
 	 */
 	public function isPreferredFormat( $data ) {
-		// Basic implementations don't have internal parameter preferences
-		// so we just return true.
-		return true;
+		$params = explode( ':', $data );
+		$realHash = array_pop( $params );
+		return $this->preferredFormat( $params );
 	}
 
 }
 
+/**
+ * An old non-salted password type.
+ * Simply md5s the password.
+ */
 class Password_TypeA extends BasePasswordType {
 
-	public function run( $params, $password ) {
+	protected function run( $params, $password ) {
 		self::params( $params, 0 );
 		return md5( $password );
 	}
 
-	public function cryptParams() {
+	protected function cryptParams() {
 		return array();
 	}
 
 }
 
+/**
+ * Our first salted password type.
+ * md5s a combination of a 32bit salt a '-' separator and
+ * the md5 of the password.
+ */
 class Password_TypeB extends BasePasswordType {
 
-	public function run( $params, $password ) {
+	protected function run( $params, $password ) {
 		list( $salt ) = self::params( $params, 1 );
 		return md5( $salt . '-' . md5( $password ) );
 	}
 
-	public function cryptParams() {
+	protected function cryptParams() {
 		$salt = MWCryptRand::generateHex( 8 );
 		return array( $salt );
 	}
@@ -387,7 +431,7 @@ class Password_TypeB extends BasePasswordType {
  */
 class Password_TypePBKHM  extends BasePasswordType {
 
-	public function run( $params, $password ) {
+	protected function run( $params, $password ) {
 		list( $salt, $hashFunc, $iterations, $dkLength ) = self::params( $params, 4 );
 		$salt = base64_decode( $salt );
 		if ( !in_array( $hashFunc, hash_algos() ) ) {
@@ -422,7 +466,7 @@ class Password_TypePBKHM  extends BasePasswordType {
 		return base64_encode( $derivedKey );
 	}
 
-	public function cryptParams() {
+	protected function cryptParams() {
 		global $wgPasswordPbkdf2Hmac;
 
 		// Number of salt bits, never use less than 32 bits (the same as our old 8 hex chars)
@@ -447,6 +491,44 @@ class Password_TypePBKHM  extends BasePasswordType {
 			/* iterations */ $iterations,
 			/* dkLength */   $hashedBits / 8,
 		);
+	}
+
+	protected function preferredFormat( $params ) {
+		global $wgPasswordPbkdf2Hmac;
+		list( $salt, $usedHashFunc, $usedIterations, $dkLength ) = self::params( $params, 4 );
+		
+		$saltBits = max( 32, $wgPasswordPbkdf2Hmac['saltbits'] );
+		if ( strlen( base64_decode( $salt ) ) < ceil( $saltBits / 8 ) ) {
+			// This is not preferred if there are less salt bits than configured
+			return false;
+		}
+
+		// Number of iterations to make, never use less than 1000 iterations
+		$iterations = max( 1000, $wgPasswordPbkdf2Hmac['iterations'] );
+		if ( $usedIterations < $iterations ) {
+			// This is not preferred if there are less iterations than configured
+			return false;
+		}
+
+		$hashFunc = $wgPasswordPbkdf2Hmac['hash'];
+		if ( in_array( $hashFunc, hash_algos() ) && $usedHashFunc !== $hashFunc ) {
+			// This is not preferred if the hash function does not match configuration
+			return false;
+		}
+
+		// The number of bits to output in the derived key
+		$hashedBits = $wgPasswordPbkdf2Hmac['hashedbits'];
+		if ( !$hashedBits ) {
+			// If hashed bits is not set default to the number of bits outputted by the chosen hash function
+			$hashedBits = strlen( hash( $hashFunc, null, true ) ) * 8;
+		}
+
+		if ( $dkLength < ( $hashedBits / 8 ) ) {
+			// If the key length is less than 
+			return false;
+		}
+
+		return true;
 	}
 
 }
