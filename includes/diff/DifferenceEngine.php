@@ -486,20 +486,21 @@ class DifferenceEngine extends ContextSource {
 			$out->setRevisionTimestamp( $this->mNewRev->getTimestamp() );
 			$out->setArticleFlag( true );
 
-			if ( $this->mNewPage->isCssJsSubpage() || $this->mNewPage->isCssOrJsPage() ) { #FIXME: don't do this, use the content handler instead!!
+			if ( $this->mNewPage->isCssJsSubpage() || $this->mNewPage->isCssOrJsPage() ) { #NOTE: only needed for B/C: custom rendering of JS/CSS via hook
 				// Stolen from Article::view --AG 2007-10-11
 				// Give hooks a chance to customise the output
 				// @TODO: standardize this crap into one function
-				if ( wfRunHooks( 'ShowRawCssJs', array( $this->mNewtext, $this->mNewPage, $out ) ) ) { #FIXME: what to do with this hook??
-					// Wrap the whole lot in a <pre> and don't parse
-					$m = array();
-					preg_match( '!\.(css|js)$!u', $this->mNewPage->getText(), $m );
-					$out->addHTML( "<pre class=\"mw-code mw-{$m[1]}\" dir=\"ltr\">\n" );
-					$out->addHTML( htmlspecialchars( $this->mNewtext ) );
-					$out->addHTML( "\n</pre>\n" );
+				if ( !Hook::isRegistered( 'ShowRawCssJs' )
+                    || wfRunHooks( 'ShowRawCssJs', array( ContentHandler::getContentText( $this->mNewContent ), $this->mNewPage, $out ) ) ) { #NOTE: deperecated hook, B/C only
+                    // use the content object's own rendering
+                    $po = $this->mContentObject->getParserOutput();
+                    $out->addHTML( $po->getText() );
 				}
-			} elseif ( !wfRunHooks( 'ArticleViewCustom', array( $this->mNewtext, $this->mNewPage, $out ) ) ) { #FIXME: what do we pass here
-				// Handled by extension
+            } elseif( !wfRunHooks( 'ArticleContentViewCustom', array( $this->mNewContent, $this->mNewPage, $out ) ) ) {
+                // Handled by extension
+            } elseif( Hooks::isRegistered( 'ArticleViewCustom' )
+                    && !wfRunHooks( 'ArticleViewCustom', array( ContentHandler::getContentText( $this->mNewContent ), $this->mNewPage, $out ) ) ) { #NOTE: deperecated hook, B/C only
+                // Handled by extension
 			} else {
 				// Normal page
 				if ( $this->getTitle()->equals( $this->mNewPage ) ) {

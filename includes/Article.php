@@ -324,7 +324,7 @@ class Article extends Page {
 
         $content = $this->fetchContentObject();
 
-        $this->mContent = ContentHandler::getContentText( $content );
+        $this->mContent = ContentHandler::getContentText( $content ); #FIXME: get rid of mContent everywhere!
 		wfRunHooks( 'ArticleAfterFetchContent', array( &$this, &$this->mContent ) ); #BC cruft!
 
 		wfProfileOut( __METHOD__ );
@@ -609,7 +609,10 @@ class Article extends Page {
 						wfDebug( __METHOD__ . ": showing CSS/JS source\n" );
 						$this->showCssOrJsPage();
 						$outputDone = true;
-					} elseif( !wfRunHooks( 'ArticleViewCustom', array( $this->mContent, $this->getTitle(), $wgOut ) ) ) {
+                    } elseif( !wfRunHooks( 'ArticleContentViewCustom', array( $this->fetchContentObject(), $this->getTitle(), $wgOut ) ) ) { #FIXME: document new hook!
+                        # Allow extensions do their own custom view for certain pages
+                        $outputDone = true;
+					} elseif( Hooks::isRegistered( 'ArticleViewCustom' ) && !wfRunHooks( 'ArticleViewCustom', array( $this->fetchContent(), $this->getTitle(), $wgOut ) ) ) { #FIXME: fetchContent() is deprecated! #FIXME: deprecate hook!
 						# Allow extensions do their own custom view for certain pages
 						$outputDone = true;
 					} else {
@@ -745,17 +748,17 @@ class Article extends Page {
 	 * This is hooked by SyntaxHighlight_GeSHi to do syntax highlighting of these
 	 * page views.
 	 */
-	protected function showCssOrJsPage() { #FIXME: move this to ContentHandler!
+	protected function showCssOrJsPage() {
 		global $wgOut;
 
 		$dir = $this->getContext()->getLanguage()->getDir();
 		$lang = $this->getContext()->getLanguage()->getCode();
 
 		$wgOut->wrapWikiMsg( "<div id='mw-clearyourcache' lang='$lang' dir='$dir' class='mw-content-$dir'>\n$1\n</div>",
-			'clearyourcache' ); #FIXME: do this in handler
+			'clearyourcache' );
 
 		// Give hooks a chance to customise the output
-		if ( wfRunHooks( 'ShowRawCssJs', array( $this->mContent, $this->getTitle(), $wgOut ) ) ) {
+		if ( !Hooks::isRegistered('ShowRawCssJs') || wfRunHooks( 'ShowRawCssJs', array( $this->fetchContent(), $this->getTitle(), $wgOut ) ) ) { #FIXME: fetchContent() is deprecated #FIXME: hook is deprecated
             $po = $this->mContentObject->getParserOutput();
 			$wgOut->addHTML( $po->getText() );
 		}
