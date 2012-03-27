@@ -23,7 +23,7 @@ class DifferenceEngine extends ContextSource {
 	 * @private
 	 */
 	var $mOldid, $mNewid;
-	var $mOldtext, $mNewtext;
+	var $mOldContent, $mNewContent;
 	protected $mDiffLang;
 
 	/**
@@ -67,7 +67,7 @@ class DifferenceEngine extends ContextSource {
 	 * @param $refreshCache boolean If set, refreshes the diff cache
 	 * @param $unhide boolean If set, allow viewing deleted revs
 	 */
-	function __construct( $context = null, $old = 0, $new = 0, $rcid = 0,  # FIXME: use Contenthandler::getDifferenceEngine everywhere!
+	function __construct( $context = null, $old = 0, $new = 0, $rcid = 0,
 		$refreshCache = false, $unhide = false )
 	{
 		if ( $context instanceof IContextSource ) {
@@ -486,11 +486,11 @@ class DifferenceEngine extends ContextSource {
 			$out->setRevisionTimestamp( $this->mNewRev->getTimestamp() );
 			$out->setArticleFlag( true );
 
-			if ( $this->mNewPage->isCssJsSubpage() || $this->mNewPage->isCssOrJsPage() ) {
+			if ( $this->mNewPage->isCssJsSubpage() || $this->mNewPage->isCssOrJsPage() ) { #FIXME: don't do this, use the content handler instead!!
 				// Stolen from Article::view --AG 2007-10-11
 				// Give hooks a chance to customise the output
 				// @TODO: standardize this crap into one function
-				if ( wfRunHooks( 'ShowRawCssJs', array( $this->mNewtext, $this->mNewPage, $out ) ) ) {
+				if ( wfRunHooks( 'ShowRawCssJs', array( $this->mNewtext, $this->mNewPage, $out ) ) ) { #FIXME: what to do with this hook??
 					// Wrap the whole lot in a <pre> and don't parse
 					$m = array();
 					preg_match( '!\.(css|js)$!u', $this->mNewPage->getText(), $m );
@@ -498,7 +498,7 @@ class DifferenceEngine extends ContextSource {
 					$out->addHTML( htmlspecialchars( $this->mNewtext ) );
 					$out->addHTML( "\n</pre>\n" );
 				}
-			} elseif ( !wfRunHooks( 'ArticleViewCustom', array( $this->mNewtext, $this->mNewPage, $out ) ) ) {
+			} elseif ( !wfRunHooks( 'ArticleViewCustom', array( $this->mNewtext, $this->mNewPage, $out ) ) ) { #FIXME: what do we pass here
 				// Handled by extension
 			} else {
 				// Normal page
@@ -630,7 +630,9 @@ class DifferenceEngine extends ContextSource {
 			return false;
 		}
 
-		$difftext = $this->generateDiffBody( $this->mOldtext, $this->mNewtext );
+        #TODO: make sure both Content objects have the same content model. What do we do if they don't?
+
+		$difftext = $this->generateContentDiffBody( $this->mOldContent, $this->mNewContent );
 
 		// Save to cache for 7 days
 		if ( !wfRunHooks( 'AbortDiffCache', array( &$this ) ) ) {
@@ -667,13 +669,47 @@ class DifferenceEngine extends ContextSource {
 		}
 	}
 
+    /**
+     * Generate a diff, no caching.
+     *
+     * Subclasses may override this to provide a
+     *
+     * @param $old Content: old content
+     * @param $new Content: new content
+     */
+    function generateContentDiffBody( Content $old, Content $new ) {
+        #XXX: generate a warning if $old or $new are not instances of TextContent?
+        #XXX: fail if $old and $new don't have the same content model? or what?
+
+        $otext = $old->serialize();
+        $ntext = $new->serialize();
+
+        #XXX: text should be "already segmented". what does that mean?
+        return $this->generateTextDiffBody( $otext, $ntext );
+    }
+
+    /**
+     * Generate a diff, no caching
+     *
+     * @param $otext String: old text, must be already segmented
+     * @param $ntext String: new text, must be already segmented
+     * @deprecated since 1.20, use generateContentDiffBody() instead!
+     */
+    function generateDiffBody( $otext, $ntext ) {
+        wfDeprecated( __METHOD__, "1.20" );
+
+        return $this->generateTextDiffBody( $otext, $ntext );
+    }
+
 	/**
 	 * Generate a diff, no caching
 	 *
+     * @todo move this to TextDifferenceEngine, make DifferenceEngine abstract. At some point.
+     *
 	 * @param $otext String: old text, must be already segmented
 	 * @param $ntext String: new text, must be already segmented
 	 */
-	function generateDiffBody( $otext, $ntext ) {
+	function generateTextDiffBody( $otext, $ntext ) {
 		global $wgExternalDiffEngine, $wgContLang;
 
 		wfProfileIn( __METHOD__ );
@@ -927,31 +963,25 @@ class DifferenceEngine extends ContextSource {
 	 * Use specified text instead of loading from the database
      * @deprecated since 1.20
 	 */
-	function setText( $oldText, $newText ) {
+	function setText( $oldText, $newText ) { #FIXME: no longer use this, use setContent()!
         wfDeprecated( __METHOD__, "1.20" );
-        $this->setText_internal( $oldText, $newText );
-    }
 
-    /**
-     * @private
-     * Use specified text instead of loading from the database
-     */
-    private function setText_internal( $oldText, $newText ) {
-		$this->mOldtext = $oldText;
-		$this->mNewtext = $newText;
-		$this->mTextLoaded = 2;
-		$this->mRevisionsLoaded = true;
-	}
+        $oldContent = ContentHandler::makeContent( $oldText, $this->getTitle() );
+        $newContent = ContentHandler::makeContent( $newText, $this->getTitle() );
+
+        $this->setContent( $oldContent, $newContent );
+    }
 
     /**
      * Use specified text instead of loading from the database
      * @since 1.20
      */
-    function setContent( Content $oldContent, Content $newContent, $format = null ) { #FIXME: use this!
-        $oldText = $oldContent->serialize( $format );
-        $newText = $newContent->serialize( $format );
+    function setContent( Content $oldContent, Content $newContent ) {
+        $this->mOldContent = $oldContent;
+        $this->mNewContent = $newContent;
 
-        return $this->setText_internal( $oldText, $newText );
+        $this->mTextLoaded = 2;
+        $this->mRevisionsLoaded = true;
     }
 
 	/**
@@ -1077,14 +1107,14 @@ class DifferenceEngine extends ContextSource {
 			return false;
 		}
 		if ( $this->mOldRev ) {
-			$this->mOldtext = $this->mOldRev->getText( Revision::FOR_THIS_USER );
-			if ( $this->mOldtext === false ) {
+			$this->mOldContent = $this->mOldRev->getContent( Revision::FOR_THIS_USER );
+			if ( $this->mOldContent === false ) {
 				return false;
 			}
 		}
 		if ( $this->mNewRev ) {
-			$this->mNewtext = $this->mNewRev->getText( Revision::FOR_THIS_USER );
-			if ( $this->mNewtext === false ) {
+			$this->mNewContent = $this->mNewRev->getContent( Revision::FOR_THIS_USER );
+			if ( $this->mNewContent === false ) {
 				return false;
 			}
 		}
@@ -1105,7 +1135,7 @@ class DifferenceEngine extends ContextSource {
 		if ( !$this->loadRevisionData() ) {
 			return false;
 		}
-		$this->mNewtext = $this->mNewRev->getText( Revision::FOR_THIS_USER );
+		$this->mNewContent = $this->mNewRev->getContent( Revision::FOR_THIS_USER );
 		return true;
 	}
 }
