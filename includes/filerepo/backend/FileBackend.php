@@ -57,8 +57,10 @@ abstract class FileBackend {
 	 *                     This should consist of alphanumberic, '-', and '_' characters.
 	 *                     This name should not be changed after use.
 	 *     'wikiId'      : Prefix to container names that is unique to this wiki.
-	 *                     This should consist of alphanumberic, '-', and '_' characters.
+	 *                     It should only consist of alphanumberic, '-', and '_' characters.
 	 *     'lockManager' : Registered name of a file lock manager to use.
+	 *     'fileJournal' : File journal configuration; see FileJournal::factory().
+	 *                     Journals simply log changes to files stored in the backend.
 	 *     'readOnly'    : Write operations are disallowed if this is a non-empty string.
 	 *                     It should be an explanation for the backend being read-only.
 	 * 
