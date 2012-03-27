@@ -155,11 +155,19 @@ class ApiQueryContributions extends ApiQueryBase {
 			$encUser = $this->getDB()->strencode( $continue[0] );
 			$encTS = wfTimestamp( TS_MW, $continue[1] );
 			$op = ( $this->params['dir'] == 'older' ? '<' : '>' );
-			$this->addWhere(
-				"rev_user_text $op '$encUser' OR " .
-				"(rev_user_text = '$encUser' AND " .
-				"rev_timestamp $op= '$encTS')"
-			);
+			if($this->params['sort'] == 'timestamp') {
+			        $this->addWhere(
+				         "rev_timestamp $op '$encTS' OR " .
+				         "(rev_timestamp = '$encTS' AND " .
+				         "rev_user_text $op= '$encUser')"
+				);
+			} else {
+			        $this->addWhere(
+				         "rev_user_text $op '$encUser' OR " .
+				         "(rev_user_text = '$encUser' AND " .
+				         "rev_timestamp $op= '$encTS')"
+				);
+			}
 		}
 
 		if ( !$user->isAllowed( 'hideuser' ) ) {
@@ -174,11 +182,16 @@ class ApiQueryContributions extends ApiQueryBase {
 		// ... and in the specified timeframe.
 		// Ensure the same sort order for rev_user_text and rev_timestamp
 		// so our query is indexed
-		if ( $this->multiUserMode ) {
+		// Either ordered by users,time
+		if ( $this->multiUserMode && $this->params['sort'] == 'user' ) {
 			$this->addWhereRange( 'rev_user_text', $this->params['dir'], null, null );
 		}
 		$this->addTimestampWhereRange( 'rev_timestamp',
 			$this->params['dir'], $this->params['start'], $this->params['end'] );
+		// Or by time,users
+		if ( $this->multiUserMode && $this->params['sort'] == 'timestamp' ) {
+			$this->addWhereRange( 'rev_user_text', $this->params['dir'], null, null );
+		}
 		$this->addWhereFld( 'page_namespace', $this->params['namespace'] );
 
 		$show = $this->params['show'];
@@ -412,6 +425,13 @@ class ApiQueryContributions extends ApiQueryBase {
 				)
 			),
 			'tag' => null,
+			'sort' => array(
+				ApiBase::PARAM_DFLT => 'user',
+				ApiBase::PARAM_TYPE => array(
+					'user',
+					'timestamp'
+				)
+			),
 			'toponly' => false,
 		);
 	}
@@ -443,6 +463,11 @@ class ApiQueryContributions extends ApiQueryBase {
 			'show' => array( "Show only items that meet this criteria, e.g. non minor edits only: {$p}show=!minor",
 					"NOTE: if {$p}show=patrolled or {$p}show=!patrolled is set, revisions older than \$wgRCMaxAge ($wgRCMaxAge) won't be shown", ),
 			'tag' => 'Only list revisions tagged with this tag',
+			'sort' => array(
+				'Way to sort the query when querying with multiple users',
+				' user (default) - Sort output by user, then by timestamp',
+				' timestamp      - Sort output by timestamp, then by user',
+			),
 			'toponly' => 'Only list changes which are the latest revision',
 		);
 	}
