@@ -3009,12 +3009,12 @@ class User {
 	function confirmationToken( &$expiration ) {
 		$now = time();
 		$expires = $now + 7 * 24 * 60 * 60;
-		$expiration = 
+		$expiration = wfTimestamp( TS_MW, $expires );
 		$token = MWCryptRand::generateHex( 32 );
 		$hash = md5( $token );
 		$this->load();
 		$this->mEmailToken = $hash;
-		$this->mEmailTokenExpires = wfTimestamp( TS_MW, $expires );
+		$this->mEmailTokenExpires = $expiration;
 		return $token;
 	}
 
