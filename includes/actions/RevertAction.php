@@ -75,8 +75,8 @@ class RevertFileAction extends FormAction {
 	}
 
 	protected function alterForm( HTMLForm $form ) {
-		$form->setWrapperLegend( wfMsgHtml( 'filerevert-legend' ) );
-		$form->setSubmitText( wfMsg( 'filerevert-submit' ) );
+		$form->setWrapperLegendMsg( 'filerevert-legend' );
+		$form->setSubmitTextMsg( 'filerevert-submit' );
 		$form->addHiddenField( 'oldimage', $this->getRequest()->getText( 'oldimage' ) );
 	}
 
@@ -85,22 +85,28 @@ class RevertFileAction extends FormAction {
 
 		$timestamp = $this->oldFile->getTimestamp();
 
+		$user = $this->getUser();
+		$lang = $this->getLanguage();
+		$userDate = $lang->userDate( $timestamp, $user );
+		$userTime = $lang->userTime( $timestamp, $user );
+		$siteDate = $wgContLang->date( $timestamp, false, false );
+		$siteTime = $wgContLang->time( $timestamp, false, false );
+
 		return array(
 			'intro' => array(
 				'type' => 'info',
 				'vertical-label' => true,
 				'raw' => true,
-				'default' => wfMsgExt( 'filerevert-intro', 'parse', $this->getTitle()->getText(),
-					$this->getLanguage()->date( $timestamp, true ), $this->getLanguage()->time( $timestamp, true ),
+				'default' => $this->msg( 'filerevert-intro',
+					$this->getTitle()->getText(), $userDate, $userTime,
 					wfExpandUrl( $this->page->getFile()->getArchiveUrl( $this->getRequest()->getText( 'oldimage' ) ),
-						PROTO_CURRENT
-				) )
+						PROTO_CURRENT ) )->parseAsBlock()
 			),
 			'comment' => array(
 				'type' => 'text',
 				'label-message' => 'filerevert-comment',
-				'default' => wfMsgForContent( 'filerevert-defaultcomment',
-					$wgContLang->date( $timestamp, false, false ), $wgContLang->time( $timestamp, false, false ) ),
+				'default' => $this->msg( 'filerevert-defaultcomment', $siteDate, $siteTime
+					)->inContentLanguage()->text()
 			)
 		);
 	}
@@ -114,17 +120,21 @@ class RevertFileAction extends FormAction {
 
 	public function onSuccess() {
 		$timestamp = $this->oldFile->getTimestamp();
-		$this->getOutput()->addHTML( wfMsgExt( 'filerevert-success', 'parse', $this->getTitle()->getText(),
-			$this->getLanguage()->date( $timestamp, true ),
-			$this->getLanguage()->time( $timestamp, true ),
+		$user = $this->getUser();
+		$lang = $this->getLanguage();
+		$userDate = $lang->userDate( $timestamp, $user );
+		$userTime = $lang->userTime( $timestamp, $user );
+	
+		$this->getOutput()->addWikiMsg( 'filerevert-success', $this->getTitle()->getText(),
+			$userDate, $userTime,
 			wfExpandUrl( $this->page->getFile()->getArchiveUrl( $this->getRequest()->getText( 'oldimage' ) ),
 				PROTO_CURRENT
-		) ) );
+		) );
 		$this->getOutput()->returnToMain( false, $this->getTitle() );
 	}
 
 	protected function getPageTitle() {
-		return wfMsg( 'filerevert', $this->getTitle()->getText() );
+		return $this->msg( 'filerevert', $this->getTitle()->getText() );
 	}
 	
 	protected function getDescription() {
