@@ -581,10 +581,12 @@ class SkinTemplate extends Skin {
 			);
 
 			# We need to do an explicit check for Special:Contributions, as we
-			# have to match both the title, and the target (which could come
-			# from request values or be specified in "sub page" form. The plot
+			# have to match both the title, and the target, which could come
+			# from request values (Special:Contributions?target=Jimbo_Wales)
+			# or be specified in "sub page" form
+			# (Special:Contributions/Jimbo_Wales). The plot
 			# thickens, because the Title object is altered for special pages,
-			# so doesn't contain the original alias-with-subpage.
+			# so it doesn't contain the original alias-with-subpage.
 			$origTitle = Title::newFromText( $request->getText( 'title' ) );
 			if( $origTitle instanceof Title && $origTitle->isSpecialPage() ) {
 				list( $spName, $spPar ) = SpecialPageFactory::resolveAlias( $origTitle->getText() );
