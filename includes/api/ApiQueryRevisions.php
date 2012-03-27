@@ -114,7 +114,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 		}
 
 		if ( !is_null( $params['difftotext'] ) ) {
-			$this->difftotext = $params['difftotext'];
+			$this->difftotext = $params['difftotext']; #FIXME: handle non-text content!
 		} elseif ( !is_null( $params['diffto'] ) ) {
 			if ( $params['diffto'] == 'cur' ) {
 				$params['diffto'] = 0;
@@ -507,7 +507,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 
 				if ( !is_null( $this->difftotext ) ) {
 					$engine = $handler->getDifferenceEngine( $context );
-					$engine->setText( $text, $this->difftotext ); #FIXME: use content object!
+					$engine->setText( $text, $this->difftotext ); #FIXME: use content objects!...
 				} else {
 					$engine = $handler->getDifferenceEngine( $context, $revision->getID(), $this->diffto );
 					$vals['diff']['from'] = $engine->getOldid();

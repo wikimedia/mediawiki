@@ -725,7 +725,9 @@ class Article extends Page {
 		$unhide = $wgRequest->getInt( 'unhide' ) == 1;
 		$oldid = $this->getOldID();
 
-		$de = new DifferenceEngine( $this->getContext(), $oldid, $diff, $rcid, $purge, $unhide );
+        $contentHandler = ContentHandler::getForTitle( $this->getTitle() );
+		$de = $contentHandler->getDifferenceEngine( $this->getContext(), $oldid, $diff, $rcid, $purge, $unhide );
+
 		// DifferenceEngine directly fetched the revision:
 		$this->mRevIdFetched = $de->mNewid;
 		$de->showDiffPage( $diffOnly );
