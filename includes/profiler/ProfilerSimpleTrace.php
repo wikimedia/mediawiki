@@ -13,9 +13,8 @@ class ProfilerSimpleTrace extends ProfilerSimple {
 	var $trace = "";
 	var $memory = 0;
 
-	function __construct( $params ) {
+	function addInitialStack() {
 		global $wgRequestTime, $wgRUstart;
-		parent::__construct( $params );
 		if ( !empty( $wgRequestTime ) && !empty( $wgRUstart ) ) {
 			$this->mWorkStack[] = array( '-total', 0, $wgRequestTime, $this->getCpuTime( $wgRUstart ) );
 		}
