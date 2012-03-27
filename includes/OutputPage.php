@@ -27,7 +27,8 @@ class OutputPage extends ContextSource {
 
 	var $mLinktags = array();
 
-	/// Additional stylesheets. Looks like this is for extensions. Might be replaced by resource loader.
+	/// Additional stylesheets. Looks like this is for extensions. Might be 
+	/// replaced by resource loader.
 	var $mExtStyles = array();
 
 	/// Should be private - has getter and setter. Contains the HTML title
