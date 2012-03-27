@@ -13,6 +13,7 @@ production.
 
 === Changes since 1.19 beta 2 ===
 * Special:Watchlist no longer sets links to feed when the user is anonymous
+* (bug 15816) Add a switch for SETting the search_path (Postgres).
 
 === Changes since 1.19 beta 1 ===
 * (bug 35014) Including a special page no longer sets the page's title to the
@@ -35,7 +36,8 @@ production.
 * (bug 18295) Don't expose strip markers when a tag appears inside a link 
   inside a heading.
 * (bug 34907) Fixed exposure of tokens through load.php that could have facilitated
-  CSRF attacks
+  CSRF attacks.
+* (bug 35317) CSRF in Special:Upload.
 
 === Configuration changes in 1.19 ===
 * Removed SkinTemplateSetupPageCss hook; use BeforePageDisplay instead.
@@ -51,6 +53,7 @@ production.
 * Removed $wgVectorShowVariantName.
 * Removed $wgExtensionAliasesFiles. Use $wgExtensionMessagesFiles.
 * Removed $wgResourceLoaderInlinePrivateModules, now always enabled.
+* Introduced $wgDebugDBTransactions to trace transaction status (currently PostgreSQL only).
 
 === New features in 1.19 ===
 * (bug 19838) Add ability to get all interwiki prefixes also if the interwiki

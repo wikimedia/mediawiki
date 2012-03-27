@@ -99,14 +99,14 @@ SQL;
  * Used to debug transaction processing
  * Only used if $wgDebugDBTransactions is true
  *
- * @since 1.20
+ * @since 1.19
  * @ingroup Database
  */
 class PostgresTransactionState {
 
 	static $WATCHED = array(
 		array(
-			"desc" => "Connection state changed from %s -> %s\n",  
+			"desc" => "Connection state changed from %s -> %s\n",
 			"states" => array(
 				PGSQL_CONNECTION_OK       => "OK",
 				PGSQL_CONNECTION_BAD      => "BAD"
@@ -131,7 +131,7 @@ class PostgresTransactionState {
 	}
 
 	public function update() {
-		$this->mNewState = array( 
+		$this->mNewState = array(
 			pg_connection_status( $this->mConn ),
 			pg_transaction_status( $this->mConn )
 		);
@@ -166,7 +166,7 @@ class PostgresTransactionState {
 	}
 
 	protected function log_changed( $old, $new, $watched ) {
-		wfDebug(sprintf($watched["desc"], 
+		wfDebug( sprintf( $watched["desc"],
 			$this->describe_changed( $old, $watched["states"] ),
 			$this->describe_changed( $new, $watched["states"] ))
 		);
@@ -213,7 +213,7 @@ class DatabasePostgres extends DatabaseBase {
 
 	function hasConstraint( $name ) {
 		$SQL = "SELECT 1 FROM pg_catalog.pg_constraint c, pg_catalog.pg_namespace n WHERE c.connamespace = n.oid AND conname = '" .
-				pg_escape_string( $this->mConn, $name ) . "' AND n.nspname = '" . pg_escape_string( $this->mConn, $this->getCoreSchema() ) ."'";
+				pg_escape_string( $this->mConn, $name ) . "' AND n.nspname = '" . pg_escape_string( $this->mConn, $this->mConn->getCoreSchema() ) ."'";
 		$res = $this->doQuery( $SQL );
 		return $this->numRows( $res );
 	}
@@ -796,7 +796,8 @@ class DatabasePostgres extends DatabaseBase {
 		return wfTimestamp( TS_POSTGRES, $ts );
 	}
 
-	/* 
+
+	/**
 	 * Posted by cc[plus]php[at]c2se[dot]com on 25-Mar-2009 09:12
 	 * to http://www.php.net/manual/en/ref.pgsql.php
 	 *
@@ -807,35 +808,32 @@ class DatabasePostgres extends DatabaseBase {
 	 *
 	 * This should really be handled by PHP PostgreSQL module
 	 *
-	 * @since 1.20
+	 * @since 1.19
 	 * @param $text   string: postgreql array returned in a text form like {a,b}
 	 * @param $output string
 	 * @param $limit  int
 	 * @param $offset int
 	 * @return string
 	 */
+
 	function pg_array_parse( $text, &$output, $limit = false, $offset = 1 ) {
 		if( false === $limit ) {
 			$limit = strlen( $text )-1;
 			$output = array();
 		}
-		if( '{}' == $text ) {
-			return $output;
-		}
+		if( $text !== '{}' )
 		do {
-			if ( '{' != $text{$offset} ) {
+			if ( $text[$offset] !== '{' ) {
 				preg_match( "/(\\{?\"([^\"\\\\]|\\\\.)*\"|[^,{}]+)+([,}]+)/",
 					$text, $match, 0, $offset );
 				$offset += strlen( $match[0] );
-				$output[] = ( '"' != $match[1]{0} 
-						? $match[1] 
+				$output[] = ( '"' !== $match[1][0]
+						? $match[1]
 						: stripcslashes( substr( $match[1], 1, -1 ) ) );
-				if ( '},' == $match[3] ) {
+				if ( $match[3] === '},' )
 					return $output;
-				}
-			} else {
-				$offset = $this->pg_array_parse( $text, $output, $limit, $offset+1 );
-			}
+			} else
+				$offset = $this->pg_array_parse( $text, $output[], $limit, $offset+1 );
 		} while ( $limit > $offset );
 		return $output;
 	}
@@ -859,7 +857,7 @@ class DatabasePostgres extends DatabaseBase {
 	 * Return current schema (executes SELECT current_schema())
 	 * Needs transaction
 	 *
-	 * @since 1.20
+	 * @since 1.19
 	 * @return string return default schema for the current session
 	 */
 	function getCurrentSchema() {
@@ -874,16 +872,15 @@ class DatabasePostgres extends DatabaseBase {
 	 * Needs transaction
 	 *
 	 * @seealso getSearchPath()
-	 * @seealso setSearchPath()
-	 * @since 1.20
+	 * @since 1.19
 	 * @return array list of actual schemas for the current sesson
 	 */
 	function getSchemas() {
-		$res = $this->query( "SELECT current_schemas(false)", __METHOD__);
+		$res = $this->query( "SELECT current_schemas(false)", __METHOD__ );
 		$row = $this->fetchRow( $res );
 		$schemas = array();
 		/* PHP pgsql support does not support array type, "{a,b}" string is returned */
-		return $this->pg_array_parse($row[0], $schemas);
+		return $this->pg_array_parse( $row[0], $schemas );
 	}
 
 	/**
@@ -892,24 +889,24 @@ class DatabasePostgres extends DatabaseBase {
 	 * (like "$user").
 	 * Needs transaction
 	 *
-	 * @since 1.20
+	 * @since 1.19
 	 * @return array how to search for table names schemas for the current user
 	 */
 	function getSearchPath() {
-		$res = $this->query( "SHOW search_path", __METHOD__);
+		$res = $this->query( "SHOW search_path", __METHOD__ );
 		$row = $this->fetchRow( $res );
 		/* PostgreSQL returns SHOW values as strings */
-		return explode(",", $row[0]);
+		return explode( ",", $row[0] );
 	}
 
+	function setSearchPath( $search_path ) {
 	/**
 	 * Update search_path, values should already be sanitized
 	 * Values may contain magic keywords like "$user"
-	 * @since 1.20
+	 * @since 1.19
 	 *
-	 * @param $search_path array list of schemas to be searched by default
+	 * @param array list of schemas to be searched by default
 	 */
-	function setSearchPath( $search_path ) {
 		$this->query( "SET search_path = " . implode(", ", $search_path) );
 	}
 
@@ -923,8 +920,8 @@ class DatabasePostgres extends DatabaseBase {
 	 *
 	 * This will be also called by the installer after the schema is created
 	 *
-	 * @since 1.20
-	 * @param desired_schema string 
+	 * @since 1.19
+	 * @param $desired_schema string
 	 */
 	function determineCoreSchema( $desired_schema ) {
 		$this->begin( __METHOD__ );
@@ -936,12 +933,12 @@ class DatabasePostgres extends DatabaseBase {
 				/**
 				 * Append our schema (e.g. 'mediawiki') in front
 				 * of the search path
-				 * Fixes bug 15816 
+				 * Fixes bug 15816
 				 */
 				$search_path = $this->getSearchPath();
 				array_unshift( $search_path, 
 					$this->addIdentifierQuotes( $desired_schema ));
-				$this->setSearchPath( $search_path );	
+				$this->setSearchPath( $search_path );
 				$this->mCoreSchema = $desired_schema;
 				wfDebug("Schema \"" . $desired_schema . "\" added to the search path\n");
 			}
@@ -956,7 +953,7 @@ class DatabasePostgres extends DatabaseBase {
 	/**
 	 * Return schema name fore core MediaWiki tables
 	 *
-	 * @since 1.20
+	 * @since 1.19
 	 * @return string core schema name
 	 */
 	function getCoreSchema() {

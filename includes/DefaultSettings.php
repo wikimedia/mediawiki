@@ -4054,6 +4054,7 @@ $wgDebugComments = false;
 
 /**
  * Extensive database transaction state debugging
+ * @since 1.19
  */
 $wgDebugDBTransactions = false;
 
