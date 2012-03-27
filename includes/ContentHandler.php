@@ -118,8 +118,14 @@ abstract class ContentHandler {
         global $wgContentHandlers;
 
         if ( empty( $wgContentHandlers[$modelName] ) ) {
-            #FIXME: hook here!
-            throw new MWException( "No handler for model $modelName registered in \$wgContentHandlers" );
+            $handler = null;
+            wfRunHooks( "ContentHandlerForModelName", array( $modelName, &$handler ) );  #FIXME: document new hook
+
+            if ( $handler ) { # NOTE: may be a string or an object, either is fine!
+                $wgContentHandlers[$modelName] = $handler;
+            } else {
+                throw new MWException( "No handler for model $modelName registered in \$wgContentHandlers" );
+            }
         }
 
         if ( is_string( $wgContentHandlers[$modelName] ) ) {
@@ -142,6 +148,11 @@ abstract class ContentHandler {
         return $this->mModelName;
     }
 
+    protected function checkModelName( $modelName ) {
+        if ( $modelName !== $this->mModelName ) {
+            throw new MWException( "Bad content model: expected " . $this->mModelName . " but got found " . $modelName );
+        }
+    }
 
     public function getSupportedFormats() {
         # for wikitext: "text/x-mediawiki-1", "text/x-mediawiki-2", etc
@@ -151,6 +162,18 @@ abstract class ContentHandler {
 
     public function getDefaultFormat() {
         return $this->mSupportedFormats[0];
+    }
+
+    public function isSupportedFormat( $format ) {
+        if ( !$format ) return true; # this means "use the default"
+
+        return in_array( $format, $this->mSupportedFormats );
+    }
+
+    protected function checkFormat( $format ) {
+        if ( !$this->isSupportedFormat( $format ) ) {
+            throw new MWException( "Format $format is not supported for content model " . $this->getModelName() );
+        }
     }
 
     /**
@@ -182,7 +205,8 @@ abstract class ContentHandler {
      * @todo Article is being refactored into an action class, keep track of that
      */
     public function createArticle( Title $title ) {
-        #XXX: assert that $title->getContentModelName() == $this->getModelname()?
+        $this->checkModelName( $title->getContentModelName() );
+
         $article = new Article($title);
         return $article;
     }
@@ -194,7 +218,8 @@ abstract class ContentHandler {
      * @return \EditPage 
      */
     public function createEditPage( Article $article ) {
-        #XXX: assert that $article->getContentObject()->getModelName() == $this->getModelname()?
+        $this->checkModelName( $article->getContentObject()->getModelName() );
+
         $editPage = new EditPage( $article );
         return $editPage;
     }
@@ -206,7 +231,8 @@ abstract class ContentHandler {
      * @return \ExternalEdit
      */
     public function createExternalEdit( IContextSource $context ) {
-        #XXX: assert that $article->getContentObject()->getModelName() == $this->getModelname()?
+        $this->checkModelName( $context->getTitle()->getModelName() );
+
         $externalEdit = new ExternalEdit( $context );
         return $externalEdit;
     }
@@ -222,6 +248,8 @@ abstract class ContentHandler {
      */
     public function getDifferenceEngine( IContextSource $context, $old = 0, $new = 0, $rcid = 0, #FIMXE: use everywhere!
                                          $refreshCache = false, $unhide = false ) {
+
+        $this->checkModelName( $context->getTitle()->getModelName() );
 
         $de = new DifferenceEngine( $context, $old, $new, $rcid, $refreshCache, $unhide );
 
@@ -428,6 +456,14 @@ abstract class ContentHandler {
     #TODO: Article::showCssOrJsPage ---> specialized classes!
 
     #XXX: ImagePage and CategoryPage... wrappers that use ContentHandler? or ContentHandler creates wrappers?
+
+    #TODO: hook into dump generation to serialize and record model and format!
+    #TODO: cover action=raw
+    #TODO: make sure we cover lucene search / wikisearch.
+    #TODO: nice&sane integration of GeSHi syntax highlighting
+    #   [11:59] <vvv> Hooks are ugly; make CodeHighlighter interface and a config to set the class which handles syntax highlighting
+    #   [12:00] <vvv> And default it to a DummyHighlighter
+    #TODO: make sure we cover the external editor interface (does anyone actually use that?!)
 }
 
 
@@ -438,7 +474,7 @@ abstract class TextContentHandler extends ContentHandler {
     }
 
     public function serialize( Content $content, $format = null ) {
-        #FIXME: assert format
+        $this->checkFormat( $format );
         return $content->getNativeData();
     }
 
@@ -454,6 +490,9 @@ abstract class TextContentHandler extends ContentHandler {
      * @return Content|Bool
      */
     public function merge3( Content $oldContent, Content $myContent, Content $yourContent ) {
+        $this->checkModelName( $oldContent->getModelName() );
+        #TODO: check that all Content objects have the same content model! #XXX: what to do if they don't?
+
         $format = $this->getDefaultFormat();
 
         $old = $this->serialize( $oldContent, $format );
@@ -478,16 +517,19 @@ class WikitextContentHandler extends TextContentHandler {
     }
 
     public function unserialize( $text, $format = null ) {
-        #FIXME: assert format
-        return new WikitextContent($text);
+        $this->checkFormat( $format );
+
+        return new WikitextContent( $text );
     }
 
     public function emptyContent() {
-        return new WikitextContent("");
+        return new WikitextContent( "" );
     }
 
 
 }
+
+#TODO: make ScriptContentHandler base class with plugin interface for syntax highlighting!
 
 class JavaScriptContentHandler extends TextContentHandler {
 
@@ -496,11 +538,11 @@ class JavaScriptContentHandler extends TextContentHandler {
     }
 
     public function unserialize( $text, $format = null ) {
-        return new JavaScriptContent($text);
+        return new JavaScriptContent( $text );
     }
 
     public function emptyContent() {
-        return new JavaScriptContent("");
+        return new JavaScriptContent( "" );
     }
 }
 
@@ -511,11 +553,11 @@ class CssContentHandler extends TextContentHandler {
     }
 
     public function unserialize( $text, $format = null ) {
-        return new CssContent($text);
+        return new CssContent( $text );
     }
 
     public function emptyContent() {
-        return new CssContent("");
+        return new CssContent( "" );
     }
 
 }

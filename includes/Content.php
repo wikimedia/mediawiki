@@ -16,8 +16,34 @@ abstract class Content {
         return $this->mModelName;
     }
 
+    protected function checkModelName( $modelName ) {
+        if ( $modelName !== $this->mModelName ) {
+            throw new MWException( "Bad content model: expected " . $this->mModelName . " but got found " . $modelName );
+        }
+    }
+
     public function getContentHandler() {
         return ContentHandler::getForContent( $this );
+    }
+
+    public function getDefaultFormat() {
+        return $this->getContentHandler()->getDefaultFormat();
+    }
+
+    public function getSupportedFormats() {
+        return $this->getContentHandler()->getSupportedFormats();
+    }
+
+    public function isSupportedFormat( $format ) {
+        if ( !$format ) return true; # this means "use the default"
+
+        return $this->getContentHandler()->isSupportedFormat( $format );
+    }
+
+    protected function checkFormat( $format ) {
+        if ( !$this->isSupportedFormat( $format ) ) {
+            throw new MWException( "Format $format is not supported for content model " . $this->getModelName() );
+        }
     }
 
     public function serialize( $format = null ) {
