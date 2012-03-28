@@ -379,7 +379,15 @@ class Message {
 	 * @return String: HTML
 	 */
 	public function toString() {
-		$string = $this->getMessageText();
+		$string = $this->fetchMessage();
+
+		if ( $string === false ) {
+			$key =  htmlspecialchars( is_array( $this->key ) ? $this->key[0] : $this->key );
+			if ( $this->format === 'plain' ) {
+				return '<' . $key . '>';
+			}
+			return '&lt;' . $key . '&gt;';
+		}
 
 		# Replace parameters before text parsing
 		$string = $this->replaceParameters( $string, 'before' );
@@ -559,19 +567,6 @@ class Message {
 	 */
 	protected function transformText( $string ) {
 		return MessageCache::singleton()->transform( $string, $this->interface, $this->language, $this->title );
-	}
-
-	/**
-	 * Returns the textual value for the message.
-	 * @return Message contents or placeholder
-	 */
-	protected function getMessageText() {
-		$message = $this->fetchMessage();
-		if ( $message === false ) {
-			return '&lt;' . htmlspecialchars( is_array($this->key) ? $this->key[0] : $this->key ) . '&gt;';
-		} else {
-			return $message;
-		}
 	}
 
 	/**
