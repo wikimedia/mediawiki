@@ -368,6 +368,7 @@ $wgAutoloadLocalClasses = array(
 	'ApiResult' => 'includes/api/ApiResult.php',
 	'ApiRollback' => 'includes/api/ApiRollback.php',
 	'ApiRsd' => 'includes/api/ApiRsd.php',
+	'ApiTokens' => 'includes/api/ApiTokens.php',
 	'ApiUnblock' => 'includes/api/ApiUnblock.php',
 	'ApiUndelete' => 'includes/api/ApiUndelete.php',
 	'ApiUpload' => 'includes/api/ApiUpload.php',
