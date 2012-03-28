@@ -662,7 +662,6 @@ class PatrolLogFormatter extends LogFormatter {
 
 	protected function getMessageParameters() {
 		$params = parent::getMessageParameters();
-		$newParams = array_slice( $params, 0, 3 );
 
 		$target = $this->entry->getTarget();
 		$oldid = $params[3];
@@ -680,8 +679,8 @@ class PatrolLogFormatter extends LogFormatter {
 			$revlink = htmlspecialchars( $revision );
 		}
 
-		$newParams[3] = Message::rawParam( $revlink );
-		return $newParams;
+		$params[3] = Message::rawParam( $revlink );
+		return $params;
 	}
 }
 
