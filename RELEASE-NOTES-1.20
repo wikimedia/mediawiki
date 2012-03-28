@@ -59,6 +59,8 @@ production.
               trying to defer foreign key for externallinks
 * (bug 32748) Printer friendly version of article decode Unicode chars as a pretty IRI in footer.
 * Removed white border around thumbnails in galleries
+* (bug 31236) "Next" and "Previous" buttons are shown incorrectly in
+  an RTL environment
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
