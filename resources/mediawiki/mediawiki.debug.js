@@ -159,9 +159,18 @@
 
 			paneTriggerBitDiv( 'includes', 'PHP includes', this.data.includes.length );
 
+			var gitInfo = '';
+			if ( this.data.gitRevision != false ) {
+				gitInfo = ' (' + this.data.gitRevision.substring( 0, 7 ) + ')';
+			}
+
 			bitDiv( 'mwversion' )
 				.append( $( '<a href="//www.mediawiki.org/"></a>' ).text( 'MediaWiki' ) )
-				.append( ': ' + this.data.mwVersion );
+				.append( ': ' + this.data.mwVersion + gitInfo );
+
+			if ( this.data.gitBranch != false ) {
+				bitDiv( 'gitbranch' ).text( 'Git branch: ' + this.data.gitBranch );
+			}
 
 			bitDiv( 'phpversion' )
 				.append( $( '<a href="//www.php.net/"></a>' ).text( 'PHP' ) )
