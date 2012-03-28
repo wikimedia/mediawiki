@@ -18,7 +18,7 @@ class PostgresField implements Field {
 	static function fromText( $db, $table, $field ) {
 		$q = <<<SQL
 SELECT
- attnotnull, attlen, COALESCE(conname, '') AS conname,
+ attnotnull, attlen, conname AS conname,
  COALESCE(condeferred, 'f') AS deferred,
  COALESCE(condeferrable, 'f') AS deferrable,
  CASE WHEN typname = 'int2' THEN 'smallint'
