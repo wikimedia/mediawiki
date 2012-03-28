@@ -1384,7 +1384,13 @@ class Article extends Page {
 		// Generate deletion reason
 		$hasHistory = false;
 		if ( !$reason ) {
-			$reason = $this->generateReason( $hasHistory );
+            try {
+                $reason = $this->generateReason( $hasHistory );
+            } catch (MWException $e) {
+                # if a page is horribly broken, we still want to be able to delete it. so be lenient about errors here.
+                wfDebug("Error while building auto delete summary: $e");
+                $reason = '';
+            }
 		}
 
 		// If the page has a history, insert a warning
