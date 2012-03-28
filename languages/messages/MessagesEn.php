@@ -878,6 +878,7 @@ $1',
 'portal-url'           => 'Project:Community portal',
 'privacy'              => 'Privacy policy',
 'privacypage'          => 'Project:Privacy policy',
+'content-failed-to-parse' => "Failed to parse $2 content for $1 model: $3",
 
 'badaccess'        => 'Permission error',
 'badaccess-group0' => 'You are not allowed to execute the action you have requested.',
