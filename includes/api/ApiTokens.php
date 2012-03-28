@@ -78,8 +78,8 @@ class ApiTokens extends ApiBase {
 
 	protected function getExamples() {
 		return array(
-			'api.php?action=tokens',
-			'api.php?action=tokens&type=email|move'
+			'api.php?action=tokens' => 'Retrieve an edit token (the default)',
+			'api.php?action=tokens&type=email|move' => 'Retrieve an email token and a move token'
 		);
 	}
 
