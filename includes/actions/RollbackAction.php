@@ -63,7 +63,7 @@ class RollbackAction extends FormlessAction {
 				$current = $details['current'];
 
 				if ( $current->getComment() != '' ) {
-					$this->getOutput()->addHTML( wfMessage( 'editcomment' )->rawParams(
+					$this->getOutput()->addHTML( $this->msg( 'editcomment' )->rawParams(
 						Linker::formatComment( $current->getComment() ) )->parse() );
 				}
 			}
@@ -97,7 +97,7 @@ class RollbackAction extends FormlessAction {
 		$this->getOutput()->setRobotPolicy( 'noindex,nofollow' );
 
 		if ( $current->getUserText() === '' ) {
-			$old = wfMsg( 'rev-deleted-user' );
+			$old = $this->msg( 'rev-deleted-user' )->escaped();
 		} else {
 			$old = Linker::userLink( $current->getUser(), $current->getUserText() )
 				. Linker::userToolLinks( $current->getUser(), $current->getUserText() );
@@ -105,7 +105,7 @@ class RollbackAction extends FormlessAction {
 
 		$new = Linker::userLink( $target->getUser(), $target->getUserText() )
 			. Linker::userToolLinks( $target->getUser(), $target->getUserText() );
-		$this->getOutput()->addHTML( wfMsgExt( 'rollback-success', array( 'parse', 'replaceafter' ), $old, $new ) );
+		$this->getOutput()->addHTML( $this->msg( 'rollback-success' )->rawParams( $old, $new )->parseAsBlock() );
 		$this->getOutput()->returnToMain( false, $this->getTitle() );
 
 		if ( !$request->getBool( 'hidediff', false ) && !$this->getUser()->getBoolOption( 'norollbackdiff', false ) ) {
