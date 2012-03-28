@@ -64,11 +64,11 @@ abstract class ContentHandler {
         }
 
         # Could this page contain custom CSS or JavaScript, based on the title?
-        $isCssOrJsPage = ( NS_MEDIAWIKI == $ns && preg_match( "!\.(css|js)$!u", $title->getText(), $m ) );
+        $isCssOrJsPage = ( NS_MEDIAWIKI == $ns && preg_match( '!\.(css|js)$!u', $title->getText(), $m ) );
         if ( $isCssOrJsPage ) $ext = $m[1];
 
         # hook can force js/css
-        wfRunHooks( 'TitleIsCssOrJsPage', array( $title, &$isCssOrJsPage, &$ext ) ); #FIXME: add $ext to hook interface spec
+        wfRunHooks( 'TitleIsCssOrJsPage', array( $title, &$isCssOrJsPage ) );
 
         # Is this a .css subpage of a user page?
         $isJsCssSubpage = ( NS_USER == $ns && !$isCssOrJsPage && preg_match( "/\\/.*\\.(js|css)$/", $title->getText(), $m ) );
@@ -337,91 +337,84 @@ abstract class ContentHandler {
     public function getAutoDeleteReason( Title $title, &$hasHistory ) {
         global $wgContLang;
 
-        try {
-            $dbw = wfGetDB( DB_MASTER );
+        $dbw = wfGetDB( DB_MASTER );
 
-            // Get the last revision
-            $rev = Revision::newFromTitle( $title );
+        // Get the last revision
+        $rev = Revision::newFromTitle( $title );
 
-            if ( is_null( $rev ) ) {
-                return false;
-            }
-
-            // Get the article's contents
-            $content = $rev->getContent();
-            $blank = false;
-
-            // If the page is blank, use the text from the previous revision,
-            // which can only be blank if there's a move/import/protect dummy revision involved
-            if ( $content->getSize() == 0 ) {
-                $prev = $rev->getPrevious();
-
-                if ( $prev )	{
-                    $content = $rev->getContent();
-                    $blank = true;
-                }
-            }
-
-            // Find out if there was only one contributor
-            // Only scan the last 20 revisions
-            $res = $dbw->select( 'revision', 'rev_user_text',
-                array( 'rev_page' => $title->getArticleID(), $dbw->bitAnd( 'rev_deleted', Revision::DELETED_USER ) . ' = 0' ),
-                __METHOD__,
-                array( 'LIMIT' => 20 )
-            );
-
-            if ( $res === false ) {
-                // This page has no revisions, which is very weird
-                return false;
-            }
-
-            $hasHistory = ( $res->numRows() > 1 );
-            $row = $dbw->fetchObject( $res );
-
-            if ( $row ) { // $row is false if the only contributor is hidden
-                $onlyAuthor = $row->rev_user_text;
-                // Try to find a second contributor
-                foreach ( $res as $row ) {
-                    if ( $row->rev_user_text != $onlyAuthor ) { // Bug 22999
-                        $onlyAuthor = false;
-                        break;
-                    }
-                }
-            } else {
-                $onlyAuthor = false;
-            }
-
-            // Generate the summary with a '$1' placeholder
-            if ( $blank ) {
-                // The current revision is blank and the one before is also
-                // blank. It's just not our lucky day
-                $reason = wfMsgForContent( 'exbeforeblank', '$1' );
-            } else {
-                if ( $onlyAuthor ) {
-                    $reason = wfMsgForContent( 'excontentauthor', '$1', $onlyAuthor );
-                } else {
-                    $reason = wfMsgForContent( 'excontent', '$1' );
-                }
-            }
-
-            if ( $reason == '-' ) {
-                // Allow these UI messages to be blanked out cleanly
-                return '';
-            }
-
-            // Max content length = max comment length - length of the comment (excl. $1)
-            $text = $content->getTextForSummary( 255 - ( strlen( $reason ) - 2 ) );
-
-            // Now replace the '$1' placeholder
-            $reason = str_replace( '$1', $text, $reason );
-
-            return $reason;
-        } catch (MWException $e) {
-            # if a page is horribly broken, we still want to be able to delete it. so be lenient about errors here.
-            wfDebug("Error while building auto delete summary: $e");
+        if ( is_null( $rev ) ) {
+            return false;
         }
 
-        return '';
+        // Get the article's contents
+        $content = $rev->getContent();
+        $blank = false;
+
+        // If the page is blank, use the text from the previous revision,
+        // which can only be blank if there's a move/import/protect dummy revision involved
+        if ( $content->getSize() == 0 ) {
+            $prev = $rev->getPrevious();
+
+            if ( $prev )	{
+                $content = $rev->getContent();
+                $blank = true;
+            }
+        }
+
+        // Find out if there was only one contributor
+        // Only scan the last 20 revisions
+        $res = $dbw->select( 'revision', 'rev_user_text',
+            array( 'rev_page' => $title->getArticleID(), $dbw->bitAnd( 'rev_deleted', Revision::DELETED_USER ) . ' = 0' ),
+            __METHOD__,
+            array( 'LIMIT' => 20 )
+        );
+
+        if ( $res === false ) {
+            // This page has no revisions, which is very weird
+            return false;
+        }
+
+        $hasHistory = ( $res->numRows() > 1 );
+        $row = $dbw->fetchObject( $res );
+
+        if ( $row ) { // $row is false if the only contributor is hidden
+            $onlyAuthor = $row->rev_user_text;
+            // Try to find a second contributor
+            foreach ( $res as $row ) {
+                if ( $row->rev_user_text != $onlyAuthor ) { // Bug 22999
+                    $onlyAuthor = false;
+                    break;
+                }
+            }
+        } else {
+            $onlyAuthor = false;
+        }
+
+        // Generate the summary with a '$1' placeholder
+        if ( $blank ) {
+            // The current revision is blank and the one before is also
+            // blank. It's just not our lucky day
+            $reason = wfMsgForContent( 'exbeforeblank', '$1' );
+        } else {
+            if ( $onlyAuthor ) {
+                $reason = wfMsgForContent( 'excontentauthor', '$1', $onlyAuthor );
+            } else {
+                $reason = wfMsgForContent( 'excontent', '$1' );
+            }
+        }
+
+        if ( $reason == '-' ) {
+            // Allow these UI messages to be blanked out cleanly
+            return '';
+        }
+
+        // Max content length = max comment length - length of the comment (excl. $1)
+        $text = $content->getTextForSummary( 255 - ( strlen( $reason ) - 2 ) );
+
+        // Now replace the '$1' placeholder
+        $reason = str_replace( '$1', $text, $reason );
+
+        return $reason;
     }
 
     /**

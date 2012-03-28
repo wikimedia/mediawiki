@@ -970,14 +970,25 @@ class Title {
 	}
 
 	/**
-	 * Could this page contain custom CSS or JavaScript, based
-	 * on the title?
+	 * Could this page contain custom CSS or JavaScript for the global UI.
+     * This is generally true for pages in the MediaWiki namespace having CONTENT_MODEL_CSS
+     * or CONTENT_MODEL_JAVASCRIPT.
+     *
+     * Note that this method should not return true for pages that contain and show "inactive" CSS or JS.
 	 *
 	 * @return Bool
 	 */
 	public function isCssOrJsPage() {
-		return $this->hasContentModel( CONTENT_MODEL_CSS )
-            || $this->hasContentModel( CONTENT_MODEL_JAVASCRIPT );
+        $isCssOrJsPage = NS_MEDIAWIKI == $this->mNamespace
+            && ( $this->hasContentModel( CONTENT_MODEL_CSS )
+                || $this->hasContentModel( CONTENT_MODEL_JAVASCRIPT ) );
+
+        #NOTE: this hook is also called in ContentHandler::getDefaultModel. It's called here again to make sure
+        #      hook funktions can force this method to return true even outside the mediawiki namespace.
+
+        wfRunHooks( 'TitleIsCssOrJsPage', array( $this, &$isCssOrJsPage ) );
+
+        return $isCssOrJsPage;
 	}
 
 	/**
