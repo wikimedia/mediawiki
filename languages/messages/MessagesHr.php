@@ -52,6 +52,11 @@ $namespaceAliases = array(
 	'Razgovor_o_slici' => NS_FILE_TALK,
 );
 
+$namespaceGenderAliases = array(
+	NS_USER => array( 'male' => 'Suradnik', 'female' => 'Suradnica' ),
+	NS_USER_TALK => array( 'male' => 'Razgovor_sa_suradnikom', 'female' => 'Razgovor_sa_suradnicom' ),
+);
+
 $specialPageAliases = array(
 	'Activeusers'               => array( 'Aktivni_suradnici' ),
 	'Allmessages'               => array( 'Sve_poruke' ),
