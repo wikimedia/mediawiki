@@ -196,6 +196,8 @@ class MysqlUpdater extends DatabaseUpdater {
 			// 1.20
 			array( 'addTable', 'config',                            'patch-config.sql' ),
 			array( 'addIndex', 'revision', 'page_user_timestamp', 'patch-revision-user-page-index.sql' ),
+			array( 'addField', 'ipblocks',      'ipb_cause',           'patch-ipb-cause.sql' ),
+			array( 'addIndex', 'ipblocks',      'ipb_cause',           'patch-ipb-cause-index.sql' ),
 		);
 	}
 

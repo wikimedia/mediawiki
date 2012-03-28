@@ -28,7 +28,8 @@ class Block {
 
 		$mBlockEmail,
 		$mDisableUsertalk,
-		$mCreateAccount;
+		$mCreateAccount,
+		$mCause;
 
 	/// @var User|String
 	protected $target;
@@ -368,6 +369,7 @@ class Block {
 		$this->mAuto = $row->ipb_auto;
 		$this->mHideName = $row->ipb_deleted;
 		$this->mId = $row->ipb_id;
+		$this->mCause = $row->ipb_cause;
 
 		// I wish I didn't have to do this
 		$db = wfGetDB( DB_SLAVE );
@@ -411,6 +413,7 @@ class Block {
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
+		$dbw->delete( 'ipblocks', array( 'ipb_cause' => $this->getId() ), __METHOD__ );
 		$dbw->delete( 'ipblocks', array( 'ipb_id' => $this->getId() ), __METHOD__ );
 
 		return $dbw->affectedRows() > 0;
@@ -508,7 +511,8 @@ class Block {
 			'ipb_range_end'        => $this->getRangeEnd(),
 			'ipb_deleted'	       => intval( $this->mHideName ), // typecast required for SQLite
 			'ipb_block_email'      => $this->prevents( 'sendemail' ),
-			'ipb_allow_usertalk'   => !$this->prevents( 'editownusertalk' )
+			'ipb_allow_usertalk'   => !$this->prevents( 'editownusertalk' ),
+			'ipb_cause'            => $this->mCause
 		);
 
 		return $a;
@@ -666,6 +670,7 @@ class Block {
 		# Continue suppressing the name if needed
 		$autoblock->mHideName = $this->mHideName;
 		$autoblock->prevents( 'editownusertalk', $this->prevents( 'editownusertalk' ) );
+		$autoblock->mCause = $this->mId;
 
 		if ( $this->mExpiry == 'infinity' ) {
 			# Original block was indefinite, start an autoblock now
