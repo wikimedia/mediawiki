@@ -88,6 +88,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'addPgField', 'ipblocks',      'ipb_create_account',   'SMALLINT NOT NULL DEFAULT 1' ),
 			array( 'addPgField', 'ipblocks',      'ipb_deleted',          'SMALLINT NOT NULL DEFAULT 0' ),
 			array( 'addPgField', 'ipblocks',      'ipb_enable_autoblock', 'SMALLINT NOT NULL DEFAULT 1' ),
+			array( 'addPgField', 'ipblocks',      'ipb_cause',            'INTEGER DEFAULT NULL REFERENCES ipblocks(ipb_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED' ),
 			array( 'addPgField', 'filearchive',   'fa_deleted',           'SMALLINT NOT NULL DEFAULT 0' ),
 			array( 'addPgField', 'logging',       'log_deleted',          'SMALLINT NOT NULL DEFAULT 0' ),
 			array( 'addPgField', 'logging',       'log_id',               "INTEGER NOT NULL PRIMARY KEY DEFAULT nextval('logging_log_id_seq')" ),
@@ -181,6 +182,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			# New indexes
 			array( 'addPgIndex', 'archive',       'archive_user_text',      '(ar_user_text)' ),
 			array( 'addPgIndex', 'image',         'img_sha1',               '(img_sha1)' ),
+			array( 'addPgIndex', 'ipblocks',      'ipb_cause',              '(ipb_cause)' ),
 			array( 'addPgIndex', 'oldimage',      'oi_sha1',                '(oi_sha1)' ),
 			array( 'addPgIndex', 'page',          'page_mediawiki_title',   '(page_title) WHERE page_namespace = 8' ),
 			array( 'addPgIndex', 'pagelinks',     'pagelinks_title',        '(pl_title)' ),
@@ -211,6 +213,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'changeFkeyDeferrable', 'imagelinks',       'il_from',         'page(page_id) ON DELETE CASCADE' ),
 			array( 'changeFkeyDeferrable', 'ipblocks',         'ipb_by',          'mwuser(user_id) ON DELETE CASCADE' ),
 			array( 'changeFkeyDeferrable', 'ipblocks',         'ipb_user',        'mwuser(user_id) ON DELETE SET NULL' ),
+			array( 'changeFkeyDeferrable', 'ipblocks',         'ipb_cause',       'ipblocks(ipb_id) ON DELETE SET NULL' ),
 			array( 'changeFkeyDeferrable', 'langlinks',        'll_from',         'page(page_id) ON DELETE CASCADE' ),
 			array( 'changeFkeyDeferrable', 'logging',          'log_user',        'mwuser(user_id) ON DELETE SET NULL' ),
 			array( 'changeFkeyDeferrable', 'oldimage',         'oi_name',         'image(img_name) ON DELETE CASCADE ON UPDATE CASCADE' ),
