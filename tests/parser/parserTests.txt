@@ -9196,6 +9196,15 @@ nowiki inside link inside heading (bug 18295)
 
 !! end
 
+!! test
+new support for bdi element (bug 31817)
+!! input
+<p dir="rtl" lang="he">ולדימיר לנין (ברוסית: <bdi lang="ru">Владимир Ленин</bdi>, 24 באפריל 1870–22 בינואר 1924) הוא מנהיג פוליטי קומוניסטי רוסי.</p>
+!! result
+<p dir="rtl" lang="he">ולדימיר לנין (ברוסית: <bdi lang="ru">Владимир Ленин</bdi>, 24 באפריל 1870–22 בינואר 1924) הוא מנהיג פוליטי קומוניסטי רוסי.</p>
+
+!!end
+
 
 TODO:
 more images
