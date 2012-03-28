@@ -272,28 +272,69 @@ class Profiler {
 		return sprintf( "%10s %s %s\n", trim( sprintf( "%7.3f", $delta * 1000.0 ) ), $space, $fname );
 	}
 
-	function getTime() {
-		if ( $this->mTimeMetric === 'user' ) {
-			return $this->getUserTime();
+	/**
+	 * Get the initial time of the request, based either on $wgRequestTime or
+	 * $wgRUstart. Will return null if not able to find data.
+	 *
+	 * @param $metric string|false: metric to use, with the following possibilities:
+	 *   - user: User CPU time (without system calls)
+	 *   - cpu: Total CPU time (user and system calls)
+	 *   - wall (or any other string): elapsed time
+	 *   - false (default): will fall back to default metric
+	 * @return float|null
+	 */
+	function getTime( $metric = false ) {
+		if ( $metric === false ) {
+			$metric = $this->mTimeMetric;
+		}
+
+		if ( $metric === 'cpu' || $this->mTimeMetric === 'user' ) {
+			if ( !function_exists( 'getrusage' ) ) {
+				return 0;
+			}
+			$ru = getrusage();
+			$time = $ru['ru_utime.tv_sec'] + $ru['ru_utime.tv_usec'] / 1e6;
+			if ( $metric === 'cpu' ) {
+				# This is the time of system calls, added to the user time
+				# it gives the total CPU time
+				$time += $ru['ru_stime.tv_sec'] + $ru['ru_stime.tv_usec'] / 1e6;
+			}
+			return $time;
 		} else {
 			return microtime( true );
 		}
 	}
 
-	function getUserTime() {
-		$ru = getrusage();
-		return $ru['ru_utime.tv_sec'] + $ru['ru_utime.tv_usec'] / 1e6;
-	}
-
-	private function getInitialTime() {
+	/**
+	 * Get the initial time of the request, based either on $wgRequestTime or
+	 * $wgRUstart. Will return null if not able to find data.
+	 *
+	 * @param $metric string|false: metric to use, with the following possibilities:
+	 *   - user: User CPU time (without system calls)
+	 *   - cpu: Total CPU time (user and system calls)
+	 *   - wall (or any other string): elapsed time
+	 *   - false (default): will fall back to default metric
+	 * @return float|null
+	 */
+	protected function getInitialTime( $metric = false ) {
 		global $wgRequestTime, $wgRUstart;
 
-		if ( $this->mTimeMetric === 'user' ) {
-			if ( count( $wgRUstart ) ) {
-				return $wgRUstart['ru_utime.tv_sec'] + $wgRUstart['ru_utime.tv_usec'] / 1e6;
-			} else {
+		if ( $metric === false ) {
+			$metric = $this->mTimeMetric;
+		}
+
+		if ( $metric === 'cpu' || $this->mTimeMetric === 'user' ) {
+			if ( !count( $wgRUstart ) ) {
 				return null;
 			}
+
+			$time = $wgRUstart['ru_utime.tv_sec'] + $wgRUstart['ru_utime.tv_usec'] / 1e6;
+			if ( $metric === 'cpu' ) {
+				# This is the time of system calls, added to the user time
+				# it gives the total CPU time
+				$time += $wgRUstart['ru_stime.tv_sec'] + $wgRUstart['ru_stime.tv_usec'] / 1e6;
+			}
+			return $time;
 		} else {
 			if ( empty( $wgRequestTime ) ) {
 				return null;

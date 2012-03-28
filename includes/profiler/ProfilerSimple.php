@@ -16,15 +16,14 @@ class ProfilerSimple extends Profiler {
 	var $errorEntry;
 
 	protected function addInitialStack() {
-		global $wgRequestTime, $wgRUstart;
-
 		$this->errorEntry = $this->zeroEntry;
 		$this->errorEntry['count'] = 1;
 
-		if ( !empty( $wgRequestTime ) && !empty( $wgRUstart ) ) {
-			$initialCpu = $this->getCpuTime( $wgRUstart );
-			$this->mWorkStack[] = array( '-total', 0, $wgRequestTime, $initialCpu );
-			$this->mWorkStack[] = array( '-setup', 1, $wgRequestTime, $initialCpu );
+		$initialTime = $this->getInitialTime();
+		$initialCpu = $this->getInitialTime( 'cpu' );
+		if ( $initialTime !== null && $initialCpu !== null ) {
+			$this->mWorkStack[] = array( '-total', 0, $initialTime, $initialCpu );
+			$this->mWorkStack[] = array( '-setup', 1, $initialTime, $initialCpu );
 
 			$this->profileOut( '-setup' );
 		} else {
@@ -41,7 +40,7 @@ class ProfilerSimple extends Profiler {
 		if ($wgDebugFunctionEntry) {
 			$this->debug(str_repeat(' ', count($this->mWorkStack)).'Entering '.$functionname."\n");
 		}
-		$this->mWorkStack[] = array($functionname, count( $this->mWorkStack ), microtime(true), $this->getCpuTime());
+		$this->mWorkStack[] = array( $functionname, count( $this->mWorkStack ), $this->getTime(), $this->getTime( 'cpu' ) );
 	}
 
 	function profileOut($functionname) {
@@ -68,8 +67,8 @@ class ProfilerSimple extends Profiler {
 				$this->mCollated[$message] = $this->errorEntry;
 			}
 			$entry =& $this->mCollated[$functionname];
-			$elapsedcpu = $this->getCpuTime() - $octime;
-			$elapsedreal = microtime(true) - $ortime;
+			$elapsedcpu = $this->getTime( 'cpu' ) - $octime;
+			$elapsedreal = $this->getTime() - $ortime;
 			if (!is_array($entry)) {
 				$entry = $this->zeroEntry;
 				$this->mCollated[$functionname] =& $entry;
@@ -92,15 +91,20 @@ class ProfilerSimple extends Profiler {
 		/* Implement in subclasses */
 	}
 
-	function getCpuTime($ru=null) {
-		if ( function_exists( 'getrusage' ) ) {
-			if ( $ru == null ) {
-				$ru = getrusage();
-			}
-			return ($ru['ru_utime.tv_sec'] + $ru['ru_stime.tv_sec'] + ($ru['ru_utime.tv_usec'] +
-				$ru['ru_stime.tv_usec']) * 1e-6);
+	/**
+	 * Get the actual CPU time or the initial one if $ru is set.
+	 *
+	 * @deprecated in 1.20
+	 * @return float|null
+	 */
+	function getCpuTime( $ru = null ) {
+		wfDeprecated( __METHOD__, '1.20' );
+
+		if ( $ru === null ) {
+			return $this->getTime( 'cpu' );
 		} else {
-			return 0;
+			# It theory we should use $ru here, but it always $wgRUstart that is passed here
+			return $this->getInitialTime( 'cpu' );
 		}
 	}
 }
