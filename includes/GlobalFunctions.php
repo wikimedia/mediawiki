@@ -801,6 +801,24 @@ function wfParseUrl( $url ) {
 	}
 	return $bits;
 }
+/**
+ * Take a URL, make sure it's expanded to fully qualified, and replace any
+ * encoded non-ASCII Unicode characters with their UTF-8 original forms
+ * for more compact display and legibility for local audiences.
+ *
+ * @todo handle punycode domains too
+ *
+ * @param $url string
+ * @return string
+ */
+function wfExpandIRI( $url ) {
+	return preg_replace_callback( '/((?:%[89A-F][0-9A-F])+)/i', 
+			create_function( '$matches', 'return urldecode( $matches[1] );' ), 
+			wfExpandUrl( $url )
+		);
+}
+
+
 
 /**
  * Make URL indexes, appropriate for the el_index field of externallinks.
