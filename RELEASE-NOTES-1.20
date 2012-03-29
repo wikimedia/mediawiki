@@ -11,6 +11,9 @@ MediaWiki 1.20 is an alpha-quality branch and is not recommended for use in
 production.
 
 === Configuration changes in 1.20 ===
+* Introduced $wgAllowATag to allow <a> tags to be used for external links,
+  so rel and ref attributes can be used with microdata resp RDFa.
+  Defaults is false.
 
 === New features in 1.20 ===
 * Added TitleIsAlwaysKnown hook which gets called when determining if a page exists.
