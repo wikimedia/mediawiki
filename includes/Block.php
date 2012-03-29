@@ -28,7 +28,8 @@ class Block {
 
 		$mBlockEmail,
 		$mDisableUsertalk,
-		$mCreateAccount;
+		$mCreateAccount,
+		$dbw;
 
 	/// @var User|String
 	protected $target;
@@ -59,7 +60,7 @@ class Block {
 	 */
 	function __construct( $address = '', $user = 0, $by = 0, $reason = '',
 		$timestamp = 0, $auto = 0, $expiry = '', $anonOnly = 0, $createAccount = 0, $enableAutoblock = 0,
-		$hideName = 0, $blockEmail = 0, $allowUsertalk = 0, $byText = '' )
+		$hideName = 0, $blockEmail = 0, $allowUsertalk = 0, $byText = '', $dbw = null )
 	{
 		if( $timestamp === 0 ){
 			$timestamp = wfTimestampNow();
@@ -95,6 +96,11 @@ class Block {
 		$this->prevents( 'editownusertalk', !$allowUsertalk );
 
 		$this->mFromMaster = false;
+		if ( $dbw instanceof DatabaseBase ) {
+			$this->dbw = $dbw;
+		} else {
+			$this->dbw = wfGetDB( DB_MASTER );
+		}
 	}
 
 	/**
@@ -407,10 +413,9 @@ class Block {
 			throw new MWException( "Block::delete() requires that the mId member be filled\n" );
 		}
 
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->delete( 'ipblocks', array( 'ipb_id' => $this->getId() ), __METHOD__ );
+		$this->dbw->delete( 'ipblocks', array( 'ipb_id' => $this->getId() ), __METHOD__ );
 
-		return $dbw->affectedRows() > 0;
+		return $this->dbw->affectedRows() > 0;
 	}
 
 	/**
@@ -421,27 +426,23 @@ class Block {
 	 * @return mixed: false on failure, assoc array on success:
 	 *	('id' => block ID, 'autoIds' => array of autoblock IDs)
 	 */
-	public function insert( $dbw = null ) {
+	public function insert() {
 		wfDebug( "Block::insert; timestamp {$this->mTimestamp}\n" );
-
-		if ( $dbw === null ) {
-			$dbw = wfGetDB( DB_MASTER );
-		}
 
 		# Don't collide with expired blocks
 		Block::purgeExpired();
 
 		$row = $this->getDatabaseArray();
-		$row['ipb_id'] = $dbw->nextSequenceValue("ipblocks_ipb_id_seq");
+		$row['ipb_id'] = $this->dbw->nextSequenceValue("ipblocks_ipb_id_seq");
 
-		$dbw->insert(
+		$this->dbw->insert(
 			'ipblocks',
 			$row,
 			__METHOD__,
 			array( 'IGNORE' )
 		);
-		$affected = $dbw->affectedRows();
-		$this->mId = $dbw->insertId();
+		$affected = $this->dbw->affectedRows();
+		$this->mId = $this->dbw->insertId();
 
 		if ( $affected ) {
 			$auto_ipd_ids = $this->doRetroactiveAutoblock();
@@ -460,16 +461,15 @@ class Block {
 	 */
 	public function update() {
 		wfDebug( "Block::update; timestamp {$this->mTimestamp}\n" );
-		$dbw = wfGetDB( DB_MASTER );
 
-		$dbw->update(
+		$this->dbw->update(
 			'ipblocks',
-			$this->getDatabaseArray( $dbw ),
+			$this->getDatabaseArray( $this->dbw ),
 			array( 'ipb_id' => $this->getId() ),
 			__METHOD__
 		);
 
-		return $dbw->affectedRows();
+		return $this->dbw->affectedRows();
 	}
 
 	/**
@@ -725,11 +725,10 @@ class Block {
 			$this->mTimestamp = wfTimestamp();
 			$this->mExpiry = Block::getAutoblockExpiry( $this->mTimestamp );
 
-			$dbw = wfGetDB( DB_MASTER );
-			$dbw->update( 'ipblocks',
+			$this->dbw->update( 'ipblocks',
 				array( /* SET */
-					'ipb_timestamp' => $dbw->timestamp( $this->mTimestamp ),
-					'ipb_expiry' => $dbw->timestamp( $this->mExpiry ),
+					'ipb_timestamp' => $this->dbw->timestamp( $this->mTimestamp ),
+					'ipb_expiry' => $this->dbw->timestamp( $this->mExpiry ),
 				),
 				array( /* WHERE */
 					'ipb_address' => (string)$this->getTarget()
@@ -946,8 +945,10 @@ class Block {
 	/**
 	 * Purge expired blocks from the ipblocks table
 	 */
-	public static function purgeExpired() {
-		$dbw = wfGetDB( DB_MASTER );
+	public static function purgeExpired( $dbw = null ) {
+		if ( !$dbw instanceof DatabaseBase ) {
+			$dbw = wfGetDB( DB_MASTER );
+		}
 		$dbw->delete( 'ipblocks',
 			array( 'ipb_expiry < ' . $dbw->addQuotes( $dbw->timestamp() ) ), __METHOD__ );
 	}
