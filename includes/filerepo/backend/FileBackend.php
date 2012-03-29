@@ -694,6 +694,15 @@ abstract class FileBackend {
 	}
 
 	/**
+	 * Get the file journal object for this backend
+	 *
+	 * @return FileJournal
+	 */
+	final public function getJournal() {
+		return $this->fileJournal;
+	}
+
+	/**
 	 * Check if a given path is a "mwstore://" path.
 	 * This does not do any further validation or any existence checks.
 	 *
