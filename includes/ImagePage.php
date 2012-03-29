@@ -449,14 +449,21 @@ class ImagePage extends Article {
 
 				if ( !$this->displayImg->isSafeFile() ) {
 					$warning = wfMsgNoTrans( 'mediawarning' );
+					// dirmark is needed here to separate the file name, which
+					// most likely ends in Latin characters, from the description,
+					// which may begin with the file type. In RTL environment
+					// this will get messy.
+					// The dirmark, however, must not be immediately adjacent
+					// to the filename, because it can get copied with it.
+					// See bug 25277.
 					$wgOut->addWikiText( <<<EOT
-<div class="fullMedia"><span class="dangerousLink">{$medialink}</span>$dirmark <span class="fileInfo">$longDesc</span></div>
+<div class="fullMedia"><span class="dangerousLink">{$medialink}</span> $dirmark<span class="fileInfo">$longDesc</span></div>
 <div class="mediaWarning">$warning</div>
 EOT
 						);
 				} else {
 					$wgOut->addWikiText( <<<EOT
-<div class="fullMedia">{$medialink}{$dirmark} <span class="fileInfo">$longDesc</span>
+<div class="fullMedia">{$medialink} {$dirmark}<span class="fileInfo">$longDesc</span>
 </div>
 EOT
 					);
