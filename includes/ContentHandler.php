@@ -527,7 +527,7 @@ class WikitextContentHandler extends TextContentHandler {
 class JavaScriptContentHandler extends TextContentHandler {
 
     public function __construct( $modelName = CONTENT_MODEL_WIKITEXT ) {
-        parent::__construct( $modelName, array( 'text/javascript' ) );
+        parent::__construct( $modelName, array( 'text/javascript' ) ); #XXX: or use $wgJsMimeType? this is for internal storage, not HTTP...
     }
 
     public function unserialize( $text, $format = null ) {
