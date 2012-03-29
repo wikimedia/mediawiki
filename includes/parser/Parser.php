@@ -1119,6 +1119,7 @@ class Parser {
 		}
 		$text = $this->replaceInternalLinks( $text );
 		$text = $this->doAllQuotes( $text );
+		$text = $this->doHtmlLinks( $text );
 		$text = $this->replaceExternalLinks( $text );
 
 		# replaceInternalLinks may sometimes leave behind
@@ -1130,6 +1131,51 @@ class Parser {
 
 		wfProfileOut( __METHOD__ );
 		return $text;
+	}
+
+	/**
+	 * Parse links using HTML-style <a>-tags, recording them to externallinks,
+	 * and protect them against replaceExternalLinks. Does nothing if
+	 * $wgAllowATag is empty/false.
+	 *
+	 * @private
+	 *
+	 * @param $text string
+	 *
+	 * @return string
+	 */
+	function doHtmlLinks( $text ) {
+		global $wgAllowATag;
+		
+		if ( !$wgAllowATag ) {
+			# if $wgAllowATag is not on, just bail out, there 
+			# should not be any eligible <a> tags in the input. 
+			return $text;
+		}
+		
+		wfProfileIn( __METHOD__ );
+
+		$text = preg_replace_callback( '!<a[^>\w]([^>]*?)>!s', array( &$this, 'htmlLinkCallback' ), $text );
+
+		wfProfileOut( __METHOD__ );		
+		return $text;
+	}
+
+	/**
+	 * @throws MWException
+	 * @param $m array
+	 * @return HTML|string
+	 */
+	function htmlLinkCallback( $m ) {
+		$args = Sanitizer::decodeTagAttributes( $m[1] );
+		
+		if ( !empty( $args['href'] ) ) {
+			$pasteurized = self::replaceUnusualEscapes( $args['href'] );
+			$this->mOutput->addExternalLink( $pasteurized ); 
+		}
+		
+		# protected url in the link
+		return $this->armorLinks( $m[0] );
 	}
 
 	/**
@@ -1928,6 +1974,7 @@ class Parser {
 							# recursively parse links inside the image caption
 							# actually, this will parse them in any other parameters, too,
 							# but it might be hard to fix that, and it doesn't matter ATM
+							$text = $this->doHtmlLinks( $text );
 							$text = $this->replaceExternalLinks( $text );
 							$holders->merge( $this->replaceInternalLinks2( $text ) );
 						}

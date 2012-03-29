@@ -9347,6 +9347,83 @@ File:foobar.jpg|caption|alt=galleryalt|link=" onclick="alert('malicious javascri
 
 !! end
 
+!! test
+Support for <a> tags
+!! options
+wgAllowATag=true
+!! input
+* regular external link:  http://wikipedia.de
+* regular internal link: [[Main Page]]
+* Magic Link: ISBN 1234567890
+
+* This is <a href="http://google.com">a nice link</a>
+* This is <a href="javascript:alert()">an evil link</a>
+* This is <a href="silly">a silly link</a>
+----
+* This is <a href="http://google.com" rel="foo">a foo rel</a>
+* This is <a href="http://google.com" rel="javascript:alert('evil')">an evil rel</a>
+* This is <a href="http://google.com" rel="silly">a silly rel</a>
+* This is <a href="http://google.com" rel="http://wikipedia.de">uri silly rel</a>
+* This is <a href="http://google.com" rel="javascript:alert('evil')">evil uri silly rel</a>
+----
+* This is <a href="http://google.com" crud="stuff">a nice link</a> with some crud
+* This is <a*id="x" href="http://google.com" >a slightly broken link</a>
+!! result
+<ul><li> regular external link:  <a rel="nofollow" class="external free" href="http://wikipedia.de">http://wikipedia.de</a>
+</li><li> regular internal link: <a href="/wiki/Main_Page" title="Main Page">Main Page</a>
+</li><li> Magic Link: <a href="/wiki/Special:BookSources/1234567890" class="internal mw-magiclink-isbn">ISBN 1234567890</a>
+</li></ul>
+<ul><li> This is <a href="http&#58;//google.com">a nice link</a>
+</li><li> This is <a>an evil link</a>
+</li><li> This is <a>a silly link</a>
+</li></ul>
+<hr />
+<ul><li> This is <a href="http&#58;//google.com" rel="foo">a foo rel</a>
+</li><li> This is <a href="http&#58;//google.com">an evil rel</a>
+</li><li> This is <a href="http&#58;//google.com" rel="silly">a silly rel</a>
+</li><li> This is <a href="http&#58;//google.com" rel="http&#58;//wikipedia.de">uri silly rel</a>
+</li><li> This is <a href="http&#58;//google.com">evil uri silly rel</a>
+</li></ul>
+<hr />
+<ul><li> This is <a href="http&#58;//google.com">a nice link</a> with some crud
+</li><li> This is <a href="http&#58;//google.com">a slightly broken link</a>
+</li></ul>
+
+!! end
+
+!! test
+Don't get too confused by <a> tags without attributes.
+!! options
+wgAllowATag=true
+!! input
+This is <a> href="http://google.com"> not a link 
+!! result
+<p>This is <a> href="http://google.com"&gt; not a link </a>
+</p>
+!! end
+
+!! test
+Support for <a> tags in image captions
+!! options
+wgAllowATag=true
+!! input
+[[Image:noimage.png|thumb|<a href="http://mediawiki.org">a link</a>]]
+!! result
+<div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Noimage.png" class="new" title="File:Noimage.png">File:Noimage.png</a>  <div class="thumbcaption"><a href="http&#58;//mediawiki.org">a link</a></div></div></div>
+
+!! end
+
+!! test
+Forbidden tags are also forbidden inside <a> tags
+!! options
+wgAllowATag=true
+!! input
+<a href="><img src=http://evil.com/log-ips.png alt=Request_logger> bar </a>
+!! result
+<p><a>&lt;img src=http://evil.com/log-ips.png alt=Request_logger&gt; bar </a>
+</p>
+!! end
+
 TODO:
 more images
 more tables

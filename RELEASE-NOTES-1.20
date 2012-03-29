@@ -14,6 +14,9 @@ production.
 * `$wgUsePathInfo = true;` is no longer needed to make $wgArticlePath work on servers
   using like nginx, lighttpd, and apache over fastcgi. MediaWiki now always extracts
   path info from REQUEST_URI if it's available.
+* Introduced $wgAllowATag to allow <a> tags to be used for external links,
+  so rel and ref attributes can be used with microdata resp RDFa.
+  Defaults is false.
 
 === New features in 1.20 ===
 * Added TitleIsAlwaysKnown hook which gets called when determining if a page exists.
