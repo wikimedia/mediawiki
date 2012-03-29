@@ -514,9 +514,15 @@ END;
 		}
 		$this->output( "Altering column '$table.$field' to be DEFERRABLE INITIALLY DEFERRED\n" );
 		$conname = $fi->conname();
-		$command = "ALTER TABLE $table DROP CONSTRAINT $conname";
-		$this->db->query( $command );
-		$command = "ALTER TABLE $table ADD CONSTRAINT $conname FOREIGN KEY ($field) REFERENCES $clause DEFERRABLE INITIALLY DEFERRED";
+		if ( $fi->conname() ) {
+			$conclause = "CONSTRAINT \"$conname\"";
+			$command = "ALTER TABLE $table DROP CONSTRAINT $conname";
+			$this->db->query( $command );
+		} else {
+			$this->output( "Column '$table.$field' does not have a foreign key constraint, will be added\n" );
+			$conclause = "";
+		}
+		$command = "ALTER TABLE $table ADD $conclause FOREIGN KEY ($field) REFERENCES $clause DEFERRABLE INITIALLY DEFERRED";
 		$this->db->query( $command );
 	}
 
