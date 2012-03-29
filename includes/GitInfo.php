@@ -46,7 +46,7 @@ class GitInfo {
 	 * @return bool Whether or not the string looks like a SHA1
 	 */
 	public static function isSHA1( $str ) {
-		return !!preg_match( '/^[0-9A-Z]{40}$/i', $str );
+		return !!preg_match( '/^[0-9A-F]{40}$/i', $str );
 	}
 
 	/**
