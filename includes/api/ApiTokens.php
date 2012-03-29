@@ -39,10 +39,15 @@ class ApiTokens extends ApiBase {
 		$res = array();
 
 		foreach ( $params['type'] as $type ) {
+			$type = strtolower( $type );
 			$func = 'get' .
-					ucfirst( strtolower( $type ) ) .
+					ucfirst( $type ) .
 					'Token';
-			$val = call_user_func( array( 'ApiQueryInfo', $func ), null, null );
+			if ( $type === 'patrol' ) {
+				$val = call_user_func( array( 'ApiQueryRecentChanges', $func ), null, null );
+			} else {
+				$val = call_user_func( array( 'ApiQueryInfo', $func ), null, null );
+			}
 			if ( $val === false ) {
 				$this->setWarning( "Action '$type' is not allowed for the current user" );
 			} else {
@@ -60,7 +65,7 @@ class ApiTokens extends ApiBase {
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => array(
 					'edit', 'delete', 'protect', 'move', 'block', 'unblock',
-					'email', 'import', 'watch'
+					'email', 'import', 'watch', 'patrol'
 				)
 			)
 		);
