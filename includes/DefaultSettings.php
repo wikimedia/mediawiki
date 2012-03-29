@@ -2253,11 +2253,13 @@ $wgAllowRdfaAttributes = false;
 
 /**
  * Enabled HTML5 microdata attributes for use in wikitext, if $wgHtml5 is also true.
+ * See also $wgAllowATag.
  */
 $wgAllowMicrodataAttributes = false;
 
 /**
  * Cleanup as much presentational html like valign -> css vertical-align as we can
+ * See also $wgAllowATag.
  */
 $wgCleanupPresentationalAttributes = true;
 
@@ -2995,6 +2997,14 @@ $wgEnableImageWhitelist = true;
  * sites they control.
  */
 $wgAllowImageTag = false;
+
+/**
+ * Allow <a> tags for specifying external links, so it becomes possible to
+ * provide ref and rel attributes. This allows for microdata/microformats/RDFa
+ * annotations to be embedded on wiki pages. See also $wgAllowRdfaAttributes
+ * and $wgAllowMicrodataAttributes.
+ */
+$wgAllowATag = false;
 
 /**
  * $wgUseTidy: use tidy to make sure HTML output is sane.

@@ -621,6 +621,8 @@ class ParserTest {
 			self::getOptionValue( 'language', $opts, 'en' );
 		$variant =
 			self::getOptionValue( 'variant', $opts, false );
+		$allowatag =
+			self::getOptionValue( 'wgAllowATag', $opts, false );
 		$maxtoclevel =
 			self::getOptionValue( 'wgMaxTocLevel', $opts, 999 );
 		$linkHolderBatchSize =
@@ -696,6 +698,7 @@ class ParserTest {
 			'wgAdaptiveMessageCache' => true,
 			'wgDisableLangConversion' => false,
 			'wgDisableTitleConversion' => false,
+			'wgAllowATag' => ( $allowatag === 'false' ? false : true ) ,
 		);
 
 		if ( $config ) {
