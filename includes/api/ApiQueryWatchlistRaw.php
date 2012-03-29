@@ -77,18 +77,20 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 			}
 			$ns = intval( $cont[0] );
 			$title = $this->getDB()->strencode( $this->titleToKey( $cont[1] ) );
+			$op = $params['dir'] == 'ascending' ? '>' : '<';
 			$this->addWhere(
-				"wl_namespace > '$ns' OR " .
+				"wl_namespace $op '$ns' OR " .
 				"(wl_namespace = '$ns' AND " .
-				"wl_title >= '$title')"
+				"wl_title $op= '$title')"
 			);
 		}
 
+		$sort = ( $params['dir'] == 'descending' ? ' DESC' : '' );
 		// Don't ORDER BY wl_namespace if it's constant in the WHERE clause
 		if ( count( $params['namespace'] ) == 1 ) {
-			$this->addOption( 'ORDER BY', 'wl_title' );
+			$this->addOption( 'ORDER BY', 'wl_title' . $sort );
 		} else {
-			$this->addOption( 'ORDER BY', 'wl_namespace, wl_title' );
+			$this->addOption( 'ORDER BY', 'wl_namespace' . $sort . ', wl_title' . $sort );
 		}
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 		$res = $this->select( __METHOD__ );
@@ -160,7 +162,14 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 			),
 			'token' => array(
 				ApiBase::PARAM_TYPE => 'string'
-			)
+			),
+			'dir' => array(
+				ApiBase::PARAM_DFLT => 'ascending',
+				ApiBase::PARAM_TYPE => array(
+					'ascending',
+					'descending'
+				),
+			),
 		);
 	}
 
@@ -176,6 +185,7 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 			'show' => 'Only list items that meet these criteria',
 			'owner' => 'The name of the user whose watchlist you\'d like to access',
 			'token' => 'Give a security token (settable in preferences) to allow access to another user\'s watchlist',
+			'dir' => 'Direction to sort the titles and namespaces in',
 		);
 	}
 
