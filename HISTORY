@@ -4,6 +4,7 @@ Change notes from older releases. For current info see RELEASE-NOTES-1.20.
 === Changes since 1.18.2 ===
 * (bug 35446) Using "{{nse:}}" with an invalid namespace name no longer throws
   a PHP warning.
+* (bug 35567) The whole password reminder e-mail is now sent in the same language.
 
 == MediaWiki 1.18.2 ==
 2012-03-21
