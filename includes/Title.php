@@ -1715,6 +1715,19 @@ class Title {
 	}
 
 	/**
+	 * Throw a PermissionsError if $user cannot perform $action on this page.
+	 * @see self::getUserPermissionsErrors
+	 * @throws PermissionsError
+	 * @since 1.20
+	 */
+	public function throwUserPermissionsErrors( $action, $user, $doExpensiveQueries = true, $ignoreErrors = array() ) {
+		$permission_errors = $this->getUserPermissionsErrors( $action, $user, $doExpensiveQueries, $ignoreErrors );
+		if ( count( $permission_errors ) ) {
+			throw new PermissionsError( $action, $permission_errors );
+		}
+	}
+
+	/**
 	 * Permissions checks that fail most often, and which are easiest to test.
 	 *
 	 * @param $action String the action to check
