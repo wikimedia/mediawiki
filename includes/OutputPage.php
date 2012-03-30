@@ -2508,6 +2508,12 @@ $templates
 		if ( $wgResponsiveImages ) {
 			$this->addModules( 'mediawiki.hidpi' );
 		}
+
+		# Hidden categories toggle module
+		$categoryLinks = $this->getCategoryLinks();
+		if ( isset( $categoryLinks['hidden'] ) && !$this->getUser()->getBoolOption( 'showhiddencats' ) ) {
+			$this->addModules( 'mediawiki.category.hidden.toggle' );
+		}
 	}
 
 	/**
