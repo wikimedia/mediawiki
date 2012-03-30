@@ -1748,6 +1748,7 @@ $wgMessageStructure = array(
 		'allpagesprefix',
 		'allpagesbadtitle',
 		'allpages-bad-ns',
+		'allpages-hide-redirects',
 	),
 	'categories' => array(
 		'categories',
