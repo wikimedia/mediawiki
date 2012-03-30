@@ -140,6 +140,8 @@ $wgMessageStructure = array(
 	'categorypages' => array(
 		'pagecategories',
 		'pagecategorieslink',
+		'category-toggle-collapse',
+		'category-toggle-expand',
 		'category_header',
 		'subcategories',
 		'category-media-header',
