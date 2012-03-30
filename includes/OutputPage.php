@@ -2197,6 +2197,17 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
+	 * Helper functions for pages which require database writing.
+	 * If read-only mode is enabled throws a ReadOnlyError.
+	 * @throws ReadOnlyError
+	 */
+	public function needsWrite() {
+		if ( wfReadOnly() ) {
+			throw new ReadOnlyError;
+		}
+	}
+
+	/**
 	 * Display a page stating that the Wiki is in read-only mode,
 	 * and optionally show the source of the page that the user
 	 * was trying to edit.  Should only be called (for this
