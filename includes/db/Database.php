@@ -1373,7 +1373,11 @@ abstract class DatabaseBase implements DatabaseType {
 	function select( $table, $vars, $conds = '', $fname = 'DatabaseBase::select',
 		$options = array(), $join_conds = array() ) {
 		$sql = $this->selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds );
-
+		
+		if( count( array_diff( (array)$table, array( 'objectcache', 'l10n_cache', 'msg_resource', 'job', 'user_newtalk', '' ) ) ) ) {
+/*echo*/	wfDebug( $sql . " (" . wfGetAllCallers( false ) . ")" );
+		}
+		
 		return $this->query( $sql, $fname );
 	}
 
