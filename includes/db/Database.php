@@ -514,7 +514,11 @@ abstract class DatabaseBase implements DatabaseType {
 	 *   - DBO_PERSISTENT: use persistant database connection
 	 */
 	function setFlag( $flag ) {
+		global $wgDebugDBTransactions;
 		$this->mFlags |= $flag;
+		if ( ( $flag & DBO_TRX) & $wgDebugDBTransactions ) {
+			wfDebug("Implicit transactions are now  disabled.\n");
+		}
 	}
 
 	/**
@@ -523,7 +527,11 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @param $flag: same as setFlag()'s $flag param
 	 */
 	function clearFlag( $flag ) {
+		global $wgDebugDBTransactions;
 		$this->mFlags &= ~$flag;
+		if ( ( $flag & DBO_TRX ) && $wgDebugDBTransactions ) {
+			wfDebug("Implicit transactions are now disabled.\n");
+		}
 	}
 
 	/**
@@ -588,15 +596,21 @@ abstract class DatabaseBase implements DatabaseType {
 	function __construct( $server = false, $user = false, $password = false, $dbName = false,
 		$flags = 0, $tablePrefix = 'get from global'
 	) {
-		global $wgDBprefix, $wgCommandLineMode;
+		global $wgDBprefix, $wgCommandLineMode, $wgDebugDBTransactions;
 
 		$this->mFlags = $flags;
 
 		if ( $this->mFlags & DBO_DEFAULT ) {
 			if ( $wgCommandLineMode ) {
 				$this->mFlags &= ~DBO_TRX;
+				if ( $wgDebugDBTransactions ) {
+					wfDebug("Implicit transaction open disabled.\n");
+				}
 			} else {
 				$this->mFlags |= DBO_TRX;
+				if ( $wgDebugDBTransactions ) {
+					wfDebug("Implicit transaction open enabled.\n");
+				}
 			}
 		}
 
@@ -852,8 +866,13 @@ abstract class DatabaseBase implements DatabaseType {
 			# that would delay transaction initializations to once connection
 			# is really used by application
 			$sqlstart = substr( $sql, 0, 10 ); // very much worth it, benchmark certified(tm)
-			if ( strpos( $sqlstart, "SHOW " ) !== 0 && strpos( $sqlstart, "SET " ) !== 0 )
+			if ( strpos( $sqlstart, "SHOW " ) !== 0 && strpos( $sqlstart, "SET " ) !== 0 ) {
+				global $wgDebugDBTransactions;
+				if ( $wgDebugDBTransactions ) {
+					wfDebug("Implicit transaction start.\n");
+				}
 				$this->begin( __METHOD__ . " ($fname)" );
+			}
 		}
 
 		if ( $this->debug() ) {
@@ -2868,7 +2887,7 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
-	 * Begin a transaction, committing any previously open transaction
+	 * Begin a transaction
 	 *
 	 * @param $fname string
 	 */
@@ -3476,5 +3495,12 @@ abstract class DatabaseBase implements DatabaseType {
 	 */
 	public function setBigSelects( $value = true ) {
 		// no-op
+	}
+
+	/**
+	 * @since 1.19
+	 */
+	public function __toString() {
+		return (string)$this->mConn;
 	}
 }
