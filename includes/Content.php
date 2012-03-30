@@ -214,22 +214,24 @@ abstract class Content {
         return $this;
     }
 
-    #TODO: implement specialized ParserOutput for Wikidata model
-    #TODO: provide "combined" ParserOutput for Multipart... somehow.
-
-    # XXX: isCacheable( ) # can/should we do this here?
-
-    # TODO: EditPage::getPreloadedText( $preload ) // $wgParser->getPreloadText
-    # TODO: tie into EditPage, make it use Content-objects throughout, make edit form aware of content model and format
-    # TODO: make model-aware diff view!
+    # TODO: minimize special cases for CSS/JS; how to handle extra message for JS/CSS previews??
     # TODO: handle ImagePage and CategoryPage
+    # TODO: hook into dump generation to serialize and record model and format!
 
-    # TODO: Title::newFromRedirectRecurse( $this->getRawText() );
+    # TODO: make sure we cover lucene search / wikisearch.
+    # TODO: make sure ReplaceTemplates still works
+    # TODO: nice&sane integration of GeSHi syntax highlighting
+    #   [11:59] <vvv> Hooks are ugly; make CodeHighlighter interface and a config to set the class which handles syntax highlighting
+    #   [12:00] <vvv> And default it to a DummyHighlighter
+
+    # TODO: make sure we cover the external editor interface (does anyone actually use that?!)
 
     # TODO: tie into API to provide contentModel for Revisions
     # TODO: tie into API to provide serialized version and contentFormat for Revisions
     # TODO: tie into API edit interface
+    # TODO: make EditForm plugin for EditPage
 
+    # XXX: isCacheable( ) # can/should we do this here?
 }
 
 /**

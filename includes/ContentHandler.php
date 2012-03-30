@@ -444,19 +444,6 @@ abstract class ContentHandler {
 
         return $undone_content;
     }
-
-    #TODO: how to handle extra message for JS/CSS previews??
-    #TODO: Article::showCssOrJsPage ---> specialized classes!
-
-    #XXX: ImagePage and CategoryPage... wrappers that use ContentHandler? or ContentHandler creates wrappers?
-
-    #TODO: hook into dump generation to serialize and record model and format!
-    #TODO: cover action=raw
-    #TODO: make sure we cover lucene search / wikisearch.
-    #TODO: nice&sane integration of GeSHi syntax highlighting
-    #   [11:59] <vvv> Hooks are ugly; make CodeHighlighter interface and a config to set the class which handles syntax highlighting
-    #   [12:00] <vvv> And default it to a DummyHighlighter
-    #TODO: make sure we cover the external editor interface (does anyone actually use that?!)
 }
 
 
