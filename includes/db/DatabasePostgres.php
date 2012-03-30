@@ -320,16 +320,48 @@ class DatabasePostgres extends DatabaseBase {
 			$sql = mb_convert_encoding( $sql, 'UTF-8' );
 		}
 		$this->mTransactionState->check();
-		$this->mLastResult = pg_query( $this->mConn, $sql );
+		if( pg_send_query( $this->mConn, $sql ) === false ) {
+			throw new DBUnexpectedError( $this, "Unable to post new query to PostgreSQL\n" );
+		}
+		$this->mLastResult = pg_get_result( $this->mConn );
 		$this->mTransactionState->check();
 		$this->mAffectedRows = null;
+		if ( pg_result_error( $this->mLastResult ) ) {
+			return false; 
+		}
 		return $this->mLastResult;
+	}
+
+	protected function dumpError () {
+		$diags = array( PGSQL_DIAG_SEVERITY,
+				PGSQL_DIAG_SQLSTATE,
+				PGSQL_DIAG_MESSAGE_PRIMARY,
+				PGSQL_DIAG_MESSAGE_DETAIL,
+				PGSQL_DIAG_MESSAGE_HINT,
+				PGSQL_DIAG_STATEMENT_POSITION,
+				PGSQL_DIAG_INTERNAL_POSITION,
+				PGSQL_DIAG_INTERNAL_QUERY,
+				PGSQL_DIAG_CONTEXT,
+				PGSQL_DIAG_SOURCE_FILE,
+				PGSQL_DIAG_SOURCE_LINE,
+				PGSQL_DIAG_SOURCE_FUNCTION );
+		foreach ( $diags as $d ) {
+			wfDebug( sprintf("PgSQL ERROR(%d): %s\n", $d, pg_result_error_field( $this->mLastResult, $d ) ) );
+		}
 	}
 
 	function reportQueryError( $error, $errno, $sql, $fname, $tempIgnore = false ) {
 		/* Transaction stays in the ERROR state until rolledback */
+		if ( $tempIgnore ) {
+			/* Check for constraint violation */
+			if ( $errno === '23505' ) {
+				parent::reportQueryError( $error, $errno, $sql, $fname, $tempIgnore );
+				return;
+			}
+		}
+		/* Don't ignore serious errors */
 		$this->rollback( __METHOD__ );
-		parent::reportQueryError( $error, $errno, $sql, $fname, $tempIgnore );
+		parent::reportQueryError( $error, $errno, $sql, $fname, false );
 	}
 
 
@@ -423,13 +455,21 @@ class DatabasePostgres extends DatabaseBase {
 
 	function lastError() {
 		if ( $this->mConn ) {
-			return pg_last_error();
+			if ( $this->mLastResult ) {
+				return pg_result_error( $this->mLastResult );
+			} else {
+				return pg_last_error();
+			}
 		} else {
 			return 'No database connection';
 		}
 	}
 	function lastErrno() {
-		return pg_last_error() ? 1 : 0;
+		if ( $this->mLastResult ) {
+			return pg_result_error_field( $this->mLastResult, PGSQL_DIAG_SQLSTATE ); 
+		} else {
+			return false;
+		}
 	}
 
 	function affectedRows() {
