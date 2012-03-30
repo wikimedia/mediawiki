@@ -605,7 +605,6 @@ class Article extends Page {
 
 					# Pages containing custom CSS or JavaScript get special treatment
 					if ( $this->getTitle()->isCssOrJsPage() || $this->getTitle()->isCssJsSubpage() ) {
-                        #FIXME: use ContentHandler for specialized actions insetad.
 						wfDebug( __METHOD__ . ": showing CSS/JS source\n" );
 						$this->showCssOrJsPage();
 						$outputDone = true;
@@ -748,14 +747,16 @@ class Article extends Page {
 	 * This is hooked by SyntaxHighlight_GeSHi to do syntax highlighting of these
 	 * page views.
 	 */
-	protected function showCssOrJsPage() {
+	protected function showCssOrJsPage( $showCacheHint = true ) {
 		global $wgOut;
 
-		$dir = $this->getContext()->getLanguage()->getDir();
-		$lang = $this->getContext()->getLanguage()->getCode();
+        if ( $showCacheHint ) {
+            $dir = $this->getContext()->getLanguage()->getDir();
+            $lang = $this->getContext()->getLanguage()->getCode();
 
-		$wgOut->wrapWikiMsg( "<div id='mw-clearyourcache' lang='$lang' dir='$dir' class='mw-content-$dir'>\n$1\n</div>",
-			'clearyourcache' );
+            $wgOut->wrapWikiMsg( "<div id='mw-clearyourcache' lang='$lang' dir='$dir' class='mw-content-$dir'>\n$1\n</div>",
+                'clearyourcache' );
+        }
 
 		// Give hooks a chance to customise the output
 		if ( !Hooks::isRegistered('ShowRawCssJs') || wfRunHooks( 'ShowRawCssJs', array( $this->fetchContent(), $this->getTitle(), $wgOut ) ) ) { #FIXME: fetchContent() is deprecated #FIXME: hook is deprecated

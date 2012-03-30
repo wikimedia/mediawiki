@@ -1155,7 +1155,7 @@ class EditPage {
 
 		# Check image redirect
 		if ( $this->mTitle->getNamespace() == NS_FILE &&
-			Title::newFromRedirect( $this->textbox1 ) instanceof Title &&
+			Title::newFromRedirect( $this->textbox1 ) instanceof Title && #FIXME: use content handler to check for redirect
 			!$wgUser->isAllowed( 'upload' ) ) {
 				$code = $wgUser->isAnon() ? self::AS_IMAGE_REDIRECT_ANON : self::AS_IMAGE_REDIRECT_LOGGED;
 				$status->setResult( false, $code );
@@ -1304,8 +1304,10 @@ class EditPage {
 					return $status;
 				}
 
+                $content = ContentHandler::makeContent( $this->textbox1, $this->getTitle(), $this->content_model, $this->content_format );
+
 				# Handle the user preference to force summaries here. Check if it's not a redirect.
-				if ( !$this->allowBlankSummary && !Title::newFromRedirect( $this->textbox1 ) ) {
+				if ( !$this->allowBlankSummary && !$content->isRedirect() ) {
 					if ( md5( $this->summary ) == $this->autoSumm ) {
 						$this->missingSummary = true;
 						$status->fatal( 'missingsummary' ); // or 'missingcommentheader' if $section == 'new'. Blegh
@@ -1314,8 +1316,6 @@ class EditPage {
 						return $status;
 					}
 				}
-
-				$content = ContentHandler::makeContent( $this->textbox1, $this->getTitle(), $this->content_model, $this->content_format );
 
 				$result['sectionanchor'] = '';
 				if ( $this->section == 'new' ) {
@@ -2690,97 +2690,95 @@ HTML
 			return $parsedNote;
 		}
 
-		if ( $this->mTriedSave && !$this->mTokenOk ) {
-			if ( $this->mTokenOkExceptSuffix ) {
-				$note = wfMsg( 'token_suffix_mismatch' );
-			} else {
-				$note = wfMsg( 'session_fail_preview' );
-			}
-		} elseif ( $this->incompleteForm ) {
-			$note = wfMsg( 'edit_form_incomplete' );
-		} else {
-			$note = wfMsg( 'previewnote' );
-		}
+        try {
+            $content = ContentHandler::makeContent( $this->textbox1, $this->getTitle(), $this->content_model, $this->content_format );
 
-		$parserOptions = ParserOptions::newFromUser( $wgUser );
-		$parserOptions->setEditSection( false );
-		$parserOptions->setTidy( true );
-		$parserOptions->setIsPreview( true );
-		$parserOptions->setIsSectionPreview( !is_null($this->section) && $this->section !== '' );
+            if ( $this->mTriedSave && !$this->mTokenOk ) {
+                if ( $this->mTokenOkExceptSuffix ) {
+                    $note = wfMsg( 'token_suffix_mismatch' );
+                } else {
+                    $note = wfMsg( 'session_fail_preview' );
+                }
+            } elseif ( $this->incompleteForm ) {
+                $note = wfMsg( 'edit_form_incomplete' );
+            } elseif ( $this->isCssJsSubpage || $this->mTitle->isCssOrJsPage() ) {
+                # if this is a CSS or JS page used in the UI, show a special notice
+                # XXX: stupid php bug won't let us use $this->getContextTitle()->isCssJsSubpage() here -- This note has been there since r3530. Sure the bug was fixed time ago?
 
-		# don't parse non-wikitext pages, show message about preview
-		# XXX: stupid php bug won't let us use $this->getContextTitle()->isCssJsSubpage() here -- This note has been there since r3530. Sure the bug was fixed time ago?
+                if( $this->mTitle->isCssJsSubpage() ) {
+                    $level = 'user';
+                } elseif( $this->mTitle->isCssOrJsPage() ) {
+                    $level = 'site';
+                } else {
+                    $level = false;
+                }
 
-		if ( $this->isCssJsSubpage || $this->mTitle->isCssOrJsPage() ) { #TODO: kill all special case handling for CSS/JS content!
-			if( $this->mTitle->isCssJsSubpage() ) {
-				$level = 'user';
-			} elseif( $this->mTitle->isCssOrJsPage() ) {
-				$level = 'site';
-			} else {
-				$level = false;
-			}
+                if ( $content->getModelName() == CONTENT_MODEL_CSS ) {
+                    $format = 'css';
+                } elseif ( $content->getModelName() == CONTENT_MODEL_JAVASCRIPT ) {
+                    $format = 'js';
+                } else {
+                    $format = false;
+                }
 
-			# Used messages to make sure grep find them:
-			# Messages: usercsspreview, userjspreview, sitecsspreview, sitejspreview
-			if( $level ) {
-				#FIXME: move this crud into ContentHandler class!
-				if (preg_match( "/\\.css$/", $this->mTitle->getText() ) ) {
-					$previewtext = "<div id='mw-{$level}csspreview'>\n" . wfMsg( "{$level}csspreview" ) . "\n</div>";
-					$class = "mw-code mw-css";
-				} elseif (preg_match( "/\\.js$/", $this->mTitle->getText() ) ) {
-					$previewtext = "<div id='mw-{$level}jspreview'>\n" . wfMsg( "{$level}jspreview" ) . "\n</div>";
-					$class = "mw-code mw-js";
-				} else {
-					throw new MWException( 'A CSS/JS (sub)page but which is not css nor js!' );
-				}
-			} #FIXME: else $previewtext is undefined!
+                # Used messages to make sure grep find them:
+                # Messages: usercsspreview, userjspreview, sitecsspreview, sitejspreview
+                if( $level && $format ) {
+                    $note = "<div id='mw-{$level}{$format}preview'>" . wfMsg( "{$level}{$format}preview" ) . "</div>";
+                } else {
+                    $note = wfMsg( 'previewnote' );
+                }
+            } else {
+                $note = wfMsg( 'previewnote' );
+            }
 
-			$parserOutput = $wgParser->parse( $previewtext, $this->mTitle, $parserOptions );
-			$previewHTML = $parserOutput->mText;
-			$previewHTML .= "<pre class=\"$class\" dir=\"ltr\">\n" . htmlspecialchars( $this->textbox1 ) . "\n</pre>\n"; #FIXME: use content object!
-		} else {
-			$rt = Title::newFromRedirectArray( $this->textbox1 );
-			if ( $rt ) {
-				$previewHTML = $this->mArticle->viewRedirect( $rt, false );
-			} else {
-				try {
-					$content = ContentHandler::makeContent( $this->textbox1, $this->getTitle(), $this->content_model, $this->content_format );
+            $parserOptions = ParserOptions::newFromUser( $wgUser );
+            $parserOptions->setEditSection( false );
+            $parserOptions->setTidy( true );
+            $parserOptions->setIsPreview( true );
+            $parserOptions->setIsSectionPreview( !is_null($this->section) && $this->section !== '' );
 
-					# If we're adding a comment, we need to show the
-					# summary as the headline
-					if ( $this->section == "new" && $this->summary != "" ) {
-						$content = $content->addSectionHeader( $this->summary );
-					}
+            $rt = $content->getRedirectChain();
 
-					$toparse_orig = $content->serialize( $this->content_format );
-					$toparse = $toparse_orig;
-					wfRunHooks( 'EditPageGetPreviewText', array( $this, &$toparse ) );
+            if ( $rt ) {
+                $previewHTML = $this->mArticle->viewRedirect( $rt, false );
+            } else {
 
-					if ( $toparse !== $toparse_orig ) {
-						#hook changed the text, create new Content object
-						$content = ContentHandler::makeContent( $toparse, $this->getTitle(), $this->content_model, $this->content_format );
-					}
+                # If we're adding a comment, we need to show the
+                # summary as the headline
+                if ( $this->section == "new" && $this->summary != "" ) {
+                    $content = $content->addSectionHeader( $this->summary );
+                }
 
-					wfRunHooks( 'EditPageGetPreviewContent', array( $this, &$content ) ); # FIXME: document new hook
+                $toparse_orig = $content->serialize( $this->content_format );
+                $toparse = $toparse_orig;
+                wfRunHooks( 'EditPageGetPreviewText', array( $this, &$toparse ) );
 
-					$parserOptions->enableLimitReport();
+                if ( $toparse !== $toparse_orig ) {
+                    #hook changed the text, create new Content object
+                    $content = ContentHandler::makeContent( $toparse, $this->getTitle(), $this->content_model, $this->content_format );
+                }
 
-					$content = $content->preSaveTransform( $this->mTitle, $wgUser, $parserOptions );
-					$parserOutput = $content->getParserOutput( $this->mTitle, null, $parserOptions );
+                wfRunHooks( 'EditPageGetPreviewContent', array( $this, &$content ) ); # FIXME: document new hook
 
-					$previewHTML = $parserOutput->getText();
-					$this->mParserOutput = $parserOutput;
-					$wgOut->addParserOutputNoText( $parserOutput );
+                $parserOptions->enableLimitReport();
 
-					if ( count( $parserOutput->getWarnings() ) ) {
-						$note .= "\n\n" . implode( "\n\n", $parserOutput->getWarnings() );
-					}
-				} catch (MWContentSerializationException $ex) {
-					$note .= "\n\n" . wfMsg('content-failed-to-parse', $this->content_model, $this->content_format, $ex->getMessage() );
-					$previewHTML = '';
-				}
-			}
-		}
+                #XXX: For CSS/JS pages, we should have called the ShowRawCssJs hook here. But it's now deprecated, so never mind
+                $content = $content->preSaveTransform( $this->mTitle, $wgUser, $parserOptions );
+                $parserOutput = $content->getParserOutput( $this->mTitle, null, $parserOptions );
+
+                $previewHTML = $parserOutput->getText();
+                $this->mParserOutput = $parserOutput;
+                $wgOut->addParserOutputNoText( $parserOutput );
+
+                if ( count( $parserOutput->getWarnings() ) ) {
+                    $note .= "\n\n" . implode( "\n\n", $parserOutput->getWarnings() );
+                }
+            }
+        } catch (MWContentSerializationException $ex) {
+            $note .= "\n\n" . wfMsg('content-failed-to-parse', $this->content_model, $this->content_format, $ex->getMessage() );
+            $previewHTML = '';
+        }
 
 		if( $this->isConflict ) {
 			$conflict = '<h2 id="mw-previewconflict">' . htmlspecialchars( wfMsg( 'previewconflict' ) ) . "</h2>\n";
