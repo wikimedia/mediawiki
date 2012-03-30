@@ -137,14 +137,14 @@ class PostgresTransactionState {
 
 	static $WATCHED = array(
 		array(
-			"desc" => "Connection state changed from %s -> %s\n",
+			"desc" => "%s: Connection state changed from %s -> %s\n",
 			"states" => array(
 				PGSQL_CONNECTION_OK       => "OK",
 				PGSQL_CONNECTION_BAD      => "BAD"
 			)
 		),
 		array(
-			"desc" => "Transaction state changed from %s -> %s\n",
+			"desc" => "%s: Transaction state changed from %s -> %s\n",
 			"states" => array(
 				PGSQL_TRANSACTION_IDLE    => "IDLE",
 				PGSQL_TRANSACTION_ACTIVE  => "ACTIVE",
@@ -198,9 +198,83 @@ class PostgresTransactionState {
 
 	protected function log_changed( $old, $new, $watched ) {
 		wfDebug(sprintf($watched["desc"],
+			$this->mConn,
 			$this->describe_changed( $old, $watched["states"] ),
 			$this->describe_changed( $new, $watched["states"] ))
 		);
+	}
+}
+
+/**
+ * Manage savepoints within a transaction
+ * @ingroup Database
+ * @since 1.19
+ */
+class SavepointPostgres {
+	/**
+	 * Establish a savepoint within a transaction
+	 */
+	protected $dbw;
+	protected $id;
+	protected $didbegin;
+
+	public function __construct ($dbw, $id) {
+		$this->dbw = $dbw;
+		$this->id = $id;
+		$this->didbegin = false;
+		/* If we are not in a transaction, we need to be for savepoint trickery */
+		if ( !$dbw->trxLevel() ) {
+				$dbw->begin( "FOR SAVEPOINT" );
+				$this->didbegin = true;
+		}
+	}
+
+	public function __destruct() {
+		if ( $this->didbegin ) {
+			$this->dbw->rollback();
+		}
+	}
+
+	public function commit() {
+		if ( $this->didbegin ) {
+			$this->dbw->commit();
+		}
+	}
+
+	protected function query( $keyword, $msg_ok, $msg_failed ) {
+		global $wgDebugDBTransactions;
+		if ( $this->dbw->doQuery( $keyword . " " . $this->id ) !== false ) {
+			if ( $wgDebugDBTransactions ) {
+				wfDebug( sprintf ($msg_ok, $this->id ) );
+			}
+		} else {
+			wfDebug( sprintf ($msg_failed, $this->id ) );
+		}
+	}
+
+	public function savepoint() {
+		$this->query("SAVEPOINT",
+			"Transaction state: savepoint \"%s\" established.\n",
+			"Transaction state: establishment of savepoint \"%s\" FAILED.\n"
+		);
+	}
+
+	public function release() {
+		$this->query("RELEASE",
+			"Transaction state: savepoint \"%s\" released.\n",
+			"Transaction state: release of savepoint \"%s\" FAILED.\n"
+		);
+	}
+
+	public function rollback() {
+		$this->query("ROLLBACK TO",
+			"Transaction state: savepoint \"%s\" rolled back.\n",
+			"Transaction state: rollback of savepoint \"%s\" FAILED.\n"
+		);
+	}
+
+	public function __toString() {
+		return (string)$this->id;
 	}
 }
 
@@ -345,7 +419,7 @@ class DatabasePostgres extends DatabaseBase {
 		return pg_close( $this->mConn );
 	}
 
-	protected function doQuery( $sql ) {
+	public function doQuery( $sql ) {
 		if ( function_exists( 'mb_convert_encoding' ) ) {
 			$sql = mb_convert_encoding( $sql, 'UTF-8' );
 		}
@@ -667,15 +741,9 @@ __INDEXATTR__;
 		}
 
 		// If IGNORE is set, we use savepoints to emulate mysql's behavior
-		$ignore = in_array( 'IGNORE', $options ) ? 'mw' : '';
-
-		// If we are not in a transaction, we need to be for savepoint trickery
-		$didbegin = 0;
-		if ( $ignore ) {
-			if ( !$this->mTrxLevel ) {
-				$this->begin( __METHOD__ );
-				$didbegin = 1;
-			}
+		$savepoint = null;
+		if ( in_array( 'IGNORE', $options ) ) {
+			$savepoint = new SavepointPostgres( $this, 'mw' );
 			$olde = error_reporting( 0 );
 			// For future use, we may want to track the number of actual inserts
 			// Right now, insert (all writes) simply return true/false
@@ -685,7 +753,7 @@ __INDEXATTR__;
 		$sql = "INSERT INTO $table (" . implode( ',', $keys ) . ') VALUES ';
 
 		if ( $multi ) {
-			if ( $this->numeric_version >= 8.2 && !$ignore ) {
+			if ( $this->numeric_version >= 8.2 && !$savepoint ) {
 				$first = true;
 				foreach ( $args as $row ) {
 					if ( $first ) {
@@ -695,7 +763,7 @@ __INDEXATTR__;
 					}
 					$sql .= '(' . $this->makeList( $row ) . ')';
 				}
-				$res = (bool)$this->query( $sql, $fname, $ignore );
+				$res = (bool)$this->query( $sql, $fname, $savepoint );
 			} else {
 				$res = true;
 				$origsql = $sql;
@@ -703,18 +771,18 @@ __INDEXATTR__;
 					$tempsql = $origsql;
 					$tempsql .= '(' . $this->makeList( $row ) . ')';
 
-					if ( $ignore ) {
-						$this->doQuery( "SAVEPOINT $ignore" );
+					if ( $savepoint ) {
+						$savepoint->savepoint();
 					}
 
-					$tempres = (bool)$this->query( $tempsql, $fname, $ignore );
+					$tempres = (bool)$this->query( $tempsql, $fname, $savepoint );
 
-					if ( $ignore ) {
+					if ( $savepoint ) {
 						$bar = pg_last_error();
 						if ( $bar != false ) {
-							$this->doQuery( $this->mConn, "ROLLBACK TO $ignore" );
+							$savepoint->rollback();
 						} else {
-							$this->doQuery( $this->mConn, "RELEASE $ignore" );
+							$savepoint->release();
 							$numrowsinserted++;
 						}
 					}
@@ -728,27 +796,25 @@ __INDEXATTR__;
 			}
 		} else {
 			// Not multi, just a lone insert
-			if ( $ignore ) {
-				$this->doQuery( "SAVEPOINT $ignore" );
+			if ( $savepoint ) {
+				$savepoint->savepoint();
 			}
 
 			$sql .= '(' . $this->makeList( $args ) . ')';
-			$res = (bool)$this->query( $sql, $fname, $ignore );
-			if ( $ignore ) {
+			$res = (bool)$this->query( $sql, $fname, $savepoint );
+			if ( $savepoint ) {
 				$bar = pg_last_error();
 				if ( $bar != false ) {
-					$this->doQuery( "ROLLBACK TO $ignore" );
+					$savepoint->rollback();
 				} else {
-					$this->doQuery( "RELEASE $ignore" );
+					$savepoint->release();
 					$numrowsinserted++;
 				}
 			}
 		}
-		if ( $ignore ) {
+		if ( $savepoint ) {
 			$olde = error_reporting( $olde );
-			if ( $didbegin ) {
-				$this->commit( __METHOD__ );
-			}
+			$savepoint->commit();
 
 			// Set the affected row count for the whole operation
 			$this->mAffectedRows = $numrowsinserted;
@@ -774,9 +840,6 @@ __INDEXATTR__;
 	{
 		$destTable = $this->tableName( $destTable );
 
-		// If IGNORE is set, we use savepoints to emulate mysql's behavior
-		$ignore = in_array( 'IGNORE', $insertOptions ) ? 'mw' : '';
-
 		if( is_array( $insertOptions ) ) {
 			$insertOptions = implode( ' ', $insertOptions ); // FIXME: This is unused
 		}
@@ -790,16 +853,13 @@ __INDEXATTR__;
 			$srcTable = $this->tableName( $srcTable );
 		}
 
-		// If we are not in a transaction, we need to be for savepoint trickery
-		$didbegin = 0;
-		if ( $ignore ) {
-			if( !$this->mTrxLevel ) {
-				$this->begin( __METHOD__ );
-				$didbegin = 1;
-			}
+		// If IGNORE is set, we use savepoints to emulate mysql's behavior
+		$savepoint = null;
+		if ( in_array( 'IGNORE', $options ) ) {
+			$savepoint = new SavepointPostgres( $this, 'mw' );
 			$olde = error_reporting( 0 );
 			$numrowsinserted = 0;
-			$this->doQuery( "SAVEPOINT $ignore" );
+			$savepoint->savepoint();
 		}
 
 		$sql = "INSERT INTO $destTable (" . implode( ',', array_keys( $varMap ) ) . ')' .
@@ -812,19 +872,17 @@ __INDEXATTR__;
 
 		$sql .= " $tailOpts";
 
-		$res = (bool)$this->query( $sql, $fname, $ignore );
-		if( $ignore ) {
+		$res = (bool)$this->query( $sql, $fname, $savepoint );
+		if( $savepoint ) {
 			$bar = pg_last_error();
 			if( $bar != false ) {
-				$this->doQuery( "ROLLBACK TO $ignore" );
+				$savepoint->rollback();
 			} else {
-				$this->doQuery( "RELEASE $ignore" );
+				$savepoint->release();
 				$numrowsinserted++;
 			}
 			$olde = error_reporting( $olde );
-			if( $didbegin ) {
-				$this->commit( __METHOD__ );
-			}
+			$savepoint->commit();
 
 			// Set the affected row count for the whole operation
 			$this->mAffectedRows = $numrowsinserted;
@@ -1056,7 +1114,7 @@ __INDEXATTR__;
 	 * This will be also called by the installer after the schema is created
 	 *
 	 * @since 1.19
-	 * @param desired_schema string
+	 * @param $desired_schema string
 	 */
 	function determineCoreSchema( $desired_schema ) {
 		$this->begin( __METHOD__ );
