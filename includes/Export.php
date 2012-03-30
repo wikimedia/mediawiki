@@ -308,9 +308,6 @@ class WikiExporter {
 			$wrapper = $this->db->resultObject( $result );
 			# Output dump results
 			$this->outputPageStream( $wrapper );
-			if ( $this->list_authors ) {
-				$this->outputPageStream( $wrapper );
-			}
 
 			if ( $this->buffer == WikiExporter::STREAM ) {
 				$this->db->bufferResults( $prev );
