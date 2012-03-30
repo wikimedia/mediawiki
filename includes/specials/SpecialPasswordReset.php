@@ -194,17 +194,18 @@ class SpecialPasswordReset extends FormSpecialPage {
 			? 'passwordreset-emailtext-ip'
 			: 'passwordreset-emailtext-user';
 
+		// Send in the user's language; which should hopefully be the same
+		$userLanguage = $firstUser->getOption( 'language' );
+
 		$passwords = array();
 		foreach ( $users as $user ) {
 			$password = $user->randomPassword();
 			$user->setNewpassword( $password );
 			$user->saveSettings();
-			$passwords[] = wfMessage( 'passwordreset-emailelement', $user->getName(), $password );
+			$passwords[] = wfMessage( 'passwordreset-emailelement', $user->getName(), $password
+				)->inLanguage( $userLanguage )->plain(); // We'll escape the whole thing later
 		}
 		$passwordBlock = implode( "\n\n", $passwords );
-
-		// Send in the user's language; which should hopefully be the same
-		$userLanguage = $firstUser->getOption( 'language' );
 
 		$body = wfMessage( $msg )->inLanguage( $userLanguage );
 		$body->params(
