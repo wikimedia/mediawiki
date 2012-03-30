@@ -1402,16 +1402,9 @@ class Article extends Page {
 		$title = $this->getTitle();
 		$user = $this->getContext()->getUser();
 
-		# Check permissions
-		$permission_errors = $title->getUserPermissionsErrors( 'delete', $user );
-		if ( count( $permission_errors ) ) {
-			throw new PermissionsError( 'delete', $permission_errors );
-		}
-
-		# Read-only check...
-		if ( wfReadOnly() ) {
-			throw new ReadOnlyError;
-		}
+		# Check permissions and readOnly
+		$title->requireUserPermissions( 'delete', $user );
+		$this->getContext()->getOutput()->needsWrite();
 
 		# Better double-check that it hasn't been deleted yet!
 		$this->mPage->loadPageData( 'fromdbmaster' );
