@@ -189,18 +189,20 @@ class SpecialContributions extends SpecialPage {
 			}
 			$out->preventClickjacking( $pager->getPreventClickjacking() );
 
-			# Show the appropriate "footer" message - WHOIS tools, etc.
-			if ( $this->opts['contribs'] != 'newbie' ) {
-				$message = 'sp-contributions-footer';
-				if ( IP::isIPAddress( $target ) ) {
-					$message = 'sp-contributions-footer-anon';
-				} else {
-					if ( $userObj->isAnon() ) {
-						// No message for non-existing users
-						return;
-					}
-				}
 
+			# Show the appropriate "footer" message - WHOIS tools, etc.
+			if ( $this->opts['contribs'] == 'newbie' ) {
+				$message = 'sp-contributions-footer-newbies';
+			} elseif( IP::isIPAddress( $target ) ) {
+				$message = 'sp-contributions-footer-anon';
+			} elseif( $userObj->isAnon() ) {
+				// No message for non-existing users
+				$message = '';
+			} else {
+				$message = 'sp-contributions-footer';
+			}
+
+			if( $message ) {
 				if ( !$this->msg( $message, $target )->isDisabled() ) {
 					$out->wrapWikiMsg(
 						"<div class='mw-contributions-footer'>\n$1\n</div>",
