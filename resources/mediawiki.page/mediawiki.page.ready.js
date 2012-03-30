@@ -17,7 +17,31 @@ jQuery( document ).ready( function( $ ) {
 
 	/* Enable CheckboxShiftClick */
 	$( 'input[type=checkbox]:not(.noshiftselect)' ).checkboxShiftClick();
-
+	
+	/* Enable toggle category link if at all the page has hidden category links */
+	if($("#mw-hidden-catlinks").length>0)
+	{
+			jQuery('<a/>', {
+			    id: 'mw-cat-toggle',
+			    href: '#',
+			    text: mw.msg('category-toggle-show'),
+			    click: handler
+			}).prependTo('#catlinks');
+	}
+	var toggleCatBool = true;
+	function handler(event){
+		$("#mw-hidden-catlinks").toggle();
+		if(toggleCatBool)
+		{
+			$("#mw-cat-toggle").text(mw.msg('category-toggle-hide'));
+		}
+		else
+		{
+			$("#mw-cat-toggle").text(mw.msg('category-toggle-show'));
+		}
+		toggleCatBool=!toggleCatBool;
+		event.preventDefault();
+	}	 
 	/* Add accesskey hints to the tooltips */
 	mw.util.updateTooltipAccessKeys();
 

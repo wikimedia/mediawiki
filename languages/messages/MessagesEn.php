@@ -756,7 +756,8 @@ XHTML id names.
 'index-category'                 => 'Indexed pages',
 'noindex-category'               => 'Noindexed pages',
 'broken-file-category'           => 'Pages with broken file links',
-
+'category-toggle-hide'			 => 'Hide hidden categories',
+'category-toggle-show'			 => 'Show hidden categories',
 'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD', # only translate this message to other languages if you have to change it
 
 'about'         => 'About',

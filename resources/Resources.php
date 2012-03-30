@@ -742,6 +742,7 @@ return array(
 			'jquery.mw-jump',
 			'mediawiki.util',
 		),
+		'messages'=>array('category-toggle-show','category-toggle-hide'),
 	),
 	'mediawiki.page.startup' => array(
 		'scripts' => 'resources/mediawiki.page/mediawiki.page.startup.js',
