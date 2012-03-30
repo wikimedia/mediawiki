@@ -747,6 +747,8 @@ XHTML id names.
 # Categories related messages
 'pagecategories'                 => '{{PLURAL:$1|Category|Categories}}',
 'pagecategorieslink'             => 'Special:Categories', # do not translate or duplicate this message to other languages
+'category-toggle-collapse'       => 'Collapse Hidden {{PLURAL:$1|Category|Categories}}',
+'category-toggle-expand'         => 'Expand Hidden {{PLURAL:$1|Category|Categories}}',
 'category_header'                => 'Pages in category "$1"',
 'subcategories'                  => 'Subcategories',
 'category-media-header'          => 'Media in category "$1"',
