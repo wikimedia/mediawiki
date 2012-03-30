@@ -120,10 +120,13 @@ class RawAction extends FormlessAction {
 
 		// If it's a MediaWiki message we can just hit the message cache
 		if ( $request->getBool( 'usemsgcache' ) && $title->getNamespace() == NS_MEDIAWIKI ) {
-			$key = $title->getDBkey();
-			$msg = wfMessage( $key )->inContentLanguage();
-			# If the message doesn't exist, return a blank
-			$text = !$msg->exists() ? '' : $msg->plain();
+			// The first "true" is to use the database, the second is to use the content langue
+			// and the last one is to specify the message key already contains the language in it ("/de", etc.)
+			$text = MessageCache::singleton()->get( $title->getDBkey(), true, true, true );
+			// If the message doesn't exist, return a blank
+			if ( $text === false ) {
+				$text = '';
+			}
 		} else {
 			// Get it from the DB
 			$rev = Revision::newFromTitle( $title, $this->getOldId() );
