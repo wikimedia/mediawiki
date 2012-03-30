@@ -715,26 +715,6 @@ abstract class UploadBase {
 	}
 
 	/**
-	 * NOTE: Probably should be deprecated in favor of UploadStash, but this is sometimes
-	 * called outside that context.
-	 *
-	 * Stash a file in a temporary directory for later processing
-	 * after the user has confirmed it.
-	 *
-	 * If the user doesn't explicitly cancel or accept, these files
-	 * can accumulate in the temp directory.
-	 *
-	 * @param $saveName String: the destination filename
-	 * @param $tempSrc String: the source temporary file to save
-	 * @return String: full path the stashed file, or false on failure
-	 */
-	protected function saveTempUploadedFile( $saveName, $tempSrc ) {
-		$repo = RepoGroup::singleton()->getLocalRepo();
-		$status = $repo->storeTemp( $saveName, $tempSrc );
-		return $status;
-	}
-
-	/**
 	 * If the user does not supply all necessary information in the first upload form submission (either by accident or
 	 * by design) then we may want to stash the file temporarily, get more information, and publish the file later.
 	 *
