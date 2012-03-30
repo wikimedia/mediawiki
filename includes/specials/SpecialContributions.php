@@ -197,10 +197,13 @@ class SpecialContributions extends SpecialPage {
 				} else {
 					if ( $userObj->isAnon() ) {
 						// No message for non-existing users
-						return;
+						$message = '';
 					}
 				}
-
+			} else {
+				$message = 'sp-contributions-footer-newbies';
+			}
+			if( $message ) {
 				if ( !$this->msg( $message, $target )->isDisabled() ) {
 					$out->wrapWikiMsg(
 						"<div class='mw-contributions-footer'>\n$1\n</div>",

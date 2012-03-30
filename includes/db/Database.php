@@ -1373,7 +1373,7 @@ abstract class DatabaseBase implements DatabaseType {
 	function select( $table, $vars, $conds = '', $fname = 'DatabaseBase::select',
 		$options = array(), $join_conds = array() ) {
 		$sql = $this->selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds );
-
+		
 		return $this->query( $sql, $fname );
 	}
 
