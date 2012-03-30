@@ -293,6 +293,8 @@ Is only shown if {{msg-mw|tog-enotifusertalkpages}} or/and {{msg-mw|tog-enotifwa
 
 # Categories related messages
 'pagecategories' => 'Used in the categories section of pages. Is followed by a colon and a list of categories.',
+'category-toggle-expand' => 'Used in the category section of pages. It\'s the text of a link which asks the user whether to expand the list of hidden categories or not.',
+'category-toggle-collapse' => 'Used in the category section of pages. It\'s the text of a link which asks the user whether to collapse the list of hidden categories or not.',
 'category_header' => 'In category description page',
 'subcategories' => 'Used as a header on category pages that have subcategories.',
 'category-media-header' => 'In category description page',

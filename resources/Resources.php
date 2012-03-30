@@ -688,6 +688,14 @@ return array(
 		'messages' => array( 'showtoc', 'hidetoc' ),
 		'position' => 'top', // For $wgPreloadJavaScriptMwUtil
 	),
+	'mediawiki.category.hidden.toggle' => array(
+		'scripts' => 'resources/mediawiki/mediawiki.category.hidden.toggle.js',
+		'dependencies' => array( 'mediawiki.jqueryMsg' ),
+		'messages' => array(
+			'category-toggle-expand',
+			'category-toggle-collapse'
+		),
+	),
 
 	/* MediaWiki Action */
 
