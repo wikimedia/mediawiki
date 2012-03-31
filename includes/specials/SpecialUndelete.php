@@ -744,7 +744,7 @@ class SpecialUndelete extends SpecialPage {
 		$undelete = $this->getTitle();
 		$out->addHTML( "<ul>\n" );
 		foreach ( $result as $row ) {
-			$title = Title::makeTitleSafe( $row->ar_namespace, $row->ar_title );
+			$title = Title::makeTitle( $row->ar_namespace, $row->ar_title );
 			$link = Linker::linkKnown(
 				$undelete,
 				htmlspecialchars( $title->getPrefixedText() ),
