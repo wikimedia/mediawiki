@@ -2404,6 +2404,10 @@ A [[Special:WhatLinksHere/$2|full list]] is available.',
 Please see the [$2 file description page] for further information.',
 'sharedupload-desc-here'            => 'This file is from $1 and may be used by other projects.
 The description on its [$2 file description page] there is shown below.',
+'sharedupload-desc-edit'            => 'This file is from $1 and may be used by other projects.
+Maybe you want edit the description on its [$2 file description page] there.',
+'sharedupload-desc-create'          => 'This file is from $1 and may be used by other projects.
+Maybe you want edit the description on its [$2 file description page] there.',
 'shareddescriptionfollows'          => '-', # do not translate or duplicate this message to other languages
 'filepage-nofile'                   => 'No file by this name exists.',
 'filepage-nofile-link'              => 'No file by this name exists, but you can [$1 upload it].',
