@@ -745,14 +745,20 @@ class SpecialUndelete extends SpecialPage {
 		$out->addHTML( "<ul>\n" );
 		foreach ( $result as $row ) {
 			$title = Title::makeTitleSafe( $row->ar_namespace, $row->ar_title );
-			$link = Linker::linkKnown(
-				$undelete,
-				htmlspecialchars( $title->getPrefixedText() ),
-				array(),
-				array( 'target' => $title->getPrefixedText() )
-			);
+			if ( $title !== null ) {
+				$item = Linker::linkKnown(
+					$undelete,
+					htmlspecialchars( $title->getPrefixedText() ),
+					array(),
+					array( 'target' => $title->getPrefixedText() )
+				);				
+			} else {
+				// The title is no longer valid, show as text
+				$title = Title::makeTitle( $row->ar_namespace, $row->ar_title );
+				$item = htmlspecialchars( $title->getPrefixedText() );
+			}
 			$revs = $this->msg( 'undeleterevisions' )->numParams( $row->count )->parse();
-			$out->addHTML( "<li>{$link} ({$revs})</li>\n" );
+			$out->addHTML( "<li>{$item} ({$revs})</li>\n" );
 		}
 		$result->free();
 		$out->addHTML( "</ul>\n" );
