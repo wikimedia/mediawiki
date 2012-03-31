@@ -76,26 +76,26 @@ class PasswordTest extends MediaWikiTestCase {
 
 			# Type PBKHM (PBKDF2-HMAC)
 			## Set 1 (sha256)
-			array( 'PBKHM', 'dHh0luxQuHY=:sha256:10000:32:kckuugkKXfXVbnFb31d2qhEabjJwbGfsw0yDuqC7FYQ=', 'asdf' ),
-			array( 'PBKHM', 'NKInyrRlIFI=:sha256:10000:32:XdP2IjvWeSKuKdlizJhDShpYeGTgZjtTcpChZ6+S3d0=', 'test' ),
-			array( 'PBKHM', 'BZj6RlcUk8E=:sha256:10000:32:4yt4FRipoPjrsOwb3/LDeOBpBzrtysB9xgjUvmF70Is=', 'Hello World' ),
-			array( 'PBKHM', 'tAWZn1GvOt8=:sha256:10000:32:Fyy/gs6Rfif0t5ieui2L5Gka7pgFhhpS4vux+dFHHyM=', 'Passw0rd' ),
-			array( 'PBKHM', 'yTFdI1Wo9jM=:sha256:10000:32:3pepWERts9s8oBrsME3OIpbExRX3CRVCb4Op+T1Abzw=', 'D0g.....................' ),
-			array( 'PBKHM', 'nplOY9RgPpM=:sha256:10000:32:cx5cjr2SpLBZi2wTsKcZUlZKXwc+sPkUsThBLlVevTg=', 'KiWVic0F6Le&%Ejn8p3j1vm@#XQclWOV' ),
+			array( 'PBKHM', 'yCaxCRg0J3I=:sha256:10000:32:IdNMgnu31vxOYZcZw+cuxHEV32AN0E1MUxlHUhI20iw=', 'asdf' ),
+			array( 'PBKHM', '0365j6hCBrU=:sha256:10000:32:Ob/NnzUsA2H4GoztuLQuIknNnas0sUg/sHU2oUjfOzM=', 'test' ),
+			array( 'PBKHM', '8RGGumgq6B4=:sha256:10000:32:/Ud4zVh9Ipn7GRHj9BKkHK2Xvaz1zrRvjEa07FfHAuw=', 'Hello World' ),
+			array( 'PBKHM', 'XAZQ0Fx45JQ=:sha256:10000:32:SUKiNMCzhZ6BrRBdCXSaBY2w18twvPaKH3Eap98XbEo=', 'Passw0rd' ),
+			array( 'PBKHM', 'hhgIP1sNKs8=:sha256:10000:32:rGVfA+2FLC3UeVEKt1GckpGpknGf9Nx87aietmlonHA=', 'D0g.....................' ),
+			array( 'PBKHM', 'EbZ57a06GGw=:sha256:10000:32:WK+BzCnrW6x6PNSvjYK3km1udl14wY33YsV2lt42Gek=', 'KiWVic0F6Le&%Ejn8p3j1vm@#XQclWOV' ),
 			## Set 2 (whirlpool)
-			array( 'PBKHM', 'wjkCoIsFtUY=:whirlpool:10000:64:wk52FpVk3CqqVnQNdcoGlfyBnWmWmXhyGJCYu3/yZCRDRk1wB6H4GwCTGcqWJKTR/dPqcBL7+ms9A4A72+T4rA==', 'asdf' ),
-			array( 'PBKHM', 'jd57jFUArKw=:whirlpool:10000:64:PV/GFJGO3xlmAnCxYXg18ifxuojvWMTQnHIC4iXrTVKmdhFZ93p09gXfr80cCElo9baZtqblMcISUaZYt0zmHw==', 'test' ),
-			array( 'PBKHM', 'nFVZnAyGYYg=:whirlpool:10000:64:QOz8yQFT0zRqBxrI4Q+lELJvqNLt25Gx6K1FjfoI8Qtuhql7Qu2BI87MkSKndGlW5hUPHs00O/0N1PdZ8T41ww==', 'Hello World' ),
-			array( 'PBKHM', 'wETbmyUF348=:whirlpool:10000:64:wjRS2GnffDM9wMO1zUzrEMem23ZJcFHtfeqip1joW3GUlbzvWfaWZr/lR3QDILMyyEdvWfVie3y2bgjXqv4LwA==', 'Passw0rd' ),
-			array( 'PBKHM', 'XnArcNNnZwU=:whirlpool:10000:64:2ibbEHUwQF7puzg32VHbdMuWOsdZz48FiBoeABo50uBpl8Vxj6Drv2CYJekmlmQvNlqYmzdUsSvqZhSpFY/Bjw==', 'D0g.....................' ),
-			array( 'PBKHM', 'BzzF5px168Y=:whirlpool:10000:64:VFnmaCJbH+ZmXli46jlLfrtTDwn/2oo03PBsxp/YpfHHjUMiGPXIYf1J4gGRhoScFQqnvsE9wzbdz/JyLKAN4Q==', 'KiWVic0F6Le&%Ejn8p3j1vm@#XQclWOV' ),
+			array( 'PBKHM', '4faSJAfABg8=:whirlpool:10000:64:ZC/qLHX0D24wPuznFwb+I4UBkE18JyZ9K1bGOo9J+IUtsuVHDvGhJXMSwvXuxFySuBLofzkjk0ITgcmGYp20yw==', 'asdf' ),
+			array( 'PBKHM', 'QSwzOfVFWmY=:whirlpool:10000:64:Pxkr8D5dVFf/qD0LCmz3angHOeFOBBX6y0UBMAoUdr8IqE2OMe7yXD4rDO2rbdLas152HvUgIwl9LyagTuY89Q==', 'test' ),
+			array( 'PBKHM', 'IgzraxBdmdM=:whirlpool:10000:64:uPwBse+hg2EFQ0s5wxCymC4O3KUfetSI+PRf6362pc8Cl7TlwKoh4KZAl2HukRiqBRXnhUUyl/NGjpveQJC3+w==', 'Hello World' ),
+			array( 'PBKHM', 'rYNd9nHdKVs=:whirlpool:10000:64:V56yyy4XwyRISVhPcGeWpNpYFL4j/5wPEAWxUHDKe3grsE/HzzxVRKdTcO8ny2gttvQ9ofpcS4Ru2oUS7m2ALw==', 'Passw0rd' ),
+			array( 'PBKHM', '2N0JKZRnNjQ=:whirlpool:10000:64:Og83KC5PP0Dxl5XnJ8RIywVF96Wm+GZrAtniE9eDj/znYqJ/JqqK+YDEqLrjaE8nOuozWeBwRd8Gx9KgHCiMzA==', 'D0g.....................' ),
+			array( 'PBKHM', 'PYMVMwXUNn8=:whirlpool:10000:64:htNdMzShGUzqghNGh5K4ihP0K1XbCzDd6qs7X+HfEKUXLAEs06MmqMwWUSmi7IrgJ8kfF6kUjB+MBZPnSXVnZg==', 'KiWVic0F6Le&%Ejn8p3j1vm@#XQclWOV' ),
 			## Set 3 (50000 sha1)
-			array( 'PBKHM', 'PCMjXt0O6C0=:sha1:50000:20:1z7n/IBx1pWFHctEl/m6YzjMxfs=', 'asdf' ),
-			array( 'PBKHM', 'O/hYbezDyrs=:sha1:50000:20:YQFznLKCUL4h60iaAiM2f/RosyQ=', 'test' ),
-			array( 'PBKHM', 'JmVkBc4VXMc=:sha1:50000:20:LflHMVmRz1SZkdJ7gAZW/cXD5cQ=', 'Hello World' ),
-			array( 'PBKHM', 'Ec8lbsBpw+Q=:sha1:50000:20:UYR/XGmawqLJODi/A7U/UlyRvfU=', 'Passw0rd' ),
-			array( 'PBKHM', 'BR0PFHK4mBI=:sha1:50000:20:xnB1jxbM9EE8RZ8BRbd/ISY0NwA=', 'D0g.....................' ),
-			array( 'PBKHM', 'mgIISHgeYfY=:sha1:50000:20:FCBarvMyX7WURbypBireSGN6zcI=', 'KiWVic0F6Le&%Ejn8p3j1vm@#XQclWOV' ),
+			array( 'PBKHM', 'zzet1WmGu+M=:sha1:50000:20:l+kWWTrjOjM6J1EObmDjzgyN1lE=', 'asdf' ),
+			array( 'PBKHM', '9l/3BOJW4II=:sha1:50000:20:P00yS3YRcPUCn2yyI9/jlTaC9JA=', 'test' ),
+			array( 'PBKHM', 'kXQjQwZsMY0=:sha1:50000:20:tPFfeEVbdAF9Bq24rD8CBiTaaf0=', 'Hello World' ),
+			array( 'PBKHM', 'XCvqIz5QFjc=:sha1:50000:20:siG9gkUUNka7P9uvBo8dA7ZCZlE=', 'Passw0rd' ),
+			array( 'PBKHM', '9buA3LvsLog=:sha1:50000:20:mAgZxNlL+4dWC8JCsJlq/5Tjn50=', 'D0g.....................' ),
+			array( 'PBKHM', 'FnhgbiEVecw=:sha1:50000:20:0OU+1R0AM7v/0mlULaz366rTgz4=', 'KiWVic0F6Le&%Ejn8p3j1vm@#XQclWOV' ),
 		);
 	}
 
@@ -191,6 +191,53 @@ class PasswordTest extends MediaWikiTestCase {
 			$result = PasswordExposed::compare( $data, $badPass );
 			$this->assertFalse( $result->getValue(), "Bad password is invalid for password $password with bad password $badPass." );
 		}
+	}
+
+	/**
+	 * Data for the rfc6070 test
+	 */
+	function dataRFC6070() {
+		// These are the tests taken from rfc6070
+		// They are left primarily in the format defined there to avoid errors
+		return array(
+			/* P = Password, S = Salt, c = Iterations, dkLen = dkLength, DK = DerivedKey */
+			array( "password", "salt", 1, 20, "0c 60 c8 0f 96 1f 0e 71 f3 a9 b5 24 af 60 12 06 2f e0 37 a6" ),
+			array( "password", "salt", 2, 20, "ea 6c 01 4d c7 2d 6f 8c cd 1e d9 2a ce 1d 41 f0 d8 de 89 57" ),
+			array( "password", "salt", 4096, 20, "4b 00 79 01 b7 65 48 9a be ad 49 d9 26 f7 21 d0 65 a4 29 c1" ),
+			array( "password", "salt", 16777216, 20, "ee fe 3d 61 cd 4d a4 e4 e9 94 5b 3d 6b a2 15 8c 26 34 e9 84" ),
+			array(
+				/* P */ "passwordPASSWORDpassword",
+				/* S */ "saltSALTsaltSALTsaltSALTsaltSALTsalt",
+				/* c */ 4096,
+				/* dkLen */ 25,
+				/* DK */ "3d 2e ec 4f e4 1c 84 9b 80 c8 d8 36 62 c0 e4 4a 8b 29 1a 96 4c f2 f0 70 38",
+			),
+		);
+	}
+
+	/**
+	 * Test PBKHM with rfc6070's PBKDF2-HMAC-SHA1 test vectors to ensure that
+	 * our implementation is a valid implementation of PBKDF2
+	 * @dataProvider dataRFC6070
+	 */
+	function testRFC6070( $P, $S, $c, $dkLen, $DK ) {
+		$salt = base64_encode( $S );
+		$hashType = 'sha1';
+		$iterations = $c;
+
+		// Convert the list of ASCII bytes rfc6070 uses into a formatted hash string
+		$hash = '';
+		$DKbytes = preg_split( '/\s+/', $DK );
+		foreach( $DKbytes as $hex ) {
+			$hash .= chr( hexdec( $hex ) );
+		}
+		$hash = base64_encode( $hash );
+
+		$data = ":PBKHM:$salt:$hashType:$iterations:$dkLen:$hash";
+		$result = Password::compare( $data, $P );
+		$this->assertInstanceOf( 'Status', $result, 'Result is Status object' );
+		$this->assertTrue( $result->isGood(), 'Status result is not fatal error.' );
+		$this->assertTrue( $result->getValue(), "rfc6070 test vector match ($data - $P)." );
 	}
 
 }

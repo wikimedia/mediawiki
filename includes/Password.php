@@ -453,7 +453,7 @@ class Password_TypePBKHM  extends BasePasswordType {
 			// Further iterations use the previous hmac's result as the key
 			// The result is then XORed into the block's total
 			for ( $i = 1; $i < $iterations; $i++ ) {
-				$blockStep = hash_hmac( 'sha512', $blockStep, $password, true );
+				$blockStep = hash_hmac( $hashFunc, $blockStep, $password, true );
 				$blockTotal ^= $blockStep;
 			}
 			// The block total is then finally appended to the derived key
@@ -485,7 +485,7 @@ class Password_TypePBKHM  extends BasePasswordType {
 			$hashedBits = strlen( hash( $hashFunc, null, true ) ) * 8;
 		}
 
-		return array( 
+		return array(
 			/* salt */       base64_encode( MWCryptRand::generate( ceil( $saltBits / 8 ) ) ),
 			/* hash */       $hashFunc,
 			/* iterations */ $iterations,
