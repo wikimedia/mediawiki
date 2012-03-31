@@ -2041,7 +2041,6 @@ class User {
 	 * @param $token String|bool If specified, set the token to this value
 	 */
 	public function setToken( $token = false ) {
-		global $wgSecretKey, $wgProxyKey;
 		$this->load();
 		if ( !$token ) {
 			$this->mToken = MWCryptRand::generateHex( USER_TOKEN_LENGTH );

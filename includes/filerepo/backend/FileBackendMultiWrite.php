@@ -133,7 +133,7 @@ class FileBackendMultiWrite extends FileBackend {
 		}
 
 		// Actually attempt the operation batch...
-		$subStatus = FileOp::attemptBatch( $performOps, $opts );
+		$subStatus = FileOp::attemptBatch( $performOps, $opts, $this->fileJournal );
 
 		$success = array();
 		$failCount = 0;

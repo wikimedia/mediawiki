@@ -24,6 +24,7 @@ production.
 * (bug 23795) Add parser itself to ParserMakeImageParams hook.
 * Introduce a cryptographic random number generator source api for use when
   generating various tokens.
+* (bug 30963) Option on Special:Prefixindex and Special:Allpages to not show redirects.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
@@ -51,6 +52,8 @@ production.
   usages of -s and -n parameters depending on compression type
 * (bug 13896) Rendering of devanagari numbers in automatic '#' number lists
 * (bug 18704) Add an unique CSS class or ID to the tagfilter table row at RecentChanges 
+* (bug 33689) Upgrade to 1.19 on Postgres fails due to incomplete query when
+              trying to defer foreign key for externallinks
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
@@ -64,6 +67,7 @@ regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
 
 * (bug 34192) Namespace gender aliases for Albanian languages (sq & aln)
+* (bug 35541) Namespace gender aliases for Croatian (hr)
 * Mizo (lus) added
 
 === Other changes in 1.20 ===

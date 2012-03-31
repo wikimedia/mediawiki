@@ -24,6 +24,7 @@ abstract class FileOp {
 	protected $state = self::STATE_NEW; // integer
 	protected $failed = false; // boolean
 	protected $useLatest = true; // boolean
+	protected $batchId; // string
 
 	protected $sourceSha1; // string
 	protected $destSameAsSource; // boolean
@@ -63,6 +64,16 @@ abstract class FileOp {
 	}
 
 	/**
+	 * Set the batch UUID this operation belongs to
+	 *
+	 * @param $batchId string
+	 * @return void
+	 */
+	final protected function setBatchId( $batchId ) {
+		$this->batchId = $batchId;
+	}
+
+	/**
 	 * Whether to allow stale data for file reads and stat checks
 	 *
 	 * @param $allowStale bool
@@ -73,29 +84,30 @@ abstract class FileOp {
 	}
 
 	/**
-	 * Attempt a series of file operations.
+	 * Attempt to perform a series of file operations.
 	 * Callers are responsible for handling file locking.
 	 * 
 	 * $opts is an array of options, including:
-	 * 'force'      : Errors that would normally cause a rollback do not.
-	 *                The remaining operations are still attempted if any fail.
-	 * 'allowStale' : Don't require the latest available data.
-	 *                This can increase performance for non-critical writes.
-	 *                This has no effect unless the 'force' flag is set.
-	 *
+	 * 'force'        : Errors that would normally cause a rollback do not.
+	 *                  The remaining operations are still attempted if any fail.
+	 * 'allowStale'   : Don't require the latest available data.
+	 *                  This can increase performance for non-critical writes.
+	 *                  This has no effect unless the 'force' flag is set.
+	 * 'nonJournaled' : Don't log this operation batch in the file journal.
+	 * 
 	 * The resulting Status will be "OK" unless:
 	 *     a) unexpected operation errors occurred (network partitions, disk full...)
 	 *     b) significant operation errors occured and 'force' was not set
 	 * 
 	 * @param $performOps Array List of FileOp operations
 	 * @param $opts Array Batch operation options
+	 * @param $journal FileJournal Journal to log operations to
 	 * @return Status 
 	 */
-	final public static function attemptBatch( array $performOps, array $opts ) {
+	final public static function attemptBatch(
+		array $performOps, array $opts, FileJournal $journal
+	) {
 		$status = Status::newGood();
-
-		$allowStale = !empty( $opts['allowStale'] );
-		$ignoreErrors = !empty( $opts['force'] );
 
 		$n = count( $performOps );
 		if ( $n > self::MAX_BATCH_SIZE ) {
@@ -103,13 +115,26 @@ abstract class FileOp {
 			return $status;
 		}
 
+		$batchId = $journal->getTimestampedUUID();
+		$allowStale = !empty( $opts['allowStale'] );
+		$ignoreErrors = !empty( $opts['force'] );
+		$journaled = empty( $opts['nonJournaled'] );
+
+		$entries = array(); // file journal entries
 		$predicates = FileOp::newPredicates(); // account for previous op in prechecks
 		// Do pre-checks for each operation; abort on failure...
 		foreach ( $performOps as $index => $fileOp ) {
+			$fileOp->setBatchId( $batchId );
 			$fileOp->allowStaleReads( $allowStale );
-			$subStatus = $fileOp->precheck( $predicates );
+			$oldPredicates = $predicates;
+			$subStatus = $fileOp->precheck( $predicates ); // updates $predicates
 			$status->merge( $subStatus );
-			if ( !$subStatus->isOK() ) { // operation failed?
+			if ( $subStatus->isOK() ) {
+				if ( $journaled ) { // journal log entry
+					$entries = array_merge( $entries,
+						self::getJournalEntries( $fileOp, $oldPredicates, $predicates ) );
+				}
+			} else { // operation failed?
 				$status->success[$index] = false;
 				++$status->failCount;
 				if ( !$ignoreErrors ) {
@@ -118,16 +143,17 @@ abstract class FileOp {
 			}
 		}
 
-		if ( $ignoreErrors ) {
-			# Treat all precheck() fatals as merely warnings
-			$status->setResult( true, $status->value );
+		// Log the operations in file journal...
+		if ( count( $entries ) ) {
+			$subStatus = $journal->logChangeBatch( $entries, $batchId );
+			if ( !$subStatus->isOK() ) {
+				return $subStatus; // abort
+			}
 		}
 
-		// Restart PHP's execution timer and set the timeout to safe amount.
-		// This handles cases where the operations take a long time or where we are
-		// already running low on time left. The old timeout is restored afterwards.
-		# @TODO: re-enable this for when the number of batches is high.
-		#$scopedTimeLimit = new FileOpScopedPHPTimeout( self::TIME_LIMIT_SEC );
+		if ( $ignoreErrors ) { // treat precheck() fatals as mere warnings
+			$status->setResult( true, $status->value );
+		}
 
 		// Attempt each operation...
 		foreach ( $performOps as $index => $fileOp ) {
@@ -152,6 +178,46 @@ abstract class FileOp {
 		}
 
 		return $status;
+	}
+
+	/**
+	 * Get the file journal entries for a single file operation
+	 * 
+	 * @param $fileOp FileOp
+	 * @param $oPredicates Array Pre-op information about files
+	 * @param $nPredicates Array Post-op information about files
+	 * @return Array
+	 */
+	final protected static function getJournalEntries(
+		FileOp $fileOp, array $oPredicates, array $nPredicates
+	) {
+		$nullEntries = array();
+		$updateEntries = array();
+		$deleteEntries = array();
+		$pathsUsed = array_merge( $fileOp->storagePathsRead(), $fileOp->storagePathsChanged() );
+		foreach ( $pathsUsed as $path ) {
+			$nullEntries[] = array( // assertion for recovery
+				'op'      => 'null',
+				'path'    => $path,
+				'newSha1' => $fileOp->fileSha1( $path, $oPredicates )
+			);
+		}
+		foreach ( $fileOp->storagePathsChanged() as $path ) {
+			if ( $nPredicates['sha1'][$path] === false ) { // deleted
+				$deleteEntries[] = array(
+					'op'      => 'delete',
+					'path'    => $path,
+					'newSha1' => ''
+				);
+			} else { // created/updated
+				$updateEntries[] = array(
+					'op'      => $fileOp->fileExists( $path, $oPredicates ) ? 'update' : 'create',
+					'path'    => $path,
+					'newSha1' => $nPredicates['sha1'][$path]
+				);
+			}
+		}
+		return array_merge( $nullEntries, $updateEntries, $deleteEntries );
 	}
 
 	/**
@@ -352,67 +418,10 @@ abstract class FileOp {
 		$params = $this->params;
 		$params['failedAction'] = $action;
 		try {
-			wfDebugLog( 'FileOperation',
-				get_class( $this ) . ' failed: ' . FormatJson::encode( $params ) );
+			wfDebugLog( 'FileOperation', get_class( $this ) .
+				" failed (batch #{$this->batchId}): " . FormatJson::encode( $params ) );
 		} catch ( Exception $e ) {
 			// bad config? debug log error?
-		}
-	}
-}
-
-/**
- * FileOp helper class to expand PHP execution time for a function.
- * On construction, set_time_limit() is called and set to $seconds.
- * When the object goes out of scope, the timer is restarted, with
- * the original time limit minus the time the object existed.
- */
-class FileOpScopedPHPTimeout {
-	protected $startTime; // float; seconds
-	protected $oldTimeout; // integer; seconds
-
-	protected static $stackDepth = 0; // integer
-	protected static $totalCalls = 0; // integer
-	protected static $totalElapsed = 0; // float; seconds
-
-	/* Prevent callers in infinite loops from running forever */
-	const MAX_TOTAL_CALLS = 1000000;
-	const MAX_TOTAL_TIME = 300; // seconds
-
-	/**
-	 * @param $seconds integer
-	 */
-	public function __construct( $seconds ) {
-		if ( ini_get( 'max_execution_time' ) > 0 ) { // CLI uses 0
-			if ( self::$totalCalls >= self::MAX_TOTAL_CALLS ) {
-				trigger_error( "Maximum invocations of " . __CLASS__ . " exceeded." );
-			} elseif ( self::$totalElapsed >= self::MAX_TOTAL_TIME ) {
-				trigger_error( "Time limit within invocations of " . __CLASS__ . " exceeded." );
-			} elseif ( self::$stackDepth > 0 ) { // recursion guard
-				trigger_error( "Resursive invocation of " . __CLASS__ . " attempted." );
-			} else {
-				$this->oldTimeout = ini_set( 'max_execution_time', $seconds );
-				$this->startTime = microtime( true );
-				++self::$stackDepth;
-				++self::$totalCalls; // proof against < 1us scopes
-			}
-		}
-	}
-
-	/**
-	 * Restore the original timeout.
-	 * This does not account for the timer value on __construct().
-	 */
-	public function __destruct() {
-		if ( $this->oldTimeout ) {
-			$elapsed = microtime( true ) - $this->startTime;
-			// Note: a limit of 0 is treated as "forever"
-			set_time_limit( max( 1, $this->oldTimeout - (int)$elapsed ) );
-			// If each scoped timeout is for less than one second, we end up
-			// restoring the original timeout without any decrease in value.
-			// Thus web scripts in an infinite loop can run forever unless we 
-			// take some measures to prevent this. Track total time and calls.
-			self::$totalElapsed += $elapsed;
-			--self::$stackDepth;
 		}
 	}
 }

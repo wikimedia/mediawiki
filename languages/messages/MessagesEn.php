@@ -2280,6 +2280,10 @@ If the problem persists, contact an [[Special:ListUsers/sysop|administrator]].',
 'backend-fail-contenttype'   => 'Could not determine the content type of the file to store at "$1".',
 'backend-fail-batchsize'     => 'Storage backend given a batch of $1 file {{PLURAL:$1|operation|operations}}; the limit is $2 {{PLURAL:$2|operation|operations}}.',
 
+# File journal
+'filejournal-fail-dbconnect' => 'Could not connect to the journal database for storage backend "$1".',
+'filejournal-fail-dbquery'   => 'Could not update the journal database for storage backend "$1".',
+
 # Lock manager
 'lockmanager-notlocked'        => 'Could not unlock "$1"; it is not locked.',
 'lockmanager-fail-closelock'   => 'Could not close lock file for "$1".',
@@ -2660,6 +2664,7 @@ You can narrow down the view by selecting a log type, the username (case-sensiti
 'allpagesbadtitle'  => 'The given page title was invalid or had an inter-language or inter-wiki prefix.
 It may contain one or more characters which cannot be used in titles.',
 'allpages-bad-ns'   => '{{SITENAME}} does not have namespace "$1".',
+'allpages-hide-redirects' => 'Hide redirects',
 
 # Special:Categories
 'categories'                    => 'Categories',

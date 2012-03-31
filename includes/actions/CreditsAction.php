@@ -30,7 +30,7 @@ class CreditsAction extends FormlessAction {
 	}
 
 	protected function getDescription() {
-		return wfMsgHtml( 'creditspage' );
+		return $this->msg( 'creditspage' )->escaped();
 	}
 
 	/**

@@ -800,7 +800,9 @@ class PhpHttpRequest extends MWHttpRequest {
 		if ( $this->method == 'POST' ) {
 			// Required for HTTP 1.0 POSTs
 			$this->reqHeaders['Content-Length'] = strlen( $this->postData );
-			$this->reqHeaders['Content-type'] = "application/x-www-form-urlencoded";
+			if( !isset( $this->reqHeaders['Content-Type'] ) ) {
+				$this->reqHeaders['Content-Type'] = "application/x-www-form-urlencoded";
+			}
 		}
 
 		$options = array();

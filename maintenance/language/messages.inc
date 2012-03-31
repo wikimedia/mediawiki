@@ -1378,6 +1378,11 @@ $wgMessageStructure = array(
 		'backend-fail-batchsize'
 	),
 
+	'filejournal-errors' => array(
+		'filejournal-fail-dbconnect',
+		'filejournal-fail-dbquery'
+	),
+
 	'lockmanager-errors' => array(
 		'lockmanager-notlocked',
 		'lockmanager-fail-closelock',
@@ -1743,6 +1748,7 @@ $wgMessageStructure = array(
 		'allpagesprefix',
 		'allpagesbadtitle',
 		'allpages-bad-ns',
+		'allpages-hide-redirects',
 	),
 	'categories' => array(
 		'categories',

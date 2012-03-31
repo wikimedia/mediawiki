@@ -282,12 +282,12 @@ abstract class ApiBase extends ContextSource {
 					if ( is_numeric( $k ) ) {
 						$msg .= "  $v\n";
 					} else {
-						$v .= ":";
 						if ( is_array( $v ) ) {
 							$msgExample = implode( "\n", array_map( array( $this, 'indentExampleText' ), $v ) );
 						} else {
 							$msgExample = "  $v";
 						}
+						$msgExample .= ":";
 						$msg .= wordwrap( $msgExample, 100, "\n" ) . "\n    $k\n";
 					}
 				}

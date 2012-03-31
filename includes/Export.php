@@ -308,9 +308,6 @@ class WikiExporter {
 			$wrapper = $this->db->resultObject( $result );
 			# Output dump results
 			$this->outputPageStream( $wrapper );
-			if ( $this->list_authors ) {
-				$this->outputPageStream( $wrapper );
-			}
 
 			if ( $this->buffer == WikiExporter::STREAM ) {
 				$this->db->bufferResults( $prev );
@@ -794,6 +791,11 @@ class DumpFileOutput extends DumpOutput {
 		$this->filename = $file;
 	}
 
+	function writeCloseStream( $string ) {
+		parent::writeCloseStream( $string );
+		fclose( $this->handle );
+	}
+
 	function write( $string ) {
 		fputs( $this->handle, $string );
 	}
@@ -852,6 +854,11 @@ class DumpPipeOutput extends DumpFileOutput {
 		$this->startCommand( $command );
 		$this->command = $command;
 		$this->filename = $file;
+	}
+
+	function writeCloseStream( $string ) {
+		parent::writeCloseStream( $string );
+		proc_close( $this->procOpenResource );
 	}
 
 	function startCommand( $command ) {
