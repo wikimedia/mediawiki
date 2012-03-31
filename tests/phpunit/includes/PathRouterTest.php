@@ -131,7 +131,7 @@ class PathRouterTest extends MediaWikiTestCase {
 		$router = new PathRouter;
 		$router->add( "/wiki/$1", array( 'title' => "$1$2" ) );
 		$matches = $router->parse( "/wiki/A" );
-		$this->assertEquals( array(), $matches );
+		$this->assertNull( $matches );
 	}
 
 	/**

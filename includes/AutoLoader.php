@@ -900,6 +900,7 @@ $wgAutoloadLocalClasses = array(
 	'ProtectedTitlesPager' => 'includes/specials/SpecialProtectedtitles.php',
 	'RandomPage' => 'includes/specials/SpecialRandompage.php',
 	'ShortPagesPage' => 'includes/specials/SpecialShortpages.php',
+	'Special404' => 'includes/specials/Special404.php',
 	'SpecialActiveUsers' => 'includes/specials/SpecialActiveusers.php',
 	'SpecialAllmessages' => 'includes/specials/SpecialAllmessages.php',
 	'SpecialAllpages' => 'includes/specials/SpecialAllpages.php',
