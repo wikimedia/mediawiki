@@ -62,6 +62,21 @@ class WebRequest {
 	}
 
 	/**
+	 * This method works the same as getRequestRoutedQuery however it never returns null
+	 * to indicate a 404. Instead if there is a 404 it will set the &title= to the
+	 * Error404 special page.
+	 * @see self::getRequestRoutedQuery
+	 * @return Array: Any query arguments found in path matches.
+	 */
+	static public function getPathInfo( $want = 'all' ) {
+		$matches = self::getRequestRoutedQuery( $want );
+		if ( is_null( $matches ) ) {
+			$matches['title'] = SpecialPage::getTitleFor('Error404')->getPrefixedText();
+		}
+		return $matches;
+	}
+
+	/**
 	 * Extract relevant query arguments from the http request uri's path
 	 * to be merged with the normal php provided query arguments.
 	 * Tries to use the REQUEST_URI data if available and parses it
@@ -74,10 +89,11 @@ class WebRequest {
 	 * will return an empty array if it determines that the URL is
 	 * inside a rewrite path.
 	 *
-	 * @return Array: Any query arguments found in path matches.
+	 * @return mixed: An array of any query arguments found in path matches.
+	 *                or null if this is a 404.
+	 * @since 1.20
 	 */
-	static public function getPathInfo( $want = 'all' ) {
-		global $wgUsePathInfo;
+	static public function getRequestRoutedQuery( $want = 'all' ) {
 		// PATH_INFO is mangled due to http://bugs.php.net/bug.php?id=31892
 		// And also by Apache 2.x, double slashes are converted to single slashes.
 		// So we will use REQUEST_URI if possible.
@@ -105,6 +121,15 @@ class WebRequest {
 
 				// Raw PATH_INFO style
 				$router->add( "$wgScript/$1" );
+
+				// Point root directories pointing up to $wgScript to the mainpage if they hit the wiki
+				$scriptPathList = explode( '/', $wgScript );
+				array_pop( $scriptPathList );
+				while( count( $scriptPathList ) > 1 ) {
+					$router->addStrict( implode( '/', $scriptPathList ), array( 'title' => '' ) );
+					array_pop( $scriptPathList );
+				}
+				$router->addStrict( '/', array( 'title' => '' ) );
 
 				if( isset( $_SERVER['SCRIPT_NAME'] )
 					&& preg_match( '/\.php5?/', $_SERVER['SCRIPT_NAME'] ) )
@@ -149,7 +174,6 @@ class WebRequest {
 				$matches['title'] = substr( $_SERVER['PATH_INFO'], 1 );
 			}
 		}
-
 		return $matches;
 	}
 

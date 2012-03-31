@@ -233,7 +233,7 @@ class PathRouter {
 	 * Parse a path and return the query matches for the path
 	 *
 	 * @param $path string The path to parse
-	 * @return Array The array of matches for the path
+	 * @return mixed The array of matches for the path, or null if none
 	 */
 	public function parse( $path ) {
 		// Make sure our patterns are sorted by weight so the most specific
@@ -249,11 +249,7 @@ class PathRouter {
 			}
 		}
 
-		// We know the difference between null (no matches) and
-		// array() (a match with no data) but our WebRequest caller
-		// expects array() even when we have no matches so return
-		// a array() when we have null
-		return is_null( $matches ) ? array() : $matches;
+		return $matches;
 	}
 
 	/**

@@ -394,6 +394,7 @@ $specialPageAliases = array(
 	'DoubleRedirects'           => array( 'DoubleRedirects' ),
 	'EditWatchlist'             => array( 'EditWatchlist' ),
 	'Emailuser'                 => array( 'EmailUser' ),
+	'Error404'                  => array( 'Error404' ),
 	'Export'                    => array( 'Export' ),
 	'Fewestrevisions'           => array( 'FewestRevisions' ),
 	'FileDuplicateSearch'       => array( 'FileDuplicateSearch' ),
@@ -4703,6 +4704,15 @@ Images are shown in full resolution, other file types are started with their ass
 'specialpages-group-wiki'        => 'Wiki data and tools',
 'specialpages-group-redirects'   => 'Redirecting special pages',
 'specialpages-group-spam'        => 'Spam tools',
+
+# Special:Error404
+'error404' => '404 Not found',
+'special404-body' => 'The URL you requested was not found.
+
+Did you mean to type {{fullurl:$1}}?
+
+Maybe you would like to look at:
+* [[{{MediaWiki:Mainpage}}|The main page]]',
 
 # Special:BlankPage
 'blankpage'              => 'Blank page',
