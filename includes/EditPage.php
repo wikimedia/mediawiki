@@ -1603,21 +1603,21 @@ class EditPage {
 		# Enabled article-related sidebar, toplinks, etc.
 		$wgOut->setArticleRelated( true );
 
+		$contextTitle = $this->getContextTitle();
 		if ( $this->isConflict ) {
-			$wgOut->setPageTitle( wfMessage( 'editconflict', $this->getContextTitle()->getPrefixedText() ) );
-		} elseif ( $this->section != '' ) {
+			$msg = 'editconflict';
+		} elseif ( $contextTitle->exists() && $this->section != '' ) {
 			$msg = $this->section == 'new' ? 'editingcomment' : 'editingsection';
-			$wgOut->setPageTitle( wfMessage( $msg, $this->getContextTitle()->getPrefixedText() ) );
 		} else {
-			# Use the title defined by DISPLAYTITLE magic word when present
-			if ( isset( $this->mParserOutput )
-			 && ( $dt = $this->mParserOutput->getDisplayTitle() ) !== false ) {
-				$title = $dt;
-			} else {
-				$title = $this->getContextTitle()->getPrefixedText();
-			}
-			$wgOut->setPageTitle( wfMessage( 'editing', $title ) );
+			$msg = $contextTitle->exists() || ( $contextTitle->getNamespace() == NS_MEDIAWIKI && $contextTitle->getDefaultMessageText() !== false ) ?
+				'editing' : 'creating';
 		}
+		# Use the title defined by DISPLAYTITLE magic word when present
+		$displayTitle = isset( $this->mParserOutput ) ? $this->mParserOutput->getDisplayTitle() : false;
+		if ( $displayTitle === false ) {
+			$displayTitle = $contextTitle->getPrefixedText();
+		}
+		$wgOut->setPageTitle( wfMessage( $msg, $displayTitle ) );
 	}
 
 	/**

@@ -628,6 +628,7 @@ $wgMessageStructure = array(
 		'token_suffix_mismatch',
 		'edit_form_incomplete',
 		'editing',
+		'creating',
 		'editingsection',
 		'editingcomment',
 		'editconflict',
