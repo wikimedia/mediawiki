@@ -25,12 +25,12 @@ class Password {
 	/**
 	 * Map of registered PasswordTypes
 	 */
-	private static $types = array();
+	protected static $types = array();
 
 	/**
 	 * The preferred PasswordType
 	 */
-	private static $preferredType;
+	protected static $preferredType;
 
 	/**
 	 * Initialize the class
