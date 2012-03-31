@@ -147,6 +147,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   been removed.
 * (bug 34939) Made link parsing insensitive ([HttP://])
 * (bug 40072) Add CSS classes to items in output of ChangesList pages.
+* index.php has a small 404 handler now so you can set index.php as your 404
+  error document and let MediaWiki output the 404 page for you.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
