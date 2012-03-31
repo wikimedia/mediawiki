@@ -2597,16 +2597,35 @@ class Language {
 	}
 
 	/**
-	 * A hidden direction mark (LRM or RLM), depending on the language direction
+	 * A hidden direction mark (LRM or RLM), depending on the language direction.
+	 * Unlike getDirMark(), this function returns the character as an HTML entity.
+	 * This function should be used when the output is guaranteed to be HTML,
+	 * because it makes the output HTML source code more readable. When
+	 * the output is plain text or can be escaped, getDirMark() should be used.
+	 *
+	 * @param $opposite Boolean Get the direction mark opposite to your language
+	 * @return string
+	 */
+	function getDirMarkEntity( $opposite = false ) {
+		if ( $opposite ) { return $this->isRTL() ? '&lrm;' : '&rlm;'; }
+		return $this->isRTL() ? '&rlm;' : '&lrm;';
+	}
+
+	/**
+	 * A hidden direction mark (LRM or RLM), depending on the language direction.
+	 * This function produces them as invisible Unicode characters and
+	 * the output may be hard to read and debug, so it should only be used
+	 * when the output is plain text or can be escaped. When the output is
+	 * HTML, use getDirMarkEntity() instead.
 	 *
 	 * @param $opposite Boolean Get the direction mark opposite to your language
 	 * @return string
 	 */
 	function getDirMark( $opposite = false ) {
-		$rtl = "\xE2\x80\x8F";
-		$ltr = "\xE2\x80\x8E";
-		if ( $opposite ) { return $this->isRTL() ? $ltr : $rtl; }
-		return $this->isRTL() ? $rtl : $ltr;
+		$lrm = "\xE2\x80\x8E"; # LEFT-TO-RIGHT MARK, commonly abbreviated LRM
+		$rlm = "\xE2\x80\x8F"; # RIGHT-TO-LEFT MARK, commonly abbreviated RLM
+		if ( $opposite ) { return $this->isRTL() ? $lrm : $rlm; }
+		return $this->isRTL() ? $rlm : $lrm;
 	}
 
 	/**
