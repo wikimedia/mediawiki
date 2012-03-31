@@ -165,6 +165,7 @@ class SpecialPageFactory {
 		'Revisiondelete'            => 'SpecialRevisionDelete',
 		'Specialpages'              => 'SpecialSpecialpages',
 		'Userlogout'                => 'SpecialUserlogout',
+		'Error404'                  => 'Special404',
 	);
 
 	private static $mAliases;
