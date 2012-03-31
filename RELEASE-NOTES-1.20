@@ -112,6 +112,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 37830) Added $wgRequirePasswordforEmailChange to control whether password
   confirmation is required for changing an email address or not.
 * HTMLForm mutators can now be chained (they return $this)
+* index.php has a small 404 handler now so you can set index.php as your 404
+  error document and let MediaWiki output the 404 page for you.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
