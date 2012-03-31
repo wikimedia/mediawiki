@@ -386,6 +386,7 @@ changes to languages because of Bugzilla reports.
   amount of user/site scripts that are lacking dependency information. In the short to
   medium term these user/site scripts should be fixed by adding the used modules to the
   dependencies in the module registry and/or wrapping them in a callback to mw.loader.using.
+* MediaWiki now requires MySQL 5.0.2 or later when using a MySQL database.
 
 == Compatibility ==
 
