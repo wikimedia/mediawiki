@@ -2066,6 +2066,8 @@ Example: [[:Image:Addon-icn.png]]',
 {{doc-important|Do not customise this message. Just translate it.|Customisation should be done by local wikis.}}',
 'sharedupload-desc-there'           => ':See also: {{msg-mw|Sharedupload}}',
 'sharedupload-desc-here'            => ':See also: {{msg-mw|Sharedupload}}',
+'sharedupload-desc-edit'            => ':See also: {{msg-mw|Sharedupload}}',
+'sharedupload-desc-create'          => ':See also: {{msg-mw|Sharedupload}}',
 'filepage-nofile'                   => "This message appears when visiting a File page for which there's no file, if the user cannot upload files, or file uploads are disabled. (Otherwise, see {{msg-mw|Filepage-nofile-link}})
 
 Filepage-nofile and Filepage-nofile-link message deprecate {{msg-mw|Noimage}}",

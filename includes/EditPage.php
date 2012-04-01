@@ -1634,6 +1634,24 @@ class EditPage {
 		if ( $namespace == NS_MEDIAWIKI ) {
 			# Show a warning if editing an interface message
 			$wgOut->wrapWikiMsg( "<div class='mw-editinginterface'>\n$1\n</div>", 'editinginterface' );
+		} else if( $namespace == NS_FILE ) {
+			# Show a hint to shared repo
+			$file = wfFindFile( $this->mTitle );
+			if( $file && !$file->isLocal() ) {
+				$descUrl = $file->getDescriptionUrl();
+				# there must be a description url to show a hint to shared repo
+				if( $descUrl ) {
+					if( !$this->mTitle->exists() ) {
+						$wgOut->wrapWikiMsg( "<div class=\"mw-sharedupload-desc-create\">\n$1\n</div>", array (
+									'sharedupload-desc-create', $file->getRepo()->getDisplayName(), $descUrl
+						) );
+					} else {
+						$wgOut->wrapWikiMsg( "<div class=\"mw-sharedupload-desc-edit\">\n$1\n</div>", array(
+									'sharedupload-desc-edit', $file->getRepo()->getDisplayName(), $descUrl
+						) );
+					}
+				}
+			}
 		}
 
 		# Show a warning message when someone creates/edits a user (talk) page but the user does not exist

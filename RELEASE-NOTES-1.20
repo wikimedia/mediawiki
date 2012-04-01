@@ -25,6 +25,7 @@ production.
 * Introduce a cryptographic random number generator source api for use when
   generating various tokens.
 * (bug 30963) Option on Special:Prefixindex and Special:Allpages to not show redirects.
+* (bug 18062) new message when edit or create the local page of a shared file
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.

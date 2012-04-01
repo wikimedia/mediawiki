@@ -1494,6 +1494,8 @@ $wgMessageStructure = array(
 		'sharedupload',
 		'sharedupload-desc-there',
 		'sharedupload-desc-here',
+		'sharedupload-desc-edit',
+		'sharedupload-desc-create',
 		'shareddescriptionfollows',
 		'filepage-nofile',
 		'filepage-nofile-link',
