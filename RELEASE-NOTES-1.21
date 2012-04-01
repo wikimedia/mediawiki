@@ -24,6 +24,8 @@ production.
 * Added new backend to represent and store information about sites and site
   specific configuration.
 * jQuery UI upgraded from 1.8.23 to 1.8.24.
+* (bug 23772) "Go" searches now include a "Not the page you were looking for?" message that
+  allows a user to quickly switch to a fulltext search if they landed on the wrong page.
 
 === Bug fixes in 1.21 ===
 * (bug 40353) SpecialDoubleRedirect should support interwiki redirects.

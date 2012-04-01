@@ -875,6 +875,7 @@ $wgMessageStructure = array(
 		'difference-missing-revision',
 	),
 	'search' => array(
+		'search-notwhatlookingfor',
 		'search-summary',
 		'searchresults',
 		'searchresults-title',
