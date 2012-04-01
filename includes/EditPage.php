@@ -1801,6 +1801,11 @@ class EditPage {
 			);
 		}
 
+		# When the summary is hidden, also hide them on preview/show changes
+		if( $this->nosummary ) {
+			$wgOut->addHTML( Html::hidden( 'nosummary', true ) );
+		}
+
 		# If a blank edit summary was previously provided, and the appropriate
 		# user preference is active, pass a hidden tag as wpIgnoreBlankSummary. This will stop the
 		# user being bounced back more than once in the event that a summary
