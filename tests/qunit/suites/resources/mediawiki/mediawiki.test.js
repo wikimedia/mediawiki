@@ -77,7 +77,7 @@ QUnit.test( 'mw.config', 1, function ( assert ) {
 	assert.ok( mw.config instanceof mw.Map, 'mw.config instance of mw.Map' );
 });
 
-QUnit.test( 'mw.message & mw.messages', 20, function ( assert ) {
+QUnit.test( 'mw.message & mw.messages', 24, function ( assert ) {
 	var goodbye, hello, pluralMessage;
 
 	assert.ok( mw.messages, 'messages defined' );
@@ -112,13 +112,17 @@ QUnit.test( 'mw.message & mw.messages', 20, function ( assert ) {
 	assert.strictEqual( goodbye.exists(), false, 'Message.exists returns false for nonexistent messages' );
 
 	assert.equal( goodbye.plain(), '<goodbye>', 'Message.toString returns plain <key> if format is "plain" and key does not exist' );
+	assert.equal( goodbye.text(), '&lt;goodbye&gt;', 'Message.toString returns properly escaped &lt;key&gt; if format is "text" and key does not exist' );
+	assert.equal( goodbye.parse(), '&lt;goodbye&gt;', 'Message.toString returns properly escaped &lt;key&gt; if format is "parse" and key does not exist' );
 	// bug 30684
 	assert.equal( goodbye.escaped(), '&lt;goodbye&gt;', 'Message.toString returns properly escaped &lt;key&gt; if format is "escaped" and key does not exist' );
 
 	assert.ok( mw.messages.set( 'pluraltestmsg', 'There {{PLURAL:$1|is|are}} $1 {{PLURAL:$1|result|results}}' ), 'mw.messages.set: Register' );
 	pluralMessage = mw.message( 'pluraltestmsg' , 6 );
-	assert.equal( pluralMessage.plain(), 'There are 6 results', 'plural get resolved when format is plain' );
+	assert.equal( pluralMessage.plain(), 'There {{PLURAL:6|is|are}} 6 {{PLURAL:6|result|results}}', 'plural does not get resolved when format is plain' );
+	assert.equal( pluralMessage.text(), 'There are 6 results', 'plural get resolved when format is text' );
 	assert.equal( pluralMessage.parse(), 'There are 6 results', 'plural get resolved when format is parse' );
+	assert.equal( pluralMessage.escaped(), 'There are 6 results', 'plural get resolved when format is escaped' );
 
 });
 

@@ -136,20 +136,6 @@ var mw = ( function ( $, undefined ) {
 
 	Message.prototype = {
 		/**
-		 * Simple message parser, does $N replacement and nothing else.
-		 * This may be overridden to provide a more complex message parser.
-		 *
-		 * This function will not be called for nonexistent messages.
-		 */
-		parser: function () {
-			var parameters = this.parameters;
-			return this.map.get( this.key ).replace( /\$(\d+)/g, function ( str, match ) {
-				var index = parseInt( match, 10 ) - 1;
-				return parameters[index] !== undefined ? parameters[index] : '$' + match;
-			} );
-		},
-
-		/**
 		 * Appends (does not replace) parameters for replacement to the .parameters property.
 		 *
 		 * @param parameters Array
@@ -173,28 +159,23 @@ var mw = ( function ( $, undefined ) {
 
 			if ( !this.exists() ) {
 				// Use <key> as text if key does not exist
-				if ( this.format !== 'plain' ) {
-					// format 'escape' and 'parse' need to have the brackets and key html escaped
-					return mw.html.escape( '<' + this.key + '>' );
+				var key = mw.html.escape( this.key );
+				if ( this.format === 'plain' ) {
+					return '<' + key + '>';
 				}
-				return '<' + this.key + '>';
-			}
-
-			if ( this.format === 'plain' ) {
-				// @todo FIXME: Although not applicable to core Message,
-				// Plugins like jQueryMsg should be able to distinguish
-				// between 'plain' (only variable replacement and plural/gender)
-				// and actually parsing wikitext to HTML.
-				text = this.parser();
-			}
-
-			if ( this.format === 'escaped' ) {
-				text = this.parser();
-				text = mw.html.escape( text );
+				// format 'escape' and 'parse' need to have the brackets and key html escaped
+				return '&lt;' + key + '&gt;';
 			}
 
 			if ( this.format === 'parse' ) {
 				text = this.parser();
+			} else if ( this.format === 'escaped' ) {
+				text = this.transform();
+				text = mw.html.escape( text );
+			} else if ( this.format === 'text' ) {
+				text = this.transform();
+			} else {
+				text = this.replacement();
 			}
 
 			return text;
@@ -207,6 +188,16 @@ var mw = ( function ( $, undefined ) {
 		 */
 		parse: function () {
 			this.format = 'parse';
+			return this.toString();
+		},
+
+		/**
+		 * Changes format to text and converts message to string
+		 *
+		 * @return {string} String form of text message
+		 */
+		text: function() {
+			this.format = 'text';
 			return this.toString();
 		},
 
@@ -240,6 +231,39 @@ var mw = ( function ( $, undefined ) {
 		}
 	};
 
+	/**
+	 * Simple message parser, does $N replacement and nothing else.
+	 * This may be overridden to provide a more complex message parser.
+	 * 
+	 * This function will not be called for nonexistent messages.
+	 */
+	Message.prototype.parser = function() {
+		return mw.html.escape( this.transform() );
+	};
+
+	/**
+	 * Simple message tranformer, does $N replacement and nothing else.
+	 * This may be overridden to provide a more complex message parser.
+	 * 
+	 * This function will not be called for nonexistent messages.
+	 */
+	Message.prototype.transform = function() {
+		return this.replacement();
+	};
+
+	/**
+	 * Message replacer, handles $N replacement.
+	 * 
+	 * This function will not be called for nonexistent messages.
+	 */
+	Message.prototype.replacement = function() {
+		var parameters = this.parameters;
+		return this.map.get( this.key ).replace( /\$(\d+)/g, function ( str, match ) {
+			var index = parseInt( match, 10 ) - 1;
+			return parameters[index] !== undefined ? parameters[index] : '$' + match;
+		} );
+	};
+
 	return {
 		/* Public Members */
 
@@ -248,6 +272,26 @@ var mw = ( function ( $, undefined ) {
 		 * emulates console.log in console-less environments.
 		 */
 		log: function () { },
+
+		/**
+		 * Simple function to create an object
+		 * Works like ES5's Object.create() allowing you to specify the __proto__
+		 * for the object and add an initial series of properties on it
+		 * Note that unlike Object.create is a simple object of properties not an
+		 * object containing values in the format { value: ... }, { get: }, etc...
+		 *
+		 * @param prototype Object The object's __proto__
+		 * @param properties Object Properties to set on the object
+		 */
+		createObject: function( prototype, properties ) {
+			function F() {}
+			F.prototype = prototype;
+			var obj = new F;
+			for ( var key in properties ) {
+				obj[key] = properties[key];
+			}
+			return obj;
+		},
 
 		/**
 		 * @var constructor Make the Map constructor publicly available.
@@ -315,7 +359,7 @@ var mw = ( function ( $, undefined ) {
 		 * @return String.
 		 */
 		msg: function ( /* key, parameter_1, parameter_2, .. */ ) {
-			return mw.message.apply( mw.message, arguments ).toString();
+			return mw.message.apply( mw.message, arguments ).text();
 		},
 
 		/**
