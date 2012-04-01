@@ -2295,6 +2295,17 @@ title=[[User:Ævar Arnfjörð Bjarmason]]
 !! end
 
 !! test
+Magic Word: {{NAMESPACENUMBER}}
+!! options
+title=[[User:Ævar Arnfjörð Bjarmason]]
+!! input
+{{NAMESPACENUMBER}}
+!! result
+<p>2
+</p>
+!! end
+
+!! test
 Magic Word: {{NUMBEROFFILES}}
 !! input
 {{NUMBEROFFILES}}

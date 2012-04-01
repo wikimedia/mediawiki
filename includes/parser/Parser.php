@@ -2760,6 +2760,9 @@ class Parser {
 			case 'namespacee':
 				$value = wfUrlencode( $wgContLang->getNsText( $this->mTitle->getNamespace() ) );
 				break;
+			case 'namespacenumber':
+				$value = $this->mTitle->getNamespace();
+				break;
 			case 'talkspace':
 				$value = $this->mTitle->canTalk() ? str_replace( '_',' ',$this->mTitle->getTalkNsText() ) : '';
 				break;
