@@ -176,11 +176,32 @@ class SquidPurgeClient {
 	 * @param $url string
 	 */
 	public function queuePurge( $url ) {
+		global $wgPurgeHttp11;
 		$url = SquidUpdate::expand( str_replace( "\n", '', $url ) );
-		$this->requests[] = "PURGE $url HTTP/1.0\r\n" .
-			"Connection: Keep-Alive\r\n" .
-			"Proxy-Connection: Keep-Alive\r\n" .
-			"User-Agent: " . Http::userAgent() . ' ' . __CLASS__ . "\r\n\r\n";
+		$request = array();
+		if ( $wgPurgeHttp11 ) {
+			$url = wfParseUrl( $url );
+			$host = $url['host'];
+			if ( isset( $url['port'] ) && strlen( $url['port'] ) > 0 ) {
+				$host .= ":" . $url['port'];
+			}
+			$path = $url['path'];
+			if ( isset( $url['query'] ) && is_string( $url['query'] ) ) {
+				$path = wfAppendQuery( $path, $url['query'] );
+			}
+			$request[] = "PURGE $path HTTP/1.1";
+			$request[] = "Host: $host";
+		} else {
+			$request[] = "PURGE $url HTTP/1.0";
+		}
+		$request[] = "Connection: Keep-Alive";
+		$request[] = "Proxy-Connection: Keep-Alive";
+		$request[] = "User-Agent: " . Http::userAgent() . ' ' . __CLASS__;
+		// Two ''s to create \r\n\r\n
+		$request[] = '';
+		$request[] = '';
+
+		$this->requests[] = implode( "\r\n", $request );
 		if ( $this->currentRequestIndex === null ) {
 			$this->nextRequest();
 		}
