@@ -27,13 +27,14 @@
 		return function( args ) {
 			var key = args[0];
 			var argsArray = $.isArray( args[1] ) ? args[1] : $.makeArray( args ).slice( 1 ); 
-			var escapedArgsArray = $.map( argsArray, function( arg ) { 
-				return typeof arg === 'string' ? mw.html.escape( arg ) : arg;
-			} );
 			try {
-				return parser.parse( key, escapedArgsArray );
+				return parser.parse( key, argsArray );
 			} catch ( e ) {
-				return $( '<span></span>' ).append( key + ': ' + e.message );
+				if ( options.emitter === 'text' ) {
+					return key + ': ' + e.message;
+				} else {
+					return $( '<span></span>' ).append( key + ': ' + e.message );
+				}
 			}
 		};
 	}
@@ -61,10 +62,15 @@
 		 *
 		 * @param {String} message key
 		 * @param {Array} optional replacements (can also specify variadically)
-		 * @return {String} rendered HTML as string
+		 * @return {String} rendered output as string
 		 */
 		return function( /* key, replacements */ ) {
-			return failableParserFn( arguments ).html();
+			var res = failableParserFn( arguments );
+			if ( typeof res === 'string' ) {
+				return res;
+			} else {
+				return res.html();
+			} 
 		};
 	};
 
@@ -115,7 +121,15 @@
 	 */
 	mw.jqueryMsg.parser = function( options ) {
 		this.settings = $.extend( {}, parserDefaults, options );
-		this.emitter = new mw.jqueryMsg.htmlEmitter( this.settings.language, this.settings.magic );
+		if ( options && options.emitter === 'text' ) {
+			this.emitter = new mw.jqueryMsg.textEmitter( this.settings.language, this.settings.magic );
+		} else if ( options && $.isFunction( options.emitter ) ) {
+			this.emitter = new options.emitter( this.settings.language, this.settings.magic );
+		} else if ( options && typeof options.emitter === 'object' && options.emitter !== null ) {
+			this.emitter = options.emitter;
+		} else {
+			this.emitter = new mw.jqueryMsg.htmlEmitter( this.settings.language, this.settings.magic );
+		}
 	};
 
 	mw.jqueryMsg.parser.prototype = {
@@ -506,25 +520,37 @@
 			
 	};
 
-	/**
-	 * htmlEmitter - object which primarily exists to emit HTML from parser ASTs
-	 */
-	mw.jqueryMsg.htmlEmitter = function( language, magic ) {
+	mw.jqueryMsg.Emitter = function( language, magic ) {
 		this.language = language;
 		var _this = this;
+
+		if ( typeof magic !== 'object' ) {
+			throw new TypeError( "magic is not an object." );
+		}
 
 		$.each( magic, function( key, val ) { 
 			_this[ key.toLowerCase() ] = function() { return val; };
 		} );
 
+		// Don't allow magic to overwrite the emitter defined in the prototype
+		delete this.emit;
+	};
+
+	// For everything in input that follows double-open-curly braces, there should be an equivalent parser
+	// function. For instance {{PLURAL ... }} will be processed by 'plural'.
+	// If you have 'magic words' then configure the parser to have them upon creation.
+	//
+	// An emitter method takes the parent node, the array of subnodes and the array of replacements (the values that $1, $2... should translate to).
+	// Note: all such functions must be pure, with the exception of referring to other pure functions via this.language (convertPlural and so on)
+	mw.jqueryMsg.Emitter.prototype = {
+
 		/**
-		 * (We put this method definition here, and not in prototype, to make sure it's not overwritten by any magic.)
-		 * Walk entire node structure, applying replacements and template functions when appropriate
+ 		 * Walk entire node structure, applying replacements and template functions when appropriate
 		 * @param {Mixed} abstract syntax tree (top node or subnode)
 		 * @param {Array} replacements for $1, $2, ... $n
-		 * @return {Mixed} single-string node or array of nodes suitable for jQuery appending
+		 * @return {Mixed} single-string node or array of nodes suitable for jQuery appending (if emitter is html)
 		 */
-		this.emit = function( node, replacements ) {
+		emit: function( node, replacements ) {
 			var ret = null;
 			var _this = this;
 			switch( typeof node ) {
@@ -553,43 +579,6 @@
 					throw new Error( 'unexpected type in AST: ' + typeof node );
 			}
 			return ret;
-		};
-
-	};
-
-	function emitterAppend( $el, nodes ) {
-		if ( nodes instanceof jQuery ) {
-			nodes = [ nodes ]; 
-		}
-		$.each( nodes, function( i, node ) { 
-			if ( node instanceof jQuery && node.hasClass( 'mediaWiki_htmlEmitter' ) ) {
-				emitterAppend( $el, node.contents() );
-			} else {
-				// strings, integers, anything else
-				$el.append( node );
-			}
-		} );
-	}
-
-	// For everything in input that follows double-open-curly braces, there should be an equivalent parser
-	// function. For instance {{PLURAL ... }} will be processed by 'plural'. 
-	// If you have 'magic words' then configure the parser to have them upon creation.
-	//
-	// An emitter method takes the parent node, the array of subnodes and the array of replacements (the values that $1, $2... should translate to).
-	// Note: all such functions must be pure, with the exception of referring to other pure functions via this.language (convertPlural and so on)
-	mw.jqueryMsg.htmlEmitter.prototype = {
-
-		/**
-		 * Parsing has been applied depth-first we can assume that all nodes here are single nodes
-		 * Must return a single node to parents -- a jQuery with synthetic span
-		 * However, unwrap any other synthetic spans in our children and pass them upwards
-		 * @param {Array} nodes - mixed, some single nodes, some arrays of nodes
-		 * @return {jQuery}
-		 */
-		concat: function( nodes ) {
-			var span = $( '<span>' ).addClass( 'mediaWiki_htmlEmitter' );
-			emitterAppend( span, nodes );
-			return span;
 		},
 
 		/**
@@ -604,41 +593,6 @@
 		replace: function( nodes, replacements ) {
 			var index = parseInt( nodes[0], 10 );
 			return index < replacements.length ? replacements[index] : '$' + ( index + 1 ); 
-		},
-
-		/** 
-		 * Transform wiki-link
-		 * TODO unimplemented 
-		 */
-		wlink: function( nodes ) {
-			return "unimplemented";
-		},
-
-		/**
-		 * Transform parsed structure into external link
-		 * If the href is a jQuery object, treat it as "enclosing" the link text.
-		 *              ... function, treat it as the click handler
-		 *		... string, treat it as a URI
-		 * TODO: throw an error if nodes.length > 2 ? 
-		 * @param {Array} of two elements, {jQuery|Function|String} and {String}
-		 * @return {jQuery}
-		 */
-		link: function( nodes ) {
-			var arg = nodes[0];
-			var contents = nodes[1];
-			var $el; 
-			if ( arg instanceof jQuery ) {
-				$el = arg;
-			} else {
-				$el = $( '<a>' );
-				if ( typeof arg === 'function' ) {
-					$el.click( arg ).attr( 'href', '#' );
-				} else {
-					$el.attr( 'href', arg.toString() );
-				}
-			}
-			emitterAppend( $el, contents );
-			return $el;
 		},
 
 		/**
@@ -673,6 +627,133 @@
 
 	};
 
+	/**
+	 * textEmitter - object which primarily exists to emit text from parser ASTs
+	 */
+	mw.jqueryMsg.textEmitter = function( language, magic ) {
+		mw.jqueryMsg.Emitter.call( this, language, magic );
+	};
+	mw.jqueryMsg.textEmitter.prototype = mw.createObject( mw.jqueryMsg.Emitter.prototype, {
+
+		/**
+		 * Parsing has been applied depth-first we can assume that all nodes here are single nodes
+		 * Must return a single node to parents.
+		 * @param {Array} nodes - mixed, some single nodes, some arrays of nodes
+		 * @return string
+		 */
+		concat: function( nodes ) {
+			return nodes.join( '' );
+		},
+
+		/**
+		 * Transform wiki-link
+		 * TODO unimplemented 
+		 */
+		wlink: function( nodes ) {
+			return "unimplemented";
+		},
+
+		/**
+		 * Transform parsed structure into external link text
+		 * Plain text doesn't have links so we just return this to extlink syntax
+		 * TODO: throw an error if nodes.length > 2 ? 
+		 * @param {Array} of two elements, {String} and {String|Array}
+		 * @return {String}
+		 */
+		link: function( nodes ) {
+			var arg = nodes[0];
+			var contents = nodes[1];
+			 
+			var text = [];
+			text.push( '[', arg, ' ' );
+			if ( $.isArray( contents) ) {
+				text.push.apply( text, contents );
+			} else {
+				text.push( contents );
+			}
+			text.push( ']' );
+
+			return text.join( '' );
+		}
+
+	} );
+
+	/**
+	 * htmlEmitter - object which primarily exists to emit HTML from parser ASTs
+	 */
+	function htmlEmitterAppend( $el, nodes ) {
+ 		nodes = $.makeArray( nodes );
+		$.each( nodes, function( i, node ) { 
+			if ( node instanceof jQuery && node.hasClass( 'mediaWiki_htmlEmitter' ) ) {
+				htmlEmitterAppend( $el, node.contents() );
+			} else if ( typeof node === 'string' ) {
+				// strings
+				$el.append( document.createTextNode( node ) );
+			} else {
+				// integers, anything else
+				$el.append( node );
+			}
+		} );
+	}
+
+	mw.jqueryMsg.htmlEmitter = function( language, magic ) {
+		mw.jqueryMsg.Emitter.call( this, language, magic );
+	};
+	mw.jqueryMsg.htmlEmitter.prototype = mw.createObject( mw.jqueryMsg.Emitter.prototype, {
+
+		/**
+		 * Parsing has been applied depth-first we can assume that all nodes here are single nodes
+		 * Must return a single node to parents -- a jQuery with synthetic span
+		 * However, unwrap any other synthetic spans in our children and pass them upwards
+		 * @param {Array} nodes - mixed, some single nodes, some arrays of nodes
+		 * @return {jQuery}
+		 */
+		concat: function( nodes ) {
+			var span = $( '<span>' ).addClass( 'mediaWiki_htmlEmitter' );
+			htmlEmitterAppend( span, nodes );
+			return span;
+		},
+
+		/**
+		 * Transform wiki-link
+		 * TODO unimplemented 
+		 */
+		wlink: function( nodes ) {
+			return "unimplemented";
+		},
+
+		/**
+		 * Transform parsed structure into external link
+		 * If the href is a jQuery object, treat it as "enclosing" the link text.
+		 *              ... function, treat it as the click handler
+		 *		... string, treat it as a URI
+		 * TODO: throw an error if nodes.length > 2 ?
+		 * @param {Array} of two elements, {jQuery|Function|String} and {String}
+		 * @return {jQuery}
+		 */
+		link: function( nodes ) {
+			var arg = nodes[0];
+			var contents = nodes[1];
+			var $el;
+			if ( arg instanceof jQuery && arg.hasClass( 'mediaWiki_htmlEmitter' ) ) {
+				arg = arg.text();
+			}
+			if ( arg instanceof jQuery ) {
+				$el = arg;
+			} else {
+				$el = $( '<a>' );
+				if ( typeof arg === 'function' ) {
+					$el.click( arg ).attr( 'href', '#' );
+				} else {
+					$el.attr( 'href', arg.toString() );
+				}
+			}
+			htmlEmitterAppend( $el, contents );
+			return $el;
+		}
+
+	} );
+
 	// TODO figure out a way to make magic work with common globals like wgSiteName, without requiring init from library users...
 	// var options = { magic: { 'SITENAME' : mw.config.get( 'wgSiteName' ) } };
 
@@ -697,6 +778,22 @@
 		}
 		
 		var messageFunction = mw.jqueryMsg.getMessageFunction( { 'messages': this.map } );
+		return messageFunction( this.key, this.parameters );
+	};
+
+	// Replace the default message transformer with jqueryMsg
+	var oldTransform = mw.Message.prototype.transform;
+	mw.Message.prototype.transform = function() {
+		// TODO: should we cache the message function so we don't create a new one every time? Benchmark this maybe?
+		// Caching is somewhat problematic, because we do need different message functions for different maps, so
+		// we'd have to cache the transformer as a member of this.map, which sounds a bit ugly.
+		
+		// Do not use mw.jqueryMsg unless required
+		if ( !/\{\{|\[/.test( this.map.get( this.key ) ) ) {
+			// Fall back to mw.msg's simple transformer
+			return oldTransform.apply( this );
+		}
+		var messageFunction = mw.jqueryMsg.getMessageFunction( { 'messages': this.map, 'emitter': 'text' } );
 		return messageFunction( this.key, this.parameters );
 	};
 
