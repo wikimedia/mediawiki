@@ -367,21 +367,30 @@ abstract class ApiBase extends ContextSource {
 					$desc = implode( $paramPrefix, $desc );
 				}
 
+				//handle shorthand
 				if ( !is_array( $paramSettings ) ) {
 					$paramSettings = array(
 						self::PARAM_DFLT => $paramSettings,
 					);
 				}
 
-				$deprecated = isset( $paramSettings[self::PARAM_DEPRECATED] ) ?
-						$paramSettings[self::PARAM_DEPRECATED] : false;
-				if ( $deprecated ) {
+				//handle missing type
+				if ( !isset( $paramSettings[ApiBase::PARAM_TYPE] ) ) {
+					$dflt = $paramSettings[ApiBase::PARAM_DFLT];
+					if ( is_bool( $dflt ) ) {
+						$paramSettings[ApiBase::PARAM_TYPE] = 'bool';
+					} elseif ( is_string( $dflt ) || is_null( $dflt ) ) {
+						$paramSettings[ApiBase::PARAM_TYPE] = 'string';
+					} elseif ( is_int( $dflt ) ) {
+						$paramSettings[ApiBase::PARAM_TYPE] = 'integer';
+					}
+				}
+
+				if ( isset( $paramSettings[self::PARAM_DEPRECATED] ) && $paramSettings[self::PARAM_DEPRECATED] ) {
 					$desc = "DEPRECATED! $desc";
 				}
 
-				$required = isset( $paramSettings[self::PARAM_REQUIRED] ) ?
-						$paramSettings[self::PARAM_REQUIRED] : false;
-				if ( $required ) {
+				if ( isset( $paramSettings[self::PARAM_REQUIRED] ) && $paramSettings[self::PARAM_REQUIRED] ) {
 					$desc .= $paramPrefix . "This parameter is required";
 				}
 
@@ -437,22 +446,20 @@ abstract class ApiBase extends ContextSource {
 								}
 								break;
 						}
+					}
 
-						if ( isset( $paramSettings[self::PARAM_ISMULTI] ) ) {
-							$isArray = is_array( $paramSettings[self::PARAM_TYPE] );
+					if ( isset( $paramSettings[self::PARAM_ISMULTI] ) && $paramSettings[self::PARAM_ISMULTI] ) {
+						$isArray = is_array( $type );
 
-							if ( !$isArray
-									|| $isArray && count( $paramSettings[self::PARAM_TYPE] ) > self::LIMIT_SML1 ) {
-								$desc .= $paramPrefix . "Maximum number of values " .
-										self::LIMIT_SML1 . " (" . self::LIMIT_SML2 . " for bots)";
-							}
+						if ( !$isArray
+								|| $isArray && count( $type ) > self::LIMIT_SML1 ) {
+							$desc .= $paramPrefix . "Maximum number of values " .
+									self::LIMIT_SML1 . " (" . self::LIMIT_SML2 . " for bots)";
 						}
 					}
 				}
 
-				$default = is_array( $paramSettings )
-						? ( isset( $paramSettings[self::PARAM_DFLT] ) ? $paramSettings[self::PARAM_DFLT] : null )
-						: $paramSettings;
+				$default = isset( $paramSettings[self::PARAM_DFLT] ) ? $paramSettings[self::PARAM_DFLT] : null;
 				if ( !is_null( $default ) && $default !== false ) {
 					$desc .= $paramPrefix . "Default: $default";
 				}
