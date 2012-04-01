@@ -1716,6 +1716,7 @@ This is usually caused by following an outdated diff link to a page that has bee
 Details can be found in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].',
 
 # Search results
+'search-notwhatlookingfor'         => 'Not the page you were looking for? Try [$2 searching for pages containing "$1"].',
 'search-summary'                   => '', # do not translate or duplicate this message to other languages
 'searchresults'                    => 'Search results',
 'searchresults-title'              => 'Search results for "$1"',
