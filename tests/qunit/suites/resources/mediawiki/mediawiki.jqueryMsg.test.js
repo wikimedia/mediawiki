@@ -48,6 +48,38 @@ QUnit.test( 'Plural', 3, function ( assert ) {
 } );
 
 
+QUnit.test( 'Links', 5, function ( assert ) {
+	var parser = mw.jqueryMsg.getMessageFunction();
+
+	mw.messages.set( 'wikilink-msg', 'Click [[http://en.wikipedia.org here]]' );
+	assert.equal( parser( 'wikilink-msg' ), 'Click unimplemented',
+		'Wiki link is unimplemented' );
+
+	mw.messages.set( 'link-msg', 'Click [http://en.wikipedia.org here]' );
+	assert.equal( parser( 'link-msg' ),
+		'Click <a href=\"http://en.wikipedia.org\">here</a>', 'Exernal link parsed' );
+
+	mw.messages.set( 'link-msg-with-args', 'Click [$1]' );
+	assert.equal( parser( 'link-msg-with-args', 'http://en.wikipedia.org' ),
+		'Click <a href=\"http://en.wikipedia.org\">[1]</a>', 'Exernal link parsed with single argument' );
+
+	mw.messages.set( 'link-msg-with-two-args', 'Click [$1 $2]' );
+	assert.equal( parser( 'link-msg-with-two-args', 'http://en.wikipedia.org', 'here' ),
+		'Click <a href=\"http://en.wikipedia.org\">here</a>',
+		'Exernal link parsed with two arguments' );
+
+	assert.equal( parser( 'link-msg-with-two-args',
+		function ( e ) {
+			alert( 'Did you click me?' );
+		},
+		'here'
+		),
+		'Click <a href="#">here</a>',
+		'Exernal link parsed with two arguments, second as a click handler' );
+
+} );
+
+
 QUnit.test( 'Gender', 11, function ( assert ) {
 	// TODO: These tests should be for mw.msg once mw.msg integrated with mw.jqueryMsg
 	// TODO: English may not be the best language for these tests. Use a language like Arabic or Russian
