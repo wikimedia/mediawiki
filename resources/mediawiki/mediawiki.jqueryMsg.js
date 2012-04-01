@@ -211,6 +211,20 @@
 					return result;
 				};
 			}
+
+			function multiple( p ) {
+				return function() {
+					var result = nOrMore( 1, p )();
+					if ( result === null ) {
+						return null;
+					}
+					if ( result.length === 1 ) {
+						return result[0];
+					}
+					return [ "CONCAT" ].concat( result );
+				};
+			};
+
 			// There is a general pattern -- parse a thing, if that worked, apply transform, otherwise return null.
 			// But using this as a combinator seems to cause problems when combined with nOrMore().
 			// May be some scoping issue
@@ -258,9 +272,9 @@
 			// but some debuggers can't tell you exactly where they come from. Also the mutually
 			// recursive functions seem not to work in all browsers then. (Tested IE6-7, Opera, Safari, FF)
 			// This may be because, to save code, memoization was removed
-			var regularLiteral = makeRegexParser( /^[^{}\[\]$\\]/ );
-			var regularLiteralWithoutBar = makeRegexParser(/^[^{}\[\]$\\|]/);
-			var regularLiteralWithoutSpace = makeRegexParser(/^[^{}\[\]$\s]/);
+			var regularLiteral = makeRegexParser( /^[^{}\[\]$\\]+/ );
+			var regularLiteralWithoutBar = makeRegexParser(/^[^{}\[\]$\\|]+/);
+			var regularLiteralWithoutSpace = makeRegexParser(/^[^{}\[\]$\s]+/);
 			var backslash = makeStringParser( "\\" );
 			var anyCharacter = makeRegexParser( /^./ );
 			function escapedLiteral() {
@@ -424,30 +438,30 @@
 				] );
 				return result === null ? null : result[1];
 			}
-			var nonWhitespaceExpression = choice( [
+			var nonWhitespaceExpression = multiple( choice( [
 				template,
 				link,
 				extLinkParam,
 				extlink,
 				replacement,
 				literalWithoutSpace
-			] );
-			var paramExpression = choice( [
+			] ) );
+			var paramExpression = multiple( choice( [
 				template,
 				link,
 				extLinkParam,
 				extlink,
 				replacement,
 				literalWithoutBar
-			] );
-			var expression = choice( [
+			] ) );
+			var expression = multiple( choice( [
 				template,
 				link,
 				extLinkParam,
 				extlink,
 				replacement,
 				literal
-			] );
+			] ) );
 			function start() {
 				var result = nOrMore( 0, expression )();
 				if ( result === null ) {
@@ -521,6 +535,21 @@
 			return ret;
 		};
 	};
+
+	function emitterAppend( $el, nodes ) {
+		if ( nodes instanceof jQuery ) {
+			nodes = [ nodes ];
+		}
+		$.each( nodes, function( i, node ) {
+			if ( node instanceof jQuery && node.hasClass( 'mediaWiki_htmlEmitter' ) ) {
+				emitterAppend( $el, node.contents() );
+			} else {
+				// strings, integers, anything else
+				$el.append( node );
+			}
+		} );
+	}
+
 	// For everything in input that follows double-open-curly braces, there should be an equivalent parser
 	// function. For instance {{PLURAL ... }} will be processed by 'plural'.
 	// If you have 'magic words' then configure the parser to have them upon creation.
@@ -537,16 +566,7 @@
 		 */
 		concat: function ( nodes ) {
 			var $span = $( '<span>' ).addClass( 'mediaWiki_htmlEmitter' );
-			$.each( nodes, function ( i, node ) {
-				if ( node instanceof jQuery && node.hasClass( 'mediaWiki_htmlEmitter' ) ) {
-					$.each( node.contents(), function ( j, childNode ) {
-						$span.append( childNode );
-					} );
-				} else {
-					// strings, integers, anything else
-					$span.append( node );
-				}
-			} );
+			emitterAppend( $span, nodes );
 			return $span;
 		},
 
@@ -607,7 +627,7 @@
 					$el.attr( 'href', arg.toString() );
 				}
 			}
-			$el.append( contents );
+			emitterAppend( $el, contents );
 			return $el;
 		},
 
@@ -693,7 +713,7 @@
 		// Caching is somewhat problematic, because we do need different message functions for different maps, so
 		// we'd have to cache the parser as a member of this.map, which sounds a bit ugly.
 		// Do not use mw.jqueryMsg unless required
-		if ( this.map.get( this.key ).indexOf( '{{' ) < 0 ) {
+		if ( !/\{\{|\[/.test( this.map.get( this.key ) ) ) {
 			// Fall back to mw.msg's simple parser
 			return oldParser.apply( this );
 		}
