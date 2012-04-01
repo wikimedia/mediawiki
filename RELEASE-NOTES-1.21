@@ -14,6 +14,9 @@ production.
 * (bug 29374) $wgVectorUseSimpleSearch is now enabled by default.
 * Deprecated $wgAllowRealName is removed. Use $wgHiddenPrefs[] = 'realname'
   instead.
+* Added a $wgPurgeHttp11 setting to allow SquidPurgeClient to send PURGE requests
+  using HTTP/1.1 and a Host header instead of sending HTTP/1.0 requests with the
+  whole url inside the PURGE <...> HTTP/1.0 line.
 
 === New features in 1.21 ===
 * (bug 34876) jquery.makeCollapsible has been improved in performance.
