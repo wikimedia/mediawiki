@@ -27,6 +27,9 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   different timezone than the wiki timezone set by $wgLocalTimezone.
 * New variables $wgDBssl and $wgDBcompress to enable SSL and compression for database
   connections, if either are available for the selected DB type.
+* Added a $wgPurgeHttp11 setting to allow SquidPurgeClient to send PURGE requests
+  using HTTP/1.1 and a Host header instead of sending HTTP/1.0 requests with the
+  whole url inside the PURGE <...> HTTP/1.0 line.
 
 === New features in 1.20 ===
 * Added TitleIsAlwaysKnown hook which gets called when determining if a page exists.
