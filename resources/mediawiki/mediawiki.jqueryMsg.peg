@@ -73,8 +73,8 @@ escapedLiteral
   = "\\" escaped:. { return escaped; }
 
 regularLiteral
-  = [^{}\[\]$\\]
+  = [^{}\[\]$\\]+
 
 regularLiteralWithoutBar
-  = [^{}\[\]$\\|]
+  = [^{}\[\]$\\|]+
 
