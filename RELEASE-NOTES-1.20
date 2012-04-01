@@ -11,6 +11,9 @@ MediaWiki 1.20 is an alpha-quality branch and is not recommended for use in
 production.
 
 === Configuration changes in 1.20 ===
+* Added a $wgPurgeHttp11 setting to allow SquidPurgeClient to send PURGE requests
+  using HTTP/1.1 and a Host header instead of sending HTTP/1.0 requests with the
+  whole url inside the PURGE <...> HTTP/1.0 line.
 
 === New features in 1.20 ===
 * Added TitleIsAlwaysKnown hook which gets called when determining if a page exists.
