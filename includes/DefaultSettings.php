@@ -1862,6 +1862,14 @@ $wgSquidServersNoPurge = array();
 $wgMaxSquidPurgeTitles = 400;
 
 /**
+ * Whether to use HTTP/1.1 for squid purge requests
+ * false - Use HTTP/1.0 with a full url in the PURGE request.
+ * true - Use HTTP/1.1 with a Host header and PURGE path.
+ * @since 1.20
+ */
+$wgPurgeHttp11 = false;
+
+/**
  * HTCP multicast address. Set this to a multicast IP address to enable HTCP.
  *
  * Note that MediaWiki uses the old non-RFC compliant HTCP format, which was
