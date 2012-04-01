@@ -95,6 +95,7 @@ class MagicWord {
 		'fullpagenamee',
 		'namespace',
 		'namespacee',
+		'namespacenumber',
 		'currentweek',
 		'currentdow',
 		'localweek',

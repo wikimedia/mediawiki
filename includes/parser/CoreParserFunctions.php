@@ -62,6 +62,7 @@ class CoreParserFunctions {
 		$parser->setFunctionHook( 'protectionlevel',  array( __CLASS__, 'protectionlevel'  ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'namespace',        array( __CLASS__, 'mwnamespace'      ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'namespacee',       array( __CLASS__, 'namespacee'       ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'namespacenumber',  array( __CLASS__, 'namespacenumber'  ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'talkspace',        array( __CLASS__, 'talkspace'        ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'talkspacee',       array( __CLASS__, 'talkspacee'       ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'subjectspace',     array( __CLASS__, 'subjectspace'     ), SFH_NO_HASH );
@@ -436,6 +437,12 @@ class CoreParserFunctions {
 		if ( is_null( $t ) )
 			return '';
 		return wfUrlencode( $t->getNsText() );
+	}
+	static function namespacenumber( $parser, $title = null ) {
+		$t = Title::newFromText( $title );
+		if ( is_null( $t ) )
+			return '';
+		return $t->getNamespace();
 	}
 	static function talkspace( $parser, $title = null ) {
 		$t = Title::newFromText( $title );

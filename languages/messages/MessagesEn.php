@@ -240,6 +240,7 @@ $magicWords = array(
 	'pagenamee'              => array( 1,    'PAGENAMEE'              ),
 	'namespace'              => array( 1,    'NAMESPACE'              ),
 	'namespacee'             => array( 1,    'NAMESPACEE'             ),
+	'namespacenumber'        => array( 1,    'NAMESPACENUMBER'        ),
 	'talkspace'              => array( 1,    'TALKSPACE'              ),
 	'talkspacee'             => array( 1,    'TALKSPACEE'              ),
 	'subjectspace'           => array( 1,    'SUBJECTSPACE', 'ARTICLESPACE' ),
