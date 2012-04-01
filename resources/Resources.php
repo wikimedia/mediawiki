@@ -660,6 +660,10 @@ return array(
 		'scripts' => 'resources/mediawiki/mediawiki.Title.js',
 		'dependencies' => 'mediawiki.util',
 	),
+	'mediawiki.ui' => array(
+		'scripts' => 'resources/mediawiki/mediawiki.ui.js',
+		'dependencies' => 'jquery',
+	),
 	'mediawiki.Uri' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.Uri.js',
 	),
@@ -794,7 +798,21 @@ return array(
 			'jquery.makeCollapsible',
 			'jquery.placeholder',
 			'jquery.mw-jump',
+			'mediawiki.page.search',
 			'mediawiki.util',
+		),
+	),
+	'mediawiki.page.search' => array(
+		'scripts' => 'resources/mediawiki.page/mediawiki.page.search.js',
+		'dependencies' => array(
+			'mediawiki.jqueryMsg',
+			'mediawiki.ui',
+			'mediawiki.Uri',
+			'mediawiki.Title',
+			'mediawiki.notify',
+		),
+		'messages' => array(
+			'search-notwhatlookingfor',
 		),
 	),
 	'mediawiki.page.startup' => array(
