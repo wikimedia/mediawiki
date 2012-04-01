@@ -1376,6 +1376,8 @@ Example: [http://translatewiki.net/w/i.php?title=Project:News&diff=426850&oldid=
 * $2 is the number of items in $1 (one or two)',
 
 # Search results
+'search-notwhatlookingfor' => 'Used in a message after a "Go" search leading directly to a page to offer the user a way of instead making a full text search.',
+
 'searchresults' => 'This is the title of the page that contains the results of a search.
 
 {{Identical|Search results}}',
