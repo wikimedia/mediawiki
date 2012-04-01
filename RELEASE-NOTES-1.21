@@ -35,6 +35,8 @@ production.
   recentchanges table.
 * (bug 32951) Do not register internal externals with absolute protocol,
   when server has relative protocol.
+* JS mw.message's .plain() no longer resolves plural or parses WikiText.
+  This was incorrect behaviour that did not match the PHP Message class.
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat, see docs/contenthandler.txt
