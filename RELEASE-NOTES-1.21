@@ -40,6 +40,8 @@ production.
   compatibility. This also works with Squid in reverse-proxy mode. If you wish 
   to support Squid configured in forward-proxy mode, set 
   $wgSquidPurgeUseHostHeader to false.
+* JS mw.message's .plain() no longer resolves plural or parses WikiText.
+  This was incorrect behaviour that did not match the PHP Message class.
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat, see docs/contenthandler.txt
