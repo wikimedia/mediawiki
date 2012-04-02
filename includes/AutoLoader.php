@@ -228,6 +228,7 @@ $wgAutoloadLocalClasses = array(
 	'ThrottledError' => 'includes/Exception.php',
 	'UnlistedSpecialPage' => 'includes/SpecialPage.php',
 	'UppercaseCollation' => 'includes/Collation.php',
+	'Uri' => 'includes/Uri.php',
 	'User' => 'includes/User.php',
 	'UserArray' => 'includes/UserArray.php',
 	'UserArrayFromResult' => 'includes/UserArray.php',
