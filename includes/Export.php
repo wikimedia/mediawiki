@@ -784,7 +784,7 @@ class DumpOutput {
  * @ingroup Dump
  */
 class DumpFileOutput extends DumpOutput {
-	protected $handle, $filename;
+	protected $handle = false, $filename;
 
 	function __construct( $file ) {
 		$this->handle = fopen( $file, "wt" );
@@ -793,7 +793,10 @@ class DumpFileOutput extends DumpOutput {
 
 	function writeCloseStream( $string ) {
 		parent::writeCloseStream( $string );
-		fclose( $this->handle );
+		if ( $this->handle ) {
+			fclose( $this->handle );
+			$this->handle = false;
+		}
 	}
 
 	function write( $string ) {
@@ -824,7 +827,10 @@ class DumpFileOutput extends DumpOutput {
 	function closeAndRename( $newname, $open = false ) {
 		$newname = $this->checkRenameArgCount( $newname );
 		if ( $newname ) {
-			fclose( $this->handle );
+			if ( $this->handle ) {
+				fclose( $this->handle );
+				$this->handle = false;
+			}
 			$this->renameOrException( $newname );
 			if ( $open ) {
 				$this->handle = fopen( $this->filename, "wt" );
@@ -845,6 +851,7 @@ class DumpFileOutput extends DumpOutput {
  */
 class DumpPipeOutput extends DumpFileOutput {
 	protected $command, $filename;
+	private $procOpenResource = false;
 
 	function __construct( $command, $file = null ) {
 		if ( !is_null( $file ) ) {
@@ -858,7 +865,10 @@ class DumpPipeOutput extends DumpFileOutput {
 
 	function writeCloseStream( $string ) {
 		parent::writeCloseStream( $string );
-		proc_close( $this->procOpenResource );
+		if ( $this->procOpenResource ) {
+			proc_close( $this->procOpenResource );
+			$this->procOpenResource = false;
+		}
 	}
 
 	function startCommand( $command ) {
@@ -877,8 +887,14 @@ class DumpPipeOutput extends DumpFileOutput {
 	function closeAndRename( $newname, $open = false ) {
 		$newname = $this->checkRenameArgCount( $newname );
 		if ( $newname ) {
-			fclose( $this->handle );
-			proc_close( $this->procOpenResource );
+			if ( $this->handle ) {
+				fclose( $this->handle );
+				$this->handle = false;
+			}
+			if ( $this->procOpenResource ) {
+				proc_close( $this->procOpenResource );
+				$this->procOpenResource = false;
+			}
 			$this->renameOrException( $newname );
 			if ( $open ) {
 				$command = $this->command;
