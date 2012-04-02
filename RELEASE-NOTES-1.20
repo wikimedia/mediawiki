@@ -55,6 +55,7 @@ production.
 * (bug 18704) Add an unique CSS class or ID to the tagfilter table row at RecentChanges 
 * (bug 33689) Upgrade to 1.19 on Postgres fails due to incomplete query when
               trying to defer foreign key for externallinks
+* Removed white border around thumbnails in galleries
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
