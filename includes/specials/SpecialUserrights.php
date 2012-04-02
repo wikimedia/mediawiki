@@ -47,6 +47,9 @@ class UserrightsPage extends SpecialPage {
 
 	public function userCanChangeRights( $user, $checkIfSelf = true ) {
 		$available = $this->changeableGroups();
+		if ( $user->getId() == 0 ) {
+			return false;
+		}
 		return !empty( $available['add'] )
 			|| !empty( $available['remove'] )
 			|| ( ( $this->isself || !$checkIfSelf ) &&
