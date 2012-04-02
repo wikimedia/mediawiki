@@ -315,7 +315,6 @@ class DatabasePostgres extends DatabaseBase {
 	}
 
 	protected function doQuery( $sql ) {
-		global $wgDebugDBTransactions;
 		if ( function_exists( 'mb_convert_encoding' ) ) {
 			$sql = mb_convert_encoding( $sql, 'UTF-8' );
 		}
