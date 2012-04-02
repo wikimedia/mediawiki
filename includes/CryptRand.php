@@ -54,7 +54,7 @@ class MWCryptRand {
 		// It'll also vary slightly across different machines
 		$state = serialize( $_SERVER );
 
-		// To try and vary the system information of the state a bit more
+		// To try vary the system information of the state a bit more
 		// by including the system's hostname into the state
 		$state .= wfHostname();
 
@@ -275,7 +275,7 @@ class MWCryptRand {
 		if ( strlen( $buffer ) < $bytes ) {
 			// If available make use of mcrypt_create_iv URANDOM source to generate randomness
 			// On unix-like systems this reads from /dev/urandom but does it without any buffering
-			// and bypasses openbasdir restrictions so it's preferable to reading directly
+			// and bypasses openbasedir restrictions, so it's preferable to reading directly
 			// On Windows starting in PHP 5.3.0 Windows' native CryptGenRandom is used to generate
 			// entropy so this is also preferable to just trying to read urandom because it may work
 			// on Windows systems as well.
@@ -294,9 +294,10 @@ class MWCryptRand {
 		}
 
 		if ( strlen( $buffer ) < $bytes ) {
-			// If available make use of openssl's random_pesudo_bytes method to attempt to generate randomness.
+			// If available make use of openssl's random_pseudo_bytes method to attempt to generate randomness.
 			// However don't do this on Windows with PHP < 5.3.4 due to a bug:
 			// http://stackoverflow.com/questions/1940168/openssl-random-pseudo-bytes-is-slow-php
+			// http://git.php.net/?p=php-src.git;a=commitdiff;h=cd62a70863c261b07f6dadedad9464f7e213cad5
 			if ( function_exists( 'openssl_random_pseudo_bytes' )
 				&& ( !wfIsWindows() || version_compare( PHP_VERSION, '5.3.4', '>=' ) )
 			) {
