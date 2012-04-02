@@ -664,8 +664,19 @@
 			}
 			var forms = nodes.slice(1);
 			return this.language.gender( gender, forms );
-		}
+		},
 
+		/**
+		 * Transform parsed structure into grammar conversion.
+		 * Invoked by putting {{grammar:form|word}} in a message
+		 * @param {Array} of nodes [{Grammar case eg: genitive}, {String word}]
+		 * @return {String} selected grammatical form according to current language
+		 */
+		grammar: function( nodes ) {
+			var form = nodes[0];
+			var word = nodes[1];
+			return word && form && this.language.convertGrammar( word, form );
+		}
 	};
 
 	// deprecated! don't rely on gM existing.
