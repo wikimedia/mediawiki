@@ -333,7 +333,7 @@ class SpecialContributions extends SpecialPage {
 		# Add a link to change user rights for privileged users
 		$userrightsPage = new UserrightsPage();
 		$userrightsPage->setContext( $this->getContext() );
-		if ( $id !== null && $userrightsPage->userCanChangeRights( $target ) ) {
+		if ( $id !== null && $userrightsPage->userCanChangeRights( $target ) && !$target->isAnon() ) {
 			$tools[] = Linker::linkKnown(
 				SpecialPage::getTitleFor( 'Userrights', $username ),
 				$this->msg( 'sp-contributions-userrights' )->escaped()
