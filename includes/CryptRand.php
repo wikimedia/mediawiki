@@ -63,8 +63,14 @@ class MWCryptRand {
 
 		// Include some information about the filesystem's current state in the random state
 		$files = array();
+
 		// We know this file is here so grab some info about ourself
 		$files[] = __FILE__;
+
+		// We must also have a parent folder, and with the usual file structure, a grandparent
+		$files[] = dirname( __FILE__ );
+		$files[] = dirname( dirname( __FILE__ ) );
+
 		// The config file is likely the most often edited file we know should be around
 		// so if the constant with it's location is defined include it's stat info into the state
 		if ( defined( 'MW_CONFIG_FILE' ) ) {
