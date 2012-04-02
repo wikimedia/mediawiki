@@ -21,6 +21,9 @@ return array(
 	'user.options' => array( 'class' => 'ResourceLoaderUserOptionsModule' ),
 	'user.tokens' => array( 'class' => 'ResourceLoaderUserTokensModule' ),
 
+	// Scripts for the dynamic language specific data, like grammar forms.
+	'mediawiki.language.data' => array( 'class' => 'ResourceLoaderLanguageDataModule' ),
+	
 	/* Skins */
 
 	'skins.chick' => array(

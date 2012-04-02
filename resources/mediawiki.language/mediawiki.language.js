@@ -7,7 +7,52 @@
  */
 ( function( $, mw ) {
 
-mw.language = {
+var language = {
+	/**
+	 * @var data {Object} Language related data (keyed by language,
+	 * contains instances of mw.Map).
+	 * @example Set data
+	 * <code>
+	 *     // Override, extend or create the language data object of 'nl'
+	 *     mw.language.setData( 'nl', 'myKey', 'My value' );
+	 * </code>
+	 * @example Get GrammarForms data for language 'nl':
+	 * <code>
+	 *     var grammarForms = mw.language.getData( 'nl', 'grammarForms' );
+	 * </code>
+	 */
+	data: {},
+
+	/**
+	 * Convenience method for retreiving language data by language code and data key,
+	 * covering for the potential inexistance of a data object for this langiage.
+	 * @param langCode {String} 
+	 * @param dataKey {String}
+	 * @return {mixed} Value stored in the mw.Map (or undefined if there is no map for
+	   the specified langCode).
+	 */
+	getData: function ( langCode, dataKey ) {
+		var langData = language.data;
+		if ( langData[langCode] instanceof mw.Map ) {
+			return langData[langCode].get( dataKey );
+		}
+		return undefined;
+	},
+
+	/**
+	 * Convenience method for setting language data by language code and data key.
+	 * Creates a data object if there isn't one for the specified language already.
+	 * @param langCode {String} 
+	 * @param dataKey {String}
+	 * @param value {mixed}
+	 */
+	setData: function ( langCode, dataKey, value ) {
+		var langData = language.data;
+		if ( !( langData[langCode] instanceof mw.Map ) ) {
+			langData[langCode] = new mw.Map();
+		}
+		langData[langCode].set( dataKey, value );
+	},
 	/**
 	 * Process the PLURAL template substitution
 	 *
@@ -122,7 +167,28 @@ mw.language = {
 		return ( forms.length === 3 ) ? forms[2] : forms[0];
 	},
 
+	/**
+	 * Grammatical transformations, needed for inflected languages.
+	 * Invoked by putting {{grammar:form|word}} in a message.
+	 * The rules can be defined in $wgGrammarForms global or grammar
+	 * forms can be computed dynamically by overriding this method per language
+	 *
+	 * @param word {String}
+	 * @param form {String}
+	 * @return {String}
+	 */
+	convertGrammar: function ( word, form ) {
+		var grammarForms = language.getData( mw.config.get( 'wgContentLanguage' ), 'grammarForms' );
+		if ( grammarForms && grammarForms[form] ) {
+			return grammarForms[form][word] || word;
+		}
+		return word;
+	},
+
 	// Digit Transform Table, populated by language classes where applicable
 	'digitTransformTable': null
 };
+
+mw.language = language;
+
 } )( jQuery, mediaWiki );

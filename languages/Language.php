@@ -3234,7 +3234,18 @@ class Language {
 		}
 		return $word;
 	}
-
+	/**
+	 * Get the grammar forms for the content language 
+	 * @return array of grammar forms
+	 * @since 1.20
+	 */
+	function getGrammarForms( ) {
+		global $wgGrammarForms;
+		if ( isset( $wgGrammarForms[$this->getCode()] ) && is_array( $wgGrammarForms[$this->getCode()] ) ) {
+			 return $wgGrammarForms[$this->getCode()];
+		}
+		return array();
+	}
 	/**
 	 * Provides an alternative text depending on specified gender.
 	 * Usage {{gender:username|masculine|feminine|neutral}}.
