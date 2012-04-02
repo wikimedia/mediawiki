@@ -398,11 +398,11 @@
 
 			var pipe = makeStringParser( '|' );
 
-			function templateWithReplacement() {
+			function templateNameWithParam() {
 				var result = sequence( [
 					templateName,
 					colon,
-					replacement
+					paramExpression
 				] );
 				return result === null ? null : [ result[0], result[2] ];
 			}
@@ -412,7 +412,9 @@
 			var templateContents = choice( [
 				function() {
 					var res = sequence( [
-						templateWithReplacement,
+						// templates can have placeholders for dynamic replacement eg: {{PLURAL:$1|one car|$1 cars}}
+						// or no placeholders eg: {{GRAMMAR:genitive|{{SITENAME}}}
+						templateNameWithParam,
 						nOrMore( 0, templateParam )
 					] );
 					return res === null ? null : res[0].concat( res[1] );

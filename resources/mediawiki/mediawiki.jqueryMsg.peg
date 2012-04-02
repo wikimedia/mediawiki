@@ -21,11 +21,11 @@ template
   = "{{" t:templateContents "}}" { return t; }
 
 templateContents
-  = twr:templateWithReplacement p:templateParam* { return twr.concat(p) }
+  = twp:templateNameWithParam p:templateParam* { return twp.concat(p) }
   / t:templateName p:templateParam* { return p.length ? [ t, p ] : [ t ] }
 
-templateWithReplacement
-  = t:templateName ":" r:replacement { return [ t, r ] }
+templateNameWithParam
+  = t:templateName ":" p:paramExpression { return [ t, p ] }
 
 templateParam
   = "|" e:paramExpression* { return e.length > 1 ? [ "CONCAT" ].concat(e) : e[0]; }
