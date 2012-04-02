@@ -758,7 +758,6 @@ table.mw_metadata ul.metadata-langlist {
 /* Don't forget to update commonPrint.css */
 li.gallerybox {
 	vertical-align: top;
-	border: solid 2px white;
 	display: -moz-inline-box;
 	display: inline-block;
 }
