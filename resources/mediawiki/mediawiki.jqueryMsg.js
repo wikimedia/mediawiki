@@ -103,7 +103,9 @@
 	};
 
 	var parserDefaults = { 
-		'magic' : {},
+		'magic' : {
+			'SITENAME' : mw.config.get( 'wgSiteName' )
+		},
 		'messages' : mw.messages,
 		'language' : mw.language
 	};
@@ -665,9 +667,6 @@
 		}
 
 	};
-
-	// TODO figure out a way to make magic work with common globals like wgSiteName, without requiring init from library users...
-	// var options = { magic: { 'SITENAME' : mw.config.get( 'wgSiteName' ) } };
 
 	// deprecated! don't rely on gM existing.
 	// the window.gM ought not to be required - or if required, not required here. But moving it to extensions breaks it (?!)
