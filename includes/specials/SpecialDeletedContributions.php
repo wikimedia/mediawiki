@@ -405,7 +405,7 @@ class DeletedContributionsPage extends SpecialPage {
 			# Add a link to change user rights for privileged users
 			$userrightsPage = new UserrightsPage();
 			$userrightsPage->setContext( $this->getContext() );
-			if( $id !== null && $userrightsPage->userCanChangeRights( User::newFromId( $id ) ) ) {
+			if( $id !== 0 && $userrightsPage->userCanChangeRights( $userObj ) ) {
 				$tools[] = Linker::linkKnown(
 					SpecialPage::getTitleFor( 'Userrights', $nt->getDBkey() ),
 					$this->msg( 'sp-contributions-userrights' )->escaped()
