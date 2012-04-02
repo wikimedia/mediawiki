@@ -2113,6 +2113,41 @@ class User {
 	}
 
 	/**
+	 * Set the user's e-mail address and a confirmation mail if needed.
+	 *
+	 * @param $str String New e-mail address
+	 * @return Status
+	 */
+	public function setEmailWithConfirmation( $str ) {
+		global $wgEnableEmail, $wgEmailAuthentication;
+
+		if ( !$wgEnableEmail ) {
+			return Status::newFatal( 'emaildisabled' );
+		}
+
+		$oldaddr = $this->getEmail();
+		if ( $str === $oldaddr ) {
+			return Status::newGood( true );
+		}
+
+		$this->setEmail( $str );
+
+		if ( $str !== '' && $wgEmailAuthentication ) {
+			# Send a confirmation request to the new address if needed
+			$type = $oldaddr != '' ? 'changed' : 'set';
+			$result = $this->sendConfirmationMail( $type );
+			if ( $result->isGood() ) {
+				# Say the the caller that a confirmation mail has been sent
+				$status->value = 'eauth';
+			}
+		} else {
+			$result = Status::newGood( true );
+		}
+
+		return $result;
+	}
+
+	/**
 	 * Get the user's real name
 	 * @return String User's real name
 	 */
