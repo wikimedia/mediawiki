@@ -26,6 +26,7 @@ production.
   generating various tokens.
 * (bug 30963) Option on Special:Prefixindex and Special:Allpages to not show redirects.
 * (bug 18062) new message when edit or create the local page of a shared file
+* (bug 22870) Separate interface message when creating a page
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
