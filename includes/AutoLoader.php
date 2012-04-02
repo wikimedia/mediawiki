@@ -739,6 +739,7 @@ $wgAutoloadLocalClasses = array(
 	'ResourceLoaderUserModule' => 'includes/resourceloader/ResourceLoaderUserModule.php',
 	'ResourceLoaderUserOptionsModule' => 'includes/resourceloader/ResourceLoaderUserOptionsModule.php',
 	'ResourceLoaderUserTokensModule' => 'includes/resourceloader/ResourceLoaderUserTokensModule.php',
+	'ResourceLoaderLanguageDataModule' => 'includes/resourceloader/ResourceLoaderLanguageDataModule.php',
 	'ResourceLoaderWikiModule' => 'includes/resourceloader/ResourceLoaderWikiModule.php',
 
 	# includes/revisiondelete
