@@ -1,8 +1,9 @@
 <?php
 
 /**
+ * @group API
  * @group Database
- * @todo This test suite is severly broken and need a full review 
+ * @todo This test suite is severly broken and need a full review
  */
 class ApiWatchTest extends ApiTestCase {
 
@@ -10,7 +11,7 @@ class ApiWatchTest extends ApiTestCase {
 		parent::setUp();
 		$this->doLogin();
 	}
-	
+
 	function getTokens() {
 		return $this->getTokenList( self::$users['sysop'] );
 	}
@@ -19,9 +20,9 @@ class ApiWatchTest extends ApiTestCase {
 	 * @group Broken
 	 */
 	function testWatchEdit() {
-		
+
 		$data = $this->getTokens();
-		
+
 		$keys = array_keys( $data[0]['query']['pages'] );
 		$key = array_pop( $keys );
 		$pageinfo = $data[0]['query']['pages'][$key];
@@ -44,7 +45,7 @@ class ApiWatchTest extends ApiTestCase {
 	 * @group Broken
 	 */
 	function testWatchClear() {
-	
+
 		$data = $this->doApiRequest( array(
 			'action' => 'query',
 			'list' => 'watchlist' ), $data );
@@ -71,11 +72,11 @@ class ApiWatchTest extends ApiTestCase {
 
 	/**
 	 * @group Broken
-	 */	 
+	 */
 	function testWatchProtect() {
-		
+
 		$data = $this->getTokens();
-		
+
 		$keys = array_keys( $data[0]['query']['pages'] );
 		$key = array_pop( $keys );
 		$pageinfo = $data[0]['query']['pages'][$key];
@@ -97,9 +98,9 @@ class ApiWatchTest extends ApiTestCase {
 	 * @group Broken
 	 */
 	function testGetRollbackToken() {
-		
+
 		$data = $this->getTokens();
-		
+
 		if ( !Title::newFromText( 'UTPage' )->exists() ) {
 			$this->markTestIncomplete( "The article [[UTPage]] does not exist" );
 		}
@@ -159,9 +160,9 @@ class ApiWatchTest extends ApiTestCase {
 	 * @group Broken
 	 */
 	function testWatchDelete() {
-		
+
 		$data = $this->getTokens();
-		
+
 		$keys = array_keys( $data[0]['query']['pages'] );
 		$key = array_pop( $keys );
 		$pageinfo = $data[0]['query']['pages'][$key];
