@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * @group API
  * @group Database
  */
 class ApiTest extends ApiTestCase {
