@@ -56,15 +56,14 @@ class SpecialProtectedtitles extends SpecialPage {
 		$this->getOutput()->addHTML( $this->showOptions( $NS, $type, $level ) );
 
 		if ( $pager->getNumRows() ) {
-			$s = $pager->getNavigationBar();
-			$s .= "<ul>" .
-				$pager->getBody() .
-				"</ul>";
-			$s .= $pager->getNavigationBar();
+			$this->getOutput()->addHTML(
+				$pager->getNavigationBar() .
+				'<ul>' . $pager->getBody() . '</ul>' .
+				$pager->getNavigationBar()
+			);
 		} else {
-			$s = '<p>' . wfMsgHtml( 'protectedtitlesempty' ) . '</p>';
+			$this->getOutput()->addWikiMsg( 'protectedtitlesempty' );
 		}
-		$this->getOutput()->addHTML( $s );
 	}
 
 	/**
@@ -86,21 +85,20 @@ class SpecialProtectedtitles extends SpecialPage {
 
 		$description_items = array ();
 
-		$protType = wfMsgHtml( 'restriction-level-' . $row->pt_create_perm );
+		$protType = $this->msg( 'restriction-level-' . $row->pt_create_perm )->escaped();
 
 		$description_items[] = $protType;
 
 		$lang = $this->getLanguage();
 		$expiry = strlen( $row->pt_expiry ) ? $lang->formatExpiry( $row->pt_expiry, TS_MW ) : $infinity;
 		if( $expiry != $infinity ) {
-			$expiry_description = wfMsg(
+			$user = $this->getUser();
+			$description_items[] = $this->msg(
 				'protect-expiring-local',
-				$lang->timeanddate( $expiry, true ),
-				$lang->date( $expiry, true ),
-				$lang->time( $expiry, true )
-			);
-
-			$description_items[] = htmlspecialchars($expiry_description);
+				$lang->userTimeAndDate( $expiry, $user ),
+				$lang->userDate( $expiry, $user ),
+				$lang->userTime( $expiry, $user )
+			)->escaped();
 		}
 
 		wfProfileOut( __METHOD__ );
@@ -122,11 +120,11 @@ class SpecialProtectedtitles extends SpecialPage {
 		$special = htmlspecialchars( $title->getPrefixedDBkey() );
 		return "<form action=\"$action\" method=\"get\">\n" .
 			'<fieldset>' .
-			Xml::element( 'legend', array(), wfMsg( 'protectedtitles' ) ) .
+			Xml::element( 'legend', array(), $this->msg( 'protectedtitles' )->text() ) .
 			Html::hidden( 'title', $special ) . "&#160;\n" .
 			$this->getNamespaceMenu( $namespace ) . "&#160;\n" .
 			$this->getLevelMenu( $level ) . "&#160;\n" .
-			"&#160;" . Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . "\n" .
+			"&#160;" . Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) . "\n" .
 			"</fieldset></form>";
 	}
 
@@ -158,13 +156,13 @@ class SpecialProtectedtitles extends SpecialPage {
 	function getLevelMenu( $pr_level ) {
 		global $wgRestrictionLevels;
 
-		$m = array( wfMsg('restriction-level-all') => 0 ); // Temporary array
+		$m = array( $this->msg( 'restriction-level-all' )->text() => 0 ); // Temporary array
 		$options = array();
 
 		// First pass to load the log names
 		foreach( $wgRestrictionLevels as $type ) {
 			if ( $type !='' && $type !='*') {
-				$text = wfMsg("restriction-level-$type");
+				$text = $this->msg( "restriction-level-$type" )->text();
 				$m[$text] = $type;
 			}
 		}
@@ -179,7 +177,7 @@ class SpecialProtectedtitles extends SpecialPage {
 		}
 
 		return
-			Xml::label( wfMsg('restriction-level') , $this->IdLevel ) . '&#160;' .
+			Xml::label( $this->msg( 'restriction-level' )->text(), $this->IdLevel ) . '&#160;' .
 			Xml::tags( 'select',
 				array( 'id' => $this->IdLevel, 'name' => $this->IdLevel ),
 				implode( "\n", $options ) );
@@ -221,7 +219,7 @@ class ProtectedTitlesPager extends AlphabeticPager {
 	 * @return Title
 	 */
 	function getTitle() {
-		return SpecialPage::getTitleFor( 'Protectedtitles' );
+		return $this->mForm->getTitle();
 	}
 
 	function formatRow( $row ) {
