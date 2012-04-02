@@ -260,7 +260,8 @@ See the <a href='https://www.mediawiki.org/wiki/API'>complete documentation</a>,
 		$text = htmlspecialchars( $text );
 
 		// encode all comments or tags as safe blue strings
-		$text = preg_replace( '/\&lt;(!--.*?--|.*?)\&gt;/', '<span style="color:blue;">&lt;\1&gt;</span>', $text );
+		$text = str_replace( '&lt;', '<span style="color:blue;">&lt', $text );
+		$text = str_replace( '&gt;', '&gt;</span>', $text );
 		// identify URLs
 		$protos = wfUrlProtocolsWithoutProtRel();
 		// This regex hacks around bug 13218 (&quot; included in the URL)
