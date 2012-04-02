@@ -262,11 +262,21 @@ input#wpSummary {
 /**
  * Image captions
  */
-.thumbcaption {
+/* @noflip */
+.mw-content-ltr .thumbcaption {
 	text-align: left;
 }
-.magnify {
+/* @noflip */
+.mw-content-rtl .thumbcaption {
+	text-align: right;
+}
+/* @noflip */
+.mw-content-ltr .magnify {
 	float: right;
+}
+/* @noflip */
+.mw-content-rtl .magnify {
+	float: left;
 }
 
 /**
