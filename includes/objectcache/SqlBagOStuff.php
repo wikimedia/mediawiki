@@ -74,10 +74,11 @@ class SqlBagOStuff extends BagOStuff {
 				$this->db = $this->lb->getConnection( DB_MASTER );
 				$this->db->clearFlag( DBO_TRX );
 			} else {
+				global $wgDBprefix;
 				# We must keep a separate connection to MySQL in order to avoid deadlocks
 				# However, SQLite has an opposite behaviour.
 				# @todo Investigate behaviour for other databases
-				if ( wfGetDB( DB_MASTER )->getType() == 'sqlite' ) {
+				if ( wfGetDB( DB_MASTER )->getType() == 'sqlite' || $wgDBprefix === 'parsertest_' ) {
 					$this->db = wfGetDB( DB_MASTER );
 				} else {
 					$this->lb = wfGetLBFactory()->newMainLB();
