@@ -599,7 +599,7 @@ class ApiMain extends ApiBase {
 			if ( !isset( $moduleParams['token'] ) ) {
 				$this->dieUsageMsg( array( 'missingparam', 'token' ) );
 			} else {
-				if ( !$this->getUser()->matchEditToken( $moduleParams['token'], $salt, $this->getRequest() ) ) {
+				if ( !$this->getUser()->matchEditToken( $moduleParams['token'], $salt ) ) {
 					$this->dieUsageMsg( 'sessionfailure' );
 				}
 			}
