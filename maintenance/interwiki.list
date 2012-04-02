@@ -41,7 +41,7 @@ mediazilla|https://bugzilla.wikimedia.org/$1|1
 mediawikiwiki|http://www.mediawiki.org/wiki/$1|0
 memoryalpha|http://www.memory-alpha.org/en/index.php/$1|0
 metawiki|http://sunir.org/apps/meta.pl?$1|0
-metawikipedia|http://meta.wikimedia.org/wiki/$1|0
+metawikimedia|http://meta.wikimedia.org/wiki/$1|0
 moinmoin|http://purl.net/wiki/moin/$1|0
 mozillawiki|http://wiki.mozilla.org/index.php/$1|0
 mw|http://www.mediawiki.org/wiki/$1|0
