@@ -1437,14 +1437,34 @@ class Preferences {
 	 * @return Array (true on success or Status on failure, info string)
 	 */
 	public static function trySetUserEmail( User $user, $newaddr ) {
-		wfDeprecated( __METHOD__, '1.20' );
+		global $wgEnableEmail, $wgEmailAuthentication;
+		$info = ''; // none
 
-		$result = $user->setEmailWithConfirmation( $newaddr );
-		if ( $result->isGood() ) {
-			return array( true, $result->value );
-		} else {
-			return array( $result, 'mailerror' );
+		if ( $wgEnableEmail ) {
+			$oldaddr = $user->getEmail();
+			if ( ( $newaddr != '' ) && ( $newaddr != $oldaddr ) ) {
+				# The user has supplied a new email address on the login page
+				# new behaviour: set this new emailaddr from login-page into user database record
+				$user->setEmail( $newaddr );
+				if ( $wgEmailAuthentication ) {
+					# Mail a temporary password to the dirty address.
+					# User can come back through the confirmation URL to re-enable email.
+					$type = $oldaddr != '' ? 'changed' : 'set';
+					$result = $user->sendConfirmationMail( $type );
+					if ( !$result->isGood() ) {
+						return array( $result, 'mailerror' );
+					}
+					$info = 'eauth';
+				}
+			} elseif ( $newaddr != $oldaddr ) { // if the address is the same, don't change it
+				$user->setEmail( $newaddr );
+			}
+			if ( $oldaddr != $newaddr ) {
+				wfRunHooks( 'PrefsEmailAudit', array( $user, $oldaddr, $newaddr ) );
+			}
 		}
+
+		return array( true, $info );
 	}
 
 	/**

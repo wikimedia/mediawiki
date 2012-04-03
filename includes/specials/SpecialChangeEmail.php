@@ -196,20 +196,18 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 			LoginForm::clearLoginThrottle( $user->getName() );
 		}
 
-		$oldaddr = $user->getEmail();
-		$status = $user->setEmailWithConfirmation( $newaddr );
-		if ( !$status->isGood() ) {
-			$this->getOutput()->addHTML(
-				'<p class="error">' .
-				$this->getOutput()->parseInline( $status->getWikiText( $info ) ) .
-				'</p>' );
+		list( $status, $info ) = Preferences::trySetUserEmail( $user, $newaddr );
+		if ( $status !== true ) {
+			if ( $status instanceof Status ) {
+				$this->getOutput()->addHTML(
+					'<p class="error">' .
+					$this->getOutput()->parseInline( $status->getWikiText( $info ) ) .
+					'</p>' );
+			}
 			return false;
 		}
 
-		wfRunHooks( 'PrefsEmailAudit', array( $user, $oldaddr, $newaddr ) );
-
 		$user->saveSettings();
-
-		return $status->value;
+		return $info ? $info : true;
 	}
 }
