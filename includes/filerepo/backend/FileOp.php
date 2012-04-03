@@ -11,7 +11,7 @@
  *
  * Methods called from attemptBatch() should avoid throwing exceptions at all costs.
  * FileOp objects should be lightweight in order to support large arrays in memory.
- * 
+ *
  * @ingroup FileBackend
  * @since 1.19
  */
@@ -86,7 +86,7 @@ abstract class FileOp {
 	/**
 	 * Attempt to perform a series of file operations.
 	 * Callers are responsible for handling file locking.
-	 * 
+	 *
 	 * $opts is an array of options, including:
 	 * 'force'        : Errors that would normally cause a rollback do not.
 	 *                  The remaining operations are still attempted if any fail.
@@ -94,15 +94,15 @@ abstract class FileOp {
 	 *                  This can increase performance for non-critical writes.
 	 *                  This has no effect unless the 'force' flag is set.
 	 * 'nonJournaled' : Don't log this operation batch in the file journal.
-	 * 
+	 *
 	 * The resulting Status will be "OK" unless:
 	 *     a) unexpected operation errors occurred (network partitions, disk full...)
 	 *     b) significant operation errors occured and 'force' was not set
-	 * 
+	 *
 	 * @param $performOps Array List of FileOp operations
 	 * @param $opts Array Batch operation options
 	 * @param $journal FileJournal Journal to log operations to
-	 * @return Status 
+	 * @return Status
 	 */
 	final public static function attemptBatch(
 		array $performOps, array $opts, FileJournal $journal
@@ -182,7 +182,7 @@ abstract class FileOp {
 
 	/**
 	 * Get the file journal entries for a single file operation
-	 * 
+	 *
 	 * @param $fileOp FileOp
 	 * @param $oPredicates Array Pre-op information about files
 	 * @param $nPredicates Array Post-op information about files
@@ -222,7 +222,7 @@ abstract class FileOp {
 
 	/**
 	 * Get the value of the parameter with the given name
-	 * 
+	 *
 	 * @param $name string
 	 * @return mixed Returns null if the parameter is not set
 	 */
@@ -232,8 +232,8 @@ abstract class FileOp {
 
 	/**
 	 * Check if this operation failed precheck() or attempt()
-	 * 
-	 * @return bool 
+	 *
+	 * @return bool
 	 */
 	final public function failed() {
 		return $this->failed;
@@ -242,7 +242,7 @@ abstract class FileOp {
 	/**
 	 * Get a new empty predicates array for precheck()
 	 *
-	 * @return Array 
+	 * @return Array
 	 */
 	final public static function newPredicates() {
 		return array( 'exists' => array(), 'sha1' => array() );
@@ -288,7 +288,7 @@ abstract class FileOp {
 
 	/**
 	 * Get the file operation parameters
-	 * 
+	 *
 	 * @return Array (required params list, optional params list)
 	 */
 	protected function allowedParams() {
@@ -331,7 +331,7 @@ abstract class FileOp {
 	 * Check for errors with regards to the destination file already existing.
 	 * This also updates the destSameAsSource and sourceSha1 member variables.
 	 * A bad status will be returned if there is no chance it can be overwritten.
-	 * 
+	 *
 	 * @param $predicates Array
 	 * @return Status
 	 */
@@ -378,10 +378,10 @@ abstract class FileOp {
 
 	/**
 	 * Check if a file will exist in storage when this operation is attempted
-	 * 
+	 *
 	 * @param $source string Storage path
 	 * @param $predicates Array
-	 * @return bool 
+	 * @return bool
 	 */
 	final protected function fileExists( $source, array $predicates ) {
 		if ( isset( $predicates['exists'][$source] ) ) {
@@ -394,7 +394,7 @@ abstract class FileOp {
 
 	/**
 	 * Get the SHA-1 of a file in storage when this operation is attempted
-	 * 
+	 *
 	 * @param $source string Storage path
 	 * @param $predicates Array
 	 * @return string|bool False on failure
@@ -410,7 +410,7 @@ abstract class FileOp {
 
 	/**
 	 * Log a file operation failure and preserve any temp files
-	 * 
+	 *
 	 * @param $action string
 	 * @return void
 	 */
@@ -652,7 +652,7 @@ class MoveFileOp extends FileOp {
 	}
 
 	public function storagePathsChanged() {
-		return array( $this->params['dst'] );
+		return array( $this->params['src'], $this->params['dst'] );
 	}
 }
 
