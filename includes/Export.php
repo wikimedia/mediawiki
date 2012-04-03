@@ -209,9 +209,6 @@ class WikiExporter {
 		wfProfileIn( __METHOD__ );
 		# For logging dumps...
 		if ( $this->history & self::LOGS ) {
-			if ( $this->buffer == WikiExporter::STREAM ) {
-				$prev = $this->db->bufferResults( false );
-			}
 			$where = array( 'user_id = log_user' );
 			# Hide private logs
 			$hideLogs = LogEventsList::getExcludeClause( $this->db );
@@ -220,16 +217,49 @@ class WikiExporter {
 			if ( $cond ) $where[] = $cond;
 			# Get logging table name for logging.* clause
 			$logging = $this->db->tableName( 'logging' );
-			$result = $this->db->select( array( 'logging', 'user' ),
-				array( "{$logging}.*", 'user_name' ), // grab the user name
-				$where,
-				__METHOD__,
-				array( 'ORDER BY' => 'log_id', 'USE INDEX' => array( 'logging' => 'PRIMARY' ) )
-			);
-			$wrapper = $this->db->resultObject( $result );
-			$this->outputLogStream( $wrapper );
+
 			if ( $this->buffer == WikiExporter::STREAM ) {
-				$this->db->bufferResults( $prev );
+				$prev = $this->db->bufferResults( false );
+			}
+			$wrapper = null; // Assuring $wrapper is not undefined, if exception occurs early
+			try {
+				$result = $this->db->select( array( 'logging', 'user' ),
+					array( "{$logging}.*", 'user_name' ), // grab the user name
+					$where,
+					__METHOD__,
+					array( 'ORDER BY' => 'log_id', 'USE INDEX' => array( 'logging' => 'PRIMARY' ) )
+				);
+				$wrapper = $this->db->resultObject( $result );
+				$this->outputLogStream( $wrapper );
+				if ( $this->buffer == WikiExporter::STREAM ) {
+					$this->db->bufferResults( $prev );
+				}
+			} catch ( Exception $e ) {
+				// Throwing the exception does not reliably free the resultset, and
+				// would also leave the connection in unbuffered mode.
+
+				// Freeing result
+				try {
+					if ( $wrapper ) {
+						$wrapper->free();
+					}
+				} catch ( Exception $e2 ) {
+					// Already in panic mode -> ignoring $e2 as $e has
+					// higher priority
+				}
+
+				// Putting database back in previous buffer mode
+				try {
+					if ( $this->buffer == WikiExporter::STREAM ) {
+						$this->db->bufferResults( $prev );
+					}
+				} catch ( Exception $e2 ) {
+					// Already in panic mode -> ignoring $e2 as $e has
+					// higher priority
+				}
+
+				// Inform caller about problem
+				throw $e;
 			}
 		# For page dumps...
 		} else {
@@ -300,17 +330,46 @@ class WikiExporter {
 				$prev = $this->db->bufferResults( false );
 			}
 
-			wfRunHooks( 'ModifyExportQuery',
+			$wrapper = null; // Assuring $wrapper is not undefined, if exception occurs early
+			try {
+				wfRunHooks( 'ModifyExportQuery',
 						array( $this->db, &$tables, &$cond, &$opts, &$join ) );
 
-			# Do the query!
-			$result = $this->db->select( $tables, '*', $cond, __METHOD__, $opts, $join );
-			$wrapper = $this->db->resultObject( $result );
-			# Output dump results
-			$this->outputPageStream( $wrapper );
+				# Do the query!
+				$result = $this->db->select( $tables, '*', $cond, __METHOD__, $opts, $join );
+				$wrapper = $this->db->resultObject( $result );
+				# Output dump results
+				$this->outputPageStream( $wrapper );
 
-			if ( $this->buffer == WikiExporter::STREAM ) {
-				$this->db->bufferResults( $prev );
+				if ( $this->buffer == WikiExporter::STREAM ) {
+					$this->db->bufferResults( $prev );
+				}
+			} catch ( Exception $e ) {
+				// Throwing the exception does not reliably free the resultset, and
+				// would also leave the connection in unbuffered mode.
+
+				// Freeing result
+				try {
+					if ( $wrapper ) {
+						$wrapper->free();
+					}
+				} catch ( Exception $e2 ) {
+					// Already in panic mode -> ignoring $e2 as $e has
+					// higher priority
+				}
+
+				// Putting database back in previous buffer mode
+				try {
+					if ( $this->buffer == WikiExporter::STREAM ) {
+						$this->db->bufferResults( $prev );
+					}
+				} catch ( Exception $e2 ) {
+					// Already in panic mode -> ignoring $e2 as $e has
+					// higher priority
+				}
+
+				// Inform caller about problem
+				throw $e;
 			}
 		}
 		wfProfileOut( __METHOD__ );
@@ -321,7 +380,7 @@ class WikiExporter {
 	 * The result set should be sorted/grouped by page to avoid duplicate
 	 * page records in the output.
 	 *
-	 * The result set will be freed once complete. Should be safe for
+	 * Should be safe for
 	 * streaming (non-buffered) queries, as long as it was made on a
 	 * separate database connection not managed by LoadBalancer; some
 	 * blob storage types will make queries to pull source data.
