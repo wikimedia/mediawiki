@@ -18,17 +18,17 @@ production.
 * &useskin=default will now always display the default skin. Useful for users with a
   preference for the non-default skin to look at something using the default skin.
 * (bug 27619) Remove preference option to display broken links as link?
-* (bug 34896) Update jQuery JSON plugin to v2.3 (2011-09-17)
-* (bug 34302) Add CSS classes to email fields in user preferences
-* Introduced $wgDebugDBTransactions to trace transaction status (currently PostgreSQL only)
+* (bug 34896) Update jQuery JSON plugin to v2.3 (2011-09-17).
+* (bug 34302) Add CSS classes to email fields in user preferences.
+* Introduced $wgDebugDBTransactions to trace transaction status (currently PostgreSQL only).
 * (bug 23795) Add parser itself to ParserMakeImageParams hook.
 * Introduce a cryptographic random number generator source api for use when
   generating various tokens.
 * (bug 30963) Option on Special:Prefixindex and Special:Allpages to not show redirects.
-* (bug 18062) new message when edit or create the local page of a shared file
-* (bug 22870) Separate interface message when creating a page
-* (bug 17615) nosummary option should be reassigned on preview/captcha
-* (bug 34355) add a variable and parser function for the namespace number
+* (bug 18062) new message when edit or create the local page of a shared file.
+* (bug 22870) Separate interface message when creating a page.
+* (bug 17615) nosummary option should be reassigned on preview/captcha.
+* (bug 34355) add a variable and parser function for the namespace number.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
@@ -36,9 +36,9 @@ production.
   when we try to set the user's cookies for login.
 * (bug 32210) New edit emails for watched pages always provide a link to the
   edit which triggered the mail.
-* (bug 12021) Added user talk link on Special:Listusers
+* (bug 12021) Added user talk link on Special:Listusers.
 * (bug 34445) section edit and TOC hide/show links are excluded from selection and
-  copy/paste on supporting browsers
+  copy/paste on supporting browsers.
 * (bug 34428) Fixed incorrect hash mismatch errors in the DiffHistoryBlob 
   history compression method.
 * (bug 34702) Localised parentheses are now used in more special pages.
@@ -46,22 +46,23 @@ production.
 * (bug 34762) Calling close() on a DatabaseBase object now clears the connection.
 * (bug 34863) Show deletion log extract on non-existent file pages if applicable.
 * (bug 28019) Let ?preloadtitle=foo be passed on to target of
-  Special:MyPage and Special:MyTalk
+  Special:MyPage and Special:MyTalk.
 * (bug 34929) Show the correct diff when a section edit is rejected by the spam 
-  filter
-* (bug 15816) Add a switch for SETting the search_path (Postgres)
+  filter.
+* (bug 15816) Add a switch for SETting the search_path (Postgres).
 * (bug 34521) Returning to the previous page after logging in loses any array-
-  valued parameters in the query string
+  valued parameters in the query string.
 * (bug 34735) Updated compressOld.php documentation to mention the different
-  usages of -s and -n parameters depending on compression type
-* (bug 13896) Rendering of devanagari numbers in automatic '#' number lists
-* (bug 18704) Add an unique CSS class or ID to the tagfilter table row at RecentChanges 
-* (bug 33689) Upgrade to 1.19 on Postgres fails due to incomplete query when
-              trying to defer foreign key for externallinks
-* (bug 32748) Printer friendly version of article decode Unicode chars as a pretty IRI in footer.
-* Removed white border around thumbnails in galleries
+  usages of -s and -n parameters depending on compression type.
+* (bug 13896) Rendering of devanagari numbers in automatic '#' number lists.
+* (bug 18704) Add an unique CSS class or ID to the tagfilter table row at RecentChanges.
+* (bug 33689) Upgrade to 1.19 on Postgres fails due to incomplete query when.
+  trying to defer foreign key for externallinks.
+* (bug 32748) Printer friendly version of article decode Unicode chars as a
+  pretty IRI in footer.
+* Removed white border around thumbnails in galleries.
 * (bug 31236) "Next" and "Previous" buttons are shown incorrectly in
-  an RTL environment
+  an RTL environment.
 * (bug 35680) jQuery upgraded to 1.7.2.
 * (bug 35681) jQuery UI upgraded to 1.8.18.
 
@@ -69,8 +70,8 @@ production.
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
 * (bug 34313) MediaWiki API intro message about "HTML format" should mention
   the format parameter.
-* (bug 32384) Allow descending order for list=watchlistraw
-* (bug 31883) Limit of bkusers of list=blocks and titles of action=query is not documented in API help
+* (bug 32384) Allow descending order for list=watchlistraw.
+* (bug 31883) Limit of bkusers of list=blocks and titles of action=query is not documented in API help.
 
 === Languages updated in 1.20 ===
 
@@ -78,9 +79,9 @@ MediaWiki supports over 350 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
 
-* (bug 34192) Namespace gender aliases for Albanian languages (sq & aln)
-* (bug 35541) Namespace gender aliases for Croatian (hr)
-* Mizo (lus) added
+* (bug 34192) Namespace gender aliases for Albanian languages (sq & aln).
+* (bug 35541) Namespace gender aliases for Croatian (hr).
+* Mizo (lus) added.
 
 === Other changes in 1.20 ===
 * The user_token field is now left empty until a user attempts to login and
