@@ -407,14 +407,21 @@ class TextPassDumper extends BackupDumper {
 			// find a good text.
 
 			try {
+				fwrite( STDOUT, "getText for $id/P:".$this->thisPage."/".intval( $this->thisPage )."/R:".$this->thisRev."/".intval( $this->thisRev )."/\n"); fflush(STDOUT);
 				// Step 1: Get some text (or reuse from previous iteratuon if checking
 				//         for plausibility failed)
 
 				// Trying to get prefetch, if it has not been tried before
 				if ( $text === false && isset( $this->prefetch ) && $prefetchNotTried ) {
+					fwrite( STDOUT, "starting prefetch on ".get_class($this->prefetch)."/\n"); fflush(STDOUT);
 					$prefetchNotTried = false;
 					$tryIsPrefetch = true;
-					$text = $this->prefetch->prefetch( $this->thisPage, $this->thisRev );
+					$page = intval( $this->thisPage );
+					$rev = intval( $this->thisRev );
+					fwrite( STDOUT, "starting prefetch -> /$page/$rev/\n"); fflush(STDOUT);
+					$text = $this->prefetch->prefetch( $page ,
+						$rev );
+					fwrite( STDOUT, "result:$text:\n"); fflush(STDOUT);
 					if ( $text === null ) {
 						$text = false;
 					}
