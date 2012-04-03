@@ -70,4 +70,35 @@ class ApiBlockTest extends ApiTestCase {
 
 	}
 
+	function testGetToken() {
+		$data = $this->doApiRequest(
+			array(
+				'action' => 'block',
+				'user' => 'UTApiBlockee',
+				'gettoken' => '' ),
+			null,
+			false,
+			self::$users['sysop']->user
+		);
+		$this->assertEquals( 34, strlen( $data[0]['block']['blocktoken'] ) );
+	}
+
+	/**
+	 * Attempting to block without a token should give a UsageException with "The token parameter must be set"
+	 *
+	 * @expectedException UsageException
+	 */
+	function testNoToken() {
+		$this->doApiRequest(
+			array(
+				'action' => 'block',
+				'user' => 'UTApiBlockee',
+				'reason' => 'Some reason',
+				),
+			null,
+			false,
+			self::$users['sysop']->user
+		);
+	}
+
 }
