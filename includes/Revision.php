@@ -476,6 +476,7 @@ class Revision {
 	 * @return Integer
 	 */
 	public function getId() {
+		fwrite( STDOUT, "Revision::getId '".$this->mId."' (".gettype($this->mId).")\n"); fflush(STDOUT);
 		return $this->mId;
 	}
 
