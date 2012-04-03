@@ -111,7 +111,7 @@ class TextPassDumper extends BackupDumper {
 	}
 
 
-	function initProgress( $history ) {
+	function initProgress( $history = WikiExporter::FULL ) {
 		parent::initProgress();
 		$this->timeOfCheckpoint = $this->startTime;
 	}
