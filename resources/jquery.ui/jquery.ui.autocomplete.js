@@ -1,5 +1,5 @@
 /*
- * jQuery UI Autocomplete 1.8.17
+ * jQuery UI Autocomplete 1.8.18
  *
  * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
  * Dual licensed under the MIT or GPL Version 2 licenses.
@@ -268,7 +268,9 @@ $.widget( "ui.autocomplete", {
 					url: url,
 					data: request,
 					dataType: "json",
-					autocompleteRequest: ++requestIndex,
+					context: {
+						autocompleteRequest: ++requestIndex
+					},
 					success: function( data, status ) {
 						if ( this.autocompleteRequest === requestIndex ) {
 							response( data );
