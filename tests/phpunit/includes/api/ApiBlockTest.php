@@ -25,6 +25,16 @@ class ApiBlockTest extends ApiTestCase {
 		}
 	}
 
+	/**
+	 * This test has probably always been broken and use an invalid token
+	 * Bug tracking brokenness is https://bugzilla.wikimedia.org/35646
+	 *
+	 * Root cause is https://gerrit.wikimedia.org/r/3434
+	 * Which made the Block/Unblock API to actually verify the token
+	 * previously always considered valid (bug 34212).
+	 *
+	 * @group Broken
+	 */
 	function testMakeNormalBlock() {
 
 		$data = $this->getTokens();
