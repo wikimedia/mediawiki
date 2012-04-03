@@ -84,6 +84,11 @@ class TextPassDumper extends BackupDumper {
 			unset( $this->lb );
 		}
 
+		if ( $this->forcedDb !== null ) {
+			$this->db = $this->forcedDb;
+			return;
+		}
+
 		if ( isset( $this->db ) && $this->db->isOpen() ) {
 			throw new MWException( 'DB is set and has not been closed by the Load Balancer' );
 		}
