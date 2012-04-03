@@ -63,6 +63,7 @@ production.
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
 * (bug 34313) MediaWiki API intro message about "HTML format" should mention
   the format parameter.
+* (bug 32384) Allow descending order for list=watchlistraw
 
 === Languages updated in 1.20 ===
 
