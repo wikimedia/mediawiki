@@ -772,6 +772,7 @@ Parameters:
 'emailconfirmlink'           => 'Link to [[Special:ConfirmEmail]]. Appears in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}} after saving your e-mail address but before it has been authenticated.',
 'invalidemailaddress'        => 'Shown as a warning when written an invalid e-mail adress in [[Special:Preferences]] and {{fullurl:Special:UserLogin|type=signup}} page',
 'cannotchangeemail'          => 'Error message shown when user goes to [[Special:ChangeEmail]] but email addresses cannot be changed on the site.',
+'emaildisabled'              => 'Error message shown when user tries to set an e-mail address but e-mail features are disabled.',
 'createaccount-title'        => 'This is the subject of an e-mail sent to the e-mail address entered at [[Special:CreateAccount]] if the button "by e-mail" is clicked.',
 'createaccount-text'         => 'This text is sent as an e-mail to the e-mail address entered at [[Special:CreateAccount]] if the button "by e-mail" is clicked.
 

@@ -2115,6 +2115,7 @@ class User {
 	/**
 	 * Set the user's e-mail address and a confirmation mail if needed.
 	 *
+	 * @since 1.20
 	 * @param $str String New e-mail address
 	 * @return Status
 	 */
