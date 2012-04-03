@@ -830,7 +830,9 @@ class UploadForm extends HTMLForm {
 		# that setting doesn't exist
 		if ( !wfIsHipHop() ) {
 			$this->mMaxUploadSize['file'] = min( $this->mMaxUploadSize['file'],
-				wfShorthandToInteger( ini_get( 'upload_max_filesize' ) ) );
+				wfShorthandToInteger( ini_get( 'upload_max_filesize' ) ),
+				wfShorthandToInteger( ini_get( 'post_max_size' ) )
+			);
 		}
 
 		$descriptor['UploadFile'] = array(
