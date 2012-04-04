@@ -623,7 +623,7 @@ Passuord temboranèe: $2',
 
 # Edit pages
 'summary' => 'Riepileghe:',
-'subject' => 'Oggette/Testete:',
+'subject' => 'Oggette/Testate:',
 'minoredit' => 'Cangiaminde stuèdeche',
 'watchthis' => 'Condrolle sta pàgene',
 'savearticle' => "Registre 'a vôsce",
@@ -642,7 +642,7 @@ Ce tu cazze \"{{int:savearticle}}\" 'n'otra vote, 'u cangiamende tune avène mem
 'summary-preview' => "Andeprime d'u riepileghe:",
 'subject-preview' => "Andeprime de l'Oggette/Testete:",
 'blockedtitle' => "L'utende è blocchete",
-'blockedtext' => "''''U nome de l'utende o l'indirizze IP ha state blocchete.'''
+'blockedtext' => "''''U nome de l'utende o l'indirizze IP ha state bloccate.'''
 
 'U blocche ha state fatte da $1.
 'U mutive date jè ''$2''.
@@ -723,8 +723,8 @@ L'urteme archivije de le bloccaminde se iacche aqquà sotte pe referimende:",
 Arrecuerdete ca jndr'à le file personalizzete .css e .js s'ause scrivere le titele cu le lettere piccenne, pe esembie {{ns:user}}:Foo/vector.css è diverse da {{ns:user}}:Foo/Vector.css.",
 'updated' => '(Cangiete)',
 'note' => "'''Vide Bbuene:'''",
-'previewnote' => "'''Queste è sole 'n'andeprime;
-le cangiaminde non g'onne state angore reggistrete!'''",
+'previewnote' => "'''Arrecuerdete queste è sole 'n'andeprime.'''
+le cangiaminde non g'onne state angore reggistrate! [[#editform|→ Condinue cu 'u cangiamende]]",
 'previewconflict' => "Sta andeprime fece vedè 'u teste ca ste jndr'à 'u teste de l'area de sus cumme avène fore ce tu decide cu reggistre.",
 'session_fail_preview' => "'''Ne dispiace! Non ge putime processà 'u cangiamende tue purcè s'a perse 'a sessione de le date.
 Pe piacere pruève 'n'otra vote.
@@ -740,6 +740,7 @@ Ce angore tìne probbleme, prueve a [[Special:UserLogout|assè]] e te recolleghe
 Certe vote, stu fatte succede quanne tu ste ause 'nu servizie proxy cu le bochere e anonime.",
 'edit_form_incomplete' => "'''Quacche stuèzze d'u module de le cangiaminde non g'ha state ricevute da 'u server; verifeche arrete ca le cangiaminde tune sonde apposte e pruève arrete.'''",
 'editing' => 'Cangiaminde de $1',
+'creating' => 'Stoche a ccreje $1',
 'editingsection' => 'Cangiaminde de $1 (sezione)',
 'editingcomment' => 'Cangiaminde de $1 (seziona nove)',
 'editconflict' => 'Conflitte de cangiaminde: $1',
@@ -763,7 +764,7 @@ Tu na promettere pure ca le cose ca scrive tu, sonde 'mbormaziune libbere o copi
 Ce tu non ge vuè ca quidde ca scrive avène cangete da tre, allore non scè scrivenne proprie aqquà.<br />
 Tu ne stè promitte ca quidde ca scrive tu, o lè scritte cu 'u penziere tue o lè cupiate da risorse de pubbliche dominie o sembre robba libbere (vide $1 pe cchiù dettaglie).
 '''NO REGGISTRA' FATIJE CUPERTE DA 'U COPYRIGHT SENZA PERMESSE! NO FA STUDECARIE!'''",
-'longpageerror' => "'''ERRORE: 'U teste ca tu vuè ccu reggistre è luenghe $1 kilobyte, invece 'u limite massime jè de {{PLURAL:$2|$2}} kilobyte.'''
+'longpageerror' => "'''ERRORE: 'U teste ca tu vuè ccu reggistre è luenghe {{PLURAL:$1|'nu kilobyte|$1 kilobyte}}, invece 'u limite massime jè de {{PLURAL:$2|'nu kilobyte|$2 kilobyte}}.'''
 Non ge puè reggistrà sta pàggene.",
 'readonlywarning' => "'''FA ATTENZIO': 'U database ha state bloccate pe manutenziona, e allore tu non ge puè reggistrà le cangiaminde ca ste face mò.'''
 Tu puè fa 'na bella cose, tagghie e 'nzicche le cangiaminde jndr'à 'nu file de teste sus a 'u combiuter tue e pò cchiù tarde le reggistre sus 'a Uicchi.
@@ -1117,7 +1118,7 @@ Però fa attenzione purcè l'indice lore sus a {{SITENAME}} ponne condenè pàgg
 'saveprefs' => 'Reggistre',
 'resetprefs' => "Pulizze le cangiaminde ca non g'è reggistrete",
 'restoreprefs' => "Repristene tutte le 'mbostaziune origginale",
-'prefs-editing' => 'Cangiaminde...',
+'prefs-editing' => 'Stoche a cange',
 'prefs-edit-boxsize' => "Dimenzione d'a pàgene de cangiamende.",
 'rows' => 'Righe:',
 'columns' => 'Culonne:',
@@ -1613,9 +1614,9 @@ Non g'è possibbele verificà pa securezze.",
 # img_auth script messages
 'img-auth-accessdenied' => 'Accesse negate',
 'img-auth-nopathinfo' => "No se iacchie PATH_INFO.
-'U server tune non g'è 'mbostate o non ge passe st'mbormazione.
+'U server tune non g'è 'mbostate o non ge passe sta 'mbormazione.
 Pò essere ca jè basate sus a 'u CGI e non ge pò supportà img_auth.
-[https://www.mediawiki.org/wiki/Manual:Image_Authorization Vide autorizzazzione de le immaggine.]",
+Vide https://www.mediawiki.org/wiki/Manual:Image_Authorization",
 'img-auth-notindir' => "'U percorse richieste non ge stè jndr'à cartelle de carecamende configurate",
 'img-auth-badtitle' => 'Non ge se pò costruì \'nu titele valide da "$1".',
 'img-auth-nologinnWL' => 'Tu non ge sì collegate e "$1" non ge stè jndr\'à lista vianghe.',
@@ -2683,7 +2684,7 @@ Reggistrele sus a 'u combiuter tune e carechele aqquà.",
 
 # JavaScriptTest
 'javascripttest' => 'Test de JavaScript',
-'javascripttest-disabled' => 'Sta funzione jè disabbilitate.',
+'javascripttest-disabled' => "Sta funzione non g'à state abbilitate sus a sta Uicchi.",
 'javascripttest-title' => 'Stoche a esegue $1 test',
 
 # Tooltip help for the actions
@@ -3848,7 +3849,7 @@ Ce nò, tu puè ausà 'u module facile aqquà sotte. 'U commende tune avène agg
 'feedback-subject' => 'Oggette:',
 'feedback-message' => 'Messàgge:',
 'feedback-cancel' => 'Annulle',
-'feedback-submit' => "Conferme 'u feedback",
+'feedback-submit' => "Conferme 'a segnalazione",
 'feedback-adding' => "Aggiunge feedback a 'a pàgene...",
 'feedback-error1' => "Errore: resultate inaspettate da l'API",
 'feedback-error2' => 'Errore: Cangiamende fallite',

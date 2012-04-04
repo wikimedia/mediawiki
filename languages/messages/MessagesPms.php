@@ -2459,8 +2459,8 @@ për piasì ch'as renda bin cont ëd le conseguense ëd sòn prima d'andé anans
 *a l'ha desselessionà ël quadrèt ëd conferma ambelessì-sota.
 
 Ant costi cas-sì, se a chërd dë felo, a-j farà da manca dë tramudesse la pàgina ëd discussion daspërchiel, a man.",
-'movearticle' => "Cang-je nòm a l'artìcol",
-'moveuserpage-warning' => "'''Atension:''' A sta për tramudé na pàgina d'utent. Për piasì ch'a nòta che a sarà tramudà mach la pàgina e che l'utent a sarà \"pa\" arnominà.",
+'movearticle' => "Cangeje nòm a l'artìcol:",
+'moveuserpage-warning' => "'''Atension:''' A sta për tramudé na pàgina d'utent. Për piasì ch'a nòta che a sarà tramudà mach la pàgina e che l'utent a sarà ''pa'' arbatjà.",
 'movenologin' => "Che a varda che chiel (chila) a l'è pa rintrà ant ël sistema",
 'movenologintext' => "A venta esse n'Utent registrà e esse [[Special:UserLogin|rintrà ant ël sistema]]
 për podej tramudé na pàgina.",

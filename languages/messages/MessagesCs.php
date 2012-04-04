@@ -825,6 +825,7 @@ Heslo může být zasláno jen jednou za $1 {{PLURAL:$1|hodinu|hodiny|hodin}}.',
 'emailconfirmlink' => 'Podvrďte svou e-mailovou adresu',
 'invalidemailaddress' => 'Zadaná e-mailová adresa nemůže být přijata, neboť nemá správný formát. Zadejte platnou e-mailovou adresu nebo obsah tohoto pole vymažte.',
 'cannotchangeemail' => 'U uživatelských účtů na této wiki nelze měnit e-mailové adresy.',
+'emaildisabled' => 'Tento server nemůže odesílat e-maily.',
 'accountcreated' => 'Účet vytvořen',
 'accountcreatedtext' => 'Uživatelský účet $1 byl vytvořen.',
 'createaccount-title' => 'Vytvoření účtu na {{grammar:6sg|{{SITENAME}}}}',
@@ -1020,7 +1021,8 @@ Zde je pro přehled zobrazen nejnovější záznam z knihy zablokování:',
 'userinvalidcssjstitle' => "'''Varování:''' Vzhled „$1“ neexistuje. Nezapomeňte, že uživatelské .css a .js soubory používají malá písmena, např. {{ns:user}}:{{BASEPAGENAME}}/vector.css, nikoli {{ns:user}}:{{BASEPAGENAME}}/Vector.css.",
 'updated' => '(Změna uložena)',
 'note' => "'''Poznámka:'''&nbsp;",
-'previewnote' => "'''Pamatujte, že toto je pouze náhled, změny zatím nebyly uloženy!'''",
+'previewnote' => "'''Pamatujte, že toto je pouze náhled.'''
+Změny zatím nebyly uloženy! [[#editform|→ Pokračovat v editaci]]",
 'previewconflict' => 'Tento náhled ukazuje text tak, jak bude vypadat po uložení stránky.',
 'session_fail_preview' => "'''Váš požadavek se nepodařilo zpracovat kvůli ztrátě dat z relace.
 Zkuste to prosím znovu.
@@ -1035,6 +1037,7 @@ Editace byla odmítnuta, aby se zabránilo poškození textu stránky.
 Toto se může někdy stát pokud používáte chybující webový anonymizér.'''",
 'edit_form_incomplete' => "'''Část editačního formuláře nedorazila na server; překontrolujte úplnost změn a zkuste to znovu.'''",
 'editing' => 'Editace stránky $1',
+'creating' => 'Vytváření $1',
 'editingsection' => 'Editace stránky $1 (část)',
 'editingcomment' => 'Editace stránky $1 (nová sekce)',
 'editconflict' => 'Editační konflikt: $1',
@@ -1970,6 +1973,10 @@ Můžete si prohlédnout [[Special:WhatLinksHere/$2|úplný seznam]].',
 Více informací obsahuje jeho [$2 tamější stránka s popisem souboru].',
 'sharedupload-desc-here' => 'Tento soubor pochází z {{grammar:2sg|$1}} a mohou ho používat ostatní projekty.
 Níže jsou zobrazeny informace, které obsahuje jeho [$2 tamější stránka s popisem souboru].',
+'sharedupload-desc-edit' => 'Tento soubor je z  $1  a může být použit i v jiných projektech.
+Možná budete chtít upravit popis a dát jej do souladu s [ $2 popisem zdroje].',
+'sharedupload-desc-create' => 'Tento soubor je z  $1  a může být použit i v jiných projektech.
+Možná budete chtít upravit popis a dát jej do souladu s [ $2 popisem zdroje].',
 'filepage-nofile' => 'Soubor s tímto názvem neexistuje.',
 'filepage-nofile-link' => 'Soubor s tímto názvem neexistuje, ale můžete [$1 ho načíst].',
 'uploadnewversion-linktext' => 'Načíst novou verzi tohoto souboru',

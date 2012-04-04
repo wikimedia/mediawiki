@@ -2547,7 +2547,7 @@ Im [[Special:Log/delete|Lösch-Logbuch]] findest du eine Übersicht der gelösch
 'undelete-bad-store-key' => 'Die Dateiversion mit dem Zeitstempel $1 konnte nicht wiederhergestellt werden: Die Datei war bereits vor dem Löschen nicht mehr vorhanden.',
 'undelete-cleanup-error' => 'Fehler beim Löschen der unbenutzten Archiv-Version $1.',
 'undelete-missing-filearchive' => 'Die Datei mit der Archiv-ID $1 kann nicht wiederhergestellt werden, da sie nicht in der Datenbank vorhanden ist. Möglicherweise wurde sie bereits wiederhergestellt.',
-'undelete-error' => 'Es ist beim Wiederherstellen der Seite ein Fehler aufgetreten.',
+'undelete-error' => 'Beim Wiederherstellen der Seite ist ein Fehler aufgetreten.',
 'undelete-error-short' => 'Fehler beim Wiederherstellen der Datei $1',
 'undelete-error-long' => 'Es wurden Fehler beim Wiederherstellen einer Datei festgestellt:
 
@@ -3903,7 +3903,7 @@ Eine [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie der ''GNU General Public License'']
 'dberr-cachederror' => 'Folgendes ist eine Kopie des Caches der angeforderten Seite und kann veraltet sein.',
 
 # HTML forms
-'htmlform-invalid-input' => 'Mit einer oder mehreren Eingaben gibt es Probleme',
+'htmlform-invalid-input' => 'Mit einer oder mehreren Eingabe(n) gibt es Probleme.',
 'htmlform-select-badoption' => 'Der angegebene Wert ist keine gültige Option.',
 'htmlform-int-invalid' => 'Der angegebene Wert ist keine Ganzzahl.',
 'htmlform-float-invalid' => 'Der angegebene Wert ist keine Zahl.',

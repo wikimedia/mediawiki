@@ -969,9 +969,9 @@ La razón dada es esta:
 * Caducidad del bloqueo: $6
 * Bloqueo destinado a: $7
 
-Puedes contactar con $1 o con otro de los [[{{MediaWiki:Grouppage-sysop}}|bibliotecarios]] para discutir el bloqueo.
+Puedes contactar con $1 o con otro de los [[{{MediaWiki:Grouppage-sysop}}|administradores]] para discutir el bloqueo.
 
-No puedes utilizar la función «enviar correo electrónico a este usuario»  a menos que tengas una dirección de correo electrónico válida registrada en tus [[Special:Preferences|preferencias de usuario]] y que el bloqueo no haya inhabilitado esta función.
+Ten en cuenta de que no podrás utilizar la herramienta de «enviar correo electrónico a este usuario»  a menos que tengas una dirección de correo electrónico válida registrada en tus [[Special:Preferences|preferencias de usuario]] y que el bloqueo no haya inhabilitado esta función.
 
 Tu actual dirección IP es $3, y el identificador del bloqueo es #$5.
 Por favor incluye todos los datos aquí mostrados en cualquier consulta que hagas.",

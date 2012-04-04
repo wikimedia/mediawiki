@@ -1028,7 +1028,8 @@ La dernière entrée du registre des blocages est indiquée ci-dessous à titre 
 'userinvalidcssjstitle' => "'''Attention :''' il n’existe pas d’habillage « $1 ». Rappelez-vous que les pages personnelles avec extensions .css et .js utilisent des titres en minuscules, par exemple {{ns:user}}:Foo/vector.css et non {{ns:user}}:Foo/Vector.css.",
 'updated' => '(Mis à jour)',
 'note' => "'''Note :'''",
-'previewnote' => "'''Attention, ce texte n’est qu’une prévisualisation et n’a pas encore été publié !'''",
+'previewnote' => "'''Rappelez-vous que ce n'est qu'une prévisualisation.'''
+Vos modifications n'ont pas encore été enregistrées! [[#editform|→ Continuer la modification]]",
 'previewconflict' => 'Cette prévisualisation montre le texte de la boîte supérieure de modification tel qu’il apparaîtra si vous choisissez de le publier.',
 'session_fail_preview' => "'''Nous ne pouvons enregistrer votre modification à cause d’une perte d’informations concernant votre session.'''
 Veuillez réessayer.

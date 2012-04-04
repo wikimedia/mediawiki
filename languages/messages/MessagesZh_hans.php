@@ -886,7 +886,7 @@ $2
 'userinvalidcssjstitle' => "'''警告：''' 不存在皮肤\"\$1\"。注意自定义的 .css 和 .js 页要使用小写标题，例如，{{ns:user}}:Foo/vector.css 不同于 {{ns:user}}:Foo/Vector.css。",
 'updated' => '（已更新）',
 'note' => "'''注意：'''",
-'previewnote' => "'''请记住这只是预览。'''你的更改还未保存！",
+'previewnote' => "'''请记住这仅为预览。'''您的更改还未保存！[[#editform|→ 继续编辑]]",
 'previewconflict' => '这个预览显示了上面文字编辑区中的内容。它将在你选择保存后出现。',
 'session_fail_preview' => "'''抱歉！由于会话数据丢失，我们不能处理你的编辑。'''请重试。如果再次失败，请尝试[[Special:UserLogout|退出]]后重新登录。",
 'session_fail_preview_html' => "'''抱歉！我们不能处理你在进程数据丢失时的编辑。'''

@@ -971,7 +971,8 @@ Ostatni wpis rejestru blokad jest pokazany poniżej.',
 Strony użytkownika zawierające CSS i JavaScript powinny zaczynać się małą literą, np. {{ns:user}}:Foo/vector.css, w przeciwieństwie do nieprawidłowego {{ns:user}}:Foo/Vector.css.",
 'updated' => '(Zmodyfikowano)',
 'note' => "'''Uwaga:'''",
-'previewnote' => "'''To jest tylko podgląd – zmiany nie zostały jeszcze zapisane!'''",
+'previewnote' => "'''To jest tylko podgląd'''
+Zmiany nie zostały jeszcze zapisane! [[#editform|→ Kontynuuj edycję]]",
 'previewconflict' => 'Podgląd odnosi się do tekstu z górnego pola edycji. Tak będzie wyglądać strona, jeśli zdecydujesz się ją zapisać.',
 'session_fail_preview' => "'''Uwaga! Serwer nie może przetworzyć tej edycji z powodu utraty danych sesji.
 Spróbuj jeszcze raz.

@@ -729,6 +729,7 @@ Perciò, gli utenti che usano questo indirizzo IP non possono creare altri accou
 'emailconfirmlink' => 'Confermare il proprio indirizzo e-mail',
 'invalidemailaddress' => "L'indirizzo e-mail indicato ha un formato non valido. Inserire un indirizzo valido o svuotare la casella.",
 'cannotchangeemail' => 'Gli indirizzi e-mail non possono essere modificati in questo wiki.',
+'emaildisabled' => 'Questo sito non può inviare messaggi di posta elettronica.',
 'accountcreated' => 'Accesso creato',
 'accountcreatedtext' => "È stato creato un accesso per l'utente $1.",
 'createaccount-title' => 'Creazione di un accesso a {{SITENAME}}',
@@ -916,7 +917,8 @@ L'ultimo elemento del registro dei blocchi è riportato di seguito per informazi
 'userinvalidcssjstitle' => "'''Attenzione:'''  Non esiste alcuna skin con nome \"\$1\". Si noti che le pagine per i .css e .js personalizzati hanno l'iniziale del titolo minuscola, ad esempio {{ns:user}}:Esempio/vector.css e non {{ns:user}}:Esempio/Vector.css.",
 'updated' => '(Aggiornato)',
 'note' => "'''NOTA:'''",
-'previewnote' => "'''Questa è solo un'anteprima; le modifiche alla pagina NON sono ancora state salvate!'''",
+'previewnote' => "'''Ricorda che questa è solo un'anteprima.'''
+Le tue modifiche NON sono ancora state salvate! [[#editform|→ Continua a modificare]]",
 'previewconflict' => 'L\'anteprima corrisponde al testo presente nella casella di modifica superiore e rappresenta la pagina come apparirà se si sceglie di premere "Salva la pagina" in questo momento.',
 'session_fail_preview' => "'''Non è stato possibile elaborare la modifica perché sono andati persi i dati relativi alla sessione.
 Riprovare.
@@ -929,6 +931,7 @@ Se il problema persiste, si può provare a [[Special:UserLogout|scollegarsi]] ed
 'token_suffix_mismatch' => "'''La modifica non è stata salvata perché il client ha mostrato di gestire in modo errato i caratteri di punteggiatura nel token associato alla stessa. Per evitare una possibile corruzione del testo della pagina, è stata rifiutata l'intera modifica. Questa situazione può verificarsi, talvolta, quando vengono usati alcuni servizi di proxy anonimi via web che presentano dei bug.'''",
 'edit_form_incomplete' => "' ' Alcune parti del modulo di modifica non hanno raggiunto il server; controllare che le modifiche siano intatte e riprovare. ' '",
 'editing' => 'Modifica di $1',
+'creating' => 'Stai creando $1',
 'editingsection' => 'Modifica di $1 (sezione)',
 'editingcomment' => 'Modifica di $1 (nuova sezione)',
 'editconflict' => 'Conflitto di edizione su $1',

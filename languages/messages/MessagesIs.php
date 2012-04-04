@@ -614,6 +614,9 @@ $2',
 'ns-specialprotected' => 'Kerfissíðum er ekki hægt að breyta.',
 'titleprotected' => "Þessi titill hefur verið verndaður fyrir sköpun af [[User:$1|$1]].
 Ástæðan sem gefin var ''$2''.",
+'filereadonlyerror' => 'Ekki var hægt að breyta skránni "$1" því skráin í skráarsafninu "$2" er engöngu hægt að lesa.
+
+Ástæðan fyrir þessu er "\'\'$3\'\'".',
 
 # Virus scanner
 'virus-badscanner' => "Slæm stilling: óþekktur veiruskannari: ''$1''",
@@ -705,6 +708,7 @@ Til að koma í veg fyrir misnotkun, er aðeins ein áminning send {{PLURAL:$1|h
 'invalidemailaddress' => 'Ekki er hægt að taka við netfangi þínu þar sem að það er á ógildu formi.
 Gjörðu svo vel og settu inn netfang á gildu formi eða tæmdu reitinn.',
 'cannotchangeemail' => 'Ekki er hægt að breyta netföngum notenda á þessum wiki',
+'emaildisabled' => 'Þessi síða getur ekki sent tölvupóst.',
 'accountcreated' => 'Aðgangur búinn til',
 'accountcreatedtext' => 'Notandaaðgangur fyrir $1 er tilbúinn.',
 'createaccount-title' => 'Innskráningagerð á {{SITENAME}}',
@@ -1057,10 +1061,21 @@ Frekari upplýsingar eru í [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENA
 'rev-deleted-no-diff' => "Þú getur ekki skoðað þessa breytingu því ein af breytingunum hefur verið '''eytt'''.
 Frekari upplýsingar eru í [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} eyðingaskrá]",
 'rev-suppressed-no-diff' => "Þú getur ekki skoðað þessa breytingu því einni af útgáfunum var '''eytt'''.",
+'rev-deleted-unhide-diff' => "Einni af útgáfum þessarar breytingar hefur verið '''eytt'''.
+Frekari upplýsingar eru í [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} eyðingaskrá].
+Þú getur enn skoðað [$1 þessa breytingu] ef þú vilt halda áfram.",
+'rev-suppressed-unhide-diff' => "Einni af útgáfum þessarar breytingar hefur verið '''bæld niður'''.
+Frekari upplýsingar eru í [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} bælingarskrá].
+Þú getur enn skoðað [$1 þessa breytingu] ef þú vilt halda áfram.",
+'rev-deleted-diff-view' => "Einni af útgáfum þessarar breytingar hefur verið '''eytt'''.
+Þú getur enn skoðað þessa breytingu; frekari upplýsingar eru í [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} eyðingaskrá].",
+'rev-suppressed-diff-view' => "Einni af útgáfum þessarar breytingar hefur verið '''bæld niður'''.
+Þú getur enn skoðað þessa breytingu; frekari upplýsingar eru í [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} bælingaskrá].",
 'rev-delundel' => 'sýna/fela',
 'rev-showdeleted' => 'sýna',
 'revisiondelete' => 'Eyða/endurvekja breytingar',
 'revdelete-nooldid-title' => 'Ógild markbreyting',
+'revdelete-nooldid-text' => 'Annaðhvort hefur útgáfan sem á að fela ekki verið tilgreind, þessi útgáfa ekki verið til, eða að þú sért að reyna að fela núverandi útgáfu.',
 'revdelete-no-file' => 'Umbeðin skrá er ekki til.',
 'revdelete-show-file-confirm' => 'Ertu viss um að þú viljir sjá eydda breytingu af síðunni "<nowiki>$1</nowiki>" frá $2 $3?',
 'revdelete-show-file-submit' => 'Já',
@@ -1413,6 +1428,7 @@ Tölvupóstfang þitt er ekki gefið upp þegar aðrir notendur hafa samband vi�
 'right-siteadmin' => 'Læsa og aflæsa gagnagrunninum',
 'right-override-export-depth' => 'Flytja út síður með greinum þar sem allt að 5 greinar tengja þær saman.',
 'right-sendemail' => 'Senda tölvupóst til annara notenda',
+'right-passwordreset' => 'Skoða tölvupósta um endurstillingu lykilorðs',
 
 # User rights log
 'rightslog' => 'Réttindaskrá notenda',
@@ -1492,6 +1508,7 @@ Tölvupóstfang þitt er ekki gefið upp þegar aðrir notendur hafa samband vi�
 'newsectionsummary' => 'Nýr hluti: /* $1 */',
 'rc-enhanced-expand' => 'Sýna upplýsingar (þarfnast JavaScript)',
 'rc-enhanced-hide' => 'Fela ítarefni',
+'rc-old-title' => 'Upphaflega búin til undir nafninu "$1"',
 
 # Recent changes linked
 'recentchangeslinked' => 'Skyldar breytingar',
@@ -1630,6 +1647,7 @@ $1',
 'upload-warning-msg' => 'Upphal þitt [$2] mistókst. Þú getur farið aftur á [[Special:Upload/stash/$1|upphlaðsviðmótið]] og leiðrétt villuna.',
 
 'upload-proto-error' => 'Vitlaus samskiptaregla',
+'upload-proto-error-text' => 'Upphlöðun frá öðrum vefþjón þarfnast vefslóðar sem byrjar á <code>http://</code> eða <code>ftp://</code>.',
 'upload-file-error' => 'Innri villa',
 'upload-file-error-text' => 'Innri villa: Gat ekki búið til tímabundna skrá á vefþjóni.
 Vinsamlegast hafðu samband við [[Special:ListUsers/sysop|möppudýr]].',
@@ -1640,10 +1658,12 @@ Ef vandamálið lagast ekki, hafðu samband við [[Special:ListUsers/sysop|stjó
 'upload-too-many-redirects' => 'Vefslóðin inniheldur of margar tilvísanir.',
 'upload-unknown-size' => 'Óþekkt stærð',
 'upload-http-error' => 'HTTP villa kom upp við upphal skráarinnar: $1',
+'upload-copy-upload-invalid-domain' => 'Lokað er fyrir afritun skráa frá öðrum vefþjón á þessu vefsvæði.',
 
 # File backend
 'backend-fail-backup' => 'Öryggisafritun skráarinnar $1 mistókst.',
 'backend-fail-notexists' => 'Skráin $1 er ekki til.',
+'backend-fail-notsame' => 'Ólík skrá er þegar til á $1.',
 'backend-fail-invalidpath' => '$1 er ekki gildur geymslustaður.',
 'backend-fail-delete' => 'Mistókst að eyða skránni $1.',
 'backend-fail-alreadyexists' => 'Skráin $1 er þegar til.',
@@ -1651,9 +1671,14 @@ Ef vandamálið lagast ekki, hafðu samband við [[Special:ListUsers/sysop|stjó
 'backend-fail-copy' => 'Mistókst að afrita skjal $1 á $2.',
 'backend-fail-move' => 'Mistókst að færa skrá $1 á $2.',
 'backend-fail-opentemp' => 'Mistókst að opna tímabundna skrá.',
+'backend-fail-writetemp' => 'Gat ekki skrifað í tímabundna skrá.',
 'backend-fail-closetemp' => 'Mistókst að loka tímabundinni skrá.',
 'backend-fail-read' => 'Mistókst að lesa skrá $1.',
 'backend-fail-create' => 'Mistókst að búa til skrá $1.',
+'backend-fail-maxsize' => 'Mistókst að búa til skránna $1 því hún er stærri en {{PLURAL:$2|eitt bæti|$2 bæti}}.',
+'backend-fail-readonly' => 'Gagnabankann "$1" er engöngu hægt að lesa í augnablikinu. Ástæðan sem var gefin er: "\'\'$2\'\'"',
+'backend-fail-connect' => 'Mistókst að tengjast gagnabankanum "$1".',
+'backend-fail-internal' => 'Óþekkt villa átti sér stað í gagnabankanum "$1".',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'Mistök við opnun skráarinnar fyrir ZIP athuganir.',
@@ -1755,6 +1780,10 @@ Eftirfarandi listi sýnir {{PLURAL:$1|fyrsta myndatengilinn|fyrstu $1 myndatengl
 Gjörðu svo vel og sjáðu [$2 skráarsíðuna þar] fyrir fleiri upplýsingar.',
 'sharedupload-desc-here' => 'Skrá þessi er af $1, og deilt meðal annarra verkefna og nýtist því þar.
 Hér fyrir neðan er afrit af [$2 skráarsíðunni þar].',
+'sharedupload-desc-edit' => 'Þessi skrá er af $1 og gæti verið í notkun á öðrum vefkefnum.
+Hentugra væri ef þú gætir breytt lýsingu skráarinnar á [$2 myndasíðu] hennar þar.',
+'sharedupload-desc-create' => 'Þessi skrá er af $1 og gæti verið í notkun á öðrum vefkefnum.
+Hentugra væri ef þú gætir breytt lýsingu skráarinnar á [$2 myndasíðu] hennar þar.',
 'filepage-nofile' => 'Engin skrá er til með þessu nafni.',
 'filepage-nofile-link' => 'Engin skrá er til með þessu nafni, en þú getur [$1 hlaðið henni inn].',
 'uploadnewversion-linktext' => 'Hlaða inn nýrri útgáfu af þessari skrá',
@@ -1846,6 +1875,9 @@ Laga ætti tenglanna og láta þá vísa á rétta síðu.<br />
 Farið er með síðu sem aðgreiningarsíðu ef að hún inniheldur snið sem vísað er í frá [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects' => 'Tvöfaldar tilvísanir',
+'doubleredirectstext' => 'Þessi síða er listi yfir skrár sem eru tilvísanir á aðrar tilvísanir.
+Hver lína inniheldur tengla á fyrstu og aðra tilvísun auk þeirrar síðu sem seinni tilvísunin beinist að, sem er oftast sú síða sem allar tilvísanirnar eiga að benda á.
+<del>Yfirstrikaðar</del> færslur hafa verið leiðréttar.',
 'double-redirect-fixed-move' => '[[$1]] hefur verið færð.
 Hún er tilvísun á [[$2]].',
 'double-redirect-fixed-maintenance' => 'Laga tvöfalda tilvísun frá [[$1]] til [[$2]].',
@@ -1939,8 +1971,8 @@ Vinsamlegast athugið að aðrar vefsíður gætu tengt beint í skrár héðan,
 'booksources-invalid-isbn' => 'ISBN gildið virðist ekki vera gilt; leitaðu eftir villum við innslátt eða afritun gildisins frá upsprettu þess.',
 
 # Special:Log
-'specialloguserlabel' => 'Notandi:',
-'speciallogtitlelabel' => 'Titill:',
+'specialloguserlabel' => 'Gerandi:',
+'speciallogtitlelabel' => 'Beinist að (titill eða notandi):',
 'log' => 'Aðgerðaskrár',
 'all-logs-page' => 'Allar aðgerðir',
 'alllogstext' => 'Safn allra aðgerðaskráa {{SITENAME}}.
@@ -1964,6 +1996,7 @@ Vinsamlegast athugið að aðrar vefsíður gætu tengt beint í skrár héðan,
 'allpagesprefix' => 'Sýna síður með forskeytinu:',
 'allpagesbadtitle' => 'Ekki var hægt að búa til grein með þessum titli því hann innihélt einn eða fleiri stafi sem ekki er hægt að nota í titlum.',
 'allpages-bad-ns' => '{{SITENAME}} hefur ekki nafnrými „$1“.',
+'allpages-hide-redirects' => 'Fela tilvísanir',
 
 # Special:Categories
 'categories' => 'Flokkar',
@@ -2643,6 +2676,7 @@ Gjörðu svo vel og heimsæktu [//www.mediawiki.org/wiki/Localisation MediaWiki-
 'thumbnail-more' => 'Stækka',
 'filemissing' => 'Skrá vantar',
 'thumbnail_error' => 'Villa við gerð smámyndar: $1',
+'thumbnail-temp-create' => 'Mistókst að búa til tímabundna smámynd.',
 'thumbnail_invalid_params' => 'Breytur smámyndarinnar eru rangar',
 'thumbnail_dest_directory' => 'Mistókst að búa til niðurhals möppu',
 'thumbnail_image-type' => 'Enginn stuðningur er við þetta skráarsnið',

@@ -376,7 +376,7 @@ $1',
 أو [{{fullurl:{{FULLPAGENAME}}|action=edit}} تعديل هذه الصفحة]</span>.',
 'noarticletext-nopermission' => 'لا يوجد حاليا أي نص في هذه الصفحة.يمكنك [[Special:Search/{{PAGENAME}}|البحث عن عنوان هذه الصفحة]] في الصفحات الأخرى,أو <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} بحث السجلات المتصلة]</span>.',
 'previewnote' => "'''تذكر أن هذه مجرد معاينة للصفحة؛''''
-لم تحفظ تغييراتك إلى الآن!",
+لم تحفظ تغييراتك إلى الآن[[#editform|→ Continue editing]]",
 'editing' => 'تحرير $1',
 'editingsection' => 'تحرير $1 (قسم)',
 'templatesused' => '{{PLURAL:$1||القالب المستخدم|القالبان المستخدمان|القوالب المستخدمة}} في هذه الصفحة:',
