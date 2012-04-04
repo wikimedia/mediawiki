@@ -19,6 +19,4 @@ CREATE TABLE /*_*/filejournal (
 );
 
 CREATE INDEX /*i*/fj_batch_id ON /*_*/filejournal (fj_batch_uuid,fj_id);
-CREATE INDEX /*i*/fj_path_id ON /*_*/filejournal (fj_path_sha1,fj_id);
-CREATE INDEX /*i*/fj_new_sha1 ON /*_*/filejournal (fj_new_sha1,fj_id);
 CREATE INDEX /*i*/fj_timestamp ON /*_*/filejournal (fj_timestamp);
