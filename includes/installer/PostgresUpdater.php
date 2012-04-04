@@ -68,6 +68,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'addTable', 'module_deps',       'patch-module_deps.sql' ),
 			array( 'addTable', 'uploadstash',       'patch-uploadstash.sql' ),
 			array( 'addTable', 'user_former_groups','patch-user_former_groups.sql' ),
+			array( 'addTable', 'config',            'patch-config.sql' ),
 
 			# Needed before new field
 			array( 'convertArchive2' ),
@@ -169,6 +170,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'changeField', 'revision',      'rev_minor_edit',  'smallint', 'rev_minor_edit::smallint DEFAULT 0' ),
 			array( 'changeField', 'templatelinks', 'tl_namespace',    'smallint', 'tl_namespace::smallint' ),
 			array( 'changeField', 'user_newtalk',  'user_ip',         'text',     'host(user_ip)' ),
+			array( 'changeField', 'uploadstash',   'us_image_bits',   'smallint', '' ),
 
 			# null changes
 			array( 'changeNullableField', 'oldimage', 'oi_bits',       'NULL' ),
