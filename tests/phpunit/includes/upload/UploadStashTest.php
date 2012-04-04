@@ -28,7 +28,10 @@ class UploadStashTest extends MediaWikiTestCase {
 			)
 		);
 	}
-	
+
+	/**
+	 * @group Database
+	 */
 	public function testBug29408() {
 		global $wgUser;
 		$wgUser = self::$users['uploader']->user;
