@@ -141,6 +141,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   with auto-hide, multi-message support, and message replacement tags.
 * jquery.messageBox which appears to be unused by both core and extensions has
   been removed.
+* The <data>, <time>, <meta>, and <link> elements are allowed within WikiText for use
+  with Microdata.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
