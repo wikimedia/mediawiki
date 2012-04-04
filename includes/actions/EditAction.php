@@ -40,14 +40,16 @@ class EditAction extends FormlessAction {
 		$context = $this->getContext();
 
 		if ( wfRunHooks( 'CustomEditor', array( $page, $user ) ) ) {
+            $handler = ContentHandler::getForTitle( $page->getTitle() );
+
 			if ( ExternalEdit::useExternalEngine( $context, 'edit' )
 				&& $this->getName() == 'edit' && !$request->getVal( 'section' )
 				&& !$request->getVal( 'oldid' ) )
 			{
-				$extedit = new ExternalEdit( $context );
+				$extedit = $handler->createExternalEdit( $context );
 				$extedit->execute();
 			} else {
-				$editor = new EditPage( $page );
+				$editor = $handler->createEditPage( $page );
 				$editor->edit();
 			}
 		}

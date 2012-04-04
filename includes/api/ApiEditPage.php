@@ -108,21 +108,23 @@ class ApiEditPage extends ApiBase {
 			// We do want getContent()'s behavior for non-existent
 			// MediaWiki: pages, though
 			if ( $articleObj->getID() == 0 && $titleObj->getNamespace() != NS_MEDIAWIKI ) {
-				$content = '';
+				$content = null;
+                $text = '';
 			} else {
-				$content = $articleObj->getContent();
+                $content = $articleObj->getContentObject();
+                $text = ContentHandler::getContentText( $content ); #FIXME: serialize?! get format from params?...
 			}
 
 			if ( !is_null( $params['section'] ) ) {
 				// Process the content for section edits
-				global $wgParser;
 				$section = intval( $params['section'] );
-				$content = $wgParser->getSection( $content, $section, false );
-				if ( $content === false ) {
+                $sectionContent = $content->getSection( $section );
+                $text = ContentHandler::getContentText( $sectionContent ); #FIXME: serialize?! get format from params?...
+				if ( $text === false || $text === null ) {
 					$this->dieUsage( "There is no section {$section}.", 'nosuchsection' );
 				}
 			}
-			$params['text'] = $params['prependtext'] . $content . $params['appendtext'];
+			$params['text'] = $params['prependtext'] . $text . $params['appendtext'];
 			$toMD5 = $params['prependtext'] . $params['appendtext'];
 		}
 
@@ -239,7 +241,9 @@ class ApiEditPage extends ApiBase {
 		// TODO: Make them not or check if they still do
 		$wgTitle = $titleObj;
 
-		$ep = new EditPage( $articleObj );
+        $handler = ContentHandler::getForTitle( $titleObj );
+		$ep = $handler->createEditPage( $articleObj );
+
 		$ep->setContextTitle( $titleObj );
 		$ep->importFormData( $req );
 
@@ -522,6 +526,6 @@ class ApiEditPage extends ApiBase {
 	}
 
 	public function getVersion() {
-		return __CLASS__ . ': $Id$';
+		return __CLASS__ . ': $Id: ApiEditPage.php 114179 2012-03-19 20:34:30Z daniel $';
 	}
 }

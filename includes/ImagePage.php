@@ -30,7 +30,6 @@ class ImagePage extends Article {
 	/**
 	 * Constructor from a page id
 	 * @param $id Int article ID to load
-	 * @returnImagePage|null
 	 */
 	public static function newFromID( $id ) {
 		$t = Title::newFromID( $id );
@@ -109,6 +108,8 @@ class ImagePage extends Article {
 			}
 		}
 
+		$this->showRedirectedFromHeader();
+
 		if ( $wgShowEXIF && $this->displayImg->exists() ) {
 			// @todo FIXME: Bad interface, see note on MediaHandler::formatMetadata().
 			$formattedMetadata = $this->displayImg->formatMetadata();
@@ -133,7 +134,9 @@ class ImagePage extends Article {
 			$wgOut->addHTML( Xml::openElement( 'div', array( 'id' => 'mw-imagepage-content',
 				'lang' => $pageLang->getCode(), 'dir' => $pageLang->getDir(),
 				'class' => 'mw-content-'.$pageLang->getDir() ) ) );
-			parent::view();
+
+            parent::view(); #FIXME: use ContentHandler::makeArticle() !!
+
 			$wgOut->addHTML( Xml::closeElement( 'div' ) );
 		} else {
 			# Just need to set the right headers
@@ -244,20 +247,20 @@ class ImagePage extends Article {
 		return $r;
 	}
 
-	/**
-	 * Overloading Article's getContent method.
-	 *
-	 * Omit noarticletext if sharedupload; text will be fetched from the
-	 * shared upload server if possible.
-	 * @return string
-	 */
-	public function getContent() {
-		$this->loadFile();
-		if ( $this->mPage->getFile() && !$this->mPage->getFile()->isLocal() && 0 == $this->getID() ) {
-			return '';
-		}
-		return parent::getContent();
-	}
+    /**
+     * Overloading Article's getContentObject method.
+     *
+     * Omit noarticletext if sharedupload; text will be fetched from the
+     * shared upload server if possible.
+     * @return string
+     */
+    public function getContentObject() {
+        $this->loadFile();
+        if ( $this->mPage->getFile() && !$this->mPage->getFile()->isLocal() && 0 == $this->getID() ) {
+            return null;
+        }
+        return parent::getContentObject();
+    }
 
 	protected function openShowImage() {
 		global $wgOut, $wgUser, $wgImageLimits, $wgRequest,
@@ -279,7 +282,7 @@ class ImagePage extends Article {
 		$max = $wgImageLimits[$sizeSel];
 		$maxWidth = $max[0];
 		$maxHeight = $max[1];
-		$dirmark = $wgLang->getDirMarkEntity();
+		$dirmark = $wgLang->getDirMark();
 
 		if ( $this->displayImg->exists() ) {
 			# image
@@ -449,21 +452,14 @@ class ImagePage extends Article {
 
 				if ( !$this->displayImg->isSafeFile() ) {
 					$warning = wfMsgNoTrans( 'mediawarning' );
-					// dirmark is needed here to separate the file name, which
-					// most likely ends in Latin characters, from the description,
-					// which may begin with the file type. In RTL environment
-					// this will get messy.
-					// The dirmark, however, must not be immediately adjacent
-					// to the filename, because it can get copied with it.
-					// See bug 25277.
 					$wgOut->addWikiText( <<<EOT
-<div class="fullMedia"><span class="dangerousLink">{$medialink}</span> $dirmark<span class="fileInfo">$longDesc</span></div>
+<div class="fullMedia"><span class="dangerousLink">{$medialink}</span>$dirmark <span class="fileInfo">$longDesc</span></div>
 <div class="mediaWarning">$warning</div>
 EOT
 						);
 				} else {
 					$wgOut->addWikiText( <<<EOT
-<div class="fullMedia">{$medialink} {$dirmark}<span class="fileInfo">$longDesc</span>
+<div class="fullMedia">{$medialink}{$dirmark} <span class="fileInfo">$longDesc</span>
 </div>
 EOT
 					);
@@ -475,22 +471,6 @@ EOT
 			}
 		} else {
 			# Image does not exist
-			if ( !$this->getID() ) {
-				# No article exists either
-				# Show deletion log to be consistent with normal articles
-				LogEventsList::showLogExtract(
-					$wgOut,
-					array( 'delete', 'move' ),
-					$this->getTitle()->getPrefixedText(),
-					'',
-					array(  'lim' => 10,
-						'conds' => array( "log_action != 'revision'" ),
-						'showIfEmpty' => false,
-						'msgKey' => array( 'moveddeleted-notice' )
-					)
-				);
-			}
-
 			if ( $wgEnableUploads && $wgUser->isAllowed( 'upload' ) ) {
 				// Only show an upload link if the user can upload
 				$uploadTitle = SpecialPage::getTitleFor( 'Upload' );

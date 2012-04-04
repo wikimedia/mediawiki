@@ -30,7 +30,7 @@ class CacheTime {
 	 */
 	function setCacheTime( $t )          { return wfSetVar( $this->mCacheTime, $t ); }
 
-	/**
+	/**abstract
 	 * Sets the number of seconds after which this object should expire.
 	 * This value is used with the ParserCache.
 	 * If called with a value greater than the value provided at any previous call,
@@ -60,7 +60,6 @@ class CacheTime {
 	 * The value returned by getCacheExpiry is smaller or equal to the smallest number
 	 * that was provided to a call of updateCacheExpiry(), and smaller or equal to the
 	 * value of $wgParserCacheExpireTime.
-	 * @return int|mixed|null
 	 */
 	function getCacheExpiry() {
 		global $wgParserCacheExpireTime;
@@ -167,7 +166,6 @@ class ParserOutput extends CacheTime {
 	/**
 	 * callback used by getText to replace editsection tokens
 	 * @private
-	 * @return mixed
 	 */
 	function replaceEditSectionLinksCallback( $m ) {
 		global $wgOut, $wgLang;
@@ -287,7 +285,7 @@ class ParserOutput extends CacheTime {
 	 * Register a file dependency for this output
 	 * @param $name string Title dbKey
 	 * @param $timestamp string MW timestamp of file creation (or false if non-existing)
-	 * @param $sha1 string base 36 SHA-1 of file (or false if non-existing)
+	 * @param $sha string base 36 SHA-1 of file (or false if non-existing)
 	 * @return void
 	 */
 	function addImage( $name, $timestamp = null, $sha1 = null ) {

@@ -260,7 +260,8 @@ class Title {
 	 * Load Title object fields from a DB row.
 	 * If false is given, the title will be treated as non-existing.
 	 *
-	 * @param $row Object|bool database row
+	 * @param $row Object|false database row
+	 * @return void
 	 */
 	public function loadFromRow( $row ) {
 		if ( $row ) { // page found
@@ -271,12 +272,17 @@ class Title {
 			if ( isset( $row->page_is_redirect ) )
 				$this->mRedirect = (bool)$row->page_is_redirect;
 			if ( isset( $row->page_latest ) )
-				$this->mLatestID = (int)$row->page_latest;
+				$this->mLatestID = (int)$row->page_latest; # FIXME: whene3ver page_latest is updated, also update page_content_model
+            if ( isset( $row->page_content_model ) )
+                $this->mContentModelName = $row->page_content_model;
+            else
+                $this->mContentModelName = null; # initialized lazily in getContentModelName()
 		} else { // page not found
 			$this->mArticleID = 0;
 			$this->mLength = 0;
 			$this->mRedirect = false;
 			$this->mLatestID = 0;
+            $this->mContentModelName = null; # initialized lazily in getContentModelName()
 		}
 	}
 
@@ -302,6 +308,7 @@ class Title {
 		$t->mArticleID = ( $ns >= 0 ) ? -1 : 0;
 		$t->mUrlform = wfUrlencode( $t->mDbkeyform );
 		$t->mTextform = str_replace( '_', ' ', $title );
+        $t->mContentModelName = null; # initialized lazily in getContentModelName()
 		return $t;
 	}
 
@@ -687,6 +694,29 @@ class Title {
 		return $this->mNamespace;
 	}
 
+    /**
+     * Get the page's content model name
+     *
+     * @return Integer: Namespace index
+     */
+    public function getContentModelName() {
+        if ( empty( $this->mContentModelName ) ) {
+            $this->mContentModelName = ContentHandler::getDefaultModelFor( $this );
+        }
+
+        return $this->mContentModelName;
+    }
+
+    /**
+     * Conveniance method for checking a title's content model name
+     *
+     * @param $name
+     * @return true if $this->getContentModelName() == $name
+     */
+    public function hasContentModel( $name ) {
+        return $this->getContentModelName() == $name;
+    }
+
 	/**
 	 * Get the namespace text
 	 *
@@ -862,7 +892,6 @@ class Title {
 	 * This is MUCH simpler than individually testing for equivilance
 	 * against both NS_USER and NS_USER_TALK, and is also forward compatible.
 	 * @since 1.19
-	 * @return bool
 	 */
 	public function hasSubjectNamespace( $ns ) {
 		return MWNamespace::subjectEquals( $this->getNamespace(), $ns );
@@ -937,22 +966,29 @@ class Title {
 	 * @return Bool
 	 */
 	public function isWikitextPage() {
-		$retval = !$this->isCssOrJsPage() && !$this->isCssJsSubpage();
-		wfRunHooks( 'TitleIsWikitextPage', array( $this, &$retval ) );
-		return $retval;
+		return $this->hasContentModel( CONTENT_MODEL_WIKITEXT );
 	}
 
 	/**
-	 * Could this page contain custom CSS or JavaScript, based
-	 * on the title?
+	 * Could this page contain custom CSS or JavaScript for the global UI.
+     * This is generally true for pages in the MediaWiki namespace having CONTENT_MODEL_CSS
+     * or CONTENT_MODEL_JAVASCRIPT.
+     *
+     * Note that this method should not return true for pages that contain and show "inactive" CSS or JS.
 	 *
 	 * @return Bool
 	 */
 	public function isCssOrJsPage() {
-		$retval = $this->mNamespace == NS_MEDIAWIKI
-			&& preg_match( '!\.(?:css|js)$!u', $this->mTextform ) > 0;
-		wfRunHooks( 'TitleIsCssOrJsPage', array( $this, &$retval ) );
-		return $retval;
+        $isCssOrJsPage = NS_MEDIAWIKI == $this->mNamespace
+            && ( $this->hasContentModel( CONTENT_MODEL_CSS )
+                || $this->hasContentModel( CONTENT_MODEL_JAVASCRIPT ) );
+
+        #NOTE: this hook is also called in ContentHandler::getDefaultModel. It's called here again to make sure
+        #      hook funktions can force this method to return true even outside the mediawiki namespace.
+
+        wfRunHooks( 'TitleIsCssOrJsPage', array( $this, &$isCssOrJsPage ) );
+
+        return $isCssOrJsPage;
 	}
 
 	/**
@@ -960,7 +996,8 @@ class Title {
 	 * @return Bool
 	 */
 	public function isCssJsSubpage() {
-		return ( NS_USER == $this->mNamespace and preg_match( "/\\/.*\\.(?:css|js)$/", $this->mTextform ) );
+		return ( NS_USER == $this->mNamespace && $this->isSubpage()
+            && $this->isCssOrJsPage() );
 	}
 
 	/**
@@ -983,7 +1020,8 @@ class Title {
 	 * @return Bool
 	 */
 	public function isCssSubpage() {
-		return ( NS_USER == $this->mNamespace && preg_match( "/\\/.*\\.css$/", $this->mTextform ) );
+        return ( NS_USER == $this->mNamespace && $this->isSubpage()
+            && $this->hasContentModel( CONTENT_MODEL_CSS ) );
 	}
 
 	/**
@@ -992,7 +1030,8 @@ class Title {
 	 * @return Bool
 	 */
 	public function isJsSubpage() {
-		return ( NS_USER == $this->mNamespace && preg_match( "/\\/.*\\.js$/", $this->mTextform ) );
+        return ( NS_USER == $this->mNamespace && $this->isSubpage()
+            && $this->hasContentModel( CONTENT_MODEL_JAVASCRIPT ) );
 	}
 
 	/**
@@ -1226,7 +1265,6 @@ class Title {
 	 * andthe wfArrayToCGI moved to getLocalURL();
 	 *
 	 * @since 1.19 (r105919)
-	 * @return String
 	 */
 	private static function fixUrlQueryArgs( $query, $query2 = false ) {
 		if( $query2 !== false ) {
@@ -1285,7 +1323,7 @@ class Title {
 	 * with action=render, $wgServer is prepended.
 	 *
 
-	 * @param $query string|array an optional query string,
+	 * @param $query \twotypes{\string,\array} an optional query string,
 	 *   not used for interwiki	links. Can be specified as an associative array as well,
 	 *   e.g., array( 'action' => 'edit' ) (keys and values will be URL-escaped).
 	 *   Some query patterns will trigger various shorturl path replacements.
@@ -1479,7 +1517,6 @@ class Title {
 	 *
 	 * @see self::getLocalURL
 	 * @since 1.18
-	 * @return string
 	 */
 	public function escapeCanonicalURL( $query = '', $query2 = false ) {
 		wfDeprecated( __METHOD__, '1.19' );
@@ -1927,7 +1964,7 @@ class Title {
 			// Don't block the user from editing their own talk page unless they've been
 			// explicitly blocked from that too.
 		} elseif( $user->isBlocked() && $user->mBlock->prevents( $action ) !== false ) {
-			$block = $user->getBlock();
+			$block = $user->mBlock;
 
 			// This is from OutputPage::blockedPage
 			// Copied at r23888 by werdna
@@ -1947,15 +1984,15 @@ class Title {
 
 			$link = '[[' . $wgContLang->getNsText( NS_USER ) . ":{$name}|{$name}]]";
 			$blockid = $block->getId();
-			$blockExpiry = $block->getExpiry();
-			$blockTimestamp = $wgLang->timeanddate( wfTimestamp( TS_MW, $block->mTimestamp ), true );
+			$blockExpiry = $user->mBlock->mExpiry;
+			$blockTimestamp = $wgLang->timeanddate( wfTimestamp( TS_MW, $user->mBlock->mTimestamp ), true );
 			if ( $blockExpiry == 'infinity' ) {
 				$blockExpiry = wfMessage( 'infiniteblock' )->text();
 			} else {
 				$blockExpiry = $wgLang->timeanddate( wfTimestamp( TS_MW, $blockExpiry ), true );
 			}
 
-			$intended = strval( $block->getTarget() );
+			$intended = strval( $user->mBlock->getTarget() );
 
 			$errors[] = array( ( $block->mAuto ? 'autoblockedtext' : 'blockedtext' ), $link, $reason, $ip, $name,
 				$blockid, $blockExpiry, $intended, $blockTimestamp );
@@ -2022,8 +2059,9 @@ class Title {
 			$name = $this->getPrefixedText();
 			$dbName = $this->getPrefixedDBKey();
 
-			// Check for explicit whitelisting with and without underscores
+			// Check with and without underscores
 			if ( in_array( $name, $wgWhitelistRead, true ) || in_array( $dbName, $wgWhitelistRead, true ) ) {
+				# Check for explicit whitelisting
 				$whitelisted = true;
 			} elseif ( $this->getNamespace() == NS_MAIN ) {
 				# Old settings might have the title prefixed with
@@ -2538,7 +2576,7 @@ class Title {
 
 		if ( $oldFashionedRestrictions === null ) {
 			$oldFashionedRestrictions = $dbr->selectField( 'page', 'page_restrictions',
-				array( 'page_id' => $this->getArticleID() ), __METHOD__ );
+				array( 'page_id' => $this->getArticleId() ), __METHOD__ );
 		}
 
 		if ( $oldFashionedRestrictions != '' ) {
@@ -2609,7 +2647,7 @@ class Title {
 				$res = $dbr->select(
 					'page_restrictions',
 					'*',
-					array( 'pr_page' => $this->getArticleID() ),
+					array( 'pr_page' => $this->getArticleId() ),
 					__METHOD__
 				);
 
@@ -3167,7 +3205,7 @@ class Title {
 	 * @return Array of Title objects linking here
 	 */
 	public function getLinksFrom( $options = array(), $table = 'pagelinks', $prefix = 'pl' ) {
-		$id = $this->getArticleID();
+		$id = $this->getArticleId();
 
 		# If the page doesn't exist; there can't be any link from this page
 		if ( !$id ) {
@@ -3231,7 +3269,7 @@ class Title {
 	 * @return Array of Title the Title objects
 	 */
 	public function getBrokenLinksFrom() {
-		if ( $this->getArticleID() == 0 ) {
+		if ( $this->getArticleId() == 0 ) {
 			# All links from article ID 0 are false positives
 			return array();
 		}
@@ -3241,7 +3279,7 @@ class Title {
 			array( 'page', 'pagelinks' ),
 			array( 'pl_namespace', 'pl_title' ),
 			array(
-				'pl_from' => $this->getArticleID(),
+				'pl_from' => $this->getArticleId(),
 				'page_namespace IS NULL'
 			),
 			__METHOD__, array(),
@@ -3476,7 +3514,7 @@ class Title {
 			RepoGroup::singleton()->clearCache( $nt ); # clear false negative cache
 		}
 
-		$dbw->begin( __METHOD__ ); # If $file was a LocalFile, its transaction would have closed our own.
+		$dbw->begin(); # If $file was a LocalFile, its transaction would have closed our own.
 		$pageid = $this->getArticleID( self::GAID_FOR_UPDATE );
 		$protected = $this->isProtected();
 
@@ -3484,7 +3522,7 @@ class Title {
 		$err = $this->moveToInternal( $nt, $reason, $createRedirect );
 		if ( is_array( $err ) ) {
 			# @todo FIXME: What about the File we have already moved?
-			$dbw->rollback( __METHOD__ );
+			$dbw->rollback();
 			return $err;
 		}
 
@@ -3548,7 +3586,7 @@ class Title {
 			WatchedItem::duplicateEntries( $this, $nt );
 		}
 
-		$dbw->commit( __METHOD__ );
+		$dbw->commit();
 
 		wfRunHooks( 'TitleMoveComplete', array( &$this, &$nt, &$wgUser, $pageid, $redirid ) );
 		return true;
@@ -3595,6 +3633,7 @@ class Title {
 		$comment = $wgContLang->truncate( $comment, 255 );
 
 		$oldid = $this->getArticleID();
+		$latest = $this->getLatestRevID();
 
 		$dbw = wfGetDB( DB_MASTER );
 
@@ -3635,13 +3674,9 @@ class Title {
 		$newpage->updateRevisionOn( $dbw, $nullRevision );
 
 		wfRunHooks( 'NewRevisionFromEditComplete',
-			array( $newpage, $nullRevision, $nullRevision->getParentId(), $wgUser ) );
+			array( $newpage, $nullRevision, $latest, $wgUser ) );
 
 		$newpage->doEditUpdates( $nullRevision, $wgUser, array( 'changed' => false ) );
-
-		if ( !$moveOverRedirect ) {
-			WikiPage::onArticleCreate( $nt );
-		}
 
 		# Recreate the redirect, this time in the other direction.
 		if ( $redirectSuppressed ) {
@@ -3714,8 +3749,8 @@ class Title {
 			// We don't know whether this function was called before
 			// or after moving the root page, so check both
 			// $this and $nt
-			if ( $oldSubpage->getArticleID() == $this->getArticleID() ||
-					$oldSubpage->getArticleID() == $nt->getArticleID() )
+			if ( $oldSubpage->getArticleId() == $this->getArticleId() ||
+					$oldSubpage->getArticleID() == $nt->getArticleId() )
 			{
 				// When moving a page to a subpage of itself,
 				// don't move it twice
@@ -3839,7 +3874,7 @@ class Title {
 
 		$data = array();
 
-		$titleKey = $this->getArticleID();
+		$titleKey = $this->getArticleId();
 
 		if ( $titleKey === 0 ) {
 			return $data;
@@ -3917,7 +3952,7 @@ class Title {
 		$db = ( $flags & self::GAID_FOR_UPDATE ) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
 		return $db->selectField( 'revision', 'rev_id',
 			array(
-				'rev_page' => $this->getArticleID( $flags ),
+				'rev_page' => $this->getArticleId( $flags ),
 				'rev_id < ' . intval( $revId )
 			),
 			__METHOD__,
@@ -3936,7 +3971,7 @@ class Title {
 		$db = ( $flags & self::GAID_FOR_UPDATE ) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
 		return $db->selectField( 'revision', 'rev_id',
 			array(
-				'rev_page' => $this->getArticleID( $flags ),
+				'rev_page' => $this->getArticleId( $flags ),
 				'rev_id > ' . intval( $revId )
 			),
 			__METHOD__,
@@ -3951,7 +3986,7 @@ class Title {
 	 * @return Revision|Null if page doesn't exist
 	 */
 	public function getFirstRevision( $flags = 0 ) {
-		$pageId = $this->getArticleID( $flags );
+		$pageId = $this->getArticleId( $flags );
 		if ( $pageId ) {
 			$db = ( $flags & self::GAID_FOR_UPDATE ) ? wfGetDB( DB_MASTER ) : wfGetDB( DB_SLAVE );
 			$row = $db->selectRow( 'revision', '*',
@@ -4016,7 +4051,7 @@ class Title {
 		if ( $this->mEstimateRevisions === null ) {
 			$dbr = wfGetDB( DB_SLAVE );
 			$this->mEstimateRevisions = $dbr->estimateRowCount( 'revision', '*',
-				array( 'rev_page' => $this->getArticleID() ), __METHOD__ );
+				array( 'rev_page' => $this->getArticleId() ), __METHOD__ );
 		}
 
 		return $this->mEstimateRevisions;
@@ -4043,7 +4078,7 @@ class Title {
 		$dbr = wfGetDB( DB_SLAVE );
 		return (int)$dbr->selectField( 'revision', 'count(*)',
 			array(
-				'rev_page' => $this->getArticleID(),
+				'rev_page' => $this->getArticleId(),
 				'rev_timestamp > ' . $dbr->addQuotes( $dbr->timestamp( $old->getTimestamp() ) ),
 				'rev_timestamp < ' . $dbr->addQuotes( $dbr->timestamp( $new->getTimestamp() ) )
 			),
@@ -4117,7 +4152,7 @@ class Title {
 	 * @return Bool
 	 */
 	public function exists() {
-		return $this->getArticleID() != 0;
+		return $this->getArticleId() != 0;
 	}
 
 	/**
@@ -4137,28 +4172,9 @@ class Title {
 	 * @return Bool
 	 */
 	public function isAlwaysKnown() {
-		$isKnown = null;
-
-		/**
-		 * Allows overriding default behaviour for determining if a page exists.
-		 * If $isKnown is kept as null, regular checks happen. If it's
-		 * a boolean, this value is returned by the isKnown method.
-		 *
-		 * @since 1.20
-		 *
-		 * @param Title $title
-		 * @param boolean|null $isKnown
-		 */
-		wfRunHooks( 'TitleIsAlwaysKnown', array( $this, &$isKnown ) );
-
-		if ( !is_null( $isKnown ) ) {
-			return $isKnown;
-		}
-
 		if ( $this->mInterwiki != '' ) {
 			return true;  // any interwiki link might be viewable, for all we know
 		}
-
 		switch( $this->mNamespace ) {
 			case NS_MEDIA:
 			case NS_FILE:
@@ -4183,9 +4199,6 @@ class Title {
 	 * viewed?  In particular, this function may be used to determine if
 	 * links to the title should be rendered as "bluelinks" (as opposed to
 	 * "redlinks" to non-existent pages).
-	 * Adding something else to this function will cause inconsistency
-	 * since LinkHolderArray calls isAlwaysKnown() and does its own
-	 * page existence check.
 	 *
 	 * @return Bool
 	 */
@@ -4478,7 +4491,7 @@ class Title {
 		if ( $this->isSpecialPage() ) {
 			// special pages are in the user language
 			return $wgLang;
-		} elseif ( $this->isCssOrJsPage() || $this->isCssJsSubpage() ) {
+		} elseif ( $this->isCssOrJsPage() ) {
 			// css/js should always be LTR and is, in fact, English
 			return wfGetLangObj( 'en' );
 		} elseif ( $this->getNamespace() == NS_MEDIAWIKI ) {

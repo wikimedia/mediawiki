@@ -39,6 +39,7 @@ class OracleUpdater extends DatabaseUpdater {
 			array( 'doRecentchangesFK2Cascade' ),
 
 			//1.19
+			array( 'addTable', 'config', 'patch-config.sql' ),
 			array( 'addIndex', 'logging',       'i05',      'patch-logging_type_action_index.sql'),
 			array( 'addTable', 'globaltemplatelinks', 'patch-globaltemplatelinks.sql' ),
 			array( 'addTable', 'globalnamespaces', 'patch-globalnamespaces.sql' ),
@@ -52,8 +53,13 @@ class OracleUpdater extends DatabaseUpdater {
 			array( 'addField', 'job', 'job_timestamp', 'patch-job_timestamp_field.sql' ),
 			array( 'addIndex', 'job', 'i02', 'patch-job_timestamp_index.sql' ),
 
-			//1.20
-			array( 'addTable', 'config', 'patch-config.sql' ),
+            // 1.20
+            // content model stuff for WikiData
+            array( 'addField',	'revision',	'rev_content_format',		'patch-revision-rev_content_format.sql' ),
+            array( 'addField',	'revision',	'rev_content_model',		'patch-revision-rev_content_model.sql' ),
+            array( 'addField',	'archive',	'ar_content_format',		'patch-archive-ar_content_format.sql' ),
+            array( 'addField',	'archive',	'ar_content_model',		    'patch-archive-ar_content_model.sql' ),
+            array( 'addField',	'page',     'page_content_model',		'patch-page-page_content_model.sql' ),
 
 			// KEEP THIS AT THE BOTTOM!!
 			array( 'doRebuildDuplicateFunction' ),

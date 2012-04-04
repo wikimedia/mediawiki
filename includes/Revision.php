@@ -20,6 +20,10 @@ class Revision {
 	protected $mTextRow;
 	protected $mTitle;
 	protected $mCurrent;
+    protected $mContentModelName;
+    protected $mContentFormat;
+    protected $mContent;
+    protected $mContentHandler;
 
 	const DELETED_TEXT = 1;
 	const DELETED_COMMENT = 2;
@@ -125,6 +129,8 @@ class Revision {
 			'deleted'    => $row->ar_deleted,
 			'len'        => $row->ar_len,
 			'sha1'       => isset( $row->ar_sha1 ) ? $row->ar_sha1 : null,
+            'content_model' => isset( $row->ar_content_model ) ? $row->ar_content_model : null,
+            'content_format'  => isset( $row->ar_content_format ) ? $row->ar_content_format : null,
 		);
 		if ( isset( $row->ar_text ) && !$row->ar_text_id ) {
 			// Pre-1.5 ar_text row
@@ -321,7 +327,6 @@ class Revision {
 	/**
 	 * Return the list of revision fields that should be selected to create
 	 * a new revision.
-	 * @return array
 	 */
 	public static function selectFields() {
 		return array(
@@ -336,14 +341,15 @@ class Revision {
 			'rev_deleted',
 			'rev_len',
 			'rev_parent_id',
-			'rev_sha1'
+			'rev_sha1',
+			'rev_content_format',
+			'rev_content_model'
 		);
 	}
 
 	/**
 	 * Return the list of text fields that should be selected to read the
 	 * revision text
-	 * @return array
 	 */
 	public static function selectTextFields() {
 		return array(
@@ -354,7 +360,6 @@ class Revision {
 
 	/**
 	 * Return the list of page fields that should be selected from page table
-	 * @return array
 	 */
 	public static function selectPageFields() {
 		return array(
@@ -367,7 +372,6 @@ class Revision {
 
 	/**
 	 * Return the list of user fields that should be selected from user table
-	 * @return array
 	 */
 	public static function selectUserFields() {
 		return array( 'user_name' );
@@ -416,6 +420,18 @@ class Revision {
 				$this->mTitle = null;
 			}
 
+            if( !isset( $row->rev_content_model ) || is_null( $row->rev_content_model ) ) {
+                $this->mContentModelName = null; # determine on demand if needed
+            } else {
+                $this->mContentModelName = strval( $row->rev_content_model );
+            }
+
+            if( !isset( $row->rev_content_format ) || is_null( $row->rev_content_format ) ) {
+                $this->mContentFormat = null; # determine on demand if needed
+            } else {
+                $this->mContentFormat = strval( $row->rev_content_format );
+            }
+
 			// Lazy extraction...
 			$this->mText      = null;
 			if( isset( $row->old_text ) ) {
@@ -437,6 +453,19 @@ class Revision {
 			// Build a new revision to be saved...
 			global $wgUser; // ugh
 
+
+            # if we have a content object, use it to set the model and type
+            if ( !empty( $row['content'] ) ) {
+                if ( !empty( $row['text_id'] ) ) { #FIXME: when is that set? test with external store setup! check out insertOn()
+                    throw new MWException( "Text already stored in external store (id {$row['text_id']}), can't serialize content object" );
+                }
+
+                $row['content_model'] = $row['content']->getModelName();
+                # note: mContentFormat is initializes later accordingly
+                # note: content is serialized later in this method!
+                # also set text to null?
+            }
+
 			$this->mId        = isset( $row['id']         ) ? intval( $row['id']         ) : null;
 			$this->mPage      = isset( $row['page']       ) ? intval( $row['page']       ) : null;
 			$this->mTextId    = isset( $row['text_id']    ) ? intval( $row['text_id']    ) : null;
@@ -449,6 +478,9 @@ class Revision {
 			$this->mParentId  = isset( $row['parent_id']  ) ? intval( $row['parent_id']  ) : null;
 			$this->mSha1      = isset( $row['sha1']  )      ? strval( $row['sha1']  )      : null;
 
+            $this->mContentModelName = isset( $row['content_model']  )  ? strval( $row['content_model'] ) : null;
+            $this->mContentFormat    = isset( $row['content_format']  )   ? strval( $row['content_format'] ) : null;
+
 			// Enforce spacing trimming on supplied text
 			$this->mComment   = isset( $row['comment']    ) ?  trim( strval( $row['comment'] ) ) : null;
 			$this->mText      = isset( $row['text']       ) ? rtrim( strval( $row['text']    ) ) : null;
@@ -458,16 +490,29 @@ class Revision {
 			$this->mCurrent   = false;
 			# If we still have no length, see it we have the text to figure it out
 			if ( !$this->mSize ) {
+                #XXX: my be inconsistent with the notion of "size" use for the present content model
 				$this->mSize = is_null( $this->mText ) ? null : strlen( $this->mText );
 			}
 			# Same for sha1
 			if ( $this->mSha1 === null ) {
 				$this->mSha1 = is_null( $this->mText ) ? null : self::base36Sha1( $this->mText );
 			}
+
+            $this->getContentModelName(); # force lazy init
+            $this->getContentFormat();      # force lazy init
+
+            # if we have a content object, serialize it, overriding mText
+            if ( !empty( $row['content'] ) ) {
+                $handler = $this->getContentHandler();
+                $this->mText = $handler->serialize( $row['content'], $this->getContentFormat() );
+            }
 		} else {
 			throw new MWException( 'Revision constructor passed invalid row format.' );
 		}
 		$this->mUnpatrolled = null;
+
+        #FIXME: add patch for ar_content_format, ar_content_model, rev_content_format, rev_content_model to installer
+        #FIXME: add support for ar_content_format, ar_content_model, rev_content_format, rev_content_model to API
 	}
 
 	/**
@@ -501,7 +546,7 @@ class Revision {
 	/**
 	 * Get parent revision ID (the original previous page revision)
 	 *
-	 * @return Integer|null
+	 * @return Integer
 	 */
 	public function getParentId() {
 		return $this->mParentId;
@@ -537,12 +582,12 @@ class Revision {
 		$dbr = wfGetDB( DB_SLAVE );
 		$row = $dbr->selectRow(
 			array( 'page', 'revision' ),
-			self::selectPageFields(),
+			array( 'page_namespace', 'page_title' ),
 			array( 'page_id=rev_page',
 				   'rev_id' => $this->mId ),
-			__METHOD__ );
-		if ( $row ) {
-			$this->mTitle = Title::newFromRow( $row );
+			'Revision::getTitle' );
+		if( $row ) {
+			$this->mTitle = Title::makeTitle( $row->page_namespace, $row->page_title );
 		}
 		return $this->mTitle;
 	}
@@ -727,16 +772,37 @@ class Revision {
 	 * @param $user User object to check for, only if FOR_THIS_USER is passed
 	 *              to the $audience parameter
 	 * @return String
+     * @deprectaed in 1.20, use getContent() instead
 	 */
-	public function getText( $audience = self::FOR_PUBLIC, User $user = null ) {
-		if( $audience == self::FOR_PUBLIC && $this->isDeleted( self::DELETED_TEXT ) ) {
-			return '';
-		} elseif( $audience == self::FOR_THIS_USER && !$this->userCan( self::DELETED_TEXT, $user ) ) {
-			return '';
-		} else {
-			return $this->getRawText();
-		}
+	public function getText( $audience = self::FOR_PUBLIC, User $user = null ) { #FIXME: deprecated, replace usage! #FIXME: used a LOT!
+        wfDeprecated( __METHOD__, '1.20' );
+
+        $content = $this->getContent();
+        return ContentHandler::getContentText( $content ); # returns the raw content text, if applicable
 	}
+
+    /**
+     * Fetch revision content if it's available to the specified audience.
+     * If the specified audience does not have the ability to view this
+     * revision, null will be returned.
+     *
+     * @param $audience Integer: one of:
+     *      Revision::FOR_PUBLIC       to be displayed to all users
+     *      Revision::FOR_THIS_USER    to be displayed to $wgUser
+     *      Revision::RAW              get the text regardless of permissions
+     * @param $user User object to check for, only if FOR_THIS_USER is passed
+     *              to the $audience parameter
+     * @return Content
+     */
+    public function getContent( $audience = self::FOR_PUBLIC, User $user = null ) {
+        if( $audience == self::FOR_PUBLIC && $this->isDeleted( self::DELETED_TEXT ) ) {
+            return null;
+        } elseif( $audience == self::FOR_THIS_USER && !$this->userCan( self::DELETED_TEXT, $user ) ) {
+            return null;
+        } else {
+            return $this->getContentInternal();
+        }
+    }
 
 	/**
 	 * Alias for getText(Revision::FOR_THIS_USER)
@@ -754,13 +820,62 @@ class Revision {
 	 *
 	 * @return String
 	 */
-	public function getRawText() {
-		if( is_null( $this->mText ) ) {
-			// Revision text is immutable. Load on demand:
-			$this->mText = $this->loadText();
-		}
-		return $this->mText;
+	public function getRawText() { #FIXME: deprecated, replace usage!
+		return $this->getText( self::RAW );
 	}
+
+    protected function getContentInternal() {
+        if( is_null( $this->mContent ) ) {
+            // Revision is immutable. Load on demand:
+
+            $handler = $this->getContentHandler();
+            $format = $this->getContentFormat();
+            $title = $this->getTitle();
+
+            if( is_null( $this->mText ) ) {
+                // Load text on demand:
+                $this->mText = $this->loadText();
+            }
+
+            $this->mContent = is_null( $this->mText ) ? null : $handler->unserialize( $this->mText, $format );
+        }
+
+        return $this->mContent;
+    }
+
+    public function getContentModelName() {
+        if ( !$this->mContentModelName ) {
+            $title = $this->getTitle();
+            $this->mContentModelName = ( $title ? $title->getContentModelName() : CONTENT_MODEL_WIKITEXT );
+        }
+
+        return $this->mContentModelName;
+    }
+
+    public function getContentFormat() {
+        if ( !$this->mContentFormat ) {
+            $handler = $this->getContentHandler();
+            $this->mContentFormat = $handler->getDefaultFormat();
+        }
+
+        return $this->mContentFormat;
+    }
+
+    public function getContentHandler() {
+        if ( !$this->mContentHandler ) {
+            $title = $this->getTitle();
+
+            if ( $title ) $model = $title->getContentModelName();
+            else $model = CONTENT_MODEL_WIKITEXT;
+
+            $this->mContentHandler = ContentHandler::getForModelName( $model );
+
+            #XXX: do we need to verify that mContentHandler supports mContentFormat?
+            #     otherwise, a fixed content format may cause problems on insert.
+        }
+
+        return $this->mContentHandler;
+    }
 
 	/**
 	 * @return String
@@ -983,26 +1098,29 @@ class Revision {
 		$rev_id = isset( $this->mId )
 			? $this->mId
 			: $dbw->nextSequenceValue( 'revision_rev_id_seq' );
-		$dbw->insert( 'revision',
-			array(
-				'rev_id'         => $rev_id,
-				'rev_page'       => $this->mPage,
-				'rev_text_id'    => $this->mTextId,
-				'rev_comment'    => $this->mComment,
-				'rev_minor_edit' => $this->mMinorEdit ? 1 : 0,
-				'rev_user'       => $this->mUser,
-				'rev_user_text'  => $this->mUserText,
-				'rev_timestamp'  => $dbw->timestamp( $this->mTimestamp ),
-				'rev_deleted'    => $this->mDeleted,
-				'rev_len'        => $this->mSize,
-				'rev_parent_id'  => is_null( $this->mParentId )
-					? $this->getPreviousRevisionId( $dbw )
-					: $this->mParentId,
-				'rev_sha1'       => is_null( $this->mSha1 )
-					? Revision::base36Sha1( $this->mText )
-					: $this->mSha1
-			), __METHOD__
-		);
+
+        $row = array(
+            'rev_id'         => $rev_id,
+            'rev_page'       => $this->mPage,
+            'rev_text_id'    => $this->mTextId,
+            'rev_comment'    => $this->mComment,
+            'rev_minor_edit' => $this->mMinorEdit ? 1 : 0,
+            'rev_user'       => $this->mUser,
+            'rev_user_text'  => $this->mUserText,
+            'rev_timestamp'  => $dbw->timestamp( $this->mTimestamp ),
+            'rev_deleted'    => $this->mDeleted,
+            'rev_len'        => $this->mSize,
+            'rev_parent_id'  => is_null( $this->mParentId )
+                ? $this->getPreviousRevisionId( $dbw )
+                : $this->mParentId,
+            'rev_sha1'       => is_null( $this->mSha1 )
+                ? Revision::base36Sha1( $this->mText )
+                : $this->mSha1,
+            'rev_content_model'       => $this->getContentModelName(),
+            'rev_content_format'        => $this->getContentFormat(),
+        );
+
+		$dbw->insert( 'revision', $row, __METHOD__ );
 
 		$this->mId = !is_null( $rev_id ) ? $rev_id : $dbw->insertId();
 
@@ -1100,7 +1218,8 @@ class Revision {
 
 		$current = $dbw->selectRow(
 			array( 'page', 'revision' ),
-			array( 'page_latest', 'rev_text_id', 'rev_len', 'rev_sha1' ),
+			array( 'page_latest', 'rev_text_id', 'rev_len', 'rev_sha1',
+                    'rev_content_model', 'rev_content_format' ),
 			array(
 				'page_id' => $pageId,
 				'page_latest=rev_id',
@@ -1115,7 +1234,9 @@ class Revision {
 				'text_id'    => $current->rev_text_id,
 				'parent_id'  => $current->page_latest,
 				'len'        => $current->rev_len,
-				'sha1'       => $current->rev_sha1
+				'sha1'       => $current->rev_sha1,
+				'content_model'  => $current->rev_content_model,
+				'content_format'   => $current->rev_content_format
 				) );
 		} else {
 			$revision = null;
@@ -1185,7 +1306,7 @@ class Revision {
 			$id = 0;
 		}
 		$conds = array( 'rev_id' => $id );
-		$conds['rev_page'] = $title->getArticleID();
+		$conds['rev_page'] = $title->getArticleId();
 		$timestamp = $dbr->selectField( 'revision', 'rev_timestamp', $conds, __METHOD__ );
 		if ( $timestamp === false && wfGetLB()->getServerCount() > 1 ) {
 			# Not in slave, try master
@@ -1219,7 +1340,7 @@ class Revision {
 	 * @return Integer
 	 */
 	static function countByTitle( $db, $title ) {
-		$id = $title->getArticleID();
+		$id = $title->getArticleId();
 		if( $id ) {
 			return Revision::countByPageId( $db, $id );
 		}

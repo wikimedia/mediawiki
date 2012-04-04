@@ -17,13 +17,13 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  *
  * @file
- * @ingroup Actions
+ * @ingroup Action
  */
 
 /**
  * User interface for the rollback action
  *
- * @ingroup Actions
+ * @ingroup Action
  */
 class RollbackAction extends FormlessAction {
 
@@ -63,7 +63,7 @@ class RollbackAction extends FormlessAction {
 				$current = $details['current'];
 
 				if ( $current->getComment() != '' ) {
-					$this->getOutput()->addHTML( $this->msg( 'editcomment' )->rawParams(
+					$this->getOutput()->addHTML( wfMessage( 'editcomment' )->rawParams(
 						Linker::formatComment( $current->getComment() ) )->parse() );
 				}
 			}
@@ -97,7 +97,7 @@ class RollbackAction extends FormlessAction {
 		$this->getOutput()->setRobotPolicy( 'noindex,nofollow' );
 
 		if ( $current->getUserText() === '' ) {
-			$old = $this->msg( 'rev-deleted-user' )->escaped();
+			$old = wfMsg( 'rev-deleted-user' );
 		} else {
 			$old = Linker::userLink( $current->getUser(), $current->getUserText() )
 				. Linker::userToolLinks( $current->getUser(), $current->getUserText() );
@@ -105,11 +105,12 @@ class RollbackAction extends FormlessAction {
 
 		$new = Linker::userLink( $target->getUser(), $target->getUserText() )
 			. Linker::userToolLinks( $target->getUser(), $target->getUserText() );
-		$this->getOutput()->addHTML( $this->msg( 'rollback-success' )->rawParams( $old, $new )->parseAsBlock() );
+		$this->getOutput()->addHTML( wfMsgExt( 'rollback-success', array( 'parse', 'replaceafter' ), $old, $new ) );
 		$this->getOutput()->returnToMain( false, $this->getTitle() );
 
 		if ( !$request->getBool( 'hidediff', false ) && !$this->getUser()->getBoolOption( 'norollbackdiff', false ) ) {
-			$de = new DifferenceEngine( $this->getContext(), $current->getId(), $newId, false, true );
+            $contentHandler = ContentHandler::getForTitle( $this->getTitle() );
+            $de = $contentHandler->getDifferenceEngine( $this->getContext(), $current->getId(), $newId, false, true );
 			$de->showDiff( '', '' );
 		}
 	}

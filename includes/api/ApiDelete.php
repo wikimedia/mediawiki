@@ -123,7 +123,7 @@ class ApiDelete extends ApiBase {
 			// Need to pass a throwaway variable because generateReason expects
 			// a reference
 			$hasHistory = false;
-			$reason = $page->getAutoDeleteReason( $hasHistory );
+			$reason = $page->getAutoDeleteReason( $hasHistory ); #FIXME: use ContentHandler::getAutoDeleteReason()
 			if ( $reason === false ) {
 				return array( array( 'cannotdelete', $title->getPrefixedText() ) );
 			}
@@ -145,7 +145,7 @@ class ApiDelete extends ApiBase {
 	 * @param $oldimage
 	 * @param $reason
 	 * @param $suppress bool
-	 * @return array|Title
+	 * @return \type|array|Title
 	 */
 	public static function deleteFile( Page $page, User $user, $token, $oldimage, &$reason = null, $suppress = false ) {
 		$title = $page->getTitle();
@@ -273,6 +273,6 @@ class ApiDelete extends ApiBase {
 	}
 
 	public function getVersion() {
-		return __CLASS__ . ': $Id$';
+		return __CLASS__ . ': $Id: ApiDelete.php 114242 2012-03-20 09:57:41Z daniel $';
 	}
 }

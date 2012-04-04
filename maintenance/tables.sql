@@ -159,12 +159,11 @@ CREATE UNIQUE INDEX /*i*/ug_user_group ON /*_*/user_groups (ug_user,ug_group);
 CREATE INDEX /*i*/ug_group ON /*_*/user_groups (ug_group);
 
 -- Stores the groups the user has once belonged to.
--- The user may still belong to these groups (check user_groups).
--- Users are not autopromoted to groups from which they were removed.
+-- The user may still belong these groups. Check user_groups.
 CREATE TABLE /*_*/user_former_groups (
   -- Key to user_id
   ufg_user int unsigned NOT NULL default 0,
-  ufg_group varbinary(32) NOT NULL default ''
+  ufg_group varbinary(16) NOT NULL default ''
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/ufg_user_group ON /*_*/user_former_groups (ufg_user,ufg_group);
@@ -260,7 +259,10 @@ CREATE TABLE /*_*/page (
   page_latest int unsigned NOT NULL,
 
   -- Uncompressed length in bytes of the page's current source text.
-  page_len int unsigned NOT NULL
+  page_len int unsigned NOT NULL,
+
+  -- content model
+  page_content_model  varbinary(32) default NULL
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/name_title ON /*_*/page (page_namespace,page_title);
@@ -316,7 +318,13 @@ CREATE TABLE /*_*/revision (
   rev_parent_id int unsigned default NULL,
 
   -- SHA-1 text content hash in base-36
-  rev_sha1 varbinary(32) NOT NULL default ''
+  rev_sha1 varbinary(32) NOT NULL default '',
+
+  -- content model
+  rev_content_model  varbinary(32) default NULL,
+
+  -- content format (mime type)
+  rev_content_format varbinary(64) default NULL
 
 ) /*$wgDBTableOptions*/ MAX_ROWS=10000000 AVG_ROW_LENGTH=1024;
 -- In case tables are created as MyISAM, use row hints for MySQL <5.0 to avoid 4GB limit
@@ -326,7 +334,6 @@ CREATE INDEX /*i*/rev_timestamp ON /*_*/revision (rev_timestamp);
 CREATE INDEX /*i*/page_timestamp ON /*_*/revision (rev_page,rev_timestamp);
 CREATE INDEX /*i*/user_timestamp ON /*_*/revision (rev_user,rev_timestamp);
 CREATE INDEX /*i*/usertext_timestamp ON /*_*/revision (rev_user_text,rev_timestamp);
-CREATE INDEX /*i*/page_user_timestamp ON /*_*/revision (rev_page,rev_user,rev_timestamp);
 
 --
 -- Holds text of individual page revisions.
@@ -427,7 +434,14 @@ CREATE TABLE /*_*/archive (
   ar_parent_id int unsigned default NULL,
 
   -- SHA-1 text content hash in base-36
-  ar_sha1 varbinary(32) NOT NULL default ''
+  ar_sha1 varbinary(32) NOT NULL default '',
+
+  -- content model
+  ar_content_model  varbinary(32) default NULL,
+
+  -- content format (mime type)
+  ar_content_format varbinary(64) default NULL
+
 ) /*$wgDBTableOptions*/;
 
 CREATE INDEX /*i*/name_title_timestamp ON /*_*/archive (ar_namespace,ar_title,ar_timestamp);
@@ -946,44 +960,44 @@ CREATE INDEX /*i*/fa_user_timestamp ON /*_*/filearchive (fa_user_text,fa_timesta
 -- moved into the actual filestore
 --
 CREATE TABLE /*_*/uploadstash (
-  us_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	us_id int unsigned NOT NULL PRIMARY KEY auto_increment,
 
-  -- the user who uploaded the file.
-  us_user int unsigned NOT NULL,
+	-- the user who uploaded the file.
+	us_user int unsigned NOT NULL,
 
-  -- file key. this is how applications actually search for the file.
-  -- this might go away, or become the primary key.
-  us_key varchar(255) NOT NULL,
+	-- file key. this is how applications actually search for the file.
+	-- this might go away, or become the primary key.
+	us_key varchar(255) NOT NULL,
 
-  -- the original path
-  us_orig_path varchar(255) NOT NULL,
+	-- the original path
+	us_orig_path varchar(255) NOT NULL,
 
-  -- the temporary path at which the file is actually stored
-  us_path varchar(255) NOT NULL,
+	-- the temporary path at which the file is actually stored
+	us_path varchar(255) NOT NULL,
 
-  -- which type of upload the file came from (sometimes)
-  us_source_type varchar(50),
+	-- which type of upload the file came from (sometimes)
+	us_source_type varchar(50),
 
-  -- the date/time on which the file was added
-  us_timestamp varbinary(14) NOT NULL,
+	-- the date/time on which the file was added
+	us_timestamp varbinary(14) not null,
 
-  us_status varchar(50) NOT NULL,
+	us_status varchar(50) not null,
 
-  -- chunk counter starts at 0, current offset is stored in us_size
-  us_chunk_inx int unsigned NULL,
+	-- chunk counter starts at 0, current offset is stored in us_size
+	us_chunk_inx int unsigned NULL,
 
-  -- file properties from File::getPropsFromPath.  these may prove unnecessary.
-  --
-  us_size int unsigned NOT NULL,
-  -- this hash comes from File::sha1Base36(), and is 31 characters
-  us_sha1 varchar(31) NOT NULL,
-  us_mime varchar(255),
-  -- Media type as defined by the MEDIATYPE_xxx constants, should duplicate definition in the image table
-  us_media_type ENUM("UNKNOWN", "BITMAP", "DRAWING", "AUDIO", "VIDEO", "MULTIMEDIA", "OFFICE", "TEXT", "EXECUTABLE", "ARCHIVE") default NULL,
-  -- image-specific properties
-  us_image_width int unsigned,
-  us_image_height int unsigned,
-  us_image_bits smallint unsigned
+	-- file properties from File::getPropsFromPath.  these may prove unnecessary.
+	--
+	us_size int unsigned NOT NULL,
+	-- this hash comes from File::sha1Base36(), and is 31 characters
+	us_sha1 varchar(31) NOT NULL,
+	us_mime varchar(255),
+	-- Media type as defined by the MEDIATYPE_xxx constants, should duplicate definition in the image table
+  	us_media_type ENUM("UNKNOWN", "BITMAP", "DRAWING", "AUDIO", "VIDEO", "MULTIMEDIA", "OFFICE", "TEXT", "EXECUTABLE", "ARCHIVE") default NULL,
+	-- image-specific properties
+	us_image_width int unsigned,
+	us_image_height int unsigned,
+	us_image_bits smallint unsigned
 
 ) /*$wgDBTableOptions*/;
 
@@ -1237,7 +1251,7 @@ CREATE INDEX /*i*/page_time ON /*_*/logging (log_namespace, log_title, log_times
 CREATE INDEX /*i*/times ON /*_*/logging (log_timestamp);
 CREATE INDEX /*i*/log_user_type_time ON /*_*/logging (log_user, log_type, log_timestamp);
 CREATE INDEX /*i*/log_page_id_time ON /*_*/logging (log_page,log_timestamp);
-CREATE INDEX /*i*/type_action ON /*_*/logging (log_type, log_action, log_timestamp);
+CREATE INDEX /*i*/type_action ON /*_*/logging(log_type, log_action, log_timestamp);
 
 
 CREATE TABLE /*_*/log_search (
@@ -1275,7 +1289,7 @@ CREATE TABLE /*_*/job (
 ) /*$wgDBTableOptions*/;
 
 CREATE INDEX /*i*/job_cmd ON /*_*/job (job_cmd, job_namespace, job_title, job_params(128));
-CREATE INDEX /*i*/job_timestamp ON /*_*/job (job_timestamp);
+CREATE INDEX /*i*/job_timestamp ON /*_*/job(job_timestamp);
 
 
 -- Details of updates to cached special pages
@@ -1441,7 +1455,7 @@ CREATE TABLE /*_*/l10n_cache (
 ) /*$wgDBTableOptions*/;
 CREATE INDEX /*i*/lc_lang_key ON /*_*/l10n_cache (lc_lang, lc_key);
 
--- Table for caching JSON message blobs for the resource loader
+-- Table for storing JSON message blobs for the resource loader
 CREATE TABLE /*_*/msg_resource (
   -- Resource name
   mr_resource varbinary(255) NOT NULL,
@@ -1462,8 +1476,8 @@ CREATE TABLE /*_*/msg_resource_links (
 ) /*$wgDBTableOptions*/;
 CREATE UNIQUE INDEX /*i*/mrl_message_resource ON /*_*/msg_resource_links (mrl_message, mrl_resource);
 
--- Table caching which local files a module depends on that aren't
--- registered directly, used for fast retrieval of file dependency.
+-- Table for tracking which local files a module depends on that aren't
+-- registered directly.
 -- Currently only used for tracking images that CSS depends on
 CREATE TABLE /*_*/module_deps (
   -- Module name

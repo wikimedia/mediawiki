@@ -55,7 +55,7 @@ class Ibm_db2Updater extends DatabaseUpdater {
 			array( 'addField', 'categorylinks',  'cl_sortkey_prefix', 'patch-cl_sortkey_prefix-field.sql' ),
 			array( 'addField', 'categorylinks',  'cl_collation',      'patch-cl_collation-field.sql' ),
 			array( 'addField', 'categorylinks',  'cl_type',           'patch-cl_type-field.sql' ),
-
+			
 			//1.18
 			array( 'doUserNewTalkTimestampNotNull' ),
 			array( 'addIndex', 'user',          'user_email',       'patch-user_email_index.sql' ),
@@ -63,15 +63,21 @@ class Ibm_db2Updater extends DatabaseUpdater {
 			array( 'addTable', 'uploadstash',                       'patch-uploadstash.sql' ),
 			array( 'addTable', 'user_former_groups',                'patch-user_former_groups.sql'),
 			array( 'doRebuildLocalisationCache' ), 
-
+			
 			// 1.19
+			array( 'addTable', 'config',                            'patch-config.sql' ),
 			array( 'addIndex', 'logging',       'type_action',      'patch-logging-type-action-index.sql'),
 			array( 'dropField', 'user',         'user_options', 'patch-drop-user_options.sql' ),
 			array( 'addField', 'revision',      'rev_sha1',         'patch-rev_sha1.sql' ),
 			array( 'addField', 'archive',       'ar_sha1',          'patch-ar_sha1.sql' ),
 
-			// 1.20
-			array( 'addTable', 'config',                            'patch-config.sql' ),
+            // 1.20
+            // content model stuff for WikiData
+            array( 'addField',	'revision',	'rev_content_format',		'patch-revision-rev_content_format.sql' ),
+            array( 'addField',	'revision',	'rev_content_model',		'patch-revision-rev_content_model.sql' ),
+            array( 'addField',	'archive',	'ar_content_format',		'patch-archive-ar_content_format.sql' ),
+            array( 'addField',	'archive',	'ar_content_model',		    'patch-archive-ar_content_model.sql' ),
+            array( 'addField',	'page',     'page_content_model',		'patch-page-page_content_model.sql' ),
 		);
 	}
 }

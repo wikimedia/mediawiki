@@ -120,13 +120,10 @@ class RawAction extends FormlessAction {
 
 		// If it's a MediaWiki message we can just hit the message cache
 		if ( $request->getBool( 'usemsgcache' ) && $title->getNamespace() == NS_MEDIAWIKI ) {
-			// The first "true" is to use the database, the second is to use the content langue
-			// and the last one is to specify the message key already contains the language in it ("/de", etc.)
-			$text = MessageCache::singleton()->get( $title->getDBkey(), true, true, true );
-			// If the message doesn't exist, return a blank
-			if ( $text === false ) {
-				$text = '';
-			}
+			$key = $title->getDBkey();
+			$msg = wfMessage( $key )->inContentLanguage();
+			# If the message doesn't exist, return a blank
+			$text = !$msg->exists() ? '' : $msg->plain();
 		} else {
 			// Get it from the DB
 			$rev = Revision::newFromTitle( $title, $this->getOldId() );
@@ -135,11 +132,20 @@ class RawAction extends FormlessAction {
 				$request->response()->header( "Last-modified: $lastmod" );
 
 				// Public-only due to cache headers
-				$text = $rev->getText();
+				$content = $rev->getContent();
+
+				if ( !$content instanceof TextContent ) {
+					wfHttpError( 406, "Not Acceptable", "The requeste page uses the content model `"
+														. $content->getModelName() . "` which is not supported via this interface." );
+					die();
+				}
+
 				$section = $request->getIntOrNull( 'section' );
 				if ( $section !== null ) {
-					$text = $wgParser->getSection( $text, $section );
+					$content = $content->getSection( $section );
 				}
+
+				$text = $content->getNativeData();
 			}
 		}
 
@@ -169,7 +175,7 @@ class RawAction extends FormlessAction {
 				# output previous revision, or nothing if there isn't one
 				if( !$oldid ) {
 					# get the current revision so we can get the penultimate one
-					$oldid = $this->page->getLatest();
+					$oldid = $this->getTitle()->getLatestRevID();
 				}
 				$prev = $this->getTitle()->getPreviousRevisionId( $oldid );
 				$oldid = $prev ? $prev : -1 ;

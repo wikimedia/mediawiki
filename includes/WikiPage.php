@@ -13,30 +13,6 @@ abstract class Page {}
  * @internal documentation reviewed 15 Mar 2010
  */
 class WikiPage extends Page {
-	// doDeleteArticleReal() return values. Values less than zero indicate fatal errors,
-	// values greater than zero indicate that there were problems not resulting in page
-	// not being deleted
-
-	/**
-	 * Delete operation aborted by hook
-	 */
-	const DELETE_HOOK_ABORTED = -1;
-
-	/**
-	 * Deletion successful
-	 */
-	const DELETE_SUCCESS = 0;
-
-	/**
-	 * Page not found
-	 */
-	const DELETE_NO_PAGE = 1;
-
-	/**
-	 * No revisions found to delete
-	 */
-	const DELETE_NO_REVISIONS = 2;
-
 	/**
 	 * @var Title
 	 */
@@ -118,7 +94,7 @@ class WikiPage extends Page {
 	 *
 	 * @param $id Int article ID to load
 	 *
-	 * @return WikiPage|null
+	 * @return WikiPage
 	 */
 	public static function newFromID( $id ) {
 		$t = Title::newFromID( $id );
@@ -185,6 +161,7 @@ class WikiPage extends Page {
 			'page_touched',
 			'page_latest',
 			'page_len',
+            'page_content_model',
 		);
 	}
 
@@ -323,15 +300,12 @@ class WikiPage extends Page {
 	 * @return bool
 	 */
 	public function isRedirect( $text = false ) {
-		if ( $text === false ) {
-			if ( !$this->mDataLoaded ) {
-				$this->loadPageData();
-			}
+        if ( $text === false ) $content = $this->getContent();
+        else $content = ContentHandler::makeContent( $text, $this->mTitle ); # TODO: allow model and format to be provided; or better, expect a Content object
 
-			return (bool)$this->mIsRedirect;
-		} else {
-			return Title::newFromRedirect( $text ) !== null;
-		}
+
+        if ( empty( $content ) ) return false;
+        else return $content->isRedirect();
 	}
 
 	/**
@@ -407,6 +381,23 @@ class WikiPage extends Page {
 		return null;
 	}
 
+    /**
+     * Get the content of the current revision. No side-effects...
+     *
+     * @param $audience Integer: one of:
+     *      Revision::FOR_PUBLIC       to be displayed to all users
+     *      Revision::FOR_THIS_USER    to be displayed to $wgUser
+     *      Revision::RAW              get the text regardless of permissions
+     * @return Content|null The content of the current revision
+     */
+    public function getContent( $audience = Revision::FOR_PUBLIC ) {
+        $this->loadLastEdit();
+        if ( $this->mLastRevision ) {
+            return $this->mLastRevision->getContent( $audience );
+        }
+        return false;
+    }
+
 	/**
 	 * Get the text of the current revision. No side-effects...
 	 *
@@ -414,9 +405,11 @@ class WikiPage extends Page {
 	 *      Revision::FOR_PUBLIC       to be displayed to all users
 	 *      Revision::FOR_THIS_USER    to be displayed to $wgUser
 	 *      Revision::RAW              get the text regardless of permissions
-	 * @return String|bool The text of the current revision. False on failure
+	 * @return String|false The text of the current revision
+     * @deprecated as of 1.20, getContent() should be used instead.
 	 */
-	public function getText( $audience = Revision::FOR_PUBLIC ) {
+	public function getText( $audience = Revision::FOR_PUBLIC ) { #FIXME: deprecated, replace usage!
+        wfDeprecated( __METHOD__, '1.20' );
 		$this->loadLastEdit();
 		if ( $this->mLastRevision ) {
 			return $this->mLastRevision->getText( $audience );
@@ -427,15 +420,23 @@ class WikiPage extends Page {
 	/**
 	 * Get the text of the current revision. No side-effects...
 	 *
-	 * @return String|bool The text of the current revision. False on failure
+	 * @return String|false The text of the current revision
 	 */
-	public function getRawText() {
-		$this->loadLastEdit();
-		if ( $this->mLastRevision ) {
-			return $this->mLastRevision->getRawText();
-		}
-		return false;
+	public function getRawText() { #FIXME: deprecated, replace usage!
+		return $this->getText( Revision::RAW );
 	}
+
+    /**
+     * Get the content of the current revision. No side-effects...
+     *
+     * @return Contet|false The text of the current revision
+     */
+    protected function getNativeData() { #FIXME: examine all uses carefully! caller must be aware of content model!
+        $content = $this->getContent( Revision::RAW );
+        if ( !$content ) return null;
+
+        return $content->getNativeData();
+    }
 
 	/**
 	 * @return string MW timestamp of last article revision
@@ -445,7 +446,6 @@ class WikiPage extends Page {
 		if ( !$this->mTimestamp ) {
 			$this->loadLastEdit();
 		}
-		
 		return wfTimestamp( TS_MW, $this->mTimestamp );
 	}
 
@@ -558,32 +558,35 @@ class WikiPage extends Page {
 			return false;
 		}
 
-		$text = $editInfo ? $editInfo->pst : false;
+        if ( $editInfo ) {
+            $content = ContentHandler::makeContent( $editInfo->pst, $this->mTitle );
+            # TODO: take model and format from edit info!
+        } else {
+            $content = $this->getContent();
+        }
 
-		if ( $this->isRedirect( $text ) ) {
+		if ( !$content || $content->isRedirect( ) ) {
 			return false;
 		}
 
-		switch ( $wgArticleCountMethod ) {
-		case 'any':
-			return true;
-		case 'comma':
-			if ( $text === false ) {
-				$text = $this->getRawText();
-			}
-			return strpos( $text,  ',' ) !== false;
-		case 'link':
-			if ( $editInfo ) {
-				// ParserOutput::getLinks() is a 2D array of page links, so
-				// to be really correct we would need to recurse in the array
-				// but the main array should only have items in it if there are
-				// links.
-				return (bool)count( $editInfo->output->getLinks() );
-			} else {
-				return (bool)wfGetDB( DB_SLAVE )->selectField( 'pagelinks', 1,
-					array( 'pl_from' => $this->getId() ), __METHOD__ );
-			}
-		}
+        $hasLinks = null;
+
+        if ( $wgArticleCountMethod === 'link' ) {
+            # nasty special case to avoid re-parsing to detect links
+
+            if ( $editInfo ) {
+                // ParserOutput::getLinks() is a 2D array of page links, so
+                // to be really correct we would need to recurse in the array
+                // but the main array should only have items in it if there are
+                // links.
+                $hasLinks = (bool)count( $editInfo->output->getLinks() );
+            } else {
+                $hasLinks = (bool)wfGetDB( DB_SLAVE )->selectField( 'pagelinks', 1,
+                    array( 'pl_from' => $this->getId() ), __METHOD__ );
+            }
+        }
+
+		return $content->isCountable( $hasLinks );
 	}
 
 	/**
@@ -629,7 +632,8 @@ class WikiPage extends Page {
 	 */
 	public function insertRedirect() {
 		// recurse through to only get the final target
-		$retval = Title::newFromRedirectRecurse( $this->getRawText() );
+        $content = $this->getContent();
+		$retval = $content ? $content->getUltimateRedirectTarget() : null;
 		if ( !$retval ) {
 			return null;
 		}
@@ -825,7 +829,7 @@ class WikiPage extends Page {
 			&& $parserOptions->getStubThreshold() == 0
 			&& $this->mTitle->exists()
 			&& ( $oldid === null || $oldid === 0 || $oldid === $this->getLatest() )
-			&& $this->mTitle->isWikitextPage();
+			&& $this->mTitle->isWikitextPage(); #FIXME: ask ContentHandler if cachable!
 	}
 
 	/**
@@ -889,7 +893,6 @@ class WikiPage extends Page {
 
 	/**
 	 * Perform the actions of a page purging
-	 * @return bool
 	 */
 	public function doPurge() {
 		global $wgUseSquid;
@@ -905,7 +908,7 @@ class WikiPage extends Page {
 		if ( $wgUseSquid ) {
 			// Commit the transaction before the purge is sent
 			$dbw = wfGetDB( DB_MASTER );
-			$dbw->commit( __METHOD__ );
+			$dbw->commit();
 
 			// Send purge
 			$update = SquidUpdate::newSimplePurge( $this->mTitle );
@@ -914,7 +917,7 @@ class WikiPage extends Page {
 
 		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
 			if ( $this->mTitle->exists() ) {
-				$text = $this->getRawText();
+				$text = $this->getNativeData(); #FIXME: may not be a string. check Content model!
 			} else {
 				$text = false;
 			}
@@ -981,9 +984,9 @@ class WikiPage extends Page {
 	public function updateRevisionOn( $dbw, $revision, $lastRevision = null, $lastRevIsRedirect = null ) {
 		wfProfileIn( __METHOD__ );
 
-		$text = $revision->getText();
-		$len = strlen( $text );
-		$rt = Title::newFromRedirectRecurse( $text );
+        $content = $revision->getContent();
+		$len = $content->getSize();
+		$rt = $content->getUltimateRedirectTarget();
 
 		$conditions = array( 'page_id' => $this->getId() );
 
@@ -1025,7 +1028,7 @@ class WikiPage extends Page {
 	 * @param $dbw DatabaseBase
 	 * @param $redirectTitle Title object pointing to the redirect target,
 	 *                       or NULL if this is not a redirect
-	 * @param $lastRevIsRedirect null|bool If given, will optimize adding and
+	 * @param $lastRevIsRedirect If given, will optimize adding and
 	 *                           removing rows in redirect table.
 	 * @return bool true on success, false on failure
 	 * @private
@@ -1061,7 +1064,7 @@ class WikiPage extends Page {
 	 * If the given revision is newer than the currently set page_latest,
 	 * update the page record. Otherwise, do nothing.
 	 *
-	 * @param $dbw DatabaseBase object
+	 * @param $dbw Database object
 	 * @param $revision Revision object
 	 * @return mixed
 	 */
@@ -1102,83 +1105,78 @@ class WikiPage extends Page {
 	 * @param $undo Revision
 	 * @param $undoafter Revision Must be an earlier revision than $undo
 	 * @return mixed string on success, false on failure
+     * @deprecated since 1.20: use ContentHandler::getUndoContent() instead.
 	 */
-	public function getUndoText( Revision $undo, Revision $undoafter = null ) {
-		$cur_text = $this->getRawText();
-		if ( $cur_text === false ) {
-			return false; // no page
-		}
-		$undo_text = $undo->getText();
-		$undoafter_text = $undoafter->getText();
+	public function getUndoText( Revision $undo, Revision $undoafter = null ) { #FIXME: replace usages.
+        $this->loadLastEdit();
 
-		if ( $cur_text == $undo_text ) {
-			# No use doing a merge if it's just a straight revert.
-			return $undoafter_text;
-		}
+        if ( $this->mLastRevision ) {
+            $handler = ContentHandler::getForTitle( $this->getTitle() );
+            $undone = $handler->getUndoContent( $this->mLastRevision, $undo, $undoafter );
 
-		$undone_text = '';
+            if ( !$undone ) {
+                return false;
+            } else {
+                return ContentHandler::getContentText( $undone );
+            }
+        }
 
-		if ( !wfMerge( $undo_text, $undoafter_text, $cur_text, $undone_text ) ) {
-			return false;
-		}
-
-		return $undone_text;
+        return false;
 	}
 
 	/**
-	 * @param $section null|bool|int or a section number (0, 1, 2, T1, T2...)
+	 * @param $section empty/null/false or a section number (0, 1, 2, T1, T2...)
 	 * @param $text String: new text of the section
 	 * @param $sectionTitle String: new section's subject, only if $section is 'new'
 	 * @param $edittime String: revision timestamp or null to use the current revision
-	 * @return string Complete article text, or null if error
+	 * @return Content new complete article content, or null if error
+     * @deprected since 1.20, use replaceSectionContent() instead
 	 */
-	public function replaceSection( $section, $text, $sectionTitle = '', $edittime = null ) {
-		wfProfileIn( __METHOD__ );
+	public function replaceSection( $section, $text, $sectionTitle = '', $edittime = null ) { #FIXME: use replaceSectionContent() instead!
+        wfDeprecated( __METHOD__, '1.20' );
 
-		if ( strval( $section ) == '' ) {
-			// Whole-page edit; let the whole text through
-		} else {
-			// Bug 30711: always use current version when adding a new section
-			if ( is_null( $edittime ) || $section == 'new' ) {
-				$oldtext = $this->getRawText();
-				if ( $oldtext === false ) {
-					wfDebug( __METHOD__ . ": no page text\n" );
-					wfProfileOut( __METHOD__ );
-					return null;
-				}
-			} else {
-				$dbw = wfGetDB( DB_MASTER );
-				$rev = Revision::loadFromTimestamp( $dbw, $this->mTitle, $edittime );
+        $sectionContent = ContentHandler::makeContent( $text, $this->getTitle() ); #XXX: could make section title, but that's not required.
 
-				if ( !$rev ) {
-					wfDebug( "WikiPage::replaceSection asked for bogus section (page: " .
-						$this->getId() . "; section: $section; edittime: $edittime)\n" );
-					wfProfileOut( __METHOD__ );
-					return null;
-				}
+        $newContent = $this->replaceSectionContent( $section, $sectionContent, $sectionTitle, $edittime );
 
-				$oldtext = $rev->getText();
-			}
-
-			if ( $section == 'new' ) {
-				# Inserting a new section
-				$subject = $sectionTitle ? wfMsgForContent( 'newsectionheaderdefaultlevel', $sectionTitle ) . "\n\n" : '';
-				if ( wfRunHooks( 'PlaceNewSection', array( $this, $oldtext, $subject, &$text ) ) ) {
-					$text = strlen( trim( $oldtext ) ) > 0
-						? "{$oldtext}\n\n{$subject}{$text}"
-						: "{$subject}{$text}";
-				}
-			} else {
-				# Replacing an existing section; roll out the big guns
-				global $wgParser;
-
-				$text = $wgParser->replaceSection( $oldtext, $section, $text );
-			}
-		}
-
-		wfProfileOut( __METHOD__ );
-		return $text;
+		return ContentHandler::getContentText( $newContent ); #XXX: unclear what will happen for non-wikitext!
 	}
+
+    public function replaceSectionContent( $section, Content $sectionContent, $sectionTitle = '', $edittime = null ) {
+        wfProfileIn( __METHOD__ );
+
+        if ( strval( $section ) == '' ) {
+            // Whole-page edit; let the whole text through
+            $newContent = $sectionContent;
+        } else {
+            // Bug 30711: always use current version when adding a new section
+            if ( is_null( $edittime ) || $section == 'new' ) {
+                $oldContent = $this->getContent();
+                if ( ! $oldContent ) {
+                    wfDebug( __METHOD__ . ": no page text\n" );
+                    wfProfileOut( __METHOD__ );
+                    return null;
+                }
+            } else {
+                $dbw = wfGetDB( DB_MASTER );
+                $rev = Revision::loadFromTimestamp( $dbw, $this->mTitle, $edittime );
+
+                if ( !$rev ) {
+                    wfDebug( "WikiPage::replaceSection asked for bogus section (page: " .
+                        $this->getId() . "; section: $section; edittime: $edittime)\n" );
+                    wfProfileOut( __METHOD__ );
+                    return null;
+                }
+
+                $oldContent = $rev->getContent();
+            }
+
+            $newContent = $oldContent->replaceSection( $section, $sectionContent, $sectionTitle );
+        }
+
+        wfProfileOut( __METHOD__ );
+        return $newContent;
+    }
 
 	/**
 	 * Check flags and add EDIT_NEW or EDIT_UPDATE to them as needed.
@@ -1225,7 +1223,7 @@ class WikiPage extends Page {
 	 * edit-already-exists error will be returned. These two conditions are also possible with
 	 * auto-detection due to MediaWiki's performance-optimised locking strategy.
 	 *
-	 * @param $baseRevId int the revision ID this edit was based off, if any
+	 * @param $baseRevId the revision ID this edit was based off, if any
 	 * @param $user User the user doing the edit
 	 *
 	 * @return Status object. Possible errors:
@@ -1242,8 +1240,64 @@ class WikiPage extends Page {
 	 *     revision:                The revision object for the inserted revision, or null
 	 *
 	 *  Compatibility note: this function previously returned a boolean value indicating success/failure
+     * @deprecated since 1.20: use doEditContent() instead.
 	 */
-	public function doEdit( $text, $summary, $flags = 0, $baseRevId = false, $user = null ) {
+    public function doEdit( $text, $summary, $flags = 0, $baseRevId = false, $user = null ) { #FIXME: use doEditContent() instead
+        #TODO: log use of deprecated function
+        $content = ContentHandler::makeContent( $text, $this->getTitle() );
+
+        return $this->doEditContent( $content, $summary, $flags, $baseRevId, $user );
+    }
+
+    /**
+     * Change an existing article or create a new article. Updates RC and all necessary caches,
+     * optionally via the deferred update array.
+     *
+     * @param $content Content: new content
+     * @param $summary String: edit summary
+     * @param $flags Integer bitfield:
+     *      EDIT_NEW
+     *          Article is known or assumed to be non-existent, create a new one
+     *      EDIT_UPDATE
+     *          Article is known or assumed to be pre-existing, update it
+     *      EDIT_MINOR
+     *          Mark this edit minor, if the user is allowed to do so
+     *      EDIT_SUPPRESS_RC
+     *          Do not log the change in recentchanges
+     *      EDIT_FORCE_BOT
+     *          Mark the edit a "bot" edit regardless of user rights
+     *      EDIT_DEFER_UPDATES
+     *          Defer some of the updates until the end of index.php
+     *      EDIT_AUTOSUMMARY
+     *          Fill in blank summaries with generated text where possible
+     *
+     * If neither EDIT_NEW nor EDIT_UPDATE is specified, the status of the article will be detected.
+     * If EDIT_UPDATE is specified and the article doesn't exist, the function will return an
+     * edit-gone-missing error. If EDIT_NEW is specified and the article does exist, an
+     * edit-already-exists error will be returned. These two conditions are also possible with
+     * auto-detection due to MediaWiki's performance-optimised locking strategy.
+     *
+     * @param $baseRevId the revision ID this edit was based off, if any
+     * @param $user User the user doing the edit
+     * @param $serialisation_format String: format for storing the content in the database
+     *
+     * @return Status object. Possible errors:
+     *     edit-hook-aborted:       The ArticleSave hook aborted the edit but didn't set the fatal flag of $status
+     *     edit-gone-missing:       In update mode, but the article didn't exist
+     *     edit-conflict:           In update mode, the article changed unexpectedly
+     *     edit-no-change:          Warning that the text was the same as before
+     *     edit-already-exists:     In creation mode, but the article already exists
+     *
+     *  Extensions may define additional errors.
+     *
+     *  $return->value will contain an associative array with members as follows:
+     *     new:                     Boolean indicating if the function attempted to create a new article
+     *     revision:                The revision object for the inserted revision, or null
+     *
+     *  Compatibility note: this function previously returned a boolean value indicating success/failure
+     */
+	public function doEditContent( Content $content, $summary, $flags = 0, $baseRevId = false,
+                                   User $user = null, $serialisation_format = null ) { #FIXME: use this
 		global $wgUser, $wgDBtransactions, $wgUseAutomaticEditSummaries;
 
 		# Low-level sanity check
@@ -1261,10 +1315,25 @@ class WikiPage extends Page {
 
 		$flags = $this->checkFlags( $flags );
 
-		if ( !wfRunHooks( 'ArticleSave', array( &$this, &$user, &$text, &$summary,
-			$flags & EDIT_MINOR, null, null, &$flags, &$status ) ) )
-		{
-			wfDebug( __METHOD__ . ": ArticleSave hook aborted save!\n" );
+        # call legacy hook
+        $hook_ok = wfRunHooks( 'ArticleContentSave', array( &$this, &$user, &$content, &$summary, #FIXME: document new hook!
+            $flags & EDIT_MINOR, null, null, &$flags, &$status ) );
+
+        if ( $hook_ok && !empty( $wgHooks['ArticleSave'] ) ) { # avoid serialization overhead if the hook isn't present
+            $content_text = $content->serialize();
+            $txt = $content_text; # clone
+
+            $hook_ok = wfRunHooks( 'ArticleSave', array( &$this, &$user, &$txt, &$summary, #FIXME: deprecate legacy hook!
+                $flags & EDIT_MINOR, null, null, &$flags, &$status ) );
+
+            if ( $txt !== $content_text ) {
+                # if the text changed, unserialize the new version to create an updated Content object.
+                $content = $content->getContentHandler()->unserialize( $txt );
+            }
+        }
+
+		if ( !$hook_ok ) {
+			wfDebug( __METHOD__ . ": ArticleSave or ArticleSaveContent hook aborted save!\n" );
 
 			if ( $status->isOK() ) {
 				$status->fatal( 'edit-hook-aborted' );
@@ -1278,20 +1347,24 @@ class WikiPage extends Page {
 		$isminor = ( $flags & EDIT_MINOR ) && $user->isAllowed( 'minoredit' );
 		$bot = $flags & EDIT_FORCE_BOT;
 
-		$oldtext = $this->getRawText(); // current revision
-		$oldsize = strlen( $oldtext );
+		$old_content = $this->getContent( Revision::RAW ); // current revision's content
+
+		$oldsize = $old_content ? $old_content->getSize() : 0;
 		$oldid = $this->getLatest();
 		$oldIsRedirect = $this->isRedirect();
 		$oldcountable = $this->isCountable();
 
+        $handler = $content->getContentHandler();
+
 		# Provide autosummaries if one is not provided and autosummaries are enabled.
 		if ( $wgUseAutomaticEditSummaries && $flags & EDIT_AUTOSUMMARY && $summary == '' ) {
-			$summary = self::getAutosummary( $oldtext, $text, $flags );
+			$summary = $handler->getAutosummary( $old_content, $content, $flags );
 		}
 
-		$editInfo = $this->prepareTextForEdit( $text, null, $user );
-		$text = $editInfo->pst;
-		$newsize = strlen( $text );
+		$editInfo = $this->prepareContentForEdit( $content, null, $user, $serialisation_format );
+		$serialized = $editInfo->pst;
+        $content = $editInfo->pstContent;
+		$newsize =  $content->getSize();
 
 		$dbw = wfGetDB( DB_MASTER );
 		$now = wfTimestampNow();
@@ -1319,17 +1392,20 @@ class WikiPage extends Page {
 				'page'       => $this->getId(),
 				'comment'    => $summary,
 				'minor_edit' => $isminor,
-				'text'       => $text,
+				'text'       => $serialized,
+                'len'        => $newsize,
 				'parent_id'  => $oldid,
 				'user'       => $user->getId(),
 				'user_text'  => $user->getName(),
-				'timestamp'  => $now
+				'timestamp'  => $now,
+                'content_model' => $content->getModelName(),
+                'content_format' => $serialisation_format,
 			) );
 
-			$changed = ( strcmp( $text, $oldtext ) != 0 );
+			$changed = !$content->equals( $old_content );
 
 			if ( $changed ) {
-				$dbw->begin( __METHOD__ );
+				$dbw->begin();
 				$revisionId = $revision->insertOn( $dbw );
 
 				# Update page
@@ -1351,7 +1427,7 @@ class WikiPage extends Page {
 					}
 
 					$revisionId = 0;
-					$dbw->rollback( __METHOD__ );
+					$dbw->rollback();
 				} else {
 					global $wgUseRCPatrol;
 					wfRunHooks( 'NewRevisionFromEditComplete', array( $this, $revision, $baseRevId, $user ) );
@@ -1368,11 +1444,11 @@ class WikiPage extends Page {
 
 						# Log auto-patrolled edits
 						if ( $patrolled ) {
-							PatrolLog::record( $rc, true, $user );
+							PatrolLog::record( $rc, true );
 						}
 					}
 					$user->incEditCount();
-					$dbw->commit( __METHOD__ );
+					$dbw->commit();
 				}
 			} else {
 				// Bug 32948: revision ID must be set to page {{REVISIONID}} and
@@ -1405,14 +1481,14 @@ class WikiPage extends Page {
 			# Create new article
 			$status->value['new'] = true;
 
-			$dbw->begin( __METHOD__ );
+			$dbw->begin();
 
 			# Add the page record; stake our claim on this title!
 			# This will return false if the article already exists
 			$newid = $this->insertOn( $dbw );
 
 			if ( $newid === false ) {
-				$dbw->rollback( __METHOD__ );
+				$dbw->rollback();
 				$status->fatal( 'edit-already-exists' );
 
 				wfProfileOut( __METHOD__ );
@@ -1424,10 +1500,13 @@ class WikiPage extends Page {
 				'page'       => $newid,
 				'comment'    => $summary,
 				'minor_edit' => $isminor,
-				'text'       => $text,
+				'text'       => $serialized,
+                'len'        => $newsize,
 				'user'       => $user->getId(),
 				'user_text'  => $user->getName(),
-				'timestamp'  => $now
+				'timestamp'  => $now,
+                'content_model' => $content->getModelName(),
+                'content_format' => $serialisation_format,
 			) );
 			$revisionId = $revision->insertOn( $dbw );
 
@@ -1445,21 +1524,24 @@ class WikiPage extends Page {
 					$this->mTitle->getUserPermissionsErrors( 'autopatrol', $user ) );
 				# Add RC row to the DB
 				$rc = RecentChange::notifyNew( $now, $this->mTitle, $isminor, $user, $summary, $bot,
-					'', strlen( $text ), $revisionId, $patrolled );
+					'', $content->getSize(), $revisionId, $patrolled );
 
 				# Log auto-patrolled edits
 				if ( $patrolled ) {
-					PatrolLog::record( $rc, true, $user );
+					PatrolLog::record( $rc, true );
 				}
 			}
 			$user->incEditCount();
-			$dbw->commit( __METHOD__ );
+			$dbw->commit();
 
 			# Update links, etc.
 			$this->doEditUpdates( $revision, $user, array( 'created' => true ) );
 
-			wfRunHooks( 'ArticleInsertComplete', array( &$this, &$user, $text, $summary,
+			wfRunHooks( 'ArticleInsertComplete', array( &$this, &$user, $serialized, $summary, #FIXME: deprecate legacy hook
 				$flags & EDIT_MINOR, null, null, &$flags, $revision ) );
+
+            wfRunHooks( 'ArticleContentInsertComplete', array( &$this, &$user, $content, $summary, #FIXME: document new hook
+                $flags & EDIT_MINOR, null, null, &$flags, $revision ) );
 		}
 
 		# Do updates right now unless deferral was requested
@@ -1470,8 +1552,11 @@ class WikiPage extends Page {
 		// Return the new revision (or null) to the caller
 		$status->value['revision'] = $revision;
 
-		wfRunHooks( 'ArticleSaveComplete', array( &$this, &$user, $text, $summary,
+		wfRunHooks( 'ArticleSaveComplete', array( &$this, &$user, $serialized, $summary,  #FIXME: deprecate legacy hook
 			$flags & EDIT_MINOR, null, null, &$flags, $revision, &$status, $baseRevId ) );
+
+        wfRunHooks( 'ArticleContentSaveComplete', array( &$this, &$user, $content, $summary, #FIXME: document new hook
+            $flags & EDIT_MINOR, null, null, &$flags, $revision, &$status, $baseRevId ) );
 
 		# Promote user to any groups they meet the criteria for
 		$user->addAutopromoteOnceGroups( 'onEdit' );
@@ -1500,15 +1585,35 @@ class WikiPage extends Page {
 	/**
 	 * Prepare text which is about to be saved.
 	 * Returns a stdclass with source, pst and output members
-	 * @return bool|object
+     * @deprecated in 1.20: use prepareContentForEdit instead.
 	 */
-	public function prepareTextForEdit( $text, $revid = null, User $user = null ) {
+    public function prepareTextForEdit( $text, $revid = null, User $user = null ) {  #FIXME: use prepareContentForEdit() instead #XXX: who uses this?!
+        #TODO: log use of deprecated function
+        $content = ContentHandler::makeContent( $text, $this->getTitle() );
+        return $this->prepareContentForEdit( $content, $revid , $user );
+    }
+
+    /**
+     * Prepare content which is about to be saved.
+     * Returns a stdclass with source, pst and output members
+     *
+     * @param \Content $content
+     * @param null $revid
+     * @param null|\User $user
+     * @param null $serialization_format
+     * @return bool|object
+     */
+	public function prepareContentForEdit( Content $content, $revid = null, User $user = null, $serialization_format = null ) { #FIXME: use this #XXX: really public?!
 		global $wgParser, $wgContLang, $wgUser;
 		$user = is_null( $user ) ? $wgUser : $user;
 		// @TODO fixme: check $user->getId() here???
+
 		if ( $this->mPreparedEdit
-			&& $this->mPreparedEdit->newText == $text
+			&& $this->mPreparedEdit->newContent
+            && $this->mPreparedEdit->newContent->equals( $content )
 			&& $this->mPreparedEdit->revid == $revid
+            && $this->mPreparedEdit->format == $serialization_format
+            #XXX: also check $user here?
 		) {
 			// Already prepared
 			return $this->mPreparedEdit;
@@ -1519,11 +1624,19 @@ class WikiPage extends Page {
 
 		$edit = (object)array();
 		$edit->revid = $revid;
-		$edit->newText = $text;
-		$edit->pst = $wgParser->preSaveTransform( $text, $this->mTitle, $user, $popts );
+
+		$edit->pstContent = $content->preSaveTransform( $this->mTitle, $user, $popts );
+        $edit->pst = $edit->pstContent->serialize( $serialization_format );
+        $edit->format = $serialization_format;
+
 		$edit->popts = $this->makeParserOptions( 'canonical' );
-		$edit->output = $wgParser->parse( $edit->pst, $this->mTitle, $edit->popts, true, true, $revid );
-		$edit->oldText = $this->getRawText();
+		$edit->output = $edit->pstContent->getParserOutput( $this->mTitle, $revid, $edit->popts );
+
+        $edit->newContent = $content;
+		$edit->oldContent = $this->getContent( Revision::RAW );
+
+        $edit->newText = ContentHandler::getContentText( $edit->newContent ); #FIXME: B/C only! don't use this field!
+        $edit->oldText = $edit->oldContent ? ContentHandler::getContentText( $edit->oldContent ) : ''; #FIXME: B/C only! don't use this field!
 
 		$this->mPreparedEdit = $edit;
 
@@ -1553,13 +1666,13 @@ class WikiPage extends Page {
 		wfProfileIn( __METHOD__ );
 
 		$options += array( 'changed' => true, 'created' => false, 'oldcountable' => null );
-		$text = $revision->getText();
+        $content = $revision->getContent();
 
 		# Parse the text
 		# Be careful not to double-PST: $text is usually already PST-ed once
 		if ( !$this->mPreparedEdit || $this->mPreparedEdit->output->getFlag( 'vary-revision' ) ) {
 			wfDebug( __METHOD__ . ": No prepared edit or vary-revision is set...\n" );
-			$editInfo = $this->prepareTextForEdit( $text, $revision->getId(), $user );
+			$editInfo = $this->prepareContentForEdit( $content, $revision->getId(), $user );
 		} else {
 			wfDebug( __METHOD__ . ": No vary-revision, using prepared edit...\n" );
 			$editInfo = $this->mPreparedEdit;
@@ -1617,7 +1730,7 @@ class WikiPage extends Page {
 		}
 
 		DeferredUpdates::addUpdate( new SiteStatsUpdate( 0, 1, $good, $total ) );
-		DeferredUpdates::addUpdate( new SearchUpdate( $id, $title, $text ) );
+        DeferredUpdates::addUpdate( new SearchUpdate( $id, $title, $content->getTextForSearchIndex() ) );
 
 		# If this is another user's talk page, update newtalk.
 		# Don't do this if $options['changed'] = false (null-edits) nor if
@@ -1643,7 +1756,10 @@ class WikiPage extends Page {
 		}
 
 		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
-			MessageCache::singleton()->replace( $shortTitle, $text );
+            $msgtext = ContentHandler::getContentText( $content ); #XXX: could skip pseudo-messages like js/css here, based on content model.
+            if ( $msgtext === false || $msgtext === null ) $msgtext = '';
+
+			MessageCache::singleton()->replace( $shortTitle, $msgtext );
 		}
 
 		if( $options['created'] ) {
@@ -1665,13 +1781,33 @@ class WikiPage extends Page {
 	 * @param $comment String: comment submitted
 	 * @param $minor Boolean: whereas it's a minor modification
 	 */
-	public function doQuickEdit( $text, User $user, $comment = '', $minor = 0 ) {
+    public function doQuickEdit( $text, User $user, $comment = '', $minor = 0 ) {
+        #TODO: log use of deprecated function
+        $content = ContentHandler::makeContent( $text, $this->getTitle() );
+        return $this->doQuickEdit( $content, $user, $comment , $minor );
+    }
+
+    /**
+     * Edit an article without doing all that other stuff
+     * The article must already exist; link tables etc
+     * are not updated, caches are not flushed.
+     *
+     * @param $content Content: content submitted
+     * @param $user User The relevant user
+     * @param $comment String: comment submitted
+     * @param $serialisation_format String: format for storing the content in the database
+     * @param $minor Boolean: whereas it's a minor modification
+     */
+	public function doQuickEditContent( Content $content, User $user, $comment = '', $minor = 0, $serialisation_format = null ) {
 		wfProfileIn( __METHOD__ );
+
+        $serialized = $content->serialize( $serialisation_format );
 
 		$dbw = wfGetDB( DB_MASTER );
 		$revision = new Revision( array(
 			'page'       => $this->getId(),
-			'text'       => $text,
+			'text'       => $serialized,
+            'length'     => $content->getSize(),
 			'comment'    => $comment,
 			'minor_edit' => $minor ? 1 : 0,
 		) );
@@ -1916,45 +2052,22 @@ class WikiPage extends Page {
 	}
 
 	/**
-	 * Same as doDeleteArticleReal(), but returns more detailed success/failure status
-	 * Deletes the article with database consistency, writes logs, purges caches
-	 *
-	 * @param $reason string delete reason for deletion log
-	 * @param $suppress int bitfield
-	 * 	Revision::DELETED_TEXT
-	 * 	Revision::DELETED_COMMENT
-	 * 	Revision::DELETED_USER
-	 * 	Revision::DELETED_RESTRICTED
-	 * @param $id int article ID
-	 * @param $commit boolean defaults to true, triggers transaction end
-	 * @param &$error Array of errors to append to
-	 * @param $user User The deleting user
-	 * @return boolean true if successful
-	 */
-	public function doDeleteArticle(
-		$reason, $suppress = false, $id = 0, $commit = true, &$error = '', User $user = null
-	) {
-		return $this->doDeleteArticleReal( $reason, $suppress, $id, $commit, $error, $user )
-			== WikiPage::DELETE_SUCCESS;
-	}
-
-	/**
 	 * Back-end article deletion
 	 * Deletes the article with database consistency, writes logs, purges caches
 	 *
 	 * @param $reason string delete reason for deletion log
-	 * @param $suppress int bitfield
+	 * @param $suppress bitfield
 	 * 	Revision::DELETED_TEXT
 	 * 	Revision::DELETED_COMMENT
 	 * 	Revision::DELETED_USER
 	 * 	Revision::DELETED_RESTRICTED
 	 * @param $id int article ID
 	 * @param $commit boolean defaults to true, triggers transaction end
-	 * @param &$error Array of errors to append to
-	 * @param $user User The deleting user
-	 * @return int: One of WikiPage::DELETE_* constants
+	 * @param &$errors Array of errors to append to
+	 * @param $user User The relevant user
+	 * @return boolean true if successful
 	 */
-	public function doDeleteArticleReal(
+	public function doDeleteArticle(
 		$reason, $suppress = false, $id = 0, $commit = true, &$error = '', User $user = null
 	) {
 		global $wgUser;
@@ -1963,14 +2076,14 @@ class WikiPage extends Page {
 		wfDebug( __METHOD__ . "\n" );
 
 		if ( ! wfRunHooks( 'ArticleDelete', array( &$this, &$user, &$reason, &$error ) ) ) {
-			return WikiPage::DELETE_HOOK_ABORTED;
+			return false;
 		}
 		$dbw = wfGetDB( DB_MASTER );
 		$t = $this->mTitle->getDBkey();
 		$id = $id ? $id : $this->mTitle->getArticleID( Title::GAID_FOR_UPDATE );
 
 		if ( $t === '' || $id == 0 ) {
-			return WikiPage::DELETE_NO_PAGE;
+			return false;
 		}
 
 		// Bitfields to further suppress the content
@@ -1985,7 +2098,7 @@ class WikiPage extends Page {
 			$bitfield = 'rev_deleted';
 		}
 
-		$dbw->begin( __METHOD__ );
+		$dbw->begin();
 		// For now, shunt the revision data into the archive table.
 		// Text is *not* removed from the text table; bulk storage
 		// is left intact to avoid breaking block-compression or
@@ -2013,7 +2126,9 @@ class WikiPage extends Page {
 				'ar_len'        => 'rev_len',
 				'ar_page_id'    => 'page_id',
 				'ar_deleted'    => $bitfield,
-				'ar_sha1'       => 'rev_sha1'
+				'ar_sha1'       => 'rev_content_model',
+				'ar_content_format'       => 'rev_content_format',
+				'ar_content_format'       => 'rev_sha1'
 			), array(
 				'page_id' => $id,
 				'page_id = rev_page'
@@ -2022,11 +2137,11 @@ class WikiPage extends Page {
 
 		# Now that it's safely backed up, delete it
 		$dbw->delete( 'page', array( 'page_id' => $id ), __METHOD__ );
-		$ok = ( $dbw->affectedRows() > 0 ); // getArticleID() uses slave, could be laggy
+		$ok = ( $dbw->affectedRows() > 0 ); // getArticleId() uses slave, could be laggy
 
 		if ( !$ok ) {
-			$dbw->rollback( __METHOD__ );
-			return WikiPage::DELETE_NO_REVISIONS;
+			$dbw->rollback();
+			return false;
 		}
 
 		$this->doDeleteUpdates( $id );
@@ -2042,11 +2157,11 @@ class WikiPage extends Page {
 		$logEntry->publish( $logid );
 
 		if ( $commit ) {
-			$dbw->commit( __METHOD__ );
+			$dbw->commit();
 		}
 
 		wfRunHooks( 'ArticleDeleteComplete', array( &$this, &$user, $reason, $id ) );
-		return WikiPage::DELETE_SUCCESS;
+		return true;
 	}
 
 	/**
@@ -2103,9 +2218,6 @@ class WikiPage extends Page {
 
 		# Clear caches
 		self::onArticleDelete( $this->mTitle );
-
-		# Reset this object
-		$this->clear();
 
 		# Clear the cached article id so the interface doesn't act like we exist
 		$this->mTitle->resetArticleID( 0 );
@@ -2175,7 +2287,6 @@ class WikiPage extends Page {
 	 *
 	 * @param $resultDetails Array: contains result-specific array of additional values
 	 * @param $guser User The user performing the rollback
-	 * @return array
 	 */
 	public function commitRollback( $fromP, $summary, $bot, &$resultDetails, User $guser ) {
 		global $wgUseRCPatrol, $wgContLang;
@@ -2187,7 +2298,7 @@ class WikiPage extends Page {
 		}
 
 		# Get the last editor
-		$current = $this->getRevision();
+		$current = Revision::newFromTitle( $this->mTitle );
 		if ( is_null( $current ) ) {
 			# Something wrong... no page?
 			return array( array( 'notanarticle' ) );
@@ -2276,7 +2387,7 @@ class WikiPage extends Page {
 		}
 
 		# Actually store the edit
-		$status = $this->doEdit( $target->getText(), $summary, $flags, $target->getId(), $guser );
+		$status = $this->doEditContent( $target->getContent(), $summary, $flags, $target->getId(), $guser );
 		if ( !empty( $status->value['revision'] ) ) {
 			$revId = $status->value['revision']->getId();
 		} else {
@@ -2426,53 +2537,16 @@ class WikiPage extends Page {
 	* @param $newtext String: The submitted text of the page.
 	* @param $flags Int bitmask: a bitmask of flags submitted for the edit.
 	* @return string An appropriate autosummary, or an empty string.
+    * @deprecated since 1.20, use ContentHandler::getAutosummary() instead
 	*/
 	public static function getAutosummary( $oldtext, $newtext, $flags ) {
-		global $wgContLang;
+		# NOTE: stub for backwards-compatibility. assumes the given text is wikitext. will break horribly if it isn't.
 
-		# Decide what kind of autosummary is needed.
+        $handler = ContentHandler::getForModelName( CONTENT_MODEL_WIKITEXT );
+        $oldContent = $handler->unserialize( $oldtext );
+        $newContent = $handler->unserialize( $newtext );
 
-		# Redirect autosummaries
-		$ot = Title::newFromRedirect( $oldtext );
-		$rt = Title::newFromRedirect( $newtext );
-
-		if ( is_object( $rt ) && ( !is_object( $ot ) || !$rt->equals( $ot ) || $ot->getFragment() != $rt->getFragment() ) ) {
-			$truncatedtext = $wgContLang->truncate(
-				str_replace( "\n", ' ', $newtext ),
-				max( 0, 250
-					- strlen( wfMsgForContent( 'autoredircomment' ) )
-					- strlen( $rt->getFullText() )
-				) );
-			return wfMsgForContent( 'autoredircomment', $rt->getFullText(), $truncatedtext );
-		}
-
-		# New page autosummaries
-		if ( $flags & EDIT_NEW && strlen( $newtext ) ) {
-			# If they're making a new article, give its text, truncated, in the summary.
-
-			$truncatedtext = $wgContLang->truncate(
-				str_replace( "\n", ' ', $newtext ),
-				max( 0, 200 - strlen( wfMsgForContent( 'autosumm-new' ) ) ) );
-
-			return wfMsgForContent( 'autosumm-new', $truncatedtext );
-		}
-
-		# Blanking autosummaries
-		if ( $oldtext != '' && $newtext == '' ) {
-			return wfMsgForContent( 'autosumm-blank' );
-		} elseif ( strlen( $oldtext ) > 10 * strlen( $newtext ) && strlen( $newtext ) < 500 ) {
-			# Removing more than 90% of the article
-
-			$truncatedtext = $wgContLang->truncate(
-				$newtext,
-				max( 0, 200 - strlen( wfMsgForContent( 'autosumm-replace' ) ) ) );
-
-			return wfMsgForContent( 'autosumm-replace', $truncatedtext );
-		}
-
-		# If we reach this point, there's no applicable autosummary for our case, so our
-		# autosummary is empty.
-		return '';
+        return $handler->getAutosummary( $oldContent, $newContent, $flags );
 	}
 
 	/**
@@ -2481,93 +2555,13 @@ class WikiPage extends Page {
 	 * @param &$hasHistory Boolean: whether the page has a history
 	 * @return mixed String containing deletion reason or empty string, or boolean false
 	 *    if no revision occurred
+     * @deprecated since 1.20, use ContentHandler::getAutoDeleteReason() instead
 	 */
 	public function getAutoDeleteReason( &$hasHistory ) {
-		global $wgContLang;
+        #NOTE: stub for backwards-compatibility.
 
-		// Get the last revision
-		$rev = $this->getRevision();
-
-		if ( is_null( $rev ) ) {
-			return false;
-		}
-
-		// Get the article's contents
-		$contents = $rev->getText();
-		$blank = false;
-
-		// If the page is blank, use the text from the previous revision,
-		// which can only be blank if there's a move/import/protect dummy revision involved
-		if ( $contents == '' ) {
-			$prev = $rev->getPrevious();
-
-			if ( $prev )	{
-				$contents = $prev->getText();
-				$blank = true;
-			}
-		}
-
-		$dbw = wfGetDB( DB_MASTER );
-
-		// Find out if there was only one contributor
-		// Only scan the last 20 revisions
-		$res = $dbw->select( 'revision', 'rev_user_text',
-			array( 'rev_page' => $this->getID(), $dbw->bitAnd( 'rev_deleted', Revision::DELETED_USER ) . ' = 0' ),
-			__METHOD__,
-			array( 'LIMIT' => 20 )
-		);
-
-		if ( $res === false ) {
-			// This page has no revisions, which is very weird
-			return false;
-		}
-
-		$hasHistory = ( $res->numRows() > 1 );
-		$row = $dbw->fetchObject( $res );
-
-		if ( $row ) { // $row is false if the only contributor is hidden
-			$onlyAuthor = $row->rev_user_text;
-			// Try to find a second contributor
-			foreach ( $res as $row ) {
-				if ( $row->rev_user_text != $onlyAuthor ) { // Bug 22999
-					$onlyAuthor = false;
-					break;
-				}
-			}
-		} else {
-			$onlyAuthor = false;
-		}
-
-		// Generate the summary with a '$1' placeholder
-		if ( $blank ) {
-			// The current revision is blank and the one before is also
-			// blank. It's just not our lucky day
-			$reason = wfMsgForContent( 'exbeforeblank', '$1' );
-		} else {
-			if ( $onlyAuthor ) {
-				$reason = wfMsgForContent( 'excontentauthor', '$1', $onlyAuthor );
-			} else {
-				$reason = wfMsgForContent( 'excontent', '$1' );
-			}
-		}
-
-		if ( $reason == '-' ) {
-			// Allow these UI messages to be blanked out cleanly
-			return '';
-		}
-
-		// Replace newlines with spaces to prevent uglyness
-		$contents = preg_replace( "/[\n\r]/", ' ', $contents );
-		// Calculate the maximum amount of chars to get
-		// Max content length = max comment length - length of the comment (excl. $1)
-		$maxLength = 255 - ( strlen( $reason ) - 2 );
-		$contents = $wgContLang->truncate( $contents, $maxLength );
-		// Remove possible unfinished links
-		$contents = preg_replace( '/\[\[([^\]]*)\]?$/', '$1', $contents );
-		// Now replace the '$1' placeholder
-		$reason = str_replace( '$1', $contents, $reason );
-
-		return $reason;
+		$handler = ContentHandler::getForTitle( $this->getTitle() );
+        $handler->getAutoDeleteReason( $this->getTitle(), $hasHistory );
 	}
 
 	/**
@@ -2800,7 +2794,6 @@ class WikiPage extends Page {
 
 	/**
 	 * @deprecated since 1.18
-	 * @return bool
 	 */
 	public function useParserCache( $oldid ) {
 		wfDeprecated( __METHOD__, '1.18' );
@@ -2837,7 +2830,7 @@ class PoolWorkArticleView extends PoolCounterWork {
 	private $text;
 
 	/**
-	 * @var ParserOutput|bool
+	 * @var ParserOutput|false
 	 */
 	private $parserOutput = false;
 
@@ -2847,7 +2840,7 @@ class PoolWorkArticleView extends PoolCounterWork {
 	private $isDirty = false;
 
 	/**
-	 * @var Status|bool
+	 * @var Status|false
 	 */
 	private $error = false;
 
@@ -2858,14 +2851,20 @@ class PoolWorkArticleView extends PoolCounterWork {
 	 * @param $revid Integer: ID of the revision being parsed
 	 * @param $useParserCache Boolean: whether to use the parser cache
 	 * @param $parserOptions parserOptions to use for the parse operation
-	 * @param $text String: text to parse or null to load it
+	 * @param $content Content|String: content to parse or null to load it; may also be given as a wikitext string, for BC
 	 */
-	function __construct( Page $page, ParserOptions $parserOptions, $revid, $useParserCache, $text = null ) {
+	function __construct( Page $page, ParserOptions $parserOptions, $revid, $useParserCache, $content = null ) {
+        if ( is_string($content) ) { #BC: old style call
+            $modelName = $page->getRevision()->getContentModelName();
+            $format = $page->getRevision()->getContentFormat();
+            $content = ContentHandler::makeContent( $content, $page->getTitle(), $modelName, $format );
+        }
+
 		$this->page = $page;
 		$this->revid = $revid;
 		$this->cacheable = $useParserCache;
 		$this->parserOptions = $parserOptions;
-		$this->text = $text;
+		$this->content = $content;
 		$this->cacheKey = ParserCache::singleton()->getKey( $page, $parserOptions );
 		parent::__construct( 'ArticleView', $this->cacheKey . ':revid:' . $revid );
 	}
@@ -2891,7 +2890,7 @@ class PoolWorkArticleView extends PoolCounterWork {
 	/**
 	 * Get a Status object in case of error or false otherwise
 	 *
-	 * @return Status|bool
+	 * @return Status|false
 	 */
 	public function getError() {
 		return $this->error;
@@ -2905,22 +2904,21 @@ class PoolWorkArticleView extends PoolCounterWork {
 
 		$isCurrent = $this->revid === $this->page->getLatest();
 
-		if ( $this->text !== null ) {
-			$text = $this->text;
+		if ( $this->content !== null ) {
+			$content = $this->content;
 		} elseif ( $isCurrent ) {
-			$text = $this->page->getRawText();
+            $content = $this->page->getContent( Revision::RAW ); #XXX: why use RAW audience here, and PUBLIC (default) below?
 		} else {
 			$rev = Revision::newFromTitle( $this->page->getTitle(), $this->revid );
 			if ( $rev === null ) {
 				return false;
 			}
-			$text = $rev->getText();
+            $content = $rev->getContent(); #XXX: why use PUBLIC audience here (default), and RAW above?
 		}
 
-		$time = - microtime( true );
-		$this->parserOutput = $wgParser->parse( $text, $this->page->getTitle(),
-			$this->parserOptions, true, true, $this->revid );
-		$time += microtime( true );
+		$time = - wfTime();
+		$this->parserOutput = $content->getParserOutput( $this->page->getTitle(), $this->revid, $this->parserOptions );
+		$time += wfTime();
 
 		# Timing hack
 		if ( $time > 3 ) {
@@ -2981,7 +2979,6 @@ class PoolWorkArticleView extends PoolCounterWork {
 
 	/**
 	 * @param $status Status
-	 * @return bool
 	 */
 	function error( $status ) {
 		$this->error = $status;

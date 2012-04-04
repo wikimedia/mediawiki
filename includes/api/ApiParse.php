@@ -318,9 +318,9 @@ class ApiParse extends ApiBase {
 
 		$page = WikiPage::factory( $titleObj );
 
-		if ( $this->section !== false ) {
+		if ( $this->section !== false ) { #FIXME: get section Content, get parser output, ...
 			$this->text = $this->getSectionText( $page->getRawText(), !is_null( $pageId )
-					? 'page id ' . $pageId : $titleObj->getText() );
+					? 'page id ' . $pageId : $titleObj->getText() ); #FIXME: get section...
 
 			// Not cached (save or load)
 			return $wgParser->parse( $this->text, $titleObj, $popts );
@@ -329,13 +329,14 @@ class ApiParse extends ApiBase {
 			// getParserOutput will save to Parser cache if able
 			$pout = $page->getParserOutput( $popts );
 			if ( $getWikitext ) {
-				$this->text = $page->getRawText();
+                $this->content = $page->getContent( Revision::RAW ); #FIXME: use $this->content everywhere
+				$this->text = ContentHandler::getContentText( $this->content ); #FIXME: serialize, get format from params; or use object structure in result?
 			}
 			return $pout;
 		}
 	}
 
-	private function getSectionText( $text, $what ) {
+	private function getSectionText( $text, $what ) { #FIXME: replace with Content::getSection
 		global $wgParser;
 		// Not cached (save or load)
 		$text = $wgParser->getSection( $text, $this->section, false );
@@ -399,7 +400,7 @@ class ApiParse extends ApiBase {
 		$langs = array();
 		foreach ( $languages as $l ) {
 			$nt = Title::newFromText( $l );
-			$text = Language::fetchLanguageName( $nt->getInterwiki() );
+			$text = $wgContLang->getLanguageName( $nt->getInterwiki() );
 
 			$langs[] = Html::element( 'a',
 				array( 'href' => $nt->getFullURL(), 'title' => $nt->getText(), 'class' => "external" ),
@@ -596,6 +597,6 @@ class ApiParse extends ApiBase {
 	}
 
 	public function getVersion() {
-		return __CLASS__ . ': $Id$';
+		return __CLASS__ . ': $Id: ApiParse.php 114179 2012-03-19 20:34:30Z daniel $';
 	}
 }

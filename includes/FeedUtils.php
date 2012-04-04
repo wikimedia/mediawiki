@@ -57,17 +57,18 @@ class FeedUtils {
 		$timestamp = wfTimestamp( TS_MW, $row->rc_timestamp );
 		$actiontext = '';
 		if( $row->rc_type == RC_LOG ) {
-			$rcRow = (array)$row; // newFromRow() only accepts arrays for RC rows
-			$actiontext = LogFormatter::newFromRow( $rcRow )->getActionText();
+			if( $row->rc_deleted & LogPage::DELETED_ACTION ) {
+				$actiontext = wfMsgHtml('rev-deleted-event');
+			} else {
+				$actiontext = LogPage::actionText( $row->rc_log_type, $row->rc_log_action,
+					$titleObj, RequestContext::getMain()->getSkin(), LogPage::extractParams($row->rc_params,true,true) );
+			}
 		}
 		return self::formatDiffRow( $titleObj,
 			$row->rc_last_oldid, $row->rc_this_oldid,
 			$timestamp,
-			($row->rc_deleted & Revision::DELETED_COMMENT)
-				? wfMsgHtml('rev-deleted-comment') 
-				: $row->rc_comment,
-			$actiontext 
-		);
+			($row->rc_deleted & Revision::DELETED_COMMENT) ? wfMsgHtml('rev-deleted-comment') : $row->rc_comment,
+			$actiontext );
 	}
 
 	/**
@@ -114,10 +115,10 @@ class FeedUtils {
 			#	$wgLang->time( $timestamp ) ),
 			#	wfMsg( 'currentrev' ) );
 
-			$diffText = '';
 			// Don't bother generating the diff if we won't be able to show it
 			if ( $wgFeedDiffCutoff > 0 ) {
-				$de = new DifferenceEngine( $title, $oldid, $newid );
+                $contentHandler = ContentHandler::getForTitle( $title );
+                $de = $contentHandler->getDifferenceEngine( $title, $oldid, $newid );
 				$diffText = $de->getDiff(
 					wfMsg( 'previousrevision' ), // hack
 					wfMsg( 'revisionasof',
@@ -166,7 +167,6 @@ class FeedUtils {
 	 * @param $title Title object: used to generate the diff URL
 	 * @param $newid Integer newid for this diff
 	 * @param $oldid Integer|null oldid for the diff. Null means it is a new article
-	 * @return string
 	 */
 	protected static function getDiffLink( Title $title, $newid, $oldid = null ) {
 		$queryParameters = ($oldid == null)

@@ -33,7 +33,7 @@ $wgConf = new SiteConfiguration;
 /** @endcond */
 
 /** MediaWiki version number */
-$wgVersion = '1.20alpha';
+$wgVersion = '1.19alpha';
 
 /** Name of the site. It must be changed in LocalSettings.php */
 $wgSitename = 'MediaWiki';
@@ -453,10 +453,6 @@ $wgAllowCopyUploads = false;
  * This feature is experimental and broken as of r81612.
  */
 $wgAllowAsyncCopyUploads = false;
-/**
- * A list of domains copy uploads can come from
- */
-$wgCopyUploadsDomains = array();
 
 /**
  * Max size for uploads, in bytes. If not set to an array, applies to all
@@ -638,6 +634,17 @@ $wgMediaHandlers = array(
 	'image/vnd.djvu' => 'DjVuHandler', // official
 	'image/x.djvu' => 'DjVuHandler', // compat
 	'image/x-djvu' => 'DjVuHandler', // compat
+);
+
+/**
+ * Plugins for page content model handling.
+ * Each entry in the array maps a model name type to a class name
+ */
+$wgContentHandlers = array(
+    CONTENT_MODEL_WIKITEXT => 'WikitextContentHandler', // the usual case
+    CONTENT_MODEL_JAVASCRIPT => 'JavaScriptContentHandler', // dumb version, no syntax highlighting
+    CONTENT_MODEL_CSS => 'CssContentHandler', // dumb version, no syntax highlighting
+    CONTENT_MODEL_TEXT => 'TextContentHandler', // dumb plain text in <pre>
 );
 
 /**
@@ -1701,8 +1708,6 @@ $wgStyleVersion = '303';
  * This will cache static pages for non-logged-in users to reduce
  * database traffic on public sites.
  * Must set $wgShowIPinHeader = false
- * ResourceLoader requests to default language and skins are cached
- * as well as single module requests.
  */
 $wgUseFileCache = false;
 
@@ -1756,6 +1761,8 @@ $wgSidebarCacheExpiry = 86400;
 /**
  * When using the file cache, we can store the cached HTML gzipped to save disk
  * space. Pages will then also be served compressed to clients that support it.
+ * THIS IS NOT COMPATIBLE with ob_gzhandler which is now enabled if supported in
+ * the default LocalSettings.php! If you enable this, remove that setting first.
  *
  * Requires zlib support enabled in PHP.
  */
@@ -2178,17 +2185,6 @@ $wgLocaltimezone = null;
  */
 $wgLocalTZoffset = null;
 
-/**
- * If set to true, this will roll back a few bug fixes introduced in 1.19,
- * emulating the 1.18 behaviour, to avoid introducing bug 34832. In 1.19,
- * language variant conversion is disabled in interface messages. Setting this
- * to true re-enables it.
- *
- * This variable should be removed (implicitly false) in 1.20 or earlier.
- */
-$wgBug34832TransitionalRollback = true;
-
-
 /** @} */ # End of language/charset settings
 
 /*************************************************************************//**
@@ -2295,7 +2291,6 @@ $wgXhtmlNamespaces = array();
 /**
  * Show IP address, for non-logged in users. It's necessary to switch this off
  * for some forms of caching.
- * Will disable file cache.
  */
 $wgShowIPinHeader = true;
 
@@ -2580,6 +2575,13 @@ $wgResourceLoaderMaxage = array(
 		'client' => 5 * 60, // 5 minutes
 	),
 );
+
+/**
+ * Whether to embed private modules inline with HTML output or to bypass
+ * caching and check the user parameter against $wgUser to prevent
+ * unauthorized access to private modules.
+ */
+$wgResourceLoaderInlinePrivateModules = true;
 
 /**
  * The default debug mode (on/off) for of ResourceLoader requests. This will still
@@ -3235,6 +3237,7 @@ $wgDefaultUserOptions = array(
 	'gender'                  => 'unknown',
 	'hideminor'               => 0,
 	'hidepatrolled'           => 0,
+	'highlightbroken'         => 1,
 	'imagesize'               => 2,
 	'justify'                 => 0,
 	'math'                    => 1,
@@ -4053,11 +4056,6 @@ $wgDebugRawPage = false;
 $wgDebugComments = false;
 
 /**
- * Extensive database transaction state debugging
- */
-$wgDebugDBTransactions = false;
-
-/**
  * Write SQL queries to the debug log
  */
 $wgDebugDumpSql = false;
@@ -4129,7 +4127,7 @@ $wgDevelopmentWarnings = false;
  * development warnings will not be generated for deprecations added in releases
  * after the limit.
  */
-$wgDeprecationReleaseLimit = false;
+$wgDeprecationReleaseLimit = '1.17';
 
 /** Only record profiling info for pages that took longer than this */
 $wgProfileLimit = 0.0;
@@ -4247,7 +4245,6 @@ $wgCachePrefix = false;
 /**
  * Display the new debugging toolbar. This also enables profiling on database
  * queries and other useful output.
- * Will disable file cache.
  *
  * @since 1.19
  */
@@ -5752,6 +5749,22 @@ $wgSeleniumTestConfigs = array();
 $wgSeleniumConfigFile = null;
 $wgDBtestuser = ''; //db user that has permission to create and drop the test databases only
 $wgDBtestpassword = '';
+
+/**
+ * Associative array mapping namespace IDs to the name of the content model pages in that namespace should have by
+ * default (use the CONTENT_MODEL_XXX constants). If no special content type is defined for a given namespace,
+ * pages in that namespace will  use the CONTENT_MODEL_WIKITEXT (except for the special case of JS and CS pages).
+ */
+$wgNamespaceContentModels = array();
+
+/**
+ * How to react if a plain text version of a non-text Content object is requested using ContentHandler::getContentText():
+ *
+ * * 'ignore': return null
+ * * 'fail': throw an MWException
+ * * 'serialize': serialize to default format
+ */
+$wgContentHandlerTextFallback = 'ignore';
 
 /**
  * For really cool vim folding this needs to be at the end:

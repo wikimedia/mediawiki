@@ -35,7 +35,8 @@ class ApiComparePages extends ApiBase {
 		$rev1 = $this->revisionOrTitle( $params['fromrev'], $params['fromtitle'] );
 		$rev2 = $this->revisionOrTitle( $params['torev'], $params['totitle'] );
 
-		$de = new DifferenceEngine( $this->getContext(),
+        $contentHandler = ContentHandler::getForModelName( $rev1->getContentModelName() );
+        $de = $contentHandler->getDifferenceEngine( $this->getContext(),
 			$rev1,
 			$rev2,
 			null, // rcid
@@ -125,6 +126,6 @@ class ApiComparePages extends ApiBase {
 	}
 
 	public function getVersion() {
-		return __CLASS__ . ': $Id$';
+		return __CLASS__ . ': $Id: ApiComparePages.php 114520 2012-03-27 14:08:04Z daniel $';
 	}
 }

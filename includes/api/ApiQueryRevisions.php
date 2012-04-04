@@ -114,7 +114,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 		}
 
 		if ( !is_null( $params['difftotext'] ) ) {
-			$this->difftotext = $params['difftotext'];
+			$this->difftotext = $params['difftotext']; #FIXME: handle non-text content!
 		} elseif ( !is_null( $params['diffto'] ) ) {
 			if ( $params['diffto'] == 'cur' ) {
 				$params['diffto'] = 0;
@@ -503,11 +503,13 @@ class ApiQueryRevisions extends ApiQueryBase {
 				$vals['diff'] = array();
 				$context = new DerivativeContext( $this->getContext() );
 				$context->setTitle( $title );
+                $handler = ContentHandler::getForTitle( $title );
+
 				if ( !is_null( $this->difftotext ) ) {
-					$engine = new DifferenceEngine( $context );
-					$engine->setText( $text, $this->difftotext );
+					$engine = $handler->getDifferenceEngine( $context );
+					$engine->setText( $text, $this->difftotext ); #FIXME: use content objects!...
 				} else {
-					$engine = new DifferenceEngine( $context, $revision->getID(), $this->diffto );
+					$engine = $handler->getDifferenceEngine( $context, $revision->getID(), $this->diffto );
 					$vals['diff']['from'] = $engine->getOldid();
 					$vals['diff']['to'] = $engine->getNewid();
 				}
@@ -684,6 +686,6 @@ class ApiQueryRevisions extends ApiQueryBase {
 	}
 
 	public function getVersion() {
-		return __CLASS__ . ': $Id$';
+		return __CLASS__ . ': $Id: ApiQueryRevisions.php 114520 2012-03-27 14:08:04Z daniel $';
 	}
 }

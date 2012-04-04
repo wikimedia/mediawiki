@@ -23,7 +23,7 @@ class DifferenceEngine extends ContextSource {
 	 * @private
 	 */
 	var $mOldid, $mNewid;
-	var $mOldtext, $mNewtext;
+	var $mOldContent, $mNewContent;
 	protected $mDiffLang;
 
 	/**
@@ -261,7 +261,7 @@ class DifferenceEngine extends ContextSource {
 				$samePage = false;
 			}
 
-			if ( $samePage && $this->mNewPage->quickUserCan( 'edit', $user ) ) {
+			if ( $samePage && $this->mNewPage->userCan( 'edit', $user ) ) {
 				if ( $this->mNewRev->isCurrent() && $this->mNewPage->userCan( 'rollback', $user ) ) {
 					$out->preventClickjacking();
 					$rollback = '&#160;&#160;&#160;' . Linker::generateRollback( $this->mNewRev );
@@ -403,7 +403,7 @@ class DifferenceEngine extends ContextSource {
 
 		if ( $this->mMarkPatrolledLink === null ) {
 			// Prepare a change patrol link, if applicable
-			if ( $wgUseRCPatrol && $this->mNewPage->quickUserCan( 'patrol', $this->getUser() ) ) {
+			if ( $wgUseRCPatrol && $this->mNewPage->userCan( 'patrol', $this->getUser() ) ) {
 				// If we've been given an explicit change identifier, use it; saves time
 				if ( $this->mRcidMarkPatrolled ) {
 					$rcid = $this->mRcidMarkPatrolled;
@@ -486,20 +486,21 @@ class DifferenceEngine extends ContextSource {
 			$out->setRevisionTimestamp( $this->mNewRev->getTimestamp() );
 			$out->setArticleFlag( true );
 
-			if ( $this->mNewPage->isCssJsSubpage() || $this->mNewPage->isCssOrJsPage() ) {
+			if ( $this->mNewPage->isCssJsSubpage() || $this->mNewPage->isCssOrJsPage() ) { #NOTE: only needed for B/C: custom rendering of JS/CSS via hook
 				// Stolen from Article::view --AG 2007-10-11
 				// Give hooks a chance to customise the output
 				// @TODO: standardize this crap into one function
-				if ( wfRunHooks( 'ShowRawCssJs', array( $this->mNewtext, $this->mNewPage, $out ) ) ) {
-					// Wrap the whole lot in a <pre> and don't parse
-					$m = array();
-					preg_match( '!\.(css|js)$!u', $this->mNewPage->getText(), $m );
-					$out->addHTML( "<pre class=\"mw-code mw-{$m[1]}\" dir=\"ltr\">\n" );
-					$out->addHTML( htmlspecialchars( $this->mNewtext ) );
-					$out->addHTML( "\n</pre>\n" );
+				if ( !Hook::isRegistered( 'ShowRawCssJs' )
+                    || wfRunHooks( 'ShowRawCssJs', array( ContentHandler::getContentText( $this->mNewContent ), $this->mNewPage, $out ) ) ) { #NOTE: deperecated hook, B/C only
+                    // use the content object's own rendering
+                    $po = $this->mContentObject->getParserOutput();
+                    $out->addHTML( $po->getText() );
 				}
-			} elseif ( !wfRunHooks( 'ArticleViewCustom', array( $this->mNewtext, $this->mNewPage, $out ) ) ) {
-				// Handled by extension
+            } elseif( !wfRunHooks( 'ArticleContentViewCustom', array( $this->mNewContent, $this->mNewPage, $out ) ) ) {
+                // Handled by extension
+            } elseif( Hooks::isRegistered( 'ArticleViewCustom' )
+                    && !wfRunHooks( 'ArticleViewCustom', array( ContentHandler::getContentText( $this->mNewContent ), $this->mNewPage, $out ) ) ) { #NOTE: deperecated hook, B/C only
+                // Handled by extension
 			} else {
 				// Normal page
 				if ( $this->getTitle()->equals( $this->mNewPage ) ) {
@@ -630,7 +631,9 @@ class DifferenceEngine extends ContextSource {
 			return false;
 		}
 
-		$difftext = $this->generateDiffBody( $this->mOldtext, $this->mNewtext );
+        #TODO: make sure both Content objects have the same content model. What do we do if they don't?
+
+		$difftext = $this->generateContentDiffBody( $this->mOldContent, $this->mNewContent );
 
 		// Save to cache for 7 days
 		if ( !wfRunHooks( 'AbortDiffCache', array( &$this ) ) ) {
@@ -667,14 +670,47 @@ class DifferenceEngine extends ContextSource {
 		}
 	}
 
+    /**
+     * Generate a diff, no caching.
+     *
+     * Subclasses may override this to provide a
+     *
+     * @param $old Content: old content
+     * @param $new Content: new content
+     */
+    function generateContentDiffBody( Content $old, Content $new ) {
+        #XXX: generate a warning if $old or $new are not instances of TextContent?
+        #XXX: fail if $old and $new don't have the same content model? or what?
+
+        $otext = $old->serialize();
+        $ntext = $new->serialize();
+
+        #XXX: text should be "already segmented". what does that mean?
+        return $this->generateTextDiffBody( $otext, $ntext );
+    }
+
+    /**
+     * Generate a diff, no caching
+     *
+     * @param $otext String: old text, must be already segmented
+     * @param $ntext String: new text, must be already segmented
+     * @deprecated since 1.20, use generateContentDiffBody() instead!
+     */
+    function generateDiffBody( $otext, $ntext ) {
+        wfDeprecated( __METHOD__, "1.20" );
+
+        return $this->generateTextDiffBody( $otext, $ntext );
+    }
+
 	/**
 	 * Generate a diff, no caching
 	 *
+     * @todo move this to TextDifferenceEngine, make DifferenceEngine abstract. At some point.
+     *
 	 * @param $otext String: old text, must be already segmented
 	 * @param $ntext String: new text, must be already segmented
-	 * @return bool|string
 	 */
-	function generateDiffBody( $otext, $ntext ) {
+	function generateTextDiffBody( $otext, $ntext ) {
 		global $wgExternalDiffEngine, $wgContLang;
 
 		wfProfileIn( __METHOD__ );
@@ -748,7 +784,6 @@ class DifferenceEngine extends ContextSource {
 	/**
 	 * Generate a debug comment indicating diff generating time,
 	 * server node, and generator backend.
-	 * @return string
 	 */
 	protected function debug( $generator = "internal" ) {
 		global $wgShowHostnames;
@@ -770,7 +805,6 @@ class DifferenceEngine extends ContextSource {
 
 	/**
 	 * Replace line numbers with the text in the user's language
-	 * @return mixed
 	 */
 	function localiseLineNumbers( $text ) {
 		return preg_replace_callback( '/<!--LINE (\d+)-->/',
@@ -867,7 +901,7 @@ class DifferenceEngine extends ContextSource {
 				$editQuery['oldid'] = $rev->getID();
 			}
 
-			$msg = $this->msg( $title->quickUserCan( 'edit', $user ) ? 'editold' : 'viewsourceold' )->escaped();
+			$msg = $this->msg( $title->userCan( 'edit', $user ) ? 'editold' : 'viewsourceold' )->escaped();
 			$header .= ' (' . Linker::linkKnown( $title, $msg, array(), $editQuery ) . ')';
 			if ( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
 				$header = Html::rawElement( 'span', array( 'class' => 'history-deleted' ), $header );
@@ -928,13 +962,28 @@ class DifferenceEngine extends ContextSource {
 
 	/**
 	 * Use specified text instead of loading from the database
+     * @deprecated since 1.20
 	 */
-	function setText( $oldText, $newText ) {
-		$this->mOldtext = $oldText;
-		$this->mNewtext = $newText;
-		$this->mTextLoaded = 2;
-		$this->mRevisionsLoaded = true;
-	}
+	function setText( $oldText, $newText ) { #FIXME: no longer use this, use setContent()!
+        wfDeprecated( __METHOD__, "1.20" );
+
+        $oldContent = ContentHandler::makeContent( $oldText, $this->getTitle() );
+        $newContent = ContentHandler::makeContent( $newText, $this->getTitle() );
+
+        $this->setContent( $oldContent, $newContent );
+    }
+
+    /**
+     * Use specified text instead of loading from the database
+     * @since 1.20
+     */
+    function setContent( Content $oldContent, Content $newContent ) {
+        $this->mOldContent = $oldContent;
+        $this->mNewContent = $newContent;
+
+        $this->mTextLoaded = 2;
+        $this->mRevisionsLoaded = true;
+    }
 
 	/**
 	 * Set the language in which the diff text is written
@@ -1059,14 +1108,14 @@ class DifferenceEngine extends ContextSource {
 			return false;
 		}
 		if ( $this->mOldRev ) {
-			$this->mOldtext = $this->mOldRev->getText( Revision::FOR_THIS_USER );
-			if ( $this->mOldtext === false ) {
+			$this->mOldContent = $this->mOldRev->getContent( Revision::FOR_THIS_USER );
+			if ( $this->mOldContent === false ) {
 				return false;
 			}
 		}
 		if ( $this->mNewRev ) {
-			$this->mNewtext = $this->mNewRev->getText( Revision::FOR_THIS_USER );
-			if ( $this->mNewtext === false ) {
+			$this->mNewContent = $this->mNewRev->getContent( Revision::FOR_THIS_USER );
+			if ( $this->mNewContent === false ) {
 				return false;
 			}
 		}
@@ -1087,7 +1136,7 @@ class DifferenceEngine extends ContextSource {
 		if ( !$this->loadRevisionData() ) {
 			return false;
 		}
-		$this->mNewtext = $this->mNewRev->getText( Revision::FOR_THIS_USER );
+		$this->mNewContent = $this->mNewRev->getContent( Revision::FOR_THIS_USER );
 		return true;
 	}
 }

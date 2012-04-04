@@ -90,7 +90,7 @@ class ApiPurge extends ApiBase {
 
 					$popts = ParserOptions::newFromContext( $this->getContext() );
 					$p_result = $wgParser->parse( $page->getRawText(), $title, $popts,
-						true, true, $page->getLatest() );
+						true, true, $page->getLatest() ); #FIXME: content!
 
 					# Update the links tables
 					$u = new LinksUpdate( $title, $p_result );
@@ -159,6 +159,6 @@ class ApiPurge extends ApiBase {
 	}
 
 	public function getVersion() {
-		return __CLASS__ . ': $Id$';
+		return __CLASS__ . ': $Id: ApiPurge.php 113047 2012-03-05 17:09:41Z daniel $';
 	}
 }
