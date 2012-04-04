@@ -6381,6 +6381,30 @@ Something need to be done. foo-2 ?
 !! end
 
 !! test
+Sanitizer: Validating that <meta> and <link> work, but only for Microdata
+!! input
+<div itemscope>
+	<meta itemprop="hello" content="world">
+	<meta http-equiv="refresh" content="5">
+	<meta itemprop="hello" http-equiv="refresh" content="5">
+	<link itemprop="hello" href="{{SERVER}}">
+	<link rel="stylesheet" href="{{SERVER}}">
+	<link rel="stylesheet" itemprop="hello" href="{{SERVER}}">
+</div>
+!! result
+<div itemscope="itemscope">
+<p>	<meta itemprop="hello" content="world" />
+	&lt;meta http-equiv="refresh" content="5"&gt;
+	<meta itemprop="hello" content="5" />
+</p>
+	<link itemprop="hello" href="http&#58;//Britney-Spears" />
+	&lt;link rel="stylesheet" href="<a rel="nofollow" class="external free" href="http://Britney-Spears">http://Britney-Spears</a>"&gt;
+	<link itemprop="hello" href="http&#58;//Britney-Spears" />
+</div>
+
+!! end
+
+!! test
 Language converter: output gets cut off unexpectedly (bug 5757)
 !! options
 language=zh
