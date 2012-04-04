@@ -84,6 +84,11 @@ class TextPassDumper extends BackupDumper {
 			unset( $this->lb );
 		}
 
+		if ( $this->forcedDb !== null ) {
+			$this->db = $this->forcedDb;
+			return;
+		}
+
 		if ( isset( $this->db ) && $this->db->isOpen() ) {
 			throw new MWException( 'DB is set and has not been closed by the Load Balancer' );
 		}
@@ -111,15 +116,12 @@ class TextPassDumper extends BackupDumper {
 	}
 
 
-	function initProgress( $history ) {
+	function initProgress( $history = WikiExporter::FULL ) {
 		parent::initProgress();
 		$this->timeOfCheckpoint = $this->startTime;
 	}
 
 	function dump( $history, $text = WikiExporter::TEXT ) {
-		// This shouldn't happen if on console... ;)
-		header( 'Content-type: text/html; charset=UTF-8' );
-
 		// Notice messages will foul up your XML output even if they're
 		// relatively harmless.
 		if ( ini_get( 'display_errors' ) )
