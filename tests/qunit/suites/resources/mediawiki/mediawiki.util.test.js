@@ -140,48 +140,45 @@ test( '$content', function() {
  * Previously, test elements where invisible to the selector since only
  * one element can have a given id. 
  */
-test( 'addPortletLink', function() {
+test( 'addPortletLink', function () {
+	var pTestTb, vectorTabs, tbRL, tbMW, $tbMW, tbRLDM, caFoo;
 	expect(7);
 
-	var mwPanel = '<div id="mw-panel" class="noprint">\
-	<h5>Toolbox</h5>\
+	pTestTb = '\
 	<div class="portlet" id="p-test-tb">\
 		<ul class="body"></ul>\
-	</div>\
-</div>',
-	vectorTabs = '<div id="p-test-views" class="vectorTabs">\
-	<h5>Views</h5>\
-	<ul></ul>\
-</div>',
-	$mwPanel = $(mwPanel).appendTo( '#qunit-fixture' ),
-	$vectorTabs = $(vectorTabs).appendTo( '#qunit-fixture' );
+	</div>';
+	vectorTabs = '\
+	<div id="p-test-views" class="vectorTabs">\
+		<h5>Views</h5>\
+		<ul></ul>\
+	</div>';
 
-	var tbRL = mw.util.addPortletLink( 'p-test-tb', '//mediawiki.org/wiki/ResourceLoader',
+	$('#qunit-fixture').append(pTestTb, vectorTabs);
+
+	tbRL = mw.util.addPortletLink( 'p-test-tb', '//mediawiki.org/wiki/ResourceLoader',
 		'ResourceLoader', 't-rl', 'More info about ResourceLoader on MediaWiki.org ', 'l' );
 
 	ok( $.isDomElement( tbRL ), 'addPortletLink returns a valid DOM Element according to $.isDomElement' );
 
-	var	tbMW = mw.util.addPortletLink( 'p-test-tb', '//mediawiki.org/',
-			'MediaWiki.org', 't-mworg', 'Go to MediaWiki.org ', 'm', tbRL ),
-		$tbMW = $( tbMW );
+	tbMW = mw.util.addPortletLink( 'p-test-tb', '//mediawiki.org/',
+		'MediaWiki.org', 't-mworg', 'Go to MediaWiki.org ', 'm', tbRL );
+	$tbMW = $( tbMW );
 
 
 	equal( $tbMW.attr( 'id' ), 't-mworg', 'Link has correct ID set' );
 	equal( $tbMW.closest( '.portlet' ).attr( 'id' ), 'p-test-tb', 'Link was inserted within correct portlet' );
 	equal( $tbMW.next().attr( 'id' ), 't-rl', 'Link is in the correct position (by passing nextnode)' );
 
-	var tbRLDM = mw.util.addPortletLink( 'p-test-tb', '//mediawiki.org/wiki/RL/DM',
+	tbRLDM = mw.util.addPortletLink( 'p-test-tb', '//mediawiki.org/wiki/RL/DM',
 		'Default modules', 't-rldm', 'List of all default modules ', 'd', '#t-rl' );
 
 	equal( $( tbRLDM ).next().attr( 'id' ), 't-rl', 'Link is in the correct position (by passing CSS selector)' );
 
-	var caFoo = mw.util.addPortletLink( 'p-test-views', '#', 'Foo' );
+	caFoo = mw.util.addPortletLink( 'p-test-views', '#', 'Foo' );
 
 	strictEqual( $tbMW.find( 'span').length, 0, 'No <span> element should be added for porlets without vectorTabs class.' );
 	strictEqual( $( caFoo ).find( 'span').length, 1, 'A <span> element should be added for porlets with vectorTabs class.' );
-
-	// Clean up
-	$( [tbRL, tbMW, tbRLDM, caFoo] ).remove();
 });
 
 test( 'jsMessage', function() {

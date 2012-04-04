@@ -266,20 +266,22 @@ test( 'mw.loader.bug30825', function() {
 	mw.loader.load( target );
 });
 
-test( 'mw.html', function() {
-	expect(11);
+test( 'mw.html', function () {
+	expect(13);
 
-	raises( function(){
+	raises( function () {
 		mw.html.escape();
 	}, TypeError, 'html.escape throws a TypeError if argument given is not a string' );
 
 	equal( mw.html.escape( '<mw awesome="awesome" value=\'test\' />' ),
-		'&lt;mw awesome=&quot;awesome&quot; value=&#039;test&#039; /&gt;', 'html.escape escapes html snippet' );
+		'&lt;mw awesome=&quot;awesome&quot; value=&#039;test&#039; /&gt;', 'escape() escapes special characters to html entities' );
 
 	equal( mw.html.element(),
-		'<undefined/>', 'html.element Always return a valid html string (even without arguments)' );
+		'<undefined/>', 'element() always returns a valid html string (even without arguments)' );
 
-	equal( mw.html.element( 'div' ), '<div/>', 'html.element DIV (simple)' );
+	equal( mw.html.element( 'div' ), '<div/>', 'element() Plain DIV (simple)' );
+
+	equal( mw.html.element( 'div', {}, '' ), '<div></div>', 'element() Basic DIV (simple)' );
 
 	equal(
 		mw.html.element(
@@ -293,6 +295,19 @@ test( 'mw.html', function() {
 	equal( mw.html.element( 'p', null, 12 ), '<p>12</p>', 'Numbers are valid content and should be casted to a string' );
 
 	equal( mw.html.element( 'p', { title: 12 }, '' ), '<p title="12"></p>', 'Numbers are valid attribute values' );
+
+	// Example from https://www.mediawiki.org/wiki/ResourceLoader/Default_modules#mediaWiki.html
+	equal(
+		mw.html.element(
+			'div',
+			{},
+			new mw.html.Raw(
+				mw.html.element( 'img', { src: '<' } )
+			)
+		),
+		'<div><img src="&lt;"/></div>',
+		'Raw inclusion of another element'
+	);
 
 	equal(
 		mw.html.element(
