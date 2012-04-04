@@ -68,6 +68,7 @@ production.
   an RTL environment.
 * (bug 35680) jQuery upgraded to 1.7.2.
 * (bug 35681) jQuery UI upgraded to 1.8.18.
+* (bug 35705) QUnit upgraded from 1.2.0 to 1.5.0
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
