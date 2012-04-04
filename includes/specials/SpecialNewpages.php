@@ -143,7 +143,9 @@ class SpecialNewpages extends IncludableSpecialPage {
 				return $this->feed( $feedType );
 			}
 
-			$out->setFeedAppendQuery( wfArrayToCGI( $this->opts->getAllValues() ) );
+			$allValues = $this->opts->getAllValues();
+			unset( $allValues['feed'] );
+			$out->setFeedAppendQuery( wfArrayToCGI( $allValues ) );
 		}
 
 		$pager = new NewPagesPager( $this, $this->opts );
@@ -370,7 +372,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$oldTitleText = '';
 		$oldTitle = Title::makeTitle( $result->rc_namespace, $result->rc_title );
 		if ( !$title->equals( $oldTitle ) ) {
-			$oldTitleText = $this->msg( 'rc-old-title' )->params( $oldTitle->getPrefixedText() )->escaped();	
+			$oldTitleText = $this->msg( 'rc-old-title' )->params( $oldTitle->getPrefixedText() )->escaped();
 		}
 
 		return "<li{$css}>{$time} {$dm}{$plink} {$hist} {$dm}{$length} {$dm}{$ulink} {$comment} {$tagDisplay} {$oldTitleText}</li>\n";
