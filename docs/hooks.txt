@@ -2242,9 +2242,9 @@ One, and only one hook should set this, and return false.
 &$opts: Options to use for the query
 &$join: Join conditions
 
-'wfShellMaintenanceCmd': Called when generating a shell-escaped command line
-	string to run a maintenance script.
-&$script: MediaWiki maintenance script path
+'wfShellWikiCmd': Called when generating a shell-escaped command line
+	string to run a MediaWiki cli script.
+&$script: MediaWiki cli script path
 &$parameters: Array of arguments and options to the script
 &$options: Associative array of options, may contain the 'php' and 'wrapper'
 	keys
