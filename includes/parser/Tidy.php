@@ -59,9 +59,15 @@ class MWTidyWrapper {
 			dechex( mt_rand( 0, 0x7fffffff ) ) . dechex( mt_rand( 0, 0x7fffffff ) );
 		$this->mMarkerIndex = 0;
 
+		// Replace <mw:editsection> elements with placeholders
 		$wrappedtext = preg_replace_callback( ParserOutput::EDITSECTION_REGEX,
 			array( &$this, 'replaceEditSectionLinksCallback' ), $text );
 
+		// Modify inline Microdata <link> and <meta> elements so they say <html-link> and <html-meta> so
+		// we can trick Tidy into not stripping them out by including them in tidy's new-empty-tags config
+		$wrappedtext = preg_replace( '!<(link|meta)([^>]*?)(/{0,1}>)!', '<html-$1$2$3', $wrappedtext );
+
+		// Wrap the whole thing in a doctype and body for Tidy.
 		$wrappedtext = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"'.
 			' "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html>'.
 			'<head><title>test</title></head><body>'.$wrappedtext.'</body></html>';
@@ -86,7 +92,13 @@ class MWTidyWrapper {
 	 * @return string
 	 */
 	public function postprocess( $text ) {
-		return $this->mTokens->replace( $text );
+		// Revert <html-{link,meta}> back to <{link,meta}>
+		$text = preg_replace( '!<html-(link|meta)([^>]*?)(/{0,1}>)!', '<$1$2$3', $text );
+
+		// Restore the contents of placeholder tokens
+		$text = $this->mTokens->replace( $text );
+
+		return $text;
 	}
 
 }
