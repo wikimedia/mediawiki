@@ -4233,7 +4233,17 @@ $wgEnableJavaScriptTest = false;
  */
 $wgJavaScriptTestConfig = array(
 	'qunit' => array(
+		// Page where documentation can be found relevant to the QUnit test suite being ran.
+		// Used in the intro paragraph on [[Special:JavaScriptTest/qunit]] for the
+		// documentation link in the "javascripttest-qunit-intro" message.
 		'documentation' => '//www.mediawiki.org/wiki/Manual:JavaScript_unit_testing',
+		// If you are submitting the QUnit test suite to a TestSwarm instance,
+		// point this to the "inject.js" script of that instance. This is was registers
+		// the QUnit hooks to extract the test results and push them back up into the
+		// TestSwarm database.
+		// @example 'http://localhost/testswarm/js/inject.js'
+		// @example '//integration.mediawiki.org/testswarm/js/inject.js'
+		'testswarm-injectjs' => false,
 	),
 );
 

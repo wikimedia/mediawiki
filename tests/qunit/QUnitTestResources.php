@@ -48,5 +48,6 @@ return array(
 			'mediawiki.special.recentchanges',
 			'mediawiki.jqueryMsg',
 		),
+		'position' => 'top',
 	)
 );

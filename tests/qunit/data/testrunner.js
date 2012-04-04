@@ -29,9 +29,14 @@ QUnit.config.urlConfig.push( 'debug' );
 /**
  *  Load TestSwarm agent
  */
-if ( QUnit.urlParams.swarmURL  ) {
-	document.write( "<scr" + "ipt src='" + QUnit.fixurl( mw.config.get( 'wgScriptPath' )
-		+ '/tests/qunit/data/testwarm.inject.js' ) + "'></scr" + "ipt>" );
+// Only if the current url indicates that there is a TestSwarm instance watching us
+// (TestSwarm appends swarmURL to the test suites url it loads in iframes).
+// Otherwise this is just a simple view of Special:JavaScriptTest/qunit directly,
+// no point in loading inject.js in that case. Also, make sure that this instance
+// of MediaWiki has actually been configured with the required url to that inject.js
+// script. By default it is false.
+if ( QUnit.urlParams.swarmURL && mw.config.get( 'QUnitTestSwarmInjectJSPath' ) ) {
+	document.write( "<scr" + "ipt src='" + QUnit.fixurl( mw.config.get( 'QUnitTestSwarmInjectJSPath' ) ) + "'></scr" + "ipt>" );
 }
 
 /**

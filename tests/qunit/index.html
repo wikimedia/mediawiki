@@ -18,7 +18,10 @@
 		
 		/* WikiPage specific */
 		mw.config.set({"wgCanonicalNamespace": "", "wgCanonicalSpecialPageName": false, "wgNamespaceNumber": 0, "wgPageName": "Sandbox", "wgTitle": "Sandbox", "wgCurRevisionId": 486, "wgArticleId": 84, "wgIsArticle": true, "wgAction": "view", "wgUserName": null, "wgUserGroups": ["*"], "wgCategories": [], "wgBreakFrames": false, "wgPageContentLanguage": "en", "wgSeparatorTransformTable": ["", ""], "wgDigitTransformTable": ["", ""], "wgRestrictionEdit": [], "wgRestrictionMove": [], "wgRedirectedFrom": "Sandbox"});
-		
+
+		/* Special:JavaScriptTest/qunit specific */
+		mw.config.set({"QUnitTestSwarmInjectJSPath": false});
+
 		/**
 		 * Fix wgScriptPath and the like to the real thing,
 		 * instead of fake ones (for access to /tests/qunit/data/)
