@@ -90,6 +90,9 @@ changes to languages because of Bugzilla reports.
 * The user_token field is now left empty until a user attempts to login and
   cookies need to be set. It is also now possible to reset every user's
   user_token simply by clearing the values in the user_token column.
+* Removed ./tests/qunit/index.html from core. It wasn't actively maintained and
+  has been made obsolete when [[Special:JavaScriptTest/qunit]] was introduced,
+  which actually uses ResourceLoader, LocalSettings and the Skin.
 
 == Compatibility ==
 
