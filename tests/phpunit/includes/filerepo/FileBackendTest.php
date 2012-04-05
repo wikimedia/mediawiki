@@ -26,7 +26,7 @@ class FileBackendTest extends MediaWikiTestCase {
 					}
 				}
 				$useConfig['name'] = 'localtesting'; // swap name
-				$class = $conf['class'];
+				$class = $useConfig['class'];
 				self::$backendToUse = new $class( $useConfig );
 				$this->singleBackend = self::$backendToUse;
 			}
@@ -823,7 +823,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			$size = $this->backend->getFileSize( array( 'src' => $path ) );
 			$time = $this->backend->getFileTimestamp( array( 'src' => $path ) );
 			$stat = $this->backend->getFileStat( array( 'src' => $path ) );
-			
+
 			$this->assertFalse( $size, "Correct file size of '$path'" );
 			$this->assertFalse( $time, "Correct file timestamp of '$path'" );
 			$this->assertFalse( $stat, "Correct file stat of '$path'" );
@@ -1311,6 +1311,133 @@ class FileBackendTest extends MediaWikiTestCase {
 		}
 
 		$iter = $this->backend->getFileList( array( 'dir' => "$base/unittest-cont1/not/exists" ) );
+		foreach ( $iter as $iter ) {} // no errors
+	}
+
+	public function testGetSubdirectoryList() {
+		$this->backend = $this->singleBackend;
+		$this->tearDownFiles();
+		$this->doTestGetSubdirectoryList();
+		$this->tearDownFiles();
+
+		$this->backend = $this->multiBackend;
+		$this->tearDownFiles();
+		$this->doTestGetSubdirectoryList();
+		$this->tearDownFiles();
+	}
+
+	private function doTestGetSubdirectoryList() {
+		$backendName = $this->backendClass();
+
+		$base = $this->baseStorePath();
+		$files = array(
+			"$base/unittest-cont1/test1.txt",
+			"$base/unittest-cont1/test2.txt",
+			"$base/unittest-cont1/test3.txt",
+			"$base/unittest-cont1/subdir1/test1.txt",
+			"$base/unittest-cont1/subdir1/test2.txt",
+			"$base/unittest-cont1/subdir2/test3.txt",
+			"$base/unittest-cont1/subdir2/test4.txt",
+			"$base/unittest-cont1/subdir2/subdir/test1.txt",
+			"$base/unittest-cont1/subdir3/subdir/test2.txt",
+			"$base/unittest-cont1/subdir4/subdir/test3.txt",
+			"$base/unittest-cont1/subdir4/subdir/test4.txt",
+			"$base/unittest-cont1/subdir4/subdir/test5.txt",
+			"$base/unittest-cont1/subdir4/subdir/sub/test0.txt",
+			"$base/unittest-cont1/subdir4/subdir/sub/120-px-file.txt",
+		);
+
+		// Add the files
+		$ops = array();
+		foreach ( $files as $file ) {
+			$this->prepare( array( 'dir' => dirname( $file ) ) );
+			$ops[] = array( 'op' => 'create', 'content' => 'xxy', 'dst' => $file );
+		}
+		$status = $this->backend->doOperations( $ops );
+		$this->assertEquals( array(), $status->errors,
+			"Creation of files succeeded ($backendName)." );
+		$this->assertEquals( true, $status->isOK(),
+			"Creation of files succeeded with OK status ($backendName)." );
+
+		// Expected listing
+		$expected = array(
+			"subdir1",
+			"subdir2",
+			"subdir3",
+			"subdir4",
+		);
+		sort( $expected );
+
+		$this->assertEquals( true,
+			$this->backend->directoryExists( array( 'dir' => "$base/unittest-cont1/subdir1" ) ),
+			"Directory exists in ($backendName)." );
+		$this->assertEquals( true,
+			$this->backend->directoryExists( array( 'dir' => "$base/unittest-cont1/subdir2/subdir" ) ),
+			"Directory exists in ($backendName)." );
+		$this->assertEquals( false,
+			$this->backend->directoryExists( array( 'dir' => "$base/unittest-cont1/subdir2/test1.txt" ) ),
+			"Directory does not exists in ($backendName)." );
+
+		// Actual listing (no trailing slash)
+		$list = array();
+		$iter = $this->backend->getSubDirectoryList( array( 'dir' => "$base/unittest-cont1" ) );
+		foreach ( $iter as $file ) {
+			$list[] = $file;
+		}
+		sort( $list );
+
+		$this->assertEquals( $expected, $list, "Correct dir listing ($backendName)." );
+
+		// Actual listing (with trailing slash)
+		$list = array();
+		$iter = $this->backend->getSubDirectoryList( array( 'dir' => "$base/unittest-cont1/" ) );
+		foreach ( $iter as $file ) {
+			$list[] = $file;
+		}
+		sort( $list );
+
+		$this->assertEquals( $expected, $list, "Correct dir listing ($backendName)." );
+
+		// Expected listing
+		$expected = array(
+			"subdir",
+		);
+		sort( $expected );
+
+		// Actual listing (no trailing slash)
+		$list = array();
+		$iter = $this->backend->getSubDirectoryList( array( 'dir' => "$base/unittest-cont1/subdir2" ) );
+		foreach ( $iter as $file ) {
+			$list[] = $file;
+		}
+		sort( $list );
+
+		$this->assertEquals( $expected, $list, "Correct dir listing ($backendName)." );
+
+		// Actual listing (with trailing slash)
+		$list = array();
+		$iter = $this->backend->getSubDirectoryList( array( 'dir' => "$base/unittest-cont1/subdir2/" ) );
+		foreach ( $iter as $file ) {
+			$list[] = $file;
+		}
+		sort( $list );
+
+		$this->assertEquals( $expected, $list, "Correct dir listing ($backendName)." );
+
+		// Actual listing (using iterator second time)
+		$list = array();
+		foreach ( $iter as $file ) {
+			$list[] = $file;
+		}
+		sort( $list );
+
+		$this->assertEquals( $expected, $list, "Correct dir listing ($backendName), second iteration." );
+
+		foreach ( $files as $file ) { // clean up
+			$this->backend->doOperation( array( 'op' => 'delete', 'src' => $file ) );
+		}
+
+		$iter = $this->backend->getSubDirectoryList( array( 'dir' => "$base/unittest-cont1/not/exists" ) );
 		foreach ( $iter as $iter ) {} // no errors
 	}
 
