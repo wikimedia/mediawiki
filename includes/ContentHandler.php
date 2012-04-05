@@ -274,20 +274,20 @@ abstract class ContentHandler {
     /**
      * Return an applicable autosummary if one exists for the given edit.
      *
-     * @param $oldContent Content: the previous text of the page.
-     * @param $newContent Content: The submitted text of the page.
+     * @param $oldContent Content|null: the previous text of the page.
+     * @param $newContent Content|null: The submitted text of the page.
      * @param $flags Int bitmask: a bitmask of flags submitted for the edit.
      *
      * @return string An appropriate autosummary, or an empty string.
      */
-    public function getAutosummary( Content $oldContent, Content $newContent, $flags ) {
+    public function getAutosummary( Content $oldContent = null, Content $newContent = null, $flags ) {
         global $wgContLang;
 
         # Decide what kind of autosummary is needed.
 
         # Redirect autosummaries
-        $ot = $oldContent->getRedirectTarget();
-        $rt = $newContent->getRedirectTarget();
+        $ot = !empty( $ot ) ? $oldContent->getRedirectTarget() : false;
+        $rt = !empty( $rt ) ? $newContent->getRedirectTarget() : false;
 
         if ( is_object( $rt ) && ( !is_object( $ot ) || !$rt->equals( $ot ) || $ot->getFragment() != $rt->getFragment() ) ) {
 

@@ -1375,6 +1375,7 @@ class WikiPage extends Page {
 
 		# Provide autosummaries if one is not provided and autosummaries are enabled.
 		if ( $wgUseAutomaticEditSummaries && $flags & EDIT_AUTOSUMMARY && $summary == '' ) {
+            if ( !$old_content ) $old_content = null;
 			$summary = $handler->getAutosummary( $old_content, $content, $flags );
 		}
 
@@ -2560,8 +2561,8 @@ class WikiPage extends Page {
 		# NOTE: stub for backwards-compatibility. assumes the given text is wikitext. will break horribly if it isn't.
 
         $handler = ContentHandler::getForModelName( CONTENT_MODEL_WIKITEXT );
-        $oldContent = $handler->unserialize( $oldtext );
-        $newContent = $handler->unserialize( $newtext );
+        $oldContent = $oldtext ? $handler->unserialize( $oldtext ) : null;
+        $newContent = $newtext ? $handler->unserialize( $newtext ) : null;
 
         return $handler->getAutosummary( $oldContent, $newContent, $flags );
 	}
