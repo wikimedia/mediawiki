@@ -428,7 +428,7 @@ class SpecialVersion extends SpecialPage {
 			$gitInfo = new GitInfo( dirname( $extension['path'] ) );
 			$gitHeadSHA1 = $gitInfo->getHeadSHA1();
 			if ( $gitHeadSHA1 !== false ) {
-				$vcsText = substr( $gitHeadSHA1, 0, 7 );
+				$vcsText = '(' . substr( $gitHeadSHA1, 0, 7 ) . ')';
 				$gitViewerUrl = $gitInfo->getHeadViewUrl();
 				if ( $gitViewerUrl !== false ) {
 					$vcsText = "[$gitViewerUrl $vcsText]";
