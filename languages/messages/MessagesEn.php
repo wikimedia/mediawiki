@@ -4684,6 +4684,9 @@ Images are shown in full resolution, other file types are started with their ass
 'tags-hitcount-header'    => 'Tagged changes',
 'tags-edit'               => 'edit',
 'tags-hitcount'           => '$1 {{PLURAL:$1|change|changes}}',
+'tag-filter-dropdown-other'         => 'Other:',
+'tag-filter-dropdown-list'          => '', # do not translate or duplicate this message to other languages
+'tag-filter-newpages-dropdown-list' => '', # do not translate or duplicate this message to other languages
 
 # Special:ComparePages
 'comparepages'                => 'Compare pages',
