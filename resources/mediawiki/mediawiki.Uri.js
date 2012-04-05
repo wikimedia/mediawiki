@@ -133,7 +133,15 @@
 
 			// protocol-relative URLs
 			if ( !this.protocol ) {
-				this.protocol = defaultProtocol;
+				this.protocol = defaultUri.protocol;
+			}
+			// host (i.e., root) relative URLs
+			if ( !this.host ) {
+				this.host = defaultUri.host;
+				// port ?
+				if ( !this.port ) {
+					this.port = defaultUri.port;
+				}
 			}
 
 			if ( !( this.protocol && this.host && this.path ) ) {
@@ -288,7 +296,7 @@
 			}
 		};
 
-		var defaultProtocol = ( new Uri( documentLocation ) ).protocol;
+		var defaultUri = new Uri( documentLocation );
 
 		return Uri;	
 	};
