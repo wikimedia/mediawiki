@@ -366,9 +366,10 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * @param $text String: text displayed on the link
 	 * @param $query Array: associative array of paramter to be in the query string
 	 * @param $type String: value of the "rel" attribute
+	 *
 	 * @return String: HTML fragment
 	 */
-	function makeLink($text, $query = null, $type=null) {
+	function makeLink( $text, array $query = null, $type = null ) {
 		if ( $query === null ) {
 			return $text;
 		}
@@ -382,6 +383,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 		if( $type ) {
 			$attrs['class'] = "mw-{$type}link";
 		}
+
 		return Linker::linkKnown(
 			$this->getTitle(),
 			$text,
@@ -526,6 +528,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	function getPagingLinks( $linkTexts, $disabledTexts = array() ) {
 		$queries = $this->getPagingQueries();
 		$links = array();
+
 		foreach ( $queries as $type => $query ) {
 			if ( $query !== false ) {
 				$links[$type] = $this->makeLink(
@@ -539,6 +542,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 				$links[$type] = $linkTexts[$type];
 			}
 		}
+
 		return $links;
 	}
 
@@ -651,7 +655,9 @@ abstract class AlphabeticPager extends IndexPager {
 	 * @return String HTML
 	 */
 	function getNavigationBar() {
-		if ( !$this->isNavigationBarShown() ) return '';
+		if ( !$this->isNavigationBarShown() ) {
+			return '';
+		}
 
 		if( isset( $this->mNavigationBar ) ) {
 			return $this->mNavigationBar;
@@ -682,10 +688,10 @@ abstract class AlphabeticPager extends IndexPager {
 		$this->mNavigationBar = wfMessage( 'parentheses' )->rawParams(
 			$lang->pipeList(
 				array( $pagingLinks['first'],
-				$pagingLinks['last'] )
+					$pagingLinks['last'] )
 			) )->escaped() . " " .
 			wfMsgHtml( 'viewprevnext', $pagingLinks['prev'],
-			$pagingLinks['next'], $limits );
+				$pagingLinks['next'], $limits );
 
 		if( !is_array( $this->getIndexField() ) ) {
 			# Early return to avoid undue nesting
@@ -787,9 +793,11 @@ abstract class ReverseChronologicalPager extends IndexPager {
 	function getDateCond( $year, $month ) {
 		$year = intval( $year );
 		$month = intval( $month );
+
 		// Basic validity checks
 		$this->mYear = $year > 0 ? $year : false;
 		$this->mMonth = ( $month > 0 && $month < 13 ) ? $month : false;
+
 		// Given an optional year and month, we need to generate a timestamp
 		// to use as "WHERE rev_timestamp <= result"
 		// Examples: year = 2006 equals < 20070101 (+000000)
@@ -798,6 +806,7 @@ abstract class ReverseChronologicalPager extends IndexPager {
 		if ( !$this->mYear && !$this->mMonth ) {
 			return;
 		}
+
 		if ( $this->mYear ) {
 			$year = $this->mYear;
 		} else {
@@ -808,6 +817,7 @@ abstract class ReverseChronologicalPager extends IndexPager {
 				$year--;
 			}
 		}
+
 		if ( $this->mMonth ) {
 			$month = $this->mMonth + 1;
 			// For December, we want January 1 of the next year
@@ -820,14 +830,18 @@ abstract class ReverseChronologicalPager extends IndexPager {
 			$month = 1;
 			$year++;
 		}
+
 		// Y2K38 bug
 		if ( $year > 2032 ) {
 			$year = 2032;
 		}
+
 		$ymd = (int)sprintf( "%04d%02d01", $year, $month );
+
 		if ( $ymd > 20320101 ) {
 			$ymd = 20320101;
 		}
+
 		$this->mOffset = $this->mDb->timestamp( "${ymd}000000" );
 	}
 }
@@ -895,7 +909,7 @@ abstract class TablePager extends IndexPager {
 					$image = htmlspecialchars( "$wgStylePath/common/images/$image" );
 					$link = $this->makeLink(
 						"<img width=\"12\" height=\"12\" alt=\"$alt\" src=\"$image\" />" .
-						htmlspecialchars( $name ), $query );
+							htmlspecialchars( $name ), $query );
 					$s .= "<th class=\"$sortClass\">$link</th>\n";
 				} else {
 					$s .= '<th>' . $this->makeLink( htmlspecialchars( $name ), $query ) . "</th>\n";
