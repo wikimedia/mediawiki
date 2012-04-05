@@ -3677,6 +3677,36 @@ msg
 No such special page
 !! end
 
+!! test
+{{#speciale:}} page name, known
+!! options
+msg
+!! input
+{{#speciale:Recentchanges}}
+!! result
+Special:RecentChanges
+!! end
+
+!! test
+{{#speciale:}} page name with subpage, known
+!! options
+msg
+!! input
+{{#speciale:Recentchanges/param}}
+!! result
+Special:RecentChanges/param
+!! end
+
+!! test
+{{#speciale:}} page name, unknown
+!! options
+msg
+!! input
+{{#speciale:foobarnonexistent}}
+!! result
+No_such_special_page
+!! end
+
 ###
 ### Images
 ###
