@@ -34,6 +34,8 @@ production.
 * (bug 34355) add a variable and parser function for the namespace number.
 * (bug 35649) Special:Version now shows hashes of extensions checked out from git.
 * (bug 35728) Git revisions are now linked on Special:Version.
+* (bug 25909) Recent changes, page histories, user contributions and new pages have an 
+  optional dropdown menu with change tags to filter by. 
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
