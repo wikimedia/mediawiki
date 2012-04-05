@@ -13,26 +13,22 @@
 class NullRepo extends FileRepo {
 	function __construct( $info ) {}
 
-	function storeBatch( $triplets, $flags = 0 ) {
+	function storeBatch( array $triplets, $flags = 0 ) {
 		return false;
 	}
-
 	function storeTemp( $originalName, $srcPath ) {
 		return false;
 	}
-	function append( $srcPath, $toAppendPath, $flags = 0 ){
+	function publishBatch( array $triplets, $flags = 0 ) {
 		return false;
 	}
-	function appendFinish( $toAppendPath ){
+	function deleteBatch( array $sourceDestPairs ) {
 		return false;
 	}
-	function publishBatch( $triplets, $flags = 0 ) {
+	function cleanupDeletedBatch( array $storageKeys ) {
 		return false;
 	}
-	function deleteBatch( $sourceDestPairs ) {
-		return false;
-	}
-	function fileExistsBatch( $files, $flags = 0 ) {
+	function fileExistsBatch( array $files, $flags = 0 ) {
 		return false;
 	}
 	function getFileProps( $virtualUrl ) {
@@ -44,7 +40,7 @@ class NullRepo extends FileRepo {
 	function findFile( $title, $options = array() ) {
 		return false;
 	}
-	function concatenate( $fileList, $targetPath, $flags = 0 ) {
+	function concatenate( array $fileList, $targetPath, $flags = 0 ) {
 		return false;
 	}
 }
