@@ -415,15 +415,22 @@ class SpecialVersion extends SpecialPage {
 	function getCreditsForExtension( array $extension ) {
 		$name = isset( $extension['name'] ) ? $extension['name'] : '[no name]';
 
+		$vcsText = false;
+
 		if ( isset( $extension['path'] ) ) {
-			$svnInfo = self::getSvnInfo( dirname($extension['path']) );
-			$directoryRev = isset( $svnInfo['directory-rev'] ) ? $svnInfo['directory-rev'] : null;
-			$checkoutRev = isset( $svnInfo['checkout-rev'] ) ? $svnInfo['checkout-rev'] : null;
-			$viewvcUrl = isset( $svnInfo['viewvc-url'] ) ? $svnInfo['viewvc-url'] : null;
-		} else {
-			$directoryRev = null;
-			$checkoutRev = null;
-			$viewvcUrl = null;
+			$gitInfo = new GitInfo( dirname( $extension['path'] ) );
+			$gitHeadSHA1 = $gitInfo->getHeadSHA1();
+			if ( $gitHeadSHA1 !== false ) {
+				$vcsText = substr( $gitHeadSHA1, 0, 7 );
+			} else {
+				$svnInfo = self::getSvnInfo( dirname( $extension['path'] ) );
+				# Make subversion text/link.
+				if ( $svnInfo !== false ) {
+					$directoryRev = isset( $svnInfo['directory-rev'] ) ? $svnInfo['directory-rev'] : null;
+					$vcsText = wfMsg( 'version-svn-revision', $directoryRev, $svnInfo['checkout-rev'] );
+					$vcsText = isset( $svnInfo['viewvc-url'] ) ? '[' . $svnInfo['viewvc-url'] . " $vcsText]" : $vcsText;
+				}
+			}
 		}
 
 		# Make main link (or just the name if there is no URL).
@@ -439,14 +446,6 @@ class SpecialVersion extends SpecialPage {
 				'</span>';
 		} else {
 			$versionText = '';
-		}
-
-		# Make subversion text/link.
-		if ( $checkoutRev ) {
-			$svnText = wfMsg( 'version-svn-revision', $directoryRev, $checkoutRev );
-			$svnText = isset( $viewvcUrl ) ? "[$viewvcUrl $svnText]" : $svnText;
-		} else {
-			$svnText = false;
 		}
 
 		# Make description text.
@@ -466,10 +465,10 @@ class SpecialVersion extends SpecialPage {
 			}
 		}
 
-		if ( $svnText !== false ) {
+		if ( $vcsText !== false ) {
 			$extNameVer = "<tr>
 				<td><em>$mainLink $versionText</em></td>
-				<td><em>$svnText</em></td>";
+				<td><em>$vcsText</em></td>";
 		} else {
 			$extNameVer = "<tr>
 				<td colspan=\"2\"><em>$mainLink $versionText</em></td>";
