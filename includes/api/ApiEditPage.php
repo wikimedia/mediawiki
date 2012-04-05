@@ -48,9 +48,18 @@ class ApiEditPage extends ApiBase {
 			$this->dieUsageMsg( 'missingtext' );
 		}
 
-		$titleObj = Title::newFromText( $params['title'] );
-		if ( !$titleObj || $titleObj->isExternal() ) {
-			$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
+		$this->requireOnlyOneParameter( $params, 'title', 'pageid' );
+
+		if ( isset( $params['title'] ) ) {
+			$titleObj = Title::newFromText( $params['title'] );
+			if ( !$titleObj || $titleObj->isExternal() ) {
+				$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
+			}
+		} elseif ( isset( $params['pageid'] ) ) {
+			$titleObj = Title::newFromID( $params['pageid'] );
+			if ( !$titleObj ) {
+				$this->dieUsageMsg( array( 'nosuchpageid', $params['pageid'] ) );
+			}
 		}
 
 		$apiResult = $this->getResult();
@@ -371,45 +380,51 @@ class ApiEditPage extends ApiBase {
 	public function getPossibleErrors() {
 		global $wgMaxArticleSize;
 
-		return array_merge( parent::getPossibleErrors(), array(
-			array( 'missingtext' ),
-			array( 'invalidtitle', 'title' ),
-			array( 'createonly-exists' ),
-			array( 'nocreate-missing' ),
-			array( 'nosuchrevid', 'undo' ),
-			array( 'nosuchrevid', 'undoafter' ),
-			array( 'revwrongpage', 'id', 'text' ),
-			array( 'undo-failure' ),
-			array( 'hashcheckfailed' ),
-			array( 'hookaborted' ),
-			array( 'noimageredirect-anon' ),
-			array( 'noimageredirect-logged' ),
-			array( 'spamdetected', 'spam' ),
-			array( 'summaryrequired' ),
-			array( 'filtered' ),
-			array( 'blockedtext' ),
-			array( 'contenttoobig', $wgMaxArticleSize ),
-			array( 'noedit-anon' ),
-			array( 'noedit' ),
-			array( 'actionthrottledtext' ),
-			array( 'wasdeleted' ),
-			array( 'nocreate-loggedin' ),
-			array( 'blankpage' ),
-			array( 'editconflict' ),
-			array( 'emptynewsection' ),
-			array( 'unknownerror', 'retval' ),
-			array( 'code' => 'nosuchsection', 'info' => 'There is no section section.' ),
-			array( 'code' => 'invalidsection', 'info' => 'The section parameter must be set to an integer or \'new\'' ),
-			array( 'customcssprotected' ),
-			array( 'customjsprotected' ),
-		) );
+		return array_merge( parent::getPossibleErrors(),
+			$this->getRequireOnlyOneParameterErrorMessages( 'title', 'pageid' ),
+			array(
+				array( 'nosuchpageid', 'pageid' ),
+				array( 'missingtext' ),
+				array( 'invalidtitle', 'title' ),
+				array( 'createonly-exists' ),
+				array( 'nocreate-missing' ),
+				array( 'nosuchrevid', 'undo' ),
+				array( 'nosuchrevid', 'undoafter' ),
+				array( 'revwrongpage', 'id', 'text' ),
+				array( 'undo-failure' ),
+				array( 'hashcheckfailed' ),
+				array( 'hookaborted' ),
+				array( 'noimageredirect-anon' ),
+				array( 'noimageredirect-logged' ),
+				array( 'spamdetected', 'spam' ),
+				array( 'summaryrequired' ),
+				array( 'filtered' ),
+				array( 'blockedtext' ),
+				array( 'contenttoobig', $wgMaxArticleSize ),
+				array( 'noedit-anon' ),
+				array( 'noedit' ),
+				array( 'actionthrottledtext' ),
+				array( 'wasdeleted' ),
+				array( 'nocreate-loggedin' ),
+				array( 'blankpage' ),
+				array( 'editconflict' ),
+				array( 'emptynewsection' ),
+				array( 'unknownerror', 'retval' ),
+				array( 'code' => 'nosuchsection', 'info' => 'There is no section section.' ),
+				array( 'code' => 'invalidsection', 'info' => 'The section parameter must be set to an integer or \'new\'' ),
+				array( 'customcssprotected' ),
+				array( 'customjsprotected' ),
+			)
+		);
 	}
 
 	public function getAllowedParams() {
 		return array(
 			'title' => array(
 				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => true
+			),
+			'pageid' => array(
+				ApiBase::PARAM_TYPE => 'integer',
 			),
 			'section' => null,
 			'sectiontitle' => array(
@@ -464,6 +479,7 @@ class ApiEditPage extends ApiBase {
 		$p = $this->getModulePrefix();
 		return array(
 			'title' => 'Page title',
+			'pageid' => 'Page ID',
 			'section' => 'Section number. 0 for the top section, \'new\' for a new section',
 			'sectiontitle' => 'The title for a new section',
 			'text' => 'Page content',

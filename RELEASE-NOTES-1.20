@@ -78,6 +78,7 @@ production.
   the format parameter.
 * (bug 32384) Allow descending order for list=watchlistraw.
 * (bug 31883) Limit of bkusers of list=blocks and titles of action=query is not documented in API help.
+* (bug 32492) API now allows editing using pageid
 
 === Languages updated in 1.20 ===
 
