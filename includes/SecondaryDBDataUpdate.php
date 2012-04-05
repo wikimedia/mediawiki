@@ -31,15 +31,11 @@ abstract class SecondaryDBDataUpdate extends SecondaryDataUpdate {
 
 	/**
 	 * Constructor
-	 *
-	 * @param $title Title of the page we're updating
-	 * @param $parserOutput ParserOutput: output from a full parse of this page
-	 * @param $recursive Boolean: queue jobs for recursive updates?
-	 */
-    public function __construct( Title $title, ParserOutput $parserOutput ) {
+     **/
+    public function __construct( ) {
 		global $wgAntiLockFlags;
 
-        parent::__construct( $title, $parserOutput );
+        parent::__construct( );
 
 		if ( $wgAntiLockFlags & ALF_NO_LINK_LOCK ) {
 			$this->mOptions = array();
