@@ -40,18 +40,20 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	 * @return FormOptions
 	 */
 	public function getDefaultOptions() {
+		$user = $this->getUser();
+
 		$opts = new FormOptions();
 
-		$opts->add( 'days',  (int)$this->getUser()->getOption( 'rcdays' ) );
-		$opts->add( 'limit', (int)$this->getUser()->getOption( 'rclimit' ) );
+		$opts->add( 'days', (int)$user->getOption( 'rcdays' ) );
+		$opts->add( 'limit', (int)$user->getOption( 'rclimit' ) );
 		$opts->add( 'from', '' );
 
-		$opts->add( 'hideminor',     $this->getUser()->getBoolOption( 'hideminor' ) );
-		$opts->add( 'hidebots',      true  );
-		$opts->add( 'hideanons',     false );
-		$opts->add( 'hideliu',       false );
-		$opts->add( 'hidepatrolled', $this->getUser()->getBoolOption( 'hidepatrolled' ) );
-		$opts->add( 'hidemyself',    false );
+		$opts->add( 'hideminor', $user->getBoolOption( 'hideminor' ) );
+		$opts->add( 'hidebots', $user->getBoolOption( 'hidebots' )  );
+		$opts->add( 'hideanons', $user->getBoolOption( 'hideanons' ) );
+		$opts->add( 'hideliu', $user->getBoolOption( 'hideliu' ) );
+		$opts->add( 'hidepatrolled', $user->getBoolOption( 'hidepatrolled' ) );
+		$opts->add( 'hidemyself', $user->getBoolOption( 'hidemyself' ) );
 
 		$opts->add( 'namespace', '', FormOptions::INTNULL );
 		$opts->add( 'invert', false );

@@ -814,37 +814,78 @@ class Preferences {
 			'help-message' => 'prefs-help-recentchangescount',
 			'section' => 'rc/displayrc',
 		);
+
+		# advanded options
 		$defaultPreferences['usenewrc'] = array(
 			'type' => 'toggle',
 			'label-message' => 'tog-usenewrc',
 			'section' => 'rc/advancedrc',
 		);
-		$defaultPreferences['hideminor'] = array(
-			'type' => 'toggle',
-			'label-message' => 'tog-hideminor',
-			'section' => 'rc/advancedrc',
-		);
-
-		if ( $user->useRCPatrol() ) {
-			$defaultPreferences['hidepatrolled'] = array(
-				'type' => 'toggle',
-				'section' => 'rc/advancedrc',
-				'label-message' => 'tog-hidepatrolled',
-			);
-			$defaultPreferences['newpageshidepatrolled'] = array(
-				'type' => 'toggle',
-				'section' => 'rc/advancedrc',
-				'label-message' => 'tog-newpageshidepatrolled',
-			);
-		}
-
 		if ( $wgRCShowWatchingUsers ) {
 			$defaultPreferences['shownumberswatching'] = array(
 				'type' => 'toggle',
-				'section' => 'rc/advancedrc',
 				'label-message' => 'tog-shownumberswatching',
+				'section' => 'rc/advancedrc',
 			);
 		}
+		
+		# advanded options for Special:RecentChanges
+		$defaultPreferences['hideminor'] = array(
+			'type' => 'toggle',
+			'label-message' => 'tog-hideminor',
+			'section' => 'rc/specialrecentchanges',
+		);
+		$defaultPreferences['hidebots'] = array(
+			'type' => 'toggle',
+			'label-message' => 'tog-hidebots',
+			'section' => 'rc/specialrecentchanges',
+		);
+		$defaultPreferences['hideanons'] = array(
+			'type' => 'toggle',
+			'label-message' => 'tog-hideanons',
+			'section' => 'rc/specialrecentchanges',
+		);
+		$defaultPreferences['hideliu'] = array(
+			'type' => 'toggle',
+			'label-message' => 'tog-hideliu',
+			'section' => 'rc/specialrecentchanges',
+		);
+		if ( $user->useRCPatrol() ) {
+			$defaultPreferences['hidepatrolled'] = array(
+				'type' => 'toggle',
+				'label-message' => 'tog-hidepatrolled',
+				'section' => 'rc/specialrecentchanges',
+			);
+		}
+		$defaultPreferences['hidemyself'] = array(
+			'type' => 'toggle',
+			'label-message' => 'tog-hidemyself',
+			'section' => 'rc/specialrecentchanges',
+		);
+
+		# advanded options for Special:NewPages
+		$defaultPreferences['newpageshideliu'] = array(
+			'type' => 'toggle',
+			'label-message' => 'tog-newpageshideliu',
+			'section' => 'rc/specialnewpages',
+		);
+		if ( $user->useRCPatrol() ) {
+			$defaultPreferences['newpageshidepatrolled'] = array(
+				'type' => 'toggle',
+				'label-message' => 'tog-newpageshidepatrolled',
+				'section' => 'rc/specialnewpages',
+			);
+		}
+		$defaultPreferences['newpageshidebots'] = array(
+			'type' => 'toggle',
+			'label-message' => 'tog-newpageshidebots',
+			'section' => 'rc/specialnewpages',
+		);
+		$defaultPreferences['newpageshideredirs'] = array(
+			'type' => 'toggle',
+			'label-message' => 'tog-newpageshideredirs',
+			'section' => 'rc/specialnewpages',
+		);
 	}
 
 	/**

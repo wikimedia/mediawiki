@@ -46,14 +46,15 @@ class SpecialNewpages extends IncludableSpecialPage {
 	protected function setup( $par ) {
 		global $wgEnableNewpagesUserFilter;
 
+		$user = $this->getUser();
 		// Options
 		$opts = new FormOptions();
 		$this->opts = $opts; // bind
-		$opts->add( 'hideliu', false );
-		$opts->add( 'hidepatrolled', $this->getUser()->getBoolOption( 'newpageshidepatrolled' ) );
-		$opts->add( 'hidebots', false );
-		$opts->add( 'hideredirs', true );
-		$opts->add( 'limit', (int)$this->getUser()->getOption( 'rclimit' ) );
+		$opts->add( 'hideliu', $user->getBoolOption( 'newpageshideliu' ) );
+		$opts->add( 'hidepatrolled', $user->getBoolOption( 'newpageshidepatrolled' ) );
+		$opts->add( 'hidebots', $user->getBoolOption( 'newpageshidebots' ) );
+		$opts->add( 'hideredirs', $user->getBoolOption( 'newpageshideredirs' ) );
+		$opts->add( 'limit', (int)$user->getOption( 'rclimit' ) );
 		$opts->add( 'offset', '' );
 		$opts->add( 'namespace', '0' );
 		$opts->add( 'username', '' );

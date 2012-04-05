@@ -130,8 +130,15 @@ $messages = array(
 'tog-underline' => "[[Special:Preferences]], tab 'Misc'. Offers user a choice how to underline links. {{Gender}}",
 'tog-justify' => "[[Special:Preferences]], tab 'Appearance'. Offers user a choice to justify paragraphs or not. {{Gender}}",
 'tog-hideminor' => "[[Special:Preferences]], tab 'Recent changes'. Offers user to hide minor edits in recent changes or not. {{Gender}}",
+'tog-hidebots' => "[[Special:Preferences]], tab 'Recent changes'. Offers user to hide bots in recent changes or not. {{Gender}}",
+'tog-hideanons' => "[[Special:Preferences]], tab 'Recent changes'. Offers user to hide anonymous users in recent changes or not. {{Gender}}",
+'tog-hideliu' => "[[Special:Preferences]], tab 'Recent changes'. Offers user to hide logged-in users in recent changes or not. {{Gender}}",
 'tog-hidepatrolled' => 'Option in Recent changes tab of [[Special:Preferences]] (if [[mw:Manual:$wgUseRCPatrol|$wgUseRCPatrol]] is enabled). {{Gender}}',
+'tog-hidemyself' => "[[Special:Preferences]], tab 'Recent changes'. Offers user to hide his own edits in recent changes or not. {{Gender}}",
+'tog-newpageshideliu' => 'Toggle in [[Special:Preferences]], section "Recent changes" {{Gender}}',
 'tog-newpageshidepatrolled' => 'Toggle in [[Special:Preferences]], section "Recent changes" (if [[mw:Manual:$wgUseRCPatrol|$wgUseRCPatrol]] is enabled). {{Gender}}',
+'tog-newpageshidebots' => 'Toggle in [[Special:Preferences]], section "Recent changes" {{Gender}}',
+'tog-newpageshideredirs' => 'Toggle in [[Special:Preferences]], section "Recent changes" {{Gender}}',
 'tog-extendwatchlist' => "[[Special:Preferences]], tab 'Watchlist'. Offers user to show all applicable changes in watchlist (by default only the last change to a page on the watchlist is shown). {{Gender}}",
 'tog-usenewrc' => "[[Special:Preferences]], tab 'Recent changes'. Offers user to use alternative reprsentation of [[Special:RecentChanges]]. {{Gender}}",
 'tog-numberheadings' => "[[Special:Preferences]], tab 'Misc'. Offers numbered headings on content pages to user. {{Gender}}",
@@ -1462,6 +1469,10 @@ Used in [[Special:Preferences]]. Parameters are:
 'prefs-advancedediting' => 'Used in [[Special:Preferences]], tab "Editing".
 {{Identical|Advanced options}}',
 'prefs-advancedrc' => 'Used in [[Special:Preferences]], tab "Recent changes".
+{{Identical|Advanced options}}',
+'prefs-specialnewpages' => 'Used in [[Special:Preferences]], tab "Recent changes".
+{{Identical|Advanced options}}',
+'prefs-specialrecentchanges' => 'Used in [[Special:Preferences]], tab "Recent changes".
 {{Identical|Advanced options}}',
 'prefs-advancedrendering' => 'Used in [[Special:Preferences]], tab "Appearence".
 {{Identical|Advanced options}}',
