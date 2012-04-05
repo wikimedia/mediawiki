@@ -59,6 +59,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$opts->add( 'username', '' );
 		$opts->add( 'feed', '' );
 		$opts->add( 'tagfilter', '' );
+		$opts->add( 'tagfilterdropdown', '' );
 
 		$this->customFilters = array();
 		wfRunHooks( 'SpecialNewPagesFilters', array( $this, &$this->customFilters ) );
@@ -213,6 +214,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$namespace = $this->opts->consumeValue( 'namespace' );
 		$username = $this->opts->consumeValue( 'username' );
 		$tagFilterVal = $this->opts->consumeValue( 'tagfilter' );
+		$tagFilterDropdownVal = $this->opts->consumeValue( 'tagfilterdropdown' );
 
 		// Check username input validity
 		$ut = Title::makeTitleSafe( NS_USER, $username );
@@ -225,9 +227,14 @@ class SpecialNewpages extends IncludableSpecialPage {
 		}
 		$hidden = implode( "\n", $hidden );
 
-		$tagFilter = ChangeTags::buildTagFilterSelector( $tagFilterVal );
+		$tagFilter = ChangeTags::buildTagFilterWithDropdown(
+			'tag-filter-newpages-dropdown-list',
+			$tagFilterVal,
+			$tagFilterDropdownVal
+		);
 		if ( $tagFilter ) {
-			list( $tagFilterLabel, $tagFilterSelector ) = $tagFilter;
+			$tagFilterLabel = array_shift( $tagFilter );
+			$tagFilterSelector = implode( '&#160;', $tagFilter );
 		}
 
 		$form = Xml::openElement( 'form', array( 'action' => $wgScript ) ) .
@@ -553,8 +560,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 			$fields,
 			$info['conds'],
 			$info['join_conds'],
-			$info['options'],
-			$this->opts['tagfilter']
+			$info['options']
 		);
 
 		return $info;
