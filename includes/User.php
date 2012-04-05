@@ -2139,7 +2139,7 @@ class User {
 			$result = $this->sendConfirmationMail( $type );
 			if ( $result->isGood() ) {
 				# Say the the caller that a confirmation mail has been sent
-				$status->value = 'eauth';
+				$result->value = 'eauth';
 			}
 		} else {
 			$result = Status::newGood( true );
