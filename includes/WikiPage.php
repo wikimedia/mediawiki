@@ -308,6 +308,23 @@ class WikiPage extends Page {
         else return $content->isRedirect();
 	}
 
+    /**
+     * Returns the page's content model name. Will use the revisions actual content model if the page exists,
+     * and the page's default if the page doesn't exist yet.
+     *
+     * @return int
+     */
+    public function getContentModelName() {
+        if ( $this->exists() ) {
+            # look at the revision's actual content model
+            $content = $this->getContent();
+            return $content->getModelName();
+        } else {
+            # use the default model for this page
+            return $this->mTitle->getContentModelName();
+        }
+    }
+
 	/**
 	 * Loads page_touched and returns a value indicating if it should be used
 	 * @return boolean true if not a redirect
