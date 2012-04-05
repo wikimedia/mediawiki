@@ -1258,7 +1258,7 @@ abstract class File {
 	 */
 	function isHashed() {
 		$this->assertRepoDefined();
-		return $this->repo->isHashed();
+		return (bool)$this->repo->getHashLevels();
 	}
 
 	/**

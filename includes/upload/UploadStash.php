@@ -499,7 +499,7 @@ class UploadStashFile extends UnregisteredLocalFile {
 			}
 
 			// check if path exists! and is a plain file.
-			if ( ! $repo->fileExists( $path, FileRepo::FILES_ONLY ) ) {
+			if ( ! $repo->fileExists( $path ) ) {
 				wfDebug( "UploadStash: tried to construct an UploadStashFile from a file that should already exist at '$path', but path is not found\n" );
 				throw new UploadStashFileNotFoundException( 'cannot find path, or not a plain file' );
 			}
@@ -623,7 +623,7 @@ class UploadStashFile extends UnregisteredLocalFile {
 	 * @return Status: success
 	 */
 	public function remove() {
-		if ( !$this->repo->fileExists( $this->path, FileRepo::FILES_ONLY ) ) {
+		if ( !$this->repo->fileExists( $this->path ) ) {
 			// Maybe the file's already been removed? This could totally happen in UploadBase.
 			return true;
 		}
@@ -632,7 +632,7 @@ class UploadStashFile extends UnregisteredLocalFile {
 	}
 
 	public function exists() {
-		return $this->repo->fileExists( $this->path, FileRepo::FILES_ONLY );
+		return $this->repo->fileExists( $this->path );
 	}
 
 }

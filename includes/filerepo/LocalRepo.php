@@ -55,7 +55,7 @@ class LocalRepo extends FileRepo {
 	 *
 	 * @return FileRepoStatus
 	 */
-	function cleanupDeletedBatch( $storageKeys ) {
+	function cleanupDeletedBatch( array $storageKeys ) {
 		$backend = $this->backend; // convenience
 		$root = $this->getZonePath( 'deleted' );
 		$dbw = $this->getMasterDB();
