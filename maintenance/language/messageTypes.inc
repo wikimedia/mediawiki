@@ -139,6 +139,8 @@ $wgIgnoredMessages = array(
 	'sp-contributions-footer-newbies',
 	'statistics-summary',
 	'statistics-footer',
+	'tag-filter-dropdown-list',
+	'tag-filter-newpages-dropdown-list',
 	'talkpagetext',
 	'uploadfooter',
 	'listgrouprights-link',
