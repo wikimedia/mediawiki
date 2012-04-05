@@ -26,11 +26,26 @@ abstract class SecondaryDataUpdate {
 	 * Constructor
 	 */
     public function __construct( ) {
+        # noop
 	}
 
 	/**
-	 * Update link tables with outgoing links from an updated article
+	 * Perform update.
 	 */
 	public abstract function doUpdate();
+
+    /**
+     * Conveniance method, calls doUpdate() on every element in the array.
+     *
+     * @static
+     * @param $updates array
+     */
+    public static function runUpdates( $updates ) {
+        if ( empty( $updates ) ) return; # nothing to do
+
+        foreach ( $updates as $update ) {
+            $update->doUpdate();
+        }
+    }
 
 }

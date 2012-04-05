@@ -1702,9 +1702,9 @@ class WikiPage extends Page {
 			$parserCache->save( $editInfo->output, $this, $editInfo->popts );
 		}
 
-		# Update the links tables
-		$u = new LinksUpdate( $this->mTitle, $editInfo->output );
-		$u->doUpdate();
+		# Update the links tables and other secondary data
+        $updates = $editInfo->output->getLinksUpdateAndOtherUpdates( $this->mTitle );
+        SecondaryDataUpdate::runUpdates( $updates );
 
 		wfRunHooks( 'ArticleEditUpdates', array( &$this, &$editInfo, $options['changed'] ) );
 
@@ -2691,6 +2691,7 @@ class WikiPage extends Page {
 
 		if ( count( $templates_diff ) > 0 ) {
 			# Whee, link updates time.
+            # Note: we are only interested in links here. We don't need to get other SecondaryDataUpdate items from the parser output.
 			$u = new LinksUpdate( $this->mTitle, $parserOutput, false );
 			$u->doUpdate();
 		}

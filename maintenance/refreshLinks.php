@@ -221,9 +221,11 @@ class RefreshLinks extends Maintenance {
 
 		$options = new ParserOptions;
 		$parserOutput = $wgParser->parse( $revision->getText(), $title, $options, true, true, $revision->getId() );
-		$update = new LinksUpdate( $title, $parserOutput, false );
-		$update->doUpdate();
-		$dbw->commit();
+
+        $updates = $parserOutput->getLinksUpdateAndOtherUpdates( $title, false );
+        SecondaryDataUpdate::runUpdates( $updates );
+
+        $dbw->commit();
 	}
 
 	/**
