@@ -237,12 +237,19 @@ class SpecialVersion extends SpecialPage {
 	 */
 	private static function getVersionLinkedGit() {
 		global $wgVersion, $IP;
-		if( ! $sha1 = self::getGitHeadSha1( $IP) ) {
+
+		$gitInfo = new GitInfo( $IP );
+		$headSHA1 = $gitInfo->getHeadSHA1();
+		if( !$headSHA1 ) {
 			return false;
 		}
-		$short_sha1 = substr( $sha1, 0, 7 );
 
-		return "$wgVersion ($short_sha1)";
+		$shortSHA1 = '(' . substr( $headSHA1, 0, 7 ) . ')';
+		$viewerUrl = $gitInfo->getHeadViewUrl();
+		if ( $viewerUrl !== false ) {
+			$shortSHA1 = "[$viewerUrl $shortSHA1]";
+		}
+		return "$wgVersion $shortSHA1";
 	}
 
 	/**
@@ -422,6 +429,10 @@ class SpecialVersion extends SpecialPage {
 			$gitHeadSHA1 = $gitInfo->getHeadSHA1();
 			if ( $gitHeadSHA1 !== false ) {
 				$vcsText = substr( $gitHeadSHA1, 0, 7 );
+				$gitViewerUrl = $gitInfo->getHeadViewUrl();
+				if ( $gitViewerUrl !== false ) {
+					$vcsText = "[$gitViewerUrl $vcsText]";
+				}
 			} else {
 				$svnInfo = self::getSvnInfo( dirname( $extension['path'] ) );
 				# Make subversion text/link.
