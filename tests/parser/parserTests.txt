@@ -9205,6 +9205,24 @@ new support for bdi element (bug 31817)
 
 !!end
 
+!! test
+Ignore pipe between table row attributes
+!! input
+{|
+| quux
+|- id=foo | style='color: red'
+| bar
+|}
+!! result
+<table>
+<tr>
+<td> quux
+</td></tr>
+<tr id="foo" style="color: red">
+<td> bar
+</td></tr></table>
+
+!! end
 
 TODO:
 more images
