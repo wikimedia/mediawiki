@@ -7,7 +7,7 @@
 
 /**
  * @brief Proxy backend that mirrors writes to several internal backends.
- * 
+ *
  * This class defines a multi-write backend. Multiple backends can be
  * registered to this proxy backend and it will act as a single backend.
  * Use this when all access to those backends is through this proxy backend.
@@ -220,7 +220,7 @@ class FileBackendMultiWrite extends FileBackend {
 	/**
 	 * Substitute the backend name in storage path parameters
 	 * for a set of operations with that of a given internal backend.
-	 * 
+	 *
 	 * @param $ops Array List of file operation arrays
 	 * @param $backend FileBackendStore
 	 * @return Array
@@ -241,7 +241,7 @@ class FileBackendMultiWrite extends FileBackend {
 
 	/**
 	 * Same as substOpBatchPaths() but for a single operation
-	 * 
+	 *
 	 * @param $op File operation array
 	 * @param $backend FileBackendStore
 	 * @return Array
@@ -253,7 +253,7 @@ class FileBackendMultiWrite extends FileBackend {
 
 	/**
 	 * Substitute the backend of storage paths with an internal backend's name
-	 * 
+	 *
 	 * @param $paths Array|string List of paths or single string path
 	 * @param $backend FileBackendStore
 	 * @return Array|string
@@ -268,7 +268,7 @@ class FileBackendMultiWrite extends FileBackend {
 
 	/**
 	 * Substitute the backend of internal storage paths with the proxy backend's name
-	 * 
+	 *
 	 * @param $paths Array|string List of paths or single string path
 	 * @return Array|string
 	 */
@@ -320,7 +320,7 @@ class FileBackendMultiWrite extends FileBackend {
 	}
 
 	/**
-	 * @see FileBackend::getFileList()
+	 * @see FileBackend::concatenate()
 	 */
 	public function concatenate( array $params ) {
 		// We are writing to an FS file, so we don't need to do this per-backend
@@ -406,6 +406,22 @@ class FileBackendMultiWrite extends FileBackend {
 	public function getLocalCopy( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
 		return $this->backends[$this->masterIndex]->getLocalCopy( $realParams );
+	}
+
+	/**
+	 * @see FileBackend::directoryExists()
+	 */
+	public function directoryExists( array $params ) {
+		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
+		return $this->backends[$this->masterIndex]->directoryExists( $realParams );
+	}
+
+	/**
+	 * @see FileBackend::getSubdirectoryList()
+	 */
+	public function getDirectoryList( array $params ) {
+		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
+		return $this->backends[$this->masterIndex]->getDirectoryList( $realParams );
 	}
 
 	/**
