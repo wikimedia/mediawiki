@@ -21,6 +21,19 @@ class GitInfo {
 	protected $basedir;
 
 	/**
+	 * Map of repo URLs to viewer URLs.
+	 * Key is a pattern passed to preg_match() and preg_replace(),
+	 * without the delimiters (which are #) and must match the whole URL.
+	 * The value is the replacement for the key (it can contain $1, etc.)
+	 * %h will be replaced by the short SHA-1 (7 first chars) and %H by the
+	 * full SHA-1 of the HEAD revision.
+	 */
+	protected $viewers = array(
+		'https://gerrit.wikimedia.org/r/p/(.*)' => 'https://gerrit.wikimedia.org/r/gitweb?p=$1;h=%h',
+		'ssh://(?:[a-z0-9_]+@)?gerrit.wikimedia.org:29418/(.*)' => 'https://gerrit.wikimedia.org/r/gitweb?p=$1;h=%h',
+	);
+
+	/**
 	 * @param $dir The root directory of the repo where the .git dir can be found
 	 */
 	public function __construct( $dir ) {
@@ -103,6 +116,52 @@ class GitInfo {
 		} else {
 			return $HEAD;
 		}
+	}
+
+	/**
+	 * Get an URL to a web viewer link to the HEAD revision.
+	 *
+	 * @return string|false string if an URL is available or false otherwise.
+	 */
+	public function getHeadViewUrl() {
+		$config = "{$this->basedir}/config";
+		if ( !is_readable( $config ) ) {
+			return false;
+		}
+
+		$configArray = parse_ini_file( $config, true );
+		$remote = false;
+
+		// Use the "origin" remote repo if available or any other repo if not.
+		if ( isset( $configArray['remote origin'] ) ) {
+			$remote = $configArray['remote origin'];
+		} else {
+			foreach( $configArray as $sectionName => $sectionConf ) {
+				if ( substr( $sectionName, 0, 6 ) == 'remote' ) {
+					$remote = $sectionConf;
+				}
+			}
+		}
+
+		if ( $remote === false || !isset( $remote['url'] ) ) {
+			return false;
+		}
+
+		$url = $remote['url'];
+		foreach( $this->viewers as $repo => $viewer ) {
+			$m = array();
+			$pattern = '#^' . $repo . '$#';
+			if ( preg_match( $pattern, $url ) ) {
+				$viewerUrl = preg_replace( $pattern, $viewer, $url );
+				$headSHA1 = $this->getHeadSHA1();
+				$replacements = array(
+					'%h' => substr( $headSHA1, 0, 7 ),
+					'%H' => $headSHA1
+				);
+				return strtr( $viewerUrl, $replacements );
+			}
+		}
+		return false;
 	}
 
 	/**
