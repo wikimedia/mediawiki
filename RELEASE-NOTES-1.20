@@ -33,6 +33,7 @@ production.
 * (bug 17615) nosummary option should be reassigned on preview/captcha.
 * (bug 34355) add a variable and parser function for the namespace number.
 * (bug 35649) Special:Version now shows hashes of extensions checked out from git.
+* (bug 23006) create #speciale parser function.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.

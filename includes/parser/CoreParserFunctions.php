@@ -55,6 +55,7 @@ class CoreParserFunctions {
 		$parser->setFunctionHook( 'padright',         array( __CLASS__, 'padright'         ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'anchorencode',     array( __CLASS__, 'anchorencode'     ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'special',          array( __CLASS__, 'special'          ) );
+		$parser->setFunctionHook( 'speciale',         array( __CLASS__, 'speciale'         ) );
 		$parser->setFunctionHook( 'defaultsort',      array( __CLASS__, 'defaultsort'      ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'filepath',         array( __CLASS__, 'filepath'         ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'pagesincategory',  array( __CLASS__, 'pagesincategory'  ), SFH_NO_HASH );
@@ -692,10 +693,14 @@ class CoreParserFunctions {
 		list( $page, $subpage ) = SpecialPageFactory::resolveAlias( $text );
 		if ( $page ) {
 			$title = SpecialPage::getTitleFor( $page, $subpage );
-			return $title;
+			return $title->getPrefixedText();
 		} else {
 			return wfMsgForContent( 'nosuchspecialpage' );
 		}
+	}
+
+	static function speciale( $parser, $text ) {
+		return wfUrlencode( str_replace( ' ', '_', self::special( $parser, $text ) ) );
 	}
 
 	/**
