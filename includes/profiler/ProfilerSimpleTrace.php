@@ -10,20 +10,11 @@
  * @ingroup Profiler
  */
 class ProfilerSimpleTrace extends ProfilerSimple {
-	var $trace = "";
+	var $trace = "Beginning trace: \n";
 	var $memory = 0;
 
-	function addInitialStack() {
-		$initialTime = $this->getInitialTime();
-		$initialCpu = $this->getInitialTime( 'cpu' );
-		if ( $initialTime !== null && $initialCpu !== null ) {
-			$this->mWorkStack[] = array( '-total', 0, $initialTime, $initialCpu );
-		}
-		$this->trace .= "Beginning trace: \n";
-	}
-
-	function profileIn($functionname) {
-		$this->mWorkStack[] = array( $functionname, count( $this->mWorkStack ), $this->getTime(), $this->getTime( 'cpu' ) );
+	function profileIn( $functionname ) {
+		parent::profileIn( $functionname );
 		$this->trace .= "         " . sprintf("%6.1f",$this->memoryDiff()) .
 				str_repeat( " ", count($this->mWorkStack)) . " > " . $functionname . "\n";
 	}
