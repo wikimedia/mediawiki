@@ -70,24 +70,37 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	/**
 	 * @param  $pageid
 	 * @param  $title
-	 * @param $rc RecentChange
+	 * @param $rc RecentChange (optional)
 	 * @return bool|String
 	 */
-	public static function getPatrolToken( $pageid, $title, $rc ) {
+	public static function getPatrolToken( $pageid, $title, $rc = null ) {
 		global $wgUser;
-		if ( !$wgUser->useRCPatrol() && ( !$wgUser->useNPPatrol() ||
-				$rc->getAttribute( 'rc_type' ) != RC_NEW ) )
-		{
+
+		$validTokenUser = false;
+
+		if ( $rc ) {
+			if ( ( $wgUser->useRCPatrol() && $rc->getAttribute( 'rc_type' ) == RC_EDIT ) ||
+				( $wgUser->useNPPatrol() && $rc->getAttribute( 'rc_type' ) == RC_NEW ) )
+			{
+				$validTokenUser = true;
+			}
+		} else {
+			if ( $wgUser->useRCPatrol() || $wgUser->useNPPatrol() ) {
+				$validTokenUser = true;
+			}
+		}
+
+		if ( $validTokenUser ) {
+			// The patrol token is always the same, let's exploit that
+			static $cachedPatrolToken = null;
+			if ( is_null( $cachedPatrolToken ) ) {
+				$cachedPatrolToken = $wgUser->getEditToken( 'patrol' );
+			}
+			return $cachedPatrolToken;
+		} else {
 			return false;
 		}
 
-		// The patrol token is always the same, let's exploit that
-		static $cachedPatrolToken = null;
-		if ( is_null( $cachedPatrolToken ) ) {
-			$cachedPatrolToken = $wgUser->getEditToken( 'patrol' );
-		}
-
-		return $cachedPatrolToken;
 	}
 
 	/**
