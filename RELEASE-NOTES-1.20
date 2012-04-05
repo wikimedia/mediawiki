@@ -34,6 +34,7 @@ production.
 * (bug 34355) add a variable and parser function for the namespace number.
 * (bug 35649) Special:Version now shows hashes of extensions checked out from git.
 * (bug 35728) Git revisions are now linked on Special:Version.
+* "Show Changes" on default messages shows now diff against default message text
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.

@@ -2335,7 +2335,16 @@ HTML
 	function showDiff() {
 		global $wgUser, $wgContLang, $wgParser, $wgOut;
 
-		$oldtext = $this->mArticle->getRawText();
+		$oldtitlemsg = 'currentrev';
+		# if message does not exist, show diff against the preloaded default
+		if( $this->mTitle->getNamespace() == NS_MEDIAWIKI && !$this->mTitle->exists() ) {
+			$oldtext = $this->mTitle->getDefaultMessageText();
+			if( $oldtext !== false ) {
+				$oldtitlemsg = 'defaultmessagetext';
+			}
+		} else {
+			$oldtext = $this->mArticle->getRawText();
+		}
 		$newtext = $this->mArticle->replaceSection(
 			$this->section, $this->textbox1, $this->summary, $this->edittime );
 
@@ -2345,7 +2354,7 @@ HTML
 		$newtext = $wgParser->preSaveTransform( $newtext, $this->mTitle, $wgUser, $popts );
 
 		if ( $oldtext !== false  || $newtext != '' ) {
-			$oldtitle = wfMsgExt( 'currentrev', array( 'parseinline' ) );
+			$oldtitle = wfMsgExt( $oldtitlemsg, array( 'parseinline' ) );
 			$newtitle = wfMsgExt( 'yourtext', array( 'parseinline' ) );
 
 			$de = new DifferenceEngine( $this->mArticle->getContext() );

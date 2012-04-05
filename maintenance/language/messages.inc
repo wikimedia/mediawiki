@@ -675,6 +675,7 @@ $wgMessageStructure = array(
 		'edit-already-exists',
 		'addsection-preload',
 		'addsection-editintro',
+		'defaultmessagetext',
 	),
 	'parserwarnings' => array(
 		'expensive-parserfunction-warning',
