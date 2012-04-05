@@ -1053,8 +1053,8 @@ function wfLogDBError( $text ) {
  * @param $component String|bool: Added in 1.19.
  * @param $callerOffset integer: How far up the callstack is the original
  *    caller. 2 = function that called the function that called
- *    wfDeprecated (Added in 1.20) 
- * 
+ *    wfDeprecated (Added in 1.20)
+ *
  * @return null
  */
 function wfDeprecated( $function, $version = false, $component = false, $callerOffset = 2 ) {
@@ -1064,23 +1064,23 @@ function wfDeprecated( $function, $version = false, $component = false, $callerO
 
 	if ( !isset( $functionsWarned[$function] ) ) {
 		$functionsWarned[$function] = true;
-		
+
 		if ( $version ) {
 			global $wgDeprecationReleaseLimit;
-			
+
 			if ( $wgDeprecationReleaseLimit && $component === false ) {
 				# Strip -* off the end of $version so that branches can use the
 				# format #.##-branchname to avoid issues if the branch is merged into
 				# a version of MediaWiki later than what it was branched from
 				$comparableVersion = preg_replace( '/-.*$/', '', $version );
-				
+
 				# If the comparableVersion is larger than our release limit then
 				# skip the warning message for the deprecation
 				if ( version_compare( $wgDeprecationReleaseLimit, $comparableVersion, '<' ) ) {
 					return;
 				}
 			}
-			
+
 			$component = $component === false ? 'MediaWiki' : $component;
 			wfWarn( "Use of $function was deprecated in $component $version.", $callerOffset );
 		} else {
@@ -1950,7 +1950,7 @@ function wfShowingResults( $offset, $limit ) {
  */
 function wfViewPrevNext( $offset, $limit, $link, $query = '', $atend = false ) {
 	wfDeprecated( __METHOD__, '1.19' );
-	
+
 	global $wgLang;
 
 	$query = wfCgiToArray( $query );
@@ -2952,21 +2952,29 @@ function wfInitShellLocale() {
 }
 
 /**
- * Generate a shell-escaped command line string to run a maintenance script.
+ * Alias to wfShellWikiCmd()
+ * @see wfShellWikiCmd()
+ */
+function wfShellMaintenanceCmd( $script, array $parameters = array(), array $options = array() ) {
+	return wfShellWikiCmd( $script, $parameters, $options );
+}
+
+/**
+ * Generate a shell-escaped command line string to run a MediaWiki cli script.
  * Note that $parameters should be a flat array and an option with an argument
  * should consist of two consecutive items in the array (do not use "--option value").
- * @param $script string MediaWiki maintenance script path
+ * @param $script string MediaWiki cli script path
  * @param $parameters Array Arguments and options to the script
  * @param $options Array Associative array of options:
  * 		'php': The path to the php executable
  * 		'wrapper': Path to a PHP wrapper to handle the maintenance script
  * @return Array
  */
-function wfShellMaintenanceCmd( $script, array $parameters = array(), array $options = array() ) {
+function wfShellWikiCmd( $script, array $parameters = array(), array $options = array() ) {
 	global $wgPhpCli;
 	// Give site config file a chance to run the script in a wrapper.
 	// The caller may likely want to call wfBasename() on $script.
-	wfRunHooks( 'wfShellMaintenanceCmd', array( &$script, &$parameters, &$options ) );
+	wfRunHooks( 'wfShellWikiCmd', array( &$script, &$parameters, &$options ) );
 	$cmd = isset( $options['php'] ) ? array( $options['php'] ) : array( $wgPhpCli );
 	if ( isset( $options['wrapper'] ) ) {
 		$cmd[] = $options['wrapper'];
@@ -3384,7 +3392,7 @@ function wfFixSessionID() {
 			|| ini_get( 'session.entropy_file' )
 		)
 		&& intval( ini_get( 'session.entropy_length' ) ) >= 32;
-	
+
 	// If built-in entropy is not enabled or not sufficient override php's built in session id generation code
 	if ( !$entropyEnabled ) {
 		wfDebug( __METHOD__ . ": PHP's built in entropy is disabled or not sufficient, overriding session id generation using our cryptrand source.\n" );
