@@ -3538,6 +3538,9 @@ $wgMessageStructure = array(
 		'tags-hitcount-header',
 		'tags-edit',
 		'tags-hitcount',
+		'tag-filter-dropdown-list',
+		'tag-filter-newpages-dropdown-list',
+		'tag-filter-dropdown-other',
 	),
 	'comparepages' => array(
 		'comparepages',

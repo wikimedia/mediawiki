@@ -37,6 +37,8 @@ production.
 * "Show Changes" on default messages shows now diff against default message text
 * (bug 23006) create #speciale parser function.
 * generateSitemap can now optionally skip redirect pages.
+* (bug 25909) Recent changes, page histories, user contributions and new pages have an
+  optional dropdown menu with change tags to filter by.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.

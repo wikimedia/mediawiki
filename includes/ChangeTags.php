@@ -156,7 +156,10 @@ class ChangeTags {
 		global $wgRequest, $wgUseTagFilter;
 
 		if( $filter_tag === false ) {
-			$filter_tag = $wgRequest->getVal( 'tagfilter' );
+			$filter_tag = $wgRequest->getVal( 'tagfilterdropdown', '' );
+			if ( $filter_tag === '' || $filter_tag === 'other' ) {
+				$filter_tag = $wgRequest->getVal( 'tagfilter', '' );
+			}
 		}
 
 		// Figure out which conditions can be done.
@@ -225,7 +228,54 @@ class ChangeTags {
 	}
 
 	/**
-	 * Basically lists defined tags which count even if they aren't applied to anything.
+	 * Build a text box and (optional) dropdown menu to select a change tag
+	 *
+	 * @param $msgkey String: message key for the message where a list of tags can
+	 *        be specified. These tags will be put in the dropdown.
+	 *        If the specified message is empty, only the text box will be returned.
+	 * @param $selectedtext String: tag to put in the text box
+	 * @param $selecteddropdown String: tag to preselect in the dropdown
+	 *
+	 * @return Array of html fragments. The first element is the label.
+	 *        If $wgUseTagFilter is false or there are no defined tags, an empty array
+	 *        is returned.
+	 */
+	public static function buildTagFilterWithDropdown( $msgkey, $selectedtext = '', $selecteddropdown = '' ) {
+
+		global $wgUseTagFilter;
+
+		$definedtags = self::listDefinedTags();
+
+		if ( !$wgUseTagFilter || !count( $definedtags ) ) {
+			return array();
+		}
+
+		$tags = wfMsgForContent( $msgkey );
+
+		$data[] = Html::rawElement(
+			'label',
+			array( 'for' => 'tagfilter' ),
+			wfMessage( 'tag-filter' )->parse()
+		);
+
+		if ( $tags !== '' ) {
+			// Add dropdown menu if message $msgkey isn't empty
+			$data[] = Xml::listDropDown(
+				'tagfilterdropdown',
+				$tags,
+				wfMsgForContent( 'tag-filter-dropdown-other' ),
+				$selecteddropdown
+			);
+		}
+
+		$data[] = Xml::input( 'tagfilter', 20, $selectedtext, array( 'id' => 'tagfilter' ) );
+
+		return $data;
+
+	}
+
+	/**
+	 * Basically lists defined tags which count even if they aren"t applied to anything.
 	 * Tags on items in table 'change_tag' which are not (or no longer) in table 'valid_tag'
 	 * are not included.
 	 *
