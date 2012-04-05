@@ -218,7 +218,7 @@ abstract class ContentHandler {
      * @return \EditPage 
      */
     public function createEditPage( Article $article ) {
-        $this->checkModelName( $article->getContentObject()->getModelName() );
+        $this->checkModelName( $article->getContentModelName() );
 
         $editPage = new EditPage( $article );
         return $editPage;
