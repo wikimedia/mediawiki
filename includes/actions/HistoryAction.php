@@ -135,8 +135,14 @@ class HistoryAction extends FormlessAction {
 		 */
 		$year        = $request->getInt( 'year' );
 		$month       = $request->getInt( 'month' );
-		$tagFilter   = $request->getVal( 'tagfilter' );
-		$tagSelector = ChangeTags::buildTagFilterSelector( $tagFilter );
+		$tagFilter   = $request->getVal( 'tagfilter', '' );
+		$tagFilterDropdown = $request->getVal( 'tagfilterdropdown', '' );
+		$tagSelector = ChangeTags::buildTagFilterWithDropdown(
+				'tag-filter-dropdown-list',
+				$tagFilter,
+				$tagFilterDropdown
+			);
+		$tagSelector = implode( '&#160;', $tagSelector );
 
 		/**
 		 * Option to show only revisions that have been (partially) hidden via RevisionDelete
@@ -158,16 +164,41 @@ class HistoryAction extends FormlessAction {
 				false,
 				array( 'id' => 'mw-history-search' )
 			) .
-			Html::hidden( 'title', $this->getTitle()->getPrefixedDBKey() ) . "\n" .
-			Html::hidden( 'action', 'history' ) . "\n" .
-			Xml::dateMenu( $year, $month ) . '&#160;' .
-			( $tagSelector ? ( implode( '&#160;', $tagSelector ) . '&#160;' ) : '' ) .
-			$checkDeleted .
-			Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) . "\n" .
-			'</fieldset></form>'
+			Xml::openElement( 'table', array( 'class' => 'mw-history-table' ) ) .
+				Xml::openElement( 'tr' ) .
+					Xml::openElement( 'td' ) .
+						Html::rawElement(
+							'span',
+							array( 'style' => 'white-space:nowrap' ),
+							Xml::dateMenu( $year, $month ) . '&#160;'
+						) .
+					Xml::closeElement( 'td' ) .
+				Xml::closeElement( 'tr' ) .
+				Xml::openElement( 'tr' ) .
+					Xml::openElement( 'td' ) .
+						Html::rawElement(
+							'span',
+							array( 'style' => 'white-space: nowrap' ),
+							( $tagSelector ? ( $tagSelector . '&#160;' ) : '' )
+						) .
+						Html::rawElement(
+							'span',
+							array( 'style' => 'white-space: nowrap' ),
+							$checkDeleted
+						) .
+						Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) . "\n" .
+					Xml::closeElement( 'td' ) .
+				Xml::closeElement( 'tr' ) .
+			Xml::closeElement( 'table' ) .
+			Xml::closeElement( 'fieldset' ) .
+			Xml::closeElement( 'form' )
 		);
 
 		wfRunHooks( 'PageHistoryBeforeList', array( &$this->page ) );
+
+		if ( $tagFilterDropdown !== '' && $tagFilterDropdown !== 'other' ) {
+			$tagFilter = $tagFilterDropdown;
+		}
 
 		// Create and output the list.
 		$pager = new HistoryPager( $this, $year, $month, $tagFilter, $conds );
