@@ -646,7 +646,79 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	/**
-	 * @copydoc FileBackend::getFileList()
+	 * @see FileBackend::directoryExists()
+	 * @return bool|null
+	 */
+	final public function directoryExists( array $params ) {
+		list( $fullCont, $dir, $shard ) = $this->resolveStoragePath( $params['dir'] );
+		if ( $dir === null ) {
+			return false; // invalid storage path
+		}
+
+		if ( $shard !== null ) { // confined to a single container/shard
+			return $this->doDirectoryExists( $fullCont, $dir, $params );
+		} else { // directory is on several shards
+			wfDebug( __METHOD__ . ": iterating over all container shards.\n" );
+			list( $b, $shortCont, $r ) = self::splitStoragePath( $params['dir'] );
+			$res = false; // response
+			foreach ( $this->getContainerSuffixes( $shortCont ) as $suffix ) {
+				$exists = $this->doDirectoryExists( "{$fullCont}{$suffix}", $dir, $params );
+				if ( $exists ) {
+					$res = true;
+					break; // found one!
+				} elseif ( $exists === null ) { // error?
+					$res = null; // if we don't find anything, it is indeterminate
+				}
+			}
+			return $res;
+		}
+	}
+
+	/**
+	 * @see FileBackendStore::directoryExists()
+	 *
+	 * @param $container string Resolved container name
+	 * @param $dir string Resolved path relative to container
+	 * @param $params Array
+	 * @return bool|null
+	 */
+	abstract protected function doDirectoryExists( $container, $dir, array $params );
+
+	/**
+	 * @see FileBackend::getDirectoryList()
+	 * @return Array|null|Traversable
+	 */
+	final public function getDirectoryList( array $params ) {
+		list( $fullCont, $dir, $shard ) = $this->resolveStoragePath( $params['dir'] );
+		if ( $dir === null ) { // invalid storage path
+			return null;
+		}
+		if ( $shard !== null ) {
+			// File listing is confined to a single container/shard
+			return $this->getDirectoryListInternal( $fullCont, $dir, $params );
+		} else {
+			wfDebug( __METHOD__ . ": iterating over all container shards.\n" );
+			// File listing spans multiple containers/shards
+			list( $b, $shortCont, $r ) = self::splitStoragePath( $params['dir'] );
+			return new FileBackendStoreShardDirIterator( $this,
+				$fullCont, $dir, $this->getContainerSuffixes( $shortCont ), $params );
+		}
+	}
+
+	/**
+	 * Do not call this function from places outside FileBackend
+	 *
+	 * @see FileBackendStore::getDirectoryList()
+	 *
+	 * @param $container string Resolved container name
+	 * @param $dir string Resolved path relative to container
+	 * @param $params Array
+	 * @return Traversable|Array|null
+	 */
+	abstract public function getDirectoryListInternal( $container, $dir, array $params );
+
+	/**
+	 * @see FileBackend::getFileList()
 	 * @return Array|null|Traversable
 	 */
 	final public function getFileList( array $params ) {
@@ -661,7 +733,7 @@ abstract class FileBackendStore extends FileBackend {
 			wfDebug( __METHOD__ . ": iterating over all container shards.\n" );
 			// File listing spans multiple containers/shards
 			list( $b, $shortCont, $r ) = self::splitStoragePath( $params['dir'] );
-			return new FileBackendStoreShardListIterator( $this,
+			return new FileBackendStoreShardFileIterator( $this,
 				$fullCont, $dir, $this->getContainerSuffixes( $shortCont ), $params );
 		}
 	}
@@ -1044,22 +1116,22 @@ abstract class FileBackendStore extends FileBackend {
 }
 
 /**
- * FileBackendStore helper function to handle file listings that span container shards.
+ * FileBackendStore helper function to handle listings that span container shards.
  * Do not use this class from places outside of FileBackendStore.
  *
  * @ingroup FileBackend
  */
-class FileBackendStoreShardListIterator implements Iterator {
-	/* @var FileBackendStore */
+abstract class FileBackendStoreShardListIterator implements Iterator {
+	/** @var FileBackendStore */
 	protected $backend;
-	/* @var Array */
+	/** @var Array */
 	protected $params;
-	/* @var Array */
+	/** @var Array */
 	protected $shardSuffixes;
 	protected $container; // string
 	protected $directory; // string
 
-	/* @var Traversable */
+	/** @var Traversable */
 	protected $iter;
 	protected $curShard = 0; // integer
 	protected $pos = 0; // integer
@@ -1161,7 +1233,35 @@ class FileBackendStoreShardListIterator implements Iterator {
 	 */
 	protected function setIteratorFromCurrentShard() {
 		$suffix = $this->shardSuffixes[$this->curShard];
-		$this->iter = $this->backend->getFileListInternal(
+		$this->iter = $this->listFromShard(
 			"{$this->container}{$suffix}", $this->directory, $this->params );
+	}
+
+	/**
+	 * Get the list for a given container shard
+	 *
+	 * @param $container string Resolved container name
+	 * @param $dir string Resolved path relative to container
+	 * @param $params Array
+	 * @return Traversable|Array|null
+	 */
+	abstract protected function listFromShard( $container, $dir, array $params );
+}
+
+/**
+ * Iterator for listing directories
+ */
+class FileBackendStoreShardDirIterator extends FileBackendStoreShardListIterator {
+	protected function listFromShard( $container, $dir, array $params ) {
+		return $this->backend->getDirectoryListInternal( $container, $dir, $params );
+	}
+}
+
+/**
+ * Iterator for listing regular files
+ */
+class FileBackendStoreShardFileIterator extends FileBackendStoreShardListIterator {
+	protected function listFromShard( $container, $dir, array $params ) {
+		return $this->backend->getFileListInternal( $container, $dir, $params );
 	}
 }
