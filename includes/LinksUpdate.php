@@ -19,23 +19,18 @@
  *
  * @todo document (e.g. one-sentence top-level class description).
  */
-class LinksUpdate {
+class LinksUpdate extends SecondaryDBDataUpdate {
 
 	/**@{{
 	 * @private
 	 */
-	var $mId,            //!< Page ID of the article linked from
-		$mTitle,         //!< Title object of the article linked from
-		$mParserOutput,  //!< Parser output
-		$mLinks,         //!< Map of title strings to IDs for the links in the document
+	var $mLinks,         //!< Map of title strings to IDs for the links in the document
 		$mImages,        //!< DB keys of the images used, in the array key only
 		$mTemplates,     //!< Map of title strings to IDs for the template references, including broken ones
 		$mExternals,     //!< URLs of external links, array key only
 		$mCategories,    //!< Map of category names to sort keys
 		$mInterlangs,    //!< Map of language codes to titles
 		$mProperties,    //!< Map of arbitrary name to value
-		$mDb,            //!< Database connection reference
-		$mOptions,       //!< SELECT options to be used (array)
 		$mRecursive;     //!< Whether to queue jobs for recursive updates
 	/**@}}*/
 
@@ -47,23 +42,13 @@ class LinksUpdate {
 	 * @param $recursive Boolean: queue jobs for recursive updates?
 	 */
 	function __construct( $title, $parserOutput, $recursive = true ) {
-		global $wgAntiLockFlags;
+        if ( !is_object( $title ) ) {
+            throw new MWException( "The calling convention to LinksUpdate::LinksUpdate() has changed. " .
+                "Please see Article::editUpdates() for an invocation example.\n" );
+        }
 
-		if ( $wgAntiLockFlags & ALF_NO_LINK_LOCK ) {
-			$this->mOptions = array();
-		} else {
-			$this->mOptions = array( 'FOR UPDATE' );
-		}
-		$this->mDb = wfGetDB( DB_MASTER );
+        parent::__construct( $title, $parserOutput );
 
-		if ( !is_object( $title ) ) {
-			throw new MWException( "The calling convention to LinksUpdate::LinksUpdate() has changed. " .
-				"Please see Article::editUpdates() for an invocation example.\n" );
-		}
-		$this->mTitle = $title;
-		$this->mId = $title->getArticleID();
-
-		$this->mParserOutput = $parserOutput;
 		$this->mLinks = $parserOutput->getLinks();
 		$this->mImages = $parserOutput->getImages();
 		$this->mTemplates = $parserOutput->getTemplates();
@@ -254,51 +239,6 @@ class LinksUpdate {
 	}
 
 	/**
-	 * Invalidate the cache of a list of pages from a single namespace
-	 *
-	 * @param $namespace Integer
-	 * @param $dbkeys Array
-	 */
-	function invalidatePages( $namespace, $dbkeys ) {
-		if ( !count( $dbkeys ) ) {
-			return;
-		}
-
-		/**
-		 * Determine which pages need to be updated
-		 * This is necessary to prevent the job queue from smashing the DB with
-		 * large numbers of concurrent invalidations of the same page
-		 */
-		$now = $this->mDb->timestamp();
-		$ids = array();
-		$res = $this->mDb->select( 'page', array( 'page_id' ),
-			array(
-				'page_namespace' => $namespace,
-				'page_title IN (' . $this->mDb->makeList( $dbkeys ) . ')',
-				'page_touched < ' . $this->mDb->addQuotes( $now )
-			), __METHOD__
-		);
-		foreach ( $res as $row ) {
-			$ids[] = $row->page_id;
-		}
-		if ( !count( $ids ) ) {
-			return;
-		}
-
-		/**
-		 * Do the update
-		 * We still need the page_touched condition, in case the row has changed since
-		 * the non-locking select above.
-		 */
-		$this->mDb->update( 'page', array( 'page_touched' => $now ),
-			array(
-				'page_id IN (' . $this->mDb->makeList( $ids ) . ')',
-				'page_touched < ' . $this->mDb->addQuotes( $now )
-			), __METHOD__
-		);
-	}
-
-	/**
 	 * @param $cats
 	 */
 	function invalidateCategories( $cats ) {
@@ -324,20 +264,20 @@ class LinksUpdate {
 		$this->invalidatePages( NS_FILE, array_keys( $images ) );
 	}
 
-	/**
-	 * @param $table
-	 * @param $insertions
-	 * @param $fromField
-	 */
-	private function dumbTableUpdate( $table, $insertions, $fromField ) {
-		$this->mDb->delete( $table, array( $fromField => $this->mId ), __METHOD__ );
-		if ( count( $insertions ) ) {
-			# The link array was constructed without FOR UPDATE, so there may
-			# be collisions.  This may cause minor link table inconsistencies,
-			# which is better than crippling the site with lock contention.
-			$this->mDb->insert( $table, $insertions, __METHOD__, array( 'IGNORE' ) );
-		}
-	}
+    /**
+     * @param $table
+     * @param $insertions
+     * @param $fromField
+     */
+    private function dumbTableUpdate( $table, $insertions, $fromField ) {
+        $this->mDb->delete( $table, array( $fromField => $this->mId ), __METHOD__ );
+        if ( count( $insertions ) ) {
+            # The link array was constructed without FOR UPDATE, so there may
+            # be collisions.  This may cause minor link table inconsistencies,
+            # which is better than crippling the site with lock contention.
+            $this->mDb->insert( $table, $insertions, __METHOD__, array( 'IGNORE' ) );
+        }
+    }
 
 	/**
 	 * Update a table by doing a delete query then an insert query
@@ -801,23 +741,6 @@ class LinksUpdate {
 			$arr[$row->pp_propname] = $row->pp_value;
 		}
 		return $arr;
-	}
-
-	/**
-	 * Return the title object of the page being updated
-	 * @return Title
-	 */
-	public function getTitle() {
-		return $this->mTitle;
-	}
-
-	/**
-	 * Returns parser output
-	 * @since 1.19
-	 * @return ParserOutput
-	 */
-	public function getParserOutput() {
-		return $this->mParserOutput;
 	}
 
 	/**
