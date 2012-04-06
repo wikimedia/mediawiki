@@ -336,6 +336,7 @@ $magicWords = array(
 	'padleft'                => array( 0,    'PADLEFT'                ),
 	'padright'               => array( 0,    'PADRIGHT'               ),
 	'special'                => array( 0,    'special',               ),
+	'speciale'               => array( 0,    'speciale',              ),
 	'defaultsort'            => array( 1,    'DEFAULTSORT:', 'DEFAULTSORTKEY:', 'DEFAULTCATEGORYSORT:' ),
 	'filepath'               => array( 0,    'FILEPATH:'              ),
 	'tag'                    => array( 0,    'tag'                    ),
