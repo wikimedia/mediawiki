@@ -40,13 +40,21 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Razgovor_o_kategoriji',
 );
 
+$namespaceGenderAliases = array(
+	NS_USER      => array( 'male' => 'Korisnik', 'female' => 'Korisnica' ),
+	NS_USER_TALK => array( 'male' => 'Razgovor_sa_korisnikom', 'female' => 'Razgovor_sa_korisnicom' ),
+);
+
+
 # Aliases to cyrillic namespaces
 $namespaceAliases = array(
 	"Медија"                  => NS_MEDIA,
 	"Посебно"                 => NS_SPECIAL,
 	"Разговор"                => NS_TALK,
 	"Корисник"                => NS_USER,
+	'Корисница'               => NS_USER,
 	"Разговор_са_корисником"  => NS_USER_TALK,
+	'Разговор_са_корисницом'  => NS_USER_TALK,
 	"Разговор_о_$1"           => NS_PROJECT_TALK,
 	"Слика"                   => NS_FILE,
 	"Разговор_о_слици"        => NS_FILE_TALK,
