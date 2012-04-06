@@ -19,6 +19,7 @@ class SquidUpdate {
 		} else {
 			$this->mMaxTitles = $maxTitles;
 		}
+		$urlArr = array_unique( $urlArr ); // Remove duplicates
 		if ( count( $urlArr ) > $this->mMaxTitles ) {
 			$urlArr = array_slice( $urlArr, 0, $this->mMaxTitles );
 		}
@@ -119,6 +120,7 @@ class SquidUpdate {
 
 		wfProfileIn( __METHOD__ );
 
+		$urlArr = array_unique( $urlArr ); // Remove duplicates
 		$maxSocketsPerSquid = 8; //  socket cap per Squid
 		$urlsPerSocket = 400; // 400 seems to be a good tradeoff, opening a socket takes a while
 		$socketsPerSquid = ceil( count( $urlArr ) / $urlsPerSocket );
@@ -168,6 +170,7 @@ class SquidUpdate {
 				socket_set_option( $conn, IPPROTO_IP, IP_MULTICAST_TTL,
 					$wgHTCPMulticastTTL );
 
+			$urlArr = array_unique( $urlArr ); // Remove duplicates
 			foreach ( $urlArr as $url ) {
 				if( !is_string( $url ) ) {
 					throw new MWException( 'Bad purge URL' );
