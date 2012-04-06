@@ -693,9 +693,21 @@ abstract class FileBackend {
 	}
 
 	/**
+	 * Check if a relative path has no directory traversals
+	 *
+	 * @param $path string
+	 * @return bool
+	 */
+	final public static function isPathTraversalFree( $path ) {
+		return ( self::normalizeContainerPath( $path ) !== null );
+	}
+
+	/**
 	 * Validate and normalize a relative storage path.
 	 * Null is returned if the path involves directory traversal.
 	 * Traversal is insecure for FS backends and broken for others.
+	 *
+	 * This uses the same traversal protection as Title::secureAndSplit().
 	 *
 	 * @param $path string Storage path relative to a container
 	 * @return string|null

@@ -468,7 +468,7 @@ class LocalFile extends File {
 
 	function isMissing() {
 		if ( $this->missing === null ) {
-			list( $fileExists ) = $this->repo->fileExists( $this->getVirtualUrl(), FileRepo::FILES_ONLY );
+			list( $fileExists ) = $this->repo->fileExists( $this->getVirtualUrl() );
 			$this->missing = !$fileExists;
 		}
 		return $this->missing;
@@ -615,7 +615,7 @@ class LocalFile extends File {
 		}
 		*/
 
-		if ( $this->repo->fileExists( $thumbDir, FileRepo::FILES_ONLY ) ) {
+		if ( $this->repo->fileExists( $thumbDir ) ) {
 			// Delete file where directory should be
 			$this->repo->cleanupBatch( array( $thumbDir ) );
 		}
@@ -1787,7 +1787,7 @@ class LocalFileDeleteBatch {
 			$files[$src] = $this->file->repo->getVirtualUrl( 'public' ) . '/' . rawurlencode( $src );
 		}
 
-		$result = $this->file->repo->fileExistsBatch( $files, FileRepo::FILES_ONLY );
+		$result = $this->file->repo->fileExistsBatch( $files );
 
 		foreach ( $batch as $batchItem ) {
 			if ( $result[$batchItem[0]] ) {
@@ -2077,7 +2077,7 @@ class LocalFileRestoreBatch {
 		foreach ( $triplets as $file )
 			$files[$file[0]] = $file[0];
 
-		$result = $this->file->repo->fileExistsBatch( $files, FileRepo::FILES_ONLY );
+		$result = $this->file->repo->fileExistsBatch( $files );
 
 		foreach ( $triplets as $file ) {
 			if ( $result[$file[0]] ) {
@@ -2101,7 +2101,7 @@ class LocalFileRestoreBatch {
 				rawurlencode( $repo->getDeletedHashPath( $file ) . $file );
 		}
 
-		$result = $repo->fileExistsBatch( $files, FileRepo::FILES_ONLY );
+		$result = $repo->fileExistsBatch( $files );
 
 		foreach ( $batch as $file ) {
 			if ( $result[$file] ) {
@@ -2354,7 +2354,7 @@ class LocalFileMoveBatch {
 			$files[$file[0]] = $file[0];
 		}
 
-		$result = $this->file->repo->fileExistsBatch( $files, FileRepo::FILES_ONLY );
+		$result = $this->file->repo->fileExistsBatch( $files );
 		$filteredTriplets = array();
 
 		foreach ( $triplets as $file ) {

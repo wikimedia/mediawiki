@@ -75,40 +75,7 @@ class ForeignAPIRepo extends FileRepo {
 		return parent::newFile( $title, $time );
 	}
 
-	/**
-	 * No-ops
-	 * @return bool
-	 */
-
-	function storeBatch( $triplets, $flags = 0 ) {
-		return false;
-	}
-
-	function storeTemp( $originalName, $srcPath ) {
-		return false;
-	}
-
-	function concatenate( $fileList, $targetPath, $flags = 0 ){
-		return false;
-	}
-
-	function append( $srcPath, $toAppendPath, $flags = 0 ){
-		return false;
-	}
-
-	function appendFinish( $toAppendPath ){
-		return false;
-	}
-
-	function publishBatch( $triplets, $flags = 0 ) {
-		return false;
-	}
-
-	function deleteBatch( $sourceDestPairs ) {
-		return false;
-	}
-
-	function fileExistsBatch( $files, $flags = 0 ) {
+	function fileExistsBatch( array $files ) {
 		$results = array();
 		foreach ( $files as $k => $f ) {
 			if ( isset( $this->mFileExists[$k] ) ) {
@@ -384,5 +351,9 @@ class ForeignAPIRepo extends FileRepo {
 
 	function enumFiles( $callback ) {
 		throw new MWException( 'enumFiles is not supported by ' . get_class( $this ) );
+	}
+
+	protected function assertWritableRepo() {
+		throw new MWException( get_class( $this ) . ': write operations are not supported.' );
 	}
 }
