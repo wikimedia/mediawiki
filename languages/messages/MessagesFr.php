@@ -8,6 +8,7 @@
  * @file
  *
  * @author Agzennay
+ * @author Arkanosis
  * @author Cedric31
  * @author ChrisPtDe
  * @author Coyau
@@ -2805,7 +2806,7 @@ Veuillez en choisir un autre.',
 'talkexists' => "'''La page elle-même a été déplacée avec succès, mais la page de discussion n’a pas pu être déplacée car il en existait déjà une sous le nouveau nom. Veuillez les fusionner manuellement.'''",
 'movedto' => 'renommé en',
 'movetalk' => 'Renommer aussi la page de discussion associée',
-'move-subpages' => 'Renommer les sous-pages (jusqu’à $1 pages)',
+'move-subpages' => 'Renommer les sous-pages (jusqu’à $1 {{PLURAL:$1|page|pages}})',
 'move-talk-subpages' => 'Renommer les sous-pages de la page de discussion (jusqu’à $1 pages)',
 'movepage-page-exists' => 'La page $1 existe déjà et ne peut pas être écrasée automatiquement.',
 'movepage-page-moved' => 'La page $1 a été renommée en $2.',
@@ -3933,12 +3934,12 @@ Les images sont montrées dans leur pleine résolution, les autres fichiers sont
 'logentry-suppress-event-legacy' => '$1 a secrètement modifié la visibilité des événements du journal sur $3',
 'logentry-suppress-revision-legacy' => '$1 a secrètement modifié la visibilité des révisions sur la page $3',
 'revdelete-content-hid' => 'contenu caché',
-'revdelete-summary-hid' => 'modifier le résumé caché',
+'revdelete-summary-hid' => 'résumé de modification caché',
 'revdelete-uname-hid' => "nom d'utilisateur caché",
 'revdelete-content-unhid' => 'contenu démasqué',
-'revdelete-summary-unhid' => 'modifier le résumé démasqué',
+'revdelete-summary-unhid' => 'résumé de modification démasqué',
 'revdelete-uname-unhid' => "nom d'utilisateur démasqué",
-'revdelete-restricted' => 'a appliqué les restrictions aux administrateurs',
+'revdelete-restricted' => 'restrictions appliquées aux administrateurs',
 'revdelete-unrestricted' => 'restrictions retirées pour les administrateurs',
 'logentry-move-move' => '$1 a déplacé la page $3 vers $4',
 'logentry-move-move-noredirect' => '$1 a déplacé la page $3 vers $4 sans laisser de redirection',

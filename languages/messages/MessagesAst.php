@@ -545,6 +545,7 @@ Nun s'unviará corréu de denguna de les funciones siguientes.",
 'invalidemailaddress' => "La direición de corréu nun se pue aceutar yá que paez tener un formatu non válidu.
 Por favor escribi una direición con formatu afayadizu o dexa vaciu'l campu.",
 'cannotchangeemail' => 'Les direiciones de corréu de la cuenta nun puen camudase nesta wiki.',
+'emaildisabled' => 'Esti sitiu nun pue unviar correos electrónicos.',
 'accountcreated' => 'Cuenta creada',
 'accountcreatedtext' => "La cuenta d'usuariu de $1 ta creada.",
 'createaccount-title' => 'Creación de cuenta pa {{SITENAME}}',
@@ -748,8 +749,8 @@ La cabera entrada del rexistru de bloqueos s'ufre darréu pa referencia:",
 'userinvalidcssjstitle' => "'''Avisu:''' Nun hai piel \"\$1\". Recuerda que les páxines personalizaes .css y .js usen un títulu en minúscules, p. ex. {{ns:user}}:Foo/vector.css en cuenta de {{ns:user}}:Foo/Vector.css.",
 'updated' => '(Actualizao)',
 'note' => "'''Nota:'''",
-'previewnote' => "'''Alcuérdate de qu'esto ye sólo una vista previa.'''
-¡Los cambios entá nun se guardaron!",
+'previewnote' => "'''Alcuerdate de qu'esto ye sólo una vista previa.'''
+¡Los cambios entá nun se guardaron! [[#editform|→ Siguir editando]]",
 'previewconflict' => "Esta vista previa amuesa'l testu del área d'edición d'arriba tal como apaecerá si escueyes guardar.",
 'session_fail_preview' => "'''¡Sentímoslo muncho! Nun se pudo procesar la to edición porque hebo una perda de datos de la sesión.
 Inténtalo otra vuelta. Si nun se t'arregla, intenta salir y volver a rexistrate.'''",
@@ -763,6 +764,7 @@ La edición nun foi aceutada pa prevenir corrupciones na páxina de testu.
 Dacuando esto pasa por usar un serviciu proxy anónimu basáu en web que tenga fallos.",
 'edit_form_incomplete' => "'''Delles partes del formulariu d'edición nun llegaron al sirvidor; comprueba que les ediciones tean intactes y vuelve a tentalo.'''",
 'editing' => 'Editando $1',
+'creating' => 'Creando $1',
 'editingsection' => 'Editando $1 (seición)',
 'editingcomment' => 'Editando $1 (seición nueva)',
 'editconflict' => "Conflictu d'edición: $1",
@@ -1714,11 +1716,15 @@ Hai disponible una [[Special:WhatLinksHere/$2|llista completa]].",
 'morelinkstoimage' => 'Ver [[Special:WhatLinksHere/$1|más enllaces]] a esti archivu.',
 'linkstoimage-redirect' => '$1 (redireición de ficheru) $2',
 'duplicatesoffile' => "{{PLURAL:$1|El siguiente archivu ye un duplicáu|Los siguientes $1 archivos son duplicaos}} d'esti archivu ([[Special:FileDuplicateSearch/$2|más detalles]]):",
-'sharedupload' => 'El ficheru ye de $1 y pueden que tean usandolu otros proyeutos.',
+'sharedupload' => "Esti ficheru ye de $1 y se pue usar n'otros proyeutos.",
 'sharedupload-desc-there' => 'Esti ficheru ye de $1 y puen usalu otros proyeutos.
 Llee la [páxina de descripción del ficheru $2] pa más información.',
 'sharedupload-desc-here' => "Esti ficheru ye de $1 y puen usalu otros proyeutos.
 La descripción de la [páxina de descripción del ficheru $2] s'amuesa darréu.",
+'sharedupload-desc-edit' => "Esti ficheru ye de $1 y se pue usar n'otros proyeutos.
+Seique quieras camudar la descripción de la so [páxina de descripción de ficheru $2] allí.",
+'sharedupload-desc-create' => "Esti ficheru ye de $1 y se pue usar n'otros proyeutos.
+Seique quieras camudar la descripción de la so [páxina de descripción de ficheru $2] allí.",
 'filepage-nofile' => 'Nun esiste dengún ficheru con esti nome.',
 'filepage-nofile-link' => 'Nun esiste ficheru dalu con esti nome, pero pues [$1 xubilu].',
 'uploadnewversion-linktext' => "Xubir una nueva versión d'esta imaxe",
@@ -1928,6 +1934,7 @@ Pues filtrar la visualización seleicionando una mena de rexistru, el nome d'usu
 'allpagesprefix' => 'Amosar páxines col prefixu:',
 'allpagesbadtitle' => "El títulu dau a esta páxina nun yera válidu o tenía un prefixu d'enllaz interllingua o interwiki. Pue contener ún o más carauteres que nun se puen usar nos títulos.",
 'allpages-bad-ns' => '{{SITENAME}} nun tien l\'espaciu de nomes "$1".',
+'allpages-hide-redirects' => 'Anubrir redireiciones',
 
 # Special:Categories
 'categories' => 'Categoríes',

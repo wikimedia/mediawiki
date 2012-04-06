@@ -2523,5 +2523,7 @@ $5
 'api-error-filetype-banned' => 'په دې ډول دوتنې بنديز دی.',
 'api-error-illegal-filename' => 'د دوتنې نوم نه دی پرېښل شوی.',
 'api-error-unknown-code' => 'ناڅرګنده تېروتنه: "$1"',
+'api-error-unknown-warning' => 'ناڅرګنده ګواښنه: "$1".',
+'api-error-unknownerror' => 'ناڅرګنده تېروتنه: "$1".',
 
 );

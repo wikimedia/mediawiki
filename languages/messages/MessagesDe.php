@@ -981,9 +981,9 @@ Als Grund wurde ''$2'' angegeben.
 * Sperre betrifft: $7
 
 Du kannst $1 oder einen der anderen [[{{MediaWiki:Grouppage-sysop}}|Administratoren]] kontaktieren, um über die Sperre zu diskutieren.
-Du kannst die „E-Mail an diesen Benutzer“-Funktion nicht nutzen, solange keine gültige E-Mail-Adresse in deinen [[Special:Preferences|Benutzerkonto-Einstellungen]] eingetragen ist, oder diese Funktion für dich gesperrt wurde.
+Du kannst die „E-Mail an diesen Benutzer“-Funktion nicht nutzen, solange keine gültige E-Mail-Adresse in deinen [[Special:Preferences|Benutzerkonto-Einstellungen]] eingetragen ist oder diese Funktion für dich gesperrt wurde.
 Deine aktuelle IP-Adresse ist $3, und die Sperr-ID ist $5.
-Bitte füge alle Informationen jeder Anfrage hinzu, die du stellt.",
+Bitte füge alle Informationen jeder Anfrage hinzu, die du stellst.",
 'autoblockedtext' => "Deine IP-Adresse wurde automatisch gesperrt, da sie von einem anderen Benutzer genutzt wurde, der von $1 gesperrt wurde.
 Als Grund wurde angegeben:
 
@@ -995,10 +995,10 @@ Als Grund wurde angegeben:
 
 Du kannst $1 oder einen der anderen [[{{MediaWiki:Grouppage-sysop}}|Administratoren]] kontaktieren, um über die Sperre zu diskutieren.
 
-Du kannst die „E-Mail an diesen Benutzer“-Funktion nicht nutzen, solange keine gültige E-Mail-Adresse in deinen [[Special:Preferences|Benutzerkonto-Einstellungen]] eingetragen ist, oder diese Funktion für dich gesperrt wurde.
+Du kannst die „E-Mail an diesen Benutzer“-Funktion nicht nutzen, solange keine gültige E-Mail-Adresse in deinen [[Special:Preferences|Benutzerkonto-Einstellungen]] eingetragen ist oder diese Funktion für dich gesperrt wurde.
 
 Deine aktuelle IP-Adresse ist $3, und die Sperr-ID ist $5.
-Bitte füge alle Informationen jeder Anfrage hinzu, die du stellt.",
+Bitte füge alle Informationen jeder Anfrage hinzu, die du stellst.",
 'blockednoreason' => 'keine Begründung angegeben',
 'whitelistedittext' => 'Du musst dich $1, um Seiten bearbeiten zu können.',
 'confirmedittext' => 'Du musst deine E-Mail-Adresse erst bestätigen, bevor du Bearbeitungen durchführen kannst. Bitte ergänze und bestätige deine E-Mail in den [[Special:Preferences|Einstellungen]].',
@@ -1112,7 +1112,7 @@ Zur Information folgt der aktuelle Logbucheintrag:",
 'sectioneditnotsupported-text' => 'Die Bearbeitung von Abschnitten wird auf dieser Bearbeitungsseite nicht unterstützt.',
 'permissionserrors' => 'Berechtigungsfehler',
 'permissionserrorstext' => 'Du bist nicht berechtigt, die Aktion auszuführen. {{PLURAL:$1|Grund|Gründe}}:',
-'permissionserrorstext-withaction' => 'Du bist nicht berechtigt $2.
+'permissionserrorstext-withaction' => 'Du bist nicht berechtigt, $2.
 {{PLURAL:$1|Grund|Gründe}}:',
 'recreate-moveddeleted-warn' => "'''Achtung: Du erstellst eine Seite, die bereits früher gelöscht wurde.'''
 
@@ -1527,8 +1527,8 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 'userrights-groupsmember' => 'Mitglied von:',
 'userrights-groupsmember-auto' => 'Automatisch Mitglied von:',
 'userrights-groups-help' => 'Du kannst die Gruppenzugehörigkeit dieses Benutzers ändern:
-* Ein markiertes Kästchen bedeutet, dass der Benutzer Mitglied dieser Gruppe ist
-* Ein nicht-markiertes Kästchen bedeutet, dass der Benutzer nicht Mitglied dieser Gruppe ist
+* Ein markiertes Kästchen bedeutet, dass der Benutzer Mitglied dieser Gruppe ist.
+* Ein nichtmarkiertes Kästchen bedeutet, dass der Benutzer nicht Mitglied dieser Gruppe ist.
 * Ein * bedeutet, dass du das Benutzerrecht nach Erteilung nicht wieder zurücknehmen kannst (oder umgekehrt).',
 'userrights-reason' => 'Grund:',
 'userrights-no-interwiki' => 'Du hast nicht die erforderliche Berechtigung, um Benutzerrechte in anderen Wikis ändern zu können.',
@@ -2003,11 +2003,11 @@ Eine [[Special:WhatLinksHere/$2|vollständige Liste]] ist verfügbar.',
 'duplicatesoffile' => 'Die {{PLURAL:$1|folgende Datei ist ein Duplikat|folgenden $1 Dateien sind Duplikate}} dieser Datei ([[Special:FileDuplicateSearch/$2|weitere Details]]):',
 'sharedupload' => 'Diese Datei stammt aus $1 und darf von anderen Projekten verwendet werden.',
 'sharedupload-desc-there' => 'Diese Datei stammt aus $1 und darf von anderen Projekten verwendet werden. Siehe auf der [$2 Dateibeschreibungsseite] nach weiteren Informationen.',
-'sharedupload-desc-here' => 'Diese Datei stammt aus $1 und darf von anderen Projekten verwendet werden. Die Beschreibung der [$2 Dateibeschreibungsseite] wird unten angezeigt.',
+'sharedupload-desc-here' => 'Diese Datei stammt aus $1 und kann von anderen Projekten verwendet werden. Die Beschreibung von deren [$2 Dateibeschreibungsseite] wird unten angezeigt.',
 'sharedupload-desc-edit' => 'Diese Datei stammt aus $1 und kann auf anderen Projekten verwendet werden.
-Vielleicht willst du die Beschreibung auf der dortigen [$2 Dateibeschreibungsseite] bearbeiten.',
-'sharedupload-desc-create' => 'Diese Datei stammt aus $1 und kann auf anderen Projekten verwendet werden.
-Vielleicht willst du die Beschreibung auf der dortigen [$2 Dateibeschreibungsseite] bearbeiten.',
+Vielleicht möchtest du die Beschreibung auf der dortigen [$2 Dateibeschreibungsseite] bearbeiten.',
+'sharedupload-desc-create' => 'Diese Datei stammt aus $1 und kann von anderen Projekten verwendet werden.
+Vielleicht möchtest du die Beschreibung auf der dortigen [$2 Dateibeschreibungsseite] bearbeiten.',
 'filepage-nofile' => 'Es existiert keine Datei mit diesem Namen.',
 'filepage-nofile-link' => 'Es existiert keine Datei mit diesem Namen, aber du kannst [$1 diese Datei hochladen].',
 'uploadnewversion-linktext' => 'Eine neue Version dieser Datei hochladen',

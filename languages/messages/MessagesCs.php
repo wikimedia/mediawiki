@@ -1973,10 +1973,10 @@ Můžete si prohlédnout [[Special:WhatLinksHere/$2|úplný seznam]].',
 Více informací obsahuje jeho [$2 tamější stránka s popisem souboru].',
 'sharedupload-desc-here' => 'Tento soubor pochází z {{grammar:2sg|$1}} a mohou ho používat ostatní projekty.
 Níže jsou zobrazeny informace, které obsahuje jeho [$2 tamější stránka s popisem souboru].',
-'sharedupload-desc-edit' => 'Tento soubor je z  $1  a může být použit i v jiných projektech.
-Možná budete chtít upravit popis a dát jej do souladu s [ $2 popisem zdroje].',
-'sharedupload-desc-create' => 'Tento soubor je z  $1  a může být použit i v jiných projektech.
-Možná budete chtít upravit popis a dát jej do souladu s [ $2 popisem zdroje].',
+'sharedupload-desc-edit' => 'Tento soubor pochází z {{grammar:2sg|$1}} a mohou ho používat ostatní projekty.
+Možná spíše chcete upravit [$2 tamější stránku s popisem souboru].',
+'sharedupload-desc-create' => 'Tento soubor pochází z {{grammar:2sg|$1}} a mohou ho používat ostatní projekty.
+Možná spíše chcete upravit [$2 tamější stránku s popisem souboru].',
 'filepage-nofile' => 'Soubor s tímto názvem neexistuje.',
 'filepage-nofile-link' => 'Soubor s tímto názvem neexistuje, ale můžete [$1 ho načíst].',
 'uploadnewversion-linktext' => 'Načíst novou verzi tohoto souboru',

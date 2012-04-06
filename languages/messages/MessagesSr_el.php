@@ -40,21 +40,13 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Razgovor_o_kategoriji',
 );
 
-$namespaceGenderAliases = array(
-	NS_USER      => array( 'male' => 'Korisnik', 'female' => 'Korisnica' ),
-	NS_USER_TALK => array( 'male' => 'Razgovor_sa_korisnikom', 'female' => 'Razgovor_sa_korisnicom' ),
-);
-
-
 # Aliases to cyrillic namespaces
 $namespaceAliases = array(
 	"Медија"                  => NS_MEDIA,
 	"Посебно"                 => NS_SPECIAL,
 	"Разговор"                => NS_TALK,
 	"Корисник"                => NS_USER,
-	'Корисница'               => NS_USER,
 	"Разговор_са_корисником"  => NS_USER_TALK,
-	'Разговор_са_корисницом'  => NS_USER_TALK,
 	"Разговор_о_$1"           => NS_PROJECT_TALK,
 	"Слика"                   => NS_FILE,
 	"Разговор_о_слици"        => NS_FILE_TALK,
@@ -804,6 +796,7 @@ Poruke neće biti poslate ni za jednu od sledećih mogućnosti.',
 'invalidemailaddress' => 'E-adresa ne može biti prihvaćena jer je neispravnog oblika.
 Unesite ispravnu adresu ili ostavite prazno polje.',
 'cannotchangeemail' => 'Na ovom vikiju ne možete promeniti e-adresu naloga.',
+'emaildisabled' => 'Ovaj sajt ne može da šalje e-poruke.',
 'accountcreated' => 'Nalog je otvoren',
 'accountcreatedtext' => 'Nalog {{GENDER:$1|korisnika|korisnice|korisnika}} $1 je otvoren.',
 'createaccount-title' => 'Otvaranje korisničkog naloga za {{SITENAME}}',
@@ -1006,8 +999,8 @@ Izveštaj o poslednjem blokiranju možete pogledati ispod:',
 Prilagođene stranice CSS i javaskript počinju malim slovom, npr. {{ns:user}}:Foo/vector.css, a ne {{ns:user}}:Foo/Vector.css.",
 'updated' => '(Ažurirano)',
 'note' => "'''Napomena:'''",
-'previewnote' => "'''Ovo je samo pregled.'''
-Stranica još nije sačuvana!",
+'previewnote' => "'''Imajte u vidu da je ovo samo pregled.'''
+Vaše izmene još nisu sačuvane! [[#editform|→ Nastavi s uređivanjem]]",
 'previewconflict' => 'Ovaj pregled oslikava kako će tekst u tekstualnom okviru izgledati.',
 'session_fail_preview' => "'''Nismo mogli da obradimo vašu izmenu zbog gubitka podataka sesije.'''
 Pokušajte ponovo.
@@ -1022,6 +1015,7 @@ Ako i dalje ne radi, pokušajte da se [[Special:UserLogout|odjavite]] i ponovo p
 To se ponekad događa kada se koristi neispravan posrednik.'''",
 'edit_form_incomplete' => "'''Neki delovi obrasca za uređivanje nisu dostigli do servera. Proverite da li su izmene promenjene i pokušajte ponovo.'''",
 'editing' => 'Uređujete $1',
+'creating' => 'Pravljenje stranice $1',
 'editingsection' => 'Uređujete $1 (odeljak)',
 'editingcomment' => 'Uređujete $1 (novi odeljak)',
 'editconflict' => 'Sukobljene izmene: $1',
@@ -1998,6 +1992,10 @@ Dostupan je i [[Special:WhatLinksHere/$2|potpuni spisak]].',
 Pogledajte [$2 stranicu za opis datoteke] za više detalja o njoj.',
 'sharedupload-desc-here' => 'Ova datoteka se nalazi na $1 i može se koristiti i na drugim projektima.
 Opis na [$2 stranici datoteke] je prikazan ispod.',
+'sharedupload-desc-edit' => 'Ova datoteka se nalazi na $1 i može da se koristi na drugim projektima.
+Njen opis možete da izmenite na [$2 odgovarajućoj stranici].',
+'sharedupload-desc-create' => 'Ova datoteka se nalazi na $1 i može da se koristi na drugim projektima.
+Njen opis možete da izmenite na [$2 odgovarajućoj stranici].',
 'filepage-nofile' => 'Ne postoji datoteka s ovim nazivom.',
 'filepage-nofile-link' => 'Ne postoji datoteka s ovim nazivom, ali je možete [$1 poslati].',
 'uploadnewversion-linktext' => 'Pošalji novo izdanje ove datoteke',
@@ -2214,6 +2212,7 @@ Možete suziti prikaz odabirući vrstu istorije, korisničkog imena ili tražene
 'allpagesbadtitle' => 'Navedeni naziv stranice nije ispravan ili sadrži međujezički ili međuviki prefiks.
 Možda sadrži znakove koji se ne mogu koristiti u naslovima.',
 'allpages-bad-ns' => '{{SITENAME}} nema imenski prostor „$1“.',
+'allpages-hide-redirects' => 'Sakrij preusmerenja',
 
 # Special:Categories
 'categories' => 'Kategorije',

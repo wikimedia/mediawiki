@@ -1057,7 +1057,7 @@ IPアドレスは複数の利用者の間で共有されていることがあり
 'updated' => '（更新）',
 'note' => "'''お知らせ：'''",
 'previewnote' => "'''これはプレビューです。'''
-変更はまだ保存されていません！",
+変更箇所はまだ保存されていません！　[[#editform|→ 編集を続行]]",
 'previewconflict' => 'このプレビューは、上の文章編集エリアの文章を保存した場合にどう見えるようになるかを示すものです。',
 'session_fail_preview' => "'''申し訳ありません！セッションが切断されたため編集を処理できませんでした。'''
 もう一度やりなおしてください。
@@ -2998,7 +2998,7 @@ hideuser権限を持っていないため、この利用者のブロックを閲
 
 # JavaScriptTest
 'javascripttest' => 'JavaScript をテスト中',
-'javascripttest-disabled' => 'この機能は無効にされています。',
+'javascripttest-disabled' => 'この機能はこのウィキでは有効にされていません。',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => '自分の利用者ページ',

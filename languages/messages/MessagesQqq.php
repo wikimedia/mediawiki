@@ -972,7 +972,8 @@ See also {{msg-mw|Noarticletext-nopermission}}.',
 'updated' => '{{Identical|Updated}}',
 'previewnote' => 'Note displayed when clicking on Show preview',
 'editing' => "Shown as page title when editing a page. \$1 is the name of the page that is being edited. Example: \"''Editing Main Page''\".",
-'creating' => "Shown as page title when creating a page. \$1 is the name of the page that is being created. Example: \"''Creating Main Page''\".",
+'creating' => "Shown as page title when creating a page. Parameters:
+* \$1 is the name of the page that is being created. Example: \"''Creating Main Page''\".",
 'editingsection' => 'The variable $1 is the page name.  This message displays at the top of the page when a user is editing a page section.',
 'explainconflict' => 'Appears at the top of a page when there is an edit conflict.',
 'storedversion' => 'This is used in an edit conflict as the label for the top revision that has been stored, as opposed to your version that has not been stored which is shown at the bottom of the page.',
@@ -1001,7 +1002,6 @@ Please report at [[Support]] if you are unable to properly translate this messag
 'recreate-moveddeleted-warn' => 'Warning shown when creating a page which has already been deleted. See for example [[Test]].',
 'moveddeleted-notice' => 'Shown on top of a deleted page in normal view modus ([http://translatewiki.net/wiki/Test example]).',
 'edit-conflict' => "An 'Edit conflict' happens when more than one edit is being made to a page at the same time. This would usually be caused by separate individuals working on the same page. However, if the system is slow, several edits from one individual could back up and attempt to apply simultaneously - causing the conflict.",
-'defaultmessagetext' => 'Header in diff view, when using "Show Changes" on an default message, which shows a diff against the default message text',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'On some (expensive) [[MetaWikipedia:Help:ParserFunctions|parser functions]] (e.g. <code><nowiki>{{#ifexist:}}</nowiki></code>) there is a limit of how many times it may be used. This is an error message shown when the limit is exceeded.
@@ -2073,8 +2073,10 @@ Example: [[:Image:Addon-icn.png]]',
 {{doc-important|Do not customise this message. Just translate it.|Customisation should be done by local wikis.}}',
 'sharedupload-desc-there' => ':See also: {{msg-mw|Sharedupload}}',
 'sharedupload-desc-here' => ':See also: {{msg-mw|Sharedupload}}',
-'sharedupload-desc-edit' => ':See also: {{msg-mw|Sharedupload}}',
-'sharedupload-desc-create' => ':See also: {{msg-mw|Sharedupload}}',
+'sharedupload-desc-edit' => ':See also: {{msg-mw|Sharedupload-desc-here}}
+:See also: {{msg-mw|Sharedupload-desc-create}}',
+'sharedupload-desc-create' => ':See also: {{msg-mw|Sharedupload-desc-here}}
+:See also: {{msg-mw|Sharedupload-desc-edit}}',
 'filepage-nofile' => "This message appears when visiting a File page for which there's no file, if the user cannot upload files, or file uploads are disabled. (Otherwise, see {{msg-mw|Filepage-nofile-link}})
 
 Filepage-nofile and Filepage-nofile-link message deprecate {{msg-mw|Noimage}}",

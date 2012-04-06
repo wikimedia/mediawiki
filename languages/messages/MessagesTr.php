@@ -982,7 +982,8 @@ Son engelleme günlüğü girdisi referans için aşağıda sağlanmıştır:',
 'userinvalidcssjstitle' => "''Uyarı:''' \"\$1\" adıyla bir tema yoktur. tema-adı.css ve .js dosyalarının adları küçük harf ile yazması gerek, yani {{ns:user}}:Temel/'''V'''ector.css değil, {{ns:user}}:Temel/'''v'''ector.css.",
 'updated' => '(Güncellendi)',
 'note' => "'''Not: '''",
-'previewnote' => "'''Bu yalnızca bir önizlemedir, ve değişiklikleriniz henüz kaydedilmemiştir!'''",
+'previewnote' => "'''Bunun yalnızca bir ön izleme olduğunu unutmayın.'''
+Yaptığınız değişiklikler henüz kaydedilmedi! [[#editform|→ Düzenlemeye devam edin]]",
 'previewconflict' => 'Bu önizleme metin düzenleme kutucuğunun üstünde, maddenin eğer değişikliklerinizi kaydetmeyi seçerseniz nasıl görüneceğini yansıtır.',
 'session_fail_preview' => 'Özür dileriz. Oturum açılması ile ilgili veri kaybından kaynaklı değişikliğinizi kaydedemedik. Lütfen tekrar deneyiniz. Eğer bu yöntem işe yaramazsa oturumu kapatıp tekrar sisteme geri giriş yapınız.',
 'session_fail_preview_html' => "'''Üzgünüz! Oturum verisinin kaybolmasından dolayı düzenlemenizi işleme geçiremeyeceğiz.'''

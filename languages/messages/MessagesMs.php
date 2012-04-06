@@ -669,6 +669,7 @@ e-mel bagi ciri-ciri berikut tidak boleh dikirim.',
 'emailconfirmlink' => 'Sahkan alamat e-mel anda.',
 'invalidemailaddress' => 'Alamat e-mel tersebut tidak boleh diterima kerana ia tidak sah. Sila masukkan alamat e-mel yang betul atau kosongkan sahaja ruangan tersebut.',
 'cannotchangeemail' => 'Alamat e-mel akaun tidak boleh diubah di wiki ini.',
+'emaildisabled' => 'Tapak ini tidak boleh menghantar e-mel.',
 'accountcreated' => 'Akaun dibuka',
 'accountcreatedtext' => 'Akaun pengguna bagi $1 telah dibuka.',
 'createaccount-title' => 'Pembukaan akaun {{SITENAME}}',
@@ -857,7 +858,7 @@ Masukan log sekatan terakhir disediakan di bawah sebagai rujukan:',
 'updated' => '(Dikemas kini)',
 'note' => "'''Catatan:'''",
 'previewnote' => "'''Ingatlah bahawa ini hanya pralihat.'''
-Perubahan anda belum disimpan!",
+Perubahan anda belum disimpan! [[#editform|→ Terus menyunting]]",
 'previewconflict' => 'Paparan ini merupakan teks di bahagian atas dalam kotak sunting teks. Teks ini akan disimpan sekiranya anda memilih berbuat demikian.',
 'session_fail_preview' => "'''Kami tidak dapat memproses suntingan anda kerana kehilangan data sesi. Sila cuba lagi. Jika masalah ini berlanjutan, [[Special:UserLogout|log keluar]] dahulu, kemudian log masuk sekali lagi.'''",
 'session_fail_preview_html' => "'''Kami tidak dapat memproses suntingan anda kerana kehilangan data sesi.'''
@@ -870,6 +871,7 @@ dalam token suntingan. Suntingan tersebut telah ditolak untuk menghalang kerosak
 Hal ini kadangkala berlaku apabila anda menggunakan khidmat proksi tanpa nama berdasarkan web yang bermasalah.'''",
 'edit_form_incomplete' => "'''Beberapa bahagian dari bentuk edit tidak mencapai pelayan, periksa bahawa suntingan anda utuh dan cuba lagi'.'''",
 'editing' => 'Menyunting $1',
+'creating' => 'Membuat $1',
 'editingsection' => 'Menyunting $1 (bahagian)',
 'editingcomment' => 'Menyunting $1 (bahagian baru)',
 'editconflict' => 'Percanggahan penyuntingan: $1',
@@ -1814,6 +1816,10 @@ Anda boleh melihat [[Special:WhatLinksHere/$2|senarai penuh]].',
 Sila lihat [$2 laman penerangan fail] untuk maklumat lanjut.',
 'sharedupload-desc-here' => 'Fail ini dari $1 dan mungkin digunakan oleh projek lain.
 Penerangan pada [$2 laman penerangan failnya] di sana ditunjukkan di bawah.',
+'sharedupload-desc-edit' => 'Fail ini dari $1 dan mungkin digunakan oleh projek-projek yang lain.
+Mungkin anda ingin menyunting keterangan pada [$2 laman penerangan failnya] di situ.',
+'sharedupload-desc-create' => 'Fail ini dari $1 dan mungkin digunakan oleh projek-projek yang lain.
+Mungkin anda ingin menyunting keterangan pada [$2 laman penerangan failnya] di situ.',
 'filepage-nofile' => 'Fail dengan nama ini tidak wujud.',
 'filepage-nofile-link' => 'Fail dengan nama ini tidak wujud, tetapi boleh [$1 dimuat naik].',
 'uploadnewversion-linktext' => 'Muat naik versi baru bagi fail ini',
@@ -2023,6 +2029,7 @@ serta mungkin mempunyai maklumat lanjut mengenai buku yang anda cari:',
 'allpagesprefix' => 'Tunjukkan laman dengan awalan:',
 'allpagesbadtitle' => 'Tajuk laman yang dinyatakan tidak sah atau mempunyai awalam antara bahasa atau antara wiki. Ia mungkin mengandungi aksara yang tidak boleh digunakan dalam tajuk laman.',
 'allpages-bad-ns' => '{{SITENAME}} tidak mempunyai ruang nama "$1".',
+'allpages-hide-redirects' => 'Sorokkan lencongan',
 
 # Special:Categories
 'categories' => 'Kategori',

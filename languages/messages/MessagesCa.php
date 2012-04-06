@@ -657,6 +657,7 @@ Així, des d'aquesta adreça IP no es poden crear més comptes actualment.",
 'invalidemailaddress' => "No es pot acceptar l'adreça electrònica perquè sembla que té un format no vàlid.
 Introduïu una adreça amb un format adequat o bé buideu el camp.",
 'cannotchangeemail' => 'No podeu canviar adreces de correu electrònic en aquest wiki.',
+'emaildisabled' => 'El lloc no pot enviar correus electrònics.',
 'accountcreated' => "S'ha creat el compte",
 'accountcreatedtext' => "S'ha creat el compte d'usuari de $1.",
 'createaccount-title' => "Creació d'un compte a {{SITENAME}}",
@@ -847,7 +848,8 @@ Per més detalls, la darrera entrada del registre es mostra a continuació:",
 'userinvalidcssjstitle' => "'''Atenció:''' No existeix l'aparença «$1». Recordeu que les subpàgines personalitzades amb extensions .css i .js utilitzen el títol en minúscules, per exemple, {{ns:user}}:NOM/vector.css no és el mateix que {{ns:user}}:NOM/Vector.css.",
 'updated' => '(Actualitzat)',
 'note' => "'''Nota:'''",
-'previewnote' => "'''Açò només és una previsualització, els canvis de la qual encara no s'han desat!'''",
+'previewnote' => "'''Recordeu que això només és una previsualització.'''
+Els vostres canvis encara no s'han desat!",
 'previewconflict' => "Aquesta previsualització reflecteix, a l'àrea
 d'edició superior, el text tal i com apareixerà si trieu desar-lo.",
 'session_fail_preview' => "'''No s'ha pogut processar la vostra modificació a causa d'una pèrdua de dades de la sessió.
@@ -860,6 +862,7 @@ Si us plau, proveu-ho una altra vegada. Si continués sense funcionar, proveu de
 'token_suffix_mismatch' => "'''S'ha rebutjat la vostra modificació perquè el vostre client ha fet malbé els caràcters de puntuació en el testimoni d'edició. S'ha rebutjat la modificació per a evitar la corrupció del text de la pàgina. Açò passa a vegades quan s'utilitza un servei web de servidor intermediari anònim amb problemes.'''",
 'edit_form_incomplete' => "'''Certes parts del formulari de modificació no han arribat al servidor, verifiqueu que les vostres modificacions estan intactes i proveu-ho de nou.'''",
 'editing' => "S'està editant $1",
+'creating' => "S'està creant $1",
 'editingsection' => "S'està editant $1 (secció)",
 'editingcomment' => "S'està editant $1 (nova secció)",
 'editconflict' => "Conflicte d'edició: $1",
@@ -1784,6 +1787,10 @@ Podeu consultar la [[Special:WhatLinksHere/$2|llista completa]].",
 Si us plau vegeu la [$2 pàgina de descripció del fitxer] per a més informació.',
 'sharedupload-desc-here' => 'Aquest fitxer prové de $1 i pot ser usat per altres projectes.
 La descripció de la seva [$2 pàgina de descripció] es mostra a continuació.',
+'sharedupload-desc-edit' => 'Aquest fitxer és de $1 i potser el fan servir altres projectes.
+Potser voleu modificar-ne la descripció en la seva [$2 pàgina de descripció].',
+'sharedupload-desc-create' => 'Aquest fitxer és de $1 i potser el fan servir altres projectes.
+Potser voleu modificar-ne la descripció en la seva [$2 pàgina de descripció].',
 'filepage-nofile' => 'No hi ha cap fitxer amb aquest nom.',
 'filepage-nofile-link' => 'No existeix cap fitxer amb aquest nom, però podeu [$1 carregar-lo].',
 'uploadnewversion-linktext' => "Carrega una nova versió d'aquest fitxer",
@@ -1993,6 +2000,7 @@ Podeu reduir l'extensió seleccionant el tipus de registre, el nom del usuari (d
 'allpagesprefix' => 'Mostra les pàgines amb prefix:',
 'allpagesbadtitle' => "El títol de la pàgina que heu inserit no és vàlid o conté un prefix d'enllaç amb un altre projecte. També pot passar que contingui un o més caràcters que no es puguin fer servir en títols de pàgina.",
 'allpages-bad-ns' => "El projecte {{SITENAME}} no disposa de l'espai de noms «$1».",
+'allpages-hide-redirects' => 'Amaga les redireccions',
 
 # Special:Categories
 'categories' => 'Categories',

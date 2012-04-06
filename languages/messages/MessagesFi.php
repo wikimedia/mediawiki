@@ -475,7 +475,7 @@ $messages = array(
 'vector-view-viewsource' => 'Näytä lähdekoodi',
 'actions' => 'Toiminnot',
 'namespaces' => 'Nimiavaruudet',
-'variants' => 'Muuttujat',
+'variants' => 'Kirjoitusjärjestelmät',
 
 'errorpagetitle' => 'Virhe',
 'returnto' => 'Palaa sivulle $1.',

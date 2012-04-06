@@ -500,6 +500,9 @@ $2",
 'ns-specialprotected' => 'Ni ellir golygu tudalennau arbennig.',
 'titleprotected' => "Diogelwyd y teitl hwn rhag ei greu gan [[User:$1|$1]].
 Rhoddwyd y rheswm hwn - ''$2''.",
+'filereadonlyerror' => 'Nid oes modd newid y ffeil "$1" oherwydd bod modd darllen storfa\'r ffeil yn "$2" yn unig.
+
+Y rheswm a roddir dros hyn yw "\'\'£3\'\'".',
 
 # Virus scanner
 'virus-badscanner' => "Cyfluniad gwael: sganiwr firysau anhysbys: ''$1''",
@@ -583,6 +586,7 @@ Felly ni chaiff defnyddwyr sy'n defnyddio'r cyfeiriad IP hwn greu rhagor o gyfri
 'emailconfirmlink' => 'Cadarnhewch eich cyfeiriad e-bost',
 'invalidemailaddress' => 'Ni allwn dderbyn y cyfeiriad e-bost gan fod ganddo fformat annilys. Mewnbynnwch cyfeiriad dilys neu gwagiwch y maes hwnnw, os gwelwch yn dda.',
 'cannotchangeemail' => 'Ni ellir newid cyfeiriadau e-bost i gyfrifon ar y wici hwn.',
+'emaildisabled' => 'Ni all y wefan hon anfon e-byst.',
 'accountcreated' => 'Crëwyd y cyfrif',
 'accountcreatedtext' => 'Crëwyd cyfrif defnyddiwr ar gyfer $1.',
 'createaccount-title' => 'Creu cyfrif ar {{SITENAME}}',
@@ -771,7 +775,7 @@ Dyma'r cofnod lòg diweddaraf, er gwybodaeth:",
 Cofiwch bod y tudalennau .css a .js yn defnyddio llythrennau bach, e.e. {{ns:user}}:Foo/vector.css yn hytrach na {{ns:user}}:Foo/Vector.css.",
 'updated' => '(Diweddariad)',
 'note' => "'''Dalier sylw:'''",
-'previewnote' => "'''Cofiwch taw rhagolwg yw hwn; nid yw'r dudalen wedi ei chadw eto.'''",
+'previewnote' => "'''Cofiwch taw rhagolwg yw hwn.''' Nid yw eich gwaith wedi ei roi ar gadw eto! [[#editform|→ Parhau i olygu]]",
 'previewconflict' => "Mae'r rhagolwg hwn yn dangos y testun yn yr ardal golygu uchaf, fel ag y byddai'n ymddangos petaech yn rhoi'r dudalen ar gadw.",
 'session_fail_preview' => "'''Ymddiheurwn! Methwyd prosesu eich golygiad gan fod rhan o ddata'r sesiwn wedi'i golli. Ceisiwch eto.
 Os digwydd yr un peth eto, ceisiwch [[Special:UserLogout|allgofnodi]] ac yna mewngofnodi eto.'''",
@@ -786,6 +790,7 @@ Gwrthodwyd y golygiad rhag i destun y dudalen gael ei lygru.
 Weithiau fe ddigwydd hyn wrth ddefnyddio dirprwy-wasanaeth anhysbys gwallus yn seiliedig ar y we.'''",
 'edit_form_incomplete' => "'''Nid yw peth o'r ffurflen golygu wedi cyrraedd y gweinydd; sicrhewch bod eich golygiadau'n gyfan o hyd ac yna ceisiwch eto.'''",
 'editing' => 'Yn golygu $1',
+'creating' => "Yn dechrau'r dudalen $1",
 'editingsection' => 'Yn golygu $1 (adran)',
 'editingcomment' => 'Yn golygu $1 (adran newydd)',
 'editconflict' => 'Cyd-ddigwyddiad golygu: $1',
@@ -1924,6 +1929,7 @@ Sylwer bod llythrennau mawr neu fach o bwys i'r chwiliad.",
 'allpagesprefix' => 'Dangos pob tudalen mewn parth gan ddechrau o:',
 'allpagesbadtitle' => 'Roedd y darpar deitl yn annilys oherwydd bod ynddo naill ai:<p> - rhagddodiad rhyngwici neu ryngieithol, neu </p>- nod neu nodau na ellir eu defnyddio mewn teitlau.',
 'allpages-bad-ns' => 'Nid oes gan {{SITENAME}} barth o\'r enw "$1".',
+'allpages-hide-redirects' => 'Cuddio tudalennau ailgyfeirio',
 
 # Special:Categories
 'categories' => 'Categorïau',

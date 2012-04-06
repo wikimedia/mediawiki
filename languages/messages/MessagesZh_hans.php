@@ -2724,7 +2724,7 @@ $1被封禁的理由是：“$2”',
 'importlogpagetext' => '由管理员从其他wiki导入的带有编辑历史的页面。',
 'import-logentry-upload' => '通过文件上传导入的[[$1]]',
 'import-logentry-upload-detail' => '$1个版本',
-'import-logentry-interwiki' => '跨 wiki $1',
+'import-logentry-interwiki' => '跨站导入 $1',
 'import-logentry-interwiki-detail' => '来自$2的$1个修订',
 
 # JavaScriptTest

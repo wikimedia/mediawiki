@@ -841,6 +841,7 @@ U ontvangt geen e-mail voor de onderstaande functies.',
 'invalidemailaddress' => 'Het e-mailadres is niet aanvaard, omdat het een ongeldige opmaak heeft.
 Geef een geldig e-mailadres op of laat het veld leeg.',
 'cannotchangeemail' => 'Het e-mailadres voor een gebruiker kan op deze wiki niet gewijzigd worden.',
+'emaildisabled' => 'Deze site kan geen e-mails verzenden.',
 'accountcreated' => 'Gebruiker aangemaakt',
 'accountcreatedtext' => 'De gebruiker $1 is aangemaakt.',
 'createaccount-title' => 'Gebruikers registreren voor {{SITENAME}}',
@@ -1046,7 +1047,8 @@ De laatste regel uit het blokkeerlogboek wordt hieronder ter referentie weergege
 Uw eigen .css- en .js-pagina's beginnen met een kleine letter, bijvoorbeeld {{ns:user}}:Naam/vector.css in plaats van {{ns:user}}:Naam/Vector.css.",
 'updated' => '(Bijgewerkt)',
 'note' => "'''Opmerking:'''",
-'previewnote' => "'''Let op: dit is een controlepagina; uw tekst is niet opgeslagen!'''",
+'previewnote' => "'''Let op: dit is een controlepagina.'''
+Uw tekst is niet opgeslagen! [[#editform|→ Doorgaan met bewerken]]",
 'previewconflict' => 'Deze voorvertoning geeft aan hoe de tekst in het bovenste veld eruit ziet als u deze opslaat.',
 'session_fail_preview' => "'''Uw bewerking is niet verwerkt, omdat de sessiegegevens verloren zijn gegaan.
 Probeer het opnieuw.
@@ -1062,6 +1064,7 @@ De bewerking is geweigerd om verminking van de paginatekst te voorkomen.
 Dit gebeurt soms als er een webgebaseerde proxydienst wordt gebruikt die fouten bevat.",
 'edit_form_incomplete' => "'''Sommige onderdelen van het bewerkingsformulier hebben de server niet bereikt. Controleer of uw bewerkingen intact zijn en probeer het opnieuw.'''",
 'editing' => 'Bezig met bewerken van $1',
+'creating' => 'Bezig met het aanmaken van $1',
 'editingsection' => 'Bezig met bewerken van $1 (deelpagina)',
 'editingcomment' => 'Bezig met bewerken van $1 (nieuw kopje)',
 'editconflict' => 'Bewerkingsconflict: $1',
@@ -2036,6 +2039,10 @@ Er is ook een [[Special:WhatLinksHere/$2|volledige lijst]].',
 Zie de [$2 pagina met de bestandsbeschrijving] voor meer informatie.',
 'sharedupload-desc-here' => 'Dit bestand komt van $1 en kan ook in andere projecten gebruikt worden.
 De [$2 pagina met de bestandsbeschrijving] wordt hieronder weergegeven.',
+'sharedupload-desc-edit' => 'Dit bestand komt van $1 en kan ook in andere projecten gebruikt worden.
+U kunt de [$2 pagina met de bestandsbeschrijving] daar bewerken.',
+'sharedupload-desc-create' => 'Dit bestand komt van $1 en kan ook in andere projecten gebruikt worden.
+U kunt de beschrijving bewerken op de [$2 pagina met de bestandsbeschrijving].',
 'filepage-nofile' => 'Er bestaat geen bestand met deze naam.',
 'filepage-nofile-link' => 'Er bestaat geen bestand met deze naam, maar u kunt het [$1 uploaden].',
 'uploadnewversion-linktext' => 'Een nieuwe versie van dit bestand uploaden',
@@ -2254,6 +2261,7 @@ U kunt ook kiezen voor specifieke logboeken en filteren op gebruiker (hoofdlette
 'allpagesbadtitle' => 'De opgegeven paginanaam is ongeldig of had een intertaal- of interwikivoorvoegsel.
 Mogelijk bevatte de naam karakters die niet gebruikt mogen worden in paginanamen.',
 'allpages-bad-ns' => '{{SITENAME}} heeft geen naamruimte "$1".',
+'allpages-hide-redirects' => 'Doorverwijzingen verbergen',
 
 # Special:Categories
 'categories' => 'Categorieën',

@@ -822,6 +822,7 @@ Hasta que lo hagas, las siguientes funciones no estarán disponibles.',
 'invalidemailaddress' => 'La dirección electrónica no puede ser aceptada, pues parece que tiene un formato no válido.
 Por favor, escribe una dirección en el formato adecuado o deja el campo en blanco.',
 'cannotchangeemail' => 'Las direcciones de la correo electrónico de las cuentas de usuario no puedes cambiarse en esta wiki.',
+'emaildisabled' => 'Este sitio no puede enviar mensajes de correo electrónico.',
 'accountcreated' => 'Cuenta creada',
 'accountcreatedtext' => 'La cuenta de usuario para $1 ha sido creada.',
 'createaccount-title' => 'Creación de cuenta para {{SITENAME}}',
@@ -1024,7 +1025,7 @@ La última entrada del registro de bloqueos se proporciona debajo para mayor ref
 'updated' => '(Actualizado)',
 'note' => "'''Nota:'''",
 'previewnote' => "'''¡Recuerda que esto es solo una previsualización.'''
-¡Tus cambios aún no se ha guardado!",
+¡Tus cambios aún no se ha guardado! [[#editform|→ Continuar editando]]",
 'previewconflict' => 'Esta previsualización refleja el texto en el área de edición superior como aparecerá una vez guardados los cambios.',
 'session_fail_preview' => "'''Lo sentimos, no pudimos procesar la edición debido a una pérdida de los datos de sesión.'''
 Por favor, inténtalo de nuevo.
@@ -1039,6 +1040,7 @@ Se rechazó la edición para evitar que el texto de la página se corrompa.
 Esto sucede en ocasiones cuando se usa un servicio de proxy anónimo defectuoso.'''",
 'edit_form_incomplete' => "'''Algunas partes del formulario de edición no llegaron al servidor, comprueba que tus ediciones están intactas e inténtalo de nuevo'''.",
 'editing' => 'Editando $1',
+'creating' => 'Creando la página $1',
 'editingsection' => 'Editando $1 (sección)',
 'editingcomment' => 'Editando $1 (nueva sección)',
 'editconflict' => 'Conflicto de edición: $1',
@@ -1971,6 +1973,10 @@ También puedes consultar la [[Special:WhatLinksHere/$2|lista completa]].',
 Por favor mira la [$2 página de descripción del archivo] para información adicional.',
 'sharedupload-desc-here' => 'Este archivo es de $1 y puede ser usado por otros proyectos.
 La descripción en su [$2 página de descripción del archivo] está mostrada debajo.',
+'sharedupload-desc-edit' => 'Este archivo es de $1 y puede ser utilizado por otros proyectos.
+Tal vez desee editar la descripción de su [$2  página de descripción del archivo] allí.',
+'sharedupload-desc-create' => 'Este archivo es de $1 y puede ser utilizado por otros proyectos.
+Tal vez desee editar la descripción de su [$2 página de descripción del archivo] allí.',
 'filepage-nofile' => 'No existe ningún archivo con este nombre.',
 'filepage-nofile-link' => 'No existe ningún archivo con este nombre, pero puedes [$1 subirlo].',
 'uploadnewversion-linktext' => 'Subir una nueva versión de este archivo',
@@ -2181,6 +2187,7 @@ Puedes filtrar la vista seleccionando un tipo de registro, el nombre del usuario
 'allpagesprefix' => 'Mostrar páginas con el prefijo:',
 'allpagesbadtitle' => 'El título dado era inválido o tenía un prefijo de enlace inter-idioma o inter-wiki. Puede contener uno o más caracteres que no se pueden usar en títulos.',
 'allpages-bad-ns' => '{{SITENAME}} no tiene un espacio de nombres llamado «$1».',
+'allpages-hide-redirects' => 'Ocultar redirecciones',
 
 # Special:Categories
 'categories' => 'Categorías',

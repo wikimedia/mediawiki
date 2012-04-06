@@ -45,6 +45,7 @@
  * @author Steinninn
  * @author Str4nd
  * @author Tobulos1
+ * @author VickyC
  * @author Where next Columbus
  * @author Where next Columbus?
  * @author WikiPhoenix
@@ -789,6 +790,7 @@ Som ett resultat kan besökare som använder den här IP-adressen inte skapa nå
 'invalidemailaddress' => 'E-postadressen kan inte godtas då formatet verkar vara felaktigt.
 Skriv in en adress med korrekt format eller töm fältet.',
 'cannotchangeemail' => 'E-post-adresser som är bundna till användarkonton kan inte ändras på denna wiki.',
+'emaildisabled' => 'Denna webbplats kan inte skicka e-post.',
 'accountcreated' => 'Användarkontot har skapats',
 'accountcreatedtext' => 'Användarkontot $1 har skapats.',
 'createaccount-title' => 'Konto skapat på {{SITENAME}}',
@@ -980,8 +982,8 @@ Den har inte sparats än!'''",
 'userinvalidcssjstitle' => "'''Varning:''' Skalet \"\$1\" finns inte. Kom ihåg att .css- och .js-sidor för enskilda användare börjar på liten bokstav. Exempel: {{ns:user}}:Foo/vector.css i stället för {{ns:user}}:Foo/Vector.css.",
 'updated' => '(Uppdaterad)',
 'note' => "'''Obs!'''",
-'previewnote' => "'''Detta är bara en förhandsvisning;
-ändringar har ännu inte sparats!'''",
+'previewnote' => "'''Kom ihåg att detta bara är en förhandsvisning.'''
+Dina ändringar har ännu inte sparats! [[#editform|→ Fortsätt redigera]]",
 'previewconflict' => 'Den här förhandsvisningen är resultatet av den
 redigerbara texten ovanför,
 så som det kommer att se ut om du väljer att spara.',
@@ -999,6 +1001,7 @@ i redigeringens \"edit token\". Redigeringen stoppades för att förhindra att s
 Detta händer ibland om du använder buggiga webbaserade anonyma proxytjänster.'''",
 'edit_form_incomplete' => "'''Vissa delar av redigeringen kunde inte nå servern, dubbelkolla att dina ändringar är intakta och försök igen.'''",
 'editing' => 'Redigerar $1',
+'creating' => 'Skapar $1',
 'editingsection' => 'Redigerar $1 (avsnitt)',
 'editingcomment' => 'Redigerar $1 (nytt avsnitt)',
 'editconflict' => 'Redigeringskonflikt: $1',
@@ -1948,6 +1951,10 @@ Det finns en [[Special:WhatLinksHere/$2|fullständig lista]].',
 Var god se [$2 filbeskrivningssidan] för mer information.',
 'sharedupload-desc-here' => 'Den här filen är från $1 och kan användas av andra projekt.
 Beskrivningen på dess [$2 filbeskrivningssida] visas nedan.',
+'sharedupload-desc-edit' => 'Denna fil är från $1 och kan användas av andra projekt.
+Kanske vill du redigera beskrivningen på dess [$2 filbeskrivningssida] där.',
+'sharedupload-desc-create' => 'Denna fil är från $1 och kan användas av andra projekt.
+Kanske vill du redigera beskrivningen på dess [$2 filbeskrivningssida] där.',
 'filepage-nofile' => 'Det finns ingen fil med det här namnet.',
 'filepage-nofile-link' => 'Det finns ingen fil med det här namnet, men du kan [$1 ladda upp den].',
 'uploadnewversion-linktext' => 'Ladda upp en ny version av denna fil',
@@ -2158,6 +2165,7 @@ Du kan avgränsa sökningen och få färre träffar genom att ange typ av logg, 
 'allpagesprefix' => 'Visa sidor med prefixet:',
 'allpagesbadtitle' => 'Den sökta sidtiteln var ogiltig eller så innehöll den ett prefix för annan språkversion eller interwiki-prefix. Titeln kan innehålla bokstäver som inte är tillåtna i sidtitlar.',
 'allpages-bad-ns' => 'Namnrymden "$1" finns inte på {{SITENAME}}.',
+'allpages-hide-redirects' => 'Göm omdirigeringar',
 
 # Special:Categories
 'categories' => 'Kategorier',

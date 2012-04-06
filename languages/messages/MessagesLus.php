@@ -570,7 +570,7 @@ I rawn atan a danbeh chhinchhiahna kan han tarlang a ni e:',
 'userjsyoucanpreview' => "'''Rawlrûk:''' I JavaScript thar fiah tùrin i dahţhat hmain \"{{int:showpreview}}\" hmehkhep hi hmang rawh.",
 'note' => "'''Hriat tùr:'''",
 'previewnote' => "'''Heihi endikna chauh a ni tih hrereng ang che.'''
-I tihdanglamna dahţhat a la ni lo!",
+I tihdanglamna dahţhat a la ni lo!  [[#editform|→ Ziah chhunzawmna]]",
 'editing' => '$1 i siam(ţha) mék',
 'editingsection' => '$1 (hlawm) i siam(ţha) mék',
 'editingcomment' => '$1 (hlawm thar) i siam(ţha) mék',

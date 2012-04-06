@@ -605,6 +605,7 @@ Hakuna hata barua  pepe moja itakayotumwa kwa lolote katika vipengele hivi vifua
 'invalidemailaddress' => 'Anwani ya barua pepe haiwezi kukubalika ikiwa inaonekana kuwa na muundo batili.
 Tafadhali ingiza anwani ya miundo-mizuri au acha tupu kipengele hicho.',
 'cannotchangeemail' => 'Anwani za barua pepe haziwezi kubadilishwa katika akaunti za wiki hii.',
+'emaildisabled' => 'Tovuti hii haiwezi kutuma barua pepe.',
 'accountcreated' => 'Akaunti imeundwa',
 'accountcreatedtext' => 'Akaunti imeundwa kwa ajili ya mtumiaji $1.',
 'createaccount-title' => 'Kuanzisha akaunti kwa ajili ya {{SITENAME}}',
@@ -797,7 +798,8 @@ Rejea kumbukumbu ya uzuio ya mwisho inayoandikwa chini:',
 Kumbuka kwamba desturi ya kurasa za .css na .js hutumia herufi ndogo, yaani, {{ns:user}}:Foo/vector.css na si {{ns:user}}:Foo/Vector.css.",
 'updated' => '(Imesasishwa)',
 'note' => "'''Taarifa:'''",
-'previewnote' => "'''Hii ni hakikisho tu; mabadiliko hayajahifadhiwa bado!'''",
+'previewnote' => "'''Hii ni hakikisho tu.''' 
+Mabadiliko hayajahifadhiwa bado! [[#editform|→ Endelea kuhariri]]",
 'previewconflict' => 'Hakikisho hii inaonyesha maandiko yaliyopo sanduku la juu yataonekayo ukiyahifadhi.',
 'session_fail_preview' => "'''Pole! Hatukuweza kuhifadhi sahihisho lako kwa sababu data za kipindi zilipotelewa.'''
 Tafadhali jaribu tena.
@@ -813,6 +815,7 @@ Haririo umekataliwa ili kuzuia uharibifu wa maandishi ya kurasa.
 Haya hutokea kwa muda ambao unatumia huduma ya seva ya wavu isiyotiwa jina na yenye hitilafu nyingi.",
 'edit_form_incomplete' => "'''Baadhi ya sehemu za fomu ya kuhariria hazikufikia seva. Hakikisha kwamba haririo lako bado lipo na kisha jaribu tena.'''",
 'editing' => 'Kuhariri $1',
+'creating' => '$1 unaanzishwa',
 'editingsection' => 'Unahariri $1 (fungu)',
 'editingcomment' => 'Una hariri $1 (sehemu mpya)',
 'editconflict' => 'Mgongano wa kuhariri: $1',
@@ -1833,6 +1836,7 @@ Unaweza kuona baadhi yao tu kwa kuchagua aina fulani ya kumbukumbu, jina la mtum
 'allpagesbadtitle' => 'Jina la ukurasa ni batili au linatumia kiambishi awali cha mradi mwingine.
 Inaweza kuwa na herufi isiyoweza kutumiwa ndani ya majina ya kurasa.',
 'allpages-bad-ns' => 'Eneo la "$1" halipatikani kwenye {{SITENAME}}.',
+'allpages-hide-redirects' => 'Ficha kurasa za kuelekeza',
 
 # Special:Categories
 'categories' => 'Jamii',

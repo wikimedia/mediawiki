@@ -176,7 +176,7 @@ $messages = array(
 'vector-action-move' => 'Bere',
 'vector-action-protect' => 'Bıpawe',
 'vector-action-undelete' => 'Esterıtışi peyser bıgê',
-'vector-action-unprotect' => 'Ake',
+'vector-action-unprotect' => 'Starkerdışi bıvurne',
 'vector-simplesearch-preference' => 'Tewsiyanê cıgeyrayışiê raverberdeyan ake (Tenya vector skin de)',
 'vector-view-create' => 'Vıraze',
 'vector-view-edit' => 'Bıvurne',
@@ -213,8 +213,8 @@ $messages = array(
 'protect' => 'Bıpawe',
 'protect_change' => 'bıvurne',
 'protectthispage' => 'Ena pele bıpawe',
-'unprotect' => 'Ake',
-'unprotectthispage' => 'Ena pele ake',
+'unprotect' => 'Starkerdışi bıvurne',
+'unprotectthispage' => 'Starkerdışe ena peler bıvurne',
 'newpage' => 'Pela newiye',
 'talkpage' => 'Ena pele sero werêne',
 'talkpagelinktext' => 'Werênayış',
@@ -516,9 +516,13 @@ Bıne vındere u newe ra dest pê bıkere.',
 'passwordreset' => 'Parola ancia bınuse',
 'passwordreset-legend' => 'Parola ancia bınuse',
 'passwordreset-username' => 'Namey karberi:',
+'passwordreset-domain' => 'Domain:',
 'passwordreset-email' => 'Adresa e-postey:',
 'passwordreset-emailelement' => 'Namey karberi: $1
 Parola vêrdiye: $2',
+
+# Special:ChangeEmail
+'changeemail-none' => '(Çıno)',
 
 # Edit page toolbar
 'bold_sample' => 'Çapo qalınd',
@@ -638,6 +642,7 @@ Vurnayışê tu hama qeyd nıbiyo!",
 Vurnayişê şıma qey nêxerepyayişê peli tepeya geyra a.
 Eke şıma servisê proksi yo anonim şuxulneni sebebê ey noyo.'''",
 'editing' => 'Şımayê kenê "$1" bıvurnê',
+'creating' => "Şımaye kene $1'i vıraze",
 'editingsection' => '$1 vurneno (qısım)',
 'editingcomment' => '$1 vuryeno (qısmo newe)',
 'editconflict' => 'Vurnayişê ke yewbini nêtepışeni: $1',
@@ -758,7 +763,7 @@ Beno ke ena esteriya, ya zi namê cı vuriyo.
 Seba pelanê muhimanê newan [[Special:Search|cıgeyrayışê wiki de]] bıcerebne.',
 
 # Revision deletion
-'rev-deleted-comment' => '(tefşir esteriyo)',
+'rev-deleted-comment' => '(Timarkerdışe enay hewadeyayo)',
 'rev-deleted-user' => '(namey karberi esteriyo)',
 'rev-deleted-event' => '(fealiyetê cıkewtışi esteriyo)',
 'rev-deleted-user-contribs' => '[namey karberi ya zi adresa IPy esteriya - vurnayış iştırakan ra nımniyo]',
@@ -1001,6 +1006,7 @@ Pe verbendi ''all:'', vaceyê xo bıvurni ki contenti hemi cıgeyro (pelanê mı
 'searchresultshead' => 'Cı geyre',
 'resultsperpage' => 'Serê pele  amarê cıkewtoğan:',
 'stub-threshold' => 'Baraj ke <a href="#" class="stub">stub link</a> ho şekil dano (bîtî):',
+'stub-threshold-disabled' => 'Dezge ra vıcyaya',
 'recentchangesdays' => 'Rocê ke vurnayışanê peyênan de bıasê:',
 'recentchangesdays-max' => 'Tewr zaf $1 {{PLURAL:$1|roc|roci}}',
 'recentchangescount' => 'Amarê vurnayışiê ke standard bıasê:',
@@ -1109,10 +1115,10 @@ Kaberê bini ke şıma de kewti irtıbat, adresa e-postey şıma eşkera nêbena
 'group-suppress' => 'Kontroli',
 'group-all' => '(pêro)',
 
-'group-user-member' => 'karber',
+'group-user-member' => '{{GENDER:$1|karber}}',
 'group-autoconfirmed-member' => 'karbero tesdiq biyae',
 'group-bot-member' => 'Bot',
-'group-sysop-member' => 'İdare kerdoğ',
+'group-sysop-member' => '{{GENDER:$1|İdarekar}}',
 'group-bureaucrat-member' => 'Burokrat',
 'group-suppress-member' => 'Kontrol',
 

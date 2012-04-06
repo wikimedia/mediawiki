@@ -778,6 +778,7 @@ Prin urmare, vizitatorii care folosesc același IP nu mai pot crea alte conturi 
 'emailconfirmlink' => 'Confirmați adresa dvs. de email',
 'invalidemailaddress' => 'Adresa de email nu a putut fi acceptată pentru că pare a avea un format invalid. Vă rugăm să reintroduceți o adresă bine formatată sau să goliți acel câmp.',
 'cannotchangeemail' => 'Adresele de e-mail asociate conturilor nu pot fi schimbate pe acest wiki.',
+'emaildisabled' => 'Acest site nu poate trimite e-mailuri.',
 'accountcreated' => 'Contul a fost creat.',
 'accountcreatedtext' => 'Contul utilizatorului pentru $1 a fost creat.',
 'createaccount-title' => 'Creare de cont la {{SITENAME}}',
@@ -976,7 +977,8 @@ Ultima intrare în jurnalul blocărilor este afișată mai jos pentru referinț�
 Paginile .css și .js specifice utilizatorilor au titluri care încep cu literă mică; de exemplu {{ns:user}}:Foo/vector.css în comparație cu {{ns:user}}:Foo/Vector.css.",
 'updated' => '(Actualizat)',
 'note' => "'''Notă:'''",
-'previewnote' => "Aceasta este doar o previzualizare! Pentru a salva pagina în forma actuală, descrieți succint modificările efectuate și apăsați butonul '''Salvează pagina'''.",
+'previewnote' => "'''Țineți cont că aceasta este doar o previzualizare.'''
+Modificările dumneavoastră nu au fost încă salvate! [[#editform|→ Continuă editarea]]",
 'previewconflict' => 'Această pre-vizualizare reflectă textul din caseta de sus, respectiv felul în care va arăta articolul dacă alegeți să-l salvați acum.',
 'session_fail_preview' => "'''Ne pare rău! Nu am putut procesa modificarea dumneavoastră din cauza pierderii datelor sesiunii.
 Vă rugăm să încercați din nou.
@@ -991,6 +993,7 @@ Modificarea a fost respinsă pentru a preveni deformarea textului paginii.
 Acest fapt se poate întâmpla atunci când folosești un serviciu proxy anonim.'''",
 'edit_form_incomplete' => "'''Unele părți ale formularului de modificare nu au ajuns la server; verificați dacă modificările dumneavoastră sunt intacte și reîncercați.'''",
 'editing' => 'modificare $1',
+'creating' => 'Se creează $1',
 'editingsection' => 'modificare $1 (secțiune)',
 'editingcomment' => 'Modificare $1 (secțiune nouă)',
 'editconflict' => 'Conflict de modificare: $1',
