@@ -391,6 +391,16 @@ if ( $wgCanonicalServer === false ) {
 	$wgCanonicalServer = wfExpandUrl( $wgServer, PROTO_HTTP );
 }
 
+// Initialize $wgHTCPMulticastRouting from backwards-compatible settings
+if ( !$wgHTCPMulticastRouting && $wgHTCPMulticastAddress ) {
+	$wgHTCPMulticastRouting = array(
+		'' => array(
+			'host' => $wgHTCPMulticastAddress,
+			'port' => $wgHTCPPort,
+		)
+	);
+}
+
 wfProfileIn( $fname . '-misc1' );
 
 # Raise the memory limit if it's too low
