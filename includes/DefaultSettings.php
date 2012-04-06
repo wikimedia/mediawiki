@@ -1637,6 +1637,13 @@ $wgMemCachedTimeout = 100000;
 $wgUseLocalMessageCache = false;
 
 /**
+ * Make LanguageConverter use a different cache type.
+ * Possible values are false (none), 'main' ($wgMemc), and 'apc'.
+ * @since 1.20
+ */
+$wgLanguageConverterCacheType = 'main';
+
+/**
  * Defines format of local cache
  * true - Serialized object
  * false - PHP source file (Warning - security risk)
@@ -4222,7 +4229,7 @@ $wgParserTestFiles = array(
  * );
  */
 $wgParserTestRemote = false;
- 
+
 /**
  * Allow running of javascript test suites via [[Special:JavaScriptTest]] (such as QUnit).
  */
