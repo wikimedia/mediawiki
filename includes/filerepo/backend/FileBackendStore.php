@@ -10,11 +10,11 @@
  *
  * This class defines the methods as abstract that subclasses must implement.
  * Outside callers should *not* use functions with "Internal" in the name.
- * 
+ *
  * The FileBackend operations are implemented using basic functions
  * such as storeInternal(), copyInternal(), deleteInternal() and the like.
  * This class is also responsible for path resolution and sanitization.
- * 
+ *
  * @ingroup FileBackend
  * @since 1.19
  */
@@ -35,8 +35,8 @@ abstract class FileBackendStore extends FileBackend {
 	 * Get the maximum allowable file size given backend
 	 * medium restrictions and basic performance constraints.
 	 * Do not call this function from places outside FileBackend and FileOp.
-	 * 
-	 * @return integer Bytes 
+	 *
+	 * @return integer Bytes
 	 */
 	final public function maxFileSizeInternal() {
 		return $this->maxFileSize;
@@ -55,12 +55,12 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * Create a file in the backend with the given contents.
 	 * Do not call this function from places outside FileBackend and FileOp.
-	 * 
+	 *
 	 * $params include:
 	 *     content       : the raw file contents
 	 *     dst           : destination storage path
 	 *     overwrite     : overwrite any file that exists at the destination
-	 * 
+	 *
 	 * @param $params Array
 	 * @return Status
 	 */
@@ -87,12 +87,12 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * Store a file into the backend from a file on disk.
 	 * Do not call this function from places outside FileBackend and FileOp.
-	 * 
+	 *
 	 * $params include:
 	 *     src           : source path on disk
 	 *     dst           : destination storage path
 	 *     overwrite     : overwrite any file that exists at the destination
-	 * 
+	 *
 	 * @param $params Array
 	 * @return Status
 	 */
@@ -118,12 +118,12 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * Copy a file from one storage path to another in the backend.
 	 * Do not call this function from places outside FileBackend and FileOp.
-	 * 
+	 *
 	 * $params include:
 	 *     src           : source storage path
 	 *     dst           : destination storage path
 	 *     overwrite     : overwrite any file that exists at the destination
-	 * 
+	 *
 	 * @param $params Array
 	 * @return Status
 	 */
@@ -145,11 +145,11 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * Delete a file at the storage path.
 	 * Do not call this function from places outside FileBackend and FileOp.
-	 * 
+	 *
 	 * $params include:
 	 *     src                 : source storage path
 	 *     ignoreMissingSource : do nothing if the source file does not exist
-	 * 
+	 *
 	 * @param $params Array
 	 * @return Status
 	 */
@@ -171,12 +171,12 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * Move a file from one storage path to another in the backend.
 	 * Do not call this function from places outside FileBackend and FileOp.
-	 * 
+	 *
 	 * $params include:
 	 *     src           : source storage path
 	 *     dst           : destination storage path
 	 *     overwrite     : overwrite any file that exists at the destination
-	 * 
+	 *
 	 * @param $params Array
 	 * @return Status
 	 */
@@ -468,6 +468,7 @@ abstract class FileBackendStore extends FileBackend {
 			// If we want the latest data, check that this cached
 			// value was in fact fetched with the latest available data.
 			if ( !$latest || $this->cache[$path]['stat']['latest'] ) {
+				$this->pingCache( $path ); // LRU
 				wfProfileOut( __METHOD__ . '-' . $this->name );
 				wfProfileOut( __METHOD__ );
 				return $this->cache[$path]['stat'];
@@ -523,6 +524,7 @@ abstract class FileBackendStore extends FileBackend {
 		wfProfileIn( __METHOD__ . '-' . $this->name );
 		$path = $params['src'];
 		if ( isset( $this->cache[$path]['sha1'] ) ) {
+			$this->pingCache( $path ); // LRU
 			wfProfileOut( __METHOD__ . '-' . $this->name );
 			wfProfileOut( __METHOD__ );
 			return $this->cache[$path]['sha1'];
@@ -577,6 +579,7 @@ abstract class FileBackendStore extends FileBackend {
 		wfProfileIn( __METHOD__ . '-' . $this->name );
 		$path = $params['src'];
 		if ( isset( $this->expensiveCache[$path]['localRef'] ) ) {
+			$this->pingExpensiveCache();
 			wfProfileOut( __METHOD__ . '-' . $this->name );
 			wfProfileOut( __METHOD__ );
 			return $this->expensiveCache[$path]['localRef'];
@@ -667,7 +670,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * Do not call this function from places outside FileBackend
 	 *
 	 * @see FileBackendStore::getFileList()
-	 * 
+	 *
 	 * @param $container string Resolved container name
 	 * @param $dir string Resolved path relative to container
 	 * @param $params Array
@@ -677,7 +680,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * Get the list of supported operations and their corresponding FileOp classes.
-	 * 
+	 *
 	 * @return Array
 	 */
 	protected function supportedOperations() {
@@ -697,7 +700,7 @@ abstract class FileBackendStore extends FileBackend {
 	 *
 	 * The result must have the same number of items as the input.
 	 * An exception is thrown if an unsupported operation is requested.
-	 * 
+	 *
 	 * @param $ops Array Same format as doOperations()
 	 * @return Array List of FileOp objects
 	 * @throws MWException
@@ -794,17 +797,30 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * Clears any additional stat caches for storage paths
-	 * 
+	 *
 	 * @see FileBackend::clearCache()
-	 * 
+	 *
 	 * @param $paths Array Storage paths (optional)
 	 * @return void
 	 */
 	protected function doClearCache( array $paths = null ) {}
 
 	/**
+	 * Move a cache entry to the top (such as when accessed)
+	 *
+	 * @param $path string Storage path
+	 */
+	protected function pingCache( $path ) {
+		if ( isset( $this->cache[$path] ) ) {
+			$tmp = $this->cache[$path];
+			unset( $this->cache[$path] );
+			$this->cache[$path] = $tmp;
+		}
+	}
+
+	/**
 	 * Prune the inexpensive cache if it is too big to add an item
-	 * 
+	 *
 	 * @return void
 	 */
 	protected function trimCache() {
@@ -815,8 +831,21 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	/**
+	 * Move a cache entry to the top (such as when accessed)
+	 *
+	 * @param $path string Storage path
+	 */
+	protected function pingExpensiveCache( $path ) {
+		if ( isset( $this->expensiveCache[$path] ) ) {
+			$tmp = $this->expensiveCache[$path];
+			unset( $this->expensiveCache[$path] );
+			$this->expensiveCache[$path] = $tmp;
+		}
+	}
+
+	/**
 	 * Prune the expensive cache if it is too big to add an item
-	 * 
+	 *
 	 * @return void
 	 */
 	protected function trimExpensiveCache() {
@@ -829,12 +858,12 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * Check if a container name is valid.
 	 * This checks for for length and illegal characters.
-	 * 
+	 *
 	 * @param $container string
 	 * @return bool
 	 */
 	final protected static function isValidContainerName( $container ) {
-		// This accounts for Swift and S3 restrictions while leaving room 
+		// This accounts for Swift and S3 restrictions while leaving room
 		// for things like '.xxx' (hex shard chars) or '.seg' (segments).
 		// This disallows directory separators or traversal characters.
 		// Note that matching strings URL encode to the same string;
@@ -957,9 +986,9 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * Get a list of full container shard suffixes for a container
-	 * 
+	 *
 	 * @param $container string
-	 * @return Array 
+	 * @return Array
 	 */
 	final protected function getContainerSuffixes( $container ) {
 		$shards = array();
@@ -975,9 +1004,9 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * Get the full container name, including the wiki ID prefix
-	 * 
+	 *
 	 * @param $container string
-	 * @return string 
+	 * @return string
 	 */
 	final protected function fullContainerName( $container ) {
 		if ( $this->wikiId != '' ) {
@@ -991,9 +1020,9 @@ abstract class FileBackendStore extends FileBackend {
 	 * Resolve a container name, checking if it's allowed by the backend.
 	 * This is intended for internal use, such as encoding illegal chars.
 	 * Subclasses can override this to be more restrictive.
-	 * 
+	 *
 	 * @param $container string
-	 * @return string|null 
+	 * @return string|null
 	 */
 	protected function resolveContainerName( $container ) {
 		return $container;
