@@ -755,7 +755,7 @@ abstract class File {
 
 	/**
 	 * Return either a MediaTransformError or placeholder thumbnail (if $wgIgnoreImageErrors)
-	 * 
+	 *
 	 * @param $thumbPath string Thumbnail storage path
 	 * @param $thumbUrl string Thumbnail URL
 	 * @param $params Array
@@ -1703,6 +1703,14 @@ abstract class File {
 	 */
 	function isMissing() {
 		return false;
+	}
+
+	/**
+	 * Check if this file object is small and can be cached
+	 * @return boolean
+	 */
+	public function isCacheable() {
+		return true;
 	}
 
 	/**

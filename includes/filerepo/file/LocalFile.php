@@ -1021,9 +1021,9 @@ class LocalFile extends File {
 		);
 
 		if ( $dbw->affectedRows() == 0 ) {
-			# (bug 34993) Note: $oldver can be empty here, if the previous 
-			# version of the file was broken. Allow registration of the new 
-			# version to continue anyway, because that's better than having 
+			# (bug 34993) Note: $oldver can be empty here, if the previous
+			# version of the file was broken. Allow registration of the new
+			# version to continue anyway, because that's better than having
 			# an image that's not fixable by user operations.
 
 			$reupload = true;
@@ -1429,6 +1429,11 @@ class LocalFile extends File {
 		}
 
 		return $this->sha1;
+	}
+
+	function isCacheable() {
+		$this->load();
+		return strlen( $this->metadata ) <= 500; // avoid OOMs
 	}
 
 	/**

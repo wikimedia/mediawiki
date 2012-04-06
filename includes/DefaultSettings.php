@@ -1637,6 +1637,11 @@ $wgMemCachedTimeout = 100000;
 $wgUseLocalMessageCache = false;
 
 /**
+ * Special hack to made LanguageConverter use apc cache (used by WMF)
+ */
+$wgLanguageConverterUseAPC = false;
+
+/**
  * Defines format of local cache
  * true - Serialized object
  * false - PHP source file (Warning - security risk)
@@ -4222,7 +4227,7 @@ $wgParserTestFiles = array(
  * );
  */
 $wgParserTestRemote = false;
- 
+
 /**
  * Allow running of javascript test suites via [[Special:JavaScriptTest]] (such as QUnit).
  */
