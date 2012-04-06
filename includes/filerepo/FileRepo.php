@@ -1405,6 +1405,34 @@ class FileRepo {
 	}
 
 	/**
+	 * Get an temporary FileRepo associated with this repo.
+	 * Files will be created in the temp zone of this repo and
+	 * thumbnails in a /temp subdirectory in thumb zone of this repo.
+	 * It will have the same backend as this repo.
+	 *
+	 * @return FileRepo
+	 */
+	public function getTempRepo() {
+		return new FileRepo( array(
+			'name'      => "{$this->name}-temp",
+			'backend'   => $this->backend,
+			'zones'     => array(
+				'public' => array(
+					'container' => $this->zones['temp']['container'],
+					'directory' => ''
+				),
+				'thumb'  => array(
+					'container' => $this->zones['thumb']['container'],
+					'directory' => 'temp'
+				)
+			),
+			'url'        => $this->getZoneUrl( 'temp' ),
+			'thumbUrl'   => $this->getZoneUrl( 'thumb' ) . '/temp',
+			'hashLevels' => $this->hashLevels // performance
+		) );
+	}
+
+	/**
 	 * Get an UploadStash associated with this repo.
 	 *
 	 * @return UploadStash
