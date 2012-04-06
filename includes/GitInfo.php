@@ -148,6 +148,9 @@ class GitInfo {
 		}
 
 		$url = $remote['url'];
+		if ( substr( $url, -4 ) !== '.git' ) {
+			$url .= '.git';
+		}
 		foreach( $this->viewers as $repo => $viewer ) {
 			$m = array();
 			$pattern = '#^' . $repo . '$#';
