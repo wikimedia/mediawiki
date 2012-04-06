@@ -49,7 +49,7 @@ if ( !empty($wgActionPaths) && !isset($wgActionPaths['view']) ) {
 
 if ( !empty($wgActionPaths) && !isset($wgActionPaths['view']) ) {
 	# 'view' is assumed the default action path everywhere in the code
-	# but is rarely filled in $wgActionPaths 
+	# but is rarely filled in $wgActionPaths
 	$wgActionPaths['view'] = $wgArticlePath ;
 }
 
@@ -439,6 +439,7 @@ wfProfileIn( $fname . '-memcached' );
 $wgMemc = wfGetMainCache();
 $messageMemc = wfGetMessageCacheStorage();
 $parserMemc = wfGetParserCacheStorage();
+$wgLangConvMemc = wfGetLangConverterCacheStorage();
 
 wfDebug( 'CACHES: ' . get_class( $wgMemc ) . '[main] ' .
 	get_class( $messageMemc ) . '[message] ' .

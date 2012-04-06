@@ -1556,6 +1556,14 @@ $wgMessageCacheType = CACHE_ANYTHING;
 $wgParserCacheType = CACHE_ANYTHING;
 
 /**
+ * The cache type for storing language conversion tables,
+ * which are used when parsing certain text and interface messages.
+ *
+ * For available types see $wgMainCacheType.
+ */
+$wgLanguageConverterCacheType = CACHE_ANYTHING;
+
+/**
  * Advanced object cache configuration.
  *
  * Use this to define the class names and constructor parameters which are used
@@ -4222,7 +4230,7 @@ $wgParserTestFiles = array(
  * );
  */
 $wgParserTestRemote = false;
- 
+
 /**
  * Allow running of javascript test suites via [[Special:JavaScriptTest]] (such as QUnit).
  */
