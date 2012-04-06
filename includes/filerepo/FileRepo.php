@@ -483,10 +483,23 @@ class FileRepo {
 	 * Get a relative path including trailing slash, e.g. f/fa/
 	 * If the repo is not hashed, returns an empty string
 	 *
-	 * @param $name string
+	 * @param $name string Name of file
 	 * @return string
 	 */
 	public function getHashPath( $name ) {
+		return self::getHashPathForLevel( $name, $this->hashLevels );
+	}
+
+	/**
+	 * Get a relative path including trailing slash, e.g. f/fa/
+	 * If the repo is not hashed, returns an empty string
+	 *
+	 * @param $suffix string Basename of file from FileRepo::storeTemp()
+	 * @return string
+	 */
+	public function getTempHashPath( $suffix ) {
+		$parts = explode( '!', $suffix, 2 ); // format is <timestamp>!<name> or just <name>
+		$name = isset( $parts[1] ) ? $parts[1] : $suffix; // hash path is not based on timestamp
 		return self::getHashPathForLevel( $name, $this->hashLevels );
 	}
 
@@ -1405,6 +1418,36 @@ class FileRepo {
 	}
 
 	/**
+	 * Get an temporary FileRepo associated with this repo.
+	 * Files will be created in the temp zone of this repo and
+	 * thumbnails in a /temp subdirectory in thumb zone of this repo.
+	 * It will have the same backend as this repo.
+	 *
+	 * @return TempFileRepo
+	 */
+	public function getTempRepo() {
+		return new TempFileRepo( array(
+			'name'      => "{$this->name}-temp",
+			'backend'   => $this->backend,
+			'zones'     => array(
+				'public' => array(
+					'container' => $this->zones['temp']['container'],
+					'directory' => $this->zones['temp']['directory']
+				),
+				'thumb'  => array(
+					'container' => $this->zones['thumb']['container'],
+					'directory' => ( $this->zones['thumb']['directory'] == '' )
+						? 'temp'
+						: $this->zones['thumb']['directory'] . '/temp'
+				)
+			),
+			'url'        => $this->getZoneUrl( 'temp' ),
+			'thumbUrl'   => $this->getZoneUrl( 'thumb' ) . '/temp',
+			'hashLevels' => $this->hashLevels // performance
+		) );
+	}
+
+	/**
 	 * Get an UploadStash associated with this repo.
 	 *
 	 * @return UploadStash
@@ -1421,4 +1464,13 @@ class FileRepo {
 	 * @throws MWException
 	 */
 	protected function assertWritableRepo() {}
+}
+
+/**
+ * FileRepo for temporary files created via FileRepo::getTempRepo()
+ */
+class TempFileRepo extends FileRepo {
+	public function getTempRepo() {
+		throw new MWException( "Cannot get a temp repo from a temp repo." );
+	}
 }
