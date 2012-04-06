@@ -813,13 +813,13 @@ class LanguageConverter {
 		if ( $this->mTablesLoaded ) {
 			return;
 		}
-
+		global $wgMemc;
 		wfProfileIn( __METHOD__ );
 		$this->mTablesLoaded = true;
 		$this->mTables = false;
 		if ( $fromCache ) {
 			wfProfileIn( __METHOD__ . '-cache' );
-			$this->mTables = $this->cacheFetch( $this->mCacheKey );
+			$this->mTables = $wgMemc->get( $this->mCacheKey );
 			wfProfileOut( __METHOD__ . '-cache' );
 		}
 		if ( !$this->mTables
@@ -837,46 +837,10 @@ class LanguageConverter {
 			$this->postLoadTables();
 			$this->mTables[self::CACHE_VERSION_KEY] = true;
 
-			$this->cacheStore( $this->mCacheKey, $this->mTables, 43200 );
+			$wgMemc->set( $this->mCacheKey, $this->mTables, 43200 );
 			wfProfileOut( __METHOD__ . '-recache' );
 		}
 		wfProfileOut( __METHOD__ );
-	}
-
-	/**
-	 * Read an object from the cache
-	 * @param $key string
-	 * @return mixed
-	 */
-	protected function cacheFetch( $key ) {
-		global $wgLanguageConverterCacheType, $wgMemc;
-
-		if ( $wgLanguageConverterCacheType === 'apc' ) {
-			return apc_fetch( $key );
-		} elseif ( $wgLanguageConverterCacheType === 'main' ) {
-			return $wgMemc->get( $key );
-		}
-
-		return false; // disabled
-	}
-
-	/**
-	 * Store an object into the cache
-	 * @param $key string
-	 * @param $val mixed
-	 * @param $ttl integer Seconds to live
-	 * @return bool Success
-	 */
-	protected function cacheStore( $key, $val, $ttl ) {
-		global $wgLanguageConverterCacheType, $wgMemc;
-
-		if ( $wgLanguageConverterCacheType === 'apc' ) {
-			return apc_store( $key, $val, $ttl );
-		} elseif ( $wgLanguageConverterCacheType === 'main' ) {
-			return $wgMemc->set( $key, $val, $ttl );
-		}
-
-		return true; // disabled
 	}
 
 	/**
