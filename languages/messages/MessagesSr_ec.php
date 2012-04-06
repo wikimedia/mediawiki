@@ -47,13 +47,20 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Разговор_о_категорији',
 );
 
+$namespaceGenderAliases = array(
+	NS_USER      => array( 'male' => 'Корисник', 'female' => 'Корисница' ),
+	NS_USER_TALK => array( 'male' => 'Разговор_са_корисником', 'female' => 'Разговор_са_корисницом' ),
+);
+
+# Aliases for latin namespaces
 $namespaceAliases = array(
-        # Aliases for Latin script namespaces
 	"Medija"                  => NS_MEDIA,
 	"Posebno"                 => NS_SPECIAL,
 	"Razgovor"                => NS_TALK,
 	"Korisnik"                => NS_USER,
+	'Korisnica'               => NS_USER,
 	"Razgovor_sa_korisnikom"  => NS_USER_TALK,
+	'Razgovor_sa_korisnicom'  => NS_USER_TALK,
 	"Razgovor_o_$1"           => NS_PROJECT_TALK,
 	"Slika"                   => NS_FILE,
 	"Razgovor_o_slici"        => NS_FILE_TALK,
