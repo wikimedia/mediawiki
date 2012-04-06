@@ -342,7 +342,8 @@ class DatabaseSqlite extends DatabaseBase {
 	 * @return int
 	 */
 	function insertId() {
-		return $this->mConn->lastInsertId();
+		// PDO::lastInsertId yields a string :(
+		return intval( $this->mConn->lastInsertId() );
 	}
 
 	/**
