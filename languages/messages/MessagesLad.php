@@ -63,7 +63,6 @@ $namespaceAliases = array(
 	'Diskussión_de_Xabblón'    => NS_MEDIAWIKI_TALK,
 	'Xabblón'                  => NS_TEMPLATE,
 	'Diskusyón_de_Xabblón'     => NS_TEMPLATE_TALK,
-	'Plantilla_Discusión'      => NS_TEMPLATE_TALK,
 	'Diskussión_de_Ayudo'      => NS_HELP_TALK,
 	'Kateggoría'               => NS_CATEGORY,
 	'Diskussión_de_Kateggoría' => NS_CATEGORY_TALK,
