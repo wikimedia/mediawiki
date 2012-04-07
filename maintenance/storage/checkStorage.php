@@ -381,8 +381,8 @@ class CheckStorage {
 			$extDb->freeResult( $res );
 
 			// Print errors for missing blobs rows
-			foreach ( $oldIds as $blobId => $oldIds ) {
-				$this->error( 'restore text', "Error: missing target $cluster/$blobId for two-part ES URL", $oldIds );
+			foreach ( $oldIds as $blobId => $oldIds2 ) {
+				$this->error( 'restore text', "Error: missing target $cluster/$blobId for two-part ES URL", $oldIds2 );
 			}
 		}
 	}
