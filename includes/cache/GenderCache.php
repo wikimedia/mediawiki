@@ -37,12 +37,16 @@ class GenderCache {
 
 	/**
 	 * Returns the gender for given username.
-	 * @param $username String: username
+	 * @param $username String or User: username
 	 * @param $caller String: the calling method
 	 * @return String
 	 */
 	public function getGenderOf( $username, $caller = '' ) {
 		global $wgUser;
+
+		if( $username instanceof User ) {
+			$username = $username->getName();
+		}
 
 		$username = strtr( $username, '_', ' ' );
 		if ( !isset( $this->cache[$username] ) ) {
