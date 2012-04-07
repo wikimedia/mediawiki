@@ -76,6 +76,7 @@ production.
 * (bug 35705) QUnit upgraded from 1.2.0 to 1.5.0
 * (bug 35749) Updated maintenance/checkSyntax.php to use Git instead of
   Subversion when invoked with the --modified option.
+* (bug 18704) Add a unique CSS class or ID to the tagfilter table row at RecentChanges
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
