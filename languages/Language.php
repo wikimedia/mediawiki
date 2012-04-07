@@ -556,7 +556,6 @@ class Language {
 	 */
 	function getVariantname( $code, $usemsg = true ) {
 		$msg = "variantname-$code";
-		list( $rootCode ) = explode( '-', $code );
 		if ( $usemsg && wfMessage( $msg )->exists() ) {
 			return $this->getMessageFromDB( $msg );
 		}
