@@ -129,6 +129,11 @@ class UsersPager extends AlphabeticPager {
 		if ($row->user_id == 0) #Bug 16487
 			return '';
 
+		$userName = $row->user_name;
+
+		$ulinks = Linker::userLink( $row->user_id, $userName );
+		$ulinks .= Linker::userToolLinks( $row->user_id, $userName );
+
 		$userPage = Title::makeTitle( NS_USER, $row->user_name );
 		$name = Linker::link( $userPage, htmlspecialchars( $userPage->getText() ) );
 
@@ -138,13 +143,13 @@ class UsersPager extends AlphabeticPager {
 		if( count( $groups_list ) > 0 ) {
 			$list = array();
 			foreach( $groups_list as $group )
-				$list[] = self::buildGroupLink( $group, $userPage->getText() );
+				$list[] = self::buildGroupLink( $group, $userName );
 			$groups = $lang->commaList( $list );
 		} else {
 			$groups = '';
 		}
 
-		$item = $lang->specialList( $name, $groups );
+		$item = $lang->specialList( $ulinks, $groups );
 		if( $row->ipb_deleted ) {
 			$item = "<span class=\"deleted\">$item</span>";
 		}
@@ -155,10 +160,6 @@ class UsersPager extends AlphabeticPager {
 		} else {
 			$edits = '';
 		}
-
-		$userTalkPage = $userPage->getTalkPage();
-		$talk = Linker::link( $userTalkPage, $this->msg( 'talkpagelinktext' )->escaped() );
-		$talk = ' ' . $this->msg( 'parentheses' )->rawParams( $talk )->escaped();
 
 		$created = '';
 		# Some rows may be NULL
@@ -171,21 +172,18 @@ class UsersPager extends AlphabeticPager {
 		}
 
 		wfRunHooks( 'SpecialListusersFormatRow', array( &$item, $row ) );
-		return "<li>{$item}{$edits}{$talk}{$created}</li>";
+		return "<li>{$item}{$edits}{$created}</li>";
 	}
 
-	function getBody() {
-		if( !$this->mQueryDone ) {
-			$this->doQuery();
-		}
-		$this->mResult->rewind();
-		$batch = new LinkBatch;
+	function doBatchLookups() {
+		$batch = new LinkBatch();
+		# Give some pointers to make user links
 		foreach ( $this->mResult as $row ) {
-			$batch->addObj( Title::makeTitleSafe( NS_USER, $row->user_name ) );
+			$batch->add( NS_USER, $row->user_name );
+			$batch->add( NS_USER_TALK, $row->user_name );
 		}
 		$batch->execute();
 		$this->mResult->rewind();
-		return parent::getBody();
 	}
 
 	function getPageHeader( ) {
