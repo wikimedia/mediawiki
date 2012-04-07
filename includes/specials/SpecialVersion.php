@@ -191,15 +191,19 @@ class SpecialVersion extends SpecialPage {
 	 * @return mixed
 	 */
 	public static function getVersionLinked() {
-		global $wgVersion;
 		wfProfileIn( __METHOD__ );
 
-		if( $gitVersion = self::getVersionLinkedGit() ) {
+		$gitVersion = self::getVersionLinkedGit();
+		if( $gitVersion ) {
 			$v = $gitVersion;
-		} elseif( $svnVersion = self::getVersionLinkedSvn() ) {
-			$v = $svnVersion;
 		} else {
-			$v = $wgVersion; // fallback
+			$svnVersion = self::getVersionLinkedSvn();
+			if( $svnVersion ) {
+				$v = $svnVersion;
+			} else {
+				global $wgVersion;
+				$v = $wgVersion; // fallback
+			}
 		}
 
 		wfProfileOut( __METHOD__ );
@@ -207,7 +211,7 @@ class SpecialVersion extends SpecialPage {
 	}
 
 	/**
-	 * @return string wgVersion + a link to subversion revision of svn BASE 
+	 * @return string wgVersion + a link to subversion revision of svn BASE
 	 */
 	private static function getVersionLinkedSvn() {
 		global $wgVersion, $IP;
