@@ -37,22 +37,8 @@ class ApiProtect extends ApiBase {
 		global $wgRestrictionLevels;
 		$params = $this->extractRequestParams();
 
-		$this->requireOnlyOneParameter( $params, 'title', 'pageid' );
-
-		if ( isset( $params['title'] ) ) {
-			$titleObj = Title::newFromText( $params['title'] );
-			if ( !$titleObj ) {
-				$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
-			}
-			$pageObj = WikiPage::factory( $titleObj );
-			$pageObj->loadPageData( 'fromdbmaster' );
-		} elseif ( isset( $params['pageid'] ) ) {
-			$pageObj = WikiPage::newFromID( $params['pageid'] );
-			if ( !$pageObj ) {
-				$this->dieUsageMsg( array( 'nosuchpageid', $params['pageid'] ) );
-			}
-			$titleObj = $pageObj->getTitle();
-		}
+		$titleObj = $this->getTitleOrPageId( $params );
+		$pageObj = WikiPage::factory( $titleObj );
 
 		$errors = $titleObj->getUserPermissionsErrors( 'protect', $this->getUser() );
 		if ( $errors ) {
@@ -204,7 +190,7 @@ class ApiProtect extends ApiBase {
 
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(),
-			$this->getRequireOnlyOneParameterErrorMessages( array( 'title', 'pageid' ) ),
+			$this->getTitleOrPageIdErrorMessage(),
 			array(
 				array( 'invalidtitle', 'title' ),
 				array( 'nosuchpageid', 'pageid' ),

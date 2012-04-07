@@ -699,6 +699,35 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
+	 * @param $params array
+	 * @return Title
+	 */
+	public function getTitleOrPageId( $params ) {
+		$this->requireOnlyOneParameter( $params, 'title', 'pageid' );
+
+		$titleObj = null;
+		if ( isset( $params['title'] ) ) {
+			$titleObj = Title::newFromText( $params['title'] );
+			if ( !$titleObj ) {
+				$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
+			}
+		} elseif ( isset( $params['pageid'] ) ) {
+			$titleObj = Title::newFromID( $params['pageid'] );
+			if ( !$titleObj ) {
+				$this->dieUsageMsg( array( 'nosuchpageid', $params['pageid'] ) );
+			}
+		}
+		return $titleObj;
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getTitleOrPageIdErrorMessage( ) {
+		return $this->getRequireOnlyOneParameterErrorMessages( array( 'title', 'pageid' ) );
+	}
+
+	/**
 	 * Callback function used in requireOnlyOneParameter to check whether reequired parameters are set
 	 *
 	 * @param  $x object Parameter to check is not null/false
