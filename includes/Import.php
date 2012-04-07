@@ -786,7 +786,9 @@ class WikiImporter {
 		$origTitle = Title::newFromText( $workTitle );
 
 		if( !is_null( $this->mTargetNamespace ) && !is_null( $origTitle ) ) {
-			$title = Title::makeTitle( $this->mTargetNamespace,
+			# makeTitleSafe, because $origTitle can have a interwiki (different setting of interwiki map)
+			# and than dbKey can begin with a lowercase char
+			$title = Title::makeTitleSafe( $this->mTargetNamespace,
 				$origTitle->getDBkey() );
 		} else {
 			$title = Title::newFromText( $workTitle );
