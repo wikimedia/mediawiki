@@ -308,9 +308,9 @@ class CoreParserFunctions {
 		// check parameter, or use the ParserOptions if in interface message
 		$user = User::newFromName( $username );
 		if ( $user ) {
-			$gender = $user->getOption( 'gender' );
+			$gender = GenderCache::singleton()->getGenderOf( $user );
 		} elseif ( $username === '' && $parser->getOptions()->getInterfaceMessage() ) {
-			$gender = $parser->getOptions()->getUser()->getOption( 'gender' );
+			$gender = GenderCache::singleton()->getGenderOf( $parser->getOptions()->getUser() );
 		}
 		$ret = $parser->getFunctionLang()->gender( $gender, $forms );
 		wfProfileOut( __METHOD__ );
