@@ -1653,7 +1653,7 @@ class LocalFileDeleteBatch {
 					'fa_deleted_user'      => $encUserId,
 					'fa_deleted_timestamp' => $encTimestamp,
 					'fa_deleted_reason'    => $encReason,
-					'fa_deleted'		   => $this->suppress ? $bitfield : 'oi_deleted',
+					'fa_deleted'           => $this->suppress ? $bitfield : 'oi_deleted',
 
 					'fa_name'         => 'oi_name',
 					'fa_archive_name' => 'oi_archive_name',
@@ -1669,7 +1669,6 @@ class LocalFileDeleteBatch {
 					'fa_user'         => 'oi_user',
 					'fa_user_text'    => 'oi_user_text',
 					'fa_timestamp'    => 'oi_timestamp',
-					'fa_deleted'      => $bitfield
 				), $where, __METHOD__ );
 		}
 	}
