@@ -63,7 +63,6 @@ production.
 * (bug 34735) Updated compressOld.php documentation to mention the different
   usages of -s and -n parameters depending on compression type.
 * (bug 13896) Rendering of devanagari numbers in automatic '#' number lists.
-* (bug 18704) Add an unique CSS class or ID to the tagfilter table row at RecentChanges.
 * (bug 33689) Upgrade to 1.19 on Postgres fails due to incomplete query when.
   trying to defer foreign key for externallinks.
 * (bug 32748) Printer friendly version of article decode Unicode chars as a
