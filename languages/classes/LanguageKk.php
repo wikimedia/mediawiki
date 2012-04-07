@@ -113,7 +113,7 @@ class KkConverter extends LanguageConverter {
 			# # Punctuation
 			'/#|No\./' => '№',
 			# # Şç
-			'/ŞÇʹ/u' => 'ЩЬ', '/Şçʹ/u' => 'Щь', '/Şçʹ/u' => 'Щь',
+			'/ŞÇʹ/u' => 'ЩЬ', '/Şçʹ/u' => 'Щь',
 			'/Ş[Çç]/u' => 'Щ', '/şç/u' => 'щ',
 			# # soft and hard signs
 			'/([' . KK_L_UC . '])ʺ([' . KK_L_UC . '])/u' => '$1Ъ$2',
