@@ -1383,7 +1383,7 @@ class DerivativeRequest extends FauxRequest {
 	}
 
 	public function setSessionData( $key, $data ) {
-		return $this->base->setSessionData( $key, $data );
+		$this->base->setSessionData( $key, $data );
 	}
 
 	public function getAcceptLang() {
