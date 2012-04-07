@@ -28,7 +28,7 @@
  * @ingroup Dump Maintenance
  */
 class DumpDBZip2Output extends DumpPipeOutput {
-	function DumpDBZip2Output( $file ) {
+	function __construct( $file ) {
 		parent::__construct( "dbzip2", $file );
 	}
 }
