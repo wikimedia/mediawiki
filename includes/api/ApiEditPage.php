@@ -48,18 +48,9 @@ class ApiEditPage extends ApiBase {
 			$this->dieUsageMsg( 'missingtext' );
 		}
 
-		$this->requireOnlyOneParameter( $params, 'title', 'pageid' );
-
-		if ( isset( $params['title'] ) ) {
-			$titleObj = Title::newFromText( $params['title'] );
-			if ( !$titleObj || $titleObj->isExternal() ) {
-				$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
-			}
-		} elseif ( isset( $params['pageid'] ) ) {
-			$titleObj = Title::newFromID( $params['pageid'] );
-			if ( !$titleObj ) {
-				$this->dieUsageMsg( array( 'nosuchpageid', $params['pageid'] ) );
-			}
+		$titleObj = $this->getTitleOrPageId( $params );
+		if ( $titleObj->isExternal() ) {
+			$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
 		}
 
 		$apiResult = $this->getResult();
@@ -381,7 +372,7 @@ class ApiEditPage extends ApiBase {
 		global $wgMaxArticleSize;
 
 		return array_merge( parent::getPossibleErrors(),
-			$this->getRequireOnlyOneParameterErrorMessages( array( 'title', 'pageid' ) ),
+			$this->getTitleOrPageIdErrorMessage(),
 			array(
 				array( 'nosuchpageid', 'pageid' ),
 				array( 'missingtext' ),

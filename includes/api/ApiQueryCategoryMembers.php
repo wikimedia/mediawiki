@@ -54,22 +54,9 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 	private function run( $resultPageSet = null ) {
 		$params = $this->extractRequestParams();
 
-		$this->requireOnlyOneParameter( $params, 'title', 'pageid' );
-
-		if ( isset( $params['title'] ) ) {
-			$categoryTitle = Title::newFromText( $params['title'] );
-
-			if ( is_null( $categoryTitle ) || $categoryTitle->getNamespace() != NS_CATEGORY ) {
-				$this->dieUsage( 'The category name you entered is not valid', 'invalidcategory' );
-			}
-		} elseif( isset( $params['pageid'] ) ) {
-			$categoryTitle = Title::newFromID( $params['pageid'] );
-
-			if ( !$categoryTitle ) {
-				$this->dieUsageMsg( array( 'nosuchpageid', $params['pageid'] ) );
-			} elseif ( $categoryTitle->getNamespace() != NS_CATEGORY ) {
-				$this->dieUsage( 'The category name you entered is not valid', 'invalidcategory' );
-			}
+		$categoryTitle = $this->getTitleOrPageId( $params );
+		if ( $categoryTitle->getNamespace() != NS_CATEGORY ) {
+			$this->dieUsage( 'The category name you entered is not valid', 'invalidcategory' );
 		}
 
 		$prop = array_flip( $params['prop'] );
@@ -378,7 +365,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(),
-			$this->getRequireOnlyOneParameterErrorMessages( array( 'title', 'pageid' ) ),
+			$this->getTitleOrPageIdErrorMessage(),
 			array(
 				array( 'code' => 'invalidcategory', 'info' => 'The category name you entered is not valid' ),
 				array( 'code' => 'badcontinue', 'info' => 'Invalid continue param. You should pass the original value returned by the previous query' ),
