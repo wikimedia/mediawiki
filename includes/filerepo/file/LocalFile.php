@@ -60,6 +60,11 @@ class LocalFile extends File {
 
 	/**#@-*/
 
+	/**
+	 * @var LocalRepo
+	 */
+	var $repo;
+
 	protected $repoClass = 'LocalRepo';
 
 	/**
