@@ -266,6 +266,7 @@ abstract class Action {
 	 *
 	 * @param $user User: the user to check, or null to use the context user
 	 * @throws ErrorPageError
+	 * @return bool True on success
 	 */
 	protected function checkCanExecute( User $user ) {
 		$right = $this->getRestriction();
@@ -287,6 +288,7 @@ abstract class Action {
 		if ( $this->requiresWrite() && wfReadOnly() ) {
 			throw new ReadOnlyError();
 		}
+		return true;
 	}
 
 	/**
