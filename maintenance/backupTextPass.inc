@@ -43,9 +43,25 @@ class TextPassDumper extends BackupDumper {
 
 	var $php = "php";
 	var $spawn = false;
+
+	/**
+	 * @var bool|resource
+	 */
 	var $spawnProc = false;
+
+	/**
+	 * @var bool|resource
+	 */
 	var $spawnWrite = false;
+
+	/**
+	 * @var bool|resource
+	 */
 	var $spawnRead = false;
+
+	/**
+	 * @var bool|resource
+	 */
 	var $spawnErr = false;
 
 	var $xmlwriterobj = false;
