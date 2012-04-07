@@ -1039,9 +1039,6 @@ $2',
 'ns-specialprotected'  => 'Special pages cannot be edited.',
 'titleprotected'       => 'This title has been protected from creation by [[User:$1|$1]].
 The reason given is "\'\'$2\'\'".',
-'filereadonlyerror'    => 'Unable to modify the file "$1" because the file repository "$2" is in read-only mode.
-
-The reason given is "\'\'$3\'\'".',
 
 # Virus scanner
 'virus-badscanner'     => "Bad configuration: Unknown virus scanner: ''$1''",
