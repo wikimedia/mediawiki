@@ -381,7 +381,7 @@ class ApiEditPage extends ApiBase {
 		global $wgMaxArticleSize;
 
 		return array_merge( parent::getPossibleErrors(),
-			$this->getRequireOnlyOneParameterErrorMessages( 'title', 'pageid' ),
+			$this->getRequireOnlyOneParameterErrorMessages( array( 'title', 'pageid' ) ),
 			array(
 				array( 'nosuchpageid', 'pageid' ),
 				array( 'missingtext' ),
