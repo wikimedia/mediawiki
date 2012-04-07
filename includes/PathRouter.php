@@ -123,7 +123,7 @@ class PathRouter {
 	/**
 	 * Add a new path pattern to the path router
 	 *
-	 * @param $path string The path pattern to add
+	 * @param $path string|array The path pattern to add
 	 * @param $params array The params for this path pattern
 	 * @param $options array The options for this path pattern
 	 */
