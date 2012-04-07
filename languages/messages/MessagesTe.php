@@ -53,7 +53,6 @@ $namespaceAliases = array(
 	'బొమ్మపై_చర్చ' => NS_FILE_TALK,
 	'ఫైలు' => NS_FILE,
 	'ఫైలుపై_చర్చ' => NS_FILE_TALK,
-	'బొమ్మపై_చర్చ' => NS_FILE_TALK,
 	'సహాయము' => NS_HELP,
 	'సహాయము_చర్చ' => NS_HELP_TALK,
 );

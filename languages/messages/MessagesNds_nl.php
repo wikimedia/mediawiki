@@ -50,7 +50,6 @@ $namespaceAliases = array(
 	'Categorie'          => NS_CATEGORY,
 	'Overleg_categorie'  => NS_CATEGORY_TALK,
 	'Kattegerie'         => NS_CATEGORY,
-	'Overleg_categorie'  => NS_CATEGORY_TALK,
 	'Overleg_kattegerie' => NS_HELP_TALK,
 );
 

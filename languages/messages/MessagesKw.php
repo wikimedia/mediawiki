@@ -47,7 +47,6 @@ $namespaceAliases = array(
 	'Cows_Restren'       => NS_FILE_TALK,
 	'Keskows_Restren'    => NS_FILE_TALK,
 	'Cows_MediaWiki'     => NS_MEDIAWIKI_TALK,
-	'Cows_MediaWiki'     => NS_MEDIAWIKI_TALK,
 	'Keskows_MediaWiki'  => NS_MEDIAWIKI_TALK,
 	'Cows_Scantlyn'      => NS_TEMPLATE_TALK,
 	'Skantlyn'           => NS_TEMPLATE,
