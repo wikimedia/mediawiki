@@ -48,7 +48,7 @@ class GenderCache {
 			$username = $username->getName();
 		}
 
-		$username = strtr( $username, '_', ' ' );
+		$username = self::normalizeUsername( $username );
 		if ( !isset( $this->cache[$username] ) ) {
 
 			if ( $this->misses >= $this->missLimit && $wgUser->getName() !== $username ) {
@@ -86,7 +86,6 @@ class GenderCache {
 		foreach ( $data as $ns => $pagenames ) {
 			if ( !MWNamespace::hasGenderDistinction( $ns ) ) continue;
 			foreach ( array_keys( $pagenames ) as $username ) {
-				if ( isset( $this->cache[$username] ) ) continue;
 				$users[$username] = true;
 			}
 		}
@@ -103,7 +102,7 @@ class GenderCache {
 		$default = $this->getDefault();
 
 		foreach ( (array) $users as $index => $value ) {
-			$name = strtr( $value, '_', ' ' );
+			$name = self::normalizeUsername( $value );
 			if ( isset( $this->cache[$name] ) ) {
 				// Skip users whose gender setting we already know
 				unset( $users[$index] );
@@ -136,4 +135,12 @@ class GenderCache {
 		}
 	}
 
+	private static function normalizeUsername( $username ) {
+		// Strip off subpages
+		if ( strpos( $username, '/' ) !== false ) {
+			list( $username , ) = explode( '/', $username, 2 );
+		}
+		// normalize underscore/spaces
+		return $username = strtr( $username, '_', ' ' );
+	}
 }
