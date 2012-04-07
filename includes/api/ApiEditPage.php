@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  *
  *
@@ -479,7 +479,7 @@ class ApiEditPage extends ApiBase {
 		$p = $this->getModulePrefix();
 		return array(
 			'title' => "Title of the page you want to edit. Cannot be used together with {$p}pageid",
-			'pageid' => "Page ID of the page you want to edit. Cannot be used together with {$p}title,
+			'pageid' => "Page ID of the page you want to edit. Cannot be used together with {$p}title",
 			'section' => 'Section number. 0 for the top section, \'new\' for a new section',
 			'sectiontitle' => 'The title for a new section',
 			'text' => 'Page content',
