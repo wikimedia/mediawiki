@@ -3481,11 +3481,11 @@ class Title {
 		$protected = $this->isProtected();
 
 		// Do the actual move
-		$err = $this->moveToInternal( $nt, $reason, $createRedirect );
-		if ( is_array( $err ) ) {
-			# @todo FIXME: What about the File we have already moved?
+		try {
+			$this->moveToInternal( $nt, $reason, $createRedirect );
+		} catch ( MWException $ex ) {
 			$dbw->rollback( __METHOD__ );
-			return $err;
+			return $ex->getMessage();
 		}
 
 		// Refresh the sortkey for this row.  Be careful to avoid resetting
@@ -3562,6 +3562,7 @@ class Title {
 	 * @param $reason String The reason for the move
 	 * @param $createRedirect Bool Whether to leave a redirect at the old title.  Ignored
 	 *   if the user doesn't have the suppressredirect right
+	 * @throws MWException
 	 */
 	private function moveToInternal( &$nt, $reason = '', $createRedirect = true ) {
 		global $wgUser, $wgContLang;
