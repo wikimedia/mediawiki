@@ -128,6 +128,11 @@ class VectorTemplate extends BaseTemplate {
 		<div id="content" class="mw-body">
 			<a id="top"></a>
 			<div id="mw-js-message" style="display:none;"<?php $this->html( 'userlangattributes' ) ?>></div>
+			<?php if( $this->data['newtalk'] ): ?>
+			<!-- newtalk -->
+			<div class="usermessage"><?php $this->html( 'newtalk' )  ?></div>
+			<!-- /newtalk -->
+			<?php endif; ?>
 			<?php if ( $this->data['sitenotice'] ): ?>
 			<!-- sitenotice -->
 			<div id="siteNotice"><?php $this->html( 'sitenotice' ) ?></div>
@@ -152,11 +157,6 @@ class VectorTemplate extends BaseTemplate {
 				<!-- undelete -->
 				<div id="contentSub2"><?php $this->html( 'undelete' ) ?></div>
 				<!-- /undelete -->
-				<?php endif; ?>
-				<?php if( $this->data['newtalk'] ): ?>
-				<!-- newtalk -->
-				<div class="usermessage"><?php $this->html( 'newtalk' )  ?></div>
-				<!-- /newtalk -->
 				<?php endif; ?>
 				<?php if ( $this->data['showjumplinks'] ): ?>
 				<!-- jumpto -->

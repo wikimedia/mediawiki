@@ -687,6 +687,10 @@ pre {
 	line-height: 1.3em;
 }
 
+/* Newtalk message */
+.usermessage {
+	font-size: 0.8em;
+}
 /* Site Notice (includes notices from CentralNotice extension) */
 #siteNotice {
 	font-size: 0.8em;
