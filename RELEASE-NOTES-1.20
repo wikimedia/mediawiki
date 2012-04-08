@@ -79,6 +79,7 @@ production.
 * (bug 35069) On history pages, the " . . " separator after the number of
   characters changed in a revision is now suppressed if no text would follow.
 * (bug 18704) Add a unique CSS class or ID to the tagfilter table row at RecentChanges
+* (bug 30410) Removed deprecated $wgFilterCallback and the 'filtered' API error.
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
