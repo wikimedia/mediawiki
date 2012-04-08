@@ -76,6 +76,8 @@ production.
 * (bug 35705) QUnit upgraded from 1.2.0 to 1.5.0
 * (bug 35749) Updated maintenance/checkSyntax.php to use Git instead of
   Subversion when invoked with the --modified option.
+* (bug 30410) Removed deprecated $wgFilterCallback. The 'filtered' API error
+  was also removed, along with EditPage::AS_FILTERING.
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
