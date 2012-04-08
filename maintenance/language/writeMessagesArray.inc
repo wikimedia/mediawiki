@@ -41,15 +41,16 @@ class MessageWriter {
 	 * @param $write Boolean: write to the messages file?
 	 * @param $listUnknown Boolean: list the unknown messages?
 	 * @param $removeUnknown Boolean: whether to remove unkown messages
+	 * @param $mediawikiIP String: root path to an alternative MediaWiki install to use. Defaults to the current one.
 	 */
-	public static function writeMessagesToFile( $messages, $code, $write, $listUnknown, $removeUnknown ) {
+	public static function writeMessagesToFile( $messages, $code, $write, $listUnknown, $removeUnknown, $mediawikiIP = false ) {
 		# Rewrite the messages array
 		$messages = self::writeMessagesArray( $messages, $code == 'en', false, $removeUnknown );
 		$messagesText = $messages[0];
 		$sortedMessages = $messages[1];
 
 		# Write to the file
-		$filename = Language::getMessagesFileName( $code );
+		$filename = Language::getMessagesFileName( $code, $mediawikiIP );
 		$contents = file_get_contents( $filename );
 		if( strpos( $contents, '$messages' ) !== false ) {
 			$contents = explode( '$messages', $contents );

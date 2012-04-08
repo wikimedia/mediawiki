@@ -36,14 +36,15 @@ require_once( 'writeMessagesArray.inc' );
  * @param bool $removeUnknown Remove the unknown messages?
  * @param bool $removeDupes Remove the duplicated messages?
  * @param $dupeMsgSource string The source file intended to remove from the array.
+ * @param $mediawikiIP String: root path to an alternative MediaWiki install to use. Defaults to the current one.
  */
-function rebuildLanguage( $languages, $code, $write, $listUnknown, $removeUnknown, $removeDupes, $dupeMsgSource ) {
+function rebuildLanguage( $languages, $code, $write, $listUnknown, $removeUnknown, $removeDupes, $dupeMsgSource, $mediawikiIP = false ) {
 	$messages = $languages->getMessages( $code );
 	$messages = $messages['all'];
 	if ( $removeDupes ) {
 		$messages = removeDupes( $messages, $dupeMsgSource );
 	}
-	MessageWriter::writeMessagesToFile( $messages, $code, $write, $listUnknown, $removeUnknown );
+	MessageWriter::writeMessagesToFile( $messages, $code, $write, $listUnknown, $removeUnknown, $mediawikiIP );
 }
 
 /**
@@ -85,6 +86,7 @@ Options:
 	* no-unknown: Do not list the unknown messages.
 	* remove-unknown: Remove unknown messages.
 	* remove-duplicates: Remove duplicated messages based on a PHP source file.
+	* mediawiki-folder: An alternative MediaWiki install folder.
 
 TEXT;
 	exit( 1 );
@@ -109,6 +111,7 @@ $wgWriteToFile = !isset( $options['dry-run'] );
 $wgListUnknownMessages = !isset( $options['no-unknown'] );
 $wgRemoveUnknownMessages = isset( $options['remove-unknown'] );
 $wgRemoveDuplicateMessages = isset( $options['remove-duplicates'] );
+$targetMediawikiIP = isset( $options['mediawiki-folder'] ) ? $options['mediawiki-folder'] : false;
 
 # Get language objects
 $languages = new languages();
@@ -116,8 +119,8 @@ $languages = new languages();
 # Write all the language
 if ( $wgCode == 'all' ) {
 	foreach ( $languages->getLanguages() as $languageCode ) {
-		rebuildLanguage( $languages, $languageCode, $wgWriteToFile, $wgListUnknownMessages, $wgRemoveUnknownMessages, $wgRemoveDuplicateMessages, $wgDupeMessageSource );
+		rebuildLanguage( $languages, $languageCode, $wgWriteToFile, $wgListUnknownMessages, $wgRemoveUnknownMessages, $wgRemoveDuplicateMessages, $wgDupeMessageSource, $targetMediawikiIP );
 	}
 } else {
-	rebuildLanguage( $languages, $wgCode, $wgWriteToFile, $wgListUnknownMessages, $wgRemoveUnknownMessages, $wgRemoveDuplicateMessages, $wgDupeMessageSource );
+	rebuildLanguage( $languages, $wgCode, $wgWriteToFile, $wgListUnknownMessages, $wgRemoveUnknownMessages, $wgRemoveDuplicateMessages, $wgDupeMessageSource, $targetMediawikiIP );
 }

@@ -3633,9 +3633,13 @@ class Language {
 	 * @param $code string
 	 * @return string
 	 */
-	public static function getMessagesFileName( $code ) {
+	public static function getMessagesFileName( $code, $mediawikiIP = false ) {
 		global $IP;
-		$file = self::getFileName( "$IP/languages/messages/Messages", $code, '.php' );
+
+		if ( $mediawikiIP === false )
+			$mediawikiIP = $IP;
+
+		$file = self::getFileName( "$mediawikiIP/languages/messages/Messages", $code, '.php' );
 		wfRunHooks( 'Language::getMessagesFileName', array( $code, &$file ) );
 		return $file;
 	}
