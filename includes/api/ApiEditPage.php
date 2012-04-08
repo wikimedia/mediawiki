@@ -291,9 +291,6 @@ class ApiEditPage extends ApiBase {
 			case EditPage::AS_SPAM_ERROR:
 				$this->dieUsageMsg( array( 'spamdetected', $result['spam'] ) );
 
-			case EditPage::AS_FILTERING:
-				$this->dieUsageMsg( 'filtered' );
-
 			case EditPage::AS_BLOCKED_PAGE_FOR_USER:
 				$this->dieUsageMsg( 'blockedtext' );
 
@@ -398,7 +395,6 @@ class ApiEditPage extends ApiBase {
 				array( 'noimageredirect-logged' ),
 				array( 'spamdetected', 'spam' ),
 				array( 'summaryrequired' ),
-				array( 'filtered' ),
 				array( 'blockedtext' ),
 				array( 'contenttoobig', $wgMaxArticleSize ),
 				array( 'noedit-anon' ),

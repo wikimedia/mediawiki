@@ -37,11 +37,6 @@ class EditPage {
 	const AS_HOOK_ERROR                = 210;
 
 	/**
-	 * Status: The filter function set in $wgFilterCallback returned true (= block it)
-	 */
-	const AS_FILTERING                 = 211;
-
-	/**
 	 * Status: A hook function returned an error
 	 */
 	const AS_HOOK_ERROR_EXPECTED       = 212;
@@ -990,7 +985,6 @@ class EditPage {
 				return true;
 
 			case self::AS_HOOK_ERROR:
-			case self::AS_FILTERING:
 				return false;
 
 			case self::AS_SUCCESS_NEW_ARTICLE:
@@ -1062,8 +1056,7 @@ class EditPage {
 	 * AS_CONTENT_TOO_BIG and AS_BLOCKED_PAGE_FOR_USER. All that stuff needs to be cleaned up some time.
 	 */
 	function internalAttemptSave( &$result, $bot = false ) {
-		global $wgFilterCallback, $wgUser, $wgRequest, $wgParser;
-		global $wgMaxArticleSize;
+		global $wgUser, $wgRequest, $wgParser, $wgMaxArticleSize;
 
 		$status = Status::newGood();
 
@@ -1105,13 +1098,6 @@ class EditPage {
 			wfDebugLog( 'SpamRegex', "$ip spam regex hit [[$pdbk]]: \"$match\"" );
 			$status->fatal( 'spamprotectionmatch', $match );
 			$status->value = self::AS_SPAM_ERROR;
-			wfProfileOut( __METHOD__ . '-checks' );
-			wfProfileOut( __METHOD__ );
-			return $status;
-		}
-		if ( $wgFilterCallback && is_callable( $wgFilterCallback ) && $wgFilterCallback( $this->mTitle, $this->textbox1, $this->section, $this->hookError, $this->summary ) ) {
-			# Error messages or other handling should be performed by the filter function
-			$status->setResult( false, self::AS_FILTERING );
 			wfProfileOut( __METHOD__ . '-checks' );
 			wfProfileOut( __METHOD__ );
 			return $status;
