@@ -88,6 +88,7 @@ production.
 * (bug 33564) transwiki import sometimes result in invalid title.
 * (bug 35572) Blocks appear to succeed even if query fails due to wrong DB structure
 * (bug 31757) Add a word-separator between help-messages in HTMLForm
+* (bug 30410) Removed deprecated $wgFilterCallback and the 'filtered' API error.
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
