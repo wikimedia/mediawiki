@@ -124,19 +124,18 @@ class SpecialPage {
 	 *
 	 * @param $page Mixed: SpecialPage or string
 	 * @param $group String
-	 * @return null
 	 * @deprecated since 1.18 call SpecialPageFactory method directly
 	 */
 	static function setGroup( $page, $group ) {
 		wfDeprecated( __METHOD__, '1.18' );
-		return SpecialPageFactory::setGroup( $page, $group );
+		SpecialPageFactory::setGroup( $page, $group );
 	}
 
 	/**
 	 * Get the group that the special page belongs in on Special:SpecialPage
 	 *
 	 * @param $page SpecialPage
-	 * @return null
+	 * @return string
 	 * @deprecated since 1.18 call SpecialPageFactory method directly
 	 */
 	static function getGroup( &$page ) {
