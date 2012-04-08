@@ -2642,7 +2642,7 @@ $templates
 				// Automatically select style/script elements
 				if ( $only === ResourceLoaderModule::TYPE_STYLES ) {
 					$link = Html::linkedStyle( $url );
-				} else if ( $loadCall ) { 
+				} else if ( $loadCall ) {
 					$link = Html::inlineScript(
 						ResourceLoader::makeLoaderConditionalScript(
 							Xml::encodeJsCall( 'mw.loader.load', array( $url, 'text/javascript', true ) )
@@ -2670,7 +2670,7 @@ $templates
 	 */
 	function getHeadScripts() {
 		global $wgResourceLoaderExperimentalAsyncLoading;
-		
+
 		// Startup - this will immediately load jquery and mediawiki modules
 		$scripts = $this->makeResourceLoaderLink( 'startup', ResourceLoaderModule::TYPE_SCRIPTS, true );
 
@@ -2702,7 +2702,7 @@ $templates
 				)
 			);
 		}
-		
+
 		if ( $wgResourceLoaderExperimentalAsyncLoading ) {
 			$scripts .= $this->getScriptsForBottomQueue( true );
 		}
@@ -2748,43 +2748,77 @@ $templates
 		// Legacy Scripts
 		$scripts .= "\n" . $this->mScripts;
 
-		$userScripts = array();
+		$defaultModules = array();
+		$groupScript = '';
 
+		$siteLink = '';
 		// Add site JS if enabled
 		if ( $wgUseSiteJs ) {
-			$scripts .= $this->makeResourceLoaderLink( 'site', ResourceLoaderModule::TYPE_SCRIPTS,
+			$siteLink = $this->makeResourceLoaderLink( 'site', ResourceLoaderModule::TYPE_SCRIPTS,
 				/* $useESI = */ false, /* $extraQuery = */ array(), /* $loadCall = */ $inHead
 			);
+			$scripts .= $siteLink;
 			if( $this->getUser()->isLoggedIn() ){
-				$userScripts[] = 'user.groups';
+				$groupScript = 'user.groups';
 			}
 		}
+		$defaultModules['site'] = $siteLink == '' ? 'ready' : 'loading';
 
 		// Add user JS if enabled
+		$userLink = '';
 		if ( $wgAllowUserJs && $this->getUser()->isLoggedIn() ) {
 			if( $this->getTitle() && $this->getTitle()->isJsSubpage() && $this->userCanPreview() ) {
 				# XXX: additional security check/prompt?
 				// We're on a preview of a JS subpage
 				// Exclude this page from the user module in case it's in there (bug 26283)
-				$scripts .= $this->makeResourceLoaderLink( 'user', ResourceLoaderModule::TYPE_SCRIPTS, false,
+				$userLink .= $this->makeResourceLoaderLink( 'user', ResourceLoaderModule::TYPE_SCRIPTS, false,
 					array( 'excludepage' => $this->getTitle()->getPrefixedDBkey() ), $inHead
 				);
 				// Load the previewed JS
-				$scripts .= Html::inlineScript( "\n" . $this->getRequest()->getText( 'wpTextbox1' ) . "\n" ) . "\n";
+				$userLink .= Html::inlineScript(
+					"\n" . $this->getRequest()->getText( 'wpTextbox1' ) . "\n" . ResourceLoader::makeLoaderStateScript( 'user', 'ready' )
+				) . "\n";
+				// FIXME: If the user is previewing, say, ./vector.js, his ./common.js will be loaded asynchronously and may arrive *after*
+				// the inline script here. So we may end up setting the "ready" state too early, and anyway the previewed code may execute
+				// before ./common.js runs. Normally, ./common.js runs before ./vector.js...
 			} else {
 				// Include the user module normally
 				// We can't do $userScripts[] = 'user'; because the user module would end up
 				// being wrapped in a closure, so load it raw like 'site'
-				$scripts .= $this->makeResourceLoaderLink( 'user', ResourceLoaderModule::TYPE_SCRIPTS,
+				$userLink .= $this->makeResourceLoaderLink( 'user', ResourceLoaderModule::TYPE_SCRIPTS,
 					/* $useESI = */ false, /* $extraQuery = */ array(), /* $loadCall = */ $inHead
 				);
 			}
+			$scripts .= $userLink;
 		}
-		$scripts .= $this->makeResourceLoaderLink( $userScripts, ResourceLoaderModule::TYPE_COMBINED,
-			/* $useESI = */ false, /* $extraQuery = */ array(), /* $loadCall = */ $inHead
-		);
+		$defaultModules['user'] = $userLink == '' ? 'ready' : 'loading';
 
-		return $scripts;
+		$groupLink = '';
+		if ( $groupScript != '' ) {
+			$groupLink = $this->makeResourceLoaderLink( $groupScript, ResourceLoaderModule::TYPE_COMBINED,
+				/* $useESI = */ false, /* $extraQuery = */ array(), /* $loadCall = */ $inHead
+			);
+			$scripts .= $groupLink;
+		}
+		$defaultModules['user.groups'] = $groupLink == '' ? 'ready' : 'loading';
+
+		$loaderInit = '';
+		if ( $inHead ) {
+			// We generate loader calls anyway, so no need to fix the client-side loader's state to 'loading'
+			foreach ( $defaultModules as $m => $state ) {
+				if ( $state == 'loading' ) {
+					unset( $defaultModules[$m] );
+				}
+			}
+		}
+		if ( count( $defaultModules ) > 0 ) {
+			$loaderInit = Html::inlineScript(
+				ResourceLoader::makeLoaderConditionalScript(
+					Xml::encodeJsCall( 'mw.loader.state', array( (object)$defaultModules ) )
+				)
+			) . "\n";
+		}
+		return $loaderInit . $scripts;
 	}
 
 	/**
@@ -3260,7 +3294,7 @@ $templates
 				$otherTags .= $this->makeResourceLoaderLink( 'user', ResourceLoaderModule::TYPE_STYLES, false,
 					array( 'excludepage' => $this->getTitle()->getPrefixedDBkey() )
 				);
-				
+
 				// Load the previewed CSS
 				// If needed, Janus it first. This is user-supplied CSS, so it's
 				// assumed to be right for the content language directionality.
