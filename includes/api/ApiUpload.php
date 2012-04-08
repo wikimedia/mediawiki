@@ -187,15 +187,28 @@ class ApiUpload extends ApiBase {
 				$this->dieUsage( $status->getWikiText(), 'stashfailed' );
 				return ;
 			}
-			$result['filekey'] = $this->mParams['filekey'];
+
 			// Check we added the last chunk: 
 			if( $this->mParams['offset'] + $chunkSize == $this->mParams['filesize'] ) {
 				$status = $this->mUpload->concatenateChunks();
+
 				if ( !$status->isGood() ) {
 					$this->dieUsage( $status->getWikiText(), 'stashfailed' );
 					return ;
 				}
+
+				// We have a new filekey for the fully concatenated file.
+				$result['filekey'] =  $this->mUpload->getLocalFile()->getFileKey();
+
+				// Remove chunk from stash. (Checks against user ownership of chunks.)
+				$this->mUpload->stash->removeFile( $this->mParams['filekey'] );
+
 				$result['result'] = 'Success';
+
+			} else {
+
+				// Continue passing through the filekey for adding further chunks.
+				$result['filekey'] = $this->mParams['filekey'];
 			}
 		}
 		$result['offset'] = $this->mParams['offset'] + $chunkSize;
