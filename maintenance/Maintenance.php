@@ -37,6 +37,8 @@ if ( !function_exists( 'version_compare' ) || version_compare( PHP_VERSION, '5.2
 	wfPHPVersionError( 'cli' );
 }
 
+require_once( dirname( dirname( __FILE__ ) ) . '/includes/AutoLoader.php' );
+
 /**
  * Abstract maintenance class for quickly writing and churning out
  * maintenance scripts with minimal effort. All that _must_ be defined
