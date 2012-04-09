@@ -101,7 +101,10 @@ abstract class Maintenance {
 	// Generic options which might or not be supported by the script
 	private $mDependantParameters = array();
 
-	// Used by getDD() / setDB()
+	/**
+	 * Used by getDD() / setDB()
+	 * @var DatabaseBase
+	 */
 	private $mDb = null;
 
 	/**
