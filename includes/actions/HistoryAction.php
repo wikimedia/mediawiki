@@ -611,12 +611,13 @@ class HistoryPager extends ReverseChronologicalPager {
 			: 0;
 		$sDiff = ChangesList::showCharacterDifference( $prevSize, $rev->getSize() );
 		$fSize = Linker::formatRevisionSize($rev->getSize());
-		$s .= " . . $fSize $sDiff . . ";
+		$s .= " . . $fSize $sDiff";
 
-		$s .= Linker::revComment( $rev, false, true );
+		# Text following the character difference is added just before running hooks
+		$s2 = Linker::revComment( $rev, false, true );
 
 		if ( $notificationtimestamp && ( $row->rev_timestamp >= $notificationtimestamp ) ) {
-			$s .= ' <span class="updatedmarker">' .  $this->msg( 'updatedmarker' )->escaped() . '</span>';
+			$s2 .= ' <span class="updatedmarker">' .  $this->msg( 'updatedmarker' )->escaped() . '</span>';
 		}
 
 		$tools = array();
@@ -653,13 +654,20 @@ class HistoryPager extends ReverseChronologicalPager {
 		}
 
 		if ( $tools ) {
-			$s .= ' '. $this->msg( 'parentheses' )->rawParams( $lang->pipeList( $tools ) )->escaped();
+			$s2 .= ' '. $this->msg( 'parentheses' )->rawParams( $lang->pipeList( $tools ) )->escaped();
 		}
 
 		# Tags
 		list( $tagSummary, $newClasses ) = ChangeTags::formatSummaryRow( $row->ts_tags, 'history' );
 		$classes = array_merge( $classes, $newClasses );
-		$s .= " $tagSummary";
+		if ( $tagSummary !== '' ) {
+			$s2 .= " $tagSummary";
+		}
+
+		# Include separator between character difference and following text
+		if ( $s2 !== '' ) {
+			$s .= " . . $s2";
+		}
 
 		wfRunHooks( 'PageHistoryLineEnding', array( $this, &$row , &$s, &$classes ) );
 
