@@ -103,7 +103,7 @@ class WikiExporter {
 	 * the most recent version.
 	 */
 	public function allPages() {
-		return $this->dumpFrom( '' );
+		$this->dumpFrom( '' );
 	}
 
 	/**
@@ -118,7 +118,7 @@ class WikiExporter {
 		if ( $end ) {
 			$condition .= ' AND page_id < ' . intval( $end );
 		}
-		return $this->dumpFrom( $condition );
+		$this->dumpFrom( $condition );
 	}
 
 	/**
@@ -133,14 +133,14 @@ class WikiExporter {
 		if ( $end ) {
 			$condition .= ' AND rev_id < ' . intval( $end );
 		}
-		return $this->dumpFrom( $condition );
+		$this->dumpFrom( $condition );
 	}
 
 	/**
 	 * @param $title Title
 	 */
 	public function pageByTitle( $title ) {
-		return $this->dumpFrom(
+		$this->dumpFrom(
 			'page_namespace=' . $title->getNamespace() .
 			' AND page_title=' . $this->db->addQuotes( $title->getDBkey() ) );
 	}
@@ -150,7 +150,7 @@ class WikiExporter {
 		if ( is_null( $title ) ) {
 			throw new MWException( "Can't export invalid title" );
 		} else {
-			return $this->pageByTitle( $title );
+			$this->pageByTitle( $title );
 		}
 	}
 
@@ -161,7 +161,7 @@ class WikiExporter {
 	}
 
 	public function allLogs() {
-		return $this->dumpFrom( '' );
+		$this->dumpFrom( '' );
 	}
 
 	public function logsByRange( $start, $end ) {
@@ -169,7 +169,7 @@ class WikiExporter {
 		if ( $end ) {
 			$condition .= ' AND log_id < ' . intval( $end );
 		}
-		return $this->dumpFrom( $condition );
+		$this->dumpFrom( $condition );
 	}
 
 	# Generates the distinct list of authors of an article
