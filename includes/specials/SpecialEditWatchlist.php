@@ -273,7 +273,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 *
 	 * @param Title $title
 	 * @param int $namespace
-	 * @param String $dbKey 
+	 * @param String $dbKey
 	 * @return bool: Whether this item is valid
 	 */
 	private function checkTitle( $title, $namespace, $dbKey ) {
@@ -409,7 +409,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 		foreach( $data as $titles ) {
 			$this->unwatchTitles( $titles );
-			$removed += $titles;
+			$removed = array_merge( $removed, $titles );
 		}
 
 		if( count( $removed ) > 0 ) {
