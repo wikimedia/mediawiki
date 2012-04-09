@@ -270,7 +270,6 @@ class ErrorPageError extends MWException {
 	function report() {
 		global $wgOut;
 
-
 		$wgOut->showErrorPage( $this->title, $this->msg, $this->params );
 		$wgOut->output();
 	}
@@ -373,7 +372,7 @@ class ThrottledError extends ErrorPageError {
 	public function report(){
 		global $wgOut;
 		$wgOut->setStatusCode( 503 );
-		return parent::report();
+		parent::report();
 	}
 }
 
