@@ -26,6 +26,7 @@ return array(
 			'tests/qunit/suites/resources/mediawiki/mediawiki.util.test.js',
 			'tests/qunit/suites/resources/mediawiki.special/mediawiki.special.recentchanges.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.jqueryMsg.test.js',
+			'tests/qunit/suites/resources/mediawiki/mediawiki.language.test.js',
 		),
 		'dependencies' => array(
 			'jquery.autoEllipsis',
@@ -42,6 +43,7 @@ return array(
 			'jquery.tablesorter',
 			'jquery.textSelection',
 			'mediawiki',
+			'mediawiki.language.data',
 			'mediawiki.Title',
 			'mediawiki.user',
 			'mediawiki.util',

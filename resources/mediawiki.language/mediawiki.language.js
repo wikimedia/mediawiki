@@ -53,6 +53,7 @@ var language = {
 		}
 		langData[langCode].set( dataKey, value );
 	},
+
 	/**
 	 * Process the PLURAL template substitution
 	 *
@@ -65,15 +66,17 @@ var language = {
 	 * @example {{Template:title|params}}
 	 */
 	'procPLURAL': function( template ) {
-		if ( template.title && template.parameters && mw.language.convertPlural ) {
+		var count;
+
+		if ( template.title && template.parameters ) {
 			// Check if we have forms to replace
 			if ( template.parameters.length === 0 ) {
 				return '';
 			}
 			// Restore the count into a Number ( if it got converted earlier )
-			var count = mw.language.convertNumber( template.title, true );
-			// Do convertPlural call 
-			return mw.language.convertPlural( parseInt( count, 10 ), template.parameters );
+			count = language.convertNumber( template.title, true );
+			// Do convertPlural call
+			return language.convertPlural( parseInt( count, 10 ), template.parameters );
 		}
 		// Could not process plural return first form or nothing
 		if ( template.parameters[0] ) {
@@ -81,25 +84,27 @@ var language = {
 		}
 		return '';
 	},
+
 	/**
 	 * Plural form transformations, needed for some languages.
 	 *
-	 * @param count integer Non-localized quantifier
-	 * @param forms array List of plural forms
-	 * @return string Correct form for quantifier in this language
+	 * @param count {Number} Non-localized quantifier
+	 * @param forms {Array} List of plural forms
+	 * @return {String} Correct form for quantifier in this language
 	 */
-	'convertPlural': function( count, forms ){
-		if ( !forms || forms.length === 0 ) {
+	convertPlural: function ( count, forms ){
+		if ( !$.isArray( forms ) || forms.length === 0 ) {
 			return '';
 		}
-		return ( parseInt( count, 10 ) == 1 ) ? forms[0] : forms[1];
+		return ( parseInt( count, 10 ) === 1 ) ? forms[0] : forms[1];
 	},
+
 	/**
 	 * Pads an array to a specific length by copying the last one element.
 	 *
-	 * @param forms array Number of forms given to convertPlural
-	 * @param count integer Number of forms required
-	 * @return array Padded array of forms
+	 * @param forms {Array} List of forms given to convertPlural
+	 * @param count {Number} Number of forms required
+	 * @return {Array} Padded array of forms
 	 */
 	'preConvertPlural': function( forms, count ) {
 		while ( forms.length < count ) {
@@ -107,32 +112,35 @@ var language = {
 		}
 		return forms;
 	},
+
 	/**
 	 * Converts a number using digitTransformTable.
 	 *
-	 * @param {num} number Value to be converted
-	 * @param {boolean} integer Convert the return value to an integer
+	 * @param num {Number} Value to be converted
+	 * @param integer {Boolean} Convert the return value to an integer
 	 */
-	'convertNumber': function( num, integer ) {
-		if ( !mw.language.digitTransformTable ) {
+	convertNumber: function( num, integer ) {
+		var transformTable, tmp, i, numberString, convertedNumber;
+
+		if ( !language.digitTransformTable ) {
 			return num;
 		}
 		// Set the target Transform table:
-		var transformTable = mw.language.digitTransformTable;
+		transformTable = language.digitTransformTable;
 		// Check if the "restore" to Latin number flag is set:
 		if ( integer ) {
-			if ( parseInt( num, 10 ) == num ) {
+			if ( parseInt( num, 10 ) === num ) {
 				return num;
 			}
-			var tmp = [];
-			for ( var i in transformTable ) {
+			tmp = [];
+			for ( i in transformTable ) {
 				tmp[ transformTable[ i ] ] = i;
 			}
 			transformTable = tmp;
 		}
-		var numberString =  '' + num;
-		var convertedNumber = '';
-		for ( var i = 0; i < numberString.length; i++ ) {
+		numberString = String( num );
+		convertedNumber = '';
+		for ( i = 0; i < numberString.length; i++ ) {
 			if ( transformTable[ numberString[i] ] ) {
 				convertedNumber += transformTable[numberString[i]];
 			} else {
@@ -141,23 +149,25 @@ var language = {
 		}
 		return integer ? parseInt( convertedNumber, 10 ) : convertedNumber;
 	},
+
 	/**
 	 * Provides an alternative text depending on specified gender.
 	 * Usage {{gender:[gender|user object]|masculine|feminine|neutral}}.
 	 * If second or third parameter are not specified, masculine is used.
-	 * 
+	 *
 	 * These details may be overriden per language.
 	 *
-	 * @param gender string male, female, or anything else for neutral.
-	 * @param forms array List of gender forms
+	 * @param gender {String} Male, female, or anything else for neutral.
+	 * @param forms {Array} List of gender forms
 	 *
-	 * @return string
+	 * @return {String}
 	 */
-	'gender': function( gender, forms ) {
-		if ( !forms || forms.length === 0 ) {
+
+	gender: function ( gender, forms ) {
+		if ( !$.isArray( forms ) || forms.length === 0 ) {
 			return '';
 		}
-		forms = mw.language.preConvertPlural( forms, 2 );
+		forms = language.preConvertPlural( forms, 2 );
 		if ( gender === 'male' ) {
 			return forms[0];
 		}
@@ -185,10 +195,12 @@ var language = {
 		return word;
 	},
 
-	// Digit Transform Table, populated by language classes where applicable
-	'digitTransformTable': null
+	/**
+	 * @var {Object} Digit Transform Table, populated by language classes where applicable.
+	 */
+	digitTransformTable: null
 };
 
 mw.language = language;
 
-} )( jQuery, mediaWiki );
+}( jQuery, mediaWiki ) );
