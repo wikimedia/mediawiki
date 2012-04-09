@@ -3921,6 +3921,16 @@ function wfGetParserCacheStorage() {
 }
 
 /**
+ * Get the cache object used by the language converter
+ *
+ * @return BagOStuff
+ */
+function wfGetLangConverterCacheStorage() {
+	global $wgLanguageConverterCacheType;
+	return ObjectCache::getInstance( $wgLanguageConverterCacheType );
+}
+
+/**
  * Call hook functions defined in $wgHooks
  *
  * @param $event String: event name
