@@ -129,8 +129,8 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		if( count( $wanted ) > 0 ) {
 			$toWatch = array_diff( $wanted, $current );
 			$toUnwatch = array_diff( $current, $wanted );
-			$this->watchTitles( $toWatch );
-			$this->unwatchTitles( $toUnwatch );
+			$toWatch = $this->watchTitles( $toWatch );
+			$toUnwatch = $this->unwatchTitles( $toUnwatch );
 			$this->getUser()->invalidateCache();
 
 			if( count( $toWatch ) > 0 || count( $toUnwatch ) > 0 ){
@@ -273,7 +273,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 *
 	 * @param Title $title
 	 * @param int $namespace
-	 * @param String $dbKey 
+	 * @param String $dbKey
 	 * @return bool: Whether this item is valid
 	 */
 	private function checkTitle( $title, $namespace, $dbKey ) {
@@ -339,8 +339,10 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * is preferred, since Titles are very memory-heavy
 	 *
 	 * @param $titles Array of strings, or Title objects
+	 * @return $titles Array of Title objects
 	 */
 	private function watchTitles( $titles ) {
+		$watchedTitles = array();
 		$dbw = wfGetDB( DB_MASTER );
 		$rows = array();
 		foreach( $titles as $title ) {
@@ -360,9 +362,11 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 					'wl_title' => $title->getDBkey(),
 					'wl_notificationtimestamp' => null,
 				);
+				$watchedTitles[] = $title;
 			}
 		}
 		$dbw->insert( 'watchlist', $rows, __METHOD__, 'IGNORE' );
+		return $watchedTitles;
 	}
 
 	/**
@@ -372,8 +376,10 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * is preferred, since Titles are very memory-heavy
 	 *
 	 * @param $titles Array of strings, or Title objects
+	 * @return $titles Array of Title objects
 	 */
 	private function unwatchTitles( $titles ) {
+		$unwatchedTitles = array();
 		$dbw = wfGetDB( DB_MASTER );
 		foreach( $titles as $title ) {
 			if( !$title instanceof Title ) {
@@ -400,16 +406,17 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				);
 				$page = WikiPage::factory( $title );
 				wfRunHooks( 'UnwatchArticleComplete', array( $this->getUser(), &$page ) );
+				$unwatchedTitles[] = $title;
 			}
 		}
+		return $unwatchedTitles;
 	}
 
 	public function submitNormal( $data ) {
 		$removed = array();
 
 		foreach( $data as $titles ) {
-			$this->unwatchTitles( $titles );
-			$removed += $titles;
+			$removed = array_merge( $removed, $this->unwatchTitles( $titles ) );
 		}
 
 		if( count( $removed ) > 0 ) {
