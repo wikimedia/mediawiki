@@ -161,7 +161,11 @@
 
 			var gitInfo = '';
 			if ( this.data.gitRevision != false ) {
-				gitInfo = ' (' + this.data.gitRevision.substring( 0, 7 ) + ')';
+				gitInfo = this.data.gitRevision.substring( 0, 7 );
+				if ( this.data.gitViewUrl != false ) {
+					gitInfo = '<a href="' + encodeURI( this.data.gitViewUrl ) + '">' + gitInfo + '</a>';
+				}
+				gitInfo = ' (' + gitInfo + ')';
 			}
 
 			bitDiv( 'mwversion' )

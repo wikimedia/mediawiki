@@ -260,6 +260,7 @@ class MWDebug {
 			'phpVersion' => PHP_VERSION,
 			'gitRevision' => GitInfo::headSHA1(),
 			'gitBranch' => GitInfo::currentBranch(),
+			'gitViewUrl' => GitInfo::headViewUrl(),
 			'time' => microtime( true ) - $wgRequestTime,
 			'log' => self::$log,
 			'debugLog' => self::$debug,
