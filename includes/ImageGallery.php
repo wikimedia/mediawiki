@@ -142,12 +142,12 @@ class ImageGallery {
 	 * @param $html  String: Additional HTML text to be shown. The name and size of the image are always shown.
 	 * @param $alt   String: Alt text for the image
 	 */
-	function add( $title, $html = '', $alt = '' ) {
+	function add( $title, $html = '', $alt = '', $link = '') {
 		if ( $title instanceof File ) {
 			// Old calling convention
 			$title = $title->getTitle();
 		}
-		$this->mImages[] = array( $title, $html, $alt );
+		$this->mImages[] = array( $title, $html, $alt, $link );
 		wfDebug( 'ImageGallery::add ' . $title->getText() . "\n" );
 	}
 
@@ -245,6 +245,7 @@ class ImageGallery {
 			$nt = $pair[0];
 			$text = $pair[1]; # "text" means "caption" here
 			$alt = $pair[2];
+            $link = $pair[3];
 
 			$descQuery = false;
 			if ( $nt->getNamespace() == NS_FILE ) {
@@ -289,6 +290,7 @@ class ImageGallery {
 					'desc-link' => true,
 					'desc-query' => $descQuery,
 					'alt' => $alt,
+                    'custom-url-link' => $link
 				);
 				# In the absence of both alt text and caption, fall back on providing screen readers with the filename as alt text
 				if ( $alt == '' && $text == '' ) {
