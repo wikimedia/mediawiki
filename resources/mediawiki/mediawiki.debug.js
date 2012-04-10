@@ -161,12 +161,16 @@
 
 			var gitInfo = '';
 			if ( this.data.gitRevision != false ) {
-				gitInfo = ' (' + this.data.gitRevision.substring( 0, 7 ) + ')';
+				gitInfo = '(' + this.data.gitRevision.substring( 0, 7 ) + ')';
+				if ( this.data.gitViewUrl != false ) {
+					gitInfo = $( '<a></a>' ).attr( 'href', this.data.gitViewUrl ).text( gitInfo );
+				}
 			}
 
 			bitDiv( 'mwversion' )
 				.append( $( '<a href="//www.mediawiki.org/"></a>' ).text( 'MediaWiki' ) )
-				.append( ': ' + this.data.mwVersion + gitInfo );
+				.append( ': ' + this.data.mwVersion + ' ' )
+				.append( gitInfo );
 
 			if ( this.data.gitBranch != false ) {
 				bitDiv( 'gitbranch' ).text( 'Git branch: ' + this.data.gitBranch );
