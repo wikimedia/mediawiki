@@ -107,7 +107,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			$this->addWhereFld( 'page_namespace', $params['namespace'] );
 		}
 
-		$dir = $params['dir'] == 'asc' ? 'newer' : 'older';
+		$dir = in_array( $params['dir'], array( 'asc', 'ascending', 'newer' ) ) ? 'newer' : 'older';
 
 		if ( $params['sort'] == 'timestamp' ) {
 			$this->addWhereRange( 'cl_timestamp',
@@ -313,10 +313,15 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 				)
 			),
 			'dir' => array(
-				ApiBase::PARAM_DFLT => 'asc',
+				ApiBase::PARAM_DFLT => 'ascending',
 				ApiBase::PARAM_TYPE => array(
 					'asc',
-					'desc'
+					'desc',
+					// Normalising with other modules
+					'ascending',
+					'descending',
+					'newer',
+					'older',
 				)
 			),
 			'start' => array(
