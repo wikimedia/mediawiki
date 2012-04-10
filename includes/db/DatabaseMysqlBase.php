@@ -115,11 +115,11 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 
 		// Tell the server we're communicating with it in UTF-8.
 		// This may engage various charset conversions.
-		if ( $wgDBmysql5 ) {
+		/*if ( $wgDBmysql5 ) {
 			$this->mysqlSetCharset( 'utf8' );
 		} else {
 			$this->mysqlSetCharset( 'binary' );
-		}
+		}*/
 		// Set SQL mode, default is turning them all off, can be overridden or skipped with null
 		if ( is_string( $wgSQLMode ) ) {
 			$mode = $this->addQuotes( $wgSQLMode );
