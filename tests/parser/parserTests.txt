@@ -9254,6 +9254,63 @@ Ignore pipe between table row attributes
 
 !! end
 
+!!test
+Gallery override link with WikiLink (bug 34852)
+!! input
+<gallery>
+File:foobar.jpg|caption|alt=galleryalt|link=[[InterWikiLink]]
+</gallery>
+!! result
+<ul class="gallery">
+		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
+			<div class="thumb" style="width: 150px;"><div style="margin:68px auto;"><a href="/wiki/InterWikiLink"><img alt="galleryalt" src="http://example.com/images/3/3a/Foobar.jpg" width="120" height="14" /></a></div></div>
+			<div class="gallerytext">
+<p>caption
+</p>
+			</div>
+		</div></li>
+</ul>
+
+!! end
+
+!!test
+Gallery override link with absolute external link (bug 34852)
+!! input
+<gallery>
+File:foobar.jpg|caption|alt=galleryalt|link=http://www.example.org
+</gallery>
+!! result
+<ul class="gallery">
+		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
+			<div class="thumb" style="width: 150px;"><div style="margin:68px auto;"><a href="http://www.example.org"><img alt="galleryalt" src="http://example.com/images/3/3a/Foobar.jpg" width="120" height="14" /></a></div></div>
+			<div class="gallerytext">
+<p>caption
+</p>
+			</div>
+		</div></li>
+</ul>
+
+!! end
+
+!!test
+Gallery override link with malicious javascript (bug 34852)
+!! input
+<gallery>
+File:foobar.jpg|caption|alt=galleryalt|link=" onclick="alert('malicious javascript code!');
+</gallery>
+!! result
+<ul class="gallery">
+		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
+			<div class="thumb" style="width: 150px;"><div style="margin:68px auto;"><a href="/wiki/&quot; onclick=&quot;alert(&#39;malicious javascript code!&#39;);"><img alt="galleryalt" src="http://example.com/images/3/3a/Foobar.jpg" width="120" height="14" /></a></div></div>
+			<div class="gallerytext">
+<p>caption
+</p>
+			</div>
+		</div></li>
+</ul>
+
+!! end
+
 TODO:
 more images
 more tables
