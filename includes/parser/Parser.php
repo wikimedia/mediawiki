@@ -4801,6 +4801,7 @@ class Parser {
 	 * @return string HTML
 	 */
 	function renderImageGallery( $text, $params ) {
+		global $wgArticlePath;
 		$ig = new ImageGallery();
 		$ig->setContextTitle( $this->mTitle );
 		$ig->setShowBytes( false );
@@ -4854,30 +4855,44 @@ class Parser {
 
 			$label = '';
 			$alt = '';
+			$link = '';
 			if ( isset( $matches[3] ) ) {
 				// look for an |alt= definition while trying not to break existing
 				// captions with multiple pipes (|) in it, until a more sensible grammar
 				// is defined for images in galleries
 
-				$matches[3] = $this->recursiveTagParse( trim( $matches[3] ) );
-				$altmatches = StringUtils::explode('|', $matches[3]);
+				$parameterMatches = StringUtils::explode('|', $matches[3]);
 				$magicWordAlt = MagicWord::get( 'img_alt' );
+				$magicWordLink = MagicWord::get( 'img_link' );
 
-				foreach ( $altmatches as $altmatch ) {
-					$match = $magicWordAlt->matchVariableStartToEnd( $altmatch );
-					if ( $match ) {
+				foreach ( $parameterMatches as $parameterMatch ) {
+					//link parameter cannot be parsed beforehand.
+					if(strpos($parameterMatch,'link=') !== 0){
+						$parameterMatch = $this->recursiveTagParse($parameterMatch);
+					}
+					if ( $match = $magicWordAlt->matchVariableStartToEnd( $parameterMatch ) ) {
 						$alt = $this->stripAltText( $match, false );
+					}
+					else if( $match = $magicWordLink->matchVariableStartToEnd( $parameterMatch ) ){
+						if(preg_match("/^\[\[[A-z]+\]\]$/",$match)){
+							//Internal url
+							$internalLinkTitle = $this->replaceLinkHoldersText($this->replaceInternalLinks($match));
+							$link = str_replace( "$1", urlencode( $internalLinkTitle ), $wgArticlePath );
+						}else if(preg_match('/^(([\w]+:)?\/\/)?(([\d\w]|%[a-fA-f\d]{2,2})+(:([\d\w]|%[a-fA-f\d]{2,2})+)?@)?([\d\w][-\d\w]{0,253}[\d\w]\.)+[\w]{2,4}(:[\d]+)?(\/([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)*(\?(&amp;?([-+_~.\d\w]|%[a-fA-f\d]{2,2})=?)*)?(#([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)?$/',$match)){
+							//Absolute url
+							$link = $match;
+						}
 					}
 					else {
 						// concatenate all other pipes
-						$label .= '|' . $altmatch;
+						$label .= '|' . $parameterMatch;
 					}
 				}
 				// remove the first pipe
 				$label = substr( $label, 1 );
 			}
 
-			$ig->add( $title, $label, $alt );
+			$ig->add( $title, $label, $alt ,$link);
 		}
 		return $ig->toHTML();
 	}
