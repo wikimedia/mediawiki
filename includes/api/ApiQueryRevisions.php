@@ -42,7 +42,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 
 	private $fld_ids = false, $fld_flags = false, $fld_timestamp = false, $fld_size = false,
 			$fld_comment = false, $fld_parsedcomment = false, $fld_user = false, $fld_userid = false,
-			$fld_content = false, $fld_tags = false;
+			$fld_content = false, $fld_tags = false, $unhide = false;
 
 	private $tokenFunctions;
 
@@ -113,6 +113,8 @@ class ApiQueryRevisions extends ApiQueryBase {
 			$this->dieUsage( 'titles, pageids or a generator was used to supply multiple pages, but the limit, startid, endid, dirNewer, user, excludeuser, start and end parameters may only be used on a single page.', 'multpages' );
 		}
 
+		$this->unhide = $params['unhide'];
+
 		if ( !is_null( $params['difftotext'] ) ) {
 			$this->difftotext = $params['difftotext'];
 		} elseif ( !is_null( $params['diffto'] ) ) {
@@ -123,17 +125,11 @@ class ApiQueryRevisions extends ApiQueryBase {
 					&& $params['diffto'] != 'prev' && $params['diffto'] != 'next' ) {
 				$this->dieUsage( 'rvdiffto must be set to a non-negative number, "prev", "next" or "cur"', 'diffto' );
 			}
-			// Check whether the revision exists and is readable,
-			// DifferenceEngine returns a rather ambiguous empty
-			// string if that's not the case
+			// Check whether the revision exists.
 			if ( $params['diffto'] != 0 ) {
-				$difftoRev = Revision::newFromID( $params['diffto'] );
+				$difftoRev = $this->createRevisionObjectFromId( $params['diffto'] );
 				if ( !$difftoRev ) {
 					$this->dieUsageMsg( array( 'nosuchrevid', $params['diffto'] ) );
-				}
-				if ( $difftoRev->isDeleted( Revision::DELETED_TEXT ) ) {
-					$this->setWarning( "Couldn't diff to r{$difftoRev->getID()}: content is hidden" );
-					$params['diffto'] = null;
 				}
 			}
 			$this->diffto = $params['diffto'];
@@ -386,8 +382,34 @@ class ApiQueryRevisions extends ApiQueryBase {
 		}
 	}
 
+
+	/**
+	 * Creating Revision object in a separate method to make the class
+	 * testable.
+	 */
+	protected function createRevisionObject( $row ) {
+		return new Revision( $row );
+	}
+
+	/**
+	 * Creating Revision object in a separate method to make the class
+	 * testable.
+	 */
+	protected function createRevisionObjectFromId( $id ) {
+		return Revision::newFromID( $id );
+	}
+
+	/**
+	 * Creating DifferenceEngine object in a separate method to make the
+	 * class testable.
+	 */
+	protected function createDifferenceEngine( $context = null, $old = 0,
+		$new = 0, $rcid = 0, $refreshCache = false, $unhide = false ) {
+		return new DifferenceEngine( $context, $old, $new, $rcid, $refreshCache, $unhide );
+	}
+
 	private function extractRowInfo( $row ) {
-		$revision = new Revision( $row );
+		$revision = $this->createRevisionObject( $row );
 		$title = $revision->getTitle();
 		$vals = array();
 
@@ -404,13 +426,22 @@ class ApiQueryRevisions extends ApiQueryBase {
 		}
 
 		if ( $this->fld_user || $this->fld_userid ) {
+			$userVisible = false;
+
 			if ( $revision->isDeleted( Revision::DELETED_USER ) ) {
 				$vals['userhidden'] = '';
-			} else {
-				if ( $this->fld_user ) {
-					$vals['user'] = $revision->getUserText();
+				if ( $this->unhide && $revision->userCan( Revision::DELETED_USER, $this->getUser() ) ) {
+					$userVisible = true;
 				}
-				$userid = $revision->getUser();
+			} else {
+				$userVisible = true;
+			}
+
+			if ( $userVisible ) {
+				if ( $this->fld_user ) {
+					$vals['user'] = $revision->getUserText( Revision::FOR_THIS_USER, $this->getUser() );
+				}
+				$userid = $revision->getUser( Revision::FOR_THIS_USER, $this->getUser() );
 				if ( !$userid ) {
 					$vals['anon'] = '';
 				}
@@ -426,6 +457,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 		}
 
 		if ( $this->fld_size ) {
+			// FIXME: if the text is hidden, maybe the size should be also?
 			if ( !is_null( $revision->getSize() ) ) {
 				$vals['size'] = intval( $revision->getSize() );
 			} else {
@@ -434,6 +466,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 		}
 
 		if ( $this->fld_sha1 ) {
+			// FIXME: if the text is hidden, maybe the SHA1 should be also?
 			if ( $revision->getSha1() != '' ) {
 				$vals['sha1'] = wfBaseConvert( $revision->getSha1(), 36, 16, 40 );
 			} else {
@@ -442,10 +475,19 @@ class ApiQueryRevisions extends ApiQueryBase {
 		}
 
 		if ( $this->fld_comment || $this->fld_parsedcomment ) {
+			$commentVisible = false;
+
 			if ( $revision->isDeleted( Revision::DELETED_COMMENT ) ) {
 				$vals['commenthidden'] = '';
+				if ( $this->unhide && $revision->userCan( Revision::DELETED_COMMENT, $this->getUser() ) ) {
+					$commentVisible = true;
+				}
 			} else {
-				$comment = $revision->getComment();
+				$commentVisible = true;
+			}
+
+			if ( $commentVisible ) {
+				$comment = $revision->getComment( Revision::FOR_THIS_USER, $this->getUser() );
 
 				if ( $this->fld_comment ) {
 					$vals['comment'] = $comment;
@@ -480,71 +522,111 @@ class ApiQueryRevisions extends ApiQueryBase {
 		}
 
 		$text = null;
-		global $wgParser;
-		if ( $this->fld_content || !is_null( $this->difftotext ) ) {
-			$text = $revision->getText();
-			// Expand templates after getting section content because
-			// template-added sections don't count and Parser::preprocess()
-			// will have less input
-			if ( $this->section !== false ) {
-				$text = $wgParser->getSection( $text, $this->section, false );
-				if ( $text === false ) {
-					$this->dieUsage( "There is no section {$this->section} in r" . $revision->getId(), 'nosuchsection' );
-				}
-			}
-		}
-		if ( $this->fld_content && !$revision->isDeleted( Revision::DELETED_TEXT ) ) {
-			if ( $this->generateXML ) {
-				$wgParser->startExternalParse( $title, ParserOptions::newFromContext( $this->getContext() ), OT_PREPROCESS );
-				$dom = $wgParser->preprocessToDom( $text );
-				if ( is_callable( array( $dom, 'saveXML' ) ) ) {
-					$xml = $dom->saveXML();
-				} else {
-					$xml = $dom->__toString();
-				}
-				$vals['parsetree'] = $xml;
-
-			}
-			if ( $this->expandTemplates && !$this->parseContent ) {
-				$text = $wgParser->preprocess( $text, $title, ParserOptions::newFromContext( $this->getContext() ) );
-			}
-			if ( $this->parseContent ) {
-				$text = $wgParser->parse( $text, $title, ParserOptions::newFromContext( $this->getContext() ) )->getText();
-			}
-			ApiResult::setContent( $vals, $text );
-		} elseif ( $this->fld_content ) {
-			$vals['texthidden'] = '';
-		}
-
-		if ( !is_null( $this->diffto ) || !is_null( $this->difftotext ) ) {
-			global $wgAPIMaxUncachedDiffs;
-			static $n = 0; // Number of uncached diffs we've had
-			if ( $n < $wgAPIMaxUncachedDiffs ) {
-				$vals['diff'] = array();
-				$context = new DerivativeContext( $this->getContext() );
-				$context->setTitle( $title );
-				if ( !is_null( $this->difftotext ) ) {
-					$engine = new DifferenceEngine( $context );
-					$engine->setText( $text, $this->difftotext );
-				} else {
-					$engine = new DifferenceEngine( $context, $revision->getID(), $this->diffto );
-					$vals['diff']['from'] = $engine->getOldid();
-					$vals['diff']['to'] = $engine->getNewid();
-				}
-				$difftext = $engine->getDiffBody();
-				ApiResult::setContent( $vals['diff'], $difftext );
-				if ( !$engine->wasCacheHit() ) {
-					$n++;
+		$textVisible = false;
+		if ( $this->fld_content || !is_null( $this->difftotext ) || $this->diffto ) {
+			if ( $revision->isDeleted( Revision::DELETED_TEXT ) ) {
+				$vals['texthidden'] = '';
+				if ( $this->unhide && $revision->userCan( Revision::DELETED_TEXT, $this->getUser() ) ) {
+					$textVisible = true;
 				}
 			} else {
-				$vals['diff']['notcached'] = '';
+				$textVisible = true;
 			}
 		}
+
+		if ( $textVisible ) {
+			if ( $this->fld_content || !is_null( $this->difftotext ) ) {
+				global $wgParser;
+				$text = $revision->getText( Revision::FOR_THIS_USER, $this->getUser() );
+				// Expand templates after getting section content because
+				// template-added sections don't count and Parser::preprocess()
+				// will have less input
+				if ( $this->section !== false ) {
+					$text = $wgParser->getSection( $text, $this->section, false );
+					if ( $text === false ) {
+						$this->dieUsage( "There is no section {$this->section} in r" . $revision->getId(), 'nosuchsection' );
+					}
+				}
+			}
+
+			if ( $this->fld_content ) {
+				if ( $this->generateXML ) {
+					$wgParser->startExternalParse( $title, ParserOptions::newFromContext( $this->getContext() ), OT_PREPROCESS );
+					$dom = $wgParser->preprocessToDom( $text );
+					if ( is_callable( array( $dom, 'saveXML' ) ) ) {
+						$xml = $dom->saveXML();
+					} else {
+						$xml = $dom->__toString();
+					}
+					$vals['parsetree'] = $xml;
+
+				}
+				if ( $this->expandTemplates && !$this->parseContent ) {
+					$text = $wgParser->preprocess( $text, $title, ParserOptions::newFromContext( $this->getContext() ) );
+				}
+				if ( $this->parseContent ) {
+					$text = $wgParser->parse( $text, $title, ParserOptions::newFromContext( $this->getContext() ) )->getText();
+				}
+				ApiResult::setContent( $vals, $text );
+			}
+
+			if ( !is_null( $this->diffto ) || !is_null( $this->difftotext ) ) {
+				global $wgAPIMaxUncachedDiffs;
+				static $n = 0; // Number of uncached diffs we've had
+				if ( $n < $wgAPIMaxUncachedDiffs ) {
+					$vals['diff'] = array();
+					$context = new DerivativeContext( $this->getContext() );
+					$context->setTitle( $title );
+					if ( !is_null( $this->difftotext ) ) {
+						$engine = $this->createDifferenceEngine( $context );
+						$engine->setText( $text, $this->difftotext );
+						$diffVisible = true;
+					} else {
+						$diffVisible = false;
+						$engine = $this->createDifferenceEngine( $context, $revision->getId(), $this->diffto, 0, false, true );
+						$vals['diff']['from'] = $engine->getOldid();
+						$vals['diff']['to'] = $engine->getNewid();
+
+						if ( $revision->getId() == $engine->getOldid() ) {
+							$otherRevId = $engine->getNewid();
+							$otherType = 'to'; // FIXME: don't know if this is the best idea...
+						}
+						else {
+							$otherRevId = $engine->getOldid();
+							$otherType = 'from';
+						}
+
+						$difftoRev = $this->createRevisionObjectFromId( $otherRevId );
+						if ( $difftoRev->isDeleted( Revision::DELETED_TEXT ) ) {
+							$vals['diff'][$otherType.'texthidden'] = '';
+							if ( $this->unhide && $difftoRev->userCan( Revision::DELETED_TEXT, $this->getUser() ) ) {
+								$diffVisible = true;
+							}
+						} else {
+							$diffVisible = true;
+						}
+
+					}
+					if ( $diffVisible ) {
+						$difftext = $engine->getDiffBody();
+
+						ApiResult::setContent( $vals['diff'], $difftext );
+						if ( !$engine->wasCacheHit() ) {
+							$n++;
+						}
+					}
+				} else {
+					$vals['diff']['notcached'] = '';
+				}
+			}
+		}
+
 		return $vals;
 	}
 
 	public function getCacheMode( $params ) {
-		if ( isset( $params['token'] ) ) {
+		// FIXME: is this correct?
+		if ( isset( $params['token'] ) || isset( $params['unhide'] ) ) {
 			return 'private';
 		}
 		if ( !is_null( $params['prop'] ) && in_array( 'parsedcomment', $params['prop'] ) ) {
@@ -616,6 +698,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 			'continue' => null,
 			'diffto' => null,
 			'difftotext' => null,
+			'unhide' => false,
 		);
 	}
 
@@ -655,6 +738,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 			'difftotext' => array( 'Text to diff each revision to. Only diffs a limited number of revisions.',
 				"Overrides {$p}diffto. If {$p}section is set, only that section will be diffed against this text" ),
 			'tag' => 'Only list revisions tagged with this tag',
+			'unhide' => 'Show hidden fields',
 		);
 	}
 
