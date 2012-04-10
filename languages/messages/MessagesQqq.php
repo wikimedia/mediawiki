@@ -683,6 +683,13 @@ $1 is a filename, I think.',
 'editinginterface' => "A message shown when editing pages in the namespace MediaWiki:. In the [http://translatewiki.net/wiki/Main_Page?setlang=en URL], '''change \"setlang=en\" to your own language code.'''",
 'ns-specialprotected' => 'Error message displayed when trying to edit a page in the Special namespace',
 'titleprotected' => 'Use $1 for GENDER.',
+'invalidtitle-knownnamespace' => 'Displayed when an invalid title was encountered (generally in a list), but the namespace number is known to exist.
+* $1 is the namespace number
+* $2 is the namespace name in content language or {{msg-mw|blanknamespace}} for the main namespace
+* $3 is the part of the title after the namespace (e.g. SomeName for the page User:SomeName)',
+'invalidtitle-unknownnamespace' => 'Displayed when an invalid title was encountered (generally in a list) and the namespace number is unknown.
+* $1 is the namespace number
+* $2 is the part of the title after the namespace (e.g. SomeName for the page User:SomeName)',
 
 # Login and logout pages
 'logouttext' => 'Log out message',

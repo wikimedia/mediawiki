@@ -1039,6 +1039,8 @@ The reason given is "\'\'$2\'\'".',
 'filereadonlyerror'    => 'Unable to modify the file "$1" because the file repository "$2" is in read-only mode.
 
 The administrator who locked it offered this explanation: "$3".',
+'invalidtitle-knownnamespace'   => 'Invalid title with namespace "$2" and text "$3"',
+'invalidtitle-unknownnamespace' => 'Invalid title with unknown namespace number $1 and text "$2"',
 
 # Virus scanner
 'virus-badscanner'     => "Bad configuration: Unknown virus scanner: ''$1''",
