@@ -181,4 +181,10 @@ class GitInfo {
 		return self::repo()->getCurrentBranch();
 	}
 
+	/**
+	 * @see self::getHeadViewUrl()
+	 */
+	public static function headViewUrl() {
+		return self::repo()->getHeadViewUrl();
+	}
 }
