@@ -97,7 +97,11 @@ function wfStreamThumb( array $params ) {
 
 	// Is this a thumb of an archived file?
 	$isOld = ( isset( $params['archived'] ) && $params['archived'] );
-	unset( $params['archived'] );
+	unset( $params['archived'] ); // handlers don't care
+
+	// Is this a thumb of a temp file?
+	$isTemp = ( isset( $params['temp'] ) && $params['temp'] );
+	unset( $params['temp'] ); // handlers don't care
 
 	// Some basic input validation
 	$fileName = strtr( $fileName, '\\/', '__' );
@@ -118,6 +122,20 @@ function wfStreamThumb( array $params ) {
 			return;
 		}
 		$img = RepoGroup::singleton()->getLocalRepo()->newFromArchiveName( $title, $fileName );
+	} elseif ( $isTemp ) {
+		$repo = RepoGroup::singleton()->getLocalRepo()->getTempRepo();
+		// Format is <timestamp>!<name> or just <name>
+		$bits = explode( '!', $fileName, 2 );
+		// Get the name without the timestamp so hash paths are correctly computed
+		$title = Title::makeTitleSafe( NS_FILE, isset( $bits[1] ) ? $bits[1] : $fileName );
+		if ( !$title ) {
+			wfThumbError( 404, wfMsg( 'badtitletext' ) );
+			wfProfileOut( __METHOD__ );
+			return;
+		}
+		$img = new UnregisteredLocalFile( $title, $repo,
+			$repo->getZonePath( 'public' ) . '/' . $repo->getTempHashPath( $fileName ) . $fileName
+		);
 	} else {
 		$img = wfLocalFile( $fileName );
 	}
@@ -178,7 +196,7 @@ function wfStreamThumb( array $params ) {
 			// Check that the zone relative path matches up so squid caches won't pick
 			// up thumbs that would not be purged on source file deletion (bug 34231).
 			if ( isset( $params['rel404'] ) // thumbnail was handled via 404
-				&& urldecode( $params['rel404'] ) !== $img->getThumbRel( $thumbName ) ) 
+				&& urldecode( $params['rel404'] ) !== $img->getThumbRel( $thumbName ) )
 			{
 				wfThumbError( 404, 'The source file for the specified thumbnail does not exist.' );
 				wfProfileOut( __METHOD__ );
