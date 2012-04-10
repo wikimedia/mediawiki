@@ -175,7 +175,8 @@ $wgLoadScript = false;
  * The URL path of the skins directory. Will default to "{$wgScriptPath}/skins" in Setup.php
  */
 $wgStylePath = false;
-$wgStyleSheetPath = &$wgStylePath;
+# Broken PHP, canary mismatch -- TS
+#$wgStyleSheetPath = &$wgStylePath;
 
 /**
  * The URL path of the skins directory. Should not point to an external domain.
@@ -3762,10 +3763,11 @@ $wgAutoConfirmCount = 0;
  * user who has provided an e-mail address.
  */
 $wgAutopromote = array(
+	/* test patch -- TS
 	'autoconfirmed' => array( '&',
 		array( APCOND_EDITCOUNT, &$wgAutoConfirmCount ),
 		array( APCOND_AGE, &$wgAutoConfirmAge ),
-	),
+	), */
 );
 
 /**

@@ -231,6 +231,9 @@ class MessageBlobStore {
 	}
 
 	public static function clear() {
+		// HACK: disable clear() on WMF servers
+		return;
+
 		// TODO: Give this some more thought
 		// TODO: Is TRUNCATE better?
 		$dbw = wfGetDB( DB_MASTER );
