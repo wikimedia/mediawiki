@@ -16,11 +16,15 @@ abstract class PageQueryPage extends QueryPage {
 	 */
 	public function formatResult( $skin, $row ) {
 		global $wgContLang;
+
 		$title = Title::makeTitleSafe( $row->namespace, $row->title );
-		$text = $row->title;
+
 		if ( $title instanceof Title ) {
 			$text = $wgContLang->convert( $title->getPrefixedText() );
+			return Linker::linkKnown( $title, htmlspecialchars( $text ) );
+		} else {
+			return Html::element( 'span', array( 'class' => 'invalidtitle' ),
+				Linker::getInvalidTitleDescription( $this->getContext(), $row->namespace, $row->title ) );
 		}
-		return Linker::linkKnown( $title, htmlspecialchars( $text ) );
 	}
 }

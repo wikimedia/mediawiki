@@ -398,6 +398,31 @@ class Linker {
 	}
 
 	/**
+	 * Get a message saying that an invalid title was encountred.
+	 * This should be called after a method like Title::makeTitleSafe() returned
+	 * a value indicating that the title object is invalid.
+	 *
+	 * @param $context IContextSource context to use to get the messages
+	 * @param $namespace int Namespace number
+	 * @param $title string 
+	 */
+	public static function getInvalidTitleDescription( IContextSource $context, $namespace, $title ) {
+		global $wgContLang;
+
+		// First we check whether the namespace exists or not.
+		if ( MWNamespace::exists( $namespace ) ) {
+			if ( $namespace == NS_MAIN ) {
+				$name = $context->msg( 'blanknamespace' )->text();
+			} else {
+				$name = $wgContLang->getFormattedNsText( $namespace );
+			}
+			return $context->msg( 'invalidtitle-knownnamespace', $namespace, $name, $title )->text();
+		} else {
+			return $context->msg( 'invalidtitle-unknownnamespace', $namespace, $title )->text();
+		}
+	}
+
+	/**
 	 * @param $title Title
 	 * @return Title
 	 */
