@@ -151,12 +151,12 @@ class DatabaseMysql extends DatabaseBase {
 		if ( $success ) {
 			// Tell the server we're communicating with it in UTF-8.
 			// This may engage various charset conversions.
-			global $wgDBmysql5;
+			/*global $wgDBmysql5;
 			if( $wgDBmysql5 ) {
 				$this->query( 'SET NAMES utf8', __METHOD__ );
 			} else {
 				$this->query( 'SET NAMES binary', __METHOD__ );
-			}
+			}*/
 			// Set SQL mode, default is turning them all off, can be overridden or skipped with null
 			global $wgSQLMode;
 			if ( is_string( $wgSQLMode ) ) {
