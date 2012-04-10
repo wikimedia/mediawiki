@@ -35,10 +35,6 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'renameIndex', 'mwuser', 'user_user_name_key', 'mwuser_user_name_key' ),
 			array( 'renameIndex', 'pagecontent','text_pkey', 'pagecontent_pkey' ),
 
-			# new sequences
-			array( 'addSequence', 'logging_log_id_seq'          ),
-			array( 'addSequence', 'page_restrictions_pr_id_seq' ),
-
 			# renamed sequences
 			array( 'renameSequence', 'ipblocks_ipb_id_val', 'ipblocks_ipb_id_seq'         ),
 			array( 'renameSequence', 'rev_rev_id_val',      'revision_rev_id_seq'         ),
@@ -79,7 +75,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'addTable', 'uploadstash',       'patch-uploadstash.sql' ),
 			array( 'addTable', 'user_former_groups','patch-user_former_groups.sql' ),
 			array( 'addTable', 'config',            'patch-config.sql' ),
-			array( 'addTable', 'external_user','patch-external_user.sql' ),
+			array( 'addTable', 'external_user',     'patch-external_user.sql' ),
 
 			# Needed before new field
 			array( 'convertArchive2' ),
@@ -152,7 +148,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'changeField', 'image',         'img_size',        'integer',  '' ),
 			array( 'changeField', 'image',         'img_width',       'integer',  '' ),
 			array( 'changeField', 'image',         'img_height',      'integer',  '' ),
-			array( 'changeField', 'interwiki',     'iw_local',        'smallint', 'iw_local::smallint DEFAULT 0' ),
+			array( 'changeField', 'interwiki',     'iw_local',        'smallint', 'iw_local::smallint' ),
 			array( 'changeField', 'interwiki',     'iw_trans',        'smallint', 'iw_trans::smallint DEFAULT 0' ),
 			array( 'changeField', 'ipblocks',      'ipb_auto',        'smallint', 'ipb_auto::smallint DEFAULT 0' ),
 			array( 'changeField', 'ipblocks',      'ipb_anon_only',   'smallint', "CASE WHEN ipb_anon_only=' ' THEN 0 ELSE ipb_anon_only::smallint END DEFAULT 0" ),

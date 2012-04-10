@@ -7,7 +7,8 @@
  */
 
 class PostgresField implements Field {
-	private $name, $tablename, $type, $nullable, $max_length, $deferred, $deferrable, $conname;
+	private $name, $tablename, $type, $nullable, $max_length, $deferred, $deferrable, $conname,
+		$has_default, $default;
 
 	/**
 	 * @param $db DatabaseBase
@@ -33,6 +34,7 @@ JOIN pg_namespace n ON (n.oid = c.relnamespace)
 JOIN pg_attribute a ON (a.attrelid = c.oid)
 JOIN pg_type t ON (t.oid = a.atttypid)
 LEFT JOIN pg_constraint o ON (o.conrelid = c.oid AND a.attnum = ANY(o.conkey) AND o.contype = 'f')
+LEFT JOIN pg_attrdef d on c.oid=d.adrelid and a.attnum=d.adnum
 WHERE relkind = 'r'
 AND nspname=%s
 AND relname=%s
@@ -60,6 +62,8 @@ SQL;
 		$n->deferrable = ( $row->deferrable == 't' );
 		$n->deferred = ( $row->deferred == 't' );
 		$n->conname = $row->conname;
+		$n->has_default = ( $row->atthasdef === 't' );
+		$n->default = $row->adsrc;
 		return $n;
 	}
 
@@ -94,6 +98,16 @@ SQL;
 	function conname() {
 		return $this->conname;
 	}
+	/**
+	 * @since 1.19
+	 */
+	function defaultValue() {
+		if( $this->has_default ) {
+			return $this->default;
+		} else {
+			return false;
+		}
+	}
 
 }
 
@@ -101,14 +115,14 @@ SQL;
  * Used to debug transaction processing
  * Only used if $wgDebugDBTransactions is true
  *
- * @since 1.20
+ * @since 1.19
  * @ingroup Database
  */
 class PostgresTransactionState {
 
 	static $WATCHED = array(
 		array(
-			"desc" => "Connection state changed from %s -> %s\n",  
+			"desc" => "Connection state changed from %s -> %s\n",
 			"states" => array(
 				PGSQL_CONNECTION_OK       => "OK",
 				PGSQL_CONNECTION_BAD      => "BAD"
@@ -133,7 +147,7 @@ class PostgresTransactionState {
 	}
 
 	public function update() {
-		$this->mNewState = array( 
+		$this->mNewState = array(
 			pg_connection_status( $this->mConn ),
 			pg_transaction_status( $this->mConn )
 		);
@@ -168,7 +182,7 @@ class PostgresTransactionState {
 	}
 
 	protected function log_changed( $old, $new, $watched ) {
-		wfDebug(sprintf($watched["desc"], 
+		wfDebug(sprintf($watched["desc"],
 			$this->describe_changed( $old, $watched["states"] ),
 			$this->describe_changed( $new, $watched["states"] ))
 		);
@@ -317,7 +331,6 @@ class DatabasePostgres extends DatabaseBase {
 	}
 
 	protected function doQuery( $sql ) {
-		global $wgDebugDBTransactions;
 		if ( function_exists( 'mb_convert_encoding' ) ) {
 			$sql = mb_convert_encoding( $sql, 'UTF-8' );
 		}
@@ -525,6 +538,68 @@ class DatabasePostgres extends DatabaseBase {
 		}
 		return false;
 	}
+
+	/**
+	 * Returns is of attributes used in index
+	 *
+	 * @since 1.19
+	 * @return Array
+	 */
+	function indexAttributes ( $index, $schema = false ) {
+		if ( $schema === false )
+			$schema = $this->getCoreSchema();
+		/*
+		 * A subquery would be not needed if we didn't care about the order
+		 * of attributes, but we do
+		 */
+		$sql = <<<__INDEXATTR__
+
+			SELECT opcname,
+				attname,
+				i.indoption[s.g] as option,
+				pg_am.amname
+			FROM
+				(SELECT generate_subscripts(isub.indkey, 1) AS g
+					FROM
+						pg_index isub
+					JOIN pg_class cis
+						ON cis.oid=isub.indexrelid
+					JOIN pg_namespace ns
+						ON cis.relnamespace = ns.oid
+					WHERE cis.relname='$index' AND ns.nspname='$schema') AS s,
+				pg_attribute,
+				pg_opclass opcls,
+				pg_am,
+				pg_class ci
+				JOIN pg_index i
+					ON ci.oid=i.indexrelid
+				JOIN pg_class ct
+					ON ct.oid = i.indrelid
+				JOIN pg_namespace n
+					ON ci.relnamespace = n.oid
+				WHERE
+					ci.relname='$index' AND n.nspname='$schema'
+					AND	attrelid = ct.oid
+					AND	i.indkey[s.g] = attnum
+					AND	i.indclass[s.g] = opcls.oid
+					AND	pg_am.oid = opcls.opcmethod
+__INDEXATTR__;
+		$res = $this->query($sql, __METHOD__);
+		$a = array();
+		if ( $res ) {
+			foreach ( $res as $row ) {
+				$a[] = array(
+					$row->attname,
+					$row->opcname,
+					$row->amname,
+					$row->option);
+			}
+		} else {
+			return null;
+		}
+		return $a;
+	}
+
 
 	function indexUnique( $table, $index, $fname = 'DatabasePostgres::indexUnique' ) {
 		$sql = "SELECT indexname FROM pg_indexes WHERE tablename='{$table}'".
@@ -750,12 +825,17 @@ class DatabasePostgres extends DatabaseBase {
 		# Replace reserved words with better ones
 		switch( $name ) {
 			case 'user':
-				return 'mwuser';
+				return $this->realTableName( 'mwuser', $format );
 			case 'text':
-				return 'pagecontent';
+				return $this->realTableName( 'pagecontent', $format );
 			default:
-				return parent::tableName( $name, $format );
+				return $this->realTableName( $name, $format );
 		}
+	}
+
+	/* Don't cheat on installer */
+	function realTableName( $name, $format = 'quoted' ) {
+		return parent::tableName( $name, $format );
 	}
 
 	/**
@@ -833,7 +913,7 @@ class DatabasePostgres extends DatabaseBase {
 		return wfTimestamp( TS_POSTGRES, $ts );
 	}
 
-	/* 
+	/*
 	 * Posted by cc[plus]php[at]c2se[dot]com on 25-Mar-2009 09:12
 	 * to http://www.php.net/manual/en/ref.pgsql.php
 	 *
@@ -844,7 +924,7 @@ class DatabasePostgres extends DatabaseBase {
 	 *
 	 * This should really be handled by PHP PostgreSQL module
 	 *
-	 * @since 1.20
+	 * @since 1.19
 	 * @param $text   string: postgreql array returned in a text form like {a,b}
 	 * @param $output string
 	 * @param $limit  int
@@ -864,8 +944,8 @@ class DatabasePostgres extends DatabaseBase {
 				preg_match( "/(\\{?\"([^\"\\\\]|\\\\.)*\"|[^,{}]+)+([,}]+)/",
 					$text, $match, 0, $offset );
 				$offset += strlen( $match[0] );
-				$output[] = ( '"' != $match[1]{0} 
-						? $match[1] 
+				$output[] = ( '"' != $match[1]{0}
+						? $match[1]
 						: stripcslashes( substr( $match[1], 1, -1 ) ) );
 				if ( '},' == $match[3] ) {
 					return $output;
@@ -896,7 +976,7 @@ class DatabasePostgres extends DatabaseBase {
 	 * Return current schema (executes SELECT current_schema())
 	 * Needs transaction
 	 *
-	 * @since 1.20
+	 * @since 1.19
 	 * @return string return default schema for the current session
 	 */
 	function getCurrentSchema() {
@@ -912,7 +992,7 @@ class DatabasePostgres extends DatabaseBase {
 	 *
 	 * @seealso getSearchPath()
 	 * @seealso setSearchPath()
-	 * @since 1.20
+	 * @since 1.19
 	 * @return array list of actual schemas for the current sesson
 	 */
 	function getSchemas() {
@@ -929,7 +1009,7 @@ class DatabasePostgres extends DatabaseBase {
 	 * (like "$user").
 	 * Needs transaction
 	 *
-	 * @since 1.20
+	 * @since 1.19
 	 * @return array how to search for table names schemas for the current user
 	 */
 	function getSearchPath() {
@@ -942,7 +1022,7 @@ class DatabasePostgres extends DatabaseBase {
 	/**
 	 * Update search_path, values should already be sanitized
 	 * Values may contain magic keywords like "$user"
-	 * @since 1.20
+	 * @since 1.19
 	 *
 	 * @param $search_path array list of schemas to be searched by default
 	 */
@@ -960,8 +1040,8 @@ class DatabasePostgres extends DatabaseBase {
 	 *
 	 * This will be also called by the installer after the schema is created
 	 *
-	 * @since 1.20
-	 * @param desired_schema string 
+	 * @since 1.19
+	 * @param desired_schema string
 	 */
 	function determineCoreSchema( $desired_schema ) {
 		$this->begin( __METHOD__ );
@@ -973,12 +1053,12 @@ class DatabasePostgres extends DatabaseBase {
 				/**
 				 * Append our schema (e.g. 'mediawiki') in front
 				 * of the search path
-				 * Fixes bug 15816 
+				 * Fixes bug 15816
 				 */
 				$search_path = $this->getSearchPath();
-				array_unshift( $search_path, 
+				array_unshift( $search_path,
 					$this->addIdentifierQuotes( $desired_schema ));
-				$this->setSearchPath( $search_path );	
+				$this->setSearchPath( $search_path );
 				$this->mCoreSchema = $desired_schema;
 				wfDebug("Schema \"" . $desired_schema . "\" added to the search path\n");
 			}
@@ -993,7 +1073,7 @@ class DatabasePostgres extends DatabaseBase {
 	/**
 	 * Return schema name fore core MediaWiki tables
 	 *
-	 * @since 1.20
+	 * @since 1.19
 	 * @return string core schema name
 	 */
 	function getCoreSchema() {
@@ -1032,7 +1112,7 @@ class DatabasePostgres extends DatabaseBase {
 		if ( !$schema ) {
 			$schema = $this->getCoreSchema();
 		}
-		$table = $this->tableName( $table, 'raw' );
+		$table = $this->realTableName( $table, 'raw' );
 		$etable = $this->addQuotes( $table );
 		$eschema = $this->addQuotes( $schema );
 		$SQL = "SELECT 1 FROM pg_catalog.pg_class c, pg_catalog.pg_namespace n "
