@@ -4854,30 +4854,41 @@ class Parser {
 
 			$label = '';
 			$alt = '';
+			$link = '';
 			if ( isset( $matches[3] ) ) {
 				// look for an |alt= definition while trying not to break existing
 				// captions with multiple pipes (|) in it, until a more sensible grammar
 				// is defined for images in galleries
 
 				$matches[3] = $this->recursiveTagParse( trim( $matches[3] ) );
-				$altmatches = StringUtils::explode('|', $matches[3]);
+				$parameterMatches = StringUtils::explode('|', $matches[3]);
 				$magicWordAlt = MagicWord::get( 'img_alt' );
+				$magicWordLink = MagicWord::get( 'img_link' );
 
-				foreach ( $altmatches as $altmatch ) {
-					$match = $magicWordAlt->matchVariableStartToEnd( $altmatch );
-					if ( $match ) {
+				foreach ( $parameterMatches as $parameterMatch ) {
+					if ( $match = $magicWordAlt->matchVariableStartToEnd( $parameterMatch ) ) {
 						$alt = $this->stripAltText( $match, false );
+					}
+					else if( $match = $magicWordLink->matchVariableStartToEnd( $parameterMatch ) ){
+						$link = strip_tags($this->replaceLinkHoldersText($match));
+						$chars = self::EXT_LINK_URL_CLASS;
+						$prots = $this->mUrlProtocols;
+						//check to see if link matches an absolute url, if not then it must be a wiki link.
+						if(!preg_match( "/^($prots)$chars+$/u", $link)){
+							$localLinkTitle = Title::newFromText($link);
+							$link = $localLinkTitle->getLocalURL();
+						}
 					}
 					else {
 						// concatenate all other pipes
-						$label .= '|' . $altmatch;
+						$label .= '|' . $parameterMatch;
 					}
 				}
 				// remove the first pipe
 				$label = substr( $label, 1 );
 			}
 
-			$ig->add( $title, $label, $alt );
+			$ig->add( $title, $label, $alt ,$link);
 		}
 		return $ig->toHTML();
 	}
