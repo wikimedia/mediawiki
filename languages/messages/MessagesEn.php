@@ -999,9 +999,6 @@ Please report this to an [[Special:ListUsers/sysop|administrator]], making note 
 'directorycreateerror' => 'Could not create directory "$1".',
 'filenotfound'         => 'Could not find file "$1".',
 'fileexistserror'      => 'Unable to write to file "$1": File exists.',
-'filereadonlyerror'    => 'Unable to modify the file "$1" because the file repository "$2" is in read-only mode.
-
-The administrator who locked it offered this explanation: "$3".',
 'unexpected'           => 'Unexpected value: "$1"="$2".',
 'formerror'            => 'Error: Could not submit form.',
 'badarticleerror'      => 'This action cannot be performed on this page.',
@@ -1039,6 +1036,9 @@ $2',
 'ns-specialprotected'  => 'Special pages cannot be edited.',
 'titleprotected'       => 'This title has been protected from creation by [[User:$1|$1]].
 The reason given is "\'\'$2\'\'".',
+'filereadonlyerror'    => 'Unable to the modify the file "$1" because the file repository "$2" is in read-only mode.
+
+The administrator who locked it offered this explanation: "$3".',
 
 # Virus scanner
 'virus-badscanner'     => "Bad configuration: Unknown virus scanner: ''$1''",
@@ -2282,7 +2282,6 @@ If the problem persists, contact an [[Special:ListUsers/sysop|administrator]].',
 'backend-fail-contenttype'   => 'Could not determine the content type of the file to store at "$1".',
 'backend-fail-batchsize'     => 'Storage backend given a batch of $1 file {{PLURAL:$1|operation|operations}}; the limit is $2 {{PLURAL:$2|operation|operations}}.',
 
-# File journal
 'filejournal-fail-dbconnect' => 'Could not connect to the journal database for storage backend "$1".',
 'filejournal-fail-dbquery'   => 'Could not update the journal database for storage backend "$1".',
 
@@ -2653,23 +2652,23 @@ You can narrow down the view by selecting a log type, the username (case-sensiti
 'log-title-wildcard'   => 'Search titles starting with this text',
 
 # Special:AllPages
-'allpages'          => 'All pages',
-'allpages-summary'  => '', # do not translate or duplicate this message to other languages
-'alphaindexline'    => '$1 to $2',
-'nextpage'          => 'Next page ($1)',
-'prevpage'          => 'Previous page ($1)',
-'allpagesfrom'      => 'Display pages starting at:',
-'allpagesto'        => 'Display pages ending at:',
-'allarticles'       => 'All pages',
-'allinnamespace'    => 'All pages ($1 namespace)',
-'allnotinnamespace' => 'All pages (not in $1 namespace)',
-'allpagesprev'      => 'Previous',
-'allpagesnext'      => 'Next',
-'allpagessubmit'    => 'Go',
-'allpagesprefix'    => 'Display pages with prefix:',
-'allpagesbadtitle'  => 'The given page title was invalid or had an inter-language or inter-wiki prefix.
+'allpages'                => 'All pages',
+'allpages-summary'        => '', # do not translate or duplicate this message to other languages
+'alphaindexline'          => '$1 to $2',
+'nextpage'                => 'Next page ($1)',
+'prevpage'                => 'Previous page ($1)',
+'allpagesfrom'            => 'Display pages starting at:',
+'allpagesto'              => 'Display pages ending at:',
+'allarticles'             => 'All pages',
+'allinnamespace'          => 'All pages ($1 namespace)',
+'allnotinnamespace'       => 'All pages (not in $1 namespace)',
+'allpagesprev'            => 'Previous',
+'allpagesnext'            => 'Next',
+'allpagessubmit'          => 'Go',
+'allpagesprefix'          => 'Display pages with prefix:',
+'allpagesbadtitle'        => 'The given page title was invalid or had an inter-language or inter-wiki prefix.
 It may contain one or more characters which cannot be used in titles.',
-'allpages-bad-ns'   => '{{SITENAME}} does not have namespace "$1".',
+'allpages-bad-ns'         => '{{SITENAME}} does not have namespace "$1".',
 'allpages-hide-redirects' => 'Hide redirects',
 
 # Special:Categories
@@ -4831,5 +4830,16 @@ Otherwise, you can use the easy form below. Your comment will be added to the pa
 'api-error-unknownerror'                  => 'Unknown error: "$1".',
 'api-error-uploaddisabled'                => 'Uploading is disabled on this wiki.',
 'api-error-verification-error'            => 'This file might be corrupt, or have the wrong extension.',
+
+# Durations
+'duration-seconds'   => '$1 {{PLURAL:$1|second|seconds}}',
+'duration-minutes'   => '$1 {{PLURAL:$1|minute|minutes}}',
+'duration-hours'     => '$1 {{PLURAL:$1|hour|hours}}',
+'duration-days'      => '$1 {{PLURAL:$1|day|days}}',
+'duration-weeks'     => '$1 {{PLURAL:$1|week|weeks}}',
+'duration-years'     => '$1 {{PLURAL:$1|year|years}}',
+'duration-decades'   => '$1 {{PLURAL:$1|decade|decades}}',
+'duration-centuries' => '$1 {{PLURAL:$1|century|centuries}}',
+'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennia}}',
 
 );
