@@ -2671,6 +2671,11 @@ It may contain one or more characters which cannot be used in titles.',
 'allpages-bad-ns'         => '{{SITENAME}} does not have namespace "$1".',
 'allpages-hide-redirects' => 'Hide redirects',
 
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'You are viewing a cached version of this page, which can be up to $1 old.',
+'cachedspecial-viewing-cached-ts' => 'You are viewing a cached version of this page, which might not be completely actual.',
+'cachedspecial-refresh-now' => 'View latest.',
+
 # Special:Categories
 'categories'                    => 'Categories',
 'categories-summary'            => '', # do not translate or duplicate this message to other languages
