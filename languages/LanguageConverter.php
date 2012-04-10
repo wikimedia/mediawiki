@@ -576,7 +576,7 @@ class LanguageConverter {
 	 */
 	public function convertTo( $text, $variant ) {
 		global $wgDisableLangConversion;
-		if ( $wgDisableLangConversion || $this->guessVariant( $text, $variant ) ) {
+		if ( $wgDisableLangConversion ) {
 			return $text;
 		}
 		return $this->recursiveConvertTopLevel( $text, $variant );
@@ -595,18 +595,22 @@ class LanguageConverter {
 		$startPos = 0;
 		$out = '';
 		$length = strlen( $text );
+		$shouldConvert = !$this->guessVariant( $text, $variant );
+
 		while ( $startPos < $length ) {
 			$pos = strpos( $text, '-{', $startPos );
 
 			if ( $pos === false ) {
 				// No more markup, append final segment
-				$out .= $this->autoConvert( substr( $text, $startPos ), $variant );
+				$fragment = substr( $text, $startPos );
+				$out .= $shouldConvert? $this->autoConvert( $fragment, $variant ): $fragment;
 				return $out;
 			}
 
 			// Markup found
 			// Append initial segment
-			$out .= $this->autoConvert( substr( $text, $startPos, $pos - $startPos ), $variant );
+			$fragment = substr( $text, $startPos, $pos - $startPos );
+			$out .= $shouldConvert? $this->autoConvert( $fragment, $variant ): $fragment;
 
 			// Advance position
 			$startPos = $pos;
