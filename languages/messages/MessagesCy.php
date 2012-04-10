@@ -500,9 +500,9 @@ $2",
 'ns-specialprotected' => 'Ni ellir golygu tudalennau arbennig.',
 'titleprotected' => "Diogelwyd y teitl hwn rhag ei greu gan [[User:$1|$1]].
 Rhoddwyd y rheswm hwn - ''$2''.",
-'filereadonlyerror' => 'Nid oes modd newid y ffeil "$1" oherwydd bod modd darllen storfa\'r ffeil yn "$2" yn unig.
+'filereadonlyerror' => 'Nid oes modd newid y ffeil "$1" oherwydd nad oes modd gwneud dim heblaw darllen storfa\'r ffeil yn "$2" yn unig.
 
-Y rheswm a roddir dros hyn yw "\'\'£3\'\'".',
+Y rheswm a roddir dros hyn yw "\'\'$3\'\'".',
 
 # Virus scanner
 'virus-badscanner' => "Cyfluniad gwael: sganiwr firysau anhysbys: ''$1''",
@@ -1496,7 +1496,7 @@ Gweler [[Special:NewFiles|oriel y ffeiliau newydd]] i fwrw golwg drostynt.",
 'filename-tooshort' => "Mae enw'r ffeil yn rhy fyr.",
 'filetype-banned' => "Mae'r math hwn o ffeil wedi ei wahardd.",
 'verification-error' => "Nid yw'r ffeil hon wedi ei derbyn wrth ei gwirio.",
-'hookaborted' => 'Cafodd y darpar newid ei derfynu gan fachyn estyniad.',
+'hookaborted' => 'Cafodd y darpar newid ei derfynu gan estyniad.',
 'illegal-filename' => "Nid yw'r enw ffeil hwn yn cael ei ganiatáu.",
 'overwrite' => 'Ni chaniateir trosysgrifo ffeil sydd eisoes yn bod.',
 'unknown-error' => 'Cafwyd gwall anhysbys.',
@@ -1584,6 +1584,7 @@ Os yw'r broblem yn parhau, cysylltwch â [[Special:ListUsers/sysop|gweinyddwr]].
 'backend-fail-stream' => "Wedi methu ffrydio'r ffeil $1.",
 'backend-fail-backup' => "Wedi methu gwneud copi wrth gefn o'r ffeil $1.",
 'backend-fail-notexists' => "Nid yw'r ffeil $1 ar gael.",
+'backend-fail-hashes' => 'Methwyd cael symiau stwnsh y ffeil er mwyn eu cymharu.',
 'backend-fail-notsame' => "Mae ffeil gwahanol a'r enw $1 arni eisoes ar gael.",
 'backend-fail-invalidpath' => 'Nid yw $1 yn lwybr dilys i roi ffeil ar gadw.',
 'backend-fail-delete' => "Wedi methu dileu'r ffeil $1.",
@@ -1602,6 +1603,10 @@ Os yw'r broblem yn parhau, cysylltwch â [[Special:ListUsers/sysop|gweinyddwr]].
 'backend-fail-connect' => 'Ni ellid cysylltu â\'r storfa tu ôl i\'r llenni yn "$1".',
 'backend-fail-internal' => 'Cafwyd gwall anhysbys yn y storfa tu ôl i\'r llenni yn "$1".',
 'backend-fail-contenttype' => 'Methwyd a dirnad pa fath o gynnwys sydd yn y ffeil y ceisir ei storio yn "$1".',
+'backend-fail-batchsize' => "Rhoddwyd llwyth o {{PLURAL:$1|$1 o weithrediadau}} ffeil i'w gwneud i'r storfa; ni all nifer y {{PLURAL:$2|gweithrediadau}} fod yn fwy na $2.",
+
+'filejournal-fail-dbconnect' => 'Methwyd cysylltu â lòg y gweithrediadau ar y storfa "$1".',
+'filejournal-fail-dbquery' => 'Methwyd diweddaru lòg y gweithrediadau ar y storfa "$1".',
 
 # Lock manager
 'lockmanager-notlocked' => 'Wedi methu datgloi "$1"; nid yw ar glo.',
@@ -1610,6 +1615,7 @@ Os yw'r broblem yn parhau, cysylltwch â [[Special:ListUsers/sysop|gweinyddwr]].
 'lockmanager-fail-acquirelock' => 'Wedi methu cael clo ar "$1".',
 'lockmanager-fail-openlock' => 'Wedi methu agor y ffeil cloi mynediad at "$1".',
 'lockmanager-fail-releaselock' => 'Wedi methu agor y clo ar "$1".',
+'lockmanager-fail-db-bucket' => 'Methwyd cysylltu â digon o gronfeydd data cloi yn y bwced $1.',
 'lockmanager-fail-db-release' => 'Wedi methu agor y cloion ar y gronfa ddata $1.',
 'lockmanager-fail-svr-release' => 'Wedi methu agor y cloion ar y gweinydd $1.',
 
@@ -1720,6 +1726,10 @@ Mae'r rhestr canlynol yn dangos y {{PLURAL:$1|$1 cysylltiad cyntaf}} at y ffeil 
 Am wybodaeth pellach gwelwch y disgrifiad ohoni sydd ar [$2 dudalen ddisgrifio'r ffeil] yno.",
 'sharedupload-desc-here' => "Daw'r ffeil hon o $1 a gellir ei defnyddio gan brosiectau eraill.
 Dangosir isod y disgrifiad sydd ar [$2 dudalen ddisgrifio'r ffeil] yno.",
+'sharedupload-desc-edit' => "Daw'r ffeil hon o $1 a gellir ei defnyddio gan brosiectau eraill.
+Mae modd golygu'r disgrifiad ohoni ar ei [$2 thudalen disgrifio] fan honno.",
+'sharedupload-desc-create' => "Daw'r ffeil hon o $1 a gellir ei defnyddio gan brosiectau eraill.
+Mae modd golygu'r disgrifiad ohoni ar ei [$2 thudalen disgrifio] fan honno.",
 'filepage-nofile' => "Does dim ffeil o'r enw hwn ar gael.",
 'filepage-nofile-link' => "Does dim ffeil o'r enw hwn ar gael, ond gallwch [$1 ei huwchlwytho].",
 'uploadnewversion-linktext' => "Uwchlwytho fersiwn newydd o'r ffeil hon",
@@ -1852,6 +1862,8 @@ Gosodwyd <del>llinell</del> drwy'r eitemau sydd eisoes wedi eu datrys.",
 'wantedpages' => 'Erthyglau sydd eu hangen',
 'wantedpages-badtitle' => 'Mae teitl annilys ymhlith y canlyniadau, sef: $1',
 'wantedfiles' => 'Ffeiliau sydd eu hangen',
+'wantedfiletext-cat' => "Mae'r ffeiliau canlynol yn cael eu defnyddio er nad ydynt ar gael. Hwyrach bod ffeiliau o storfeydd allanol hefyd ar y rhestr, serch eu bod ar gael. Bydd y rhain, sydd wedi eu cynnwys yma yn anghywir, yn ymddangos a <del>llinell drwyddynt</del>. Hefyd, mae rhestr o dudalennau sydd a ffeiliau nad ydynt ar gael arnynt draw ar [[:$1]].",
+'wantedfiletext-nocat' => "Mae'r ffeiliau canlynol yn cael eu defnyddio er nad ydynt ar gael. Hwyrach bod ffeiliau o storfeydd allanol hefyd ar y rhestr, serch eu bod ar gael. Bydd y rhain, sydd wedi eu cynnwys yma yn anghywir, yn ymddangos a <del>llinell drwyddynt</del>.",
 'wantedtemplates' => 'Nodiadau sydd eu hangen',
 'mostlinked' => 'Tudalennau yn nhrefn nifer y cysylltiadau iddynt',
 'mostlinkedcategories' => 'Categorïau yn nhrefn nifer eu haelodau',
@@ -2688,6 +2700,7 @@ Mae ffolder dros dro yn eisiau.',
 'javascripttest-pagetext-unknownframework' => 'Ni nabyddwyd y fframwaith profi "$1".',
 'javascripttest-pagetext-frameworks' => "Dewiswch un o'r fframweithiau profi canlynol: $1",
 'javascripttest-pagetext-skins' => 'Dewiswch wedd i gynnal profion arni:',
+'javascripttest-qunit-intro' => 'Gweler y [$1 wybodaeth am y profion] ar mediawiki.org.',
 'javascripttest-qunit-heading' => 'Cyfres brofi MediaWiki JavaScript QUnit',
 
 # Tooltip help for the actions
@@ -3641,6 +3654,7 @@ Dangosir delweddau ar eu maint llawn, dechreuir ffeiliau o fathau eraill yn unio
 'api-error-filename-tooshort' => "Mae enw'r ffeil yn rhy fyr.",
 'api-error-filetype-banned' => "Mae'r math hwn o ffeil wedi ei wahardd.",
 'api-error-filetype-missing' => 'Mae estyniad yn eisiau ar y ffeil.',
+'api-error-hookaborted' => 'Cafodd y darpar newid ei derfynu gan estyniad.',
 'api-error-http' => "Gwall mewnol: ni ellir cysylltu â'r gweinydd.",
 'api-error-illegal-filename' => "Nid yw'r enw ffeil hwn yn cael ei ganiatáu.",
 'api-error-internal-error' => "Gwall mewnol: aeth rhywbeth o'i le wrth brosesu'ch uwchlwythiad ar y wici.",

@@ -765,9 +765,9 @@ $2',
 'ns-specialprotected' => 'Spezialseiten können nicht bearbeitet werden.',
 'titleprotected' => "Eine Seite mit diesem Namen kann nicht angelegt werden.
 Die Sperre wurde durch [[User:$1|$1]] mit der Begründung ''„$2“'' eingerichtet.",
-'filereadonlyerror' => "Die Datei „$1“ kann nicht verändert werden, da auf das Dateirepositorium „$2“ nur Lesezugriff möglich ist.
+'filereadonlyerror' => 'Die Datei „$1“ kann nicht verändert werden, da auf das Dateirepositorium „$2“ nur Lesezugriff möglich ist.
 
-Der angegebene Grund ist „''$3''“.",
+Der Administrator, der den Schreibzugriff sperrte, gab folgenden Grund an: „$3“.',
 
 # Virus scanner
 'virus-badscanner' => "Fehlerhafte Konfiguration: unbekannter Virenscanner: ''$1''",
@@ -1126,6 +1126,7 @@ Sie wurde anscheinend gelöscht.',
 'edit-conflict' => 'Bearbeitungskonflikt.',
 'edit-no-change' => 'Deine Bearbeitung wurde ignoriert, da keine Änderung an dem Text vorgenommen wurde.',
 'edit-already-exists' => 'Die neue Seite konnte nicht erstellt werden, da sie bereits vorhanden ist.',
+'defaultmessagetext' => 'Standardtext',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''Achtung''': Diese Seite enthält zu viele Aufrufe aufwändiger Parserfunktionen.

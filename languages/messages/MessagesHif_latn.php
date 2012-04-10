@@ -687,7 +687,8 @@ Iske abhi save nai karaa gais hai!'''",
 Yaad rakhna ki custom .css aur .js panna owercase title use kare hai, jaise ki {{ns:user}}:Foo/vector.css aur{{ns:user}}:Foo/Vector.css nai.",
 'updated' => '(Update kar dewa gais hai)',
 'note' => "'''Dhyan rakkho:'''",
-'previewnote' => "'''Ii khali ek jhalak dekhae hai; badlao abhi save nai bhae hai!'''",
+'previewnote' => "'''Ii khali ek jhalak dekhae hai'''
+Tumar badlao abhi save nai bhais hai!",
 'previewconflict' => 'Ii preview uu text dekhae hai jon ki uppar ke text editing area me dekhai agar aap iske save karaa.',
 'session_fail_preview' => "''' Maaf karna! Ham log aap ke badlao ke process nai kare paya hai due to a loss of session data.
 Fir se kosis karna.
@@ -1498,6 +1499,16 @@ Agar jo problem fir nai khatam hoe tab [[Special:ListUsers/sysop|administrator]]
 'upload-too-many-redirects' => 'Ii URL me bahut jaada redirects hae.',
 'upload-unknown-size' => 'Nai pataa ki ketnaa barraa hae',
 'upload-http-error' => 'Ek HTTP galti hoe gais hae: $1',
+
+# File backend
+'backend-fail-stream' => 'File $1 ke stream nai kare sakaa hae.',
+'backend-fail-backup' => 'File $1 ke backuo nai kare sakaa hae.',
+'backend-fail-notexists' => 'Ii file $1 nai hae.',
+'backend-fail-hashes' => 'Compare kare ke khatir file hashes ke nai paawa jaae sakaa hae.',
+'backend-fail-notsame' => 'Ek duusra file $1 pe hae.',
+'backend-fail-invalidpath' => '$1, valid storage path nai hae.',
+'backend-fail-delete' => 'File $1 ke nai mitae sakaa hae.',
+'backend-fail-alreadyexists' => '$1 naam ke ek file abhi hae.',
 
 # Special:UploadStash
 'uploadstash' => 'Gupt file ke upload karo',

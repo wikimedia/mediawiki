@@ -1662,7 +1662,7 @@ Képet a következő módon illeszthetsz be egy oldalra: '''<nowiki>[[</nowiki>{
 'upload-preferred' => 'Támogatott fájltípusok: $1.',
 'upload-prohibited' => 'Tiltott fájltípusok: $1.',
 'uploadlog' => 'feltöltési napló',
-'uploadlogpage' => 'Feltöltési_napló',
+'uploadlogpage' => 'Feltöltési napló',
 'uploadlogpagetext' => 'Lentebb látható a legutóbbi felküldések listája.
 Lásd még az [[Special:NewFiles|új fáljlok galériáját]]',
 'filename' => 'Fájlnév',
@@ -2324,7 +2324,7 @@ Kérjük, erősítsd meg, hogy valóban ezt szeretnéd tenni, átlátod a követ
 'actionfailed' => 'A művelet nem sikerült',
 'deletedtext' => 'A(z) „$1” lapot törölted.
 A legutóbbi törlések listájához lásd a $2 lapot.',
-'dellogpage' => 'Törlési_napló',
+'dellogpage' => 'Törlési napló',
 'dellogpagetext' => 'Itt láthatók a legutóbb törölt lapok.',
 'deletionlog' => 'törlési napló',
 'reverted' => 'Visszaállítva a korábbi változatra',
@@ -2361,7 +2361,7 @@ ez a művelet a munkamenet eltérítése miatti óvatosságból megszakadt.
 Kérjük, hogy nyomd meg a "vissza" gombot, és töltsd le újra az oldalt, ahonnan jöttél, majd próbáld újra.',
 
 # Protect
-'protectlogpage' => 'Lapvédelmi_napló',
+'protectlogpage' => 'Lapvédelmi napló',
 'protectlogtext' => 'Alább látható a lapvédelemmel kapcsolatos változtatások listája.
 A [[Special:ProtectedPages|védett lapok listáján]] megtekintheted a jelenleg is érvényben lévő védelmeket.',
 'protectedarticle' => 'levédte a(z) [[$1]] lapot',

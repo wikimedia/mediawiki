@@ -31,6 +31,7 @@
  * @author Reza1615
  * @author Roozbeh Pournader <roozbeh at gmail.com>
  * @author Sahim
+ * @author Surena
  * @author Wayiran
  * @author Zack90
  * @author ZxxZxxZ
@@ -923,6 +924,7 @@ $2',
 'invalidemailaddress' => 'نشانی واردشدهٔ پست الکترونیک قابل‌قبول نیست، چرا که دارای ساختار نامعتبری است.
 لطفاً نشانی‌ای با ساختار صحیح وارد کنید و یا بخش مربوط را خالی بگذارید.',
 'cannotchangeemail' => 'نشانی‌های پست الکترونیکی حساب کاربری در این ویکی قابل تغییر نیست.',
+'emaildisabled' => 'این وب‌گاه قادر به ارسال رایانامه نیست.',
 'accountcreated' => 'حساب کاربری ایجاد شد',
 'accountcreatedtext' => 'حساب کاربری $1 ایجاد شده‌است.',
 'createaccount-title' => 'ایجاد حساب کاربری در {{SITENAME}}',
@@ -1142,6 +1144,7 @@ $2
 گاهی این اشکال زمانی پیش می‌آید که شما از یک پروکسی تحت وب استفاده کنید.",
 'edit_form_incomplete' => "'''بعضی قسمت‌های فرم ویرایش به سرور نرسیدند؛ اطمینان حاصل کنید که ویرایش‌های شما کامل است و دوباره تلاش کنید.'''",
 'editing' => 'در حال ویرایش $1',
+'creating' => 'ایجاد $1',
 'editingsection' => 'در حال ویرایش $1 (بخش)',
 'editingcomment' => 'در حال ویرایش $1 (بخش جدید)',
 'editconflict' => 'تعارض ویرایشی: $1',
@@ -1209,6 +1212,7 @@ $2
 'edit-no-change' => 'ویرایش شما نادیده گرفته شد، زیرا تغییری در متن داده نشده بود.',
 'edit-already-exists' => 'امکان ساختن صفحهٔ جدید وجود ندارد.
 این صفحه از قبل وجود داشته‌است.',
+'defaultmessagetext' => 'متن پیش‌فرض پیغام',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''هشدار:''' این صفحه حاوی تعدادی زیادی فراخوانی دستورهای تجزیه‌گر است.
@@ -2152,7 +2156,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'unusedtemplateswlh' => 'پیوندهای دیگر',
 
 # Random page
-'randompage' => 'صفحهٔ تصادفی',
+'randompage' => 'مقالهٔ تصادفی',
 'randompage-nopages' => 'هیچ صفحه‌ای در این {{PLURAL:$2|فضای نام|فضاهای نام}} موجود نیست: $1.',
 
 # Random redirect
@@ -2308,6 +2312,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'allpagesprefix' => 'نمایش صفحه‌های دارای پیشوند:',
 'allpagesbadtitle' => 'عنوان صفحهٔ داده‌شده نامعتبر است یا اینکه دارای پیشوندی بین‌زبانی یا بین‌ویکی‌ای است. ممکن است نویسه‌هایی بدارد که نمی‌توان از آنها در عنوان صفحه‌ها استفاده کرد.',
 'allpages-bad-ns' => '{{SITENAME}} دارای فضای نام «$1» نیست.',
+'allpages-hide-redirects' => 'پنهان‌کردن تغییرمسیرها',
 
 # Special:Categories
 'categories' => 'رده‌ها',
@@ -2434,7 +2439,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'watchmethod-list' => 'بررسی صفحه‌های مورد پی‌گیری برای ویرایش‌های اخیر',
 'watchlistcontains' => 'فهرست پی‌گیری‌های شما حاوی $1 {{PLURAL:$1|صفحه|صفحه}} است.',
 'iteminvalidname' => 'مشکل با مورد «$1»، نام نامعتبر است...',
-'wlnote' => "در زیر {{PLURAL:$1|آخرین تغییرات موجود است|آخرین تغییرات  '''$1''' موجود است }} آخرین  {{PLURAL:$2|ساعت|'''$2''' ساعت}}, در تاریخ $3, $4.",
+'wlnote' => "در زیر {{PLURAL:$1|تغییری|'''$1''' تغییری}} که در {{PLURAL:$2|ساعت|'''$2''' ساعت}} گذشته انجام شده موجود است، تاریخ آخرین بازیابی: $3، $4",
 'wlshowlast' => 'نمایش آخرین $1 ساعت $2 روز $3',
 'watchlist-options' => 'گزینه‌های پیگیری',
 

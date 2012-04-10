@@ -773,6 +773,7 @@ Poniższe funkcje poczty nie działają.",
 'invalidemailaddress' => 'Adres e‐mail jest niepoprawny i nie może być zaakceptowany.
 Wpisz poprawny adres e‐mail lub wyczyść pole.',
 'cannotchangeemail' => 'Na tej wiki nie ma możliwości zmiany adresu e‐mail przypisanego do konta.',
+'emaildisabled' => 'Ta witryna nie można wysłać wiadomości e-mail.',
 'accountcreated' => 'Konto zostało utworzone',
 'accountcreatedtext' => 'Konto dla $1 zostało utworzone.',
 'createaccount-title' => 'Utworzenie konta w {{GRAMMAR:MS.lp|{{SITENAME}}}}',
@@ -988,6 +989,7 @@ Twoja edycja została odrzucona by zapobiec zniszczeniu tekstu strony.
 Takie problemy zdarzają się w wypadku korzystania z wadliwych anonimowych sieciowych usług proxy.'''",
 'edit_form_incomplete' => "'''Niektóre informacje wprowadzone do formularza nie dotarły do serwera. Upewnij się, że wprowadzone dane nie uległy uszkodzeniu i spróbuj ponownie.'''",
 'editing' => 'Edytujesz $1',
+'creating' => 'Tworzenie $1',
 'editingsection' => 'Edytujesz $1 (sekcja)',
 'editingcomment' => 'Edytujesz $1 (nowa sekcja)',
 'editconflict' => 'Konflikt edycji: $1',
@@ -2153,6 +2155,7 @@ Możesz zawęzić liczbę wyników poprzez wybranie typu rejestru, nazwy użytko
 'allpagesprefix' => 'Pokaż strony o tytułach rozpoczynających się od',
 'allpagesbadtitle' => 'Podana nazwa jest nieprawidłowa, zawiera prefiks międzyprojektowy lub międzyjęzykowy. Może ona także zawierać w sobie jeden lub więcej znaków, których użycie w nazwach jest niedozwolone.',
 'allpages-bad-ns' => 'W {{GRAMMAR:MS.lp|{{SITENAME}}}} nie istnieje przestrzeń nazw „$1”.',
+'allpages-hide-redirects' => 'Ukryj przekierowania',
 
 # Special:Categories
 'categories' => 'Kategorie',

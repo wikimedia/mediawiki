@@ -1903,6 +1903,7 @@ Extensions making use of it:
 * $1 is a filename.',
 'backend-fail-notexists' => 'Parameters:
 * $1 is a filename.',
+'backend-fail-hashes' => 'Definition of "[[w:en:Hash_function|hashes]]".',
 'backend-fail-notsame' => 'Parameters:
 * $1 is a filename.',
 'backend-fail-invalidpath' => 'Parameters:
@@ -1930,6 +1931,8 @@ Extensions making use of it:
 'backend-fail-internal' => 'A "[[:wikipedia:Front and back ends|backend]]" is a system or component that ordinary users don\'t interact with directly and don\'t need to know about, and that is responsible for a distinct task or service - for example, a storage back-end is a generic system for storing data which other applications can use. Possible alternatives for back-end are "system" or "service", or (depending on context and language) even leave it untranslated.',
 'backend-fail-contenttype' => '$1 is a storage (file) path',
 'backend-fail-batchsize' => 'Error message when the limit of 1000 operations in the file backend was reached.',
+
+'filejournal-fail-dbconnect' => '"Journal database" probably as described in [[w:en:Transaction_log|this article]].',
 
 # Lock manager
 'lockmanager-notlocked' => 'Parameters:

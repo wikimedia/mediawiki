@@ -870,8 +870,8 @@ Më poshtë mund t'i referoheni shënimit të regjistruar për bllokimin e fundi
 'userinvalidcssjstitle' => "'''Kujdes:''' Nuk ka pamje të quajtur \"\$1\". Vini re se faqet .css dhe .js përdorin titull me gërma të vogla, p.sh. {{ns:user}}:Foo/vector.css, jo {{ns:user}}:Foo/Vector.css.",
 'updated' => '(E ndryshuar)',
 'note' => "'''Shënim:'''",
-'previewnote' => "'''Vini re! Kjo faqe është vetëm për inspektim'''
-Ndryshimet tuaja nuk janë ruajtur ende!",
+'previewnote' => "'''Vini re! Kjo faqe është vetëm për shqyrtim.'''
+Ndryshimet tuaja nuk janë ruajtur ende! [[#editform|→ Vazhdo redaktimin]]",
 'previewconflict' => 'Kjo parapamje reflekton tekstin sipër kutisë së redaktimit siç do të duket kur të kryeni ndryshimin.',
 'session_fail_preview' => "'''Ju kërkojmë ndjesë! Redaktimi juaj nuk mund të perpunohej për shkak të humbjes së të dhënave të seancës.'''
 Ju lutemi, provojeni përsëri.

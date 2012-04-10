@@ -652,6 +652,7 @@ A-raok na vije kaset postel ebet d'ar gont-se e vo ret deoc'h heuliañ ar c'huzu
 'invalidemailaddress' => "N'haller ket degemer ar chomlec'h postel-mañ rak faziek eo e furmad evit doare.
 Merkit ur chomlec'h reizh pe goullonderit ar vaezienn-mañ.",
 'cannotchangeemail' => "N'haller ket cheñch chomlec'hioù postel ar c'hontoù war ar wiki-mañ.",
+'emaildisabled' => "N'haller ket kas posteloù dre al lec'hienn-mañ.",
 'accountcreated' => 'Kont krouet',
 'accountcreatedtext' => 'Krouet eo bet kont implijer $1.',
 'createaccount-title' => 'Krouiñ ur gont war {{SITENAME}}',
@@ -848,7 +849,7 @@ Dindan emañ merket moned diwezhañ marilh ar stankadennoù, d'ho kelaouiñ :",
 'updated' => '(Hizivaet)',
 'note' => "'''Notenn :'''",
 'previewnote' => "'''Diwallit mat, n'eus ken ur rakweled eus an destenn-mañ.'''
-N'eo ket bet enrollet ho kemmoù evit c'hoazh !'''",
+N'eo ket bet enrollet ho kemmoù evit c'hoazh ! [[#editform|→ Kenderc'hel da gemmañ]]",
 'previewconflict' => 'Gant ar rakweled e teu testenn ar bajenn war wel evel ma vo pa vo bet enrollet.',
 'session_fail_preview' => "'''Ho tigarez! N'eus ket bet tu da enrollañ ho kemmoù rak kollet eo bet roadennoù an dalc'h.'''
 Klaskit en-dro mar plij.
@@ -863,6 +864,7 @@ Mar ned a ket en-dro, klaskit [[Special:UserLogout|digevreañ]] ha kevreañ en-d
 C'hoarvezout a ra a-wechoù pa implijit ur servijer proksi dreinek dizanav.'''",
 'edit_form_incomplete' => "'''Darn eus ar furmskrid kemmañ zo chomet hep tizhout ar servijer ; gwiriit ervat emañ mat ho kemmoù tre evel m'int bet graet ganeoc'h ha klaskit en-dro.'''",
 'editing' => "Oc'h aozañ $1",
+'creating' => 'O krouiñ $1',
 'editingsection' => "Oc'h aozañ $1 (rann)",
 'editingcomment' => "Oc'h aozañ $1 (rann nevez)",
 'editconflict' => 'tabut kemmañ : $1',
@@ -1682,6 +1684,9 @@ Ma talc'h ar gudenn, kit e darempred gant [[Special:ListUsers/sysop|merourien ar
 'backend-fail-contenttype' => 'Dibosupl termeniñ ar seurt danvez da enrollañ e "$1".',
 'backend-fail-batchsize' => 'Pourvezet he deus an dermenell stokañ ur pakad a $1 {{PLURAL:$1|oberiadenn|oberiadenn}}; sevel a ra ar vevenn da $2 {{PLURAL:$2|oberiadenn|oberiadenn}}.',
 
+'filejournal-fail-dbconnect' => 'N\'eus ket bet gallet kevreañ ouzh diaz roadennoù ar marilh evit an dermenell stokañ "$1".',
+'filejournal-fail-dbquery' => 'N\'eus ket bet gallet hizivaat diaz roadennoù marilh an dermenell stokañ "$1".',
+
 # Lock manager
 'lockmanager-notlocked' => 'Dibosupl dibrennañ "$1"; n\'eo ket prennet.',
 'lockmanager-fail-closelock' => 'Dibosupl serriñ ar restr prennañ evit "$1".',
@@ -1798,6 +1803,10 @@ Ur [[Special:WhatLinksHere/$2|roll klok]] a c'haller da gaout.",
 Mar fell deoc'h gouzout hiroc'h sellit ouzh [$2 ar bajenn zeskrivañ].",
 'sharedupload-desc-here' => 'Tennet eo ar restr-mañ eus $1 ha gallout a ra bezañ implijet evit raktresoù all.
 Diskouezet eo deskrivadur he [$2 fajenn zeskrivañ] amañ dindan.',
+'sharedupload-desc-edit' => "Dont a ra ar restr-mañ eus $1 hag ober ganti a c'haller evit raktresoù all.
+Marteze a-walc'h e fell deoc'h kemmañ an deskrivadur anezhi war ar [$2 bajenn deskrivañ] amañ.",
+'sharedupload-desc-create' => "Dont a ra ar restr-mañ eus $1 hag ober ganti a c'haller evit raktresoù all.
+Marteze a-walc'h e fell deoc'h kemmañ an deskrivadur anezhi war ar [$2 bajenn deskrivañ] aze.",
 'filepage-nofile' => "N'eus restr ebet dezhi an anv-se.",
 'filepage-nofile-link' => "N'eus restr ebet dezhi an anv-se, met gallout a rit [$1 pellgargañ anezhi].",
 'uploadnewversion-linktext' => 'Kargañ ur stumm nevez eus ar restr-mañ',
@@ -2009,6 +2018,7 @@ Gallout a rit strishaat ar mod diskwel en ur zibab ar marilh, an anv implijer (d
 'allpagesprefix' => 'Diskouez ar pajennoù a grog gant :',
 'allpagesbadtitle' => "Fall e oa anv ar bajenn lakaet pe neuze ez eus ennañ ur rakger etrewiki pe etreyezhoù. Evit doare ez arouezennoù n'haller ket implijout en titloù.",
 'allpages-bad-ns' => 'N\'eus ket a esaouenn anv anvet "$1" war {{SITENAME}}.',
+'allpages-hide-redirects' => 'Kuzhat an adkasoù',
 
 # Special:Categories
 'categories' => 'Roll ar rummadoù',

@@ -739,7 +739,7 @@ $2',
 'titleprotected' => "Stránku s tímto názvem nelze založit, protože název zamknul uživatel [[User:$1|$1]] s odůvodněním: ''$2''.",
 'filereadonlyerror' => "Nelze změnit soubor „$1“, protože úložiště souborů „$2“ je momentálně pouze pro čtení.
 
-Udaný důvod: „''$3''“.",
+Správce serveru, který úložiště zamkl, poskytl toto zdůvodnění: „''$3''“.",
 
 # Virus scanner
 'virus-badscanner' => "Špatná konfigurace: neznámý antivirový program: ''$1''",
@@ -2193,7 +2193,7 @@ Zobrazení můžete zúžit výběrem typu záznamu, uživatelského jména (zá
 'categoriespagetext' => 'Následující kategorie {{PLURAL:$1|obsahuje|obsahují}} stránky nebo soubory.
 Nezobrazují se tu [[Special:UnusedCategories|nepoužívané kategorie]].
 Podívejte se také na [[Special:WantedCategories|žádané kategorie]].',
-'categoriesfrom' => 'Zobrazit kategorie začínající na:',
+'categoriesfrom' => 'Zobrazit kategorie počínaje od:',
 'special-categories-sort-count' => 'seřadit podle počtu',
 'special-categories-sort-abc' => 'seřadit abecedně',
 

@@ -933,7 +933,8 @@ L-aħħar daħla fir-reġistru tal-imblokki hi mogħtiha hawn taħt għal refere
 Ftakar li l-paġni .css u .js personalizzati għandhom l-ewwel ittra tat-titlu żgħira, eż. {{ns:user}}:Foo/vector.css u mhux {{ns:user}}:Foo/Vector.css.",
 'updated' => '(Aġġornata)',
 'note' => "'''Nota:'''",
-'previewnote' => "'''Ftakar li din hija biss dehra proviżorja, u li għadha ma ġietx salvata!'''",
+'previewnote' => "'''Ftakar li din hija biss dehra proviżorja.'''
+It-tibdiliet tiegħek għadhom ma ġewx salvati! [[#editform|→ Kompli immodifika]]",
 'previewconflict' => "Din il-previżjoni turi l-kliem li jinsab fiż-żona ta' modifika superjuri u turi kif tidher kieku l-paġna kella tiġi modifikata.",
 'session_fail_preview' => "'''Jiddispjaċina imma l-modifika tiegħek ma setgħetx tiġi pproċessata minħabba li ntilfet l-informazzjoni tas-sessjoni.
 Jekk jogħġbok, erġa' pprova. Jekk xorta tibqa' ma taħdimx, ipprova [[Special:UserLogout|oħroġ]] u erġa' idħol.'''",

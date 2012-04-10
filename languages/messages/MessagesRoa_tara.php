@@ -522,6 +522,7 @@ Nisciuna mail t'avène mannete pe tutte le seguende dettaglie.",
 'invalidemailaddress' => "L'indirizze e-mail non ge pò essere accettete cumme l'è scritte purcè tène 'nu formete invalide.
 Pe piacere mitte l'indirizze a cumme criste cumanne, ce nò no 'u scè mettènne proprie.",
 'cannotchangeemail' => "Le indirizze e-mail d'u cunde utende non ge ponne essere cangiate sus a sta uicchi.",
+'emaildisabled' => 'Stu site non ge pò mannà e-mail.',
 'accountcreated' => 'cunde utende ccrejete',
 'accountcreatedtext' => "'U cunde utende pe $1 ha state ccrejete.",
 'createaccount-title' => "Ccreazzione de 'u cunde utende pe {{SITENAME}}",
@@ -808,6 +809,7 @@ Pare proprie ca l'onne scangellete.",
 'edit-conflict' => 'conflitte de cangiaminde.',
 'edit-no-change' => "'U cangiamende ca p fatte, avène scettate purcè 'u teste non g'à cangete manghe de 'na virgola.",
 'edit-already-exists' => "Non ge puè ccrejà 'na pàgene nove purcè esiste già!",
+'defaultmessagetext' => 'Messàgge de teste de base',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "Fà attenziò: Sta vosce tène 'nu sbuenne de funziune de chiamate a l'analizzatore.
@@ -1399,6 +1401,7 @@ Ce tu 'u mitte, a fatje ca è fatte t'avène ricanusciute.",
 'newsectionsummary' => '/* $1 */ seziona nove',
 'rc-enhanced-expand' => 'Fà vedè le dettaglie (ha ausà JavaScript)',
 'rc-enhanced-hide' => 'Scunne le dettaglie',
+'rc-old-title' => 'origgenariamende ccreajate cumme "$1"',
 
 # Recent changes linked
 'recentchangeslinked' => 'Cangiaminde culleghete',
@@ -1563,6 +1566,7 @@ Ce 'u probbleme angore jè presende, condatte 'n'[[Special:ListUsers/sysop|ammin
 'upload-too-many-redirects' => "'A URL tène troppe redirezionaminde",
 'upload-unknown-size' => 'Dimenziona scanusciute',
 'upload-http-error' => "S'a verificate 'n'errore HTTP: $1",
+'upload-copy-upload-invalid-domain' => "'A copie de le carecaminde non g'è disponibbile da stu dominie.",
 
 # File backend
 'backend-fail-stream' => "Non ge pozze trasmettere 'u file $1.",
@@ -1581,6 +1585,7 @@ Ce 'u probbleme angore jè presende, condatte 'n'[[Special:ListUsers/sysop|ammin
 'backend-fail-closetemp' => 'Non ge pozze achiudere file temboranèe.',
 'backend-fail-read' => "Non ge pozze leggere 'u file $1.",
 'backend-fail-create' => "Non ge pozze ccrejà 'u file $1.",
+'backend-fail-connect' => 'Non ge pozze connettere \'a memorie de rrete "$1".',
 
 # Lock manager
 'lockmanager-notlocked' => 'Non ge pozze sbloccà "$1"; jidde non g\'è bloccate.',
@@ -1915,6 +1920,7 @@ Tu puè restringere 'a viste selezionanne 'u tipe de archivije, 'u nome utende (
 'allpagesbadtitle' => "'U titele d'a vôsce ca è date ere invalide o tenève 'nu prefisse inter-lènghe o inter-uicchi.
 Pò condenè une  cchiù carattere ca non ge ponne essere ausate jndr'à le titele.",
 'allpages-bad-ns' => '{{SITENAME}} non ge tène \'u namaspace "$1".',
+'allpages-hide-redirects' => 'Scunne le redirezionaminde',
 
 # Special:Categories
 'categories' => 'Le Categorije',
@@ -2673,6 +2679,7 @@ Reggistrele sus a 'u combiuter tune e carechele aqquà.",
 'import-invalid-interwiki' => "Non ge pozze 'mbortà da 'a Uicchi specificate.",
 'import-error-edit' => 'Pàgene "$1" non g\' \'mbortate purcé tu non ge tìne le permesse pe cangiarle.',
 'import-error-create' => 'Pàgene "$1" non g\' \'mbortate purcé tu non ge tìne le permesse pe ccrejarle.',
+'import-error-invalid' => "'A pàgene \"\$1\" non g'ha state 'mbortate purcé 'u nome jè invalide.",
 
 # Import log
 'importlogpage' => "Archivie de le 'mbortaziune",
@@ -2686,6 +2693,8 @@ Reggistrele sus a 'u combiuter tune e carechele aqquà.",
 'javascripttest' => 'Test de JavaScript',
 'javascripttest-disabled' => "Sta funzione non g'à state abbilitate sus a sta Uicchi.",
 'javascripttest-title' => 'Stoche a esegue $1 test',
+'javascripttest-pagetext-noframework' => 'Sta pàgene jè riservate pe le esecuziune de le test de Javascript.',
+'javascripttest-pagetext-frameworks' => 'Pe piacere scacchie une de le seguende ambiende de test: $1',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => "'A pàgene utende meje",
@@ -3860,19 +3869,23 @@ Ce nò, tu puè ausà 'u module facile aqquà sotte. 'U commende tune avène agg
 'feedback-bugnew' => "Agghie verificate. Manne 'nu bug nuève",
 
 # API errors
+'api-error-badaccess-groups' => 'Tu non ge puè carecà file sus a sta Uicchi.',
 'api-error-badtoken' => 'Errore inderne: Gettone errate.',
 'api-error-duplicate-popup-title' => 'Dupleche {{PLURAL:$1|file|file}}',
 'api-error-empty-file' => "'U file ca tu è confermate ere vacande.",
+'api-error-emptypage' => 'Quanne se ne ccreje une, le pàggene vacande non ge sò permesse.',
 'api-error-file-too-large' => "'U file ca tu è confermate jè troppe granne.",
 'api-error-filename-tooshort' => "'U nome d'u file jè troppe curte.",
 'api-error-filetype-banned' => 'Stu tipe de file jè vietate.',
 'api-error-filetype-missing' => "'U file jè senze 'n'estenzione.",
 'api-error-http' => "Errore inderne: Non ge se riesce a collegà a 'u server",
 'api-error-illegal-filename' => "'U nome d'u file non g'è permesse.",
+'api-error-invalid-file-key' => "Errore inderne: 'U file non ge se iacchie jndr'à memorie temboranèe.",
 'api-error-missingparam' => 'Errore inderne: Parametre mangande sus a richieste.',
 'api-error-missingresult' => "Errore inderne: Non ge se pò determinà ce 'a copie ha state fatte.",
 'api-error-mustbeloggedin' => 'Tu a essere collegate pe carecà le file.',
 'api-error-mustbeposted' => "Errore inderne: 'A richieste vole HTTP POST.",
+'api-error-noimageinfo' => "'U carecamende ha riuscite, ma 'u server non ge n'ha date nisciuna 'mbormazione sus a 'u file.",
 'api-error-nomodule' => "Errore inderne: Nisciune module de carecamende 'mbostate.",
 'api-error-ok-but-empty' => "Errore inderne: Nisciune resposte da 'u server.",
 'api-error-overwrite' => "'A sovrascritture de 'nu file ca esiste non ge se pò fà.",

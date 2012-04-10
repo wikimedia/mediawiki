@@ -364,7 +364,7 @@ $messages = array(
 'variants' => 'ප්‍රභේද',
 
 'errorpagetitle' => 'දෝෂය',
-'returnto' => '$1 ට නැවත යන්න.',
+'returnto' => '$1 වෙත නැවත යන්න.',
 'tagline' => '{{SITENAME}} වෙතින්',
 'help' => 'උදවු',
 'search' => 'සොයන්න',

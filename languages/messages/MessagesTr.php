@@ -3207,6 +3207,7 @@ Diğerleri varsayılan olarak gizlenecektir.
 'exif-languagecode' => 'Dil',
 'exif-iimversion' => 'IIM sürümü',
 'exif-iimcategory' => 'Kategori',
+'exif-datetimeexpires' => 'Bu tarihten sonra kullanmayın:',
 'exif-identifier' => 'Tanımlayıcı',
 'exif-lens' => 'Kullanılan objektif',
 'exif-serialnumber' => 'Kameranın seri numarası',
@@ -3731,6 +3732,8 @@ Resimler tam çözünürlükte görüntülenir, diğer dosya tipleri ilgili prog
 'compare-rev2' => 'Sürüm 2',
 'compare-submit' => 'Karşılaştır',
 'compare-invalid-title' => 'Belirttiğiniz başlık geçersiz.',
+'compare-title-not-exists' => 'Belirttiğiniz başlık mevcut değil.',
+'compare-revision-not-exists' => 'Belirttiğiniz sürüm mevcut değil.',
 
 # Database error messages
 'dberr-header' => 'Bu vikinin bir sorunu var',
@@ -3760,7 +3763,10 @@ Resimler tam çözünürlükte görüntülenir, diğer dosya tipleri ilgili prog
 # New logging system
 'logentry-delete-delete' => '$1 $3 sayfasını sildi',
 'logentry-delete-restore' => '$1 $3 sayfasını geri getirdi',
+'logentry-delete-revision' => '$1 $3: $4 sayfasında {{PLURAL:$5|bir sürümün|$5 sürümün}} görünürlüğünü değiştirdi',
 'logentry-delete-revision-legacy' => '$1 $3 sayfasındaki sürümlerin görünürlüğünü değiştirdi',
+'logentry-suppress-revision' => '$1 $3: $4 sayfasında {{PLURAL:$5|bir sürümün|$5 sürümün}} görünürlüğünü gizlice değiştirdi',
+'logentry-suppress-revision-legacy' => '$1 $3 sayfasındaki sürümlerin görünürlüğünü değiştirdi',
 'revdelete-content-hid' => 'Gizli içerik',
 'revdelete-summary-hid' => 'değişiklik özeti gizlenmiş',
 'revdelete-uname-hid' => 'kullanıcı adı gizli',

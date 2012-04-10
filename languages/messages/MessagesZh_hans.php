@@ -612,7 +612,7 @@ $1',
 'badtitle' => '错误的标题',
 'badtitletext' => '所请求页面的标题是无效的、不存在，跨语言或跨wiki链接的标题错误。它可能包含一个或更多的不能用于标题的字符。',
 'perfcached' => '下列数据已缓存，但可能已过时。最高{{PLURAL:$1|一个结果|$1个结果}}在缓存中可用。',
-'perfcachedts' => '下列数据已缓存，它们最后更新在$1。最高{{PLURAL:$4|一个结果|$4个结果}}在缓存中可用。 A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
+'perfcachedts' => '下列数据已缓存，最后更新于$1。缓存中最多可有{{PLURAL:$4|1个结果|$4个结果}}。',
 'querypage-no-updates' => '当前禁止对此页面进行更新。此处的数据将不能被立即刷新。',
 'wrong_wfQuery_params' => '错误的参数被传递到 wfQuery（）<br />
 函数：$1<br />
@@ -716,6 +716,7 @@ $2',
 'emailconfirmlink' => '确认您的邮箱地址',
 'invalidemailaddress' => '邮箱地址格式不正确，请输入正确的邮箱地址或清空该输入框。',
 'cannotchangeemail' => '本wiki不允许对账户的电子邮件地址进行更改。',
+'emaildisabled' => '此站点不能发送电子邮件。',
 'accountcreated' => '已建立账户',
 'accountcreatedtext' => '$1的账户已经被创建。',
 'createaccount-title' => '在{{SITENAME}}中创建新账户',
@@ -898,6 +899,7 @@ $2
 这种情况通常出现于使用含有很多臭虫、以网络为主的匿名代理服务的时候。",
 'edit_form_incomplete' => "'''编辑表单的某些部分没有到达服务器 ；请检查您的编辑内容是否完整并再试一次。'''",
 'editing' => '编辑“$1”',
+'creating' => '创建 $1',
 'editingsection' => '编辑“$1”（段落）',
 'editingcomment' => '编辑“$1”（新段落）',
 'editconflict' => '编辑冲突：$1',
@@ -1680,6 +1682,9 @@ $1',
 'backend-fail-contenttype' => '无法判断文件的内容类型来储存于“$1”。',
 'backend-fail-batchsize' => '存储后端被给予了一批$1个文件{{PLURAL:$1|操作|操作}}；限值为$2个{{PLURAL:$2|操作|操作}}。',
 
+'filejournal-fail-dbconnect' => '无法连接到后端存储的日志数据库“$1”。',
+'filejournal-fail-dbquery' => '无法更新后端存储的日志数据库“$1”。',
+
 # Lock manager
 'lockmanager-notlocked' => '无法解锁“$1”；它没有被锁定。',
 'lockmanager-fail-closelock' => '无法关闭“$1”的锁文件。',
@@ -2001,6 +2006,7 @@ $1',
 'allpagesprefix' => '显示具有此前缀（名字空间）的页面：',
 'allpagesbadtitle' => '给定的页面标题是非法的，或者具有一个内部语言或内部 wiki 的前缀。它可能包含一个或更多的不能用于标题的字符。',
 'allpages-bad-ns' => '在{{SITENAME}}中没有一个叫做"$1"的名字空间。',
+'allpages-hide-redirects' => '隐藏重定向页',
 
 # Special:Categories
 'categories' => '分类',

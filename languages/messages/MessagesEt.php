@@ -948,7 +948,7 @@ Allpool on toodud viimane blokeerimislogi sissekanne:',
 'updated' => '(Värskendatud)',
 'note' => "'''Meeldetuletus:'''",
 'previewnote' => "'''Ära unusta, et see on kõigest eelvaade!'''
-Sinu muudatused pole veel salvestatud!",
+Sinu muudatused pole veel salvestatud! [[#editform|→ Jätka redigeerimist]]",
 'previewconflict' => 'See eelvaade näitab, kuidas ülemises toimetuskastis olev tekst hakkab välja nägema, kui otsustate salvestada.',
 'session_fail_preview' => "'''Vabandust! Meil ei õnnestunud seansiandmete kaotuse tõttu sinu muudatust töödelda.'''
 Palun proovi uuesti.

@@ -991,6 +991,8 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'rev-deleted-text-view' => "Էջի այս տարբերակը '''ջնջված''' է։
 Որպես ադմինիստրատոր դուք կարող եք դիտել այն։
 Հնարավոր է ջնջման մանրամասնություններ լինեն [{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} ջնջման տեղեկամատյանում]։",
+'rev-deleted-no-diff' => "Դուք չեք կարող դիտել տարբերությունը, քանի որ խմբագրումների մեկը '''ջնջվել''' է։ Մանրամասները կարող եք գտնել [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} ջնջման տեղեկամատյանում]",
+'rev-suppressed-no-diff' => "Դուք չեք կարող դիտել տարբերությունը, քանի որ խմբագրումների մեկը '''ջնջվել''' է։",
 'rev-delundel' => 'ցույց տալ/թաքցնել',
 'rev-showdeleted' => 'ցույց տալ',
 'revisiondelete' => 'Ջնջել/վերականգնել տարբերակները',
@@ -2188,13 +2190,13 @@ Please visit [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and 
 'tooltip-feed-atom' => 'Այս էջի Atom սնուցումը',
 'tooltip-t-contributions' => 'Դիտել այս մասնակցի ներդրումների ցանկը',
 'tooltip-t-emailuser' => 'Ուղարկել էլ-նամակ այս մասնակցին',
-'tooltip-t-upload' => 'Բեռնել պատկերներ կամ մեդիա նիշքեր',
+'tooltip-t-upload' => 'Բեռնել ֆայլեր',
 'tooltip-t-specialpages' => 'Բոլոր սպասարկող էջերի ցանկը',
 'tooltip-t-print' => 'Այս էջի տպելու տարբերակ',
 'tooltip-t-permalink' => 'Էջի այս տարբերակի մշտական հղում',
 'tooltip-ca-nstab-main' => 'Դիտել հոդվածը',
 'tooltip-ca-nstab-user' => 'Դիտել մասնակցի էջը',
-'tooltip-ca-nstab-media' => 'Դիտել մեդիա-նիշքի էջը',
+'tooltip-ca-nstab-media' => 'Դիտել մեդիաֆայլի էջը',
 'tooltip-ca-nstab-special' => 'Սա սպասարկող էջ է, դուք չեք կարող հենց իրեն խմբագրել',
 'tooltip-ca-nstab-project' => 'Դիտել նախագծի էջը',
 'tooltip-ca-nstab-image' => 'Դիտել պատկերի էջը',
@@ -2483,6 +2485,10 @@ $3
 # Special:Version
 'version' => 'ՄեդիաՎիքի տարբերակը',
 
+# Special:FilePath
+'filepath-page' => 'Ֆայլ:',
+'filepath-submit' => 'Անցնել',
+
 # Special:FileDuplicateSearch
 'fileduplicatesearch-submit' => 'Որոնել',
 
@@ -2495,7 +2501,7 @@ $3
 'specialpages-group-other' => 'Այլ հատուկ էջեր',
 'specialpages-group-login' => 'Մտնել / Գրանցվել',
 'specialpages-group-changes' => 'Վերջին փոփոխություններ և տեղեկամատյաններ',
-'specialpages-group-media' => 'Մեդիա նյութերի տեղեկատուներ և բեռնում',
+'specialpages-group-media' => 'Մեդիանյութերի տեղեկատուներ և բեռնումներ',
 'specialpages-group-users' => 'Մասնակիցներ և իրավունքներ',
 'specialpages-group-highuse' => 'Հաճախակի օգտագործվող էջեր',
 'specialpages-group-pages' => 'Էջերի ցանկեր',
@@ -2507,6 +2513,14 @@ $3
 # Special:BlankPage
 'blankpage' => 'Դատարկ էջ',
 'intentionallyblankpage' => 'Այս էջը միտումնավոր դատարկ է թողված։',
+
+# Special:Tags
+'tag-filter-submit' => 'Ֆիլտրել',
+'tags-edit' => 'խմբագրել',
+
+# Special:ComparePages
+'compare-page1' => 'Էջ 1',
+'compare-page2' => 'Էջ 2',
 
 # Database error messages
 'dberr-header' => 'Այս վիքիում խնդիրներ են առաջացել',

@@ -674,9 +674,9 @@ $2',
 'ns-specialprotected' => 'Không thể sửa chữa các trang trong không gian tên {{ns:special}}.',
 'titleprotected' => "Tựa đề này đã bị [[User:$1|$1]] khóa không cho tạo ra.
 Lý do được cung cấp là ''$2''.",
-'filereadonlyerror' => "Không thể sửa đổi tập tin “$1” vì kho tập tin “$2” đang ở chế độ chỉ-đọc.
+'filereadonlyerror' => 'Không thể sửa đổi tập tin “$1” vì kho tập tin “$2” đang ở chế độ chỉ-đọc.
 
-Lý do đưa ra là: “''$3''”.",
+Bảo quản viên khóa nó đưa lý do là: “$3”.',
 
 # Virus scanner
 'virus-badscanner' => "Cấu hình sau: không nhận ra bộ quét virus: ''$1''",
@@ -1038,6 +1038,7 @@ Dường như trang này đã bị xóa.',
 'edit-no-change' => 'Sửa đổi của bạn không được tính đến, vì nó không làm thay đổi nội dung.',
 'edit-already-exists' => 'Không thể tạo trang mới.
 Nó đã tồn tại.',
+'defaultmessagetext' => 'Nội dung mặc định',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Cảnh báo: Trang này có quá nhiều lần gọi hàm cú pháp cần mức độ xử lý cao.

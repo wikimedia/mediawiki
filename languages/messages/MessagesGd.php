@@ -599,7 +599,7 @@ no [{{fullurl:{{FULLPAGENAME}}|action=edit}} an duilleag seo a dheasachadh]</spa
 no <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} na logaichean co-cheangailte a rannsachadh]</span>.',
 'updated' => '(Air ùrachadh)',
 'previewnote' => "'''Cuimhnich nach eil ann ach ro-shealladh.'''
-Cha deach na mùthaidhean agad a shàbhaladh fhathast!",
+Cha deach na mùthaidhean agad a shàbhaladh fhathast! [[#editform|→ Lean ort a' deasachadh]]",
 'editing' => "A' deasachadh $1",
 'editingsection' => "A' deasachadh $1 (earrann)",
 'editconflict' => 'Còmhstri deasachaidh: $1',
@@ -1184,7 +1184,7 @@ Tadhail air [//www.mediawiki.org/wiki/Localisation Ionadaileadh MediaWiki] is [/
 'tooltip-feed-atom' => 'Inbhir Atom airson na duilleige seo',
 'tooltip-t-contributions' => "Seall liosta nam mùthaidhean a rinn a' chleachdaiche seo",
 'tooltip-t-emailuser' => 'Cuir post-dealain dhan chleachdaiche seo',
-'tooltip-t-upload' => 'Luchdaich a-nuas faidhlichean',
+'tooltip-t-upload' => 'Luchdaich suas faidhle',
 'tooltip-t-specialpages' => 'Liosta de gach duilleag shònraichte',
 'tooltip-t-print' => 'Tionndadh dhen duilleag a ghabhas a chlò-bhualadh',
 'tooltip-t-permalink' => 'Dèan ceangal buan gu mùthadh seo na duilleige',

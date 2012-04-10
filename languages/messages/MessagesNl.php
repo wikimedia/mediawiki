@@ -1132,6 +1132,7 @@ Deze lijkt verwijderd te zijn.',
 'edit-no-change' => 'Uw bewerking is genegeerd, omdat er geen wijziging aan de tekst is gemaakt.',
 'edit-already-exists' => 'De pagina is niet aangemaakt.
 Deze bestaat al.',
+'defaultmessagetext' => 'Standaardinhoud',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''Waarschuwing:''' deze pagina gebruikt te veel kostbare parserfuncties.

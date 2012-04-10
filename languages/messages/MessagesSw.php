@@ -815,7 +815,7 @@ Haririo umekataliwa ili kuzuia uharibifu wa maandishi ya kurasa.
 Haya hutokea kwa muda ambao unatumia huduma ya seva ya wavu isiyotiwa jina na yenye hitilafu nyingi.",
 'edit_form_incomplete' => "'''Baadhi ya sehemu za fomu ya kuhariria hazikufikia seva. Hakikisha kwamba haririo lako bado lipo na kisha jaribu tena.'''",
 'editing' => 'Kuhariri $1',
-'creating' => '$1 unaanzishwa',
+'creating' => '$1 inaanzishwa',
 'editingsection' => 'Unahariri $1 (fungu)',
 'editingcomment' => 'Una hariri $1 (sehemu mpya)',
 'editconflict' => 'Mgongano wa kuhariri: $1',
@@ -1639,6 +1639,10 @@ Orodha inayofuata inaonyesha {{PLURAL:$1|kiungo cha kwanza|viungo $1 vya kwanza}
 Tafadhali tazama [$2 ukurasa wa maelezo ya faili] kwa maelezo zaidi.',
 'sharedupload-desc-here' => 'Faili hili linatoka $1 na huenda likawa limetumika na miradi mingine.
 Maelezo yaliyopo katika [$2 ukurasa wa maelezo ya faili] linaonyeshwa hapa.',
+'sharedupload-desc-edit' => 'Faili hili linatoka $1 na huenda likawa limetumika na miradi mingine.
+Pengine ungependa kuhariri maelezo yaliyopo katika [$2 ukurasa wa maelezo ya faili] pale.',
+'sharedupload-desc-create' => 'Faili hili linatoka $1 na huenda likawa limetumika na miradi mingine.
+Pengine ungependa kuhariri maelezo yaliyopo katika [$2 ukurasa wa maelezo ya faili] pale.',
 'filepage-nofile' => 'Hakuna faili yenye jina hili.',
 'filepage-nofile-link' => 'Hakuna faili lenye jina hili, lakini unaweza [$1 kulipakia].',
 'uploadnewversion-linktext' => 'Pakia toleo jipya la faili hili',

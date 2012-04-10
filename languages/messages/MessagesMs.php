@@ -582,7 +582,7 @@ Pertanyaan: $2',
 'titleprotected' => "Tajuk ini telah dilindungi oleh [[User:$1|$1]] daripada dicipta. Sebab yang diberikan ialah ''$2''.",
 'filereadonlyerror' => 'Fail "$1" tidak dapat diubah suai kerana repositori fail "$2" berada dalam ragam baca sahaja.
 
-Sebab yang diberikan ialah "\'\'$3\'\'".',
+Pentadbir yang menguncinya memberikan penjelasan yang berikut: "$3".',
 
 # Virus scanner
 'virus-badscanner' => "Konfigurasi rosak: pengimbas virus yang tidak diketahui: ''$1''",
@@ -936,6 +936,7 @@ Log penghapusan bagi laman ini dilampirkan di bawah untuk rujukan.',
 'edit-conflict' => 'Percanggahan penyuntingan.',
 'edit-no-change' => 'Suntingan anda diabaikan kerana tiada perubahan dibuat pada teks tersebut.',
 'edit-already-exists' => 'Tidak dapat mencipta laman baru kerana ia telah wujud.',
+'defaultmessagetext' => 'Teks mesej asal',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Amaran: Laman ini mengandungi terlalu banyak panggilan fungsi penghurai yang intensif.

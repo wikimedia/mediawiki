@@ -728,7 +728,7 @@ $2',
 'titleprotected' => 'Esta página ha sido protegida contra creación por [[User:$1|$1]].
 El motivo dado fue: "\'\'$2\'\'".',
 'filereadonlyerror' => 'No se puede modificar el archivo "$1" porque el repositorio de archivos "$2" está en modo de sólo lectura.
-El motivo suministrado es "$3".',
+El administrador que lo ha bloqueado ofrece esta explicación: "$3".',
 
 # Virus scanner
 'virus-badscanner' => "Error de configuración: Antivirus desconocido: ''$1''",
@@ -1103,6 +1103,7 @@ Parece que ha sido borrada.',
 'edit-no-change' => 'Se ignoró tu revisión, porque no se hizo ningún cambio al texto.',
 'edit-already-exists' => 'No se pudo crear una página nueva.
 Ya existe.',
+'defaultmessagetext' => 'Texto de mensaje predeterminado',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Aviso: Esta página contiene demasiadas llamadas a funciones sintácticas costosas (#ifexist: y similares)

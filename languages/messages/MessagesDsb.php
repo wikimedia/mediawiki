@@ -540,7 +540,7 @@ Wótpšašanje: $2',
 'titleprotected' => "Bok z toś tym mjenim bu wót [[User:$1|$1]] pśeśiwo napóranjeju šćitany. Pśicyna jo ''$2''.",
 'filereadonlyerror' => 'Njejo móžno dataju "$1" změniś, dokulaž datajowy repozitorium "$2" jo jano cytajobny.
 
-Pódana pśicyna jo "\'\'$3\'\'".',
+Administrator, kenž jo jen zastajił, jo toś tu pśicynu pódał: "$3".',
 
 # Virus scanner
 'virus-badscanner' => "Špatna konfiguracija: njeznaty wirusowy scanner: ''$1''",
@@ -880,6 +880,7 @@ Zda sem až jo wulašowany.',
 'edit-no-change' => 'Wašo wobźěłanje jo se ignorěrowało, dokulaž tekst njejo se změnił.',
 'edit-already-exists' => 'Njejo móžno było nowy bok napóraś.
 Eksistěrujo južo.',
+'defaultmessagetext' => 'Standardny tekst powěźeńki',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Warnowanje: Toś ten bok wopśimujo pśewjele wołanjow parserowych funkcijow wupominajucych wusoke wugbaśe.

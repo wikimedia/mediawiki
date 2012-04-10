@@ -571,9 +571,9 @@ $2',
 'ns-specialprotected' => 'Posebnih strani ni mogoče urejati.',
 'titleprotected' => "Uporabnik [[User:$1|$1]] je preprečil ustvarjanje strani s takim naslovom.
 Podani razlog je bil »''$2''«.",
-'filereadonlyerror' => "Ne morem spremeniti datoteke »$1«, ker je skladišče datotek »$2« v načinu, ki dovoljuje samo branje.
+'filereadonlyerror' => 'Ne morem spremeniti datoteke »$1«, ker je skladišče datotek »$2« v načinu, ki dovoljuje samo branje.
 
-Podano pojasnilo je »''$3''«.",
+Administrator, ki ga je zaklenil, je podal naslednje pojasnilo: »$3«.',
 
 # Virus scanner
 'virus-badscanner' => "Slaba konfiguracija: neznani virus skener: ''$1''",
@@ -938,7 +938,7 @@ Lahko se vrnete nazaj in urejate že obstoječe strani, ali pa se [[Special:User
 'sectioneditnotsupported-title' => 'Urejanje razdelkov ni podprto',
 'sectioneditnotsupported-text' => 'Urejanje razdelkov ni podprto na tej strani.',
 'permissionserrors' => 'Napake dovoljenj',
-'permissionserrorstext' => 'Za izvedbo tega nimate dovoljenja zaradi {{PLURAL:$1|naslednjega razloga|naslednjih razlogov|naslednjih razlogov|naslednjih razlogov|naslednjih razlogov}}:',
+'permissionserrorstext' => 'Nimate dovoljenja za izvedbo dejanja zaradi {{PLURAL:$1|naslednjega razloga|naslednjih razlogov|naslednjih razlogov|naslednjih razlogov|naslednjih razlogov}}:',
 'permissionserrorstext-withaction' => 'Nimate dovoljenja za $2, zaradi {{PLURAL:$1|naslednjega razloga|naslednjih $1 razlogov|naslednjih $1 razlogov|naslednjih $1 razlogov}}:',
 'recreate-moveddeleted-warn' => "'''Opozorilo: Pišete stran, ki je bila nekoč že izbrisana.'''
 
@@ -953,6 +953,7 @@ Izgleda, da je bila izbrisana.',
 'edit-conflict' => 'Navzkrižje urejanj.',
 'edit-no-change' => 'Vaše urejanje je bilo prezrto, saj ni vsebovalo sprememb.',
 'edit-already-exists' => 'Ni bilo mogoče ustvariti nove strani, ker že obstaja.',
+'defaultmessagetext' => 'Prednastavljeno besedilo',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''Opozorilo:''' Ta stran vsebuje preveč klicev funkcije razčlenjevalnika kode.

@@ -758,7 +758,7 @@ Wann Dir nach en Kéier op \"{{int:savearticle}}\" klickt da gëtt Är Ännerung
 D'Spär gouf vum \$1 gemaach. Als Grond gouf ''\$2'' uginn.
 
 * Ufank vun der Spär: \$8
-* Ënn vun der Spär: \$6
+* Enn vun der Spär: \$6
 * Spär betrëfft: \$7
 
 Dir kënnt den/d' \$1 kontaktéieren oder ee vun den aneren [[{{MediaWiki:Grouppage-sysop}}|Administrateure]] fir iwwer d'Spär ze schwätzen.
@@ -1473,7 +1473,7 @@ Si muss manner wéi $1 {{PLURAL:$1|Zeechen|Zeechen}} hunn.',
 'rclinks' => 'Déi lescht $1 Ännerunge vun de leschten $2 Deeg weisen.<br />$3',
 'diff' => 'Ënnerscheed',
 'hist' => 'Versiounen',
-'hide' => 'Verstoppen',
+'hide' => 'verstoppen',
 'show' => 'weisen',
 'minoreditletter' => 'k',
 'newpageletter' => 'N',
@@ -2247,7 +2247,7 @@ Hei sinn déi aktuell Astellunge fir d'Säit '''$1''':",
 'protect-cantedit' => "Dir kënnt d'Spär vun dëser Säit net änneren, well Dir net déi néideg Rechter hutt fir déi Säit z'änneren.",
 'protect-othertime' => 'Aner Zäit:',
 'protect-othertime-op' => 'aner Zäit',
-'protect-existing-expiry' => 'Ënn vun der Säitespär: $2 ëm $3 Auer',
+'protect-existing-expiry' => 'Enn vun der Säitespär: $2 ëm $3 Auer',
 'protect-otherreason' => 'Aneren/zousätzleche Grond:',
 'protect-otherreason-op' => 'Anere Grond',
 'protect-dropdown' => '*Déi heefegst Grënn fir eng Säit ze spären
@@ -2371,7 +2371,7 @@ $1',
 'whatlinkshere-prev' => '{{PLURAL:$1|vireg|vireg $1}}',
 'whatlinkshere-next' => '{{PLURAL:$1|nächsten|nächst $1}}',
 'whatlinkshere-links' => '← Linken',
-'whatlinkshere-hideredirs' => 'Viruleedungen $1',
+'whatlinkshere-hideredirs' => 'Viruleedunge $1',
 'whatlinkshere-hidetrans' => 'Agebonne Schabloune $1',
 'whatlinkshere-hidelinks' => 'Linken $1',
 'whatlinkshere-hideimages' => '$1 Linken op de Fichier',
@@ -2736,7 +2736,7 @@ Späichert en op Ärem Computer of a luet en hei nees erop.',
 'tooltip-pt-anontalk' => "Diskussioun iwwer d'Ännerungen déi vun dëser IP-Adress aus gemaach gi sinn",
 'tooltip-pt-preferences' => 'Meng Astellungen',
 'tooltip-pt-watchlist' => 'Lëscht vu Säiten, bei deenen Dir op Ännerungen oppasst',
-'tooltip-pt-mycontris' => 'Lëscht vun äre Kontributiounen',
+'tooltip-pt-mycontris' => 'Lëscht vun Äre Kontributiounen',
 'tooltip-pt-login' => 'Sech umelle gëtt gäre gesinn, Dir musst et awer net maachen.',
 'tooltip-pt-anonlogin' => 'Et wier gutt, Dir géift Iech aloggen, och wann et keng Musse-Saach ass.',
 'tooltip-pt-logout' => 'Ofmellen',

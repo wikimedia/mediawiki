@@ -465,7 +465,7 @@ po [{{fullurl:{{FULLPAGENAME}}|action=edit}} chanjya an folen-ma]</span>.',
 'last' => 'kens',
 'page_first' => 'kensa',
 'page_last' => 'kens',
-'histlegend' => "Ow towis dyffransow: Merkyowgh kistednow radyo an amendyansow dhe geheveli, ha gwaskowgh 'entra' po an boton orth goles an folen.<br />
+'histlegend' => "Dowis dyffransow: Merkyowgh kistednow radyo an amendyansow dhe geheveli, ha gwaskowgh 'entra' po an boton orth goles an folen.<br />
 Alhwedh: '''({{int:cur}})''' = dyffrans gans an amendyans diwettha, '''({{int:last}})''' = dyffrans gans amendyans kens, '''{{int:minoreditletter}}''' = chanj bian.",
 'history-fieldset-title' => 'Peuri an istori',
 'history-show-deleted' => 'Diles hep ken',

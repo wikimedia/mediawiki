@@ -611,7 +611,7 @@ $2',
 O motivo achegado é ''$2''.",
 'filereadonlyerror' => 'Non se puido modificar o ficheiro "$1" porque o repositorio "$2" está en modo de só lectura.
 
-O motivo achegado é "\'\'$3\'\'".',
+O administrador que bloqueou o repositorio achegou este motivo: "$3".',
 
 # Virus scanner
 'virus-badscanner' => "Configuración errónea: escáner de virus descoñecido: ''$1''",
@@ -710,6 +710,7 @@ Como resultado, os visitantes que usen este enderezo IP non poden crear máis co
 'invalidemailaddress' => 'Non se pode aceptar o enderezo de correo electrónico porque semella ter un formato incorrecto.
 Insira un enderezo cun formato válido ou baleire ese campo.',
 'cannotchangeemail' => 'Neste wiki non se poden mudar os enderezos de correo electrónico asociados a unha conta.',
+'emaildisabled' => 'Este sitio non pode enviar correos electrónicos.',
 'accountcreated' => 'Conta creada',
 'accountcreatedtext' => 'Creouse a conta de usuario para "$1".',
 'createaccount-title' => 'Creación dunha conta para {{SITENAME}}',
@@ -913,7 +914,7 @@ Velaquí está a última entrada do rexistro de bloqueos, por se quere consultal
 Lembre que as páxinas .css e .js personalizadas utilizan un título en minúsculas, como por exemplo {{ns:user}}:Foo/vector.css no canto de {{ns:user}}:Foo/Vector.css.",
 'updated' => '(Actualizado)',
 'note' => "'''Nota:'''",
-'previewnote' => "'''Lembre que esta é só unha vista previa e que aínda non gardou os seus cambios!'''",
+'previewnote' => "'''Lembre que esta é só unha vista previa e que aínda non gardou os seus cambios!''' [[#editform|→ Continuar editando]]",
 'previewconflict' => 'Esta vista previa mostra o texto na área superior tal e como aparecerá se escolle gardar.',
 'session_fail_preview' => "'''O sistema non pode procesar a súa edición porque se perderon os datos de inicio da sesión.
 Por favor, inténteo de novo.
@@ -929,6 +930,7 @@ Rexeitouse a edición para evitar que se corrompa o texto do artigo.
 Isto pode acontecer porque estea a empregar un servizo de ''proxy'' anónimo defectuoso baseado na web.",
 'edit_form_incomplete' => "'''Algunhas partes do formulario de edición non chegaron ao servidor; comprobe que a súa modificación está intacta e inténteo de novo.'''",
 'editing' => 'Editando "$1"',
+'creating' => 'Creando "$1"',
 'editingsection' => 'Editando unha sección de "$1"',
 'editingcomment' => 'Editando unha nova sección de "$1"',
 'editconflict' => 'Conflito de edición: "$1"',
@@ -994,6 +996,7 @@ Semella que foi borrada.',
 'edit-no-change' => 'A súa edición foi ignorada dado que non fixo ningún cambio no texto.',
 'edit-already-exists' => 'Non se pode crear a nova páxina.
 Esta xa existe.',
+'defaultmessagetext' => 'Texto predeterminado',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''Aviso:''' Esta páxina contén demasiados analizadores de funcións de chamadas.
@@ -1887,6 +1890,10 @@ Hai dispoñible [[Special:WhatLinksHere/$2|unha lista completa]].',
 Por favor, vexa a [$2 páxina de descrición do ficheiro] para obter máis información.',
 'sharedupload-desc-here' => 'Este ficheiro é de $1 e pode ser usado por outros proxectos.
 A descrición da [$2 páxina de descrición do ficheiro] móstrase a continuación.',
+'sharedupload-desc-edit' => 'Este ficheiro é de $1 e pode ser usado por outros proxectos.
+Poida que queira editar a descrición da [$2 páxina de descrición do ficheiro].',
+'sharedupload-desc-create' => 'Este ficheiro é de $1 e pode ser usado por outros proxectos.
+Poida que queira editar a descrición da [$2 páxina de descrición do ficheiro].',
 'filepage-nofile' => 'Non existe ningún ficheiro con este nome.',
 'filepage-nofile-link' => 'Non existe ningún ficheiro con este nome, pero pode [$1 cargalo].',
 'uploadnewversion-linktext' => 'Cargar unha nova versión deste ficheiro',
@@ -2099,6 +2106,7 @@ Pode precisar máis a vista seleccionando o tipo de rexistro, o nome do usuario 
 'allpagesprefix' => 'Mostrar as páxinas que comezan co prefixo:',
 'allpagesbadtitle' => 'O título dado á páxina non era válido ou contiña un prefixo inter-linguas ou inter-wikis. Pode que conteña un ou máis caracteres que non se poden empregar nos títulos.',
 'allpages-bad-ns' => '{{SITENAME}} carece do espazo de nomes "$1".',
+'allpages-hide-redirects' => 'Agochar as redireccións',
 
 # Special:Categories
 'categories' => 'Categorías',

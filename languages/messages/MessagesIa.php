@@ -533,7 +533,7 @@ $2',
 Le motivo specificate es ''$2''.",
 'filereadonlyerror' => 'Impossibile modificar le file "$1" perque le deposito de files "$2" es in modo de lectura sol.
 
-Le motivo fornite es "\'\'$3\'\'".',
+Le administrator qui lo blocava offereva iste explication: "$3".',
 
 # Virus scanner
 'virus-badscanner' => "Configuration incorrecte: programma antivirus non cognoscite: ''$1''",
@@ -926,6 +926,7 @@ Pare que illo ha essite delite.',
 'edit-no-change' => 'Tu modification ha essite ignorate, proque nulle cambio esseva facite in le texto.',
 'edit-already-exists' => 'Non poteva crear un nove pagina.
 Illo existe ja.',
+'defaultmessagetext' => 'Texto predefinite del message',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Attention: Iste pagina contine troppo de appellos costose al functiones del analysator syntactic.

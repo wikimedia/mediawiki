@@ -398,7 +398,8 @@ $messages = array(
 'noarticletext-nopermission' => 'Укх сахьате укх оагӀув тӀа яздам дац.
 Шун йийшая, кхыдола йоазувнашкахь [[Special:Search/{{PAGENAME}}|дола цӀерий хаттам корае]] е <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} нийсамий тептара йоазувнаш корае].</span>',
 'note' => "'''ХӀамоалар:'''",
-'previewnote' => "'''Хьалхе бӀаргтассам мара бац, яздам кха яздаь дац!'''",
+'previewnote' => "'''Хьалхе б|аргтассам мара бац.'''
+Яздам кха яздаь дац! [[#editform|→ хувцам д|ахьо д|аде]]",
 'editing' => 'ГӀалатнийсдар: $1',
 'editingsection' => 'ГIалатнийсдар $1 (оагӀувдакъа)',
 'editingcomment' => 'ГӀалатнийсдар $1 (керда декъам)',

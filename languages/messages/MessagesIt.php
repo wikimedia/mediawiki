@@ -645,7 +645,7 @@ $2',
 La motivazione è la seguente: ''$2''.",
 'filereadonlyerror' => 'Non è stato possibile modificare il file "$1" poiché il repository di file "$2" è in modalità di sola lettura.
 
-La motivazione è "\'\'$3\'\'".',
+L\'amministratore che lo ha bloccato ha fornito questa motivazione: "$3".',
 
 # Virus scanner
 'virus-badscanner' => "Errore di configurazione: antivirus sconosciuto: ''$1''",
