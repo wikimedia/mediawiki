@@ -468,11 +468,9 @@ if ( !wfIniGetBool( 'session.auto_start' ) ) {
 
 if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 	if ( $wgRequest->checkSessionCookie() || isset( $_COOKIE[$wgCookiePrefix . 'Token'] ) ) {
-		wfIncrStats( 'request_with_session' );
 		wfSetupSession();
 		$wgSessionStarted = true;
 	} else {
-		wfIncrStats( 'request_without_session' );
 		$wgSessionStarted = false;
 	}
 }
