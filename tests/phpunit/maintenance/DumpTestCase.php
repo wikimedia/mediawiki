@@ -70,19 +70,6 @@ abstract class DumpTestCase extends MediaWikiTestCase {
 	}
 
 	/**
-	 * obtains a new temporary file name
-	 *
-	 * The obtained filename is enlisted to be removed upon tearDown
-	 *
-	 * @returns string: absolute name of the temporary file
-	 */
-	protected function getNewTempFile() {
-		$fname = tempnam( wfTempDir(), 'MW_PHPUnit_' . get_class( $this ) . '_' );
-		$this->tmpfiles[] = $fname;
-		return $fname;
-	}
-
-	/**
 	 * Default set up function.
 	 *
 	 * Clears $wgUser, and reports errors from addDBData to PHPUnit
@@ -97,28 +84,9 @@ abstract class DumpTestCase extends MediaWikiTestCase {
 		if ( $this->exceptionFromAddDBData !== null ) {
 			throw $this->exceptionFromAddDBData;
 		}
-		$this->tmpfiles = array();
 
 		$wgUser = new User();
 	}
-
-	/**
-	 * Default tear down function
-	 *
-	 * Removes all files that have been allocated via self::getNewTempFile, even if
-	 * they turn out to be (empty or non-empty) directories now.
-	 */
-	function tearDown() {
-		foreach ( $this->tmpfiles as $fname ) {
-			if ( is_file( $fname ) || ( is_link( $fname ) ) ) {
-				unlink( $fname );
-			} elseif ( is_dir( $fname ) ) {
-				wfRecursiveRemoveDir( $fname );
-			}
-		}
-		parent::tearDown();
-	}
-
 
 	/**
 	 * Step the current XML reader until node end of given name is found.
