@@ -654,4 +654,141 @@ class LanguageTest extends MediaWikiTestCase {
 			),
 		);
 	}
+
+
+
+	/**
+	 * @dataProvider provideFormatDuration
+	 */
+	function testFormatDuration( $duration, $expected, $intervals = array() ) {
+		$this->assertEquals(
+			$expected,
+			$this->lang->formatDuration( $duration, $intervals ),
+			"formatDuration('$duration'): $expected"
+		);
+	}
+
+	function provideFormatDuration() {
+		return array(
+			array(
+				0,
+				'0 seconds',
+			),
+			array(
+				1,
+				'1 second',
+			),
+			array(
+				2,
+				'2 seconds',
+			),
+			array(
+				60,
+				'1 minute',
+			),
+			array(
+				2 * 60,
+				'2 minutes',
+			),
+			array(
+				3600,
+				'1 hour',
+			),
+			array(
+				2 * 3600,
+				'2 hours',
+			),
+			array(
+				24 * 3600,
+				'1 day',
+			),
+			array(
+				2 * 86400,
+				'2 days',
+			),
+			array(
+				365.25 * 86400, // 365.25 * 86400 = 31557600
+				'1 year',
+			),
+			array(
+				2 * 31557600,
+				'2 years',
+			),
+			array(
+				10 * 31557600,
+				'1 decade',
+			),
+			array(
+				20 * 31557600,
+				'2 decades',
+			),
+			array(
+				100 * 31557600,
+				'1 century',
+			),
+			array(
+				200 * 31557600,
+				'2 centuries',
+			),
+			array(
+				1000 * 31557600,
+				'1 millennium',
+			),
+			array(
+				2000 * 31557600,
+				'2 millennia',
+			),
+			array(
+				9001,
+				'2 hours, 30 minutes and 1 second'
+			),
+			array(
+				3601,
+				'1 hour and 1 second'
+			),
+			array(
+				31557600 + 2 * 86400 + 9000,
+				'1 year, 2 days, 2 hours and 30 minutes'
+			),
+			array(
+				42 * 1000 * 31557600 + 42,
+				'42 millennia and 42 seconds'
+			),
+			array(
+				60,
+				'60 seconds',
+				array( 'seconds' ),
+			),
+			array(
+				61,
+				'61 seconds',
+				array( 'seconds' ),
+			),
+			array(
+				1,
+				'1 second',
+				array( 'seconds' ),
+			),
+			array(
+				31557600 + 2 * 86400 + 9000,
+				'1 year, 2 days and 150 minutes',
+				array( 'years', 'days', 'minutes' ),
+			),
+			array(
+				42,
+				'0 days',
+				array( 'years', 'days' ),
+			),
+			array(
+				31557600 + 2 * 86400 + 9000,
+				'1 year, 2 days and 150 minutes',
+				array( 'minutes', 'days', 'years' ),
+			),
+			array(
+				42,
+				'0 days',
+				array( 'days', 'years' ),
+			),
+		);
+	}
 }
