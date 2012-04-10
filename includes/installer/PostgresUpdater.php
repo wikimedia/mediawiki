@@ -27,17 +27,13 @@ class PostgresUpdater extends DatabaseUpdater {
 	 */
 	protected function getCoreUpdateList() {
 		return array(
-			# rename tables 1.7.3
+			# rename tables 1.7.3 
 			# r15791 Change reserved word table names "user" and "text"
 			array( 'renameTable', 'user', 'mwuser' ),
 			array( 'renameTable', 'text', 'pagecontent' ),
 			array( 'renameIndex', 'mwuser', 'user_pkey', 'mwuser_pkey'),
 			array( 'renameIndex', 'mwuser', 'user_user_name_key', 'mwuser_user_name_key' ),
 			array( 'renameIndex', 'pagecontent','text_pkey', 'pagecontent_pkey' ),
-
-			# new sequences
-			array( 'addSequence', 'logging_log_id_seq'          ),
-			array( 'addSequence', 'page_restrictions_pr_id_seq' ),
 
 			# renamed sequences
 			array( 'renameSequence', 'ipblocks_ipb_id_val', 'ipblocks_ipb_id_seq'         ),
@@ -79,7 +75,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'addTable', 'uploadstash',       'patch-uploadstash.sql' ),
 			array( 'addTable', 'user_former_groups','patch-user_former_groups.sql' ),
 			array( 'addTable', 'config',            'patch-config.sql' ),
-			array( 'addTable', 'external_user','patch-external_user.sql' ),
+			array( 'addTable', 'external_user',     'patch-external_user.sql' ),
 
 			# Needed before new field
 			array( 'convertArchive2' ),
@@ -152,7 +148,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'changeField', 'image',         'img_size',        'integer',  '' ),
 			array( 'changeField', 'image',         'img_width',       'integer',  '' ),
 			array( 'changeField', 'image',         'img_height',      'integer',  '' ),
-			array( 'changeField', 'interwiki',     'iw_local',        'smallint', 'iw_local::smallint DEFAULT 0' ),
+			array( 'changeField', 'interwiki',     'iw_local',        'smallint', 'iw_local::smallint' ),
 			array( 'changeField', 'interwiki',     'iw_trans',        'smallint', 'iw_trans::smallint DEFAULT 0' ),
 			array( 'changeField', 'ipblocks',      'ipb_auto',        'smallint', 'ipb_auto::smallint DEFAULT 0' ),
 			array( 'changeField', 'ipblocks',      'ipb_anon_only',   'smallint', "CASE WHEN ipb_anon_only=' ' THEN 0 ELSE ipb_anon_only::smallint END DEFAULT 0" ),
@@ -194,7 +190,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'setDefault', 'filearchive', 'fa_metadata', '\'\x\'::bytea'),
 			array( 'changeNullableField', 'filearchive', 'fa_metadata', 'NOT NULL'),
 			array( 'changeNullableField', 'recentchanges', 'rc_cur_id', 'NULL' ),
-
+	
 			array( 'checkOiDeleted' ),
 
 			# New indexes
@@ -228,7 +224,7 @@ class PostgresUpdater extends DatabaseUpdater {
 				array('log_timestamp', 'timestamptz_ops', 'btree', 0),
 			),
 			'CREATE INDEX "logging_times" ON "logging" USING "btree" ("log_timestamp")' ),
-			array( 'dropIndex', 'oldimage', 'oi_name' ),
+			array( 'dropIndex', 'oldimage', 'oi_name' ), 
 			array( 'checkIndex', 'oi_name_archive_name', array(
 				array('oi_name', 'text_ops', 'btree', 0),
 				array('oi_archive_name', 'text_ops', 'btree', 0),
@@ -271,7 +267,7 @@ class PostgresUpdater extends DatabaseUpdater {
 				array('titlevector', 'tsvector_ops', 'gist', 0),
 			),
 			'CREATE INDEX "ts2_page_title" ON "page" USING "gist" ("titlevector")' ),
-
+	
 			array( 'checkOiNameConstraint' ),
 			array( 'checkPageDeletedTrigger' ),
 			array( 'checkRevUserFkey' ),
