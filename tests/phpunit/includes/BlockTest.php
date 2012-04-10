@@ -67,7 +67,7 @@ class BlockTest extends MediaWikiLangTestCase {
 		// $this->dumpBlocks();
 
 		$this->assertTrue( $this->block->equals( Block::newFromTarget('UTBlockee') ), "newFromTarget() returns the same block as the one that was made");
-		
+
 		$this->assertTrue( $this->block->equals( Block::newFromID( $this->blockId ) ), "newFromID() returns the same block as the one that was made");
 
 	}
@@ -121,5 +121,49 @@ class BlockTest extends MediaWikiLangTestCase {
 			array( '' ),
 			array( false )
 		);
+	}
+
+	function testCrappyCrossWikiBlocks() {
+		// Delete the last round's block if it's still there
+		$oldBlock = Block::newFromTarget( 'UserOnForeignWiki' );
+		if ( $oldBlock ) {
+			// An old block will prevent our new one from saving.
+			$oldBlock->delete();
+		}
+
+		// Foreign perspective (blockee not on current wiki)...
+		$block = new Block(
+			/* $address */ 'UserOnForeignWiki',
+			/* $user */ 14146,
+			/* $by */ 0,
+			/* $reason */ 'crosswiki block...',
+			/* $timestamp */ wfTimestampNow(),
+			/* $auto */ false,
+			/* $expiry */ $this->db->getInfinity(),
+			/* anonOnly */ false,
+			/* $createAccount */ true,
+			/* $enableAutoblock */ true,
+			/* $hideName (ipb_deleted) */ true,
+			/* $blockEmail */ true,
+			/* $allowUsertalk */ false,
+			/* $byName */ 'MetaWikiUser'
+		);
+
+		$res = $block->insert( $this->db );
+		$this->assertTrue( (bool)$res['id'], 'Block succeeded' );
+
+		// Local perspective (blockee on current wiki)...
+		$user = User::newFromName( 'UserOnForeignWiki' );
+		$user->addToDatabase();
+		// Set user ID to match the test value
+		$this->db->update( 'user', array( 'user_id' => 14146 ), array( 'user_id' => $user->getId() ) );
+		$user = null; // clear
+
+		$block = Block::newFromID( $res['id'] );
+		$this->assertEquals( 'UserOnForeignWiki', $block->getTarget()->getName(), 'Correct blockee name' );
+		$this->assertEquals( '14146',  $block->getTarget()->getId(), 'Correct blockee id' );
+		$this->assertEquals( 'MetaWikiUser', $block->getBlocker(), 'Correct blocker name' );
+		$this->assertEquals( 'MetaWikiUser', $block->getByName(), 'Correct blocker name' );
+		$this->assertEquals( 0, $block->getBy(), 'Correct blocker id' );
 	}
 }
