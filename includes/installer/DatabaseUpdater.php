@@ -272,6 +272,7 @@ abstract class DatabaseUpdater {
 	public function doUpdates( $what = array( 'core', 'extensions', 'purge', 'stats' ) ) {
 		global $wgLocalisationCacheConf, $wgVersion;
 
+		$this->db->begin( __METHOD__ );
 		$what = array_flip( $what );
 		if ( isset( $what['core'] ) ) {
 			$this->runUpdates( $this->getCoreUpdateList(), false );
@@ -294,6 +295,7 @@ abstract class DatabaseUpdater {
 				$this->rebuildLocalisationCache();
 			}
 		}
+		$this->db->commit( __METHOD__ );
 	}
 
 	/**
