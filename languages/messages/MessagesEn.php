@@ -4832,4 +4832,15 @@ Otherwise, you can use the easy form below. Your comment will be added to the pa
 'api-error-uploaddisabled'                => 'Uploading is disabled on this wiki.',
 'api-error-verification-error'            => 'This file might be corrupt, or have the wrong extension.',
 
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|second|seconds}}',
+'duration-minutes' => '$1 {{PLURAL:$1|minute|minutes}}',
+'duration-hours' => '$1 {{PLURAL:$1|hour|hours}}',
+'duration-days' => '$1 {{PLURAL:$1|day|days}}',
+'duration-weeks' => '$1 {{PLURAL:$1|week|weeks}}',
+'duration-years' => '$1 {{PLURAL:$1|year|years}}',
+'duration-decades' => '$1 {{PLURAL:$1|decade|decades}}',
+'duration-centuries' => '$1 {{PLURAL:$1|century|centuries}}',
+'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennia}}',
+
 );
