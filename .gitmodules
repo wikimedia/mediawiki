@@ -343,3 +343,6 @@
 [submodule "extensions/ZeroRatedMobileAccess"]
 	path = extensions/ZeroRatedMobileAccess
 	url = ssh://gerrit.wikimedia.org:29418/mediawiki/extensions/ZeroRatedMobileAccess.git
+[submodule "extensions/PrefSwitch"]
+	path = extensions/PrefSwitch
+	url = ssh://gerrit.wikimedia.org:29418/mediawiki/extensions/PrefSwitch.git
