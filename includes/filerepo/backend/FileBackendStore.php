@@ -579,7 +579,7 @@ abstract class FileBackendStore extends FileBackend {
 		wfProfileIn( __METHOD__ . '-' . $this->name );
 		$path = $params['src'];
 		if ( isset( $this->expensiveCache[$path]['localRef'] ) ) {
-			$this->pingExpensiveCache();
+			$this->pingExpensiveCache( $path );
 			wfProfileOut( __METHOD__ . '-' . $this->name );
 			wfProfileOut( __METHOD__ );
 			return $this->expensiveCache[$path]['localRef'];
