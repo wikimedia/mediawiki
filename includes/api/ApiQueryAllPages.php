@@ -29,7 +29,7 @@
  *
  * @ingroup API
  */
-class ApiQueryAllpages extends ApiQueryGeneratorBase {
+class ApiQueryAllPages extends ApiQueryGeneratorBase {
 
 	public function __construct( $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'ap' );
