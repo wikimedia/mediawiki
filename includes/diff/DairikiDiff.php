@@ -647,16 +647,18 @@ class Diff extends DiffResult {
 	 * @param $from_lines array An array of strings.
 	 *		  (Typically these are lines from a file.)
 	 * @param $to_lines array An array of strings.
-     * @param $eng _DiffEngine|null The diff engine to use.
+	 * @param $eng _DiffEngine|null The diff engine to use.
 	 */
 	function __construct( $from_lines, $to_lines, $eng = null  ) {
-		if ( !$eng ) $eng = new _DiffEngine();
+		if ( !$eng ) {
+			$eng = new _DiffEngine();
+		}
 
 		$edits = $eng->diff( $from_lines, $to_lines );
 
-        parent::__construct( $edits );
+		parent::__construct( $edits );
 
-        //$this->_check( $from_lines, $to_lines );
+		//$this->_check( $from_lines, $to_lines );
 	}
 }
 
@@ -668,14 +670,14 @@ class Diff extends DiffResult {
  */
 class DiffResult {
 
-    /**
-     * Constructor.
-     *
-     * @param $edits array An array of Edit.
-     */
-    function __construct( $edits  ) {
-        $this->edits = $edits;
-    }
+	/**
+	 * Constructor.
+	 *
+	 * @param $edits array An array of Edit.
+	 */
+	function __construct( $edits  ) {
+		$this->edits = $edits;
+	}
 
 	/**
 	 * Compute reversed Diff.
