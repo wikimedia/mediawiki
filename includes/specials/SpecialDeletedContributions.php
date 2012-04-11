@@ -390,6 +390,13 @@ class DeletedContributionsPage extends SpecialPage {
 					)
 				);
 			}
+
+			# Uploads
+			$tools[] = Linker::linkKnown(
+				SpecialPage::getTitleFor( 'Listfiles', $userObj->getName() ),
+				$this->msg( 'sp-contributions-uploads' )->escaped()
+			);
+
 			# Other logs link
 			$tools[] = Linker::linkKnown(
 				SpecialPage::getTitleFor( 'Log' ),
