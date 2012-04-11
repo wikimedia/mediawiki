@@ -664,7 +664,7 @@ class HTMLForm extends ContextSource {
 	 * @param $msg String message key
 	 */
 	public function setSubmitTextMsg( $msg ) {
-		return $this->setSubmitText( $this->msg( $msg )->escaped() );
+		return $this->setSubmitText( $this->msg( $msg )->text() );
 	}
 
 	/**
