@@ -1299,7 +1299,6 @@ class EditPage {
 					return $status;
 				}
 
-<<<<<<< HEAD
 				// Run post-section-merge edit filter
 				if ( !wfRunHooks( 'EditFilterMerged', array( $this, $this->textbox1, &$this->hookError, $this->summary ) ) ) {
 					# Error messages etc. could be handled within the hook...
@@ -1326,35 +1325,6 @@ class EditPage {
 						wfProfileOut( __METHOD__ );
 						return $status;
 					}
-=======
-			$text = $this->textbox1;
-			$result['sectionanchor'] = '';
-			if ( $this->section == 'new' ) {
-				if ( $this->sectiontitle !== '' ) {
-					// Insert the section title above the content.
-					$text = wfMsgForContent( 'newsectionheaderdefaultlevel', $this->sectiontitle ) . "\n\n" . $text;
-
-					// Jump to the new section
-					$result['sectionanchor'] = $wgParser->guessLegacySectionNameFromWikiText( $this->sectiontitle );
-
-					// If no edit summary was specified, create one automatically from the section
-					// title and have it link to the new section. Otherwise, respect the summary as
-					// passed.
-					if ( $this->summary === '' ) {
-						$cleanSectionTitle = $wgParser->stripSectionName( $this->sectiontitle );
-						$this->summary = wfMsgForContent( 'newsectionsummary', $cleanSectionTitle );
-					}
-				} elseif ( $this->summary !== '' ) {
-					// Insert the section title above the content.
-					$text = wfMsgForContent( 'newsectionheaderdefaultlevel', $this->summary ) . "\n\n" . $text;
-
-					// Jump to the new section
-					$result['sectionanchor'] = $wgParser->guessLegacySectionNameFromWikiText( $this->summary );
-
-					// Create a link to the new section from the edit summary.
-					$cleanSummary = $wgParser->stripSectionName( $this->summary );
-					$this->summary = wfMsgForContent( 'newsectionsummary', $cleanSummary );
->>>>>>> master
 				}
 
 				$result['sectionanchor'] = '';
@@ -1415,49 +1385,10 @@ class EditPage {
 						# Suppress edit conflict with self, except for section edits where merging is required.
 						wfDebug( __METHOD__ . ": Suppressing edit conflict, same user.\n" );
 						$this->isConflict = false;
-<<<<<<< HEAD
-=======
+
 						wfDebug( __METHOD__ . ": conflict suppressed; new section\n" );
->>>>>>> master
+
 					}
-				}
-<<<<<<< HEAD
-
-				// If sectiontitle is set, use it, otherwise use the summary as the section title (for
-				// backwards compatibility with old forms/bots).
-				if ( $this->sectiontitle !== '' ) {
-					$sectionTitle = $this->sectiontitle;
-=======
-			}
-
-			// If sectiontitle is set, use it, otherwise use the summary as the section title (for
-			// backwards compatibility with old forms/bots).
-			if ( $this->sectiontitle !== '' ) {
-				$sectionTitle = $this->sectiontitle;
-			} else {
-				$sectionTitle = $this->summary;
-			}
-
-			if ( $this->isConflict ) {
-				wfDebug( __METHOD__ . ": conflict! getting section '$this->section' for time '$this->edittime' (article time '{$timestamp}')\n" );
-				$text = $this->mArticle->replaceSection( $this->section, $this->textbox1, $sectionTitle, $this->edittime );
-			} else {
-				wfDebug( __METHOD__ . ": getting section '$this->section'\n" );
-				$text = $this->mArticle->replaceSection( $this->section, $this->textbox1, $sectionTitle );
-			}
-			if ( is_null( $text ) ) {
-				wfDebug( __METHOD__ . ": activating conflict; section replace failed.\n" );
-				$this->isConflict = true;
-				$text = $this->textbox1; // do not try to merge here!
-			} elseif ( $this->isConflict ) {
-				# Attempt merge
-				if ( $this->mergeChangesInto( $text ) ) {
-					// Successful merge! Maybe we should tell the user the good news?
-					$this->isConflict = false;
-					wfDebug( __METHOD__ . ": Suppressing edit conflict, successful merge.\n" );
->>>>>>> master
-				} else {
-					$sectionTitle = $this->summary;
 				}
 
 				$textbox_content = ContentHandler::makeContent( $this->textbox1, $this->getTitle(), $this->content_model, $this->content_format );
@@ -2471,7 +2402,7 @@ HTML
 	protected function showTextbox( $text, $name, $customAttribs = array() ) {
 		global $wgOut, $wgUser;
 
-		$wikitext = $this->safeUnicodeOutput( $content );
+		$wikitext = $this->safeUnicodeOutput( $text );
 		if ( strval( $wikitext ) !== '' ) {
 			// Ensure there's a newline at the end, otherwise adding lines
 			// is awkward.
@@ -2586,8 +2517,6 @@ HTML
 		$newContent = $newContent->preSaveTransform( $this->mTitle, $wgUser, $popts );
 
 		if ( ( $oldContent && !$oldContent->isEmpty() ) || ( $newContent && !$newContent->isEmpty() ) ) {
-			$oldtitle = wfMsgExt( 'currentrev', array( 'parseinline' ) );
-		if ( $oldtext !== false  || $newtext != '' ) {
 			$oldtitle = wfMsgExt( $oldtitlemsg, array( 'parseinline' ) );
 			$newtitle = wfMsgExt( 'yourtext', array( 'parseinline' ) );
 
@@ -3568,8 +3497,6 @@ HTML
 				// but should help keep the breakage down if the editor
 				// breaks one of the entities whilst editing.
 				if ( ( substr( $invalue, $i, 1 ) == ";" ) and ( strlen( $hexstring ) <= 6 ) ) {
-					$codepoint = hexdec( $hexstring );
-				if ( (substr($invalue,$i,1)==";") and (strlen($hexstring) <= 6) ) {
 					$codepoint = hexdec($hexstring);
 					$result .= codepointToUtf8( $codepoint );
 				} else {
@@ -3582,4 +3509,5 @@ HTML
 		// reverse the transform that we made for reversability reasons.
 		return strtr( $result, array( "&#x0" => "&#x" ) );
 	}
+
 }

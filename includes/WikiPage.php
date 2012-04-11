@@ -1176,7 +1176,8 @@ class WikiPage extends Page {
      * @deprected since 1.20, use replaceSectionContent() instead
 	 */
 	public function replaceSection( $section, $text, $sectionTitle = '', $edittime = null ) { #FIXME: use replaceSectionContent() instead!
-        wfDeprecated( __METHOD__, '1.20' );
+        // TODO FIXME
+        //wfDeprecated( __METHOD__, '1.20' );
 
         $sectionContent = ContentHandler::makeContent( $text, $this->getTitle() ); #XXX: could make section title, but that's not required.
 
@@ -3074,12 +3075,8 @@ class PoolWorkArticleView extends PoolCounterWork {
             $content = $rev->getContent(); #XXX: why use PUBLIC audience here (default), and RAW above?
 		}
 
-		$time = - wfTime();
-		$this->parserOutput = $content->getParserOutput( $this->page->getTitle(), $this->revid, $this->parserOptions );
-		$time += wfTime();
 		$time = - microtime( true );
-		$this->parserOutput = $wgParser->parse( $text, $this->page->getTitle(),
-			$this->parserOptions, true, true, $this->revid );
+		$this->parserOutput = $content->getParserOutput( $this->page->getTitle(), $this->revid, $this->parserOptions );
 		$time += microtime( true );
 
 		# Timing hack
