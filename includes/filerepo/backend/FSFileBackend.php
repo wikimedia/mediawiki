@@ -174,15 +174,32 @@ class FSFileBackend extends FileBackendStore {
 			}
 		}
 
-		$ok = copy( $params['src'], $dest );
-		if ( !$ok ) {
-			$status->fatal( 'backend-fail-store', $params['src'], $params['dst'] );
-			return $status;
+		if ( !empty( $params['async'] ) ) { // deferred
+			$cmd = implode( ' ', array( wfIsWindows() ? 'COPY' : 'cp',
+				wfEscapeShellArg( $params['src'] ),
+				wfEscapeShellArg( $dest )
+			) );
+			$status->value = new FSFileOpHandle( $this, $params, 'Store', $cmd, $dest );
+		} else { // immediate write
+			$ok = copy( $params['src'], $dest );
+			if ( !$ok ) {
+				$status->fatal( 'backend-fail-store', $params['src'], $params['dst'] );
+				return $status;
+			}
+			$this->chmod( $dest );
 		}
 
-		$this->chmod( $dest );
-
 		return $status;
+	}
+
+	/**
+	 * @see FSFileBackend::doExecuteOpHandlesInternal()
+	 */
+	protected function _getResponseStore( $errors, Status $status, array $params ) {
+		if ( $errors !== '' ) {
+			$status->fatal( 'backend-fail-store', $params['src'], $params['dst'] );
+			trigger_error( "popen: $errors", E_USER_WARNING ); // command output
+		}
 	}
 
 	/**
@@ -217,15 +234,32 @@ class FSFileBackend extends FileBackendStore {
 			}
 		}
 
-		$ok = copy( $source, $dest );
-		if ( !$ok ) {
-			$status->fatal( 'backend-fail-copy', $params['src'], $params['dst'] );
-			return $status;
+		if ( !empty( $params['async'] ) ) { // deferred
+			$cmd = implode( ' ', array( wfIsWindows() ? 'COPY' : 'cp',
+				wfEscapeShellArg( $source ),
+				wfEscapeShellArg( $dest )
+			) );
+			$status->value = new FSFileOpHandle( $this, $params, 'Copy', $cmd, $dest );
+		} else { // immediate write
+			$ok = copy( $source, $dest );
+			if ( !$ok ) {
+				$status->fatal( 'backend-fail-copy', $params['src'], $params['dst'] );
+				return $status;
+			}
+			$this->chmod( $dest );
 		}
 
-		$this->chmod( $dest );
-
 		return $status;
+	}
+
+	/**
+	 * @see FSFileBackend::doExecuteOpHandlesInternal()
+	 */
+	protected function _getResponseCopy( $errors, Status $status, array $params ) {
+		if ( $errors !== '' ) {
+			$status->fatal( 'backend-fail-copy', $params['src'], $params['dst'] );
+			trigger_error( "popen: $errors", E_USER_WARNING ); // command output
+		}
 	}
 
 	/**
@@ -263,14 +297,32 @@ class FSFileBackend extends FileBackendStore {
 			}
 		}
 
-		$ok = rename( $source, $dest );
-		clearstatcache(); // file no longer at source
-		if ( !$ok ) {
-			$status->fatal( 'backend-fail-move', $params['src'], $params['dst'] );
-			return $status;
+		if ( !empty( $params['async'] ) ) { // deferred
+			$cmd = implode( ' ', array( wfIsWindows() ? 'MOVE' : 'mv',
+				wfEscapeShellArg( $source ),
+				wfEscapeShellArg( $dest )
+			) );
+			$status->value = new FSFileOpHandle( $this, $params, 'Move', $cmd );
+		} else { // immediate write
+			$ok = rename( $source, $dest );
+			clearstatcache(); // file no longer at source
+			if ( !$ok ) {
+				$status->fatal( 'backend-fail-move', $params['src'], $params['dst'] );
+				return $status;
+			}
 		}
 
 		return $status;
+	}
+
+	/**
+	 * @see FSFileBackend::doExecuteOpHandlesInternal()
+	 */
+	protected function _getResponseMove( $errors, Status $status, array $params ) {
+		if ( $errors !== '' ) {
+			$status->fatal( 'backend-fail-move', $params['src'], $params['dst'] );
+			trigger_error( "popen: $errors", E_USER_WARNING ); // command output
+		}
 	}
 
 	/**
@@ -293,13 +345,30 @@ class FSFileBackend extends FileBackendStore {
 			return $status; // do nothing; either OK or bad status
 		}
 
-		$ok = unlink( $source );
-		if ( !$ok ) {
-			$status->fatal( 'backend-fail-delete', $params['src'] );
-			return $status;
+		if ( !empty( $params['async'] ) ) { // deferred
+			$cmd = implode( ' ', array( wfIsWindows() ? 'DEL' : 'unlink',
+				wfEscapeShellArg( $source )
+			) );
+			$status->value = new FSFileOpHandle( $this, $params, 'Copy', $cmd );
+		} else { // immediate write
+			$ok = unlink( $source );
+			if ( !$ok ) {
+				$status->fatal( 'backend-fail-delete', $params['src'] );
+				return $status;
+			}
 		}
 
 		return $status;
+	}
+
+	/**
+	 * @see FSFileBackend::doExecuteOpHandlesInternal()
+	 */
+	protected function _getResponseDelete( $errors, Status $status, array $params ) {
+		if ( $errors !== '' ) {
+			$status->fatal( 'backend-fail-delete', $params['src'] );
+			trigger_error( "popen: $errors", E_USER_WARNING ); // command output
+		}
 	}
 
 	/**
@@ -328,15 +397,43 @@ class FSFileBackend extends FileBackendStore {
 			}
 		}
 
-		$bytes = file_put_contents( $dest, $params['content'] );
-		if ( $bytes === false ) {
-			$status->fatal( 'backend-fail-create', $params['dst'] );
-			return $status;
+		if ( !empty( $params['async'] ) ) { // deferred
+			$tempFile = TempFSFile::factory( 'create_' );
+			if ( !$tempFile ) {
+				$status->fatal( 'backend-fail-create', $params['dst'] );
+				return $status;
+			}
+			$bytes = file_put_contents( $tempFile->getPath(), $params['content'] );
+			if ( $bytes === false ) {
+				$status->fatal( 'backend-fail-create', $params['dst'] );
+				return $status;
+			}
+			$cmd = implode( ' ', array( wfIsWindows() ? 'COPY' : 'cp',
+				wfEscapeShellArg( $tempFile->getPath() ),
+				wfEscapeShellArg( $dest )
+			) );
+			$status->value = new FSFileOpHandle( $this, $params, 'Create', $cmd, $dest );
+			$tempFile->bind( $status->value );
+		} else { // immediate write
+			$bytes = file_put_contents( $dest, $params['content'] );
+			if ( $bytes === false ) {
+				$status->fatal( 'backend-fail-create', $params['dst'] );
+				return $status;
+			}
+			$this->chmod( $dest );
 		}
 
-		$this->chmod( $dest );
-
 		return $status;
+	}
+
+	/**
+	 * @see FSFileBackend::doExecuteOpHandlesInternal()
+	 */
+	protected function _getResponseCreate( $errors, Status $status, array $params ) {
+		if ( $errors !== '' ) {
+			$status->fatal( 'backend-fail-create', $params['dst'] );
+			trigger_error( "popen: $errors", E_USER_WARNING ); // command output
+		}
 	}
 
 	/**
@@ -543,6 +640,38 @@ class FSFileBackend extends FileBackendStore {
 	}
 
 	/**
+	 * @see FileBackendStore::doExecuteOpHandlesInternal()
+	 * @return Array List of corresponding Status objects
+	 */
+	protected function doExecuteOpHandlesInternal( array $fileOpHandles ) {
+		$statuses = array();
+
+		$pipes = array();
+		foreach ( $fileOpHandles as $index => $fileOpHandle ) {
+			$pipes[$index] = popen( "{$fileOpHandle->cmd} 2>&1", 'r' );
+		}
+
+		$errs = array();
+		foreach ( $pipes as $index => $pipe ) {
+			$errs[$index] = stream_get_contents( $pipe );
+			fclose( $pipe );
+		}
+
+		foreach ( $fileOpHandles as $index => $fileOpHandle ) {
+			$status = Status::newGood();
+			$function = '_getResponse' . $fileOpHandle->call;
+			$this->$function( $errs[$index], $status, $fileOpHandle->params );
+			$statuses[$index] = $status;
+			if ( $status->isOK() && $fileOpHandle->chmodPath ) {
+				$this->chmod( $fileOpHandle->chmodPath );
+			}
+		}
+
+		clearstatcache(); // files changed
+		return $statuses;
+	}
+
+	/**
 	 * Chmod a file, suppressing the warnings
 	 *
 	 * @param $path string Absolute file system path
@@ -580,6 +709,19 @@ class FSFileBackend extends FileBackendStore {
 	private function handleWarning() {
 		$this->hadWarningErrors[count( $this->hadWarningErrors ) - 1] = true;
 		return true; // suppress from PHP handler
+	}
+}
+
+class FSFileOpHandle extends FileOpHandle {
+	public $cmd; // string; shell command
+	public $chmodPath; // string; file to chmod
+
+	public function __construct( $backend, array $params, $call, $cmd, $chmodPath = null ) {
+		$this->backend = $backend;
+		$this->params = $params;
+		$this->call = $call;
+		$this->cmd = $cmd;
+		$this->chmodPath = $chmodPath;
 	}
 }
 
