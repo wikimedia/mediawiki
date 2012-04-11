@@ -18,5 +18,5 @@ CREATE TABLE /*_*/filejournal (
   fj_timestamp varbinary(14) NOT NULL default ''
 );
 
-CREATE INDEX /*i*/fj_batch_id ON /*_*/filejournal (fj_batch_uuid,fj_id);
+CREATE INDEX /*i*/fj_batch_id ON /*_*/filejournal (fj_batch_uuid);
 CREATE INDEX /*i*/fj_timestamp ON /*_*/filejournal (fj_timestamp);
