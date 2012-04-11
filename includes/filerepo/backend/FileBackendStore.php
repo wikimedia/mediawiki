@@ -73,6 +73,9 @@ abstract class FileBackendStore extends FileBackend {
 	 *     content       : the raw file contents
 	 *     dst           : destination storage path
 	 *     overwrite     : overwrite any file that exists at the destination
+	 *     async         : Status will be returned immediately if supported.
+	 *                     If the status is OK, then its value field will be
+	 *                     set to a FileBackendStoreOpHandle object.
 	 *
 	 * @param $params Array
 	 * @return Status
@@ -106,6 +109,9 @@ abstract class FileBackendStore extends FileBackend {
 	 *     src           : source path on disk
 	 *     dst           : destination storage path
 	 *     overwrite     : overwrite any file that exists at the destination
+	 *     async         : Status will be returned immediately if supported.
+	 *                     If the status is OK, then its value field will be
+	 *                     set to a FileBackendStoreOpHandle object.
 	 *
 	 * @param $params Array
 	 * @return Status
@@ -138,6 +144,9 @@ abstract class FileBackendStore extends FileBackend {
 	 *     src           : source storage path
 	 *     dst           : destination storage path
 	 *     overwrite     : overwrite any file that exists at the destination
+	 *     async         : Status will be returned immediately if supported.
+	 *                     If the status is OK, then its value field will be
+	 *                     set to a FileBackendStoreOpHandle object.
 	 *
 	 * @param $params Array
 	 * @return Status
@@ -165,6 +174,9 @@ abstract class FileBackendStore extends FileBackend {
 	 * $params include:
 	 *     src                 : source storage path
 	 *     ignoreMissingSource : do nothing if the source file does not exist
+	 *     async               : Status will be returned immediately if supported.
+	 *                           If the status is OK, then its value field will be
+	 *                           set to a FileBackendStoreOpHandle object.
 	 *
 	 * @param $params Array
 	 * @return Status
@@ -193,6 +205,9 @@ abstract class FileBackendStore extends FileBackend {
 	 *     src           : source storage path
 	 *     dst           : destination storage path
 	 *     overwrite     : overwrite any file that exists at the destination
+	 *     async         : Status will be returned immediately if supported.
+	 *                     If the status is OK, then its value field will be
+	 *                     set to a FileBackendStoreOpHandle object.
 	 *
 	 * @param $params Array
 	 * @return Status
@@ -214,6 +229,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @return Status
 	 */
 	protected function doMoveInternal( array $params ) {
+		unset( $params['async'] ); // two steps, won't work here :)
 		// Copy source to dest
 		$status = $this->copyInternal( $params );
 		if ( $status->isOK() ) {
@@ -890,7 +906,7 @@ abstract class FileBackendStore extends FileBackend {
 		$this->primeContainerCache( $performOps );
 
 		// Actually attempt the operation batch...
-		$subStatus = FileOp::attemptBatch( $performOps, $opts, $this->fileJournal );
+		$subStatus = FileOpBatch::attempt( $performOps, $opts, $this->fileJournal );
 
 		// Merge errors into status fields
 		$status->merge( $subStatus );
@@ -899,6 +915,41 @@ abstract class FileBackendStore extends FileBackend {
 		wfProfileOut( __METHOD__ . '-' . $this->name );
 		wfProfileOut( __METHOD__ );
 		return $status;
+	}
+
+	/**
+	 * Execute a list of FileBackendStoreOpHandle handles in parallel.
+	 * The resulting Status object fields will correspond
+	 * to the order in which the handles where given.
+	 *
+	 * @param $handles Array List of FileBackendStoreOpHandle objects
+	 * @return Array Map of Status objects
+	 */
+	final public function executeOpHandlesInternal( array $fileOpHandles ) {
+		wfProfileIn( __METHOD__ );
+		wfProfileIn( __METHOD__ . '-' . $this->name );
+		foreach ( $fileOpHandles as $fileOpHandle ) {
+			if ( !( $fileOpHandle instanceof FileBackendStoreOpHandle ) ) {
+				throw new MWException( "Given a non-FileBackendStoreOpHandle object." );
+			} elseif ( $fileOpHandle->backend->getName() !== $this->getName() ) {
+				throw new MWException( "Given a FileBackendStoreOpHandle for the wrong backend." );
+			}
+		}
+		$res = $this->doExecuteOpHandlesInternal( $fileOpHandles );
+		wfProfileOut( __METHOD__ . '-' . $this->name );
+		wfProfileOut( __METHOD__ );
+		return $res;
+	}
+
+	/**
+	 * @see FileBackendStore::executeOpHandlesInternal()
+	 * @return Array List of corresponding Status objects
+	 */
+	protected function doExecuteOpHandlesInternal( array $fileOpHandles ) {
+		foreach ( $fileOpHandles as $fileOpHandle ) { // OK if empty
+			throw new MWException( "This backend supports no asynchronous operations." );
+		}
+		return array();
 	}
 
 	/**
@@ -1238,6 +1289,7 @@ abstract class FileBackendStore extends FileBackend {
 	final protected function primeContainerCache( array $items ) {
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( __METHOD__ . '-' . $this->name );
+
 		$paths = array(); // list of storage paths
 		$contNames = array(); // (cache key => resolved container name)
 		// Get all the paths/containers from the items...
@@ -1268,6 +1320,7 @@ abstract class FileBackendStore extends FileBackend {
 
 		// Populate the container process cache for the backend...
 		$this->doPrimeContainerCache( array_filter( $contInfo, 'is_array' ) );
+
 		wfProfileOut( __METHOD__ . '-' . $this->name );
 		wfProfileOut( __METHOD__ );
 	}
@@ -1328,6 +1381,7 @@ abstract class FileBackendStore extends FileBackend {
 	final protected function primeFileCache( array $items ) {
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( __METHOD__ . '-' . $this->name );
+
 		$paths = array(); // list of storage paths
 		$pathNames = array(); // (cache key => storage path)
 		// Get all the paths/containers from the items...
@@ -1354,8 +1408,37 @@ abstract class FileBackendStore extends FileBackend {
 				$this->cache[$pathNames[$cacheKey]]['stat'] = $val;
 			}
 		}
+
 		wfProfileOut( __METHOD__ . '-' . $this->name );
 		wfProfileOut( __METHOD__ );
+	}
+}
+
+/**
+ * FileBackendStore helper class for performing asynchronous file operations.
+ *
+ * For example, calling FileBackendStore::createInternal() with the "async"
+ * param flag may result in a Status that contains this object as a value.
+ * This class is largely backend-specific and is mostly just "magic" to be
+ * passed to FileBackendStore::executeOpHandlesInternal().
+ */
+abstract class FileBackendStoreOpHandle {
+	/** @var Array */
+	public $params = array(); // params to caller functions
+	/** @var FileBackendStore */
+	public $backend;
+	/** @var Array */
+	public $resourcesToClose = array();
+
+	public $call; // string; name that identifies the function called
+
+	/**
+	 * Close all open file handles
+	 *
+	 * @return void
+	 */
+	public function closeResources() {
+		array_map( 'fclose', $this->resourcesToClose );
 	}
 }
 
