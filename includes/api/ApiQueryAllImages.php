@@ -31,7 +31,7 @@
  *
  * @ingroup API
  */
-class ApiQueryAllimages extends ApiQueryGeneratorBase {
+class ApiQueryAllImages extends ApiQueryGeneratorBase {
 
 	protected $mRepo;
 
