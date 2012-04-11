@@ -23,7 +23,7 @@ $.highlightText = {
 			// TODO - need to be smarter about the character matching here. 
 			// non latin characters can make regex think a new word has begun: do not use \b
 			// http://stackoverflow.com/questions/3787072/regex-wordwrap-with-utf8-characters-in-js
-			// look for an occurence of our pattern and store the starting position
+			// look for an occurrence of our pattern and store the starting position
 			var match = node.data.match( new RegExp( "(^|\\s)" + $.escapeRE( pat ), "i" ) );
 			if ( match ) {
 				var pos = match.index + match[1].length; // include length of any matched spaces

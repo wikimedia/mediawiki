@@ -343,6 +343,7 @@ class LocalisationCache {
 
 	/**
 	 * Returns true if the cache identified by $code is missing or expired.
+	 * @return bool
 	 */
 	public function isExpired( $code ) {
 		if ( $this->forceRecache && !isset( $this->recachedLangs[$code] ) ) {
@@ -793,8 +794,8 @@ class LocalisationCache {
 interface LCStore {
 	/**
 	 * Get a value.
-	 * @param $code Language code
-	 * @param $key Cache key
+	 * @param $code string Language code
+	 * @param $key string Cache key
 	 */
 	function get( $code, $key );
 
@@ -908,12 +909,12 @@ class LCStore_DB implements LCStore {
 
 		$this->dbw = wfGetDB( DB_MASTER );
 		try {
-			$this->dbw->begin();
+			$this->dbw->begin( __METHOD__ );
 			$this->dbw->delete( 'l10n_cache', array( 'lc_lang' => $code ), __METHOD__ );
 		} catch ( DBQueryError $e ) {
 			if ( $this->dbw->wasReadOnlyError() ) {
 				$this->readOnly = true;
-				$this->dbw->rollback();
+				$this->dbw->rollback( __METHOD__ );
 				$this->dbw->ignoreErrors( false );
 				return;
 			} else {
@@ -934,7 +935,7 @@ class LCStore_DB implements LCStore {
 			$this->dbw->insert( 'l10n_cache', $this->batch, __METHOD__ );
 		}
 
-		$this->dbw->commit();
+		$this->dbw->commit( __METHOD__ );
 		$this->currentLang = null;
 		$this->dbw = null;
 		$this->batch = array();

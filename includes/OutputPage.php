@@ -22,7 +22,7 @@ class OutputPage extends ContextSource {
 	/// Should be private. Used with addMeta() which adds <meta>
 	var $mMetatags = array();
 
-	/// <meta keyworkds="stuff"> most of the time the first 10 links to an article
+	/// <meta keywords="stuff"> most of the time the first 10 links to an article
 	var $mKeywords = array();
 
 	var $mLinktags = array();
@@ -1075,7 +1075,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add new language links
 	 *
-	 * @param $newLinkArray Associative array mapping language code to the page
+	 * @param $newLinkArray array Associative array mapping language code to the page
 	 *                      name
 	 */
 	public function addLanguageLinks( $newLinkArray ) {
@@ -1085,7 +1085,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Reset the language links and add new language links
 	 *
-	 * @param $newLinkArray Associative array mapping language code to the page
+	 * @param $newLinkArray array Associative array mapping language code to the page
 	 *                      name
 	 */
 	public function setLanguageLinks( $newLinkArray ) {
@@ -1309,7 +1309,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Get/set the ParserOptions object to use for wikitext parsing
 	 *
-	 * @param $options either the ParserOption to use or null to only get the
+	 * @param $options ParserOptions|null either the ParserOption to use or null to only get the
 	 *                 current ParserOption object
 	 * @return ParserOptions object
 	 */
@@ -1366,7 +1366,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Set the displayed file version
 	 *
-	 * @param $file File|false
+	 * @param $file File|bool
 	 * @return Mixed: previous value
 	 */
 	public function setFileVersion( $file ) {
@@ -2344,7 +2344,7 @@ $templates
 	 * Add a "return to" link pointing to a specified title,
 	 * or the title indicated in the request, or else the main page
 	 *
-	 * @param $unused No longer used
+	 * @param $unused
 	 * @param $returnto Title or String to return to
 	 * @param $returntoquery String: query string for the return to link
 	 */
@@ -2456,6 +2456,8 @@ $templates
 			$this->addModules( 'mediawiki.util' );
 		}
 
+		MWDebug::addModules( $this );
+
 		// Add various resources if required
 		if ( $wgUseAjax ) {
 			$this->addModules( 'mediawiki.legacy.ajax' );
@@ -2499,11 +2501,11 @@ $templates
 	 * @param $only String ResourceLoaderModule TYPE_ class constant
 	 * @param $useESI boolean
 	 * @param $extraQuery Array with extra query parameters to add to each request. array( param => value )
-	 * @param $loadCall boolean If true, output a mw.loader.load() call rather than a <script src="..."> tag
+	 * @param $loadCall boolean If true, output an (asynchronous) mw.loader.load() call rather than a <script src="..."> tag
 	 * @return string html <script> and <style> tags
 	 */
 	protected function makeResourceLoaderLink( $modules, $only, $useESI = false, array $extraQuery = array(), $loadCall = false ) {
-		global $wgResourceLoaderUseESI, $wgResourceLoaderInlinePrivateModules;
+		global $wgResourceLoaderUseESI;
 
 		if ( !count( $modules ) ) {
 			return '';
@@ -2582,10 +2584,11 @@ $templates
 				continue;
 			}
 
-			// Support inlining of private modules if configured as such. Note that these
-			// modules should be loaded from getHeadScripts() before the first loader call.
-			// Otherwise other modules can't properly use them as dependencies (bug 30914)
-			if ( $group === 'private' && $wgResourceLoaderInlinePrivateModules ) {
+			// Inline private modules. These can't be loaded through load.php for security
+			// reasons, see bug 34907. Note that these modules should be loaded from
+			// getHeadScripts() before the first loader call. Otherwise other modules can't
+			// properly use them as dependencies (bug 30914)
+			if ( $group === 'private' ) {
 				if ( $only == ResourceLoaderModule::TYPE_STYLES ) {
 					$links .= Html::inlineStyle(
 						$resourceLoader->makeModuleResponse( $context, $modules )
@@ -2642,7 +2645,7 @@ $templates
 				} else if ( $loadCall ) { 
 					$link = Html::inlineScript(
 						ResourceLoader::makeLoaderConditionalScript(
-							Xml::encodeJsCall( 'mw.loader.load', array( $url ) )
+							Xml::encodeJsCall( 'mw.loader.load', array( $url, 'text/javascript', true ) )
 						)
 					);
 				} else {
@@ -2679,6 +2682,8 @@ $templates
 		);
 
 		// Load embeddable private modules before any loader links
+		// This needs to be TYPE_COMBINED so these modules are properly wrapped
+		// in mw.loader.implement() calls and deferred until mw.user is available
 		$embedScripts = array( 'user.options', 'user.tokens' );
 		$scripts .= $this->makeResourceLoaderLink( $embedScripts, ResourceLoaderModule::TYPE_COMBINED );
 
@@ -2693,9 +2698,7 @@ $templates
 		if ( $modules ) {
 			$scripts .= Html::inlineScript(
 				ResourceLoader::makeLoaderConditionalScript(
-					"mw.loader.setBlocking( true );\n" .
-					Xml::encodeJsCall( 'mw.loader.load', array( $modules ) ) .
-					"\nmw.loader.setBlocking( false );"
+					Xml::encodeJsCall( 'mw.loader.load', array( $modules ) )
 				)
 			);
 		}
@@ -2737,7 +2740,7 @@ $templates
 		if ( $modules ) {
 			$scripts .= Html::inlineScript(
 				ResourceLoader::makeLoaderConditionalScript(
-					Xml::encodeJsCall( 'mw.loader.load', array( $modules ) )
+					Xml::encodeJsCall( 'mw.loader.load', array( $modules, null, true ) )
 				)
 			);
 		}
@@ -2786,6 +2789,7 @@ $templates
 
 	/**
 	 * JS stuff to put at the bottom of the <body>
+	 * @return string
 	 */
 	function getBottomScripts() {
 		global $wgResourceLoaderExperimentalAsyncLoading;
@@ -2827,7 +2831,7 @@ $templates
 	 * @return array
 	 */
 	public function getJSVars() {
-		global $wgUseAjax, $wgEnableMWSuggest;
+		global $wgUseAjax, $wgEnableMWSuggest, $wgContLang;
 
 		$latestRevID = 0;
 		$pageID = 0;
@@ -2836,6 +2840,10 @@ $templates
 		$title = $this->getTitle();
 		$ns = $title->getNamespace();
 		$nsname = MWNamespace::exists( $ns ) ? MWNamespace::getCanonicalName( $ns ) : $title->getNsText();
+
+		// Get the relevant title so that AJAX features can use the correct page name
+		// when making API requests from certain special pages (bug 34972).
+		$relevantTitle = $this->getSkin()->getRelevantTitle();
 
 		if ( $ns == NS_SPECIAL ) {
 			list( $canonicalName, /*...*/ ) = SpecialPageFactory::resolveAlias( $title->getDBkey() );
@@ -2878,9 +2886,10 @@ $templates
 			'wgPageContentLanguage' => $lang->getCode(),
 			'wgSeparatorTransformTable' => $compactSeparatorTransTable,
 			'wgDigitTransformTable' => $compactDigitTransTable,
+			'wgRelevantPageName' => $relevantTitle->getPrefixedDBKey(),
 		);
-		if ( $lang->hasVariants() ) {
-			$vars['wgUserVariant'] = $lang->getPreferredVariant();
+		if ( $wgContLang->hasVariants() ) {
+			$vars['wgUserVariant'] = $wgContLang->getPreferredVariant();
  		}
 		foreach ( $title->getRestrictionTypes() as $type ) {
 			$vars['wgRestriction' . ucfirst( $type )] = $title->getRestrictions( $type );
@@ -2930,7 +2939,7 @@ $templates
 	}
 
 	/**
-	 * @param $unused Unused
+	 * @param $unused
 	 * @param $addContentType bool
 	 *
 	 * @return string HTML tag links to be put in the header.
@@ -3268,7 +3277,7 @@ $templates
 
 		// Per-user preference styles
 		if ( $wgAllowUserCssPrefs ) {
-			$moduleStyles[] = 'user.options';
+			$moduleStyles[] = 'user.cssprefs';
 		}
 
 		foreach ( $moduleStyles as $name ) {
@@ -3430,7 +3439,7 @@ $templates
 	 * @param $args array
 	 */
 	public function addWikiMsgArray( $name, $args ) {
-		$this->addWikiText( $this->msg( $name, $args )->plain() );
+		$this->addHTML( $this->msg( $name, $args )->parseAsBlock() );
 	}
 
 	/**

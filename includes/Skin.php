@@ -22,7 +22,7 @@ abstract class Skin extends ContextSource {
 
 	/**
 	 * Fetch the set of available skins.
-	 * @return associative array of strings
+	 * @return array associative array of strings
 	 */
 	static function getSkinNames() {
 		global $wgValidSkinNames;
@@ -98,7 +98,7 @@ abstract class Skin extends ContextSource {
 
 		$skinNames = Skin::getSkinNames();
 
-		if ( $key == '' ) {
+		if ( $key == '' || $key == 'default' ) {
 			// Don't return the default immediately;
 			// in a misconfiguration we need to fall back.
 			$key = $wgDefaultSkin;
@@ -317,7 +317,7 @@ abstract class Skin extends ContextSource {
 	 * Make a <script> tag containing global variables
 	 *
 	 * @deprecated in 1.19
-	 * @param $unused Unused
+	 * @param $unused
 	 * @return string HTML fragment
 	 */
 	public static function makeGlobalVariablesScript( $unused ) {
@@ -647,10 +647,10 @@ abstract class Skin extends ContextSource {
 	function printSource() {
 		$oldid = $this->getRevisionId();
 		if ( $oldid ) {
-			$url = htmlspecialchars( $this->getTitle()->getCanonicalURL( 'oldid=' . $oldid ) );
+			$url = htmlspecialchars( wfExpandIRI( $this->getTitle()->getCanonicalURL( 'oldid=' . $oldid ) ) );
 		} else {
 			// oldid not available for non existing pages
-			$url = htmlspecialchars( $this->getTitle()->getCanonicalURL() );
+			$url = htmlspecialchars( wfExpandIRI( $this->getTitle()->getCanonicalURL() ) );
 		}
 		return $this->msg( 'retrievedfrom', '<a href="' . $url . '">' . $url . '</a>' )->text();
 	}
@@ -662,7 +662,7 @@ abstract class Skin extends ContextSource {
 		$action = $this->getRequest()->getVal( 'action', 'view' );
 
 		if ( $this->getUser()->isAllowed( 'deletedhistory' ) &&
-			( $this->getTitle()->getArticleId() == 0 || $action == 'history' ) ) {
+			( $this->getTitle()->getArticleID() == 0 || $action == 'history' ) ) {
 			$n = $this->getTitle()->isDeleted();
 
 
@@ -1178,13 +1178,13 @@ abstract class Skin extends ContextSource {
 	 * @return array
 	 */
 	function buildSidebar() {
-		global $parserMemc, $wgEnableSidebarCache, $wgSidebarCacheExpiry;
+		global $wgMemc, $wgEnableSidebarCache, $wgSidebarCacheExpiry;
 		wfProfileIn( __METHOD__ );
 
 		$key = wfMemcKey( 'sidebar', $this->getLanguage()->getCode() );
 
 		if ( $wgEnableSidebarCache ) {
-			$cachedsidebar = $parserMemc->get( $key );
+			$cachedsidebar = $wgMemc->get( $key );
 			if ( $cachedsidebar ) {
 				wfProfileOut( __METHOD__ );
 				return $cachedsidebar;
@@ -1196,7 +1196,7 @@ abstract class Skin extends ContextSource {
 
 		wfRunHooks( 'SkinBuildSidebar', array( $this, &$bar ) );
 		if ( $wgEnableSidebarCache ) {
-			$parserMemc->set( $key, $bar, $wgSidebarCacheExpiry );
+			$wgMemc->set( $key, $bar, $wgSidebarCacheExpiry );
 		}
 
 		wfProfileOut( __METHOD__ );
@@ -1499,7 +1499,7 @@ abstract class Skin extends ContextSource {
 		if ( !is_null( $tooltip ) ) {
 			# Bug 25462: undo double-escaping.
 			$tooltip = Sanitizer::decodeCharReferences( $tooltip );
-			$attribs['title'] = wfMsgExt( 'editsectionhint', array( 'language' => $lang, 'parsemag' ), $tooltip );
+			$attribs['title'] = wfMsgExt( 'editsectionhint', array( 'language' => $lang, 'parsemag', 'replaceafter' ), $tooltip );
 		}
 		$link = Linker::link( $nt, wfMsgExt( 'editsection', array( 'language' => $lang ) ),
 			$attribs,
@@ -1511,7 +1511,7 @@ abstract class Skin extends ContextSource {
 		# we can rid of it someday.
 		$attribs = '';
 		if ( $tooltip ) {
-			$attribs = wfMsgExt( 'editsectionhint', array( 'language' => $lang, 'parsemag', 'escape' ), $tooltip );
+			$attribs = wfMsgExt( 'editsectionhint', array( 'language' => $lang, 'parsemag', 'escape', 'replaceafter' ), $tooltip );
 			$attribs = " title=\"$attribs\"";
 		}
 		$result = null;
@@ -1540,6 +1540,7 @@ abstract class Skin extends ContextSource {
 	 *
 	 * @param $fname String Name of called method
 	 * @param $args Array Arguments to the method
+	 * @return mixed
 	 */
 	function __call( $fname, $args ) {
 		$realFunction = array( 'Linker', $fname );

@@ -65,7 +65,7 @@ class FormOptions implements ArrayAccess {
 	 *
 	 * @param $data Mixed: value to guess type for
 	 * @exception MWException Unsupported datatype
-	 * @return Type constant 
+	 * @return int Type constant
 	 */
 	public static function guessType( $data ) {
 		if ( is_bool( $data ) ) {
@@ -291,11 +291,17 @@ class FormOptions implements ArrayAccess {
 	 * @see http://php.net/manual/en/class.arrayaccess.php
 	 */
 	/* @{ */
-	/** Whether option exist*/
+	/**
+	 * Whether option exist
+	 * @return bool
+	 */
 	public function offsetExists( $name ) {
 		return isset( $this->options[$name] );
 	}
-	/** Retrieve an option value */
+	/**
+	 * Retrieve an option value
+	 * @return Mixed
+	 */
 	public function offsetGet( $name ) {
 		return $this->getValue( $name );
 	}

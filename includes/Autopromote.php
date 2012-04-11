@@ -32,7 +32,7 @@ class Autopromote {
 	 *
 	 * Does not return groups the user already belongs to or has once belonged.
 	 *
-	 * @param $user The user to get the groups for
+	 * @param $user User The user to get the groups for
 	 * @param $event String key in $wgAutopromoteOnce (each one has groups/criteria)
 	 *
 	 * @return array Groups the user should be promoted to.

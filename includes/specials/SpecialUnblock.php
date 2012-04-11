@@ -49,10 +49,10 @@ class SpecialUnblock extends SpecialPage {
 		$out->addModules( 'mediawiki.special' );
 
 		$form = new HTMLForm( $this->getFields(), $this->getContext() );
-		$form->setWrapperLegend( wfMsg( 'unblockip' ) );
+		$form->setWrapperLegendMsg( 'unblockip' );
 		$form->setSubmitCallback( array( __CLASS__, 'processUIUnblock' ) );
-		$form->setSubmitText( wfMsg( 'ipusubmit' ) );
-		$form->addPreText( wfMsgExt( 'unblockiptext', 'parse' ) );
+		$form->setSubmitTextMsg( 'ipusubmit' );
+		$form->addPreText( $this->msg( 'unblockiptext' )->parseAsBlock() );
 
 		if( $form->show() ){
 			switch( $this->type ){
@@ -136,6 +136,7 @@ class SpecialUnblock extends SpecialPage {
 
 	/**
 	 * Submit callback for an HTMLForm object
+	 * @return Array( Array(message key, parameters)
 	 */
 	public static function processUIUnblock( array $data, HTMLForm $form ) {
 		return self::processUnblock( $data, $form->getContext() );

@@ -39,6 +39,7 @@ class ForeignDBViaLBRepo extends LocalRepo {
 	 * Get a key on the primary cache for this repository.
 	 * Returns false if the repository's cache is not accessible at this site. 
 	 * The parameters are the parts of the key, as for wfMemcKey().
+	 * @return bool|string
 	 */
 	function getSharedCacheKey( /*...*/ ) {
 		if ( $this->hasSharedCache() ) {
@@ -50,13 +51,7 @@ class ForeignDBViaLBRepo extends LocalRepo {
 		}
 	}
 
-	function store( $srcPath, $dstZone, $dstRel, $flags = 0 ) {
-		throw new MWException( get_class($this) . ': write operations are not supported' );
-	}
-	function publish( $srcPath, $dstRel, $archiveRel, $flags = 0 ) {
-		throw new MWException( get_class($this) . ': write operations are not supported' );
-	}
-	function deleteBatch( $fileMap ) {
-		throw new MWException( get_class($this) . ': write operations are not supported' );
+	protected function assertWritableRepo() {
+		throw new MWException( get_class( $this ) . ': write operations are not supported.' );
 	}
 }

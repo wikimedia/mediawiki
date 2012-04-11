@@ -52,7 +52,10 @@ class BitmapMetadataHandler {
 	 * Basically what used to be in BitmapHandler::getMetadata().
 	 * Just calls stuff in the Exif class.
 	 *
+	 * Parameters are passed to the Exif class.
+	 *
 	 * @param $filename string
+	 * @param $byteOrder string
 	 */
 	function getExif ( $filename, $byteOrder ) {
 		global $wgShowEXIF;
@@ -119,7 +122,7 @@ class BitmapMetadataHandler {
 	/** Main entry point for jpeg's.
 	 *
 	 * @param $filename string filename (with full path)
-	 * @return metadata result array.
+	 * @return array metadata result array.
 	 * @throws MWException on invalid file.
 	 */
 	static function Jpeg ( $filename ) {
@@ -190,7 +193,7 @@ class BitmapMetadataHandler {
 	 * They don't really have native metadata, so just merges together
 	 * XMP and image comment.
 	 *
-	 * @param $filename full path to file
+	 * @param $filename string full path to file
 	 * @return Array metadata array
 	 */
 	static public function GIF ( $filename ) {

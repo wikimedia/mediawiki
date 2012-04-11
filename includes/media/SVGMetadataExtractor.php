@@ -99,6 +99,7 @@ class SVGReader {
 
 	/**
 	 * Read the SVG
+	 * @return bool
 	 */
 	public function read() {
 		$keepReading = $this->reader->read();

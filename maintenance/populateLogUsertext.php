@@ -59,12 +59,12 @@ class PopulateLogUsertext extends LoggedUpdateMaintenance {
 			$res = $db->select( array( 'logging', 'user' ),
 				array( 'log_id', 'user_name' ), $cond, __METHOD__ );
 
-			$db->begin();
+			$db->begin( __METHOD__ );
 			foreach ( $res as $row ) {
 				$db->update( 'logging', array( 'log_user_text' => $row->user_name ),
 					array( 'log_id' => $row->log_id ), __METHOD__ );
 			}
-			$db->commit();
+			$db->commit( __METHOD__ );
 			$blockStart += $this->mBatchSize;
 			$blockEnd += $this->mBatchSize;
 			wfWaitForSlaves();

@@ -207,7 +207,7 @@ class SqliteInstaller extends DatabaseInstaller {
 	}
 
 	/**
-	 * @return Staus
+	 * @return Status
 	 */
 	public function createTables() {
 		$status = parent::createTables();

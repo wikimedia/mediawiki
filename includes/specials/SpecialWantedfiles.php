@@ -66,6 +66,7 @@ class WantedFilesPage extends WantedQueryPage {
 	 * that exist e.g. in a shared repo.  Setting this at least
 	 * keeps them from showing up as redlinks in the output, even
 	 * if it doesn't fix the real problem (bug 6220).
+	 * @return bool
 	 */
 	function forceExistenceCheck() {
 		return true;

@@ -6,8 +6,8 @@ test( '-- Initial check', function() {
 });
 
 function createWrappedDiv( text, width ) {
-	var $wrapper = $( '<div />' ).css( 'width', width );
-	var $div = $( '<div />' ).text( text );
+	var $wrapper = $( '<div>' ).css( 'width', width );
+	var $div = $( '<div>' ).text( text );
 	$wrapper.append( $div );
 	return $wrapper;
 }
@@ -26,7 +26,7 @@ test( 'Position right', function() {
 	// We need this thing to be visible, so append it to the DOM
 	var origText = 'This is a really long random string and there is no way it fits in 100 pixels.';
 	var $wrapper = createWrappedDiv( origText, '100px' );
-	$( 'body' ).append( $wrapper );
+	$( '#qunit-fixture' ).append( $wrapper );
 	$wrapper.autoEllipsis( { position: 'right' } );
 
 	// Verify that, and only one, span element was created
@@ -47,12 +47,9 @@ test( 'Position right', function() {
 	// Put this text in the span and verify it doesn't fit
 	$span.text( spanTextNew );
 	// In IE6 width works like min-width, allow IE6's width to be "equal to"
-	if ( $.browser.msie && Number( $.browser.version ) == 6 ) {
+	if ( $.browser.msie && Number( $.browser.version ) === 6 ) {
 		gtOrEq( $span.width(), $span.parent().width(), 'Fit is maximal (adding two characters makes it not fit any more) - IE6: Maybe equal to as well due to width behaving like min-width in IE6' );
 	} else {
 		gt( $span.width(), $span.parent().width(), 'Fit is maximal (adding two characters makes it not fit any more)' );
 	}
-
-	// Clean up
-	$wrapper.remove();
 });

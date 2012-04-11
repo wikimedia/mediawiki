@@ -366,7 +366,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	 *
 	 * @param $conds Array
 	 * @param $opts FormOptions
-	 * @return database result or false (for Recentchangeslinked only)
+	 * @return bool|ResultWrapper result or false (for Recentchangeslinked only)
 	 */
 	public function doMainQuery( $conds, $opts ) {
 		$tables = array( 'recentchanges' );
@@ -534,6 +534,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	/**
 	 * Get the query string to append to feed link URLs.
 	 * This is overridden by RCL to add the target parameter
+	 * @return bool
 	 */
 	public function getFeedQuery() {
 		return false;
@@ -567,14 +568,14 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		$submit = ' ' . Xml::submitbutton( wfMsg( 'allpagessubmit' ) );
 
 		$out = Xml::openElement( 'table', array( 'class' => 'mw-recentchanges-table' ) );
-		foreach( $extraOpts as $optionRow ) {
+		foreach( $extraOpts as $name => $optionRow ) {
 			# Add submit button to the last row only
 			++$count;
-			$addSubmit = $count === $extraOptsCount ? $submit : '';
+			$addSubmit = ( $count === $extraOptsCount ) ? $submit : '';
 
 			$out .= Xml::openElement( 'tr' );
 			if( is_array( $optionRow ) ) {
-				$out .= Xml::tags( 'td', array( 'class' => 'mw-label' ), $optionRow[0] );
+				$out .= Xml::tags( 'td', array( 'class' => 'mw-label mw-' . $name . '-label' ), $optionRow[0] );
 				$out .= Xml::tags( 'td', array( 'class' => 'mw-input' ), $optionRow[1] . $addSubmit );
 			} else {
 				$out .= Xml::tags( 'td', array( 'class' => 'mw-input', 'colspan' => 2 ), $optionRow . $addSubmit );
@@ -633,10 +634,13 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	function setTopText( FormOptions $opts ) {
 		global $wgContLang;
 		$this->getOutput()->addWikiText(
-		Html::rawElement( 'p',
-			array( 'lang' => $wgContLang->getCode(), 'dir' => $wgContLang->getDir() ),
-			"\n" . wfMsgForContentNoTrans( 'recentchangestext' ) . "\n"
-		), false );
+			Html::rawElement( 'p',
+				array( 'lang' => $wgContLang->getCode(), 'dir' => $wgContLang->getDir() ),
+				"\n" . wfMsgForContentNoTrans( 'recentchangestext' ) . "\n"
+			), 
+			/* $lineStart */ false,
+			/* $interface */ false
+		);
 	}
 
 	/**
@@ -656,7 +660,8 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	 */
 	protected function namespaceFilterForm( FormOptions $opts ) {
 		$nsSelect = Html::namespaceSelector(
-			array( 'selected' => $opts['namespace'], 'all' => '' )
+			array( 'selected' => $opts['namespace'], 'all' => '' ),
+			array( 'name' => 'namespace', 'id' => 'namespace' )
 		);
 		$nsLabel = Xml::label( wfMsg( 'namespace' ), 'namespace' );
 		$invert = Xml::checkLabel(
@@ -759,6 +764,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	 * @param $override Array: options to override
 	 * @param $options Array: current options
 	 * @param $active Boolean: whether to show the link in bold
+	 * @return string
 	 */
 	function makeOptionsLink( $title, $override, $options, $active = false ) {
 		$params = $override + $options;
@@ -774,6 +780,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	 *
 	 * @param $defaults Array
 	 * @param $nondefaults Array
+	 * @return string
 	 */
 	function optionsPanel( $defaults, $nondefaults ) {
 		global $wgRCLinkLimits, $wgRCLinkDays;

@@ -15,7 +15,6 @@
 $messages = array(
 # User preference toggles
 'tog-underline'             => 'Twa lenk nyina ase:',
-'tog-highlightbroken'       => 'Fɔɔmat nlink a wɔnnyɛ edwuma <a href="" class="new">like this</a> (alternative: like this<a href="" class="internal">?</a>)',
 'tog-justify'               => 'Gyastefae mparagraf',
 'tog-hideminor'             => 'Suma nsesae a wɔakɔ so a wɔnnkyɛree koraa',
 'tog-hidepatrolled'         => 'Suma nsesae a wɔapatrole wɔn ndansa yi ara',

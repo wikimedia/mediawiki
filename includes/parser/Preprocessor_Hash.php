@@ -428,7 +428,7 @@ class Preprocessor_Hash implements Preprocessor {
 			} elseif ( $found == 'line-end' ) {
 				$piece = $stack->top;
 				// A heading must be open, otherwise \n wouldn't have been in the search list
-				assert( $piece->open == "\n" );
+				assert( '$piece->open == "\n"' );
 				$part = $piece->getCurrentPart();
 				// Search back through the input to see if it has a proper close
 				// Do this using the reversed string since the other solutions (end anchor, etc.) are inefficient
@@ -869,7 +869,7 @@ class PPFrame_Hash implements PPFrame {
 	 * $args is optionally a multi-root PPNode or array containing the template arguments
 	 *
 	 * @param $args PPNode_Hash_Array|array
-	 * @param $title Title|false
+	 * @param $title Title|bool
 	 *
 	 * @return PPTemplateFrame_Hash
 	 */

@@ -62,13 +62,13 @@ class ReassignEdits extends Maintenance {
 	 *
 	 * @param $from User to take edits from
 	 * @param $to User to assign edits to
-	 * @param $rc Update the recent changes table
-	 * @param $report Don't change things; just echo numbers
+	 * @param $rc bool Update the recent changes table
+	 * @param $report bool Don't change things; just echo numbers
 	 * @return integer Number of entries changed, or that would be changed
 	 */
 	private function doReassignEdits( &$from, &$to, $rc = false, $report = false ) {
 		$dbw = wfGetDB( DB_MASTER );
-		$dbw->begin();
+		$dbw->begin( __METHOD__ );
 
 		# Count things
 		$this->output( "Checking current edits..." );
@@ -117,7 +117,7 @@ class ReassignEdits extends Maintenance {
 			}
 		}
 
-		$dbw->commit();
+		$dbw->commit( __METHOD__ );
 		return (int)$total;
 	}
 
@@ -150,7 +150,7 @@ class ReassignEdits extends Maintenance {
 	/**
 	 * Initialise the user object
 	 *
-	 * @param $username Username or IP address
+	 * @param $username string Username or IP address
 	 * @return User
 	 */
 	private function initialiseUser( $username ) {

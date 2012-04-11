@@ -72,8 +72,6 @@ class LoginForm extends SpecialPage {
 
 	/**
 	 * Loader
-	 *
-	 * @param $request WebRequest object
 	 */
 	function load() {
 		global $wgAuth, $wgHiddenPrefs, $wgEnableEmail, $wgRedirectOnLogin;
@@ -135,9 +133,13 @@ class LoginForm extends SpecialPage {
 		}
 		$wgAuth->setDomain( $this->mDomain );
 
-		# When switching accounts, it sucks to get automatically logged out
+		# 1. When switching accounts, it sucks to get automatically logged out
+		# 2. Do not return to PasswordReset after a successful password change
+		#    but goto Wiki start page (Main_Page) instead ( bug 33997 )
 		$returnToTitle = Title::newFromText( $this->mReturnTo );
-		if( is_object( $returnToTitle ) && $returnToTitle->isSpecial( 'Userlogout' ) ) {
+		if( is_object( $returnToTitle ) && (
+			$returnToTitle->isSpecial( 'Userlogout' )
+			|| $returnToTitle->isSpecial( 'PasswordReset' ) ) ) {
 			$this->mReturnTo = '';
 			$this->mReturnToQuery = '';
 		}
@@ -165,11 +167,14 @@ class LoginForm extends SpecialPage {
 			return;
 		} elseif( $this->mPosted ) {
 			if( $this->mCreateaccount ) {
-				return $this->addNewAccount();
+				$this->addNewAccount();
+				return;
 			} elseif ( $this->mCreateaccountMail ) {
-				return $this->addNewAccountMailPassword();
+				$this->addNewAccountMailPassword();
+				return;
 			} elseif ( ( 'submitlogin' == $this->mAction ) || $this->mLoginattempt ) {
-				return $this->processLogin();
+				$this->processLogin();
+				return;
 			}
 		}
 		$this->mainLoginForm( '' );
@@ -211,6 +216,7 @@ class LoginForm extends SpecialPage {
 
 	/**
 	 * @private
+	 * @return bool
 	 */
 	function addNewAccount() {
 		global $wgUser, $wgEmailAuthentication, $wgLoginLanguageSelector;
@@ -218,7 +224,7 @@ class LoginForm extends SpecialPage {
 		# Create the account and abort if there's a problem doing so
 		$u = $this->addNewAccountInternal();
 		if( $u == null ) {
-			return;
+			return false;
 		}
 
 		# If we showed up language selection links, and one was in use, be
@@ -255,9 +261,9 @@ class LoginForm extends SpecialPage {
 			wfRunHooks( 'AddNewAccount', array( $u, false ) );
 			$u->addNewUserLogEntry();
 			if( $this->hasSessionCookie() ) {
-				return $this->successfulCreation();
+				$this->successfulCreation();
 			} else {
-				return $this->cookieRedirectCheck( 'new' );
+				$this->cookieRedirectCheck( 'new' );
 			}
 		} else {
 			# Confirm that the account was created
@@ -266,12 +272,13 @@ class LoginForm extends SpecialPage {
 			$out->returnToMain( false, $this->getTitle() );
 			wfRunHooks( 'AddNewAccount', array( $u, false ) );
 			$u->addNewUserLogEntry( false, $this->mReason );
-			return true;
 		}
+		return true;
 	}
 
 	/**
 	 * @private
+	 * @return bool|\User
 	 */
 	function addNewAccountInternal() {
 		global $wgAuth, $wgMemc, $wgAccountCreationThrottle,
@@ -330,7 +337,7 @@ class LoginForm extends SpecialPage {
 
 		$ip = $this->getRequest()->getIP();
 		if ( $currentUser->isDnsBlacklisted( $ip, true /* check $wgProxyWhitelist */ ) ) {
-			$this->mainLoginForm( $this->msg( 'sorbs_create_account_reason' )->text() . ' (' . htmlspecialchars( $ip ) . ')' );
+			$this->mainLoginForm( $this->msg( 'sorbs_create_account_reason' )->text() . ' ' . $this->msg( 'parentheses', $ip )->escaped() );
 			return false;
 		}
 
@@ -472,6 +479,7 @@ class LoginForm extends SpecialPage {
 	 * This may create a local account as a side effect if the
 	 * authentication plugin allows transparent local account
 	 * creation.
+	 * @return int
 	 */
 	public function authenticateUserData() {
 		global $wgUser, $wgAuth;
@@ -479,7 +487,6 @@ class LoginForm extends SpecialPage {
 		$this->load();
 
 		if ( $this->mUsername == '' ) {
-			wfRunHooks( 'LoginAuthenticateAudit', array( new User, $this->mPassword, self::NO_NAME ) );
 			return self::NO_NAME;
 		}
 
@@ -491,24 +498,20 @@ class LoginForm extends SpecialPage {
 		// If the user doesn't have a login token yet, set one.
 		if ( !self::getLoginToken() ) {
 			self::setLoginToken();
-			wfRunHooks( 'LoginAuthenticateAudit', array( new User, $this->mPassword, self::NEED_TOKEN ) );
 			return self::NEED_TOKEN;
 		}
 		// If the user didn't pass a login token, tell them we need one
 		if ( !$this->mToken ) {
-			wfRunHooks( 'LoginAuthenticateAudit', array( new User, $this->mPassword, self::NEED_TOKEN ) );
 			return self::NEED_TOKEN;
 		}
 
 		$throttleCount = self::incLoginThrottle( $this->mUsername );
 		if ( $throttleCount === true ) {
-			wfRunHooks( 'LoginAuthenticateAudit', array( new User, $this->mPassword, self::THROTTLED ) );
 			return self::THROTTLED;
 		}
 
 		// Validate the login token
 		if ( $this->mToken !== self::getLoginToken() ) {
-			wfRunHooks( 'LoginAuthenticateAudit', array( new User, $this->mPassword, self::WRONG_TOKEN ) );
 			return self::WRONG_TOKEN;
 		}
 
@@ -528,12 +531,7 @@ class LoginForm extends SpecialPage {
 		# TODO: Allow some magic here for invalid external names, e.g., let the
 		# user choose a different wiki name.
 		$u = User::newFromName( $this->mUsername );
-		if( !( $u instanceof User ) ) {
-			wfRunHooks( 'LoginAuthenticateAudit', array( new User, $this->mPassword, self::ILLEGAL ) );
-			return self::ILLEGAL;
-		}
-		if( !User::isUsableName( $u->getName() ) ) {
-			wfRunHooks( 'LoginAuthenticateAudit', array( $u, $this->mPassword, self::ILLEGAL ) );
+		if( !( $u instanceof User ) || !User::isUsableName( $u->getName() ) ) {
 			return self::ILLEGAL;
 		}
 
@@ -541,7 +539,6 @@ class LoginForm extends SpecialPage {
 		if ( 0 == $u->getID() ) {
 			$status = $this->attemptAutoCreate( $u );
 			if ( $status !== self::SUCCESS ) {
-				wfRunHooks( 'LoginAuthenticateAudit', array( $u, $this->mPassword, $status ) );
 				return $status;
 			} else {
 				$isAutoCreated = true;
@@ -562,7 +559,6 @@ class LoginForm extends SpecialPage {
 		// Give general extensions, such as a captcha, a chance to abort logins
 		$abort = self::ABORTED;
 		if( !wfRunHooks( 'AbortLogin', array( $u, $this->mPassword, &$abort, &$this->mAbortLoginErrorMsg ) ) ) {
-			wfRunHooks( 'LoginAuthenticateAudit', array( $u, $this->mPassword, $abort ) );
 			return $abort;
 		}
 
@@ -753,9 +749,9 @@ class LoginForm extends SpecialPage {
 					$userLang = Language::factory( $code );
 					$wgLang = $userLang;
 					$this->getContext()->setLanguage( $userLang );
-					return $this->successfulLogin();
+					$this->successfulLogin();
 				} else {
-					return $this->cookieRedirectCheck( 'login' );
+					$this->cookieRedirectCheck( 'login' );
 				}
 				break;
 
@@ -775,7 +771,7 @@ class LoginForm extends SpecialPage {
 			case self::NOT_EXISTS:
 				if( $this->getUser()->isAllowed( 'createaccount' ) ) {
 					$this->mainLoginForm( $this->msg( 'nosuchuser',
-					   wfEscapeWikiText( $this->mUsername ) )->parse() );
+						wfEscapeWikiText( $this->mUsername ) )->parse() );
 				} else {
 					$this->mainLoginForm( $this->msg( 'nosuchusershort',
 						wfEscapeWikiText( $this->mUsername ) )->text() );
@@ -811,7 +807,7 @@ class LoginForm extends SpecialPage {
 	function resetLoginForm( $error ) {
 		$this->getOutput()->addHTML( Xml::element('p', array( 'class' => 'error' ), $error ) );
 		$reset = new SpecialChangePassword();
-		$reset->setContext( $this );
+		$reset->setContext( $this->getContext() );
 		$reset->execute( null );
 	}
 
@@ -906,6 +902,8 @@ class LoginForm extends SpecialPage {
 
 	/**
 	 * Display a "login successful" page.
+	 * @param $msgname string
+	 * @param $injected_html string
 	 */
 	private function displaySuccessfulLogin( $msgname, $injected_html ) {
 		$out = $this->getOutput();
@@ -1131,6 +1129,7 @@ class LoginForm extends SpecialPage {
 	 * previous pass through the system.
 	 *
 	 * @private
+	 * @return bool
 	 */
 	function hasSessionCookie() {
 		global $wgDisableCookieCheck;
@@ -1139,6 +1138,7 @@ class LoginForm extends SpecialPage {
 
 	/**
 	 * Get the login token from the current session
+	 * @return Mixed
 	 */
 	public static function getLoginToken() {
 		global $wgRequest;
@@ -1150,9 +1150,9 @@ class LoginForm extends SpecialPage {
 	 */
 	public static function setLoginToken() {
 		global $wgRequest;
-		// Use User::generateToken() instead of $user->editToken()
+		// Generate a token directly instead of using $user->editToken()
 		// because the latter reuses $_SESSION['wsEditToken']
-		$wgRequest->setSessionData( 'wsLoginToken', User::generateToken() );
+		$wgRequest->setSessionData( 'wsLoginToken', MWCryptRand::generateHex( 32 ) );
 	}
 
 	/**
@@ -1165,6 +1165,7 @@ class LoginForm extends SpecialPage {
 
 	/**
 	 * Get the createaccount token from the current session
+	 * @return Mixed
 	 */
 	public static function getCreateaccountToken() {
 		global $wgRequest;
@@ -1176,7 +1177,7 @@ class LoginForm extends SpecialPage {
 	 */
 	public static function setCreateaccountToken() {
 		global $wgRequest;
-		$wgRequest->setSessionData( 'wsCreateaccountToken', User::generateToken() );
+		$wgRequest->setSessionData( 'wsCreateaccountToken', MWCryptRand::generateHex( 32 ) );
 	}
 
 	/**
@@ -1198,7 +1199,7 @@ class LoginForm extends SpecialPage {
 		}
 		$check = $titleObj->getFullURL( $query );
 
-		return $this->getOutput()->redirect( $check );
+		$this->getOutput()->redirect( $check );
 	}
 
 	/**
@@ -1207,15 +1208,15 @@ class LoginForm extends SpecialPage {
 	function onCookieRedirectCheck( $type ) {
 		if ( !$this->hasSessionCookie() ) {
 			if ( $type == 'new' ) {
-				return $this->mainLoginForm( $this->msg( 'nocookiesnew' )->parse() );
+				$this->mainLoginForm( $this->msg( 'nocookiesnew' )->parse() );
 			} elseif ( $type == 'login' ) {
-				return $this->mainLoginForm( $this->msg( 'nocookieslogin' )->parse() );
+				$this->mainLoginForm( $this->msg( 'nocookieslogin' )->parse() );
 			} else {
 				# shouldn't happen
-				return $this->mainLoginForm( $this->msg( 'error' )->text() );
+				$this->mainLoginForm( $this->msg( 'error' )->text() );
 			}
 		} else {
-			return $this->successfulLogin();
+			$this->successfulLogin();
 		}
 	}
 
@@ -1257,6 +1258,7 @@ class LoginForm extends SpecialPage {
 	 *
 	 * @param $text Link text
 	 * @param $lang Language code
+	 * @return string
 	 */
 	function makeLanguageSelectorLink( $text, $lang ) {
 		$attr = array( 'uselang' => $lang );

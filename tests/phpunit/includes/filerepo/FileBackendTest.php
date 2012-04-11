@@ -200,6 +200,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->backend = $this->multiBackend;
 		$this->tearDownFiles();
 		$this->doTestStore( $op );
+		$this->filesToPrune[] = $op['src']; # avoid file leaking
 		$this->tearDownFiles();
 	}
 
@@ -662,6 +663,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->backend = $this->multiBackend;
 		$this->tearDownFiles();
 		$this->doTestConcatenate( $op, $srcs, $srcsContent, $alreadyExists, $okStatus );
+		$this->filesToPrune[] = $op['dst']; # avoid file leaking
 		$this->tearDownFiles();
 	}
 
@@ -779,6 +781,67 @@ class FileBackendTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @dataProvider provider_testGetFileStat
+	 */
+	public function testGetFileStat( $path, $content, $alreadyExists ) {
+		$this->backend = $this->singleBackend;
+		$this->tearDownFiles();
+		$this->doTestGetFileStat( $path, $content, $alreadyExists );
+		$this->tearDownFiles();
+
+		$this->backend = $this->multiBackend;
+		$this->tearDownFiles();
+		$this->doTestGetFileStat( $path, $content, $alreadyExists );
+		$this->tearDownFiles();
+	}
+
+	private function doTestGetFileStat( $path, $content, $alreadyExists ) {
+		$backendName = $this->backendClass();
+
+		if ( $alreadyExists ) {
+			$this->prepare( array( 'dir' => dirname( $path ) ) );
+			$status = $this->backend->create( array( 'dst' => $path, 'content' => $content ) );
+			$this->assertEquals( array(), $status->errors,
+				"Creation of file at $path succeeded ($backendName)." );
+
+			$size = $this->backend->getFileSize( array( 'src' => $path ) );
+			$time = $this->backend->getFileTimestamp( array( 'src' => $path ) );
+			$stat = $this->backend->getFileStat( array( 'src' => $path ) );
+
+			$this->assertEquals( strlen( $content ), $size,
+				"Correct file size of '$path'" );
+			$this->assertTrue( abs( time() - wfTimestamp( TS_UNIX, $time ) ) < 5,
+				"Correct file timestamp of '$path'" );
+
+			$size = $stat['size'];
+			$time = $stat['mtime'];
+			$this->assertEquals( strlen( $content ), $size,
+				"Correct file size of '$path'" );
+			$this->assertTrue( abs( time() - wfTimestamp( TS_UNIX, $time ) ) < 5,
+				"Correct file timestamp of '$path'" );
+		} else {
+			$size = $this->backend->getFileSize( array( 'src' => $path ) );
+			$time = $this->backend->getFileTimestamp( array( 'src' => $path ) );
+			$stat = $this->backend->getFileStat( array( 'src' => $path ) );
+			
+			$this->assertFalse( $size, "Correct file size of '$path'" );
+			$this->assertFalse( $time, "Correct file timestamp of '$path'" );
+			$this->assertFalse( $stat, "Correct file stat of '$path'" );
+		}
+	}
+
+	function provider_testGetFileStat() {
+		$cases = array();
+
+		$base = $this->baseStorePath();
+		$cases[] = array( "$base/unittest-cont1/b/z/some_file.txt", "some file contents", true );
+		$cases[] = array( "$base/unittest-cont1/b/some-other_file.txt", "", true );
+		$cases[] = array( "$base/unittest-cont1/b/some-diff_file.txt", null, false );
+
+		return $cases;
+	}
+
+	/**
 	 * @dataProvider provider_testGetFileContents
 	 */
 	public function testGetFileContents( $source, $content ) {
@@ -793,9 +856,6 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->tearDownFiles();
 	}
 
-	/**
-	 * @dataProvider provider_testGetFileContents
-	 */
 	public function doTestGetFileContents( $source, $content ) {
 		$backendName = $this->backendClass();
 
@@ -974,6 +1034,16 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->doTestDoOperations();
 		$this->tearDownFiles();
 
+		$this->backend = $this->singleBackend;
+		$this->tearDownFiles();
+		$this->doTestDoOperationsFailing();
+		$this->tearDownFiles();
+
+		$this->backend = $this->multiBackend;
+		$this->tearDownFiles();
+		$this->doTestDoOperationsFailing();
+		$this->tearDownFiles();
+
 		// @TODO: test some cases where the ops should fail
 	}
 
@@ -997,9 +1067,9 @@ class FileBackendTest extends MediaWikiTestCase {
 
 		$status = $this->backend->doOperations( array(
 			array( 'op' => 'copy', 'src' => $fileA, 'dst' => $fileC, 'overwrite' => 1 ),
-			// Now: A:<A>, B:<B>, C:<A>, D:<D> (file:<orginal contents>)
+			// Now: A:<A>, B:<B>, C:<A>, D:<empty> (file:<orginal contents>)
 			array( 'op' => 'copy', 'src' => $fileC, 'dst' => $fileA, 'overwriteSame' => 1 ),
-			// Now: A:<A>, B:<B>, C:<A>, D:<D>
+			// Now: A:<A>, B:<B>, C:<A>, D:<empty>
 			array( 'op' => 'move', 'src' => $fileC, 'dst' => $fileD, 'overwrite' => 1 ),
 			// Now: A:<A>, B:<B>, C:<empty>, D:<A>
 			array( 'op' => 'move', 'src' => $fileB, 'dst' => $fileC ),
@@ -1047,6 +1117,68 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->assertEquals( wfBaseConvert( sha1( $fileBContents ), 16, 36, 31 ),
 			$this->backend->getFileSha1Base36( array( 'src' => $fileC ) ),
 			"Correct file SHA-1 of $fileC" );
+	}
+
+	function doTestDoOperationsFailing() {
+		$base = $this->baseStorePath();
+
+		$fileA = "$base/unittest-cont2/a/b/fileA.txt";
+		$fileAContents = '3tqtmoeatmn4wg4qe-mg3qt3 tq';
+		$fileB = "$base/unittest-cont2/a/b/fileB.txt";
+		$fileBContents = 'g-jmq3gpqgt3qtg q3GT ';
+		$fileC = "$base/unittest-cont2/a/b/fileC.txt";
+		$fileCContents = 'eigna[ogmewt 3qt g3qg flew[ag';
+		$fileD = "$base/unittest-cont2/a/b/fileD.txt";
+
+		$this->prepare( array( 'dir' => dirname( $fileA ) ) );
+		$this->backend->create( array( 'dst' => $fileA, 'content' => $fileAContents ) );
+		$this->prepare( array( 'dir' => dirname( $fileB ) ) );
+		$this->backend->create( array( 'dst' => $fileB, 'content' => $fileBContents ) );
+		$this->prepare( array( 'dir' => dirname( $fileC ) ) );
+		$this->backend->create( array( 'dst' => $fileC, 'content' => $fileCContents ) );
+
+		$status = $this->backend->doOperations( array(
+			array( 'op' => 'copy', 'src' => $fileA, 'dst' => $fileC, 'overwrite' => 1 ),
+			// Now: A:<A>, B:<B>, C:<A>, D:<empty> (file:<orginal contents>)
+			array( 'op' => 'copy', 'src' => $fileC, 'dst' => $fileA, 'overwriteSame' => 1 ),
+			// Now: A:<A>, B:<B>, C:<A>, D:<empty>
+			array( 'op' => 'copy', 'src' => $fileB, 'dst' => $fileD, 'overwrite' => 1 ),
+			// Now: A:<A>, B:<B>, C:<A>, D:<B>
+			array( 'op' => 'move', 'src' => $fileC, 'dst' => $fileD ),
+			// Now: A:<A>, B:<B>, C:<A>, D:<empty> (failed)
+			array( 'op' => 'move', 'src' => $fileB, 'dst' => $fileC, 'overwriteSame' => 1 ),
+			// Now: A:<A>, B:<B>, C:<A>, D:<empty> (failed)
+			array( 'op' => 'move', 'src' => $fileB, 'dst' => $fileA, 'overwrite' => 1 ),
+			// Now: A:<B>, B:<empty>, C:<A>, D:<empty>
+			array( 'op' => 'delete', 'src' => $fileD ),
+			// Now: A:<B>, B:<empty>, C:<A>, D:<empty>
+			array( 'op' => 'null' ),
+			// Does nothing
+		), array( 'force' => 1 ) );
+
+		$this->assertNotEquals( array(), $status->errors, "Operation had warnings" );
+		$this->assertEquals( true, $status->isOK(), "Operation batch succeeded" );
+		$this->assertEquals( 8, count( $status->success ),
+			"Operation batch has correct success array" );
+
+		$this->assertEquals( false, $this->backend->fileExists( array( 'src' => $fileB ) ),
+			"File does not exist at $fileB" );
+		$this->assertEquals( false, $this->backend->fileExists( array( 'src' => $fileD ) ),
+			"File does not exist at $fileD" );
+
+		$this->assertEquals( true, $this->backend->fileExists( array( 'src' => $fileA ) ),
+			"File does not exist at $fileA" );
+		$this->assertEquals( true, $this->backend->fileExists( array( 'src' => $fileC ) ),
+			"File exists at $fileC" );
+		$this->assertEquals( $fileBContents,
+			$this->backend->getFileContents( array( 'src' => $fileA ) ),
+			"Correct file contents of $fileA" );
+		$this->assertEquals( strlen( $fileBContents ),
+			$this->backend->getFileSize( array( 'src' => $fileA ) ),
+			"Correct file size of $fileA" );
+		$this->assertEquals( wfBaseConvert( sha1( $fileBContents ), 16, 36, 31 ),
+			$this->backend->getFileSha1Base36( array( 'src' => $fileA ) ),
+			"Correct file SHA-1 of $fileA" );
 	}
 
 	public function testGetFileList() {
@@ -1164,6 +1296,15 @@ class FileBackendTest extends MediaWikiTestCase {
 		sort( $list );
 
 		$this->assertEquals( $expected, $list, "Correct file listing ($backendName)." );
+
+		// Actual listing (using iterator second time)
+		$list = array();
+		foreach ( $iter as $file ) {
+			$list[] = $file;
+		}
+		sort( $list );
+
+		$this->assertEquals( $expected, $list, "Correct file listing ($backendName), second iteration." );
 
 		foreach ( $files as $file ) { // clean up
 			$this->backend->doOperation( array( 'op' => 'delete', 'src' => $file ) );

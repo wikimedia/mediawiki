@@ -33,6 +33,9 @@ class Block {
 	/// @var User|String
 	protected $target;
 
+	// @var Integer Hack for foreign blocking (CentralAuth)
+	protected $forcedTargetID;
+
 	/// @var Block::TYPE_ constant.  Can only be USER, IP or RANGE internally
 	protected $type;
 
@@ -71,6 +74,9 @@ class Block {
 		}
 
 		$this->setTarget( $address );
+		if ( $this->target instanceof User && $user ) {
+			$this->forcedTargetID = $user; // needed for foreign users
+		}
 		if ( $by ) { // local user
 			$this->setBlocker( User::newFromID( $by ) );
 		} else { // foreign user
@@ -480,9 +486,15 @@ class Block {
 		}
 		$expiry = $db->encodeExpiry( $this->mExpiry );
 
+		if ( $this->forcedTargetID ) {
+			$uid = $this->forcedTargetID;
+		} else {
+			$uid = $this->target instanceof User ? $this->target->getID() : 0;
+		}
+
 		$a = array(
 			'ipb_address'          => (string)$this->target,
-			'ipb_user'             => $this->target instanceof User ? $this->target->getID() : 0,
+			'ipb_user'             => $uid,
 			'ipb_by'               => $this->getBy(),
 			'ipb_by_text'          => $this->getByName(),
 			'ipb_reason'           => $this->mReason,
@@ -893,7 +905,7 @@ class Block {
 	 * Encode expiry for DB
 	 *
 	 * @param $expiry String: timestamp for expiry, or
-	 * @param $db Database object
+	 * @param $db DatabaseBase object
 	 * @return String
 	 * @deprecated since 1.18; use $dbw->encodeExpiry() instead
 	 */

@@ -1,7 +1,7 @@
 /*
  * JavaScript for Special:Preferences
  */
-( function( $, mw ) {
+jQuery( document ).ready( function( $ ) {
 $( '#prefsubmit' ).attr( 'id', 'prefcontrol' );
 var $preftoc = $('<ul id="preftoc"></ul>');
 var $preferences = $( '#preferences' )
@@ -49,14 +49,11 @@ $legends.each( function( i, legend ) {
 
 // If we've reloaded the page or followed an open-in-new-window,
 // make the selected tab visible.
-// On document ready:
-$( function() {
-	var hash = window.location.hash;
-	if( hash.match( /^#mw-prefsection-[\w-]+/ ) ) {
-		var $tab = $( hash.replace( 'mw-prefsection', 'preftab' ) );
-		$tab.click();
-	}
-} );
+var hash = window.location.hash;
+if( hash.match( /^#mw-prefsection-[\w-]+/ ) ) {
+	var $tab = $( hash.replace( 'mw-prefsection', 'preftab' ) );
+	$tab.click();
+}
 
 
 /**
@@ -137,4 +134,4 @@ if ( $tzSelect.length && $tzTextbox.length ) {
 	$tzTextbox.blur( function() { updateTimezoneSelection(); } );
 	updateTimezoneSelection();
 }
-} )( jQuery, mediaWiki );
+} );

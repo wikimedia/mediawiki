@@ -1,5 +1,9 @@
 <?php
 /**
+ * @defgroup Actions Action done on pages
+ */
+
+/**
  * Actions are things which can be done to pages (edit, delete, rollback, etc).  They
  * are distinct from Special Pages because an action must apply to exactly one page.
  *
@@ -74,7 +78,7 @@ abstract class Action {
 	 * @param $action String
 	 * @param $page Page
 	 * @param $context IContextSource
-	 * @return Action|false|null false if the action is disabled, null
+	 * @return Action|bool|null false if the action is disabled, null
 	 *     if it is not recognised
 	 */
 	public final static function factory( $action, Page $page, IContextSource $context = null ) {
@@ -89,20 +93,20 @@ abstract class Action {
 	/**
 	 * Get the action that will be executed, not necessarily the one passed
 	 * passed through the "action" request parameter. Actions disabled in
-	 * $wgDisabledActions will be replaced by "nosuchaction".
+	 * $wgActions will be replaced by "nosuchaction".
 	 *
 	 * @since 1.19
 	 * @param $context IContextSource
 	 * @return string: action name
 	 */
 	public final static function getActionName( IContextSource $context ) {
-		global $wgDisabledActions;
+		global $wgActions;
 
 		$request = $context->getRequest();
 		$actionName = $request->getVal( 'action', 'view' );
 
 		// Check for disabled actions
-		if ( in_array( $actionName, $wgDisabledActions ) ) {
+		if ( isset( $wgActions[$actionName] ) && $wgActions[$actionName] === false ) {
 			$actionName = 'nosuchaction';
 		}
 
@@ -124,7 +128,7 @@ abstract class Action {
 		if ( !$context->canUseWikiPage() ) {
 			return 'view';
 		}
-		
+
 		$action = Action::factory( $actionName, $context->getWikiPage() );
 		if ( $action instanceof Action ) {
 			return $action->getName();
@@ -262,6 +266,7 @@ abstract class Action {
 	 *
 	 * @param $user User: the user to check, or null to use the context user
 	 * @throws ErrorPageError
+	 * @return bool True on success
 	 */
 	protected function checkCanExecute( User $user ) {
 		$right = $this->getRestriction();
@@ -273,7 +278,7 @@ abstract class Action {
 		}
 
 		if ( $this->requiresUnblock() && $user->isBlocked() ) {
-			$block = $user->mBlock;
+			$block = $user->getBlock();
 			throw new UserBlockedError( $block );
 		}
 
@@ -283,6 +288,7 @@ abstract class Action {
 		if ( $this->requiresWrite() && wfReadOnly() ) {
 			throw new ReadOnlyError();
 		}
+		return true;
 	}
 
 	/**
@@ -497,6 +503,7 @@ abstract class FormlessAction extends Action {
 
 	/**
 	 * We don't want an HTMLForm
+	 * @return bool
 	 */
 	protected function getFormFields() {
 		return false;

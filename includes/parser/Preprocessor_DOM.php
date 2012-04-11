@@ -479,7 +479,7 @@ class Preprocessor_DOM implements Preprocessor {
 			} elseif ( $found == 'line-end' ) {
 				$piece = $stack->top;
 				// A heading must be open, otherwise \n wouldn't have been in the search list
-				assert( $piece->open == "\n" );
+				assert( '$piece->open == "\n"' );
 				$part = $piece->getCurrentPart();
 				// Search back through the input to see if it has a proper close
 				// Do this using the reversed string since the other solutions (end anchor, etc.) are inefficient
@@ -1250,6 +1250,7 @@ class PPFrame_DOM implements PPFrame {
 
 	/**
 	 * Virtual implode with brackets
+	 * @return array
 	 */
 	function virtualBracketedImplode( $start, $sep, $end /*, ... */ ) {
 		$args = array_slice( func_get_args(), 3 );
@@ -1674,6 +1675,7 @@ class PPNode_DOM implements PPNode {
 
 	/**
 	 * Split a <h> node
+	 * @return array
 	 */
 	function splitHeading() {
 		if ( $this->getName() !== 'h' ) {

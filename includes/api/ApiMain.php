@@ -61,6 +61,7 @@ class ApiMain extends ApiBase {
 		'paraminfo' => 'ApiParamInfo',
 		'rsd' => 'ApiRsd',
 		'compare' => 'ApiComparePages',
+		'tokens' => 'ApiTokens',
 
 		// Write modules
 		'purge' => 'ApiPurge',
@@ -595,11 +596,11 @@ class ApiMain extends ApiBase {
 
 		// Die if token required, but not provided (unless there is a gettoken parameter)
 		$salt = $module->getTokenSalt();
-		if ( $salt !== false && !isset( $moduleParams['gettoken'] ) ) {
+		if ( $salt !== false && isset( $moduleParams['gettoken'] ) && !$moduleParams['gettoken'] ) {
 			if ( !isset( $moduleParams['token'] ) ) {
 				$this->dieUsageMsg( array( 'missingparam', 'token' ) );
 			} else {
-				if ( !$this->getUser()->matchEditToken( $moduleParams['token'], $salt, $this->getRequest() ) ) {
+				if ( !$this->getUser()->matchEditToken( $moduleParams['token'], $salt ) ) {
 					$this->dieUsageMsg( 'sessionfailure' );
 				}
 			}
@@ -1055,7 +1056,7 @@ class ApiMain extends ApiBase {
  *
  * @ingroup API
  */
-class UsageException extends Exception {
+class UsageException extends MWException {
 
 	private $mCodestr;
 	private $mExtraData;

@@ -173,7 +173,7 @@ class ResourceLoader {
 			$cache->set( $key, $result );
 		} catch ( Exception $exception ) {
 			// Return exception as a comment
-			$result = "/*\n{$exception->__toString()}\n*/\n";
+			$result = $this->makeComment( $exception->__toString() );
 		}
 
 		wfProfileOut( __METHOD__ );
@@ -215,7 +215,7 @@ class ResourceLoader {
 	 * Registers a module with the ResourceLoader system.
 	 *
 	 * @param $name Mixed: Name of module as a string or List of name/object pairs as an array
-	 * @param $info Module info array. For backwards compatibility with 1.17alpha,
+	 * @param $info array Module info array. For backwards compatibility with 1.17alpha,
 	 *   this may also be a ResourceLoaderModule object. Optional when using
 	 *   multiple-registration calling style.
 	 * @throws MWException: If a duplicate module registration is attempted
@@ -354,6 +354,7 @@ class ResourceLoader {
 	 * @return Array
 	 */
 	public function getTestModuleNames( $framework = 'all' ) {
+		/// @TODO: api siteinfo prop testmodulenames modulenames
 		if ( $framework == 'all' ) {
 			return $this->testModuleNames;
 		} elseif ( isset( $this->testModuleNames[$framework] ) && is_array( $this->testModuleNames[$framework] ) ) {
@@ -430,13 +431,20 @@ class ResourceLoader {
 		ob_start();
 
 		wfProfileIn( __METHOD__ );
-		$exceptions = '';
+		$errors = '';
 
 		// Split requested modules into two groups, modules and missing
 		$modules = array();
 		$missing = array();
 		foreach ( $context->getModules() as $name ) {
 			if ( isset( $this->moduleInfos[$name] ) ) {
+				$module = $this->getModule( $name );
+				// Do not allow private modules to be loaded from the web.
+				// This is a security issue, see bug 34907.
+				if ( $module->getGroup() === 'private' ) {
+					$errors .= $this->makeComment( "Cannot show private module \"$name\"" );
+					continue;
+				}
 				$modules[$name] = $this->getModule( $name );
 			} else {
 				$missing[] = $name;
@@ -448,12 +456,11 @@ class ResourceLoader {
 			$this->preloadModuleInfo( array_keys( $modules ), $context );
 		} catch( Exception $e ) {
 			// Add exception to the output as a comment
-			$exceptions .= "/*\n{$e->__toString()}\n*/\n";
+			$errors .= $this->makeComment( $e->__toString() );
 		}
 
 		wfProfileIn( __METHOD__.'-getModifiedTime' );
 
-		$private = false;
 		// To send Last-Modified and support If-Modified-Since, we need to detect
 		// the last modified time
 		$mtime = wfTimestamp( TS_UNIX, $wgCacheEpoch );
@@ -462,22 +469,18 @@ class ResourceLoader {
 			 * @var $module ResourceLoaderModule
 			 */
 			try {
-				// Bypass Squid and other shared caches if the request includes any private modules
-				if ( $module->getGroup() === 'private' ) {
-					$private = true;
-				}
 				// Calculate maximum modified time
 				$mtime = max( $mtime, $module->getModifiedTime( $context ) );
 			} catch ( Exception $e ) {
 				// Add exception to the output as a comment
-				$exceptions .= "/*\n{$e->__toString()}\n*/\n";
+				$errors .= $this->makeComment( $e->__toString() );
 			}
 		}
 
 		wfProfileOut( __METHOD__.'-getModifiedTime' );
 
 		// Send content type and cache related headers
-		$this->sendResponseHeaders( $context, $mtime, $private );
+		$this->sendResponseHeaders( $context, $mtime );
 
 		// If there's an If-Modified-Since header, respond with a 304 appropriately
 		if ( $this->tryRespondLastModified( $context, $mtime ) ) {
@@ -489,20 +492,20 @@ class ResourceLoader {
 		$response = $this->makeModuleResponse( $context, $modules, $missing );
 
 		// Prepend comments indicating exceptions
-		$response = $exceptions . $response;
+		$response = $errors . $response;
 
 		// Capture any PHP warnings from the output buffer and append them to the
 		// response in a comment if we're in debug mode.
 		if ( $context->getDebug() && strlen( $warnings = ob_get_contents() ) ) {
-			$response = "/*\n$warnings\n*/\n" . $response;
+			$response = $this->makeComment( $warnings ) . $response;
 		}
 
 		// Remove the output buffer and output the response
 		ob_end_clean();
 		echo $response;
 
-		// Save response to file cache unless there are private modules or errors
-		if ( isset( $fileCache ) && !$private && !$exceptions && !$missing ) {
+		// Save response to file cache unless there are errors
+		if ( isset( $fileCache ) && !$errors && !$missing ) {
 			// Cache single modules...and other requests if there are enough hits
 			if ( ResourceFileCache::useFileCache( $context ) ) {
 				if ( $fileCache->isCacheWorthy() ) {
@@ -520,10 +523,9 @@ class ResourceLoader {
 	 * Send content type and last modified headers to the client.
 	 * @param $context ResourceLoaderContext
 	 * @param $mtime string TS_MW timestamp to use for last-modified
-	 * @param $private bool True iff response contains any private modules
 	 * @return void
 	 */
-	protected function sendResponseHeaders( ResourceLoaderContext $context, $mtime, $private ) {
+	protected function sendResponseHeaders( ResourceLoaderContext $context, $mtime ) {
 		global $wgResourceLoaderMaxage;
 		// If a version wasn't specified we need a shorter expiry time for updates
 		// to propagate to clients quickly
@@ -547,13 +549,8 @@ class ResourceLoader {
 			header( 'Cache-Control: private, no-cache, must-revalidate' );
 			header( 'Pragma: no-cache' );
 		} else {
-			if ( $private ) {
-				header( "Cache-Control: private, max-age=$maxage" );
-				$exp = $maxage;
-			} else {
-				header( "Cache-Control: public, max-age=$maxage, s-maxage=$smaxage" );
-				$exp = min( $maxage, $smaxage );
-			}
+			header( "Cache-Control: public, max-age=$maxage, s-maxage=$smaxage" );
+			$exp = min( $maxage, $smaxage );
 			header( 'Expires: ' . wfTimestamp( TS_RFC2822, $exp + time() ) );
 		}
 	}
@@ -650,6 +647,11 @@ class ResourceLoader {
 		return false; // cache miss
 	}
 
+	protected function makeComment( $text ) {
+		$encText = str_replace( '*/', '* /', $text );
+		return "/*\n$encText\n*/\n";
+	}
+
 	/**
 	 * Generates code for a response
 	 *
@@ -674,7 +676,7 @@ class ResourceLoader {
 				$blobs = MessageBlobStore::get( $this, $modules, $context->getLanguage() );
 			} catch ( Exception $e ) {
 				// Add exception to the output as a comment
-				$exceptions .= "/*\n{$e->__toString()}\n*/\n";
+				$exceptions .= $this->makeComment( $e->__toString() );
 			}
 		} else {
 			$blobs = array();
@@ -753,7 +755,7 @@ class ResourceLoader {
 				}
 			} catch ( Exception $e ) {
 				// Add exception to the output as a comment
-				$exceptions .= "/*\n{$e->__toString()}\n*/\n";
+				$exceptions .= $this->makeComment( $e->__toString() );
 
 				// Register module as missing
 				$missing[] = $name;
@@ -795,9 +797,9 @@ class ResourceLoader {
 	 * Returns JS code to call to mw.loader.implement for a module with
 	 * given properties.
 	 *
-	 * @param $name Module name
+	 * @param $name string Module name
 	 * @param $scripts Mixed: List of URLs to JavaScript files or String of JavaScript code
-	 * @param $styles Mixed: List of CSS strings keyed by media type, or list of lists of URLs to
+	 * @param $styles Mixed: Array of CSS strings keyed by media type, or an array of lists of URLs to
 	 * CSS files keyed by media type
 	 * @param $messages Mixed: List of messages associated with this module. May either be an
 	 *     associative array mapping message key to value, or a JSON-encoded message blob containing
@@ -807,7 +809,7 @@ class ResourceLoader {
 	 */
 	public static function makeLoaderImplementScript( $name, $scripts, $styles, $messages ) {
 		if ( is_string( $scripts ) ) {
-			$scripts = new XmlJsCode( "function( $ ) {{$scripts}}" );
+			$scripts = new XmlJsCode( "function () {\n{$scripts}\n}" );
 		} elseif ( !is_array( $scripts ) ) {
 			throw new MWException( 'Invalid scripts error. Array of URLs or string of code expected.' );
 		}
@@ -816,6 +818,11 @@ class ResourceLoader {
 			array(
 				$name,
 				$scripts,
+				// Force objects. mw.loader.implement requires them to be javascript objects.
+				// Although these variables are associative arrays, which become javascript
+				// objects through json_encode. In many cases they will be empty arrays, and
+				// PHP/json_encode() consider empty arrays to be numerical arrays and
+				// output javascript "[]" instead of "{}". This fixes that.
 				(object)$styles,
 				(object)$messages
 			) );
@@ -901,7 +908,7 @@ class ResourceLoader {
 	public static function makeCustomLoaderScript( $name, $version, $dependencies, $group, $source, $script ) {
 		$script = str_replace( "\n", "\n\t", trim( $script ) );
 		return Xml::encodeJsCall(
-			"( function( name, version, dependencies, group, source ) {\n\t$script\n} )",
+			"( function ( name, version, dependencies, group, source ) {\n\t$script\n} )",
 			array( $name, $version, $dependencies, $group, $source ) );
 	}
 
@@ -974,7 +981,7 @@ class ResourceLoader {
 	 * @return string
 	 */
 	public static function makeLoaderConditionalScript( $script ) {
-		return "if(window.mw){\n".trim( $script )."\n}";
+		return "if(window.mw){\n" . trim( $script ) . "\n}";
 	}
 
 	/**

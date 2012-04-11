@@ -129,7 +129,7 @@ class ActiveUsersPager extends UsersPager {
 		$list = array();
 		foreach( self::getGroups( $row->user_id ) as $group ) {
 			if ( isset( $this->groups[$group] ) ) {
-				return;
+				return '';
 			}
 			$list[] = self::buildGroupLink( $group, $userName );
 		}

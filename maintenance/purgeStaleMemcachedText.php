@@ -1,4 +1,8 @@
 <?php
+/**
+ * @ingroup Maintenance Memcached
+ * @file
+ */
 
 require_once( dirname( __FILE__ ) . '/commandLine.inc' );
 

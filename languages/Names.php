@@ -7,7 +7,7 @@
   */
 /* private */ $coreLanguageNames = array(
 	'aa' => 'Qafár af',	# Afar
-	'ab' => 'Аҧсуа',	# Abkhaz, should possibly add ' бысжѡа'
+	'ab' => 'Аҧсшәа',	# Abkhaz
 	'ace' => 'Acèh',	# Aceh
 	'af' => 'Afrikaans',	# Afrikaans
 	'ak' => 'Akan',		# Akan
@@ -37,7 +37,7 @@
 	'be-tarask' => "\xE2\x80\xAAБеларуская (тарашкевіца)\xE2\x80\xAC",	# Belarusian in Taraskievica orthography
 	'be-x-old' => "\xE2\x80\xAAБеларуская (тарашкевіца)\xE2\x80\xAC",	# Belarusian in Taraskievica orthography; compat link
 	'bg' => 'Български',	# Bulgarian
-	'bh' => 'भोजपुरी',	# Bihari marco language. Falls back to Bhojpuri (bho).
+	'bh' => 'भोजपुरी',	# Bihari macro language. Falls back to Bhojpuri (bho). The name actually says "Bhojpuri".
 	'bho' => 'भोजपुरी',	# Bhojpuri
 	'bi' => 'Bislama',		# Bislama
 	'bjn' => 'Bahasa Banjar',	# Banjarese
@@ -49,7 +49,7 @@
 	'br' => 'Brezhoneg',	# Breton
 	'brh' => 'Bráhuí',	# Brahui
 	'bs' => 'Bosanski',		# Bosnian
-	'bug' => 'ᨅᨔ ᨕᨘᨁᨗ',	# Bugis
+	'bug' => 'ᨅᨔ ᨕᨘᨁᨗ',	# Buginese
 	'bxr' => 'Буряад',	# Buryat (Russia)
 	'ca' => 'Català',	# Catalan
 	'cbk-zam' => 'Chavacano de Zamboanga',	# Zamboanga Chavacano
@@ -60,7 +60,7 @@
 	'cho' => 'Choctaw',		# Choctaw
 	'chr' => 'ᏣᎳᎩ', # Cherokee
 	'chy' => 'Tsetsêhestâhese',	# Cheyenne
-	'ckb' => 'کوردی',	# Sorani
+	'ckb' => 'کوردی',	# Sorani. The name actually says "Kurdi" (Kurdish).
 	'co' => 'Corsu',		# Corsican
 	'cps' => 'Capiceño', # Capiznon
 	'cr' => 'Nēhiyawēwin / ᓀᐦᐃᔭᐍᐏᐣ',		# Cree
@@ -81,7 +81,7 @@
 	'dsb' => 'Dolnoserbski', # Lower Sorbian
 	'dtp' => 'Dusun Bundu-liwan', # Central Dusun
 	'dv' => 'ދިވެހިބަސް',		# Dhivehi
-	'dz' => 'ཇོང་ཁ',		# Bhutani
+	'dz' => 'ཇོང་ཁ',		# Dzongkha (Bhutan)
 	'ee' => 'Eʋegbe',	# Éwé
 	'el' => 'Ελληνικά',	# Greek
 	'eml' => 'Emiliàn e rumagnòl',	# Emiliano-Romagnolo / Sammarinese
@@ -141,9 +141,9 @@
 	'ii' => 'ꆇꉙ',	# Sichuan Yi
 	'ik' => 'Iñupiak',	# Inupiak (Inupiatun, Northwest Alaska / Inupiatun, North Alaskan)
 	'ike-cans' => 'ᐃᓄᒃᑎᑐᑦ',	# Inuktitut, Eastern Canadian/Eastern Canadian "Eskimo"/"Eastern Arctic Eskimo"/Inuit (Unified Canadian Aboriginal Syllabics)
-	'ike-latn' => 'inuktitut',	# Inuktitut, Eastern Canadian (Latin script)
+	'ike-latn' => 'Inuktitut',	# Inuktitut, Eastern Canadian (Latin script)
 	'ilo' => 'Ilokano',	# Ilokano
-	'inh' => 'ГІалгІай Ğalğaj',    # Ingush
+	'inh' => 'ГӀалгӀай',    # Ingush
 	'io' => 'Ido',			# Ido
 	'is' => 'Íslenska',	# Icelandic
 	'it' => 'Italiano',		# Italian
@@ -180,7 +180,7 @@
 	'krc' => 'Къарачай-Малкъар', # Karachay-Balkar
 	'kri' => 'Krio', # Krio
 	'krj' => 'Kinaray-a', # Kinaray-a
-	'ks' => 'कॉशुर - کٲشُر',	# Kashmiri (multiple scripts - defaults to Perso-Arabic)
+	'ks' => 'कॉशुर / کٲشُر',	# Kashmiri (multiple scripts - defaults to Perso-Arabic)
 	'ks-arab' => 'کٲشُر',	# Kashmiri (Perso-Arabic script)
 	'ks-deva' => 'कॉशुर',	# Kashmiri (Devanagari script)
 	'ksh' => 'Ripoarisch',	# Ripuarian
@@ -206,6 +206,7 @@
 	'loz' => 'Silozi', # Lozi
 	'lt' => 'Lietuvių',	# Lithuanian
 	'ltg' => 'Latgaļu', 	# Latgalian
+	'lus' => 'Mizo ţawng', # Mizo/Lushai
 	'lv' => 'Latviešu',	# Latvian
 	'lzh' => '文言',	# Literary Chinese -- (bug 8217) lzh instead of zh-classical, http://www.sil.org/iso639-3/codes.asp?order=639_3&letter=l
 	'lzz' => 'Lazuri',	# Laz
@@ -220,7 +221,7 @@
 	'mk' => 'Македонски',	# Macedonian
 	'ml' => 'മലയാളം',	# Malayalam
 	'mn' => 'Монгол',	# Halh Mongolian (Cyrillic) (ISO 639-3: khk)
-	'mo' => 'Молдовеняскэ',	# Moldovan
+	'mo' => 'Молдовеняскэ',	# Moldovan, deprecated
 	'mr' => 'मराठी',	# Marathi
 	'mrj' => 'Кырык мары',	# Hill Mari
 	'ms' => 'Bahasa Melayu',	# Malay
@@ -238,7 +239,7 @@
 	'nds' => 'Plattdüütsch',	# Low German ''or'' Low Saxon
 	'nds-nl' => 'Nedersaksisch',	# Dutch Low Saxon
 	'ne' => 'नेपाली',	# Nepali
-	'new' => 'नेपाल भाषा',		# Newar / Nepal Bhasa
+	'new' => 'नेपाल भाषा',		# Newar / Nepal Bhasha
 	'ng' => 'Oshiwambo',		# Ndonga
 	'niu' => 'Niuē',	# Niuean
 	'nl' => 'Nederlands',	# Dutch
@@ -262,7 +263,7 @@
 	'pdc' => 'Deitsch',	# Pennsylvania German
 	'pdt' => 'Plautdietsch',	# Plautdietsch/Mennonite Low German
 	'pfl' => 'Pälzisch',	# Palatinate German
-	'pi' => 'पािऴ',	# Pali
+	'pi' => 'पाळि',	# Pali
 	'pih' => 'Norfuk / Pitkern', # Norfuk/Pitcairn/Norfolk
 	'pl' => 'Polski',		# Polish
 	'pms' => 'Piemontèis',	# Piedmontese
@@ -332,12 +333,12 @@
 	'tet' => 'Tetun',	# Tetun
 	'tg' => 'Тоҷикӣ',	# Tajiki (falls back to tg-cyrl)
 	'tg-cyrl' => 'Тоҷикӣ',	# Tajiki (Cyrllic script) (default)
-	'tg-latn' => 'tojikī',	# Tajiki (Latin script)
+	'tg-latn' => 'Tojikī',	# Tajiki (Latin script)
 	'th' => 'ไทย',	# Thai
 	'ti' => 'ትግርኛ',		# Tigrinya
 	'tk' => 'Türkmençe',	# Turkmen
 	'tl' => 'Tagalog',		# Tagalog
-	'tly' => 'толышә зывон',	# Talysh
+	'tly' => 'Толышә зывон',	# Talysh
 	'tn' => 'Setswana',		# Setswana
 	'to' => 'lea faka-Tonga',		# Tonga (Tonga Islands)
 	'tokipona' => 'Toki Pona',      # Toki Pona
@@ -352,15 +353,15 @@
 	'ty' => 'Reo Mā`ohi',	# Tahitian
 	'tyv' => 'Тыва дыл',	# Tyvan
 	'udm' => 'Удмурт',	# Udmurt
-	'ug' => 'ئۇيغۇرچە / Uyghurche‎',	# Uyghur (multiple scripts - defaults to Arabic)
+	'ug' => 'ئۇيغۇرچە / Uyghurche',	# Uyghur (multiple scripts - defaults to Arabic)
 	'ug-arab' => 'ئۇيغۇرچە', # Uyghur (Arabic script) (default)
-	'ug-latn' => 'Uyghurche‎', # Uyghur (Latin script)
+	'ug-latn' => 'Uyghurche', # Uyghur (Latin script)
 	'uk' => 'Українська',	# Ukrainian
 	'ur' => 'اردو',	# Urdu
-	'uz' => 'O\'zbek',	# Uzbek
+	'uz' => 'Oʻzbek',	# Uzbek
 	've' => 'Tshivenda',		# Venda
 	'vec' => 'Vèneto',	# Venetian
-	'vep' => 'Vepsän kel\'',	# Veps
+	'vep' => 'Vepsän kel’',	# Veps
 	'vi' => 'Tiếng Việt',	# Vietnamese
 	'vls' => 'West-Vlams', # West Flemish
 	'vmf' => 'Mainfränkisch', # Upper Franconian, Main-Franconian

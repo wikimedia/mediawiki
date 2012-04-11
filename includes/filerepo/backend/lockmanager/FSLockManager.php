@@ -35,22 +35,22 @@ class FSLockManager extends LockManager {
 	 */
 	function __construct( array $config ) {
 		parent::__construct( $config );
+
 		$this->lockDir = $config['lockDirectory'];
 	}
 
+	/**
+	 * @see LockManager::doLock()
+	 * @return Status
+	 */
 	protected function doLock( array $paths, $type ) {
 		$status = Status::newGood();
 
 		$lockedPaths = array(); // files locked in this attempt
 		foreach ( $paths as $path ) {
-			$subStatus = $this->doSingleLock( $path, $type );
-			$status->merge( $subStatus );
+			$status->merge( $this->doSingleLock( $path, $type ) );
 			if ( $status->isOK() ) {
-				// Don't append to $lockedPaths if $path is already locked.
-				// We do NOT want to unlock the key if we have to rollback.
-				if ( $subStatus->isGood() ) { // no warnings/fatals?
-					$lockedPaths[] = $path;
-				}
+				$lockedPaths[] = $path;
 			} else {
 				// Abort and unlock everything
 				$status->merge( $this->doUnlock( $lockedPaths, $type ) );
@@ -61,6 +61,10 @@ class FSLockManager extends LockManager {
 		return $status;
 	}
 
+	/**
+	 * @see LockManager::doUnlock()
+	 * @return Status
+	 */
 	protected function doUnlock( array $paths, $type ) {
 		$status = Status::newGood();
 

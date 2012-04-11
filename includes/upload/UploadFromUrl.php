@@ -2,8 +2,7 @@
 /**
  * Implements uploading from a HTTP resource.
  *
- * @file
- * @ingroup upload
+ * @ingroup Upload
  * @author Bryan Tong Minh
  * @author Michael Dale
  */
@@ -35,6 +34,31 @@ class UploadFromUrl extends UploadBase {
 	public static function isEnabled() {
 		global $wgAllowCopyUploads;
 		return $wgAllowCopyUploads && parent::isEnabled();
+	}
+
+	/**
+	 * Checks whether the URL is for an allowed host
+	 *
+	 * @param $url string
+	 * @return bool
+	 */
+	public static function isAllowedHost( $url ) {
+		global $wgCopyUploadsDomains;
+		if ( !count( $wgCopyUploadsDomains ) ) {
+			return true;
+		}
+		$parsedUrl = wfParseUrl( $url );
+		if ( !$parsedUrl ) {
+			return false;
+		}
+		$valid = false;
+		foreach( $wgCopyUploadsDomains as $domain ) {
+			if ( $parsedUrl['host'] === $domain ) {
+				$valid = true;
+				break;
+			}
+		}
+		return $valid;
 	}
 
 	/**
@@ -102,6 +126,9 @@ class UploadFromUrl extends UploadBase {
 			return Status::newFatal( 'http-invalid-url' );
 		}
 
+		if( !self::isAllowedHost( $this->mUrl ) ) {
+			return Status::newFatal( 'upload-copy-upload-invalid-domain' );
+		}
 		if ( !$this->mAsync ) {
 			return $this->reallyFetchFile();
 		}
@@ -181,6 +208,7 @@ class UploadFromUrl extends UploadBase {
 	/**
 	 * Wrapper around the parent function in order to defer verifying the
 	 * upload until the file really has been fetched.
+	 * @return array|mixed
 	 */
 	public function verifyUpload() {
 		if ( $this->mAsync ) {
@@ -192,6 +220,7 @@ class UploadFromUrl extends UploadBase {
 	/**
 	 * Wrapper around the parent function in order to defer checking warnings
 	 * until the file really has been fetched.
+	 * @return Array
 	 */
 	public function checkWarnings() {
 		if ( $this->mAsync ) {
@@ -204,6 +233,7 @@ class UploadFromUrl extends UploadBase {
 	/**
 	 * Wrapper around the parent function in order to defer checking protection
 	 * until we are sure that the file can actually be uploaded
+	 * @return bool|mixed
 	 */
 	public function verifyTitlePermissions( $user ) {
 		if ( $this->mAsync ) {
@@ -215,6 +245,7 @@ class UploadFromUrl extends UploadBase {
 	/**
 	 * Wrapper around the parent function in order to defer uploading to the
 	 * job queue for asynchronous uploads
+	 * @return Status
 	 */
 	public function performUpload( $comment, $pageText, $watch, $user ) {
 		if ( $this->mAsync ) {

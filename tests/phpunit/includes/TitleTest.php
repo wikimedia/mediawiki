@@ -44,7 +44,7 @@ class TitleTest extends MediaWikiTestCase {
 	 * @group Database
 	 * @param string $source
 	 * @param string $target
-	 * @param array|string|true $requiredErrors
+	 * @param array|string|true $expected Required error
 	 * @dataProvider dataTestIsValidMoveOperation
 	 */
 	function testIsValidMoveOperation( $source, $target, $expected ) {

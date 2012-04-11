@@ -144,28 +144,86 @@ test( 'mw.msg', function() {
 });
 
 test( 'mw.loader', function() {
-	expect(1);
+	expect(2);
 
-	// Asynchronous ahead
+	var isAwesomeDone;
+
+	// Async ahead
 	stop();
 
-	mw.loader.implement( 'is.awesome', [QUnit.fixurl( mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/defineTestCallback.js' )], {}, {} );
+	mw.loader.testCallback = function () {
+		start();
+		strictEqual( isAwesomeDone, undefined, 'Implementing module is.awesome: isAwesomeDone should still be undefined');
+		isAwesomeDone = true;
+	};
 
-	mw.loader.using( 'is.awesome', function() {
+	mw.loader.implement( 'test.callback', [QUnit.fixurl( mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/callMwLoaderTestCallback.js' )], {}, {} );
+
+	mw.loader.using( 'test.callback', function () {
 
 		// /sample/awesome.js declares the "mw.loader.testCallback" function
 		// which contains a call to start() and ok()
-		mw.loader.testCallback();
-		mw.loader.testCallback = undefined;
+		strictEqual( isAwesomeDone, true, "test.callback module should've caused isAwesomeDone to be true" );
+		delete mw.loader.testCallback;
 
-	}, function() {
+	}, function () {
 		start();
-		ok( false, 'Error callback fired while implementing "is.awesome" module' );
+		ok( false, 'Error callback fired while loader.using "test.callback" module' );
 	});
+});
+
+test( 'mw.loader.implement', function () {
+	expect(5 - 2);
+
+	var isJsExecuted, $element;
+
+	// Async ahead
+	stop();
+
+	mw.loader.implement(
+		'test.implement',
+		function () {
+			start();
+
+			strictEqual( isJsExecuted, undefined, 'javascript not executed multiple times' );
+			isJsExecuted = true;
+
+			equal( mw.loader.getState( 'test.implement' ), 'loaded', 'module state is "loaded" while implement() is executing javascript' );
+			
+			$element = $( '<div class="mw-test-loaderimplement">Foo bar</div>' ).appendTo( '#qunit-fixture' );
+
+			// @broken: equal( $element.css( 'text-align' ),'center', 'CSS stylesheet was applied in time. ("text-align: center")' );
+
+			// Marked broken due to a bug in qunit/index.html, via Special:JavaScriptTest/qunit it works fine
+
+			// CSS @import is easily broken when concatenating stylesheets (bug 34669)
+			// @broken: equal( $element.css( 'float' ), 'right', 'CSS stylesheet was applied in time via @import (bug 34669). ("float: right")' );
+
+			equal( mw.msg( 'test-foobar' ), 'Hello Foobar, $1!', 'Messages are loaded in time' );
+		
+		},
+		{
+			"all": "@import url('"
+				+ QUnit.fixurl( mw.config.get( 'wgScriptPath' )
+				+ '/tests/qunit/data/styleTest.css.php?'
+				+ $.param({
+					selector: '.mw-test-loaderimplement',
+					prop: 'float',
+					val: 'right'
+				}) )
+				+ "');\n"
+				+ '.mw-test-loaderimplement  { text-align: center; }'
+		},
+		{
+			"test-foobar": "Hello Foobar, $1!"
+		}
+	);
+
+	mw.loader.load( 'test.implement' );
 
 });
 
-test( 'mw.loader.bug29107' , function() {
+test( 'mw.loader bug29107' , function () {
 	expect(2);
 
 	// Message doesn't exist already
@@ -208,20 +266,22 @@ test( 'mw.loader.bug30825', function() {
 	mw.loader.load( target );
 });
 
-test( 'mw.html', function() {
-	expect(11);
+test( 'mw.html', function () {
+	expect(13);
 
-	raises( function(){
+	raises( function () {
 		mw.html.escape();
 	}, TypeError, 'html.escape throws a TypeError if argument given is not a string' );
 
 	equal( mw.html.escape( '<mw awesome="awesome" value=\'test\' />' ),
-		'&lt;mw awesome=&quot;awesome&quot; value=&#039;test&#039; /&gt;', 'html.escape escapes html snippet' );
+		'&lt;mw awesome=&quot;awesome&quot; value=&#039;test&#039; /&gt;', 'escape() escapes special characters to html entities' );
 
 	equal( mw.html.element(),
-		'<undefined/>', 'html.element Always return a valid html string (even without arguments)' );
+		'<undefined/>', 'element() always returns a valid html string (even without arguments)' );
 
-	equal( mw.html.element( 'div' ), '<div/>', 'html.element DIV (simple)' );
+	equal( mw.html.element( 'div' ), '<div/>', 'element() Plain DIV (simple)' );
+
+	equal( mw.html.element( 'div', {}, '' ), '<div></div>', 'element() Basic DIV (simple)' );
 
 	equal(
 		mw.html.element(
@@ -235,6 +295,19 @@ test( 'mw.html', function() {
 	equal( mw.html.element( 'p', null, 12 ), '<p>12</p>', 'Numbers are valid content and should be casted to a string' );
 
 	equal( mw.html.element( 'p', { title: 12 }, '' ), '<p title="12"></p>', 'Numbers are valid attribute values' );
+
+	// Example from https://www.mediawiki.org/wiki/ResourceLoader/Default_modules#mediaWiki.html
+	equal(
+		mw.html.element(
+			'div',
+			{},
+			new mw.html.Raw(
+				mw.html.element( 'img', { src: '<' } )
+			)
+		),
+		'<div><img src="&lt;"/></div>',
+		'Raw inclusion of another element'
+	);
 
 	equal(
 		mw.html.element(

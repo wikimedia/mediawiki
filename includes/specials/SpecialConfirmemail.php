@@ -110,7 +110,7 @@ class EmailConfirmation extends UnlistedSpecialPage {
 	 * Attempt to confirm the user's email address and show success or failure
 	 * as needed; if successful, take the user to log in
 	 *
-	 * @param $code Confirmation code
+	 * @param $code string Confirmation code
 	 */
 	function attemptConfirm( $code ) {
 		$user = User::newFromConfirmationCode( $code );
@@ -156,7 +156,7 @@ class EmailInvalidation extends UnlistedSpecialPage {
 	 * Attempt to invalidate the user's email address and show success or failure
 	 * as needed; if successful, link to main page
 	 *
-	 * @param $code Confirmation code
+	 * @param $code string Confirmation code
 	 */
 	function attemptInvalidate( $code ) {
 		$user = User::newFromConfirmationCode( $code );

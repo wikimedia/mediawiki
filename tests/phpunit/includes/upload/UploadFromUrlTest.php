@@ -228,11 +228,11 @@ class UploadFromUrlTest extends ApiTestCase {
 
 		$talk = $this->user->user->getTalkPage();
 		if ( $talk->exists() ) {
-			$a = new Article( $talk );
-			$a->doDeleteArticle( '' );
+			$page = WikiPage::factory( $talk );
+			$page->doDeleteArticle( '' );
 		}
 
-		$this->assertFalse( (bool)$talk->getArticleId( Title::GAID_FOR_UPDATE ), 'User talk does not exist' );
+		$this->assertFalse( (bool)$talk->getArticleID( Title::GAID_FOR_UPDATE ), 'User talk does not exist' );
 
 		$data = $this->doApiRequest( array(
 			'action' => 'upload',
@@ -249,7 +249,7 @@ class UploadFromUrlTest extends ApiTestCase {
 		$job->run();
 
 		$this->assertTrue( wfLocalFile( 'UploadFromUrlTest.png' )->exists() );
-		$this->assertTrue( (bool)$talk->getArticleId( Title::GAID_FOR_UPDATE ), 'User talk exists' );
+		$this->assertTrue( (bool)$talk->getArticleID( Title::GAID_FOR_UPDATE ), 'User talk exists' );
 
 		$this->deleteFile( 'UploadFromUrlTest.png' );
 
@@ -341,8 +341,8 @@ class UploadFromUrlTest extends ApiTestCase {
 			$file = wfFindFile( $name, array( 'ignoreRedirect' => true ) );
 			$empty = "";
 			FileDeleteForm::doDelete( $t, $file, $empty, "none", true );
-			$a = new Article ( $t );
-			$a->doDeleteArticle( "testing" );
+			$page = WikiPage::factory( $t );
+			$page->doDeleteArticle( "testing" );
 		}
 		$t = Title::newFromText( $name, NS_FILE );
 

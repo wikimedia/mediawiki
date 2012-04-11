@@ -106,7 +106,6 @@ class nextJobDB extends Maintenance {
 
 	/**
 	 * Get all databases that have a pending job
-	 * @param $type String Job type
 	 * @return array
 	 */
 	private function getPendingDbs() {

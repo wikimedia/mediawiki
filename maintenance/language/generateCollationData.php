@@ -1,4 +1,8 @@
 <?php
+/**
+ * @ingroup Maintenance
+ * @file
+ */
 
 require_once( dirname( __FILE__ ) .'/../Maintenance.php' );
 
@@ -382,4 +386,3 @@ class UcdXmlReader {
 
 $maintClass = 'GenerateCollationData';
 require_once( RUN_MAINTENANCE_IF_MAIN );
-

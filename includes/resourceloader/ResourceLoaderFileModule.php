@@ -33,47 +33,74 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	protected $remoteBasePath = '';
 	/**
 	 * Array: List of paths to JavaScript files to always include
-	 * @example array( [file-path], [file-path], ... )
+	 * @par Usage:
+	 * @code
+	 * array( [file-path], [file-path], ... )
+	 * @endcode
 	 */
 	protected $scripts = array();
 	/**
 	 * Array: List of JavaScript files to include when using a specific language
-	 * @example array( [language-code] => array( [file-path], [file-path], ... ), ... )
+	 * @par Usage:
+	 * @code
+	 * array( [language-code] => array( [file-path], [file-path], ... ), ... )
+	 * @endcode
 	 */
 	protected $languageScripts = array();
 	/**
 	 * Array: List of JavaScript files to include when using a specific skin
-	 * @example array( [skin-name] => array( [file-path], [file-path], ... ), ... )
+	 * @par Usage:
+	 * @code
+	 * array( [skin-name] => array( [file-path], [file-path], ... ), ... )
+	 * @endcode
 	 */
 	protected $skinScripts = array();
 	/**
 	 * Array: List of paths to JavaScript files to include in debug mode
-	 * @example array( [skin-name] => array( [file-path], [file-path], ... ), ... )
+	 * @par Usage:
+	 * @code
+	 * array( [skin-name] => array( [file-path], [file-path], ... ), ... )
+	 * @endcode
 	 */
 	protected $debugScripts = array();
 	/**
 	 * Array: List of paths to JavaScript files to include in the startup module
-	 * @example array( [file-path], [file-path], ... )
+	 * @par Usage:
+	 * @code
+	 * array( [file-path], [file-path], ... )
+	 * @endcode
 	 */
 	protected $loaderScripts = array();
 	/**
 	 * Array: List of paths to CSS files to always include
-	 * @example array( [file-path], [file-path], ... )
+	 * @par Usage:
+	 * @code
+	 * array( [file-path], [file-path], ... )
+	 * @endcode
 	 */
 	protected $styles = array();
 	/**
 	 * Array: List of paths to CSS files to include when using specific skins
-	 * @example array( [file-path], [file-path], ... )
+	 * @par Usage:
+	 * @code
+	 * array( [file-path], [file-path], ... )
+	 * @endcode
 	 */
 	protected $skinStyles = array();
 	/**
 	 * Array: List of modules this module depends on
-	 * @example array( [file-path], [file-path], ... )
+	 * @par Usage:
+	 * @code
+	 * array( [file-path], [file-path], ... )
+	 * @endcode
 	 */
 	protected $dependencies = array();
 	/**
 	 * Array: List of message keys used by this module
-	 * @example array( [message-key], [message-key], ... )
+	 * @par Usage:
+	 * @code
+	 * array( [message-key], [message-key], ... )
+	 * @endcode
 	 */
 	protected $messages = array();
 	/** String: Name of group to load this module in */
@@ -84,12 +111,18 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	protected $debugRaw = true;
 	/**
 	 * Array: Cache for mtime
-	 * @example array( [hash] => [mtime], [hash] => [mtime], ... )
+	 * @par Usage:
+	 * @code
+	 * array( [hash] => [mtime], [hash] => [mtime], ... )
+	 * @endcode
 	 */
 	protected $modifiedTime = array();
 	/**
 	 * Array: Place where readStyleFile() tracks file dependencies
-	 * @example array( [file-path], [file-path], ... )
+	 * @par Usage:
+	 * @code
+	 * array( [file-path], [file-path], ... )
+	 * @endcode
 	 */
 	protected $localFileRefs = array();
 
@@ -106,6 +139,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 *     to $wgScriptPath
 	 *
 	 * Below is a description for the $options array:
+	 * @par Construction options:
 	 * @code
 	 * 	array(
 	 * 		// Base path to prepend to all local paths in $options. Defaults to $IP

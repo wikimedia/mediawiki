@@ -3,14 +3,14 @@
  * Foreign file accessible through api.php requests.
  *
  * @file
- * @ingroup FileRepo
+ * @ingroup FileAbstraction
  */
 
 /**
  * Foreign file accessible through api.php requests.
  * Very hacky and inefficient, do not use :D
  *
- * @ingroup FileRepo
+ * @ingroup FileAbstraction
  */
 class ForeignAPIFile extends File {
 	private $mExists;
@@ -68,6 +68,7 @@ class ForeignAPIFile extends File {
 
 	/**
 	 * Get the property string for iiprop and aiprop
+	 * @return string
 	 */
 	static function getProps() {
 		return 'timestamp|user|comment|url|size|sha1|metadata|mime';
@@ -183,6 +184,7 @@ class ForeignAPIFile extends File {
 
 	/**
 	 * Only useful if we're locally caching thumbs anyway...
+	 * @return null|string
 	 */
 	function getThumbPath( $suffix = '' ) {
 		if ( $this->repo->canCacheThumbs() ) {
@@ -245,7 +247,7 @@ class ForeignAPIFile extends File {
 		}
 
 		# Delete the thumbnails
-		$this->repo->cleanupBatch( $purgeList );
+		$this->repo->cleanupBatch( $purgeList, FileRepo::SKIP_LOCKING );
 		# Clear out the thumbnail directory if empty
 		$this->repo->getBackend()->clean( array( 'dir' => $dir ) );
 	}

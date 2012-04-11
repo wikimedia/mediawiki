@@ -269,11 +269,10 @@ class MediaWiki {
 				$pageView = true;
 				/**
 				 * $wgArticle is deprecated, do not use it.
-				 * This will be removed entirely in 1.20.
 				 * @deprecated since 1.18
 				 */
 				global $wgArticle;
-				$wgArticle = $article;
+				$wgArticle = new DeprecatedGlobal( 'wgArticle', $article, '1.18' );
 
 				$this->performAction( $article );
 			} elseif ( is_string( $article ) ) {
@@ -431,9 +430,9 @@ class MediaWiki {
 
 		while ( $n-- && false != ( $job = Job::pop() ) ) {
 			$output = $job->toString() . "\n";
-			$t = -wfTime();
+			$t = - microtime( true );
 			$success = $job->run();
-			$t += wfTime();
+			$t += microtime( true );
 			$t = round( $t * 1000 );
 			if ( !$success ) {
 				$output .= "Error: " . $job->getLastError() . ", Time: $t ms\n";
@@ -486,7 +485,7 @@ class MediaWiki {
 			return;
 		}
 
-		if ( wfRunHooks( 'UnknownAction', array( $act, $page ) ) ) {
+		if ( wfRunHooks( 'UnknownAction', array( $request->getVal( 'action', 'view' ), $page ) ) ) {
 			$output->showErrorPage( 'nosuchaction', 'nosuchactiontext' );
 		}
 

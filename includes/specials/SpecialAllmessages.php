@@ -146,7 +146,7 @@ class AllmessagesTablePager extends TablePager {
 	function buildForm() {
 		global $wgScript;
 
-		$languages = Language::getLanguageNames( false );
+		$languages = Language::fetchLanguageNames( null, 'mw' );
 		ksort( $languages );
 
 		$out  = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript, 'id' => 'mw-allmessages-form' ) ) .
@@ -290,6 +290,7 @@ class AllmessagesTablePager extends TablePager {
 	/**
 	 *  This function normally does a database query to get the results; we need
 	 * to make a pretend result using a FakeResultWrapper.
+	 * @return FakeResultWrapper
 	 */
 	function reallyDoQuery( $offset, $limit, $descending ) {
 		$result = new FakeResultWrapper( array() );
@@ -369,7 +370,7 @@ class AllmessagesTablePager extends TablePager {
 						array( 'broken' )
 					);
 				}
-				return $title . ' (' . $talk . ')';
+				return $title . ' ' . $this->msg( 'parentheses' )->rawParams( $talk )->escaped();
 
 			case 'am_default' :
 			case 'am_actual' :

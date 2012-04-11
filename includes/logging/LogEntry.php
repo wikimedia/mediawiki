@@ -97,6 +97,7 @@ abstract class LogEntryBase implements LogEntry {
 	/**
 	 * Whether the parameters for this log are stored in new or
 	 * old format.
+	 * @return bool
 	 */
 	public function isLegacy() {
 		return false;
@@ -217,9 +218,13 @@ class DatabaseLogEntry extends LogEntryBase {
 
 	public function getPerformer() {
 		$userId = (int) $this->row->log_user;
-		if ( $userId !== 0 ) {
-			return User::newFromRow( $this->row );
-		} else {
+		if ( $userId !== 0 ) { // logged-in users
+			if ( isset( $this->row->user_name ) ) {
+				return User::newFromRow( $this->row );
+			} else {
+				return User::newFromId( $userId );
+			}
+		} else { // IP users
 			$userText = $this->row->log_user_text;
 			return User::newFromName( $userText, false );
 		}
@@ -340,7 +345,7 @@ class ManualLogEntry extends LogEntryBase {
 	 * 
 	 * @since 1.19
 	 * 
-	 * @param $parameters Associative array
+	 * @param $parameters array Associative array
 	 */
 	public function setParameters( $parameters ) {
 		$this->parameters = $parameters;
@@ -406,12 +411,17 @@ class ManualLogEntry extends LogEntryBase {
 	 * @return int If of the log entry
 	 */
 	public function insert() {
+		global $wgContLang;
+
 		$dbw = wfGetDB( DB_MASTER );
 		$id = $dbw->nextSequenceValue( 'logging_log_id_seq' );
 
 		if ( $this->timestamp === null ) {
 			$this->timestamp = wfTimestampNow();
 		}
+
+		# Truncate for whole multibyte characters.
+		$comment = $wgContLang->truncate( $this->getComment(), 255 );
 
 		$data = array(
 			'log_id' => $id,
@@ -422,8 +432,8 @@ class ManualLogEntry extends LogEntryBase {
 			'log_user_text' => $this->getPerformer()->getName(),
 			'log_namespace' => $this->getTarget()->getNamespace(),
 			'log_title' => $this->getTarget()->getDBkey(),
-			'log_page' => $this->getTarget()->getArticleId(),
-			'log_comment' => $this->getComment(),
+			'log_page' => $this->getTarget()->getArticleID(),
+			'log_comment' => $comment,
 			'log_params' => serialize( (array) $this->getParameters() ),
 		);
 		$dbw->insert( 'logging', $data, __METHOD__ );
@@ -448,18 +458,29 @@ class ManualLogEntry extends LogEntryBase {
 
 		$logpage = SpecialPage::getTitleFor( 'Log', $this->getType() );
 		$user = $this->getPerformer();
+		$ip = "";
+		if ( $user->isAnon() ) {
+			/*
+			 * "MediaWiki default" and friends may have
+			 * no IP address in their name
+			 */
+			if ( IP::isIPAddress( $user->getName() ) ) {
+				$ip = $user->getName();
+			}
+		}
 		$rc = RecentChange::newLogEntry(
 			$this->getTimestamp(),
 			$logpage,
 			$user,
-			$formatter->getPlainActionText(), // Used for IRC feeds
-			$user->isAnon() ? $user->getName() : '',
+			$formatter->getPlainActionText(),
+			$ip,
 			$this->getType(),
 			$this->getSubtype(),
 			$this->getTarget(),
 			$this->getComment(),
 			serialize( (array) $this->getParameters() ),
-			$newId
+			$newId,
+			$formatter->getIRCActionComment() // Used for IRC feeds
 		);
 
 		if ( $to === 'rc' || $to === 'rcandudp' ) {
@@ -485,10 +506,16 @@ class ManualLogEntry extends LogEntryBase {
 		return $this->parameters;
 	}
 
+	/**
+	 * @return User
+	 */
 	public function getPerformer() {
 		return $this->performer;
 	}
 
+	/**
+	 * @return Title
+	 */
 	public function getTarget() {
 		return $this->target;
 	}

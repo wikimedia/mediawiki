@@ -238,6 +238,7 @@ class SearchSqlite extends SearchEngine {
 	 * The guts shoulds be constructed in queryMain()
 	 * @param $filteredTerm String
 	 * @param $fulltext Boolean
+	 * @return String
 	 */
 	function getQuery( $filteredTerm, $fulltext ) {
 		return $this->limitResult(

@@ -61,6 +61,7 @@ function normalize_form_kd($c)     { return UtfNormal::toNFKD($c); }
  * following functions to force pure PHP usage.  I decided not to
  * commit that code since might produce a slowdown in the UTF
  * normalization code just for the sake of these tests. -- hexmode
+ * @return string
  */
 function normalize_form_c_php($c)  { return UtfNormal::toNFC($c, "php");  }
 function normalize_form_d_php($c)  { return UtfNormal::toNFD($c, "php");  }

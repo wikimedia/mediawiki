@@ -3,6 +3,10 @@
 # Router for the php cli-server built-in webserver
 # http://ca2.php.net/manual/en/features.commandline.webserver.php
 
+if ( php_sapi_name() != 'cli-server' ) {
+	die( "This script can only be run by php's cli-server sapi." );
+}
+
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
@@ -62,7 +66,7 @@ if ( $mime ) {
 	# PHP webserver doesn't understand.
 	# ;) Nicely enough we just happen to bundle a mime.types file
 	$f = fopen($file, 'rb');
-	if ( preg_match( '^text/', $mime ) ) {
+	if ( preg_match( '#^text/#', $mime ) ) {
 		# Text should have a charset=UTF-8 (php's webserver does this too)
 		header("Content-Type: $mime; charset=UTF-8");
 	} else {

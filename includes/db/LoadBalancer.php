@@ -91,7 +91,7 @@ class LoadBalancer {
 	/**
 	 * Get or set arbitrary data used by the parent object, usually an LBFactory
 	 * @param $x
-	 * @return \Mixed
+	 * @return Mixed
 	 */
 	function parentInfo( $x = null ) {
 		return wfSetVar( $this->mParentInfo, $x );
@@ -385,7 +385,7 @@ class LoadBalancer {
 	 * Returns false if there is no connection open
 	 *
 	 * @param $i int
-	 * @return DatabaseBase|false
+	 * @return DatabaseBase|bool False on failure
 	 */
 	function getAnyOpenConnection( $i ) {
 		foreach ( $this->mConns as $conns ) {
@@ -894,7 +894,7 @@ class LoadBalancer {
 		foreach ( $this->mConns as $conns2 ) {
 			foreach ( $conns2 as $conns3 ) {
 				foreach ( $conns3 as $conn ) {
-					$conn->commit();
+					$conn->commit( __METHOD__ );
 				}
 			}
 		}

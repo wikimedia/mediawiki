@@ -251,6 +251,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 
 	/**
 	 * Get the condition used for fetching log snippets
+	 * @return array
 	 */
 	protected function getLogQueryCond() {
 		$conds = array();
@@ -497,6 +498,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 
 	/**
 	 * UI entry point for form submission.
+	 * @return bool
 	 */
 	protected function submit() {
 		# Check edit token on submission
@@ -592,6 +594,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 
 	/**
 	 * Do the write operations. Simple wrapper for RevDel_*List::setVisibility().
+	 * @return
 	 */
 	protected function save( $bitfield, $reason, $title ) {
 		return $this->getList()->setVisibility(

@@ -14,10 +14,11 @@ class PatrolLog {
 	 *
 	 * @param $rc Mixed: change identifier or RecentChange object
 	 * @param $auto Boolean: was this patrol event automatic?
+	 * @param $performer User: user performing the action or null to use $wgUser
 	 *
 	 * @return bool
 	 */
-	public static function record( $rc, $auto = false ) {
+	public static function record( $rc, $auto = false, User $user = null ) {
 		if ( !$rc instanceof RecentChange ) {
 			$rc = RecentChange::newFromId( $rc );
 			if ( !is_object( $rc ) ) {
@@ -27,10 +28,15 @@ class PatrolLog {
 
 		$title = Title::makeTitleSafe( $rc->getAttribute( 'rc_namespace' ), $rc->getAttribute( 'rc_title' ) );
 		if( $title ) {
+			if ( !$user ) {
+				global $wgUser;
+				$user = $wgUser;
+			}
+
 			$entry = new ManualLogEntry( 'patrol', 'patrol' );
 			$entry->setTarget( $title );
 			$entry->setParameters( self::buildParams( $rc, $auto ) );
-			$entry->setPerformer( User::newFromName( $rc->getAttribute( 'rc_user_text' ), false ) );
+			$entry->setPerformer( $user );
 			$logid = $entry->insert();
 			if ( !$auto ) {
 				$entry->publish( $logid, 'udp' );

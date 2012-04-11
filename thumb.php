@@ -8,7 +8,7 @@
  */
 define( 'MW_NO_OUTPUT_COMPRESSION', 1 );
 if ( isset( $_SERVER['MW_COMPILED'] ) ) {
-	require( 'phase3/includes/WebStart.php' );
+	require( 'core/includes/WebStart.php' );
 } else {
 	require( dirname( __FILE__ ) . '/includes/WebStart.php' );
 }
@@ -97,7 +97,11 @@ function wfStreamThumb( array $params ) {
 
 	// Is this a thumb of an archived file?
 	$isOld = ( isset( $params['archived'] ) && $params['archived'] );
-	unset( $params['archived'] );
+	unset( $params['archived'] ); // handlers don't care
+
+	// Is this a thumb of a temp file?
+	$isTemp = ( isset( $params['temp'] ) && $params['temp'] );
+	unset( $params['temp'] ); // handlers don't care
 
 	// Some basic input validation
 	$fileName = strtr( $fileName, '\\/', '__' );
@@ -118,13 +122,27 @@ function wfStreamThumb( array $params ) {
 			return;
 		}
 		$img = RepoGroup::singleton()->getLocalRepo()->newFromArchiveName( $title, $fileName );
+	} elseif ( $isTemp ) {
+		$repo = RepoGroup::singleton()->getLocalRepo()->getTempRepo();
+		// Format is <timestamp>!<name> or just <name>
+		$bits = explode( '!', $fileName, 2 );
+		// Get the name without the timestamp so hash paths are correctly computed
+		$title = Title::makeTitleSafe( NS_FILE, isset( $bits[1] ) ? $bits[1] : $fileName );
+		if ( !$title ) {
+			wfThumbError( 404, wfMsg( 'badtitletext' ) );
+			wfProfileOut( __METHOD__ );
+			return;
+		}
+		$img = new UnregisteredLocalFile( $title, $repo,
+			$repo->getZonePath( 'public' ) . '/' . $repo->getTempHashPath( $fileName ) . $fileName
+		);
 	} else {
 		$img = wfLocalFile( $fileName );
 	}
 
 	// Check permissions if there are read restrictions
 	if ( !in_array( 'read', User::getGroupPermissions( array( '*' ) ), true ) ) {
-		if ( !$img->getTitle()->userCan( 'read' ) ) {
+		if ( !$img->getTitle() || !$img->getTitle()->userCan( 'read' ) ) {
 			wfThumbError( 403, 'Access denied. You do not have permission to access ' .
 				'the source file.' );
 			wfProfileOut( __METHOD__ );
@@ -173,6 +191,17 @@ function wfStreamThumb( array $params ) {
 	try {
 		$thumbName = $img->thumbName( $params );
 		if ( strlen( $thumbName ) ) { // valid params?
+			// For 404 handled thumbnails, we only use the the base name of the URI
+			// for the thumb params and the parent directory for the source file name.
+			// Check that the zone relative path matches up so squid caches won't pick
+			// up thumbs that would not be purged on source file deletion (bug 34231).
+			if ( isset( $params['rel404'] ) // thumbnail was handled via 404
+				&& urldecode( $params['rel404'] ) !== $img->getThumbRel( $thumbName ) )
+			{
+				wfThumbError( 404, 'The source file for the specified thumbnail does not exist.' );
+				wfProfileOut( __METHOD__ );
+				return;
+			}
 			$thumbPath = $img->getThumbPath( $thumbName );
 			if ( $img->getRepo()->fileExists( $thumbPath ) ) {
 				$img->getRepo()->streamFile( $thumbPath, $headers );
@@ -244,23 +273,22 @@ function wfExtractThumbParams( $uri ) {
 		$hashDirRegex .= "$subdirRegex/";
 	}
 
-	$thumbUrlRegex = "!^$zoneUrlRegex(/archive|/temp|)/$hashDirRegex([^/]*)/([^/]*)$!";
+	$thumbUrlRegex = "!^$zoneUrlRegex/((archive/|temp/)?$hashDirRegex([^/]*)/([^/]*))$!";
 
 	// Check if this is a valid looking thumbnail request...
 	if ( preg_match( $thumbUrlRegex, $uri, $matches ) ) {
-		list( /* all */, $archOrTemp, $filename, $thumbname ) = $matches;
+		list( /* all */, $rel, $archOrTemp, $filename, $thumbname ) = $matches;
 		$filename = urldecode( $filename );
 		$thumbname = urldecode( $thumbname );
 
-		$params = array( 'f' => $filename );
-		if ( $archOrTemp == '/archive' ) {
+		$params = array( 'f' => $filename, 'rel404' => $rel );
+		if ( $archOrTemp == 'archive/' ) {
 			$params['archived'] = 1;
-		} elseif ( $archOrTemp == '/temp' ) {
+		} elseif ( $archOrTemp == 'temp/' ) {
 			$params['temp'] = 1;
 		}
 
 		// Check if the parameters can be extracted from the thumbnail name...
-		// @TODO: remove 'page' stuff and make ProofreadPage handle it via hook.
 		if ( preg_match( '!^(page(\d*)-)*(\d*)px-[^/]*$!', $thumbname, $matches ) ) {
 			list( /* all */, $pagefull, $pagenum, $size ) = $matches;
 			$params['width'] = $size;

@@ -88,7 +88,7 @@ class FixSlaveDesync extends Maintenance {
 	private function desyncFixPage( $pageID ) {
 		# Check for a corrupted page_latest
 		$dbw = wfGetDB( DB_MASTER );
-		$dbw->begin();
+		$dbw->begin( __METHOD__ );
 		$realLatest = $dbw->selectField( 'page', 'page_latest', array( 'page_id' => $pageID ),
 			__METHOD__, 'FOR UPDATE' );
 		# list( $masterFile, $masterPos ) = $dbw->getMasterPos();
@@ -98,7 +98,7 @@ class FixSlaveDesync extends Maintenance {
 			/*
 			if ( !$db->masterPosWait( $masterFile, $masterPos, 10 ) ) {
 				   $this->output( "Slave is too lagged, aborting\n" );
-				   $dbw->commit();
+				   $dbw->commit( __METHOD__ );
 				   sleep(10);
 				   return;
 			}*/
@@ -112,7 +112,7 @@ class FixSlaveDesync extends Maintenance {
 		}
 		if ( !$found ) {
 			$this->output( "page_id $pageID seems fine\n" );
-			$dbw->commit();
+			$dbw->commit( __METHOD__ );
 			return;
 		}
 
@@ -199,7 +199,7 @@ class FixSlaveDesync extends Maintenance {
 			}
 			$this->output( "done\n" );
 		}
-		$dbw->commit();
+		$dbw->commit( __METHOD__ );
 	}
 }
 

@@ -2295,6 +2295,17 @@ title=[[User:Ævar Arnfjörð Bjarmason]]
 !! end
 
 !! test
+Magic Word: {{NAMESPACENUMBER}}
+!! options
+title=[[User:Ævar Arnfjörð Bjarmason]]
+!! input
+{{NAMESPACENUMBER}}
+!! result
+<p>2
+</p>
+!! end
+
+!! test
 Magic Word: {{NUMBEROFFILES}}
 !! input
 {{NUMBEROFFILES}}
@@ -3664,6 +3675,36 @@ msg
 {{#special:foobarnonexistent}}
 !! result
 No such special page
+!! end
+
+!! test
+{{#speciale:}} page name, known
+!! options
+msg
+!! input
+{{#speciale:Recentchanges}}
+!! result
+Special:RecentChanges
+!! end
+
+!! test
+{{#speciale:}} page name with subpage, known
+!! options
+msg
+!! input
+{{#speciale:Recentchanges/param}}
+!! result
+Special:RecentChanges/param
+!! end
+
+!! test
+{{#speciale:}} page name, unknown
+!! options
+msg
+!! input
+{{#speciale:foobarnonexistent}}
+!! result
+No_such_special_page
 !! end
 
 ###
@@ -8483,6 +8524,16 @@ comment title=[[Main Page]]
 !!end
 
 !! test
+Edit comment with section link and text before it (non-local, eg in history list)
+!! options
+comment title=[[Main Page]]
+!! input
+pre-comment text /* External links */ removed bogus entries
+!! result
+pre-comment text - <a href="/wiki/Main_Page#External_links" title="Main Page">→</a>‎<span dir="auto"><span class="autocomment">External links: </span> removed bogus entries</span>
+!!end
+
+!! test
 Edit comment with section link (local, eg in diff view)
 !! options
 comment local title=[[Main Page]]
@@ -9083,6 +9134,123 @@ title=[[Main Page]]
 {{int:Bug32057}}
 !! result
 <h2><span class="editsection">[<a href="/index.php?title=Main_Page&amp;action=edit&amp;section=1" title="Edit section: Headline text">edit</a>]</span> <span class="mw-headline" id="Headline_text"> Headline text </span></h2>
+
+!! end
+
+!! test
+Strip marker in urlencode
+!! input
+{{urlencode:x<nowiki/>y}}
+{{urlencode:x<nowiki/>y|wiki}}
+{{urlencode:x<nowiki/>y|path}}
+!! result
+<p>xy
+xy
+xy
+</p>
+!! end
+
+!! test
+Strip marker in lc
+!! input
+{{lc:x<nowiki/>y}}
+!! result
+<p>xy
+</p>
+!! end
+
+!! test
+Strip marker in uc
+!! input
+{{uc:x<nowiki/>y}}
+!! result
+<p>XY
+</p>
+!! end
+
+!! test
+Strip marker in formatNum
+!! input
+{{formatnum:1<nowiki/>2}}
+{{formatnum:1<nowiki/>2|R}}
+!! result
+<p>12
+12
+</p>
+!! end
+
+!! test
+Strip marker in grammar
+!! options
+language=fi
+!! input
+{{grammar:elative|foo<nowiki/>bar}}
+!! result
+<p>foobarista
+</p>
+!! end
+
+!! test
+Strip marker in padleft
+!! input
+{{padleft:|2|x<nowiki/>y}}
+!! result
+<p>xy
+</p>
+!! end
+
+!! test
+Strip marker in padright
+!! input
+{{padright:|2|x<nowiki/>y}}
+!! result
+<p>xy
+</p>
+!! end
+
+!! test
+Strip marker in anchorencode
+!! input
+{{anchorencode:x<nowiki/>y}}
+!! result
+<p>xy
+</p>
+!! end
+
+!! test
+nowiki inside link inside heading (bug 18295)
+!! input
+==[[foo|x<nowiki>y</nowiki>z]]==
+!! result
+<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: xyz">edit</a>]</span> <span class="mw-headline" id="xyz"><a href="/index.php?title=Foo&amp;action=edit&amp;redlink=1" class="new" title="Foo (page does not exist)">xyz</a></span></h2>
+
+!! end
+
+!! test
+new support for bdi element (bug 31817)
+!! input
+<p dir="rtl" lang="he">ולדימיר לנין (ברוסית: <bdi lang="ru">Владимир Ленин</bdi>, 24 באפריל 1870–22 בינואר 1924) הוא מנהיג פוליטי קומוניסטי רוסי.</p>
+!! result
+<p dir="rtl" lang="he">ולדימיר לנין (ברוסית: <bdi lang="ru">Владимир Ленин</bdi>, 24 באפריל 1870–22 בינואר 1924) הוא מנהיג פוליטי קומוניסטי רוסי.</p>
+
+!!end
+
+!! test
+Ignore pipe between table row attributes
+!! input
+{|
+| quux
+|- id=foo | style='color: red'
+| bar
+|}
+!! result
+<table>
+<tr>
+<td> quux
+</td></tr>
+<tr id="foo" style="color: red">
+<td> bar
+</td></tr></table>
 
 !! end
 

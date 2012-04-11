@@ -55,6 +55,7 @@ class CoreParserFunctions {
 		$parser->setFunctionHook( 'padright',         array( __CLASS__, 'padright'         ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'anchorencode',     array( __CLASS__, 'anchorencode'     ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'special',          array( __CLASS__, 'special'          ) );
+		$parser->setFunctionHook( 'speciale',         array( __CLASS__, 'speciale'         ) );
 		$parser->setFunctionHook( 'defaultsort',      array( __CLASS__, 'defaultsort'      ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'filepath',         array( __CLASS__, 'filepath'         ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'pagesincategory',  array( __CLASS__, 'pagesincategory'  ), SFH_NO_HASH );
@@ -62,6 +63,7 @@ class CoreParserFunctions {
 		$parser->setFunctionHook( 'protectionlevel',  array( __CLASS__, 'protectionlevel'  ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'namespace',        array( __CLASS__, 'mwnamespace'      ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'namespacee',       array( __CLASS__, 'namespacee'       ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'namespacenumber',  array( __CLASS__, 'namespacenumber'  ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'talkspace',        array( __CLASS__, 'talkspace'        ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'talkspacee',       array( __CLASS__, 'talkspacee'       ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'subjectspace',     array( __CLASS__, 'subjectspace'     ), SFH_NO_HASH );
@@ -141,7 +143,11 @@ class CoreParserFunctions {
 	}
 
 	static function nse( $parser, $part1 = '' ) {
-		return wfUrlencode( str_replace( ' ', '_', self::ns( $parser, $part1 ) ) );
+		$ret = self::ns( $parser, $part1 );
+		if ( is_string( $ret ) ) {
+			$ret = wfUrlencode( str_replace( ' ', '_', $ret ) );
+		}
+		return $ret;
 	}
 
 	/**
@@ -154,6 +160,7 @@ class CoreParserFunctions {
 	 * @param $parser Parser object
 	 * @param $s String: The text to encode.
 	 * @param $arg String (optional): The type of encoding.
+	 * @return string
 	 */
 	static function urlencode( $parser, $s = '', $arg = null ) {
 		static $magicWords = null;
@@ -164,17 +171,21 @@ class CoreParserFunctions {
 
 			// Encode as though it's a wiki page, '_' for ' '.
 			case 'url_wiki':
-				return wfUrlencode( str_replace( ' ', '_', $s ) );
+				$func = 'wfUrlencode';
+				$s = str_replace( ' ', '_', $s );
+				break;
 
 			// Encode for an HTTP Path, '%20' for ' '.
 			case 'url_path':
-				return rawurlencode( $s );
+				$func = 'rawurlencode';
+				break;
 
 			// Encode for HTTP query, '+' for ' '.
 			case 'url_query':
 			default:
-				return urlencode( $s );
+				$func = 'urlencode';
 		}
+		return $parser->markerSkipCallback( $s, $func );
 	}
 
 	static function lcfirst( $parser, $s = '' ) {
@@ -194,11 +205,7 @@ class CoreParserFunctions {
 	 */
 	static function lc( $parser, $s = '' ) {
 		global $wgContLang;
-		if ( is_callable( array( $parser, 'markerSkipCallback' ) ) ) {
-			return $parser->markerSkipCallback( $s, array( $wgContLang, 'lc' ) );
-		} else {
-			return $wgContLang->lc( $s );
-		}
+		return $parser->markerSkipCallback( $s, array( $wgContLang, 'lc' ) );
 	}
 
 	/**
@@ -208,11 +215,7 @@ class CoreParserFunctions {
 	 */
 	static function uc( $parser, $s = '' ) {
 		global $wgContLang;
-		if ( is_callable( array( $parser, 'markerSkipCallback' ) ) ) {
-			return $parser->markerSkipCallback( $s, array( $wgContLang, 'uc' ) );
-		} else {
-			return $wgContLang->uc( $s );
-		}
+		return $parser->markerSkipCallback( $s, array( $wgContLang, 'uc' ) );
 	}
 
 	static function localurl( $parser, $s = '', $arg = null ) { return self::urlFunction( 'getLocalURL', $s, $arg ); }
@@ -252,12 +255,13 @@ class CoreParserFunctions {
 	 * @param null $raw
 	 * @return
 	 */
-	static function formatNum( $parser, $num = '', $raw = null) {
-		if ( self::israw( $raw ) ) {
-			return $parser->getFunctionLang()->parseFormattedNumber( $num );
+	static function formatnum( $parser, $num = '', $raw = null) {
+		if ( self::isRaw( $raw ) ) {
+			$func = array( $parser->getFunctionLang(), 'parseFormattedNumber' );
 		} else {
-			return $parser->getFunctionLang()->formatNum( $num );
+			$func = array( $parser->getFunctionLang(), 'formatNum' );
 		}
+		return $parser->markerSkipCallback( $num, $func );
 	}
 
 	/**
@@ -267,6 +271,7 @@ class CoreParserFunctions {
 	 * @return
 	 */
 	static function grammar( $parser, $case = '', $word = '' ) {
+		$word = $parser->killMarkers( $word );
 		return $parser->getFunctionLang()->convertGrammar( $word, $case );
 	}
 
@@ -277,7 +282,16 @@ class CoreParserFunctions {
 	 */
 	static function gender( $parser, $username ) {
 		wfProfileIn( __METHOD__ );
-		$forms = array_slice( func_get_args(), 2);
+		$forms = array_slice( func_get_args(), 2 );
+
+		// Some shortcuts to avoid loading user data unnecessarily
+		if ( count( $forms ) === 0 ) {
+			wfProfileOut( __METHOD__ );
+			return '';
+		} elseif ( count( $forms ) === 1 ) {
+			wfProfileOut( __METHOD__ );
+			return $forms[0];
+		}
 
 		$username = trim( $username );
 
@@ -294,9 +308,9 @@ class CoreParserFunctions {
 		// check parameter, or use the ParserOptions if in interface message
 		$user = User::newFromName( $username );
 		if ( $user ) {
-			$gender = $user->getOption( 'gender' );
+			$gender = GenderCache::singleton()->getGenderOf( $user, __METHOD__ );
 		} elseif ( $username === '' && $parser->getOptions()->getInterfaceMessage() ) {
-			$gender = $parser->getOptions()->getUser()->getOption( 'gender' );
+			$gender = GenderCache::singleton()->getGenderOf( $parser->getOptions()->getUser(), __METHOD__ );
 		}
 		$ret = $parser->getFunctionLang()->gender( $gender, $forms );
 		wfProfileOut( __METHOD__ );
@@ -411,6 +425,7 @@ class CoreParserFunctions {
 	 * corresponding magic word
 	 * Note: function name changed to "mwnamespace" rather than "namespace"
 	 * to not break PHP 5.3
+	 * @return mixed|string
 	 */
 	static function mwnamespace( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
@@ -423,6 +438,12 @@ class CoreParserFunctions {
 		if ( is_null( $t ) )
 			return '';
 		return wfUrlencode( $t->getNsText() );
+	}
+	static function namespacenumber( $parser, $title = null ) {
+		$t = Title::newFromText( $title );
+		if ( is_null( $t ) )
+			return '';
+		return $t->getNamespace();
 	}
 	static function talkspace( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
@@ -452,6 +473,7 @@ class CoreParserFunctions {
 	/**
 	 * Functions to get and normalize pagenames, corresponding to the magic words
 	 * of the same names
+	 * @return String
 	 */
 	static function pagename( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
@@ -530,6 +552,7 @@ class CoreParserFunctions {
 	 * Return the number of pages in the given category, or 0 if it's nonexis-
 	 * tent.  This is an expensive parser function and can't be called too many
 	 * times per page.
+	 * @return string
 	 */
 	static function pagesincategory( $parser, $name = '', $raw = null ) {
 		static $cache = array();
@@ -562,7 +585,12 @@ class CoreParserFunctions {
 	 *   to the link cache, so the local cache here should be unnecessary, but
 	 *   in fact calling getLength() repeatedly for the same $page does seem to
 	 *   run one query for each call?
+	 * @todo Document parameters
+	 *
 	 * @param $parser Parser
+	 * @param $page String TODO DOCUMENT (Default: empty string)
+	 * @param $raw TODO DOCUMENT (Default: null)
+	 * @return string
 	 */
 	static function pagesize( $parser, $page = '', $raw = null ) {
 		static $cache = array();
@@ -592,7 +620,8 @@ class CoreParserFunctions {
 
 	/**
 	* Returns the requested protection level for the current page
-	*/
+	 * @return string
+	 */
 	static function protectionlevel( $parser, $type = '' ) {
 		$restrictions = $parser->mTitle->getRestrictions( strtolower( $type ) );
 		# Title::getRestrictions returns an array, its possible it may have
@@ -603,28 +632,23 @@ class CoreParserFunctions {
 	/**
 	 * Gives language names.
 	 * @param $parser Parser
-	 * @param $code String  Language code
-	 * @param $language String  Language code
+	 * @param $code String  Language code (of which to get name)
+	 * @param $inLanguage String  Language code (in which to get name)
 	 * @return String
 	 */
-	static function language( $parser, $code = '', $language = '' ) {
-		global $wgContLang;
+	static function language( $parser, $code = '', $inLanguage = '' ) {
 		$code = strtolower( $code );
-		$language = strtolower( $language );
-
-		if ( $language !== '' ) {
-			$names = Language::getTranslatedLanguageNames( $language );
-			return isset( $names[$code] ) ? $names[$code] : wfBCP47( $code );
-		}
-
-		$lang = $wgContLang->getLanguageName( $code );
+		$inLanguage = strtolower( $inLanguage );
+		$lang = Language::fetchLanguageName( $code, $inLanguage );
 		return $lang !== '' ? $lang : wfBCP47( $code );
 	}
 
 	/**
 	 * Unicode-safe str_pad with the restriction that $length is forced to be <= 500
+	 * @return string
 	 */
-	static function pad( $string, $length, $padding = '0', $direction = STR_PAD_RIGHT ) {
+	static function pad( $parser, $string, $length, $padding = '0', $direction = STR_PAD_RIGHT ) {
+		$padding = $parser->killMarkers( $padding );
 		$lengthOfPadding = mb_strlen( $padding );
 		if ( $lengthOfPadding == 0 ) return $string;
 
@@ -648,11 +672,11 @@ class CoreParserFunctions {
 	}
 
 	static function padleft( $parser, $string = '', $length = 0, $padding = '0' ) {
-		return self::pad( $string, $length, $padding, STR_PAD_LEFT );
+		return self::pad( $parser, $string, $length, $padding, STR_PAD_LEFT );
 	}
 
 	static function padright( $parser, $string = '', $length = 0, $padding = '0' ) {
-		return self::pad( $string, $length, $padding );
+		return self::pad( $parser, $string, $length, $padding );
 	}
 
 	/**
@@ -661,6 +685,7 @@ class CoreParserFunctions {
 	 * @return string
 	 */
 	static function anchorencode( $parser, $text ) {
+		$text = $parser->killMarkers( $text );
 		return substr( $parser->guessSectionNameFromWikiText( $text ), 1);
 	}
 
@@ -668,10 +693,14 @@ class CoreParserFunctions {
 		list( $page, $subpage ) = SpecialPageFactory::resolveAlias( $text );
 		if ( $page ) {
 			$title = SpecialPage::getTitleFor( $page, $subpage );
-			return $title;
+			return $title->getPrefixedText();
 		} else {
 			return wfMsgForContent( 'nosuchspecialpage' );
 		}
+	}
+
+	static function speciale( $parser, $text ) {
+		return wfUrlencode( str_replace( ' ', '_', self::special( $parser, $text ) ) );
 	}
 
 	/**
@@ -753,6 +782,7 @@ class CoreParserFunctions {
 
 	/**
 	 * Parser function to extension tag adaptor
+	 * @return string
 	 */
 	public static function tagObj( $parser, $frame, $args ) {
 		if ( !count( $args ) ) {

@@ -69,9 +69,7 @@ class WantedCategoriesPage extends WantedQueryPage {
 				array( 'broken' )
 			);
 
-		$lang = $this->getLanguage();
-		$nlinks = wfMsgExt( 'nmembers', array( 'parsemag', 'escape' ),
-			$lang->formatNum( $result->value ) );
-		return $lang->specialList( $plink, $nlinks );
+		$nlinks = $this->msg( 'nmembers' )->numParams( $result->value )->escaped();
+		return $this->getLanguage()->specialList( $plink, $nlinks );
 	}
 }

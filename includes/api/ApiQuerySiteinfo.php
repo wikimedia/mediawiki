@@ -177,6 +177,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			$data['misermode'] = '';
 		}
 
+		$data['maxuploadsize'] = UploadBase::getMaxUploadSize();
+
 		wfRunHooks( 'APIQuerySiteInfoGeneralInfo', array( $this, &$data ) );
 
 		return $this->getResult()->addValue( 'query', $property, $data );
@@ -271,12 +273,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 		$params = $this->extractRequestParams();
 		$langCode = isset( $params['inlanguagecode'] ) ? $params['inlanguagecode'] : '';
-
-		if( $langCode ) {
-			$langNames = Language::getTranslatedLanguageNames( $langCode );
-		} else {
-			$langNames = Language::getLanguageNames();
-		}
+		$langNames = Language::fetchLanguageNames( $langCode );
 
 		$getPrefixes = Interwiki::getAllPrefixes( $local );
 		$data = array();
@@ -477,12 +474,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	public function appendLanguages( $property ) {
 		$params = $this->extractRequestParams();
 		$langCode = isset( $params['inlanguagecode'] ) ? $params['inlanguagecode'] : '';
-
-		if( $langCode ) {
-			$langNames = Language::getTranslatedLanguageNames( $langCode );
-		} else {
-			$langNames = Language::getLanguageNames();
-		}
+		$langNames = Language::fetchLanguageNames( $langCode );
 
 		$data = array();
 

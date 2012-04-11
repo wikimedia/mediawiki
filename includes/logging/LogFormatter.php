@@ -16,6 +16,9 @@
  * @since 1.19
  */
 class LogFormatter {
+	// Audience options for viewing usernames, comments, and actions
+	const FOR_PUBLIC = 1;
+	const FOR_THIS_USER = 2;
 
 	// Static->
 
@@ -59,6 +62,9 @@ class LogFormatter {
 	/// @var LogEntry
 	protected $entry;
 
+	/// Integer constant for handling log_deleted
+	protected $audience = self::FOR_PUBLIC;
+
 	/// Whether to output user tool links
 	protected $linkFlood = false;
 
@@ -71,6 +77,8 @@ class LogFormatter {
 	 */
 	protected $plaintext = false;
 
+	protected $irctext = false;
+
 	protected function __construct( LogEntry $entry ) {
 		$this->entry = $entry;
 		$this->context = RequestContext::getMain();
@@ -82,6 +90,32 @@ class LogFormatter {
 	 */
 	public function setContext( IContextSource $context ) {
 		$this->context = $context;
+	}
+
+	/**
+	 * Set the visibility restrictions for displaying content.
+	 * If set to public, and an item is deleted, then it will be replaced 
+	 * with a placeholder even if the context user is allowed to view it.
+	 * @param $audience integer self::FOR_THIS_USER or self::FOR_PUBLIC
+	 */
+	public function setAudience( $audience ) {
+		$this->audience = ( $audience == self::FOR_THIS_USER )
+			? self::FOR_THIS_USER 
+			: self::FOR_PUBLIC;
+	}
+
+	/**
+	 * Check if a log item can be displayed
+	 * @param $field integer LogPage::DELETED_* constant
+	 * @return bool 
+	 */
+	protected function canView( $field ) {
+		if ( $this->audience == self::FOR_THIS_USER ) {
+			return LogEventsList::userCanBitfield( 
+				$this->entry->getDeleted(), $field, $this->context->getUser() );
+		} else {
+			return !$this->entry->isDeleted( $field );
+		}
 	}
 
 	/**
@@ -109,18 +143,158 @@ class LogFormatter {
 	}
 
 	/**
+	 * Even uglier hack to maintain backwards compatibilty with IRC bots
+	 * (bug 34508).
+	 * @see getActionText()
+	 * @return string text
+	 */
+	public function getIRCActionComment() {
+		$actionComment = $this->getIRCActionText();
+		$comment = $this->entry->getComment();
+
+		if ( $comment != '' ) {
+			if ( $actionComment == '' ) {
+				$actionComment = $comment;
+			} else {
+				$actionComment .= wfMsgForContent( 'colon-separator' ) . $comment;
+			}
+		}
+
+		return $actionComment;
+	}
+
+	/**
+	 * Even uglier hack to maintain backwards compatibilty with IRC bots
+	 * (bug 34508).
+	 * @see getActionText()
+	 * @return string text
+	 */
+	public function getIRCActionText() {
+		$this->plaintext = true;
+		$this->irctext = true;
+		$text = $this->getActionText();
+
+		$entry = $this->entry;
+		$parameters = $entry->getParameters();
+		// @see LogPage::actionText()
+		$msgOpts = array( 'parsemag', 'escape', 'replaceafter', 'content' );
+		// Text of title the action is aimed at.
+		$target = $entry->getTarget()->getPrefixedText() ;
+		$text = null;
+		switch( $entry->getType() ) {
+			case 'move':
+				switch( $entry->getSubtype() ) {
+					case 'move':
+						$movesource =  $parameters['4::target'];
+						$text = wfMsgExt( '1movedto2', $msgOpts, $target, $movesource );
+						break;
+					case 'move_redir':
+						$movesource =  $parameters['4::target'];
+						$text = wfMsgExt( '1movedto2_redir', $msgOpts, $target, $movesource );
+						break;
+					case 'move-noredirect':
+						break;
+					case 'move_redir-noredirect':
+						break;
+				}
+				break;
+
+			case 'delete':
+				switch( $entry->getSubtype() ) {
+					case 'delete':
+						$text = wfMsgExt( 'deletedarticle', $msgOpts, $target );
+						break;
+					case 'restore':
+						$text = wfMsgExt( 'undeletedarticle', $msgOpts, $target );
+						break;
+					//case 'revision': // Revision deletion
+					//case 'event': // Log deletion
+						// see https://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/includes/LogPage.php?&pathrev=97044&r1=97043&r2=97044
+					//default:
+				}
+				break;
+
+			case 'patrol':
+				// https://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/includes/PatrolLog.php?&pathrev=97495&r1=97494&r2=97495
+				// Create a diff link to the patrolled revision
+				if ( $entry->getSubtype() === 'patrol' ) {
+					$diffLink = htmlspecialchars(
+						wfMsgForContent( 'patrol-log-diff', $parameters['4::curid'] ) );
+					$text = wfMsgForContent( 'patrol-log-line', $diffLink, "[[$target]]", "" );
+				} else {
+					// broken??
+				}
+				break;
+
+			case 'protect':
+				switch( $entry->getSubtype() ) {
+				case 'protect':
+					$text = wfMsgExt( 'protectedarticle', $msgOpts, $target . ' ' . $parameters[0] );
+						break;
+				case 'unprotect':
+					$text = wfMsgExt( 'unprotectedarticle', $msgOpts, $target );
+						break;
+				case 'modify':
+					$text = wfMsgExt( 'modifiedarticleprotection', $msgOpts, $target . ' ' . $parameters[0] );
+						break;
+				}
+				break;
+
+			case 'newusers':
+				switch( $entry->getSubtype() ) {
+					case 'newusers':
+					case 'create':
+						$text = wfMsgExt( 'newuserlog-create-entry', $msgOpts /* no params */ );
+						break;
+					case 'create2':
+						$text = wfMsgExt( 'newuserlog-create2-entry', $msgOpts, $target );
+						break;
+					case 'autocreate':
+						$text = wfMsgExt( 'newuserlog-autocreate-entry', $msgOpts /* no params */ );
+						break;
+				}
+				break;
+
+			case 'upload':
+				switch( $entry->getSubtype() ) {
+					case 'upload':
+						$text = wfMsgExt( 'uploadedimage', $msgOpts, $target );
+						break;
+					case 'overwrite':
+						$text = wfMsgExt( 'overwroteimage', $msgOpts, $target );
+						break;
+				}
+				break;
+			
+
+			// case 'suppress' --private log -- aaron  (sign your messages so we know who to blame in a few years :-D)
+			// default:
+		}
+		if( is_null( $text ) ) {
+			$text = $this->getPlainActionText();
+		}
+
+		$this->plaintext = false;
+		$this->irctext = false;
+		return $text;
+	}
+
+	/**
 	 * Gets the log action, including username.
 	 * @return string HTML
 	 */
 	public function getActionText() {
-		$element = $this->getActionMessage();
-		if ( $element instanceof Message ) {
-			$element = $this->plaintext ? $element->text() : $element->escaped();
-		}
-
-		if ( $this->entry->isDeleted( LogPage::DELETED_ACTION ) ) {
+		if ( $this->canView( LogPage::DELETED_ACTION ) ) {
+			$element = $this->getActionMessage();
+			if ( $element instanceof Message ) {
+				$element = $this->plaintext ? $element->text() : $element->escaped();
+			}
+			if ( $this->entry->isDeleted( LogPage::DELETED_ACTION ) ) {
+				$element = $this->styleRestricedElement( $element );
+			}
+		} else {
 			$performer = $this->getPerformerElement() . $this->msg( 'word-separator' )->text();
-			$element = $performer . self::getRestrictedElement( 'rev-deleted-event' );
+			$element = $performer . $this->getRestrictedElement( 'rev-deleted-event' );
 		}
 
 		return $element;
@@ -130,7 +304,7 @@ class LogFormatter {
 	 * Returns a sentence describing the log action. Usually
 	 * a Message object is returned, but old style log types
 	 * and entries might return pre-escaped html string.
-	 * @return Message|pre-escaped html
+	 * @return Message|string pre-escaped html
 	 */
 	protected function getActionMessage() {
 		$message = $this->msg( $this->getMessageKey() );
@@ -148,8 +322,8 @@ class LogFormatter {
 	protected function getMessageKey() {
 		$type = $this->entry->getType();
 		$subtype = $this->entry->getSubtype();
-		$key = "logentry-$type-$subtype";
-		return $key;
+
+		return "logentry-$type-$subtype";
 	}
 
 	/**
@@ -237,13 +411,17 @@ class LogFormatter {
 	 * Provides the name of the user who performed the log action.
 	 * Used as part of log action message or standalone, depending
 	 * which parts of the log entry has been hidden.
+	 * @return String
 	 */
 	public function getPerformerElement() {
-		$performer = $this->entry->getPerformer();
-		$element = $this->makeUserLink( $performer );
-
-		if ( $this->entry->isDeleted( LogPage::DELETED_USER ) ) {
-			$element = self::getRestrictedElement( 'rev-deleted-user' );
+		if ( $this->canView( LogPage::DELETED_USER ) ) {
+			$performer = $this->entry->getPerformer();
+			$element = $this->makeUserLink( $performer );
+			if ( $this->entry->isDeleted( LogPage::DELETED_USER ) ) {
+				$element = $this->styleRestricedElement( $element );
+			}
+		} else {
+			$element = $this->getRestrictedElement( 'rev-deleted-user' );
 		}
 
 		return $element;
@@ -254,12 +432,15 @@ class LogFormatter {
 	 * @return string HTML
 	 */
 	public function getComment() {
-		$comment = Linker::commentBlock( $this->entry->getComment() );
-		// No hard coded spaces thanx
-		$element = ltrim( $comment );
-
-		if ( $this->entry->isDeleted( LogPage::DELETED_COMMENT ) ) {
-			$element = self::getRestrictedElement( 'rev-deleted-comment' );
+		if ( $this->canView( LogPage::DELETED_COMMENT ) ) {
+			$comment = Linker::commentBlock( $this->entry->getComment() );
+			// No hard coded spaces thanx
+			$element = ltrim( $comment );
+			if ( $this->entry->isDeleted( LogPage::DELETED_COMMENT ) ) {
+				$element = $this->styleRestricedElement( $element );
+			}
+		} else {
+			$element = $this->getRestrictedElement( 'rev-deleted-comment' );
 		}
 
 		return $element;
@@ -268,7 +449,7 @@ class LogFormatter {
 	/**
 	 * Helper method for displaying restricted element.
 	 * @param $message string
-	 * @return string HTML
+	 * @return string HTML or wikitext
 	 */
 	protected function getRestrictedElement( $message ) {
 		if ( $this->plaintext ) {
@@ -276,6 +457,19 @@ class LogFormatter {
 		}
 
 		$content =  $this->msg( $message )->escaped();
+		$attribs = array( 'class' => 'history-deleted' );
+		return Html::rawElement( 'span', $attribs, $content );
+	}
+
+	/**
+	 * Helper method for styling restricted element.
+	 * @param $content string
+	 * @return string HTML or wikitext
+	 */
+	protected function styleRestricedElement( $content ) {
+		if ( $this->plaintext ) {
+			return $content;
+		}
 		$attribs = array( 'class' => 'history-deleted' );
 		return Html::rawElement( 'span', $attribs, $content );
 	}
@@ -339,13 +533,17 @@ class LegacyLogFormatter extends LogFormatter {
 			$entry->getType(),
 			$entry->getSubtype(),
 			$entry->getTarget(),
-			$this->context->getSkin(),
+			$this->plaintext ? null : $this->context->getSkin(),
 			(array)$entry->getParameters(),
-			true
+			!$this->plaintext // whether to filter [[]] links
 		);
 
 		$performer = $this->getPerformerElement();
-		return $performer .  $this->msg( 'word-separator' )->text() . $action;
+		if ( !$this->irctext ) {
+			$action = $performer .  $this->msg( 'word-separator' )->text() . $action;
+		}
+
+		return $action;
 	}
 
 }
@@ -464,7 +662,6 @@ class PatrolLogFormatter extends LogFormatter {
 
 	protected function getMessageParameters() {
 		$params = parent::getMessageParameters();
-		$newParams = array_slice( $params, 0, 3 );
 
 		$target = $this->entry->getTarget();
 		$oldid = $params[3];
@@ -482,8 +679,8 @@ class PatrolLogFormatter extends LogFormatter {
 			$revlink = htmlspecialchars( $revision );
 		}
 
-		$newParams[3] = Message::rawParam( $revlink );
-		return $newParams;
+		$params[3] = Message::rawParam( $revlink );
+		return $params;
 	}
 }
 

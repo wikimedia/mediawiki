@@ -27,7 +27,7 @@
  *
  * @file
  * @author Brion Vibber <brion at pobox.com>
- * @ingroup maintenance
+ * @ingroup Maintenance
  */
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );

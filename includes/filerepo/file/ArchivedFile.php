@@ -3,13 +3,13 @@
  * Deleted file in the 'filearchive' table
  *
  * @file
- * @ingroup FileRepo
+ * @ingroup FileAbstraction
  */
 
 /**
  * Class representing a row of the 'filearchive' table
  *
- * @ingroup FileRepo
+ * @ingroup FileAbstraction
  */
 class ArchivedFile {
 	/**#@+
@@ -93,7 +93,7 @@ class ArchivedFile {
 
 	/**
 	 * Loads a file object from the filearchive table
-	 * @return true on success or null
+	 * @return bool|null True on success or null
 	 */
 	public function load() {
 		if ( $this->dataLoaded ) {

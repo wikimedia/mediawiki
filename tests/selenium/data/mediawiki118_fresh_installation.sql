@@ -391,7 +391,7 @@ INSERT INTO `mw_interwiki` VALUES ('mediawikiwiki','http://www.mediawiki.org/wik
 INSERT INTO `mw_interwiki` VALUES ('mediazilla','https://bugzilla.wikimedia.org/$1','','',1,0);
 INSERT INTO `mw_interwiki` VALUES ('memoryalpha','http://www.memory-alpha.org/en/index.php/$1','','',0,0);
 INSERT INTO `mw_interwiki` VALUES ('metawiki','http://sunir.org/apps/meta.pl?$1','','',0,0);
-INSERT INTO `mw_interwiki` VALUES ('metawikipedia','http://meta.wikimedia.org/wiki/$1','','',0,0);
+INSERT INTO `mw_interwiki` VALUES ('metawikimedia','http://meta.wikimedia.org/wiki/$1','','',0,0);
 INSERT INTO `mw_interwiki` VALUES ('moinmoin','http://purl.net/wiki/moin/$1','','',0,0);
 INSERT INTO `mw_interwiki` VALUES ('mozillawiki','http://wiki.mozilla.org/index.php/$1','','',0,0);
 INSERT INTO `mw_interwiki` VALUES ('mw','http://www.mediawiki.org/wiki/$1','','',0,0);

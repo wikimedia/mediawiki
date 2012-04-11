@@ -26,6 +26,7 @@ class PopulateImageSha1 extends LoggedUpdateMaintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Populate the img_sha1 field";
+		$this->addOption( 'force', "Recalculate sha1 for rows that already have a value" );
 		$this->addOption( 'method', "Use 'pipe' to pipe to mysql command line,\n" .
 			"\t\tdefault uses Database class", false, true );
 		$this->addOption( 'file', 'Fix for a specific file, without File: namespace prefixed', false, true );
@@ -50,6 +51,7 @@ class PopulateImageSha1 extends LoggedUpdateMaintenance {
 	public function doDBUpdates() {
 		$method = $this->getOption( 'method', 'normal' );
 		$file = $this->getOption( 'file' );
+		$force = $this->getOption( 'force' );
 
 		$t = -microtime( true );
 		$dbw = wfGetDB( DB_MASTER );
@@ -66,15 +68,24 @@ class PopulateImageSha1 extends LoggedUpdateMaintenance {
 			}
 			$this->output( "Populating img_sha1 field for specified files\n" );
 		} else {
-			$res = $dbw->select( 'image',
-				array( 'img_name' ), array( 'img_sha1' => '' ), __METHOD__ );
-			$this->output( "Populating img_sha1 field\n" );
+			if ( $force ) {
+				$conds = array();
+				$this->output( "Populating and recalculating img_sha1 field\n" );
+			} else {
+				$conds = array( 'img_sha1' => '' );
+				$this->output( "Populating img_sha1 field\n" );
+			}
+			$res = $dbw->select( 'image', array( 'img_name' ), $conds, __METHOD__ );
 		}
 
 		$imageTable = $dbw->tableName( 'image' );
+		$oldImageTable = $dbw->tableName( 'oldimage' );
 
 		if ( $method == 'pipe' ) {
-			// @todo FIXME: Kill this and replace with a second unbuffered DB connection.
+			// Opening a pipe allows the SHA-1 operation to be done in parallel 
+			// with the database write operation, because the writes are queued
+			// in the pipe buffer. This can improve performance by up to a 
+			// factor of 2. 
 			global $wgDBuser, $wgDBserver, $wgDBpassword, $wgDBname;
 			$cmd = 'mysql -u' . wfEscapeShellArg( $wgDBuser ) .
 				' -h' . wfEscapeShellArg( $wgDBserver ) .
@@ -87,21 +98,37 @@ class PopulateImageSha1 extends LoggedUpdateMaintenance {
 		$i = 0;
 		foreach ( $res as $row ) {
 			if ( $i % $this->mBatchSize == 0 ) {
-				$this->output( sprintf( "Done %d of %d, %5.3f%%  \r", $i, $numRows, $i / $numRows * 100 ) );
+				$this->output( sprintf(
+					"Done %d of %d, %5.3f%%  \r", $i, $numRows, $i / $numRows * 100 ) );
 				wfWaitForSlaves();
 			}
 			$file = wfLocalFile( $row->img_name );
 			if ( !$file ) {
 				continue;
 			}
+			// Upgrade the current file version...
 			$sha1 = $file->getRepo()->getFileSha1( $file->getPath() );
-			if ( strval( $sha1 ) !== '' ) {
+			if ( strval( $sha1 ) !== '' ) { // file on disk and hashed properly
 				$sql = "UPDATE $imageTable SET img_sha1=" . $dbw->addQuotes( $sha1 ) .
-					" WHERE img_name=" . $dbw->addQuotes( $row->img_name );
+					" WHERE img_name=" . $dbw->addQuotes( $file->getName() );
 				if ( $method == 'pipe' ) {
 					fwrite( $pipe, "$sql;\n" );
 				} else {
 					$dbw->query( $sql, __METHOD__ );
+				}
+			}
+			// Upgrade the old file versions...
+			foreach ( $file->getHistory() as $oldFile ) {
+				$sha1 = $oldFile->getRepo()->getFileSha1( $oldFile->getPath() );
+				if ( strval( $sha1 ) !== '' ) { // file on disk and hashed properly
+					$sql = "UPDATE $oldImageTable SET oi_sha1=" . $dbw->addQuotes( $sha1 ) .
+						" WHERE (oi_name=" . $dbw->addQuotes( $oldFile->getName() ) . " AND" .
+						" oi_archive_name=" . $dbw->addQuotes( $oldFile->getArchiveName() ) . ")";
+					if ( $method == 'pipe' ) {
+						fwrite( $pipe, "$sql;\n" );
+					} else {
+						$dbw->query( $sql, __METHOD__ );
+					}
 				}
 			}
 			$i++;

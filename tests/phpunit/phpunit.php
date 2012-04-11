@@ -21,12 +21,14 @@ class PHPUnitMaintClass extends Maintenance {
 	public function finalSetup() {
 		parent::finalSetup();
 
-		global $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType, $wgUseDatabaseMessages;
+		global $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType;
+		global $wgLanguageConverterCacheType, $wgUseDatabaseMessages;
 		global $wgLocaltimezone, $wgLocalisationCacheConf;
 
 		$wgMainCacheType = CACHE_NONE;
 		$wgMessageCacheType = CACHE_NONE;
 		$wgParserCacheType = CACHE_NONE;
+		$wgLanguageConverterCacheType = CACHE_NONE;
 
 		$wgUseDatabaseMessages = false; # Set for future resets
 
@@ -46,7 +48,7 @@ require( RUN_MAINTENANCE_IF_MAIN );
 
 if( !in_array( '--configuration', $_SERVER['argv'] ) ) {
 	//Hack to eliminate the need to use the Makefile (which sucks ATM)
-	array_splice( $_SERVER['argv'], 1, 0, 
+	array_splice( $_SERVER['argv'], 1, 0,
 		array( '--configuration', $IP . '/tests/phpunit/suite.xml' ) );
 }
 

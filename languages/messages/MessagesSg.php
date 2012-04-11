@@ -16,7 +16,6 @@ $fallback = 'fr';
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Gbënëngö-gbê',
-'tog-highlightbroken'         => 'Funda fängö gbê <a href="" class="new">like this</a> (wala ngâ: töngana sô : s<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Lôngbi yângâ tî âsurä',
 'tog-hideminor'               => 'Hônde âkêtê lönzïngö-sû sô asï fadê na yâ tî gbâsû',
 'tog-hidepatrolled'           => 'Hônde âlönzïngö-sû sô asï  na hönngö na yâ tî gbâsû',
@@ -249,7 +248,7 @@ $messages = array(
 'yournick'      => 'Nyîmbâ:',
 
 # User rights
-'editinguser' => "Mo fa na mbi nyîmbâ '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser' => "Mo fa na mbi nyîmbâ '''[[User:$1|$1]]''' $2",
 
 # Recent changes
 'recentchanges' => 'Ndângbâ sänzëmä',

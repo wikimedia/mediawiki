@@ -1,4 +1,4 @@
-( function () {
+( function ( $ ) {
 
 var config = {
 	wgMonthNames: ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
@@ -79,7 +79,6 @@ var tableTest = function( msg, header, data, expected, callback ) {
 		expect(1);
 
 		var $table = tableCreate( header, data );
-		//$( 'body' ).append($table);
 
 		// Give caller a chance to set up sorting and manipulate the table.
 		callback( $table );
@@ -550,4 +549,4 @@ test( 'bug 32888 - Tables inside a tableheader cell', function() {
 	);
 });
 
-})();
+})( jQuery );

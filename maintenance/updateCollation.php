@@ -104,7 +104,7 @@ TEXT;
 			);
 			$this->output( " processing..." );
 
-			$dbw->begin();
+			$dbw->begin( __METHOD__ );
 			foreach ( $res as $row ) {
 				$title = Title::newFromRow( $row );
 				if ( !$row->cl_collation ) {
@@ -143,7 +143,7 @@ TEXT;
 					__METHOD__
 				);
 			}
-			$dbw->commit();
+			$dbw->commit( __METHOD__ );
 
 			if ( $force && $row ) {
 				$encFrom = $dbw->addQuotes( $row->cl_from );

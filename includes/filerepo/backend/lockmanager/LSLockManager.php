@@ -1,6 +1,8 @@
 <?php
 
 /**
+ * Manage locks using a lock daemon server.
+ *
  * Version of LockManager based on using lock daemon servers.
  * This is meant for multi-wiki systems that may share files.
  * All locks are non-blocking, which avoids deadlocks.
@@ -48,6 +50,8 @@ class LSLockManager extends LockManager {
 	 * @param Array $config 
 	 */
 	public function __construct( array $config ) {
+		parent::__construct( $config );
+
 		$this->lockServers = $config['lockServers'];
 		// Sanitize srvsByBucket config to prevent PHP errors
 		$this->srvsByBucket = array_filter( $config['srvsByBucket'], 'is_array' );
@@ -66,6 +70,10 @@ class LSLockManager extends LockManager {
 		$this->session = wfBaseConvert( sha1( $this->session ), 16, 36, 31 );
 	}
 
+	/**
+	 * @see LockManager::doLock()
+	 * @return Status
+	 */
 	protected function doLock( array $paths, $type ) {
 		$status = Status::newGood();
 
@@ -115,6 +123,10 @@ class LSLockManager extends LockManager {
 		return $status;
 	}
 
+	/**
+	 * @see LockManager::doUnlock()
+	 * @return Status
+	 */
 	protected function doUnlock( array $paths, $type ) {
 		$status = Status::newGood();
 
@@ -173,7 +185,7 @@ class LSLockManager extends LockManager {
 	 * @param $action string
 	 * @param $type string
 	 * @param $values Array
-	 * @return string|false
+	 * @return string|bool
 	 */
 	protected function sendCommand( $lockSrv, $action, $type, $values ) {
 		$conn = $this->getConnection( $lockSrv );

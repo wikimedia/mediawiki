@@ -147,6 +147,7 @@ class SrConverter extends LanguageConverter {
 	 * @param $text string
 	 * @param $toVariant string
 	 *
+	 * @throws MWException
 	 * @return string
 	 */
 	function translate( $text, $toVariant ) {

@@ -327,6 +327,7 @@ class Revision {
 	/**
 	 * Return the list of revision fields that should be selected to create
 	 * a new revision.
+	 * @return array
 	 */
 	public static function selectFields() {
 		return array(
@@ -350,6 +351,7 @@ class Revision {
 	/**
 	 * Return the list of text fields that should be selected to read the
 	 * revision text
+	 * @return array
 	 */
 	public static function selectTextFields() {
 		return array(
@@ -360,6 +362,7 @@ class Revision {
 
 	/**
 	 * Return the list of page fields that should be selected from page table
+	 * @return array
 	 */
 	public static function selectPageFields() {
 		return array(
@@ -372,6 +375,7 @@ class Revision {
 
 	/**
 	 * Return the list of user fields that should be selected from user table
+	 * @return array
 	 */
 	public static function selectUserFields() {
 		return array( 'user_name' );
@@ -546,7 +550,7 @@ class Revision {
 	/**
 	 * Get parent revision ID (the original previous page revision)
 	 *
-	 * @return Integer
+	 * @return Integer|null
 	 */
 	public function getParentId() {
 		return $this->mParentId;
@@ -582,12 +586,12 @@ class Revision {
 		$dbr = wfGetDB( DB_SLAVE );
 		$row = $dbr->selectRow(
 			array( 'page', 'revision' ),
-			array( 'page_namespace', 'page_title' ),
+			self::selectPageFields(),
 			array( 'page_id=rev_page',
 				   'rev_id' => $this->mId ),
-			'Revision::getTitle' );
-		if( $row ) {
-			$this->mTitle = Title::makeTitle( $row->page_namespace, $row->page_title );
+			__METHOD__ );
+		if ( $row ) {
+			$this->mTitle = Title::newFromRow( $row );
 		}
 		return $this->mTitle;
 	}
@@ -1306,7 +1310,7 @@ class Revision {
 			$id = 0;
 		}
 		$conds = array( 'rev_id' => $id );
-		$conds['rev_page'] = $title->getArticleId();
+		$conds['rev_page'] = $title->getArticleID();
 		$timestamp = $dbr->selectField( 'revision', 'rev_timestamp', $conds, __METHOD__ );
 		if ( $timestamp === false && wfGetLB()->getServerCount() > 1 ) {
 			# Not in slave, try master
@@ -1340,7 +1344,7 @@ class Revision {
 	 * @return Integer
 	 */
 	static function countByTitle( $db, $title ) {
-		$id = $title->getArticleId();
+		$id = $title->getArticleID();
 		if( $id ) {
 			return Revision::countByPageId( $db, $id );
 		}

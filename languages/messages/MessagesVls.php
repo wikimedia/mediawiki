@@ -36,7 +36,6 @@ $namespaceNames = array(
 $messages = array(
 # User preference toggles
 'tog-underline'           => 'Links ounderstreepn:',
-'tog-highlightbroken'     => 'Links na lege bloadn <a href="" class="new">ezô tôon</a>  (alternatif: ezô tôon<a href="" class="internal">?</a>)',
 'tog-hideminor'           => 'Klêne veranderiengn verdukn van juste veranderd',
 'tog-enotifrevealaddr'    => 'Tôog min e-mailadres in e-mails',
 'tog-shownumberswatching' => 'Tôog et aantal gebrukers dan et blad volgn',

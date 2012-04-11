@@ -1,0 +1,9 @@
+.feedback-spinner {
+	display: inline-block;
+	zoom: 1;
+	*display: inline; /* IE7 and below */
+	/* @embed */
+	background: url(mediawiki.feedback.spinner.gif);
+	width: 18px;
+	height: 18px;
+}

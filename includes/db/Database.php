@@ -253,7 +253,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 *   - false to disable debugging
 	 *   - omitted or null to do nothing
 	 *
-	 * @return The previous value of the flag
+	 * @return bool|null previous value of the flag
 	 */
 	function debug( $debug = null ) {
 		return wfSetBit( $this->mFlags, DBO_DEBUG, $debug );
@@ -279,7 +279,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 *
 	 * @param $buffer null|bool
 	 *
-	 * @return The previous value of the flag
+	 * @return null|bool The previous value of the flag
 	 */
 	function bufferResults( $buffer = null ) {
 		if ( is_null( $buffer ) ) {
@@ -310,8 +310,8 @@ abstract class DatabaseBase implements DatabaseType {
 	 * Historically, transactions were allowed to be "nested". This is no
 	 * longer supported, so this function really only returns a boolean.
 	 *
-	 * @param $level An integer (0 or 1), or omitted to leave it unchanged.
-	 * @return The previous value
+	 * @param $level int An integer (0 or 1), or omitted to leave it unchanged.
+	 * @return int The previous value
 	 */
 	function trxLevel( $level = null ) {
 		return wfSetVar( $this->mTrxLevel, $level );
@@ -319,8 +319,8 @@ abstract class DatabaseBase implements DatabaseType {
 
 	/**
 	 * Get/set the number of errors logged. Only useful when errors are ignored
-	 * @param $count The count to set, or omitted to leave it unchanged.
-	 * @return The error count
+	 * @param $count int The count to set, or omitted to leave it unchanged.
+	 * @return int The error count
 	 */
 	function errorCount( $count = null ) {
 		return wfSetVar( $this->mErrorCount, $count );
@@ -328,8 +328,8 @@ abstract class DatabaseBase implements DatabaseType {
 
 	/**
 	 * Get/set the table prefix.
-	 * @param $prefix The table prefix to set, or omitted to leave it unchanged.
-	 * @return The previous table prefix.
+	 * @param $prefix string The table prefix to set, or omitted to leave it unchanged.
+	 * @return string The previous table prefix.
 	 */
 	function tablePrefix( $prefix = null ) {
 		return wfSetVar( $this->mTablePrefix, $prefix );
@@ -641,6 +641,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * Same as new factory( ... ), kept for backward compatibility
 	 * @deprecated since 1.18
 	 * @see Database::factory()
+	 * @return DatabaseBase
 	 */
 	public final static function newFromType( $dbType, $p = array() ) {
 		wfDeprecated( __METHOD__, '1.18' );
@@ -665,6 +666,8 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @see ForeignDBRepo::getMasterDB()
 	 * @see WebInstaller_DBConnect::execute()
 	 *
+	 * @since 1.18
+	 *
 	 * @param $dbType String A possible DB type
 	 * @param $p Array An array of options to pass to the constructor.
 	 *    Valid options are: host, user, password, dbname, flags, tablePrefix
@@ -677,7 +680,7 @@ abstract class DatabaseBase implements DatabaseType {
 		$dbType = strtolower( $dbType );
 		$class = 'Database' . ucfirst( $dbType );
 
-		if( in_array( $dbType, $canonicalDBTypes ) ) {
+		if( in_array( $dbType, $canonicalDBTypes ) || ( class_exists( $class ) && is_subclass_of( $class, 'DatabaseBase' ) ) ) {
 			return new $class(
 				isset( $p['host'] ) ? $p['host'] : false,
 				isset( $p['user'] ) ? $p['user'] : false,
@@ -686,8 +689,6 @@ abstract class DatabaseBase implements DatabaseType {
 				isset( $p['flags'] ) ? $p['flags'] : 0,
 				isset( $p['tablePrefix'] ) ? $p['tablePrefix'] : 'get from global'
 			);
-		} elseif ( class_exists( $class ) && is_subclass_of( $class, 'DatabaseBase' ) ) {
-			return new $class( $p );
 		} else {
 			return null;
 		}
@@ -709,7 +710,7 @@ abstract class DatabaseBase implements DatabaseType {
 		}
 		if ( $this->mPHPError ) {
 			$error = preg_replace( '!\[<a.*</a>\]!', '', $this->mPHPError );
-			$error = preg_replace( '!^.*?:(.*)$!', '$1', $error );
+			$error = preg_replace( '!^.*?:\s?(.*)$!', '$1', $error );
 			return $error;
 		} else {
 			return false;
@@ -730,10 +731,26 @@ abstract class DatabaseBase implements DatabaseType {
 	 *
 	 * @return Bool operation success. true if already closed.
 	 */
-	function close() {
-		# Stub, should probably be overridden
-		return true;
+	public function close() {
+		$this->mOpened = false;
+		if ( $this->mConn ) {
+			if ( $this->trxLevel() ) {
+				$this->commit( __METHOD__ );
+			}
+			$ret = $this->closeConnection();
+			$this->mConn = false;
+			return $ret;
+		} else {
+			return true;
+		}
 	}
+
+	/**
+	 * Closes underlying database connection
+	 * @since 1.20
+	 * @return bool: Whether connection was closed successfully
+	 */
+	protected abstract function closeConnection();
 
 	/**
 	 * @param $error String: fallback error message, used if none is given by DB
@@ -765,7 +782,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @return bool
 	 */
 	function isWriteQuery( $sql ) {
-		return !preg_match( '/^(?:SELECT|BEGIN|COMMIT|SET|SHOW|\(SELECT)\b/i', $sql );
+		return !preg_match( '/^(?:SELECT|BEGIN|ROLLBACK|COMMIT|SET|SHOW|\(SELECT)\b/i', $sql );
 	}
 
 	/**
@@ -1093,7 +1110,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @param $fname string The function name of the caller.
 	 * @param $options string|array The query options. See DatabaseBase::select() for details.
 	 *
-	 * @return false|mixed The value from the field, or false on failure.
+	 * @return bool|mixed The value from the field, or false on failure.
 	 */
 	function selectField( $table, $var, $cond = '', $fname = 'DatabaseBase::selectField',
 		$options = array() )
@@ -1371,7 +1388,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @param $options string|array Query options
 	 * @param $join_conds string|array Join conditions
 	 *
-	 * @return SQL query string.
+	 * @return string SQL query string.
 	 * @see DatabaseBase::select()
 	 */
 	function selectSQLText( $table, $vars, $conds = '', $fname = 'DatabaseBase::select', $options = array(), $join_conds = array() ) {
@@ -1432,12 +1449,12 @@ abstract class DatabaseBase implements DatabaseType {
 	 *
 	 * @param $table string|array Table name
 	 * @param $vars string|array Field names
-	 * @param $conds|array Conditions
+	 * @param $conds array Conditions
 	 * @param $fname string Caller function name
 	 * @param $options string|array Query options
 	 * @param $join_conds array|string Join conditions
 	 *
-	 * @return ResultWrapper|bool
+	 * @return object|bool
 	 */
 	function selectRow( $table, $vars, $conds, $fname = 'DatabaseBase::selectRow',
 		$options = array(), $join_conds = array() )
@@ -2599,7 +2616,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 *
 	 * @param $sql String SQL query we will append the limit too
 	 * @param $limit Integer the SQL limit
-	 * @param $offset Integer|false the SQL offset (default false)
+	 * @param $offset Integer|bool the SQL offset (default false)
 	 *
 	 * @return string
 	 */
@@ -2789,7 +2806,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @param $timeout Integer: the maximum number of seconds to wait for
 	 *   synchronisation
 	 *
-	 * @return An integer: zero if the slave was past that position already,
+	 * @return integer: zero if the slave was past that position already,
 	 *   greater than zero if we waited for some period of time, less than
 	 *   zero if we timed out.
 	 */
@@ -2909,7 +2926,7 @@ abstract class DatabaseBase implements DatabaseType {
 	/**
 	 * List all tables on the database
 	 *
-	 * @param $prefix Only show tables with this prefix, e.g. mw_
+	 * @param $prefix string Only show tables with this prefix, e.g. mw_
 	 * @param $fname String: calling function name
 	 */
 	function listTables( $prefix = null, $fname = 'DatabaseBase::listTables' ) {
@@ -3009,7 +3026,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * installations. Most callers should use LoadBalancer::safeGetLag()
 	 * instead.
 	 *
-	 * @return Database replication lag in seconds
+	 * @return int Database replication lag in seconds
 	 */
 	function getLag() {
 		return intval( $this->mFakeSlaveLag );
@@ -3134,7 +3151,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * ones in $GLOBALS. If an array is set here, $GLOBALS will not be used at
 	 * all. If it's set to false, $GLOBALS will be used.
 	 *
-	 * @param $vars False, or array mapping variable name to value.
+	 * @param $vars bool|array mapping variable name to value.
 	 */
 	function setSchemaVars( $vars ) {
 		$this->mSchemaVars = $vars;
@@ -3351,7 +3368,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @param $lockName String: Name of lock to release
 	 * @param $method String: Name of method calling us
 	 *
-	 * @return Returns 1 if the lock was released, 0 if the lock was not established
+	 * @return int Returns 1 if the lock was released, 0 if the lock was not established
 	 * by this thread (in which case the lock is not released), and NULL if the named
 	 * lock did not exist
 	 */
@@ -3424,17 +3441,28 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
-	 * Encode an expiry time
+	 * Encode an expiry time into the DBMS dependent format
 	 *
 	 * @param $expiry String: timestamp for expiry, or the 'infinity' string
 	 * @return String
 	 */
 	public function encodeExpiry( $expiry ) {
-		if ( $expiry == '' || $expiry == $this->getInfinity() ) {
-			return $this->getInfinity();
-		} else {
-			return $this->timestamp( $expiry );
-		}
+		return ( $expiry == '' || $expiry == 'infinity' || $expiry == $this->getInfinity() )
+			? $this->getInfinity()
+			: $this->timestamp( $expiry );
+	}
+
+	/**
+	 * Decode an expiry time into a DBMS independent format
+	 *
+	 * @param $expiry String: DB timestamp field value for expiry
+	 * @param $format integer: TS_* constant, defaults to TS_MW
+	 * @return String
+	 */
+	public function decodeExpiry( $expiry, $format = TS_MW ) {
+		return ( $expiry == '' || $expiry == $this->getInfinity() )
+			? 'infinity'
+			: wfTimestamp( $format, $expiry );
 	}
 
 	/**

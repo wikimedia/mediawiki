@@ -18,7 +18,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Maintenance
+ * @ingroup Benchmark
  */
 
 require_once( dirname( __FILE__ ) . '/Benchmarker.php' );

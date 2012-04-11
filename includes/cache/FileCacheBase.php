@@ -74,7 +74,7 @@ abstract class FileCacheBase {
 
 	/**
 	 * Get the last-modified timestamp of the cache file
-	 * @return string|false TS_MW timestamp
+	 * @return string|bool TS_MW timestamp
 	 */
 	public function cacheTimestamp() {
 		$timestamp = filemtime( $this->cachePath() );
@@ -116,9 +116,9 @@ abstract class FileCacheBase {
 	 * @return string
 	 */
 	public function fetchText() {
-		if ( $this->useGzip() ) {
-			/* Why is there no gzfile_get_contents() or gzdecode()? */
-			return implode( '', gzfile( $this->cachePath() ) );
+		if( $this->useGzip() ) {
+			$fh = gzopen( $this->cachePath(), 'rb' );
+			return stream_get_contents( $fh );
 		} else {
 			return file_get_contents( $this->cachePath() );
 		}
@@ -141,6 +141,7 @@ abstract class FileCacheBase {
 
 		$this->checkCacheDirs(); // build parent dir
 		if ( !file_put_contents( $this->cachePath(), $text, LOCK_EX ) ) {
+			wfDebug( __METHOD__ . "() failed saving ". $this->cachePath() . "\n");
 			$this->mCached = null;
 			return false;
 		}
@@ -169,7 +170,10 @@ abstract class FileCacheBase {
 	}
 
 	/**
-	 * Get the cache type subdirectory (with trailing slash) or the empty string
+	 * Get the cache type subdirectory (with trailing slash)
+	 * An extending class could use that method to alter the type -> directory
+	 * mapping. @see HTMLFileCache::typeSubdirectory() for an example.
+	 *
 	 * @return string
 	 */
 	protected function typeSubdirectory() {

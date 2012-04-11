@@ -32,12 +32,22 @@ class RebuildFileCache extends Maintenance {
 		$this->setBatchSize( 100 );
 	}
 
+	public function finalSetup() {
+		global $wgDebugToolbar;
+
+		// Debug toolbar makes content uncacheable so we disable it.
+		// Has to be done before Setup.php initialize MWDebug
+		$wgDebugToolbar = false;
+		parent::finalSetup();
+	}
+
 	public function execute() {
 		global $wgUseFileCache, $wgReadOnly, $wgContentNamespaces, $wgRequestTime;
 		global $wgTitle, $wgOut;
 		if ( !$wgUseFileCache ) {
 			$this->error( "Nothing to do -- \$wgUseFileCache is disabled.", true );
 		}
+
 		$wgReadOnly = 'Building cache'; // avoid DB writes (like enotif/counters)
 
 		$start = $this->getOption( 'start', "0" );
@@ -83,7 +93,7 @@ class RebuildFileCache extends Maintenance {
 				array( 'ORDER BY' => 'page_id ASC', 'USE INDEX' => 'PRIMARY' )
 			);
 
-			$dbw->begin(); // for any changes
+			$dbw->begin( __METHOD__ ); // for any changes
 			foreach ( $res as $row ) {
 				$rebuilt = false;
 				$wgRequestTime = microtime( true ); # bug 22852
@@ -129,7 +139,7 @@ class RebuildFileCache extends Maintenance {
 					$this->output( "Page {$row->page_id} not cacheable\n" );
 				}
 			}
-			$dbw->commit(); // commit any changes (just for sanity)
+			$dbw->commit( __METHOD__ ); // commit any changes (just for sanity)
 
 			$blockStart += $this->mBatchSize;
 			$blockEnd += $this->mBatchSize;

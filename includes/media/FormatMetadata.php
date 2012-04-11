@@ -800,7 +800,7 @@ class FormatMetadata {
 					break;
 
 				case 'LanguageCode':
-					$lang = $wgLang->getLanguageName( strtolower( $val ) );
+					$lang = Language::fetchLanguageName( strtolower( $val ), $wgLang );
 					if ($lang) {
 						$val = htmlspecialchars( $lang );
 					} else {
@@ -941,7 +941,6 @@ class FormatMetadata {
 	 * 	this is treated as wikitext not html).
 	 */
 	private static function langItem( $value, $lang, $default = false, $noHtml = false ) {
-		global $wgContLang;
 		if ( $lang === false && $default === false) {
 			throw new MWException('$lang and $default cannot both '
 				. 'be false.');
@@ -966,11 +965,11 @@ class FormatMetadata {
 		}
 
 		$lowLang = strtolower( $lang );
-		$langName = $wgContLang->getLanguageName( $lowLang );
+		$langName = Language::fetchLanguageName( $lowLang );
 		if ( $langName === '' ) {
 			//try just the base language name. (aka en-US -> en ).
 			list( $langPrefix ) = explode( '-', $lowLang, 2 );
-			$langName = $wgContLang->getLanguageName( $langPrefix );
+			$langName = Language::fetchLanguageName( $langPrefix );
 			if ( $langName === '' ) {
 				// give up.
 				$langName = $lang;
@@ -1021,7 +1020,7 @@ class FormatMetadata {
 	 * @private
 	 *
 	 * @param $num Mixed: the value to format
-	 * @param $round digits to round to or false.
+	 * @param $round float|int digits to round to or false.
 	 * @return mixed A floating point number or whatever we were fed
 	 */
 	static function formatNum( $num, $round = false ) {
@@ -1102,7 +1101,8 @@ class FormatMetadata {
 		return $a;
 	}
 
-	/** Fetch the human readable version of a news code.
+	/**
+	 * Fetch the human readable version of a news code.
 	 * A news code is an 8 digit code. The first two 
 	 * digits are a general classification, so we just
 	 * translate that.
@@ -1111,7 +1111,7 @@ class FormatMetadata {
 	 * a string, not an int.
 	 *
 	 * @param $val String: The 8 digit news code.
-	 * @return The human readable form
+	 * @return srting The human readable form
 	 */
 	static private function convertNewsCode( $val ) {
 		if ( !preg_match( '/^\d{8}$/D', $val ) ) {
@@ -1183,7 +1183,7 @@ class FormatMetadata {
 	 * Format a coordinate value, convert numbers from floating point
 	 * into degree minute second representation.
 	 *
-	 * @param $coords Array: degrees, minutes and seconds
+	 * @param $coord Array: degrees, minutes and seconds
 	 * @param $type String: latitude or longitude (for if its a NWS or E)
 	 * @return mixed A floating point number or whatever we were fed
 	 */

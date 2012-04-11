@@ -143,7 +143,7 @@ class StandardTemplate extends LegacyTemplate {
 		}
 
 		$s .= "\n<hr class='sep' />";
-		$articleExists = $title->getArticleId();
+		$articleExists = $title->getArticleID();
 		if ( $this->data['isarticle'] || $action == 'edit' || $action == 'history' || $wpPreview ) {
 			if( $this->data['isarticle'] ) {
 				$s .= '<strong>' . $this->editThisPage() . '</strong>';

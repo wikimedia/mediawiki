@@ -195,28 +195,47 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	 * @param $type string
 	 * @param $action string
 	 * @param $ts
+	 * @param $legacy bool
 	 * @return array
 	 */
-	public static function addLogParams( $result, &$vals, $params, $type, $action, $ts ) {
-		$params = explode( "\n", $params );
+	public static function addLogParams( $result, &$vals, $params, $type, $action, $ts, $legacy = false ) {
 		switch ( $type ) {
 			case 'move':
-				if ( isset( $params[0] ) ) {
-					$title = Title::newFromText( $params[0] );
+				if ( $legacy ){
+					$targetKey = 0;
+					$noredirKey = 1;
+				} else {
+					$targetKey = '4::target';
+					$noredirKey = '5::noredir';
+				}
+
+				if ( isset( $params[ $targetKey ] ) ) {
+					$title = Title::newFromText( $params[ $targetKey ] );
 					if ( $title ) {
 						$vals2 = array();
 						ApiQueryBase::addTitleInfo( $vals2, $title, 'new_' );
 						$vals[$type] = $vals2;
 					}
 				}
-				if ( isset( $params[1] ) && $params[1] ) {
+				if ( isset( $params[ $noredirKey ] ) && $params[ $noredirKey ] ) {
 					$vals[$type]['suppressedredirect'] = '';
 				}
 				$params = null;
 				break;
 			case 'patrol':
+				if ( $legacy ){
+					$cur = 0;
+					$prev = 1;
+					$auto = 2;
+				} else {
+					$cur = '4::curid';
+					$prev = '5::previd';
+					$auto = '6::auto';
+				}
 				$vals2 = array();
-				list( $vals2['cur'], $vals2['prev'], $vals2['auto'] ) = $params;
+				$vals2['cur'] = $params[$cur];
+				$vals2['prev'] = $params[$prev];
+				$vals2['auto'] = $params[$auto];
 				$vals[$type] = $vals2;
 				$params = null;
 				break;
@@ -250,6 +269,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	}
 
 	private function extractRowInfo( $row ) {
+		$logEntry = DatabaseLogEntry::newFromRow( $row );
 		$vals = array();
 
 		if ( $this->fld_ids ) {
@@ -281,10 +301,11 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				self::addLogParams(
 					$this->getResult(),
 					$vals,
-					$row->log_params,
-					$row->log_type,
-					$row->log_action,
-					$row->log_timestamp
+					$logEntry->getParameters(),
+					$logEntry->getType(),
+					$logEntry->getSubtype(),
+					$logEntry->getTimestamp(),
+					$logEntry->isLegacy()
 				);
 			}
 		}

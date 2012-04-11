@@ -1,19 +1,25 @@
 <?php
 /**
+ * @defgroup LockManager Lock management
+ * @ingroup FileBackend
+ */
+
+/**
  * @file
  * @ingroup LockManager
  * @author Aaron Schulz
  */
 
 /**
- * Class for handling resource locking.
+ * @brief Class for handling resource locking.
+ *
  * Locks on resource keys can either be shared or exclusive.
- * 
+ *
  * Implementations must keep track of what is locked by this proccess
  * in-memory and support nested locking calls (using reference counting).
  * At least LOCK_UW and LOCK_EX must be implemented. LOCK_SH can be a no-op.
  * Locks should either be non-blocking or have low wait timeouts.
- * 
+ *
  * Subclasses should avoid throwing exceptions at all costs.
  *
  * @ingroup LockManager
@@ -50,7 +56,10 @@ abstract class LockManager {
 	 * @return Status 
 	 */
 	final public function lock( array $paths, $type = self::LOCK_EX ) {
-		return $this->doLock( array_unique( $paths ), $this->lockTypeMap[$type] );
+		wfProfileIn( __METHOD__ );
+		$status = $this->doLock( array_unique( $paths ), $this->lockTypeMap[$type] );
+		wfProfileOut( __METHOD__ );
+		return $status;
 	}
 
 	/**
@@ -61,7 +70,10 @@ abstract class LockManager {
 	 * @return Status 
 	 */
 	final public function unlock( array $paths, $type = self::LOCK_EX ) {
-		return $this->doUnlock( array_unique( $paths ), $this->lockTypeMap[$type] );
+		wfProfileIn( __METHOD__ );
+		$status = $this->doUnlock( array_unique( $paths ), $this->lockTypeMap[$type] );
+		wfProfileOut( __METHOD__ );
+		return $status;
 	}
 
 	/**
@@ -94,6 +106,8 @@ abstract class LockManager {
 }
 
 /**
+ * Self releasing locks
+ *
  * LockManager helper class to handle scoped locks, which
  * release when an object is destroyed or goes out of scope.
  *
@@ -164,10 +178,18 @@ class ScopedLock {
  * @since 1.19
  */
 class NullLockManager extends LockManager {
+	/**
+	 * @see LockManager::doLock()
+	 * @return Status
+	 */
 	protected function doLock( array $paths, $type ) {
 		return Status::newGood();
 	}
 
+	/**
+	 * @see LockManager::doUnlock()
+	 * @return Status
+	 */
 	protected function doUnlock( array $paths, $type ) {
 		return Status::newGood();
 	}

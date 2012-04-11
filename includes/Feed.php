@@ -334,6 +334,7 @@ class RSSFeed extends ChannelFeed {
 class AtomFeed extends ChannelFeed {
 	/**
 	 * @todo document
+	 * @return string
 	 */
 	function formatTime( $ts ) {
 		// need to use RFC 822 time format at least for rss2.0

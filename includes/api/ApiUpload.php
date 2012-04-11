@@ -113,6 +113,7 @@ class ApiUpload extends ApiBase {
 	}
 	/**
 	 * Get an uplaod result based on upload context
+	 * @return array
 	 */
 	private function getContextResult(){
 		$warnings = $this->getApiWarnings();
@@ -131,7 +132,8 @@ class ApiUpload extends ApiBase {
 		return $this->performUpload();
 	}
 	/**
-	 * Get Stash Result, throws an expetion if the file could not be stashed. 
+	 * Get Stash Result, throws an expetion if the file could not be stashed.
+	 * @return array
 	 */
 	private function getStashResult(){
 		$result = array ();
@@ -149,6 +151,7 @@ class ApiUpload extends ApiBase {
 	/**
 	 * Get Warnings Result
 	 * @param $warnings Array of Api upload warnings
+	 * @return array
 	 */
 	private function getWarningsResult( $warnings ){
 		$result = array();
@@ -165,7 +168,8 @@ class ApiUpload extends ApiBase {
 		return $result;
 	}
 	/**
-	 * Get the result of a chunk upload. 
+	 * Get the result of a chunk upload.
+	 * @return array
 	 */
 	private function getChunkResult(){
 		$result = array();
@@ -183,15 +187,28 @@ class ApiUpload extends ApiBase {
 				$this->dieUsage( $status->getWikiText(), 'stashfailed' );
 				return ;
 			}
-			$result['filekey'] = $this->mParams['filekey'];
+
 			// Check we added the last chunk: 
 			if( $this->mParams['offset'] + $chunkSize == $this->mParams['filesize'] ) {
 				$status = $this->mUpload->concatenateChunks();
+
 				if ( !$status->isGood() ) {
 					$this->dieUsage( $status->getWikiText(), 'stashfailed' );
 					return ;
 				}
+
+				// We have a new filekey for the fully concatenated file.
+				$result['filekey'] =  $this->mUpload->getLocalFile()->getFileKey();
+
+				// Remove chunk from stash. (Checks against user ownership of chunks.)
+				$this->mUpload->stash->removeFile( $this->mParams['filekey'] );
+
 				$result['result'] = 'Success';
+
+			} else {
+
+				// Continue passing through the filekey for adding further chunks.
+				$result['filekey'] = $this->mParams['filekey'];
 			}
 		}
 		$result['offset'] = $this->mParams['offset'] + $chunkSize;
@@ -316,6 +333,10 @@ class ApiUpload extends ApiBase {
 			// Make sure upload by URL is enabled:
 			if ( !UploadFromUrl::isEnabled() ) {
 				$this->dieUsageMsg( 'copyuploaddisabled' );
+			}
+
+			if ( !UploadFromUrl::isAllowedHost( $this->mParams['url'] ) ) {
+				$this->dieUsageMsg( 'copyuploadbaddomain' );
 			}
 
 			$async = false;

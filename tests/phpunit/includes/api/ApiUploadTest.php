@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * @group API
  * @group Database
  */
 
@@ -19,6 +20,9 @@ require_once( 'ApiTestCaseUpload.php' );
 
 /**
  * @group Database
+ * @group Broken
+ * Broken test, reports false errors from time to time.
+ * See https://bugzilla.wikimedia.org/26169
  *
  * This is pretty sucky... needs to be prettified.
  */

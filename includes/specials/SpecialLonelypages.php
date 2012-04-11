@@ -34,7 +34,7 @@ class LonelyPagesPage extends PageQueryPage {
 	}
 
 	function getPageHeader() {
-		return wfMsgExt( 'lonelypagestext', array( 'parse' ) );
+		return $this->msg( 'lonelypagestext' )->parseAsBlock();
 	}
 
 	function sortDescending() {

@@ -10,8 +10,13 @@
 
 /**
  * This class encapsulates "magic words" such as #redirect, __NOTOC__, etc.
- * Usage:
- *     if (MagicWord::get( 'redirect' )->match( $text ) )
+ *
+ * @par Usage:
+ * @code
+ *     if (MagicWord::get( 'redirect' )->match( $text ) ) {
+ *       // some code
+ *     }
+ * @endcode
  *
  * Possible future improvements:
  *   * Simultaneous searching for a number of magic words
@@ -23,14 +28,15 @@
  * To add magic words in an extension, use $magicWords in a file listed in
  * $wgExtensionMessagesFiles[].
  * 
- * Example:
- *
+ * @par Example:
+ * @code
  * $magicWords = array();
  *
  * $magicWords['en'] = array(
  * 	'magicwordkey' => array( 0, 'case_insensitive_magic_word' ),
  * 	'magicwordkey2' => array( 1, 'CASE_sensitive_magic_word2' ),
  * );
+ * @endcode
  *
  * For magic words which are also Parser variables, add a MagicWordwgVariableIDs
  * hook. Use string keys.
@@ -89,6 +95,7 @@ class MagicWord {
 		'fullpagenamee',
 		'namespace',
 		'namespacee',
+		'namespacenumber',
 		'currentweek',
 		'currentdow',
 		'localweek',
@@ -807,7 +814,7 @@ class MagicWordArray {
 	 *
 	 * @param $text string
 	 *
-	 * @return string|false
+	 * @return string|bool False on failure
 	 */
 	public function matchStartToEnd( $text ) {
 		$hash = $this->getHash();
@@ -855,7 +862,7 @@ class MagicWordArray {
 	 *
 	 * @param $text string
 	 *
-	 * @return int|false
+	 * @return int|bool False on failure
 	 */
 	public function matchStartAndRemove( &$text ) {
 		$regexes = $this->getRegexStart();

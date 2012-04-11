@@ -31,4 +31,15 @@ class FileRepoTest extends MediaWikiTestCase {
 		) );
 	}
 
+	function testFileRepoConstructionWithRequiredOptions() {
+		$f = new FileRepo( array(
+			'name'    => 'FileRepoTestRepository',
+			'backend' => new FSFileBackend( array(
+				'name'           => 'local-testing',
+				'lockManager'    => 'nullLockManager',
+				'containerPaths' => array()
+			) )
+		) );
+		$this->assertInstanceOf( 'FileRepo', $f );
+	}
 }

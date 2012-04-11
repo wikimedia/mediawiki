@@ -58,6 +58,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 * n.b. Most sanity checking done in UploadStashLocalFile, so this is straightforward.
 	 *
 	 * @param $key String: the key of a particular requested file
+	 * @return bool
 	 */
 	public function showUpload( $key ) {
 		// prevent callers from doing standard HTML output -- we'll take it from here
@@ -241,6 +242,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 * Side effect: writes HTTP response to STDOUT.
 	 *
 	 * @param $file File object with a local path (e.g. UnregisteredLocalFile, LocalFile. Oddly these don't share an ancestor!)
+	 * @return bool
 	 */
 	private function outputLocalFile( File $file ) {
 		if ( $file->getSize() > self::MAX_SERVE_BYTES ) {
@@ -257,6 +259,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 * Side effect: writes HTTP response to STDOUT.
 	 * @param String $content: content
 	 * @param String $mimeType: mime type
+	 * @return bool
 	 */
 	private function outputContents( $content, $contentType ) {
 		$size = strlen( $content );
@@ -304,6 +307,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 * Default action when we don't have a subpage -- just show links to the uploads we have,
 	 * Also show a button to clear stashed files
 	 * @param Status : $status - the result of processRequest
+	 * @return bool
 	 */
 	private function showUploads( $status = null ) {
 		if ( $status === null ) {
@@ -326,7 +330,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		), $this->getContext(), 'clearStashedUploads' );
 		$form->setSubmitCallback( array( __CLASS__ , 'tryClearStashedUploads' ) );
 		$form->setTitle( $this->getTitle() );
-		$form->setSubmitText( wfMsg( 'uploadstash-clear' ) );
+		$form->setSubmitTextMsg( 'uploadstash-clear' );
 
 		$form->prepareForm();
 		$formResult = $form->tryAuthorizedSubmit();
@@ -334,7 +338,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		// show the files + form, if there are any, or just say there are none
 		$refreshHtml = Html::element( 'a',
 			array( 'href' => $this->getTitle()->getLocalURL() ),
-			wfMsg( 'uploadstash-refresh' ) );
+			$this->msg( 'uploadstash-refresh' )->text() );
 		$files = $this->stash->listFiles();
 		if ( $files && count( $files ) ) {
 			sort( $files );
@@ -351,7 +355,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 			$this->getOutput()->addHtml( Html::rawElement( 'p', array(), $refreshHtml ) );
 		} else {
 			$this->getOutput()->addHtml( Html::rawElement( 'p', array(),
-				Html::element( 'span', array(), wfMsg( 'uploadstash-nofiles' ) )
+				Html::element( 'span', array(), $this->msg( 'uploadstash-nofiles' )->text() )
 				. ' '
 				. $refreshHtml
 			) );

@@ -139,7 +139,7 @@ class DoubleRedirectJob extends Job {
 	 *
 	 * @param $title Title
 	 *
-	 * @return false if the specified title is not a redirect, or if it is a circular redirect
+	 * @return bool if the specified title is not a redirect, or if it is a circular redirect
 	 */
 	public static function getFinalDestination( $title ) {
 		$dbw = wfGetDB( DB_MASTER );

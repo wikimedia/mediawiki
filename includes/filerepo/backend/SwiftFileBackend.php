@@ -7,7 +7,7 @@
  */
 
 /**
- * Class for an OpenStack Swift based file backend.
+ * @brief Class for an OpenStack Swift based file backend.
  *
  * This requires the SwiftCloudFiles MediaWiki extension, which includes
  * the php-cloudfiles library (https://github.com/rackspace/php-cloudfiles).
@@ -24,7 +24,7 @@ class SwiftFileBackend extends FileBackendStore {
 	protected $auth; // Swift authentication handler
 	protected $authTTL; // integer seconds
 	protected $swiftAnonUser; // string; username to handle unauthenticated requests
-	protected $maxContCacheSize = 20; // integer; max containers with entries
+	protected $maxContCacheSize = 100; // integer; max containers with entries
 
 	/** @var CF_Connection */
 	protected $conn; // Swift connection handle
@@ -68,6 +68,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::resolveContainerPath()
+	 * @return null
 	 */
 	protected function resolveContainerPath( $container, $relStoragePath ) {
 		if ( strlen( urlencode( $relStoragePath ) ) > 1024 ) {
@@ -78,6 +79,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::isPathUsableInternal()
+	 * @return bool
 	 */
 	public function isPathUsableInternal( $storagePath ) {
 		list( $container, $rel ) = $this->resolveStoragePathReal( $storagePath );
@@ -98,7 +100,8 @@ class SwiftFileBackend extends FileBackendStore {
 	}
 
 	/**
-	 * @see FileBackendStore::doCopyInternal()
+	 * @see FileBackendStore::doCreateInternal()
+	 * @return Status
 	 */
 	protected function doCreateInternal( array $params ) {
 		$status = Status::newGood();
@@ -161,6 +164,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::doStoreInternal()
+	 * @return Status
 	 */
 	protected function doStoreInternal( array $params ) {
 		$status = Status::newGood();
@@ -229,6 +233,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::doCopyInternal()
+	 * @return Status
 	 */
 	protected function doCopyInternal( array $params ) {
 		$status = Status::newGood();
@@ -284,6 +289,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::doDeleteInternal()
+	 * @return Status
 	 */
 	protected function doDeleteInternal( array $params ) {
 		$status = Status::newGood();
@@ -315,6 +321,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::doPrepareInternal()
+	 * @return Status
 	 */
 	protected function doPrepareInternal( $fullCont, $dir, array $params ) {
 		$status = Status::newGood();
@@ -360,6 +367,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::doSecureInternal()
+	 * @return Status
 	 */
 	protected function doSecureInternal( $fullCont, $dir, array $params ) {
 		$status = Status::newGood();
@@ -394,6 +402,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::doCleanInternal()
+	 * @return Status
 	 */
 	protected function doCleanInternal( $fullCont, $dir, array $params ) {
 		$status = Status::newGood();
@@ -438,6 +447,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::doFileExists()
+	 * @return array|bool|null
 	 */
 	protected function doGetFileStat( array $params ) {
 		list( $srcCont, $srcRel ) = $this->resolveStoragePathReal( $params['src'] );
@@ -499,6 +509,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackend::getFileContents()
+	 * @return bool|null|string
 	 */
 	public function getFileContents( array $params ) {
 		list( $srcCont, $srcRel ) = $this->resolveStoragePathReal( $params['src'] );
@@ -526,6 +537,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::getFileListInternal()
+	 * @return SwiftFileBackendFileList
 	 */
 	public function getFileListInternal( $fullCont, $dir, array $params ) {
 		return new SwiftFileBackendFileList( $this, $fullCont, $dir );
@@ -559,6 +571,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::doGetFileSha1base36()
+	 * @return bool
 	 */
 	public function doGetFileSha1base36( array $params ) {
 		$stat = $this->getFileStat( $params );
@@ -571,6 +584,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::doStreamFile()
+	 * @return Status
 	 */
 	protected function doStreamFile( array $params ) {
 		$status = Status::newGood();
@@ -595,7 +609,7 @@ class SwiftFileBackend extends FileBackendStore {
 		}
 
 		try {
-			$output = fopen( 'php://output', 'w' );
+			$output = fopen( 'php://output', 'wb' );
 			$obj = new CF_Object( $cont, $srcRel, false, false ); // skip HEAD request
 			$obj->stream( $output, $this->headersFromParams( $params ) );
 		} catch ( InvalidResponseException $e ) { // 404? connection problem?
@@ -610,6 +624,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::getLocalCopy()
+	 * @return null|TempFSFile
 	 */
 	public function getLocalCopy( array $params ) {
 		list( $srcCont, $srcRel ) = $this->resolveStoragePathReal( $params['src'] );
@@ -693,7 +708,7 @@ class SwiftFileBackend extends FileBackendStore {
 	/**
 	 * Get a connection to the Swift proxy
 	 *
-	 * @return CF_Connection|false
+	 * @return CF_Connection|bool False on failure
 	 * @throws InvalidResponseException
 	 */
 	protected function getConnection() {
@@ -792,7 +807,11 @@ class SwiftFileBackend extends FileBackendStore {
 	 */
 	protected function logException( Exception $e, $func, array $params ) {
 		wfDebugLog( 'SwiftBackend',
-			get_class( $e ) . " in '{$this->name}': '{$func}' with " . serialize( $params ) 
+			get_class( $e ) . " in '{$func}' (given '" . FormatJson::encode( $params ) . "')" .
+			( $e instanceof InvalidResponseException
+				? ": {$e->getMessage()}"
+				: ""
+			)
 		);
 	}
 }
@@ -837,14 +856,26 @@ class SwiftFileBackendFileList implements Iterator {
 		}
 	}
 
+	/**
+	 * @see Iterator::current()
+	 * @return string|bool String or false
+	 */
 	public function current() {
 		return substr( current( $this->bufferIter ), $this->suffixStart );
 	}
 
+	/**
+	 * @see Iterator::key()
+	 * @return integer
+	 */
 	public function key() {
 		return $this->pos;
 	}
 
+	/**
+	 * @see Iterator::next()
+	 * @return void
+	 */
 	public function next() {
 		// Advance to the next file in the page
 		next( $this->bufferIter );
@@ -854,19 +885,27 @@ class SwiftFileBackendFileList implements Iterator {
 		if ( !$this->valid() && count( $this->bufferIter ) ) {
 			$this->bufferAfter = end( $this->bufferIter );
 			$this->bufferIter = $this->backend->getFileListPageInternal(
-					$this->container, $this->dir, $this->bufferAfter, self::PAGE_SIZE
+				$this->container, $this->dir, $this->bufferAfter, self::PAGE_SIZE
 			);
 		}
 	}
 
+	/**
+	 * @see Iterator::rewind()
+	 * @return void
+	 */
 	public function rewind() {
 		$this->pos = 0;
 		$this->bufferAfter = null;
 		$this->bufferIter = $this->backend->getFileListPageInternal(
-				$this->container, $this->dir, $this->bufferAfter, self::PAGE_SIZE
+			$this->container, $this->dir, $this->bufferAfter, self::PAGE_SIZE
 		);
 	}
 
+	/**
+	 * @see Iterator::valid()
+	 * @return bool
+	 */
 	public function valid() {
 		return ( current( $this->bufferIter ) !== false ); // no paths can have this value
 	}

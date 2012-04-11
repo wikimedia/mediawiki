@@ -17,6 +17,15 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	private static $dbSetup = false;
 
 	/**
+	 * Holds the paths of temporary files/directories created through getNewTempFile,
+	 * and getNewTempDirectory
+	 *
+	 * @var array
+	 */
+	private $tmpfiles = array();
+
+
+	/**
 	 * Table name prefixes. Oracle likes it shorter.
 	 */
 	const DB_PREFIX = 'unittest_';
@@ -69,6 +78,53 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		} else {
 			parent::run( $result );
 		}
+	}
+
+	/**
+	 * obtains a new temporary file name
+	 *
+	 * The obtained filename is enlisted to be removed upon tearDown
+	 *
+	 * @returns string: absolute name of the temporary file
+	 */
+	protected function getNewTempFile() {
+		$fname = tempnam( wfTempDir(), 'MW_PHPUnit_' . get_class( $this ) . '_' );
+		$this->tmpfiles[] = $fname;
+		return $fname;
+	}
+
+	/**
+	 * obtains a new temporary directory
+	 *
+	 * The obtained directory is enlisted to be removed (recursively with all its contained
+	 * files) upon tearDown.
+	 *
+	 * @returns string: absolute name of the temporary directory
+	 */
+	protected function getNewTempDirectory() {
+		// Starting of with a temporary /file/.
+		$fname = $this->getNewTempFile();
+
+		// Converting the temporary /file/ to a /directory/
+		//
+		// The following is not atomic, but at least we now have a single place,
+		// where temporary directory creation is bundled and can be improved
+		unlink( $fname );
+		$this->assertTrue( wfMkdirParents( $fname ) );
+		return $fname;
+	}
+
+	protected function tearDown() {
+		// Cleaning up temoporary files
+		foreach ( $this->tmpfiles as $fname ) {
+			if ( is_file( $fname ) || ( is_link( $fname ) ) ) {
+				unlink( $fname );
+			} elseif ( is_dir( $fname ) ) {
+				wfRecursiveRemoveDir( $fname );
+			}
+		}
+
+		parent::tearDown();
 	}
 
 	function dbPrefix() {

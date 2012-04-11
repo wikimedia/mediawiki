@@ -8,6 +8,7 @@
 /**
  * Temporary b/c interface, collection of static functions.
  * @ingroup SpecialPage
+ * @ingroup RevisionDelete
  */
 class RevisionDeleter {
 	/**
@@ -42,7 +43,7 @@ class RevisionDeleter {
 	 *
 	 * @param $n Integer: the new bitfield.
 	 * @param $o Integer: the old bitfield.
-	 * @return An array as described above.
+	 * @return array An array as described above.
 	 * @since 1.19 public
 	 */
 	public static function getChanges( $n, $o ) {

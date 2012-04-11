@@ -197,6 +197,7 @@ class MWInit {
 	 * @param $methodName string
 	 * @param $args array
 	 *
+	 * @return mixed
 	 */
 	static function callStaticMethod( $className, $methodName, $args ) {
 		$r = new ReflectionMethod( $className, $methodName );

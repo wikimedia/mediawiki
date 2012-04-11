@@ -101,6 +101,7 @@ class Exif {
 	 * Constructor
 	 *
 	 * @param $file String: filename.
+	 * @param $byteOrder String Type of byte ordering either 'BE' (Big Endian) or 'LE' (Little Endian). Default ''.
 	 * @todo FIXME: The following are broke:
 	 * SubjectArea. Need to test the more obscure tags.
 	 *
@@ -548,6 +549,7 @@ class Exif {
 	 */
 	/**
 	 * Get $this->mRawExifData
+	 * @return array
 	 */
 	function getData() {
 		return $this->mRawExifData;

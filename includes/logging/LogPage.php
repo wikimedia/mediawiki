@@ -86,7 +86,7 @@ class LogPage {
 			'log_user_text' => $this->doer->getName(),
 			'log_namespace' => $this->target->getNamespace(),
 			'log_title' => $this->target->getDBkey(),
-			'log_page' => $this->target->getArticleId(),
+			'log_page' => $this->target->getArticleID(),
 			'log_comment' => $this->comment,
 			'log_params' => $this->params
 		);
@@ -100,7 +100,7 @@ class LogPage {
 			RecentChange::notifyLog(
 				$now, $titleObj, $this->doer, $this->getRcComment(), '',
 				$this->type, $this->action, $this->target, $this->comment,
-				$this->params, $newId
+				$this->params, $newId, $this->getRcCommentIRC()
 			);
 		} elseif( $this->sendToUDP ) {
 			# Don't send private logs to UDP
@@ -114,7 +114,7 @@ class LogPage {
 			$rc = RecentChange::newLogEntry(
 				$now, $titleObj, $this->doer, $this->getRcComment(), '',
 				$this->type, $this->action, $this->target, $this->comment,
-				$this->params, $newId
+				$this->params, $newId, $this->getRcCommentIRC()
 			);
 			$rc->notifyRC2UDP();
 		}
@@ -128,6 +128,25 @@ class LogPage {
 	 */
 	public function getRcComment() {
 		$rcComment = $this->actionText;
+
+		if( $this->comment != '' ) {
+			if ( $rcComment == '' ) {
+				$rcComment = $this->comment;
+			} else {
+				$rcComment .= wfMsgForContent( 'colon-separator' ) . $this->comment;
+			}
+		}
+
+		return $rcComment;
+	}
+
+	/**
+	 * Get the RC comment from the last addEntry() call for IRC
+	 *
+	 * @return string
+	 */
+	public function getRcCommentIRC() {
+		$rcComment = $this->ircActionText;
 
 		if( $this->comment != '' ) {
 			if ( $rcComment == '' ) {
@@ -175,7 +194,6 @@ class LogPage {
 	 * @deprecated in 1.19, warnings in 1.21. Use getName()
 	 */
 	public static function logName( $type ) {
-		wfDeprecated( __METHOD__, '1.19' );
 		global $wgLogNames;
 
 		if( isset( $wgLogNames[$type] ) ) {
@@ -195,13 +213,13 @@ class LogPage {
 	 * @deprecated in 1.19, warnings in 1.21. Use getDescription()
 	 */
 	public static function logHeader( $type ) {
-		wfDeprecated( __METHOD__, '1.19' );
 		global $wgLogHeaders;
 		return wfMsgExt( $wgLogHeaders[$type], array( 'parseinline' ) );
 	}
 
 	/**
-	 * Generate text for a log entry
+	 * Generate text for a log entry. 
+	 * Only LogFormatter should call this function.
 	 *
 	 * @param $type String: log type
 	 * @param $action String: log action
@@ -398,7 +416,8 @@ class LogPage {
 
 					# Use the language name for log titles, rather than Log/X
 					if( $name == 'Log' ) {
-						$titleLink = '(' . Linker::link( $title, LogPage::logName( $par ) ) . ')';
+						$titleLink = Linker::link( $title, LogPage::logName( $par ) );
+						$titleLink = wfMessage( 'parentheses' )->rawParams( $titleLink )->escaped();
 					} else {
 						$titleLink = Linker::link( $title );
 					}
@@ -420,6 +439,7 @@ class LogPage {
 	 * @param $doer User object: the user doing the action
 	 *
 	 * @return bool|int|null
+	 * @TODO: make this use LogEntry::saveContent()
 	 */
 	public function addEntry( $action, $target, $comment, $params = array(), $doer = null ) {
 		global $wgContLang;
@@ -449,7 +469,17 @@ class LogPage {
 
 		$this->doer = $doer;
 
-		$this->actionText = LogPage::actionText( $this->type, $action, $target, null, $params );
+		$logEntry = new ManualLogEntry( $this->type, $action );
+		$logEntry->setTarget( $target );
+		$logEntry->setPerformer( $doer );
+		$logEntry->setParameters( $params );
+
+		$formatter = LogFormatter::newFromEntry( $logEntry );
+		$context = RequestContext::newExtraneousContext( $target );
+		$formatter->setContext( $context );
+
+		$this->actionText = $formatter->getPlainActionText();
+		$this->ircActionText = $formatter->getIRCActionText();
 
 		return $this->saveContent();
 	}
@@ -511,7 +541,7 @@ class LogPage {
 	 * Convert a comma-delimited list of block log flags
 	 * into a more readable (and translated) form
 	 *
-	 * @param $flags Flags to format
+	 * @param $flags string Flags to format
 	 * @param $lang Language object to use
 	 * @return String
 	 */
@@ -522,7 +552,7 @@ class LogPage {
 			for( $i = 0; $i < count( $flags ); $i++ ) {
 				$flags[$i] = self::formatBlockFlag( $flags[$i], $lang );
 			}
-			return '(' . $lang->commaList( $flags ) . ')';
+			return wfMessage( 'parentheses' )->rawParams( $lang->commaList( $flags ) )->escaped();
 		} else {
 			return '';
 		}

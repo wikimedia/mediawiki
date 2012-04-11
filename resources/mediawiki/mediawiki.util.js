@@ -2,7 +2,7 @@
  * Implements mediaWiki.util library
  */
 ( function ( $, mw ) {
-"use strict";
+	"use strict";
 
 	// Local cache and alias
 	var util = {
@@ -29,9 +29,19 @@
 
 			// Chrome on any platform
 			} else if ( profile.name === 'chrome' ) {
-				// Chrome on Mac or Chrome on other platform ?
-				util.tooltipAccessKeyPrefix = ( profile.platform === 'mac'
-					? 'ctrl-option-' : 'alt-' );
+
+				util.tooltipAccessKeyPrefix = (
+					profile.platform === 'mac'
+						// Chrome on Mac
+						? 'ctrl-option-'
+						: profile.platform === 'win'
+							// Chrome on Windows
+							// (both alt- and alt-shift work, but alt-f triggers Chrome wrench menu
+							// which alt-shift-f does not)
+							? 'alt-shift-'
+							// Chrome on other (Ubuntu?)
+							: 'alt-'
+				);
 
 			// Non-Windows Safari with webkit_version > 526
 			} else if ( profile.platform !== 'win'
@@ -121,19 +131,19 @@
 		 * @param str string String to be encoded
 		 */
 		wikiUrlencode: function ( str ) {
-			return this.rawurlencode( str )
+			return util.rawurlencode( str )
 				.replace( /%20/g, '_' ).replace( /%3A/g, ':' ).replace( /%2F/g, '/' );
 		},
 
 		/**
 		 * Get the link to a page name (relative to wgServer)
 		 *
-		 * @param str string Page name to get the link for.
-		 * @return string Location for a page with name of 'str' or boolean false on error.
+		 * @param str String: Page name to get the link for.
+		 * @return String: Location for a page with name of 'str' or boolean false on error.
 		 */
 		wikiGetlink: function ( str ) {
 			return mw.config.get( 'wgArticlePath' ).replace( '$1',
-				this.wikiUrlencode( str || mw.config.get( 'wgPageName' ) ) );
+				util.wikiUrlencode( typeof str === 'string' ? str : mw.config.get( 'wgPageName' ) ) );
 		},
 
 		/**
@@ -149,23 +159,24 @@
 		},
 
 		/**
-		 * Append a new style block to the head
+		 * Append a new style block to the head and return the CSSStyleSheet object.
+		 * Use .ownerNode to access the <style> element, or use mw.loader.addStyleTag.
+		 * This function returns the styleSheet object for convience (due to cross-browsers
+		 * difference as to where it is located).
+		 * @example
+		 * <code>
+		 * var sheet = mw.util.addCSS('.foobar { display: none; }');
+		 * $(foo).click(function () {
+		 *     // Toggle the sheet on and off
+		 *     sheet.disabled = !sheet.disabled;
+		 * });
+		 * </code>
 		 *
 		 * @param text string CSS to be appended
-		 * @return CSSStyleSheet
+		 * @return CSSStyleSheet (use .ownerNode to get to the <style> element)
 		 */
 		addCSS: function ( text ) {
-			var s = document.createElement( 'style' );
-			s.type = 'text/css';
-			s.rel = 'stylesheet';
-			// Insert into document before setting cssText (bug 33305)
-			document.getElementsByTagName('head')[0].appendChild( s );
-			if ( s.styleSheet ) {
-				s.styleSheet.cssText = text; // IE
-			} else {
-				// Safari sometimes borks on null
-				s.appendChild( document.createTextNode( String( text ) ) );
-			}
+			var s = mw.loader.addStyleTag( text );
 			return s.sheet || s;
 		},
 
@@ -384,7 +395,7 @@
 					$link.attr( 'title', tooltip );
 				}
 				if ( accesskey && tooltip ) {
-					this.updateTooltipAccessKeys( $link );
+					util.updateTooltipAccessKeys( $link );
 				}
 
 				// Where to put our node ?

@@ -659,6 +659,7 @@ abstract class Installer {
 			return false;
 		}
 		$this->setVar( '_CompiledDBs', $databases );
+		return true;
 	}
 
 	/**
@@ -672,6 +673,7 @@ abstract class Installer {
 
 	/**
 	 * Some versions of libxml+PHP break < and > encoding horribly
+	 * @return bool
 	 */
 	protected function envCheckBrokenXML() {
 		$test = new PhpXmlBugTester();
@@ -679,11 +681,13 @@ abstract class Installer {
 			$this->showError( 'config-brokenlibxml' );
 			return false;
 		}
+		return true;
 	}
 
 	/**
 	 * Test PHP (probably 5.3.1, but it could regress again) to make sure that
 	 * reference parameters to __call() are not converted to null
+	 * @return bool
 	 */
 	protected function envCheckPHP531() {
 		$test = new PhpRefCallBugTester;
@@ -692,70 +696,84 @@ abstract class Installer {
 			$this->showError( 'config-using531', phpversion() );
 			return false;
 		}
+		return true;
 	}
 
 	/**
 	 * Environment check for magic_quotes_runtime.
+	 * @return bool
 	 */
 	protected function envCheckMagicQuotes() {
 		if( wfIniGetBool( "magic_quotes_runtime" ) ) {
 			$this->showError( 'config-magic-quotes-runtime' );
 			return false;
 		}
+		return true;
 	}
 
 	/**
 	 * Environment check for magic_quotes_sybase.
+	 * @return bool
 	 */
 	protected function envCheckMagicSybase() {
 		if ( wfIniGetBool( 'magic_quotes_sybase' ) ) {
 			$this->showError( 'config-magic-quotes-sybase' );
 			return false;
 		}
+		return true;
 	}
 
 	/**
 	 * Environment check for mbstring.func_overload.
+	 * @return bool
 	 */
 	protected function envCheckMbstring() {
 		if ( wfIniGetBool( 'mbstring.func_overload' ) ) {
 			$this->showError( 'config-mbstring' );
 			return false;
 		}
+		return true;
 	}
 
 	/**
 	 * Environment check for zend.ze1_compatibility_mode.
+	 * @return bool
 	 */
 	protected function envCheckZE1() {
 		if ( wfIniGetBool( 'zend.ze1_compatibility_mode' ) ) {
 			$this->showError( 'config-ze1' );
 			return false;
 		}
+		return true;
 	}
 
 	/**
 	 * Environment check for safe_mode.
+	 * @return bool
 	 */
 	protected function envCheckSafeMode() {
 		if ( wfIniGetBool( 'safe_mode' ) ) {
 			$this->setVar( '_SafeMode', true );
 			$this->showMessage( 'config-safe-mode' );
 		}
+		return true;
 	}
 
 	/**
 	 * Environment check for the XML module.
+	 * @return bool
 	 */
 	protected function envCheckXML() {
 		if ( !function_exists( "utf8_encode" ) ) {
 			$this->showError( 'config-xml-bad' );
 			return false;
 		}
+		return true;
 	}
 
 	/**
 	 * Environment check for the PCRE module.
+	 * @return bool
 	 */
 	protected function envCheckPCRE() {
 		if ( !function_exists( 'preg_match' ) ) {
@@ -769,10 +787,12 @@ abstract class Installer {
 			$this->showError( 'config-pcre-no-utf8' );
 			return false;
 		}
+		return true;
 	}
 
 	/**
 	 * Environment check for available memory.
+	 * @return bool
 	 */
 	protected function envCheckMemory() {
 		$limit = ini_get( 'memory_limit' );
@@ -792,9 +812,8 @@ abstract class Installer {
 				$this->showMessage( 'config-memory-raised', $limit, $newLimit );
 				$this->setVar( '_RaiseMemory', true );
 			}
-		} else {
-			return true;
 		}
+		return true;
 	}
 
 	/**
@@ -820,15 +839,18 @@ abstract class Installer {
 
 	/**
 	 * Scare user to death if they have mod_security
+	 * @return bool
 	 */
 	protected function envCheckModSecurity() {
 		if ( self::apacheModulePresent( 'mod_security' ) ) {
 			$this->showMessage( 'config-mod-security' );
 		}
+		return true;
 	}
 
 	/**
 	 * Search for GNU diff3.
+	 * @return bool
 	 */
 	protected function envCheckDiff3() {
 		$names = array( "gdiff3", "diff3", "diff3.exe" );
@@ -842,10 +864,12 @@ abstract class Installer {
 			$this->setVar( 'wgDiff3', false );
 			$this->showMessage( 'config-diff3-bad' );
 		}
+		return true;
 	}
 
 	/**
 	 * Environment check for ImageMagick and GD.
+	 * @return bool
 	 */
 	protected function envCheckGraphics() {
 		$names = array( wfIsWindows() ? 'convert.exe' : 'convert' );
@@ -858,10 +882,11 @@ abstract class Installer {
 			return true;
 		} elseif ( function_exists( 'imagejpeg' ) ) {
 			$this->showMessage( 'config-gd' );
-			return true;
+
 		} else {
 			$this->showMessage( 'config-no-scaling' );
 		}
+		return true;
 	}
 
 	/**
@@ -871,6 +896,7 @@ abstract class Installer {
 		$server = $this->envGetDefaultServer();
 		$this->showMessage( 'config-using-server', $server );
 		$this->setVar( 'wgServer', $server );
+		return true;
 	}
 
 	/**
@@ -903,6 +929,7 @@ abstract class Installer {
 			$ext = 'php';
 		}
 		$this->setVar( 'wgScriptExtension', ".$ext" );
+		return true;
 	}
 
 	/**
@@ -981,6 +1008,7 @@ abstract class Installer {
 
 	/**
 	 * TODO: document
+	 * @return bool
 	 */
 	protected function envCheckUploadsDirectory() {
 		global $IP;
@@ -989,17 +1017,17 @@ abstract class Installer {
 		$url = $this->getVar( 'wgServer' ) . $this->getVar( 'wgScriptPath' ) . '/images/';
 		$safe = !$this->dirIsExecutable( $dir, $url );
 
-		if ( $safe ) {
-			return true;
-		} else {
+		if ( !$safe ) {
 			$this->showMessage( 'config-uploads-not-safe', $dir );
 		}
+		return true;
 	}
 
 	/**
 	 * Checks if suhosin.get.max_value_length is set, and if so, sets
 	 * $wgResourceLoaderMaxQueryLength to that value in the generated
 	 * LocalSettings file
+	 * @return bool
 	 */
 	protected function envCheckSuhosinMaxValueLength() {
 		$maxValueLength = ini_get( 'suhosin.get.max_value_length' );
@@ -1012,6 +1040,7 @@ abstract class Installer {
 			$maxValueLength = -1;
 		}
 		$this->setVar( 'wgResourceLoaderMaxQueryLength', $maxValueLength );
+		return true;
 	}
 
 	/**
@@ -1065,12 +1094,16 @@ abstract class Installer {
 		if( $utf8 ) {
 			$useNormalizer = 'utf8';
 			$utf8 = utf8_normalize( $not_normal_c, UtfNormal::UNORM_NFC );
-			if ( $utf8 !== $normal_c ) $needsUpdate = true;
+			if ( $utf8 !== $normal_c ) {
+				$needsUpdate = true;
+			}
 		}
 		if( $intl ) {
 			$useNormalizer = 'intl';
 			$intl = normalizer_normalize( $not_normal_c, Normalizer::FORM_C );
-			if ( $intl !== $normal_c ) $needsUpdate = true;
+			if ( $intl !== $normal_c ) {
+				$needsUpdate = true;
+			}
 		}
 
 		// Uses messages 'config-unicode-using-php', 'config-unicode-using-utf8', 'config-unicode-using-intl'
@@ -1084,11 +1117,15 @@ abstract class Installer {
 		}
 	}
 
+	/**
+	 * @return bool
+	 */
 	protected function envCheckCtype() {
 		if ( !function_exists( 'ctype_digit' ) ) {
 			$this->showError( 'config-ctype' );
 			return false;
 		}
+		return true;
 	}
 
 	/**
@@ -1121,6 +1158,7 @@ abstract class Installer {
 	 *
 	 * If $versionInfo is not false, only executables with a version
 	 * matching $versionInfo[1] will be returned.
+	 * @return bool|string
 	 */
 	public static function locateExecutable( $path, $names, $versionInfo = false ) {
 		if ( !is_array( $names ) ) {
@@ -1169,6 +1207,9 @@ abstract class Installer {
 	 * Checks if scripts located in the given directory can be executed via the given URL.
 	 *
 	 * Used only by environment checks.
+	 * @param $dir string
+	 * @param $url string
+	 * @return bool|int|string
 	 */
 	public function dirIsExecutable( $dir, $url ) {
 		$scriptTypes = array(
@@ -1270,6 +1311,7 @@ abstract class Installer {
 				$exts[] = $file;
 			}
 		}
+		natcasesort( $exts );
 
 		return $exts;
 	}
@@ -1404,8 +1446,7 @@ abstract class Installer {
 	}
 
 	/**
-	 * Generate $wgSecretKey. Will warn if we had to use mt_rand() instead of
-	 * /dev/urandom
+	 * Generate $wgSecretKey. Will warn if we had to use an insecure random source.
 	 *
 	 * @return Status
 	 */
@@ -1418,8 +1459,8 @@ abstract class Installer {
 	}
 
 	/**
-	 * Generate a secret value for variables using either
-	 * /dev/urandom or mt_rand(). Produce a warning in the later case.
+	 * Generate a secret value for variables using our CryptRand generator.
+	 * Produce a warning if the random source was insecure.
 	 *
 	 * @param $keys Array
 	 * @return Status
@@ -1427,28 +1468,18 @@ abstract class Installer {
 	protected function doGenerateKeys( $keys ) {
 		$status = Status::newGood();
 
-		wfSuppressWarnings();
-		$file = fopen( "/dev/urandom", "r" );
-		wfRestoreWarnings();
-
+		$strong = true;
 		foreach ( $keys as $name => $length ) {
-			if ( $file ) {
-					$secretKey = bin2hex( fread( $file, $length / 2 ) );
-			} else {
-				$secretKey = '';
-
-				for ( $i = 0; $i < $length / 8; $i++ ) {
-					$secretKey .= dechex( mt_rand( 0, 0x7fffffff ) );
-				}
+			$secretKey = MWCryptRand::generateHex( $length, true );
+			if ( !MWCryptRand::wasStrong() ) {
+				$strong = false;
 			}
 
 			$this->setVar( $name, $secretKey );
 		}
 
-		if ( $file ) {
-			fclose( $file );
-		} else {
-			$names = array_keys ( $keys );
+		if ( !$strong ) {
+			$names = array_keys( $keys );
 			$names = preg_replace( '/^(.*)$/', '\$$1', $names );
 			global $wgLang;
 			$status->warning( 'config-insecure-keys', $wgLang->listToText( $names ), count( $names ) );

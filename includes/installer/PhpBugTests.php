@@ -18,8 +18,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @defgroup PHPBugTests
- * @ingroup PHPBugTests
+ * @defgroup PHPBugTests PHP known bugs tests
  */
 
 /**

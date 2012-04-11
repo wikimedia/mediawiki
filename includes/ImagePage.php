@@ -30,6 +30,7 @@ class ImagePage extends Article {
 	/**
 	 * Constructor from a page id
 	 * @param $id Int article ID to load
+	 * @returnImagePage|null
 	 */
 	public static function newFromID( $id ) {
 		$t = Title::newFromID( $id );
@@ -107,8 +108,6 @@ class ImagePage extends Article {
 				return;
 			}
 		}
-
-		$this->showRedirectedFromHeader();
 
 		if ( $wgShowEXIF && $this->displayImg->exists() ) {
 			// @todo FIXME: Bad interface, see note on MediaHandler::formatMetadata().
@@ -282,7 +281,7 @@ class ImagePage extends Article {
 		$max = $wgImageLimits[$sizeSel];
 		$maxWidth = $max[0];
 		$maxHeight = $max[1];
-		$dirmark = $wgLang->getDirMark();
+		$dirmark = $wgLang->getDirMarkEntity();
 
 		if ( $this->displayImg->exists() ) {
 			# image
@@ -452,14 +451,21 @@ class ImagePage extends Article {
 
 				if ( !$this->displayImg->isSafeFile() ) {
 					$warning = wfMsgNoTrans( 'mediawarning' );
+					// dirmark is needed here to separate the file name, which
+					// most likely ends in Latin characters, from the description,
+					// which may begin with the file type. In RTL environment
+					// this will get messy.
+					// The dirmark, however, must not be immediately adjacent
+					// to the filename, because it can get copied with it.
+					// See bug 25277.
 					$wgOut->addWikiText( <<<EOT
-<div class="fullMedia"><span class="dangerousLink">{$medialink}</span>$dirmark <span class="fileInfo">$longDesc</span></div>
+<div class="fullMedia"><span class="dangerousLink">{$medialink}</span> $dirmark<span class="fileInfo">$longDesc</span></div>
 <div class="mediaWarning">$warning</div>
 EOT
 						);
 				} else {
 					$wgOut->addWikiText( <<<EOT
-<div class="fullMedia">{$medialink}{$dirmark} <span class="fileInfo">$longDesc</span>
+<div class="fullMedia">{$medialink} {$dirmark}<span class="fileInfo">$longDesc</span>
 </div>
 EOT
 					);
@@ -471,6 +477,22 @@ EOT
 			}
 		} else {
 			# Image does not exist
+			if ( !$this->getID() ) {
+				# No article exists either
+				# Show deletion log to be consistent with normal articles
+				LogEventsList::showLogExtract(
+					$wgOut,
+					array( 'delete', 'move' ),
+					$this->getTitle()->getPrefixedText(),
+					'',
+					array(  'lim' => 10,
+						'conds' => array( "log_action != 'revision'" ),
+						'showIfEmpty' => false,
+						'msgKey' => array( 'moveddeleted-notice' )
+					)
+				);
+			}
+
 			if ( $wgEnableUploads && $wgUser->isAllowed( 'upload' ) ) {
 				// Only show an upload link if the user can upload
 				$uploadTitle = SpecialPage::getTitleFor( 'Upload' );

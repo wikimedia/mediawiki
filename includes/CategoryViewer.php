@@ -12,7 +12,7 @@ class CategoryViewer extends ContextSource {
 		$imgsNoGallery;
 
 	/**
-	 * @var
+	 * @var Array
 	 */
 	var $nextPage;
 
@@ -172,7 +172,8 @@ class CategoryViewer extends ContextSource {
 	*
 	* @param Title $title
 	* @param string $sortkey The human-readable sortkey (before transforming to icu or whatever).
-	*/
+	 * @return string
+	 */
 	function getSubcategorySortChar( $title, $sortkey ) {
 		global $wgContLang;
 

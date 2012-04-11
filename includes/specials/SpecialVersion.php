@@ -37,7 +37,7 @@ class SpecialVersion extends SpecialPage {
 	protected static $viewvcUrls = array(
 		'svn+ssh://svn.wikimedia.org/svnroot/mediawiki' => 'http://svn.wikimedia.org/viewvc/mediawiki',
 		'http://svn.wikimedia.org/svnroot/mediawiki' => 'http://svn.wikimedia.org/viewvc/mediawiki',
-		'https://svn.wikimedia.org/viewvc/mediawiki' => 'https://svn.wikimedia.org/viewvc/mediawiki',
+		'https://svn.wikimedia.org/svnroot/mediawiki' => 'https://svn.wikimedia.org/viewvc/mediawiki',
 	);
 
 	public function __construct(){
@@ -160,10 +160,14 @@ class SpecialVersion extends SpecialPage {
 		global $wgVersion, $IP;
 		wfProfileIn( __METHOD__ );
 
-		$info = self::getSvnInfo( $IP );
-		if ( !$info ) {
+		$gitInfo = self::getGitHeadSha1( $IP );
+		$svnInfo = self::getSvnInfo( $IP );
+		if ( !$svnInfo && !$gitInfo ) {
 			$version = $wgVersion;
-		} elseif( $flags === 'nodb' ) {
+		} elseif ( $gitInfo ) {
+			$shortSha1 = substr( $gitInfo, 0, 7 );
+			$version = "$wgVersion ($shortSha1)";
+		} elseif ( $flags === 'nodb' ) {
 			$version = "$wgVersion (r{$info['checkout-rev']})";
 		} else {
 			$version = $wgVersion . ' ' .
@@ -180,34 +184,76 @@ class SpecialVersion extends SpecialPage {
 
 	/**
 	 * Return a wikitext-formatted string of the MediaWiki version with a link to
-	 * the SVN revision if available.
+	 * the SVN revision or the git SHA1 of head if available.
+	 * Git is prefered over Svn
+	 * The fallback is just $wgVersion
 	 *
 	 * @return mixed
 	 */
 	public static function getVersionLinked() {
-		global $wgVersion, $IP;
+		global $wgVersion;
 		wfProfileIn( __METHOD__ );
 
-		$info = self::getSvnInfo( $IP );
-
-		if ( isset( $info['checkout-rev'] ) ) {
-			$linkText = wfMsg(
-				'version-svn-revision',
-				isset( $info['directory-rev'] ) ? $info['directory-rev'] : '',
-				$info['checkout-rev']
-			);
-
-			if ( isset( $info['viewvc-url'] ) ) {
-				$version = "$wgVersion [{$info['viewvc-url']} $linkText]";
-			} else {
-				$version = "$wgVersion $linkText";
-			}
+		$gitVersion = self::getVersionLinkedGit();
+		if( $gitVersion ) {
+			$v = $gitVersion;
 		} else {
-			$version = $wgVersion;
+			$svnVersion = self::getVersionLinkedSvn();
+			if( $svnVersion ) {
+				$v = $svnVersion;
+			} else {
+				$v = $wgVersion; // fallback
+			}
 		}
 
 		wfProfileOut( __METHOD__ );
+		return $v;
+	}
+
+	/**
+	 * @return string wgVersion + a link to subversion revision of svn BASE
+	 */
+	private static function getVersionLinkedSvn() {
+		global $wgVersion, $IP;
+
+		$info = self::getSvnInfo( $IP );
+		if( !isset( $info['checkout-rev'] ) ) {
+			return false;
+		}
+
+		$linkText = wfMsg(
+			'version-svn-revision',
+			isset( $info['directory-rev'] ) ? $info['directory-rev'] : '',
+			$info['checkout-rev']
+		);
+
+		if ( isset( $info['viewvc-url'] ) ) {
+			$version = "$wgVersion [{$info['viewvc-url']} $linkText]";
+		} else {
+			$version = "$wgVersion $linkText";
+		}
+
 		return $version;
+	}
+
+	/**
+	 * @return bool|string wgVersion + HEAD sha1 stripped to the first 7 chars. False on failure
+	 */
+	private static function getVersionLinkedGit() {
+		global $wgVersion, $IP;
+
+		$gitInfo = new GitInfo( $IP );
+		$headSHA1 = $gitInfo->getHeadSHA1();
+		if( !$headSHA1 ) {
+			return false;
+		}
+
+		$shortSHA1 = '(' . substr( $headSHA1, 0, 7 ) . ')';
+		$viewerUrl = $gitInfo->getHeadViewUrl();
+		if ( $viewerUrl !== false ) {
+			$shortSHA1 = "[$viewerUrl $shortSHA1]";
+		}
+		return "$wgVersion $shortSHA1";
 	}
 
 	/**
@@ -356,6 +402,9 @@ class SpecialVersion extends SpecialPage {
 
 	/**
 	 * Callback to sort extensions by type.
+	 * @param $a array
+	 * @param $b array
+	 * @return int
 	 */
 	function compare( $a, $b ) {
 		if( $a['name'] === $b['name'] ) {
@@ -377,15 +426,26 @@ class SpecialVersion extends SpecialPage {
 	function getCreditsForExtension( array $extension ) {
 		$name = isset( $extension['name'] ) ? $extension['name'] : '[no name]';
 
+		$vcsText = false;
+
 		if ( isset( $extension['path'] ) ) {
-			$svnInfo = self::getSvnInfo( dirname($extension['path']) );
-			$directoryRev = isset( $svnInfo['directory-rev'] ) ? $svnInfo['directory-rev'] : null;
-			$checkoutRev = isset( $svnInfo['checkout-rev'] ) ? $svnInfo['checkout-rev'] : null;
-			$viewvcUrl = isset( $svnInfo['viewvc-url'] ) ? $svnInfo['viewvc-url'] : null;
-		} else {
-			$directoryRev = null;
-			$checkoutRev = null;
-			$viewvcUrl = null;
+			$gitInfo = new GitInfo( dirname( $extension['path'] ) );
+			$gitHeadSHA1 = $gitInfo->getHeadSHA1();
+			if ( $gitHeadSHA1 !== false ) {
+				$vcsText = '(' . substr( $gitHeadSHA1, 0, 7 ) . ')';
+				$gitViewerUrl = $gitInfo->getHeadViewUrl();
+				if ( $gitViewerUrl !== false ) {
+					$vcsText = "[$gitViewerUrl $vcsText]";
+				}
+			} else {
+				$svnInfo = self::getSvnInfo( dirname( $extension['path'] ) );
+				# Make subversion text/link.
+				if ( $svnInfo !== false ) {
+					$directoryRev = isset( $svnInfo['directory-rev'] ) ? $svnInfo['directory-rev'] : null;
+					$vcsText = wfMsg( 'version-svn-revision', $directoryRev, $svnInfo['checkout-rev'] );
+					$vcsText = isset( $svnInfo['viewvc-url'] ) ? '[' . $svnInfo['viewvc-url'] . " $vcsText]" : $vcsText;
+				}
+			}
 		}
 
 		# Make main link (or just the name if there is no URL).
@@ -401,14 +461,6 @@ class SpecialVersion extends SpecialPage {
 				'</span>';
 		} else {
 			$versionText = '';
-		}
-
-		# Make subversion text/link.
-		if ( $checkoutRev ) {
-			$svnText = wfMsg( 'version-svn-revision', $directoryRev, $checkoutRev );
-			$svnText = isset( $viewvcUrl ) ? "[$viewvcUrl $svnText]" : $svnText;
-		} else {
-			$svnText = false;
 		}
 
 		# Make description text.
@@ -428,10 +480,10 @@ class SpecialVersion extends SpecialPage {
 			}
 		}
 
-		if ( $svnText !== false ) {
+		if ( $vcsText !== false ) {
 			$extNameVer = "<tr>
 				<td><em>$mainLink $versionText</em></td>
-				<td><em>$svnText</em></td>";
+				<td><em>$vcsText</em></td>";
 		} else {
 			$extNameVer = "<tr>
 				<td colspan=\"2\"><em>$mainLink $versionText</em></td>";
@@ -589,6 +641,8 @@ class SpecialVersion extends SpecialPage {
 	 *        url                   The subversion URL of the directory
 	 *        repo-url              The base URL of the repository
 	 *        viewvc-url            A ViewVC URL pointing to the checked-out revision
+	 * @param $dir string
+	 * @return array|bool
 	 */
 	public static function getSvnInfo( $dir ) {
 		// http://svnbook.red-bean.com/nightly/en/svn.developer.insidewc.html
@@ -674,6 +728,15 @@ class SpecialVersion extends SpecialPage {
 		} else {
 			return false;
 		}
+	}
+
+	/**
+	 * @param $dir String: directory of the git checkout
+	 * @return bool|String sha1 of commit HEAD points to
+	 */
+	public static function getGitHeadSha1( $dir ) {
+		$repo = new GitInfo( $dir );
+		return $repo->getHeadSHA1();
 	}
 
 	function showEasterEgg() {

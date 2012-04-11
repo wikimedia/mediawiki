@@ -77,6 +77,7 @@ class WebRequest {
 	 * @return Array: Any query arguments found in path matches.
 	 */
 	static public function getPathInfo( $want = 'all' ) {
+		global $wgUsePathInfo;
 		// PATH_INFO is mangled due to http://bugs.php.net/bug.php?id=31892
 		// And also by Apache 2.x, double slashes are converted to single slashes.
 		// So we will use REQUEST_URI if possible.
@@ -97,7 +98,7 @@ class WebRequest {
 					// Abort to keep from breaking...
 					return $matches;
 				}
-				
+
 				$router = new PathRouter;
 
 				// Raw PATH_INFO style
@@ -134,15 +135,17 @@ class WebRequest {
 
 				$matches = $router->parse( $path );
 			}
-		} elseif ( isset( $_SERVER['ORIG_PATH_INFO'] ) && $_SERVER['ORIG_PATH_INFO'] != '' ) {
-			// Mangled PATH_INFO
-			// http://bugs.php.net/bug.php?id=31892
-			// Also reported when ini_get('cgi.fix_pathinfo')==false
-			$matches['title'] = substr( $_SERVER['ORIG_PATH_INFO'], 1 );
+		} elseif ( $wgUsePathInfo ) {
+			if ( isset( $_SERVER['ORIG_PATH_INFO'] ) && $_SERVER['ORIG_PATH_INFO'] != '' ) {
+				// Mangled PATH_INFO
+				// http://bugs.php.net/bug.php?id=31892
+				// Also reported when ini_get('cgi.fix_pathinfo')==false
+				$matches['title'] = substr( $_SERVER['ORIG_PATH_INFO'], 1 );
 
-		} elseif ( isset( $_SERVER['PATH_INFO'] ) && ($_SERVER['PATH_INFO'] != '') ) {
-			// Regular old PATH_INFO yay
-			$matches['title'] = substr( $_SERVER['PATH_INFO'], 1 );
+			} elseif ( isset( $_SERVER['PATH_INFO'] ) && ($_SERVER['PATH_INFO'] != '') ) {
+				// Regular old PATH_INFO yay
+				$matches['title'] = substr( $_SERVER['PATH_INFO'], 1 );
+			}
 		}
 
 		return $matches;
@@ -206,18 +209,14 @@ class WebRequest {
 	 * available variant URLs.
 	 */
 	public function interpolateTitle() {
-		global $wgUsePathInfo;
-
 		// bug 16019: title interpolation on API queries is useless and sometimes harmful
 		if ( defined( 'MW_API' ) ) {
 			return;
 		}
 
-		if ( $wgUsePathInfo ) {
-			$matches = self::getPathInfo( 'title' );
-			foreach( $matches as $key => $val) {
-				$this->data[$key] = $_GET[$key] = $_REQUEST[$key] = $val;
-			}
+		$matches = self::getPathInfo( 'title' );
+		foreach( $matches as $key => $val) {
+			$this->data[$key] = $_GET[$key] = $_REQUEST[$key] = $val;
 		}
 	}
 
@@ -298,8 +297,8 @@ class WebRequest {
 	/**
 	 * Recursively normalizes UTF-8 strings in the given array.
 	 *
-	 * @param $data string or array
-	 * @return cleaned-up version of the given
+	 * @param $data string|array
+	 * @return array|string cleaned-up version of the given
 	 * @private
 	 */
 	function normalizeUnicode( $data ) {
@@ -376,6 +375,23 @@ class WebRequest {
 	public function setVal( $key, $value ) {
 		$ret = isset( $this->data[$key] ) ? $this->data[$key] : null;
 		$this->data[$key] = $value;
+		return $ret;
+	}
+
+	
+	/**
+	 * Unset an arbitrary value from our get/post data.
+ 	 *
+	 * @param $key String: key name to use
+	 * @return Mixed: old value if one was present, null otherwise
+	 */
+	public function unsetVal( $key ) {
+		if ( !isset( $this->data[$key] ) ) {
+			$ret = null;
+		} else {
+			$ret = $this->data[$key];
+			unset( $this->data[$key] );
+		}
 		return $ret;
 	}
 
@@ -518,7 +534,7 @@ class WebRequest {
 
 		$retVal = array();
 		foreach ( $names as $name ) {
-			$value = $this->getVal( $name );
+			$value = $this->getGPCVal( $this->data, $name, null );
 			if ( !is_null( $value ) ) {
 				$retVal[$name] = $value;
 			}
@@ -543,7 +559,7 @@ class WebRequest {
 	 * @return Array
 	 */
 	 public function getQueryValues() {
-	 	return $_GET;
+		return $_GET;
 	 }
 
 	/**
@@ -838,7 +854,7 @@ class WebRequest {
 	 * Get a request header, or false if it isn't set
 	 * @param $name String: case-insensitive header name
 	 *
-	 * @return string|false
+	 * @return string|bool False on failure
 	 */
 	public function getHeader( $name ) {
 		$this->initHeaders();
@@ -1006,6 +1022,8 @@ HTML;
 	/**
 	 * Fetch the raw IP from the request
 	 *
+	 * @since 1.19
+	 *
 	 * @return String
 	 */
 	protected function getRawIP() {
@@ -1019,6 +1037,9 @@ HTML;
 	/**
 	 * Work out the IP address based on various globals
 	 * For trusted proxies, use the XFF client IP (first of the chain)
+	 * 
+	 * @since 1.19
+	 *
 	 * @return string
 	 */
 	public function getIP() {
@@ -1331,6 +1352,7 @@ class FauxRequest extends WebRequest {
  * (cookies, session and headers).
  *
  * @ingroup HTTP
+ * @since 1.19
  */
 class DerivativeRequest extends FauxRequest {
 	private $base;
@@ -1361,7 +1383,7 @@ class DerivativeRequest extends FauxRequest {
 	}
 
 	public function setSessionData( $key, $data ) {
-		return $this->base->setSessionData( $key, $data );
+		$this->base->setSessionData( $key, $data );
 	}
 
 	public function getAcceptLang() {

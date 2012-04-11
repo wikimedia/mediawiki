@@ -297,7 +297,7 @@ class ZipDirectoryReader {
 	 * Find the location of the central directory, as would be seen by a
 	 * ZIP64-compliant reader.
 	 *
-	 * @return List containing offset, size and end position.
+	 * @return array List containing offset, size and end position.
 	 */
 	function findZip64CentralDirectory() {
 		// The spec is ambiguous about the exact rules of precedence between the
@@ -426,6 +426,7 @@ class ZipDirectoryReader {
 
 	/**
 	 * Interpret ZIP64 "extra field" data and return an associative array.
+	 * @return array|bool
 	 */
 	function unpackZip64Extra( $extraField ) {
 		$extraHeaderInfo = array(
@@ -473,8 +474,8 @@ class ZipDirectoryReader {
 	 * Get the file contents from a given offset. If there are not enough bytes
 	 * in the file to satisfy the request, an exception will be thrown.
 	 *
-	 * @param $start The byte offset of the start of the block.
-	 * @param $length The number of bytes to return. If omitted, the remainder
+	 * @param $start int The byte offset of the start of the block.
+	 * @param $length int The number of bytes to return. If omitted, the remainder
 	 *    of the file will be returned.
 	 *
 	 * @return string
@@ -520,6 +521,7 @@ class ZipDirectoryReader {
 	 * If there are not enough bytes in the file to satsify the request, the
 	 * return value will be truncated. If a request is made for a segment beyond
 	 * the end of the file, an empty string will be returned.
+	 * @return string
 	 */
 	function getSegment( $segIndex ) {
 		if ( !isset( $this->buffer[$segIndex] ) ) {
@@ -542,6 +544,7 @@ class ZipDirectoryReader {
 
 	/**
 	 * Get the size of a structure in bytes. See unpack() for the format of $struct.
+	 * @return int
 	 */
 	function getStructSize( $struct ) {
 		$size = 0;
@@ -560,9 +563,9 @@ class ZipDirectoryReader {
 	 * Unpack a binary structure. This is like the built-in unpack() function
 	 * except nicer.
 	 *
-	 * @param $string The binary data input
+	 * @param $string string The binary data input
 	 *
-	 * @param $struct An associative array giving structure members and their
+	 * @param $struct array An associative array giving structure members and their
 	 *    types. In the key is the field name. The value may be either an
 	 *    integer, in which case the field is a little-endian unsigned integer
 	 *    encoded in the given number of bytes, or an array, in which case the
@@ -571,9 +574,9 @@ class ZipDirectoryReader {
 	 *       - "string": The second array element gives the length of string.
 	 *          Not null terminated.
 	 *
-	 * @param $offset The offset into the string at which to start unpacking.
+	 * @param $offset int The offset into the string at which to start unpacking.
 	 *
-	 * @return Unpacked associative array. Note that large integers in the input
+	 * @return array Unpacked associative array. Note that large integers in the input
 	 *    may be represented as floating point numbers in the return value, so
 	 *    the use of weak comparison is advised.
 	 */
@@ -628,7 +631,8 @@ class ZipDirectoryReader {
 	 * boolean.
 	 *
 	 * @param $value integer
-	 * @param $bitIndex The index of the bit, where 0 is the LSB.
+	 * @param $bitIndex int The index of the bit, where 0 is the LSB.
+	 * @return bool
 	 */
 	function testBit( $value, $bitIndex ) {
 		return (bool)( ( $value >> $bitIndex ) & 1 );

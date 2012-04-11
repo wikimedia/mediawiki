@@ -40,12 +40,9 @@ class WikiFilePage extends WikiPage {
 		}
 		$this->mFileLoaded = true;
 
-		$this->mFile = false;
+		$this->mFile = wfFindFile( $this->mTitle );
 		if ( !$this->mFile ) {
-			$this->mFile = wfFindFile( $this->mTitle );
-			if ( !$this->mFile ) {
-				$this->mFile = wfLocalFile( $this->mTitle ); // always a File
-			}
+			$this->mFile = wfLocalFile( $this->mTitle ); // always a File
 		}
 		$this->mRepo = $this->mFile->getRepo();
 		return true;
@@ -148,6 +145,7 @@ class WikiFilePage extends WikiPage {
 
 	/**
 	 * Override handling of action=purge
+	 * @return bool
 	 */
 	public function doPurge() {
 		$this->loadFile();

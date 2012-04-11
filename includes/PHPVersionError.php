@@ -7,7 +7,7 @@
  *
  * Calling this function kills execution immediately.
  *
- * @param $entryPoint String Which entry point we're protecting. One of:
+ * @param $type String Which entry point we are protecting. One of:
  *   - index.php
  *   - load.php
  *   - api.php

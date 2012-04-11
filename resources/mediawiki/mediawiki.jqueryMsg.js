@@ -103,7 +103,9 @@
 	};
 
 	var parserDefaults = { 
-		'magic' : {},
+		'magic' : {
+			'SITENAME' : mw.config.get( 'wgSiteName' )
+		},
 		'messages' : mw.messages,
 		'language' : mw.language
 	};
@@ -407,12 +409,23 @@
 				return result === null ? null : [ result[0], result[2] ];
 			}
 
+			function templateWithOutReplacement() {
+				var result = sequence( [
+					templateName,
+					colon,
+					paramExpression
+				] );
+				return result === null ? null : [ result[0], result[2] ];
+			}
+
 			var colon = makeStringParser(':');
 
 			var templateContents = choice( [
 				function() {
 					var res = sequence( [
-						templateWithReplacement,
+						// templates can have placeholders for dynamic replacement eg: {{PLURAL:$1|one car|$1 cars}}
+						// or no placeholders eg: {{GRAMMAR:genitive|{{SITENAME}}}
+						choice( [ templateWithReplacement, templateWithOutReplacement ] ),
 						nOrMore( 0, templateParam )
 					] );
 					return res === null ? null : res[0].concat( res[1] );
@@ -651,12 +664,20 @@
 			}
 			var forms = nodes.slice(1);
 			return this.language.gender( gender, forms );
+		},
+
+		/**
+		 * Transform parsed structure into grammar conversion.
+		 * Invoked by putting {{grammar:form|word}} in a message
+		 * @param {Array} of nodes [{Grammar case eg: genitive}, {String word}]
+		 * @return {String} selected grammatical form according to current language
+		 */
+		grammar: function( nodes ) {
+			var form = nodes[0];
+			var word = nodes[1];
+			return word && form && this.language.convertGrammar( word, form );
 		}
-
 	};
-
-	// TODO figure out a way to make magic work with common globals like wgSiteName, without requiring init from library users...
-	// var options = { magic: { 'SITENAME' : mw.config.get( 'wgSiteName' ) } };
 
 	// deprecated! don't rely on gM existing.
 	// the window.gM ought not to be required - or if required, not required here. But moving it to extensions breaks it (?!)

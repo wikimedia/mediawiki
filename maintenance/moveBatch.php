@@ -92,13 +92,13 @@ class MoveBatch extends Maintenance {
 
 
 			$this->output( $source->getPrefixedText() . ' --> ' . $dest->getPrefixedText() );
-			$dbw->begin();
+			$dbw->begin( __METHOD__ );
 			$err = $source->moveTo( $dest, false, $reason );
 			if ( $err !== true ) {
 				$msg = array_shift( $err[0] );
 				$this->output( "\nFAILED: " . wfMsg( $msg, $err[0] ) );
 			}
-			$dbw->commit();
+			$dbw->commit( __METHOD__ );
 			$this->output( "\n" );
 
 			if ( $interval ) {

@@ -100,6 +100,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 	 * Delete objects expiring before a certain date. 
 	 *
 	 * Succeed if any of the child caches succeed.
+	 * @return bool
 	 */
 	public function deleteObjectsExpiringBefore( $date, $progressCallback = false ) {
 		$ret = false;

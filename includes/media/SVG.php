@@ -119,7 +119,7 @@ class SvgHandler extends ImageHandler {
 	* @param string $dstPath
 	* @param string $width
 	* @param string $height
-	* @return true|MediaTransformError
+	* @return bool|MediaTransformError
 	*/
 	public function rasterize( $srcPath, $dstPath, $width, $height ) {
 		global $wgSVGConverters, $wgSVGConverter, $wgSVGConverterPath;

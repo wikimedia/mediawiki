@@ -123,9 +123,9 @@ class PathRouter {
 	/**
 	 * Add a new path pattern to the path router
 	 *
-	 * @param $path The path pattern to add
-	 * @param $params The params for this path pattern
-	 * @param $options The options for this path pattern
+	 * @param $path string|array The path pattern to add
+	 * @param $params array The params for this path pattern
+	 * @param $options array The options for this path pattern
 	 */
 	public function add( $path, $params = array(), $options = array() ) {
 		if ( is_array( $path ) ) {
@@ -195,7 +195,7 @@ class PathRouter {
 	/**
 	 * Parse a path and return the query matches for the path
 	 *
-	 * @param $path The path to parse
+	 * @param $path string The path to parse
 	 * @return Array The array of matches for the path
 	 */
 	public function parse( $path ) {
@@ -278,20 +278,14 @@ class PathRouter {
 				} elseif ( isset( $paramData['pattern'] ) ) {
 					// For patterns we have to make value replacements on the string
 					$value = $paramData['pattern'];
-					// For each $# match replace any $# within the value
-					foreach ( $m as $matchKey => $matchValue ) {
-						if ( preg_match( '/^par\d+$/u', $matchKey ) ) {
-							$n = intval( substr( $matchKey, 3 ) );
-							$value = str_replace( '$' . $n, rawurldecode( $matchValue ), $value );
-						}
-					}
-					// If a key was set replace any $key within the value
+					$replacer = new PathRouterPatternReplacer;
+					$replacer->params = $m;
 					if ( isset( $pattern->key ) ) {
-						$value = str_replace( '$key', $pattern->key, $value );
+						$replacer->key = $pattern->key;
 					}
-					if ( preg_match( '/\$(\d+|key)/u', $value ) ) {
-						// Still contains $# or $key patterns after replacement
-						// Seams like we don't have all the data, abort
+					$value = $replacer->replace( $value );
+					if ( $value === false ) {
+						// Pattern required data that wasn't available, abort
 						return null;
 					}
 				}
@@ -314,6 +308,44 @@ class PathRouter {
 		}
 		// Fall through, everything went ok, return our matches array
 		return $matches;
+	}
+
+}
+
+class PathRouterPatternReplacer {
+
+	public $key, $params, $error;
+
+	/**
+	 * Replace keys inside path router patterns with text.
+	 * We do this inside of a replacement callback because after replacement we can't tell the
+	 * difference between a $1 that was not replaced and a $1 that was part of
+	 * the content a $1 was replaced with.
+	 */
+	public function replace( $value ) {
+		$this->error = false;
+		$value = preg_replace_callback( '/\$(\d+|key)/u', array( $this, 'callback' ), $value );
+		if ( $this->error ) {
+			return false;
+		}
+		return $value;
+	}
+
+	protected function callback( $m ) {
+		if ( $m[1] == "key" ) {
+			if ( is_null( $this->key ) ) {
+				$this->error = true;
+				return '';
+			}
+			return $this->key;
+		} else {
+			$d = $m[1];
+			if ( !isset( $this->params["par$d"] ) ) {
+				$this->error = true;
+				return '';
+			}
+			return rawurldecode( $this->params["par$d"] );
+		}
 	}
 
 }

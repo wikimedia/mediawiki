@@ -9,7 +9,9 @@ class ExifRotationTest extends MediaWikiTestCase {
 		parent::setUp();
 		$this->handler = new BitmapHandler();
 		$filePath = dirname( __FILE__ ) . '/../../data/media';
-		$tmpDir = wfTempDir() . '/exif-test-' . time() . '-' . mt_rand();
+
+		$tmpDir = $this->getNewTempDirectory();
+
 		$this->repo = new FSRepo( array(
 			'name'            => 'temp',
 			'url'             => 'http://localhost/thumbtest',
@@ -30,10 +32,13 @@ class ExifRotationTest extends MediaWikiTestCase {
 		$this->oldAuto = $wgEnableAutoRotation;
 		$wgEnableAutoRotation = true;
 	}
+
 	public function tearDown() {
 		global $wgShowEXIF, $wgEnableAutoRotation;
 		$wgShowEXIF = $this->show;
 		$wgEnableAutoRotation = $this->oldAuto;
+
+		parent::tearDown();
 	}
 
 	/**

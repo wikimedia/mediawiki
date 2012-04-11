@@ -33,7 +33,7 @@ $wgConf = new SiteConfiguration;
 /** @endcond */
 
 /** MediaWiki version number */
-$wgVersion = '1.19alpha';
+$wgVersion = '1.20alpha';
 
 /** Name of the site. It must be changed in LocalSettings.php */
 $wgSitename = 'MediaWiki';
@@ -453,6 +453,10 @@ $wgAllowCopyUploads = false;
  * This feature is experimental and broken as of r81612.
  */
 $wgAllowAsyncCopyUploads = false;
+/**
+ * A list of domains copy uploads can come from
+ */
+$wgCopyUploadsDomains = array();
 
 /**
  * Max size for uploads, in bytes. If not set to an array, applies to all
@@ -1563,11 +1567,20 @@ $wgMessageCacheType = CACHE_ANYTHING;
 $wgParserCacheType = CACHE_ANYTHING;
 
 /**
+ * The cache type for storing language conversion tables,
+ * which are used when parsing certain text and interface messages.
+ *
+ * For available types see $wgMainCacheType.
+ */
+$wgLanguageConverterCacheType = CACHE_ANYTHING;
+
+/**
  * Advanced object cache configuration.
  *
  * Use this to define the class names and constructor parameters which are used
  * for the various cache types. Custom cache types may be defined here and
- * referenced from $wgMainCacheType, $wgMessageCacheType or $wgParserCacheType.
+ * referenced from $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType,
+ * or $wgLanguageConverterCacheType.
  *
  * The format is an associative array where the key is a cache identifier, and
  * the value is an associative array of parameters. The "class" parameter is the
@@ -1708,6 +1721,8 @@ $wgStyleVersion = '303';
  * This will cache static pages for non-logged-in users to reduce
  * database traffic on public sites.
  * Must set $wgShowIPinHeader = false
+ * ResourceLoader requests to default language and skins are cached
+ * as well as single module requests.
  */
 $wgUseFileCache = false;
 
@@ -1761,8 +1776,6 @@ $wgSidebarCacheExpiry = 86400;
 /**
  * When using the file cache, we can store the cached HTML gzipped to save disk
  * space. Pages will then also be served compressed to clients that support it.
- * THIS IS NOT COMPATIBLE with ob_gzhandler which is now enabled if supported in
- * the default LocalSettings.php! If you enable this, remove that setting first.
  *
  * Requires zlib support enabled in PHP.
  */
@@ -1869,22 +1882,57 @@ $wgSquidServersNoPurge = array();
 $wgMaxSquidPurgeTitles = 400;
 
 /**
+ * Routing configuration for HTCP multicast purging. Add elements here to
+ * enable HTCP and determine which purges are sent where. If set to an empty
+ * array, HTCP is disabled.
+ * 
+ * Each key in this array is a regular expression to match against the purged
+ * URL, or an empty string to match all URLs. The purged URL is matched against
+ * the regexes in the order specified, and the first rule whose regex matches
+ * is used.
+ * 
+ * Example configuration to send purges for upload.wikimedia.org to one
+ * multicast group and all other purges to another:
+ * $wgHTCPMulticastRouting = array(
+ *         '|^https?://upload\.wikimedia\.org|' => array(
+ *                 'host' => '239.128.0.113',
+ *                 'port' => 4827,
+ *         ),
+ *         '' => array(
+ *                 'host' => '239.128.0.112',
+ *                 'port' => 4827,
+ *         ),
+ * );
+ * 
+ * @see $wgHTCPMulticastTTL
+ */
+$wgHTCPMulticastRouting = array();
+
+/**
  * HTCP multicast address. Set this to a multicast IP address to enable HTCP.
  *
  * Note that MediaWiki uses the old non-RFC compliant HTCP format, which was
  * present in the earliest Squid implementations of the protocol.
+ * 
+ * This setting is DEPRECATED in favor of $wgHTCPMulticastRouting , and kept
+ * for backwards compatibility only. If $wgHTCPMulticastRouting is set, this
+ * setting is ignored. If $wgHTCPMulticastRouting is not set and this setting
+ * is, it is used to populate $wgHTCPMulticastRouting.
+ * 
+ * @deprecated in favor of $wgHTCPMulticastRouting
  */
 $wgHTCPMulticastAddress = false;
 
 /**
  * HTCP multicast port.
+ * @deprecated in favor of $wgHTCPMulticastRouting
  * @see $wgHTCPMulticastAddress
  */
 $wgHTCPPort = 4827;
 
 /**
  * HTCP multicast TTL.
- * @see $wgHTCPMulticastAddress
+ * @see $wgHTCPMulticastRouting
  */
 $wgHTCPMulticastTTL = 1;
 
@@ -2185,6 +2233,17 @@ $wgLocaltimezone = null;
  */
 $wgLocalTZoffset = null;
 
+/**
+ * If set to true, this will roll back a few bug fixes introduced in 1.19,
+ * emulating the 1.18 behaviour, to avoid introducing bug 34832. In 1.19,
+ * language variant conversion is disabled in interface messages. Setting this
+ * to true re-enables it.
+ *
+ * This variable should be removed (implicitly false) in 1.20 or earlier.
+ */
+$wgBug34832TransitionalRollback = true;
+
+
 /** @} */ # End of language/charset settings
 
 /*************************************************************************//**
@@ -2291,6 +2350,7 @@ $wgXhtmlNamespaces = array();
 /**
  * Show IP address, for non-logged in users. It's necessary to switch this off
  * for some forms of caching.
+ * Will disable file cache.
  */
 $wgShowIPinHeader = true;
 
@@ -2575,13 +2635,6 @@ $wgResourceLoaderMaxage = array(
 		'client' => 5 * 60, // 5 minutes
 	),
 );
-
-/**
- * Whether to embed private modules inline with HTML output or to bypass
- * caching and check the user parameter against $wgUser to prevent
- * unauthorized access to private modules.
- */
-$wgResourceLoaderInlinePrivateModules = true;
 
 /**
  * The default debug mode (on/off) for of ResourceLoader requests. This will still
@@ -3237,7 +3290,6 @@ $wgDefaultUserOptions = array(
 	'gender'                  => 'unknown',
 	'hideminor'               => 0,
 	'hidepatrolled'           => 0,
-	'highlightbroken'         => 1,
 	'imagesize'               => 2,
 	'justify'                 => 0,
 	'math'                    => 1,
@@ -4056,6 +4108,11 @@ $wgDebugRawPage = false;
 $wgDebugComments = false;
 
 /**
+ * Extensive database transaction state debugging
+ */
+$wgDebugDBTransactions = false;
+
+/**
  * Write SQL queries to the debug log
  */
 $wgDebugDumpSql = false;
@@ -4127,7 +4184,7 @@ $wgDevelopmentWarnings = false;
  * development warnings will not be generated for deprecations added in releases
  * after the limit.
  */
-$wgDeprecationReleaseLimit = '1.17';
+$wgDeprecationReleaseLimit = false;
 
 /** Only record profiling info for pages that took longer than this */
 $wgProfileLimit = 0.0;
@@ -4220,7 +4277,7 @@ $wgParserTestFiles = array(
  * );
  */
 $wgParserTestRemote = false;
- 
+
 /**
  * Allow running of javascript test suites via [[Special:JavaScriptTest]] (such as QUnit).
  */
@@ -4231,7 +4288,17 @@ $wgEnableJavaScriptTest = false;
  */
 $wgJavaScriptTestConfig = array(
 	'qunit' => array(
+		// Page where documentation can be found relevant to the QUnit test suite being ran.
+		// Used in the intro paragraph on [[Special:JavaScriptTest/qunit]] for the
+		// documentation link in the "javascripttest-qunit-intro" message.
 		'documentation' => '//www.mediawiki.org/wiki/Manual:JavaScript_unit_testing',
+		// If you are submitting the QUnit test suite to a TestSwarm instance,
+		// point this to the "inject.js" script of that instance. This is was registers
+		// the QUnit hooks to extract the test results and push them back up into the
+		// TestSwarm database.
+		// @example 'http://localhost/testswarm/js/inject.js'
+		// @example '//integration.mediawiki.org/testswarm/js/inject.js'
+		'testswarm-injectjs' => false,
 	),
 );
 
@@ -4245,6 +4312,7 @@ $wgCachePrefix = false;
 /**
  * Display the new debugging toolbar. This also enables profiling on database
  * queries and other useful output.
+ * Will disable file cache.
  *
  * @since 1.19
  */

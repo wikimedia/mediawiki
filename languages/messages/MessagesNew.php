@@ -44,7 +44,6 @@ $digitTransformTable = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'लिङ्कतेत अन्दरलाइन यानादिसँ:',
-'tog-highlightbroken'         => 'स्यंगु लिङ्कतेत फर्‍म्याट यानादिसँ <a href="" class="new">like this</a> (alternative: like this<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'अनुच्छेद धंकादिसँ',
 'tog-hideminor'               => 'न्हुगु हिलेज्याय् चिधंगु सम्पादन सुचुकादिसँ',
 'tog-extendwatchlist'         => 'वाचलिस्टयात परिमार्जित याना सकल स्वेज्युगु हिलेज्या क्यनादिसँ',

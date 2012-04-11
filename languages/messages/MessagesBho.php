@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Anshumangupta21
  * @author Ganesh
  * @author Rajivkurjee
  */
@@ -46,10 +47,10 @@ $digitTransformTable = array(
 $messages = array(
 # User preference toggles
 'tog-underline'        => 'लिंक के नीचे रेखा',
-'tog-highlightbroken'  => 'टूटल लिंक के प्रारुप ठिक करीं <a href="" class="new"> अईसे </a> (वैकल्पिक: चाहे अईसे<a href="" class="internal">?</a>)',
 'tog-justify'          => 'पैराग्राफ जस्टीफाई',
 'tog-hideminor'        => 'हाल के परिवर्तन में मामूली संपादन छुपाईं',
 'tog-numberheadings'   => 'स्वयं-सांख्यिकी शिर्षक',
+'tog-showtoolbar'      => 'सम्पादन औजार् बक्सा के दिखाइल् जाए',
 'tog-rememberpassword' => 'इ ब्राउजर पर हमार प्रवेश जारी रहे (अधिकतम $1 {{PLURAL:$1|दिन|दिन}})',
 'tog-previewontop'     => 'सम्पादन बक्सा से पहिले पुर्वदर्शन दिखाईं।',
 'tog-previewonfirst'   => 'पहिलका सम्पादन पर पूर्वावलोकन देखीं',

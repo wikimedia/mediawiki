@@ -395,10 +395,10 @@ class IPTC {
 
 	/**
 	* Helper function to convert charset for iptc values.
-	* @param $data Mixed String or Array: The iptc string
+	* @param $data string|array The iptc string
 	* @param $charset String: The charset
 	 *
-	 * @return string
+	 * @return string|array
 	*/
 	private static function convIPTC ( $data, $charset ) {
 		if ( is_array( $data ) ) {

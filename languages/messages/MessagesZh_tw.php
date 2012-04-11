@@ -106,7 +106,6 @@ $dateFormats = array(
 $messages = array(
 # User preference toggles
 'tog-underline'            => '連結標注底線',
-'tog-highlightbroken'      => '損毀連結格式為<a href="" class="new">這樣</a>（否則：像這樣<a href="" class="internal">?</a>）',
 'tog-justify'              => '段落對齊',
 'tog-hideminor'            => '近期變動中隱藏細微修改',
 'tog-usenewrc'             => '使用強化的近期變動 (需要JavaScript)',

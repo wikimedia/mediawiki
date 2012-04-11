@@ -1,8 +1,11 @@
 <?php
 /**
- * Maintenance script to import all scripts in the MediaWiki namespace from a 
+ * Maintenance script to import all scripts in the MediaWiki namespace from a
  * local site.
+ * @file
+ * @ingroup Maintenance
  */
+
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class ImportSiteScripts extends Maintenance {

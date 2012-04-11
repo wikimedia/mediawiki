@@ -111,14 +111,7 @@ class SpecialUpload extends SpecialPage {
 
 		// If it was posted check for the token (no remote POST'ing with user credentials)
 		$token = $request->getVal( 'wpEditToken' );
-		if( $this->mSourceType == 'file' && $token == null ) {
-			// Skip token check for file uploads as that can't be faked via JS...
-			// Some client-side tools don't expect to need to send wpEditToken
-			// with their submissions, as that's new in 1.16.
-			$this->mTokenOk = true;
-		} else {
-			$this->mTokenOk = $this->getUser()->matchEditToken( $token );
-		}
+		$this->mTokenOk = $this->getUser()->matchEditToken( $token );
 
 		$this->uploadFormTextTop = '';
 		$this->uploadFormTextAfterSummary = '';
@@ -157,7 +150,7 @@ class SpecialUpload extends SpecialPage {
 
 		# Check blocks
 		if( $user->isBlocked() ) {
-			throw new UserBlockedError( $user->mBlock );
+			throw new UserBlockedError( $user->getBlock() );
 		}
 
 		# Check whether we actually want to allow changing stuff
@@ -837,7 +830,9 @@ class UploadForm extends HTMLForm {
 		# that setting doesn't exist
 		if ( !wfIsHipHop() ) {
 			$this->mMaxUploadSize['file'] = min( $this->mMaxUploadSize['file'],
-				wfShorthandToInteger( ini_get( 'upload_max_filesize' ) ) );
+				wfShorthandToInteger( ini_get( 'upload_max_filesize' ) ),
+				wfShorthandToInteger( ini_get( 'post_max_size' ) )
+			);
 		}
 
 		$descriptor['UploadFile'] = array(

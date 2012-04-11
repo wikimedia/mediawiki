@@ -49,7 +49,7 @@ if ( !empty($wgActionPaths) && !isset($wgActionPaths['view']) ) {
 
 if ( !empty($wgActionPaths) && !isset($wgActionPaths['view']) ) {
 	# 'view' is assumed the default action path everywhere in the code
-	# but is rarely filled in $wgActionPaths 
+	# but is rarely filled in $wgActionPaths
 	$wgActionPaths['view'] = $wgArticlePath ;
 }
 
@@ -299,8 +299,10 @@ $wgContLanguageCode = $wgLanguageCode;
 
 # Easy to forget to falsify $wgShowIPinHeader for static caches.
 # If file cache or squid cache is on, just disable this (DWIMD).
+# Do the same for $wgDebugToolbar.
 if ( $wgUseFileCache || $wgUseSquid ) {
 	$wgShowIPinHeader = false;
+	$wgDebugToolbar = false;
 }
 
 # $wgAllowRealName and $wgAllowUserSkin were removed in 1.16
@@ -359,7 +361,10 @@ if ( $wgCookieSecure === 'detect' ) {
 	$wgCookieSecure = ( substr( $wgServer, 0, 6 ) === 'https:' );
 }
 
-if ( $wgDebugToolbar ) {
+// Disable MWDebug for command line mode, this prevents MWDebug from eating up
+// all the memory from logging SQL queries on maintenance scripts
+global $wgCommandLineMode;
+if ( $wgDebugToolbar && !$wgCommandLineMode ) {
 	MWDebug::init();
 }
 
@@ -376,7 +381,6 @@ if ( !defined( 'MW_COMPILED' ) ) {
 	require_once( "$IP/includes/normal/UtfNormalUtil.php" );
 	require_once( "$IP/includes/GlobalFunctions.php" );
 	require_once( "$IP/includes/ProxyTools.php" );
-	require_once( "$IP/includes/ImageFunctions.php" );
 	require_once( "$IP/includes/normal/UtfNormalDefines.php" );
 	wfProfileOut( $fname . '-includes' );
 }
@@ -384,6 +388,16 @@ if ( !defined( 'MW_COMPILED' ) ) {
 # Now that GlobalFunctions is loaded, set the default for $wgCanonicalServer
 if ( $wgCanonicalServer === false ) {
 	$wgCanonicalServer = wfExpandUrl( $wgServer, PROTO_HTTP );
+}
+
+// Initialize $wgHTCPMulticastRouting from backwards-compatible settings
+if ( !$wgHTCPMulticastRouting && $wgHTCPMulticastAddress ) {
+	$wgHTCPMulticastRouting = array(
+		'' => array(
+			'host' => $wgHTCPMulticastAddress,
+			'port' => $wgHTCPPort,
+		)
+	);
 }
 
 wfProfileIn( $fname . '-misc1' );
@@ -408,7 +422,6 @@ if( is_null( $wgLocalTZoffset ) ) {
 }
 
 # Useful debug output
-global $wgCommandLineMode;
 if ( $wgCommandLineMode ) {
 	$wgRequest = new FauxRequest( array() );
 
@@ -417,17 +430,16 @@ if ( $wgCommandLineMode ) {
 	# Can't stub this one, it sets up $_GET and $_REQUEST in its constructor
 	$wgRequest = new WebRequest;
 
-	$debug = "Start request\n\n{$_SERVER['REQUEST_METHOD']} {$wgRequest->getRequestURL()}";
+	$debug = "\n\nStart request {$_SERVER['REQUEST_METHOD']} {$wgRequest->getRequestURL()}\n";
 
 	if ( $wgDebugPrintHttpHeaders ) {
-		$debug .= "\nHTTP HEADERS:\n";
+		$debug .= "HTTP HEADERS:\n";
 
 		foreach ( $wgRequest->getAllHeaders() as $name => $value ) {
 			$debug .= "$name: $value\n";
 		}
 	}
-	wfDebug( "$debug\n" );
-	MWDebug::processRequest( $wgRequest );
+	wfDebug( $debug );
 }
 
 wfProfileOut( $fname . '-misc1' );
@@ -436,6 +448,7 @@ wfProfileIn( $fname . '-memcached' );
 $wgMemc = wfGetMainCache();
 $messageMemc = wfGetMessageCacheStorage();
 $parserMemc = wfGetParserCacheStorage();
+$wgLangConvMemc = wfGetLangConverterCacheStorage();
 
 wfDebug( 'CACHES: ' . get_class( $wgMemc ) . '[main] ' .
 	get_class( $messageMemc ) . '[message] ' .
@@ -455,11 +468,9 @@ if ( !wfIniGetBool( 'session.auto_start' ) ) {
 
 if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 	if ( $wgRequest->checkSessionCookie() || isset( $_COOKIE[$wgCookiePrefix . 'Token'] ) ) {
-		wfIncrStats( 'request_with_session' );
 		wfSetupSession();
 		$wgSessionStarted = true;
 	} else {
-		wfIncrStats( 'request_without_session' );
 		$wgSessionStarted = false;
 	}
 }
@@ -476,7 +487,7 @@ $wgRequest->interpolateTitle();
 $wgUser = RequestContext::getMain()->getUser(); # BackCompat
 
 /**
- * @var Language
+ * @var $wgLang Language
  */
 $wgLang = new StubUserLang;
 
@@ -486,7 +497,7 @@ $wgLang = new StubUserLang;
 $wgOut = RequestContext::getMain()->getOutput(); # BackCompat
 
 /**
- * @var Parser
+ * @var $wgParser Parser
  */
 $wgParser = new StubObject( 'wgParser', $wgParserConf['class'], array( $wgParserConf ) );
 

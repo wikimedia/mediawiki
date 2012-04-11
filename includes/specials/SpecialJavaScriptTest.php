@@ -1,5 +1,12 @@
 <?php
+/**
+ * @ingroup SpecialPage
+ * @file
+ */
 
+/**
+ * @ingroup SpecialPage
+ */
 class SpecialJavaScriptTest extends SpecialPage {
 
 	/**
@@ -37,26 +44,24 @@ class SpecialJavaScriptTest extends SpecialPage {
 
 		// No framework specified
 		if ( $par == '' ) {
-			$out->setPagetitle( wfMsgHtml( 'javascripttest' ) );
+			$out->setPageTitle( $this->msg( 'javascripttest' ) );
 			$summary = $this->wrapSummaryHtml(
-				wfMsgHtml( 'javascripttest-pagetext-noframework' ) . $this->getFrameworkListHtml(),
+				$this->msg( 'javascripttest-pagetext-noframework' )->escaped() . $this->getFrameworkListHtml(),
 				'noframework'
 			);
 			$out->addHtml( $summary );
 
 		// Matched! Display proper title and initialize the framework
 		} elseif ( isset( self::$frameworks[$framework] ) ) {
-			$out->setPagetitle( wfMsgHtml( 'javascripttest-title', wfMsgHtml( "javascripttest-$framework-name" ) ) );
-			$out->setSubtitle(
-				wfMessage( 'javascripttest-backlink' )->rawParams( Linker::linkKnown( $this->getTitle() ) )->escaped()
-			);
+			$out->setPageTitle( $this->msg( 'javascripttest-title', $this->msg( "javascripttest-$framework-name" )->plain() ) );
+			$out->setSubtitle( $this->msg( 'javascripttest-backlink' )->rawParams( Linker::linkKnown( $this->getTitle() ) ) );
 			$this->{self::$frameworks[$framework]}();
 
 		// Framework not found, display error
 		} else {
-			$out->setPagetitle( wfMsgHtml( 'javascripttest' ) );
+			$out->setPageTitle( $this->msg( 'javascripttest' ) );
 			$summary = $this->wrapSummaryHtml( '<p class="error">'
-				. wfMsgHtml( 'javascripttest-pagetext-unknownframework', $par )
+				. $this->msg( 'javascripttest-pagetext-unknownframework', $par )->escaped()
 				. '</p>'
 				. $this->getFrameworkListHtml(),
 				'unknownframework'
@@ -75,11 +80,11 @@ class SpecialJavaScriptTest extends SpecialPage {
 			$list .= Html::rawElement(
 				'li',
 				array(),
-				Linker::link( $this->getTitle( $framework ), wfMsgHtml( "javascripttest-$framework-name" ) )
+				Linker::link( $this->getTitle( $framework ), $this->msg( "javascripttest-$framework-name" )->escaped() )
 			);
 		}
 		$list .= '</ul>';
-		$msg = wfMessage( 'javascripttest-pagetext-frameworks' )->rawParams( $list )->parseAsBlock();
+		$msg = $this->msg( 'javascripttest-pagetext-frameworks' )->rawParams( $list )->parseAsBlock();
 
 		return $msg;
 	}
@@ -90,6 +95,7 @@ class SpecialJavaScriptTest extends SpecialPage {
 	 * be thrown.
 	 * @param $html String: The raw HTML.
 	 * @param $state String: State, one of 'noframework', 'unknownframework' or 'frameworkfound'
+	 * @return string
 	 */
 	private function wrapSummaryHtml( $html, $state ) {
 		$validStates = array( 'noframework', 'unknownframework', 'frameworkfound' );
@@ -106,7 +112,7 @@ class SpecialJavaScriptTest extends SpecialPage {
 	 * Initialize the page for QUnit.
 	 */
 	private function initQUnitTesting() {
-		global $wgJavaScriptTestConfig, $wgLang;
+		global $wgJavaScriptTestConfig;
 
 		$out = $this->getOutput();
 
@@ -114,11 +120,11 @@ class SpecialJavaScriptTest extends SpecialPage {
 		$qunitTestModules = $out->getResourceLoader()->getTestModuleNames( 'qunit' );
 		$out->addModules( $qunitTestModules );
 
-		$summary = wfMessage( 'javascripttest-qunit-intro' )
+		$summary = $this->msg( 'javascripttest-qunit-intro' )
 			->params( $wgJavaScriptTestConfig['qunit']['documentation'] )
 			->parseAsBlock();
-		$header = wfMessage( 'javascripttest-qunit-heading' )->escaped();
-		$userDir = $wgLang->getDir();
+		$header = $this->msg( 'javascripttest-qunit-heading' )->escaped();
+		$userDir = $this->getLanguage()->getDir();
 
 		$baseHtml = <<<HTML
 <div class="mw-content-ltr">
@@ -132,6 +138,14 @@ class SpecialJavaScriptTest extends SpecialPage {
 HTML;
 		$out->addHtml( $this->wrapSummaryHtml( $summary, 'frameworkfound' ) . $baseHtml );
 
+		// This special page is disabled by default ($wgEnableJavaScriptTest), and contains
+		// no sensitive data. In order to allow TestSwarm to embed it into a test client window,
+		// we need to allow iframing of this page.
+		$out->allowClickjacking();
+
+		// Used in ./tests/qunit/data/testrunner.js, see also documentation of
+		// $wgJavaScriptTestConfig in DefaultSettings.php
+		$out->addJsConfigVars( 'QUnitTestSwarmInjectJSPath', $wgJavaScriptTestConfig['qunit']['testswarm-injectjs'] );
 	}
 
 	public function isListed(){

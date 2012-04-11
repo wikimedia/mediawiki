@@ -20,8 +20,9 @@ class Http {
 	 *    - timeout             Timeout length in seconds
 	 *    - postData            An array of key-value pairs or a url-encoded form data
 	 *    - proxy               The proxy to use.
-	 *                          Will use $wgHTTPProxy (if set) otherwise.
-	 *    - noProxy             Override $wgHTTPProxy (if set) and don't use any proxy at all.
+	 *                          Otherwise it will use $wgHTTPProxy (if set)
+	 *                          Otherwise it will use the environment variable "http_proxy" (if set)
+	 *    - noProxy             Don't use any proxy at all. Takes precedence over proxy value(s).
 	 *    - sslVerifyHost       (curl only) Verify hostname against certificate
 	 *    - sslVerifyCert       (curl only) Verify SSL certificate
 	 *    - caInfo              (curl only) Provide CA information
@@ -42,9 +43,6 @@ class Http {
 		}
 
 		$req = MWHttpRequest::factory( $url, $options );
-		if( isset( $options['userAgent'] ) ) {
-			$req->setUserAgent( $options['userAgent'] );
-		}
 		$status = $req->execute();
 
 		if ( $status->isOK() ) {
@@ -209,6 +207,9 @@ class MWHttpRequest {
 		} else {
 			$this->timeout = $wgHTTPTimeout;
 		}
+		if( isset( $options['userAgent'] ) ) {
+			$this->setUserAgent( $options['userAgent'] );
+		}
 
 		$members = array( "postData", "proxy", "noProxy", "sslVerifyHost", "caInfo",
 				  "method", "followRedirects", "maxRedirects", "sslVerifyCert", "callback" );
@@ -217,6 +218,10 @@ class MWHttpRequest {
 			if ( isset( $options[$o] ) ) {
 				$this->$o = $options[$o];
 			}
+		}
+
+		if ( $this->noProxy ) {
+			$this->proxy = ''; // noProxy takes precedence
 		}
 	}
 
@@ -278,19 +283,18 @@ class MWHttpRequest {
 	}
 
 	/**
-	 * Take care of setting up the proxy
-	 * (override in subclass)
+	 * Take care of setting up the proxy (do nothing if "noProxy" is set)
 	 *
-	 * @return String
+	 * @return void
 	 */
 	public function proxySetup() {
 		global $wgHTTPProxy;
 
-		if ( $this->proxy ) {
+		if ( $this->proxy || !$this->noProxy ) {
 			return;
 		}
 
-		if ( Http::isLocalURL( $this->url ) ) {
+		if ( Http::isLocalURL( $this->url ) || $this->noProxy ) {
 			$this->proxy = '';
 		} elseif ( $wgHTTPProxy ) {
 			$this->proxy = $wgHTTPProxy ;
@@ -376,6 +380,7 @@ class MWHttpRequest {
 	 *
 	 * @param $fh handle
 	 * @param $content String
+	 * @return int
 	 */
 	public function read( $fh, $content ) {
 		$this->content .= $content;
@@ -400,9 +405,7 @@ class MWHttpRequest {
 			$this->setReferer( wfExpandUrl( $wgTitle->getFullURL(), PROTO_CURRENT ) );
 		}
 
-		if ( !$this->noProxy ) {
-			$this->proxySetup();
-		}
+		$this->proxySetup(); // set up any proxy as needed
 
 		if ( !$this->callback ) {
 			$this->setCallback( array( $this, 'read' ) );
@@ -417,8 +420,6 @@ class MWHttpRequest {
 	 * Parses the headers, including the HTTP status code and any
 	 * Set-Cookie headers.  This function expectes the headers to be
 	 * found in an array in the member variable headerList.
-	 *
-	 * @return nothing
 	 */
 	protected function parseHeader() {
 		$lastname = "";
@@ -446,8 +447,6 @@ class MWHttpRequest {
 	 * RFC2616, section 10,
 	 * http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html for a
 	 * list of status codes.)
-	 *
-	 * @return nothing
 	 */
 	protected function setStatus() {
 		if ( !$this->respHeaders ) {
@@ -801,11 +800,13 @@ class PhpHttpRequest extends MWHttpRequest {
 		if ( $this->method == 'POST' ) {
 			// Required for HTTP 1.0 POSTs
 			$this->reqHeaders['Content-Length'] = strlen( $this->postData );
-			$this->reqHeaders['Content-type'] = "application/x-www-form-urlencoded";
+			if( !isset( $this->reqHeaders['Content-Type'] ) ) {
+				$this->reqHeaders['Content-Type'] = "application/x-www-form-urlencoded";
+			}
 		}
 
 		$options = array();
-		if ( $this->proxy && !$this->noProxy ) {
+		if ( $this->proxy ) {
 			$options['proxy'] = $this->urlToTCP( $this->proxy );
 			$options['request_fulluri'] = true;
 		}

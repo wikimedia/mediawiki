@@ -376,20 +376,22 @@ class Html {
 	 * and converted to a space-separated string. In addition to a numerical
 	 * array, the attribute value may also be an associative array. See the
 	 * example below for how that works.
-	 * @example Numerical array
-	 * <code>
+	 *
+	 * @par Numerical array
+	 * @code
 	 *     Html::element( 'em', array(
 	 *         'class' => array( 'foo', 'bar' )
 	 *     ) );
 	 *     // gives '<em class="foo bar"></em>'
-	 * </code>
-	 * @example Associative array
-	 * <code>
+	 * @endcode
+	 *
+	 * @par Associative array
+	 * @code
 	 *     Html::element( 'em', array(
 	 *         'class' => array( 'foo', 'bar', 'foo' => false, 'quux' => true )
 	 *     ) );
 	 *     // gives '<em class="bar quux"></em>'
-	 * </code>
+	 * @endcode
 	 *
 	 * @param $attribs array Associative array of attributes, e.g., array(
 	 *   'href' => 'http://www.mediawiki.org/' ).  Values will be HTML-escaped.
@@ -706,6 +708,8 @@ class Html {
 	 * - selected: [optional] Id of namespace which should be pre-selected
 	 * - all: [optional] Value of item for "all namespaces". If null or unset, no <option> is generated to select all namespaces
 	 * - label: text for label to add before the field
+	 * - exclude: [optional] Array of namespace ids to exclude
+	 * - disable: [optional] Array of namespace ids for which the option should be disabled in the selector
 	 * @param $selectAttribs array HTML attributes for the generated select element.
 	 * - id:   [optional], default: 'namespace'
 	 * - name: [optional], default: 'namespace'
@@ -714,11 +718,6 @@ class Html {
 	public static function namespaceSelector( Array $params = array(), Array $selectAttribs = array() ) {
 		global $wgContLang;
 
-		// Default 'id' & 'name' <select> attributes
-		$selectAttribs = $selectAttribs + array(
-			'id'   => 'namespace',
-			'name' => 'namespace',
-		);
 		ksort( $selectAttribs );
 
 		// Is a namespace selected?
@@ -735,39 +734,60 @@ class Html {
 			$params['selected'] = '';
 		}
 
-		// Array holding the <option> elements
+		if ( !isset( $params['exclude'] ) || !is_array( $params['exclude'] ) ) {
+			$params['exclude'] = array();
+		}
+		if ( !isset( $params['disable'] ) || !is_array( $params['disable'] ) ) {
+			$params['disable'] = array();
+		}
+
+		// Associative array between option-values and option-labels
 		$options = array();
 
 		if ( isset( $params['all'] ) ) {
-			// add an <option> that would let the user select all namespaces.
-			// Value is provided by user, the name shown is localized.
+			// add an option that would let the user select all namespaces.
+			// Value is provided by user, the name shown is localized for the user.
 			$options[$params['all']] = wfMsg( 'namespacesall' );
 		}
-		// Add defaults <option> according to content language
+		// Add all namespaces as options (in the content langauge)
 		$options += $wgContLang->getFormattedNamespaces();
 
-		// Convert $options to HTML
+		// Convert $options to HTML and filter out namespaces below 0
 		$optionsHtml = array();
 		foreach ( $options as $nsId => $nsName ) {
-			if ( $nsId < NS_MAIN ) {
+			if ( $nsId < NS_MAIN || in_array( $nsId, $params['exclude'] ) ) {
 				continue;
 			}
 			if ( $nsId === 0 ) {
+				// For other namespaces use use the namespace prefix as label, but for
+				// main we don't use "" but the user message descripting it (e.g. "(Main)" or "(Article)")
 				$nsName = wfMsg( 'blanknamespace' );
 			}
-			$optionsHtml[] = Xml::option( $nsName, $nsId, $nsId === $params['selected'] );
+			$optionsHtml[] = Html::element(
+				'option', array(
+					'disabled' => in_array( $nsId, $params['disable'] ),
+					'value' => $nsId,
+					'selected' => $nsId === $params['selected'],
+				), $nsName
+			);
 		}
 
-		// Forge a <select> element and returns it
 		$ret = '';
 		if ( isset( $params['label'] ) ) {
-			$ret .= Xml::label( $params['label'], $selectAttribs['id'] ) . '&#160;';
+			$ret .= Html::element(
+				'label', array(
+					'for' => isset( $selectAttribs['id'] ) ? $selectAttribs['id'] : null,
+				), $params['label']
+			) . '&#160;';
 		}
+
+		// Wrap options in a <select>
 		$ret .= Html::openElement( 'select', $selectAttribs )
 			. "\n"
 			. implode( "\n", $optionsHtml )
 			. "\n"
 			. Html::closeElement( 'select' );
+
 		return $ret;
 	}
 

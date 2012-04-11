@@ -40,6 +40,7 @@ class Xml {
 	 * The values are passed to Sanitizer::encodeAttribute.
 	 * Return null if no attributes given.
 	 * @param $attribs Array of attributes for an XML element
+	 * @return null|string
 	 */
 	public static function expandAttributes( $attribs ) {
 		$out = '';
@@ -189,35 +190,20 @@ class Xml {
 	 * 
 	 * @param string $selected The language code of the selected language
 	 * @param boolean $customisedOnly If true only languages which have some content are listed
-	 * @param string $language The ISO code of the language to display the select list in (optional)
+	 * @param string $inLanguage The ISO code of the language to display the select list in (optional)
 	 * @return array containing 2 items: label HTML and select list HTML
 	 */
-	public static function languageSelector( $selected, $customisedOnly = true, $language = null ) {
+	public static function languageSelector( $selected, $customisedOnly = true, $inLanguage = null ) {
 		global $wgLanguageCode;
 
-		// If a specific language was requested and CLDR is installed, use it
-		if ( $language && is_callable( array( 'LanguageNames', 'getNames' ) ) ) {
-			if ( $customisedOnly ) {
-				$listType = LanguageNames::LIST_MW_SUPPORTED; // Only pull names that have localisation in MediaWiki
-			} else {
-				$listType = LanguageNames::LIST_MW; // Pull all languages that are in Names.php
-			}
-			// Retrieve the list of languages in the requested language (via CLDR)
-			$languages = LanguageNames::getNames(
-				$language, // Code of the requested language
-				LanguageNames::FALLBACK_NORMAL, // Use fallback chain
-				$listType
-			);
-		} else {
-			$languages = Language::getLanguageNames( $customisedOnly );
-		}
-		
+		$languages = Language::fetchLanguageNames( $inLanguage, $customisedOnly ? 'mwfile' : 'mw' );
+
 		// Make sure the site language is in the list; a custom language code might not have a
 		// defined name...
 		if( !array_key_exists( $wgLanguageCode, $languages ) ) {
 			$languages[$wgLanguageCode] = $wgLanguageCode;
 		}
-		
+
 		ksort( $languages );
 
 		/**
@@ -254,8 +240,8 @@ class Xml {
 
 	/**
 	 * Shortcut to make a specific element with a class attribute
-	 * @param $text content of the element, will be escaped
-	 * @param $class class name of the span element
+	 * @param $text string content of the element, will be escaped
+	 * @param $class string class name of the span element
 	 * @param $tag string element name
 	 * @param $attribs array other attributes
 	 * @return string
@@ -529,8 +515,8 @@ class Xml {
 	/**
 	 * Shortcut for creating fieldsets.
 	 *
-	 * @param $legend Legend of the fieldset. If evaluates to false, legend is not added.
-	 * @param $content Pre-escaped content for the fieldset. If false, only open fieldset is returned.
+	 * @param $legend string|bool Legend of the fieldset. If evaluates to false, legend is not added.
+	 * @param $content string Pre-escaped content for the fieldset. If false, only open fieldset is returned.
 	 * @param $attribs array Any attributes to fieldset-element.
 	 *
 	 * @return string
@@ -607,19 +593,52 @@ class Xml {
 	}
 
 	/**
-	 * Encode a variable of unknown type to JavaScript. If you're not dealing
-	 * with potential instances of XmlJsCode (which bypass encoding), then
-	 * FormatJson::encode should be used directly.
+	 * Encode a variable of unknown type to JavaScript.
+	 * Arrays are converted to JS arrays, objects are converted to JS associative
+	 * arrays (objects). So cast your PHP associative arrays to objects before
+	 * passing them to here.
 	 *
 	 * @param $value
 	 *
 	 * @return string
 	 */
 	public static function encodeJsVar( $value ) {
-		if ( $value instanceof XmlJsCode ) {
-			return $value->value;
+		if ( is_bool( $value ) ) {
+			$s = $value ? 'true' : 'false';
+		} elseif ( is_null( $value ) ) {
+			$s = 'null';
+		} elseif ( is_int( $value ) || is_float( $value ) ) {
+			$s = strval($value);
+		} elseif ( is_array( $value ) && // Make sure it's not associative.
+					array_keys($value) === range( 0, count($value) - 1 ) ||
+					count($value) == 0
+				) {
+			$s = '[';
+			foreach ( $value as $elt ) {
+				if ( $s != '[' ) {
+					$s .= ',';
+				}
+				$s .= self::encodeJsVar( $elt );
+			}
+			$s .= ']';
+		} elseif ( $value instanceof XmlJsCode ) {
+			$s = $value->value;
+		} elseif ( is_object( $value ) || is_array( $value ) ) {
+			// Objects and associative arrays
+			$s = '{';
+			foreach ( (array)$value as $name => $elt ) {
+				if ( $s != '{' ) {
+					$s .= ',';
+				}
+
+				$s .= '"' . self::escapeJsString( $name ) . '":' .
+					self::encodeJsVar( $elt );
+			}
+			$s .= '}';
+		} else {
+			$s = '"' . self::escapeJsString( $value ) . '"';
 		}
-		return FormatJson::encode( $value );
+		return $s;
 	}
 
 	/**

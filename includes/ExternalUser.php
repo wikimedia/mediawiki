@@ -98,7 +98,7 @@ abstract class ExternalUser {
 	 * This is a wrapper around newFromId().
 	 *
 	 * @param $user User
-	 * @return ExternalUser|false
+	 * @return ExternalUser|bool False on failure
 	 */
 	public static function newFromUser( $user ) {
 		global $wgExternalAuthType;

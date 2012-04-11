@@ -14,12 +14,12 @@
  * @ingroup FileRepo
  */
 class LocalRepo extends FileRepo {
-	var $fileFactory = array( 'LocalFile', 'newFromTitle' );
-	var $fileFactoryKey = array( 'LocalFile', 'newFromKey' );
-	var $oldFileFactory = array( 'OldLocalFile', 'newFromTitle' );
-	var $oldFileFactoryKey = array( 'OldLocalFile', 'newFromKey' );
-	var $fileFromRowFactory = array( 'LocalFile', 'newFromRow' );
-	var $oldFileFromRowFactory = array( 'OldLocalFile', 'newFromRow' );
+	var $fileFactory           = array( 'LocalFile'   , 'newFromTitle' );
+	var $fileFactoryKey        = array( 'LocalFile'   , 'newFromKey'   );
+	var $fileFromRowFactory    = array( 'LocalFile'   , 'newFromRow'   );
+	var $oldFileFactory        = array( 'OldLocalFile', 'newFromTitle' );
+	var $oldFileFactoryKey     = array( 'OldLocalFile', 'newFromKey'   );
+	var $oldFileFromRowFactory = array( 'OldLocalFile', 'newFromRow'   );
 
 	/**
 	 * @throws MWException
@@ -55,7 +55,7 @@ class LocalRepo extends FileRepo {
 	 *
 	 * @return FileRepoStatus
 	 */
-	function cleanupDeletedBatch( $storageKeys ) {
+	function cleanupDeletedBatch( array $storageKeys ) {
 		$backend = $this->backend; // convenience
 		$root = $this->getZonePath( 'deleted' );
 		$dbw = $this->getMasterDB();
@@ -64,7 +64,7 @@ class LocalRepo extends FileRepo {
 		foreach ( $storageKeys as $key ) {
 			$hashPath = $this->getDeletedHashPath( $key );
 			$path = "$root/$hashPath$key";
-			$dbw->begin();
+			$dbw->begin( __METHOD__ );
 			// Check for usage in deleted/hidden files and pre-emptively
 			// lock the key to avoid any future use until we are finished.
 			$deleted = $this->deletedFileHasKey( $key, 'lock' );
@@ -80,7 +80,7 @@ class LocalRepo extends FileRepo {
 				wfDebug( __METHOD__ . ": $key still in use\n" );
 				$status->successCount++;
 			}
-			$dbw->commit();
+			$dbw->commit( __METHOD__ );
 		}
 		return $status;
 	}
@@ -189,6 +189,7 @@ class LocalRepo extends FileRepo {
 	 * We can't say Title object, what database it should use, so we duplicate that function here.
 	 *
 	 * @param $title Title
+	 * @return bool|int|mixed
 	 */
 	protected function getArticleID( $title ) {
 		if( !$title instanceof Title ) {
@@ -208,10 +209,10 @@ class LocalRepo extends FileRepo {
 	}
 
 	/**
-	 * Get an array or iterator of file objects for files that have a given 
+	 * Get an array or iterator of file objects for files that have a given
 	 * SHA-1 content hash.
 	 *
-	 * @param string
+	 * @param $hash String a sha1 hash to look for
 	 * @return Array
 	 */
 	function findBySha1( $hash ) {
@@ -233,6 +234,7 @@ class LocalRepo extends FileRepo {
 
 	/**
 	 * Get a connection to the slave DB
+	 * @return DatabaseBase
 	 */
 	function getSlaveDB() {
 		return wfGetDB( DB_SLAVE );
@@ -240,6 +242,7 @@ class LocalRepo extends FileRepo {
 
 	/**
 	 * Get a connection to the master DB
+	 * @return DatabaseBase
 	 */
 	function getMasterDB() {
 		return wfGetDB( DB_MASTER );

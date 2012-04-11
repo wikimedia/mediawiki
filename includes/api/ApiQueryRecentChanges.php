@@ -70,24 +70,37 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	/**
 	 * @param  $pageid
 	 * @param  $title
-	 * @param $rc RecentChange
+	 * @param $rc RecentChange (optional)
 	 * @return bool|String
 	 */
-	public static function getPatrolToken( $pageid, $title, $rc ) {
+	public static function getPatrolToken( $pageid, $title, $rc = null ) {
 		global $wgUser;
-		if ( !$wgUser->useRCPatrol() && ( !$wgUser->useNPPatrol() ||
-				$rc->getAttribute( 'rc_type' ) != RC_NEW ) )
-		{
+
+		$validTokenUser = false;
+
+		if ( $rc ) {
+			if ( ( $wgUser->useRCPatrol() && $rc->getAttribute( 'rc_type' ) == RC_EDIT ) ||
+				( $wgUser->useNPPatrol() && $rc->getAttribute( 'rc_type' ) == RC_NEW ) )
+			{
+				$validTokenUser = true;
+			}
+		} else {
+			if ( $wgUser->useRCPatrol() || $wgUser->useNPPatrol() ) {
+				$validTokenUser = true;
+			}
+		}
+
+		if ( $validTokenUser ) {
+			// The patrol token is always the same, let's exploit that
+			static $cachedPatrolToken = null;
+			if ( is_null( $cachedPatrolToken ) ) {
+				$cachedPatrolToken = $wgUser->getEditToken( 'patrol' );
+			}
+			return $cachedPatrolToken;
+		} else {
 			return false;
 		}
 
-		// The patrol token is always the same, let's exploit that
-		static $cachedPatrolToken = null;
-		if ( is_null( $cachedPatrolToken ) ) {
-			$cachedPatrolToken = $wgUser->getEditToken( 'patrol' );
-		}
-
-		return $cachedPatrolToken;
 	}
 
 	/**
@@ -304,7 +317,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	 * Extracts from a single sql row the data needed to describe one recent change.
 	 *
 	 * @param $row The row from which to extract the data.
-	 * @return An array mapping strings (descriptors) to their respective string values.
+	 * @return array An array mapping strings (descriptors) to their respective string values.
 	 * @access public
 	 */
 	public function extractRowInfo( $row ) {
@@ -423,13 +436,14 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			$vals['logid'] = intval( $row->rc_logid );
 			$vals['logtype'] = $row->rc_log_type;
 			$vals['logaction'] = $row->rc_log_action;
+			$logEntry = DatabaseLogEntry::newFromRow( (array)$row );
 			ApiQueryLogEvents::addLogParams(
 				$this->getResult(),
 				$vals,
-				$row->rc_params,
-				$row->rc_log_action,
-				$row->rc_log_type,
-				$row->rc_timestamp
+				$logEntry->getParameters(),
+				$logEntry->getType(),
+				$logEntry->getSubtype(),
+				$logEntry->getTimestamp()
 			);
 		}
 

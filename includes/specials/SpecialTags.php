@@ -75,12 +75,16 @@ class SpecialTags extends SpecialPage {
 		$newRow .= Xml::tags( 'td', null, Xml::element( 'tt', null, $tag ) );
 
 		$disp = ChangeTags::tagDescription( $tag );
-		$disp .= ' (' . Linker::link( Title::makeTitle( NS_MEDIAWIKI, "Tag-$tag" ), wfMsgHtml( 'tags-edit' ) ) . ')';
+		$disp .= ' ';
+		$editLink = Linker::link( Title::makeTitle( NS_MEDIAWIKI, "Tag-$tag" ), wfMsgHtml( 'tags-edit' ) );
+		$disp .= $this->msg( 'parentheses' )->rawParams( $editLink )->escaped();
 		$newRow .= Xml::tags( 'td', null, $disp );
 
 		$msg = wfMessage( "tag-$tag-description" );
 		$desc = !$msg->exists() ? '' : $msg->parse();
-		$desc .= ' (' . Linker::link( Title::makeTitle( NS_MEDIAWIKI, "Tag-$tag-description" ), wfMsgHtml( 'tags-edit' ) ) . ')';
+		$desc .= ' ';
+		$editDescLink = Linker::link( Title::makeTitle( NS_MEDIAWIKI, "Tag-$tag-description" ), wfMsgHtml( 'tags-edit' ) );
+		$desc .= $this->msg( 'parentheses' )->rawParams( $editDescLink )->escaped();
 		$newRow .= Xml::tags( 'td', null, $desc );
 
 		$hitcount = wfMsgExt( 'tags-hitcount', array( 'parsemag' ), $this->getLanguage()->formatNum( $hitcount ) );

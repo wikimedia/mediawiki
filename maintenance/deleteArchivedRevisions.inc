@@ -34,7 +34,7 @@ class DeleteArchivedRevisionsImplementation {
 	static public function doDelete( $maint ) {
 		$dbw = wfGetDB( DB_MASTER );
 
-		$dbw->begin();
+		$dbw->begin( __METHOD__ );
 
 		$tbl_arch = $dbw->tableName( 'archive' );
 
@@ -49,7 +49,7 @@ class DeleteArchivedRevisionsImplementation {
 
 		# This bit's done
 		# Purge redundant text records
-		$dbw->commit();
+		$dbw->commit( __METHOD__ );
 		if ( $deletedRows ) {
 			$maint->purgeRedundantText( true );
 		}

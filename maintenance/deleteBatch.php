@@ -89,7 +89,7 @@ class DeleteBatch extends Maintenance {
 			}
 
 			$this->output( $title->getPrefixedText() );
-			$dbw->begin();
+			$dbw->begin( __METHOD__ );
 			if ( $title->getNamespace() == NS_FILE ) {
 				$img = wfFindFile( $title );
 				if ( $img && $img->isLocal() && !$img->delete( $reason ) ) {
@@ -99,7 +99,7 @@ class DeleteBatch extends Maintenance {
 			$page = WikiPage::factory( $title );
 			$error = '';
 			$success = $page->doDeleteArticle( $reason, false, 0, false, $error, $user );
-			$dbw->commit();
+			$dbw->commit( __METHOD__ );
 			if ( $success ) {
 				$this->output( " Deleted!\n" );
 			} else {

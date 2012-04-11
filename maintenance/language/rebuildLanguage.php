@@ -30,12 +30,12 @@ require_once( 'writeMessagesArray.inc' );
  * Rewrite a messages array.
  *
  * @param $languages
- * @param $code The language code.
+ * @param $code string The language code.
  * @param bool $write Write to the messages file?
  * @param bool $listUnknown List the unknown messages?
  * @param bool $removeUnknown Remove the unknown messages?
  * @param bool $removeDupes Remove the duplicated messages?
- * @param $dupeMsgSource The source file intended to remove from the array.
+ * @param $dupeMsgSource string The source file intended to remove from the array.
  */
 function rebuildLanguage( $languages, $code, $write, $listUnknown, $removeUnknown, $removeDupes, $dupeMsgSource ) {
 	$messages = $languages->getMessages( $code );
@@ -49,8 +49,8 @@ function rebuildLanguage( $languages, $code, $write, $listUnknown, $removeUnknow
 /**
  * Remove duplicates from a message array.
  *
- * @param $oldMsgArray The input message array.
- * @param $dupeMsgSource The source file path for duplicates.
+ * @param $oldMsgArray array The input message array.
+ * @param $dupeMsgSource string The source file path for duplicates.
  * @return Array $newMsgArray The output message array, with duplicates removed.
  */
 function removeDupes( $oldMsgArray, $dupeMsgSource ) {

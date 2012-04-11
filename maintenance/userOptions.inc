@@ -76,7 +76,7 @@ class userOptions {
 	 * @param $opts array
 	 * @param $args array
 	 *
-	 * @return true
+	 * @return bool
 	 */
 	private function initializeOpts( $opts, $args ) {
 

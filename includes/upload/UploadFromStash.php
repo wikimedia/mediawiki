@@ -2,11 +2,9 @@
 /**
  * Implements uploading from previously stored file.
  *
- * @file
- * @ingroup upload
+ * @ingroup Upload
  * @author Bryan Tong Minh
  */
-
 class UploadFromStash extends UploadBase {
 	protected $mFileKey, $mVirtualTempPath, $mFileProps, $mSourceType;
 
@@ -142,7 +140,7 @@ class UploadFromStash extends UploadBase {
 
 	/**
 	 * Remove a temporarily kept file stashed by saveTempUploadedFile().
-	 * @return success
+	 * @return bool success
 	 */
 	public function unsaveUploadedFile() {
 		return $this->stash->removeFile( $this->mFileKey );

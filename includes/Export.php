@@ -103,7 +103,7 @@ class WikiExporter {
 	 * the most recent version.
 	 */
 	public function allPages() {
-		return $this->dumpFrom( '' );
+		$this->dumpFrom( '' );
 	}
 
 	/**
@@ -118,7 +118,7 @@ class WikiExporter {
 		if ( $end ) {
 			$condition .= ' AND page_id < ' . intval( $end );
 		}
-		return $this->dumpFrom( $condition );
+		$this->dumpFrom( $condition );
 	}
 
 	/**
@@ -133,14 +133,14 @@ class WikiExporter {
 		if ( $end ) {
 			$condition .= ' AND rev_id < ' . intval( $end );
 		}
-		return $this->dumpFrom( $condition );
+		$this->dumpFrom( $condition );
 	}
 
 	/**
 	 * @param $title Title
 	 */
 	public function pageByTitle( $title ) {
-		return $this->dumpFrom(
+		$this->dumpFrom(
 			'page_namespace=' . $title->getNamespace() .
 			' AND page_title=' . $this->db->addQuotes( $title->getDBkey() ) );
 	}
@@ -150,7 +150,7 @@ class WikiExporter {
 		if ( is_null( $title ) ) {
 			throw new MWException( "Can't export invalid title" );
 		} else {
-			return $this->pageByTitle( $title );
+			$this->pageByTitle( $title );
 		}
 	}
 
@@ -161,7 +161,7 @@ class WikiExporter {
 	}
 
 	public function allLogs() {
-		return $this->dumpFrom( '' );
+		$this->dumpFrom( '' );
 	}
 
 	public function logsByRange( $start, $end ) {
@@ -169,7 +169,7 @@ class WikiExporter {
 		if ( $end ) {
 			$condition .= ' AND log_id < ' . intval( $end );
 		}
-		return $this->dumpFrom( $condition );
+		$this->dumpFrom( $condition );
 	}
 
 	# Generates the distinct list of authors of an article
@@ -209,9 +209,6 @@ class WikiExporter {
 		wfProfileIn( __METHOD__ );
 		# For logging dumps...
 		if ( $this->history & self::LOGS ) {
-			if ( $this->buffer == WikiExporter::STREAM ) {
-				$prev = $this->db->bufferResults( false );
-			}
 			$where = array( 'user_id = log_user' );
 			# Hide private logs
 			$hideLogs = LogEventsList::getExcludeClause( $this->db );
@@ -220,16 +217,49 @@ class WikiExporter {
 			if ( $cond ) $where[] = $cond;
 			# Get logging table name for logging.* clause
 			$logging = $this->db->tableName( 'logging' );
-			$result = $this->db->select( array( 'logging', 'user' ),
-				array( "{$logging}.*", 'user_name' ), // grab the user name
-				$where,
-				__METHOD__,
-				array( 'ORDER BY' => 'log_id', 'USE INDEX' => array( 'logging' => 'PRIMARY' ) )
-			);
-			$wrapper = $this->db->resultObject( $result );
-			$this->outputLogStream( $wrapper );
+
 			if ( $this->buffer == WikiExporter::STREAM ) {
-				$this->db->bufferResults( $prev );
+				$prev = $this->db->bufferResults( false );
+			}
+			$wrapper = null; // Assuring $wrapper is not undefined, if exception occurs early
+			try {
+				$result = $this->db->select( array( 'logging', 'user' ),
+					array( "{$logging}.*", 'user_name' ), // grab the user name
+					$where,
+					__METHOD__,
+					array( 'ORDER BY' => 'log_id', 'USE INDEX' => array( 'logging' => 'PRIMARY' ) )
+				);
+				$wrapper = $this->db->resultObject( $result );
+				$this->outputLogStream( $wrapper );
+				if ( $this->buffer == WikiExporter::STREAM ) {
+					$this->db->bufferResults( $prev );
+				}
+			} catch ( Exception $e ) {
+				// Throwing the exception does not reliably free the resultset, and
+				// would also leave the connection in unbuffered mode.
+
+				// Freeing result
+				try {
+					if ( $wrapper ) {
+						$wrapper->free();
+					}
+				} catch ( Exception $e2 ) {
+					// Already in panic mode -> ignoring $e2 as $e has
+					// higher priority
+				}
+
+				// Putting database back in previous buffer mode
+				try {
+					if ( $this->buffer == WikiExporter::STREAM ) {
+						$this->db->bufferResults( $prev );
+					}
+				} catch ( Exception $e2 ) {
+					// Already in panic mode -> ignoring $e2 as $e has
+					// higher priority
+				}
+
+				// Inform caller about problem
+				throw $e;
 			}
 		# For page dumps...
 		} else {
@@ -300,20 +330,46 @@ class WikiExporter {
 				$prev = $this->db->bufferResults( false );
 			}
 
-			wfRunHooks( 'ModifyExportQuery',
+			$wrapper = null; // Assuring $wrapper is not undefined, if exception occurs early
+			try {
+				wfRunHooks( 'ModifyExportQuery',
 						array( $this->db, &$tables, &$cond, &$opts, &$join ) );
 
-			# Do the query!
-			$result = $this->db->select( $tables, '*', $cond, __METHOD__, $opts, $join );
-			$wrapper = $this->db->resultObject( $result );
-			# Output dump results
-			$this->outputPageStream( $wrapper );
-			if ( $this->list_authors ) {
+				# Do the query!
+				$result = $this->db->select( $tables, '*', $cond, __METHOD__, $opts, $join );
+				$wrapper = $this->db->resultObject( $result );
+				# Output dump results
 				$this->outputPageStream( $wrapper );
-			}
 
-			if ( $this->buffer == WikiExporter::STREAM ) {
-				$this->db->bufferResults( $prev );
+				if ( $this->buffer == WikiExporter::STREAM ) {
+					$this->db->bufferResults( $prev );
+				}
+			} catch ( Exception $e ) {
+				// Throwing the exception does not reliably free the resultset, and
+				// would also leave the connection in unbuffered mode.
+
+				// Freeing result
+				try {
+					if ( $wrapper ) {
+						$wrapper->free();
+					}
+				} catch ( Exception $e2 ) {
+					// Already in panic mode -> ignoring $e2 as $e has
+					// higher priority
+				}
+
+				// Putting database back in previous buffer mode
+				try {
+					if ( $this->buffer == WikiExporter::STREAM ) {
+						$this->db->bufferResults( $prev );
+					}
+				} catch ( Exception $e2 ) {
+					// Already in panic mode -> ignoring $e2 as $e has
+					// higher priority
+				}
+
+				// Inform caller about problem
+				throw $e;
 			}
 		}
 		wfProfileOut( __METHOD__ );
@@ -324,7 +380,7 @@ class WikiExporter {
 	 * The result set should be sorted/grouped by page to avoid duplicate
 	 * page records in the output.
 	 *
-	 * The result set will be freed once complete. Should be safe for
+	 * Should be safe for
 	 * streaming (non-buffered) queries, as long as it was made on a
 	 * separate database connection not managed by LoadBalancer; some
 	 * blob storage types will make queries to pull source data.
@@ -486,13 +542,7 @@ class XmlDumpWriter {
 				$out .= '    ' . Xml::element( 'redirect', array( 'title' => self::canonicalTitle( $redirect ) ) ) . "\n";
 			}
 		}
-		
-		if ( $row->rev_sha1 ) {
-			$out .= "      " . Xml::element('sha1', null, strval($row->rev_sha1) ) . "\n";
-		} else {
-			$out .= "      <sha1/>\n";
-		}
-		
+
 		if ( $row->page_restrictions != '' ) {
 			$out .= '    ' . Xml::element( 'restrictions', array(),
 				strval( $row->page_restrictions ) ) . "\n";
@@ -507,6 +557,7 @@ class XmlDumpWriter {
 	 * Closes a <page> section on the output stream.
 	 *
 	 * @access private
+	 * @return string
 	 */
 	function closePage() {
 		return "  </page>\n";
@@ -557,6 +608,12 @@ class XmlDumpWriter {
 			$out .= "      " . Xml::element( 'text',
 				array( 'id' => $row->rev_text_id, 'bytes' => intval( $row->rev_len ) ),
 				"" ) . "\n";
+		}
+
+		if ( $row->rev_sha1 && !( $row->rev_deleted & Revision::DELETED_TEXT ) ) {
+			$out .= "      " . Xml::element('sha1', null, strval( $row->rev_sha1 ) ) . "\n";
+		} else {
+			$out .= "      <sha1/>\n";
 		}
 
 		wfRunHooks( 'XmlDumpWriterWriteRevision', array( &$this, &$out, $row, $text ) );
@@ -633,6 +690,7 @@ class XmlDumpWriter {
 
 	/**
 	 * Warning! This data is potentially inconsistent. :(
+	 * @return string
 	 */
 	function writeUploads( $row, $dumpContents = false ) {
 		if ( $row->page_namespace == NS_IMAGE ) {
@@ -773,6 +831,7 @@ class DumpOutput {
 	/**
 	 * Returns the name of the file or files which are
 	 * being written to, if there are any.
+	 * @return null
 	 */
 	function getFilenames() {
 		return NULL;
@@ -784,11 +843,19 @@ class DumpOutput {
  * @ingroup Dump
  */
 class DumpFileOutput extends DumpOutput {
-	protected $handle, $filename;
+	protected $handle = false, $filename;
 
 	function __construct( $file ) {
 		$this->handle = fopen( $file, "wt" );
 		$this->filename = $file;
+	}
+
+	function writeCloseStream( $string ) {
+		parent::writeCloseStream( $string );
+		if ( $this->handle ) {
+			fclose( $this->handle );
+			$this->handle = false;
+		}
 	}
 
 	function write( $string ) {
@@ -819,7 +886,10 @@ class DumpFileOutput extends DumpOutput {
 	function closeAndRename( $newname, $open = false ) {
 		$newname = $this->checkRenameArgCount( $newname );
 		if ( $newname ) {
-			fclose( $this->handle );
+			if ( $this->handle ) {
+				fclose( $this->handle );
+				$this->handle = false;
+			}
 			$this->renameOrException( $newname );
 			if ( $open ) {
 				$this->handle = fopen( $this->filename, "wt" );
@@ -840,6 +910,7 @@ class DumpFileOutput extends DumpOutput {
  */
 class DumpPipeOutput extends DumpFileOutput {
 	protected $command, $filename;
+	protected $procOpenResource = false;
 
 	function __construct( $command, $file = null ) {
 		if ( !is_null( $file ) ) {
@@ -849,6 +920,14 @@ class DumpPipeOutput extends DumpFileOutput {
 		$this->startCommand( $command );
 		$this->command = $command;
 		$this->filename = $file;
+	}
+
+	function writeCloseStream( $string ) {
+		parent::writeCloseStream( $string );
+		if ( $this->procOpenResource ) {
+			proc_close( $this->procOpenResource );
+			$this->procOpenResource = false;
+		}
 	}
 
 	function startCommand( $command ) {
@@ -867,8 +946,14 @@ class DumpPipeOutput extends DumpFileOutput {
 	function closeAndRename( $newname, $open = false ) {
 		$newname = $this->checkRenameArgCount( $newname );
 		if ( $newname ) {
-			fclose( $this->handle );
-			proc_close( $this->procOpenResource );
+			if ( $this->handle ) {
+				fclose( $this->handle );
+				$this->handle = false;
+			}
+			if ( $this->procOpenResource ) {
+				proc_close( $this->procOpenResource );
+				$this->procOpenResource = false;
+			}
 			$this->renameOrException( $newname );
 			if ( $open ) {
 				$command = $this->command;

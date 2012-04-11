@@ -817,7 +817,7 @@ class wikiFuzz {
 	 * Returns the matched character slash-escaped as in a C string
 	 * Helper for makeTitleSafe callback
 	 * @param $matches
-	 * @return atring
+	 * @return string
 	 */
 	static private function stringEscape( $matches ) {
 		return sprintf( "\\x%02x", ord( $matches[1] ) );

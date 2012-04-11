@@ -31,20 +31,29 @@ table.mw-enhanced-rc td.mw-enhanced-rc-nested {
 	float: none;
 }
 
-/**
- * If JS is disabled, the arrow is still needed
- * for spacing, but ideally shouldn't be shown
- */
-.mw-enhanced-rc .mw-rc-openarrow {
-	visibility: hidden;
-}
-
-.mw-enhanced-rc.mw-made-collapsible .mw-rc-openarrow,
-.mw-enhanced-rc .mw-rc-closearrow {
-	visibility: visible;
+/* If JS is disabled, the arrow shouldn't be shown */
+.client-nojs .mw-enhancedchanges-arrow.mw-collapsible-toggle {
 	display: none;
 }
-.mw-enhanced-rc.mw-made-collapsible .mw-collapsible-toggle-collapsed .mw-rc-openarrow,
-.mw-enhanced-rc.mw-made-collapsible .mw-collapsible-toggle-expanded .mw-rc-closearrow {
-	display: inline;
+
+.mw-enhancedchanges-arrow {
+	display: inline-block;
+	*display: inline; /* IE7 and below */
+	zoom: 1;
+	width: 15px;
+	height: 15px;
+}
+
+.mw-enhancedchanges-arrow.mw-enhancedchanges-arrow-space {
+	background: none;
+}
+
+.mw-enhancedchanges-arrow.mw-collapsible-toggle-collapsed {
+	/* @embed */
+	background: url(images/arrow-collapsed-ltr.png) no-repeat left center;
+}
+
+.mw-enhancedchanges-arrow.mw-collapsible-toggle-expanded {
+	/* @embed */
+	background: url(images/arrow-expanded.png) no-repeat left center;
 }

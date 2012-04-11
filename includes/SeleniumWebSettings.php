@@ -201,21 +201,3 @@ function switchToTestResources( $testResourceName, $switchDB = true ) {
 	$testUploadPath = getTestUploadPathFromResourceName( $testResourceName );
 	$wgUploadPath = $testUploadPath;
 }
-
-function wfRecursiveRemoveDir( $dir ) {
-	// taken from http://de3.php.net/manual/en/function.rmdir.php#98622
-	if ( is_dir( $dir ) ) {
-		$objects = scandir( $dir );
-		foreach ( $objects as $object ) {
-			if ( $object != "." && $object != ".." ) {
-				if ( filetype( $dir . '/' . $object ) == "dir" ) {
-					wfRecursiveRemoveDir( $dir . '/' . $object );
-				} else {
-					unlink( $dir . '/' . $object );
-				}
-			}
-		}
-		reset( $objects );
-		rmdir( $dir );
-	}
-}

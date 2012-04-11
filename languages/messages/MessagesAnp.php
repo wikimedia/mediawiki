@@ -16,7 +16,6 @@ $fallback = 'hi';
 $messages = array(
 # User preference toggles
 'tog-underline'               => ' कड़ी अधोरेखित करना:',
-'tog-highlightbroken'         => 'टूटलॊ कड़ी सीनी <a href="" class="new">इ तरह दर्शाबॊ</a> (या फिर: इ तरह दर्शाबॊ<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'परिच्छेद समान करॊ',
 'tog-hideminor'               => 'हाल के बदलाव सॆं छोटॊ बदलाव छुपाबॊ',
 'tog-hidepatrolled'           => 'निगरानी मॆं करलॊ गेलॊ संपादनॊ कॆ हाल के बदलावॊ मॆं नै देखाबॊ',

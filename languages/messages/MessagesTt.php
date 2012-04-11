@@ -7,13 +7,8 @@
  * @ingroup Language
  * @file
  *
- * @author Timming
+ * @comment Placeholder for Tatar. Falls back to Tatar in Cyrillic script.
  */
 
 $fallback = 'tt-cyrl, ru';
 
-$messages = array(
-# Delete
-'excontentauthor' => '',
-
-);

@@ -76,7 +76,12 @@ function wfRequestExtension() {
  * @return string
  */
 function wfGzipHandler( $s ) {
-	if( !function_exists( 'gzencode' ) || headers_sent() ) {
+	if( !function_exists( 'gzencode' ) ) {
+		wfDebug( __FUNCTION__ . "() skipping compression (gzencode unavaible)\n" );
+		return $s;
+	}
+	if( headers_sent() ) {
+		wfDebug( __FUNCTION__ . "() skipping compression (headers already sent)\n" );
 		return $s;
 	}
 
@@ -90,6 +95,7 @@ function wfGzipHandler( $s ) {
 	}
 
 	if( wfClientAcceptsGzip() ) {
+		wfDebug( __FUNCTION__ . "() is compressing output\n" );
 		header( 'Content-Encoding: gzip' );
 		$s = gzencode( $s, 6 );
 	}
