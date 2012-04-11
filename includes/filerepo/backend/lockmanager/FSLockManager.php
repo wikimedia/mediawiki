@@ -48,7 +48,7 @@ class FSLockManager extends LockManager {
 
 	/**
 	 * Construct a new instance from configuration.
-	 * 
+	 *
 	 * $config includes:
 	 *     'lockDirectory' : Directory containing the lock files
 	 *
@@ -101,7 +101,7 @@ class FSLockManager extends LockManager {
 	 *
 	 * @param $path string
 	 * @param $type integer
-	 * @return Status 
+	 * @return Status
 	 */
 	protected function doSingleLock( $path, $type ) {
 		$status = Status::newGood();
@@ -139,10 +139,10 @@ class FSLockManager extends LockManager {
 
 	/**
 	 * Unlock a single resource key
-	 * 
+	 *
 	 * @param $path string
 	 * @param $type integer
-	 * @return Status 
+	 * @return Status
 	 */
 	protected function doSingleUnlock( $path, $type ) {
 		$status = Status::newGood();
@@ -159,8 +159,16 @@ class FSLockManager extends LockManager {
 				// If a LOCK_SH comes in while we have a LOCK_EX, we don't
 				// actually add a handler, so check for handler existence.
 				if ( isset( $this->handles[$path][$type] ) ) {
-					// Mark this handle to be unlocked and closed
-					$handlesToClose[] = $this->handles[$path][$type];
+					if ( $type === self::LOCK_EX
+						&& isset( $this->locksHeld[$path][self::LOCK_SH] )
+						&& !isset( $this->handles[$path][self::LOCK_SH] ) )
+					{
+						// EX lock came first: move this handle to the SH one
+						$this->handles[$path][self::LOCK_SH] = $this->handles[$path][$type];
+					} else {
+						// Mark this handle to be unlocked and closed
+						$handlesToClose[] = $this->handles[$path][$type];
+					}
 					unset( $this->handles[$path][$type] );
 				}
 			}
@@ -172,7 +180,7 @@ class FSLockManager extends LockManager {
 				$status->merge( $this->closeLockHandles( $path, $handlesToClose ) );
 				$status->merge( $this->pruneKeyLockFiles( $path ) );
 			} else {
-				// Unix: unlink() can be used on files currently open by this 
+				// Unix: unlink() can be used on files currently open by this
 				// process and we must do so in order to avoid race conditions
 				$status->merge( $this->pruneKeyLockFiles( $path ) );
 				$status->merge( $this->closeLockHandles( $path, $handlesToClose ) );
@@ -185,14 +193,12 @@ class FSLockManager extends LockManager {
 	private function closeLockHandles( $path, array $handlesToClose ) {
 		$status = Status::newGood();
 		foreach ( $handlesToClose as $handle ) {
-			wfSuppressWarnings();
 			if ( !flock( $handle, LOCK_UN ) ) {
 				$status->fatal( 'lockmanager-fail-releaselock', $path );
 			}
 			if ( !fclose( $handle ) ) {
 				$status->warning( 'lockmanager-fail-closelock', $path );
 			}
-			wfRestoreWarnings();
 		}
 		return $status;
 	}
@@ -200,12 +206,10 @@ class FSLockManager extends LockManager {
 	private function pruneKeyLockFiles( $path ) {
 		$status = Status::newGood();
 		if ( !count( $this->locksHeld[$path] ) ) {
-			wfSuppressWarnings();
 			# No locks are held for the lock file anymore
 			if ( !unlink( $this->getLockPath( $path ) ) ) {
 				$status->warning( 'lockmanager-fail-deletelock', $path );
 			}
-			wfRestoreWarnings();
 			unset( $this->locksHeld[$path] );
 			unset( $this->handles[$path] );
 		}
