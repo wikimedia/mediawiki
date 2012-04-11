@@ -21,22 +21,14 @@ abstract class ContentHandler {
     public static function getContentText( Content $content = null ) {
         global $wgContentHandlerTextFallback;
 
-<<<<<<< Updated upstream
-        if ( !$content ) return '';
-=======
         if ( is_null( $content ) ) {
 			return '';
 		}
->>>>>>> Stashed changes
 
         if ( $content instanceof TextContent ) {
             return $content->getNativeData();
         }
 
-<<<<<<< Updated upstream
-        if ( $wgContentHandlerTextFallback == 'fail' ) throw new MWException( "Attempt to get text from Content with model " . $content->getModelName() );
-        if ( $wgContentHandlerTextFallback == 'serialize' ) return $content->serialize();
-=======
         if ( $wgContentHandlerTextFallback == 'fail' ) {
 			throw new MWException( "Attempt to get text from Content with model " . $content->getModelName() );
 		}
@@ -44,17 +36,13 @@ abstract class ContentHandler {
         if ( $wgContentHandlerTextFallback == 'serialize' ) {
 			return $content->serialize();
 		}
->>>>>>> Stashed changes
 
         return null;
     }
 
     public static function makeContent( $text, Title $title, $modelName = null, $format = null ) {
-<<<<<<< Updated upstream
-        if ( !$modelName ) {
-=======
+
         if ( is_null( $modelName ) ) {
->>>>>>> Stashed changes
             $modelName = $title->getContentModelName();
         }
 
@@ -65,13 +53,8 @@ abstract class ContentHandler {
     public static function getDefaultModelFor( Title $title ) {
         global $wgNamespaceContentModels;
 
-<<<<<<< Updated upstream
-        # NOTE: this method must not rely on $title->getContentModelName() directly or indirectly,
-        #       because it is used to initialized the mContentModelName memebr.
-=======
         // NOTE: this method must not rely on $title->getContentModelName() directly or indirectly,
         //       because it is used to initialized the mContentModelName memebr.
->>>>>>> Stashed changes
 
         $ns = $title->getNamespace();
 
@@ -83,45 +66,6 @@ abstract class ContentHandler {
             $model = $wgNamespaceContentModels[ $ns ];
         }
 
-<<<<<<< Updated upstream
-        # hook can determin default model
-        if ( !wfRunHooks( 'DefaultModelFor', array( $title, &$model ) ) ) { #FIXME: document new hook!
-            if ( $model ) return $model;
-        }
-
-        # Could this page contain custom CSS or JavaScript, based on the title?
-        $isCssOrJsPage = ( NS_MEDIAWIKI == $ns && preg_match( '!\.(css|js)$!u', $title->getText(), $m ) );
-        if ( $isCssOrJsPage ) $ext = $m[1];
-
-        # hook can force js/css
-        wfRunHooks( 'TitleIsCssOrJsPage', array( $title, &$isCssOrJsPage ) );
-
-        # Is this a .css subpage of a user page?
-        $isJsCssSubpage = ( NS_USER == $ns && !$isCssOrJsPage && preg_match( "/\\/.*\\.(js|css)$/", $title->getText(), $m ) );
-        if ( $isJsCssSubpage ) $ext = $m[1];
-
-        # is this wikitext, according to $wgNamespaceContentModels or the DefaultModelFor hook?
-        $isWikitext = ( $model == CONTENT_MODEL_WIKITEXT || $model === null );
-        $isWikitext = ( $isWikitext && !$isCssOrJsPage && !$isJsCssSubpage );
-
-        # hook can override $isWikitext
-        wfRunHooks( 'TitleIsWikitextPage', array( $title, &$isWikitext ) );
-
-        if ( !$isWikitext ) {
-
-            if ( $ext == 'js' )
-                return CONTENT_MODEL_JAVASCRIPT;
-            else if ( $ext == 'css' )
-                return CONTENT_MODEL_CSS;
-
-            if ( $model )
-                return $model;
-            else
-                return CONTENT_MODEL_TEXT;
-        }
-
-        # we established that is must be wikitext
-=======
         // hook can determin default model
         if ( !wfRunHooks( 'DefaultModelFor', array( $title, &$model ) ) ) { #FIXME: document new hook!
             if ( !is_null( $model ) ) {
@@ -163,7 +107,7 @@ abstract class ContentHandler {
         }
 
         // we established that is must be wikitext
->>>>>>> Stashed changes
+
         return CONTENT_MODEL_WIKITEXT;
     }
 
@@ -188,17 +132,11 @@ abstract class ContentHandler {
 
         if ( empty( $wgContentHandlers[$modelName] ) ) {
             $handler = null;
-<<<<<<< Updated upstream
-            wfRunHooks( "ContentHandlerForModelName", array( $modelName, &$handler ) );  #FIXME: document new hook
-
-            if ( $handler ) { # NOTE: may be a string or an object, either is fine!
-=======
 
 			// TODO: document new hook
             wfRunHooks( 'ContentHandlerForModelName', array( $modelName, &$handler ) );
 
             if ( $handler ) { // NOTE: may be a string or an object, either is fine!
->>>>>>> Stashed changes
                 $wgContentHandlers[$modelName] = $handler;
             } else {
                 throw new MWException( "No handler for model $modelName registered in \$wgContentHandlers" );
@@ -213,24 +151,15 @@ abstract class ContentHandler {
         return $wgContentHandlers[$modelName];
     }
 
-<<<<<<< Updated upstream
-    # ----------------------------------------------------------------------------------------------------------
-=======
     // ----------------------------------------------------------------------------------------------------------
->>>>>>> Stashed changes
     public function __construct( $modelName, $formats ) {
         $this->mModelName = $modelName;
         $this->mSupportedFormats = $formats;
     }
 
     public function getModelName() {
-<<<<<<< Updated upstream
-        # for wikitext: wikitext; in the future: wikiast, wikidom?
-        # for wikidata: wikidata
-=======
         // for wikitext: wikitext; in the future: wikiast, wikidom?
         // for wikidata: wikidata
->>>>>>> Stashed changes
         return $this->mModelName;
     }
 
@@ -241,13 +170,8 @@ abstract class ContentHandler {
     }
 
     public function getSupportedFormats() {
-<<<<<<< Updated upstream
-        # for wikitext: "text/x-mediawiki-1", "text/x-mediawiki-2", etc
-        # for wikidata: "application/json", "application/x-php", etc
-=======
         // for wikitext: "text/x-mediawiki-1", "text/x-mediawiki-2", etc
         // for wikidata: "application/json", "application/x-php", etc
->>>>>>> Stashed changes
         return $this->mSupportedFormats;
     }
 
@@ -256,11 +180,10 @@ abstract class ContentHandler {
     }
 
     public function isSupportedFormat( $format ) {
-<<<<<<< Updated upstream
-        if ( !$format ) return true; # this means "use the default"
-=======
-        if ( !$format ) return true; // this means "use the default"
->>>>>>> Stashed changes
+
+        if ( !$format ) {
+			return true; // this means "use the default"
+		}
 
         return in_array( $format, $this->mSupportedFormats );
     }
@@ -295,13 +218,8 @@ abstract class ContentHandler {
      * NOTE: does *not* do special handling for Image and Category pages!
      *       Use Article::newFromTitle() for that!
      *
-<<<<<<< Updated upstream
-     * @param type $title
-     * @return \Article
-=======
      * @param Title $title
      * @return Article
->>>>>>> Stashed changes
      * @todo Article is being refactored into an action class, keep track of that
      */
     public function createArticle( Title $title ) {
@@ -313,14 +231,9 @@ abstract class ContentHandler {
 
     /**
      * Return an EditPage object suitable for editing the given object
-     * 
-<<<<<<< Updated upstream
-     * @param type $article
-     * @return \EditPage 
-=======
+     *
      * @param Article $article
      * @return EditPage
->>>>>>> Stashed changes
      */
     public function createEditPage( Article $article ) {
         $this->checkModelName( $article->getContentModelName() );
@@ -332,13 +245,8 @@ abstract class ContentHandler {
     /**
      * Return an ExternalEdit object suitable for editing the given object
      *
-<<<<<<< Updated upstream
-     * @param type $article
-     * @return \ExternalEdit
-=======
      * @param IContextSource $context
      * @return ExternalEdit
->>>>>>> Stashed changes
      */
     public function createExternalEdit( IContextSource $context ) {
         $this->checkModelName( $context->getTitle()->getModelName() );
@@ -355,24 +263,15 @@ abstract class ContentHandler {
      * @param $rcid Integer ??? FIXME (default 0)
      * @param $refreshCache boolean If set, refreshes the diff cache
      * @param $unhide boolean If set, allow viewing deleted revs
-<<<<<<< Updated upstream
-=======
 	 *
 	 * @return DifferenceEngine
->>>>>>> Stashed changes
      */
     public function getDifferenceEngine( IContextSource $context, $old = 0, $new = 0, $rcid = 0, #FIMXE: use everywhere!
                                          $refreshCache = false, $unhide = false ) {
 
         $this->checkModelName( $context->getTitle()->getModelName() );
 
-<<<<<<< Updated upstream
-        $de = new DifferenceEngine( $context, $old, $new, $rcid, $refreshCache, $unhide );
-
-        return $de;
-=======
         return new DifferenceEngine( $context, $old, $new, $rcid, $refreshCache, $unhide );
->>>>>>> Stashed changes
     }
 
     /**
@@ -402,15 +301,10 @@ abstract class ContentHandler {
     public function getAutosummary( Content $oldContent = null, Content $newContent = null, $flags ) {
         global $wgContLang;
 
-<<<<<<< Updated upstream
-        # Decide what kind of autosummary is needed.
-
-        # Redirect autosummaries
-=======
         // Decide what kind of autosummary is needed.
 
         // Redirect autosummaries
->>>>>>> Stashed changes
+
         $ot = !empty( $ot ) ? $oldContent->getRedirectTarget() : false;
         $rt = !empty( $rt ) ? $newContent->getRedirectTarget() : false;
 
@@ -424,15 +318,9 @@ abstract class ContentHandler {
             return wfMsgForContent( 'autoredircomment', $rt->getFullText(), $truncatedtext );
         }
 
-<<<<<<< Updated upstream
-        # New page autosummaries
-        if ( $flags & EDIT_NEW && $newContent->getSize() > 0 ) {
-            # If they're making a new article, give its text, truncated, in the summary.
-=======
         // New page autosummaries
         if ( $flags & EDIT_NEW && $newContent->getSize() > 0 ) {
             // If they're making a new article, give its text, truncated, in the summary.
->>>>>>> Stashed changes
 
             $truncatedtext = $newContent->getTextForSummary(
                 200 - strlen( wfMsgForContent( 'autosumm-new' ) ) );
@@ -440,19 +328,11 @@ abstract class ContentHandler {
             return wfMsgForContent( 'autosumm-new', $truncatedtext );
         }
 
-<<<<<<< Updated upstream
-        # Blanking autosummaries
-        if ( $oldContent->getSize() > 0 && $newContent->getSize() == 0 ) {
-            return wfMsgForContent( 'autosumm-blank' );
-        } elseif ( $oldContent->getSize() > 10 * $newContent->getSize() && $newContent->getSize() < 500 ) {
-            # Removing more than 90% of the article
-=======
         // Blanking autosummaries
         if ( $oldContent->getSize() > 0 && $newContent->getSize() == 0 ) {
             return wfMsgForContent( 'autosumm-blank' );
         } elseif ( $oldContent->getSize() > 10 * $newContent->getSize() && $newContent->getSize() < 500 ) {
             // Removing more than 90% of the article
->>>>>>> Stashed changes
 
             $truncatedtext = $newContent->getTextForSummary(
                 200 - strlen( wfMsgForContent( 'autosumm-replace' ) ) );
@@ -460,13 +340,9 @@ abstract class ContentHandler {
             return wfMsgForContent( 'autosumm-replace', $truncatedtext );
         }
 
-<<<<<<< Updated upstream
-        # If we reach this point, there's no applicable autosummary for our case, so our
-        # autosummary is empty.
-=======
         // If we reach this point, there's no applicable autosummary for our case, so our
         // autosummary is empty.
->>>>>>> Stashed changes
+
         return '';
     }
 
@@ -479,8 +355,6 @@ abstract class ContentHandler {
      *    if no revision occurred
      */
     public function getAutoDeleteReason( Title $title, &$hasHistory ) {
-        global $wgContLang;
-
         $dbw = wfGetDB( DB_MASTER );
 
         // Get the last revision
@@ -580,11 +454,7 @@ abstract class ContentHandler {
         $undoafter_content = $undoafter->getContent();
 
         if ( $cur_content->equals( $undo_content ) ) {
-<<<<<<< Updated upstream
-            # No use doing a merge if it's just a straight revert.
-=======
             // No use doing a merge if it's just a straight revert.
->>>>>>> Stashed changes
             return $undoafter_content;
         }
 
@@ -629,10 +499,6 @@ abstract class TextContentHandler extends ContentHandler {
 
         $ok = wfMerge( $old, $mine, $yours, $result );
 
-<<<<<<< Updated upstream
-        if ( !$ok ) return false;
-        if ( !$result ) return $this->emptyContent();
-=======
         if ( !$ok ) {
 			return false;
 		}
@@ -640,7 +506,6 @@ abstract class TextContentHandler extends ContentHandler {
         if ( !$result ) {
 			return $this->emptyContent();
 		}
->>>>>>> Stashed changes
 
         $mergedContent = $this->unserialize( $result, $format );
         return $mergedContent;
@@ -661,11 +526,7 @@ class WikitextContentHandler extends TextContentHandler {
     }
 
     public function emptyContent() {
-<<<<<<< Updated upstream
-        return new WikitextContent( "" );
-=======
         return new WikitextContent( '' );
->>>>>>> Stashed changes
     }
 
 
@@ -684,11 +545,7 @@ class JavaScriptContentHandler extends TextContentHandler {
     }
 
     public function emptyContent() {
-<<<<<<< Updated upstream
-        return new JavaScriptContent( "" );
-=======
         return new JavaScriptContent( '' );
->>>>>>> Stashed changes
     }
 }
 
@@ -703,11 +560,7 @@ class CssContentHandler extends TextContentHandler {
     }
 
     public function emptyContent() {
-<<<<<<< Updated upstream
-        return new CssContent( "" );
-=======
         return new CssContent( '' );
->>>>>>> Stashed changes
     }
 
 }

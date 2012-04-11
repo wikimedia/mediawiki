@@ -38,7 +38,12 @@ class Article extends Page {
 	public $mParserOptions;
 
 	var $mContent;                    // !< #BC cruft
-	var $mContentObject;              // !<
+
+	/**
+	 * @var Content
+	 */
+	var $mContentObject;
+
 	var $mContentLoaded = false;      // !<
 	var $mOldId;                      // !<
 
@@ -190,8 +195,9 @@ class Article extends Page {
 	 * This function has side effects! Do not use this function if you
 	 * only want the real revision text if any.
 	 *
-	 * @return Return the text of this revision
 	 * @deprecated in 1.20; use getContentObject() instead
+	 *
+	 * @return string The text of this revision
 	 */
 	public function getContent() {
 		wfDeprecated( __METHOD__, '1.20' );
@@ -207,7 +213,7 @@ class Article extends Page {
 	 * This function has side effects! Do not use this function if you
 	 * only want the real revision text if any.
 	 *
-	 * @return Return the content of this revision
+	 * @return Content
 	 */
    public function getContentObject() {
 		global $wgUser;
@@ -338,8 +344,9 @@ class Article extends Page {
 	/**
 	 * Get text content object
 	 * Does *NOT* follow redirects.
+	 * TODO: when is this null?
 	 *
-	 * @return Content object containing article contents, or null
+	 * @return Content|null
 	 */
 	protected function fetchContentObject() {
 		if ( $this->mContentLoaded ) {
