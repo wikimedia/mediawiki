@@ -47,6 +47,9 @@ class SwiftFileBackend extends FileBackendStore {
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );
+		if ( !MWInit::classExists( 'CF_Constants' ) ) {
+			throw new MWException( 'SwiftCloudFiles extension not installed.' );
+		}
 		// Required settings
 		$this->auth = new CF_Authentication(
 			$config['swiftUser'],
@@ -150,8 +153,12 @@ class SwiftFileBackend extends FileBackendStore {
 			$obj->set_etag( md5( $params['content'] ) );
 			// Use the same content type as StreamFile for security
 			$obj->content_type = StreamFile::contentTypeFromPath( $params['dst'] );
-			// Actually write the object in Swift
-			$obj->write( $params['content'] );
+			if ( !empty( $params['async'] ) ) { // deferred
+				$handle = $obj->write_async( $params['content'] );
+				$status->value = new SwiftFileOpHandle( $this, $params, 'Create', $handle );
+			} else { // actually write the object in Swift
+				$obj->write( $params['content'] );
+			}
 		} catch ( BadContentTypeException $e ) {
 			$status->fatal( 'backend-fail-contenttype', $params['dst'] );
 		} catch ( InvalidResponseException $e ) {
@@ -162,6 +169,17 @@ class SwiftFileBackend extends FileBackendStore {
 		}
 
 		return $status;
+	}
+
+	/**
+	 * @see SwiftFileBackend::doExecuteOpHandlesInternal()
+	 */
+	protected function _getResponseCreate( CF_Async_Op $cfOp, Status $status, array $params ) {
+		try {
+			$cfOp->getLastResponse();
+		} catch ( BadContentTypeException $e ) {
+			$status->fatal( 'backend-fail-contenttype', $params['dst'] );
+		}
 	}
 
 	/**
@@ -217,8 +235,20 @@ class SwiftFileBackend extends FileBackendStore {
 			$obj->set_etag( md5_file( $params['src'] ) );
 			// Use the same content type as StreamFile for security
 			$obj->content_type = StreamFile::contentTypeFromPath( $params['dst'] );
-			// Actually write the object in Swift
-			$obj->load_from_filename( $params['src'], True ); // calls $obj->write()
+			if ( !empty( $params['async'] ) ) { // deferred
+				wfSuppressWarnings();
+				$fp = fopen( $params['src'], 'rb' );
+				wfRestoreWarnings();
+				if ( !$fp ) {
+					$status->fatal( 'backend-fail-copy', $params['src'], $params['dst'] );
+				} else {
+					$handle = $obj->write_async( $fp, filesize( $params['src'] ), True );
+					$status->value = new SwiftFileOpHandle( $this, $params, 'Store', $handle );
+					$status->value->registerResources( $fp );
+				}
+			} else { // actually write the object in Swift
+				$obj->load_from_filename( $params['src'], True ); // calls $obj->write()
+			}
 		} catch ( BadContentTypeException $e ) {
 			$status->fatal( 'backend-fail-contenttype', $params['dst'] );
 		} catch ( IOException $e ) {
@@ -231,6 +261,19 @@ class SwiftFileBackend extends FileBackendStore {
 		}
 
 		return $status;
+	}
+
+	/**
+	 * @see SwiftFileBackend::doExecuteOpHandlesInternal()
+	 */
+	protected function _getResponseStore( CF_Async_Op $cfOp, Status $status, array $params ) {
+		try {
+			$cfOp->getLastResponse();
+		} catch ( BadContentTypeException $e ) {
+			$status->fatal( 'backend-fail-contenttype', $params['dst'] );
+		} catch ( IOException $e ) {
+			$status->fatal( 'backend-fail-copy', $params['src'], $params['dst'] );
+		}
 	}
 
 	/**
@@ -276,7 +319,12 @@ class SwiftFileBackend extends FileBackendStore {
 
 		// (b) Actually copy the file to the destination
 		try {
-			$sContObj->copy_object_to( $srcRel, $dContObj, $dstRel );
+			if ( !empty( $params['async'] ) ) { // deferred
+				$handle = $sContObj->copy_object_to_async( $srcRel, $dContObj, $dstRel );
+				$status->value = new SwiftFileOpHandle( $this, $params, 'Copy', $handle );
+			} else { // actually write the object in Swift
+				$sContObj->copy_object_to( $srcRel, $dContObj, $dstRel );
+			}
 		} catch ( NoSuchObjectException $e ) { // source object does not exist
 			$status->fatal( 'backend-fail-copy', $params['src'], $params['dst'] );
 		} catch ( InvalidResponseException $e ) {
@@ -287,6 +335,89 @@ class SwiftFileBackend extends FileBackendStore {
 		}
 
 		return $status;
+	}
+
+	/**
+	 * @see SwiftFileBackend::doExecuteOpHandlesInternal()
+	 */
+	protected function _getResponseCopy( CF_Async_Op $cfOp, Status $status, array $params ) {
+		try {
+			$cfOp->getLastResponse();
+		} catch ( NoSuchObjectException $e ) { // source object does not exist
+			$status->fatal( 'backend-fail-copy', $params['src'], $params['dst'] );
+		}
+	}
+
+	/**
+	 * @see FileBackendStore::doMoveInternal()
+	 * @return Status
+	 */
+	protected function doMoveInternal( array $params ) {
+		$status = Status::newGood();
+
+		list( $srcCont, $srcRel ) = $this->resolveStoragePathReal( $params['src'] );
+		if ( $srcRel === null ) {
+			$status->fatal( 'backend-fail-invalidpath', $params['src'] );
+			return $status;
+		}
+
+		list( $dstCont, $dstRel ) = $this->resolveStoragePathReal( $params['dst'] );
+		if ( $dstRel === null ) {
+			$status->fatal( 'backend-fail-invalidpath', $params['dst'] );
+			return $status;
+		}
+
+		// (a) Check the source/destination containers and destination object
+		try {
+			$sContObj = $this->getContainer( $srcCont );
+			$dContObj = $this->getContainer( $dstCont );
+			if ( empty( $params['overwrite'] ) &&
+				$this->fileExists( array( 'src' => $params['dst'], 'latest' => 1 ) ) )
+			{
+				$status->fatal( 'backend-fail-alreadyexists', $params['dst'] );
+				return $status;
+			}
+		} catch ( NoSuchContainerException $e ) {
+			$status->fatal( 'backend-fail-move', $params['src'], $params['dst'] );
+			return $status;
+		} catch ( InvalidResponseException $e ) {
+			$status->fatal( 'backend-fail-connect', $this->name );
+			return $status;
+		} catch ( Exception $e ) { // some other exception?
+			$status->fatal( 'backend-fail-internal', $this->name );
+			$this->logException( $e, __METHOD__, $params );
+			return $status;
+		}
+
+		// (b) Actually move the file to the destination
+		try {
+			if ( !empty( $params['async'] ) ) { // deferred
+				$handle = $sContObj->move_object_to_async( $srcRel, $dContObj, $dstRel );
+				$status->value = new SwiftFileOpHandle( $this, $params, 'Move', $handle );
+			} else { // actually write the object in Swift
+				$sContObj->move_object_to( $srcRel, $dContObj, $dstRel );
+			}
+		} catch ( NoSuchObjectException $e ) { // source object does not exist
+			$status->fatal( 'backend-fail-move', $params['src'], $params['dst'] );
+		} catch ( InvalidResponseException $e ) {
+			$status->fatal( 'backend-fail-connect', $this->name );
+		} catch ( Exception $e ) { // some other exception?
+			$status->fatal( 'backend-fail-internal', $this->name );
+			$this->logException( $e, __METHOD__, $params );
+		}
+
+		return $status;
+	}
+
+	/**
+	 * @see SwiftFileBackend::doExecuteOpHandlesInternal()
+	 */
+	protected function _getResponseMove( CF_Async_Op $cfOp, Status $status, array $params ) {
+		try {
+			$cfOp->getLastResponse();
+		} catch ( NoSuchObjectException $e ) { // source object does not exist
+			$status->fatal( 'backend-fail-move', $params['src'], $params['dst'] );
+		}
 	}
 
 	/**
@@ -304,7 +435,12 @@ class SwiftFileBackend extends FileBackendStore {
 
 		try {
 			$sContObj = $this->getContainer( $srcCont );
-			$sContObj->delete_object( $srcRel );
+			if ( !empty( $params['async'] ) ) { // deferred
+				$handle = $sContObj->delete_object_async( $srcRel );
+				$status->value = new SwiftFileOpHandle( $this, $params, 'Delete', $handle );
+			} else { // actually write the object in Swift
+				$sContObj->delete_object( $srcRel );
+			}
 		} catch ( NoSuchContainerException $e ) {
 			$status->fatal( 'backend-fail-delete', $params['src'] );
 		} catch ( NoSuchObjectException $e ) {
@@ -319,6 +455,21 @@ class SwiftFileBackend extends FileBackendStore {
 		}
 
 		return $status;
+	}
+
+	/**
+	 * @see SwiftFileBackend::doExecuteOpHandlesInternal()
+	 */
+	protected function _getResponseDelete( CF_Async_Op $cfOp, Status $status, array $params ) {
+		try {
+			$cfOp->getLastResponse();
+		} catch ( NoSuchContainerException $e ) {
+			$status->fatal( 'backend-fail-delete', $params['src'] );
+		} catch ( NoSuchObjectException $e ) {
+			if ( empty( $params['ignoreMissingSource'] ) ) {
+				$status->fatal( 'backend-fail-delete', $params['src'] );
+			}
+		}
 	}
 
 	/**
@@ -797,6 +948,41 @@ class SwiftFileBackend extends FileBackendStore {
 	}
 
 	/**
+	 * @see FileBackendStore::doExecuteOpHandlesInternal()
+	 * @return Array List of corresponding Status objects
+	 */
+	protected function doExecuteOpHandlesInternal( array $fileOpHandles ) {
+		$statuses = array();
+
+		$cfOps = array(); // list of CF_Async_Op objects
+		foreach ( $fileOpHandles as $index => $fileOpHandle ) {
+			$cfOps[$index] = $fileOpHandle->cfOp;
+		}
+		$batch = new CF_Async_Op_Batch( $cfOps );
+
+		$cfOps = $batch->execute();
+		foreach ( $cfOps as $index => $cfOp ) {
+			$status = Status::newGood();
+			try { // catch exceptions; update status
+				$function = '_getResponse' . $fileOpHandles[$index]->call;
+				$this->$function( $cfOp, $status, $fileOpHandles[$index]->params );
+			} catch ( InvalidResponseException $e ) {
+				$status->fatal( 'backend-fail-connect', $this->name );
+			} catch ( Exception $e ) { // some other exception?
+				$status->fatal( 'backend-fail-internal', $this->name );
+				$this->logException( $e, __METHOD__, $fileOpHandles[$index]->params );
+			}
+			$statuses[$index] = $status;
+		}
+
+		foreach ( $fileOpHandles as $fileOpHandle ) {
+			$fileOpHandle->closeResources();
+		}
+
+		return $statuses;
+	}
+
+	/**
 	 * Set read/write permissions for a Swift container
 	 *
 	 * @param $contObj CF_Container Swift container
@@ -959,6 +1145,18 @@ class SwiftFileBackend extends FileBackendStore {
 				: ""
 			)
 		);
+	}
+}
+
+class SwiftFileOpHandle extends FileOpHandle {
+	/** @var CF_Async_Op */
+	public $cfOp;
+
+	public function __construct( $backend, array $params, $call, CF_Async_Op $cfOp ) {
+		$this->backend = $backend;
+		$this->params = $params;
+		$this->call = $call;
+		$this->cfOp = $cfOp;
 	}
 }
 

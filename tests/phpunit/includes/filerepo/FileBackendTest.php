@@ -35,6 +35,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			$this->singleBackend = new FSFileBackend( array(
 				'name'        => 'localtesting',
 				'lockManager' => 'fsLockManager',
+				#'parallelize' => 'implicit',
 				'containerPaths' => array(
 					'unittest-cont1' => "{$tmpPrefix}-localtesting-cont1",
 					'unittest-cont2' => "{$tmpPrefix}-localtesting-cont2" )
@@ -43,6 +44,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->multiBackend = new FileBackendMultiWrite( array(
 			'name'        => 'localtesting',
 			'lockManager' => 'fsLockManager',
+			'parallelize' => 'implicit',
 			'backends'    => array(
 				array(
 					'name'          => 'localmutlitesting1',
@@ -1117,6 +1119,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->backend->create( array( 'dst' => $fileB, 'content' => $fileBContents ) );
 		$this->prepare( array( 'dir' => dirname( $fileC ) ) );
 		$this->backend->create( array( 'dst' => $fileC, 'content' => $fileCContents ) );
+		$this->prepare( array( 'dir' => dirname( $fileD ) ) );
 
 		$status = $this->backend->doOperations( array(
 			array( 'op' => 'copy', 'src' => $fileA, 'dst' => $fileC, 'overwrite' => 1 ),
