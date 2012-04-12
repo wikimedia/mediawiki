@@ -1002,6 +1002,7 @@ Please report at [[Support]] if you are unable to properly translate this messag
 'recreate-moveddeleted-warn' => 'Warning shown when creating a page which has already been deleted. See for example [[Test]].',
 'moveddeleted-notice' => 'Shown on top of a deleted page in normal view modus ([http://translatewiki.net/wiki/Test example]).',
 'edit-conflict' => "An 'Edit conflict' happens when more than one edit is being made to a page at the same time. This would usually be caused by separate individuals working on the same page. However, if the system is slow, several edits from one individual could back up and attempt to apply simultaneously - causing the conflict.",
+'defaultmessagetext' => 'Caption above the default message text shown on the left-hand side of a diff displayed after clicking “Show changes” when creating a new page in the MediaWiki: namespace',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'On some (expensive) [[MetaWikipedia:Help:ParserFunctions|parser functions]] (e.g. <code><nowiki>{{#ifexist:}}</nowiki></code>) there is a limit of how many times it may be used. This is an error message shown when the limit is exceeded.
@@ -1932,6 +1933,7 @@ Extensions making use of it:
 'backend-fail-contenttype' => '$1 is a storage (file) path',
 'backend-fail-batchsize' => 'Error message when the limit of 1000 operations in the file backend was reached.',
 
+# File journal errors
 'filejournal-fail-dbconnect' => '"Journal database" probably as described in [[w:en:Transaction_log|this article]].',
 
 # Lock manager

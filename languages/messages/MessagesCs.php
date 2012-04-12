@@ -1098,6 +1098,7 @@ Zřejmě byla smazána.',
 'edit-conflict' => 'Editační konflikt.',
 'edit-no-change' => 'Vaše editace byla ignorována, protože nedošlo k žádné změně textu.',
 'edit-already-exists' => 'Nepodařilo se vytvořit novou stránku, protože již existuje.',
+'defaultmessagetext' => 'Výchozí text hlášení',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Varování: Tato stránka obsahuje příliš mnoho volání výkonnostně náročných funkcí parseru.
@@ -1854,6 +1855,7 @@ Kontaktuje prosím [[Special:ListUsers/sysop|správce]].',
 'backend-fail-contenttype' => 'Nelze určit typ obsahu souboru k uložení do „$1“.',
 'backend-fail-batchsize' => 'Koncový úložný systém přijal dávku s $1 {{PLURAL:souborovou operací|souborovými operacemi}}; maximum je {{PLURAL:$2|$2}}.',
 
+# File journal errors
 'filejournal-fail-dbconnect' => 'Nelze se připojit k žurnálové databázi pro koncový úložný systém „$1“.',
 'filejournal-fail-dbquery' => 'Nepodařilo se aktualizovat žurnálovou databázi pro koncový úložný systém „$1“.',
 

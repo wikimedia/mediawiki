@@ -850,6 +850,7 @@ D'Ännerung gouf refuséiert, fir ze verhënneren datt den Text op der Säit onl
 Dëst geschitt heiandsdo wann Dir en anonyme Proxy-Service um Internet benotzt.",
 'edit_form_incomplete' => "'''En Deel vum Ännerungsformulaire koum net um Server un; iwwerpréift w.e.g ob Är Ännerunge komplett sinn a probéiert nach emol.'''",
 'editing' => 'Ännere vu(n) $1',
+'creating' => '$1 gëtt ugeluecht',
 'editingsection' => 'Ännere vu(n) $1 (Abschnitt)',
 'editingcomment' => 'Ännere vu(n) $1 (neien Abschnitt)',
 'editconflict' => 'Ännerungskonflikt: $1',
@@ -905,6 +906,7 @@ Si gouf anscheinend geläscht.",
 'edit-conflict' => 'Ännerungskonflikt.',
 'edit-no-change' => 'Är ännerung gouf ignoréiert, well Dir näischt um Text geännert hutt.',
 'edit-already-exists' => 'Déi nei Säit konnt net ugeluecht ginn, well et se scho gëtt.',
+'defaultmessagetext' => 'Standardtext',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''Opgepasst:'' Dës Säit huet ze vill Ufroe vu komplexe Parserfunktiounen.

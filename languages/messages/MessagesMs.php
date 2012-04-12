@@ -1699,6 +1699,7 @@ Sila hubungi [[Special:ListUsers/sysop|pentadbir sistem]].',
 'backend-fail-contenttype' => 'Jenis kandungan fail untuk disimpan di "$1" tidak dapat ditentukan.',
 'backend-fail-batchsize' => 'Backend storan diberi $1 operasi fail dalam satu kelompok; hadnya ialah $2 operasi.',
 
+# File journal errors
 'filejournal-fail-dbconnect' => 'Tidak dapat bersambung dengan pangkalan data jurnal untuk backend storan "$1".',
 'filejournal-fail-dbquery' => 'Pangkalan data jurnal untuk backend storan "$1" tidak dapat dikemaskinikan.',
 

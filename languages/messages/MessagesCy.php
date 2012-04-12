@@ -502,7 +502,7 @@ $2",
 Rhoddwyd y rheswm hwn - ''$2''.",
 'filereadonlyerror' => 'Nid oes modd newid y ffeil "$1" oherwydd nad oes modd gwneud dim heblaw darllen storfa\'r ffeil yn "$2" yn unig.
 
-Y rheswm a roddir dros hyn yw "\'\'$3\'\'".',
+Y rheswm a roddwyd gan y gweinyddwr a roddodd y ffeil dan glo yw "\'\'$3\'\'".',
 
 # Virus scanner
 'virus-badscanner' => "Cyfluniad gwael: sganiwr firysau anhysbys: ''$1''",
@@ -853,6 +853,7 @@ Ymddengys iddi gael ei dileu.",
 'edit-no-change' => 'Anwybyddwyd eich golygiad, gan na newidiwyd y testun.',
 'edit-already-exists' => 'Ni ellid creu tudalen newydd.
 Mae ar gael yn barod.',
+'defaultmessagetext' => 'Y testun rhagosodedig',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''Rhybudd:''' Mae gormod o alwadau ar ffwythiannau dosrannu sy'n dreth ar adnoddau yn y dudalen hon.
@@ -1605,6 +1606,7 @@ Os yw'r broblem yn parhau, cysylltwch â [[Special:ListUsers/sysop|gweinyddwr]].
 'backend-fail-contenttype' => 'Methwyd a dirnad pa fath o gynnwys sydd yn y ffeil y ceisir ei storio yn "$1".',
 'backend-fail-batchsize' => "Rhoddwyd llwyth o {{PLURAL:$1|$1 o weithrediadau}} ffeil i'w gwneud i'r storfa; ni all nifer y {{PLURAL:$2|gweithrediadau}} fod yn fwy na $2.",
 
+# File journal errors
 'filejournal-fail-dbconnect' => 'Methwyd cysylltu â lòg y gweithrediadau ar y storfa "$1".',
 'filejournal-fail-dbquery' => 'Methwyd diweddaru lòg y gweithrediadau ar y storfa "$1".',
 

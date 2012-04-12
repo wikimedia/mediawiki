@@ -933,6 +933,7 @@ Den ser du til at være slettet.',
 'edit-conflict' => 'Redigeringskonflikt.',
 'edit-no-change' => 'Din ændring ignoreredes, fordi der ikke var ændring af teksten.',
 'edit-already-exists' => 'En ny side kunne ikke oprettes, fordi den allerede findes.',
+'defaultmessagetext' => 'Standardtekst',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Advarsel: Der er for mange beregningstunge oversætter-funktionskald på denne side.

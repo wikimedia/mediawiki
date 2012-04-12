@@ -689,9 +689,9 @@ $2',
 'ns-specialprotected' => 'Paginile din spațiul de nume {{ns:special}} nu pot fi editate.',
 'titleprotected' => "Acest titlu a fos protejat la creare de [[User:$1|$1]].
 Motivul invocat este ''$2''.",
-'filereadonlyerror' => "Imposibil de modificat fișierul „$1”, deoarece depozitul de fișiere „$2” este în modul „doar citire”.
+'filereadonlyerror' => 'Imposibil de modificat fișierul „$1”, deoarece depozitul de fișiere „$2” este în modul „doar citire”.
 
-Motivul furnizat este „''$3''”.",
+Administratorul care a efectuat blocarea a furnizat explicația: „$3”.',
 
 # Virus scanner
 'virus-badscanner' => "Configurație greșită: scaner de virus necunoscut: ''$1''",
@@ -1061,6 +1061,7 @@ Se pare că a fost ștearsă.',
 'edit-no-change' => 'Modificarea dvs. a fost ignorată deoarece nu s-a efectuat nicio schimbare.',
 'edit-already-exists' => 'Pagina nouă nu a putut fi creată.
 Ea există deja.',
+'defaultmessagetext' => 'Textul implicit',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Atenție: Această pagină conține prea multe apelări costisitoare ale funcțiilor parser.

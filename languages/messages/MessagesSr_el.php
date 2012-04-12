@@ -1870,6 +1870,7 @@ Ako se problem ne reši, kontaktirajte [[Special:ListUsers/sysop|administratora]
 'backend-fail-contenttype' => 'Ne mogu da utvrdim kakav sadržaj ima datoteka koju treba da smestim u „$1“.',
 'backend-fail-batchsize' => 'Skladišna osnova je dobila blokadu od $1 {{PLURAL:$1|operacije|operacije|operacija}}; ograničenje je $2 {{PLURAL:$2|operacija|operacije|operacija}}.',
 
+# File journal errors
 'filejournal-fail-dbconnect' => 'Ne mogu da se povežem s novinarskom bazom za skladišnu osnovu „$1“.',
 'filejournal-fail-dbquery' => 'Ne mogu da ažuriram novinarsku bazu za skladišnu osnovu „$1“.',
 

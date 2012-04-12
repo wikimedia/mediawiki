@@ -1635,6 +1635,7 @@ $1',
 'backend-fail-contenttype' => 'Wopśimjeśowy typ dataje, kótaraž ma se na "$1" składowaś, njedajo se zwěsćiś.',
 'backend-fail-batchsize' => 'Štapjelowa dataja, kótaraž wopśimujo {{PLURAL:$1|jadnu operaciju|$1 operaciji|$1 operacije|$1 operacijow}},  jo se  na składowański backend pósłała; limit jo $2 {{PLURAL:$1|operaciju|operaciji|operacije|operacijow}}.',
 
+# File journal errors
 'filejournal-fail-dbconnect' => 'Njejo žeden zwisk ze žurnaloweju datoweju banku za składowański backend "$1" móžno.',
 'filejournal-fail-dbquery' => 'Žurnalowa datowa banka za składowański backend "$1" njedajo se aktualizěrowaś.',
 

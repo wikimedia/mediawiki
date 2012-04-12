@@ -549,6 +549,12 @@ $2
 
 {{PLURAL:$3|Ii temporary password|Ii sab temporary passwords}}  {{PLURAL:$5|ek din|$5 din}} me khalaas hoi.
 Aap ke chaahi ki aap login kar ke ek nawaa password banao.  Agar aur koi ii request karis hae, nai to agae aap aapan purana paasword ke yaad kar liya hae, tab ii sandes ke baare me bhuul jaao aur purana password use karte raho.',
+'passwordreset-emailtext-user' => '
+Sadasya $1 {{SITENAME}} pe aap ke account details ke {{SITENAME}} $4 ke khaatir  reminder maagis hae
+ NIche ke sadasya {{PLURAL:$3|account hae|accounts hae}} ii e-mail address: $2 se associatied hae
+
+{{PLURAL:$3|Ii temporary password|Ii sab temporary passwords}}  {{PLURAL:$5|ek din|$5 din}} me khalaas hoi.
+Aap ke chaahi ki aap login kar ke ek nawaa password banao.  Agar aur koi ii request karis hae, nai to agae aap aapan purana paasword ke yaad kar liya hae, tab ii sandes ke baare me bhuul jaao aur purana password use karte raho.',
 'passwordreset-emailelement' => 'Sadasya ke naam: $1
 Kuchh din ke khatir password: $2',
 'passwordreset-emailsent' => 'Aap ke yaad karae ke khatir ek e-mail ke bhej dewa gais hae.',
@@ -687,7 +693,7 @@ Iske abhi save nai karaa gais hai!'''",
 Yaad rakhna ki custom .css aur .js panna owercase title use kare hai, jaise ki {{ns:user}}:Foo/vector.css aur{{ns:user}}:Foo/Vector.css nai.",
 'updated' => '(Update kar dewa gais hai)',
 'note' => "'''Dhyan rakkho:'''",
-'previewnote' => "'''Ii khali ek jhalak dekhae hai'''
+'previewnote' => "'''Ii khaali ek jhalak dekhae hai'''
 Tumar badlao abhi save nai bhais hai!",
 'previewconflict' => 'Ii preview uu text dekhae hai jon ki uppar ke text editing area me dekhai agar aap iske save karaa.',
 'session_fail_preview' => "''' Maaf karna! Ham log aap ke badlao ke process nai kare paya hai due to a loss of session data.
@@ -1466,6 +1472,8 @@ Agar jo aap fir bhi aapan file upload kare manta hai tab pichhe jaae ke nawaa na
 'php-uploaddisabledtext' => 'File uploads ke PHP me disable kar dewa gais hai. Meharbani kar ke file_uploads setting ke check karo.',
 'uploadscripted' => 'Ii file me HTML nai to script code hai jiske web browser erroneously interpret kare sake hai.',
 'uploadvirus' => 'Ii file me virus hai! Details: $1',
+'uploadjava' => 'Ii file ek ZIP file hae jisme Java .class ke file hae.
+Java ke uplaod kare ke anumati nai hae, kaaheki isse kuchh security restrictions ke bypass karaa jaae sake hae.',
 'upload-source' => 'Suruu waala file',
 'sourcefilename' => 'Suruu waala file ke naam:',
 'sourceurl' => 'Suruu waala URL',
@@ -1509,6 +1517,19 @@ Agar jo problem fir nai khatam hoe tab [[Special:ListUsers/sysop|administrator]]
 'backend-fail-invalidpath' => '$1, valid storage path nai hae.',
 'backend-fail-delete' => 'File $1 ke nai mitae sakaa hae.',
 'backend-fail-alreadyexists' => '$1 naam ke ek file abhi hae.',
+'backend-fail-store' => '$2 pe file $1 ke nai bachae sakaa hae.',
+'backend-fail-copy' => 'File $1 ke $2 me nai copy kare sakaa hae',
+'backend-fail-move' => 'File $1 ke hatae ke $2 nai kare sakaa hae.',
+'backend-fail-opentemp' => 'Temporary file ke nai khole sakaa hae.',
+'backend-fail-writetemp' => 'Temporary file me nai likhe sakaa hae.',
+'backend-fail-closetemp' => 'Temporary file ke nai band kare sakaa hae.',
+'backend-fail-read' => 'File $1 ke nai parrhe sakaa hae.',
+'backend-fail-create' => 'File $1 ke nai banae sakaa hae.',
+'backend-fail-readonly' => 'Storage backend "$1" abhi khaali read-only hae. Iske kaaran hae: "$2"',
+'backend-fail-synced' => 'File "$1" internal storage backends me ek inconsistent state me hae',
+'backend-fail-connect' => 'Storage backend "$1" se connect nai kare sakaa hae.',
+'backend-fail-internal' => 'Storage backend "$1" me ek unknown error hoe gais hae.',
+'backend-fail-contenttype' => 'Ii nai pataa lagae sakaa hae ki "$1" me bachae ke khaatir file kon rakam ke hae.',
 
 # Special:UploadStash
 'uploadstash' => 'Gupt file ke upload karo',
@@ -2779,6 +2800,8 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'exif-subjectarea' => 'Vishay ke jagha',
 'exif-flashenergy' => 'Chamak ke taagat',
 'exif-focalplanexresolution' => 'Focal plane X resolution',
+'exif-focalplaneyresolution' => 'Focal plane Y ke resolution',
+'exif-subjectlocation' => 'Subject ke location',
 'exif-filesource' => 'File ke source',
 'exif-scenetype' => 'Kon rakam ke scene hae',
 'exif-gpsaltitude' => 'Uunchai',
@@ -2791,9 +2814,9 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'exif-orientation-3' => '180° ghumawa gais hae',
 'exif-orientation-4' => 'Khrraa ultawa gais hae',
 'exif-orientation-5' => '90° CCW ghumawa aur kharraa ultawa gais hae',
-'exif-orientation-6' => '90° CW ghumawa gais hae',
+'exif-orientation-6' => '90° CCW ghumawa gais hae',
 'exif-orientation-7' => '90° CW ghumawa aur kharraa ultawa gais hae',
-'exif-orientation-8' => '90° CCW ghumawa gais hae',
+'exif-orientation-8' => '90° CW ghumawa gais hae',
 
 'exif-meteringmode-0' => 'Nai maluum',
 'exif-meteringmode-6' => 'Puura nai',

@@ -667,6 +667,9 @@ $2',
 'customjsprotected' => 'Sul pole õigust seda JavaScripti lehekülge redigeerida, sest see sisaldab teise kasutaja isiklikke sätteid.',
 'ns-specialprotected' => 'Erilehekülgi ei saa redigeerida.',
 'titleprotected' => "Kasutaja [[User:$1|$1]] on selle pealkirjaga lehe loomise keelanud esitades järgmise põhjenduse: ''$2''.",
+'filereadonlyerror' => 'Faili "$1" ei saa muuta, sest hoidla "$2" on kirjutuskaitstud.
+
+Administraator lukustas selle järgmisel põhjusel: "$3".',
 
 # Virus scanner
 'virus-badscanner' => "Viga konfiguratsioonis: tundmatu viirusetõrje: ''$1''",
@@ -753,6 +756,7 @@ Seetõttu ei saa seda IP-aadressi kasutades hetkel rohkem kontosid luua.',
 'invalidemailaddress' => 'E-aadress ei ole aktsepteeritav, sest see on vigaselt kirjutatud.
 Ole hea ja anna õige e-aadress või jäta lahter tühjaks.',
 'cannotchangeemail' => 'Selles vikis ei saa konto e-posti aadressi muuta.',
+'emaildisabled' => 'Selle võrgukoha kaudu ei saa e-kirju saata.',
 'accountcreated' => 'Konto loodud',
 'accountcreatedtext' => 'Kasutajakonto kasutajatunnusele $1 loodud.',
 'createaccount-title' => '{{GRAMMAR:illative|{{SITENAME}}}} konto loomine',
@@ -964,6 +968,7 @@ Muudatus lükati tagasi, et vältida lehekülje segiminekut.
 See juhtub mõnikord siis, kui kasutatakse vigast veebipõhist anonüümsusserverit.",
 'edit_form_incomplete' => "'''Redigeerimisvormi mõni osa ei jõudnud serverisse; kontrolli, kas sinu tehtud muudatused on alles, ja proovi uuesti.'''",
 'editing' => 'Redigeerimisel on $1',
+'creating' => 'Alustamisel on $1',
 'editingsection' => 'Redigeerimisel on osa leheküljest $1',
 'editingcomment' => 'Muutmisel on $1 (uus alaosa)',
 'editconflict' => 'Redigeerimiskonflikt: $1',
@@ -1026,6 +1031,7 @@ Tundub, et see on kustutatud.',
 'edit-no-change' => 'Sinu redigeerimist ignoreeriti, sest tekstile ei olnud tehtud muudatusi.',
 'edit-already-exists' => 'Ei saanud alustada uut lehekülge.
 See on juba olemas.',
+'defaultmessagetext' => 'Sõnumi vaiketekst',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''Hoiatus:''' See lehekülg kasutab liialt palju aeglustavaid laiendusfunktsioone. Neid võiks kasutada vähem kui {{PLURAL:$2|ühel|$2}} korral, praegu on kasutatud {{PLURAL:$1|ühel|$1}} korral.",
@@ -1888,6 +1894,10 @@ Järgnevas loetelus on kuvatud ainult {{PLURAL:$1|esimene viitav lehekülg|esime
 'sharedupload' => 'See fail pärineb allikast $1 ning võib olla kasutusel ka teistes projektides.',
 'sharedupload-desc-there' => 'See fail pärineb kesksest failivaramust $1. Palun vaata [$2 faili kirjelduse lehekülge], et saada rohkem teavet.',
 'sharedupload-desc-here' => 'See on jagatud fail allikast $1 ja seda saab kasutada ka teistes projektides. Faili sealne [$2 kirjeldus] on kuvatud allpool.',
+'sharedupload-desc-edit' => 'See fail on pärit allikast $1 ja seda saab kasutada teistes projektides.
+Võib-olla tahad redigeerida selle faili [$2 sealset kirjelduslehekülge].',
+'sharedupload-desc-create' => 'See fail on pärit allikast $1 ja seda saab kasutada teistes projektides.
+Võib-olla tahad redigeerida selle faili [$2 sealset kirjelduslehekülge].',
 'filepage-nofile' => 'Sellenimelist faili ei ole.',
 'filepage-nofile-link' => 'Sellenimelist faili ei ole, kuid sa saad selle [$1 üles laadida].',
 'uploadnewversion-linktext' => 'Laadi üles selle faili uus versioon',
@@ -2099,6 +2109,7 @@ Valiku kitsendamiseks vali logitüüp, sisesta kasutajanimi (tõstutundlik) või
 'allpagesbadtitle' => 'Lehekülje pealkiri oli vigane või sisaldas teise viki või keele eesliidet.
 See võib sisaldada üht või enamat märki, mida ei saa pealkirjades kasutada.',
 'allpages-bad-ns' => '{{GRAMMAR:inessive|{{SITENAME}}}} ei ole nimeruumi "$1".',
+'allpages-hide-redirects' => 'Peida ümbersuunamised',
 
 # Special:Categories
 'categories' => 'Kategooriad',

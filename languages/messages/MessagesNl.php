@@ -1918,6 +1918,7 @@ Als het probleem aanhoudt, neem dan contact op met een [[Special:ListUsers/sysop
 'backend-fail-contenttype' => 'Kon het inhoudstype van het bestand om op "$1" op te slaan niet bepalen.',
 'backend-fail-batchsize' => 'Taak met $1 {{PLURAL:$1|bestandshandeling|bestandshandelingen}} in het opslagbackend; de limiet is $2 {{PLURAL:$2|handeling|handelingen}}.',
 
+# File journal errors
 'filejournal-fail-dbconnect' => 'Het was niet mogelijk een verbinding te maken met de journaldatabase voor het opslagbackend "$1".',
 'filejournal-fail-dbquery' => 'Het was niet mogelijk de journaldatabase bij te werken voor het opslagbackend "$1".',
 

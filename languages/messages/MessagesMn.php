@@ -1180,6 +1180,7 @@ $1 тэмдэгтээс богино байх ёстой.',
 
 # User preference: e-mail validation using jQuery
 'email-address-validity-valid' => 'Цахим шуудан хүчинтэй байна',
+'email-address-validity-invalid' => 'и-майл хаягаа зөв оруулна уу.',
 
 # User rights
 'userrights' => 'Хэрэглэгчдийн эрхийн удирдлага',

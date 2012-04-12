@@ -1980,7 +1980,7 @@ Tingueu en compte que altres llocs web poden enllaçar un fitxer amb un URL dire
 'log' => 'Registres',
 'all-logs-page' => 'Tots els registres públics',
 'alllogstext' => "Presentació combinada de tots els registres disponibles de {{SITENAME}}.
-Podeu reduir l'extensió seleccionant el tipus de registre, el nom del usuari (distingeix entre majúscules i minúscules), o la pàgina afectada (també en distingeix).",
+Podeu reduir l'extensió seleccionant el tipus de registre, el nom d'usuari realitzador (distingeix entre majúscules i minúscules), o la pàgina objectiu (també en distingeix).",
 'logempty' => 'No hi ha cap coincidència en el registre.',
 'log-title-wildcard' => 'Cerca els títols que comencin amb aquest text',
 

@@ -448,7 +448,7 @@ $2',
 El motivu conseñáu ye ''$2''.",
 'filereadonlyerror' => "Nun se pudo camudar el ficheru «$1» porque l'almacén de ficheros «$2» ta en mou de sólo llectura.
 
-El motivu dau ye «''$3''».",
+L'alministrador que lu bloquió dió esti motivu: «$3».",
 
 # Virus scanner
 'virus-badscanner' => "Error de configuración: escáner de virus desconocíu: ''$1''",
@@ -828,6 +828,7 @@ Paez que se desanició.',
 'edit-no-change' => "S'inoró la to edición, porque nun se fizo nengún cambéu nel testu.",
 'edit-already-exists' => 'Nun se pudo crear una páxina nueva.
 Yá esiste.',
+'defaultmessagetext' => 'Testu predetermináu',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''Avisu:''' Esta páxina contién demasiaes llamaes costoses a funciones d'análisis sintáuticu.
@@ -1602,6 +1603,7 @@ Si'l problema persiste, contauta con un [[Special:ListUsers/sysop|alministrador]
 'backend-fail-contenttype' => 'Non se pudo determinar la triba de conteníu de ficheru a guardar en "$1".',
 'backend-fail-batchsize' => "El motor d'almacenamientu dio un llote de $1 {{PLURAL:$1|operación|operaciones}} en ficheros; el llímite ye de $2 {{PLURAL:$2|operación|operaciones}}.",
 
+# File journal errors
 'filejournal-fail-dbconnect' => 'Nun se pudo coneutar cola base de datos del diariu pal sofitu d\'almacenamientu "$1".',
 'filejournal-fail-dbquery' => 'Nun se pudo anovar la base de datos del diariu pal sofitu d\'almacenamientu "$1".',
 

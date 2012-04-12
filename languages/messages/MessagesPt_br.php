@@ -571,7 +571,7 @@ Veja a [[Special:Version|página sobre a versão do sistema]].',
 'retrievedfrom' => 'Obtida de "$1"',
 'youhavenewmessages' => 'Você tem $1 ($2).',
 'newmessageslink' => 'novas mensagens',
-'newmessagesdifflink' => 'comparar com a penúltima revisão',
+'newmessagesdifflink' => 'última alteração',
 'youhavenewmessagesmulti' => 'Você tem novas mensagens em $1',
 'editsection' => 'editar',
 'editold' => 'editar',
@@ -704,9 +704,9 @@ Quem o protegeu foi [[User:$1|$1]], com a justificativa: ''$2''.",
 
 É possível continuar usando {{SITENAME}} anonimamente ou [[Special:UserLogin|autenticar-se novamente]] com o mesmo nome de usuário ou com um nome diferente.
 Note que algumas páginas podem continuar sendo exibidas como se você ainda estivesse autenticado até que você limpe a ''cache'' do seu navegador.",
-'welcomecreation' => '== Bem-vindo, $1! ==
+'welcomecreation' => '== Bem-vindo(a), $1! ==
 A sua conta foi criada.
-Não se esqueça de personalizar as suas [[Special:Preferences|preferências na {{SITENAME}}]].',
+Não se esqueça de personalizar as suas [[Special:Preferences|preferências no wiki {{SITENAME}}]].',
 'yourname' => 'Nome de usuário:',
 'yourpassword' => 'Senha:',
 'yourpasswordagain' => 'Redigite sua senha',
@@ -716,9 +716,9 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências na 
 'externaldberror' => 'Ocorreu ou um erro no banco de dados durante a autenticação ou não lhe é permitido atualizar a sua conta externa.',
 'login' => 'Autenticar-se',
 'nav-login-createaccount' => 'Criar uma conta ou entrar',
-'loginprompt' => 'É necessário estar com os <i>cookies</i> ativados para poder autenticar-se na {{SITENAME}}.',
+'loginprompt' => 'É necessário estar com cookies ativados para poder autenticar-se no wiki {{SITENAME}}.',
 'userlogin' => 'Criar uma conta ou entrar',
-'userloginnocreate' => 'Autenticar-se',
+'userloginnocreate' => 'Entrar',
 'logout' => 'Sair',
 'userlogout' => 'Sair',
 'notloggedin' => 'Não autenticado',
@@ -732,7 +732,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências na 
 'createaccountreason' => 'Razão:',
 'badretype' => 'As senhas que você digitou não são iguais.',
 'userexists' => 'O nome de usuário fornecido já está em uso.
-Escolha um nome diferente, por favor.',
+Escolha um nome diferente.',
 'loginerror' => 'Erro de autenticação',
 'createaccounterror' => 'Não foi possível criar a conta: $1',
 'nocookiesnew' => "A conta do usuário foi criada, mas você não foi autenticado.
@@ -744,7 +744,7 @@ Por favor ative-os, depois autentique-se com o seu novo nome de usuário e a sua
 Certifique-se de que tem os cookies ativados, recarregue esta página e tente novamente.',
 'noname' => 'Você não colocou um nome de usuário válido.',
 'loginsuccesstitle' => 'Login bem sucedido',
-'loginsuccess' => "'''Agora você está ligado à {{SITENAME}} como \"\$1\"'''.",
+'loginsuccess' => "'''Agora você está autenticado ao wiki {{SITENAME}} como \"\$1\"'''.",
 'nosuchuser' => 'Não existe nenhum usuário com o nome "$1".
 Os nomes de usuário são sensíveis à capitalização.
 Verifique a ortografia, ou [[Special:UserLogin/signup|crie uma nova conta]].',
@@ -752,10 +752,11 @@ Verifique a ortografia, ou [[Special:UserLogin/signup|crie uma nova conta]].',
 'nouserspecified' => 'Você precisa especificar um nome de usuário.',
 'login-userblocked' => 'Este usuário está bloqueado. Entrada proibida.',
 'wrongpassword' => 'A senha que introduziu é inválida. Por favor, tente novamente.',
-'wrongpasswordempty' => 'A senha introduzida está em branco. Por favor, tente novamente.',
+'wrongpasswordempty' => 'Foi fornecida uma senha em branco.
+Tente novamente.',
 'passwordtooshort' => 'As senhas devem ter no mínimo {{PLURAL:$1|1 caractere|$1 caracteres}}.',
 'password-name-match' => 'A sua senha deve ser diferente do seu nome de usuário.',
-'password-login-forbidden' => 'Foi proibido o uso deste nome de utilizador e palavra-chave.',
+'password-login-forbidden' => 'O uso deste nome de usuário e senha foi desautorizado.',
 'mailmypassword' => 'Enviar uma nova senha por e-mail',
 'passwordremindertitle' => 'Nova senha temporária em {{SITENAME}}',
 'passwordremindertext' => 'Alguém (provavelmente você, a partir do endereço de IP $1) solicitou uma nova senha para {{SITENAME}} ($4). Foi criada uma senha temporária para o usuário "$2", sendo ela "$3". Se esta era sua intenção, você precisará se autenticar e escolher uma nova senha agora.
@@ -780,6 +781,7 @@ Como resultado, visitantes que usam este endereço IP não podem criar mais nenh
 'emailconfirmlink' => 'Confirme o seu endereço de e-mail',
 'invalidemailaddress' => "O endereço de ''e-mail'' não pode ser aceite devido a talvez possuir um formato inválido. Por favor, introduza um endereço bem formatado ou esvazie o campo.",
 'cannotchangeemail' => 'A conta de e-mail não pode ser alterada neste wiki.',
+'emaildisabled' => 'Este site não tem como enviar e-mails.',
 'accountcreated' => 'Conta criada',
 'accountcreatedtext' => 'A conta de usuário para $1 foi criada.',
 'createaccount-title' => 'Criação de conta em {{SITENAME}}',
@@ -988,6 +990,7 @@ Caso continue não funcionando, tente [[Special:UserLogout|desautenticar-se]] e 
 Isso acontece ocasionalmente quando se usa um serviço de proxy anonimizador mal configurado.'''",
 'edit_form_incomplete' => "'''Algumas partes do formulário de edição não chegaram ao servidor; verifique que a sua edição continua intacta e tente novamente, por favor.'''",
 'editing' => 'Editando $1',
+'creating' => 'Criando $1',
 'editingsection' => 'Editando $1 (seção)',
 'editingcomment' => 'Editando $1 (nova seção)',
 'editconflict' => 'Conflito de edição: $1',
@@ -1830,6 +1833,7 @@ Caso o problema persista, procure um [[Special:ListUsers/sysop|administrador]].'
 'backend-fail-contenttype' => 'Não foi possível determinar o tipo de conteúdo do arquivo para armazenar em "$1".',
 'backend-fail-batchsize' => 'O servidor de armazenamento retornou um conjunto de $1 {{PLURAL:$1|operação|operações}} de arquivo, enquanto seu limite é de $2 {{PLURAL:$1|operação|operações}}.',
 
+# File journal errors
 'filejournal-fail-dbconnect' => 'Não foi possível se conectar ao banco de dados de registros do sistema de armazenamento "$1".',
 'filejournal-fail-dbquery' => 'Não foi possível atualizar o banco de dados de registros do sistema de armazenamento "$1".',
 
@@ -2153,6 +2157,7 @@ Você pode diminuir a lista escolhendo um tipo de registro, um nome de usuário 
 'allpagesprefix' => 'Exibir páginas com o prefixo:',
 'allpagesbadtitle' => 'O título de página fornecido encontrava-se inválido ou tinha um prefixo interlíngua ou inter-wiki. Ele poderá conter um ou mais caracteres que não podem ser utilizados em títulos.',
 'allpages-bad-ns' => '{{SITENAME}} não possui o espaço nominal "$1".',
+'allpages-hide-redirects' => 'Ocultar redirecionamentos',
 
 # Special:Categories
 'categories' => 'Categorias',
@@ -2793,6 +2798,7 @@ Por favor, escolha outro nome.',
 Para exportar páginas, introduza os títulos na caixa de texto abaixo (um título por linha) e selecione se deseja todas as versões, com as linhas de histórico de edições, ou apenas a edição atual e informações apenas sobre a mais recente das edições.
 
 Se desejar, pode utilizar uma ligação (por exemplo, [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] para a [[{{MediaWiki:Mainpage}}]]).',
+'exportall' => 'Exportar todas as páginas',
 'exportcuronly' => 'Incluir apenas a revisão atual, não o histórico inteiro',
 'exportnohistory' => "----
 '''Nota:''' a exportação do histórico completo das páginas através deste formulário foi desativada devido a questões de performance.",
@@ -2884,6 +2890,10 @@ Salve o arquivo no seu computador e importe-o aqui.',
 'import-logentry-interwiki' => 'transwiki $1',
 'import-logentry-interwiki-detail' => '{{PLURAL:$1|$1 edição|$1 edições}} de $2',
 
+# JavaScriptTest
+'javascripttest' => 'Teste de JavaScript',
+'javascripttest-pagetext-noframework' => 'Esta página é exclusiva para testes de JavaScript.',
+
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Sua página de usuário',
 'tooltip-pt-anonuserpage' => 'A página de usuário para o ip com o qual você está editando',
@@ -2944,6 +2954,7 @@ Salve o arquivo no seu computador e importe-o aqui.',
 'tooltip-diff' => 'Mostrar alterações que fez a este texto.',
 'tooltip-compareselectedversions' => 'Ver as diferenças entre as duas versões selecionadas desta página.',
 'tooltip-watch' => 'Adicionar esta página à sua lista de páginas vigiadas',
+'tooltip-watchlistedit-normal-submit' => 'Remover títulos',
 'tooltip-recreate' => 'Recriar a página apesar de ter sido eliminada',
 'tooltip-upload' => 'Iniciar o carregamento',
 'tooltip-rollback' => '"{{int:rollbacklink}}" reverte, com um só clique, as edições do último editor desta página.',
@@ -3853,6 +3864,7 @@ As imagens serão exibidas em sua resolução máxima, outros tipos de arquivos 
 'api-error-duplicate-archive-popup-title' => 'Duplicata de {{PLURAL:$1|arquivo|arquivos}} que já {{PLURAL:$1|foi apagado|foram apagados}}',
 'api-error-duplicate-popup-title' => '{{PLURAL:$1|Arquivo|Arquivos}} em duplicata',
 'api-error-empty-file' => 'O arquivo que você enviou está vazio.',
+'api-error-emptypage' => 'Não é permitido criar páginas novas vazias.',
 'api-error-fetchfileerror' => 'Erro interno: ocorreu um problema indeterminado ao acessar o arquivo.',
 'api-error-file-too-large' => 'O arquivo que você enviou é muito grande.',
 'api-error-filename-tooshort' => 'O nome do arquivo é curto demais.',

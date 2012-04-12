@@ -11,6 +11,7 @@
  * @author Danny B.
  * @author Helix84
  * @author Kaganer
+ * @author Kusavica
  * @author Liso
  * @author Maros
  * @author Michawiki
@@ -961,7 +962,7 @@ Dolu je pre informáciu posledná položka zo záznamu blokovaní:',
 'updated' => '(Aktualizovaný)',
 'note' => "'''Poznámka: '''",
 'previewnote' => "'''Nezabudnite, toto je iba náhľad stránky, ktorú upravujete.
-Zmeny ešte nie sú uložené!'''",
+Zmeny ešte nie sú uložené!''' [[#editform|→ Pokračujte v úpravách]]",
 'previewconflict' => 'Tento náhľad upravenej stránky zobrazuje text z horného poľa s textom tak, ako sa zobrazí potom, keď ju uložíte.',
 'session_fail_preview' => "'''Prepáčte, nemohli sme spracovať váš príspevok kvôli strate údajov relácie.
 Skúste to prosím ešte raz.
@@ -1800,6 +1801,7 @@ Ak problém pretrváva, kontaktujte [[Special:ListUsers/sysop|správcu systému]
 'backend-fail-contenttype' => 'Nebolo možné určiť typ obsahu súboru, ktorý sa má uložiť na „$1“.',
 'backend-fail-batchsize' => 'Do úložiska bola zaslaná dávka s $1 {{PLURAL:$1|operáciou|operáciami}}; limit je $2 {{PLURAL:$2|operácia|operácie|operácií}}.',
 
+# File journal errors
 'filejournal-fail-dbconnect' => 'Nepodarilo sa pripojiť k žurnálovej databáze úložiska „$1“.',
 'filejournal-fail-dbquery' => 'Nepodarilo sa aktualizovať žurnálovú databázu úložiska „$1“.',
 

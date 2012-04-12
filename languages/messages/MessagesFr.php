@@ -748,7 +748,7 @@ $2",
 Le motif avancé est « ''$2'' ».",
 'filereadonlyerror' => 'Impossible de modifier le fichier "$1" parce que le répertoire de fichiers "$2" est en lecture seule.
 
-Le motif fourni est "\'\'$3\'\'".',
+L\'administrateur qui l\'a verrouillé a fourni ce motif: "$3".',
 
 # Virus scanner
 'virus-badscanner' => "Mauvaise configuration : scanneur de virus inconnu : ''$1''",
@@ -1107,6 +1107,7 @@ Il semble qu’elle ait été supprimée.',
 'edit-no-change' => 'Votre modification a été ignorée car aucun changement n’a été fait au texte.',
 'edit-already-exists' => 'La nouvelle page n’a pas pu être créée.
 Elle existe déjà.',
+'defaultmessagetext' => 'Message par défaut',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Attention : cette page contient de trop nombreux appels à des fonctions coûteuses de l’analyseur syntaxique.
@@ -1868,6 +1869,7 @@ Si le problème persiste, contactez un [[Special:ListUsers/sysop|administrateur]
 'backend-fail-contenttype' => 'Impossible de déterminer le type de contenu du fichier à stocker en "$1".',
 'backend-fail-batchsize' => 'Le support de stockage a fourni un lot de $1 {{PLURAL:$1|opération|opérations}} de fichier; la limite est $2 {{PLURAL:$2|opération|opérations}}.',
 
+# File journal errors
 'filejournal-fail-dbconnect' => 'Impossible de se connecter à la base de données du journal pour le terminal de stockage "$1".',
 'filejournal-fail-dbquery' => 'Impossible de mettre à jour la base de données du journal pour le terminal de stockage "$1".',
 

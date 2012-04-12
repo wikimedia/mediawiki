@@ -960,6 +960,7 @@ $2
 'edit-no-change' => '您的编辑已经略过，因为文字无任何改动。',
 'edit-already-exists' => '不可以建立一个新页面。
 它已经存在。',
+'defaultmessagetext' => '默认消息文本',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => '警告：这个页面有太多高昂的语法功能调用。
@@ -1682,6 +1683,7 @@ $1',
 'backend-fail-contenttype' => '无法判断文件的内容类型来储存于“$1”。',
 'backend-fail-batchsize' => '存储后端被给予了一批$1个文件{{PLURAL:$1|操作|操作}}；限值为$2个{{PLURAL:$2|操作|操作}}。',
 
+# File journal errors
 'filejournal-fail-dbconnect' => '无法连接到后端存储的日志数据库“$1”。',
 'filejournal-fail-dbquery' => '无法更新后端存储的日志数据库“$1”。',
 

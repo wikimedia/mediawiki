@@ -404,8 +404,8 @@ $2',
 'customjsprotected' => '你無權限通改這javaScript頁面，因為伊包括著其他用戶的個人設定。',
 'ns-specialprotected' => '特殊頁袂使改得',
 'titleprotected' => "這个標題已經予[[User:$1|$1]]保護牢咧袂使用。理由是''$2''。",
-'filereadonlyerror' => '無法度修改"$1" 這个檔案，因為"$2"這个儲存庫佇讀的模式。
-原因是"\'\'$3\'\'"。',
+'filereadonlyerror' => '無法度改"$1" 這个檔案，因為"$2"這个儲存庫佇讀的模式。
+共封鎖的管理員有解說講："$3"。',
 
 # Virus scanner
 'virus-badscanner' => "毋著的設定: 毋知影的病毒掃瞄器：''$1''",
@@ -492,6 +492,7 @@ Tiō-sī kóng, tī chit-má iōng chit ê IP bāng-chí ê lâng bē-sái koh k
 'invalidemailaddress' => '電子批的地址無正確，規格毋著，
 請拍一个符合規格的地址抑是放空格。',
 'cannotchangeemail' => '口座的e-mail住址無法度佇這个wiki改',
+'emaildisabled' => '這个網站袂當寄電子批。',
 'accountcreated' => '口座開好矣',
 'accountcreatedtext' => '$1的口座開好矣',
 'createaccount-title' => '佇{{SITENAME}}開好口座',
@@ -686,7 +687,8 @@ Kháu-chō ê sin bi̍t-bé thang tī teng-ji̍p liáu tī ''[[Special:ChangePas
 {{ns:user}}:Foo/Vector.css。",
 'updated' => '（改過矣）',
 'note' => "'''Chù-ì:'''",
-'previewnote' => "'''Thê-chhéⁿ lí che sī 1 bīn kiám-cha chho͘-phe ēng--ê \"seng-khoàⁿ-ia̍h\", iáu-bōe pó-chûn--khí-lâi!'''",
+'previewnote' => "'''Thê-chhéⁿ lí, che chí-sī  hō͘ lí sian khoàⁿ chi̍t-ē.'''
+Lí kái--ê iáu-bōe pó-chûn--khí-lâi ![[#editform|→kè-sio̍k pian-chi̍p]]",
 'previewconflict' => '這个先看覓會反應你文字編輯區的內容，顯示佇面頂。佇你保存了就會公開。',
 'session_fail_preview' => "'''Pháiⁿ-sè! Gún chiām-sî bô hoat-tō͘ chhú-lí lí ê pian-chi̍p (goân-in: \"phàng-kiàn sú-iōng kî-kan ê chu-liāu\"). Lô-hoân têng chhì khoàⁿ-māi. Ká-sú iû-goân bô-hāu, ē-sái teng-chhut koh-chài teng-ji̍p hoān-sè tō ē-tit kái-koat.'''",
 'session_fail_preview_html' => "'''歹勢！因為phàng見資料，阮無法度處理你的編輯。'''
@@ -698,6 +700,7 @@ Kháu-chō ê sin bi̍t-bé thang tī teng-ji̍p liáu tī ''[[Special:ChangePas
 這種情況會出現佇你用網路上匿名代理服務的時陣。",
 'edit_form_incomplete' => "'''一寡部份的編輯無送到伺服器，請檢查你的編輯是毋是完整，才閣試。'''",
 'editing' => 'Siu-kái $1',
+'creating' => '當咧建立$1',
 'editingsection' => 'Pian-chi̍p $1 (section)',
 'editingcomment' => 'Teh pian-chi̍p $1 (lâu-oē)',
 'editconflict' => 'Siu-kái sio-chhiong: $1',
@@ -763,6 +766,7 @@ Chia ū chit ia̍h ê san-tû kì-lo̍k hō͘ lí chham-khó:",
 'edit-no-change' => '你的編輯閬過，因為攏無改著字。',
 'edit-already-exists' => '無法度開新頁，
 已經有彼頁。',
+'defaultmessagetext' => 'Siat piān ê bûn-jī',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''警示：'''這頁用傷濟擺函數呼叫。
@@ -1521,6 +1525,7 @@ $1',
 'backend-fail-batchsize' => '囥位一批$1个檔案
 {{PLURAL:$1|遍動作|遍動作}}，上濟$2遍{{PLURAL:$2|動作|動作}}。',
 
+# File journal errors
 'filejournal-fail-dbconnect' => '無法度連接到佇囥位"$1"的資料庫。',
 'filejournal-fail-dbquery' => '無法度更新佇囥位"$1"的資料庫。',
 

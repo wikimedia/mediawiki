@@ -1804,6 +1804,7 @@ Nếu vẫn còn bị lỗi, xin hãy liên hệ với một [[Special:ListUsers
 'backend-fail-contenttype' => 'Không thể xác định kiểu nội dung của tập tin để lưu giữ tại “$1”.',
 'backend-fail-batchsize' => 'Phía sau lưu trữ đã nhận một loạt $1 thao tác tập tin; mức hạn là $2 thao tác.',
 
+# File journal errors
 'filejournal-fail-dbconnect' => 'Không thể kết nối với cơ sở dữ liệu nhật ký của phía sau lưu trữ “$1”.',
 'filejournal-fail-dbquery' => 'Không thể cập nhật cơ sở dữ liệu nhật ký của phía sau lưu trữ “$1”.',
 

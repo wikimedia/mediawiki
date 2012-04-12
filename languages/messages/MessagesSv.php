@@ -701,7 +701,7 @@ $2',
 Den uppgivna anledningen är "\'\'$2\'\'".',
 'filereadonlyerror' => 'Det går inte att ändra filen "$1", eftersom fildatabasen "$2" är i skrivskyddat läge.
 
-Den angivna anledningen var "\'\'$3\'\'".',
+Den administratören som låste den gav denna anledning: "\'\'$3\'\'".',
 
 # Virus scanner
 'virus-badscanner' => "Dålig konfigurering: okänd virusskanner: ''$1''",
@@ -1064,6 +1064,7 @@ Det verkar som att den har raderats.',
 'edit-no-change' => 'Din redigering ignorerades, eftersom ingen ändring gjordes i texten.',
 'edit-already-exists' => 'Sidan kunde inte skapas.
 Den finns redan.',
+'defaultmessagetext' => 'Standardtext för meddelande',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Varning: Denna sida innehåller för många anrop av resurskrävande parserfunktioner.
@@ -1832,6 +1833,7 @@ Om problemet kvarstår, kontakta en [[Special:ListUsers/sysop|administratör]].'
 'backend-fail-contenttype' => 'Kunde inte bestämma innehållstypen för filen att spara på "$1".',
 'backend-fail-batchsize' => 'Lagringssystemet gav en batch på $1 fil{{PLURAL:$1|operation|operationer}}; gränsen är $2 {{PLURAL:$2|operation|operationer}}.',
 
+# File journal errors
 'filejournal-fail-dbconnect' => 'Kunde inte ansluta till journaldatabasen för lagringssystemet "$1".',
 'filejournal-fail-dbquery' => 'Kunde inte uppdatera journaldatabasen för lagringssystemet "$1".',
 

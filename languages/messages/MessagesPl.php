@@ -677,7 +677,7 @@ $2',
 Uzasadnienie blokady: ''$2''.",
 'filereadonlyerror' => 'Nie można zmodyfikować pliku "$1" ponieważ repozytorium plików "$2" jest w trybie tylko do odczytu.
 
-Podany powód to "\'\'$3\'\'".',
+Administrator blokujący go podał następujący powód "\'\'$3\'\'".',
 
 # Virus scanner
 'virus-badscanner' => "Zła konfiguracja – nieznany skaner antywirusowy ''$1''",
@@ -1059,7 +1059,7 @@ Strona już istnieje.',
 'expensive-parserfunction-warning' => 'Uwaga! Ta strona zawiera zbyt wiele wywołań złożonych obliczeniowo funkcji parsera.
 
 Powinno być mniej niż $2 {{PLURAL:$2|wywołanie|wywołania|wywołań}}, a obecnie {{PLURAL:$1|jest $1 wywołanie|są $1 wywołania|jest $1 wywołań}}.',
-'expensive-parserfunction-category' => 'Strony ze zbyt dużą liczbą wywołań trudnych funkcji parsera',
+'expensive-parserfunction-category' => 'Strony ze zbyt dużą liczbą wywołań kosztownych funkcji parsera',
 'post-expand-template-inclusion-warning' => 'Uwaga – zbyt duża wielkość wykorzystanych szablonów.
 Niektóre szablony nie zostaną użyte.',
 'post-expand-template-inclusion-category' => 'Strony, w których przekroczone jest ograniczenie wielkości użytych szablonów',
@@ -1824,6 +1824,7 @@ Jeśli problem będzie się powtarzał, skontaktuj się z [[Special:ListUsers/sy
 'backend-fail-contenttype' => 'Nie można określić typ zawartości pliku do przechowywania w "$1".',
 'backend-fail-batchsize' => 'Wewnętrzne funkcje magazynowania otrzymały $1 {{PLURAL:$1|operację|operacje|operacji}} na pliku; limit wynosi $2 {{PLURAL:$2| operacja|operacje|operacji}}.',
 
+# File journal errors
 'filejournal-fail-dbconnect' => 'Nie można połączyć się z bazą danych dziennika dla backendu magazynowania "$1".',
 'filejournal-fail-dbquery' => 'Nie można zaktualizować bazy danych dziennika dla backendu magazynowania"$1".',
 
@@ -3074,8 +3075,8 @@ Najprawdopodobniej zostało to spowodowane przez link do zewnętrznej strony int
 'markedaspatrollederror-noautopatrol' => 'Nie masz uprawnień wymaganych do oznaczania swoich edycji jako „sprawdzone”.',
 
 # Patrol log
-'patrol-log-page' => 'Dziennik patrolowania',
-'patrol-log-header' => 'Poniżej znajduje się dziennik patrolowania stron.',
+'patrol-log-page' => 'Rejestr patrolowania',
+'patrol-log-header' => 'Poniżej znajduje się rejestr patrolowania stron.',
 'log-show-hide-patrol' => '$1 rejestr sprawdzania',
 
 # Image deletion

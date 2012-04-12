@@ -995,6 +995,7 @@ Sembra che sia stata cancellata.',
 'edit-no-change' => 'La modifica è stata ignorata poiché non sono stati apportati cambiamenti al testo.',
 'edit-already-exists' => 'Impossibile creare una nuova pagina.
 Esiste già.',
+'defaultmessagetext' => 'Testo predefinito',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''Attenzione:''' Questa pagina contiene troppe chiamate alle parser functions.
@@ -1851,6 +1852,10 @@ Di seguito sono elencate solo {{PLURAL:$1|la prima pagina che punta|le prime $1 
 Consultare la [$2 pagina di descrizione del file] per ulteriori informazioni.',
 'sharedupload-desc-here' => 'Questo file proviene da $1 e può essere utilizzato da altri progetti.
 Di seguito viene mostrata la descrizione presente nella [$2 pagina di descrizione del file].',
+'sharedupload-desc-edit' => 'Questo file proviene da $1 e può essere utilizzato da altri progetti.
+Probabilmente vuoi modificare la descrizione presente nella [$2 pagina di descrizione del file].',
+'sharedupload-desc-create' => 'Questo file proviene da $1 e può essere utilizzato da altri progetti.
+Probabilmente vuoi modificare la descrizione presente nella [$2 pagina di descrizione del file].',
 'filepage-nofile' => 'Non esiste un file con questo nome.',
 'filepage-nofile-link' => 'Non esiste un file con questo nome, ma è possibile [$1 caricarlo].',
 'uploadnewversion-linktext' => 'Carica una nuova versione di questo file',

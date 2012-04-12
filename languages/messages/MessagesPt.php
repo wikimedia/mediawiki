@@ -3902,6 +3902,7 @@ Imagens serão apresentadas pelo browser na resolução máxima; ficheiros de ou
 'feedback-error2' => 'Erro: A edição falhou',
 'feedback-error3' => 'Erro: A API não responde',
 'feedback-close' => 'Feito',
+'feedback-bugcheck' => 'Perfeito! Verifique apenas que não é já um dos [$1 defeitos conhecidos].',
 'feedback-bugnew' => 'Eu verifiquei. Reportar um novo bug.',
 
 # API errors

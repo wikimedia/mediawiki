@@ -682,9 +682,9 @@ $2',
 'ns-specialprotected' => '{{ns:special}} 네임스페이스의 문서는 편집할 수 없습니다.',
 'titleprotected' => '[[User:$1|$1]] 사용자가 문서 생성을 금지했습니다.
 이유는 다음과 같습니다. ‘$2’',
-'filereadonlyerror' => '"$2" 파일 저장소가 읽기 전용이라서 "$1" 파일을 변경할 수 없습니다.
+'filereadonlyerror' => '‘$2’ 파일 저장소가 읽기 전용이기 때문에 ‘$1’ 파일을 변경할 수 없습니다.
 
-제시된 이유는 "\'\'$3\'\'"입니다.',
+저장소 관리자가 파일 저장소를 잠근 이유에 대해 "\'\'$3\'\'"이라는 설명을 남겼습니다.',
 
 # Virus scanner
 'virus-badscanner' => "잘못된 설정: 알 수 없는 바이러스 검사기: ''$1''",
@@ -1027,6 +1027,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'edit-no-change' => '문서에 아무런 변화가 없기 때문에, 당신의 편집은 무시되었습니다.',
 'edit-already-exists' => '새 문서를 만들 수 없습니다.
 그 문서는 이미 존재합니다.',
+'defaultmessagetext' => '기본 메세지 내용',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''경고:''' 이 문서는 너무 많은 파서 함수를 포함하고 있습니다.
@@ -1791,6 +1792,7 @@ $1',
 'backend-fail-contenttype' => '"$1"에 저장하기 위한 파일의 내용 유형을 판별하지 못했습니다.',
 'backend-fail-batchsize' => '저장 백엔드에서 $1개의 파일 {{PLURAL:$1|작업}}이 쌓여 있습니다; 한계는 $2개입니다.',
 
+# File journal errors
 'filejournal-fail-dbconnect' => '저장소 백엔드 ‘$1’에 대한 저널 데이터베이스에 연결할 수 없습니다.',
 'filejournal-fail-dbquery' => '저장소 백엔드 ‘$1’에 대한 저널 데이터베이스에서 갱신할 수 없습니다.',
 

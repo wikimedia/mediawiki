@@ -1641,6 +1641,7 @@ Gank trök nao t [[Special:Upload/stash/$1|uploadformuleer]] om dit perbleem te 
 'backend-fail-contenttype' => 'Kós \'t inhawdtype van \'t bestnadj óm es "$1" op te slaon neet bepaole.',
 'backend-fail-batchsize' => 'Reiks van $1 {{PLURAL:$1|bestandjsoperatie|bestandjsoperaties}} in de opslaagbackend; de limiet is $2 {{PLURAL:$2|operatie|operaties}}.',
 
+# File journal errors
 'filejournal-fail-dbconnect' => 'Kós neet verbinje mit de journaaldatabase veur de opslaagbackend "$1".',
 'filejournal-fail-dbquery' => 'Kós de journaaldatabase neet biewèrke veur de opslaagbackend "$1".',
 
