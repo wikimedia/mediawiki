@@ -108,7 +108,7 @@ class PostgresTransactionState {
 
 	static $WATCHED = array(
 		array(
-			"desc" => "Connection state changed from %s -> %s\n",  
+			"desc" => "Connection state changed from %s -> %s\n",
 			"states" => array(
 				PGSQL_CONNECTION_OK       => "OK",
 				PGSQL_CONNECTION_BAD      => "BAD"
@@ -133,7 +133,7 @@ class PostgresTransactionState {
 	}
 
 	public function update() {
-		$this->mNewState = array( 
+		$this->mNewState = array(
 			pg_connection_status( $this->mConn ),
 			pg_transaction_status( $this->mConn )
 		);
@@ -168,7 +168,7 @@ class PostgresTransactionState {
 	}
 
 	protected function log_changed( $old, $new, $watched ) {
-		wfDebug(sprintf($watched["desc"], 
+		wfDebug(sprintf($watched["desc"],
 			$this->describe_changed( $old, $watched["states"] ),
 			$this->describe_changed( $new, $watched["states"] ))
 		);
@@ -833,7 +833,7 @@ class DatabasePostgres extends DatabaseBase {
 		return wfTimestamp( TS_POSTGRES, $ts );
 	}
 
-	/* 
+	/*
 	 * Posted by cc[plus]php[at]c2se[dot]com on 25-Mar-2009 09:12
 	 * to http://www.php.net/manual/en/ref.pgsql.php
 	 *
@@ -864,8 +864,8 @@ class DatabasePostgres extends DatabaseBase {
 				preg_match( "/(\\{?\"([^\"\\\\]|\\\\.)*\"|[^,{}]+)+([,}]+)/",
 					$text, $match, 0, $offset );
 				$offset += strlen( $match[0] );
-				$output[] = ( '"' != $match[1]{0} 
-						? $match[1] 
+				$output[] = ( '"' != $match[1]{0}
+						? $match[1]
 						: stripcslashes( substr( $match[1], 1, -1 ) ) );
 				if ( '},' == $match[3] ) {
 					return $output;
@@ -961,7 +961,7 @@ class DatabasePostgres extends DatabaseBase {
 	 * This will be also called by the installer after the schema is created
 	 *
 	 * @since 1.20
-	 * @param desired_schema string 
+	 * @param desired_schema string
 	 */
 	function determineCoreSchema( $desired_schema ) {
 		$this->begin( __METHOD__ );
@@ -971,14 +971,14 @@ class DatabasePostgres extends DatabaseBase {
 				wfDebug("Schema \"" . $desired_schema . "\" already in the search path\n");
 			} else {
 				/**
-				 * Append our schema (e.g. 'mediawiki') in front
+				 * Prepend our schema (e.g. 'mediawiki') in front
 				 * of the search path
-				 * Fixes bug 15816 
+				 * Fixes bug 15816
 				 */
 				$search_path = $this->getSearchPath();
-				array_unshift( $search_path, 
+				array_unshift( $search_path,
 					$this->addIdentifierQuotes( $desired_schema ));
-				$this->setSearchPath( $search_path );	
+				$this->setSearchPath( $search_path );
 				$this->mCoreSchema = $desired_schema;
 				wfDebug("Schema \"" . $desired_schema . "\" added to the search path\n");
 			}
