@@ -4401,6 +4401,12 @@ This is being used in [[Special:Version]], preceeding the subversion revision nu
 'version-license-info' => '[[wikipedia:GNU GPL|GNU GPL]] notice shown at [[Special:Version]]. See //www.gnu.org/licenses/old-licenses/gpl-2.0-translations.html for available translations.',
 'version-software-product' => 'Shown in [[Special:Version]]',
 'version-software-version' => '{{Identical|Version}}',
+'version-entrypoints' => 'Header on [[Special:Version]] above a table that lists the URLs of various entry points in this MediaWiki installation.',
+'version-entrypoints-articlepath' => 'Used in the entry points table on Special:Version, in the first column.',
+'version-entrypoints-scriptpath' => 'Used in the entry points table on Special:Version, in the first column.',
+'version-entrypoints-index-php' => 'Used in the entry points table on Special:Version, in the first column.',
+'version-entrypoints-api-php'   => 'Used in the entry points table on Special:Version, in the first column.',
+'version-entrypoints-load-php'  => 'Used in the entry points table on Special:Version, in the first column.',
 
 # Special:FilePath
 'filepath' => 'Legend of fieldset around input box in [[Special:FilePath]].',

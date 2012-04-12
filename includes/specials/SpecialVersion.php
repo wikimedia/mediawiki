@@ -57,6 +57,7 @@ class SpecialVersion extends SpecialPage {
 
 		$text =
 			$this->getMediaWikiCredits() .
+			$this->getEntryPointInfo() .
 			$this->softwareInformation() .
 			$this->getExtensionCredits();
 		if ( $wgSpecialVersionShowHooks ) {
@@ -737,6 +738,32 @@ class SpecialVersion extends SpecialPage {
 	public static function getGitHeadSha1( $dir ) {
 		$repo = new GitInfo( $dir );
 		return $repo->getHeadSHA1();
+	}
+
+	public function getEntryPointInfo() {
+		global $wgArticlePath, $wgScriptPath;
+		$entryPoints = array(
+			'version-entrypoints-articlepath' => $wgArticlePath,
+			'version-entrypoints-scriptpath' => $wgScriptPath,
+			'version-entrypoints-index-php' => wfScript( 'index' ),
+			'version-entrypoints-api-php' => wfScript( 'api' ),
+			'version-entrypoints-load-php' => wfScript( 'load' ),
+		);
+		
+		$out = Html::element( 'h2', array( 'id' => 'mw-version-entrypoints' ), wfMsg( 'version-entrypoints' ) ) .
+			Html::openElement( 'table', array( 'class' => 'wikitable', 'id' => 'mw-version-entrypoints-table' ) );
+		foreach ( $entryPoints as $message => $value ) {
+			$url = wfExpandUrl( $value, PROTO_RELATIVE );
+			$out .= Html::openElement( 'tr' ) .
+				// ->text() looks like it should be ->parse(), but this function
+				// returns wikitext, not HTML, boo
+				Html::rawElement( 'td', array(), wfMessage( $message )->text() ) .
+				Html::rawElement( 'td', array(), "[$url $value]" ) .
+				Html::closeElement( 'tr' );
+		}
+		$out .= Html::closeElement( 'table' );
+		
+		return $out;
 	}
 
 	function showEasterEgg() {
