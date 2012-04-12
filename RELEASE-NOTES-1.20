@@ -38,6 +38,8 @@ production.
 * (bug 23006) create #speciale parser function.
 * generateSitemap can now optionally skip redirect pages.
 * (bug 27757) new API command just for retrieving tokens (not page-based)
+* (bug 35685) api.php URL and other entry point URLs are now listed on
+  Special:Version
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
