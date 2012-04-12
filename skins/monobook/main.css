@@ -91,9 +91,15 @@ pre, .mw-code {
 ** the main content area
 */
 
+.usermessage {
+	font-size: 95%;
+	margin-top: 1em;
+}
+
 #siteNotice {
 	font-size: 95%;
 	padding: 0 0.9em;
+	margin-top: 1em;
 }
 #localNotice {
 	margin: 0;
