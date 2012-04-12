@@ -687,9 +687,15 @@ pre, .mw-code {
 	line-height: 1.3em;
 }
 
+/* Newtalk message */
+.usermessage {
+	font-size: 0.8em;
+	margin-bottom: 1em;
+}
 /* Site Notice (includes notices from CentralNotice extension) */
 #siteNotice {
 	font-size: 0.8em;
+	margin-bottom: 1em;
 }
 #firstHeading {
 	padding-top: 0;

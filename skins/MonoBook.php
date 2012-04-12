@@ -82,16 +82,17 @@ class MonoBookTemplate extends BaseTemplate {
 ?><div id="globalWrapper">
 <div id="column-content"><div id="content" class="mw-body-primary">
 	<a id="top"></a>
-	<?php if($this->data['sitenotice']) { ?><div id="siteNotice"><?php $this->html('sitenotice') ?></div><?php } ?>
-
+<?php if($this->data['newtalk'] ) { ?>
+	<div class="usermessage"><?php $this->html('newtalk') ?></div>
+<?php } ?><?php if($this->data['sitenotice']) { ?>
+	<div id="siteNotice"><?php $this->html('sitenotice') ?></div>
+<?php } ?>
 	<h1 id="firstHeading" class="firstHeading"><span dir="auto"><?php $this->html('title') ?></span></h1>
 	<div id="bodyContent" class="mw-body">
 		<div id="siteSub"><?php $this->msg('tagline') ?></div>
 		<div id="contentSub"<?php $this->html('userlangattributes') ?>><?php $this->html('subtitle') ?></div>
 <?php if($this->data['undelete']) { ?>
 		<div id="contentSub2"><?php $this->html('undelete') ?></div>
-<?php } ?><?php if($this->data['newtalk'] ) { ?>
-		<div class="usermessage"><?php $this->html('newtalk')  ?></div>
 <?php } ?><?php if($this->data['showjumplinks']) { ?>
 		<div id="jump-to-nav" class="mw-jump"><?php $this->msg('jumpto') ?> <a href="#column-one"><?php $this->msg('jumptonavigation') ?></a><?php $this->msg( 'comma-separator' ) ?><a href="#searchInput"><?php $this->msg('jumptosearch') ?></a></div>
 <?php } ?>
