@@ -80,7 +80,9 @@ abstract class Content {
 	}
 
 	public function isSupportedFormat( $format ) {
-		if ( !$format ) return true; # this means "use the default"
+		if ( !$format ) {
+			return true; // this means "use the default"
+		}
 
 		return $this->getContentHandler()->isSupportedFormat( $format );
 	}
@@ -100,11 +102,19 @@ abstract class Content {
     }
 
     public function equals( Content $that ) {
-        if ( empty( $that ) ) return false;
-        if ( $that === $this ) return true;
-        if ( $that->getModelName() !== $this->getModelName() ) return false;
+        if ( empty( $that ) ){ // FIXME: empty on an object?
+			return false;
+		}
 
-        return $this->getNativeData() == $that->getNativeData();
+        if ( $that === $this ) {
+			return true;
+		}
+
+        if ( $that->getModelName() !== $this->getModelName() ) {
+			return false;
+		}
+
+        return $this->getNativeData() === $that->getNativeData();
     }
 
     /**
@@ -554,7 +564,13 @@ class MessageContent extends TextContent {
 
         $this->mParameters = $params;
 
-        if ( !$options ) $options = array();
+        if ( is_null( $options ) ) {
+			$options = array();
+		}
+		elseif ( is_string( $options ) ) {
+			$options = array( $options );
+		}
+
         $this->mOptions = $options;
 
         $this->mHtmlOptions = null;
