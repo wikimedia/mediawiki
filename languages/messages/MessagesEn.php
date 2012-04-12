@@ -4618,6 +4618,14 @@ You should have received [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU Gen
 'version-software'              => 'Installed software',
 'version-software-product'      => 'Product',
 'version-software-version'      => 'Version',
+'version-entrypoints'           => 'Entry point URLs',
+'version-entrypoints-header-entrypoint' => 'Entry point',
+'version-entrypoints-header-url' => 'URL',
+'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Article path]',
+'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Script path]',
+'version-entrypoints-index-php' => '[https://www.mediawiki.org/wiki/Manual:index.php index.php]',
+'version-entrypoints-api-php'   => '[https://www.mediawiki.org/wiki/Manual:api.php api.php]',
+'version-entrypoints-load-php'  => '[https://www.mediawiki.org/wiki/Manual:load.php load.php]',
 
 # Special:FilePath
 'filepath'         => 'File path',
