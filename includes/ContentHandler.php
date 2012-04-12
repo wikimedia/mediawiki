@@ -14,9 +14,33 @@ class MWContentSerializationException extends MWException {
  * same as their serialized form. Examples would be JavaScript and CSS code. As of now,
  * this also applies to wikitext (mediawiki's default content type), but wikitext
  * content may be represented by a DOM or AST structure in the future.
- *  
+ *
+ * TODO: add documentation
  */
 abstract class ContentHandler {
+
+	/**
+	 * @abstract
+	 * @param Content $content
+	 * @param null $format
+	 * @return String
+	 */
+	public abstract function serialize( Content $content, $format = null );
+
+	/**
+	 * TODO: calling unserialize on a ContentHandler returns a Content?!! Something looks wrong here...
+	 *
+	 * @abstract
+	 * @param $blob String
+	 * @param null $format
+	 * @return Content
+	 */
+	public abstract function unserialize( $blob, $format = null );
+
+	/**
+	 * FIXME: bad method name: suggests it empties the content of an instance rather then creating a new empty one
+	 */
+	public abstract function emptyContent();
 
     public static function getContentText( Content $content = null ) {
         global $wgContentHandlerTextFallback;
@@ -195,24 +219,6 @@ abstract class ContentHandler {
     }
 
     /**
-     * @abstract
-     * @param Content $content
-     * @param null $format
-     * @return String
-     */
-    public abstract function serialize( Content $content, $format = null );
-
-    /**
-     * @abstract
-     * @param $blob String
-     * @param null $format
-     * @return Content
-     */
-    public abstract function unserialize( $blob, $format = null );
-
-    public abstract function emptyContent();
-
-    /**
      * Return an Article object suitable for viewing the given object
      *
      * NOTE: does *not* do special handling for Image and Category pages!
@@ -271,8 +277,21 @@ abstract class ContentHandler {
 
         $this->checkModelName( $context->getTitle()->getModelName() );
 
-        return new DifferenceEngine( $context, $old, $new, $rcid, $refreshCache, $unhide );
+		$diffEngineClass = $this->getDiffEngineClass();
+
+        return new $diffEngineClass( $context, $old, $new, $rcid, $refreshCache, $unhide );
     }
+
+	/**
+	 * Returns the name of the diff engine to use.
+	 *
+	 * @since 0.1
+	 *
+	 * @return string
+	 */
+	protected function getDiffEngineClass() {
+		return 'DifferenceEngine';
+	}
 
     /**
      * attempts to merge differences between three versions.

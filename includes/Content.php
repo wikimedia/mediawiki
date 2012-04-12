@@ -7,48 +7,8 @@
  *
  */
 abstract class Content {
-    
-    public function __construct( $modelName = null ) {
-        $this->mModelName = $modelName;
-    }
 
-    public function getModelName() {
-        return $this->mModelName;
-    }
-
-    protected function checkModelName( $modelName ) {
-        if ( $modelName !== $this->mModelName ) {
-            throw new MWException( "Bad content model: expected " . $this->mModelName . " but got found " . $modelName );
-        }
-    }
-
-    public function getContentHandler() {
-        return ContentHandler::getForContent( $this );
-    }
-
-    public function getDefaultFormat() {
-        return $this->getContentHandler()->getDefaultFormat();
-    }
-
-    public function getSupportedFormats() {
-        return $this->getContentHandler()->getSupportedFormats();
-    }
-
-    public function isSupportedFormat( $format ) {
-        if ( !$format ) return true; # this means "use the default"
-
-        return $this->getContentHandler()->isSupportedFormat( $format );
-    }
-
-    protected function checkFormat( $format ) {
-        if ( !$this->isSupportedFormat( $format ) ) {
-            throw new MWException( "Format $format is not supported for content model " . $this->getModelName() );
-        }
-    }
-
-    public function serialize( $format = null ) {
-        return $this->getContentHandler()->serialize( $this, $format );
-    }
+	// TODO: create actual fields and document them
 
     /**
      * @return String a string representing the content in a way useful for building a full text search index.
@@ -86,6 +46,54 @@ abstract class Content {
      * @return int
      */
     public abstract function getSize( );
+
+	/**
+	 * TODO: do we really need to pass a $modelName here?
+	 * Seems odd and makes lots of stuff hard (ie having a newEmpty static method in TextContent)
+	 *
+	 * @param $modelName
+	 */
+	public function __construct( $modelName = null ) {
+		$this->mModelName = $modelName;
+	}
+
+	public function getModelName() {
+		return $this->mModelName;
+	}
+
+	protected function checkModelName( $modelName ) {
+		if ( $modelName !== $this->mModelName ) {
+			throw new MWException( "Bad content model: expected " . $this->mModelName . " but got found " . $modelName );
+		}
+	}
+
+	public function getContentHandler() {
+		return ContentHandler::getForContent( $this );
+	}
+
+	public function getDefaultFormat() {
+		return $this->getContentHandler()->getDefaultFormat();
+	}
+
+	public function getSupportedFormats() {
+		return $this->getContentHandler()->getSupportedFormats();
+	}
+
+	public function isSupportedFormat( $format ) {
+		if ( !$format ) return true; # this means "use the default"
+
+		return $this->getContentHandler()->isSupportedFormat( $format );
+	}
+
+	protected function checkFormat( $format ) {
+		if ( !$this->isSupportedFormat( $format ) ) {
+			throw new MWException( "Format $format is not supported for content model " . $this->getModelName() );
+		}
+	}
+
+	public function serialize( $format = null ) {
+		return $this->getContentHandler()->serialize( $this, $format );
+	}
 
     public function isEmpty() {
         return $this->getSize() == 0;
@@ -238,8 +246,9 @@ abstract class Content {
  * Content object implementation for representing flat text. The
  */
 abstract class TextContent extends Content {
+
     public function __construct( $text, $modelName = null ) {
-        parent::__construct($modelName);
+        parent::__construct( $modelName );
 
         $this->mText = $text;
     }
@@ -331,6 +340,7 @@ abstract class TextContent extends Content {
 }
 
 class WikitextContent extends TextContent {
+
     public function __construct( $text ) {
         parent::__construct($text, CONTENT_MODEL_WIKITEXT);
 
@@ -392,8 +402,6 @@ class WikitextContent extends TextContent {
      * @return string Complete article text, or null if error
      */
     public function replaceSection( $section, Content $with, $sectionTitle = '' ) {
-        global $wgParser;
-
         wfProfileIn( __METHOD__ );
 
         $myModelName = $this->getModelName();
