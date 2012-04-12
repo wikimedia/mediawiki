@@ -59,6 +59,12 @@ MediaWiki:bad image list
 * [[File:Bad.jpg]] except [[Nasty page]]
 !!endarticle
 
+!! article
+Template:inner list
+!! text
+* item 1
+!! endarticle
+
 ###
 ### Basic tests
 ###
@@ -2143,6 +2149,36 @@ List items are not parsed correctly following a <pre> block (bug 785)
 <ul><li> <pre>foo</pre>
 </li><li> <pre>bar</pre>
 </li><li> zar
+</li></ul>
+
+!! end
+
+!! test
+List items from template
+!! input
+
+{{inner list}}
+* item 2
+
+* item 0
+{{inner list}}
+* item 2
+
+* item 0
+* notSOL{{inner list}}
+* item 2
+!! result
+<ul><li> item 1
+</li><li> item 2
+</li></ul>
+<ul><li> item 0
+</li><li> item 1
+</li><li> item 2
+</li></ul>
+<ul><li> item 0
+</li><li> notSOL
+</li><li> item 1
+</li><li> item 2
 </li></ul>
 
 !! end
