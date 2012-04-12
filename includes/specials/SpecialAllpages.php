@@ -148,7 +148,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 				array( 'name' => 'namespace', 'id' => 'namespace' )
 			) . ' ' .
 			Xml::checkLabel(
-				wfMsg( 'allpages-hide-redirects' ),
+				$this->msg( 'allpages-hide-redirects' )->text(),
 				'hideredirects',
 				'hideredirects',
 				$hideredirects
