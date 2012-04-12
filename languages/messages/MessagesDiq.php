@@ -675,7 +675,7 @@ Tı ma ri soz dano ki tı nuşte xo oricinali nuşt, ya zi tı yew dokumantê um
 '''İTİYA DI METARİYALÊ \"COPYRIGHT\"İ NINUSİ!.'''",
 'copyrightwarning2' => 'Ney bızane ke nuşteyê ke şıma ruşneni (şaweni) keyepelê {{SITENAME}} herkes eşkeno nê nuşteyanê şıma ser kay bıkero. Eke şıma qayil niye kes bıvurno, nuşetyanê xo meerze ita. <br />
 Wexta ke şıma nuşte zi erzeni ita; şıma gani taahhud bıde koti ra ardo (qey teferruati referans: $1).',
-'longpageerror' => "'''Xeta: Dergeya nuştedê şıma (nezdi) $1 kilobayta, u $2 kilobyte ra zêdo.
+'longpageerror' => "'''Xeta: Dergeya nuşte dê şıma nezdi $1 kilobayta, u $2 kilobayt ra vêşiyo.
 Qeyd biyayişê cı nêbeno'''",
 'readonlywarning' => "'''DİQET: Semedê mıqayti, database kılit biyo. No sebeb ra vurnayişê şıma qayd nêbeno. Nuşteyanê şıma yewna serkar eşkeno wedaro u pey ra şıma eşkeni reyna ita de qayd bıker'''
 
@@ -872,7 +872,8 @@ rocaneyan kontrol bıkere.',
 
 # Suppression log
 'suppressionlog' => 'qeydê pinani kerdışi',
-'suppressionlogtext' => 'Qey listeya qedexan bewnê: [[Special:IPBlockList|IP listeya vergırewteyan]]',
+'suppressionlogtext' => "Cêrdı, kahyayan ra zerreko nımıte u  merdumê bloke kerdışi tede estê. 
+listey xelati u bloki re  [[Special:BlockList|IP'yê ke bloke biyê]] bivinê.",
 
 # History merging
 'mergehistory' => 'vere cûye pelan bıhewelın',
@@ -1840,7 +1841,7 @@ Ena deme ra, ma qe vurnayışan ser ena pele tı haberdar keni. Hem zi çı dem 
 'watchmethod-list' => 'pel ê ke şıma temaşa kenî vuryayişê peyinê ey konrol beno',
 'watchlistcontains' => 'listeya seyrkerdışê şıma de $1 tene {{PLURAL:$1|peli|peli}} estî.',
 'iteminvalidname' => "pê no '$1' unsuri problem bı, nameyo nemeqbul...",
-'wlnote' => "{{PLURAL:$2|na seeta peyin de|'''$2''' na seeta peyin de}} {{PLURAL:$1|vurnayişo peyêno ke biyo|'''$1''' vurnayişo peyêno ke biyo}} cêr deyo.",
+'wlnote' => "Bıni dı {{PLURAL:$1|vurnayış|peyniya '''$1'''  dı vurnayışi estê}} {{PLURAL:$2|roci|'''$2''' roci}}, hetani $5, $4 esênê.",
 'wlshowlast' => 'bımoc $1 seat $2 rocan $3',
 'watchlist-options' => 'Tercihanê listey seyrkerdışi',
 

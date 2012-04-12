@@ -700,9 +700,9 @@ $2',
 'ns-specialprotected' => 'Posebne stranice se ne mogu uređivati.',
 'titleprotected' => "Ovaj naslov je {{GENDER:$1|zaštitio korisnik|zaštitila korisnica|zaštitio korisnik}} [[User:$1|$1]].
 Navedeni razlog: ''$2''.",
-'filereadonlyerror' => "Ne mogu da izmenim datoteku „$1“ jer je riznica „$2“ u režimu za čitanje.
+'filereadonlyerror' => 'Ne mogu da izmenim datoteku „$1“ jer je riznica „$2“ u režimu za čitanje.
 
-Navedeni razlog glasi: „''$3''“.",
+Administrator koji ju je zaključao ponudio je sledeće objašnjenje: „$3“.',
 
 # Virus scanner
 'virus-badscanner' => "Neispravna postavka: nepoznati skener za viruse: ''$1''",
@@ -1083,6 +1083,7 @@ Izgleda da je obrisana.',
 'edit-no-change' => 'Vaša izmena je zanemarena jer nije bilo nikakvih izmena u tekstu.',
 'edit-already-exists' => 'Ne mogu da napravim stranicu.
 Izgleda da ona već postoji.',
+'defaultmessagetext' => 'Podrazumevani tekst poruke',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''Upozorenje:''' ova stranica sadrži previše poziva za raščlanjivanje.
