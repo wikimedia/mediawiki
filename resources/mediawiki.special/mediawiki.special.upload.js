@@ -156,7 +156,7 @@ jQuery( function( $ ) {
 	 */
 	function fetchPreview( file, callback, callbackBinary ) {
 		var reader = new FileReader();
-		if ( callbackBinary ) {
+		if ( callbackBinary && 'readAsBinaryString' in reader ) {
 			// To fetch JPEG metadata we need a binary string; start there.
 			// todo: 
 			reader.onload = function() {
@@ -166,6 +166,22 @@ jQuery( function( $ ) {
 				fetchPreview(file, callback );
 			};
 			reader.readAsBinaryString( file );
+		} else if ( callbackBinary && 'readAsArrayBuffer' in reader ) {
+			// readAsArrayBuffer replaces readAsBinaryString
+			// However, our JPEG metadata library wants a string.
+			// So, this is going to be an ugly conversion.
+			reader.onload = function() {
+				var buffer = new Uint8Array(reader.result),
+					string = '';
+				for (var i = 0; i < buffer.byteLength; i++) {
+					string += String.fromCharCode(buffer[i]);
+				}
+				callbackBinary( string );
+
+				// Now run back through the regular code path.
+				fetchPreview(file, callback );
+			};
+			reader.readAsArrayBuffer( file );
 		} else if ('URL' in window && 'createObjectURL' in window.URL) {
 			// Supported in Firefox 4.0 and above <https://developer.mozilla.org/en/DOM/window.URL.createObjectURL>
 			// WebKit has it in a namespace for now but that's ok. ;)
