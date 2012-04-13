@@ -1913,7 +1913,7 @@ class EditPage {
 
 		# Optional notices on a per-namespace and per-page basis
 		$editnotice_ns = 'editnotice-' . $this->mTitle->getNamespace();
-		$editnotice_ns_message = wfMessage( $editnotice_ns )->inContentLanguage();
+		$editnotice_ns_message = wfMessage( $editnotice_ns );
 		if ( $editnotice_ns_message->exists() ) {
 			$wgOut->addWikiText( $editnotice_ns_message->plain() );
 		}
@@ -1922,7 +1922,7 @@ class EditPage {
 			$editnotice_base = $editnotice_ns;
 			while ( count( $parts ) > 0 ) {
 				$editnotice_base .= '-' . array_shift( $parts );
-				$editnotice_base_msg = wfMessage( $editnotice_base )->inContentLanguage();
+				$editnotice_base_msg = wfMessage( $editnotice_base );
 				if ( $editnotice_base_msg->exists() ) {
 					$wgOut->addWikiText( $editnotice_base_msg->plain() );
 				}
@@ -1930,7 +1930,7 @@ class EditPage {
 		} else {
 			# Even if there are no subpages in namespace, we still don't want / in MW ns.
 			$editnoticeText = $editnotice_ns . '-' . str_replace( '/', '-', $this->mTitle->getDBkey() );
-			$editnoticeMsg = wfMessage( $editnoticeText )->inContentLanguage();
+			$editnoticeMsg = wfMessage( $editnoticeText );
 			if ( $editnoticeMsg->exists() ) {
 				$wgOut->addWikiText( $editnoticeMsg->plain() );
 			}
