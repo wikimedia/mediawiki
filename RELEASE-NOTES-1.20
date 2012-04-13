@@ -37,7 +37,8 @@ production.
 * "Show Changes" on default messages shows now diff against default message text
 * (bug 23006) create #speciale parser function.
 * generateSitemap can now optionally skip redirect pages.
-* (bug 27757) new API command just for retrieving tokens (not page-based)
+* (bug 27757) new API command just for retrieving tokens (not page-based).
+* Edit notices can now be translated.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
