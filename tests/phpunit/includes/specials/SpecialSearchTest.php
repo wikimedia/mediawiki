@@ -107,5 +107,38 @@ class SpecialSearchTest extends MediaWikiTestCase {
 		}
 		return $u;
 	}
+
+	/**
+	 * Verify we do not expand search term in <title> on search result page
+	 * https://gerrit.wikimedia.org/r/4841
+	 */
+	function testSearchTermIsNotExpanded() {
+
+		# Initialize [[Special::Search]]
+		$search = new SpecialSearch();
+		$search->getContext()->setTitle( Title::newFromText('Special:Search' ) );
+		$search->load();
+
+		# Simulate a user searching for a given term
+		$term = '{{SITENAME}}';
+		$search->showResults( $term );
+
+		# Lookup the HTML page title set for that page
+		$pageTitle = $search
+			->getContext()
+			->getOutput()
+			->getHTMLTitle();
+
+		# Craft the expected, plain, text:
+		$aPlainSearchTerm =
+			wfMessage( 'searchresults-title', $term )
+			->plain();
+
+		# Compare :-]
+		$this->assertStringStartsWith( $aPlainSearchTerm,
+			$pageTitle,
+			"Search term should not be expanded in Special:Search <title>"
+		);
+	}
 }
 
