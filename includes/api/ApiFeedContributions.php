@@ -62,19 +62,9 @@ class ApiFeedContributions extends ApiBase {
 				$this->dieUsage( 'Size difference is disabled in Miser Mode', 'sizediffdisabled' );
 			}
 
-			$msg = wfMsgForContent( 'Contributions' );
-			$feedTitle = $wgSitename . ' - ' . $msg . ' [' . $wgLanguageCode . ']';
-			$feedUrl = SpecialPage::getTitleFor( 'Contributions', $params['user'] )->getFullURL();
-
 			$target = $params['user'] == 'newbies'
 					? 'newbies'
 					: Title::makeTitleSafe( NS_USER, $params['user'] )->getText();
-
-			$feed = new $wgFeedClasses[$params['feedformat']] (
-				$feedTitle,
-				htmlspecialchars( $msg ),
-				$feedUrl
-			);
 
 			$pager = new ContribsPager( $this->getContext(), array(
 				'target' => $target,
@@ -94,17 +84,9 @@ class ApiFeedContributions extends ApiBase {
 				}
 			}
 
-			ApiFormatFeedWrapper::setResult( $this->getResult(), $feed, $feedItems );
-
 		} catch ( Exception $e ) {
 			// Error results should not be cached
 			$this->getMain()->setCacheMaxAge( 0 );
-
-			$feedTitle = $wgSitename . ' - Error - ' . wfMsgForContent( 'contributions' ) . ' [' . $wgLanguageCode . ']';
-			$feedUrl = SpecialPage::getTitleFor( 'Contributions', $params['user'] )->getFullURL();
-
-			$feedFormat = isset( $params['feedformat'] ) ? $params['feedformat'] : 'rss';
-			$feed = new $wgFeedClasses[$feedFormat] ( $feedTitle, htmlspecialchars( wfMsgForContent( 'contributions' ) ), $feedUrl );
 
 			if ( $e instanceof UsageException ) {
 				$errorCode = $e->getCodeString();
@@ -115,8 +97,15 @@ class ApiFeedContributions extends ApiBase {
 
 			$errorText = $e->getMessage();
 			$feedItems[] = new FeedItem( "Error ($errorCode)", $errorText, '', '', '' );
-			ApiFormatFeedWrapper::setResult( $this->getResult(), $feed, $feedItems );
 		}
+
+		$msg = wfMsgForContent( 'Contributions' );
+		$feed = new $wgFeedClasses[$params['feedformat']] (
+				$feedTitle = $wgSitename . ( isset( $errorText ) ? ' - Error - ' : ' - ' ) . $msg . ' [' . $wgLanguageCode . ']',
+				htmlspecialchars( $msg ),
+				SpecialPage::getTitleFor( 'Contributions', $params['user'] )->getFullURL()
+		);
+		ApiFormatFeedWrapper::setResult( $this->getResult(), $feed, $feedItems );
 	}
 
 	protected function feedItem( $row ) {
