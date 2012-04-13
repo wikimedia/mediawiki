@@ -1931,10 +1931,16 @@ Extensions making use of it:
 'backend-fail-connect' => 'A "[[:wikipedia:Front and back ends|backend]]" is a system or component that ordinary users don\'t interact with directly and don\'t need to know about, and that is responsible for a distinct task or service - for example, a storage back-end is a generic system for storing data which other applications can use. Possible alternatives for back-end are "system" or "service", or (depending on context and language) even leave it untranslated.',
 'backend-fail-internal' => 'A "[[:wikipedia:Front and back ends|backend]]" is a system or component that ordinary users don\'t interact with directly and don\'t need to know about, and that is responsible for a distinct task or service - for example, a storage back-end is a generic system for storing data which other applications can use. Possible alternatives for back-end are "system" or "service", or (depending on context and language) even leave it untranslated.',
 'backend-fail-contenttype' => '$1 is a storage (file) path',
-'backend-fail-batchsize' => 'Error message when the limit of 1000 operations in the file backend was reached.',
+'backend-fail-batchsize' => 'Error message when the limit of operations to be done at once in the file backend was reached.
+Parameters:
+* $1 is the number of operations attempted at once in this case.
+* $2 is the maximum number of operations that can be attempted at once.',
 
 # File journal errors
-'filejournal-fail-dbconnect' => '"Journal database" probably as described in [[w:en:Transaction_log|this article]].',
+'filejournal-fail-dbconnect' => 'Parameters:
+* $1 is the name of the "[[:wikipedia:Front and back ends|backend]]" that the file journal logs changes for.',
+'filejournal-fail-dbquery' => 'Parameters:
+* $1 is the name of the "[[:wikipedia:Front and back ends|backend]]" that the file journal logs changes for.',
 
 # Lock manager
 'lockmanager-notlocked' => 'Parameters:
