@@ -3595,7 +3595,7 @@ class User {
 		} elseif ( $type == ':B:' ) {
 			# Salted
 			list( $salt, $realHash ) = explode( ':', substr( $hash, 3 ), 2 );
-			return md5( $salt.'-'.md5( $password ) ) == $realHash;
+			return md5( $salt.'-'.md5( $password ) ) === $realHash;
 		} else {
 			# Old-style
 			return self::oldCrypt( $password, $userId ) === $hash;

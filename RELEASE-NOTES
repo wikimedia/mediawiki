@@ -35,6 +35,10 @@ Selected changes since MediaWiki 1.16 that may be of interest:
 * The lowest supported version of PHP is now 5.2.3. If necessary, please
   upgrade PHP prior to upgrading MediaWiki.
 
+=== Changes since 1.17.3 ===
+
+* (bug 35961) Hash comparison should always be strict.
+
 === Changes since 1.17.2 ===
 
 * (bug 22555) Remove or skip strip markers from tag hooks like &lt;nowiki&gt; in
