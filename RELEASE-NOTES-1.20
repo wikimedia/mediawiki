@@ -44,6 +44,7 @@ production.
   $wgDebugLogFile['memcached'] to some filepath.
 * (bug 35685) api.php URL and other entry point URLs are now listed on
   Special:Version
+* Edit notices can now be translated.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
