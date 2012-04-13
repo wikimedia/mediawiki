@@ -168,7 +168,7 @@ class SpecialVersion extends SpecialPage {
 			$shortSha1 = substr( $gitInfo, 0, 7 );
 			$version = "$wgVersion ($shortSha1)";
 		} elseif ( $flags === 'nodb' ) {
-			$version = "$wgVersion (r{$info['checkout-rev']})";
+			$version = "$wgVersion (r{$svnInfo['checkout-rev']})";
 		} else {
 			$version = $wgVersion . ' ' .
 				wfMsg(
