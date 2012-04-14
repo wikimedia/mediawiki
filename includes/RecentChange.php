@@ -658,7 +658,9 @@ class RecentChange {
 			$wgCanonicalServer, $wgScript;
 
 		if( $this->mAttribs['rc_type'] == RC_LOG ) {
-			$titleObj = SpecialPage::getTitleFor( 'Log', $this->mAttribs['rc_log_type'] );
+			// Don't use SpecialPage::getTitleFor, backwards compatibility with
+			// IRC API which expects "Log".
+			$titleObj = Title::newFromText( 'Log/' . $this->mAttribs['rc_log_type'], NS_SPECIAL );
 		} else {
 			$titleObj =& $this->getTitle();
 		}
