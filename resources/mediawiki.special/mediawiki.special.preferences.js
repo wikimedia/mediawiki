@@ -50,11 +50,20 @@ $legends.each( function( i, legend ) {
 // If we've reloaded the page or followed an open-in-new-window,
 // make the selected tab visible.
 var hash = window.location.hash;
-if( hash.match( /^#mw-prefsection-[\w-]+/ ) ) {
+if ( hash.match( /^#mw-prefsection-[\w-]+/ ) ) {
 	var $tab = $( hash.replace( 'mw-prefsection', 'preftab' ) );
 	$tab.click();
 }
 
+if ( "onhashchange" in window ) { // Not all browsers support this event
+	window.addEventListener( 'hashchange' , function () {
+		var hash = window.location.hash;
+		if ( hash.match( /^#mw-prefsection-[\w-]+/ ) ) {
+			var $tab = $( hash.replace( 'mw-prefsection', 'preftab' ) );
+			$tab.click();
+		}
+	});
+}
 
 /**
 * Timezone functions.
