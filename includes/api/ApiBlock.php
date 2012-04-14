@@ -83,7 +83,7 @@ class ApiBlock extends ApiBase {
 			'DisableEmail' => $params['noemail'],
 			'HideUser' => $params['hidename'],
 			'DisableUTEdit' => !$params['allowusertalk'],
-			'AlreadyBlocked' => $params['reblock'],
+			'Reblock' => $params['reblock'],
 			'Watch' => $params['watchuser'],
 			'Confirm' => true,
 		);
