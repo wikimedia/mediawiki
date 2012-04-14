@@ -71,6 +71,7 @@ class ApiBlock extends ApiBase {
 
 		$data = array(
 			'Target' => $params['user'],
+			'PreviousTarget' => $params['user'],
 			'Reason' => array(
 				is_null( $params['reason'] ) ? '' : $params['reason'],
 				'other',
@@ -83,9 +84,8 @@ class ApiBlock extends ApiBase {
 			'DisableEmail' => $params['noemail'],
 			'HideUser' => $params['hidename'],
 			'DisableUTEdit' => !$params['allowusertalk'],
-			'AlreadyBlocked' => $params['reblock'],
 			'Watch' => $params['watchuser'],
-			'Confirm' => true,
+			'Confirm' => $params['reblock'],
 		);
 
 		$retval = SpecialBlock::processForm( $data, $this->getContext() );
