@@ -683,7 +683,7 @@ ul {
 	list-style-image: url(images/bullet-icon.png);
 }
 
-pre {
+pre, .mw-code {
 	line-height: 1.3em;
 }
 

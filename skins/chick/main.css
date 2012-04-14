@@ -150,8 +150,8 @@ q {
 	font-family: Times, "Times New Roman", serif;
 	font-style: italic;
 }
-code { background-color: #f9f9f9; }
-pre {
+code, .mw-code-inline { background-color: #f9f9f9; }
+pre, .mw-code {
 	padding: 1em;
 	border: 1px dashed #2f6fab;
 	color: black;
