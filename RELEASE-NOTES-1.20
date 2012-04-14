@@ -40,7 +40,6 @@ production.
 * (bug 27757) new API command just for retrieving tokens (not page-based)
 
 === Bug fixes in 1.20 ===
-* (bug 30245) Use the correct way to construct a log page title.
 * (bug 34237) Regenerate an empty user_token and save to the database
   when we try to set the user's cookies for login.
 * (bug 32210) New edit emails for watched pages always provide a link to the
