@@ -152,6 +152,9 @@ return array(
 	'jquery.getAttrs' => array(
 		'scripts' => 'resources/jquery/jquery.getAttrs.js',
 	),
+	'jquery.hashchange' => array(
+		'scripts' => 'resources/jquery/jquery.hashchange.js',
+	),
 	'jquery.highlightText' => array(
 		'scripts' => 'resources/jquery/jquery.highlightText.js',
 	),
@@ -792,6 +795,7 @@ return array(
 	'mediawiki.special.preferences' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.preferences.js',
 		'styles'  => 'resources/mediawiki.special/mediawiki.special.preferences.css',
+		'dependencies' => 'jquery.hashchange',
 	),
 	'mediawiki.special.recentchanges' => array(
 		'scripts' => 'resources/mediawiki.special/mediawiki.special.recentchanges.js',
