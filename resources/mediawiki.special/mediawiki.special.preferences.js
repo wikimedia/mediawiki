@@ -15,6 +15,29 @@ var $fieldsets = $preferences.children( 'fieldset' )
 var $legends = $fieldsets.children( 'legend' )
 	.addClass( 'mainLegend' );
 
+// 'name' needs the name of a tab without a prefix (i.e. mw-prefsection).
+// If 'mode' isn't 'noHash', a hash will be set according to the current open section.
+// It uses document.getElementById for security reasons (JavaScript injections).
+function switchPrefTab( name,  mode ) {
+	// Handle hash manually to prevent jumping
+	// Therefore save and restore scrollTop to prevent jumping
+	var scrollTop = $( window ).scrollTop();
+	if ( mode !== 'noHash' ) {
+		window.location.hash = '#mw-prefsection-' + name;
+	}
+	$( window ).scrollTop( scrollTop );
+
+	$preftoc.find( 'li' ).removeClass( 'selected' );
+	var tab = $( document.getElementById( 'preftab-' + name ) );
+	if (tab.length) {
+		$( tab ).parent().addClass( 'selected' );
+		$preferences.children( 'fieldset' ).hide();
+		$( document.getElementById( 'mw-prefsection-' + name ) ).show();
+	} else {
+		switchPrefTab( 'personal', 'noHash' );	
+	}
+}
+
 // Populate the prefToc
 $legends.each( function( i, legend ) {
 	var $legend = $(legend);
@@ -31,17 +54,8 @@ $legends.each( function( i, legend ) {
 		id : ident.replace( 'mw-prefsection', 'preftab' ),
 		href : '#' + ident
 	}).click( function( e ) {
+		switchPrefTab( $( this ).attr( 'href' ).replace( '#mw-prefsection-', '' ) );
 		e.preventDefault();
-		// Handle hash manually to prevent jumping
-		// Therefore save and restore scrollTop to prevent jumping
-		var scrollTop = $(window).scrollTop();
-		window.location.hash = $(this).attr('href');
-		$(window).scrollTop(scrollTop);
-
-		$preftoc.find( 'li' ).removeClass( 'selected' );
-		$(this).parent().addClass( 'selected' );
-		$( '#preferences > fieldset' ).hide();
-		$( '#' + ident ).show();
 	});
 	$li.append( $a );
 	$preftoc.append( $li );
@@ -50,11 +64,21 @@ $legends.each( function( i, legend ) {
 // If we've reloaded the page or followed an open-in-new-window,
 // make the selected tab visible.
 var hash = window.location.hash;
-if( hash.match( /^#mw-prefsection-[\w-]+/ ) ) {
-	var $tab = $( hash.replace( 'mw-prefsection', 'preftab' ) );
-	$tab.click();
+if ( hash.match( /^#mw-prefsection-[\w-]+/ ) ) {
+	switchPrefTab( hash.replace( '#mw-prefsection-' , '' ) );
 }
 
+// Not all browsers support this event
+if ( 'onhashchange' in window ) {
+	window.addEventListener( 'hashchange' , function () {
+		var hash = window.location.hash;
+		if ( hash.match( /^#mw-prefsection-[\w-]+/ ) ) {
+			switchPrefTab( hash.replace( '#mw-prefsection-', '' ) );
+		} else {
+			switchPrefTab( 'personal', 'noHash' );
+		}
+	});
+}
 
 /**
 * Timezone functions.
