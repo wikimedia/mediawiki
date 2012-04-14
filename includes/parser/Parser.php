@@ -1814,7 +1814,7 @@ class Parser {
 			# Don't allow internal links to pages containing
 			# PROTO: where PROTO is a valid URL protocol; these
 			# should be external links.
-			if ( preg_match( '/^(?:' . wfUrlProtocols() . ')/', $m[1] ) ) {
+			if ( preg_match( '/^(?:' . $this->mUrlProtocols . ')/', $m[1] ) ) {
 				$s .= $prefix . '[[' . $line ;
 				wfProfileOut( __METHOD__."-misc" );
 				continue;
@@ -2051,7 +2051,7 @@ class Parser {
 	 * @return String: less-or-more HTML with NOPARSE bits
 	 */
 	function armorLinks( $text ) {
-		return preg_replace( '/\b(' . wfUrlProtocols() . ')/',
+		return preg_replace( '/\b(' . $this->mUrlProtocols . ')/',
 			"{$this->mUniqPrefix}NOPARSE$1", $text );
 	}
 
@@ -5562,7 +5562,7 @@ class Parser {
 		# @todo FIXME: Not tolerant to blank link text
 		# I.E. [http://www.mediawiki.org] will render as [1] or something depending
 		# on how many empty links there are on the page - need to figure that out.
-		$text = preg_replace( '/\[(?:' . wfUrlProtocols() . ')([^ ]+?) ([^[]+)\]/', '$2', $text );
+		$text = preg_replace( '/\[(?:' . $this->mUrlProtocols . ')([^ ]+?) ([^[]+)\]/', '$2', $text );
 
 		# Parse wikitext quotes (italics & bold)
 		$text = $this->doQuotes( $text );
