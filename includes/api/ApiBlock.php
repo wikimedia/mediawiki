@@ -70,6 +70,7 @@ class ApiBlock extends ApiBase {
 		}
 
 		$data = array(
+			'PreviousTarget' => $params['user'],
 			'Target' => $params['user'],
 			'Reason' => array(
 				$params['reason'],
@@ -83,7 +84,7 @@ class ApiBlock extends ApiBase {
 			'DisableEmail' => $params['noemail'],
 			'HideUser' => $params['hidename'],
 			'DisableUTEdit' => !$params['allowusertalk'],
-			'AlreadyBlocked' => $params['reblock'],
+			'Reblock' => $params['reblock'],
 			'Watch' => $params['watchuser'],
 			'Confirm' => true,
 		);
