@@ -52,7 +52,7 @@ body {
 	margin-bottom: 0;
 }
 
-p, pre, td, th, li, dd, dt {
+p, pre, .mw-code, td, th, li, dd, dt {
 	line-height: 12pt;
 }
 
