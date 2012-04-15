@@ -12,16 +12,26 @@
  * @ingroup Ajax
  */
 class AjaxDispatcher {
-	/** The way the request was made, either a 'get' or a 'post' */
+	/**
+	 * The way the request was made, either a 'get' or a 'post'
+	 * @var string $mode
+	 */
 	private $mode;
 
-	/** Name of the requested handler */
+	/**
+	 * Name of the requested handler
+	 * @var string $func_name
+	 */
 	private $func_name;
 
-	/** Arguments passed */
+	/** Arguments passed
+	 * @var array $args
+	 */
 	private $args;
 
-	/** Load up our object with user supplied data */
+	/**
+	 * Load up our object with user supplied data
+	 */
 	function __construct() {
 		wfProfileIn( __METHOD__ );
 
@@ -62,7 +72,8 @@ class AjaxDispatcher {
 		wfProfileOut( __METHOD__ );
 	}
 
-	/** Pass the request to our internal function.
+	/**
+	 * Pass the request to our internal function.
 	 * BEWARE! Data are passed as they have been supplied by the user,
 	 * they should be carefully handled in the function processing the
 	 * request.
