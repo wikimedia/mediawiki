@@ -2508,7 +2508,7 @@ Remember to check for other links to the templates before deleting them.',
 'disambiguationspage'     => 'Template:disambig',
 'disambiguations-text'    => "The following pages link to a '''disambiguation page'''.
 They should link to the appropriate topic instead.<br />
-A page is treated as disambiguation page if it uses a template which is linked from [[MediaWiki:Disambiguationspage]]",
+A page is treated as disambiguation page if it uses a template which is linked from [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects'                   => 'Double redirects',
 'doubleredirects-summary'           => '', # do not translate or duplicate this message to other languages
