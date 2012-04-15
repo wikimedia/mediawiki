@@ -29,24 +29,28 @@
  *
  * To add an action in an extension, create a subclass of Action, and add the key to
  * $wgActions.  There is also the deprecated UnknownAction hook
+ *
+ * Actions generally fall into two groups: the show-a-form-then-do-something-with-the-input
+ * format (protect, delete, move, etc), and the just-do-something format (watch, rollback,
+ * patrol, etc). The FormAction and FormlessAction classes respresent these two groups.
  */
 abstract class Action {
 
 	/**
 	 * Page on which we're performing the action
-	 * @var Page
+	 * @var Page $page
 	 */
 	protected $page;
 
 	/**
 	 * IContextSource if specified; otherwise we'll use the Context from the Page
-	 * @var IContextSource
+	 * @var IContextSource $context
 	 */
 	protected $context;
 
 	/**
 	 * The fields used to create the HTMLForm
-	 * @var Array
+	 * @var Array $fields
 	 */
 	protected $fields;
 
@@ -355,6 +359,9 @@ abstract class Action {
 	public abstract function execute();
 }
 
+/**
+ * An action which shows a form and does something based on the input from the form
+ */
 abstract class FormAction extends Action {
 
 	/**
@@ -449,8 +456,8 @@ abstract class FormAction extends Action {
 	/**
 	 * @see Action::execute()
 	 * @throws ErrorPageError
-	 * @param array|null $data
-	 * @param bool $captureErrors
+	 * @param $data array|null
+	 * @param $captureErrors bool
 	 * @return bool
 	 */
 	public function execute( array $data = null, $captureErrors = true ) {
@@ -491,9 +498,7 @@ abstract class FormAction extends Action {
 }
 
 /**
- * Actions generally fall into two groups: the show-a-form-then-do-something-with-the-input
- * format (protect, delete, move, etc), and the just-do-something format (watch, rollback,
- * patrol, etc).
+ * An action which just does something, without showing a form first.
  */
 abstract class FormlessAction extends Action {
 
@@ -512,10 +517,17 @@ abstract class FormlessAction extends Action {
 		return false;
 	}
 
+	/**
+	 * @param $data Array
+	 * @return bool
+	 */
 	public function onSubmit( $data ) {
 		return false;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function onSuccess() {
 		return false;
 	}

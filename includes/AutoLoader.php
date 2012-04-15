@@ -1066,6 +1066,7 @@ class AutoLoader {
 	 * Sanitizer that have define()s outside of their class definition. Of course
 	 * this wouldn't be necessary if everything in MediaWiki was class-based. Sigh.
 	 *
+	 * @param $class string
 	 * @return Boolean Return the results of class_exists() so we know if we were successful
 	 */
 	static function loadClass( $class ) {
