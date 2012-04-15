@@ -190,15 +190,14 @@ class ApiQueryAllUsers extends ApiQueryBase {
 					$lastUserData = null;
 
 					if ( !$fit ) {
-						$this->setContinueEnumParameter( 'from',
-								$this->keyToTitle( $lastUserData['name'] ) );
+						$this->setContinueEnumParameter( 'from', $lastUserData['name'] );
 						break;
 					}
 				}
 
 				if ( $count > $limit ) {
 					// We've reached the one extra which shows that there are additional pages to be had. Stop here...
-					$this->setContinueEnumParameter( 'from', $this->keyToTitle( $row->user_name ) );
+					$this->setContinueEnumParameter( 'from', $row->user_name );
 					break;
 				}
 
@@ -235,17 +234,23 @@ class ApiQueryAllUsers extends ApiQueryBase {
 					'MediaWiki configuration error: the database contains more user groups than known to User::getAllGroups() function' );
 			}
 
-			$lastUserObj = User::newFromName( $lastUser );
+			$lastUserObj = User::newFromId( $row->user_id );
 
 			// Add user's group info
 			if ( $fld_groups ) {
-				if ( !isset( $lastUserData['groups'] ) && $lastUserObj ) {
-					$lastUserData['groups'] = ApiQueryUsers::getAutoGroups( $lastUserObj );
+				if ( !isset( $lastUserData['groups'] ) ) {
+					if ( $lastUserObj ) {
+						$lastUserData['groups'] = ApiQueryUsers::getAutoGroups( $lastUserObj );
+					} else {
+						// This should not normally happen
+						$lastUserData['groups'] = array();
+					}
 				}
 
 				if ( !is_null( $row->ug_group2 ) ) {
 					$lastUserData['groups'][] = $row->ug_group2;
 				}
+
 				$result->setIndexedTagName( $lastUserData['groups'], 'g' );
 			}
 
@@ -254,13 +259,20 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				$result->setIndexedTagName( $lastUserData['implicitgroups'], 'g' );
 			}
 			if ( $fld_rights ) {
-				if ( !isset( $lastUserData['rights'] ) && $lastUserObj ) {
-					$lastUserData['rights'] =  User::getGroupPermissions( $lastUserObj->getAutomaticGroups() );
+				if ( !isset( $lastUserData['rights'] ) ) {
+					if ( $lastUserObj ) {
+						$lastUserData['rights'] =  User::getGroupPermissions( $lastUserObj->getAutomaticGroups() );
+					} else {
+						// This should not normally happen
+						$lastUserData['rights'] = array();
+					}
 				}
+
 				if ( !is_null( $row->ug_group2 ) ) {
 					$lastUserData['rights'] = array_unique( array_merge( $lastUserData['rights'],
 						User::getGroupPermissions( array( $row->ug_group2 ) ) ) );
 				}
+
 				$result->setIndexedTagName( $lastUserData['rights'], 'r' );
 			}
 		}
@@ -269,8 +281,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			$fit = $result->addValue( array( 'query', $this->getModuleName() ),
 				null, $lastUserData );
 			if ( !$fit ) {
-				$this->setContinueEnumParameter( 'from',
-					$this->keyToTitle( $lastUserData['name'] ) );
+				$this->setContinueEnumParameter( 'from', $lastUserData['name'] );
 			}
 		}
 
