@@ -65,12 +65,13 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 				$this->dieUsage( 'Invalid continue param. You should pass the ' .
 					'original value returned by the previous query', '_badcontinue' );
 			}
+			$op = $params['dir'] == 'descending' ? '<' : '>';
 			$ilfrom = intval( $cont[0] );
-			$ilto = $this->getDB()->strencode( $this->titleToKey( $cont[1] ) );
+			$ilto = $this->getDB()->addQuotes( $this->titleToKey( $cont[1] ) );
 			$this->addWhere(
-				"il_from > $ilfrom OR " .
+				"il_from $op $ilfrom OR " .
 				"(il_from = $ilfrom AND " .
-				"il_to >= '$ilto')"
+				"il_to $op= $ilto)"
 			);
 		}
 

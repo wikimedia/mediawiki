@@ -80,17 +80,27 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 				$this->dieUsage( 'Invalid continue param. You should pass the ' .
 					'original value returned by the previous query', '_badcontinue' );
 			}
-			$orig = $this->getDB()->strencode( $this->titleTokey( $cont[0] ) );
-			$dup = $this->getDB()->strencode( $this->titleToKey( $cont[1] ) );
+			$op = $params['dir'] == 'descending' ? '<' : '>';
+			$db = $this->getDB();
+			$orig = $db->addQuotes( $this->titleTokey( $cont[0] ) );
+			$dup = $db->addQuotes( $this->titleToKey( $cont[1] ) );
 			$this->addWhere(
-				"i1.img_name > '$orig' OR " .
-				"(i1.img_name = '$orig' AND " .
-				"i2.img_name >= '$dup')"
+				"i1.img_name $op $orig OR " .
+				"(i1.img_name = $orig AND " .
+				"i2.img_name $op= $dup)"
 			);
 		}
 
 		$dir = ( $params['dir'] == 'descending' ? ' DESC' : '' );
-		$this->addOption( 'ORDER BY', 'i1.img_name' . $dir );
+		// Don't order by i1.img_name if it's constant in the WHERE clause
+		if ( count( $this->getPageSet()->getGoodTitles() ) == 1 ) {
+			$this->addOption( 'ORDER BY', 'i2.img_name' . $dir );
+		} else {
+			$this->addOption( 'ORDER BY', array(
+					'i1.img_name' . $dir,
+					'i2.img_name' . $dir
+			));
+		}
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 
 		$res = $this->select( __METHOD__ );
