@@ -13,25 +13,47 @@
  * @ingroup Ajax
  */
 class AjaxResponse {
-	/** Number of seconds to get the response cached by a proxy */
+
+	/**
+	 * Number of seconds to get the response cached by a proxy
+	 * @var int $mCacheDuration
+	 */
 	private $mCacheDuration;
 
-	/** HTTP header Content-Type */
+	/**
+	 * HTTP header Content-Type
+	 * @var string $mContentType
+	 */
 	private $mContentType;
 
-	/** Disables output. Can be set by calling $AjaxResponse->disable() */
+	/**
+	 * Disables output. Can be set by calling $AjaxResponse->disable()
+	 * @var bool $mDisabled
+	 */
 	private $mDisabled;
 
-	/** Date for the HTTP header Last-modified */
+	/**
+	 * Date for the HTTP header Last-modified
+	 * @var string|false $mLastModified
+	 */
 	private $mLastModified;
 
-	/** HTTP response code */
+	/**
+	 * HTTP response code
+	 * @var string $mResponseCode
+	 */
 	private $mResponseCode;
 
-	/** HTTP Vary header */
+	/**
+	 * HTTP Vary header
+	 * @var string $mVary
+	 */
 	private $mVary;
 
-	/** Content of our HTTP response */
+	/**
+	 * Content of our HTTP response
+	 * @var string $mText
+	 */
 	private $mText;
 
 	/**
@@ -52,22 +74,41 @@ class AjaxResponse {
 		}
 	}
 
+	/**
+	 * Set the number of seconds to get the response cached by a proxy
+	 * @param $duration int
+	 */
 	function setCacheDuration( $duration ) {
 		$this->mCacheDuration = $duration;
 	}
 
+	/**
+	 * Set the HTTP Vary header
+	 * @param $vary string
+	 */
 	function setVary( $vary ) {
 		$this->mVary = $vary;
 	}
 
+	/**
+	 * Set the HTTP response code
+	 * @param $code string
+	 */
 	function setResponseCode( $code ) {
 		$this->mResponseCode = $code;
 	}
 
+	/**
+	 * Set the HTTP header Content-Type
+	 * @param $type string
+	 */
 	function setContentType( $type ) {
 		$this->mContentType = $type;
 	}
 
+	/**
+	 * Disable output.
+	 */
 	function disable() {
 		$this->mDisabled = true;
 	}
@@ -207,8 +248,8 @@ class AjaxResponse {
 	}
 
 	/**
-	 * @param $mckey
-	 * @param $touched
+	 * @param $mckey string
+	 * @param $touched int
 	 * @return bool
 	 */
 	function loadFromMemcached( $mckey, $touched ) {
@@ -235,7 +276,7 @@ class AjaxResponse {
 	}
 
 	/**
-	 * @param $mckey
+	 * @param $mckey string
 	 * @param $expiry int
 	 * @return bool
 	 */
