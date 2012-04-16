@@ -5,7 +5,12 @@
  * @singleton
  */
 ( function ( mw, $ ) {
-	var toolbar, isReady, $toolbar, queue, slice, $currentFocused;
+	var toolbar, isReady, $toolbar, queue, slice, $currentFocused,
+		conf = mw.config.get( [
+			'wgDBname',
+			'wgAction',
+			'wgPageName'
+		] );
 
 	/**
 	 * Internal helper that does the actual insertion of the button into the toolbar.
@@ -136,6 +141,75 @@
 	// Expose API publicly
 	mw.toolbar = toolbar;
 
+	function saveToLocalStorage( page, contents ) {
+		localStorage.setItem( conf.wgDBname + '-savedta-' + page, contents );
+	}
+
+	function getLocalStorage( page ) {
+		return localStorage.getItem( conf.wgDBname + '-savedta-' + page );
+	}
+
+	function removeFromLocalStorage( page ) {
+		return localStorage.removeItem( conf.wgDBname + '-savedta-' + page );
+	}
+
+	function textAreaAutoSaveInit() {
+		// If there's no localStorage, there's no point in doing the checks or adding listeners.
+		if ( 'localStorage' in window && ( conf.wgAction === 'edit' || conf.wgAction == 'submit' ) ) {
+			var pageName = conf.wgPageName,
+				$textArea = $( '#wpTextbox1' ),
+				node = $( '<span>' ),
+				notif,
+				$replaceLink,
+				$discardLink;
+
+			$textArea.on( 'input', $.debounce( 300, function () {
+				notif.close();
+				setTimeout( function () {
+					try {
+						saveToLocalStorage( pageName, $textArea.val() );
+					} catch ( e ) {
+						// Assume any error is due to the quota being exceeded,
+						// per http://chrisberkhout.com/blog/localstorage-errors/
+						mw.log.warn( 'Caught a quota exceeded error when trying to save stuff in localstorage' );
+						removeFromLocalStorage( pageName );
+					}
+				} );
+			} ) );
+
+			$( '#wpSave, #mw-editform-cancel' ).click( function () {
+				removeFromLocalStorage( pageName );
+			} );
+
+			if ( $.trim( getLocalStorage( pageName ) ) !== $.trim( $textArea.val() ) ) {
+				$replaceLink = $( '<a>' )
+					.text( mw.msg( 'textarea-use-draft' ) )
+					.click( function ( e ) {
+						$textArea.val( getLocalStorage( pageName ) );
+						e.preventDefault();
+						notif.close();
+					} );
+
+				$discardLink = $( '<a>' )
+					.text( mw.msg( 'textarea-use-current-version' ) )
+					.click( function ( e ) {
+						removeFromLocalStorage( pageName );
+						e.preventDefault();
+						notif.close();
+					} );
+
+				node.append(
+					$( '<span>' ).text( mw.msg( 'textarea-draft-found' ) ),
+					$( '<br>' ),
+					$replaceLink,
+					document.createTextNode( ' · ' ),
+					$discardLink
+				);
+				notif = mw.notification.notify( node, { autoHide: false } );
+			}
+		}
+	}
+
 	$( function () {
 		var i, b, editBox, scrollTop, $editForm;
 
@@ -186,6 +260,8 @@
 		$( document ).on( 'focus', 'textarea, input:text', function () {
 			$currentFocused = $( this );
 		} );
+
+		textAreaAutoSaveInit();
 	});
 
 }( mediaWiki, jQuery ) );
