@@ -57,28 +57,74 @@ abstract class Content {
 		$this->mModelName = $modelName;
 	}
 
+    /**
+     * Returns the name of the content model used by this content objects.
+     * Corresponds to the CONTENT_MODEL_XXX constants.
+     *
+     * @return String the model name
+     */
 	public function getModelName() {
 		return $this->mModelName;
 	}
 
+    /**
+     * Throws an MWException if $modelName is not the name of the content model
+     * supported by this Content object.
+     */
 	protected function checkModelName( $modelName ) {
 		if ( $modelName !== $this->mModelName ) {
 			throw new MWException( "Bad content model: expected " . $this->mModelName . " but got found " . $modelName );
 		}
 	}
 
+    /**
+     * Conveniance method that returns the ContentHandler singleton for handling the content
+     * model this Content object uses.
+     *
+     * Shorthand for ContentHandler::getForContent( $this )
+     *
+     * @return ContentHandler
+     */
 	public function getContentHandler() {
 		return ContentHandler::getForContent( $this );
 	}
 
+    /**
+     * Conveniance method that returns the default serialization format for the content model
+     * model this Content object uses.
+     *
+     * Shorthand for $this->getContentHandler()->getDefaultFormat()
+     *
+     * @return ContentHandler
+     */
 	public function getDefaultFormat() {
 		return $this->getContentHandler()->getDefaultFormat();
 	}
 
+    /**
+     * Conveniance method that returns the list of serialization formats supported
+     * for the content model model this Content object uses.
+     *
+     * Shorthand for $this->getContentHandler()->getSupportedFormats()
+     *
+     * @return array of supported serialization formats
+     */
 	public function getSupportedFormats() {
 		return $this->getContentHandler()->getSupportedFormats();
 	}
 
+    /**
+     * Returns true if $format is a supported serialization format for this Content object,
+     * false if it isn't.
+     *
+     * Note that this will always return true if $format is null, because null stands for the
+     * default serialization.
+     *
+     * Shorthand for $this->getContentHandler()->isSupportedFormat( $format )
+     *
+     * @param String $format the format to check
+     * @return bool whether the format is supported
+     */
 	public function isSupportedFormat( $format ) {
 		if ( !$format ) {
 			return true; // this means "use the default"
@@ -87,24 +133,58 @@ abstract class Content {
 		return $this->getContentHandler()->isSupportedFormat( $format );
 	}
 
+    /**
+     * Throws an MWException if $this->isSupportedFormat( $format ) doesn't return true.
+     *
+     * @param $format
+     * @throws MWException
+     */
 	protected function checkFormat( $format ) {
 		if ( !$this->isSupportedFormat( $format ) ) {
 			throw new MWException( "Format $format is not supported for content model " . $this->getModelName() );
 		}
 	}
 
+    /**
+     * Conveniance method for serializing this Content object.
+     *
+     * Shorthand for $this->getContentHandler()->serialize( $this, $format )
+     *
+     * @param null|String $format the desired serialization format (or null for the default format).
+     * @return String serialized form of this Content object
+     */
 	public function serialize( $format = null ) {
 		return $this->getContentHandler()->serialize( $this, $format );
 	}
 
+    /**
+     * Returns true if this Content object represents empty content.
+     *
+     * @return bool whether this Content object is empty
+     */
     public function isEmpty() {
         return $this->getSize() == 0;
     }
 
-    public function equals( Content $that ) {
+    /**
+     * Returns true if this Content objects is conceptually equivalent to the given Content object.
+     *
+     * Will returns false if $that is null.
+     * Will return true if $that === $this.
+     *
+     * Returns false if this Content object uses a different content model than the
+     *
+     * @param Content $that the Content object to compare to
+     * @return bool true if this Content object is euzqla to $that, false otherwise.
+     */
+    public function equals( Content $that = null ) {
         if ( empty( $that ) ){ // FIXME: empty on an object?
 			return false;
 		}
+
+		return false;
+		// FIXME: something is doing wrong here, causing the compared objects to always be the same.
+		// Hence returning false for now, so changes can actually be saved...
 
         if ( $that === $this ) {
 			return true;
@@ -130,9 +210,13 @@ abstract class Content {
      * @param null|Title $title
      * @param null $revId
      * @param null|ParserOptions $options
+     * @param Boolean $generateHtml whether to generate Html (default: true). If false,
+     *        the result of calling getText() on the ParserOutput object returned by
+     *        this method is undefined.
+     *
      * @return ParserOutput
      */
-    public abstract function getParserOutput( Title $title = null, $revId = null, ParserOptions $options = NULL );
+    public abstract function getParserOutput( Title $title = null, $revId = null, ParserOptions $options = NULL, $generateHtml = true );
 
     /**
      * Construct the redirect destination from this content and return an
@@ -336,10 +420,12 @@ abstract class TextContent extends Content {
      *
      * @return ParserOutput representing the HTML form of the text
      */
-    public function getParserOutput( Title $title = null, $revId = null, ParserOptions $options = null ) {
+    public function getParserOutput( Title $title = null, $revId = null, ParserOptions $options = null, $generateHtml = true ) {
         # generic implementation, relying on $this->getHtml()
 
-        $html = $this->getHtml( $options );
+        if ( $generateHtml ) $html = $this->getHtml( $options );
+        else $html = '';
+
         $po = new ParserOutput( $html );
 
         return $po;
@@ -376,7 +462,7 @@ class WikitextContent extends TextContent {
      *
      * @return ParserOutput representing the HTML form of the text
      */
-    public function getParserOutput( Title $title = null, $revId = null, ParserOptions $options = null ) {
+    public function getParserOutput( Title $title = null, $revId = null, ParserOptions $options = null, $generateHtml = true ) {
         global $wgParser;
 
         if ( !$options ) {
