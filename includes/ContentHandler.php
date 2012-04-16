@@ -8,7 +8,8 @@ class MWContentSerializationException extends MWException {
 /**
  * A content handler knows how do deal with a specific type of content on a wiki page.
  * Content is stored in the database in a serialized form (using a serialization format aka mime type)
- * and is be unserialized into it's native PHP represenation (the content model).
+ * and is be unserialized into it's native PHP represenation (the content model), which is wrappe in
+ * an instance of the appropriate subclass of Content.
  * 
  * Some content types have a flat model, that is, their native represenation is the
  * same as their serialized form. Examples would be JavaScript and CSS code. As of now,
@@ -18,6 +19,26 @@ class MWContentSerializationException extends MWException {
  */
 abstract class ContentHandler {
 
+    /**
+     * Conveniance function for getting flat text from a Content object. This shleould only
+     * be used in the context of backwards compatibility with code that is not yet able
+     * to handle Content objects!
+     *
+     * If $content is equal to null or false, this method returns the empty string.
+     *
+     * If $content is an instance of TextContent, this method returns the flat text as returned by $content->getnativeData().
+     *
+     * If $content is not a TextContent object, the bahaviour of this method depends on the global $wgContentHandlerTextFallback:
+     * If $wgContentHandlerTextFallback is 'fail' and $content is not a TextContent object, an MWException is thrown.
+     * If $wgContentHandlerTextFallback is 'serialize' and $content is not a TextContent object, $content->serialize()
+     * is called to get a string form of the content.
+     * Otherwise, this method returns null.
+     *
+     * @static
+     * @param Content|null $content
+     * @return null|string the textual form of $content, if available
+     * @throws MWException if $content is not an instance of TextContent and $wgContentHandlerTextFallback was set to 'fail'.
+     */
     public static function getContentText( Content $content = null ) {
         global $wgContentHandlerTextFallback;
 
@@ -33,6 +54,20 @@ abstract class ContentHandler {
         return null;
     }
 
+    /**
+     * Conveniance function for creating a Content object from a given textual representation.
+     *
+     * $text will be deserialized into a Content object of the model specified by $modelName (or,
+     * if that is not given, $title->getContentModelName()) using the given format.
+     *
+     * @static
+     * @param $text the textual represenation, will be unserialized to create the Content object
+     * @param Title $title the title of the page this text belongs to, required as a context for deserialization
+     * @param null|String $modelName the model to deserialize to. If not provided, $title->getContentModelName() is used.
+     * @param null|String $format the format to use for deserialization. If not given, the model's default format is used.
+     *
+     * @return Content a Content object representing $text
+     */
     public static function makeContent( $text, Title $title, $modelName = null, $format = null ) {
         if ( !$modelName ) {
             $modelName = $title->getContentModelName();
@@ -42,6 +77,28 @@ abstract class ContentHandler {
         return $handler->unserialize( $text, $format );
     }
 
+    /**
+     * Returns the name of the default content model to be used for the page with the given title.
+     *
+     * Note: There should rarely be need to call this method directly.
+     * To determine the actual content model for a given page, use Title::getContentModelName().
+     *
+     * Which model is to be used per default for the page is determined based on several factors:
+     * * The global setting $wgNamespaceContentModels specifies a content model per namespace.
+     * * The hook DefaultModelFor may be used to override the page's default model.
+     * * Pages in NS_MEDIAWIKI and NS_USER default to the CSS or JavaScript model if they end in .js or .css, respectively.
+     * * Pages in NS_MEDIAWIKI default to the wikitext model otherwise.
+     * * The hook TitleIsCssOrJsPage may be used to force a page to use the CSS or JavaScript model if they end in .js or .css, respectively.
+     * * The hook TitleIsWikitextPage may be used to force a page to use the wikitext model.
+     *
+     * If none of the above applies, the wikitext model is used.
+     *
+     * Note: this is used by, and may thus not use, Title::getContentModelName()
+     *
+     * @static
+     * @param Title $title
+     * @return null|string default model name for the page given by $title
+     */
     public static function getDefaultModelFor( Title $title ) {
         global $wgNamespaceContentModels;
 
@@ -98,21 +155,48 @@ abstract class ContentHandler {
         return CONTENT_MODEL_WIKITEXT;
     }
 
+    /**
+     * returns the appropriate ContentHandler singleton for the given title
+     *
+     * @static
+     * @param Title $title
+     * @return ContentHandler
+     */
     public static function getForTitle( Title $title ) {
         $modelName = $title->getContentModelName();
         return ContentHandler::getForModelName( $modelName );
     }
 
+    /**
+     * returns the appropriate ContentHandler singleton for the given Content object
+     *
+     * @static
+     * @param Title $title
+     * @return ContentHandler
+     */
     public static function getForContent( Content $content ) {
         $modelName = $content->getModelName();
         return ContentHandler::getForModelName( $modelName );
     }
 
     /**
+     * returns the ContentHandler singleton for the given model name. Use the CONTENT_MODEL_XXX constants to
+     * identify the desired content model.
+     *
+     * ContentHandler singletons are take from the global $wgContentHandlers array. Keys in that array are
+     * model names, the values are either ContentHandler singleton objects, or strings specifying the appropriate
+     * subclass of ContentHandler.
+     *
+     * If a class name in encountered when looking up the singleton for a given model name, the class is
+     * instantiated and the class name is replaced by te resulting singleton in $wgContentHandlers.
+     *
+     * If no ContentHandler is defined for the desired $modelName, the ContentHandler may be provided by the
+     * a ContentHandlerForModelName hook. if no Contenthandler can be determined, an MWException is raised.
+     *
      * @static
      * @param $modelName String the name of the content model for which to get a handler. Use CONTENT_MODEL_XXX constants.
-     * @return ContentHandler
-     * @throws MWException
+     * @return ContentHandler the ContentHandler singleton for handling the model given by $modelName
+     * @throws MWException if no handler is known for $modelName.
      */
     public static function getForModelName( $modelName ) {
         global $wgContentHandlers;
@@ -137,11 +221,23 @@ abstract class ContentHandler {
     }
 
     # ----------------------------------------------------------------------------------------------------------
+
+    /**
+     * Constructor, initializing the ContentHandler instance with it's model name and a list of supported formats.
+     * Values for the parameters are typically provided as literals by subclasses' constructors.
+     *
+     * @param String $modelName (use CONTENT_MODEL_XXX constants).
+     * @param array $formats list for supported serialization formats (typically as MIME types)
+     */
     public function __construct( $modelName, $formats ) {
         $this->mModelName = $modelName;
         $this->mSupportedFormats = $formats;
     }
 
+    /**
+     *
+     * @return String the model name
+     */
     public function getModelName() {
         # for wikitext: wikitext; in the future: wikiast, wikidom?
         # for wikidata: wikidata
