@@ -997,6 +997,11 @@ $result: User permissions error to add. If none, return true.
 'getUserPermissionsErrorsExpensive': Absolutely the same, but is called only
 	if expensive checks are enabled.
 
+'GitViewers': called when generating the list of git viewers for Special:Version, use
+	this to change the list.
+&$extTypes: associative array of repo URLS to viewer URLs.
+
+
 'ImageBeforeProduceHTML': Called before producing the HTML created by a wiki
 	image insertion.  You can skip the default logic entirely by returning
 	false, or just modify a	few things using call-by-reference.

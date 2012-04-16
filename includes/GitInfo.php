@@ -21,17 +21,9 @@ class GitInfo {
 	protected $basedir;
 
 	/**
-	 * Map of repo URLs to viewer URLs.
-	 * Key is a pattern passed to preg_match() and preg_replace(),
-	 * without the delimiters (which are #) and must match the whole URL.
-	 * The value is the replacement for the key (it can contain $1, etc.)
-	 * %h will be replaced by the short SHA-1 (7 first chars) and %H by the
-	 * full SHA-1 of the HEAD revision.
+	 * Map of repo URLs to viewer URLs. Access via static method getViewers().
 	 */
-	protected $viewers = array(
-		'https://gerrit.wikimedia.org/r/p/(.*)' => 'https://gerrit.wikimedia.org/r/gitweb?p=$1;h=%H',
-		'ssh://(?:[a-z0-9_]+@)?gerrit.wikimedia.org:29418/(.*)' => 'https://gerrit.wikimedia.org/r/gitweb?p=$1;h=%H',
-	);
+	private static $viewers = false;
 
 	/**
 	 * @param $dir string The root directory of the repo where the .git dir can be found
@@ -151,7 +143,7 @@ class GitInfo {
 		if ( substr( $url, -4 ) !== '.git' ) {
 			$url .= '.git';
 		}
-		foreach( $this->viewers as $repo => $viewer ) {
+		foreach( self::getViewers() as $repo => $viewer ) {
 			$pattern = '#^' . $repo . '$#';
 			if ( preg_match( $pattern, $url ) ) {
 				$viewerUrl = preg_replace( $pattern, $viewer, $url );
@@ -188,5 +180,30 @@ class GitInfo {
 	 */
 	public static function headViewUrl() {
 		return self::repo()->getHeadViewUrl();
+	}
+
+	/**
+	 * Gets the list of repository viewers
+	 * @return array
+	 */
+	protected static function getViewers() {
+		if( self::$viewers === false ) {
+
+			// Map of repo URLs to viewer URLs.
+			//
+			// Key is a pattern passed to preg_match() and preg_replace(),
+			// without the delimiters (which are #) and must match the whole URL.
+			// The value is the replacement for the key (it can contain $1, etc.)
+			// %h will be replaced by the short SHA-1 (7 first chars) and %H by the
+			// full SHA-1 of the HEAD revision.
+			self::$viewers = array(
+				'https://gerrit.wikimedia.org/r/p/(.*)' => 'https://gerrit.wikimedia.org/r/gitweb?p=$1;h=%H',
+				'ssh://(?:[a-z0-9_]+@)?gerrit.wikimedia.org:29418/(.*)' => 'https://gerrit.wikimedia.org/r/gitweb?p=$1;h=%H',
+			);
+
+			wfRunHooks( 'GitViewers', array( &self::$viewers ) );
+		}
+
+		return self::$viewers;
 	}
 }
