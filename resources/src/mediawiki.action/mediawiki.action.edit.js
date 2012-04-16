@@ -5,7 +5,12 @@
  * @singleton
  */
 ( function ( mw, $ ) {
-	var toolbar, isReady, $toolbar, queue, slice, $currentFocused;
+	var toolbar, isReady, $toolbar, queue, slice, $currentFocused, draftsIdx,
+		conf = mw.config.get( [
+			'wgCookiePrefix',
+			'wgAction',
+			'wgArticleId'
+		] );
 
 	/**
 	 * Internal helper that does the actual insertion of the button into the toolbar.
@@ -136,6 +141,143 @@
 	// Expose API publicly
 	mw.toolbar = toolbar;
 
+	function saveToLocalStorage( draftEntry ) {
+		draftsIdx[draftEntry.pageId] = {
+			's' : draftEntry.wpStarttime,
+			'e' : draftEntry.wpEdittime
+		};
+		localStorage.setItem( conf.wgCookiePrefix + '-drafts' + draftEntry.pageId, draftEntry.content );
+		writeDraftsIndex();
+	}
+
+	function getLocalStorage( pageId ) {
+		var draftEntry = null;
+		if( draftsIdx[pageId] ) {
+			draftEntry = {};
+			draftEntry.wpStarttime = draftsIdx.s;
+			draftEntry.wpEdittime = draftsIdx.e;
+			draftEntry.content = localStorage.getItem( conf.wgCookiePrefix + '-drafts' + pageId );
+		}
+		return draftEntry;
+	}
+
+	function removeFromLocalStorage( pageId ) {
+		delete draftsIdx.pageId;
+		localStorage.removeItem( conf.wgCookiePrefix + '-drafts' + pageId );
+		writeDraftsIndex();
+	}
+
+	function readDraftsIndex() {
+		try {
+			draftsIdx = JSON.parse( localStorage.getItem( conf.wgCookiePrefix + '-draftsIdx' ) );
+		} catch (e) {
+			mw.log.error( e );
+		}
+		if ( !draftsIdx ) {
+			draftsIdx = {};
+		}
+	}
+
+	function writeDraftsIndex() {
+		localStorage.setItem( conf.wgCookiePrefix + '-draftsIdx', JSON.stringify( draftsIdx ) );
+	}
+
+	function purgeOldDrafts() {
+		var toDelete = [],
+			entry,
+			parsed,
+			starttime,
+			threshold = new Date();
+
+		// We purge stuff after a month
+		threshold.setTime( threshold.getTime() - ( 30 * 24 * 60 * 60 * 1000 ) );
+		for ( var pageId in draftsIdx ) {
+			entry = draftsIdx[pageId];
+			parsed = entry.s.match( /^(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})$/ );
+			starttime = new Date( Date.UTC( parsed[1], parsed[2]-1, parsed[3], parsed[4], parsed[5], parsed[6] ) );
+			if ( threshold > starttime ) {
+				toDelete.push( pageId );	
+			}
+		}
+		if ( toDelete.length ) {
+			for ( var i = 0; i < toDelete.length; i++ ) {
+				delete draftsIdx[toDelete[i]];
+				localStorage.removeItem( conf.wgCookiePrefix + '-drafts' + toDelete[i] );
+			}
+			writeDraftsIndex();
+		}
+	}
+
+	function textAreaAutoSaveInit() {
+		// If there's no localStorage, there's no point in doing the checks or adding listeners.
+		if ( 'localStorage' in window && ( conf.wgAction === 'edit' || conf.wgAction === 'submit' ) ) {
+			var pageId = conf.wgArticleId,
+				currentDraft,
+				$textArea = $( '#wpTextbox1' ),
+				$editForm = $( '#editform' ),
+				node = $( '<span>' ),
+				notif,
+				$replaceLink,
+				$discardLink;
+
+			readDraftsIndex();
+			purgeOldDrafts();
+
+			$textArea.on( 'input', $.debounce( 300, function () {
+				setTimeout( function () {
+					try {
+						saveToLocalStorage( {
+							pageId: pageId,
+							wpStarttime: $( '[name="wpStarttime"]', $editForm ).val(),
+							wpEdittime: $( '[name="wpEdittime"]', $editForm ).val(),
+							content: $textArea.val()
+						} );
+					} catch ( e ) {
+						// Assume any error is due to the quota being exceeded,
+						// per http://chrisberkhout.com/blog/localstorage-errors/
+						mw.log.warn( 'Caught a quota exceeded error when trying to save stuff in localstorage' );
+						removeFromLocalStorage( pageId );
+					}
+				} );
+			} ) );
+
+			$( '#wpSave, #mw-editform-cancel' ).click( function () {
+				removeFromLocalStorage( pageId );
+			} );
+
+			currentDraft = getLocalStorage( pageId );
+			if ( currentDraft && $.trim( currentDraft ) !== $.trim( $textArea.val() ) ) {
+				$replaceLink = $( '<a>' )
+					.text( mw.msg( 'textarea-use-draft' ) )
+					.click( function ( e ) {
+						var draftEntry = getLocalStorage( pageId );
+						$textArea.val( draftEntry.content );
+						$( '[name="wpStarttime"]', $editForm ).val( draftEntry.wpStarttime );
+						$( '[name="wpEdittime"]', $editForm ).val( draftEntry.wpEdittime );
+						e.preventDefault();
+						notif.close();
+					} );
+
+				$discardLink = $( '<a>' )
+					.text( mw.msg( 'textarea-use-current-version' ) )
+					.click( function ( e ) {
+						removeFromLocalStorage( pageId );
+						e.preventDefault();
+						notif.close();
+					} );
+
+				node.append(
+					$( '<span>' ).text( mw.msg( 'textarea-draft-found' ) ),
+					$( '<br>' ),
+					$replaceLink,
+					document.createTextNode( ' · ' ),
+					$discardLink
+				);
+				notif = mw.notification.notify( node, { autoHide: false } );
+			}
+		}
+	}
+
 	$( function () {
 		var i, b, editBox, scrollTop, $editForm;
 
@@ -186,6 +328,8 @@
 		$( document ).on( 'focus', 'textarea, input:text', function () {
 			$currentFocused = $( this );
 		} );
+
+		textAreaAutoSaveInit();
 	} );
 
 }( mediaWiki, jQuery ) );
