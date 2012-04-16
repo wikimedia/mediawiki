@@ -865,13 +865,8 @@ abstract class File {
 				}
 			} elseif ( $this->repo && $thumb->hasFile() && !$thumb->fileIsSource() ) {
 				$backend = $this->repo->getBackend();
-				// Copy the thumbnail from the file system into storage. This avoids using
-				// FileRepo::store(); getThumbPath() uses a different zone in some subclasses.
-				$backend->prepare( array( 'dir' => dirname( $thumbPath ) ) );
-				$status = $backend->store(
-					array( 'src' => $tmpThumbPath, 'dst' => $thumbPath, 'overwrite' => 1 ),
-					array( 'force' => 1, 'nonLocking' => 1, 'allowStale' => 1 )
-				);
+				// Copy the thumbnail from the file system into storage...
+				$status = $this->repo->quickImport( $tmpThumbPath, $thumbPath );
 				if ( $status->isOK() ) {
 					$thumb->setStoragePath( $thumbPath );
 				} else {
