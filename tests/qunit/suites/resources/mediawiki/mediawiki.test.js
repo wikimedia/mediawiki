@@ -148,7 +148,7 @@ test( 'mw.loader', function() {
 
 	var isAwesomeDone;
 
-	// Async ahead
+	// Asynchronous ahead
 	stop();
 
 	mw.loader.testCallback = function () {
@@ -157,73 +157,23 @@ test( 'mw.loader', function() {
 		isAwesomeDone = true;
 	};
 
-	mw.loader.implement( 'test.callback', [QUnit.fixurl( mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/callMwLoaderTestCallback.js' )], {}, {} );
+	mw.loader.implement( 'is.awesome', [QUnit.fixurl( mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/callMwLoaderTestCallback.js' )], {}, {} );
 
-	mw.loader.using( 'test.callback', function () {
+	mw.loader.using( 'is.awesome', function () {
 
 		// /sample/awesome.js declares the "mw.loader.testCallback" function
 		// which contains a call to start() and ok()
-		strictEqual( isAwesomeDone, true, "test.callback module should've caused isAwesomeDone to be true" );
+		strictEqual(isAwesomeDone, true, "is.awesome module should've caused isAwesomeDone to be true")
 		delete mw.loader.testCallback;
 
 	}, function () {
 		start();
-		ok( false, 'Error callback fired while loader.using "test.callback" module' );
+		ok( false, 'Error callback fired while loader.using "is.awesome" module' );
 	});
-});
-
-test( 'mw.loader.implement', function () {
-	expect(5 - 2);
-
-	var isJsExecuted, $element;
-
-	// Async ahead
-	stop();
-
-	mw.loader.implement(
-		'test.implement',
-		function () {
-			start();
-
-			strictEqual( isJsExecuted, undefined, 'javascript not executed multiple times' );
-			isJsExecuted = true;
-
-			equal( mw.loader.getState( 'test.implement' ), 'loaded', 'module state is "loaded" while implement() is executing javascript' );
-			
-			$element = $( '<div class="mw-test-loaderimplement">Foo bar</div>' ).appendTo( '#qunit-fixture' );
-
-			// @broken: equal( $element.css( 'text-align' ),'center', 'CSS stylesheet was applied in time. ("text-align: center")' );
-
-			// Marked broken due to a bug in qunit/index.html, via Special:JavaScriptTest/qunit it works fine
-
-			// CSS @import is easily broken when concatenating stylesheets (bug 34669)
-			// @broken: equal( $element.css( 'float' ), 'right', 'CSS stylesheet was applied in time via @import (bug 34669). ("float: right")' );
-
-			equal( mw.msg( 'test-foobar' ), 'Hello Foobar, $1!', 'Messages are loaded in time' );
-		
-		},
-		{
-			"all": "@import url('"
-				+ QUnit.fixurl( mw.config.get( 'wgScriptPath' )
-				+ '/tests/qunit/data/styleTest.css.php?'
-				+ $.param({
-					selector: '.mw-test-loaderimplement',
-					prop: 'float',
-					val: 'right'
-				}) )
-				+ "');\n"
-				+ '.mw-test-loaderimplement  { text-align: center; }'
-		},
-		{
-			"test-foobar": "Hello Foobar, $1!"
-		}
-	);
-
-	mw.loader.load( 'test.implement' );
 
 });
 
-test( 'mw.loader bug29107' , function () {
+test( 'mw.loader.bug29107' , function() {
 	expect(2);
 
 	// Message doesn't exist already

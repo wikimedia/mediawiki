@@ -4,3 +4,4 @@ port=29418
 project=mediawiki/core.git
 defaultbranch=master
 defaultrebase=0
+defaultremote=origin

@@ -381,7 +381,7 @@ var mw = ( function ( $, undefined ) {
 	
 			/* Private methods */
 	
-			function getMarker() {
+			function getMarker(){
 				// Cached ?
 				if ( $marker ) {
 					return $marker;
@@ -396,56 +396,7 @@ var mw = ( function ( $, undefined ) {
 
 				return $marker;
 			}
-
-			/**
-			 * Create a new style tag and add it to the DOM.
-			 *
-			 * @param text String: CSS text
-			 * @param $nextnode mixed: [optional] An Element or jQuery object for an element where
-			 * the style tag should be inserted before. Otherwise appended to the <head>.
-			 * @return HTMLStyleElement
-			 */
-			function addStyleTag( text, $nextnode ) {
-				var s = document.createElement( 'style' );
-				s.type = 'text/css';
-				s.rel = 'stylesheet';
-				// Insert into document before setting cssText (bug 33305)
-				if ( $nextnode ) {
-					// If a raw element, create a jQuery object, otherwise use directly
-					if ( $nextnode.nodeType ) {
-						$nextnode = $( $nextnode );
-					}
-					$nextnode.before( s );
-				} else {
-					document.getElementsByTagName('head')[0].appendChild( s );
-				}
-				if ( s.styleSheet ) {
-					s.styleSheet.cssText = text; // IE
-				} else {
-					// Safari sometimes borks on null
-					s.appendChild( document.createTextNode( String( text ) ) );
-				}
-				return s;
-			}
-
-			function addInlineCSS( css ) {
-				var $style, style, $newStyle;
-				$style = getMarker().prev();
-				if ( $style.is( 'style' ) && $style.data( 'ResourceLoaderDynamicStyleTag' ) === true ) {
-					// There's already a dynamic <style> tag present, append to it. This recycling of
-					// <style> tags is for bug 31676 (can't have more than 32 <style> tags in IE)
-					style = $style.get( 0 );
-					if ( style.styleSheet ) {
-						style.styleSheet.cssText += css; // IE
-					} else {
-						style.appendChild( document.createTextNode( String( css ) ) );
-					}
-				} else {
-					$newStyle = $( addStyleTag( css, getMarker() ) )
-						.data( 'ResourceLoaderDynamicStyleTag', true );
-				}
-			}
-
+	
 			function compare( a, b ) {
 				var i;
 				if ( a.length !== b.length ) {
@@ -739,19 +690,22 @@ var mw = ( function ( $, undefined ) {
 	
 				// Add styles
 				if ( $.isPlainObject( registry[module].style ) ) {
-					// 'media' type ignored, see documentation of mw.loader.implement
 					for ( media in registry[module].style ) {
 						style = registry[module].style[media];
 						if ( $.isArray( style ) ) {
 							for ( i = 0; i < style.length; i += 1 ) {
 								getMarker().before( mw.html.element( 'link', {
 									'type': 'text/css',
+									'media': media,
 									'rel': 'stylesheet',
 									'href': style[i]
 								} ) );
 							}
 						} else if ( typeof style === 'string' ) {
-							addInlineCSS( style );
+							getMarker().before( mw.html.element( 'style', {
+								'type': 'text/css',
+								'media': media
+							}, new mw.html.Cdata( style ) ) );
 						}
 					}
 				}
@@ -904,8 +858,6 @@ var mw = ( function ( $, undefined ) {
 	
 			/* Public Methods */
 			return {
-				addStyleTag: addStyleTag,
-
 				/**
 				 * Requests dependencies from server, loading and executing when things when ready.
 				 */
@@ -1126,12 +1078,7 @@ var mw = ( function ( $, undefined ) {
 				 * @param script Mixed: Function of module code or String of URL to be used as the src
 				 *  attribute when adding a script element to the body
 				 * @param style Object: Object of CSS strings keyed by media-type or Object of lists of URLs
-				 *  keyed by media-type. Media-type should be "all" or "", actual types are not supported
-				 *  right now due to the way execute() processes the stylesheets (they are concatenated
-				 *  into a single <style> tag). In the past these weren't concatenated together (which is
-				 *  these are keyed by media-type),  but bug 31676 forces us to. In practice this is not a
-				 *  problem because ResourceLoader only generates stylesheets for media-type all (e.g. print
-				 *  stylesheets are wrapped in @media print {} and concatenated with the others).
+				 *  keyed by media-type
 				 * @param msgs Object: List of key/value pairs to be passed through mw.messages.set
 				 */
 				implement: function ( module, script, style, msgs ) {
