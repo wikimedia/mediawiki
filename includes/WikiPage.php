@@ -139,8 +139,20 @@ class WikiPage extends Page {
 	 * @return Array
 	 */
 	public function getActionOverrides() {
-		return array();
+        $content_handler = $this->getContentHandler();
+		return $content_handler->getActionOverrides();
 	}
+
+    /**
+     * Returns the ContentHandler instance to be used to deal with the content of this WikiPage.
+     *
+     * Shorthand for ContentHandler::getForModelName( $this->getContentModelName() );
+     *
+     * @return ContentHandler
+     */
+    public function getContentHandler() {
+        return ContentHandler::getForModelName( $this->getContentModelName() );
+    }
 
 	/**
 	 * Get the title object of the article

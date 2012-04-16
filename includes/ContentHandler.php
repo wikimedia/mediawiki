@@ -359,6 +359,18 @@ abstract class ContentHandler {
     }
 
     /**
+     * Returns overrides for action handlers.
+     * Classes listed here will be used instead of the default one when
+     * (and only when) $wgActions[$action] === true. This allows subclasses
+     * to override the default actiuon handlers.
+     *
+     * @return Array
+     */
+    public function getActionOverrides() {
+        return array();
+    }
+
+    /**
      * Return an Article object suitable for viewing the given object
      *
      * NOTE: does *not* do special handling for Image and Category pages!
