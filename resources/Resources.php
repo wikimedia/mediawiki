@@ -703,8 +703,14 @@ return array(
 		'dependencies' => array(
 			'jquery.textSelection',
 			'jquery.byteLimit',
+			'mediawiki.notification',
 		),
 		'position' => 'top',
+		'messages' => array(
+			'textarea-savedversion',
+			'textarea-replace',
+			'textarea-discard',
+		),
 	),
 	'mediawiki.action.edit.preview' => array(
 		'scripts' => 'resources/mediawiki.action/mediawiki.action.edit.preview.js',

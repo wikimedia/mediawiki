@@ -1497,6 +1497,11 @@ It already exists.',
 'content-model-javascript' => 'JavaScript',
 'content-model-css'        => 'CSS',
 
+# Textarea save function, via localStorage
+'textarea-savedversion' => 'A version of this page which couldn\'t be saved has been found. Do you wish to replace it, or discard it? ',
+'textarea-replace'      => 'Replace',
+'textarea-discard'      => 'Discard',
+
 # Parser/template warnings
 'expensive-parserfunction-warning'        => "'''Warning:''' This page contains too many expensive parser function calls.
 

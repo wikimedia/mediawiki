@@ -1585,6 +1585,11 @@ This message is substituted in:
 *{{msg-mw|Bad-target-model}}
 *{{msg-mw|Content-not-allowed-here}}',
 
+# Textarea save function, via localStorage
+'textarea-savedversion' => 'Shown when the browser detects that the user previously modified this page but did not save.',
+'textarea-replace'      => 'Text for the edit text localStorage save replace link',
+'textarea-discard'      => 'Text for the edit text localStorage save discard link',
+
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'On some (expensive) [[MetaWikipedia:Help:ParserFunctions|parser functions]] (e.g. <code><nowiki>{{#ifexist:}}</nowiki></code>) there is a limit of how many times it may be used. This is an error message shown when the limit is exceeded.
 * $1 is the current number of parser function calls.
