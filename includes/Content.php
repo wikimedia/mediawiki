@@ -112,9 +112,13 @@ abstract class Content {
      * @param null|Title $title
      * @param null $revId
      * @param null|ParserOptions $options
+     * @param Boolean $generateHtml whether to generate Html (default: true). If false,
+     *        the result of calling getText() on the ParserOutput object returned by
+     *        this method is undefined.
+     *
      * @return ParserOutput
      */
-    public abstract function getParserOutput( Title $title = null, $revId = null, ParserOptions $options = NULL );
+    public abstract function getParserOutput( Title $title = null, $revId = null, ParserOptions $options = NULL, $generateHtml = true );
 
     /**
      * Construct the redirect destination from this content and return an
@@ -317,10 +321,12 @@ abstract class TextContent extends Content {
      *
      * @return ParserOutput representing the HTML form of the text
      */
-    public function getParserOutput( Title $title = null, $revId = null, ParserOptions $options = null ) {
+    public function getParserOutput( Title $title = null, $revId = null, ParserOptions $options = null, $generateHtml = true ) {
         # generic implementation, relying on $this->getHtml()
 
-        $html = $this->getHtml( $options );
+        if ( $generateHtml ) $html = $this->getHtml( $options );
+        else $html = '';
+
         $po = new ParserOutput( $html );
 
         return $po;
@@ -356,7 +362,7 @@ class WikitextContent extends TextContent {
      *
      * @return ParserOutput representing the HTML form of the text
      */
-    public function getParserOutput( Title $title = null, $revId = null, ParserOptions $options = null ) {
+    public function getParserOutput( Title $title = null, $revId = null, ParserOptions $options = null, $generateHtml = true ) {
         global $wgParser;
 
         if ( !$options ) {

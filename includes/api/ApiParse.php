@@ -189,7 +189,7 @@ class ApiParse extends ApiBase {
 				return;
 			}
 			// Not cached (save or load)
-			$p_result = $wgParser->parse( $params['pst'] ? $this->pstText : $this->text, $titleObj, $popts );
+			$p_result = $wgParser->parse( $params['pst'] ? $this->pstText : $this->text, $titleObj, $popts ); #FIXME: use Content object¡
 		}
 
 		$result_array = array();
