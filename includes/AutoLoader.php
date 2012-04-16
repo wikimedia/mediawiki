@@ -315,6 +315,7 @@ $wgAutoloadLocalClasses = array(
 	'ApiMain' => 'includes/api/ApiMain.php',
 	'ApiMove' => 'includes/api/ApiMove.php',
 	'ApiOpenSearch' => 'includes/api/ApiOpenSearch.php',
+	'ApiOptions' => 'includes/api/ApiOptions.php',
 	'ApiPageSet' => 'includes/api/ApiPageSet.php',
 	'ApiParamInfo' => 'includes/api/ApiParamInfo.php',
 	'ApiParse' => 'includes/api/ApiParse.php',
