@@ -702,6 +702,11 @@ $wgMessageStructure = array(
 		'content-model-javascript',
 		'content-model-css',
 	),
+	'edittextarea-localstorage-saving' => array(
+		'textarea-savedversion',
+		'textarea-replace',
+		'textarea-discard',
+	),
 	'parserwarnings' => array(
 		'expensive-parserfunction-warning',
 		'expensive-parserfunction-category',
