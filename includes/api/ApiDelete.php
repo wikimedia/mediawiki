@@ -53,18 +53,20 @@ class ApiDelete extends ApiBase {
 			if ( !$titleObj ) {
 				$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
 			}
+			$pageObj = WikiPage::factory( $titleObj );
+			$pageObj->loadPageData( 'fromdbmaster' );
+			if ( !$pageObj->exists() ) {
+				$this->dieUsageMsg( 'notanarticle' );
+			}
 		} elseif ( isset( $params['pageid'] ) ) {
-			$titleObj = Title::newFromID( $params['pageid'] );
-			if ( !$titleObj ) {
+			$pageObj = WikiPage::newFromID( $params['pageid'] );
+			if ( !$pageObj ) {
 				$this->dieUsageMsg( array( 'nosuchpageid', $params['pageid'] ) );
 			}
-		}
-		if ( !$titleObj->exists() ) {
-			$this->dieUsageMsg( 'notanarticle' );
+			$titleObj = $pageObj->getTitle();
 		}
 
 		$reason = ( isset( $params['reason'] ) ? $params['reason'] : null );
-		$pageObj = WikiPage::factory( $titleObj );
 		$user = $this->getUser();
 
 		if ( $titleObj->getNamespace() == NS_FILE ) {
