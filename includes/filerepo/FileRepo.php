@@ -784,6 +784,86 @@ class FileRepo {
 	}
 
 	/**
+	 * Import a file from the local file system into the repo.
+	 * This does no locking nor journaling and overrides existing files.
+	 * This is intended for copying generated thumbnails into the repo.
+	 *
+	 * @param $src string File system path
+	 * @param $dst string Virtual URL or storage path
+	 * @return FileRepoStatus
+	 */
+	final public function quickImport( $src, $dst ) {
+		return $this->quickImportBatch( array( array( $src, $dst ) ) );
+	}
+
+	/**
+	 * Purge a file from the repo. This does no locking nor journaling.
+	 * This is intended for purging thumbnail.
+	 *
+	 * @param $path string Virtual URL or storage path
+	 * @return FileRepoStatus
+	 */
+	final public function quickPurge( $path ) {
+		return $this->quickPurgeBatch( array( $path ) );
+	}
+
+	/**
+	 * Import a batch of files from the local file system into the repo.
+	 * This does no locking nor journaling and overrides existing files.
+	 * This is intended for copying generated thumbnails into the repo.
+	 *
+	 * @param $src Array List of tuples (file system path, virtual URL or storage path)
+	 * @return FileRepoStatus
+	 */
+	public function quickImportBatch( array $pairs ) {
+		$this->assertWritableRepo(); // fail out if read-only
+
+		$status = $this->newGood();
+		$operations = array();
+		foreach ( $pairs as $pair ) {
+			list ( $src, $dst ) = $pair;
+			$operations[] = array(
+				'op'        => 'store',
+				'src'       => $src,
+				'dst'       => $this->resolveToStoragePath( $dst ),
+				'overwrite' => true
+			);
+			$this->backend->prepare( array( 'dir' => dirname( $dst ) ) );
+		}
+		$status->merge( $this->backend->doOperations( $operations,
+			array( 'force' => 1, 'nonLocking' => 1, 'allowStale' => 1, 'nonJournaled' => 1 )
+		) );
+
+		return $status;
+	}
+
+	/**
+	 * Purge a batch of files from the repo. This does no locking nor journaling.
+	 * This is intended for purging thumbnails.
+	 *
+	 * @param $path Array List of virtual URLs or storage paths
+	 * @return FileRepoStatus
+	 */
+	public function quickPurgeBatch( array $paths ) {
+		$this->assertWritableRepo(); // fail out if read-only
+
+		$status = $this->newGood();
+		$operations = array();
+		foreach ( $paths as $path ) {
+			$operations[] = array(
+				'op'                  => 'delete',
+				'src'                 => $this->resolveToStoragePath( $path ),
+				'ignoreMissingSource' => true
+			);
+		}
+		$status->merge( $this->backend->doOperations( $operations,
+			array( 'force' => 1, 'nonLocking' => 1, 'allowStale' => 1, 'nonJournaled' => 1 )
+		) );
+
+		return $status;
+	}
+
+	/**
 	 * Pick a random name in the temp zone and store a file to it.
 	 * Returns a FileRepoStatus object with the file Virtual URL in the value,
 	 * file can later be disposed using FileRepo::freeTemp().
@@ -927,7 +1007,7 @@ class FileRepo {
 		foreach ( $triplets as $i => $triplet ) {
 			list( $srcPath, $dstRel, $archiveRel ) = $triplet;
 			// Resolve source to a storage path if virtual
-			if ( substr( $srcPath, 0, 9 ) == 'mwrepo://' ) {
+			if ( $this->isVirtualUrl( $srcPath ) ) {
 				$srcPath = $this->resolveVirtualUrl( $srcPath );
 			}
 			if ( !$this->validateFilename( $dstRel ) ) {
@@ -1008,6 +1088,22 @@ class FileRepo {
 			unlink( $file ); // FS cleanup
 			wfRestoreWarnings();
 		}
+
+		return $status;
+	}
+
+	/**
+	 * Deletes a directory if empty
+	 *
+	 * @param $dir string Virtual URL (or storage path) of directory to clean
+	 * @return Status
+	 */
+	public function cleanDir( $dir ) {
+		$this->assertWritableRepo(); // fail out if read-only
+
+		$status = $this->newGood();
+		$status->merge( $this->backend->clean(
+			array( 'dir' => $this->resolveToStoragePath( $dir ) ) ) );
 
 		return $status;
 	}
