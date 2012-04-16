@@ -10,16 +10,17 @@ class MWContentSerializationException extends MWException {
  * Content is stored in the database in a serialized form (using a serialization format aka mime type)
  * and is be unserialized into it's native PHP represenation (the content model), which is wrappe in
  * an instance of the appropriate subclass of Content.
- * 
+ *
+ * ContentHandler instances are stateless singletons that serve, among other things, as a factory for
+ * Content objects. Generally, there is one subclass of ContentHandler and one subclass of Content
+ * for every type of content model.
+ *
  * Some content types have a flat model, that is, their native represenation is the
  * same as their serialized form. Examples would be JavaScript and CSS code. As of now,
  * this also applies to wikitext (mediawiki's default content type), but wikitext
  * content may be represented by a DOM or AST structure in the future.
- *
- * TODO: add documentation
  */
 abstract class ContentHandler {
-
 
     /**
      * Conveniance function for getting flat text from a Content object. This shleould only
@@ -41,31 +42,6 @@ abstract class ContentHandler {
      * @return null|string the textual form of $content, if available
      * @throws MWException if $content is not an instance of TextContent and $wgContentHandlerTextFallback was set to 'fail'.
      */
-
-	/**
-	 * @abstract
-	 * @param Content $content
-	 * @param null $format
-	 * @return String
-	 */
-	public abstract function serialize( Content $content, $format = null );
-
-	/**
-	 * TODO: calling unserialize on a ContentHandler returns a Content?!! Something looks wrong here...
-	 *
-	 * @abstract
-	 * @param $blob String
-	 * @param null $format
-	 * @return Content
-	 */
-	public abstract function unserialize( $blob, $format = null );
-
-	/**
-	 * FIXME: bad method name: suggests it empties the content of an instance rather then creating a new empty one
-	 */
-	public abstract function emptyContent();
-
-
     public static function getContentText( Content $content = null ) {
         global $wgContentHandlerTextFallback;
 
@@ -211,7 +187,7 @@ abstract class ContentHandler {
      * returns the appropriate ContentHandler singleton for the given Content object
      *
      * @static
-     * @param Title $title
+     * @param Content $content
      * @return ContentHandler
      */
     public static function getForContent( Content $content ) {
@@ -276,32 +252,91 @@ abstract class ContentHandler {
         $this->mSupportedFormats = $formats;
     }
 
+
     /**
+     * Serializes Content object of the type supported by this ContentHandler.
+     *
+     * @FIXME: bad method name: suggests it serializes a ContentHandler, while in fact it serializes a Content object
+     *
+     * @abstract
+     * @param Content $content the Content object to serialize
+     * @param null $format the desired serialization format
+     * @return String serialized form of the content
+     */
+    public abstract function serialize( Content $content, $format = null );
+
+    /**
+     * Unserializes a Content object of the type supported by this ContentHandler.
+     *
+     * @FIXME: bad method name: suggests it unserializes a ContentHandler, while in fact it unserializes a Content object
+     *
+     * @abstract
+     * @param $blob String serialized form of the content
+     * @param null $format the format used for serialization
+     * @return Content the Content object created by deserializing $blob
+     */
+    public abstract function unserialize( $blob, $format = null );
+
+    /**
+     * Creates an empty Content object of the type supported by this ContentHandler.
+     *
+     * @FIXME: bad method name: suggests it empties the content of an instance rather then creating a new empty one
+     */
+    public abstract function emptyContent();
+
+    /**
+     * Returns the model name that identifies the content model this ContentHandler can handle.
+     * Use with the CONTENT_MODEL_XXX constants.
      *
      * @return String the model name
      */
     public function getModelName() {
-        // for wikitext: wikitext; in the future: wikiast, wikidom?
-        // for wikidata: wikidata
         return $this->mModelName;
     }
 
+    /**
+     * Throws an MWException if $modelName is not the content model handeled by this ContentHandler.
+     *
+     * @param $modelName the model name to check
+     */
     protected function checkModelName( $modelName ) {
         if ( $modelName !== $this->mModelName ) {
             throw new MWException( "Bad content model: expected " . $this->mModelName . " but got found " . $modelName );
         }
     }
 
+    /**
+     * Returns a list of serialization formats supported by the serialize() and unserialize() methods of
+     * this ContentHandler.
+     *
+     * @return array of serialization formats as MIME type like strings
+     */
     public function getSupportedFormats() {
-        // for wikitext: "text/x-mediawiki-1", "text/x-mediawiki-2", etc
-        // for wikidata: "application/json", "application/x-php", etc
         return $this->mSupportedFormats;
     }
 
+    /**
+     * The format used for serialization/deserialization per default by this ContentHandler.
+     *
+     * This default implementation will return the first element of the array of formats
+     * that was passed to the constructor.
+     *
+     * @return String the name of the default serialiozation format as a MIME type
+     */
     public function getDefaultFormat() {
         return $this->mSupportedFormats[0];
     }
 
+    /**
+     * Returns true if $format is a serialization format supported by this ContentHandler,
+     * and false otherwise.
+     *
+     * Note that if $format is null, this method always returns true, because null
+     * means "use the default format".
+     *
+     * @param $format the serialization format to check
+     * @return bool
+     */
     public function isSupportedFormat( $format ) {
 
         if ( !$format ) {
@@ -311,6 +346,12 @@ abstract class ContentHandler {
         return in_array( $format, $this->mSupportedFormats );
     }
 
+    /**
+     * Throws an MWException if isSupportedFormat( $format ) is not true. Convenient
+     * for checking whether a format provided as a parameter is actually supported.
+     *
+     * @param $format the serialization format to check
+     */
     protected function checkFormat( $format ) {
         if ( !$this->isSupportedFormat( $format ) ) {
             throw new MWException( "Format $format is not supported for content model " . $this->getModelName() );
@@ -326,6 +367,7 @@ abstract class ContentHandler {
      * @param Title $title
      * @return Article
      * @todo Article is being refactored into an action class, keep track of that
+     * @todo Article really defines the view of the content... rename this method to createViewPage ?
      */
     public function createArticle( Title $title ) {
         $this->checkModelName( $title->getContentModelName() );
@@ -352,6 +394,7 @@ abstract class ContentHandler {
      *
      * @param IContextSource $context
      * @return ExternalEdit
+     * @todo does anyone or anythign actually use the external edit facility? Can we just deprecate and ignore it?
      */
     public function createExternalEdit( IContextSource $context ) {
         $this->checkModelName( $context->getTitle()->getModelName() );
@@ -370,6 +413,7 @@ abstract class ContentHandler {
      * @param $unhide boolean If set, allow viewing deleted revs
 	 *
 	 * @return DifferenceEngine
+     * @todo rename to createDifferenceEngine for consistency.
      */
     public function getDifferenceEngine( IContextSource $context, $old = 0, $new = 0, $rcid = 0, #FIMXE: use everywhere!
                                          $refreshCache = false, $unhide = false ) {
@@ -471,6 +515,8 @@ abstract class ContentHandler {
      * @param &$hasHistory Boolean: whether the page has a history
      * @return mixed String containing deletion reason or empty string, or boolean false
      *    if no revision occurred
+     *
+     * @todo &$hasHistory is extremely ugly, it's here because WikiPage::getAutoDeleteReason() and Article::getReason() have it / want it.
      */
     public function getAutoDeleteReason( Title $title, &$hasHistory ) {
         $dbw = wfGetDB( DB_MASTER );
