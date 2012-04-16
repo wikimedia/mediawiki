@@ -623,6 +623,7 @@ $wgMessageStructure = array(
 		'updated',
 		'note',
 		'previewnote',
+		'continue-editing',
 		'previewconflict',
 		'session_fail_preview',
 		'session_fail_preview_html',
