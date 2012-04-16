@@ -629,6 +629,11 @@ return array(
 			'jquery.textSelection',
 			'jquery.byteLimit',
 		),
+		'messages' => array(
+			'textarea-savedversion',
+			'textarea-replace',
+			'textarea-discard',
+		),
 	),
 	'mediawiki.action.history' => array(
 		'scripts' => 'resources/mediawiki.action/mediawiki.action.history.js',

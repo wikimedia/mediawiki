@@ -62,6 +62,52 @@
 	// Explose publicly
 	mw.toolbar = toolbar;
 
+	function textAreaAutoSaveInit() {
+		// If there's no localStorage, there's no point in doing the checks or adding listeners.
+		// Also, it should only be run when editing, and not previewing.
+		if ( 'localStorage' in window && mw.config.get( 'wgAction' ) == 'edit' ) {
+			function saveToLocalStorage ( page, contents ) {
+				// the replace call is to remove unicode characters which cannot be saved to localStorage
+				localStorage.setItem( 'savedta-' + page.replace( /[^\x00-\x80]/g , '-' ), contents);
+			}
+			function inLocalStorage ( page ) {
+				return localStorage.getItem( 'savedta-' + page.replace( /[^\x00-\x80]/g , '-' ) ) !== null;
+			}
+			function getLocalStorage ( page ) {
+				return localStorage.getItem( 'savedta-' + page.replace( /[^\x00-\x80]/g , '-' ) );
+			}
+			function removeFromLocalStorage ( page ) {
+				return localStorage.removeItem( 'savedta-' + page.replace( /[^\x00-\x80]/g , '-' ) );
+			}
+			var textArea = document.getElementById( 'wpTextbox1' );
+			textArea.addEventListener( 'keyup', function () {
+				var value = textArea.value;
+				saveToLocalStorage( mw.config.get( 'wgPageName' ), value);
+			});
+			var saveButton = document.getElementById( 'wpSave' );
+			saveButton.addEventListener( 'click', function () {
+				removeFromLocalStorage( mw.config.get( 'wgPageName' ) );
+			});
+			if ( inLocalStorage ( mw.config.get( 'wgPageName' ) ) ) {
+				var options = ' <a href="#" id="textarea-replace">' + mw.msg('textarea-replace') + '</a> · <a href="#" id="textarea-discard">' + mw.msg('textarea-discard') + '</a>';
+				mw.util.jsMessage( mw.msg( 'textarea-savedversion' ) + options );
+				document.getElementById('textarea-replace').addEventListener('click', function (e) {
+					textArea.value = getLocalStorage( mw.config.get( 'wgPageName' ) );
+					removeFromLocalStorage( mw.config.get( 'wgPageName' ) );
+					$( '#mw-js-message' ).slideUp();
+					e.preventDefault();
+					return false;
+				});
+				document.getElementById('textarea-discard').addEventListener('click', function (e) {
+					removeFromLocalStorage( mw.config.get( 'wgPageName' ) );
+					$( '#mw-js-message' ).slideUp();
+					e.preventDefault();
+					return false;
+				});
+			}
+		}
+	}
+
 	$( document ).ready( function () {
 		var buttons, i, c, iframe;
 
@@ -129,6 +175,7 @@
 					currentFocused = iframe;
 				} );
 		}
+		textAreaAutoSaveInit();
 	});
 
 }( jQuery, mediaWiki ) );

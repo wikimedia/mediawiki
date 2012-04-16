@@ -1463,6 +1463,11 @@ It already exists.',
 'addsection-editintro'             => '', # do not translate or duplicate this message to other languages
 'defaultmessagetext'               => 'Default message text',
 
+# Textarea save function, via localStorage
+'textarea-savedversion'	           => 'A version of this page which couldn\'t be saved has been found. Do you wish to replace it, or discard it?',
+'textarea-replace'	           => 'Replace',
+'textarea-discard'	           => 'Discard',
+
 # Parser/template warnings
 'expensive-parserfunction-warning'        => "'''Warning:''' This page contains too many expensive parser function calls.
 
