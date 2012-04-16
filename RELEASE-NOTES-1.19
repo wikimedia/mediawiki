@@ -283,8 +283,6 @@ production.
 * It is now possible to delete images that have no corresponding description pages.
 * (bug 33165) GlobalFunctions.php line 1312: Call to a member function
   getText() on a non-object.
-* (bug 31676) Group dynamically inserted CSS into a single <style> tag, to work
-  around a bug where not all styles were applied in Internet Explorer.
 * (bug 28936, bug 5280) Broken or invalid titles can't be removed from watchlist.
 * (bug 34600) Older skins using useHeadElement=false were broken in 1.18.
 * (bug 34604) [mw.config] wgActionPaths should be an object instead of a numeral
