@@ -1384,6 +1384,7 @@ Adspectum graciliorem potes facere modum indicum, nomen usoris (cave litteras ma
 'allpagesprefix' => 'Monstrare paginas quibus est praeverbium:',
 'allpagesbadtitle' => 'Nomen paginae datum fuit invalidum aut praverbium interlinguale vel interviciale habuit. Fortasse insunt una aut plus litterarum quae in titulis non possunt inscribier.',
 'allpages-bad-ns' => 'Non est spatium nominale "$1" apud {{grammar:accusative|{{SITENAME}}}}.',
+'allpages-hide-redirects' => 'Celare redirectiones',
 
 # Special:Categories
 'categories' => 'Categoriae',

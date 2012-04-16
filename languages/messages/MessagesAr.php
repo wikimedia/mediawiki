@@ -18,6 +18,7 @@
  * @author Bassem JARKAS
  * @author Chaos
  * @author Ciphers
+ * @author DRIHEM
  * @author DrFO.Tn
  * @author Elmondo21st
  * @author Elmoro
@@ -1141,7 +1142,7 @@ $2
 تذكر أن ملفات ال.css و ال.js تستخدم حروف صغيرة في العنوان ، كمثال {{ns:user}}:Foo/vector.css و ليس {{ns:user}}:Foo/Vector.css.",
 'updated' => '(محدثة)',
 'note' => "'''ملاحظة:'''",
-'previewnote' => "'''تذكر أن هذه مجرد معاينة للصفحة؛''''
+'previewnote' => "'''تذكر أن هذه مجرد معاينة أولية.'''
 لم تحفظ تغييراتك إلى الآن!",
 'previewconflict' => 'هذا العرض يوضح النص الموجود في صندوق التحرير العلوي والذي سيظهر إذا اخترت الحفظ.',
 'session_fail_preview' => "'''عذرا! لم نتمكن من حفظ التعديلات التي قمت بها نتيجة لضياع بيانات هذه الجلسة.
@@ -1998,9 +1999,9 @@ $1',
 # img_auth script messages
 'img-auth-accessdenied' => 'رفض الوصول',
 'img-auth-nopathinfo' => 'PATH_INFO مفقود.
-خادومك ليس مضبوطا لتمرير هذه المعلومات.
-ربما يكون مبني على CGI ولا يمكنه دعم img_auth.
-[https://www.mediawiki.org/wiki/Manual:Image_Authorization راجع تصريح الصور].',
+خادمك ليس مضبوطا  لتمرير هذه المعلومة.
+قد يكون مبنيا على نظام CGI ولا يمكنه دعم img_auth.
+راجع https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir' => 'المسار المطلوب غير موجود في مجلد الرفع المضبوط.',
 'img-auth-badtitle' => 'تعذر تشكيل عنوان صالح من "$1".',
 'img-auth-nologinnWL' => 'لست والجا و"$1" ليست في القائمة البيضاء.',
@@ -2318,8 +2319,9 @@ $1',
 'linksearch-pat' => 'نمط البحث:',
 'linksearch-ns' => 'النطاق:',
 'linksearch-ok' => 'ابحث',
-'linksearch-text' => 'الكروت الخاصة مثل "*.wikipedia.org" يمكن استخدامها.<br />
-البروتوكولات المدعومة: <tt>$1</tt>',
+'linksearch-text' => 'Wildcards مثل "*.wikipedia.org" يمكن استخدامها.
+تحتاج على الأقل إلى نطاق ذو مستوى أعلى، كمثال "*.org".<br />
+البروتوكولات المدعومة: <tt>$1</tt> (لا تقم بإضافة أي من هذه إلى بحثك).',
 'linksearch-line' => '$1 موصولة من $2',
 'linksearch-error' => 'الكروت الخاصة يمكن أن تظهر فقط في بداية اسم المضيف.',
 

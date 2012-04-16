@@ -16,6 +16,7 @@
  * @author Jack Phoenix
  * @author Jafeluv
  * @author Kaganer
+ * @author Kulmalukko
  * @author Mobe
  * @author Nedergard
  * @author Nike
@@ -2865,6 +2866,7 @@ Tallenna tiedot koneellesi ja tuo ne tällä sivulla.',
 'tooltip-diff' => 'Näytä tehdyt muutokset',
 'tooltip-compareselectedversions' => 'Vertaile valittuja versioita',
 'tooltip-watch' => 'Lisää tämä sivu tarkkailulistaan',
+'tooltip-watchlistedit-normal-submit' => 'Poista otsikot',
 'tooltip-watchlistedit-raw-submit' => 'Päivitä tarkkailulista',
 'tooltip-recreate' => 'Luo sivu uudelleen',
 'tooltip-upload' => 'Aloita tallennus',

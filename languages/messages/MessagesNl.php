@@ -521,7 +521,7 @@ $messages = array(
 'searchbutton' => 'Zoeken',
 'go' => 'OK',
 'searcharticle' => 'OK',
-'history' => 'Paginageschiedenis',
+'history' => 'Geschiedenis',
 'history_short' => 'Geschiedenis',
 'updatedmarker' => 'bewerkt sinds mijn laatste bezoek',
 'printableversion' => 'Printervriendelijke versie',
@@ -672,7 +672,7 @@ Het laatste verzoek aan de database was:
 “$1”
 vanuit de functie “$2”.
 De database gaf de volgende foutmelding: “$3: $4”',
-'laggedslavemode' => "'''Waarschuwing:''' de pagina kan verouder zijn.",
+'laggedslavemode' => "'''Waarschuwing:''' in deze pagina zijn recente wijzigingen mogelijk nog niet verwerkt.",
 'readonly' => 'Database geblokkeerd',
 'enterlockreason' => 'Geef een reden op voor de blokkade en geef op wanneer die waarschijnlijk wordt opgeheven',
 'readonlytext' => 'De database is geblokkeerd voor bewerkingen, waarschijnlijk voor regulier databaseonderhoud. Na afronding wordt de functionaliteit hersteld.
@@ -1077,8 +1077,8 @@ U dient uw bewerkingen in te voegen in de bestaande tekst.
 'storedversion' => 'Opgeslagen versie',
 'nonunicodebrowser' => "'''Waarschuwing: Uw browser kan niet goed overweg met unicode.'''
 Hiermee wordt door de MediaWiki-software rekening gehouden zodat u toch zonder problemen pagina's kunt bewerken: niet-ASCII karakters worden in het bewerkingsveld weergegeven als hexadecimale codes.",
-'editingold' => "'''Waarschuwing: U bewerkt een oude versie van deze pagina.'''
-Als u uw bewerking opslaat, gaan alle wijzigingen die na deze versie gemaakt zijn verloren.",
+'editingold' => "'''Waarschuwing: u bewerkt een oude versie van deze pagina.'''
+Als u uw bewerking opslaat, gaan alle wijzigingen verloren die na deze versie zijn gemaakt.",
 'yourdiff' => 'Wijzigingen',
 'copyrightwarning' => "Let op: alle bijdragen aan {{SITENAME}} worden geacht te zijn vrijgegeven onder de \$2 (zie \$1 voor details).
 Als u niet wilt dat uw tekst door anderen naar believen bewerkt en verspreid kan worden, kies dan niet voor \"Pagina opslaan\".<br />
@@ -1268,7 +1268,7 @@ $1",
 'revdel-restore' => 'Zichtbaarheid wijzigen',
 'revdel-restore-deleted' => 'verwijderde versies',
 'revdel-restore-visible' => 'zichtbare versies',
-'pagehist' => 'paginageschiedenis',
+'pagehist' => 'Geschiedenis',
 'deletedhist' => 'verwijderde geschiedenis',
 'revdelete-hide-current' => 'Er is een fout opgetreden bij het verbergen van het object van $1 om $2 uur: dit is de huidige versie.
 Deze versie kan niet verborgen worden.',
@@ -2134,8 +2134,8 @@ Vergeet niet de "Verwijzingen naar deze pagina" te controleren alvorens dit sjab
 'disambiguations' => "Pagina's die verwijzen naar doorverwijspagina's",
 'disambiguationspage' => 'Template:Doorverwijspagina',
 'disambiguations-text' => "Hieronder staan pagina's die verwijzen naar een '''doorverwijspagina'''.
-Deze horen waarschijnlijk direct naar het juiste onderwerp te verwijzen.
-<br />Een pagina wordt gezien als doorverwijspagina als er een sjabloon op staat dat opgenomen is op [[MediaWiki:Disambiguationspage]]",
+Deze horen waarschijnlijk direct naar het juiste onderwerp te verwijzen.<br />
+Een pagina wordt gezien als doorverwijspagina als er een sjabloon op staat dat opgenomen is op [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects' => 'Dubbele doorverwijzingen',
 'doubleredirectstext' => "Deze lijst bevat pagina's die doorverwijzen naar andere doorverwijspagina's.
@@ -2587,7 +2587,7 @@ Mogelijk hebt u een verkeerde verwijzing of is de versie hersteld of verwijderd 
 'undeletelink' => 'bekijken/terugplaatsen',
 'undeleteviewlink' => 'bekijken',
 'undeletereset' => 'Fomulier wissen',
-'undeleteinvert' => 'Omgekeerde selectie',
+'undeleteinvert' => 'Selectie omkeren',
 'undeletecomment' => 'Reden:',
 'undeletedrevisions' => '$1 {{PLURAL:$1|versie|versies}} teruggeplaatst',
 'undeletedrevisions-files' => '{{PLURAL:$1|1 versie|$1 versies}} en {{PLURAL:$2|1 bestand|$2 bestanden}} teruggeplaatst',
@@ -2618,7 +2618,7 @@ $1',
 
 # Namespace form on various pages
 'namespace' => 'Naamruimte:',
-'invert' => 'Omgekeerde selectie',
+'invert' => 'Selectie omkeren',
 'tooltip-invert' => 'Vink dit aan om wijzigingen te verbergen in de geselecteerde naamruimte (en de gekoppelde naamruimte indien aangevinkt)',
 'namespace_association' => 'Gekoppelde naamruimte',
 'tooltip-namespace_association' => 'Vink dit aan om ook wijzigingen weer te geven in de overleg- of onderwerpnaamruimte die bij de geselecteerde naamruimte hoort',
@@ -3195,7 +3195,7 @@ Meestal wordt dit door een externe verwijzing op een zwarte lijst veroorzaakt.',
 'markaspatrolleddiff' => 'Als gecontroleerd markeren',
 'markaspatrolledtext' => 'Deze pagina als gecontroleerd markeren',
 'markedaspatrolled' => 'Gemarkeerd als gecontroleerd',
-'markedaspatrolledtext' => 'De geselecteerde versie van [[:$1]] is gemarkeerd als gecontroleerd.',
+'markedaspatrolledtext' => 'De geselecteerde bewerking van [[:$1]] is gemarkeerd als gecontroleerd.',
 'rcpatroldisabled' => 'De controlemogelijkheid op recente wijzigingen is uitgeschakeld.',
 'rcpatroldisabledtext' => 'De mogelijkheid om recente wijzigingen als gecontroleerd aan te merken is op dit ogenblik uitgeschakeld.',
 'markedaspatrollederror' => 'Kan niet als gecontroleerd worden aangemerkt',
@@ -3817,7 +3817,7 @@ Probeer de normale voorvertoning.',
 Probeer normale voorvertoning.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Veranderingen die nieuwer zijn dan $1 {{PLURAL:$1|seconde|seconden}} worden misschien niet weergegeven in deze lijst.',
+'lag-warn-normal' => 'Wijzigingen in de afgelopen {{PLURAL:$1|seconde|$1 seconden}} worden misschien niet weergegeven in deze lijst.',
 'lag-warn-high' => 'Door een hoge database-servertoevoer zijn wijzigingen nieuwer dan $1 {{PLURAL:$1|seconde|seconden}} mogelijk niet beschikbaar in de lijst.',
 
 # Watchlist editor

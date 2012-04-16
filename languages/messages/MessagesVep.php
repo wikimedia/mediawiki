@@ -277,6 +277,7 @@ $messages = array(
 'delete' => 'Čuta poiš',
 'deletethispage' => "Čuta nece lehtpol'",
 'undelete_short' => "Endištada {{PLURAL:$1|üks' redakcii|$1 redakcijad}}",
+'viewdeleted_short' => 'Kc. {{PLURAL:$1|čutud redakcii|$1 čutud redakcijad}}',
 'protect' => 'Kaita',
 'protect_change' => 'toižetada',
 'protectthispage' => "Kaita nece lehtpol'",
@@ -583,7 +584,10 @@ Aigaline peitsana: $2',
 'passwordreset-emailsent' => 'Muštatai kirjeine oigetihe e-počtadme',
 
 # Special:ChangeEmail
+'changeemail' => 'Toižetada e-počtan adres',
+'changeemail-no-info' => 'Miše kirjutada necil lehtpolel, teile pidab kirjutadas sistemha.',
 'changeemail-newemail' => "Uz' e-počtan adres",
+'changeemail-none' => '(ei ole)',
 'changeemail-submit' => 'Toižetada e-počtan adres',
 'changeemail-cancel' => 'Heitta',
 
@@ -692,6 +696,7 @@ Alemba om anttud jälgmäine kirjutuz blokiruindaiglehtesespäi:",
 Teiden toižetused ei olgoi völ kirjutadud! [[#editform|→ jatkta redakrtiruind]]",
 'previewconflict' => "Tekst redaktiruindan üläiknas kuvazub neche ezikacundha muga, kut se nägub lopkirjutamižen jäl'ghe.",
 'editing' => '$1-lehtpolen redaktiruind',
+'creating' => 'Sätas $1',
 'editingsection' => '$1-lehtpolen redaktiruind (jaguz)',
 'editingcomment' => "$1-lehtpolen redaktiruind (uz' jaguz)",
 'editconflict' => 'Redaktiruindan konflikt: $1',
@@ -754,6 +759,7 @@ Voib olda, se om jo čutud.",
 'edit-no-change' => 'Teiden redakcii ignoriruidihe, sikš miše tekst ei ole toižetadud.',
 'edit-already-exists' => "Ei voi säta uz' lehtpol'.
 Wikiš om jo mugoi lehtpol'.",
+'defaultmessagetext' => 'Tekst augotižjärgendusen mödhe',
 
 # Parser/template warnings
 'expensive-parserfunction-category' => 'Lehtpoled, kudambil kävutadas äjahko resursokahid funkcijoid',
@@ -901,6 +907,7 @@ Tö ei voigoi kävutada sidä.',
 # Diffs
 'history-title' => '"$1"-lehtpolen toižetusiden istorii',
 'difference' => '(Erod versijoiden keskes)',
+'difference-multipage' => '(Lehtpoliden erinend)',
 'lineno' => 'Rivi $1:',
 'compareselectedversions' => 'Rindatada valitud versijad',
 'showhideselectedversions' => 'Ozutada/peitta valitud versijad',
@@ -1051,6 +1058,7 @@ Otkat sil'mnägubale üks-se, miše {{SITENAME}}-saitan sädäimišt voib olda v
 'prefs-files' => 'Failad',
 'prefs-custom-css' => 'Ičeze CSS',
 'prefs-custom-js' => 'Ičeze JS',
+'prefs-common-css-js' => 'Ühthižed CSS/JavaScript kaikiden temiden täht:',
 'prefs-reset-intro' => "Tö sat kävutada nece lehtpol', miše pördutada teiden järgendused saitan ezijärgendusidennoks.
 Necidä tegendad ei sa toižetada.",
 'prefs-emailconfirm-label' => 'E-počtan vahvištand:',
@@ -1269,6 +1277,7 @@ Ku tö kirjutat sen, nece nimi kävutadas, miše ozutada lehtpolen toižetajad.'
 'rc_categories' => 'Vaiše kategorijoišpäi (erigoitkat znamaižel "|")',
 'rc_categories_any' => 'Eraz',
 'rc-change-size' => '$1',
+'rc-change-size-new' => "$1 {{PLURAL:$1|bait|baitad}} jäl'ges toižetamišt",
 'newsectionsummary' => "/* $1 */ uz' jaguz",
 'rc-enhanced-expand' => 'Ozutada detalid (JavaScript)',
 'rc-enhanced-hide' => 'Peitta detalid',
@@ -2871,7 +2880,7 @@ Necen vahvištoitandkodan kävutamižen lopstrok om $4.',
 'autosumm-blank' => 'Lehtpolen südäiolend om čutud',
 'autosumm-replace' => "Lehtpolen südäiolend om vajehtud '$1'-südäiolendaks",
 'autoredircomment' => 'Om läbioigetud [[$1]]-lehtpolele',
-'autosumm-new' => "Om sätud uz' lehtpol', kudamban suruz om '$1'",
+'autosumm-new' => "Om sätud uz' lehtpol', kudamban südäiolend om '$1'",
 
 # Size units
 'size-bytes' => '$1 b',

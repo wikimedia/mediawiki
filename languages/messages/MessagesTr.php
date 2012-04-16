@@ -9,6 +9,7 @@
  *
  * @author 82-145
  * @author Bekiroflaz
+ * @author Bilalokms
  * @author Bombola
  * @author Cekli829
  * @author Dbl2010
@@ -996,6 +997,7 @@ Değişikliğiniz, sayfa metninde bozulmayı önlemek için geri çevrildi.
 Eğer sorunlu bir web-tabanlı anonim proksi servisi kullanıyorsanız bu olay bazen gerçekleşebilir.'''",
 'edit_form_incomplete' => "'''Değişiklik formu için bazı sunuculara erişilemedi; yaptığınız değişiklikler bozulmamıştır, gözden geçirip tekrar deneyiniz.'''",
 'editing' => '"$1" sayfasını değiştirmektesiniz',
+'creating' => 'Oluşturuluyor $1',
 'editingsection' => '"$1" sayfasında bölüm değiştirmektesiniz',
 'editingcomment' => '$1 değiştiriliyor (yeni bölüm)',
 'editconflict' => 'Değişiklik çakışması: $1',
@@ -1015,7 +1017,7 @@ Yaptığınız katkının başka katılımcılar tarafından acımasızca deği�
 Ayrıca buraya katkıda bulunarak, bu katkının kendiniz tarafından yazıldığına ya da kamuya açık bir kaynaktan ya da başka bir özgür/ücretsiz kaynaktan kopyalandığına güvence vermiş oluyorsunuz. '''Buraya, telif sahibinin izni olmadan telif hakkı ile korunan eserleri eklemeyiz! '''",
 'copyrightwarning2' => 'Lütfen, {{SITENAME}} sitesine bulunacağınız tüm katkıların diğer üyeler tarafından düzenlenebileceğini, değiştirilebileceğini ya da silinebileceğini hatırlayın. Yazılarınızın merhametsizce değiştirilebilmesine rıza göstermiyorsanız buraya katkıda bulunmayın. <br />
 Ayrıca bu ekleyeceğiniz yazıyı sizin yazdığınızı ya da serbest kopyalama izni veren bir kaynaktan kopyaladığınızı bize taahhüt etmektesiniz (ayrıntılar için referans: $1).',
-'longpageerror' => "'''HATA: Girdiğiniz metnin uzunluğu $1 kilobayt, ve en fazla uzunluktan $2 kilobayt daha fazladır.
+'longpageerror' => "'''HATA: Girdiğiniz metnin uzunluğu {{PLURAL:$1|bir kilobayt|$1 kilobayt}}, ve en fazla uzunluktan {{PLURAL:$2|bir kilobayt|$2 kilobayt}} daha fazladır.
 Kaydedilmesi mümkün değildir.'''",
 'readonlywarning' => "'''DİKKAT: Bakım nedeni ile veritabanı şu anda kilitlidir. Bu sebeple değişiklikleriniz şu anda kaydedilememektedir. Yazdıklarınızı başka bir editöre alıp saklayabilir ve daha sonra tekrar buraya getirip kaydedebilirsiniz'''
 
@@ -1058,6 +1060,7 @@ Silinmiş görünüyor.',
 'edit-no-change' => 'Değişikliğiniz yoksayıldı, çünkü metinde bir değişiklik yapılmadı.',
 'edit-already-exists' => 'Yeni sayfa oluşturulamıyor.
 Sayfa zaten mevcut.',
+'defaultmessagetext' => 'Varsayılan mesaj metni',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Uyarı: Bu sayfa çok fazla zengin derleyici fonksiyonu çağrısı içeriyor.
@@ -1637,6 +1640,7 @@ Diğer kullanıcılar sizinle bu yolla iletişime geçtiğinde e-posta adresiniz
 'newsectionsummary' => '/* $1 */ yeni başlık',
 'rc-enhanced-expand' => 'Ayrıntıları göster (JavaScript gerekir)',
 'rc-enhanced-hide' => 'Ayrıntıları gizle',
+'rc-old-title' => 'ilk olarak oluşturulan "$1"',
 
 # Recent changes linked
 'recentchangeslinked' => 'İlgili değişiklikler',
@@ -1795,6 +1799,7 @@ Eğer sorun tekrarlanırsa, bir [[Special:ListUsers/sysop|hizmetli]] ile temasa 
 'upload-http-error' => 'Bir HTTP hatası oluştu: $1',
 
 # File backend
+'backend-fail-notexists' => '$1 dosyası mevcut değil.',
 'backend-fail-delete' => '"$1" dosyası silinemedi.',
 'backend-fail-opentemp' => 'Geçici dosya açılamadı.',
 'backend-fail-closetemp' => 'Geçici dosya kapanamadı.',

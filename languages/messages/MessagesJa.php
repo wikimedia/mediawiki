@@ -750,6 +750,9 @@ $2',
 'ns-specialprotected' => '特別ページは編集できません。',
 'titleprotected' => "[[User:$1|$1]]によりこのページ名を持つページの作成は保護されています。
 理由は「''$2''」です。",
+'filereadonlyerror' => 'ファイルリポジトリ「$2」が読み取り専用の状態にあるため、ファイル「$1」を変更することができません。
+
+読み取り専用に設定した管理者からの説明: 「$3」',
 
 # Virus scanner
 'virus-badscanner' => "環境設定が不適合です：不明なウイルス検知ソフトウェア：''$1''",
@@ -846,6 +849,7 @@ $2',
 'invalidemailaddress' => '入力されたメールアドレスが正しい形式に従っていないため、受け付けられません。
 正しい形式で入力し直すか、メールアドレス欄を空にしておいてください。',
 'cannotchangeemail' => 'このウィキでは、アカウントの電子メールアドレスを変更できません。',
+'emaildisabled' => 'このサイトでは、メールの送信はできません。',
 'accountcreated' => 'アカウントを作成しました',
 'accountcreatedtext' => '利用者アカウント：$1が作成されました。',
 'createaccount-title' => '{{SITENAME}}のアカウント作成',
@@ -1073,6 +1077,7 @@ IPアドレスは複数の利用者の間で共有されていることがあり
 これは、問題のある匿名プロキシサービスを利用していると、起こることがあります。",
 'edit_form_incomplete' => "'''一部の編集フォームの値がサーバーに届きませんでした。ご確認の上、そのまま再度投稿してください。'''",
 'editing' => '「$1」を編集中',
+'creating' => '「$1」を作成中',
 'editingsection' => '「$1」を編集中 (節単位)',
 'editingcomment' => '「$1」を編集中 (新しい節)',
 'editconflict' => '編集競合：$1',
@@ -1140,6 +1145,7 @@ IPアドレスは複数の利用者の間で共有されていることがあり
 'edit-no-change' => '文章が変更されていないため、編集は無視されました。',
 'edit-already-exists' => '新しいページを作成できませんでした。
 そのページは、すでに存在しています。',
+'defaultmessagetext' => '既定のメッセージ文',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''警告：'''このページでの、高負荷なパーサー関数の呼び出し回数が多過ぎます。
@@ -1727,6 +1733,7 @@ HTMLタグを見直してください。',
 'newsectionsummary' => '/* $1 */ 新しい節',
 'rc-enhanced-expand' => '詳細を表示（JavaScriptが必要）',
 'rc-enhanced-hide' => '詳細を非表示',
+'rc-old-title' => '作成時のページ名は「$1」',
 
 # Recent changes linked
 'recentchangeslinked' => '関連ページの更新状況',
@@ -1901,6 +1908,7 @@ $1',
 'backend-fail-stream' => 'ファイル $1 をストリームできませんでした。',
 'backend-fail-backup' => 'ファイル $1 をバックアップできませんでした。',
 'backend-fail-notexists' => 'ファイル $1 は存在しません。',
+'backend-fail-hashes' => 'ファイルの比較用のハッシュを取得できませんでした。',
 'backend-fail-notsame' => 'ファイル名 $1 はすでに違うファイルが使用しています。',
 'backend-fail-invalidpath' => '$1 はストレージパスに使用することができません。',
 'backend-fail-delete' => 'ファイル $1 を削除できませんでした。',
@@ -1913,9 +1921,22 @@ $1',
 'backend-fail-closetemp' => '一時ファイルを閉じることができませんでした。',
 'backend-fail-read' => 'ファイル $1 を読み込めませんでした。',
 'backend-fail-create' => 'ファイル $1 を作成できませんでした。',
+'backend-fail-maxsize' => 'ファイル「$1」は{{PLURAL:$2||}}$2バイトよりも大きいため、作成できませんでした。',
 'backend-fail-readonly' => 'ストレージバックエンド「$1」は現在読み取り専用です。理由:「$2」',
 'backend-fail-synced' => 'ファイル「$1」は、ストレージバックエンド内部において不一致の状態にあります。',
+'backend-fail-connect' => 'ストレージバックエンドに接続できませんでした。「$1」',
+'backend-fail-internal' => 'ストレージバックエンド「$1」で原因不明のエラーが発生しました。',
 'backend-fail-contenttype' => '「$1」に保存するコンテンツの種類が判断できませんでした。',
+
+# Lock manager
+'lockmanager-notlocked' => '「$1」をアンロックできませんでした。ロックはされていません。',
+'lockmanager-fail-closelock' => '「$1」用のロックファイルを閉じることができませんでした。',
+'lockmanager-fail-deletelock' => '「$1」用のロックファイルを削除することができませんでした。',
+'lockmanager-fail-acquirelock' => '「$1」用のロックを取得できませんでした。',
+'lockmanager-fail-openlock' => '「$1」用のロックファイルを開くことができませんでした。',
+'lockmanager-fail-releaselock' => '「$1」用のロックを解放できませんでした。',
+'lockmanager-fail-db-release' => 'データベース $1 上のロックを解放できませんでした。',
+'lockmanager-fail-svr-release' => 'サーバー $1 上のロックを解放できませんでした。',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'ZIPのチェックを行った際にエラーが検出されました。',
@@ -2023,7 +2044,12 @@ URLが正しいものであり、ウェブサイトが稼働していること�
 'sharedupload' => 'このファイルは$1のものであり、他のプロジェクトで使用されている可能性があります。',
 'sharedupload-desc-there' => 'このファイルは$1のものであり、他のプロジェクトで使用されている可能性があります。
 詳細は[$2 ファイル解説ページ]を参照してください。',
-'sharedupload-desc-here' => 'このファイルは$1のものであり、他のプロジェクトで使用されている可能性があります。その[$2 ファイル解説ページ]にある説明を以下に表示しています。',
+'sharedupload-desc-here' => 'このファイルは$1から来ており、他のプロジェクトで使用されている可能性があります。
+$1での[$2 ファイル解説ページ]にある説明を以下に示します。',
+'sharedupload-desc-edit' => 'このファイルは$1から来ており、他のプロジェクトで使用されている可能性があります。
+$1での[$2 ファイル解説ページ]にある説明を編集したほうがいいかもしれません。',
+'sharedupload-desc-create' => 'このファイルは$1から来ており、他のプロジェクトで使用されている可能性があります。
+$1での[$2 ファイル解説ページ]にある説明を編集したほうがいいかもしれません。',
 'filepage-nofile' => 'この名前のファイルは存在しません。',
 'filepage-nofile-link' => 'この名前のファイルは存在しませんが、[$1 アップロード]することができます。',
 'uploadnewversion-linktext' => 'このファイルの新しい版をアップロードする',
@@ -2160,6 +2186,8 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 'wantedpages' => 'ページが存在しないリンク',
 'wantedpages-badtitle' => '結果に不正なページ名が含まれています：$1',
 'wantedfiles' => 'ファイル情報ページが存在しないファイル',
+'wantedfiletext-cat' => '下記のファイルは存在していませんが、使われています。外部リポジトリ由来のファイルは存在しているにもかかわらずここに列挙されることがあります。そのような偽陽性は<del>取り消され</del>ます。加えて、存在していないファイルを埋め込んでいるページは[[:$1]]に列挙されます。',
+'wantedfiletext-nocat' => '下記のファイルは存在していませんが、使われています。外部リポジトリ由来のファイルは存在しているにもかかわらずここに列挙されることがあります。そのような偽陽性は<del>取り消され</del>ます。',
 'wantedtemplates' => '呼び出し先が存在しないテンプレート呼び出し',
 'mostlinked' => '被リンク数の多いページ',
 'mostlinkedcategories' => '被リンク数の多いカテゴリ',
@@ -2237,6 +2265,7 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 'allpagesbadtitle' => '指定したページ名は無効か、言語間またはウィキ間接頭辞を含んでいます。
 ページ名に使用できない文字が1つ以上含まれている可能性があります。',
 'allpages-bad-ns' => '{{SITENAME}}に「$1」という名前空間はありません。',
+'allpages-hide-redirects' => 'リダイレクトを隠す',
 
 # Special:Categories
 'categories' => 'カテゴリ',
@@ -2999,6 +3028,13 @@ hideuser権限を持っていないため、この利用者のブロックを閲
 # JavaScriptTest
 'javascripttest' => 'JavaScript をテスト中',
 'javascripttest-disabled' => 'この機能はこのウィキでは有効にされていません。',
+'javascripttest-title' => '$1 のテストの実行',
+'javascripttest-pagetext-noframework' => 'このページは JavaScript のテストを実行するために予約されています。',
+'javascripttest-pagetext-unknownframework' => '未知のテストフレームワーク「$1」。',
+'javascripttest-pagetext-frameworks' => '次のテストフレームワークからひとつを選択してください：$1',
+'javascripttest-pagetext-skins' => 'テストを実行する外装を選択してください：',
+'javascripttest-qunit-intro' => 'mediawiki.org上の[$1 テストのドキュメント]を参照してください。',
+'javascripttest-qunit-heading' => 'MediaWiki JavaScript QUnit テストスイート',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => '自分の利用者ページ',

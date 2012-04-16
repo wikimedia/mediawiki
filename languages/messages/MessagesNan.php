@@ -1374,13 +1374,13 @@ Tī pat-lâng liân-lo̍k lí ê sî-chūn bē kā e-mail tsū-tsí siá chhut--
 
 這頁有刣掉佮徙走的記錄通參考：",
 'uploadtext' => "用下跤的表來共檔案上載。
-若欲看抑是揣往過上載的檔案，會使進入[[Special:FileList|檔案上載清單]]，（重）上載嘛會記錄佇[[Special:Log/upload|上傳記錄]]，若刣掉就會記錄佇[[Special:Log/delete|刪除記錄]]。
+若欲看，抑是揣往過上載的檔案，會使入去[[Special:FileList|檔案上載清單]]。上載嘛會記錄佇[[Special:Log/upload|上載記錄]]，若刣掉就會記錄佇[[Special:Log/delete|刣掉記錄]]。
 
-若欲佇頁加入檔案，用下跤的一種方式來連結：
+上載後，若欲佇頁加入檔案，會使用下跤的一種方式來連結：
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>'''使用檔案的完整版本
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|替換文字]]</nowiki></tt>'''用一个囥佇倒爿的一个200 像素圖相框，「替換文字」做說明
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>'''直接連結到檔案，毋過無顯示檔案",
-'upload-permitted' => '准許的檔案類型: $1',
+'upload-permitted' => '通用的檔案類型: $1',
 'upload-preferred' => '建議的檔案類型: $1',
 'upload-prohibited' => '禁止的檔案類型: $1。',
 'uploadlog' => '上載記錄',

@@ -19,6 +19,7 @@
  * @author Bangin
  * @author Bennylin
  * @author Beta16
+ * @author Bilalokms
  * @author Boivie
  * @author Brest
  * @author BrokenArrow
@@ -1905,8 +1906,8 @@ Extensions making use of it:
 'backend-fail-notexists' => 'Parameters:
 * $1 is a filename.',
 'backend-fail-hashes' => 'Definition of "[[w:en:Hash_function|hashes]]".',
-'backend-fail-notsame' => 'Parameters:
-* $1 is a filename.',
+'backend-fail-notsame' => 'Parametreler:
+* $1 bir dosya ismi.',
 'backend-fail-invalidpath' => 'Parameters:
 * $1 is a storage path.',
 'backend-fail-delete' => 'Parameters:

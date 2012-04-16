@@ -450,7 +450,7 @@ $2',
 Æхгæныны бындур уыд "\'\'$2\'\'".',
 'filereadonlyerror' => 'Нæ уайы фæивын файл "$1" уый тыххæй æмæ репозиторий "$2" кусы æрмæст фæрсыны уавæры.
 
-Раздæхт бындур у "\'\'$3\'\'".',
+Радгæс, кæцы сæвæрдта ацы уавæр, ныууагъта ахæм амонæн: "\'\'$3\'\'".',
 
 # Virus scanner
 'virus-badscanner' => "Æвзæр æвæрд: Нæзонгæ вирусты скане: ''$1''",
@@ -465,7 +465,7 @@ $2',
 'welcomecreation' => '== Ӕгас цу, $1! ==
 Дæ аккаунт арæзт æрцыдис.
 Ма дæ ферох уæт æркæсын дæ [[Special:Preferences|{{grammar:genitive|{{SITENAME}}}} фадæттæм]].',
-'yourname' => 'Архайæджы ном:',
+'yourname' => 'Фæсномыг:',
 'yourpassword' => 'Пароль:',
 'yourpasswordagain' => 'Дæ пароль иу хатт ма:',
 'remembermypassword' => 'Бахъуыды мæ кæнæд ашы браузеры (максимум $1 {{PLURAL:$1|бонмæ|бонмæ}})',
@@ -489,7 +489,7 @@ $2',
 'createaccountmail' => 'адрисмæ гæсгæ',
 'createaccountreason' => 'Бындур:',
 'badretype' => 'Дыууæ хатты иу пароль хъуамæ ныффыстаис',
-'userexists' => 'Уыцы ном нæвдæлон у.
+'userexists' => 'Уыцы фæсномыг нæвдæлон у.
 Дæ хорзæхæй, равзар æндæр.',
 'loginerror' => 'Бахизыны рæдыд',
 'createaccounterror' => 'Нæ рауадис аккаунт саразын: $1',
@@ -502,23 +502,23 @@ $2',
 Дæ хорзæхæй, баиу цæ кæн æмæ нæуæгæй бафæлвар.',
 'nocookiesfornew' => 'Архайæджы аккаунт нæ сарæзт ис, уымæн æмæ йын мах нæ базыдтам йæ равзæрæн.
 Бацархай, цæмæй cookies иу уой, анæуæг кæн ацы фарс æмæ ногæй бафæлвар.',
-'noname' => 'Ды нæ ныффыстай раст архайæджы ном.',
+'noname' => 'Раст фæсномыг нæ ныффыстай.',
 'loginsuccesstitle' => 'Бахизын рауадис',
 'loginsuccess' => "'''Ныр ды дæ хыст {{grammar:genitive|{{SITENAME}}}} куыд \"\$1\".'''",
 'nosuchuser' => 'Нæй ахæм архайæг "$1" номимæ.
 Архайджыты нæмттæ хатынц дамгъæты регистр.
 Сбæрæг æй кæн, раст ныффыстай ном, æви [[Special:UserLogin/signup|бакæн ног аккаунт]].',
-'nosuchusershort' => 'Нæй архайæг "$1" номимæ.
-Фен, ном раст ныффыстай, æви нæ.',
-'nouserspecified' => 'Ды хъуамæ зæгъай дæ ном.',
+'nosuchusershort' => 'Нæй архайæг "$1" фæсномыгимæ.
+Фен, фæсномыг раст ныффыстай, æви нæ.',
+'nouserspecified' => 'Ды хъуамæ зæгъай дæ фæсномыг.',
 'login-userblocked' => 'Ацы архайæг хъодыгонд у. Нæй гæнæн бахизын.',
 'wrongpassword' => 'Цы пароль ныффыстай, уый раст нæу.
 Лæмбынæгæй ныффысс дæ пароль',
 'wrongpasswordempty' => 'Пароль афтид у.
 Бафæлвар ногæй.',
 'passwordtooshort' => 'Паролтæ хъуамæ уой уæддæр {{PLURAL:$1|1 дамгъæйы|$1 дамгъæйы}} дæргъæн.',
-'password-name-match' => 'Дæ парол ма хъуамæ уа дæ номы хуызæн.',
-'password-login-forbidden' => 'Ацы архайæджы ном æмæ паролæй нæй гæнæн архайын.',
+'password-name-match' => 'Дæ парол ма хъуамæ уа дæ фæсномыгы хуызæн.',
+'password-login-forbidden' => 'Ацы фæсномыг æмæ паролæй нæй гæнæн архайын.',
 'mailmypassword' => 'Рарвит мæм ног пароль',
 'passwordremindertitle' => 'Ног рæстæгмæ пароль {{grammar:dative|{{SITENAME}}}}',
 'passwordremindertext' => 'Чидæр (æвæццæгæн ды, $1 IP адрисæй) æрдомтта ног парол {{grammar:dative|{{SITENAME}}}} ($4). "$2" архайæгæн арæзт æрцыд рæстæгмæ парол. Парол у "$3". Кæд уый ды уыдтæ, уæд дын ныр хъæудзæн бахизын æмæ равзарын ног парол.
@@ -531,8 +531,23 @@ $2',
 'blocked-mailpassword' => 'Дæ IP адрис уыд хъодыгонд ивынæй æмæ цæмæй мачи разнаггад кæна, уы тыххæй дзы нæй гæнæн парол раивын дæр.',
 'eauthentsent' => 'Бæлвырдгæнæн фыстæг æрвыст æрцыд амынд e-mail адрисмæ.
 Цæмæй дæм æндæр фыстæджытæ дæр цæуой, уый тыххæй дын хъæудзæн сæххæст кæнын фыстæджы фыст амындтытæ. Уый фæстæ сбæлвыд уыдзæн аккаунт æцæгдæр дæу кæй у, уый.',
+'throttled-mailpassword' => 'Паролрымысæн нырид æрвыст æрцыд фæстаг {{PLURAL:$1|сахаты|$1 сахаты}} мидæг.
+Цæмæй мачи разнагкад кæна, уый тыххæй æрмæст иу хатт ис гæнæн райсын рымысæнфыстæг {{PLURAL:$1|сахаты|$1 сахаты}} мидæг.',
 'mailerror' => 'Фыстæг арвитыны рæдыд: $1',
+'acct_creation_throttle_hit' => 'Ацы викимæ дæ IP адрисæй чи æрбацыдис, уыдон фæстаг боны мидæг бакодтой {{PLURAL:$1|1 аккаунт|$1 аккаунты}}. Уымæй фылдæр нæй гæнæн ахæм рæстæгмæ.
+Уый тыххæй, ацы тæккæ, ацы IP адрисæй уазджытæн сæ бон нæу бакæнын аккаунттæ.',
+'emailauthenticated' => 'Дæ e-mail уыд бæлвырдгонд $2 $3 сахатыл.',
+'emailnotauthenticated' => 'Дæ e-mail адрис нырмæ нæу бæлвырдгонд.
+Иу e-mail дæр дæм нæ уыдзæн æрвыст ацы функцитæй.',
+'noemailprefs' => 'Бафысс e-mail адрис дæ фадæтты, цæмæй ацы функцитæ кусой.',
 'emailconfirmlink' => 'Дæ электронон посты адрис сфидар кæн',
+'invalidemailaddress' => 'E-mail нæй гæнæн райсын, уымæн æмæ йæ формат раст нæу.
+Бафысс раст форматы адрис кæнæ та йæ сафтид кæн.',
+'cannotchangeemail' => 'Аккаунты e-mail нæй гæнæн ивын ацы викийы.',
+'emaildisabled' => 'Ацы сайтæн йæ бон нæу æрвитын e-mail.',
+'accountcreated' => 'Аккаунт конд æрцыд',
+'accountcreatedtext' => '$1 архайæджы аккаунт конд æрцыд.',
+'createaccount-title' => '{{grammar:genitive|{{SITENAME}}}} аккант бакæнын',
 'loginlanguagelabel' => 'Æвзаг: $1',
 
 # Change password dialog
@@ -545,9 +560,9 @@ $2',
 'resetpass-temp-password' => 'Рæстæгмæ пароль:',
 
 # Special:PasswordReset
-'passwordreset-username' => 'Архайæджы ном:',
+'passwordreset-username' => 'Фæсномыг:',
 'passwordreset-email' => 'Электрон посты адрис:',
-'passwordreset-emailelement' => 'Архайæджы ном: $1
+'passwordreset-emailelement' => 'Фæсномыг: $1
 Рæстæгмæ пароль: $2',
 
 # Special:ChangeEmail
@@ -658,11 +673,11 @@ $2',
 'history-feed-item-nocomment' => '$1 $2',
 
 # Revision deletion
-'rev-deleted-comment' => '(ивды афыст æппæрст æрцыд)',
-'rev-deleted-user' => '(архайæджы ном аппæрст у)',
-'rev-deleted-event' => '(фыст аппæрст у)',
+'rev-deleted-comment' => '(ивды афыст хафт у)',
+'rev-deleted-user' => '(фæсномыг хафт у)',
+'rev-deleted-event' => '(фыст хафт у)',
 'rev-delundel' => 'равдисын/айсын',
-'revisiondelete' => 'Аппар / рацараз фарсы фæлтæртæ',
+'revisiondelete' => 'Схафын/рацаразын фарсы фæлтæртæ',
 'revdel-restore' => 'ивын зынæн',
 'revdel-restore-deleted' => 'хафт ивдтытæ',
 'revdel-restore-visible' => 'зынгæ ивдтытæ',
@@ -778,7 +793,7 @@ $2',
 'prefs-custom-css' => 'Хиæвæрд CSS',
 'prefs-custom-js' => 'Хиæвæрд JavaScript',
 'youremail' => 'E-mail:',
-'username' => 'Регистрацигонд ном:',
+'username' => 'Фæсномыг:',
 'uid' => 'Архайæджы ID:',
 'yourrealname' => 'Æцæг ном:',
 'yourlanguage' => 'Техникон фыстыты æвзаг:',
@@ -838,7 +853,7 @@ $2',
 'action-edit' => 'ацы фарс ивын',
 'action-createpage' => 'фæрстæ кæнын',
 'action-createtalk' => 'тæрхоны фæрстæ кæнын',
-'action-createaccount' => 'ацы архайæджы ном аразын',
+'action-createaccount' => 'саразын ацы архайæджы аккаунт',
 'action-minoredit' => 'ацы ивд чысылæй нысан кæнын',
 'action-move' => 'ацы фарсы ном ивын',
 'action-movefile' => 'ацы файлы ном ивын',
@@ -1124,7 +1139,7 @@ $3',
 'sp-contributions-logs' => 'логтæ',
 'sp-contributions-talk' => 'ныхас',
 'sp-contributions-search' => 'Бавæрд агурæн',
-'sp-contributions-username' => 'IP адрис кæнæ архайæджы ном:',
+'sp-contributions-username' => 'IP адрис кæнæ фæсномыг:',
 'sp-contributions-toponly' => 'Æвдисæт æрмæст фæстаг ивдтытæ',
 'sp-contributions-submit' => 'Агурын',
 

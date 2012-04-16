@@ -18,6 +18,7 @@
  * @author Kaganer
  * @author Matasg
  * @author Meno25
+ * @author Ola
  * @author Pdxx
  * @author Perkunas
  * @author Pėstininkas
@@ -835,7 +836,7 @@ Jūs galite [[Special:Search/{{PAGENAME}}|ieškoti šio puslapio pavadinimo]] ki
 'userinvalidcssjstitle' => "'''Dėmesio:''' Nėra jokios išvaizdos „$1“. Nepamirškite, kad savo .css ir .js puslapiai naudoja pavadinimą mažosiomis raidėmis, pvz., {{ns:user}}:Foo/vector.css, o ne {{ns:user}}:Foo/Vector.css.",
 'updated' => '(Atnaujinta)',
 'note' => "'''Pastaba:'''",
-'previewnote' => "'''Nepamirškite, kad tai tik peržiūra, pakeitimai dar nėra išsaugoti!'''",
+'previewnote' => "''Nepamirškite, kad tai tik peržiūra, pakeitimai dar nėra išsaugoti!'''",
 'previewconflict' => 'Ši peržiūra parodo tekstą iš viršutiniojo teksto redagavimo lauko taip, kaip jis bus rodomas, jei pasirinksite išsaugoti.',
 'session_fail_preview' => "'''Atsiprašome! Mes negalime vykdyti jūsų keitimo dėl sesijos duomenų praradimo.
 Prašome pamėginti vėl. Jei tai nepadeda, pamėginkite atsijungti ir prisijungti atgal.'''",

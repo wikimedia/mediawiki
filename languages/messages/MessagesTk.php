@@ -445,6 +445,7 @@ Hasabyňyz açyldy.
 'createaccount' => 'Täze hasap aç',
 'gotaccount' => "Eýýäm hasap açdyňyzmy? '''$1'''.",
 'gotaccountlink' => 'Onda giriberiň!',
+'userlogin-resetlink' => 'Giriş maglumatlaryňyzy ýatdan çykardyňyzmy?',
 'createaccountmail' => 'e-poçta bilen',
 'createaccountreason' => 'Sebäp:',
 'badretype' => 'Girizen parollaryňyz biri-birine gabat gelmeýär.',
@@ -646,7 +647,7 @@ Salgylanmak üçin iň soňky blokirleme gündeligi ýazgysy aşakda berilýär:
 Hususy .css we .js sahypalarynyň setir harp bilen ýazylýandygyny ýatda saklaň, ýagny {{ns:user}}:Ulanyjy/Vector.css däl-de, eýsem {{ns:user}}:Ulanyjy/vector.css.",
 'updated' => '(Täzelenen)',
 'note' => "'''Bellik:'''",
-'previewnote' => "'''Bu bir ýöne deslapky syn. Üýtgeşmeleriňiz heniz ýazdyrylan däldir!'''",
+'previewnote' => "'''Ýatda saklaň, bu bir ýöne deslapky syn.''' Üýtgeşmeleriňiz heniz ýazdyrylan däldir! [[#editform|→ Redaktirläberiň]]",
 'previewconflict' => 'Bu deslapky syn redaktirleme penjiresiniň üstünde ýerleşip, ol ýazdyran mahalyňyz sahypanyň nähili görünjekdigini görkezýär.',
 'session_fail_preview' => "'''Bagyşlaň! Sessiýa maglumatynyň ýitirilmegi zerarly serwer özgerdişiňizi işläp bilenok.'''
 Gaýtadan synanyşmagyňyzy haýyş edýäris.
@@ -1099,8 +1100,8 @@ $1 {{PLURAL:$1|simwoldan|simwoldan}} köp bolmaly däl.',
 'prefs-help-gender' => 'Hökmany däl: programma tarapyndan ulanyjynyň jynsyna görä ýüzlenmek üçin ulanylýar. Bu maglumat köpçülige açyk boljakdyr.',
 'email' => 'E-poçta',
 'prefs-help-realname' => 'Hakyky at (hökmany däl): eger hakyky adyňyz berseňiz, onda eden işleriňiz görkezilende ulanyljakdyr.',
-'prefs-help-email' => 'E-poçta adresi hökmany däl; ýöne parolyňyz ýadyňyzdan çykan ýagdaýynda e-poçta adresiňize täze parol iberilmegine mümkinçilik berýär.
-Şeýle-de ol başga ulanyjylaryň ulanyjy we pikir alyşma sahypalaryňyzyň üsti bilen kimdigiňizi bilmezden siziň bilen habarlaşyp bilmeklerine şert döredýär.',
+'prefs-help-email' => 'E-poçta adresi hökmany däl, ýöne parolyňyz ýadyňyzdan çykan ýagdaýynda e-poçta adresiňize täze parol iberilmegine mümkinçilik berýär.',
+'prefs-help-email-others' => 'Ulanyjy ýa-da çekişme sahypaňyzdaky bir çykgydyň üsti bilen başga ulanyjylaryň size e-poçta ibermegine rugsat hem berip bilersiňiz. Başga ulanyjylar siziň bilen habarlaşan wagty e-poçta adresiňiz görkezilmez.',
 'prefs-help-email-required' => 'E-poçta adresi talap edilýär.',
 'prefs-info' => 'Esasy maglumat',
 'prefs-i18n' => 'Halkaralaşdyryş',
@@ -1518,7 +1519,7 @@ Bir sütüniň adyna tyklap sortirowkanyň tertibini üýtgedip bilersiňiz.',
 'filehist-filesize' => 'Faýl ölçegi',
 'filehist-comment' => 'Teswirleme',
 'filehist-missing' => 'Faýl ýok',
-'imagelinks' => 'Faýlyň çykgytlary',
+'imagelinks' => 'Faýlyň ulanylyşy',
 'linkstoimage' => 'Bu faýla çykgydy bar bolan {{PLURAL:$1|sahypa|$1 sahypa}}:',
 'linkstoimage-more' => '$1 gowrak {{PLURAL:$1|sahypa|sahypa}} bu faýla çykgyt berýär.
 Aşakdaky sanaw diňe şu faýla çykgyt berýän {{PLURAL:$1|ilkinji faýly |ilkinji $1 faýly}} görkezýär.
@@ -1683,7 +1684,7 @@ Ol indi [[$2]] sahypasyna gönükdirýär.',
 'listusers-editsonly' => 'Diňe özgerdiş eden ulanyjylary görkez',
 'listusers-creationsort' => 'Döredilen senesi boýunça tertiple',
 'usereditcount' => '$1 {{PLURAL:$1|özgerdiş|özgerdiş}}',
-'usercreated' => '$2, $1 senesinde döredildi',
+'usercreated' => '$2, $1 senesinde {{GENDER:$3|döredildi}}.',
 'newpages' => 'Täze sahypalar',
 'newpages-username' => 'Ulanyjy ady:',
 'ancientpages' => 'Iň köne sahypalar',
@@ -2094,6 +2095,7 @@ $1',
 'sp-contributions-newbies-title' => 'Täze hasaplar üçin ulanyjy goşantlary',
 'sp-contributions-blocklog' => 'Blokirleme gündeligi',
 'sp-contributions-deleted' => 'öçürilen ulanyjy goşantlary',
+'sp-contributions-uploads' => 'ýüklemeler',
 'sp-contributions-logs' => 'gündelikler',
 'sp-contributions-talk' => 'çekişme',
 'sp-contributions-userrights' => 'ulanyjy hukuklary dolandyryşy',
@@ -2590,7 +2592,7 @@ Ondan soňraky çykgyt(lar) kadadan çykma hökmünde kabul edilýär, meselem: 
 'metadata-help' => 'Bu faýlda, ähtimal, dijital fotoapparat ýa-da skaner tarapyndan goşulan goşmaça maglumatlar bardyr. Eger faýl soňradan redaktirlenen bolsa, onda käbir maglumatlar häzirki redaktirlenen faýly görä köneligine galan bolup biler.',
 'metadata-expand' => 'Jikme-jiklikleri görkez',
 'metadata-collapse' => 'Jikme-jiklikleri görkezme',
-'metadata-fields' => 'Bu habarlaşykda sanalýan EXIF meta-maglumat meýdançalary meta-maglumat tablisasy çöken mahaly surat görkeziş sahypalarynda ulanylýar. Galanlary gaýybana tertipde gizlenilýär.
+'metadata-fields' => 'Bu habarda sanalýan şekil meta-maglumat meýdançalary meta-maglumat tablisasy düýrlenen mahaly şekil sahypasynyň displeýine goşular. Galanlary gaýybana tertipde gizlenilýär.
 * make
 * model
 * datetimeoriginal

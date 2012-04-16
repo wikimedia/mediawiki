@@ -1063,7 +1063,7 @@ Sollte das Problem bestehen bleiben, [[Special:UserLogout|melde dich ab]] und da
 Eine Speicherung kann den Seiteninhalt zerstören. Dies geschieht bisweilen durch die Benutzung eines anonymen Proxy-Dienstes, der fehlerhaft arbeitet.'''",
 'edit_form_incomplete' => "'''Der Inhalt des Bearbeitungsformulars hat den Server nicht vollständig erreicht. Bitte prüfe deine Bearbeitungen auf Vollständigkeit und versuche es erneut.'''",
 'editing' => 'Bearbeiten von „$1“',
-'creating' => '$1 wird erstellt',
+'creating' => 'Erstellen von „$1“',
 'editingsection' => 'Bearbeiten von „$1“ (Abschnitt)',
 'editingcomment' => 'Bearbeiten von „$1“ (Neuer Abschnitt)',
 'editconflict' => 'Bearbeitungskonflikt: $1',

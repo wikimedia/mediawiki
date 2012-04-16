@@ -1054,6 +1054,7 @@ Zdaje się, że została skasowana.',
 'edit-no-change' => 'Twoja edycja została zignorowana, ponieważ nie zmienił{{GENDER:|eś|aś|eś(‐aś)}} niczego w tekście.',
 'edit-already-exists' => 'Nie udało się stworzyć nowej strony.
 Strona już istnieje.',
+'defaultmessagetext' => 'Domyślny tekst komunikatu',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Uwaga! Ta strona zawiera zbyt wiele wywołań złożonych obliczeniowo funkcji parsera.

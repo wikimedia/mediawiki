@@ -371,7 +371,7 @@ $messages = array(
 'tog-rememberpassword' => 'Zapamatovat si mé přihlášení v tomto prohlížeči (maximálně $1 {{PLURAL:$1|den|dny|dní}})',
 'tog-watchcreations' => 'Přidávat mnou založené stránky ke sledovaným',
 'tog-watchdefault' => 'Přidávat mnou editované stránky ke sledovaným',
-'tog-watchmoves' => 'Přidávat přesouvané stránky mezi sledované',
+'tog-watchmoves' => 'Přidávat mnou přesouvané stránky mezi sledované',
 'tog-watchdeletion' => 'Přidávat stránky, které smažu, mezi sledované',
 'tog-minordefault' => 'Označit editaci implicitně jako malá editace',
 'tog-previewontop' => 'Zobrazovat náhled před editačním oknem (ne za ním)',
@@ -952,14 +952,14 @@ Pokud ještě jednou kliknete na „{{int:savearticle}}“, bude vaše editace z
 'blockedtitle' => 'Uživatel zablokován',
 'blockedtext' => "'''Vaší IP adrese či uživatelskému jménu byla zablokována možnost editace.'''
 
-Zablokování provedl $1.
+Zablokování provedl{{gender:$4||a}} $1.
 Udaným důvodem bylo ''$2''.
 
 * Začátek blokování: $8
 * Zablokování vyprší: $6
 * Blokovaný uživatel: $7
 
-Pokud chcete zablokování prodiskutovat, můžete kontaktovat uživatele $1 či jiného [[{{MediaWiki:Grouppage-sysop}}|správce]].
+Pokud chcete zablokování prodiskutovat, můžete kontaktovat {{gender:$4|uživatele|uživatelku}} $1 či jiného [[{{MediaWiki:Grouppage-sysop}}|správce]].
 Uvědomte si, že nemůžete použít nabídku „Poslat e-mail“, jestliže nemáte ve svém [[Special:Preferences|nastavení]] uvedenu platnou e-mailovou adresu nebo pokud vám byla tato možnost zakázána.
 Vaše IP adresa je $3 a&nbsp;identifikační číslo bloku je #$5; tyto údaje uvádějte ve všech dotazech na správce.",
 'autoblockedtext' => "Vaše IP adresa byla automaticky zablokována, protože ji používal jiný uživatel, kterého zablokoval $1.
@@ -1526,7 +1526,7 @@ Tuto operaci nelze vrátit zpět.',
 
 'group-user-member' => '{{GENDER:$1|uživatel|uživatelka|uživatel}}',
 'group-autoconfirmed-member' => 'automaticky {{GENDER:$1|schválený uživatel|schválená uživatelka|schválený uživatel}}',
-'group-bot-member' => '{{GENDER:$1|bot|botka|bot}}',
+'group-bot-member' => '{{GENDER:$1|bot}}',
 'group-sysop-member' => '{{GENDER:$1|správce|správkyně|správce}}',
 'group-bureaucrat-member' => '{{GENDER:$1|byrokrat|byrokratka|byrokrat}}',
 'group-suppress-member' => '{{GENDER:$1|dohlížitel|dohlížitelka|dohlížitel}}',
