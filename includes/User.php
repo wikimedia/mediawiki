@@ -2281,7 +2281,10 @@ class User {
 	 * Reset all options to the site defaults
 	 */
 	public function resetOptions() {
+		$this->load();
+
 		$this->mOptions = self::getDefaultOptions();
+		$this->mOptionsLoaded = true;
 	}
 
 	/**

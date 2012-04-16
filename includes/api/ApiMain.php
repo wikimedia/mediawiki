@@ -80,6 +80,7 @@ class ApiMain extends ApiBase {
 		'patrol' => 'ApiPatrol',
 		'import' => 'ApiImport',
 		'userrights' => 'ApiUserrights',
+		'options' => 'ApiOptions',
 	);
 
 	/**
