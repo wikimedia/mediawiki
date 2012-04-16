@@ -901,9 +901,8 @@ class EditPage {
 	 * section replaced in its context (using WikiPage::replaceSection())
 	 * to the original text of the edit.
 	 *
-	 * This difers from Article::getContent() that when a missing revision is
-	 * encountered the result will be an empty string and not the
-	 * 'missing-article' message.
+	 * When a missing revision is
+	 * encountered, the result will be an empty Content object.
 	 *
 	 * @since 1.19
 	 * @return string
@@ -920,7 +919,7 @@ class EditPage {
 			return $handler->emptyContent();
 		}
 
-		$content = $this->mArticle->getContentObject();
+		$content = $revision->getContent();
 		return $content;
 	}
 
