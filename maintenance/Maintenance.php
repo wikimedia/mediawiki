@@ -32,7 +32,7 @@ define( 'DO_MAINTENANCE', RUN_MAINTENANCE_IF_MAIN ); // original name, harmless
 $maintClass = false;
 
 // Make sure we're on PHP5 or better
-if ( !function_exists( 'version_compare' ) || version_compare( PHP_VERSION, '5.2.3' ) < 0 ) {
+if ( !function_exists( 'version_compare' ) || version_compare( PHP_VERSION, '5.3.2' ) < 0 ) {
 	require_once( dirname( __FILE__ ) . '/../includes/PHPVersionError.php' );
 	wfPHPVersionError( 'cli' );
 }

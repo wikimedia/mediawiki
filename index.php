@@ -40,7 +40,7 @@
 # has structures (try/catch, foo()->bar(), etc etc) which throw parse errors in
 # PHP 4. Setup.php and ObjectCache.php have structures invalid in PHP 5.0 and
 # 5.1, respectively.
-if ( !function_exists( 'version_compare' ) || version_compare( phpversion(), '5.2.3' ) < 0 ) {
+if ( !function_exists( 'version_compare' ) || version_compare( phpversion(), '5.3.2' ) < 0 ) {
 	require( dirname( __FILE__ ) . '/includes/PHPVersionError.php' );
 	wfPHPVersionError( 'index.php' );
 }
