@@ -24,7 +24,7 @@
 abstract class Installer {
 
 	// This is the absolute minimum PHP version we can support
-	const MINIMUM_PHP_VERSION = '5.2.3';
+	const MINIMUM_PHP_VERSION = '5.3.2';
 
 	/**
 	 * @var array
