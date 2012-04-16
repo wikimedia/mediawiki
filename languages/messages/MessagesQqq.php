@@ -1585,6 +1585,11 @@ This message is substituted in:
 *{{msg-mw|Bad-target-model}}
 *{{msg-mw|Content-not-allowed-here}}',
 
+# Textarea save function, via localStorage
+'textarea-draft-found' => 'Message shown when an unsaved draft by the user is found. Offers them a choice of whether to start from the draft or the current version',
+'textarea-use-draft' => 'Text for choice of starting with draft',
+'textarea-use-current-version' => 'Text for choice of starting with current version',
+
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'On some (expensive) [[MetaWikipedia:Help:ParserFunctions|parser functions]] (e.g. <code><nowiki>{{#ifexist:}}</nowiki></code>) there is a limit of how many times it may be used. This is an error message shown when the limit is exceeded.
 * $1 is the current number of parser function calls.

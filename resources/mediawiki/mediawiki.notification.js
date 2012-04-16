@@ -421,6 +421,7 @@
 			} else {
 				preReadyNotifQueue.push( notif );
 			}
+			return notif;
 		},
 
 		/**

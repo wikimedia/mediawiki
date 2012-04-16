@@ -92,8 +92,62 @@
 	window.addButton = toolbar.addButton;
 	window.insertTags = toolbar.insertTags;
 
-	// Explose API publicly
+	// Expose API publicly
 	mw.toolbar = toolbar;
+
+	function saveToLocalStorage( page, contents ) {
+		localStorage.setItem( mw.config.get( 'wgDBname' ) + '-savedta-' + page, contents );
+	}
+
+	function getLocalStorage( page ) {
+		return localStorage.getItem( mw.config.get( 'wgDBname' ) + '-savedta-' + page );
+	}
+
+	function removeFromLocalStorage( page ) {
+		return localStorage.removeItem( mw.config.get( 'wgDBname' ) + '-savedta-' + page );
+	}
+
+	function textAreaAutoSaveInit() {
+		// If there's no localStorage, there's no point in doing the checks or adding listeners.
+		// Also, it should only be run when editing, and not previewing.
+		if ( 'localStorage' in window && mw.config.get( 'wgAction' ) === 'edit' ) {
+			var pageName = mw.config.get( 'wgPageName' ),
+				textArea = $( '#wpTextbox1' ),
+				node = $( '<span>' ),
+				notif,
+				replaceLink,
+				discardLink;
+
+			textArea.change( function () {
+				saveToLocalStorage( pageName, textArea.val() );
+			} );
+
+			$( '#wpSave' ).click( function () {
+				removeFromLocalStorage( pageName );
+			} );
+
+			if ( getLocalStorage( pageName ).trim() !== textArea.val().trim() ) {
+				replaceLink = $( '<a>' ).click( function ( e ) {
+					textArea.val( getLocalStorage( pageName ) );
+					removeFromLocalStorage( pageName );
+					e.preventDefault();
+					notif.close();
+				} ).text( mw.msg( 'textarea-use-draft' ) );
+
+				discardLink = $( '<a>' ).click( function ( e ) {
+					removeFromLocalStorage( pageName );
+					e.preventDefault();
+					notif.close();
+				} ).text( mw.msg( 'textarea-use-current-version' ) );
+
+				node.append( $( '<span>' ).text( mw.msg( 'textarea-draft-found' ) ) );
+				node.append( replaceLink );
+				node.append( ' · ' );
+				node.append( discardLink );
+				notif = mw.notification.notify( node, { autoHide: false } );
+			}
+		}
+	}
 
 	$( document ).ready( function () {
 		var buttons, i, b, $iframe;
@@ -164,6 +218,7 @@
 					currentFocused = $iframe;
 				} );
 		}
+		textAreaAutoSaveInit();
 	});
 
 }( mediaWiki, jQuery ) );

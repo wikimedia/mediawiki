@@ -1497,6 +1497,11 @@ It already exists.',
 'content-model-javascript' => 'JavaScript',
 'content-model-css'        => 'CSS',
 
+# Textarea save function
+'textarea-draft-found' => 'An unsaved draft you wrote for this page has been found. Do you want to start from the draft, or from the current version?',
+'textarea-use-draft' => 'Draft',
+'textarea-use-current-version' => 'Current version',
+
 # Parser/template warnings
 'expensive-parserfunction-warning'        => "'''Warning:''' This page contains too many expensive parser function calls.
 
