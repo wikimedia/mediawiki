@@ -580,9 +580,9 @@ class EditPage {
 				// Skip this if wpTextbox2 has input, it indicates that we came
 				// from a conflict page with raw page text, not a custom form
 				// modified by subclasses
-				wfProfileIn( get_class($this)."::importContentFormData" );
-				$textbox1 = $this->importContentFormData( $request ); #FIXME: what should this return??
-				if ( isset($textbox1) )
+				wfProfileIn( get_class( $this ) . "::importContentFormData" );
+				$textbox1 = $this->importContentFormData( $request );
+				if ( isset( $textbox1 ) )
 					$this->textbox1 = $textbox1;
 				wfProfileOut( get_class( $this ) . "::importContentFormData" );
 			}
@@ -850,7 +850,7 @@ class EditPage {
 						!$undorev->isDeleted( Revision::DELETED_TEXT ) &&
 						!$oldrev->isDeleted( Revision::DELETED_TEXT ) ) {
 
-						$content = $this->mArticle->getUndoContent( $undorev, $oldrev );
+                        $content = $this->mArticle->getUndoContent( $undorev, $oldrev );
 
 						if ( $content === false ) {
 							# Warn the user that something went wrong
@@ -901,13 +901,14 @@ class EditPage {
 	 * section replaced in its context (using WikiPage::replaceSection())
 	 * to the original text of the edit.
 	 *
-	 * When a missing revision is
-	 * encountered, the result will be an empty Content object.
+	 * This difers from Article::getContent() that when a missing revision is
+	 * encountered the result will be an empty string and not the
+	 * 'missing-article' message.
 	 *
 	 * @since 1.19
 	 * @return string
 	 */
-	private function getOriginalContent() { #FIXME: use Content! set content_model and content_format!
+	private function getOriginalContent() {
 		if ( $this->section == 'new' ) {
 			return $this->getCurrentContent();
 		}
@@ -918,111 +919,111 @@ class EditPage {
 
 			return $handler->emptyContent();
 		}
-
-		$content = $revision->getContent();
+        $content = $revision->getContent();
 		return $content;
 	}
 
-	/**
-	 * Get the current content of the page. This is basically similar to
-	 * WikiPage::getContent( Revision::RAW ) except that when the page doesn't exist an empty
-	 * content object is returned instead of null.
-	 *
-	 * @since 1.20
-	 * @return string
-	 */
-	private function getCurrentContent() {
-		$rev = $this->mArticle->getRevision();
-		$content = $rev ? $rev->getContent( Revision::RAW ) : null;
+    /**
+     * Get the current content of the page. This is basically similar to
+     * WikiPage::getContent( Revision::RAW ) except that when the page doesn't exist an empty
+     * content object is returned instead of null.
+     *
+     * @since 1.20
+     * @return string
+     */
+    private function getCurrentContent() {
+        $rev = $this->mArticle->getRevision();
+        $content = $rev ? $rev->getContent( Revision::RAW ) : null;
 
-		if ( $content  === false || $content === null ) {
-			if ( !$this->content_model ) $this->content_model = $this->getTitle()->getContentModelName();
-			$handler = ContentHandler::getForModelName( $this->content_model );
+        if ( $content  === false || $content === null ) {
+            if ( !$this->content_model ) $this->content_model = $this->getTitle()->getContentModelName();
+            $handler = ContentHandler::getForModelName( $this->content_model );
 
-			return $handler->emptyContent();
-		} else {
-			#FIXME: nasty side-effect!
-			$this->content_model = $rev->getContentModelName();
-			$this->content_format = $rev->getContentFormat();
+            return $handler->emptyContent();
+        } else {
+            #FIXME: nasty side-effect!
+            $this->content_model = $rev->getContentModelName();
+            $this->content_format = $rev->getContentFormat();
 
-			return $content;
-		}
-	}
+            return $content;
+        }
+    }
 
-	/**
-	 * Use this method before edit() to preload some text into the edit box
-	 *
-	 * @param $text string
-	 * @deprecated since 1.20
-	 */
-	public function setPreloadedText( $text ) { #FIXME: deprecated, use setPreloadedContent()
-		wfDeprecated( __METHOD__, "1.20" );
 
-		$content = ContentHandler::makeContent( $text, $this->getTitle() );
+    /**
+     * Use this method before edit() to preload some text into the edit box
+     *
+     * @param $text string
+     * @deprecated since 1.20
+     */
+    public function setPreloadedText( $text ) { #FIXME: deprecated, use setPreloadedContent()
+        wfDeprecated( __METHOD__, "1.20" );
 
-		$this->setPreloadedContent( $content );
-	}
+        $content = ContentHandler::makeContent( $text, $this->getTitle() );
 
-	/**
-	 * Use this method before edit() to preload some content into the edit box
-	 *
-	 * @param $content Content
-	 */
-	public function setPreloadedContent( Content $content ) { #FIXME: use this!
-		$this->mPreloadedContent = $content;
-	}
+        $this->setPreloadedContent( $content );
+    }
 
-	/**
-	 * Get the contents to be preloaded into the box, either set by
-	 * an earlier setPreloadText() or by loading the given page.
-	 *
-	 * @param $preload String: representing the title to preload from.
-	 * @return String
-	 * @deprecated since 1.20
-	 */
-	protected function getPreloadedText( $preload ) { #FIXME: B/C only, replace usage!
-		wfDeprecated( __METHOD__, "1.20" );
+    /**
+     * Use this method before edit() to preload some content into the edit box
+     *
+     * @param $content Content
+     */
+    public function setPreloadedContent( Content $content ) { #FIXME: use this!
+        $this->mPreloadedContent = $content;
+    }
 
-		$content = $this->getPreloadedContent( $preload );
-		$text = $content->serialize( $this->content_format ); #XXX: really use serialized form? use ContentHandler::getContentText() instead?!
+    /**
+     * Get the contents to be preloaded into the box, either set by
+     * an earlier setPreloadText() or by loading the given page.
+     *
+     * @param $preload String: representing the title to preload from.
+     * @return String
+     * @deprecated since 1.20
+     */
+    protected function getPreloadedText( $preload ) { #FIXME: B/C only, replace usage!
+        wfDeprecated( __METHOD__, "1.20" );
 
-		return $text;
-	}
+        $content = $this->getPreloadedContent( $preload );
+        $text = $content->serialize( $this->content_format ); #XXX: really use serialized form? use ContentHandler::getContentText() instead?!
 
-	protected function getPreloadedContent( $preload ) { #FIXME: use this!
-		global $wgUser;
+        return $text;
+    }
 
-		if ( !empty( $this->mPreloadContent ) ) {
-			return $this->mPreloadContent;
-		}
+    protected function getPreloadedContent( $preload ) { #FIXME: use this!
+        global $wgUser;
 
-		$handler = ContentHandler::getForTitle( $this->getTitle() );
+        if ( !empty( $this->mPreloadContent ) ) {
+            return $this->mPreloadContent;
+        }
 
-		if ( $preload === '' ) {
-			return $handler->emptyContent();
-		}
+        $handler = ContentHandler::getForTitle( $this->getTitle() );
 
-		$title = Title::newFromText( $preload );
-		# Check for existence to avoid getting MediaWiki:Noarticletext
-		if ( $title === null || !$title->exists() || !$title->userCan( 'read' ) ) {
-			return $handler->emptyContent();
-		}
+        if ( $preload === '' ) {
+            return $handler->emptyContent();
+        }
 
-		$page = WikiPage::factory( $title );
-		if ( $page->isRedirect() ) {
-			$title = $page->getRedirectTarget();
-			# Same as before
-			if ( $title === null || !$title->exists() || !$title->userCan( 'read' ) ) {
-				return $handler->emptyContent();
-			}
-			$page = WikiPage::factory( $title );
-		}
+        $title = Title::newFromText( $preload );
+        # Check for existence to avoid getting MediaWiki:Noarticletext
+        if ( $title === null || !$title->exists() || !$title->userCan( 'read' ) ) {
+            return $handler->emptyContent();
+        }
 
-		$parserOptions = ParserOptions::newFromUser( $wgUser );
-		$content = $page->getContent( Revision::RAW );
+        $page = WikiPage::factory( $title );
+        if ( $page->isRedirect() ) {
+            $title = $page->getRedirectTarget();
+            # Same as before
+            if ( $title === null || !$title->exists() || !$title->userCan( 'read' ) ) {
+                return $handler->emptyContent();
+            }
+            $page = WikiPage::factory( $title );
+        }
 
-		return $content->preloadTransform( $title, $parserOptions );
-	}
+        $parserOptions = ParserOptions::newFromUser( $wgUser );
+        $content = $page->getContent( Revision::RAW );
+
+        return $content->preloadTransform( $title, $parserOptions );
+    }
 
 	/**
 	 * Make sure the form isn't faking a user's credentials.
@@ -1281,272 +1282,266 @@ class EditPage {
 		$new = ( $aid == 0 );
 
 		try {
-			if ( $new ) {
-				// Late check for create permission, just in case *PARANOIA*
-				if ( !$this->mTitle->userCan( 'create' ) ) {
-					$status->fatal( 'nocreatetext' );
-					$status->value = self::AS_NO_CREATE_PERMISSION;
-					wfDebug( __METHOD__ . ": no create permission\n" );
-					wfProfileOut( __METHOD__ );
-					return $status;
-				}
+            if ( $new ) {
+                // Late check for create permission, just in case *PARANOIA*
+                if ( !$this->mTitle->userCan( 'create' ) ) {
+                    $status->fatal( 'nocreatetext' );
+                    $status->value = self::AS_NO_CREATE_PERMISSION;
+                    wfDebug( __METHOD__ . ": no create permission\n" );
+                    wfProfileOut( __METHOD__ );
+                    return $status;
+                }
 
-				# Don't save a new article if it's blank.
-				if ( $this->textbox1 == '' ) {
-					$status->setResult( false, self::AS_BLANK_ARTICLE );
-					wfProfileOut( __METHOD__ );
-					return $status;
-				}
+                # Don't save a new article if it's blank.
+                if ( $this->textbox1 == '' ) {
+                    $status->setResult( false, self::AS_BLANK_ARTICLE );
+                    wfProfileOut( __METHOD__ );
+                    return $status;
+                }
 
-				// Run post-section-merge edit filter
-				if ( !wfRunHooks( 'EditFilterMerged', array( $this, $this->textbox1, &$this->hookError, $this->summary ) ) ) {
-					# Error messages etc. could be handled within the hook...
-					$status->fatal( 'hookaborted' );
-					$status->value = self::AS_HOOK_ERROR;
-					wfProfileOut( __METHOD__ );
-					return $status;
-				} elseif ( $this->hookError != '' ) {
-					# ...or the hook could be expecting us to produce an error
-					$status->fatal( 'hookaborted' );
-					$status->value = self::AS_HOOK_ERROR_EXPECTED;
-					wfProfileOut( __METHOD__ );
-					return $status;
-				}
+                // Run post-section-merge edit filter
+                if ( !wfRunHooks( 'EditFilterMerged', array( $this, $this->textbox1, &$this->hookError, $this->summary ) ) ) {
+                    # Error messages etc. could be handled within the hook...
+                    $status->fatal( 'hookaborted' );
+                    $status->value = self::AS_HOOK_ERROR;
+                    wfProfileOut( __METHOD__ );
+                    return $status;
+                } elseif ( $this->hookError != '' ) {
+                    # ...or the hook could be expecting us to produce an error
+                    $status->fatal( 'hookaborted' );
+                    $status->value = self::AS_HOOK_ERROR_EXPECTED;
+                    wfProfileOut( __METHOD__ );
+                    return $status;
+                }
 
                 $content = ContentHandler::makeContent( $this->textbox1, $this->getTitle(), $this->content_model, $this->content_format );
 
-				# Handle the user preference to force summaries here. Check if it's not a redirect.
-				if ( !$this->allowBlankSummary && !$content->isRedirect() ) {
-					if ( md5( $this->summary ) == $this->autoSumm ) {
-						$this->missingSummary = true;
-						$status->fatal( 'missingsummary' ); // or 'missingcommentheader' if $section == 'new'. Blegh
-						$status->value = self::AS_SUMMARY_NEEDED;
-						wfProfileOut( __METHOD__ );
-						return $status;
-					}
-				}
+                $result['sectionanchor'] = '';
+                if ( $this->section == 'new' ) {
+                    if ( $this->sectiontitle !== '' ) {
+                        // Insert the section title above the content.
+                        $content = $content->addSectionHeader( $this->sectiontitle );
 
-				$result['sectionanchor'] = '';
-				if ( $this->section == 'new' ) {
-					if ( $this->sectiontitle !== '' ) {
-						// Insert the section title above the content.
-						$content = $content->addSectionHeader( $this->sectiontitle );
+                        // Jump to the new section
+                        $result['sectionanchor'] = $wgParser->guessLegacySectionNameFromWikiText( $this->sectiontitle );
 
-						// Jump to the new section
-						$result['sectionanchor'] = $wgParser->guessLegacySectionNameFromWikiText( $this->sectiontitle );
+                        // If no edit summary was specified, create one automatically from the section
+                        // title and have it link to the new section. Otherwise, respect the summary as
+                        // passed.
+                        if ( $this->summary === '' ) {
+                            $cleanSectionTitle = $wgParser->stripSectionName( $this->sectiontitle );
+                            $this->summary = wfMsgForContent( 'newsectionsummary', $cleanSectionTitle );
+                        }
+                    } elseif ( $this->summary !== '' ) {
+                        // Insert the section title above the content.
+                        $content = $content->addSectionHeader( $this->sectiontitle );
 
-						// If no edit summary was specified, create one automatically from the section
-						// title and have it link to the new section. Otherwise, respect the summary as
-						// passed.
-						if ( $this->summary === '' ) {
-							$cleanSectionTitle = $wgParser->stripSectionName( $this->sectiontitle );
-							$this->summary = wfMsgForContent( 'newsectionsummary', $cleanSectionTitle );
-						}
-					} elseif ( $this->summary !== '' ) {
-						// Insert the section title above the content.
-						$content = $content->addSectionHeader( $this->sectiontitle );
+                        // Jump to the new section
+                        $result['sectionanchor'] = $wgParser->guessLegacySectionNameFromWikiText( $this->summary );
 
-						// Jump to the new section
-						$result['sectionanchor'] = $wgParser->guessLegacySectionNameFromWikiText( $this->summary );
+                        // Create a link to the new section from the edit summary.
+                        $cleanSummary = $wgParser->stripSectionName( $this->summary );
+                        $this->summary = wfMsgForContent( 'newsectionsummary', $cleanSummary );
+                    }
+                }
 
-						// Create a link to the new section from the edit summary.
-						$cleanSummary = $wgParser->stripSectionName( $this->summary );
-						$this->summary = wfMsgForContent( 'newsectionsummary', $cleanSummary );
-					}
-				}
+                $status->value = self::AS_SUCCESS_NEW_ARTICLE;
 
-				$status->value = self::AS_SUCCESS_NEW_ARTICLE;
+            } else { # not $new
 
-			} else {
+                # Article exists. Check for edit conflict.
 
-				# Article exists. Check for edit conflict.
+                $this->mArticle->clear(); # Force reload of dates, etc.
+                $timestamp = $this->mArticle->getTimestamp();
 
-				$this->mArticle->clear(); # Force reload of dates, etc.
-				$timestamp = $this->mArticle->getTimestamp();
+                wfDebug( "timestamp: {$timestamp}, edittime: {$this->edittime}\n" );
 
-				wfDebug( "timestamp: {$timestamp}, edittime: {$this->edittime}\n" );
+                if ( $timestamp != $this->edittime ) {
+                    $this->isConflict = true;
+                    if ( $this->section == 'new' ) {
+                        if ( $this->mArticle->getUserText() == $wgUser->getName() &&
+                            $this->mArticle->getComment() == $this->summary ) {
+                            // Probably a duplicate submission of a new comment.
+                            // This can happen when squid resends a request after
+                            // a timeout but the first one actually went through.
+                            wfDebug( __METHOD__ . ": duplicate new section submission; trigger edit conflict!\n" );
+                        } else {
+                            // New comment; suppress conflict.
+                            $this->isConflict = false;
+                            wfDebug( __METHOD__ . ": conflict suppressed; new section\n" );
+                        }
+                    } elseif ( $this->section == '' && $this->userWasLastToEdit( $wgUser->getId(), $this->edittime ) ) {
+                        # Suppress edit conflict with self, except for section edits where merging is required.
+                        wfDebug( __METHOD__ . ": Suppressing edit conflict, same user.\n" );
+                        $this->isConflict = false;
+                    }
+                }
 
-				if ( $timestamp != $this->edittime ) {
-					$this->isConflict = true;
-					if ( $this->section == 'new' ) {
-						if ( $this->mArticle->getUserText() == $wgUser->getName() &&
-							$this->mArticle->getComment() == $this->summary ) {
-							// Probably a duplicate submission of a new comment.
-							// This can happen when squid resends a request after
-							// a timeout but the first one actually went through.
-							wfDebug( __METHOD__ . ": duplicate new section submission; trigger edit conflict!\n" );
-						} else {
-							// New comment; suppress conflict.
-							$this->isConflict = false;
-							wfDebug( __METHOD__ .": conflict suppressed; new section\n" );
-						}
-					} elseif ( $this->section == '' && $this->userWasLastToEdit( $wgUser->getId(), $this->edittime ) ) {
-						# Suppress edit conflict with self, except for section edits where merging is required.
-						wfDebug( __METHOD__ . ": Suppressing edit conflict, same user.\n" );
-						$this->isConflict = false;
+                // If sectiontitle is set, use it, otherwise use the summary as the section title (for
+                // backwards compatibility with old forms/bots).
+                if ( $this->sectiontitle !== '' ) {
+                    $sectionTitle = $this->sectiontitle;
+                } else {
+                    $sectionTitle = $this->summary;
+                }
 
-						wfDebug( __METHOD__ . ": conflict suppressed; new section\n" );
+                $textbox_content = ContentHandler::makeContent( $this->textbox1, $this->getTitle(), $this->content_model, $this->content_format );
+                $content = null;
 
-					}
-				}
+                if ( $this->isConflict ) {
+                    wfDebug( __METHOD__ . ": conflict! getting section '$this->section' for time '$this->edittime' (article time '{$timestamp}')\n" );
+                    $content = $this->mArticle->replaceSectionContent( $this->section, $textbox_content, $sectionTitle, $this->edittime );
+                } else {
+                    wfDebug( __METHOD__ . ": getting section '$this->section'\n" );
+                    $content = $this->mArticle->replaceSectionContent( $this->section, $textbox_content, $sectionTitle );
+                }
 
-				$textbox_content = ContentHandler::makeContent( $this->textbox1, $this->getTitle(), $this->content_model, $this->content_format );
-				$content = false;
+                if ( is_null( $content ) ) {
+                    wfDebug( __METHOD__ . ": activating conflict; section replace failed.\n" );
+                    $this->isConflict = true;
+                    $content = $textbox_content; // do not try to merge here!
+                } elseif ( $this->isConflict ) {
+                    # Attempt merge
+                    if ( $this->mergeChangesIntoContent( $textbox_content ) ) {
+                        // Successful merge! Maybe we should tell the user the good news?
+                        $this->isConflict = false;
+                        $content = $textbox_content;
+                        wfDebug( __METHOD__ . ": Suppressing edit conflict, successful merge.\n" );
+                    } else {
+                        $this->section = '';
+                        #$this->textbox1 = $text; #redundant, nothing to do here?
+                        wfDebug( __METHOD__ . ": Keeping edit conflict, failed merge.\n" );
+                    }
+                }
 
-				if ( $this->isConflict ) {
-					wfDebug( __METHOD__ . ": conflict! getting section '$this->section' for time '$this->edittime' (article time '{$timestamp}')\n" );
+                if ( $this->isConflict ) {
+                    $status->setResult( false, self::AS_CONFLICT_DETECTED );
+                    wfProfileOut( __METHOD__ );
+                    return $status;
+                }
 
-					$content = $this->mArticle->replaceSectionContent( $this->section, $textbox_content, $sectionTitle, $this->edittime );
-				} else {
-					wfDebug( __METHOD__ . ": getting section '$this->section'\n" );
+                // Run post-section-merge edit filter
+                if ( !wfRunHooks( 'EditFilterMerged', array( $this, $content->serialize( $this->content_format ), &$this->hookError, $this->summary ) )
+                        || !wfRunHooks( 'EditFilterMergedContent', array( $this, $content, &$this->hookError, $this->summary ) ) ) { #FIXME: document new hook
+                    # Error messages etc. could be handled within the hook...
+                    $status->fatal( 'hookaborted' );
+                    $status->value = self::AS_HOOK_ERROR;
+                    wfProfileOut( __METHOD__ );
+                    return $status;
+                } elseif ( $this->hookError != '' ) {
+                    # ...or the hook could be expecting us to produce an error
+                    $status->fatal( 'hookaborted' );
+                    $status->value = self::AS_HOOK_ERROR_EXPECTED;
+                    wfProfileOut( __METHOD__ );
+                    return $status;
+                }
 
-					$content = $this->mArticle->replaceSectionContent( $this->section, $textbox_content, $sectionTitle );
-				}
+                $content = ContentHandler::makeContent( $this->textbox1, $this->getTitle(), $this->content_model, $this->content_format );
 
-				if ( is_null( $content ) ) {
-					wfDebug( __METHOD__ . ": activating conflict; section replace failed.\n" );
-					$this->isConflict = true;
-					$content = $textbox_content; // do not try to merge here!
-				} elseif ( $this->isConflict ) {
-					# Attempt merge
-					if ( $this->mergeChangesIntoContent( $textbox_content ) ) {
-						// Successful merge! Maybe we should tell the user the good news?
-						$content = $textbox_content;
-						$this->isConflict = false;
-						wfDebug( __METHOD__ . ": Suppressing edit conflict, successful merge.\n" );
-					} else {
-						$this->section = '';
-						#$this->textbox1 = $text; #redundant, nothing to do here?
-						wfDebug( __METHOD__ . ": Keeping edit conflict, failed merge.\n" );
-					}
-				}
+                # Handle the user preference to force summaries here, but not for null edits
+                if ( $this->section != 'new' && !$this->allowBlankSummary
+                    && !$content->equals( $this->getOriginalContent() )
+                    && !$content->isRedirect() ) # check if it's not a redirect
+                {
+                    if ( md5( $this->summary ) == $this->autoSumm ) {
+                        $this->missingSummary = true;
+                        $status->fatal( 'missingsummary' );
+                        $status->value = self::AS_SUMMARY_NEEDED;
+                        wfProfileOut( __METHOD__ );
+                        return $status;
+                    }
+                }
 
-				if ( $this->isConflict ) {
-					$status->setResult( false, self::AS_CONFLICT_DETECTED );
-					wfProfileOut( __METHOD__ );
-					return $status;
-				}
+                # And a similar thing for new sections
+                if ( $this->section == 'new' && !$this->allowBlankSummary ) {
+                    if ( trim( $this->summary ) == '' ) {
+                        $this->missingSummary = true;
+                        $status->fatal( 'missingsummary' ); // or 'missingcommentheader' if $section == 'new'. Blegh
+                        $status->value = self::AS_SUMMARY_NEEDED;
+                        wfProfileOut( __METHOD__ );
+                        return $status;
+                    }
+                }
 
-				// Run post-section-merge edit filter
-				if ( !wfRunHooks( 'EditFilterMerged', array( $this, $content->serialize( $this->content_format ), &$this->hookError, $this->summary ) )
-					|| !wfRunHooks( 'EditFilterMergedContent', array( $this, $content, &$this->hookError, $this->summary ) ) ) { #FIXME: document new hook
-					# Error messages etc. could be handled within the hook...
-					$status->fatal( 'hookaborted' );
-					$status->value = self::AS_HOOK_ERROR;
-					wfProfileOut( __METHOD__ );
-					return $status;
-				} elseif ( $this->hookError != '' ) {
-					# ...or the hook could be expecting us to produce an error
-					$status->fatal( 'hookaborted' );
-					$status->value = self::AS_HOOK_ERROR_EXPECTED;
-					wfProfileOut( __METHOD__ );
-					return $status;
-				}
+                # All's well
+                wfProfileIn( __METHOD__ . '-sectionanchor' );
+                $sectionanchor = '';
+                if ( $this->section == 'new' ) {
+                    if ( $this->textbox1 == '' ) {
+                        $this->missingComment = true;
+                        $status->fatal( 'missingcommenttext' );
+                        $status->value = self::AS_TEXTBOX_EMPTY;
+                        wfProfileOut( __METHOD__ . '-sectionanchor' );
+                        wfProfileOut( __METHOD__ );
+                        return $status;
+                    }
+                    if ( $this->sectiontitle !== '' ) {
+                        $sectionanchor = $wgParser->guessLegacySectionNameFromWikiText( $this->sectiontitle );
+                        // If no edit summary was specified, create one automatically from the section
+                        // title and have it link to the new section. Otherwise, respect the summary as
+                        // passed.
+                        if ( $this->summary === '' ) {
+                            $cleanSectionTitle = $wgParser->stripSectionName( $this->sectiontitle );
+                            $this->summary = wfMsgForContent( 'newsectionsummary', $cleanSectionTitle );
+                        }
+                    } elseif ( $this->summary !== '' ) {
+                        $sectionanchor = $wgParser->guessLegacySectionNameFromWikiText( $this->summary );
+                        # This is a new section, so create a link to the new section
+                        # in the revision summary.
+                        $cleanSummary = $wgParser->stripSectionName( $this->summary );
+                        $this->summary = wfMsgForContent( 'newsectionsummary', $cleanSummary );
+                    }
+                } elseif ( $this->section != '' ) {
+                    # Try to get a section anchor from the section source, redirect to edited section if header found
+                    # XXX: might be better to integrate this into Article::replaceSection
+                    # for duplicate heading checking and maybe parsing
+                    $hasmatch = preg_match( "/^ *([=]{1,6})(.*?)(\\1) *\\n/i", $this->textbox1, $matches );
+                    # we can't deal with anchors, includes, html etc in the header for now,
+                    # headline would need to be parsed to improve this
+                    if ( $hasmatch && strlen( $matches[2] ) > 0 ) {
+                        $sectionanchor = $wgParser->guessLegacySectionNameFromWikiText( $matches[2] );
+                    }
+                }
+                $result['sectionanchor'] = $sectionanchor;
+                wfProfileOut( __METHOD__ . '-sectionanchor' );
 
-				# Handle the user preference to force summaries here, but not for null edits
-				if ( $this->section != 'new' && !$this->allowBlankSummary
-					&& !$content->equals( $this->getOriginalContent() )
-					&& !$content->isRedirect() ) # check if it's not a redirect
-				{
-					if ( md5( $this->summary ) == $this->autoSumm ) {
-						$this->missingSummary = true;
-						$status->fatal( 'missingsummary' );
-						$status->value = self::AS_SUMMARY_NEEDED;
-						wfProfileOut( __METHOD__ );
-						return $status;
-					}
-				}
+                // Save errors may fall down to the edit form, but we've now
+                // merged the section into full text. Clear the section field
+                // so that later submission of conflict forms won't try to
+                // replace that into a duplicated mess.
+                    $this->textbox1 = $content->serialize( $this->content_format );
+                $this->section = '';
 
-				# And a similar thing for new sections
-				if ( $this->section == 'new' && !$this->allowBlankSummary ) {
-					if ( trim( $this->summary ) == '' ) {
-						$this->missingSummary = true;
-						$status->fatal( 'missingsummary' ); // or 'missingcommentheader' if $section == 'new'. Blegh
-						$status->value = self::AS_SUMMARY_NEEDED;
-						wfProfileOut( __METHOD__ );
-						return $status;
-					}
-				}
+                $status->value = self::AS_SUCCESS_UPDATE;
+            }
 
-				# All's well
-				wfProfileIn( __METHOD__ . '-sectionanchor' );
-				$sectionanchor = '';
-				if ( $this->section == 'new' ) {
-					if ( $this->textbox1 == '' ) {
-						$this->missingComment = true;
-						$status->fatal( 'missingcommenttext' );
-						$status->value = self::AS_TEXTBOX_EMPTY;
-						wfProfileOut( __METHOD__ . '-sectionanchor' );
-						wfProfileOut( __METHOD__ );
-						return $status;
-					}
-					if ( $this->sectiontitle !== '' ) {
-						$sectionanchor = $wgParser->guessLegacySectionNameFromWikiText( $this->sectiontitle );
-						// If no edit summary was specified, create one automatically from the section
-						// title and have it link to the new section. Otherwise, respect the summary as
-						// passed.
-						if ( $this->summary === '' ) {
-							$cleanSectionTitle = $wgParser->stripSectionName( $this->sectiontitle );
-							$this->summary = wfMsgForContent( 'newsectionsummary', $cleanSectionTitle );
-						}
-					} elseif ( $this->summary !== '' ) {
-						$sectionanchor = $wgParser->guessLegacySectionNameFromWikiText( $this->summary );
-						# This is a new section, so create a link to the new section
-						# in the revision summary.
-						$cleanSummary = $wgParser->stripSectionName( $this->summary );
-						$this->summary = wfMsgForContent( 'newsectionsummary', $cleanSummary );
-					}
-				} elseif ( $this->section != '' ) {
-					# Try to get a section anchor from the section source, redirect to edited section if header found
-					# XXX: might be better to integrate this into Article::replaceSection
-					# for duplicate heading checking and maybe parsing
-					$hasmatch = preg_match( "/^ *([=]{1,6})(.*?)(\\1) *\\n/i", $this->textbox1, $matches );
-					# we can't deal with anchors, includes, html etc in the header for now,
-					# headline would need to be parsed to improve this
-					if ( $hasmatch && strlen( $matches[2] ) > 0 ) {
-						$sectionanchor = $wgParser->guessLegacySectionNameFromWikiText( $matches[2] );
-					}
-				}
-				$result['sectionanchor'] = $sectionanchor;
-				wfProfileOut( __METHOD__ . '-sectionanchor' );
+            // Check for length errors again now that the section is merged in
+                $this->kblength = (int)( strlen( $content->serialize( $this->content_format ) ) / 1024 );
+            if ( $this->kblength > $wgMaxArticleSize ) {
+                $this->tooBig = true;
+                $status->setResult( false, self::AS_MAX_ARTICLE_SIZE_EXCEEDED );
+                wfProfileOut( __METHOD__ );
+                return $status;
+            }
 
-				// Save errors may fall down to the edit form, but we've now
-				// merged the section into full text. Clear the section field
-				// so that later submission of conflict forms won't try to
-				// replace that into a duplicated mess.
-				$this->textbox1 = $content->serialize( $this->content_format );
-				$this->section = '';
+            $flags = EDIT_DEFER_UPDATES | EDIT_AUTOSUMMARY |
+                ( $new ? EDIT_NEW : EDIT_UPDATE ) |
+                ( ( $this->minoredit && !$this->isNew ) ? EDIT_MINOR : 0 ) |
+                ( $bot ? EDIT_FORCE_BOT : 0 );
 
-				$status->value = self::AS_SUCCESS_UPDATE;
-			}
+                $doEditStatus = $this->mArticle->doEditContent( $content, $this->summary, $flags, false, null, $this->content_format );
 
-			// Check for length errors again now that the section is merged in
-			$this->kblength = (int)( strlen( $content->serialize( $this->content_format ) ) / 1024 );
-			if ( $this->kblength > $wgMaxArticleSize ) {
-				$this->tooBig = true;
-				$status->setResult( false, self::AS_MAX_ARTICLE_SIZE_EXCEEDED );
-				wfProfileOut( __METHOD__ );
-				return $status;
-			}
-
-			$flags = EDIT_DEFER_UPDATES | EDIT_AUTOSUMMARY |
-				( $new ? EDIT_NEW : EDIT_UPDATE ) |
-				( ( $this->minoredit && !$this->isNew ) ? EDIT_MINOR : 0 ) |
-				( $bot ? EDIT_FORCE_BOT : 0 );
-
-			$doEditStatus = $this->mArticle->doEditContent( $content, $this->summary, $flags, false, null, $this->content_format );
-
-			if ( $doEditStatus->isOK() ) {
-				$result['redirect'] = $content->isRedirect();
-				$this->commitWatch();
-				wfProfileOut( __METHOD__ );
-				return $status;
-			} else {
-				$this->isConflict = true;
-				$doEditStatus->value = self::AS_END; // Destroys data doEdit() put in $status->value but who cares
-				wfProfileOut( __METHOD__ );
-				return $doEditStatus;
-			}
+            if ( $doEditStatus->isOK() ) {
+                    $result['redirect'] = $content->isRedirect();
+                $this->commitWatch();
+                wfProfileOut( __METHOD__ );
+                return $status;
+            } else {
+                $this->isConflict = true;
+                $doEditStatus->value = self::AS_END; // Destroys data doEdit() put in $status->value but who cares
+                wfProfileOut( __METHOD__ );
+                return $doEditStatus;
+            }
 		} catch (MWContentSerializationException $ex) {
 			$status->fatal( 'content-failed-to-parse', $this->content_model, $this->content_format, $ex->getMessage() );
 			$status->value = self::AS_PARSE_ERROR;
@@ -1601,73 +1596,73 @@ class EditPage {
 		return true;
 	}
 
-	/**
-	 * @private
-	 * @todo document
-	 *
-	 * @parma $editText string
-	 *
-	 * @return bool
-	 * @deprecated since 1.20
-	 */
-	function mergeChangesInto( &$editText ){
-		wfDebug( __METHOD__, "1.20" );
+    /**
+     * @private
+     * @todo document
+     *
+     * @parma $editText string
+     *
+     * @return bool
+     * @deprecated since 1.20
+     */
+    function mergeChangesInto( &$editText ){
+        wfDebug( __METHOD__, "1.20" );
 
-		$editContent = ContentHandler::makeContent( $editText, $this->getTitle(), $this->content_model, $this->content_format );
+        $editContent = ContentHandler::makeContent( $editText, $this->getTitle(), $this->content_model, $this->content_format );
 
-		$ok = $this->mergeChangesIntoContent( $editContent );
+        $ok = $this->mergeChangesIntoContent( $editContent );
 
-		if ( $ok ) {
-			$editText = $editContent->serialize( $this->content_format ); #XXX: really serialize?!
-			return true;
-		} else {
-			return false;
-		}
-	}
+        if ( $ok ) {
+            $editText = $editContent->serialize( $this->content_format ); #XXX: really serialize?!
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-	/**
-	 * @private
-	 * @todo document
-	 *
-	 * @parma $editText string
-	 *
-	 * @return bool
-	 * @since since 1.20
-	 */
-	private function mergeChangesIntoContent( &$editContent ){
-		wfProfileIn( __METHOD__ );
+    /**
+     * @private
+     * @todo document
+     *
+     * @parma $editText string
+     *
+     * @return bool
+     * @since since 1.20
+     */
+    private function mergeChangesIntoContent( &$editContent ){
+        wfProfileIn( __METHOD__ );
 
-		$db = wfGetDB( DB_MASTER );
+        $db = wfGetDB( DB_MASTER );
 
-		// This is the revision the editor started from
-		$baseRevision = $this->getBaseRevision();
-		if ( is_null( $baseRevision ) ) {
-			wfProfileOut( __METHOD__ );
-			return false;
-		}
-		$baseContent = $baseRevision->getContent();
+        // This is the revision the editor started from
+        $baseRevision = $this->getBaseRevision();
+        if ( is_null( $baseRevision ) ) {
+            wfProfileOut( __METHOD__ );
+            return false;
+        }
+        $baseContent = $baseRevision->getContent();
 
-		// The current state, we want to merge updates into it
-		$currentRevision = Revision::loadFromTitle( $db, $this->mTitle );
-		if ( is_null( $currentRevision ) ) {
-			wfProfileOut( __METHOD__ );
-			return false;
-		}
-		$currentContent = $currentRevision->getContent();
+        // The current state, we want to merge updates into it
+        $currentRevision = Revision::loadFromTitle( $db, $this->mTitle );
+        if ( is_null( $currentRevision ) ) {
+            wfProfileOut( __METHOD__ );
+            return false;
+        }
+        $currentContent = $currentRevision->getContent();
 
-		$handler = ContentHandler::getForModelName( $baseContent->getModelName() );
+        $handler = ContentHandler::getForModelName( $baseContent->getModelName() );
 
-		$result = $handler->merge3( $baseContent, $editContent, $currentContent );
+        $result = $handler->merge3( $baseContent, $editContent, $currentContent );
 
-		if ( $result ) {
-			$editContent = $result;
-			wfProfileOut( __METHOD__ );
-			return true;
-		} else {
-			wfProfileOut( __METHOD__ );
-			return false;
-		}
-	}
+        if ( $result ) {
+            $editContent = $result;
+            wfProfileOut( __METHOD__ );
+            return true;
+        } else {
+            wfProfileOut( __METHOD__ );
+            return false;
+        }
+    }
 
 	/**
 	 * @return Revision
@@ -2477,50 +2472,38 @@ HTML
 	 * save and then make a comparison.
 	 */
 	function showDiff() {
-		global $wgUser, $wgContLang, $wgOut;
+		global $wgUser, $wgContLang, $wgParser, $wgOut;
 
-		$oldContent = $this->getOriginalContent();
+        $oldContent = $this->getOriginalContent();
 
-		$textboxContent = ContentHandler::makeContent( $this->textbox1, $this->getTitle(),
+        $textboxContent = ContentHandler::makeContent( $this->textbox1, $this->getTitle(),
 														$this->content_model, $this->content_format ); #XXX: handle parse errors ?
 
-		$newContent = $this->mArticle->replaceSectionContent(
-											$this->section, $textboxContent,
-											$this->summary, $this->edittime );
-		$oldtitlemsg = 'currentrev';
-		# if message does not exist, show diff against the preloaded default
-		if( $this->mTitle->getNamespace() == NS_MEDIAWIKI && !$this->mTitle->exists() ) {
-			$oldtext = $this->mTitle->getDefaultMessageText();
-			if( $oldtext !== false ) {
-				$oldtitlemsg = 'defaultmessagetext';
-			}
-		} else {
-			$oldtext = $this->mArticle->getRawText();
-		}
-		$newtext = $this->mArticle->replaceSection(
-			$this->section, $this->textbox1, $this->summary, $this->edittime );
+        $newContent = $this->mArticle->replaceSectionContent(
+                                                    $this->section, $textboxContent,
+                                                    $this->summary, $this->edittime );
 
-		# hanlde legacy text-based hook
-		$newtext_orig = $newContent->serialize( $this->content_format );
-		$newtext = $newtext_orig; #clone
-		wfRunHooks( 'EditPageGetDiffText', array( $this, &$newtext ) );
+        # hanlde legacy text-based hook
+        $newtext_orig = $newContent->serialize( $this->content_format );
+        $newtext = $newtext_orig; #clone
+        wfRunHooks( 'EditPageGetDiffText', array( $this, &$newtext ) );
 
 		if ( $newtext != $newtext_orig ) {
-			#if the hook changed the text, create a new Content object accordingly.
-			$newContent = ContentHandler::makeContent( $newtext, $this->getTitle(), $newContent->getModelName() ); #XXX: handle parse errors ?
+            			#if the hook changed the text, create a new Content object accordingly.
+            			$newContent = ContentHandler::makeContent( $newtext, $this->getTitle(), $newContent->getModelName() ); #XXX: handle parse errors ?
 		}
 
 		wfRunHooks( 'EditPageGetDiffContent', array( $this, &$newContent ) ); #FIXME: document new hook
 
 		$popts = ParserOptions::newFromUserAndLang( $wgUser, $wgContLang );
-		$newContent = $newContent->preSaveTransform( $this->mTitle, $wgUser, $popts );
+        $newContent = $newContent->preSaveTransform( $this->mTitle, $wgUser, $popts );
 
-		if ( ( $oldContent && !$oldContent->isEmpty() ) || ( $newContent && !$newContent->isEmpty() ) ) {
-			$oldtitle = wfMsgExt( $oldtitlemsg, array( 'parseinline' ) );
+        if ( ( $oldContent && !$oldContent->isEmpty() ) || ( $newContent && !$newContent->isEmpty() ) ) {
+			$oldtitle = wfMsgExt( 'currentrev', array( 'parseinline' ) );
 			$newtitle = wfMsgExt( 'yourtext', array( 'parseinline' ) );
 
-			$de = $oldContent->getContentHandler()->getDifferenceEngine( $this->mArticle->getContext() );
-			$de->setContent( $oldContent, $newContent );
+            $de = $oldContent->getContentHandler()->getDifferenceEngine( $this->mArticle->getContext() );
+            $de->setContent( $oldContent, $newContent );
 
 			$difftext = $de->getDiff( $oldtitle, $newtitle );
 			$de->showDiffStyle();
@@ -2825,83 +2808,6 @@ HTML
             $note .= "\n\n" . wfMsg('content-failed-to-parse', $this->content_model, $this->content_format, $ex->getMessage() );
             $previewHTML = '';
         }
-		if ( $this->mTriedSave && !$this->mTokenOk ) {
-			if ( $this->mTokenOkExceptSuffix ) {
-				$note = wfMsg( 'token_suffix_mismatch' );
-			} else {
-				$note = wfMsg( 'session_fail_preview' );
-			}
-		} elseif ( $this->incompleteForm ) {
-			$note = wfMsg( 'edit_form_incomplete' );
-		} else {
-			$note = wfMsg( 'previewnote' );
-		}
-
-		$parserOptions = ParserOptions::newFromUser( $wgUser );
-		$parserOptions->setEditSection( false );
-		$parserOptions->setTidy( true );
-		$parserOptions->setIsPreview( true );
-		$parserOptions->setIsSectionPreview( !is_null( $this->section ) && $this->section !== '' );
-
-		# don't parse non-wikitext pages, show message about preview
-		# XXX: stupid php bug won't let us use $this->getContextTitle()->isCssJsSubpage() here -- This note has been there since r3530. Sure the bug was fixed time ago?
-
-		if ( $this->isCssJsSubpage || !$this->mTitle->isWikitextPage() ) {
-			if ( $this->mTitle->isCssJsSubpage() ) {
-				$level = 'user';
-			} elseif ( $this->mTitle->isCssOrJsPage() ) {
-				$level = 'site';
-			} else {
-				$level = false;
-			}
-
-			# Used messages to make sure grep find them:
-			# Messages: usercsspreview, userjspreview, sitecsspreview, sitejspreview
-			if ( $level ) {
-				if ( preg_match( "/\\.css$/", $this->mTitle->getText() ) ) {
-					$previewtext = "<div id='mw-{$level}csspreview'>\n" . wfMsg( "{$level}csspreview" ) . "\n</div>";
-					$class = "mw-code mw-css";
-				} elseif ( preg_match( "/\\.js$/", $this->mTitle->getText() ) ) {
-					$previewtext = "<div id='mw-{$level}jspreview'>\n" . wfMsg( "{$level}jspreview" ) . "\n</div>";
-					$class = "mw-code mw-js";
-				} else {
-					throw new MWException( 'A CSS/JS (sub)page but which is not css nor js!' );
-				}
-			}
-
-			$parserOutput = $wgParser->parse( $previewtext, $this->mTitle, $parserOptions );
-			$previewHTML = $parserOutput->mText;
-			$previewHTML .= "<pre class=\"$class\" dir=\"ltr\">\n" . htmlspecialchars( $this->textbox1 ) . "\n</pre>\n";
-		} else {
-			$toparse = $this->textbox1;
-
-			# If we're adding a comment, we need to show the
-			# summary as the headline
-			if ( $this->section == "new" && $this->summary != "" ) {
-				$toparse = wfMsgForContent( 'newsectionheaderdefaultlevel', $this->summary ) . "\n\n" . $toparse;
-			}
-
-			wfRunHooks( 'EditPageGetPreviewText', array( $this, &$toparse ) );
-
-			$parserOptions->enableLimitReport();
-
-			$toparse = $wgParser->preSaveTransform( $toparse, $this->mTitle, $wgUser, $parserOptions );
-			$parserOutput = $wgParser->parse( $toparse, $this->mTitle, $parserOptions );
-
-			$rt = Title::newFromRedirectArray( $this->textbox1 );
-			if ( $rt ) {
-				$previewHTML = $this->mArticle->viewRedirect( $rt, false );
-			} else {
-				$previewHTML = $parserOutput->getText();
-			}
-
-			$this->mParserOutput = $parserOutput;
-			$wgOut->addParserOutputNoText( $parserOutput );
-
-			if ( count( $parserOutput->getWarnings() ) ) {
-				$note .= "\n\n" . implode( "\n\n", $parserOutput->getWarnings() );
-			}
-		}
 
 		if ( $this->isConflict ) {
 			$conflict = '<h2 id="mw-previewconflict">' . htmlspecialchars( wfMsg( 'previewconflict' ) ) . "</h2>\n";
@@ -3334,14 +3240,7 @@ HTML
 		$wgOut->addHTML( '</div>' );
 
 		$wgOut->wrapWikiMsg( '<h2>$1</h2>', "yourdiff" );
-
-		$handler = ContentHandler::getForTitle( $this->getTitle() );
-		$de = $handler->getDifferenceEngine( $this->mArticle->getContext() );
-
-		$content2 = ContentHandler::makeContent( $this->textbox2, $this->getTitle(), $this->content_model, $this->content_format ); #XXX: handle parse errors?
-		$de->setContent( $this->getCurrentContent(), $content2 );
-
-		$de->showDiff( wfMsg( "storedversion" ), wfMsgExt( 'yourtext', 'parseinline' ) );
+		$this->showDiff();
 
 		$wgOut->wrapWikiMsg( '<h2>$1</h2>', "yourtext" );
 		$this->showTextbox2();
@@ -3496,7 +3395,7 @@ HTML
 				// but should help keep the breakage down if the editor
 				// breaks one of the entities whilst editing.
 				if ( ( substr( $invalue, $i, 1 ) == ";" ) and ( strlen( $hexstring ) <= 6 ) ) {
-					$codepoint = hexdec($hexstring);
+					$codepoint = hexdec( $hexstring );
 					$result .= codepointToUtf8( $codepoint );
 				} else {
 					$result .= "&#x" . $hexstring . substr( $invalue, $i, 1 );
@@ -3508,5 +3407,4 @@ HTML
 		// reverse the transform that we made for reversability reasons.
 		return strtr( $result, array( "&#x0" => "&#x" ) );
 	}
-
 }
