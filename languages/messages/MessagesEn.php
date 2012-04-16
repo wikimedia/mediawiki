@@ -1399,7 +1399,7 @@ You will have to merge your changes into the existing text.
 '''Only''' the text in the upper text area will be saved when you press \"{{int:savearticle}}\".",
 'yourtext'                         => 'Your text',
 'storedversion'                    => 'Stored revision',
-'nonunicodebrowser'                => "'''Warning: Your browser is not unicode compliant.'''
+'nonunicodebrowser'                => "'''Warning: Your browser is not Unicode compliant.'''
 A workaround is in place to allow you to safely edit pages: Non-ASCII characters will appear in the edit box as hexadecimal codes.",
 'editingold'                       => "'''Warning: You are editing an out-of-date revision of this page.'''
 If you save it, any changes made since this revision will be lost.",
