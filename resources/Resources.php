@@ -920,8 +920,14 @@ return array(
 			'mediawiki.action.edit.styles',
 			'jquery.textSelection',
 			'jquery.byteLimit',
+			'mediawiki.notification',
 		),
 		'position' => 'top',
+		'messages' => array(
+			'textarea-draft-found',
+			'textarea-use-draft',
+			'textarea-use-current-version',
+		),
 	),
 	'mediawiki.action.edit.styles' => array(
 		'styles' => 'resources/src/mediawiki.action/mediawiki.action.edit.styles.css',
