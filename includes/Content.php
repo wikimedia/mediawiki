@@ -106,6 +106,10 @@ abstract class Content {
 			return false;
 		}
 
+		return false;
+		// FIXME: something is doing wrong here, causing the compared objects to always be the same.
+		// Hence returning false for now, so changes can actually be saved...
+
         if ( $that === $this ) {
 			return true;
 		}
